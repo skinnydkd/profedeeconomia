@@ -1,0 +1,100 @@
+---
+import type { Asignatura } from '@/lib/asignaturas';
+
+type Props = { asignatura: Asignatura };
+const { asignatura: a } = Astro.props;
+---
+
+<a href={`/${a.slug}/`} class:list={['subject-card', `c-${a.color}`]}>
+  <div class="level-row">
+    <span class="level">{a.level}</span>
+    <span class="num">{a.num}</span>
+  </div>
+  <h3>{a.title}</h3>
+  <p class="tagline">{a.tagline}</p>
+  <span class="arrow">Entrar →</span>
+</a>
+
+<style>
+  .subject-card {
+    background: var(--color-paper);
+    border: 1px solid var(--color-line);
+    border-radius: 6px;
+    padding: 1.6rem 1.8rem 2.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+    overflow: hidden;
+    transition:
+      transform .25s var(--ease-soft),
+      box-shadow .25s var(--ease-soft),
+      border-color .25s var(--ease-soft);
+  }
+  .subject-card::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 6px;
+    background: var(--card-color, var(--color-terra));
+  }
+  .subject-card.c-edmn { --card-color: var(--color-edmn); --card-color-soft: var(--color-edmn-soft); }
+  .subject-card.c-eco1 { --card-color: var(--color-eco1); --card-color-soft: var(--color-eco1-soft); }
+  .subject-card.c-eco4 { --card-color: var(--color-eco4); --card-color-soft: var(--color-eco4-soft); }
+  .subject-card.c-fopp { --card-color: var(--color-fopp); --card-color-soft: var(--color-fopp-soft); }
+
+  .subject-card:hover {
+    transform: translateY(-4px);
+    box-shadow:
+      0 1px 2px rgba(42, 31, 24, 0.06),
+      0 8px 24px rgba(42, 31, 24, 0.08);
+    border-color: var(--card-color);
+  }
+
+  .level-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 0.4rem;
+  }
+  .level {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--card-color);
+    background: var(--card-color-soft);
+    padding: 0.3rem 0.7rem;
+    border-radius: 999px;
+    font-weight: 500;
+  }
+  .num {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-style: italic;
+    color: var(--card-color);
+    font-size: 1.6rem;
+    font-variation-settings: "SOFT" 100, "WONK" 1;
+  }
+  h3 {
+    font-size: 1.55rem;
+    margin: 0;
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+  }
+  .tagline {
+    color: var(--color-ink-soft);
+    font-size: 1rem;
+    margin: 0;
+    flex: 1;
+    line-height: 1.55;
+  }
+  .arrow {
+    color: var(--card-color);
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
+</style>

@@ -1,0 +1,225 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { ASIGNATURA_SLUGS, ASIGNATURAS } from '@/lib/asignaturas';
+import type { GetStaticPaths } from 'astro';
+
+export const getStaticPaths = (() => {
+  return ASIGNATURA_SLUGS.map((slug) => ({
+    params: { asignatura: slug },
+    props: { asignatura: ASIGNATURAS[slug] },
+  }));
+}) satisfies GetStaticPaths;
+
+const { asignatura: a } = Astro.props;
+const isFirstBook = a.slug === 'edmn-2bach';
+
+const sections = [
+  { slug: 'libro',         title: 'Libro',         count: isFirstBook ? '12 unidades'           : '—',                 desc: 'Los capítulos del curso, listos para leer en pantalla o descargar como PDF.' },
+  { slug: 'diapositivas',  title: 'Diapositivas',  count: isFirstBook ? '12 sets · 280 diapos' : '—',                 desc: 'Diapositivas derivadas automáticamente del libro. PDF al MVP, PPTX editable más adelante.' },
+  { slug: 'actividades',   title: 'Actividades',   count: isFirstBook ? '62 actividades'        : '—',                 desc: 'Casos prácticos, ejercicios graduados y dinámicas de aula por unidad.' },
+  { slug: 'tests',         title: 'Tests',         count: isFirstBook ? '36 tests'              : '—',                 desc: 'Tests de autoevaluación: 2‑3 por unidad, con corrección y comentario.' },
+  { slug: 'recursos',      title: 'Recursos',      count: isFirstBook ? '7 recursos'            : '—',                 desc: 'Simuladores, calculadoras y plantillas que apoyan el contenido del libro.' },
+];
+---
+
+<BaseLayout
+  title={`${a.title} — ${a.level}`}
+  description={`Material para impartir ${a.title} en ${a.level}: libro, diapositivas, actividades, tests y recursos. Currículo estatal LOMLOE (${a.marcoNormativo}).`}
+>
+
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/">Inicio</a>
+      <span class="sep">›</span>
+      <span>{a.shortLabel}</span>
+    </nav>
+  </div>
+
+  <section class="hub-hero">
+    <div class="container">
+      <span class="kicker">
+        Asignatura · {a.level}{a.modalidad ? ` · ${a.modalidad}` : ''}
+      </span>
+      <h1 class={`title c-${a.color}`}>{a.title}</h1>
+
+      {isFirstBook ? (
+        <>
+          <p class="subtitle">Un curso entero alrededor del Business Model Canvas y el plan de empresa.</p>
+          <p class="desc">
+            Esta asignatura la planteamos desde una perspectiva teórico‑práctica:
+            cada concepto se conecta con un proyecto capstone que el alumnado desarrolla a lo largo
+            del curso, su propio plan de empresa.
+          </p>
+        </>
+      ) : (
+        <p class="desc">
+          Esta asignatura está en preparación. Aquí vivirán libro, diapositivas, actividades,
+          tests y recursos, con la misma estructura interna que el resto. Mientras tanto,
+          puedes consultar el material correspondiente en
+          <a href="https://legacy.profedeeconomia.es" class="editorial-link" rel="external"> legacy.profedeeconomia.es</a>.
+        </p>
+      )}
+
+      <div class="curriculum-note">
+        Este libro se basa en el currículo básico estatal LOMLOE para {a.title.toLowerCase()},
+        establecido en el {a.marcoNormativo}. Cada comunidad autónoma establece concreciones
+        específicas: conviene consultar la de tu comunidad para ajustar la programación a tu centro.
+      </div>
+    </div>
+  </section>
+
+  <section class="hub-sections">
+    <div class="container">
+      <h2>Cinco accesos, un solo curso</h2>
+      <p class="hub-intro">
+        Las cuatro asignaturas comparten exactamente la misma estructura interna.
+        Lo que cambia es el contenido, no el sitio donde encontrarlo.
+      </p>
+
+      <nav class="subject-sections" aria-label="Sub-apartados de la asignatura">
+        {sections.map((s) => (
+          <a href={`/${a.slug}/${s.slug}/`} class={`section-card c-${a.color}`}>
+            <span class="count">{s.count}</span>
+            <h3>{s.title}</h3>
+            <p class="desc">{s.desc}</p>
+          </a>
+        ))}
+      </nav>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  .container {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 clamp(1.5rem, 4vw, 3rem);
+  }
+
+  .breadcrumb {
+    font-size: 0.92rem;
+    color: var(--color-ink-mute);
+    margin: 2rem 0;
+  }
+  .breadcrumb a { color: var(--color-ink-mute); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--color-terra); }
+  .breadcrumb .sep { margin: 0 0.5em; color: var(--color-mustard); }
+
+  .hub-hero { padding: 1rem 0 3.5rem; }
+  .hub-hero h1 { max-width: 22ch; margin: 0 0 0.6rem; }
+
+  /* Per-asignatura color of the title accent — used as a soft highlight */
+  .title.c-edmn { color: var(--color-ink); }
+  .title.c-eco1 { color: var(--color-ink); }
+  .title.c-eco4 { color: var(--color-ink); }
+  .title.c-fopp { color: var(--color-ink); }
+
+  .subtitle {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.5rem;
+    color: var(--color-ink-soft);
+    font-variation-settings: "SOFT" 80;
+    margin: 0;
+  }
+  .desc {
+    max-width: 62ch;
+    font-size: 1.18rem;
+    color: var(--color-ink-soft);
+    margin-top: 1.8rem;
+    line-height: 1.65;
+  }
+
+  .curriculum-note {
+    border-radius: 6px;
+    padding: 1.4rem 1.6rem;
+    margin: 2.5rem 0 0;
+    font-family: var(--font-serif);
+    font-style: italic;
+    color: var(--color-ink-soft);
+    font-size: 1.05rem;
+    max-width: 62ch;
+    line-height: 1.55;
+    background: var(--color-mustard-soft);
+    border-left: 4px solid var(--color-mustard);
+    position: relative;
+  }
+  .curriculum-note::before {
+    content: "§";
+    position: absolute;
+    top: 1rem; right: 1.2rem;
+    color: var(--color-mustard-deep);
+    font-family: var(--font-serif);
+    font-size: 1.4rem;
+    font-style: normal;
+  }
+
+  .hub-sections { padding: 0 0 clamp(3rem, 7vw, 6rem); }
+  .hub-sections h2 { margin-top: 0; }
+  .hub-intro {
+    max-width: 60ch;
+    color: var(--color-ink-soft);
+    margin-bottom: 1.5rem;
+  }
+
+  .subject-sections {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.2rem;
+    margin-top: 2rem;
+  }
+  .section-card {
+    background: var(--color-paper);
+    border: 1px solid var(--color-line);
+    border-radius: 6px;
+    padding: 1.7rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    color: var(--color-ink);
+    text-decoration: none;
+    transition: transform .2s var(--ease-soft), box-shadow .2s var(--ease-soft), border-color .2s var(--ease-soft);
+    position: relative;
+    overflow: hidden;
+  }
+  .section-card::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 4px; height: 100%;
+    background: var(--card-color);
+    opacity: 0.85;
+  }
+  .section-card.c-edmn { --card-color: var(--color-edmn); }
+  .section-card.c-eco1 { --card-color: var(--color-eco1); }
+  .section-card.c-eco4 { --card-color: var(--color-eco4); }
+  .section-card.c-fopp { --card-color: var(--color-fopp); }
+
+  /* Make the 5th section's stripe lighter for visual rhythm */
+  .section-card:nth-child(5)::before { opacity: 0.5; }
+
+  .section-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 1px 2px rgba(42, 31, 24, 0.05), 0 4px 14px rgba(42, 31, 24, 0.06);
+    border-color: var(--card-color);
+  }
+
+  .section-card h3 { font-size: 1.3rem; margin: 0; }
+  .section-card .count {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--card-color);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .section-card .desc {
+    font-size: 0.95rem;
+    color: var(--color-ink-mute);
+    margin: 0;
+    line-height: 1.5;
+    max-width: none;
+    margin-top: 0;
+  }
+</style>

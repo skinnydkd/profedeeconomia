@@ -1,0 +1,284 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import SubjectCard from '@components/SubjectCard.astro';
+import { ASIGNATURAS_LIST } from '@/lib/asignaturas';
+---
+
+<BaseLayout
+  title="Material para impartir economía, empresa y finanzas en el instituto"
+  description="Material editorial para profesores de instituto. Cuatro asignaturas con libro, diapositivas, actividades, tests y recursos. Currículo estatal LOMLOE."
+>
+
+  <section class="hero">
+    <div class="container">
+      <span class="eyebrow">Curso 2026/27 · LOMLOE</span>
+      <h1>
+        Material para impartir
+        <span class="serif-italic-wonk hero-accent">economía, empresa y finanzas</span>
+        en el instituto.
+      </h1>
+      <p class="lede">
+        Lo que llevamos años usando en clase, esta vez ordenado como hace falta el lunes
+        a las 8:15: por asignatura. Cada una con su libro, sus diapositivas, sus actividades,
+        sus tests y sus recursos.
+      </p>
+      <div class="hero-meta">
+        <span>Cuatro asignaturas</span>
+        <span>Currículo estatal LOMLOE</span>
+        <span>Probado en aula</span>
+        <span>Hecho por profesores en activo</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="subjects-section">
+    <div class="container">
+      <div class="subjects-header">
+        <h2>
+          Las cuatro <span class="ornament serif-italic-wonk">asignaturas</span>
+        </h2>
+        <span class="note">
+          Cada una es un producto entero: libro, diapositivas, actividades, tests y recursos.
+          La misma estructura interna en las cuatro.
+        </span>
+      </div>
+
+      <div class="subjects-grid">
+        {ASIGNATURAS_LIST.map((a) => <SubjectCard asignatura={a} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="strip">
+    <div class="container">
+      <div class="subjects-header">
+        <h2>
+          Material <span class="ornament serif-italic-wonk">transversal</span>
+        </h2>
+        <span class="note">
+          Lo que no encaja dentro de una asignatura concreta vive aquí.
+          Para los días en que la teoría no sostiene la sesión.
+        </span>
+      </div>
+
+      <div class="strip-grid">
+        <div class="strip-item">
+          <span class="icon icon-1">J</span>
+          <h3>Juegos</h3>
+          <p>
+            Stonks, Insider, Communist Party, Econopoly, Econrisk, un Playground con diez juegos
+            para dos jugadores y un quiz competitivo. Todos probados en aula real.
+          </p>
+          <a href="/juegos/" class="editorial-link">Ver los juegos →</a>
+        </div>
+        <div class="strip-item">
+          <span class="icon icon-2">H</span>
+          <h3>Herramientas docentes</h3>
+          <p>
+            Generador de Situaciones de Aprendizaje LOMLOE y creador de pruebas. Para ahorrar
+            las dos horas que nos roba cada semana el papeleo administrativo.
+          </p>
+          <a href="/herramientas/" class="editorial-link">Ver herramientas →</a>
+        </div>
+        <div class="strip-item">
+          <span class="icon icon-3">E</span>
+          <h3>Emprendimiento</h3>
+          <p>
+            Plantillas, casos prácticos y dinámicas que cruzan asignaturas. Útiles los días
+            en que apetece salir del libro y plantear algo más abierto.
+          </p>
+          <a href="/emprendimiento/" class="editorial-link">Ver emprendimiento →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="why">
+    <div class="container-narrow">
+      <p class="kicker">Por qué este sitio existe</p>
+      <p class="pullquote">
+        Llevamos años publicando material suelto repartido entre ocho índices distintos.
+        Esto es lo mismo, pero ordenado como hace falta cuando uno entra a clase un lunes
+        a las 8:15.
+      </p>
+      <p class="why-body">
+        Todo lo que verás aquí parte del currículo básico estatal LOMLOE:
+        <em>Real Decreto 243/2022</em> para Bachillerato,
+        <em>Real Decreto 217/2022</em> para ESO. Cada comunidad autónoma añade su concreción,
+        y conviene revisarla. Aquí no fingimos cubrir las diecisiete: cubrimos la base común,
+        que ya es bastante.
+      </p>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  .container {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 clamp(1.5rem, 4vw, 3rem);
+  }
+  .container-narrow {
+    max-width: 740px;
+    margin: 0 auto;
+    padding: 0 clamp(1.5rem, 4vw, 3rem);
+  }
+
+  /* ---- HERO ---- */
+  .hero {
+    padding: clamp(4rem, 9vw, 7rem) 0 clamp(3rem, 6vw, 5rem);
+    background:
+      radial-gradient(ellipse 60% 50% at 90% 15%, var(--color-mustard-soft) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 40% at 5% 90%, var(--color-terra-soft) 0%, transparent 60%),
+      var(--color-bg);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: "★";
+    position: absolute;
+    top: clamp(2rem, 6vw, 4rem);
+    right: clamp(1.5rem, 5vw, 4rem);
+    color: var(--color-terra);
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    opacity: 0.6;
+    transform: rotate(12deg);
+    font-family: var(--font-serif);
+    pointer-events: none;
+  }
+  .hero h1 {
+    max-width: 17ch;
+    margin-bottom: 1.4rem;
+  }
+  .hero-accent { color: var(--color-terra); }
+  .lede {
+    font-size: clamp(1.25rem, 1.6vw, 1.5rem);
+    max-width: 50ch;
+    color: var(--color-ink-soft);
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 400;
+    line-height: 1.5;
+    font-variation-settings: "SOFT" 80;
+    margin: 0;
+  }
+  .hero-meta {
+    margin-top: 2.8rem;
+    display: flex;
+    gap: 1.8rem;
+    flex-wrap: wrap;
+    font-size: 0.95rem;
+    color: var(--color-ink-soft);
+  }
+  .hero-meta span {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.35rem 0.8rem 0.35rem 0.7rem;
+    background: var(--color-paper);
+    border: 1px solid var(--color-line);
+    border-radius: 999px;
+  }
+  .hero-meta span::before {
+    content: "";
+    width: 7px; height: 7px;
+    background: var(--color-terra);
+    border-radius: 50%;
+  }
+  .hero-meta span:nth-child(2)::before { background: var(--color-eco1); }
+  .hero-meta span:nth-child(3)::before { background: var(--color-mustard); }
+  .hero-meta span:nth-child(4)::before { background: var(--color-fopp); }
+
+  /* ---- SECTIONS ---- */
+  .subjects-section,
+  .strip,
+  .why { padding: clamp(3rem, 7vw, 6rem) 0; }
+
+  .subjects-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+  }
+  .subjects-header h2 { margin: 0; }
+  .ornament { color: var(--color-mustard); }
+  .note {
+    font-size: 1rem;
+    color: var(--color-ink-soft);
+    font-family: var(--font-serif);
+    font-style: italic;
+    max-width: 40ch;
+    font-variation-settings: "SOFT" 80;
+  }
+
+  .subjects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  /* ---- STRIP ---- */
+  .strip {
+    background: var(--color-bg-soft);
+    border-top: 1px solid var(--color-line);
+    border-bottom: 1px solid var(--color-line);
+  }
+  .strip-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2.5rem;
+  }
+  .strip-item {
+    padding: 1.5rem;
+    background: var(--color-paper);
+    border-radius: 6px;
+    border: 1px solid var(--color-line);
+  }
+  .strip-item .icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--color-paper);
+    margin-bottom: 1rem;
+    font-variation-settings: "SOFT" 100, "WONK" 1;
+  }
+  .icon-1 { background: var(--color-terra); }
+  .icon-2 { background: var(--color-eco1); }
+  .icon-3 { background: var(--color-mustard); }
+
+  .strip-item h3 { margin: 0 0 0.5rem; font-size: 1.3rem; }
+  .strip-item p {
+    color: var(--color-ink-soft);
+    font-size: 1rem;
+    margin: 0 0 0.8rem;
+    line-height: 1.6;
+  }
+
+  /* ---- WHY ---- */
+  .pullquote {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.6rem;
+    line-height: 1.45;
+    color: var(--color-ink-soft);
+    border-top: 2px solid var(--color-terra);
+    border-bottom: 2px solid var(--color-terra);
+    padding: 1.5rem 0;
+    margin: 1.5rem 0 2rem;
+    font-variation-settings: "SOFT" 80;
+  }
+  .why-body {
+    color: var(--color-ink-soft);
+    font-size: 1.1rem;
+    line-height: 1.65;
+  }
+</style>

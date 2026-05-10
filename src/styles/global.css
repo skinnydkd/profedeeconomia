@@ -1,0 +1,185 @@
+@import "tailwindcss";
+
+/* =========================================================
+   Variant C — design tokens for Tailwind 4 (@theme directive)
+   Validated 2026-05-10. See docs/PRD.md §6.3-§6.5 and CLAUDE.md
+   §"Direcció estètica" for the canonical reference.
+   ========================================================= */
+
+@theme {
+  /* Backgrounds & ink */
+  --color-bg: #FBF6EC;
+  --color-paper: #FFFFFF;
+  --color-bg-soft: #F8E8D0;
+  --color-bg-cream: #F5EDD9;
+
+  --color-ink: #2A1F18;
+  --color-ink-soft: #5C4A3D;
+  --color-ink-mute: #8A7868;
+  --color-line: #E5D4BD;
+  --color-line-soft: #EFE2CB;
+
+  /* Functional accents */
+  --color-terra: #C44E2C;
+  --color-terra-deep: #9C3A1C;
+  --color-terra-soft: #FBE3D6;
+
+  --color-mustard: #D4A24C;
+  --color-mustard-deep: #A87A2A;
+  --color-mustard-soft: #F5E5BC;
+
+  /* Per-asignatura color-coding */
+  --color-edmn: #C44E2C;
+  --color-edmn-soft: #FBE3D6;
+  --color-eco1: #1F6E6E;
+  --color-eco1-soft: #DBEDED;
+  --color-eco4: #D4A24C;
+  --color-eco4-soft: #F5E5BC;
+  --color-fopp: #5B3A4E;
+  --color-fopp-soft: #ECDCE5;
+
+  /* Type stack */
+  --font-serif: "Fraunces", "Newsreader", Georgia, serif;
+  --font-sans: "Switzer", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Editorial measure for long-read content */
+  --measure-prose: 66ch;
+
+  /* Motion */
+  --ease-soft: cubic-bezier(0.32, 0.72, 0.16, 1);
+}
+
+/* =========================================================
+   Base
+   ========================================================= */
+
+@layer base {
+  html {
+    font-size: 17px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    margin: 0;
+    background: var(--color-bg);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 1.125rem;
+    line-height: 1.7;
+    font-feature-settings: "kern", "liga", "ss01";
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-serif);
+    font-weight: 500;
+    letter-spacing: -0.015em;
+    color: var(--color-ink);
+    line-height: 1.15;
+    font-optical-sizing: auto;
+    font-variation-settings: "SOFT" 50, "WONK" 0;
+  }
+
+  h1 {
+    font-size: clamp(2.6rem, 5.5vw, 4rem);
+    font-weight: 400;
+    letter-spacing: -0.03em;
+    font-variation-settings: "SOFT" 80, "WONK" 0;
+  }
+  h2 { font-size: clamp(1.8rem, 3vw, 2.4rem); letter-spacing: -0.02em; }
+  h3 { font-size: 1.45rem; }
+  h4 {
+    font-size: 1rem;
+    font-family: var(--font-sans);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-ink-soft);
+  }
+
+  em { color: var(--color-ink); font-style: italic; }
+  strong { color: var(--color-ink); }
+}
+
+/* =========================================================
+   Editorial primitives — reused across pages
+   ========================================================= */
+
+.prose-measure { max-width: var(--measure-prose); }
+
+.eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--color-terra);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.eyebrow::before {
+  content: "✱";
+  color: var(--color-mustard);
+  font-size: 1.1em;
+  line-height: 1;
+}
+
+.kicker {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-terra);
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.kicker::before { content: "✱"; color: var(--color-mustard); }
+
+.serif-italic-wonk {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-variation-settings: "SOFT" 100, "WONK" 1;
+}
+
+a.editorial-link {
+  color: var(--color-terra);
+  text-decoration: none;
+  background-image: linear-gradient(transparent calc(100% - 1px), var(--color-terra) 1px);
+  background-size: 0% 100%;
+  background-repeat: no-repeat;
+  transition: background-size .25s var(--ease-soft), color .15s ease;
+  padding-bottom: 1px;
+}
+a.editorial-link:hover {
+  background-size: 100% 100%;
+  color: var(--color-terra-deep);
+}
+
+/* Brand mark — concentric circles (terracota / mostaza / cream) */
+.brand-mark {
+  width: 26px;
+  height: 26px;
+  display: inline-block;
+  position: relative;
+  background: var(--color-terra);
+  border-radius: 50%;
+  flex: none;
+}
+.brand-mark::before {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  background: var(--color-mustard);
+  border-radius: 50%;
+}
+.brand-mark::after {
+  content: "";
+  position: absolute;
+  inset: 9px;
+  background: var(--color-bg);
+  border-radius: 50%;
+}
