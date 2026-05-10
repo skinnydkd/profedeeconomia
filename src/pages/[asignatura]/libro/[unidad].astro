@@ -294,6 +294,45 @@ const idToSlug = (id: string) => id.split('/').pop()?.replace(/\.mdx?$/, '') ?? 
 
   .article-body :global(ul li::marker) { color: var(--color-mustard); }
 
+  .article-body :global(ul),
+  .article-body :global(ol) {
+    padding-left: 1.4rem;
+    margin: 0 0 1.4em;
+  }
+  .article-body :global(li) { margin-bottom: 0.5em; }
+  .article-body :global(strong) { color: var(--color-ink); }
+  .article-body :global(em) { color: var(--color-ink); font-style: italic; }
+
+  /* Tables inside MDX */
+  .article-body :global(table) {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin: 2.2rem 0;
+    font-size: 0.98rem;
+    background: var(--color-paper);
+    border: 1px solid var(--color-line);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .article-body :global(table th),
+  .article-body :global(table td) {
+    text-align: left;
+    padding: 0.85rem 1.1rem;
+    border-bottom: 1px solid var(--color-line-soft);
+    vertical-align: top;
+  }
+  .article-body :global(table tr:last-child td) { border-bottom: none; }
+  .article-body :global(table th) {
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-terra-deep);
+    background: var(--color-terra-soft);
+    font-weight: 700;
+  }
+
   /* Prev/next */
   .unit-nav {
     display: grid;

@@ -1,0 +1,35 @@
+---
+type Props = { title?: string };
+const { title = 'Bibliografía' } = Astro.props;
+---
+
+<section class="bibliography">
+  <h3>{title}</h3>
+  <slot />
+</section>
+
+<style>
+  .bibliography {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 2px dashed var(--color-mustard);
+    font-size: 0.95rem;
+  }
+  h3 {
+    font-size: 0.85rem;
+    font-family: var(--font-sans);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--color-ink-mute);
+    font-weight: 600;
+    margin: 0 0 1rem;
+  }
+  .bibliography :global(ol) { padding-left: 1.4rem; color: var(--color-ink-soft); margin: 0; }
+  .bibliography :global(li) { margin-bottom: 0.6em; }
+
+  /* No drop cap inside bibliography. */
+  .bibliography :global(p::first-letter) {
+    font-family: inherit; font-weight: inherit; font-size: inherit;
+    line-height: inherit; float: none; padding: 0; color: inherit;
+  }
+</style>
