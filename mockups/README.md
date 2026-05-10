@@ -1,8 +1,12 @@
 # Mockups visuales · profedeeconomia.es
 
-Cinco páginas en dos variantes estéticas, en HTML+CSS puros. Sirven para validar
-la dirección visual antes de comprometernos con código de producción (Astro,
-Tailwind, etc.).
+Cinco páginas en **tres variantes estéticas**, en HTML+CSS puros. Sirven para
+validar la dirección visual antes de comprometernos con código de producción
+(Astro, Tailwind, etc.).
+
+> Variant C añadida en una segunda iteración, después de que A y B se
+> percibieran como demasiado serias. C recupera la energía cromática del
+> webpde actual sin reincidir en el rosa Tailwind ni en la mascota cerdo.
 
 ## Cómo abrir
 
@@ -20,18 +24,21 @@ herramientas superior.
 ```
 mockups/
 ├── README.md                 — este fichero
-├── compare.html              — comparativa A vs B con iframes y selector de página
+├── compare.html              — comparativa con iframes, selector de página y selector de variante por panel
 ├── variant-a/                — Editorial puro (Princeton Press / Stripe Press)
 │   ├── style.css
-│   ├── home.html
-│   ├── edmn-2bach.html       — hub de la asignatura
-│   ├── unidad-1.html         — pieza más extensa: Unidad 1 del libro EDMN 2BACH
-│   ├── juegos.html
-│   └── stonks.html
-└── variant-b/                — Editorial cálido (Stratechery / Increment / A Book Apart)
+│   └── 5 páginas
+├── variant-b/                — Editorial cálido (Stratechery / Increment / A Book Apart)
+│   ├── style.css
+│   └── 5 páginas
+└── variant-c/                — Editorial con energía (Apartamento / MUBI Notebook / Magma Books)
     ├── style.css
-    └── (mismas 5 páginas)
+    └── 5 páginas
 ```
+
+`compare.html` permite elegir qué variante se muestra en cada panel (izquierda
+y derecha), por lo que se puede comparar A vs B, A vs C, o B vs C según
+convenga.
 
 ## Las cinco páginas
 
@@ -59,10 +66,17 @@ mockups/
 - **Textura**: tarjetas con borde y sombra muy sutil, bullets como puntos terra, callouts con fondo de color, dashes en bordes secundarios. Capital letter en verde, drop shadow ligero en la barra de meta.
 - **Tono**: más conversacional. Inspiración: Stratechery, Increment Magazine, A Book Apart.
 
-Ambas comparten: serif en títulos, sans humanística en cuerpo, espacio blanco
-generoso, una sola columna para contenido largo, sin emojis como icono, sin
-gradientes cridaners, sin mascot. La direcció estética es la misma; lo que
-cambia es el **carácter**.
+### Variant C — Editorial con energía
+
+- **Paleta**: cream cálido `#FBF6EC` / marrón profundo `#2A1F18` / **terracota** `#C44E2C` (acento principal) + **mostaza** `#D4A24C` (acento decorativo) + **teal** `#1F6E6E` y **berenjena** `#5B3A4E` (color‑coding por asignatura).
+- **Tipografía**: Fraunces (títulos, *variable* con eje SOFT/WONK que da personalidad sin perder seriedad) + Switzer (cuerpo) + JetBrains Mono.
+- **Textura**: cada asignatura tiene un color distintivo en la home (tira superior de la card, pill del nivel, número italian-style, color del acento). Hero con gradientes radiales muy suaves de acentos, asterisco decorativo. Drop cap terracota, callouts de fondo terracota o mostaza según tipo, listas con bullets mostaza. Botón CTA terracota redondeado tipo pill. Algunas reglas dashed en mostaza.
+- **Tono**: el más cálido, recupera la energía del webpde actual con paleta otoñal en lugar del rosa Tailwind. Inspiración: Apartamento Magazine, MUBI Notebook, Magma Books.
+
+Las tres comparten: serif en títulos, sans humanística en cuerpo, espacio
+blanco generoso, una sola columna para contenido largo, **sin emojis como
+icono, sin gradientes chillones, sin mascota**. La dirección editorial es la
+misma; lo que cambia es el **carácter** y la **temperatura cromática**.
 
 ## Cómo decidir
 

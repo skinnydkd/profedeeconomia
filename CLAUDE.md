@@ -89,23 +89,23 @@ Econosublime és el referent a superar. La seua debilitat no és el contingut si
 - Connexió com a col·legues ("per si us serveix", "ho fem servir nosaltres així")
 - Mai vendre, mai prometre, mai promocionar
 
-### Paleta proposada (validar amb mockups)
+### Paleta proposada (validació en curs)
 
-- Fons clar: `#FAFAF7` (off-white càlid)
-- Fons fosc opcional: `#1A1A1A`
-- Accent primari (3 candidats per validar):
-  - Vermell barroc: `#722F37`
-  - Verd musc: `#5B6C44`
-  - Blau pissarra: `#2E4057`
-- Accent secundari: `#C19A6B` (terra càlid)
+Sessió de mockups iniciada el 2026-05-10. Es van presentar dues variants editorials sòbries (A — Source Serif + vermell barroc; B — Newsreader + verd musc) i totes dues van quedar massa formals. S'està explorant una **Variant C** més càlida i amb més color, que recupere l'energia del webpde actual sense reincidir en el rosa Tailwind ni en la mascota porc. La paleta i la tipografia es congelen quan Pau valide la direcció final.
 
-**NO usar el rosa Tailwind del webpde antic.** Aquell era per a un producte més juganer; aquest és editorial.
+- Fons clar base: `#FAFAF7` (off-white càlid) — confirmat
+- Fons fosc opcional: `#1A1A1A` — confirmat
+- Accent primari: pendent (validació final amb mockups)
+- Accent secundari (terra càlid): `#C19A6B` — confirmat com a candidat
+- Mockups vius a `mockups/` (variant A, B i C)
 
-### Tipografia
+**NO usar el rosa Tailwind del webpde antic.** Aquell era per a un producte més juganer; aquest és editorial — però el càlid i el color sí són benvinguts.
 
-- Títols: serif editorial (Source Serif 4, Newsreader, o Tiempos Headline)
-- Cos: sans humanística amb bona altura-x (General Sans, Switzer, Outfit, o Söhne)
-- Mono: JetBrains Mono o IBM Plex Mono
+### Tipografia (validació en curs)
+
+- Títols: serif editorial amb caràcter (candidats actius: Fraunces, Newsreader)
+- Cos: sans humanística amb bona altura-x (candidat actiu: Switzer)
+- Mono: IBM Plex Mono o JetBrains Mono
 
 ### Què NO fer mai
 
