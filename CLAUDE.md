@@ -89,23 +89,36 @@ Econosublime és el referent a superar. La seua debilitat no és el contingut si
 - Connexió com a col·legues ("per si us serveix", "ho fem servir nosaltres així")
 - Mai vendre, mai prometre, mai promocionar
 
-### Paleta proposada (validació en curs)
+### Paleta validada — Variant C "editorial amb energia"
 
-Sessió de mockups iniciada el 2026-05-10. Es van presentar dues variants editorials sòbries (A — Source Serif + vermell barroc; B — Newsreader + verd musc) i totes dues van quedar massa formals. S'està explorant una **Variant C** més càlida i amb més color, que recupere l'energia del webpde actual sense reincidir en el rosa Tailwind ni en la mascota porc. La paleta i la tipografia es congelen quan Pau valide la direcció final.
+Validada el 2026-05-10. Variant C va guanyar enfront de A (editorial pur, vermell barroc) i B (editorial càlid, verd musc), totes dues percebudes com a massa serioses. C recupera l'energia cromàtica del webpde antic sense reincidir en el rosa Tailwind ni en la mascota porc. Inspiració: Apartamento Magazine, MUBI Notebook, Magma Books. Mockup de referència: `mockups/variant-c/`.
 
-- Fons clar base: `#FAFAF7` (off-white càlid) — confirmat
-- Fons fosc opcional: `#1A1A1A` — confirmat
-- Accent primari: pendent (validació final amb mockups)
-- Accent secundari (terra càlid): `#C19A6B` — confirmat com a candidat
-- Mockups vius a `mockups/` (variant A, B i C)
+**Fons i tinta**:
+- Fons base: `#FBF6EC` (cream càlid)
+- Paper / superfície elevada: `#FFFFFF`
+- Fons soft (strips): `#F8E8D0` · Fons cream: `#F5EDD9`
+- Tinta primària: `#2A1F18` (marró profund, no negre pur) · Soft `#5C4A3D` · Mute `#8A7868`
+- Línia: `#E5D4BD` · Línia suau: `#EFE2CB`
 
-**NO usar el rosa Tailwind del webpde antic.** Aquell era per a un producte més juganer; aquest és editorial — però el càlid i el color sí són benvinguts.
+**Accents principals**:
+- **Terracota** `#C44E2C` (primari, ús funcional: links, CTAs, eyebrow, drop cap, regles editorials) · profund `#9C3A1C` · soft `#FBE3D6`
+- **Mostassa** `#D4A24C` (decoratiu: bullets, dashes, *italics* ornamentals, regles superiors als `<h2>` alternant amb terracota) · profund `#A87A2A` · soft `#F5E5BC`
 
-### Tipografia (validació en curs)
+**Color-coding per assignatura** (vinculant — cada assignatura té el seu color identificador a la home, hub i tags):
+- EDMN 2BACH → terracota `#C44E2C`
+- Eco 1BACH → teal `#1F6E6E` (soft `#DBEDED`)
+- Eco 4ESO → mostassa `#D4A24C` (soft `#F5E5BC`)
+- FOPP 4ESO → berenjena `#5B3A4E` (soft `#ECDCE5`)
 
-- Títols: serif editorial amb caràcter (candidats actius: Fraunces, Newsreader)
-- Cos: sans humanística amb bona altura-x (candidat actiu: Switzer)
-- Mono: IBM Plex Mono o JetBrains Mono
+**NO usar el rosa Tailwind del webpde antic.** L'energia cromàtica de C ja substitueix aquell rol.
+
+### Tipografia validada
+
+- **Títols**: **Fraunces** (Google Fonts, *variable*, eixos `opsz`/`wght`/`SOFT`/`WONK`) — la personalitat ve del eix `SOFT` (50-100) i de l'`italic` amb `WONK 1` (swashes lleugers als números i italics)
+- **Cos**: **Switzer** (Fontshare, pesos 400/500/600/700)
+- **Mono**: **JetBrains Mono** (pesos 400/500)
+- Mida base del cos: 1.125rem · interlineat 1.7 · `font-feature-settings: "kern", "liga", "ss01"`
+- A `<h1>` clau, aplicar `font-variation-settings: "SOFT" 80, "WONK" 0`. Per a italics ornamentals dins de títols: `"SOFT" 100, "WONK" 1`.
 
 ### Què NO fer mai
 

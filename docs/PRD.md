@@ -246,22 +246,46 @@ Producte editorial seriós però que parla com un companys de feina, no com una 
 
 **Però proper, no corporatiu.** Diferència clau respecte d'una editorial tradicional: parlem en plural ("hem fet"), reconeixem que és material d'aula real ("provat a classe"), reconnectem amb el lector com a col·lega de profession ("ja ho saps, però per si de cas..."). Tons acceptats: didàctic, reflexiu, lleugerament autocrític, mai venedor.
 
-### 6.3 Paleta proposada (validar amb mockups)
+### 6.3 Paleta validada — Variant C "editorial amb energia"
 
-- Fons clar: `#FAFAF7` (off-white càlid)
-- Fons fosc opcional: `#1A1A1A`
-- Accent primari (validar amb mockup):
-  - Opció 1: Vermell barroc `#722F37` (impactant, refinat)
-  - Opció 2: Verd musc `#5B6C44` (acadèmic, sobri)
-  - Opció 3: Blau pissarra `#2E4057` (formal, neutre)
-- Accent secundari (terra càlid): `#C19A6B`
-- Text primari: `#1A1A1A` clar / `#EDEDED` fosc
+Validada el 2026-05-10 sobre la sessió de mockups. Es van descartar la Variant A (editorial pur, Source Serif 4 + vermell barroc) i la Variant B (editorial càlid, Newsreader + verd musc) per percepció de "massa serioses". Mockups conservats al repo a `mockups/variant-{a,b,c}/` com a registre.
 
-### 6.4 Tipografia (validar)
+**Fons i tinta**:
+- Fons base: `#FBF6EC` (cream càlid)
+- Paper / superfície elevada: `#FFFFFF`
+- Fons soft (strips): `#F8E8D0` · Fons cream: `#F5EDD9`
+- Tinta primària: `#2A1F18` (marró profund, no negre pur) · soft `#5C4A3D` · mute `#8A7868`
+- Línia: `#E5D4BD` · línia suau: `#EFE2CB`
 
-- Títols: Source Serif 4, Newsreader, o Tiempos Headline
-- Cos: General Sans, Switzer, Outfit, o Söhne
-- Mono: JetBrains Mono o IBM Plex Mono
+**Accents principals**:
+- **Terracota** `#C44E2C` (acent primari funcional) · profund `#9C3A1C` · soft `#FBE3D6`
+- **Mostassa** `#D4A24C` (acent decoratiu) · profund `#A87A2A` · soft `#F5E5BC`
+
+**Color-coding per assignatura** (vinculant a partir d'aquesta versió del PRD):
+- EDMN 2BACH → terracota `#C44E2C`
+- Eco 1BACH → teal `#1F6E6E`
+- Eco 4ESO → mostassa `#D4A24C`
+- FOPP 4ESO → berenjena `#5B3A4E`
+
+Repartició d'ús:
+- La terracota és l'accent funcional principal (links, CTA, eyebrow, drop cap, regles editorials).
+- La mostassa és l'accent decoratiu (bullets, dashes, regles superiors als `<h2>` alternant amb terracota, *italics* ornamentals, números *italian-style*).
+- Els 4 colors d'assignatura només apareixen com a identificadors visuals: tira superior de la card a la home, *pills* de nivell, números italian-style del card, color de la barra esquerra al hub. No es porten al cos del contingut.
+
+### 6.4 Tipografia validada
+
+- **Títols**: Fraunces (Google Fonts, *variable*, eixos `opsz`/`wght`/`SOFT`/`WONK`) — caràcter editorial amb personalitat. `SOFT` 50–100 i `WONK 0|1` segons context.
+- **Cos**: Switzer (Fontshare, pesos 400/500/600/700) — sans humanística amb bona altura-x.
+- **Mono**: JetBrains Mono (pesos 400/500) — metadades, eyebrows, breadcrumbs, *meta* dels jocs.
+- Mida base del cos: **1.125rem** · interlineat 1.7 · `font-feature-settings: "kern", "liga", "ss01"`.
+
+### 6.5 Pendents per a la fase de producció
+
+Aquests detalls es decideixen al moment de muntar el design system definitiu sobre Tailwind 4:
+- **Mode fosc**: dependent. Si es fa, no és prioritari al MVP.
+- **Iconografia SVG personalitzada**: el "mark" del logotip (cercles concèntrics terracota / mostassa / cream) i les inicials a les *strip cards* són les úniques peces visuals provisionals al mockup. El sistema d'icones complet es dissenya després del setup tècnic.
+- **Animacions**: només microinteraccions (subratllat creixent als links, *translateY(-3px)* a hover de cards, transicions ≤ 250 ms, lleuger *scale* a les decoracions de cercle dels game-cards). Cap animació al *scroll*.
+- **Patró visual del hero**: els gradients radials soft de mostassa i terracota i l'estrella tipogràfica rotada formen part de la signatura visual del producte i s'han de portar al setup definitiu.
 
 ## 7. Sistema "single source of truth"
 
@@ -428,3 +452,4 @@ Idees del roadmap antic que s'integren al nou plantejament:
 - **v1.0** — abril 2026 — primera versió post-decisions estratègiques globals.
 - **v2.0** — abril 2026 — reestructuració completa: organització per assignatures (4 + seccions específiques), estètica editorial sòbria amb to proper, estratègia de migració selectiva del webpde.
 - **v2.1** — abril 2026 — afegit cobertura curricular (basada en currículum estatal LOMLOE, amb nota explicativa per a la concreció autonòmica). Oposicions: redirect 301 directe sense pàgina intermèdia. Risc 12.5 afegit.
+- **v2.2** — 2026-05-10 — direcció estètica validada (Variant C "editorial amb energia"): paleta cream + terracota + mostassa, color-coding per assignatura, Fraunces + Switzer + JetBrains Mono. Apartat 6.5 (pendents per a la fase de producció) afegit. Mockups vius a `mockups/variant-{a,b,c}/`.
