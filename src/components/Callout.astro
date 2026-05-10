@@ -1,0 +1,69 @@
+---
+type Props = {
+  /** "Concepto clave", "Ejemplo práctico", "Recomendación de aula"... */
+  label: string;
+  /** The bold italic line shown under the label. Optional. */
+  title?: string;
+  /** Visual variant. Default = terracota (concepto). example = mustard. */
+  variant?: 'concept' | 'example';
+};
+
+const { label, title, variant = 'concept' } = Astro.props;
+---
+
+<aside class:list={['callout', `callout--${variant}`]}>
+  <span class="label">{label}</span>
+  {title && <span class="label-title">{title}</span>}
+  <div class="callout-body">
+    <slot />
+  </div>
+</aside>
+
+<style>
+  .callout {
+    margin: 2.8rem 0;
+    padding: 1.8rem 2rem;
+    border-radius: 8px;
+    background: var(--color-terra-soft);
+    border-left: 5px solid var(--color-terra);
+  }
+  .callout--example {
+    background: var(--color-mustard-soft);
+    border-left-color: var(--color-mustard);
+  }
+
+  .label {
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--color-terra-deep);
+    display: block;
+    margin-bottom: 0.6rem;
+    font-weight: 700;
+  }
+  .callout--example .label { color: var(--color-mustard-deep); }
+
+  .label-title {
+    font-family: var(--font-serif);
+    font-size: 1.3rem;
+    font-style: italic;
+    color: var(--color-ink);
+    display: block;
+    margin-bottom: 0.5rem;
+    font-variation-settings: "SOFT" 100, "WONK" 1;
+  }
+
+  .callout-body :global(p:last-child) { margin-bottom: 0; }
+
+  /* The drop cap from the article body should not apply to callout text. */
+  .callout-body :global(p::first-letter) {
+    font-family: inherit;
+    font-weight: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    float: none;
+    padding: 0;
+    color: inherit;
+  }
+</style>
