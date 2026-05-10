@@ -1,0 +1,82 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { ASIGNATURA_SLUGS, ASIGNATURAS } from '@/lib/asignaturas';
+import type { GetStaticPaths } from 'astro';
+
+const SECCIONES = [
+  { slug: 'diapositivas', label: 'Diapositivas' },
+  { slug: 'actividades',  label: 'Actividades'  },
+  { slug: 'tests',        label: 'Tests'        },
+  { slug: 'recursos',     label: 'Recursos'     },
+] as const;
+
+export const getStaticPaths = (() => {
+  const SLUGS = ['diapositivas', 'actividades', 'tests', 'recursos'] as const;
+  const out = [];
+  for (const asignatura of ASIGNATURA_SLUGS) {
+    for (const seccion of SLUGS) {
+      out.push({
+        params: { asignatura, seccion },
+        props: {
+          asignatura: ASIGNATURAS[asignatura],
+          seccion,
+          seccionLabel: { diapositivas: 'Diapositivas', actividades: 'Actividades', tests: 'Tests', recursos: 'Recursos' }[seccion],
+        },
+      });
+    }
+  }
+  return out;
+}) satisfies GetStaticPaths;
+
+const { asignatura: a, seccion, seccionLabel } = Astro.props;
+---
+
+<BaseLayout
+  title={`${seccionLabel} — ${a.shortLabel}`}
+  description={`${seccionLabel} de ${a.title}. En preparación.`}
+>
+  <div class="container">
+    <nav class="breadcrumb">
+      <a href="/">Inicio</a>
+      <span class="sep">›</span>
+      <a href={`/${a.slug}/`}>{a.shortLabel}</a>
+      <span class="sep">›</span>
+      <span>{seccionLabel}</span>
+    </nav>
+  </div>
+
+  <section class="hero">
+    <div class="container">
+      <span class="kicker">{a.shortLabel} · sub-apartado</span>
+      <h1>{seccionLabel}</h1>
+      <p class="lede">
+        Esta sección está en preparación. Aquí vivirán las {seccionLabel.toLowerCase()}
+        de la asignatura {a.title}.
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .container {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 clamp(1.5rem, 4vw, 3rem);
+  }
+  .breadcrumb { font-size: 0.92rem; color: var(--color-ink-mute); margin: 2rem 0; }
+  .breadcrumb a { color: var(--color-ink-mute); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--color-terra); }
+  .breadcrumb .sep { margin: 0 0.5em; color: var(--color-mustard); }
+  .hero { padding: 1rem 0 clamp(3rem, 7vw, 6rem); }
+  h1 { max-width: 22ch; margin: 1rem 0 0.6rem; }
+  .lede {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.4rem;
+    color: var(--color-ink-soft);
+    max-width: 55ch;
+    margin: 1.5rem 0;
+    line-height: 1.5;
+    font-variation-settings: "SOFT" 80;
+  }
+</style>

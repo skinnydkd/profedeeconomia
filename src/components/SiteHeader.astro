@@ -1,0 +1,73 @@
+---
+import { ASIGNATURAS_LIST } from '@/lib/asignaturas';
+---
+
+<header class="site-header">
+  <div class="site-header-inner">
+    <a href="/" class="brand">
+      <span class="brand-mark"></span>
+      profedeeconomia
+    </a>
+    <nav class="site-nav" aria-label="Navegación principal">
+      {ASIGNATURAS_LIST.map((a) => (
+        <a href={`/${a.slug}/`}>{a.shortLabel}</a>
+      ))}
+      <a href="/juegos/">Juegos</a>
+      <a href="/herramientas/">Herramientas</a>
+      <a href="/emprendimiento/">Emprendimiento</a>
+      <a href="/oposiciones" class="ext" rel="external">Oposiciones</a>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    background: var(--color-bg);
+    border-bottom: 1px solid var(--color-line);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+  .site-header-inner {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 1.1rem clamp(1.5rem, 4vw, 3rem);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+  .brand {
+    font-family: var(--font-serif);
+    font-weight: 500;
+    font-size: 1.25rem;
+    letter-spacing: -0.02em;
+    color: var(--color-ink);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    text-decoration: none;
+    font-variation-settings: "SOFT" 100, "WONK" 1;
+  }
+  .brand:hover { color: var(--color-terra); }
+
+  .site-nav {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .site-nav a {
+    color: var(--color-ink-soft);
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color .15s ease;
+  }
+  .site-nav a:hover { color: var(--color-terra); }
+  .site-nav .ext::after {
+    content: " ↗";
+    font-size: 0.8em;
+    color: var(--color-ink-mute);
+  }
+</style>

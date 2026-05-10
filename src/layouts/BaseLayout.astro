@@ -1,0 +1,59 @@
+---
+import SiteHeader from '@components/SiteHeader.astro';
+import SiteFooter from '@components/SiteFooter.astro';
+import '@/styles/global.css';
+
+type Props = {
+  title: string;
+  description?: string;
+  /** Optional Open Graph image (absolute or path under /public). */
+  ogImage?: string;
+};
+
+const { title, description, ogImage } = Astro.props;
+const fullTitle = title.endsWith('profedeeconomia')
+  ? title
+  : `${title} — profedeeconomia`;
+
+const canonical = new URL(Astro.url.pathname, Astro.site).toString();
+---
+<!doctype html>
+<html lang={Astro.currentLocale ?? 'es'}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    {description && <meta name="description" content={description} />}
+    <link rel="canonical" href={canonical} />
+
+    <!-- Variant C type stack: Fraunces (variable) + Switzer + JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,0..100,0..1;1,9..144,300..700,0..100,0..1&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://api.fontshare.com/v2/css?f[]=switzer@400,500,600,700&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap"
+    />
+
+    <!-- OG -->
+    <meta property="og:title" content={fullTitle} />
+    {description && <meta property="og:description" content={description} />}
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    {ogImage && <meta property="og:image" content={new URL(ogImage, Astro.site).toString()} />}
+  </head>
+  <body class="bg-bg text-ink font-sans">
+    <SiteHeader />
+    <main>
+      <slot />
+    </main>
+    <SiteFooter />
+  </body>
+</html>
