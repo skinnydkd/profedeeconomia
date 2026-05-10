@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Comparativa de variantes — profedeeconomia mockups</title>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #1A1A1A;
+      --ink: #EDEDED;
+      --line: #2C2C2C;
+      --muted: #888;
+      --accent-a: #C09097;
+      --accent-b: #9CB082;
+      --accent-c: #E5896A;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; height: 100%; background: var(--bg); color: var(--ink); font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 14px; }
+    .toolbar {
+      padding: 0.8rem 1.2rem;
+      background: var(--bg);
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+    }
+    .toolbar h1 { font-size: 0.95rem; margin: 0; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; color: var(--ink); }
+    .group {
+      display: flex;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+    }
+    .group-label {
+      font-size: 0.7rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      align-self: center;
+      margin-right: 0.4rem;
+    }
+    .group button {
+      background: transparent;
+      border: 1px solid var(--line);
+      color: var(--muted);
+      padding: 0.4rem 0.85rem;
+      font-family: inherit;
+      font-size: 0.78rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all .15s ease;
+    }
+    .group button:hover { color: var(--ink); border-color: var(--muted); }
+    .group button.active { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+    .group.variants button.active[data-variant="a"] { background: var(--accent-a); border-color: var(--accent-a); color: var(--bg); }
+    .group.variants button.active[data-variant="b"] { background: var(--accent-b); border-color: var(--accent-b); color: var(--bg); }
+    .group.variants button.active[data-variant="c"] { background: var(--accent-c); border-color: var(--accent-c); color: var(--bg); }
+
+    .toolbar .right { margin-left: auto; display: flex; gap: 1rem; align-items: center; }
+    .legend { font-size: 0.75rem; color: var(--muted); }
+
+    .panes {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      height: calc(100vh - 56px);
+      gap: 0;
+    }
+    .pane { display: flex; flex-direction: column; border-right: 1px solid var(--line); }
+    .pane:last-child { border-right: none; }
+    .pane-header {
+      padding: 0.5rem 0.9rem;
+      background: #111;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .pane-header[data-variant="a"] { border-top: 2px solid var(--accent-a); }
+    .pane-header[data-variant="b"] { border-top: 2px solid var(--accent-b); }
+    .pane-header[data-variant="c"] { border-top: 2px solid var(--accent-c); }
+    .pane-header strong { color: var(--ink); font-weight: 500; }
+    .pane iframe {
+      flex: 1;
+      width: 100%;
+      border: 0;
+      background: #FAFAF7;
+    }
+    @media (max-width: 1100px) {
+      .panes { grid-template-columns: 1fr; height: auto; }
+      .pane iframe { height: 90vh; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="toolbar">
+  <h1>profedeeconomia · Mockups</h1>
+
+  <div class="group" id="pages"></div>
+
+  <div class="right">
+    <span class="group-label">Izquierda</span>
+    <div class="group variants" id="variants-left"></div>
+    <span class="group-label">Derecha</span>
+    <div class="group variants" id="variants-right"></div>
+  </div>
+</div>
+
+<div class="panes">
+  <div class="pane">
+    <div class="pane-header" id="header-left" data-variant="a">
+      <strong id="title-left">Variant A · Editorial puro</strong>
+      <span id="info-left">Source Serif 4 · General Sans · #722F37</span>
+    </div>
+    <iframe id="frame-left" src="variant-a/home.html"></iframe>
+  </div>
+  <div class="pane">
+    <div class="pane-header" id="header-right" data-variant="c">
+      <strong id="title-right">Variant C · Editorial con energía</strong>
+      <span id="info-right">Fraunces · Switzer · #C44E2C + #D4A24C</span>
+    </div>
+    <iframe id="frame-right" src="variant-c/home.html"></iframe>
+  </div>
+</div>
+
+<script>
+  const pages = [
+    { id: 'home',        label: 'Home' },
+    { id: 'edmn-2bach',  label: 'Hub asignatura' },
+    { id: 'unidad-1',    label: 'Unidad 1' },
+    { id: 'juegos',      label: 'Juegos' },
+    { id: 'stonks',      label: 'Stonks' },
+  ];
+
+  const variants = [
+    { id: 'a', label: 'A',   title: 'Variant A · Editorial puro',   info: 'Source Serif 4 · General Sans · #722F37' },
+    { id: 'b', label: 'B',   title: 'Variant B · Editorial cálido', info: 'Newsreader · Switzer · #5B6C44 + #C19A6B' },
+    { id: 'c', label: 'C',   title: 'Variant C · Editorial con energía', info: 'Fraunces · Switzer · #C44E2C + #D4A24C' },
+  ];
+
+  const state = { page: 'home', left: 'a', right: 'c' };
+
+  function update() {
+    document.getElementById('frame-left').src  = `variant-${state.left}/${state.page}.html`;
+    document.getElementById('frame-right').src = `variant-${state.right}/${state.page}.html`;
+    const vL = variants.find(v => v.id === state.left);
+    const vR = variants.find(v => v.id === state.right);
+    document.getElementById('title-left').textContent = vL.title;
+    document.getElementById('info-left').textContent  = vL.info;
+    document.getElementById('header-left').dataset.variant = vL.id;
+    document.getElementById('title-right').textContent = vR.title;
+    document.getElementById('info-right').textContent  = vR.info;
+    document.getElementById('header-right').dataset.variant = vR.id;
+  }
+
+  // Pages
+  const pagesContainer = document.getElementById('pages');
+  pages.forEach((p, i) => {
+    const btn = document.createElement('button');
+    btn.textContent = p.label;
+    btn.dataset.page = p.id;
+    if (i === 0) btn.classList.add('active');
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('#pages button').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      state.page = p.id;
+      update();
+    });
+    pagesContainer.appendChild(btn);
+  });
+
+  function buildVariantGroup(containerId, side) {
+    const container = document.getElementById(containerId);
+    variants.forEach(v => {
+      const btn = document.createElement('button');
+      btn.textContent = v.label;
+      btn.dataset.variant = v.id;
+      if (state[side] === v.id) btn.classList.add('active');
+      btn.addEventListener('click', () => {
+        container.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        state[side] = v.id;
+        update();
+      });
+      container.appendChild(btn);
+    });
+  }
+
+  buildVariantGroup('variants-left', 'left');
+  buildVariantGroup('variants-right', 'right');
+</script>
+
+</body>
+</html>
