@@ -17,6 +17,12 @@ const allUnits = await getCollection('libro');
 const units = allUnits
   .filter((u) => u.data.asignatura === a.slug && u.data.estado === 'publicado')
   .sort((x, y) => x.data.unidad - y.data.unidad);
+
+// The PDF is published to /downloads/<slug>-libro.pdf when the
+// `npm run build:pdf` step has been run. We always render the CTA;
+// if the file is not yet committed it will 404, which is acceptable
+// during early publishing.
+const pdfHref = `/downloads/${a.slug}-libro.pdf`;
 ---
 
 <BaseLayout
@@ -40,6 +46,21 @@ const units = allUnits
           ? 'Las unidades publicadas aparecerán aquí a medida que se vayan completando.'
           : `${units.length} ${units.length === 1 ? 'unidad publicada' : 'unidades publicadas'}.`}
       </p>
+
+      {units.length > 0 && (
+        <div class="downloads">
+          <a class="download-cta" href={pdfHref} download>
+            <span class="download-cta__icon" aria-hidden="true">↓</span>
+            <span class="download-cta__text">
+              <strong>Descargar libro completo</strong>
+              <span class="muted">PDF · {units.length} unidades · todas las páginas</span>
+            </span>
+          </a>
+          <a class="download-secondary" href={`/${a.slug}/libro/imprimir/?preview=1`} target="_blank" rel="noopener">
+            Previsualizar versión impresa en navegador
+          </a>
+        </div>
+      )}
     </div>
   </section>
 
@@ -108,4 +129,58 @@ const units = allUnits
     text-decoration: none;
   }
   .unit-list a.title:hover { color: var(--color-terra); }
+
+  .downloads {
+    margin-top: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.2rem;
+  }
+  .download-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.9rem 1.4rem 0.9rem 1.1rem;
+    background: var(--color-terra);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: background .2s var(--ease-soft), transform .2s var(--ease-soft);
+  }
+  .download-cta:hover {
+    background: var(--color-terra-deep);
+    transform: translateY(-1px);
+  }
+  .download-cta__icon {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.7rem;
+    line-height: 1;
+    color: var(--color-mustard-soft);
+    font-variation-settings: "SOFT" 100, "WONK" 1;
+  }
+  .download-cta__text { display: flex; flex-direction: column; gap: 0.15rem; }
+  .download-cta__text strong {
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
+  .download-cta__text .muted {
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    opacity: 0.75;
+    letter-spacing: 0.04em;
+  }
+  .download-secondary {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--color-ink-soft);
+    text-decoration: none;
+    border-bottom: 1px dashed var(--color-line);
+    padding-bottom: 1px;
+    font-variation-settings: "SOFT" 80;
+  }
+  .download-secondary:hover { color: var(--color-terra); border-bottom-color: var(--color-terra); }
 </style>

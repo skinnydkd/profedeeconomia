@@ -1,0 +1,720 @@
+---
+/**
+ * Print-ready single-page render of an entire book.
+ * Used by paged.js (via pagedjs-cli) to produce the downloadable PDF.
+ *
+ * The browser also previews this as a paginated document because we
+ * include the paged.js polyfill at the bottom of the document.
+ *
+ * Generates one path per asignatura that has at least one published unit.
+ */
+import { ASIGNATURA_SLUGS, ASIGNATURAS } from '@/lib/asignaturas';
+import { getCollection, render } from 'astro:content';
+import type { GetStaticPaths } from 'astro';
+
+export const getStaticPaths = (async () => {
+  const all = await getCollection('libro');
+  const bySlug = new Map<string, typeof all>();
+  for (const u of all) {
+    if (u.data.estado !== 'publicado') continue;
+    const arr = bySlug.get(u.data.asignatura) ?? [];
+    arr.push(u);
+    bySlug.set(u.data.asignatura, arr);
+  }
+
+  return ASIGNATURA_SLUGS.flatMap((slug) => {
+    const units = bySlug.get(slug);
+    if (!units || units.length === 0) return [];
+    units.sort((a, b) => a.data.unidad - b.data.unidad);
+    return [{ params: { asignatura: slug }, props: { units, asignatura: ASIGNATURAS[slug] } }];
+  });
+}) satisfies GetStaticPaths;
+
+const { units, asignatura: a } = Astro.props;
+
+// Pre-render each unit so we have headings + Content
+const rendered = await Promise.all(
+  units.map(async (u) => {
+    const { Content } = await render(u);
+    return { unit: u, Content };
+  })
+);
+
+const today = new Date().toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
+const totalUnits = units.length;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <title>{a.title} — profedeeconomia</title>
+    <meta name="robots" content="noindex,nofollow" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,0..100,0..1;1,9..144,300..700,0..100,0..1&display=swap"
+    />
+    {/* Switzer is loaded locally for the print route — Fontshare's CDN
+        crashes paged.js / pagedjs-cli with a ProgressEvent during rendering. */}
+    <style is:inline>
+      @font-face { font-family: 'Switzer'; src: url('/fonts/switzer/switzer-400.woff2') format('woff2'); font-weight: 400; font-display: swap; font-style: normal; }
+      @font-face { font-family: 'Switzer'; src: url('/fonts/switzer/switzer-500.woff2') format('woff2'); font-weight: 500; font-display: swap; font-style: normal; }
+      @font-face { font-family: 'Switzer'; src: url('/fonts/switzer/switzer-600.woff2') format('woff2'); font-weight: 600; font-display: swap; font-style: normal; }
+      @font-face { font-family: 'Switzer'; src: url('/fonts/switzer/switzer-700.woff2') format('woff2'); font-weight: 700; font-display: swap; font-style: normal; }
+    </style>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap"
+    />
+
+    <style is:global>
+      /* =========================================================
+         Variant C tokens (mirror of global.css, kept local to the
+         print route so paged.js can resolve them without Tailwind).
+         ========================================================= */
+      :root {
+        --color-bg: #FBF6EC;
+        --color-paper: #FFFFFF;
+        --color-bg-soft: #F8E8D0;
+        --color-bg-cream: #F5EDD9;
+
+        --color-ink: #2A1F18;
+        --color-ink-soft: #5C4A3D;
+        --color-ink-mute: #8A7868;
+        --color-line: #E5D4BD;
+        --color-line-soft: #EFE2CB;
+
+        --color-terra: #C44E2C;
+        --color-terra-deep: #9C3A1C;
+        --color-terra-soft: #FBE3D6;
+
+        --color-mustard: #D4A24C;
+        --color-mustard-deep: #A87A2A;
+        --color-mustard-soft: #F5E5BC;
+
+        --color-fopp: #5B3A4E;
+        --color-fopp-soft: #ECDCE5;
+
+        --font-serif: "Fraunces", Georgia, serif;
+        --font-sans: "Switzer", -apple-system, "Segoe UI", sans-serif;
+        --font-mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+      }
+
+      /* =========================================================
+         @page rules — A5 portrait, 165×220 mm, generous margins.
+         paged.js consumes these via "page-break-*" and "@page" CSS.
+         ========================================================= */
+      @page {
+        size: 165mm 235mm;
+        margin: 22mm 20mm 22mm 22mm;
+
+        @top-left {
+          content: string(book-title);
+          font-family: var(--font-sans);
+          font-size: 8.5pt;
+          letter-spacing: 0.06em;
+          text-transform: uppercase;
+          color: var(--color-ink-mute);
+        }
+        @top-right {
+          content: string(unit-title);
+          font-family: var(--font-serif);
+          font-style: italic;
+          font-size: 9pt;
+          color: var(--color-ink-mute);
+        }
+        @bottom-right {
+          content: counter(page);
+          font-family: var(--font-serif);
+          font-size: 10pt;
+          color: var(--color-terra);
+        }
+      }
+
+      /* No running headers on cover and credits */
+      @page :first { @top-left { content: none; } @top-right { content: none; } @bottom-right { content: none; } }
+      @page no-header { @top-left { content: none; } @top-right { content: none; } }
+
+      /* Right and left pages — even mirror */
+      @page :left {
+        margin-left: 20mm;
+        margin-right: 22mm;
+        @bottom-right { content: none; }
+        @bottom-left {
+          content: counter(page);
+          font-family: var(--font-serif);
+          font-size: 10pt;
+          color: var(--color-terra);
+        }
+      }
+
+      /* =========================================================
+         Base
+         ========================================================= */
+      * { box-sizing: border-box; }
+      html { font-size: 11pt; }
+      body {
+        margin: 0;
+        background: var(--color-bg);
+        color: var(--color-ink);
+        font-family: var(--font-serif);
+        font-size: 11pt;
+        line-height: 1.55;
+        font-feature-settings: "kern", "liga", "ss01";
+        font-variation-settings: "SOFT" 50, "WONK" 0;
+      }
+
+      .book-title-string { string-set: book-title "EDMN 2BACH · Empresa y Diseño de Modelos de Negocio"; }
+
+      h1, h2, h3, h4 {
+        font-family: var(--font-serif);
+        font-weight: 500;
+        color: var(--color-ink);
+        line-height: 1.18;
+      }
+
+      p { margin: 0 0 0.65em; orphans: 3; widows: 3; }
+
+      a { color: var(--color-terra); text-decoration: none; }
+      strong { color: var(--color-ink); }
+      em { font-style: italic; }
+
+      code {
+        font-family: var(--font-mono);
+        font-size: 0.92em;
+        background: var(--color-bg-cream);
+        padding: 0.05em 0.35em;
+        border-radius: 2px;
+      }
+      pre {
+        font-family: var(--font-mono);
+        background: var(--color-bg-cream);
+        padding: 0.7rem 1rem;
+        border-radius: 4px;
+        border-left: 3px solid var(--color-mustard);
+        font-size: 9.5pt;
+        margin: 0.6em 0;
+        white-space: pre-wrap;
+      }
+
+      ul, ol { padding-left: 1.3em; margin: 0 0 0.8em; }
+      li { margin-bottom: 0.3em; }
+      ul li::marker { color: var(--color-mustard); }
+
+      table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+        margin: 1.2em 0;
+        font-size: 9.5pt;
+        page-break-inside: auto;
+      }
+      th, td {
+        text-align: left;
+        padding: 0.5em 0.7em;
+        border-bottom: 1px solid var(--color-line-soft);
+        vertical-align: top;
+      }
+      th {
+        font-family: var(--font-sans);
+        font-size: 8pt;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--color-terra-deep);
+        background: var(--color-terra-soft);
+        font-weight: 700;
+      }
+
+      /* =========================================================
+         Cover page
+         ========================================================= */
+      .cover {
+        page: no-header;
+        break-after: page;
+        height: 191mm;             /* 235 - 22 - 22 */
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      .cover__top {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        font-family: var(--font-sans);
+        font-size: 8.5pt;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--color-terra);
+      }
+      .cover__top .mark {
+        width: 20pt; height: 20pt;
+        border-radius: 50%;
+        background: var(--color-terra);
+        position: relative;
+      }
+      .cover__top .mark::before {
+        content: "";
+        position: absolute; inset: 4pt;
+        background: var(--color-mustard);
+        border-radius: 50%;
+      }
+      .cover__top .mark::after {
+        content: "";
+        position: absolute; inset: 8pt;
+        background: var(--color-bg);
+        border-radius: 50%;
+      }
+
+      .cover__center {
+        margin-top: -20mm;
+      }
+      .cover__kicker {
+        font-family: var(--font-sans);
+        font-size: 9.5pt;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--color-terra);
+        font-weight: 700;
+        margin-bottom: 3mm;
+      }
+      .cover__title {
+        font-family: var(--font-serif);
+        font-size: 46pt;
+        line-height: 1.04;
+        letter-spacing: -0.025em;
+        color: var(--color-ink);
+        margin: 0 0 5mm;
+        font-weight: 400;
+        font-variation-settings: "SOFT" 80, "WONK" 0;
+        max-width: 24ch;
+      }
+      .cover__title em {
+        font-style: italic;
+        color: var(--color-terra);
+        font-variation-settings: "SOFT" 100, "WONK" 1;
+      }
+      .cover__lede {
+        font-family: var(--font-serif);
+        font-style: italic;
+        font-size: 14pt;
+        color: var(--color-ink-soft);
+        line-height: 1.45;
+        max-width: 28ch;
+        margin: 0;
+        font-variation-settings: "SOFT" 80;
+      }
+
+      .cover__bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        font-family: var(--font-sans);
+        font-size: 9pt;
+        color: var(--color-ink-soft);
+      }
+      .cover__bottom .stack { display: flex; flex-direction: column; gap: 2mm; }
+      .cover__bottom .stack strong {
+        color: var(--color-ink);
+        font-weight: 600;
+        font-size: 9.5pt;
+      }
+      .cover__bottom .stack .muted {
+        font-size: 8pt;
+        color: var(--color-ink-mute);
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      /* =========================================================
+         Credits / colophon page
+         ========================================================= */
+      .credits {
+        page: no-header;
+        break-before: page;
+        break-after: page;
+        height: 191mm;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding-bottom: 5mm;
+      }
+      .credits h2 {
+        font-family: var(--font-sans);
+        font-size: 8.5pt;
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        color: var(--color-terra);
+        margin: 0 0 4mm;
+        font-weight: 700;
+      }
+      .credits p {
+        font-family: var(--font-serif);
+        font-size: 10pt;
+        color: var(--color-ink-soft);
+        line-height: 1.5;
+        max-width: 28em;
+      }
+      .credits .colophon-note {
+        margin-top: 8mm;
+        padding-top: 4mm;
+        border-top: 1px dashed var(--color-line);
+        font-size: 9pt;
+        color: var(--color-ink-mute);
+        font-style: italic;
+      }
+
+      /* =========================================================
+         Table of contents — paged.js target-counter for page nums
+         ========================================================= */
+      .toc {
+        break-before: page;
+        break-after: page;
+        padding-top: 10mm;
+      }
+      .toc__kicker {
+        font-family: var(--font-sans);
+        font-size: 8.5pt;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--color-terra);
+        font-weight: 700;
+        margin-bottom: 4mm;
+      }
+      .toc h2 {
+        font-family: var(--font-serif);
+        font-size: 36pt;
+        line-height: 1;
+        margin: 0 0 12mm;
+        color: var(--color-ink);
+        font-weight: 400;
+        font-variation-settings: "SOFT" 80, "WONK" 0;
+      }
+      .toc__list { list-style: none; padding: 0; margin: 0; }
+      .toc__item {
+        display: grid;
+        grid-template-columns: 16mm 1fr auto;
+        column-gap: 4mm;
+        align-items: baseline;
+        padding: 3mm 0;
+        border-bottom: 1px solid var(--color-line-soft);
+      }
+      .toc__num {
+        font-family: var(--font-serif);
+        font-style: italic;
+        font-size: 13pt;
+        color: var(--color-mustard-deep);
+        font-variation-settings: "SOFT" 100, "WONK" 1;
+      }
+      .toc__title-block {
+        display: flex;
+        flex-direction: column;
+        gap: 1mm;
+      }
+      .toc__title {
+        font-family: var(--font-serif);
+        font-size: 12pt;
+        color: var(--color-ink);
+        line-height: 1.2;
+      }
+      .toc__lede {
+        font-family: var(--font-serif);
+        font-style: italic;
+        font-size: 9pt;
+        color: var(--color-ink-mute);
+        line-height: 1.35;
+        font-variation-settings: "SOFT" 80;
+      }
+      .toc__page {
+        font-family: var(--font-mono);
+        font-size: 9.5pt;
+        color: var(--color-terra);
+        font-weight: 500;
+      }
+      .toc__page::after {
+        content: target-counter(attr(href url), page);
+      }
+
+      /* =========================================================
+         Chapter opener (one per unit)
+         ========================================================= */
+      .chapter {
+        break-before: right;
+        page: no-header;
+      }
+      .chapter__opener {
+        page: no-header;
+        break-after: page;
+        height: 191mm;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding-bottom: 0;
+        position: relative;
+      }
+      .chapter__opener::before {
+        content: "";
+        position: absolute;
+        top: 0; left: 0;
+        width: 30mm; height: 4pt;
+        background: var(--color-terra);
+        border-radius: 999px;
+      }
+      .chapter__kicker {
+        font-family: var(--font-sans);
+        font-size: 9pt;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--color-terra);
+        font-weight: 700;
+        margin-bottom: 4mm;
+      }
+      .chapter__num {
+        font-family: var(--font-serif);
+        font-style: italic;
+        font-size: 80pt;
+        line-height: 0.9;
+        color: var(--color-mustard-deep);
+        margin: 0 0 6mm;
+        font-weight: 400;
+        font-variation-settings: "SOFT" 100, "WONK" 1;
+      }
+      .chapter__title {
+        font-family: var(--font-serif);
+        font-size: 34pt;
+        line-height: 1.08;
+        letter-spacing: -0.025em;
+        color: var(--color-ink);
+        margin: 0 0 7mm;
+        font-weight: 400;
+        font-variation-settings: "SOFT" 80, "WONK" 0;
+        max-width: 18ch;
+      }
+      .chapter__lede {
+        font-family: var(--font-serif);
+        font-style: italic;
+        font-size: 13pt;
+        line-height: 1.45;
+        color: var(--color-ink-soft);
+        max-width: 28em;
+        margin: 0 0 12mm;
+        font-variation-settings: "SOFT" 80;
+      }
+      .chapter__meta {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(40mm, 1fr));
+        gap: 4mm 8mm;
+        padding-top: 6mm;
+        border-top: 1px dashed var(--color-line);
+        font-family: var(--font-sans);
+      }
+      .chapter__meta dt {
+        font-size: 7.5pt;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--color-ink-mute);
+        margin-bottom: 1mm;
+        font-weight: 600;
+      }
+      .chapter__meta dd { margin: 0; font-size: 10pt; color: var(--color-ink); }
+      .chapter__meta dd ul { padding: 0; margin: 0; list-style: none; }
+      .chapter__meta dd ul li { font-size: 9pt; }
+
+      .chapter__content {
+        string-set: unit-title attr(data-unit-title);
+        break-before: page;
+        padding-top: 6mm;
+      }
+      .chapter__content > p:first-of-type::first-letter {
+        font-family: var(--font-serif);
+        font-weight: 500;
+        font-size: 4.3em;
+        line-height: 0.85;
+        float: left;
+        padding: 0.04em 0.12em 0 0;
+        color: var(--color-terra);
+        font-variation-settings: "SOFT" 100, "WONK" 1;
+      }
+      .chapter__content h2 {
+        font-size: 17pt;
+        margin: 1.6em 0 0.6em;
+        position: relative;
+        padding-top: 0.9em;
+        break-after: avoid;
+      }
+      .chapter__content h2::before {
+        content: "";
+        position: absolute;
+        top: 0; left: 0;
+        width: 22mm; height: 3px;
+        background: var(--color-terra);
+        border-radius: 999px;
+      }
+      .chapter__content h2:nth-of-type(2n)::before { background: var(--color-mustard); }
+      .chapter__content h3 {
+        font-size: 13pt;
+        margin: 1.4em 0 0.4em;
+        color: var(--color-ink);
+        break-after: avoid;
+      }
+
+      /* Callout, solved-exercise, curiosity, real-example — overrides */
+      .chapter__content .callout,
+      .chapter__content .solved-exercise,
+      .chapter__content .curiosity,
+      .chapter__content .real-example {
+        margin: 1.8em 0;
+        page-break-inside: avoid;
+        break-inside: avoid;
+      }
+
+      /* Suppress drop cap on the first paragraph that follows a heading */
+      .chapter__content h2 + p::first-letter,
+      .chapter__content h3 + p::first-letter {
+        font-family: inherit;
+        font-weight: inherit;
+        font-size: inherit;
+        line-height: inherit;
+        float: none;
+        padding: 0;
+        color: inherit;
+      }
+    </style>
+  </head>
+  <body class="book-title-string">
+
+    {/* ------------------------------------------------------------ COVER */}
+    <section class="cover">
+      <header class="cover__top">
+        <span>profedeeconomia.es</span>
+        <span class="mark"></span>
+      </header>
+      <div class="cover__center">
+        <div class="cover__kicker">{a.shortLabel} · {a.level}</div>
+        <h1 class="cover__title">
+          {a.title}
+        </h1>
+        <p class="cover__lede">{a.tagline}</p>
+      </div>
+      <footer class="cover__bottom">
+        <div class="stack">
+          <span class="muted">Autor</span>
+          <strong>Pau Mompó</strong>
+        </div>
+        <div class="stack">
+          <span class="muted">Edición</span>
+          <strong>Curso 2026/27 · borrador</strong>
+        </div>
+        <div class="stack">
+          <span class="muted">Generado</span>
+          <strong>{today}</strong>
+        </div>
+      </footer>
+    </section>
+
+    {/* ------------------------------------------------------------ CREDITS */}
+    <section class="credits">
+      <h2>Sobre este libro</h2>
+      <p>
+        Este libro forma parte de los materiales abiertos de
+        <strong>profedeeconomia.es</strong>, una plataforma de recursos para
+        profesores de instituto de economía, empresa y finanzas. Todo el
+        contenido se publica bajo licencia <em>Creative Commons BY-NC-SA</em>:
+        podéis copiarlo, redistribuirlo y adaptarlo siempre que citéis la
+        autoría y no lo uséis con fines comerciales.
+      </p>
+      <p>
+        Este libro se basa en el currículo básico estatal LOMLOE para
+        <strong>{a.title}</strong> ({a.marcoNormativo}). Cada comunidad autónoma
+        establece concreciones específicas en su currículo propio; conviene
+        consultar la concreción de vuestra CCAA para ajustar la programación
+        al centro.
+      </p>
+      <p class="colophon-note">
+        Composición tipográfica con Fraunces y Switzer. Generado con Astro y paged.js.
+        Comentarios, erratas y propuestas:
+        <a href="mailto:hola@profedeeconomia.es">hola@profedeeconomia.es</a>.
+      </p>
+    </section>
+
+    {/* ------------------------------------------------------------ TOC */}
+    <section class="toc">
+      <div class="toc__kicker">Índice general · {totalUnits} unidades</div>
+      <h2>Contenido</h2>
+      <ol class="toc__list">
+        {rendered.map(({ unit }) => (
+          <li class="toc__item">
+            <span class="toc__num">{String(unit.data.unidad).padStart(2, '0')}</span>
+            <div class="toc__title-block">
+              <a class="toc__title" href={`#cap-${unit.data.unidad}`}>{unit.data.title}</a>
+              {unit.data.lema && <span class="toc__lede">{unit.data.lema}</span>}
+            </div>
+            <a class="toc__page" href={`#cap-${unit.data.unidad}`} aria-label="Página"></a>
+          </li>
+        ))}
+      </ol>
+    </section>
+
+    {/* ------------------------------------------------------------ CHAPTERS */}
+    {rendered.map(({ unit, Content }) => (
+      <section class="chapter" id={`cap-${unit.data.unidad}`}>
+        <div class="chapter__opener">
+          <div>
+            <div class="chapter__kicker">
+              Unidad {unit.data.unidad}
+              {unit.data.bloque ? ` · ${unit.data.bloque}` : ''}
+            </div>
+            <div class="chapter__num">{String(unit.data.unidad).padStart(2, '0')}</div>
+            <h2 class="chapter__title">{unit.data.title}</h2>
+            {unit.data.lema && <p class="chapter__lede">{unit.data.lema}</p>}
+
+            <dl class="chapter__meta">
+              {unit.data.duracion && (
+                <div>
+                  <dt>Duración</dt>
+                  <dd>{unit.data.duracion}</dd>
+                </div>
+              )}
+              {unit.data.conceptos_clave.length > 0 && (
+                <div>
+                  <dt>Conceptos clave</dt>
+                  <dd>{unit.data.conceptos_clave.slice(0, 6).join(' · ')}</dd>
+                </div>
+              )}
+              {unit.data.objetivos.length > 0 && (
+                <div style="grid-column: 1 / -1;">
+                  <dt>Objetivos de la unidad</dt>
+                  <dd>
+                    <ul>
+                      {unit.data.objetivos.map((o) => <li>· {o}</li>)}
+                    </ul>
+                  </dd>
+                </div>
+              )}
+            </dl>
+          </div>
+        </div>
+
+        <div class="chapter__content" data-unit-title={`Unidad ${unit.data.unidad} · ${unit.data.title}`}>
+          <Content />
+        </div>
+      </section>
+    ))}
+
+    {/*
+      paged.js polyfill — only loaded for in-browser preview. pagedjs-cli
+      injects its own polyfill, and stacking both causes a runtime conflict
+      ("ProgressEvent" thrown from the second initialization). To preview
+      paginated layout in a regular browser, append ?preview=1 to the URL.
+    */}
+    <script is:inline>
+      if (new URLSearchParams(location.search).has('preview')) {
+        const s = document.createElement('script');
+        s.src = 'https://unpkg.com/pagedjs/dist/paged.polyfill.js';
+        document.body.appendChild(s);
+      }
+    </script>
+  </body>
+</html>
