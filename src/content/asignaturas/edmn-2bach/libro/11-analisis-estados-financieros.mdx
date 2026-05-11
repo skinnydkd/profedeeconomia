@@ -33,6 +33,9 @@ publicado_en: 2026-05-10
 ---
 
 import Callout from '@components/Callout.astro';
+import Curiosity from '@components/Curiosity.astro';
+import RealExample from '@components/RealExample.astro';
+import SolvedExercise from '@components/SolvedExercise.astro';
 import Bibliography from '@components/Bibliography.astro';
 
 La unidad anterior nos enseñó a leer las cuentas anuales. Esta nos enseña a **interpretarlas**: qué dice realmente un balance sobre el equilibrio patrimonial de la empresa, qué señalan los ratios sobre su solvencia futura, qué rentabilidad genera el dinero invertido y por qué dos empresas con el mismo beneficio pueden estar en situaciones radicalmente distintas. El análisis financiero es la disciplina que convierte los números brutos de las cuentas anuales en juicios útiles para tomar decisiones.
@@ -86,6 +89,48 @@ Miden cuánto de la financiación proviene de terceros:
 
 Los rangos "sanos" son orientativos y dependen mucho del sector: una empresa del sector eléctrico vive con endeudamientos del 70% sin problema, una *startup* tecnológica suele estar por debajo del 30%.
 
+<SolvedExercise number="11.1" title="Diagnóstico de liquidez y solvencia de dos pymes del mismo sector">
+
+**Enunciado**
+
+Dos pequeñas empresas de carpintería metálica presentan los siguientes balances (importes en miles de euros). Calcula los principales ratios de liquidez, solvencia y endeudamiento para cada una y emite un diagnóstico comparado.
+
+|  | Empresa A | Empresa B |
+| --- | --- | --- |
+| Activo no corriente | 220 | 90 |
+| Existencias | 60 | 40 |
+| Realizable (clientes) | 50 | 70 |
+| Disponible (caja + bancos) | 10 | 30 |
+| **Total activo** | **340** | **230** |
+| Patrimonio neto | 80 | 130 |
+| Pasivo no corriente | 120 | 60 |
+| Pasivo corriente | 140 | 40 |
+| **Total PN + pasivo** | **340** | **230** |
+
+**Solución**
+
+1. **Ratio de liquidez general** = Activo corriente / Pasivo corriente.
+   - Empresa A: (60 + 50 + 10) / 140 = 120 / 140 = **0,86**.
+   - Empresa B: (40 + 70 + 30) / 40 = 140 / 40 = **3,50**.
+2. **Ratio de tesorería (acid test)** = (AC − Existencias) / PC.
+   - A: (120 − 60) / 140 = 60 / 140 = **0,43**.
+   - B: (140 − 40) / 40 = 100 / 40 = **2,50**.
+3. **Ratio de disponibilidad** = Disponible / PC.
+   - A: 10 / 140 = **0,07**.
+   - B: 30 / 40 = **0,75**.
+4. **Ratio de solvencia** = Activo total / Pasivo total.
+   - A: 340 / (120 + 140) = 340 / 260 = **1,31**.
+   - B: 230 / (60 + 40) = 230 / 100 = **2,30**.
+5. **Ratio de endeudamiento total** = Pasivo / (PN + Pasivo).
+   - A: 260 / 340 = **0,76** (76 % del balance es deuda).
+   - B: 100 / 230 = **0,43** (43 % del balance es deuda).
+6. **Diagnóstico**:
+   - **Empresa A** está en zona de riesgo grave. Liquidez general por debajo de 1: el activo corriente no cubre el pasivo a corto plazo (fondo de maniobra negativo de −20 mil €). Endeudamiento del 76 %, muy por encima del rango razonable (40-60 %). Solvencia de 1,31, justo por encima del límite. Cualquier retraso de cobro o caída de ventas la coloca en suspensión de pagos.
+   - **Empresa B** está sobreliquidez. Ratios cómodos (3,5 de liquidez general; 0,75 de disponibilidad), bajo endeudamiento (43 %). Pero conviene preguntarse: ¿no estará la empresa B desaprovechando recursos? Mantener 30.000 € en caja sin invertir tiene un coste de oportunidad: ese dinero podría estar generando rentabilidad en activos productivos.
+   - Conclusión práctica: ningún ratio es bueno o malo en abstracto. **Demasiada poca liquidez** mata; **demasiada liquidez** lastra la rentabilidad. La gestión financiera consiste en navegar entre ambos riesgos.
+
+</SolvedExercise>
+
 <Callout label="Concepto clave" title="Ratios — comparar y vigilar la tendencia">
 
 Los ratios financieros tienen dos usos principales: **comparar** la empresa con otras del mismo sector (los rangos saludables varían entre sectores) y **vigilar la tendencia** de la propia empresa en el tiempo. Un ratio aislado dice poco; un ratio que empeora tres ejercicios seguidos dice mucho. La trampa habitual es interpretar un ratio fuera de contexto sectorial o sin compararlo con el histórico de la propia empresa.
@@ -121,6 +166,44 @@ Una ROE del 15% significa que cada 100 € que los socios tienen aportados o rei
 La diferencia entre ROE y ROA mide el efecto del **apalancamiento financiero**: cuando una empresa pide deuda barata para invertir en activos que rinden más que el coste de la deuda, la rentabilidad para el accionista aumenta. Es lo que en finanzas se llama "trabajar con dinero ajeno" para multiplicar el rendimiento del propio.
 
 El apalancamiento es palanca y, como toda palanca, **funciona en los dos sentidos**: si los activos rinden menos que el coste de la deuda, la rentabilidad financiera cae por debajo de la rentabilidad económica y, en casos extremos, puede ser negativa aunque la empresa siga generando beneficio operativo. Las grandes quiebras de empresas técnicamente rentables suelen tener detrás un apalancamiento mal calculado.
+
+<SolvedExercise number="11.2" title="ROA, ROE y efecto del apalancamiento financiero">
+
+**Enunciado**
+
+Una empresa de artes gráficas tiene los siguientes datos del ejercicio (importes en €):
+
+- Activo total: **500.000**
+- Patrimonio neto: **200.000**
+- Pasivo total: **300.000** (con un coste medio anual de la deuda del 5 %)
+- Beneficio antes de intereses e impuestos (BAII): **60.000**
+- Tipo del Impuesto de Sociedades: **25 %**
+
+a) Calcula la rentabilidad económica (ROA).
+b) Calcula la rentabilidad financiera (ROE).
+c) Explica si el apalancamiento financiero está aportando valor a los accionistas.
+
+**Solución**
+
+1. **ROA (rentabilidad económica)** = BAII / Activo total × 100 = 60.000 / 500.000 × 100 = **12 %**.
+2. Para calcular el **ROE** necesitamos primero el beneficio neto:
+   - Intereses pagados = 5 % × 300.000 = **15.000 €**
+   - BAI (Beneficio antes de impuestos) = 60.000 − 15.000 = **45.000 €**
+   - Impuesto = 25 % × 45.000 = **11.250 €**
+   - Beneficio neto = 45.000 − 11.250 = **33.750 €**
+3. **ROE** = Beneficio neto / Patrimonio neto × 100 = 33.750 / 200.000 × 100 = **16,9 %**.
+4. **Análisis del apalancamiento**:
+   - El **coste de la deuda** es del 5 %.
+   - La **rentabilidad de los activos** (ROA) es del 12 %.
+   - Como ROA (12 %) > Coste deuda (5 %), cada euro endeudado **gana 7 céntimos** que se quedan los accionistas. La empresa está usando dinero ajeno para generar rentabilidad por encima de su coste, y esa diferencia amplifica la rentabilidad de los socios.
+   - Resultado visible: ROE (16,9 %) > ROA (12 %). El apalancamiento sumó 4,9 puntos a la rentabilidad financiera.
+5. **Aviso clásico**: si la empresa entrara en una crisis y el ROA cayera al 4 %, la situación se invertiría —ROA (4 %) < Coste deuda (5 %)— y el apalancamiento jugaría en contra: el ROE sería inferior al ROA. Por eso las empresas con mucho apalancamiento son extraordinariamente rentables en los buenos años y devastadoras en los malos.
+
+</SolvedExercise>
+
+<RealExample title="El caso Abengoa: el apalancamiento que destruyó a un líder mundial" source="Informe de la Comisión Nacional del Mercado de Valores (CNMV) y prensa especializada 2015-2022">
+**Abengoa**, empresa sevillana especializada en infraestructuras energéticas y agua, llegó a ser en 2014 una de las grandes referencias mundiales del sector con presencia en más de 80 países. Su estrategia de crecimiento se basó en deuda agresiva: pedía préstamos para construir grandes plantas de energía solar térmica, biocombustibles e infraestructuras hídricas, confiando en que los flujos futuros pagarían sobradamente los intereses. Mientras la rentabilidad económica de los proyectos superaba el coste de la deuda, el modelo funcionó: la cotización pasó de 1 a 4 € entre 2010 y 2014 y los accionistas obtuvieron rentabilidades excepcionales. El problema llegó cuando varios proyectos —especialmente los de bioetanol en Estados Unidos y plantas solares en Brasil— rindieron menos de lo previsto y, simultáneamente, los tipos de interés empezaron a subir. La compañía entró en pre-concurso de acreedores en noviembre de 2015 con una deuda total de **9.500 M€** y un patrimonio neto contable que se hizo negativo. Tras dos rescates fallidos, en 2022 acabó liquidada en el mayor concurso de acreedores de la historia empresarial española. El caso es un manual entero sobre el apalancamiento financiero: la palanca funciona en los dos sentidos.
+</RealExample>
 
 ## Período medio de maduración
 

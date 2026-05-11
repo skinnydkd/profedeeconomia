@@ -29,6 +29,9 @@ publicado_en: 2026-05-10
 ---
 
 import Callout from '@components/Callout.astro';
+import Curiosity from '@components/Curiosity.astro';
+import RealExample from '@components/RealExample.astro';
+import SolvedExercise from '@components/SolvedExercise.astro';
 import Bibliography from '@components/Bibliography.astro';
 
 La función productiva es la que **transforma recursos en producto**: lo que la empresa hace, día tras día, con sus máquinas, sus personas y su tiempo. Mientras la función comercial decide qué se vende y la función financiera decide cómo se paga, la productiva decide cómo se hace. En empresas industriales es el corazón del negocio; en empresas de servicios o digitales adopta otras formas —desarrollo de software, prestación del servicio, atención al cliente— pero conserva la misma lógica: combinar inputs para generar outputs con el menor desperdicio posible.
@@ -86,6 +89,68 @@ Donde:
 
 El denominador `P − CVu` se llama **margen de contribución unitario**: lo que cada unidad vendida aporta para cubrir los costes fijos. Si una panadería tiene `CF = 3.000 €/mes`, vende cada barra a `P = 1,50 €` y el coste variable por barra es `CVu = 0,50 €`, su punto muerto es `Q* = 3.000 / (1,50 − 0,50) = 3.000` barras al mes.
 
+<SolvedExercise number="7.1" title="Punto muerto de una franquicia de café para llevar">
+
+**Enunciado**
+
+Una persona estudia abrir una pequeña franquicia de café para llevar en el centro de una ciudad mediana. Las cifras estimadas son:
+
+- Alquiler del local: **1.800 €/mes**
+- Sueldo de una persona empleada (con costes sociales): **2.200 €/mes**
+- Canon mensual fijo a la franquicia: **600 €/mes**
+- Otros costes fijos (luz, internet, suministros básicos): **400 €/mes**
+- Precio medio de venta por café: **2,80 €**
+- Coste variable medio por café (grano, leche, vaso, tapa, comisión de tarjeta): **0,90 €**
+
+a) Calcular el punto muerto en unidades mensuales y diarias (suponiendo 26 días laborables al mes).
+b) Si la previsión es vender **220 cafés/día**, ¿es viable el proyecto?
+
+**Solución**
+
+1. Calculamos los **costes fijos totales mensuales**: CF = 1.800 + 2.200 + 600 + 400 = **5.000 €/mes**.
+2. Calculamos el **margen de contribución unitario**: MC = P − CVu = 2,80 − 0,90 = **1,90 €/café**.
+3. Aplicamos la fórmula del punto muerto: `Q* = CF / MC = 5.000 / 1,90 ≈ 2.632 cafés/mes`.
+4. Convertimos a cafés/día: 2.632 / 26 ≈ **101 cafés/día** para cubrir gastos.
+5. Comparamos con la previsión de 220 cafés/día (5.720 al mes). Margen por encima del punto muerto: 5.720 − 2.632 = **3.088 cafés extra/mes**.
+6. Beneficio esperado: 3.088 × 1,90 = **5.867 €/mes**.
+7. Conclusión: el proyecto es viable si la previsión de demanda se cumple. La señal de alarma sería bajar de **100 cafés/día sostenidos**: por debajo de esa cifra, la franquicia entra en pérdidas y conviene replantear precio, ubicación o estructura de costes.
+
+</SolvedExercise>
+
+<SolvedExercise number="7.2" title="Apalancamiento operativo: dos planes para fabricar mascarillas">
+
+**Enunciado**
+
+Una empresa textil decide entrar en la fabricación de mascarillas y compara dos planes industriales:
+
+- **Plan A — máquinas semiautomáticas**: CF = 12.000 €/mes, CVu = 0,30 €/mascarilla.
+- **Plan B — máquinas totalmente automáticas**: CF = 28.000 €/mes, CVu = 0,10 €/mascarilla.
+
+Las mascarillas se venden a P = 0,50 € a farmacias. La empresa cree que podrá vender entre 60.000 y 200.000 mascarillas/mes según la demanda real.
+
+a) ¿Cuál es el punto muerto de cada plan?
+b) ¿A partir de qué volumen mensual conviene cambiar del plan A al plan B?
+
+**Solución**
+
+1. Margen de contribución unitario.
+   - Plan A: MC_A = 0,50 − 0,30 = **0,20 €/unidad**.
+   - Plan B: MC_B = 0,50 − 0,10 = **0,40 €/unidad**.
+2. Punto muerto de cada plan.
+   - Q*_A = 12.000 / 0,20 = **60.000 unidades/mes**.
+   - Q*_B = 28.000 / 0,40 = **70.000 unidades/mes**.
+3. Para hallar el **punto de indiferencia** entre ambos planes (donde el beneficio es el mismo) igualamos los beneficios:
+   `MC_A · Q − CF_A = MC_B · Q − CF_B`
+   `0,20·Q − 12.000 = 0,40·Q − 28.000`
+   `16.000 = 0,20·Q`
+   `Q = 80.000 unidades/mes`.
+4. Interpretación práctica:
+   - Si la empresa va a vender **menos de 80.000 mascarillas/mes**, Plan A: costes fijos menores compensan el margen unitario más bajo.
+   - Si va a vender **más de 80.000 mascarillas/mes**, Plan B: el mayor margen unitario absorbe los costes fijos más altos.
+5. Lección general: cuanto mayor es el apalancamiento operativo (más CF respecto a CV), mayor es el potencial de beneficio cuando el volumen crece y mayor el riesgo cuando cae.
+
+</SolvedExercise>
+
 <Callout label="Concepto clave" title="Punto muerto">
 
 El punto muerto es el volumen de producción y ventas a partir del cual una empresa empieza a ganar dinero. Es una cifra fundamental para decidir si una idea de negocio es viable y para fijar objetivos comerciales realistas. Si las ventas previstas son muy inferiores al punto muerto, el plan no funciona aunque el producto sea bueno: o se baja el coste fijo, o se mejora el margen unitario, o se descarta el proyecto.
@@ -107,6 +172,14 @@ Lean identifica siete tipos de desperdicio que conviene reducir o eliminar:
 7. **Defectos**: producto que hay que rehacer o desechar.
 
 La aplicación práctica de Lean genera técnicas como **Just in Time** (producir solo lo que se necesita, cuando se necesita), **Kanban** (señalización visual del flujo de trabajo) o **Kaizen** (mejora continua a través de pequeños cambios incrementales propuestos por los propios trabajadores). Aunque nacieron en la fábrica, hoy se aplican en sectores tan distintos como hospitales, restaurantes, *startups* digitales y centros educativos.
+
+<Curiosity title="La primera línea de montaje no fue la de Ford — fue una de despiece">
+A Henry Ford se le atribuye la invención de la cadena de montaje en 1913 en su fábrica de Highland Park, donde fabricó el Ford T en menos tiempo que cualquier coche anterior. Pero Ford no la inventó: la vio en los **mataderos de Chicago** durante una visita en los años 1900. Allí, las grandes empacadoras de cerdo y vacuno habían diseñado desde la década de 1870 lo que ellos llamaban *disassembly line* —línea de despiece—: una canal pasaba colgada de un raíl mecánico mientras decenas de trabajadores, cada uno especializado en un corte, hacían su tarea sin moverse del sitio. Ford simplemente **invirtió la lógica**: en lugar de despiezar una vaca, ensamblaba un coche. La fertilización cruzada entre sectores es a menudo la fuente más poderosa de innovación —y casi nunca se reconoce.
+</Curiosity>
+
+<RealExample title="Inditex en Arteixo: lean aplicado a la moda con un ciclo de 15 días" source="Reportaje The Economist 2023 e Inditex Annual Report 2023">
+La sede central de **Inditex** en Arteixo (A Coruña) es la mayor implementación de filosofía lean en el sector textil mundial. Los diseñadores trabajan en plantas abiertas junto a los responsables de producción y los analistas de venta diaria. Cuando un encargado de tienda en Madrid o Tokio detecta que un patrón se vende mejor, los datos llegan en pocas horas. Los nuevos diseños se prototipan en 2-3 días, se prueban en un puñado de tiendas piloto, se ajustan y se fabrican en lotes pequeños en talleres cercanos (Galicia, Portugal, Marruecos, Turquía). El ciclo completo —desde la idea al colgador en una tienda— es de **15 días**, frente a 6-9 meses del sector tradicional. La consecuencia: Zara desecha solo el 10 % de su producción cada temporada, frente al 30-40 % del sector. El *muda* —desperdicio— en stock no vendido es el principal coste invisible de la moda; reducirlo es lo que ha permitido a Inditex tener márgenes operativos del 18 % en un sector donde el 5-8 % se considera bueno.
+</RealExample>
 
 <Callout label="Ejemplo práctico" title="El kanban en una cocina de restaurante" variant="example">
 
