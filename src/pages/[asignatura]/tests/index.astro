@@ -1,0 +1,211 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { ASIGNATURA_SLUGS, ASIGNATURAS } from '@/lib/asignaturas';
+import { getCollection } from 'astro:content';
+import type { GetStaticPaths } from 'astro';
+
+export const getStaticPaths = (async () => {
+  return ASIGNATURA_SLUGS.map((slug) => ({
+    params: { asignatura: slug },
+    props: { asignatura: ASIGNATURAS[slug] },
+  }));
+}) satisfies GetStaticPaths;
+
+const { asignatura: a } = Astro.props;
+
+const all = await getCollection('tests');
+const tests = all
+  .filter((t) => t.data.asignatura === a.slug && t.data.estado === 'publicado')
+  .sort((x, y) => x.data.unidad_relacionada - y.data.unidad_relacionada);
+
+// Match each test with its libro unit so we can show the unit lema
+const allLibro = await getCollection('libro');
+const libroBySlug = new Map(
+  allLibro
+    .filter((u) => u.data.asignatura === a.slug)
+    .map((u) => [u.data.unidad, u])
+);
+---
+
+<BaseLayout
+  title={`Tests — ${a.shortLabel}`}
+  description={`Tests de autoevaluación para cada unidad de ${a.title}.`}
+>
+  <div class="container">
+    <nav class="breadcrumb">
+      <a href="/">Inicio</a> <span class="sep">›</span>
+      <a href={`/${a.slug}/`}>{a.shortLabel}</a> <span class="sep">›</span>
+      <span>Tests</span>
+    </nav>
+  </div>
+
+  <section class="hero">
+    <div class="container">
+      <span class="kicker">{a.shortLabel} · tests</span>
+      <h1>Tests de autoevaluación</h1>
+      <p class="lede">
+        {tests.length === 0
+          ? 'Los tests se publicarán a medida que se completen las unidades.'
+          : `Un test por unidad. Auto-corregidos en el navegador, pensados para repaso o examen rápido. Las preguntas son originales y todas tienen explicación.`}
+      </p>
+      {tests.length > 0 && (
+        <p class="meta">
+          {tests.length} {tests.length === 1 ? 'test' : 'tests'} · ~10 preguntas cada uno
+        </p>
+      )}
+    </div>
+  </section>
+
+  {tests.length > 0 && (
+    <section class="grid">
+      <div class="container">
+        <ul class="card-grid">
+          {tests.map((t) => {
+            const slug = t.id.split('/').pop()?.replace(/\.mdx?$/, '');
+            const unit = libroBySlug.get(t.data.unidad_relacionada);
+            return (
+              <li class="card">
+                <div class="card__num">{String(t.data.unidad_relacionada).padStart(2, '0')}</div>
+                <h3 class="card__title">{t.data.title}</h3>
+                {unit?.data.lema && <p class="card__lede">{unit.data.lema}</p>}
+                <div class="card__meta">
+                  <span>{t.data.preguntas.length} preguntas</span>
+                  {t.data.duracion_estimada && <span>· {t.data.duracion_estimada}</span>}
+                </div>
+                <a class="cta" href={`/${a.slug}/tests/${slug}/`}>Empezar test →</a>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    </section>
+  )}
+
+  <section class="note">
+    <div class="container">
+      <p class="note-text">
+        Los tests son una herramienta de repaso, no de evaluación oficial. Las
+        preguntas y respuestas están redactadas a partir del contenido del libro
+        de la unidad correspondiente. Si encuentras una pregunta confusa o una
+        respuesta discutible, escríbenos a
+        <a class="editorial-link" href="mailto:hola@profedeeconomia.es">hola@profedeeconomia.es</a>.
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .container {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 clamp(1.5rem, 4vw, 3rem);
+  }
+  .breadcrumb { font-size: 0.92rem; color: var(--color-ink-mute); margin: 2rem 0; }
+  .breadcrumb a { color: var(--color-ink-mute); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--color-terra); }
+  .breadcrumb .sep { margin: 0 0.5em; color: var(--color-mustard); }
+
+  .hero { padding: 1rem 0 clamp(2rem, 5vw, 4rem); }
+  h1 { margin: 1rem 0 0.6rem; }
+  .lede {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.35rem;
+    color: var(--color-ink-soft);
+    max-width: 55ch;
+    line-height: 1.5;
+    margin: 1.5rem 0 0.6rem;
+    font-variation-settings: "SOFT" 80;
+  }
+  .meta { font-family: var(--font-sans); font-size: 0.9rem; color: var(--color-ink-mute); margin-top: 0.4rem; }
+
+  .grid { padding-bottom: clamp(3rem, 7vw, 6rem); }
+  .card-grid {
+    list-style: none; margin: 0; padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+  .card {
+    background: var(--color-paper);
+    border: 1px solid var(--color-line);
+    border-radius: 8px;
+    padding: 1.6rem 1.7rem 1.7rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    transition: transform .2s var(--ease-soft), border-color .2s var(--ease-soft), box-shadow .2s var(--ease-soft);
+  }
+  .card:hover {
+    border-color: var(--color-terra);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 18px rgba(42, 31, 24, 0.08);
+  }
+  .card__num {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.8rem;
+    color: var(--color-mustard-deep);
+    font-variation-settings: "SOFT" 100, "WONK" 1;
+    line-height: 1;
+  }
+  .card__title {
+    font-family: var(--font-serif);
+    font-size: 1.2rem;
+    line-height: 1.25;
+    color: var(--color-ink);
+    margin: 0;
+    font-weight: 500;
+    font-variation-settings: "SOFT" 60;
+  }
+  .card__lede {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 0.95rem;
+    color: var(--color-ink-soft);
+    line-height: 1.45;
+    margin: 0;
+    font-variation-settings: "SOFT" 80;
+    flex: 1;
+  }
+  .card__meta {
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-ink-mute);
+    margin-top: 0.4rem;
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+  .cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.6rem 0.9rem;
+    background: var(--color-terra);
+    color: var(--color-bg);
+    border-radius: 5px;
+    text-decoration: none;
+    font-family: var(--font-sans);
+    font-size: 0.92rem;
+    font-weight: 600;
+    margin-top: 0.6rem;
+    transition: background .2s var(--ease-soft);
+  }
+  .cta:hover { background: var(--color-terra-deep); }
+
+  .note { padding: 0 0 clamp(3rem, 6vw, 5rem); }
+  .note-text {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.05rem;
+    color: var(--color-ink-mute);
+    max-width: 60ch;
+    line-height: 1.5;
+    font-variation-settings: "SOFT" 80;
+    border-top: 1px dashed var(--color-line);
+    padding-top: 1.5rem;
+  }
+</style>
