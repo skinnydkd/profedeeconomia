@@ -1,0 +1,70 @@
+---
+/**
+ * Cash flow timeline showing initial investment and yearly net flows
+ * discounted to present value. Used to illustrate NPV calculation.
+ */
+---
+<svg viewBox="0 0 720 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Cronología de flujos descontados (VAN)">
+  <defs>
+    <style>
+      .bg { fill: #FBF6EC; }
+      .axis { stroke: #5C4A3D; stroke-width: 1.5; }
+      .bar-neg { fill: #FBE3D6; stroke: #C44E2C; stroke-width: 1.5; }
+      .bar-pos { fill: #E5F1DD; stroke: #4F8C3F; stroke-width: 1.5; }
+      .bar-actual { fill: #F5E5BC; stroke: #D4A24C; stroke-width: 1.5; }
+      .year-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; fill: #5C4A3D; text-anchor: middle; }
+      .value { font-family: 'Fraunces', serif; font-style: italic; font-size: 12px; font-weight: 500; text-anchor: middle; }
+      .legend-label { font-family: 'Switzer', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; }
+      .formula { font-family: 'JetBrains Mono', monospace; font-size: 11px; fill: #5C4A3D; }
+    </style>
+  </defs>
+  <rect class="bg" x="0" y="0" width="720" height="360"/>
+
+  <!-- Title -->
+  <text class="legend-label" x="360" y="32" text-anchor="middle" fill="#5C4A3D">FLUJOS DE CAJA · INVERSIÓN A 4 AÑOS · k = 8 %</text>
+
+  <!-- Horizontal axis -->
+  <line class="axis" x1="60" y1="190" x2="680" y2="190"/>
+
+  <!-- Year markers -->
+  <text class="year-label" x="100" y="215">Año 0</text>
+  <text class="year-label" x="220" y="215">Año 1</text>
+  <text class="year-label" x="340" y="215">Año 2</text>
+  <text class="year-label" x="460" y="215">Año 3</text>
+  <text class="year-label" x="580" y="215">Año 4</text>
+
+  <!-- Year 0: Investment (negative bar going down) -->
+  <rect class="bar-neg" x="75" y="190" width="50" height="90" rx="3"/>
+  <text class="value" x="100" y="305" fill="#9C3A1C">−18.000 €</text>
+  <text class="legend-label" x="100" y="170" text-anchor="middle" fill="#9C3A1C">INVERSIÓN</text>
+
+  <!-- Years 1-3: Net cash flow (6500) - going up -->
+  <rect class="bar-actual" x="195" y="110" width="50" height="80" rx="3"/>
+  <text class="value" x="220" y="100" fill="#A87A2A">+6.500</text>
+  <text class="formula" x="220" y="148" text-anchor="middle" fill="#5C4A3D">/ 1,08¹</text>
+  <text class="value" x="220" y="50" fill="#A87A2A">= 6.019</text>
+
+  <rect class="bar-actual" x="315" y="120" width="50" height="70" rx="3"/>
+  <text class="value" x="340" y="110" fill="#A87A2A">+6.500</text>
+  <text class="formula" x="340" y="155" text-anchor="middle" fill="#5C4A3D">/ 1,08²</text>
+  <text class="value" x="340" y="65" fill="#A87A2A">= 5.573</text>
+
+  <rect class="bar-actual" x="435" y="130" width="50" height="60" rx="3"/>
+  <text class="value" x="460" y="120" fill="#A87A2A">+6.500</text>
+  <text class="formula" x="460" y="160" text-anchor="middle" fill="#5C4A3D">/ 1,08³</text>
+  <text class="value" x="460" y="80" fill="#A87A2A">= 5.160</text>
+
+  <!-- Year 4: flow + residual (9500) -->
+  <rect class="bar-pos" x="555" y="90" width="50" height="100" rx="3"/>
+  <text class="value" x="580" y="80" fill="#2A5A1F">+9.500</text>
+  <text class="formula" x="580" y="138" text-anchor="middle" fill="#5C4A3D">/ 1,08⁴</text>
+  <text class="value" x="580" y="35" fill="#2A5A1F">= 6.982</text>
+
+  <!-- VAN result box -->
+  <rect x="60" y="260" width="620" height="60" rx="6" fill="#FFFFFF" stroke="#C44E2C" stroke-width="2"/>
+  <text class="legend-label" x="80" y="285" fill="#9C3A1C">VAN</text>
+  <text class="formula" x="80" y="305" fill="#2A1F18">−18.000 + 6.019 + 5.573 + 5.160 + 6.982 = </text>
+  <text class="value" x="500" y="305" fill="#2A5A1F" font-size="16">+5.734 € · proyecto rentable</text>
+
+  <text class="value" x="360" y="340" fill="#5C4A3D">El VAN es la suma de flujos actualizados menos la inversión inicial.</text>
+</svg>
