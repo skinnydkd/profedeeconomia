@@ -1,0 +1,430 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { ASIGNATURAS } from '@/lib/asignaturas';
+import { getCollection, render } from 'astro:content';
+import PuntoMuertoCalc from '@components/calculadoras/PuntoMuertoCalc.tsx';
+import VANTIRCalc from '@components/calculadoras/VANTIRCalc.tsx';
+import RatiosCalc from '@components/calculadoras/RatiosCalc.tsx';
+import type { GetStaticPaths } from 'astro';
+
+export const getStaticPaths = (async () => {
+  const all = await getCollection('recursos');
+  return all
+    .filter((x) => x.data.estado === 'publicado')
+    .map((x) => {
+      const slug = x.id.split('/').pop()?.replace(/\.mdx?$/, '') ?? x.id;
+      return {
+        params: { asignatura: x.data.asignatura, slug },
+        props: { recurso: x },
+      };
+    });
+}) satisfies GetStaticPaths;
+
+const { recurso } = Astro.props;
+const a = ASIGNATURAS[recurso.data.asignatura];
+const { Content } = await render(recurso);
+
+const allLibro = await getCollection('libro');
+const unit = recurso.data.unidad_relacionada
+  ? allLibro.find(
+      (u) => u.data.asignatura === a.slug && u.data.unidad === recurso.data.unidad_relacionada
+    )
+  : null;
+const unitSlug = unit?.id.split('/').pop()?.replace(/\.mdx?$/, '');
+---
+
+<BaseLayout title={`${recurso.data.title} — ${a.shortLabel}`} description={recurso.data.descripcion}>
+  <div class="container">
+    <nav class="breadcrumb">
+      <a href="/">Inicio</a> <span class="sep">›</span>
+      <a href={`/${a.slug}/`}>{a.shortLabel}</a> <span class="sep">›</span>
+      <a href={`/${a.slug}/recursos/`}>Recursos</a> <span class="sep">›</span>
+      <span>{recurso.data.title}</span>
+    </nav>
+  </div>
+
+  <section class="hero">
+    <div class="container">
+      <span class="kicker">Recurso interactivo{recurso.data.unidad_relacionada !== undefined ? ` · Unidad ${recurso.data.unidad_relacionada}` : ''}</span>
+      <h1>{recurso.data.title}</h1>
+      <p class="lede">{recurso.data.descripcion}</p>
+      {unit && unitSlug && (
+        <p class="meta">
+          <a class="link" href={`/${a.slug}/libro/${unitSlug}/`}>
+            Volver a la Unidad {unit.data.unidad}: {unit.data.title}
+          </a>
+        </p>
+      )}
+    </div>
+  </section>
+
+  <section class="player-wrap">
+    <div class="container container--narrow">
+      {recurso.data.componente === 'PuntoMuerto' && <PuntoMuertoCalc client:load />}
+      {recurso.data.componente === 'VANTIR' && <VANTIRCalc client:load />}
+      {recurso.data.componente === 'Ratios' && <RatiosCalc client:load />}
+    </div>
+  </section>
+
+  <section class="body">
+    <div class="container container--narrow">
+      <article class="prose">
+        <Content />
+      </article>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .container { max-width: 1240px; margin: 0 auto; padding: 0 clamp(1.5rem, 4vw, 3rem); }
+  .container--narrow { max-width: 820px; }
+
+  .breadcrumb { font-size: 0.92rem; color: var(--color-ink-mute); margin: 2rem 0; }
+  .breadcrumb a { color: var(--color-ink-mute); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--color-terra); }
+  .breadcrumb .sep { margin: 0 0.5em; color: var(--color-mustard); }
+
+  .hero { padding: 1rem 0 clamp(1.5rem, 4vw, 3rem); }
+  h1 { max-width: 22ch; margin: 1rem 0 0.6rem; }
+  .lede {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.35rem;
+    color: var(--color-ink-soft);
+    max-width: 50ch;
+    margin: 1rem 0 1rem;
+    line-height: 1.5;
+    font-variation-settings: "SOFT" 80;
+  }
+  .meta { font-family: var(--font-sans); font-size: 0.92rem; color: var(--color-ink-mute); }
+  .meta .link { color: var(--color-terra); text-decoration: none; border-bottom: 1px solid var(--color-line); }
+  .meta .link:hover { color: var(--color-terra-deep); border-bottom-color: var(--color-terra); }
+
+  .player-wrap { padding: clamp(1rem, 3vw, 2rem) 0 clamp(2rem, 5vw, 4rem); }
+
+  .body { padding: 0 0 clamp(3rem, 7vw, 6rem); }
+  .prose {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--color-ink);
+  }
+  .prose :global(h2) {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    margin: 2em 0 0.7em;
+    position: relative;
+    padding-top: 1em;
+    font-weight: 500;
+  }
+  .prose :global(h2::before) {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 2.5rem; height: 4px;
+    background: var(--color-mustard);
+    border-radius: 999px;
+  }
+  .prose :global(p) { margin: 0 0 1em; }
+  .prose :global(ul) { padding-left: 1.4rem; margin: 0 0 1em; }
+  .prose :global(li) { margin-bottom: 0.4em; }
+  .prose :global(ul li::marker) { color: var(--color-mustard); }
+  .prose :global(strong) { color: var(--color-ink); }
+</style>
+
+{/* Global styles for the calculator components */}
+<style is:global>
+  .calc {
+    background: var(--color-paper);
+    border: 1px solid var(--color-line);
+    border-radius: 8px;
+    padding: 1.8rem 2rem 2rem;
+    box-shadow: 0 1px 2px rgba(42, 31, 24, 0.05), 0 6px 18px rgba(42, 31, 24, 0.06);
+  }
+
+  .calc__sub {
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--color-terra);
+    font-weight: 700;
+    margin: 1.4rem 0 0.7rem;
+  }
+  .calc__sub:first-child { margin-top: 0; }
+
+  .calc__form {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0.9rem 1.2rem;
+    margin-bottom: 0.6rem;
+  }
+  .calc__field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+  .calc__label {
+    font-family: var(--font-sans);
+    font-size: 0.82rem;
+    color: var(--color-ink-soft);
+    font-weight: 500;
+  }
+  .calc__input-wrap {
+    display: flex;
+    align-items: center;
+    border: 1.5px solid var(--color-line);
+    border-radius: 5px;
+    background: var(--color-bg);
+    padding: 0.4rem 0.6rem;
+    transition: border-color .15s var(--ease-soft);
+  }
+  .calc__input-wrap:focus-within { border-color: var(--color-terra); background: var(--color-paper); }
+  .calc__input-wrap input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    color: var(--color-ink);
+    width: 0;
+    min-width: 0;
+    outline: none;
+  }
+  .calc__unit {
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    color: var(--color-ink-mute);
+    margin-left: 0.4rem;
+    flex: none;
+  }
+
+  .calc__flujos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 0.6rem;
+    margin-top: 0.4rem;
+  }
+  .calc__flujo {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+  .calc__flujo-label {
+    font-family: var(--font-sans);
+    font-size: 0.74rem;
+    color: var(--color-ink-mute);
+    font-weight: 600;
+  }
+  .calc__flujo-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.7rem;
+  }
+
+  .calc__results {
+    margin-top: 1.4rem;
+    padding-top: 1.4rem;
+    border-top: 1px dashed var(--color-line);
+  }
+
+  .calc__warning {
+    background: var(--color-mustard-soft);
+    color: var(--color-ink);
+    padding: 0.8rem 1rem;
+    border-left: 3px solid var(--color-mustard);
+    border-radius: 0 4px 4px 0;
+    font-family: var(--font-sans);
+    font-size: 0.92rem;
+    margin-bottom: 1.2rem;
+  }
+  .calc__warning.is-ok {
+    background: #E5F1DD;
+    border-left-color: #4F8C3F;
+  }
+
+  .calc__metric {
+    background: var(--color-bg);
+    border: 1px solid var(--color-line);
+    border-left: 4px solid var(--color-terra);
+    border-radius: 5px;
+    padding: 1rem 1.1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+  .calc__metric--primary {
+    background: var(--color-terra-soft);
+    border-color: var(--color-terra);
+    border-left-width: 5px;
+    margin-bottom: 1rem;
+  }
+  .calc__metric--ok { border-left-color: #4F8C3F; }
+  .calc__metric--fail { border-left-color: #B83A3A; }
+
+  .calc__metric-label {
+    font-family: var(--font-sans);
+    font-size: 0.74rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--color-ink-mute);
+    font-weight: 700;
+  }
+  .calc__metric-value {
+    font-family: var(--font-serif);
+    font-size: 2rem;
+    font-weight: 500;
+    color: var(--color-ink);
+    line-height: 1;
+    margin: 0.3rem 0;
+    font-variation-settings: "SOFT" 60;
+  }
+  .calc__metric-unit {
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    color: var(--color-ink-mute);
+    font-weight: 600;
+  }
+  .calc__metric-detail {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 0.92rem;
+    color: var(--color-ink-soft);
+    font-variation-settings: "SOFT" 80;
+  }
+
+  .calc__metric-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 0.7rem;
+    margin: 0.8rem 0 1rem;
+  }
+  .calc__metric-grid--three { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+
+  .calc__metric-mini {
+    background: var(--color-bg);
+    border: 1px solid var(--color-line);
+    border-radius: 5px;
+    padding: 0.7rem 0.9rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+  .calc__metric-mini-label {
+    font-family: var(--font-sans);
+    font-size: 0.74rem;
+    color: var(--color-ink-mute);
+    font-weight: 600;
+  }
+  .calc__metric-mini-value {
+    font-family: var(--font-serif);
+    font-size: 1.2rem;
+    color: var(--color-ink);
+    font-variation-settings: "SOFT" 60;
+  }
+  .calc__metric-mini-value.ok { color: #4F8C3F; }
+  .calc__metric-mini-value.fail { color: #B83A3A; }
+
+  .calc__bar {
+    position: relative;
+    height: 14px;
+    background: var(--color-bg);
+    border: 1px solid var(--color-line);
+    border-radius: 999px;
+    margin: 1.4rem 0 0.4rem;
+  }
+  .calc__bar-fill {
+    position: absolute;
+    inset: 0 auto 0 0;
+    background: var(--color-terra);
+    border-radius: 999px;
+    transition: width .3s var(--ease-soft);
+  }
+  .calc__bar-marker {
+    position: absolute;
+    top: -4px;
+    bottom: -4px;
+    width: 2px;
+    background: var(--color-ink);
+    transform: translateX(-1px);
+  }
+  .calc__bar-legend {
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--color-ink-mute);
+    margin-top: 0.4rem;
+  }
+  .calc__bar-pm {
+    font-weight: 600;
+    color: var(--color-ink);
+  }
+
+  .calc__details {
+    margin-top: 1.5rem;
+    border-top: 1px dashed var(--color-line);
+    padding-top: 1rem;
+  }
+  .calc__details summary {
+    cursor: pointer;
+    font-family: var(--font-sans);
+    font-size: 0.88rem;
+    color: var(--color-terra);
+    font-weight: 600;
+  }
+  .calc__formula {
+    margin-top: 0.8rem;
+    font-family: var(--font-serif);
+    font-size: 0.95rem;
+    color: var(--color-ink-soft);
+    line-height: 1.6;
+  }
+  .calc__formula p { margin: 0 0 0.5em; }
+  .calc__formula em { color: var(--color-ink-mute); }
+
+  .calc__table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-top: 0.6rem;
+    font-size: 0.9rem;
+  }
+  .calc__table th, .calc__table td {
+    padding: 0.45rem 0.6rem;
+    text-align: left;
+    border-bottom: 1px solid var(--color-line);
+    font-family: var(--font-sans);
+  }
+  .calc__table th {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-terra-deep);
+  }
+
+  .calc__btn {
+    font-family: var(--font-sans);
+    font-size: 0.88rem;
+    font-weight: 600;
+    padding: 0.5rem 0.9rem;
+    border-radius: 4px;
+    cursor: pointer;
+    border: 1.5px solid transparent;
+    transition: background .15s var(--ease-soft), border-color .15s var(--ease-soft);
+  }
+  .calc__btn:disabled { opacity: 0.4; cursor: not-allowed; }
+  .calc__btn--ghost {
+    background: transparent;
+    border-color: var(--color-line);
+    color: var(--color-ink-soft);
+  }
+  .calc__btn--ghost:hover:not(:disabled) {
+    border-color: var(--color-terra);
+    color: var(--color-terra);
+  }
+
+  @media (max-width: 600px) {
+    .calc { padding: 1.3rem 1.3rem; }
+    .calc__metric-value { font-size: 1.6rem; }
+  }
+</style>

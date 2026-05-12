@@ -95,6 +95,13 @@ const recursos = defineCollection({
     title: z.string(),
     descripcion: z.string(),
     tipo: z.enum(['simulador', 'calculadora', 'plantilla', 'visualizacion']),
+    /**
+     * Identifier of the Preact component to render inside the resource page.
+     * The dispatch happens in `src/pages/[asignatura]/recursos/[slug].astro`.
+     * Add new identifiers there as new components ship.
+     */
+    componente: z.enum(['PuntoMuerto', 'VANTIR', 'Ratios']).optional(),
+    /** External URL for resources hosted elsewhere; ignored when componente is set. */
     url_interactivo: z.string().optional(),
     lang: z.enum(LANGS).default('es'),
     estado: z.enum(ESTADOS).default('borrador'),
