@@ -1,0 +1,275 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { ASIGNATURAS } from '@/lib/asignaturas';
+import { getCollection, render } from 'astro:content';
+import type { GetStaticPaths } from 'astro';
+
+export const getStaticPaths = (async () => {
+  const all = await getCollection('actividades');
+  return all
+    .filter((x) => x.data.estado === 'publicado')
+    .map((x) => {
+      const slug = x.id.split('/').pop()?.replace(/\.mdx?$/, '') ?? x.id;
+      return {
+        params: { asignatura: x.data.asignatura, slug },
+        props: { actividad: x },
+      };
+    });
+}) satisfies GetStaticPaths;
+
+const { actividad } = Astro.props;
+const a = ASIGNATURAS[actividad.data.asignatura];
+const { Content } = await render(actividad);
+
+const allLibro = await getCollection('libro');
+const unit = allLibro.find(
+  (u) => u.data.asignatura === a.slug && u.data.unidad === actividad.data.unidad_relacionada
+);
+const unitSlug = unit?.id.split('/').pop()?.replace(/\.mdx?$/, '');
+
+const TIPO_LABEL: Record<string, string> = {
+  caso: 'Caso',
+  ejercicio: 'Ejercicio',
+  debate: 'Debate',
+  dinamica: 'Dinámica',
+  proyecto: 'Proyecto',
+};
+---
+
+<BaseLayout title={`${actividad.data.title} — ${a.shortLabel}`} description={actividad.data.descripcion}>
+  <div class="container">
+    <nav class="breadcrumb">
+      <a href="/">Inicio</a> <span class="sep">›</span>
+      <a href={`/${a.slug}/`}>{a.shortLabel}</a> <span class="sep">›</span>
+      <a href={`/${a.slug}/actividades/`}>Actividades</a> <span class="sep">›</span>
+      <span>Unidad {actividad.data.unidad_relacionada}</span>
+    </nav>
+  </div>
+
+  <section class="hero">
+    <div class="container">
+      <div class="kicker-row">
+        <span class="kicker">Actividad · Unidad {actividad.data.unidad_relacionada}</span>
+        <span class={`badge badge--${actividad.data.tipo}`}>{TIPO_LABEL[actividad.data.tipo]}</span>
+      </div>
+      <h1>{actividad.data.title}</h1>
+      <p class="lede">{actividad.data.descripcion}</p>
+
+      <dl class="meta-grid">
+        {actividad.data.duracion && (
+          <div>
+            <dt>Duración</dt>
+            <dd>{actividad.data.duracion}</dd>
+          </div>
+        )}
+        {actividad.data.agrupacion && (
+          <div>
+            <dt>Agrupación</dt>
+            <dd>{actividad.data.agrupacion}</dd>
+          </div>
+        )}
+        {actividad.data.materiales.length > 0 && (
+          <div style="grid-column: 1 / -1;">
+            <dt>Materiales</dt>
+            <dd>
+              <ul>
+                {actividad.data.materiales.map((m) => <li>{m}</li>)}
+              </ul>
+            </dd>
+          </div>
+        )}
+        {unit && unitSlug && (
+          <div style="grid-column: 1 / -1;">
+            <dt>Conexión con el libro</dt>
+            <dd>
+              <a class="link" href={`/${a.slug}/libro/${unitSlug}/`}>
+                Unidad {unit.data.unidad}: {unit.data.title}
+              </a>
+            </dd>
+          </div>
+        )}
+      </dl>
+    </div>
+  </section>
+
+  <section class="body">
+    <div class="container container--narrow">
+      <article class="prose">
+        <Content />
+      </article>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .container {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 clamp(1.5rem, 4vw, 3rem);
+  }
+  .container--narrow { max-width: 760px; }
+
+  .breadcrumb { font-size: 0.92rem; color: var(--color-ink-mute); margin: 2rem 0; }
+  .breadcrumb a { color: var(--color-ink-mute); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--color-terra); }
+  .breadcrumb .sep { margin: 0 0.5em; color: var(--color-mustard); }
+
+  .hero { padding: 1rem 0 clamp(1.5rem, 4vw, 3rem); }
+
+  .kicker-row {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    flex-wrap: wrap;
+  }
+
+  .badge {
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-weight: 700;
+    padding: 0.25rem 0.6rem;
+    border-radius: 999px;
+  }
+  .badge--caso     { background: var(--color-terra-soft);   color: var(--color-terra-deep); }
+  .badge--ejercicio{ background: var(--color-mustard-soft); color: var(--color-mustard-deep); }
+  .badge--debate   { background: #DBEDED;                   color: #1F6E6E; }
+  .badge--dinamica { background: var(--color-fopp-soft);    color: var(--color-fopp); }
+  .badge--proyecto { background: var(--color-bg-soft);      color: var(--color-ink); }
+
+  h1 { max-width: 22ch; margin: 1rem 0 0.6rem; }
+  .lede {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.4rem;
+    color: var(--color-ink-soft);
+    max-width: 50ch;
+    margin: 1rem 0 2rem;
+    line-height: 1.5;
+    font-variation-settings: "SOFT" 80;
+  }
+
+  .meta-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem 2rem;
+    padding: 1.4rem 1.7rem;
+    background: var(--color-paper);
+    border: 1px solid var(--color-line);
+    border-radius: 6px;
+    margin: 0;
+  }
+  .meta-grid dt {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-ink-mute);
+    margin-bottom: 0.3rem;
+    font-weight: 600;
+  }
+  .meta-grid dd { margin: 0; font-size: 0.98rem; color: var(--color-ink); }
+  .meta-grid dd ul { margin: 0; padding-left: 1.1rem; }
+  .meta-grid dd ul li { margin-bottom: 0.2rem; }
+  .meta-grid .link {
+    color: var(--color-terra);
+    text-decoration: none;
+    border-bottom: 1px solid var(--color-line);
+  }
+  .meta-grid .link:hover { color: var(--color-terra-deep); border-bottom-color: var(--color-terra); }
+
+  .body { padding: clamp(2rem, 5vw, 4rem) 0 clamp(3rem, 7vw, 6rem); }
+
+  .prose {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--color-ink);
+  }
+  .prose :global(h2) {
+    font-family: var(--font-serif);
+    font-size: 1.7rem;
+    margin: 2.4em 0 0.8em;
+    position: relative;
+    padding-top: 1em;
+    font-weight: 500;
+    font-variation-settings: "SOFT" 60;
+  }
+  .prose :global(h2::before) {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 3rem; height: 4px;
+    background: var(--color-terra);
+    border-radius: 999px;
+  }
+  .prose :global(h2:nth-of-type(2n)::before) { background: var(--color-mustard); }
+  .prose :global(h3) {
+    font-family: var(--font-serif);
+    font-size: 1.3rem;
+    margin: 1.7em 0 0.4em;
+    font-weight: 500;
+  }
+  .prose :global(p) { margin: 0 0 1.1em; }
+  .prose :global(ul), .prose :global(ol) {
+    padding-left: 1.4rem;
+    margin: 0 0 1.2em;
+  }
+  .prose :global(li) { margin-bottom: 0.5em; }
+  .prose :global(strong) { color: var(--color-ink); }
+  .prose :global(ul li::marker) { color: var(--color-mustard); }
+  .prose :global(ol li::marker) {
+    color: var(--color-terra);
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 500;
+  }
+
+  .prose :global(table) {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin: 1.6rem 0;
+    font-size: 0.95rem;
+    background: var(--color-paper);
+    border: 1px solid var(--color-line);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .prose :global(table th),
+  .prose :global(table td) {
+    text-align: left;
+    padding: 0.7rem 1rem;
+    border-bottom: 1px solid var(--color-line-soft);
+    vertical-align: top;
+  }
+  .prose :global(table th) {
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-terra-deep);
+    background: var(--color-terra-soft);
+    font-weight: 700;
+  }
+
+  .prose :global(blockquote) {
+    border-left: 3px solid var(--color-mustard);
+    padding-left: 1.2rem;
+    margin: 1.4em 0;
+    color: var(--color-ink-soft);
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.1rem;
+    font-variation-settings: "SOFT" 80;
+  }
+
+  .prose :global(code) {
+    font-family: var(--font-mono);
+    font-size: 0.92em;
+    background: var(--color-bg-cream);
+    padding: 0.1em 0.4em;
+    border-radius: 3px;
+    color: var(--color-terra-deep);
+  }
+</style>

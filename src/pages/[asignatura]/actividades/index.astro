@@ -1,0 +1,237 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { ASIGNATURA_SLUGS, ASIGNATURAS } from '@/lib/asignaturas';
+import { getCollection } from 'astro:content';
+import type { GetStaticPaths } from 'astro';
+
+export const getStaticPaths = (async () => {
+  return ASIGNATURA_SLUGS.map((slug) => ({
+    params: { asignatura: slug },
+    props: { asignatura: ASIGNATURAS[slug] },
+  }));
+}) satisfies GetStaticPaths;
+
+const { asignatura: a } = Astro.props;
+
+const all = await getCollection('actividades');
+const items = all
+  .filter((x) => x.data.asignatura === a.slug && x.data.estado === 'publicado')
+  .sort((x, y) => x.data.unidad_relacionada - y.data.unidad_relacionada);
+
+const TIPO_LABEL: Record<string, string> = {
+  caso: 'Caso',
+  ejercicio: 'Ejercicio',
+  debate: 'Debate',
+  dinamica: 'Dinámica',
+  proyecto: 'Proyecto',
+};
+---
+
+<BaseLayout
+  title={`Actividades — ${a.shortLabel}`}
+  description={`Actividades pensadas para el aula, una por unidad de ${a.title}.`}
+>
+  <div class="container">
+    <nav class="breadcrumb">
+      <a href="/">Inicio</a> <span class="sep">›</span>
+      <a href={`/${a.slug}/`}>{a.shortLabel}</a> <span class="sep">›</span>
+      <span>Actividades</span>
+    </nav>
+  </div>
+
+  <section class="hero">
+    <div class="container">
+      <span class="kicker">{a.shortLabel} · actividades</span>
+      <h1>Actividades para el aula</h1>
+      <p class="lede">
+        {items.length === 0
+          ? 'Las actividades se publicarán a medida que se completen las unidades.'
+          : `Una propuesta por unidad: casos reales, ejercicios numéricos, debates, dinámicas y un proyecto. Cada ficha incluye objetivos, pasos y rúbrica de evaluación.`}
+      </p>
+      {items.length > 0 && (
+        <p class="meta">
+          {items.length} {items.length === 1 ? 'actividad' : 'actividades'}
+        </p>
+      )}
+    </div>
+  </section>
+
+  {items.length > 0 && (
+    <section class="grid">
+      <div class="container">
+        <ul class="card-grid">
+          {items.map((it) => {
+            const slug = it.id.split('/').pop()?.replace(/\.mdx?$/, '');
+            return (
+              <li class={`card card--${it.data.tipo}`}>
+                <div class="card__head">
+                  <span class="card__num">{String(it.data.unidad_relacionada).padStart(2, '0')}</span>
+                  <span class={`card__badge badge--${it.data.tipo}`}>{TIPO_LABEL[it.data.tipo]}</span>
+                </div>
+                <h3 class="card__title">{it.data.title}</h3>
+                <p class="card__desc">{it.data.descripcion}</p>
+                <div class="card__meta">
+                  {it.data.duracion && <span>{it.data.duracion}</span>}
+                  {it.data.agrupacion && <span>· {it.data.agrupacion}</span>}
+                </div>
+                <a class="cta" href={`/${a.slug}/actividades/${slug}/`}>Abrir ficha →</a>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    </section>
+  )}
+
+  <section class="note">
+    <div class="container">
+      <p class="note-text">
+        Las actividades están pensadas para sesiones de 50-90 minutos. Se pueden
+        adaptar a clase entera, grupos pequeños o trabajo individual según el
+        contexto. Si las usáis con vuestro alumnado y descubrís ajustes que
+        funcionan mejor, escribidnos a
+        <a class="editorial-link" href="mailto:hola@profedeeconomia.es">hola@profedeeconomia.es</a>.
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .container {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 clamp(1.5rem, 4vw, 3rem);
+  }
+  .breadcrumb { font-size: 0.92rem; color: var(--color-ink-mute); margin: 2rem 0; }
+  .breadcrumb a { color: var(--color-ink-mute); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--color-terra); }
+  .breadcrumb .sep { margin: 0 0.5em; color: var(--color-mustard); }
+
+  .hero { padding: 1rem 0 clamp(2rem, 5vw, 4rem); }
+  h1 { margin: 1rem 0 0.6rem; }
+  .lede {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.35rem;
+    color: var(--color-ink-soft);
+    max-width: 55ch;
+    line-height: 1.5;
+    margin: 1.5rem 0 0.6rem;
+    font-variation-settings: "SOFT" 80;
+  }
+  .meta { font-family: var(--font-sans); font-size: 0.9rem; color: var(--color-ink-mute); margin-top: 0.4rem; }
+
+  .grid { padding-bottom: clamp(3rem, 7vw, 6rem); }
+  .card-grid {
+    list-style: none; margin: 0; padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+    gap: 1.5rem;
+  }
+  .card {
+    background: var(--color-paper);
+    border: 1px solid var(--color-line);
+    border-radius: 8px;
+    padding: 1.5rem 1.7rem 1.7rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    transition: transform .2s var(--ease-soft), border-color .2s var(--ease-soft), box-shadow .2s var(--ease-soft);
+  }
+  .card:hover {
+    border-color: var(--color-terra);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 18px rgba(42, 31, 24, 0.08);
+  }
+
+  .card__head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.6rem;
+  }
+  .card__num {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.6rem;
+    color: var(--color-mustard-deep);
+    font-variation-settings: "SOFT" 100, "WONK" 1;
+    line-height: 1;
+  }
+  .card__badge {
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-weight: 700;
+    padding: 0.25rem 0.6rem;
+    border-radius: 999px;
+    background: var(--color-terra-soft);
+    color: var(--color-terra-deep);
+  }
+  .badge--caso     { background: var(--color-terra-soft);   color: var(--color-terra-deep); }
+  .badge--ejercicio{ background: var(--color-mustard-soft); color: var(--color-mustard-deep); }
+  .badge--debate   { background: #DBEDED;                   color: #1F6E6E; }
+  .badge--dinamica { background: var(--color-fopp-soft);    color: var(--color-fopp); }
+  .badge--proyecto { background: var(--color-bg-soft);      color: var(--color-ink); }
+
+  .card__title {
+    font-family: var(--font-serif);
+    font-size: 1.2rem;
+    line-height: 1.25;
+    color: var(--color-ink);
+    margin: 0.3rem 0 0.2rem;
+    font-weight: 500;
+    font-variation-settings: "SOFT" 60;
+  }
+  .card__desc {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 0.95rem;
+    color: var(--color-ink-soft);
+    line-height: 1.45;
+    margin: 0;
+    font-variation-settings: "SOFT" 80;
+    flex: 1;
+  }
+  .card__meta {
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-ink-mute);
+    margin-top: 0.4rem;
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+  .cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.6rem 0.9rem;
+    background: var(--color-terra);
+    color: var(--color-bg);
+    border-radius: 5px;
+    text-decoration: none;
+    font-family: var(--font-sans);
+    font-size: 0.92rem;
+    font-weight: 600;
+    margin-top: 0.6rem;
+    transition: background .2s var(--ease-soft);
+  }
+  .cta:hover { background: var(--color-terra-deep); }
+
+  .note { padding: 0 0 clamp(3rem, 6vw, 5rem); }
+  .note-text {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.05rem;
+    color: var(--color-ink-mute);
+    max-width: 60ch;
+    line-height: 1.5;
+    font-variation-settings: "SOFT" 80;
+    border-top: 1px dashed var(--color-line);
+    padding-top: 1.5rem;
+  }
+</style>
