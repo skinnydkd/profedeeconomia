@@ -5,6 +5,8 @@ import { getCollection, render } from 'astro:content';
 import PuntoMuertoCalc from '@components/calculadoras/PuntoMuertoCalc.tsx';
 import VANTIRCalc from '@components/calculadoras/VANTIRCalc.tsx';
 import RatiosCalc from '@components/calculadoras/RatiosCalc.tsx';
+import ADASSimulator from '@components/calculadoras/ADASSimulator.tsx';
+import InteresCompuestoCalc from '@components/calculadoras/InteresCompuestoCalc.tsx';
 import type { GetStaticPaths } from 'astro';
 
 export const getStaticPaths = (async () => {
@@ -63,6 +65,8 @@ const unitSlug = unit?.id.split('/').pop()?.replace(/\.mdx?$/, '');
       {recurso.data.componente === 'PuntoMuerto' && <PuntoMuertoCalc client:load />}
       {recurso.data.componente === 'VANTIR' && <VANTIRCalc client:load />}
       {recurso.data.componente === 'Ratios' && <RatiosCalc client:load />}
+      {recurso.data.componente === 'ADASSimulator' && <ADASSimulator client:load />}
+      {recurso.data.componente === 'InteresCompuesto' && <InteresCompuestoCalc client:load />}
     </div>
   </section>
 
