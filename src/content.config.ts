@@ -45,7 +45,13 @@ const actividades = defineCollection({
     unidad_relacionada: z.number().int().min(1),
     title: z.string(),
     tipo: z.enum(['caso', 'ejercicio', 'debate', 'dinamica', 'proyecto']),
+    /** Short summary shown on the card grid. */
+    descripcion: z.string(),
     duracion: z.string().optional(),
+    /** Optional list of materials the teacher needs to prepare. */
+    materiales: z.array(z.string()).default([]),
+    /** "individual" / "parejas" / "grupos pequeños (3-5)" / "grupo clase". */
+    agrupacion: z.string().optional(),
     lang: z.enum(LANGS).default('es'),
     estado: z.enum(ESTADOS).default('borrador'),
   }),

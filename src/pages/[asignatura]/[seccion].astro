@@ -5,12 +5,12 @@ import type { GetStaticPaths } from 'astro';
 
 /**
  * Placeholder route for sub-sections of an asignatura that still don't
- * have their own dedicated page (actividades, recursos). `tests`,
+ * have their own dedicated page (recursos). `actividades`, `tests`,
  * `diapositivas` and `libro` each have their own folders now.
  */
 
 export const getStaticPaths = (() => {
-  const SLUGS = ['actividades', 'recursos'] as const;
+  const SLUGS = ['recursos'] as const;
   const out = [];
   for (const asignatura of ASIGNATURA_SLUGS) {
     for (const seccion of SLUGS) {
@@ -19,7 +19,7 @@ export const getStaticPaths = (() => {
         props: {
           asignatura: ASIGNATURAS[asignatura],
           seccion,
-          seccionLabel: { actividades: 'Actividades', recursos: 'Recursos' }[seccion],
+          seccionLabel: { recursos: 'Recursos' }[seccion],
         },
       });
     }
