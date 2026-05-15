@@ -27,7 +27,7 @@ import { createServer } from 'node:http';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = resolve(__dirname, '..');
 
-const asignaturas = ['edmn-2bach'];   // extend as more books publish
+const asignaturas = ['edmn-2bach', 'eco-1bach'];   // extend as more books publish
 
 const args = new Set(process.argv.slice(2));
 const inDistOnly = args.has('--in-dist');
