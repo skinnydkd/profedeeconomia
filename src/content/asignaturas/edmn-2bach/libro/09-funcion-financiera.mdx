@@ -30,6 +30,9 @@ publicado_en: 2026-05-10
 ---
 
 import Callout from '@components/Callout.astro';
+import Curiosity from '@components/Curiosity.astro';
+import RealExample from '@components/RealExample.astro';
+import SolvedExercise from '@components/SolvedExercise.astro';
 import Bibliography from '@components/Bibliography.astro';
 
 La función financiera responde a dos preguntas que ningún proyecto empresarial puede esquivar: **¿en qué invertimos?** y **¿de dónde sacamos el dinero para invertir?**. La primera define el activo de la empresa —los recursos productivos en los que el dinero se convierte—. La segunda define el pasivo y el patrimonio neto —de quién es ese dinero y bajo qué condiciones se devuelve—. La diferencia entre una empresa viable y una que muere antes de empezar suele estar en la coherencia entre ambas decisiones.
@@ -75,6 +78,82 @@ La regla de decisión es directa:
 
 La TIR es la tasa de descuento que hace que el VAN sea exactamente cero. Si la TIR es **superior** a la rentabilidad mínima exigida (la tasa `k` del VAN), el proyecto se acepta; si es **inferior**, se rechaza. Tiene la ventaja de expresarse como un porcentaje de rentabilidad anual, lo que facilita la comparación con otras alternativas de inversión (un depósito al 3%, una rentabilidad inmobiliaria del 5%, etc.).
 
+<SolvedExercise number="9.1" title="VAN y PayBack de una furgoneta para una empresa de reparto">
+
+**Enunciado**
+
+Una pequeña empresa de reparto a domicilio valora comprar una furgoneta de segunda mano para ampliar su radio de servicio. Datos del proyecto:
+
+- Inversión inicial (precio + matrícula + acondicionamiento): **18.000 €**
+- Flujo neto de caja anual esperado (ingresos extra menos costes adicionales de combustible, mantenimiento y seguro): **6.500 €/año** durante 4 años.
+- Valor residual de la furgoneta al final del año 4: **3.000 €**
+- Tasa de descuento exigida (`k`): **8 %**
+
+a) Calcular el **PayBack** del proyecto.
+b) Calcular el **VAN** del proyecto.
+c) ¿Conviene hacer la inversión?
+
+**Solución**
+
+1. **PayBack**. Acumulamos flujos hasta cubrir la inversión inicial de 18.000 €.
+   - Final año 1: 6.500 € recuperados (faltan 11.500 €).
+   - Final año 2: 13.000 € (faltan 5.000 €).
+   - Final año 3: 19.500 € → ya cubierto.
+   - Cálculo afinado: durante el año 3 se necesitan 5.000 € de los 6.500 € del flujo → 5.000 / 6.500 ≈ 0,77.
+   - **PayBack ≈ 2,77 años** (2 años y 9 meses).
+2. **VAN**. Actualizamos cada flujo al presente con tasa 8 %. Como el flujo del último año incluye el valor residual, ese año entra con 6.500 + 3.000 = **9.500 €**.
+
+```
+VAN = -18.000
+       + 6.500/(1,08)^1
+       + 6.500/(1,08)^2
+       + 6.500/(1,08)^3
+       + 9.500/(1,08)^4
+```
+
+3. Cálculo paso a paso (redondeando a euros):
+   - Año 1: 6.500 / 1,08 = **6.018,52 €**
+   - Año 2: 6.500 / 1,1664 = **5.572,71 €**
+   - Año 3: 6.500 / 1,2597 = **5.159,92 €**
+   - Año 4: 9.500 / 1,3605 = **6.982,06 €**
+   - Suma de flujos actualizados: 23.733,21 €
+   - VAN = 23.733,21 − 18.000 = **+5.733,21 €**
+4. **Decisión**: VAN > 0 y PayBack < 4 años. El proyecto se acepta: a la rentabilidad exigida del 8 %, la furgoneta genera 5.733 € de valor adicional. La TIR estará claramente por encima del 8 % (un cálculo iterativo daría aproximadamente un 19-20 %).
+
+</SolvedExercise>
+
+<SolvedExercise number="9.2" title="Coste real de un préstamo: TAE de una financiación al comercio">
+
+**Enunciado**
+
+Un emprendedor estudia financiar un equipo de hostelería de **12.000 €** y compara dos ofertas:
+
+- **Oferta A — banco tradicional**: préstamo a 4 años. Cuota mensual fija de **285 €**. Sin comisiones añadidas.
+- **Oferta B — financiación del proveedor**: *«0 % interés»*. Cuota mensual de **250 €** durante 48 meses, pero con una comisión de apertura del **8 % del importe** y un seguro obligatorio que cuesta **35 €/mes** durante los 4 años.
+
+a) Calcular el coste total de cada oferta.
+b) ¿Cuál es la real más barata?
+
+**Solución**
+
+1. **Coste total Oferta A** (banco):
+   - Cuota: 285 € × 48 meses = **13.680 €**
+   - Intereses pagados: 13.680 − 12.000 = **1.680 €** (≈ 7,3 % efectivo total a 4 años).
+2. **Coste total Oferta B** (proveedor *«sin intereses»*):
+   - Cuotas: 250 € × 48 = **12.000 €**
+   - Comisión de apertura: 8 % × 12.000 = **960 €**
+   - Seguro obligatorio: 35 € × 48 = **1.680 €**
+   - Coste total: 12.000 + 960 + 1.680 = **14.640 €**
+   - Sobrecoste sobre el precio del equipo: 2.640 € (≈ 11,7 % efectivo total a 4 años).
+3. **Comparación**: la oferta del banco resulta **960 € más barata**, pese al titular publicitario *«0 % interés»* de la del proveedor.
+4. **Lección práctica**: el *0 % interés* es a menudo una etiqueta engañosa. Lo que importa es el **coste total** o, mejor, la **TAE** —Tasa Anual Equivalente— que la ley obliga a publicitar en España precisamente para hacer comparables ofertas con estructuras distintas de comisiones, seguros y plazos. Antes de firmar cualquier financiación, exige siempre la TAE; si el comercial duda en darla, hay motivos para sospechar.
+
+</SolvedExercise>
+
+<Curiosity title="La palabra «bancarrota» viene de romper bancos de madera">
+El término *bancarrota* tiene un origen literal y físico. En la Italia medieval, los cambistas y prestamistas trabajaban en plazas públicas sentados detrás de un banco de madera (en italiano, *banca*) donde realizaban operaciones de cambio de moneda y crédito. Cuando uno de ellos no podía hacer frente a sus obligaciones, las autoridades de la ciudad acudían al lugar y **rompían públicamente su banco** —*banca rotta*— como señal visible para todos los acreedores de que aquel cambista quedaba inhabilitado. La operación tenía utilidad práctica: en una época sin registros mercantiles centralizados, la imagen del banco roto en la plaza era la única forma fiable de comunicar la quiebra a quienes le habían prestado. El término se incorporó al castellano por la vía del italiano comercial del Renacimiento y mantiene hoy la misma connotación: un punto de no retorno comercial visible para todos.
+</Curiosity>
+
 <Callout label="Concepto clave" title="VAN, TIR y PayBack — cuándo usar cada uno">
 
 Los tres criterios responden preguntas distintas: el **PayBack** mide riesgo (cuánto tardo en recuperar lo invertido), el **VAN** mide creación de valor (cuánto vale hoy lo que voy a ganar mañana) y la **TIR** mide rentabilidad relativa (qué porcentaje anual obtengo). En decisiones serias se utilizan los tres a la vez. Confiar solo en el PayBack lleva a rechazar proyectos rentables a largo plazo; confiar solo en la TIR puede ocultar inversiones cuya devolución llega tan tarde que el riesgo no compensa.
@@ -118,6 +197,10 @@ Sociedades especializadas (en inglés, *venture capital*) que invierten cantidad
 ### Public funding
 
 En España existen líneas de financiación pública para emprendedores: ENISA (préstamos participativos), CDTI (proyectos de innovación), líneas ICO (mediadas por la banca tradicional con garantía pública), Programa Kit Digital, ayudas autonómicas. Las condiciones suelen ser mejores que las de la banca privada pero los procesos de solicitud son largos y exigentes.
+
+<RealExample title="Verkami: el crowdfunding cultural que financió 12.000 proyectos sin recibir capital riesgo" source="Memoria Verkami 2023" sourceUrl="https://www.verkami.com">
+**Verkami** se fundó en Barcelona en 2010 por tres hermanos —Joan, Adrià y Jonàs Sala— para conseguir financiar proyectos culturales y creativos en España y América Latina. Catorce años después, la plataforma ha permitido financiar **más de 12.000 proyectos** —cómics, documentales, álbumes musicales, libros, festivales— por un total acumulado de **42 millones de euros**. La cifra parece pequeña comparada con cualquier *startup* tecnológica, pero hay un detalle crucial: Verkami nunca ha levantado capital riesgo. La empresa siempre ha sido autofinanciada con la comisión del 5 % que cobra de cada proyecto financiado con éxito. La consecuencia: los fundadores siguen siendo dueños del 100 % de la empresa, las decisiones se toman con criterios culturales además de financieros y los costes de estructura son bajos. Es un caso interesante para discutir en clase: ¿cuándo conviene captar inversión externa y cuándo es preferible crecer lentamente con autofinanciación? La respuesta correcta depende del sector, el ritmo del mercado y los valores del fundador, no de una fórmula universal.
+</RealExample>
 
 <Callout label="Ejemplo práctico" title="La cascada de financiación de una startup española típica" variant="example">
 

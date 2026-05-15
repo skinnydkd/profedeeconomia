@@ -31,6 +31,9 @@ publicado_en: 2026-05-10
 ---
 
 import Callout from '@components/Callout.astro';
+import Curiosity from '@components/Curiosity.astro';
+import RealExample from '@components/RealExample.astro';
+import SolvedExercise from '@components/SolvedExercise.astro';
 import Bibliography from '@components/Bibliography.astro';
 
 Todas las empresas, sin excepción, están obligadas a llevar **contabilidad** y a presentar cuentas anuales. La obligación nace del Código de Comercio de 1885 —reformado decenas de veces— y se concreta en el **Plan General de Contabilidad** (PGC) vigente desde 2007. La función contable no es burocrática: es la que permite a la empresa, a sus socios, a la administración tributaria y a sus financiadores tener una imagen rigurosa de qué está pasando con el dinero. Esta unidad introduce el lenguaje básico que la Unidad 11 utilizará para analizar.
@@ -80,6 +83,49 @@ El patrimonio neto y el pasivo agrupan las fuentes de financiación, ordenadas s
 - **Pasivo no corriente**: deudas a más de un año (préstamos bancarios a largo plazo, leasing, obligaciones emitidas).
 - **Pasivo corriente**: deudas a menos de un año (proveedores, acreedores, créditos a corto plazo, hacienda y seguridad social pendientes).
 
+<SolvedExercise number="10.1" title="Construir el balance de una papelería al cierre del ejercicio">
+
+**Enunciado**
+
+A 31 de diciembre, una papelería tiene los siguientes elementos. Clasifica cada uno en su masa patrimonial (activo no corriente, activo corriente, patrimonio neto, pasivo no corriente o pasivo corriente) y verifica que el balance cuadra.
+
+| Elemento | Importe (€) |
+| --- | --- |
+| Local en propiedad | 95.000 |
+| Mobiliario y estanterías | 12.000 |
+| Caja registradora y datafonos | 1.800 |
+| Existencias (papel, libros, material) | 24.000 |
+| Saldo en banco | 6.500 |
+| Clientes pendientes de cobro (colegios) | 4.500 |
+| Capital social aportado por los socios | 60.000 |
+| Reservas acumuladas de años anteriores | 18.000 |
+| Beneficio del ejercicio | 7.800 |
+| Préstamo bancario hipotecario a 12 años | 45.000 |
+| Proveedores pendientes de pago | 9.000 |
+| Hacienda pública acreedora (IVA por liquidar) | 4.000 |
+
+**Solución**
+
+1. Clasificación de cada elemento.
+
+| Masa patrimonial | Cuentas incluidas | Total (€) |
+| --- | --- | --- |
+| **Activo no corriente** | Local 95.000 + Mobiliario 12.000 + Caja registradora 1.800 | **108.800** |
+| **Activo corriente** | Existencias 24.000 + Banco 6.500 + Clientes 4.500 | **35.000** |
+| **TOTAL ACTIVO** | | **143.800** |
+| **Patrimonio neto** | Capital 60.000 + Reservas 18.000 + Beneficio 7.800 | **85.800** |
+| **Pasivo no corriente** | Préstamo hipotecario 45.000 | **45.000** |
+| **Pasivo corriente** | Proveedores 9.000 + Hacienda 4.000 | **13.000** |
+| **TOTAL PN + PASIVO** | | **143.800** |
+
+2. **Comprobación de la ecuación contable**: Activo = Patrimonio neto + Pasivo → 143.800 = 85.800 + 45.000 + 13.000 = **143.800 ✓**.
+3. Lectura rápida del balance:
+   - El **patrimonio neto (60 %)** financia más de la mitad del activo. La empresa es financieramente sólida.
+   - El activo no corriente (108.800 €) está cubierto por patrimonio neto + pasivo no corriente (130.800 €). La regla de coherencia financiera se cumple: el largo plazo se financia con largo plazo.
+   - El activo corriente (35.000 €) supera al pasivo corriente (13.000 €). El **fondo de maniobra** es positivo, indicador de salud a corto plazo.
+
+</SolvedExercise>
+
 <Callout label="Concepto clave" title="Las cinco grandes masas del balance">
 
 El balance se simplifica habitualmente a cinco grandes masas: en el activo, **activo no corriente** y **activo corriente**; en el patrimonio neto y pasivo, **patrimonio neto**, **pasivo no corriente** y **pasivo corriente**. Las cinco masas permiten un análisis financiero rápido sin necesidad de bajar al detalle de cada cuenta. Si te enseñan un balance y solo entiendes esas cinco cifras, ya estás en condiciones de detectar los problemas más graves.
@@ -102,6 +148,49 @@ Si el balance es la foto fija, la **cuenta de pérdidas y ganancias** (también 
 
 La cuenta de pérdidas y ganancias no mide el dinero que ha entrado y salido de la caja —para eso está el Estado de Flujos de Efectivo—, sino el beneficio **devengado**: ingresos y gastos imputados al periodo aunque todavía no se hayan cobrado o pagado. La diferencia entre beneficio contable y caja es importante y veremos sus implicaciones en la próxima unidad.
 
+<SolvedExercise number="10.2" title="Cuenta de pérdidas y ganancias de una academia de inglés">
+
+**Enunciado**
+
+Una academia de inglés cierra el ejercicio con los siguientes datos. Construye su cuenta de pérdidas y ganancias hasta el resultado del ejercicio, asumiendo un tipo del **23 %** del Impuesto de Sociedades (pyme).
+
+| Concepto | Importe (€) |
+| --- | --- |
+| Cuotas de alumnos cobradas durante el año | 145.000 |
+| Cuotas devengadas pero pendientes de cobro a 31/12 | 8.500 |
+| Compras de material didáctico | 6.200 |
+| Sueldos y salarios | 78.000 |
+| Seguridad Social a cargo de la empresa | 22.500 |
+| Alquiler del local | 14.400 |
+| Suministros (luz, internet, calefacción) | 4.300 |
+| Amortización del mobiliario | 2.500 |
+| Intereses pagados por el préstamo del local | 3.800 |
+| Comisiones bancarias cobradas a la academia | 250 |
+
+**Solución**
+
+1. **Ingresos de explotación** (devengo, no caja): 145.000 + 8.500 = **153.500 €**.
+2. **Gastos de explotación**:
+   - Material didáctico: 6.200
+   - Sueldos: 78.000
+   - Seguridad Social patronal: 22.500
+   - Alquiler: 14.400
+   - Suministros: 4.300
+   - Amortización: 2.500
+   - **Total**: 127.900 €.
+3. **Resultado de explotación (EBIT)**: 153.500 − 127.900 = **25.600 €**.
+4. **Resultado financiero**: ingresos financieros (0) − gastos financieros (3.800 + 250) = **−4.050 €**.
+5. **Resultado antes de impuestos (BAI)**: 25.600 − 4.050 = **21.550 €**.
+6. **Impuesto sobre beneficios** (23 %): 21.550 × 0,23 = **4.957 €** (redondeado).
+7. **Resultado del ejercicio**: 21.550 − 4.957 = **16.593 €**.
+
+8. Lecturas de gestión:
+   - El margen operativo (EBIT/Ingresos) es del **16,7 %**. Saludable para una academia.
+   - El gasto de personal representa el **65 %** del total: la academia es intensiva en mano de obra, lo habitual en servicios.
+   - Atención al **flujo de caja**: aunque el beneficio sea de 16.593 €, los 8.500 € de cuotas pendientes de cobro suponen que la **tesorería real** generada es inferior al beneficio. Recordar la advertencia del callout: rentabilidad y liquidez son cosas distintas.
+
+</SolvedExercise>
+
 ## Imagen fiel y principios contables
 
 El PGC exige que las cuentas anuales presenten la **imagen fiel** del patrimonio, la situación financiera y los resultados de la empresa. Para garantizarlo, establece nueve **principios contables obligatorios**, de los cuales conviene reconocer al menos cinco:
@@ -113,6 +202,14 @@ El PGC exige que las cuentas anuales presenten la **imagen fiel** del patrimonio
 5. **No compensación.** No se pueden compensar partidas de activo y pasivo, ni de ingresos y gastos.
 
 Cumplir estos principios no es una formalidad: cuando una empresa los infringe sistemáticamente —p. ej., adelantando el reconocimiento de ingresos para inflar el beneficio— se da el escenario clásico del **fraude contable**, que en casos extremos lleva a quiebras tan célebres como la de Enron en 2001.
+
+<Curiosity title="La partida doble la inventó un fraile franciscano del siglo XV">
+El sistema contable que hoy utilizan todas las empresas del mundo —cada operación se registra a la vez en dos cuentas (de ahí el nombre, *partida doble*)— lo formalizó por primera vez **Luca Pacioli**, un fraile franciscano italiano amigo de Leonardo da Vinci. En 1494 publicó en Venecia *Summa de arithmetica, geometria, proportioni et proportionalità*, una enciclopedia matemática cuya sección XI, titulada *De Computis et Scripturis*, describe paso a paso el método contable que los mercaderes venecianos llevaban décadas usando informalmente. Pacioli no inventó el sistema —se ofrecía a sí mismo como cronista, no como descubridor—, pero al sistematizarlo y publicarlo en imprenta lo difundió por toda Europa. Cinco siglos después, las cuentas anuales que se depositan en el Registro Mercantil siguen exactamente la misma lógica que él codificó: cada apunte tiene un debe y un haber, y la suma de ambos siempre cuadra. La frase atribuida a Pacioli sigue resumiendo el espíritu de la contabilidad moderna: *«No se acuesta el comerciante hasta que sus libros cuadran.»*
+</Curiosity>
+
+<RealExample title="Pescanova: el fraude contable más grande del IBEX 35" source="Sentencia 7/2020 de la Audiencia Nacional y prensa económica 2013-2020">
+En febrero de 2013, la empresa gallega **Pescanova** —líder europea de la pesca de altura, cotizada en el IBEX 35— solicitó preconcurso de acreedores. La sorpresa fue mayúscula: dos meses antes había publicado cuentas con beneficio. La auditoría posterior reveló una **deuda real de 3.600 M€** frente a los **930 M€** declarados en su balance. Durante años, la empresa había realizado operaciones cruzadas con filiales propias para inflar las ventas, había ocultado pasivos en sociedades pantalla en paraísos fiscales y había falseado el inventario de pescado que reportaba como activo. Las cuentas anuales no cumplían ninguno de los principios básicos —imagen fiel, prudencia, no compensación— y la auditora KPMG fue sancionada por no detectarlo. Manuel Fernández de Sousa, el presidente, fue condenado en 2020 a **8 años de cárcel**. La consecuencia para la empresa: pérdida total para los accionistas minoritarios, despidos masivos y una nueva propietaria (Nueva Pescanova). La consecuencia para la disciplina contable: una reforma de los protocolos de auditoría y un endurecimiento de la responsabilidad personal de los administradores. La lección para clase: los principios contables no son retórica académica; cuando se ignoran sistemáticamente, las consecuencias humanas y económicas son devastadoras.
+</RealExample>
 
 <Callout label="Ejemplo práctico" title="Por qué una empresa puede ser rentable y quedarse sin dinero a la vez" variant="example">
 
