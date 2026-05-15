@@ -1,0 +1,93 @@
+---
+/**
+ * Four extreme cases of price elasticity of demand, arranged in a 2×2
+ * grid. From left-right, top-bottom:
+ *   - Perfectly inelastic (ε = 0)
+ *   - Inelastic (0 < ε < 1)
+ *   - Elastic (ε > 1)
+ *   - Perfectly elastic (ε = ∞)
+ *
+ * Used in Eco 1BACH · Unit 5 (elasticity).
+ */
+---
+<svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="elasticidad-title elasticidad-desc">
+  <title id="elasticidad-title">Los cuatro casos extremos de la elasticidad-precio</title>
+  <desc id="elasticidad-desc">Cuatro mini-gráficos que ilustran demanda perfectamente inelástica, inelástica, elástica y perfectamente elástica.</desc>
+  <defs>
+    <style>
+      .bg { fill: #FBF6EC; }
+      .panel { fill: #FFFFFF; stroke: #E5D4BD; stroke-width: 1; }
+      .axis { stroke: #5C4A3D; stroke-width: 1.5; fill: none; }
+      .demand { fill: none; stroke: #C44E2C; stroke-width: 2.5; }
+      .panel-title { font-family: 'Fraunces', serif; font-size: 14px; font-weight: 500; fill: #2A1F18; text-anchor: middle; font-style: italic; }
+      .epsilon-label { font-family: 'JetBrains Mono', monospace; font-size: 13px; fill: #9C3A1C; font-weight: 700; }
+      .axis-letter { font-family: 'Fraunces', serif; font-style: italic; font-size: 13px; font-weight: 500; fill: #5C4A3D; }
+      .d-label { font-family: 'Switzer', sans-serif; font-size: 12px; font-weight: 700; fill: #9C3A1C; }
+    </style>
+  </defs>
+  <rect class="bg" x="0" y="0" width="800" height="500"/>
+
+  <!-- 2x2 grid of panels.
+       Each panel: 360 wide x 220 tall.
+       Panel inner plot: roughly axes from x_left..x_left+200, y_top+30..y_top+190 -->
+
+  <!-- ===== TOP-LEFT: Perfectamente inelástica (ε = 0) ===== -->
+  <!-- Panel rect (decorative): 30,30 → 390,250 -->
+  <rect class="panel" x="30" y="30" width="370" height="220" rx="6"/>
+  <text class="panel-title" x="215" y="55">Perfectamente inelástica</text>
+  <!-- Axes inside: origin (80, 230), x to 360, y to 75 -->
+  <line class="axis" x1="80" y1="230" x2="360" y2="230"/>
+  <line class="axis" x1="80" y1="75" x2="80" y2="230"/>
+  <polygon points="360,230 352,226 352,234" fill="#5C4A3D"/>
+  <polygon points="80,75 76,83 84,83" fill="#5C4A3D"/>
+  <text class="axis-letter" x="365" y="234">Q</text>
+  <text class="axis-letter" x="68" y="74">P</text>
+  <!-- Demand: vertical line at Q = constant -->
+  <line class="demand" x1="220" y1="85" x2="220" y2="230"/>
+  <text class="d-label" x="230" y="100">D</text>
+  <text class="epsilon-label" x="215" y="78" text-anchor="middle">ε = 0</text>
+
+  <!-- ===== TOP-RIGHT: Inelástica (0 < ε < 1) ===== -->
+  <rect class="panel" x="410" y="30" width="360" height="220" rx="6"/>
+  <text class="panel-title" x="590" y="55">Inelástica</text>
+  <line class="axis" x1="455" y1="230" x2="735" y2="230"/>
+  <line class="axis" x1="455" y1="75" x2="455" y2="230"/>
+  <polygon points="735,230 727,226 727,234" fill="#5C4A3D"/>
+  <polygon points="455,75 451,83 459,83" fill="#5C4A3D"/>
+  <text class="axis-letter" x="740" y="234">Q</text>
+  <text class="axis-letter" x="443" y="74">P</text>
+  <!-- Steep but not vertical demand: from (475, 90) to (605, 220) -->
+  <line class="demand" x1="475" y1="90" x2="605" y2="220"/>
+  <text class="d-label" x="612" y="222">D</text>
+  <text class="epsilon-label" x="590" y="78" text-anchor="middle">0 &lt; ε &lt; 1</text>
+
+  <!-- ===== BOTTOM-LEFT: Elástica (ε > 1) ===== -->
+  <rect class="panel" x="30" y="270" width="370" height="220" rx="6"/>
+  <text class="panel-title" x="215" y="295">Elástica</text>
+  <line class="axis" x1="80" y1="470" x2="360" y2="470"/>
+  <line class="axis" x1="80" y1="315" x2="80" y2="470"/>
+  <polygon points="360,470 352,466 352,474" fill="#5C4A3D"/>
+  <polygon points="80,315 76,323 84,323" fill="#5C4A3D"/>
+  <text class="axis-letter" x="365" y="474">Q</text>
+  <text class="axis-letter" x="68" y="314">P</text>
+  <!-- Shallow demand: from (95, 350) to (340, 460) -->
+  <line class="demand" x1="95" y1="350" x2="340" y2="460"/>
+  <text class="d-label" x="346" y="462">D</text>
+  <text class="epsilon-label" x="215" y="318" text-anchor="middle">ε &gt; 1</text>
+
+  <!-- ===== BOTTOM-RIGHT: Perfectamente elástica (ε = ∞) ===== -->
+  <rect class="panel" x="410" y="270" width="360" height="220" rx="6"/>
+  <text class="panel-title" x="590" y="295">Perfectamente elástica</text>
+  <line class="axis" x1="455" y1="470" x2="735" y2="470"/>
+  <line class="axis" x1="455" y1="315" x2="455" y2="470"/>
+  <polygon points="735,470 727,466 727,474" fill="#5C4A3D"/>
+  <polygon points="455,315 451,323 459,323" fill="#5C4A3D"/>
+  <text class="axis-letter" x="740" y="474">Q</text>
+  <text class="axis-letter" x="443" y="314">P</text>
+  <!-- Demand horizontal line at given P -->
+  <line class="demand" x1="465" y1="390" x2="725" y2="390"/>
+  <text class="d-label" x="731" y="394">D</text>
+  <text class="epsilon-label" x="590" y="318" text-anchor="middle">ε = ∞</text>
+</svg>
+</content>
+</invoke>

@@ -1,0 +1,117 @@
+---
+/**
+ * Lorenz curve diagram: cumulative share of income against cumulative
+ * share of population. Shows the line of perfect equality (diagonal)
+ * and the actual Lorenz curve, with the area between them (A) used to
+ * compute the Gini coefficient.
+ *
+ * Used in Eco 1BACH · Unit 8 (income distribution and inequality).
+ */
+---
+<svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="lorenz-title lorenz-desc">
+  <title id="lorenz-title">Curva de Lorenz</title>
+  <desc id="lorenz-desc">Distribución acumulada de la renta frente a la población acumulada, con la línea de igualdad perfecta y la curva real. El área entre ambas representa la desigualdad y permite calcular el índice de Gini.</desc>
+  <defs>
+    <style>
+      .bg { fill: #FBF6EC; }
+      .axis { stroke: #5C4A3D; stroke-width: 1.5; fill: none; }
+      .grid { stroke: #E5D4BD; stroke-width: 1; stroke-dasharray: 2 4; fill: none; }
+      .equality { fill: none; stroke: #D4A24C; stroke-width: 2; stroke-dasharray: 6 4; }
+      .lorenz { fill: none; stroke: #C44E2C; stroke-width: 2.5; }
+      .area-a { fill: #FBE3D6; fill-opacity: 0.55; }
+      .area-b { fill: #F5E5BC; fill-opacity: 0.4; }
+      .axis-label { font-family: 'Switzer', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; fill: #5C4A3D; }
+      .tick-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; fill: #5C4A3D; }
+      .curve-label { font-family: 'Switzer', sans-serif; font-size: 12px; font-weight: 700; fill: #9C3A1C; }
+      .equality-label { font-family: 'Switzer', sans-serif; font-size: 11.5px; font-weight: 700; fill: #A87A2A; }
+      .area-label { font-family: 'Fraunces', serif; font-style: italic; font-size: 22px; font-weight: 500; fill: #2A1F18; text-anchor: middle; }
+      .gini-box { fill: #FFFFFF; stroke: #C44E2C; stroke-width: 1.8; }
+      .gini-text { font-family: 'JetBrains Mono', monospace; font-size: 13px; fill: #2A1F18; }
+      .gini-label { font-family: 'Switzer', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase; fill: #9C3A1C; }
+    </style>
+  </defs>
+  <rect class="bg" x="0" y="0" width="800" height="500"/>
+
+  <!-- Plot square: (90, 410) origin to (490, 60). Side = 350px (0..100). -->
+  <!-- Origin: x=90 (0%), x=490 (100%); y=410 (0%), y=60 (100%) -->
+
+  <!-- Area A (between diagonal and Lorenz) – shaded -->
+  <!-- Using approximate curve points; we'll define curve as a quadratic Bezier.
+       Start (90,410), control (415, 385), end (490, 60).
+       For shading area A we make a closed polygon: diagonal + reverse curve. -->
+  <path class="area-a" d="M 90 410 L 490 60 L 490 60 Q 415 385 90 410 Z"/>
+
+  <!-- Area B (under the Lorenz curve, down to the x-axis) – shaded lighter -->
+  <path class="area-b" d="M 90 410 Q 415 385 490 60 L 490 410 Z"/>
+
+  <!-- Grid -->
+  <line class="grid" x1="90" y1="340" x2="490" y2="340"/>
+  <line class="grid" x1="90" y1="270" x2="490" y2="270"/>
+  <line class="grid" x1="90" y1="200" x2="490" y2="200"/>
+  <line class="grid" x1="90" y1="130" x2="490" y2="130"/>
+
+  <line class="grid" x1="170" y1="60" x2="170" y2="410"/>
+  <line class="grid" x1="250" y1="60" x2="250" y2="410"/>
+  <line class="grid" x1="330" y1="60" x2="330" y2="410"/>
+  <line class="grid" x1="410" y1="60" x2="410" y2="410"/>
+
+  <!-- Axes -->
+  <line class="axis" x1="90" y1="410" x2="500" y2="410"/>
+  <line class="axis" x1="90" y1="50" x2="90" y2="410"/>
+
+  <!-- Tick labels x (population %) -->
+  <text class="tick-label" x="90" y="428" text-anchor="middle">0</text>
+  <text class="tick-label" x="170" y="428" text-anchor="middle">20</text>
+  <text class="tick-label" x="250" y="428" text-anchor="middle">40</text>
+  <text class="tick-label" x="330" y="428" text-anchor="middle">60</text>
+  <text class="tick-label" x="410" y="428" text-anchor="middle">80</text>
+  <text class="tick-label" x="490" y="428" text-anchor="middle">100</text>
+
+  <!-- Tick labels y (income %) -->
+  <text class="tick-label" x="82" y="414" text-anchor="end">0</text>
+  <text class="tick-label" x="82" y="344" text-anchor="end">20</text>
+  <text class="tick-label" x="82" y="274" text-anchor="end">40</text>
+  <text class="tick-label" x="82" y="204" text-anchor="end">60</text>
+  <text class="tick-label" x="82" y="134" text-anchor="end">80</text>
+  <text class="tick-label" x="82" y="64" text-anchor="end">100</text>
+
+  <!-- Axis titles -->
+  <text class="axis-label" x="290" y="465" text-anchor="middle">% POBLACIÓN ACUMULADA</text>
+  <text class="axis-label" x="40" y="230" text-anchor="middle" transform="rotate(-90 40 230)">% RENTA ACUMULADA</text>
+
+  <!-- Line of perfect equality (diagonal) -->
+  <line class="equality" x1="90" y1="410" x2="490" y2="60"/>
+
+  <!-- Lorenz curve: concave below diagonal -->
+  <path class="lorenz" d="M 90 410 Q 415 385 490 60"/>
+
+  <!-- Endpoints -->
+  <circle cx="90" cy="410" r="4" fill="#C44E2C"/>
+  <circle cx="490" cy="60" r="4" fill="#C44E2C"/>
+
+  <!-- Area labels inside shaded zones -->
+  <text class="area-label" x="270" y="220" fill="#9C3A1C">A</text>
+  <text class="area-label" x="380" y="350" fill="#A87A2A">B</text>
+
+  <!-- Curve and line labels -->
+  <text class="equality-label" x="220" y="170" transform="rotate(-41 220 170)">Igualdad perfecta</text>
+  <text class="curve-label" x="320" y="385">Curva de Lorenz</text>
+
+  <!-- Gini formula box -->
+  <rect class="gini-box" x="540" y="120" width="230" height="200" rx="6"/>
+  <text class="gini-label" x="555" y="148">ÍNDICE DE GINI</text>
+  <line x1="555" y1="158" x2="755" y2="158" stroke="#E5D4BD" stroke-width="1"/>
+
+  <text class="gini-text" x="555" y="190">G =</text>
+  <text class="gini-text" x="600" y="180" text-anchor="middle">A</text>
+  <line x1="585" y1="188" x2="685" y2="188" stroke="#2A1F18" stroke-width="1.2"/>
+  <text class="gini-text" x="600" y="208" text-anchor="middle">A + B</text>
+
+  <text class="gini-text" x="555" y="248" font-size="11" fill="#5C4A3D">A = área sombreada</text>
+  <text class="gini-text" x="555" y="266" font-size="11" fill="#5C4A3D">B = área bajo Lorenz</text>
+
+  <text class="gini-text" x="555" y="295" font-size="11" fill="#5C4A3D" font-style="italic" font-family="Fraunces, serif">G = 0 · igualdad total</text>
+  <text class="gini-text" x="555" y="312" font-size="11" fill="#5C4A3D" font-style="italic" font-family="Fraunces, serif">G = 1 · máxima desigualdad</text>
+</svg>
+</content>
+</invoke>
