@@ -1,0 +1,334 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { ASIGNATURAS } from '@/lib/asignaturas';
+import { getCollection } from 'astro:content';
+import QuizPlayer from '@components/QuizPlayer.tsx';
+import type { GetStaticPaths } from 'astro';
+
+export const getStaticPaths = (async () => {
+  const all = await getCollection('tests');
+  return all
+    .filter((t) => t.data.estado === 'publicado')
+    .map((t) => {
+      const slug = t.id.split('/').pop()?.replace(/\.mdx?$/, '') ?? t.id;
+      return {
+        params: { asignatura: t.data.asignatura, slug },
+        props: { test: t },
+      };
+    });
+}) satisfies GetStaticPaths;
+
+const { test } = Astro.props;
+const a = ASIGNATURAS[test.data.asignatura];
+
+// Find the related libro unit so we can link back and show its lema.
+const allLibro = await getCollection('libro');
+const unit = allLibro.find(
+  (u) => u.data.asignatura === a.slug && u.data.unidad === test.data.unidad_relacionada
+);
+const unitSlug = unit?.id.split('/').pop()?.replace(/\.mdx?$/, '');
+---
+
+<BaseLayout title={`${test.data.title} — ${a.shortLabel}`} description={`Test de autoevaluación de la unidad ${test.data.unidad_relacionada} de ${a.title}.`}>
+  <div class="container">
+    <nav class="breadcrumb">
+      <a href="/">Inicio</a> <span class="sep">›</span>
+      <a href={`/${a.slug}/`}>{a.shortLabel}</a> <span class="sep">›</span>
+      <a href={`/${a.slug}/tests/`}>Tests</a> <span class="sep">›</span>
+      <span>Unidad {test.data.unidad_relacionada}</span>
+    </nav>
+  </div>
+
+  <section class="hero">
+    <div class="container">
+      <span class="kicker">Test · Unidad {test.data.unidad_relacionada}</span>
+      <h1>{test.data.title}</h1>
+      {unit?.data.lema && <p class="lede">{unit.data.lema}</p>}
+      <p class="meta">
+        {test.data.preguntas.length} preguntas
+        {test.data.duracion_estimada && <> · {test.data.duracion_estimada}</>}
+        {unit && unitSlug && (
+          <> ·
+            <a class="link" href={`/${a.slug}/libro/${unitSlug}/`}>Volver a la unidad del libro</a>
+          </>
+        )}
+      </p>
+    </div>
+  </section>
+
+  <section class="player-wrap">
+    <div class="container container--narrow">
+      <QuizPlayer
+        client:load
+        preguntas={test.data.preguntas}
+        storageKey={`test-${a.slug}-${test.data.unidad_relacionada}`}
+      />
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .container {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 clamp(1.5rem, 4vw, 3rem);
+  }
+  .container--narrow { max-width: 760px; }
+
+  .breadcrumb { font-size: 0.92rem; color: var(--color-ink-mute); margin: 2rem 0; }
+  .breadcrumb a { color: var(--color-ink-mute); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--color-terra); }
+  .breadcrumb .sep { margin: 0 0.5em; color: var(--color-mustard); }
+
+  .hero { padding: 1rem 0 clamp(1.5rem, 4vw, 3rem); }
+  h1 { max-width: 22ch; margin: 1rem 0 0.6rem; }
+  .lede {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.35rem;
+    color: var(--color-ink-soft);
+    max-width: 50ch;
+    margin: 1rem 0 1.5rem;
+    line-height: 1.5;
+    font-variation-settings: "SOFT" 80;
+  }
+  .meta {
+    font-family: var(--font-sans);
+    font-size: 0.92rem;
+    color: var(--color-ink-mute);
+  }
+  .meta .link { color: var(--color-terra); text-decoration: none; }
+  .meta .link:hover { color: var(--color-terra-deep); border-bottom: 1px solid var(--color-terra); }
+
+  .player-wrap { padding-bottom: clamp(3rem, 7vw, 6rem); }
+</style>
+
+{/*
+  Global styles for the QuizPlayer component (it lives outside scoped
+  styles because Preact renders it client-side).
+*/}
+<style is:global>
+  .qp {
+    background: var(--color-paper);
+    border: 1px solid var(--color-line);
+    border-radius: 8px;
+    padding: 2rem 2.2rem;
+    box-shadow: 0 1px 2px rgba(42, 31, 24, 0.05), 0 6px 18px rgba(42, 31, 24, 0.06);
+  }
+
+  .qp__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.4rem;
+  }
+  .qp__eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--color-terra);
+    font-weight: 700;
+  }
+  .qp__progress {
+    display: flex;
+    gap: 4px;
+  }
+  .qp__dot {
+    width: 22px;
+    height: 6px;
+    border-radius: 999px;
+    background: var(--color-line);
+    transition: background .2s var(--ease-soft);
+  }
+  .qp__dot.is-current { background: var(--color-terra); }
+  .qp__dot.is-ok { background: #4F8C3F; }
+  .qp__dot.is-fail { background: #B83A3A; }
+
+  .qp__enunciado {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    line-height: 1.3;
+    color: var(--color-ink);
+    margin: 0 0 1.6rem;
+    font-weight: 500;
+    font-variation-settings: "SOFT" 60;
+  }
+
+  .qp__opciones {
+    list-style: none;
+    margin: 0 0 1.4rem;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+  .qp__opt {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.9rem;
+    width: 100%;
+    text-align: left;
+    background: var(--color-bg);
+    border: 1.5px solid var(--color-line);
+    border-radius: 6px;
+    padding: 0.85rem 1rem;
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--color-ink);
+    cursor: pointer;
+    transition: background .15s var(--ease-soft), border-color .15s var(--ease-soft), transform .15s var(--ease-soft);
+  }
+  .qp__opt:hover:not(:disabled) {
+    border-color: var(--color-terra);
+    background: var(--color-terra-soft);
+  }
+  .qp__opt.is-selected {
+    border-color: var(--color-terra);
+    background: var(--color-terra-soft);
+  }
+  .qp__opt.is-correct {
+    border-color: #4F8C3F;
+    background: #E5F1DD;
+  }
+  .qp__opt.is-incorrect {
+    border-color: #B83A3A;
+    background: #F5DDDD;
+  }
+  .qp__opt:disabled { cursor: default; }
+
+  .qp__opt-letra {
+    font-family: var(--font-serif);
+    font-style: italic;
+    color: var(--color-mustard-deep);
+    font-weight: 500;
+    min-width: 1.4rem;
+    font-variation-settings: "SOFT" 100, "WONK" 1;
+  }
+  .qp__opt.is-correct .qp__opt-letra { color: #4F8C3F; }
+  .qp__opt.is-incorrect .qp__opt-letra { color: #B83A3A; }
+
+  .qp__feedback {
+    margin: 0 0 1.4rem;
+    padding: 1rem 1.2rem;
+    border-radius: 6px;
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+  .qp__feedback.is-ok {
+    background: #E5F1DD;
+    border-left: 3px solid #4F8C3F;
+    color: #2A1F18;
+  }
+  .qp__feedback.is-fail {
+    background: #F5DDDD;
+    border-left: 3px solid #B83A3A;
+    color: #2A1F18;
+  }
+  .qp__feedback strong { display: block; margin-bottom: 0.3rem; font-weight: 700; }
+  .qp__feedback p { margin: 0; }
+
+  .qp__actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.8rem;
+    margin-top: 0.4rem;
+  }
+  .qp__btn {
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 0.7rem 1.3rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background .15s var(--ease-soft), color .15s var(--ease-soft), border-color .15s var(--ease-soft);
+    border: 1.5px solid transparent;
+  }
+  .qp__btn:disabled { opacity: 0.4; cursor: not-allowed; }
+  .qp__btn--primary {
+    background: var(--color-terra);
+    color: var(--color-bg);
+    border-color: var(--color-terra);
+  }
+  .qp__btn--primary:hover:not(:disabled) {
+    background: var(--color-terra-deep);
+    border-color: var(--color-terra-deep);
+  }
+  .qp__btn--ghost {
+    background: transparent;
+    color: var(--color-ink-soft);
+    border-color: var(--color-line);
+  }
+  .qp__btn--ghost:hover:not(:disabled) {
+    color: var(--color-terra);
+    border-color: var(--color-terra);
+  }
+
+  /* Final summary */
+  .qp__final { text-align: left; }
+  .qp__nota {
+    font-family: var(--font-serif);
+    font-size: 5rem;
+    line-height: 1;
+    margin: 0.5rem 0 0.8rem;
+    color: var(--color-terra);
+    font-weight: 400;
+    font-variation-settings: "SOFT" 80, "WONK" 0;
+  }
+  .qp__nota-num { font-style: italic; font-variation-settings: "SOFT" 100, "WONK" 1; }
+  .qp__nota-sobre {
+    font-family: var(--font-sans);
+    font-size: 1.5rem;
+    color: var(--color-ink-mute);
+    margin-left: 0.5rem;
+    font-style: normal;
+    font-weight: 600;
+  }
+  .qp__detail {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    color: var(--color-ink);
+    margin: 0 0 1.8rem;
+  }
+  .qp__detail .ok { color: #4F8C3F; }
+  .qp__detail .fail { color: #B83A3A; }
+
+  .qp__review {
+    list-style: none;
+    margin: 0 0 1.8rem;
+    padding: 0;
+    border-top: 1px dashed var(--color-line);
+  }
+  .qp__review li {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1rem 0;
+    border-bottom: 1px dashed var(--color-line);
+  }
+  .qp__review-num {
+    font-family: var(--font-mono);
+    color: var(--color-mustard-deep);
+    font-size: 0.9rem;
+    flex: none;
+    padding-top: 0.15rem;
+  }
+  .qp__review li.ok .qp__review-num { color: #4F8C3F; }
+  .qp__review li.fail .qp__review-num { color: #B83A3A; }
+  .qp__review-text {
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    line-height: 1.55;
+    color: var(--color-ink);
+  }
+  .qp__review em { font-style: italic; color: var(--color-ink-soft); }
+
+  @media (max-width: 600px) {
+    .qp { padding: 1.4rem 1.4rem; }
+    .qp__enunciado { font-size: 1.2rem; }
+    .qp__nota { font-size: 4rem; }
+  }
+</style>

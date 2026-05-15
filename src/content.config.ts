@@ -60,9 +60,21 @@ const tests = defineCollection({
     asignatura: z.enum(ASIGNATURA_SLUGS),
     unidad_relacionada: z.number().int().min(1),
     title: z.string(),
-    n_preguntas: z.number().int().min(1),
+    duracion_estimada: z.string().optional(),
     lang: z.enum(LANGS).default('es'),
     estado: z.enum(ESTADOS).default('borrador'),
+    preguntas: z.array(
+      z.object({
+        // The question itself.
+        enunciado: z.string(),
+        // 2..6 alternatives. The 0-indexed position of the right one
+        // is given by `correcta`.
+        opciones: z.array(z.string()).min(2).max(6),
+        correcta: z.number().int().min(0),
+        // Optional one-paragraph rationale shown after the user submits.
+        explicacion: z.string().optional(),
+      })
+    ).min(1),
   }),
 });
 
