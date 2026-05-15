@@ -1,0 +1,66 @@
+---
+/**
+ * Supply & demand equilibrium chart for a competitive market.
+ * Demand curve slopes down (terra), supply slopes up (mustard),
+ * intersection E* gives equilibrium price P* and quantity Q*.
+ */
+---
+<svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="od-title od-desc">
+  <title id="od-title">Equilibrio en un mercado competitivo</title>
+  <desc id="od-desc">Cruce de la curva de demanda descendente y la curva de oferta ascendente. El punto de equilibrio E* determina el precio P* y la cantidad Q*.</desc>
+  <defs>
+    <style>
+      .bg { fill: #FBF6EC; }
+      .axis { stroke: #5C4A3D; stroke-width: 1.5; fill: none; }
+      .demand { stroke: #C44E2C; stroke-width: 2.5; fill: none; }
+      .supply { stroke: #D4A24C; stroke-width: 2.5; fill: none; }
+      .guide { stroke: #8A7868; stroke-width: 1; stroke-dasharray: 4 4; fill: none; }
+      .axis-label { font-family: 'Switzer', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; fill: #5C4A3D; }
+      .curve-label { font-family: 'Fraunces', serif; font-size: 18px; font-weight: 500; font-style: italic; }
+      .point-label { font-family: 'Fraunces', serif; font-size: 16px; font-weight: 500; font-style: italic; fill: #2A1F18; }
+      .tick { font-family: 'JetBrains Mono', monospace; font-size: 11px; fill: #5C4A3D; }
+    </style>
+    <marker id="od-arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#5C4A3D"/>
+    </marker>
+  </defs>
+  <rect class="bg" x="0" y="0" width="800" height="500"/>
+
+  <!-- Plot area: x from 90 to 720, y from 50 to 420 -->
+  <!-- Axes with arrows -->
+  <line class="axis" x1="90" y1="420" x2="740" y2="420" marker-end="url(#od-arrow)"/>
+  <line class="axis" x1="90" y1="440" x2="90" y2="40" marker-end="url(#od-arrow)"/>
+
+  <!-- Origin label -->
+  <text class="tick" x="80" y="438" text-anchor="end">0</text>
+
+  <!-- Axis titles -->
+  <text class="axis-label" x="755" y="425">Q</text>
+  <text class="axis-label" x="80" y="35" text-anchor="end">P</text>
+  <text class="axis-label" x="415" y="475" text-anchor="middle">CANTIDAD</text>
+  <text class="axis-label" x="30" y="235" text-anchor="middle" transform="rotate(-90 30 235)">PRECIO</text>
+
+  <!-- Demand curve: descending from top-left to bottom-right -->
+  <!-- Start (120, 80), end (700, 400). Linear for clarity. -->
+  <line class="demand" x1="120" y1="80" x2="700" y2="400"/>
+
+  <!-- Supply curve: ascending from bottom-left to top-right -->
+  <!-- Start (120, 400), end (700, 80). -->
+  <line class="supply" x1="120" y1="400" x2="700" y2="80"/>
+
+  <!-- Equilibrium point E* (intersection): midpoint of both lines = (410, 240) -->
+  <line class="guide" x1="410" y1="240" x2="410" y2="420"/>
+  <line class="guide" x1="90" y1="240" x2="410" y2="240"/>
+
+  <!-- Equilibrium dot -->
+  <circle cx="410" cy="240" r="7" fill="#FFFFFF" stroke="#2A1F18" stroke-width="2.5"/>
+
+  <!-- Labels for curves -->
+  <text class="curve-label" x="710" y="408" fill="#C44E2C">D</text>
+  <text class="curve-label" x="710" y="78" fill="#A87A2A">O</text>
+
+  <!-- Labels for equilibrium -->
+  <text class="point-label" x="425" y="232">E*</text>
+  <text class="point-label" x="82" y="245" text-anchor="end">P*</text>
+  <text class="point-label" x="410" y="440" text-anchor="middle">Q*</text>
+</svg>

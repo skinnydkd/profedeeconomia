@@ -1,0 +1,412 @@
+---
+asignatura: eco-1bach
+unidad: 5
+title: 'Microeconomía II: elasticidad y aplicaciones'
+lema: >-
+  Saber que el precio sube no es bastante. Hace falta saber **cuánto** se mueve
+  la cantidad cuando lo hace, **quién** soporta realmente el cambio y **cuánto
+  bienestar** queda destruido por el camino. La elasticidad pone número a esas
+  preguntas.
+lang: es
+estado: publicado
+duracion: 5-6 sesiones · 1,5 semanas
+bloque: Bloque B
+sabers:
+  - B.2
+  - B.3
+conceptos_clave:
+  - elasticidad precio de la demanda
+  - elasticidad renta
+  - elasticidad cruzada
+  - elasticidad precio de la oferta
+  - bienes elásticos vs inelásticos
+  - ingresos totales y elasticidad
+  - excedente del consumidor
+  - excedente del productor
+  - eficiencia
+  - precio máximo
+  - precio mínimo
+  - impuestos y peso muerto
+objetivos:
+  - Calcular e interpretar las tres elasticidades de la demanda (precio, renta y cruzada).
+  - Relacionar la elasticidad-precio de la demanda con la variación de los ingresos totales.
+  - Calcular el excedente del consumidor y del productor en un mercado simple.
+  - Analizar los efectos sobre el bienestar de precios máximos, precios mínimos e impuestos, identificando el peso muerto.
+  - Reconocer aplicaciones reales de estos modelos (alquiler con precio máximo, salario mínimo, impuestos al tabaco y al azúcar).
+publicado_en: 2026-05-15
+---
+
+import Callout from '@components/Callout.astro';
+import Curiosity from '@components/Curiosity.astro';
+import RealExample from '@components/RealExample.astro';
+import SolvedExercise from '@components/SolvedExercise.astro';
+import Steps from '@components/Steps.astro';
+import KeyTakeaways from '@components/KeyTakeaways.astro';
+import Diagram from '@components/Diagram.astro';
+import ElasticidadCasos from '@components/diagrams/ElasticidadCasos.astro';
+import Figure from '@components/Figure.astro';
+import Bibliography from '@components/Bibliography.astro';
+
+import estancoCeuta from '@assets/libro/eco-1bach/05/estanco-ceuta.jpg';
+import refineriaCepsa from '@assets/libro/eco-1bach/05/refineria-cepsa-tenerife.jpg';
+import mietendeckelBerlin from '@assets/libro/eco-1bach/05/mietendeckel-berlin.jpg';
+import davidCard from '@assets/libro/eco-1bach/05/david-card.png';
+
+En la unidad anterior vimos *qué* mueven la oferta y la demanda. En esta vamos a precisar *cuánto*. Que la cantidad demandada caiga cuando sube el precio es trivial; la pregunta interesante es **cuánto cae** y, sobre todo, **cuánto cae en relación a cuánto ha subido el precio**. Esa proporción —cuánto se mueve la cantidad por cada 1 % que se mueve el precio— se llama **elasticidad**, y es probablemente el concepto más útil de toda la microeconomía aplicada.
+
+Esta unidad cubre dos saberes del Bloque B que van de la mano: la **elasticidad** (B.2) como herramienta para medir la sensibilidad de los mercados, y el **análisis coste-beneficio en términos de bienestar** (B.3) que utiliza los excedentes del consumidor y del productor para juzgar si una intervención pública mejora o empeora la situación. El hilo entre las dos partes es claro: sin saber la elasticidad de un mercado, no se puede prever el efecto sobre el bienestar de un precio máximo, un salario mínimo o un impuesto.
+
+## La elasticidad-precio de la demanda
+
+La **elasticidad-precio de la demanda** (E<sub>p</sub><sup>d</sup>) mide cuánto varía porcentualmente la cantidad demandada de un bien ante una variación porcentual de su precio. Su fórmula básica es:
+
+```
+E_p^d = %ΔQ / %ΔP
+```
+
+Como la curva de demanda tiene pendiente negativa, una subida de precio (ΔP > 0) provoca una caída de cantidad (ΔQ < 0), y el cociente sale negativo. Por convención casi universal, en clase trabajamos con el **valor absoluto** —el signo se da por descontado— y la comparamos con 1.
+
+### Método del punto medio
+
+Calcular el porcentaje de variación de Q dividiendo entre Q<sub>inicial</sub> y de P entre P<sub>inicial</sub> da un resultado distinto si subimos el precio que si lo bajamos. Para evitar esa asimetría, los manuales usan el **método del punto medio** (también llamado fórmula del arco):
+
+```
+E_p^d = [ (Q₂ − Q₁) / ((Q₁ + Q₂)/2) ]  /  [ (P₂ − P₁) / ((P₁ + P₂)/2) ]
+```
+
+Es decir: el porcentaje se calcula sobre la *media* de los dos valores, no sobre el inicial. Con esto, mover el precio de 10 a 12 da la misma elasticidad que moverlo de 12 a 10.
+
+### Clasificación de los bienes según su elasticidad
+
+Una vez calculado el valor absoluto de E<sub>p</sub><sup>d</sup>, lo comparamos con la unidad:
+
+- **Demanda elástica (|E| > 1).** La cantidad reacciona *más* que proporcionalmente al precio. Una subida del 10 % del precio provoca una caída de la cantidad superior al 10 %. Casos típicos: bienes de lujo, restaurantes, viajes, marcas con muchos sustitutos cercanos.
+- **Demanda inelástica (|E| < 1).** La cantidad reacciona *menos* que proporcionalmente. Casos típicos: bienes de primera necesidad (pan, electricidad, agua) y bienes adictivos a corto plazo (tabaco, café).
+- **Demanda de elasticidad unitaria (|E| = 1).** La variación porcentual de la cantidad coincide con la del precio. Es un caso teórico de referencia.
+- **Demanda perfectamente inelástica (E = 0).** La cantidad demandada no varía con el precio: curva vertical. Aproximación útil para bienes de los que se necesita una dosis fija (medicamentos vitales, en horizontes muy cortos).
+- **Demanda perfectamente elástica (E → ∞).** Una variación mínima del precio anula la demanda: curva horizontal. Aproximación útil para productos perfectamente sustituibles en mercados muy competitivos (un agricultor que vende trigo a granel en un mercado mundial).
+
+<Diagram caption="Los cuatro casos extremos de la elasticidad-precio de la demanda.">
+  <ElasticidadCasos />
+</Diagram>
+
+### Qué determina que una demanda sea más o menos elástica
+
+Cuatro factores explican la mayor parte de las diferencias entre bienes:
+
+- **Existencia de sustitutos cercanos.** Cuanto más fácil sea cambiar a otro producto, más elástica la demanda. Una marca concreta de yogur tiene demanda muy elástica; el yogur en general, mucho menos.
+- **Proporción del presupuesto que ocupa.** Cuanto más pesa el bien en el gasto del hogar, más elástica suele ser la demanda. Una subida del 10 % en la sal apenas se nota; una subida del 10 % en el alquiler obliga a recortes en serio.
+- **Necesidad vs lujo.** Las necesidades son inelásticas; los lujos son elásticos. Comer es inelástico, ir a un restaurante de moda es elástico.
+- **Horizonte temporal.** A corto plazo los consumidores se adaptan poco —cuesta cambiar de coche, de calefacción, de hábitos—; a largo plazo los ajustes son mayores. Por eso casi todas las elasticidades crecen con el horizonte.
+
+### Elasticidades reales que conviene memorizar
+
+A modo de orientación, estos son valores de elasticidad-precio estimados en estudios empíricos para bienes habituales en España y la UE:
+
+| Bien o servicio | E<sub>p</sub><sup>d</sup> (aprox.) | Clasificación |
+|---|---|---|
+| Pan y cereales | 0,2 | Muy inelástico |
+| Electricidad doméstica | 0,3 | Inelástico |
+| Tabaco (corto plazo) | 0,4 | Inelástico |
+| Tabaco (largo plazo) | 0,8 | Inelástico, casi unitario |
+| Bebidas azucaradas | 0,9 | Casi unitario |
+| Carne de ternera | 1,1 | Ligeramente elástico |
+| Restaurantes | 1,5 | Elástico |
+| Viajes en avión por ocio | 1,8 | Elástico |
+| Marcas concretas de cereal | 3,0 | Muy elástico |
+
+La regla intuitiva: cuanto más necesario y menos sustituible, más cerca del 0; cuanto más prescindible o más sustituible, más por encima del 1.
+
+<Figure
+  src={estancoCeuta}
+  alt="Fachada de un estanco español con el rótulo amarillo y rojo característico de Tabacalera y la palabra «Tabacos»."
+  caption="Estanco en Ceuta. El tabaco es el ejemplo canónico de demanda inelástica: un impuesto que duplica el precio apenas reduce el consumo a corto plazo, lo que lo convierte a la vez en herramienta recaudatoria y disuasoria."
+  credit="Foto: CarlosVdeHabsburgo, CC BY-SA 4.0 vía Wikimedia Commons"
+  aspectHint="3/2"
+/>
+
+## Elasticidad e ingresos totales
+
+El **ingreso total** que recibe una empresa por un producto es `IT = P · Q`. Cuando sube el precio, P empuja al alza; pero Q cae. Quien gana o pierde la pulsa depende de la elasticidad:
+
+- **Si la demanda es inelástica (|E| < 1)** y subimos el precio, la cantidad cae poco. El efecto precio domina y el **ingreso total sube**. Es el caso del tabaco: subir el precio recauda más, porque los consumidores apenas reducen el consumo.
+- **Si la demanda es elástica (|E| > 1)** y subimos el precio, la cantidad cae mucho. El efecto cantidad domina y el **ingreso total baja**. Es el caso de un restaurante de gama media: subir los precios un 10 % puede hundir la facturación.
+- **Si la demanda es unitaria (|E| = 1)** los dos efectos se compensan: el ingreso total no varía.
+
+<Callout label="Regla práctica" title="Precio e ingresos">
+Para aumentar ingresos en bienes **inelásticos**, conviene **subir el precio**. En bienes **elásticos**, conviene **bajarlo**. Las rebajas de un gran almacén funcionan porque la demanda de moda es elástica; los peajes y el tabaco se mantienen caros porque su demanda es inelástica.
+</Callout>
+
+<SolvedExercise number="5.1" title="Elasticidad-precio por el método del punto medio">
+
+**Enunciado**
+
+Una panadería del centro de Valencia vende su pan de masa madre a 3,00 €/barra y vende 400 barras al día. Decide subir el precio a 3,60 €/barra y observa que las ventas caen a 360 barras al día.
+
+a) Calcular la elasticidad-precio de la demanda por el método del punto medio.
+b) Clasificar la demanda.
+c) ¿Qué pasa con el ingreso total? ¿Acertó la panadería al subir el precio?
+
+**Solución**
+
+1. Variación de cantidad: ΔQ = 360 − 400 = **−40 barras**. Media de cantidades: (400 + 360)/2 = **380**. Variación porcentual: −40/380 = **−10,53 %**.
+2. Variación de precio: ΔP = 3,60 − 3,00 = **+0,60 €**. Media de precios: (3,00 + 3,60)/2 = **3,30 €**. Variación porcentual: 0,60/3,30 = **+18,18 %**.
+3. Aplicamos la fórmula del punto medio: E<sub>p</sub><sup>d</sup> = −10,53 % / 18,18 % = **−0,58** → en valor absoluto, **0,58**.
+4. Como |E| = 0,58 < 1, la demanda es **inelástica**.
+5. Ingreso total antes: 3,00 · 400 = **1.200 €/día**. Ingreso total después: 3,60 · 360 = **1.296 €/día**. La diferencia es +96 €/día → la panadería **acertó al subir el precio**: en un bien inelástico, subir P aumenta IT.
+6. *Limitación importante.* Si la subida continuase, la elasticidad podría crecer (los clientes encuentran sustitutos). La regla «subir precio en inelásticos» funciona en márgenes razonables, no indefinidamente.
+
+</SolvedExercise>
+
+## Las otras dos elasticidades de la demanda
+
+La elasticidad-precio no es la única que se mide. Las otras dos elasticidades clásicas son la **elasticidad-renta** y la **elasticidad cruzada**.
+
+### Elasticidad-renta de la demanda (E<sub>y</sub>)
+
+Mide la sensibilidad de la cantidad demandada de un bien ante variaciones de la **renta** del consumidor:
+
+```
+E_y = %ΔQ / %ΔY
+```
+
+Según su signo y magnitud, clasificamos los bienes:
+
+- **Bien normal (E<sub>y</sub> > 0).** Al subir la renta, se demanda más. La mayoría de bienes son normales.
+  - **Bien de primera necesidad (0 < E<sub>y</sub> < 1).** La cantidad sube con la renta pero menos que proporcionalmente. Pan, leche, electricidad básica.
+  - **Bien de lujo (E<sub>y</sub> > 1).** La cantidad sube más que proporcionalmente. Restaurantes, viajes internacionales, automóviles de gama alta.
+- **Bien inferior (E<sub>y</sub> < 0).** Al subir la renta, se consume *menos*. Marcas blancas de bajo nivel, transporte público de larga distancia en algunos contextos, lentejas en países que se enriquecen.
+
+La elasticidad-renta es clave para entender el crecimiento de los sectores: cuando un país se enriquece, la demanda de bienes de lujo crece más rápido que la del PIB, y la de bienes inferiores se estanca o cae.
+
+### Elasticidad cruzada de la demanda (E<sub>xy</sub>)
+
+Mide cómo varía la cantidad demandada del bien X ante una variación del precio del bien Y:
+
+```
+E_xy = %ΔQ_x / %ΔP_y
+```
+
+El signo lo dice todo:
+
+- **Sustitutos (E<sub>xy</sub> > 0).** Si sube el precio del bien Y, los consumidores cambian a X y la demanda de X aumenta. Café e infusiones, mantequilla y margarina, taxi y VTC.
+- **Complementarios (E<sub>xy</sub> < 0).** Si sube el precio de Y, se consume menos Y *y* menos X, porque van juntos. Coches y gasolina, impresoras y cartuchos, consolas y videojuegos.
+- **Independientes (E<sub>xy</sub> ≈ 0).** Los dos bienes no se afectan. Pan y zapatos.
+
+La elasticidad cruzada es la herramienta que usan las autoridades de competencia para definir **mercados relevantes**: si dos productos tienen elasticidad cruzada alta, están en el mismo mercado.
+
+## Elasticidad-precio de la oferta
+
+Simétricamente, la **elasticidad-precio de la oferta** (E<sub>p</sub><sup>s</sup>) mide cómo varía la cantidad ofrecida ante una variación del precio:
+
+```
+E_p^s = %ΔQ_s / %ΔP
+```
+
+Como la oferta tiene pendiente positiva, el cociente es positivo. La oferta es **elástica** si las empresas pueden expandir rápidamente la producción (industrias manufactureras con capacidad ociosa, *software*) e **inelástica** si tropieza con cuellos de botella (vivienda en suelo urbano escaso, vino con denominación de origen, oro extraído de minas). El horizonte temporal vuelve a importar: a corto plazo la oferta es casi siempre más inelástica que a largo plazo, porque hace falta tiempo para construir fábricas, abrir minas o plantar viñedos.
+
+<Figure
+  src={refineriaCepsa}
+  alt="Vista general de la refinería de CEPSA en Santa Cruz de Tenerife, con torres de destilación, antorchas y depósitos de almacenamiento sobre el litoral."
+  caption="Refinería de CEPSA en Santa Cruz de Tenerife. Construir una refinería nueva exige diez años y miles de millones de euros, por lo que la oferta mundial de gasolina es muy inelástica a corto plazo: cuando sube el precio del crudo, la cantidad ofrecida apenas reacciona en meses."
+  credit="Foto: Benjamín Núñez González, CC BY-SA 4.0 vía Wikimedia Commons"
+  aspectHint="4/3"
+/>
+
+<Curiosity title="La paradoja de Giffen: bienes que se compran más cuando se encarecen">
+La regla «si sube el precio, baja la cantidad» admite una excepción famosa que casi nunca se observa en la realidad pero es un ejemplo precioso de teoría microeconómica: los **bienes Giffen**. Son bienes inferiores que ocupan una parte tan grande del presupuesto del hogar que, cuando suben de precio, los consumidores no pueden permitirse alternativas más caras y acaban comprando *más* del mismo bien que se ha encarecido. Robert Giffen los describió a finales del s. XIX hablando del pan en familias inglesas pobres, aunque su evidencia empírica fue siempre dudosa. Las únicas estimaciones empíricas modernas con cierto consenso son las del economista Robert Jensen en provincias rurales de China (2003-2007): el arroz y los fideos para familias muy pobres mostraron comportamiento Giffen cuando se subsidiaron o desubsidiaron. La paradoja existe, pero requiere condiciones muy extremas. En una economía desarrollada como la española, no se observa.
+</Curiosity>
+
+## Excedente del consumidor y del productor
+
+Hasta aquí hemos medido cantidades y precios. Para juzgar si un mercado funciona *bien* —si una intervención del Estado mejora o empeora la situación— necesitamos medir **bienestar**. La herramienta es el **excedente**.
+
+### El excedente del consumidor (EC)
+
+Cada consumidor tiene una **disposición máxima a pagar** por el bien: lo que estaría dispuesto a desembolsar antes de quedarse sin él. La curva de demanda no es más que la suma ordenada de esas disposiciones a pagar: el primer consumidor pagaría hasta 10 €, el segundo hasta 8 €, y así sucesivamente. En el mercado, sin embargo, **todos pagan el mismo precio de equilibrio**.
+
+El **excedente del consumidor** es la diferencia entre lo que el consumidor estaba dispuesto a pagar y lo que efectivamente paga. Gráficamente, es el **área comprendida entre la curva de demanda y el precio de equilibrio**, hasta la cantidad intercambiada. Es el equivalente monetario al «trato bueno» que se llevan los consumidores agregadamente.
+
+### El excedente del productor (EP)
+
+Simétricamente, cada empresa tiene un **coste marginal** mínimo al que estaría dispuesta a vender. La curva de oferta es la suma ordenada de esos costes. En el mercado, todas venden al mismo precio de equilibrio.
+
+El **excedente del productor** es la diferencia entre el precio cobrado y el coste mínimo. Gráficamente, es el **área comprendida entre el precio de equilibrio y la curva de oferta**, hasta la cantidad intercambiada.
+
+### El bienestar total y la eficiencia
+
+La suma `EC + EP` se llama **excedente total** o **bienestar agregado del mercado**. El primer teorema de la economía del bienestar afirma que, en condiciones idealizadas (competencia perfecta, sin fallos de mercado), el equilibrio competitivo maximiza el excedente total: cualquier desviación —un precio impuesto, un impuesto, un monopolio— reduce el bienestar agregado. La parte de bienestar que **se destruye** y no la captura nadie se llama **pérdida de eficiencia** o **peso muerto** (en inglés, *deadweight loss*).
+
+<Callout label="Concepto clave" title="Peso muerto">
+El peso muerto es el bienestar que el mercado *dejaría* de generar respecto al óptimo competitivo cuando una intervención (precio máximo, precio mínimo, impuesto, monopolio) impide que se produzcan intercambios mutuamente beneficiosos. No es dinero que se transfiere del consumidor al productor o al Estado: es valor que **directamente no se crea**.
+</Callout>
+
+## Aplicaciones: precios máximos, mínimos e impuestos
+
+Con los excedentes y la elasticidad sobre la mesa, podemos analizar las tres intervenciones públicas clásicas en mercados concretos. La estructura del razonamiento es siempre la misma: identificar el equilibrio sin intervención, medir EC y EP, introducir la intervención, recalcular y comparar.
+
+### Precio máximo: el caso del alquiler
+
+Un **precio máximo** (también llamado *precio tope* o *price ceiling*) es un precio legal por encima del cual no se puede vender un bien. Tiene sentido económico solo si se fija **por debajo del precio de equilibrio**; si se fija por encima, no tiene efecto.
+
+Cuando el precio máximo es inferior al de equilibrio, ocurre lo siguiente:
+
+- A ese precio bajo, la cantidad demandada aumenta y la cantidad ofrecida disminuye.
+- Aparece una **escasez**: hay más gente que quiere comprar que la que encuentra producto.
+- El excedente del consumidor de quienes *consiguen* comprar al precio bajo es mayor; el de quienes *no lo consiguen* desaparece.
+- El excedente del productor cae siempre.
+- Aparece un **peso muerto** porque hay intercambios mutuamente beneficiosos —el consumidor pagaría más de lo que cuesta producir esa unidad— que no se producen.
+- Aparecen efectos secundarios típicos: **listas de espera, mercados negros, deterioro de la calidad** (si la ley fija precio pero no calidad, las empresas reducen la calidad para que el coste cuadre).
+
+El caso más estudiado es el **control del alquiler**. Berlín aprobó en 2020 un techo a los alquileres (*Mietendeckel*) que el Tribunal Constitucional alemán anuló en 2021 por exceso de competencias del Land. Cataluña aprobó en 2024 una nueva ley de zonas tensionadas que limita los alquileres en mercados con precios crecientes; la evidencia preliminar muestra una caída de la oferta de alquiler de larga duración y un desplazamiento hacia alquiler turístico, igual que ocurrió en San Francisco años antes.
+
+<Figure
+  src={mietendeckelBerlin}
+  alt="Manifestación multitudinaria en Berlín el 15 de abril de 2021 reclamando un techo nacional al alquiler tras la anulación del Mietendeckel, con pancartas y carteles reivindicativos."
+  caption="Manifestación en Berlín del 15 de abril de 2021, días después de la anulación del Mietendeckel por el Tribunal Constitucional alemán. Cuando un precio máximo deja de aplicarse, los precios se realinean con el equilibrio y reabren el debate político sobre cómo redistribuir el excedente del mercado."
+  credit="Foto: Leonhard Lenz, CC0 (dominio público) vía Wikimedia Commons"
+  aspectHint="3/2"
+/>
+
+### Precio mínimo: el caso del salario mínimo
+
+Un **precio mínimo** (también llamado *price floor*) es un precio legal por debajo del cual no se puede vender un bien o servicio. Solo tiene efecto si se fija **por encima** del precio de equilibrio.
+
+Aplicado al mercado de trabajo, el precio es el salario. Un **salario mínimo** por encima del salario de equilibrio implica:
+
+- Cantidad demandada de trabajo menor (las empresas contratan menos a ese salario).
+- Cantidad ofrecida mayor (más trabajadores quieren entrar al mercado).
+- Aparece **excedente de oferta**: paro entre los trabajadores menos cualificados o con menor experiencia, que son los que están alrededor del salario mínimo.
+- Los trabajadores que **mantienen el empleo** ganan más.
+- El excedente del productor (de las empresas) cae.
+- Hay peso muerto si la demanda de trabajo es lo bastante elástica.
+
+El debate empírico sobre el salario mínimo es uno de los más vivos de la economía contemporánea: los trabajos clásicos de Card y Krueger (1994) sobre Nueva Jersey encontraron efectos muy pequeños sobre el empleo, contradiciendo la teoría más sencilla; trabajos posteriores en otros contextos sí han hallado efectos negativos sobre empleo juvenil. La realidad es que el efecto **depende de la elasticidad de la demanda de trabajo** en cada segmento y de cuánto se aleja el mínimo del salario de equilibrio.
+
+<Figure
+  src={davidCard}
+  alt="Retrato del economista canadiense David Card durante una entrevista con la Universidad de California en Berkeley tras recibir el Premio Nobel de Economía en 2021."
+  caption="David Card, premio Nobel de Economía 2021 por sus contribuciones empíricas a la economía laboral. Su estudio con Krueger sobre el salario mínimo en Nueva Jersey (1994) cambió el consenso académico al mostrar que subidas moderadas no destruyen empleo de forma automática."
+  credit="Foto: UC Berkeley (Roxanne Makasdjian y Alan Toth), CC BY 3.0 vía Wikimedia Commons"
+  variant="tight"
+  aspectHint="2/3"
+/>
+
+<RealExample title="Salario Mínimo Interprofesional en España 2019-2024: una subida del 54 %" source="Banco de España, AIReF, Ministerio de Trabajo">
+El Salario Mínimo Interprofesional español pasó de **735,90 €/mes** en 2018 a **1.134 €/mes** en 14 pagas en 2024: una subida del **54 % en seis años**, sin precedentes recientes. Tres conclusiones razonablemente sólidas se desprenden de los estudios del Banco de España (2022), la AIReF (2023) y el Ministerio de Trabajo (2024):
+
+1. **Renta**. El SMI ha reducido la pobreza laboral. Aproximadamente 2,5 millones de trabajadores con sueldos bajos vieron subir sus ingresos reales.
+2. **Empleo**. Los efectos negativos sobre el empleo han sido menores de lo previsto por los modelos clásicos, pero **no inexistentes**: el Banco de España estima entre 0 y 180.000 empleos perdidos o no creados, concentrados en jóvenes sin cualificación, empleo agrícola y servicio doméstico. Es decir, una elasticidad de la demanda de trabajo entre baja y moderada para estos segmentos.
+3. **Composición**. La subida ha empujado parte del empleo hacia la **economía sumergida** y hacia la **contratación a tiempo parcial** —dos formas de absorber la subida del coste laboral mínimo sin reducir empleo formal medible—.
+
+La evidencia española se alinea con el consenso internacional: subidas moderadas tienen efectos pequeños sobre el empleo agregado; subidas grandes muy por encima del equilibrio del mercado generan efectos negativos detectables. El SMI no es ni la panacea ni el desastre que pintan los discursos polarizados.
+</RealExample>
+
+### Impuestos sobre el consumo y peso muerto
+
+Un **impuesto unitario** (por ejemplo, un impuesto especial sobre el tabaco o sobre las bebidas azucaradas) introduce una **cuña fiscal** entre el precio que paga el consumidor (P<sub>c</sub>) y el precio que recibe el productor (P<sub>p</sub>): `P_c − P_p = t`, donde `t` es el impuesto por unidad.
+
+El impuesto desplaza la curva de oferta hacia arriba en la cuantía `t`. En el nuevo equilibrio:
+
+- La cantidad intercambiada cae (menos transacciones).
+- El consumidor paga más, el productor recibe menos.
+- El Estado recauda `t · Q_nueva`.
+- El excedente del consumidor y del productor caen.
+- La caída de bienestar (EC + EP) es **mayor** que la recaudación: la diferencia es el **peso muerto del impuesto**.
+
+**Cómo se reparte el impuesto: el principio de incidencia.** El reparto del impuesto entre consumidores y productores no depende de a quién se lo cobre formalmente la administración, sino de las **elasticidades**:
+
+- Si la demanda es **más inelástica** que la oferta, los consumidores soportan la mayor parte del impuesto (caso del tabaco).
+- Si la oferta es **más inelástica** que la demanda, los productores soportan la mayor parte (caso de los productos con denominación de origen estricta cuando se grava al consumo).
+
+**Cuándo el peso muerto es pequeño.** Cuanto más inelástica sea la demanda (o la oferta), menor es la pérdida de eficiencia, porque la cantidad apenas cae con el impuesto. Por eso los impuestos sobre el tabaco recaudan mucho con poco peso muerto: la demanda es inelástica. Lo mismo ocurre con impuestos sobre alcohol y bebidas azucaradas en horizontes cortos.
+
+**Cuándo el impuesto tiene un objetivo extrafiscal.** Cuando un bien genera externalidades negativas (tabaco, azúcar, emisiones de CO₂), el peso muerto del impuesto puede ser pequeño *o incluso negativo* —el impuesto **mejora** el bienestar al reducir el consumo de un bien socialmente costoso—. Son los llamados **impuestos pigouvianos**, que veremos con detalle en la Unidad 6.
+
+<RealExample title="Sugar Tax británica (2018): menos azúcar, mismo refresco, recaudación discreta" source="HM Treasury, Public Health England, The Lancet (2023)">
+En abril de 2018, el Reino Unido introdujo la **Soft Drinks Industry Levy**: un impuesto especial sobre las bebidas azucaradas con dos tramos (18 peniques/litro si la bebida tiene 5-8 g de azúcar por 100 ml, 24 peniques/litro si supera los 8 g/100 ml). Su diseño es interesante:
+
+- El impuesto se cobra al **fabricante**, no al consumidor final, pero por el principio de incidencia se traslada en buena parte al precio de venta.
+- Hay un **tramo cero** para bebidas con menos de 5 g/100 ml: las empresas tienen incentivo a reformular sus productos.
+
+Los resultados a cinco años (estudio publicado en *The Lancet*, 2023):
+
+1. **Reformulación masiva**: más del 50 % de los refrescos cambiaron su receta para reducir azúcar y caer por debajo del umbral de 5 g. Coca-Cola Zero y Pepsi Max ganaron cuota.
+2. **Reducción del azúcar consumido por hogar**: caída del 10 % en la cantidad de azúcar comprado a través de bebidas, sin que las ventas totales de refrescos cayeran tanto (la demanda es inelástica, pero la composición cambia).
+3. **Recaudación discreta**: aproximadamente 340 millones de libras anuales, menos de lo previsto inicialmente, *precisamente porque el impuesto funcionó* y muchas bebidas dejaron de tributar.
+4. **Pequeño peso muerto** desde la perspectiva tradicional, *gran ganancia de bienestar* desde la perspectiva pigouviana: menos azúcar consumido, mejora marginal de indicadores de obesidad infantil.
+
+El caso británico es la prueba de manual de un impuesto bien diseñado: el objetivo no era recaudar sino cambiar comportamientos, y la inelasticidad de la demanda total se compaginó con la elasticidad de la *composición* de la cesta.
+</RealExample>
+
+<SolvedExercise number="5.2" title="Excedentes y peso muerto de un impuesto al tabaco">
+
+**Enunciado**
+
+En un mercado simplificado, la demanda y la oferta de cajetillas de tabaco están dadas por:
+
+- Demanda: P = 12 − 0,02 · Q (con Q en miles de cajetillas/día y P en €)
+- Oferta:    P =  2 + 0,03 · Q
+
+El gobierno introduce un impuesto especial de **t = 1 €/cajetilla**, que se traslada como un desplazamiento vertical de la curva de oferta hacia arriba.
+
+a) Calcular el equilibrio inicial (P*, Q*) y el excedente total inicial.
+b) Calcular el nuevo equilibrio con el impuesto (P<sub>c</sub>, P<sub>p</sub>, Q<sub>t</sub>).
+c) Calcular la recaudación y el peso muerto.
+
+**Solución**
+
+1. **Equilibrio inicial.** Igualamos 12 − 0,02·Q = 2 + 0,03·Q → 10 = 0,05·Q → Q* = **200 mil cajetillas/día**. P* = 12 − 0,02·200 = **8 €/cajetilla**.
+2. **Excedente del consumidor inicial.** Precio máximo de la demanda (cuando Q = 0): P = 12 €. EC = base · altura / 2 = 200 · (12 − 8) / 2 = **400 mil €/día**.
+3. **Excedente del productor inicial.** Precio mínimo de la oferta (cuando Q = 0): P = 2 €. EP = 200 · (8 − 2) / 2 = **600 mil €/día**.
+4. **Excedente total inicial.** EC + EP = 400 + 600 = **1.000 mil €/día = 1 millón €/día**.
+5. **Equilibrio con impuesto.** La nueva oferta es P = 2 + 0,03·Q + 1 = 3 + 0,03·Q. Igualamos con la demanda: 12 − 0,02·Q = 3 + 0,03·Q → 9 = 0,05·Q → Q<sub>t</sub> = **180 mil cajetillas/día**. P<sub>c</sub> = 12 − 0,02·180 = **8,40 €** (lo que paga el consumidor). P<sub>p</sub> = P<sub>c</sub> − t = 8,40 − 1 = **7,40 €** (lo que recibe el productor). Diferencia: 1 € = t, correcto.
+6. **Reparto del impuesto.** Consumidores: pagan 0,40 € más por cajetilla (de 8 € a 8,40 €). Productores: reciben 0,60 € menos (de 8 € a 7,40 €). El productor soporta el 60 % del impuesto porque la oferta (pendiente 0,03) es más inelástica que la demanda (pendiente 0,02) en este mercado simplificado.
+7. **Recaudación.** R = t · Q<sub>t</sub> = 1 · 180 = **180 mil €/día**.
+8. **Peso muerto.** PM = (1/2) · t · (Q* − Q<sub>t</sub>) = (1/2) · 1 · (200 − 180) = **10 mil €/día**.
+9. **Comprobación de bienestar.** EC<sub>nuevo</sub> = 180 · (12 − 8,40)/2 = 324. EP<sub>nuevo</sub> = 180 · (7,40 − 2)/2 = 486. Suma: 324 + 486 + 180 (Estado) + 10 (PM) = 1.000 ✓. Antes del impuesto el millón estaba todo en consumidores y productores; tras el impuesto, **10 mil €/día han desaparecido**: nadie los gana.
+
+</SolvedExercise>
+
+<Steps label="Procedimiento" title="Análisis de una intervención pública en un mercado" variant="roman">
+
+<li><strong>Identificar el equilibrio sin intervención.</strong> Calcular P* y Q* igualando oferta y demanda. Dibujar el gráfico.</li>
+
+<li><strong>Calcular EC y EP iniciales.</strong> Áreas de los triángulos entre la curva y el precio de equilibrio.</li>
+
+<li><strong>Introducir la intervención.</strong> Trazar la línea horizontal del precio máximo/mínimo, o desplazar la oferta por el impuesto.</li>
+
+<li><strong>Recalcular cantidad intercambiada.</strong> Será la menor entre la cantidad demandada y la ofrecida al precio relevante.</li>
+
+<li><strong>Recalcular EC, EP, recaudación (si hay impuesto) y peso muerto.</strong> El peso muerto es el triángulo que queda «atrapado» entre las dos curvas y la nueva cantidad.</li>
+
+<li><strong>Interpretar.</strong> ¿Quién gana, quién pierde, cuánto bienestar se destruye, qué efectos secundarios prácticos cabe esperar (escasez, mercado negro, paro, cambio de composición)?</li>
+
+</Steps>
+
+<KeyTakeaways title="Lo esencial de elasticidad y bienestar">
+- **E<sub>p</sub><sup>d</sup> = %ΔQ / %ΔP** en valor absoluto. Compárala con 1: si es mayor, demanda elástica; si menor, inelástica.
+- Las tres elasticidades de la demanda son **precio, renta y cruzada**. La renta clasifica bienes en normales (lujo, primera necesidad) e inferiores; la cruzada los clasifica en sustitutos, complementarios e independientes.
+- En bienes **inelásticos**, subir el precio aumenta el ingreso total; en bienes **elásticos**, bajarlo lo aumenta.
+- **Excedente del consumidor + excedente del productor = bienestar total** del mercado. Cualquier intervención (precio máximo, mínimo, impuesto) altera el reparto y, en general, destruye una parte: el **peso muerto**.
+- La **incidencia** de un impuesto (quién lo paga al final) depende de las **elasticidades relativas** de oferta y demanda, no de a quién se lo cobre formalmente la administración.
+- Los **impuestos sobre bienes con externalidades negativas** (tabaco, azúcar, CO₂) tienen poco peso muerto y pueden mejorar el bienestar agregado: son **impuestos pigouvianos**.
+</KeyTakeaways>
+
+## Conexión con las próximas unidades
+
+La elasticidad y los excedentes vuelven a aparecer en la Unidad 6 (fallos de mercado y externalidades, donde formalizaremos los impuestos pigouvianos), en la Unidad 9 (mercado de trabajo, donde el salario mínimo y la elasticidad de la demanda de trabajo determinan el paro estructural) y en la Unidad 11 (políticas económicas, donde la elasticidad guía el diseño de los impuestos especiales y de los aranceles). Conviene tener estas herramientas asentadas antes de seguir.
+
+<Bibliography>
+
+1. Mankiw, N. G. (2021). *Principles of Economics* (9ª ed.). Cengage. Capítulos 5, 6 y 8.
+2. Krugman, P. y Wells, R. (2018). *Economics* (5ª ed.). Worth Publishers. Capítulos 6 y 7.
+3. Banco de España (2022). *El efecto del salario mínimo interprofesional sobre el empleo y la pobreza laboral en España*. Documentos Ocasionales nº 2210.
+4. AIReF (2023). *Evaluación del impacto del Salario Mínimo Interprofesional 2018-2023*.
+5. Card, D. y Krueger, A. (1994). «Minimum Wages and Employment: A Case Study of the Fast-Food Industry in New Jersey and Pennsylvania». *American Economic Review*, 84(4).
+6. Jensen, R. y Miller, N. (2008). «Giffen Behavior and Subsistence Consumption». *American Economic Review*, 98(4).
+7. Rogers, N. T. et al. (2023). «Impact of the UK soft drinks industry levy on health outcomes: a national observational study». *The Lancet Public Health*.
+8. INE. *Encuesta de Presupuestos Familiares* y *Índice de Precios de Consumo*.
+9. Reial Decret 243/2022, de 5 d'abril, pel qual s'estableixen l'ordenació i els ensenyaments mínims del Batxillerat. BOE núm. 82, 6 d'abril de 2022.
+
+</Bibliography>

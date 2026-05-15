@@ -1,0 +1,110 @@
+---
+/**
+ * Business cycle (real GDP over time) showing two full cycles around a
+ * potential-output trend line, with the four phases labelled:
+ * expansión, pico, recesión, valle, recuperación.
+ *
+ * Used in Eco 1BACH · Unit 8 (macroeconomic indicators and the cycle).
+ */
+---
+<svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="ciclo-title ciclo-desc">
+  <title id="ciclo-title">Ciclo económico</title>
+  <desc id="ciclo-desc">El PIB real oscila en torno a la línea de tendencia o PIB potencial, atravesando las fases de expansión, pico, recesión, valle y recuperación.</desc>
+  <defs>
+    <style>
+      .bg { fill: #FBF6EC; }
+      .axis { stroke: #5C4A3D; stroke-width: 1.5; fill: none; }
+      .grid { stroke: #E5D4BD; stroke-width: 1; stroke-dasharray: 2 4; fill: none; }
+      .trend { fill: none; stroke: #D4A24C; stroke-width: 2; stroke-dasharray: 6 4; }
+      .cycle { fill: none; stroke: #C44E2C; stroke-width: 2.5; }
+      .phase-line { stroke: #8A7868; stroke-width: 1; stroke-dasharray: 3 4; fill: none; }
+      .point { fill: #FFFFFF; stroke: #C44E2C; stroke-width: 2.5; }
+      .point-cross { fill: #FFFFFF; stroke: #A87A2A; stroke-width: 2; }
+      .axis-label { font-family: 'Switzer', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; fill: #5C4A3D; }
+      .phase-label { font-family: 'Switzer', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase; fill: #9C3A1C; text-anchor: middle; }
+      .phase-label-soft { font-family: 'Switzer', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase; fill: #A87A2A; text-anchor: middle; }
+      .point-label { font-family: 'Fraunces', serif; font-style: italic; font-size: 13.5px; font-weight: 500; fill: #2A1F18; }
+      .trend-label { font-family: 'Switzer', sans-serif; font-size: 11.5px; font-weight: 700; fill: #A87A2A; }
+    </style>
+  </defs>
+  <rect class="bg" x="0" y="0" width="800" height="500"/>
+
+  <!-- Plot area: x 80 to 760, y 70 to 380. -->
+
+  <!-- Grid (light) -->
+  <line class="grid" x1="80" y1="150" x2="760" y2="150"/>
+  <line class="grid" x1="80" y1="225" x2="760" y2="225"/>
+  <line class="grid" x1="80" y1="300" x2="760" y2="300"/>
+
+  <!-- Axes -->
+  <line class="axis" x1="80" y1="380" x2="770" y2="380"/>
+  <line class="axis" x1="80" y1="60" x2="80" y2="380"/>
+  <polygon points="770,380 760,376 760,384" fill="#5C4A3D"/>
+  <polygon points="80,60 76,70 84,70" fill="#5C4A3D"/>
+
+  <!-- Axis titles -->
+  <text class="axis-label" x="420" y="430" text-anchor="middle">TIEMPO</text>
+  <text class="axis-label" x="35" y="225" text-anchor="middle" transform="rotate(-90 35 225)">PIB REAL</text>
+
+  <!-- Trend line / potential GDP: gently upward sloping
+       From (80, 290) to (760, 175) -->
+  <line class="trend" x1="80" y1="290" x2="760" y2="175"/>
+  <text class="trend-label" x="635" y="160">PIB potencial · tendencia</text>
+
+  <!-- Business cycle: sinusoidal around the trend.
+       Two full cycles. Key x positions:
+         start    x=100   (on trend, going up)         valor PIB ~ 287
+         peak1    x=220   (above trend)                 valor ~ 180
+         trend2   x=320   (crossing trend down)         valor ~ 250
+         trough1  x=400   (below trend)                 valor ~ 320
+         trend3   x=480   (crossing trend up)           valor ~ 233
+         peak2    x=580   (above trend, higher)         valor ~ 130
+         trend4   x=680   (crossing trend down)         valor ~ 200
+         trough2  x=750   (below trend)                 valor ~ 260
+
+       Use a smooth cubic-bezier-ish path via S commands. -->
+  <path class="cycle" d="M 100 287
+                         C 150 200, 190 170, 220 175
+                         C 260 180, 290 210, 320 250
+                         C 350 290, 380 320, 400 320
+                         C 430 320, 460 290, 480 233
+                         C 510 175, 550 125, 580 128
+                         C 615 132, 650 165, 680 200
+                         C 715 240, 740 260, 750 260"/>
+
+  <!-- Phase dividing vertical lines at trend crossings -->
+  <line class="phase-line" x1="220" y1="60" x2="220" y2="380"/>
+  <line class="phase-line" x1="400" y1="60" x2="400" y2="380"/>
+  <line class="phase-line" x1="580" y1="60" x2="580" y2="380"/>
+
+  <!-- Phase labels along the top of the chart -->
+  <text class="phase-label" x="160" y="80">Expansión</text>
+  <text class="phase-label-soft" x="310" y="80">Recesión</text>
+  <text class="phase-label" x="490" y="80">Recuperación</text>
+  <text class="phase-label-soft" x="670" y="80">Recesión</text>
+
+  <!-- Key points along the curve -->
+  <!-- Peak 1 (~220,175) -->
+  <circle class="point" cx="220" cy="175" r="6"/>
+  <text class="point-label" x="220" y="120" text-anchor="middle" fill="#9C3A1C">Pico · auge</text>
+  <line class="phase-line" x1="220" y1="135" x2="220" y2="167"/>
+
+  <!-- Trough 1 (~400,320) -->
+  <circle class="point" cx="400" cy="320" r="6"/>
+  <text class="point-label" x="400" y="350" text-anchor="middle" fill="#9C3A1C">Valle · fondo</text>
+  <line class="phase-line" x1="400" y1="328" x2="400" y2="340"/>
+
+  <!-- Peak 2 (~580,128) -->
+  <circle class="point" cx="580" cy="128" r="6"/>
+  <text class="point-label" x="580" y="115" text-anchor="middle" fill="#9C3A1C">Pico</text>
+
+  <!-- Trough 2 placeholder near end (~750,260) -->
+  <circle class="point" cx="750" cy="260" r="5"/>
+
+  <!-- Trend crossing markers (small circles) -->
+  <circle class="point-cross" cx="320" cy="250" r="4"/>
+  <circle class="point-cross" cx="480" cy="233" r="4"/>
+  <circle class="point-cross" cx="680" cy="200" r="4"/>
+</svg>
+</content>
+</invoke>

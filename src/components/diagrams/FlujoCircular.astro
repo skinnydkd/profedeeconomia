@@ -1,0 +1,113 @@
+---
+/**
+ * Circular flow of income with four agents:
+ * Families, Firms, Public Sector, Foreign Sector.
+ * Arrows show the main monetary flows between them.
+ */
+---
+<svg viewBox="0 0 800 560" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="fc-title fc-desc">
+  <title id="fc-title">Flujo circular de la renta con cuatro agentes</title>
+  <desc id="fc-desc">Diagrama de los flujos monetarios entre familias, empresas, sector público y sector exterior: consumo, rentas, impuestos, gasto público, exportaciones e importaciones.</desc>
+  <defs>
+    <style>
+      .bg { fill: #FBF6EC; }
+      .node-families { fill: #FBE3D6; stroke: #C44E2C; stroke-width: 2; }
+      .node-firms { fill: #F5E5BC; stroke: #D4A24C; stroke-width: 2; }
+      .node-public { fill: #ECDCE5; stroke: #5B3A4E; stroke-width: 2; }
+      .node-foreign { fill: #DBEDED; stroke: #1F6E6E; stroke-width: 2; }
+      .node-label { font-family: 'Fraunces', serif; font-size: 18px; font-weight: 500; text-anchor: middle; fill: #2A1F18; }
+      .node-eyebrow { font-family: 'Switzer', sans-serif; font-size: 9.5px; font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase; text-anchor: middle; }
+      .flow-strong { fill: none; stroke-width: 3; }
+      .flow-medium { fill: none; stroke-width: 2.2; }
+      .flow-thin { fill: none; stroke-width: 1.6; }
+      .flow-label { font-family: 'Switzer', sans-serif; font-size: 12px; font-weight: 600; fill: #2A1F18; }
+      .flow-label-em { font-family: 'Fraunces', serif; font-size: 13px; font-style: italic; font-weight: 500; }
+    </style>
+    <marker id="fc-arr-terra" markerWidth="9" markerHeight="9" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 9 3, 0 6" fill="#C44E2C"/>
+    </marker>
+    <marker id="fc-arr-mustard" markerWidth="9" markerHeight="9" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 9 3, 0 6" fill="#A87A2A"/>
+    </marker>
+    <marker id="fc-arr-purple" markerWidth="9" markerHeight="9" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 9 3, 0 6" fill="#5B3A4E"/>
+    </marker>
+    <marker id="fc-arr-teal" markerWidth="9" markerHeight="9" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 9 3, 0 6" fill="#1F6E6E"/>
+    </marker>
+    <marker id="fc-arr-ink" markerWidth="9" markerHeight="9" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 9 3, 0 6" fill="#5C4A3D"/>
+    </marker>
+  </defs>
+  <rect class="bg" x="0" y="0" width="800" height="560"/>
+
+  <!-- 4 nodes positioned at corners of a 600x380 rectangle -->
+  <!-- Families: top-left -->
+  <g>
+    <rect class="node-families" x="80" y="60" width="200" height="100" rx="8"/>
+    <text class="node-eyebrow" x="180" y="92" fill="#9C3A1C">AGENTE 1</text>
+    <text class="node-label" x="180" y="120">Familias</text>
+    <text class="node-eyebrow" x="180" y="142" fill="#9C3A1C">Consumidoras</text>
+  </g>
+
+  <!-- Firms: top-right -->
+  <g>
+    <rect class="node-firms" x="520" y="60" width="200" height="100" rx="8"/>
+    <text class="node-eyebrow" x="620" y="92" fill="#A87A2A">AGENTE 2</text>
+    <text class="node-label" x="620" y="120">Empresas</text>
+    <text class="node-eyebrow" x="620" y="142" fill="#A87A2A">Productoras</text>
+  </g>
+
+  <!-- Public Sector: bottom-left -->
+  <g>
+    <rect class="node-public" x="80" y="400" width="200" height="100" rx="8"/>
+    <text class="node-eyebrow" x="180" y="432" fill="#3D2434">AGENTE 3</text>
+    <text class="node-label" x="180" y="460">Sector público</text>
+    <text class="node-eyebrow" x="180" y="482" fill="#3D2434">Estado · CCAA</text>
+  </g>
+
+  <!-- Foreign Sector: bottom-right -->
+  <g>
+    <rect class="node-foreign" x="520" y="400" width="200" height="100" rx="8"/>
+    <text class="node-eyebrow" x="620" y="432" fill="#0E4040">AGENTE 4</text>
+    <text class="node-label" x="620" y="460">Sector exterior</text>
+    <text class="node-eyebrow" x="620" y="482" fill="#0E4040">Resto del mundo</text>
+  </g>
+
+  <!-- Families → Firms : Consumo C (top arrow) -->
+  <path class="flow-strong" stroke="#C44E2C" d="M 280 95 L 520 95" marker-end="url(#fc-arr-terra)"/>
+  <text class="flow-label-em" x="400" y="85" text-anchor="middle" fill="#C44E2C">Consumo · C</text>
+
+  <!-- Firms → Families : Salarios, rentas (bottom arrow of pair) -->
+  <path class="flow-strong" stroke="#A87A2A" d="M 520 130 L 280 130" marker-end="url(#fc-arr-mustard)"/>
+  <text class="flow-label-em" x="400" y="152" text-anchor="middle" fill="#A87A2A">Salarios, rentas</text>
+
+  <!-- Families → Public : Impuestos (left side, down) -->
+  <path class="flow-medium" stroke="#5B3A4E" d="M 160 160 L 160 400" marker-end="url(#fc-arr-purple)"/>
+  <text class="flow-label" x="100" y="285" text-anchor="end" fill="#5B3A4E">Impuestos</text>
+  <text class="flow-label" x="100" y="302" text-anchor="end" fill="#5B3A4E">T</text>
+
+  <!-- Public → Families : Gasto, transferencias (left side, up) -->
+  <path class="flow-medium" stroke="#5B3A4E" d="M 200 400 L 200 160" marker-end="url(#fc-arr-purple)"/>
+  <text class="flow-label" x="262" y="285" fill="#5B3A4E">Gasto G,</text>
+  <text class="flow-label" x="262" y="302" fill="#5B3A4E">transferencias</text>
+
+  <!-- Firms → Public : Impuestos sociedades (diagonal) -->
+  <path class="flow-thin" stroke="#5B3A4E" d="M 540 160 L 300 400" marker-end="url(#fc-arr-purple)"/>
+  <g transform="translate(420 280) rotate(-45)">
+    <text class="flow-label" x="0" y="-4" text-anchor="middle" fill="#5B3A4E">Impuestos</text>
+    <text class="flow-label" x="0" y="12" text-anchor="middle" fill="#5B3A4E">sociedades</text>
+  </g>
+
+  <!-- Firms ↔ Foreign : Exportaciones X / Importaciones M (right side, two arrows) -->
+  <path class="flow-medium" stroke="#1F6E6E" d="M 600 160 L 600 400" marker-end="url(#fc-arr-teal)"/>
+  <text class="flow-label" x="540" y="285" text-anchor="end" fill="#1F6E6E">Importaciones</text>
+  <text class="flow-label" x="540" y="302" text-anchor="end" fill="#1F6E6E">M</text>
+
+  <path class="flow-medium" stroke="#1F6E6E" d="M 640 400 L 640 160" marker-end="url(#fc-arr-teal)"/>
+  <text class="flow-label" x="702" y="285" fill="#1F6E6E">Exportaciones</text>
+  <text class="flow-label" x="702" y="302" fill="#1F6E6E">X</text>
+
+  <!-- Footer note -->
+  <text x="400" y="540" text-anchor="middle" font-family="Fraunces, serif" font-style="italic" font-size="12.5" fill="#5C4A3D">PIB = C + I + G + (X − M)</text>
+</svg>

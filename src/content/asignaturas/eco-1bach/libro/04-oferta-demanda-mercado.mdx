@@ -1,0 +1,364 @@
+---
+asignatura: eco-1bach
+unidad: 4
+title: 'Microeconomía I: oferta, demanda y mercado'
+lema: >-
+  El precio no lo fija ni quien produce ni quien compra. Lo fija el encuentro
+  entre los dos en un sitio que llamamos mercado. Entender cómo se mueve ese
+  precio cuando cambia el mundo es el corazón del análisis microeconómico.
+lang: es
+estado: publicado
+duracion: 7-8 sesiones · 2,5 semanas
+bloque: Bloque B
+sabers:
+  - B.1
+conceptos_clave:
+  - ley de la demanda
+  - ley de la oferta
+  - equilibrio de mercado
+  - precio de equilibrio
+  - exceso de demanda
+  - exceso de oferta
+  - desplazamiento de la curva
+  - movimiento a lo largo de la curva
+  - factores que desplazan la demanda
+  - factores que desplazan la oferta
+  - competencia perfecta
+  - monopolio
+  - oligopolio
+  - competencia monopolística
+objetivos:
+  - Aplicar la ley de la demanda y la ley de la oferta a casos reales del mercado español.
+  - Distinguir un movimiento a lo largo de una curva de un desplazamiento de la curva.
+  - Identificar los cinco factores principales que desplazan la demanda y los que desplazan la oferta.
+  - Encontrar el equilibrio de mercado gráfica y algebraicamente a partir de funciones lineales.
+  - Reconocer las cuatro estructuras de mercado básicas con ejemplos españoles actuales.
+publicado_en: 2026-05-15
+---
+
+import Callout from '@components/Callout.astro';
+import Curiosity from '@components/Curiosity.astro';
+import RealExample from '@components/RealExample.astro';
+import SolvedExercise from '@components/SolvedExercise.astro';
+import Steps from '@components/Steps.astro';
+import KeyTakeaways from '@components/KeyTakeaways.astro';
+import Diagram from '@components/Diagram.astro';
+import Figure from '@components/Figure.astro';
+import OfertaDemanda from '@components/diagrams/OfertaDemanda.astro';
+import Bibliography from '@components/Bibliography.astro';
+
+import alfredMarshall from '@assets/libro/eco-1bach/04/alfred-marshall.jpg';
+import olivarJaen from '@assets/libro/eco-1bach/04/olivar-jaen.jpg';
+import mercamadridPuesto from '@assets/libro/eco-1bach/04/mercamadrid-puesto.jpg';
+import aveRenfe from '@assets/libro/eco-1bach/04/ave-renfe.jpg';
+
+Hasta aquí hemos hablado de **decisiones individuales**: cómo elige una persona, cómo planifica un ahorrador, cómo razona un consumidor con racionalidad acotada. Ahora cambiamos de escala. Un mercado no es la suma aritmética de decisiones aisladas: es el **encuentro coordinado** entre muchas personas que quieren comprar y muchas que quieren vender un mismo bien o servicio. De ese encuentro emerge una cifra —el **precio**— que ninguna de las partes ha fijado individualmente pero que todas terminan respetando.
+
+Esta unidad presenta el modelo más célebre de la teoría económica: **oferta y demanda**. Es una simplificación deliberada de la realidad —los mercados reales rara vez se comportan con esta limpieza— pero es la herramienta que permite predecir la dirección del cambio cuando ocurre algo nuevo en el mundo. Cuando sube el precio del aceite de oliva, cuando bajan los smartphones, cuando se dispara el alquiler en Madrid: en todos los casos hay una historia de oferta y demanda detrás. Aprenderla bien aquí es la base de las Unidades 5 (elasticidad) y 6 (fallos de mercado).
+
+## El mercado: definición y tipos
+
+Un **mercado** es cualquier institución —física, virtual, formal o informal— que pone en contacto a quienes ofrecen un bien o servicio con quienes lo demandan, y que permite que entre ellos se acuerden un precio y una cantidad. Esa definición, deliberadamente amplia, abarca tanto el mercado central de una ciudad como Amazon, la Bolsa de Madrid, una subasta de pescado en Vigo o el grupo de WhatsApp donde un vecindario vende cosas de segunda mano.
+
+### Lo que un mercado hace
+
+Todos los mercados, por distintos que parezcan, cumplen **tres funciones**:
+
+- **Asignan recursos.** Deciden quién acaba consumiendo cada unidad disponible. Los bienes escasos terminan en manos de quienes están dispuestos a pagar más por ellos.
+- **Fijan precios.** El precio que emerge del mercado actúa como **señal** para todos los agentes: indica a quien produce qué conviene fabricar más o menos, y a quien compra qué conviene sustituir.
+- **Coordinan sin coordinador.** Nadie dirige el mercado. Sin embargo, cada panadería de España termina horneando aproximadamente la cantidad de pan que se va a vender, sin que ninguna autoridad central lo planifique. Adam Smith llamó *mano invisible* a esta coordinación espontánea.
+
+### Tipos de mercado según el grado de competencia
+
+Los economistas clasifican los mercados según **cuántos vendedores hay** y **cómo de parecido es lo que venden**. Esta clasificación da las cuatro estructuras de mercado básicas, que veremos en profundidad al final de la unidad: **competencia perfecta**, **competencia monopolística**, **oligopolio** y **monopolio**. El modelo de oferta-demanda que estudiamos a continuación describe con precisión el primero —competencia perfecta— y sirve como aproximación útil para los demás.
+
+<Curiosity title="Doscientos años de mercado sin gráfico de oferta y demanda">
+Adam Smith publicó *La riqueza de las naciones* en **1776** y habló largamente del mercado, los precios y la mano invisible, pero **nunca dibujó una curva de oferta o demanda**. La representación gráfica que hoy parece obvia —dos curvas que se cruzan en un eje precio-cantidad— no se formalizó hasta **1890**, ciento catorce años después, cuando el economista inglés **Alfred Marshall** publicó sus *Principios de economía*. Marshall también convirtió en convención lo que aún confunde a generaciones de estudiantes: colocar el precio en el eje vertical y la cantidad en el horizontal cuando, matemáticamente, el precio es la variable independiente y debería ir en el eje horizontal. Pasaron **dos siglos enteros** entre la intuición de Smith y el gráfico que hoy parece tan natural como un mapa.
+</Curiosity>
+
+<Figure
+  src={alfredMarshall}
+  alt="Retrato fotográfico de Alfred Marshall, economista inglés, hacia 1921."
+  caption="Alfred Marshall (1842-1924) fotografiado en 1921, tres años antes de su muerte. Sus *Principios de economía* (1890) formalizaron por primera vez el cruce de las curvas de oferta y demanda que hoy llena todos los manuales."
+  credit="Foto: Emery Walker, 1921, dominio público vía Wikimedia Commons"
+  aspectHint="2/3"
+/>
+
+## La demanda
+
+La **demanda** de un bien es la cantidad que los consumidores están **dispuestos a comprar** —y pueden pagar— a cada precio posible, durante un periodo determinado y en un mercado concreto. Dos matices son importantes: *dispuestos* (querer comprar) y *pueden pagar* (tener capacidad económica). Un adolescente que quiere un coche eléctrico no forma parte de la demanda hasta que tiene los 35 000 € para pagarlo.
+
+### La ley de la demanda
+
+La regularidad empírica más sólida de la microeconomía es la **ley de la demanda**: cuando el precio de un bien sube, la cantidad demandada baja; cuando el precio baja, la cantidad demandada sube. Es una **relación inversa** entre precio y cantidad, y se cumple en casi todos los mercados imaginables.
+
+¿Por qué? Por dos razones simultáneas:
+
+- **Efecto sustitución.** Si sube el precio del café, parte de los consumidores cambian a té, a achicoria, a otra bebida. El bien se vuelve relativamente más caro frente a sus sustitutos.
+- **Efecto renta.** Si sube el precio del café y mi sueldo no cambia, mi renta real ha bajado: ahora puedo permitirme menos cosas, incluido menos café.
+
+Los dos efectos empujan en la misma dirección y por eso la ley de la demanda es tan robusta. Hay **excepciones documentadas** (bienes Giffen, bienes de Veblen, bienes de estatus) pero son raras y las trataremos brevemente en la Unidad 5.
+
+### La tabla y la curva de demanda
+
+La forma más directa de representar la demanda es una **tabla** que enumera, para cada precio, la cantidad que los consumidores demandan. Imaginemos el mercado mensual de entradas de cine en una ciudad mediana:
+
+| Precio (€/entrada) | Cantidad demandada (entradas/mes) |
+| ---: | ---: |
+| 12 | 8 000 |
+| 10 | 12 000 |
+| 8 | 18 000 |
+| 6 | 26 000 |
+| 4 | 36 000 |
+
+La tabla cumple la ley de la demanda: a precios más altos, menos entradas; a precios más bajos, más. Si trasladamos la tabla a un eje cartesiano con el precio en vertical y la cantidad en horizontal, los cinco puntos quedan alineados a lo largo de una línea **descendente de izquierda a derecha**: esa es la **curva de demanda**. En este libro la dibujaremos como una recta para simplificar; en la realidad puede ser más curva, pero la **dirección descendente** se mantiene siempre.
+
+Algebraicamente, la curva de demanda del ejemplo se aproxima por la función lineal **Q_d = 60 000 − 4 000·P**: cada euro adicional reduce la demanda en 4 000 entradas mensuales.
+
+### Demanda individual vs demanda de mercado
+
+La curva que acabamos de dibujar es la **demanda agregada del mercado**: la suma horizontal de las demandas individuales de todos los consumidores. Cada uno tiene su propia curva —algunos siguen comprando aunque suba el precio, otros desaparecen del mercado en cuanto sube un euro—. Sumadas, todas ellas dan la demanda del mercado.
+
+## La oferta
+
+La **oferta** de un bien es la cantidad que los productores están **dispuestos a vender** a cada precio posible, durante un periodo determinado y en un mercado concreto. De nuevo, dos matices: *dispuestos* (querer producir y vender) y *capaces* (tener los recursos para hacerlo). Un panadero que quisiera fabricar 10 000 barras al día pero solo tiene un horno para 800 no forma parte de la oferta por encima de esa cifra.
+
+### La ley de la oferta
+
+La **ley de la oferta** establece una relación **directa** entre precio y cantidad: cuando el precio sube, los productores ofrecen más; cuando el precio baja, ofrecen menos. La intuición es clara: a precios altos, vender resulta más rentable; entran al mercado productores marginales que antes no compensaban; los existentes amplían capacidad. A precios bajos, los productores menos eficientes salen del mercado y los demás reducen la producción.
+
+La curva de oferta, por tanto, es **ascendente de izquierda a derecha**: a más precio, más cantidad ofrecida. Una formulación lineal típica sería **Q_o = a + b·P**, con b positivo.
+
+### Oferta individual vs oferta de mercado
+
+Como en la demanda, la oferta de mercado es la **suma horizontal** de las ofertas de todos los productores. Si una panadería ofrece 800 barras al día a 1,50 € y otra ofrece 1 200, la oferta de mercado a ese precio es 2 000 barras.
+
+## El equilibrio de mercado
+
+Si dibujamos en el mismo gráfico la curva de demanda (descendente) y la de oferta (ascendente), las dos curvas se **cruzan en un único punto**. Ese punto es el **equilibrio de mercado**: el precio al que los consumidores quieren comprar exactamente la misma cantidad que los productores quieren vender. Lo llamamos **precio de equilibrio (P\*)** y **cantidad de equilibrio (Q\*)**.
+
+### Por qué el mercado tiende al equilibrio
+
+¿Qué pasa si el precio está **por encima** del equilibrio? Los productores quieren vender más de lo que los consumidores quieren comprar. Aparece un **exceso de oferta** (también llamado *excedente*): existencias que se quedan sin vender. Los productores, al ver que no colocan su producto, **bajan el precio** para deshacerse del stock. El precio cae hasta tocar el equilibrio.
+
+¿Y si el precio está **por debajo** del equilibrio? Los consumidores quieren comprar más de lo que los productores quieren vender. Aparece un **exceso de demanda** (también llamado *escasez*): colas, agotamientos, lista de espera. Los consumidores compiten entre sí, los productores se dan cuenta de que pueden cobrar más, y el precio **sube** hasta el equilibrio.
+
+El mercado, en este modelo, es un mecanismo **autocorrectivo**: cualquier desviación del precio respecto del equilibrio genera presiones que lo devuelven al equilibrio. Esta propiedad —la *estabilidad del equilibrio*— es lo que hace tan poderoso al modelo de oferta y demanda.
+
+<Diagram caption="Equilibrio en un mercado competitivo: precio y cantidad determinados por la intersección de oferta y demanda.">
+  <OfertaDemanda />
+</Diagram>
+
+<Callout label="Concepto clave" title="Equilibrio de mercado">
+
+El equilibrio de mercado es la combinación de precio y cantidad en la que la cantidad ofrecida y la cantidad demandada coinciden. En ese punto no hay tendencia al cambio: ningún consumidor o productor encuentra interés en modificar su comportamiento. Cualquier perturbación —un cambio en la renta, en la tecnología, en las preferencias— desplaza una de las dos curvas y genera un nuevo equilibrio.
+
+</Callout>
+
+<SolvedExercise number="4.1" title="Cálculo algebraico del equilibrio de mercado">
+
+**Enunciado**
+
+En el mercado mensual de un cierto modelo de auriculares inalámbricos, las funciones de demanda y oferta son lineales:
+
+- Demanda: **Q_d = 100 − 2P**
+- Oferta: **Q_o = 20 + 3P**
+
+(P en euros, Q en miles de unidades mensuales.)
+
+a) Calcular el precio y la cantidad de equilibrio.
+b) ¿Qué ocurre si el Gobierno fija un precio máximo de 12 € por auriculares con el objetivo de hacerlos más accesibles? Calcular el exceso de demanda resultante.
+
+**Solución**
+
+1. En el equilibrio se cumple Q_d = Q_o.
+   `100 − 2P = 20 + 3P`
+   `100 − 20 = 3P + 2P`
+   `80 = 5P`
+   `P* = 16 €`.
+2. Sustituimos en cualquiera de las dos funciones para obtener la cantidad:
+   `Q* = 100 − 2·16 = 68 mil unidades/mes` (o equivalentemente `20 + 3·16 = 68`). El equilibrio es **(P\* = 16 €, Q\* = 68 000 unidades/mes)**.
+3. Con un precio máximo legal de 12 € (por debajo del equilibrio):
+   - Cantidad **demandada** a P = 12: Q_d = 100 − 2·12 = **76 mil unidades**.
+   - Cantidad **ofrecida** a P = 12: Q_o = 20 + 3·12 = **56 mil unidades**.
+4. **Exceso de demanda** = Q_d − Q_o = 76 − 56 = **20 mil unidades/mes**. Aparecen 20 000 consumidores al mes que querrían comprar al precio fijado pero no encuentran producto.
+5. Consecuencias previsibles: colas, listas de espera, posible mercado negro, deterioro de la calidad o reducción del servicio postventa. El control de precios, salvo emergencias muy concretas, suele empeorar el problema que pretende resolver. (Veremos casos reales —topes al alquiler— en la Unidad 6.)
+
+</SolvedExercise>
+
+## Movimientos a lo largo de la curva vs desplazamientos de la curva
+
+Este es uno de los puntos donde el alumnado se confunde más a menudo en los exámenes. La distinción es crucial y conviene fijarla bien antes de avanzar.
+
+### Movimiento a lo largo de la curva
+
+Ocurre cuando **cambia el precio del propio bien** y, en consecuencia, cambia la cantidad demandada u ofrecida **sin que cambie la curva**. Pasamos de un punto a otro **sobre la misma curva**. Si el precio del cine sube de 8 € a 10 €, nos movemos de (8 €, 18 000) a (10 €, 12 000): es un movimiento a lo largo de la curva de demanda, no un cambio de curva.
+
+### Desplazamiento de la curva
+
+Ocurre cuando cambia **cualquier otro factor distinto del precio del bien**. La curva entera se desplaza —a la derecha si la demanda u oferta aumenta a todos los precios, a la izquierda si disminuye—. En ese caso aparece un **nuevo equilibrio** distinto del anterior.
+
+La regla mnemotécnica es directa: **si cambia el precio del bien, nos movemos sobre la curva; si cambia cualquier otra cosa, la curva se desplaza**.
+
+### Los cinco factores que desplazan la demanda
+
+- **La renta de los consumidores.** Si sube la renta media, sube la demanda de **bienes normales** (la curva se desplaza a la derecha). En el caso de los **bienes inferiores** (genéricos de supermercado, transporte público) la relación es la contraria: cuando sube la renta, baja la demanda.
+- **Los precios de bienes relacionados.** Si sube el precio de un **sustitutivo** (el té cuando estudiamos la demanda de café), la demanda del bien analizado sube. Si sube el precio de un **complementario** (la pasta cuando estudiamos el tomate frito), la demanda del bien baja.
+- **Los gustos y preferencias.** Modas, campañas publicitarias, recomendaciones sanitarias, escándalos. Cuando la OMS publicó en 2015 que las carnes procesadas eran probablemente cancerígenas, la demanda de embutidos cayó visiblemente durante semanas en España.
+- **Las expectativas.** Si los consumidores esperan que el precio suba mañana, compran hoy (la demanda actual sube). Las compras masivas de papel higiénico en marzo de 2020 son el ejemplo más recordado.
+- **El número de consumidores.** Más compradores en el mercado, más demanda. El crecimiento de la población, la llegada de turistas en temporada, la apertura del mercado a un nuevo país: todo desplaza la demanda a la derecha.
+
+### Los cinco factores que desplazan la oferta
+
+- **Los costes de producción.** Si suben los costes —energía, materias primas, salarios— la oferta se reduce a cada precio: la curva se desplaza a la izquierda. Si bajan, se desplaza a la derecha.
+- **La tecnología.** Las mejoras tecnológicas permiten producir más con los mismos recursos: la oferta aumenta. La automatización en fábricas de smartphones ha desplazado fuertemente la curva de oferta a la derecha en la última década.
+- **Los precios de bienes relacionados en la producción.** Si un agricultor puede dedicar la misma tierra a girasol o a trigo y el precio del girasol sube, dedicará menos hectáreas al trigo: la oferta de trigo cae.
+- **Las expectativas de los productores.** Si esperan que el precio suba próximamente, retiran producto del mercado para venderlo después: la oferta actual baja.
+- **El número de productores.** Más empresas en el mercado, más oferta. La entrada de Ouigo e Iryo en el AVE español ha desplazado fuertemente la oferta de billetes de alta velocidad a la derecha desde 2021.
+
+<RealExample title="El aceite de oliva 2022-2024: un caso de libro de manual de desplazamiento de la oferta" source="MAPA — Ministerio de Agricultura, Pesca y Alimentación; INE; Asoliva">
+Entre la campaña 2021/2022 y la 2023/2024, el precio medio del aceite de oliva virgen extra en origen pasó de **3,30 €/kg** a superar los **9 €/kg** en algunos momentos de 2023, multiplicándose por casi tres en 18 meses. ¿Qué pasó? Una **sequía severa y prolongada** en Andalucía —que produce más del 80 % del aceite español y aproximadamente la mitad del mundial— redujo la cosecha 2022/2023 a **666 000 toneladas**, frente a la media de 1,4 millones de toneladas habituales: prácticamente la **mitad de aceite** llegando al mercado. Traducido al lenguaje de oferta y demanda: la curva de oferta se desplazó fuertemente a la izquierda, mientras la curva de demanda apenas se movió. El equilibrio se trasladó a un precio mucho más alto con una cantidad mucho menor. En 2024, con la nueva campaña recuperándose por las lluvias, la oferta empezó a desplazarse de vuelta a la derecha y los precios bajaron, aunque sin recuperar todavía los niveles de 2021. Ningún consumidor cambió de pronto sus gustos por el aceite; nadie boicoteó a los productores. Toda la historia se explica por **un desplazamiento de la oferta**, exactamente como predice el modelo.
+</RealExample>
+
+<Figure
+  src={olivarJaen}
+  alt="Vista de un olivar en la provincia de Jaén, con hileras de olivos extendiéndose hasta el horizonte bajo cielo despejado."
+  caption="Olivar en la provincia de Jaén, vista desde la ventana de un cortijo abandonado. Andalucía concentra más del 80 % de la producción nacional de aceite de oliva; cuando una sequía afecta a esta tierra, el precio mundial del aceite se mueve en cuestión de meses."
+  credit="Foto: Veinticuatro de Jahén, CC BY-SA 4.0 vía Wikimedia Commons"
+  aspectHint="3/2"
+/>
+
+<RealExample title="Smartphones: una década de desplazamiento de la oferta a la derecha" source="IDC Worldwide Quarterly Mobile Phone Tracker; Statista; CIS Eurobarómetro Tecnológico">
+En 2014, el precio medio de un smartphone de gama media en España rondaba los **350-400 €**. Diez años más tarde, en 2024, un teléfono con prestaciones equivalentes o superiores se vende por **150-200 €**: el precio real ha caído aproximadamente a la mitad. ¿Qué ha pasado? Tres fuerzas, todas ellas desplazando la oferta a la derecha. Primero, la **tecnología**: los procesos de fabricación de chips, pantallas y baterías son hoy mucho más eficientes que hace una década. Segundo, la **competencia**: la entrada de fabricantes chinos (Xiaomi, Realme, Oppo, OnePlus) en Europa multiplicó el número de productores en el mercado. Tercero, las **economías de escala**: la producción global anual pasó de 1 300 millones de unidades en 2014 a más de 1 600 millones en años pico, abaratando el coste medio. La demanda, mientras tanto, también crecía —más usuarios, más recambios— pero **la oferta creció más rápido**. Es la diferencia entre el caso del aceite de oliva (oferta cae, precio sube) y el de los smartphones (oferta crece más que la demanda, precio baja).
+</RealExample>
+
+<SolvedExercise number="4.2" title="Análisis de desplazamientos: el mercado de alquiler en Madrid">
+
+**Enunciado**
+
+Entre 2020 y 2024, el precio medio del alquiler en Madrid pasó de unos **15 €/m²/mes** a más de **21 €/m²/mes**. Simultáneamente, los datos del INE indican que el número de viviendas en alquiler se mantuvo o incluso bajó ligeramente. Analizar la situación con el modelo de oferta y demanda:
+
+a) Identificar qué factores han desplazado la demanda de alquiler en Madrid en este periodo.
+b) Identificar qué factores han desplazado (o no han desplazado) la oferta.
+c) ¿Es coherente la subida simultánea de precio y la caída de cantidad con un desplazamiento de la **oferta** o de la **demanda**?
+
+**Solución**
+
+1. Factores que han desplazado la **demanda** a la derecha:
+   - Crecimiento poblacional: Madrid sumó más de 200 000 habitantes entre 2020 y 2024 (INE).
+   - Llegada masiva de **nómadas digitales** y trabajadores de remoto extranjeros tras la pandemia.
+   - **Expectativas** de seguir subiendo de precio (compras y alquileres preventivos).
+   - Aumento de hogares unipersonales (factor estructural).
+2. Factores que han afectado a la **oferta**:
+   - Traspaso de pisos de alquiler residencial a **alquiler turístico** (reduce oferta de larga duración).
+   - **Encarecimiento de la construcción** (costes de producción más altos).
+   - Cierta **regulación restrictiva** (incertidumbre normativa, retención de pisos).
+   - Resultado neto: la oferta probablemente se ha **desplazado ligeramente a la izquierda**.
+3. Coherencia con el modelo: si la **demanda sube** y la **oferta cae o se mantiene**, el precio de equilibrio sube y la cantidad puede mantenerse o caer ligeramente —exactamente lo observado—. Si solo se hubiese movido la demanda al alza, esperaríamos precio y cantidad subiendo a la vez. La caída ligera de cantidad confirma que la oferta **también** se ha desplazado a la izquierda.
+4. Conclusión pedagógica: el modelo permite **descartar explicaciones**. La narrativa de *«es solo culpa de los fondos buitre»* no encaja con los datos si miramos las cantidades; la realidad es una combinación de presión por el lado de la demanda y restricción por el lado de la oferta. La política pública eficaz debe actuar sobre ambos lados.
+
+</SolvedExercise>
+
+## Cómo cambia el equilibrio cuando se desplaza una curva
+
+El gran valor analítico del modelo es que permite **predecir la dirección del cambio** cuando una de las dos curvas se desplaza. Resumimos los cuatro casos básicos:
+
+<Steps label="Los 4 desplazamientos" title="Efecto de cada desplazamiento sobre el equilibrio">
+
+<li><strong>Aumenta la demanda</strong> (curva D a la derecha). Sube P*, sube Q*. Ejemplo: campaña publicitaria exitosa, llegada de turistas, mejora de la renta para un bien normal.</li>
+
+<li><strong>Cae la demanda</strong> (curva D a la izquierda). Baja P*, baja Q*. Ejemplo: escándalo sanitario sobre un alimento, recesión económica para bienes de lujo.</li>
+
+<li><strong>Aumenta la oferta</strong> (curva O a la derecha). Baja P*, sube Q*. Ejemplo: avance tecnológico (smartphones), entrada de nuevos competidores (Ouigo).</li>
+
+<li><strong>Cae la oferta</strong> (curva O a la izquierda). Sube P*, baja Q*. Ejemplo: sequía en aceite de oliva, subida del coste de la energía en fábricas.</li>
+
+</Steps>
+
+Cuando se mueven **las dos curvas a la vez** —caso frecuente en la realidad— una de las dos variables del equilibrio queda **indeterminada** sin información adicional sobre cuál de las dos se mueve más. Por eso el análisis profesional combina el modelo con datos empíricos sobre la magnitud de cada desplazamiento.
+
+## Las cuatro estructuras de mercado
+
+El modelo de oferta y demanda que acabamos de ver describe con precisión la **competencia perfecta**. Los mercados reales rara vez lo son. Conviene distinguir las cuatro estructuras clásicas según el **número de empresas** y el **grado de diferenciación del producto**.
+
+### Competencia perfecta
+
+**Muchas empresas, producto homogéneo, libre entrada y salida**. Ninguna empresa es lo bastante grande para influir en el precio: todas son *precio-aceptantes*. El comprador es indiferente entre comprarle a uno u otro porque el producto es el mismo. Información transparente, sin barreras de entrada.
+
+El ejemplo más próximo en España son los **mercados agrícolas mayoristas** —Mercabarna, Mercamadrid—: miles de productores de tomate, manzana o naranja venden un producto esencialmente intercambiable a un precio que se forma por el cruce de oferta y demanda diaria. Ningún productor individual puede subir su precio por encima del de mercado sin perder todas sus ventas. La competencia perfecta es más una **referencia teórica** que una realidad cotidiana, pero la aproximación es útil para entender muchos mercados de materias primas.
+
+<Figure
+  src={mercamadridPuesto}
+  alt="Puesto de venta de fruta y verdura en una nave mayorista de Mercamadrid, con cajas apiladas y precios visibles."
+  caption="Puesto mayorista en Mercamadrid, el segundo mercado de fruta y hortalizas más grande del mundo. Cientos de operadores venden producto homogéneo a comerciantes que pueden comparar precios al instante: la aproximación más cercana a la competencia perfecta que se ve en una ciudad española."
+  credit="Foto: Esferadeoro, CC BY-SA 4.0 vía Wikimedia Commons"
+  aspectHint="3/2"
+/>
+
+### Monopolio
+
+**Una sola empresa, sin sustitutos cercanos, barreras de entrada altas**. La empresa monopolista decide el precio que más le conviene: es *precio-fijadora*. El monopolio puede surgir por concesión legal (monopolios públicos), por control de un recurso clave, por patentes o por **economías de escala** que hacen inviable que entre otro competidor.
+
+Casos puros de monopolio quedan pocos. Históricamente, **Renfe** mantuvo durante décadas un cuasi-monopolio en la alta velocidad ferroviaria española: la única forma de cruzar Madrid-Barcelona en tren rápido era el AVE de Renfe. Desde 2021 ese monopolio se ha roto con la entrada de **Ouigo** (filial de SNCF francesa) y **Iryo** (Trenitalia + Air Nostrum + Globalvia), pasando a una estructura de **oligopolio** con tres operadores. Otros casos próximos al monopolio en España: **Adif** en la gestión de infraestructura ferroviaria, **Aena** en la gestión de aeropuertos comerciales, distribuidoras eléctricas en su zona geográfica.
+
+<Figure
+  src={aveRenfe}
+  alt="Tren de alta velocidad Renfe AVE serie 103 estacionado en un andén de la estación de Girona."
+  caption="Un AVE serie 103 de Renfe en Girona. Durante casi dos décadas, todo viajero que cruzaba España en alta velocidad lo hacía en uno de estos trenes; desde 2021 comparte vías con Ouigo e Iryo, transformando un monopolio en oligopolio."
+  credit="Foto: Robot8A, CC BY-SA 4.0 vía Wikimedia Commons"
+  aspectHint="3/2"
+/>
+
+### Oligopolio
+
+**Pocas empresas grandes, mucho poder de mercado, producto homogéneo o diferenciado**. Las decisiones de cada una afectan al resto. Hay barreras de entrada significativas (capital, regulación, marca). Los oligopolios son extremadamente comunes en la economía española.
+
+El ejemplo más nítido es el **mercado eléctrico minorista**: **Iberdrola, Endesa y Naturgy** —las tres grandes— concentran aproximadamente el **65-70 %** del mercado doméstico de electricidad en España. Aunque existen decenas de comercializadoras pequeñas, las decisiones de precio y oferta de las tres grandes marcan el ritmo del mercado. Otros oligopolios españoles relevantes: **telefonía móvil** (Telefónica/Movistar, Vodafone, Orange/MásMóvil), **banca** (Santander, BBVA, CaixaBank), **distribución de combustibles** (Repsol, Cepsa, BP).
+
+En un oligopolio, las empresas pueden competir agresivamente (guerras de precios), coordinarse tácitamente (líder de precios) o, en casos ilegales, **colusionar**: pactar precios o repartirse el mercado. La CNMC vigila y sanciona estos casos —el cártel de los fabricantes de coches por intercambio de información comercial sensible (2015-2021) es un caso reciente.
+
+### Competencia monopolística
+
+**Muchas empresas, producto diferenciado, libre entrada**. Es la estructura más extendida en sectores de consumo: cada empresa vende un producto **parecido pero no idéntico** al de las demás, lo que le permite cierto margen para fijar precio (un mini-monopolio sobre *su* versión del producto) sin escapar de la presión de la competencia.
+
+El ejemplo cotidiano es el **supermercado**: **Mercadona, Lidl, Carrefour, Dia, Alcampo, Aldi, Eroski** compiten en el mismo terreno pero con propuestas diferenciadas —Mercadona apuesta por la marca propia consolidada, Lidl por precios bajos en surtido reducido, Carrefour por amplitud de gama, Dia por proximidad—. Hay decenas de actores, pero el liderazgo cuantitativo está concentrado: Mercadona ronda el **27 %** del mercado, Carrefour el 9 %, Lidl el 7 %. La competencia es real —ningún supermercado puede subir precios bruscamente sin perder clientes— pero el producto está diferenciado por marca, calidad percibida, ubicación y servicio. Otros ejemplos típicos: restauración, peluquerías, librerías, ropa de calle.
+
+### Resumen comparado
+
+| Estructura | Nº de empresas | Producto | Poder de fijar precio | Ejemplo español |
+| --- | --- | --- | --- | --- |
+| Competencia perfecta | Muchísimas | Homogéneo | Nulo | Productores de naranjas en Mercabarna |
+| Competencia monopolística | Muchas | Diferenciado | Bajo | Mercadona vs Lidl vs Carrefour |
+| Oligopolio | Pocas | Homogéneo o diferenciado | Alto | Iberdrola, Endesa, Naturgy |
+| Monopolio | Una | Sin sustitutos | Total | Renfe AVE (hasta 2021), Aena |
+
+<Callout label="Aviso para el examen" title="No confundir oligopolio con monopolio">
+
+Un error frecuente en pruebas es etiquetar como *monopolio* cualquier mercado dominado por marcas conocidas. Mercadona no es monopolio: Lidl, Carrefour y otros le hacen competencia real. La banca española no es monopolio: hay cinco grandes y decenas de medianas. La regla práctica: si una empresa puede subir el precio un 20 % sin perder casi clientes, es cuasi-monopolio; si pierde clientes en masa hacia un sustituto cercano, no lo es.
+
+</Callout>
+
+<KeyTakeaways title="Lo esencial de la unidad">
+- El **mercado** asigna recursos, fija precios y coordina sin coordinador. Su análisis básico se hace con el modelo de **oferta y demanda**.
+- **Ley de la demanda**: a más precio, menos cantidad demandada (relación inversa). **Ley de la oferta**: a más precio, más cantidad ofrecida (relación directa).
+- El **equilibrio de mercado** es el punto donde se cruzan las dos curvas. Por encima del equilibrio hay exceso de oferta; por debajo, exceso de demanda.
+- **Movimiento a lo largo de la curva**: cambia el precio del bien. **Desplazamiento de la curva**: cambia cualquier otra variable.
+- La demanda se desplaza por **renta, precios de bienes relacionados, gustos, expectativas y número de consumidores**. La oferta, por **costes, tecnología, precios relacionados en la producción, expectativas y número de productores**.
+- Hay cuatro estructuras de mercado: **competencia perfecta** (agrícola), **monopolio** (Renfe AVE histórico), **oligopolio** (eléctricas, banca, telefonía) y **competencia monopolística** (supermercados, restauración).
+</KeyTakeaways>
+
+## Conexión con las próximas unidades
+
+Esta unidad sienta las bases para todo el Bloque B. En la **Unidad 5** aprenderemos a medir *cuánto* responde la demanda y la oferta a un cambio de precio —la **elasticidad**— y usaremos esa medida para entender por qué subir el IVA del tabaco recauda mucho y subir el IVA del pan recauda poco. En la **Unidad 6** veremos los **fallos de mercado**: situaciones en las que el equilibrio que produce el mercado no es socialmente deseable (externalidades, bienes públicos, poder de mercado, información asimétrica) y la intervención pública puede mejorar el resultado.
+
+<Bibliography>
+
+1. Marshall, A. (1890). *Principles of Economics*. Macmillan.
+2. Mankiw, N. G. (2021). *Principios de economía* (9.ª ed.). Cengage Learning.
+3. Krugman, P. y Wells, R. (2019). *Microeconomía* (5.ª ed.). Reverté.
+4. Ministerio de Agricultura, Pesca y Alimentación. *Informes mensuales del mercado del aceite de oliva* — series 2021-2024.
+5. INE. *Índice de precios del alquiler de vivienda* y *Encuesta continua de hogares* — Madrid, 2020-2024.
+6. CNMC. *Informe anual de supervisión de los mercados eléctricos minoristas* — ediciones 2022-2024.
+7. RD 243/2022, de 5 de abril, por el que se establecen la ordenación y las enseñanzas mínimas del Bachillerato (BOE-A-2022-5521).
+
+</Bibliography>
