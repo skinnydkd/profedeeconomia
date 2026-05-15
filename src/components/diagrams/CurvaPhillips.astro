@@ -1,0 +1,115 @@
+---
+/**
+ * Phillips curve diagram: classical short-run trade-off between
+ * inflation (π) and unemployment (u), plus a vertical long-run
+ * Phillips curve at the NAIRU.
+ *
+ * Used in Eco 1BACH · Unit 9 (inflation and unemployment).
+ */
+---
+<svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="phillips-title phillips-desc">
+  <title id="phillips-title">Curva de Phillips</title>
+  <desc id="phillips-desc">Relación inversa entre inflación y tasa de paro a corto plazo, con la NAIRU marcada como tasa natural de paro y la curva de Phillips vertical a largo plazo.</desc>
+  <defs>
+    <style>
+      .bg { fill: #FBF6EC; }
+      .axis { stroke: #5C4A3D; stroke-width: 1.5; fill: none; }
+      .grid { stroke: #E5D4BD; stroke-width: 1; stroke-dasharray: 2 4; fill: none; }
+      .cp-short { fill: none; stroke: #C44E2C; stroke-width: 2.5; }
+      .cp-long { fill: none; stroke: #5C4A3D; stroke-width: 2; stroke-dasharray: 6 4; }
+      .nairu-line { stroke: #A87A2A; stroke-width: 1.2; stroke-dasharray: 4 4; fill: none; }
+      .point { fill: #FFFFFF; stroke: #C44E2C; stroke-width: 2.5; }
+      .axis-label { font-family: 'Switzer', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; fill: #5C4A3D; }
+      .axis-letter { font-family: 'Fraunces', serif; font-style: italic; font-size: 18px; font-weight: 500; fill: #2A1F18; }
+      .tick-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; fill: #5C4A3D; }
+      .curve-label { font-family: 'Switzer', sans-serif; font-size: 12px; font-weight: 700; fill: #9C3A1C; }
+      .curve-label-long { font-family: 'Switzer', sans-serif; font-size: 11.5px; font-weight: 700; fill: #5C4A3D; }
+      .point-label { font-family: 'Fraunces', serif; font-style: italic; font-size: 14px; font-weight: 500; fill: #2A1F18; }
+      .nairu-label { font-family: 'Switzer', sans-serif; font-size: 10.5px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; fill: #A87A2A; }
+    </style>
+  </defs>
+  <rect class="bg" x="0" y="0" width="800" height="500"/>
+
+  <!-- Plot area: x from 90 to 720, y from 60 to 410. -->
+  <!-- u axis: 0% (x=90) to 12% (x=720) -->
+  <!-- π axis: 0% (y=410) to 12% (y=60) -->
+
+  <!-- Grid -->
+  <line class="grid" x1="90" y1="118" x2="720" y2="118"/>
+  <line class="grid" x1="90" y1="177" x2="720" y2="177"/>
+  <line class="grid" x1="90" y1="235" x2="720" y2="235"/>
+  <line class="grid" x1="90" y1="293" x2="720" y2="293"/>
+  <line class="grid" x1="90" y1="352" x2="720" y2="352"/>
+
+  <line class="grid" x1="195" y1="60" x2="195" y2="410"/>
+  <line class="grid" x1="300" y1="60" x2="300" y2="410"/>
+  <line class="grid" x1="405" y1="60" x2="405" y2="410"/>
+  <line class="grid" x1="510" y1="60" x2="510" y2="410"/>
+  <line class="grid" x1="615" y1="60" x2="615" y2="410"/>
+
+  <!-- Axes -->
+  <line class="axis" x1="90" y1="410" x2="730" y2="410"/>
+  <line class="axis" x1="90" y1="50" x2="90" y2="410"/>
+
+  <!-- Axis arrows -->
+  <polygon points="730,410 720,406 720,414" fill="#5C4A3D"/>
+  <polygon points="90,50 86,60 94,60" fill="#5C4A3D"/>
+
+  <!-- Tick labels x (u %) -->
+  <text class="tick-label" x="90" y="428" text-anchor="middle">0</text>
+  <text class="tick-label" x="195" y="428" text-anchor="middle">2</text>
+  <text class="tick-label" x="300" y="428" text-anchor="middle">4</text>
+  <text class="tick-label" x="405" y="428" text-anchor="middle">6</text>
+  <text class="tick-label" x="510" y="428" text-anchor="middle">8</text>
+  <text class="tick-label" x="615" y="428" text-anchor="middle">10</text>
+  <text class="tick-label" x="720" y="428" text-anchor="middle">12</text>
+
+  <!-- Tick labels y (π %) -->
+  <text class="tick-label" x="82" y="414" text-anchor="end">0</text>
+  <text class="tick-label" x="82" y="356" text-anchor="end">2</text>
+  <text class="tick-label" x="82" y="297" text-anchor="end">4</text>
+  <text class="tick-label" x="82" y="239" text-anchor="end">6</text>
+  <text class="tick-label" x="82" y="181" text-anchor="end">8</text>
+  <text class="tick-label" x="82" y="122" text-anchor="end">10</text>
+  <text class="tick-label" x="82" y="64" text-anchor="end">12</text>
+
+  <!-- Axis titles -->
+  <text class="axis-label" x="400" y="465" text-anchor="middle">TASA DE PARO</text>
+  <text class="axis-letter" x="745" y="415">u</text>
+  <text class="axis-label" x="40" y="230" text-anchor="middle" transform="rotate(-90 40 230)">INFLACIÓN</text>
+  <text class="axis-letter" x="78" y="48" font-style="italic">π</text>
+
+  <!-- Short-run Phillips curve (downward-sloping, convex).
+       From high-inflation/low-unemployment top-left
+       to low-inflation/high-unemployment bottom-right.
+       Endpoints: (u=1%, π=11%) → x=143, y=88; (u=11%, π=1.2%) → x=668, y=375 -->
+  <path class="cp-short" d="M 143 88 Q 260 130 380 220 Q 520 330 668 375"/>
+
+  <!-- Long-run vertical Phillips curve at NAIRU (u = 5%) -->
+  <!-- u = 5% → x = 90 + (5/12)*630 = 90 + 262.5 = 352.5 -->
+  <line class="cp-long" x1="353" y1="70" x2="353" y2="410"/>
+
+  <!-- NAIRU marker on x-axis -->
+  <line class="nairu-line" x1="353" y1="410" x2="353" y2="420"/>
+  <circle cx="353" cy="410" r="3.5" fill="#A87A2A"/>
+  <text class="nairu-label" x="353" y="448" text-anchor="middle">NAIRU</text>
+  <text class="tick-label" x="353" y="462" text-anchor="middle" fill="#A87A2A">tasa natural de paro</text>
+
+  <!-- Point B: high inflation, low unemployment (top-left of curve) -->
+  <!-- u ≈ 2.5%, π ≈ 8% → x = 90 + (2.5/12)*630 = 90 + 131.25 = 221; y = 410 - (8/12)*350 = 410 - 233.3 = 177 -->
+  <circle class="point" cx="221" cy="177" r="6"/>
+  <text class="point-label" x="234" y="172" fill="#9C3A1C">B</text>
+  <text class="tick-label" x="234" y="187" fill="#5C4A3D" font-family="Switzer, sans-serif" font-size="10.5">alta π · bajo u</text>
+
+  <!-- Point A: low inflation, high unemployment (bottom-right) -->
+  <!-- u ≈ 9%, π ≈ 2% → x = 90 + (9/12)*630 = 90 + 472.5 = 563; y = 410 - (2/12)*350 = 410 - 58.3 = 352 -->
+  <circle class="point" cx="563" cy="352" r="6"/>
+  <text class="point-label" x="576" y="348" fill="#9C3A1C">A</text>
+  <text class="tick-label" x="576" y="363" fill="#5C4A3D" font-family="Switzer, sans-serif" font-size="10.5">baja π · alto u</text>
+
+  <!-- Curve labels -->
+  <text class="curve-label" x="155" y="75">Curva de Phillips (CP)</text>
+  <text class="curve-label-long" x="365" y="85">CP a largo plazo</text>
+</svg>
+</content>
+</invoke>
