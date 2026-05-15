@@ -1,0 +1,117 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+/**
+ * Editorial figure wrapper for photographs and external illustrations.
+ * Parallel to <Diagram /> but for raster images going through astro:assets
+ * (WebP/AVIF, responsive widths, lazy-loaded by default).
+ *
+ *   <Figure
+ *     src={import('@assets/libro/edmn-2bach/02/inditex-arteixo.jpg')}
+ *     alt="Sede central de Inditex en Arteixo"
+ *     caption="La sede central de Inditex sigue en Arteixo desde 1975."
+ *     credit="Cruccone, CC BY-SA 4.0 vía Wikimedia Commons"
+ *   />
+ */
+
+type Props = {
+  src: ImageMetadata;
+  alt: string;
+  caption: string;
+  credit?: string;
+  /** "default" centers the figure full-prose-width; "tight" stays inside text column; "wide" breaks slightly outside. */
+  variant?: 'default' | 'tight' | 'wide';
+  /** Aspect-ratio hint for the printed PDF (web is intrinsic). */
+  aspectHint?: '16/9' | '4/3' | '3/2' | '1/1' | '2/3';
+  /** Eager-load only for hero / above-the-fold images. */
+  eager?: boolean;
+};
+
+const {
+  src,
+  alt,
+  caption,
+  credit,
+  variant = 'default',
+  aspectHint,
+  eager = false,
+} = Astro.props;
+---
+
+<figure class:list={['figure', `figure--${variant}`]}>
+  <div class="figure__frame" style={aspectHint ? `aspect-ratio: ${aspectHint};` : undefined}>
+    <Image
+      src={src}
+      alt={alt}
+      widths={[480, 768, 1024, 1440]}
+      sizes="(max-width: 720px) 100vw, 720px"
+      loading={eager ? 'eager' : 'lazy'}
+      decoding="async"
+      format="webp"
+      quality={82}
+    />
+  </div>
+  <figcaption class="figure__caption">
+    <span class="figure__caption-text">{caption}</span>
+    {credit && <span class="figure__caption-credit">{credit}</span>}
+  </figcaption>
+</figure>
+
+<style>
+  .figure {
+    margin: 2.6rem 0;
+  }
+  .figure--tight { max-width: var(--measure-prose); }
+  .figure--wide {
+    max-width: min(960px, 100%);
+    margin-left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .figure__frame {
+    overflow: hidden;
+    border-radius: 4px;
+    border: 1px solid var(--color-line);
+    background: var(--color-paper);
+    box-shadow: 0 1px 2px rgba(42, 31, 24, 0.05), 0 6px 18px rgba(42, 31, 24, 0.06);
+  }
+  .figure__frame :global(img) {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .figure__caption {
+    margin-top: 0.85rem;
+    padding-top: 0.55rem;
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--color-ink-soft);
+    font-variation-settings: "SOFT" 80;
+    border-top: 1px dashed var(--color-line);
+  }
+  .figure__caption-text { display: block; }
+  .figure__caption-credit {
+    display: block;
+    margin-top: 0.25rem;
+    font-size: 0.76rem;
+    font-style: normal;
+    letter-spacing: 0.01em;
+    color: var(--color-ink-mute);
+    font-family: var(--font-sans);
+  }
+
+  @media print {
+    .figure {
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+    .figure__frame {
+      box-shadow: none;
+    }
+  }
+</style>
