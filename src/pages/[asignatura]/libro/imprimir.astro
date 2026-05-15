@@ -167,7 +167,9 @@ const totalUnits = units.length;
         font-variation-settings: "SOFT" 50, "WONK" 0;
       }
 
-      .book-title-string { string-set: book-title "EDMN 2BACH · Empresa y Diseño de Modelos de Negocio"; }
+      /* .book-title-string is set dynamically in an inline style block below
+         based on the current asignatura (cannot be in <style is:global> since
+         it must vary per page). */
 
       h1, h2, h3, h4 {
         font-family: var(--font-serif);
@@ -583,6 +585,7 @@ const totalUnits = units.length;
       }
     </style>
   </head>
+  <style is:inline set:html={`.book-title-string { string-set: book-title "${a.shortLabel} · ${a.title}"; }`}></style>
   <body class="book-title-string">
 
     {/* ------------------------------------------------------------ COVER */}
