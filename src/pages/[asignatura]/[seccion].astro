@@ -3,15 +3,15 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 import { ASIGNATURA_SLUGS, ASIGNATURAS } from '@/lib/asignaturas';
 import type { GetStaticPaths } from 'astro';
 
-const SECCIONES = [
-  { slug: 'diapositivas', label: 'Diapositivas' },
-  { slug: 'actividades',  label: 'Actividades'  },
-  { slug: 'tests',        label: 'Tests'        },
-  { slug: 'recursos',     label: 'Recursos'     },
-] as const;
+/**
+ * Placeholder route for sub-sections of an asignatura that still don't
+ * have their own dedicated page (actividades, tests, recursos).
+ * `diapositivas` is handled by `src/pages/[asignatura]/diapositivas/index.astro`
+ * since it now has real content; `libro` has its own folder too.
+ */
 
 export const getStaticPaths = (() => {
-  const SLUGS = ['diapositivas', 'actividades', 'tests', 'recursos'] as const;
+  const SLUGS = ['actividades', 'tests', 'recursos'] as const;
   const out = [];
   for (const asignatura of ASIGNATURA_SLUGS) {
     for (const seccion of SLUGS) {
@@ -20,7 +20,7 @@ export const getStaticPaths = (() => {
         props: {
           asignatura: ASIGNATURAS[asignatura],
           seccion,
-          seccionLabel: { diapositivas: 'Diapositivas', actividades: 'Actividades', tests: 'Tests', recursos: 'Recursos' }[seccion],
+          seccionLabel: { actividades: 'Actividades', tests: 'Tests', recursos: 'Recursos' }[seccion],
         },
       });
     }
