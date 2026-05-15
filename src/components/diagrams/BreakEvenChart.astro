@@ -1,0 +1,97 @@
+---
+/**
+ * Break-even point chart. Shows total cost line (CF + CV·Q) and
+ * total revenue line (P·Q). Intersection at Q* = CF / (P − CVu).
+ *
+ * Numbers correspond to the panadería example (CF=3000, P=1.5, CVu=0.5).
+ */
+---
+<svg viewBox="0 0 720 480" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Punto muerto o umbral de rentabilidad">
+  <defs>
+    <style>
+      .bg { fill: #FBF6EC; }
+      .axis { stroke: #5C4A3D; stroke-width: 1.5; fill: none; }
+      .grid { stroke: #E5D4BD; stroke-width: 1; stroke-dasharray: 2 4; fill: none; }
+      .cf-line { stroke: #8A7868; stroke-width: 2; fill: none; }
+      .ct-line { stroke: #C44E2C; stroke-width: 2.5; fill: none; }
+      .it-line { stroke: #4F8C3F; stroke-width: 2.5; fill: none; }
+      .perdida { fill: #F5DDDD; fill-opacity: 0.5; }
+      .beneficio { fill: #E5F1DD; fill-opacity: 0.5; }
+      .axis-label { font-family: 'Switzer', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; fill: #5C4A3D; }
+      .tick-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; fill: #5C4A3D; }
+      .line-label { font-family: 'Switzer', sans-serif; font-size: 11px; font-weight: 700; }
+      .point-label { font-family: 'Fraunces', serif; font-style: italic; font-size: 13px; font-weight: 500; }
+      .zone-label { font-family: 'Fraunces', serif; font-style: italic; font-size: 14px; font-weight: 500; }
+    </style>
+  </defs>
+  <rect class="bg" x="0" y="0" width="720" height="480"/>
+
+  <!-- Plot area: x from 80 to 660, y from 60 to 400. -->
+  <!-- Q axis: 0 to 5000 mapped to x 80 to 660 -->
+  <!-- € axis: 0 to 8000 mapped to y 400 (bottom) to 60 (top) -->
+
+  <!-- Background zones (below CT = pérdida, above CT but below IT to the left = pérdida, above intersection between IT and CT = beneficio) -->
+  <!-- Pérdida area: between CT and IT, from Q=0 to Q*=3000 (x=80 to x=428) -->
+  <!-- We approximate with polygons -->
+
+  <!-- Pérdida (between CT and IT to the left of intersection) -->
+  <polygon class="perdida" points="80,272 80,400 428,272"/>
+  <!-- Beneficio (between IT and CT to the right) -->
+  <polygon class="beneficio" points="428,272 660,103 660,230"/>
+
+  <!-- Grid lines -->
+  <line class="grid" x1="80" y1="350" x2="660" y2="350"/>
+  <line class="grid" x1="80" y1="272" x2="660" y2="272"/>
+  <line class="grid" x1="80" y1="187" x2="660" y2="187"/>
+  <line class="grid" x1="80" y1="103" x2="660" y2="103"/>
+
+  <line class="grid" x1="196" y1="60" x2="196" y2="400"/>
+  <line class="grid" x1="312" y1="60" x2="312" y2="400"/>
+  <line class="grid" x1="428" y1="60" x2="428" y2="400"/>
+  <line class="grid" x1="544" y1="60" x2="544" y2="400"/>
+
+  <!-- Axes -->
+  <line class="axis" x1="80" y1="400" x2="660" y2="400"/>
+  <line class="axis" x1="80" y1="60" x2="80" y2="400"/>
+
+  <!-- X axis labels (Q: 0, 1000, 2000, 3000, 4000, 5000) -->
+  <text class="tick-label" x="80" y="418" text-anchor="middle">0</text>
+  <text class="tick-label" x="196" y="418" text-anchor="middle">1.000</text>
+  <text class="tick-label" x="312" y="418" text-anchor="middle">2.000</text>
+  <text class="tick-label" x="428" y="418" text-anchor="middle">3.000</text>
+  <text class="tick-label" x="544" y="418" text-anchor="middle">4.000</text>
+  <text class="tick-label" x="660" y="418" text-anchor="middle">5.000</text>
+
+  <!-- Y axis labels (€: 0, 2000, 4000, 6000, 8000) -->
+  <text class="tick-label" x="72" y="404" text-anchor="end">0</text>
+  <text class="tick-label" x="72" y="354" text-anchor="end">2.000</text>
+  <text class="tick-label" x="72" y="272" text-anchor="end">4.000</text>
+  <text class="tick-label" x="72" y="187" text-anchor="end">6.000</text>
+  <text class="tick-label" x="72" y="103" text-anchor="end">8.000</text>
+
+  <!-- Axis titles -->
+  <text class="axis-label" x="370" y="455" text-anchor="middle">UNIDADES VENDIDAS · Q</text>
+  <text class="axis-label" x="25" y="230" text-anchor="middle" transform="rotate(-90 25 230)">EUROS · €</text>
+
+  <!-- CF line: horizontal at € 3000 (y = 400 - 3000/8000 * 340 = 400 - 127.5 = 272) -->
+  <line class="cf-line" x1="80" y1="272" x2="660" y2="272"/>
+  <text class="line-label" x="668" y="276" fill="#8A7868">CF = 3.000 €</text>
+
+  <!-- CT line: CT = CF + CVu·Q = 3000 + 0.5·Q. At Q=0: €3000 (y=272). At Q=5000: €5500 (y=400 - 5500/8000 * 340 = 400 - 233.75 = 166.25 ≈ 166) -->
+  <line class="ct-line" x1="80" y1="272" x2="660" y2="166"/>
+  <text class="line-label" x="668" y="170" fill="#C44E2C">Coste total</text>
+
+  <!-- IT line: IT = P·Q = 1.5·Q. At Q=0: €0 (y=400). At Q=5000: €7500 (y=400 - 7500/8000 * 340 = 400 - 318.75 = 81.25 ≈ 81) -->
+  <line class="it-line" x1="80" y1="400" x2="660" y2="81"/>
+  <text class="line-label" x="668" y="85" fill="#4F8C3F">Ingreso total</text>
+
+  <!-- Intersection point at Q* = 3000 (x=428). At that Q, both CT and IT = €4500 (y=400 - 4500/8000 * 340 = 400 - 191.25 = 208.75 ≈ 209) -->
+  <line class="grid" x1="428" y1="209" x2="428" y2="400" stroke="#C44E2C" stroke-dasharray="3 3"/>
+  <circle cx="428" cy="209" r="6" fill="#FFFFFF" stroke="#C44E2C" stroke-width="2.5"/>
+  <text class="point-label" x="438" y="200" fill="#C44E2C">Q* = 3.000 unidades</text>
+  <text class="point-label" x="438" y="216" fill="#C44E2C">€ 4.500 = punto muerto</text>
+
+  <!-- Zone labels -->
+  <text class="zone-label" x="200" y="350" fill="#B83A3A">PÉRDIDA</text>
+  <text class="zone-label" x="560" y="160" fill="#2A5A1F">BENEFICIO</text>
+</svg>

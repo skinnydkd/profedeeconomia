@@ -33,6 +33,10 @@ import Callout from '@components/Callout.astro';
 import Curiosity from '@components/Curiosity.astro';
 import RealExample from '@components/RealExample.astro';
 import SolvedExercise from '@components/SolvedExercise.astro';
+import Steps from '@components/Steps.astro';
+import KeyTakeaways from '@components/KeyTakeaways.astro';
+import Diagram from '@components/Diagram.astro';
+import VANTimeline from '@components/diagrams/VANTimeline.astro';
 import Bibliography from '@components/Bibliography.astro';
 
 La función financiera responde a dos preguntas que ningún proyecto empresarial puede esquivar: **¿en qué invertimos?** y **¿de dónde sacamos el dinero para invertir?**. La primera define el activo de la empresa —los recursos productivos en los que el dinero se convierte—. La segunda define el pasivo y el patrimonio neto —de quién es ese dinero y bajo qué condiciones se devuelve—. La diferencia entre una empresa viable y una que muere antes de empezar suele estar en la coherencia entre ambas decisiones.
@@ -44,7 +48,21 @@ Toda empresa puede mirarse desde dos lados:
 - La **estructura económica** (activo) describe **en qué está invertido el dinero**: edificios, maquinaria, vehículos, mobiliario, materias primas, dinero en caja, deudas que los clientes nos deben.
 - La **estructura financiera** (pasivo + patrimonio neto) describe **de dónde viene el dinero**: aportaciones de los socios, beneficios reinvertidos, préstamos bancarios, créditos de proveedores.
 
+### La regla del equilibrio financiero
+
 La regla básica de coherencia financiera es simple: las **inversiones a largo plazo** (un edificio, una máquina que durará diez años) deben financiarse con **recursos a largo plazo** (capital propio, préstamo a diez años). Las **inversiones a corto plazo** (stock, dinero para nóminas) pueden financiarse con **recursos a corto plazo** (crédito de proveedores, póliza de crédito). Saltarse esta regla —pagar la maquinaria con un préstamo a un año— es la receta clásica de la asfixia financiera.
+
+### El fondo de maniobra
+
+Una de las consecuencias prácticas de la regla anterior es el concepto de **fondo de maniobra**, que veremos a fondo en la Unidad 11. Su fórmula resumida es:
+
+`Fondo de maniobra = Activo corriente − Pasivo corriente`
+
+Cuando el fondo de maniobra es positivo, la empresa tiene un colchón de seguridad: dispone de más recursos disponibles a corto plazo que de obligaciones inmediatas. Cuando es negativo, está financiando inversión a largo con deuda a corto, lo que la sitúa en una posición frágil ante cualquier retraso en cobros o aumento de gastos. Solo algunos sectores (gran distribución, banca) pueden operar estructuralmente con fondo de maniobra negativo porque su ciclo de caja se lo permite.
+
+### Beneficio contable vs. tesorería
+
+La regla práctica más importante de toda la función financiera es esta: **la empresa no quiebra cuando pierde dinero, sino cuando se queda sin liquidez**. Una empresa puede ser rentable contablemente y, simultáneamente, no tener dinero en el banco para pagar a sus proveedores. Pasa cuando vende a plazos largos (cobra a 90 días) mientras paga al contado (compra a 30 días). El desfase entre devengo y caja es la causa más frecuente de cierres de pymes que sobre el papel funcionaban.
 
 ## La inversión: VAN, TIR y PayBack
 
@@ -73,6 +91,20 @@ La regla de decisión es directa:
 - **VAN > 0**: la inversión genera más valor del exigido. Acepta.
 - **VAN = 0**: justo cubre el rendimiento mínimo. Indiferente.
 - **VAN < 0**: destruye valor. Rechaza.
+
+<Diagram caption="Cronología de flujos descontados: cada flujo futuro se divide por (1+k)^t. La suma de los flujos actualizados menos la inversión inicial es el VAN.">
+  <VANTimeline />
+</Diagram>
+
+### La tasa de descuento (k)
+
+La elección de la tasa de descuento es la decisión más subjetiva del cálculo del VAN. ¿Qué porcentaje exigir? Tres referencias prácticas:
+
+- **El coste de la deuda** que la empresa pagaría si financiara el proyecto con préstamo. Si un banco te prestaría al 6 %, exigir menos al proyecto interno sería tirar dinero.
+- **El coste de oportunidad**: la rentabilidad que obtendrías invirtiendo el mismo capital en otra alternativa razonable (bolsa, deuda pública, otra inversión).
+- **El riesgo del proyecto**: cuanto más arriesgado, mayor la tasa exigida. Un negocio probado puede aceptar k=6-8 %; una *startup* tecnológica difícilmente se evalúa por debajo del 20 %.
+
+En aula, una tasa razonable para proyectos del capstone es **8-10 %**, lo bastante alta para ser conservadora y lo bastante baja para no descartar todo de entrada.
 
 ### Tasa Interna de Rentabilidad (TIR)
 
@@ -207,6 +239,39 @@ En España existen líneas de financiación pública para emprendedores: ENISA (
 Una *startup* madrileña pasa por una secuencia habitual: empieza con **ahorros propios** y **aportaciones de familia y amigos** (*friends and family*) por unos 30.000 €. Tras seis meses de prototipo, capta a un **business angel** con 80.000 € que le permite contratar al primer empleado. A los dos años cierra una **ronda semilla de capital riesgo** de 500.000 € con un fondo regional. A los cuatro, una **serie A** de 3 millones con un fondo nacional. Cada salto requiere haber ejecutado bien el anterior; saltarse pasos —buscar capital riesgo sin haber probado el producto— casi siempre termina en rechazos seguidos. La cascada habitual de financiación es, en realidad, una secuencia de hitos de validación.
 
 </Callout>
+
+<Steps label="La cascada de financiación" title="Hitos típicos de una startup en cinco fases" variant="arabic">
+
+<li><strong>Pre-semilla — ahorros, FFF, microcréditos.</strong> 5-30 K€. La idea está en cabeza o en prototipo en papel. Sirve para validar concepto.</li>
+
+<li><strong>Semilla — business angels o aceleradoras.</strong> 50-300 K€. Hay producto mínimo viable y primeros usuarios. Permite contratar al primer empleado y validar encaje producto-mercado.</li>
+
+<li><strong>Serie A — capital riesgo regional/nacional.</strong> 1-5 M€. Hay producto funcional, ingresos recurrentes y plan de crecimiento. Se invierte en equipo, marketing y expansión geográfica.</li>
+
+<li><strong>Serie B/C — capital riesgo internacional.</strong> 5-50 M€. La empresa crece de forma probada; la inversión sirve para acelerar el crecimiento, no para validar nada nuevo.</li>
+
+<li><strong>Salida — adquisición, IPO o continuidad.</strong> O un comprador estratégico adquiere la empresa, o sale a bolsa, o sigue siendo privada y reparte dividendos a sus socios.</li>
+
+</Steps>
+
+## La estructura óptima de capital
+
+La pregunta de cuánta deuda y cuánto capital propio conviene tener es uno de los debates clásicos de las finanzas corporativas. Las dos posiciones extremas son:
+
+- **Solo capital propio.** Sin deuda, sin intereses, sin riesgo de impago. Pero el coste de oportunidad del capital propio es habitualmente más alto que el de la deuda, así que la empresa renuncia a apalancamiento.
+- **Máximo posible de deuda.** Aprovecha el efecto fiscal (los intereses son deducibles) y el menor coste de la deuda. Pero aumenta el riesgo de quiebra ante caídas de ingresos.
+
+La práctica intermedia es lo que se conoce como **estructura óptima de capital**: la mezcla de deuda y capital propio que minimiza el coste medio ponderado del capital (*WACC*) mientras mantiene la empresa solvente. Depende del sector (eléctricas pueden soportar más deuda; tecnológicas, menos), del ciclo económico y del riesgo del propio proyecto.
+
+Una regla práctica para pymes: **la deuda no debería superar el 60-65 % del balance**. Por encima, el coste financiero se come los beneficios; por debajo, se desaprovecha apalancamiento.
+
+<KeyTakeaways title="Lo esencial de la función financiera">
+- **Estructura económica** (activo, en qué se invierte) y **estructura financiera** (pasivo + PN, de dónde viene el dinero) son las dos caras del balance.
+- La **regla del equilibrio**: largo plazo con largo plazo, corto con corto. Saltársela = asfixia financiera.
+- **PayBack** mide riesgo, **VAN** mide creación de valor, **TIR** mide rentabilidad relativa. Se usan los tres juntos.
+- La cascada de financiación va de **FFF → business angels → capital riesgo → series sucesivas**. Saltar pasos casi nunca funciona.
+- La **estructura óptima de capital** balancea coste medio (mejor con deuda) y riesgo de quiebra (mejor con capital propio).
+</KeyTakeaways>
 
 ## Conexión con el proyecto capstone
 

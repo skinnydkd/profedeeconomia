@@ -1,0 +1,124 @@
+---
+/**
+ * Visual block to summarise key takeaways at the end of a long section
+ * or before moving to the next concept. Encourages the reader to stop
+ * and consolidate before continuing.
+ *
+ *   <KeyTakeaways title="En resumen">
+ *     - Punto uno
+ *     - Punto dos
+ *     - Punto tres
+ *   </KeyTakeaways>
+ */
+type Props = {
+  title?: string;
+  /** "key", "warning" or "checklist". Default key. */
+  variant?: 'key' | 'warning' | 'checklist';
+};
+
+const { title = 'En resumen', variant = 'key' } = Astro.props;
+---
+
+<aside class:list={['takeaways', `takeaways--${variant}`]}>
+  <span class="takeaways__icon" aria-hidden="true">
+    {variant === 'warning' ? '!' : variant === 'checklist' ? '✓' : '✱'}
+  </span>
+  <span class="takeaways__label">{title}</span>
+  <div class="takeaways__body">
+    <slot />
+  </div>
+</aside>
+
+<style>
+  .takeaways {
+    margin: 2.6rem 0;
+    padding: 1.4rem 1.7rem 1.5rem 4rem;
+    background: var(--color-bg-cream);
+    border-radius: 6px;
+    position: relative;
+    border-top: 1px solid var(--color-line);
+    border-bottom: 1px solid var(--color-line);
+  }
+  .takeaways--warning { background: var(--color-terra-soft); }
+  .takeaways--checklist { background: #E5F1DD; }
+
+  .takeaways__icon {
+    position: absolute;
+    top: 1.4rem;
+    left: 1.4rem;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-mustard);
+    color: var(--color-paper);
+    border-radius: 50%;
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.1rem;
+    font-weight: 600;
+    font-variation-settings: "SOFT" 100, "WONK" 1;
+  }
+  .takeaways--warning .takeaways__icon { background: var(--color-terra); }
+  .takeaways--checklist .takeaways__icon { background: #4F8C3F; }
+
+  .takeaways__label {
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--color-mustard-deep);
+    font-weight: 700;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+  .takeaways--warning .takeaways__label { color: var(--color-terra-deep); }
+  .takeaways--checklist .takeaways__label { color: #2A5A1F; }
+
+  .takeaways__body {
+    font-family: var(--font-sans);
+    font-size: 0.98rem;
+    line-height: 1.6;
+    color: var(--color-ink);
+  }
+  .takeaways__body :global(ul) {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+  }
+  .takeaways__body :global(ul li) {
+    position: relative;
+    padding: 0.3rem 0 0.3rem 1.2rem;
+    border-bottom: 1px dashed var(--color-line);
+  }
+  .takeaways__body :global(ul li:last-child) { border-bottom: none; }
+  .takeaways__body :global(ul li::before) {
+    content: "—";
+    position: absolute;
+    left: 0;
+    color: var(--color-mustard-deep);
+    font-weight: 600;
+  }
+  .takeaways--warning .takeaways__body :global(ul li::before) { color: var(--color-terra); }
+  .takeaways--checklist .takeaways__body :global(ul li::before) { content: "✓"; color: #4F8C3F; }
+
+  .takeaways__body :global(p) { margin: 0 0 0.7em; }
+  .takeaways__body :global(p:last-child) { margin-bottom: 0; }
+  .takeaways__body :global(strong) { color: var(--color-ink); }
+
+  /* No drop cap */
+  .takeaways__body :global(p::first-letter) {
+    font-family: inherit;
+    font-weight: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    float: none;
+    padding: 0;
+    color: inherit;
+  }
+
+  @media print {
+    .takeaways { break-inside: avoid; page-break-inside: avoid; }
+  }
+</style>
