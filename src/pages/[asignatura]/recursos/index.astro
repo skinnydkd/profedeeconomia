@@ -1,0 +1,209 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { ASIGNATURA_SLUGS, ASIGNATURAS } from '@/lib/asignaturas';
+import { getCollection } from 'astro:content';
+import type { GetStaticPaths } from 'astro';
+
+export const getStaticPaths = (async () => {
+  return ASIGNATURA_SLUGS.map((slug) => ({
+    params: { asignatura: slug },
+    props: { asignatura: ASIGNATURAS[slug] },
+  }));
+}) satisfies GetStaticPaths;
+
+const { asignatura: a } = Astro.props;
+
+const all = await getCollection('recursos');
+const items = all
+  .filter((x) => x.data.asignatura === a.slug && x.data.estado === 'publicado')
+  .sort((x, y) => (x.data.unidad_relacionada ?? 99) - (y.data.unidad_relacionada ?? 99));
+
+const TIPO_LABEL: Record<string, string> = {
+  simulador: 'Simulador',
+  calculadora: 'Calculadora',
+  plantilla: 'Plantilla',
+  visualizacion: 'Visualización',
+};
+---
+
+<BaseLayout
+  title={`Recursos — ${a.shortLabel}`}
+  description={`Calculadoras, simuladores y plantillas interactivas de ${a.title}.`}
+>
+  <div class="container">
+    <nav class="breadcrumb">
+      <a href="/">Inicio</a> <span class="sep">›</span>
+      <a href={`/${a.slug}/`}>{a.shortLabel}</a> <span class="sep">›</span>
+      <span>Recursos</span>
+    </nav>
+  </div>
+
+  <section class="hero">
+    <div class="container">
+      <span class="kicker">{a.shortLabel} · recursos</span>
+      <h1>Recursos interactivos</h1>
+      <p class="lede">
+        {items.length === 0
+          ? 'Los recursos interactivos se publicarán a medida que vayan estando listos.'
+          : 'Calculadoras y simuladores que se pueden usar en clase como apoyo al libro o como herramienta para que el alumnado experimente con sus propios datos.'}
+      </p>
+      {items.length > 0 && (
+        <p class="meta">
+          {items.length} {items.length === 1 ? 'recurso' : 'recursos'} · funcionan en el navegador, sin instalar nada
+        </p>
+      )}
+    </div>
+  </section>
+
+  {items.length > 0 && (
+    <section class="grid">
+      <div class="container">
+        <ul class="card-grid">
+          {items.map((it) => {
+            const slug = it.id.split('/').pop()?.replace(/\.mdx?$/, '');
+            return (
+              <li class="card">
+                <div class="card__head">
+                  {it.data.unidad_relacionada !== undefined && (
+                    <span class="card__num">{String(it.data.unidad_relacionada).padStart(2, '0')}</span>
+                  )}
+                  <span class={`card__badge badge--${it.data.tipo}`}>{TIPO_LABEL[it.data.tipo]}</span>
+                </div>
+                <h3 class="card__title">{it.data.title}</h3>
+                <p class="card__desc">{it.data.descripcion}</p>
+                <a class="cta" href={`/${a.slug}/recursos/${slug}/`}>Abrir recurso →</a>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    </section>
+  )}
+
+  <section class="note">
+    <div class="container">
+      <p class="note-text">
+        Los recursos interactivos no almacenan datos: lo que introduces se queda en
+        tu navegador y desaparece al cerrar la pestaña. Si encuentras un cálculo que
+        no cuadra o tienes ideas para nuevos recursos, escríbenos a
+        <a class="editorial-link" href="mailto:hola@profedeeconomia.es">hola@profedeeconomia.es</a>.
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .container { max-width: 1240px; margin: 0 auto; padding: 0 clamp(1.5rem, 4vw, 3rem); }
+  .breadcrumb { font-size: 0.92rem; color: var(--color-ink-mute); margin: 2rem 0; }
+  .breadcrumb a { color: var(--color-ink-mute); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--color-terra); }
+  .breadcrumb .sep { margin: 0 0.5em; color: var(--color-mustard); }
+
+  .hero { padding: 1rem 0 clamp(2rem, 5vw, 4rem); }
+  h1 { margin: 1rem 0 0.6rem; }
+  .lede {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.35rem;
+    color: var(--color-ink-soft);
+    max-width: 55ch;
+    line-height: 1.5;
+    margin: 1.5rem 0 0.6rem;
+    font-variation-settings: "SOFT" 80;
+  }
+  .meta { font-family: var(--font-sans); font-size: 0.9rem; color: var(--color-ink-mute); margin-top: 0.4rem; }
+
+  .grid { padding-bottom: clamp(3rem, 7vw, 6rem); }
+  .card-grid {
+    list-style: none; margin: 0; padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+    gap: 1.5rem;
+  }
+  .card {
+    background: var(--color-paper);
+    border: 1px solid var(--color-line);
+    border-radius: 8px;
+    padding: 1.5rem 1.7rem 1.7rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    transition: transform .2s var(--ease-soft), border-color .2s var(--ease-soft), box-shadow .2s var(--ease-soft);
+  }
+  .card:hover {
+    border-color: var(--color-terra);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 18px rgba(42, 31, 24, 0.08);
+  }
+  .card__head { display: flex; align-items: baseline; justify-content: space-between; gap: 0.6rem; }
+  .card__num {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.6rem;
+    color: var(--color-mustard-deep);
+    font-variation-settings: "SOFT" 100, "WONK" 1;
+    line-height: 1;
+  }
+  .card__badge {
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-weight: 700;
+    padding: 0.25rem 0.6rem;
+    border-radius: 999px;
+  }
+  .badge--calculadora  { background: var(--color-terra-soft);   color: var(--color-terra-deep); }
+  .badge--simulador    { background: var(--color-mustard-soft); color: var(--color-mustard-deep); }
+  .badge--plantilla    { background: #DBEDED;                   color: #1F6E6E; }
+  .badge--visualizacion{ background: var(--color-fopp-soft);    color: var(--color-fopp); }
+
+  .card__title {
+    font-family: var(--font-serif);
+    font-size: 1.2rem;
+    line-height: 1.25;
+    color: var(--color-ink);
+    margin: 0.3rem 0 0.2rem;
+    font-weight: 500;
+    font-variation-settings: "SOFT" 60;
+  }
+  .card__desc {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 0.95rem;
+    color: var(--color-ink-soft);
+    line-height: 1.45;
+    margin: 0;
+    font-variation-settings: "SOFT" 80;
+    flex: 1;
+  }
+  .cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.6rem 0.9rem;
+    background: var(--color-terra);
+    color: var(--color-bg);
+    border-radius: 5px;
+    text-decoration: none;
+    font-family: var(--font-sans);
+    font-size: 0.92rem;
+    font-weight: 600;
+    margin-top: 0.6rem;
+    transition: background .2s var(--ease-soft);
+  }
+  .cta:hover { background: var(--color-terra-deep); }
+
+  .note { padding: 0 0 clamp(3rem, 6vw, 5rem); }
+  .note-text {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.05rem;
+    color: var(--color-ink-mute);
+    max-width: 60ch;
+    line-height: 1.5;
+    font-variation-settings: "SOFT" 80;
+    border-top: 1px dashed var(--color-line);
+    padding-top: 1.5rem;
+  }
+</style>
