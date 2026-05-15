@@ -51,10 +51,16 @@ import SolvedExercise from '@components/SolvedExercise.astro';
 import Steps from '@components/Steps.astro';
 import KeyTakeaways from '@components/KeyTakeaways.astro';
 import Diagram from '@components/Diagram.astro';
+import Figure from '@components/Figure.astro';
 import ADAS from '@components/diagrams/ADAS.astro';
 import CicloEconomico from '@components/diagrams/CicloEconomico.astro';
 import CurvaLorenz from '@components/diagrams/CurvaLorenz.astro';
 import Bibliography from '@components/Bibliography.astro';
+
+import pozoPetroleo from '@assets/libro/eco-1bach/08/pozo-petroleo.jpg';
+import robertSolow from '@assets/libro/eco-1bach/08/robert-solow.jpg';
+import madridPreciadosCovid from '@assets/libro/eco-1bach/08/madrid-preciados-covid.jpg';
+import amartyaSen from '@assets/libro/eco-1bach/08/amartya-sen.jpg';
 
 En la unidad anterior dejamos cuatro herramientas montadas sobre la mesa: el flujo circular de la renta, el PIB y sus tres enfoques, el IPC y la tasa de paro. Eran termómetros: nos dicen *cómo está* la economía en un momento concreto. Esta unidad da el siguiente paso. Aprenderemos a *explicar por qué* esos termómetros se mueven como se mueven, qué pasa cuando sube el precio del gas natural en un trimestre concreto, por qué la economía española se hundió en 2008 y se levantó —despacio— en 2014.
 
@@ -166,6 +172,14 @@ La SRAS se desplaza a la izquierda (encarecimiento del petróleo, ruptura de cad
 Robert Solow, profesor del MIT, recibió el Premio Nobel de Economía en 1987 por su modelo de crecimiento publicado en 1956. Solow descompuso el crecimiento del PIB en tres fuentes: acumulación de capital físico, aumento del empleo y un *residuo* que recogía todo lo que las dos primeras no explicaban. Cuando aplicó la descomposición a los datos de Estados Unidos del periodo 1909-1949, descubrió algo que cambiaría la economía del crecimiento: aproximadamente **un 80 % del crecimiento por trabajador no se debía a más capital ni a más trabajo**, sino a ese residuo. Lo llamó *technical change* (cambio técnico), pero la profesión lo conoce como **residuo Solow** o **productividad total de los factores (PTF)**. Es la métrica que mide cuánto producimos por unidad de inputs combinados, y en ella se condensa todo lo que importa de verdad para el bienestar a largo plazo: tecnología, eficiencia organizativa, calidad institucional, capital humano. La frase atribuida a Solow para resumir el hallazgo —*"You can see the computer age everywhere but in the productivity statistics"*— se convirtió en lema de la economía del crecimiento moderna.
 </Curiosity>
 
+<Figure
+  src={pozoPetroleo}
+  alt="Pumpjack (caballito de bombeo) extrayendo petróleo junto al flanco de un anticlinal, con la silueta de la maquinaria recortada sobre un cielo azul intenso."
+  caption="Un *pumpjack* extrae crudo en un yacimiento estadounidense. Cuando el precio del barril Brent pasó de 75 a 120 dólares entre marzo y agosto de 2022 tras la invasión rusa de Ucrania, la SRAS de toda la economía europea se desplazó hacia la izquierda: subieron los precios y se desaceleró la producción a la vez."
+  credit="Foto: Michael C. Rygel, CC BY-SA 3.0 vía Wikimedia Commons"
+  aspectHint="16/9"
+/>
+
 <SolvedExercise number="8.1" title="Shock petrolero sobre la economía española en 2022">
 
 **Enunciado**
@@ -217,6 +231,14 @@ La economía española de los últimos quince años ofrece todas las fases del c
 6. **2021-2024 — Recuperación post-COVID.** Despliegue de los fondos Next Generation EU, rebote del turismo internacional, mercado laboral más resistente que en ciclos anteriores. El PIB pre-COVID se recupera plenamente en el segundo trimestre de 2023, con paro en mínimos desde 2008 (≈11 %) a finales de 2024.
 </Steps>
 
+<Figure
+  src={madridPreciadosCovid}
+  alt="Calle Preciados de Madrid completamente desierta el 22 de marzo de 2020, durante la primera semana del confinamiento por la COVID-19, con los escaparates de las tiendas cerrados."
+  caption="Calle Preciados (Madrid), 22 de marzo de 2020, una semana después del decreto del estado de alarma. La imagen de la principal arteria comercial del centro de Madrid completamente vacía resume el carácter atípico del shock COVID: **simultáneamente de demanda** (consumo y turismo paralizados) **y de oferta** (cadenas de suministro globales rotas, plantillas confinadas). El PIB español cayó un −10,8 % en 2020, el mayor desplome en tiempos de paz."
+  credit="Foto: Nemo, CC BY-SA 4.0 vía Wikimedia Commons"
+  aspectHint="3/2"
+/>
+
 <RealExample title="La doble recesión española 2008-2014 vs el resto de la Eurozona" source="Eurostat (PIB real, base 2015) e INE (Contabilidad Nacional Trimestral)" sourceUrl="https://ec.europa.eu/eurostat">
 España vivió entre 2008 y 2014 lo que se conoce como una **doble recesión** o *double-dip recession*: dos recesiones técnicas seguidas separadas por una recuperación frustrada. La primera (2008Q3-2009Q4) fue compartida con todas las economías avanzadas y respondió al shock financiero global. La segunda (2011Q2-2013Q2) fue casi exclusiva del sur de Europa y respondió a la crisis de deuda soberana de la Eurozona y a las políticas de consolidación fiscal exigidas por la Unión. En términos de PIB real, España no recuperó el nivel pre-crisis hasta 2017 —nueve años después del pico cíclico—. Para hacerse una idea de la magnitud: Alemania había recuperado el nivel pre-crisis ya en 2011; Estados Unidos en 2012; Italia, en cambio, ni siquiera en 2024. La lección que dejaron estos años a la política económica europea está en el origen del cambio de doctrina post-2020: la respuesta a la pandemia se diseñó deliberadamente como contracíclica y solidaria (fondos NGEU, suspensión del Pacto de Estabilidad) para evitar repetir el patrón de la década anterior.
 </RealExample>
@@ -226,6 +248,15 @@ España vivió entre 2008 y 2014 lo que se conoce como una **doble recesión** o
 Hasta aquí hemos hablado de fluctuaciones alrededor de Y\*. Pero la pregunta más importante de la macroeconomía a largo plazo es otra: ¿qué determina **el nivel y el crecimiento del propio Y\***? Es decir, ¿por qué algunos países son ricos y otros pobres, por qué España es 25 veces más rica per cápita que Mozambique, por qué Corea del Sur era más pobre que Ghana en 1960 y hoy es siete veces más rica?
 
 El marco analítico de referencia para responder a estas preguntas es el **modelo de crecimiento de Solow** (1956), también llamado modelo neoclásico de crecimiento. No vamos a desarrollar su matemática —se estudia con detalle en Economía 2.º de carrera—, pero sí su intuición central, que es accesible y muy potente.
+
+<Figure
+  src={robertSolow}
+  alt="Retrato fotográfico de Robert Solow, economista estadounidense del MIT, en un acto académico."
+  caption="Robert M. Solow (1924-2023), profesor del MIT y premio Nobel de Economía en 1987. Su modelo de crecimiento de 1956 demostró, contra la intuición de la época, que el motor último del crecimiento per cápita a largo plazo no es la acumulación de capital sino el **cambio técnico**: lo que hoy llamamos *productividad total de los factores*."
+  credit="Foto: Olaf Storbeck, CC BY-SA 2.0 vía Wikimedia Commons"
+  aspectHint="4/3"
+  variant="tight"
+/>
 
 ### 5.1. Los tres motores del crecimiento
 
@@ -270,6 +301,15 @@ Cada dimensión se normaliza a una escala 0-1 y el IDH es la media geométrica d
 ### 6.1. ¿Dónde está España?
 
 España aparece habitualmente entre los puestos 25-30 del ranking mundial (puesto 27 en el Informe de Desarrollo Humano 2023-2024 del PNUD, con IDH 0,911 —categoría *muy alto*—). Por encima quedan los países nórdicos, Suiza, Alemania, Países Bajos, Canadá, Australia, Reino Unido, Japón, Corea del Sur. Encabeza el ranking **Noruega** (0,966) o **Suiza** (0,967) según el año. En el otro extremo, países del África subsahariana en conflicto reciente o crónico aparecen con IDH inferior a 0,4 (Sudán del Sur, República Centroafricana, Chad).
+
+<Figure
+  src={amartyaSen}
+  alt="Retrato fotográfico de Amartya Sen en una conferencia del ciclo Fronteiras do Pensamento (São Paulo, 2012)."
+  caption="Amartya Sen (Santiniketan, 1933), Premio Nobel de Economía 1998. Su teoría de las *capabilities* —las capacidades reales que tiene cada persona para llevar la vida que valora— dio el marco filosófico al **Índice de Desarrollo Humano** que su amigo Mahbub ul Haq diseñó en 1990 para el PNUD como alternativa al uso exclusivo del PIB."
+  credit="Foto: Fronteiras do Pensamento, CC BY-SA 2.0 vía Wikimedia Commons"
+  aspectHint="3/2"
+  variant="tight"
+/>
 
 <Curiosity title="Mahbub ul Haq, Amartya Sen y el nacimiento del IDH">
 El IDH no es una herramienta neutra: nació de una crítica explícita al uso exclusivo del PIB como medida del progreso humano. Su artífice principal fue el economista paquistaní **Mahbub ul Haq**, ex ministro de Finanzas de Pakistán y posteriormente economista jefe del PNUD. A finales de los 80 ul Haq decidió que el debate del desarrollo necesitaba un indicador comprensible que rivalizara con el PIB en simplicidad pero que recordara que *desarrollo no es solo producción*. Para diseñarlo se rodeó del economista indio **Amartya Sen**, futuro Nobel de Economía 1998, cuya teoría de las **capabilities** (capacidades reales para llevar una vida que uno valore) proporcionó el marco conceptual. El primer Informe de Desarrollo Humano se publicó en 1990 con la frase de apertura *"People are the real wealth of a nation"*. Treinta y cinco años después, el IDH es el indicador alternativo al PIB más citado del mundo, ha sido refinado varias veces (versión ajustada por desigualdad IDH-D desde 2010, IDH de género, IDH multidimensional) y se ha convertido en herramienta estándar de la diplomacia del desarrollo, los ODS de la ONU y la evaluación de políticas públicas.
