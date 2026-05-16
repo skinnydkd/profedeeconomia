@@ -1,0 +1,98 @@
+---
+/**
+ * Horizontal stacked bar chart visualising Elizabeth Warren's 50/30/20
+ * budgeting rule. Three segments + example breakdown below each one.
+ */
+---
+<svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="presup-title presup-desc">
+  <title id="presup-title">Regla 50-30-20 para presupuestar el sueldo</title>
+  <desc id="presup-desc">Barra horizontal dividida en tres segmentos: 50% necesidades, 30% deseos y 20% ahorro/inversión, con ejemplos de gasto debajo de cada bloque.</desc>
+  <defs>
+    <style>
+      .bg { fill: #FBF6EC; }
+      .seg-necesidades { fill: #C44E2C; }
+      .seg-deseos { fill: #D4A24C; }
+      .seg-ahorro { fill: #5C4A3D; }
+      .seg-stroke { fill: none; stroke: #2A1F18; stroke-width: 1.5; }
+      .axis { fill: none; stroke: #8A7868; stroke-width: 1.5; }
+      .tick { font-family: 'Switzer', sans-serif; font-size: 11px; fill: #8A7868; text-anchor: middle; }
+      .pct { font-family: 'Fraunces', serif; font-style: italic; font-size: 36px; font-weight: 500; fill: #FFFFFF; text-anchor: middle; }
+      .seg-label { font-family: 'Switzer', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase; fill: #FBE3D6; text-anchor: middle; }
+      .col-title { font-family: 'Fraunces', serif; font-size: 16px; font-weight: 500; text-anchor: middle; }
+      .col-item { font-family: 'Switzer', sans-serif; font-size: 12px; fill: #5C4A3D; text-anchor: middle; }
+      .header { font-family: 'Switzer', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 1.6px; text-transform: uppercase; fill: #8A7868; text-anchor: middle; }
+      .footer { font-family: 'Fraunces', serif; font-style: italic; font-size: 13px; fill: #5C4A3D; text-anchor: middle; }
+      .salary-base { font-family: 'Switzer', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase; fill: #2A1F18; }
+    </style>
+  </defs>
+  <rect class="bg" x="0" y="0" width="800" height="500"/>
+
+  <!-- Header -->
+  <text class="header" x="400" y="45">REPARTO MENSUAL DEL SUELDO NETO</text>
+  <text class="salary-base" x="50" y="90">100 % = SUELDO NETO</text>
+
+  <!-- Stacked bar (total width 700, x: 50..750) -->
+  <!-- 50%: x=50..400 -->
+  <rect class="seg-necesidades" x="50" y="105" width="350" height="100"/>
+  <!-- 30%: x=400..610 -->
+  <rect class="seg-deseos" x="400" y="105" width="210" height="100"/>
+  <!-- 20%: x=610..750 -->
+  <rect class="seg-ahorro" x="610" y="105" width="140" height="100"/>
+  <rect class="seg-stroke" x="50" y="105" width="700" height="100"/>
+
+  <!-- Percentage labels on segments -->
+  <text class="pct" x="225" y="160">50 %</text>
+  <text class="seg-label" x="225" y="185">NECESIDADES</text>
+
+  <text class="pct" x="505" y="160">30 %</text>
+  <text class="seg-label" x="505" y="185">DESEOS</text>
+
+  <text class="pct" x="680" y="160">20 %</text>
+  <text class="seg-label" x="680" y="185">AHORRO</text>
+
+  <!-- Axis with ticks at 0/50/80/100% -->
+  <line class="axis" x1="50" y1="220" x2="750" y2="220"/>
+  <line class="axis" x1="50" y1="215" x2="50" y2="225"/>
+  <line class="axis" x1="400" y1="215" x2="400" y2="225"/>
+  <line class="axis" x1="610" y1="215" x2="610" y2="225"/>
+  <line class="axis" x1="750" y1="215" x2="750" y2="225"/>
+  <text class="tick" x="50" y="240">0 %</text>
+  <text class="tick" x="400" y="240">50 %</text>
+  <text class="tick" x="610" y="240">80 %</text>
+  <text class="tick" x="750" y="240">100 %</text>
+
+  <!-- Three columns of detail -->
+  <!-- Col 1: Necesidades -->
+  <g>
+    <text class="col-title" x="225" y="290" fill="#9C3A1C">Necesidades</text>
+    <text class="col-item" x="225" y="315">Alquiler o hipoteca</text>
+    <text class="col-item" x="225" y="333">Comida básica</text>
+    <text class="col-item" x="225" y="351">Suministros y transporte</text>
+    <text class="col-item" x="225" y="369">Móvil e internet</text>
+    <text class="col-item" x="225" y="387">Seguros obligatorios</text>
+  </g>
+
+  <!-- Col 2: Deseos -->
+  <g>
+    <text class="col-title" x="505" y="290" fill="#A87A2A">Deseos</text>
+    <text class="col-item" x="505" y="315">Ocio y restaurantes</text>
+    <text class="col-item" x="505" y="333">Ropa no esencial</text>
+    <text class="col-item" x="505" y="351">Suscripciones (Netflix...)</text>
+    <text class="col-item" x="505" y="369">Viajes</text>
+    <text class="col-item" x="505" y="387">Capricho del mes</text>
+  </g>
+
+  <!-- Col 3: Ahorro -->
+  <g>
+    <text class="col-title" x="680" y="290" fill="#2A1F18">Ahorro</text>
+    <text class="col-item" x="680" y="315">Fondo emergencia</text>
+    <text class="col-item" x="680" y="333">Inversión a largo</text>
+    <text class="col-item" x="680" y="351">Amortizar deudas</text>
+    <text class="col-item" x="680" y="369">Objetivos vitales</text>
+    <text class="col-item" x="680" y="387">(coche, máster...)</text>
+  </g>
+
+  <!-- Footer note -->
+  <text class="footer" x="400" y="445">Si los gastos fijos se comen más del 50 %, no es problema de presupuesto: es problema de ingresos o de vivienda.</text>
+  <text class="footer" x="400" y="465">Sin el 20 % de ahorro, cualquier imprevisto se convierte en deuda.</text>
+</svg>

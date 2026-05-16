@@ -1,0 +1,106 @@
+---
+/**
+ * Annotated Spanish payslip: visual breakdown from bruto to líquido
+ * for an example auxiliar administrativo earning 1.500€/mes. Three
+ * vertical sections — devengos, deducciones, líquido — with arrows
+ * explaining each deduction.
+ */
+---
+<svg viewBox="0 0 800 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="nomina-title nomina-desc">
+  <title id="nomina-title">Anatomía de una nómina española</title>
+  <desc id="nomina-desc">Esquema de una nómina dividida en devengos (lo que ganas), deducciones (IRPF y Seguridad Social) y líquido (lo que cobras), con un ejemplo numérico de 1.500€ brutos.</desc>
+  <defs>
+    <style>
+      .bg { fill: #FBF6EC; }
+      .section-devengos { fill: #FBE3D6; stroke: #C44E2C; stroke-width: 2; }
+      .section-deducciones { fill: #F5E5BC; stroke: #D4A24C; stroke-width: 2; }
+      .section-liquido { fill: #2A1F18; stroke: #2A1F18; stroke-width: 2; }
+      .row-line { stroke: #C8B79A; stroke-width: 1; stroke-dasharray: 2 3; }
+      .eyebrow { font-family: 'Switzer', sans-serif; font-size: 10.5px; font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase; text-anchor: middle; }
+      .section-title { font-family: 'Fraunces', serif; font-size: 16px; font-weight: 500; text-anchor: middle; }
+      .item-name { font-family: 'Switzer', sans-serif; font-size: 12px; fill: #2A1F18; }
+      .item-amount { font-family: 'JetBrains Mono', monospace; font-size: 12px; fill: #2A1F18; text-anchor: end; }
+      .item-amount-neg { fill: #9C3A1C; }
+      .total-name { font-family: 'Switzer', sans-serif; font-size: 12px; font-weight: 700; fill: #2A1F18; }
+      .total-amount { font-family: 'Fraunces', serif; font-style: italic; font-size: 16px; font-weight: 500; fill: #2A1F18; text-anchor: end; }
+      .liquido-label { font-family: 'Switzer', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 1.6px; text-transform: uppercase; fill: #FBE3D6; text-anchor: middle; }
+      .liquido-amount { font-family: 'Fraunces', serif; font-style: italic; font-size: 32px; font-weight: 500; fill: #FFFFFF; text-anchor: middle; }
+      .note { font-family: 'Switzer', sans-serif; font-size: 10.5px; fill: #5C4A3D; }
+      .arrow { fill: none; stroke: #8A7868; stroke-width: 1.4; marker-end: url(#nomarrow); }
+      .header { font-family: 'Switzer', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 1.6px; text-transform: uppercase; fill: #8A7868; }
+      .footer { font-family: 'Fraunces', serif; font-style: italic; font-size: 13px; fill: #5C4A3D; text-anchor: middle; }
+    </style>
+    <marker id="nomarrow" markerWidth="9" markerHeight="9" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 9 3, 0 6" fill="#8A7868"/>
+    </marker>
+  </defs>
+  <rect class="bg" x="0" y="0" width="800" height="520"/>
+
+  <!-- Header -->
+  <text class="header" x="40" y="35">EJEMPLO · AUXILIAR ADMINISTRATIVO · 1.500 € BRUTOS/MES</text>
+
+  <!-- Section 1: DEVENGOS (top-left) -->
+  <g>
+    <rect class="section-devengos" x="40" y="55" width="340" height="170" rx="6"/>
+    <text class="eyebrow" x="210" y="80" fill="#9C3A1C">1 · LO QUE GANAS</text>
+    <text class="section-title" x="210" y="102" fill="#9C3A1C">Devengos</text>
+
+    <line class="row-line" x1="55" y1="118" x2="365" y2="118"/>
+    <text class="item-name" x="55" y="138">Salario base</text>
+    <text class="item-amount" x="365" y="138">1.200,00 €</text>
+
+    <text class="item-name" x="55" y="158">Complementos</text>
+    <text class="item-amount" x="365" y="158">175,00 €</text>
+
+    <text class="item-name" x="55" y="178">Prorrateo pagas extras</text>
+    <text class="item-amount" x="365" y="178">125,00 €</text>
+
+    <line class="row-line" x1="55" y1="190" x2="365" y2="190"/>
+    <text class="total-name" x="55" y="212">Total bruto</text>
+    <text class="total-amount" x="365" y="212">1.500,00 €</text>
+  </g>
+
+  <!-- Section 2: DEDUCCIONES (top-right) -->
+  <g>
+    <rect class="section-deducciones" x="420" y="55" width="340" height="170" rx="6"/>
+    <text class="eyebrow" x="590" y="80" fill="#A87A2A">2 · LO QUE TE QUITAN</text>
+    <text class="section-title" x="590" y="102" fill="#A87A2A">Deducciones</text>
+
+    <line class="row-line" x1="435" y1="118" x2="745" y2="118"/>
+    <text class="item-name" x="435" y="138">IRPF (≈ 10 %)</text>
+    <text class="item-amount item-amount-neg" x="745" y="138">− 150,00 €</text>
+
+    <text class="item-name" x="435" y="158">SS trabajador (6,35 %)</text>
+    <text class="item-amount item-amount-neg" x="745" y="158">− 95,25 €</text>
+
+    <text class="note" x="435" y="178">A cuenta de Hacienda</text>
+    <text class="note" x="435" y="194">y de tu jubilación</text>
+
+    <line class="row-line" x1="435" y1="200" x2="745" y2="200"/>
+    <text class="total-name" x="435" y="218">Total deducciones</text>
+    <text class="total-amount" x="745" y="218">− 245,25 €</text>
+  </g>
+
+  <!-- Arrows from devengos and deducciones to liquido -->
+  <line class="arrow" x1="210" y1="230" x2="380" y2="305"/>
+  <line class="arrow" x1="590" y1="230" x2="420" y2="305"/>
+
+  <!-- Section 3: LIQUIDO (bottom center) -->
+  <g>
+    <rect class="section-liquido" x="200" y="310" width="400" height="130" rx="6"/>
+    <text class="liquido-label" x="400" y="340">3 · LO QUE COBRAS</text>
+    <text class="liquido-label" x="400" y="358" fill="#F5E5BC">LÍQUIDO A PERCIBIR</text>
+    <text class="liquido-amount" x="400" y="410">1.254,75 €</text>
+  </g>
+
+  <!-- Side annotations -->
+  <text class="note" x="40" y="260">El IRPF es un anticipo. En la declaración de la renta</text>
+  <text class="note" x="40" y="275">de junio se ajusta y puede salir a devolver o a pagar.</text>
+
+  <text class="note" x="760" y="260" text-anchor="end">La SS no te la devuelven. Va al fondo común que</text>
+  <text class="note" x="760" y="275" text-anchor="end">paga pensiones, paro y baja por enfermedad.</text>
+
+  <!-- Footer -->
+  <text class="footer" x="400" y="475">La diferencia entre bruto y líquido suele ser del 15-25 %.</text>
+  <text class="footer" x="400" y="495">Cuando un anuncio dice "1.500 €/mes" casi siempre se refiere al bruto. Lo que ingresas es menos.</text>
+</svg>
