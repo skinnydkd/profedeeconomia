@@ -26,7 +26,7 @@ import { platform } from 'node:os';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = resolve(__dirname, '..');
 
-const ASIGNATURAS = ['edmn-2bach', 'eco-1bach', 'eco-4eso'];
+const ASIGNATURAS = ['edmn-2bach', 'eco-1bach', 'eco-4eso', 'fopp-4eso'];
 
 function findChromeExecutable() {
   if (process.env.PUPPETEER_EXECUTABLE_PATH && existsSync(process.env.PUPPETEER_EXECUTABLE_PATH)) {
