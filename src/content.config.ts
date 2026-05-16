@@ -101,7 +101,7 @@ const recursos = defineCollection({
      * Add new identifiers there as new components ship.
      */
     componente: z
-      .enum(['PuntoMuerto', 'VANTIR', 'Ratios', 'ADASSimulator', 'InteresCompuesto'])
+      .enum(['PuntoMuerto', 'VANTIR', 'Ratios', 'ADASSimulator', 'InteresCompuesto', 'NominaESO', 'Presupuesto503020'])
       .optional(),
     /** External URL for resources hosted elsewhere; ignored when componente is set. */
     url_interactivo: z.string().optional(),
