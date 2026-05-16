@@ -100,7 +100,7 @@ const recursos = defineCollection({
      * The dispatch happens in `src/pages/[asignatura]/recursos/[slug].astro`.
      * Add new identifiers there as new components ship.
      */
-    componente: z.enum(['PuntoMuerto', 'VANTIR', 'Ratios']).optional(),
+    componente: z.enum(['PuntoMuerto', 'VANTIR', 'Ratios', 'NominaESO', 'Presupuesto503020']).optional(),
     /** External URL for resources hosted elsewhere; ignored when componente is set. */
     url_interactivo: z.string().optional(),
     lang: z.enum(LANGS).default('es'),
