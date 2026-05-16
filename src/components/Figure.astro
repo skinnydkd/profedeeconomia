@@ -37,6 +37,12 @@ const {
   aspectHint,
   eager = false,
 } = Astro.props;
+
+// paged.js (used for PDF generation) renders the whole document in one
+// pass and cannot wait for lazy-loaded images — they would time out the
+// Puppeteer protocol. Force eager loading inside the /imprimir/ route.
+const isPrintRoute = Astro.url.pathname.includes('/imprimir');
+const loading = eager || isPrintRoute ? 'eager' : 'lazy';
 ---
 
 <figure class:list={['figure', `figure--${variant}`]}>
@@ -46,7 +52,7 @@ const {
       alt={alt}
       widths={[480, 768, 1024, 1440]}
       sizes="(max-width: 720px) 100vw, 720px"
-      loading={eager ? 'eager' : 'lazy'}
+      loading={loading}
       decoding="async"
       format="webp"
       quality={82}
