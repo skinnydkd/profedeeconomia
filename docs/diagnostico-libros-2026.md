@@ -145,13 +145,21 @@ Aplicar a TOTS els units dels 4 llibres:
 
 ### Fase 3 — Visualidad editorial (eje C) — sessions 8-10
 
-**Sessió 8: auditoria i substitució d'imatges febles**
+**Sessió 8: auditoria i substitució d'imatges febles + varietat visual** (afegit per Pau 2026-05-18)
 
 Top imatges flagged a substituir per cada llibre (~15 totals):
 - EDMN: detectades 2-3 per agent (vegeu diagnòstic EDMN)
 - Eco 1BACH: 3-5 imatges (vegeu diagnòstic Eco 1BACH)
 - Eco 4ESO: 5 imatges genèriques (vegeu diagnòstic Eco 4ESO)
 - FOPP: 10-12 imatges, especialment stock genèric a Units 1, 3, 4, 9, 10
+
+**Variants noves del component `<Figure>` per a evitar monotonia visual** (actualment tot és `default` + `aspectHint` similar):
+- `variant="left"` / `variant="right"` — flotants amb text wraparound
+- `variant="half"` — 50% amplada
+- `variant="full"` — bleed-style, trenca el marge
+- `variant="inline-small"` — portraits xicotets inline
+
+Distribució objectiu per llibre: 40% default + 20% wide/full + 15% flotants + 15% tight + 10% inline-small. Verificar comportament print (paged.js).
 
 **Sessió 9: 18-22 nous diagrames SVG**
 

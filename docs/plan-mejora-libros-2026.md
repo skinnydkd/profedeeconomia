@@ -80,9 +80,10 @@ Diagnóstico inicial de Pau (2026-05-18): *"estan molt bé, tant en contingut co
 - Buscar substitutes en Wikimedia / Pexels / Unsplash con criterio más estricto
 - Mantener atribución y licencia
 
-**Sesión 3.2 — Nuevos diagramas SVG**:
+**Sesión 3.2 — Nuevos diagramas SVG + variantes de Figure**:
 - 15-20 nuevos diagramas (Phillips dinámica, Lorenz interactivo, RIASEC vocacional, etc.)
 - Componentes Astro reusables con la paleta Variant C
+- **Ampliar `<Figure>` con 5 variants nuevas** (afegit per Pau 2026-05-18): `left` / `right` (flotants amb wraparound), `half`, `full` (bleed), `inline-small` (portraits petits). Distribució objectiu: ~40% default + 20% wide/full + 15% flotants + 15% tight + 10% inline-small. Cal verificar comportament print.
 
 **Sesión 3.3 — Print y tipografía**:
 - Diseño de portadas dignas per cada PDF (no solo cubierta simple)
