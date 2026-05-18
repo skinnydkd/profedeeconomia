@@ -29,7 +29,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = resolve(__dirname, '..');
 
 // Configurable — extend the array as new books are published.
-const ASIGNATURAS = ['edmn-2bach', 'eco-1bach'];
+const ASIGNATURAS = ['edmn-2bach', 'eco-1bach', 'eco-4eso'];
 
 /**
  * Parse the YAML frontmatter at the top of an MDX file.
