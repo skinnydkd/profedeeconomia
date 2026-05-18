@@ -1,0 +1,74 @@
+---
+/**
+ * Production possibilities frontier (FPP).
+ * Concave-to-origin curve between two goods (mantequilla vs cañones).
+ * Point A: efficient (on the curve).
+ * Point B: subutilization (inside the feasible area).
+ * Point C: unattainable (outside the curve).
+ */
+---
+<svg viewBox="0 0 800 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="fpp-title fpp-desc">
+  <title id="fpp-title">Frontera de posibilidades de producción</title>
+  <desc id="fpp-desc">Curva cóncava al origen que representa las combinaciones máximas de dos bienes. Los puntos sobre la curva son eficientes, los interiores indican subutilización de recursos y los exteriores son inalcanzables con la tecnología actual.</desc>
+  <defs>
+    <style>
+      .bg { fill: #FBF6EC; }
+      .axis { stroke: #5C4A3D; stroke-width: 1.5; fill: none; }
+      .feasible { fill: #F5EDD9; fill-opacity: 0.85; }
+      .frontier { stroke: #C44E2C; stroke-width: 2.5; fill: none; }
+      .axis-label { font-family: 'Switzer', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; fill: #5C4A3D; }
+      .curve-label { font-family: 'Fraunces', serif; font-size: 16px; font-weight: 500; font-style: italic; fill: #C44E2C; }
+      .point-label { font-family: 'Fraunces', serif; font-size: 18px; font-weight: 500; fill: #2A1F18; text-anchor: middle; }
+      .point-desc { font-family: 'Switzer', sans-serif; font-size: 11.5px; font-weight: 600; fill: #5C4A3D; }
+      .tick { font-family: 'JetBrains Mono', monospace; font-size: 11px; fill: #5C4A3D; }
+      .pt-a { fill: #FFFFFF; stroke: #4F8C3F; stroke-width: 2.5; }
+      .pt-b { fill: #FFFFFF; stroke: #D4A24C; stroke-width: 2.5; }
+      .pt-c { fill: #FFFFFF; stroke: #B83A3A; stroke-width: 2.5; }
+    </style>
+    <marker id="fpp-arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#5C4A3D"/>
+    </marker>
+  </defs>
+  <rect class="bg" x="0" y="0" width="800" height="520"/>
+
+  <!-- Plot area: x from 100 to 700, y from 60 to 420 (axis intersection at (100,420)) -->
+  <!-- Feasible area: under the concave curve, polygon following curve down to origin -->
+  <!-- Curve: from (100, 80) to (660, 420), concave to origin.
+       Use a quadratic Bezier with control point near (100, 420) to bow outward.
+       Actually concave to origin means bowed away from origin. Control point should be far from origin: (660, 80). -->
+  <path class="feasible" d="M 100 80 Q 660 80 660 420 L 100 420 Z"/>
+
+  <!-- Frontier curve on top -->
+  <path class="frontier" d="M 100 80 Q 660 80 660 420"/>
+
+  <!-- Axes -->
+  <line class="axis" x1="100" y1="420" x2="730" y2="420" marker-end="url(#fpp-arrow)"/>
+  <line class="axis" x1="100" y1="440" x2="100" y2="40" marker-end="url(#fpp-arrow)"/>
+
+  <!-- Origin -->
+  <text class="tick" x="92" y="438" text-anchor="end">0</text>
+
+  <!-- Axis titles -->
+  <text class="axis-label" x="745" y="425">Y</text>
+  <text class="axis-label" x="90" y="35" text-anchor="end">X</text>
+  <text class="axis-label" x="415" y="475" text-anchor="middle">BIEN Y · cañones</text>
+  <text class="axis-label" x="35" y="235" text-anchor="middle" transform="rotate(-90 35 235)">BIEN X · mantequilla</text>
+
+  <!-- Point A: on the curve at t=0.5 → (520, 165). Efficient. -->
+  <circle class="pt-a" cx="520" cy="165" r="9"/>
+  <text class="point-label" x="520" y="151" fill="#2A5A1F">A</text>
+  <text class="point-desc" x="535" y="180" fill="#2A5A1F">Producción eficiente</text>
+
+  <!-- Point B: inside the feasible area (subutilization). Curve at x=320 has y≈97; B at y=320 is well below curve in pixel space → inside feasible. -->
+  <circle class="pt-b" cx="320" cy="320" r="9"/>
+  <text class="point-label" x="320" y="345" fill="#A87A2A">B</text>
+  <text class="point-desc" x="335" y="318" fill="#A87A2A">Subutilización</text>
+
+  <!-- Point C: outside the curve (unattainable). Curve at x=380 has pixel-y ≈ 109; C at (380, 60) is well above → outside feasible. -->
+  <circle class="pt-c" cx="380" cy="60" r="9"/>
+  <text class="point-label" x="380" y="46" fill="#B83A3A">C</text>
+  <text class="point-desc" x="395" y="64" fill="#B83A3A">Inalcanzable</text>
+
+  <!-- Curve label -->
+  <text class="curve-label" x="610" y="200">FPP</text>
+</svg>

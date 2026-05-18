@@ -1,0 +1,520 @@
+---
+asignatura: eco-1bach
+unidad: 7
+title: "Macroeconomía I: agentes, flujo circular e indicadores"
+lema: >-
+  Hasta aquí hemos mirado la economía a ras de suelo: un consumidor,
+  una empresa, un mercado. Ahora subimos a vista de pájaro. Una
+  economía completa son millones de decisiones que se cruzan, y para
+  entenderlas hace falta un mapa de agentes y un puñado de indicadores
+  bien elegidos.
+lang: es
+estado: publicado
+duracion: "6-7 sesiones · 2 semanas"
+bloque: Bloc C
+sabers:
+  - C.1
+conceptos_clave:
+  - macroeconomía
+  - agentes económicos
+  - familias
+  - empresas
+  - sector público
+  - sector exterior
+  - flujo circular de la renta
+  - PIB
+  - PIB nominal y real
+  - deflactor del PIB
+  - PIB per cápita
+  - IPC
+  - inflación
+  - IPCA
+  - tasa de paro (EPA)
+  - tasa de actividad
+  - balanza de pagos
+objetivos:
+  - Distinguir los cuatro agentes económicos y describir sus relaciones en el flujo circular de la renta.
+  - Calcular el PIB por los tres métodos (producción, gasto y renta) y comprender su equivalencia contable.
+  - Diferenciar PIB nominal y PIB real y aplicar el deflactor para convertir uno en otro.
+  - Interpretar el IPC y calcular la tasa de inflación interanual a partir de la serie del INE.
+  - Definir tasa de paro y tasa de actividad según la metodología de la EPA española.
+  - Reconocer la estructura básica de la balanza de pagos y el significado de sus cuentas.
+publicado_en: 2026-05-15
+---
+
+import Callout from '@components/Callout.astro';
+import Curiosity from '@components/Curiosity.astro';
+import RealExample from '@components/RealExample.astro';
+import SolvedExercise from '@components/SolvedExercise.astro';
+import Steps from '@components/Steps.astro';
+import KeyTakeaways from '@components/KeyTakeaways.astro';
+import Diagram from '@components/Diagram.astro';
+import Figure from '@components/Figure.astro';
+import FlujoCircular from '@components/diagrams/FlujoCircular.astro';
+import Bibliography from '@components/Bibliography.astro';
+
+import keynesBrettonWoods from '@assets/libro/eco-1bach/07/keynes-bretton-woods.jpg';
+import simonKuznets from '@assets/libro/eco-1bach/07/simon-kuznets.jpg';
+import ineMadrid from '@assets/libro/eco-1bach/07/ine-madrid.jpg';
+import robertKennedy from '@assets/libro/eco-1bach/07/robert-kennedy.jpg';
+
+En las seis unidades anteriores hemos analizado decisiones individuales: cómo elige un consumidor, cómo fija precios una empresa, qué pasa cuando un mercado falla. A partir de aquí cambia la escala. La **macroeconomía** estudia la economía como un todo: la producción agregada de un país, el nivel general de precios, el empleo del conjunto de la población activa, las relaciones comerciales con el exterior. No es una suma aritmética de la microeconomía —ocurren fenómenos que solo existen en el plano agregado, como las recesiones o la inflación—, pero tampoco vive desconectada de ella: cada cifra macro es el resultado de millones de decisiones micro que se cruzan en mercados, contratos y administraciones.
+
+Esta unidad fija el mapa que el resto del Bloque C va a recorrer. Primero, **quiénes** son los agentes que mueven la economía y **cómo se relacionan** (flujo circular). Después, **cómo medimos** lo que producen, los precios a los que lo hacen, cuánta gente está empleada y qué intercambiamos con el exterior. El nivel de exigencia es el habitual de un manual de bachillerato sólido: definiciones precisas, cálculos hechos con datos reales españoles (INE, Banco de España, Eurostat) y conciencia de las limitaciones de cada indicador.
+
+El RD 243/2022 sitúa estos contenidos en el saber básico **C.1** (macroeconomía, agentes económicos y flujo circular). La parte del modelo AD-AS, también englobada en C.1, se reserva a la Unidad 8 para no mezclar la *contabilidad* de la macro con su *modelización* dinámica.
+
+## ¿Qué es la macroeconomía?
+
+La **macroeconomía** es la rama de la economía que estudia los **agregados** —la producción total de un país, el nivel general de precios, el empleo, los tipos de interés, el saldo con el exterior— y las relaciones que los conectan. Donde la microeconomía pregunta *¿cómo se forma el precio del tomate en el mercado mayorista de Mercabarna?*, la macroeconomía pregunta *¿por qué los precios del conjunto de la economía española suben un 3 % al año?*. Las preguntas no son rivales; son complementarias.
+
+La macroeconomía moderna nació como disciplina autónoma con la **Gran Depresión** (1929-1939) y la obra de **John Maynard Keynes**, *Teoría general del empleo, el interés y el dinero* (1936). Antes, la economía ortodoxa explicaba el paro como un desajuste temporal en mercados individuales; Keynes mostró que podía existir un equilibrio de subempleo *agregado*, que el mercado por sí solo no corregía, y que la política económica del Estado tenía un papel estabilizador. Casi todo el lenguaje macro contemporáneo —demanda agregada, multiplicador del gasto, propensión al consumo— procede de ese debate.
+
+<Figure
+  src={keynesBrettonWoods}
+  alt="Harry Dexter White y John Maynard Keynes se saludan en la inauguración de la Junta de Gobernadores del Fondo Monetario Internacional, Savannah, marzo de 1946."
+  caption="John Maynard Keynes (derecha), asesor del Tesoro británico, saluda a Harry Dexter White, del Tesoro de Estados Unidos, en la primera Junta de Gobernadores del FMI (Savannah, marzo de 1946). De la *Teoría general* (1936) y de Bretton Woods (1944) salieron tanto el vocabulario macroeconómico moderno como las instituciones que aún ordenan la economía mundial."
+  credit="Foto: International Monetary Fund, dominio público vía Wikimedia Commons"
+  aspectHint="4/3"
+/>
+
+<Callout label="Concepto clave" title="Qué se mide en macroeconomía">
+
+Los cuatro grandes indicadores macroeconómicos que cualquier alumno de bachillerato debe saber leer son:
+
+1. La **producción agregada**, medida por el **PIB**.
+2. El **nivel de precios**, medido por el **IPC** (y por el deflactor del PIB).
+3. El **empleo y el paro**, medidos en España por la **EPA**.
+4. El **saldo con el exterior**, medido por la **balanza de pagos**.
+
+</Callout>
+
+## Los cuatro agentes económicos
+
+En macroeconomía simplificamos los millones de personas y organizaciones que toman decisiones agrupándolas en **cuatro grandes agentes**. Cada uno cumple una función específica en el sistema y sus decisiones se cruzan en los mercados.
+
+### Las familias (o economías domésticas)
+
+Las **familias** son la unidad básica de consumo y de oferta de trabajo. En las Cuentas Nacionales del INE se llaman *hogares*. Su comportamiento se resume en tres papeles:
+
+- **Ofrecen factores productivos** en los mercados de factores: sobre todo trabajo, pero también ahorro (capital financiero) y, en algunos casos, tierra (alquileres) o iniciativa empresarial.
+- **Reciben rentas** a cambio: salarios (mercado laboral), intereses y dividendos (mercados financieros), alquileres y beneficios distribuidos.
+- **Deciden** entre **consumir** o **ahorrar** parte de esa renta. El consumo agregado de las familias (C) es la principal partida del PIB español por el lado del gasto: en torno al **57 % del PIB** según el INE (2023).
+
+### Las empresas
+
+Las **empresas** son las unidades productivas. Su función económica es **combinar factores** —trabajo, capital, tierra, conocimiento— para producir bienes y servicios que venden en los mercados de productos. Toman dos decisiones macroeconómicamente relevantes:
+
+- **Producir** los bienes y servicios que componen, sumados, la oferta agregada.
+- **Invertir** en bienes de capital nuevos: ampliar la fábrica, comprar maquinaria, construir oficinas, desarrollar *software*. La inversión empresarial (I) es la partida más volátil del PIB; es la que más se desploma en las crisis y la que más rebota en las recuperaciones. Pesa habitualmente entre el **18 % y el 22 % del PIB** español.
+
+### El sector público
+
+El **sector público** agrupa todas las administraciones —Estado central, comunidades autónomas, entes locales y Seguridad Social— y desempeña en macroeconomía cuatro funciones fundamentales:
+
+- **Recauda impuestos** sobre rentas, consumo y patrimonio.
+- **Realiza gasto público** (G): consumo público (sueldos de funcionarios, suministros, mantenimiento) e inversión pública (infraestructuras, equipamiento).
+- **Hace transferencias** (pensiones, prestaciones por desempleo, ayudas) que no cuentan como gasto en el PIB pero sí afectan a la renta disponible de las familias.
+- **Estabiliza** la economía mediante la **política fiscal** y, en la zona euro, la **política monetaria** la lleva el BCE. Lo veremos en detalle en la Unidad 11.
+
+En España, el gasto público total representa en torno al **45 % del PIB** (incluyendo transferencias); el consumo público que entra en el PIB ronda el **19 %** (Eurostat, 2023).
+
+### El sector exterior
+
+El **sector exterior** —también llamado *resto del mundo*— recoge las relaciones de la economía con países terceros. Aparece en dos formas en el PIB:
+
+- **Exportaciones (X)**: bienes y servicios que producimos en España y vendemos al extranjero.
+- **Importaciones (M)**: bienes y servicios que producen otros países y compramos aquí.
+
+España es una economía abierta: las exportaciones de bienes y servicios suponen alrededor del **38 % del PIB** (Eurostat, 2023), un porcentaje que ha crecido sostenidamente desde la entrada en la UE en 1986. Veremos el comercio internacional con más detalle en la Unidad 12.
+
+## El flujo circular de la renta
+
+Las relaciones entre los cuatro agentes se representan habitualmente con un esquema conocido como **flujo circular de la renta**: un diagrama en el que se ve cómo el dinero circula entre familias, empresas, sector público y sector exterior a través de dos grandes circuitos paralelos.
+
+### El circuito básico (dos agentes, sin Estado ni exterior)
+
+Empecemos por la versión simplificada con solo dos agentes. Las **familias venden factores productivos** —sobre todo trabajo— a las empresas; a cambio reciben **rentas** (salarios, intereses, beneficios). Con esas rentas, las familias **compran bienes y servicios** a las empresas; a cambio, las empresas reciben **ingresos** que sirven para pagar a los factores productivos. El circuito se cierra: lo que las empresas pagan en rentas vuelve a ellas en forma de gasto en consumo.
+
+Esto, en su forma más pura, sería una economía cerrada sin ahorro ni inversión ni Estado: irreal, pero útil para ver la idea central. **Toda renta generada en la producción se convierte en gasto** que vuelve al circuito.
+
+### El circuito ampliado: fugas y entradas
+
+En la realidad, parte del dinero **se sale** del circuito en cada vuelta (fugas) y parte **entra** desde fuera (entradas). Tres pares de fugas y entradas son los que conviene fijar:
+
+<Steps label="Fugas y entradas" title="Los tres pares que cierran el flujo circular ampliado">
+  <li>**Ahorro / inversión.** Las familias no consumen toda su renta: una parte la **ahorran** (fuga). Ese ahorro se canaliza a través del sistema financiero hacia las empresas, que lo usan para **invertir** (entrada). En equilibrio macroeconómico, ahorro e inversión se igualan a nivel agregado.</li>
+  <li>**Impuestos / gasto público.** Las familias y las empresas pagan **impuestos** al sector público (fuga). El sector público devuelve ese dinero al circuito mediante **gasto público y transferencias** (entrada). Si gasta más de lo que ingresa, financia el déficit con deuda.</li>
+  <li>**Importaciones / exportaciones.** Parte del gasto se va al extranjero pagando **importaciones** (fuga). Pero también entra dinero del extranjero pagando nuestras **exportaciones** (entrada). La diferencia entre ambas (X − M) es el saldo exterior.</li>
+</Steps>
+
+Cuando las fugas (S + T + M) igualan a las entradas (I + G + X), la economía está en equilibrio macroeconómico. Esta identidad es uno de los andamiajes contables que sustentan el modelo AD-AS que verás en la Unidad 8.
+
+<Diagram caption="Flujo circular de la renta con los cuatro agentes y los flujos principales.">
+  <FlujoCircular />
+</Diagram>
+
+<Callout label="Identidad contable" title="La ecuación del flujo circular ampliado">
+
+En el agregado de una economía abierta:
+
+```
+S + T + M  =  I + G + X
+```
+
+Donde S es ahorro, T impuestos, M importaciones, I inversión, G gasto público y X exportaciones. La identidad **siempre se cumple** ex post: cuando los planes de ahorro, gasto e impuestos no encajan, el ajuste se produce vía precios, producción o saldo exterior.
+
+</Callout>
+
+## El PIB: medir lo que produce un país
+
+El indicador estrella de la macroeconomía es el **Producto Interior Bruto (PIB)**. Es el más usado, el más criticado y el que más decisiones políticas determina. Conviene saber exactamente qué es, qué mide y, sobre todo, qué *no* mide.
+
+### Definición
+
+<Callout label="Concepto clave" title="Definición de PIB">
+
+El **Producto Interior Bruto (PIB)** es el **valor monetario de todos los bienes y servicios finales producidos en el interior de un país durante un periodo determinado** (habitualmente un año o un trimestre).
+
+</Callout>
+
+Cada palabra cuenta. *Valor monetario*: se suma en euros, lo que obliga a usar precios de mercado. *Bienes y servicios finales*: solo los que se venden al consumidor final, no los intermedios, para no contar dos veces lo mismo. *En el interior*: dentro de las fronteras del país, sea cual sea la nacionalidad del propietario (a diferencia del PNB, que mide la producción de los nacionales esté donde esté). *Durante un periodo*: el PIB es una **variable flujo**, no una variable stock.
+
+En España, el PIB ronda los **1,5 billones de euros** anuales en 2023 (1.498.324 millones de euros corrientes según el INE, edición de 2024). Es la décima economía mundial por tamaño y la cuarta de la zona euro.
+
+### Los tres métodos de cálculo
+
+El PIB se puede calcular por tres caminos diferentes que, si las cuentas están bien hechas, dan exactamente el **mismo resultado**. La identidad entre los tres métodos no es una coincidencia: refleja que toda producción es simultáneamente gasto de quien la compra e ingreso de quien la vende. Es el reflejo contable del flujo circular.
+
+#### Método del gasto
+
+Suma todo lo que se gasta en bienes y servicios finales producidos en el país. Es el más intuitivo y el más usado en los manuales de bachillerato:
+
+```
+PIB = C + I + G + X − M
+```
+
+Donde:
+
+- **C**: consumo de las familias (bienes y servicios para satisfacer necesidades personales).
+- **I**: inversión (formación bruta de capital fijo + variación de existencias).
+- **G**: consumo público (sueldos, suministros y compras de las administraciones; **no** incluye transferencias como pensiones, que no son producción nueva).
+- **X − M**: saldo exterior (exportaciones menos importaciones, también llamado *exportaciones netas*).
+
+Restamos las importaciones porque ya están incluidas en C, I y G: si una familia compra un coche francés, esa compra está dentro de C, pero no se ha producido en España y por tanto no debe contar como PIB español.
+
+#### Método de la producción
+
+Suma el **Valor Añadido Bruto (VAB)** de todos los sectores. El VAB de cada empresa es el valor de su producción menos el valor de los **consumos intermedios** (materias primas y servicios que ha tenido que comprar a otras empresas). Sumando solo el valor añadido evitamos la **doble contabilización**: la harina que el panadero compra al molinero solo cuenta una vez.
+
+```
+PIB = Σ VAB sectorial + Impuestos netos sobre productos
+```
+
+En España, la distribución sectorial del VAB en 2023 fue, según el INE: servicios **74,3 %**, industria **15,6 %**, construcción **6,8 %**, agricultura, ganadería y pesca **2,6 %**, energía y similares el resto.
+
+#### Método de la renta
+
+Suma todas las rentas que han generado los factores productivos al producir esos bienes y servicios:
+
+```
+PIB = Remuneración de asalariados + EBE + Impuestos netos sobre la producción
+```
+
+Donde la **remuneración de asalariados** son los sueldos brutos más cotizaciones empresariales, y el **Excedente Bruto de Explotación (EBE)** agrupa los beneficios empresariales y las rentas mixtas de los autónomos. En España, el reparto típico es de un **47 % para trabajo** y un **42 % para excedente** (el resto son impuestos netos), según las Cuentas Nacionales 2023.
+
+<RealExample title="España recupera el PIB pre-pandemia en 2024" source="INE, Contabilidad Nacional Trimestral, datos de cierre 2024 (revisión marzo 2025) y Banco de España, Informe anual 2024.">
+El PIB español se hundió un **11,2 %** en 2020, el peor desplome desde la Guerra Civil. La recuperación fue desigual: se cerró 2021 con un crecimiento del 6,4 %, 2022 con un 5,8 % y 2023 con un 2,5 %. Fue en el **segundo trimestre de 2024** cuando España volvió oficialmente al nivel de PIB real previo a la pandemia, según el INE. Italia, Alemania y Francia ya lo habían hecho antes, pero el ritmo de crecimiento español durante 2023-2024 (en torno al 2,5-3 %) fue el más alto de las grandes economías de la zona euro, impulsado por el turismo —cifras récord de visitantes internacionales— y el despliegue de los fondos *Next Generation EU*.
+</RealExample>
+
+<SolvedExercise number="7.1" title="Calcular el PIB de un país por el método del gasto">
+
+**Enunciado**
+
+Una pequeña economía hipotética presenta los siguientes datos al cierre del año (en millones de euros):
+
+- Consumo de las familias: 600
+- Inversión de las empresas: 180
+- Variación de existencias: 20
+- Consumo público: 220
+- Inversión pública: 30
+- Exportaciones de bienes y servicios: 250
+- Importaciones de bienes y servicios: 200
+- Pensiones pagadas por la Seguridad Social: 150
+
+Calcula el PIB por el método del gasto e indica el saldo exterior.
+
+**Solución**
+
+1. Identificamos qué entra en cada componente:
+   - **C** = 600 (solo las familias).
+   - **I** = 180 (inversión empresarial) + 20 (variación de existencias) = **200**. La variación de existencias forma parte de la formación bruta de capital.
+   - **G** = 220 (consumo público) + 30 (inversión pública) = **250**. Las **pensiones (150) NO entran**: son transferencias, no producción nueva.
+   - **X − M** = 250 − 200 = **50** (saldo exterior positivo).
+
+2. Aplicamos la identidad del gasto:
+
+```
+PIB = C + I + G + (X − M)
+PIB = 600 + 200 + 250 + 50
+PIB = 1.100 millones de euros
+```
+
+3. Lecturas adicionales:
+   - El **saldo exterior es positivo** (+50 millones): la economía exporta más de lo que importa. En las Cuentas Nacionales esto contribuye positivamente al PIB.
+   - El **consumo de las familias** representa el 54,5 % del PIB, en línea con el peso típico en economías desarrolladas.
+   - Las **pensiones** son cuantitativamente importantes (150 millones) pero no incrementan el PIB: solo redistribuyen renta entre agentes. Un error frecuente del alumnado es sumarlas en G.
+
+</SolvedExercise>
+
+## PIB nominal, PIB real y deflactor
+
+El PIB se puede expresar en dos formas distintas, y confundirlas es uno de los errores más típicos. La diferencia importa enormemente cuando se compara la economía de un año con la de otro.
+
+### PIB nominal frente a PIB real
+
+- El **PIB nominal** (o PIB *a precios corrientes*) valora la producción de cada año a los **precios de ese mismo año**. Mezcla, por tanto, dos efectos: cambios en las cantidades producidas y cambios en los precios.
+- El **PIB real** (o PIB *a precios constantes*) valora la producción de todos los años a los precios de un **año base** común. Aísla el efecto cantidad: si el PIB real crece, es porque se ha producido más, no porque los precios hayan subido.
+
+Para comparar el tamaño de una economía a lo largo del tiempo —o el crecimiento entre dos años— siempre hay que usar **PIB real**. Comparar PIB nominales sería engañoso: España tenía un PIB nominal en 1990 de unos 320.000 millones de euros y en 2023 de 1,5 billones. Multiplicar por 4,7 el PIB nominal no significa que produzcamos 4,7 veces más: una parte muy importante de esa diferencia es solo subida de precios.
+
+### El deflactor del PIB
+
+El **deflactor del PIB** es el índice de precios implícito que conecta el PIB nominal con el PIB real:
+
+```
+Deflactor del PIB = (PIB nominal / PIB real) × 100
+```
+
+Equivalentemente, el PIB real se obtiene deflactando el nominal:
+
+```
+PIB real = (PIB nominal / Deflactor) × 100
+```
+
+El deflactor toma valor **100** en el año base (por construcción) y se mueve por encima o por debajo en el resto. Es uno de los dos grandes índices de precios de una economía, junto con el IPC, y mide los precios de **toda la producción nacional** (incluida la inversión y las exportaciones), no solo la cesta de consumo.
+
+<SolvedExercise number="7.2" title="Convertir PIB nominal en PIB real con el deflactor">
+
+**Enunciado**
+
+El país *Beta* presenta los siguientes datos del INE local. El año base es **2020 (deflactor = 100)**. Calcula el PIB real de cada año y la tasa de crecimiento del PIB real entre 2020 y 2023.
+
+| Año | PIB nominal (mill. €) | Deflactor |
+|---|---|---|
+| 2020 | 1.000 | 100,0 |
+| 2021 | 1.080 | 103,5 |
+| 2022 | 1.180 | 109,2 |
+| 2023 | 1.260 | 113,8 |
+
+**Solución**
+
+1. Aplicamos la fórmula PIB real = (PIB nominal / Deflactor) × 100 a cada año:
+
+   - **2020**: (1.000 / 100,0) × 100 = **1.000,0** mill. € (igual al nominal, lógico: es el año base).
+   - **2021**: (1.080 / 103,5) × 100 = **1.043,5** mill. €.
+   - **2022**: (1.180 / 109,2) × 100 = **1.080,6** mill. €.
+   - **2023**: (1.260 / 113,8) × 100 = **1.107,2** mill. €.
+
+2. Tasa de crecimiento del PIB **nominal** 2020-2023:
+
+```
+Δ% nominal = ((1.260 − 1.000) / 1.000) × 100 = 26,0 %
+```
+
+3. Tasa de crecimiento del PIB **real** 2020-2023:
+
+```
+Δ% real = ((1.107,2 − 1.000) / 1.000) × 100 = 10,72 %
+```
+
+4. Lecturas:
+   - La economía ha crecido **realmente un 10,7 %** en tres años, no un 26 %. La diferencia (~15 puntos) corresponde a la subida de precios captada por el deflactor.
+   - El deflactor pasa de 100 a 113,8: los precios agregados han subido un **13,8 %** acumulado en el periodo.
+   - Conviene comparar siempre PIB en términos **reales**: hablar de "el PIB creció un 26 %" sería incorrecto desde el punto de vista del bienestar productivo.
+
+</SolvedExercise>
+
+### El PIB per cápita
+
+Para comparar países de tamaño distinto se usa el **PIB per cápita**: el PIB dividido entre la población. Es una aproximación —imperfecta, pero útil— al nivel medio de renta de un país. En España, el PIB per cápita en 2023 fue de **30.968 €** según el INE, frente a una media de la zona euro en torno a 39.300 €. La brecha con Alemania, Francia o Países Bajos sigue siendo significativa, y reducirla es uno de los grandes retos del modelo productivo español de los próximos años.
+
+### Lo que el PIB no mide
+
+El PIB es un indicador agregado de **producción de mercado** y, como tal, deja fuera muchas cosas que importan al bienestar. No mide el **trabajo doméstico no remunerado**, ni la **economía sumergida** (estimada en torno al 17-20 % del PIB en España según los servicios de estudios), ni la **distribución** de la renta (un país puede tener un PIB per cápita alto y mucha desigualdad), ni la **sostenibilidad ambiental** de la producción, ni la **salud, la educación o la libertad** de su población. Por eso, junto al PIB se manejan indicadores complementarios como el **IDH** (PNUD) o los **Indicadores de Desarrollo Sostenible** de Naciones Unidas. Lo veremos en la Unidad 12.
+
+<Figure
+  src={simonKuznets}
+  alt="Retrato fotográfico de Simon Kuznets, economista estadounidense de origen ruso, premio Nobel de Economía en 1971."
+  caption="**Simon Kuznets** (1901-1985), arquitecto de la contabilidad nacional moderna. Encargado por el Congreso estadounidense en 1932 de construir el primer sistema de cuentas nacionales del país, ya en 1934 advirtió de que *«el bienestar de una nación difícilmente puede inferirse de una medida de la renta nacional»*. Recibió el Nobel en 1971."
+  credit="Foto: Associated Press, dominio público (PD-US-no notice) vía Wikimedia Commons"
+  aspectHint="3/2"
+/>
+
+<Curiosity title="Robert Kennedy y el discurso que recordó lo que el PIB no mide">
+El 18 de marzo de 1968, en plena campaña por las primarias demócratas, Robert F. Kennedy pronunció en la Universidad de Kansas uno de los discursos más citados sobre los límites del PIB: *«El Producto Nacional Bruto cuenta la contaminación del aire y la publicidad del tabaco, y las ambulancias que recogen a los heridos en nuestras autopistas... cuenta los rifles y los cuchillos y las cerraduras especiales para nuestras puertas y las cárceles para los que las rompen. Mide todo, en resumen, excepto aquello que hace que la vida valga la pena»*. La paradoja es que el propio sistema de contabilidad nacional fue inventado en plena Gran Depresión por el economista **Simon Kuznets**, que en 1934 advirtió ya al Congreso de Estados Unidos: *«El bienestar de una nación difícilmente puede inferirse de una medida de la renta nacional»*. Casi un siglo después, la advertencia sigue vigente, y los manuales serios no presentan el PIB sin sus matices.
+</Curiosity>
+
+<Figure
+  src={robertKennedy}
+  alt="Retrato del senador Robert F. Kennedy sentado en su despacho de Washington, enero de 1965."
+  caption="**Robert F. Kennedy** en su despacho del Senado en 1965. Tres años después, en el discurso de Kansas (18 de marzo de 1968), convirtió en sentencia política una idea técnica: que el PIB *«mide todo, excepto aquello que hace que la vida valga la pena»*. Fue asesinado tres meses más tarde, en plena campaña por las primarias demócratas."
+  credit="Foto: autor desconocido, dominio público (PD-US-no notice) vía Wikimedia Commons"
+  aspectHint="3/2"
+/>
+
+## El nivel de precios: IPC e inflación
+
+Si el PIB mide cuánto se produce, el **Índice de Precios de Consumo (IPC)** mide cuánto cuesta vivir. Es el segundo gran indicador de la macroeconomía, el más presente en la prensa y el que afecta más directamente a la vida cotidiana: revisiones salariales, alquileres, pensiones y deuda hipotecaria se indexan al IPC.
+
+### Qué es el IPC
+
+El **IPC** es un índice estadístico que mide la **variación del precio de una cesta representativa de bienes y servicios de consumo** adquiridos por los hogares. En España lo elabora el INE con frecuencia mensual, recogiendo más de 200.000 precios cada mes en unos 30.000 establecimientos de 177 municipios.
+
+La **cesta de la compra** está formada actualmente por 955 artículos agrupados en 12 grandes grupos: alimentos y bebidas no alcohólicas, bebidas alcohólicas y tabaco, vestido y calzado, vivienda, menaje, sanidad, transporte, comunicaciones, ocio y cultura, enseñanza, hoteles-cafés-restaurantes y otros. La **ponderación** de cada grupo refleja el peso que tiene en el gasto medio de los hogares según la **Encuesta de Presupuestos Familiares (EPF)**. Se revisa cada año.
+
+### IPC general, IPC subyacente, IPCA
+
+Conviene distinguir varias versiones del IPC que se usan habitualmente:
+
+- **IPC general**: incluye todos los grupos.
+- **IPC subyacente**: excluye los productos más volátiles (**alimentos no elaborados** y **productos energéticos**). Refleja mejor las tendencias estructurales de los precios y es el que vigilan especialmente los bancos centrales para decidir tipos de interés.
+- **IPCA** (Índice de Precios de Consumo Armonizado): versión homogeneizada con metodología común para todos los países de la UE, lo que permite comparar la inflación entre Estados miembros. Es el indicador que utiliza el BCE para vigilar el objetivo de estabilidad de precios (inflación del 2 % a medio plazo).
+
+### La tasa de inflación
+
+La **inflación** es la tasa de variación del IPC. La forma más habitual es la **tasa interanual**:
+
+```
+Tasa de inflación interanual = ((IPC mes actual − IPC mismo mes año anterior) / IPC mismo mes año anterior) × 100
+```
+
+En España, la inflación interanual media de los últimos años, según el INE, ha sido:
+
+| Año | IPC general (variación anual media) | IPC subyacente |
+|---|---|---|
+| 2021 | +3,1 % | +0,8 % |
+| 2022 | +8,4 % | +5,2 % |
+| 2023 | +3,5 % | +6,0 % |
+| 2024 | +2,8 % | +2,9 % |
+
+La aceleración de 2022 fue la mayor en cuatro décadas, impulsada por el encarecimiento de la energía tras la invasión rusa de Ucrania y los cuellos de botella post-pandemia. En 2023 y 2024 se moderó gracias a las subidas de tipos del BCE, la caída de los precios energéticos y, en parte, a las medidas fiscales del Gobierno (rebaja del IVA en alimentos básicos, descuentos al transporte público).
+
+### Tres tipos de inflación
+
+Por su intensidad se distinguen tres regímenes:
+
+- **Inflación moderada**: una cifra anual, sin grandes distorsiones. Es la situación normal en una economía estable. El BCE persigue un **2 %** como objetivo.
+- **Inflación elevada o galopante**: dos dígitos anuales, distorsiona contratos y planificación. España vivió episodios así en los años setenta (con tasas medias del 15-20 %).
+- **Hiperinflación**: subidas mensuales muy altas, el dinero pierde su función. Casos históricos: Alemania 1923, Hungría 1946, Zimbabwe 2008, Venezuela 2017-2019, Argentina recientemente.
+
+<RealExample title="Argentina: 200 % de inflación y el cambio metodológico del INDEC" source="INDEC, Índice de Precios al Consumidor, serie 2024; Banco Central de la República Argentina, informes mensuales 2024-2025; FMI, Article IV consultation Argentina 2024.">
+La inflación interanual en Argentina alcanzó el **211 % a cierre de 2023**, la cifra más alta desde 1991, con un pico mensual del **25,5 %** en diciembre tras la devaluación del nuevo gobierno de Javier Milei. Durante 2024, las medidas de ajuste fiscal redujeron la inflación mensual hasta el 2,7 % en diciembre, aunque la interanual cerró todavía en el **117 %**. El caso argentino es relevante por dos motivos didácticos: muestra cómo una economía puede instalarse en inflación de tres dígitos durante años (efecto inercial, expectativas adaptativas), y recuerda el episodio del **intervencionismo del INDEC entre 2007 y 2015**, cuando el organismo estadístico oficial publicaba IPC manipulados políticamente y el FMI llegó a censurar a Argentina por publicar datos no fiables. La credibilidad de la estadística económica no es un asunto técnico: es la condición para que la política monetaria funcione.
+</RealExample>
+
+## Empleo y desempleo: la EPA
+
+El tercer gran indicador macro mide cuánta gente trabaja y cuánta no. En España se elabora trimestralmente mediante la **Encuesta de Población Activa (EPA)** del INE, encuesta a unos 60.000 hogares cada trimestre con metodología armonizada por la Oficina Internacional del Trabajo (OIT) y Eurostat.
+
+<Figure
+  src={ineMadrid}
+  alt="Fachada del edificio sede del Instituto Nacional de Estadística (INE) en el paseo de la Castellana de Madrid, con su característico revestimiento de paneles de colores numerados del 001 al 058."
+  caption="Sede del **Instituto Nacional de Estadística** en el paseo de la Castellana, Madrid. De este edificio salen cada mes el IPC, cada trimestre la EPA y, una vez al año, la Contabilidad Nacional: las tres cifras que vertebran la lectura macroeconómica de España. El revestimiento de paneles numerados (001-058) es obra de Ruiz-Larrea y Gómez Gutiérrez (2008)."
+  credit="Foto: Rick Ligthelm, CC BY 2.0 vía Wikimedia Commons"
+  aspectHint="3/2"
+/>
+
+### Población activa, ocupada y parada
+
+La metodología de la EPA define con precisión cada categoría —y conviene aprenderla bien porque las definiciones del lenguaje cotidiano y las técnicas no coinciden:
+
+- **Población en edad de trabajar**: personas de **16 años o más**.
+- **Población activa**: las que están ocupadas o paradas (en sentido EPA). Es decir, las que **participan o quieren participar** en el mercado laboral.
+- **Población ocupada**: personas de 16 años o más que en la semana de referencia han trabajado al menos **una hora** a cambio de remuneración o como ayuda en negocio familiar.
+- **Población parada**: personas de 16 años o más que **no trabajan**, **buscan activamente empleo** y **están disponibles** para trabajar. Si falta alguno de los tres requisitos, no cuentan como paradas en la EPA.
+- **Población inactiva**: el resto en edad de trabajar (estudiantes, personas que se dedican al hogar sin remuneración, jubilados, personas que han dejado de buscar empleo).
+
+### Tasa de paro y tasa de actividad
+
+A partir de las categorías anteriores se construyen los dos indicadores clave:
+
+```
+Tasa de paro = (Parados / Población activa) × 100
+Tasa de actividad = (Población activa / Población de 16 años o más) × 100
+```
+
+Datos españoles del **tercer trimestre de 2024** (INE, EPA T3-2024):
+
+| Indicador | Valor T3-2024 |
+|---|---|
+| Población activa | 24,2 millones |
+| Población ocupada | 21,5 millones |
+| Población parada | 2,7 millones |
+| Tasa de paro | **11,3 %** |
+| Tasa de actividad | **58,7 %** |
+| Tasa de paro juvenil (16-24 años) | **26,6 %** |
+
+España convive desde los años ochenta con tasas de paro estructuralmente más altas que la media de la UE: la media de la zona euro en 2024 ronda el **6,4 %**. Esa diferencia es uno de los grandes problemas del modelo laboral español y será objeto de la Unidad 9 (mercado de trabajo).
+
+### EPA frente a paro registrado
+
+Conviene no confundir la EPA con el **paro registrado** del SEPE (antiguo INEM):
+
+- La **EPA** es una **encuesta estadística** trimestral con metodología internacional comparable. Es la cifra oficial de paro.
+- El **paro registrado** cuenta las personas inscritas como demandantes de empleo en las oficinas del SEPE. Es un dato **administrativo mensual**. No incluye, por ejemplo, a personas que buscan empleo pero no se han inscrito.
+
+Las dos cifras suelen diferir entre 300.000 y 700.000 personas. Cuando un titular dice *"el paro sube/baja"*, conviene mirar de qué dato habla.
+
+## La balanza de pagos
+
+El cuarto gran indicador macroeconómico mide las relaciones de una economía con el resto del mundo. La **balanza de pagos** es el documento contable que **registra todas las operaciones económicas** entre los residentes de un país y los del resto del mundo durante un periodo (habitualmente un año). En España la elabora el **Banco de España** con metodología del FMI.
+
+### Las tres grandes cuentas
+
+La balanza de pagos se divide en tres cuentas principales que, por construcción, suman cero (con un cuarto componente de errores y omisiones):
+
+<Steps label="Cuentas" title="Las tres cuentas de la balanza de pagos">
+  <li>**Cuenta corriente.** Registra el comercio de bienes (balanza comercial), servicios (turismo, transporte, servicios profesionales), rentas (sueldos, dividendos e intereses entre residentes y no residentes) y transferencias corrientes (remesas, ayudas al desarrollo, fondos UE). Es la cuenta más vigilada: su saldo indica si el país vive *con* o *de* el exterior.</li>
+  <li>**Cuenta de capital.** Recoge las transferencias de capital (sobre todo **fondos estructurales de la UE** y el grueso de los *Next Generation EU*) y operaciones con activos no producidos no financieros (patentes, derechos de autor).</li>
+  <li>**Cuenta financiera.** Registra las **variaciones de activos y pasivos financieros** entre residentes y no residentes: inversión extranjera directa, inversión en cartera (acciones, bonos), préstamos internacionales, variación de las reservas del banco central.</li>
+</Steps>
+
+El saldo de la cuenta corriente + cuenta de capital tiene que igualar (con signo opuesto) al de la cuenta financiera. Si un país tiene déficit en la cuenta corriente, necesita financiarlo con entrada de capital en la cuenta financiera (préstamos, inversión extranjera). Si tiene superávit, presta o invierte hacia fuera.
+
+### España, una economía con superávit exterior
+
+Tras décadas de déficit por cuenta corriente, España presenta **superávit por cuenta corriente desde 2012**. En 2023, según el Banco de España, el saldo de la cuenta corriente fue de **+39.000 millones de euros** (≈ +2,6 % del PIB), impulsado por dos motores:
+
+- Un **superávit de servicios** muy elevado, gracias sobre todo al turismo (España es el segundo destino mundial por número de visitantes internacionales) y a los servicios no turísticos (consultoría, servicios profesionales, transporte).
+- Un **déficit comercial moderado** en bienes —importamos energía y bienes manufacturados— compensado por exportaciones de automoción, agroalimentación y químicos.
+
+El cambio estructural respecto al modelo previo a la crisis de 2008-2012 —cuando España tenía déficits por cuenta corriente del 9-10 % del PIB— es uno de los rasgos más importantes de la economía española actual y será objeto de análisis en la Unidad 12.
+
+## Conexión con las próximas unidades
+
+Esta unidad sienta el vocabulario macroeconómico básico que las siguientes desarrollan. La **Unidad 8** introduce el modelo **AD-AS** —demanda agregada y oferta agregada— para explicar **por qué** el PIB y los precios se mueven como lo hacen, y los **ciclos económicos**. La **Unidad 9** profundiza en el **mercado de trabajo** (tipos de paro, brecha salarial, políticas de empleo). La **Unidad 10** estudia el **sistema financiero**, el **dinero** y la **banca**, agentes esenciales para canalizar el ahorro hacia la inversión. La **Unidad 11** completa el cuadro con las **políticas económicas** —fiscal y monetaria— que el sector público usa para estabilizar la economía. Y la **Unidad 12** cierra el curso conectando todo con la **globalización**, la **Unión Europea** y los **retos contemporáneos** del modelo productivo español.
+
+<KeyTakeaways title="Lo esencial de la unidad">
+- La **macroeconomía** estudia los agregados de una economía (PIB, IPC, paro, saldo exterior) y nació como disciplina moderna con Keynes tras la Gran Depresión.
+- Los **cuatro agentes** —familias, empresas, sector público, sector exterior— se relacionan en el **flujo circular de la renta** mediante fugas (S, T, M) y entradas (I, G, X) que cierran la identidad **S + T + M = I + G + X**.
+- El **PIB** mide el valor de los bienes y servicios finales producidos en el interior de un país. Se calcula por **tres métodos equivalentes**: gasto (C + I + G + X − M), producción (suma de VAB) y renta (sueldos + EBE + impuestos netos).
+- El **PIB nominal** mezcla cantidades y precios; el **PIB real** aísla las cantidades usando un año base. El **deflactor del PIB** conecta ambos: PIB real = (PIB nominal / Deflactor) × 100.
+- El **IPC** mide el precio de una cesta de consumo. La **tasa de inflación** es su variación. España registró +2,8 % en 2024 (INE), por debajo del pico de 2022.
+- La **tasa de paro EPA** española en T3-2024 fue del **11,3 %**, sensiblemente por encima de la media de la zona euro (~6,4 %). La tasa de actividad rondó el 58,7 %.
+- La **balanza de pagos** registra las operaciones con el exterior. España presenta superávit por cuenta corriente desde 2012 (≈ +2,6 % del PIB en 2023), gracias sobre todo al turismo.
+</KeyTakeaways>
+
+<Bibliography>
+
+1. Real Decreto 243/2022, de 5 de abril, por el que se establecen la ordenación y las enseñanzas mínimas del Bachillerato (BOE‑A‑2022‑5521), anexo II — Economía.
+2. Instituto Nacional de Estadística (2024). *Contabilidad Nacional Anual de España*. Base 2015, revisión 2024.
+3. Instituto Nacional de Estadística (2024). *Encuesta de Población Activa, tercer trimestre de 2024*. Notas de prensa, octubre 2024.
+4. Instituto Nacional de Estadística (2024). *Índice de Precios de Consumo, base 2021*. Series mensuales y notas metodológicas.
+5. Banco de España (2024). *Balanza de Pagos y Posición de Inversión Internacional de España, 2023*. Informe anual.
+6. Banco de España (2024). *Informe Anual 2024*. Capítulos 1 y 2.
+7. Eurostat (2024). *National accounts and GDP*; *Harmonised Index of Consumer Prices (HICP)*. Datos comparados UE-27.
+8. Mankiw, N. G. (2021). *Principios de economía*. 9.ª edición. Cengage Learning. Caps. 23-24.
+9. Krugman, P., Wells, R. y Graddy, K. (2020). *Fundamentos de economía*. 3.ª edición. Reverté. Caps. 21-22.
+10. Keynes, J. M. (1936). *The General Theory of Employment, Interest, and Money*. Macmillan.
+
+</Bibliography>
