@@ -1,0 +1,322 @@
+---
+/**
+ * Playground de propostes de logo per a profedeeconomia.es.
+ * Ruta privada (noindex) per a triar entre alternatives.
+ *
+ * URL: /playground/logos/
+ */
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+const options = [
+  { id: 'A', name: 'Monograma p.', desc: 'Punt final + p minúscula en Fraunces. La més editorial.' },
+  { id: 'B', name: 'p italic swash', desc: 'p minúscula italic amb WONK 1. Personal i culta.' },
+  { id: 'C', name: 'pde trigrama', desc: 'Tres lletres en negreta. Recorda al Pacioli / segells editorials.' },
+  { id: 'D', name: 'Logotype complet', desc: 'Tot el nom en Fraunces variable, sense símbol al costat.' },
+  { id: 'E', name: 'Símbol O&D', desc: 'Oferta i demanda creuades en cercle. Iconogràfic econòmic.' },
+  { id: 'F', name: 'Eix amb línia', desc: 'Quadrant + eix + corba ascendent. Minimalista.' },
+  { id: 'G', name: 'Llibre obert', desc: 'Dues línies en angle (llibre). Senyal editorial més literal.' },
+  { id: 'H', name: 'Cercles (actual)', desc: 'Tres cercles concèntrics. El que tenim ara.' },
+];
+---
+
+<BaseLayout title="Playground · Logos — profedeeconomia" description="Propostes de logo">
+  <div class="container">
+    <header class="page-head">
+      <span class="kicker">Playground · privat</span>
+      <h1>Propostes de logo</h1>
+      <p class="lede">
+        Vuit alternatives per al logo principal de profedeeconomia.es. La identitat
+        general (paleta, Fraunces, to editorial) es manté. Aquí varia només la
+        marca visual que apareix a l'esquerra de la barra de navegació i, eventualment,
+        al favicon i a Open Graph.
+      </p>
+    </header>
+
+    <div class="grid">
+      {options.map((opt) => (
+        <article class={`card card--${opt.id}`}>
+          <div class="card__preview">
+            {opt.id === 'A' && (
+              <span class="logo logo--A">
+                <span class="logo--A-letter">p</span><span class="logo--A-dot">.</span>
+                <span class="logo--A-word">profedeeconomia</span>
+              </span>
+            )}
+            {opt.id === 'B' && (
+              <span class="logo logo--B">
+                <span class="logo--B-letter">p</span>
+                <span class="logo--B-word">profedeeconomia</span>
+              </span>
+            )}
+            {opt.id === 'C' && (
+              <span class="logo logo--C">
+                <span class="logo--C-mark">pde</span>
+                <span class="logo--C-word">profedeeconomia</span>
+              </span>
+            )}
+            {opt.id === 'D' && (
+              <span class="logo logo--D">
+                <span class="logo--D-prefix">profe</span><span class="logo--D-dash">·</span><span class="logo--D-domain">de economía</span>
+              </span>
+            )}
+            {opt.id === 'E' && (
+              <span class="logo logo--E">
+                <svg class="logo--E-svg" width="36" height="36" viewBox="0 0 36 36" aria-hidden="true">
+                  <circle cx="18" cy="18" r="16" fill="none" stroke="#C44E2C" stroke-width="1.5" />
+                  <line x1="8" y1="26" x2="28" y2="10" stroke="#C44E2C" stroke-width="2" stroke-linecap="round" />
+                  <line x1="8" y1="10" x2="28" y2="26" stroke="#D4A24C" stroke-width="2" stroke-linecap="round" />
+                </svg>
+                <span class="logo--E-word">profedeeconomia</span>
+              </span>
+            )}
+            {opt.id === 'F' && (
+              <span class="logo logo--F">
+                <svg class="logo--F-svg" width="36" height="36" viewBox="0 0 36 36" aria-hidden="true">
+                  <line x1="6" y1="6" x2="6" y2="30" stroke="#2A1F18" stroke-width="1.5" />
+                  <line x1="6" y1="30" x2="30" y2="30" stroke="#2A1F18" stroke-width="1.5" />
+                  <path d="M 8 24 Q 14 18 20 16 T 30 8" fill="none" stroke="#C44E2C" stroke-width="2" stroke-linecap="round" />
+                  <circle cx="30" cy="8" r="2.4" fill="#D4A24C" />
+                </svg>
+                <span class="logo--F-word">profedeeconomia</span>
+              </span>
+            )}
+            {opt.id === 'G' && (
+              <span class="logo logo--G">
+                <svg class="logo--G-svg" width="36" height="36" viewBox="0 0 36 36" aria-hidden="true">
+                  <path d="M 6 10 L 18 6 L 30 10 L 30 28 L 18 24 L 6 28 Z" fill="none" stroke="#C44E2C" stroke-width="1.5" stroke-linejoin="round" />
+                  <line x1="18" y1="6" x2="18" y2="24" stroke="#2A1F18" stroke-width="1.2" />
+                </svg>
+                <span class="logo--G-word">profedeeconomia</span>
+              </span>
+            )}
+            {opt.id === 'H' && (
+              <span class="logo logo--H">
+                <span class="brand-mark"></span>
+                <span class="logo--H-word">profedeeconomia</span>
+              </span>
+            )}
+          </div>
+          <div class="card__meta">
+            <span class="card__id">Opció {opt.id}</span>
+            <h2 class="card__name">{opt.name}</h2>
+            <p class="card__desc">{opt.desc}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <section class="note">
+      <h2>Com triar</h2>
+      <p>
+        Cap de les opcions no compromet la resta de la identitat (paleta cream + terracota
+        + mostassa, Fraunces, Switzer). Si t'agrada una en concret, la apliquem a
+        <code>SiteHeader.astro</code> + favicon + Open Graph en una sessió curta (uns 30 min).
+      </p>
+      <p>
+        <strong>El meu top 3 recomanat</strong>: <em>D (logotype complet, més editorial)</em>,
+        <em>A (monograma p. — compatible amb favicon)</em>, <em>F (eix amb corba ascendent — més iconogràficament econòmic)</em>.
+      </p>
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  .container {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 clamp(1.5rem, 4vw, 3rem);
+  }
+
+  .page-head { padding: 2.5rem 0 1rem; max-width: 720px; }
+  .kicker {
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-terra);
+    font-weight: 600;
+  }
+  h1 {
+    font-family: var(--font-serif);
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    margin: 0.7rem 0 1rem;
+    font-variation-settings: "SOFT" 80;
+  }
+  .lede {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.2rem;
+    line-height: 1.5;
+    color: var(--color-ink-soft);
+    font-variation-settings: "SOFT" 80;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.25rem;
+    padding: 2rem 0;
+  }
+  .card {
+    border: 1px solid var(--color-line);
+    border-radius: 6px;
+    background: var(--color-paper);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  .card__preview {
+    background: var(--color-bg);
+    padding: 2.4rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px dashed var(--color-line);
+    min-height: 110px;
+  }
+  .card__meta { padding: 1rem 1.25rem 1.2rem; }
+  .card__id {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    color: var(--color-terra);
+    font-weight: 700;
+  }
+  .card__name {
+    font-family: var(--font-serif);
+    font-size: 1.15rem;
+    margin: 0.3rem 0 0.4rem;
+    font-variation-settings: "SOFT" 80;
+  }
+  .card__desc {
+    font-family: var(--font-sans);
+    font-size: 0.88rem;
+    line-height: 1.4;
+    color: var(--color-ink-soft);
+    margin: 0;
+  }
+
+  /* ─────────────── Variants de logo ─────────────── */
+
+  .logo {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.4rem;
+    color: var(--color-ink);
+  }
+
+  /* A — Monograma p. */
+  .logo--A {
+    font-family: var(--font-serif);
+    font-size: 1.55rem;
+    font-variation-settings: "SOFT" 100, "WONK" 1;
+    gap: 0.55rem;
+  }
+  .logo--A-letter {
+    color: var(--color-terra);
+    font-weight: 600;
+    font-style: italic;
+  }
+  .logo--A-dot {
+    color: var(--color-mustard);
+    margin-left: -0.35em;
+    font-weight: 700;
+  }
+  .logo--A-word {
+    font-size: 1.1rem;
+    color: var(--color-ink);
+    margin-left: 0.2rem;
+    font-variation-settings: "SOFT" 60, "WONK" 0;
+  }
+
+  /* B — p italic swash */
+  .logo--B { font-family: var(--font-serif); font-size: 1.55rem; align-items: baseline; }
+  .logo--B-letter {
+    font-style: italic;
+    font-weight: 500;
+    font-size: 2.3rem;
+    color: var(--color-terra);
+    font-variation-settings: "SOFT" 100, "WONK" 1;
+    line-height: 0.9;
+    margin-right: 0.2rem;
+  }
+  .logo--B-word {
+    font-size: 1.1rem;
+    color: var(--color-ink);
+    font-variation-settings: "SOFT" 60;
+  }
+
+  /* C — pde trigrama */
+  .logo--C { font-family: var(--font-serif); font-size: 1.1rem; }
+  .logo--C-mark {
+    background: var(--color-ink);
+    color: var(--color-bg);
+    padding: 0.18em 0.38em;
+    border-radius: 3px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: 0.04em;
+    font-variation-settings: "SOFT" 50;
+    margin-right: 0.55rem;
+  }
+  .logo--C-word { color: var(--color-ink); font-size: 1.1rem; font-variation-settings: "SOFT" 60; }
+
+  /* D — Logotype complet */
+  .logo--D {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    font-variation-settings: "SOFT" 100, "WONK" 1;
+  }
+  .logo--D-prefix { color: var(--color-ink); font-weight: 500; }
+  .logo--D-dash { color: var(--color-mustard); margin: 0 0.18em; font-weight: 700; }
+  .logo--D-domain { color: var(--color-terra); font-style: italic; font-weight: 500; }
+
+  /* E — Símbol O&D */
+  .logo--E { font-family: var(--font-serif); font-size: 1.1rem; gap: 0.5rem; align-items: center; }
+  .logo--E-word { color: var(--color-ink); font-variation-settings: "SOFT" 60; }
+
+  /* F — Eix amb línia */
+  .logo--F { font-family: var(--font-serif); font-size: 1.1rem; gap: 0.5rem; align-items: center; }
+  .logo--F-word { color: var(--color-ink); font-variation-settings: "SOFT" 60; }
+
+  /* G — Llibre obert */
+  .logo--G { font-family: var(--font-serif); font-size: 1.1rem; gap: 0.5rem; align-items: center; }
+  .logo--G-word { color: var(--color-ink); font-variation-settings: "SOFT" 60; }
+
+  /* H — Cercles (actual) */
+  .logo--H { font-family: var(--font-serif); font-size: 1.1rem; gap: 0.55rem; align-items: center; }
+  .logo--H-word { color: var(--color-ink); font-variation-settings: "SOFT" 60; }
+
+  /* ─────────────── Nota final ─────────────── */
+  .note {
+    background: var(--color-bg-cream);
+    border-left: 4px solid var(--color-mustard);
+    padding: 1.5rem 1.8rem;
+    margin: 2rem 0 4rem;
+    border-radius: 0 4px 4px 0;
+    max-width: 720px;
+  }
+  .note h2 {
+    font-family: var(--font-serif);
+    font-size: 1.3rem;
+    margin: 0 0 0.6rem;
+    font-variation-settings: "SOFT" 80;
+  }
+  .note p {
+    font-family: var(--font-serif);
+    font-size: 1.02rem;
+    line-height: 1.6;
+    color: var(--color-ink);
+    margin: 0 0 0.7rem;
+  }
+  .note code {
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+    background: var(--color-paper);
+    padding: 0.1em 0.35em;
+    border-radius: 3px;
+    border: 1px solid var(--color-line);
+  }
+</style>
+
+<meta slot="head" name="robots" content="noindex,nofollow" />

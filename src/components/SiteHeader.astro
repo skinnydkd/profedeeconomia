@@ -15,7 +15,7 @@ import { ASIGNATURAS_LIST } from '@/lib/asignaturas';
       <a href="/juegos/">Juegos</a>
       <a href="/herramientas/">Herramientas</a>
       <a href="/emprendimiento/">Emprendimiento</a>
-      <a href="/oposiciones" class="ext" rel="external">Oposiciones</a>
+      <a href="/oposiciones" rel="external">Oposiciones</a>
     </nav>
   </div>
 </header>
@@ -54,20 +54,25 @@ import { ASIGNATURAS_LIST } from '@/lib/asignaturas';
   .site-nav {
     display: flex;
     align-items: center;
-    gap: 1.5rem;
-    flex-wrap: wrap;
+    gap: 1.15rem;
+    flex-wrap: nowrap;
+    white-space: nowrap;
   }
   .site-nav a {
     color: var(--color-ink-soft);
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     font-weight: 500;
     text-decoration: none;
     transition: color .15s ease;
   }
   .site-nav a:hover { color: var(--color-terra); }
-  .site-nav .ext::after {
-    content: " ↗";
-    font-size: 0.8em;
-    color: var(--color-ink-mute);
+
+  /* Mobile: permitir wrap para que no se desborde */
+  @media (max-width: 960px) {
+    .site-nav {
+      flex-wrap: wrap;
+      gap: 0.9rem 1.1rem;
+      justify-content: flex-end;
+    }
   }
 </style>
