@@ -45,6 +45,15 @@ import nyseTradingFloor from '@assets/libro/edmn-2bach/09/nyse-trading-floor.jpg
 import frankfurtStockExchange from '@assets/libro/edmn-2bach/09/frankfurt-stock-exchange.jpg';
 import bancoSanCarlos1782 from '@assets/libro/edmn-2bach/09/banco-san-carlos-1782.jpg';
 
+> **⏱ Tiempo estimado de lectura**: ~25 min · **🎯 Saberes LOMLOE**: B.5 · **📚 Pre-requisitos**: Unit 7 (función productiva)
+>
+> **Al acabar esta unidad sabrás**:
+> - Distinguir la estructura económica (activo) de la estructura financiera (pasivo + patrimonio neto) en cualquier balance.
+> - Calcular el **PayBack** y el **VAN** de una inversión simple con flujos anuales.
+> - Interpretar la **TIR** como criterio de aceptación frente a una tasa mínima exigida.
+> - Identificar las cuatro grandes categorías de financiación (interna/externa × propia/ajena) y elegir la mezcla adecuada.
+> - Reconocer las modalidades modernas (crowdfunding, business angels, capital riesgo) y situarlas en la cascada típica de una startup.
+
 La función financiera responde a dos preguntas que ningún proyecto empresarial puede esquivar: **¿en qué invertimos?** y **¿de dónde sacamos el dinero para invertir?**. La primera define el activo de la empresa —los recursos productivos en los que el dinero se convierte—. La segunda define el pasivo y el patrimonio neto —de quién es ese dinero y bajo qué condiciones se devuelve—. La diferencia entre una empresa viable y una que muere antes de empezar suele estar en la coherencia entre ambas decisiones.
 
 <Figure
@@ -196,6 +205,50 @@ b) ¿Cuál es la real más barata?
 
 </SolvedExercise>
 
+<SolvedExercise number="9.3" title="Cálculo aproximado de la TIR de una inversión por interpolación">
+
+**Enunciado**
+
+Un autónomo del sector audiovisual estudia comprar un equipo de iluminación profesional por **10.000 €** que le permitirá aceptar trabajos mejor pagados durante los próximos **4 años**. Los flujos netos esperados son uniformes: **3.500 €/año**. No hay valor residual relevante al cuarto año.
+
+a) Calcula el **VAN** del proyecto con una tasa de descuento del **10 %**.
+b) Calcula el **VAN** con una tasa del **20 %**.
+c) Estima por **interpolación lineal** la **TIR** del proyecto.
+d) ¿Aceptarías el proyecto si tu tasa mínima exigida es del 12 %?
+
+**Solución**
+
+1. **VAN al 10 %**. Para flujos constantes podemos sumar uno a uno o aplicar la fórmula de la renta:
+   - Año 1: 3.500 / 1,10 = **3.181,82 €**
+   - Año 2: 3.500 / 1,21 = **2.892,56 €**
+   - Año 3: 3.500 / 1,331 = **2.629,60 €**
+   - Año 4: 3.500 / 1,4641 = **2.390,55 €**
+   - Suma actualizada: 11.094,53 €
+   - **VAN (10 %) = 11.094,53 − 10.000 = +1.094,53 €**.
+2. **VAN al 20 %**:
+   - Año 1: 3.500 / 1,20 = **2.916,67 €**
+   - Año 2: 3.500 / 1,44 = **2.430,56 €**
+   - Año 3: 3.500 / 1,728 = **2.025,46 €**
+   - Año 4: 3.500 / 2,0736 = **1.687,89 €**
+   - Suma actualizada: 9.060,58 €
+   - **VAN (20 %) = 9.060,58 − 10.000 = −939,42 €**.
+3. **Interpolación lineal**. La TIR es la tasa que hace VAN = 0. Como al 10 % el VAN es positivo (+1.094,53 €) y al 20 % negativo (−939,42 €), la TIR está entre ambas. Interpolamos:
+
+```
+TIR ≈ 10 % + (20 % − 10 %) × [1.094,53 / (1.094,53 + 939,42)]
+TIR ≈ 10 % + 10 % × (1.094,53 / 2.033,95)
+TIR ≈ 10 % + 10 % × 0,5381
+TIR ≈ 10 % + 5,38 %
+TIR ≈ 15,4 %
+```
+
+El cálculo iterativo exacto daría una TIR del **14,96 %**; la interpolación lineal sobreestima ligeramente porque la curva VAN(k) no es lineal sino convexa, pero el error es menor de medio punto y suficiente para decidir.
+
+4. **Decisión**: la TIR estimada (≈ 15 %) supera con holgura la tasa mínima exigida del 12 %. **Se acepta** la inversión. Equivale a decir que el proyecto genera 3 puntos porcentuales de rentabilidad anual por encima del coste de oportunidad del autónomo.
+5. **Lección práctica**: la TIR es útil precisamente cuando se quiere comparar el proyecto con alternativas expresadas en porcentaje (depósito al 3 %, deuda pública al 3,5 %, fondo indexado al 7 %). La interpolación lineal entre dos VAN de signo opuesto es el método de cálculo manual estándar antes de las hojas de cálculo.
+
+</SolvedExercise>
+
 <Curiosity title="La palabra «bancarrota» viene de romper bancos de madera">
 El término *bancarrota* tiene un origen literal y físico. En la Italia medieval, los cambistas y prestamistas trabajaban en plazas públicas sentados detrás de un banco de madera (en italiano, *banca*) donde realizaban operaciones de cambio de moneda y crédito. Cuando uno de ellos no podía hacer frente a sus obligaciones, las autoridades de la ciudad acudían al lugar y **rompían públicamente su banco** —*banca rotta*— como señal visible para todos los acreedores de que aquel cambista quedaba inhabilitado. La operación tenía utilidad práctica: en una época sin registros mercantiles centralizados, la imagen del banco roto en la plaza era la única forma fiable de comunicar la quiebra a quienes le habían prestado. El término se incorporó al castellano por la vía del italiano comercial del Renacimiento y mantiene hoy la misma connotación: un punto de no retorno comercial visible para todos.
 </Curiosity>
@@ -315,12 +368,43 @@ Una regla práctica para pymes: **la deuda no debería superar el 60-65 % del ba
 
 Cada equipo cierra esta unidad con tres entregables: una **estimación de la inversión inicial** necesaria para arrancar el proyecto, un **cálculo del PayBack y del VAN** con flujos previstos de los tres primeros años (con una tasa de descuento razonable, p. ej. 8-10%) y una **propuesta de estructura de financiación** explicando qué parte de la inversión se cubre con recursos propios y qué parte con financiación ajena, con argumentos. Estos cálculos se utilizarán directamente en el plan de empresa final (Unidad 12).
 
+## Glosario de la unidad
+
+- **Activo**: conjunto de bienes y derechos de la empresa. Coincide con la estructura económica del balance.
+- **Pasivo**: deudas y obligaciones de la empresa frente a terceros.
+- **Patrimonio neto**: aportaciones de los socios más beneficios no distribuidos. Es la financiación propia.
+- **Estructura económica**: lado del activo del balance — *en qué* está invertido el dinero.
+- **Estructura financiera**: lado del pasivo + patrimonio neto — *de dónde* viene el dinero.
+- **Fondo de maniobra**: activo corriente menos pasivo corriente. Colchón de liquidez a corto plazo.
+- **VAN** (Valor Actual Neto): suma de flujos futuros actualizados a una tasa de descuento, menos la inversión inicial. Mide creación de valor.
+- **TIR** (Tasa Interna de Rentabilidad): tasa de descuento que hace el VAN igual a cero. Mide rentabilidad anual del proyecto.
+- **PayBack** (Plazo de Recuperación): años necesarios para recuperar la inversión inicial. Mide riesgo temporal.
+- **Tasa de descuento** (`k`): rentabilidad mínima exigida al proyecto. Refleja coste de oportunidad y riesgo.
+- **TAE** (Tasa Anual Equivalente): coste anual real de una financiación incluyendo intereses, comisiones y seguros. Obligatoria por ley.
+- **Apalancamiento financiero**: uso de deuda para invertir en activos que rinden más que su coste, amplificando la rentabilidad del accionista.
+- **WACC** (*Weighted Average Cost of Capital*): coste medio ponderado del capital. Combina coste de deuda y coste de capital propio.
+
+## Para profundizar
+
+- **Brealey, Myers & Allen (2022)**, *Principles of Corporate Finance* (14ª ed.), McGraw-Hill. El manual canónico de finanzas corporativas. Para alumnado que quiera ir mucho más allá del bachillerato.
+- **Pérez-Carballo Veiga, J. F. (2015)**, *La gestión financiera de la empresa*, ESIC. Manual español accesible que cubre VAN, TIR y estructura óptima con casos cercanos a pymes.
+- **Documental "*Inside Job*"** (Charles Ferguson, 2010). Premio Oscar al mejor documental. Cuenta la crisis financiera de 2008 y muestra qué pasa cuando el apalancamiento se descontrola en una economía entera.
+- **Página de ENISA** (enisa.es) y **CDTI** (cdti.es). Las dos principales fuentes públicas de financiación para emprendedores en España. Vale la pena leer los criterios de cada línea aunque el proyecto del curso no opte a ellas.
+- **Plataforma Verkami** (verkami.com). Explorar 10 proyectos financiados con éxito y 10 que no alcanzaron el objetivo. El contraste revela mucho sobre qué hace una campaña de crowdfunding viable.
+
+## Preguntas para reflexionar
+
+1. ¿Por qué una empresa rentable contablemente puede quebrar por falta de liquidez? Pon un ejemplo concreto inventado donde el beneficio anual sea positivo pero la tesorería se agote a mitad de año.
+2. La tasa de descuento del VAN es la decisión más subjetiva del cálculo. Imagina dos analistas evaluando el mismo proyecto: uno usa el 5 %, el otro el 15 %. ¿Cómo cambia su recomendación? ¿Quién tiene razón?
+3. La cascada de financiación (FFF → angels → VC → series sucesivas) es la ruta canónica de una startup. Pero la mayoría de pymes españolas nunca pasa de FFF + préstamo bancario. ¿Es eso un fracaso o una decisión estratégica legítima? Argumenta.
+
 <Bibliography>
 
 1. Brealey, R. A., Myers, S. C., Allen, F. y Edmans, A. (2022). *Principles of Corporate Finance* (14ª ed.). McGraw-Hill.
 2. Suárez Suárez, A. S. (2014). *Decisiones óptimas de inversión y financiación en la empresa*. Pirámide.
 3. Berk, J. y DeMarzo, P. (2023). *Corporate Finance* (6ª ed.). Pearson.
-4. Cassano, R. y Mason, C. M. (2017). *The Business Angel Finance Market*. Journal of Small Business and Enterprise Development, 24(3).
-5. ENISA — Empresa Nacional de Innovación. *Líneas de financiación para emprendedores* (enisa.es).
+4. Pérez-Carballo Veiga, J. F. (2015). *La gestión financiera de la empresa*. ESIC.
+5. Cassano, R. y Mason, C. M. (2017). *The Business Angel Finance Market*. Journal of Small Business and Enterprise Development, 24(3).
+6. ENISA — Empresa Nacional de Innovación. *Líneas de financiación para emprendedores* (https://www.enisa.es).
 
 </Bibliography>
