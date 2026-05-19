@@ -1,5 +1,5 @@
 ---
-import { ASIGNATURAS_LIST } from '@/lib/asignaturas';
+import { ASIGNATURAS_POR_ETAPA, SECCIONES_TRANSVERSALES } from '@/lib/asignaturas';
 ---
 
 <header class="site-header">
@@ -9,16 +9,143 @@ import { ASIGNATURAS_LIST } from '@/lib/asignaturas';
       profedeeconomia
     </a>
     <nav class="site-nav" aria-label="Navegación principal">
-      {ASIGNATURAS_LIST.map((a) => (
-        <a href={`/${a.slug}/`}>{a.shortLabel}</a>
-      ))}
-      <a href="/juegos/">Juegos</a>
-      <a href="/herramientas/">Herramientas</a>
-      <a href="/emprendimiento/">Emprendimiento</a>
-      <a href="/oposiciones" rel="external">Oposiciones</a>
+      <!-- ESO -->
+      <div class="nav-group" data-nav-group>
+        <button class="nav-trigger" type="button" aria-haspopup="true" aria-expanded="false">
+          ESO
+          <span class="caret" aria-hidden="true">▾</span>
+        </button>
+        <div class="nav-dropdown" role="menu">
+          <div class="dropdown-section">
+            <span class="dropdown-label">{ASIGNATURAS_POR_ETAPA.eso.cursos['3eso'].label}</span>
+            {ASIGNATURAS_POR_ETAPA.eso.cursos['3eso'].asignaturas.map((a) => (
+              <a href={`/${a.slug}/`} role="menuitem" class={a.estado === 'proximamente' ? 'is-proximamente' : ''}>
+                {a.title}
+                {a.estado === 'proximamente' && <span class="badge">Próximamente</span>}
+              </a>
+            ))}
+          </div>
+          <div class="dropdown-section">
+            <span class="dropdown-label">{ASIGNATURAS_POR_ETAPA.eso.cursos['4eso'].label}</span>
+            {ASIGNATURAS_POR_ETAPA.eso.cursos['4eso'].asignaturas.map((a) => (
+              <a href={`/${a.slug}/`} role="menuitem">
+                {a.title}
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <!-- BACH -->
+      <div class="nav-group" data-nav-group>
+        <button class="nav-trigger" type="button" aria-haspopup="true" aria-expanded="false">
+          BACH
+          <span class="caret" aria-hidden="true">▾</span>
+        </button>
+        <div class="nav-dropdown" role="menu">
+          <div class="dropdown-section">
+            <span class="dropdown-label">{ASIGNATURAS_POR_ETAPA.bach.cursos['1bach'].label}</span>
+            {ASIGNATURAS_POR_ETAPA.bach.cursos['1bach'].asignaturas.map((a) => (
+              <a href={`/${a.slug}/`} role="menuitem">
+                {a.title}
+              </a>
+            ))}
+          </div>
+          <div class="dropdown-section">
+            <span class="dropdown-label">{ASIGNATURAS_POR_ETAPA.bach.cursos['2bach'].label}</span>
+            {ASIGNATURAS_POR_ETAPA.bach.cursos['2bach'].asignaturas.map((a) => (
+              <a href={`/${a.slug}/`} role="menuitem">
+                {a.title}
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <!-- FP -->
+      <div class="nav-group" data-nav-group>
+        <button class="nav-trigger" type="button" aria-haspopup="true" aria-expanded="false">
+          FP
+          <span class="caret" aria-hidden="true">▾</span>
+        </button>
+        <div class="nav-dropdown nav-dropdown--single" role="menu">
+          {ASIGNATURAS_POR_ETAPA.fp.cursos.fp.asignaturas.map((a) => (
+            <a href={`/${a.slug}/`} role="menuitem" class={a.estado === 'proximamente' ? 'is-proximamente' : ''}>
+              <span class="opt-title">{a.title}</span>
+              {a.estado === 'proximamente' && <span class="badge">Próximamente</span>}
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <!-- Otros -->
+      <div class="nav-group" data-nav-group>
+        <button class="nav-trigger" type="button" aria-haspopup="true" aria-expanded="false">
+          Otros
+          <span class="caret" aria-hidden="true">▾</span>
+        </button>
+        <div class="nav-dropdown nav-dropdown--single" role="menu">
+          {SECCIONES_TRANSVERSALES.map((s) => (
+            <a href={`/${s.slug}/`} role="menuitem">
+              <span class="opt-title">{s.label}</span>
+              <span class="opt-desc">{s.description}</span>
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <!-- Oposiciones (link directe, sense dropdown) -->
+      <a href="/oposiciones" class="nav-direct" rel="external">Oposiciones</a>
     </nav>
   </div>
 </header>
+
+<script>
+  // Click toggle per a dropdowns (a part del hover/focus-within que ja funciona via CSS).
+  // Necessari per accessibilitat al mòbil i per teclat.
+  const groups = document.querySelectorAll<HTMLElement>('[data-nav-group]');
+
+  groups.forEach((group) => {
+    const trigger = group.querySelector<HTMLButtonElement>('.nav-trigger');
+    const dropdown = group.querySelector<HTMLElement>('.nav-dropdown');
+    if (!trigger || !dropdown) return;
+
+    trigger.addEventListener('click', (e) => {
+      e.preventDefault();
+      const isOpen = group.classList.toggle('is-open');
+      trigger.setAttribute('aria-expanded', String(isOpen));
+
+      // Tancar els altres grups
+      groups.forEach((g) => {
+        if (g !== group) {
+          g.classList.remove('is-open');
+          g.querySelector<HTMLButtonElement>('.nav-trigger')?.setAttribute('aria-expanded', 'false');
+        }
+      });
+    });
+  });
+
+  // Tancar dropdowns en clicar fora
+  document.addEventListener('click', (e) => {
+    const target = e.target as HTMLElement;
+    if (!target.closest('[data-nav-group]')) {
+      groups.forEach((g) => {
+        g.classList.remove('is-open');
+        g.querySelector<HTMLButtonElement>('.nav-trigger')?.setAttribute('aria-expanded', 'false');
+      });
+    }
+  });
+
+  // ESC tanca tots
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      groups.forEach((g) => {
+        g.classList.remove('is-open');
+        g.querySelector<HTMLButtonElement>('.nav-trigger')?.setAttribute('aria-expanded', 'false');
+      });
+    }
+  });
+</script>
 
 <style>
   .site-header {
@@ -48,31 +175,213 @@ import { ASIGNATURAS_LIST } from '@/lib/asignaturas';
     gap: 0.55rem;
     text-decoration: none;
     font-variation-settings: "SOFT" 100, "WONK" 1;
+    flex: none;
   }
   .brand:hover { color: var(--color-terra); }
 
   .site-nav {
     display: flex;
     align-items: center;
-    gap: 1.15rem;
+    gap: 0.35rem;
     flex-wrap: nowrap;
-    white-space: nowrap;
   }
-  .site-nav a {
-    color: var(--color-ink-soft);
-    font-size: 0.9rem;
-    font-weight: 500;
-    text-decoration: none;
-    transition: color .15s ease;
-  }
-  .site-nav a:hover { color: var(--color-terra); }
 
-  /* Mobile: permitir wrap para que no se desborde */
-  @media (max-width: 960px) {
-    .site-nav {
-      flex-wrap: wrap;
-      gap: 0.9rem 1.1rem;
-      justify-content: flex-end;
+  /* ──────────── nav-trigger (botons d'etapa amb dropdown) ──────────── */
+  .nav-group {
+    position: relative;
+  }
+  .nav-trigger {
+    background: transparent;
+    border: 0;
+    color: var(--color-ink-soft);
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 0.45rem 0.7rem;
+    cursor: pointer;
+    border-radius: 4px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    transition: color .15s ease, background .15s ease;
+    letter-spacing: 0.02em;
+  }
+  .nav-trigger:hover,
+  .nav-trigger:focus-visible {
+    color: var(--color-terra);
+    outline: none;
+  }
+  .caret {
+    font-size: 0.65em;
+    color: var(--color-ink-mute);
+    transition: transform .15s ease, color .15s ease;
+  }
+  .nav-group.is-open .caret,
+  .nav-group:hover .caret,
+  .nav-group:focus-within .caret {
+    color: var(--color-terra);
+    transform: rotate(180deg);
+  }
+
+  /* ──────────── dropdown (hover/focus/click) ──────────── */
+  .nav-dropdown {
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 50%;
+    transform: translateX(-50%) translateY(-4px);
+    background: var(--color-paper);
+    border: 1px solid var(--color-line);
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(42, 31, 24, 0.08);
+    padding: 1rem 1.1rem;
+    min-width: 280px;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity .15s ease, transform .15s ease, visibility .15s;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    z-index: 60;
+  }
+  .nav-dropdown--single {
+    min-width: 240px;
+    gap: 0.1rem;
+  }
+
+  .nav-group:hover .nav-dropdown,
+  .nav-group:focus-within .nav-dropdown,
+  .nav-group.is-open .nav-dropdown {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  /* ──────────── seccions del dropdown ──────────── */
+  .dropdown-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+  .dropdown-section + .dropdown-section {
+    border-top: 1px dashed var(--color-line);
+    padding-top: 0.7rem;
+    margin-top: 0.2rem;
+  }
+  .dropdown-label {
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    color: var(--color-terra);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-weight: 700;
+    margin-bottom: 0.3rem;
+  }
+
+  /* enllaços dins dropdown */
+  .nav-dropdown a {
+    color: var(--color-ink);
+    text-decoration: none;
+    padding: 0.5rem 0.55rem;
+    border-radius: 4px;
+    font-family: var(--font-serif);
+    font-size: 0.98rem;
+    line-height: 1.3;
+    transition: background .12s ease, color .12s ease;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.7rem;
+  }
+  .nav-dropdown a:hover,
+  .nav-dropdown a:focus-visible {
+    background: var(--color-bg-cream);
+    color: var(--color-terra);
+    outline: none;
+  }
+  .nav-dropdown a.is-proximamente {
+    color: var(--color-ink-soft);
+  }
+  .badge {
+    font-family: var(--font-sans);
+    font-size: 0.66rem;
+    background: var(--color-line);
+    color: var(--color-ink-mute);
+    padding: 0.15em 0.5em;
+    border-radius: 999px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+    flex: none;
+  }
+
+  /* opt amb descripció (per a "Otros") */
+  .opt-title {
+    font-family: var(--font-serif);
+    font-size: 1rem;
+    font-weight: 500;
+    display: block;
+  }
+  .opt-desc {
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    color: var(--color-ink-mute);
+    margin-top: 0.1rem;
+    display: block;
+    flex-basis: 100%;
+  }
+  .nav-dropdown--single a {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0.55rem 0.55rem 0.65rem;
+  }
+
+  /* ──────────── link directe (Oposiciones) ──────────── */
+  .nav-direct {
+    color: var(--color-ink-soft);
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 0.45rem 0.7rem;
+    transition: color .15s ease;
+    letter-spacing: 0.02em;
+  }
+  .nav-direct:hover { color: var(--color-terra); }
+
+  /* ──────────── mobile ──────────── */
+  @media (max-width: 860px) {
+    .site-header-inner {
+      gap: 0.8rem;
+      padding: 0.9rem 1.2rem;
     }
+    .brand { font-size: 1.1rem; }
+    .site-nav {
+      gap: 0.05rem;
+    }
+    .nav-trigger,
+    .nav-direct {
+      padding: 0.4rem 0.45rem;
+      font-size: 0.82rem;
+    }
+    .nav-dropdown {
+      min-width: 220px;
+      padding: 0.8rem 0.9rem;
+      left: auto;
+      right: 0;
+      transform: translateY(-4px);
+    }
+    .nav-group:hover .nav-dropdown,
+    .nav-group:focus-within .nav-dropdown,
+    .nav-group.is-open .nav-dropdown {
+      transform: translateY(0);
+    }
+  }
+
+  @media (max-width: 560px) {
+    .nav-trigger,
+    .nav-direct { font-size: 0.78rem; padding: 0.4rem 0.35rem; }
+    .caret { display: none; } /* a mòbil molt petit treu fletxes */
   }
 </style>

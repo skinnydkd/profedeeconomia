@@ -1,7 +1,15 @@
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 
-const ASIGNATURA_SLUGS = ['edmn-2bach', 'eco-1bach', 'eco-4eso', 'fopp-4eso'] as const;
+const ASIGNATURA_SLUGS = [
+  'edmn-2bach',
+  'eco-1bach',
+  'eco-4eso',
+  'fopp-4eso',
+  'taller-eco-3eso',
+  'ipe1-fp',
+  'ipe2-fp',
+] as const;
 const LANGS = ['es', 'ca'] as const;
 const ESTADOS = ['borrador', 'revision', 'publicado'] as const;
 

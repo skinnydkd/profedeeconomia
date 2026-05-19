@@ -11,14 +11,14 @@ export const getStaticPaths = (() => {
 }) satisfies GetStaticPaths;
 
 const { asignatura: a } = Astro.props;
-const isFirstBook = a.slug === 'edmn-2bach';
+const isPublicado = a.estado === 'publicado';
 
 const sections = [
-  { slug: 'libro',         title: 'Libro',         count: isFirstBook ? '12 unidades'           : '—',                 desc: 'Los capítulos del curso, listos para leer en pantalla o descargar como PDF.' },
-  { slug: 'diapositivas',  title: 'Diapositivas',  count: isFirstBook ? '12 sets · 280 diapos' : '—',                 desc: 'Diapositivas derivadas automáticamente del libro. PDF al MVP, PPTX editable más adelante.' },
-  { slug: 'actividades',   title: 'Actividades',   count: isFirstBook ? '62 actividades'        : '—',                 desc: 'Casos prácticos, ejercicios graduados y dinámicas de aula por unidad.' },
-  { slug: 'tests',         title: 'Tests',         count: isFirstBook ? '36 tests'              : '—',                 desc: 'Tests de autoevaluación: 2‑3 por unidad, con corrección y comentario.' },
-  { slug: 'recursos',      title: 'Recursos',      count: isFirstBook ? '7 recursos'            : '—',                 desc: 'Simuladores, calculadoras y plantillas que apoyan el contenido del libro.' },
+  { slug: 'libro',         title: 'Libro',         desc: 'Los capítulos del curso, listos para leer en pantalla o descargar como PDF.' },
+  { slug: 'diapositivas',  title: 'Diapositivas',  desc: 'Diapositivas derivadas automáticamente del libro. PDF al MVP, PPTX editable más adelante.' },
+  { slug: 'actividades',   title: 'Actividades',   desc: 'Casos prácticos, ejercicios graduados y dinámicas de aula por unidad.' },
+  { slug: 'tests',         title: 'Tests',         desc: 'Tests de autoevaluación: 2‑3 por unidad, con corrección y comentario.' },
+  { slug: 'recursos',      title: 'Recursos',      desc: 'Simuladores, calculadoras y plantillas que apoyan el contenido del libro.' },
 ];
 ---
 
@@ -42,51 +42,52 @@ const sections = [
       </span>
       <h1 class={`title c-${a.color}`}>{a.title}</h1>
 
-      {isFirstBook ? (
+      {isPublicado ? (
         <>
-          <p class="subtitle">Un curso entero alrededor del Business Model Canvas y el plan de empresa.</p>
-          <p class="desc">
-            Esta asignatura la planteamos desde una perspectiva teórico‑práctica:
-            cada concepto se conecta con un proyecto capstone que el alumnado desarrolla a lo largo
-            del curso, su propio plan de empresa.
-          </p>
+          <p class="subtitle">{a.tagline}</p>
         </>
       ) : (
-        <p class="desc">
-          Esta asignatura está en preparación. Aquí vivirán libro, diapositivas, actividades,
-          tests y recursos, con la misma estructura interna que el resto. Mientras tanto,
-          puedes consultar el material correspondiente en
-          <a href="https://legacy.profedeeconomia.es" class="editorial-link" rel="external"> legacy.profedeeconomia.es</a>.
-        </p>
+        <>
+          <p class="subtitle proximamente-tag">Próximamente</p>
+          <p class="desc">
+            {a.tagline}
+          </p>
+          <p class="desc">
+            Este material está en preparación. Cuando se publique tendrá la misma estructura
+            que el resto: libro, diapositivas, actividades, tests y recursos.
+          </p>
+        </>
       )}
 
       <div class="curriculum-note">
-        Este libro se basa en el currículo básico estatal LOMLOE para {a.title.toLowerCase()},
-        establecido en el {a.marcoNormativo}. Cada comunidad autónoma establece concreciones
-        específicas: conviene consultar la de tu comunidad para ajustar la programación a tu centro.
+        {isPublicado
+          ? <>Este libro se basa en el currículo básico estatal LOMLOE para {a.title.toLowerCase()}, establecido en el {a.marcoNormativo}. Cada comunidad autónoma establece concreciones específicas: conviene consultar la de tu comunidad para ajustar la programación a tu centro.</>
+          : <>El material se basará en el {a.marcoNormativo}. Si quieres estar al tanto de cuándo se publica, sigue <a class="editorial-link" href="https://instagram.com/profedeeconomia" rel="external">@profedeeconomia</a>.</>
+        }
       </div>
     </div>
   </section>
 
-  <section class="hub-sections">
-    <div class="container">
-      <h2>Cinco accesos, un solo curso</h2>
-      <p class="hub-intro">
-        Las cuatro asignaturas comparten exactamente la misma estructura interna.
-        Lo que cambia es el contenido, no el sitio donde encontrarlo.
-      </p>
+  {isPublicado && (
+    <section class="hub-sections">
+      <div class="container">
+        <h2>Cinco accesos, un solo curso</h2>
+        <p class="hub-intro">
+          Todas las asignaturas comparten exactamente la misma estructura interna.
+          Lo que cambia es el contenido, no el sitio donde encontrarlo.
+        </p>
 
-      <nav class="subject-sections" aria-label="Sub-apartados de la asignatura">
-        {sections.map((s) => (
-          <a href={`/${a.slug}/${s.slug}/`} class={`section-card c-${a.color}`}>
-            <span class="count">{s.count}</span>
-            <h3>{s.title}</h3>
-            <p class="desc">{s.desc}</p>
-          </a>
-        ))}
-      </nav>
-    </div>
-  </section>
+        <nav class="subject-sections" aria-label="Sub-apartados de la asignatura">
+          {sections.map((s) => (
+            <a href={`/${a.slug}/${s.slug}/`} class={`section-card c-${a.color}`}>
+              <h3>{s.title}</h3>
+              <p class="desc">{s.desc}</p>
+            </a>
+          ))}
+        </nav>
+      </div>
+    </section>
+  )}
 
 </BaseLayout>
 
