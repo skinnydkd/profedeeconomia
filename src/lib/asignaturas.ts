@@ -1,25 +1,46 @@
 /**
- * Single source of truth for the four asignaturas.
- * Used by navigation, the home grid, the per-asignatura hubs and any
- * place that needs the slug ↔ display name ↔ color-coding mapping.
+ * Single source of truth for all asignaturas.
  *
- * Per CLAUDE.md and docs/PRD.md §3.2, the structure is binding: four
- * asignaturas, each with the same internal sub-sections.
+ * Hi ha 7 asignaturas distribuïdes per etapa:
+ * - **ESO** → Taller de Economía (3.º), Economía y Emprendimiento (4.º), FOPP (4.º)
+ * - **Bachillerato** → Economía (1.º), EDMN (2.º)
+ * - **Formación Profesional** → IPE I, IPE II
+ *
+ * Cada una té un `estado` ('publicado' | 'proximamente'). Les que tenen
+ * `proximamente` mostren un placeholder al hub i no apareixen ni a la
+ * llista de cards de la home ni generen rutes filles (libro/tests/etc).
+ *
+ * Per CLAUDE.md i docs/PRD.md §3.2, la divisió per assignatura és vinculant.
  */
 
-export const ASIGNATURA_SLUGS = ['edmn-2bach', 'eco-1bach', 'eco-4eso', 'fopp-4eso'] as const;
+export const ASIGNATURA_SLUGS = [
+  'edmn-2bach',
+  'eco-1bach',
+  'eco-4eso',
+  'fopp-4eso',
+  'taller-eco-3eso',
+  'ipe1-fp',
+  'ipe2-fp',
+] as const;
 export type AsignaturaSlug = (typeof ASIGNATURA_SLUGS)[number];
+
+export type Etapa = 'eso' | 'bach' | 'fp';
+export type Curso = '3eso' | '4eso' | '1bach' | '2bach' | 'fp';
+export type Estado = 'publicado' | 'proximamente';
 
 export type Asignatura = {
   slug: AsignaturaSlug;
-  level: string;          // "2.º Bachillerato", "1.º Bachillerato", etc.
-  shortLabel: string;     // "EDMN 2BACH"
-  title: string;          // "Empresa y Diseño de Modelos de Negocio"
-  tagline: string;        // 1-2 lines for the home card
-  num: string;            // "01" — italic-style ordinal
-  color: 'edmn' | 'eco1' | 'eco4' | 'fopp';
-  marcoNormativo: string; // RD 243/2022 / RD 217/2022
-  modalidad?: string;     // "Modalidad Humanidades y CC. Sociales"
+  level: string;
+  shortLabel: string;
+  title: string;
+  tagline: string;
+  num: string;
+  color: 'edmn' | 'eco1' | 'eco4' | 'fopp' | 'taller3' | 'ipe1' | 'ipe2' | 'proximamente';
+  marcoNormativo: string;
+  modalidad?: string;
+  etapa: Etapa;
+  curso: Curso;
+  estado: Estado;
 };
 
 export const ASIGNATURAS: Record<AsignaturaSlug, Asignatura> = {
@@ -34,6 +55,9 @@ export const ASIGNATURAS: Record<AsignaturaSlug, Asignatura> = {
     color: 'edmn',
     marcoNormativo: 'Real Decreto 243/2022',
     modalidad: 'Modalidad Humanidades y CC. Sociales',
+    etapa: 'bach',
+    curso: '2bach',
+    estado: 'publicado',
   },
   'eco-1bach': {
     slug: 'eco-1bach',
@@ -46,6 +70,9 @@ export const ASIGNATURAS: Record<AsignaturaSlug, Asignatura> = {
     color: 'eco1',
     marcoNormativo: 'Real Decreto 243/2022',
     modalidad: 'Modalidad Humanidades y CC. Sociales',
+    etapa: 'bach',
+    curso: '1bach',
+    estado: 'publicado',
   },
   'eco-4eso': {
     slug: 'eco-4eso',
@@ -57,6 +84,9 @@ export const ASIGNATURAS: Record<AsignaturaSlug, Asignatura> = {
     num: '03',
     color: 'eco4',
     marcoNormativo: 'Real Decreto 217/2022',
+    etapa: 'eso',
+    curso: '4eso',
+    estado: 'publicado',
   },
   'fopp-4eso': {
     slug: 'fopp-4eso',
@@ -68,10 +98,99 @@ export const ASIGNATURAS: Record<AsignaturaSlug, Asignatura> = {
     num: '04',
     color: 'fopp',
     marcoNormativo: 'Real Decreto 217/2022',
+    etapa: 'eso',
+    curso: '4eso',
+    estado: 'publicado',
+  },
+  'taller-eco-3eso': {
+    slug: 'taller-eco-3eso',
+    level: '3.º ESO',
+    shortLabel: 'Taller 3ESO',
+    title: 'Taller de Economía',
+    tagline:
+      'Primer contacto con la economía a través de talleres prácticos: consumo, ahorro, publicidad, decisiones cotidianas. La puerta de entrada antes de 4.º ESO.',
+    num: '05',
+    color: 'taller3',
+    marcoNormativo: 'Real Decreto 217/2022',
+    etapa: 'eso',
+    curso: '3eso',
+    estado: 'proximamente',
+  },
+  'ipe1-fp': {
+    slug: 'ipe1-fp',
+    level: 'FP — Grado Básico',
+    shortLabel: 'IPE I',
+    title: 'Itinerario Profesional para la Empleabilidad I',
+    tagline:
+      'Orientación profesional y herramientas para el primer paso al mercado laboral. Currículo LOFP 2022 para FP de Grado Básico.',
+    num: '06',
+    color: 'ipe1',
+    marcoNormativo: 'Ley Orgánica 3/2022 (LOFP) · RD 659/2023',
+    etapa: 'fp',
+    curso: 'fp',
+    estado: 'proximamente',
+  },
+  'ipe2-fp': {
+    slug: 'ipe2-fp',
+    level: 'FP — Grado Medio',
+    shortLabel: 'IPE II',
+    title: 'Itinerario Profesional para la Empleabilidad II',
+    tagline:
+      'Continuación de IPE I con foco en empleabilidad y proyecto profesional. Cobertura completa de Grado Medio FP LOFP 2022.',
+    num: '07',
+    color: 'ipe2',
+    marcoNormativo: 'Ley Orgánica 3/2022 (LOFP) · RD 659/2023',
+    etapa: 'fp',
+    curso: 'fp',
+    estado: 'proximamente',
   },
 };
 
 export const ASIGNATURAS_LIST: Asignatura[] = ASIGNATURA_SLUGS.map((s) => ASIGNATURAS[s]);
+
+/** Solament les asignatures publicades, per a navegació pública i grids. */
+export const ASIGNATURAS_PUBLICADAS: Asignatura[] = ASIGNATURAS_LIST.filter(
+  (a) => a.estado === 'publicado'
+);
+
+/** Agrupacions per etapa per a navegació desplegable. */
+export const ASIGNATURAS_POR_ETAPA = {
+  eso: {
+    label: 'ESO',
+    cursos: {
+      '3eso': {
+        label: '3.º ESO',
+        asignaturas: ASIGNATURAS_LIST.filter((a) => a.curso === '3eso'),
+      },
+      '4eso': {
+        label: '4.º ESO',
+        asignaturas: ASIGNATURAS_LIST.filter((a) => a.curso === '4eso'),
+      },
+    },
+  },
+  bach: {
+    label: 'BACH',
+    cursos: {
+      '1bach': {
+        label: '1.º Bach',
+        asignaturas: ASIGNATURAS_LIST.filter((a) => a.curso === '1bach'),
+      },
+      '2bach': {
+        label: '2.º Bach',
+        asignaturas: ASIGNATURAS_LIST.filter((a) => a.curso === '2bach'),
+      },
+    },
+  },
+  fp: {
+    label: 'FP',
+    cursos: {
+      fp: {
+        label: 'Grado Básico / Medio',
+        asignaturas: ASIGNATURAS_LIST.filter((a) => a.curso === 'fp'),
+      },
+    },
+  },
+} as const;
 
 export const SECCIONES_TRANSVERSALES = [
   { slug: 'juegos',         label: 'Juegos',         description: 'Material para una clase activa.' },

@@ -3,16 +3,20 @@ import type { Asignatura } from '@/lib/asignaturas';
 
 type Props = { asignatura: Asignatura };
 const { asignatura: a } = Astro.props;
+const isPublicado = a.estado === 'publicado';
 ---
 
-<a href={`/${a.slug}/`} class:list={['subject-card', `c-${a.color}`]}>
+<a href={`/${a.slug}/`} class:list={['subject-card', `c-${a.color}`, !isPublicado && 'is-proximamente']}>
   <div class="level-row">
     <span class="level">{a.level}</span>
     <span class="num">{a.num}</span>
   </div>
   <h3>{a.title}</h3>
   <p class="tagline">{a.tagline}</p>
-  <span class="arrow">Entrar →</span>
+  {isPublicado
+    ? <span class="arrow">Entrar →</span>
+    : <span class="badge-proximamente">Próximamente</span>
+  }
 </a>
 
 <style>
@@ -40,10 +44,14 @@ const { asignatura: a } = Astro.props;
     height: 6px;
     background: var(--card-color, var(--color-terra));
   }
-  .subject-card.c-edmn { --card-color: var(--color-edmn); --card-color-soft: var(--color-edmn-soft); }
-  .subject-card.c-eco1 { --card-color: var(--color-eco1); --card-color-soft: var(--color-eco1-soft); }
-  .subject-card.c-eco4 { --card-color: var(--color-eco4); --card-color-soft: var(--color-eco4-soft); }
-  .subject-card.c-fopp { --card-color: var(--color-fopp); --card-color-soft: var(--color-fopp-soft); }
+  .subject-card.c-edmn    { --card-color: var(--color-edmn);    --card-color-soft: var(--color-edmn-soft); }
+  .subject-card.c-eco1    { --card-color: var(--color-eco1);    --card-color-soft: var(--color-eco1-soft); }
+  .subject-card.c-eco4    { --card-color: var(--color-eco4);    --card-color-soft: var(--color-eco4-soft); }
+  .subject-card.c-fopp    { --card-color: var(--color-fopp);    --card-color-soft: var(--color-fopp-soft); }
+  .subject-card.c-taller3 { --card-color: var(--color-taller3); --card-color-soft: var(--color-taller3-soft); }
+  .subject-card.c-ipe1    { --card-color: var(--color-ipe1);    --card-color-soft: var(--color-ipe1-soft); }
+  .subject-card.c-ipe2    { --card-color: var(--color-ipe2);    --card-color-soft: var(--color-ipe2-soft); }
+  .subject-card.c-proximamente { --card-color: var(--color-ink-mute); --card-color-soft: var(--color-line); }
 
   .subject-card:hover {
     transform: translateY(-4px);
@@ -51,6 +59,19 @@ const { asignatura: a } = Astro.props;
       0 1px 2px rgba(42, 31, 24, 0.06),
       0 8px 24px rgba(42, 31, 24, 0.08);
     border-color: var(--card-color);
+  }
+
+  /* Próximamente: card aparece atenuada però funcional (porta al hub placeholder) */
+  .subject-card.is-proximamente {
+    background: var(--color-bg);
+    border-style: dashed;
+  }
+  .subject-card.is-proximamente::before {
+    opacity: 0.55;
+  }
+  .subject-card.is-proximamente h3,
+  .subject-card.is-proximamente .tagline {
+    opacity: 0.78;
   }
 
   .level-row {
@@ -96,5 +117,18 @@ const { asignatura: a } = Astro.props;
     color: var(--card-color);
     font-size: 0.95rem;
     font-weight: 600;
+  }
+  .badge-proximamente {
+    color: var(--color-ink-mute);
+    font-size: 0.82rem;
+    font-weight: 600;
+    font-family: var(--font-sans);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 0.35rem 0.65rem;
+    background: var(--color-bg-cream);
+    border: 1px solid var(--color-line);
+    border-radius: 999px;
+    width: fit-content;
   }
 </style>
