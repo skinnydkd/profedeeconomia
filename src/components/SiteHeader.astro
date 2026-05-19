@@ -5,8 +5,8 @@ import { ASIGNATURAS_POR_ETAPA, SECCIONES_TRANSVERSALES } from '@/lib/asignatura
 <header class="site-header">
   <div class="site-header-inner">
     <a href="/" class="brand">
-      <span class="brand-mark"></span>
-      profedeeconomia
+      <span class="brand-mono" aria-hidden="true"><span class="brand-mono-p">p</span><span class="brand-mono-dot">.</span></span>
+      <span class="brand-word">profedeeconomia</span>
     </a>
     <nav class="site-nav" aria-label="Navegación principal">
       <!-- ESO -->
@@ -171,13 +171,34 @@ import { ASIGNATURAS_POR_ETAPA, SECCIONES_TRANSVERSALES } from '@/lib/asignatura
     letter-spacing: -0.02em;
     color: var(--color-ink);
     display: inline-flex;
-    align-items: center;
-    gap: 0.55rem;
+    align-items: baseline;
+    gap: 0.4rem;
     text-decoration: none;
-    font-variation-settings: "SOFT" 100, "WONK" 1;
     flex: none;
   }
-  .brand:hover { color: var(--color-terra); }
+  /* Logo A — monograma "p." (p italic terracota + punt mostassa) */
+  .brand-mono {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    font-variation-settings: "SOFT" 100, "WONK" 1;
+    line-height: 1;
+  }
+  .brand-mono-p {
+    color: var(--color-terra);
+    font-weight: 600;
+    font-style: italic;
+  }
+  .brand-mono-dot {
+    color: var(--color-mustard);
+    font-weight: 700;
+    margin-left: -0.32em;
+  }
+  .brand-word {
+    color: var(--color-ink);
+    font-variation-settings: "SOFT" 60, "WONK" 0;
+    transition: color .15s ease;
+  }
+  .brand:hover .brand-word { color: var(--color-terra); }
 
   .site-nav {
     display: flex;
