@@ -114,7 +114,7 @@ export const ASIGNATURAS: Record<AsignaturaSlug, Asignatura> = {
     marcoNormativo: 'Real Decreto 217/2022 (optativa de iniciación económica y emprendedora)',
     etapa: 'eso',
     curso: '3eso',
-    estado: 'proximamente',
+    estado: 'publicado',
   },
   'ipe1-fp': {
     slug: 'ipe1-fp',
@@ -128,7 +128,7 @@ export const ASIGNATURAS: Record<AsignaturaSlug, Asignatura> = {
     marcoNormativo: 'Ley Orgánica 3/2022 (LOFP) · RD 659/2023, Anexo V',
     etapa: 'fp',
     curso: 'fp',
-    estado: 'proximamente',
+    estado: 'publicado',
   },
   'ipe2-fp': {
     slug: 'ipe2-fp',
@@ -142,7 +142,7 @@ export const ASIGNATURAS: Record<AsignaturaSlug, Asignatura> = {
     marcoNormativo: 'Ley Orgánica 3/2022 (LOFP) · RD 659/2023, Anexo V',
     etapa: 'fp',
     curso: 'fp',
-    estado: 'proximamente',
+    estado: 'publicado',
   },
 };
 
@@ -185,7 +185,7 @@ export const ASIGNATURAS_POR_ETAPA = {
     label: 'FP',
     cursos: {
       fp: {
-        label: 'Grado Básico / Medio',
+        label: 'Grado Medio y Superior',
         asignaturas: ASIGNATURAS_LIST.filter((a) => a.curso === 'fp'),
       },
     },
