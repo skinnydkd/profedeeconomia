@@ -23,6 +23,7 @@
       .end-val { font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 500; }
       .header { font-family: 'Switzer', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 1.6px; text-transform: uppercase; fill: #8A7868; text-anchor: middle; }
       .footer { font-family: 'Fraunces', serif; font-style: italic; font-size: 13px; fill: #5C4A3D; text-anchor: middle; }
+      .has-tip { cursor: help; }
     </style>
   </defs>
   <rect class="bg" x="0" y="0" width="800" height="500"/>
@@ -70,14 +71,14 @@
   <!-- Interés simple: 100 + 100·0,10·t (linear). y per € = (410-70)/1800 = 0.18889 px/€.
        100€ -> 410-(100·0.18889)=391; 150€(5a)->410-28.3=381.7; 200(10a)->372.2;
        250(15a)->362.8; 300(20a)->353.3; 350(25a)->343.9; 400(30a)->334.4 -->
-  <polyline class="line-simple"
-    points="90,391.1 195,381.7 300,372.2 405,362.8 510,353.3 615,343.9 720,334.4"/>
+  <polyline class="line-simple has-tip"
+    points="90,391.1 195,381.7 300,372.2 405,362.8 510,353.3 615,343.9 720,334.4"><title>Los intereses se calculan siempre sobre el capital inicial (100 €), así que cada año se suma la misma cantidad fija. Por eso crece en línea recta.</title></polyline>
 
   <!-- Interés compuesto: 100·(1,1)^t.
        0->100 (391.1); 5->161 (379.6); 10->259 (361.1); 15->418 (331.0);
        20->673 (282.9); 25->1083 (205.4); 30->1745 (79.7) -->
-  <polyline class="line-comp"
-    points="90,391.1 195,379.6 300,361.1 405,331.0 510,282.9 615,205.4 720,79.7"/>
+  <polyline class="line-comp has-tip"
+    points="90,391.1 195,379.6 300,361.1 405,331.0 510,282.9 615,205.4 720,79.7"><title>Cada año los intereses se suman al capital y el año siguiente también generan intereses («interés sobre interés»). Por eso la curva se dispara: es la fuerza que hace crecer el ahorro a largo plazo, y también la deuda de las tarjetas.</title></polyline>
 
   <!-- End markers -->
   <circle cx="720" cy="334.4" r="4" fill="#8A7868"/>
