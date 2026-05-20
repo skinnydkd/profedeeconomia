@@ -20,8 +20,17 @@ type Props = {
   alt: string;
   caption: string;
   credit?: string;
-  /** "default" centers the figure full-prose-width; "tight" stays inside text column; "wide" breaks slightly outside. */
-  variant?: 'default' | 'tight' | 'wide';
+  /**
+   * Layout variant:
+   * - "default": full prose-width, centrada
+   * - "tight": dins de la columna de text (més estreta)
+   * - "wide": trenca lleugerament fora de la columna
+   * - "full": bleed a tota l'amplada del contenidor (la més gran)
+   * - "left": flotant a l'esquerra amb text al voltant (~45%)
+   * - "right": flotant a la dreta amb text al voltant (~45%)
+   * - "inline-small": petita inline, ideal per a retrats puntuals (~240px)
+   */
+  variant?: 'default' | 'tight' | 'wide' | 'full' | 'left' | 'right' | 'inline-small';
   /** Aspect-ratio hint for the printed PDF (web is intrinsic). */
   aspectHint?: '16/9' | '4/3' | '3/2' | '1/1' | '2/3';
   /** Eager-load only for hero / above-the-fold images. */
@@ -73,6 +82,45 @@ const loading = eager || isPrintRoute ? 'eager' : 'lazy';
     max-width: min(960px, 100%);
     margin-left: 50%;
     transform: translateX(-50%);
+  }
+  .figure--full {
+    max-width: min(1100px, 100%);
+    margin-left: 50%;
+    transform: translateX(-50%);
+  }
+
+  /* Flotants amb text al voltant (només a partir de tablet) */
+  .figure--left,
+  .figure--right {
+    max-width: 46%;
+    margin-top: 0.4rem;
+    margin-bottom: 1.4rem;
+  }
+  .figure--left {
+    float: left;
+    margin-right: 1.8rem;
+  }
+  .figure--right {
+    float: right;
+    margin-left: 1.8rem;
+  }
+
+  /* Retrat petit inline */
+  .figure--inline-small {
+    max-width: 240px;
+    margin: 1.6rem auto;
+  }
+
+  /* En mòbil, els flotants i el petit passen a bloc complet */
+  @media (max-width: 680px) {
+    .figure--left,
+    .figure--right {
+      float: none;
+      max-width: 100%;
+      margin-left: 0;
+      margin-right: 0;
+    }
+    .figure--inline-small { max-width: 320px; }
   }
 
   .figure__frame {
