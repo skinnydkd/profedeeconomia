@@ -1,0 +1,554 @@
+---
+/**
+ * Print-ready "Cuaderno de actividades" for a whole subject.
+ * Used by pagedjs-cli (scripts/build-workbook-pdf.mjs) to produce the
+ * downloadable activity workbook PDF (edición profesorado: incluye el test
+ * de cada unidad y un solucionario al final).
+ *
+ * Mirrors the editorial system of libro/imprimir.astro (cover, TOC, per-book
+ * accent colour, paged.js typography) but groups content by unit:
+ *   actividades de la unidad  →  test de la unidad  →  ... → solucionario.
+ *
+ * One path per asignatura that has at least one published activity.
+ */
+import { ASIGNATURA_SLUGS, ASIGNATURAS } from '@/lib/asignaturas';
+import { getCollection, render } from 'astro:content';
+import type { GetStaticPaths } from 'astro';
+
+export const getStaticPaths = (async () => {
+  const acts = await getCollection('actividades');
+  const tests = await getCollection('tests');
+
+  return ASIGNATURA_SLUGS.flatMap((slug) => {
+    const subjectActs = acts
+      .filter((a) => a.data.asignatura === slug && a.data.estado === 'publicado')
+      .sort((a, b) =>
+        a.data.unidad_relacionada - b.data.unidad_relacionada ||
+        a.id.localeCompare(b.id)
+      );
+    if (subjectActs.length === 0) return [];
+    const subjectTests = tests
+      .filter((t) => t.data.asignatura === slug && t.data.estado === 'publicado')
+      .sort((a, b) => a.data.unidad_relacionada - b.data.unidad_relacionada);
+    return [{
+      params: { asignatura: slug },
+      props: { acts: subjectActs, tests: subjectTests, asignatura: ASIGNATURAS[slug] },
+    }];
+  });
+}) satisfies GetStaticPaths;
+
+const { acts, tests, asignatura: a } = Astro.props;
+
+// Pre-render each activity's MDX body.
+const renderedActs = await Promise.all(
+  acts.map(async (act) => {
+    const { Content } = await render(act);
+    return { act, Content };
+  })
+);
+
+// Group by unit: { unidad, activities[], test? }
+const unidades = [...new Set([
+  ...acts.map((x) => x.data.unidad_relacionada),
+  ...tests.map((x) => x.data.unidad_relacionada),
+])].sort((x, y) => x - y);
+
+const porUnidad = unidades.map((u) => ({
+  unidad: u,
+  activities: renderedActs.filter((r) => r.act.data.unidad_relacionada === u),
+  test: tests.find((t) => t.data.unidad_relacionada === u) ?? null,
+}));
+
+const tipoLabel: Record<string, string> = {
+  caso: 'Caso',
+  ejercicio: 'Ejercicio',
+  debate: 'Debate',
+  dinamica: 'Dinámica',
+  proyecto: 'Proyecto',
+};
+
+const today = new Date().toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
+const totalActs = acts.length;
+const totalTests = tests.length;
+
+// Per-asignatura accent palette (mirror of libro/imprimir.astro).
+const ACCENTS: Record<string, { base: string; deep: string; soft: string }> = {
+  edmn: { base: '#C44E2C', deep: '#9C3A1C', soft: '#FBE3D6' },
+  eco1: { base: '#1F6E6E', deep: '#164F4F', soft: '#DBEDED' },
+  eco4: { base: '#D4A24C', deep: '#A87A2A', soft: '#F5E5BC' },
+  fopp: { base: '#5B3A4E', deep: '#46293A', soft: '#ECDCE5' },
+};
+const accent = ACCENTS[a.color] ?? ACCENTS.edmn;
+
+const letra = (i: number) => String.fromCharCode(97 + i); // 0 -> 'a'
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <title>{a.title} · Cuaderno de actividades — profedeeconomia</title>
+    <meta name="robots" content="noindex,nofollow" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,0..100,0..1;1,9..144,300..700,0..100,0..1&display=swap"
+    />
+    <style is:inline>
+      @font-face { font-family: 'Switzer'; src: url('/fonts/switzer/switzer-400.woff2') format('woff2'); font-weight: 400; font-display: swap; font-style: normal; }
+      @font-face { font-family: 'Switzer'; src: url('/fonts/switzer/switzer-500.woff2') format('woff2'); font-weight: 500; font-display: swap; font-style: normal; }
+      @font-face { font-family: 'Switzer'; src: url('/fonts/switzer/switzer-600.woff2') format('woff2'); font-weight: 600; font-display: swap; font-style: normal; }
+      @font-face { font-family: 'Switzer'; src: url('/fonts/switzer/switzer-700.woff2') format('woff2'); font-weight: 700; font-display: swap; font-style: normal; }
+    </style>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap"
+    />
+
+    <style is:global>
+      :root {
+        --color-bg: #FBF6EC;
+        --color-paper: #FFFFFF;
+        --color-bg-cream: #F5EDD9;
+        --color-ink: #2A1F18;
+        --color-ink-soft: #5C4A3D;
+        --color-ink-mute: #8A7868;
+        --color-line: #E5D4BD;
+        --color-line-soft: #EFE2CB;
+        --color-terra: #C44E2C;
+        --color-terra-deep: #9C3A1C;
+        --color-mustard: #D4A24C;
+        --color-mustard-deep: #A87A2A;
+        --color-mustard-soft: #F5E5BC;
+        --font-serif: "Fraunces", Georgia, serif;
+        --font-sans: "Switzer", -apple-system, "Segoe UI", sans-serif;
+        --font-mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+      }
+
+      @page {
+        size: 165mm 235mm;
+        margin: 22mm 20mm 22mm 22mm;
+        @top-left {
+          content: string(book-title);
+          font-family: var(--font-sans);
+          font-size: 8.5pt;
+          letter-spacing: 0.06em;
+          text-transform: uppercase;
+          color: var(--color-ink-mute);
+        }
+        @top-right {
+          content: "Cuaderno de actividades";
+          font-family: var(--font-serif);
+          font-style: italic;
+          font-size: 9pt;
+          color: var(--color-ink-mute);
+        }
+        @bottom-right {
+          content: counter(page);
+          font-family: var(--font-serif);
+          font-size: 10pt;
+          color: var(--color-terra);
+        }
+      }
+      @page :first { @top-left { content: none; } @top-right { content: none; } @bottom-right { content: none; } }
+      @page no-header { @top-left { content: none; } @top-right { content: none; } }
+      @page :left {
+        margin-left: 20mm;
+        margin-right: 22mm;
+        @bottom-right { content: none; }
+        @bottom-left {
+          content: counter(page);
+          font-family: var(--font-serif);
+          font-size: 10pt;
+          color: var(--color-terra);
+        }
+      }
+
+      * { box-sizing: border-box; }
+      html { font-size: 11pt; }
+      body {
+        margin: 0;
+        background: var(--color-bg);
+        color: var(--color-ink);
+        font-family: var(--font-serif);
+        font-size: 11pt;
+        line-height: 1.55;
+        font-feature-settings: "kern", "liga", "ss01";
+        font-variation-settings: "SOFT" 50, "WONK" 0;
+      }
+      h1, h2, h3, h4 {
+        font-family: var(--font-serif);
+        font-weight: 500;
+        color: var(--color-ink);
+        line-height: 1.18;
+      }
+      p { margin: 0 0 0.65em; orphans: 3; widows: 3; -webkit-hyphens: auto; hyphens: auto; }
+      strong { color: var(--color-ink); }
+      em { font-style: italic; }
+      ul, ol { padding-left: 1.3em; margin: 0 0 0.8em; }
+      li { margin-bottom: 0.3em; -webkit-hyphens: auto; hyphens: auto; }
+      ul li::marker { color: var(--color-mustard); }
+      table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+        margin: 1.2em 0;
+        font-size: 9.5pt;
+      }
+      th, td {
+        text-align: left;
+        padding: 0.5em 0.7em;
+        border-bottom: 1px solid var(--color-line-soft);
+        vertical-align: top;
+      }
+      th {
+        font-family: var(--font-sans);
+        font-size: 8pt;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--book-accent-deep);
+        background: var(--book-accent-soft);
+        font-weight: 700;
+      }
+
+      /* ---- Cover ---- */
+      .cover {
+        page: no-header;
+        break-after: page;
+        height: 191mm;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      .cover__top {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        font-family: var(--font-sans);
+        font-size: 8.5pt;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--book-accent);
+      }
+      .cover__top .mark {
+        width: 20pt; height: 20pt;
+        border-radius: 50%;
+        background: var(--book-accent);
+        position: relative;
+      }
+      .cover__top .mark::before { content: ""; position: absolute; inset: 4pt; background: var(--color-mustard); border-radius: 50%; }
+      .cover__top .mark::after { content: ""; position: absolute; inset: 8pt; background: var(--color-bg); border-radius: 50%; }
+      .cover__center { margin-top: -10mm; }
+      .cover__eyebrow {
+        font-family: var(--font-sans);
+        font-size: 9.5pt;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--book-accent);
+        font-weight: 700;
+        margin-bottom: 4mm;
+      }
+      .cover__title {
+        font-family: var(--font-serif);
+        font-size: 40pt;
+        line-height: 1.04;
+        letter-spacing: -0.025em;
+        color: var(--color-ink);
+        margin: 0 0 4mm;
+        font-weight: 400;
+        font-variation-settings: "SOFT" 80, "WONK" 0;
+        max-width: 22ch;
+      }
+      .cover__title em { font-style: italic; color: var(--book-accent); font-variation-settings: "SOFT" 100, "WONK" 1; }
+      .cover__sub {
+        font-family: var(--font-serif);
+        font-style: italic;
+        font-size: 15pt;
+        color: var(--color-ink-soft);
+        margin: 0;
+        font-variation-settings: "SOFT" 80;
+      }
+      .cover__rule { width: 34mm; height: 5pt; background: var(--book-accent); border-radius: 999px; margin: 6mm 0; }
+      .cover__inside {
+        font-family: var(--font-sans);
+        font-size: 8.5pt;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--color-ink-mute);
+      }
+      .cover__inside strong { color: var(--book-accent-deep); font-weight: 700; }
+      .cover__bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        font-family: var(--font-sans);
+        font-size: 9pt;
+        color: var(--color-ink-soft);
+      }
+      .cover__bottom .stack { display: flex; flex-direction: column; gap: 2mm; }
+      .cover__bottom .stack strong { color: var(--color-ink); font-weight: 600; font-size: 9.5pt; }
+      .cover__bottom .stack .muted { font-size: 8pt; color: var(--color-ink-mute); letter-spacing: 0.06em; text-transform: uppercase; }
+
+      /* ---- Intro / how to use ---- */
+      .intro { page: no-header; break-after: page; padding-top: 8mm; }
+      .intro h2 {
+        font-family: var(--font-sans);
+        font-size: 8.5pt;
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        color: var(--book-accent);
+        margin: 0 0 4mm;
+        font-weight: 700;
+      }
+      .intro p { font-size: 10.5pt; color: var(--color-ink-soft); line-height: 1.55; max-width: 30em; }
+      .intro .note {
+        margin-top: 6mm;
+        padding-top: 3mm;
+        border-top: 1px dashed var(--color-line);
+        font-size: 9pt;
+        font-style: italic;
+        color: var(--color-ink-mute);
+      }
+
+      /* ---- TOC ---- */
+      .toc { break-before: page; break-after: page; padding-top: 10mm; }
+      .toc__kicker {
+        font-family: var(--font-sans);
+        font-size: 8.5pt; letter-spacing: 0.14em; text-transform: uppercase;
+        color: var(--book-accent); font-weight: 700; margin-bottom: 4mm;
+      }
+      .toc h2 {
+        font-family: var(--font-serif); font-size: 32pt; line-height: 1;
+        margin: 0 0 10mm; color: var(--color-ink); font-weight: 400;
+        font-variation-settings: "SOFT" 80, "WONK" 0;
+      }
+      .toc__item {
+        display: grid; grid-template-columns: 16mm 1fr auto; column-gap: 4mm;
+        align-items: baseline; padding: 2.6mm 0; border-bottom: 1px solid var(--color-line-soft);
+      }
+      .toc__num {
+        font-family: var(--font-serif); font-style: italic; font-size: 13pt;
+        color: var(--color-mustard-deep); font-variation-settings: "SOFT" 100, "WONK" 1;
+      }
+      .toc__t { font-family: var(--font-serif); font-size: 12pt; color: var(--color-ink); }
+      .toc__c { font-family: var(--font-mono); font-size: 8.5pt; color: var(--color-ink-mute); }
+
+      /* ---- Unit section ---- */
+      .unit { break-before: page; }
+      .unit__head { margin-bottom: 6mm; padding-top: 2mm; position: relative; }
+      .unit__head::before {
+        content: ""; position: absolute; top: -2mm; left: 0;
+        width: 24mm; height: 4pt; background: var(--book-accent); border-radius: 999px;
+      }
+      .unit__kicker {
+        font-family: var(--font-sans); font-size: 8.5pt; letter-spacing: 0.16em;
+        text-transform: uppercase; color: var(--book-accent); font-weight: 700; margin: 4mm 0 2mm;
+      }
+      .unit__num {
+        font-family: var(--font-serif); font-style: italic; font-size: 30pt; line-height: 1;
+        color: var(--color-mustard-deep); margin: 0; font-variation-settings: "SOFT" 100, "WONK" 1;
+      }
+
+      /* ---- Activity ---- */
+      .act { margin: 7mm 0; break-inside: avoid; }
+      .act__bar {
+        display: flex; flex-wrap: wrap; align-items: baseline; gap: 2mm 4mm;
+        margin-bottom: 2mm;
+      }
+      .act__tag {
+        font-family: var(--font-sans); font-size: 7.5pt; font-weight: 700;
+        letter-spacing: 0.1em; text-transform: uppercase;
+        color: var(--book-accent-deep); background: var(--book-accent-soft);
+        padding: 1mm 2.5mm; border-radius: 3px;
+      }
+      .act__meta { font-family: var(--font-sans); font-size: 8pt; color: var(--color-ink-mute); }
+      .act__title {
+        font-family: var(--font-serif); font-size: 15pt; line-height: 1.2;
+        margin: 0 0 1mm; color: var(--color-ink); font-weight: 500;
+      }
+      .act__materials {
+        font-family: var(--font-sans); font-size: 8.5pt; color: var(--color-ink-soft);
+        background: var(--color-bg-cream); border-radius: 4px; padding: 2mm 3mm; margin: 2mm 0 3mm;
+      }
+      .act__materials strong { text-transform: uppercase; letter-spacing: 0.08em; font-size: 7.5pt; color: var(--color-ink-mute); }
+      .act__body { font-size: 10.5pt; }
+      .act__body h2 { font-size: 12pt; margin: 4mm 0 1.5mm; color: var(--book-accent-deep); }
+      .act__body h3 { font-size: 11pt; margin: 3mm 0 1mm; }
+      .act__body table { font-size: 9pt; }
+
+      /* ---- Test (questionnaire, no answers) ---- */
+      .test { margin: 8mm 0 4mm; break-inside: avoid; }
+      .test__head {
+        font-family: var(--font-sans); font-size: 8.5pt; font-weight: 700;
+        letter-spacing: 0.12em; text-transform: uppercase; color: var(--book-accent);
+        border-top: 1px dashed var(--color-line); padding-top: 3mm; margin-bottom: 3mm;
+      }
+      .q { margin: 0 0 4mm; break-inside: avoid; }
+      .q__num { font-family: var(--font-mono); font-size: 9pt; color: var(--color-mustard-deep); }
+      .q__text { font-family: var(--font-serif); font-size: 11pt; margin: 0 0 1.5mm; }
+      .q__opts { list-style: none; padding: 0; margin: 0; }
+      .q__opt {
+        font-family: var(--font-sans); font-size: 9.5pt; color: var(--color-ink-soft);
+        margin: 0 0 0.8mm; padding-left: 6mm; text-indent: -6mm;
+      }
+      .q__letra { font-family: var(--font-serif); font-style: italic; color: var(--color-ink-mute); margin-right: 2mm; }
+
+      /* ---- Solucionario ---- */
+      .solucionario { break-before: page; }
+      .solucionario__title {
+        font-family: var(--font-serif); font-size: 28pt; margin: 0 0 2mm;
+        color: var(--color-ink); font-weight: 400; font-variation-settings: "SOFT" 80;
+      }
+      .solucionario__intro { font-family: var(--font-sans); font-size: 9pt; color: var(--color-ink-mute); margin-bottom: 6mm; }
+      .sol-unit { margin-bottom: 5mm; break-inside: avoid; }
+      .sol-unit__h {
+        font-family: var(--font-sans); font-size: 8.5pt; font-weight: 700;
+        letter-spacing: 0.12em; text-transform: uppercase; color: var(--book-accent); margin: 0 0 2mm;
+      }
+      .sol-q { font-family: var(--font-sans); font-size: 9.5pt; margin: 0 0 2mm; line-height: 1.45; }
+      .sol-q__a { font-weight: 700; color: var(--book-accent-deep); }
+      .sol-q__e { color: var(--color-ink-soft); }
+    </style>
+  </head>
+  <style is:inline set:html={`.book-title-string { string-set: book-title "${a.shortLabel} · Cuaderno"; } body { --book-accent: ${accent.base}; --book-accent-deep: ${accent.deep}; --book-accent-soft: ${accent.soft}; }`}></style>
+  <body class="book-title-string">
+
+    {/* COVER */}
+    <section class="cover">
+      <header class="cover__top">
+        <span>profedeeconomia.es</span>
+        <span class="mark"></span>
+      </header>
+      <div class="cover__center">
+        <div class="cover__eyebrow">{a.shortLabel} · {a.level}</div>
+        <h1 class="cover__title">Cuaderno de <em>actividades</em></h1>
+        <p class="cover__sub">{a.title}</p>
+        <div class="cover__rule"></div>
+        <p class="cover__inside">
+          <strong>{totalActs} actividades</strong> · {totalTests} tests con solucionario · Currículo LOMLOE
+        </p>
+      </div>
+      <footer class="cover__bottom">
+        <div class="stack"><span class="muted">Editorial</span><strong>profedeeconomia.es</strong></div>
+        <div class="stack"><span class="muted">Edición</span><strong>Profesorado · curso 2026/27</strong></div>
+        <div class="stack"><span class="muted">Generado</span><strong>{today}</strong></div>
+      </footer>
+    </section>
+
+    {/* INTRO */}
+    <section class="intro">
+      <h2>Cómo usar este cuaderno</h2>
+      <p>
+        Este cuaderno recoge todas las <strong>actividades prácticas</strong> de
+        {' '}{a.title} ({a.level}), agrupadas por unidad y acompañadas del
+        <strong> test de autoevaluación</strong> de cada una. Es la edición para
+        profesorado: al final encontraréis el <strong>solucionario</strong> con
+        las respuestas correctas y su comentario.
+      </p>
+      <p>
+        Cada actividad indica su tipo (caso, ejercicio, debate, dinámica o
+        proyecto), la duración orientativa, el agrupamiento sugerido y los
+        materiales necesarios. Todo está pensado para usarse tal cual o adaptarse
+        a vuestro grupo.
+      </p>
+      <p>
+        El contenido se basa en el currículo básico estatal LOMLOE para
+        {' '}{a.title} ({a.marcoNormativo}). Conviene consultar la concreción de
+        vuestra comunidad autónoma.
+      </p>
+      <p class="note">
+        Material abierto de profedeeconomia.es · Licencia Creative Commons
+        BY-NC-SA · Erratas y propuestas: hola@profedeeconomia.es
+      </p>
+    </section>
+
+    {/* TOC */}
+    <section class="toc">
+      <div class="toc__kicker">Índice · {porUnidad.length} unidades</div>
+      <h2>Contenido</h2>
+      <div>
+        {porUnidad.map((u) => (
+          <div class="toc__item">
+            <span class="toc__num">{String(u.unidad).padStart(2, '0')}</span>
+            <span class="toc__t">Unidad {u.unidad}</span>
+            <span class="toc__c">
+              {u.activities.length} act.{u.test ? ` · test (${u.test.data.preguntas.length})` : ''}
+            </span>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    {/* UNITS */}
+    {porUnidad.map((u) => (
+      <section class="unit">
+        <header class="unit__head">
+          <div class="unit__num">{String(u.unidad).padStart(2, '0')}</div>
+          <div class="unit__kicker">Unidad {u.unidad}</div>
+        </header>
+
+        {u.activities.map(({ act, Content }) => (
+          <article class="act">
+            <div class="act__bar">
+              <span class="act__tag">{tipoLabel[act.data.tipo] ?? act.data.tipo}</span>
+              {act.data.duracion && <span class="act__meta">{act.data.duracion}</span>}
+              {act.data.agrupacion && <span class="act__meta">· {act.data.agrupacion}</span>}
+            </div>
+            <h2 class="act__title">{act.data.title}</h2>
+            {act.data.materiales && act.data.materiales.length > 0 && (
+              <div class="act__materials">
+                <strong>Materiales:</strong> {act.data.materiales.join(' · ')}
+              </div>
+            )}
+            <div class="act__body">
+              <Content />
+            </div>
+          </article>
+        ))}
+
+        {u.test && (
+          <section class="test">
+            <div class="test__head">Test de autoevaluación · {u.test.data.preguntas.length} preguntas</div>
+            {u.test.data.preguntas.map((q, qi) => (
+              <div class="q">
+                <p class="q__text"><span class="q__num">{qi + 1}.</span> {q.enunciado}</p>
+                <ul class="q__opts">
+                  {q.opciones.map((op, oi) => (
+                    <li class="q__opt"><span class="q__letra">{letra(oi)})</span>{op}</li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </section>
+        )}
+      </section>
+    ))}
+
+    {/* SOLUCIONARIO */}
+    <section class="solucionario">
+      <h2 class="solucionario__title">Solucionario</h2>
+      <p class="solucionario__intro">Respuestas correctas de los tests de autoevaluación, con comentario. Edición para profesorado.</p>
+      {porUnidad.filter((u) => u.test).map((u) => (
+        <div class="sol-unit">
+          <h3 class="sol-unit__h">Unidad {u.unidad} · {u.test!.data.preguntas.length} preguntas</h3>
+          {u.test!.data.preguntas.map((q, qi) => (
+            <p class="sol-q">
+              <span class="sol-q__a">{qi + 1}. {letra(q.correcta)})</span>{' '}
+              {q.explicacion && <span class="sol-q__e">{q.explicacion}</span>}
+            </p>
+          ))}
+        </div>
+      ))}
+    </section>
+
+    <script is:inline>
+      if (new URLSearchParams(location.search).has('preview')) {
+        const s = document.createElement('script');
+        s.src = 'https://unpkg.com/pagedjs/dist/paged.polyfill.js';
+        document.body.appendChild(s);
+      }
+    </script>
+  </body>
+</html>

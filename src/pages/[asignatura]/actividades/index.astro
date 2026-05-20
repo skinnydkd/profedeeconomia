@@ -53,6 +53,21 @@ const TIPO_LABEL: Record<string, string> = {
           {items.length} {items.length === 1 ? 'actividad' : 'actividades'}
         </p>
       )}
+
+      {items.length > 0 && (
+        <div class="downloads">
+          <a class="download-cta" href={`/downloads/${a.slug}-cuaderno.pdf`} download>
+            <span class="download-cta__icon" aria-hidden="true">↓</span>
+            <span class="download-cta__text">
+              <strong>Descargar cuaderno de actividades</strong>
+              <span class="muted">PDF · todas las actividades + tests con solucionario</span>
+            </span>
+          </a>
+          <a class="download-secondary" href={`/${a.slug}/actividades/imprimir/?preview=1`} target="_blank" rel="noopener">
+            Previsualizar el cuaderno en el navegador
+          </a>
+        </div>
+      )}
     </div>
   </section>
 
@@ -120,6 +135,48 @@ const TIPO_LABEL: Record<string, string> = {
     font-variation-settings: "SOFT" 80;
   }
   .meta { font-family: var(--font-sans); font-size: 0.9rem; color: var(--color-ink-mute); margin-top: 0.4rem; }
+
+  .downloads {
+    margin-top: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.2rem;
+  }
+  .download-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.9rem 1.4rem 0.9rem 1.1rem;
+    background: var(--color-terra);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: background .2s var(--ease-soft), transform .2s var(--ease-soft);
+  }
+  .download-cta:hover { background: var(--color-terra-deep); transform: translateY(-1px); }
+  .download-cta__icon {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.7rem;
+    line-height: 1;
+    color: var(--color-mustard-soft);
+    font-variation-settings: "SOFT" 100, "WONK" 1;
+  }
+  .download-cta__text { display: flex; flex-direction: column; gap: 0.15rem; }
+  .download-cta__text strong { font-family: var(--font-sans); font-size: 0.95rem; font-weight: 600; }
+  .download-cta__text .muted { font-family: var(--font-sans); font-size: 0.78rem; opacity: 0.75; letter-spacing: 0.04em; }
+  .download-secondary {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--color-ink-soft);
+    text-decoration: none;
+    border-bottom: 1px dashed var(--color-line);
+    padding-bottom: 1px;
+    font-variation-settings: "SOFT" 80;
+  }
+  .download-secondary:hover { color: var(--color-terra); border-bottom-color: var(--color-terra); }
 
   .grid { padding-bottom: clamp(3rem, 7vw, 6rem); }
   .card-grid {
