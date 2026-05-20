@@ -1,0 +1,100 @@
+---
+/**
+ * How the university access mark is built: 60% Bachillerato average + 40%
+ * compulsory EBAU phase = nota de acceso (out of 10); plus the weighted
+ * optional phase (up to +4) = nota de admisión (out of 14).
+ *
+ * Used in FOPP 4ESO · Unit 6 (FP, Universidad y becas).
+ */
+---
+<svg viewBox="0 0 880 540" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="ebau-title ebau-desc">
+  <title id="ebau-title">Cómo se calcula la nota de acceso a la universidad</title>
+  <desc id="ebau-desc">La nota de acceso suma el 60 por ciento de la media del Bachillerato y el 40 por ciento de la fase obligatoria de la EBAU, con un máximo de 10. La fase voluntaria añade hasta 4 puntos por ponderaciones, hasta una nota de admisión máxima de 14.</desc>
+  <defs>
+    <style>
+      .bg { fill: #FBF6EC; }
+      .box { stroke-width: 2; }
+      .box-bach { fill: #F5E5BC; stroke: #A87A2A; }
+      .box-ebau { fill: #FBE3D6; stroke: #C44E2C; }
+      .box-acceso { fill: #ECDCE5; stroke: #5B3A4E; }
+      .box-pond { fill: #DBEDED; stroke: #1F6E6E; }
+      .box-admision { fill: #5B3A4E; stroke: #2A1F18; }
+      .op { font-family: 'Fraunces', serif; font-size: 34px; font-weight: 500; fill: #5C4A3D; text-anchor: middle; }
+      .box-tag { font-family: 'Switzer', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; text-anchor: middle; }
+      .box-title { font-family: 'Fraunces', serif; font-size: 15px; font-weight: 500; fill: #2A1F18; text-anchor: middle; }
+      .box-pct { font-family: 'JetBrains Mono', monospace; font-size: 24px; font-weight: 500; fill: #2A1F18; text-anchor: middle; }
+      .box-max { font-family: 'JetBrains Mono', monospace; font-size: 12px; fill: #5C4A3D; text-anchor: middle; }
+      .res-tag { font-family: 'Switzer', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 1.6px; text-transform: uppercase; fill: #ECDCE5; text-anchor: middle; }
+      .res-title { font-family: 'Fraunces', serif; font-style: italic; font-size: 17px; font-weight: 500; fill: #FFFFFF; text-anchor: middle; }
+      .res-max { font-family: 'JetBrains Mono', monospace; font-size: 22px; font-weight: 500; fill: #FFFFFF; text-anchor: middle; }
+      .acceso-tag { font-family: 'Switzer', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 1.6px; text-transform: uppercase; fill: #5B3A4E; text-anchor: middle; }
+      .acceso-max { font-family: 'JetBrains Mono', monospace; font-size: 22px; font-weight: 500; fill: #2A1F18; text-anchor: middle; }
+    </style>
+  </defs>
+  <rect class="bg" x="0" y="0" width="880" height="540"/>
+
+  <!-- ROW 1: nota de acceso = 0,6 Bach + 0,4 EBAU -->
+  <!-- Bachillerato box -->
+  <rect class="box box-bach" x="40" y="60" width="210" height="120" rx="8"/>
+  <text class="box-tag" x="145" y="88" fill="#A87A2A">60 % · ponderación</text>
+  <text class="box-title" x="145" y="116">Nota media del</text>
+  <text class="box-title" x="145" y="135">Bachillerato</text>
+  <text class="box-pct" x="145" y="168">× 0,6</text>
+
+  <!-- plus -->
+  <text class="op" x="290" y="132">+</text>
+
+  <!-- EBAU obligatoria box -->
+  <rect class="box box-ebau" x="330" y="60" width="210" height="120" rx="8"/>
+  <text class="box-tag" x="435" y="88" fill="#9C3A1C">40 % · ponderación</text>
+  <text class="box-title" x="435" y="116">Fase obligatoria</text>
+  <text class="box-title" x="435" y="135">de la EBAU</text>
+  <text class="box-pct" x="435" y="168">× 0,4</text>
+
+  <!-- equals -->
+  <text class="op" x="580" y="132">=</text>
+
+  <!-- Nota de acceso box -->
+  <rect class="box box-acceso" x="620" y="55" width="220" height="130" rx="8"/>
+  <text class="acceso-tag" x="730" y="86">Nota de acceso</text>
+  <text class="box-title" x="730" y="116">sobre</text>
+  <text class="acceso-max" x="730" y="150">10 puntos</text>
+  <text class="box-max" x="730" y="172">suficiente para muchos grados</text>
+
+  <!-- Connector arrow down from nota de acceso -->
+  <path d="M 730 185 L 730 250" fill="none" stroke="#5C4A3D" stroke-width="2" marker-end="url(#ebau-arrow)"/>
+  <text class="box-max" x="730" y="225" text-anchor="middle">se le suma…</text>
+
+  <!-- ROW 2: + fase voluntaria (ponderaciones) = nota de admisión -->
+  <!-- Nota de acceso (carried) -->
+  <rect class="box box-acceso" x="40" y="320" width="200" height="120" rx="8"/>
+  <text class="acceso-tag" x="140" y="350">Nota de acceso</text>
+  <text class="box-title" x="140" y="382">(la del paso</text>
+  <text class="box-title" x="140" y="401">anterior)</text>
+  <text class="acceso-max" x="140" y="430">máx. 10</text>
+
+  <!-- plus -->
+  <text class="op" x="280" y="392">+</text>
+
+  <!-- Fase voluntaria box -->
+  <rect class="box box-pond" x="320" y="320" width="240" height="120" rx="8"/>
+  <text class="box-tag" x="440" y="348" fill="#1F6E6E">Fase voluntaria</text>
+  <text class="box-title" x="440" y="376">Ponderaciones</text>
+  <text class="box-title" x="440" y="395">(2 mejores materias)</text>
+  <text class="box-pct" x="440" y="428" font-size="20">× 0,1 ó 0,2</text>
+
+  <!-- equals -->
+  <text class="op" x="600" y="392">=</text>
+
+  <!-- Nota de admisión box -->
+  <rect class="box box-admision" x="640" y="315" width="200" height="130" rx="8"/>
+  <text class="res-tag" x="740" y="346">Nota de admisión</text>
+  <text class="res-title" x="740" y="378">hasta +4 puntos</text>
+  <text class="res-max" x="740" y="412">máximo 14</text>
+
+  <defs>
+    <marker id="ebau-arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#5C4A3D"/>
+    </marker>
+  </defs>
+</svg>
