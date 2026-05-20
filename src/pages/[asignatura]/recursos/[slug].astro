@@ -11,6 +11,14 @@ import CalculadoraNominaESO from '@components/calculadoras/CalculadoraNominaESO.
 import CalculadoraPresupuesto503020 from '@components/calculadoras/CalculadoraPresupuesto503020.tsx';
 import BuscadorItinerarios from '@components/calculadoras/BuscadorItinerarios.tsx';
 import GeneradorCVEuropass from '@components/calculadoras/GeneradorCVEuropass.tsx';
+import DCFCalc from '@components/calculadoras/DCFCalc.tsx';
+import RatiosBenchmark from '@components/calculadoras/RatiosBenchmark.tsx';
+import ElasticidadCalc from '@components/calculadoras/ElasticidadCalc.tsx';
+import MultiplicadorGasto from '@components/calculadoras/MultiplicadorGasto.tsx';
+import IRPFDeclaracion from '@components/calculadoras/IRPFDeclaracion.tsx';
+import CocheVsAlternativa from '@components/calculadoras/CocheVsAlternativa.tsx';
+import RIASECTest from '@components/calculadoras/RIASECTest.tsx';
+import PresupuestoUni from '@components/calculadoras/PresupuestoUni.tsx';
 import type { GetStaticPaths } from 'astro';
 
 export const getStaticPaths = (async () => {
@@ -75,6 +83,14 @@ const unitSlug = unit?.id.split('/').pop()?.replace(/\.mdx?$/, '');
       {recurso.data.componente === 'Presupuesto503020' && <CalculadoraPresupuesto503020 client:load />}
       {recurso.data.componente === 'BuscadorItinerarios' && <BuscadorItinerarios client:load />}
       {recurso.data.componente === 'GeneradorCVEuropass' && <GeneradorCVEuropass client:load />}
+      {recurso.data.componente === 'DCF' && <DCFCalc client:load />}
+      {recurso.data.componente === 'RatiosBenchmark' && <RatiosBenchmark client:load />}
+      {recurso.data.componente === 'Elasticidad' && <ElasticidadCalc client:load />}
+      {recurso.data.componente === 'MultiplicadorGasto' && <MultiplicadorGasto client:load />}
+      {recurso.data.componente === 'IRPFDeclaracion' && <IRPFDeclaracion client:load />}
+      {recurso.data.componente === 'CocheVsAlternativa' && <CocheVsAlternativa client:load />}
+      {recurso.data.componente === 'RIASEC' && <RIASECTest client:load />}
+      {recurso.data.componente === 'PresupuestoUni' && <PresupuestoUni client:load />}
     </div>
   </section>
 
