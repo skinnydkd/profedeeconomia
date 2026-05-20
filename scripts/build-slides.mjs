@@ -26,7 +26,12 @@ import { platform } from 'node:os';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = resolve(__dirname, '..');
 
-const ASIGNATURAS = ['edmn-2bach', 'eco-1bach', 'eco-4eso', 'fopp-4eso'];
+const ALL_ASIGNATURAS = ['edmn-2bach', 'eco-1bach', 'eco-4eso', 'fopp-4eso', 'taller-eco-3eso', 'ipe1-fp', 'ipe2-fp'];
+// Optional positional slug filters: `node build-slides.mjs ipe1-fp` builds only that one.
+const slugFilters = process.argv.slice(2).filter((a) => !a.startsWith('--'));
+const ASIGNATURAS = slugFilters.length > 0
+  ? ALL_ASIGNATURAS.filter((s) => slugFilters.includes(s))
+  : ALL_ASIGNATURAS;
 
 function findChromeExecutable() {
   if (process.env.PUPPETEER_EXECUTABLE_PATH && existsSync(process.env.PUPPETEER_EXECUTABLE_PATH)) {
