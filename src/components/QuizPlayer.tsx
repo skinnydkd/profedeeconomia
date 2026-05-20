@@ -1,5 +1,6 @@
 /** @jsxImportSource preact */
-import { useMemo, useState } from 'preact/hooks';
+import { useEffect, useMemo, useState } from 'preact/hooks';
+import { loadJSON, removeKey, saveJSON } from '../lib/storage';
 
 export type Pregunta = {
   enunciado: string;
@@ -35,9 +36,23 @@ function emptyState(n: number): Estado {
   };
 }
 
+/** localStorage key holding the best `nota10` ever achieved for this quiz. */
+function bestKey(storageKey: string): string {
+  return `quiz:${storageKey}:best`;
+}
+
 export default function QuizPlayer({ preguntas, storageKey }: Props) {
   const total = preguntas.length;
   const [estado, setEstado] = useState<Estado>(() => emptyState(total));
+
+  // Best nota persisted across attempts. Loaded after mount (never during the
+  // server render) to avoid an SSR/client hydration mismatch.
+  const [bestNota, setBestNota] = useState<number | null>(null);
+
+  useEffect(() => {
+    const stored = loadJSON<number | null>(bestKey(storageKey), null);
+    if (typeof stored === 'number') setBestNota(stored);
+  }, [storageKey]);
 
   const aciertos = useMemo(
     () =>
@@ -72,7 +87,15 @@ export default function QuizPlayer({ preguntas, storageKey }: Props) {
 
   function siguiente() {
     setEstado((s) => {
-      if (s.idx + 1 >= total) return { ...s, finalizado: true };
+      if (s.idx + 1 >= total) {
+        // Finishing the attempt: persist the best nota if this one is higher.
+        setBestNota((prev) => {
+          if (prev !== null && prev >= nota10) return prev;
+          saveJSON(bestKey(storageKey), nota10);
+          return nota10;
+        });
+        return { ...s, finalizado: true };
+      }
       return { ...s, idx: s.idx + 1 };
     });
   }
@@ -85,6 +108,16 @@ export default function QuizPlayer({ preguntas, storageKey }: Props) {
     setEstado(emptyState(total));
   }
 
+  function borrarProgreso() {
+    removeKey(bestKey(storageKey));
+    setBestNota(null);
+  }
+
+  /** Formats a nota10 (0–10) with comma decimals, e.g. "8,50". */
+  function formatNota(n: number): string {
+    return n.toFixed(2).replace('.', ',');
+  }
+
   // ─── Final summary screen ─────────────────────────────────
   if (estado.finalizado) {
     const aprobado = aciertos / total >= 0.5;
@@ -93,9 +126,12 @@ export default function QuizPlayer({ preguntas, storageKey }: Props) {
         <div class="qp__final">
           <div class="qp__eyebrow">Resultado</div>
           <h2 class="qp__nota">
-            <span class="qp__nota-num">{nota10.toFixed(2).replace('.', ',')}</span>
+            <span class="qp__nota-num">{formatNota(nota10)}</span>
             <span class="qp__nota-sobre">/ 10</span>
           </h2>
+          {bestNota !== null && (
+            <p class="qp__best">Tu mejor nota: {formatNota(bestNota)} / 10</p>
+          )}
           <p class="qp__detail">
             {aciertos} {aciertos === 1 ? 'acierto' : 'aciertos'} de {total}{' '}
             {total === 1 ? 'pregunta' : 'preguntas'}
@@ -128,9 +164,16 @@ export default function QuizPlayer({ preguntas, storageKey }: Props) {
             })}
           </ol>
 
-          <button class="qp__btn qp__btn--primary" type="button" onClick={reiniciar}>
-            Volver a intentarlo
-          </button>
+          <div class="qp__actions">
+            <button class="qp__btn qp__btn--primary" type="button" onClick={reiniciar}>
+              Volver a intentarlo
+            </button>
+            {bestNota !== null && (
+              <button class="qp__btn qp__btn--ghost" type="button" onClick={borrarProgreso}>
+                Borrar mi progreso
+              </button>
+            )}
+          </div>
         </div>
       </div>
     );
@@ -158,6 +201,10 @@ export default function QuizPlayer({ preguntas, storageKey }: Props) {
           ))}
         </div>
       </div>
+
+      {estado.idx === 0 && !confirmada && bestNota !== null && (
+        <p class="qp__best">Tu mejor nota: {formatNota(bestNota)} / 10</p>
+      )}
 
       <h3 class="qp__enunciado">{pregunta.enunciado}</h3>
 

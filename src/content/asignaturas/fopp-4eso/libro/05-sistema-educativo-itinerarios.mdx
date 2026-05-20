@@ -48,6 +48,8 @@ import Diagram from '@components/Diagram.astro';
 import SistemaEducativo from '@components/diagrams/SistemaEducativo.astro';
 import ItinerariosPostESO from '@components/diagrams/ItinerariosPostESO.astro';
 import Figure from '@components/Figure.astro';
+import Timeline from '@components/Timeline.tsx';
+import { itinerariosPostESOTimeline } from '@/lib/timelines.ts';
 
 import salamancaFachada from '@assets/libro/fopp-4eso/05/salamanca-fachada.jpg';
 import fpTallerMetal from '@assets/libro/fopp-4eso/05/fp-taller-metal.jpg';
@@ -90,6 +92,14 @@ Esto significa que **una decisión a los 16 años no condena a nada para siempre
 <Diagram caption="El sistema educativo español tras 4.º ESO: caminos y pasarelas.">
   <SistemaEducativo />
 </Diagram>
+
+Si el esquema anterior es el *mapa*, esta línea de tiempo es la *secuencia*: los momentos de decisión que se van encadenando desde que acabas 4.º ESO hasta que llegas a la universidad, a un Grado Superior o al mundo laboral. Pulsa cada momento para ver qué se decide en él y qué pasarelas siguen abiertas.
+
+<Timeline
+  client:visible
+  title="De 4.º ESO al destino: la secuencia de decisiones"
+  events={itinerariosPostESOTimeline}
+/>
 
 <Callout label="Concepto clave" title="Sistema educativo abierto, no lineal" variant="concept">
 

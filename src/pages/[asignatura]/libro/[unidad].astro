@@ -2,6 +2,7 @@
 import BaseLayout from '@layouts/BaseLayout.astro';
 import { ASIGNATURAS } from '@/lib/asignaturas';
 import { getCollection, render } from 'astro:content';
+import UnitNotes from '@components/UnitNotes.tsx';
 import type { GetStaticPaths } from 'astro';
 
 export const getStaticPaths = (async () => {
@@ -30,6 +31,9 @@ const idx = all.findIndex((u) => u.id === unit.id);
 const prev = idx > 0 ? all[idx - 1] : null;
 const next = idx < all.length - 1 ? all[idx + 1] : null;
 const idToSlug = (id: string) => id.split('/').pop()?.replace(/\.mdx?$/, '') ?? id;
+
+// Stable per-unit namespace for the UnitNotes localStorage state.
+const unitKey = `${a.slug}-u${unit.data.unidad}`;
 ---
 
 <BaseLayout
@@ -101,6 +105,8 @@ const idToSlug = (id: string) => id.split('/').pop()?.replace(/\.mdx?$/, '') ?? 
 
       <article class="article-body">
         <Content />
+
+        <UnitNotes client:idle unitKey={unitKey} unitTitle={unit.data.title} />
 
         <nav class="unit-nav">
           {prev ? (
@@ -419,5 +425,144 @@ const idToSlug = (id: string) => id.split('/').pop()?.replace(/\.mdx?$/, '') ?? 
     font-family: var(--font-serif);
     font-size: 1.15rem;
     line-height: 1.3;
+  }
+</style>
+
+{/*
+  Global styles for the UnitNotes component (it renders client-side via Preact,
+  so it lives outside the scoped styles above).
+*/}
+<style is:global>
+  .un {
+    margin-top: 3rem;
+    padding: 1.8rem 2rem;
+    background: var(--color-paper);
+    border: 1px solid var(--color-line);
+    border-left: 3px solid var(--color-mustard);
+    border-radius: 6px;
+    box-shadow: 0 1px 2px rgba(42, 31, 24, 0.05), 0 4px 14px rgba(42, 31, 24, 0.06);
+  }
+
+  .un__head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.4rem;
+  }
+  .un__eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--color-mustard-deep);
+    font-weight: 700;
+    margin-bottom: 0.2rem;
+  }
+  .un__title {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    line-height: 1.2;
+    margin: 0;
+    color: var(--color-ink);
+    font-weight: 500;
+    font-variation-settings: "SOFT" 60;
+  }
+  /* Reset the article-body heading decorations for this in-flow h2. */
+  .article-body .un__title { padding: 0; counter-increment: none; }
+  .article-body .un__title::before,
+  .article-body .un__title::after { content: none; }
+
+  .un__mark {
+    flex: none;
+    font-family: var(--font-sans);
+    font-size: 0.88rem;
+    font-weight: 600;
+    padding: 0.55rem 1.1rem;
+    border-radius: 999px;
+    cursor: pointer;
+    border: 1.5px solid var(--color-terra);
+    background: transparent;
+    color: var(--color-terra);
+    transition: background .15s var(--ease-soft), color .15s var(--ease-soft), border-color .15s var(--ease-soft);
+  }
+  .un__mark:hover:not(:disabled) {
+    background: var(--color-terra-soft);
+  }
+  .un__mark.is-on {
+    background: var(--color-terra);
+    color: var(--color-bg);
+  }
+  .un__mark:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  .un__hint {
+    font-family: var(--font-sans);
+    font-size: 0.92rem;
+    color: var(--color-ink-mute);
+    margin: 0 0 1rem;
+    line-height: 1.5;
+  }
+
+  .un__area {
+    width: 100%;
+    box-sizing: border-box;
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--color-ink);
+    background: var(--color-bg);
+    border: 1.5px solid var(--color-line);
+    border-radius: 6px;
+    padding: 0.9rem 1rem;
+    resize: vertical;
+    min-height: 7rem;
+    transition: border-color .15s var(--ease-soft);
+  }
+  .un__area:focus {
+    outline: none;
+    border-color: var(--color-mustard);
+  }
+  .un__area:disabled { opacity: 0.7; cursor: wait; }
+
+  .un__foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 0.8rem;
+  }
+  .un__saved {
+    font-family: var(--font-sans);
+    font-size: 0.82rem;
+    color: var(--color-mustard-deep);
+    opacity: 0;
+    transition: opacity .2s var(--ease-soft);
+  }
+  .un__saved.is-visible { opacity: 1; }
+  .un__saved::before {
+    content: "✓ ";
+  }
+
+  .un__clear {
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 0.45rem 0.9rem;
+    border-radius: 5px;
+    cursor: pointer;
+    background: transparent;
+    color: var(--color-ink-soft);
+    border: 1.5px solid var(--color-line);
+    transition: color .15s var(--ease-soft), border-color .15s var(--ease-soft);
+  }
+  .un__clear:hover:not(:disabled) {
+    color: var(--color-terra);
+    border-color: var(--color-terra);
+  }
+  .un__clear:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  @media (max-width: 600px) {
+    .un { padding: 1.4rem 1.3rem; }
+    .un__head { flex-direction: column; }
   }
 </style>
