@@ -21,7 +21,7 @@ import { createServer } from 'node:http';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = resolve(__dirname, '..');
 
-const allAsignaturas = ['edmn-2bach', 'eco-1bach', 'eco-4eso', 'fopp-4eso'];
+const allAsignaturas = ['edmn-2bach', 'eco-1bach', 'eco-4eso', 'fopp-4eso', 'taller-eco-3eso', 'ipe1-fp', 'ipe2-fp'];
 
 const args = new Set(process.argv.slice(2));
 const inDistOnly = args.has('--in-dist');
