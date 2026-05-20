@@ -1,0 +1,88 @@
+---
+/**
+ * Growth accounting (Solow decomposition): total output growth ΔY is
+ * split into the contribution of capital (K), the contribution of
+ * labour (L) and Total Factor Productivity (TFP, the Solow residual).
+ * Rendered as a stacked contribution bar next to a target ΔY bar.
+ *
+ * Figures track Solved Exercise 8.3 of the unit:
+ *   ΔY = 2,4  ·  K → 0,7  ·  L → 1,8  ·  PTF → −0,1 (residual).
+ *
+ * Used in Eco 1BACH · Unit 8 (growth and the Solow model).
+ */
+---
+<svg viewBox="0 0 800 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="solow-title solow-desc">
+  <title id="solow-title">Descomposición del crecimiento (contabilidad del crecimiento)</title>
+  <desc id="solow-desc">El crecimiento del PIB se descompone en la contribución del capital, la contribución del trabajo y la productividad total de los factores, obtenida como residuo de Solow. En el ejemplo, de un crecimiento del 2,4 por ciento, el capital aporta 0,7 puntos, el trabajo 1,8 puntos y la PTF resta 0,1 puntos.</desc>
+  <defs>
+    <style>
+      .bg { fill: #FBF6EC; }
+      .axis { stroke: #5C4A3D; stroke-width: 1.5; fill: none; }
+      .grid { stroke: #E5D4BD; stroke-width: 1; stroke-dasharray: 2 4; fill: none; }
+      .zero { stroke: #5C4A3D; stroke-width: 1.5; }
+      .bar-k { fill: #D4A24C; }
+      .bar-l { fill: #1F6E6E; }
+      .bar-ptf { fill: #9C3A1C; }
+      .bar-y { fill: #2A1F18; }
+      .bar-stroke { stroke: #FBF6EC; stroke-width: 1.5; }
+      .axis-label { font-family: 'Switzer', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; fill: #5C4A3D; }
+      .tick { font-family: 'JetBrains Mono', monospace; font-size: 10px; fill: #5C4A3D; }
+      .bar-label { font-family: 'Switzer', sans-serif; font-size: 12px; font-weight: 700; fill: #2A1F18; text-anchor: middle; }
+      .bar-val { font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 500; fill: #FFFFFF; text-anchor: middle; }
+      .bar-val-out { font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 500; fill: #9C3A1C; text-anchor: middle; }
+      .eq { font-family: 'Fraunces', serif; font-size: 16px; font-weight: 500; fill: #2A1F18; text-anchor: middle; }
+      .legend { font-family: 'Switzer', sans-serif; font-size: 11.5px; font-weight: 500; fill: #5C4A3D; }
+    </style>
+  </defs>
+  <rect class="bg" x="0" y="0" width="800" height="520"/>
+
+  <!-- Equation header -->
+  <text class="eq" x="400" y="48">ΔY  =  contribución de <tspan font-style="italic" fill="#A87A2A">K</tspan>  +  contribución de <tspan font-style="italic" fill="#1F6E6E">L</tspan>  +  <tspan font-style="italic" fill="#9C3A1C">PTF</tspan> (residuo de Solow)</text>
+
+  <!-- Plot. y-axis: value in %-points. 0 at y=380, top (3,0) at y=90.
+       scale: 1 pt = 96.67 px. Bars are vertical. -->
+  <!-- y grid lines at 1,2,3 -->
+  <line class="grid" x1="120" y1="283" x2="700" y2="283"/>
+  <line class="grid" x1="120" y1="187" x2="700" y2="187"/>
+  <line class="grid" x1="120" y1="90" x2="700" y2="90"/>
+
+  <!-- y axis + zero line -->
+  <line class="axis" x1="120" y1="80" x2="120" y2="420"/>
+  <line class="zero" x1="120" y1="380" x2="700" y2="380"/>
+
+  <!-- y ticks -->
+  <text class="tick" x="112" y="384" text-anchor="end">0</text>
+  <text class="tick" x="112" y="287" text-anchor="end">1</text>
+  <text class="tick" x="112" y="191" text-anchor="end">2</text>
+  <text class="tick" x="112" y="94" text-anchor="end">3</text>
+  <text class="axis-label" x="46" y="235" text-anchor="middle" transform="rotate(-90 46 235)">PUNTOS DE %</text>
+
+  <!-- Stacked contribution bar (left), centred at x=300, width 120. -->
+  <!-- L: 1,8 pts from 0 up -> height 174 (380 -> 206) -->
+  <rect class="bar-l bar-stroke" x="240" y="206" width="120" height="174"/>
+  <text class="bar-val" x="300" y="300">L  +1,8</text>
+  <!-- K: 0,7 pts stacked on L -> from 206 up 67.7 -> 138.3 -->
+  <rect class="bar-k bar-stroke" x="240" y="138" width="120" height="68"/>
+  <text class="bar-val" x="300" y="178" fill="#2A1F18">K  +0,7</text>
+  <!-- PTF: -0,1 pts below zero -> from 380 down 9.7 -> to 390 -->
+  <rect class="bar-ptf bar-stroke" x="240" y="380" width="120" height="10"/>
+  <text class="bar-val-out" x="300" y="406">PTF  −0,1</text>
+
+  <text class="bar-label" x="300" y="448">Suma de contribuciones</text>
+
+  <!-- Resulting ΔY bar (right), centred at x=540, width 120. ΔY=2,4 -> height 232 -->
+  <rect class="bar-y bar-stroke" x="480" y="148" width="120" height="232"/>
+  <text class="bar-val" x="540" y="270">ΔY = 2,4</text>
+  <text class="bar-label" x="540" y="448">Crecimiento del PIB</text>
+
+  <!-- Connector showing equality of totals (top of stack ≈ top of ΔY bar) -->
+  <line class="grid" x1="240" y1="138" x2="600" y2="148" stroke="#8A7868" stroke-dasharray="4 4"/>
+
+  <!-- Legend -->
+  <rect class="bar-k" x="120" y="478" width="14" height="14"/>
+  <text class="legend" x="140" y="490">Capital (K)</text>
+  <rect class="bar-l" x="250" y="478" width="14" height="14"/>
+  <text class="legend" x="270" y="490">Trabajo (L)</text>
+  <rect class="bar-ptf" x="380" y="478" width="14" height="14"/>
+  <text class="legend" x="400" y="490">PTF / residuo de Solow</text>
+</svg>

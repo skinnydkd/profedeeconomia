@@ -1,0 +1,103 @@
+---
+/**
+ * Etapas de financiación de una startup, como línea temporal ascendente.
+ * De izquierda a derecha y de menor a mayor importe: bootstrapping y FFF,
+ * business angels, capital semilla, serie A, serie B/VC y la salida (IPO o
+ * M&A). El eje vertical sugiere el importe captado; bajo el eje, la madurez
+ * y el riesgo decreciente para el inversor.
+ *
+ * Used in EDMN 2BACH · Unit 9 (función financiera).
+ */
+---
+<svg viewBox="0 0 900 500" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="cascfin-title cascfin-desc">
+  <title id="cascfin-title">Etapas de financiación de una startup</title>
+  <desc id="cascfin-desc">Escalera ascendente de financiación: empieza con bootstrapping y dinero de familia y amigos, sigue con business angels, capital semilla, serie A y serie B con fondos de capital riesgo, y termina con la salida mediante una salida a bolsa o una adquisición. A medida que sube el importe, baja el riesgo percibido por el inversor.</desc>
+  <defs>
+    <style>
+      .bg { fill: #FBF6EC; }
+      .axis { stroke: #5C4A3D; stroke-width: 1.5; }
+      .axis-label { font-family: 'Switzer', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; fill: #5C4A3D; }
+      .step { stroke: #9C3A1C; stroke-width: 1.6; }
+      .step-1 { fill: #F5E5BC; }
+      .step-2 { fill: #FBE3D6; }
+      .step-3 { fill: #F4C9B3; }
+      .step-4 { fill: #E89A78; }
+      .step-5 { fill: #D4724E; }
+      .step-6 { fill: #C44E2C; }
+      .step-name { font-family: 'Switzer', sans-serif; font-size: 11.5px; font-weight: 700; fill: #2A1F18; text-anchor: middle; }
+      .step-amt { font-family: 'JetBrains Mono', monospace; font-size: 10px; fill: #2A1F18; text-anchor: middle; }
+      .step-who { font-family: 'Switzer', sans-serif; font-size: 9.5px; fill: #5C4A3D; text-anchor: middle; }
+      .arrow-line { stroke: #C44E2C; stroke-width: 2.5; fill: none; marker-end: url(#cf-arrow); }
+      .risk-band { font-family: 'Fraunces', serif; font-style: italic; font-size: 12px; fill: #5C4A3D; }
+      .risk-grad { fill: none; stroke: #8A7868; stroke-width: 1.4; marker-end: url(#cf-arrow-mute); }
+    </style>
+    <marker id="cf-arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#C44E2C"/>
+    </marker>
+    <marker id="cf-arrow-mute" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#8A7868"/>
+    </marker>
+  </defs>
+  <rect class="bg" x="0" y="0" width="900" height="500"/>
+
+  <!-- Axes -->
+  <line class="axis" x1="80" y1="380" x2="870" y2="380"/>
+  <line class="axis" x1="80" y1="380" x2="80" y2="50"/>
+  <text class="axis-label" x="42" y="210" text-anchor="middle" transform="rotate(-90 42 210)">IMPORTE CAPTADO</text>
+  <text class="axis-label" x="475" y="478" text-anchor="middle">MADUREZ DE LA EMPRESA →</text>
+
+  <!-- Ascending steps. 6 columns, width 110, gap 18, starting x=100. Heights grow. baseline 380. -->
+  <!-- Step 1: Bootstrapping / FFF -->
+  <rect class="step step-1" x="100" y="320" width="110" height="60" rx="4"/>
+  <text class="step-name" x="155" y="305">Bootstrapping</text>
+  <text class="step-name" x="155" y="290">/ FFF</text>
+  <text class="step-amt" x="155" y="345">&lt; 50.000 €</text>
+  <text class="step-who" x="155" y="365">Fundadores, familia,</text>
+  <text class="step-who" x="155" y="377">amigos (friends &amp; family)</text>
+
+  <!-- Step 2: Business Angels -->
+  <rect class="step step-2" x="228" y="280" width="110" height="100" rx="4"/>
+  <text class="step-name" x="283" y="265">Business</text>
+  <text class="step-name" x="283" y="250">Angels</text>
+  <text class="step-amt" x="283" y="305">50k – 300k €</text>
+  <text class="step-who" x="283" y="345">Inversores</text>
+  <text class="step-who" x="283" y="357">particulares con</text>
+  <text class="step-who" x="283" y="369">experiencia</text>
+
+  <!-- Step 3: Capital semilla -->
+  <rect class="step step-3" x="356" y="240" width="110" height="140" rx="4"/>
+  <text class="step-name" x="411" y="225">Capital</text>
+  <text class="step-name" x="411" y="210">semilla (seed)</text>
+  <text class="step-amt" x="411" y="265">0,3M – 2M €</text>
+  <text class="step-who" x="411" y="320">Fondos seed,</text>
+  <text class="step-who" x="411" y="332">aceleradoras</text>
+
+  <!-- Step 4: Serie A -->
+  <rect class="step step-4" x="484" y="190" width="110" height="190" rx="4"/>
+  <text class="step-name" x="539" y="175" fill="#FFFFFF">Serie A</text>
+  <text class="step-amt" x="539" y="215" fill="#FFFFFF">2M – 15M €</text>
+  <text class="step-who" x="539" y="320" fill="#2A1F18">Fondos de</text>
+  <text class="step-who" x="539" y="332" fill="#2A1F18">capital riesgo</text>
+
+  <!-- Step 5: Serie B / VC -->
+  <rect class="step step-5" x="612" y="130" width="110" height="250" rx="4"/>
+  <text class="step-name" x="667" y="115" fill="#FFFFFF">Serie B / VC</text>
+  <text class="step-amt" x="667" y="155" fill="#FFFFFF">15M – 50M €</text>
+  <text class="step-who" x="667" y="320" fill="#FFFFFF">Venture capital</text>
+  <text class="step-who" x="667" y="332" fill="#FFFFFF">para escalar</text>
+
+  <!-- Step 6: Salida -->
+  <rect class="step step-6" x="740" y="70" width="110" height="310" rx="4"/>
+  <text class="step-name" x="795" y="55" fill="#FFFFFF">Salida (exit)</text>
+  <text class="step-amt" x="795" y="95" fill="#FFFFFF">IPO / M&amp;A</text>
+  <text class="step-who" x="795" y="320" fill="#FFFFFF">Salida a bolsa</text>
+  <text class="step-who" x="795" y="332" fill="#FFFFFF">o adquisición</text>
+
+  <!-- Ascending trend arrow over the steps -->
+  <path class="arrow-line" d="M 120 350 L 250 318 L 380 280 L 510 235 L 640 175 L 770 115"/>
+
+  <!-- Risk gradient annotation below baseline -->
+  <text class="risk-band" x="120" y="445">Riesgo del inversor MUY ALTO</text>
+  <line class="risk-grad" x1="320" y1="440" x2="700" y2="440"/>
+  <text class="risk-band" x="720" y="445" text-anchor="start">menor</text>
+</svg>

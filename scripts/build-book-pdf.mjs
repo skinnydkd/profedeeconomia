@@ -27,10 +27,21 @@ import { createServer } from 'node:http';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = resolve(__dirname, '..');
 
-const asignaturas = ['edmn-2bach', 'eco-1bach', 'eco-4eso', 'fopp-4eso'];   // extend as more books publish
+const allAsignaturas = ['edmn-2bach', 'eco-1bach', 'eco-4eso', 'fopp-4eso'];   // extend as more books publish
 
 const args = new Set(process.argv.slice(2));
 const inDistOnly = args.has('--in-dist');
+
+// Optional positional slug filters: `node build-book-pdf.mjs eco-1bach`
+// generates only that book. Useful for verifying a single PDF quickly.
+const slugFilters = process.argv.slice(2).filter((a) => !a.startsWith('--'));
+const asignaturas = slugFilters.length > 0
+  ? allAsignaturas.filter((s) => slugFilters.includes(s))
+  : allAsignaturas;
+if (asignaturas.length === 0) {
+  console.error(`✖ Ningún slug válido. Opciones: ${allAsignaturas.join(', ')}`);
+  process.exit(1);
+}
 
 /**
  * Locate a working Chrome/Chromium executable.

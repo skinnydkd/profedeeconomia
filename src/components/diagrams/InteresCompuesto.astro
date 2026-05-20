@@ -1,0 +1,95 @@
+---
+/**
+ * Interés simple vs interés compuesto a lo largo del tiempo.
+ * Dos curvas de crecimiento de 100 € al 10 % anual durante 30 años,
+ * mostrando cómo el compuesto se dispara con el plazo.
+ *
+ * Used in Eco 4ESO · Unit 7 (dinero, presupuesto y financiación).
+ */
+---
+<svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="interes-title interes-desc">
+  <title id="interes-title">Interés simple frente a interés compuesto</title>
+  <desc id="interes-desc">Crecimiento de 100 euros al 10 % anual durante 30 años. La línea del interés simple crece de forma recta hasta 400 euros; la del interés compuesto se curva hacia arriba y supera los 1.700 euros, mostrando que el plazo es la variable más poderosa del ahorro.</desc>
+  <defs>
+    <style>
+      .bg { fill: #FBF6EC; }
+      .axis { stroke: #5C4A3D; stroke-width: 1.5; fill: none; }
+      .grid { stroke: #E5D4BD; stroke-width: 1; stroke-dasharray: 2 4; fill: none; }
+      .line-simple { fill: none; stroke: #8A7868; stroke-width: 2.5; stroke-dasharray: 7 5; }
+      .line-comp { fill: none; stroke: #C44E2C; stroke-width: 3; }
+      .axis-label { font-family: 'Switzer', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; fill: #5C4A3D; }
+      .tick-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; fill: #5C4A3D; }
+      .curve-label { font-family: 'Switzer', sans-serif; font-size: 13px; font-weight: 700; }
+      .end-val { font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 500; }
+      .header { font-family: 'Switzer', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 1.6px; text-transform: uppercase; fill: #8A7868; text-anchor: middle; }
+      .footer { font-family: 'Fraunces', serif; font-style: italic; font-size: 13px; fill: #5C4A3D; text-anchor: middle; }
+    </style>
+  </defs>
+  <rect class="bg" x="0" y="0" width="800" height="500"/>
+
+  <text class="header" x="400" y="40">100 € AL 10 % ANUAL · CRECIMIENTO A 30 AÑOS</text>
+
+  <!-- Plot area: x 90..720 (0..30 años), y 410..70 (0..1800 €) -->
+  <!-- Grid horizontal at 400, 800, 1200, 1600 € -->
+  <line class="grid" x1="90" y1="334" x2="720" y2="334"/>
+  <line class="grid" x1="90" y1="258" x2="720" y2="258"/>
+  <line class="grid" x1="90" y1="183" x2="720" y2="183"/>
+  <line class="grid" x1="90" y1="107" x2="720" y2="107"/>
+  <!-- Grid vertical at 5,10,15,20,25,30 años -->
+  <line class="grid" x1="195" y1="70" x2="195" y2="410"/>
+  <line class="grid" x1="300" y1="70" x2="300" y2="410"/>
+  <line class="grid" x1="405" y1="70" x2="405" y2="410"/>
+  <line class="grid" x1="510" y1="70" x2="510" y2="410"/>
+  <line class="grid" x1="615" y1="70" x2="615" y2="410"/>
+  <line class="grid" x1="720" y1="70" x2="720" y2="410"/>
+
+  <!-- Axes -->
+  <line class="axis" x1="90" y1="410" x2="730" y2="410"/>
+  <line class="axis" x1="90" y1="60" x2="90" y2="410"/>
+
+  <!-- X ticks (años) -->
+  <text class="tick-label" x="90" y="428" text-anchor="middle">0</text>
+  <text class="tick-label" x="195" y="428" text-anchor="middle">5</text>
+  <text class="tick-label" x="300" y="428" text-anchor="middle">10</text>
+  <text class="tick-label" x="405" y="428" text-anchor="middle">15</text>
+  <text class="tick-label" x="510" y="428" text-anchor="middle">20</text>
+  <text class="tick-label" x="615" y="428" text-anchor="middle">25</text>
+  <text class="tick-label" x="720" y="428" text-anchor="middle">30</text>
+
+  <!-- Y ticks (€) -->
+  <text class="tick-label" x="82" y="414" text-anchor="end">0 €</text>
+  <text class="tick-label" x="82" y="338" text-anchor="end">400 €</text>
+  <text class="tick-label" x="82" y="262" text-anchor="end">800 €</text>
+  <text class="tick-label" x="82" y="187" text-anchor="end">1.200 €</text>
+  <text class="tick-label" x="82" y="111" text-anchor="end">1.600 €</text>
+
+  <!-- Axis titles -->
+  <text class="axis-label" x="405" y="465" text-anchor="middle">AÑOS TRANSCURRIDOS</text>
+  <text class="axis-label" x="38" y="235" text-anchor="middle" transform="rotate(-90 38 235)">CAPITAL ACUMULADO</text>
+
+  <!-- Interés simple: 100 + 100·0,10·t (linear). y per € = (410-70)/1800 = 0.18889 px/€.
+       100€ -> 410-(100·0.18889)=391; 150€(5a)->410-28.3=381.7; 200(10a)->372.2;
+       250(15a)->362.8; 300(20a)->353.3; 350(25a)->343.9; 400(30a)->334.4 -->
+  <polyline class="line-simple"
+    points="90,391.1 195,381.7 300,372.2 405,362.8 510,353.3 615,343.9 720,334.4"/>
+
+  <!-- Interés compuesto: 100·(1,1)^t.
+       0->100 (391.1); 5->161 (379.6); 10->259 (361.1); 15->418 (331.0);
+       20->673 (282.9); 25->1083 (205.4); 30->1745 (79.7) -->
+  <polyline class="line-comp"
+    points="90,391.1 195,379.6 300,361.1 405,331.0 510,282.9 615,205.4 720,79.7"/>
+
+  <!-- End markers -->
+  <circle cx="720" cy="334.4" r="4" fill="#8A7868"/>
+  <circle cx="720" cy="79.7" r="4.5" fill="#C44E2C"/>
+
+  <!-- Curve labels -->
+  <text class="curve-label" x="430" y="350" fill="#8A7868">Interés simple</text>
+  <text class="end-val" x="660" y="356" fill="#8A7868" text-anchor="end">400 €</text>
+
+  <text class="curve-label" x="430" y="175" fill="#9C3A1C">Interés compuesto</text>
+  <text class="end-val" x="710" y="72" fill="#9C3A1C" text-anchor="end">1.745 €</text>
+
+  <!-- Footer note -->
+  <text class="footer" x="400" y="492">Mismo dinero, mismo interés: a 30 años el compuesto multiplica por más de 4 lo que da el simple.</text>
+</svg>
