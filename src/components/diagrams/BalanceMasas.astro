@@ -1,0 +1,102 @@
+---
+/**
+ * Balance de situación por masas patrimoniales. Dos columnas equilibradas:
+ * a la izquierda el Activo (no corriente arriba, corriente abajo) y a la
+ * derecha el Patrimonio Neto + Pasivo (neto y pasivo no corriente arriba,
+ * pasivo corriente abajo). Refuerza la igualdad fundamental A = PN + P.
+ *
+ * Used in EDMN 2BACH · Unit 10 (información contable).
+ */
+---
+<svg viewBox="0 0 800 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="balmasas-title balmasas-desc">
+  <title id="balmasas-title">Balance por masas patrimoniales</title>
+  <desc id="balmasas-desc">El activo de la empresa, dividido en no corriente y corriente, equilibra exactamente con la suma del patrimonio neto y el pasivo no corriente y corriente. Es la igualdad fundamental Activo igual a Patrimonio Neto más Pasivo.</desc>
+  <defs>
+    <style>
+      .bg { fill: #FBF6EC; }
+      .col-head { font-family: 'Switzer', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase; fill: #2A1F18; text-anchor: middle; }
+      .masa-anc { fill: #F5E5BC; stroke: #D4A24C; stroke-width: 1.6; }
+      .masa-ac { fill: #FBE3D6; stroke: #C44E2C; stroke-width: 1.6; }
+      .masa-pn { fill: #FFFFFF; stroke: #5C4A3D; stroke-width: 1.6; }
+      .masa-pnc { fill: #F5E5BC; stroke: #D4A24C; stroke-width: 1.6; }
+      .masa-pc { fill: #FBE3D6; stroke: #C44E2C; stroke-width: 1.6; }
+      .masa-title { font-family: 'Switzer', sans-serif; font-size: 12.5px; font-weight: 700; fill: #2A1F18; }
+      .masa-sub { font-family: 'Switzer', sans-serif; font-size: 10.5px; fill: #5C4A3D; }
+      .masa-num { font-family: 'JetBrains Mono', monospace; font-size: 12px; fill: #5C4A3D; }
+      .eq-sign { font-family: 'Fraunces', serif; font-style: italic; font-size: 40px; font-weight: 500; fill: #C44E2C; text-anchor: middle; }
+      .total { font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 500; fill: #2A1F18; text-anchor: middle; }
+      .formula { font-family: 'Fraunces', serif; font-style: italic; font-size: 16px; fill: #5C4A3D; text-anchor: middle; }
+    </style>
+  </defs>
+  <rect class="bg" x="0" y="0" width="800" height="520"/>
+
+  <!-- Column headers -->
+  <text class="col-head" x="200" y="48">ACTIVO</text>
+  <text class="col-head" x="600" y="48">PATRIMONIO NETO + PASIVO</text>
+  <line x1="60" y1="58" x2="340" y2="58" stroke="#E5D4BD" stroke-width="1.5"/>
+  <line x1="460" y1="58" x2="740" y2="58" stroke="#E5D4BD" stroke-width="1.5"/>
+
+  <!-- LEFT COLUMN: Activo (total height 380, from y=80 to y=460) -->
+  <!-- Activo no corriente (arriba, 60%) -->
+  <g>
+    <rect class="masa-anc" x="60" y="80" width="280" height="220" rx="6"/>
+    <text class="masa-title" x="80" y="110">Activo no corriente</text>
+    <text class="masa-sub" x="80" y="132">Lo que permanece más de un año:</text>
+    <text class="masa-sub" x="80" y="150">· Inmovilizado material (naves, maquinaria)</text>
+    <text class="masa-sub" x="80" y="168">· Inmovilizado intangible (patentes, software)</text>
+    <text class="masa-sub" x="80" y="186">· Inversiones financieras a largo plazo</text>
+    <text class="masa-num" x="320" y="290" text-anchor="end">120.000 €</text>
+  </g>
+  <!-- Activo corriente (abajo, 40%) -->
+  <g>
+    <rect class="masa-ac" x="60" y="300" width="280" height="160" rx="6"/>
+    <text class="masa-title" x="80" y="330">Activo corriente</text>
+    <text class="masa-sub" x="80" y="352">Lo que circula en menos de un año:</text>
+    <text class="masa-sub" x="80" y="370">· Existencias (mercaderías)</text>
+    <text class="masa-sub" x="80" y="388">· Realizable (clientes, deudores)</text>
+    <text class="masa-sub" x="80" y="406">· Disponible (caja y bancos)</text>
+    <text class="masa-num" x="320" y="450" text-anchor="end">80.000 €</text>
+  </g>
+
+  <!-- RIGHT COLUMN: PN + Pasivo (same total height) -->
+  <!-- Patrimonio neto (arriba) -->
+  <g>
+    <rect class="masa-pn" x="460" y="80" width="280" height="120" rx="6"/>
+    <text class="masa-title" x="480" y="110">Patrimonio neto</text>
+    <text class="masa-sub" x="480" y="132">Recursos propios (no exigibles):</text>
+    <text class="masa-sub" x="480" y="150">· Capital social · Reservas</text>
+    <text class="masa-sub" x="480" y="168">· Resultado del ejercicio</text>
+    <text class="masa-num" x="720" y="190" text-anchor="end">90.000 €</text>
+  </g>
+  <!-- Pasivo no corriente -->
+  <g>
+    <rect class="masa-pnc" x="460" y="200" width="280" height="120" rx="6"/>
+    <text class="masa-title" x="480" y="230">Pasivo no corriente</text>
+    <text class="masa-sub" x="480" y="252">Deudas exigibles a largo plazo:</text>
+    <text class="masa-sub" x="480" y="270">· Préstamos bancarios &gt; 1 año</text>
+    <text class="masa-sub" x="480" y="288">· Empréstitos (obligaciones)</text>
+    <text class="masa-num" x="720" y="310" text-anchor="end">70.000 €</text>
+  </g>
+  <!-- Pasivo corriente -->
+  <g>
+    <rect class="masa-pc" x="460" y="320" width="280" height="140" rx="6"/>
+    <text class="masa-title" x="480" y="350">Pasivo corriente</text>
+    <text class="masa-sub" x="480" y="372">Deudas exigibles a corto plazo:</text>
+    <text class="masa-sub" x="480" y="390">· Proveedores</text>
+    <text class="masa-sub" x="480" y="408">· Acreedores y deudas a &lt; 1 año</text>
+    <text class="masa-sub" x="480" y="426">· Hacienda y Seguridad Social</text>
+    <text class="masa-num" x="720" y="450" text-anchor="end">40.000 €</text>
+  </g>
+
+  <!-- Equals sign in the gutter -->
+  <text class="eq-sign" x="400" y="285">=</text>
+
+  <!-- Totals row -->
+  <line x1="60" y1="475" x2="340" y2="475" stroke="#2A1F18" stroke-width="1.2"/>
+  <line x1="460" y1="475" x2="740" y2="475" stroke="#2A1F18" stroke-width="1.2"/>
+  <text class="total" x="200" y="498">TOTAL ACTIVO = 200.000 €</text>
+  <text class="total" x="600" y="498">TOTAL PN + PASIVO = 200.000 €</text>
+
+  <!-- Formula footer -->
+  <text class="formula" x="400" y="498">ACTIVO = PN + PASIVO</text>
+</svg>

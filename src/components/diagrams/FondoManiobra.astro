@@ -1,0 +1,80 @@
+---
+/**
+ * Fondo de maniobra. Dos barras verticales enfrentadas: a la izquierda el
+ * activo (no corriente abajo, corriente arriba) y a la derecha el patrimonio
+ * neto más el pasivo (no corriente abajo, corriente arriba). Cuando el
+ * activo corriente supera al pasivo corriente, la diferencia es el fondo de
+ * maniobra, financiado con recursos permanentes. Equilibrio financiero.
+ *
+ * Used in EDMN 2BACH · Unit 11 (análisis de estados financieros).
+ */
+---
+<svg viewBox="0 0 800 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="fm-title fm-desc">
+  <title id="fm-title">Fondo de maniobra</title>
+  <desc id="fm-desc">El activo corriente supera al pasivo corriente; esa diferencia es el fondo de maniobra positivo, que indica que parte del activo a corto plazo se financia con recursos permanentes (patrimonio neto y pasivo no corriente). Es señal de equilibrio financiero.</desc>
+  <defs>
+    <style>
+      .bg { fill: #FBF6EC; }
+      .anc { fill: #F5E5BC; stroke: #D4A24C; stroke-width: 1.6; }
+      .ac  { fill: #FBE3D6; stroke: #C44E2C; stroke-width: 1.6; }
+      .rp  { fill: #FFFFFF; stroke: #5C4A3D; stroke-width: 1.6; }
+      .pc  { fill: #DBEDED; stroke: #1F6E6E; stroke-width: 1.6; }
+      .col-head { font-family: 'Switzer', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; fill: #2A1F18; text-anchor: middle; }
+      .masa-title { font-family: 'Switzer', sans-serif; font-size: 12px; font-weight: 700; fill: #2A1F18; text-anchor: middle; }
+      .masa-sub { font-family: 'Switzer', sans-serif; font-size: 9.5px; fill: #5C4A3D; text-anchor: middle; }
+      .masa-num { font-family: 'JetBrains Mono', monospace; font-size: 11px; fill: #2A1F18; text-anchor: middle; }
+      .fm-brace { fill: none; stroke: #9C3A1C; stroke-width: 2; }
+      .fm-label { font-family: 'Switzer', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; fill: #9C3A1C; }
+      .fm-formula { font-family: 'Fraunces', serif; font-style: italic; font-size: 14px; fill: #5C4A3D; }
+      .guide { stroke: #9C3A1C; stroke-width: 1.2; stroke-dasharray: 5 4; }
+    </style>
+  </defs>
+  <rect class="bg" x="0" y="0" width="800" height="520"/>
+
+  <!-- Headers -->
+  <text class="col-head" x="200" y="42">ACTIVO</text>
+  <text class="col-head" x="500" y="42">PATRIMONIO NETO + PASIVO</text>
+
+  <!-- LEFT BAR (Activo). Bar x 120..280 width 160. Total height 380, y=60..440. -->
+  <!-- Activo corriente (arriba, larger 55%) -->
+  <rect class="ac" x="120" y="60" width="160" height="210" rx="4"/>
+  <text class="masa-title" x="200" y="150">Activo corriente</text>
+  <text class="masa-sub" x="200" y="170">Existencias · Realizable</text>
+  <text class="masa-sub" x="200" y="184">Disponible</text>
+  <text class="masa-num" x="200" y="240">110.000 €</text>
+  <!-- Activo no corriente (abajo) -->
+  <rect class="anc" x="120" y="270" width="160" height="170" rx="4"/>
+  <text class="masa-title" x="200" y="345">Activo no corriente</text>
+  <text class="masa-sub" x="200" y="365">Inmovilizado material</text>
+  <text class="masa-sub" x="200" y="379">e intangible</text>
+  <text class="masa-num" x="200" y="415">90.000 €</text>
+
+  <!-- RIGHT BAR (PN + Pasivo). Bar x 420..580 width 160. -->
+  <!-- Pasivo corriente (arriba, smaller than AC) -->
+  <rect class="pc" x="420" y="60" width="160" height="130" rx="4"/>
+  <text class="masa-title" x="500" y="105">Pasivo corriente</text>
+  <text class="masa-sub" x="500" y="125">Proveedores · Acreedores</text>
+  <text class="masa-sub" x="500" y="139">Deudas a corto plazo</text>
+  <text class="masa-num" x="500" y="170">70.000 €</text>
+  <!-- Recursos permanentes (PN + PNC) abajo, larger -->
+  <rect class="rp" x="420" y="190" width="160" height="250" rx="4"/>
+  <text class="masa-title" x="500" y="280">Recursos permanentes</text>
+  <text class="masa-sub" x="500" y="300">Patrimonio neto</text>
+  <text class="masa-sub" x="500" y="314">+ Pasivo no corriente</text>
+  <text class="masa-num" x="500" y="345">130.000 €</text>
+
+  <!-- Guide line: bottom of AC (left, y=270) vs bottom of PC (right, y=190) -->
+  <line class="guide" x1="280" y1="190" x2="420" y2="190"/>
+  <line class="guide" x1="280" y1="270" x2="420" y2="270"/>
+
+  <!-- Brace highlighting the FM gap on the right bar between PC bottom (190) and the AC level (270) -->
+  <path class="fm-brace" d="M 600 190 q 12 0 12 12 v 28 q 0 12 12 12 q -12 0 -12 12 v 28 q 0 12 -12 12"/>
+  <text class="fm-label" x="630" y="226">FONDO DE</text>
+  <text class="fm-label" x="630" y="242">MANIOBRA</text>
+  <text class="masa-num" x="630" y="262" text-anchor="start">40.000 €</text>
+
+  <!-- Footer formulas -->
+  <line x1="120" y1="465" x2="680" y2="465" stroke="#E5D4BD" stroke-width="1.5"/>
+  <text class="fm-formula" x="120" y="490">FM = Activo corriente − Pasivo corriente = 110.000 − 70.000 = 40.000 €</text>
+  <text class="fm-formula" x="120" y="510">FM &gt; 0 · la empresa tiene un colchón financiero a corto plazo</text>
+</svg>

@@ -1,0 +1,95 @@
+---
+/**
+ * Branching tree of the main itineraries after 4.º ESO: Bachillerato
+ * (→ Universidad / FP Superior), FP Grado Medio (→ FP Superior / empleo),
+ * FP Grado Básico (→ FP Grado Medio) and the labour market. Arrows show the
+ * bifurcations and where each branch can lead.
+ *
+ * Used in FOPP 4ESO · Unit 5 (el sistema educativo y los itinerarios).
+ */
+---
+<svg viewBox="0 0 880 560" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="itin-title itin-desc">
+  <title id="itin-title">Itinerarios principales después de 4.º ESO</title>
+  <desc id="itin-desc">Árbol de bifurcaciones desde 4.º ESO hacia Bachillerato, FP de Grado Medio, FP de Grado Básico y el mundo laboral, con flechas que muestran a dónde puede conducir cada vía.</desc>
+  <defs>
+    <style>
+      .bg { fill: #FBF6EC; }
+      .root { fill: #5B3A4E; stroke: #2A1F18; stroke-width: 2; }
+      .node { fill: #FFFFFF; stroke-width: 2; }
+      .n-bach { stroke: #C44E2C; }
+      .n-medio { stroke: #A87A2A; }
+      .n-basico { stroke: #8A7868; }
+      .n-dest { fill: #ECDCE5; stroke: #5B3A4E; }
+      .n-laboral { fill: #DBEDED; stroke: #1F6E6E; }
+      .edge { fill: none; stroke: #5C4A3D; stroke-width: 1.8; marker-end: url(#itin-arrow); }
+      .root-tag { font-family: 'Switzer', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 1.6px; text-transform: uppercase; fill: #ECDCE5; text-anchor: middle; }
+      .root-name { font-family: 'Fraunces', serif; font-style: italic; font-size: 22px; font-weight: 600; fill: #FFFFFF; text-anchor: middle; }
+      .node-title { font-family: 'Fraunces', serif; font-size: 15px; font-weight: 500; fill: #2A1F18; text-anchor: middle; }
+      .node-sub { font-family: 'Switzer', sans-serif; font-size: 11px; fill: #5C4A3D; text-anchor: middle; }
+      .edge-label { font-family: 'Switzer', sans-serif; font-size: 9.5px; font-weight: 700; letter-spacing: 0.6px; text-transform: uppercase; fill: #8A7868; text-anchor: middle; }
+    </style>
+    <marker id="itin-arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#5C4A3D"/>
+    </marker>
+  </defs>
+  <rect class="bg" x="0" y="0" width="880" height="560"/>
+
+  <!-- Root: 4.º ESO (left, centered vertically) -->
+  <rect class="root" x="30" y="240" width="160" height="80" rx="10"/>
+  <text class="root-tag" x="110" y="270">Punto de partida</text>
+  <text class="root-name" x="110" y="298">4.º ESO</text>
+
+  <!-- Level-1 branches (column 2) -->
+  <!-- Bachillerato -->
+  <rect class="node n-bach" x="290" y="40" width="200" height="74" rx="8"/>
+  <text class="node-title" x="390" y="72">Bachillerato</text>
+  <text class="node-sub" x="390" y="92">2 cursos · académico</text>
+  <!-- FP Grado Medio -->
+  <rect class="node n-medio" x="290" y="160" width="200" height="74" rx="8"/>
+  <text class="node-title" x="390" y="192">FP Grado Medio</text>
+  <text class="node-sub" x="390" y="212">Técnico/a profesional</text>
+  <!-- FP Grado Básico -->
+  <rect class="node n-basico" x="290" y="300" width="200" height="74" rx="8"/>
+  <text class="node-title" x="390" y="332">FP Grado Básico</text>
+  <text class="node-sub" x="390" y="352">Recupera el título de ESO</text>
+  <!-- Mundo laboral -->
+  <rect class="node n-laboral" x="290" y="430" width="200" height="74" rx="8"/>
+  <text class="node-title" x="390" y="462">Mundo laboral</text>
+  <text class="node-sub" x="390" y="482">Empleo desde ya</text>
+
+  <!-- Edges from root to level-1 -->
+  <path class="edge" d="M 190 260 Q 240 200 288 90"/>
+  <path class="edge" d="M 190 275 Q 240 240 288 197"/>
+  <path class="edge" d="M 190 295 Q 240 320 288 337"/>
+  <path class="edge" d="M 190 312 Q 240 420 288 467"/>
+
+  <!-- Level-2 destinations (column 3) -->
+  <!-- Universidad -->
+  <rect class="node n-dest" x="610" y="30" width="230" height="64" rx="8"/>
+  <text class="node-title" x="725" y="58">Universidad</text>
+  <text class="node-sub" x="725" y="78">Grado, máster, doctorado</text>
+  <!-- FP Grado Superior -->
+  <rect class="node n-dest" x="610" y="160" width="230" height="64" rx="8"/>
+  <text class="node-title" x="725" y="188">FP Grado Superior</text>
+  <text class="node-sub" x="725" y="208">Técnico/a superior</text>
+  <!-- Empleo cualificado -->
+  <rect class="node n-laboral" x="610" y="330" width="230" height="64" rx="8"/>
+  <text class="node-title" x="725" y="358">Empleo cualificado</text>
+  <text class="node-sub" x="725" y="378">Con título de técnico/a</text>
+
+  <!-- Edges from Bachillerato -->
+  <path class="edge" d="M 490 64 L 608 60"/>
+  <path class="edge" d="M 490 96 Q 560 140 608 178"/>
+  <!-- Edges from FP Grado Medio -->
+  <path class="edge" d="M 490 188 Q 560 192 608 192"/>
+  <path class="edge" d="M 490 212 Q 560 300 608 352"/>
+  <!-- Edge from FP Grado Básico → FP Grado Medio -->
+  <path class="edge" d="M 490 320 Q 520 270 470 238"/>
+
+  <!-- Edge labels -->
+  <text class="edge-label" x="548" y="48">vía EBAU</text>
+  <text class="edge-label" x="548" y="128">acceso directo</text>
+  <text class="edge-label" x="548" y="178">prueba</text>
+  <text class="edge-label" x="548" y="290">al titular</text>
+  <text class="edge-label" x="525" y="262">titula y enlaza</text>
+</svg>
