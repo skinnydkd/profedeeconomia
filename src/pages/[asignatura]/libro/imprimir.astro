@@ -42,6 +42,16 @@ const rendered = await Promise.all(
 
 const today = new Date().toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
 const totalUnits = units.length;
+
+// Per-asignatura accent palette so each book's PDF carries its own identity
+// instead of the default terracota. Mirrors the color-coding in global.css.
+const ACCENTS: Record<string, { base: string; deep: string; soft: string }> = {
+  edmn: { base: '#C44E2C', deep: '#9C3A1C', soft: '#FBE3D6' },
+  eco1: { base: '#1F6E6E', deep: '#164F4F', soft: '#DBEDED' },
+  eco4: { base: '#D4A24C', deep: '#A87A2A', soft: '#F5E5BC' },
+  fopp: { base: '#5B3A4E', deep: '#46293A', soft: '#ECDCE5' },
+};
+const accent = ACCENTS[a.color] ?? ACCENTS.edmn;
 ---
 
 <!doctype html>
@@ -249,12 +259,12 @@ const totalUnits = units.length;
         font-size: 8.5pt;
         letter-spacing: 0.12em;
         text-transform: uppercase;
-        color: var(--color-terra);
+        color: var(--book-accent);
       }
       .cover__top .mark {
         width: 20pt; height: 20pt;
         border-radius: 50%;
-        background: var(--color-terra);
+        background: var(--book-accent);
         position: relative;
       }
       .cover__top .mark::before {
@@ -271,14 +281,32 @@ const totalUnits = units.length;
       }
 
       .cover__center {
-        margin-top: -20mm;
+        margin-top: -16mm;
+      }
+      .cover__num {
+        font-family: var(--font-serif);
+        font-style: italic;
+        font-size: 120pt;
+        line-height: 0.82;
+        color: var(--book-accent-soft);
+        margin: 0 0 2mm -2pt;
+        font-weight: 400;
+        font-variation-settings: "SOFT" 100, "WONK" 1;
+        display: block;
+      }
+      .cover__rule {
+        width: 34mm;
+        height: 5pt;
+        background: var(--book-accent);
+        border-radius: 999px;
+        margin: 0 0 7mm;
       }
       .cover__kicker {
         font-family: var(--font-sans);
         font-size: 9.5pt;
         letter-spacing: 0.18em;
         text-transform: uppercase;
-        color: var(--color-terra);
+        color: var(--book-accent);
         font-weight: 700;
         margin-bottom: 3mm;
       }
@@ -295,7 +323,7 @@ const totalUnits = units.length;
       }
       .cover__title em {
         font-style: italic;
-        color: var(--color-terra);
+        color: var(--book-accent);
         font-variation-settings: "SOFT" 100, "WONK" 1;
       }
       .cover__lede {
@@ -308,6 +336,15 @@ const totalUnits = units.length;
         margin: 0;
         font-variation-settings: "SOFT" 80;
       }
+      .cover__inside {
+        margin-top: 7mm;
+        font-family: var(--font-sans);
+        font-size: 8.5pt;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--color-ink-mute);
+      }
+      .cover__inside strong { color: var(--book-accent-deep); font-weight: 700; }
 
       .cover__bottom {
         display: flex;
@@ -348,7 +385,7 @@ const totalUnits = units.length;
         font-size: 8.5pt;
         text-transform: uppercase;
         letter-spacing: 0.14em;
-        color: var(--color-terra);
+        color: var(--book-accent);
         margin: 0 0 4mm;
         font-weight: 700;
       }
@@ -381,7 +418,7 @@ const totalUnits = units.length;
         font-size: 8.5pt;
         letter-spacing: 0.14em;
         text-transform: uppercase;
-        color: var(--color-terra);
+        color: var(--book-accent);
         font-weight: 700;
         margin-bottom: 4mm;
       }
@@ -432,7 +469,7 @@ const totalUnits = units.length;
       .toc__page {
         font-family: var(--font-mono);
         font-size: 9.5pt;
-        color: var(--color-terra);
+        color: var(--book-accent-deep);
         font-weight: 500;
       }
       .toc__page::after {
@@ -461,7 +498,7 @@ const totalUnits = units.length;
         position: absolute;
         top: 0; left: 0;
         width: 30mm; height: 4pt;
-        background: var(--color-terra);
+        background: var(--book-accent);
         border-radius: 999px;
       }
       .chapter__kicker {
@@ -469,7 +506,7 @@ const totalUnits = units.length;
         font-size: 9pt;
         letter-spacing: 0.18em;
         text-transform: uppercase;
-        color: var(--color-terra);
+        color: var(--book-accent);
         font-weight: 700;
         margin-bottom: 4mm;
       }
@@ -583,9 +620,60 @@ const totalUnits = units.length;
         padding: 0;
         color: inherit;
       }
+
+      /* =========================================================
+         Print typography refinements (paged.js)
+         ========================================================= */
+      /* Hyphenation for Spanish body copy — softens the ragged edge
+         without forcing justification (which would risk rivers). */
+      .chapter__content p,
+      .chapter__content li {
+        -webkit-hyphens: auto;
+        hyphens: auto;
+        hyphenate-limit-chars: 6 3 3;
+      }
+
+      /* Figures: the web float/bleed variants don't paginate cleanly under
+         paged.js, so in print every figure collapses to a centered block
+         sized to the variant's intent. The web keeps the richer layout. */
+      .chapter__content figure.figure {
+        break-inside: avoid;
+        page-break-inside: avoid;
+        margin: 1.7em auto;
+      }
+      .chapter__content .figure--left,
+      .chapter__content .figure--right {
+        float: none;
+        max-width: 72%;
+        margin: 1.7em auto;
+      }
+      .chapter__content .figure--inline-small {
+        max-width: 46mm;
+        margin: 1.5em auto;
+      }
+      .chapter__content .figure--wide,
+      .chapter__content .figure--full {
+        max-width: 100%;
+        margin: 1.9em auto;
+        margin-left: auto;
+        transform: none;
+      }
+      .chapter__content .figure--tight {
+        max-width: 80%;
+        margin: 1.7em auto;
+      }
+
+      /* Keep diagrams whole on a page and bounded to the text block */
+      .chapter__content .diagram,
+      .chapter__content figure svg {
+        break-inside: avoid;
+        page-break-inside: avoid;
+        max-width: 100%;
+        height: auto;
+      }
     </style>
   </head>
-  <style is:inline set:html={`.book-title-string { string-set: book-title "${a.shortLabel} · ${a.title}"; }`}></style>
+  <style is:inline set:html={`.book-title-string { string-set: book-title "${a.shortLabel} · ${a.title}"; } body { --book-accent: ${accent.base}; --book-accent-deep: ${accent.deep}; --book-accent-soft: ${accent.soft}; }`}></style>
   <body class="book-title-string">
 
     {/* ------------------------------------------------------------ COVER */}
@@ -595,11 +683,16 @@ const totalUnits = units.length;
         <span class="mark"></span>
       </header>
       <div class="cover__center">
+        <span class="cover__num">{a.num}</span>
+        <div class="cover__rule"></div>
         <div class="cover__kicker">{a.shortLabel} · {a.level}</div>
         <h1 class="cover__title">
           {a.title}
         </h1>
         <p class="cover__lede">{a.tagline}</p>
+        <p class="cover__inside">
+          <strong>{totalUnits} unidades</strong> · Currículo estatal LOMLOE · {a.marcoNormativo}
+        </p>
       </div>
       <footer class="cover__bottom">
         <div class="stack">
