@@ -66,7 +66,8 @@ Primer contacto, vivencial, neutro entre CCAA. Más básico que Economía y Empr
 ## Estado de ejecución
 - [x] Investigación curricular (3 agentes)
 - [x] Corrección de `asignaturas.ts` (nombres "Personal", niveles GM/GS)
-- [ ] Libros (MDX) de los 3
-- [ ] Actividades + tests + recursos
-- [ ] Flip `estado` a `publicado` + build + PDFs + slides
-- [ ] Imágenes (follow-up, como en los 4 libros originales)
+- [x] Libros (MDX) de los 3 (9+9+9 unidades)
+- [x] Actividades (9+9+9) + tests (9+9+9) + recursos (2+3+2)
+- [x] Flip `estado` a `publicado` + build (297 págs) + PDFs de libro + cuadernos + diapositivas (Marp)
+- [ ] **Imágenes (follow-up)**: los 3 libros aún no llevan fotos (`<Figure>`), igual que los 4 originales se hicieron primero sin imágenes y se añadieron después (PR #24). Pendiente para una tanda posterior.
+- [ ] Revisión visual de Pau (contenido, calculadoras reutilizadas, PDFs).
