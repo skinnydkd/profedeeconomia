@@ -119,6 +119,27 @@ const recursos = defineCollection({
 });
 
 /* =========================================================
+   programacion — una programación didáctica por asignatura
+   ========================================================= */
+const programacion = defineCollection({
+  loader: glob({
+    pattern: 'asignaturas/*/programacion/**/*.{md,mdx}',
+    base: './src/content',
+  }),
+  schema: z.object({
+    asignatura: z.enum(ASIGNATURA_SLUGS),
+    title: z.string(),
+    /** Short summary shown on the hub card / hero. */
+    descripcion: z.string(),
+    /** Reference horizon: lectivas/semana and número de evaluaciones. */
+    horas_semanales: z.number().optional(),
+    num_evaluaciones: z.number().int().min(1).default(3),
+    lang: z.enum(LANGS).default('es'),
+    estado: z.enum(ESTADOS).default('borrador'),
+  }),
+});
+
+/* =========================================================
    juegos — material transversal
    ========================================================= */
 const juegos = defineCollection({
@@ -144,5 +165,6 @@ export const collections = {
   actividades,
   tests,
   recursos,
+  programacion,
   juegos,
 };

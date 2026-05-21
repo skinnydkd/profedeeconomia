@@ -1,0 +1,132 @@
+---
+/**
+ * Print-ready programación didáctica for a subject (pagedjs-cli → PDF).
+ * Single document per asignatura; reuses the editorial print system
+ * (cover, per-book accent, paged.js typography) of libro/imprimir.astro.
+ */
+import { ASIGNATURAS } from '@/lib/asignaturas';
+import { getCollection, render } from 'astro:content';
+import type { GetStaticPaths } from 'astro';
+
+export const getStaticPaths = (async () => {
+  const all = await getCollection('programacion');
+  return all
+    .filter((p) => p.data.estado === 'publicado')
+    .map((p) => ({ params: { asignatura: p.data.asignatura }, props: { prog: p } }));
+}) satisfies GetStaticPaths;
+
+const { prog } = Astro.props;
+const a = ASIGNATURAS[prog.data.asignatura];
+const { Content } = await render(prog);
+const today = new Date().toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
+
+const ACCENTS: Record<string, { base: string; deep: string; soft: string }> = {
+  edmn: { base: '#C44E2C', deep: '#9C3A1C', soft: '#FBE3D6' },
+  eco1: { base: '#1F6E6E', deep: '#164F4F', soft: '#DBEDED' },
+  eco4: { base: '#D4A24C', deep: '#A87A2A', soft: '#F5E5BC' },
+  fopp: { base: '#5B3A4E', deep: '#46293A', soft: '#ECDCE5' },
+  taller3: { base: '#6B8E23', deep: '#4F6B18', soft: '#E4ECD2' },
+  ipe1: { base: '#4A6FA5', deep: '#36527D', soft: '#DCE5F0' },
+  ipe2: { base: '#2F4F7F', deep: '#22395C', soft: '#D5DEEB' },
+};
+const accent = ACCENTS[a.color] ?? ACCENTS.edmn;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <title>Programación · {a.title} — profedeeconomia</title>
+    <meta name="robots" content="noindex,nofollow" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,0..100,0..1;1,9..144,300..700,0..100,0..1&display=swap" />
+    <style is:inline>
+      @font-face { font-family: 'Switzer'; src: url('/fonts/switzer/switzer-400.woff2') format('woff2'); font-weight: 400; font-display: swap; }
+      @font-face { font-family: 'Switzer'; src: url('/fonts/switzer/switzer-500.woff2') format('woff2'); font-weight: 500; font-display: swap; }
+      @font-face { font-family: 'Switzer'; src: url('/fonts/switzer/switzer-600.woff2') format('woff2'); font-weight: 600; font-display: swap; }
+      @font-face { font-family: 'Switzer'; src: url('/fonts/switzer/switzer-700.woff2') format('woff2'); font-weight: 700; font-display: swap; }
+    </style>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" />
+    <style is:global>
+      :root {
+        --color-bg: #FBF6EC; --color-paper: #FFFFFF; --color-bg-cream: #F5EDD9;
+        --color-ink: #2A1F18; --color-ink-soft: #5C4A3D; --color-ink-mute: #8A7868;
+        --color-line: #E5D4BD; --color-line-soft: #EFE2CB;
+        --color-terra: #C44E2C; --color-mustard: #D4A24C; --color-mustard-deep: #A87A2A;
+        --font-serif: "Fraunces", Georgia, serif; --font-sans: "Switzer", -apple-system, sans-serif; --font-mono: "JetBrains Mono", monospace;
+      }
+      @page {
+        size: 165mm 235mm; margin: 22mm 20mm 22mm 22mm;
+        @top-left { content: string(doc-title); font-family: var(--font-sans); font-size: 8.5pt; letter-spacing: 0.06em; text-transform: uppercase; color: var(--color-ink-mute); }
+        @top-right { content: "Programación didáctica"; font-family: var(--font-serif); font-style: italic; font-size: 9pt; color: var(--color-ink-mute); }
+        @bottom-right { content: counter(page); font-family: var(--font-serif); font-size: 10pt; color: var(--book-accent); }
+      }
+      @page :first { @top-left { content: none; } @top-right { content: none; } @bottom-right { content: none; } }
+      @page no-header { @top-left { content: none; } @top-right { content: none; } }
+      * { box-sizing: border-box; }
+      html { font-size: 11pt; }
+      body { margin: 0; background: var(--color-bg); color: var(--color-ink); font-family: var(--font-serif); font-size: 10.5pt; line-height: 1.5; font-variation-settings: "SOFT" 50, "WONK" 0; }
+      h1, h2, h3, h4 { font-family: var(--font-serif); font-weight: 500; color: var(--color-ink); line-height: 1.18; }
+      p { margin: 0 0 0.6em; orphans: 3; widows: 3; -webkit-hyphens: auto; hyphens: auto; }
+      strong { color: var(--color-ink); } em { font-style: italic; }
+      ul, ol { padding-left: 1.3em; margin: 0 0 0.7em; } li { margin-bottom: 0.25em; }
+      ul li::marker { color: var(--color-mustard); }
+      table { width: 100%; border-collapse: separate; border-spacing: 0; margin: 1em 0; font-size: 9pt; page-break-inside: auto; }
+      th, td { text-align: left; padding: 0.45em 0.6em; border-bottom: 1px solid var(--color-line-soft); vertical-align: top; }
+      th { font-family: var(--font-sans); font-size: 7.5pt; text-transform: uppercase; letter-spacing: 0.06em; color: var(--book-accent-deep); background: var(--book-accent-soft); font-weight: 700; }
+      blockquote { margin: 1em 0; padding: 0.6em 1em; border-left: 3px solid var(--color-mustard); background: var(--color-bg-cream); font-style: italic; color: var(--color-ink-soft); break-inside: avoid; }
+
+      .cover { page: no-header; break-after: page; height: 191mm; display: flex; flex-direction: column; justify-content: space-between; }
+      .cover__top { display: flex; justify-content: space-between; align-items: flex-start; font-family: var(--font-sans); font-size: 8.5pt; letter-spacing: 0.12em; text-transform: uppercase; color: var(--book-accent); }
+      .cover__top .mark { width: 20pt; height: 20pt; border-radius: 50%; background: var(--book-accent); position: relative; }
+      .cover__top .mark::before { content: ""; position: absolute; inset: 4pt; background: var(--color-mustard); border-radius: 50%; }
+      .cover__top .mark::after { content: ""; position: absolute; inset: 8pt; background: var(--color-bg); border-radius: 50%; }
+      .cover__center { margin-top: -8mm; }
+      .cover__eyebrow { font-family: var(--font-sans); font-size: 9.5pt; letter-spacing: 0.18em; text-transform: uppercase; color: var(--book-accent); font-weight: 700; margin-bottom: 4mm; }
+      .cover__title { font-family: var(--font-serif); font-size: 38pt; line-height: 1.05; letter-spacing: -0.02em; color: var(--color-ink); margin: 0 0 4mm; font-weight: 400; font-variation-settings: "SOFT" 80; max-width: 20ch; }
+      .cover__sub { font-family: var(--font-serif); font-style: italic; font-size: 15pt; color: var(--color-ink-soft); margin: 0; font-variation-settings: "SOFT" 80; }
+      .cover__rule { width: 34mm; height: 5pt; background: var(--book-accent); border-radius: 999px; margin: 6mm 0; }
+      .cover__bottom { display: flex; justify-content: space-between; align-items: flex-end; font-family: var(--font-sans); font-size: 9pt; color: var(--color-ink-soft); }
+      .cover__bottom .stack { display: flex; flex-direction: column; gap: 2mm; }
+      .cover__bottom .stack strong { color: var(--color-ink); font-weight: 600; font-size: 9.5pt; }
+      .cover__bottom .stack .muted { font-size: 8pt; color: var(--color-ink-mute); letter-spacing: 0.06em; text-transform: uppercase; }
+
+      .doc { string-set: doc-title attr(data-doc-title); padding-top: 4mm; }
+      .doc h2 { font-size: 16pt; margin: 1.6em 0 0.5em; position: relative; padding-top: 0.8em; break-after: avoid; }
+      .doc h2::before { content: ""; position: absolute; top: 0; left: 0; width: 22mm; height: 3px; background: var(--book-accent); border-radius: 999px; }
+      .doc h2:nth-of-type(2n)::before { background: var(--color-mustard); }
+      .doc h3 { font-size: 12.5pt; margin: 1.3em 0 0.4em; break-after: avoid; }
+      .doc h2:first-of-type { break-before: avoid; }
+    </style>
+  </head>
+  <style is:inline set:html={`body { --book-accent: ${accent.base}; --book-accent-deep: ${accent.deep}; --book-accent-soft: ${accent.soft}; } .doc-title-string { string-set: doc-title "${a.shortLabel} · Programación"; }`}></style>
+  <body class="doc-title-string">
+    <section class="cover">
+      <header class="cover__top"><span>profedeeconomia.es</span><span class="mark"></span></header>
+      <div class="cover__center">
+        <div class="cover__eyebrow">{a.shortLabel} · {a.level}</div>
+        <h1 class="cover__title">Programación <em>didáctica</em></h1>
+        <p class="cover__sub">{a.title}</p>
+        <div class="cover__rule"></div>
+      </div>
+      <footer class="cover__bottom">
+        <div class="stack"><span class="muted">Editorial</span><strong>profedeeconomia.es</strong></div>
+        <div class="stack"><span class="muted">Marco</span><strong>{a.marcoNormativo}</strong></div>
+        <div class="stack"><span class="muted">Generado</span><strong>{today}</strong></div>
+      </footer>
+    </section>
+
+    <section class="doc" data-doc-title={`${a.shortLabel} · Programación`}>
+      <Content />
+    </section>
+
+    <script is:inline>
+      if (new URLSearchParams(location.search).has('preview')) {
+        const s = document.createElement('script');
+        s.src = 'https://unpkg.com/pagedjs/dist/paged.polyfill.js';
+        document.body.appendChild(s);
+      }
+    </script>
+  </body>
+</html>
