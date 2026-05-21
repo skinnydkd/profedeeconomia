@@ -145,6 +145,26 @@ const programacion = defineCollection({
 });
 
 /* =========================================================
+   ebau — cuadernos de preparación de la prueba de acceso (PAU/EBAU).
+   Varias secciones ordenadas por asignatura; de momento solo EDMN 2BACH (CV).
+   ========================================================= */
+const ebau = defineCollection({
+  loader: glob({
+    pattern: 'asignaturas/*/ebau/**/*.{md,mdx}',
+    base: './src/content',
+  }),
+  schema: z.object({
+    asignatura: z.enum(ASIGNATURA_SLUGS),
+    orden: z.number().int().min(0),
+    title: z.string(),
+    /** Comunidad autónoma de referencia de la prueba. */
+    comunidad: z.string().default('Comunitat Valenciana'),
+    lang: z.enum(LANGS).default('es'),
+    estado: z.enum(ESTADOS).default('borrador'),
+  }),
+});
+
+/* =========================================================
    juegos — material transversal
    ========================================================= */
 const juegos = defineCollection({
@@ -171,5 +191,6 @@ export const collections = {
   tests,
   recursos,
   programacion,
+  ebau,
   juegos,
 };
