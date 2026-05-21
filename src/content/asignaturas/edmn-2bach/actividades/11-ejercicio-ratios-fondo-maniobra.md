@@ -12,6 +12,7 @@ materiales:
   - "Formulario de ratios"
 competencias_clave: [STEM, CD, CPSAA]
 competencias_especificas: [CE5]
+ebau: true
 estado: publicado
 ---
 

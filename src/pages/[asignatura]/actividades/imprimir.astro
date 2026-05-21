@@ -363,6 +363,7 @@ const letra = (i: number) => String.fromCharCode(97 + i); // 0 -> 'a'
         color: var(--book-accent-deep); background: var(--book-accent-soft);
         padding: 1mm 2.5mm; border-radius: 3px;
       }
+      .act__tag--ebau { color: #fff; background: var(--color-ink); }
       .act__meta { font-family: var(--font-sans); font-size: 8pt; color: var(--color-ink-mute); }
       .act__title {
         font-family: var(--font-serif); font-size: 12.5pt; line-height: 1.18;
@@ -458,6 +459,14 @@ const letra = (i: number) => String.fromCharCode(97 + i); // 0 -> 'a'
         {' '}{a.title} ({a.marcoNormativo}). Conviene consultar la concreción de
         vuestra comunidad autónoma.
       </p>
+      {a.curso === '2bach' && acts.some((x) => x.data.ebau) && (
+        <p>
+          Las actividades marcadas con la etiqueta <strong>«Tipo EBAU»</strong> replican
+          ejercicios de la prueba de acceso a la universidad (Parte II, Bloque 3). Para
+          preparar la prueba a fondo, usad el <strong>cuaderno de preparación EBAU</strong>,
+          con la estructura del examen, problemas resueltos y simulacros.
+        </p>
+      )}
       <p class="note">
         Material abierto de profedeeconomia.es · Licencia Creative Commons
         BY-NC-SA · Erratas y propuestas: hola@profedeeconomia.es
@@ -493,6 +502,7 @@ const letra = (i: number) => String.fromCharCode(97 + i); // 0 -> 'a'
           <article class="act">
             <div class="act__bar">
               <span class="act__tag">{tipoLabel[act.data.tipo] ?? act.data.tipo}</span>
+              {act.data.ebau && <span class="act__tag act__tag--ebau">Tipo EBAU</span>}
               {act.data.duracion && <span class="act__meta">{act.data.duracion}</span>}
               {act.data.agrupacion && <span class="act__meta">· {act.data.agrupacion}</span>}
             </div>

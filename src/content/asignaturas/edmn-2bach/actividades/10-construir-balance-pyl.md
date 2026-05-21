@@ -12,6 +12,7 @@ materiales:
   - "Hoja con el enunciado y los datos"
 competencias_clave: [STEM, CD, CPSAA]
 competencias_especificas: [CE5]
+ebau: true
 estado: publicado
 ---
 

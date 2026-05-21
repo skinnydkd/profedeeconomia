@@ -65,6 +65,9 @@ const actividades = defineCollection({
     /** Subject-specific competences (ESO/Bach: "CE1", "CE3"…) or learning
      *  outcomes for FP ("RA1", "RA3"…), as worked by the activity. */
     competencias_especificas: z.array(z.string()).default([]),
+    /** True if the activity mirrors an EBAU/PAU exam exercise (only meaningful
+     *  for 2.º Bach subjects with EBAU, e.g. EDMN). Shows an "EBAU" badge. */
+    ebau: z.boolean().default(false),
     lang: z.enum(LANGS).default('es'),
     estado: z.enum(ESTADOS).default('borrador'),
   }),

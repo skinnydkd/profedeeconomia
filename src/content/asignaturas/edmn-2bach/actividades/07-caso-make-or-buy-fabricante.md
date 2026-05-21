@@ -12,6 +12,7 @@ materiales:
   - "Plantilla de decisión cuantitativa + cualitativa"
 competencias_clave: [STEM, CCL, CPSAA, CC]
 competencias_especificas: [CE4]
+ebau: true
 estado: publicado
 ---
 

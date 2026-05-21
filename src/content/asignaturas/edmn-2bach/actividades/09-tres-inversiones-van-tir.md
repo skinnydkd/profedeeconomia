@@ -12,6 +12,7 @@ materiales:
   - "Hoja de cálculo (opcional, para automatizar la actualización de flujos)"
 competencias_clave: [STEM, CD, CPSAA]
 competencias_especificas: [CE4]
+ebau: true
 estado: publicado
 ---
 
