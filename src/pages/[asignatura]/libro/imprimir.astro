@@ -634,33 +634,33 @@ const accent = ACCENTS[a.color] ?? ACCENTS.edmn;
       }
 
       /* Figures: the web float/bleed variants don't paginate cleanly under
-         paged.js, so in print every figure collapses to a centered block
-         sized to the variant's intent. The web keeps the richer layout. */
+         paged.js (floats and CSS transforms shift the image during page
+         fragmentation), so in print EVERY figure collapses to a plain centered
+         block. The !important flags beat the component's scoped variant rules,
+         which otherwise have equal specificity and can win by source order.
+         The web keeps the richer layout. */
       .chapter__content figure.figure {
         break-inside: avoid;
         page-break-inside: avoid;
-        margin: 1.7em auto;
+        display: block;
+        float: none !important;
+        transform: none !important;
+        margin: 1.7em auto !important;
+        max-width: 100%;
       }
       .chapter__content .figure--left,
       .chapter__content .figure--right {
-        float: none;
-        max-width: 72%;
-        margin: 1.7em auto;
+        max-width: 72% !important;
       }
       .chapter__content .figure--inline-small {
-        max-width: 46mm;
-        margin: 1.5em auto;
+        max-width: 46mm !important;
       }
       .chapter__content .figure--wide,
       .chapter__content .figure--full {
-        max-width: 100%;
-        margin: 1.9em auto;
-        margin-left: auto;
-        transform: none;
+        max-width: 100% !important;
       }
       .chapter__content .figure--tight {
-        max-width: 80%;
-        margin: 1.7em auto;
+        max-width: 80% !important;
       }
 
       /* Keep diagrams whole on a page and bounded to the text block */
