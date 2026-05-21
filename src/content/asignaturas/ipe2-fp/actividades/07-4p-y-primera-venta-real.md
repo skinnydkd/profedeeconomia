@@ -6,6 +6,8 @@ descripcion: "Cada equipo define el marketing operativo (4P) de su proyecto, for
 tipo: dinamica
 duracion: "100 min · 2 sesiones (con un mini test de campo intermedio)"
 agrupacion: "equipos de proyecto (3-4)"
+competencias_clave: [CE, CD, STEM, CCL]
+competencias_especificas: [RA4]
 materiales:
   - "Plantilla de las 4P (Producto, Precio, Plaza, Promoción)"
   - "Plantilla de propuesta de valor en una frase"

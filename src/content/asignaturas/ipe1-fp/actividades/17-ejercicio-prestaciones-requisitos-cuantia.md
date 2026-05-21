@@ -6,6 +6,8 @@ descripcion: "Ejercicio de cálculo en parejas sobre el sistema de Seguridad Soc
 tipo: ejercicio
 duracion: "55 min · 1 sesión"
 agrupacion: "parejas"
+competencias_clave: [CC, STEM]
+competencias_especificas: [RA3]
 materiales:
   - "Fichas de cuatro supuestos con datos de cotización (incluidas abajo, fotocopiables)"
   - "Tabla resumen de requisitos, duración del paro e indemnizaciones (incluida abajo)"

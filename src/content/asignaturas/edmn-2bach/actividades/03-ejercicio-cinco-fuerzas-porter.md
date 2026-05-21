@@ -10,6 +10,8 @@ materiales:
   - "Ficha del sector de gimnasios low cost en España"
   - "Plantilla de las cinco fuerzas con escala 1-5"
   - "Calculadora (opcional)"
+competencias_clave: [STEM, CPSAA, CE]
+competencias_especificas: [CE2]
 estado: publicado
 ---
 

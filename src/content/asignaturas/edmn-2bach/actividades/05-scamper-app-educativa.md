@@ -11,6 +11,8 @@ materiales:
   - "Plantilla SCAMPER (los siete verbos)"
   - "Pegatinas de colores para voto puntuado (3 por persona)"
   - "Cronómetro visible"
+competencias_clave: [CE, CPSAA, CC, CD]
+competencias_especificas: [CE3]
 estado: publicado
 ---
 

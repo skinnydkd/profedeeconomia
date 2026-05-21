@@ -11,6 +11,8 @@ materiales:
   - "Mini-dosier de evidencia: el modelo competitivo (precio mínimo y exceso de oferta de trabajo) frente a los estudios empíricos (Card y Krueger y sucesores)"
   - "Tarjetas de rol para los dos equipos y el jurado"
   - "Rúbrica de debate impresa para el jurado"
+competencias_clave: [CCL, CC, CPSAA, STEM]
+competencias_especificas: [CE5]
 estado: publicado
 ---
 

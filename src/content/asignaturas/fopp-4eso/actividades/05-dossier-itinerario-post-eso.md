@@ -12,6 +12,8 @@ materiales:
   - "Lista actualizada de centros educativos del entorno (en provincias grandes, mapa interactivo de la conselleria/consejería de Educación)"
   - "Cronómetro visible para las presentaciones"
   - "Rúbrica de evaluación impresa para el profesor y para coevaluación entre alumnos"
+competencias_clave: [CPSAA, CD, CE, CCL]
+competencias_especificas: [CE5, CE8]
 estado: publicado
 ---
 

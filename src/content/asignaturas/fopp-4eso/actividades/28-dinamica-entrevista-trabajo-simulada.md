@@ -11,6 +11,8 @@ materiales:
   - "Plantilla de observación con criterios (incluida abajo)"
   - "Cronómetro visible"
   - "Sillas dispuestas para entrevistas cara a cara"
+competencias_clave: [CCL, CPSAA, CD]
+competencias_especificas: [CE7]
 lang: es
 estado: publicado
 ---

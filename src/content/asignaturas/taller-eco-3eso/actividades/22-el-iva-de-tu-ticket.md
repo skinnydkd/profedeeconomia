@@ -6,6 +6,8 @@ descripcion: "Ejercicio de cálculo a partir de tickets de compra reales en el q
 tipo: ejercicio
 duracion: "50 min · 1 sesión"
 agrupacion: "individual"
+competencias_clave: [STEM, CD, CC]
+competencias_especificas: [CE5]
 materiales:
   - "Uno o dos tickets de compra reales por estudiante (traídos de casa) o tickets de ejemplo de la ficha"
   - "Ficha de ejercicios con tablas de precios y tipos de IVA"

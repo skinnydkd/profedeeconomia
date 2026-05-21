@@ -10,6 +10,8 @@ materiales:
   - "Cronómetro visible que cuente los 60 segundos por pitch"
   - "Plantilla de feedback impresa (una hoja por pitch presenciado)"
   - "Pizarra o panel grande para anotar puntos comunes al final"
+competencias_clave: [CCL, CE, CPSAA, CC]
+competencias_especificas: [CE6]
 estado: publicado
 ---
 

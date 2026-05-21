@@ -6,6 +6,8 @@ descripcion: "Dinámica de tres sesiones para vivir en primera persona un sprint
 tipo: dinamica
 duracion: "80 min · 3 sesiones (kickoff 50 min + 2 dailys de 15 min)"
 agrupacion: "equipos pequeños (4 personas)"
+competencias_clave: [CPSAA, CC, CE]
+competencias_especificas: [CE1]
 materiales:
   - "Ficha de autoevaluación de rol Belbin (cinco roles simplificados) impresa, una por alumno"
   - "Plantilla de carta de equipo (objetivo, comunicación, gestión de conflictos), una por equipo"

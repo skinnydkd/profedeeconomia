@@ -10,6 +10,8 @@ materiales:
   - "Ficha con ejemplos de innovadores y de empresas con cultura innovadora (3M, IDEO)"
   - "Cronómetro visible"
   - "Plantilla de argumentos por equipo"
+competencias_clave: [CCL, CC, CPSAA]
+competencias_especificas: [CE3]
 estado: publicado
 ---
 

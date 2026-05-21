@@ -6,6 +6,8 @@ descripcion: "Proyecto corto de una semana en el que cada estudiante registra to
 tipo: proyecto
 duracion: "2 sesiones (lanzamiento y cierre) + una semana de registro"
 agrupacion: "individual con cierre en grupo clase"
+competencias_clave: [CPSAA, CC, STEM, CE]
+competencias_especificas: [CE3]
 materiales:
   - "Plantilla de diario de consumo (una fila por compra: qué, cuánto, por qué)"
   - "Tarjeta con las cuatro preguntas del consumidor responsable"

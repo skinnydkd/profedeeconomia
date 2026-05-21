@@ -6,6 +6,8 @@ descripcion: "Debate por equipos sobre dos modelos de paga (una cantidad fija ca
 tipo: debate
 duracion: "50 min · 1 sesión"
 agrupacion: "dos equipos + observadores, dentro del grupo clase"
+competencias_clave: [CCL, CPSAA, CC]
+competencias_especificas: [CE4]
 materiales:
   - "Pizarra dividida en dos columnas (paga fija / paga por tareas)"
   - "Ficha con los argumentos de partida y conceptos de la unidad (ingreso, esfuerzo, responsabilidad)"

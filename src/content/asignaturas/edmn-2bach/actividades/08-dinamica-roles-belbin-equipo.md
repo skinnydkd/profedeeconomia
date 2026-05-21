@@ -10,6 +10,8 @@ materiales:
   - "Materiales del reto (espaguetis crudos, cinta, una nube de azúcar por equipo) o un reto de papel equivalente"
   - "Ficha resumen de los nueve roles de Belbin"
   - "Hoja de observación"
+competencias_clave: [CPSAA, CC, CE]
+competencias_especificas: [CE4]
 estado: publicado
 ---
 

@@ -6,6 +6,8 @@ descripcion: "Auditoría individual de tres apps reales para detectar dark patte
 tipo: dinamica
 duracion: "45 min · 1 sesión (25 min trabajo individual + 15 min puesta en común + 5 min cierre)"
 agrupacion: "individual → grupo clase"
+competencias_clave: [CD, CC, CPSAA]
+competencias_especificas: [CE4]
 materiales:
   - "Móvil o portátil con acceso a 3 apps o webs que el alumno use con frecuencia"
   - "Ficha de auditoría impresa (una por alumno, con los cinco dark patterns explicados)"

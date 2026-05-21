@@ -10,6 +10,8 @@ materiales:
   - "Cronómetro (móvil)"
   - "Plantilla de diagrama de flujo del proceso"
   - "Hoja de registro de tiempos"
+competencias_clave: [STEM, CE, CPSAA, CC]
+competencias_especificas: [CE4]
 estado: publicado
 ---
 

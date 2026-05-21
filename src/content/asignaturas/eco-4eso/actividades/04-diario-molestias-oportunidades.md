@@ -6,6 +6,8 @@ descripcion: "Aplicar la técnica de observación etnográfica del diario de mol
 tipo: ejercicio
 duracion: "1 semana de campo + 1 sesión en aula (50 min)"
 agrupacion: "individual (campo) + grupos pequeños (3-4) en la puesta en común"
+competencias_clave: [CE, CPSAA, STEM]
+competencias_especificas: [CE3]
 materiales:
   - "Cuaderno o app de notas en el móvil (cualquiera sirve)"
   - "Plantilla impresa del diario de molestias (cinco columnas, una fila por molestia)"

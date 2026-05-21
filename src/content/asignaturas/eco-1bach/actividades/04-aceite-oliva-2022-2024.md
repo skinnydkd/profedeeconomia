@@ -11,6 +11,8 @@ materiales:
   - "Hoja cuadriculada o plantilla DIN A4 con ejes precio-cantidad preparados"
   - "Regla y lápices de dos colores (uno para la curva inicial, otro para la desplazada)"
   - "Calculadora simple (móvil sirve)"
+competencias_clave: [STEM, CPSAA, CD]
+competencias_especificas: [CE3]
 estado: publicado
 ---
 

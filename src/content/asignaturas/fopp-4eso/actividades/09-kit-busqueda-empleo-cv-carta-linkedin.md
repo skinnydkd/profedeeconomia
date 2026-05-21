@@ -15,6 +15,8 @@ materiales:
   - "Tres ofertas de empleo reales descargadas previamente por el profesor desde InfoJobs, LinkedIn y SEPE (sectores variados, accesibles a perfil junior)"
   - "Rúbrica de evaluación del kit completo, en papel para el profesor y compartida digitalmente para coevaluación"
   - "Carpeta del portfolio digital del alumno (Drive, OneDrive o similar) donde se entrega la entrega final"
+competencias_clave: [CD, CCL, CE, CPSAA]
+competencias_especificas: [CE7]
 estado: publicado
 ---
 

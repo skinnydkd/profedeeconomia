@@ -10,6 +10,8 @@ materiales:
   - "Plantilla de libro diario simplificado"
   - "Plantilla de balance y cuenta de resultados"
   - "Calculadora u hoja de cálculo"
+competencias_clave: [CE, STEM, CD, CPSAA]
+competencias_especificas: [CE5]
 estado: publicado
 ---
 

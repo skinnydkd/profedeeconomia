@@ -6,6 +6,8 @@ descripcion: "Un caso de equipo con plazo ajustado obliga a la clase a repartirs
 tipo: caso
 duracion: "90 min · 2 sesiones"
 agrupacion: "grupos pequeños (4-5)"
+competencias_clave: [CPSAA, CC, CCL]
+competencias_especificas: [RA2]
 materiales:
   - "Ficha del caso: encargo profesional con plazo ajustado y una lista de 12-14 tareas mezcladas (urgentes, importantes, ni una cosa ni otra)"
   - "Plantilla de la matriz de Eisenhower en A3 (una por grupo)"

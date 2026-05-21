@@ -6,6 +6,8 @@ descripcion: "Dinámica de grupo con presupuesto ficticio en la que cada equipo 
 tipo: dinamica
 duracion: "50 min · 1 sesión"
 agrupacion: "grupos pequeños (3-4)"
+competencias_clave: [CE, CPSAA, CD]
+competencias_especificas: [RA5]
 materiales:
   - "Catálogo de 20 competencias subastables (incluido abajo, fotocopiable)"
   - "Talonario de 1.000 créditos ficticios por equipo (incluido abajo)"

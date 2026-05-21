@@ -12,6 +12,8 @@ materiales:
   - "Acceso al BOE / REGCON para consultar el convenio de hostelería y de comercio (móvil o aula con ordenadores)"
   - "Calculadora (o móvil) para verificar el SMI por hora y el cálculo de vacaciones proporcionales"
   - "Pizarra para la puesta en común final"
+competencias_clave: [CC, CCL, CPSAA, STEM]
+competencias_especificas: [CE6]
 estado: publicado
 ---
 

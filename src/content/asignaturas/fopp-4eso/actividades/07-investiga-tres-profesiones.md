@@ -12,6 +12,8 @@ materiales:
   - "Enlaces preparados de las tres fuentes obligatorias: SEPE Observatorio de las Ocupaciones, INE EPA, Informe Infoempleo Adecco más reciente"
   - "Acceso al portal autonómico de empleo (Labora CV, SOC, Lanbide, SEPECAM, etc.) según comunidad"
   - "Proyector para mostrar al inicio los pasos de navegación de cada portal"
+competencias_clave: [CPSAA, CD, CE]
+competencias_especificas: [CE6]
 estado: publicado
 ---
 

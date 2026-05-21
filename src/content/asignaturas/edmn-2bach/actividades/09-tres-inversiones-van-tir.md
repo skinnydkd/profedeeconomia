@@ -10,6 +10,8 @@ materiales:
   - "Calculadora financiera o calculadora con potencias"
   - "Plantilla con los flujos de las tres inversiones"
   - "Hoja de cálculo (opcional, para automatizar la actualización de flujos)"
+competencias_clave: [STEM, CD, CPSAA]
+competencias_especificas: [CE4]
 estado: publicado
 ---
 

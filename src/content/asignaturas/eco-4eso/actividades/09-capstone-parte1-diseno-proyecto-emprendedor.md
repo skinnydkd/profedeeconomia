@@ -6,6 +6,8 @@ descripcion: "Proyecto largo de cuatro sesiones en el que cada equipo aplica las
 tipo: proyecto
 duracion: "4 sesiones de 55 min · ~4 semanas (1 sesión por semana + trabajo entre sesiones)"
 agrupacion: "grupos pequeños (3-5)"
+competencias_clave: [CE, CD, CCL, CPSAA]
+competencias_especificas: [CE6, CE3]
 materiales:
   - "Hoja A3 o papel continuo por equipo para el Business Model Canvas"
   - "Post-its de al menos 4 colores (uno por familia de bloques del BMC) y rotuladores"

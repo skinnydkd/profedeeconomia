@@ -6,6 +6,8 @@ descripcion: "Dinámica rápida y de mucha repetición en la que cada estudiante
 tipo: dinamica
 duracion: "45 min · 1 sesión"
 agrupacion: "individual → rondas en parejas rotatorias"
+competencias_clave: [CCL, CPSAA, CE]
+competencias_especificas: [CE6]
 materiales:
   - "Plantilla del pitch de 30 segundos (gancho · problema · solución · petición)"
   - "Cronómetro visible para toda la clase (rondas de 30 s estrictas)"

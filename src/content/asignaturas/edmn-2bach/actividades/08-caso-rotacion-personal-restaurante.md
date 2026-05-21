@@ -10,6 +10,8 @@ materiales:
   - "Ficha del caso con datos de plantilla, bajas y costes de selección"
   - "Calculadora"
   - "Resumen de teorías de motivación (Maslow, Herzberg)"
+competencias_clave: [STEM, CPSAA, CC, CCL]
+competencias_especificas: [CE4]
 estado: publicado
 ---
 

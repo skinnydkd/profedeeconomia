@@ -11,6 +11,8 @@ materiales:
   - "Ficha guía con cifras del SMI y argumentos (incluida abajo)"
   - "Pizarra para votación inicial y final"
   - "Cronómetro visible"
+competencias_clave: [CCL, CC, STEM]
+competencias_especificas: [CE6]
 lang: es
 estado: publicado
 ---

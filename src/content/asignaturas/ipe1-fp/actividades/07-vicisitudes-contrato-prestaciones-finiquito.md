@@ -6,6 +6,8 @@ descripcion: "En parejas, el alumnado resuelve tres casos de cambios en la relac
 tipo: caso
 duracion: "60 min · 1 sesión"
 agrupacion: "parejas"
+competencias_clave: [CC, STEM, CCL]
+competencias_especificas: [RA3]
 materiales:
   - "Tres dossieres de caso (incluidos abajo, fotocopiables, uno por pareja)"
   - "Calculadora o móvil"

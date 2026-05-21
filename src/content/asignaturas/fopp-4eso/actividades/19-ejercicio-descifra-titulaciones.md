@@ -11,6 +11,8 @@ materiales:
   - "Ficha de seis casos prácticos (incluida abajo)"
   - "Acceso a la web del Ministerio (todoFP) o folletos del centro"
   - "Bolígrafos"
+competencias_clave: [CPSAA, CCL, CD]
+competencias_especificas: [CE5]
 lang: es
 estado: publicado
 ---

@@ -11,6 +11,8 @@ materiales:
   - "Guion de la carta proyectado (incluido abajo)"
   - "Música ambiental suave (opcional)"
   - "Caja o archivo donde el centro custodia los sobres"
+competencias_clave: [CPSAA, CCL, CE]
+competencias_especificas: [CE8]
 lang: es
 estado: publicado
 ---

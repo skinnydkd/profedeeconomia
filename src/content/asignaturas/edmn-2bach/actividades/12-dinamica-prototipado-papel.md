@@ -10,6 +10,8 @@ materiales:
   - "Folios, cartulinas, post-its, tijeras y rotuladores"
   - "Plantilla de storyboard de 6 viñetas"
   - "Hoja de feedback para el test"
+competencias_clave: [CE, CCEC, CPSAA, CCL]
+competencias_especificas: [CE6]
 estado: publicado
 ---
 

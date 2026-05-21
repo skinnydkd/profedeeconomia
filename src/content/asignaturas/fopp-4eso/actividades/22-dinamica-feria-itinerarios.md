@@ -12,6 +12,8 @@ materiales:
   - "Ficha de contenidos obligatorios del stand (incluida abajo)"
   - "Hoja de pasaporte de feria por alumno (incluida abajo)"
   - "Acceso a todoFP, webs de universidades y SEPE Observatorio"
+competencias_clave: [CD, CCL, CPSAA, CE]
+competencias_especificas: [CE5]
 lang: es
 estado: publicado
 ---

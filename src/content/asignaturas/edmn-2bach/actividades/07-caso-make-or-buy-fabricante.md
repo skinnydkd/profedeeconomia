@@ -10,6 +10,8 @@ materiales:
   - "Ficha del caso con costes internos y oferta del proveedor"
   - "Calculadora"
   - "Plantilla de decisión cuantitativa + cualitativa"
+competencias_clave: [STEM, CCL, CPSAA, CC]
+competencias_especificas: [CE4]
 estado: publicado
 ---
 

@@ -6,6 +6,8 @@ descripcion: "La clase resuelve un reto social del entorno con un sprint de desi
 tipo: debate
 duracion: "100 min · 2 sesiones"
 agrupacion: "equipos (4-5) + debate de grupo clase"
+competencias_clave: [CE, CC, CCL, CPSAA]
+competencias_especificas: [RA5]
 materiales:
   - "Tarjeta del reto social del entorno (movilidad, residuos, soledad de mayores, brecha digital, inserción laboral...)"
   - "Mural de las cinco fases del design thinking (empatizar, definir, idear, prototipar, testar)"

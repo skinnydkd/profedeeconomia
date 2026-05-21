@@ -10,6 +10,8 @@ materiales:
   - "Tarjetones de cuenta (Caja, Banco, Proveedores, Capital, Mercaderías…)"
   - "Dos zonas marcadas en el suelo o pizarra: DEBE y HABER"
   - "Tarjetas de operaciones a registrar"
+competencias_clave: [STEM, CPSAA, CC]
+competencias_especificas: [CE5]
 estado: publicado
 ---
 

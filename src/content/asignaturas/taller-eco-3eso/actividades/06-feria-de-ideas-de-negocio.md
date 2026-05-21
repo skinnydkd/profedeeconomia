@@ -6,6 +6,8 @@ descripcion: "Dinámica por equipos en la que cada grupo detecta un problema rea
 tipo: dinamica
 duracion: "55 min · 1 sesión"
 agrupacion: "grupos pequeños (3-4)"
+competencias_clave: [CE, CCL, CPSAA, CCEC]
+competencias_especificas: [CE5, CE6]
 materiales:
   - "Una cartulina o folio A3 por equipo para la ficha de la idea"
   - "Rotuladores de colores"

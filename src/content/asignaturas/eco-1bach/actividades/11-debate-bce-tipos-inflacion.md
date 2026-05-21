@@ -11,6 +11,8 @@ materiales:
   - "Esquema del mecanismo de transmisión de la política monetaria (tipos → crédito → demanda → precios)"
   - "Tarjetas de rol: equipo «halcón» (subir más y antes), equipo «paloma» (subir menos), equipo «comité evaluador»"
   - "Cronómetro proyectado para los turnos"
+competencias_clave: [CCL, CC, CPSAA]
+competencias_especificas: [CE5]
 estado: publicado
 ---
 

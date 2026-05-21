@@ -6,6 +6,8 @@ descripcion: "Proyecto en tres sesiones en el que cada alumno construye su proye
 tipo: proyecto
 duracion: "3 sesiones · 1,5 semanas (construcción + revisión cruzada + ajuste)"
 agrupacion: "individual (revisión cruzada en parejas)"
+competencias_clave: [CPSAA, CE, STEM]
+competencias_especificas: [RA4]
 materiales:
   - "Inventario RIASEC + competencias de la Unidad 2 de cada alumno"
   - "Plantilla del proyecto profesional en A4 (incluida abajo), PDF imprimible y documento editable"

@@ -10,6 +10,8 @@ materiales:
   - "Ficha con argumentos del plan de empresa clásico y del enfoque lean startup"
   - "Cronómetro visible"
   - "Plantilla de argumentos por equipo"
+competencias_clave: [CCL, CC, CPSAA]
+competencias_especificas: [CE6]
 estado: publicado
 ---
 

@@ -11,6 +11,8 @@ materiales:
   - "Plantilla de los tres espejos en A4 (incluida abajo)"
   - "Bolígrafos de dos colores"
   - "Pizarra para la puesta en común"
+competencias_clave: [CPSAA, CC, CCL]
+competencias_especificas: [CE1]
 lang: es
 estado: publicado
 ---

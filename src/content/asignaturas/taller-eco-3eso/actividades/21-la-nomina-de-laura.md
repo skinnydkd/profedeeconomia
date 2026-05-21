@@ -6,6 +6,8 @@ descripcion: "Caso práctico en el que el alumnado analiza la primera nómina de
 tipo: caso
 duracion: "50 min · 1 sesión"
 agrupacion: "parejas"
+competencias_clave: [STEM, CD, CPSAA, CC]
+competencias_especificas: [CE5]
 materiales:
   - "Ficha con una nómina sencilla y simplificada de ejemplo"
   - "Hoja de preguntas guiadas sobre la nómina"

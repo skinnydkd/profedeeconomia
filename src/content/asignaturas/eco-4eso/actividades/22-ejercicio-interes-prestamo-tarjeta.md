@@ -6,6 +6,8 @@ descripcion: "Ejercicio de cálculo en parejas que compara el coste real de tres
 tipo: ejercicio
 duracion: "50 min · 1 sesión"
 agrupacion: "parejas"
+competencias_clave: [STEM, CPSAA, CD]
+competencias_especificas: [CE5]
 materiales:
   - "Ficha del caso impresa (el producto a comprar y las tres ofertas de financiación)"
   - "Plantilla de cálculo (cuota · meses · total pagado · coste del crédito)"

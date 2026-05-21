@@ -11,6 +11,8 @@ materiales:
   - "Acceso a fuentes verídicas: portales de empleo para salarios, portales inmobiliarios para alquileres, INE (IPC) para precios de referencia"
   - "Ficha guía de la regla 50/30/20 (necesidades · deseos · ahorro)"
   - "Plantilla del mini-informe final (1-2 páginas)"
+competencias_clave: [CD, CCL, CPSAA, STEM]
+competencias_especificas: [CE2]
 estado: publicado
 ---
 

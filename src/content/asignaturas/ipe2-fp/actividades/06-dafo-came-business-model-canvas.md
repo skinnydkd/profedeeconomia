@@ -6,6 +6,8 @@ descripcion: "Cada equipo sitúa su oportunidad validada en su entorno con un DA
 tipo: ejercicio
 duracion: "100 min · 2 sesiones"
 agrupacion: "equipos de proyecto (3-4)"
+competencias_clave: [CE, STEM, CD]
+competencias_especificas: [RA4]
 materiales:
   - "Plantilla DAFO en A3 (una por equipo)"
   - "Plantilla CAME (Corregir, Afrontar, Mantener, Explotar)"

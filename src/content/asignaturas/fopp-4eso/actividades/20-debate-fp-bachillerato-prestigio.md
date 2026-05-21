@@ -11,6 +11,8 @@ materiales:
   - "Ficha de datos reales sobre FP (incluida abajo)"
   - "Pizarra para votación inicial y final"
   - "Cronómetro visible"
+competencias_clave: [CCL, CC, CPSAA]
+competencias_especificas: [CE5]
 lang: es
 estado: publicado
 ---

@@ -11,6 +11,8 @@ materiales:
   - "Ficha guía con preguntas y argumentos (incluida abajo)"
   - "Pizarra para votación inicial y final"
   - "Cronómetro visible"
+competencias_clave: [CCL, CC, CPSAA]
+competencias_especificas: [CE8, CE1]
 lang: es
 estado: publicado
 ---

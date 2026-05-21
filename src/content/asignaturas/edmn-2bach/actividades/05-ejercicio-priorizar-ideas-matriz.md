@@ -10,6 +10,8 @@ materiales:
   - "Lista de 10 ideas de mejora para un negocio (se entrega)"
   - "Plantilla de matriz impacto-esfuerzo (cuadrante 2x2)"
   - "Calculadora (opcional)"
+competencias_clave: [STEM, CE, CPSAA]
+competencias_especificas: [CE3]
 estado: publicado
 ---
 

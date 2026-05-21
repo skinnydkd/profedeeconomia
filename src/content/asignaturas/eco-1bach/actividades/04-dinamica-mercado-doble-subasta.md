@@ -11,6 +11,8 @@ materiales:
   - "Pizarra grande para anotar cada transacción cerrada (precio y número de ronda)"
   - "Hoja de cálculo o plantilla para representar las curvas de oferta y demanda agregadas a partir de las tarjetas"
   - "Cronómetro proyectado para las rondas de negociación"
+competencias_clave: [STEM, CPSAA, CC]
+competencias_especificas: [CE3]
 estado: publicado
 ---
 

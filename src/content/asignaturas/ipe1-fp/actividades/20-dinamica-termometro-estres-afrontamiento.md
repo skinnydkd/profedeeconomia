@@ -6,6 +6,8 @@ descripcion: "Dinámica vivencial en la que la clase sitúa situaciones laborale
 tipo: dinamica
 duracion: "50 min · 1 sesión"
 agrupacion: "grupo clase + grupos pequeños (3-4)"
+competencias_clave: [CPSAA, CCL]
+competencias_especificas: [RA6]
 materiales:
   - "Tira de termómetro de estrés para la pared (de calma a alarma, incluida abajo)"
   - "Tarjetas de 12 situaciones laborales (incluidas abajo, fotocopiables y recortables)"

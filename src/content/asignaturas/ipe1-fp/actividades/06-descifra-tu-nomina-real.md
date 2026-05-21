@@ -6,6 +6,8 @@ descripcion: "Ejercicio práctico en parejas para leer una nómina oficial compl
 tipo: ejercicio
 duracion: "55 min · 1 sesión"
 agrupacion: "parejas"
+competencias_clave: [CC, STEM, CCL]
+competencias_especificas: [RA3]
 materiales:
   - "Dos nóminas modelo en formato oficial (incluidas abajo, fotocopiables)"
   - "Extracto de un contrato y de un convenio sectorial de referencia (incluido abajo)"

@@ -6,6 +6,8 @@ descripcion: "En tres sesiones la clase recrea un proceso de selección real par
 tipo: dinamica
 duracion: "150 min · 3 sesiones"
 agrupacion: "individual + tribunal de selección por tríos"
+competencias_clave: [CCL, CPSAA, CD, CC]
+competencias_especificas: [RA1]
 materiales:
   - "Una oferta de empleo real por familia profesional, descargada por el profesor de InfoJobs, LinkedIn Jobs o el portal del SEPE (perfil junior, requisitos accesibles)"
   - "Plantilla de criba ATS: tabla con las palabras clave de la oferta y casillas de presencia/ausencia"

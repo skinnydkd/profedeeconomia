@@ -6,6 +6,8 @@ descripcion: "Debate estructurado sobre el reparto de responsabilidades en preve
 tipo: debate
 duracion: "55 min · 1 sesión"
 agrupacion: "grupos pequeños (3-5) + grupo clase"
+competencias_clave: [CC, CCL, CPSAA]
+competencias_especificas: [RA1]
 materiales:
   - "Tarjetas de los tres casos de discusión (incluidas abajo, fotocopiables)"
   - "Ficha de preparación de argumentos por grupo (incluida abajo)"

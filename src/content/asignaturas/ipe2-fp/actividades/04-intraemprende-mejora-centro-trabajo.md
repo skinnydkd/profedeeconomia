@@ -6,6 +6,8 @@ descripcion: "A partir del centro de trabajo de la FCT o de un proceso real del 
 tipo: caso
 duracion: "90 min · 2 sesiones"
 agrupacion: "individual o parejas + comité de dirección por tríos"
+competencias_clave: [CE, CD, STEM]
+competencias_especificas: [RA3]
 materiales:
   - "Cuaderno de campo o notas de la FCT / FP Dual del alumno (o, en su defecto, del taller o aula-empresa del centro)"
   - "Ficha EntreComp resumida: las 15 competencias en tres áreas (ideas, recursos, acción)"

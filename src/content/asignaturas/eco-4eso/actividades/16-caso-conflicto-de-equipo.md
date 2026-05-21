@@ -6,6 +6,8 @@ descripcion: "Análisis de un caso real de conflicto dentro de un equipo de trab
 tipo: caso
 duracion: "50 min · 1 sesión"
 agrupacion: "grupos pequeños (3-4)"
+competencias_clave: [CPSAA, CC, CCL]
+competencias_especificas: [CE1]
 materiales:
   - "Ficha del caso impresa (una por grupo)"
   - "Tabla de tipos de conflicto y posibles respuestas (evitar / imponer / ceder / colaborar)"

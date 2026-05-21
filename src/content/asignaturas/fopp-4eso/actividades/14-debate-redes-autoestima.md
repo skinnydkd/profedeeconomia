@@ -11,6 +11,8 @@ materiales:
   - "Ficha de preparación con datos y argumentos guía (incluida abajo)"
   - "Rúbrica del jurado en A4"
   - "Cronómetro visible"
+competencias_clave: [CCL, CC, CPSAA, CD]
+competencias_especificas: [CE2]
 lang: es
 estado: publicado
 ---

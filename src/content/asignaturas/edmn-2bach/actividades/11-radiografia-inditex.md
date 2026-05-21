@@ -11,6 +11,8 @@ materiales:
   - "Resumen de la cuenta de resultados 2023"
   - "Calculadora"
   - "Acceso opcional al informe anual completo en inditex.com/investors"
+competencias_clave: [STEM, CD, CCL, CPSAA]
+competencias_especificas: [CE5]
 estado: publicado
 ---
 

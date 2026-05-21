@@ -6,6 +6,8 @@ descripcion: "Ejercicio guiado para convertir una idea suelta en una oportunidad
 tipo: ejercicio
 duracion: "55 min · 1 sesión"
 agrupacion: "equipos de proyecto (3-4)"
+competencias_clave: [CE, STEM, CPSAA]
+competencias_especificas: [RA4]
 materiales:
   - "Plantilla del mapa de empatía en A3 (qué piensa, ve, oye, dice y hace; dolores y necesidades)"
   - "Plantilla de la escalera de la oportunidad (cinco peldaños)"

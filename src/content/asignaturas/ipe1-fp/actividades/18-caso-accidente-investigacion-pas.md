@@ -6,6 +6,8 @@ descripcion: "Estudio de caso en grupos pequeños sobre un accidente laboral rea
 tipo: caso
 duracion: "55 min · 1 sesión"
 agrupacion: "grupos pequeños (3-4)"
+competencias_clave: [STEM, CPSAA, CC]
+competencias_especificas: [RA1]
 materiales:
   - "Ficha del caso de accidente con la secuencia de hechos (incluida abajo, fotocopiable)"
   - "Resumen de los principios de la acción preventiva (art. 15 Ley 31/1995) y del protocolo PAS proyectado"

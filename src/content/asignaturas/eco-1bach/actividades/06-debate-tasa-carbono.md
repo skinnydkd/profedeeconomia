@@ -11,6 +11,8 @@ materiales:
   - "Esquema del concepto de externalidad negativa y solución pigouviana (impuesto = daño marginal)"
   - "Tarjetas de rol: equipo «impuesto», equipo «mercado de derechos», equipo «evaluador neutral»"
   - "Cronómetro proyectado para los turnos"
+competencias_clave: [CCL, CC, CPSAA]
+competencias_especificas: [CE3]
 estado: publicado
 ---
 

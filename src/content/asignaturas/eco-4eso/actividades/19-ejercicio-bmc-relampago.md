@@ -6,6 +6,8 @@ descripcion: "Ejercicio individual o en parejas que aplica los nueve bloques del
 tipo: ejercicio
 duracion: "50 min · 1 sesión"
 agrupacion: "individual o parejas"
+competencias_clave: [CE, CD, CPSAA]
+competencias_especificas: [CE6]
 materiales:
   - "Plantilla del Business Model Canvas en A3 o A4 (los nueve bloques)"
   - "Lista de empresas para sortear (mezcla de gigantes y negocios locales)"

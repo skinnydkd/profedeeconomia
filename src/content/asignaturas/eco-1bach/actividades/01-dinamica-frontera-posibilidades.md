@@ -11,6 +11,8 @@ materiales:
   - "Cronómetro proyectado para las rondas de producción"
   - "Hoja de registro con tabla de combinaciones producidas"
   - "Hoja milimetrada o plantilla con ejes para dibujar la FPP"
+competencias_clave: [STEM, CPSAA, CC]
+competencias_especificas: [CE1]
 estado: publicado
 ---
 

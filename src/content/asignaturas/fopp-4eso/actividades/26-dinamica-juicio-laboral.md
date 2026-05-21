@@ -11,6 +11,8 @@ materiales:
   - "Resumen del Estatuto de los Trabajadores sobre despido e indemnizaciones"
   - "Disposición del aula en forma de sala de juicios"
   - "Toga simbólica o cartel para la jueza (opcional)"
+competencias_clave: [CC, CCL, CPSAA]
+competencias_especificas: [CE6]
 lang: es
 estado: publicado
 ---

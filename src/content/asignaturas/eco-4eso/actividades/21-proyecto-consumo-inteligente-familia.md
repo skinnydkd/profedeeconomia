@@ -6,6 +6,8 @@ descripcion: "Mini-proyecto de campo de dos semanas en el que cada estudiante au
 tipo: proyecto
 duracion: "2 semanas de campo + 1 sesión de cierre (50 min)"
 agrupacion: "individual (campo) + puesta en común en grupos"
+competencias_clave: [CE, STEM, CD, CPSAA]
+competencias_especificas: [CE4]
 materiales:
   - "Plantilla de inventario de gastos recurrentes del hogar (suscripciones, tarifas, compra fija)"
   - "Plantilla de comparativa de alternativas (lo que se paga ahora / mejor alternativa / ahorro)"

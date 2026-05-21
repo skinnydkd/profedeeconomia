@@ -11,6 +11,8 @@ materiales:
   - "Calculadora simple (móvil sirve)"
   - "Hoja A4 con tres columnas preparadas (gasto · producción · renta) para anotar los resultados parciales"
   - "Acceso opcional al INE (ine.es) para verificar las cifras oficiales"
+competencias_clave: [STEM, CD, CPSAA]
+competencias_especificas: [CE4]
 estado: publicado
 ---
 

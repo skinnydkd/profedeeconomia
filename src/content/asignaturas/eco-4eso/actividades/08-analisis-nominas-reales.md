@@ -6,6 +6,8 @@ descripcion: "Ejercicio guiado en parejas sobre tres nóminas anonimizadas (un b
 tipo: ejercicio
 duracion: "55 min · 1 sesión (5 min planteamiento + 30 min trabajo en parejas + 15 min puesta en común + 5 min cierre)"
 agrupacion: "parejas → grupo clase"
+competencias_clave: [STEM, CPSAA, CCL]
+competencias_especificas: [CE5]
 materiales:
   - "Tres fichas impresas con las nóminas anonimizadas (una por pareja, incluidas al final de esta actividad)"
   - "Calculadora simple (o app del móvil)"

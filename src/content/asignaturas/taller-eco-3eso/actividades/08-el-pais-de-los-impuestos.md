@@ -6,6 +6,8 @@ descripcion: "Debate por equipos que parte de un presupuesto público simplifica
 tipo: debate
 duracion: "55 min · 1 sesión"
 agrupacion: "grupos pequeños (gobiernos de 3-4) + debate de grupo clase"
+competencias_clave: [CCL, STEM, CC]
+competencias_especificas: [CE5]
 materiales:
   - "100 fichas, garbanzos o gomets por equipo (representan el presupuesto público)"
   - "Tablero o folio con las 8 partidas de gasto público"

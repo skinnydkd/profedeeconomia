@@ -6,6 +6,8 @@ descripcion: "Ejercicio individual para elaborar el presupuesto mensual real con
 tipo: ejercicio
 duracion: "50 min · 1 sesión"
 agrupacion: "individual con cierre en parejas"
+competencias_clave: [STEM, CD, CPSAA]
+competencias_especificas: [CE4]
 materiales:
   - "Plantilla de presupuesto mensual (ingresos / gastos fijos / gastos variables / ahorro)"
   - "Calculadora del móvil"

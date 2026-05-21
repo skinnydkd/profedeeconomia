@@ -6,6 +6,8 @@ descripcion: "Debate estructurado sobre la frase que recorre el mercado laboral:
 tipo: debate
 duracion: "55 min · 1 sesión"
 agrupacion: "dos equipos en debate + jurado observador"
+competencias_clave: [CCL, CPSAA, CC]
+competencias_especificas: [RA2]
 materiales:
   - "Tarjetas de postura asignadas por sorteo (prima el título / prima la actitud)"
   - "Dossier de evidencia: extractos de ofertas reales y testimonios de profesionales del sector"

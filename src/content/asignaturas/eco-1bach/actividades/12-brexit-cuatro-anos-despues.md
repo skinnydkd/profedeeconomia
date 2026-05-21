@@ -11,6 +11,8 @@ materiales:
   - "Extracto del Economic and Fiscal Outlook del OBR (marzo de 2024), apartado sobre Brexit"
   - "Calculadora o hoja de cálculo para verificar las variaciones porcentuales"
   - "Acceso a internet para consultar series actualizadas (ONS, Eurostat, ICEX)"
+competencias_clave: [CCL, CPSAA, CC, CD]
+competencias_especificas: [CE6]
 estado: publicado
 ---
 

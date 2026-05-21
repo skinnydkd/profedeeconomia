@@ -6,6 +6,8 @@ descripcion: "Debate estructurado por equipos en el que la clase confronta dos c
 tipo: debate
 duracion: "55 min · 1 sesión"
 agrupacion: "dos equipos grandes + jurado rotatorio"
+competencias_clave: [CCL, CC, CPSAA]
+competencias_especificas: [CE1]
 materiales:
   - "Pizarra dividida en dos columnas (PRO emprender / PRO empleo por cuenta ajena)"
   - "Una ficha de preparación de argumentos por equipo (afirmación · dato · ejemplo)"

@@ -6,6 +6,8 @@ descripcion: "Proyecto de cierre del curso en cuatro sesiones en el que cada equ
 tipo: proyecto
 duracion: "4 sesiones de 55 min · ~3 semanas"
 agrupacion: "grupos pequeños (3-5)"
+competencias_clave: [CE, CCL, CPSAA, CC]
+competencias_especificas: [CE6, CE3]
 materiales:
   - "Cartulina o panel A3 por equipo para la ficha del proyecto"
   - "Plantilla del proyecto (problema, idea, ODS, recursos, plan, sostenibilidad)"
