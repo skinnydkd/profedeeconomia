@@ -6,6 +6,8 @@ descripcion: "Dinámica en cuatro estaciones para confrontar los cuatro mitos de
 tipo: dinamica
 duracion: "55 min · 1 sesión"
 agrupacion: "grupos pequeños (3-4) rotando por estaciones"
+competencias_clave: [CPSAA, CC, CE]
+competencias_especificas: [CE1]
 materiales:
   - "Cuatro carteles A3, uno por cada mito (preparados por el profesor o las primeras parejas que entren al aula)"
   - "Un rotulador por grupo y pósits de dos colores (uno para «verdad», otro para «mito»)"

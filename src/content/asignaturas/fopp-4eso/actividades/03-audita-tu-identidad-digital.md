@@ -11,6 +11,8 @@ materiales:
   - "Plantilla de auditoría impresa o en PDF (apartados 1 a 5)"
   - "Acceso al navegador en modo incógnito para la búsqueda de Google"
   - "Enlace al formulario de derecho al olvido de Google y a los ajustes de privacidad de Instagram, TikTok, X y YouTube"
+competencias_clave: [CD, CC, CPSAA]
+competencias_especificas: [CE3]
 estado: publicado
 ---
 

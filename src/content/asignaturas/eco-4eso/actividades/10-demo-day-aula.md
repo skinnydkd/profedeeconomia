@@ -6,6 +6,8 @@ descripcion: "Cierre del curso en tres sesiones: cada equipo prepara, ensaya y d
 tipo: proyecto
 duracion: "3 sesiones de 55 min · sesión 1 preparación + sesión 2 ensayo general + sesión 3 demo day"
 agrupacion: "grupos pequeños (3-5) — los mismos equipos del capstone de la Unidad 9"
+competencias_clave: [CE, CCL, CD, CPSAA]
+competencias_especificas: [CE6]
 materiales:
   - "Business Model Canvas y prototipo de la Unidad 9 (capstone parte 1) actualizado tras la validación"
   - "Plantilla de pitch deck de 10 slides (Google Slides, Canva o PowerPoint)"

@@ -6,6 +6,8 @@ descripcion: "Análisis de tres cambios reales del entorno —la subida del prec
 tipo: caso
 duracion: "55 min · 1 sesión"
 agrupacion: "grupos pequeños (3-4), un cambio por grupo"
+competencias_clave: [CCL, CPSAA, CC]
+competencias_especificas: [CE3]
 materiales:
   - "Tres fichas de caso impresas (energía, teletrabajo, vídeo bajo demanda), una familia por grupo"
   - "Plantilla PESTEL simplificada (qué tipo de factor es el cambio)"

@@ -6,6 +6,8 @@ descripcion: "Estudio de caso en parejas sobre cómo la identidad y la huella di
 tipo: caso
 duracion: "55 min · 1 sesión"
 agrupacion: "parejas"
+competencias_clave: [CD, CPSAA, CCL]
+competencias_especificas: [RA5]
 materiales:
   - "Fichas de los dos candidatos con su rastro digital (incluidas abajo, fotocopiables)"
   - "Criterios de evaluación del reclutador (incluidos abajo)"

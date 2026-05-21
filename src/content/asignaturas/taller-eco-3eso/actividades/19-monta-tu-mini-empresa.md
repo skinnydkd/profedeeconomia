@@ -6,6 +6,8 @@ descripcion: "Proyecto por equipos que recorre todo el ciclo de una empresa: ele
 tipo: proyecto
 duracion: "3-4 sesiones + una jornada de venta"
 agrupacion: "grupos pequeños (4-5)"
+competencias_clave: [CE, STEM, CPSAA, CCL]
+competencias_especificas: [CE5, CE6]
 materiales:
   - "Plantilla de plan de empresa (producto, costes, precio, roles, previsión de ventas)"
   - "Hoja de cuentas para registrar gastos e ingresos"

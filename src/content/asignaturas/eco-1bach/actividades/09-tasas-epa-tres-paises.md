@@ -11,6 +11,8 @@ materiales:
   - "Calculadora científica o app de móvil."
   - "Tabla resumen para rellenar en grupo."
   - "Acceso a internet en la segunda sesión para contrastar resultados con Eurostat (LFS) y AIReF."
+competencias_clave: [STEM, CD, CPSAA]
+competencias_especificas: [CE4, CE5]
 estado: publicado
 ---
 

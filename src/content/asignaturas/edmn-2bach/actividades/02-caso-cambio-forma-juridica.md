@@ -10,6 +10,8 @@ materiales:
   - "Ficha del caso con cifras de facturación y beneficio"
   - "Tabla comparativa autónomo / SL (en blanco)"
   - "Acceso a internet para consultar tipos de IRPF e Impuesto de Sociedades"
+competencias_clave: [CCL, STEM, CPSAA, CC]
+competencias_especificas: [CE1]
 estado: publicado
 ---
 

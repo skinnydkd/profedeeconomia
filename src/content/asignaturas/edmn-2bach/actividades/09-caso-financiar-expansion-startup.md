@@ -10,6 +10,8 @@ materiales:
   - "Ficha del caso con las tres ofertas de financiación"
   - "Tabla comparativa (en blanco)"
   - "Calculadora"
+competencias_clave: [STEM, CCL, CPSAA, CC]
+competencias_especificas: [CE4]
 estado: publicado
 ---
 

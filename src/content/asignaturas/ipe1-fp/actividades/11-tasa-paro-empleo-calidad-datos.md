@@ -6,6 +6,8 @@ descripcion: "Ejercicio guiado de interpretación de indicadores del mercado de 
 tipo: ejercicio
 duracion: "50 min · 1 sesión"
 agrupacion: "individual o parejas"
+competencias_clave: [STEM, CD, CCL]
+competencias_especificas: [RA5]
 materiales:
   - "Tabla de datos de la EPA simplificada (incluida abajo, fotocopiable)"
   - "Calculadora o móvil"

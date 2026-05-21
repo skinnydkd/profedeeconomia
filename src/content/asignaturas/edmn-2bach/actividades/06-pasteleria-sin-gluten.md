@@ -10,6 +10,8 @@ materiales:
   - "Plantilla 4P en A3"
   - "Datos demográficos básicos de tu ciudad (INE)"
   - "Calculadora para estimaciones de coste y precio"
+competencias_clave: [CCL, STEM, CE, CPSAA]
+competencias_especificas: [CE4]
 estado: publicado
 ---
 

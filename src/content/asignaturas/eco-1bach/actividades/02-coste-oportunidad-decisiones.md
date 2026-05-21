@@ -10,6 +10,8 @@ materiales:
   - "Ficha con las seis situaciones de decisión y los datos numéricos de cada una"
   - "Calculadora simple (móvil sirve)"
   - "Hoja de respuestas con tabla de tres columnas (coste explícito · coste implícito · coste de oportunidad total)"
+competencias_clave: [STEM, CPSAA, CE]
+competencias_especificas: [CE1, CE2]
 estado: publicado
 ---
 

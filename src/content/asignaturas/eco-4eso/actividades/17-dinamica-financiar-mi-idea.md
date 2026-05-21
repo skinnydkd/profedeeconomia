@@ -6,6 +6,8 @@ descripcion: "Dinámica de estaciones en la que cada equipo, con una idea de neg
 tipo: dinamica
 duracion: "55 min · 1 sesión"
 agrupacion: "equipos pequeños (3-4) rotando por estaciones"
+competencias_clave: [STEM, CE, CPSAA]
+competencias_especificas: [CE5]
 materiales:
   - "Cinco carteles de estación: ahorros propios · familia y amigos · préstamo bancario · crowdfunding · subvención pública / inversor"
   - "Tarjeta de idea de negocio por equipo (con coste de arranque ya fijado)"

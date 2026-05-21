@@ -6,6 +6,8 @@ descripcion: "Análisis de un caso real de un negocio local que abrió con ilusi
 tipo: caso
 duracion: "50 min · 1 sesión"
 agrupacion: "grupos pequeños (3-4)"
+competencias_clave: [CCL, CPSAA, CC]
+competencias_especificas: [CE1]
 materiales:
   - "Ficha del caso impresa (una por grupo, incluida al final de esta actividad)"
   - "Tabla de las cinco habilidades (creatividad, resiliencia, iniciativa, comunicación, aprender de los errores)"

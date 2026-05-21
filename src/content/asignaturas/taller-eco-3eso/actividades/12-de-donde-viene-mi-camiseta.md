@@ -6,6 +6,8 @@ descripcion: "Caso práctico de investigación en el que el alumnado reconstruye
 tipo: caso
 duracion: "50 min · 1 sesión"
 agrupacion: "parejas"
+competencias_clave: [CCL, CD, CC]
+competencias_especificas: [CE2]
 materiales:
   - "Una camiseta o foto de una camiseta con su etiqueta visible"
   - "Ficha del caso con las etiquetas de tres prendas distintas"

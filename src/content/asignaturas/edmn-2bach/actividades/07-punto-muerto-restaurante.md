@@ -10,6 +10,8 @@ materiales:
   - "Calculadora"
   - "Hoja de cálculo (opcional, para hacer un gráfico de los dos planes)"
   - "Plantilla con la tabla de datos del caso"
+competencias_clave: [STEM, CD, CPSAA]
+competencias_especificas: [CE4]
 estado: publicado
 ---
 

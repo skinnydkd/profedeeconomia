@@ -6,6 +6,8 @@ descripcion: "Debate estructurado sobre si una empresa puede perseguir un fin so
 tipo: debate
 duracion: "50 min · 1 sesión"
 agrupacion: "tres grupos (dos posturas + jurado)"
+competencias_clave: [CCL, CC, CPSAA]
+competencias_especificas: [CE2]
 materiales:
   - "Ficha de preparación de argumentos por equipo"
   - "Tarjetas con tres casos reales para repartir (una empresa social tipo B Corp, una cooperativa, una multinacional con campaña solidaria)"

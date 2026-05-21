@@ -10,6 +10,8 @@ materiales:
   - "Datos de partida con tasas de supervivencia empresarial (INE, GEM España)"
   - "Cronómetro visible"
   - "Plantilla de argumentos por equipo"
+competencias_clave: [CCL, CC, CPSAA]
+competencias_especificas: [CE1]
 estado: publicado
 ---
 

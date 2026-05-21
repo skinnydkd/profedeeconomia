@@ -11,6 +11,8 @@ materiales:
   - "Plantilla de hoja de respuestas (15 errores + corrección)"
   - "Bolígrafo de color para marcar"
   - "Proyector para la corrección final"
+competencias_clave: [CD, CCL, CPSAA]
+competencias_especificas: [CE7]
 lang: es
 estado: publicado
 ---

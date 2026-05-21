@@ -11,6 +11,8 @@ materiales:
   - "Tabla comparativa FP / Universidad en blanco (incluida abajo)"
   - "Acceso a todoFP y a la web de becas MEFP / autonómica"
   - "Pizarra para la puesta en común"
+competencias_clave: [CPSAA, CE, CC]
+competencias_especificas: [CE5, CE4]
 lang: es
 estado: publicado
 ---

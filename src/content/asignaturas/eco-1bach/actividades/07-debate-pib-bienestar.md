@@ -11,6 +11,8 @@ materiales:
   - "Esquema de qué incluye y qué deja fuera el PIB (economía sumergida, trabajo no remunerado, externalidades, desigualdad, ocio)"
   - "Tarjetas de rol para los dos equipos"
   - "Rúbrica de debate para coevaluación"
+competencias_clave: [CCL, CC, CPSAA, CCEC]
+competencias_especificas: [CE4]
 estado: publicado
 ---
 

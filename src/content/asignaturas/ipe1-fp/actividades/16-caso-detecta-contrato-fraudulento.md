@@ -6,6 +6,8 @@ descripcion: "Estudio de caso en grupos pequeños sobre cuatro ofertas de empleo
 tipo: caso
 duracion: "55 min · 1 sesión"
 agrupacion: "grupos pequeños (3-4)"
+competencias_clave: [CC, CCL]
+competencias_especificas: [RA3]
 materiales:
   - "Fichas de las cuatro ofertas de contrato (incluidas abajo, fotocopiables)"
   - "Resumen de la jerarquía normativa, modalidades de contrato y reforma laboral 2021 proyectado"

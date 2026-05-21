@@ -11,6 +11,8 @@ materiales:
   - "Lista de los 15 lotes a subastar proyectada (incluida abajo)"
   - "Hoja de registro personal de pujas (incluida abajo)"
   - "Martillo simbólico o campana para el subastador"
+competencias_clave: [CPSAA, CE, STEM]
+competencias_especificas: [CE4, CE1]
 lang: es
 estado: publicado
 ---

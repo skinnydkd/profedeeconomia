@@ -6,6 +6,8 @@ descripcion: "Proyecto en dos sesiones: cada alumno construye su entorno persona
 tipo: proyecto
 duracion: "2 sesiones · 1 semana"
 agrupacion: "individual (auditoría cruzada en parejas)"
+competencias_clave: [CD, CPSAA]
+competencias_especificas: [RA5]
 materiales:
   - "Aula con ordenadores o móvil con datos para cada alumno"
   - "Plantilla de PLE en tres anillos + ficha de auditoría de huella digital (incluidas abajo)"

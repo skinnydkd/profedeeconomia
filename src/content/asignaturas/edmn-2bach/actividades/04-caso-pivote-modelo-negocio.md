@@ -10,6 +10,8 @@ materiales:
   - "Ficha con la historia de los tres pivotes"
   - "Plantilla antes/después del modelo de negocio"
   - "Acceso a internet para verificar datos"
+competencias_clave: [CCL, CE, CPSAA, CC]
+competencias_especificas: [CE3]
 estado: publicado
 ---
 

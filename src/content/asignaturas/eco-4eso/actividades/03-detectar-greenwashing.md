@@ -6,6 +6,8 @@ descripcion: "Análisis crítico en grupos pequeños de tres a cuatro anuncios r
 tipo: caso
 duracion: "75 min · 1 sesión doble (15 min introducción + 40 min análisis en grupos + 20 min puesta en común)"
 agrupacion: "grupos pequeños (3-4 personas)"
+competencias_clave: [CCL, CC, CPSAA]
+competencias_especificas: [CE2]
 materiales:
   - "Selección impresa o proyectada de 3-4 anuncios reales: web de Volkswagen 'Clean Diesel' archivada, colección 'Conscious' de H&M, comunicación de Holaluz sobre energía renovable y un anuncio de petrolera nacional sobre transición energética"
   - "Plantilla de rúbrica de greenwashing (cuatro señales) impresa por equipo"

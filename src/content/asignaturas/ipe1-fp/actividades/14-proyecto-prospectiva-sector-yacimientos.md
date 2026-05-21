@@ -6,6 +6,8 @@ descripcion: "Proyecto en dos sesiones en el que cada equipo elabora un informe 
 tipo: proyecto
 duracion: "2 sesiones · 1 semana (investigación + informe + presentación)"
 agrupacion: "grupos pequeños (3-4)"
+competencias_clave: [STEM, CD, CE]
+competencias_especificas: [RA2]
 materiales:
   - "Acceso a internet (Observatorio de las Ocupaciones del SEPE, INE, informes sectoriales)"
   - "Guion del informe de prospectiva (incluido abajo, fotocopiable)"

@@ -11,6 +11,8 @@ materiales:
   - "Calculadora científica o calculadora de hipotecas del Banco de España (bde.es)"
   - "Hoja de cálculo opcional (LibreOffice Calc, Google Sheets, Excel)"
   - "Acceso al histórico del Euribor a 12 meses (bde.es, Indicadores Estadísticos)"
+competencias_clave: [STEM, CD, CPSAA, CCL]
+competencias_especificas: [CE2]
 estado: publicado
 ---
 

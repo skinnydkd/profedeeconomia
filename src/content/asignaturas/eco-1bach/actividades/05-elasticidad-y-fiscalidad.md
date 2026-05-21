@@ -11,6 +11,8 @@ materiales:
   - "Calculadora científica o app de móvil."
   - "Tabla resumen para rellenar en grupo."
   - "Acceso a internet en la segunda sesión para contrastar resultados con estimaciones publicadas."
+competencias_clave: [STEM, CPSAA, CD, CC]
+competencias_especificas: [CE3]
 estado: publicado
 ---
 

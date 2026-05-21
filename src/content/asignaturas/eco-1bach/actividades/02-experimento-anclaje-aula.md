@@ -11,6 +11,8 @@ materiales:
   - "Pizarra o panel grande para anotar los resultados de cada grupo"
   - "Calculadora o hoja de cálculo para sacar medianas en directo"
   - "Opcional: proyector para mostrar el gráfico final con las dos distribuciones"
+competencias_clave: [CPSAA, STEM, CC]
+competencias_especificas: [CE2]
 estado: publicado
 ---
 

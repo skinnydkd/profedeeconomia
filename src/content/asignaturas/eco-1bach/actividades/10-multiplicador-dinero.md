@@ -11,6 +11,8 @@ materiales:
   - "Hoja de cálculo (LibreOffice Calc, Google Sheets o Excel) — opcional pero recomendado para la extensión"
   - "Ficha de trabajo con la tabla de rondas (se entrega impresa o en PDF)"
   - "Pizarra para puesta en común final"
+competencias_clave: [STEM, CPSAA, CD]
+competencias_especificas: [CE5]
 estado: publicado
 ---
 

@@ -60,6 +60,11 @@ const actividades = defineCollection({
     materiales: z.array(z.string()).default([]),
     /** "individual" / "parejas" / "grupos pequeños (3-5)" / "grupo clase". */
     agrupacion: z.string().optional(),
+    /** LOMLOE key competences worked, by code: CCL, CP, STEM, CD, CPSAA, CC, CE, CCEC. */
+    competencias_clave: z.array(z.string()).default([]),
+    /** Subject-specific competences (ESO/Bach: "CE1", "CE3"…) or learning
+     *  outcomes for FP ("RA1", "RA3"…), as worked by the activity. */
+    competencias_especificas: z.array(z.string()).default([]),
     lang: z.enum(LANGS).default('es'),
     estado: z.enum(ESTADOS).default('borrador'),
   }),

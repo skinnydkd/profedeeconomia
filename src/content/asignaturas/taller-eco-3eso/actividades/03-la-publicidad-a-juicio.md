@@ -6,6 +6,8 @@ descripcion: "Debate estructurado por equipos sobre si la publicidad nos ayuda a
 tipo: debate
 duracion: "55 min · 1 sesión"
 agrupacion: "dos equipos grandes + jurado, dentro del grupo clase"
+competencias_clave: [CCL, CD, CC, CE]
+competencias_especificas: [CE3]
 materiales:
   - "Pizarra dividida en dos columnas (a favor / en contra)"
   - "Ficha con las técnicas publicitarias vistas en la unidad (repetición, testimonios de famosos, urgencia, regalo, comparación)"

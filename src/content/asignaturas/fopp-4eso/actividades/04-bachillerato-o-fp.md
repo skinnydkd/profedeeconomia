@@ -11,6 +11,8 @@ materiales:
   - "Bolígrafo y cuaderno"
   - "Calculadora (móvil sirve)"
   - "Opcional: folletos o webs de Bachillerato y FP del centro o la zona"
+competencias_clave: [CPSAA, CE, STEM]
+competencias_especificas: [CE4, CE8]
 estado: publicado
 ---
 

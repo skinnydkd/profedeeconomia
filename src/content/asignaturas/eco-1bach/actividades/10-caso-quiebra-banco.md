@@ -11,6 +11,8 @@ materiales:
   - "Cronologías paralelas del Banco Popular (junio 2017) y el Silicon Valley Bank (marzo 2023)"
   - "Esquema del multiplicador del dinero y de la reserva fraccionaria"
   - "Plantilla de análisis comparativo (causas · velocidad de la corrida · papel del supervisor · desenlace)"
+competencias_clave: [CCL, CPSAA, CC]
+competencias_especificas: [CE5]
 estado: publicado
 ---
 

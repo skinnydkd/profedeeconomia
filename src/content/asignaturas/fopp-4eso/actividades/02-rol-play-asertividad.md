@@ -12,6 +12,8 @@ materiales:
   - "Plantilla de feedback (1 cosa que ha funcionado + 1 cosa que probarías diferente)"
   - "Cronómetro visible"
   - "Cartel en la pared con la fórmula completa y los recursos de ayuda (línea 024, ANAR)"
+competencias_clave: [CPSAA, CC, CCL]
+competencias_especificas: [CE2]
 estado: publicado
 ---
 

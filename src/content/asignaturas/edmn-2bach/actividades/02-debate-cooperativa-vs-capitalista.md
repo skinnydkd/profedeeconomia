@@ -10,6 +10,8 @@ materiales:
   - "Ficha de datos sobre Mondragón y sobre empresas SA/SL del IBEX"
   - "Cronómetro visible"
   - "Plantilla de argumentos por equipo"
+competencias_clave: [CCL, CC, CPSAA]
+competencias_especificas: [CE1]
 estado: publicado
 ---
 

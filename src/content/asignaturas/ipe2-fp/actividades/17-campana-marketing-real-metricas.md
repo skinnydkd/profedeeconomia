@@ -6,6 +6,8 @@ descripcion: "Proyecto de una semana: cada equipo diseña, publica y mide una mi
 tipo: proyecto
 duracion: "150 min en clase · 1 semana de campaña activa"
 agrupacion: "equipos de proyecto (3-4)"
+competencias_clave: [CE, CD, STEM, CCL]
+competencias_especificas: [RA4]
 materiales:
   - "Plantilla de plan de campaña (objetivo, público, mensaje, canal, métrica, presupuesto)"
   - "Herramientas gratuitas de diseño y publicación (editor gráfico, formularios, redes del proyecto)"

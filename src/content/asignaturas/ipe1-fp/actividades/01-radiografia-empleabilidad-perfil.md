@@ -6,6 +6,8 @@ descripcion: "En parejas y durante una sesión, el alumnado analiza un perfil pr
 tipo: caso
 duracion: "55 min · 1 sesión"
 agrupacion: "parejas"
+competencias_clave: [CPSAA, CE, CD]
+competencias_especificas: [RA5]
 materiales:
   - "Ficha de los tres casos de perfil profesional (incluida abajo, fotocopiable)"
   - "Plantilla de radiografía de empleabilidad por pareja (incluida abajo)"

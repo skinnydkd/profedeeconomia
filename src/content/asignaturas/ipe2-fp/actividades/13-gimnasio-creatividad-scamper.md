@@ -6,6 +6,8 @@ descripcion: "Una sesión de calistenia mental para entrenar la mirada emprended
 tipo: dinamica
 duracion: "55 min · 1 sesión"
 agrupacion: "individual + grupos pequeños (3-4)"
+competencias_clave: [CE, STEM, CPSAA]
+competencias_especificas: [RA3]
 materiales:
   - "Tarjetas de retos exprés de pensamiento divergente"
   - "Objeto cotidiano por grupo (un boli, una mochila, una botella, un carrito de la compra...)"

@@ -11,6 +11,8 @@ materiales:
   - "Post-its de dos colores (oportunidad / amenaza)"
   - "Rotuladores"
   - "Noticias recientes del sector (impresas o en móvil)"
+competencias_clave: [CPSAA, CC, CD]
+competencias_especificas: [CE2]
 estado: publicado
 ---
 

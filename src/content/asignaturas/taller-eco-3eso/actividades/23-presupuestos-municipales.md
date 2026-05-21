@@ -6,6 +6,8 @@ descripcion: "Dinámica de simulación en la que los equipos hacen de concejales
 tipo: dinamica
 duracion: "55 min · 1 sesión"
 agrupacion: "grupos pequeños (4-5) que actúan como equipos de gobierno"
+competencias_clave: [STEM, CPSAA, CC, CE]
+competencias_especificas: [CE5]
 materiales:
   - "Ficha del ayuntamiento con el presupuesto total y la lista de partidas posibles con su coste"
   - "Fichas o pegatinas que representan el dinero del presupuesto"

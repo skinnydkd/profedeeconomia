@@ -6,6 +6,8 @@ descripcion: "Tras volver de validar en la calle, cada equipo recibe un veredict
 tipo: debate
 duracion: "55 min · 1 sesión"
 agrupacion: "equipos de proyecto + debate de grupo clase"
+competencias_clave: [CE, CCL, STEM]
+competencias_especificas: [RA4]
 materiales:
   - "Resultados de las entrevistas de validación de cada equipo"
   - "Tarjetas de tres decisiones: perseverar, pivotar, abandonar"

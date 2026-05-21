@@ -6,6 +6,8 @@ descripcion: "Ejercicio individual para elaborar un primer currículum vitae sen
 tipo: ejercicio
 duracion: "55 min · 1 sesión"
 agrupacion: "individual con revisión cruzada en parejas"
+competencias_clave: [CCL, CPSAA, CE]
+competencias_especificas: [CE5]
 materiales:
   - "Plantilla de currículum vitae sencillo (datos, formación, habilidades, experiencias, idiomas)"
   - "Lista de ejemplo de un puesto al que optar (monitor de campamento, repartidor, dependiente de fin de semana)"

@@ -6,6 +6,8 @@ descripcion: "Ejercicio numérico aplicado al proyecto propio. Cada equipo separ
 tipo: ejercicio
 duracion: "100 min · 2 sesiones"
 agrupacion: "equipos de proyecto (3-4)"
+competencias_clave: [STEM, CE, CD]
+competencias_especificas: [RA5]
 materiales:
   - "Plantilla de costes fijos y variables del proyecto"
   - "Hoja de cálculo del punto muerto (o calculadora)"

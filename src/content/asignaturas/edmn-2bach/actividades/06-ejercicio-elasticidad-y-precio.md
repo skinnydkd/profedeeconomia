@@ -9,6 +9,8 @@ agrupacion: "individual + puesta en común"
 materiales:
   - "Plantilla con la tabla de precios y unidades vendidas"
   - "Calculadora"
+competencias_clave: [STEM, CPSAA, CD]
+competencias_especificas: [CE4]
 estado: publicado
 ---
 

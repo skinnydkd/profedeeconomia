@@ -6,6 +6,8 @@ descripcion: "Ejercicio de cálculo en el que el alumnado compara productos no p
 tipo: ejercicio
 duracion: "50 min · 1 sesión"
 agrupacion: "individual"
+competencias_clave: [STEM, CD, CPSAA]
+competencias_especificas: [CE3]
 materiales:
   - "Ficha de ejercicios con tablas de productos y sus precios"
   - "Calculadora del móvil"

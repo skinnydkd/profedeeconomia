@@ -6,6 +6,8 @@ descripcion: "Una sesión cronometrada de 60 minutos en la que cada pareja o gru
 tipo: dinamica
 duracion: "60 min · 1 sesión"
 agrupacion: "parejas o grupos pequeños (3-4)"
+competencias_clave: [CPSAA, CE, CCEC]
+competencias_especificas: [CE1]
 materiales:
   - "Un objeto cotidiano por grupo (mochila, silla escolar, bolígrafo, botella reutilizable, estuche, paraguas, auriculares...)"
   - "Una plantilla SCAMPER por grupo (los siete verbos en columnas)"

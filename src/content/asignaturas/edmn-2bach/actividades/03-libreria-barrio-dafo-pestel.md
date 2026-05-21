@@ -11,6 +11,8 @@ materiales:
   - "Plantilla DAFO en cuatro casillas (A4 horizontal)"
   - "Plantilla PESTEL con seis dimensiones"
   - "Pizarra para puesta en común"
+competencias_clave: [CCL, CPSAA, CC, CE]
+competencias_especificas: [CE2]
 estado: publicado
 ---
 

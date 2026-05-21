@@ -6,6 +6,8 @@ descripcion: "Cada equipo elige una empresa real conocida y reconstruye su Busin
 tipo: caso
 duracion: "100 min · 2 sesiones"
 agrupacion: "equipos (3-4) + puesta en común grupo clase"
+competencias_clave: [CE, STEM, CD]
+competencias_especificas: [RA4]
 materiales:
   - "Listado de empresas reales variadas (low cost, suscripción, marketplace, gratis con publicidad, premium)"
   - "Plantilla del Business Model Canvas en A3"

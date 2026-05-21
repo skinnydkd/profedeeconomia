@@ -6,6 +6,8 @@ descripcion: "Caso práctico en el que el alumnado analiza el ciclo de vida de u
 tipo: caso
 duracion: "50 min · 1 sesión"
 agrupacion: "parejas"
+competencias_clave: [CC, CPSAA, STEM, CCEC]
+competencias_especificas: [CE3]
 materiales:
   - "Ficha del caso con datos del ciclo de vida de un móvil (materiales, vida útil, residuo)"
   - "Esquema mudo del ciclo de vida (fabricación → uso → fin de vida) para completar"

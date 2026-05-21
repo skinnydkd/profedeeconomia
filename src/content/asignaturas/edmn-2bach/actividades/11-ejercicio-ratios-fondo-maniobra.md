@@ -10,6 +10,8 @@ materiales:
   - "Plantilla con los balances y cuentas de resultados de las dos empresas"
   - "Calculadora"
   - "Formulario de ratios"
+competencias_clave: [STEM, CD, CPSAA]
+competencias_especificas: [CE5]
 estado: publicado
 ---
 

@@ -11,6 +11,8 @@ materiales:
   - "Reloj o cronómetro visible"
   - "Plantilla de argumentos por equipo (preparación)"
   - "Rúbrica de evaluación impresa para el jurado"
+competencias_clave: [CCL, CC, CPSAA]
+competencias_especificas: [CE4]
 estado: publicado
 ---
 

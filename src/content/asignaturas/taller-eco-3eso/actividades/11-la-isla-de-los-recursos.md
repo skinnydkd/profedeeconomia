@@ -6,6 +6,8 @@ descripcion: "Dinámica por equipos en la que cada grupo es un grupo de náufrag
 tipo: dinamica
 duracion: "55 min · 1 sesión"
 agrupacion: "grupos pequeños (4-5)"
+competencias_clave: [CCL, CPSAA, CC, CE]
+competencias_especificas: [CE1]
 materiales:
   - "Ficha de la isla con la lista de recursos disponibles y el número de habitantes"
   - "Cartulina o folio A3 por equipo para el plan de la isla"

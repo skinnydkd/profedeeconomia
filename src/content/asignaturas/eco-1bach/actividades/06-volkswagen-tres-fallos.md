@@ -11,6 +11,8 @@ materiales:
   - "Extracto de un informe oficial: comunicado de la EPA de septiembre de 2015 o informe del Bundestag de 2017"
   - "Pizarra dividida en cuatro cuadrantes (uno por tipo de fallo)"
   - "Acceso a internet para verificar datos de multas y vehículos afectados"
+competencias_clave: [CCL, CPSAA, CC]
+competencias_especificas: [CE3]
 estado: publicado
 ---
 

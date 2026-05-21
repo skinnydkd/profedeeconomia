@@ -6,6 +6,8 @@ descripcion: "Debate por equipos sobre si la tecnología y la inteligencia artif
 tipo: debate
 duracion: "55 min · 1 sesión"
 agrupacion: "dos equipos + jurado, dentro del grupo clase"
+competencias_clave: [CCL, CD, CC, CE]
+competencias_especificas: [CE5]
 materiales:
   - "Pizarra dividida en dos columnas (destruye empleo / transforma empleo)"
   - "Ficha con ejemplos de profesiones que han desaparecido, que han nacido y que han cambiado"

@@ -10,6 +10,8 @@ materiales:
   - "Plantilla de buyer persona (una por grupo)"
   - "Tarjetas con variables de segmentación (demográficas, geográficas, conductuales)"
   - "Rotuladores y cartulinas"
+competencias_clave: [CCL, CPSAA, CE, CC]
+competencias_especificas: [CE4]
 estado: publicado
 ---
 

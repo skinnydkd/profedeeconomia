@@ -10,6 +10,8 @@ materiales:
   - "Ficha con la teoría del accionista (Friedman) y la de los grupos de interés (stakeholders)"
   - "Cronómetro visible"
   - "Plantilla de argumentos por equipo"
+competencias_clave: [CCL, CC, CPSAA]
+competencias_especificas: [CE5]
 estado: publicado
 ---
 

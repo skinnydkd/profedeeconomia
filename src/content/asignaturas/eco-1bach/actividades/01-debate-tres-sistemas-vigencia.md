@@ -11,6 +11,8 @@ materiales:
   - "Ficha de datos de partida con tres países contrastados (EE. UU., Cuba, países nórdicos) — gasto público sobre PIB e índice de libertad económica"
   - "Cronómetro proyectado o reloj de aula para los turnos"
   - "Rúbrica de evaluación del debate impresa para la coevaluación"
+competencias_clave: [CCL, CC, CPSAA]
+competencias_especificas: [CE1]
 estado: publicado
 ---
 

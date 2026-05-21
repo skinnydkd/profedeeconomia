@@ -11,6 +11,8 @@ materiales:
   - "Acceso a las series del Banco de España (bde.es) y AIReF para verificar datos"
   - "Calculadora o hoja de cálculo para los cálculos del multiplicador"
   - "Plantilla DIN-A3 «cuadro de mando fiscal» con cuatro columnas (diagnóstico · objetivo · instrumento · riesgo)"
+competencias_clave: [CCL, CPSAA, CC, STEM]
+competencias_especificas: [CE5]
 estado: publicado
 ---
 

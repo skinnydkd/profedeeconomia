@@ -10,6 +10,8 @@ materiales:
   - "Plantilla de balance (cinco masas) y de cuenta de pérdidas y ganancias"
   - "Calculadora"
   - "Hoja con el enunciado y los datos"
+competencias_clave: [STEM, CD, CPSAA]
+competencias_especificas: [CE5]
 estado: publicado
 ---
 

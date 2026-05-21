@@ -6,6 +6,8 @@ descripcion: "Ejercicio práctico en parejas para diagnosticar por qué fallan u
 tipo: ejercicio
 duracion: "50 min · 1 sesión"
 agrupacion: "parejas"
+competencias_clave: [CPSAA, STEM, CE]
+competencias_especificas: [RA4]
 materiales:
   - "Lista de 8 objetivos defectuosos (incluida abajo, fotocopiable)"
   - "DAFO de un caso de referencia (incluido abajo)"

@@ -6,6 +6,8 @@ descripcion: "En dos sesiones cada alumno define su propuesta de valor profesion
 tipo: dinamica
 duracion: "110 min · 2 sesiones"
 agrupacion: "individual + auditoría cruzada por parejas"
+competencias_clave: [CD, CCL, CPSAA]
+competencias_especificas: [RA1]
 materiales:
   - "Ordenador con acceso a internet (uno por alumno)"
   - "Cuenta de LinkedIn (creada en clase quien no la tenga)"

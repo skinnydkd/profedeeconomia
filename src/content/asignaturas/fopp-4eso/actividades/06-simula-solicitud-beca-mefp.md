@@ -12,6 +12,8 @@ materiales:
   - "Calculadora (móvil sirve, sin acceso a internet durante el cálculo)"
   - "Tabla resumen de umbrales y cuantías 2024-2025 (proyectada en pizarra o en la ficha)"
   - "Bolígrafo y, opcionalmente, marcadores de dos colores"
+competencias_clave: [STEM, CPSAA, CD]
+competencias_especificas: [CE5]
 estado: publicado
 ---
 

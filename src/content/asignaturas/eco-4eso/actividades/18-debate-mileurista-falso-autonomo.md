@@ -6,6 +6,8 @@ descripcion: "Debate a partir de cuatro ofertas de primer empleo reales y veros�
 tipo: debate
 duracion: "50 min · 1 sesión"
 agrupacion: "grupos pequeños + debate de clase"
+competencias_clave: [CCL, CC, CPSAA]
+competencias_especificas: [CE5]
 materiales:
   - "Cuatro fichas de oferta de empleo impresas (incluidas al final)"
   - "Resumen de tipos de contrato y conceptos de la nómina (bruto, neto, cotización, IRPF)"

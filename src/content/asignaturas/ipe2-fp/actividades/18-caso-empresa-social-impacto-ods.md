@@ -6,6 +6,8 @@ descripcion: "Estudio de un caso real de empresa social, cooperativa de inserci�
 tipo: caso
 duracion: "100 min · 2 sesiones"
 agrupacion: "equipos (3-4) + puesta en común grupo clase"
+competencias_clave: [CE, CC, STEM, CD]
+competencias_especificas: [RA5]
 materiales:
   - "Dossier de uno o varios casos reales de empresa social del entorno (web, memoria de impacto, noticias)"
   - "Ficha de análisis: problema social, cliente/beneficiario, modelo de ingresos, medición de impacto, ODS"

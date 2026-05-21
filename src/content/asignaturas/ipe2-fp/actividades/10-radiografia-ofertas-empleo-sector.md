@@ -6,6 +6,8 @@ descripcion: "Cada alumno reúne diez ofertas reales de su familia profesional y
 tipo: caso
 duracion: "100 min · 2 sesiones"
 agrupacion: "individual + puesta en común grupo clase"
+competencias_clave: [CD, CCL, STEM, CPSAA]
+competencias_especificas: [RA1]
 materiales:
   - "Acceso a portales de empleo (InfoJobs, LinkedIn Jobs, portal del SEPE, Empléate)"
   - "Plantilla de vaciado de ofertas en hoja de cálculo compartida (una fila por oferta)"

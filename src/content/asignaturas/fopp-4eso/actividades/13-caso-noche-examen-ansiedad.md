@@ -11,6 +11,8 @@ materiales:
   - "Semáforo de señales en A4 (verde/ámbar/rojo, incluido abajo)"
   - "Cartel visible con los recursos de ayuda: línea 024, teléfono ANAR 900 20 20 10, orientación del centro"
   - "Pizarra para la puesta en común"
+competencias_clave: [CPSAA, CC, CCL]
+competencias_especificas: [CE2]
 lang: es
 estado: publicado
 ---

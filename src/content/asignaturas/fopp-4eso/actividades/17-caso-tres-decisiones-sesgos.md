@@ -11,6 +11,8 @@ materiales:
   - "Tarjetas con los cinco sesgos definidos (incluidas abajo)"
   - "Pizarra para la puesta en común"
   - "Bolígrafos"
+competencias_clave: [CPSAA, CC, CCL]
+competencias_especificas: [CE4]
 lang: es
 estado: publicado
 ---

@@ -11,6 +11,8 @@ materiales:
   - "Mini-dosier de evidencia: efectos del control de alquileres en Berlín, Cataluña y la teoría del precio máximo con demanda inelástica"
   - "Tarjetas de rol para los dos equipos y para el jurado"
   - "Rúbrica de debate impresa para el jurado"
+competencias_clave: [CCL, CC, CPSAA]
+competencias_especificas: [CE3]
 estado: publicado
 ---
 

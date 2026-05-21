@@ -11,6 +11,8 @@ materiales:
   - "Gráfico AD-AS en blanco para que cada grupo dibuje los desplazamientos"
   - "Acceso a internet para consultar series del INE (Contabilidad Nacional Trimestral) y de Eurostat"
   - "Pizarra dividida en dos columnas: shock de demanda / shock de oferta"
+competencias_clave: [CCL, STEM, CPSAA, CC]
+competencias_especificas: [CE4]
 estado: publicado
 ---
 

@@ -11,6 +11,8 @@ materiales:
   - "Post-its de varios colores (cliente / interno)"
   - "Rotuladores"
   - "Acceso a webs corporativas y prensa para verificar datos"
+competencias_clave: [CE, CD, CPSAA, CC]
+competencias_especificas: [CE3]
 estado: publicado
 ---
 

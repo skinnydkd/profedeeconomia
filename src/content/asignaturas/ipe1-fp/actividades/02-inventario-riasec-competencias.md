@@ -6,6 +6,8 @@ descripcion: "Dinámica de autoconocimiento profesional en la que cada alumno de
 tipo: dinamica
 duracion: "55 min · 1 sesión"
 agrupacion: "individual + parejas para contrastar"
+competencias_clave: [CPSAA, CE]
+competencias_especificas: [RA4]
 materiales:
   - "Plantilla de inventario RIASEC + mapa de competencias (incluida abajo, una por alumno)"
   - "Hexágono RIASEC de Holland proyectado en la pizarra"

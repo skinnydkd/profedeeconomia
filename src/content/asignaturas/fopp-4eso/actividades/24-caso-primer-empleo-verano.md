@@ -11,6 +11,8 @@ materiales:
   - "Checklist de lectura crítica de ofertas (incluida abajo)"
   - "Pizarra para la puesta en común"
   - "Bolígrafos"
+competencias_clave: [CCL, CPSAA, CE]
+competencias_especificas: [CE6, CE7]
 lang: es
 estado: publicado
 ---

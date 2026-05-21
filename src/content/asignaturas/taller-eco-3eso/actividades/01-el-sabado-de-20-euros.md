@@ -6,6 +6,8 @@ descripcion: "Caso práctico cercano en el que cada estudiante reparte un presup
 tipo: caso
 duracion: "50 min · 1 sesión"
 agrupacion: "individual con puesta en común en grupo clase"
+competencias_clave: [STEM, CPSAA, CE]
+competencias_especificas: [CE1]
 materiales:
   - "Ficha del caso con la lista de planes del sábado y sus precios (una por estudiante)"
   - "Hoja de decisiones con tres columnas: qué elijo / qué me cuesta / a qué renuncio"

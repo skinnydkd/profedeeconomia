@@ -11,6 +11,8 @@ materiales:
   - "Ficha guía con casos y conceptos (incluida abajo)"
   - "Pizarra para votación inicial y final"
   - "Cronómetro visible"
+competencias_clave: [CCL, CD, CC, CPSAA]
+competencias_especificas: [CE3]
 lang: es
 estado: publicado
 ---

@@ -13,6 +13,8 @@ materiales:
   - "Rúbrica de evaluación impresa para el profesor y para la coevaluación entre alumnos"
   - "Cronómetro visible para las presentaciones de la sesión 3"
   - "Hojas de feedback estructurado para la sesión 4 (formato carta del compañero)"
+competencias_clave: [CPSAA, CE, CCL]
+competencias_especificas: [CE8, CE1, CE4]
 estado: publicado
 ---
 

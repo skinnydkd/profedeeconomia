@@ -11,6 +11,8 @@ materiales:
   - "Rotuladores de tres colores"
   - "Lista de tipos de apoyo proyectada (incluida abajo)"
   - "Cronómetro visible"
+competencias_clave: [CPSAA, CC]
+competencias_especificas: [CE3, CE8]
 lang: es
 estado: publicado
 ---

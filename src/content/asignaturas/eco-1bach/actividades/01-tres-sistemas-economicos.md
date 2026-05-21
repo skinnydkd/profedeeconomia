@@ -11,6 +11,8 @@ materiales:
   - "Acceso a internet o móviles para consultar Banco Mundial, INE y Heritage Foundation"
   - "Tabla comparativa impresa (filas: qué, cómo, para quién; columnas: España, Cuba, Singapur)"
   - "Pizarra o panel grande para la puesta en común"
+competencias_clave: [CCL, CPSAA, CC, CD]
+competencias_especificas: [CE1]
 estado: publicado
 ---
 

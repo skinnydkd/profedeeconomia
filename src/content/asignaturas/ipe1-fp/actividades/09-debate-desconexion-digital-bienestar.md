@@ -6,6 +6,8 @@ descripcion: "Debate estructurado por grupos sobre el derecho a la desconexión 
 tipo: debate
 duracion: "55 min · 1 sesión"
 agrupacion: "grupos pequeños (3-5) + grupo clase"
+competencias_clave: [CPSAA, CC, CCL]
+competencias_especificas: [RA6]
 materiales:
   - "Tarjetas de los tres casos de discusión (incluidas abajo, fotocopiables)"
   - "Ficha de preparación de argumentos por grupo (incluida abajo)"

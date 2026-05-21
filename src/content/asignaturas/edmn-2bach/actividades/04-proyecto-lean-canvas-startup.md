@@ -10,6 +10,8 @@ materiales:
   - "Plantilla Lean Canvas en A3"
   - "Guion de entrevista de validación"
   - "Móvil con acceso a un formulario online (Google Forms)"
+competencias_clave: [CE, CD, CCL, CPSAA]
+competencias_especificas: [CE3]
 estado: publicado
 ---
 

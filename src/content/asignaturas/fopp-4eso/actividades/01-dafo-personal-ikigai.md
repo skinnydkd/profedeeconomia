@@ -11,6 +11,8 @@ materiales:
   - "Bolígrafos y, opcionalmente, rotuladores de cuatro colores"
   - "Lista de los quince valores comunes proyectada en la pizarra"
   - "Cronómetro visible para respetar los tiempos de cada fase"
+competencias_clave: [CPSAA, CC, CE]
+competencias_especificas: [CE1, CE8]
 estado: publicado
 ---
 

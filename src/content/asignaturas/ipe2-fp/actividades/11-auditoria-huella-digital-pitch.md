@@ -6,6 +6,8 @@ descripcion: "Cada alumno se busca a sí mismo en internet como lo haría un rec
 tipo: ejercicio
 duracion: "55 min · 1 sesión"
 agrupacion: "individual + parejas para el ensayo"
+competencias_clave: [CD, CCL, CPSAA]
+competencias_especificas: [RA1]
 materiales:
   - "Dispositivo con conexión para la búsqueda personal"
   - "Checklist de auditoría de huella digital (resultados de búsqueda, redes públicas, privacidad)"

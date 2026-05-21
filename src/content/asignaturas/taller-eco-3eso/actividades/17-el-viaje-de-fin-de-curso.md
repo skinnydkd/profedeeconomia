@@ -6,6 +6,8 @@ descripcion: "Caso práctico en el que el alumnado planifica cómo ahorrar para 
 tipo: caso
 duracion: "50 min · 1 sesión"
 agrupacion: "individual con comparación por parejas"
+competencias_clave: [STEM, CPSAA, CE]
+competencias_especificas: [CE4]
 materiales:
   - "Ficha del caso con tres metas de ahorro de ejemplo y sus precios"
   - "Plantilla de plan de ahorro (meta, plazo, cuota mensual, ajustes)"

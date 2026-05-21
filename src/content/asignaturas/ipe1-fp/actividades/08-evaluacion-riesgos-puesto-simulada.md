@@ -6,6 +6,8 @@ descripcion: "Dinámica en grupos pequeños que reproduce el trabajo de un técn
 tipo: dinamica
 duracion: "60 min · 1 sesión (ampliable a 2)"
 agrupacion: "grupos pequeños (3-4)"
+competencias_clave: [STEM, CPSAA, CC]
+competencias_especificas: [RA1]
 materiales:
   - "Fichas de los tres puestos de trabajo (incluidas abajo, fotocopiables)"
   - "Plantilla de evaluación de riesgos + matriz probabilidad-consecuencia (incluidas abajo)"

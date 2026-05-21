@@ -6,6 +6,8 @@ descripcion: "Ejercicio guiado en el que el alumnado consulta datos reales del O
 tipo: ejercicio
 duracion: "55 min · 1 sesión (aula con ordenadores o móvil)"
 agrupacion: "individual o parejas"
+competencias_clave: [STEM, CD, CE]
+competencias_especificas: [RA2]
 materiales:
   - "Aula con ordenadores o móvil con datos para cada alumno o pareja"
   - "Ficha de trabajo guiada con los enlaces oficiales (incluida abajo, fotocopiable)"

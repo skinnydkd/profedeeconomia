@@ -11,6 +11,8 @@ materiales:
   - "Acceso a fuentes verídicas: Eurostat, OMC, Datacomex (comercio exterior español), informes de las propias empresas"
   - "Mapa mundi mudo para localizar los países de cada etapa"
   - "Plantilla del mini-informe final (2-3 páginas)"
+competencias_clave: [CD, CCL, CPSAA, CCEC]
+competencias_especificas: [CE6]
 estado: publicado
 ---
 

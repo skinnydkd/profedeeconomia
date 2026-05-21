@@ -6,6 +6,8 @@ descripcion: "El núcleo aplicado del bloque emprendedor. Cada equipo parte de u
 tipo: dinamica
 duracion: "150 min · 3 sesiones (con trabajo de campo entre la 2 y la 3)"
 agrupacion: "equipos de proyecto (3-4)"
+competencias_clave: [CE, CD, STEM, CCL]
+competencias_especificas: [RA4]
 materiales:
   - "Plantilla de mapa de empatía (qué dice, hace, piensa y siente el cliente)"
   - "Guion de entrevista de problema (preguntas abiertas sobre el problema, nunca sobre la solución)"

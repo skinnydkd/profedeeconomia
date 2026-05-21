@@ -10,6 +10,8 @@ materiales:
   - "Plantilla de las cinco competencias emprendedoras (impresa)"
   - "Cuatro carteles de estación colgados en las paredes del aula"
   - "Post-its de colores"
+competencias_clave: [CPSAA, CE, CC]
+competencias_especificas: [CE1]
 estado: publicado
 ---
 

@@ -10,6 +10,8 @@ materiales:
   - "Ficha con dos ejemplos: una empresa muy apalancada y otra autofinanciada"
   - "Cronómetro visible"
   - "Plantilla de argumentos por equipo"
+competencias_clave: [CCL, STEM, CC, CPSAA]
+competencias_especificas: [CE4]
 estado: publicado
 ---
 

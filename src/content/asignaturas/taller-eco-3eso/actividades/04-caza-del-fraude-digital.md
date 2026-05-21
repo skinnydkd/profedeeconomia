@@ -6,6 +6,8 @@ descripcion: "Caso práctico en parejas sobre cinco mensajes reales (SMS, correo
 tipo: caso
 duracion: "50 min · 1 sesión"
 agrupacion: "parejas con puesta en común en grupo clase"
+competencias_clave: [CD, CPSAA, CC]
+competencias_especificas: [CE4]
 materiales:
   - "Ficha con los cinco mensajes anonimizados (uno por pareja, incluidos en esta actividad)"
   - "Tabla de respuestas: ¿fraude o legítimo? / señales / qué hago"

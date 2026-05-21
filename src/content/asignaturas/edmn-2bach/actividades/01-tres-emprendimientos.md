@@ -10,6 +10,8 @@ materiales:
   - "Ficha resumen de los tres casos (se entrega impresa o en PDF)"
   - "Acceso a internet o móviles para verificar datos públicos"
   - "Pizarra o panel grande para puesta en común final"
+competencias_clave: [CCL, CPSAA, CC]
+competencias_especificas: [CE1]
 estado: publicado
 ---
 

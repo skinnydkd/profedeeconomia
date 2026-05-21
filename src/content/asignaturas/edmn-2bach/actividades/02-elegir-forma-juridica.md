@@ -9,6 +9,8 @@ agrupacion: "parejas"
 materiales:
   - "Ficha con los cinco proyectos hipotéticos (uno por casilla)"
   - "Tabla resumen de formas jurídicas (capital mínimo, responsabilidad, fiscalidad)"
+competencias_clave: [STEM, CPSAA, CE]
+competencias_especificas: [CE1]
 estado: publicado
 ---
 

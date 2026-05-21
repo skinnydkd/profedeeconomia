@@ -6,6 +6,8 @@ descripcion: "Ejercicio de cálculo en el que el alumnado compara pagar un produ
 tipo: ejercicio
 duracion: "50 min · 1 sesión"
 agrupacion: "individual"
+competencias_clave: [STEM, CD, CPSAA]
+competencias_especificas: [CE4]
 materiales:
   - "Ficha de ejercicios con casos de compra al contado y a plazos"
   - "Calculadora del móvil"

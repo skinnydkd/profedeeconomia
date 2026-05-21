@@ -6,6 +6,8 @@ descripcion: "Ejercicio práctico individual a partir de tres situaciones reales
 tipo: ejercicio
 duracion: "55 min · 1 sesión"
 agrupacion: "individual (revisión por parejas al final)"
+competencias_clave: [CCL, CC, CPSAA]
+competencias_especificas: [CE4]
 materiales:
   - "Tres fichas de situación de consumo impresas (incluidas al final)"
   - "Plantilla de reclamación formal (datos · hechos · derecho invocado · petición · plazo)"

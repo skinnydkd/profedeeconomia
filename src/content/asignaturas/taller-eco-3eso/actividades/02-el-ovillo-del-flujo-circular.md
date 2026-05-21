@@ -6,6 +6,8 @@ descripcion: "Dinámica de aula en la que la clase se reparte en familias, empre
 tipo: dinamica
 duracion: "50 min · 1 sesión"
 agrupacion: "grupo clase repartido en tres roles (familias, empresas, Estado)"
+competencias_clave: [CCL, STEM, CPSAA, CC]
+competencias_especificas: [CE2]
 materiales:
   - "Un ovillo de lana grueso (o una cuerda larga)"
   - "Tarjetas de cartulina con los tres roles: FAMILIA, EMPRESA, ESTADO (una por estudiante)"

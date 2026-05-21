@@ -6,6 +6,8 @@ descripcion: "Debate por equipos sobre si la economía puede seguir creciendo si
 tipo: debate
 duracion: "55 min · 1 sesión"
 agrupacion: "dos equipos + jurado, dentro del grupo clase"
+competencias_clave: [CCL, CC, CPSAA, CE]
+competencias_especificas: [CE6]
 materiales:
   - "Pizarra dividida en dos columnas (crecimiento / cuidado del planeta)"
   - "Ficha con datos y ejemplos (empleos, energías renovables, recursos limitados, ODS)"

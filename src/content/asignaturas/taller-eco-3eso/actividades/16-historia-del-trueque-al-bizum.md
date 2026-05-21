@@ -6,6 +6,8 @@ descripcion: "Dinámica de simulación en la que la clase revive la evolución d
 tipo: dinamica
 duracion: "55 min · 1 sesión"
 agrupacion: "grupo clase por rondas, con tarjetas individuales"
+competencias_clave: [CCL, STEM, CPSAA, CCEC]
+competencias_especificas: [CE4]
 materiales:
   - "Tarjetas de productos para repartir (cada estudiante recibe un bien que tiene y otro que quiere)"
   - "Un puñado de objetos que harán de mercancía-dinero (por ejemplo, clips o judías)"

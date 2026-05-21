@@ -6,6 +6,8 @@ descripcion: "Proyecto capstone del módulo. Cada equipo integra todo el curso e
 tipo: proyecto
 duracion: "4 sesiones · 3 semanas (elaboración + revisión + defensa)"
 agrupacion: "equipos de proyecto (3-4)"
+competencias_clave: [CE, STEM, CD, CCL]
+competencias_especificas: [RA5]
 materiales:
   - "Todo el material acumulado del proyecto durante el curso (oportunidad validada U5, BMC y DAFO/CAME U6, 4P y test de venta U7, impacto y ODS U8)"
   - "Plantilla de plan económico-financiero: inversión inicial, financiación, ingresos y gastos previstos"

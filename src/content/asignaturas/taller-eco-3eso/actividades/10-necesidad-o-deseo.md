@@ -6,6 +6,8 @@ descripcion: "Ejercicio individual y de clasificación en el que el alumnado vac
 tipo: ejercicio
 duracion: "50 min · 1 sesión"
 agrupacion: "individual con puesta en común por parejas"
+competencias_clave: [CPSAA, CC, STEM]
+competencias_especificas: [CE1]
 materiales:
   - "Ficha con dos columnas (necesidad / deseo) y un esquema de la pirámide de Maslow"
   - "Lápiz y goma"

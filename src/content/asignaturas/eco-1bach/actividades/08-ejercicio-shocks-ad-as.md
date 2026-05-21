@@ -11,6 +11,8 @@ materiales:
   - "Ficha con la descripción de los cuatro shocks y los datos de contexto de cada uno"
   - "Regla y lápices de dos colores (curva inicial / curva desplazada)"
   - "Tabla resumen de resultados (efecto sobre PIB, empleo, nivel de precios) para rellenar"
+competencias_clave: [STEM, CPSAA, CD]
+competencias_especificas: [CE4]
 estado: publicado
 ---
 
