@@ -119,7 +119,7 @@ const accent = ACCENTS[a.color] ?? ACCENTS.edmn;
          ========================================================= */
       @page {
         size: 165mm 235mm;
-        margin: 22mm 20mm 22mm 22mm;
+        margin: 11mm 12mm 12mm 12mm;
 
         @top-left {
           content: string(book-title);
@@ -150,8 +150,8 @@ const accent = ACCENTS[a.color] ?? ACCENTS.edmn;
 
       /* Right and left pages — even mirror */
       @page :left {
-        margin-left: 20mm;
-        margin-right: 22mm;
+        margin-left: 12mm;
+        margin-right: 12mm;
         @bottom-right { content: none; }
         @bottom-left {
           content: counter(page);
@@ -165,14 +165,14 @@ const accent = ACCENTS[a.color] ?? ACCENTS.edmn;
          Base
          ========================================================= */
       * { box-sizing: border-box; }
-      html { font-size: 11pt; }
+      html { font-size: 9pt; }
       body {
         margin: 0;
         background: var(--color-bg);
         color: var(--color-ink);
         font-family: var(--font-serif);
-        font-size: 11pt;
-        line-height: 1.55;
+        font-size: 9pt;
+        line-height: 1.23;
         font-feature-settings: "kern", "liga", "ss01";
         font-variation-settings: "SOFT" 50, "WONK" 0;
       }
@@ -188,7 +188,7 @@ const accent = ACCENTS[a.color] ?? ACCENTS.edmn;
         line-height: 1.18;
       }
 
-      p { margin: 0 0 0.65em; orphans: 3; widows: 3; }
+      p { margin: 0 0 0.4em; orphans: 2; widows: 2; }
 
       a { color: var(--color-terra); text-decoration: none; }
       strong { color: var(--color-ink); }
@@ -212,21 +212,21 @@ const accent = ACCENTS[a.color] ?? ACCENTS.edmn;
         white-space: pre-wrap;
       }
 
-      ul, ol { padding-left: 1.3em; margin: 0 0 0.8em; }
-      li { margin-bottom: 0.3em; }
+      ul, ol { padding-left: 1.2em; margin: 0 0 0.5em; }
+      li { margin-bottom: 0.16em; }
       ul li::marker { color: var(--color-mustard); }
 
       table {
         width: 100%;
         border-collapse: separate;
         border-spacing: 0;
-        margin: 1.2em 0;
+        margin: 0.8em 0;
         font-size: 9.5pt;
         page-break-inside: auto;
       }
       th, td {
         text-align: left;
-        padding: 0.5em 0.7em;
+        padding: 0.32em 0.55em;
         border-bottom: 1px solid var(--color-line-soft);
         vertical-align: top;
       }
@@ -480,24 +480,21 @@ const accent = ACCENTS[a.color] ?? ACCENTS.edmn;
          Chapter opener (one per unit)
          ========================================================= */
       .chapter {
-        break-before: right;
-        page: no-header;
+        break-before: page;
       }
+      /* Compact opener: a header band at the top of the unit's first page,
+         not a full blank page. The unit content flows right after it. */
       .chapter__opener {
-        page: no-header;
-        break-after: page;
-        height: 191mm;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-        padding-bottom: 0;
+        padding: 4mm 0 5mm;
+        margin-bottom: 4mm;
+        border-bottom: 1px solid var(--color-line);
         position: relative;
       }
       .chapter__opener::before {
         content: "";
         position: absolute;
         top: 0; left: 0;
-        width: 30mm; height: 4pt;
+        width: 26mm; height: 3pt;
         background: var(--book-accent);
         border-radius: 999px;
       }
@@ -513,39 +510,39 @@ const accent = ACCENTS[a.color] ?? ACCENTS.edmn;
       .chapter__num {
         font-family: var(--font-serif);
         font-style: italic;
-        font-size: 80pt;
-        line-height: 0.9;
+        font-size: 34pt;
+        line-height: 0.95;
         color: var(--color-mustard-deep);
-        margin: 0 0 6mm;
+        margin: 0 0 1mm;
         font-weight: 400;
         font-variation-settings: "SOFT" 100, "WONK" 1;
       }
       .chapter__title {
         font-family: var(--font-serif);
-        font-size: 34pt;
-        line-height: 1.08;
-        letter-spacing: -0.025em;
+        font-size: 22pt;
+        line-height: 1.06;
+        letter-spacing: -0.02em;
         color: var(--color-ink);
-        margin: 0 0 7mm;
+        margin: 0 0 3mm;
         font-weight: 400;
         font-variation-settings: "SOFT" 80, "WONK" 0;
-        max-width: 18ch;
+        max-width: 26ch;
       }
       .chapter__lede {
         font-family: var(--font-serif);
         font-style: italic;
-        font-size: 13pt;
-        line-height: 1.45;
+        font-size: 11pt;
+        line-height: 1.35;
         color: var(--color-ink-soft);
-        max-width: 28em;
-        margin: 0 0 12mm;
+        max-width: 40em;
+        margin: 0 0 4mm;
         font-variation-settings: "SOFT" 80;
       }
       .chapter__meta {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(40mm, 1fr));
-        gap: 4mm 8mm;
-        padding-top: 6mm;
+        gap: 2mm 6mm;
+        padding-top: 3mm;
         border-top: 1px dashed var(--color-line);
         font-family: var(--font-sans);
       }
@@ -563,8 +560,7 @@ const accent = ACCENTS[a.color] ?? ACCENTS.edmn;
 
       .chapter__content {
         string-set: unit-title attr(data-unit-title);
-        break-before: page;
-        padding-top: 6mm;
+        padding-top: 0;
       }
       .chapter__content > p:first-of-type::first-letter {
         font-family: var(--font-serif);
@@ -577,10 +573,10 @@ const accent = ACCENTS[a.color] ?? ACCENTS.edmn;
         font-variation-settings: "SOFT" 100, "WONK" 1;
       }
       .chapter__content h2 {
-        font-size: 17pt;
-        margin: 1.6em 0 0.6em;
+        font-size: 13.5pt;
+        margin: 1.1em 0 0.4em;
         position: relative;
-        padding-top: 0.9em;
+        padding-top: 0.6em;
         break-after: avoid;
       }
       .chapter__content h2::before {
@@ -593,21 +589,39 @@ const accent = ACCENTS[a.color] ?? ACCENTS.edmn;
       }
       .chapter__content h2:nth-of-type(2n)::before { background: var(--color-mustard); }
       .chapter__content h3 {
-        font-size: 13pt;
-        margin: 1.4em 0 0.4em;
+        font-size: 11pt;
+        margin: 0.9em 0 0.3em;
         color: var(--color-ink);
         break-after: avoid;
       }
 
-      /* Callout, solved-exercise, curiosity, real-example — overrides */
+      /* Callout, solved-exercise, curiosity, real-example, takeaways, steps:
+         in print, compact padding/margins (the web versions are airy) so the
+         many pedagogical boxes don't inflate the page count. */
       .chapter__content .callout,
       .chapter__content .solved-exercise,
       .chapter__content .curiosity,
-      .chapter__content .real-example {
-        margin: 1.8em 0;
+      .chapter__content .real-example,
+      .chapter__content .takeaways,
+      .chapter__content .steps {
+        margin: 0.8em 0 !important;
+        padding: 0.7rem 0.95rem !important;
         page-break-inside: avoid;
         break-inside: avoid;
       }
+      .chapter__content .takeaways { padding-left: 1.8rem !important; }
+      .chapter__content .callout > :first-child,
+      .chapter__content .curiosity > :first-child,
+      .chapter__content .real-example > :first-child,
+      .chapter__content .solved-exercise > :first-child,
+      .chapter__content .takeaways > :first-child,
+      .chapter__content .steps > :first-child { margin-top: 0 !important; }
+      .chapter__content .callout > :last-child,
+      .chapter__content .curiosity > :last-child,
+      .chapter__content .real-example > :last-child,
+      .chapter__content .solved-exercise > :last-child,
+      .chapter__content .takeaways > :last-child,
+      .chapter__content .steps > :last-child { margin-bottom: 0 !important; }
 
       /* Suppress drop cap on the first paragraph that follows a heading */
       .chapter__content h2 + p::first-letter,
@@ -645,22 +659,24 @@ const accent = ACCENTS[a.color] ?? ACCENTS.edmn;
         display: block;
         float: none !important;
         transform: none !important;
-        margin: 1.7em auto !important;
+        margin: 0.9em auto !important;
         max-width: 100%;
       }
+      /* Narrower images in print keep the book compact without cropping. */
+      .chapter__content figure.figure { max-width: 78% !important; }
       .chapter__content .figure--left,
       .chapter__content .figure--right {
-        max-width: 72% !important;
+        max-width: 48% !important;
       }
       .chapter__content .figure--inline-small {
-        max-width: 46mm !important;
+        max-width: 42mm !important;
       }
       .chapter__content .figure--wide,
       .chapter__content .figure--full {
-        max-width: 100% !important;
+        max-width: 92% !important;
       }
       .chapter__content .figure--tight {
-        max-width: 80% !important;
+        max-width: 62% !important;
       }
 
       /* Keep diagrams whole on a page and bounded to the text block */
