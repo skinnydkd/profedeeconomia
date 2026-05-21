@@ -1,0 +1,142 @@
+---
+/**
+ * Print-ready EBAU/PAU preparation workbook (pagedjs-cli → PDF).
+ * Several ordered sections per subject; reuses the editorial print system.
+ */
+import { ASIGNATURAS } from '@/lib/asignaturas';
+import { getCollection, render } from 'astro:content';
+import type { GetStaticPaths } from 'astro';
+
+export const getStaticPaths = (async () => {
+  const all = await getCollection('ebau');
+  const bySlug = new Map<string, typeof all>();
+  for (const e of all) {
+    if (e.data.estado !== 'publicado') continue;
+    const arr = bySlug.get(e.data.asignatura) ?? [];
+    arr.push(e);
+    bySlug.set(e.data.asignatura, arr);
+  }
+  return [...bySlug.entries()].map(([slug, secciones]) => {
+    secciones.sort((a, b) => a.data.orden - b.data.orden);
+    return { params: { asignatura: slug }, props: { secciones, asignatura: ASIGNATURAS[slug] } };
+  });
+}) satisfies GetStaticPaths;
+
+const { secciones, asignatura: a } = Astro.props;
+const comunidad = secciones[0]?.data.comunidad ?? 'Comunitat Valenciana';
+const rendered = await Promise.all(secciones.map(async (s) => ({ s, ...(await render(s)) })));
+const today = new Date().toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
+
+const ACCENTS: Record<string, { base: string; deep: string; soft: string }> = {
+  edmn: { base: '#C44E2C', deep: '#9C3A1C', soft: '#FBE3D6' },
+  eco1: { base: '#1F6E6E', deep: '#164F4F', soft: '#DBEDED' },
+  eco4: { base: '#D4A24C', deep: '#A87A2A', soft: '#F5E5BC' },
+  fopp: { base: '#5B3A4E', deep: '#46293A', soft: '#ECDCE5' },
+};
+const accent = ACCENTS[a.color] ?? ACCENTS.edmn;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <title>Preparación EBAU · {a.title} — profedeeconomia</title>
+    <meta name="robots" content="noindex,nofollow" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,0..100,0..1;1,9..144,300..700,0..100,0..1&display=swap" />
+    <style is:inline>
+      @font-face { font-family: 'Switzer'; src: url('/fonts/switzer/switzer-400.woff2') format('woff2'); font-weight: 400; font-display: swap; }
+      @font-face { font-family: 'Switzer'; src: url('/fonts/switzer/switzer-500.woff2') format('woff2'); font-weight: 500; font-display: swap; }
+      @font-face { font-family: 'Switzer'; src: url('/fonts/switzer/switzer-600.woff2') format('woff2'); font-weight: 600; font-display: swap; }
+      @font-face { font-family: 'Switzer'; src: url('/fonts/switzer/switzer-700.woff2') format('woff2'); font-weight: 700; font-display: swap; }
+    </style>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" />
+    <style is:global>
+      :root {
+        --color-bg: #FBF6EC; --color-paper: #FFFFFF; --color-bg-cream: #F5EDD9;
+        --color-ink: #2A1F18; --color-ink-soft: #5C4A3D; --color-ink-mute: #8A7868;
+        --color-line: #E5D4BD; --color-line-soft: #EFE2CB;
+        --color-terra: #C44E2C; --color-mustard: #D4A24C; --color-mustard-deep: #A87A2A;
+        --font-serif: "Fraunces", Georgia, serif; --font-sans: "Switzer", -apple-system, sans-serif; --font-mono: "JetBrains Mono", monospace;
+      }
+      @page {
+        size: 165mm 235mm; margin: 12mm 12mm 13mm 12mm;
+        @top-left { content: string(doc-title); font-family: var(--font-sans); font-size: 8.5pt; letter-spacing: 0.06em; text-transform: uppercase; color: var(--color-ink-mute); }
+        @top-right { content: "Preparación EBAU"; font-family: var(--font-serif); font-style: italic; font-size: 9pt; color: var(--color-ink-mute); }
+        @bottom-right { content: counter(page); font-family: var(--font-serif); font-size: 10pt; color: var(--book-accent); }
+      }
+      @page :first { @top-left { content: none; } @top-right { content: none; } @bottom-right { content: none; } }
+      @page no-header { @top-left { content: none; } @top-right { content: none; } }
+      * { box-sizing: border-box; }
+      html { font-size: 9.5pt; }
+      body { margin: 0; background: var(--color-bg); color: var(--color-ink); font-family: var(--font-serif); font-size: 9.5pt; line-height: 1.34; font-variation-settings: "SOFT" 50, "WONK" 0; }
+      h1, h2, h3, h4 { font-family: var(--font-serif); font-weight: 500; color: var(--color-ink); line-height: 1.16; }
+      p { margin: 0 0 0.45em; orphans: 2; widows: 2; -webkit-hyphens: auto; hyphens: auto; }
+      strong { color: var(--color-ink); } em { font-style: italic; }
+      ul, ol { padding-left: 1.2em; margin: 0 0 0.55em; } li { margin-bottom: 0.18em; }
+      ul li::marker { color: var(--color-mustard); }
+      table { width: 100%; border-collapse: separate; border-spacing: 0; margin: 0.8em 0; font-size: 8.6pt; page-break-inside: auto; }
+      th, td { text-align: left; padding: 0.34em 0.55em; border-bottom: 1px solid var(--color-line-soft); vertical-align: top; }
+      th { font-family: var(--font-sans); font-size: 7.5pt; text-transform: uppercase; letter-spacing: 0.06em; color: var(--book-accent-deep); background: var(--book-accent-soft); font-weight: 700; }
+      blockquote { margin: 0.9em 0; padding: 0.6em 1em; border-left: 3px solid var(--color-mustard); background: var(--color-bg-cream); font-style: italic; color: var(--color-ink-soft); break-inside: avoid; }
+      code { font-family: var(--font-mono); font-size: 0.92em; background: var(--color-bg-cream); padding: 0.05em 0.3em; border-radius: 2px; }
+
+      .cover { page: no-header; break-after: page; height: 211mm; display: flex; flex-direction: column; justify-content: space-between; }
+      .cover__top { display: flex; justify-content: space-between; align-items: flex-start; font-family: var(--font-sans); font-size: 8.5pt; letter-spacing: 0.12em; text-transform: uppercase; color: var(--book-accent); }
+      .cover__top .mark { width: 20pt; height: 20pt; border-radius: 50%; background: var(--book-accent); position: relative; }
+      .cover__top .mark::before { content: ""; position: absolute; inset: 4pt; background: var(--color-mustard); border-radius: 50%; }
+      .cover__top .mark::after { content: ""; position: absolute; inset: 8pt; background: var(--color-bg); border-radius: 50%; }
+      .cover__center { margin-top: -8mm; }
+      .cover__eyebrow { font-family: var(--font-sans); font-size: 9.5pt; letter-spacing: 0.18em; text-transform: uppercase; color: var(--book-accent); font-weight: 700; margin-bottom: 4mm; }
+      .cover__title { font-family: var(--font-serif); font-size: 40pt; line-height: 1.02; letter-spacing: -0.02em; color: var(--color-ink); margin: 0 0 4mm; font-weight: 400; font-variation-settings: "SOFT" 80; max-width: 16ch; }
+      .cover__title em { font-style: italic; color: var(--book-accent); font-variation-settings: "SOFT" 100, "WONK" 1; }
+      .cover__sub { font-family: var(--font-serif); font-style: italic; font-size: 15pt; color: var(--color-ink-soft); margin: 0; font-variation-settings: "SOFT" 80; }
+      .cover__rule { width: 34mm; height: 5pt; background: var(--book-accent); border-radius: 999px; margin: 6mm 0; }
+      .cover__bottom { display: flex; justify-content: space-between; align-items: flex-end; font-family: var(--font-sans); font-size: 9pt; color: var(--color-ink-soft); }
+      .cover__bottom .stack { display: flex; flex-direction: column; gap: 2mm; }
+      .cover__bottom .stack strong { color: var(--color-ink); font-weight: 600; font-size: 9.5pt; }
+      .cover__bottom .stack .muted { font-size: 8pt; color: var(--color-ink-mute); letter-spacing: 0.06em; text-transform: uppercase; }
+
+      .doc { string-set: doc-title attr(data-doc-title); padding-top: 3mm; }
+      .doc h2 { font-size: 14pt; margin: 1.3em 0 0.5em; position: relative; padding-top: 0.7em; break-after: avoid; break-before: auto; }
+      .doc h2::before { content: ""; position: absolute; top: 0; left: 0; width: 22mm; height: 3px; background: var(--book-accent); border-radius: 999px; }
+      .doc h2:nth-of-type(2n)::before { background: var(--color-mustard); }
+      .doc h3 { font-size: 11.5pt; margin: 1.1em 0 0.4em; break-after: avoid; }
+      /* Each section starts on a fresh page for a clean structure */
+      .ebau-sec { break-before: page; }
+      .ebau-sec:first-of-type { break-before: avoid; }
+    </style>
+  </head>
+  <style is:inline set:html={`body { --book-accent: ${accent.base}; --book-accent-deep: ${accent.deep}; --book-accent-soft: ${accent.soft}; } .doc-title-string { string-set: doc-title "${a.shortLabel} · EBAU"; }`}></style>
+  <body class="doc-title-string">
+    <section class="cover">
+      <header class="cover__top"><span>profedeeconomia.es</span><span class="mark"></span></header>
+      <div class="cover__center">
+        <div class="cover__eyebrow">{a.shortLabel} · {comunidad}</div>
+        <h1 class="cover__title">Preparación <em>EBAU</em></h1>
+        <p class="cover__sub">{a.title}</p>
+        <div class="cover__rule"></div>
+      </div>
+      <footer class="cover__bottom">
+        <div class="stack"><span class="muted">Editorial</span><strong>profedeeconomia.es</strong></div>
+        <div class="stack"><span class="muted">Prueba</span><strong>{comunidad}</strong></div>
+        <div class="stack"><span class="muted">Generado</span><strong>{today}</strong></div>
+      </footer>
+    </section>
+
+    <section class="doc" data-doc-title={`${a.shortLabel} · EBAU`}>
+      {rendered.map(({ Content }) => (
+        <div class="ebau-sec"><Content /></div>
+      ))}
+    </section>
+
+    <script is:inline>
+      if (new URLSearchParams(location.search).has('preview')) {
+        const s = document.createElement('script');
+        s.src = 'https://unpkg.com/pagedjs/dist/paged.polyfill.js';
+        document.body.appendChild(s);
+      }
+    </script>
+  </body>
+</html>
