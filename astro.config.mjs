@@ -6,7 +6,7 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://profedeeconomia.es',
+  site: 'https://www.profedeeconomia.es',
 
   integrations: [
     preact({ compat: false }),
