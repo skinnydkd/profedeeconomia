@@ -12,6 +12,7 @@ materiales:
   - "Plantilla con la tabla de datos del caso"
 competencias_clave: [STEM, CD, CPSAA]
 competencias_especificas: [CE4]
+ebau: true
 estado: publicado
 ---
 

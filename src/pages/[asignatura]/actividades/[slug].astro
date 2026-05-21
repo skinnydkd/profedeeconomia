@@ -51,6 +51,7 @@ const TIPO_LABEL: Record<string, string> = {
       <div class="kicker-row">
         <span class="kicker">Actividad · Unidad {actividad.data.unidad_relacionada}</span>
         <span class={`badge badge--${actividad.data.tipo}`}>{TIPO_LABEL[actividad.data.tipo]}</span>
+        {actividad.data.ebau && <span class="badge badge--ebau">Tipo EBAU</span>}
       </div>
       <h1>{actividad.data.title}</h1>
       <p class="lede">{actividad.data.descripcion}</p>
@@ -137,6 +138,7 @@ const TIPO_LABEL: Record<string, string> = {
   .badge--debate   { background: #DBEDED;                   color: #1F6E6E; }
   .badge--dinamica { background: var(--color-fopp-soft);    color: var(--color-fopp); }
   .badge--proyecto { background: var(--color-bg-soft);      color: var(--color-ink); }
+  .badge--ebau     { background: var(--color-ink);          color: #fff; }
 
   h1 { max-width: 22ch; margin: 1rem 0 0.6rem; }
   .lede {
