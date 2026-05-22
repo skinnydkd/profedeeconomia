@@ -18,6 +18,10 @@ const isPublicado = a.estado === 'publicado';
 const ebauAll = await getCollection('ebau');
 const hasEbau = ebauAll.some((e) => e.data.asignatura === a.slug && e.data.estado === 'publicado');
 
+// Show the project-workbook card only for subjects that have published content.
+const proyectoAll = await getCollection('proyecto');
+const hasProyecto = proyectoAll.some((e) => e.data.asignatura === a.slug && e.data.estado === 'publicado');
+
 const sections = [
   { slug: 'libro',         title: 'Libro',         desc: 'Los capítulos del curso, listos para leer en pantalla o descargar como PDF.' },
   { slug: 'programacion',  title: 'Programación',  desc: 'Programación didáctica de referencia: objetivos, temporalización y evaluación, lista para adaptar.' },
@@ -26,6 +30,7 @@ const sections = [
   { slug: 'tests',         title: 'Tests',         desc: 'Tests de autoevaluación: 2‑3 por unidad, con corrección y comentario.' },
   { slug: 'recursos',      title: 'Recursos',      desc: 'Simuladores, calculadoras y plantillas que apoyan el contenido del libro.' },
   ...(hasEbau ? [{ slug: 'ebau', title: 'Preparación EBAU', desc: 'Estructura de la prueba, teoría esencial, problemas resueltos y simulacros con solucionario.' }] : []),
+  ...(hasProyecto ? [{ slug: 'proyecto', title: 'Cuaderno de proyecto', desc: 'Guía paso a paso para que el alumnado desarrolle su propio proyecto emprendedor, fase a fase.' }] : []),
 ];
 ---
 
@@ -206,6 +211,8 @@ const sections = [
   .section-card.c-taller3 { --card-color: var(--color-taller3); }
   .section-card.c-ipe1 { --card-color: var(--color-ipe1); }
   .section-card.c-ipe2 { --card-color: var(--color-ipe2); }
+  .section-card.c-eeae { --card-color: var(--color-eeae); }
+  .section-card.c-gpe { --card-color: var(--color-gpe); }
 
   /* Make the 5th section's stripe lighter for visual rhythm */
   .section-card:nth-child(5)::before { opacity: 0.5; }

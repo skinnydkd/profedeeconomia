@@ -59,6 +59,15 @@ import { ASIGNATURAS_POR_ETAPA, SECCIONES_TRANSVERSALES } from '@/lib/asignatura
               </a>
             ))}
           </div>
+          <div class="dropdown-section">
+            <span class="dropdown-label">{ASIGNATURAS_POR_ETAPA.bach.cursos.bach.label}</span>
+            {ASIGNATURAS_POR_ETAPA.bach.cursos.bach.asignaturas.map((a) => (
+              <a href={`/${a.slug}/`} role="menuitem" class={a.estado === 'proximamente' ? 'is-proximamente' : ''}>
+                {a.title}
+                {a.estado === 'proximamente' && <span class="badge">Próximamente</span>}
+              </a>
+            ))}
+          </div>
         </div>
       </div>
 

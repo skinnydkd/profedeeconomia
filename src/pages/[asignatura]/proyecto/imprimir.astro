@@ -1,14 +1,15 @@
 ---
 /**
- * Print-ready EBAU/PAU preparation workbook (pagedjs-cli → PDF).
+ * Print-ready project workbook (pagedjs-cli → PDF).
  * Several ordered sections per subject; reuses the editorial print system.
+ * Mirror of ebau/imprimir.astro, adapted to the `proyecto` collection.
  */
 import { ASIGNATURAS } from '@/lib/asignaturas';
 import { getCollection, render } from 'astro:content';
 import type { GetStaticPaths } from 'astro';
 
 export const getStaticPaths = (async () => {
-  const all = await getCollection('ebau');
+  const all = await getCollection('proyecto');
   const bySlug = new Map<string, typeof all>();
   for (const e of all) {
     if (e.data.estado !== 'publicado') continue;
@@ -23,7 +24,6 @@ export const getStaticPaths = (async () => {
 }) satisfies GetStaticPaths;
 
 const { secciones, asignatura: a } = Astro.props;
-const comunidad = secciones[0]?.data.comunidad ?? 'Comunitat Valenciana';
 const rendered = await Promise.all(secciones.map(async (s) => ({ s, ...(await render(s)) })));
 const today = new Date().toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
 
@@ -32,6 +32,9 @@ const ACCENTS: Record<string, { base: string; deep: string; soft: string }> = {
   eco1: { base: '#1F6E6E', deep: '#164F4F', soft: '#DBEDED' },
   eco4: { base: '#D4A24C', deep: '#A87A2A', soft: '#F5E5BC' },
   fopp: { base: '#5B3A4E', deep: '#46293A', soft: '#ECDCE5' },
+  taller3: { base: '#6B8E23', deep: '#4F6B18', soft: '#E4ECD2' },
+  ipe1: { base: '#4A6FA5', deep: '#36527D', soft: '#DCE5F0' },
+  ipe2: { base: '#2F4F7F', deep: '#22395C', soft: '#D5DEEB' },
   eeae: { base: '#2E5E3A', deep: '#234A2D', soft: '#D9E6DC' },
   gpe:  { base: '#8C2F39', deep: '#6E2530', soft: '#F1DADD' },
 };
@@ -42,7 +45,7 @@ const accent = ACCENTS[a.color] ?? ACCENTS.edmn;
 <html lang="es">
   <head>
     <meta charset="utf-8" />
-    <title>Preparación EBAU · {a.title} — profedeeconomia</title>
+    <title>Cuaderno de proyecto · {a.title} — profedeeconomia</title>
     <meta name="robots" content="noindex,nofollow" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -65,7 +68,7 @@ const accent = ACCENTS[a.color] ?? ACCENTS.edmn;
       @page {
         size: 165mm 235mm; margin: 12mm 12mm 13mm 12mm;
         @top-left { content: string(doc-title); font-family: var(--font-sans); font-size: 8.5pt; letter-spacing: 0.06em; text-transform: uppercase; color: var(--color-ink-mute); }
-        @top-right { content: "Preparación EBAU"; font-family: var(--font-serif); font-style: italic; font-size: 9pt; color: var(--color-ink-mute); }
+        @top-right { content: "Cuaderno de proyecto"; font-family: var(--font-serif); font-style: italic; font-size: 9pt; color: var(--color-ink-mute); }
         @bottom-right { content: counter(page); font-family: var(--font-serif); font-size: 10pt; color: var(--book-accent); }
       }
       @page :first { @top-left { content: none; } @top-right { content: none; } @bottom-right { content: none; } }
@@ -105,31 +108,31 @@ const accent = ACCENTS[a.color] ?? ACCENTS.edmn;
       .doc h2::before { content: ""; position: absolute; top: 0; left: 0; width: 22mm; height: 3px; background: var(--book-accent); border-radius: 999px; }
       .doc h2:nth-of-type(2n)::before { background: var(--color-mustard); }
       .doc h3 { font-size: 11.5pt; margin: 1.1em 0 0.4em; break-after: avoid; }
-      /* Each section starts on a fresh page for a clean structure */
-      .ebau-sec { break-before: page; }
-      .ebau-sec:first-of-type { break-before: avoid; }
+      /* Each phase starts on a fresh page for a clean structure */
+      .proyecto-sec { break-before: page; }
+      .proyecto-sec:first-of-type { break-before: avoid; }
     </style>
   </head>
-  <style is:inline set:html={`body { --book-accent: ${accent.base}; --book-accent-deep: ${accent.deep}; --book-accent-soft: ${accent.soft}; } .doc-title-string { string-set: doc-title "${a.shortLabel} · EBAU"; }`}></style>
+  <style is:inline set:html={`body { --book-accent: ${accent.base}; --book-accent-deep: ${accent.deep}; --book-accent-soft: ${accent.soft}; } .doc-title-string { string-set: doc-title "${a.shortLabel} · Proyecto"; }`}></style>
   <body class="doc-title-string">
     <section class="cover">
       <header class="cover__top"><span>profedeeconomia.es</span><span class="mark"></span></header>
       <div class="cover__center">
-        <div class="cover__eyebrow">{a.shortLabel} · {comunidad}</div>
-        <h1 class="cover__title">Preparación <em>EBAU</em></h1>
+        <div class="cover__eyebrow">{a.shortLabel} · Proyecto emprendedor</div>
+        <h1 class="cover__title">Cuaderno de <em>proyecto</em></h1>
         <p class="cover__sub">{a.title}</p>
         <div class="cover__rule"></div>
       </div>
       <footer class="cover__bottom">
         <div class="stack"><span class="muted">Editorial</span><strong>profedeeconomia.es</strong></div>
-        <div class="stack"><span class="muted">Prueba</span><strong>{comunidad}</strong></div>
+        <div class="stack"><span class="muted">Materia</span><strong>{a.shortLabel}</strong></div>
         <div class="stack"><span class="muted">Generado</span><strong>{today}</strong></div>
       </footer>
     </section>
 
-    <section class="doc" data-doc-title={`${a.shortLabel} · EBAU`}>
+    <section class="doc" data-doc-title={`${a.shortLabel} · Proyecto`}>
       {rendered.map(({ Content }) => (
-        <div class="ebau-sec"><Content /></div>
+        <div class="proyecto-sec"><Content /></div>
       ))}
     </section>
 
