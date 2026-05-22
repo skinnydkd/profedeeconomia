@@ -150,7 +150,7 @@ export const ASIGNATURAS: Record<AsignaturaSlug, Asignatura> = {
   },
   'eeae-bach': {
     slug: 'eeae-bach',
-    level: 'Bachillerato (1.º/2.º)',
+    level: '1.º Bachillerato',
     shortLabel: 'EEAE',
     title: 'Economía, Emprendimiento y Actividad Empresarial',
     tagline:
@@ -160,7 +160,7 @@ export const ASIGNATURAS: Record<AsignaturaSlug, Asignatura> = {
     marcoNormativo: 'Real Decreto 243/2022 · Decret 108/2022 (CV)',
     modalidad: 'Modalidad General',
     etapa: 'bach',
-    curso: 'bach',
+    curso: '1bach',
     estado: 'proximamente',
   },
   'gpe-bach': {
