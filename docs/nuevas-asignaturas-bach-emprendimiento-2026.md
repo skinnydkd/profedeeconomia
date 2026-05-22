@@ -147,9 +147,12 @@ Modelado sobre la colección `ebau` existente (secciones ordenadas con su propia
 > Nota: las rutas índice hijas (`/{slug}/libro/`, `/tests/`, etc.) se generan también para asignaturas `proximamente` con un estado vacío elegante ("aparecerán aquí…"); es el comportamiento intencional existente, no enlazado desde el hub placeholder.
 
 ### Fase B — Libro EEAE (multisesión)
-- [ ] `docs/curriculum-eeae-bach.md` (saberes oficiales DOGV completos, vía agentes de investigación).
-- [ ] ~10 unidades MDX + actividades + tests + recursos.
-- [ ] Revisión de Pau → `estado: publicado` + PDFs (libro/diapositivas).
+- [x] `docs/curriculum-eeae-bach.md` (currículo oficial RD 243/2022 + Decret 108/2022, vía agente de investigación).
+- [x] EEAE fijada a **1.º Bachillerato** (oficial; modalidad General). `curso: '1bach'`.
+- [x] **10 unidades MDX** (Bloc A 1-4 · Bloc B 5-7 · Bloc C 8-10) + 10 tests + 20 actividades, `estado: borrador`. Sin imágenes/diagramas (pasada visual posterior). Build verificado (flip temporal a publicado: 473 págs OK).
+- [ ] **Recursos** EEAE (reutilizar calculadoras existentes donde encaje; p. ej. interés compuesto para U4).
+- [ ] **Programación** didáctica (`programacion/programacion.mdx`).
+- [ ] Revisión de Pau → `estado: publicado` (unidades + asignatura) + PDFs (libro/diapositivas).
 
 ### Fase C — Libro + cuaderno GPE (multisesión)
 - [ ] `docs/curriculum-gpe-bach.md` (saberes oficiales DOGV completos).
@@ -160,7 +163,7 @@ Modelado sobre la colección `ebau` existente (secciones ordenadas con su propia
 - [x] Investigación curricular (fuentes oficiales DOGV/ceice/educagob)
 - [x] Decisiones de Pau (qué materias, sin fijar curso, scaffold completo, colores, GPE doble formato)
 - [x] Fase A — scaffold + registro + colores + colección `proyecto`
-- [ ] Fase B — libro EEAE
+- [~] Fase B — libro EEAE: 10 unidades + tests + actividades en borrador (FALTAN recursos + programación + publicar)
 - [ ] Fase C — libro + cuaderno GPE
 - [ ] Imágenes (`<Figure>`) — follow-up posterior, como el resto de libros
 - [ ] Revisión visual de Pau (contenido, recursos reutilizados, PDFs)
