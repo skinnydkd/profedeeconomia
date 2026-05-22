@@ -136,13 +136,15 @@ Modelado sobre la colección `ebau` existente (secciones ordenadas con su propia
 
 ## Plan de ejecución (fases)
 
-### Fase A — Scaffold (esta sesión)
-- [ ] Añadir slugs/entradas en `asignaturas.ts` y `content.config.ts` (`bach`, colores `eeae`/`gpe`).
-- [ ] Colores en `global.css` + `SubjectCard.astro` + `[asignatura]/index.astro` + 4 `imprimir.astro`.
-- [ ] Subgrupo "Optativas (1.º/2.º)" en `ASIGNATURAS_POR_ETAPA`.
-- [ ] Colección `proyecto` + páginas `proyecto/index.astro` + `imprimir.astro`; enlace condicional en el hub.
-- [ ] Carpetas de contenido + programación (stub) de ambas; `estado: borrador`/`proximamente` (no se renderiza público hasta revisión).
-- [ ] `npm run build` verde + tests (`asignaturas.ts` consumido por rutas).
+### Fase A — Scaffold (esta sesión) ✅
+- [x] Añadir slugs/entradas en `asignaturas.ts` y `content.config.ts` (`bach`, colores `eeae`/`gpe`).
+- [x] Colores en `global.css` + `SubjectCard.astro` + `[asignatura]/index.astro` + 4 `imprimir.astro`.
+- [x] Subgrupo "Optativas (1.º/2.º)" en `ASIGNATURAS_POR_ETAPA`.
+- [x] Colección `proyecto` + páginas `proyecto/index.astro` + `imprimir.astro`; enlace condicional en el hub.
+- [x] Ambas como `estado: 'proximamente'` (hub muestra placeholder; no aparecen en la home). El contenido llega en B/C.
+- [x] `npm run build` verde (431 págs) + 258 tests OK.
+
+> Nota: las rutas índice hijas (`/{slug}/libro/`, `/tests/`, etc.) se generan también para asignaturas `proximamente` con un estado vacío elegante ("aparecerán aquí…"); es el comportamiento intencional existente, no enlazado desde el hub placeholder.
 
 ### Fase B — Libro EEAE (multisesión)
 - [ ] `docs/curriculum-eeae-bach.md` (saberes oficiales DOGV completos, vía agentes de investigación).
@@ -157,7 +159,7 @@ Modelado sobre la colección `ebau` existente (secciones ordenadas con su propia
 ## Estado de ejecución
 - [x] Investigación curricular (fuentes oficiales DOGV/ceice/educagob)
 - [x] Decisiones de Pau (qué materias, sin fijar curso, scaffold completo, colores, GPE doble formato)
-- [ ] Fase A — scaffold + registro + colores + colección `proyecto`
+- [x] Fase A — scaffold + registro + colores + colección `proyecto`
 - [ ] Fase B — libro EEAE
 - [ ] Fase C — libro + cuaderno GPE
 - [ ] Imágenes (`<Figure>`) — follow-up posterior, como el resto de libros
