@@ -155,15 +155,16 @@ Modelado sobre la colección `ebau` existente (secciones ordenadas con su propia
 - [ ] Revisión de Pau → `estado: publicado` (unidades + asignatura) + PDFs (libro/diapositivas).
 
 ### Fase C — Libro + cuaderno GPE (multisesión)
-- [ ] `docs/curriculum-gpe-bach.md` (saberes oficiales DOGV completos).
-- [ ] Libro teórico (~7 unidades) + cuaderno de proyecto (~6 fases) + actividades + tests + recursos.
-- [ ] Revisión de Pau → `estado: publicado` + PDFs.
+- [x] `docs/curriculum-gpe-bach.md` (verificado contra PDF oficial DOGV con pdftotext; GPE = 6 CE + 5 bloques por fases, distinto de EEAE).
+- [x] Libro teórico **7 unidades** + **cuaderno de proyecto 6 fases** (colección `proyecto`) + 7 tests + 14 actividades + recurso (PuntoMuerto) + programación. `estado: borrador`. Build verificado (flip temporal: 464 págs, `/gpe-bach/proyecto/` OK).
+- [ ] Revisión de Pau → `estado: publicado` (unidades + cuaderno + asignatura) + PDFs.
 
 ## Estado de ejecución
 - [x] Investigación curricular (fuentes oficiales DOGV/ceice/educagob)
 - [x] Decisiones de Pau (qué materias, sin fijar curso, scaffold completo, colores, GPE doble formato)
 - [x] Fase A — scaffold + registro + colores + colección `proyecto`
-- [~] Fase B — libro EEAE: 10 unidades + tests + actividades en borrador (FALTAN recursos + programación + publicar)
-- [ ] Fase C — libro + cuaderno GPE
+- [x] Fase B — libro EEAE: 10 unidades + 10 tests + 20 actividades + 2 recursos + programación (borrador). FALTA: revisión de Pau + publicar + PDFs.
+- [x] Fase C — GPE: libro 7 unidades + cuaderno 6 fases + 7 tests + 14 actividades + recurso + programación (borrador). FALTA: revisión de Pau + publicar + PDFs.
+- [ ] **Pendiente común**: revisión de Pau de ambos → flip a publicado (contenido + asignaturas) → generar PDFs (libro/cuaderno/programación/diapositivas) → imágenes (pasada visual posterior, como el resto de libros).
 - [ ] Imágenes (`<Figure>`) — follow-up posterior, como el resto de libros
 - [ ] Revisión visual de Pau (contenido, recursos reutilizados, PDFs)
