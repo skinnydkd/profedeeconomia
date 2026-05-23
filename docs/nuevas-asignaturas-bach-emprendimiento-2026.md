@@ -165,6 +165,7 @@ Modelado sobre la colección `ebau` existente (secciones ordenadas con su propia
 - [x] Fase A — scaffold + registro + colores + colección `proyecto`
 - [x] Fase B — libro EEAE: 10 unidades + 10 tests + 20 actividades + 2 recursos + programación (borrador). FALTA: revisión de Pau + publicar + PDFs.
 - [x] Fase C — GPE: libro 7 unidades + cuaderno 6 fases + 7 tests + 14 actividades + recurso + programación (borrador). FALTA: revisión de Pau + publicar + PDFs.
-- [ ] **Pendiente común**: revisión de Pau de ambos → flip a publicado (contenido + asignaturas) → generar PDFs (libro/cuaderno/programación/diapositivas) → imágenes (pasada visual posterior, como el resto de libros).
+- [x] **PDFs y diapositivas generados** (con flip temporal a publicado): libro + cuaderno actividades + programación de ambas, cuaderno de proyecto de GPE (nuevo `scripts/build-proyecto-pdf.mjs` + `npm run build:proyecto`), y 34 diapositivas Marp (10 EEAE + 7 GPE, PDF+HTML). En `public/downloads/` y `public/slides/`.
+- [ ] **Pendiente común**: revisión de Pau de ambos → flip a publicado (contenido + campo `estado` de las asignaturas en asignaturas.ts). Si Pau edita contenido en la revisión, regenerar los PDFs/diapositivas afectados. → imágenes (pasada visual posterior, como el resto de libros).
 - [ ] Imágenes (`<Figure>`) — follow-up posterior, como el resto de libros
 - [ ] Revisión visual de Pau (contenido, recursos reutilizados, PDFs)
