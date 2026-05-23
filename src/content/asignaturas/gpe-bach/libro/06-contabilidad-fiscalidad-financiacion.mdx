@@ -43,6 +43,12 @@ import Steps from '@components/Steps.astro';
 import KeyTakeaways from '@components/KeyTakeaways.astro';
 import SolvedExercise from '@components/SolvedExercise.astro';
 import Bibliography from '@components/Bibliography.astro';
+import Diagram from '@components/Diagram.astro';
+import Figure from '@components/Figure.astro';
+import BreakEvenChart from '@components/diagrams/BreakEvenChart.astro';
+import aeatMadrid from '@assets/libro/gpe-bach/06/aeat-madrid.jpg';
+import euroMonedasBilletes from '@assets/libro/gpe-bach/06/euro-monedas-billetes.jpg';
+import aerogeneradorPujalt from '@assets/libro/gpe-bach/06/aerogenerador-pujalt.jpg';
 
 > **Tiempo estimado de lectura**: ~20 min · **Saberes (Decret 108/2022)**: B3.4.1, B3.4.2, B3.4.3, B3.5.1, B3.5.2, B3.5.3 · **Fase del cuaderno**: alimenta la **Fase 4 — Viabilidad: contabilidad, fiscalidad e impacto**.
 >
@@ -75,11 +81,29 @@ Los **impuestos** financian los **servicios públicos** que sostienen el **Estad
 
 </Callout>
 
+<Figure
+  src={aeatMadrid}
+  alt="Oficina de la Agencia Estatal de Administración Tributaria en la calle del Sacramento de Madrid."
+  caption="Una oficina de la Agencia Tributaria (AEAT) en Madrid. Es el organismo que recauda los impuestos con los que entre todos sostenemos la sanidad, la educación o las pensiones."
+  credit="Zarateman, CC0 vía Wikimedia Commons"
+  variant="wide"
+  aspectHint="3/2"
+/>
+
 ### La fiscalidad verde
 
 Los impuestos no solo recaudan: también **orientan comportamientos**. La **fiscalidad verde** (o fiscalidad ambiental) es el conjunto de tributos diseñados para desincentivar las actividades que dañan el medio ambiente y premiar las que lo cuidan. La lógica es la de «quien contamina, paga»: si una actividad genera un coste para el planeta, su precio debería reflejarlo.
 
 Ejemplos reales en España son el impuesto sobre los gases fluorados de efecto invernadero, el impuesto especial sobre los envases de plástico no reutilizables (en vigor desde 2023) o las bonificaciones fiscales a los vehículos eléctricos. Para tu proyecto, esto tiene una lectura directa: las decisiones sostenibles —menos plástico, materiales reciclados, proximidad— no solo reducen tu impacto ambiental, también pueden tener ventajas fiscales y encajan con un modelo de empresa responsable.
+
+<Figure
+  src={aerogeneradorPujalt}
+  alt="Aerogenerador de un parque eólico en Pujalt, cerca de Manresa (Cataluña)."
+  caption="La fiscalidad verde encarece lo que contamina y abarata lo que cuida el planeta. Las energías renovables son uno de los comportamientos que el sistema fiscal busca premiar."
+  credit="Mrb-Wind, CC BY-SA 4.0 vía Wikimedia Commons"
+  variant="wide"
+  aspectHint="3/2"
+/>
 
 ### La economía sumergida: el lado oscuro
 
@@ -92,12 +116,21 @@ Cuando montes tu proyecto, declarar los ingresos, emitir factura y dar de alta a
 </Callout>
 
 <RealExample title="Cuánto pesa la economía sumergida en España" source="GESTHA (Sindicato de Técnicos del Ministerio de Hacienda), informes sobre economía sumergida; y Comisión Europea, estudios sobre el VAT Gap de la UE">
-Los Técnicos del Ministerio de Hacienda (GESTHA) estiman que la economía sumergida en España ronda el **20-25 % del PIB**, varios puntos por encima de la media de la UE y de países como Alemania o Francia. Traducido a euros, supone decenas de miles de millones que no llegan a las arcas públicas cada año. La Comisión Europea, por su parte, mide el «VAT Gap» —la diferencia entre el IVA que debería recaudarse y el que realmente entra—, que en España ha llegado a representar miles de millones anuales. La lección para tu proyecto es clara: la economía sumergida no es algo abstracto, es dinero que falta para los servicios públicos que usas a diario. Cumplir con Hacienda es parte de un proyecto con impacto positivo de verdad.
+Los Técnicos del Ministerio de Hacienda (GESTHA) estiman que la economía sumergida en España ronda el **20 % del PIB** (las distintas metodologías la sitúan aproximadamente entre el 18 % y el 24 %), varios puntos por encima de la media de la UE y de países como Alemania o Francia. Traducido a euros, supone decenas de miles de millones que no llegan a las arcas públicas cada año. La Comisión Europea, por su parte, mide el «VAT Gap» —la diferencia entre el IVA que debería recaudarse y el que realmente entra—, que en España ha llegado a representar miles de millones anuales. La lección para tu proyecto es clara: la economía sumergida no es algo abstracto, es dinero que falta para los servicios públicos que usas a diario. Cumplir con Hacienda es parte de un proyecto con impacto positivo de verdad.
 </RealExample>
 
 ## La contabilidad de tu proyecto
 
 La **contabilidad** es el sistema que registra de forma ordenada todo lo que entra y sale de una empresa, para saber en cada momento **qué tiene, qué debe y si gana o pierde**. En GPE no la estudiamos como técnica: nos basta con leer dos documentos básicos aplicados a tu proyecto: el **balance** y la **cuenta de resultados**.
+
+<Figure
+  src={euroMonedasBilletes}
+  alt="Monedas y billetes de euro de varias denominaciones."
+  caption="Contabilizar es poner orden en el dinero que entra y sale del proyecto: saber en todo momento qué tienes, qué debes y si ganas o pierdes."
+  credit="Avij, dominio público vía Wikimedia Commons"
+  variant="wide"
+  aspectHint="3/2"
+/>
 
 ### El balance: una foto del patrimonio
 
@@ -171,6 +204,12 @@ La fórmula del punto muerto en unidades es:
 
 El paréntesis es el **margen de contribución**: lo que aporta cada unidad vendida a cubrir los costes fijos. Conocer tu punto muerto es saber cuál es tu objetivo mínimo de ventas para no perder dinero: una de las cifras más útiles que puede tener un proyecto.
 
+Visualmente, el punto muerto es donde se cruzan la recta de **ingresos totales** (que sale del origen con pendiente igual al precio) y la de **costes totales** (que parte de la altura de los costes fijos y sube según el coste variable). A la izquierda del cruce hay pérdida; a la derecha, beneficio.
+
+<Diagram caption="El punto muerto es el cruce entre la recta de ingreso total (verde) y la de coste total (terracota): el número de unidades en que los ingresos cubren justo todos los gastos. Las cifras del gráfico son un ejemplo ilustrativo distinto al del ejercicio.">
+  <BreakEvenChart />
+</Diagram>
+
 <SolvedExercise number="6.1" title="Punto muerto y cuenta de resultados previsional de un proyecto">
 
 **Enunciado**
@@ -239,7 +278,7 @@ Toda esta unidad converge en una sola pregunta para tu equipo: **¿es viable nue
 
 <KeyTakeaways title="Lo esencial de la unidad">
 - Los **impuestos** financian el **Estado del bienestar** (sanidad, educación, pensiones). Pagarlos es una **responsabilidad ciudadana**, no un castigo, y la **fiscalidad verde** premia las decisiones sostenibles.
-- La **economía sumergida** (en torno al 20-25 % del PIB en España según GESTHA) resta recursos a los servicios públicos: un proyecto con impacto positivo juega limpio con Hacienda.
+- La **economía sumergida** (en torno al 20 % del PIB en España según las estimaciones de GESTHA) resta recursos a los servicios públicos: un proyecto con impacto positivo juega limpio con Hacienda.
 - El **balance** es una foto del patrimonio (**Activo = Patrimonio neto + Pasivo**); la **cuenta de resultados** dice si ganas o pierdes (**Ingresos − Gastos**).
 - El **presupuesto** separa la inversión inicial de los gastos corrientes; el **punto muerto** marca cuántas unidades hay que vender para no perder.
 - Las **fuentes de financiación** son propias (no se devuelven) o ajenas (sí); opciones reales son el préstamo, **ENISA**, las ayudas del **IVACE**, el crowdfunding o las aportaciones del equipo. Lo sano es **combinarlas**.
