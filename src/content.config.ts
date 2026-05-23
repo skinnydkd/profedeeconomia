@@ -9,6 +9,8 @@ const ASIGNATURA_SLUGS = [
   'taller-eco-3eso',
   'ipe1-fp',
   'ipe2-fp',
+  'eeae-bach',
+  'gpe-bach',
 ] as const;
 const LANGS = ['es', 'ca'] as const;
 const ESTADOS = ['borrador', 'revision', 'publicado'] as const;
@@ -168,6 +170,27 @@ const ebau = defineCollection({
 });
 
 /* =========================================================
+   proyecto — cuaderno de proyecto guiado por fases. Mismo
+   patrón que `ebau`: varias secciones ordenadas por asignatura.
+   De momento solo lo usa GPE (gpe-bach).
+   ========================================================= */
+const proyecto = defineCollection({
+  loader: glob({
+    pattern: 'asignaturas/*/proyecto/**/*.{md,mdx}',
+    base: './src/content',
+  }),
+  schema: z.object({
+    asignatura: z.enum(ASIGNATURA_SLUGS),
+    orden: z.number().int().min(0),
+    title: z.string(),
+    /** Etiqueta de la fase del proyecto ("Fase 1 — Idea y oportunidad"). */
+    fase: z.string().optional(),
+    lang: z.enum(LANGS).default('es'),
+    estado: z.enum(ESTADOS).default('borrador'),
+  }),
+});
+
+/* =========================================================
    juegos — material transversal
    ========================================================= */
 const juegos = defineCollection({
@@ -195,5 +218,6 @@ export const collections = {
   recursos,
   programacion,
   ebau,
+  proyecto,
   juegos,
 };

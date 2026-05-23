@@ -1,9 +1,10 @@
 /**
  * Single source of truth for all asignaturas.
  *
- * Hi ha 7 asignaturas distribuïdes per etapa:
+ * Hi ha 9 asignaturas distribuïdes per etapa:
  * - **ESO** → Taller de Economía (3.º), Economía y Emprendimiento (4.º), FOPP (4.º)
- * - **Bachillerato** → Economía (1.º), EDMN (2.º)
+ * - **Bachillerato** → Economía (1.º), EDMN (2.º), y dos optativas de emprendimiento
+ *   ofertables en 1.º o 2.º (EEAE y GPE, currículo CV)
  * - **Formación Profesional** → IPE I, IPE II
  *
  * Cada una té un `estado` ('publicado' | 'proximamente'). Les que tenen
@@ -21,11 +22,14 @@ export const ASIGNATURA_SLUGS = [
   'taller-eco-3eso',
   'ipe1-fp',
   'ipe2-fp',
+  'eeae-bach',
+  'gpe-bach',
 ] as const;
 export type AsignaturaSlug = (typeof ASIGNATURA_SLUGS)[number];
 
 export type Etapa = 'eso' | 'bach' | 'fp';
-export type Curso = '3eso' | '4eso' | '1bach' | '2bach' | 'fp';
+// 'bach' = optativa de Bachillerato ofertable en 1.º o 2.º (sin curso fijo).
+export type Curso = '3eso' | '4eso' | '1bach' | '2bach' | 'bach' | 'fp';
 export type Estado = 'publicado' | 'proximamente';
 
 export type Asignatura = {
@@ -35,7 +39,7 @@ export type Asignatura = {
   title: string;
   tagline: string;
   num: string;
-  color: 'edmn' | 'eco1' | 'eco4' | 'fopp' | 'taller3' | 'ipe1' | 'ipe2' | 'proximamente';
+  color: 'edmn' | 'eco1' | 'eco4' | 'fopp' | 'taller3' | 'ipe1' | 'ipe2' | 'eeae' | 'gpe' | 'proximamente';
   marcoNormativo: string;
   modalidad?: string;
   etapa: Etapa;
@@ -144,6 +148,36 @@ export const ASIGNATURAS: Record<AsignaturaSlug, Asignatura> = {
     curso: 'fp',
     estado: 'publicado',
   },
+  'eeae-bach': {
+    slug: 'eeae-bach',
+    level: '1.º Bachillerato',
+    shortLabel: 'EEAE',
+    title: 'Economía, Emprendimiento y Actividad Empresarial',
+    tagline:
+      'La materia de modalidad General que junta economía, iniciativa emprendedora y actividad empresarial. Para entender cómo se crea valor antes de elegir itinerario.',
+    num: '08',
+    color: 'eeae',
+    marcoNormativo: 'Real Decreto 243/2022 · Decret 108/2022 (CV)',
+    modalidad: 'Modalidad General',
+    etapa: 'bach',
+    curso: '1bach',
+    estado: 'publicado',
+  },
+  'gpe-bach': {
+    slug: 'gpe-bach',
+    level: 'Bachillerato (1.º/2.º)',
+    shortLabel: 'GPE',
+    title: 'Gestión de Proyectos de Emprendimiento',
+    tagline:
+      'Una materia de proyecto: el alumnado monta su propia iniciativa emprendedora ligada al territorio. Lleva libro teórico y cuaderno de proyecto guiado por fases.',
+    num: '09',
+    color: 'gpe',
+    marcoNormativo: 'Decret 108/2022 (CV) — optativa de oferta obligatoria',
+    modalidad: 'Optativa de oferta obligatoria',
+    etapa: 'bach',
+    curso: 'bach',
+    estado: 'publicado',
+  },
 };
 
 export const ASIGNATURAS_LIST: Asignatura[] = ASIGNATURA_SLUGS.map((s) => ASIGNATURAS[s]);
@@ -178,6 +212,10 @@ export const ASIGNATURAS_POR_ETAPA = {
       '2bach': {
         label: '2.º Bach',
         asignaturas: ASIGNATURAS_LIST.filter((a) => a.curso === '2bach'),
+      },
+      bach: {
+        label: 'Optativas (1.º/2.º)',
+        asignaturas: ASIGNATURAS_LIST.filter((a) => a.curso === 'bach'),
       },
     },
   },

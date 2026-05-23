@@ -29,7 +29,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = resolve(__dirname, '..');
 
 // Configurable — extend the array as new books are published.
-const ASIGNATURAS = ['edmn-2bach', 'eco-1bach', 'eco-4eso', 'fopp-4eso', 'taller-eco-3eso', 'ipe1-fp', 'ipe2-fp'];
+const ASIGNATURAS = ['edmn-2bach', 'eco-1bach', 'eco-4eso', 'fopp-4eso', 'taller-eco-3eso', 'ipe1-fp', 'ipe2-fp', 'eeae-bach', 'gpe-bach'];
 
 /**
  * Parse the YAML frontmatter at the top of an MDX file.
@@ -56,16 +56,54 @@ function stripMdxNoise(body) {
   let out = body;
   // remove import statements
   out = out.replace(/^import\s+.+$\n?/gm, '');
-  // remove JSX blocks of the form <Tag ...>...</Tag>, even multiline
-  // We only target the components we know are in our MDX.
-  const tags = ['Callout', 'Curiosity', 'RealExample', 'SolvedExercise', 'Bibliography'];
+  // remove paired JSX blocks <Tag ...>...</Tag>, even multiline. We strip the
+  // components that carry their own rich content (rendered elsewhere in the
+  // deck or intentionally left out of the auto-skeleton).
+  const tags = ['Callout', 'Curiosity', 'RealExample', 'SolvedExercise', 'Bibliography', 'Steps', 'KeyTakeaways', 'Diagram'];
   for (const tag of tags) {
     const re = new RegExp(`<${tag}\\b[^>]*>[\\s\\S]*?<\\/${tag}>`, 'g');
     out = out.replace(re, '');
   }
+  // remove self-closing components on their own (e.g. <Figure ... />, <FPP />).
+  // [^>] matches newlines, so multi-line <Figure /> blocks are covered.
+  out = out.replace(/<[A-Z][A-Za-z0-9]*\b[^>]*\/>/g, '');
   // collapse 3+ blank lines into 2
   out = out.replace(/\n{3,}/g, '\n\n');
   return out.trim();
+}
+
+/**
+ * Extract the bullet list inside <KeyTakeaways>...</KeyTakeaways> (if present)
+ * so the deck can close with a real "lo esencial" summary slide instead of a
+ * generic outro. Read from the RAW body, before stripMdxNoise removes it.
+ */
+function extractTakeaways(body) {
+  const m = body.match(/<KeyTakeaways\b[^>]*>([\s\S]*?)<\/KeyTakeaways>/);
+  if (!m) return [];
+  return m[1]
+    .split('\n')
+    .map((l) => l.trim())
+    .filter((l) => /^[-*]\s+/.test(l))
+    .map((l) => l.replace(/^[-*]\s+/, '').replace(/\s+/g, ' ').trim())
+    .filter(Boolean);
+}
+
+/**
+ * If a section begins (within its first couple of blocks) with a bullet list,
+ * return up to `max` items — richer than a prose excerpt for a slide.
+ */
+function sectionBullets(content, max = 5) {
+  const blocks = content.split(/\n\s*\n/).slice(0, 2);
+  for (const block of blocks) {
+    const items = block
+      .split('\n')
+      .map((l) => l.trim())
+      .filter((l) => /^[-*]\s+/.test(l));
+    if (items.length >= 2) {
+      return items.slice(0, max).map((l) => l.replace(/^[-*]\s+/, '').replace(/\s+/g, ' ').trim());
+    }
+  }
+  return [];
 }
 
 /**
@@ -129,7 +167,7 @@ function firstParagraph(content) {
 /**
  * Build the full Marp markdown deck for one unit.
  */
-function buildMarp(unit, sections) {
+function buildMarp(unit, sections, takeaways = []) {
   const head = [
     '---',
     'marp: true',
@@ -179,19 +217,22 @@ function buildMarp(unit, sections) {
     );
   }
 
-  // 4. Section slides
+  // 4. Section slides — prefer a short bullet list when the section opens with
+  // one; otherwise fall back to a prose excerpt.
   for (const s of sections) {
-    const excerpt = trimToExcerpt(firstParagraph(s.content));
-    slides.push(
-      [
-        `## ${s.heading}`,
-        '',
-        excerpt || '*(añadir aquí el contenido de la diapositiva)*',
-      ].join('\n')
-    );
+    const bullets = sectionBullets(s.content);
+    const bodyLines = bullets.length
+      ? bullets.map((b) => `- ${b}`)
+      : [trimToExcerpt(firstParagraph(s.content)) || '*(añadir aquí el contenido de la diapositiva)*'];
+    slides.push([`## ${s.heading}`, '', ...bodyLines].join('\n'));
   }
 
-  // 5. Closing slide
+  // 5. "Lo esencial" summary slide, derived from <KeyTakeaways>.
+  if (takeaways.length) {
+    slides.push(['## Lo esencial', '', ...takeaways.map((t) => `- ${t}`)].join('\n'));
+  }
+
+  // 6. Closing slide
   slides.push(
     [
       '<!-- _class: close -->',
@@ -230,6 +271,7 @@ for (const slug of ASIGNATURAS) {
       continue;
     }
 
+    const takeaways = extractTakeaways(body);
     const cleaned = stripMdxNoise(body);
     const sections = splitH2Sections(cleaned);
 
@@ -237,7 +279,7 @@ for (const slug of ASIGNATURAS) {
       console.warn(`  · ${file}: ningún H2 detectado, generando solo title+objetivos+conceptos`);
     }
 
-    const md = buildMarp(data, sections);
+    const md = buildMarp(data, sections, takeaways);
     const slug2 = basename(file, '.mdx');
     const outPath = join(outDir, `${slug2}.md`);
     writeFileSync(outPath, md, 'utf8');
