@@ -1,23 +1,17 @@
 #!/usr/bin/env node
 /**
- * Build the downloadable PDF of a book from the static build.
- *
- * Workflow:
- *   1. `npm run build` produces dist/<asignatura>/libro/imprimir/index.html
- *   2. This script:
- *      a) spawns a local static HTTP server over `dist/` so absolute
- *         asset paths (`/fonts/...`) resolve. paged.js fails on file://
- *         URLs because of those root-relative paths.
- *      b) launches pagedjs-cli against http://localhost:<port>/<slug>/libro/imprimir/
- *      c) writes the PDF to dist/downloads/ and copies it to public/downloads/
- *         so the next `npm run build` picks it up.
+ * Build the downloadable "Cuaderno de proyecto" PDF of each subject from the
+ * static build. Sibling of build-ebau-pdf.mjs: same HTTP-server + Chrome
+ * spawning pattern, but targets /<slug>/proyecto/imprimir/ and writes
+ * <slug>-proyecto.pdf. De momento solo GPE.
  *
  * Usage:
- *   npm run build:pdf            # generates and copies to public/downloads/
- *   node scripts/build-book-pdf.mjs --in-dist   # only writes to dist/downloads/
+ *   node scripts/build-proyecto-pdf.mjs                # all subjects, copy to public/downloads/
+ *   node scripts/build-proyecto-pdf.mjs gpe-bach       # only that subject
+ *   node scripts/build-proyecto-pdf.mjs --in-dist      # only write to dist/downloads/
  */
 
-import { spawnSync, spawn } from 'node:child_process';
+import { spawn } from 'node:child_process';
 import { existsSync, mkdirSync, copyFileSync, statSync, readFileSync } from 'node:fs';
 import { resolve, dirname, join, extname } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -27,13 +21,10 @@ import { createServer } from 'node:http';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = resolve(__dirname, '..');
 
-const allAsignaturas = ['edmn-2bach', 'eco-1bach', 'eco-4eso', 'fopp-4eso', 'taller-eco-3eso', 'ipe1-fp', 'ipe2-fp', 'eeae-bach', 'gpe-bach'];   // extend as more books publish
+const allAsignaturas = ['gpe-bach'];
 
 const args = new Set(process.argv.slice(2));
 const inDistOnly = args.has('--in-dist');
-
-// Optional positional slug filters: `node build-book-pdf.mjs eco-1bach`
-// generates only that book. Useful for verifying a single PDF quickly.
 const slugFilters = process.argv.slice(2).filter((a) => !a.startsWith('--'));
 const asignaturas = slugFilters.length > 0
   ? allAsignaturas.filter((s) => slugFilters.includes(s))
@@ -43,14 +34,6 @@ if (asignaturas.length === 0) {
   process.exit(1);
 }
 
-/**
- * Locate a working Chrome/Chromium executable.
- *
- * Strategy:
- *   1. Honor PUPPETEER_EXECUTABLE_PATH if already set.
- *   2. Look for the system Google Chrome (Windows / macOS / Linux).
- *   3. Fall back to puppeteer's bundled Chrome cache.
- */
 function findChromeExecutable() {
   if (process.env.PUPPETEER_EXECUTABLE_PATH && existsSync(process.env.PUPPETEER_EXECUTABLE_PATH)) {
     return process.env.PUPPETEER_EXECUTABLE_PATH;
@@ -64,7 +47,6 @@ function findChromeExecutable() {
     : platform() === 'darwin'
     ? ['/Applications/Google Chrome.app/Contents/MacOS/Google Chrome']
     : ['/usr/bin/google-chrome', '/usr/bin/google-chrome-stable', '/usr/bin/chromium-browser', '/usr/bin/chromium'];
-
   for (const c of candidates) {
     if (c && existsSync(c)) return c;
   }
@@ -77,11 +59,6 @@ if (chromePath) {
   console.log(`Usando Chrome del sistema: ${chromePath}`);
 }
 
-/**
- * Tiny static file server over `dist/`. We avoid spawning `astro preview`
- * to keep this script self-contained and fast — paged.js only needs to
- * fetch HTML + CSS + woff2 files.
- */
 const MIME = {
   '.html': 'text/html; charset=utf-8',
   '.css': 'text/css; charset=utf-8',
@@ -110,17 +87,12 @@ function startStaticServer(distDir, port) {
         filePath = join(filePath, 'index.html');
       }
       if (!existsSync(filePath)) {
-        console.log(`  [server] 404 ${url}`);
         res.writeHead(404, { 'Content-Type': 'text/plain' });
         res.end(`404 Not Found: ${url}`);
         return;
       }
       const ext = extname(filePath).toLowerCase();
-      console.log(`  [server] 200 ${url}`);
-      res.writeHead(200, {
-        'Content-Type': MIME[ext] ?? 'application/octet-stream',
-        'Cache-Control': 'no-cache',
-      });
+      res.writeHead(200, { 'Content-Type': MIME[ext] ?? 'application/octet-stream', 'Cache-Control': 'no-cache' });
       res.end(readFileSync(filePath));
     } catch (err) {
       res.writeHead(500, { 'Content-Type': 'text/plain' });
@@ -139,14 +111,12 @@ if (!existsSync(distDir)) {
   process.exit(1);
 }
 
-const PORT = 4329;
+const PORT = 4333;
 console.log(`\nIniciando servidor estático en http://localhost:${PORT}`);
 const server = await startStaticServer(distDir, PORT);
 
-// Quick sanity check: confirm the server actually serves the URL we'll
-// ask Chrome to load. Surfaces routing/path errors before we spin up Chrome.
 {
-  const probeUrl = `http://localhost:${PORT}/${asignaturas[0]}/libro/imprimir/`;
+  const probeUrl = `http://localhost:${PORT}/${asignaturas[0]}/proyecto/imprimir/`;
   try {
     const probe = await fetch(probeUrl);
     if (!probe.ok) {
@@ -170,35 +140,19 @@ mkdirSync(distDownloads, { recursive: true });
 let failures = 0;
 
 for (const slug of asignaturas) {
-  const url = `http://localhost:${PORT}/${slug}/libro/imprimir/`;
-  const outDist = resolve(distDownloads, `${slug}-libro.pdf`);
-  const outPublic = resolve(publicDownloads, `${slug}-libro.pdf`);
+  const url = `http://localhost:${PORT}/${slug}/proyecto/imprimir/`;
+  const outDist = resolve(distDownloads, `${slug}-proyecto.pdf`);
+  const outPublic = resolve(publicDownloads, `${slug}-proyecto.pdf`);
 
-  console.log(`\n— Generando PDF para ${slug}`);
+  console.log(`\n— Generando cuaderno de proyecto para ${slug}`);
   console.log(`  URL    : ${url}`);
   console.log(`  Output : ${outDist}`);
 
-  // IMPORTANT: must use `spawn` (not `spawnSync`) so the local HTTP
-  // server's event loop can serve Chrome's requests in parallel.
-  // spawnSync blocks the Node main thread until the child exits,
-  // which prevents the http server from responding.
   const exitCode = await new Promise((resolveExit) => {
     const child = spawn(
       'npx',
-      [
-        '--no-install',
-        'pagedjs-cli',
-        url,
-        '-o', outDist,
-        '-t', '120000',
-        '--browserArgs', '--no-sandbox',
-      ],
-      {
-        cwd: root,
-        stdio: 'inherit',
-        shell: true,
-        env: { ...process.env, PUPPETEER_EXECUTABLE_PATH: chromePath ?? '' },
-      }
+      ['--no-install', 'pagedjs-cli', url, '-o', outDist, '-t', '120000', '--browserArgs', '--no-sandbox'],
+      { cwd: root, stdio: 'inherit', shell: true, env: { ...process.env, PUPPETEER_EXECUTABLE_PATH: chromePath ?? '' } }
     );
     child.on('close', (code) => resolveExit(code));
     child.on('error', (err) => {
@@ -217,8 +171,7 @@ for (const slug of asignaturas) {
     copyFileSync(outDist, outPublic);
     console.log(`  Copiado a ${outPublic}`);
   }
-
-  console.log(`✓ ${slug}-libro.pdf listo`);
+  console.log(`✓ ${slug}-proyecto.pdf listo`);
 }
 
 server.close();
@@ -227,5 +180,4 @@ if (failures > 0) {
   console.error(`\n${failures} fallo(s). Revisa la salida anterior.`);
   process.exit(1);
 }
-
-console.log('\nPDF(s) generados con éxito.');
+console.log('\nCuaderno(s) de proyecto generado(s) con éxito.');
