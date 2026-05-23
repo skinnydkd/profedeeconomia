@@ -3,7 +3,7 @@ asignatura: gpe-bach
 unidad_relacionada: 5
 title: "Test · Unidad 5 — Las áreas de la empresa II: recursos humanos"
 duracion_estimada: "10-15 min"
-estado: borrador
+estado: publicado
 preguntas:
   - enunciado: "¿De qué se ocupa el área de recursos humanos de una empresa o proyecto?"
     opciones:

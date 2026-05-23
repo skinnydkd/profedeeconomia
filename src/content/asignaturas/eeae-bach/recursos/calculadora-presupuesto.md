@@ -5,7 +5,7 @@ title: "Calculadora del presupuesto 50-30-20"
 descripcion: "Compara tu presupuesto real con la regla 50-30-20 (necesidades, deseos, ahorro). Identifica desequilibrios y descubre dónde se va tu dinero."
 tipo: calculadora
 componente: Presupuesto503020
-estado: borrador
+estado: publicado
 ---
 
 ## Cuándo usarla

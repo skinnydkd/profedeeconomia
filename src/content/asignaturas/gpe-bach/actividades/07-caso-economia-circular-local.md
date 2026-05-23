@@ -13,7 +13,7 @@ materiales:
   - "Acceso a internet para contrastar un dato del caso con una fuente"
 competencias_clave: [CC, CPSAA, CCL]
 competencias_especificas: [CE5]
-estado: borrador
+estado: publicado
 ---
 
 ## Planteamiento

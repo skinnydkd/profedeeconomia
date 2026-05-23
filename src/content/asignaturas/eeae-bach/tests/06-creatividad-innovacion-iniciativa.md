@@ -3,7 +3,7 @@ asignatura: eeae-bach
 unidad_relacionada: 6
 title: "Test · Unidad 6 — Creatividad, innovación e iniciativa"
 duracion_estimada: "10-15 min"
-estado: borrador
+estado: publicado
 preguntas:
   - enunciado: "¿En qué consiste, en esencia, el espíritu emprendedor?"
     opciones:

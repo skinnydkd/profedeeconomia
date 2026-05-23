@@ -3,7 +3,7 @@ asignatura: eeae-bach
 unidad_relacionada: 10
 title: "Test · Unidad 10 — Transformación digital y la empresa del futuro"
 duracion_estimada: "10-15 min"
-estado: borrador
+estado: publicado
 preguntas:
   - enunciado: "¿Qué caracteriza a una revolución tecnológica como la actual revolución digital?"
     opciones:

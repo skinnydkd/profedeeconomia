@@ -5,7 +5,7 @@ title: "Calculadora del punto muerto"
 descripcion: "Introduce costes fijos, coste variable unitario y precio de venta para hallar el punto muerto (umbral de rentabilidad) de tu proyecto: las unidades que necesitas vender para empezar a ganar."
 tipo: calculadora
 componente: PuntoMuerto
-estado: borrador
+estado: publicado
 ---
 
 ## Cuándo usarla

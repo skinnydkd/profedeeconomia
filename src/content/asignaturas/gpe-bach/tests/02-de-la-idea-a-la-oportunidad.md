@@ -3,7 +3,7 @@ asignatura: gpe-bach
 unidad_relacionada: 2
 title: "Test · Unidad 2 — De la idea a la oportunidad: creatividad y análisis del entorno"
 duracion_estimada: "10-15 min"
-estado: borrador
+estado: publicado
 preguntas:
   - enunciado: "¿Cuál es la diferencia entre una idea y una oportunidad de negocio?"
     opciones:

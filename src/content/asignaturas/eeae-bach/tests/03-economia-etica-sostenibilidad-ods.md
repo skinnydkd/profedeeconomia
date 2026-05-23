@@ -3,7 +3,7 @@ asignatura: eeae-bach
 unidad_relacionada: 3
 title: "Test · Unidad 3 — Economía conectada: ética, sostenibilidad y ODS"
 duracion_estimada: "10-15 min"
-estado: borrador
+estado: publicado
 preguntas:
   - enunciado: "La economía ecológica afirma que la economía es…"
     opciones:

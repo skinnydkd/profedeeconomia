@@ -12,7 +12,7 @@ materiales:
   - "Acceso a internet para consultar la web de CIRCE (paeelectronico.es) y localizar el PAE más cercano"
 competencias_clave: [CD, CPSAA, CC]
 competencias_especificas: [CE2]
-estado: borrador
+estado: publicado
 ---
 
 ## Planteamiento

@@ -3,7 +3,7 @@ asignatura: eeae-bach
 unidad_relacionada: 9
 title: "Test · Unidad 9 — Estrategia, competitividad y modelos de negocio"
 duracion_estimada: "10-15 min"
-estado: borrador
+estado: publicado
 preguntas:
   - enunciado: "¿Qué es, para una empresa, su mercado?"
     opciones:

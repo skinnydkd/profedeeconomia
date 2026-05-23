@@ -3,7 +3,7 @@ asignatura: eeae-bach
 unidad_relacionada: 7
 title: "Test · Unidad 7 — Del proyecto a la empresa: misión, visión y emprendimiento social"
 duracion_estimada: "10-15 min"
-estado: borrador
+estado: publicado
 preguntas:
   - enunciado: "¿Qué distingue principalmente una idea de un proyecto emprendedor?"
     opciones:

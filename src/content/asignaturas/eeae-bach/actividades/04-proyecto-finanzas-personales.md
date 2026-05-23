@@ -13,7 +13,7 @@ materiales:
   - "Plantilla del mini-plan final (1-2 páginas)"
 competencias_clave: [CD, CCL, CPSAA, STEM]
 competencias_especificas: [CE2]
-estado: borrador
+estado: publicado
 ---
 
 ## Planteamiento

@@ -5,7 +5,7 @@ title: "Calculadora de interés compuesto"
 descripcion: "Introduce capital inicial, aportación mensual, tipo de interés anual y plazo. Visualiza cómo el tiempo separa lo aportado de lo acumulado: la mejor imagen del interés compuesto."
 tipo: calculadora
 componente: InteresCompuesto
-estado: borrador
+estado: publicado
 ---
 
 ## Cuándo usarla

@@ -3,7 +3,7 @@ asignatura: gpe-bach
 unidad_relacionada: 1
 title: "Test · Unidad 1 — Emprender e innovar: la persona emprendedora"
 duracion_estimada: "10-15 min"
-estado: borrador
+estado: publicado
 preguntas:
   - enunciado: "¿Cuál es la diferencia entre inventar e innovar según la unidad?"
     opciones:

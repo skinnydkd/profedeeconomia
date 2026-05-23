@@ -3,7 +3,7 @@ asignatura: gpe-bach
 unidad_relacionada: 3
 title: "Test · Unidad 3 — Decisiones para arrancar: localización, forma jurídica y trámites"
 duracion_estimada: "10-15 min"
-estado: borrador
+estado: publicado
 preguntas:
   - enunciado: "Al decidir la localización de un proyecto, ¿cuál de estas afirmaciones es la más correcta?"
     opciones:

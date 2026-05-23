@@ -14,7 +14,7 @@ materiales:
 competencias_clave: [CPSAA, CE, CCL]
 competencias_especificas: [CE4]
 ebau: false
-estado: borrador
+estado: publicado
 ---
 
 ## Planteamiento

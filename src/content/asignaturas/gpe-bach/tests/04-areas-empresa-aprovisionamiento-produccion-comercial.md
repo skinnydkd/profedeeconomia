@@ -3,7 +3,7 @@ asignatura: gpe-bach
 unidad_relacionada: 4
 title: "Test · Unidad 4 — Las áreas de la empresa I: aprovisionamiento, producción y comercial"
 duracion_estimada: "10-15 min"
-estado: borrador
+estado: publicado
 preguntas:
   - enunciado: "¿En qué consiste el área de aprovisionamiento de un proyecto?"
     opciones:

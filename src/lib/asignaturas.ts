@@ -161,7 +161,7 @@ export const ASIGNATURAS: Record<AsignaturaSlug, Asignatura> = {
     modalidad: 'Modalidad General',
     etapa: 'bach',
     curso: '1bach',
-    estado: 'proximamente',
+    estado: 'publicado',
   },
   'gpe-bach': {
     slug: 'gpe-bach',
@@ -176,7 +176,7 @@ export const ASIGNATURAS: Record<AsignaturaSlug, Asignatura> = {
     modalidad: 'Optativa de oferta obligatoria',
     etapa: 'bach',
     curso: 'bach',
-    estado: 'proximamente',
+    estado: 'publicado',
   },
 };
 

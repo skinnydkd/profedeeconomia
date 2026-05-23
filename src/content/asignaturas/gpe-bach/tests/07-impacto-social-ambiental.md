@@ -3,7 +3,7 @@ asignatura: gpe-bach
 unidad_relacionada: 7
 title: "Test · Unidad 7 — Impacto social y ambiental: emprender con propósito"
 duracion_estimada: "10-15 min"
-estado: borrador
+estado: publicado
 preguntas:
   - enunciado: "Según la lógica de GPE, ¿desde dónde se justifica la propuesta de valor de un proyecto emprendedor?"
     opciones:

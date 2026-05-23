@@ -3,7 +3,7 @@ asignatura: eeae-bach
 unidad_relacionada: 5
 title: "Test · Unidad 5 — El perfil de la persona emprendedora"
 duracion_estimada: "10-15 min"
-estado: borrador
+estado: publicado
 preguntas:
   - enunciado: "¿Cuál de estas afirmaciones describe mejor a la persona emprendedora según la unidad?"
     opciones:

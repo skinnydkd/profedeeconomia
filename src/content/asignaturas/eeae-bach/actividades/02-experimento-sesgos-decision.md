@@ -14,7 +14,7 @@ materiales:
 competencias_clave: [CPSAA, STEM, CE]
 competencias_especificas: [CE2, CE4]
 ebau: false
-estado: borrador
+estado: publicado
 ---
 
 ## Planteamiento

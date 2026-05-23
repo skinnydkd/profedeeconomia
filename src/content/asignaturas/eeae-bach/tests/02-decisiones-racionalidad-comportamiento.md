@@ -3,7 +3,7 @@ asignatura: eeae-bach
 unidad_relacionada: 2
 title: "Test · Unidad 2 — Decisiones económicas: racionalidad y comportamiento"
 duracion_estimada: "10-15 min"
-estado: borrador
+estado: publicado
 preguntas:
   - enunciado: "El individualismo metodológico, propio del análisis económico, sostiene que…"
     opciones:

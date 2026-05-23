@@ -3,7 +3,7 @@ asignatura: gpe-bach
 unidad_relacionada: 6
 title: "Test · Unidad 6 — Contabilidad, fiscalidad y financiación del proyecto"
 duracion_estimada: "10-15 min"
-estado: borrador
+estado: publicado
 preguntas:
   - enunciado: "¿Qué financian principalmente los impuestos en un Estado del bienestar?"
     opciones:

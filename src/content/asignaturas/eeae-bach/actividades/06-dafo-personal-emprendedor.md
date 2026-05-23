@@ -13,7 +13,7 @@ materiales:
   - "Ficha guía con las preguntas orientadoras de cada casilla"
   - "Ficha de la matriz cruzada (FO, FA, DO, DA) para extraer acciones"
   - "Cuaderno para la reflexión final"
-estado: borrador
+estado: publicado
 ---
 
 ## Planteamiento

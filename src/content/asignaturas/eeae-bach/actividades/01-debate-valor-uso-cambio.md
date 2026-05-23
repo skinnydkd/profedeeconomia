@@ -13,7 +13,7 @@ materiales:
   - "Rúbrica de evaluación impresa para la coevaluación"
 competencias_clave: [CCL, CC, CPSAA]
 competencias_especificas: [CE2, CE1]
-estado: borrador
+estado: publicado
 ---
 
 ## Planteamiento

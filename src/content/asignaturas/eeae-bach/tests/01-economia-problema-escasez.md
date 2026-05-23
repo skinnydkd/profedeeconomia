@@ -3,7 +3,7 @@ asignatura: eeae-bach
 unidad_relacionada: 1
 title: "Test · Unidad 1 — La economía y el problema de la escasez"
 duracion_estimada: "10-15 min"
-estado: borrador
+estado: publicado
 preguntas:
   - enunciado: "¿Qué es, en esencia, la escasez en economía?"
     opciones:

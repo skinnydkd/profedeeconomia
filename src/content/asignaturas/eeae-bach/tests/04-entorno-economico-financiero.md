@@ -3,7 +3,7 @@ asignatura: eeae-bach
 unidad_relacionada: 4
 title: "Test · Unidad 4 — El entorno económico y financiero"
 duracion_estimada: "10-15 min"
-estado: borrador
+estado: publicado
 preguntas:
   - enunciado: "¿Cuáles son los cuatro agentes económicos que se relacionan en una economía?"
     opciones:

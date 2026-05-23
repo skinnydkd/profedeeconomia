@@ -11,7 +11,7 @@ materiales:
   - "Esquema-resumen de los conceptos clave: eficiencia de Pareto, equidad, bienestar social, utilitarismo, calidad de vida"
   - "Tarjetas de rol para los dos equipos"
   - "Rúbrica de debate para coevaluación"
-estado: borrador
+estado: publicado
 ---
 
 ## Planteamiento

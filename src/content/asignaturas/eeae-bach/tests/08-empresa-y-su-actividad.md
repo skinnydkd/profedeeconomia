@@ -3,7 +3,7 @@ asignatura: eeae-bach
 unidad_relacionada: 8
 title: "Test · Unidad 8 — La empresa y su actividad"
 duracion_estimada: "10-15 min"
-estado: borrador
+estado: publicado
 preguntas:
   - enunciado: "¿Por qué decimos que la empresa es la unidad básica de la actividad económica?"
     opciones:
