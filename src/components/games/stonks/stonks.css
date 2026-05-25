@@ -1,0 +1,568 @@
+/*
+ * stonks.css — Variant C game styles for the Stonks investment simulator.
+ *
+ * Naming convention:
+ *   .sk-*  General game container and shared elements
+ *   .kf-*  Final "Karioki Final" result card
+ *
+ * Risk color palette:
+ *   baja    → teal     #1F6E6E
+ *   media   → mustard  #A87A2A
+ *   alta    → terracota #C44E2C
+ *   extrema → terracota deep #9C3A1C
+ *
+ * No gradients. No emojis. Typography-only risk labels.
+ */
+
+/* =========================================================
+   Root container — full-viewport, centred column
+   ========================================================= */
+
+.sk {
+  min-height: 100dvh;
+  background: var(--color-bg, #FBF6EC);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 1rem;
+}
+
+/* =========================================================
+   Phone-width card — the main game surface
+   ========================================================= */
+
+.sk-phone {
+  width: 100%;
+  max-width: 480px;
+  background: var(--color-paper, #FFFFFF);
+  border: 1px solid var(--color-line, #E5D4BD);
+  border-radius: 6px;
+  padding: 1.5rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin: 1rem auto;
+}
+
+/* =========================================================
+   Top bar — year / round
+   ========================================================= */
+
+.sk-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-bottom: 1px solid var(--color-line, #E5D4BD);
+  padding-bottom: 0.75rem;
+}
+
+.sk-year {
+  font-family: var(--font-serif, "Fraunces", Georgia, serif);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-ink, #2A1F18);
+  line-height: 1;
+  font-variation-settings: "SOFT" 80, "WONK" 0;
+}
+
+.sk-round {
+  font-size: 0.8rem;
+  color: var(--color-ink-mute, #8A7868);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+/* =========================================================
+   Wealth indicator
+   ========================================================= */
+
+.sk-wealth {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  background: var(--color-bg, #FBF6EC);
+  border-radius: 4px;
+  padding: 0.625rem 0.875rem;
+}
+
+.sk-wealth .l {
+  font-size: 0.8rem;
+  color: var(--color-ink-soft, #5C4A3D);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.sk-wealth .v {
+  font-family: var(--font-mono, "JetBrains Mono", monospace);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-ink, #2A1F18);
+}
+
+/* =========================================================
+   News block
+   ========================================================= */
+
+.sk-news {
+  border-left: 3px solid var(--color-terra, #C44E2C);
+  padding: 0.75rem 1rem;
+  background: var(--color-terra-soft, #FBE3D6);
+  border-radius: 0 4px 4px 0;
+}
+
+.sk-news .eyebrow {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-terra, #C44E2C);
+  margin-bottom: 0.35rem;
+}
+
+.sk-news .t {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--color-ink, #2A1F18);
+}
+
+.sk-news .t.serif {
+  font-family: var(--font-serif, "Fraunces", Georgia, serif);
+  font-size: 1.1rem;
+  font-variation-settings: "SOFT" 80, "WONK" 0;
+}
+
+/* =========================================================
+   Asset rows
+   ========================================================= */
+
+.sk-assets {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.sk-asset {
+  border: 1px solid var(--color-line, #E5D4BD);
+  border-radius: 4px;
+  padding: 0.625rem 0.75rem;
+  transition: border-color 0.15s;
+}
+
+.sk-asset.locked {
+  opacity: 0.45;
+  background: var(--color-bg, #FBF6EC);
+}
+
+.sk-asset .row1 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.sk-asset .nm {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--color-ink, #2A1F18);
+}
+
+/* Typographic risk labels — no emojis */
+.sk-asset .risk {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0.1em 0.45em;
+  border-radius: 3px;
+  margin-left: 0.35rem;
+}
+
+.sk-asset .r-baja    { color: #1F6E6E; background: #DBEDED; }
+.sk-asset .r-media   { color: #A87A2A; background: #F5E5BC; }
+.sk-asset .r-alta    { color: #C44E2C; background: #FBE3D6; }
+.sk-asset .r-extrema { color: #9C3A1C; background: #FDDDD0; }
+
+.sk-asset .lock {
+  font-size: 0.72rem;
+  color: var(--color-ink-mute, #8A7868);
+  font-style: italic;
+  margin-left: 0.35rem;
+}
+
+/* Controls: minus/plus buttons + percentage */
+.sk-asset .ctrl {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  flex-shrink: 0;
+}
+
+.sk-btn {
+  width: 1.75rem;
+  height: 1.75rem;
+  border: 1px solid var(--color-line, #E5D4BD);
+  background: var(--color-paper, #FFFFFF);
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  line-height: 1;
+  color: var(--color-ink, #2A1F18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.1s, border-color 0.1s;
+  padding: 0;
+}
+
+.sk-btn:hover {
+  background: var(--color-bg-soft, #F8E8D0);
+  border-color: var(--color-mustard, #D4A24C);
+}
+
+.sk-btn:active {
+  background: var(--color-mustard-soft, #F5E5BC);
+}
+
+.sk-pct {
+  font-family: var(--font-mono, "JetBrains Mono", monospace);
+  font-size: 0.9rem;
+  font-weight: 600;
+  min-width: 2.5rem;
+  text-align: center;
+  color: var(--color-ink, #2A1F18);
+}
+
+/* Allocation bar */
+.sk-bar {
+  margin-top: 0.4rem;
+  height: 3px;
+  background: var(--color-line, #E5D4BD);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.sk-bar i {
+  display: block;
+  height: 100%;
+  background: var(--color-terra, #C44E2C);
+  border-radius: 2px;
+  transition: width 0.2s var(--ease-soft, ease);
+  font-style: normal;
+}
+
+/* Risk-coloured bar variant */
+.sk-asset.risk-baja    .sk-bar i { background: #1F6E6E; }
+.sk-asset.risk-media   .sk-bar i { background: #A87A2A; }
+.sk-asset.risk-alta    .sk-bar i { background: #C44E2C; }
+.sk-asset.risk-extrema .sk-bar i { background: #9C3A1C; }
+
+/* =========================================================
+   Total indicator
+   ========================================================= */
+
+.sk-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+  padding: 0.35rem 0;
+  border-top: 1px solid var(--color-line-soft, #EFE2CB);
+}
+
+.sk-total .lab {
+  color: var(--color-ink-soft, #5C4A3D);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 0.75rem;
+}
+
+.sk-total .ok {
+  color: #1F6E6E;
+  font-weight: 700;
+  font-family: var(--font-mono, "JetBrains Mono", monospace);
+}
+
+.sk-total .bad {
+  color: var(--color-terra, #C44E2C);
+  font-weight: 700;
+  font-family: var(--font-mono, "JetBrains Mono", monospace);
+}
+
+/* =========================================================
+   Primary CTA button
+   ========================================================= */
+
+.sk-cta {
+  display: block;
+  width: 100%;
+  padding: 0.8rem 1rem;
+  background: var(--color-terra, #C44E2C);
+  color: #FFFFFF;
+  border: none;
+  border-radius: 4px;
+  font-family: var(--font-sans, sans-serif);
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: 0.02em;
+  text-align: center;
+  transition: background 0.15s;
+}
+
+.sk-cta:hover:not(:disabled) {
+  background: var(--color-terra-deep, #9C3A1C);
+}
+
+.sk-cta:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.sk-cta.ghost {
+  background: transparent;
+  color: var(--color-terra, #C44E2C);
+  border: 1.5px solid var(--color-terra, #C44E2C);
+}
+
+.sk-cta.ghost:hover {
+  background: var(--color-terra-soft, #FBE3D6);
+}
+
+/* =========================================================
+   Results list (returns per asset)
+   ========================================================= */
+
+.sk-returns {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.sk-returns li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+  padding: 0.2rem 0;
+  border-bottom: 1px solid var(--color-line-soft, #EFE2CB);
+}
+
+.sk-returns li:last-child {
+  border-bottom: none;
+}
+
+.sk-returns .pos {
+  color: #1F6E6E;
+  font-family: var(--font-mono, "JetBrains Mono", monospace);
+  font-weight: 600;
+}
+
+.sk-returns .neg {
+  color: var(--color-terra, #C44E2C);
+  font-family: var(--font-mono, "JetBrains Mono", monospace);
+  font-weight: 600;
+}
+
+/* =========================================================
+   Start screen
+   ========================================================= */
+
+.sk-start {
+  text-align: center;
+  gap: 1.5rem;
+}
+
+.sk-start h1.sk-year {
+  font-size: 3rem;
+  margin: 0;
+}
+
+.sk-intro {
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--color-ink-soft, #5C4A3D);
+  margin: 0;
+}
+
+/* =========================================================
+   Final card — .kf-* namespace
+   ========================================================= */
+
+.kf {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.kf-card {
+  width: 100%;
+  max-width: 600px;
+  background: var(--color-paper, #FFFFFF);
+  border: 1px solid var(--color-line, #E5D4BD);
+  border-radius: 6px;
+  padding: 2rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+  margin: 1rem auto;
+}
+
+.kf-eyebrow {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--color-ink-mute, #8A7868);
+}
+
+.kf-verdict {
+  font-family: var(--font-serif, "Fraunces", Georgia, serif);
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--color-ink, #2A1F18);
+  font-variation-settings: "SOFT" 80, "WONK" 0;
+}
+
+.kf-verdict .ac {
+  color: var(--color-terra, #C44E2C);
+}
+
+/* Scores side by side */
+.kf-scores {
+  display: flex;
+  gap: 1rem;
+}
+
+.kf-score {
+  flex: 1;
+  padding: 0.875rem 1rem;
+  border-radius: 4px;
+  background: var(--color-bg, #FBF6EC);
+  border: 1px solid var(--color-line, #E5D4BD);
+}
+
+.kf-score.you {
+  border-color: var(--color-terra, #C44E2C);
+  background: var(--color-terra-soft, #FBE3D6);
+}
+
+.kf-score .l {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-ink-soft, #5C4A3D);
+  margin-bottom: 0.25rem;
+}
+
+.kf-score .v {
+  font-family: var(--font-mono, "JetBrains Mono", monospace);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--color-ink, #2A1F18);
+}
+
+/* Chart area */
+.kf-chart {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.kf-legend {
+  display: flex;
+  gap: 1.25rem;
+  font-size: 0.8rem;
+  color: var(--color-ink-soft, #5C4A3D);
+}
+
+.kf-legend span {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.kf-legend i {
+  display: inline-block;
+  width: 1.2rem;
+  height: 3px;
+  border-radius: 2px;
+  font-style: normal;
+}
+
+/* Lessons section */
+.kf-lessons h3 {
+  font-family: var(--font-serif, "Fraunces", Georgia, serif);
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 0 0 0.75rem;
+  color: var(--color-ink, #2A1F18);
+  font-variation-settings: "SOFT" 80, "WONK" 0;
+}
+
+.kf-lessons ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.kf-lessons li {
+  padding-left: 1.1rem;
+  position: relative;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--color-ink-soft, #5C4A3D);
+}
+
+.kf-lessons li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--color-mustard, #D4A24C);
+  font-weight: 700;
+}
+
+/* CTA row in final card */
+.kf-cta {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.kf-cta .primary {
+  flex: 1;
+  padding: 0.8rem 1rem;
+  background: var(--color-terra, #C44E2C);
+  color: #FFFFFF;
+  border: none;
+  border-radius: 4px;
+  font-family: var(--font-sans, sans-serif);
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.kf-cta .primary:hover {
+  background: var(--color-terra-deep, #9C3A1C);
+}
+
+/* =========================================================
+   Serif utility (used on titles inside screens)
+   ========================================================= */
+
+.serif {
+  font-family: var(--font-serif, "Fraunces", Georgia, serif);
+  font-variation-settings: "SOFT" 80, "WONK" 0;
+}
