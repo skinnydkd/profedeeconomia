@@ -29,7 +29,7 @@ export function SetupScreen({ onStart, hasSave, onContinue }: Props) {
   }
 
   function handleStart() {
-    // At least 1 faction must exist (even if all are AI, game can run; but UI requires at least 1)
+    if (humanFactions.size === 0) return;
     onStart([...humanFactions] as FactionId[]);
   }
 
@@ -86,7 +86,16 @@ export function SetupScreen({ onStart, hasSave, onContinue }: Props) {
               Continuar partida
             </button>
           )}
-          <button class="er-setup-cta" onClick={handleStart}>
+          {humanFactions.size === 0 && (
+            <p style={{ margin: 0, fontSize: '0.8rem', color: '#C44E2C', textAlign: 'center' }}>
+              Selecciona al menos 1 jugador humano
+            </p>
+          )}
+          <button
+            class="er-setup-cta"
+            onClick={handleStart}
+            disabled={humanFactions.size === 0}
+          >
             Empezar
           </button>
         </div>
