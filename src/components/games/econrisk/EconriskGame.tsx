@@ -37,7 +37,7 @@ import {
 } from '@/lib/games/econrisk/engine';
 import { aiTakeTurn } from '@/lib/games/econrisk/ai';
 import { factionMeta } from '@/lib/games/econrisk/factions';
-import { byId } from '@/lib/games/econrisk/map';
+import { byId, TERRITORIES } from '@/lib/games/econrisk/map';
 import { makeGameStorage } from '@/lib/games/storage';
 
 import { SetupScreen } from './SetupScreen';
@@ -120,14 +120,7 @@ export default function EconriskGame() {
         }
         const next = aiTakeTurn(prev);
         aiPending.current = false;
-        // After AI turn, check if next faction is human → show pass screen
-        if (next.winner === null) {
-          const nextFaction = next.order[next.current];
-          if (next.factions[nextFaction].isHuman) {
-            // Will trigger the pass-screen logic via the state update + ui check in the next render cycle
-            // We use a short follow-up to set pass state after render
-          }
-        }
+        // Pass-screen is handled by the separate useEffect below that watches state+ui.
         return next;
       });
     }, 700);
@@ -376,7 +369,7 @@ export default function EconriskGame() {
               </div>
             ))}
             <span style={{ marginLeft: 'auto', fontSize: '0.7rem', color: '#8A7868', fontStyle: 'italic' }}>
-              {ownedCount(state, currentFaction)} / 24 — objetivo: 18+
+              {ownedCount(state, currentFaction)} / {TERRITORIES.length} — objetivo: 18+
             </span>
           </div>
 
