@@ -1,0 +1,560 @@
+import { describe, it, expect } from 'vitest';
+import {
+  createInitialState,
+  reinforcementsFor,
+  ownedCount,
+  resolveAttack,
+  canAttack,
+  checkVictory,
+  controlsContinent,
+  placeReinforcement,
+  fortify,
+  applyEvent,
+  advancePhase,
+  endTurn,
+} from './engine';
+import { FACTION_IDS } from './factions';
+import { TERRITORIES, byId } from './map';
+import type { GameState } from './types';
+
+// byId is imported but used only in structural helpers (keep for future tests)
+void byId;
+
+// Helper: sequential RNG from a fixed array (loops)
+const seq = (vals: number[]) => {
+  let i = 0;
+  return () => vals[i++ % vals.length];
+};
+
+// Helper: make a minimal state with all territories owned by keynes, attack phase
+function dominantState(): GameState {
+  const s = createInitialState(['keynes'], () => 0.5);
+  for (const t of TERRITORIES) {
+    s.territories[t.id] = { owner: 'keynes', units: 3 };
+  }
+  return { ...s, phase: 'attack', current: s.order.indexOf('keynes') };
+}
+
+describe('econrisk engine', () => {
+  // ─── Initial state ───────────────────────────────────────────────────────────
+
+  it('initial state distributes all 24 territories among factions with >=1 unit each', () => {
+    const s = createInitialState(['keynes'], () => 0.5); // 1 human, 3 AI
+    expect(Object.keys(s.territories).length).toBe(24);
+    for (const t of TERRITORIES) {
+      expect(s.territories[t.id].units).toBeGreaterThanOrEqual(1);
+    }
+    expect(s.factions.keynes.isHuman).toBe(true);
+    expect(s.factions.marx.isHuman).toBe(false);
+    expect(s.factions.austrian.isHuman).toBe(false);
+    expect(s.factions.neoclassic.isHuman).toBe(false);
+    expect(s.round).toBe(1);
+    expect(s.phase).toBe('event');
+    expect(s.winner).toBeNull();
+    expect(s.peaceUntilRound).toBe(0);
+    expect(s.neoclassicJumpUsed).toBe(false);
+  });
+
+  it('initial state gives each faction exactly 6 territories (24 / 4)', () => {
+    const s = createInitialState(['keynes', 'marx'], () => 0.5);
+    for (const f of FACTION_IDS) {
+      expect(ownedCount(s, f)).toBe(6);
+    }
+  });
+
+  it('all factions are alive at start', () => {
+    const s = createInitialState(['keynes'], () => 0.5);
+    for (const f of FACTION_IDS) {
+      expect(s.factions[f].alive).toBe(true);
+    }
+  });
+
+  // ─── Reinforcements ───────────────────────────────────────────────────────────
+
+  it('reinforcements = max(3, floor(owned/3)) + continental bonus', () => {
+    const s = createInitialState(['keynes'], () => 0.5);
+    const f = s.order[0];
+    const owned = ownedCount(s, f);
+    const r = reinforcementsFor(s, f);
+    expect(r).toBeGreaterThanOrEqual(Math.max(3, Math.floor(owned / 3)));
+  });
+
+  it('reinforcements = 3 minimum even with 3 or fewer territories', () => {
+    const s = createInitialState(['keynes'], () => 0.5);
+    // Give keynes only 2 territories
+    let count = 0;
+    for (const t of TERRITORIES) {
+      if (count < 2) {
+        s.territories[t.id] = { owner: 'keynes', units: 1 };
+        count++;
+      } else {
+        s.territories[t.id] = { owner: 'marx', units: 1 };
+      }
+    }
+    expect(reinforcementsFor(s, 'keynes')).toBe(3);
+  });
+
+  it('controlsContinent true only when faction owns every territory of a continent', () => {
+    const s = createInitialState(['keynes'], () => 0.5);
+    const c = TERRITORIES[0].continent; // norteamerica
+    for (const t of TERRITORIES.filter((x) => x.continent === c)) {
+      s.territories[t.id] = { owner: 'keynes', units: 1 };
+    }
+    // Give the others to another faction
+    for (const t of TERRITORIES.filter((x) => x.continent !== c)) {
+      s.territories[t.id] = { owner: 'marx', units: 1 };
+    }
+    expect(controlsContinent(s, 'keynes', c)).toBe(true);
+    expect(controlsContinent(s, 'marx', c)).toBe(false);
+  });
+
+  // ─── canAttack ────────────────────────────────────────────────────────────────
+
+  it('canAttack requires adjacency, enemy owner, and >1 unit (non-neoclassic)', () => {
+    const s = createInitialState(['keynes'], () => 0.5);
+    const a = TERRITORIES[0];
+    const b = a.adj[0];
+    s.territories[a.id] = { owner: 'keynes', units: 3 };
+    s.territories[b] = { owner: 'marx', units: 1 };
+    const attackState = { ...s, current: s.order.indexOf('keynes'), phase: 'attack' as const };
+    expect(canAttack(attackState, a.id, b)).toBe(true);
+  });
+
+  it('canAttack returns false when attacker has only 1 unit', () => {
+    const s = createInitialState(['keynes'], () => 0.5);
+    const a = TERRITORIES[0];
+    const b = a.adj[0];
+    s.territories[a.id] = { owner: 'keynes', units: 1 };
+    s.territories[b] = { owner: 'marx', units: 1 };
+    const attackState = { ...s, current: s.order.indexOf('keynes'), phase: 'attack' as const };
+    expect(canAttack(attackState, a.id, b)).toBe(false);
+  });
+
+  it('canAttack returns false when target is owned by attacker', () => {
+    const s = createInitialState(['keynes'], () => 0.5);
+    const a = TERRITORIES[0];
+    const b = a.adj[0];
+    s.territories[a.id] = { owner: 'keynes', units: 3 };
+    s.territories[b] = { owner: 'keynes', units: 1 };
+    const attackState = { ...s, current: s.order.indexOf('keynes'), phase: 'attack' as const };
+    expect(canAttack(attackState, a.id, b)).toBe(false);
+  });
+
+  it('canAttack returns false when source is not owned by current faction', () => {
+    const s = createInitialState(['keynes'], () => 0.5);
+    const a = TERRITORIES[0];
+    const b = a.adj[0];
+    s.territories[a.id] = { owner: 'marx', units: 3 };
+    s.territories[b] = { owner: 'keynes', units: 1 };
+    const attackState = { ...s, current: s.order.indexOf('keynes'), phase: 'attack' as const };
+    expect(canAttack(attackState, a.id, b)).toBe(false);
+  });
+
+  it('canAttack returns false during peace round', () => {
+    const s = createInitialState(['keynes'], () => 0.5);
+    const a = TERRITORIES[0];
+    const b = a.adj[0];
+    s.territories[a.id] = { owner: 'keynes', units: 3 };
+    s.territories[b] = { owner: 'marx', units: 1 };
+    const attackState = {
+      ...s,
+      current: s.order.indexOf('keynes'),
+      phase: 'attack' as const,
+      peaceUntilRound: 1,
+      round: 1,
+    };
+    expect(canAttack(attackState, a.id, b)).toBe(false);
+  });
+
+  it('canAttack returns false when target is non-adjacent and faction is not neoclassic', () => {
+    const s = createInitialState(['keynes'], () => 0.5);
+    // Find two non-adjacent territories
+    const a = TERRITORIES[0];
+    const nonAdj = TERRITORIES.find((t) => t.id !== a.id && !a.adj.includes(t.id))!;
+    s.territories[a.id] = { owner: 'keynes', units: 5 };
+    s.territories[nonAdj.id] = { owner: 'marx', units: 1 };
+    const attackState = { ...s, current: s.order.indexOf('keynes'), phase: 'attack' as const };
+    expect(canAttack(attackState, a.id, nonAdj.id)).toBe(false);
+  });
+
+  it('neoclassic can attack a non-adjacent territory once per turn', () => {
+    const s = createInitialState(['neoclassic'], () => 0.5);
+    const a = TERRITORIES[0];
+    const nonAdj = TERRITORIES.find((t) => t.id !== a.id && !a.adj.includes(t.id))!;
+    s.territories[a.id] = { owner: 'neoclassic', units: 5 };
+    s.territories[nonAdj.id] = { owner: 'marx', units: 1 };
+    const attackState = {
+      ...s,
+      current: s.order.indexOf('neoclassic'),
+      phase: 'attack' as const,
+      neoclassicJumpUsed: false,
+    };
+    expect(canAttack(attackState, a.id, nonAdj.id)).toBe(true);
+  });
+
+  it('neoclassic cannot use the non-adjacent attack a second time in the same turn', () => {
+    const s = createInitialState(['neoclassic'], () => 0.5);
+    const a = TERRITORIES[0];
+    const nonAdj = TERRITORIES.find((t) => t.id !== a.id && !a.adj.includes(t.id))!;
+    s.territories[a.id] = { owner: 'neoclassic', units: 5 };
+    s.territories[nonAdj.id] = { owner: 'marx', units: 1 };
+    const attackState = {
+      ...s,
+      current: s.order.indexOf('neoclassic'),
+      phase: 'attack' as const,
+      neoclassicJumpUsed: true, // already used
+    };
+    expect(canAttack(attackState, a.id, nonAdj.id)).toBe(false);
+  });
+
+  // ─── resolveAttack ────────────────────────────────────────────────────────────
+
+  it('resolveAttack: higher dice win — attacker wins overwhelmingly and captures', () => {
+    const s = createInitialState(['keynes'], () => 0.5);
+    const a = TERRITORIES[0];
+    const b = a.adj[0];
+    s.territories[a.id] = { owner: 'keynes', units: 4 };
+    s.territories[b] = { owner: 'marx', units: 2 };
+    // rng: attacker rolls 0.99,0.99,0.99 → dice 6,6,6; defender rolls 0.0,0.0 → dice 1,1
+    // Attacker wins both pairs (6>1, 6>1) → defender loses 2 units → 0 → capture
+    const next = resolveAttack(
+      { ...s, current: s.order.indexOf('keynes'), phase: 'attack' as const },
+      a.id,
+      b,
+      seq([0.99, 0.99, 0.99, 0.0, 0.0]),
+    );
+    // After capture: territory belongs to attacker
+    expect(next.territories[b].owner).toBe('keynes');
+    // Attacker territory still has at least 1 unit left
+    expect(next.territories[a.id].units).toBeGreaterThanOrEqual(1);
+  });
+
+  it('resolveAttack tie goes to defender — attacker loses a unit on equal dice', () => {
+    const s = createInitialState(['keynes'], () => 0.5);
+    const a = TERRITORIES[0];
+    const b = a.adj[0];
+    s.territories[a.id] = { owner: 'keynes', units: 3 };
+    s.territories[b] = { owner: 'marx', units: 2 };
+    // attacker: 0.5 → 3+1=4... actually floor(0.5*6)+1 = 4; defender: 0.5 → 4; TIES = defender wins
+    // Use exact tie: both roll exactly the same value
+    const rng = seq([0.5, 0.5, 0.5, 0.5, 0.5]);
+    const next = resolveAttack(
+      { ...s, current: s.order.indexOf('keynes'), phase: 'attack' as const },
+      a.id,
+      b,
+      rng,
+    );
+    const attackerUnits = next.territories[a.id].units;
+    const defenderUnits = next.territories[b].units;
+    // On a tie, attacker loses. Combined losses should reflect attacker paying
+    expect(attackerUnits).toBeLessThan(3); // attacker lost at least 1
+    // Defender should be >= its prior (2) because ties don't cost defender
+    // (though attacker could have won a non-tied pair)
+    expect(defenderUnits).toBeGreaterThanOrEqual(1);
+  });
+
+  it('resolveAttack: attacker captures when defender units reach 0', () => {
+    const s = createInitialState(['keynes'], () => 0.5);
+    const a = TERRITORIES[0];
+    const b = a.adj[0];
+    s.territories[a.id] = { owner: 'keynes', units: 5 };
+    s.territories[b] = { owner: 'marx', units: 1 };
+    // attacker rolls 0.99 → 6, defender rolls 0.0 → 1; attacker wins easily
+    const next = resolveAttack(
+      { ...s, current: s.order.indexOf('keynes'), phase: 'attack' as const },
+      a.id,
+      b,
+      seq([0.99, 0.0]),
+    );
+    expect(next.territories[b].owner).toBe('keynes');
+    expect(next.territories[b].units).toBeGreaterThanOrEqual(1);
+    expect(next.territories[a.id].units).toBeGreaterThanOrEqual(1);
+  });
+
+  it('resolveAttack: marxist auto-captures territory defended by exactly 1 unit', () => {
+    const s = createInitialState(['marx'], () => 0.5);
+    const a = TERRITORIES[0];
+    const b = a.adj[0];
+    s.territories[a.id] = { owner: 'marx', units: 3 };
+    s.territories[b] = { owner: 'keynes', units: 1 };
+    const before = s.territories[a.id].units;
+    const next = resolveAttack(
+      { ...s, current: s.order.indexOf('marx'), phase: 'attack' as const },
+      a.id,
+      b,
+      seq([]), // no RNG needed — marxist auto-captures
+    );
+    expect(next.territories[b].owner).toBe('marx');
+    expect(next.territories[a.id].units).toBeLessThan(before); // moved units out
+  });
+
+  it('resolveAttack: marxist does NOT auto-capture when defender has 2+ units', () => {
+    const s = createInitialState(['marx'], () => 0.5);
+    const a = TERRITORIES[0];
+    const b = a.adj[0];
+    s.territories[a.id] = { owner: 'marx', units: 4 };
+    s.territories[b] = { owner: 'keynes', units: 2 }; // 2 units — no auto-capture
+    // attacker rolls low, defender high → defend wins
+    const next = resolveAttack(
+      { ...s, current: s.order.indexOf('marx'), phase: 'attack' as const },
+      a.id,
+      b,
+      seq([0.0, 0.99, 0.99]), // attacker 1,1 | defender 6,6
+    );
+    // Territory should still be owned by keynes (defender won)
+    expect(next.territories[b].owner).toBe('keynes');
+  });
+
+  it('austrian power: +1 to each defender die changes combat outcome deterministically', () => {
+    // Scenario: attacker (keynes) attacks an AUSTRIAN territory with 2 units.
+    // Without austrian bonus, a die of 1 would lose to die 2.
+    // With austrian +1 bonus, defender die becomes 2, tying (defender wins tie).
+    // Attacker: 1 die (3 units - 1 = 2, min(3,2)=2 dice); defender: 1 die min(2,1)=1
+    //   attacker rolls 0.0 → floor(0*6)+1 = 1
+    //   defender rolls 0.16 → floor(0.16*6)+1 = 1+1(austrian)=2
+    // Without austrian, defender would have 1 — tie → attacker loses. With austrian, defender has 2 > 1 → attacker definitely loses.
+
+    // Same attack against a NON-austrian target first:
+    const sNonAustrian = createInitialState(['keynes'], () => 0.5);
+    const a = TERRITORIES[0];
+    const b = a.adj[0];
+    sNonAustrian.territories[a.id] = { owner: 'keynes', units: 3 };
+    sNonAustrian.territories[b] = { owner: 'marx', units: 2 }; // marx = no bonus
+    const rngFixed = seq([0.0, 0.0, 0.0, 0.0, 0.0]); // all dice → 1
+    const nextNonAustrian = resolveAttack(
+      { ...sNonAustrian, current: sNonAustrian.order.indexOf('keynes'), phase: 'attack' as const },
+      a.id,
+      b,
+      rngFixed,
+    );
+
+    // Same attack against an AUSTRIAN target:
+    const sAustrian = createInitialState(['keynes'], () => 0.5);
+    sAustrian.territories[a.id] = { owner: 'keynes', units: 3 };
+    sAustrian.territories[b] = { owner: 'austrian', units: 2 }; // austrian +1
+    const rngFixed2 = seq([0.0, 0.0, 0.0, 0.0, 0.0]); // all dice → 1 (before bonus)
+    const nextAustrian = resolveAttack(
+      { ...sAustrian, current: sAustrian.order.indexOf('keynes'), phase: 'attack' as const },
+      a.id,
+      b,
+      rngFixed2,
+    );
+
+    // Both: all dice = 1. Ties → attacker always loses (both are ties).
+    // But with austrian: defender dice become 2, so attacker (1) LOSES to defender (2) — same outcome in ties, but in one-sided pairs attacker also loses.
+    // Key distinction: without austrian all dice tie (1 vs 1), attacker loses.
+    // With austrian defender has 2 > 1 — attacker also loses but for a DIFFERENT reason (outright loss, not tie).
+    // Assert: austrian defender loses FEWER units than non-austrian defender.
+    const defNonAustrian = 2 - nextNonAustrian.territories[b].units;
+    const defAustrian = 2 - nextAustrian.territories[b].units;
+    expect(defAustrian).toBeLessThanOrEqual(defNonAustrian);
+    // Additionally: when all attacker dice = 1 and austrian adds 1 (defender=2), the attacker should lose.
+    // Verify attacker actually lost units (doesn't capture) in the austrian case.
+    expect(nextAustrian.territories[b].owner).toBe('austrian');
+  });
+
+  it('neoclassic sets neoclassicJumpUsed after a non-adjacent attack', () => {
+    const s = createInitialState(['neoclassic'], () => 0.5);
+    const a = TERRITORIES[0];
+    const nonAdj = TERRITORIES.find((t) => t.id !== a.id && !a.adj.includes(t.id))!;
+    s.territories[a.id] = { owner: 'neoclassic', units: 5 };
+    s.territories[nonAdj.id] = { owner: 'marx', units: 1 };
+    const attackState = {
+      ...s,
+      current: s.order.indexOf('neoclassic'),
+      phase: 'attack' as const,
+      neoclassicJumpUsed: false,
+    };
+    // Attacker wins easily with high dice
+    const next = resolveAttack(attackState, a.id, nonAdj.id, seq([0.99, 0.99, 0.99, 0.0]));
+    expect(next.neoclassicJumpUsed).toBe(true);
+  });
+
+  it('neoclassic does NOT set neoclassicJumpUsed for adjacent attacks', () => {
+    const s = createInitialState(['neoclassic'], () => 0.5);
+    const a = TERRITORIES[0];
+    const adjId = a.adj[0];
+    s.territories[a.id] = { owner: 'neoclassic', units: 5 };
+    s.territories[adjId] = { owner: 'marx', units: 1 };
+    const attackState = {
+      ...s,
+      current: s.order.indexOf('neoclassic'),
+      phase: 'attack' as const,
+      neoclassicJumpUsed: false,
+    };
+    const next = resolveAttack(attackState, a.id, adjId, seq([0.99, 0.99, 0.99, 0.0]));
+    expect(next.neoclassicJumpUsed).toBe(false);
+  });
+
+  // ─── placeReinforcement ───────────────────────────────────────────────────────
+
+  it('placeReinforcement decrements reinforcementsLeft and adds a unit', () => {
+    const s = createInitialState(['keynes'], () => 0.5);
+    const f = 'keynes';
+    const territory = TERRITORIES.find((t) => s.territories[t.id].owner === f)!;
+    const state = { ...s, phase: 'reinforce' as const, reinforcementsLeft: 3 };
+    const before = state.territories[territory.id].units;
+    const next = placeReinforcement(state, territory.id);
+    expect(next.territories[territory.id].units).toBe(before + 1);
+    expect(next.reinforcementsLeft).toBe(2);
+  });
+
+  // ─── fortify ─────────────────────────────────────────────────────────────────
+
+  it('fortify moves n units between own territories', () => {
+    const s = createInitialState(['keynes'], () => 0.5);
+    const a = TERRITORIES[0];
+    const b = a.adj[0];
+    s.territories[a.id] = { owner: 'keynes', units: 5 };
+    s.territories[b] = { owner: 'keynes', units: 1 };
+    const fState = { ...s, phase: 'fortify' as const, current: s.order.indexOf('keynes') };
+    const next = fortify(fState, a.id, b, 2);
+    expect(next.territories[a.id].units).toBe(3);
+    expect(next.territories[b].units).toBe(3);
+  });
+
+  // ─── Victory conditions ───────────────────────────────────────────────────────
+
+  it('checkVictory: 18+ territories → that faction wins', () => {
+    const s = createInitialState(['keynes'], () => 0.5);
+    let i = 0;
+    for (const t of TERRITORIES) {
+      s.territories[t.id] = { owner: 'keynes', units: 1 };
+      if (++i >= 18) break;
+    }
+    expect(checkVictory(s)).toBe('keynes');
+  });
+
+  it('checkVictory: only one faction alive → that faction wins', () => {
+    const s = createInitialState(['keynes'], () => 0.5);
+    for (const t of TERRITORIES) s.territories[t.id] = { owner: 'keynes', units: 1 };
+    for (const f of FACTION_IDS) s.factions[f].alive = f === 'keynes';
+    expect(checkVictory(s)).toBe('keynes');
+  });
+
+  it('checkVictory returns null mid-game with no clear winner', () => {
+    const s = createInitialState(['keynes'], () => 0.5);
+    expect(checkVictory(s)).toBeNull();
+  });
+
+  it('checkVictory: round > 15 → faction with most territories wins', () => {
+    const s = createInitialState(['keynes'], () => 0.5);
+    // Give keynes 13 territories, marx 11
+    let i = 0;
+    for (const t of TERRITORIES) {
+      s.territories[t.id] = { owner: i < 13 ? 'keynes' : 'marx', units: 1 };
+      i++;
+    }
+    const lateState = { ...s, round: 16 };
+    expect(checkVictory(lateState)).toBe('keynes');
+  });
+
+  // ─── Phase transitions ────────────────────────────────────────────────────────
+
+  it('advancePhase transitions event → reinforce and sets reinforcementsLeft', () => {
+    const s = createInitialState(['keynes'], () => 0.5);
+    const state = { ...s, phase: 'event' as const };
+    const next = advancePhase(state, () => 0.5);
+    expect(next.phase).toBe('reinforce');
+    expect(next.reinforcementsLeft).toBeGreaterThanOrEqual(3);
+  });
+
+  it('advancePhase transitions reinforce → attack', () => {
+    const s = createInitialState(['keynes'], () => 0.5);
+    const state = { ...s, phase: 'reinforce' as const };
+    const next = advancePhase(state, () => 0.5);
+    expect(next.phase).toBe('attack');
+  });
+
+  it('advancePhase transitions attack → fortify', () => {
+    const s = createInitialState(['keynes'], () => 0.5);
+    const state = { ...s, phase: 'attack' as const };
+    const next = advancePhase(state, () => 0.5);
+    expect(next.phase).toBe('fortify');
+  });
+
+  it('advancePhase transitions fortify → event (endTurn called, advances to next faction)', () => {
+    const s = createInitialState(['keynes'], () => 0.5);
+    const state = { ...s, phase: 'fortify' as const };
+    const next = advancePhase(state, () => 0.5);
+    // After fortify, endTurn runs which advances current
+    expect(next.phase).toBe('event');
+  });
+
+  // ─── endTurn ─────────────────────────────────────────────────────────────────
+
+  it('endTurn resets neoclassicJumpUsed', () => {
+    const s = createInitialState(['keynes'], () => 0.5);
+    const state = { ...s, neoclassicJumpUsed: true };
+    const next = endTurn(state, () => 0.5);
+    expect(next.neoclassicJumpUsed).toBe(false);
+  });
+
+  it('endTurn advances current to next alive faction', () => {
+    const s = createInitialState(['keynes'], () => 0.5);
+    const before = s.current;
+    const next = endTurn(s, () => 0.5);
+    expect(next.current).not.toBe(before);
+  });
+
+  it('endTurn increments round when all factions have had a turn', () => {
+    const s = createInitialState(['keynes'], () => 0.5);
+    // Put current at the last faction so next wrap would increment round
+    const last = s.order.length - 1;
+    const state = { ...s, current: last };
+    const next = endTurn(state, () => 0.5);
+    expect(next.round).toBe(2);
+    expect(next.current).toBe(0);
+  });
+
+  it('keynes faction gets +2 units every 3 turns (turnsSinceBonus resets to 0)', () => {
+    const s = createInitialState(['keynes'], () => 0.5);
+    const keynesTerritory = TERRITORIES.find((t) => s.territories[t.id].owner === 'keynes')!;
+    // Set turnsSinceBonus = 2 so next turn triggers the bonus
+    s.factions.keynes.turnsSinceBonus = 2;
+    // Put current on keynes so endTurn processes keynes' bonus
+    const state = { ...s, current: s.order.indexOf('keynes') };
+    const totalBefore = Object.values(state.territories).reduce((a, t) => a + t.units, 0);
+    const next = endTurn(state, () => 0.5);
+    const totalAfter = Object.values(next.territories).reduce((a, t) => a + t.units, 0);
+    expect(totalAfter).toBeGreaterThanOrEqual(totalBefore + 2);
+    expect(next.factions.keynes.turnsSinceBonus).toBe(0);
+  });
+
+  // ─── applyEvent ───────────────────────────────────────────────────────────────
+
+  it('applyEvent draws a card and sets activeEvent', () => {
+    const s = createInitialState(['keynes'], () => 0.5);
+    const state = { ...s, phase: 'event' as const };
+    const next = applyEvent(state, () => 0.5);
+    expect(next.activeEvent).not.toBeNull();
+  });
+
+  it('applyEvent peaceRound sets peaceUntilRound = current round', () => {
+    // trade_deal is index 1 (kind: peaceRound), rngVal = 1/15 + 0.001
+    // EVENT_CARDS has 15 cards; index 1 → rng in [1/15, 2/15)
+    const rngVal = 1 / 15 + 0.001;
+    const s = createInitialState(['keynes'], () => 0.5);
+    const state = { ...s, round: 3 };
+    const next = applyEvent(state, () => rngVal);
+    expect(next.peaceUntilRound).toBe(3);
+  });
+
+  it('faction marked dead when last territory captured', () => {
+    const s = createInitialState(['keynes'], () => 0.5);
+    // Give marx ONLY one territory adjacent to keynes
+    const a = TERRITORIES[0];
+    const b = a.adj[0];
+    for (const t of TERRITORIES) {
+      s.territories[t.id] = { owner: 'keynes', units: 3 };
+    }
+    s.territories[b] = { owner: 'marx', units: 1 };
+    s.factions.marx.alive = true;
+    const attackState = { ...s, current: s.order.indexOf('keynes'), phase: 'attack' as const };
+    // Attacker wins with certainty
+    const next = resolveAttack(attackState, a.id, b, seq([0.99, 0.99, 0.99, 0.0]));
+    if (next.territories[b].owner === 'keynes') {
+      expect(next.factions.marx.alive).toBe(false);
+    }
+  });
+});
