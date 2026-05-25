@@ -28,13 +28,18 @@ import './stonks.css';
 const store = makeGameStorage<GameState>('stonks');
 
 export default function StonksGame() {
-  const [state, setState] = useState<GameState>(() => {
-    const saved = store.load();
-    return saved ?? createInitialState();
-  });
+  // Initialized unconditionally (never reading storage during server render)
+  // to avoid an SSR/client hydration mismatch — mirrors QuizPlayer pattern.
+  const [state, setState] = useState<GameState>(createInitialState);
+  const [hasSave, setHasSave] = useState(false);
 
-  // hasSave derived once at mount and updated imperatively on clear/start.
-  const [hasSave, setHasSave] = useState(() => !!store.load());
+  // Loaded after mount (never during the server render) to avoid an
+  // SSR/client hydration mismatch. Sets the flag so StartScreen can show
+  // the "Continuar partida" button; does NOT auto-load the save into state
+  // so the player always lands on StartScreen first.
+  useEffect(() => {
+    setHasSave(!!store.load());
+  }, []);
 
   useEffect(() => {
     if (state.phase === 'finished') {

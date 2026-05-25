@@ -48,7 +48,7 @@ export function ResultScreen({ state, onNext }: Props) {
       )}
 
       <button class="sk-cta" onClick={onNext}>
-        {state.phase === 'finished' ? 'Ver resumen' : 'Siguiente año'}
+        Siguiente año
       </button>
     </div>
   );
