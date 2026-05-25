@@ -22,7 +22,10 @@ export function makeGameStorage<T = unknown>(
     },
     setBest(value: number): void {
       if (!backend) return;
-      if (value > this.getBest()) backend.setItem(bestKey, String(Math.round(value)));
+      const raw = backend.getItem(bestKey);
+      const current = raw ? Number(raw) : 0;
+      const best = Number.isFinite(current) ? current : 0;
+      if (value > best) backend.setItem(bestKey, String(Math.round(value)));
     },
   };
 }

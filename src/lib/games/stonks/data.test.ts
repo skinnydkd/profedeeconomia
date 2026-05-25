@@ -18,7 +18,9 @@ describe('stonks dataset', () => {
   });
 
   it('bitcoin is null before 2012 and a number from 2012', () => {
-    expect(MARKET_DATA[2011].bitcoin).toBeNull();
+    for (const y of [2008, 2009, 2010, 2011]) {
+      expect(MARKET_DATA[y].bitcoin).toBeNull();
+    }
     expect(typeof MARKET_DATA[2012].bitcoin).toBe('number');
   });
 

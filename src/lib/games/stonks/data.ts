@@ -1,3 +1,17 @@
+/**
+ * Static data for the Stonks investment game.
+ *
+ * Ported from webpde/stonks.html (STONKS_DATA object). All annual return values
+ * are stored as fractions: 0.15 = +15%, −0.37 = −37%. A null value means the
+ * asset did not yet exist / was not available to players that year.
+ *
+ * Asset name mapping from the original source:
+ *   savings → ahorro, deposit → deposito, bonds → bonos, gold → oro,
+ *   ibex35 → ibex, sp500 → sp500, bitcoin → bitcoin, realestate → inmobiliario
+ *
+ * Numeric conversion: original percentages were divided by 100
+ * (e.g. −21.7 → −0.217).
+ */
 // src/lib/games/stonks/data.ts
 import type { AssetId, AssetMeta, LifeEvent, MarketData } from './types';
 

@@ -1,5 +1,5 @@
 // src/lib/games/stonks/engine.ts
-import type { AssetId, GameState } from './types';
+import type { AssetId, AssetMeta, GameState } from './types';
 import {
   ASSETS, ASSET_IDS, MARKET_DATA, YEARS, TOTAL_ROUNDS,
   INITIAL_CASH, INCOME_PER_ROUND, LIFE_EVENTS, LIFE_EVENT_CHANCE,
@@ -26,7 +26,7 @@ export function createInitialState(): GameState {
 export const currentYear = (s: GameState): number =>
   YEARS[Math.min(s.round, YEARS.length - 1)];
 
-export const unlockedAssets = (round: number) =>
+export const unlockedAssets = (round: number): AssetMeta[] =>
   ASSETS.filter((a) => a.unlockRound <= round);
 
 export const netWorth = (s: GameState): number =>

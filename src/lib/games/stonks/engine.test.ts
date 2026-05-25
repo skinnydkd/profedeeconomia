@@ -39,10 +39,11 @@ describe('engine', () => {
     s.allocation = { ...s.allocation, ahorro: 0, deposito: 100 };
     const before = netWorth(s); // 5000
     const next = advanceYear(s, noEvents);
-    // deposito 2000 return applied + income added next round; net worth grew by the deposito return on the invested base
+    // year-2000 deposito return (+4%): 5000*1.04 = 5200, plus INCOME_PER_ROUND (3000) = 8200 net worth
     expect(next.round).toBe(1);
     expect(next.cash + Object.values(next.holdings).reduce((a, b) => a + b, 0)).toBeGreaterThan(before);
     expect(next.lastEvent).toBeNull();
+    expect(netWorth(next)).toBeCloseTo(8200, 2);
   });
 
   it('adds income each advanced year', () => {
@@ -60,6 +61,35 @@ describe('engine', () => {
     s.allocation = { ...s.allocation, ahorro: 100, deposito: 0 };
     const next = advanceYear(s, () => 0); // 0 < chance => event fires
     expect(next.lastEvent).not.toBeNull();
+  });
+
+  it('asset with null return that year keeps its value unchanged', () => {
+    const s = createInitialState();
+    s.round = 8;            // year 2008, bitcoin unlocked but MARKET_DATA[2008].bitcoin === null
+    s.phase = 'allocate';
+    s.cash = 0;
+    s.holdings = { ...s.holdings, bitcoin: 1000 };
+    s.allocation = { ...s.allocation };
+    for (const a of unlockedAssets(8)) s.allocation[a.id] = 0;
+    s.allocation.bitcoin = 100;
+    const next = advanceYear(s, () => 1); // no event
+    expect(next.holdings.bitcoin).toBeCloseTo(1000, 2); // net worth 1000 → 100% bitcoin → null return → unchanged
+  });
+
+  it('life event cannot push cash below zero', () => {
+    const s = createInitialState();
+    s.phase = 'allocate';
+    s.allocation = { ...s.allocation, ahorro: 100, deposito: 0 };
+    // Force the medico event (amount: -3000) which exceeds INCOME_PER_ROUND (3000).
+    // rng call 1: triggers the event (0 < LIFE_EVENT_CHANCE = 0.3).
+    // rng call 2: selects medico (index 1 in LIFE_EVENTS, length 14) → floor(1/14 * 14) = 1.
+    const rng = (() => {
+      let call = 0;
+      return () => { call++; return call === 1 ? 0 : 1 / 14; };
+    })();
+    const next = advanceYear(s, rng);
+    expect(next.lastEvent).not.toBeNull();
+    expect(next.cash).toBeGreaterThanOrEqual(0);
   });
 
   it('records history and finishes after TOTAL_ROUNDS', () => {
