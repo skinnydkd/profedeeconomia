@@ -28,15 +28,15 @@ export function EvolucionChart({ history }: { history: Point[] }) {
       aria-label="Evolución del patrimonio frente a la IA"
     >
       {/* Axes */}
-      <line x1={padL} y1={H - padB} x2={W - padR} y2={H - padB} stroke="#E5D4BD" stroke-width="1" />
-      <line x1={padL} y1={padT} x2={padL} y2={H - padB} stroke="#E5D4BD" stroke-width="1" />
+      <line x1={padL} y1={H - padB} x2={W - padR} y2={H - padB} stroke="#E5D4BD" strokeWidth="1" />
+      <line x1={padL} y1={padT} x2={padL} y2={H - padB} stroke="#E5D4BD" strokeWidth="1" />
 
       {/* AI line — muted dashed */}
       <polyline
         fill="none"
         stroke="#8A7868"
-        stroke-width="2"
-        stroke-dasharray="4 3"
+        strokeWidth="2"
+        strokeDasharray="4 3"
         points={line('aiNet')}
       />
 
@@ -44,7 +44,7 @@ export function EvolucionChart({ history }: { history: Point[] }) {
       <polyline
         fill="none"
         stroke="#C44E2C"
-        stroke-width="2.5"
+        strokeWidth="2.5"
         points={line('playerNet')}
       />
 
@@ -52,8 +52,8 @@ export function EvolucionChart({ history }: { history: Point[] }) {
       <text
         x={padL}
         y={H - 8}
-        font-family="monospace"
-        font-size="9"
+        fontFamily="monospace"
+        fontSize="9"
         fill="#8A7868"
       >
         {history[0].year}
@@ -61,9 +61,9 @@ export function EvolucionChart({ history }: { history: Point[] }) {
       <text
         x={W - padR}
         y={H - 8}
-        text-anchor="end"
-        font-family="monospace"
-        font-size="9"
+        textAnchor="end"
+        fontFamily="monospace"
+        fontSize="9"
         fill="#8A7868"
       >
         {history[history.length - 1].year}

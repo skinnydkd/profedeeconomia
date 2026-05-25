@@ -31,7 +31,7 @@ export function FinalScreen({ state, onRestart }: Props) {
       </div>
 
       <div class="kf-verdict serif">
-        Has <span class="ac">{won ? 'ganado contra' : 'perdido contra'}</span> el Mercado
+        Has <span class="ac">{won ? 'ganado al' : 'perdido contra'}</span> el Mercado
       </div>
 
       <div class="kf-scores">
@@ -69,7 +69,7 @@ export function FinalScreen({ state, onRestart }: Props) {
       </div>
 
       <div class="kf-cta">
-        <button class="primary" onClick={onRestart}>
+        <button class="kf-cta-primary" onClick={onRestart}>
           Jugar otra vez
         </button>
       </div>

@@ -7,7 +7,7 @@ import {
   netWorth,
   currentYear,
 } from '@/lib/games/stonks/engine';
-import { ASSETS, TOTAL_ROUNDS } from '@/lib/games/stonks/data';
+import { ASSETS, TOTAL_ROUNDS, ALLOCATION_STEP } from '@/lib/games/stonks/data';
 
 // Core allocation screen — the player distributes 100% among unlocked assets.
 
@@ -62,11 +62,11 @@ export function AllocateScreen({ state, onChange, onConfirm }: Props) {
                 </div>
                 {!locked && (
                   <div class="ctrl">
-                    <button class="sk-btn" onClick={() => onChange(a.id, -5)}>
+                    <button class="sk-btn" aria-label={`Reducir ${a.label} ${ALLOCATION_STEP}%`} onClick={() => onChange(a.id, -ALLOCATION_STEP)}>
                       −
                     </button>
                     <span class="sk-pct">{pct}%</span>
-                    <button class="sk-btn" onClick={() => onChange(a.id, +5)}>
+                    <button class="sk-btn" aria-label={`Aumentar ${a.label} ${ALLOCATION_STEP}%`} onClick={() => onChange(a.id, +ALLOCATION_STEP)}>
                       +
                     </button>
                   </div>

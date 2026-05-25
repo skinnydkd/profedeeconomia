@@ -8,6 +8,7 @@ import {
   netWorth,
 } from '@/lib/games/stonks/engine';
 import { makeGameStorage } from '@/lib/games/storage';
+import { ALLOCATION_MAX } from '@/lib/games/stonks/data';
 import { StartScreen } from './StartScreen';
 import { NewsScreen } from './NewsScreen';
 import { AllocateScreen } from './AllocateScreen';
@@ -32,14 +33,15 @@ export default function StonksGame() {
     return saved ?? createInitialState();
   });
 
-  // hasSave is true when there is a non-start saved game in storage.
-  const hasSave = state.phase === 'start' && !!store.load();
+  // hasSave derived once at mount and updated imperatively on clear/start.
+  const [hasSave, setHasSave] = useState(() => !!store.load());
 
   useEffect(() => {
     if (state.phase === 'finished') {
       // Game over: record best score, clear in-progress save.
       store.setBest(netWorth(state));
       store.clear();
+      setHasSave(false);
     } else if (state.phase !== 'start') {
       // Persist in-progress state so the player can resume.
       store.save(state);
@@ -48,8 +50,10 @@ export default function StonksGame() {
 
   // Transitions ----------------------------------------------------------------
 
-  const start = () =>
+  const start = () => {
+    setHasSave(false);
     setState({ ...createInitialState(), phase: 'news' });
+  };
 
   const cont = () => {
     const saved = store.load();
@@ -59,11 +63,11 @@ export default function StonksGame() {
   const toAllocate = () =>
     setState((s) => ({ ...s, phase: 'allocate' }));
 
-  // Update a single asset's allocation, clamped 0..100.
+  // Update a single asset's allocation, clamped 0..ALLOCATION_MAX.
   const change = (id: string, delta: number) =>
     setState((s) => {
       const current = s.allocation[id as keyof typeof s.allocation] || 0;
-      const next = Math.max(0, Math.min(100, current + delta));
+      const next = Math.max(0, Math.min(ALLOCATION_MAX, current + delta));
       return { ...s, allocation: { ...s.allocation, [id]: next } };
     });
 

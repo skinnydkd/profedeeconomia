@@ -18,6 +18,8 @@ import type { AssetId, AssetMeta, LifeEvent, MarketData } from './types';
 export const INITIAL_CASH = 5000;
 export const INCOME_PER_ROUND = 3000;
 export const INDEX_ASSET: AssetId = 'sp500'; // AI DCA index
+export const ALLOCATION_STEP = 5;
+export const ALLOCATION_MAX = 100;
 
 export const ASSETS: AssetMeta[] = [
   { id: 'ahorro',       label: 'Ahorro',        risk: 'baja',    unlockRound: 0, blurb: 'Dinero disponible al instante; casi no da rendimiento y pierde poder con la inflación.' },
