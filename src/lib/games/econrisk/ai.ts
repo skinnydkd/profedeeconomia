@@ -126,37 +126,53 @@ function aiAttack(state: GameState, rng: () => number): GameState {
 }
 
 /**
- * AI plays the fortify phase: moves units from an interior territory to the frontier.
- * Only fortifies if the source has > 2 units and there is a frontier territory to strengthen.
+ * AI plays the fortify phase: moves units from an interior territory to an ADJACENT frontier
+ * territory. Only fortifies if a valid adjacent interior→frontier pair exists and the source
+ * has > 2 units.
  */
 function aiFortify(state: GameState, _rng: () => number): GameState {
   let s = state;
   const faction = s.order[s.current];
 
   const interior = interiorOf(s, faction);
-  const frontier = frontierOf(s, faction);
+  const frontierSet = new Set(frontierOf(s, faction));
 
-  if (interior.length === 0 || frontier.length === 0) return s;
+  if (interior.length === 0 || frontierSet.size === 0) return s;
 
-  // Find the interior territory with the most spare units (keep at least 1)
-  const source = interior.reduce((best, id) =>
-    s.territories[id].units > s.territories[best].units ? id : best,
-  );
-  const sourceUnits = s.territories[source].units;
-  if (sourceUnits <= 2) return s; // not worth moving
+  // Find the best (source, dest) pair where source is interior, dest is an adjacent frontier
+  // territory. Prefer source with most spare units; among ties, dest with most adjacent enemies.
+  let bestSource: string | null = null;
+  let bestDest: string | null = null;
+  let bestSpare = 0;
+  let bestEnemies = -1;
 
-  // Find the frontier territory with the most adjacent enemies
-  const dest = frontier.reduce((best, id) => {
-    const bEnemies = byId[best].adj.filter((n) => s.territories[n].owner !== faction).length;
-    const iEnemies = byId[id].adj.filter((n) => s.territories[n].owner !== faction).length;
-    return iEnemies > bEnemies ? id : best;
-  });
+  for (const sourceId of interior) {
+    const sourceUnits = s.territories[sourceId].units;
+    if (sourceUnits <= 2) continue; // not worth moving
+    const spare = sourceUnits - 1;
+
+    // Iterate adjacency list of the source to find owned frontier neighbours
+    for (const adjId of byId[sourceId].adj) {
+      if (!frontierSet.has(adjId)) continue;
+      const enemies = byId[adjId].adj.filter((n) => s.territories[n].owner !== faction).length;
+      if (
+        spare > bestSpare ||
+        (spare === bestSpare && enemies > bestEnemies)
+      ) {
+        bestSpare = spare;
+        bestEnemies = enemies;
+        bestSource = sourceId;
+        bestDest = adjId;
+      }
+    }
+  }
+
+  if (bestSource === null || bestDest === null) return s; // no adjacent interior→frontier pair
 
   // Move half the spare units (keep at least 1)
-  const spare = sourceUnits - 1;
-  const move = Math.max(1, Math.floor(spare / 2));
+  const move = Math.max(1, Math.floor(bestSpare / 2));
 
-  s = fortify(s, source, dest, move);
+  s = fortify(s, bestSource, bestDest, move);
   return s;
 }
 

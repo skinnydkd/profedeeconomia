@@ -201,6 +201,9 @@ export function fortify(state: GameState, fromId: string, toId: string, n: numbe
   if (from.owner !== currentFaction || to.owner !== currentFaction) return state;
   if (n <= 0 || from.units - n < 1) return state;
 
+  // Adjacency guard: fortify only allowed between adjacent territories
+  if (!byId[fromId]?.adj.includes(toId)) return state;
+
   const s = structuredClone(state) as GameState;
   s.territories[fromId].units -= n;
   s.territories[toId].units += n;

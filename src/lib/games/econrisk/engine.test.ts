@@ -305,52 +305,48 @@ describe('econrisk engine', () => {
     expect(next.territories[b].owner).toBe('keynes');
   });
 
-  it('austrian power: +1 to each defender die changes combat outcome deterministically', () => {
-    // Scenario: attacker (keynes) attacks an AUSTRIAN territory with 2 units.
-    // Without austrian bonus, a die of 1 would lose to die 2.
-    // With austrian +1 bonus, defender die becomes 2, tying (defender wins tie).
-    // Attacker: 1 die (3 units - 1 = 2, min(3,2)=2 dice); defender: 1 die min(2,1)=1
-    //   attacker rolls 0.0 → floor(0*6)+1 = 1
-    //   defender rolls 0.16 → floor(0.16*6)+1 = 1+1(austrian)=2
-    // Without austrian, defender would have 1 — tie → attacker loses. With austrian, defender has 2 > 1 → attacker definitely loses.
-
-    // Same attack against a NON-austrian target first:
-    const sNonAustrian = createInitialState(['keynes'], () => 0.5);
+  it('austrian power: +1 to defender die flips combat outcome (attacker 2 vs defender 1+bonus)', () => {
+    // Single-die combat: attacker has 2 units (1 attacker die), defender has 1 unit (1 defender die).
+    // RNG sequence: attacker die → rng=0.17 → floor(0.17*6)+1 = floor(1.02)+1 = 2
+    //               defender die → rng=0.0  → floor(0.0*6)+1  = floor(0)+1   = 1
+    //
+    // WITHOUT austrian bonus: attacker(2) > defender(1) → DEFENDER loses unit (drops to 0 → captured).
+    // WITH    austrian bonus: defender raw(1) + 1 = 2, attacker(2) vs defender(2) → TIE → ATTACKER loses unit.
+    //
+    // This test would FAIL if the +1 bonus were removed: in that case both scenarios produce an
+    // attacker win and the austrian defender would be captured too.
     const a = TERRITORIES[0];
     const b = a.adj[0];
-    sNonAustrian.territories[a.id] = { owner: 'keynes', units: 3 };
-    sNonAustrian.territories[b] = { owner: 'marx', units: 2 }; // marx = no bonus
-    const rngFixed = seq([0.0, 0.0, 0.0, 0.0, 0.0]); // all dice → 1
+
+    // --- Non-austrian case (marx defender) ---
+    const sNonAustrian = createInitialState(['keynes'], () => 0.5);
+    sNonAustrian.territories[a.id] = { owner: 'keynes', units: 2 };
+    sNonAustrian.territories[b]    = { owner: 'marx',   units: 1 };
+    // rng: attacker=0.17 (→2), defender=0.0 (→1)
     const nextNonAustrian = resolveAttack(
       { ...sNonAustrian, current: sNonAustrian.order.indexOf('keynes'), phase: 'attack' as const },
       a.id,
       b,
-      rngFixed,
+      seq([0.17, 0.0]),
     );
+    // Attacker(2) > defender(1): defender loses its only unit → territory captured by keynes
+    expect(nextNonAustrian.territories[b].owner).toBe('keynes'); // non-austrian defender IS captured
 
-    // Same attack against an AUSTRIAN target:
+    // --- Austrian case ---
     const sAustrian = createInitialState(['keynes'], () => 0.5);
-    sAustrian.territories[a.id] = { owner: 'keynes', units: 3 };
-    sAustrian.territories[b] = { owner: 'austrian', units: 2 }; // austrian +1
-    const rngFixed2 = seq([0.0, 0.0, 0.0, 0.0, 0.0]); // all dice → 1 (before bonus)
+    sAustrian.territories[a.id] = { owner: 'keynes',   units: 2 };
+    sAustrian.territories[b]    = { owner: 'austrian', units: 1 };
+    // Same rng: attacker=0.17 (→2), defender raw=0.0 (→1), +1 bonus → 2; tie → attacker loses
     const nextAustrian = resolveAttack(
       { ...sAustrian, current: sAustrian.order.indexOf('keynes'), phase: 'attack' as const },
       a.id,
       b,
-      rngFixed2,
+      seq([0.17, 0.0]),
     );
-
-    // Both: all dice = 1. Ties → attacker always loses (both are ties).
-    // But with austrian: defender dice become 2, so attacker (1) LOSES to defender (2) — same outcome in ties, but in one-sided pairs attacker also loses.
-    // Key distinction: without austrian all dice tie (1 vs 1), attacker loses.
-    // With austrian defender has 2 > 1 — attacker also loses but for a DIFFERENT reason (outright loss, not tie).
-    // Assert: austrian defender loses FEWER units than non-austrian defender.
-    const defNonAustrian = 2 - nextNonAustrian.territories[b].units;
-    const defAustrian = 2 - nextAustrian.territories[b].units;
-    expect(defAustrian).toBeLessThanOrEqual(defNonAustrian);
-    // Additionally: when all attacker dice = 1 and austrian adds 1 (defender=2), the attacker should lose.
-    // Verify attacker actually lost units (doesn't capture) in the austrian case.
-    expect(nextAustrian.territories[b].owner).toBe('austrian');
+    // Tie (2 vs 2): attacker loses a unit; defender does NOT lose a unit
+    expect(nextAustrian.territories[b].owner).toBe('austrian');   // austrian defender NOT captured
+    expect(nextAustrian.territories[b].units).toBe(1);             // defender still has 1 unit
+    expect(nextAustrian.territories[a.id].units).toBe(1);          // attacker lost 1 unit (2→1)
   });
 
   it('neoclassic sets neoclassicJumpUsed after a non-adjacent attack', () => {
@@ -411,6 +407,32 @@ describe('econrisk engine', () => {
     const next = fortify(fState, a.id, b, 2);
     expect(next.territories[a.id].units).toBe(3);
     expect(next.territories[b].units).toBe(3);
+  });
+
+  it('fortify is rejected when from and to are not adjacent (state unchanged)', () => {
+    const s = createInitialState(['keynes'], () => 0.5);
+    const a = TERRITORIES[0];
+    // Find a territory that is NOT adjacent to a
+    const nonAdj = TERRITORIES.find((t) => t.id !== a.id && !a.adj.includes(t.id))!;
+    s.territories[a.id]      = { owner: 'keynes', units: 5 };
+    s.territories[nonAdj.id] = { owner: 'keynes', units: 1 };
+    const fState = { ...s, phase: 'fortify' as const, current: s.order.indexOf('keynes') };
+    const next = fortify(fState, a.id, nonAdj.id, 2);
+    // State must be returned unchanged
+    expect(next.territories[a.id].units).toBe(5);
+    expect(next.territories[nonAdj.id].units).toBe(1);
+  });
+
+  it('fortify succeeds when from and to are adjacent', () => {
+    const s = createInitialState(['keynes'], () => 0.5);
+    const a = TERRITORIES[0];
+    const adjId = a.adj[0];
+    s.territories[a.id] = { owner: 'keynes', units: 5 };
+    s.territories[adjId] = { owner: 'keynes', units: 1 };
+    const fState = { ...s, phase: 'fortify' as const, current: s.order.indexOf('keynes') };
+    const next = fortify(fState, a.id, adjId, 3);
+    expect(next.territories[a.id].units).toBe(2);
+    expect(next.territories[adjId].units).toBe(4);
   });
 
   // ─── Victory conditions ───────────────────────────────────────────────────────
