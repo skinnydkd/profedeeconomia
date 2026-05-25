@@ -53,11 +53,11 @@ export function checkVictory(state: GameState): FactionId | null {
   const alive = FACTION_IDS.filter((f) => state.factions[f].alive);
   if (alive.length === 1) return alive[0];
 
-  // 3. Round > 15 → most territories
+  // 3. Round > 15 → most territories (only alive factions)
   if (state.round > 15) {
     let best: FactionId | null = null;
     let bestCount = -1;
-    for (const f of FACTION_IDS) {
+    for (const f of FACTION_IDS.filter((f) => state.factions[f].alive)) {
       const c = ownedCount(state, f);
       if (c > bestCount) {
         bestCount = c;
@@ -412,8 +412,9 @@ export function endTurn(state: GameState, rng: () => number = Math.random): Game
   // Reset per-turn flags
   s.neoclassicJumpUsed = false;
 
-  // Keynes power: +2 units every 3 turns
-  s.factions[currentFaction].turnsSinceBonus += 1;
+  // Keynes power: +2 units every 3 of Keynes' own turns
+  // Only increment turnsSinceBonus for Keynes (it is only consumed by the Keynes power)
+  if (currentFaction === 'keynes') s.factions.keynes.turnsSinceBonus += 1;
   if (currentFaction === 'keynes' && s.factions.keynes.turnsSinceBonus >= 3) {
     // Add 2 units to keynes' strongest territory
     const keynesTerrs = TERRITORY_IDS.filter((id) => s.territories[id].owner === 'keynes');
@@ -434,8 +435,9 @@ export function endTurn(state: GameState, rng: () => number = Math.random): Game
     next = (next + 1) % total;
   }
 
-  // Did we wrap around? If so, increment round
-  if (next <= s.current) {
+  // Did we wrap around? If so, increment round.
+  // Guard: if only one faction is alive, next === s.current; do NOT increment round in that case.
+  if (next !== s.current && next <= s.current) {
     s.round += 1;
     s.log.push(`Round ${s.round} begins.`);
   }
@@ -455,9 +457,8 @@ export function advancePhase(state: GameState, rng: () => number = Math.random):
 
   switch (current) {
     case 'event': {
-      // Apply the event card (draw + effects)
-      const withEvent = applyEvent(state, rng);
-      const s = structuredClone(withEvent) as GameState;
+      // Apply the event card (draw + effects); applyEvent already returns a clone — no need to clone again
+      const s = applyEvent(state, rng) as GameState;
       s.phase = 'reinforce';
       s.reinforcementsLeft = reinforcementsFor(s, s.order[s.current]);
       return s;

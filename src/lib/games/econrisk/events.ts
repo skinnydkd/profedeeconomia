@@ -41,9 +41,8 @@ export const EVENT_CARDS: EventCard[] = [
   },
   {
     id: 'global_recession',
-    text: 'Recesión global: nadie recibe bonus de continente este turno.',
+    text: 'Recesión global: los mercados internacionales se contraen y la actividad económica se desacelera en todo el mundo.',
     kind: 'none',
-    // Note: no direct kind; engine must suppress continent bonus during reinforce phase this round
   },
   {
     id: 'tech_advance',
@@ -75,9 +74,8 @@ export const EVENT_CARDS: EventCard[] = [
   },
   {
     id: 'trade_war',
-    text: 'Guerra comercial: el jugador que va primero puede hacer 2 ataques extra este turno.',
+    text: 'Guerra comercial: las tensiones arancelarias entre potencias crean incertidumbre en los flujos comerciales globales.',
     kind: 'none',
-    // Note: no direct kind; engine grants extra attack allowance to the first-in-order faction
   },
   {
     id: 'industrial_revolution',

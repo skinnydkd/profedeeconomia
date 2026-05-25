@@ -51,12 +51,13 @@ function aiReinforce(state: GameState, rng: () => number): GameState {
     const candidates = frontier.length > 0 ? frontier : ownedBy(s, faction);
     if (candidates.length === 0) break;
 
-    // Choose the frontier territory with the most adjacent enemies (or random if tied)
+    // Choose the frontier territory with the most adjacent enemies (stable tiebreak via pre-assigned rng)
     const scored = candidates.map((id) => ({
       id,
       enemies: byId[id].adj.filter((n) => s.territories[n].owner !== faction).length,
+      tiebreak: rng(),
     }));
-    scored.sort((a, b) => b.enemies - a.enemies || (rng() > 0.5 ? 1 : -1));
+    scored.sort((a, b) => b.enemies - a.enemies || b.tiebreak - a.tiebreak);
 
     s = placeReinforcement(s, scored[0].id);
   }

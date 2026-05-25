@@ -248,9 +248,8 @@ describe('econrisk engine', () => {
     const defenderUnits = next.territories[b].units;
     // On a tie, attacker loses. Combined losses should reflect attacker paying
     expect(attackerUnits).toBeLessThan(3); // attacker lost at least 1
-    // Defender should be >= its prior (2) because ties don't cost defender
-    // (though attacker could have won a non-tied pair)
-    expect(defenderUnits).toBeGreaterThanOrEqual(1);
+    // Defender keeps exactly its 2 units: ties cost the attacker, not the defender
+    expect(defenderUnits).toBe(2);
   });
 
   it('resolveAttack: attacker captures when defender units reach 0', () => {
@@ -578,5 +577,74 @@ describe('econrisk engine', () => {
     if (next.territories[b].owner === 'keynes') {
       expect(next.factions.marx.alive).toBe(false);
     }
+  });
+
+  // ─── m-5: Marxist auto-capture eliminates defender when it is their last territory ─
+
+  it('resolveAttack: Marxist auto-capture sets defender alive=false when capturing last territory', () => {
+    const s = createInitialState(['marx'], () => 0.5);
+    const a = TERRITORIES[0];
+    const b = a.adj[0];
+
+    // Give all territories to marx except b (keynes' sole territory)
+    for (const t of TERRITORIES) {
+      s.territories[t.id] = { owner: 'marx', units: 3 };
+    }
+    s.territories[a.id] = { owner: 'marx', units: 3 };
+    s.territories[b]    = { owner: 'keynes', units: 1 }; // keynes' LAST territory
+    s.factions.keynes.alive = true;
+
+    const attackState = { ...s, current: s.order.indexOf('marx'), phase: 'attack' as const };
+    // Marxist auto-captures because defender has exactly 1 unit — no RNG needed
+    const next = resolveAttack(attackState, a.id, b, seq([]));
+
+    expect(next.territories[b].owner).toBe('marx');
+    expect(next.factions.keynes.alive).toBe(false);
+  });
+
+  // ─── m-6: applyEvent with redistribute kind (capital_flight card) ─────────────
+
+  it('applyEvent redistribute: transfers units from leader (strongest territory) to weakest faction', () => {
+    const s = createInitialState(['keynes'], () => 0.5);
+
+    // Set up a clear leader (keynes, 12 territories) and a clear weakest (marx, 4 territories)
+    // austrian and neoclassic get 4 each
+    const allIds = Object.keys(s.territories);
+    for (let i = 0; i < allIds.length; i++) {
+      if (i < 12) {
+        s.territories[allIds[i]] = { owner: 'keynes', units: i < 6 ? 5 : 1 }; // first 6 are "strong"
+      } else if (i < 16) {
+        s.territories[allIds[i]] = { owner: 'marx', units: 1 };
+      } else if (i < 20) {
+        s.territories[allIds[i]] = { owner: 'austrian', units: 1 };
+      } else {
+        s.territories[allIds[i]] = { owner: 'neoclassic', units: 1 };
+      }
+    }
+
+    // Find keynes' strongest territory and marx' strongest territory before the event
+    const keynesTerrs = allIds.filter((id) => s.territories[id].owner === 'keynes');
+    const marxTerrs   = allIds.filter((id) => s.territories[id].owner === 'marx');
+    const leaderStrongest = keynesTerrs.reduce((best, id) =>
+      s.territories[id].units > s.territories[best].units ? id : best,
+    );
+    const weakestStrongest = marxTerrs.reduce((best, id) =>
+      s.territories[id].units > s.territories[best].units ? id : best,
+    );
+    const leaderUnitsBefore  = s.territories[leaderStrongest].units;
+    const weakestUnitsBefore = s.territories[weakestStrongest].units;
+
+    // capital_flight is index 11 in EVENT_CARDS (0-based), kind: 'redistribute', amount: 2
+    // rng = 11/15 + epsilon forces that card to be selected
+    const rngVal = 11 / 15 + 0.001;
+    const next = applyEvent(s, () => rngVal);
+
+    expect(next.territories[leaderStrongest].units).toBeLessThan(leaderUnitsBefore);
+    expect(next.territories[weakestStrongest].units).toBeGreaterThan(weakestUnitsBefore);
+    // The transferred amount should equal card.amount (2), capped to leaderUnits - 1
+    const removed = leaderUnitsBefore  - next.territories[leaderStrongest].units;
+    const gained  = next.territories[weakestStrongest].units - weakestUnitsBefore;
+    expect(removed).toBe(gained); // same units removed = units added
+    expect(removed).toBeLessThanOrEqual(2); // never more than card.amount
   });
 });
