@@ -15,12 +15,23 @@ import BaseLayout from '@layouts/BaseLayout.astro';
       <span class="kicker">Material transversal</span>
       <h1>Juegos para una <span class="serif-italic-wonk accent">clase activa</span>.</h1>
       <p class="lede">
-        Esta sección está pendiente de migración. Los juegos viven todavía en
+        Simuladores, dinámicas de aula y concursos. La sección se va migrando
+        progresivamente; el resto de juegos viven todavía en
         <a href="https://legacy.profedeeconomia.es" class="editorial-link" rel="external">legacy.profedeeconomia.es</a>.
       </p>
+
+      <div class="game-grid">
+        <a class="game-card available" href="/juegos/stonks/">
+          <div class="gc-eyebrow">Disponible</div>
+          <div class="gc-title serif">Stonks</div>
+          <p class="gc-desc">Invierte durante 25 años repartiendo tu patrimonio entre distintos activos. ¿Acabarás con más que la IA?</p>
+          <span class="gc-cta">Jugar →</span>
+        </a>
+      </div>
+
       <p class="note">
-        El primer juego refactorizado será <strong>Stonks</strong> (fase 0.4 del rebranding,
-        enero 2027). El resto se publicarán a lo largo del 2027.
+        El resto de juegos — Playground, Concurso, Insider, Communist, Econopoly, Econrisk —
+        se publicarán a lo largo del 2027.
       </p>
     </div>
   </section>
@@ -51,4 +62,24 @@ import BaseLayout from '@layouts/BaseLayout.astro';
     font-variation-settings: "SOFT" 80;
   }
   .note { color: var(--color-ink-soft); max-width: 60ch; }
+
+  .game-grid { margin: 2rem 0 1.5rem; display: flex; gap: 1.5rem; flex-wrap: wrap; }
+
+  .game-card {
+    display: block;
+    background: #fff;
+    border: 1px solid var(--color-line);
+    border-top: 3px solid var(--color-terra);
+    padding: 1.5rem 1.75rem 1.25rem;
+    max-width: 28ch;
+    text-decoration: none;
+    color: inherit;
+    transition: box-shadow 0.18s ease, border-color 0.18s ease;
+  }
+  .game-card:hover { box-shadow: 0 4px 16px 0 rgba(44,31,24,.08); border-top-color: var(--color-terra-deep, #9C3A1C); }
+
+  .gc-eyebrow { font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-terra); font-weight: 600; margin-bottom: 0.5rem; }
+  .gc-title { font-size: 1.75rem; font-variation-settings: "SOFT" 80; line-height: 1.1; margin-bottom: 0.75rem; }
+  .gc-desc { color: var(--color-ink-soft); font-size: 0.95rem; line-height: 1.55; margin-bottom: 1rem; }
+  .gc-cta { font-size: 0.9rem; font-weight: 600; color: var(--color-terra); }
 </style>
