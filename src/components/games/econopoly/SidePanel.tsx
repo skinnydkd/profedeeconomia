@@ -145,19 +145,6 @@ export function SidePanel({
       );
     }
 
-    if (state.phase === 'resolve') {
-      return (
-        <div class="ep2-action">
-          <div class="lab">Resolviendo casilla</div>
-          <div class="txt">
-            {state.lastEvent
-              ? state.lastEvent.text
-              : `Estas en ${posLabel}.`}
-          </div>
-        </div>
-      );
-    }
-
     // action phase
     return (
       <div class="ep2-action">

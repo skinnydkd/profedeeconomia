@@ -36,7 +36,7 @@ import {
 } from '@/lib/games/econopoly/engine';
 import { aiTakeTurn, aiAuctionDecide } from '@/lib/games/econopoly/ai';
 import { makeGameStorage } from '@/lib/games/storage';
-import { CELLS } from '@/lib/games/econopoly/board';
+import { CELLS, SECTOR_LABEL } from '@/lib/games/econopoly/board';
 
 import { SetupScreen } from './SetupScreen';
 import { PassDeviceScreen } from './PassDeviceScreen';
@@ -355,22 +355,22 @@ export default function EconopolyGame() {
             <span>
               <i style={{ background: '#1F6E6E' }} />
               <span class="pair">A · B</span>
-              Tecnologia · Servicios
+              {SECTOR_LABEL.A} · {SECTOR_LABEL.B}
             </span>
             <span>
               <i style={{ background: '#A87A2A' }} />
               <span class="pair">C · D</span>
-              Energia · Finanzas
+              {SECTOR_LABEL.C} · {SECTOR_LABEL.D}
             </span>
             <span>
               <i style={{ background: '#C44E2C' }} />
               <span class="pair">E · F</span>
-              Agricultura · Industria
+              {SECTOR_LABEL.E} · {SECTOR_LABEL.F}
             </span>
             <span>
               <i style={{ background: '#2E5E3A' }} />
               <span class="pair">G · H</span>
-              Turismo · Construccion
+              {SECTOR_LABEL.G} · {SECTOR_LABEL.H}
             </span>
           </div>
         </main>

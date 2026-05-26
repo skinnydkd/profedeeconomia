@@ -160,22 +160,8 @@ export function BoardView({ state, onCellClick }: Props) {
               const owner = state.players[ps.owner];
               return (
                 <span
-                  style={{
-                    position: 'absolute',
-                    top: '3px',
-                    right: '3px',
-                    width: '8px',
-                    height: '8px',
-                    borderRadius: '50%',
-                    background: owner?.color ?? '#8A7868',
-                    border: '1.5px solid #2A1F18',
-                    fontSize: '6px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    color: '#fff',
-                    fontWeight: 700,
-                  }}
+                  class="ep2-rd-badge"
+                  style={{ background: owner?.color ?? '#8A7868' }}
                 >
                   {ps.rdLevel}
                 </span>
