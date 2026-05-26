@@ -1,0 +1,1293 @@
+/*
+ * insider.css — Variant C styles for the Insider multiplayer game.
+ *
+ * Naming convention:
+ *   .ins-*  Insider game container and shared elements
+ *
+ * Color accents:
+ *   citizen  → teal     #1F6E6E
+ *   impostor → terracota-deep #9C3A1C
+ *   room code/timer → terracota #C44E2C
+ *   mustaza → scores/rankings #D4A24C
+ *
+ * No gradients. No emojis. Typography-only icons.
+ * Host layout: wide (projector). Player layout: phone-width max 480px.
+ */
+
+/* =========================================================
+   CSS custom properties (scoped under .ins)
+   ========================================================= */
+
+.ins {
+  --cream: #FBF6EC;
+  --paper: #FFFFFF;
+  --soft-cream: #F8E8D0;
+  --ink: #2A1F18;
+  --soft: #5C4A3D;
+  --mute: #8A7868;
+  --line: #E5D4BD;
+  --line-soft: #EFE2CB;
+  --terra: #C44E2C;
+  --terra-deep: #9C3A1C;
+  --terra-soft: #FBE3D6;
+  --mus: #D4A24C;
+  --mus-deep: #A87A2A;
+  --mus-soft: #F5E5BC;
+  --teal: #1F6E6E;
+  --teal-soft: #DBEDED;
+
+  background: var(--cream);
+  color: var(--ink);
+  min-height: 100dvh;
+}
+
+/* Typography helpers */
+.ins .serif {
+  font-family: "Fraunces", Georgia, serif;
+  font-variation-settings: "SOFT" 80, "WONK" 0;
+}
+
+.ins .serif-it {
+  font-family: "Fraunces", Georgia, serif;
+  font-style: italic;
+  font-variation-settings: "SOFT" 100, "WONK" 1;
+}
+
+.ins .mono {
+  font-family: "JetBrains Mono", monospace;
+}
+
+/* =========================================================
+   Reconnecting badge
+   ========================================================= */
+
+.ins-reconnecting {
+  position: fixed;
+  top: 0.75rem;
+  right: 0.75rem;
+  z-index: 100;
+  background: var(--terra-soft);
+  border: 1px solid var(--terra);
+  border-radius: 6px;
+  padding: 0.35rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--terra-deep);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* =========================================================
+   HOST layout
+   ========================================================= */
+
+.ins-host-wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem;
+}
+
+.ins-host {
+  background: var(--cream);
+  border: 2px solid var(--ink);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 12px 50px rgba(42, 31, 24, 0.12);
+}
+
+.ins-host-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 22px;
+  background: var(--paper);
+  border-bottom: 1px solid var(--line);
+}
+
+.ins-host-top .left .eyebrow {
+  font-size: 10.5px;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: var(--mute);
+  font-weight: 700;
+}
+
+.ins-host-top .left .title {
+  font-family: "Fraunces", serif;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1;
+  margin-top: 2px;
+  font-variation-settings: "SOFT" 80, "WONK" 0;
+}
+
+.ins-host-top .code {
+  text-align: right;
+}
+
+.ins-host-top .code .l {
+  font-size: 10.5px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--mute);
+  font-weight: 700;
+}
+
+.ins-host-top .code .v {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: var(--terra);
+  line-height: 1;
+  margin-top: 2px;
+}
+
+.ins-host-body {
+  padding: 26px 28px;
+}
+
+/* =========================================================
+   Phase header (host)
+   ========================================================= */
+
+.ins-phase {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.ins-phase .eyebrow {
+  font-size: 11px;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: var(--mute);
+  font-weight: 700;
+}
+
+.ins-phase .name {
+  font-family: "Fraunces", serif;
+  font-style: italic;
+  font-size: 38px;
+  font-weight: 500;
+  font-variation-settings: "SOFT" 100, "WONK" 1;
+  color: var(--terra-deep);
+  margin: 4px 0 2px;
+  line-height: 1;
+}
+
+.ins-phase .sub {
+  font-size: 13px;
+  color: var(--soft);
+  font-style: italic;
+  font-family: "Fraunces", serif;
+  max-width: 380px;
+  margin: 6px auto 0;
+}
+
+/* =========================================================
+   Speaker spotlight
+   ========================================================= */
+
+.ins-spot {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 20px 22px;
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+
+.ins-spot .avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--teal);
+  border: 2px solid var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Fraunces", serif;
+  font-size: 24px;
+  font-weight: 600;
+  color: #fff;
+  flex-shrink: 0;
+  font-variation-settings: "SOFT" 80, "WONK" 0;
+}
+
+.ins-spot .info {
+  flex: 1;
+}
+
+.ins-spot .info .lab {
+  font-size: 10.5px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--mute);
+  font-weight: 700;
+}
+
+.ins-spot .info .nm {
+  font-family: "Fraunces", serif;
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 1;
+  margin-top: 4px;
+  font-variation-settings: "SOFT" 80, "WONK" 0;
+}
+
+.ins-spot .timer {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 42px;
+  font-weight: 700;
+  color: var(--terra);
+  text-align: right;
+  line-height: 1;
+}
+
+.ins-spot .timer .sm {
+  font-size: 14px;
+  color: var(--mute);
+  letter-spacing: 1.5px;
+  margin-top: 4px;
+  display: block;
+}
+
+/* Timer urgency states */
+.ins-spot .timer.urgent {
+  color: var(--terra-deep);
+}
+
+/* =========================================================
+   Players grid (host)
+   ========================================================= */
+
+.ins-players {
+  margin-top: 20px;
+}
+
+.ins-players h4 {
+  font-size: 10.5px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--mute);
+  margin: 0 0 8px;
+  font-weight: 700;
+}
+
+.ins-players-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+@media (max-width: 700px) {
+  .ins-players-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.ins-pchip {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 8px 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12.5px;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.ins-pchip .av {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--mute);
+  border: 1.5px solid var(--ink);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  font-family: "Fraunces", serif;
+  font-variation-settings: "SOFT" 80, "WONK" 0;
+}
+
+.ins-pchip .nm {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ins-pchip .mk {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  color: var(--mute);
+}
+
+.ins-pchip.done .av {
+  background: var(--teal);
+}
+
+.ins-pchip.done .mk {
+  color: var(--teal);
+}
+
+.ins-pchip.active {
+  border: 1.5px solid var(--terra);
+  background: var(--terra-soft);
+  font-weight: 600;
+}
+
+.ins-pchip.active .av {
+  background: var(--terra);
+}
+
+.ins-pchip.active .mk {
+  color: var(--terra);
+  font-weight: 700;
+}
+
+.ins-pchip.eliminated {
+  opacity: 0.4;
+  text-decoration: line-through;
+}
+
+/* =========================================================
+   Scoreboard strip (host)
+   ========================================================= */
+
+.ins-score {
+  margin-top: 18px;
+  padding: 12px 14px;
+  background: var(--cream);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  display: flex;
+  gap: 18px;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.ins-score .l {
+  font-size: 10.5px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--mute);
+  font-weight: 700;
+}
+
+.ins-score .top3 {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.ins-score .top3 .e {
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+  font-size: 12.5px;
+}
+
+.ins-score .top3 .e .pos {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+  color: var(--mus-deep);
+  font-weight: 700;
+}
+
+.ins-score .top3 .e .pt {
+  font-family: "JetBrains Mono", monospace;
+  font-weight: 700;
+}
+
+/* =========================================================
+   Footer note (host)
+   ========================================================= */
+
+.ins-footer {
+  text-align: center;
+  padding: 10px 0 14px;
+  font-size: 11.5px;
+  color: var(--mute);
+  font-style: italic;
+  font-family: "Fraunces", serif;
+  border-top: 1px solid var(--line-soft);
+  margin-top: 18px;
+}
+
+/* =========================================================
+   Host lobby
+   ========================================================= */
+
+.ins-lobby {
+  padding: 32px 28px;
+}
+
+.ins-lobby-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.ins-lobby-header .eyebrow {
+  font-size: 11px;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: var(--mute);
+  font-weight: 700;
+}
+
+.ins-lobby-header h1 {
+  font-family: "Fraunces", serif;
+  font-size: 48px;
+  font-weight: 600;
+  line-height: 1;
+  margin: 8px 0 0;
+  font-variation-settings: "SOFT" 80, "WONK" 0;
+}
+
+.ins-lobby-code-block {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.ins-lobby-code-block .l {
+  font-size: 10.5px;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: var(--mute);
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.ins-lobby-code-block .code {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 64px;
+  font-weight: 700;
+  letter-spacing: 8px;
+  color: var(--terra);
+  line-height: 1;
+}
+
+.ins-lobby-code-block .hint {
+  font-size: 13px;
+  color: var(--soft);
+  margin-top: 8px;
+  font-style: italic;
+  font-family: "Fraunces", serif;
+}
+
+.ins-lobby-players {
+  margin-bottom: 24px;
+}
+
+.ins-lobby-players h4 {
+  font-size: 10.5px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--mute);
+  margin: 0 0 10px;
+  font-weight: 700;
+}
+
+.ins-lobby-players-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+@media (max-width: 700px) {
+  .ins-lobby-players-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.ins-lobby-player-chip {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+}
+
+.ins-lobby-player-chip .av {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--teal);
+  border: 1.5px solid var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  font-family: "Fraunces", serif;
+  font-variation-settings: "SOFT" 80, "WONK" 0;
+  flex-shrink: 0;
+}
+
+.ins-lobby-player-chip .nm {
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ins-empty-players {
+  background: var(--paper);
+  border: 1px dashed var(--line);
+  border-radius: 8px;
+  padding: 24px;
+  text-align: center;
+  color: var(--mute);
+  font-size: 13px;
+  font-style: italic;
+  font-family: "Fraunces", serif;
+}
+
+.ins-config {
+  display: flex;
+  gap: 16px;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.ins-config-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ins-config-field label {
+  font-size: 10.5px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--mute);
+  font-weight: 700;
+}
+
+.ins-config-field select,
+.ins-config-field input[type="number"] {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink);
+  background: var(--paper);
+  border: 1.5px solid var(--line);
+  border-radius: 6px;
+  padding: 8px 12px;
+  min-width: 80px;
+  appearance: auto;
+}
+
+.ins-config-field select:focus,
+.ins-config-field input[type="number"]:focus {
+  outline: none;
+  border-color: var(--terra);
+}
+
+/* =========================================================
+   Buttons
+   ========================================================= */
+
+.ins-btn {
+  font-family: "Fraunces", serif;
+  font-size: 15px;
+  font-weight: 600;
+  font-variation-settings: "SOFT" 80, "WONK" 0;
+  padding: 12px 28px;
+  border-radius: 8px;
+  border: 1.5px solid var(--ink);
+  background: var(--ink);
+  color: var(--paper);
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+  letter-spacing: 0.02em;
+}
+
+.ins-btn:hover {
+  background: var(--terra-deep);
+  border-color: var(--terra-deep);
+}
+
+.ins-btn:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.ins-btn.ghost {
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--line);
+}
+
+.ins-btn.ghost:hover {
+  border-color: var(--terra);
+  color: var(--terra);
+}
+
+.ins-btn.danger {
+  background: var(--terra);
+  border-color: var(--terra);
+}
+
+.ins-btn.danger:hover {
+  background: var(--terra-deep);
+  border-color: var(--terra-deep);
+}
+
+.ins-btn-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
+
+/* =========================================================
+   HOST reveal / voting screen
+   ========================================================= */
+
+.ins-reveal-box {
+  text-align: center;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 24px;
+  margin-bottom: 20px;
+}
+
+.ins-reveal-box .lab {
+  font-size: 10.5px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--mute);
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.ins-reveal-box .name {
+  font-family: "Fraunces", serif;
+  font-size: 36px;
+  font-weight: 600;
+  line-height: 1;
+  font-variation-settings: "SOFT" 80, "WONK" 0;
+}
+
+.ins-reveal-box .verdict {
+  display: inline-block;
+  margin-top: 12px;
+  font-size: 12px;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 4px 14px;
+  border-radius: 4px;
+}
+
+.ins-reveal-box .verdict.impostor {
+  background: var(--terra-soft);
+  color: var(--terra-deep);
+  border: 1px solid var(--terra);
+}
+
+.ins-reveal-box .verdict.citizen {
+  background: var(--teal-soft);
+  color: var(--teal);
+  border: 1px solid var(--teal);
+}
+
+.ins-reveal-box .word-reveal {
+  margin-top: 16px;
+  font-size: 13px;
+  color: var(--soft);
+}
+
+.ins-reveal-box .word-reveal strong {
+  font-family: "Fraunces", serif;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--teal);
+  font-variation-settings: "SOFT" 80, "WONK" 0;
+}
+
+/* =========================================================
+   HOST final ranking
+   ========================================================= */
+
+.ins-final {
+  padding: 32px 28px;
+  text-align: center;
+}
+
+.ins-final h2 {
+  font-family: "Fraunces", serif;
+  font-size: 36px;
+  font-weight: 600;
+  margin-bottom: 24px;
+  font-variation-settings: "SOFT" 80, "WONK" 0;
+}
+
+.ins-ranking {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 480px;
+  margin: 0 auto 28px;
+  text-align: left;
+}
+
+.ins-ranking-entry {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.ins-ranking-entry.gold {
+  border-color: var(--mus);
+  background: var(--mus-soft);
+}
+
+.ins-ranking-entry .pos {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--mus-deep);
+  width: 28px;
+  flex-shrink: 0;
+}
+
+.ins-ranking-entry .nm {
+  flex: 1;
+  font-weight: 500;
+}
+
+.ins-ranking-entry .sc {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+/* =========================================================
+   PLAYER layout — phone-width card
+   ========================================================= */
+
+.ins-player-wrap {
+  min-height: 100dvh;
+  background: var(--cream);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 1rem;
+}
+
+.ins-phone-card {
+  width: 100%;
+  max-width: 480px;
+  background: var(--paper);
+  border: 2px solid var(--ink);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 6px 24px rgba(42, 31, 24, 0.10);
+  margin: 0.5rem auto;
+}
+
+.ins-phone-top-bar {
+  background: var(--ink);
+  color: #fff;
+  padding: 8px 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 10px;
+  font-family: "JetBrains Mono", monospace;
+  letter-spacing: 0.5px;
+}
+
+.ins-phone-top-bar .me {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.ins-phone-top-bar .av {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--teal);
+  flex-shrink: 0;
+}
+
+.ins-phone-top-bar .av.impostor {
+  background: var(--terra-deep);
+}
+
+.ins-phone-body {
+  padding: 20px 18px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* =========================================================
+   Join screen (player, no room code)
+   ========================================================= */
+
+.ins-join {
+  width: 100%;
+  max-width: 480px;
+  margin: 1rem auto;
+}
+
+.ins-join h1 {
+  font-family: "Fraunces", serif;
+  font-size: 40px;
+  font-weight: 600;
+  line-height: 1;
+  margin-bottom: 8px;
+  font-variation-settings: "SOFT" 80, "WONK" 0;
+  color: var(--terra-deep);
+}
+
+.ins-join .sub {
+  font-size: 14px;
+  color: var(--soft);
+  margin-bottom: 24px;
+  line-height: 1.6;
+}
+
+.ins-join-form {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.ins-join-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ins-join-field label {
+  font-size: 10.5px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--mute);
+  font-weight: 700;
+}
+
+.ins-join-field input {
+  font-family: "Fraunces", serif;
+  font-size: 16px;
+  font-weight: 500;
+  font-variation-settings: "SOFT" 80, "WONK" 0;
+  color: var(--ink);
+  background: var(--paper);
+  border: 1.5px solid var(--line);
+  border-radius: 6px;
+  padding: 10px 14px;
+  transition: border-color 0.15s;
+}
+
+.ins-join-field input:focus {
+  outline: none;
+  border-color: var(--terra);
+}
+
+.ins-join-field input.code-input {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 6px;
+  color: var(--terra);
+  text-transform: uppercase;
+}
+
+/* =========================================================
+   Player role screens — citizen
+   ========================================================= */
+
+.ins-role-citizen {
+  text-align: center;
+  font-size: 10px;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  color: var(--teal);
+  font-weight: 700;
+}
+
+.ins-role-impostor {
+  text-align: center;
+  font-size: 10px;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  color: var(--terra-deep);
+  font-weight: 700;
+}
+
+.ins-word-label {
+  text-align: center;
+  font-size: 10px;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: var(--mute);
+  font-weight: 700;
+}
+
+.ins-word-display {
+  text-align: center;
+  font-family: "Fraunces", serif;
+  font-size: 30px;
+  font-weight: 600;
+  color: var(--teal);
+  line-height: 1;
+  font-variation-settings: "SOFT" 80, "WONK" 0;
+}
+
+.ins-impostor-big {
+  text-align: center;
+  font-family: "Fraunces", serif;
+  font-style: italic;
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--terra-deep);
+  line-height: 1.1;
+  font-variation-settings: "SOFT" 100, "WONK" 1;
+}
+
+.ins-word-hidden {
+  text-align: center;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--mute);
+  padding: 10px;
+  background: var(--cream);
+  border: 1px dashed var(--line);
+  border-radius: 5px;
+  letter-spacing: 8px;
+}
+
+.ins-status-box {
+  padding: 10px 12px;
+  background: var(--cream);
+  border: 1px dashed var(--terra);
+  border-radius: 6px;
+}
+
+.ins-status-box .l {
+  font-size: 9.5px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--terra);
+  font-weight: 700;
+}
+
+.ins-status-box .t {
+  font-size: 13px;
+  margin-top: 3px;
+}
+
+.ins-hint {
+  font-size: 12px;
+  color: var(--soft);
+  line-height: 1.5;
+  font-style: italic;
+  font-family: "Fraunces", serif;
+}
+
+.ins-strategy-box {
+  padding: 10px 12px;
+  background: var(--terra-soft);
+  border: 1px solid var(--terra);
+  border-radius: 6px;
+  font-size: 12px;
+  color: var(--terra-deep);
+  line-height: 1.5;
+}
+
+.ins-strategy-box strong {
+  font-weight: 700;
+}
+
+.ins-turn-info {
+  padding-top: 12px;
+  border-top: 1px solid var(--line-soft);
+  font-size: 11px;
+  color: var(--soft);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ins-turn-info .v {
+  font-family: "JetBrains Mono", monospace;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+/* =========================================================
+   Player waiting / lobby
+   ========================================================= */
+
+.ins-player-lobby {
+  text-align: center;
+  padding: 8px 0;
+}
+
+.ins-player-lobby .eyebrow {
+  font-size: 10px;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  color: var(--mute);
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.ins-player-lobby h2 {
+  font-family: "Fraunces", serif;
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  font-variation-settings: "SOFT" 80, "WONK" 0;
+}
+
+.ins-player-lobby .waiting {
+  font-size: 13px;
+  color: var(--soft);
+  font-style: italic;
+  font-family: "Fraunces", serif;
+}
+
+.ins-player-lobby .code-display {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  color: var(--terra);
+  margin: 16px 0 8px;
+}
+
+.ins-players-small {
+  margin-top: 16px;
+}
+
+.ins-players-small h4 {
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--mute);
+  margin: 0 0 8px;
+  font-weight: 700;
+  text-align: left;
+}
+
+.ins-players-small-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.ins-player-tag {
+  background: var(--teal-soft);
+  color: var(--teal);
+  border: 1px solid var(--teal);
+  border-radius: 20px;
+  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* =========================================================
+   Voting grid (player)
+   ========================================================= */
+
+.ins-vote-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+
+.ins-vote-chip {
+  background: var(--paper);
+  border: 1.5px solid var(--line);
+  border-radius: 8px;
+  padding: 12px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+  text-align: center;
+}
+
+.ins-vote-chip:hover {
+  border-color: var(--terra);
+  background: var(--terra-soft);
+}
+
+.ins-vote-chip .av {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--mute);
+  border: 1.5px solid var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: "Fraunces", serif;
+  font-variation-settings: "SOFT" 80, "WONK" 0;
+}
+
+.ins-vote-chip.selected {
+  border-color: var(--terra);
+  background: var(--terra-soft);
+}
+
+.ins-vote-chip.selected .av {
+  background: var(--terra);
+}
+
+.ins-vote-chip.voted {
+  opacity: 0.5;
+  cursor: default;
+  pointer-events: none;
+}
+
+/* =========================================================
+   Guess input (player impostor)
+   ========================================================= */
+
+.ins-guess-input-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ins-guess-input {
+  font-family: "Fraunces", serif;
+  font-size: 18px;
+  font-weight: 500;
+  font-variation-settings: "SOFT" 80, "WONK" 0;
+  color: var(--ink);
+  background: var(--paper);
+  border: 1.5px solid var(--line);
+  border-radius: 6px;
+  padding: 12px 16px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.ins-guess-input:focus {
+  outline: none;
+  border-color: var(--terra);
+}
+
+/* =========================================================
+   Player final screen
+   ========================================================= */
+
+.ins-player-final {
+  text-align: center;
+}
+
+.ins-player-final h2 {
+  font-family: "Fraunces", serif;
+  font-size: 32px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  font-variation-settings: "SOFT" 80, "WONK" 0;
+}
+
+.ins-player-final .your-score {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 48px;
+  font-weight: 700;
+  color: var(--terra);
+  line-height: 1;
+  margin: 8px 0;
+}
+
+.ins-player-final .your-rank {
+  font-size: 13px;
+  color: var(--soft);
+  margin-bottom: 20px;
+}
+
+/* =========================================================
+   Generic info / notice box
+   ========================================================= */
+
+.ins-notice {
+  padding: 12px 14px;
+  background: var(--mus-soft);
+  border: 1px solid var(--mus);
+  border-radius: 8px;
+  font-size: 13px;
+  color: var(--ink);
+  line-height: 1.5;
+}
+
+.ins-notice.info {
+  background: var(--teal-soft);
+  border-color: var(--teal);
+  color: var(--teal);
+}
+
+/* =========================================================
+   Loading / connecting state
+   ========================================================= */
+
+.ins-connecting {
+  text-align: center;
+  padding: 40px 20px;
+  font-size: 14px;
+  color: var(--mute);
+  font-style: italic;
+  font-family: "Fraunces", serif;
+}
+
+/* =========================================================
+   Utility
+   ========================================================= */
+
+.ins-divider {
+  border: none;
+  border-top: 1px solid var(--line-soft);
+  margin: 4px 0;
+}
+
+.ins-eyebrow {
+  font-size: 10.5px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--mute);
+  font-weight: 700;
+}
