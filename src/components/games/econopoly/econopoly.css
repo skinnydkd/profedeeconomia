@@ -1,0 +1,1256 @@
+/*
+ * econopoly.css — Variant C game styles for Econopoly (hot-seat board game).
+ *
+ * Naming convention: .ep2-*
+ *
+ * Paired sector palette (4 accents × 2 sectors each):
+ *   A-B → teal    #1F6E6E
+ *   C-D → mostaza #A87A2A
+ *   E-F → terra   #C44E2C
+ *   G-H → pine    #2E5E3A
+ *
+ * Player colors (up to 6):
+ *   0 → teal    #1F6E6E
+ *   1 → terra   #C44E2C
+ *   2 → mostaza #A87A2A
+ *   3 → pine    #2E5E3A
+ *   4 → berenjena #5B3A4E
+ *   5 → garnet  #8C2F39
+ *
+ * Variant C palette: --color-* vars from global.css, hex fallbacks for isolation.
+ * No gradients. No emojis. No emoji codepoints.
+ */
+
+/* =========================================================
+   Custom properties (scope to .ep2 root)
+   ========================================================= */
+
+.ep2 {
+  --cream: #FBF6EC;
+  --paper: #FFFFFF;
+  --soft-cream: #F8E8D0;
+  --ink: #2A1F18;
+  --soft: #5C4A3D;
+  --mute: #8A7868;
+  --line: #E5D4BD;
+  --line-soft: #EFE2CB;
+  --terra: #C44E2C;
+  --terra-deep: #9C3A1C;
+  --terra-soft: #FBE3D6;
+  --mus: #D4A24C;
+  --mus-deep: #A87A2A;
+  --mus-soft: #F5E5BC;
+  --teal: #1F6E6E;
+  --teal-soft: #DBEDED;
+  --pine: #2E5E3A;
+  --pine-soft: #D8E5DA;
+  --beren: #5B3A4E;
+  --garnet: #8C2F39;
+
+  font-family: var(--font-sans, "Switzer", system-ui, sans-serif);
+  color: var(--ink);
+  background: var(--cream);
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* =========================================================
+   Top bar
+   ========================================================= */
+
+.ep2-topbar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.6rem 1.25rem;
+  background: var(--paper);
+  border-bottom: 1px solid var(--line);
+  flex-wrap: wrap;
+  flex-shrink: 0;
+}
+
+.ep2-topbar-title {
+  font-family: var(--font-serif, "Fraunces", Georgia, serif);
+  font-size: 1.35rem;
+  font-weight: 700;
+  font-variation-settings: "SOFT" 80, "WONK" 0;
+  color: var(--ink);
+  margin: 0;
+  flex-shrink: 0;
+}
+
+.ep2-topbar-eyebrow {
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--mute);
+}
+
+.ep2-topbar-meta {
+  font-family: var(--font-mono, "JetBrains Mono", monospace);
+  font-size: 0.72rem;
+  color: var(--mute);
+}
+
+.ep2-topbar-sep {
+  flex: 1;
+}
+
+.ep2-turn-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.35rem 0.85rem;
+  background: var(--soft-cream);
+  border-radius: 20px;
+  font-size: 0.78rem;
+}
+
+.ep2-turn-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 1.5px solid var(--ink);
+  flex-shrink: 0;
+}
+
+/* =========================================================
+   Main body — board area + side panel
+   ========================================================= */
+
+.ep2-body {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  min-height: 0;
+}
+
+.ep2-board-wrap {
+  flex: 1;
+  padding: 1.25rem 1rem;
+  background: var(--cream);
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* =========================================================
+   Board — 8x8 CSS grid
+   ========================================================= */
+
+.ep2-board {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(8, 88px);
+  gap: 3px;
+  background: var(--ink);
+  border: 2px solid var(--ink);
+  border-radius: 8px;
+  width: min(760px, 100%);
+  aspect-ratio: 1 / 1;
+  flex-shrink: 0;
+  position: relative;
+}
+
+/* =========================================================
+   Cells — base
+   ========================================================= */
+
+.ep2-cell {
+  background: var(--paper);
+  padding: 6px 5px 5px;
+  font-size: 10.5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+  cursor: default;
+}
+
+.ep2-cell .chip {
+  display: inline-block;
+  font-family: var(--font-mono, "JetBrains Mono", monospace);
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 1.5px 5px;
+  border-radius: 3px;
+  color: #fff;
+  line-height: 1.2;
+  align-self: flex-start;
+  flex-shrink: 0;
+}
+
+.ep2-cell .nm {
+  font-weight: 600;
+  font-size: 10.5px;
+  color: var(--ink);
+  margin-top: 3px;
+  line-height: 1.2;
+  flex: 1;
+}
+
+.ep2-cell .pr {
+  font-family: var(--font-mono, "JetBrains Mono", monospace);
+  font-size: 11px;
+  color: var(--ink);
+  font-weight: 600;
+  align-self: flex-end;
+  margin-top: auto;
+  flex-shrink: 0;
+}
+
+/* Sector left-border strips */
+.ep2-cell.sec-A,
+.ep2-cell.sec-B { border-left: 3px solid var(--teal); }
+.ep2-cell.sec-C,
+.ep2-cell.sec-D { border-left: 3px solid var(--mus-deep); }
+.ep2-cell.sec-E,
+.ep2-cell.sec-F { border-left: 3px solid var(--terra); }
+.ep2-cell.sec-G,
+.ep2-cell.sec-H { border-left: 3px solid var(--pine); }
+
+/* Chip background by sector */
+.ep2-cell .chip.A,
+.ep2-cell .chip.B { background: var(--teal); }
+.ep2-cell .chip.C,
+.ep2-cell .chip.D { background: var(--mus-deep); }
+.ep2-cell .chip.E,
+.ep2-cell .chip.F { background: var(--terra); }
+.ep2-cell .chip.G,
+.ep2-cell .chip.H { background: var(--pine); }
+
+/* Corners */
+.ep2-cell.corner {
+  background: var(--soft-cream);
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 8px 5px;
+}
+
+.ep2-cell.corner .cl {
+  font-family: var(--font-serif, "Fraunces", Georgia, serif);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.15;
+  font-variation-settings: "SOFT" 80, "WONK" 0;
+}
+
+.ep2-cell.corner .ci {
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--mute);
+  margin-top: 4px;
+}
+
+/* Specials (news, cb, rd, freemarket) */
+.ep2-cell.special {
+  background: var(--cream);
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.ep2-cell.special .sl {
+  font-family: var(--font-serif, "Fraunces", Georgia, serif);
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--ink);
+  font-variation-settings: "SOFT" 80, "WONK" 0;
+}
+
+.ep2-cell.special .si {
+  font-size: 8.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--mute);
+  margin-top: 3px;
+}
+
+/* =========================================================
+   Board center — cycle protagonist
+   ========================================================= */
+
+.ep2-center {
+  grid-column: 2 / 8;
+  grid-row: 2 / 8;
+  background: var(--cream);
+  border: 1px dashed var(--line);
+  border-radius: 6px;
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  text-align: center;
+}
+
+.ep2-center .round-lab {
+  font-family: var(--font-mono, "JetBrains Mono", monospace);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: var(--mute);
+  text-transform: uppercase;
+}
+
+.ep2-center .pro {
+  font-family: var(--font-serif, "Fraunces", Georgia, serif);
+  font-style: italic;
+  font-variation-settings: "SOFT" 100, "WONK" 1;
+  font-size: clamp(32px, 5vw, 56px);
+  font-weight: 500;
+  line-height: 0.95;
+  color: var(--pine);
+}
+
+.ep2-center .pro.rec {
+  color: var(--terra-deep);
+}
+
+.ep2-center .subt {
+  font-size: 12.5px;
+  color: var(--soft);
+  font-style: italic;
+  font-family: var(--font-serif, "Fraunces", Georgia, serif);
+  max-width: 300px;
+  line-height: 1.4;
+}
+
+/* =========================================================
+   Tokens — colored discs, no letters
+   ========================================================= */
+
+.tok2 {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: 2px solid var(--ink);
+  box-shadow: 0 0 0 1.5px var(--paper);
+  flex-shrink: 0;
+}
+
+.tok2.t1 { bottom: 5px; left: 4px; }
+.tok2.t2 { bottom: 5px; left: 21px; }
+.tok2.t3 { bottom: 5px; left: 38px; }
+.tok2.t4 { bottom: 5px; left: 55px; }
+.tok2.t5 { bottom: 20px; left: 4px; }
+.tok2.t6 { bottom: 20px; left: 21px; }
+
+.tok2.active {
+  box-shadow: 0 0 0 1.5px var(--paper), 0 0 0 3px var(--ink);
+}
+
+/* =========================================================
+   Event ticker strip
+   ========================================================= */
+
+.ep2-ticker {
+  max-width: 760px;
+  width: min(760px, 100%);
+  padding: 8px 12px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--mus-deep);
+  border-radius: 5px;
+  font-size: 11.5px;
+  color: var(--soft);
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.ep2-ticker .l {
+  font-family: var(--font-mono, "JetBrains Mono", monospace);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--mus-deep);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.ep2-ticker .t {
+  font-family: var(--font-serif, "Fraunces", Georgia, serif);
+  font-style: italic;
+}
+
+/* =========================================================
+   Sector legend
+   ========================================================= */
+
+.ep2-legend {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  font-size: 10.5px;
+  color: var(--soft);
+  flex-wrap: wrap;
+  max-width: 760px;
+}
+
+.ep2-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.ep2-legend i {
+  display: inline-block;
+  width: 14px;
+  height: 3px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.ep2-legend .pair {
+  font-family: var(--font-mono, "JetBrains Mono", monospace);
+  font-weight: 700;
+  font-size: 10px;
+  color: var(--mute);
+}
+
+/* =========================================================
+   Side panel
+   ========================================================= */
+
+.ep2-panel {
+  width: 320px;
+  min-width: 280px;
+  border-left: 1px solid var(--line);
+  padding: 16px;
+  background: var(--paper);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  overflow-y: auto;
+  flex-shrink: 0;
+}
+
+/* Phase bar */
+.ep2-phases {
+  display: flex;
+  gap: 4px;
+}
+
+.ep2-phase {
+  flex: 1;
+  padding: 6px 3px;
+  font-size: 9.5px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  text-align: center;
+  border-radius: 5px;
+  background: var(--cream);
+  color: var(--mute);
+  font-weight: 700;
+}
+
+.ep2-phase .n {
+  font-family: var(--font-mono, "JetBrains Mono", monospace);
+  opacity: 0.65;
+  margin-right: 3px;
+  font-size: 8.5px;
+}
+
+.ep2-phase.done {
+  background: var(--line-soft);
+  color: var(--soft);
+}
+
+.ep2-phase.on {
+  background: var(--terra);
+  color: #fff;
+}
+
+/* Player card */
+.ep2-pcard {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 12px;
+  border-top: 4px solid var(--terra);
+  background: var(--paper);
+}
+
+.ep2-pcard .role {
+  font-size: 9.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--mute);
+  font-weight: 700;
+}
+
+.ep2-pcard .pname {
+  font-family: var(--font-serif, "Fraunces", Georgia, serif);
+  font-size: 18px;
+  font-weight: 600;
+  margin-top: 2px;
+  font-variation-settings: "SOFT" 80, "WONK" 0;
+}
+
+.ep2-pcard .pos {
+  font-size: 11.5px;
+  color: var(--soft);
+  margin-top: 5px;
+  font-style: italic;
+  font-family: var(--font-serif, "Fraunces", Georgia, serif);
+}
+
+.ep2-money {
+  display: flex;
+  gap: 14px;
+  margin-top: 8px;
+  padding-top: 10px;
+  border-top: 1px solid var(--line-soft);
+}
+
+.ep2-money .lab {
+  font-size: 9.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--mute);
+}
+
+.ep2-money .v {
+  font-family: var(--font-mono, "JetBrains Mono", monospace);
+  font-size: 16px;
+  font-weight: 700;
+  margin-top: 2px;
+}
+
+/* Properties hand grid */
+.ep2-hand h4 {
+  font-size: 9.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--mute);
+  margin: 0 0 7px;
+  font-weight: 700;
+}
+
+.ep2-hand-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px;
+}
+
+.ep2-prop {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--teal);
+  border-radius: 5px;
+  padding: 5px 6px;
+  font-size: 10.5px;
+}
+
+.ep2-prop.sec-A,
+.ep2-prop.sec-B { border-left-color: var(--teal); }
+.ep2-prop.sec-C,
+.ep2-prop.sec-D { border-left-color: var(--mus-deep); }
+.ep2-prop.sec-E,
+.ep2-prop.sec-F { border-left-color: var(--terra); }
+.ep2-prop.sec-G,
+.ep2-prop.sec-H { border-left-color: var(--pine); }
+
+.ep2-prop .pn {
+  font-weight: 600;
+  font-size: 10px;
+  line-height: 1.2;
+}
+
+.ep2-prop .rd {
+  font-family: var(--font-mono, "JetBrains Mono", monospace);
+  font-size: 9px;
+  color: var(--mute);
+  display: block;
+  margin-top: 2px;
+}
+
+/* Econ stats strip */
+.ep2-econ {
+  display: flex;
+  gap: 10px;
+  padding: 9px 0;
+  border-top: 1px solid var(--line-soft);
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.ep2-econ > div {
+  flex: 1;
+  text-align: center;
+}
+
+.ep2-econ .lab {
+  font-size: 8.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--mute);
+}
+
+.ep2-econ .v {
+  font-family: var(--font-mono, "JetBrains Mono", monospace);
+  font-size: 13px;
+  font-weight: 700;
+  margin-top: 2px;
+  color: var(--ink);
+}
+
+/* Action area */
+.ep2-action {
+  background: var(--cream);
+  border: 1px dashed var(--terra);
+  border-radius: 8px;
+  padding: 11px;
+}
+
+.ep2-action .lab {
+  font-size: 9.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--terra);
+  font-weight: 700;
+}
+
+.ep2-action .txt {
+  font-size: 12px;
+  color: var(--ink);
+  margin-top: 5px;
+  line-height: 1.45;
+}
+
+.ep2-btns {
+  display: flex;
+  gap: 7px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.ep2-btns button {
+  flex: 1;
+  min-width: 90px;
+  padding: 10px 7px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: inherit;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+
+.ep2-btns button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.ep2-btns .primary {
+  background: var(--terra);
+  color: #fff;
+}
+
+.ep2-btns .primary:hover:not(:disabled) {
+  background: var(--terra-deep);
+}
+
+.ep2-btns .ghost {
+  background: var(--paper);
+  color: var(--ink);
+  border: 1.5px solid var(--line);
+}
+
+.ep2-btns .ghost:hover:not(:disabled) {
+  border-color: var(--ink);
+}
+
+/* AI thinking indicator */
+.ep2-ai-thinking {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  background: var(--soft-cream);
+  border-radius: 8px;
+  font-size: 11.5px;
+  color: var(--soft);
+}
+
+.ep2-ai-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--mute);
+  animation: ep2-pulse 1.2s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+@keyframes ep2-pulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+
+/* =========================================================
+   Auction modal
+   ========================================================= */
+
+.ep2-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(42, 31, 24, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 1rem;
+}
+
+.ep2-modal {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 28px 28px 24px;
+  max-width: 440px;
+  width: 100%;
+  box-shadow: 0 20px 60px rgba(42, 31, 24, 0.18);
+}
+
+.ep2-modal-eyebrow {
+  font-size: 9.5px;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--mute);
+  font-weight: 700;
+}
+
+.ep2-modal-title {
+  font-family: var(--font-serif, "Fraunces", Georgia, serif);
+  font-size: 22px;
+  font-weight: 600;
+  margin: 4px 0 0;
+  font-variation-settings: "SOFT" 80, "WONK" 0;
+}
+
+.ep2-modal-sector {
+  display: inline-block;
+  font-family: var(--font-mono, "JetBrains Mono", monospace);
+  font-size: 9px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 3px;
+  color: #fff;
+  margin-top: 6px;
+}
+
+.ep2-auction-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line-soft);
+  font-size: 12.5px;
+  color: var(--soft);
+}
+
+.ep2-auction-row .v {
+  font-family: var(--font-mono, "JetBrains Mono", monospace);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.ep2-auction-bidder {
+  margin-top: 12px;
+  padding: 10px 12px;
+  background: var(--soft-cream);
+  border-radius: 8px;
+  font-size: 12px;
+  color: var(--soft);
+  text-align: center;
+}
+
+.ep2-auction-waiting {
+  margin-top: 12px;
+  font-size: 12.5px;
+  color: var(--mute);
+  text-align: center;
+  font-style: italic;
+  font-family: var(--font-serif, "Fraunces", Georgia, serif);
+}
+
+.ep2-passed-list {
+  margin-top: 8px;
+  font-size: 11px;
+  color: var(--mute);
+}
+
+.ep2-passed-list .badge {
+  display: inline-block;
+  padding: 1px 6px;
+  background: var(--line-soft);
+  border-radius: 3px;
+  margin-right: 4px;
+  font-size: 10.5px;
+}
+
+/* =========================================================
+   Setup screen
+   ========================================================= */
+
+.ep2-setup {
+  min-height: 100dvh;
+  background: var(--cream);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+.ep2-setup-card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 36px 32px;
+  max-width: 500px;
+  width: 100%;
+  box-shadow: 0 8px 40px rgba(42, 31, 24, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.ep2-setup-title {
+  font-family: var(--font-serif, "Fraunces", Georgia, serif);
+  font-size: 2.2rem;
+  font-weight: 700;
+  font-variation-settings: "SOFT" 80, "WONK" 0;
+  color: var(--ink);
+  margin: 0;
+}
+
+.ep2-setup-subtitle {
+  font-size: 0.9rem;
+  color: var(--soft);
+  margin: 6px 0 0;
+  line-height: 1.55;
+}
+
+.ep2-setup-section-label {
+  font-size: 9.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--mute);
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.ep2-player-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ep2-player-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper);
+  transition: border-color 0.15s;
+}
+
+.ep2-player-row.active {
+  border-color: var(--ink);
+}
+
+.ep2-player-swatch {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid var(--ink);
+  flex-shrink: 0;
+}
+
+.ep2-player-name-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-family: inherit;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--ink);
+  background: transparent;
+  min-width: 0;
+}
+
+.ep2-player-type-tag {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 4px;
+  color: #fff;
+  flex-shrink: 0;
+  cursor: pointer;
+  border: none;
+  font-family: inherit;
+}
+
+.ep2-player-remove {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--mute);
+  font-size: 14px;
+  padding: 2px 4px;
+  border-radius: 4px;
+  line-height: 1;
+  font-family: var(--font-mono, "JetBrains Mono", monospace);
+}
+
+.ep2-player-remove:hover {
+  color: var(--terra);
+}
+
+.ep2-setup-add {
+  background: none;
+  border: 1.5px dashed var(--line);
+  border-radius: 8px;
+  padding: 9px 12px;
+  font-size: 13px;
+  color: var(--mute);
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  width: 100%;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.ep2-setup-add:hover {
+  border-color: var(--ink);
+  color: var(--ink);
+}
+
+.ep2-setup-error {
+  font-size: 11.5px;
+  color: var(--terra);
+  text-align: center;
+  margin: 0;
+}
+
+.ep2-setup-cta {
+  width: 100%;
+  padding: 13px;
+  border-radius: 9px;
+  border: none;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  background: var(--terra);
+  color: #fff;
+  transition: background 0.15s;
+}
+
+.ep2-setup-cta:hover:not(:disabled) {
+  background: var(--terra-deep);
+}
+
+.ep2-setup-cta:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.ep2-setup-cta.ghost {
+  background: var(--paper);
+  color: var(--ink);
+  border: 1.5px solid var(--line);
+}
+
+.ep2-setup-cta.ghost:hover {
+  border-color: var(--ink);
+}
+
+/* =========================================================
+   Pass-device screen
+   ========================================================= */
+
+.ep2-pass {
+  min-height: 100dvh;
+  background: var(--cream);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+.ep2-pass-card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 40px 36px;
+  max-width: 460px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 8px 40px rgba(42, 31, 24, 0.08);
+}
+
+.ep2-pass-eyebrow {
+  font-size: 9.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--mute);
+  font-weight: 700;
+}
+
+.ep2-pass-headline {
+  font-family: var(--font-serif, "Fraunces", Georgia, serif);
+  font-size: 1.7rem;
+  font-weight: 600;
+  margin: 10px 0 0;
+  font-variation-settings: "SOFT" 80, "WONK" 0;
+  line-height: 1.2;
+}
+
+.ep2-pass-sub {
+  font-size: 13.5px;
+  color: var(--soft);
+  margin: 14px 0 0;
+  line-height: 1.55;
+}
+
+.ep2-pass-cta {
+  display: block;
+  width: 100%;
+  margin-top: 28px;
+  padding: 14px;
+  border-radius: 9px;
+  border: none;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  background: var(--terra);
+  color: #fff;
+  transition: background 0.15s;
+}
+
+.ep2-pass-cta:hover {
+  background: var(--terra-deep);
+}
+
+/* =========================================================
+   End screen
+   ========================================================= */
+
+.ep2-end {
+  min-height: 100dvh;
+  background: var(--cream);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  overflow-y: auto;
+}
+
+.ep2-end-card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 36px 32px;
+  max-width: 540px;
+  width: 100%;
+  box-shadow: 0 8px 40px rgba(42, 31, 24, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.ep2-end-eyebrow {
+  font-size: 9.5px;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--mute);
+  font-weight: 700;
+}
+
+.ep2-end-headline {
+  font-family: var(--font-serif, "Fraunces", Georgia, serif);
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin: 6px 0 0;
+  font-variation-settings: "SOFT" 80, "WONK" 0;
+}
+
+.ep2-ranking {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ep2-ranking-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper);
+}
+
+.ep2-ranking-row.winner {
+  border-color: var(--mus-deep);
+  background: var(--mus-soft);
+}
+
+.ep2-ranking-pos {
+  font-family: var(--font-mono, "JetBrains Mono", monospace);
+  font-size: 11px;
+  color: var(--mute);
+  font-weight: 700;
+  min-width: 20px;
+}
+
+.ep2-ranking-swatch {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 1.5px solid var(--ink);
+  flex-shrink: 0;
+}
+
+.ep2-ranking-name {
+  flex: 1;
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.ep2-ranking-worth {
+  font-family: var(--font-mono, "JetBrains Mono", monospace);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.ep2-end-gini {
+  padding: 10px 14px;
+  background: var(--cream);
+  border-radius: 8px;
+  font-size: 12px;
+  color: var(--soft);
+  text-align: center;
+}
+
+.ep2-end-gini strong {
+  font-family: var(--font-mono, "JetBrains Mono", monospace);
+  font-size: 15px;
+  color: var(--ink);
+}
+
+.ep2-end-lesson {
+  padding: 14px;
+  background: var(--teal-soft);
+  border-left: 3px solid var(--teal);
+  border-radius: 5px;
+  font-size: 13px;
+  color: var(--ink);
+  line-height: 1.55;
+}
+
+.ep2-end-lesson h3 {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin: 0 0 6px;
+  font-weight: 700;
+}
+
+.ep2-end-cta {
+  display: block;
+  width: 100%;
+  padding: 13px;
+  border-radius: 9px;
+  border: none;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  background: var(--terra);
+  color: #fff;
+  transition: background 0.15s;
+}
+
+.ep2-end-cta:hover {
+  background: var(--terra-deep);
+}
+
+/* =========================================================
+   R+D level badge (absolute-positioned dot on board cells)
+   ========================================================= */
+
+.ep2-rd-badge {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 1.5px solid #2A1F18;
+  font-size: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: 700;
+}
+
+/* =========================================================
+   Recent log
+   ========================================================= */
+
+.ep2-log {
+  max-width: 760px;
+  width: min(760px, 100%);
+  padding: 8px 12px;
+  background: var(--paper);
+  border: 1px solid var(--line-soft);
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.ep2-log-entry {
+  font-size: 11px;
+  color: var(--soft);
+  line-height: 1.4;
+}
+
+.ep2-log-entry:last-child {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+/* =========================================================
+   Responsive: hide panel on very small screens
+   ========================================================= */
+
+@media (max-width: 640px) {
+  .ep2-panel {
+    display: none;
+  }
+
+  .ep2-board {
+    grid-template-rows: repeat(8, 60px);
+  }
+}
