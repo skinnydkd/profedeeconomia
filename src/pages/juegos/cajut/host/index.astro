@@ -1,0 +1,25 @@
+---
+// src/pages/juegos/cajut/host/index.astro
+// Host entry point — teacher opens this on the projector.
+// Students join via /juegos/cajut/ using the room code displayed here.
+import BaseLayout from '@layouts/BaseLayout.astro';
+import HostApp from '@components/games/cajut/HostApp';
+
+const partykitHost = import.meta.env.PUBLIC_PARTYKIT_HOST ?? '127.0.0.1:1999';
+---
+<BaseLayout
+  title="Cajút — host"
+  description="Pantalla de control del profe per a una partida de Cajút."
+>
+  <div class="cajut-host-page">
+    <HostApp client:only="preact" partykitHost={partykitHost} />
+  </div>
+</BaseLayout>
+
+<style>
+  .cajut-host-page {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: clamp(1rem, 3vw, 2rem);
+  }
+</style>

@@ -1,0 +1,24 @@
+---
+// src/pages/juegos/cajut/index.astro
+// Player entry point — students open this on their phones and enter the room code.
+import BaseLayout from '@layouts/BaseLayout.astro';
+import PlayerApp from '@components/games/cajut/PlayerApp';
+
+const partykitHost = import.meta.env.PUBLIC_PARTYKIT_HOST ?? '127.0.0.1:1999';
+---
+<BaseLayout
+  title="Cajút — sala d'alumne"
+  description="Entra a la sala de Cajút amb el codi del profe."
+>
+  <div class="cajut-page">
+    <PlayerApp client:only="preact" partykitHost={partykitHost} />
+  </div>
+</BaseLayout>
+
+<style>
+  .cajut-page {
+    max-width: 480px;
+    margin: 0 auto;
+    padding: clamp(1rem, 3vw, 2rem);
+  }
+</style>
