@@ -259,10 +259,10 @@ export default function EconriskGame() {
           return;
         }
         if (cell.owner === currentFaction && byId[selectedId]?.adj.includes(id)) {
-          // Move all spare units (keep 1 behind)
+          // Move all spare units (keep 1 behind), then auto-advance (1 fortify per turn)
           const spare = state.territories[selectedId].units - 1;
           if (spare > 0) {
-            setState(fortify(state, selectedId, id, spare));
+            setState(advancePhase(fortify(state, selectedId, id, spare)));
           }
           setSelectedId(null);
         } else if (cell.owner === currentFaction && cell.units > 1) {

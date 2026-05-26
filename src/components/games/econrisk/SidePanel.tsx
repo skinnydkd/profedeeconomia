@@ -5,6 +5,7 @@
 import type { GameState } from '@/lib/games/econrisk/types';
 import { factionMeta } from '@/lib/games/econrisk/factions';
 import { reinforcementsFor, ownedCount } from '@/lib/games/econrisk/engine';
+import { byId } from '@/lib/games/econrisk/map';
 
 const PHASE_INSTRUCTION: Record<string, string> = {
   event:     'Se está aplicando un evento de mercado. Pulsa "Siguiente fase" para continuar.',
@@ -75,7 +76,7 @@ export function SidePanel({ state, selectedId }: Props) {
       {/* Selected territory info */}
       {selectedId && (
         <div class="er-selection-info">
-          Seleccionado: <strong>{selectedId}</strong>
+          Seleccionado: <strong>{byId[selectedId]?.label ?? selectedId}</strong>
         </div>
       )}
 
