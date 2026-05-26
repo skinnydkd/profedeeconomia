@@ -2,7 +2,7 @@
 // Pure game-rules engine — no side effects, injectable RNG for deterministic tests.
 
 import type { FactionId, ContinentId, GameState, Phase } from './types';
-import { FACTION_IDS } from './factions';
+import { FACTION_IDS, factionMeta } from './factions';
 import { TERRITORIES, TERRITORY_IDS, byId, CONTINENT_BONUS, CONTINENTS, continentTerritories } from './map';
 import { EVENT_CARDS } from './events';
 
@@ -124,11 +124,11 @@ export function resolveAttack(
     from.units -= movedUnits;
     to.units = movedUnits;
     to.owner = currentFaction;
-    s.log.push(`${currentFaction} auto-captures ${toId} (Marxist power).`);
+    s.log.push(`${factionMeta[currentFaction].label} conquistan ${byId[toId].label} (poder marxista).`);
     // Check if defender faction is eliminated
     if (ownedCount(s, defenderFaction) === 0) {
       s.factions[defenderFaction].alive = false;
-      s.log.push(`${defenderFaction} has been eliminated.`);
+      s.log.push(`${factionMeta[defenderFaction].label} han sido eliminados.`);
     }
     return s;
   }
@@ -143,7 +143,7 @@ export function resolveAttack(
   const defenderDice = defenderDiceRaw.map((d) => (isAustrianDefender ? Math.min(6, d + 1) : d)).sort((a, b) => b - a);
 
   s.log.push(
-    `Attack ${fromId}→${toId}: attacker [${attackerDice}] defender [${defenderDice}]${isAustrianDefender ? ' (+1 austrian)' : ''}`,
+    `Ataque: ${byId[fromId].label} → ${byId[toId].label} (atacante [${attackerDice}] vs defensor [${defenderDice}]${isAustrianDefender ? ' +1 austríaco' : ''}).`,
   );
 
   // Compare top pairs; ties → defender wins (attacker loses)
@@ -162,11 +162,11 @@ export function resolveAttack(
     from.units -= movedUnits;
     to.units = movedUnits;
     to.owner = currentFaction;
-    s.log.push(`${currentFaction} captures ${toId}.`);
+    s.log.push(`${factionMeta[currentFaction].label} conquistan ${byId[toId].label}.`);
     // Check if defender faction is eliminated
     if (ownedCount(s, defenderFaction) === 0) {
       s.factions[defenderFaction].alive = false;
-      s.log.push(`${defenderFaction} has been eliminated.`);
+      s.log.push(`${factionMeta[defenderFaction].label} han sido eliminados.`);
     }
   }
 
@@ -217,7 +217,7 @@ export function applyEvent(state: GameState, rng: () => number = Math.random): G
   const idx = Math.floor(rng() * EVENT_CARDS.length);
   const card = EVENT_CARDS[idx];
   s.activeEvent = card;
-  s.log.push(`Event: ${card.text}`);
+  s.log.push(`Evento: ${card.text}`);
 
   const currentFaction = s.order[s.current];
 
@@ -423,7 +423,7 @@ export function endTurn(state: GameState, rng: () => number = Math.random): Game
         s.territories[id].units > s.territories[best].units ? id : best,
       );
       s.territories[strongest].units += 2;
-      s.log.push(`Keynes fiscal stimulus: +2 units on ${strongest}.`);
+      s.log.push(`Estímulo fiscal keynesiano: +2 unidades en ${byId[strongest].label}.`);
     }
     s.factions.keynes.turnsSinceBonus = 0;
   }
@@ -439,7 +439,7 @@ export function endTurn(state: GameState, rng: () => number = Math.random): Game
   // Guard: if only one faction is alive, next === s.current; do NOT increment round in that case.
   if (next !== s.current && next <= s.current) {
     s.round += 1;
-    s.log.push(`Round ${s.round} begins.`);
+    s.log.push(`Comienza la ronda ${s.round}.`);
   }
 
   s.current = next;

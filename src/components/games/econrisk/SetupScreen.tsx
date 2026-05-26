@@ -39,8 +39,8 @@ export function SetupScreen({ onStart, hasSave, onContinue }: Props) {
         <div>
           <h1 class="er-setup-title">Econrisk</h1>
           <p class="er-setup-subtitle">
-            Joc d'estratègia d'escoles de pensament econòmic. 4 faccions, 24 territoris, 6 continents.
-            Conquesta per estímul fiscal, revolució, solidesa monetaria o avantatge comparatiu.
+            Juego de estrategia de escuelas de pensamiento económico. 4 facciones, 24 territorios, 6 continentes.
+            Conquista por estímulo fiscal, revolución, solidez monetaria o ventaja comparativa.
           </p>
         </div>
 

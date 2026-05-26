@@ -15,8 +15,6 @@ import {
 } from './engine';
 import { FACTION_IDS } from './factions';
 import { TERRITORIES, byId } from './map';
-import type { GameState } from './types';
-
 // byId is imported but used only in structural helpers (keep for future tests)
 void byId;
 
@@ -25,15 +23,6 @@ const seq = (vals: number[]) => {
   let i = 0;
   return () => vals[i++ % vals.length];
 };
-
-// Helper: make a minimal state with all territories owned by keynes, attack phase
-function dominantState(): GameState {
-  const s = createInitialState(['keynes'], () => 0.5);
-  for (const t of TERRITORIES) {
-    s.territories[t.id] = { owner: 'keynes', units: 3 };
-  }
-  return { ...s, phase: 'attack', current: s.order.indexOf('keynes') };
-}
 
 describe('econrisk engine', () => {
   // ─── Initial state ───────────────────────────────────────────────────────────
