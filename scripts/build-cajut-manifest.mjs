@@ -19,26 +19,6 @@ const DEFAULT_SOURCE = path.join(ROOT, 'src', 'content');
 const DEFAULT_OUT_MANIFEST = path.join(ROOT, 'public', 'games-multi', 'cajut', 'manifest.json');
 const DEFAULT_OUT_QUESTIONS = path.join(ROOT, 'party', 'cajut', 'questions.generated.json');
 
-/** Recursivament llista fitxers .md sota un directori. */
-async function listMdFiles(dir) {
-  const out = [];
-  async function walk(d) {
-    let entries;
-    try {
-      entries = await fs.readdir(d, { withFileTypes: true });
-    } catch {
-      return;
-    }
-    for (const ent of entries) {
-      const full = path.join(d, ent.name);
-      if (ent.isDirectory()) await walk(full);
-      else if (ent.isFile() && full.endsWith('.md')) out.push(full);
-    }
-  }
-  await walk(dir);
-  return out;
-}
-
 async function parseTest(file) {
   const raw = await fs.readFile(file, 'utf8');
   const { data } = matter(raw);
