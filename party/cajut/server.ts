@@ -156,6 +156,7 @@ export default class CajutServer implements Party.Server {
   ) {
     if (!meta.isHost) return;
     if (this.state.phase !== 'lobby') return;
+    if (this.state.config !== null) return; // already configured/started
     if (this.state.players.size < 1) return;
 
     const pool = getPool(asignaturaSlug, unidades);
