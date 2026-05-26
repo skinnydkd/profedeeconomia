@@ -1,0 +1,868 @@
+/*
+ * econrisk.css — Variant C game styles for the Econrisk strategy game.
+ *
+ * Naming convention: .er-*
+ *
+ * Faction colors (from factions.ts):
+ *   keynes     → teal   #1F6E6E
+ *   marx       → garnet #8C2F39
+ *   austrian   → gold   #A87A2A
+ *   neoclassic → green  #2E5E3A
+ *
+ * Variant C palette reuses --color-* vars from global.css with hex fallbacks.
+ * No gradients. No emojis. Typography-only labels and icons.
+ */
+
+/* =========================================================
+   Root container — full-width game frame
+   ========================================================= */
+
+.er {
+  min-height: 100dvh;
+  background: var(--color-bg, #FBF6EC);
+  display: flex;
+  flex-direction: column;
+}
+
+/* =========================================================
+   Top bar — round / faction / phase
+   ========================================================= */
+
+.er-topbar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.6rem 1.25rem;
+  background: var(--color-paper, #FFFFFF);
+  border-bottom: 1px solid var(--color-line, #E5D4BD);
+  flex-wrap: wrap;
+}
+
+.er-topbar-title {
+  font-family: var(--font-serif, "Fraunces", Georgia, serif);
+  font-size: 1.35rem;
+  font-weight: 700;
+  font-variation-settings: "SOFT" 80, "WONK" 0;
+  color: var(--color-ink, #2A1F18);
+  margin: 0;
+  flex-shrink: 0;
+}
+
+.er-topbar-round {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-ink-mute, #8A7868);
+  flex-shrink: 0;
+}
+
+.er-topbar-sep {
+  flex: 1;
+}
+
+.er-faction-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: 3px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+/* =========================================================
+   Main game area — map + side panel
+   ========================================================= */
+
+.er-body {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 0;
+  overflow: hidden;
+}
+
+@media (max-width: 900px) {
+  .er-body {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+  }
+}
+
+/* =========================================================
+   Map area
+   ========================================================= */
+
+.er-map-area {
+  display: flex;
+  flex-direction: column;
+  padding: 0.75rem 1rem;
+  background: var(--color-bg, #FBF6EC);
+  overflow: hidden;
+}
+
+.er-map-wrap {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+}
+
+.er-map-svg {
+  width: 100%;
+  height: 100%;
+  max-height: calc(100dvh - 220px);
+  display: block;
+}
+
+/* Territory node hover */
+.er-node circle {
+  transition: stroke 0.1s, stroke-width 0.1s, filter 0.1s;
+}
+
+.er-node:hover circle {
+  filter: brightness(1.15);
+}
+
+/* Continent background labels */
+.er-continent-label {
+  font-family: var(--font-sans, "Switzer", sans-serif);
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  fill: var(--color-ink-mute, #8A7868);
+  pointer-events: none;
+  opacity: 0.55;
+}
+
+/* Territory label (below the circle) */
+.er-terr-label {
+  font-family: var(--font-sans, "Switzer", sans-serif);
+  font-size: 8px;
+  font-weight: 600;
+  fill: var(--color-ink, #2A1F18);
+  text-anchor: middle;
+  pointer-events: none;
+}
+
+/* =========================================================
+   Event log strip (below map)
+   ========================================================= */
+
+.er-log {
+  margin-top: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  background: var(--color-paper, #FFFFFF);
+  border: 1px solid var(--color-line, #E5D4BD);
+  border-radius: 4px;
+  font-size: 0.78rem;
+  color: var(--color-ink-soft, #5C4A3D);
+  line-height: 1.5;
+  max-height: 5.5rem;
+  overflow-y: auto;
+}
+
+.er-log-entry {
+  padding: 0.1rem 0;
+  border-bottom: 1px solid var(--color-line-soft, #EFE2CB);
+}
+
+.er-log-entry:last-child {
+  border-bottom: none;
+}
+
+/* =========================================================
+   Event card strip
+   ========================================================= */
+
+.er-event-card {
+  margin-top: 0.5rem;
+  padding: 0.6rem 0.875rem;
+  border-left: 3px solid var(--color-mustard, #D4A24C);
+  background: var(--color-mustard-soft, #F5E5BC);
+  border-radius: 0 4px 4px 0;
+  font-size: 0.875rem;
+  color: var(--color-ink, #2A1F18);
+  line-height: 1.5;
+}
+
+.er-event-label {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-mustard-deep, #A87A2A);
+  margin-bottom: 0.25rem;
+}
+
+/* =========================================================
+   Side panel
+   ========================================================= */
+
+.er-panel {
+  background: var(--color-paper, #FFFFFF);
+  border-left: 1px solid var(--color-line, #E5D4BD);
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  gap: 1rem;
+  overflow-y: auto;
+}
+
+@media (max-width: 900px) {
+  .er-panel {
+    border-left: none;
+    border-top: 1px solid var(--color-line, #E5D4BD);
+    order: -1;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+  }
+}
+
+/* Faction card inside the panel */
+.er-faction-card {
+  border-radius: 5px;
+  border: 1px solid var(--color-line, #E5D4BD);
+  overflow: hidden;
+}
+
+.er-faction-card-top {
+  height: 4px;
+}
+
+.er-faction-card-body {
+  padding: 0.75rem 0.875rem;
+}
+
+.er-faction-name {
+  font-family: var(--font-serif, "Fraunces", Georgia, serif);
+  font-size: 1.15rem;
+  font-weight: 700;
+  font-variation-settings: "SOFT" 80, "WONK" 0;
+  color: var(--color-ink, #2A1F18);
+  margin: 0 0 0.15rem;
+}
+
+.er-faction-school {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-ink-mute, #8A7868);
+  margin: 0 0 0.6rem;
+}
+
+.er-faction-power {
+  font-size: 0.82rem;
+  line-height: 1.55;
+  color: var(--color-ink-soft, #5C4A3D);
+  padding: 0.4rem 0.6rem;
+  background: var(--color-bg, #FBF6EC);
+  border-radius: 3px;
+  border-left: 2px solid var(--color-mustard, #D4A24C);
+}
+
+/* Stats grid */
+.er-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.4rem;
+}
+
+.er-stat {
+  padding: 0.45rem 0.6rem;
+  background: var(--color-bg, #FBF6EC);
+  border-radius: 3px;
+  border: 1px solid var(--color-line-soft, #EFE2CB);
+}
+
+.er-stat-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-ink-mute, #8A7868);
+  display: block;
+  margin-bottom: 0.15rem;
+}
+
+.er-stat-value {
+  font-family: var(--font-mono, "JetBrains Mono", monospace);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-ink, #2A1F18);
+}
+
+/* Phase instruction */
+.er-phase-instruction {
+  font-size: 0.875rem;
+  line-height: 1.55;
+  color: var(--color-ink-soft, #5C4A3D);
+  padding: 0.5rem 0.7rem;
+  border-left: 3px solid var(--color-terra, #C44E2C);
+  background: var(--color-terra-soft, #FBE3D6);
+  border-radius: 0 3px 3px 0;
+}
+
+/* Selection feedback */
+.er-selection-info {
+  font-size: 0.82rem;
+  color: var(--color-ink-soft, #5C4A3D);
+  padding: 0.4rem 0;
+  font-style: italic;
+}
+
+/* =========================================================
+   Phase bar — bottom
+   ========================================================= */
+
+.er-phasebar {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  background: var(--color-paper, #FFFFFF);
+  border-top: 1px solid var(--color-line, #E5D4BD);
+  padding: 0 1rem;
+  flex-shrink: 0;
+}
+
+.er-phasebar-phases {
+  display: flex;
+  flex: 1;
+  gap: 0;
+}
+
+.er-phase-step {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.65rem 1rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: var(--color-ink-mute, #8A7868);
+  border-bottom: 3px solid transparent;
+  white-space: nowrap;
+  text-transform: uppercase;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.er-phase-step.active {
+  color: var(--color-terra, #C44E2C);
+  border-bottom-color: var(--color-terra, #C44E2C);
+}
+
+.er-phase-step.done {
+  color: var(--color-ink-soft, #5C4A3D);
+}
+
+.er-phase-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  flex-shrink: 0;
+}
+
+.er-next-btn {
+  padding: 0.55rem 1.1rem;
+  background: var(--color-terra, #C44E2C);
+  color: #FFFFFF;
+  border: none;
+  border-radius: 4px;
+  font-family: var(--font-sans, sans-serif);
+  font-size: 0.875rem;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  transition: background 0.15s;
+  flex-shrink: 0;
+}
+
+.er-next-btn:hover {
+  background: var(--color-terra-deep, #9C3A1C);
+}
+
+.er-next-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* =========================================================
+   Setup screen
+   ========================================================= */
+
+.er-setup {
+  min-height: 100dvh;
+  background: var(--color-bg, #FBF6EC);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+.er-setup-card {
+  width: 100%;
+  max-width: 520px;
+  background: var(--color-paper, #FFFFFF);
+  border: 1px solid var(--color-line, #E5D4BD);
+  border-radius: 6px;
+  padding: 2rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.er-setup-title {
+  font-family: var(--font-serif, "Fraunces", Georgia, serif);
+  font-size: 2.2rem;
+  font-weight: 700;
+  font-variation-settings: "SOFT" 80, "WONK" 0;
+  color: var(--color-ink, #2A1F18);
+  margin: 0;
+  line-height: 1.1;
+}
+
+.er-setup-subtitle {
+  font-size: 0.95rem;
+  color: var(--color-ink-soft, #5C4A3D);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.er-setup-section-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-ink-mute, #8A7868);
+  margin-bottom: 0.5rem;
+}
+
+.er-faction-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* Faction row in setup */
+.er-faction-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.7rem 0.875rem;
+  border: 1.5px solid var(--color-line, #E5D4BD);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+  background: var(--color-paper, #FFFFFF);
+  user-select: none;
+}
+
+.er-faction-row:hover {
+  background: var(--color-bg, #FBF6EC);
+}
+
+.er-faction-row.selected {
+  border-color: currentColor;
+  background: var(--color-bg, #FBF6EC);
+}
+
+.er-faction-swatch {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.er-faction-row-label {
+  flex: 1;
+}
+
+.er-faction-row-name {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--color-ink, #2A1F18);
+}
+
+.er-faction-row-school {
+  font-size: 0.75rem;
+  color: var(--color-ink-mute, #8A7868);
+}
+
+.er-faction-row-tag {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.15em 0.5em;
+  border-radius: 3px;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+/* Setup CTA buttons */
+.er-setup-cta {
+  display: block;
+  width: 100%;
+  padding: 0.85rem 1rem;
+  background: var(--color-terra, #C44E2C);
+  color: #FFFFFF;
+  border: none;
+  border-radius: 4px;
+  font-family: var(--font-sans, sans-serif);
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  text-align: center;
+  letter-spacing: 0.02em;
+  transition: background 0.15s;
+}
+
+.er-setup-cta:hover:not(:disabled) {
+  background: var(--color-terra-deep, #9C3A1C);
+}
+
+.er-setup-cta:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.er-setup-cta.ghost {
+  background: transparent;
+  color: var(--color-terra, #C44E2C);
+  border: 1.5px solid var(--color-terra, #C44E2C);
+}
+
+.er-setup-cta.ghost:hover {
+  background: var(--color-terra-soft, #FBE3D6);
+}
+
+/* =========================================================
+   Pass-device screen
+   ========================================================= */
+
+.er-pass {
+  min-height: 100dvh;
+  background: var(--color-bg, #FBF6EC);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.er-pass-card {
+  width: 100%;
+  max-width: 480px;
+  background: var(--color-paper, #FFFFFF);
+  border: 1px solid var(--color-line, #E5D4BD);
+  border-radius: 6px;
+  padding: 2.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  text-align: center;
+}
+
+.er-pass-eyebrow {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--color-ink-mute, #8A7868);
+}
+
+.er-pass-headline {
+  font-family: var(--font-serif, "Fraunces", Georgia, serif);
+  font-size: 1.8rem;
+  font-weight: 700;
+  font-variation-settings: "SOFT" 80, "WONK" 0;
+  color: var(--color-ink, #2A1F18);
+  line-height: 1.25;
+  margin: 0;
+}
+
+.er-pass-sub {
+  font-size: 0.9rem;
+  color: var(--color-ink-soft, #5C4A3D);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.er-pass-cta {
+  padding: 0.85rem 2.5rem;
+  background: var(--color-terra, #C44E2C);
+  color: #FFFFFF;
+  border: none;
+  border-radius: 4px;
+  font-family: var(--font-sans, sans-serif);
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: 0.02em;
+  transition: background 0.15s;
+}
+
+.er-pass-cta:hover {
+  background: var(--color-terra-deep, #9C3A1C);
+}
+
+/* =========================================================
+   End screen
+   ========================================================= */
+
+.er-end {
+  min-height: 100dvh;
+  background: var(--color-bg, #FBF6EC);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 2rem 1.5rem;
+}
+
+.er-end-card {
+  width: 100%;
+  max-width: 620px;
+  background: var(--color-paper, #FFFFFF);
+  border: 1px solid var(--color-line, #E5D4BD);
+  border-radius: 6px;
+  padding: 2rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+  margin-bottom: 2rem;
+}
+
+.er-end-eyebrow {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--color-ink-mute, #8A7868);
+}
+
+.er-end-headline {
+  font-family: var(--font-serif, "Fraunces", Georgia, serif);
+  font-size: 2.2rem;
+  font-weight: 700;
+  font-variation-settings: "SOFT" 80, "WONK" 0;
+  color: var(--color-ink, #2A1F18);
+  line-height: 1.2;
+  margin: 0;
+}
+
+.er-end-headline .ac {
+  color: var(--color-terra, #C44E2C);
+}
+
+/* Winner faction card */
+.er-winner-card {
+  border-radius: 5px;
+  border: 1px solid var(--color-line, #E5D4BD);
+  overflow: hidden;
+}
+
+.er-winner-top {
+  height: 5px;
+}
+
+.er-winner-body {
+  padding: 0.875rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.er-winner-name {
+  font-family: var(--font-serif, "Fraunces", Georgia, serif);
+  font-size: 1.25rem;
+  font-weight: 700;
+  font-variation-settings: "SOFT" 80, "WONK" 0;
+  color: var(--color-ink, #2A1F18);
+  margin: 0;
+}
+
+.er-winner-school {
+  font-size: 0.78rem;
+  color: var(--color-ink-mute, #8A7868);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Per-faction stats table */
+.er-faction-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.er-faction-stat-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 4px;
+  background: var(--color-bg, #FBF6EC);
+  border: 1px solid var(--color-line-soft, #EFE2CB);
+}
+
+.er-faction-stat-row.winner {
+  background: var(--color-terra-soft, #FBE3D6);
+  border-color: var(--color-terra, #C44E2C);
+}
+
+.er-faction-stat-swatch {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.er-faction-stat-name {
+  flex: 1;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--color-ink, #2A1F18);
+}
+
+.er-faction-stat-count {
+  font-family: var(--font-mono, "JetBrains Mono", monospace);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--color-ink, #2A1F18);
+}
+
+/* Lessons */
+.er-lessons h3 {
+  font-family: var(--font-serif, "Fraunces", Georgia, serif);
+  font-size: 1.1rem;
+  font-weight: 700;
+  font-variation-settings: "SOFT" 80, "WONK" 0;
+  color: var(--color-ink, #2A1F18);
+  margin: 0 0 0.75rem;
+}
+
+.er-lessons ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.er-lessons li {
+  padding-left: 1.1rem;
+  position: relative;
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--color-ink-soft, #5C4A3D);
+}
+
+.er-lessons li::before {
+  content: "\2014"; /* em dash — */
+  position: absolute;
+  left: 0;
+  color: var(--color-mustard, #D4A24C);
+  font-weight: 700;
+}
+
+/* End CTA */
+.er-end-cta {
+  padding: 0.85rem 1rem;
+  background: var(--color-terra, #C44E2C);
+  color: #FFFFFF;
+  border: none;
+  border-radius: 4px;
+  font-family: var(--font-sans, sans-serif);
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: 0.02em;
+  transition: background 0.15s;
+  align-self: flex-start;
+}
+
+.er-end-cta:hover {
+  background: var(--color-terra-deep, #9C3A1C);
+}
+
+/* =========================================================
+   Map legend
+   ========================================================= */
+
+.er-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  margin-top: 0.4rem;
+}
+
+.er-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.72rem;
+  color: var(--color-ink-soft, #5C4A3D);
+  font-weight: 600;
+}
+
+.er-legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* =========================================================
+   AI turn indicator
+   ========================================================= */
+
+.er-ai-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-ink-soft, #5C4A3D);
+  padding: 0.3rem 0.7rem;
+  background: var(--color-bg-soft, #F8E8D0);
+  border: 1px solid var(--color-line, #E5D4BD);
+  border-radius: 3px;
+}
+
+.er-ai-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-mustard, #D4A24C);
+  animation: er-pulse 1s ease-in-out infinite;
+}
+
+@keyframes er-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+
+/* =========================================================
+   Utility — serif helper
+   ========================================================= */
+
+.er-serif {
+  font-family: var(--font-serif, "Fraunces", Georgia, serif);
+  font-variation-settings: "SOFT" 80, "WONK" 0;
+}
