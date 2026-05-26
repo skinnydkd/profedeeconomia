@@ -33,6 +33,7 @@ export const NEWS_CARDS: NewsCard[] = [
     text: 'Boom tecnológico: las empresas tech aumentan su valor un 20%. Rentas de Tecnología +20% este turno.',
     kind: 'sectorBoost',
     sector: 'A',
+    amount: 0.2,
   },
 
   // 2 — Crisis energética (sector_boost energia → C)
@@ -41,6 +42,7 @@ export const NEWS_CARDS: NewsCard[] = [
     text: 'Crisis energética: el precio del petróleo se duplica. Rentas de Energía +50% este turno.',
     kind: 'sectorBoost',
     sector: 'C',
+    amount: 0.5,
   },
 
   // 3 — Burbuja inmobiliaria (sector_bust construccio → H)
@@ -49,6 +51,7 @@ export const NEWS_CARDS: NewsCard[] = [
     text: 'La burbuja inmobiliaria estalla: propiedades de Construcción pierden el 30%. Rentas -30% este turno.',
     kind: 'sectorBust',
     sector: 'H',
+    amount: -0.3,
   },
 
   // 4 — BCE baja tipos (interest_rate → rateChange; amount = new absolute rate 1 → we store as delta -1 relative to common range; treated as rateChange amount=-4 to set ~1%; NOTE: original sets rate=1 absolutely)
@@ -76,6 +79,7 @@ export const NEWS_CARDS: NewsCard[] = [
     text: 'Pandemia global: el turismo cae un 40%. Rentas de Turismo -40% este turno.',
     kind: 'sectorBust',
     sector: 'G',
+    amount: -0.25,
   },
 
   // 7 — Boom turístico (sector_boost turisme → G)
@@ -84,6 +88,7 @@ export const NEWS_CARDS: NewsCard[] = [
     text: 'Boom turístico: Europa bate récords de visitantes. Rentas de Turismo +30% este turno.',
     kind: 'sectorBoost',
     sector: 'G',
+    amount: 0.3,
   },
 
   // 8 — Guerra comercial (all_pay 30 → penaltyCash per player)
@@ -92,6 +97,7 @@ export const NEWS_CARDS: NewsCard[] = [
     text: 'Guerra comercial: todos los jugadores pagan 30 € en aranceles.',
     kind: 'penaltyCash',
     amount: 30,
+    target: 'all',
   },
 
   // 9 — Reparto del fondo público (all_receive 75 → bonusCash per player)
@@ -100,6 +106,7 @@ export const NEWS_CARDS: NewsCard[] = [
     text: 'Reparto del fondo público: cada jugador recibe 75 € del tesoro.',
     kind: 'bonusCash',
     amount: 75,
+    target: 'all',
   },
 
   // 10 — Crisis bancaria (sector_bust financer → D)
@@ -108,6 +115,7 @@ export const NEWS_CARDS: NewsCard[] = [
     text: 'Crisis bancaria: el sector Finanzas pierde el 25% de su valor. Rentas -25% este turno.',
     kind: 'sectorBust',
     sector: 'D',
+    amount: -0.30,
   },
 
   // 11 — Subvención verde (subsidy energia → C, amount=40)
@@ -125,6 +133,7 @@ export const NEWS_CARDS: NewsCard[] = [
     text: 'Recesión industrial: las fábricas cierran. Rentas de Industria -30% este turno.',
     kind: 'sectorBust',
     sector: 'F',
+    amount: -0.25,
   },
 
   // 13 — Vacaciones fiscales (tax_holiday)
@@ -149,6 +158,7 @@ export const NEWS_CARDS: NewsCard[] = [
     text: 'Plan de infraestructuras: Rentas de Construcción +25% este turno.',
     kind: 'sectorBoost',
     sector: 'H',
+    amount: 0.3,
   },
 
   // 16 — Herencia inesperada (current_receive 100 → bonusCash, no sector restriction)
@@ -183,6 +193,7 @@ export const NEWS_CARDS: NewsCard[] = [
     text: 'Reforma sanitaria: el sector Servicios gana un 20% de valor. Rentas +20% este turno.',
     kind: 'sectorBoost',
     sector: 'B',
+    amount: 0.2,
   },
 
   // 20 — Cosecha extraordinaria (sector_boost agricultura → E)
@@ -191,6 +202,7 @@ export const NEWS_CARDS: NewsCard[] = [
     text: 'Cosecha extraordinaria: Rentas de Agricultura +35% este turno.',
     kind: 'sectorBoost',
     sector: 'E',
+    amount: 0.3,
   },
 
 ];

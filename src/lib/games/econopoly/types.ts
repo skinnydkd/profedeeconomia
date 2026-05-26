@@ -23,6 +23,7 @@ export interface NewsCard {
   kind: 'bonusCash' | 'penaltyCash' | 'rateChange' | 'sectorBoost' | 'sectorBust' | 'taxHoliday' | 'none';
   amount?: number;
   sector?: SectorId;
+  target?: 'current' | 'all';  // for bonusCash/penaltyCash: 'all' applies to every alive player
 }
 export interface PlayerState {
   id: PlayerId;
@@ -60,6 +61,8 @@ export interface GameState {
   lastRoll: { d1: number; d2: number } | null;
   pendingPurchase: number | null;  // cellId, set when human lands on free property awaiting buy/pass
   activeAuction: AuctionState | null;
+  taxHolidayActive: boolean;   // set by taxHoliday card; cleared after next tax payment
   log: string[];
   winner: PlayerId | null;
+  turnsThisRound: number;      // counts turns in current round for wrap detection
 }

@@ -8,7 +8,7 @@ import { CELLS, sectorCellIds } from './board';
 import {
   INITIAL_CASH, RD_MULTIPLIERS, MONOPOLY_BONUS, CYCLE_RENT, PASS_START_BONUS,
   AUCTION_MIN_INCREMENT, TOTAL_ROUNDS, PUBLIC_FUND_SHARE_PCT,
-  RD_UPGRADE_COST_PCT, CB_INITIAL_RATE, CB_RATE_RANGE, CYCLE_PROPERTY,
+  RD_UPGRADE_COST_PCT, CB_INITIAL_RATE, CB_RATE_RANGE, CYCLE_PROPERTY, CYCLE_LENGTH,
 } from './constants';
 import { NEWS_CARDS } from './events';
 
@@ -255,13 +255,13 @@ describe('econopoly engine', () => {
 
   it('cycle alternates expansion/recession every CYCLE_LENGTH rounds', () => {
     let s = createInitialState(PLAYERS);
-    for (let r = 1; r <= 6; r++) {
-      s.round = r;
-      // simulate a full round wrap by calling endTurn twice
-      s.current = s.players.length - 1; s.phase = 'action';
+    // Simulate CYCLE_LENGTH full rounds (each round = 2 turns for 2 players)
+    // by calling endTurn 2 * CYCLE_LENGTH times in sequence
+    for (let turn = 0; turn < 2 * CYCLE_LENGTH; turn++) {
+      s.phase = 'action';
       s = endTurn(s);
     }
-    // after round 5 → should flip to recession
+    // After CYCLE_LENGTH rounds, cycle should have flipped to recession
     expect(s.cycle).toBe('recession');
   });
 
@@ -381,5 +381,72 @@ describe('econopoly engine', () => {
     s1.players[0].position = 0; // put player on start to avoid complex effects
     const s2 = advancePhase(s1, seq([0.5]));
     expect(s2.phase).toBe('action');
+  });
+
+  it('startAuction with no other alive players leaves property free and no activeAuction', () => {
+    const s = createInitialState([{ name: 'Solo', color: '#111', isHuman: false }]);
+    const cellId = sectorCellIds('A')[0];
+    const next = startAuction(s, cellId);
+    expect(next.activeAuction).toBeNull();
+    expect(next.properties[cellId].owner).toBeNull();
+    expect(next.log.some((l) => l.includes('libre'))).toBe(true);
+  });
+
+  it('taxHoliday flag prevents next tax payment and is cleared afterwards', () => {
+    const s = createInitialState(PLAYERS);
+    s.taxHolidayActive = true;
+    s.players[0].cash = 800;
+    const before = s.publicFund;
+    const next = applyTax({ ...s, current: 0 });
+    // No tax charged
+    expect(next.players[0].cash).toBe(800);
+    expect(next.publicFund).toBe(before);
+    // Flag cleared (one-shot)
+    expect(next.taxHolidayActive).toBe(false);
+    // Second tax call should charge normally
+    const next2 = applyTax(next);
+    expect(next2.publicFund).toBeGreaterThan(before);
+  });
+
+  it('sectorBoost applies per-card amount from events.ts', () => {
+    const s = createInitialState(PLAYERS);
+    const sectorA = sectorCellIds('A');
+    const cellId = sectorA[0];
+    s.properties[cellId] = { cellId, owner: 0, rdLevel: 0 };
+    // tech_boom card: sectorBoost sector A, amount: 0.2
+    const techBoomCard = { id: 'tech_boom', text: '', kind: 'sectorBoost' as const, sector: 'A' as const, amount: 0.2 };
+    const stateWithEvent = { ...s, lastEvent: techBoomCard };
+    const rent = computeRent(stateWithEvent, cellId);
+    const baseRent = CELLS[cellId].property!.baseRent;
+    // Expected: baseRent * rdMult(0)=1 * cycleMult(expansion)=1.3 * eventMult(1.2)
+    const expected = Math.round(baseRent * 1.0 * CYCLE_RENT.expansion * 1.2);
+    expect(rent).toBe(expected);
+  });
+
+  it('sectorBust applies per-card amount from events.ts', () => {
+    const s = createInitialState(PLAYERS);
+    const sectorH = sectorCellIds('H');
+    const cellId = sectorH[0];
+    s.properties[cellId] = { cellId, owner: 0, rdLevel: 0 };
+    // construction_bust: sectorBust sector H, amount: -0.3
+    const bustCard = { id: 'construction_bust', text: '', kind: 'sectorBust' as const, sector: 'H' as const, amount: -0.3 };
+    const stateWithEvent = { ...s, lastEvent: bustCard };
+    const rent = computeRent(stateWithEvent, cellId);
+    const baseRent = CELLS[cellId].property!.baseRent;
+    const expected = Math.round(baseRent * 1.0 * CYCLE_RENT.expansion * (1 + (-0.3)));
+    expect(rent).toBe(expected);
+  });
+
+  it('single-player game runs exactly TOTAL_ROUNDS turns before winner is set', () => {
+    const s = createInitialState([{ name: 'Solo', color: '#111', isHuman: false }]);
+    let state = s;
+    // Each endTurn call is one turn; with 1 player, every turn wraps the round
+    for (let turn = 0; turn < TOTAL_ROUNDS; turn++) {
+      expect(state.winner).toBeNull();
+      state.phase = 'action';
+      state = endTurn(state);
+    }
+    // After TOTAL_ROUNDS turns, winner should be set (round > TOTAL_ROUNDS)
+    expect(state.winner).toBe(0);
   });
 });

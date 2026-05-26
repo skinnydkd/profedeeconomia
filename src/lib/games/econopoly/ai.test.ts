@@ -93,18 +93,17 @@ describe('econopoly AI', () => {
     const s = createInitialState(PLAYERS);
     s.current = 1;
     s.phase = 'roll';
-    // Give AI player a property
-    const cellId = sectorCellIds('A')[0];
+    // Give AI player (id=1) a level-0 property in sector A (cellId=4, Startup Digital, basePrice=120)
+    // cost = 120 * 0.5 = 60; AI needs cash > 2 * 60 = 120. INITIAL_CASH=1500 → enough.
+    const cellId = sectorCellIds('A')[0]; // cell 4
     s.properties[cellId] = { cellId, owner: 1, rdLevel: 0 };
-    // Move AI to start (position 0) so resolveCell has no side effects
-    // Use rng that gives d1=d2=0 → impossible, use 0.01 each → d1=d2=1, total=2
-    // Position 0 + 2 = 2 (Fábrica Textil, owner null → pendingPurchase)
-    // AI has enough cash for R+D upgrade (1500 > 60 * 0.5 = 30)
-    const rng = seq([0.01, 0.01, 0.5]);
+    // Position AI at cell 18 (R+D), roll dice 1+1=2 → land on cell 20 (Banco Central, cb kind)
+    // No purchase will happen. Then action phase runs aiUpgradeRd on the owned cell.
+    s.players[1].position = 18;
+    const rng = seq([0.0, 0.0, 0.0]); // d1=1, d2=1, CB rate-delta rng=0 (<0.5 → rate -1)
     const next = aiTakeTurn(s, rng);
-    // Check AI still has an owned property (it wasn't broken)
-    const ownedProps = Object.values(next.properties).filter((p) => p.owner === 1);
-    expect(ownedProps.length).toBeGreaterThanOrEqual(0); // valid state
+    // The owned property should have been upgraded to rdLevel 1
+    expect(next.properties[cellId].rdLevel).toBe(1);
     expect(next.phase).toBe('roll');
   });
 

@@ -21,11 +21,6 @@ function controlsSector(state: GameState, pid: number, cellId: number): boolean 
   return ids.every((id) => state.properties[id]?.owner === pid);
 }
 
-/** Find the index in `state.players` for the player with id `pid`. */
-function playerIndex(state: GameState, pid: number): number {
-  return state.players.findIndex((p) => p.id === pid);
-}
-
 // ─── createInitialState ───────────────────────────────────────────────────────
 
 export function createInitialState(
@@ -67,8 +62,10 @@ export function createInitialState(
     lastRoll: null,
     pendingPurchase: null,
     activeAuction: null,
+    taxHolidayActive: false,
     log: [],
     winner: null,
+    turnsThisRound: 0,
   };
 }
 
@@ -90,7 +87,7 @@ export function move(state: GameState, steps: number): GameState {
   const newPos = (oldPos + steps) % BOARD_SIZE;
 
   // Detect wrap (crossing/landing on SALIDA)
-  const wrapped = newPos < oldPos || steps >= BOARD_SIZE || (newPos === 0 && steps > 0);
+  const wrapped = newPos < oldPos || steps >= BOARD_SIZE;
 
   player.position = newPos;
 
@@ -124,11 +121,9 @@ export function computeRent(state: GameState, cellId: number): number {
   if (state.lastEvent) {
     const ev = state.lastEvent;
     if (ev.kind === 'sectorBoost' && ev.sector === cell.property.sector) {
-      // Use the amount if present, else default to 1.2 (20% boost)
-      // Cards store text descriptions; we apply a fixed 20% boost as generic
-      eventMult = 1.2;
+      eventMult = 1 + (ev.amount ?? 0.2);
     } else if (ev.kind === 'sectorBust' && ev.sector === cell.property.sector) {
-      eventMult = 0.8;
+      eventMult = 1 + (ev.amount ?? -0.2);
     }
   }
 
@@ -142,8 +137,6 @@ export function resolveCell(state: GameState, rng: () => number = Math.random): 
   const pid = s.current;
   const player = s.players[pid];
   const cell = CELLS[player.position];
-
-  s.phase = 'resolve';
 
   switch (cell.kind) {
     case 'start':
@@ -228,6 +221,14 @@ export function startAuction(state: GameState, cellId: number): GameState {
   const s = structuredClone(state) as GameState;
   const cell = CELLS[cellId];
   if (!cell.property) return s;
+
+  // Safety: if no OTHER alive player exists, skip auction and leave property free
+  const otherAlive = s.players.filter((p) => p.alive && p.id !== s.current);
+  if (otherAlive.length === 0) {
+    s.pendingPurchase = null;
+    s.log.push(`No hay otros jugadores vivos — ${cell.label} queda libre (sin subasta).`);
+    return s;
+  }
 
   // First bidder: next alive player after current
   const total = s.players.length;
@@ -357,18 +358,23 @@ export function applyTax(state: GameState): GameState {
   const pid = s.current;
   const player = s.players[pid];
 
+  // Tax holiday: skip deduction and clear the flag (one-shot effect)
+  if (s.taxHolidayActive) {
+    s.taxHolidayActive = false;
+    s.log.push(`${player.name}: Vacaciones fiscales — no se cobra impuesto.`);
+    return s;
+  }
+
   const nw = netWorth(s, pid);
 
-  // Find applicable bracket
-  let rate = 0;
+  // Find applicable bracket (TAX_BRACKETS has Infinity as last threshold, always matches)
+  let rate = TAX_BRACKETS[TAX_BRACKETS.length - 1].rate;
   for (const bracket of TAX_BRACKETS) {
     if (nw < bracket.threshold) {
       rate = bracket.rate;
       break;
     }
   }
-  // If nw >= all thresholds, use highest bracket rate
-  if (rate === 0) rate = TAX_BRACKETS[TAX_BRACKETS.length - 1].rate;
 
   const tax = Math.floor(nw * rate);
   const actualTax = Math.min(tax, player.cash); // can't pay more than cash
@@ -400,29 +406,32 @@ export function applyNewsCard(state: GameState, rng: () => number = Math.random)
           player.cash += amount;
           s.log.push(`${player.name} recibe ${amount} € (subvención sectorial).`);
         }
-      } else {
-        // Global bonus: all alive players or just current?
-        // Cards with no sector target current player (inheritance, public_fund)
-        // public_fund targets all alive; inheritance targets current
-        if (card.id === 'public_fund') {
-          for (const p of s.players) {
-            if (p.alive) p.cash += amount;
-          }
-        } else {
-          player.cash += amount;
+      } else if (card.target === 'all') {
+        // Global bonus: all alive players
+        for (const p of s.players) {
+          if (p.alive) p.cash += amount;
         }
+      } else {
+        // Default: current player only
+        player.cash += amount;
       }
       break;
     }
 
     case 'penaltyCash': {
       const amount = card.amount ?? 0;
-      // trade_war targets all alive players
-      for (const p of s.players) {
-        if (p.alive) {
-          const actual = Math.min(amount, p.cash);
-          p.cash -= actual;
+      if (card.target === 'all') {
+        // All alive players pay
+        for (const p of s.players) {
+          if (p.alive) {
+            const actual = Math.min(amount, p.cash);
+            p.cash -= actual;
+          }
         }
+      } else {
+        // Current player only
+        const actual = Math.min(amount, player.cash);
+        player.cash -= actual;
       }
       break;
     }
@@ -440,8 +449,8 @@ export function applyNewsCard(state: GameState, rng: () => number = Math.random)
       break;
 
     case 'taxHoliday':
-      // Flagged via lastEvent — applyTax should check for it (future enhancement)
-      // For now it's logged only; the UI surfaces it
+      // Set flag — applyTax will skip the next tax payment and clear it
+      s.taxHolidayActive = true;
       break;
 
     case 'none':
@@ -501,10 +510,13 @@ export function endTurn(state: GameState, _rng: () => number = Math.random): Gam
     attempts++;
   }
 
-  // Did we wrap around to player 0 or past player 0?
-  const wrapped = next <= s.current;
+  // Robust wrap detection: count turns in this round vs alive players
+  const alivePlayers = s.players.filter((p) => p.alive);
+  s.turnsThisRound = (s.turnsThisRound ?? 0) + 1;
+  const wrapped = s.turnsThisRound >= alivePlayers.length;
 
   if (wrapped) {
+    s.turnsThisRound = 0;
     s.round += 1;
     s.log.push(`Comienza la ronda ${s.round}.`);
 

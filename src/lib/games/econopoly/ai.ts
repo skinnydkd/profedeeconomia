@@ -3,7 +3,8 @@
 
 import type { GameState } from './types';
 import {
-  advancePhase, buyProperty, startAuction, upgradeRd, endTurn, computeRent,
+  advancePhase, buyProperty, startAuction, auctionBid, auctionPass,
+  upgradeRd, endTurn, computeRent,
 } from './engine';
 import { CELLS, sectorCellIds } from './board';
 import { AUCTION_MIN_INCREMENT, RD_UPGRADE_COST_PCT } from './constants';
@@ -78,28 +79,14 @@ function driveAuction(state: GameState, rng: () => number): GameState {
     const decision = aiAuctionDecide({ ...s, current: auction.currentBidder });
 
     if (decision.kind === 'bid') {
-      const { auctionBid } = await_free_import_workaround();
       s = auctionBid(s, decision.amount);
     } else {
-      const { auctionPass } = await_free_import_workaround();
       s = auctionPass(s);
     }
   }
 
   return s;
 }
-
-/**
- * Workaround to avoid circular import issues at module load time.
- * Returns engine functions by re-importing from the module cache.
- */
-function await_free_import_workaround() {
-  // These are already imported at the top of this file
-  return { auctionBid, auctionPass } as typeof import('./engine');
-}
-
-// Re-import to have in scope for driveAuction
-import { auctionBid, auctionPass } from './engine';
 
 // ─── aiTakeTurn ───────────────────────────────────────────────────────────────
 
@@ -116,8 +103,10 @@ export function aiTakeTurn(state: GameState, rng: () => number = Math.random): G
   const pid = state.current;
   const player = state.players[pid];
 
-  // Safety: only act if it's this player's turn and they're in roll phase
-  if (!player || !player.alive || state.winner !== null) {
+  // Safety: if game already has a winner, don't touch anything
+  if (state.winner !== null) return state;
+  // Safety: only act if it's this player's turn and they're alive
+  if (!player || !player.alive) {
     return endTurn(state, rng);
   }
 
