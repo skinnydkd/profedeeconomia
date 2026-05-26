@@ -76,7 +76,7 @@ export function HostFinal({ publicState, onRestart }: Props) {
       </div>
 
       <p class="subtle" style={{ textAlign: 'center', marginTop: '24px' }}>
-        Els alumnes poden revisar les seues respostes al movil.
+        Els alumnes poden revisar les seues respostes al mòbil.
       </p>
 
       {/* Full ranking */}

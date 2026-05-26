@@ -37,7 +37,7 @@ export function PlayerFinal({ publicState, privateState }: Props) {
         <p class="subtle" style={{ marginTop: 4 }}>punts</p>
         {privateState.myRank !== null && totalPlayers > 0 && (
           <p class="subtle" style={{ marginTop: 8 }}>
-            Posicio {privateState.myRank} de {totalPlayers}
+            Posició {privateState.myRank} de {totalPlayers}
           </p>
         )}
       </div>

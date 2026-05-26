@@ -3,6 +3,15 @@
 // (approach a: simpler, avoids needing private state delta computation).
 import type { PublicState, PrivateState } from '../../../../lib/games-multi/cajut/types';
 
+// Catalan ordinal suffixes: 1r, 2n, 3r, 4t, 5è, 6è, ...
+function catOrdinal(n: number): string {
+  if (n === 1) return `${n}r`;
+  if (n === 2) return `${n}n`;
+  if (n === 3) return `${n}r`;
+  if (n === 4) return `${n}t`;
+  return `${n}è`;
+}
+
 interface Props {
   publicState: PublicState;
   privateState: PrivateState;
@@ -44,7 +53,7 @@ export function PlayerRevealLocal({ publicState, privateState }: Props) {
       </p>
       {privateState.myRank !== null && (
         <p class="subtle" style={{ marginTop: 8 }}>
-          Vas {privateState.myRank}r
+          Vas {catOrdinal(privateState.myRank!)}
         </p>
       )}
     </div>

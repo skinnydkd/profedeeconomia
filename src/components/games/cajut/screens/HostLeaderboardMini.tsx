@@ -22,10 +22,10 @@ export function HostLeaderboardMini({ publicState }: Props) {
           margin: '0 0 8px',
         }}
       >
-        Classificacio
+        Classificació
       </h2>
       <p class="subtle" style={{ textAlign: 'center', marginBottom: 0 }}>
-        Continua automaticament…
+        Continua automàticament…
       </p>
 
       <ol style={{ listStyle: 'none', padding: 0, maxWidth: 600, margin: '24px auto 0' }}>
@@ -64,7 +64,7 @@ export function HostLeaderboardMini({ publicState }: Props) {
         ))}
         {top5.length === 0 && (
           <li style={{ padding: '12px 16px', color: 'var(--cajut-ink-mute)' }}>
-            Sense dades de classificacio.
+            Sense dades de classificació.
           </li>
         )}
       </ol>

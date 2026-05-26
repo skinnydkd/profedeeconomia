@@ -11,7 +11,7 @@ export function PlayerName({ onSubmit }: Props) {
 
   return (
     <div class="cajut-player" style={{ justifyContent: 'center', alignItems: 'center' }}>
-      <p class="subtle" style={{ marginBottom: 16 }}>Quin es el teu nick?</p>
+      <p class="subtle" style={{ marginBottom: 16 }}>Quin és el teu nick?</p>
       <input
         autoFocus
         maxLength={20}

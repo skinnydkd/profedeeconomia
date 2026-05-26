@@ -2,7 +2,7 @@
 // Phase machine pura del joc Cajút (spec §6.2).
 // Totes les funcions són immutables: prenen state, retornen state nou.
 
-import { Question, getPool, samplePool, shuffleOptions } from './questions';
+import type { Question } from './questions';
 import { scoreFor } from './scoring';
 import {
   MAX_PLAYERS,

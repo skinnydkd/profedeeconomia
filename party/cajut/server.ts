@@ -67,7 +67,12 @@ export default class CajutServer implements Party.Server {
     }
 
     if (asHost) {
-      this.state = registerHost(this.state, playerId);
+      if (this.state.hostId === null || this.state.hostId === playerId) {
+        this.state = registerHost(this.state, playerId);
+      } else {
+        // Another host is already registered — demote this connection to non-host.
+        this.conns.set(conn.id, { playerId, isHost: false });
+      }
     }
 
     this.sendPrivate(conn, playerId);
@@ -206,6 +211,9 @@ export default class CajutServer implements Party.Server {
       }
     }
     this.broadcastPublic();
+    if (this.state.phase === 'question' && allAnswered(this.state)) {
+      this.advancePastQuestion();
+    }
   }
 
   private doEnd() {
@@ -217,10 +225,22 @@ export default class CajutServer implements Party.Server {
 
   private doRestart() {
     this.clearPhaseTimer();
+    // Snapshot players + nicks BEFORE clearing state
+    const previousPlayers = [...this.state.players.values()];
     this.state = createInitialState(this.state.roomCode);
+    // Re-register host first
     const hostMeta = [...this.conns.values()].find((m) => m.isHost);
     if (hostMeta) this.state = registerHost(this.state, hostMeta.playerId);
+    // Re-add all previously-known players whose connections are still open
+    const connectedPlayerIds = new Set([...this.conns.values()].map((m) => m.playerId));
+    for (const p of previousPlayers) {
+      if (!connectedPlayerIds.has(p.id)) continue; // disconnected, skip
+      const r = addPlayer(this.state, p.id, p.nick, Date.now());
+      if (r.ok) this.state = r.state;
+    }
+    // Broadcast public + send private to every conn so PlayerApp routes back to PlayerWaiting
     this.broadcastPublic();
+    this.broadcastPrivates();
   }
 
   /**

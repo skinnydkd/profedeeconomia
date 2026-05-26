@@ -155,11 +155,11 @@ export default function PlayerApp({ partykitHost }: Props) {
 
 function reasonToMessage(reason: string): string {
   const m: Record<string, string> = {
-    'invalid-nick': 'El nick no és valid.',
+    'invalid-nick': 'El nick no és vàlid.',
     'nick-taken': 'Ja hi ha un alumne amb aquest nick.',
-    'already-joined': 'Ja estes a la sala.',
-    'too-many': 'Aquesta sala ja te 40 jugadors.',
-    'match-started': 'La partida ja ha comenat. Espera la proxima.',
+    'already-joined': 'Ja estàs a la sala.',
+    'too-many': 'Aquesta sala ja té 40 jugadors.',
+    'match-started': 'La partida ja ha començat. Espera la pròxima.',
     'room-not-found': 'Aquest codi de sala no existeix.',
   };
   return m[reason] ?? 'Hi ha hagut un error.';

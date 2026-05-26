@@ -201,7 +201,7 @@ export function HostLobby({ publicState, onStart, onKick }: Props) {
             cursor: canStart ? 'pointer' : 'not-allowed',
           }}
         >
-          Comenar partida
+          Començar partida
         </button>
         {!canStart && (
           <p class="subtle" style={{ marginTop: 8 }}>
