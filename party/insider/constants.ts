@@ -8,6 +8,7 @@ export const DEFAULT_ROUNDS = 5;
 export const TIMER_SHOW_WORD_S = 10;
 export const TIMER_DISCUSSION_PER_PLAYER_S = 30;
 export const TIMER_GUESS_S = 30;
+export const TIMER_VOTING_S = 60;
 export const SCORE_VOTE_CORRECT = 100;
 export const SCORE_IMPOSTOR_SURVIVES = 200;
 export const SCORE_IMPOSTOR_GUESS_CORRECT = 150;

@@ -31,7 +31,7 @@ export interface GameState {
 
 export interface TallyResult {
   state: GameState;
-  eliminatedId: string;
+  eliminatedId: string | null;
   wasImpostor: boolean;
 }
 
@@ -107,6 +107,12 @@ export function applyVote(state: GameState, voterId: string, targetId: string): 
  * This is deterministic and must be tested.
  */
 export function tallyAndEliminate(state: GameState): TallyResult {
+  // Guard: no votes cast — return without elimination
+  const voteEntries = Object.entries(state.votes);
+  if (voteEntries.length === 0) {
+    return { state, eliminatedId: null, wasImpostor: false };
+  }
+
   // Count votes (only votes targeting alive players count)
   const alivePlayers = Object.values(state.players).filter((p) => p.alive);
   const aliveSet = new Set(alivePlayers.map((p) => p.id));
@@ -116,6 +122,11 @@ export function tallyAndEliminate(state: GameState): TallyResult {
     if (aliveSet.has(targetId)) {
       tally[targetId] = (tally[targetId] ?? 0) + 1;
     }
+  }
+
+  // Guard: all votes targeted dead players — no valid elimination
+  if (Object.keys(tally).length === 0) {
+    return { state, eliminatedId: null, wasImpostor: false };
   }
 
   // Find maximum vote count
@@ -208,9 +219,34 @@ export function advanceToNextRound(state: GameState, rng: () => number): GameSta
 
 /**
  * Returns true when the game is over (all rounds completed).
- * A round is "completed" after tallyAndEliminate; round counter advances in startRound.
- * So finished = current round > totalRounds (the next round that would start exceeds the total).
+ * isFinished is called after tallyAndEliminate/reveal, while round still equals
+ * the last completed round. A game configured for N rounds finishes when
+ * round >= totalRounds (i.e. the current completed round is the last one).
  */
 export function isFinished(state: GameState): boolean {
-  return state.round > state.totalRounds;
+  return state.round >= state.totalRounds;
+}
+
+/**
+ * Advances the speaker to the next slot in speakerOrder.
+ * Marks the current speaker's turnDone = true and increments currentSpeakerIndex.
+ * If already at the last speaker, returns state unchanged (caller handles transition to voting).
+ */
+export function advanceSpeaker(state: GameState): GameState {
+  const { currentSpeakerIndex, speakerOrder } = state;
+  if (currentSpeakerIndex >= speakerOrder.length) return state;
+
+  const currentSpeakerId = speakerOrder[currentSpeakerIndex];
+  const updatedPlayers = currentSpeakerId && state.players[currentSpeakerId]
+    ? {
+        ...state.players,
+        [currentSpeakerId]: { ...state.players[currentSpeakerId]!, turnDone: true },
+      }
+    : state.players;
+
+  return {
+    ...state,
+    players: updatedPlayers,
+    currentSpeakerIndex: currentSpeakerIndex + 1,
+  };
 }

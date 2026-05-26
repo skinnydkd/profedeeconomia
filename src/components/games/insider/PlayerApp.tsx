@@ -19,12 +19,14 @@ import './insider.css';
 // ---------------------------------------------------------------------------
 
 function getOrCreatePlayerId(): string {
-  if (typeof localStorage === 'undefined') return crypto.randomUUID();
+  // Use sessionStorage (tab-scoped) so each tab gets its own id.
+  // Prevents id collision when host and player tabs share the same browser.
+  if (typeof sessionStorage === 'undefined') return crypto.randomUUID();
   const key = 'pde:multi:playerId';
-  let id = localStorage.getItem(key);
+  let id = sessionStorage.getItem(key);
   if (!id) {
     id = crypto.randomUUID();
-    localStorage.setItem(key, id);
+    sessionStorage.setItem(key, id);
   }
   return id;
 }

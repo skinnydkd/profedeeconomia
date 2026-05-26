@@ -6,6 +6,7 @@ import {
   tallyAndEliminate,
   applyGuess,
   advanceToNextRound,
+  advanceSpeaker,
   isFinished,
 } from './state';
 import { WORDS } from './words';
@@ -225,10 +226,18 @@ describe('advanceToNextRound', () => {
 });
 
 describe('isFinished', () => {
-  it('returns false when round <= totalRounds', () => {
+  it('returns false when round < totalRounds', () => {
     let state = createLobby();
     state = { ...state, round: 3, totalRounds: 5 };
     expect(isFinished(state)).toBe(false);
+  });
+
+  it('returns true when round === totalRounds (last round just completed)', () => {
+    // isFinished is called after tally/reveal while round still equals the last completed round.
+    // A game configured for 5 rounds must finish when round reaches 5, not 6.
+    let state = createLobby();
+    state = { ...state, round: 5, totalRounds: 5 };
+    expect(isFinished(state)).toBe(true);
   });
 
   it('returns true when round > totalRounds', () => {
@@ -237,12 +246,89 @@ describe('isFinished', () => {
     expect(isFinished(state)).toBe(true);
   });
 
-  it('returns true when round === totalRounds + 1 (after last round completes)', () => {
+  it('5-round game: plays exactly 5 rounds — round 4 is not finished, round 5 is', () => {
     let state = createLobby();
-    state = { ...state, round: 5, totalRounds: 5 };
-    // round 5 is in progress; finished is round > totalRounds
+    state = { ...state, round: 4, totalRounds: 5 };
     expect(isFinished(state)).toBe(false);
-    state = { ...state, round: 6 };
+    state = { ...state, round: 5 };
     expect(isFinished(state)).toBe(true);
+  });
+});
+
+describe('tallyAndEliminate — 0-vote guard', () => {
+  it('returns null eliminatedId when there are 0 votes, does not crash', () => {
+    let state = createLobby();
+    state = {
+      ...state,
+      players: {
+        p1: { id: 'p1', name: 'P1', alive: true, hasVoted: false, turnDone: false, score: 0 },
+        p2: { id: 'p2', name: 'P2', alive: true, hasVoted: false, turnDone: false, score: 0 },
+      },
+      votes: {},
+      impostors: new Set(['p1']),
+    };
+    const result = tallyAndEliminate(state);
+    expect(result.eliminatedId).toBeNull();
+    expect(result.wasImpostor).toBe(false);
+    // State is returned unchanged (no scoring, no elimination)
+    expect(result.state.players['p1']!.alive).toBe(true);
+    expect(result.state.players['p2']!.alive).toBe(true);
+  });
+});
+
+describe('advanceSpeaker', () => {
+  function makeStateWithSpeakers(ids: string[]): ReturnType<typeof createLobby> {
+    const players = Object.fromEntries(
+      ids.map((id) => [id, { id, name: id, alive: true, hasVoted: false, turnDone: false, score: 0 }]),
+    );
+    return {
+      ...createLobby(),
+      phase: 'discussion' as const,
+      speakerOrder: ids,
+      currentSpeakerIndex: 0,
+      players,
+    };
+  }
+
+  it('marks current speaker turnDone=true and increments currentSpeakerIndex', () => {
+    const state = makeStateWithSpeakers(['p1', 'p2', 'p3']);
+    const next = advanceSpeaker(state);
+    expect(next.currentSpeakerIndex).toBe(1);
+    expect(next.players['p1']!.turnDone).toBe(true);
+    expect(next.players['p2']!.turnDone).toBe(false);
+  });
+
+  it('does not mutate the original state', () => {
+    const state = makeStateWithSpeakers(['p1', 'p2']);
+    const next = advanceSpeaker(state);
+    expect(state.currentSpeakerIndex).toBe(0);
+    expect(state.players['p1']!.turnDone).toBe(false);
+    expect(next.currentSpeakerIndex).toBe(1);
+  });
+
+  it('can be called repeatedly to advance all speakers', () => {
+    let state = makeStateWithSpeakers(['p1', 'p2', 'p3']);
+    state = advanceSpeaker(state);
+    state = advanceSpeaker(state);
+    state = advanceSpeaker(state);
+    expect(state.currentSpeakerIndex).toBe(3);
+    expect(state.players['p1']!.turnDone).toBe(true);
+    expect(state.players['p2']!.turnDone).toBe(true);
+    expect(state.players['p3']!.turnDone).toBe(true);
+  });
+
+  it('returns state unchanged when currentSpeakerIndex is already past the end', () => {
+    let state = makeStateWithSpeakers(['p1']);
+    state = { ...state, currentSpeakerIndex: 1 }; // already past end
+    const next = advanceSpeaker(state);
+    expect(next.currentSpeakerIndex).toBe(1); // unchanged
+  });
+
+  it('after advancing past all speakers, currentSpeakerIndex >= speakerOrder.length', () => {
+    let state = makeStateWithSpeakers(['p1', 'p2']);
+    state = advanceSpeaker(state); // index=1
+    state = advanceSpeaker(state); // index=2
+    expect(state.currentSpeakerIndex).toBe(2);
+    expect(state.currentSpeakerIndex >= state.speakerOrder.length).toBe(true);
   });
 });

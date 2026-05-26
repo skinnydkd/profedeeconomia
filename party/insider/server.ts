@@ -25,13 +25,16 @@ import {
   tallyAndEliminate,
   applyGuess,
   advanceToNextRound,
+  advanceSpeaker,
   isFinished,
 } from './state';
 import type { GameState, TallyResult } from './state';
 import {
+  MIN_PLAYERS,
   TIMER_SHOW_WORD_S,
   TIMER_DISCUSSION_PER_PLAYER_S,
   TIMER_GUESS_S,
+  TIMER_VOTING_S,
   impostorCountFor,
 } from './constants';
 
@@ -152,13 +155,14 @@ export default class InsiderServer implements Party.Server {
     const isImpostor = gs.impostors.has(playerId);
     const isHost = meta?.isHost ?? false;
 
-    // Impostors don't receive the word
-    const word = isImpostor ? null : (gs.word ?? null);
-
-    // canVote: alive players during voting phase
+    // Impostors don't receive the word; host (not in gs.players) also doesn't receive it
     const playerState = gs.players[playerId];
-    const alive = playerState?.alive ?? true;
-    const canVote = gs.phase === 'voting' && alive && !(playerId in gs.votes);
+    const isParticipant = playerState !== undefined; // host is not a participant
+    const word = (isParticipant && !isImpostor) ? (gs.word ?? null) : null;
+
+    // canVote: only alive game participants during voting phase (host cannot vote)
+    const alive = playerState?.alive ?? false;
+    const canVote = gs.phase === 'voting' && isParticipant && alive && !(playerId in gs.votes);
 
     // canGuess: only the caught impostor in guess phase
     const canGuess =
@@ -208,9 +212,42 @@ export default class InsiderServer implements Party.Server {
 
   private advanceToDiscussion(timerOverride?: number): void {
     this.state = { ...this.state, phase: 'discussion' };
+
+    if (timerOverride === 0 || this.state.speakerOrder.length === 0) {
+      // Immediate: no per-speaker rotation (e.g. host force-advanced with timerOverride=0)
+      this.broadcastPublicWithTimer(null);
+      this.broadcastPrivates();
+      return;
+    }
+
+    // Per-speaker rotation: schedule each speaker's slot individually.
+    this.scheduleNextSpeaker();
+  }
+
+  /** Schedules a timer for the current speaker. On expiry: advance to next speaker or voting. */
+  private scheduleNextSpeaker(): void {
     const perPlayerMs = TIMER_DISCUSSION_PER_PLAYER_S * 1000;
-    const totalMs = timerOverride ?? perPlayerMs * this.state.speakerOrder.length;
-    const endsAt = this.scheduleTimer(totalMs, () => this.advanceToVoting());
+    const { currentSpeakerIndex, speakerOrder } = this.state;
+
+    if (currentSpeakerIndex >= speakerOrder.length) {
+      // All speakers done — move to voting
+      this.advanceToVoting();
+      return;
+    }
+
+    const endsAt = this.scheduleTimer(perPlayerMs, () => {
+      // Advance speaker in state
+      this.state = advanceSpeaker(this.state);
+
+      if (this.state.currentSpeakerIndex >= this.state.speakerOrder.length) {
+        // Last speaker done → voting
+        this.advanceToVoting();
+      } else {
+        // More speakers remaining → reschedule for next speaker
+        this.scheduleNextSpeaker();
+      }
+    });
+
     this.broadcastPublicWithTimer(endsAt);
     this.broadcastPrivates();
   }
@@ -218,8 +255,36 @@ export default class InsiderServer implements Party.Server {
   private advanceToVoting(): void {
     this.clearPhaseTimer();
     this.state = { ...this.state, phase: 'voting' };
-    this.broadcastPublicWithTimer(null);
+    // Schedule auto-tally timer so the round can't stall if students don't all vote
+    const endsAt = this.scheduleTimer(TIMER_VOTING_S * 1000, () => this.forceTally());
+    this.broadcastPublicWithTimer(endsAt);
     this.broadcastPrivates();
+  }
+
+  /** Auto-tallies votes when the voting timer expires (or host force-advances). */
+  private forceTally(): void {
+    this.clearPhaseTimer();
+    const tally = tallyAndEliminate(this.state);
+
+    if (tally.eliminatedId === null) {
+      // No votes at all — skip to next round without scoring
+      this.doReveal(tally);
+      return;
+    }
+
+    this.pendingTally = tally;
+    if (tally.wasImpostor) {
+      this.state = tally.state;
+      const capturedTally = tally;
+      const endsAt = this.scheduleTimer(TIMER_GUESS_S * 1000, () => {
+        this.pendingTally = null;
+        this.doReveal(capturedTally, { guess: '', correct: false });
+      });
+      this.broadcastPublicWithTimer(endsAt);
+      this.broadcastPrivates();
+    } else {
+      this.doReveal(tally);
+    }
   }
 
   private doReveal(tally: TallyResult, guessResult?: { guess: string; correct: boolean }): void {
@@ -229,7 +294,10 @@ export default class InsiderServer implements Party.Server {
     const pub: PublicState = {
       ...this.toPublicState(),
       timerEndsAt: null,
-      lastReveal: { eliminatedId: tally.eliminatedId, wasImpostor: tally.wasImpostor },
+      // null eliminatedId means no one was eliminated (0-vote or all-dead-target scenario)
+      lastReveal: tally.eliminatedId !== null
+        ? { eliminatedId: tally.eliminatedId, wasImpostor: tally.wasImpostor }
+        : null,
       lastGuess: guessResult ?? null,
       // Reveal the word when impostor is caught
       word: tally.wasImpostor ? (this.state.word ?? null) : null,
@@ -460,7 +528,11 @@ export default class InsiderServer implements Party.Server {
     this.players.set(playerId, meta);
     this.connToPlayer.set(connId, playerId);
 
-    // Add to game state
+    // The host is only an orchestrator — do NOT add them to state.players.
+    // state.players contains only actual game participants (students).
+    if (becomeHost) return;
+
+    // Add student to game state
     this.state = {
       ...this.state,
       players: {
@@ -493,9 +565,8 @@ export default class InsiderServer implements Party.Server {
     }
 
     const playerCount = Object.keys(this.state.players).length;
-    if (playerCount < 2) {
-      // Minimum for dev/testing: 2. In production MIN_PLAYERS = 4.
-      this.sendError(connId, 'Not enough players');
+    if (playerCount < MIN_PLAYERS) {
+      this.sendError(connId, `Not enough players (minimum ${MIN_PLAYERS})`);
       return;
     }
 
@@ -534,23 +605,8 @@ export default class InsiderServer implements Party.Server {
         this.advanceToVoting();
         break;
       case 'voting': {
-        // Force-tally with current votes
-        const tallyForced = tallyAndEliminate(this.state);
-        this.pendingTally = tallyForced;
-        if (tallyForced.wasImpostor) {
-          // Go to guess phase
-          this.state = tallyForced.state;
-          const capturedTally = tallyForced;
-          const endsAt = this.scheduleTimer(TIMER_GUESS_S * 1000, () => {
-            // Impostor didn't guess in time — reveal without bonus
-            this.pendingTally = null;
-            this.doReveal(capturedTally, { guess: '', correct: false });
-          });
-          this.broadcastPublicWithTimer(endsAt);
-          this.broadcastPrivates();
-        } else {
-          this.doReveal(tallyForced);
-        }
+        // Force-tally with current votes (reuse same path as timer expiry)
+        this.forceTally();
         break;
       }
       case 'reveal':
@@ -606,25 +662,8 @@ export default class InsiderServer implements Party.Server {
     const allVoted = alivePlayers.every((p) => p.id in this.state.votes);
 
     if (allVoted) {
-      this.clearPhaseTimer();
-      const tally = tallyAndEliminate(this.state);
-      this.pendingTally = tally;
-
-      if (tally.wasImpostor) {
-        // Impostor caught — go to guess phase
-        this.state = tally.state;
-        const endsAt = this.scheduleTimer(TIMER_GUESS_S * 1000, () => {
-          // Time's up — reveal without guess bonus
-          if (this.pendingTally) {
-            this.doReveal(this.pendingTally, { guess: '', correct: false });
-          }
-        });
-        this.broadcastPublicWithTimer(endsAt);
-        this.broadcastPrivates();
-      } else {
-        // Citizen voted out — no guess phase
-        this.doReveal(tally);
-      }
+      // All alive players voted — cancel the voting timer and tally immediately
+      this.forceTally();
     } else {
       // Partial votes broadcast
       this.broadcastPublicWithTimer(null);
