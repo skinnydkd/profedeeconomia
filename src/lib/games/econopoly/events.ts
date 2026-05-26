@@ -54,9 +54,7 @@ export const NEWS_CARDS: NewsCard[] = [
     amount: -0.3,
   },
 
-  // 4 — BCE baja tipos (interest_rate → rateChange; amount = new absolute rate 1 → we store as delta -1 relative to common range; treated as rateChange amount=-4 to set ~1%; NOTE: original sets rate=1 absolutely)
-  // Engine should clamp to CB_RATE_RANGE [2,12]. We store amount as the delta that brings rate toward the target.
-  // Decision: store amount=-3 (subtracts from current rate, driving it low). Documented concern below.
+  // 4 — BCE baja tipos (interest_rate → rateChange; amount=-1 applied to current cbRate, clamped to CB_RATE_RANGE)
   {
     id: 'rate_down',
     text: 'El Banco Central baja los tipos de interés. El crédito es más barato.',
@@ -76,7 +74,7 @@ export const NEWS_CARDS: NewsCard[] = [
   // 6 — Pandemia global (sector_bust turisme → G)
   {
     id: 'tourism_bust',
-    text: 'Pandemia global: el turismo cae un 40%. Rentas de Turismo -40% este turno.',
+    text: 'Pandemia global: el turismo cae un 25%. Rentas de Turismo -25% este turno.',
     kind: 'sectorBust',
     sector: 'G',
     amount: -0.25,
@@ -112,7 +110,7 @@ export const NEWS_CARDS: NewsCard[] = [
   // 10 — Crisis bancaria (sector_bust financer → D)
   {
     id: 'banking_crisis',
-    text: 'Crisis bancaria: el sector Finanzas pierde el 25% de su valor. Rentas -25% este turno.',
+    text: 'Crisis bancaria: el sector Finanzas pierde el 30% de su valor. Rentas -30% este turno.',
     kind: 'sectorBust',
     sector: 'D',
     amount: -0.30,
@@ -130,7 +128,7 @@ export const NEWS_CARDS: NewsCard[] = [
   // 12 — Recesión industrial (sector_bust industria → F)
   {
     id: 'industry_bust',
-    text: 'Recesión industrial: las fábricas cierran. Rentas de Industria -30% este turno.',
+    text: 'Recesión industrial: las fábricas cierran. Rentas de Industria -25% este turno.',
     kind: 'sectorBust',
     sector: 'F',
     amount: -0.25,
@@ -155,7 +153,7 @@ export const NEWS_CARDS: NewsCard[] = [
   // 15 — Plan de infraestructuras (sector_boost construccio → H)
   {
     id: 'construction_boom',
-    text: 'Plan de infraestructuras: Rentas de Construcción +25% este turno.',
+    text: 'Plan de infraestructuras: Rentas de Construcción +30% este turno.',
     kind: 'sectorBoost',
     sector: 'H',
     amount: 0.3,
@@ -199,7 +197,7 @@ export const NEWS_CARDS: NewsCard[] = [
   // 20 — Cosecha extraordinaria (sector_boost agricultura → E)
   {
     id: 'harvest_boom',
-    text: 'Cosecha extraordinaria: Rentas de Agricultura +35% este turno.',
+    text: 'Cosecha extraordinaria: Rentas de Agricultura +30% este turno.',
     kind: 'sectorBoost',
     sector: 'E',
     amount: 0.3,

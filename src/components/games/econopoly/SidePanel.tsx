@@ -18,7 +18,7 @@ interface Props {
 }
 
 // Phase bar step labels
-const PHASE_LABELS = ['Tirar', 'Resolver', 'Accion'];
+const PHASE_LABELS = ['Tirar', 'Resolver', 'Acción'];
 
 // Map phase string to step index
 function phaseIndex(phase: string): number {
@@ -82,7 +82,7 @@ export function SidePanel({
           <div class="lab">Turno de la IA</div>
           <div class="ep2-ai-thinking">
             <span class="ep2-ai-dot" />
-            {currentPlayer.name} esta jugando...
+            {currentPlayer.name} está jugando...
           </div>
         </div>
       );
@@ -104,9 +104,9 @@ export function SidePanel({
     if (state.pendingPurchase !== null && pendingCell) {
       return (
         <div class="ep2-action">
-          <div class="lab">Accion: Comprar o subastar</div>
+          <div class="lab">Acción: Comprar o subastar</div>
           <div class="txt">
-            Has caido en <strong>{pendingCell.label}</strong>. Precio: {pendingPrice} €.
+            Has caído en <strong>{pendingCell.label}</strong>. Precio: {pendingPrice} €.
             Compra ahora o pasa a subasta.
           </div>
           <div class="ep2-btns">
@@ -129,9 +129,9 @@ export function SidePanel({
     if (state.phase === 'roll') {
       return (
         <div class="ep2-action">
-          <div class="lab">Accion: Tirar dados</div>
+          <div class="lab">Acción: Tirar dados</div>
           <div class="txt">
-            Tira 2d6 para avanzar. Si caes en propiedad libre, podras comprarla al precio base o pasar a subasta.
+            Tira 2d6 para avanzar. Si caes en propiedad libre, podrás comprarla al precio base o pasar a subasta.
           </div>
           <div class="ep2-btns">
             <button class="primary" onClick={onRollDice}>
@@ -148,7 +148,7 @@ export function SidePanel({
     // action phase
     return (
       <div class="ep2-action">
-        <div class="lab">Accion: Fase de mejora</div>
+        <div class="lab">Acción: Fase de mejora</div>
         <div class="txt">
           Puedes mejorar R+D en tus propiedades (50% del precio base por nivel) o terminar el turno.
         </div>
@@ -246,7 +246,7 @@ export function SidePanel({
           <div class="v">{gini.toFixed(2)}</div>
         </div>
         <div>
-          <div class="lab">F. publico</div>
+          <div class="lab">F. público</div>
           <div class="v">{state.publicFund} €</div>
         </div>
       </div>

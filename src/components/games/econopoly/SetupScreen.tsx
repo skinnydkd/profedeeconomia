@@ -85,8 +85,8 @@ export function SetupScreen({ onStart, hasSave, onContinue }: Props) {
         <div>
           <h1 class="ep2-setup-title">Econopoly</h1>
           <p class="ep2-setup-subtitle">
-            Juego de tablero de economia. Hasta 6 jugadores (humanos o IA), monopolios, R+D, ciclos economicos y subasta.
-            20 rondas. Gana quien mas patrimonio acumule.
+            Juego de tablero de economía. Hasta 6 jugadores (humanos o IA), monopolios, R+D, ciclos económicos y subasta.
+            20 rondas. Gana quien más patrimonio acumule.
           </p>
         </div>
 

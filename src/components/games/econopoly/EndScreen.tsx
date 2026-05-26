@@ -7,9 +7,9 @@ import { netWorth, giniIndex } from '@/lib/games/econopoly/engine';
 
 // Brief economic lessons linked to common outcomes
 const GINI_LESSON = (gini: number): string => {
-  if (gini < 0.2) return 'Partida muy igualitaria (Gini bajo). Una economia equilibrada distribuye mejor la renta y reduce la pobreza.';
-  if (gini < 0.4) return 'Desigualdad moderada (Gini medio). El monopolio y la inversion en R+D concentran la renta — igual que en la realidad.';
-  return 'Alta desigualdad (Gini elevado). Los primeros en invertir y acaparar sectores consolidan ventajas — el fenomeno del "winner takes all".';
+  if (gini < 0.2) return 'Partida muy igualitaria (Gini bajo). Una economía equilibrada distribuye mejor la renta y reduce la pobreza.';
+  if (gini < 0.4) return 'Desigualdad moderada (Gini medio). El monopolio y la inversión en R+D concentran la renta — igual que en la realidad.';
+  return 'Alta desigualdad (Gini elevado). Los primeros en invertir y acaparar sectores consolidan ventajas — el fenómeno del "winner takes all".';
 };
 
 interface Props {
@@ -84,12 +84,12 @@ export function EndScreen({ state, onRestart }: Props) {
 
         {/* Gini index */}
         <div class="ep2-end-gini">
-          Indice de Gini final: <strong>{gini.toFixed(3)}</strong>
+          Índice de Gini final: <strong>{gini.toFixed(3)}</strong>
         </div>
 
         {/* Economic lesson */}
         <div class="ep2-end-lesson">
-          <h3>Leccion de economia</h3>
+          <h3>Lección de economía</h3>
           <p style={{ margin: 0, lineHeight: 1.55 }}>
             {GINI_LESSON(gini)}
           </p>

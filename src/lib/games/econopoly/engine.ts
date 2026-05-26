@@ -99,7 +99,8 @@ export function move(state: GameState, steps: number): GameState {
     s.log.push(`${player.name} pasa por SALIDA y cobra ${bonus} €.`);
   }
 
-  s.lastRoll = null; // cleared by move; was already set in advancePhase
+  // Note: lastRoll is intentionally NOT cleared here — endTurn() resets it at
+  // the end of the turn, which lets the UI display dice results during resolve.
   return s;
 }
 

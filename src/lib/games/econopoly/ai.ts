@@ -1,5 +1,11 @@
 // src/lib/games/econopoly/ai.ts
 // AI player decisions for Econopoly — uses only public engine functions.
+//
+// aiTakeTurn is a resumable single-step state machine:
+//   - Each call advances ONE logical step (roll, resolve, buy/auction decision, action, endTurn).
+//   - Returns immediately when an auction would block on a human bidder.
+//   - The driver in EconopolyGame.tsx re-fires via useEffect on every state change,
+//     calling aiTakeTurn (or the inline auction stepper) once per 700ms tick.
 
 import type { GameState } from './types';
 import {
@@ -56,102 +62,82 @@ export function aiAuctionDecide(
   return { kind: 'pass' };
 }
 
-// ─── driveAuction ─────────────────────────────────────────────────────────────
-
-/**
- * Drive the auction state machine while the current bidder is an AI player.
- * Stops when a human is the current bidder, or when the auction ends.
- */
-function driveAuction(state: GameState, rng: () => number): GameState {
-  let s = state;
-  let safety = 0;
-  const MAX_ITERATIONS = 100;
-
-  while (s.activeAuction !== null && safety < MAX_ITERATIONS) {
-    safety++;
-    const auction = s.activeAuction;
-    const bidder = s.players[auction.currentBidder];
-
-    // Stop if the current bidder is human — UI must handle their input
-    if (bidder.isHuman) break;
-
-    // AI decides
-    const decision = aiAuctionDecide({ ...s, current: auction.currentBidder });
-
-    if (decision.kind === 'bid') {
-      s = auctionBid(s, decision.amount);
-    } else {
-      s = auctionPass(s);
-    }
-  }
-
-  return s;
-}
-
 // ─── aiTakeTurn ───────────────────────────────────────────────────────────────
 
 /**
- * Play the current AI player's full turn:
- * 1. Roll (advancePhase: roll → resolve)
- * 2. Resolve cell (advancePhase: resolve → action) — handles tax/news/property effects
- * 3. Handle pendingPurchase: buy if affordable (cash >= 2 * basePrice and sector open), else auction
- * 4. Drive auction (while AI is the current bidder)
- * 5. Action phase: greedy R+D upgrade on most rentable owned property if affordable
- * 6. End turn
+ * Resumable single-step AI state machine.
+ *
+ * Each call advances ONE logical step and returns immediately when:
+ *   (a) An auction now blocks on a human bidder, or
+ *   (b) It is no longer the AI's main turn.
+ *
+ * The driver in EconopolyGame.tsx re-fires via useEffect on every state change,
+ * calling this function (or the inline auction stepper) once per 700 ms tick.
+ *
+ * Call order per turn:
+ *   tick 1 → phase==='roll'    → advancePhase (roll)
+ *   tick 2 → phase==='resolve' → advancePhase (resolve) — may set pendingPurchase
+ *   tick 3 → pendingPurchase   → buy or startAuction
+ *   tick N → auction AI bids   → handled by driver's inline auction stepper
+ *   tick M → phase==='action'  → aiUpgradeRdIfAffordable + endTurn
  */
 export function aiTakeTurn(state: GameState, rng: () => number = Math.random): GameState {
-  const pid = state.current;
-  const player = state.players[pid];
-
-  // Safety: if game already has a winner, don't touch anything
+  // 0. Game over — nothing to do.
   if (state.winner !== null) return state;
-  // Safety: only act if it's this player's turn and they're alive
-  if (!player || !player.alive) {
-    return endTurn(state, rng);
+
+  // 1. If there's an active auction whose currentBidder is AI, step it ONCE.
+  //    (Defensive — driver normally handles this inline, but belt-and-suspenders.)
+  if (state.activeAuction !== null) {
+    const bidder = state.players[state.activeAuction.currentBidder];
+    if (!bidder.isHuman) {
+      const d = aiAuctionDecide({ ...state, current: state.activeAuction.currentBidder });
+      return d.kind === 'bid' ? auctionBid(state, d.amount) : auctionPass(state);
+    }
+    // Auction blocks on a human bidder — return and wait for UI.
+    return state;
   }
 
-  // Step 1: Roll dice and move
-  let s = advancePhase(state, rng); // roll → resolve
+  // 2. Defensive: if it's not an AI's main turn, return.
+  const cp = state.players[state.current];
+  if (!cp || cp.isHuman) return state;
 
-  // Step 2: Resolve cell
-  s = advancePhase(s, rng); // resolve → action
-
-  // Step 3: Handle pendingPurchase
-  if (s.pendingPurchase !== null) {
-    const cellId = s.pendingPurchase;
+  // 3. Handle pendingPurchase (we already rolled and resolved).
+  if (state.pendingPurchase !== null) {
+    const cellId = state.pendingPurchase;
     const cell = CELLS[cellId];
     if (cell.property) {
-      const currentPlayer = s.players[pid];
       const price = cell.property.basePrice;
-      // AI buys if it has >= 2x the price and the other sector property isn't already owned by someone else
       const sectorIds = sectorCellIds(cell.property.sector);
       const otherCellId = sectorIds.find((id) => id !== cellId);
-      const sectorOpen = !otherCellId || s.properties[otherCellId]?.owner === null || s.properties[otherCellId]?.owner === pid;
+      const sectorOpen =
+        !otherCellId ||
+        state.properties[otherCellId]?.owner === null ||
+        state.properties[otherCellId]?.owner === state.current;
 
-      if (currentPlayer.cash >= 2 * price && sectorOpen) {
-        s = buyProperty(s, cellId);
+      if (cp.cash >= 2 * price && sectorOpen) {
+        // Buy directly — driver re-fires → continues to action phase.
+        return buyProperty(state, cellId);
       } else {
-        // Start auction — drive AI bidders
-        s = startAuction(s, cellId);
-        s = driveAuction(s, rng);
+        // Start auction — driver re-fires; if the first bidder is human the
+        // driver will see activeAuction+human and stop; if AI, it steps it inline.
+        return startAuction(state, cellId);
       }
     }
   }
 
-  // Drive auction if it was already active (e.g. started by a news card — unlikely but safe)
-  if (s.activeAuction !== null) {
-    s = driveAuction(s, rng);
+  // 4. Advance roll → resolve (move the AI piece).
+  if (state.phase === 'roll') return advancePhase(state, rng);
+
+  // 5. Advance resolve → action (apply cell effect; may set pendingPurchase).
+  if (state.phase === 'resolve') return advancePhase(state, rng);
+
+  // 6. Action phase: optional R+D upgrade, then endTurn.
+  if (state.phase === 'action') {
+    const afterUpgrade = aiUpgradeRd(state, rng);
+    return endTurn(afterUpgrade, rng);
   }
 
-  // Step 4: Action phase — greedy R+D upgrade
-  if (s.phase === 'action') {
-    s = aiUpgradeRd(s, rng);
-  }
-
-  // Step 5: End turn
-  s = endTurn(s, rng);
-
-  return s;
+  return state;
 }
 
 // ─── aiUpgradeRd ─────────────────────────────────────────────────────────────

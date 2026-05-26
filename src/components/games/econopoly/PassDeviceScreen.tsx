@@ -19,7 +19,7 @@ export function PassDeviceScreen({ playerName, color, onReady }: Props) {
         </h2>
         <p class="ep2-pass-sub">
           El jugador anterior ya ha terminado su turno. Entrega el dispositivo al siguiente jugador humano.
-          Cuando estes listo, pulsa el boton.
+          Cuando estés listo, pulsa el botón.
         </p>
         <button class="ep2-pass-cta" onClick={onReady}>
           Estoy listo

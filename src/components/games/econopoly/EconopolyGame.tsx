@@ -61,6 +61,21 @@ interface PlayerConfig {
   isHuman: boolean;
 }
 
+// ─── shouldAiDrive ────────────────────────────────────────────────────────────
+// Returns true when the AI should act: either the current bidder in an active
+// auction is an AI, or (no auction) the current player is an AI.
+// This fixes the softlock where a human triggers an auction and the first
+// bidder is an AI — state.current still points to the human who initiated it.
+function shouldAiDrive(s: GameState): boolean {
+  if (!s || s.winner !== null) return false;
+  if (s.activeAuction) {
+    const bidder = s.players[s.activeAuction.currentBidder];
+    return !!bidder && !bidder.isHuman;
+  }
+  const cp = s.players[s.current];
+  return !!cp && !cp.isHuman;
+}
+
 // ─── Root island ─────────────────────────────────────────────────────────────
 export default function EconopolyGame() {
   // Game state — null while on setup screen.
@@ -98,64 +113,36 @@ export default function EconopolyGame() {
 
   // ─── AI driver ──────────────────────────────────────────────────────────
   // Fires whenever state or ui changes.
-  // Schedules the AI action ~700ms later when:
-  //   1. A game state exists
-  //   2. No winner yet
-  //   3. ui === 'playing'
-  //   4. Current player is AI
-  //   5. Either no auction active, or the auction's current bidder is AI
-  //   6. No AI turn already pending (re-entry guard)
+  // Schedules ONE AI step ~700ms later when shouldAiDrive(state) is true.
+  // A ref flag (aiPending) prevents re-entry between schedule and fire.
+  //
+  // Key fix (softlock): shouldAiDrive checks activeAuction.currentBidder, NOT
+  // state.current — so even when a human triggered the auction, the AI that is
+  // next to bid gets driven correctly.
   useEffect(() => {
     if (state === null) return;
-    if (state.winner !== null) return;
     if (ui !== 'playing') return;
-
-    const currentPlayer = state.players[state.current];
-    if (!currentPlayer || currentPlayer.isHuman) return;
-
-    // If there's an active auction and the current bidder is human, don't drive
-    if (state.activeAuction !== null) {
-      const bidder = state.players[state.activeAuction.currentBidder];
-      if (bidder?.isHuman) return;
-    }
-
+    if (!shouldAiDrive(state)) return;
     if (aiPending.current) return;
 
     aiPending.current = true;
     const tid = setTimeout(() => {
       setState((prev) => {
-        if (!prev) {
-          aiPending.current = false;
-          return prev;
-        }
-        // Re-validate inside callback (state may have changed between schedule and fire)
-        if (prev.winner !== null) {
-          aiPending.current = false;
-          return prev;
-        }
-        const cp = prev.players[prev.current];
-        if (!cp || cp.isHuman) {
+        if (!prev || !shouldAiDrive(prev)) {
           aiPending.current = false;
           return prev;
         }
 
-        // Case 1: active auction with AI as current bidder — step the auction
-        if (prev.activeAuction !== null) {
-          const bidder = prev.players[prev.activeAuction.currentBidder];
-          if (bidder?.isHuman) {
-            aiPending.current = false;
-            return prev;
-          }
-          const decision = aiAuctionDecide({ ...prev, current: prev.activeAuction.currentBidder });
-          const next = decision.kind === 'bid'
-            ? auctionBid(prev, decision.amount)
-            : auctionPass(prev);
-          aiPending.current = false;
-          return next;
+        // Step ONCE based on current state — drive only the auction bidder when
+        // an auction is active; otherwise let aiTakeTurn advance one phase step.
+        let next: GameState;
+        if (prev.activeAuction && !prev.players[prev.activeAuction.currentBidder].isHuman) {
+          const d = aiAuctionDecide({ ...prev, current: prev.activeAuction.currentBidder });
+          next = d.kind === 'bid' ? auctionBid(prev, d.amount) : auctionPass(prev);
+        } else {
+          next = aiTakeTurn(prev);
         }
 
-        // Case 2: AI takes full turn
-        const next = aiTakeTurn(prev);
         aiPending.current = false;
         return next;
       });
