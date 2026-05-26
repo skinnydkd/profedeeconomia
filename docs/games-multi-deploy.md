@@ -106,3 +106,63 @@ npm run party:deploy
 ```
 
 El servidor de PartyKit es desplega de forma independent a Astro. No cal tornar a desplegar Vercel si el canvi és només al servidor de joc (i viceversa).
+
+---
+
+## Cajút — notes específiques
+
+### Party registrat
+
+El party `cajut` ja està registrat a `partykit.json` (afegit a T1 del pla):
+
+```json
+{
+  "parties": {
+    "insider": "party/insider/server.ts",
+    "cajut": "party/cajut/server.ts"
+  }
+}
+```
+
+### Regenerar el manifest manualment
+
+```bash
+npm run build:cajut-manifest
+```
+
+Genera `public/games-multi/cajut/manifest.json` (metadades públiques: assignatures, unitats, nombre de preguntes per unitat). Fitxer **gitignored**; es regenera en cada build (el `prebuild` de `package.json` l'executa automàticament).
+
+### Desplegar Cajút (servidor PartyKit)
+
+```bash
+npm run deploy:cajut
+# Equivalent a: npm run build:cajut-manifest && partykit deploy
+```
+
+Nota: `partykit deploy` redesplega **tots** els parties del projecte (`insider` i `cajut`), ja que comparteixen el mateix projecte PartyKit `pde-games`.
+
+### URLs de producció
+
+| Rol | URL |
+|---|---|
+| Alumne | `https://profedeeconomia.es/juegos/cajut/?room=A7K2` |
+| Profe (host) | `https://profedeeconomia.es/juegos/cajut/host/` |
+
+### Fitxers clau
+
+| Fitxer | Descripció | Git |
+|---|---|---|
+| `public/games-multi/cajut/manifest.json` | Metadades públiques (assignatures, unitats, recompte de preguntes). Servit per Vercel. | gitignored — regenerat al build |
+| `party/cajut/questions.generated.json` | Banc complet de preguntes **amb resposta correcta**. Bundlat al servidor PartyKit en desplegar. **Mai servit per Vercel.** | gitignored |
+| `party/cajut/server.ts` | Lògica del servidor multijugador (Durable Object). | commitejat |
+| `scripts/build-cajut-manifest.mjs` | Script que genera el manifest a partir del banc de preguntes. | commitejat |
+
+### Variable d'entorn
+
+`PUBLIC_PARTYKIT_HOST` ha d'apuntar al subdomini desplegat de PartyKit en producció:
+
+```
+PUBLIC_PARTYKIT_HOST=pde-games.<user>.partykit.dev
+```
+
+En dev local, per defecte és `127.0.0.1:1999` (no cal afegir-la a `.env.local` si ja existeix per Insider).
