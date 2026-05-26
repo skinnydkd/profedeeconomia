@@ -1,0 +1,24 @@
+---
+// src/pages/juegos/insider/index.astro
+// Player entry point — students open this on their phones and enter the room code.
+import BaseLayout from '@layouts/BaseLayout.astro';
+import PlayerApp from '@components/games/insider/PlayerApp.tsx';
+
+const partykitHost = import.meta.env.PUBLIC_PARTYKIT_HOST ?? '127.0.0.1:1999';
+---
+<BaseLayout
+  title="Insider — jugar"
+  description="Insider, juego de deducción económica multijugador."
+>
+  <div class="insider-page">
+    <PlayerApp client:load partykitHost={partykitHost} />
+  </div>
+</BaseLayout>
+
+<style>
+  .insider-page {
+    max-width: 480px;
+    margin: 0 auto;
+    padding: clamp(1rem, 3vw, 2rem);
+  }
+</style>

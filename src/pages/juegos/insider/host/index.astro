@@ -1,0 +1,25 @@
+---
+// src/pages/juegos/insider/host/index.astro
+// Host entry point — teacher opens this on the projector.
+// Students join via /juegos/insider/ using the 4-char room code displayed here.
+import BaseLayout from '@layouts/BaseLayout.astro';
+import HostApp from '@components/games/insider/HostApp.tsx';
+
+const partykitHost = import.meta.env.PUBLIC_PARTYKIT_HOST ?? '127.0.0.1:1999';
+---
+<BaseLayout
+  title="Insider — sala (proyector)"
+  description="Sala de proyector para Insider. El profesor proyecta el código; los alumnos entran en /juegos/insider/."
+>
+  <div class="insider-host-page">
+    <HostApp client:load partykitHost={partykitHost} />
+  </div>
+</BaseLayout>
+
+<style>
+  .insider-host-page {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: clamp(1rem, 3vw, 2rem);
+  }
+</style>
