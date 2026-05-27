@@ -211,6 +211,33 @@ const juegos = defineCollection({
   }),
 });
 
+/* =========================================================
+   jocs-economics — banc de preguntes per al joc multijugador
+   Cada fitxer .md = una pregunta; el frontmatter és la font
+   de veritat que el builder llegeix per generar el JSON del banc.
+   ========================================================= */
+const jocsEconomicsPreguntas = defineCollection({
+  loader: glob({
+    pattern: 'jocs-economics/preguntas/**/*.md',
+    base: './src/content',
+  }),
+  schema: z.object({
+    id: z.string().regex(/^(eco|fin|emp)-\d{4}-[a-z0-9-]+$/),
+    categoria: z.enum(['economia', 'finances', 'empresa']),
+    dificultat: z.number().min(1).max(10),
+    opciones: z.array(z.string()).min(2).max(4),
+    correcta: z.number().int().min(0),
+    explicacion: z.string().optional(),
+    estado: z.enum(['borrador', 'revision', 'publicado']).default('borrador'),
+    font: z.string().optional(),
+    revisat_per: z.string().optional(),
+    revisat_at: z.string().optional(),
+  }).refine((data) => data.correcta < data.opciones.length, {
+    message: 'correcta ha de ser un index vàlid de opciones',
+    path: ['correcta'],
+  }),
+});
+
 export const collections = {
   libro,
   actividades,
@@ -220,4 +247,5 @@ export const collections = {
   ebau,
   proyecto,
   juegos,
+  jocsEconomicsPreguntas,
 };
