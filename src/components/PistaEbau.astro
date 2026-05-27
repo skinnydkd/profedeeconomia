@@ -1,0 +1,67 @@
+---
+type Props = {
+  /** Tipus de pista — afecta el kicker. */
+  tipo: 'teorica' | 'practica';
+  /** Etiqueta del concepte ("Umbral", "VAN/TIR", "Ratios"…). */
+  concepto: string;
+  /** Referència interna a l'apèndix ("Apéndice D.4" o similar). */
+  apendice?: string;
+};
+const { tipo, concepto, apendice } = Astro.props;
+const kicker = tipo === 'teorica' ? 'Pista EBAU · Teoría' : 'Pista EBAU · Práctica';
+---
+
+<aside class="pista-ebau" data-tipo={tipo}>
+  <span class="pista-ebau__kicker">{kicker}</span>
+  <h4 class="pista-ebau__concepto">{concepto}</h4>
+  <div class="pista-ebau__body"><slot /></div>
+  {apendice && <p class="pista-ebau__ref">→ {apendice}</p>}
+</aside>
+
+<style>
+  .pista-ebau {
+    margin: 2rem 0;
+    padding: 1.2rem 1.4rem;
+    background: var(--color-terra-soft);
+    border-left: 3px solid var(--color-terra);
+    border-radius: 0 6px 6px 0;
+  }
+  .pista-ebau__kicker {
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--color-terra-deep);
+    font-weight: 700;
+    display: block;
+    margin-bottom: 0.3rem;
+  }
+  .pista-ebau__concepto {
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+    margin: 0 0 0.5rem;
+    color: var(--color-ink);
+    font-weight: 500;
+    font-variation-settings: "SOFT" 80, "WONK" 0;
+  }
+  .pista-ebau__body {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--color-ink-soft);
+  }
+  .pista-ebau__body :global(p) { margin: 0 0 0.6em; }
+  .pista-ebau__body :global(p:last-child) { margin-bottom: 0; }
+  .pista-ebau__body :global(p::first-letter) {
+    font-family: inherit; font-weight: inherit; font-size: inherit;
+    line-height: inherit; float: none; padding: 0; color: inherit;
+  }
+  .pista-ebau__ref {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--color-terra-deep);
+    margin: 0.6rem 0 0;
+  }
+  @media print {
+    .pista-ebau { break-inside: avoid; page-break-inside: avoid; }
+  }
+</style>

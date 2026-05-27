@@ -1,0 +1,59 @@
+---
+type Props = {
+  /** Etiqueta opcional ("90 segundos" per defecte). */
+  duracion?: string;
+};
+const { duracion = '90 segundos' } = Astro.props;
+---
+
+<aside class="tldr">
+  <header class="tldr__head">
+    <span class="tldr__kicker">TL;DR</span>
+    <span class="tldr__dur">{duracion}</span>
+  </header>
+  <div class="tldr__body"><slot /></div>
+</aside>
+
+<style>
+  .tldr {
+    margin: 0 0 2.4rem;
+    padding: 1.4rem 1.6rem;
+    background: var(--color-bg-soft);
+    border-left: 4px solid var(--color-mustard);
+    border-radius: 0 4px 4px 0;
+  }
+  .tldr__head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 0.7rem;
+  }
+  .tldr__kicker {
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--color-mustard-deep);
+    font-weight: 700;
+  }
+  .tldr__dur {
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    color: var(--color-ink-mute);
+  }
+  .tldr__body {
+    font-family: var(--font-serif);
+    font-size: 1.02rem;
+    line-height: 1.55;
+    color: var(--color-ink);
+  }
+  .tldr__body :global(p) { margin: 0 0 0.7em; }
+  .tldr__body :global(p:last-child) { margin-bottom: 0; }
+  .tldr__body :global(p::first-letter) {
+    font-family: inherit; font-weight: inherit; font-size: inherit;
+    line-height: inherit; float: none; padding: 0; color: inherit;
+  }
+  @media print {
+    .tldr { break-inside: avoid; page-break-inside: avoid; }
+  }
+</style>

@@ -1,0 +1,107 @@
+---
+type Postura = {
+  /** Nom de la postura / escola / autor. */
+  etiqueta: string;
+  /** Postura en una frase curta. */
+  tesis: string;
+};
+type Props = {
+  /** Concepte sobre el qual hi ha desacord. */
+  tema: string;
+  postura_a: Postura;
+  postura_b: Postura;
+};
+const { tema, postura_a, postura_b } = Astro.props;
+---
+
+<aside class="voces">
+  <span class="voces__kicker">Voces en desacuerdo</span>
+  <h4 class="voces__tema">{tema}</h4>
+  <div class="voces__grid">
+    <div class="voces__postura">
+      <span class="voces__et">{postura_a.etiqueta}</span>
+      <p>{postura_a.tesis}</p>
+    </div>
+    <div class="voces__vs">vs</div>
+    <div class="voces__postura">
+      <span class="voces__et">{postura_b.etiqueta}</span>
+      <p>{postura_b.tesis}</p>
+    </div>
+  </div>
+  <div class="voces__body"><slot /></div>
+</aside>
+
+<style>
+  .voces {
+    margin: 2.4rem 0;
+    padding: 1.6rem 1.8rem;
+    background: var(--color-bg-cream);
+    border: 1px solid var(--color-line);
+    border-radius: 6px;
+  }
+  .voces__kicker {
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--color-mustard-deep);
+    font-weight: 700;
+    display: block;
+    margin-bottom: 0.4rem;
+  }
+  .voces__tema {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.2rem;
+    margin: 0 0 1.2rem;
+    color: var(--color-ink);
+    font-weight: 500;
+    font-variation-settings: "SOFT" 100, "WONK" 1;
+  }
+  .voces__grid {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 1.2rem;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  .voces__postura p {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.45;
+    color: var(--color-ink-soft);
+  }
+  .voces__et {
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--color-terra-deep);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    display: block;
+    margin-bottom: 0.3rem;
+  }
+  .voces__vs {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.4rem;
+    color: var(--color-mustard);
+    font-variation-settings: "SOFT" 100, "WONK" 1;
+  }
+  .voces__body {
+    font-size: 0.95rem;
+    line-height: 1.55;
+    color: var(--color-ink-soft);
+    border-top: 1px dashed var(--color-line);
+    padding-top: 0.9rem;
+  }
+  .voces__body :global(p) { margin: 0 0 0.7em; }
+  .voces__body :global(p:last-child) { margin-bottom: 0; }
+  .voces__body :global(p::first-letter) {
+    font-family: inherit; font-weight: inherit; font-size: inherit;
+    line-height: inherit; float: none; padding: 0; color: inherit;
+  }
+  @media print {
+    .voces { break-inside: avoid; page-break-inside: avoid; }
+  }
+</style>

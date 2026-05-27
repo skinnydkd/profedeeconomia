@@ -1,0 +1,80 @@
+---
+type Props = {
+  /** Número de l'etapa (1-12). */
+  etapa: number;
+  /** Títol de l'etapa ("Idea + per qué tu", "DAFO+PESTEL", …). */
+  titulo: string;
+  /** Entregable concret en una frase. */
+  entregable: string;
+};
+const { etapa, titulo, entregable } = Astro.props;
+---
+
+<aside class="reto">
+  <header class="reto__head">
+    <span class="reto__kicker">Reto del curso</span>
+    <span class="reto__etapa">Etapa {etapa} / 12</span>
+  </header>
+  <h4 class="reto__titulo">{titulo}</h4>
+  <p class="reto__entregable"><strong>Entregable:</strong> {entregable}</p>
+  <div class="reto__body"><slot /></div>
+</aside>
+
+<style>
+  .reto {
+    margin: 2.4rem 0;
+    padding: 1.4rem 1.6rem;
+    background: var(--color-paper);
+    border: 1px solid var(--color-terra);
+    border-radius: 6px;
+    position: relative;
+  }
+  .reto__head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 0.7rem;
+  }
+  .reto__kicker {
+    font-family: var(--font-sans);
+    font-size: 0.74rem;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--color-terra-deep);
+    font-weight: 700;
+  }
+  .reto__etapa {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--color-terra-deep);
+  }
+  .reto__titulo {
+    font-family: var(--font-serif);
+    font-size: 1.2rem;
+    margin: 0 0 0.4rem;
+    color: var(--color-ink);
+    font-weight: 500;
+    font-variation-settings: "SOFT" 80, "WONK" 0;
+  }
+  .reto__entregable {
+    font-size: 0.95rem;
+    color: var(--color-ink-soft);
+    margin: 0 0 1rem;
+    padding-bottom: 0.9rem;
+    border-bottom: 1px dashed var(--color-line);
+  }
+  .reto__body {
+    font-size: 0.96rem;
+    line-height: 1.55;
+    color: var(--color-ink-soft);
+  }
+  .reto__body :global(p) { margin: 0 0 0.7em; }
+  .reto__body :global(p:last-child) { margin-bottom: 0; }
+  .reto__body :global(p::first-letter) {
+    font-family: inherit; font-weight: inherit; font-size: inherit;
+    line-height: inherit; float: none; padding: 0; color: inherit;
+  }
+  @media print {
+    .reto { break-inside: avoid; page-break-inside: avoid; }
+  }
+</style>

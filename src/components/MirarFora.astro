@@ -1,0 +1,172 @@
+---
+type Recurso = {
+  /** Títol del recurs (llibre, vídeo, compte…). */
+  titulo: string;
+  /** Subtítol: autor / canal / @handle. */
+  meta: string;
+  /** Justificació de la connexió (2-3 frases per llibre, 1 per altres). */
+  porque: string;
+  /** URL on l'estudiant pot accedir-hi. */
+  url?: string;
+  /** Pàgines o capítols suggerits (només per a llibres). */
+  paginas?: string;
+  /** Duració (només per a vídeos). */
+  duracion?: string;
+};
+type Props = {
+  /** Número de la unitat (per al kicker). */
+  unidad: number;
+  libro: Recurso;
+  video: Recurso;
+  cuenta: Recurso;
+  /** Títol curt de l'activitat. */
+  actividad_titulo: string;
+  /** Durada self-study ("20-30 min"). */
+  actividad_duracion: string;
+};
+const { unidad, libro, video, cuenta, actividad_titulo, actividad_duracion } = Astro.props;
+---
+
+<section class="mirar-fora">
+  <header class="mirar-fora__head">
+    <span class="mirar-fora__kicker">Mirar fora · U{unidad}</span>
+  </header>
+
+  <div class="mirar-fora__recursos">
+    <article class="mirar-fora__recurso">
+      <span class="mirar-fora__et">Libro</span>
+      <h4>{libro.titulo}</h4>
+      <p class="mirar-fora__meta">{libro.meta}</p>
+      <p class="mirar-fora__porque">{libro.porque}</p>
+      {libro.paginas && <p class="mirar-fora__detalle">{libro.paginas}</p>}
+    </article>
+
+    <article class="mirar-fora__recurso">
+      <span class="mirar-fora__et">Vídeo {video.duracion && `· ${video.duracion}`}</span>
+      <h4>{video.titulo}</h4>
+      <p class="mirar-fora__meta">{video.meta}</p>
+      <p class="mirar-fora__porque">{video.porque}</p>
+      {video.url && <p class="mirar-fora__detalle"><a href={video.url}>{video.url}</a></p>}
+    </article>
+
+    <article class="mirar-fora__recurso">
+      <span class="mirar-fora__et">Cuenta · Podcast · Web</span>
+      <h4>{cuenta.titulo}</h4>
+      <p class="mirar-fora__meta">{cuenta.meta}</p>
+      <p class="mirar-fora__porque">{cuenta.porque}</p>
+    </article>
+  </div>
+
+  <div class="mirar-fora__actividad">
+    <header class="mirar-fora__act-head">
+      <span class="mirar-fora__et">Actividad · {actividad_duracion}</span>
+      <h4>{actividad_titulo}</h4>
+    </header>
+    <div class="mirar-fora__act-body"><slot name="actividad" /></div>
+    <aside class="mirar-fora__para-clase">
+      <span class="mirar-fora__et">Para clase</span>
+      <slot name="para-clase" />
+    </aside>
+  </div>
+</section>
+
+<style>
+  .mirar-fora {
+    margin: 3rem 0 0;
+    padding: 2rem 0 0;
+    border-top: 4px solid var(--color-mustard);
+  }
+  .mirar-fora__kicker {
+    font-family: var(--font-sans);
+    font-size: 0.84rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-mustard-deep);
+    font-weight: 700;
+    display: block;
+    margin-bottom: 2rem;
+  }
+  .mirar-fora__recursos {
+    display: grid;
+    gap: 1.6rem;
+    margin-bottom: 2rem;
+  }
+  .mirar-fora__recurso {
+    padding-left: 1.2rem;
+    border-left: 2px solid var(--color-line);
+  }
+  .mirar-fora__et {
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--color-ink-mute);
+    font-weight: 700;
+    display: block;
+    margin-bottom: 0.4rem;
+  }
+  .mirar-fora__recurso h4 {
+    font-family: var(--font-serif);
+    font-size: 1.15rem;
+    margin: 0 0 0.2rem;
+    color: var(--color-ink);
+    font-weight: 500;
+    font-variation-settings: "SOFT" 80, "WONK" 0;
+  }
+  .mirar-fora__meta {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--color-ink-mute);
+    margin: 0 0 0.6rem;
+  }
+  .mirar-fora__porque {
+    font-family: var(--font-serif);
+    font-size: 0.96rem;
+    line-height: 1.5;
+    color: var(--color-ink-soft);
+    margin: 0;
+  }
+  .mirar-fora__detalle {
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+    color: var(--color-terra-deep);
+    margin: 0.5rem 0 0;
+  }
+  .mirar-fora__actividad {
+    border-top: 1px solid var(--color-line);
+    padding-top: 1.8rem;
+  }
+  .mirar-fora__actividad h4 {
+    font-family: var(--font-serif);
+    font-size: 1.2rem;
+    margin: 0 0 0.9rem;
+    color: var(--color-ink);
+    font-weight: 500;
+  }
+  .mirar-fora__act-body {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--color-ink);
+    margin-bottom: 1.5rem;
+  }
+  .mirar-fora__act-body :global(p) { margin: 0 0 0.8em; }
+  .mirar-fora__act-body :global(p::first-letter) {
+    font-family: inherit; font-weight: inherit; font-size: inherit;
+    line-height: inherit; float: none; padding: 0; color: inherit;
+  }
+  .mirar-fora__para-clase {
+    background: var(--color-bg-cream);
+    padding: 1rem 1.2rem;
+    border-radius: 4px;
+    font-size: 0.92rem;
+    line-height: 1.5;
+    color: var(--color-ink-soft);
+  }
+  .mirar-fora__para-clase :global(p) { margin: 0 0 0.5em; }
+  .mirar-fora__para-clase :global(p:last-child) { margin-bottom: 0; }
+  @media print {
+    .mirar-fora { break-before: page; padding-top: 0; margin-top: 0; }
+    .mirar-fora__recurso { break-inside: avoid; }
+    .mirar-fora__actividad { break-inside: avoid; }
+  }
+</style>
