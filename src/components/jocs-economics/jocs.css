@@ -1,0 +1,135 @@
+/* src/components/jocs-economics/jocs.css */
+:root {
+  --jocs-cream: #FBF6EC;
+  --jocs-paper: #FFFFFF;
+  --jocs-ink: #2A1F18;
+  --jocs-ink-soft: #5C4A3D;
+  --jocs-ink-mute: #8A7868;
+  --jocs-line: #E5D4BD;
+  --jocs-line-soft: #EFE2CB;
+  --jocs-terracota: #C44E2C;
+  --jocs-teal: #1F6E6E;
+  --jocs-mostassa: #D4A24C;
+  --jocs-pine: #2E5E3A;
+  --jocs-blue-deep: #1F4E6E;  /* color identitari Jocs Econòmics */
+}
+
+.jocs-app {
+  min-height: 100vh;
+  background: var(--jocs-cream);
+  color: var(--jocs-ink);
+  font-family: "Switzer", ui-sans-serif, system-ui, sans-serif;
+  padding: 20px 16px;
+  display: flex;
+  flex-direction: column;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.jocs-title {
+  font-family: "Fraunces", Georgia, serif;
+  font-variation-settings: "SOFT" 80, "WONK" 0;
+  font-weight: 500;
+}
+
+.jocs-enunciado {
+  font-family: "Fraunces", Georgia, serif;
+  font-variation-settings: "SOFT" 80;
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 1.35;
+  color: var(--jocs-ink);
+  margin: 0 0 20px;
+}
+
+.jocs-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 14px 18px;
+  margin-bottom: 8px;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 15px;
+  font-weight: 500;
+  text-align: left;
+  cursor: pointer;
+  font-family: inherit;
+  line-height: 1.3;
+}
+.jocs-option .letter {
+  font-family: "Fraunces", serif;
+  font-weight: 600;
+  font-size: 22px;
+  flex: 0 0 28px;
+  text-align: center;
+}
+.jocs-option[data-opt="0"] { background: var(--jocs-terracota); }
+.jocs-option[data-opt="1"] { background: var(--jocs-teal); }
+.jocs-option[data-opt="2"] { background: var(--jocs-mostassa); color: #3a2a10; }
+.jocs-option[data-opt="3"] { background: var(--jocs-pine); }
+.jocs-option.disabled { opacity: .5; pointer-events: none; }
+.jocs-option.selected { filter: brightness(.75); }
+.jocs-option.correct { outline: 4px solid white; outline-offset: -4px; box-shadow: 0 0 0 6px var(--jocs-pine); }
+.jocs-option.wrong { outline: 4px solid white; outline-offset: -4px; box-shadow: 0 0 0 6px var(--jocs-terracota); }
+
+.jocs-stats {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 13px;
+  color: var(--jocs-ink-soft);
+  margin-bottom: 16px;
+}
+
+.jocs-lives { font-size: 18px; letter-spacing: 4px; color: var(--jocs-terracota); }
+.jocs-lives .empty { color: var(--jocs-line); }
+
+.jocs-timer-bar {
+  height: 4px;
+  background: var(--jocs-line);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+.jocs-timer-bar .fill {
+  height: 100%;
+  background: var(--jocs-terracota);
+  transition: width 250ms linear;
+}
+.jocs-timer-bar.urgent .fill { background: #9C3A1C; }
+
+.jocs-input {
+  display: block;
+  width: 100%;
+  padding: 12px 14px;
+  margin-bottom: 10px;
+  font-family: inherit;
+  font-size: 15px;
+  border: 1px solid var(--jocs-line);
+  border-radius: 6px;
+  background: var(--jocs-paper);
+  color: var(--jocs-ink);
+}
+
+.jocs-button-primary {
+  display: block;
+  width: 100%;
+  padding: 14px;
+  margin-top: 12px;
+  background: var(--jocs-ink);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+}
+.jocs-button-primary:disabled { background: var(--jocs-ink-mute); cursor: not-allowed; }
+
+.jocs-link { color: var(--jocs-blue-deep); text-decoration: underline; cursor: pointer; }
+.jocs-mute { color: var(--jocs-ink-mute); font-size: 13px; }
