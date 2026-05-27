@@ -72,7 +72,7 @@ export default function JocsApp() {
       });
       setPhase('playing');
     } catch (err: any) {
-      alert(`Error: ${err?.message || 'no es pot iniciar la partida'}`);
+      alert(`Error: ${err?.message || 'no se puede iniciar la partida'}`);
     }
   }
 
@@ -110,7 +110,7 @@ export default function JocsApp() {
         }, 3000);
       }
     } catch (err: any) {
-      alert(`Error: ${err?.message || 'no es pot enviar la resposta'}`);
+      alert(`Error: ${err?.message || 'no se puede enviar la respuesta'}`);
     }
   }
 
@@ -121,7 +121,7 @@ export default function JocsApp() {
       setFinal(res.final);
       setPhase('gameover');
     } catch (err: any) {
-      alert(`Error: ${err?.message || 'no es pot finalitzar'}`);
+      alert(`Error: ${err?.message || 'no se puede finalizar la partida'}`);
     }
   }
 
@@ -170,5 +170,5 @@ export default function JocsApp() {
     );
   }
 
-  return <div class="jocs-app"><p class="jocs-mute">Carregant…</p></div>;
+  return <div class="jocs-app"><p class="jocs-mute">Cargando…</p></div>;
 }

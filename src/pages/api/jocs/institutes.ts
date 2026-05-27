@@ -18,7 +18,7 @@ export const GET: APIRoute = async ({ url }) => {
     .from('institutes')
     .select('institute_display')
     .ilike('institute_display', `%${q}%`)
-    .order('players_count', { ascending: false })
+    .order('last_seen_at', { ascending: false })
     .limit(10);
 
   if (error) {

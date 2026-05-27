@@ -57,14 +57,11 @@ export function Playing({ session, onAnswer, onEnd }: Props) {
     i < session.livesLeft ? '●' : '○'
   ).join('');
 
-  const multiplier = (Math.floor((session.score / Math.max(1, session.questionsAnswered)) / 50) / 10).toFixed(1);
-
   return (
     <>
       <div class="jocs-stats">
         <span class="jocs-lives">{lives}</span>
         <span>{session.score} pts</span>
-        <span>{multiplier}×</span>
       </div>
       <div class={`jocs-timer-bar ${urgent ? 'urgent' : ''}`}>
         <div class="fill" style={{ width: `${fillPct}%` }} />
