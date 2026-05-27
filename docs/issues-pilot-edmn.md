@@ -21,7 +21,29 @@ Tipus: visuals (paged.js) + contingut.
   lemes massa llargs es trunquen a 2 línies amb el·lipsis en comptes de
   forçar el trencament.
 
+### B-002 — `build-book-pdf.mjs` apunta a `dist/` en comptes de `dist/client/` · ✓ Resolt
+
+- Descripció: després de la migració a l'adaptador @astrojs/vercel, els
+  fitxers estàtics es generen a `dist/client/` però el script de PDF
+  servia `dist/` arrel, donant 404 a totes les rutes.
+- Severitat: alta (bloquejava qualsevol generació de PDF).
+- Fix aplicat: detecció automàtica — si existeix `dist/client/`, l'usa;
+  si no, fa fallback a `dist/`. Sense canviar el comportament esperat
+  per a builds antics.
+
 ## Contingut
 
 Pendents d'omplir si en surten més durant el pilot o aplicació d'altres
 fases.
+
+## Pilot completat
+
+Data: 2026-05-27
+
+- Tots els 7 components nous renderitzen correctament al build.
+- El PDF d'EDMN 2BACH genera amb èxit (266 pàgines).
+- L'apèndix EBAU substitueix el PDF independent.
+- El Reto del curso obri el llibre amb la rúbrica.
+- U6 és la unitat pilot completa amb els 7 patrons aplicats.
+
+Pendent: aplicar el patró a U1-U5 i U7-U12 (nou pla).
