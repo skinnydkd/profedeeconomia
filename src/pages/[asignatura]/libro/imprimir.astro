@@ -14,6 +14,9 @@ import type { GetStaticPaths } from 'astro';
 
 export const getStaticPaths = (async () => {
   const all = await getCollection('libro');
+  const allReto = await getCollection('retoCurso');
+  const allEbau = await getCollection('ebau');
+
   const bySlug = new Map<string, typeof all>();
   for (const u of all) {
     if (u.data.estado !== 'publicado') continue;
@@ -22,21 +25,51 @@ export const getStaticPaths = (async () => {
     bySlug.set(u.data.asignatura, arr);
   }
 
+  const retoBySlug = new Map<string, typeof allReto>();
+  for (const r of allReto) {
+    if (r.data.estado !== 'publicado') continue;
+    const arr = retoBySlug.get(r.data.asignatura) ?? [];
+    arr.push(r);
+    retoBySlug.set(r.data.asignatura, arr);
+  }
+
+  const ebauBySlug = new Map<string, typeof allEbau>();
+  for (const e of allEbau) {
+    if (e.data.estado !== 'publicado') continue;
+    const arr = ebauBySlug.get(e.data.asignatura) ?? [];
+    arr.push(e);
+    ebauBySlug.set(e.data.asignatura, arr);
+  }
+
   return ASIGNATURA_SLUGS.flatMap((slug) => {
     const units = bySlug.get(slug);
     if (!units || units.length === 0) return [];
     units.sort((a, b) => a.data.unidad - b.data.unidad);
-    return [{ params: { asignatura: slug }, props: { units, asignatura: ASIGNATURAS[slug] } }];
+    const reto = (retoBySlug.get(slug) ?? []).slice().sort((a, b) => a.data.orden - b.data.orden);
+    const ebau = (ebauBySlug.get(slug) ?? []).slice().sort((a, b) => a.data.orden - b.data.orden);
+    return [{ params: { asignatura: slug }, props: { units, reto, ebau, asignatura: ASIGNATURAS[slug] } }];
   });
 }) satisfies GetStaticPaths;
 
-const { units, asignatura: a } = Astro.props;
+const { units, reto, ebau, asignatura: a } = Astro.props;
 
 // Pre-render each unit so we have headings + Content
 const rendered = await Promise.all(
   units.map(async (u) => {
     const { Content } = await render(u);
     return { unit: u, Content };
+  })
+);
+const renderedReto = await Promise.all(
+  reto.map(async (r) => {
+    const { Content } = await render(r);
+    return { entry: r, Content };
+  })
+);
+const renderedEbau = await Promise.all(
+  ebau.map(async (e) => {
+    const { Content } = await render(e);
+    return { entry: e, Content };
   })
 );
 
@@ -731,6 +764,137 @@ const accent = ACCENTS[a.color] ?? ACCENTS.edmn;
         max-width: 100%;
         height: auto;
       }
+
+      /* =========================================================
+         Reto del curso — pàgines d'introducció abans del TOC
+         ========================================================= */
+      .reto-intro { break-before: page; }
+      .reto-intro__page {
+        break-after: page;
+        padding-top: 8mm;
+      }
+      .reto-intro__page :global(h1) {
+        font-family: var(--font-serif);
+        font-size: 30pt;
+        line-height: 1.05;
+        margin: 0 0 6mm;
+        color: var(--color-ink);
+        font-weight: 400;
+        font-variation-settings: "SOFT" 80, "WONK" 0;
+        letter-spacing: -0.015em;
+      }
+      .reto-intro__page :global(h2) {
+        font-family: var(--font-sans);
+        font-size: 9.5pt;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--book-accent);
+        margin: 6mm 0 2mm;
+        font-weight: 700;
+      }
+      .reto-intro__page :global(p) {
+        font-family: var(--font-serif);
+        font-size: 10.5pt;
+        line-height: 1.55;
+        color: var(--color-ink);
+        margin: 0 0 0.6em;
+      }
+      .reto-intro__page :global(table) { font-size: 9pt; margin: 3mm 0; }
+
+      /* =========================================================
+         Apèndix EBAU — secció final del PDF
+         ========================================================= */
+      .ebau-apendix { break-before: page; }
+      .ebau-apendix__cover {
+        page: no-header;
+        break-after: page;
+        height: 191mm;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .ebau-apendix__kicker {
+        font-family: var(--font-sans);
+        font-size: 10pt;
+        text-transform: uppercase;
+        letter-spacing: 0.18em;
+        color: var(--book-accent);
+        font-weight: 700;
+        margin-bottom: 4mm;
+      }
+      .ebau-apendix__title {
+        font-family: var(--font-serif);
+        font-size: 48pt;
+        line-height: 1;
+        margin: 0 0 6mm;
+        color: var(--color-ink);
+        font-weight: 400;
+        font-variation-settings: "SOFT" 80, "WONK" 0;
+        letter-spacing: -0.02em;
+      }
+      .ebau-apendix__lede {
+        font-family: var(--font-serif);
+        font-style: italic;
+        font-size: 14pt;
+        color: var(--color-ink-soft);
+        margin: 0;
+        font-variation-settings: "SOFT" 80;
+      }
+      .ebau-apendix__section {
+        break-before: page;
+        padding-top: 8mm;
+        font-family: var(--font-serif);
+      }
+      .ebau-apendix__section-title {
+        font-family: var(--font-serif);
+        font-size: 22pt;
+        line-height: 1.1;
+        margin: 0 0 6mm;
+        color: var(--color-ink);
+        font-weight: 400;
+        font-variation-settings: "SOFT" 80, "WONK" 0;
+        position: relative;
+        padding-top: 4mm;
+        letter-spacing: -0.012em;
+      }
+      .ebau-apendix__section-title::before {
+        content: "";
+        position: absolute;
+        top: 0; left: 0;
+        width: 26mm; height: 3pt;
+        background: var(--book-accent);
+        border-radius: 999px;
+      }
+      .ebau-apendix__section :global(h2) {
+        font-family: var(--font-serif);
+        font-size: 13pt;
+        margin: 1.1em 0 0.4em;
+        color: var(--color-ink);
+        font-weight: 500;
+      }
+      .ebau-apendix__section :global(h3) {
+        font-family: var(--font-serif);
+        font-size: 11pt;
+        margin: 0.9em 0 0.3em;
+        color: var(--color-ink);
+        font-weight: 500;
+      }
+      .ebau-apendix__section :global(p) {
+        font-size: 10pt;
+        line-height: 1.5;
+        margin: 0 0 0.5em;
+      }
+      .ebau-apendix__section :global(table) { font-size: 9pt; }
+      .ebau-apendix__section :global(blockquote) {
+        font-family: var(--font-serif);
+        font-style: italic;
+        font-size: 11pt;
+        color: var(--book-accent-deep);
+        border-left: 3px solid var(--book-accent);
+        padding: 0.6em 1em;
+        margin: 1em 0;
+        background: var(--color-bg-cream);
+      }
     </style>
   </head>
   <style is:inline set:html={`.book-title-string { string-set: book-title "${a.shortLabel} · ${a.title}"; } body { --book-accent: ${accent.base}; --book-accent-deep: ${accent.deep}; --book-accent-soft: ${accent.soft}; }`}></style>
@@ -795,6 +959,17 @@ const accent = ACCENTS[a.color] ?? ACCENTS.edmn;
       </p>
     </section>
 
+    {/* ------------------------------------------------------ RETO DEL CURSO INTRO */}
+    {renderedReto.length > 0 && (
+      <section class="reto-intro">
+        {renderedReto.map(({ entry, Content }) => (
+          <div class="reto-intro__page" data-orden={entry.data.orden}>
+            <Content />
+          </div>
+        ))}
+      </section>
+    )}
+
     {/* ------------------------------------------------------------ TOC */}
     <section class="toc">
       <div class="toc__kicker">Índice general · {totalUnits} unidades</div>
@@ -858,6 +1033,23 @@ const accent = ACCENTS[a.color] ?? ACCENTS.edmn;
         </div>
       </section>
     ))}
+
+    {/* ------------------------------------------------------------ APÈNDIX EBAU */}
+    {renderedEbau.length > 0 && (
+      <section class="ebau-apendix">
+        <div class="ebau-apendix__cover">
+          <span class="ebau-apendix__kicker">Apéndice</span>
+          <h2 class="ebau-apendix__title">Guía EBAU</h2>
+          <p class="ebau-apendix__lede">Para llegar al examen con la cabeza en su sitio.</p>
+        </div>
+        {renderedEbau.map(({ entry, Content }) => (
+          <article class="ebau-apendix__section" data-orden={entry.data.orden}>
+            <h2 class="ebau-apendix__section-title">{entry.data.title}</h2>
+            <Content />
+          </article>
+        ))}
+      </section>
+    )}
 
     {/*
       paged.js polyfill — only loaded for in-browser preview. pagedjs-cli
