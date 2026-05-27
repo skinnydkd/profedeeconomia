@@ -47,6 +47,10 @@ import ElasticidadCasos from '@components/diagrams/ElasticidadCasos.astro';
 import PesoMuerto from '@components/diagrams/PesoMuerto.astro';
 import Figure from '@components/Figure.astro';
 import Bibliography from '@components/Bibliography.astro';
+import TldrUnidad from '@components/TldrUnidad.astro';
+import CasoDilema from '@components/CasoDilema.astro';
+import VuelveAlCaso from '@components/VuelveAlCaso.astro';
+import MirarFora from '@components/MirarFora.astro';
 
 import estancoCeuta from '@assets/libro/eco-1bach/05/estanco-ceuta.jpg';
 import refineriaCepsa from '@assets/libro/eco-1bach/05/refineria-cepsa-tenerife.jpg';
@@ -60,6 +64,20 @@ import davidCard from '@assets/libro/eco-1bach/05/david-card.png';
 > - Predecir cómo varía el ingreso total de una empresa cuando cambia el precio, según la demanda sea elástica o inelástica.
 > - Medir el excedente del consumidor y del productor en un mercado simple y calcular el peso muerto de una intervención.
 > - Analizar los efectos sobre el bienestar de precios máximos, precios mínimos e impuestos, con casos reales (alquiler, salario mínimo, tabaco, azúcar).
+
+<TldrUnidad>
+No todos los precios reaccionan igual. La gasolina sube y la gente sigue echando depósito (demanda **inelástica**); el cine se vacía si suben las entradas (demanda **elástica**).
+
+Esta unidad enseña a medir la **sensibilidad** de la demanda al precio y a usarla para tomar decisiones —desde subir impuestos al tabaco hasta poner precio a un producto nuevo—. Sin elasticidad, los modelos de mercado son geometría sin escala.
+</TldrUnidad>
+
+<CasoDilema
+  titular="España subió el impuesto al tabaco un 15 % en 2021. La recaudación creció solo un 3 %. ¿Qué pasó?"
+  fuente="Adaptado de informes de la Agencia Tributaria sobre impuestos especiales · 2021-2022"
+  pregunta="Si subes el impuesto a un producto, ¿siempre recaudas más? ¿De qué depende?"
+>
+El gobierno subió el impuesto especial sobre el tabaco esperando recaudar más y, secundariamente, reducir el consumo. El consumo cayó moderadamente, pero no tanto como esperaba la administración. Y la recaudación, en lugar de crecer un 12-15 %, creció solo un 3 %. La diferencia entre la previsión y el resultado no se explica solo por la elasticidad del consumidor: hay un tercer actor que entra en escena.
+</CasoDilema>
 
 En la unidad anterior vimos *qué* mueven la oferta y la demanda. En esta vamos a precisar *cuánto*. Que la cantidad demandada caiga cuando sube el precio es trivial; la pregunta interesante es **cuánto cae** y, sobre todo, **cuánto cae en relación a cuánto ha subido el precio**. Esa proporción —cuánto se mueve la cantidad por cada 1 % que se mueve el precio— se llama **elasticidad**, y es probablemente el concepto más útil de toda la microeconomía aplicada.
 
@@ -409,6 +427,15 @@ c) Calcular el peso muerto que genera la medida.
 
 </Steps>
 
+<VuelveAlCaso referencia="Subida del 15 % al tabaco y recaudación del +3 %">
+El tabaco tiene **demanda inelástica** —la gente adicta no deja de fumar aunque suba el precio—, pero esa inelasticidad tiene límites. La subida del 15 % provocó dos efectos:
+
+- **Leve caída del consumo legal**: parte del consumidor moderado redujo o abandonó.
+- **Desplazamiento al mercado paralelo**: contrabando desde Andorra, Portugal, Gibraltar y norte de África. Tabaco con la misma marca, sin pasar por la Hacienda española.
+
+La recaudación creció solo un 3 % porque **parte del consumo escapó del circuito fiscal**. La lección operativa: los impuestos sobre productos inelásticos son una **buena fuente de recaudación**, pero solo dentro de un margen. Superado ese margen, el contrabando entra, la recaudación se estanca y, además, se pierde control sanitario del producto. Es la curva de Laffer aplicada a la fiscalidad indirecta.
+</VuelveAlCaso>
+
 <KeyTakeaways title="Lo esencial de elasticidad y bienestar">
 - **E<sub>p</sub><sup>d</sup> = %ΔQ / %ΔP** en valor absoluto. Compárala con 1: si es mayor, demanda elástica; si menor, inelástica.
 - Las tres elasticidades de la demanda son **precio, renta y cruzada**. La renta clasifica bienes en normales (lujo, primera necesidad) e inferiores; la cruzada los clasifica en sustitutos, complementarios e independientes.
@@ -469,3 +496,34 @@ Estas preguntas no tienen una respuesta única. Sirven para discutir en clase o 
 9. Reial Decret 243/2022, de 5 d'abril, pel qual s'estableixen l'ordenació i els ensenyaments mínims del Batxillerat. BOE núm. 82, 6 d'abril de 2022.
 
 </Bibliography>
+
+<MirarFora
+  unidad={5}
+  libro={{
+    titulo: 'El economista camuflado',
+    meta: 'Tim Harford · Temas de Hoy, 2007',
+    porque: 'Capítulos sobre cómo Starbucks fija precios, por qué el café del aeropuerto cuesta más, por qué los productos «orgánicos» son tan caros. Microeconomía aplicada a la vida diaria, con elasticidad como hilo invisible.',
+    paginas: 'Capítulos 1, 2 y 4',
+  }}
+  video={{
+    titulo: 'INFLATION, Explained in 6 Minutes',
+    meta: 'Two Cents · PBS · YouTube',
+    duracion: '~6 min',
+    porque: 'Sobre cómo cambios pequeños de precio agregados se convierten en inflación y cómo la elasticidad de cada bien modula el impacto sobre cada hogar.',
+    url: 'https://www.youtube.com/results?search_query=Two+Cents+INFLATION+Explained+in+6+Minutes',
+  }}
+  cuenta={{
+    titulo: '@vrosales74',
+    meta: 'X / Twitter · Vicente Rosales',
+    porque: 'Economista, hilos sobre política económica española y elasticidades aplicadas (vivienda, energía, fiscalidad). Buena fuente para entender los debates fiscales actuales.',
+  }}
+  actividad_titulo="Tu cesta semanal, clasificada"
+  actividad_duracion="20 min"
+>
+  <Fragment slot="actividad">
+    Clasifica **10 productos** de tu cesta semanal en **elásticos** o **inelásticos**: agua, leche, cine, ropa de marca, transporte público, gasolina, suscripción de streaming, etc. ¿Cuál es el más inelástico de tu lista? ¿Qué pasaría con tu consumo si su precio subiera un 30 %?
+  </Fragment>
+  <Fragment slot="para-clase">
+    Variante *subasta inversa*: el profesor anuncia que va a subir un 50 % el precio de un producto del bar de la escuela. Los alumnos votan a mano alzada quién dejaría de comprarlo. El porcentaje que sigue comprando es una **medida de la inelasticidad**. Se repite con varios productos y se ordenan. Duración: 45 min.
+  </Fragment>
+</MirarFora>
