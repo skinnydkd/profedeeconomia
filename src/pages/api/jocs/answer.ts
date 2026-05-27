@@ -6,6 +6,9 @@ import { getSupabase } from '../../../lib/jocs-economics/server/supabase';
 import { nextQuestion, BankExhaustedError } from '../../../lib/jocs-economics/server/bank';
 import { verifyGameToken } from '../../../lib/jocs-economics/server/tokens';
 import { nextDifficulty } from '../../../lib/jocs-economics/server/difficulty';
+
+// SSR-only: no pre-render at build time (Supabase env vars not available)
+export const prerender = false;
 import { scoreFor } from '../../../lib/jocs-economics/server/scoring';
 import bankData from '../../../server-only/jocs-bank.json';
 

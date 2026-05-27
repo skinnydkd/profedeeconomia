@@ -2,11 +2,19 @@ import { defineConfig } from 'astro/config';
 import preact from '@astrojs/preact';
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
+import vercel from '@astrojs/vercel';
 import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
   site: 'https://www.profedeeconomia.es',
+
+  // Hybrid output: most pages are static-prerendered (default), only routes
+  // that opt out via `export const prerender = false` run as Vercel serverless
+  // functions. The Jocs Econòmics API routes (/api/jocs/*) need this so they
+  // can access Supabase at runtime.
+  output: 'static',
+  adapter: vercel(),
 
   integrations: [
     preact({ compat: false }),

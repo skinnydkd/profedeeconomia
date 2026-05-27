@@ -7,6 +7,9 @@ import { nextQuestion } from '../../../lib/jocs-economics/server/bank';
 import { signGameToken } from '../../../lib/jocs-economics/server/tokens';
 import { normalizeInstitute } from '../../../lib/jocs-economics/server/institutes';
 
+// SSR-only: no pre-render at build time (Supabase env vars not available)
+export const prerender = false;
+
 interface StartRequest {
   playerName: string;
   institute: string;

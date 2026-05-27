@@ -6,6 +6,9 @@ import type { APIRoute } from 'astro';
 import { getSupabase } from '../../../lib/jocs-economics/server/supabase';
 import { verifyGameToken } from '../../../lib/jocs-economics/server/tokens';
 
+// SSR-only: no pre-render at build time (Supabase env vars not available)
+export const prerender = false;
+
 const MIN_QUESTIONS_FOR_RANKING = 5;
 
 interface FinishRequest {
