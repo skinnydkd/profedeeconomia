@@ -242,9 +242,17 @@ const accent = ACCENTS[a.color] ?? ACCENTS.edmn;
         padding: 0.7rem 1rem;
         border-radius: 4px;
         border-left: 3px solid var(--color-mustard);
+        color: var(--color-mustard-deep);
         font-size: 9.5pt;
+        font-weight: 500;
         margin: 0.6em 0;
         white-space: pre-wrap;
+      }
+      pre code {
+        color: inherit;
+        background: transparent;
+        font-weight: inherit;
+        padding: 0;
       }
 
       ul, ol { padding-left: 1.2em; margin: 0 0 0.5em; }
@@ -893,6 +901,31 @@ const accent = ACCENTS[a.color] ?? ACCENTS.edmn;
         border-left: 3px solid var(--book-accent);
         padding: 0.6em 1em;
         margin: 1em 0;
+        background: var(--color-bg-cream);
+      }
+      /* Formula blocks (rendered as <pre><code>) inside the EBAU appendix:
+         override the global pre styling so formulas read as ACCENT-colored
+         lines, not as ink-black code chunks. */
+      .ebau-apendix__section :global(pre) {
+        font-family: var(--font-mono);
+        background: var(--color-bg-cream);
+        border-left: 3px solid var(--book-accent);
+        color: var(--book-accent-deep) !important;
+        padding: 0.7rem 1rem;
+        border-radius: 4px;
+        font-size: 10pt;
+        margin: 0.7em 0;
+        white-space: pre-wrap;
+        font-weight: 500;
+      }
+      .ebau-apendix__section :global(pre code) {
+        color: inherit !important;
+        background: transparent !important;
+        font-weight: inherit;
+        padding: 0;
+      }
+      .ebau-apendix__section :global(code) {
+        color: var(--book-accent-deep);
         background: var(--color-bg-cream);
       }
     </style>
