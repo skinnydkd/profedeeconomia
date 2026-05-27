@@ -603,15 +603,21 @@ const accent = ACCENTS[a.color] ?? ACCENTS.edmn;
         break-after: avoid;
       }
 
-      /* Callout, solved-exercise, curiosity, real-example, takeaways, steps:
-         in print, compact padding/margins (the web versions are airy) so the
-         many pedagogical boxes don't inflate the page count. */
+      /* Callout-like blocks: pedagogical boxes that should not be inflated
+         by their airy web margins when paginated, and must not fragment
+         across pages. Includes the 7 new pilot components. */
       .chapter__content .callout,
       .chapter__content .solved-exercise,
       .chapter__content .curiosity,
       .chapter__content .real-example,
       .chapter__content .takeaways,
-      .chapter__content .steps {
+      .chapter__content .steps,
+      .chapter__content .tldr,
+      .chapter__content .caso,
+      .chapter__content .vuelve,
+      .chapter__content .pista-ebau,
+      .chapter__content .voces,
+      .chapter__content .reto {
         margin: 0.8em 0 !important;
         padding: 0.7rem 0.95rem !important;
         page-break-inside: avoid;
@@ -623,17 +629,47 @@ const accent = ACCENTS[a.color] ?? ACCENTS.edmn;
       .chapter__content .real-example > :first-child,
       .chapter__content .solved-exercise > :first-child,
       .chapter__content .takeaways > :first-child,
-      .chapter__content .steps > :first-child { margin-top: 0 !important; }
+      .chapter__content .steps > :first-child,
+      .chapter__content .tldr > :first-child,
+      .chapter__content .caso > :first-child,
+      .chapter__content .vuelve > :first-child,
+      .chapter__content .pista-ebau > :first-child,
+      .chapter__content .voces > :first-child,
+      .chapter__content .reto > :first-child { margin-top: 0 !important; }
       .chapter__content .callout > :last-child,
       .chapter__content .curiosity > :last-child,
       .chapter__content .real-example > :last-child,
       .chapter__content .solved-exercise > :last-child,
       .chapter__content .takeaways > :last-child,
-      .chapter__content .steps > :last-child { margin-bottom: 0 !important; }
+      .chapter__content .steps > :last-child,
+      .chapter__content .tldr > :last-child,
+      .chapter__content .caso > :last-child,
+      .chapter__content .vuelve > :last-child,
+      .chapter__content .pista-ebau > :last-child,
+      .chapter__content .voces > :last-child,
+      .chapter__content .reto > :last-child { margin-bottom: 0 !important; }
 
-      /* Suppress drop cap on the first paragraph that follows a heading */
+      /* MirarFora: a full final page per unit. */
+      .chapter__content .mirar-fora {
+        break-before: page;
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+        border-top: none !important;
+      }
+      .chapter__content .mirar-fora__recurso,
+      .chapter__content .mirar-fora__actividad {
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+
+      /* Suppress drop cap on the first paragraph that follows a heading
+         or one of the unit-opener pedagogical blocks (TL;DR / CasoDilema)
+         which already sit before the body and shouldn't trigger drop cap
+         on the prose that follows. */
       .chapter__content h2 + p::first-letter,
-      .chapter__content h3 + p::first-letter {
+      .chapter__content h3 + p::first-letter,
+      .chapter__content .tldr + p::first-letter,
+      .chapter__content .caso + p::first-letter {
         font-family: inherit;
         font-weight: inherit;
         font-size: inherit;
