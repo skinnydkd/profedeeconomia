@@ -12,12 +12,17 @@ type Props = {
   source?: string;
   /** "default" centers the figure with full width; "tight" keeps it within text width. */
   variant?: 'default' | 'tight';
+  /** Stable id used by capture-diagrams.mjs to name the PNG for slide output. */
+  id?: string;
 };
 
-const { caption, source, variant = 'default' } = Astro.props;
+const { caption, source, variant = 'default', id } = Astro.props;
 ---
 
-<figure class:list={['diagram', `diagram--${variant}`]}>
+<figure
+  class:list={['diagram', `diagram--${variant}`]}
+  data-slide-diagram={id ?? ''}
+>
   <div class="diagram__inner">
     <slot />
   </div>
