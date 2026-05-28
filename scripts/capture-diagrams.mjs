@@ -18,13 +18,31 @@
  *   node scripts/capture-diagrams.mjs edmn-2bach       # only one
  */
 
-import { spawn } from 'node:child_process';
 import { createHash } from 'node:crypto';
-import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
-import { dirname, join, resolve } from 'node:path';
+import { createReadStream, existsSync, mkdirSync, readdirSync, readFileSync, statSync, writeFileSync } from 'node:fs';
+import { createServer } from 'node:http';
+import { platform } from 'node:os';
+import { dirname, extname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import puppeteer from 'puppeteer';
 import { parse as parseYaml } from 'yaml';
+
+function findChromeExecutable() {
+  if (process.env.PUPPETEER_EXECUTABLE_PATH && existsSync(process.env.PUPPETEER_EXECUTABLE_PATH)) {
+    return process.env.PUPPETEER_EXECUTABLE_PATH;
+  }
+  const candidates = platform() === 'win32'
+    ? [
+        'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',
+        'C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe',
+        `${process.env.LOCALAPPDATA}\\Google\\Chrome\\Application\\chrome.exe`,
+      ]
+    : platform() === 'darwin'
+    ? ['/Applications/Google Chrome.app/Contents/MacOS/Google Chrome']
+    : ['/usr/bin/google-chrome', '/usr/bin/google-chrome-stable', '/usr/bin/chromium-browser', '/usr/bin/chromium'];
+  for (const c of candidates) { if (c && existsSync(c)) return c; }
+  return null;
+}
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = resolve(__dirname, '..');
@@ -47,36 +65,60 @@ function parseFm(src) {
   return m ? parseYaml(m[1]) ?? {} : {};
 }
 
-async function waitForPreview(url, timeoutMs = 60000) {
-  const start = Date.now();
-  while (Date.now() - start < timeoutMs) {
-    try {
-      const res = await fetch(url);
-      if (res.ok || res.status === 404) return;
-    } catch {}
-    await new Promise((r) => setTimeout(r, 500));
-  }
-  throw new Error(`Astro preview never started at ${url}`);
+const MIME = {
+  '.html': 'text/html; charset=utf-8', '.css': 'text/css',
+  '.js': 'application/javascript', '.json': 'application/json',
+  '.svg': 'image/svg+xml', '.png': 'image/png', '.jpg': 'image/jpeg',
+  '.jpeg': 'image/jpeg', '.gif': 'image/gif', '.webp': 'image/webp',
+  '.woff': 'font/woff', '.woff2': 'font/woff2', '.ttf': 'font/ttf',
+  '.ico': 'image/x-icon', '.txt': 'text/plain; charset=utf-8',
+};
+
+const distDir = resolve(root, 'dist/client');
+if (!existsSync(distDir)) {
+  console.error(`✖ ${distDir} does not exist. Run \`npm run build\` first.`);
+  process.exit(1);
 }
 
-console.log('→ Starting astro preview on :4322…');
-const preview = spawn('npx', ['astro', 'preview', '--port', '4322'], {
-  cwd: root, stdio: ['ignore', 'pipe', 'pipe'], shell: true,
+const server = createServer((req, res) => {
+  let urlPath = decodeURIComponent(req.url.split('?')[0]);
+  if (urlPath.endsWith('/')) urlPath += 'index.html';
+  const filePath = join(distDir, urlPath);
+  if (!filePath.startsWith(distDir)) { res.writeHead(403); res.end('forbidden'); return; }
+  try {
+    if (statSync(filePath).isDirectory()) {
+      // try /<dir>/index.html
+      const idx = join(filePath, 'index.html');
+      if (existsSync(idx)) {
+        res.writeHead(200, { 'Content-Type': MIME['.html'] });
+        createReadStream(idx).pipe(res); return;
+      }
+    } else {
+      const mime = MIME[extname(filePath).toLowerCase()] || 'application/octet-stream';
+      res.writeHead(200, { 'Content-Type': mime });
+      createReadStream(filePath).pipe(res); return;
+    }
+  } catch {}
+  res.writeHead(404); res.end('not found');
 });
-preview.stdout.on('data', (d) => process.stdout.write(`[preview] ${d}`));
-preview.stderr.on('data', (d) => process.stderr.write(`[preview] ${d}`));
+
+await new Promise((r) => server.listen(4322, '127.0.0.1', r));
+console.log('→ Static server ready on :4322 (serving dist/client).');
 
 let totalCaptured = 0;
 let totalSkipped = 0;
 
 try {
-  await waitForPreview('http://localhost:4322/');
-  console.log('→ Astro preview ready.');
-
+  const chromePath = findChromeExecutable();
+  if (!chromePath) {
+    console.error('✖ Could not find Chrome. Install Google Chrome or set PUPPETEER_EXECUTABLE_PATH.');
+    process.exit(1);
+  }
+  console.log(`→ Using Chrome: ${chromePath}`);
   const browser = await puppeteer.launch({
     headless: 'new',
     defaultViewport: { width: 1280, height: 720, deviceScaleFactor: 2 },
-    executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || undefined,
+    executablePath: chromePath,
   });
 
   for (const slug of targets) {
@@ -98,9 +140,7 @@ try {
         continue;
       }
 
-      // The page slug in the URL drops the numeric prefix (e.g. "06-x" → "x").
-      const urlSlug = unitSlug.replace(/^\d+-/, '');
-      const url = `http://localhost:4322/${slug}/libro/${urlSlug}/`;
+      const url = `http://localhost:4322/${slug}/libro/${unitSlug}/`;
       const page = await browser.newPage();
       console.log(`→ ${url}`);
       try {
@@ -138,5 +178,5 @@ try {
   writeFileSync(manifestPath, JSON.stringify(manifest, null, 2));
   console.log(`\n✓ Captured ${totalCaptured} diagram PNG(s); skipped ${totalSkipped} cached unit(s).`);
 } finally {
-  preview.kill('SIGTERM');
+  server.close();
 }
