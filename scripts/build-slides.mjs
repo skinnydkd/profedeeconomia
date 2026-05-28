@@ -33,6 +33,9 @@ const ASIGNATURAS = slugFilters.length > 0
   ? ALL_ASIGNATURAS.filter((s) => slugFilters.includes(s))
   : ALL_ASIGNATURAS;
 
+const htmlOnly = process.argv.includes('--html-only');
+const skipCapture = process.argv.includes('--skip-capture');
+
 function findChromeExecutable() {
   if (process.env.PUPPETEER_EXECUTABLE_PATH && existsSync(process.env.PUPPETEER_EXECUTABLE_PATH)) {
     return process.env.PUPPETEER_EXECUTABLE_PATH;
@@ -58,9 +61,15 @@ if (chromePath) {
   console.log(`Usando Chrome del sistema: ${chromePath}`);
 }
 
+// Step 0: capture diagrams (skip if --skip-capture).
+if (!skipCapture) {
+  console.log('\n→ Capturando diagramas (puppeteer)…');
+  await runScript(resolve(__dirname, 'capture-diagrams.mjs'), slugFilters);
+}
+
 // Step 1: regenerate skeletons.
 console.log('\n→ Generando esqueletos de deck desde los MDX…');
-await runScript(resolve(__dirname, 'extract-slides.mjs'));
+await runScript(resolve(__dirname, 'extract-slides.mjs'), slugFilters);
 
 // Step 2: marp-cli per .md
 const theme = resolve(root, 'marp-themes/profedeeconomia.css');
@@ -84,7 +93,8 @@ for (const slug of ASIGNATURAS) {
     const unitSlug = basename(file, '.md');
     console.log(`\n— ${slug}/${unitSlug}`);
 
-    for (const ext of ['pdf', 'html']) {
+    const formats = htmlOnly ? ['html'] : ['pdf', 'html'];
+    for (const ext of formats) {
       const outPath = join(outDir, `${unitSlug}.${ext}`);
       const args = [
         '--no-install',
@@ -116,9 +126,9 @@ console.log(`\n✓ Generados ${totalDecks * 2} archivos (${totalDecks} PDFs + ${
 
 // ────────────────────────────────────────────────────────────
 
-function runScript(scriptPath) {
+function runScript(scriptPath, args = []) {
   return new Promise((resolveDone) => {
-    const child = spawn(process.execPath, [scriptPath], {
+    const child = spawn(process.execPath, [scriptPath, ...args], {
       cwd: root,
       stdio: 'inherit',
       env: process.env,
