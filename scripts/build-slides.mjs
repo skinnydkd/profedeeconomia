@@ -18,7 +18,7 @@
  */
 
 import { spawn } from 'node:child_process';
-import { existsSync, mkdirSync, readdirSync } from 'node:fs';
+import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { resolve, dirname, basename, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { platform } from 'node:os';
@@ -71,8 +71,17 @@ if (!skipCapture) {
 console.log('\n→ Generando esqueletos de deck desde los MDX…');
 await runScript(resolve(__dirname, 'extract-slides.mjs'), slugFilters);
 
+// Step 1.5: compile theme — prepend @font-face base64 so Marp's headless
+// Chrome doesn't have to fetch Switzer from Fontshare (which sometimes fails
+// inside the sandbox). Fraunces + JetBrains Mono load from Google Fonts.
+const themeSrc = readFileSync(resolve(root, 'marp-themes/profedeeconomia.css'), 'utf8');
+const switzerFaces = readFileSync(resolve(root, 'marp-themes/_switzer-faces.css'), 'utf8');
+const compiledTheme = resolve(root, 'tmp/profedeeconomia.compiled.css');
+mkdirSync(dirname(compiledTheme), { recursive: true });
+writeFileSync(compiledTheme, switzerFaces + '\n' + themeSrc, 'utf8');
+
 // Step 2: marp-cli per .md
-const theme = resolve(root, 'marp-themes/profedeeconomia.css');
+const theme = compiledTheme;
 
 let failures = 0;
 let totalDecks = 0;
