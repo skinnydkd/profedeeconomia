@@ -19,6 +19,6 @@ export function renderRetoEtapa(node) {
     entregable ? `  <p><strong>Entregable:</strong> ${esc(entregable)}</p>` : '',
     body ? `  <div class="reto__tasks">${esc(body)}</div>` : '',
     `</div>`,
-  ].filter(Boolean).join('\n');
+  ].filter((l) => l != null).join('\n');
 }
 function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}

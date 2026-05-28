@@ -16,8 +16,7 @@ describe('figure parser', () => {
     const [fig] = findComponents(ast, 'Figure');
     const md = renderFigure(fig, imports);
     expect(md).toMatch(/<!-- _class: figure -->/);
-    expect(md).toMatch(/file:\/\/\//);
-    expect(md).toMatch(/boqueria-barcelona\.jpg/);
+    expect(md).toMatch(/data:image\/jpeg;base64,/);
     expect(md).toMatch(/caption de prueba/);
   });
 });

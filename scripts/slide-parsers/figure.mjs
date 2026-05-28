@@ -1,5 +1,5 @@
 import { getAttr } from './ast.mjs';
-import { resolveAssetPath, fileUrl } from './imports.mjs';
+import { resolveAssetPath, dataUri } from './imports.mjs';
 
 export function renderFigure(node, importsMap) {
   const srcAttr = getAttr(node, 'src') || '';
@@ -10,17 +10,17 @@ export function renderFigure(node, importsMap) {
   // src may be either a literal path string or a JSX expression naming an import.
   const importPath = importsMap.get(String(srcAttr).trim());
   const abs = resolveAssetPath(importPath);
-  const url = fileUrl(abs);
+  const url = dataUri(abs);
   if (!url) return null; // skip — better to omit than to render broken
 
   return [
     '<!-- _class: figure -->',
     '',
-    `![${escAttr(alt)}](${url})`,
+    `<img src="${url}" alt="${escAttr(alt)}" />`,
     '',
     caption ? `<p class="figure__caption">${esc(caption)}</p>` : '',
     credit ? `<p class="figure__credit">${esc(credit)}</p>` : '',
-  ].filter(Boolean).join('\n');
+  ].filter((l) => l != null).join('\n');
 }
 
 function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }

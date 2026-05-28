@@ -3,8 +3,8 @@
  * <Figure src={photo} /> can be rewritten to an absolute file:// URL that
  * Marp can embed via --allow-local-files.
  */
-import { resolve, dirname } from 'node:path';
-import { existsSync } from 'node:fs';
+import { resolve, dirname, extname } from 'node:path';
+import { existsSync, readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -41,4 +41,22 @@ export function resolveAssetPath(spec) {
 export function fileUrl(absPath) {
   if (!absPath) return null;
   return 'file:///' + absPath.replace(/\\/g, '/');
+}
+
+const MIME = {
+  '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg',
+  '.png': 'image/png', '.gif': 'image/gif',
+  '.webp': 'image/webp', '.svg': 'image/svg+xml',
+};
+
+/**
+ * Returns a data: URI for the given absolute image path so Marp can render
+ * it in any output mode (HTML / PDF / images) without `--allow-local-files`
+ * caveats. Returns null if the file can't be read.
+ */
+export function dataUri(absPath) {
+  if (!absPath || !existsSync(absPath)) return null;
+  const mime = MIME[extname(absPath).toLowerCase()] || 'application/octet-stream';
+  const buf = readFileSync(absPath);
+  return `data:${mime};base64,${buf.toString('base64')}`;
 }

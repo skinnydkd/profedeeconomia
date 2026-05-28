@@ -3,6 +3,6 @@ export function renderSectionCover(heading) {
     '<!-- _class: section -->',
     '<!-- _paginate: false -->',
     '',
-    `# *${heading}*`,
+    `# <em>${heading}</em>`,
   ].join('\n');
 }

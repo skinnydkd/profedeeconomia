@@ -76,6 +76,10 @@ section::before {
   color: var(--color-terra);
 }
 section[data-marpit-pagination=""]::before { content: none; }
+section:not([data-marpit-pagination])::before { content: none; }
+section.title::before,
+section.close::before,
+section.section::before { content: none; }
 
 /* Headings */
 h1 {
@@ -329,9 +333,15 @@ section.caso {
   align-items: stretch;
 }
 section.caso .caso__media {
-  background-size: cover;
-  background-position: center;
+  overflow: hidden;
   min-height: 100%;
+  position: relative;
+}
+section.caso .caso__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 section.caso .caso__body {
   padding: 70px 70px 60px 0;
@@ -580,19 +590,20 @@ section.ebau .ebau__body { font-size: 22px; line-height: 1.6; max-width: none; }
    ============================================================ */
 section.reto {
   display: grid;
-  grid-template-columns: 280px 1fr;
+  grid-template-columns: 340px 1fr;
   gap: 60px;
   padding: 70px 80px;
   align-items: center;
 }
 section.reto .reto__num {
   font-family: var(--font-serif);
-  font-size: 200px;
+  font-size: 140px;
   line-height: 1;
   color: transparent;
   -webkit-text-stroke: 2px var(--color-terra);
   font-variation-settings: "SOFT" 100, "WONK" 1;
   font-style: italic;
+  white-space: nowrap;
 }
 section.reto h2 { padding: 0; margin: 0 0 18px; font-size: 34px; }
 section.reto h2::before { display: none; }

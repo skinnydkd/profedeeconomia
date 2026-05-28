@@ -5,7 +5,7 @@
  * a single-column text layout (still uses the caso class for typography).
  */
 import { getText, getAttr } from './ast.mjs';
-import { fileUrl } from './imports.mjs';
+import { dataUri } from './imports.mjs';
 
 export function renderCaso(node, { heroImageAbs }) {
   return render(node, { heroImageAbs, klass: 'caso', kicker: 'CASO REAL' });
@@ -20,13 +20,14 @@ function render(node, { heroImageAbs, klass, kicker }) {
   const pregunta = getAttr(node, 'pregunta') || '';
   const fuente = getAttr(node, 'fuente') || '';
   const body = getText(node);
-  const url = fileUrl(heroImageAbs);
-  const bg = url ? ` style="background-image:url('${url}')"` : '';
+  const url = dataUri(heroImageAbs);
 
   return [
     `<!-- _class: ${klass} -->`,
     '',
-    `<div class="caso__media"${bg}></div>`,
+    `<div class="caso__media">`,
+    url ? `  <img src="${url}" alt="" />` : '',
+    `</div>`,
     `<div class="caso__body">`,
     `  <p class="caso__kicker">${kicker}</p>`,
     titular ? `  <h2>${esc(titular)}</h2>` : '',
@@ -34,7 +35,7 @@ function render(node, { heroImageAbs, klass, kicker }) {
     pregunta ? `  <p class="caso__pregunta">${esc(pregunta)}</p>` : '',
     fuente ? `  <p class="caso__fuente">${esc(fuente)}</p>` : '',
     `</div>`,
-  ].filter(Boolean).join('\n');
+  ].filter((l) => l != null).join('\n');
 }
 
 function esc(s) {

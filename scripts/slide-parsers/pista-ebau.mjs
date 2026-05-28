@@ -15,6 +15,6 @@ export function renderPistaEbau(node) {
     '',
     `<div class="ebau__body">${esc(body)}</div>`,
     apendice ? `\n<p class="ebau__ref">→ ${esc(apendice)}</p>` : '',
-  ].filter(Boolean).join('\n');
+  ].filter((l) => l != null).join('\n');
 }
 function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}

@@ -148,9 +148,9 @@ export function assembleDeck({ frontmatter, ast, asignatura, unitSlug, importsMa
     '<!-- _class: close -->',
     '<!-- _paginate: false -->',
     '',
-    '# *Hasta aquí la teoría.*',
+    '# Hasta aquí la teoría.',
     '',
-    '_Continúa en el libro_  ·  profedeeconomia.es',
+    '<p>Continúa en el libro · profedeeconomia.es</p>',
   ].join('\n'));
 
   return slides.filter(Boolean);
