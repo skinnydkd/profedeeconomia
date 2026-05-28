@@ -1,5 +1,4 @@
 import { renderTitle } from './title-slide.mjs';
-import { renderSectionCover } from './section-cover.mjs';
 import { renderObjetivos, renderConceptos } from '../slide-parsers/frontmatter.mjs';
 import { renderTldr } from '../slide-parsers/tldr.mjs';
 import { renderCaso, renderVuelveAlCaso } from '../slide-parsers/caso.mjs';
@@ -110,13 +109,13 @@ export function assembleDeck({ frontmatter, ast, asignatura, unitSlug, importsMa
 
   for (const group of groups) {
     if (group.heading === null) continue;
-    slides.push(renderSectionCover(group.heading));
 
     let proseBuffer = [];
+    let headingShown = false;
     const flushProse = () => {
       if (!proseBuffer.length) return;
-      const md = renderConceptSlide(group.heading, proseBuffer);
-      if (md) slides.push(md);
+      const md = renderConceptSlide(headingShown ? null : group.heading, proseBuffer);
+      if (md) { slides.push(md); headingShown = true; }
       proseBuffer = [];
     };
 

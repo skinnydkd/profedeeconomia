@@ -28,7 +28,8 @@ export function renderConceptSlide(heading, nodes) {
     }
   }
   if (!pieces.length) return null;
-  return [`## ${heading}`, '', ...pieces].join('\n');
+  const head = heading ? [`## ${heading}`, ''] : [];
+  return [...head, ...pieces].join('\n');
 }
 
 function renderTable(node) {
