@@ -67,6 +67,10 @@ if (!skipCapture) {
   await runScript(resolve(__dirname, 'capture-diagrams.mjs'), slugFilters);
 }
 
+// Step 0.5: optimize images for embedding (resize → cache).
+console.log('\n→ Optimizando imágenes para embedding…');
+await runScript(resolve(__dirname, 'optimize-slide-images.mjs'), slugFilters);
+
 // Step 1: regenerate skeletons.
 console.log('\n→ Generando esqueletos de deck desde los MDX…');
 await runScript(resolve(__dirname, 'extract-slides.mjs'), slugFilters);
