@@ -40,6 +40,20 @@ export default defineConfig({
   // vercel.json at the edge layer (real 301, not a meta-refresh), so no
   // Astro-level redirect is needed.
 
+  // /[asignatura]/tests → /[asignatura]/actividades-dinamicas/ (301)
+  // The old /tests hub is replaced by the unified /actividades-dinamicas/ hub.
+  redirects: {
+    '/edmn-2bach/tests':     '/edmn-2bach/actividades-dinamicas/',
+    '/eco-1bach/tests':      '/eco-1bach/actividades-dinamicas/',
+    '/eco-4eso/tests':       '/eco-4eso/actividades-dinamicas/',
+    '/fopp-4eso/tests':      '/fopp-4eso/actividades-dinamicas/',
+    '/taller-eco-3eso/tests':'/taller-eco-3eso/actividades-dinamicas/',
+    '/ipe1-fp/tests':        '/ipe1-fp/actividades-dinamicas/',
+    '/ipe2-fp/tests':        '/ipe2-fp/actividades-dinamicas/',
+    '/eeae-bach/tests':      '/eeae-bach/actividades-dinamicas/',
+    '/gpe-bach/tests':       '/gpe-bach/actividades-dinamicas/',
+  },
+
   vite: {
     plugins: [tailwindcss()],
   },
