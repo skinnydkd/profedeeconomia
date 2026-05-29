@@ -1,0 +1,117 @@
+---
+asignatura: edmn-2bach
+unidad_relacionada: 6
+title: "Has heredado la cafetería del barrio"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "15-20 min"
+descripcion: "Tu tío te deja la Cafetería Central. Las ventas caen, la caja se agota. Diseña el marketing mix antes de quedarte sin pista."
+competencias_clave: [CPSAA, CE, CD]
+competencias_especificas: [CE3]
+estado: publicado
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Caso · Marketing",
+    "titulo": "Has heredado la cafetería del barrio",
+    "contexto": "Tu tío Antonio te ha dejado en herencia la Cafetería Central. Tres mesas, terraza pequeña, clientela fiel de jubilados que viene cada mañana al café con leche y la tertulia. Las ventas caen un 12 % cada año desde 2022. Te quedan 8.000 € en caja y 6 meses antes de tener que cerrar. Estudias 2º de Bachillerato, así que tendrás que decidir mientras te preparas la EBAU.",
+    "kpi_inicial": { "caja": 8000, "clientes_mes": 240, "satisfaccion": 8.5 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisión 1 — La oferta de Coca-Cola",
+      "situacion": "Un comercial de Coca-Cola te ofrece: nevera nueva + 600 € al año si vendes solo sus refrescos. Tus clientes actuales son mayores y no piden refrescos casi nunca, pero el comercial insiste en que «todos los bares aceptan».",
+      "opciones": [
+        {
+          "label": "Acepto, 600 € son 600 € y la nevera no me cuesta nada",
+          "kpi_delta": { "caja": 600, "satisfaccion": -1 },
+          "feedback": "Cogiste el dinero, pero firmaste un contrato que limita tu propuesta de valor. Si mañana cambia tu segmento (p. ej. atraer jóvenes que piden Aquarius), no puedes adaptarte. Lección: una decisión de precio o suministro nunca es solo financiera — define con qué segmento puedes trabajar.",
+          "next": "n2"
+        },
+        {
+          "label": "No acepto, mantengo libertad de marca",
+          "kpi_delta": { "caja": 0, "satisfaccion": 0 },
+          "feedback": "Conservas margen de maniobra. El comercial vuelve dentro de dos meses con mejor oferta — eso suele pasar cuando dices que no la primera vez.",
+          "next": "n2"
+        },
+        {
+          "label": "Negocio 1.200 € + libertad para vender otras marcas premium",
+          "kpi_delta": { "caja": 800, "satisfaccion": 0 },
+          "feedback": "Mejor jugada: usas el interés de Coca-Cola como leverage para obtener mejores términos. Coca-Cola sigue ganando con tu volumen, tú no firmas exclusividad. Lección: el precio es señal, también para tus proveedores.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisión 2 — Segmentación del local",
+      "situacion": "Has identificado tres segmentos posibles: (a) los jubilados de siempre — gastan 3 €/visita, vienen 3 veces por semana; (b) opositores que vienen a estudiar — gastan 6 €/visita, se quedan 3 horas; (c) familias del fin de semana — gastan 18 €/visita, vienen 1 vez por semana. No tienes recursos para atender a los tres bien.",
+      "opciones": [
+        {
+          "label": "Me concentro en los opositores (wifi, mesas grandes, ambiente silencioso)",
+          "kpi_delta": { "clientes_mes": 60, "satisfaccion": 0.3 },
+          "feedback": "Segmentación concentrada (nicho). Subes ticket medio porque el opositor se queda 3 horas pero consume 2 cosas, y atraes nuevos clientes con la misma propuesta. Los jubilados de siempre se quejan del silencio pero la mayoría se queda.",
+          "next": "n3"
+        },
+        {
+          "label": "Mantengo a los jubilados pero abro fines de semana para familias",
+          "kpi_delta": { "clientes_mes": 30, "caja": -800, "satisfaccion": 0.1 },
+          "feedback": "Marketing diferenciado. Necesitas dos mixes distintos (mañanas tranquilas vs fines de semana con niños), eso sube tus costes operativos. Funciona, pero requiere más esfuerzo y los fines de semana hay que contratar refuerzo.",
+          "next": "n3"
+        },
+        {
+          "label": "Sigo con todo el mundo como hasta ahora",
+          "kpi_delta": { "clientes_mes": -20, "satisfaccion": -0.5 },
+          "feedback": "Marketing indiferenciado. Si tu local no destaca para nadie, no destaca para nadie. La caída del 12 % anual sigue. Lección clave: «un mensaje para todos» es un mensaje para nadie.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisión 3 — Precio del café",
+      "situacion": "El café te cuesta 0,35 € (grano + leche + electricidad + amortización de la cafetera). Lo vendes a 1,50 €. La cafetería de la esquina ha bajado el suyo a 1,20 € y la cadena 'Coffee Lab' acaba de abrir a 200 m vendiendo el cappuccino a 3,50 € con leche de avena.",
+      "opciones": [
+        {
+          "label": "Bajo a 1,20 € para no perder clientes vs la otra cafetería",
+          "kpi_delta": { "caja": -1200, "clientes_mes": 10, "satisfaccion": -0.2 },
+          "feedback": "Guerra de precios. Tu margen baja un 25 % y los clientes que ya tenías no compran más porque no es eso lo que les retiene. Es un movimiento defensivo costoso. Lección: el precio es la P más fácil de bajar y la que más cuesta recuperar.",
+          "next": "final:fracaso_parcial"
+        },
+        {
+          "label": "Mantengo 1,50 € y mejoro la experiencia (taza buena, café de tueste local)",
+          "kpi_delta": { "caja": -400, "clientes_mes": 25, "satisfaccion": 1.0 },
+          "feedback": "Producto + Plaza coherentes con el segmento. Subes el margen percibido sin tocar el precio. El boca a oreja te trae clientes nuevos. Lección clave: la mejor respuesta a una bajada de precio del competidor casi nunca es bajar el tuyo.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Subo a 2,20 € con leche de avena y barista certificado",
+          "kpi_delta": { "caja": -600, "clientes_mes": -30, "satisfaccion": 0.3 },
+          "feedback": "Te mueves al segmento 'Coffee Lab', pero tu local no tiene la decoración ni la marca. Pierdes a los jubilados y no captas a los hipster premium porque no es coherente con la propuesta. Lección: posicionamiento se construye con todas las P a la vez, no solo subiendo el precio.",
+          "next": "final:fracaso_parcial"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "Has reflotado la cafetería",
+      "resumen": "Ventas mensuales +20 %, satisfacción cliente por encima de 9, caja sostenible al cierre del año.",
+      "lecciones_clave": [
+        "Una propuesta de valor coherente con el segmento gana al volumen barato.",
+        "Las 4P se diseñan juntas, no por separado: cambiar una sin las demás rompe la coherencia.",
+        "El precio es señal, no resultado del coste. Y casi nunca es la primera P a tocar."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "La cafetería sobrevive, justa",
+      "resumen": "Has evitado el cierre pero el negocio queda frágil. Margen ajustado, ningún segmento claramente conquistado.",
+      "lecciones_clave": [
+        "Diluir tu propuesta para no perder a nadie suele significar no convencer a nadie.",
+        "Guerra de precios solo funciona si tienes ventaja en costes — y tú no la tienes."
+      ]
+    }
+  }
+}
+```
