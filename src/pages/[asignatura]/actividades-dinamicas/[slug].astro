@@ -36,7 +36,11 @@ const recursos = recAll.filter((r) => r.data.asignatura === a.slug && r.data.uni
 // Pre-parse simulator JSON so build-time errors surface clearly.
 const simuladoresParsed = simuladores.map((s) => {
   const simSlug = s.id.split('/').pop()?.replace(/\.mdx?$/, '') ?? s.id;
-  return { entry: s, simSlug, tree: parseTreeFromMdxBody(s.body ?? '') };
+  try {
+    return { entry: s, simSlug, tree: parseTreeFromMdxBody(s.body ?? '') };
+  } catch (err) {
+    throw new Error(`Cannot parse simulator JSON in ${s.id}: ${(err as Error).message}`);
+  }
 });
 ---
 
