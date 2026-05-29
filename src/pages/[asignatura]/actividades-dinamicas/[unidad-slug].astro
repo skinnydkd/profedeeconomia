@@ -1,0 +1,130 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { ASIGNATURAS } from '@/lib/asignaturas';
+import { getCollection } from 'astro:content';
+import QuizPlayer from '@components/QuizPlayer.tsx';
+import ArbolDecisiones from '@components/actividades/ArbolDecisiones.astro';
+import { parseTreeFromMdxBody } from '@components/actividades/parse-tree.ts';
+import type { GetStaticPaths } from 'astro';
+
+export const getStaticPaths = (async () => {
+  const libroAll = await getCollection('libro');
+  return libroAll
+    .filter((u) => u.data.estado === 'publicado')
+    .map((u) => {
+      const slug = u.id.split('/').pop()?.replace(/\.mdx?$/, '') ?? u.id;
+      return {
+        params: { asignatura: u.data.asignatura, 'unidad-slug': slug },
+        props: { unit: u },
+      };
+    });
+}) satisfies GetStaticPaths;
+
+const { unit } = Astro.props;
+const a = ASIGNATURAS[unit.data.asignatura as keyof typeof ASIGNATURAS];
+const unidad = unit.data.unidad;
+
+const [testsAll, dinAll, recAll] = await Promise.all([
+  getCollection('tests'),
+  getCollection('actividadesDinamicas'),
+  getCollection('recursos'),
+]);
+const test = testsAll.find((t) => t.data.asignatura === a.slug && t.data.unidad_relacionada === unidad && t.data.estado === 'publicado');
+const simuladores = dinAll.filter((d) => d.data.asignatura === a.slug && d.data.unidad_relacionada === unidad && d.data.estado === 'publicado');
+const recursos = recAll.filter((r) => r.data.asignatura === a.slug && r.data.unidad_relacionada === unidad && r.data.estado === 'publicado');
+
+// Pre-parse simulator JSON so build-time errors surface clearly.
+const simuladoresParsed = simuladores.map((s) => {
+  const simSlug = s.id.split('/').pop()?.replace(/\.mdx?$/, '') ?? s.id;
+  return { entry: s, simSlug, tree: parseTreeFromMdxBody(s.body ?? '') };
+});
+---
+
+<BaseLayout title={`Actividades · ${unit.data.title} — ${a.shortLabel}`} description={`Test, simuladores y recursos interactivos de la unidad ${unidad}.`}>
+  <div class="container">
+    <nav class="breadcrumb">
+      <a href="/">Inicio</a> <span class="sep">›</span>
+      <a href={`/${a.slug}/`}>{a.shortLabel}</a> <span class="sep">›</span>
+      <a href={`/${a.slug}/actividades-dinamicas/`}>Actividades dinámicas</a> <span class="sep">›</span>
+      <span>Unidad {unidad}</span>
+    </nav>
+  </div>
+
+  <section class="hero">
+    <div class="container">
+      <span class="kicker">Unidad {unidad} · {a.shortLabel}</span>
+      <h1>{unit.data.title}</h1>
+      {unit.data.lema && <p class="lede">{unit.data.lema}</p>}
+    </div>
+  </section>
+
+  {test && (
+    <section class="bloque">
+      <div class="container container--narrow">
+        <h2 class="bloque__h2">Test de autoevaluación</h2>
+        <p class="bloque__meta">{test.data.preguntas.length} preguntas{test.data.duracion_estimada && <> · {test.data.duracion_estimada}</>}</p>
+        <QuizPlayer preguntas={test.data.preguntas} client:visible />
+      </div>
+    </section>
+  )}
+
+  {simuladoresParsed.length > 0 && (
+    <section class="bloque bloque--alt">
+      <div class="container container--narrow">
+        <h2 class="bloque__h2">Simuladores de decisión</h2>
+        {simuladoresParsed.map(({ entry, simSlug, tree }) => (
+          <article class="simulador">
+            <h3 class="simulador__h3">{entry.data.title}</h3>
+            {entry.data.descripcion && <p class="simulador__lede">{entry.data.descripcion}</p>}
+            <ArbolDecisiones data={tree} simuladorId={`${a.slug}-${simSlug}`} />
+          </article>
+        ))}
+      </div>
+    </section>
+  )}
+
+  {recursos.length > 0 && (
+    <section class="bloque">
+      <div class="container container--narrow">
+        <h2 class="bloque__h2">Recursos interactivos</h2>
+        <ul class="recurso-list">
+          {recursos.map((r) => {
+            const rSlug = r.id.split('/').pop()?.replace(/\.mdx?$/, '') ?? r.id;
+            return (
+              <li>
+                <a href={`/${a.slug}/recursos/${rSlug}/`}>
+                  <h3>{r.data.title}</h3>
+                  <p>{r.data.descripcion}</p>
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    </section>
+  )}
+
+  {!test && simuladoresParsed.length === 0 && recursos.length === 0 && (
+    <section class="bloque">
+      <div class="container container--narrow">
+        <p class="empty">Pronto aquí: simulador, recursos y test de esta unidad.</p>
+      </div>
+    </section>
+  )}
+</BaseLayout>
+
+<style>
+  .bloque { padding: 48px 0; border-top: 1px solid var(--color-line); }
+  .bloque--alt { background: var(--color-bg-cream); }
+  .bloque__h2 { font-family: var(--font-serif); font-size: 28px; margin: 0 0 8px; }
+  .bloque__meta { font-family: var(--font-mono); font-size: 13px; color: var(--color-ink-mute); margin: 0 0 24px; }
+  .simulador { margin-bottom: 40px; }
+  .simulador__h3 { font-family: var(--font-serif); font-size: 22px; margin: 24px 0 6px; }
+  .simulador__lede { font-family: var(--font-serif); font-style: italic; color: var(--color-ink-soft); margin: 0 0 18px; }
+  .recurso-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+  .recurso-list a { display: block; padding: 18px 20px; background: var(--color-paper); border: 1px solid var(--color-line); border-radius: 6px; text-decoration: none; color: inherit; }
+  .recurso-list a:hover { border-color: var(--color-terra); }
+  .recurso-list h3 { font-family: var(--font-serif); font-size: 18px; margin: 0 0 6px; }
+  .recurso-list p  { font-size: 14px; color: var(--color-ink-soft); margin: 0; }
+  .empty { font-family: var(--font-serif); font-style: italic; color: var(--color-ink-mute); }
+</style>
