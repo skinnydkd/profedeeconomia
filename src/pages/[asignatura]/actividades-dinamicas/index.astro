@@ -1,0 +1,92 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { ASIGNATURAS } from '@/lib/asignaturas';
+import { getCollection } from 'astro:content';
+import type { GetStaticPaths } from 'astro';
+
+export const getStaticPaths = (async () => {
+  return Object.values(ASIGNATURAS).map((a) => ({ params: { asignatura: a.slug } }));
+}) satisfies GetStaticPaths;
+
+const { asignatura } = Astro.params;
+const a = ASIGNATURAS[asignatura as keyof typeof ASIGNATURAS];
+
+const [libroAll, testsAll, dinAll, recAll] = await Promise.all([
+  getCollection('libro'),
+  getCollection('tests'),
+  getCollection('actividadesDinamicas'),
+  getCollection('recursos'),
+]);
+
+const units = libroAll
+  .filter((u) => u.data.asignatura === a.slug && u.data.estado === 'publicado')
+  .sort((x, y) => x.data.unidad - y.data.unidad)
+  .map((u) => {
+    const unidad = u.data.unidad;
+    const slug = u.id.split('/').pop()?.replace(/\.mdx?$/, '') ?? u.id;
+    const hasTest = testsAll.some((t) => t.data.asignatura === a.slug && t.data.unidad_relacionada === unidad && t.data.estado === 'publicado');
+    const numSim = dinAll.filter((d) => d.data.asignatura === a.slug && d.data.unidad_relacionada === unidad && d.data.estado === 'publicado').length;
+    const numRec = recAll.filter((r) => r.data.asignatura === a.slug && r.data.unidad_relacionada === unidad && r.data.estado === 'publicado').length;
+    return { unidad, slug, title: u.data.title, lema: u.data.lema, hasTest, numSim, numRec };
+  });
+---
+
+<BaseLayout title={`Actividades dinámicas — ${a.shortLabel}`} description={`Tests, simuladores y recursos interactivos por unidad de ${a.title}.`}>
+  <div class="container">
+    <nav class="breadcrumb">
+      <a href="/">Inicio</a> <span class="sep">›</span>
+      <a href={`/${a.slug}/`}>{a.shortLabel}</a> <span class="sep">›</span>
+      <span>Actividades dinámicas</span>
+    </nav>
+  </div>
+
+  <section class="hero">
+    <div class="container">
+      <span class="kicker">{a.shortLabel}</span>
+      <h1>Actividades dinámicas</h1>
+      <p class="lede">Tests de autoevaluación, simuladores de decisión y recursos interactivos agrupados por unidad.</p>
+    </div>
+  </section>
+
+  <section class="grid-section">
+    <div class="container">
+      <ul class="unit-grid">
+        {units.map((u) => (
+          <li class="unit-card">
+            <a href={`/${a.slug}/actividades-dinamicas/${u.slug}/`}>
+              <span class="unit-card__num">Unidad {u.unidad}</span>
+              <h2 class="unit-card__title">{u.title}</h2>
+              {u.lema && <p class="unit-card__lema">{u.lema}</p>}
+              <p class="unit-card__chips">
+                <span class={`chip ${u.hasTest ? 'chip--on' : 'chip--off'}`}>{u.hasTest ? 'Test ✓' : 'Test —'}</span>
+                <span class={`chip ${u.numSim > 0 ? 'chip--on' : 'chip--off'}`}>{u.numSim > 0 ? `${u.numSim} simuladores` : 'Sin simulador'}</span>
+                <span class={`chip ${u.numRec > 0 ? 'chip--on' : 'chip--off'}`}>{u.numRec > 0 ? `${u.numRec} recursos` : 'Sin recursos'}</span>
+              </p>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .grid-section { padding: 40px 0 80px; }
+  .unit-grid { list-style: none; padding: 0; margin: 0; display: grid; gap: 16px; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); }
+  .unit-card a {
+    display: block; padding: 24px 26px;
+    background: var(--color-paper);
+    border: 1px solid var(--color-line);
+    border-radius: 6px;
+    text-decoration: none; color: inherit;
+    transition: border-color .15s, transform .15s;
+  }
+  .unit-card a:hover { border-color: var(--color-terra); transform: translateY(-2px); }
+  .unit-card__num   { font-family: var(--font-sans); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--color-terra); font-weight: 700; }
+  .unit-card__title { font-family: var(--font-serif); font-size: 22px; margin: 10px 0 8px; }
+  .unit-card__lema  { font-family: var(--font-serif); font-style: italic; font-size: 15px; color: var(--color-ink-soft); margin: 0 0 14px; }
+  .unit-card__chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; }
+  .chip { display: inline-block; font-family: var(--font-sans); font-size: 11px; padding: 3px 8px; border-radius: 999px; letter-spacing: 0.04em; }
+  .chip--on  { background: var(--color-terra-soft); color: var(--color-terra-deep); }
+  .chip--off { background: var(--color-bg-cream);   color: var(--color-ink-mute); }
+</style>
