@@ -1,0 +1,81 @@
+---
+type Props = {
+  /** Titular del cas. */
+  titular: string;
+  /** Font del cas (mitjà + data). */
+  fuente: string;
+  /** Pregunta o dilema a la fi. */
+  pregunta: string;
+};
+const { titular, fuente, pregunta } = Astro.props;
+---
+
+<aside class="caso">
+  <span class="caso__kicker">Caso real · Dilema</span>
+  <h3 class="caso__titular">{titular}</h3>
+  <p class="caso__fuente">{fuente}</p>
+  <div class="caso__body"><slot /></div>
+  <p class="caso__pregunta">{pregunta}</p>
+</aside>
+
+<style>
+  .caso {
+    margin: 0 0 2.4rem;
+    padding: 1.6rem 1.8rem;
+    background: var(--color-paper);
+    border: 1px solid var(--color-line);
+    border-top: 4px solid var(--color-terra);
+    border-radius: 4px;
+  }
+  .caso__kicker {
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--color-terra-deep);
+    font-weight: 700;
+    display: block;
+    margin-bottom: 0.4rem;
+  }
+  .caso__titular {
+    font-family: var(--font-serif);
+    font-size: 1.45rem;
+    line-height: 1.2;
+    margin: 0 0 0.4rem;
+    color: var(--color-ink);
+    font-weight: 500;
+    font-variation-settings: "SOFT" 80, "WONK" 0;
+    letter-spacing: -0.005em;
+  }
+  .caso__fuente {
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+    color: var(--color-ink-mute);
+    margin: 0 0 1rem;
+  }
+  .caso__body {
+    font-family: var(--font-serif);
+    font-size: 1rem;
+    line-height: 1.55;
+    color: var(--color-ink-soft);
+  }
+  .caso__body :global(p) { margin: 0 0 0.8em; }
+  .caso__body :global(p::first-letter) {
+    font-family: inherit; font-weight: inherit; font-size: inherit;
+    line-height: inherit; float: none; padding: 0; color: inherit;
+  }
+  .caso__pregunta {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.05rem;
+    line-height: 1.4;
+    color: var(--color-terra-deep);
+    margin: 1.2rem 0 0;
+    padding-top: 1rem;
+    border-top: 1px dashed var(--color-line);
+    font-variation-settings: "SOFT" 100, "WONK" 1;
+  }
+  @media print {
+    .caso { break-inside: avoid; page-break-inside: avoid; }
+  }
+</style>

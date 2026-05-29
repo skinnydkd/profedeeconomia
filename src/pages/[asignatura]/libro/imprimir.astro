@@ -14,6 +14,9 @@ import type { GetStaticPaths } from 'astro';
 
 export const getStaticPaths = (async () => {
   const all = await getCollection('libro');
+  const allReto = await getCollection('retoCurso');
+  const allEbau = await getCollection('ebau');
+
   const bySlug = new Map<string, typeof all>();
   for (const u of all) {
     if (u.data.estado !== 'publicado') continue;
@@ -22,21 +25,51 @@ export const getStaticPaths = (async () => {
     bySlug.set(u.data.asignatura, arr);
   }
 
+  const retoBySlug = new Map<string, typeof allReto>();
+  for (const r of allReto) {
+    if (r.data.estado !== 'publicado') continue;
+    const arr = retoBySlug.get(r.data.asignatura) ?? [];
+    arr.push(r);
+    retoBySlug.set(r.data.asignatura, arr);
+  }
+
+  const ebauBySlug = new Map<string, typeof allEbau>();
+  for (const e of allEbau) {
+    if (e.data.estado !== 'publicado') continue;
+    const arr = ebauBySlug.get(e.data.asignatura) ?? [];
+    arr.push(e);
+    ebauBySlug.set(e.data.asignatura, arr);
+  }
+
   return ASIGNATURA_SLUGS.flatMap((slug) => {
     const units = bySlug.get(slug);
     if (!units || units.length === 0) return [];
     units.sort((a, b) => a.data.unidad - b.data.unidad);
-    return [{ params: { asignatura: slug }, props: { units, asignatura: ASIGNATURAS[slug] } }];
+    const reto = (retoBySlug.get(slug) ?? []).slice().sort((a, b) => a.data.orden - b.data.orden);
+    const ebau = (ebauBySlug.get(slug) ?? []).slice().sort((a, b) => a.data.orden - b.data.orden);
+    return [{ params: { asignatura: slug }, props: { units, reto, ebau, asignatura: ASIGNATURAS[slug] } }];
   });
 }) satisfies GetStaticPaths;
 
-const { units, asignatura: a } = Astro.props;
+const { units, reto, ebau, asignatura: a } = Astro.props;
 
 // Pre-render each unit so we have headings + Content
 const rendered = await Promise.all(
   units.map(async (u) => {
     const { Content } = await render(u);
     return { unit: u, Content };
+  })
+);
+const renderedReto = await Promise.all(
+  reto.map(async (r) => {
+    const { Content } = await render(r);
+    return { entry: r, Content };
+  })
+);
+const renderedEbau = await Promise.all(
+  ebau.map(async (e) => {
+    const { Content } = await render(e);
+    return { entry: e, Content };
   })
 );
 
@@ -209,9 +242,17 @@ const accent = ACCENTS[a.color] ?? ACCENTS.edmn;
         padding: 0.7rem 1rem;
         border-radius: 4px;
         border-left: 3px solid var(--color-mustard);
+        color: var(--color-mustard-deep);
         font-size: 9.5pt;
+        font-weight: 500;
         margin: 0.6em 0;
         white-space: pre-wrap;
+      }
+      pre code {
+        color: inherit;
+        background: transparent;
+        font-weight: inherit;
+        padding: 0;
       }
 
       ul, ol { padding-left: 1.2em; margin: 0 0 0.5em; }
@@ -441,6 +482,8 @@ const accent = ACCENTS[a.color] ?? ACCENTS.edmn;
         align-items: baseline;
         padding: 3mm 0;
         border-bottom: 1px solid var(--color-line-soft);
+        break-inside: avoid;
+        page-break-inside: avoid;
       }
       .toc__num {
         font-family: var(--font-serif);
@@ -467,6 +510,10 @@ const accent = ACCENTS[a.color] ?? ACCENTS.edmn;
         color: var(--color-ink-mute);
         line-height: 1.35;
         font-variation-settings: "SOFT" 80;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
       }
       .toc__page {
         font-family: var(--font-mono);
@@ -597,15 +644,21 @@ const accent = ACCENTS[a.color] ?? ACCENTS.edmn;
         break-after: avoid;
       }
 
-      /* Callout, solved-exercise, curiosity, real-example, takeaways, steps:
-         in print, compact padding/margins (the web versions are airy) so the
-         many pedagogical boxes don't inflate the page count. */
+      /* Callout-like blocks: pedagogical boxes that should not be inflated
+         by their airy web margins when paginated, and must not fragment
+         across pages. Includes the 7 new pilot components. */
       .chapter__content .callout,
       .chapter__content .solved-exercise,
       .chapter__content .curiosity,
       .chapter__content .real-example,
       .chapter__content .takeaways,
-      .chapter__content .steps {
+      .chapter__content .steps,
+      .chapter__content .tldr,
+      .chapter__content .caso,
+      .chapter__content .vuelve,
+      .chapter__content .pista-ebau,
+      .chapter__content .voces,
+      .chapter__content .reto {
         margin: 0.8em 0 !important;
         padding: 0.7rem 0.95rem !important;
         page-break-inside: avoid;
@@ -617,17 +670,47 @@ const accent = ACCENTS[a.color] ?? ACCENTS.edmn;
       .chapter__content .real-example > :first-child,
       .chapter__content .solved-exercise > :first-child,
       .chapter__content .takeaways > :first-child,
-      .chapter__content .steps > :first-child { margin-top: 0 !important; }
+      .chapter__content .steps > :first-child,
+      .chapter__content .tldr > :first-child,
+      .chapter__content .caso > :first-child,
+      .chapter__content .vuelve > :first-child,
+      .chapter__content .pista-ebau > :first-child,
+      .chapter__content .voces > :first-child,
+      .chapter__content .reto > :first-child { margin-top: 0 !important; }
       .chapter__content .callout > :last-child,
       .chapter__content .curiosity > :last-child,
       .chapter__content .real-example > :last-child,
       .chapter__content .solved-exercise > :last-child,
       .chapter__content .takeaways > :last-child,
-      .chapter__content .steps > :last-child { margin-bottom: 0 !important; }
+      .chapter__content .steps > :last-child,
+      .chapter__content .tldr > :last-child,
+      .chapter__content .caso > :last-child,
+      .chapter__content .vuelve > :last-child,
+      .chapter__content .pista-ebau > :last-child,
+      .chapter__content .voces > :last-child,
+      .chapter__content .reto > :last-child { margin-bottom: 0 !important; }
 
-      /* Suppress drop cap on the first paragraph that follows a heading */
+      /* MirarFora: a full final page per unit. */
+      .chapter__content .mirar-fora {
+        break-before: page;
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+        border-top: none !important;
+      }
+      .chapter__content .mirar-fora__recurso,
+      .chapter__content .mirar-fora__actividad {
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+
+      /* Suppress drop cap on the first paragraph that follows a heading
+         or one of the unit-opener pedagogical blocks (TL;DR / CasoDilema)
+         which already sit before the body and shouldn't trigger drop cap
+         on the prose that follows. */
       .chapter__content h2 + p::first-letter,
-      .chapter__content h3 + p::first-letter {
+      .chapter__content h3 + p::first-letter,
+      .chapter__content .tldr + p::first-letter,
+      .chapter__content .caso + p::first-letter {
         font-family: inherit;
         font-weight: inherit;
         font-size: inherit;
@@ -688,6 +771,162 @@ const accent = ACCENTS[a.color] ?? ACCENTS.edmn;
         page-break-inside: avoid;
         max-width: 100%;
         height: auto;
+      }
+
+      /* =========================================================
+         Reto del curso — pàgines d'introducció abans del TOC
+         ========================================================= */
+      .reto-intro { break-before: page; }
+      .reto-intro__page {
+        break-after: page;
+        padding-top: 8mm;
+      }
+      .reto-intro__page :global(h1) {
+        font-family: var(--font-serif);
+        font-size: 30pt;
+        line-height: 1.05;
+        margin: 0 0 6mm;
+        color: var(--color-ink);
+        font-weight: 400;
+        font-variation-settings: "SOFT" 80, "WONK" 0;
+        letter-spacing: -0.015em;
+      }
+      .reto-intro__page :global(h2) {
+        font-family: var(--font-sans);
+        font-size: 9.5pt;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--book-accent);
+        margin: 6mm 0 2mm;
+        font-weight: 700;
+      }
+      .reto-intro__page :global(p) {
+        font-family: var(--font-serif);
+        font-size: 10.5pt;
+        line-height: 1.55;
+        color: var(--color-ink);
+        margin: 0 0 0.6em;
+      }
+      .reto-intro__page :global(table) { font-size: 9pt; margin: 3mm 0; }
+
+      /* =========================================================
+         Apèndix EBAU — secció final del PDF
+         ========================================================= */
+      .ebau-apendix { break-before: page; }
+      .ebau-apendix__cover {
+        page: no-header;
+        break-after: page;
+        height: 191mm;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .ebau-apendix__kicker {
+        font-family: var(--font-sans);
+        font-size: 10pt;
+        text-transform: uppercase;
+        letter-spacing: 0.18em;
+        color: var(--book-accent);
+        font-weight: 700;
+        margin-bottom: 4mm;
+      }
+      .ebau-apendix__title {
+        font-family: var(--font-serif);
+        font-size: 48pt;
+        line-height: 1;
+        margin: 0 0 6mm;
+        color: var(--color-ink);
+        font-weight: 400;
+        font-variation-settings: "SOFT" 80, "WONK" 0;
+        letter-spacing: -0.02em;
+      }
+      .ebau-apendix__lede {
+        font-family: var(--font-serif);
+        font-style: italic;
+        font-size: 14pt;
+        color: var(--color-ink-soft);
+        margin: 0;
+        font-variation-settings: "SOFT" 80;
+      }
+      .ebau-apendix__section {
+        break-before: page;
+        padding-top: 8mm;
+        font-family: var(--font-serif);
+      }
+      .ebau-apendix__section-title {
+        font-family: var(--font-serif);
+        font-size: 22pt;
+        line-height: 1.1;
+        margin: 0 0 6mm;
+        color: var(--color-ink);
+        font-weight: 400;
+        font-variation-settings: "SOFT" 80, "WONK" 0;
+        position: relative;
+        padding-top: 4mm;
+        letter-spacing: -0.012em;
+      }
+      .ebau-apendix__section-title::before {
+        content: "";
+        position: absolute;
+        top: 0; left: 0;
+        width: 26mm; height: 3pt;
+        background: var(--book-accent);
+        border-radius: 999px;
+      }
+      .ebau-apendix__section :global(h2) {
+        font-family: var(--font-serif);
+        font-size: 13pt;
+        margin: 1.1em 0 0.4em;
+        color: var(--color-ink);
+        font-weight: 500;
+      }
+      .ebau-apendix__section :global(h3) {
+        font-family: var(--font-serif);
+        font-size: 11pt;
+        margin: 0.9em 0 0.3em;
+        color: var(--color-ink);
+        font-weight: 500;
+      }
+      .ebau-apendix__section :global(p) {
+        font-size: 10pt;
+        line-height: 1.5;
+        margin: 0 0 0.5em;
+      }
+      .ebau-apendix__section :global(table) { font-size: 9pt; }
+      .ebau-apendix__section :global(blockquote) {
+        font-family: var(--font-serif);
+        font-style: italic;
+        font-size: 11pt;
+        color: var(--book-accent-deep);
+        border-left: 3px solid var(--book-accent);
+        padding: 0.6em 1em;
+        margin: 1em 0;
+        background: var(--color-bg-cream);
+      }
+      /* Formula blocks (rendered as <pre><code>) inside the EBAU appendix:
+         override the global pre styling so formulas read as ACCENT-colored
+         lines, not as ink-black code chunks. */
+      .ebau-apendix__section :global(pre) {
+        font-family: var(--font-mono);
+        background: var(--color-bg-cream);
+        border-left: 3px solid var(--book-accent);
+        color: var(--book-accent-deep) !important;
+        padding: 0.7rem 1rem;
+        border-radius: 4px;
+        font-size: 10pt;
+        margin: 0.7em 0;
+        white-space: pre-wrap;
+        font-weight: 500;
+      }
+      .ebau-apendix__section :global(pre code) {
+        color: inherit !important;
+        background: transparent !important;
+        font-weight: inherit;
+        padding: 0;
+      }
+      .ebau-apendix__section :global(code) {
+        color: var(--book-accent-deep);
+        background: var(--color-bg-cream);
       }
     </style>
   </head>
@@ -753,6 +992,17 @@ const accent = ACCENTS[a.color] ?? ACCENTS.edmn;
       </p>
     </section>
 
+    {/* ------------------------------------------------------ RETO DEL CURSO INTRO */}
+    {renderedReto.length > 0 && (
+      <section class="reto-intro">
+        {renderedReto.map(({ entry, Content }) => (
+          <div class="reto-intro__page" data-orden={entry.data.orden}>
+            <Content />
+          </div>
+        ))}
+      </section>
+    )}
+
     {/* ------------------------------------------------------------ TOC */}
     <section class="toc">
       <div class="toc__kicker">Índice general · {totalUnits} unidades</div>
@@ -816,6 +1066,23 @@ const accent = ACCENTS[a.color] ?? ACCENTS.edmn;
         </div>
       </section>
     ))}
+
+    {/* ------------------------------------------------------------ APÈNDIX EBAU */}
+    {renderedEbau.length > 0 && (
+      <section class="ebau-apendix">
+        <div class="ebau-apendix__cover">
+          <span class="ebau-apendix__kicker">Apéndice</span>
+          <h2 class="ebau-apendix__title">Guía EBAU</h2>
+          <p class="ebau-apendix__lede">Para llegar al examen con la cabeza en su sitio.</p>
+        </div>
+        {renderedEbau.map(({ entry, Content }) => (
+          <article class="ebau-apendix__section" data-orden={entry.data.orden}>
+            <h2 class="ebau-apendix__section-title">{entry.data.title}</h2>
+            <Content />
+          </article>
+        ))}
+      </section>
+    )}
 
     {/*
       paged.js polyfill — only loaded for in-browser preview. pagedjs-cli

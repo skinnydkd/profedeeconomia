@@ -43,6 +43,13 @@ import Diagram from '@components/Diagram.astro';
 import FondoManiobra from '@components/diagrams/FondoManiobra.astro';
 import PiramideDuPont from '@components/diagrams/PiramideDuPont.astro';
 import Bibliography from '@components/Bibliography.astro';
+import TldrUnidad from '@components/TldrUnidad.astro';
+import CasoDilema from '@components/CasoDilema.astro';
+import VuelveAlCaso from '@components/VuelveAlCaso.astro';
+import PistaEbau from '@components/PistaEbau.astro';
+import VocesDesacuerdo from '@components/VocesDesacuerdo.astro';
+import RetoEtapa from '@components/RetoEtapa.astro';
+import MirarFora from '@components/MirarFora.astro';
 
 import bloombergTerminal from '@assets/libro/edmn-2bach/11/bloomberg-terminal.jpg';
 import cnmvEdison from '@assets/libro/edmn-2bach/11/cnmv-edison.jpg';
@@ -57,6 +64,20 @@ import lehmanBrothers from '@assets/libro/edmn-2bach/11/lehman-brothers.jpg';
 > - Calcular las **rentabilidades** económica (ROA) y financiera (ROE) de una empresa cualquiera.
 > - Reconocer el efecto del **apalancamiento financiero** sobre la rentabilidad de los accionistas, en sus dos sentidos.
 > - Calcular el **período medio de maduración** y entender su impacto en la presión de tesorería.
+
+<TldrUnidad>
+Cualquiera puede **leer un balance**. Lo difícil es saber **qué significa**. Esta unidad da las cuatro herramientas para diagnosticar la salud financiera de una empresa: el **fondo de maniobra**, los **ratios** (liquidez, solvencia, endeudamiento), las **rentabilidades** (ROA, ROE) y el **período medio de maduración**.
+
+En la EBAU el cálculo del ratio vale 1 punto; la **interpretación** y la **recomendación de mejora** valen el otro. La mitad del ejercicio se pierde por respuestas que solo dan cifras sin explicarlas.
+</TldrUnidad>
+
+<CasoDilema
+  titular="DIA fue el cuarto supermercado de España. En 2019 cotizaba a 0,06 €/acción y perdía 600 M€ al año"
+  fuente="CNMV, memorias DIA · análisis bursátil 2018-2024"
+  pregunta="Si los ratios de una empresa cotizada se publican cada trimestre y los analistas los leen, ¿cómo es que el mercado tardó años en castigar el deterioro de DIA?"
+>
+**Distribuidora Internacional de Alimentación (DIA)** fue durante años el cuarto operador de gran consumo en España. Entre 2014 y 2018, sus ratios contaban una historia que pocos quisieron escuchar: el endeudamiento subió del 60 % al 85 %, la rentabilidad económica (ROA) cayó del 6 % al 1 %, el período medio de maduración se alargó. En 2018 reconoció errores contables. En 2019 la acción cayó al **mínimo histórico de 0,06 €/acción** (frente a los 5-6 € de 2014). La empresa salió del IBEX 35, atrajo al fondo LetterOne como salvador y emprendió un cierre masivo de tiendas. La recuperación ha llevado **más de cinco años**. Los ratios estaban ahí, públicos, desde 2015.
+</CasoDilema>
 
 La unidad anterior nos enseñó a leer las cuentas anuales. Esta nos enseña a **interpretarlas**: qué dice realmente un balance sobre el equilibrio patrimonial de la empresa, qué señalan los ratios sobre su solvencia futura, qué rentabilidad genera el dinero invertido y por qué dos empresas con el mismo beneficio pueden estar en situaciones radicalmente distintas. El análisis financiero es la disciplina que convierte los números brutos de las cuentas anuales en juicios útiles para tomar decisiones.
 
@@ -120,6 +141,14 @@ Miden cuánto de la financiación proviene de terceros:
 - **Ratio de autonomía financiera** = Patrimonio neto / Pasivo total. Mide el inverso: cuánto patrimonio propio respalda cada euro de deuda.
 
 Los rangos "sanos" son orientativos y dependen mucho del sector: una empresa del sector eléctrico vive con endeudamientos del 70% sin problema, una *startup* tecnológica suele estar por debajo del 30%.
+
+<PistaEbau tipo="practica" concepto="RE vs RF + apalancamiento — fórmulas + interpretación" apendice="Apéndice · Ratios">
+Para sacar todos los puntos del ejercicio de ratios:
+
+1. **Distingue las dos fórmulas**: **RE = BAII / Activo Total** (rentabilidad económica, mide eficiencia del activo); **RF = BN / Patrimonio Neto** (rentabilidad financiera, mide rendimiento para los socios). Confundirlas es el error más castigado de los ratios en EBAU.
+2. **Compara RF con RE para detectar apalancamiento**. Si **RF > RE**, el palanquejament és **positiu** (la deuda barata multiplica el rendiment dels socis). Si **RF < RE**, és **negatiu** (la deuda costa més del que aporta).
+3. **Interpreta cada ratio con frase y recomendación**. Calcular sin interpretar = perder la mitad del punto. Si el ratio está fuera del rango óptimo, **propón una mejora concreta** —ampliar capital, renegociar deuda, vender activo ocioso—.
+</PistaEbau>
 
 <SolvedExercise number="11.1" title="Diagnóstico de liquidez y solvencia de dos pymes del mismo sector">
 
@@ -200,6 +229,20 @@ La diferencia entre ROE y ROA mide el efecto del **apalancamiento financiero**: 
 El apalancamiento es palanca y, como toda palanca, **funciona en los dos sentidos**: si los activos rinden menos que el coste de la deuda, la rentabilidad financiera cae por debajo de la rentabilidad económica y, en casos extremos, puede ser negativa aunque la empresa siga generando beneficio operativo. Las grandes quiebras de empresas técnicamente rentables suelen tener detrás un apalancamiento mal calculado.
 
 La **descomposición de DuPont** permite ver de dónde nace exactamente la rentabilidad financiera, separándola en tres palancas independientes: el margen sobre ventas, la rotación del activo y el apalancamiento. Dos empresas con el mismo ROE pueden estar generándolo de formas muy distintas.
+
+<VocesDesacuerdo
+  tema="¿La empresa debe maximizar el valor del accionista o el de todos los stakeholders?"
+  postura_a={{
+    etiqueta: 'Friedman (1970) · doctrina del shareholder value',
+    tesis: 'La única responsabilidad social de la empresa es aumentar sus beneficios, dentro de las reglas del juego. Maximizar el ROE es maximizar el valor agregado.',
+  }}
+  postura_b={{
+    etiqueta: 'Mazzucato / Business Roundtable (2019)',
+    tesis: 'La empresa debe servir a múltiples grupos de interés —empleados, clientes, proveedores, comunidades, planeta— y rendir cuentas a todos. El ROE es solo un indicador entre muchos.',
+  }}
+>
+Es uno de los debates **estratégicos** más vivos del siglo XXI: ¿la empresa existe para los accionistas o para algo más? En 2019, los CEO de las **181 mayores empresas estadounidenses** firmaron una declaración —la *Business Roundtable Statement*— rompiendo con la doctrina de Friedman. La posición pragmática de la EBAU: **conocer las dos posturas**, reconocer que cada empresa elige su mezcla y entender que los ratios miden **una sola** dimensión —la financiera— mientras hay otras (sociales, ambientales, laborales) que también cuentan en la era ESG. El **ROE** sigue siendo el indicador más vigilado por los inversores, pero ya no el único.
+</VocesDesacuerdo>
 
 <Diagram caption="Descomposición de DuPont: el ROE se explica como producto de margen, rotación y apalancamiento. Cada factor es una palanca distinta para mejorar la rentabilidad de los recursos propios.">
   <PiramideDuPont />
@@ -317,6 +360,16 @@ Reunir las herramientas anteriores en un proceso ordenado da el siguiente flujo:
 
 </Steps>
 
+<VuelveAlCaso referencia="DIA: ratios públicos durante 5 años antes del colapso">
+La paradoja de DIA es la **gran lección** del análisis financiero: los ratios **estaban ahí**, públicos, cada trimestre. Cualquier persona con la formación de esta unidad podía leer las cuentas anuales de 2015-2018 y ver que algo iba mal. ¿Por qué tardó el mercado tantos años en castigar la situación? Tres razones documentadas:
+
+1. **Asimetría de incentivos**: los analistas que cubrían DIA cobraban del banco que la asesoraba en operaciones; criticar agresivamente las cuentas era profesionalmente costoso.
+2. **Sesgo de confirmación**: una empresa con marca histórica y dividendos estables resulta «creíble» aunque los ratios digan lo contrario. La marca actúa como amortiguador cognitivo.
+3. **Maquillaje contable dentro de la norma**: muchas decisiones de DIA eran legales pero forzaban los principios (alargar vida útil de activos, capitalizar gastos, retrasar reconocimiento de pérdidas).
+
+La conclusión operativa: **los ratios son fiables sólo si se leen con sentido crítico** —comparándolos con el sector, mirando su evolución temporal y desconfiando cuando una empresa con cifras dudosas presenta una narrativa demasiado limpia—. Saber leer un balance no garantiza ver el problema; pero **no saberlo lo garantiza**.
+</VuelveAlCaso>
+
 <KeyTakeaways title="Lo esencial del análisis financiero">
 - El **fondo de maniobra** mide el equilibrio a corto plazo. Positivo = saludable; negativo = alarma (excepto en gran distribución).
 - Los **ratios de liquidez, solvencia y endeudamiento** permiten comparar empresas y vigilar tendencias. Los rangos sanos varían entre sectores.
@@ -326,6 +379,24 @@ Reunir las herramientas anteriores en un proceso ordenado da el siguiente flujo:
 </KeyTakeaways>
 
 ## Conexión con el proyecto capstone
+
+<RetoEtapa
+  etapa={11}
+  titulo="Ratios previsionales + plan de mitigación de riesgos"
+  entregable="Una página con: 5 ratios calculados del balance previsional año 1 (etapa 10), interpretación con frase, dos ratios fuera de rango con propuesta de mejora concreta."
+>
+Toma tu **balance previsional cierre año 1** de la etapa 10 y los flujos previstos de la etapa 9. Calcula los **5 ratios principales**:
+
+1. **Fondo de maniobra** (AC − PC) → diagnóstico de equilibrio corto plazo.
+2. **Liquidez general** = AC / PC → óptimo 1,5-2.
+3. **Solvencia (garantía)** = AT / PT → óptimo 1,5-2.
+4. **Endeudamiento** = PT / (PN + PT) → óptimo 0,4-0,6.
+5. **ROE** estimado = BN / PN → comparar con tipos sin riesgo (deuda pública ~3,5 %) para ver si vale la pena el proyecto sobre el bolsillo del accionista.
+
+**Interpreta cada uno** con una frase del tipo *«ratio de X = Y, está en zona Z, recomendación W»*. Identifica los **dos ratios más fuera de rango** —casi todos los proyectos los tienen en el año 1— y propón una **acción concreta** de mejora para cada uno. No vale «aumentar la liquidez»; vale *«renegociar plazos de pago con proveedores principales para pasar 20.000 € de PC a PnC»*.
+
+Si tu proyecto sale con ratios excelentes desde el año 1, **revisa los números**: es más probable que hayas sido optimista que que tu plan sea genial.
+</RetoEtapa>
 
 Cada equipo cierra esta unidad con un **diagnóstico financiero** del primer año previsto: cálculo del fondo de maniobra, ratios de liquidez y solvencia, ROA y ROE estimados. La mayoría descubrirán que su proyecto, como casi todos los proyectos en su primer año, presenta ratios mediocres —algo normal y esperable en una fase de inversión inicial— y deben argumentar cómo evolucionarán hacia valores saludables a partir del segundo o tercer año.
 
@@ -371,3 +442,34 @@ Cada equipo cierra esta unidad con un **diagnóstico financiero** del primer añ
 6. Pérez-Carballo Veiga, J. F. (2015). *La gestión financiera de la empresa*. ESIC.
 
 </Bibliography>
+
+<MirarFora
+  unidad={11}
+  libro={{
+    titulo: 'Principios',
+    meta: 'Ray Dalio · Conecta, 2018',
+    porque: 'Dalio, fundador de Bridgewater Associates (uno de los mayores hedge funds del mundo), describe cómo analiza la salud de empresas y economías a partir de ratios e indicadores. Útil para ver el análisis financiero aplicado por alguien que mueve miles de millones basándose en él.',
+    paginas: 'Parte II: Principios de vida y trabajo',
+  }}
+  video={{
+    titulo: 'How Bridgewater\'s Ray Dalio Reads a Balance Sheet',
+    meta: 'Canal de educación financiera · YouTube',
+    duracion: '~12 min',
+    porque: 'Versión visual de cómo un gestor profesional examina ratios para detectar fortalezas y vulnerabilidades de empresas cotizadas. Complemento perfecto a la teoría de la unidad.',
+    url: 'https://www.youtube.com/results?search_query=ray+dalio+how+to+read+balance+sheet',
+  }}
+  cuenta={{
+    titulo: 'finviz.com',
+    meta: 'Web · screener bursátil con ratios precalculados',
+    porque: 'Para cada empresa cotizada en EEUU muestra ratios, márgenes, ROA, ROE, deuda. Útil para ejercitar la mirada: filtrar empresas por ratio y ver patrones (¿qué sectores tienen ROE alto? ¿cuáles más deuda?).',
+  }}
+  actividad_titulo="Diagnostica una empresa cotizada en 10 minutos"
+  actividad_duracion="25-30 min"
+>
+  <Fragment slot="actividad">
+    Elige una **empresa cotizada del IBEX 35** (Inditex, Telefónica, Iberdrola, BBVA, Mercadona no cotiza pero publica memoria). Busca sus **5 ratios principales** del último ejercicio en su web o en finviz / similares. **Interpreta cada uno** en una frase: ¿está en rango? ¿es coherente con el sector? Termina con una recomendación: *«invertiría / no invertiría en esta empresa porque...»*. No tienes que tener razón —tienes que **argumentar con los ratios**.
+  </Fragment>
+  <Fragment slot="para-clase">
+    Variante en grupos de 3 (60 min): cada grupo elige una **empresa diferente**. Calcula los 5 ratios y prepara un análisis de 2 minutos. Después, **simulación de junta de inversión**: cada grupo presenta su empresa al resto, que vota con 100 € imaginarios donde invertir. La empresa más votada gana el ejercicio. El debate revela qué ratios pesan más para cada perfil de inversor —algunos prefieren ROE alto aunque haya mucha deuda; otros prefieren solvencia aunque baje rentabilidad—. No hay respuesta correcta; hay **criterios bien aplicados**. Materiales: ordenadores con acceso a memorias anuales.
+  </Fragment>
+</MirarFora>

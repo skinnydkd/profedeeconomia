@@ -238,6 +238,25 @@ const jocsEconomicsPreguntas = defineCollection({
   }),
 });
 
+/* =========================================================
+   reto — pàgines d'obertura i rúbrica del Reto del curs.
+   Mateix patró que `ebau` i `proyecto`: seccions ordenades
+   per asignatura. De moment només l'usa EDMN 2BACH.
+   ========================================================= */
+const retoCurso = defineCollection({
+  loader: glob({
+    pattern: 'asignaturas/*/reto/**/*.{md,mdx}',
+    base: './src/content',
+  }),
+  schema: z.object({
+    asignatura: z.enum(ASIGNATURA_SLUGS),
+    orden: z.number().int().min(0),
+    title: z.string(),
+    lang: z.enum(LANGS).default('es'),
+    estado: z.enum(ESTADOS).default('borrador'),
+  }),
+});
+
 export const collections = {
   libro,
   actividades,
@@ -248,4 +267,5 @@ export const collections = {
   proyecto,
   juegos,
   jocsEconomicsPreguntas,
+  retoCurso,
 };

@@ -1,0 +1,64 @@
+---
+type Props = {
+  /** Referència curta al cas obert al començament. */
+  referencia: string;
+};
+const { referencia } = Astro.props;
+---
+
+<aside class="vuelve">
+  <span class="vuelve__kicker">Vuelve al caso</span>
+  <p class="vuelve__ref">{referencia}</p>
+  <div class="vuelve__body"><slot /></div>
+</aside>
+
+<style>
+  .vuelve {
+    margin: 2.4rem 0;
+    padding: 1.4rem 1.6rem;
+    background: var(--color-terra-soft);
+    border-radius: 4px;
+    position: relative;
+  }
+  .vuelve::before {
+    content: "↶";
+    position: absolute;
+    top: 1rem;
+    right: 1.2rem;
+    color: var(--color-terra);
+    font-size: 1.6rem;
+    line-height: 1;
+  }
+  .vuelve__kicker {
+    font-family: var(--font-sans);
+    font-size: 0.74rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--color-terra-deep);
+    font-weight: 700;
+    display: block;
+    margin-bottom: 0.3rem;
+  }
+  .vuelve__ref {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 0.95rem;
+    color: var(--color-ink-mute);
+    margin: 0 0 0.9rem;
+  }
+  .vuelve__body {
+    font-family: var(--font-serif);
+    font-size: 1rem;
+    line-height: 1.55;
+    color: var(--color-ink);
+  }
+  .vuelve__body :global(p) { margin: 0 0 0.7em; }
+  .vuelve__body :global(p:last-child) { margin-bottom: 0; }
+  .vuelve__body :global(p::first-letter) {
+    font-family: inherit; font-weight: inherit; font-size: inherit;
+    line-height: inherit; float: none; padding: 0; color: inherit;
+  }
+  @media print {
+    .vuelve { break-inside: avoid; page-break-inside: avoid; }
+  }
+</style>

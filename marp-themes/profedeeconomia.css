@@ -18,7 +18,8 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,0..100,0..1;1,9..144,300..700,0..100,0..1&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap');
-@import url('https://api.fontshare.com/v2/css?f[]=switzer@400,500,600,700&display=swap');
+/* Switzer is embedded via @font-face base64 at build time
+   (see scripts/build-slides.mjs + marp-themes/_switzer-faces.css) */
 
 :root {
   --color-bg: #FBF6EC;
@@ -44,9 +45,9 @@ section {
   background: var(--color-bg);
   color: var(--color-ink);
   font-family: var(--font-sans);
-  font-size: 26px;
-  line-height: 1.55;
-  padding: 70px 80px 60px;
+  font-size: 20px;
+  line-height: 1.45;
+  padding: 50px 70px 45px;
   font-feature-settings: "kern", "liga", "ss01";
   position: relative;
 }
@@ -55,10 +56,10 @@ section {
 section::after {
   content: "profedeeconomia.es";
   position: absolute;
-  bottom: 28px;
-  left: 80px;
+  bottom: 18px;
+  left: 70px;
   font-family: var(--font-sans);
-  font-size: 13px;
+  font-size: 10px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--color-ink-mute);
@@ -69,51 +70,55 @@ section::after {
 section::before {
   content: attr(data-marpit-pagination) " / " attr(data-marpit-pagination-total);
   position: absolute;
-  bottom: 28px;
-  right: 80px;
+  bottom: 18px;
+  right: 70px;
   font-family: var(--font-mono);
-  font-size: 13px;
+  font-size: 10px;
   color: var(--color-terra);
 }
 section[data-marpit-pagination=""]::before { content: none; }
+section:not([data-marpit-pagination])::before { content: none; }
+section.title::before,
+section.close::before,
+section.section::before { content: none; }
 
 /* Headings */
 h1 {
   font-family: var(--font-serif);
   font-weight: 400;
-  font-size: 60px;
+  font-size: 46px;
   line-height: 1.08;
   letter-spacing: -0.02em;
   color: var(--color-ink);
-  margin: 0 0 28px;
+  margin: 0 0 18px;
   font-variation-settings: "SOFT" 80, "WONK" 0;
   max-width: 22ch;
 }
 h2 {
   font-family: var(--font-serif);
   font-weight: 500;
-  font-size: 44px;
+  font-size: 28px;
   line-height: 1.15;
   letter-spacing: -0.015em;
   color: var(--color-ink);
-  margin: 0 0 26px;
+  margin: 0 0 14px;
   position: relative;
-  padding-top: 28px;
+  padding-top: 16px;
   font-variation-settings: "SOFT" 60;
 }
 h2::before {
   content: "";
   position: absolute;
   top: 0; left: 0;
-  width: 60px; height: 4px;
+  width: 44px; height: 3px;
   background: var(--color-terra);
   border-radius: 999px;
 }
 h3 {
   font-family: var(--font-serif);
   font-weight: 500;
-  font-size: 30px;
-  margin: 0 0 14px;
+  font-size: 22px;
+  margin: 12px 0 6px;
   color: var(--color-ink);
 }
 h4 {
@@ -127,12 +132,12 @@ h4 {
 }
 
 /* Paragraphs and lists */
-p { margin: 0 0 18px; max-width: 36em; }
+p { margin: 0 0 10px; max-width: 50em; }
 strong { color: var(--color-ink); }
 em { font-style: italic; color: var(--color-ink); }
 
-ul, ol { padding-left: 1.4em; margin: 0 0 18px; max-width: 36em; }
-li { margin-bottom: 10px; }
+ul, ol { padding-left: 1.2em; margin: 0 0 10px; max-width: 50em; }
+li { margin-bottom: 4px; }
 ul li::marker { color: var(--color-mustard); }
 
 /* Code */
@@ -147,11 +152,11 @@ code {
 pre {
   font-family: var(--font-mono);
   background: var(--color-bg-cream);
-  padding: 18px 22px;
-  border-radius: 6px;
-  border-left: 4px solid var(--color-mustard);
-  font-size: 22px;
-  margin: 16px 0;
+  padding: 12px 16px;
+  border-radius: 4px;
+  border-left: 3px solid var(--color-mustard);
+  font-size: 16px;
+  margin: 10px 0;
   overflow-x: auto;
 }
 
@@ -160,11 +165,11 @@ table {
   border-collapse: separate;
   border-spacing: 0;
   width: 100%;
-  font-size: 22px;
-  margin: 18px 0;
+  font-size: 16px;
+  margin: 10px 0;
 }
 th, td {
-  padding: 10px 14px;
+  padding: 6px 10px;
   text-align: left;
   border-bottom: 1px solid var(--color-line);
   vertical-align: top;
@@ -172,7 +177,7 @@ th, td {
 th {
   font-family: var(--font-sans);
   text-transform: uppercase;
-  font-size: 13px;
+  font-size: 11px;
   letter-spacing: 0.08em;
   color: var(--color-terra-deep);
   background: var(--color-terra-soft);
@@ -202,11 +207,11 @@ section.title h4 {
   margin: 0 0 18px;
 }
 section.title h1 {
-  font-size: 80px;
+  font-size: 60px;
   line-height: 1;
   letter-spacing: -0.025em;
   font-weight: 400;
-  margin: 0 0 24px;
+  margin: 0 0 18px;
   max-width: 18ch;
 }
 section.title h1 em {
@@ -217,10 +222,10 @@ section.title h1 em {
 section.title p {
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: 28px;
+  font-size: 22px;
   line-height: 1.4;
   color: var(--color-ink-soft);
-  max-width: 24em;
+  max-width: 28em;
   font-variation-settings: "SOFT" 80;
   margin: 0;
 }
@@ -275,8 +280,369 @@ section.close::after {
 }
 section.close h1 {
   color: var(--color-bg);
-  font-size: 64px;
+  font-size: 48px;
   font-style: italic;
   font-variation-settings: "SOFT" 100, "WONK" 1;
 }
-section.close p { color: rgba(251, 246, 236, 0.85); font-size: 26px; }
+section.close p { color: rgba(251, 246, 236, 0.85); font-size: 18px; }
+
+/* ============================================================
+   Density tweaks for self-study decks (overrides above defaults)
+   ============================================================ */
+section p { max-width: 52em; }
+
+/* ============================================================
+   TL;DR slide                       (<!-- _class: tldr -->)
+   ============================================================ */
+section.tldr {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 60px 80px;
+}
+section.tldr .tldr__kicker {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-terra);
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+section.tldr .pullquote {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 30px;
+  line-height: 1.3;
+  color: var(--color-ink);
+  font-variation-settings: "SOFT" 100, "WONK" 1;
+  max-width: 28em;
+  border-top: 3px solid var(--color-terra);
+  padding-top: 18px;
+}
+
+/* ============================================================
+   Caso dilema / Vuelve al caso     (<!-- _class: caso -->)
+   ============================================================ */
+section.caso {
+  display: grid;
+  grid-template-columns: 45% 1fr;
+  gap: 50px;
+  padding: 0;
+  align-items: stretch;
+}
+section.caso .caso__media {
+  overflow: hidden;
+  min-height: 100%;
+  position: relative;
+}
+section.caso .caso__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+section.caso .caso__body {
+  padding: 50px 60px 40px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+section.caso .caso__kicker {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-terra);
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+section.caso h2 {
+  font-family: var(--font-serif);
+  font-size: 26px;
+  line-height: 1.2;
+  margin: 0 0 14px;
+  padding: 0;
+}
+section.caso h2::before { display: none; }
+section.caso .caso__body-text {
+  font-size: 16px;
+  line-height: 1.45;
+  margin-bottom: 12px;
+  max-width: none;
+}
+section.caso .caso__pregunta {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 18px;
+  line-height: 1.35;
+  color: var(--color-ink-soft);
+  font-variation-settings: "SOFT" 100, "WONK" 1;
+  margin: 0 0 14px;
+  max-width: none;
+}
+section.caso .caso__fuente {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--color-ink-mute);
+}
+section.caso-resuelto .caso__media { filter: opacity(0.7); }
+section.caso-resuelto .caso__kicker { color: var(--color-mustard-deep); }
+
+/* ============================================================
+   Figure slide                      (<!-- _class: figure -->)
+   ============================================================ */
+section.figure {
+  text-align: center;
+  padding: 40px 60px;
+}
+section.figure img { max-width: 100%; max-height: 78vh; }
+section.figure figcaption,
+section.figure .figure__caption {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 16px;
+  line-height: 1.4;
+  color: var(--color-ink-soft);
+  margin-top: 18px;
+  font-variation-settings: "SOFT" 80;
+  max-width: none;
+}
+section.figure .figure__credit {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--color-ink-mute);
+  margin-top: 8px;
+  max-width: none;
+}
+
+/* ============================================================
+   Diagram slide                     (<!-- _class: diagram -->)
+   ============================================================ */
+section.diagram {
+  background: var(--color-bg-cream);
+  text-align: center;
+  padding: 30px 60px;
+}
+section.diagram h2 { padding-top: 0; margin-bottom: 12px; font-size: 24px; }
+section.diagram h2::before { display: none; }
+section.diagram img { max-width: 100%; max-height: 80vh; }
+section.diagram .diagram__caption {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 16px;
+  color: var(--color-ink-soft);
+  margin-top: 18px;
+  max-width: none;
+}
+
+/* ============================================================
+   Real example slide                (<!-- _class: example -->)
+   ============================================================ */
+section.example {
+  padding: 50px 70px 40px;
+}
+section.example .example__kicker {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-terra);
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+section.example h2 {
+  border-left: 3px solid var(--color-terra);
+  padding: 0 0 0 16px;
+  margin-left: 0;
+  font-size: 26px;
+}
+section.example h2::before { display: none; }
+section.example .example__body { font-size: 18px; line-height: 1.5; max-width: 48em; }
+
+/* ============================================================
+   Curiosity slide                   (<!-- _class: curiosity -->)
+   ============================================================ */
+section.curiosity {
+  background: var(--color-mustard-soft);
+  padding: 50px 80px;
+  position: relative;
+}
+section.curiosity .curiosity__ornament {
+  position: absolute;
+  top: 22px;
+  right: 50px;
+  font-family: var(--font-serif);
+  font-size: 70px;
+  color: var(--color-mustard-deep);
+  opacity: 0.4;
+}
+section.curiosity h2 { color: var(--color-mustard-deep); font-style: italic; font-variation-settings: "SOFT" 100, "WONK" 1; }
+section.curiosity h2::before { background: var(--color-mustard-deep); }
+
+/* ============================================================
+   Exercise slide                    (<!-- _class: exercise -->)
+   ============================================================ */
+section.exercise {
+  background: var(--color-bg-cream);
+  padding: 40px 70px;
+}
+section.exercise .exercise__kicker {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-terra);
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+section.exercise h2 { font-size: 24px; margin-bottom: 14px; padding-top: 0; }
+section.exercise h2::before { display: none; }
+section.exercise .exercise__steps {
+  counter-reset: step;
+  list-style: none;
+  padding-left: 0;
+  font-size: 18px;
+}
+section.exercise .exercise__steps li {
+  counter-increment: step;
+  padding-left: 36px;
+  margin-bottom: 8px;
+  position: relative;
+}
+section.exercise .exercise__steps li::before {
+  content: counter(step);
+  position: absolute;
+  left: 0;
+  top: -2px;
+  font-family: var(--font-serif);
+  font-size: 22px;
+  color: var(--color-terra);
+  font-weight: 500;
+}
+section.exercise .exercise__result {
+  margin-top: 24px;
+  display: inline-block;
+  padding: 8px 18px;
+  background: var(--color-terra);
+  color: var(--color-bg);
+  font-family: var(--font-mono);
+  border-radius: 4px;
+}
+
+/* ============================================================
+   Voces en desacuerdo               (<!-- _class: voces -->)
+   ============================================================ */
+section.voces {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  padding: 0;
+  align-items: stretch;
+}
+section.voces .voces__col {
+  padding: 50px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+section.voces .voces__col + .voces__col { border-left: 1px solid var(--color-line); }
+section.voces .voces__label {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+section.voces .voces__col--a .voces__label { color: var(--color-terra); }
+section.voces .voces__col--b .voces__label { color: var(--color-mustard-deep); }
+section.voces .voces__name {
+  font-family: var(--font-serif);
+  font-size: 22px;
+  margin-bottom: 10px;
+  color: var(--color-ink);
+  font-variation-settings: "SOFT" 80;
+}
+section.voces .voces__pos { font-size: 16px; line-height: 1.45; color: var(--color-ink); max-width: none; }
+
+/* ============================================================
+   Pista EBAU                        (<!-- _class: ebau -->)
+   ============================================================ */
+section.ebau { padding: 50px 70px; }
+section.ebau .ebau__flag {
+  display: inline-block;
+  padding: 3px 8px;
+  background: var(--color-mustard);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+section.ebau h2 { font-size: 26px; margin-bottom: 14px; padding-top: 0; }
+section.ebau h2::before { display: none; }
+section.ebau .ebau__body { font-size: 18px; line-height: 1.5; max-width: none; }
+
+/* ============================================================
+   Reto etapa                        (<!-- _class: reto -->)
+   ============================================================ */
+section.reto {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 40px;
+  padding: 50px 70px;
+  align-items: center;
+}
+section.reto .reto__num {
+  font-family: var(--font-serif);
+  font-size: 100px;
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 2px var(--color-terra);
+  font-variation-settings: "SOFT" 100, "WONK" 1;
+  font-style: italic;
+  white-space: nowrap;
+}
+section.reto h2 { padding: 0; margin: 0 0 10px; font-size: 24px; }
+section.reto h2::before { display: none; }
+section.reto .reto__tasks { font-size: 16px; line-height: 1.5; max-width: none; }
+
+/* ============================================================
+   Mirar fora                        (<!-- _class: mirar-fora -->)
+   ============================================================ */
+section.mirar-fora {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 1px;
+  padding: 0;
+  background: var(--color-line);
+}
+section.mirar-fora h2 { display: none; }
+section.mirar-fora .mf__cell {
+  background: var(--color-bg);
+  padding: 26px 30px;
+  display: flex;
+  flex-direction: column;
+}
+section.mirar-fora .mf__icon {
+  font-family: var(--font-serif);
+  font-size: 24px;
+  color: var(--color-terra);
+  margin-bottom: 6px;
+  font-variation-settings: "SOFT" 100, "WONK" 1;
+}
+section.mirar-fora .mf__type {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-ink-mute);
+  margin-bottom: 4px;
+}
+section.mirar-fora .mf__title { font-family: var(--font-serif); font-size: 17px; line-height: 1.25; color: var(--color-ink); margin-bottom: 4px; }
+section.mirar-fora .mf__author { font-family: var(--font-mono); font-size: 11px; color: var(--color-ink-mute); margin-bottom: 6px; }
+section.mirar-fora .mf__desc { font-size: 13px; line-height: 1.4; color: var(--color-ink-soft); }

@@ -133,7 +133,11 @@ function startStaticServer(distDir, port) {
   });
 }
 
-const distDir = resolve(root, 'dist');
+// The Vercel adapter places static output under dist/client/; fall back to
+// dist/ for plain Astro builds.
+const distDirClient = resolve(root, 'dist/client');
+const distDirRoot = resolve(root, 'dist');
+const distDir = existsSync(distDirClient) ? distDirClient : distDirRoot;
 if (!existsSync(distDir)) {
   console.error('✖ No existe dist/. Corre "npm run build" antes.');
   process.exit(1);

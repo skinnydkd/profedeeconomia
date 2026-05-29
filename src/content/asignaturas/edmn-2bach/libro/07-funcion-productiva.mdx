@@ -39,6 +39,12 @@ import Figure from '@components/Figure.astro';
 import BreakEvenChart from '@components/diagrams/BreakEvenChart.astro';
 import ProcesosProductivos from '@components/diagrams/ProcesosProductivos.astro';
 import Bibliography from '@components/Bibliography.astro';
+import TldrUnidad from '@components/TldrUnidad.astro';
+import CasoDilema from '@components/CasoDilema.astro';
+import VuelveAlCaso from '@components/VuelveAlCaso.astro';
+import PistaEbau from '@components/PistaEbau.astro';
+import RetoEtapa from '@components/RetoEtapa.astro';
+import MirarFora from '@components/MirarFora.astro';
 
 import opelGliwice from '@assets/libro/edmn-2bach/07/opel-gliwice-cadena.jpg';
 import almacenPalletRack from '@assets/libro/edmn-2bach/07/almacen-pallet-rack.jpg';
@@ -52,6 +58,20 @@ import kukaRobots from '@assets/libro/edmn-2bach/07/kuka-robots-industriales.jpg
 > - Diferenciar eficacia, eficiencia y productividad y aplicar las tres a un caso real.
 > - Calcular costes fijos, costes variables, coste total y coste medio, y razonar el apalancamiento operativo.
 > - Calcular el punto muerto Q* = CF/(P − CVu) y el margen de seguridad de un producto, y aplicar los principios Lean (eliminación de los 7 *muda*) a un proceso concreto.
+
+<TldrUnidad>
+La función productiva **transforma recursos en producto** con el menor desperdicio posible. Aquí entran los costes (fijos y variables), el **punto muerto** —la cantidad mínima a vender para no perder dinero— y los principios **Lean** que llevan 70 años puliendo cómo se trabaja en una fábrica o un servicio.
+
+Es la **unidad más numérica** del libro hasta ahora. Q\*, margen de contribución y apalancamiento operativo se examinan habitualmente en la EBAU; los cálculos están a tu alcance si los practicas con datos.
+</TldrUnidad>
+
+<CasoDilema
+  titular="Toyota produce coches con menos defectos que Ford con la mitad de horas de mano de obra. El secreto se llama Lean"
+  fuente="Womack, Jones, Roos · The Machine That Changed the World (MIT, 1990)"
+  pregunta="¿Por qué una empresa puede producir mejor —menos defectos, menos coste, más rapidez— sin invertir más, simplemente cambiando cómo organiza el trabajo?"
+>
+A finales de los años 70, los fabricantes estadounidenses descubrieron que Toyota producía coches con **menos del 50 %** del esfuerzo humano, **un tercio** del espacio físico, **una sexta parte** del inventario y **dos veces menos** defectos por vehículo. Las fábricas eran las mismas, los obreros igual de capacitados, la tecnología similar. La diferencia estaba en cómo se organizaba el trabajo: Toyota había desarrollado a lo largo de tres décadas (1950-1980) un **sistema** —el TPS, *Toyota Production System*— que en 1990 fue bautizado en Occidente como *Lean*. Hoy, casi todas las empresas industriales del mundo —y muchas de servicios— aplican alguna versión de sus principios.
+</CasoDilema>
 
 La función productiva es la que **transforma recursos en producto**: lo que la empresa hace, día tras día, con sus máquinas, sus personas y su tiempo. Mientras la función comercial decide *qué* se vende y la función financiera decide *cómo* se paga, la productiva decide *cómo* se hace. En empresas industriales es el corazón del negocio; en empresas de servicios o digitales adopta otras formas —desarrollo de software, prestación del servicio, atención al cliente— pero conserva la misma lógica: combinar inputs para generar outputs con el menor desperdicio posible.
 
@@ -203,6 +223,16 @@ Una vez calculado el punto muerto, conviene calcular el **margen de seguridad**:
 `Margen de seguridad (%) = (Demanda − Q*) / Demanda × 100`
 
 Un margen de seguridad del 30 % significa que la demanda real es un 30 % mayor que el punto muerto: la demanda podría caer hasta un 30 % antes de entrar en pérdidas. Por debajo del 10 % la empresa es vulnerable; por encima del 30 % es razonablemente estable.
+
+<PistaEbau tipo="practica" concepto="Umbral de rentabilidad — los 5 pasos que cuestan puntos si se saltan" apendice="Apéndice · Umbral">
+La fórmula sola **no es la respuesta completa**. Para sacar todos los puntos del ejercicio:
+
+1. **Identifica CF, CVu, P** del enunciado antes de calcular.
+2. Aplica la fórmula `Q* = CF / (P − CVu)` y obtén Q\*.
+3. **Redondea hacia arriba** a la unidad inmediatamente superior (no puedes vender 1.234,34 sillas).
+4. **Dibuja el gráfico**: ejes Q y €, rectas IT y CT, marca **Q\*** en el cruce.
+5. **Interpreta con una frase**: *«hay que vender 1.235 uds para no tener pérdidas; a partir de ahí, beneficio»*. Sin frase, el corrector resta.
+</PistaEbau>
 
 <Callout label="Concepto clave" title="Punto muerto">
 
@@ -360,6 +390,12 @@ Estrechamente vinculada a la función productiva está la **gestión de la calid
 
 Para una pyme española típica, la implementación completa de Six Sigma raramente compensa el coste. Lo razonable es adoptar **los principios** —medición rigurosa, mejora continua, responsabilidad distribuida— sin la sobrecarga metodológica de las grandes corporaciones.
 
+<VuelveAlCaso referencia="Toyota Production System (Lean)">
+El TPS no fue un invento de un genio en una sala. Se desarrolló durante **tres décadas** (1948-1980) por una larga cadena de ingenieros (Toyoda, Ohno, Shingo) que **observaban el flujo del trabajo cada día** y eliminaban un desperdicio cada vez. El secreto no es una técnica: es una **cultura** que considera normal **detenerse a pensar** por qué algo va lento, una pieza llega tarde o un operario duda. Lo que en otras fábricas eran «incidentes a olvidar», en Toyota eran **datos a investigar**.
+
+Para tu proyecto del capstone, la lección operativa es directa: no esperes a tener el problema para pensar en el proceso. **Dibuja el flujo de tu actividad antes de empezar**, identifica dónde se acumula trabajo (cuellos de botella, esperas), y reflexiona cuál de los **7 *muda*** —sobreproducción, esperas, transporte, procesos, inventario, movimientos, defectos— amenaza más a tu negocio. La diferencia entre una empresa que escala bien y otra que se ahoga en complejidad operativa empieza el día de su fundación, no el día que tiene cien clientes.
+</VuelveAlCaso>
+
 <KeyTakeaways title="Lo esencial de la función productiva">
 - **Inputs → Transformación → Outputs**: la estructura es universal aunque el contenido varíe entre sectores.
 - **Eficacia, eficiencia y productividad** no son sinónimos. Hay que equilibrar las tres.
@@ -369,6 +405,18 @@ Para una pyme española típica, la implementación completa de Six Sigma rarame
 </KeyTakeaways>
 
 ## Conexión con el proyecto capstone
+
+<RetoEtapa
+  etapa={7}
+  titulo="Proceso productivo + estructura de costes + umbral de rentabilidad"
+  entregable="Una página con: diagrama del proceso productivo (inputs → transformación → outputs), tabla de costes (CF + CVu), cálculo Q* con redondeo y gráfico, 2 muda identificados."
+>
+Dibuja el **proceso productivo** de tu proyecto: ¿cuáles son tus inputs (qué compras o consumes), cuál es la transformación (qué haces tú con esos inputs) y cuáles tus outputs (qué entregas al cliente)? Si tu proyecto es servicio o digital, el proceso existe igual aunque no haya cadena de montaje.
+
+Estima los **costes**: identifica al menos 3 partidas fijas (CF) y 3 variables (CVu) realistas. Calcula tu **punto muerto** `Q* = CF / (P − CVu)` con el precio de venta unitario que has fijado en la **etapa 6** (estrategia comercial). **Redondea hacia arriba** y **dibuja el gráfico** con las dos rectas y Q\* marcado.
+
+Termina identificando los **2 tipos de desperdicio** (*muda*) que más amenazan tu proyecto desde el día uno. No es un ejercicio teórico: estos dos serán los KPIs que controlarás en la etapa 11 (ratios) para detectar si el negocio se está degradando.
+</RetoEtapa>
 
 Cada equipo cierra esta unidad con tres entregables: el **diagrama de proceso productivo** del proyecto (entradas, transformación, salidas, paso a paso), el cálculo del **punto muerto** estimado para el primer año de actividad y la identificación de los **dos principales tipos de desperdicio** que el proyecto debe vigilar desde el principio. El cálculo del punto muerto se utilizará después en la Unidad 9 al diseñar el plan financiero.
 
@@ -417,3 +465,34 @@ Cada equipo cierra esta unidad con tres entregables: el **diagrama de proceso pr
 8. Pham, H. H. et al. (2007). *Episode-Based Performance Measurement and Payment: Making It a Reality*. Health Affairs, 26(4) — sobre los resultados del programa Lean en Virginia Mason.
 
 </Bibliography>
+
+<MirarFora
+  unidad={7}
+  libro={{
+    titulo: "Economics: The User's Guide",
+    meta: 'Ha-Joon Chang · Pelican Books, 2014',
+    porque: 'Chang dedica un capítulo entero a cómo Toyota, Samsung y otras empresas asiáticas construyeron ventaja productiva sin innovación tecnológica de ruptura —pulida operativa, formación industrial, paciencia estatal—. Útil para entender que Lean no fue magia, fue contexto.',
+    paginas: 'Capítulo 7 (cómo se hace dinero)',
+  }}
+  video={{
+    titulo: "mi problema con nespresso (análisis de procesos productivos)",
+    meta: 'Canal en castellano · YouTube',
+    duracion: '~12 min',
+    porque: 'Una mirada crítica al proceso productivo de las cápsulas Nespresso: márgenes, residuos, eficiencia y desperdicio (los 7 muda en su versión moderna). Buen complemento al caso de la unidad 6 sobre Nespresso.',
+    url: 'https://www.youtube.com/results?search_query=mi+problema+con+nespresso',
+  }}
+  cuenta={{
+    titulo: '@TrungTPhan',
+    meta: 'X / Twitter',
+    porque: 'Hilos sobre cómo funcionan procesos productivos de empresas famosas (Costco, Aldi, Toyota, Domino\'s) con datos concretos. La versión Twitter del «detrás de las cifras».',
+  }}
+  actividad_titulo="Cuenta los muda de tu rutina"
+  actividad_duracion="20 min"
+>
+  <Fragment slot="actividad">
+    Elige **una rutina cotidiana** tuya (preparar el desayuno, llegar al instituto, hacer un trabajo de clase). Cronométrala honestamente y enumera **los 7 muda** que detectas: ¿cuánto tiempo de espera? ¿cuánto movimiento innecesario? ¿qué pasos están sobreproducidos? El ejercicio es ligero pero entrena la mirada Lean en un objeto familiar antes de aplicarla a un proyecto.
+  </Fragment>
+  <Fragment slot="para-clase">
+    Variante en grupos de 3 (45 min): cada grupo elige **un proceso del aula o del centro** (entrar/salir de clase, comer en cafetería, pedir un libro en biblioteca) y lo observa durante un día. Al día siguiente, presenta los muda detectados y **una propuesta de mejora medible**. La propuesta no tiene que aplicarse —se evalúa la mirada operativa, no el resultado—. Materiales: cronómetro, hoja de observación.
+  </Fragment>
+</MirarFora>

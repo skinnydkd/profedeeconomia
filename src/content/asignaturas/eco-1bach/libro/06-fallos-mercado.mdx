@@ -43,6 +43,11 @@ import Diagram from '@components/Diagram.astro';
 import BienesPublicos from '@components/diagrams/BienesPublicos.astro';
 import Figure from '@components/Figure.astro';
 import Bibliography from '@components/Bibliography.astro';
+import TldrUnidad from '@components/TldrUnidad.astro';
+import CasoDilema from '@components/CasoDilema.astro';
+import VuelveAlCaso from '@components/VuelveAlCaso.astro';
+import MirarFora from '@components/MirarFora.astro';
+import VocesDesacuerdo from '@components/VocesDesacuerdo.astro';
 
 import vwLogoWolfsburg from '@assets/libro/eco-1bach/06/vw-logo-wolfsburg.jpg';
 import faroChipiona from '@assets/libro/eco-1bach/06/faro-chipiona.jpg';
@@ -56,6 +61,20 @@ import georgeAkerlof from '@assets/libro/eco-1bach/06/george-akerlof.jpg';
 > - Identificar externalidades positivas y negativas y proponer instrumentos correctores (impuestos pigouvianos, subvenciones, regulación, mercados de derechos).
 > - Clasificar los bienes en la matriz rivalidad × exclusión y explicar el problema del polizón y la tragedia de los comunes.
 > - Distinguir selección adversa de riesgo moral en mercados con información asimétrica y argumentar cuándo conviene (o no) la intervención pública.
+
+<TldrUnidad>
+El mercado libre **no siempre** asigna recursos eficientemente. Hay cuatro situaciones donde falla sistemáticamente: monopolios, **externalidades** (positivas o negativas), **bienes públicos** e **información asimétrica**.
+
+Esta unidad te enseña a reconocerlas y a entender por qué el Estado interviene en ellas no como capricho, sino como **corrección técnica** de un fallo que el propio modelo de mercado predice.
+</TldrUnidad>
+
+<CasoDilema
+  titular="Volkswagen falsificó las pruebas de emisiones de 11 millones de vehículos. La multa global superó los 30.000 M€"
+  fuente="Investigación de la EPA (Agencia de Protección Ambiental EE. UU.) · septiembre 2015"
+  pregunta="Si Volkswagen vendía coches eficientes y bonitos, ¿por qué hizo trampa? ¿Por qué el mercado libre no detecta y castiga estos comportamientos a tiempo?"
+>
+En 2015 la EPA descubrió que Volkswagen había instalado en sus motores diésel un software que detectaba cuándo el coche estaba siendo testado y reducía las emisiones para pasar los controles. En conducción real, los vehículos emitían hasta **40 veces más NOx** (óxidos de nitrógeno) que el límite legal. Las multas, indemnizaciones y compras forzosas de vehículos costaron a VW más de 30.000 M€. Más grave: las emisiones extra de NOx durante siete años provocaron, según estudios médicos posteriores, miles de muertes prematuras en Europa.
+</CasoDilema>
 
 Las dos unidades anteriores nos han mostrado un mercado que funciona razonablemente bien. Oferta y demanda se cruzan, los precios transmiten información, los recursos fluyen hacia sus usos más valorados y la elasticidad ayuda a anticipar los efectos de un cambio impositivo o de una subida de costes. Es la versión del mercado que Adam Smith celebraba en 1776 con la metáfora de la *mano invisible*: nadie coordina, y sin embargo la coordinación ocurre.
 
@@ -119,6 +138,20 @@ La economía dispone de tres grandes familias de instrumentos para corregir exte
 **Mercados de derechos de emisión.** Solución propuesta por el economista **Ronald Coase** en *The Problem of Social Cost* (1960), que le valió el Nobel en 1991. La idea: si los derechos de propiedad sobre el medio (el aire, el agua) están claramente asignados, las partes pueden negociar y alcanzar el resultado eficiente sin necesidad de intervención adicional. El **EU ETS** (*Emissions Trading System*) europeo funciona así desde 2005: la UE fija un techo de emisiones, reparte derechos a las empresas industriales y eléctricas, y permite que los compren y vendan entre ellas. Quien puede reducir emisiones barato lo hace y vende el derecho sobrante; quien tiene costes altos compra derechos. El precio del derecho de emisión, tras el pico de 90-100 €/tCO₂ alcanzado en 2023, se ha relajado en 2025-2026 a un rango de 65-75 €/tCO₂ debido a la incorporación del sector marítimo al esquema y a la mayor oferta de derechos; internaliza así parcialmente el coste climático.
 
 La diferencia práctica entre un impuesto pigouviano y un mercado de derechos es sutil pero relevante. El impuesto fija el **precio** del daño y deja que el mercado determine la cantidad emitida; el sistema de derechos fija la **cantidad** total y deja que el mercado determine el precio. Si el objetivo prioritario es respetar un techo climático ineludible (por ejemplo, no superar 1,5 °C), el sistema de derechos da más seguridad sobre el resultado físico. Si el objetivo prioritario es proteger a la industria de subidas bruscas de costes, el impuesto da más previsibilidad sobre el coste. La decisión entre uno y otro es, por tanto, técnica y política a la vez.
+
+<VocesDesacuerdo
+  tema="¿Cómo se internalizan las externalidades?"
+  postura_a={{
+    etiqueta: 'Arthur Cecil Pigou (1920)',
+    tesis: 'El Estado debe imponer al contaminante un impuesto igual al coste social que genera. El precio corregido conduce al mercado al óptimo.',
+  }}
+  postura_b={{
+    etiqueta: 'Ronald Coase (1960)',
+    tesis: 'Si los derechos de propiedad están bien definidos y los costes de negociación son bajos, las partes resuelven la externalidad por sí solas sin intervención.',
+  }}
+>
+En la práctica se usan ambos enfoques, según el caso. Los impuestos al carbono y los céntimos sanitarios son **pigouvianos**; los mercados de derechos de emisión (EU ETS) son **coasianos**. La discusión técnica contemporánea no es *Pigou o Coase*, sino qué combinación es más eficaz para cada externalidad concreta.
+</VocesDesacuerdo>
 
 <Curiosity title="El teorema de Coase y el caso del médico y el confitero">
 Para ilustrar su tesis, Ronald Coase recuperó un caso judicial inglés del siglo XIX: un confitero y un médico vecinos. La maquinaria del confitero hacía vibraciones que impedían al médico oír los sonidos de sus pacientes. El tribunal dio la razón al médico. Coase argumentó algo aparentemente provocador: si los costes de transacción son bajos, da igual a quién dé la razón el juez —el confitero al médico o el médico al confitero—, porque las partes negociarán hasta llegar al mismo resultado eficiente. Si vale más al médico ejercer que al confitero producir, el médico pagará al confitero para que pare (o el confitero indemnizará al médico, según el reparto inicial de derechos). El verdadero problema no es la externalidad en sí: son los **costes de transacción** que impiden la negociación. Esta intuición —los derechos de propiedad bien definidos y los costes de transacción bajos permiten resolver externalidades sin intervención— transformó el derecho económico y dio origen al análisis económico del derecho.
@@ -308,6 +341,15 @@ La conclusión metodológica del análisis económico moderno es modesta y hones
 
 Este marco de tres condiciones es lo que en política económica se llama el **enfoque comparativo institucional**: no comparamos el mercado real con un Estado idealizado, ni el Estado real con un mercado idealizado, sino instituciones reales con instituciones reales. La decisión final raramente es **intervenir o no intervenir**; suele ser **qué grado, qué instrumento y qué nivel de gobierno**.
 
+<VuelveAlCaso referencia="Volkswagen y el dieselgate">
+El caso ilustra **dos fallos de mercado interactuando** al mismo tiempo:
+
+- **Externalidad negativa**: las emisiones contaminantes cuestan a la sociedad (salud pública, cambio climático), pero ese coste no aparecía en el precio del coche.
+- **Información asimétrica**: el comprador no puede comprobar las emisiones reales de su vehículo; tiene que confiar en certificaciones que el fabricante puede manipular.
+
+Las regulaciones —límites de emisión, certificaciones independientes, ensayos en carretera real (RDE), homologaciones aleatorizadas— son la respuesta a estos dos fallos. **Sin regulación, el mercado favorece a quien hace trampa**, no a quien cumple: el fabricante honesto pierde competitividad frente al tramposo, hasta que el tramposo es descubierto. Pero el daño sanitario y ambiental ya está hecho y es irreversible.
+</VuelveAlCaso>
+
 <KeyTakeaways title="Las cinco ideas para llevarse a casa">
 - **Fallo de mercado** es un diagnóstico técnico, no ideológico: hay cuatro tipos canónicos (externalidades, bienes públicos, información asimétrica, poder de mercado).
 - Las **externalidades** se corrigen con impuestos pigouvianos, subvenciones, regulación directa o mercados de derechos (modelo Coase, EU ETS).
@@ -368,3 +410,34 @@ Estas preguntas no tienen una respuesta única. Sirven para discutir en clase o 
 12. Reglamento (UE) 2022/1925, *Digital Markets Act*, DOUE L 265/1.
 
 </Bibliography>
+
+<MirarFora
+  unidad={6}
+  libro={{
+    titulo: 'Economía rosquilla (Doughnut Economics)',
+    meta: 'Kate Raworth · Paidós, 2018',
+    porque: 'Sobre cómo la economía debe respetar techos sociales y suelos ecológicos. Conecta los fallos de mercado clásicos con el marco ESG y la sostenibilidad contemporánea.',
+    paginas: 'Capítulos 1 y 5',
+  }}
+  video={{
+    titulo: 'Why Recessions Happen',
+    meta: 'Two Cents · PBS · YouTube',
+    duracion: '~8 min',
+    porque: 'Sobre por qué el mercado libre genera ciclos y crisis recurrentes —un fallo macro complementario a los fallos micro de esta unidad—.',
+    url: 'https://www.youtube.com/results?search_query=Two+Cents+Why+Recessions+Happen',
+  }}
+  cuenta={{
+    titulo: '@rethinkecon',
+    meta: 'X / Twitter · Rethinking Economics',
+    porque: 'Red internacional de alumnos universitarios que critican la enseñanza neoclásica estándar y proponen una economía pluralista que incorpore los fallos de mercado desde el primer curso.',
+  }}
+  actividad_titulo="Tres externalidades de tu vida"
+  actividad_duracion="25 min"
+>
+  <Fragment slot="actividad">
+    Identifica **tres externalidades negativas** y **dos positivas** en tu vida cotidiana (móvil en el aula, ruido en el bar, vacunación, donación de sangre, instalación de placas solares en tu edificio). ¿Cómo se podrían internalizar cada una? (Impuesto, subvención, regulación, mercado de derechos, propiedad bien definida.)
+  </Fragment>
+  <Fragment slot="para-clase">
+    Variante *tribunal de externalidades*: los grupos juzgan casos reales (vapeadores, redes sociales para menores, ruido de obras, drones en parques) decidiendo qué tipo de fallo es y qué intervención sería razonable. Duración: 45 min.
+  </Fragment>
+</MirarFora>

@@ -40,6 +40,12 @@ import Figure from '@components/Figure.astro';
 import VANTimeline from '@components/diagrams/VANTimeline.astro';
 import CascadaFinanciacion from '@components/diagrams/CascadaFinanciacion.astro';
 import Bibliography from '@components/Bibliography.astro';
+import TldrUnidad from '@components/TldrUnidad.astro';
+import CasoDilema from '@components/CasoDilema.astro';
+import VuelveAlCaso from '@components/VuelveAlCaso.astro';
+import PistaEbau from '@components/PistaEbau.astro';
+import RetoEtapa from '@components/RetoEtapa.astro';
+import MirarFora from '@components/MirarFora.astro';
 
 import bolsaMadridSala from '@assets/libro/edmn-2bach/09/bolsa-madrid-sala-principal.jpg';
 import nyseTradingFloor from '@assets/libro/edmn-2bach/09/nyse-trading-floor.jpg';
@@ -54,6 +60,20 @@ import bancoSanCarlos1782 from '@assets/libro/edmn-2bach/09/banco-san-carlos-178
 > - Interpretar la **TIR** como criterio de aceptación frente a una tasa mínima exigida.
 > - Identificar las cuatro grandes categorías de financiación (interna/externa × propia/ajena) y elegir la mezcla adecuada.
 > - Reconocer las modalidades modernas (crowdfunding, business angels, capital riesgo) y situarlas en la cascada típica de una startup.
+
+<TldrUnidad>
+Las empresas **no quiebran por perder dinero**, quiebran por quedarse sin dinero **líquido** cuando hay que pagar. Esta unidad da las herramientas para no equivocarse: cómo se mide una inversión (**VAN, TIR, PayBack**) y cómo se decide de dónde sacar el dinero (financiación propia / ajena, interna / externa).
+
+Los tres cálculos —VAN, TIR, PayBack— **caen casi siempre en la EBAU** y son la única parte numérica que vale en torno a 2 puntos por ejercicio. Vale la pena dominarlos bien antes que cualquier otra cosa de la unidad.
+</TldrUnidad>
+
+<CasoDilema
+  titular="Abengoa tenía pedidos por 12.000 M€. Quebró en 2015 porque no pudo pagar 750 M€ a sus bonistas"
+  fuente="CNMV, prensa económica · 2015-2016"
+  pregunta="¿Cómo es posible que una empresa con beneficios y un libro de pedidos enorme acabe en concurso de acreedores?"
+>
+**Abengoa** fue durante dos décadas una de las empresas españolas más admiradas: líder mundial en plantas termosolares, presente en 50 países, con pedidos por 12.000 M€. En 2015, al intentar refinanciar 750 M€ en bonos, los acreedores la encontraron con un **flujo de caja insuficiente**: los pedidos eran reales, pero cobrarlos llevaba años, y mientras tanto Abengoa había financiado la expansión con deuda corta. El **balance presentaba beneficios** —era rentable sobre el papel—; la **caja real estaba vacía**. Entró en preconcurso en noviembre de 2015 y nunca se recuperó. La empresa que más solar termosalar había construido en el mundo cayó por un problema de tesorería, no de modelo de negocio.
+</CasoDilema>
 
 La función financiera responde a dos preguntas que ningún proyecto empresarial puede esquivar: **¿en qué invertimos?** y **¿de dónde sacamos el dinero para invertir?**. La primera define el activo de la empresa —los recursos productivos en los que el dinero se convierte—. La segunda define el pasivo y el patrimonio neto —de quién es ese dinero y bajo qué condiciones se devuelve—. La diferencia entre una empresa viable y una que muere antes de empezar suele estar en la coherencia entre ambas decisiones.
 
@@ -115,6 +135,16 @@ La regla de decisión es directa:
 - **VAN > 0**: la inversión genera más valor del exigido. Acepta.
 - **VAN = 0**: justo cubre el rendimiento mínimo. Indiferente.
 - **VAN < 0**: destruye valor. Rechaza.
+
+<PistaEbau tipo="practica" concepto="VAN — descontar siempre, comparar TIR con k" apendice="Apéndice · VAN/TIR/Payback">
+Tres errores que cuestan puntos en la EBAU:
+
+1. **Sumar los flujos sin descontar.** Cada flujo `Q_t` se divide por `(1+k)^t`. No vale sumar 5.000 + 5.000 + 5.000 directamente.
+2. **No comparar la TIR con la k del enunciado.** TIR sola no dice nada; rentable es TIR > k.
+3. **Recomendar el proyecto de TIR mayor ignorando que tenga VAN negativo o payback excesivo.** Los tres criterios se interpretan juntos.
+
+Y siempre cierra con frase: *«el proyecto es rentable porque VAN = X > 0 y TIR = Y % > k = 8 %»*. Sin frase, no se recoge el punto de interpretación.
+</PistaEbau>
 
 <Diagram caption="Cronología de flujos descontados: cada flujo futuro se divide por (1+k)^t. La suma de los flujos actualizados menos la inversión inicial es el VAN.">
   <VANTimeline />
@@ -280,6 +310,14 @@ Las fuentes de financiación de una empresa se clasifican habitualmente cruzando
 
 La **financiación propia** no genera obligación de devolución ni intereses, pero diluye el control de los socios fundadores cuando entran nuevos accionistas. La **financiación ajena** preserva el control pero exige devolución y pago de intereses, independientemente de que el negocio vaya bien o mal. La mezcla óptima entre ambas se llama **estructura óptima de capital** y depende de cada sector y cada momento.
 
+<PistaEbau tipo="teorica" concepto="Autofinanciación ⊂ financiación propia" apendice="Apéndice · Teoría">
+La **autofinanciación** son los beneficios que la empresa retiene y reinvierte (reservas) y las amortizaciones que cargan al PyG sin salir de caja. Es **interna**.
+
+La **financiación propia** incluye la autofinanciación **y** las aportaciones externas de los socios (capital fundacional + ampliaciones).
+
+Por tanto: toda autofinanciación es financiación propia, **pero no al revés**. Mezclarlas en la EBAU es un error clásico que cuesta 0,5-1 punto en cuestiones de teoría.
+</PistaEbau>
+
 ## Modalidades modernas de financiación
 
 Más allá del clásico préstamo bancario y la ampliación de capital tradicional, las dos últimas décadas han popularizado modalidades de financiación que conviene reconocer:
@@ -364,6 +402,12 @@ La práctica intermedia es lo que se conoce como **estructura óptima de capital
 
 Una regla práctica para pymes: **la deuda no debería superar el 60-65 % del balance**. Por encima, el coste financiero se come los beneficios; por debajo, se desaprovecha apalancamiento.
 
+<VuelveAlCaso referencia="Abengoa: pedidos por 12.000 M€ y quiebra por 750 M€">
+El caso de Abengoa ilustra la diferencia entre **rentabilidad** y **liquidez**, una de las distinciones más importantes de toda la función financiera. La empresa era **rentable** —generaba beneficios contables— pero no era **líquida** —no tenía efectivo disponible cuando vencían los bonos—. La causa: una estructura de financiación con demasiada deuda corta (vencía pronto) y un activo demasiado largo (ingresos que tardaban años en cobrarse).
+
+Es la **regla del equilibrio**: el largo plazo se financia con largo plazo y el corto con corto. Saltársela, como Abengoa, es la causa estadísticamente más frecuente de quiebra empresarial. Para tu proyecto: cuando hagas el plan de inversión en la **etapa 9** y el balance previsional en la **etapa 10**, comprueba siempre que el **activo no corriente** (lo que tarda en convertirse en caja) está financiado por **fondos a largo plazo** (capital propio + deuda a largo). Si el cuadre no se sostiene, no es un detalle contable: es una bomba de tiempo.
+</VuelveAlCaso>
+
 <KeyTakeaways title="Lo esencial de la función financiera">
 - **Estructura económica** (activo, en qué se invierte) y **estructura financiera** (pasivo + PN, de dónde viene el dinero) son las dos caras del balance.
 - La **regla del equilibrio**: largo plazo con largo plazo, corto con corto. Saltársela = asfixia financiera.
@@ -373,6 +417,21 @@ Una regla práctica para pymes: **la deuda no debería superar el 60-65 % del ba
 </KeyTakeaways>
 
 ## Conexión con el proyecto capstone
+
+<RetoEtapa
+  etapa={9}
+  titulo="Plan de inversión + VAN/TIR/PayBack + estructura de financiación"
+  entregable="Tres documentos: inversión inicial detallada, cálculo VAN+TIR+PayBack con flujos a 3-5 años (k = 8-10 %), estructura de financiación con justificación de la mezcla propia/ajena."
+>
+Toma los costes que has estimado en la **etapa 7** (productiva) y el coste de personal de la **etapa 8** (RRHH). Construye:
+
+1. **Plan de inversión inicial**: lista de activos que necesitas comprar antes de empezar (mobiliario, equipos, fianzas, software, marketing inicial). Con precios y proveedores reales (o estimados con honestidad).
+2. **Flujos previstos** del proyecto a 3-5 años: ingresos − costes − impuestos = flujo de caja anual. Sé conservador con ingresos y exagerado con costes; si aun así el VAN sale positivo, tu proyecto resiste.
+3. **VAN + TIR + PayBack** con tasa de descuento k = 8-10 %. Aplica la **Pista EBAU** —descuenta cada flujo, no los sumes en bruto—.
+4. **Estructura de financiación**: cuánto pones tú o tu equipo (financiación propia), cuánto pides a banco / business angels / familia / crowdfunding (financiación ajena). Justifica con la cascada de financiación de la unidad.
+
+Si el VAN sale negativo, **no maquilles los números**. Documenta qué tendría que cambiar para que saliera positivo (mayor precio, menor coste, plazo más largo) y vuelve a la etapa 4 (BMC) a iterar. La etapa 9 es la primera prueba dura de viabilidad del proyecto.
+</RetoEtapa>
 
 Cada equipo cierra esta unidad con tres entregables: una **estimación de la inversión inicial** necesaria para arrancar el proyecto, un **cálculo del PayBack y del VAN** con flujos previstos de los tres primeros años (con una tasa de descuento razonable, p. ej. 8-10%) y una **propuesta de estructura de financiación** explicando qué parte de la inversión se cubre con recursos propios y qué parte con financiación ajena, con argumentos. Estos cálculos se utilizarán directamente en el plan de empresa final (Unidad 12).
 
@@ -418,3 +477,34 @@ Cada equipo cierra esta unidad con tres entregables: una **estimación de la inv
 6. ENISA — Empresa Nacional de Innovación. *Líneas de financiación para emprendedores* (https://www.enisa.es).
 
 </Bibliography>
+
+<MirarFora
+  unidad={9}
+  libro={{
+    titulo: 'La psicología del dinero',
+    meta: 'Morgan Housel · Planeta, 2021',
+    porque: 'Un libro corto donde Housel argumenta que el éxito financiero depende menos de la inteligencia financiera que de la disciplina emocional. Útil para entender por qué tantas empresas y personas con buenas finanzas técnicamente acaban tomando malas decisiones bajo presión.',
+    paginas: 'Capítulos 1, 8, 19',
+  }}
+  video={{
+    titulo: 'Why Banks Fail',
+    meta: 'Two Cents · YouTube',
+    duracion: '~10 min',
+    porque: 'Una explicación visual de por qué los bancos —los actores que «manejan dinero»— son los primeros que quiebran cuando hay una crisis de liquidez. Buen complemento al caso de Abengoa.',
+    url: 'https://www.youtube.com/results?search_query=two+cents+why+banks+fail',
+  }}
+  cuenta={{
+    titulo: 'The Plain Bagel',
+    meta: 'YouTube · canal de educación financiera',
+    porque: 'Vídeos cortos en inglés sobre conceptos de finanzas corporativas, valoración de empresas y errores típicos en inversión. Útil para escuchar VAN y TIR aplicados a casos reales por un analista profesional.',
+  }}
+  actividad_titulo="VAN al revés"
+  actividad_duracion="20-25 min"
+>
+  <Fragment slot="actividad">
+    Un proyecto requiere **10.000 €** de inversión inicial y promete flujos de **3.500 €/año durante 4 años**. Calcula el **VAN con k = 8 %** y el **PayBack**. Después, **gira la pregunta**: ¿qué tasa de descuento haría que el VAN fuera exactamente cero? (Eso es la TIR.) ¿Aceptarías el proyecto si tu k mínimo exigido fuera del 12 %?
+  </Fragment>
+  <Fragment slot="para-clase">
+    Variante en grupos de 3 (45 min): cada grupo recibe **un proyecto distinto** (cafetería, app, taller artesano, food truck). Mismos datos básicos (inversión, flujos, k). Cada grupo calcula VAN/TIR/PayBack y presenta una **recomendación con frase de interpretación** al resto. El profesor recoge en pizarra las **tres decisiones** y debaten cuál tiene más riesgo aunque tenga VAN parecido. La conversación lleva a la idea de que el VAN sin contexto no decide nada. Materiales: calculadora, plantilla de flujos.
+  </Fragment>
+</MirarFora>

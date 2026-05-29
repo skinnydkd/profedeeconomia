@@ -18,7 +18,7 @@
  */
 
 import { spawn } from 'node:child_process';
-import { existsSync, mkdirSync, readdirSync } from 'node:fs';
+import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { resolve, dirname, basename, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { platform } from 'node:os';
@@ -32,6 +32,9 @@ const slugFilters = process.argv.slice(2).filter((a) => !a.startsWith('--'));
 const ASIGNATURAS = slugFilters.length > 0
   ? ALL_ASIGNATURAS.filter((s) => slugFilters.includes(s))
   : ALL_ASIGNATURAS;
+
+const htmlOnly = process.argv.includes('--html-only');
+const skipCapture = process.argv.includes('--skip-capture');
 
 function findChromeExecutable() {
   if (process.env.PUPPETEER_EXECUTABLE_PATH && existsSync(process.env.PUPPETEER_EXECUTABLE_PATH)) {
@@ -58,12 +61,31 @@ if (chromePath) {
   console.log(`Usando Chrome del sistema: ${chromePath}`);
 }
 
+// Step 0: capture diagrams (skip if --skip-capture).
+if (!skipCapture) {
+  console.log('\n→ Capturando diagramas (puppeteer)…');
+  await runScript(resolve(__dirname, 'capture-diagrams.mjs'), slugFilters);
+}
+
+// Step 0.5: optimize images for embedding (resize → cache).
+console.log('\n→ Optimizando imágenes para embedding…');
+await runScript(resolve(__dirname, 'optimize-slide-images.mjs'), slugFilters);
+
 // Step 1: regenerate skeletons.
 console.log('\n→ Generando esqueletos de deck desde los MDX…');
-await runScript(resolve(__dirname, 'extract-slides.mjs'));
+await runScript(resolve(__dirname, 'extract-slides.mjs'), slugFilters);
+
+// Step 1.5: compile theme — prepend @font-face base64 so Marp's headless
+// Chrome doesn't have to fetch Switzer from Fontshare (which sometimes fails
+// inside the sandbox). Fraunces + JetBrains Mono load from Google Fonts.
+const themeSrc = readFileSync(resolve(root, 'marp-themes/profedeeconomia.css'), 'utf8');
+const switzerFaces = readFileSync(resolve(root, 'marp-themes/_switzer-faces.css'), 'utf8');
+const compiledTheme = resolve(root, 'tmp/profedeeconomia.compiled.css');
+mkdirSync(dirname(compiledTheme), { recursive: true });
+writeFileSync(compiledTheme, switzerFaces + '\n' + themeSrc, 'utf8');
 
 // Step 2: marp-cli per .md
-const theme = resolve(root, 'marp-themes/profedeeconomia.css');
+const theme = compiledTheme;
 
 let failures = 0;
 let totalDecks = 0;
@@ -84,7 +106,8 @@ for (const slug of ASIGNATURAS) {
     const unitSlug = basename(file, '.md');
     console.log(`\n— ${slug}/${unitSlug}`);
 
-    for (const ext of ['pdf', 'html']) {
+    const formats = htmlOnly ? ['html'] : ['pdf', 'html'];
+    for (const ext of formats) {
       const outPath = join(outDir, `${unitSlug}.${ext}`);
       const args = [
         '--no-install',
@@ -116,9 +139,9 @@ console.log(`\n✓ Generados ${totalDecks * 2} archivos (${totalDecks} PDFs + ${
 
 // ────────────────────────────────────────────────────────────
 
-function runScript(scriptPath) {
+function runScript(scriptPath, args = []) {
   return new Promise((resolveDone) => {
-    const child = spawn(process.execPath, [scriptPath], {
+    const child = spawn(process.execPath, [scriptPath, ...args], {
       cwd: root,
       stdio: 'inherit',
       env: process.env,
