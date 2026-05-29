@@ -105,9 +105,10 @@ function startStaticServer(distDir, port) {
   });
 }
 
-const distDir = resolve(root, 'dist');
+let distDir = resolve(root, 'dist/client');
+if (!existsSync(distDir)) distDir = resolve(root, 'dist');
 if (!existsSync(distDir)) {
-  console.error('✖ No existe dist/. Corre "npm run build" antes.');
+  console.error('✖ No existe dist/ ni dist/client/. Corre "npm run build" antes.');
   process.exit(1);
 }
 
