@@ -1,0 +1,117 @@
+---
+asignatura: edmn-2bach
+unidad_relacionada: 3
+title: "El súper de barrio que no vio venir a Lidl"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "15-20 min"
+descripcion: "Un supermercado familiar de Zaragoza lleva 30 años en el barrio. Lidl abre a 200 m. Hay que leer el entorno y actuar antes de que sea tarde."
+competencias_clave: [CPSAA, CE, CD]
+competencias_especificas: [CE3]
+estado: publicado
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Caso · Estrategia y entorno",
+    "titulo": "El súper de barrio que no vio venir a Lidl",
+    "contexto": "Supermercados Palacios es un negocio familiar en el barrio de Las Fuentes, Zaragoza. Lo fundó el abuelo en 1994, ahora lo llevan los nietos. Facturan 480.000 € al año, tienen 8 empleados y una clientela fiel de toda la vida. Hace seis meses abrió un Lidl a 200 metros. Las ventas han bajado un 18 % en dos meses. Hay que decidir qué hacer.",
+    "kpi_inicial": { "caja": 22000, "clientes": 320, "reputacion": 8 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisión 1 — Análisis del entorno: ¿qué está pasando de verdad?",
+      "situacion": "Tienes que diagnosticar antes de actuar. ¿La caída del 18 % es solo por Lidl o hay otros factores? Podrías contratar a una consultora (2.000 €), hacer una encuesta propia entre clientes, o actuar directamente sin análisis previo.",
+      "opciones": [
+        {
+          "label": "Contrato a una consultora: necesito datos profesionales",
+          "kpi_delta": { "caja": -2000, "clientes": 0, "reputacion": 1 },
+          "feedback": "El análisis PESTEL requiere datos del macroentorno que a veces no tienes desde dentro: demografía del barrio, tendencias de consumo, evolución de la renta disponible. La consultora descubre que además de Lidl hay un factor demográfico: el barrio envejece y los jóvenes compran más online. Dos amenazas, no una. Mejor diagnóstico, mejor respuesta.",
+          "next": "n2"
+        },
+        {
+          "label": "Hago yo mismo una encuesta entre clientes habituales",
+          "kpi_delta": { "caja": -200, "clientes": 5, "reputacion": 2 },
+          "feedback": "Análisis del microentorno con recursos propios: hablas directamente con tus clientes, que son parte del entorno más cercano. Descubres que los que se han ido a Lidl son los que compraban solo productos de marca blanca. Los fieles valoran el trato personal y los productos locales. Dato valioso a coste casi cero. Lección: el análisis no siempre cuesta dinero.",
+          "next": "n2"
+        },
+        {
+          "label": "Actúo directamente: bajo precios un 10 % para competir con Lidl",
+          "kpi_delta": { "caja": -3500, "clientes": -10, "reputacion": -1 },
+          "feedback": "Actuar sin diagnosticar es el error clásico en gestión estratégica. Bajas precios en toda la tienda, pero los clientes que se fueron no vuelven (Lidl sigue siendo más barato en marca blanca) y los que se quedan perciben que algo va mal. El DAFO mal hecho produce estrategias mal diseñadas.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisión 2 — Estrategia: diferenciación o precio",
+      "situacion": "Con el diagnóstico en mano sabes que no puedes ganar a Lidl en precio. Tienes dos opciones estratégicas reales: diferenciarte en algo que Lidl no puede copiar (productos locales, trato, servicio) o reducir tu tamaño y concentrarte en los clientes más fieles.",
+      "opciones": [
+        {
+          "label": "Diferenciación: me especializo en productos locales aragoneses y trato personalizado",
+          "kpi_delta": { "caja": -3000, "clientes": 40, "reputacion": 3 },
+          "feedback": "Estrategia de diferenciación según Porter: compites en atributos que el líder en costes no puede replicar fácilmente. Lidl no tiene Ternasco de Aragón con denominación de origen, ni conoce el nombre de sus clientes. Inviertes 3.000 € en rediseñar la sección de frescos y en comunicarlo. Es arriesgado pero coherente con tus fortalezas (DAFO: conocimiento local).",
+          "next": "n3"
+        },
+        {
+          "label": "Reducción: cierro los sábados por la tarde y despido a un empleado",
+          "kpi_delta": { "caja": 1200, "clientes": -30, "reputacion": -2 },
+          "feedback": "Estrategia defensiva de reducción de costes sin plan de recuperación de ingresos. Ahorras a corto plazo pero envías una señal negativa al mercado: el supermercado del barrio está retrocediendo. Los clientes fieles lo notan y algunos se preguntan si seguirás abierto. La reputación cae y la espiral puede ser difícil de parar.",
+          "next": "n3"
+        },
+        {
+          "label": "Diversificación: añado servicio de reparto a domicilio para mayores del barrio",
+          "kpi_delta": { "caja": -1500, "clientes": 25, "reputacion": 2 },
+          "feedback": "Matriz de Ansoff, estrategia de desarrollo de mercado: mismo producto, nuevo canal. El barrio envejece, los mayores no pueden ir a Lidl fácilmente y valoran el trato. Es una oportunidad que el gigante no puede captar a tu escala. El reparto no requiere gran inversión: un empleado dos tardes a la semana.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisión 3 — RSC y reputación local",
+      "situacion": "El Ayuntamiento lanza una campaña de apoyo al comercio de proximidad. Te propone participar como 'Supermercado de referencia del barrio' a cambio de ofrecer 10 bolsas de alimentos al mes para la asociación vecinal. Sin coste económico significativo pero sí de tiempo.",
+      "opciones": [
+        {
+          "label": "Participo: es publicidad gratuita y hace bien a la comunidad",
+          "kpi_delta": { "caja": -200, "clientes": 35, "reputacion": 3 },
+          "feedback": "Responsabilidad Social Corporativa como herramienta competitiva real: no solo es ético, es estratégico. Te diferencias de Lidl en el plano emocional. La campaña del ayuntamiento te da visibilidad en medios locales. Los clientes del barrio valoran que la empresa forme parte de la comunidad, no que solo venda en ella.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Declino: no tengo tiempo ni recursos ahora mismo",
+          "kpi_delta": { "caja": 0, "clientes": -5, "reputacion": -1 },
+          "feedback": "Decisión comprensible pero costosa en reputación. La campaña existirá con o sin ti, y algunos vecinos notarán que el supermercado de la cadena alemana sí participa (Lidl tiene departamento de RSC). La oportunidad de diferenciación emocional no se puede recuperar una vez que pasa.",
+          "next": "final:fracaso_parcial"
+        },
+        {
+          "label": "Propongo ampliar la colaboración: recojo productos caducados para el banco de alimentos",
+          "kpi_delta": { "caja": -100, "clientes": 50, "reputacion": 4 },
+          "feedback": "RSC como propuesta propia, no solo como respuesta a terceros: tomas la iniciativa y conviertes una colaboración menor en un programa de referencia en el barrio. El banco de alimentos te da visibilidad, la prensa local lo cubre y te conviertes en ejemplo. Lección: la RSC no es solo cumplir, es liderar.",
+          "next": "final:exito"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "El súper del barrio encuentra su hueco",
+      "resumen": "Palacios no compite con Lidl en precio: compite en identidad, productos locales y arraigo comunitario. Las ventas se recuperan al 90 % del nivel anterior y la reputación supera el máximo histórico.",
+      "lecciones_clave": [
+        "El análisis del entorno (PESTEL, DAFO) no es burocracia académica: es lo que te dice dónde tienes ventaja real y dónde no puedes ganar.",
+        "Diferenciación no es hacer lo mismo que el competidor pero más caro: es encontrar atributos que él no puede copiar a tu escala.",
+        "La RSC genera valor competitivo real cuando forma parte de la estrategia, no cuando es una acción de imagen puntual."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "El súper sobrevive, sin recuperarse",
+      "resumen": "Palacios sigue abierto pero no ha encontrado su diferenciador claro. La caída del 18 % se estabiliza en un 12 % permanente. No hay plan para recuperar los clientes perdidos.",
+      "lecciones_clave": [
+        "Actuar sin diagnosticar produce estrategias que atacan el síntoma, no la causa.",
+        "Reducir costes sin plan de crecimiento solo alarga el problema: necesitas las dos palancas a la vez."
+      ]
+    }
+  }
+}
+```

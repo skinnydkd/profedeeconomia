@@ -1,0 +1,117 @@
+---
+asignatura: edmn-2bach
+unidad_relacionada: 7
+title: "La fábrica de Pasalia: producir sin desperdiciar"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "15-20 min"
+descripcion: "Una empresa de pastas alimentarias en La Rioja necesita bajar costes sin perder calidad. Punto muerto, eficiencia y lean: las herramientas de la función productiva."
+competencias_clave: [CPSAA, CE, CD]
+competencias_especificas: [CE3]
+estado: publicado
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Caso · Función productiva",
+    "titulo": "La fábrica de Pasalia: producir sin desperdiciar",
+    "contexto": "Pasalia es una empresa familiar de La Rioja que fabrica pastas alimentarias artesanas desde 1987. Producen 12.000 kg al mes de pasta fresca con 9 empleados. Sus costes fijos mensuales son 18.000 € y el coste variable es de 1,20 € por kg. Venden a 3,50 € el kg a tiendas delicatessen. Este año la electricidad ha subido un 40 % y el trigo duro un 25 %. Necesitan revisar el modelo productivo.",
+    "kpi_inicial": { "caja": 15000, "clientes": 85, "reputacion": 8 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisión 1 — Calcular el punto muerto",
+      "situacion": "Antes de tomar ninguna decisión, el director de producción, Javier, quiere saber cuántos kg tienen que vender al mes para no perder dinero. El coste variable ha subido a 1,60 € por kg con las nuevas tarifas. Los costes fijos siguen en 18.000 €. El precio de venta se mantiene en 3,50 €. ¿Qué haces con esa información?",
+      "opciones": [
+        {
+          "label": "Calculo el nuevo punto muerto y comparo con la producción actual",
+          "kpi_delta": { "caja": 0, "clientes": 5, "reputacion": 1 },
+          "feedback": "Punto muerto = Costes fijos / (Precio - Coste variable) = 18.000 / (3,50 - 1,60) = 18.000 / 1,90 = 9.474 kg al mes. Producen 12.000 kg, así que siguen por encima del umbral, pero el colchón es mucho menor que antes (pasó de 6.000 kg de margen a 2.526 kg). Con este análisis, cualquier bajada de ventas del 21 % te pone en pérdidas. El diagnóstico es claro: hay que actuar.",
+          "next": "n2"
+        },
+        {
+          "label": "Subo el precio a 4 €/kg para mantener el margen",
+          "kpi_delta": { "caja": 1500, "clientes": -15, "reputacion": -1 },
+          "feedback": "Subir el precio sin calcular el punto muerto nuevo es un movimiento a ciegas. Pierdes 15 clientes (tiendas que cambian a competidores) y aunque el margen por unidad sube, el volumen cae. Lección: el punto muerto conecta precio, volumen y costes en una sola cifra. Sin calcularlo, no puedes saber si subir el precio mejora o empeora el resultado total.",
+          "next": "n2"
+        },
+        {
+          "label": "Recorto producción a 9.000 kg para ahorrar en costes variables",
+          "kpi_delta": { "caja": -2000, "clientes": -10, "reputacion": -2 },
+          "feedback": "Reducir producción sin calcular el punto muerto puede llevarte por debajo del umbral. Con costes fijos de 18.000 € y margen de contribución de 1,90 €/kg, necesitas al menos 9.474 kg para cubrir fijos. Producir 9.000 kg significa pérdidas de 900 €/mes. La intuición sin números es peligrosa en producción.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisión 2 — Lean o automatización",
+      "situacion": "Sabes que el margen de seguridad es ajustado. Hay dos vías para mejorar la eficiencia: (a) aplicar principios Lean en el proceso actual, sin inversión en maquinaria (identificar y eliminar desperdicios); (b) comprar una amasadora automática nueva por 22.000 € que reduce el coste variable de 1,60 a 1,10 €/kg.",
+      "opciones": [
+        {
+          "label": "Lean primero: identificamos los siete desperdicios sin invertir en maquinaria",
+          "kpi_delta": { "caja": -500, "clientes": 0, "reputacion": 2 },
+          "feedback": "Lean manufacturing busca eliminar muda (desperdicio): sobreproducción, esperas, transporte innecesario, procesos sin valor, inventario excesivo, movimientos innecesarios, defectos. En Pasalia, el análisis identifica que el 12 % de la pasta fresca se fabrica antes de tener pedido confirmado y se pierde por caducidad. Eliminar ese desperdicio baja el coste variable en 0,15 €/kg sin inversión.",
+          "next": "n3"
+        },
+        {
+          "label": "Compro la amasadora: la automatización baja el coste variable de golpe",
+          "kpi_delta": { "caja": -22000, "clientes": 0, "reputacion": 1 },
+          "feedback": "La inversión en maquinaria baja el coste variable de 1,60 a 1,10 €/kg, lo que baja el punto muerto a 7.500 kg. Pero el coste de la máquina vacía casi toda la caja disponible. Sin reserva de liquidez, cualquier imprevisto (rotura, caída de ventas de un mes) puede ser fatal. Lección: la automatización mejora la eficiencia pero primero hay que tener caja suficiente para absorber el riesgo.",
+          "next": "n3"
+        },
+        {
+          "label": "Combino las dos: lean para ganar margen rápido y amasadora en 12 meses",
+          "kpi_delta": { "caja": -500, "clientes": 5, "reputacion": 3 },
+          "feedback": "Secuenciación correcta: primero reduces desperdicio (mejora inmediata y gratuita), recuperas margen durante 12 meses y con ese margen financias la automatización. La productividad se mejora en dos fases: primero proceso, luego tecnología. Lección: la tecnología no resuelve un proceso ineficiente; solo hace la ineficiencia más cara y más rápida.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisión 3 — Productividad del equipo",
+      "situacion": "Una de las mejoras Lean identificadas es reorganizar los turnos: los 9 empleados trabajan ahora en turnos de 8h. Si cambias a turnos de 6h con más descansos, los estudios internos muestran que la productividad por hora sube un 22 %. Pero los empleados tienen contratos de 8h y habría que negociar.",
+      "opciones": [
+        {
+          "label": "Propongo el cambio a los empleados con un incentivo de productividad",
+          "kpi_delta": { "caja": -800, "clientes": 10, "reputacion": 3 },
+          "feedback": "Eficiencia y productividad no son lo mismo: eficiencia es hacer lo mismo con menos recursos; productividad es el ratio de output por unidad de input (en este caso, kg por hora trabajada). Turnos de 6h con descanso mejoran la concentración y reducen errores en tareas repetitivas. El incentivo de productividad alinea los intereses de la empresa y los empleados.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Impongo el cambio de turno: es una decisión de la dirección",
+          "kpi_delta": { "caja": -300, "clientes": 0, "reputacion": -2 },
+          "feedback": "Cambiar condiciones laborales de manera unilateral sin negociar puede incumplir el convenio colectivo y generar conflicto laboral. La productividad real baja cuando los trabajadores no se sienten parte del cambio. Lección: en producción, los cambios de proceso que afectan a personas requieren gestión de personas, no solo gestión de proceso.",
+          "next": "final:fracaso_parcial"
+        },
+        {
+          "label": "No cambio los turnos: los empleados son mayores y el cambio genera incertidumbre",
+          "kpi_delta": { "caja": 0, "clientes": 0, "reputacion": 0 },
+          "feedback": "Conservar el statu quo cuando los datos muestran una mejora posible es una decisión activa, no neutral. Pierdes 12 meses de mejora de productividad. Lección: la función productiva no es solo gestionar lo que existe sino mejorar continuamente. La mejora continua (kaizen en Lean) requiere disposición al cambio, aunque sea gradual.",
+          "next": "final:fracaso_parcial"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "Pasalia produce mejor con los mismos recursos",
+      "resumen": "El punto muerto baja de 9.474 a 7.800 kg gracias a la eliminación de desperdicios y la mejora de turnos. El margen de seguridad crece y Pasalia puede absorber nuevas subidas de costes sin entrar en pérdidas.",
+      "lecciones_clave": [
+        "El punto muerto es la brujula de la función productiva: te dice cuánto tienes que vender para no perder dinero y cuánto margen tienes antes de que una bajada de ventas te hunda.",
+        "Lean antes que automatización: primero elimina el desperdicio de proceso, luego aplica tecnología sobre un proceso eficiente.",
+        "Eficiencia y productividad son conceptos distintos y complementarios: la función productiva trabaja con los dos a la vez."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "Pasalia sobrevive pero sin mejora",
+      "resumen": "La empresa no entra en pérdidas pero el margen de seguridad sigue siendo muy ajustado. Sin mejoras en el proceso productivo, cualquier nueva subida de costes de materias primas los pondrá en rojo.",
+      "lecciones_clave": [
+        "Calcular el punto muerto no es suficiente: hay que usar ese dato para tomar decisiones, no solo para saber dónde estás.",
+        "La resistencia al cambio en producción tiene un coste real y medible: cada mes de inacción es un mes de oportunidad perdida."
+      ]
+    }
+  }
+}
+```

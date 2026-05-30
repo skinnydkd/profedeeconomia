@@ -1,0 +1,117 @@
+---
+asignatura: edmn-2bach
+unidad_relacionada: 5
+title: "El yogur que nadie había pedido"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "15-20 min"
+descripcion: "Una cooperativa láctea asturiana quiere lanzar un nuevo yogur. Mapa de empatía, ideación y prototipo: el proceso creativo al completo."
+competencias_clave: [CPSAA, CE, CD]
+competencias_especificas: [CE3]
+estado: publicado
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Caso · Diseño creativo",
+    "titulo": "El yogur que nadie había pedido",
+    "contexto": "Lácteos Pedrosa es una cooperativa de 12 ganaderos en el Principado de Asturias. Llevan 40 años vendiendo leche a granel a Asturiana de Productos Lácteos. El contrato se acaba y Asturiana no lo renueva. Tienen que crear un producto propio en menos de 6 meses o cerrar. El gerente, Marcos, propone lanzar un yogur artesano. Tienen 18.000 € para el proyecto.",
+    "kpi_inicial": { "caja": 18000, "clientes": 0, "reputacion": 6 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisión 1 — Entender al cliente antes de diseñar",
+      "situacion": "Antes de definir el yogur, hay que entender quién lo va a comprar. Marcos propone tres aproximaciones: hacer un focus group en Oviedo (1.500 €), construir un mapa de empatía a partir de entrevistas en tiendas del barrio (gratuito), o lanzar directamente y ver qué pasa.",
+      "opciones": [
+        {
+          "label": "Mapa de empatía: entrevistas en tiendas, gratis y con datos reales",
+          "kpi_delta": { "caja": -200, "clientes": 0, "reputacion": 1 },
+          "feedback": "El mapa de empatía te permite reconstruir qué piensa, siente, ve, oye, dice y hace tu cliente. Descubres que el comprador de yogur artesano en Asturias no es el turista (como esperabais) sino el habitante urbano de 35-55 años que ya compra en mercados de productores. Cambia toda la estrategia de distribución.",
+          "next": "n2"
+        },
+        {
+          "label": "Focus group: más estructurado y con datos cualitativos profundos",
+          "kpi_delta": { "caja": -1500, "clientes": 0, "reputacion": 2 },
+          "feedback": "El focus group da datos cualitativos ricos pero tiene un sesgo clásico: la gente dice lo que cree que quieres oír, no necesariamente lo que hace. En design thinking, la observación directa suele superar a la pregunta directa. Aun así, el focus group confirma el mismo perfil que las entrevistas.",
+          "next": "n2"
+        },
+        {
+          "label": "Lanzamos directamente: 40 años en el sector, sabemos lo que quiere la gente",
+          "kpi_delta": { "caja": -3000, "clientes": 20, "reputacion": -1 },
+          "feedback": "Lanzar sin entender al cliente es el error más caro del diseño de producto. La experiencia en producción no te da conocimiento del comportamiento del consumidor final: son cosas distintas. 40 años vendiendo leche a granel no te dicen qué busca alguien en el lineal de un supermercado. Lección: lo que el cliente quiere y lo que crees que quiere casi nunca coinciden.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisión 2 — Sesión de ideación",
+      "situacion": "Ya tienes el perfil del cliente. Ahora hay que generar ideas para el producto. El equipo de Marcos tiene cuatro ganaderos voluntarios. Propones una sesión de ideación de 3 horas. ¿Qué técnica usas?",
+      "opciones": [
+        {
+          "label": "SCAMPER sobre el yogur de siempre: ¿qué puedes sustituir, combinar, adaptar?",
+          "kpi_delta": { "caja": -100, "clientes": 0, "reputacion": 1 },
+          "feedback": "SCAMPER es una técnica de creatividad estructurada ideal para productos existentes: Sustituir (leche de cabra en lugar de vaca), Combinar (yogur + mermelada de arándano local), Adaptar (tarro de cerámica reutilizable), Modificar (sin azucar añadido), Poner en otro uso (como aderezo de cocina), Eliminar (sin conservantes), Reordenar (de formato individual a formato familiar). Genera 18 variantes en 3 horas.",
+          "next": "n3"
+        },
+        {
+          "label": "Brainwriting: cada uno escribe ideas en silencio y luego las combina el grupo",
+          "kpi_delta": { "caja": -100, "clientes": 0, "reputacion": 1 },
+          "feedback": "Brainwriting evita el sesgo del brainstorming oral (la primera idea dicha suele dominar la conversación). En un grupo de ganaderos poco habituados a hablar en público, el silencio inicial libera más ideas auténticas. El resultado es un mapa de combinaciones que incluye una idea inesperada: yogur para venta en hospitales como snack proteico.",
+          "next": "n3"
+        },
+        {
+          "label": "Lluvia de ideas libre: ponemos todo en la pizarra sin filtros",
+          "kpi_delta": { "caja": -100, "clientes": -5, "reputacion": 0 },
+          "feedback": "El brainstorming clásico funciona pero tiene sus límites: las ideas más tímidas se quedan sin decir y las del ganadero con más carácter dominan la sesión. Generáis ideas pero pierdes la diversidad de perspectivas. Lección: en design thinking, el método de ideación importa tanto como el resultado.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisión 3 — Del prototipo al producto final",
+      "situacion": "Tenéis una idea concreta: yogur natural de leche de vaca asturiana en tarro de vidrio reutilizable, sin azúcar añadido, con etiqueta artesanal. Hay dos formas de avanzar: prototipo barato para validar (200 tarros a mano, distribuidos en tres tiendas de Oviedo), o ir directamente a producción a escala con una envasadora.",
+      "opciones": [
+        {
+          "label": "Prototipo barato: 200 tarros hechos a mano para validar en tiendas piloto",
+          "kpi_delta": { "caja": -800, "clientes": 15, "reputacion": 3 },
+          "feedback": "Prototipado lean: haces la versión más simple posible del producto para validar la hipótesis de demanda antes de invertir en maquinaria. 200 tarros se venden en dos semanas en las tres tiendas piloto. Confirmáis que el tarro de vidrio es un diferenciador real y que el precio de 2,80 € se acepta sin problema. Con estos datos ya puedes hablar con inversores.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Producción a escala directamente: si el producto es bueno, que se note",
+          "kpi_delta": { "caja": -14000, "clientes": 80, "reputacion": 2 },
+          "feedback": "Escalar sin validar es el error más caro del diseño de producto. La envasadora cuesta 12.000 €, los tarros 2.000 € más. Vendéis 80 unidades la primera semana pero descubres que el precio de 2,80 € es caro para el canal que habéis elegido (supermercado generalista vs tienda especializada). Hubierais necesitado el prototipo para saberlo antes.",
+          "next": "final:fracaso_parcial"
+        },
+        {
+          "label": "Prototipo digital primero: página web con preventa antes de fabricar nada",
+          "kpi_delta": { "caja": -300, "clientes": 25, "reputacion": 2 },
+          "feedback": "Validación de demanda antes de producir: la preventa online con 25 pedidos en la primera semana confirma que hay mercado. Es una forma de prototipado ligero muy útil para productos físicos. El riesgo es que la experiencia online no captura bien los atributos táctiles (textura, olor) que son clave para un yogur artesano.",
+          "next": "final:exito"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "Lácteos Pedrosa lanza su primer producto propio",
+      "resumen": "El yogur en tarro de vidrio llega al mercado asturiano con 25 puntos de venta y una propuesta validada con clientes reales. El proceso creativo estructurado los ha llevado desde ganaderos de leche a granel hasta marca propia en menos de seis meses.",
+      "lecciones_clave": [
+        "El mapa de empatía no te dice qué hacer: te dice a quién hacerlo, que es más valioso.",
+        "Prototipado ligero antes de escalar no es cobardía: es el método para no perder todo el capital en una hipótesis no validada.",
+        "Las técnicas de ideación (SCAMPER, brainwriting) no son ejercicios escolares: son procedimientos que producen más y mejores ideas que la lluvia de ideas informal."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "El yogur existe pero el modelo no cuadra",
+      "resumen": "El producto es bueno pero el canal y el precio no encajan. Pedrosa tiene producto pero sin margen suficiente para crecer. La inversión en maquinaria antes de validar los deja sin caja para corregir el rumbo.",
+      "lecciones_clave": [
+        "Lanzar sin entender al cliente no es valentía emprendedora: es el camino más corto a la pérdida de capital.",
+        "Escalar antes de validar multiplica el error, no el éxito."
+      ]
+    }
+  }
+}
+```

@@ -1,0 +1,117 @@
+---
+asignatura: edmn-2bach
+unidad_relacionada: 1
+title: "La startup que nadie creyó posible"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "15-20 min"
+descripcion: "Claudio quiere lanzar una startup de software desde Murcia. Todo el mundo duda. Toma las decisiones que definirán si arranca."
+competencias_clave: [CPSAA, CE, CD]
+competencias_especificas: [CE3]
+estado: publicado
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Caso · Emprendimiento",
+    "titulo": "La startup que nadie creyó posible",
+    "contexto": "Claudio tiene 24 años, vive en Murcia y lleva dos años desarrollando una app de gestión para talleres mecánicos. Su ex jefe le dice que «en Murcia no hay mercado para eso». Su padre le pide que busque un trabajo fijo. Tiene 4.000 € ahorrados, un cliente piloto en Cartagena y el dominio registrado. Tiene que decidir si lanza, y cómo.",
+    "kpi_inicial": { "caja": 4000, "clientes": 1, "reputacion": 6 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisión 1 — ¿Lanzas o esperas?",
+      "situacion": "El cliente piloto lleva tres meses usando la app gratis y está contento. Te pide una nueva función: gestión de garantías. Desarrollarla te llevaría 6 semanas más. Podrías lanzar la versión actual ya, o esperar y lanzar con la nueva función.",
+      "opciones": [
+        {
+          "label": "Lanzo ahora con lo que tengo y cobro desde el primer día",
+          "kpi_delta": { "caja": 600, "clientes": 2, "reputacion": 1 },
+          "feedback": "Lanzar antes de la perfección es una característica del perfil emprendedor, no un defecto. El product-market fit se valida con clientes reales que pagan, no con funciones extra. Muchas startups mueren esperando el momento perfecto. Tu primer cliente te da feedback real que ningún plan recoge.",
+          "next": "n2"
+        },
+        {
+          "label": "Espero 6 semanas, lanzo con la función de garantías incluida",
+          "kpi_delta": { "caja": -500, "clientes": 0, "reputacion": 0 },
+          "feedback": "Esperar tiene un coste invisible: 6 semanas sin ingresos, sin aprendizaje de mercado y con caja bajando. La función de garantías puede ser valiosa, pero si el cliente piloto no la ha pedido urgente, quizá no era lo primero. Lección: la perfección es enemiga del progreso cuando tienes recursos limitados.",
+          "next": "n2"
+        },
+        {
+          "label": "Ofrezco al cliente piloto un contrato de pago a cambio de financiar el desarrollo",
+          "kpi_delta": { "caja": 1500, "clientes": 1, "reputacion": 2 },
+          "feedback": "Financiación con cliente ancla: el taller paga por adelantado a cambio de una función a medida. Es una de las formas más saludables de validar la demanda y financiar el desarrollo al mismo tiempo. Funciona solo si el cliente confía en ti, y el tuyo sí confía.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisión 2 — El primer empleado",
+      "situacion": "Tu primo Álvaro, técnico en informática, se ofrece a trabajar contigo a mitad de sueldo (800 €/mes) a cambio de un 10 % de la empresa. Un programador freelance te ofrece lo mismo sin participación por 1.500 €/mes. La empresa empieza a captar atención: tienes tres talleres interesados.",
+      "opciones": [
+        {
+          "label": "Contrato a mi primo: ahorro dinero y él se implica más",
+          "kpi_delta": { "caja": -800, "clientes": 3, "reputacion": 0 },
+          "feedback": "La mezcla de familia y participación societaria es una de las fuentes más habituales de conflicto en startups tempranas. No es imposible, pero el acuerdo tiene que estar muy bien documentado: valoración de la empresa, condiciones de salida, derechos de voto. Sin eso, el 10 % puede convertirse en un problema cara.",
+          "next": "n3"
+        },
+        {
+          "label": "Contrato al freelance: más caro pero sin atarme con participación",
+          "kpi_delta": { "caja": -1500, "clientes": 3, "reputacion": 1 },
+          "feedback": "La opción más cara a corto plazo pero más limpia en gobierno corporativo. Si la empresa crece, no tendrás que negociar participación con alguien que no lleva el mismo riesgo que tú. Lección: la estructura societaria de una empresa joven es difícil de deshacer; piénsala bien antes de comprometer equity.",
+          "next": "n3"
+        },
+        {
+          "label": "Trabajo solo por ahora, priorizo los tres clientes nuevos antes de contratar",
+          "kpi_delta": { "caja": 0, "clientes": 2, "reputacion": -1 },
+          "feedback": "Crecer sin equipo tiene un límite claro: tu tiempo. Puedes cerrar dos de los tres clientes pero el tercero se irá por falta de capacidad de respuesta. La cultura emprendedora incluye saber delegar en el momento correcto, no solo trabajar más horas.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisión 3 — El primer fracaso",
+      "situacion": "Uno de los talleres nuevos cancela antes de empezar porque acaba de firmar con un competidor nacional (una empresa grande de Madrid). El competidor ofrece la app gratis el primer año. Tienes que decidir cómo reaccionar.",
+      "opciones": [
+        {
+          "label": "Ofrezco también el primer año gratis para no perder a los otros dos",
+          "kpi_delta": { "caja": -1200, "clientes": 2, "reputacion": 0 },
+          "feedback": "Competir en precio contra una empresa con más recursos es una trampa: ellos pueden aguantar más tiempo gratis que tú. El primer fracaso no es perder un cliente, es perder la perspectiva de qué te hace diferente. Lección: el fracaso es información. La pregunta correcta no es cómo bajar el precio sino por qué el taller eligió al otro.",
+          "next": "final:fracaso_parcial"
+        },
+        {
+          "label": "Analizo por qué perdí ese cliente y refuerzo lo que me diferencia",
+          "kpi_delta": { "caja": 200, "clientes": 2, "reputacion": 2 },
+          "feedback": "Respuesta de emprendedor maduro: el fracaso es la fuente de aprendizaje más barata que existe si sabes extraerle información. Llamas al taller, preguntas qué valoraron del otro, y descubres que fue solo el precio el primer año. Decides centrarte en el servicio de soporte local que la empresa de Madrid no puede dar.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Me rindo con ese segmento y pivot hacia talleres de moto, donde no hay competidor",
+          "kpi_delta": { "caja": -300, "clientes": 1, "reputacion": 1 },
+          "feedback": "El pivot no es rendirse: es redirigir recursos hacia donde hay oportunidad real. Cambiar de segmento tiene sentido si el nuevo tiene menos competencia y demanda real, pero requiere validar de nuevo la hipótesis. Lección: pivote bien hecho es estrategia, no huida.",
+          "next": "final:fracaso_parcial"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "Claudio tiene empresa, no solo app",
+      "resumen": "Tres talleres de pago, caja positiva, y una propuesta de valor clara: soporte local frente a grandes plataformas nacionales. El fracaso del primer cliente fue la mejor clase del curso.",
+      "lecciones_clave": [
+        "El perfil emprendedor no es el que no falla, sino el que convierte cada fracaso en información accionable.",
+        "Las decisiones tempranas de estructura societaria y equipo condicionan todo lo que viene después.",
+        "Lanzar antes de la perfección con clientes reales enseña más que cualquier investigación de mercado previa."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "La app funciona, el negocio rasca",
+      "resumen": "Claudio tiene clientes pero la caja está al límite. Compite en precio en lugar de en valor y no ha encontrado aún su diferenciador real.",
+      "lecciones_clave": [
+        "Copiar las condiciones del competidor más grande es casi siempre una trampa para el emprendedor pequeño.",
+        "El fracaso solo enseña si te paras a analizarlo; ignorarlo o correr a compensarlo son los dos errores más frecuentes."
+      ]
+    }
+  }
+}
+```
