@@ -1,0 +1,117 @@
+---
+asignatura: ipe2-fp
+unidad_relacionada: 5
+title: "Validar o construir: el dilema del MVP"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "15-20 min"
+descripcion: "Tu idea parece buena pero no tienes datos reales. ¿Inviertes 2.400 € o construyes el prototipo mínimo primero?"
+competencias_clave: [CPSAA, CE, CD]
+competencias_especificas: [RA1]
+estado: publicado
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Caso · Idea a oportunidad",
+    "titulo": "Validar o construir: el dilema del MVP",
+    "contexto": "Alba (20 años, Grado Superior de Marketing y Publicidad) ha detectado un problema en los mercadillos de su ciudad: los vendedores no tienen manera de gestionar reservas online ni de comunicar qué productos tienen ese fin de semana. Alba lleva 3 semanas entrevistando a 8 vendedores. Todos dicen que 'sería muy útil'. Un desarrollador le ha presupuestado una app básica en 2.400 €. Sus ahorros son 800 €. Su madre está dispuesta a prestarle los 1.600 € restantes. Tiene que decidir si encarga la app o si valida más antes de invertir.",
+    "kpi_inicial": { "dinero_disponible": 800, "validacion_real": 2, "confianza_hipotesis": 6 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisión 1 — ¿Es suficiente validación decir que 'sería útil'?",
+      "situacion": "Los 8 vendedores entrevistados han dicho que el sistema 'sería muy útil' y que 'lo usarían'. Alba interpreta eso como señal verde para encargar la app. Antes de llamar al desarrollador, su compañero de clase le pregunta: '¿Alguno de ellos ha pagado algo, reservado una demo o dado su correo?'",
+      "opciones": [
+        {
+          "label": "Con 8 de 8 diciendo que sí, la validación es más que suficiente. Encargo la app.",
+          "kpi_delta": { "dinero_disponible": -2400, "validacion_real": 1, "confianza_hipotesis": 2 },
+          "feedback": "8 de 8 diciendo 'sería útil' es el error clásico de The Mom Test. La gente es amable: cuando alguien te pregunta si le parece buena tu idea, la mayoría dice que sí para no herir. Lo que importa no es lo que dicen que harían: es lo que hacen cuando se lo pones delante. Sin compromiso concreto (correo, pago de señal, reserva) la validación verbal es casi inútil como predictor de conversión real.",
+          "next": "n2"
+        },
+        {
+          "label": "Mi compañero tiene razón. Necesito compromiso real antes de gastar 2.400 €. Diseño una prueba más barata primero.",
+          "kpi_delta": { "dinero_disponible": 0, "validacion_real": 3, "confianza_hipotesis": 3 },
+          "feedback": "Decisión correcta. La distinción entre 'lo usaría' y 'lo uso' es la diferencia entre una hipótesis y una oportunidad. Una prueba barata puede ser: una hoja de Google Sheets compartida con los vendedores que simule el sistema, un grupo de WhatsApp de reservas manual, o un formulario de Typeform con el que gestiones las reservas a mano durante 3 fines de semana. Si los vendedores usan eso, la hipótesis se consolida con 0 euros de desarrollo.",
+          "next": "n2"
+        },
+        {
+          "label": "Pregunto al desarrollador si puede hacer una versión más barata para probar primero",
+          "kpi_delta": { "dinero_disponible": -600, "validacion_real": 2, "confianza_hipotesis": 2 },
+          "feedback": "No está mal, pero una versión 'más barata' del desarrollador puede seguir costando 600-900 € y sigue siendo construir antes de validar. El punto de The Mom Test es que la validación mínima a menudo no requiere código: requiere observar comportamiento real. Antes de ir al desarrollador, agota las opciones de prototipo sin tecnología.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisión 2 — El experimento de validación",
+      "situacion": "Alba diseña un prototipo manual: crea un formulario de Typeform para que los compradores reserven productos, y gestiona las notificaciones a los vendedores por WhatsApp. Lo propone a 3 de los 8 vendedores para probarlo durante 2 fines de semana. Resultado: 1 vendedor lo usa activamente (12 reservas en 2 semanas), 1 lo prueba y abandona, y 1 dice que 'no ha tenido tiempo de configurarlo'.",
+      "opciones": [
+        {
+          "label": "Con 1 de 3 vendedores activo ya tengo señal suficiente. Encargo la app.",
+          "kpi_delta": { "dinero_disponible": -2400, "validacion_real": 2, "confianza_hipotesis": 2 },
+          "feedback": "1 de 3 es una señal, pero no es suficiente para invertir 2.400 €. El vendedor que funciona puede ser un early adopter atípico. El que abandonó y el que 'no tuvo tiempo' son señales de fricción real en la adopción. Antes de invertir, conviene entender por qué el segundo abandonó: ¿el flujo era complicado? ¿el comprador no encontraba el formulario? Esa fricción debe resolverse antes de construir.",
+          "next": "n3"
+        },
+        {
+          "label": "Los resultados son mixtos. Entrevisto al vendedor que abandonó para entender la fricción antes de decidir.",
+          "kpi_delta": { "dinero_disponible": 0, "validacion_real": 4, "confianza_hipotesis": 2 },
+          "feedback": "Exactamente correcto. El vendedor que abandonó es la información más valiosa del experimento. Los datos del que funciona confirman que hay interés; los datos del que abandona revelan dónde falla la propuesta. Si la fricción es de interfaz (el Typeform era confuso) la app puede resolverlo. Si es de hábito ('los compradores no reservan online en mercadillos') la app no va a cambiar eso.",
+          "next": "n3"
+        },
+        {
+          "label": "Amplío el experimento a los 8 vendedores antes de decidir. Más datos, mejor decisión.",
+          "kpi_delta": { "dinero_disponible": 0, "validacion_real": 3, "confianza_hipotesis": 1 },
+          "feedback": "Más datos ayudan, pero el problema no es el tamaño de la muestra: es entender por qué falla, no cuántas veces falla. Ampliar el experimento sin haber entendido la fricción del segundo vendedor puede dar más datos del mismo problema sin revelar la causa. El siguiente paso es cualitativo (hablar con quien abandonó), no cuantitativo (más vendedores).",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisión 3 — El pivote",
+      "situacion": "La entrevista con el vendedor que abandonó revela que el problema no es la gestión de reservas: es la visibilidad de qué productos tiene cada stand ese fin de semana. Los compradores le preguntan por Instagram si tiene 'las bolsas de mimbre del mes pasado', pero no hay forma de que vean el stock actualizado. La reserva es secundaria; lo primario es el catálogo visual actualizado. Alba tiene ahora 800 € intactos y 2 semanas de trabajo de campo.",
+      "opciones": [
+        {
+          "label": "Mi idea original era las reservas. Sigo con eso y asumo que el catálogo es un problema menor.",
+          "kpi_delta": { "dinero_disponible": -2400, "validacion_real": 0, "confianza_hipotesis": -1 },
+          "feedback": "Enamorarte de tu solución original cuando el trabajo de campo te dice que el problema real es otro es el error que mata más startups. Construir la app de reservas cuando el problema principal es el catálogo visual significa construir la solución equivocada con dinero real. Descartar datos de campo porque contradicen la hipótesis inicial es el opuesto de la mentalidad emprendedora.",
+          "next": "final:fracaso_parcial"
+        },
+        {
+          "label": "Pivoto: diseño un perfil de Instagram con catálogo visual semanal para los vendedores y lo gestiono yo como servicio. MVP de cero euros.",
+          "kpi_delta": { "dinero_disponible": 0, "validacion_real": 5, "confianza_hipotesis": 4 },
+          "feedback": "Pivote brillante. El catálogo visual semanal en Instagram es un MVP de cero euros: Alba gestiona el contenido de 3-4 vendedores, cobra por ello (servicio de community management local) y, si funciona, construye después el sistema de reservas como capa adicional. Ha pasado de 'app de 2.400 €' a 'servicio de 0 € de coste fijo que genera ingresos desde el primer mes'. Eso es pensar como emprendedora.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Busco un socio técnico que construya el catálogo visual antes que la app de reservas, sin coste inicial",
+          "kpi_delta": { "dinero_disponible": 0, "validacion_real": 2, "confianza_hipotesis": 2 },
+          "feedback": "Buscar un co-fundador técnico para validar más rápido puede ser correcto, pero añade complejidad societaria y de dependencia antes de tener ingresos. Si el MVP del catálogo visual lo puede gestionar Alba sola con herramientas existentes (Instagram, Google Sheets), traer un socio técnico ahora es una solución más cara al problema. La regla: añade socios cuando el problema lo requiere, no cuando la solución es más cómoda con ayuda.",
+          "next": "final:fracaso_parcial"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "El mercadillo digital que nadie había montado",
+      "resumen": "Validaste con 0 euros que el problema real era el catálogo visual, pivotaste antes de gastar nada y creaste un servicio de community management local que genera ingresos desde el primer mes. En 3 meses tienes 5 vendedores de clientes y 650 €/mes recurrentes.",
+      "lecciones_clave": [
+        "Los datos de campo del que abandona son más valiosos que los del que funciona: revelan la fricción real.",
+        "Pivotar no es fracasar: es usar la información del mercado para no gastar dinero en la solución equivocada.",
+        "Un MVP de cero euros que genera ingresos es siempre mejor que una app de 2.400 € que resuelve el problema equivocado."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "La app construida, el mercado no convencido",
+      "resumen": "Invertiste los 2.400 € en la app de reservas. A los 2 meses tienes 2 vendedores activos y 8 que 'lo van a probar'. Los ingresos no cubren ni el hosting. El problema real —el catálogo visual— sigue sin resolverse y los vendedores empiezan a preguntar si la app 'también puede enseñar los productos'.",
+      "lecciones_clave": [
+        "Construir antes de validar el problema real es el error más caro del emprendimiento amateur.",
+        "Cuando el trabajo de campo contradice la hipótesis inicial, es una victoria: te ahorra gastar en lo equivocado."
+      ]
+    }
+  }
+}
+```

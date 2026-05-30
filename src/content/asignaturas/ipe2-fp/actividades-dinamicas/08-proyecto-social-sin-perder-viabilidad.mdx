@@ -1,0 +1,117 @@
+---
+asignatura: ipe2-fp
+unidad_relacionada: 8
+title: "Impacto social sin hundir la cuenta de resultados"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "15-20 min"
+descripcion: "Tienes que diseñar el proyecto social del módulo. La pregunta: ¿cómo generas impacto real sin que la empresa quiebre?"
+competencias_clave: [CPSAA, CE, CD]
+competencias_especificas: [RA1]
+estado: publicado
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Caso · Emprendimiento social",
+    "titulo": "Impacto social sin hundir la cuenta de resultados",
+    "contexto": "Nora (21 años, Grado Superior de Integración Social) quiere montar una empresa social de cáterin saludable para comedores de entidades de atención a la diversidad funcional en su ciudad. Hay 4 entidades que expresan interés. El problema que detecta: los comedores de estas entidades contratan a empresas de cáterin convencional que no adaptan bien los menús (textura, restricciones dietéticas específicas, presentación). La solución que propone: menús adaptados con ingredientes de temporada, preparados por personas con trastorno del espectro autista (TEA) en un obrador propio como parte de su programa de inserción laboral. Nora calcula que necesita 14.000 € para arrancar (obrador pequeño, equipamiento de cocina, certificaciones). Dos fuentes de financiación disponibles: una subvención autonómica de economía social (hasta 8.000 €, plazo de resolución 4 meses) y un préstamo de microcrédito ENISA de hasta 25.000 € (tipo fijo 3,5 %).",
+    "kpi_inicial": { "viabilidad_financiera": 4, "impacto_social": 8, "riesgo_arranque": 7 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisión 1 — Estructura de financiación",
+      "situacion": "Nora tiene que cubrir 14.000 € de inversión inicial. La subvención tarda 4 meses en resolverse y no está garantizada. El microcrédito ENISA tarda 6-8 semanas y tiene una probabilidad de aprobación alta si el plan es sólido. Puede combinar las dos o elegir una. ¿Cuál es la estructura más prudente?",
+      "opciones": [
+        {
+          "label": "Pido solo la subvención de 8.000 € y espero 4 meses para ver si me la conceden antes de pedir el microcrédito",
+          "kpi_delta": { "viabilidad_financiera": -2, "riesgo_arranque": 3, "impacto_social": 0 },
+          "feedback": "Esperar 4 meses la resolución de la subvención antes de activar la otra fuente retrasa el arranque y no cubre la inversión completa (8.000 € < 14.000 €). Si la subvención se deniega, Nora pierde 4 meses. La estrategia correcta es activar el microcrédito (aprobación en 6-8 semanas) para cubrir el 100 % de la inversión, y solicitar la subvención en paralelo como reducción retroactiva de la deuda si se concede.",
+          "next": "n2"
+        },
+        {
+          "label": "Pido el microcrédito ENISA para el 100 % (14.000 €) y solicito la subvención en paralelo como reducción de deuda si se concede",
+          "kpi_delta": { "viabilidad_financiera": 3, "riesgo_arranque": -2, "impacto_social": 1 },
+          "feedback": "Estrategia correcta. El microcrédito cubre la inversión completa en 6-8 semanas y permite arrancar. La subvención, si se concede 4 meses después, reduce la deuda con ENISA. Con un tipo del 3,5 %, el coste de financiar los 14.000 € durante 6 meses mientras espera la subvención es unos 245 €: un coste razonable para no retrasar el arranque ni depender de una resolución incierta.",
+          "next": "n2"
+        },
+        {
+          "label": "Busco un inversor privado de impacto que ponga los 14.000 € a cambio de participación en la empresa",
+          "kpi_delta": { "viabilidad_financiera": 2, "riesgo_arranque": 1, "impacto_social": -1 },
+          "feedback": "La inversión de impacto privada puede funcionar, pero en una empresa social de 14.000 € ceder participación a cambio de capital es renunciar al control de la misión social. Si el inversor tiene expectativas de rentabilidad económica, puede presionar para reducir el programa de inserción TEA (que es costoso) en beneficio del margen. El microcrédito público no exige participación y es más compatible con la misión.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisión 2 — El programa de inserción TEA",
+      "situacion": "Nora ha previsto que el 40 % del equipo de cocina serán personas con TEA en programa de inserción, pagadas según convenio (900 €/mes) con apoyo de una técnica de integración (1.200 €/mes). Esto eleva el coste de personal un 35 % respecto a un cáterin convencional. Dos de las 4 entidades interesadas dicen que el precio de Nora es 'un 20-25 % más caro que el convencional'. ¿Cómo gestiona Nora este gap de precio?",
+      "opciones": [
+        {
+          "label": "Bajo el precio un 15 % reduciendo el programa de inserción TEA a la mitad: menos impacto social pero más competitividad",
+          "kpi_delta": { "viabilidad_financiera": 2, "impacto_social": -4, "riesgo_arranque": -1 },
+          "feedback": "Reducir el impacto social para mejorar la competitividad convierte la empresa social en una empresa convencional con mejor marketing. Si el programa de inserción TEA es la razón de ser del proyecto, sacrificarlo para bajar precios destruye la propuesta de valor diferencial. Además, las entidades con misión social suelen valorar explícitamente el impacto: un cáterin con programa TEA tiene un argumento de compra que el convencional no puede replicar.",
+          "next": "n3"
+        },
+        {
+          "label": "Explico el doble resultado (menú adaptado + inserción laboral) y solicito a las entidades que paguen el sobreprecio como inversión en impacto social medible",
+          "kpi_delta": { "viabilidad_financiera": 1, "impacto_social": 3, "riesgo_arranque": -1 },
+          "feedback": "Estrategia correcta para el cliente correcto. Las entidades de atención a la diversidad funcional son exactamente el tipo de cliente que puede y quiere pagar un sobreprecio por un impacto medible. Nora debe cuantificar el impacto (horas de inserción laboral, personas empleadas, reducción de dependencia de ayudas públicas) y presentarlo como parte de la propuesta, no como excusa del precio. La transparencia del 'triple bottom line' es la propuesta de valor.",
+          "next": "n3"
+        },
+        {
+          "label": "Busco subvenciones adicionales al programa de inserción para que las entidades no noten el sobreprecio",
+          "kpi_delta": { "viabilidad_financiera": 1, "impacto_social": 2, "riesgo_arranque": 2 },
+          "feedback": "Cubrir el gap con subvenciones puede funcionar, pero crea dependencia estructural de ayudas públicas para sostener la viabilidad. Si la subvención no se renueva o se retrasa, el modelo no se sostiene. Las empresas sociales más sólidas diseñan su modelo para que sea viable sin subvenciones y usan estas como acelerador, no como base. El objetivo debe ser que el impacto social esté incorporado al precio, no subsidiado externamente.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisión 3 — El ODS y la forma jurídica",
+      "situacion": "Nora tiene que presentar el proyecto ante la Cámara de Comercio local para acceder a una línea de apoyo al emprendimiento social. Le piden: (a) qué ODS trabaja el proyecto con evidencias medibles y (b) qué forma jurídica elige y por qué.",
+      "opciones": [
+        {
+          "label": "Digo que el proyecto contribuye a los 17 ODS porque la alimentación saludable, el trabajo decente y la sostenibilidad están todos relacionados",
+          "kpi_delta": { "impacto_social": -3, "viabilidad_financiera": -1, "riesgo_arranque": 1 },
+          "feedback": "Declarar 17 ODS es tan poco creíble como una propuesta de valor que vale para todos. La Cámara de Comercio y cualquier evaluador de impacto sabe que 'contribuye a los 17 ODS' es marketing vacío. Nora pierde credibilidad ante los evaluadores y señaliza que no ha profundizado en el análisis de impacto. El social washing se detecta exactamente así.",
+          "next": "final:fracaso_parcial"
+        },
+        {
+          "label": "Identifico 2 ODS principales con métricas concretas: ODS 8 (trabajo decente, X personas con TEA empleadas) y ODS 3 (salud, X menús adaptados/mes). Elijo cooperativa de iniciativa social por la primacía de personas sobre capital.",
+          "kpi_delta": { "impacto_social": 4, "viabilidad_financiera": 2, "riesgo_arranque": -2 },
+          "feedback": "Respuesta técnicamente sólida. Dos ODS con métricas concretas y verificables demuestra rigor en el análisis de impacto. La cooperativa de iniciativa social (Ley 5/2011) es la forma jurídica más coherente: primacía de personas sobre capital, ventajas fiscales en IS, y la regla de reparto de resultados según trabajo aportado, no según capital. La Cámara reconoce la coherencia entre misión, forma jurídica y propuesta de impacto.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Elijo SL porque es más flexible y fácil de gestionar, y añado los ODS como declaración de principios en los estatutos",
+          "kpi_delta": { "impacto_social": 0, "viabilidad_financiera": 1, "riesgo_arranque": -1 },
+          "feedback": "La SL es la forma jurídica más flexible, pero no la más coherente con una empresa social cuya propuesta de valor es la inserción laboral. Una SL no tiene la primacía de personas sobre capital que define la economía social (Ley 5/2011), y los inversores en una SL tienen incentivos para maximizar el margen reduciendo el programa de inserción TEA. Añadir ODS en los estatutos de una SL no tiene valor jurídico ni de impacto. La coherencia entre forma y misión importa.",
+          "next": "final:fracaso_parcial"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "La empresa social viable y reconocida",
+      "resumen": "Diseñaste una estructura de financiación que no depende de una sola fuente, argumentaste el sobreprecio con impacto medible ante el cliente correcto y presentaste un análisis de ODS riguroso con la forma jurídica coherente. La Cámara aprueba el apoyo y las 4 entidades firman contratos.",
+      "lecciones_clave": [
+        "El microcrédito público como financiación base + subvención como reducción de deuda es más prudente que esperar una resolución incierta.",
+        "El doble resultado (producto + inserción laboral) se vende al cliente correcto como propuesta de valor, no como excusa del precio.",
+        "Dos ODS con métricas concretas son más creíbles que 17 ODS declarados sin medición."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "El proyecto social con credibilidad erosionada",
+      "resumen": "La Cámara pone en duda el rigor del análisis de impacto y pide un plan de métricas más concreto. Las entidades interesadas esperan. Nora tiene 3 semanas para reformular la propuesta de ODS y la estructura societaria.",
+      "lecciones_clave": [
+        "El social washing se detecta fácilmente y destruye la credibilidad ante evaluadores e inversores sociales.",
+        "La forma jurídica debe ser coherente con la misión, no elegirse por comodidad operativa."
+      ]
+    }
+  }
+}
+```

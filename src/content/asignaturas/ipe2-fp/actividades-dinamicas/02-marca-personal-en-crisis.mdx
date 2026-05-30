@@ -1,0 +1,117 @@
+---
+asignatura: ipe2-fp
+unidad_relacionada: 2
+title: "Tu marca personal te precede"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "15-20 min"
+descripcion: "Un reclutador encuentra contenido comprometedor de hace 4 años. Tienes 48 horas para gestionar la crisis."
+competencias_clave: [CPSAA, CE, CD]
+competencias_especificas: [RA1]
+estado: publicado
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Caso · Marca personal",
+    "titulo": "Tu marca personal te precede",
+    "contexto": "Marco acaba de pasar la primera entrevista en DATAFLOW S.A., una empresa de análisis de datos que busca un técnico de soporte. El proceso va bien: buen CV, buena primera llamada. Ese mismo día recibe un correo de RRHH: 'Hemos revisado tu presencia online y nos gustaría hablar de algunas publicaciones de tu perfil de Twitter/X de hace 4 años.' Marco recuerda que a los 17 usaba esa cuenta para comentarios de fútbol, algunos bastante agresivos. Tiene 48 horas para decidir qué hace.",
+    "kpi_inicial": { "reputacion_digital": 4, "coherencia_perfil": 6, "confianza_reclutador": 7 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisión 1 — ¿Qué hago con la cuenta antigua?",
+      "situacion": "Marco tiene la cuenta de Twitter de hace 4 años todavía activa, con 340 tweets, algunos con lenguaje inapropiado. Puede borrar tweets concretos, privatizar la cuenta o eliminarla. También puede no hacer nada y esperar a ver qué dice RRHH.",
+      "opciones": [
+        {
+          "label": "No hago nada, lo de hace 4 años no es relevante y lo explicaré si me preguntan",
+          "kpi_delta": { "reputacion_digital": -1, "coherencia_perfil": 0, "confianza_reclutador": -2 },
+          "feedback": "Esperar pasivamente a que RRHH marque los tweets concretos te pone en posición defensiva. Si ya han encontrado el contenido y te han avisado, quiere decir que les preocupa. No actuar antes de la segunda reunión transmite que no gestionas tu huella digital de forma proactiva. En marca personal, la inacción también es una señal.",
+          "next": "n2"
+        },
+        {
+          "label": "Borro los tweets inapropiados esta noche y privatizo la cuenta antigua",
+          "kpi_delta": { "reputacion_digital": 2, "coherencia_perfil": 1, "confianza_reclutador": 0 },
+          "feedback": "Acción correcta y razonable: eliminar contenido que ya no te representa y que puede perjudicarte. Privatizar en lugar de borrar la cuenta completa es la opción más limpia. Atención: si RRHH ya tiene capturas de pantalla, borrar después del aviso puede parecer que intentas ocultar algo. Lo importante es cómo lo explicas en la siguiente reunión.",
+          "next": "n2"
+        },
+        {
+          "label": "Ejercito el derecho al olvido ante la AEPD para que Google desindexe la cuenta antes de la reunión",
+          "kpi_delta": { "reputacion_digital": 1, "coherencia_perfil": 1, "confianza_reclutador": 1 },
+          "feedback": "El derecho al olvido (RGPD, art. 17) te ampara para solicitar la supresión de datos personales que ya no son pertinentes. El proceso tarda semanas o meses, así que no resolverá el problema en 48 horas. Pero tomar esa acción demuestra que conoces tus derechos y eres proactivo con tu identidad digital. Combínalo con privatizar la cuenta ahora.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisión 2 — La segunda reunión",
+      "situacion": "RRHH le muestra dos capturas: un comentario agresivo sobre un árbitro y un debate político con insultos. Marco tiene 19 años ahora y eso fue a los 15-16. El reclutador le pregunta directamente: '¿Cómo encajan esas publicaciones con los valores de respeto y trabajo en equipo que buscamos?'",
+      "opciones": [
+        {
+          "label": "Me pongo a la defensiva: 'Era menor, es de hace 4 años, no tiene nada que ver con el trabajo'",
+          "kpi_delta": { "confianza_reclutador": -3, "coherencia_perfil": -1, "reputacion_digital": 0 },
+          "feedback": "Tienes razón en el fondo, pero la forma es el problema. Ponerse a la defensiva ante una pregunta de valores transmite que no has reflexionado sobre el asunto y que reaccionas con hostilidad al feedback. El reclutador no busca que te autoflageles: busca que muestres madurez y capacidad de autocrítica.",
+          "next": "n3"
+        },
+        {
+          "label": "Reconozco que ese lenguaje no me representa hoy, explico el contexto (menor, fútbol) y describo cómo ha evolucionado mi criterio",
+          "kpi_delta": { "confianza_reclutador": 3, "coherencia_perfil": 2, "reputacion_digital": 1 },
+          "feedback": "Respuesta madura. Reconocer sin excusarse en exceso, contextualizar y mostrar evolución personal es exactamente lo que busca un reclutador cuando hace esta pregunta. No pretende condenarte por lo que publicaste a los 15: quiere ver cómo gestionas la incomodidad y si eres capaz de autoevaluarte. Esta respuesta te diferencia positivamente.",
+          "next": "n3"
+        },
+        {
+          "label": "Pido disculpas repetidamente y prometo borrar todo el contenido antiguo esta misma noche",
+          "kpi_delta": { "confianza_reclutador": 0, "coherencia_perfil": 0, "reputacion_digital": 0 },
+          "feedback": "Las disculpas excesivas y las promesas apresuradas transmiten nerviosismo, no seguridad. La disculpa debe ser una vez, breve y sincera. Lo que añade valor no es la promesa de borrar contenido (que deberías haber hecho antes) sino la reflexión sobre el aprendizaje. Demasiada contrición puede parecer tan poco maduro como la defensiva.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisión 3 — La propuesta de valor profesional",
+      "situacion": "El episodio de la cuenta antigua está superado. El reclutador cambia de tema y pide a Marco que explique en dos minutos por qué debería contratarle a él y no a los otros 4 finalistas, todos con el mismo ciclo. Marco tiene un repositorio de GitHub con 3 proyectos propios y un certificado AWS Cloud Practitioner que el resto no tiene.",
+      "opciones": [
+        {
+          "label": "Digo que soy trabajador, responsable y me adapto bien a los equipos",
+          "kpi_delta": { "coherencia_perfil": -1, "confianza_reclutador": -1, "reputacion_digital": 0 },
+          "feedback": "Trabajador, responsable y adaptable: exactamente lo que dicen todos los candidatos. Son virtudes que nadie puede verificar en ese momento y que no diferencian en absoluto. Sin evidencias concretas, la propuesta de valor se convierte en ruido. Un reclutador con 5 candidatos iguales necesita algo tangible.",
+          "next": "final:fracaso_parcial"
+        },
+        {
+          "label": "Presento mi propuesta de valor: GitHub con 3 proyectos publicados + certificación AWS que los demás no tienen, y explico qué resuelve cada proyecto",
+          "kpi_delta": { "coherencia_perfil": 3, "confianza_reclutador": 3, "reputacion_digital": 2 },
+          "feedback": "Propuesta de valor concreta, verificable y diferenciada. El GitHub es un portfolio que demuestra lo que el CV solo afirma. La certificación AWS es una ventaja directa para el puesto. Decir qué resuelve cada proyecto convierte las líneas del CV en evidencias de capacidad. Eso es marca personal coherente: CV + portfolio + presencia digital contando la misma historia.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Menciono el GitHub pero no lo tengo preparado para enseñarlo en la reunión",
+          "kpi_delta": { "coherencia_perfil": 0, "confianza_reclutador": 0, "reputacion_digital": 0 },
+          "feedback": "Medio bien. Señalar el portfolio es correcto, pero no tenerlo listo para mostrar en el momento en que más importa reduce el impacto. En una segunda entrevista con 4 finalistas, la preparación es parte de la demostración. Tener el enlace del GitHub en la pantalla compartida, con los proyectos abiertos, es la diferencia entre 'tengo algo' y 'aquí está exactamente lo que sé hacer'.",
+          "next": "final:fracaso_parcial"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "La marca personal coherente gana la oferta",
+      "resumen": "Gestionaste la crisis de reputación con madurez, respondiste con autocrítica honesta y presentaste una propuesta de valor concreta y verificable. DATAFLOW te envía la oferta formal al día siguiente.",
+      "lecciones_clave": [
+        "La huella digital se audita antes de buscar empleo, no cuando un reclutador ya la ha encontrado.",
+        "Una crisis de reputación se gestiona con autocrítica honesta y contextualización, no con defensividad ni disculpas excesivas.",
+        "La propuesta de valor diferencia cuando es concreta, verificable y no la podría firmar cualquier otro candidato."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "Proceso abierto pero sin ventaja",
+      "resumen": "Superaste la crisis de la cuenta antigua pero no te diferenciaste en el momento decisivo. DATAFLOW sigue evaluando a otros candidatos. Tienes una semana para enviar el portfolio completo antes de que decidan.",
+      "lecciones_clave": [
+        "Gestionar bien un error pasado no es suficiente: la propuesta de valor tiene que ser concreta en el momento que importa.",
+        "Un portfolio sin preparar es casi peor que no tenerlo: crea expectativa sin entregarla."
+      ]
+    }
+  }
+}
+```

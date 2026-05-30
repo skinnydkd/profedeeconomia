@@ -1,0 +1,117 @@
+---
+asignatura: ipe2-fp
+unidad_relacionada: 7
+title: "Pivotar el MVP o insistir: 300 € en juego"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "15-20 min"
+descripcion: "Tu puesto piloto en el mercadillo lleva 3 fines de semana sin cubrir el punto muerto. Los datos dicen algo."
+competencias_clave: [CPSAA, CE, CD]
+competencias_especificas: [RA1]
+estado: publicado
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Caso · Marketing y validación",
+    "titulo": "Pivotar el MVP o insistir: 300 € en juego",
+    "contexto": "Dani (21 años, Grado Superior de Imagen Personal) ha montado un puesto piloto de manicura express en un mercadillo de fin de semana de su ciudad. El objetivo era validar si el servicio de 15 minutos a 12 € funciona como MVP antes de alquilar un local. Ha invertido 300 € en materiales y el permiso del mercado. Lleva 3 fines de semana (6 días de puesto). Los datos: 48 personas se han acercado, 11 han comprado (23 % de conversión), 4 han repetido. Punto muerto: 18 servicios por jornada para cubrir costes variables. Media real: 11/jornada. El puesto cierra con pérdidas de 35-40 € cada fin de semana.",
+    "kpi_inicial": { "servicios_vendidos": 11, "tasa_conversion": 23, "punto_muerto_distancia": -7 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisión 1 — ¿Qué dicen los datos?",
+      "situacion": "Dani revisa los números antes de decidir qué hace el próximo fin de semana. El punto muerto es 18 servicios/jornada y la media es 11. La tasa de conversión es 23 %. 4 de 11 compradores han repetido (36 % de repetición). ¿Cuál es el diagnóstico más correcto?",
+      "opciones": [
+        {
+          "label": "El negocio no funciona: 3 semanas de pérdidas confirman que la idea es mala. Hay que cerrar.",
+          "kpi_delta": { "servicios_vendidos": 0, "tasa_conversion": 0, "punto_muerto_distancia": 0 },
+          "feedback": "3 semanas de datos en un MVP de validación no son suficientes para concluir que la idea es mala. Lo que dicen los datos es más matizado: la tasa de repetición (36 %) es muy alta y sugiere que quienes compran valoran el servicio. El problema puede ser de tráfico (pocos se acercan), de precio, de hora del mercadillo o de comunicación. Cerrar ahora es perder información que aún no has recogido.",
+          "next": "n2"
+        },
+        {
+          "label": "El producto gusta (36 % de repetición) pero el volumen es insuficiente. El problema es atraer más gente al puesto.",
+          "kpi_delta": { "tasa_conversion": 3, "servicios_vendidos": 2, "punto_muerto_distancia": -2 },
+          "feedback": "Diagnóstico correcto. La tasa de repetición del 36 % es una señal positiva muy fuerte en un MVP: de cada 3 compradores, 1 vuelve. Eso valida el producto. El problema no es la propuesta de valor, es el canal: no llegan suficientes personas al puesto. El siguiente paso es investigar cómo aumentar el tráfico antes de cambiar el producto o cerrar.",
+          "next": "n2"
+        },
+        {
+          "label": "El precio está mal: 12 € es demasiado caro para un mercadillo. Si bajo a 9 €, vendo más.",
+          "kpi_delta": { "tasa_conversion": 2, "servicios_vendidos": 3, "punto_muerto_distancia": -3 },
+          "feedback": "Bajar el precio puede aumentar la conversión, pero también el punto muerto (necesitas más servicios para cubrir los mismos costes). Si el coste variable por servicio es de 4 €, bajar a 9 € reduce el margen de contribución a 5 € frente a los 8 € actuales: necesitarías 36 servicios para cubrir los mismos costes fijos, no 18. La palanca precio es la más fácil de tocar y la más cara de equivocar.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisión 2 — Experimento de tráfico",
+      "situacion": "Dani decide atacar el problema de tráfico. Tiene tres opciones para el próximo fin de semana: (A) pegar carteles en el mercadillo el viernes, (B) publicar 3 stories de Instagram con ubicación del puesto desde el jueves, o (C) ofrecer el primer servicio gratis a quienes traigan a una amiga.",
+      "opciones": [
+        {
+          "label": "Opción A: carteles físicos en el mercadillo el viernes",
+          "kpi_delta": { "tasa_conversion": 1, "servicios_vendidos": 2, "punto_muerto_distancia": -1 },
+          "feedback": "Los carteles tienen un alcance limitado a quien ya está en el mercadillo. Es una acción de baja inversión pero también de bajo impacto: la mayoría de los visitantes del mercadillo ya saben que el puesto está ahí. Lo útil es captar gente que aún no ha venido al mercadillo. Los carteles son P de promoción para quienes ya están en el canal, no para atraer canal nuevo.",
+          "next": "n3"
+        },
+        {
+          "label": "Opción B: 3 stories de Instagram con ubicación desde el jueves",
+          "kpi_delta": { "tasa_conversion": 2, "servicios_vendidos": 4, "punto_muerto_distancia": 1 },
+          "feedback": "Acción correcta. Instagram con ubicación y contenido de producto (mostrar el proceso de manicura express) llega a personas que aún no han visitado el mercadillo. Con una cuenta de perfil de imagen personal ya construida, las stories de jueves y viernes pueden generar intención de visita el sábado. Coste: cero euros, 30 minutos. Es el canal de mayor ROI potencial para un MVP de este tipo.",
+          "next": "n3"
+        },
+        {
+          "label": "Opción C: primer servicio gratis para quien traiga a una amiga",
+          "kpi_delta": { "tasa_conversion": 3, "servicios_vendidos": 3, "punto_muerto_distancia": -2 },
+          "feedback": "El incentivo de referido es potencialmente eficaz, pero caro: si la amiga paga y la que refiere va gratis, el margen por par es 12 € en lugar de 24 €. Con 11 servicios de media, no hay margen para absorber servicios gratuitos. Puede funcionar como experimento de una semana, pero eleva el punto muerto real. Mejor probar Instagram primero (coste cero) y usar el referido solo si el tráfico sigue siendo el problema.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisión 3 — El resultado del experimento y la decisión final",
+      "situacion": "Tras publicar las stories con ubicación, el cuarto fin de semana Dani atiende a 19 personas (de 23 que se acercan, 83 % de conversión). Supera el punto muerto por primera vez. Pero ha recibido también feedback de 6 clientas: 'estaría bien que ofrecieras también diseños con nail art, no solo color liso'. El nail art requeriría 25-30 minutos por servicio, no 15. Dani tiene que decidir si amplía el servicio o mantiene el formato express.",
+      "opciones": [
+        {
+          "label": "Amplío a nail art: si lo piden 6 de 19 es una señal clara. Subo el precio a 20 € y dedico 30 minutos.",
+          "kpi_delta": { "servicios_vendidos": -3, "tasa_conversion": -2, "punto_muerto_distancia": 2 },
+          "feedback": "Ampliar el servicio cuando acabas de alcanzar el punto muerto con el formato express puede romper lo que acaba de funcionar. Con 30 minutos por servicio en lugar de 15, la capacidad máxima de la jornada se reduce a la mitad. Y subir a 20 € puede reducir la conversión. Antes de pivotar el producto, valida si las 6 que pidieron nail art pagarían 20 € por él. Preguntar no cuesta nada.",
+          "next": "final:fracaso_parcial"
+        },
+        {
+          "label": "Mantengo el express como producto principal y añado nail art como opción premium solo bajo reserva previa",
+          "kpi_delta": { "servicios_vendidos": 3, "tasa_conversion": 2, "punto_muerto_distancia": 3 },
+          "feedback": "Solución óptima. El formato express sigue siendo el producto que te dio el punto muerto. El nail art premium bajo reserva previa captura la demanda de las 6 sin sacrificar la capacidad express. La reserva previa también es una forma de validación: si nadie reserva nail art antes del fin de semana, la demanda no era tan real como parecía. Y si reservan, cobras más por el mismo tiempo.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Ignoro el feedback de nail art: el modelo express funciona, no lo cambio",
+          "kpi_delta": { "servicios_vendidos": 1, "tasa_conversion": 0, "punto_muerto_distancia": 0 },
+          "feedback": "Ignorar feedback de clientas que han pagado es perder información gratuita sobre cómo ampliar la propuesta de valor. El modelo express funciona, es cierto, y no hace falta cambiarlo. Pero una opción premium puede capturar más margen sin sacrificar el volumen. No escuchar no es prudencia: es perder datos de mercado que no has pagado.",
+          "next": "final:exito"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "El MVP supera el punto muerto y tiene una segunda línea",
+      "resumen": "Usaste los datos correctamente para diagnosticar el problema de tráfico (no de producto), experimentaste con el canal correcto (Instagram), superaste el punto muerto y añadiste una opción premium que no rompe el modelo base. En 6 semanas tienes el dato que necesitabas para decidir si alquilar un local.",
+      "lecciones_clave": [
+        "Una tasa de repetición alta valida el producto; el volumen bajo señala un problema de canal, no de propuesta de valor.",
+        "El experimento de canal correcto (Instagram, coste cero) es siempre mejor que bajar el precio como primera palanca.",
+        "Una opción premium bajo reserva captura demanda adicional sin sacrificar el modelo base validado."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "Superaste el punto muerto y luego lo perdiste",
+      "resumen": "Ampliaste el servicio justo cuando habías alcanzado el equilibrio. Con 30 minutos por servicio, la capacidad se redujo a la mitad y volviste a perder. Las 6 que pidieron nail art resulta que no estaban dispuestas a pagar 20 €.",
+      "lecciones_clave": [
+        "Validar la disposición a pagar antes de pivotar el producto es tan importante como validar el problema.",
+        "Cambiar el modelo justo cuando empieza a funcionar es un error clásico: primero consolida, luego expande."
+      ]
+    }
+  }
+}
+```
