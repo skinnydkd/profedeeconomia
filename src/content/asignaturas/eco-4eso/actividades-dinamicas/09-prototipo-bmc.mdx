@@ -1,0 +1,117 @@
+---
+asignatura: eco-4eso
+unidad_relacionada: 9
+title: "Diseña y prueba tu prototipo en 72 horas"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "10-15 min"
+descripcion: "Una idea para el instituto, un BMC a medias y tres días para saber si funciona de verdad."
+competencias_clave: [CPSAA, CE, CD]
+competencias_especificas: [CE3]
+estado: publicado
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Caso · Design Thinking y BMC",
+    "titulo": "Diseña y prueba tu prototipo en 72 horas",
+    "contexto": "Llevas tres semanas trabajando en tu proyecto para la feria de emprendimiento del instituto: una app para intercambiar libros de texto entre estudiantes del mismo centro. Has hecho el BMC pero solo tienes rellenas cuatro de las nueve casillas. La feria es en cuatro días. Tienes que decidir cómo avanzas: ¿sigues rellenando el BMC o empiezas ya a prototipar y testear con usuarios reales?",
+    "kpi_inicial": { "casillas_bmc_rellenas": 4, "usuarios_testados": 0, "dias_para_feria": 4 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisión 1 — ¿BMC completo primero o prototipo rápido ya?",
+      "situacion": "Las casillas que te faltan en el BMC son: segmentos de clientes, canales, relaciones con clientes, estructura de costes y fuentes de ingresos. Son las más importantes para saber si el modelo tiene sentido. Pero hacer el prototipo rápido te daría respuestas reales en 24 horas.",
+      "opciones": [
+        {
+          "label": "Termino el BMC entero antes de hacer nada más: sin modelo claro no tiene sentido prototipar",
+          "kpi_delta": { "casillas_bmc_rellenas": 5, "usuarios_testados": 0, "dias_para_feria": -2 },
+          "feedback": "Tardas dos días en completar el BMC con supuestos que tú mismo has inventado sin hablar con nadie. El prototipo que haces el tercer día se basa en esos supuestos, que resultan incorrectos cuando por fin preguntas a dos compañeros. Llegas a la feria con un modelo teoricamente correcto y prácticamente no validado. Lección: el BMC es una herramienta de hipótesis, no de verdades. Su valor está en usarlo para ir a preguntar, no para quedarte en casa rellenando.",
+          "next": "n2"
+        },
+        {
+          "label": "Hago un prototipo en papel en dos horas y lo pruebo con cinco compañeros esta tarde",
+          "kpi_delta": { "casillas_bmc_rellenas": 3, "usuarios_testados": 5, "dias_para_feria": 0 },
+          "feedback": "En dos horas tienes una maqueta de papel con las pantallas principales. Se la enseñas a cinco compañeros de clase. Tres de ellos señalan inmediatamente el mismo problema: no confían en que los libros que reciban estén en buen estado. La propuesta de valor que tenías no resolvía el problema real. Lo sabes en dos horas, no en dos días. Lección: el prototipo más rápido que pueda ser testado por un usuario real es siempre mejor que el plan más perfecto no testado.",
+          "next": "n2"
+        },
+        {
+          "label": "Busco en internet si ya existe algo parecido antes de seguir",
+          "kpi_delta": { "casillas_bmc_rellenas": 2, "usuarios_testados": 0, "dias_para_feria": -1 },
+          "feedback": "Encuentras tres apps similares (BookMooch, Lendico, etc.) pero ninguna para institutos españoles con libros de texto. La investigación de mercado te da contexto pero no te dice si tu versión funcionaría en tu instituto. Pierdes un día en investigación que podías haber empleado en testear. Lección: la investigación de escritorio es útil pero nunca sustituye el contacto directo con el usuario real.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisión 2 — El feedback contradice tu idea original",
+      "situacion": "Los compañeros que han testado el prototipo te dicen que el problema no es encontrar libros sino saber si están en buen estado. Proponen que la app tenga fotos obligatorias y una valoración de estado. Esto cambia toda la sección de «propuesta de valor» del BMC. Tienes que decidir si pivoteas.",
+      "opciones": [
+        {
+          "label": "No cambio nada: llevo tres semanas con esta idea y no voy a tirarla ahora",
+          "kpi_delta": { "usuarios_testados": 2, "casillas_bmc_rellenas": 0, "dias_para_feria": 0 },
+          "feedback": "En la feria, el jurado hace exactamente la misma pregunta que los compañeros: «¿cómo sé que el libro está bien?». No tienes respuesta. Lección: el apego a la idea original es el mayor obstáculo del Design Thinking. La fase de «testear» solo tiene valor si estás dispuesto a cambiar lo que el test te demuestra que no funciona.",
+          "next": "n3"
+        },
+        {
+          "label": "Pivoto la propuesta de valor: la app ahora se centra en la verificación del estado del libro",
+          "kpi_delta": { "usuarios_testados": 8, "casillas_bmc_rellenas": 4, "dias_para_feria": 0 },
+          "feedback": "El pivot es rápido: añades fotos obligatorias y un sistema de valoración en tres estados (bueno/regular/deteriorado). El nuevo prototipo lo testas con ocho personas más y el 75 % dice que ahora sí lo usaría. El BMC refleja la nueva propuesta y es mucho más sólido. Lección: pivotar no es fracasar —es aprender y adaptarse. Los proyectos que no pivotan nunca suelen ser los que nunca testaron.",
+          "next": "n3"
+        },
+        {
+          "label": "Añado las fotos como función extra sin cambiar la propuesta central",
+          "kpi_delta": { "usuarios_testados": 5, "casillas_bmc_rellenas": 2, "dias_para_feria": 0 },
+          "feedback": "Intentas no cambiar lo fundamental pero añades lo que piden. El resultado es una app con la propuesta de valor original y una función de fotos que parece un añadido sin sentido. Los testers ven incoherencia. Lección: cuando el feedback apunta al núcleo del modelo, los parches superficiales no resuelven el problema.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisión 3 — La presentación en la feria",
+      "situacion": "Es el día de la feria. Tienes que presentar el proyecto a un jurado de cuatro profesores y al resto de estudiantes. Tu presentación dura cinco minutos. Tienes el prototipo en el móvil, el BMC en una cartulina y datos de los tests con compañeros.",
+      "opciones": [
+        {
+          "label": "Explico el BMC casilla por casilla: así demuestro que lo tengo todo pensado",
+          "kpi_delta": { "usuarios_testados": 0, "casillas_bmc_rellenas": 0, "dias_para_feria": 0 },
+          "feedback": "A los dos minutos el jurado está aburrido. El BMC es una herramienta de trabajo, no una presentación. Lo que el jurado quiere saber es: ¿quién tiene el problema? ¿cómo lo resuelves? ¿alguien lo ha probado? Cinco minutos explicando casillas no responden a ninguna de esas preguntas. Lección: la presentación de un proyecto no es el proyecto — es la historia del problema, la solución y la evidencia.",
+          "next": "final:fracaso_parcial"
+        },
+        {
+          "label": "Empiezo con el problema real: «el 60 % de mis compañeros tiene libros que no necesita y no sabe cómo deshacerse de ellos»",
+          "kpi_delta": { "usuarios_testados": 5, "casillas_bmc_rellenas": 2, "dias_para_feria": 0 },
+          "feedback": "El jurado se interesa desde el primer segundo. Enseñas el prototipo en el móvil, cuentas los resultados de los tests y terminas con lo que cambiarías después del feedback recibido. La presentación dura cuatro minutos y deja tiempo para preguntas. Lección: la propuesta de valor se comunica en términos del problema del usuario, no de las funciones del producto.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Leo el guion que preparé anoche: así no me olvido de nada",
+          "kpi_delta": { "usuarios_testados": 0, "casillas_bmc_rellenas": 0, "dias_para_feria": 0 },
+          "feedback": "La presentación suena memorizada y el contacto visual es casi nulo. Cuando una profesora del jurado hace una pregunta que no está en el guion, te bloqueas. El contenido era bueno pero la forma no lo ha ayudado. Lección: preparar los puntos clave, no el texto completo. La comunicación oral eficaz no es recitar — es conectar.",
+          "next": "final:fracaso_parcial"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "La feria termina con aprendizaje real",
+      "resumen": "Tu proyecto ha pasado por un Design Thinking real: empatizaste, prototipaste, recibiste feedback duro y tuviste el criterio de pivotar. El jurado ha valorado el proceso tanto como el resultado.",
+      "lecciones_clave": [
+        "El BMC es una herramienta de hipótesis: su valor está en ir a preguntar, no en rellenarlo en casa.",
+        "El prototipo más rápido que pueda testarse siempre supera al plan más perfecto no testado.",
+        "Pivotar no es fracasar: es lo que diferencia a quienes aprenden de quienes repiten los mismos errores."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "El proyecto existe, pero no has llegado al usuario real",
+      "resumen": "Has dedicado tiempo al proyecto pero las decisiones te han alejado de lo que importa: saber si resuelve un problema real para alguien real.",
+      "lecciones_clave": [
+        "La investigación de escritorio nunca sustituye el contacto directo con el usuario.",
+        "El apego a la idea original es el mayor obstáculo del proceso creativo."
+      ]
+    }
+  }
+}
+```

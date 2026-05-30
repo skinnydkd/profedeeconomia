@@ -1,0 +1,117 @@
+---
+asignatura: eco-4eso
+unidad_relacionada: 10
+title: "Tienes 90 segundos para convencer al jurado"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "10-15 min"
+descripcion: "Concurso de pitch municipal. Tu idea es buena, pero el tiempo no perdona errores."
+competencias_clave: [CPSAA, CE, CD]
+competencias_especificas: [CE3]
+estado: publicado
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Caso · Validación y pitch",
+    "titulo": "Tienes 90 segundos para convencer al jurado",
+    "contexto": "Tu ayuntamiento organiza el primer concurso de ideas de emprendimiento juvenil para menores de 18 años. El premio son 500 € y la posibilidad de desarrollar el proyecto con apoyo de la concejalía. Tu idea: una plataforma digital para conectar a mayores del barrio que necesitan ayuda con tecnología con jóvenes del instituto que la ofrecen a cambio de una pequeña remuneración. Has validado la idea con tres usuarios reales: dos abuelos y una profesora. Tienes 90 segundos.",
+    "kpi_inicial": { "usuarios_validados": 3, "claridad_pitch": 5, "segundos_disponibles": 90 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisión 1 — ¿Cómo empiezas los primeros 15 segundos?",
+      "situacion": "Tienes 90 segundos y el jurado ha visto ya once proyectos. Tienes que captar la atención en los primeros 15 segundos o habrás perdido la mitad del impacto. Tres opciones para empezar.",
+      "opciones": [
+        {
+          "label": "Me presento y explico de qué va el proyecto: «Hola, soy Marina y tengo una app para mayores»",
+          "kpi_delta": { "claridad_pitch": -1, "usuarios_validados": 0 },
+          "feedback": "La presentación personal ocupa 10 de los 15 primeros segundos y no dice nada nuevo. El jurado ya tiene tu nombre en el papel. Una apertura genérica no conecta con nadie. Lección: los primeros 15 segundos de un pitch son los más valiosos — úsalos para el problema, no para la burocracia de presentarse.",
+          "next": "n2"
+        },
+        {
+          "label": "Abro con una pregunta al jurado: «¿Cuántos de vosotros habéis tenido que ayudar a vuestros padres a configurar el móvil esta semana?»",
+          "kpi_delta": { "claridad_pitch": 3, "usuarios_validados": 0 },
+          "feedback": "Dos miembros del jurado levantan la mano. Acabas de hacer que el problema sea suyo, no tuyo. La sala está atenta. Ahora tienes 75 segundos con todo el jurado mirándote. Lección: una buena apertura de pitch hace que el oyente sienta el problema en primera persona antes de escuchar la solución.",
+          "next": "n2"
+        },
+        {
+          "label": "Empiezo con un dato: «En España hay 9 millones de mayores de 65 años con brecha digital»",
+          "kpi_delta": { "claridad_pitch": 2, "usuarios_validados": 0 },
+          "feedback": "El dato es correcto y llama la atención. Pero 9 millones es un número que suena a problema de gobierno, no a algo que tú puedes resolver desde tu barrio. La cifra grande puede trabajar en contra si no la acercas inmediatamente a tu escala. Lección: los datos en un pitch funcionan cuando son sorprendentes Y accionables — si el dato parece inalcanzable, aleja en lugar de conectar.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisión 2 — Tienes 60 segundos. ¿Cómo explicas la solución?",
+      "situacion": "El problema está planteado. Ahora tienes que explicar qué hace tu proyecto, para quién y por qué es diferente a lo que ya existe. Tienes un minuto exacto.",
+      "opciones": [
+        {
+          "label": "Explico todas las funciones de la plataforma: búsqueda, chat, pagos, valoraciones...",
+          "kpi_delta": { "claridad_pitch": -2, "usuarios_validados": 0 },
+          "feedback": "A los 30 segundos llevas cuatro funciones explicadas y el jurado tiene cara de saturación. Una lista de funciones no es una propuesta de valor — es un inventario. Lección: en 60 segundos el jurado no necesita saber qué hace la app, necesita saber qué cambia para el usuario y por qué eso importa.",
+          "next": "n3"
+        },
+        {
+          "label": "Me centro en una sola historia: «La señora Carmen, 78 años, necesita ayuda con el WhatsApp. En diez minutos, Paula del instituto está en su puerta»",
+          "kpi_delta": { "claridad_pitch": 4, "usuarios_validados": 2 },
+          "feedback": "Una historia concreta de dos personajes reales vale más que diez funciones. El jurado entiende inmediatamente quién tiene el problema, quién lo resuelve y cómo funciona. La propuesta de valor queda clara sin que la hayas enunciado explícitamente. Lección: la comunicación eficaz en un pitch no describe el producto — narra la transformación que produce.",
+          "next": "n3"
+        },
+        {
+          "label": "Muestro el prototipo de la app y lo explico en tiempo real",
+          "kpi_delta": { "claridad_pitch": 1, "usuarios_validados": 1 },
+          "feedback": "El prototipo llama la atención visual, pero explicar una pantalla en tiempo real mientras hablas divide la atención del jurado entre mirarte a ti y mirar el móvil. Y el tiempo se come solo. Terminas sin haber explicado la propuesta de valor ni los resultados de validación. Lección: en 60 segundos el prototipo es un apoyo, no el protagonista. Úsalo para un momento concreto, no como guion.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisión 3 — Los últimos 15 segundos: ¿qué pides?",
+      "situacion": "Quedan 15 segundos. Has explicado el problema y la solución. Ahora tienes que cerrar. En un pitch el cierre es donde dices qué quieres del jurado o del oyente. Si no lo dices, el pitch queda incompleto.",
+      "opciones": [
+        {
+          "label": "Digo «muchas gracias» y me siento: ya he explicado todo lo importante",
+          "kpi_delta": { "claridad_pitch": -1, "usuarios_validados": 0 },
+          "feedback": "El pitch termina sin llamada a la acción. El jurado no sabe si buscas el premio, un mentor, apoyo institucional o simplemente feedback. Un pitch sin cierre es como una conversación que acaba con «bueno, ya». Lección: todo pitch necesita terminar con una petición concreta y realista — que el oyente sepa exactamente qué puede hacer después de escucharte.",
+          "next": "final:fracaso_parcial"
+        },
+        {
+          "label": "Digo que con los 500 € y el apoyo del ayuntamiento podéis lanzar el proyecto en el barrio antes de diciembre",
+          "kpi_delta": { "claridad_pitch": 3, "usuarios_validados": 1 },
+          "feedback": "Cierre concreto, con número (500 €), institución (ayuntamiento) y fecha (diciembre). El jurado sabe qué quieres y cuándo lo necesitas. Una de las juezas pregunta cuántos usuarios habéis testado ya. Respondes que tres. Es una pregunta trampa sobre métricas accionables — y tienes la respuesta. Lección: las métricas accionables (usuarios testados, feedback recibido) son más creíbles que las métricas vanidad (número de personas con smartphone en el barrio).",
+          "next": "final:exito"
+        },
+        {
+          "label": "Pido que «si alguien está interesado, que se acerque después»",
+          "kpi_delta": { "claridad_pitch": 0, "usuarios_validados": 0 },
+          "feedback": "Cierre pasivo. Poner la responsabilidad en el oyente de que se acerque reduce la probabilidad de que pase algo. Un pitch que termina con «si alguien quiere» no tiene la misma fuerza que uno que dice «necesitamos X para hacer Y antes de Z». Lección: pedir de forma vaga genera respuestas vagas. Una petición concreta genera una decisión concreta.",
+          "next": "final:fracaso_parcial"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "90 segundos, proyecto presentado con criterio",
+      "resumen": "Has aprendido que un pitch no es un resumen de todo lo que sabes — es la selección estratégica de lo que el oyente necesita escuchar para tomar una decisión. Apertura con el problema, historia concreta y cierre con petición clara.",
+      "lecciones_clave": [
+        "Los primeros 15 segundos de un pitch son los más valiosos: úsalos para el problema, no para presentarte.",
+        "Las métricas accionables (usuarios testados) son más creíbles que las métricas vanidad (mercado potencial).",
+        "Todo pitch termina con una petición concreta: el oyente tiene que saber qué puede hacer después de escucharte."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "Buena idea, presentación mejorable",
+      "resumen": "La idea tenía potencial pero la comunicación no la ha ayudado. El jurado no ha entendido bien ni la propuesta de valor ni qué querías de ellos.",
+      "lecciones_clave": [
+        "Un pitch sin llamada a la acción es una conversación sin conclusión.",
+        "Comunicar funciones no es lo mismo que comunicar propuesta de valor."
+      ]
+    }
+  }
+}
+```

@@ -1,0 +1,117 @@
+---
+asignatura: eco-4eso
+unidad_relacionada: 5
+title: "Compras un móvil de segunda mano en Wallapop"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "10-15 min"
+descripcion: "280 € en Wallapop, tres vendedores y una semana para decidir. Consume con cabeza."
+competencias_clave: [CPSAA, CE, CD]
+competencias_especificas: [CE3]
+estado: publicado
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Caso · Consumo inteligente",
+    "titulo": "Compras un móvil de segunda mano en Wallapop",
+    "contexto": "Tu móvil lleva dos años y la pantalla está agrietada. Has juntado 280 € de cumpleaños y paga. Tus padres dicen que, si quieres uno nuevo, lo pagas tú. Hay tres opciones en Wallapop: (A) iPhone 12 por 260 € — el vendedor tiene 4,2 estrellas y dice que está «como nuevo», fotos de estudio con fondo blanco; (B) Samsung Galaxy S22 por 240 € — vendedor nuevo, sin valoraciones, dice que lo vende porque se ha comprado el S23; (C) iPhone SE 2022 por 190 € — vendedor con 4,8 estrellas, muchas ventas, fotos reales en mano. Tienes que decidir esta semana.",
+    "kpi_inicial": { "presupuesto": 280, "dias_para_decidir": 7, "riesgo_estimado": 5 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisión 1 — ¿Cuál de los tres contactas primero?",
+      "situacion": "Antes de quedar, decides escribir a los tres vendedores para hacerles preguntas. La ley te da derechos como consumidor incluso en comercio entre particulares, pero tienes que saber cuáles son.",
+      "opciones": [
+        {
+          "label": "Al del iPhone 12: es el que más me gusta aunque las fotos parezcan demasiado perfectas",
+          "kpi_delta": { "presupuesto": -260, "riesgo_estimado": 3 },
+          "feedback": "Las fotos de estudio con fondo blanco suelen ser una señal de alerta: ¿son del producto real o cogidas de internet? Preguntas por el IMEI para verificarlo. El vendedor tarda dos días en responder y da un número distinto cada vez que preguntas el mismo detalle. La situación mejora cuando insistes. Lección: el derecho a la información completa aplica también en plataformas de segunda mano entre particulares.",
+          "next": "n2"
+        },
+        {
+          "label": "Al del Samsung: un vendedor nuevo no tiene por qué ser malo",
+          "kpi_delta": { "presupuesto": -240, "riesgo_estimado": 6 },
+          "feedback": "Sin valoraciones, no puedes saber si el vendedor es honesto. Le pides el IMEI, le preguntas por la batería y si tiene caja original. Responde rápido y con detalle. Verificas el IMEI en la web de Apple: el teléfono está libre. Eso no te garantiza nada sobre el estado físico, pero es un primer filtro importante. Lección: la verificación de datos del producto —IMEI, capacidad de batería, garantía pendiente— es parte del consumo inteligente.",
+          "next": "n2"
+        },
+        {
+          "label": "Al del iPhone SE: 4,8 estrellas y fotos reales me generan más confianza",
+          "kpi_delta": { "presupuesto": -190, "riesgo_estimado": 1 },
+          "feedback": "Las valoraciones positivas no son garantía absoluta, pero sí una señal relevante. El vendedor responde en menos de una hora, te manda un vídeo del teléfono encendido con el estado de batería visible (88 %). El SE es más pequeño que el S22 y el iPhone 12, pero es el más seguro de los tres. Lección: en el comercio electrónico entre particulares, la reputación del vendedor es el único equivalente a la garantía legal.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisión 2 — La quedada para ver el teléfono",
+      "situacion": "Has elegido uno de los tres y habéis quedado. El vendedor propone dos opciones: quedar en su portal de casa (más cómodo para él) o quedar en la puerta del Carrefour del barrio (más neutral). Además, te dice que si quieres «bajar el precio» tienes que pagar en efectivo.",
+      "opciones": [
+        {
+          "label": "Voy a su portal: tampoco es para tanto",
+          "kpi_delta": { "presupuesto": -15, "riesgo_estimado": 4 },
+          "feedback": "Nada malo ocurre, pero has puesto en riesgo tu seguridad innecesariamente. En transacciones entre desconocidos, siempre en lugar público. Wallapop tiene incluso puntos de encuentro seguros habilitados en algunas ciudades. Lección: el derecho del consumidor incluye el derecho a una transacción segura — y eso también es responsabilidad tuya.",
+          "next": "n3"
+        },
+        {
+          "label": "Propongo quedar en el Carrefour y pagar por Bizum: más seguro para los dos",
+          "kpi_delta": { "presupuesto": 0, "riesgo_estimado": -2 },
+          "feedback": "Lugar público, pago con registro. Si el vendedor se niega a pagar en lugar público, ya es una señal de alerta. En este caso acepta sin problema. Llevas el cargador y unes el teléfono directamente para verificar que funciona y que el IMEI del dispositivo coincide con el que te mandó. Lección: el consumo inteligente no es desconfiar de todo, sino verificar lo verificable.",
+          "next": "n3"
+        },
+        {
+          "label": "Cancelo la quedada: para bajar el precio y pagar en efectivo hay algo raro",
+          "kpi_delta": { "presupuesto": 0, "riesgo_estimado": -3 },
+          "feedback": "El efectivo sin registro no genera ningún problema legal por sí solo, pero combinado con el precio reducido puede indicar que quiere evitar un rastro de la transacción. Tu instinto te salva de una posible estafa. Buscas otra opción. Lección: la publicidad engañosa y las prácticas desleales también ocurren entre particulares. Cuando algo no cuadra, confiar en el instinto es parte del consumo inteligente.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisión 3 — El teléfono llega con un problema que no te avisaron",
+      "situacion": "Has comprado el teléfono y en casa descubres que el micrófono de las llamadas no funciona bien. El vendedor no lo había mencionado. Las apps funcionan, pero al llamar la gente no te oye bien. Tienes 24 horas para actuar.",
+      "opciones": [
+        {
+          "label": "Lo publico en redes diciendo que me han estafado",
+          "kpi_delta": { "presupuesto": -10, "riesgo_estimado": 5 },
+          "feedback": "Actuar en redes antes de intentar resolverlo directamente puede ser contraproducente. Si después el vendedor te devuelve el dinero o te ofrece solución, quedarás mal tú. Además, acusar públicamente a alguien sin haber intentado la vía directa primero puede tener consecuencias legales. Lección: el derecho a reclamar tiene un orden: primero el vendedor, luego la plataforma, luego organismos de consumo.",
+          "next": "final:fracaso_parcial"
+        },
+        {
+          "label": "Escribo al vendedor explicando el problema y pido una solución en 48 horas",
+          "kpi_delta": { "presupuesto": 20, "riesgo_estimado": -2 },
+          "feedback": "El vendedor reconoce que sabía del problema del micrófono y te devuelve 20 € como compensación. No estás obligado a aceptarlo, pero es una resolución razonable para un defecto menor. Tienes la opción de llevar el teléfono a reparar (coste estimado 15 €) y quedarte con un terminal en perfectas condiciones por 195 € en total. Lección: la hoja de reclamaciones y el contacto directo son los primeros pasos del ejercicio de los derechos del consumidor.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Abro una disputa en Wallapop y dejo una valoración negativa",
+          "kpi_delta": { "presupuesto": 30, "riesgo_estimado": -1 },
+          "feedback": "Wallapop media entre las partes. El vendedor tiene que justificarse o devolver parte del dinero. El proceso tarda cuatro días pero resuelve el problema sin necesidad de confrontación directa. La valoración negativa avisa a futuros compradores. Lección: las plataformas de comercio electrónico tienen mecanismos de protección que actúan como garante cuando la negociación directa no funciona.",
+          "next": "final:exito"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "Compra gestionada con cabeza",
+      "resumen": "Has comprado un teléfono de segunda mano con criterio, verificado lo que podías verificar y resuelto el problema cuando apareció. No todo sale perfecto, pero saber cómo actuar marca la diferencia.",
+      "lecciones_clave": [
+        "En el comercio electrónico entre particulares, la reputación del vendedor y la verificación del IMEI son los primeros filtros.",
+        "El orden correcto al reclamar: vendedor → plataforma → organismos de consumo.",
+        "Consumir inteligente no es desconfiar de todo, sino verificar lo verificable antes de pagar."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "Tienes el móvil pero el proceso ha sido un caos",
+      "resumen": "Has conseguido el teléfono, pero las decisiones precipitadas han generado más problemas de los necesarios. La próxima vez ya sabes qué orden seguir.",
+      "lecciones_clave": [
+        "Actuar en redes antes de intentar resolver el problema directamente complica la situación.",
+        "Los derechos del consumidor solo funcionan si los ejerces en el orden correcto."
+      ]
+    }
+  }
+}
+```

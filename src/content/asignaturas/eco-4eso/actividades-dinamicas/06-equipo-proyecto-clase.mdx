@@ -1,0 +1,117 @@
+---
+asignatura: eco-4eso
+unidad_relacionada: 6
+title: "Tu equipo de proyecto se rompe a mitad"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "10-15 min"
+descripcion: "El proyecto de empresa para clase lleva tres semanas y hay un conflicto que puede hundirlo todo."
+competencias_clave: [CPSAA, CE, CD]
+competencias_especificas: [CE3]
+estado: publicado
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Caso · Recursos humanos y equipos",
+    "titulo": "Tu equipo de proyecto se rompe a mitad",
+    "contexto": "Lleváis tres semanas trabajando en el proyecto de empresa de Economía. Sois cuatro: tú, Marta (la que más ideas aporta pero no entrega nada a tiempo), Ibra (callado pero hace todo lo que se le dice y bien) e Irene (quiere controlarlo todo y corrige el trabajo de los demás sin avisar). La entrega es en diez días. Esta mañana Marta no ha aparecido a la reunión y ha mandado un audio en el grupo diciendo que «está harta de que Irene cambie todo lo que hace». Ibra no ha dicho nada. Tú tienes que hacer algo.",
+    "kpi_inicial": { "dias_para_entrega": 10, "porcentaje_completado": 45, "cohesion_equipo": 4 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisión 1 — ¿Cómo gestionas el conflicto con Marta?",
+      "situacion": "Marta ha enviado el audio al grupo, no en privado. Irene ya ha respondido defendiéndose. El grupo está tenso. Tienes que actuar antes de que el proyecto naufrague.",
+      "opciones": [
+        {
+          "label": "Respondo en el grupo apoyando a Marta: Irene sí que cambia todo sin avisar",
+          "kpi_delta": { "cohesion_equipo": -3, "porcentaje_completado": 0 },
+          "feedback": "Al posicionarte públicamente en el grupo creas dos bandos. Irene deja de trabajar en el proyecto durante dos días. El conflicto se ha escalado, no resuelto. Lección: los conflictos de equipo no se gestionan tomando partido en público. La sinergia del equipo depende de que los conflictos se resuelvan, no de que se ganen.",
+          "next": "n2"
+        },
+        {
+          "label": "Escribo a Marta en privado para entender qué ha pasado antes de hacer nada más",
+          "kpi_delta": { "cohesion_equipo": 1, "porcentaje_completado": 5 },
+          "feedback": "Marta te explica que Irene reescribió su parte del informe sin decirle nada y cambió el tono de toda la sección. No es un problema de pereza, es un problema de roles no definidos. Ahora tienes información para actuar. Lección: escuchar activamente antes de actuar es la diferencia entre resolver un conflicto y escalarlo.",
+          "next": "n2"
+        },
+        {
+          "label": "Propongo una reunión de todo el equipo esta tarde para hablar en persona",
+          "kpi_delta": { "cohesion_equipo": 2, "porcentaje_completado": 10 },
+          "feedback": "La reunión es incómoda al principio pero necesaria. Descubrís que nunca habíais definido quién podía editar el trabajo de quién. El conflicto no era personal sino estructural. Lección: muchos conflictos en equipos de trabajo vienen de interdependencias mal definidas, no de personalidades incompatibles.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisión 2 — Definir roles ahora que todo está sobre la mesa",
+      "situacion": "Habéis hablado y el equipo está dispuesto a seguir. Pero necesitáis repartir los roles de los diez días que quedan de forma diferente a como lo habíais hecho hasta ahora.",
+      "opciones": [
+        {
+          "label": "Irene coordina todo: es la más organizada y así evitamos que cada uno haga lo que quiera",
+          "kpi_delta": { "cohesion_equipo": -1, "porcentaje_completado": 20 },
+          "feedback": "Irene coordina bien pero sigue editando el trabajo de Marta sin avisarla. El rol de coordinador sin límites claros reproduce el problema anterior. Lección: asignar un rol sin definir sus límites es equivalente a no asignarlo. Los roles Belbin son útiles precisamente porque cada uno tiene sus responsabilidades y sus fronteras.",
+          "next": "n3"
+        },
+        {
+          "label": "Cada uno tiene una sección propia que solo él puede editar; si alguien quiere cambiar algo del otro, pide permiso",
+          "kpi_delta": { "cohesion_equipo": 3, "porcentaje_completado": 25 },
+          "feedback": "La regla es sencilla y todos la entienden. Marta vuelve al equipo, Irene canaliza su energía coordinadora haciendo el índice y la presentación final. Ibra trabaja sin interferencias y produce la mejor parte del proyecto. La interdependencia se gestiona con normas claras. Lección: la sinergia del equipo no se crea sola —se diseña con reglas que todos acuerdan.",
+          "next": "n3"
+        },
+        {
+          "label": "Ibra se convierte en árbitro: si alguien quiere cambiar algo del otro, lo decide él",
+          "kpi_delta": { "cohesion_equipo": 1, "porcentaje_completado": 15 },
+          "feedback": "Ibra no quiere ese papel y lo hace a regañadientes. Ser árbitro requiere habilidades de comunicación que Ibra no tiene ni quiere tener. Asignarle un rol que no encaja con su perfil crea una nueva fricción. Lección: los roles deben asignarse según las fortalezas reales de cada persona, no según quién está disponible o es más neutral.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisión 3 — Los tres últimos días: hay que priorizar",
+      "situacion": "Faltan tres días para la entrega y hay demasiado para hacer: la memoria escrita (40 % hecho), la presentación en PowerPoint (0 %) y el análisis financiero básico (20 % hecho). Solo podéis entregar algo de calidad en uno o dos de los tres. La profe ha dicho que lo más importante es la memoria.",
+      "opciones": [
+        {
+          "label": "Terminamos los tres a medias: algo es algo en cada parte",
+          "kpi_delta": { "porcentaje_completado": 20, "cohesion_equipo": -1 },
+          "feedback": "Entregáis tres cosas incompletas. La memoria no tiene conclusiones, el PowerPoint es un borrador y el análisis financiero tiene errores sin corregir. La nota es mediocre en todo. Lección: cuando los recursos son escasos —tiempo en este caso— la asignación eficiente exige priorizar, no repartir todo a partes iguales.",
+          "next": "final:fracaso_parcial"
+        },
+        {
+          "label": "Nos centramos en la memoria y la hacemos bien: es lo que más cuenta",
+          "kpi_delta": { "porcentaje_completado": 40, "cohesion_equipo": 2 },
+          "feedback": "La memoria queda excelente. El PowerPoint es básico pero suficiente. El análisis financiero lo dejáis como está y añadís una nota explicando que está en progreso. La profe valora especialmente el trabajo en la memoria y la honestidad sobre lo inacabado. Lección: priorizar con criterio y ejecutar bien lo prioritario es más efectivo que hacer todo mal.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Cada uno termina su parte sin coordinación: ya sumaremos al final",
+          "kpi_delta": { "porcentaje_completado": 30, "cohesion_equipo": -2 },
+          "feedback": "Las tres partes no encajan. La memoria habla de una empresa y el PowerPoint de otra porque Irene cambió el nombre sin avisarlo. Habéis vuelto al problema del principio. Lección: la coordinación final de un proyecto de equipo no es opcional —es cuando el trabajo individual se convierte en resultado colectivo.",
+          "next": "final:fracaso_parcial"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "El equipo ha sobrevivido y el proyecto también",
+      "resumen": "El conflicto era real pero manejable. Con roles claros, escucha activa y priorización sensata, habéis entregado algo de lo que os podéis sentir orgullosos.",
+      "lecciones_clave": [
+        "Los conflictos de equipo suelen venir de roles mal definidos, no de personalidades incompatibles.",
+        "La sinergia no se crea sola: se diseña con normas que todos acuerdan y respetan.",
+        "Priorizar con criterio y ejecutar bien lo prioritario supera a intentar hacer todo a medias."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "El proyecto se entrega pero el equipo está roto",
+      "resumen": "Habéis entregado algo, pero el proceso ha dejado al equipo peor de como estaba. Sin aprender a gestionar el conflicto constructivamente, el próximo trabajo de grupo volverá a fallar igual.",
+      "lecciones_clave": [
+        "Un conflicto no resuelto en fase temprana crece hasta afectar al resultado final.",
+        "La coordinación final no es un detalle: es cuando el trabajo se convierte en proyecto."
+      ]
+    }
+  }
+}
+```

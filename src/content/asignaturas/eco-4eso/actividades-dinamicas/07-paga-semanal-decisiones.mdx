@@ -1,0 +1,117 @@
+---
+asignatura: eco-4eso
+unidad_relacionada: 7
+title: "Gestiona tu paga de los próximos tres meses"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "10-15 min"
+descripcion: "40 € al mes, tres decisiones y la regla 50-30-20 puesta a prueba en tu vida real."
+competencias_clave: [CPSAA, CE, CD]
+competencias_especificas: [CE3]
+estado: publicado
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Caso · Dinero y presupuesto personal",
+    "titulo": "Gestiona tu paga de los próximos tres meses",
+    "contexto": "Tu paga semanal son 10 €, es decir 40 € al mes. Llevas tres meses sin ahorrar nada porque cada semana se va en cafetería, Spotify, algún juego de móvil y salidas el fin de semana. Tus padres te han dicho que si en tres meses tienes algo ahorrado te lo doblan para que te compres lo que quieras. El objetivo es llegar a 60 € en tres meses (20 € de ahorro + 40 € que te donan). Tienes que tomar tres decisiones: cómo organizas los gastos, cómo ahorras y qué haces si tienes un imprevisto.",
+    "kpi_inicial": { "paga_mensual": 40, "ahorro_actual": 0, "objetivo_3_meses": 60 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisión 1 — ¿Cómo organizas el presupuesto mensual?",
+      "situacion": "Tienes 40 € al mes. Aplicas la regla 50-30-20 adaptada: 50 % para necesidades (cafetería, transporte si lo pagas tú), 30 % para lo que quieras (ocio, apps), 20 % para ahorro. Pero hay tres formas de implementarla.",
+      "opciones": [
+        {
+          "label": "Lo llevo en la cabeza: sé más o menos en qué me gasto el dinero",
+          "kpi_delta": { "ahorro_actual": 5, "objetivo_3_meses": -15 },
+          "feedback": "Al final del mes has gastado 38 € pero no sabes exactamente en qué. El «más o menos» te ha costado 13 € de lo que debería haber sido ahorro. Llevar el presupuesto en la cabeza funciona para los gastos grandes, pero los pequeños (1,20 € de café, 0,99 € de app) se acumulan sin que te des cuenta. Lección: un presupuesto personal que no se registra no es un presupuesto, es una intención.",
+          "next": "n2"
+        },
+        {
+          "label": "Apunto cada gasto en el móvil durante dos semanas para saber dónde se va",
+          "kpi_delta": { "ahorro_actual": 12, "objetivo_3_meses": 0 },
+          "feedback": "Al cabo de dos semanas descubres que el 35 % de tu gasto es en cafetería. Vas cuatro días a la semana y cada vez gastas entre 2 y 3 €. No lo habías visto nunca así. Con esa información reduces a dos días a la semana y ese mes ahorras 12 €. Lección: los gastos variables pequeños son invisibles hasta que los haces visibles. Registrarlos es el primer paso para controlarlos.",
+          "next": "n2"
+        },
+        {
+          "label": "Separo físicamente el dinero: 8 € en un sobre «ahorro» el primer día del mes",
+          "kpi_delta": { "ahorro_actual": 16, "objetivo_3_meses": 10 },
+          "feedback": "El sobre funciona porque el dinero del ahorro deja de estar «disponible» mentalmente. No tocas el sobre salvo emergencia real. Al final de los tres meses tienes 24 € en el sobre. Con los 40 € de tus padres llegas a 64 €, superando el objetivo. Lección: la regla 50-30-20 aplicada al principio del mes —no al final de lo que sobra— cambia el resultado radicalmente.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisión 2 — Un gasto inesperado: te rompes las gafas",
+      "situacion": "En el segundo mes se te rompen las gafas y tu madre dice que si no tienes 30 € para pagar tu parte, os esperáis al mes que viene. Tienes 18 € ahorrados. Puedes usar el ahorro, pedirle un adelanto a tus padres o hacer algo para conseguir el dinero que falta.",
+      "opciones": [
+        {
+          "label": "Uso todo el ahorro y le pido a mis padres los 12 € que faltan",
+          "kpi_delta": { "ahorro_actual": -18, "objetivo_3_meses": -20 },
+          "feedback": "Las gafas se arreglan, pero el ahorro vuelve a cero y pierdes el incentivo de que te doblen el dinero. Las gafas son una necesidad, pero la forma de financiarlas ha borrado tres semanas de esfuerzo. Lección: los imprevistos son inevitables —un fondo de emergencia separado del ahorro-objetivo es lo que diferencia un presupuesto básico de uno real.",
+          "next": "n3"
+        },
+        {
+          "label": "Le pido un adelanto de la paga a mis padres: lo devuelvo el mes que viene",
+          "kpi_delta": { "ahorro_actual": 0, "objetivo_3_meses": -10 },
+          "feedback": "Tus padres acceden pero descontarán 12 € de la paga del mes siguiente. El mes que viene tienes 28 € en lugar de 40, lo que hace casi imposible ahorrar. El adelanto ha trasladado el problema al futuro, no lo ha resuelto. Lección: la deuda personal —aunque sea con tus padres— tiene el mismo efecto que la deuda financiera: reduce el margen de maniobra futuro.",
+          "next": "n3"
+        },
+        {
+          "label": "Ofrezco a un vecino hacer recados o pasear a su perro durante dos semanas para conseguir los 12 €",
+          "kpi_delta": { "ahorro_actual": 12, "objetivo_3_meses": 5 },
+          "feedback": "Generas ingresos extra sin tocar el ahorro ni endeudarte. Las gafas se pagan con los 18 € de ahorro + 12 € de los recados. El ahorro sigue intacto. Lección: cuando hay un desfase entre ingresos y gastos necesarios, la primera opción a explorar antes de endeudarse es aumentar los ingresos, aunque sea temporalmente.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisión 3 — El dinero ahorrado: ¿dónde lo guardas?",
+      "situacion": "Llegas al final del tercer mes con algo de ahorro. Ahora tienes que decidir dónde meterlo: debajo de la almohada, en una cuenta de ahorro del banco (tus padres tienen que abrirla contigo porque eres menor) o en una cuenta de ahorro remunerada con un 3 % TAE que un banco online ofrece (también para menores con autorización de un adulto).",
+      "opciones": [
+        {
+          "label": "Lo guardo en casa: así lo tengo disponible cuando lo necesite",
+          "kpi_delta": { "ahorro_actual": 0, "objetivo_3_meses": 0 },
+          "feedback": "El dinero en casa es 100 % accesible, pero también 100 % gastable en cualquier impulso. Al cabo de un mes lo has usado en tres compras pequeñas que en su momento parecían urgentes. Lección: la disponibilidad total del ahorro es su mayor enemigo. Los sistemas que ponen el dinero un poco menos accesible generan mejores resultados de ahorro.",
+          "next": "final:fracaso_parcial"
+        },
+        {
+          "label": "Lo pongo en una cuenta bancaria normal: está seguro aunque no dé nada",
+          "kpi_delta": { "ahorro_actual": 2, "objetivo_3_meses": 2 },
+          "feedback": "La separación física entre el ahorro y el dinero disponible funciona. No gana intereses, pero tampoco lo tocas porque requiere ir al banco o hacer una transferencia. Tus 60 € siguen siendo 60 € al cabo de seis meses. Lección: la inercia juega a tu favor cuando el ahorro es ligeramente inaccesible.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Lo pongo en la cuenta remunerada al 3 % TAE: si algo da interés, mejor",
+          "kpi_delta": { "ahorro_actual": 4, "objetivo_3_meses": 4 },
+          "feedback": "Con 60 € al 3 % TAE durante un año ganas 1,80 €. No es una fortuna, pero el principio es correcto: el interés compuesto empieza pequeño y crece con el tiempo. Si en cinco años ahorras 100 € al mes al 3 % TAE, el interés empieza a ser visible. Lección: empezar a entender el interés compuesto a los 15 años es una ventaja que vale mucho más que el euro que ganas hoy.",
+          "next": "final:exito"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "Tres meses, objetivo cumplido",
+      "resumen": "Has llegado a los 60 € y, más importante, has entendido cómo funciona tu propio dinero. La regla 50-30-20 aplicada desde el principio del mes, los imprevistos gestionados sin deuda y el ahorro en un lugar no demasiado accesible.",
+      "lecciones_clave": [
+        "La regla 50-30-20 solo funciona si apartas el ahorro al principio del mes, no al final de lo que sobra.",
+        "Los imprevistos son inevitables: el fondo de emergencia es la diferencia entre un presupuesto básico y uno real.",
+        "El interés compuesto empieza pequeño, pero quien empieza a los 15 lleva ventaja toda la vida."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "No has llegado al objetivo, pero ya sabes por qué",
+      "resumen": "El dinero se ha ido en gastos invisibles, imprevistos mal gestionados o en un ahorro demasiado accesible. La próxima vez ya tienes el diagnóstico.",
+      "lecciones_clave": [
+        "Un presupuesto que no se registra no es un presupuesto.",
+        "La disponibilidad total del ahorro es su mayor enemigo."
+      ]
+    }
+  }
+}
+```

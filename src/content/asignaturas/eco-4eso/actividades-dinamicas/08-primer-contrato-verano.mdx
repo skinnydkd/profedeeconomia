@@ -1,0 +1,117 @@
+---
+asignatura: eco-4eso
+unidad_relacionada: 8
+title: "Tu primer contrato de verano"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "10-15 min"
+descripcion: "16 años, contrato en mano y tres decisiones antes de firmar. Lee antes de poner el nombre."
+competencias_clave: [CPSAA, CE, CD]
+competencias_especificas: [CE3]
+estado: publicado
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Caso · Economía personal — nómina y contratos",
+    "titulo": "Tu primer contrato de verano",
+    "contexto": "Tienes 16 años y has conseguido un trabajo de verano en una heladería de la playa. El dueño te da un contrato para que lo firmes «cuando puedas». Son dos meses: julio y agosto, cuatro horas al día, seis días a la semana. El papel dice que el salario es de 600 € brutos al mes. Tu madre no ha tenido tiempo de leerlo. Tienes 48 horas para firmarlo o el dueño busca a otra persona.",
+    "kpi_inicial": { "salario_bruto_mes": 600, "horas_semana": 24, "duracion_meses": 2 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisión 1 — ¿Firmas sin leer el contrato entero?",
+      "situacion": "El contrato tiene cuatro páginas. El dueño dice que «es el contrato estándar de siempre». Tienes prisa y él también. Pero en la tercera página hay una cláusula que dice que las horas extras no se pagan por separado — van incluidas en el salario base.",
+      "opciones": [
+        {
+          "label": "Firmo ya: el dueño parece buena persona y 600 € al mes está bien",
+          "kpi_delta": { "salario_bruto_mes": 0, "horas_semana": 4 },
+          "feedback": "En la tercera semana el dueño te pide que te quedes dos horas más varios días «porque hay mucho trabajo». Tú no puedes negarte porque el contrato dice que las extras van incluidas. Trabajas 120 horas en agosto en lugar de las 96 contratadas, pero cobras lo mismo. Lección: un contrato no es un favor — es un documento legal que define exactamente qué debes hacer y qué te deben pagar. Firmarlo sin leerlo te hace responsable de lo que dice.",
+          "next": "n2"
+        },
+        {
+          "label": "Pido 24 horas para leerlo en casa con mis padres antes de firmar",
+          "kpi_delta": { "salario_bruto_mes": 50, "horas_semana": 0 },
+          "feedback": "Tu madre lee la cláusula de horas extras y llama al dueño. Él dice que «siempre lo pone así» pero acepta quitarla cuando tu madre menciona que puede consultarlo con el sindicato. También negociáis que si hay horas extra se pagan aparte. El contrato mejorado se firma al día siguiente. Lección: pedir tiempo para leer un contrato es un derecho, no una descortesía. Nadie puede obligarte a firmar en el acto.",
+          "next": "n2"
+        },
+        {
+          "label": "Rechazo el contrato y busco otro trabajo: si tiene trampas, no me fío",
+          "kpi_delta": { "salario_bruto_mes": -600, "horas_semana": 0 },
+          "feedback": "Rechazas un trabajo porque una cláusula te ha parecido abusiva sin intentar negociarla primero. La cláusula era negociable. Tardas dos semanas más en encontrar otro trabajo y el salario es menor. Lección: detectar un problema en un contrato no implica necesariamente rechazarlo — a menudo implica negociar antes de decidir.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisión 2 — Te explican la nómina del primer mes",
+      "situacion": "Cobras la primera nómina: 600 € brutos. Pero el ingreso en tu cuenta es 534 €. El dueño te explica que te han descontado la retención de IRPF (5 %) y la cotización a la Seguridad Social (6,35 %). Tú no entiendes por qué te cobran si nunca has pagado impuestos.",
+      "opciones": [
+        {
+          "label": "Le digo al dueño que me han cobrado de más: 66 € es mucho dinero",
+          "kpi_delta": { "salario_bruto_mes": 0, "horas_semana": 0 },
+          "feedback": "El dueño te explica pacientemente que las retenciones son obligatorias y las descuenta él para ingresarlas a Hacienda y a la Seguridad Social en tu nombre. No te ha cobrado de más —te ha retenido lo que corresponde. Lección: el salario bruto y el salario neto son cosas distintas. Entender la diferencia es básico para no llevarte sorpresas al cobrar.",
+          "next": "n3"
+        },
+        {
+          "label": "Pido que me expliquen la nómina línea por línea antes de irme ese día",
+          "kpi_delta": { "salario_bruto_mes": 0, "horas_semana": -1 },
+          "feedback": "Entiendes que los 66 € no los pierde nadie: el IRPF va a Hacienda y cuando hagas la declaración (si tus ingresos anuales no superan el mínimo) podrías recuperar parte. La Seguridad Social crea derechos para ti: si un día estás de baja o en el futuro tienes derecho a pensión. Lección: las retenciones no son un gasto —son una aportación al sistema que también te protege.",
+          "next": "n3"
+        },
+        {
+          "label": "Acepto sin preguntar: ya lo entenderé cuando sea mayor",
+          "kpi_delta": { "salario_bruto_mes": 0, "horas_semana": 0 },
+          "feedback": "No entender tu propia nómina significa no saber si te están pagando lo correcto. Al final del verano descubres que un compañero con las mismas horas cobró 20 € más al mes porque negoció el salario bruto y tú no. Lección: la economía personal empieza por entender los documentos que firmas y los que recibes.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisión 3 — El último día de trabajo: el dueño no quiere darte el finiquito",
+      "situacion": "El 31 de agosto el dueño dice que te dará el finiquito «cuando pueda», que puede tardar dos semanas. Tú sabes que te debe los últimos doce días de agosto más las vacaciones proporcionales (te corresponden dos días por cada mes trabajado, es decir cuatro días en total). El dueño está de buen humor y dice que «todo está en orden».",
+      "opciones": [
+        {
+          "label": "Confío en él: ha sido buena gente todo el verano",
+          "kpi_delta": { "salario_bruto_mes": -80, "horas_semana": 0 },
+          "feedback": "Las dos semanas se convierten en cinco. El dueño no responde a los mensajes con la misma rapidez. Cuando por fin recibes el finiquito, las vacaciones proporcionales no están incluidas. Ya han pasado cuarenta días y reclamar ahora es más difícil. Lección: el finiquito es un documento legal que debes revisar el mismo día que lo recibes. La confianza personal no sustituye la verificación formal.",
+          "next": "final:fracaso_parcial"
+        },
+        {
+          "label": "Pido el finiquito por escrito ese mismo día y digo que necesito firmarlo antes de irme",
+          "kpi_delta": { "salario_bruto_mes": 40, "horas_semana": 0 },
+          "feedback": "El dueño lo prepara en media hora. El documento incluye los días trabajados y la paga extra proporcional, pero no las vacaciones (cuatro días × salario/día). Se lo señalas amablemente. Lo añade sin problema. Firmas el finiquito con todo en orden. Lección: el finiquito no se firma hasta haberlo leído y verificado que incluye todo lo que corresponde por ley.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Me voy sin el finiquito: tampoco es para tanto, será poco dinero",
+          "kpi_delta": { "salario_bruto_mes": -120, "horas_semana": 0 },
+          "feedback": "No recibes el finiquito en agosto. En septiembre el dueño no responde. El SEPE (Servicio Público de Empleo Estatal) te puede ayudar, pero el proceso requiere tiempo y documentación que ya no tienes. Pierdes los cuatro días de vacaciones y los últimos días de agosto sin cobrar. Lección: el derecho laboral existe pero hay que ejercerlo —nadie lo hace por ti.",
+          "next": "final:fracaso_parcial"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "Primer verano trabajando, primera lección de derecho laboral",
+      "resumen": "Has cobrado lo que te correspondía, entendido tu nómina y cerrado el contrato con el finiquito firmado. No ha sido fácil, pero ahora sabes cómo funciona.",
+      "lecciones_clave": [
+        "Pedir tiempo para leer un contrato es un derecho — nadie puede obligarte a firmar en el acto.",
+        "El salario bruto y el neto son distintos: las retenciones no son un robo, son el sistema funcionando.",
+        "El finiquito no se firma hasta haberlo leído y verificado que incluye todo lo que corresponde."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "Has trabajado dos meses pero no has cobrado todo lo que te debían",
+      "resumen": "La confianza o la prisa te han costado dinero real. Los derechos laborales existen, pero solo protegen a quien los ejerce.",
+      "lecciones_clave": [
+        "La confianza personal no sustituye la verificación formal de los documentos laborales.",
+        "El derecho laboral existe pero hay que ejercerlo — nadie lo hace por ti."
+      ]
+    }
+  }
+}
+```
