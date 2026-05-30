@@ -1,0 +1,117 @@
+---
+asignatura: fopp-4eso
+unidad_relacionada: 1
+title: "¿Quién soy yo, realmente?"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "10-15 min"
+descripcion: "Marina descubre que su «yo público» y su «yo real» no coinciden. ¿Cómo construye su identidad?"
+competencias_clave: [CPSAA, CC, CD]
+competencias_especificas: [CE2]
+estado: publicado
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Caso · Autoconocimiento",
+    "titulo": "¿Quién soy yo, realmente?",
+    "contexto": "Marina tiene 16 años y lleva toda la vida siendo «la estudiante responsable del grupo». Sus notas son buenas, sus profesores la felicitan, su familia habla de ella con orgullo. Pero en privado siente que no le gusta nada de lo que estudia y que actúa un papel que no eligió. Este curso tiene que decidir qué modalidad de Bachillerato o qué ciclo de FP va a pedir. No sabe por dónde empezar porque nunca ha preguntado en serio qué le importa a ella.",
+    "kpi_inicial": { "confianza": 40, "claridad_identidad": 30, "autonomia": 35 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisión 1 — El cuestionario de orientación",
+      "situacion": "El orientador del instituto propone un cuestionario estándar de vocación. Las preguntas miden intereses profesionales pero no valores personales. Marina lo rellena en 10 minutos y el resultado dice «perfil sanitario o social». Su madre, presente en la reunión, se pone muy contenta: «¡Ves, como yo pensaba!».",
+      "opciones": [
+        {
+          "label": "Acepto el resultado. Total, algo hay que elegir y no sé mejor opción",
+          "kpi_delta": { "confianza": -5, "claridad_identidad": -10, "autonomia": -15 },
+          "feedback": "Delegar la decisión de identidad a un test de 10 minutos es cómodo a corto plazo, pero no resuelve la pregunta de fondo. Dentro de seis meses seguirás sin saber qué es lo que realmente quieres. Lección: los tests orientativos son un punto de partida, no una respuesta.",
+          "next": "n2"
+        },
+        {
+          "label": "Apunto el resultado pero decido contrastarlo con mis propios valores antes de aceptarlo",
+          "kpi_delta": { "confianza": 10, "claridad_identidad": 15, "autonomia": 20 },
+          "feedback": "Usas el test como información, no como veredicto. Eso es exactamente lo que recomienda la teoría del autoconocimiento: un instrumento externo puede abrir puertas, pero tú decides qué puertas quieres abrir. Siguiente paso: contrastar con tus cinco valores.",
+          "next": "n2"
+        },
+        {
+          "label": "Rechazo el resultado en voz alta delante de mi madre porque no me representa",
+          "kpi_delta": { "confianza": 5, "claridad_identidad": 5, "autonomia": 10 },
+          "feedback": "Tienes razón en sentirte representada, pero el rechazo sin alternativa no avanza. Ahora tienes que proponer algo concreto que sí refleje quién eres. Lección: decir «esto no» es el primer paso, pero necesita un «esto sí» para ser útil.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisión 2 — El DAFO personal",
+      "situacion": "Marina hace el DAFO personal que propone el libro. En la columna «fortalezas» escribe: «organizada, empática, persistente». En «debilidades» escribe: «me cuesta decir que no, me aburro haciendo cosas que no entiendo para qué sirven». El resultado le resulta incómodo: ve que su mayor fortaleza (la organización) también alimenta su mayor debilidad (hace lo que le piden sin cuestionarlo).",
+      "opciones": [
+        {
+          "label": "Guardo el DAFO en el cajón. No quiero seguir pensando en cosas que me incomodan",
+          "kpi_delta": { "confianza": -10, "claridad_identidad": -10, "autonomia": -10 },
+          "feedback": "La incomodidad del autoconocimiento es una señal de que has tocado algo real. Ignorarla no elimina el conflicto, solo lo aplaza. Lección: el autoconocimiento duele un poco al principio porque desmonta relatos que nos contamos para sentimos seguros.",
+          "next": "n3"
+        },
+        {
+          "label": "Comparto el DAFO con una amiga de confianza para ver si su visión coincide con la mía",
+          "kpi_delta": { "confianza": 15, "claridad_identidad": 20, "autonomia": 10 },
+          "feedback": "El contraste externo es una herramienta potente. Las personas cercanas ven ángulos que tú no ves desde dentro. Si la percepción de tu amiga y la tuya coinciden, tienes una señal fiable de fortaleza. Si divergen, tienes una pregunta valiosa. Muy buena decisión.",
+          "next": "n3"
+        },
+        {
+          "label": "Trabajo sola la incomodidad: escribo en el diario qué me da miedo de mis debilidades",
+          "kpi_delta": { "confianza": 10, "claridad_identidad": 25, "autonomia": 15 },
+          "feedback": "La escritura reflexiva es una de las herramientas más eficaces de autoconocimiento. Nominar el miedo por escrito reduce su poder. Lección: el diario no es para quejarse, es para pensar con más lentitud que la velocidad a la que van las emociones.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisión 3 — La conversación con su familia",
+      "situacion": "Marina ha identificado que le interesan el diseño, la narración visual y los idiomas — nada que aparezca en el cuestionario sanitario. Su familia espera que elija Ciencias de la Salud porque «tiene salida». Marina tiene que hablar con sus padres antes de entregar la solicitud de itinerario.",
+      "opciones": [
+        {
+          "label": "No digo nada y pido Ciencias de la Salud para no decepcionar a mi familia",
+          "kpi_delta": { "confianza": -20, "claridad_identidad": -15, "autonomia": -25 },
+          "feedback": "Has elegido la paz a corto plazo a costa de la coherencia a largo plazo. En dos años, cuando estudies materias que no te interesan, el coste emocional será mayor. Lección: hay conversaciones difíciles que, cuanto más se aplaza, más cuestan.",
+          "next": "final:fracaso_parcial"
+        },
+        {
+          "label": "Explico a mi familia lo que he descubierto sobre mis intereses y propongo investigar juntos las salidas profesionales reales",
+          "kpi_delta": { "confianza": 25, "claridad_identidad": 25, "autonomia": 30 },
+          "feedback": "Has convertido un conflicto potencial en una conversación con datos. Llevar información concreta sobre salidas profesionales del diseño o los idiomas transforma «capricho» en «decisión fundamentada». Muy buena jugada. Lección: la autonomía no se impone, se argumenta.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Pido hablar primero con el orientador para que me acompañe en la conversación familiar",
+          "kpi_delta": { "confianza": 15, "claridad_identidad": 15, "autonomia": 20 },
+          "feedback": "Usar recursos disponibles (el orientador) para gestionar una situación difícil es una señal de madurez, no de debilidad. La mediación profesional puede suavizar el choque. Lección: pedir apoyo cuando lo necesitas es parte de la autonomía, no lo contrario.",
+          "next": "final:exito"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "Marina elige con criterio propio",
+      "resumen": "Ha cruzado sus valores, sus fortalezas y la información del entorno para llegar a una decisión que puede argumentar y defender. No es perfecta, pero es suya.",
+      "lecciones_clave": [
+        "La identidad no se descubre en un test de 10 minutos: se construye comparando la visión propia con la externa.",
+        "El autoconocimiento incómodo es el más valioso: cuando algo duele un poco, suele estar señalando algo real.",
+        "Elegir con criterio propio no significa ignorar a la familia — significa traerla a la conversación con argumentos."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "Marina elige para los demás",
+      "resumen": "Ha evitado el conflicto inmediato pero ha aplazado la pregunta central. En algún momento del Bachillerato o del ciclo de FP, la pregunta vuelve con más fuerza.",
+      "lecciones_clave": [
+        "Decidir para no decepcionar no es decidir: es aplazar una conversación difícil.",
+        "La incomodidad del autoconocimiento no desaparece si no la miras — solo cambia de forma."
+      ]
+    }
+  }
+}
+```

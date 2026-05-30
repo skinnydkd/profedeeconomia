@@ -1,0 +1,117 @@
+---
+asignatura: fopp-4eso
+unidad_relacionada: 2
+title: "La noche antes del examen"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "10-15 min"
+descripcion: "Carlos lleva semanas con ansiedad de exámenes. Esta noche decide cómo gestionarla antes de que le desborde."
+competencias_clave: [CPSAA, CC, CD]
+competencias_especificas: [CE2]
+estado: publicado
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Caso · Salud mental",
+    "titulo": "La noche antes del examen",
+    "contexto": "Carlos, 16 años, lleva tres semanas durmiendo mal antes de los exámenes. No es que no estudie — estudia mucho, quizás demasiado. El problema es lo que pasa cuando cierra el libro: los pensamientos en bucle, el «y si suspendo», el corazón que va más rápido de lo normal. Esta noche tiene el examen de Matemáticas mañana y son las 23:30. El ciclo se repite.",
+    "kpi_inicial": { "salud_mental": 45, "rendimiento": 55, "red_apoyo": 30 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisión 1 — Las 23:30, aún con el libro abierto",
+      "situacion": "Carlos lleva estudiando desde las 17:00. Ya sabe el tema. Pero cada vez que cierra el libro siente que «le falta algo». Considera seguir otras dos horas por si acaso. Tiene el móvil al lado con notificaciones de su grupo de clase — algunos dicen que están estudiando hasta las 2:00.",
+      "opciones": [
+        {
+          "label": "Sigo estudiando hasta las 2:00. Si los demás lo hacen, yo no puedo quedarme atrás",
+          "kpi_delta": { "salud_mental": -15, "rendimiento": -10, "red_apoyo": 0 },
+          "feedback": "El «efecto comparación social» en el grupo de clase amplifica la ansiedad: asumes que los demás están en mejor posición sin saber si es verdad. Privar al cerebro de sueño en la noche previa a un examen reduce la memoria a corto plazo un 20-40 %. Más horas de estudio sin dormir no es más preparación: es más agotamiento.",
+          "next": "n2"
+        },
+        {
+          "label": "Cierro el libro, silencio el móvil y hago 10 minutos de respiración abdominal",
+          "kpi_delta": { "salud_mental": 15, "rendimiento": 10, "red_apoyo": 5 },
+          "feedback": "La regulación fisiológica (respiración lenta, 4-7-8 o simplemente exhalaciones largas) activa el sistema nervioso parasimpático y frena la respuesta de estrés. No es magia: es fisiología básica. El cerebro necesita esa señal de «ya es suficiente» para poder consolidar lo que aprendiste durante el día.",
+          "next": "n2"
+        },
+        {
+          "label": "Llamo a un amigo para hablar un rato y distraerme",
+          "kpi_delta": { "salud_mental": 5, "rendimiento": 0, "red_apoyo": 15 },
+          "feedback": "El contacto social reduce el cortisol, pero depende del contenido: si la conversación deriva en «¿cuánto has estudiado tú?», puede aumentar la ansiedad. Mejor opción: avisar al amigo de que no quieres hablar de los exámenes.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisión 2 — La ansiedad lleva tres semanas",
+      "situacion": "Carlos se da cuenta de que esto no es solo «nervios del examen de mañana». Lleva semanas así: duerme mal los domingos, tiene tensión en los hombros casi siempre, come menos cuando hay evaluación. Un amigo le dice que él fue al orientador y le ayudó. Carlos lo considera, pero le da vergüenza «hacer un drama de algo tan normal».",
+      "opciones": [
+        {
+          "label": "No voy al orientador. Todos los estudiantes tienen estrés, no hay que exagerar",
+          "kpi_delta": { "salud_mental": -10, "rendimiento": -5, "red_apoyo": -10 },
+          "feedback": "Normalizar el estrés crónico como «algo que todo el mundo tiene» impide pedir ayuda antes de que el problema crezca. La ansiedad persistente (más de dos semanas afectando el sueño, la alimentación y la concentración) merece atención profesional. No es drama: es cuidado preventivo.",
+          "next": "n3"
+        },
+        {
+          "label": "Pido cita con el orientador del instituto para comentarle lo que siento",
+          "kpi_delta": { "salud_mental": 20, "rendimiento": 10, "red_apoyo": 25 },
+          "feedback": "Muy buena decisión. El orientador puede valorar si lo que describes es ansiedad de rendimiento manejable con estrategias o si conviene derivar a un profesional de salud mental. Hablar con alguien formado no es señal de debilidad: es lo que haría cualquier deportista de élite con su psicólogo.",
+          "next": "n3"
+        },
+        {
+          "label": "Hablo con mis padres para contarles cómo me siento últimamente",
+          "kpi_delta": { "salud_mental": 15, "rendimiento": 5, "red_apoyo": 20 },
+          "feedback": "Ampliar la red de apoyo familiar es un paso valioso. Tus padres pueden ayudarte a acceder a recursos que no conoces (psicólogo del centro de salud, por ejemplo). Lección: la salud mental no se gestiona en solitario.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisión 3 — El examen ha ido regular",
+      "situacion": "El examen ha ido «más o menos». Carlos cree que ha fallado dos preguntas importantes. La nota no saldrá hasta dentro de una semana, pero la sensación inmediata es de fracaso. Empieza a pensar: «Soy un desastre, con lo que estudié». El ciclo de pensamientos negativos arrancan de nuevo.",
+      "opciones": [
+        {
+          "label": "Me encierro en casa todo el fin de semana rumiando lo que he podido fallar",
+          "kpi_delta": { "salud_mental": -20, "rendimiento": -10, "red_apoyo": -10 },
+          "feedback": "La rumiación (darle vueltas sin fin a lo que ya no puedes cambiar) es uno de los factores que más alimentan la ansiedad. El examen ya está entregado: el único valor que tiene ahora es analizar qué estudiar diferente la próxima vez, no castigarte por lo que salió mal.",
+          "next": "final:fracaso_parcial"
+        },
+        {
+          "label": "Hago una breve revisión de lo que creo que fallé, anoto qué repasar y cierro el tema hasta que salga la nota",
+          "kpi_delta": { "salud_mental": 10, "rendimiento": 15, "red_apoyo": 5 },
+          "feedback": "La revisión corta y cerrada convierte el examen en información de aprendizaje, no en sentencia personal. Después cerrar activamente el tema (literalmente: apuntar, cerrar el cuaderno, hacer algo diferente) es una estrategia de regulación emocional eficaz.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Quedo con amigos para desconectar. He hecho lo que he podido y ya está",
+          "kpi_delta": { "salud_mental": 15, "rendimiento": 5, "red_apoyo": 20 },
+          "feedback": "La recuperación activa después del esfuerzo cognitivo es parte del rendimiento, no un lujo. Los atletas no entrenan sin descanso; los estudiantes tampoco deberían. Socializar después de un examen es una forma eficaz de cortar el bucle de estrés.",
+          "next": "final:exito"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "Carlos aprende a gestionar la presión",
+      "resumen": "No ha eliminado la ansiedad —nadie lo hace del todo— pero ha aprendido a no dejar que le dirija. Duerme mejor, rinde de forma más estable y sabe cuándo pedir ayuda.",
+      "lecciones_clave": [
+        "La ansiedad de rendimiento que dura más de dos semanas y afecta el sueño o la alimentación merece atención profesional. Pedirla es cuidado, no drama.",
+        "El sueño la noche previa al examen vale más que dos horas extra de estudio: el cerebro consolida la memoria mientras duerme.",
+        "Rumiar lo que ya no puedes cambiar no es aprender del error: es castigarte. Analiza, anota, cierra."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "Carlos sigue en el bucle",
+      "resumen": "Sigue funcionando, pero a un coste emocional creciente. El ciclo ansiedad-esfuerzo-agotamiento se repite cada evaluación.",
+      "lecciones_clave": [
+        "Normalizar el malestar crónico como «lo que le pasa a todo el mundo» impide cambiar algo que sí tiene solución.",
+        "La ayuda profesional no es para casos extremos: es para antes de que algo pequeño se haga grande."
+      ]
+    }
+  }
+}
+```

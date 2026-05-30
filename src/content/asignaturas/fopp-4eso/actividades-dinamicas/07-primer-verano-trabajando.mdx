@@ -1,0 +1,117 @@
+---
+asignatura: fopp-4eso
+unidad_relacionada: 7
+title: "Mi primer verano trabajando"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "10-15 min"
+descripcion: "Sara tiene 16 años y busca su primer empleo de verano. Navega las opciones del mercado laboral juvenil."
+competencias_clave: [CPSAA, CC, CD]
+competencias_especificas: [CE2]
+estado: publicado
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Caso · Mercado laboral",
+    "titulo": "Mi primer verano trabajando",
+    "contexto": "Sara tiene 16 años y quiere trabajar este verano para tener sus propios ingresos y ganar experiencia. Su ciudad es costera y en verano hay mucha hostelería y comercio. Un primo mayor le ha hablado de un bar de la playa que «siempre busca gente en julio». También le han dicho que una tienda de ropa del centro busca dependienta. Y su vecina, que trabaja en un hotel, le dice que allí pagan mejor pero «piden 18 años». Sara no sabe bien qué puede y no puede hacer con 16 años.",
+    "kpi_inicial": { "claridad_futuro": 30, "autonomia": 25, "confianza": 20 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisión 1 — ¿Qué puede hacer legalmente con 16 años?",
+      "situacion": "Sara asume que con 16 años puede trabajar en casi todo. No sabe que la normativa laboral tiene restricciones específicas para menores de 18 años, especialmente en hostelería nocturna. El bar de la playa cierra a las 3:00.",
+      "opciones": [
+        {
+          "label": "Voy directamente al bar de la playa a preguntar. Si me contratan, ya veremos los horarios",
+          "kpi_delta": { "claridad_futuro": -10, "autonomia": -5, "confianza": -5 },
+          "feedback": "Los menores de 18 años tienen prohibido legalmente trabajar en horario nocturno (entre las 22:00 y las 6:00, salvo excepciones muy específicas). Si el bar cierra a las 3:00, ese trabajo es ilegal para Sara. Trabajar sin conocer tus derechos y límites legales te expone a situaciones de explotación y a pérdida de protecciones importantes. Lección: antes de aceptar cualquier trabajo, verifica qué dice la ley sobre tu situación específica.",
+          "next": "n2"
+        },
+        {
+          "label": "Busco qué restricciones laborales tienen los menores de 18 años en España antes de buscar trabajo",
+          "kpi_delta": { "claridad_futuro": 25, "confianza": 20, "autonomia": 20 },
+          "feedback": "Correcto. Los menores de 18 años en España no pueden: trabajar de noche (22:00-6:00), hacer horas extras, trabajar en actividades consideradas peligrosas, ni superar 8 horas diarias. Sí pueden trabajar en sectores donde se piden 18 como mínimo (algunos hoteles lo exigen por convenio, no por ley). Conocer estas restricciones te permite buscar trabajo en los lugares correctos.",
+          "next": "n2"
+        },
+        {
+          "label": "Pregunto a mi vecina del hotel si allí existe alguna forma de trabajar con 16 años",
+          "kpi_delta": { "claridad_futuro": 15, "confianza": 15, "autonomia": 15 },
+          "feedback": "Buena idea usar tu red de contactos. Los hoteles pueden contratar menores de 18 en funciones diurnas (servicio de desayunos, recepción hasta las 22:00, limpieza). El requisito de 18 años que mencionó tu vecina puede ser de convenio, no de ley — y hay turnos que sí son accesibles para menores. Preguntar directamente con datos concretos ayuda.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisión 2 — La tienda de ropa vs. el trabajo informal",
+      "situacion": "Sara descarta el bar nocturno y evalúa dos opciones: la tienda de ropa del centro (horario de 10:00 a 20:00, con dos horas de pausa) ofrece trabajo «en negro» — sin contrato, 600 € al mes en mano. La tienda de zapatos del mismo centro ofrece contrato de 3 meses, jornada parcial de 20 horas semanales, al SMI proporcional (unos 580 €). Sara piensa que 600 € en negro es más que 580 € con contrato.",
+      "opciones": [
+        {
+          "label": "Acepto el trabajo en negro en la tienda de ropa. Es más dinero y sin papeleos",
+          "kpi_delta": { "claridad_futuro": -15, "autonomia": -20, "confianza": -10 },
+          "feedback": "El trabajo sin contrato (en negro) tiene costes ocultos muy reales: no cotizas a la Seguridad Social (no acumulas vida laboral ni derechos de desempleo futuro), no tienes protección ante accidente laboral, el empleador puede no pagarte y no tienes recurso legal, y si te lesionas trabajando no tienes cobertura. 20 € más al mes no compensan esos riesgos. Lección: el trabajo informal no es más rentable — el coste oculto lo paga el trabajador.",
+          "next": "n3"
+        },
+        {
+          "label": "Acepto el contrato de la tienda de zapatos. Menos dinero pero con protecciones reales",
+          "kpi_delta": { "claridad_futuro": 20, "confianza": 20, "autonomia": 15 },
+          "feedback": "Con contrato legalizas tu relación laboral, acumulas vida laboral real (relevante para futuros trámites), tienes cobertura ante accidentes y la empresa no puede no pagarte sin consecuencias legales. Los 20 € de diferencia son la prima del seguro que pagas por trabajar sin protecciones. Es la mejor decisión.",
+          "next": "n3"
+        },
+        {
+          "label": "Negocio con la tienda de ropa que me hagan contrato aunque sea de unas horas",
+          "kpi_delta": { "claridad_futuro": 15, "confianza": 25, "autonomia": 20 },
+          "feedback": "Pedir contrato es tu derecho legal y hacerlo directamente muestra madurez. Algunos empleadores contratarán si ven que el trabajador lo pide con seguridad. Si dicen que no, tienes información importante sobre qué tipo de empresa es. Si dicen que sí y reducen el salario a 580 €, vuelves a la comparación del caso anterior — y sabes cuál es mejor.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisión 3 — Las primeras semanas de trabajo",
+      "situacion": "Sara está trabajando en la tienda de zapatos con contrato. En la tercera semana, la encargada le pide que se quede dos horas más sin registrarlo «porque hay mucho trabajo y esta semana necesitamos echar una mano». No le dicen que las pagarán. Es la primera vez que le piden esto.",
+      "opciones": [
+        {
+          "label": "Me quedo las dos horas sin decir nada. Es mi primera semana y no quiero problemas",
+          "kpi_delta": { "claridad_futuro": -10, "autonomia": -15, "confianza": -10 },
+          "feedback": "Aceptar horas extras no registradas establece un precedente: la empresa aprende que puede pedirlas y que tú no protestarás. Las horas extra deben registrarse y compensarse (en tiempo o dinero) según el convenio colectivo. No reclamar ahora hace más difícil reclamar después. Lección: los derechos laborales solo existen si los ejerces desde el principio.",
+          "next": "final:fracaso_parcial"
+        },
+        {
+          "label": "Pregunto con educación si las horas extra se compensarán o si quedan registradas",
+          "kpi_delta": { "claridad_futuro": 15, "confianza": 20, "autonomia": 25 },
+          "feedback": "Perfecto. Preguntar con educación y firmeza («¿esas horas extra quedan registradas?») no es conflictivo: es el comportamiento correcto de cualquier trabajador que conoce sus derechos. La respuesta que dé la encargada te dirá mucho sobre la empresa. Si las registran, bien. Si no, tienes información para decidir si quieres seguir.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Me quedo las dos horas y después lo comento con mis padres para decidir qué hacer",
+          "kpi_delta": { "claridad_futuro": 5, "confianza": 10, "autonomia": 5 },
+          "feedback": "Consultar con personas de confianza después de una situación nueva es razonable. Pero haberlo dicho en el momento habría sido más eficaz: los derechos laborales que no ejerces en el momento son más difíciles de reclamar retroactivamente. Aun así, hablarlo después te prepara mejor para la próxima vez.",
+          "next": "final:exito"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "Sara entra al mercado laboral con los ojos abiertos",
+      "resumen": "Ha entendido las restricciones legales para menores, ha elegido trabajo con contrato y ha aprendido a defender sus derechos básicos desde el primer día.",
+      "lecciones_clave": [
+        "Los menores de 18 años tienen restricciones laborales concretas (no nocturnidad, no horas extra, no actividades peligrosas). Conocerlas protege.",
+        "El trabajo informal (en negro) nunca es más rentable: el coste oculto (sin Seguridad Social, sin protección legal) lo paga el trabajador.",
+        "Los derechos laborales solo existen si los ejerces desde el principio. Preguntar educadamente por las condiciones no es conflictivo, es profesional."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "Sara trabaja pero sin protecciones",
+      "resumen": "Ha conseguido ingresos, pero estableciendo precedentes que la dejan en situación de desventaja frente a la empresa.",
+      "lecciones_clave": [
+        "Aceptar condiciones ilegales o no registradas en la primera semana establece un precedente muy difícil de revertir.",
+        "No conocer tus derechos laborales antes de empezar a trabajar te expone a explotación sin saberlo."
+      ]
+    }
+  }
+}
+```
