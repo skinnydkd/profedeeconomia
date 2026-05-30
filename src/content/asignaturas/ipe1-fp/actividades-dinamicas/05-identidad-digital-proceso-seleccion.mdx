@@ -1,0 +1,117 @@
+---
+asignatura: ipe1-fp
+unidad_relacionada: 5
+title: "Tu identidad digital en el proceso de selección"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "15-20 min"
+descripcion: "El seleccionador te busca en Google antes de llamarte. Lo que encuentra decide si llegan a llamarte."
+competencias_clave: [CPSAA, CC, CD]
+competencias_especificas: [RA5]
+estado: publicado
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Caso · Identidad digital",
+    "titulo": "Tu identidad digital en el proceso de selección",
+    "contexto": "Eres técnico/a superior de Desarrollo de Aplicaciones Web. Has enviado tu CV a NETSOLVE, una startup de software de Alicante con 25 empleados. La seleccionadora, Ana, tiene 15 candidatos. Antes de llamar a ninguno, dedica 3 minutos a buscar a cada uno en LinkedIn y en Google. Tu nombre es Elena García Torres. Son las 10:30 del martes y Ana acaba de teclear tu nombre.",
+    "kpi_inicial": { "presencia_digital": 3, "coherencia_perfil": 4, "reputacion_online": 5 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisión 1 — Lo que Ana encuentra en Google",
+      "situacion": "Google muestra tres resultados con tu nombre: (1) un perfil de LinkedIn con foto y última actualización hace 2 años; (2) un hilo de Twitter/X donde discutes acaloradamente sobre política con varios insultos; (3) un repositorio de GitHub con 4 proyectos del ciclo sin README. Ana tiene 12 candidatos más. ¿Qué deberías haber hecho antes de enviar el CV?",
+      "opciones": [
+        {
+          "label": "No hacer nada: las redes personales son vida privada y no deben afectar al trabajo",
+          "kpi_delta": { "presencia_digital": -2, "reputacion_online": -2, "coherencia_perfil": -1 },
+          "feedback": "Legalmente tienes razón: la vida privada es privada. En la práctica, lo que es público en internet es visible para cualquiera, incluida Ana. Un seleccionador que ve insultos en redes no puede saber si llevarás esa actitud al equipo. La frontera entre lo personal y lo profesional en internet es la que cada uno decide dibujar antes de enviar el CV.",
+          "next": "n2"
+        },
+        {
+          "label": "Auditar la huella digital antes de enviar: privacidad al hilo de Twitter, README al GitHub, LinkedIn actualizado",
+          "kpi_delta": { "presencia_digital": 2, "reputacion_online": 2, "coherencia_perfil": 2 },
+          "feedback": "Auditar tu presencia digital antes de buscar empleo es tan básico como llevar el CV actualizado. LinkedIn actualizado = primera impresión profesional. GitHub con README = demuestras competencia técnica. Twitter en privado = evitas que contenido personal enturbie una decisión profesional.",
+          "next": "n2"
+        },
+        {
+          "label": "Eliminar todas mis cuentas para no dejar rastro",
+          "kpi_delta": { "presencia_digital": -1, "reputacion_online": 1, "coherencia_perfil": -1 },
+          "feedback": "Sin presencia digital eres invisible, y en el sector tecnológico eso es una señal negativa: ¿por qué un desarrollador web no tiene perfil profesional online? La solución no es desaparecer sino construir una presencia coherente con tu perfil. La ausencia también comunica.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisión 2 — El LinkedIn que Ana encuentra",
+      "situacion": "Ana abre tu LinkedIn. Tiene foto de perfil profesional, pero el titular dice «Estudiante de DAW» (ya te has graduado hace 6 meses), no tiene ningún proyecto ni habilidad señalada y la última publicación es un meme de programación de hace un año. Ana tiene 30 segundos antes de pasar al siguiente.",
+      "opciones": [
+        {
+          "label": "El LinkedIn es secundario: lo que importa es el CV que envié",
+          "kpi_delta": { "presencia_digital": -1, "coherencia_perfil": -1, "reputacion_online": 0 },
+          "feedback": "El CV y LinkedIn se complementan. Estudios de empleo en España muestran que en torno al 70 % de las contrataciones en empresas medianas y grandes empieza con una búsqueda en LinkedIn. Un LinkedIn desactualizado contradice un CV bien hecho y genera dudas sobre tu atención al detalle.",
+          "next": "n3"
+        },
+        {
+          "label": "Actualizo el titular a «Técnico/a DAW — Desarrollo Frontend y Backend», añado los proyectos del ciclo y una descripción de 3 líneas sobre lo que busco",
+          "kpi_delta": { "presencia_digital": 2, "coherencia_perfil": 2, "reputacion_online": 1 },
+          "feedback": "Un LinkedIn actualizado en 20 minutos puede multiplicar tus probabilidades de pasar al siguiente filtro. El titular es lo primero que lee Ana; que diga lo que eres ahora (no lo que eras hace un año) es la diferencia entre que lea el perfil o lo cierre.",
+          "next": "n3"
+        },
+        {
+          "label": "Añado todas las habilidades disponibles aunque no las domine: más habilidades = más visible",
+          "kpi_delta": { "presencia_digital": 1, "coherencia_perfil": -2, "reputacion_online": -1 },
+          "feedback": "LinkedIn favorece perfiles con muchas habilidades en su algoritmo, pero si Ana te pregunta en la entrevista por una habilidad que has marcado y no sabes responder, la conversación termina ahí. La coherencia del perfil digital con lo que realmente sabes hacer es más valiosa que la visibilidad a cualquier precio.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisión 3 — Ana ve tu GitHub",
+      "situacion": "Ana hace clic en tu GitHub. Hay 4 repositorios: una tienda online en React, una API REST en Node.js, un clon de Twitter y un proyecto final de ciclo. Ninguno tiene README. Algunos tienen commits de hace 18 meses. El código está allí pero sin contexto.",
+      "opciones": [
+        {
+          "label": "El código habla por sí solo: quien sabe, sabe leerlo",
+          "kpi_delta": { "presencia_digital": 0, "coherencia_perfil": -1, "reputacion_online": -1 },
+          "feedback": "Ana es seleccionadora, no desarrolladora senior. Incluso si hay un técnico que revisa el código, un repositorio sin README y sin descripción dice «no me importa que lo entiendas». Un buen desarrollador documenta: es parte del trabajo, no un extra.",
+          "next": "final:fracaso_parcial"
+        },
+        {
+          "label": "Añado un README a cada repositorio: descripción, tecnologías usadas, cómo ejecutarlo y qué aprendí",
+          "kpi_delta": { "presencia_digital": 2, "coherencia_perfil": 2, "reputacion_online": 2 },
+          "feedback": "Un README bien escrito convierte un repositorio en un portfolio. Ana puede ver qué tecnologías usas, cómo piensas y qué nivel de comunicación tienes. Cuatro proyectos con README valen más que veinte repositorios sin contexto. Esta es tu marca personal técnica.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Borro los proyectos más antiguos y dejo solo el mejor",
+          "kpi_delta": { "presencia_digital": -1, "coherencia_perfil": 0, "reputacion_online": 0 },
+          "feedback": "Menos proyectos con menos información no mejora el perfil. Incluso un proyecto antiguo con README demuestra evolución y constancia. Borrar trabajo real para esconder la cantidad no es la estrategia más inteligente cuando tienes que demostrar experiencia desde cero.",
+          "next": "final:fracaso_parcial"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "Ana te pone en la lista de llamadas",
+      "resumen": "Tu identidad digital es coherente con tu perfil profesional. LinkedIn actualizado, GitHub documentado, huella personal limpia. Ana tiene razones para llamarte antes que a los otros doce.",
+      "lecciones_clave": [
+        "Auditar tu presencia digital antes de enviar el CV es tan básico como llevar el CV actualizado.",
+        "Un README bien escrito convierte un repositorio en un portfolio.",
+        "La coherencia entre lo que dices saber y lo que demuestras online es más valiosa que la visibilidad a cualquier precio."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "Ana pasa al siguiente candidato",
+      "resumen": "Tu perfil técnico es válido, pero tu identidad digital no lo refleja. Ana ha elegido a alguien con el mismo perfil pero una presencia online más cuidada. Treinta minutos de mantenimiento habrían cambiado el resultado.",
+      "lecciones_clave": [
+        "La ausencia de presencia digital en el sector tecnológico es una señal negativa, no neutral.",
+        "El primer filtro en selección es digital: si no pasas ese, nadie llega a ver tu talento real."
+      ]
+    }
+  }
+}
+```

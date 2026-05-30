@@ -1,0 +1,117 @@
+---
+asignatura: ipe1-fp
+unidad_relacionada: 6
+title: "Primer contrato: lee antes de firmar"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "15-20 min"
+descripcion: "Te dan un contrato de trabajo con dos cláusulas que no entiendes. Firmar sin leer puede costarte caro."
+competencias_clave: [CPSAA, CC, CD]
+competencias_especificas: [RA3]
+estado: publicado
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Caso · Contrato de trabajo",
+    "titulo": "Primer contrato: lee antes de firmar",
+    "contexto": "Tienes 19 años y acabas de terminar el ciclo de Farmacia y Parafarmacia. La farmacia Farmàcia Nova de Torrent te ofrece un contrato. Te lo entregan el viernes a las 17:50 y te dicen que lo tienes que firmar el lunes a las 9:00. El documento es un contrato temporal por «circunstancias de la producción» de 6 meses, jornada de 35 horas semanales, 1.200 € brutos mensuales. El convenio del sector es el Convenio Colectivo de Oficinas de Farmacia.",
+    "kpi_inicial": { "conocimiento_derechos": 4, "poder_negociacion": 3, "proteccion_laboral": 5 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisión 1 — El contrato dice «categoría: auxiliar»",
+      "situacion": "Lees el contrato y ves que tu categoría aparece como «auxiliar de farmacia». Tu título te acredita como Técnico/a Superior en Farmacia y Parafarmacia, que en el convenio colectivo tiene asignado un grupo profesional distinto con un salario base superior (al menos 1.280 € según el convenio vigente). La diferencia son 80 € al mes, 480 € en 6 meses.",
+      "opciones": [
+        {
+          "label": "Firmo: tampoco es tanta diferencia y no quiero empezar con problemas",
+          "kpi_delta": { "conocimiento_derechos": -1, "poder_negociacion": -2, "proteccion_laboral": -1 },
+          "feedback": "80 € al mes no son «poca diferencia»: son 480 € en 6 meses y afectan a la base de cotización que determina futuras prestaciones (desempleo, baja, jubilación). Además, firmar con una categoría inferior a tu titulación puede crear un precedente. Lección: el convenio colectivo es tu garantía mínima; por debajo del convenio no se puede pactar, aunque lo firmes voluntariamente.",
+          "next": "n2"
+        },
+        {
+          "label": "Consulto el convenio antes del lunes y señalo que mi titulación corresponde a otro grupo profesional",
+          "kpi_delta": { "conocimiento_derechos": 2, "poder_negociacion": 2, "proteccion_laboral": 2 },
+          "feedback": "El Convenio Colectivo de Oficinas de Farmacia es público y descargable. Buscar tu grupo profesional según titulación y señalarlo con respeto antes de firmar es un ejercicio de derechos, no de conflicto. Una empresa seria corrige la categoría o explica por qué no puede hacerlo.",
+          "next": "n2"
+        },
+        {
+          "label": "Pregunto al farmacéutico responsable sin haber consultado el convenio",
+          "kpi_delta": { "conocimiento_derechos": 0, "poder_negociacion": 0, "proteccion_laboral": 0 },
+          "feedback": "Preguntar está bien, pero si no has consultado el convenio antes, no tienes argumentos. El farmacéutico puede decirte «así es como lo hacemos» y sin datos no puedes rebatirlo. Lleva la información cuando vayas a la conversación.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisión 2 — Una cláusula sobre «exclusividad»",
+      "situacion": "En la página 2, en letra pequeña, hay una cláusula que dice: «El trabajador/a se compromete a no prestar servicios para otras empresas del sector durante la vigencia del contrato». No te lo han explicado de viva voz. Tienes otro trabajo de tarde los fines de semana en una óptica (8 horas semanales, sector diferente).",
+      "opciones": [
+        {
+          "label": "No hago nada: como es letra pequeña, probablemente no tenga validez",
+          "kpi_delta": { "conocimiento_derechos": -1, "poder_negociacion": -1, "proteccion_laboral": -2 },
+          "feedback": "En derecho laboral, la letra pequeña tiene la misma validez que el cuerpo del contrato si has firmado. La cláusula de exclusividad es legal en determinadas condiciones (art. 21 ET), aunque limitar su alcance a «mismo sector» es interpretable. Ignorar una cláusula que has firmado no la hace inexistente.",
+          "next": "n3"
+        },
+        {
+          "label": "Pregunto qué significa esa cláusula y si aplica al trabajo que ya tengo en la óptica",
+          "kpi_delta": { "conocimiento_derechos": 2, "poder_negociacion": 1, "proteccion_laboral": 2 },
+          "feedback": "La óptica es un sector diferente a la farmacia, lo que podría excluirte del alcance de la cláusula. Pero la única forma de saberlo con seguridad es preguntarlo antes de firmar o consultarlo con el SEPE o un sindicato. Firmar y luego preguntar invierte el orden de la protección.",
+          "next": "n3"
+        },
+        {
+          "label": "Tacho la cláusula y pongo mis iniciales encima antes de entregar el contrato firmado",
+          "kpi_delta": { "conocimiento_derechos": 1, "poder_negociacion": -1, "proteccion_laboral": 1 },
+          "feedback": "Modificar un contrato sin acuerdo expreso del empleador no es válido. Puedes proponer eliminar la cláusula en la negociación, pero tacharla unilateralmente puede invalidar el contrato completo o no surtir efecto legal. La negociación siempre es antes de firmar, no durante.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisión 3 — El período de prueba es de 3 meses",
+      "situacion": "El contrato incluye un período de prueba de 3 meses (la mitad del contrato). Durante el período de prueba, cualquiera de las partes puede rescindirlo sin indemnización. La farmacéutica te dice que «es lo habitual en el sector». El convenio establece un máximo de 2 meses para tu categoría.",
+      "opciones": [
+        {
+          "label": "Lo acepto: si se lo dicen a todo el mundo, será lo normal",
+          "kpi_delta": { "conocimiento_derechos": -2, "proteccion_laboral": -2, "poder_negociacion": -1 },
+          "feedback": "«Todos lo hacen» no convierte en legal algo que supera el límite del convenio. Un período de prueba de 3 meses en un contrato de 6 meses significa que pasas la mitad del contrato sin protección frente al despido. El convenio prevalece sobre lo que diga el contrato si es más favorable para el trabajador.",
+          "next": "final:fracaso_parcial"
+        },
+        {
+          "label": "Compruebo en el convenio cuál es el máximo y lo señalo: «El convenio establece 2 meses máximo para mi categoría»",
+          "kpi_delta": { "conocimiento_derechos": 2, "proteccion_laboral": 2, "poder_negociacion": 2 },
+          "feedback": "Correcto. La jerarquía normativa en derecho laboral es clara: ley > convenio > contrato. El convenio colectivo no se puede empeorar por contrato individual. Señalar esto antes de firmar es ejercer tus derechos con información, que es exactamente lo que el módulo de IPE te enseña a hacer.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Firmo ahora y si hay problema, acudo al SEPE a reclamar",
+          "kpi_delta": { "conocimiento_derechos": -1, "proteccion_laboral": -1, "poder_negociacion": -2 },
+          "feedback": "Reclamar después de firmar es posible, pero consume tiempo, energía y puede deteriorar la relación laboral antes de empezar. La protección más eficiente es la que se ejerce antes de comprometerse contractualmente, no después. Lección: el derecho laboral funciona mejor como escudo preventivo que como remedio reactivo.",
+          "next": "final:fracaso_parcial"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "Has firmado un contrato que entiendes y que te protege",
+      "resumen": "Consultaste el convenio, señalaste las discrepancias con respeto y firmaste un contrato ajustado a la normativa. Esa es la diferencia entre tener derechos y ejercerlos.",
+      "lecciones_clave": [
+        "El convenio colectivo es tu garantía mínima: por debajo no se puede pactar aunque lo firmes.",
+        "La jerarquía normativa protege al trabajador: ley > convenio > contrato.",
+        "Señalar una discrepancia antes de firmar no es conflicto: es conocimiento de tus derechos."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "Tienes trabajo, pero con condiciones por debajo de lo que te corresponde",
+      "resumen": "Has firmado sin comprobar el convenio. Puedes reclamar, pero ya desde una posición más débil. La próxima vez, el lunes a las 9:00 llega con el convenio descargado.",
+      "lecciones_clave": [
+        "Firmar y luego preguntar invierte el orden de la protección laboral.",
+        "«Todos lo hacen» no convierte en legal lo que supera los límites del convenio."
+      ]
+    }
+  }
+}
+```

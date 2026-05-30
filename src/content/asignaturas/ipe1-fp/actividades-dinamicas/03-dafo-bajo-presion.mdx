@@ -1,0 +1,117 @@
+---
+asignatura: ipe1-fp
+unidad_relacionada: 3
+title: "DAFO bajo presión"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "15-20 min"
+descripcion: "Tu sector se hunde en tu zona. Tienes 3 meses para reorientar tu proyecto profesional con un DAFO real."
+competencias_clave: [CPSAA, CC, CD]
+competencias_especificas: [RA4]
+estado: publicado
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Caso · Proyecto profesional",
+    "titulo": "DAFO bajo presión",
+    "contexto": "Eres técnico/a superior de Administración y Finanzas, recién graduado/a en Castellón. Has hecho el DAFO y tu plan apuntaba a trabajar en una gestoría local. Pero esta semana el SEPE publica que el empleo en gestorías y asesorías en tu provincia ha caído un 18 % en dos años por la digitalización de trámites. Tu ancla de carrera es la estabilidad. Tienes ahorros para 3 meses. El mercado ha cambiado antes de que tú llegues a él.",
+    "kpi_inicial": { "claridad_objetivo": 4, "plan_accion": 3, "margen_tiempo": 90 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisión 1 — Revisar o ignorar el DAFO",
+      "situacion": "Tu tutor de orientación te dice que deberías actualizar el DAFO antes de enviar más CVs. Llevas tres semanas mandando candidaturas sin respuesta. Tu instinto te dice que el plan es bueno y que solo hay que esperar.",
+      "opciones": [
+        {
+          "label": "Sigo enviando CVs como hasta ahora: el mercado se mueve lento",
+          "kpi_delta": { "claridad_objetivo": -1, "plan_accion": -1, "margen_tiempo": -30 },
+          "feedback": "Repetir la misma acción esperando resultados distintos es la definición de plan sin seguimiento. Tres semanas sin respuesta con ese volumen de candidaturas son datos: el diagnóstico ha caducado. Lección: el DAFO es un documento vivo, no un ejercicio que se hace una vez.",
+          "next": "n2"
+        },
+        {
+          "label": "Actualizo las casillas O y A con los datos del SEPE y veo qué cambia",
+          "kpi_delta": { "claridad_objetivo": 2, "plan_accion": 1, "margen_tiempo": 0 },
+          "feedback": "Correcto. Las casillas externas (Oportunidades y Amenazas) se alimentan de datos del mercado, no de suposiciones. Un dato nuevo como una caída del 18 % en empleo sectorial cambia directamente el CAME y, con él, el plan de acción.",
+          "next": "n2"
+        },
+        {
+          "label": "Descarto la gestoría y busco empleo en cualquier sector administrativo disponible",
+          "kpi_delta": { "claridad_objetivo": -2, "plan_accion": 0, "margen_tiempo": 0 },
+          "feedback": "Pivotar sin diagnóstico es reaccionar con pánico, no con criterio. Puede que el sector sea el correcto pero el subsector incorrecto, o que haya nichos no afectados por la digitalización. El DAFO evita huir del lugar equivocado para llegar al peor.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisión 2 — El DAFO actualizado señala una debilidad clave",
+      "situacion": "Al actualizar el DAFO descubres que tus oportunidades reales están en empresas medianas con facturación propia que no usan gestoría externa, pero que requieren manejo de software de contabilidad (Sage, Holded) que tú no dominas. Es una debilidad corregible. Tienes dos semanas antes de que tu margen económico baje del mínimo cómodo.",
+      "opciones": [
+        {
+          "label": "Apunto a un curso de Sage de 3 meses y espero a terminarlo para buscar trabajo",
+          "kpi_delta": { "claridad_objetivo": 1, "plan_accion": -1, "margen_tiempo": -30 },
+          "feedback": "Corregir la debilidad está bien, pero tres meses sin ingresos con ese margen es arriesgado. El plan necesita dos vías en paralelo: formación inmediata (aunque sea un curso corto de 20-30 horas) y candidaturas activas mientras aprendes. Estrategia de reorientación, no de espera.",
+          "next": "n3"
+        },
+        {
+          "label": "Busco un curso online gratuito de Sage de 20 horas y lo pongo en el CV con fecha de inicio",
+          "kpi_delta": { "claridad_objetivo": 2, "plan_accion": 2, "margen_tiempo": 0 },
+          "feedback": "Movimiento inteligente. Una empresa que ve «Sage — en curso» en tu CV entiende que eres consciente de la carencia y que ya la estás atacando. Muchas empresas contratan mientras forman: lo que venden las candidaturas activas es actitud, no perfección.",
+          "next": "n3"
+        },
+        {
+          "label": "Señalo en el CV que «tengo capacidad para aprender cualquier software»",
+          "kpi_delta": { "claridad_objetivo": -1, "plan_accion": 0, "margen_tiempo": 0 },
+          "feedback": "Adjetivo sin evidencia: lo puede escribir cualquiera. Una empresa que busca alguien que ya maneje Sage lee «capacidad para aprender» como «no lo sé». Lección del DAFO: una debilidad detectada exige acción concreta, no adorno retórico.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisión 3 — Aparece una oportunidad que no estaba en el plan",
+      "situacion": "Un exprofesor del ciclo te avisa de que el departamento de administración de una cooperativa agrícola de la zona busca un auxiliar contable. El puesto es fijo-discontinuo (8 meses al año), 1.350 € brutos, sin uso de Sage. No era tu objetivo. Tu ancla de carrera es la estabilidad, y fijo-discontinuo no es indefinido.",
+      "opciones": [
+        {
+          "label": "Lo descarto: fijo-discontinuo no encaja con mi ancla de estabilidad",
+          "kpi_delta": { "claridad_objetivo": 0, "plan_accion": -1, "margen_tiempo": -20 },
+          "feedback": "Tu ancla de carrera es un criterio de prioridad, no un filtro absoluto. Fijo-discontinuo con 8 meses de actividad al año equivale a cotización regular, prestación por desempleo en los meses parados y experiencia real en nómina. Con 3 meses de margen, descartar esta opción sin información completa es un lujo que quizás no puedas permitirte.",
+          "next": "final:fracaso_parcial"
+        },
+        {
+          "label": "Me informo sobre las condiciones reales del fijo-discontinuo antes de decidir",
+          "kpi_delta": { "claridad_objetivo": 1, "plan_accion": 2, "margen_tiempo": 0 },
+          "feedback": "Un fijo-discontinuo bien negociado puede dar más estabilidad que un temporal renovado cada 3 meses. Informarte antes de decidir es lo que separa una decisión basada en el miedo de una basada en el criterio. El CAME dice: ante una amenaza (margen de tiempo), usa tus fortalezas (red de contactos, perfil administrativo).",
+          "next": "final:exito"
+        },
+        {
+          "label": "Acepto sin negociar condiciones: cualquier cosa es mejor que nada",
+          "kpi_delta": { "claridad_objetivo": -1, "plan_accion": 0, "margen_tiempo": 10 },
+          "feedback": "Aceptar por miedo y sin información puede funcionar a corto plazo, pero un fijo-discontinuo mal entendido puede dejarte 4 meses al año sin ingresos sin haber cotizado suficiente para cobrar el paro. Lección: una decisión urgente sin datos es más arriesgada que una decisión lenta con información.",
+          "next": "final:fracaso_parcial"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "Tu proyecto profesional sobrevive al cambio",
+      "resumen": "Actualizaste el DAFO con datos reales, atacaste la debilidad clave mientras seguías buscando y exploraste la oportunidad emergente con criterio. El mercado ha cambiado, pero tú te has adaptado.",
+      "lecciones_clave": [
+        "El DAFO es un documento vivo: se revisa cuando cambia el entorno, no solo al acabar el ciclo.",
+        "Corregir una debilidad mientras buscas trabajo es más potente que esperar a ser perfecto.",
+        "El ancla de carrera orienta, no bloquea: úsala como criterio de decisión, no como excusa para no explorar."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "Sigues buscando, pero sin dirección clara",
+      "resumen": "El mercado te ha pillado con el plan desactualizado. Tienes el perfil, pero las decisiones tomadas por inercia o miedo han mermado tu margen de maniobra.",
+      "lecciones_clave": [
+        "Un plan que no se revisa caduca más rápido que el mercado al que apunta.",
+        "Las decisiones urgentes sin datos suelen costar más que las decisiones lentas con información."
+      ]
+    }
+  }
+}
+```

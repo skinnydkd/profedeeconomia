@@ -1,0 +1,117 @@
+---
+asignatura: ipe1-fp
+unidad_relacionada: 1
+title: "Primera oferta: ¿la acepto o no?"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "15-20 min"
+descripcion: "Tu primera oferta de trabajo llega en plenas prácticas. Salario bajo, contrato temporal. Decide con criterio."
+competencias_clave: [CPSAA, CC, CD]
+competencias_especificas: [RA5]
+estado: publicado
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Caso · Empleabilidad",
+    "titulo": "Primera oferta: ¿la acepto o no?",
+    "contexto": "Estás en el segundo trimestre de tu ciclo formativo de Instalaciones Eléctricas y Automáticas. El tutor de prácticas de la empresa ELECTROVAL S.L. te llama aparte: «Nos has gustado. Si en junio terminas el ciclo, te ofrecemos un contrato temporal de 6 meses a jornada completa, 1.050 € brutos al mes». El SMI en 2024 es 1.134 € al mes en 14 pagas. Tienes 18 años, vives con tu familia y hay otra empresa del sector —más grande— donde querías enviar el CV.",
+    "kpi_inicial": { "empleabilidad_interna": 7, "empleabilidad_externa": 4, "red_contactos": 2 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisión 1 — La oferta está por debajo del SMI",
+      "situacion": "Te das cuenta de que 1.050 € brutos son menos del SMI vigente (1.134 €). El jefe te dice que «así lo hacen todos en el sector para el primer contrato» y que «ya subirá». Tienes que dar una respuesta antes del viernes.",
+      "opciones": [
+        {
+          "label": "Acepto sin decir nada, la experiencia vale más que el sueldo",
+          "kpi_delta": { "empleabilidad_interna": 1, "empleabilidad_externa": -1, "red_contactos": 1 },
+          "feedback": "La experiencia tiene valor, pero aceptar por debajo del SMI es ilegal (art. 27 ET) y sienta un precedente. Si no lo señalas ahora, el patrón aprende que puede ofrecerte lo que quiera. Lección: conocer tus derechos no es quejarse, es negociar con información.",
+          "next": "n2"
+        },
+        {
+          "label": "Lo señalo: «Creo que está por debajo del SMI, ¿podemos revisarlo?»",
+          "kpi_delta": { "empleabilidad_interna": 0, "empleabilidad_externa": 1, "red_contactos": 1 },
+          "feedback": "Correcto. Una empresa seria reajusta el importe o explica qué modalidad contractual aplica (p. ej. contrato formativo con tipo propio). Señalarlo con respeto demuestra que conoces tus derechos y eso suma a tu perfil, no resta.",
+          "next": "n2"
+        },
+        {
+          "label": "Rechazo la oferta directamente y espero a la empresa grande",
+          "kpi_delta": { "empleabilidad_interna": -2, "empleabilidad_externa": 0, "red_contactos": -1 },
+          "feedback": "Rechazar sin negociar corta una relación que podría haberse reajustado. La empresa grande puede no llamarte nunca. Lección: la primera respuesta ante una oferta mejorable es negociar, no rechazar.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisión 2 — El contrato es temporal: ¿qué tipo?",
+      "situacion": "Tras la conversación, la empresa aclara que será un «contrato temporal por circunstancias de la producción» de 6 meses, 1.134 € brutos. Te lo explican de pie en el pasillo, sin que puedas ver el documento. El lunes siguiente tienes que firmar.",
+      "opciones": [
+        {
+          "label": "Firmo el lunes sin leer el contrato: me fío de lo que me dijeron",
+          "kpi_delta": { "empleabilidad_interna": 0, "empleabilidad_externa": -1, "red_contactos": 0 },
+          "feedback": "Firmar sin leer es el error más común en el primer empleo. Lo que no está en el contrato escrito no existe legalmente. Siempre tienes derecho a llevarte el borrador y leerlo con calma antes de firmar.",
+          "next": "n3"
+        },
+        {
+          "label": "Pido el borrador el viernes para leerlo el fin de semana",
+          "kpi_delta": { "empleabilidad_interna": 1, "empleabilidad_externa": 1, "red_contactos": 0 },
+          "feedback": "Exactamente lo correcto. Tienes derecho a revisar el contrato antes de firmarlo. Comprueba: modalidad, jornada, salario, categoría según convenio, duración y cláusulas especiales. Si algo no cuadra, pregunta antes de firmar.",
+          "next": "n3"
+        },
+        {
+          "label": "Pregunto al tutor del centro si el contrato temporal «por producción» es el correcto para mi caso",
+          "kpi_delta": { "empleabilidad_interna": 0, "empleabilidad_externa": 1, "red_contactos": 1 },
+          "feedback": "Buena jugada. El tutor o el orientador del centro conocen las modalidades vigentes. Para un recién titulado existe también el contrato formativo de obtención de práctica profesional (máx. 1 año), con cotizaciones reducidas para la empresa. Usar tu red de forma inteligente es empleabilidad real.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisión 3 — Mientras decides, llega una llamada",
+      "situacion": "El jueves, antes de firmar, un excompañero de clase te avisa: «En TECNICSUR están buscando a alguien con tu perfil, pagan 1.300 € y el contrato es indefinido desde el principio». TECNICSUR queda a 35 km. No tienes coche y la oferta necesita respuesta en 48 horas.",
+      "opciones": [
+        {
+          "label": "Llamo a TECNICSUR para informarme, aunque luego no pueda ir",
+          "kpi_delta": { "empleabilidad_externa": 2, "red_contactos": 1, "empleabilidad_interna": 0 },
+          "feedback": "Informarse no compromete nada. Conocer las condiciones reales te permite comparar y, si decides quedarte en ELECTROVAL, al menos sabes lo que vales en el mercado. Tu red de contactos crece incluso si no aceptas esa oferta.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Ignoro la llamada y firmo con ELECTROVAL: no quiero complicaciones",
+          "kpi_delta": { "empleabilidad_externa": -1, "red_contactos": 0, "empleabilidad_interna": 1 },
+          "feedback": "Puedes firmar con ELECTROVAL y es una decisión válida si encaja con tu proyecto. Pero ignorar la información del mercado por miedo no es prudencia: es actitud pasiva. Lección: explorar opciones mientras negocias no es deslealtad, es construcción activa de empleabilidad.",
+          "next": "final:fracaso_parcial"
+        },
+        {
+          "label": "Acepto TECNICSUR sin preguntar por el transporte ni ver el contrato",
+          "kpi_delta": { "empleabilidad_externa": 0, "red_contactos": -1, "empleabilidad_interna": -2 },
+          "feedback": "Un sueldo mayor con un contrato indefinido suena bien, pero 35 km sin transporte puede hacer el trabajo inviable en pocas semanas. Y romper el acuerdo verbal con ELECTROVAL sin haberlo comprobado daña tu reputación en un sector pequeño. Lección: las decisiones rápidas sin datos cuestan más que las lentas con información.",
+          "next": "final:fracaso_parcial"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "Primera inserción con criterio",
+      "resumen": "Conociste tus derechos, negociaste el salario, leíste el contrato y exploraste el mercado antes de decidir. Eso es empleabilidad activa desde el primer día.",
+      "lecciones_clave": [
+        "Conocer el SMI y las modalidades de contrato te protege desde la primera firma.",
+        "Negociar con respeto y datos no cierra puertas: las abre.",
+        "Explorar opciones mientras decides es actitud activa, no deslealtad."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "Has encontrado trabajo, pero sin margen de maniobra",
+      "resumen": "Tienes empleo, pero tomaste decisiones sin información suficiente. Probablemente puedas reconducirlo, pero con más desgaste del necesario.",
+      "lecciones_clave": [
+        "La actitud pasiva ante la primera oferta deja en manos de otros las condiciones de tu carrera.",
+        "Las decisiones rápidas sin datos cuestan más que las lentas con información."
+      ]
+    }
+  }
+}
+```

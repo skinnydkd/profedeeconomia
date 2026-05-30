@@ -1,0 +1,117 @@
+---
+asignatura: ipe1-fp
+unidad_relacionada: 9
+title: "No puedo más con esto"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "15-20 min"
+descripcion: "Tres meses en tu primer trabajo, sin descansar, con tensión constante. Reconocer el límite es la primera habilidad de supervivencia laboral."
+competencias_clave: [CPSAA, CC, CD]
+competencias_especificas: [RA1]
+estado: publicado
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Caso · Salud psicosocial",
+    "titulo": "No puedo más con esto",
+    "contexto": "Llevas 3 meses trabajando como técnico/a de Hostelería en el Hotel Mediterráneo de Benidorm, 40 horas semanales con turno partido (10:00-15:00 y 19:00-23:00), más horas extra que «son voluntarias pero si no las haces te miran mal». Tu supervisor, Tomás, te corrige delante de clientes con frecuencia y en alguna ocasión ha dicho en voz alta «esto no es para ti». En los últimos 15 días no has dormido bien ninguna noche, tienes dolor de cabeza casi cada mañana y el domingo lloras antes de salir hacia el trabajo sin saber muy bien por qué.",
+    "kpi_inicial": { "bienestar_laboral": 3, "gestion_estres": 2, "conocimiento_recursos": 2 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisión 1 — Reconocer lo que está pasando",
+      "situacion": "Un compañero, Isaac, te pregunta si estás bien. Le dices que «un poco cansado/a». Él te mira y dice: «Llevas semanas así. ¿Estás seguro/a de que es solo cansancio?». Es la primera vez que alguien lo nombra.",
+      "opciones": [
+        {
+          "label": "Le digo que sí, que es solo cansancio, y cambio de tema: mostrar debilidad en el trabajo no es buena idea",
+          "kpi_delta": { "bienestar_laboral": -1, "gestion_estres": -2, "conocimiento_recursos": 0 },
+          "feedback": "Minimizar síntomas físicos y emocionales sostenidos (insomnio, dolor de cabeza recurrente, llanto sin causa clara) durante 15 días no es prudencia: es el mecanismo por el que el estrés crónico avanza hacia el burnout. El burnout no es una debilidad de carácter: es una respuesta fisiológica al agotamiento de recursos. Reconocerlo no es mostrar debilidad; es el primer paso para gestionarlo.",
+          "next": "n2"
+        },
+        {
+          "label": "Le reconozco a Isaac que las últimas semanas han sido muy duras y que no estoy descansando bien",
+          "kpi_delta": { "bienestar_laboral": 1, "gestion_estres": 1, "conocimiento_recursos": 1 },
+          "feedback": "Nombrar lo que está pasando con alguien de confianza es el primer mecanismo de afrontamiento activo. No resuelve el problema, pero reduce la carga de cargarlo solo. Isaac puede darte perspectiva, señalarte recursos internos de la empresa o simplemente hacer que la situación sea menos aislante.",
+          "next": "n2"
+        },
+        {
+          "label": "Le digo que el problema es Tomás y que si él no estuviera todo iría bien",
+          "kpi_delta": { "bienestar_laboral": 0, "gestion_estres": -1, "conocimiento_recursos": 0 },
+          "feedback": "El comportamiento de Tomás puede ser un factor de riesgo psicosocial real (corrección pública reiterada, comentarios desacreditadores). Pero identificar solo la causa externa sin analizar tu propio estado es incompleto: el agotamiento ya está instalado y requiere atención independientemente de si Tomás cambia o no.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisión 2 — ¿Qué está pasando con Tomás?",
+      "situacion": "Isaac te dice que Tomás hace lo mismo con otros compañeros jóvenes, que hay antecedentes y que dos personas pidieron traslado el año pasado. El delegado de prevención del hotel, Rebeca, es accesible y ya ha gestionado situaciones similares. Tu contrato lleva 3 meses y tienes 3 más. No quieres perder el trabajo pero tampoco puedes seguir así.",
+      "opciones": [
+        {
+          "label": "Aguanto los 3 meses que quedan y ya: si el contrato no se renueva, problema resuelto",
+          "kpi_delta": { "bienestar_laboral": -2, "gestion_estres": -2, "conocimiento_recursos": -1 },
+          "feedback": "«Aguantar» con los síntomas que describes (insomnio crónico, dolor de cabeza diario, llanto anticipatorio) durante 3 meses más sin intervención puede derivar en burnout clínico. El burnout no desaparece cuando cambia el trabajo: sigue contigo. Aguantar en silencio no es resiliencia; es desgaste sin estrategia.",
+          "next": "n3"
+        },
+        {
+          "label": "Hablo con Rebeca, la delegada de prevención, para informarme de qué opciones tengo",
+          "kpi_delta": { "bienestar_laboral": 1, "gestion_estres": 2, "conocimiento_recursos": 3 },
+          "feedback": "El delegado/a de prevención es exactamente el recurso para esta situación. Tiene obligación de confidencialidad y puede orientarte sobre los mecanismos de la empresa para gestionar riesgos psicosociales. Informarte no te compromete a nada ni pone en riesgo tu contrato: es tu derecho de participación y consulta (art. 18 Ley 31/1995).",
+          "next": "n3"
+        },
+        {
+          "label": "Confronto directamente a Tomás diciéndole que su forma de corregirme me está afectando",
+          "kpi_delta": { "bienestar_laboral": 0, "gestion_estres": 1, "conocimiento_recursos": 0 },
+          "feedback": "Una conversación directa puede ser efectiva si se hace en privado, con calma y con hechos concretos. Pero sin antes conocer tus derechos y los recursos del hotel, vas a la conversación en posición de debilidad. Informarte primero (con Rebeca o con el convenio) te da más herramientas y más seguridad para esa conversación si decides tenerla.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisión 3 — El médico de cabecera y el derecho a la desconexión",
+      "situacion": "Rebeca te informa de que hay un protocolo de prevención de riesgos psicosociales en el hotel y que puedes solicitar una evaluación de tu puesto. Mientras tanto, el médico de cabecera te ve y te diagnóstica «episodio ansioso con insomnio secundario» y te ofrece medicación o baja médica. Tomás te ha enviado mensajes de WhatsApp a las 23:30 dos noches seguidas sobre turnos del día siguiente.",
+      "opciones": [
+        {
+          "label": "Tomo la medicación y sigo igual: no quiero coger la baja en los primeros 3 meses",
+          "kpi_delta": { "bienestar_laboral": 0, "gestion_estres": -1, "conocimiento_recursos": -1 },
+          "feedback": "La medicación puede aliviar síntomas pero no elimina los factores de riesgo. Si el origen es el entorno laboral y el entorno no cambia, el tratamiento solo pospone el agotamiento. Además, la baja médica es un derecho que protege tu salud: no cogerla «por miedo» es poner el trabajo por encima de ti cuando el médico ya ha señalado que necesitas intervención.",
+          "next": "final:fracaso_parcial"
+        },
+        {
+          "label": "Respondo a Tomás por WhatsApp a las 23:30 para no tener problemas al día siguiente",
+          "kpi_delta": { "bienestar_laboral": -2, "gestion_estres": -2, "conocimiento_recursos": -1 },
+          "feedback": "El derecho a la desconexión digital está reconocido en España (Ley Orgánica 3/2018). Responder mensajes laborales fuera de tu jornada de manera sistemática no es profesionalidad: es normalizar una vulneración de tu derecho al descanso. Cada respuesta nocturna consolida la expectativa de disponibilidad permanente. Puedes decidir no responder hasta el inicio de tu jornada: eso no es incumplir, es ejercer un derecho.",
+          "next": "final:fracaso_parcial"
+        },
+        {
+          "label": "Pregunto al médico sobre la baja, activo el protocolo con Rebeca y dejo de responder mensajes fuera de jornada",
+          "kpi_delta": { "bienestar_laboral": 3, "gestion_estres": 3, "conocimiento_recursos": 3 },
+          "feedback": "Las tres acciones abordan el problema desde sus tres frentes: la salud individual (médico), el entorno laboral (protocolo de PRL) y los límites del tiempo de trabajo (desconexión digital). Ninguna de estas acciones es extrema ni agresiva: son mecanismos legales diseñados para exactamente esta situación. Usarlos no es señal de debilidad; es señal de que sabes cómo funciona el sistema y lo usas a tu favor.",
+          "next": "final:exito"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "Has tomado las riendas de tu bienestar laboral",
+      "resumen": "Reconociste los síntomas a tiempo, activaste los recursos disponibles y pusiste límites claros en tu disponibilidad fuera de jornada. Eso no garantiza que todo se resuelva de golpe, pero sí que tienes agencia sobre lo que te está pasando.",
+      "lecciones_clave": [
+        "Reconocer el estrés crónico no es debilidad: es la primera habilidad de supervivencia laboral.",
+        "El delegado/a de prevención y el médico de cabecera son recursos, no últimas opciones.",
+        "El derecho a la desconexión digital es un derecho laboral, no una preferencia personal: no responder fuera de jornada no es incumplir."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "Sigues adelante, pero cada vez con menos recursos",
+      "resumen": "Has elegido aguantar sin activar los mecanismos de protección disponibles. El estrés sostenido sin gestión no desaparece solo: se acumula. El sistema de prevención de riesgos psicosociales existe para esto; sin él, la carga la llevas solo.",
+      "lecciones_clave": [
+        "Aguantar en silencio no es resiliencia: es desgaste sin estrategia.",
+        "Los riesgos psicosociales tienen cobertura legal igual que los riesgos físicos: ignorarlos tiene el mismo coste."
+      ]
+    }
+  }
+}
+```

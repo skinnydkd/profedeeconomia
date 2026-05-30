@@ -1,0 +1,117 @@
+---
+asignatura: ipe1-fp
+unidad_relacionada: 7
+title: "Baja médica y finiquito: que no te la cuelen"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "15-20 min"
+descripcion: "Contrato temporal, una baja de 9 días y un finiquito con números raros. Tienes que saber leer lo que firmas."
+competencias_clave: [CPSAA, CC, CD]
+competencias_especificas: [RA3]
+estado: publicado
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Caso · Seguridad Social",
+    "titulo": "Baja médica y finiquito: que no te la cuelen",
+    "contexto": "Trabajas desde hace 4 meses con un contrato temporal de 6 meses en un almacén logístico en Murcia (DISTRIBUCIONES TORAL S.L.), 1.200 € brutos al mes, jornada completa. En el mes 5 te operan del menisco y el médico de cabecera te da una baja de 9 días por incapacidad temporal. Al reincorporarte te dicen que el contrato no se renueva y te dan el finiquito. El documento incluye: días trabajados, vacaciones no disfrutadas y la parte proporcional de pagas extras. No incluye nada de la baja.",
+    "kpi_inicial": { "conocimiento_ss": 3, "proteccion_prestaciones": 4, "capacidad_reclamacion": 3 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisión 1 — La baja de 9 días: ¿quién paga qué?",
+      "situacion": "Al revisar la nómina del mes que estuviste de baja ves que los primeros 3 días no aparece ninguna compensación y del día 4 al 9 solo aparece el 60 % de tu base reguladora. La empresa no te ha pagado ningún complemento. Crees que deberías haber cobrado más.",
+      "opciones": [
+        {
+          "label": "Lo acepto: en la baja siempre cobras menos y ya está",
+          "kpi_delta": { "conocimiento_ss": -1, "proteccion_prestaciones": -1, "capacidad_reclamacion": -1 },
+          "feedback": "La distribución legal es: días 1-3 sin prestación de la Seguridad Social (a cargo de la empresa si el convenio lo establece, o sin cobro si no lo hace), días 4-15 al 60 % a cargo de la empresa, días 16-20 al 60 % a cargo de la SS, día 21 en adelante al 75 %. Muchos convenios mejoran estas condiciones. Sin consultar el tuyo, no sabes si cobraste lo que te correspondía.",
+          "next": "n2"
+        },
+        {
+          "label": "Consulto el convenio del sector de logística y almacenaje para ver si hay mejora de la IT por convenio",
+          "kpi_delta": { "conocimiento_ss": 2, "proteccion_prestaciones": 2, "capacidad_reclamacion": 1 },
+          "feedback": "Correcto. Muchos convenios sectoriales obligan a la empresa a completar la prestación hasta el 100 % del salario durante la IT. Si el convenio de logística de tu provincia lo contempla y la empresa no lo ha aplicado, tienes derecho a reclamar la diferencia. Conocer el convenio es el primer paso.",
+          "next": "n2"
+        },
+        {
+          "label": "Llamo a la Seguridad Social para que me expliquen la nómina",
+          "kpi_delta": { "conocimiento_ss": 1, "proteccion_prestaciones": 1, "capacidad_reclamacion": 0 },
+          "feedback": "La Seguridad Social puede aclararte qué le corresponde pagar a ella, pero la parte de mejora por convenio depende del acuerdo sectorial. Para la parte a cargo de la empresa, el interlocutor es el convenio y, si hay conflicto, la Inspección de Trabajo o el SMAC (Servicio de Mediación, Arbitraje y Conciliación).",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisión 2 — El finiquito: ¿está bien calculado?",
+      "situacion": "El finiquito que te entregan incluye: 8 días de vacaciones no disfrutadas (tienes derecho a 30 días anuales × (5/12 meses) = 12,5 días, proporcional a los 5 meses y 10 días trabajados) y las pagas extras proporcionales. La empresa ha calculado solo 8 días de vacaciones en lugar de 12,5. La diferencia son unos 180 €.",
+      "opciones": [
+        {
+          "label": "Firmo el finiquito: el cálculo lo han hecho ellos y supongo que está bien",
+          "kpi_delta": { "conocimiento_ss": -1, "proteccion_prestaciones": -2, "capacidad_reclamacion": -2 },
+          "feedback": "El finiquito firmado tiene valor liberatorio: en principio, al firmarlo reconoces que los importes son correctos. Aunque puedes reclamar después si hubo error, es más difícil y más costoso. Revisar el cálculo antes de firmar te lleva 5 minutos y puede suponer 180 €.",
+          "next": "n3"
+        },
+        {
+          "label": "Calculo yo las vacaciones proporcionales (30 días × meses trabajados / 12) y señalo la diferencia",
+          "kpi_delta": { "conocimiento_ss": 2, "proteccion_prestaciones": 2, "capacidad_reclamacion": 2 },
+          "feedback": "Exacto. La fórmula de vacaciones proporcionales es pública y sencilla. 30 días anuales × 5,33 meses / 12 = 13,3 días, redondeando. Señalar el error con el cálculo hecho es diferente a quejarse «creo que está mal»: tienes la cifra concreta y la justificación. La empresa suele corregir sin conflicto.",
+          "next": "n3"
+        },
+        {
+          "label": "Firmo con la nota «no conforme» escrita a mano y ya reclamo si hace falta",
+          "kpi_delta": { "conocimiento_ss": 1, "proteccion_prestaciones": 0, "capacidad_reclamacion": 1 },
+          "feedback": "Firmar «no conforme» es una opción válida que preserva tu derecho a reclamar posteriormente. No elimina el problema, pero evita el efecto liberatorio del finiquito. Es mejor que firmar a secas si no tienes tiempo de revisar, pero menos eficiente que detectar el error antes de firmar.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisión 3 — ¿Tienes derecho a prestación por desempleo?",
+      "situacion": "Con 5 meses y 10 días cotizados en este contrato, más 3 meses previos cotizados en un trabajo de verano anterior (total: 8 meses y 10 días), te preguntas si puedes cobrar el paro. El requisito mínimo para la prestación contributiva por desempleo es 360 días cotizados en los últimos 6 años.",
+      "opciones": [
+        {
+          "label": "No tengo derecho al paro: solo llevo 8 meses cotizando y se necesita mucho más",
+          "kpi_delta": { "conocimiento_ss": -1, "proteccion_prestaciones": -2, "capacidad_reclamacion": 0 },
+          "feedback": "El requisito son 360 días (12 meses) cotizados para la prestación contributiva. Con 8 meses y 10 días no llegas. Sin embargo, existe el subsidio por desempleo para personas que agotan la prestación contributiva o no la tienen, con condiciones de renta. Vale la pena informarse en el SEPE: el subsidio existe precisamente para situaciones como esta.",
+          "next": "final:fracaso_parcial"
+        },
+        {
+          "label": "Voy al SEPE a informarme sobre qué prestación o subsidio me corresponde con mis cotizaciones reales",
+          "kpi_delta": { "conocimiento_ss": 2, "proteccion_prestaciones": 2, "capacidad_reclamacion": 2 },
+          "feedback": "Con menos de 360 días cotizados no tienes derecho a prestación contributiva, pero el SEPE puede informarte sobre el subsidio por desempleo (si cumples los requisitos de renta) y sobre cómo acumular cotizaciones en el futuro para acceder a la prestación contributiva lo antes posible. Ir al SEPE es siempre la primera decisión correcta.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Dejo pasar el tiempo: ya miraré si encuentro otro trabajo rápido",
+          "kpi_delta": { "conocimiento_ss": -1, "proteccion_prestaciones": -1, "capacidad_reclamacion": -1 },
+          "feedback": "La solicitud de prestación o subsidio tiene un plazo: si no la solicitas dentro de los 15 días hábiles desde el desempleo, puedes perder días de cobertura. No conocer los plazos cuesta dinero real.",
+          "next": "final:fracaso_parcial"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "Has cobrado lo que te correspondía y conoces tu situación real",
+      "resumen": "Consultaste el convenio, calculaste las vacaciones proporcionales, detectaste el error en el finiquito y fuiste al SEPE a conocer tus opciones. El sistema de protección existe para esto: funciona si lo activas.",
+      "lecciones_clave": [
+        "El convenio colectivo puede mejorar la prestación por IT: consulta siempre antes de aceptar lo que te digan.",
+        "El finiquito firmado tiene valor liberatorio: revisa el cálculo antes de firmarlo.",
+        "La solicitud de prestación tiene plazo: no esperes más de 15 días hábiles desde el desempleo."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "Has cobrado menos de lo que te correspondía",
+      "resumen": "Firmaste sin revisar y no pediste información sobre prestaciones. El dinero perdido no es recuperable fácilmente. La próxima vez, el convenio y la calculadora van antes que la firma.",
+      "lecciones_clave": [
+        "Firmar sin revisar el finiquito es el error más caro del final de un contrato.",
+        "El sistema de protección social funciona si lo activas: no activa solo."
+      ]
+    }
+  }
+}
+```

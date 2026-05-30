@@ -1,0 +1,117 @@
+---
+asignatura: ipe1-fp
+unidad_relacionada: 2
+title: "La entrevista con trampa"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "15-20 min"
+descripcion: "Llegas a una entrevista de trabajo sin conocerte. Cada respuesta delata si sabes qué vendes o improvisa."
+competencias_clave: [CPSAA, CC, CD]
+competencias_especificas: [RA4]
+estado: publicado
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Caso · Autoconocimiento",
+    "titulo": "La entrevista con trampa",
+    "contexto": "Eres técnico/a de Cuidados Auxiliares de Enfermería, recién titulado/a. Has enviado 12 CVs y hoy tienes tu primera entrevista real en la Residencia Benimamet, un centro de 80 plazas en Valencia. La seleccionadora se llama Marta, es directa y hace preguntas concretas. Llevas tres noches sin dormir bien de los nervios. El puesto: auxiliar de enfermería, turno de mañanas y tardes alternas, 1.280 € brutos.",
+    "kpi_inicial": { "autoconocimiento": 5, "confianza": 4, "adecuacion_perfil": 6 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisión 1 — «Háblame de ti»",
+      "situacion": "Marta abre con la pregunta más clásica y más temida: «Háblame de ti. No del CV, de ti». Tienes 90 segundos.",
+      "opciones": [
+        {
+          "label": "«Soy trabajador/a, responsable y me gusta el trato con las personas»",
+          "kpi_delta": { "autoconocimiento": -1, "confianza": 0, "adecuacion_perfil": -1 },
+          "feedback": "Adjetivos sin evidencia. Marta ha escuchado esto 200 veces hoy. Lo que filtra una seleccionadora no son las afirmaciones; son las pruebas que las respaldan. Lección: «soy responsable» no dice nada; «durante las prácticas nunca llegué tarde y avisé siempre cuando necesité ayuda» sí.",
+          "next": "n2"
+        },
+        {
+          "label": "«Me formé en TCAE porque me interesa el cuidado directo de personas mayores. En prácticas en el Hospital La Fe atendí a pacientes de geriatría y comprobé que es donde quiero trabajar»",
+          "kpi_delta": { "autoconocimiento": 2, "confianza": 1, "adecuacion_perfil": 2 },
+          "feedback": "Interés específico + evidencia concreta + conexión con el puesto. Marta ya sabe que has pensado para qué sirves y dónde encajas. Esto es autoconocimiento profesional aplicado, no retórica.",
+          "next": "n2"
+        },
+        {
+          "label": "Recitas tu currículum de memoria, fecha a fecha",
+          "kpi_delta": { "autoconocimiento": -1, "confianza": -1, "adecuacion_perfil": 0 },
+          "feedback": "Marta ya tiene el CV delante. Repetirlo en voz alta es ruido, no información nueva. La pregunta «háblame de ti» pide criterio y conciencia de ti, no una lectura en voz alta.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisión 2 — «¿Cuál es tu mayor debilidad?»",
+      "situacion": "Marta pregunta: «¿Y cuál dirías que es tu mayor debilidad para este puesto?». Cinco segundos de silencio. Sientes que cualquier cosa que digas puede usarse en tu contra.",
+      "opciones": [
+        {
+          "label": "«Soy demasiado perfeccionista»",
+          "kpi_delta": { "autoconocimiento": -2, "confianza": 0, "adecuacion_perfil": -1 },
+          "feedback": "Es la respuesta más descartada en selección porque todo el mundo la usa y porque no es una debilidad real: es una fortaleza disfrazada. Marta lo detecta de inmediato. La pregunta mide tu honestidad y tu capacidad de autocrítica, no si tienes debilidades.",
+          "next": "n3"
+        },
+        {
+          "label": "«Me cuesta poner límites cuando un compañero me pide ayuda aunque esté cargado/a de trabajo. Estoy aprendiendo a decir que no sin sentirme mal por ello»",
+          "kpi_delta": { "autoconocimiento": 2, "confianza": 1, "adecuacion_perfil": 1 },
+          "feedback": "Honestidad con conciencia de proceso. Identificas una debilidad real (relevante en cuidados, donde el agotamiento es un riesgo) y demuestras que ya trabajas en ella. Eso tranquiliza al seleccionador más que la perfección fingida.",
+          "next": "n3"
+        },
+        {
+          "label": "«No creo que tenga ninguna debilidad importante para este puesto»",
+          "kpi_delta": { "autoconocimiento": -2, "confianza": -1, "adecuacion_perfil": -2 },
+          "feedback": "Nadie cree que alguien sin experiencia no tenga ninguna área de mejora. Responder esto cierra la conversación: si no te conoces a ti, ¿cómo vas a conocer al residente que cuidas? El autoconocimiento es también una competencia profesional.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisión 3 — «¿Por qué tú y no otro candidato?»",
+      "situacion": "Marta cierra con la pregunta más directa: «Hay otros tres candidatos. Dame una razón concreta por la que yo debería elegirte a ti». Sientes que el autoconocimiento que has trabajado —o no— durante el ciclo se juega aquí.",
+      "opciones": [
+        {
+          "label": "«Porque lo doy todo y nunca me rindo»",
+          "kpi_delta": { "autoconocimiento": -1, "adecuacion_perfil": -1, "confianza": 0 },
+          "feedback": "Metáfora deportiva sin contenido profesional. Marta no puede evaluar «darlo todo» porque no tiene evidencia. Genérico y descartable.",
+          "next": "final:fracaso_parcial"
+        },
+        {
+          "label": "«En mis prácticas en La Fe me encargué sola durante una semana del control de signos vitales del turno de mañana cuando la enfermera responsable estuvo de baja. Mi supervisora me dio una valoración de sobresaliente y me pidió que repitiera el siguiente cuatrimestre»",
+          "kpi_delta": { "autoconocimiento": 2, "adecuacion_perfil": 2, "confianza": 2 },
+          "feedback": "Competencia demostrada con evidencia y resultado. Marta puede verificarlo. Esta respuesta vale más que diez minutos de adjetivos. Es exactamente la técnica STAR (Situación, Tarea, Acción, Resultado) aplicada sin nombrarla.",
+          "next": "final:exito"
+        },
+        {
+          "label": "«Porque necesito este trabajo y me comprometo a aprender todo lo que me falte»",
+          "kpi_delta": { "autoconocimiento": 0, "adecuacion_perfil": -1, "confianza": -1 },
+          "feedback": "La necesidad del candidato no es un argumento para el seleccionador. Comprometerse a aprender está bien, pero sin competencias ya demostradas no es suficiente razón para elegirte frente a alguien que ya las tiene. Lección: en una entrevista, el argumentario siempre va desde el punto de vista de la empresa, no del tuyo.",
+          "next": "final:fracaso_parcial"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "La entrevista ha ido bien",
+      "resumen": "Respondiste con autoconocimiento real, evidencias concretas y conexión directa con el puesto. Marta tiene razones para elegirte.",
+      "lecciones_clave": [
+        "Las afirmaciones sin evidencia no cuentan en selección: los hechos concretos sí.",
+        "Conocer tus debilidades con honestidad es una fortaleza, no una trampa.",
+        "El argumentario en una entrevista siempre va desde el punto de vista de la empresa, no del candidato."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "La entrevista no ha convencido del todo",
+      "resumen": "Tienes el perfil técnico, pero no lograste traducirlo en evidencias concretas. Marta probablemente llame antes a otro candidato.",
+      "lecciones_clave": [
+        "Autoconocimiento sin evidencias es solo introspección. El mercado pide hechos.",
+        "Preparar 3-4 ejemplos STAR antes de cualquier entrevista es tan importante como llevar el CV impreso."
+      ]
+    }
+  }
+}
+```
