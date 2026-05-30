@@ -1,0 +1,117 @@
+---
+asignatura: edmn-2bach
+unidad_relacionada: 8
+title: "La primera contratación de Velorex"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "15-20 min"
+descripcion: "Una empresa de mensajería urbana en bici crece y tiene que contratar a su primer empleado. Tipo de contrato, onboarding y conflicto: gestionar personas por primera vez."
+competencias_clave: [CPSAA, CE, CD]
+competencias_especificas: [CE3]
+estado: publicado
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Caso · Recursos Humanos",
+    "titulo": "La primera contratación de Velorex",
+    "contexto": "Velorex es una startup de mensajería urbana en bicicleta que opera en Bilbao. La fundó Iker hace dos años, trabaja solo y hace todos los repartos. Tiene ya 120 clientes fijos, factura 3.800 € al mes y no puede asumir más trabajo él solo. Necesita contratar a su primera persona. Tiene 6.000 € en caja y no sabe nada de contratos laborales.",
+    "kpi_inicial": { "caja": 6000, "clientes": 120, "reputacion": 8 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisión 1 — ¿Qué tipo de contrato?",
+      "situacion": "Iker tiene tres opciones para incorporar a Josu, un repartidor de 22 años que quiere trabajar con él: (a) contrato indefinido a tiempo completo; (b) contrato temporal de 6 meses para probar; (c) que Josu se dé de alta como autónomo y le facture por horas.",
+      "opciones": [
+        {
+          "label": "Contrato indefinido a tiempo completo desde el primer día",
+          "kpi_delta": { "caja": -1800, "clientes": 30, "reputacion": 2 },
+          "feedback": "El contrato indefinido ofrece al trabajador estabilidad y genera costes laborales inmediatos: salario bruto + cotizaciones a la Seguridad Social (empresa paga aprox el 30 % adicional sobre el salario bruto). Con un salario de 1.200 € brutos, el coste real para Iker es unos 1.560 €/mes. Merece la pena si los ingresos adicionales que genera Josu superan ese coste, lo cual es muy probable con 30 clientes nuevos.",
+          "next": "n2"
+        },
+        {
+          "label": "Contrato temporal de 6 meses para ver si funciona",
+          "kpi_delta": { "caja": -1600, "clientes": 25, "reputacion": 1 },
+          "feedback": "El contrato temporal tiene un uso legítimo cuando la actividad es temporal por naturaleza (campaña navideña, sustitución, etc.). Usar un temporal para una actividad permanente es una figura en fraude de ley que puede ser sancionada. Además, Josu trabaja con menos compromiso porque sabe que en 6 meses puede estar en la calle. Lección: el tipo de contrato envía una señal sobre la estabilidad que ofreces.",
+          "next": "n2"
+        },
+        {
+          "label": "Josu factura como autónomo: más barato para mí y más flexible",
+          "kpi_delta": { "caja": -1200, "clientes": 20, "reputacion": -2 },
+          "feedback": "Si Josu trabaja exclusivamente para Velorex, con horario fijado por Iker y herramientas de la empresa, la relación es laboral aunque se llame autónomo. Esto se llama falso autónomo y está tipificado como infracción muy grave en la Ley de Infracciones y Sanciones en el Orden Social. La Inspección de Trabajo puede reclamar cotizaciones atrasadas más multa. La economía de plataformas (Glovo, Deliveroo) ha generado miles de casos similares.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisión 2 — El onboarding y las primeras semanas",
+      "situacion": "Josu lleva dos semanas y ya hay tensiones: un cliente habitual de Iker se queja de que Josu llega tarde. Josu dice que nadie le explicó bien las rutas prioritarias. Iker no había hecho ningún proceso de onboarding estructurado.",
+      "opciones": [
+        {
+          "label": "Llamo a Josu y le explico las rutas prioritarias con un mapa escrito",
+          "kpi_delta": { "caja": -100, "clientes": 0, "reputacion": 1 },
+          "feedback": "El onboarding no termina el día de la firma del contrato. Un proceso de incorporación bien diseñado reduce el tiempo hasta la productividad plena del nuevo empleado y evita errores que dañan la reputación de la empresa. Documentar las rutas prioritarias es conocimiento tácito que hay que externalizar. Lección: el conocimiento que solo está en tu cabeza es un riesgo cuando creces.",
+          "next": "n3"
+        },
+        {
+          "label": "Hablo directamente con el cliente para calmar la situación",
+          "kpi_delta": { "caja": 0, "clientes": -3, "reputacion": -1 },
+          "feedback": "Gestionar el síntoma sin resolver la causa: apaciguas al cliente pero Josu seguirá sin saber qué se espera de él. El siguiente error será diferente pero igual de evitable. Lección: en RRHH, los problemas de rendimiento tienen casi siempre un componente de comunicación o formación antes que un problema de actitud del empleado.",
+          "next": "n3"
+        },
+        {
+          "label": "Diseño un manual de onboarding básico para los próximos 30 días",
+          "kpi_delta": { "caja": -200, "clientes": 5, "reputacion": 3 },
+          "feedback": "Sistematizar el onboarding aunque seas una empresa de dos personas es una de las decisiones de gestión más rentables que existen. El manual incluye: rutas prioritarias, protocolo con clientes, uso de la app de tracking, y expectativas de puntualidad. Cuando contrates a la tercera persona, el onboarding ya estará hecho. Lección: la documentación de procesos es infraestructura, no burocracia.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisión 3 — Conflicto y desarrollo profesional",
+      "situacion": "Al cuarto mes, Josu te dice que un competidor le ha ofrecido 200 € más al mes. No quiere irse pero necesita ese dinero. La empresa no puede pagarlo ahora mismo. Además, la empresa ha crecido y hay que pensar en un segundo repartidor.",
+      "opciones": [
+        {
+          "label": "Le subo el sueldo aunque me ajuste más: no quiero perder a alguien formado",
+          "kpi_delta": { "caja": -2400, "clientes": 15, "reputacion": 2 },
+          "feedback": "Coste de retención vs coste de sustitución: formar a un nuevo repartidor tiene un coste real (tiempo de Iker, errores iniciales, reputación con clientes). Si Josu ya conoce las rutas, los clientes y los protocolos, retenerle por 200 € más es una inversión con retorno positivo. Lección: el coste laboral no es solo el salario; es el coste total de tener y mantener capacitada a una persona.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Le ofrezco un plan de desarrollo: si los resultados mejoran, revisamos el sueldo en 3 meses",
+          "kpi_delta": { "caja": -300, "clientes": 10, "reputacion": 3 },
+          "feedback": "Retención mediante desarrollo profesional: no solo salario, sino perspectiva de crecimiento. Las habilidades del siglo XXI incluyen la capacidad de dar y recibir feedback y construir planes de mejora con objetivos medibles. Josu acepta porque quiere quedarse y el plan le da algo concreto a trabajar.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Si se quiere ir que se vaya: hay más repartidores buscando trabajo",
+          "kpi_delta": { "caja": 0, "clientes": -20, "reputacion": -3 },
+          "feedback": "Rotación de personal tiene un coste alto y poco visible: el nuevo repartidor tarda semanas en ser tan productivo como Josu, algunos clientes se van mientras tanto y la reputación de Velorex como empleador se daña en el sector. El mercado laboral tiene memoria: si tratas mal a los empleados, cuesta más reclutar a los siguientes.",
+          "next": "final:fracaso_parcial"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "Velorex crece con equipo estable",
+      "resumen": "Iker ya no trabaja solo. Josu es un empleado fidelizado con un proceso de onboarding claro y un plan de desarrollo. La empresa puede contratar al segundo repartidor usando el mismo manual.",
+      "lecciones_clave": [
+        "El tipo de contrato no es solo un trámite administrativo: define la relación laboral, los costes reales y los derechos del trabajador.",
+        "El onboarding bien diseñado reduce el tiempo hasta la productividad plena y evita errores costosos que dañan la relación con clientes.",
+        "El coste de retener a un empleado formado casi siempre es menor que el coste de buscar y formar a uno nuevo."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "Velorex pierde a su primer empleado",
+      "resumen": "Josu se va, se lleva el conocimiento de las rutas y algunos clientes con él. Iker tiene que empezar el proceso de contratación desde cero con menos reputación como empleador.",
+      "lecciones_clave": [
+        "Tratar la rotación de personal como inevitable suele convertirla en una profecia autocumplida.",
+        "El conocimiento operativo que solo está en la cabeza de las personas es un activo frágil: hay que documentarlo antes de que la persona se vaya."
+      ]
+    }
+  }
+}
+```

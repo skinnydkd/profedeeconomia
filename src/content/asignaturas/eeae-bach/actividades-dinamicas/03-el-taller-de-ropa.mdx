@@ -1,0 +1,117 @@
+---
+asignatura: eeae-bach
+unidad_relacionada: 3
+title: "El taller de ropa que quiere ser circular"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "15-20 min"
+descripcion: "Tu grupo de Bachillerato ha montado un taller de ropa de segunda mano. Cada decisión tiene un dilema ético y otro económico."
+competencias_clave: [CPSAA, CE, CD]
+competencias_especificas: [CE2]
+estado: publicado
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Caso · Sostenibilidad y economía circular",
+    "titulo": "El taller de ropa que quiere ser circular",
+    "contexto": "Tu grupo de cuatro personas ha montado 'Rethread', un pequeño taller de ropa de segunda mano dentro del proyecto de emprendimiento del instituto. Compráis ropa en mercadillos (0,50-3 €/prenda), la reparáis o teñís y la vendéis en los recreos y en una mesa de la feria de Navidad del centro. Partís de 80 €. El proyecto gusta, tenéis ya 15 clientes fieles, pero tres decisiones importantes os esperan antes de la feria.",
+    "kpi_inicial": { "caja": 80, "clientes_fijos": 15, "reputacion_sostenible": 7 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisión 1 — El proveedor de bolsas",
+      "situacion": "Para la feria necesitáis bolsas para entregar las prendas. Tenéis dos opciones: (a) bolsas de plástico de un solo uso de una papelería cercana: 100 bolsas por 4 €, rápido y barato; (b) bolsas de tela reutilizables con el logo de Rethread: 100 bolsas por 28 €, más caras pero coherentes con vuestro mensaje de economía circular. Un compañero dice que nadie se fija en las bolsas. Otro señala que las bolsas de plástico son una externalidad negativa que no pagáis vosotros sino el planeta.",
+      "opciones": [
+        {
+          "label": "Bolsas de plástico: somos pequeños y no marca diferencia",
+          "kpi_delta": { "caja": -4, "reputacion_sostenible": -2 },
+          "feedback": "Ahorras 24 €, pero eres un taller de ropa sostenible que regala bolsas de plástico. El problema no es solo de imagen: es coherencia. Las bolsas de plástico tienen una externalidad negativa real —contaminación, microplásticos— que no aparece en su precio de 0,04 € la unidad. Vosotros tampoco la pagáis, pero el planeta sí. Lección: el precio de mercado de un bien no incluye sus externalidades negativas. Esa diferencia es la razón por la que la economía de mercado por sí sola no resuelve los problemas ambientales.",
+          "next": "n2"
+        },
+        {
+          "label": "Bolsas de tela: coherentes con nuestra propuesta de valor",
+          "kpi_delta": { "caja": -28, "reputacion_sostenible": 2 },
+          "feedback": "Gastas 24 € más, pero los clientes reciben una bolsa que pueden reutilizar. La bolsa se convierte en publicidad viva: cada vez que alguien la usa en el mercadillo o en el instituto, Rethread aparece. Además, sois coherentes con vuestro mensaje circular. Lección: la coherencia entre lo que dices y lo que haces es la diferencia entre una empresa con valores reales y una con greenwashing.",
+          "next": "n2"
+        },
+        {
+          "label": "Negocio: bolsas de papel reciclado a mitad de precio, 100 por 14 €",
+          "kpi_delta": { "caja": -14, "reputacion_sostenible": 1 },
+          "feedback": "Buen equilibrio entre coherencia y presupuesto. El papel reciclado es mucho mejor que el plástico de un solo uso y más barato que la tela. No es la opción más sostenible del menú, pero es coherente y no vacía la caja. Lección: la sostenibilidad no siempre es todo o nada. Las decisiones intermedias que mejoran la situación actual son válidas, especialmente cuando los recursos son escasos.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisión 2 — La prenda del problema",
+      "situacion": "Un compañero trae del mercadillo una cazadora de piel auténtica en perfecto estado que compró por 2 €. Puede venderse por 25-30 € fácilmente. El beneficio sería el mejor del trimestre. Pero dos miembros del grupo rechazan venderla: dicen que Rethread se presenta como un proyecto con valores éticos y que vender piel contradice el mensaje. Los otros dos dicen que la piel ya existe, nadie muere por venderla de segunda mano, y el dinero sirve para el proyecto.",
+      "opciones": [
+        {
+          "label": "La vendemos: la piel ya existe, no genera daño nuevo",
+          "kpi_delta": { "caja": 27, "reputacion_sostenible": -1 },
+          "feedback": "El argumento tiene lógica económica: la piel ya fue producida, venderla de segunda mano no genera una demanda nueva de producción. Es un argumento válido que usan algunos defensores de la economía circular. Pero si vuestros clientes os conocen por vuestros valores y ven la cazadora, el mensaje se confunde. Lección: en ética empresarial, el argumento técnico correcto y la coherencia de imagen pueden apuntar en direcciones distintas. Los valores de un proyecto no son solo lo que es técnicamente defensible.",
+          "next": "n3"
+        },
+        {
+          "label": "No la vendemos: contradice nuestra misión",
+          "kpi_delta": { "caja": 0, "reputacion_sostenible": 2 },
+          "feedback": "Renunciáis a 25-27 € y a un margen excelente. A cambio, mantenéis la coherencia de Rethread. La cazadora se devuelve al mercadillo o se dona. La decisión tiene un coste de oportunidad real, pero también envía una señal clara: hay cosas que Rethread no hace aunque sean rentables. Lección: los límites que una empresa se pone a sí misma, aunque cuesten dinero, son parte de su propuesta de valor. La coherencia ética no es altruismo, también es estrategia.",
+          "next": "n3"
+        },
+        {
+          "label": "Votamos en el equipo y decidimos por mayoría simple",
+          "kpi_delta": { "caja": 13, "reputacion_sostenible": 0 },
+          "feedback": "El proceso democrático da legitimidad a la decisión, pero el resultado (2-2 o 3-1) deja a alguien insatisfecho. Si votáis vender, los que no querían quedan con la sensación de que los valores del proyecto son negociables cuando conviene económicamente. Si votáis no vender, el que la trajo se siente mal por haber gastado 2 € para nada. Lección: algunas decisiones de valores no se resuelven bien por votación: requieren un acuerdo previo sobre cuál es la misión del proyecto.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisión 3 — La feria de Navidad y el ODS como argumento de venta",
+      "situacion": "En la feria, un alumno del instituto de periodismo os graba un vídeo corto para Instagram. Os pregunta: '¿Con qué ODS conecta Rethread?' Tenéis tres segundos para responder antes de que el vídeo pierda naturalidad. Una respuesta vaga ('con varios ODS') suena a greenwashing. Una respuesta concreta y honesta puede dar mucha credibilidad. Una respuesta perfectamente preparada puede sonar excesivamente ensayada.",
+      "opciones": [
+        {
+          "label": "Vaga: 'Conectamos con varios Objetivos de Desarrollo Sostenible'",
+          "kpi_delta": { "reputacion_sostenible": -1, "clientes_fijos": 2 },
+          "feedback": "Has dicho algo que es cierto pero que no comunica nada. Todo el mundo dice conectar con 'varios ODS'. Sin especificar cuáles y por qué, el mensaje suena a greenwashing aunque no lo sea. Lección: en sostenibilidad, la vaguedad es sospechosa. Quien de verdad trabaja para un ODS sabe exactamente cuál y puede dar un ejemplo concreto.",
+          "next": "final:fracaso_parcial"
+        },
+        {
+          "label": "Concreta: 'ODS 12, consumo responsable: alargamos la vida de las prendas y evitamos que acaben en el vertedero'",
+          "kpi_delta": { "reputacion_sostenible": 3, "clientes_fijos": 8 },
+          "feedback": "Respuesta clara, específica y con un ejemplo concreto de impacto. No prometéis salvar el planeta, decís exactamente qué hacéis y para qué ODS sirve. El vídeo circula por Instagram del instituto y Rethread recibe ocho nuevos clientes antes de que acabe la feria. Lección: la diferencia entre compromiso real y greenwashing está en poder explicar qué haces, cómo lo mides y a qué objetivo concreto apunta.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Honesta: 'La verdad es que no teníamos eso claro hasta ahora, pero mirando los ODS somos el 12 y el 10'",
+          "kpi_delta": { "reputacion_sostenible": 2, "clientes_fijos": 5 },
+          "feedback": "La honestidad genera confianza. Admitir que no teníais el ODS preparado de memoria y llegar en directo a la respuesta correcta es auténtico. La audiencia adolescente lo nota y lo valora. Conectáis también con el ODS 10 (reducción de desigualdades) porque la ropa asequible llega a quien no puede pagar precios nuevos. Lección: la autenticidad —no fingir lo que no eres— es compatible con saber lo que haces y explicarlo bien. No son lo mismo.",
+          "next": "final:exito"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "Rethread cierra la feria con criterio y reputación",
+      "resumen": "Has tomado decisiones coherentes con la misión del proyecto, has conectado los valores con la práctica real y has sabido distinguir compromiso sostenible de greenwashing.",
+      "lecciones_clave": [
+        "La sostenibilidad no es un logo ni un eslogan: es la coherencia entre lo que dices y lo que haces en cada decisión pequeña.",
+        "Las externalidades negativas son costes que no pagás vosotros pero que alguien paga. Reconocerlas es el primer paso para integrarlas en las decisiones.",
+        "La diferencia entre compromiso real con los ODS y greenwashing está en poder dar un ejemplo concreto y medible de lo que haces."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "Rethread sobrevive pero sin convicción propia",
+      "resumen": "El proyecto sigue adelante, pero alguna decisión ha erosionado la coherencia entre los valores declarados y las acciones reales.",
+      "lecciones_clave": [
+        "Un proyecto con valores necesita haberlos definido antes de que lleguen las decisiones difíciles, no en el momento del dilema.",
+        "La vaguedad en sostenibilidad genera desconfianza: si no puedes explicar exactamente qué haces, parece que no haces nada."
+      ]
+    }
+  }
+}
+```

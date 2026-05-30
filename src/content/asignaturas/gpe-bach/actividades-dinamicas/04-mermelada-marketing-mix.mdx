@@ -1,0 +1,117 @@
+---
+asignatura: gpe-bach
+unidad_relacionada: 4
+title: "Mermelada artesana: del obrador al cliente"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "15-20 min"
+descripcion: "Producís mermelada de naranja valenciana. Tres decisiones de aprovisionamiento, producción y comercial antes del primer mercado."
+competencias_clave: [CPSAA, CE, CD]
+competencias_especificas: [CE3]
+estado: publicado
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Caso · Áreas de la empresa",
+    "titulo": "Mermelada artesana: del obrador al cliente",
+    "contexto": "Vuestro equipo de cuatro personas produce mermelada artesana de naranja DOP en un obrador compartido alquilado por 80 €/mes. Tenéis un contrato informal con un agricultor local que os vende naranja a 0,35 €/kg. Cada tarro de 250 g necesita 400 g de naranja + 120 g de azúcar + el tarro de vidrio. En el mercado del sábado podéis vender a 4,50 €/tarro. Tenéis 600 € en caja y 3 semanas para el primer mercado.",
+    "kpi_inicial": { "caja": 600, "tarros_stock": 0, "reputacion": 6 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisión 1 — Plan de compras y proveedores",
+      "situacion": "Necesitáis comprar para producir 150 tarros para el primer mercado. Coste estimado: naranja (60 kg × 0,35 € = 21 €), azúcar (18 kg × 0,90 € = 16,20 €), tarros de vidrio (150 u.). Los tarros los podéis comprar en tres sitios: (A) Proveedor local de hostelería: 0,62 €/u., mínimo 100 u., entrega en 3 días. (B) Amazon: 0,48 €/u., mínimo 50 u., entrega en 5 días. (C) Gran superficie: 0,55 €/u., sin mínimo, disponible hoy.",
+      "opciones": [
+        {
+          "label": "Compramos en Amazon: es lo más barato por unidad",
+          "kpi_delta": { "caja": -129, "tarros_stock": 150 },
+          "feedback": "Ahorro de 21 € respecto al proveedor local (150 × 0,14 €), pero el pedido sale de un almacén de fuera: sin retorno local. Además, con entrega en 5 días y el mercado en 3 semanas, el margen temporal es justo. Si hay un problema con el pedido, no hay tiempo para reaccionar. El plan de compras siempre debe incluir el plazo de entrega como variable crítica.",
+          "next": "n2"
+        },
+        {
+          "label": "Compramos al proveedor local: un poco más caro pero nos garantiza el plazo",
+          "kpi_delta": { "caja": -150, "tarros_stock": 150, "reputacion": 1 },
+          "feedback": "Pagas 0,14 €/tarro más, pero tienes el material en 3 días y el proveedor está a una llamada de distancia si algo falla. El retorno local es un beneficio extra: ese dinero se queda en la economía de la comarca. En vuestro estudio de mercado, podéis comunicar que usáis proveedores locales, lo que puede ser parte de la propuesta de valor.",
+          "next": "n2"
+        },
+        {
+          "label": "Compramos en la gran superficie: sin mínimo, lo cogemos hoy y controlamos el stock",
+          "kpi_delta": { "caja": -139, "tarros_stock": 150 },
+          "feedback": "Solución intermedia en precio. La ventaja es el control inmediato: podéis ajustar exactamente cuántos tarros compráis. La desventaja es que el precio por unidad es mayor que Amazon y sin las ventajas relacionales del proveedor local. Para un primer pedido con incertidumbre de demanda, la flexibilidad tiene valor.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisión 2 — Control de stocks y punto de pedido",
+      "situacion": "El primer mercado fue bien: vendisteis 128 de los 150 tarros. Os quedan 22. Os reunís para decidir cuándo hacer el siguiente pedido de naranja. El agricultor tarda 4 días en prepararos el pedido. En 4 días, si el ritmo de producción es normal, podríais consumir hasta 30 kg de naranja. Tenéis 8 kg almacenados.",
+      "opciones": [
+        {
+          "label": "Esperamos a quedarnos a cero de naranja para hacer el pedido",
+          "kpi_delta": { "caja": 0, "tarros_stock": -22 },
+          "feedback": "Error clásico de control de stocks. Si esperáis a cero y el agricultor tarda 4 días, os quedaréis sin producción durante 4 días, con los tarros que ya teníais acabados y sin poder reabastecer para el siguiente mercado. El punto de pedido existe exactamente para evitar esto: pedid cuando aún os quede margen para operar mientras llega el suministro.",
+          "next": "n3"
+        },
+        {
+          "label": "Fijamos el punto de pedido en 15 kg: cuando bajemos de ahí, pedimos",
+          "kpi_delta": { "caja": -25, "tarros_stock": 30 },
+          "feedback": "Correcto. Con un consumo de hasta 30 kg en 4 días y un stock de seguridad de 15 kg, tenéis tiempo de recibir el pedido antes de parar la producción. El punto de pedido = consumo durante el plazo de entrega + stock de seguridad. 30 kg de consumo + 5 kg de margen = 35 kg como referencia, aunque con 15 kg de seguridad ya es razonable para vuestro volumen.",
+          "next": "n3"
+        },
+        {
+          "label": "Compramos naranja para 3 meses de golpe para asegurarnos",
+          "kpi_delta": { "caja": -180, "tarros_stock": 0 },
+          "feedback": "Inmovilizáis capital y, lo más importante, la naranja fresca se deteriora. Un stock de naranja para 3 meses no es viable con el tipo de producto que fabricáis. El just-in-time tiene una lección aplicada a vuestra situación: no mantengáis más stock del que podéis consumir antes de que se estropee.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisión 3 — Marketing mix: decidir el precio para el segundo mercado",
+      "situacion": "El mercado fue bien pero observasteis algo: los visitantes comparaban vuestro tarro a 4,50 € con el de una mermelada industrial a 2,10 € del supermercado de al lado. Algunos lo compraban igual, pero muchos dudaban. Una compañera propone bajar a 3,80 €. Otro compañero propone subir a 5,50 € con una etiqueta más cuidada y comunicar el origen DOP.",
+      "opciones": [
+        {
+          "label": "Bajamos a 3,80 €: así ganamos más clientes que dudan",
+          "kpi_delta": { "caja": -80, "reputacion": -1 },
+          "feedback": "El coste variable por tarro es: naranja (0,14 kg × 0,35 € = 0,049 € × 400 g = 0,14 €) + azúcar (0,11 €) + tarro (0,62 €) + otros (0,15 €) ≈ 1,02 €. Con 4,50 € teníais 3,48 € de margen; con 3,80 €, tendríais 2,78 €. Eso reduce vuestro margen un 20 %. Y el cliente que compara con la industrial a 2,10 € seguirá viendo diferencia: bajar de 4,50 € a 3,80 € no cambia que vuestra mermelada es mucho más cara que la industrial. El precio es señal: bajarlo sin cambiar la propuesta de valor es perder margen sin ganar clientes.",
+          "next": "final:fracaso_parcial"
+        },
+        {
+          "label": "Subimos a 5,50 € y mejoramos la etiqueta comunicando el origen DOP",
+          "kpi_delta": { "caja": 80, "reputacion": 2 },
+          "feedback": "Movimiento coherente con el marketing mix. Si el producto es artesano DOP y los clientes que compran lo hacen precisamente por eso, el precio debe reflejar esa propuesta de valor. Una etiqueta cuidada (+15 € de coste por lote de 150) que comunica el origen puede justificar los 5,50 €. Estáis haciendo lo que hace una marca artesana de calidad: no compite con el industrial en precio, sino en propuesta de valor diferenciada.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Mantenemos 4,50 € pero añadimos una tarjeta que explica el proceso artesano",
+          "kpi_delta": { "caja": 10, "reputacion": 1 },
+          "feedback": "Opción intermedia válida. El precio se mantiene y la comunicación mejora sin subir el coste de forma significativa. El riesgo es que la tarjeta no sea suficiente para justificar el precio frente a quien solo mira el número. Pero es coherente con el marketing mix: si el producto es el mismo, mejorar la comunicación puede capturar a quien dudaba por falta de información, no por falta de voluntad de pagar.",
+          "next": "final:exito"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "El proyecto tiene una cadena operativa que funciona",
+      "resumen": "Aprovisionamiento con punto de pedido definido, producción controlada y un marketing mix coherente. El margen cubre costes y el proyecto puede repetir el ciclo sin perder dinero.",
+      "lecciones_clave": [
+        "El plan de compras siempre incluye precio, plazo y proveedor: los tres determinan el riesgo de abastecimiento.",
+        "El punto de pedido es la frontera entre seguir produciendo y parar: calculadlo antes de necesitarlo.",
+        "El precio es señal: bajar el precio de un producto artesano no convierte a los clientes de lo industrial, pero sí reduce el margen de los clientes que ya os elegían."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "El proyecto opera pero con margen insuficiente",
+      "resumen": "La cadena funciona, pero las decisiones de precio y aprovisionamiento han reducido el margen al límite. Cada fallo de stock o de demanda genera pérdidas.",
+      "lecciones_clave": [
+        "Bajar el precio como primera respuesta a la competencia es el camino más rápido para reducir el margen sin ganar clientes nuevos.",
+        "Un stock de seguridad mal calculado puede parar la producción en el peor momento: el punto de pedido no es opcional."
+      ]
+    }
+  }
+}
+```

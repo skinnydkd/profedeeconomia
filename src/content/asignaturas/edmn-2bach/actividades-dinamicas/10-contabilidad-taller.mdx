@@ -1,0 +1,117 @@
+---
+asignatura: edmn-2bach
+unidad_relacionada: 10
+title: "El taller que no cuadraba"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "15-20 min"
+descripcion: "Un taller de reparación de bicicletas en Pamplona factura bien pero siempre va justo de dinero. El balance y la cuenta de resultados revelan por qué."
+competencias_clave: [CPSAA, CE, CD]
+competencias_especificas: [CE3]
+estado: publicado
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Caso · Contabilidad",
+    "titulo": "El taller que no cuadraba",
+    "contexto": "BiciPamplona es un taller de reparación y venta de bicicletas en el casco viejo de Pamplona. Lo lleva Amaia desde hace 4 años. Factura unos 6.500 € al mes y siempre acaba el mes con menos dinero del que esperaba. Su gestor le ha dado el balance anual y la cuenta de pérdidas y ganancias. Amaia nunca los ha leído bien. Hoy tiene que hacerlo.",
+    "kpi_inicial": { "caja": 4800, "clientes": 95, "reputacion": 8 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisión 1 — Leer el balance",
+      "situacion": "El balance de BiciPamplona muestra: Activo corriente (caja 4.800 €, clientes a cobrar 9.200 €, stock de piezas 6.000 €) y Activo no corriente (local en alquiler capitalizado 0 €, herramientas 3.500 €). Pasivo corriente (proveedores a pagar 11.000 €, préstamo corto plazo 3.000 €). Patrimonio neto positivo. ¿Qué ves?",
+      "opciones": [
+        {
+          "label": "Me fijo en que tengo 9.200 € pendientes de cobrar de clientes",
+          "kpi_delta": { "caja": 0, "clientes": 5, "reputacion": 1 },
+          "feedback": "Los deudores (clientes que te deben dinero) son parte del activo corriente, pero no son caja. 9.200 € de facturas sin cobrar es un activo que existe en el papel pero no en tu cuenta bancaria. Esto explica por qué Amaia factura bien y tiene poca caja: está financiando a sus clientes. Lección: el balance te muestra qué tienes, pero tienes que distinguir activo líquido de activo pendiente de cobro.",
+          "next": "n2"
+        },
+        {
+          "label": "Me preocupa que los proveedores a pagar sean 11.000 €",
+          "kpi_delta": { "caja": 0, "clientes": 0, "reputacion": 1 },
+          "feedback": "Los acreedores (lo que debes a proveedores) son pasivo corriente: deuda a corto plazo. 11.000 € de deuda con proveedores frente a 4.800 € en caja es una situación de tensión de liquidez. Si los proveedores te cobran antes de que tus clientes te paguen, no tienes con qué. El balance te muestra esta estructura de vencimientos.",
+          "next": "n2"
+        },
+        {
+          "label": "El balance cuadra: activo = pasivo + patrimonio neto, todo bien",
+          "kpi_delta": { "caja": 0, "clientes": -5, "reputacion": -1 },
+          "feedback": "Que el balance cuadre es una condición necesaria pero no suficiente para que la empresa esté bien. El balance siempre cuadra por construcción contable. Lo que revela es la estructura patrimonial: qué tienes, cómo lo has financiado y cuánta deuda tienes a corto plazo. Lección: leer el balance no es verificar que suma, es entender qué dice sobre la salud de la empresa.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisión 2 — Leer la cuenta de pérdidas y ganancias",
+      "situacion": "La cuenta de PyG dice: ingresos 78.000 €/año, coste de ventas 42.000 €, gastos de personal 18.000 €, alquiler 7.200 €, suministros 3.600 €, amortizaciones 1.200 €, otros gastos 2.400 €. Beneficio antes de impuestos: 3.600 €. ¿Qué conclusión sacas?",
+      "opciones": [
+        {
+          "label": "El beneficio es 3.600 €, que dividido entre 12 son 300 €/mes: demasiado poco",
+          "kpi_delta": { "caja": 0, "clientes": 5, "reputacion": 2 },
+          "feedback": "Correcto: el margen neto sobre ventas es 3.600/78.000 = 4,6 %. Para un taller artesano con ese nivel de facturación, es un margen muy ajustado. Mirando la estructura de costes, el coste de ventas (piezas + productos) representa el 54 % de los ingresos. Amaia compra caro o vende barato. Ahí está el problema real, no en el beneficio final.",
+          "next": "n3"
+        },
+        {
+          "label": "La empresa tiene beneficios: si gana dinero, todo bien",
+          "kpi_delta": { "caja": 0, "clientes": 0, "reputacion": 0 },
+          "feedback": "Tener beneficio contable no garantiza tener dinero en caja. La cuenta de pérdidas y ganancias registra ingresos cuando se factura (principio del devengo), no cuando se cobran. Amaia puede tener 3.600 € de beneficio en la PyG y solo 4.800 € en caja (de los cuales 11.000 € tiene que pagar a proveedores). Lección: el beneficio contable y la caja son cosas distintas.",
+          "next": "n3"
+        },
+        {
+          "label": "Las amortizaciones son 1.200 €: ¿eso es un gasto real?",
+          "kpi_delta": { "caja": 0, "clientes": 0, "reputacion": 2 },
+          "feedback": "Las amortizaciones representan la pérdida de valor de los activos (herramientas) con el tiempo. Son un gasto contable pero no son un pago en efectivo: no sale dinero de caja. Esto significa que el flujo de caja real de la empresa es 3.600 + 1.200 = 4.800 € (beneficio + amortizaciones). Es el principio que diferencia la cuenta de resultados del estado de flujos de tesorería.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisión 3 — Aplicar los principios contables",
+      "situacion": "Amaia descubre que su gestor no había registrado unas facturas de octubre (3.200 €) porque 'aún no las había cobrado'. También hay un stock de piezas que ya no se usan (700 €) pero siguen en el balance. ¿Cómo actuáis?",
+      "opciones": [
+        {
+          "label": "Registro las facturas de octubre aunque no las haya cobrado todavía",
+          "kpi_delta": { "caja": 0, "clientes": 8, "reputacion": 3 },
+          "feedback": "Principio del devengo: los ingresos y gastos se registran cuando se generan, no cuando se cobran o pagan. Las facturas de octubre son ingresos de octubre aunque el pago llegue en noviembre. No registrarlas es incumplir un principio contable básico recogido en el Plan General Contable (PGC). La imagen fiel de la empresa requiere aplicar el devengo correctamente.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Mantengo el stock sin usar en el balance: está pagado, sigue siendo activo",
+          "kpi_delta": { "caja": 0, "clientes": 0, "reputacion": -1 },
+          "feedback": "Principio de prudencia: si un activo ha perdido valor (piezas obsoletas que no se venderán), debe registrarse ese deterioro. Mantener en el balance activos sobrevalorados da una imagen no fiel de la empresa. El PGC requiere ajustar el valor de los activos cuando hay indicios de pérdida de valor. Lección: la imagen fiel no es pintar la empresa mejor de lo que está.",
+          "next": "final:fracaso_parcial"
+        },
+        {
+          "label": "Corrijo ambas cosas y pido a mi gestor que aplique los principios contables del PGC",
+          "kpi_delta": { "caja": 0, "clientes": 10, "reputacion": 4 },
+          "feedback": "La contabilidad no es un trámite: es el lenguaje con el que la empresa se cuenta a sí misma. Un balance que no refleja la realidad da decisiones equivocadas. Amaia aprende que el PGC establece principios de obligado cumplimiento (empresa en funcionamiento, devengo, prudencia, imagen fiel) que protegen a la empresa y a sus stakeholders.",
+          "next": "final:exito"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "Amaia entiende su propia empresa",
+      "resumen": "BiciPamplona sigue igual de tamaño pero Amaia ya sabe leer sus cuentas. Identifica que el problema de caja es el período de cobro de clientes y que el margen bruto es demasiado bajo. Con eso puede tomar decisiones concretas.",
+      "lecciones_clave": [
+        "El balance y la cuenta de PyG son lenguajes: si no los lees, no entiendes lo que te están diciendo sobre tu empresa.",
+        "Beneficio contable y caja son cosas distintas: el principio del devengo separa el registro contable del movimiento de dinero real.",
+        "Los principios contables (imagen fiel, devengo, prudencia) no son burocracia: son garantías de que la información que usas para tomar decisiones es fiable."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "El balance no refleja la realidad",
+      "resumen": "Amaia sigue sin entender bien sus cuentas. El balance sobrevalora activos y no refleja fielmente la situación de la empresa. Las decisiones que tome sobre ese balance serán decisiones sobre datos erróneos.",
+      "lecciones_clave": [
+        "Un balance que no aplica los principios contables da una imagen engañosa que lleva a decisiones equivocadas.",
+        "Delegar la contabilidad totalmente sin entenderla mínimamente es un riesgo para cualquier empresario."
+      ]
+    }
+  }
+}
+```

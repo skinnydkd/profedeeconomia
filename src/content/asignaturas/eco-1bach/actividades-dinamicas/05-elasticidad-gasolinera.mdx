@@ -1,0 +1,117 @@
+---
+asignatura: eco-1bach
+unidad_relacionada: 5
+title: "La gasolinera de la autovía"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "15-20 min"
+descripcion: "Subes el precio de la gasolina un 10 %. ¿Recaudas más o menos? La elasticidad decide antes de que lo hagas tú."
+competencias_clave: [CPSAA, CE, CD]
+competencias_especificas: [CE2]
+estado: publicado
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Caso · Elasticidad y bienestar",
+    "titulo": "La gasolinera de la autovía",
+    "contexto": "Eres el gestor de una gasolinera independiente junto a la A-7, entre Murcia y Cartagena. No eres Repsol ni Cepsa: eres un operador independiente que compra el combustible al por mayor. Tu precio actual es de 1,65 €/litro para la gasolina de 95. La gasolinera más cercana está a 12 km. Vendes unos 150.000 litros/mes. Tu margen bruto es de 0,08 €/litro. El proveedor acaba de anunciarte que el precio mayorista sube 0,05 € en 30 días. Tienes que decidir cómo trasladar (o no) ese aumento al precio final.",
+    "kpi_inicial": { "precio_litro_cts": 165, "litros_mes": 150000, "margen_bruto_cts": 8 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisión 1 — ¿Trasladas la subida de costes al precio?",
+      "situacion": "El coste mayorista sube 5 céntimos/litro. Tu margen actual de 8 céntimos quedaría en 3 céntimos si no subes el precio. Tienes tres opciones: subir el precio íntegramente 5 céntimos (de 1,65 a 1,70 €), subir solo 2 céntimos (repartes la subida con el cliente) o no subir y absorber el coste.",
+      "opciones": [
+        {
+          "label": "Subo el precio 5 céntimos: el coste sube, el precio sube",
+          "kpi_delta": { "precio_litro_cts": 5, "litros_mes": -12000, "margen_bruto_cts": 5 },
+          "feedback": "La pregunta clave es la elasticidad. Tu gasolinera está en autovía, sin competidores cercanos: la demanda es relativamente inelástica. Los conductores que llenan antes de llegar a Cartagena no tienen alternativa fácil. Con una elasticidad estimada de −0,3, una subida del 3 % (0,05/1,65) reduce la cantidad solo un 0,9 %, unas 1.350 litros menos. Tus ingresos totales suben. Lección: cuando la demanda es inelástica, subir el precio aumenta los ingresos totales.",
+          "next": "n2"
+        },
+        {
+          "label": "Subo solo 2 céntimos: reparto la carga con el cliente",
+          "kpi_delta": { "precio_litro_cts": 2, "litros_mes": -4000, "margen_bruto_cts": -3 },
+          "feedback": "Absorbes 3 de los 5 céntimos de subida de coste. Tu margen cae a 5 céntimos, con menos cantidad. La pérdida de margen no se compensa con fidelización suficiente si los clientes de la autovía son principalmente de paso. Pero si tienes clientela local fiel, la estrategia de «compartir la carga» puede tener valor en términos de imagen y repetición de compra. Lección: el precio es señal de calidad y de relación con el cliente, no solo variable de ingreso inmediato.",
+          "next": "n2"
+        },
+        {
+          "label": "No subo el precio: absorbo el coste para no perder ni un cliente",
+          "kpi_delta": { "precio_litro_cts": 0, "litros_mes": 2000, "margen_bruto_cts": -5 },
+          "feedback": "Margen de 3 céntimos en 150.000 litros son solo 4.500 € mensuales antes de costes fijos. Si tus costes fijos (alquiler, personal, electricidad) son 8.000 €/mes, estás perdiendo dinero. Sostener un precio artificialmente bajo porque tienes demanda inelástica significa dejar de capturar el excedente del productor que el mercado te permite. Lección: cuando la demanda es inelástica, no subir el precio es una decisión estratégicamente mala — el productor puede capturar más bienestar sin perder ventas significativas.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisión 2 — El impuesto especial sobre carburantes",
+      "situacion": "El Gobierno anuncia una subida del impuesto especial de carburantes de 3 céntimos/litro. Hay debate político: algunos dicen que el impuesto lo pagan los conductores; otros, que lo pagan las gasolineras. Tú tienes que decidir si lo trasladas todo al cliente o no.",
+      "opciones": [
+        {
+          "label": "El impuesto lo traslado íntegro al precio: lo paga el consumidor",
+          "kpi_delta": { "precio_litro_cts": 3, "litros_mes": -4500, "margen_bruto_cts": 0 },
+          "feedback": "Correcto desde el punto de vista de la incidencia fiscal. Con demanda inelástica (los conductores de autovía no pueden sustituir fácilmente la gasolina), la mayor parte del impuesto la soporta el consumidor. La carga tributaria se reparte entre oferente y demandante según sus elasticidades: quien es más inelástico paga más. Con demanda muy inelástica y oferta más elástica, el consumidor absorbe casi todo. Lección: la incidencia fiscal no depende de quién lo pague legalmente, sino de las elasticidades.",
+          "next": "n3"
+        },
+        {
+          "label": "Absorbo 1 céntimo y traslado 2: mejor que perder clientela",
+          "kpi_delta": { "precio_litro_cts": 2, "litros_mes": -3000, "margen_bruto_cts": -1 },
+          "feedback": "Repartes la carga. Economicamente, quien más flexible sea (el que tiene más alternativas) soporta menos impuesto. Tú como empresario tienes alternativa — podrías dedicar el espacio a otra actividad. El conductor tiene menos alternativas en autovía. Pero absorber algo puede ser una señal de servicio. Lección: la incidencia fiscal divide la carga según las elasticidades, pero el empresario puede elegir absorber parte para generar lealtad.",
+          "next": "n3"
+        },
+        {
+          "label": "Uso el impuesto como excusa para subir el precio 5 céntimos en lugar de 3",
+          "kpi_delta": { "precio_litro_cts": 5, "litros_mes": -10000, "margen_bruto_cts": 2 },
+          "feedback": "Intentas capturar excedente adicional aprovechando la cobertura del impuesto. El problema es que si competidores cercanos solo suben 3 céntimos y tú subes 5, el diferencial visible puede llevar a conductores conscientes del precio a esperar a la gasolinera de Cartagena. El excedente del productor que intentas capturar puede convertirse en peso muerto si pierdes demasiados clientes. Lección: el peso muerto aparece cuando el precio se aleja del equilibrio competitivo — también cuando el vendedor intenta capturar demasiado.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisión 3 — ¿Y si ofreces un producto diferenciado?",
+      "situacion": "Una distribuidora te ofrece incorporar gasolina de alto octanaje (98 de octanos) a 1,85 €/litro. Tu margen sería de 12 céntimos en lugar de 8. Pero solo el 15 % de los coches que pasan necesitan o prefieren el 98. El resto nunca lo comprará aunque sea bueno. Tienes que calcular si es rentable ampliar la oferta.",
+      "opciones": [
+        {
+          "label": "Incorporo el 98: mayor margen y diferenciación del producto",
+          "kpi_delta": { "precio_litro_cts": 0, "litros_mes": 12000, "margen_bruto_cts": 6 },
+          "feedback": "La elasticidad cruzada entra en juego: el 98 y el 95 son bienes complementarios para algunos conductores (los que solo usan el 98 por especificación del fabricante) y bienes sustitutivos para otros (los que compran el 98 por elección aunque el coche acepta el 95). El 15 % de tu mercado con elasticidad baja para el 98 justifica el margen mayor. Lección: la diferenciación de producto crea demandas con elasticidades distintas — el mismo establecimiento puede servir segmentos con distinta sensibilidad al precio.",
+          "next": "final:exito"
+        },
+        {
+          "label": "No incorporo el 98: complica el suministro para una demanda pequeña",
+          "kpi_delta": { "precio_litro_cts": 0, "litros_mes": 0, "margen_bruto_cts": 0 },
+          "feedback": "Decisión operativa válida. Simplificación del catálogo. El 15 % de conductores que prefieren el 98 puede ir a otra gasolinera sin que tú lo notes demasiado. El coste de añadir un tanque de almacenamiento y los pedidos extra puede no justificar el ingreso marginal. Lección: el análisis marginal se aplica también a las decisiones de ampliación de producto — incorporar un nuevo bien vale la pena mientras el ingreso marginal supere el coste marginal.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Ofrezco el 98 a 1,75 € para captar cuota: mismo margen que el 95",
+          "kpi_delta": { "precio_litro_cts": 0, "litros_mes": 18000, "margen_bruto_cts": 0 },
+          "feedback": "Estrategia de penetración de mercado. Bajas el precio para ganar volumen. Si los conductores de 98 de la zona conocen que tienes el mejor precio, el boca a boca puede traerte cuota de las gasolineras de ciudad cercanas. El excedente del consumidor aumenta (precio más bajo para la misma calidad) pero no capturas tanto excedente del productor. Lección: hay estrategias donde ceder excedente al consumidor genera volumen que a largo plazo es rentable.",
+          "next": "final:fracaso_parcial"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "La gasolinera optimiza sus ingresos",
+      "resumen": "Has usado el concepto de elasticidad para tomar decisiones de precio, gestión de impuestos y ampliación de producto. La inelasticidad de la demanda de gasolina en autovía es una ventaja que has sabido aprovechar sin abusar.",
+      "lecciones_clave": [
+        "Cuando la demanda es inelástica, subir el precio aumenta los ingresos totales. Cuando es elástica, los reduce.",
+        "La incidencia fiscal no depende de quién pague el impuesto legalmente: quien tiene la demanda más inelástica soporta más carga.",
+        "Diferenciación de producto crea segmentos con distinta elasticidad — y permite capturar más excedente del productor."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "La gasolinera gana volumen, no margen",
+      "resumen": "Has optado por captar cuota con precios bajos. El volumen sube pero el margen por litro no mejora. En un negocio con altos costes fijos, el margen unitario importa tanto como el volumen.",
+      "lecciones_clave": [
+        "La estrategia de precio bajo para ganar volumen solo funciona si los costes fijos son bajos o si el volumen adicional supera ampliamente el margen sacrificado.",
+        "En mercados con demanda inelástica, ceder precio al consumidor tiene un coste de oportunidad elevado."
+      ]
+    }
+  }
+}
+```

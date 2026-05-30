@@ -1,0 +1,117 @@
+---
+asignatura: ipe2-fp
+unidad_relacionada: 6
+title: "Dos cofundadores, una sola empresa"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "15-20 min"
+descripcion: "Tienes que elegir entre dos posibles socios con perfiles muy distintos. La decisión define el modelo de negocio."
+competencias_clave: [CPSAA, CE, CD]
+competencias_especificas: [RA1]
+estado: publicado
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Caso · Modelo de negocio",
+    "titulo": "Dos cofundadores, una sola empresa",
+    "contexto": "Irene (22 años, Grado Superior de Energías Renovables) quiere montar una empresa de instalación y mantenimiento de placas solares para pequeños comercios y comunidades de vecinos. Ha validado el mercado: 6 administradores de fincas le han dicho que sus clientes preguntan por soluciones de autoconsumo. Tiene el conocimiento técnico. Le faltan dos cosas: capital inicial (necesita unos 8.000 € para el primer equipo y los primeros meses) y capacidad comercial. Ha recibido dos propuestas de colaboración. Socio A: David, 35 años, ex-comercial de seguros con 15.000 € disponibles y mucha red de contactos, sin conocimiento técnico. Socio B: Mireia, 24 años, técnica en instalaciones igual que Irene, con 2.000 € disponibles y experiencia en dos instalaciones previas.",
+    "kpi_inicial": { "capital_inicial": 0, "capacidad_comercial": 3, "riesgo_societario": 5 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisión 1 — ¿Cuál es el criterio de elección del socio?",
+      "situacion": "Irene tiene que decidir cuál de los dos socios encaja mejor en su modelo de negocio. Antes de decidir, ¿cuál es el criterio más importante?",
+      "opciones": [
+        {
+          "label": "El que más dinero pone: David con 15.000 € es mucho mejor que Mireia con 2.000 €",
+          "kpi_delta": { "capital_inicial": 5, "capacidad_comercial": 3, "riesgo_societario": 2 },
+          "feedback": "El capital es importante, pero no es el criterio más relevante a largo plazo. David aporta 15.000 € y red comercial, pero ningún conocimiento técnico en energías renovables. Si tiene el 50 % de la empresa, puede tomar decisiones técnicas sin entenderlas o entrar en conflicto cuando los proyectos sean complejos. El socio no se elige solo por el capital que pone: se elige por lo que aporta al modelo de negocio y por la compatibilidad en las decisiones difíciles.",
+          "next": "n2"
+        },
+        {
+          "label": "El que cubre la brecha más crítica del modelo: si el producto está cubierto (yo soy técnica), me falta la parte comercial",
+          "kpi_delta": { "capital_inicial": 3, "capacidad_comercial": 4, "riesgo_societario": -1 },
+          "feedback": "Análisis correcto aplicando el Business Model Canvas. Si las actividades y recursos clave técnicos están cubiertos por Irene, la brecha real está en el canal (cómo llegamos a clientes) y las relaciones con clientes (cómo los captamos y mantenemos). David cubre eso directamente. Mireia añade redundancia técnica pero no cubre la brecha. La elección del socio debe completar el Canvas, no duplicarlo.",
+          "next": "n2"
+        },
+        {
+          "label": "El que tenga valores y visión compatibles, aunque ponga menos dinero",
+          "kpi_delta": { "capital_inicial": 1, "capacidad_comercial": 1, "riesgo_societario": -2 },
+          "feedback": "Los valores compatibles son necesarios pero no suficientes. Dos personas con valores idénticos pero con las mismas capacidades (dos técnicas) no cubren las brechas del modelo de negocio. El criterio correcto combina alineación de valores (para evitar conflictos societarios) y complementariedad de competencias (para cubrir las brechas del Canvas). Mireia puede ser más afín, pero eso no resuelve la falta de capacidad comercial.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisión 2 — Negociar con David",
+      "situacion": "Irene decide explorar la asociación con David. David propone: él pone 15.000 € y se encarga de la parte comercial; Irene pone el conocimiento técnico. Propone un reparto 50/50. Irene calcula que su conocimiento técnico y trabajo de campo (ella ejecutará todas las instalaciones) vale al menos 60 % de la empresa. ¿Cómo negocia?",
+      "opciones": [
+        {
+          "label": "Acepto el 50/50 para no perder al socio: al final lo importante es arrancar",
+          "kpi_delta": { "capital_inicial": 4, "riesgo_societario": 3, "capacidad_comercial": 3 },
+          "feedback": "Aceptar un reparto percibido como injusto por urgencia de arrancar genera resentimiento a medio plazo. El 50/50 es la distribución más conflictiva en una sociedad de dos personas: en los desacuerdos, no hay desempate posible. Si Irene cree que su aportación vale más del 50 %, ese malestar aflorará cuando el negocio vaya bien (y haya más que repartir) o cuando vaya mal (y haya que tomar decisiones duras).",
+          "next": "n3"
+        },
+        {
+          "label": "Propongo 60/40 (yo) y lo fundamento: yo ejecuto todas las instalaciones, tengo la titulación habilitante y aporto el know-how técnico diferencial",
+          "kpi_delta": { "capital_inicial": 3, "riesgo_societario": -2, "capacidad_comercial": 3 },
+          "feedback": "Negociación fundamentada y razonable. Un reparto 60/40 reconoce que Irene aporta el elemento diferencial del negocio (la titulación habilitante sin la cual el negocio no puede operar legalmente) y que ejecutará la parte más intensiva en trabajo. David aporta capital y red, que tienen valor pero son más reemplazables que la titulación técnica. La negociación con argumento es más efectiva que la negociación por posición.",
+          "next": "n3"
+        },
+        {
+          "label": "Busco un inversor externo para no tener que ceder participación a nadie",
+          "kpi_delta": { "capital_inicial": 2, "riesgo_societario": 0, "capacidad_comercial": 0 },
+          "feedback": "Un inversor externo puede aportar el capital sin entrar en el día a día, pero no resolverá la brecha comercial que David sí cubriría. Y conseguir inversión externa sin tracción (primeras ventas, referencias) es difícil para un proyecto de arranque en un sector local. Las líneas de microcrédito público (ENISA, etc.) pueden cubrir el capital; la capacidad comercial, no.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisión 3 — El análisis DAFO del primer año",
+      "situacion": "Irene y David constituyen la empresa con un reparto 60/40. A los 6 meses tienen 8 instalaciones completadas y 22.000 € de facturación. David ha conseguido 3 contratos de mantenimiento anuales con comunidades de vecinos (ingresos recurrentes). Una amenaza emerge: una empresa nacional (SolarFast) está entrando en el mercado local con precios un 20 % más bajos. ¿Cuál es la estrategia CAME correcta?",
+      "opciones": [
+        {
+          "label": "Bajamos los precios para competir con SolarFast: si ellos bajan un 20 %, nosotros bajamos un 25 %",
+          "kpi_delta": { "capital_inicial": -3, "capacidad_comercial": -1, "riesgo_societario": 2 },
+          "feedback": "Guerra de precios con una empresa nacional que tiene economías de escala que una empresa de 2 personas no puede igualar. SolarFast puede operar a pérdidas para ganar mercado local y luego subir precios; Irene y David no tienen ese colchón. La estrategia de precio es la más fácil de adoptar y la que más rápido destruye el margen. Luchar contra SolarFast en precio es jugar en su terreno.",
+          "next": "final:fracaso_parcial"
+        },
+        {
+          "label": "Explotamos nuestra fortaleza diferencial: servicio local, respuesta en 24 horas, conocemos a los administradores de fincas. SolarFast no puede replicar eso desde Madrid.",
+          "kpi_delta": { "capital_inicial": 1, "capacidad_comercial": 3, "riesgo_societario": -2 },
+          "feedback": "CAME correcto: Explotar fortaleza (FO). SolarFast no puede replicar la relación personal con los administradores de fincas locales, el servicio postventa 24h ni el conocimiento del mercado local. Diferenciarse en servicio y proximidad —no en precio— es la estrategia correcta para una empresa local frente a una nacional. El DAFO revela que la amenaza existe, pero también que las fortalezas de Irene y David son exactamente lo que SolarFast no tiene.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Corregimos la debilidad de capital: pedimos un préstamo bancario para crecer antes de que SolarFast se instale",
+          "kpi_delta": { "capital_inicial": 2, "riesgo_societario": 2, "capacidad_comercial": 1 },
+          "feedback": "Crecer antes que el competidor puede ser una estrategia válida, pero requiere que el crecimiento se financie con ingresos recurrentes, no con deuda. Si los contratos de mantenimiento de David generan flujo de caja predecible, un préstamo para más equipamiento es razonable. Si la deuda se usa para bajar precios en lugar de crecer en capacidad, el riesgo aumenta sin ventaja competitiva. La estrategia de endeudarse para resistir una guerra de precios casi siempre acaba mal.",
+          "next": "final:exito"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "La empresa local que SolarFast no pudo comprar",
+      "resumen": "Elegiste al socio correcto para cubrir la brecha comercial, negociaste un reparto justo y diseñaste una estrategia diferencial que SolarFast no puede replicar. Al final del primer año tenéis 35 clientes recurrentes y SolarFast no ha conseguido penetrar en vuestra zona.",
+      "lecciones_clave": [
+        "El socio se elige para cubrir las brechas del Business Model Canvas, no solo por el capital que aporta.",
+        "Un reparto societario percibido como injusto genera conflictos cuando más se necesita alineación.",
+        "Frente a un competidor nacional con precio más bajo, la estrategia ganadora es diferenciarse en lo que ellos no pueden replicar."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "SolarFast se come el margen",
+      "resumen": "La guerra de precios destruyó el margen en los primeros 3 meses. Tenéis más contratos que antes pero el beneficio operativo es casi cero. David quiere cerrar y Irene quiere seguir. El 50/50 hace el desacuerdo insoluble.",
+      "lecciones_clave": [
+        "La guerra de precios contra un competidor con más escala solo funciona si tienes más colchón de capital que ellos.",
+        "Un reparto 50/50 convierte los desacuerdos en bloqueos societarios: no hay desempate posible."
+      ]
+    }
+  }
+}
+```

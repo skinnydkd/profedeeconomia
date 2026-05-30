@@ -1,0 +1,117 @@
+---
+asignatura: edmn-2bach
+unidad_relacionada: 11
+title: "El hotelito que parecía sano"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "15-20 min"
+descripcion: "Un hotel rural en Extremadura tiene buenos beneficios pero ratios que inquietan. Fondo de maniobra, ratios y rentabilidad: el análisis que va más allá del beneficio."
+competencias_clave: [CPSAA, CE, CD]
+competencias_especificas: [CE3]
+estado: publicado
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Caso · Análisis financiero",
+    "titulo": "El hotelito que parecía sano",
+    "contexto": "La Posada del Jerte es un hotel rural de 12 habitaciones en el valle del Jerte, Cáceres. Lo llevan Sofía y Pedro desde 2018. En 2024 tuvieron beneficio neto de 28.000 €, lo que parece muy bien. Pero su banco les ha denegado un préstamo para ampliar el spa porque los 'ratios no son buenos'. Sofía y Pedro no entienden por qué.",
+    "kpi_inicial": { "caja": 8000, "clientes": 210, "reputacion": 9 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisión 1 — Calcular el fondo de maniobra",
+      "situacion": "El balance muestra: Activo corriente (caja 8.000 €, clientes 4.200 €, existencias 2.800 €) = 15.000 €. Pasivo corriente (proveedores 12.000 €, deuda bancaria a corto 9.000 €) = 21.000 €. Activo no corriente (edificio y equipamiento) = 380.000 €. Pasivo no corriente (hipoteca) = 210.000 €.",
+      "opciones": [
+        {
+          "label": "Calculo el fondo de maniobra: Activo corriente - Pasivo corriente",
+          "kpi_delta": { "caja": 0, "clientes": 5, "reputacion": 2 },
+          "feedback": "Fondo de maniobra = 15.000 - 21.000 = -6.000 €. Negativo. Esto significa que las deudas a corto plazo superan a los activos que puedes liquidar a corto plazo. Aunque el hotel tenga beneficios y un edificio que vale 380.000 €, tiene un problema de liquidez estructural: si los acreedores cobran antes de que tú cobres tus ingresos, puedes no tener con qué pagar. El banco lo vio.",
+          "next": "n2"
+        },
+        {
+          "label": "El edificio vale 380.000 €: somos solventes, el banco está equivocado",
+          "kpi_delta": { "caja": 0, "clientes": -5, "reputacion": -1 },
+          "feedback": "Solvencia y liquidez son conceptos distintos: solvencia mide si el activo total cubre el pasivo total (y aquí sí cubre), pero liquidez mide si puedes pagar tus deudas cuando vencen. Un edificio no se puede liquidar en 30 días. El banco no financiará a quien tiene deudas a corto plazo que superan sus activos líquidos, aunque tenga mucho patrimonio.",
+          "next": "n2"
+        },
+        {
+          "label": "Me centro en la hipoteca: 210.000 € es mucha deuda",
+          "kpi_delta": { "caja": 0, "clientes": 0, "reputacion": 1 },
+          "feedback": "La hipoteca es deuda a largo plazo, financiada con activo no corriente (el edificio): eso es estructura correcta. El problema no está ahí sino en que la deuda a corto plazo (21.000 €) supera al activo corriente (15.000 €). El análisis financiero requiere separar los plazos: no es lo mismo deber dinero que vence en 30 días que deber dinero que vence en 20 años.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisión 2 — Interpretar los ratios de rentabilidad",
+      "situacion": "El activo total del hotel es 395.000 €. El patrimonio neto es 172.000 €. El beneficio antes de intereses e impuestos (BAIT) es 45.000 €. El beneficio neto es 28.000 €. Calcula la rentabilidad económica (ROA) y financiera (ROE) e interprétalas.",
+      "opciones": [
+        {
+          "label": "ROA = BAIT/Activo = 45.000/395.000 = 11,4 %. Es una rentabilidad razonable para el sector hotelero.",
+          "kpi_delta": { "caja": 0, "clientes": 10, "reputacion": 3 },
+          "feedback": "Correcto. El ROA (Return on Assets) mide cuánto beneficio genera cada euro invertido en activos, independientemente de cómo se financia. Un 11,4 % en un hotel rural es aceptable. Ahora el ROE = Beneficio neto/Patrimonio neto = 28.000/172.000 = 16,3 %. El ROE supera al ROA: esto indica apalancamiento financiero positivo. La deuda está amplificando la rentabilidad para los socios.",
+          "next": "n3"
+        },
+        {
+          "label": "ROE = Beneficio/Ventas: lo que importa es cuánto ganamos por cada euro vendido",
+          "kpi_delta": { "caja": 0, "clientes": 0, "reputacion": -1 },
+          "feedback": "Lo que describes es el margen neto sobre ventas, no el ROE. El ROE (Return on Equity) mide la rentabilidad sobre el patrimonio de los socios: cuánto gana cada euro que los propietarios tienen invertido en la empresa. Confundir ratios produce análisis incorrectos. Lección: en análisis financiero, la definición exacta del ratio importa tanto como el número.",
+          "next": "n3"
+        },
+        {
+          "label": "Los dos ratios positivos significan que todo va bien",
+          "kpi_delta": { "caja": 0, "clientes": 0, "reputacion": 0 },
+          "feedback": "ROA y ROE positivos son buenas noticias, pero no cuentan toda la historia. El hotel tiene fondo de maniobra negativo a pesar de ratios de rentabilidad aceptables. Las empresas pueden ser rentables y estar en problemas de liquidez al mismo tiempo. Los ratios hay que leerlos en conjunto, no cada uno por separado.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisión 3 — El período medio de maduración",
+      "situacion": "El hotel cobra por adelantado (los clientes pagan al reservar o al check-in). Los proveedores (alimentación, lencería) esperan cobrar a 30 días. Sofía calcula que el stock de existencias dura unos 15 días. ¿Qué impacto tiene esto en la tesorería?",
+      "opciones": [
+        {
+          "label": "Calculamos el PMM: el hotel cobra antes de pagar a proveedores, eso es favorable",
+          "kpi_delta": { "caja": 3000, "clientes": 10, "reputacion": 3 },
+          "feedback": "El período medio de maduración económico = plazo de cobro de clientes + plazo de rotación de existencias = 0 (cobro adelantado) + 15 días = 15 días. El PMM financiero = PMM económico - plazo de pago a proveedores = 15 - 30 = -15 días. Un PMM financiero negativo es ideal: cobras antes de pagar. Este es un punto fuerte del sector hotelero que compensa parcialmente el fondo de maniobra negativo.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Alargo el plazo de pago a proveedores a 60 días para mejorar la caja",
+          "kpi_delta": { "caja": 4000, "clientes": -8, "reputacion": -2 },
+          "feedback": "Alargar el plazo de pago mejora la caja a corto plazo pero puede deteriorar las relaciones con proveedores locales (productos frescos del valle). Los proveedores pequeños no pueden financiar al hotel durante 60 días. Lección: el plazo de pago a proveedores es también una decisión estratégica que afecta a las relaciones con el ecosistema de la empresa.",
+          "next": "final:fracaso_parcial"
+        },
+        {
+          "label": "Presentamos el PMM negativo al banco como argumento para el préstamo",
+          "kpi_delta": { "caja": 15000, "clientes": 15, "reputacion": 4 },
+          "feedback": "Argumento financiero correcto: el PMM negativo muestra que el hotel genera caja antes de gastarla, lo que compensa el fondo de maniobra negativo. El banco revisa el análisis y entiende que la estructura de cobros del sector hotelero hace que el fondo de maniobra negativo no sea tan preocupante como en otros sectores. El préstamo se aprueba con garantías adicionales.",
+          "next": "final:exito"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "El hotelito consigue el préstamo para el spa",
+      "resumen": "Sofía y Pedro aprenden a leer sus propios estados financieros y a comunicarlos al banco. El análisis correcto del PMM negativo y del apalancamiento positivo convence a la entidad financiera.",
+      "lecciones_clave": [
+        "Un fondo de maniobra negativo no siempre es malo: en sectores que cobran adelantado (hoteles, comercio online) es estructural y no implica problemas de liquidez.",
+        "ROA y ROE miden cosas distintas: el ROA mide la eficiencia de los activos, el ROE mide la rentabilidad para los socios. Cuando ROE es mayor que ROA, el apalancamiento está funcionando a favor.",
+        "El período medio de maduración conecta la contabilidad con la gestión diaria de la tesorería: es el ratio que dice cuántos días tarda el ciclo operativo de la empresa en convertirse en caja."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "El análisis incompleto no convence al banco",
+      "resumen": "Sofía y Pedro no consiguen el préstamo porque no saben argumentar que su estructura financiera es compatible con su modelo de negocio. El banco ve los ratios superficialmente y deniega.",
+      "lecciones_clave": [
+        "Los ratios hay que interpretarlos en contexto del sector: un ratio malo en manufactura puede ser normal en hostelería.",
+        "Delegar el análisis financiero sin entenderlo significa no poder defenderlo cuando lo necesitas."
+      ]
+    }
+  }
+}
+```

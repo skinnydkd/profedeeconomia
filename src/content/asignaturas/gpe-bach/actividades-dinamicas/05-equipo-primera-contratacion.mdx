@@ -1,0 +1,117 @@
+---
+asignatura: gpe-bach
+unidad_relacionada: 5
+title: "El equipo se queda pequeño"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "15-20 min"
+descripcion: "Vuestro servicio de reparación de bicicletas crece y necesitáis incorporar a alguien. Tres decisiones de recursos humanos antes de firmar nada."
+competencias_clave: [CPSAA, CE, CD]
+competencias_especificas: [CE3]
+estado: publicado
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Caso · Recursos humanos",
+    "titulo": "El equipo se queda pequeño",
+    "contexto": "Vuestro proyecto de reparación y mantenimiento de bicicletas lleva seis meses funcionando en un local compartido de Torrent. Tenéis 280 clientes registrados, una media de 22 reparaciones por semana y una lista de espera de 8 días. Con solo dos personas en el equipo (vosotros), no podéis asumir más trabajo sin bajar la calidad. Los ingresos mensuales son de 1.840 € y los costes fijos (local, materiales básicos, seguros) suman 820 €/mes. Margen bruto: 1.020 €/mes. Necesitáis incorporar a alguien.",
+    "kpi_inicial": { "ingresos_mes": 1840, "costes_mes": 820, "lista_espera_dias": 8 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisión 1 — Definir el perfil antes de buscar",
+      "situacion": "La primera tentación es llamar a un amigo que sabe de bicis. Antes de hacerlo, hay que decidir qué perfil necesitáis realmente. Analizáis vuestras carencias: (a) técnica — alguien que sepa reparar sistemas de cambio electrónico que vosotros no domináis; (b) comercial — alguien que atienda el mostrador y gestione las citas online mientras vosotros reparáis; (c) comodín — alguien con ganas de aprender todo, aunque ahora sepa poco.",
+      "opciones": [
+        {
+          "label": "Técnica: buscamos a alguien con habilidad en electrónica de bici que nosotros no tenemos",
+          "kpi_delta": { "ingresos_mes": 380, "lista_espera_dias": -4 },
+          "feedback": "Decisión basada en fortalezas del equipo: cubrir el hueco técnico que os frena. Las reparaciones de cambio electrónico tienen un ticket 3 veces mayor que las mecánicas básicas. Si esta persona puede atender 3-4 reparaciones electrónicas semanales a 80-90 €, el impacto en ingresos es directo. El perfil profesional está claro: eso facilita la selección y la entrevista.",
+          "next": "n2"
+        },
+        {
+          "label": "Comercial: alguien que libere tiempo de taller gestionando citas y atención al cliente",
+          "kpi_delta": { "ingresos_mes": 200, "lista_espera_dias": -3 },
+          "feedback": "Útil pero menos directo. Si vosotros sois los que reparáis, tener apoyo comercial-administrativo os libera tiempo de taller. El problema es que el perfil comercial tiene un coste similar al técnico pero un impacto en ingresos menos inmediato. Puede tener sentido si la lista de espera viene de falta de gestión, no de falta de manos en el taller.",
+          "next": "n2"
+        },
+        {
+          "label": "Comodín: un amigo con ganas que aprende sobre la marcha",
+          "kpi_delta": { "ingresos_mes": 80, "lista_espera_dias": -1 },
+          "feedback": "El perfil más arriesgado porque no cubre una carencia específica. Contratar por amistad o por disponibilidad en lugar de por encaje con el perfil necesario es el error de selección más frecuente. Si el amigo acaba en tareas que nadie del equipo quiere hacer, la desmotivación llega pronto. Definid primero el perfil, después buscad a la persona.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisión 2 — Tipo de contrato y coste empresa",
+      "situacion": "Habéis definido el perfil y encontrado a una candidata que encaja bien: Paula, 19 años, FP de mecánica, experiencia en bicicletas eléctricas. Quiere trabajar 20 horas semanales. Tenéis tres opciones de formalizar la relación.",
+      "opciones": [
+        {
+          "label": "Contrato de prácticas a tiempo parcial (20 h/semana): salario ~600 €/mes bruto",
+          "kpi_delta": { "costes_mes": 720, "lista_espera_dias": -4 },
+          "feedback": "Para un perfil joven con formación reciente, el contrato de prácticas permite un salario menor (mínimo 60-75 % del convenio) con cotizaciones reducidas. El coste empresa estimado: ~600 € bruto + ~150 € Seguridad Social patronal = 750 €/mes. Con un margen bruto actual de 1.020 €, quedan 270 € de margen tras el coste. Justo, pero sostenible si Paula añade las reparaciones electrónicas. Calculad el punto muerto antes de firmar.",
+          "next": "n3"
+        },
+        {
+          "label": "Autónomo colaborador: Paula factura al proyecto por las horas trabajadas",
+          "kpi_delta": { "costes_mes": 600, "lista_espera_dias": -3 },
+          "feedback": "Aparenta más barato porque solo pagáis la factura. Pero si Paula trabaja de forma habitual y bajo vuestra organización, Hacienda puede considerar que hay una relación laboral encubierta (fraude a la Seguridad Social). El riesgo legal y económico para el proyecto es alto. La Inspección de Trabajo sanciona este tipo de relaciones con multas que superan con mucho el ahorro.",
+          "next": "n3"
+        },
+        {
+          "label": "Contrato indefinido a tiempo completo: 1.000 €/mes bruto",
+          "kpi_delta": { "costes_mes": 1200, "lista_espera_dias": -6 },
+          "feedback": "Paula estaría a tiempo completo y el proyecto ganaría mucha capacidad. El coste empresa sería ~1.000 + 300 SS patronal = 1.300 €/mes. Con un margen bruto de 1.020 €, el coste supera el margen actual: el proyecto entraría en pérdidas sin que los ingresos crezcan. La dimensión de la contratación debe encajar con la situación financiera actual, no con la que esperáis.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisión 3 — Comunicación interna: cómo integrar a Paula en el equipo",
+      "situacion": "Paula lleva dos semanas en el proyecto. Las reparaciones electrónicas van bien, pero hay roce: Paula no sabe quién decide qué, a veces recibe instrucciones contradictorias de los dos fundadores y preguntó por el chat del equipo y descubrió que no existe. Tenéis tres opciones para mejorar la comunicación interna.",
+      "opciones": [
+        {
+          "label": "Reunión semanal de 30 minutos los lunes para revisar lista de espera y repartir tareas",
+          "kpi_delta": { "lista_espera_dias": -2, "ingresos_mes": 50 },
+          "feedback": "La palanca más eficaz. Una reunión breve y regular genera tres cosas que no tienen coste económico: saber en qué estado está el trabajo, evitar que nadie reciba instrucciones contradictorias y que Paula sepa que sus preguntas tienen un momento previsto de respuesta. Los conflictos de equipo suelen venir de la incertidumbre, no de la mala voluntad.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Creamos un grupo de WhatsApp para los tres y acordamos que todo lo importante va ahí",
+          "kpi_delta": { "lista_espera_dias": -1, "ingresos_mes": 20 },
+          "feedback": "Mejor que nada, pero un grupo de WhatsApp sin una estructura clara (quién puede asignar tareas, cómo se registran los acuerdos) se convierte rápidamente en un caos de mensajes. La comunicación interna sana necesita un canal claro, sí, pero también unas reglas sobre qué tipo de información va ahí y qué decisiones se toman así. Un grupo bien usado funciona; sin reglas, genera ruido.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Dejamos que cada uno haga su trabajo y nos coordinamos sobre la marcha",
+          "kpi_delta": { "lista_espera_dias": 1, "ingresos_mes": -40 },
+          "feedback": "La opción de no decidir. Sin canales de comunicación acordados, cada persona crea los suyos y se coordinan cuando hay un problema, no antes. Eso genera exactamente lo que está pasando: instrucciones contradictorias, incertidumbre sobre quién decide y un empleado nuevo que no sabe a quién preguntar. El coste de la comunicación interna deficiente se mide en tiempo perdido y en errores que podrían haberse evitado.",
+          "next": "final:fracaso_parcial"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "El equipo tiene tres personas y funciona mejor que con dos",
+      "resumen": "La incorporación de Paula se ha hecho con criterio: perfil definido, contrato adecuado a la situación financiera y comunicación interna acordada desde el principio. La lista de espera baja y el margen del proyecto sigue siendo positivo.",
+      "lecciones_clave": [
+        "Definir el perfil antes de buscar a la persona es la primera decisión de recursos humanos: sin perfil claro, cualquier candidato parece suficiente.",
+        "El coste empresa es siempre mayor que el salario bruto: calculadlo antes de firmar para saber si el proyecto puede pagarlo.",
+        "La comunicación interna no se gestiona sola: necesita un canal, unas reglas y un momento regular de sincronización."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "El equipo tiene tres personas pero opera peor que con dos",
+      "resumen": "La incorporación ha generado más fricción que capacidad. Sin estructura de comunicación, la coordinación falla y Paula trabaja sin dirección clara. El proyecto tiene más costes y no necesariamente más ingresos.",
+      "lecciones_clave": [
+        "Un equipo descoordinado consume energía en resolución de conflictos que debería ir al trabajo real.",
+        "Contratar sin definir cómo se va a integrar a la persona nueva es la forma más cara de aprender que la comunicación interna importa."
+      ]
+    }
+  }
+}
+```

@@ -1,0 +1,117 @@
+---
+asignatura: fopp-4eso
+unidad_relacionada: 6
+title: "¿Beca o sin beca?"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "10-15 min"
+descripcion: "Diego quiere estudiar FP Superior pero su familia no puede pagarlo fácilmente. ¿Cómo financia el curso?"
+competencias_clave: [CPSAA, CC, CD]
+competencias_especificas: [CE2]
+estado: publicado
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Caso · Becas y financiación de estudios",
+    "titulo": "¿Beca o sin beca?",
+    "contexto": "Diego, 17 años, ha terminado el Grado Medio de Administración con un 8,2 de nota media. Quiere continuar con el Grado Superior de Administración y Finanzas, que le abre la puerta a la universidad o al mercado laboral en banca y seguros. El problema: su familia tiene ingresos ajustados y su padre está en desempleo desde hace ocho meses. Diego no sabe si pueden permitirse el coste del ciclo (matrícula + transporte + material). Tampoco sabe que existen ayudas específicas para eso.",
+    "kpi_inicial": { "claridad_futuro": 30, "autonomia": 25, "confianza": 30 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisión 1 — El primer paso ante la duda económica",
+      "situacion": "Diego asume que no puede estudiar porque no hay dinero. No ha buscado información sobre becas porque cree que «las becas son muy difíciles de conseguir y para notas muy altas». Su nota media es 8,2. Los ciclos de FP son gratuitos en la red pública, pero Diego no lo sabe.",
+      "opciones": [
+        {
+          "label": "Descarto el Grado Superior y busco trabajo directamente. No quiero ser una carga económica para mi familia",
+          "kpi_delta": { "claridad_futuro": -15, "autonomia": -10, "confianza": -10 },
+          "feedback": "Tomar una decisión de vida basada en una premisa falsa (que no hay becas, que el ciclo cuesta mucho) es un error evitable. Los ciclos de FP en centros públicos son gratuitos en matrícula y las becas del Ministerio de Educación cubren también transporte y material. Lección: antes de descartar una opción por razones económicas, verifica si esas razones son reales.",
+          "next": "n2"
+        },
+        {
+          "label": "Busco en la web del Ministerio de Educación qué becas existen para FP Grado Superior",
+          "kpi_delta": { "claridad_futuro": 25, "confianza": 20, "autonomia": 20 },
+          "feedback": "Acción directa y correcta. Las becas generales del MEFP para FP cubren componentes de renta, residencia, transporte y excelencia. Con un 8,2 de nota media y el umbral de renta familiar de Diego, es muy probable que tenga derecho a ayuda. Verificar antes de descartar es el primer paso del proceso.",
+          "next": "n2"
+        },
+        {
+          "label": "Pregunto al orientador del instituto si sabe qué ayudas hay para seguir estudiando FP",
+          "kpi_delta": { "claridad_futuro": 20, "confianza": 15, "autonomia": 15 },
+          "feedback": "El orientador del centro es uno de los recursos más infrautilizados del sistema educativo. Puede explicar qué becas existen, cuáles son los plazos, y en algunos casos ayudar con la solicitud. Usar este recurso antes de tomar decisiones es exactamente lo que recomienda el proceso de toma de decisiones informada.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisión 2 — Los umbrales de renta",
+      "situacion": "Diego descubre que la beca general del MEFP para FP no exige nota mínima de acceso (solo rendimiento una vez dentro), y que el umbral 2 de renta familiar para 4 miembros es 39.422 €. La renta de su familia está por debajo. Puede solicitar los componentes de renta (más de 1.500 €/año) y transporte. El plazo de solicitud es en septiembre, dos semanas después de comenzar el curso. Diego no tiene ordenador en casa para tramitarlo.",
+      "opciones": [
+        {
+          "label": "Dejo el trámite para después. Ya lo haré cuando tenga tiempo",
+          "kpi_delta": { "claridad_futuro": -10, "autonomia": -10, "confianza": -10 },
+          "feedback": "Las becas del MEFP tienen plazos estrictos: si no solicitas en el período habilitado (normalmente septiembre-octubre), pierdes el derecho ese curso, aunque cumplas todos los requisitos. Lección: en trámites administrativos con plazo, el «ya lo haré» es perder la ayuda.",
+          "next": "n3"
+        },
+        {
+          "label": "Voy a la biblioteca pública o al centro cívico para hacer la solicitud online en su ordenador",
+          "kpi_delta": { "claridad_futuro": 20, "autonomia": 25, "confianza": 20 },
+          "feedback": "Solución práctica que no depende de tener ordenador propio. Las bibliotecas públicas y los centros de servicios sociales tienen ordenadores de libre acceso. La tramitación de la beca MEFP se hace por sede electrónica y no requiere certificado digital — con el DNI y los datos de la declaración de renta familiar es suficiente.",
+          "next": "n3"
+        },
+        {
+          "label": "Pido ayuda al orientador para tramitar la solicitud dentro del plazo",
+          "kpi_delta": { "claridad_futuro": 15, "autonomia": 15, "confianza": 25 },
+          "feedback": "Muchos centros educativos organizan sesiones de ayuda para solicitar becas en septiembre. El orientador o el equipo directivo suelen poder orientar (aunque no hacen la solicitud por el alumno). Usar este apoyo es exactamente para lo que está el servicio.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisión 3 — La espera de la resolución",
+      "situacion": "Diego ha solicitado la beca. La resolución provisional tarda 3-4 meses. Mientras tanto, ha matriculado en el Grado Superior. Pero en octubre, su familia tiene un mes especialmente difícil económicamente. Un amigo le propone dejar el ciclo y ponerse a trabajar en el almacén de su empresa: «Son 1.100 € al mes, sin estudios». Diego lleva dos meses en el ciclo y va bien.",
+      "opciones": [
+        {
+          "label": "Dejo el ciclo y acepto el trabajo en el almacén. Mi familia necesita el dinero ahora",
+          "kpi_delta": { "claridad_futuro": -20, "autonomia": -10, "confianza": -15 },
+          "feedback": "Abandonar estudios en los primeros meses es la decisión con mayor coste a largo plazo. El diferencial salarial entre Grado Superior (y sus posibilidades de acceso universitario) y un trabajo no cualificado se acumula durante 30-40 años de vida laboral. Además, si la beca se concede, el ciclo cuesta económicamente mucho menos de lo que parece. Lección: las decisiones tomadas en el peor momento económico del año suelen ser las más costosas a largo plazo.",
+          "next": "final:fracaso_parcial"
+        },
+        {
+          "label": "Busco un trabajo a tiempo parcial compatible con el horario del ciclo y espero la resolución de la beca",
+          "kpi_delta": { "claridad_futuro": 15, "autonomia": 20, "confianza": 15 },
+          "feedback": "La compatibilidad de estudios de FP con trabajo parcial existe: muchos ciclos tienen horario de mañana, dejando la tarde libre. Además, los ciclos FP Dual incluyen prácticas remuneradas en empresa, que pueden ser el trabajo parcial que necesitas. Buscar esta compatibilidad antes de renunciar al ciclo es la opción más inteligente.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Hablo con los servicios sociales del ayuntamiento sobre ayudas de emergencia para familias con dificultades temporales",
+          "kpi_delta": { "claridad_futuro": 10, "autonomia": 15, "confianza": 20 },
+          "feedback": "Los servicios sociales municipales tienen prestaciones de emergencia para situaciones de dificultad temporal (desempleo de un progenitor, por ejemplo). Muchas familias desconocen estas ayudas. Acceder a ellas puede reducir la presión económica inmediata sin sacrificar la inversión educativa de Diego.",
+          "next": "final:exito"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "Diego termina el Grado Superior",
+      "resumen": "Ha completado el ciclo con beca, ha encontrado fórmulas para compatibilizar la situación económica familiar y ha abierto la puerta a la universidad o al mercado laboral cualificado.",
+      "lecciones_clave": [
+        "Los ciclos de FP en centros públicos son gratuitos en matrícula. Las becas del MEFP cubren renta, transporte y residencia. Verificar antes de descartar.",
+        "Las becas tienen plazos estrictos: el 'ya lo haré después' equivale a perder la ayuda ese curso.",
+        "Abandonar estudios en el peor mes económico del año es la decisión de mayor coste a 30 años vista."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "Diego abandona por una premisa falsa",
+      "resumen": "Ha abandonado estudios basándose en dificultades económicas que tenían soluciones disponibles que no llegó a explorar del todo.",
+      "lecciones_clave": [
+        "Tomar decisiones de vida basadas en premisas económicas no verificadas es un error evitable.",
+        "El diferencial de ingresos entre cualificación media y sin cualificación se acumula durante décadas."
+      ]
+    }
+  }
+}
+```

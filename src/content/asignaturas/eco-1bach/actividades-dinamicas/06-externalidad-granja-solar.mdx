@@ -1,0 +1,117 @@
+---
+asignatura: eco-1bach
+unidad_relacionada: 6
+title: "La granja solar y el apicultor vecino"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "15-20 min"
+descripcion: "Una planta solar quiere expandirse. El apicultor de al lado ve amenazada su producción. ¿Fallo de mercado o negociación privada?"
+competencias_clave: [CPSAA, CE, CD]
+competencias_especificas: [CE2]
+estado: publicado
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Caso · Fallos de mercado",
+    "titulo": "La granja solar y el apicultor vecino",
+    "contexto": "Eres la directora de desarrollo de Energías Limpias del Levante, una empresa que opera una planta fotovoltaica de 50 MW en Albacete. Queréis ampliar la planta en 30 MW adicionales, lo que requiere instalar paneles en 40 hectáreas nuevas. El problema: las parcelas colindantes las usa Antonio, un apicultor que lleva 20 años produciendo miel de romero y tomillo. Antonio dice que las obras y los paneles alterarán el paisaje floral y perjudicarán a sus abejas, reduciendo su producción en un 30 %. Calculad que su pérdida anual serían unos 18.000 €.",
+    "kpi_inicial": { "mw_instalados": 50, "ingreso_apicultor": 60000, "impacto_ambiental": 3 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisión 1 — ¿Cómo clasificas el problema?",
+      "situacion": "Antes de actuar, necesitas entender con qué tipo de fallo de mercado te enfrentas. ¿Es una externalidad negativa? ¿Es un problema de información asimétrica? ¿O es simplemente un conflicto de intereses privados que el mercado puede resolver solo?",
+      "opciones": [
+        {
+          "label": "Es una externalidad negativa: mi actividad impone un coste externo a Antonio",
+          "kpi_delta": { "mw_instalados": 0, "ingreso_apicultor": 0, "impacto_ambiental": 0 },
+          "feedback": "Diagnóstico correcto. La expansión de la planta solar genera un coste sobre un tercero (Antonio) que no está incluido en el cálculo privado de rentabilidad de la empresa. El mercado no lo internaliza porque Antonio no puede cobrarles por el daño. Resultado: la empresa sobreexpande porque no paga el coste social completo. Lección: las externalidades negativas llevan a sobreproducción del bien que genera el daño — la empresa instala más paneles de los socialmente óptimos.",
+          "next": "n2"
+        },
+        {
+          "label": "Es un conflicto privado: que lo resuelvan los propietarios entre ellos",
+          "kpi_delta": { "mw_instalados": 30, "ingreso_apicultor": -18000, "impacto_ambiental": -1 },
+          "feedback": "Parcialmente correcto: el Teorema de Coase dice que, con derechos de propiedad bien definidos y sin costes de transacción, los agentes negocian un acuerdo eficiente sin intervención del Estado. Pero en la práctica los costes de negociación son reales, los derechos no siempre están claros y el poder de negociación es asimétrico. Una empresa con 30 MW de inversión frente a un apicultor individual no negocia en igualdad. Lección: el Teorema de Coase funciona como referencia teórica; en la práctica, las externalidades suelen requerir alguna intervención.",
+          "next": "n2"
+        },
+        {
+          "label": "Es un problema de bienes comunes: las abejas de Antonio son un recurso compartido",
+          "kpi_delta": { "mw_instalados": 0, "ingreso_apicultor": 0, "impacto_ambiental": 2 },
+          "feedback": "Perspectiva interesante. Las abejas son un bien común en cierto sentido: sus servicios de polinización benefician a la agricultura de toda la zona (externalidad positiva de Antonio sobre sus vecinos) pero el mercado no le paga por ello. Si las abejas desaparecen, toda la agricultura local pierde. Lección: los bienes comunes y las externalidades positivas son también fallos de mercado — el apicultor produce menos del óptimo social porque el mercado no le compensa por la polinización.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisión 2 — ¿Qué instrumento corrector usas?",
+      "situacion": "Habéis identificado la externalidad negativa. Ahora tienes que proponer un mecanismo para internalizarla. Tres opciones están sobre la mesa: compensación directa a Antonio, impuesto pigouviano que el regulador podría imponer a la empresa, o negociación de derechos de uso con el municipio.",
+      "opciones": [
+        {
+          "label": "Compensamos a Antonio directamente: 18.000 €/año por el lucro cesante",
+          "kpi_delta": { "mw_instalados": 30, "ingreso_apicultor": 0, "impacto_ambiental": 1 },
+          "feedback": "Solución coasiana privada. La empresa internaliza el coste externo pagándoselo directamente a quien lo sufre. Es eficiente si la negociación no tiene costes altos. El problema: ¿cómo se verifica que el daño es de 18.000 € exactamente? ¿Qué pasa si hay más apicultores en la zona? ¿Y si las abejas de Antonio también polinizan los campos de otros agricultores que también pierden? La compensación directa funciona en casos bilaterales simples pero escala mal. Lección: la compensación privada es eficiente en casos simples; en cadenas de externalidades complejas necesitas instrumentos más sistémicos.",
+          "next": "n3"
+        },
+        {
+          "label": "Proponemos al regulador un impuesto equivalente al daño: 18.000 €/año por la ampliación",
+          "kpi_delta": { "mw_instalados": 25, "ingreso_apicultor": 9000, "impacto_ambiental": 2 },
+          "feedback": "Impuesto pigouviano clásico. El Estado fija un impuesto igual al coste marginal externo (el daño de Antonio), lo que hace que la empresa internalice ese coste en su decisión de producción. Resultado: la empresa instala menos paneles (solo los que son eficientes cuando se cuentan los costes sociales) y el recaudado puede compensar a afectados. El problema práctico: el regulador necesita conocer el coste externo exacto, lo que no siempre es posible. Lección: el impuesto pigouviano es la solución teóricamente ideal para externalidades, pero requiere información que el Estado no siempre tiene.",
+          "next": "n3"
+        },
+        {
+          "label": "Negociamos derechos de uso con el municipio: compramos los derechos de paso por 5 años",
+          "kpi_delta": { "mw_instalados": 30, "ingreso_apicultor": 6000, "impacto_ambiental": 0 },
+          "feedback": "Enfoque de mercado de derechos. Creais un mercado donde antes no había precio: el derecho a alterar el entorno floral durante 5 años. El municipio actúa como mediador y define los derechos. Es eficiente si el precio refleja el daño real (incluyendo la polinización perdida para toda la zona). Lección: los mercados de derechos (como los mercados de emisiones de CO2 en la UE) son una forma de poner precio a externalidades que antes no tenían mercado.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisión 3 — La información asimétrica complica la negociación",
+      "situacion": "Antonio afirma que el daño es de 18.000 €/año, pero la empresa ha encargado un estudio técnico independiente que lo estima en solo 8.000 €. Hay información asimétrica: cada parte tiene incentivos a exagerar o minimizar. El mediador necesita decidir cómo resolver la discrepancia.",
+      "opciones": [
+        {
+          "label": "Aceptamos la cifra de Antonio: es quien sufre el daño y conoce mejor su negocio",
+          "kpi_delta": { "mw_instalados": 20, "ingreso_apicultor": 18000, "impacto_ambiental": 2 },
+          "feedback": "Selección adversa clásica. Antonio tiene información privada sobre su negocio pero también incentivos a exagerar el daño para maximizar la compensación. Si la empresa acepta siempre la cifra del perjudicado, los perjudicados aprenderán a inflar las demandas. Lección: la información asimétrica crea incentivos al comportamiento estratégico (el riesgo moral del que recibe la compensación) — por eso los contratos de seguro y compensación necesitan verificación.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Aceptamos la cifra del estudio técnico: 8.000 € y punto",
+          "kpi_delta": { "mw_instalados": 30, "ingreso_apicultor": 8000, "impacto_ambiental": -1 },
+          "feedback": "La empresa también tiene incentivos a minimizar el daño en su estudio. Un estudio técnico encargado por la empresa no es neutro: es información sesgada por quien lo paga. La información asimétrica opera en ambas direcciones. Lección: cuando las partes tienen intereses opuestos y la información es privada, un árbitro independiente o una auditoría conjunta produce estimaciones más fiables que cualquiera de los dos por separado.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Proponemos una auditoría conjunta con un perito neutral nombrado de común acuerdo",
+          "kpi_delta": { "mw_instalados": 28, "ingreso_apicultor": 13000, "impacto_ambiental": 2 },
+          "feedback": "Solución eficiente ante información asimétrica. Un perito independiente reduce el problema de selección adversa y riesgo moral. El coste de la auditoría (unos 3.000-5.000 €) es bajo frente a la diferencia en disputa (10.000 €/año). Ambas partes tienen menos incentivos a exagerar si saben que habrá verificación independiente. Lección: las instituciones diseñadas para reducir la información asimétrica (peritos, auditores, calificadoras de crédito, inspectores) tienen valor económico real — eliminan el coste de desconfianza.",
+          "next": "final:exito"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "El conflicto se resuelve con criterio económico",
+      "resumen": "Has gestionado una externalidad negativa real identificando el tipo de fallo de mercado, eligiendo el instrumento corrector y resolviando la información asimétrica. La planta solar amplía y Antonio recibe una compensación justa.",
+      "lecciones_clave": [
+        "Las externalidades negativas llevan a sobreproducción del bien que genera el daño porque el productor no paga el coste social completo.",
+        "El impuesto pigouviano y la negociación coasiana son las dos soluciones teóricas; ambas tienen limitaciones prácticas.",
+        "La información asimétrica crea incentivos al comportamiento estratégico — las instituciones de verificación reducen este problema."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "El conflicto se arrastra sin resolver bien",
+      "resumen": "La externalidad no se ha internalizado correctamente: o la empresa paga demasiado o demasiado poco. El fallo de mercado persiste aunque la negociación haya llegado a algún acuerdo.",
+      "lecciones_clave": [
+        "Sin instituciones de verificación, la información asimétrica favorece siempre al que tiene más poder de negociación.",
+        "Un acuerdo que no refleja los costes sociales reales puede ser eficiente para las partes pero no para la sociedad."
+      ]
+    }
+  }
+}
+```

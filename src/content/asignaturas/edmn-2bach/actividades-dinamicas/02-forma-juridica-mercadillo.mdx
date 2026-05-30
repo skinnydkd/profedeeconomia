@@ -1,0 +1,117 @@
+---
+asignatura: edmn-2bach
+unidad_relacionada: 2
+title: "De mercadillo a empresa: elige la forma jurídica"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "15-20 min"
+descripcion: "Marina vende ropa vintage en el mercadillo de Ruzafa. Le sale bien y quiere formalizarlo. Localización, dimensión y forma jurídica: tres decisiones que no se deshacen fácil."
+competencias_clave: [CPSAA, CE, CD]
+competencias_especificas: [CE3]
+estado: publicado
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Caso · Forma jurídica",
+    "titulo": "De mercadillo a empresa: elige la forma jurídica",
+    "contexto": "Marina tiene 27 años y lleva dos años vendiendo ropa vintage los sábados en el mercadillo de Ruzafa, Valencia. Factura unos 2.200 € al mes, lo hace en negro y empieza a tener miedo. Su amiga Laura quiere entrar como socia y entre las dos abrir una tienda física. Tienen 9.000 € entre las dos. Hay que regularizar y decidir cómo.",
+    "kpi_inicial": { "caja": 9000, "clientes": 80, "reputacion": 7 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisión 1 — ¿Dónde pones la tienda?",
+      "situacion": "Tienes tres opciones de local: (a) centro de Ruzafa, 900 €/mes, alto tráfico peatonal, clientela joven; (b) Benimaclet, 550 €/mes, menos tráfico pero zona universitaria fiel; (c) marketplace online solamente, sin local, costes bajos pero sin espacio de experiencia física.",
+      "opciones": [
+        {
+          "label": "Ruzafa: pago más pero el tráfico es mi publicidad",
+          "kpi_delta": { "caja": -1800, "clientes": 40, "reputacion": 2 },
+          "feedback": "Localización como factor de atracción de demanda: pagas por el tráfico ya existente, no tienes que crearlo. El coste mensual es alto pero el mercado objetivo (jóvenes con sensibilidad vintage) ya está ahí. Lección: el alquiler en una zona prime incluye el coste de marketing que no tienes que hacer.",
+          "next": "n2"
+        },
+        {
+          "label": "Benimaclet: menos tráfico pero clientela más fiel y menos alquiler",
+          "kpi_delta": { "caja": -1100, "clientes": 20, "reputacion": 1 },
+          "feedback": "Localización de nicho: reduces costes fijos a cambio de trabajar más para traer tráfico. La clientela universitaria repite si la propuesta encaja. Funciona si tienes plan de comunicación para compensar la menor visibilidad espontánea.",
+          "next": "n2"
+        },
+        {
+          "label": "Solo online: sin local, máxima flexibilidad",
+          "kpi_delta": { "caja": -200, "clientes": 10, "reputacion": 0 },
+          "feedback": "El canal online para ropa vintage funciona, pero la experiencia táctil es parte del valor percibido. Las plataformas (Vinted, Depop) cobran comisiones y competís con miles de vendedores. Sin diferenciación de espacio físico, la ventaja competitiva es menor. Lección: la localización incluye también la elección de canal.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisión 2 — ¿Qué forma jurídica eleváis?",
+      "situacion": "Marina y Laura van a formalizar. Las opciones son: (a) las dos autónomas, sin sociedad — simple pero sin responsabilidad limitada; (b) Sociedad Limitada — capital mínimo 3.000 €, responsabilidad limitada, más burocracia; (c) Comunidad de Bienes — la más rápida y barata, pero sin responsabilidad limitada y con rigidez para crecer.",
+      "opciones": [
+        {
+          "label": "Sociedad Limitada: más trámites pero responsabilidad limitada",
+          "kpi_delta": { "caja": -1500, "clientes": 0, "reputacion": 2 },
+          "feedback": "La SL separa el patrimonio personal del empresarial. Si el negocio quiebra, no pierdes tu casa ni tus ahorros personales más allá del capital aportado. El coste de constitución ronda los 1.000-1.500 € con notaría e impuestos. Para una tienda física con stock y alquiler, es la opción más prudente.",
+          "next": "n3"
+        },
+        {
+          "label": "Comunidad de Bienes: empezamos rápido y ya cambiaremos si hace falta",
+          "kpi_delta": { "caja": -150, "clientes": 0, "reputacion": 0 },
+          "feedback": "Rápida y barata de constituir, pero sin escudo de responsabilidad: si alguien os pone una demanda, responden con su patrimonio personal. Además, transformar una CB en SL más adelante tiene costes y fricción. Lección: la forma jurídica más barata hoy puede ser la más cara mañana.",
+          "next": "n3"
+        },
+        {
+          "label": "Cada una autónoma por separado: máxima independencia",
+          "kpi_delta": { "caja": -300, "clientes": 0, "reputacion": -1 },
+          "feedback": "Dos autónomas sin marco societario significa que legalmente no tenéis empresa conjunta: cada una responde de su parte, pero en caso de conflicto entre socias no hay estatutos que regulen nada. Funciona mientras os lleváis bien; deja de funcionar cuando hay que tomar una decisión que no compartís.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisión 3 — El primer contrato de proveedores",
+      "situacion": "Un proveedor de Portugal os ofrece 200 prendas a 8 €/unidad pagaderas a 30 días. Os fían porque sois nuevas y es una oportunidad. Vuestro precio de venta habitual es 28 €/prenda. Tenéis caja justa para el alquiler y los trámites.",
+      "opciones": [
+        {
+          "label": "Acepto el pedido completo: el margen es enorme",
+          "kpi_delta": { "caja": -1600, "clientes": 30, "reputacion": 1 },
+          "feedback": "200 prendas a 8 € son 1.600 € de deuda a 30 días. Con caja justa, si las prendas tardan en venderse tendrás tensión de liquidez justo cuando tienes que pagar el alquiler del primer mes. El margen sobre papel no garantiza liquidez real. Lección: rentabilidad y liquidez son dos cosas distintas.",
+          "next": "final:fracaso_parcial"
+        },
+        {
+          "label": "Negocio 80 prendas y pago a 60 días en lugar de 30",
+          "kpi_delta": { "caja": -640, "clientes": 25, "reputacion": 2 },
+          "feedback": "Ajustas volumen a tu capacidad real de caja y negocias plazo: vendes la primera tanda antes de tener que pagar al proveedor. Es la gestión financiera básica de una empresa pequeña. El proveedor acepta porque quiere fidelizaros. Lección: el plazo de pago es parte del precio real de una compra.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Paso del pedido, no puedo asumir deuda ahora mismo",
+          "kpi_delta": { "caja": 0, "clientes": 0, "reputacion": -1 },
+          "feedback": "Prudente pero demasiado conservador: perdes una oportunidad de stock con buen margen que os habría permitido crecer. A veces la aversión al riesgo extrema en una empresa pequeña tiene el mismo efecto que el exceso de riesgo: te deja sin recursos para crecer.",
+          "next": "final:fracaso_parcial"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "Tienda formalizada, caja saneada",
+      "resumen": "Marina y Laura tienen SL constituida, local en Ruzafa, primer proveedor fidelizado y 25 clientes nuevos el primer mes. La clave fue elegir forma jurídica pensando en el riesgo futuro, no en el coste presente.",
+      "lecciones_clave": [
+        "La forma jurídica más barata al constituir puede resultar la más cara si hay problemas: pensar en el escenario adverso vale la pena.",
+        "Localización no es solo alquiler: es la suma de tráfico, clientela objetivo y costes de marketing implícitos.",
+        "Negociar plazo con proveedores es gestión financiera real, no solo regatear precio."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "Tienda abierta, pero frágil",
+      "resumen": "El negocio arranca pero con tensiones de caja desde el primer mes. La forma jurídica no cubre bien el riesgo personal y el primer pedido de proveedor les crea un problema de liquidez antes de generar ingresos suficientes.",
+      "lecciones_clave": [
+        "Empezar con la forma jurídica más rápida no siempre es la más inteligente: el escudo de responsabilidad vale su coste.",
+        "Liquidez y rentabilidad no son sinónimos: un pedido rentable puede arruinarte si no tienes caja para pagarlo."
+      ]
+    }
+  }
+}
+```

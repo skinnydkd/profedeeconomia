@@ -1,0 +1,117 @@
+---
+asignatura: taller-eco-3eso
+unidad_relacionada: 4
+title: "Tu primera tarjeta de débito"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "10-15 min"
+descripcion: "Tienes tarjeta de débito por primera vez. 3 decisiones antes de que te salga cara."
+competencias_clave: [CPSAA, CE, CD]
+competencias_especificas: [CE2]
+estado: publicado
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Caso · Dinero y medios de pago",
+    "titulo": "Tu primera tarjeta de débito",
+    "contexto": "Acabas de cumplir 14 años y tu banco te ha enviado tu primera tarjeta de débito vinculada a tu cuenta. Hay 60 € de la paga de cumpleaños. Tu madre te explica rápido: 'Es débito, no crédito: solo puedes gastar lo que tienes.' La guardas en el móvil con la app del banco. Primera semana: tres situaciones.",
+    "kpi_inicial": { "saldo": 60, "seguridad_digital": 7, "control_gastos": 5 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisión 1 — Primer pago: la cantina del instituto",
+      "situacion": "En la cantina te cobran 3,20 € por el bocadillo. Puedes pagar con el móvil (contactless) o sacar efectivo del cajero que hay al lado. El cajero de tu banco es gratis; el de otra entidad cobra 0,50 € de comisión.",
+      "opciones": [
+        {
+          "label": "Pago con el móvil: es más rápido y no toco efectivo",
+          "kpi_delta": { "saldo": -3, "seguridad_digital": 1, "control_gastos": 1 },
+          "feedback": "El pago contactless con móvil es seguro si el dispositivo es tuyo y la app es la oficial de tu banco. Ventaja: rapidez y registro automático en tu cuenta. Desventaja: es tan fácil pagar que a veces pierdes la noción de cuánto llevas gastado.",
+          "next": "n2"
+        },
+        {
+          "label": "Saco 10 € del cajero de mi banco y pago en efectivo",
+          "kpi_delta": { "saldo": -10, "seguridad_digital": 0, "control_gastos": 2 },
+          "feedback": "Pagar en efectivo tiene una ventaja psicológica: ver el dinero físico salir de tu mano activa más la sensación de gasto que un toque con el móvil. Muchos estudios muestran que la gente gasta menos cuando usa billetes. Gratis si el cajero es de tu banco.",
+          "next": "n2"
+        },
+        {
+          "label": "Saco 10 € del cajero de otro banco — hay uno más cerca",
+          "kpi_delta": { "saldo": -11, "seguridad_digital": 0, "control_gastos": 0 },
+          "feedback": "Has pagado 0,50 € de comisión por usar el cajero de otro banco. Solo por este bocadillo. Si lo haces 20 veces al año, son 10 € extra al año en comisiones — más de una paga entera. Lección: las comisiones pequeñas acumulan.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisión 2 — Te llega un mensaje sospechoso",
+      "situacion": "Recibes un SMS que parece de tu banco: 'Movimiento sospechoso detectado. Confirma tus datos o tu cuenta será bloqueada.' Hay un enlace. Tu madre no está cerca. ¿Qué haces?",
+      "opciones": [
+        {
+          "label": "Entro al enlace y relleno mis datos — el banco lo pide y es urgente",
+          "kpi_delta": { "saldo": -60, "seguridad_digital": -5, "control_gastos": -3 },
+          "feedback": "Esto es phishing: una estafa que imita a tu banco para robarte los datos. Has dado tu PIN y número de cuenta a un estafador. Los bancos NUNCA piden tus datos por SMS ni por enlace. Ahora tu cuenta está en riesgo. Lección: ante cualquier mensaje urgente que pide datos, primero llama a tu banco por el número oficial.",
+          "next": "n3"
+        },
+        {
+          "label": "Ignoro el SMS y lo borro — parece una estafa",
+          "kpi_delta": { "saldo": 0, "seguridad_digital": 2, "control_gastos": 0 },
+          "feedback": "Correcto. Los bancos no solicitan datos por SMS. Si tienes dudas, llama al número oficial de tu banco (el del reverso de la tarjeta) o entra directamente a la app oficial. Lección: la urgencia en un SMS es casi siempre una señal de alerta, no de emergencia real.",
+          "next": "n3"
+        },
+        {
+          "label": "Le reenvío el SMS a mi madre para que ella decida",
+          "kpi_delta": { "saldo": 0, "seguridad_digital": 1, "control_gastos": 0 },
+          "feedback": "Buena decisión cuando no estás seguro: preguntar a alguien de confianza antes de actuar. Pedir ayuda no es un signo de debilidad — es una práctica segura. Tu madre confirmará que es phishing.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisión 3 — Fin de mes: revisas la app",
+      "situacion": "Han pasado cuatro semanas. Abres la app del banco y ves el historial: 14 pagos con la tarjeta. Recuerdas unos cinco. Los demás no sabes bien en qué los has gastado. Quedan 8 € de los 60 €.",
+      "opciones": [
+        {
+          "label": "No pasa nada: he disfrutado el dinero y ya vendrá más",
+          "kpi_delta": { "saldo": 0, "seguridad_digital": 0, "control_gastos": -2 },
+          "feedback": "Sin registro, sin control. Gastar sin saber en qué es la trampa más común de los pagos digitales: el tacto fácil borra la sensación de gasto. Lección: el historial de tu app es un regalo — úsalo para saber dónde va tu dinero.",
+          "next": "final:fracaso_parcial"
+        },
+        {
+          "label": "Reviso cada pago, identifico cuáles eran necesarios y anoto lo que no repetiría",
+          "kpi_delta": { "saldo": 0, "seguridad_digital": 0, "control_gastos": 3 },
+          "feedback": "Esto es educación financiera aplicada: revisar el historial y aprender de él. No cambia lo gastado, pero sí lo que gastarás el mes siguiente. Lección: el dinero digital se ve igual en la pantalla, pero el hábito de revisar tu cuenta marca la diferencia.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Pongo un límite de gasto diario en la app para el mes que viene",
+          "kpi_delta": { "saldo": 0, "seguridad_digital": 1, "control_gastos": 2 },
+          "feedback": "Excelente herramienta: muchos bancos permiten fijar límites diarios o semanales. Combinar revisión de historial con límite activo es la forma más eficaz de no perder el control del dinero digital.",
+          "next": "final:exito"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "Dominas tu primera tarjeta",
+      "resumen": "Has aprendido a pagar sin comisiones, has detectado el phishing y al final del mes sabes dónde ha ido tu dinero. Buen primer mes con tarjeta.",
+      "lecciones_clave": [
+        "Las comisiones pequeñas acumulan: usa siempre el cajero de tu propio banco.",
+        "Los bancos nunca piden tus datos por SMS — si te llega uno, ignóralo o llama al número oficial.",
+        "El historial de tu app bancaria es la herramienta más útil para controlar lo que gastas."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "La tarjeta te ha costado más de lo esperado",
+      "resumen": "Comisiones evitables, posible fraude o dinero gastado sin saber en qué. La tarjeta es una herramienta — quien no la controla, ella lo controla a él.",
+      "lecciones_clave": [
+        "El pago contactless es tan cómodo que hace fácil perder la noción del gasto.",
+        "Caer en phishing puede vaciarte la cuenta en minutos — duda siempre de los mensajes urgentes."
+      ]
+    }
+  }
+}
+```

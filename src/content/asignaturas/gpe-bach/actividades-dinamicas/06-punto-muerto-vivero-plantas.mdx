@@ -1,0 +1,123 @@
+---
+asignatura: gpe-bach
+unidad_relacionada: 6
+title: "El vivero que no cuadra"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "15-20 min"
+descripcion: "Vuestro vivero de plantas de interior vende bien, pero el dinero nunca alcanza. Tres decisiones de contabilidad, fiscalidad y financiación."
+competencias_clave: [CPSAA, CE, CD]
+competencias_especificas: [CE3]
+estado: publicado
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Caso · Contabilidad y financiación",
+    "titulo": "El vivero que no cuadra",
+    "contexto": "Lleváis cinco meses con un vivero de plantas de interior y terrazas urbanas, distribuidas en mercados de barrio de Valencia. Las ventas van bien —unas 110 plantas por semana a un precio medio de 8,50 €—, pero al final de cada mes os sorprendéis mirando la cuenta bancaria y preguntándoos dónde ha ido el dinero. Esta semana tenéis que pagar la cuota del obrador (240 €), a la agricultora que os suministra (380 €, plazo a 15 días ya cumplido) y el transporte del sábado (45 €). En caja solo hay 190 €.",
+    "kpi_inicial": { "ventas_semana": 935, "caja": 190, "deudas_pendientes": 665 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisión 1 — Entender por qué hay beneficio pero no hay caja",
+      "situacion": "Calculáis la cuenta de resultados del mes: ingresos 3.740 €, costes variables (plantas + tierra + macetas) 1.680 €, costes fijos (obrador + transporte + comunicación) 580 €. Resultado: beneficio de 1.480 €. Pero en la cuenta solo hay 190 €. ¿Cómo es posible?",
+      "opciones": [
+        {
+          "label": "Es imposible: si hay beneficio tiene que haber dinero en cuenta",
+          "kpi_delta": { "caja": 0 },
+          "feedback": "Es el malentendido más frecuente en gestión de tesorería. La cuenta de resultados registra cuando se genera el derecho a cobrar (devengo), no cuando el dinero entra físicamente. Si vendéis plantas en consignación a una tienda y os pagan a 30 días, el ingreso ya está en el PyG pero el dinero aún no ha llegado. Beneficio y liquidez son dos cosas distintas. Muchas pymes cierran con beneficio positivo porque se quedaron sin liquidez para pagar a sus proveedores antes de cobrar de sus clientes.",
+          "next": "n2"
+        },
+        {
+          "label": "El desfase puede venir de que pagamos antes de cobrar",
+          "kpi_delta": { "caja": 50 },
+          "feedback": "Exactamente. Pagáis a la agricultora a 15 días y a los mercados por adelantado, pero dos tiendas de barrio con las que trabajáis os pagan a 30 días. En ese intervalo, el dinero está 'en la cadena' pero no en vuestra cuenta. Gestionáis bien la cuenta de resultados, pero no el flujo de caja. La solución no es vender menos: es acortar el plazo de cobro o alargar el de pago.",
+          "next": "n2"
+        },
+        {
+          "label": "Hemos gastado más de lo que creíamos en costes que no apuntamos bien",
+          "kpi_delta": { "caja": -30 },
+          "feedback": "También posible, pero secundario. Si la cuenta de resultados está bien calculada (ingresos 3.740 €, costes 2.260 €), el beneficio es real. El problema de no anotar todos los gastos afecta a la precisión del PyG, pero no explica el desfase entre beneficio y caja. El registro de gastos es importante por otra razón: sin él no podéis calcular bien el punto muerto ni saber qué margen de contribución tiene cada planta.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisión 2 — Punto muerto: ¿cuántas plantas hay que vender para no perder?",
+      "situacion": "Decidís calcular el punto muerto del vivero. Datos: costes fijos mensuales = 580 €; precio medio de venta = 8,50 €; coste variable medio por planta (precio compra + maceta + tierra + bolsa) = 3,20 €. ¿Cuál es el punto muerto en unidades?",
+      "opciones": [
+        {
+          "label": "Punto muerto = 580 ÷ 8,50 = 68 plantas al mes",
+          "kpi_delta": { "caja": -20 },
+          "feedback": "Error frecuente: habéis dividido los costes fijos entre el precio, no entre el margen de contribución. El margen de contribución es lo que aporta cada planta a cubrir los costes fijos, y es la diferencia entre precio y coste variable: 8,50 − 3,20 = 5,30 €. Si dividís los costes fijos entre el precio de venta, estáis asumiendo que cada euro de venta es margen puro, lo que no es cierto.",
+          "next": "n3"
+        },
+        {
+          "label": "Punto muerto = 580 ÷ (8,50 − 3,20) = 580 ÷ 5,30 = 109 plantas al mes",
+          "kpi_delta": { "caja": 40 },
+          "feedback": "Correcto. El margen de contribución es 5,30 € por planta. Necesitáis vender 109 plantas al mes para cubrir exactamente los costes fijos. Vendéis 440 al mes (110 × 4 semanas), así que estáis 331 por encima del punto muerto. Eso genera: 331 × 5,30 € = 1.754 € de beneficio mensual. La cifra no cuadra exactamente con el PyG (1.480 €) porque hay algún coste que no se ha clasificado bien. Revisad.",
+          "next": "n3"
+        },
+        {
+          "label": "El punto muerto no nos sirve porque vendemos plantas distintas a precios distintos",
+          "kpi_delta": { "caja": 0 },
+          "feedback": "Razonamiento correcto pero que no os paraliza: podéis usar un precio medio ponderado y un coste variable medio, como se ha hecho en los datos del enunciado. El punto muerto con promedios no es perfecto, pero sí es suficiente para tomar decisiones sobre si el volumen de ventas cubre los costes. Perfecto es enemigo de útil.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisión 3 — Fuentes de financiación para resolver la crisis de liquidez",
+      "situacion": "Con 190 € en caja y 665 € de deudas inminentes, necesitáis 475 € en los próximos días. Tenéis cuatro opciones reales.",
+      "opciones": [
+        {
+          "label": "Pedimos un microcrédito bancario de 1.000 € a 12 meses al 8 % anual",
+          "kpi_delta": { "caja": 475, "costes_mes": 90 },
+          "feedback": "Solución válida pero con coste. A 12 meses al 8 % sobre 1.000 €, pagaréis unos 1.043 € en total (~87 €/mes). Con un margen bruto de 1.480 €/mes, es asumible. El riesgo es que el banco puede pedir garantías o exigir tiempo mínimo de actividad. Para un proyecto de menos de un año, el acceso al crédito bancario puede ser difícil.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Lanzamos un crowdfunding de 600 € ofreciendo plantas como recompensa a los mecenas",
+          "kpi_delta": { "caja": 410, "reputacion": 2 },
+          "feedback": "Interesante por dos razones: resuelve la liquidez sin deuda y genera comunidad alrededor del proyecto. El riesgo es el tiempo: una campaña de crowdfunding puede tardar 2-4 semanas en financiarse, y vosotros necesitáis el dinero en días. Para una crisis de liquidez inmediata, el crowdfunding es demasiado lento, aunque puede ser una buena herramienta de financiación para la siguiente fase.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Negociamos con la agricultora: le pedimos ampliar el plazo de pago a 30 días",
+          "kpi_delta": { "caja": 190, "costes_mes": 0 },
+          "feedback": "La opción más inteligente a corto plazo. Alargar el plazo de pago con un proveedor clave no resuelve el desequilibrio estructural (seguís pagando antes de cobrar), pero os da tiempo para cobrar de las tiendas antes de pagar a la agricultora. Además, si tenéis una relación de confianza con ella, la negociación puede ser fácil. No hay coste financiero si acepta. Complementad con acortar el plazo de cobro de las tiendas.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Dejamos de pagar al obrador este mes y lo regularizamos el siguiente",
+          "kpi_delta": { "caja": 43, "reputacion": -3 },
+          "feedback": "No pagar al propietario del obrador sin avisar es un error de relación que puede costaros mucho más que los 240 €: puede suponer la pérdida del espacio de trabajo. La economía sumergida y el impago de obligaciones no son solo un problema legal, sino de reputación dentro de la red local de proveedores. La solución correcta es negociar antes de incumplir, nunca al revés.",
+          "next": "final:fracaso_parcial"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "La crisis de liquidez está resuelta y el proyecto sigue",
+      "resumen": "Habéis entendido la diferencia entre beneficio y liquidez, sabéis calcular el punto muerto y habéis resuelto el desfase con una combinación de financiación externa y negociación con el proveedor. El vivero puede seguir.",
+      "lecciones_clave": [
+        "Beneficio y caja no son lo mismo: podéis ganar dinero sobre el papel y no tener liquidez para pagar mañana.",
+        "El punto muerto se calcula sobre el margen de contribución, no sobre el precio de venta.",
+        "Negociar con un proveedor antes de incumplir protege la relación; incumplir sin avisar la destruye."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "El vivero sobrevive pero con reputación dañada",
+      "resumen": "La crisis de liquidez se ha gestionado mal: el proveedor afectado puede no renovar el espacio y la red local de abastecimiento empieza a desconfiar del proyecto.",
+      "lecciones_clave": [
+        "Incumplir sin negociar primero no es una decisión financiera: es una decisión de reputación que cuesta más que el dinero que ahorráis.",
+        "La fiscalidad y el cumplimiento de obligaciones no son costes a evitar, son la base de confianza sobre la que opera un proyecto local."
+      ]
+    }
+  }
+}
+```

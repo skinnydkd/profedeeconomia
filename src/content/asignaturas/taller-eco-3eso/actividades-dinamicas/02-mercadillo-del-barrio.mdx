@@ -1,0 +1,117 @@
+---
+asignatura: taller-eco-3eso
+unidad_relacionada: 2
+title: "Un sábado en el mercadillo"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "10-15 min"
+descripcion: "Vas al mercadillo y sin querer te conviertes en el centro del flujo circular."
+competencias_clave: [CPSAA, CE, CD]
+competencias_especificas: [CE2]
+estado: publicado
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Caso · Agentes y flujo circular",
+    "titulo": "Un sábado en el mercadillo",
+    "contexto": "Son las diez de la mañana. Tu madre te ha pedido que vayas al mercadillo del barrio a comprar fruta y verdura para la semana. Te ha dado 20 € y una lista corta: tomates, manzanas y algo para merendar. En el mercadillo hay tres paradas de fruta, un puesto de ropa de segunda mano y una señora que vende mermelada casera. El ayuntamiento ha puesto carteles con los precios máximos y un inspector pasa entre los puestos.",
+    "kpi_inicial": { "dinero": 20, "compras_lista": 0, "relacion_vendedor": 5 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisión 1 — ¿En qué puesto compras los tomates?",
+      "situacion": "Hay tres puestos de tomates. El primero cobra 1,80 €/kg y los tomates son grandes y bonitos. El segundo cobra 1,20 €/kg, son menos perfectos pero huelen bien. El tercero cobra 2,50 €/kg y dice que son 'ecológicos y del pueblo'. Necesitas 1 kg.",
+      "opciones": [
+        {
+          "label": "El más barato (1,20 €): necesito ahorrar el dinero de mi madre",
+          "kpi_delta": { "dinero": -1, "compras_lista": 1, "relacion_vendedor": 0 },
+          "feedback": "Has comparado precios y has elegido el más bajo. Bien hecho. Ahora tienes más dinero para el resto de la lista. Lección: comparar precios entre vendedores del mismo mercado es lo que hace funcionar la competencia — y sale bien para el comprador.",
+          "next": "n2"
+        },
+        {
+          "label": "El del medio (1,80 €): parecen mejores y el precio es razonable",
+          "kpi_delta": { "dinero": -2, "compras_lista": 1, "relacion_vendedor": 1 },
+          "feedback": "Decisión válida: has valorado calidad, no solo precio. El mercado permite esto: cada comprador decide según sus criterios. El vendedor recibe tu dinero y con él paga el puesto y su trabajo. El flujo circular en acción.",
+          "next": "n2"
+        },
+        {
+          "label": "El ecológico (2,50 €): si son del pueblo apoyo a los agricultores locales",
+          "kpi_delta": { "dinero": -2, "compras_lista": 1, "relacion_vendedor": 2 },
+          "feedback": "Has elegido según valores, no solo precio. El vendedor cobra más pero ofrece algo diferente. Lección: en un mercado libre, el precio refleja algo más que el coste — también refleja la propuesta del vendedor y lo que tú decides valorar.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisión 2 — El vendedor te cobra mal",
+      "situacion": "Compras las manzanas (1 kg) y el vendedor te cobra 3 € cuando en el cartel ponía 2,50 €/kg. No lo dice en voz alta, simplemente te da el cambio de menos. ¿Qué haces?",
+      "opciones": [
+        {
+          "label": "No digo nada para no montar un lío",
+          "kpi_delta": { "dinero": -1, "compras_lista": 1, "relacion_vendedor": -1 },
+          "feedback": "Has perdido 0,50 € por no reclamar. Pequeño de momento, pero si esto pasara cada vez que compras el efecto acumula. Lección: tienes derecho a que te cobren el precio que estaba anunciado. Reclamar con educación es un derecho del consumidor, no un problema.",
+          "next": "n3"
+        },
+        {
+          "label": "Le digo tranquilamente que en el cartel ponía 2,50 € y pido el cambio correcto",
+          "kpi_delta": { "dinero": 0, "compras_lista": 1, "relacion_vendedor": 1 },
+          "feedback": "Perfecto. Has reclamado con calma y con razón. El vendedor seguramente se ha equivocado sin querer, te devuelve los 0,50 € y ya está. Lección: los mercados funcionan bien cuando compradores y vendedores se tratan con respeto y cumplen las reglas.",
+          "next": "n3"
+        },
+        {
+          "label": "Me enfado y me voy a otro puesto sin comprar",
+          "kpi_delta": { "dinero": -3, "compras_lista": 0, "relacion_vendedor": -2 },
+          "feedback": "Reacción desproporcionada: probablemente era un error, no una estafa. Has pagado de más y encima te has quedado sin manzanas. Reclamar con calma primero es siempre mejor que irse sin resolver.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisión 3 — ¿Qué haces con el dinero que sobra?",
+      "situacion": "Ya tienes los tomates, las manzanas y algo para merendar. Te han sobrado entre 5 € y 8 € según cómo hayas decidido antes. Ves la mermelada casera (3,50 €) que no estaba en la lista pero huele fenomenal. También hay un puesto de ropa con una camiseta por 4 €.",
+      "opciones": [
+        {
+          "label": "Compro la mermelada: no estaba en la lista pero es comida y le gustará a mi madre",
+          "kpi_delta": { "dinero": -4, "compras_lista": 0, "relacion_vendedor": 1 },
+          "feedback": "Has tomado una decisión de compra extra con dinero que sobra y con un argumento razonable. No es la lista, pero es coherente con el encargo (comida para casa). Lección: no todas las compras fuera de lista son impulsivas — la clave es el argumento con el que te la justificas.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Vuelvo a casa con el cambio exacto: he hecho lo que me pidieron",
+          "kpi_delta": { "dinero": 0, "compras_lista": 0, "relacion_vendedor": 0 },
+          "feedback": "Fiable y responsable. Has cumplido el encargo y devuelves el cambio. Lección: cuando gestionas el dinero de otro, lo más importante es ser predecible y transparente. El Estado funciona igual con los impuestos que cobramos entre todos.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Me compro la camiseta con el cambio: es de segunda mano y muy barata",
+          "kpi_delta": { "dinero": -4, "compras_lista": 0, "relacion_vendedor": 0 },
+          "feedback": "Has usado dinero de tu madre en algo para ti sin pedirle permiso. Aunque la camiseta sea barata, el dinero no era tuyo para ese uso. Lección: administrar dinero ajeno con honradez es la base de la confianza — y la base de cómo el Estado gestiona los impuestos.",
+          "next": "final:fracaso_parcial"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "Has completado el encargo",
+      "resumen": "La compra está hecha, el cambio es correcto y has entendido cómo funciona el mercadillo: familias, empresas y Estado en la misma plaza.",
+      "lecciones_clave": [
+        "En un mercado, el precio es la señal que pone de acuerdo al comprador y al vendedor.",
+        "Reclamar con calma cuando algo está mal es un derecho del consumidor, no un drama.",
+        "Administrar el dinero de otro con la misma honradez que el tuyo es la base de la confianza."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "La compra ha salido regular",
+      "resumen": "Has comprado lo de la lista pero has perdido dinero o has tomado una decisión que no era tuya tomar.",
+      "lecciones_clave": [
+        "No reclamar cuando tienes razón tiene un coste pequeño pero real.",
+        "Gestionar dinero ajeno sin permiso rompe la confianza, aunque la decisión te parezca buena."
+      ]
+    }
+  }
+}
+```

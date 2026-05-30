@@ -1,0 +1,117 @@
+---
+asignatura: edmn-2bach
+unidad_relacionada: 4
+title: "Bicicletas en suscripción: ¿funciona el modelo?"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "15-20 min"
+descripcion: "Una startup valenciana quiere alquilar bicis eléctricas por suscripción mensual. El modelo existe en Europa. ¿Puede funcionar aquí?"
+competencias_clave: [CPSAA, CE, CD]
+competencias_especificas: [CE3]
+estado: publicado
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Caso · Modelos de negocio",
+    "titulo": "Bicicletas en suscripción: ¿funciona el modelo?",
+    "contexto": "Pol y Neus tienen 25 años y viven en Valencia. Han visto que en Holanda existe una empresa (Swapfiets) que alquila bicis por suscripción mensual: tú pagas 15-20 € al mes y ellos se encargan de todo el mantenimiento. Si la bici se rompe, la cambian en 12 horas. Quieren replicarlo en Valencia. Tienen 12.000 € ahorrados entre los dos.",
+    "kpi_inicial": { "caja": 12000, "clientes": 0, "reputacion": 5 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisión 1 — ¿Qué modelo exactamente?",
+      "situacion": "Hay tres variantes del modelo que podrías lanzar: (a) suscripción pura a 19 €/mes, tú gestionas el mantenimiento; (b) freemium: bici básica gratis, eléctrica premium a 29 €/mes; (c) marketplace: conectas personas que tienen bicis con personas que las necesitan, tú cobras comisión.",
+      "opciones": [
+        {
+          "label": "Suscripción pura: 19 €/mes, yo gestiono todo",
+          "kpi_delta": { "caja": -4000, "clientes": 50, "reputacion": 2 },
+          "feedback": "El modelo de suscripción crea ingresos recurrentes predecibles: 50 clientes a 19 € son 950 € al mes. El reto es el coste del mantenimiento y la flota inicial. Con 12.000 € puedes comprar unas 25-30 bicis y el resto lo reservas para mantenimiento. La clave del modelo es la tasa de rotación (cuántos se van cada mes) y el coste por suscriptor.",
+          "next": "n2"
+        },
+        {
+          "label": "Freemium: la bici básica gratis engancha y la eléctrica paga",
+          "kpi_delta": { "caja": -5000, "clientes": 120, "reputacion": 3 },
+          "feedback": "El freemium funciona cuando el coste marginal del usuario gratuito es bajo (software) o cuando la tasa de conversión a premium es alta. En bicis físicas, cada usuario gratuito tiene un coste real de mantenimiento. Con 12.000 € y 120 usuarios gratuitos, la caja se vacía en semanas. Lección: freemium con producto físico requiere un balance de conversión muy bien calculado.",
+          "next": "n2"
+        },
+        {
+          "label": "Marketplace: conecto propietarios con usuarios, sin gestionar flota",
+          "kpi_delta": { "caja": -500, "clientes": 30, "reputacion": 1 },
+          "feedback": "Modelo multiplataforma: no tienes activos físicos, generas ingresos por comisión. La ventaja es que el capital inicial es mínimo. El problema es el efecto de red: un marketplace de bicis necesita masa crítica de los dos lados (propietarios y usuarios) antes de ser útil para ninguno. Lección: en marketplaces, el huevo y la gallina son el primer reto.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisión 2 — La propuesta de valor",
+      "situacion": "Con el modelo elegido, tienes que definir qué prometes exactamente al cliente. En Swapfiets la promesa central es: 'si la bici se rompe, la cambiamos en 12 horas'. Tienes que decidir cuál es tu promesa central en Valencia.",
+      "opciones": [
+        {
+          "label": "Prometo sustitución en 12 horas como Swapfiets",
+          "kpi_delta": { "caja": -1500, "clientes": 20, "reputacion": 3 },
+          "feedback": "La propuesta de valor tiene que ser creíble y ejecutable. Para sustituir en 12 horas necesitas stock de bicis extra y un técnico disponible. Con 12.000 € es ajustado pero posible si empiezas pequeño. Si no puedes cumplir la promesa, el daño reputacional es mayor que el beneficio de la promesa ambiciosa. Lección: la propuesta de valor define lo que tienes que ser capaz de hacer operativamente.",
+          "next": "n3"
+        },
+        {
+          "label": "Prometo mantenimiento incluido sin garantizar tiempo de respuesta",
+          "kpi_delta": { "caja": -800, "clientes": 15, "reputacion": 1 },
+          "feedback": "Propuesta más conservadora: reduce el riesgo operativo pero también la diferenciación. En Valencia hay muchas opciones de alquiler. Sin una promesa que destaque, eres uno más. La vaguedad en la propuesta de valor hace que el cliente no tenga razón específica para elegirte.",
+          "next": "n3"
+        },
+        {
+          "label": "Prometo bici siempre lista + app para reportar incidencias en tiempo real",
+          "kpi_delta": { "caja": -2000, "clientes": 35, "reputacion": 4 },
+          "feedback": "Propuesta de valor digital + física: diferencias la experiencia con tecnología. El canal digital (app) reduce el coste de gestión de incidencias y da datos de uso que mejoran el servicio. El riesgo es que desarrollar la app tiene coste y si la app falla, la promesa cae. Lección: una propuesta de valor digital potente requiere que la parte tecnológica sea robusta desde el día 1.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisión 3 — ¿Iterar o pivotar?",
+      "situacion": "Llevas tres meses y tienes 45 suscriptores. La tasa de cancelación es del 30 % mensual (muy alta). La razón principal que dan los que se van: 'el precio está bien pero prefiero tener mi propia bici'. El modelo funciona en Holanda pero en Valencia la cultura de propiedad es distinta.",
+      "opciones": [
+        {
+          "label": "Itero: bajo el precio a 14 €/mes para reducir la cancelación",
+          "kpi_delta": { "caja": -800, "clientes": 10, "reputacion": 0 },
+          "feedback": "Iterar el precio es una palanca, pero si el problema es cultural (preferencia por propiedad) el precio no lo resuelve. Bajar el precio reduce margen sin atacar la causa real de cancelación. Lección: antes de tocar el precio, hay que entender si el problema es de precio o de propuesta de valor.",
+          "next": "final:fracaso_parcial"
+        },
+        {
+          "label": "Pivoto: vendo bicis en lugar de alquilarlas, con servicio de mantenimiento premium pospago",
+          "kpi_delta": { "caja": 3000, "clientes": 30, "reputacion": 2 },
+          "feedback": "Pivotar es cambiar el modelo de negocio manteniendo el aprendizaje acumulado. Tu ventaja sigue siendo el mantenimiento y la logística: ahora vendes la bici (ingresos inmediatos) y cobras un abono de mantenimiento mensual de 8 €. Menos recurrencia pero más compatibilidad con la cultura local. El pivot bien ejecutado no es fracaso: es el método.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Pivoto hacia empresas: vendo suscripciones B2B a empresas para sus empleados",
+          "kpi_delta": { "caja": 1500, "clientes": 20, "reputacion": 3 },
+          "feedback": "Cambio de segmento: en B2B la cultura de suscripción está más aceptada (las empresas ya pagan Spotify Business, Microsoft 365, etc.) y el ticket es mayor. Una empresa de 50 empleados puede ser 50 veces mejor cliente que 50 individuos. Lección: a veces el modelo es correcto pero para el segmento equivocado.",
+          "next": "final:exito"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "El modelo encuentra su encaje",
+      "resumen": "Pol y Neus han adaptado el modelo a la realidad local. No copiaron Swapfiets literalmente: aprendieron de él y lo ajustaron. Caja positiva, clientes que no cancelan y una propuesta de valor que sí se puede ejecutar.",
+      "lecciones_clave": [
+        "Copiar un modelo de negocio de otro mercado requiere validar que las condiciones culturales y de comportamiento son comparables.",
+        "Iterar es cambiar detalles del modelo; pivotar es cambiar el modelo mientras mantienes el aprendizaje acumulado. Saber cuándo hacer cada cosa es clave.",
+        "La propuesta de valor define lo que tienes que ser capaz de ejecutar operativamente: prometer lo que no puedes cumplir destruye más valor del que crea."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "El modelo no termina de cuajar",
+      "resumen": "Las bicis en suscripción sobreviven en Valencia pero con tasa de cancelación alta y márgenes muy ajustados. Sin un pivot claro, el modelo se sostiene con esfuerzo pero no crece.",
+      "lecciones_clave": [
+        "Un modelo de negocio que funciona en otro mercado no se puede replicar sin validar las hipótesis culturales locales.",
+        "Bajar el precio es casi siempre la respuesta más fácil y casi siempre no es la correcta cuando el problema es de propuesta de valor."
+      ]
+    }
+  }
+}
+```

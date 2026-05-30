@@ -1,0 +1,117 @@
+---
+asignatura: eeae-bach
+unidad_relacionada: 4
+title: "Los 3.000 euros de la herencia de la abuela"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "15-20 min"
+descripcion: "Tu abuela te deja 3.000 euros. Tienes 17 años y ningún plan. Tres decisiones con rentabilidad, riesgo y tiempo de por medio."
+competencias_clave: [CPSAA, CE, CD]
+competencias_especificas: [CE2]
+estado: publicado
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Caso · Entorno financiero y finanzas personales",
+    "titulo": "Los 3.000 euros de la herencia de la abuela",
+    "contexto": "Tu abuela Concha acaba de dejarte 3.000 € en herencia. Tienes 17 años, estudias Bachillerato y en este momento no necesitas ese dinero para nada urgente. Tu madre dice que lo metas en una cuenta corriente. Tu primo Víctor, que tiene 23 años y trabaja, dice que inviertas en criptomonedas porque 'ahora mismo está todo bajado y es el momento'. Tu tutor del instituto dice que primero entiendas qué tienes antes de moverlo. No tienes experiencia con el dinero y no sabes bien qué hacer.",
+    "kpi_inicial": { "dinero": 3000, "conocimiento_financiero": 3, "riesgo_asumido": 0 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisión 1 — ¿Qué haces antes de mover el dinero?",
+      "situacion": "Han pasado tres días desde que ingresaste los 3.000 €. Tienes prisa por decidir porque sientes que 'el dinero parado no hace nada'. Tienes tres opciones inmediatas: (a) seguir el consejo de tu primo y buscar en YouTube cómo comprar criptos; (b) hablar primero con tus padres y con alguien que sepa del tema antes de mover nada; (c) no hacer nada por ahora y dejar el dinero en la cuenta corriente mientras informarte.",
+      "opciones": [
+        {
+          "label": "Entro a YouTube y compro criptos esta semana",
+          "kpi_delta": { "dinero": -300, "conocimiento_financiero": 1, "riesgo_asumido": 8 },
+          "feedback": "YouTube explica cómo comprar pero no el riesgo que asumes. Inviertes 1.000 € en una criptomoneda que baja un 30 % en dos semanas. Pierdes 300 €. Tu primo dice que 'hay que aguantar'. No sabes cuánto tiempo aguantar ni si la moneda se recuperará. Has caído en la heurística de disponibilidad: el primo cercano con buenas historias de ganancias pasadas te ha hecho sobrestimar la probabilidad de éxito. Lección: en finanzas, rentabilidad alta siempre implica riesgo alto. La promesa de 'ahora es el momento' la repiten siempre los que ya perdieron y esperan que el mercado suba.",
+          "next": "n2"
+        },
+        {
+          "label": "Hablo primero con mis padres y busco información oficial",
+          "kpi_delta": { "dinero": 0, "conocimiento_financiero": 3, "riesgo_asumido": 0 },
+          "feedback": "Tus padres te recomiendan consultar la web Finanzas para Todos (del Banco de España y la CNMV) antes de mover nada. Tardas una semana más en decidir, pero entiendes las diferencias básicas entre ahorro e inversión, y la relación entre rentabilidad y riesgo. No has ganado ni perdido nada, pero sabes más. Lección: el tiempo que tardas en informarte antes de decidir no es tiempo perdido: es el coste de oportunidad de no cometer un error costoso.",
+          "next": "n2"
+        },
+        {
+          "label": "No hago nada ahora, el dinero en la cuenta mientras pienso",
+          "kpi_delta": { "dinero": 0, "conocimiento_financiero": 0, "riesgo_asumido": 0 },
+          "feedback": "No pasa nada grave a corto plazo: el dinero en una cuenta corriente no crece mucho, pero tampoco desaparece. La inflación sí lo erosiona ligeramente (si la inflación es del 3 %, en un año tus 3.000 € compran un poco menos), pero a corto plazo no es decisivo. La prisa por invertir sin saber es más peligrosa que la espera. Lección: 'no hacer nada ahora' puede ser la decisión más racional cuando la alternativa es actuar sin entender qué haces.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisión 2 — ¿Qué haces con los 3.000 € (o los que quedan)?",
+      "situacion": "Ya tienes información básica. Conoces tres opciones reales: (a) cuenta de ahorro del banco de tus padres al 2,5 % anual, sin riesgo de pérdida, dinero disponible en 30 días; (b) fondo de inversión indexado de bajo coste (tipo fondo de índice global), rentabilidad esperada histórica del 7-9 % anual a largo plazo, con oscilaciones, para al menos 5-10 años; (c) guardar 1.500 € en la cuenta de ahorro y destinar 1.500 € al fondo indexado, diversificando entre seguridad y crecimiento.",
+      "opciones": [
+        {
+          "label": "Todo a la cuenta de ahorro: sin riesgo, disponible si lo necesito",
+          "kpi_delta": { "dinero": 75, "riesgo_asumido": 1, "conocimiento_financiero": 1 },
+          "feedback": "Muy seguro. En un año tienes 3.075 € garantizados. El problema es que la inflación puede comerse parte del rendimiento real si supera el 2,5 %. A 10 años, con interés compuesto al 2,5 %, tus 3.000 € se convierten en unos 3.840 €. Con el fondo indexado serían estimados 5.900-6.900 €, aunque con más oscilación. La cuenta de ahorro es correcta para el dinero que puedas necesitar pronto; para el dinero a largo plazo, el riesgo cero también tiene un coste. Lección: el riesgo cero no existe — la inflación y el coste de oportunidad son riesgos silenciosos.",
+          "next": "n3"
+        },
+        {
+          "label": "Todo al fondo indexado: maximizo rentabilidad a largo plazo",
+          "kpi_delta": { "dinero": 0, "riesgo_asumido": 6, "conocimiento_financiero": 2 },
+          "feedback": "Decisión coherente si no necesitas ese dinero en los próximos 5-10 años y entiendes que puede caer temporalmente. El riesgo: si en dos años necesitas el dinero para algo (matrícula, carnet, un viaje formativo) y el mercado está bajo, tendrás que vender con pérdidas. Lección: el horizonte temporal es el factor más importante en la inversión. No es lo mismo invertir dinero que no necesitarás en 10 años que invertir un colchón de emergencia.",
+          "next": "n3"
+        },
+        {
+          "label": "Mitad a cada opción: colchón de seguridad + inversión a largo plazo",
+          "kpi_delta": { "dinero": 37, "riesgo_asumido": 3, "conocimiento_financiero": 3 },
+          "feedback": "La opción más completa: tienes 1.500 € disponibles para imprevistos o necesidades próximas (el colchón de emergencia) y 1.500 € trabajando a largo plazo con potencial de crecimiento mayor. Entiendes que ahorrar e invertir no son lo mismo y que una buena gestión financiera personal empieza por separar para qué es cada parte del dinero. Lección: la diversificación no es solo para grandes inversores — tener claro para qué es cada euro es la base de cualquier plan financiero.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisión 3 — El ofertón de tu primo Víctor",
+      "situacion": "Dos meses después, tu primo Víctor te llama con urgencia: 'Una aplicación nueva de criptos garantiza un 40 % en 30 días. Solo aceptan a 100 inversores. Hay que entrar ahora o se cierra'. Te pide que metas 500 €. La CNMV no tiene registrada esa empresa.",
+      "opciones": [
+        {
+          "label": "Entro: el 40 % en 30 días es demasiado bueno para perdérselo",
+          "kpi_delta": { "dinero": -500, "riesgo_asumido": 10 },
+          "feedback": "Has perdido 500 €. Era un chiringuito financiero, exactamente lo que la CNMV advierte: empresa no registrada, rentabilidad garantizada imposible, presión para decidir rápido, número limitado de plazas. El patrón es el de casi todas las estafas financieras conocidas. Lección: ninguna inversión real garantiza el 40 % en 30 días. La regla es universal: si suena demasiado bueno, es una estafa o un riesgo que no te están contando.",
+          "next": "final:fracaso_parcial"
+        },
+        {
+          "label": "Busco la empresa en el registro de la CNMV antes de hacer nada",
+          "kpi_delta": { "dinero": 0, "conocimiento_financiero": 2 },
+          "feedback": "En dos minutos en cnmv.es compruebas que la empresa no está registrada. Le dices a Víctor que no entras. Te dice que eres demasiado precavido. En tres semanas, varios conocidos de tu primo han perdido sus ahorros. El buscador de la CNMV es una herramienta de protección gratuita y tardas menos en consultarla que en pedir la pizza. Lección: antes de invertir en cualquier cosa, verificar que la empresa está autorizada por el regulador es el paso más básico y más ignorado.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Le digo a Víctor que no, sin más explicaciones",
+          "kpi_delta": { "dinero": 0, "conocimiento_financiero": 1 },
+          "feedback": "Resultado correcto, aunque sin saber exactamente por qué. Has actuado con la intuición de que algo no cuadra, lo que es una reacción razonable ante la presión de decisión rápida. Pero no has comprobado nada: si Víctor hubiera sido más convincente, quizá habrías cambiado de opinión. Lección: la intuición de que 'algo huele mal' es un buen primer filtro, pero no un sustituto del análisis. La regla rentabilidad-riesgo y el buscador de la CNMV son herramientas que no dependen de que el primo sea simpático.",
+          "next": "final:exito"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "Has gestionado la herencia con cabeza",
+      "resumen": "Has entendido la diferencia entre ahorro e inversión, la relación entre rentabilidad y riesgo, y el uso de las herramientas de protección del inversor.",
+      "lecciones_clave": [
+        "En finanzas, rentabilidad alta y riesgo alto son la misma cosa dicha de dos formas. No existe rentabilidad garantizada sin riesgo.",
+        "Ahorrar e invertir no son lo mismo: el ahorro da seguridad y disponibilidad; la inversión busca crecimiento a largo plazo con oscilaciones en el camino.",
+        "Verificar si una empresa está autorizada por la CNMV antes de invertir es el paso mínimo de protección: tarda dos minutos y puede ahorrarte mucho."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "La herencia ha encogido",
+      "resumen": "Has tomado alguna buena decisión, pero has perdido dinero por no aplicar la regla básica de rentabilidad-riesgo o por no verificar a los intermediarios.",
+      "lecciones_clave": [
+        "La heurística de disponibilidad —confiar más en las historias de éxito del entorno cercano que en los datos— es uno de los sesgos más peligrosos en finanzas personales.",
+        "Las estafas financieras tienen siempre el mismo patrón: rentabilidad garantizada alta, urgencia para decidir, empresa sin registro oficial."
+      ]
+    }
+  }
+}
+```

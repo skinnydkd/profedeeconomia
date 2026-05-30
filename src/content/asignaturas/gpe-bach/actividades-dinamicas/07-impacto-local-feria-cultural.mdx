@@ -1,0 +1,117 @@
+---
+asignatura: gpe-bach
+unidad_relacionada: 7
+title: "La feria que no quería dejar huella"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "15-20 min"
+descripcion: "Organizáis una feria cultural con fines benéficos en vuestro barrio. Tres decisiones para maximizar el impacto local y reducir la huella ambiental."
+competencias_clave: [CPSAA, CE, CD]
+competencias_especificas: [CE3]
+estado: publicado
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Caso · Impacto social y ambiental",
+    "titulo": "La feria que no quería dejar huella",
+    "contexto": "Vuestro proyecto de GPE es una feria cultural anual en el barrio de Benimaclet (Valencia), con músicos locales, artesanos de la comarca y comida de proximidad. El 60 % de los ingresos van a una asociación local que apoya a familias en situación de vulnerabilidad. La primera edición es en tres semanas: espera 400 asistentes, 18 expositores y un presupuesto de 2.200 €. El Ayuntamiento os ha dado el espacio gratis. Todo suena bien, pero hay decisiones que pueden hacer que el impacto positivo del evento sea real o quede en intención.",
+    "kpi_inicial": { "presupuesto": 2200, "retorno_local_pct": 30, "huella_estimada_kg_co2": 180 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisión 1 — Proveedores: ¿de dónde viene la comida?",
+      "situacion": "Tenéis presupuesto para contratar el catering de la feria. Tres opciones sobre la mesa.",
+      "opciones": [
+        {
+          "label": "Una empresa de catering de Valencia capital con menú variado y logística propia: 780 € para 400 personas",
+          "kpi_delta": { "presupuesto": -780, "retorno_local_pct": 5 },
+          "feedback": "El catering resuelve la logística, pero el dinero sale del barrio hacia una empresa externa. El retorno local de esta opción es mínimo: los ingredientes vienen de mayoristas, el personal probablemente no es del barrio y el valor añadido se genera fuera. Como feria de impacto local, hay una incoherencia entre el mensaje del evento y cómo se gasta el presupuesto. No ilegal, pero poco consecuente.",
+          "next": "n2"
+        },
+        {
+          "label": "Cuatro bares y cocinas del barrio sirven tapas con sus propios ingredientes: precio pactado a 1,80 €/tapa",
+          "kpi_delta": { "presupuesto": -720, "retorno_local_pct": 25, "huella_estimada_kg_co2": -30 },
+          "feedback": "La opción más coherente con el propósito del evento. Cuatro bares del barrio ganan ingresos extra, sus cocineros trabajan, sus proveedores locales se benefician indirectamente. El dinero circula dentro de la economía de Benimaclet en lugar de salir. La logística es algo más compleja (coordinad con anticipación) pero el retorno local se multiplica. Es el efecto multiplicador local en acción.",
+          "next": "n2"
+        },
+        {
+          "label": "Los expositores artesanos también venden comida que ellos mismos elaboran: sin coste de catering para la organización",
+          "kpi_delta": { "presupuesto": 0, "retorno_local_pct": 15, "huella_estimada_kg_co2": -15 },
+          "feedback": "Interesante porque elimina el coste de catering y da más ingresos a los artesanos. El retorno local es positivo aunque menor que la opción de los bares (los artesanos no son todos del barrio). El riesgo es la variedad y la cantidad: si los artesanos venden comida como actividad secundaria, puede haber déficit de oferta para 400 asistentes. Complementad con al menos uno o dos bares.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisión 2 — Huella ecológica: materiales del evento",
+      "situacion": "Hay que decidir qué vasos, platos y cubiertos se usan en el evento. Tres opciones con impactos muy distintos.",
+      "opciones": [
+        {
+          "label": "Platos, vasos y cubiertos de plástico desechable: lo más barato y práctico",
+          "kpi_delta": { "presupuesto": 40, "huella_estimada_kg_co2": 45 },
+          "feedback": "El coste es el más bajo (~0,08 €/persona), pero el impacto ambiental es el mayor: 400 personas × 3 piezas = 1.200 plásticos desechables. Desde 2023, el impuesto especial sobre envases de plástico no reutilizables tiene un coste añadido para las empresas que los producen, y la presión normativa seguirá creciendo. Para una feria con propósito social y ambiental, usar plástico desechable genera una externalidad negativa que contradice el mensaje del evento.",
+          "next": "n3"
+        },
+        {
+          "label": "Vasos y platos reutilizables alquilados al Ayuntamiento: fianza de 150 € devuelta al finalizar",
+          "kpi_delta": { "presupuesto": -150, "huella_estimada_kg_co2": -40 },
+          "feedback": "La opción de economía circular aplicada. El Ayuntamiento de Valencia tiene un servicio de préstamo de vajilla reutilizable para eventos. La fianza se devuelve si los devolvéis limpios. El coste neto para el proyecto es cero (si cuidáis el material) y la huella de residuos es casi nula. Es además un ejemplo de economía colaborativa: usáis un recurso existente en lugar de comprar y tirar.",
+          "next": "n3"
+        },
+        {
+          "label": "Cada asistente trae su propio vaso y plato: comunicación previa por redes",
+          "kpi_delta": { "presupuesto": 0, "huella_estimada_kg_co2": -60 },
+          "feedback": "La huella es la más baja posible y el coste para el proyecto es cero. El riesgo es que en la práctica el 40-50 % de asistentes no lo traerá, y necesitaréis una solución de respaldo. Si lo comunicáis bien con antelación (redes, carteles, confirmación de asistencia) y tenéis un pequeño lote de vasos de préstamo para quien lo olvide, puede funcionar. Es coherente con el mensaje del evento y tiene potencial de comunicarse como propuesta de valor.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisión 3 — Impacto social: ¿cómo conectar el proyecto con un ODS de forma real?",
+      "situacion": "Al preparar la presentación del proyecto, debéis elegir qué ODS conectáis con la feria y cómo lo demostráis. No se trata de poner el logo: se trata de poder decir qué evidencia concreta lo prueba.",
+      "opciones": [
+        {
+          "label": "ODS 17 (Alianzas para lograr los objetivos): hemos colaborado con el Ayuntamiento y con una ONG local",
+          "kpi_delta": { "retorno_local_pct": 5 },
+          "feedback": "El ODS 17 es real (habéis hecho alianzas), pero es el más genérico de todos: prácticamente cualquier proyecto que colabore con alguien puede reclamarlo. Como evaluación, es poco diferenciador. Los jueces o el profesor preguntarán: ¿qué alianza concreta habéis hecho y qué impacto tuvo? Si vuestra respuesta es específica, bien; si es vaga, el ODS no añade valor.",
+          "next": "final:fracaso_parcial"
+        },
+        {
+          "label": "ODS 11 (Ciudades y comunidades sostenibles): la feria revitaliza el espacio público y refuerza la identidad de barrio",
+          "kpi_delta": { "retorno_local_pct": 10, "huella_estimada_kg_co2": -10 },
+          "feedback": "ODS concreto y demostrable. Podéis medir: cuántos vecinos asistieron, cuántos expositores son del barrio, si el espacio se usa de forma diferente después del evento, cuánto dinero se quedó en el barrio. La meta numerada que mejor encaja es la 11.3 (acceso a espacios seguros y verdes) o la 11.a (apoyo a vínculos económicos entre zonas urbanas, periurbanas y rurales). Contar esto con datos es lo que hace al ODS creíble.",
+          "next": "final:exito"
+        },
+        {
+          "label": "ODS 1 y 8 a la vez (fin de la pobreza y trabajo decente): ayudamos a familias vulnerables y creamos empleo local",
+          "kpi_delta": { "retorno_local_pct": 8 },
+          "feedback": "Ambos son reales y conectan con el proyecto (donación a familias + empleo a músicos y artesanos locales), pero reclamar dos ODS a la vez sin una evidencia muy específica para cada uno puede sonar a postureo. La regla es: uno o dos ODS con evidencia concreta, no cinco con afirmaciones genéricas. Si vuestra feria destina el 60 % a apoyo a familias, podéis justificar el ODS 1 con un dato: '240 € de los 400 € de beneficio neto van a la asociación, que cubre X cenas o Y familias esta semana'.",
+          "next": "final:exito"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "La feria deja huella positiva, no ambiental",
+      "resumen": "Las decisiones de aprovisionamiento, materiales y comunicación de impacto son coherentes con el propósito del evento. El retorno local supera el 50 % del presupuesto y la huella de residuos es mínima. Los ODS elegidos tienen evidencia concreta que los respalda.",
+      "lecciones_clave": [
+        "El retorno local se construye decisión a decisión: proveedor de catering, artesanos, músicos. No es declaración de intenciones, es elección concreta.",
+        "La economía circular aplicada al evento (vajilla reutilizable) no requiere grandes inversiones: basta con usar los recursos compartidos que ya existen.",
+        "Un ODS es creíble cuando podéis demostrar el impacto con un dato concreto, no cuando ponéis el logo en la presentación."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "La feria ha sido bonita pero el impacto es difícil de demostrar",
+      "resumen": "El evento ha sido positivo, pero las decisiones de aprovisionamiento no maximizaron el retorno local y los ODS declarados son demasiado genéricos para ser creíbles en una evaluación o presentación.",
+      "lecciones_clave": [
+        "Declarar impacto sin evidencia concreta es postureo, no propósito. Los ODS requieren metas numeradas y datos que los respalden.",
+        "El valor compartido no se declara: se diseña desde el principio en cada decisión del proyecto, incluyendo a quién le compras."
+      ]
+    }
+  }
+}
+```

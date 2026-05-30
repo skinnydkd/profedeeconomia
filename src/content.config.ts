@@ -129,6 +129,33 @@ const recursos = defineCollection({
 });
 
 /* =========================================================
+   asignaturas/{slug}/actividades-dinamicas/{numero}-{slug}.mdx
+   Decision-tree simulators. The MDX body must contain exactly one
+   ```json … ``` fenced block whose content is parsed by
+   src/components/actividades/parse-tree.ts.
+   ========================================================= */
+const actividadesDinamicas = defineCollection({
+  loader: glob({
+    pattern: 'asignaturas/*/actividades-dinamicas/**/*.{md,mdx}',
+    base: './src/content',
+  }),
+  schema: z.object({
+    asignatura: z.enum(ASIGNATURA_SLUGS),
+    unidad_relacionada: z.number().int().min(1),
+    title: z.string(),
+    tipo: z.enum(['arbol-decisiones']),
+    componente: z.enum(['ArbolDecisiones']),
+    duracion: z.string().optional(),
+    descripcion: z.string().optional(),
+    competencias_clave: z.array(z.string()).default([]),
+    competencias_especificas: z.array(z.string()).default([]),
+    lang: z.enum(LANGS).default('es'),
+    estado: z.enum(ESTADOS).default('borrador'),
+    publicado_en: z.coerce.date().optional(),
+  }),
+});
+
+/* =========================================================
    programacion — una programación didáctica por asignatura
    ========================================================= */
 const programacion = defineCollection({
@@ -262,6 +289,7 @@ export const collections = {
   actividades,
   tests,
   recursos,
+  actividadesDinamicas,
   programacion,
   ebau,
   proyecto,

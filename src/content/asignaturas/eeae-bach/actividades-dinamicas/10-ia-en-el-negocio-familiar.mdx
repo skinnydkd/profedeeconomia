@@ -1,0 +1,117 @@
+---
+asignatura: eeae-bach
+unidad_relacionada: 10
+title: "La IA llega al negocio familiar y no todos están contentos"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "15-20 min"
+descripcion: "Tu padre quiere automatizar parte de su tienda con IA. Tu abuela, que lleva 20 años en el mostrador, dice que no. ¿Quién tiene razón y cómo se decide?"
+competencias_clave: [CPSAA, CE, CD]
+competencias_especificas: [CE2]
+estado: publicado
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Caso · Transformación digital y empresa del futuro",
+    "titulo": "La IA llega al negocio familiar y no todos están contentos",
+    "contexto": "Tu padre, Ferran, lleva una tienda de papelería y material de oficina en el centro de la ciudad con seis empleados, dos de los cuales llevan más de 15 años. Tu abuela Amparo trabaja en el mostrador tres días a la semana por gusto, no por necesidad económica. Ferran quiere introducir tres herramientas de IA: (1) un chatbot para responder preguntas frecuentes por WhatsApp fuera del horario comercial; (2) un sistema de previsión de stock basado en datos históricos de ventas para reducir el despilfarro de material; (3) una herramienta de edición de fotos con IA para el catálogo online. El presupuesto disponible es de 2.400 €/año para las tres herramientas juntas. La abuela Amparo dice que 'con esas máquinas echáis a la gente'. Ferran quiere tu opinión.",
+    "kpi_inicial": { "eficiencia_operativa": 6, "satisfaccion_equipo": 7, "ventas_online": 4 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisión 1 — ¿Cómo introduce Ferran la conversación de la IA con el equipo?",
+      "situacion": "Ferran quiere hablar con el equipo sobre las nuevas herramientas antes de contratar nada. Tiene tres formas de plantear la conversación: (a) presentar las herramientas como algo ya decidido y explicar cómo van a funcionar; (b) presentarlas como una propuesta y pedir la opinión del equipo antes de decidir; (c) no decir nada hasta que estén implantadas, para evitar resistencias.",
+      "opciones": [
+        {
+          "label": "Presenta como algo ya decidido: claridad y tiempo ganado",
+          "kpi_delta": { "satisfaccion_equipo": -2, "eficiencia_operativa": 1 },
+          "feedback": "El equipo lo vive como una imposición. Amparo se siente ignorada. Dos empleados con más antigüedad preguntan si las herramientas van a sustituir puestos de trabajo, y Ferran no tiene una respuesta preparada. La resistencia crece. Lección: las decisiones tecnológicas que afectan a las personas del equipo requieren comunicación y participación previas. La velocidad de implantación no compensa la pérdida de confianza.",
+          "next": "n2"
+        },
+        {
+          "label": "Propuesta abierta: la opinión del equipo antes de decidir",
+          "kpi_delta": { "satisfaccion_equipo": 2, "eficiencia_operativa": 0 },
+          "feedback": "El equipo se siente escuchado. Amparo expresa sus dudas y Ferran puede responder con datos: '¿qué hace exactamente el chatbot? ¿Quién lo configura? ¿Quién responde si se equivoca?'. Dos empleados proponen pruebas piloto antes de comprometerse. El proceso es más lento pero la implantación final tiene mucha menos resistencia. Lección: la participación del equipo en decisiones que les afectan no es solo un gesto de respeto: es una herramienta de gestión que reduce la resistencia y mejora la implantación.",
+          "next": "n2"
+        },
+        {
+          "label": "No decir nada hasta que estén implantadas: evitar ruido innecesario",
+          "kpi_delta": { "satisfaccion_equipo": -3, "eficiencia_operativa": 1 },
+          "feedback": "Peor decisión posible. Cuando el chatbot aparece en el WhatsApp de negocio sin aviso, Amparo se entera por una clienta. Interpreta que Ferran le esconde cosas y su relación se deteriora. Las otras dos herramientas se implantan con un clima de desconfianza que hace que nadie las use bien. Lección: la transparencia en los cambios que afectan a las personas no es opcional. Las sorpresas tecnológicas suelen generar más resistencia que los cambios anunciados, aunque molesten al principio.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisión 2 — El miedo de Amparo: ¿destruye puestos de trabajo la IA?",
+      "situacion": "Amparo tiene miedo de que las máquinas sustituyan a las personas. En la reunión, le pregunta directamente a Ferran: '¿Alguna de estas herramientas va a hacer que alguno de nosotros trabaje menos o deje de trabajar aquí?'. Ferran tiene que responder con honestidad.",
+      "opciones": [
+        {
+          "label": "Ferran dice 'no, ninguna persona pierde el empleo' aunque no esté seguro",
+          "kpi_delta": { "satisfaccion_equipo": 1, "eficiencia_operativa": 0 },
+          "feedback": "Amparo se queda más tranquila a corto plazo. Pero en seis meses, el sistema de previsión de stock ha reducido tanto el trabajo de gestión de pedidos que el empleado que lo hacía pasa a tener cuatro horas semanales de menos trabajo. Ferran no ha mentido intencionalmente, pero ha prometido algo que no podía garantizar. La confianza se erosiona cuando la realidad contradice lo prometido. Lección: en comunicación interna, es mejor decir 'no lo sé con certeza' que prometer algo que no puedes garantizar.",
+          "next": "n3"
+        },
+        {
+          "label": "Ferran responde con honestidad: 'El chatbot no sustituye a nadie. El stock sí puede cambiar el trabajo de gestión de pedidos, y eso hay que hablarlo'",
+          "kpi_delta": { "satisfaccion_equipo": 3, "eficiencia_operativa": 1 },
+          "feedback": "Respuesta honesta y madura. Amparo y el equipo aprecian que Ferran no les venda una historia. La conversación sobre la gestión de pedidos se hace de forma anticipada: el empleado que lo gestionaba se forma en el uso de la herramienta de IA y pasa a supervisar las predicciones del sistema, añadiendo criterio humano. El trabajo cambia, pero no desaparece. Lección: la transformación digital no destruye el trabajo automáticamente, pero sí lo transforma. Anticipar esa transformación con honestidad y formación es mejor que negarla.",
+          "next": "n3"
+        },
+        {
+          "label": "Ferran dice 'si la empresa va bien, todos vamos bien, y la IA ayuda a eso'",
+          "kpi_delta": { "satisfaccion_equipo": 0, "eficiencia_operativa": 1 },
+          "feedback": "Respuesta evasiva que no contesta lo que Amparo ha preguntado. El equipo lo nota: nadie ha respondido si algún trabajo cambia. La desconfianza no desaparece, se aplaza. Lección: los mensajes optimistas sobre la tecnología sin responder a los miedos concretos de las personas son una forma de no comunicar. La transformación digital necesita comunicación honesta, no relaciones públicas internas.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisión 3 — La digitalización vs. la transformación digital",
+      "situacion": "Seis meses después, Ferran ha implantado las tres herramientas. El chatbot funciona. El stock ha mejorado. Pero las ventas online apenas han crecido. Un amigo empresario le dice: 'Ferran, tienes herramientas digitales pero no eres una empresa digital. Sigues vendiendo igual que antes, solo con mejores herramientas.' ¿Qué significa eso y qué debería hacer Ferran?",
+      "opciones": [
+        {
+          "label": "El amigo se equivoca: tener herramientas de IA ya es ser digital",
+          "kpi_delta": { "ventas_online": 0, "eficiencia_operativa": 0 },
+          "feedback": "No. Digitalización es añadir herramientas digitales a los procesos que ya tienes. Transformación digital es replantear cómo funciona el negocio aprovechando lo que la tecnología permite. Ferran ha digitalizado: ha añadido el chatbot, el sistema de stock y la edición de fotos. Pero no ha replanteado cómo llega a los clientes, cómo vende o cómo compite en el mundo donde muchos compradores buscan material de oficina online antes de ir a una tienda. Lección: digitalizar no es lo mismo que transformar. Las herramientas son el medio; el cambio en la forma de crear y entregar valor es el fin.",
+          "next": "final:fracaso_parcial"
+        },
+        {
+          "label": "El amigo tiene razón: hay que repensar cómo llegamos a los clientes, no solo optimizar lo de dentro",
+          "kpi_delta": { "ventas_online": 3, "eficiencia_operativa": 1 },
+          "feedback": "Ferran entiende la diferencia: ha optimizado los procesos internos (eficiencia) pero no ha cambiado cómo interactúa con los clientes. La transformación digital implica preguntarse: ¿dónde están ahora los clientes? ¿Cómo buscan material de oficina? ¿Qué les haría preferir la papelería de Ferran a Amazon? Empieza a desarrollar una propuesta de valor digital diferenciada: asesoramiento personalizado para pymes del barrio que no tienen tiempo de buscar el material óptimo. Lección: la transformación digital empieza en la propuesta de valor, no en las herramientas.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Ampliamos el catálogo online y ponemos publicidad en Google",
+          "kpi_delta": { "ventas_online": 1, "eficiencia_operativa": 0 },
+          "feedback": "Un paso en la dirección correcta, pero incompleto. Más catálogo y publicidad puede traer más visitas, pero si la propuesta de valor online no es diferente a Amazon o a El Corte Inglés online, la guerra de precios que Ferran no puede ganar. La pregunta correcta no es '¿cómo llego a más gente con lo que ya tengo?' sino '¿qué puede ofrecer esta papelería online que las grandes superficies no pueden?'. Lección: más marketing sobre una propuesta de valor indiferenciada es dinero que no retorna.",
+          "next": "final:fracaso_parcial"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "La tienda de Ferran se transforma, no solo se digitaliza",
+      "resumen": "Has gestionado el cambio tecnológico con respeto al equipo, has distinguido digitalización de transformación digital y has entendido que el futuro de la empresa empieza en repensar la propuesta de valor.",
+      "lecciones_clave": [
+        "La transformación digital no es añadir herramientas: es replantear cómo crea, entrega y captura valor la empresa en un entorno donde la tecnología cambia lo que los clientes esperan.",
+        "Los miedos del equipo ante la IA son legítimos y requieren comunicación honesta, no mensajes optimistas vacíos.",
+        "La diferencia entre digitalización y transformación digital es la diferencia entre hacer lo mismo de forma más eficiente y hacer cosas distintas que el modelo anterior no permitía."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "La tienda tiene herramientas nuevas pero el modelo sigue igual",
+      "resumen": "Has implantado tecnología, pero sin repensar el modelo de negocio ni gestionar bien el impacto en las personas del equipo.",
+      "lecciones_clave": [
+        "Digitalizar sin transformar es gastar en herramientas que optimizan procesos que quizá habría que replantear enteros.",
+        "Las promesas que no se pueden garantizar sobre el impacto de la tecnología en el empleo erosionan la confianza cuando la realidad llega."
+      ]
+    }
+  }
+}
+```

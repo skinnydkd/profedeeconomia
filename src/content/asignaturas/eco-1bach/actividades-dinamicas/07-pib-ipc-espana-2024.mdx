@@ -1,0 +1,117 @@
+---
+asignatura: eco-1bach
+unidad_relacionada: 7
+title: "Eres analista del Banco de España"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "15-20 min"
+descripcion: "PIB, IPC y tasa de paro llegan a tu mesa. Interpreta los datos y elabora el diagnóstico del año."
+competencias_clave: [CPSAA, CE, CD]
+competencias_especificas: [CE2]
+estado: publicado
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Caso · Macroeconomía e indicadores",
+    "titulo": "Eres analista del Banco de España",
+    "contexto": "Es enero de 2025. Eres analista júnior en el Departamento de Análisis Económico del Banco de España. Tu primera tarea es preparar el informe trimestral de coyuntura usando los datos del cierre de 2024: PIB nominal de 1.503.000 millones de euros (crecimiento nominal del 6,2 %), deflactor del PIB del 3,0 %, IPC general del 2,8 %, tasa de paro EPA del 11,3 % (tercer trimestre de 2024). Tu jefe quiere el informe en 45 minutos. Empieza a trabajar.",
+    "kpi_inicial": { "pib_real_crecimiento_pct": 0, "confianza_diagnostico": 5, "precision_analisis": 5 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisión 1 — ¿Cómo calculas el crecimiento real del PIB?",
+      "situacion": "El PIB nominal ha crecido un 6,2 % pero parte de ese crecimiento es inflación, no producción real adicional. Tienes el deflactor del PIB al 3,0 %. Tienes que decidir qué cifra poner en el informe: el crecimiento nominal, el real con la fórmula del deflactor, o simplemente el IPC como aproximación.",
+      "opciones": [
+        {
+          "label": "Uso el 6,2 %: el crecimiento nominal es el que se ve en las cuentas",
+          "kpi_delta": { "pib_real_crecimiento_pct": -2, "confianza_diagnostico": -2, "precision_analisis": -3 },
+          "feedback": "Error grave. El 6,2 % incluye inflación: parte de ese «crecimiento» es simplemente que los precios son más altos, no que se produce más. Un país con 20 % de inflación y 0 % de crecimiento real mostraría un 20 % de crecimiento nominal. Los análisis profesionales siempre usan el PIB real. Lección: PIB nominal = PIB real × deflactor. El nominal sube con producción Y con precios; el real solo con producción. Solo el real mide bienestar económico.",
+          "next": "n2"
+        },
+        {
+          "label": "Calculo el crecimiento real: 6,2 % − 3,0 % = aproximadamente 3,2 % real",
+          "kpi_delta": { "pib_real_crecimiento_pct": 3, "confianza_diagnostico": 3, "precision_analisis": 4 },
+          "feedback": "Correcto con la aproximación estándar. La fórmula exacta es: crecimiento real ≈ crecimiento nominal − tasa de inflación. Con deflactor del 3 %, el crecimiento real es aproximadamente (1,062 / 1,030) − 1 = 3,1 %. España creció un 3,1 % en términos reales en 2024, por encima de la media de la eurozona (1,0 %). Lección: separar los efectos precio de los efectos volumen es el primer paso del análisis macroeconómico.",
+          "next": "n2"
+        },
+        {
+          "label": "Uso el IPC del 2,8 % como deflactor: es el índice de precios más conocido",
+          "kpi_delta": { "pib_real_crecimiento_pct": 1, "confianza_diagnostico": 0, "precision_analisis": -1 },
+          "feedback": "Aproximación razonable pero imprecisa. El IPC mide precios de la cesta de consumo de los hogares. El deflactor del PIB mide los precios de TODO lo que produce la economía (bienes de consumo, de inversión, gasto público, exportaciones). Son conceptualmente distintos. En 2024, la diferencia es solo 0,2 puntos (2,8 vs 3,0), pero en años de energía volátil la diferencia puede ser mayor. Lección: hay múltiples índices de precios para contextos distintos — elegir el correcto importa para la precisión del análisis.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisión 2 — Interpretas la tasa de paro del 11,3 %",
+      "situacion": "La EPA del tercer trimestre de 2024 dice 11,3 % de paro. Tu jefe pregunta: «¿Es buena o mala noticia?». Para responder necesitas contexto: la media histórica española desde 1990 es del 16 %; en 2013 llegó al 26,9 %; la media de la eurozona en 2024 es del 5,9 %; el pleno empleo se suele situar en torno al 4-5 % en economías maduras.",
+      "opciones": [
+        {
+          "label": "Es mala noticia: 11,3 % es el doble de la media europea",
+          "kpi_delta": { "pib_real_crecimiento_pct": 0, "confianza_diagnostico": 1, "precision_analisis": 1 },
+          "feedback": "Perspectiva comparativa correcta. España tiene crónicamente el doble de desempleo que la media europea por razones estructurales: dualidad del mercado laboral (trabajadores fijos vs temporales), alta temporalidad en sectores de hostelería y construcción, barreras a la movilidad geográfica, insuficiente formación continua. Lección: comparar un indicador con la media internacional revela problemas estructurales que la comparación temporal esconde.",
+          "next": "n3"
+        },
+        {
+          "label": "Es buena noticia: venimos del 26,9 % en 2013 y estamos en el nivel más bajo desde 2008",
+          "kpi_delta": { "pib_real_crecimiento_pct": 0, "confianza_diagnostico": 1, "precision_analisis": 1 },
+          "feedback": "Perspectiva temporal correcta. El 11,3 % de 2024 es el mejor dato desde 2008. La reducción de casi 16 puntos desde el pico de la Gran Recesión refleja la recuperación postCovid y el dinamismo del sector servicios. Lección: los indicadores económicos siempre se interpretan en contexto — el mismo número puede ser «bueno» o «malo» según la referencia histórica o comparativa que uses.",
+          "next": "n3"
+        },
+        {
+          "label": "Depende de qué tipo de paro sea: necesito desglosar friccional, estructural y cíclico",
+          "kpi_delta": { "pib_real_crecimiento_pct": 0, "confianza_diagnostico": 3, "precision_analisis": 3 },
+          "feedback": "Respuesta más completa. El paro friccional (en tránsito entre empleos) es inevitable y relativamente bajo en España. El paro cíclico (ligado al ciclo económico) ha bajado con la expansión. El problema español es el paro estructural: trabajadores cuyas habilidades no encajan con la demanda actual (descalificación, sectores en declive, brecha digital). Un 11,3 % con mucho paro estructural es más preocupante que el mismo porcentaje con más paro friccional. Lección: un agregado macroeconómico esconde composición — el análisis de calidad siempre desagrega.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisión 3 — ¿Qué titular pones en el informe?",
+      "situacion": "Tienes que condensar el diagnóstico en una frase para el titular del informe. Los datos son: crecimiento real ~3,1 %, IPC 2,8 % (dentro del objetivo del BCE), paro 11,3 % (mejor en 16 años). El índice de confianza del consumidor del INE ha bajado 3 puntos en el último trimestre. ¿Cómo te posicionas?",
+      "opciones": [
+        {
+          "label": "La economía española cierra 2024 con el mejor PIB real desde 2007",
+          "kpi_delta": { "pib_real_crecimiento_pct": 0, "confianza_diagnostico": 2, "precision_analisis": 2 },
+          "feedback": "Titular de economía positiva: describes lo que los datos dicen, sin juicios de valor sobre si es bueno o malo para la sociedad. Es el tipo de afirmación verificable que distingue análisis de opinión. El 3,1 % real es factualmente el mayor desde antes de la crisis financiera. El periodista y el político ya pondrán el calificativo normativo. Lección: en economía, separar lo positivo (lo que los datos dicen) de lo normativo (lo que debería pasar) es la primera norma del analista.",
+          "next": "final:exito"
+        },
+        {
+          "label": "La economía española crece, pero el paro sigue siendo el gran problema estructural",
+          "kpi_delta": { "pib_real_crecimiento_pct": 0, "confianza_diagnostico": 3, "precision_analisis": 3 },
+          "feedback": "Titular que equilibra los datos positivos y las limitaciones estructurales. El crecimiento es real pero el desempleo del 11,3 % (doble de la eurozona) indica que el modelo de crecimiento español no genera suficiente empleo de calidad. Esta perspectiva conecta el PIB (indicador de producción) con el paro (indicador de distribución de los beneficios del crecimiento). Lección: el PIB no mide bienestar directamente — un país puede crecer y tener ciudadanos que no perciben la mejora.",
+          "next": "final:exito"
+        },
+        {
+          "label": "La caída del índice de confianza anuncia riesgos a la baja para 2025",
+          "kpi_delta": { "pib_real_crecimiento_pct": 0, "confianza_diagnostico": 1, "precision_analisis": 1 },
+          "feedback": "Titular sobre las expectativas, que también forman parte de los indicadores adelantados. El índice de confianza del consumidor es un indicador adelantado: precede a los datos reales por 2-3 meses. Si la confianza baja, puede anunciar menor consumo futuro, desplazando la demanda agregada a la izquierda. Pero cuidado con la economía normativa disfrazada de positiva: «anuncia riesgos» es una predicción, no un hecho verificado. Lección: los indicadores adelantados son útiles pero no infalibles — son señales, no certezas.",
+          "next": "final:fracaso_parcial"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "Informe entregado, diagnóstico sólido",
+      "resumen": "Has calculado correctamente el PIB real, interpretado la tasa de paro con contexto histórico y comparativo, y elegido un titular que separa lo que los datos dicen de los juicios de valor. Un buen inicio en el Banco de España.",
+      "lecciones_clave": [
+        "PIB real = PIB nominal ajustado por el deflactor. Solo el real mide producción; el nominal mezcla producción e inflación.",
+        "Un indicador como el paro tiene dos lecturas válidas: temporal (¿mejor o peor que antes?) e internacional (¿mejor o peor que otros?). Ambas son necesarias.",
+        "Economía positiva: lo que dicen los datos. Economía normativa: lo que debería pasar. El analista describe; el político decide."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "Informe entregado, con sesgo normativo",
+      "resumen": "Has confundido indicadores adelantados con certezas y has mezclado análisis con predicción sin suficiente base empírica. Tu jefe te pide que revises el lenguaje del titular.",
+      "lecciones_clave": [
+        "Los indicadores adelantados son señales, no predicciones seguras. Presentarlos como certezas es pasar de lo positivo a lo normativo sin decirlo.",
+        "El PIB nominal sobreestima el crecimiento en contextos de inflación alta — siempre se trabaja con cifras reales en análisis macroeconómico."
+      ]
+    }
+  }
+}
+```

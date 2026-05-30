@@ -1,0 +1,117 @@
+---
+asignatura: gpe-bach
+unidad_relacionada: 3
+title: "Tres socios, tres formas de montar el negocio"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "15-20 min"
+descripcion: "Vuestra app de intercambio de ropa entre institutos empieza a funcionar. Toca decidir forma jurídica, dónde operar y cómo tramitarlo."
+competencias_clave: [CPSAA, CE, CD]
+competencias_especificas: [CE3]
+estado: publicado
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Caso · Decisiones de arranque",
+    "titulo": "Tres socios, tres formas de montar el negocio",
+    "contexto": "Sois tres estudiantes de Bachillerato que habéis desarrollado durante el curso una app sencilla para intercambiar ropa entre estudiantes de institutos de la comarca. La app funciona: 340 usuarios registrados, 78 intercambios completados, 0 € de ingresos porque todo ha sido gratuito. Ahora queréis convertirla en un negocio real. La app cuesta 12 € al mes de hosting, tenéis 600 € en una cuenta conjunta y el primer ingreso previsto viene de una cuota de 1,50 €/mes a los usuarios premium. Hay que decidir cómo existir legalmente.",
+    "kpi_inicial": { "caja": 600, "usuarios": 340, "ingresos_mes": 0 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisión 1 — Forma jurídica",
+      "situacion": "Tres socios, ingresos previstos de unos 400-600 €/mes si el 40 % de usuarios paga el premium. No tenéis bienes propios relevantes. Una gestoría os presenta tres opciones.",
+      "opciones": [
+        {
+          "label": "Cada uno como autónomo independiente que cobra su parte: sin sociedad",
+          "kpi_delta": { "caja": -30, "usuarios": 0 },
+          "feedback": "Sencillo al principio, pero con tres autónomos trabajando juntos sin contrato, la división del trabajo y del dinero se vuelve complicada muy rápido. ¿Quién factura al usuario premium? ¿Quién paga el hosting? Sin una estructura común, los tres respondéis individualmente con vuestro patrimonio personal. Y cada autónomo paga cuota mínima a la Seguridad Social (~291 €/mes tarifa plana el primer año), lo que podría superar los ingresos del proyecto en sus primeros meses.",
+          "next": "n2"
+        },
+        {
+          "label": "Sociedad Limitada con 1 € de capital: los tres como socios al 33,3 %",
+          "kpi_delta": { "caja": -200, "usuarios": 0 },
+          "feedback": "La opción correcta para un equipo de tres con algo de riesgo y voluntad de escalar. Responsabilidad limitada al capital aportado (solo perdéis lo que pusisteis, no vuestros bienes personales), tributación por Impuesto sobre Sociedades y estructura formal para repartir dividendos si hay beneficio. El coste de constitución vía PAE y CIRCE ronda los 150-300 € (notaría + tasas). Con 600 € en caja, cubre.",
+          "next": "n2"
+        },
+        {
+          "label": "Cooperativa de trabajo asociado: los tres como socios-trabajadores",
+          "kpi_delta": { "caja": -150, "usuarios": 0 },
+          "feedback": "Encaja perfectamente con el espíritu de la materia: decisiones democráticas, cada socio es a la vez trabajador, régimen fiscal propio con tipos reducidos. En la Comunitat Valenciana las cooperativas tienen apoyo del IVACE. La dificultad es que exige al menos 3 socios (cumplen) y unos estatutos más detallados. Vale la pena si el proyecto tiene vocación de impacto social y queréis que la gestión sea verdaderamente compartida.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisión 2 — Localización y dimensión de arranque",
+      "situacion": "La app funciona sin local físico, pero hay que decidir qué escala de usuario abordar primero. Opción A: solo vuestro instituto (80 potenciales usuarios, muy conocido). Opción B: los cuatro institutos de la comarca (340 potenciales usuarios, pero la app necesita moderación que consume tiempo). Opción C: abrir a toda la provincia desde el primer día (2.000+ potenciales, pero necesitaríais contratar a alguien para soporte).",
+      "opciones": [
+        {
+          "label": "Solo nuestro instituto: dominar el nicho antes de saltar",
+          "kpi_delta": { "caja": 0, "usuarios": 40 },
+          "feedback": "Producto mínimo viable puro. Con 80 posibles usuarios, podéis atender personalmente cada problema, aprender qué falla y mejorar la app con recursos mínimos. El riesgo es que el mercado sea demasiado pequeño para cubrir los costes fijos de la sociedad recién constituida. Calculad: ¿cuántos premium necesitáis para cubrir los 12 € de hosting + la cuota a la Seguridad Social si hay socios trabajadores?",
+          "next": "n3"
+        },
+        {
+          "label": "Los cuatro institutos de la comarca: crecimiento controlado",
+          "kpi_delta": { "caja": 50, "usuarios": 120 },
+          "feedback": "La opción más equilibrada. Ya tenéis 340 usuarios conocidos de ahí. Si el 30 % paga premium: 102 usuarios × 1,50 € = 153 €/mes. Con el hosting cubierto y algo de margen para la cuota de la SS, el proyecto es autosuficiente sin contratar a nadie. La dimensión encaja con vuestra capacidad de gestión.",
+          "next": "n3"
+        },
+        {
+          "label": "Toda la provincia desde el primer día: a por todas",
+          "kpi_delta": { "caja": -300, "usuarios": 80 },
+          "feedback": "La ambición excede los recursos. Gestionar 2.000+ usuarios requiere soporte, moderación y quizás una versión mejorada de la app. Con 600 € en caja y tres personas que también estudian, la dimensión provincial es un error clásico de arranque: escalar antes de haber validado que el modelo funciona. Primero, que los cuatro institutos paguen. Luego, la provincia.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisión 3 — Trámites y organismos de ayuda",
+      "situacion": "Tenéis que constituir la forma jurídica elegida y dar de alta el proyecto legalmente. Os llegan tres consejos distintos de personas de vuestro entorno.",
+      "opciones": [
+        {
+          "label": "Ir directamente a un notario privado y pagar unos 400-600 € por la constitución completa",
+          "kpi_delta": { "caja": -500, "usuarios": 0 },
+          "feedback": "Es una opción válida pero cara para un proyecto de arranque. El notario privado hace el trabajo bien, pero el coste puede ser 2-3 veces mayor que usando el sistema CIRCE vía PAE. Si vuestra caja es de 600 €, gastar 500 en constitución es arriesgado. Reserva capital para los primeros meses de operación.",
+          "next": "final:fracaso_parcial"
+        },
+        {
+          "label": "Ir al PAE de la Cámara de Comercio más cercana y usar el sistema CIRCE con el DUE",
+          "kpi_delta": { "caja": -180, "usuarios": 0 },
+          "feedback": "La opción correcta: el Punto de Atención al Emprendedor os asesora gratis, os explica qué forma encaja mejor con vuestro proyecto y tramita el DUE (Documento Único Electrónico), que dispara automáticamente los trámites ante Hacienda, Seguridad Social y Registro Mercantil. Coste real: tasas de registro (~150-200 €). Además, en la Comunitat Valenciana, el IVACE tiene apoyo específico para proyectos jóvenes. Guardáis capital para operar.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Buscar en internet cómo hacerlo solos para ahorrarnos los trámites",
+          "kpi_delta": { "caja": 0, "usuarios": 0 },
+          "feedback": "Sin asesoramiento, es fácil elegir la forma jurídica equivocada, cometer errores en la denominación social o no dar de alta correctamente en la Seguridad Social. El PAE existe exactamente para evitar esto, es gratuito y está en vuestra comarca. Usarlo no es signo de no saber: es saber que existen recursos públicos para emprender sin cometer errores básicos.",
+          "next": "final:fracaso_parcial"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "El proyecto existe legalmente y empieza a operar",
+      "resumen": "Con la forma jurídica correcta, una dimensión ajustada a los recursos del equipo y los trámites completados via PAE, la app puede empezar a cobrar a usuarios premium. La base legal está bien puesta.",
+      "lecciones_clave": [
+        "La forma jurídica se elige por encaje con el proyecto: responsabilidad, número de socios y escala son los criterios, no la imitación.",
+        "Empezar pequeño no es falta de ambición: es el camino para no comprometer recursos antes de validar que el modelo funciona.",
+        "El PAE es gratuito y evita errores que costarían mucho más que el tiempo de la visita."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "El proyecto arranca con problemas de base",
+      "resumen": "O se gastó demasiado capital en la constitución, o los trámites tienen errores que habrá que corregir. El proyecto puede sobrevivir, pero arranca con menos margen del necesario.",
+      "lecciones_clave": [
+        "El capital inicial es escaso: cada euro gastado en trámites es un euro menos para el primer mes de operaciones.",
+        "No usar los recursos públicos gratuitos disponibles (PAE, IVACE) es un error que se paga dos veces: en dinero y en tiempo."
+      ]
+    }
+  }
+}
+```

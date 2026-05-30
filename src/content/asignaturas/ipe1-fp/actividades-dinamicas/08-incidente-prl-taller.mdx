@@ -1,0 +1,117 @@
+---
+asignatura: ipe1-fp
+unidad_relacionada: 8
+title: "Incidente en el taller: protocolo PAS"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "15-20 min"
+descripcion: "Un compañero se lesiona en el taller durante tu primera semana de trabajo. Cada segundo cuenta y cada decisión tiene consecuencias."
+competencias_clave: [CPSAA, CC, CD]
+competencias_especificas: [RA1]
+estado: publicado
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Caso · Prevención de riesgos laborales",
+    "titulo": "Incidente en el taller: protocolo PAS",
+    "contexto": "Llevas 4 días trabajando como técnico/a de Mantenimiento Electromecánico en la nave de producción de METALMEC S.A. (Sagunto), una empresa de 40 trabajadores que fabrica estructuras metálicas. Son las 10:15 del martes. Estás montando un cuadro eléctrico cuando escuchas un golpe seco y un grito a 8 metros de distancia. Tu compañero Adrián, de 24 años, ha perdido el equilibrio sobre una escalera de tijera y ha caído al suelo. Está en el suelo, consciente, pero se agarra el brazo izquierdo y se queja con intensidad.",
+    "kpi_inicial": { "seguridad_escena": 5, "atencion_accidentado": 3, "gestion_emergencia": 4 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisión 1 — Primero: proteger la escena",
+      "situacion": "La escalera ha caído sobre un cable de alimentación de 220V que alimenta la cizalla. No sabes si el cable está dañado. Adrián te pide que te acerques. Hay otros tres compañeros que también han oído el golpe y empiezan a acercarse.",
+      "opciones": [
+        {
+          "label": "Me acerco corriendo a Adrián para ver cómo está",
+          "kpi_delta": { "seguridad_escena": -3, "atencion_accidentado": 1, "gestion_emergencia": -1 },
+          "feedback": "La primera P del protocolo PAS es PROTEGER: a ti y a la víctima de nuevos riesgos. Un cable de 220V dañado puede electrocutarte si pisas el charco de aceite del suelo. La intención de ayudar sin evaluar el riesgo puede convertir a quien auxilia en segunda víctima. El primer paso siempre es asegurar la escena.",
+          "next": "n2"
+        },
+        {
+          "label": "Grito a los compañeros que no toquen nada, corto la alimentación del cuadro más cercano y entonces me acerco",
+          "kpi_delta": { "seguridad_escena": 3, "atencion_accidentado": 1, "gestion_emergencia": 2 },
+          "feedback": "Protocolo PAS correcto: Proteger primero. Cortar la alimentación antes de acercarte elimina el riesgo de electrocución. Avisar a los compañeros para que no toquen nada evita que el accidente se multiplique. Solo cuando la escena es segura puedes atender a Adrián.",
+          "next": "n2"
+        },
+        {
+          "label": "Llamo al 112 inmediatamente sin hacer nada más",
+          "kpi_delta": { "seguridad_escena": 0, "atencion_accidentado": 0, "gestion_emergencia": 1 },
+          "feedback": "Llamar al 112 es parte del protocolo (la segunda A: Avisar), pero si lo haces antes de proteger la escena, los otros compañeros pueden estar acercándose al riesgo mientras hablas por teléfono. El orden importa: Proteger → Avisar → Socorrer.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisión 2 — Adrián está en el suelo",
+      "situacion": "La escena ya está asegurada. Adrián está consciente, respira con normalidad, pero tiene el antebrazo izquierdo en una posición anormal (posible fractura). No puede mover los dedos de la mano izquierda. Te pide que le ayudes a levantarse porque «el suelo está frío».",
+      "opciones": [
+        {
+          "label": "Le ayudo a levantarse: si está consciente, puede andar",
+          "kpi_delta": { "seguridad_escena": 0, "atencion_accidentado": -3, "gestion_emergencia": -2 },
+          "feedback": "Mover a un accidentado con posible fractura y pérdida de movilidad en extremidades puede agravar la lesión. Si hay afectación neurológica (no mueve los dedos), movilizarle sin inmovilización previa puede convertir una fractura simple en una lesión con daño nervioso o vascular permanente. Lección crítica: no mover al accidentado salvo para eliminar un peligro mayor (fuego, derrumbe, asfixia).",
+          "next": "n3"
+        },
+        {
+          "label": "Le digo que no se mueva, le tapo con el mono de trabajo de un compañero para mantener el calor y espero a los servicios de emergencia",
+          "kpi_delta": { "seguridad_escena": 0, "atencion_accidentado": 3, "gestion_emergencia": 2 },
+          "feedback": "Correcto. Un accidentado consciente con posible fractura y signos de afectación neurológica (no mueve los dedos) no se mueve. Mantenerle caliente, hablarle con calma para que no se agite y esperar a los servicios de emergencia es lo que marca la diferencia entre una fractura que se resuelve y una lesión permanente.",
+          "next": "n3"
+        },
+        {
+          "label": "Le doy agua: está sudando y seguramente tiene sed",
+          "kpi_delta": { "seguridad_escena": 0, "atencion_accidentado": -1, "gestion_emergencia": -1 },
+          "feedback": "No dar líquidos ni medicación a un accidentado. Si hay intervención quirúrgica (frecuente en fracturas con lesión neurológica), el estómago debe estar vacío. Dar agua con buena intención puede retrasar la operación horas. Primeros auxilios básicos: no dar líquidos ni medicación salvo indicación médica.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisión 3 — El encargado llega y dice que no hay que avisar a la Inspección",
+      "situacion": "El encargado de producción llega y, antes de que llegue la ambulancia, te dice: «No llames al SEPE ni a Inspección de Trabajo. Esto lo gestionamos internamente. Adrián es un buen chico y la empresa le va a pagar la baja sin problemas. Si reportamos el accidente, tenemos auditoría encima». Adrián ha escuchado pero no dice nada.",
+      "opciones": [
+        {
+          "label": "Acepto: el encargado sabe cómo se gestiona en esta empresa y no es mi primera semana para crear problemas",
+          "kpi_delta": { "seguridad_escena": -1, "atencion_accidentado": -2, "gestion_emergencia": -3 },
+          "feedback": "No notificar un accidente de trabajo con baja es una infracción grave según la Ley 31/1995 de PRL y el RD 1299/2006. La empresa tiene obligación legal de comunicarlo al SEPE en 5 días hábiles. Si Adrián tiene secuelas y el accidente no está registrado, puede perder derechos a prestaciones y a que la empresa sea responsable. Aceptar no te protege: te hace cómplice de una infracción.",
+          "next": "final:fracaso_parcial"
+        },
+        {
+          "label": "No intervengo: es decisión del encargado y de Adrián, no mía",
+          "kpi_delta": { "seguridad_escena": 0, "atencion_accidentado": -1, "gestion_emergencia": -1 },
+          "feedback": "Como testigo del accidente, tienes obligación de colaborar en el parte de accidente. No tienes autoridad para reportar tú solo, pero permanecer en silencio cuando sabes que se omite un accidente de trabajo con posibles consecuencias graves para Adrián no es neutralidad: es pasividad ante una vulneración de derechos.",
+          "next": "final:fracaso_parcial"
+        },
+        {
+          "label": "Le digo a Adrián (no al encargado) que tiene derecho a que el accidente quede registrado y que eso le protege si tiene secuelas",
+          "kpi_delta": { "seguridad_escena": 1, "atencion_accidentado": 3, "gestion_emergencia": 3 },
+          "feedback": "Informar a Adrián de sus derechos es lo correcto. El accidente de trabajo bien documentado protege al trabajador: cubre la prestación de IT por accidente de trabajo (75 % desde el día siguiente, sin días sin cobertura), la indemnización por secuelas y la responsabilidad de la empresa. Adrián toma su propia decisión, pero informado.",
+          "next": "final:exito"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "Has actuado con criterio preventivo y legal",
+      "resumen": "Protegiste la escena antes de acercarte, no movilizaste al accidentado sin criterio y respetaste los derechos de Adrián frente a la presión del encargado. La PRL no es un trámite: es lo que determina si un incidente queda en un susto o en una lesión permanente.",
+      "lecciones_clave": [
+        "El protocolo PAS no es teórico: Proteger → Avisar → Socorrer, en ese orden y sin saltarse pasos.",
+        "No mover al accidentado salvo para eliminar un peligro mayor.",
+        "No notificar un accidente de trabajo es una infracción grave: el registro protege al trabajador, no a la empresa."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "Adrián recibe atención, pero sus derechos están en riesgo",
+      "resumen": "Las decisiones en la escena han podido agravar la lesión o dejar a Adrián sin cobertura legal. La PRL existe para evitar exactamente esto.",
+      "lecciones_clave": [
+        "La intención de ayudar sin evaluar el riesgo puede convertir al auxiliador en segunda víctima.",
+        "Un accidente de trabajo sin registrar puede dejar al trabajador sin prestaciones si hay secuelas."
+      ]
+    }
+  }
+}
+```

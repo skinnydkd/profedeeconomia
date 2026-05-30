@@ -1,0 +1,117 @@
+---
+asignatura: ipe2-fp
+unidad_relacionada: 3
+title: "El equipo que se rompe antes del plazo"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "15-20 min"
+descripcion: "Faltan 72 horas para la entrega del proyecto y dos miembros del equipo han dejado de responder. Tienes que reaccionar."
+competencias_clave: [CPSAA, CE, CD]
+competencias_especificas: [RA1]
+estado: publicado
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Caso · Competencias transversales",
+    "titulo": "El equipo que se rompe antes del plazo",
+    "contexto": "Laia coordina un equipo de 4 personas en un proyecto del ciclo de Marketing y Publicidad. Llevan 3 semanas trabajando con un tablero Kanban. Faltan 72 horas para la entrega. Hoy descubre que dos compañeros (Tomás y Roc) llevan 4 días sin mover ninguna tarjeta. El Kanban muestra 6 tareas en 'En curso' asignadas a ellos que llevan paradas desde el lunes. El tutor ya ha dicho que la entrega tardía penaliza con un 20 % la nota del grupo.",
+    "kpi_inicial": { "avance_proyecto": 55, "cohesion_equipo": 6, "riesgo_entrega": 8 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisión 1 — Primera reacción",
+      "situacion": "Laia envía un mensaje al grupo de WhatsApp a las 19:00: '¿Cómo va lo vuestro? El tablero lleva desde el lunes sin cambios.' Tomás responde a las 23:00: 'Lo siento, he tenido problemas personales.' Roc no responde. Son las 9 de la mañana del día siguiente. ¿Qué hace Laia?",
+      "opciones": [
+        {
+          "label": "Escala directamente al tutor: 'Dos compañeros no están trabajando y vamos a perder nota por su culpa'",
+          "kpi_delta": { "cohesion_equipo": -3, "avance_proyecto": 0, "riesgo_entrega": 1 },
+          "feedback": "Escalar sin haber intentado resolver el problema internamente suele percibirse como una falta de iniciativa del coordinador. El tutor preguntará qué pasos dio Laia antes de avisar. Además, la narrativa de 'su culpa' en un equipo destruye la confianza aunque el proyecto se salve. El conflicto se gestiona internamente primero.",
+          "next": "n2"
+        },
+        {
+          "label": "Llama a Tomás para entender qué pasa y escribe a Roc por separado con un tono empático",
+          "kpi_delta": { "cohesion_equipo": 2, "avance_proyecto": 5, "riesgo_entrega": -2 },
+          "feedback": "Correcto. Separar a las personas del problema: el problema es el avance, la persona puede tener motivos reales. Una llamada de 10 minutos a Tomás puede revelar una situación que el grupo desconoce. Contactar a Roc por separado con tono empático ('¿estás bien? ¿necesitas ayuda con algo?') es más efectivo que una acusación pública en el grupo.",
+          "next": "n2"
+        },
+        {
+          "label": "Asume las tareas de ambos yo sola para no arriesgar la nota del grupo",
+          "kpi_delta": { "cohesion_equipo": -1, "avance_proyecto": 3, "riesgo_entrega": -1 },
+          "feedback": "Absorber el trabajo de otros puede salvar la entrega, pero refuerza un patrón disfuncional: los demás aprenden que Laia resolverá sus incumplimientos. Y en 72 horas, asumir 6 tareas extras mientras coordina las propias probablemente baje la calidad de todo. El equipo no aprende nada. La solución técnica (yo lo hago todo) es el fracaso del liderazgo.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisión 2 — La conversación con Tomás",
+      "situacion": "Tomás explica en la llamada que su padre ha sido hospitalizado esta semana y que no ha podido concentrarse. Tiene 3 tareas a medias. Roc, según Tomás, está bien pero 'le da igual el proyecto'. Laia tiene ahora 48 horas para redistribuir el trabajo. Debe decidir cómo actuar con Roc.",
+      "opciones": [
+        {
+          "label": "Mando a Roc un mensaje al grupo: 'Si no empiezas hoy, le decimos al tutor que no has contribuido'",
+          "kpi_delta": { "cohesion_equipo": -4, "riesgo_entrega": 2, "avance_proyecto": 0 },
+          "feedback": "El ultimátum público activa la defensiva y convierte el conflicto en una guerra. Aunque Roc esté desentendido, la presión pública raramente produce calidad: produce resentimiento y trabajo mínimo para quedar bien en superficie. La amenaza de escalar puede ser necesaria, pero primero hay que intentar la conversación directa y privada.",
+          "next": "n3"
+        },
+        {
+          "label": "Llamo a Roc en privado: le explico la situación de Tomás, le pido asumir una de sus tareas y le doy plazo concreto: mañana a mediodía",
+          "kpi_delta": { "cohesion_equipo": 1, "riesgo_entrega": -3, "avance_proyecto": 8 },
+          "feedback": "Jugada asertiva y eficaz. Le das contexto (la situación de Tomás hace que el equipo necesite de él), le pides algo concreto (una tarea) con un plazo claro (mañana a mediodía), y lo haces en privado, sin humillarle delante del grupo. Si Roc dice que sí, el proyecto avanza. Si dice que no, tienes una conversación documentada para escalar al tutor con base.",
+          "next": "n3"
+        },
+        {
+          "label": "Redistribuyo las tareas sin hablar con Roc: si no contribuye, que la nota refleje su aportación",
+          "kpi_delta": { "cohesion_equipo": -1, "riesgo_entrega": 0, "avance_proyecto": 4 },
+          "feedback": "Puede funcionar para la entrega, pero es una rendición del liderazgo. No hablar con Roc significa que el equipo llega a la entrega con un miembro que no sabe qué pasó o por qué. En un contexto profesional real, silenciar el conflicto en lugar de gestionarlo lo agrava. El liderazgo no es organizar el trabajo: es gestionar las personas que lo hacen.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisión 3 — Las últimas 24 horas",
+      "situacion": "Roc ha asumido dos tareas y las entrega a tiempo. Tomás consigue cerrar una de las tres suyas. Queda una tarea crítica sin hacer: la maquetación del informe final, 4 horas de trabajo. Laia ya lleva 10 horas hoy y tiene examen mañana por la mañana. Son las 22:00.",
+      "opciones": [
+        {
+          "label": "Me quedo hasta las 2:00 y hago la maquetación sola para no depender de nadie",
+          "kpi_delta": { "avance_proyecto": 10, "cohesion_equipo": 0, "riesgo_entrega": -2 },
+          "feedback": "Técnicamente entrega el proyecto, pero a qué precio: Laia llega al examen sin dormir, y el equipo aprende que la coordinadora siempre rescata la situación. La resiliencia individual puede ser una virtud; si se convierte en absorber el trabajo de todos, se llama mal reparto de cargas, no liderazgo. En un entorno profesional, un coordinador que no delega eficazmente no escala.",
+          "next": "final:fracaso_parcial"
+        },
+        {
+          "label": "Hablo con el equipo a las 22:00: el que pueda, que dedique 2 horas a la maquetación ahora; si no llegamos, entregamos lo que hay con una nota al tutor",
+          "kpi_delta": { "avance_proyecto": 8, "cohesion_equipo": 3, "riesgo_entrega": -3 },
+          "feedback": "Decisión madura. Compartir la carga de las últimas horas es lo que hace un equipo real. Si alguien más puede dedicar 2 horas, el proyecto sale completo. Si no, una nota al tutor explicando la situación de Tomás y el esfuerzo del equipo es más honesta que un informe maquetado al 60 % a las 3 de la mañana. El tutor valora la gestión del conflicto tanto como el resultado.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Entrego lo que hay y no explico nada: que la nota refleje el esfuerzo real",
+          "kpi_delta": { "avance_proyecto": 3, "cohesion_equipo": -1, "riesgo_entrega": 4 },
+          "feedback": "Entregar sin contexto y sin haber gestionado activamente el problema es la peor opción. El tutor no sabe que Tomás tuvo una emergencia familiar, ni que Laia coordinó la redistribución del trabajo en 48 horas. La nota penaliza la entrega incompleta sin reconocer el esfuerzo de gestión. Comunicar al tutor el contexto, aunque sea una nota breve, forma parte de la responsabilidad del coordinador.",
+          "next": "final:fracaso_parcial"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "El equipo entrega y aprende",
+      "resumen": "Gestionaste el conflicto con empatía y asertividad: entendiste el contexto de Tomás, activaste a Roc con una conversación directa y privada, y compartiste la carga final. El tutor valora positivamente la gestión. La nota no es perfecta, pero el equipo sabe cómo trabajar bajo presión.",
+      "lecciones_clave": [
+        "Separar a las personas del problema es la primera habilidad del trabajo en equipo bajo presión.",
+        "El liderazgo no es asumir el trabajo de todos: es conseguir que cada miembro aporte lo que puede en el momento concreto.",
+        "Comunicar el contexto al tutor o al responsable es parte de la gestión, no una excusa."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "El proyecto entregado, el equipo roto",
+      "resumen": "El proyecto se entregó, pero a costa de que Laia absorbiera demasiado y el equipo no resolvió el conflicto de fondo. En la siguiente reunión, Roc no aparece y Tomás se disculpa pero sin comprometerse a nada diferente.",
+      "lecciones_clave": [
+        "Absorber el trabajo de otros salva la entrega pero destruye la dinámica del equipo a medio plazo.",
+        "Un conflicto no gestionado explícitamente se repite: el equipo aprende que hay una red de seguridad personal."
+      ]
+    }
+  }
+}
+```

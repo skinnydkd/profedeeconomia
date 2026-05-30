@@ -1,0 +1,117 @@
+---
+asignatura: taller-eco-3eso
+unidad_relacionada: 1
+title: "La paga del sábado"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "10-15 min"
+descripcion: "Tienes 15 € de paga. Cada euro gastado es un euro que no va a otra cosa."
+competencias_clave: [CPSAA, CE, CD]
+competencias_especificas: [CE2]
+estado: publicado
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Caso · Escasez y decisión",
+    "titulo": "La paga del sábado",
+    "contexto": "Son las 11 de la mañana del sábado. Tienes 15 € en el bolsillo, que son todos tus ahorros de la semana. Hay dos planes posibles: ir al cine con tus amigos (entrada + palomitas = 10 €) o comprarte unas zapatillas de segunda mano que llevas semanas mirando (15 €). También te acuerdas de que la semana que viene hay una excursión optativa del instituto que cuesta 8 €.",
+    "kpi_inicial": { "dinero": 15, "satisfaccion": 7, "objetivos_cumplidos": 0 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisión 1 — ¿Cine, zapatillas o guardar?",
+      "situacion": "Tienes 15 € y tres opciones delante. El cine cuesta 10 €, las zapatillas 15 € y la excursión de la semana que viene 8 €. No te llega para todo.",
+      "opciones": [
+        {
+          "label": "Me voy al cine (10 €) y guardo 5 € para la excursión",
+          "kpi_delta": { "dinero": -10, "satisfaccion": 1, "objetivos_cumplidos": 0 },
+          "feedback": "Buena decisión parcial: disfrutas con tus amigos y guardas algo. Pero con 5 € no te llega para la excursión (8 €). Vas a necesitar más dinero antes de la semana que viene. El coste de oportunidad son las zapatillas que no te has comprado.",
+          "next": "n2"
+        },
+        {
+          "label": "Me compro las zapatillas (15 €) y me quedo sin nada",
+          "kpi_delta": { "dinero": -15, "satisfaccion": 2, "objetivos_cumplidos": 0 },
+          "feedback": "Has gastado todo de golpe. Las zapatillas están bien, pero ahora no puedes ir al cine ni a la excursión. Lección: gastar todo en una sola cosa sin pensar en lo que viene después es consumo impulsivo, aunque lo hayas querido mucho tiempo.",
+          "next": "n2"
+        },
+        {
+          "label": "Guardo los 15 € para la excursión y el cine de la semana que viene",
+          "kpi_delta": { "dinero": 0, "satisfaccion": -1, "objetivos_cumplidos": 1 },
+          "feedback": "Decisión conservadora pero inteligente. Renuncias a algo hoy para tener opciones mañana. El coste de oportunidad es el plan de hoy. Lección: ahorrar no es no gastar nunca — es elegir cuándo gastar.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisión 2 — Tu amigo te propone poner dinero entre varios",
+      "situacion": "Tu amigo propone que cada uno ponga 5 € para comprar entre cuatro una pizza grande y ver una serie en su casa. Sería más barato que el cine, pero pierdes el plan original. ¿Qué haces?",
+      "opciones": [
+        {
+          "label": "Acepto: 5 € por una tarde completa es buen precio",
+          "kpi_delta": { "dinero": -5, "satisfaccion": 2, "objetivos_cumplidos": 0 },
+          "feedback": "Has aplicado la comparación antes de gastar: mismo resultado (tarde con amigos) por menos dinero. Eso es consumo inteligente. Te quedan más euros para la excursión.",
+          "next": "n3"
+        },
+        {
+          "label": "No, prefiero el plan original aunque cueste más",
+          "kpi_delta": { "dinero": -10, "satisfaccion": 1, "objetivos_cumplidos": 0 },
+          "feedback": "No hay nada malo en querer lo que querías. Pero conviene saber que has elegido gastar el doble por el mismo resultado básico (tarde con amigos). Lección: comparar opciones antes de pagar casi siempre sale bien.",
+          "next": "n3"
+        },
+        {
+          "label": "Paso de los dos planes y me quedo en casa ahorrando",
+          "kpi_delta": { "dinero": 0, "satisfaccion": -2, "objetivos_cumplidos": 1 },
+          "feedback": "Máximo ahorro, pero el coste de oportunidad es real: una tarde sola/solo en casa cuando podrías haber estado con amigos. El ahorro tiene sentido cuando renuncias a algo de poco valor, no cuando renuncias a algo importante.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisión 3 — La excursión y el coste de oportunidad final",
+      "situacion": "Llega la semana de la excursión. Según lo que hayas gastado, puede que tengas o no tengas los 8 € que necesitas. Tu madre te ofrece darte un adelanto de la paga del mes que viene, pero tendrás que devolvérselo.",
+      "opciones": [
+        {
+          "label": "Pido el adelanto — me lo paso bien ahora y ya devolveré",
+          "kpi_delta": { "dinero": -8, "satisfaccion": 1, "objetivos_cumplidos": 0 },
+          "feedback": "Deuda a corto plazo: funciona si luego cumples. Pero si gastas el mes que viene como este mes, la próxima vez la deuda será mayor. Lección: pedir adelantos no es malo, pero hay que devolver. El crédito tiene coste de oportunidad futuro.",
+          "next": "final:fracaso_parcial"
+        },
+        {
+          "label": "Si tengo los 8 €, voy. Si no, me lo pierdo.",
+          "kpi_delta": { "dinero": -8, "satisfaccion": 2, "objetivos_cumplidos": 1 },
+          "feedback": "Decisión honesta: gastas lo que tienes y no te endeudas. Si habías guardado, vas. Si no, aprendes para la próxima. Lección clave: vivir dentro de tus ingresos es el hábito financiero más importante que existe.",
+          "next": "final:exito"
+        },
+        {
+          "label": "No voy a la excursión aunque tenga el dinero — lo guardo todo",
+          "kpi_delta": { "dinero": 0, "satisfaccion": -1, "objetivos_cumplidos": 0 },
+          "feedback": "Guardar dinero está bien, pero no tiene sentido renunciar a algo que valorabas y que te puedes permitir. El ahorro sirve para algo, no para acumular sin usarlo nunca. Lección: el objetivo del ahorro es poder gastar en lo que importa, no el ahorro por el ahorro.",
+          "next": "final:fracaso_parcial"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "Has gestionado bien tu paga",
+      "resumen": "Has ido a la excursión, has pasado tiempo con tus amigos y no has pedido dinero prestado. Con 15 € has tomado tres decisiones y has salido adelante.",
+      "lecciones_clave": [
+        "El coste de oportunidad es real: cada euro gastado en algo es un euro que no va a otra cosa.",
+        "Comparar opciones antes de pagar es la diferencia entre el consumo inteligente y el impulsivo.",
+        "Guardar para un objetivo concreto tiene más sentido que guardar sin saber para qué."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "Has llegado justo — o te has endeudado",
+      "resumen": "Has disfrutado de algunas cosas pero te has quedado sin dinero antes de tiempo o has pedido un adelanto que tendrás que devolver.",
+      "lecciones_clave": [
+        "Gastar todo de golpe sin pensar en lo que viene después es la trampa más común de la paga.",
+        "El crédito (aunque sea de tu madre) tiene coste: el mes que viene tendrás menos dinero libre."
+      ]
+    }
+  }
+}
+```

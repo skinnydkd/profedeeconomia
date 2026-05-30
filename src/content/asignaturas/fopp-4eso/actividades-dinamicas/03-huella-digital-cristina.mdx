@@ -1,0 +1,117 @@
+---
+asignatura: fopp-4eso
+unidad_relacionada: 3
+title: "La huella de Cristina"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "10-15 min"
+descripcion: "Una foto de hace tres años reaparece y complica la vida digital de Cristina. ¿Qué hace?"
+competencias_clave: [CPSAA, CC, CD]
+competencias_especificas: [CE2]
+estado: publicado
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Caso · Entorno digital y presión social",
+    "titulo": "La huella de Cristina",
+    "contexto": "Cristina, 16 años, tiene una presencia digital bastante normal: Instagram personal (privado), TikTok con algún vídeo de baile de cuando tenía 13, y un perfil de gaming con su alias. Un día su mejor amiga le reenvía una captura: alguien del instituto ha encontrado y compartido un vídeo de TikTok suyo de hace tres años, con comentarios burlones sobre cómo iba vestida. El vídeo, que era público porque entonces no sabía configurarlo, ahora está circulando por los grupos de clase.",
+    "kpi_inicial": { "autonomia_digital": 35, "bienestar": 40, "red_apoyo": 50 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisión 1 — La respuesta inmediata",
+      "situacion": "Cristina ve la captura y los comentarios. Siente una mezcla de vergüenza y rabia. Son las 21:00. Tiene opciones: responder en el grupo ahora mismo, ignorar y ver qué pasa, o hacer algo con el vídeo original antes de responder.",
+      "opciones": [
+        {
+          "label": "Respondo en el grupo ahora, enfadada, para dejar claro que no me parece bien",
+          "kpi_delta": { "autonomia_digital": -5, "bienestar": -10, "red_apoyo": -5 },
+          "feedback": "Responder desde la rabia a las 21:00 en un grupo grande casi nunca sale bien: lo que escribas quedará para siempre y puede usarse fuera de contexto. Las decisiones sobre la reputación digital son más irreversibles que las analógicas. Lección: pausa antes de publicar cuando estás emocionalmente activada.",
+          "next": "n2"
+        },
+        {
+          "label": "Primero elimino o hago privado el vídeo original, luego decido qué hacer",
+          "kpi_delta": { "autonomia_digital": 20, "bienestar": 10, "red_apoyo": 5 },
+          "feedback": "Acción prioritaria correcta: controlar lo que puedes controlar. Hacer privado o eliminar el vídeo original corta el flujo de nuevas visualizaciones. Las capturas que ya circulan no desaparecen, pero limitas la fuente. Lección: en crisis de reputación digital, primero controla la fuente.",
+          "next": "n2"
+        },
+        {
+          "label": "Ignoro completamente y espero a que se olvide",
+          "kpi_delta": { "autonomia_digital": -10, "bienestar": -15, "red_apoyo": 0 },
+          "feedback": "El contenido digital no «se olvida» solo. Sin acción, el vídeo puede seguir circulando días. El silencio puede interpretarse como que no te molesta, lo que puede animar a más comentarios. Ignorar no es gestión: es ausencia de gestión.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisión 2 — La presión del grupo de iguales",
+      "situacion": "Varios compañeros de clase le dicen que «tampoco es para tanto, era gracioso». Uno de ellos —que considera que son amigos— le dice en privado: «Relájate, solo es un vídeo». Cristina siente que si reacciona demasiado será «la pesada». Pero le ha dolido.",
+      "opciones": [
+        {
+          "label": "Me convenzo de que tienen razón y de que exagero. Lo dejo pasar",
+          "kpi_delta": { "autonomia_digital": -10, "bienestar": -20, "red_apoyo": -10 },
+          "feedback": "Minimizar tu propio malestar para encajar con el grupo es una forma de presión grupal internalizada. Si algo te ha dolido, ese sentimiento es información válida. Lección: que «todo el mundo» diga que algo no es para tanto no significa que no lo sea para ti.",
+          "next": "n3"
+        },
+        {
+          "label": "Le digo al amigo que me ha dolido y le explico por qué, sin montar un escándalo",
+          "kpi_delta": { "autonomia_digital": 10, "bienestar": 15, "red_apoyo": 20 },
+          "feedback": "Comunicar el impacto real de algo («me ha molestado porque...») sin acusar es asertividad. Es diferente de callarse y de explotar. Muchas veces los que minimizan no son malintencionados: simplemente no han pensado en el impacto. Tu explicación les da esa información.",
+          "next": "n3"
+        },
+        {
+          "label": "Hablo con mi mejor amiga —la que me avisó— para procesar cómo me siento antes de hacer nada más",
+          "kpi_delta": { "autonomia_digital": 5, "bienestar": 20, "red_apoyo": 25 },
+          "feedback": "Usar la red de apoyo real antes de tomar decisiones en caliente es una estrategia de regulación emocional eficaz. Tu mejor amiga ya mostró que está de tu lado al avisarte. Hablar con ella te ayuda a clarificar qué quieres hacer —no lo que la rabia o la vergüenza te dictan en el momento.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisión 3 — Revisar la huella digital",
+      "situacion": "Pasada la situación inmediata, Cristina se da cuenta de que no sabe bien qué tiene publicado en sus redes. Tiene cuentas en tres plataformas con configuraciones que no revisaba desde los 12 años. Podría hacer una auditoría de su identidad digital o dejarlo para después.",
+      "opciones": [
+        {
+          "label": "Lo dejo para después. Ya pasó, no tengo tiempo ahora",
+          "kpi_delta": { "autonomia_digital": -15, "bienestar": -5, "red_apoyo": 0 },
+          "feedback": "El «después» en seguridad digital casi nunca llega hasta que hay otro problema. La configuración de privacidad que no revisas es la que más riesgo tiene. Lección: la gestión reactiva de la identidad digital (actuar solo cuando hay un problema) es mucho más costosa que la preventiva.",
+          "next": "final:fracaso_parcial"
+        },
+        {
+          "label": "Dedico una tarde a revisar la configuración de privacidad de todas mis cuentas y elimino lo que ya no quiero que esté público",
+          "kpi_delta": { "autonomia_digital": 30, "bienestar": 20, "red_apoyo": 5 },
+          "feedback": "La auditoría de identidad digital (qué tengo publicado, quién puede verlo, qué datos comparto con cada app) es una de las acciones más eficaces de autonomía digital. Una tarde de revisión puede ahorrarte años de problemas. Muy buena decisión.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Propongo hacer la revisión con mi amiga: dos personas revisan mejor que una",
+          "kpi_delta": { "autonomia_digital": 25, "bienestar": 25, "red_apoyo": 20 },
+          "feedback": "Excelente: combinas la acción preventiva con el apoyo social. Revisar juntas la configuración de privacidad hace el proceso menos tedioso y más completo — otra persona puede señalar cosas que tú pasas por alto. Además, refuerzas la relación con tu red de apoyo.",
+          "next": "final:exito"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "Cristina controla su identidad digital",
+      "resumen": "Ha gestionado la crisis con calma, ha comunicado su malestar de forma asertiva y ha convertido el incidente en una oportunidad para auditar y mejorar su presencia digital.",
+      "lecciones_clave": [
+        "En una crisis de reputación digital, lo primero es controlar la fuente (el contenido original) antes de reaccionar en el grupo.",
+        "La presión de grupo que minimiza tu malestar no lo hace desaparecer. Tus emociones son información válida.",
+        "La gestión preventiva de la identidad digital (revisar qué tienes publicado antes de que haya problema) vale mucho más que la reactiva."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "Cristina esquiva el incidente pero no aprende",
+      "resumen": "Ha sobrevivido a la situación, pero sin revisión de su huella digital ni trabajo sobre la presión social, el mismo ciclo puede repetirse.",
+      "lecciones_clave": [
+        "Ignorar un problema de identidad digital no lo resuelve: lo aplaza con intereses.",
+        "La presión de iguales que te dice 'no es para tanto' puede ser bienintencionada pero equivocada."
+      ]
+    }
+  }
+}
+```

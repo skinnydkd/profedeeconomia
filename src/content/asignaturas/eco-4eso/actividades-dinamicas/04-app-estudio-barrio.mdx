@@ -1,0 +1,117 @@
+---
+asignatura: eco-4eso
+unidad_relacionada: 4
+title: "Detectas una oportunidad en tu barrio"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "10-15 min"
+descripcion: "Una app para organizar grupos de estudio. ¿La oportunidad es real o solo parece serlo?"
+competencias_clave: [CPSAA, CE, CD]
+competencias_especificas: [CE3]
+estado: publicado
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Caso · Entorno y oportunidades",
+    "titulo": "Detectas una oportunidad en tu barrio",
+    "contexto": "En el grupo de WhatsApp de tu clase de 4.º de ESO hay un caos cada vez que alguien propone quedar a estudiar: nadie sabe dónde, a qué hora, quién lleva los apuntes de quién. Tú llevas semanas pensando que podría haber una app sencilla para esto. Has hablado con cinco amigos y todos dicen que «la usarían». Pero antes de ponerte a buscar cómo hacerla, hay que saber si la oportunidad es real.",
+    "kpi_inicial": { "usuarios_potenciales": 5, "validaciones_reales": 0, "tiempo_investigacion_horas": 0 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisión 1 — ¿Cómo validas si la oportunidad es real?",
+      "situacion": "Tienes tres opciones para investigar si la idea tiene sentido antes de invertir tiempo en hacerla: preguntar en Instagram con una encuesta rápida, observar cómo se organizan los grupos de estudio durante una semana sin decirles que estás mirando, o buscar si ya existen apps parecidas en el mercado.",
+      "opciones": [
+        {
+          "label": "Encuesta en Instagram: 48 horas y tengo datos",
+          "kpi_delta": { "usuarios_potenciales": 80, "validaciones_reales": 10, "tiempo_investigacion_horas": 2 },
+          "feedback": "Obtienes respuestas rápidas, pero el 70 % de los que votan «sí la usaría» en una encuesta no la usarán cuando llegue el momento. Las encuestas miden intención, no comportamiento. Lección: el PESTEL y el análisis del entorno requieren datos de comportamiento real, no solo de opinión.",
+          "next": "n2"
+        },
+        {
+          "label": "Observo una semana sin interferir: veo cómo se organizan de verdad",
+          "kpi_delta": { "usuarios_potenciales": 8, "validaciones_reales": 8, "tiempo_investigacion_horas": 10 },
+          "feedback": "La observación etnográfica te da información real: los grupos de estudio se forman bien, pero el problema es otro —la gente pierde el hilo de qué páginas va a tocar cada uno en el examen. El problema que querías resolver no es el principal. Lección: observar antes de diseñar soluciones es la base de detectar oportunidades reales, no las que imaginamos.",
+          "next": "n2"
+        },
+        {
+          "label": "Busco apps similares: si ya existen, igual no tiene sentido hacerla",
+          "kpi_delta": { "usuarios_potenciales": 20, "validaciones_reales": 5, "tiempo_investigacion_horas": 3 },
+          "feedback": "Encuentras tres apps de organización de grupos de estudio, pero ninguna está pensada para institutos españoles. Tienen interfaz en inglés y asumen que los usuarios tienen cuenta de correo corporativo. Hay un hueco de mercado real para una solución adaptada. Lección: que algo ya exista no elimina la oportunidad —puede precisarla.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisión 2 — El mapa de empatía: ¿quién es el usuario real?",
+      "situacion": "Has decidido hacer el mapa de empatía de tu usuario. Tienes que elegir a quién entrevistar primero: a tus amigos que ya te dijeron que usarían la app, a estudiantes de otro instituto que no conoces de nada, o al profesor de Economía que conoce bien cómo estudian sus alumnos.",
+      "opciones": [
+        {
+          "label": "Entrevisto a mis amigos: ya sé que tienen el problema",
+          "kpi_delta": { "validaciones_reales": 3, "tiempo_investigacion_horas": 1 },
+          "feedback": "Tus amigos te dicen lo que quieres escuchar. El mapa de empatía que construyes con ellos confirma tu hipótesis inicial, pero no la cuestiona. Más tarde descubres que dos de tus tres amigos «con el problema» en realidad estudian solos casi siempre. Lección: la proximidad emocional al entrevistado contamina la información que recibes.",
+          "next": "n3"
+        },
+        {
+          "label": "Entrevisto a estudiantes de otro instituto que no me conocen",
+          "kpi_delta": { "validaciones_reales": 8, "tiempo_investigacion_horas": 4 },
+          "feedback": "Los desconocidos son más honestos. Descubres que el problema existe pero varía mucho según el curso: en 4.º de ESO es real, en 1.º de Bachillerato la presión del examen lo intensifica todavía más. Tienes un usuario mejor definido de lo que pensabas. Lección: cuanto más lejos del «sospechoso habitual», más información nueva obtienes con el mapa de empatía.",
+          "next": "n3"
+        },
+        {
+          "label": "Entrevisto al profe de Economía: tiene una perspectiva diferente",
+          "kpi_delta": { "validaciones_reales": 5, "tiempo_investigacion_horas": 2 },
+          "feedback": "El profe te da una perspectiva que no habías considerado: los grupos de estudio se deshacen porque no se asignan roles claros, no por falta de herramienta. El problema es de gestión, no de tecnología. Esto cambia la dirección de tu solución. Lección: los stakeholders indirectos (como profesores) tienen información del entorno que los usuarios directos no pueden darte.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisión 3 — ¿Cómo aprovechas la tendencia de la digitalización?",
+      "situacion": "Has confirmado que hay una oportunidad. Ahora tienes que decidir el formato: una app nativa (requiere programación, meses de desarrollo), un bot de Telegram (puedes hacerlo tú en un fin de semana con tutoriales), o una plantilla de Notion pública (la más rápida pero la menos «tecnológica».",
+      "opciones": [
+        {
+          "label": "App nativa: si voy a hacer algo, que sea profesional desde el principio",
+          "kpi_delta": { "usuarios_potenciales": 200, "validaciones_reales": 0, "tiempo_investigacion_horas": -80 },
+          "feedback": "Dedicas dos meses al desarrollo y cuando tienes algo funcional, tu clase ya se ha acostumbrado a organizarse con un canal de Discord. Llegaste tarde. Lección: la digitalización favorece a quien llega primero con algo funcional, no a quien llega después con algo perfecto. Una app nativa puede ser el objetivo final, pero no el primer paso.",
+          "next": "final:fracaso_parcial"
+        },
+        {
+          "label": "Bot de Telegram: lo hago este fin de semana y lo pruebo el lunes",
+          "kpi_delta": { "usuarios_potenciales": 40, "validaciones_reales": 15, "tiempo_investigacion_horas": -8 },
+          "feedback": "El bot funciona. No es bonito, pero hace lo que prometía: asigna páginas, manda recordatorios y registra quién lleva qué. En dos semanas lo usan cuatro grupos de tres institutos distintos. Aprendes más en ese mes que en un año de planificación. Lección: las tendencias digitales se aprovechan con velocidad y aprendizaje rápido, no con planificación perfecta.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Plantilla de Notion: la comparto gratis y veo si la gente la usa",
+          "kpi_delta": { "usuarios_potenciales": 120, "validaciones_reales": 12, "tiempo_investigacion_horas": -3 },
+          "feedback": "La plantilla se descarga 120 veces en una semana. El 10 % te escribe pidiendo mejoras concretas. Tienes una lista de funcionalidades reales que los usuarios quieren antes de invertir en desarrollo. Lección: compartir algo gratuito imperfecto genera información de mercado que ninguna encuesta puede darte.",
+          "next": "final:exito"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "La oportunidad era real y la has aprovechado",
+      "resumen": "Has pasado de una intuición a una solución usada por estudiantes reales. La clave ha sido investigar antes de construir y actuar rápido con una versión imperfecta.",
+      "lecciones_clave": [
+        "Observar comportamientos reales vale más que encuestar intenciones.",
+        "Las oportunidades se confirman hablando con desconocidos, no solo con amigos.",
+        "Las tendencias digitales favorecen la velocidad: primero funcional, después perfecto."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "La oportunidad existía, pero llegaste tarde",
+      "resumen": "La idea era buena pero la ejecución fue demasiado lenta. Mientras planificabas la solución perfecta, el entorno cambió y el hueco se cerró.",
+      "lecciones_clave": [
+        "Planificar demasiado antes de actuar tiene el mismo coste que no planificar.",
+        "Una solución buena a destiempo no sirve igual que una solución mínima a tiempo."
+      ]
+    }
+  }
+}
+```

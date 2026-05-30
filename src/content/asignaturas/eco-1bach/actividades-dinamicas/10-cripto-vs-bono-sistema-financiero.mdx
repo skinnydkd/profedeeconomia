@@ -1,0 +1,117 @@
+---
+asignatura: eco-1bach
+unidad_relacionada: 10
+title: "Tu primo quiere invertir en cripto"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "15-20 min"
+descripcion: "Cripto, bonos del Estado, fondo indexado. Sistema financiero real vs alternativo: ayuda a tu primo a no perderlo todo."
+competencias_clave: [CPSAA, CE, CD]
+competencias_especificas: [CE2]
+estado: publicado
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Caso · Sistema financiero y dinero",
+    "titulo": "Tu primo quiere invertir en cripto",
+    "contexto": "Tu primo Adrián tiene 26 años y ha ahorrado 8.000 € trabajando en un almacén de logística en Zaragoza. Ha visto que un amigo «ganó mucho» con Bitcoin en 2020-2021. Adrián quiere invertir los 8.000 € en criptomonedas porque dice que «el dinero en el banco no sirve de nada» y que «los bancos centrales están destruyendo el valor del dinero». Tú acabas de dar Economía en bachillerato. Te pide consejo.",
+    "kpi_inicial": { "ahorro_adrián": 8000, "riesgo_cartera": 2, "comprension_sistema": 3 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisión 1 — ¿Qué función cumple el dinero que Adrián tiene en el banco?",
+      "situacion": "Adrián dice que el dinero en el banco «no sirve de nada». Antes de discutir dónde invertir, tienes que entender qué es el dinero que está en esa cuenta y qué funciones cumple.",
+      "opciones": [
+        {
+          "label": "Tiene razón: si el banco paga 0 % y la inflación es del 3 %, el dinero pierde valor",
+          "kpi_delta": { "ahorro_adrián": 0, "riesgo_cartera": 0, "comprension_sistema": 2 },
+          "feedback": "Parcialmente correcto. El dinero en una cuenta corriente (M1) cumple las tres funciones del dinero: medio de pago, unidad de cuenta y depósito de valor. La tercera función —depósito de valor— falla cuando la inflación supera la rentabilidad. Con IPC del 3,2 % y cuenta corriente al 0 %, el poder adquisitivo de los 8.000 € pierde 256 € anuales. Pero eso no significa que la solución sea cripto: significa que conviene una cuenta remunerada o una inversión de bajo riesgo. Lección: el problema real es la rentabilidad real negativa, no el dinero per se.",
+          "next": "n2"
+        },
+        {
+          "label": "No tiene razón: el dinero bancario es seguro y está garantizado por el FGD hasta 100.000 €",
+          "kpi_delta": { "ahorro_adrián": 0, "riesgo_cartera": 0, "comprension_sistema": 1 },
+          "feedback": "El Fondo de Garantía de Depósitos garantiza hasta 100.000 € por titular y entidad en caso de quiebra bancaria. Los 8.000 € de Adrián están protegidos. Pero eso no resuelve el problema de la rentabilidad real negativa: seguro y rentable no son la misma cosa. El dinero en cuenta corriente es seguro pero costoso en términos de poder adquisitivo perdido. Lección: las tres dimensiones del dinero (medio de pago, unidad de cuenta, depósito de valor) no siempre se dan juntas a la vez — en inflación alta, la función de depósito de valor flaquea.",
+          "next": "n2"
+        },
+        {
+          "label": "El problema es elegir el producto financiero adecuado para cada función",
+          "kpi_delta": { "ahorro_adrián": 0, "riesgo_cartera": 0, "comprension_sistema": 3 },
+          "feedback": "Respuesta correcta y útil. El dinero del banco sirve para el día a día (medio de pago, M1). Para el ahorro a corto plazo existe la cuenta remunerada o el depósito (M2). Para el ahorro a largo plazo existen bonos, fondos y otros instrumentos. Cada producto tiene un propósito: liquidez, seguridad, rentabilidad. Mezclar los objetivos (usar la cuenta corriente para el ahorro a largo plazo) genera el problema que Adrián percibe. Lección: los agregados monetarios M0-M3 reflejan distintos grados de liquidez y rentabilidad — cada uno sirve para un objetivo diferente.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisión 2 — ¿Las criptomonedas cumplen las funciones del dinero?",
+      "situacion": "Adrián insiste: «Bitcoin es el nuevo oro, protege de la inflación». Tienes que ayudarle a evaluar si Bitcoin cumple las tres funciones del dinero y si el argumento anti-banco central tiene base económica.",
+      "opciones": [
+        {
+          "label": "Bitcoin sí protege de la inflación: su oferta está limitada a 21 millones de unidades",
+          "kpi_delta": { "ahorro_adrián": 0, "riesgo_cartera": 3, "comprension_sistema": 1 },
+          "feedback": "El argumento es parcialmente correcto en teoría pero falla en la práctica. Entre enero y junio de 2022, con inflación europea del 8,6 %, Bitcoin cayó un 65 %. Si fuera cobertura de inflación, habría subido. La volatilidad de Bitcoin (puede caer 70 % en 12 meses) destruye mucho más valor del que la inflación erosiona. Una cobertura de inflación debe tener correlación negativa con los precios al consumo: Bitcoin no la tiene sistemáticamente. Lección: el argumento de la oferta limitada confunde escasez con estabilidad de valor.",
+          "next": "n3"
+        },
+        {
+          "label": "Bitcoin no cumple la función de unidad de cuenta: los precios no se fijan en BTC",
+          "kpi_delta": { "ahorro_adrián": 0, "riesgo_cartera": 0, "comprension_sistema": 3 },
+          "feedback": "Análisis económico correcto. Para que algo sea dinero pleno tiene que cumplir las tres funciones. Bitcoin cumple parcialmente la de medio de pago (en algunos comercios) pero falla como unidad de cuenta (ningún supermercado pone sus precios en BTC) y como depósito de valor estable (su precio puede multiplicarse o dividirse por 4 en meses). La CNMV lo clasifica como criptoactivo especulativo, no como dinero ni como activo financiero regulado. Lección: la diferencia entre dinero y criptoactivo especulativo no es ideológica: es funcional.",
+          "next": "n3"
+        },
+        {
+          "label": "Los bancos centrales sí destruyen valor: el BCE ha inflado el balance y eso genera inflación",
+          "kpi_delta": { "ahorro_adrián": 0, "riesgo_cartera": 1, "comprension_sistema": 2 },
+          "feedback": "El argumento tiene algo de base: la expansión cuantitativa (QE) del BCE entre 2014 y 2022 aumentó la base monetaria, y parte de la inflación 2021-2023 tiene relación con esa política. Pero la mayor parte de la inflación 2022-2023 fue de oferta (energía, cadenas de suministro), no monetaria. Y el BCE ha demostrado capacidad de control: subió tipos del 0 al 4 % en 14 meses y la inflación española bajó del 10,8 % al 2,8 %. Lección: la política monetaria del BCE tiene efectos reales, pero la narrativa cripto simplifica en exceso — el sistema de bancos centrales no está «destruyendo el dinero».",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisión 3 — ¿Qué haces con los 8.000 € de Adrián?",
+      "situacion": "Adrián escucha tus argumentos pero sigue convencido de que algo tiene que hacer con el dinero. Le propones tres alternativas concretas para los 8.000 €, considerando que no tiene fondo de emergencia, tiene 26 años y puede necesitar el dinero en 2-3 años para comprarse una moto.",
+      "opciones": [
+        {
+          "label": "Todo en cripto: si sube un 50 %, gana 4.000 € y se compra la moto y más",
+          "kpi_delta": { "ahorro_adrián": -3000, "riesgo_cartera": 5, "comprension_sistema": 0 },
+          "feedback": "Análisis de riesgo concreto. Si Adrián necesita el dinero en 2-3 años y lo pone todo en cripto: en escenario alcista (P60), gana 4.000 €. En escenario bajista (P40, basado en la volatilidad histórica), pierde 5.000 €. La pérdida esperada ponderada es mayor que la ganancia esperada, porque las caídas de cripto son más probables a corto plazo de lo que la narrativa «solo sube» sugiere. Además, sin fondo de emergencia, si tiene un imprevisto tiene que vender cripto en el peor momento. Lección: el riesgo no es solo la magnitud de la caída — es la probabilidad ponderada de todas las trayectorias posibles.",
+          "next": "final:fracaso_parcial"
+        },
+        {
+          "label": "3.000 € en fondo de emergencia (cuenta remunerada) + 5.000 € en bono del Estado a 2 años",
+          "kpi_delta": { "ahorro_adrián": 200, "riesgo_cartera": 1, "comprension_sistema": 3 },
+          "feedback": "Estructura correcta para el perfil de Adrián. El fondo de emergencia cubre imprevistos (sin necesidad de vender nada). El bono del Estado español a 2 años paga en mayo de 2026 en torno al 2,4 % TAE, con riesgo mínimo y garantía estatal. No es la inversión más rentable pero encaja con el horizonte de 2-3 años. Lección: el horizonte temporal es el primer criterio de selección de producto financiero — el dinero que puede necesitarse en 2 años no debe invertirse en activos volátiles.",
+          "next": "final:exito"
+        },
+        {
+          "label": "3.000 € en fondo de emergencia + 5.000 € en fondo indexado MSCI World con horizonte 10+ años",
+          "kpi_delta": { "ahorro_adrián": 500, "riesgo_cartera": 2, "comprension_sistema": 3 },
+          "feedback": "Correcta para el largo plazo, pero Adrián dijo que necesita el dinero en 2-3 años. El fondo indexado es la mejor opción para horizontes de 10+ años, pero con 2-3 años de horizonte, una caída de mercado del 30 % (perfectamente posible en cualquier año) podría obligarle a vender con pérdidas justo cuando necesite el dinero. La duración del horizonte de inversión debe coincidir con el plazo del instrumento. Lección: la liquidez y el horizonte temporal del inversor son los dos primeros filtros antes de elegir cualquier producto financiero.",
+          "next": "final:exito"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "Adrián invierte con criterio",
+      "resumen": "Has explicado a Adrián la diferencia entre dinero, activos financieros y criptoactivos especulativos. Ha estructurado sus ahorros según su horizonte temporal y su necesidad de liquidez. Los 8.000 € están protegidos y con rentabilidad real positiva.",
+      "lecciones_clave": [
+        "El dinero cumple tres funciones: medio de pago, unidad de cuenta y depósito de valor. Las criptomonedas fallan en las dos últimas de manera sistemática.",
+        "El horizonte temporal del inversor es el primer criterio de selección de producto: el dinero que se puede necesitar en 2 años no va a la bolsa.",
+        "Rentabilidad y riesgo siempre van de la mano. Ningún producto ofrece alta rentabilidad sin riesgo proporcional — si parece que sí, hay algo que no se está viendo."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "Adrián apuesta y pierde",
+      "resumen": "Ha invertido todo en cripto confiando en la narrativa alcista. En el corto plazo puede haber ganado o perdido, pero sin fondo de emergencia y con horizonte de 2-3 años, el riesgo tomado no era compatible con sus necesidades reales.",
+      "lecciones_clave": [
+        "El riesgo de un activo no se mide solo por la magnitud de la caída, sino por la probabilidad ponderada de todos los escenarios posibles.",
+        "Sin fondo de emergencia, cualquier inversión volátil puede obligar a vender en el peor momento."
+      ]
+    }
+  }
+}
+```

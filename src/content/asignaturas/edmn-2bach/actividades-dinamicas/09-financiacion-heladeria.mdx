@@ -1,0 +1,117 @@
+---
+asignatura: edmn-2bach
+unidad_relacionada: 9
+title: "Segunda heladería: ¿con qué dinero?"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "15-20 min"
+descripcion: "Una heladería artesana de Granada quiere abrir un segundo local. VAN, fuentes de financiación y riesgo de liquidez: decide antes de firmar."
+competencias_clave: [CPSAA, CE, CD]
+competencias_especificas: [CE3]
+estado: publicado
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Caso · Función financiera",
+    "titulo": "Segunda heladería: ¿con qué dinero?",
+    "contexto": "Helados Sacromonte lleva 8 años en el centro de Granada y tiene fama de los mejores helados de la ciudad. Los propietarios, Rosa y Tomás, quieren abrir un segundo local en el barrio del Realejo. El local cuesta 45.000 € de reforma y equipamiento. Esperan recuperar la inversión en 4 años. Tienen 15.000 € ahorrados. Les faltan 30.000 €.",
+    "kpi_inicial": { "caja": 15000, "clientes": 190, "reputacion": 9 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisión 1 — ¿Cómo financias los 30.000 € que te faltan?",
+      "situacion": "Rosa y Tomás necesitan 30.000 € adicionales. Tienen tres opciones: (a) préstamo bancario a 5 años al 6 % TAE; (b) un inversor privado (business angel) que pone 30.000 € a cambio del 25 % de la nueva sociedad; (c) crowdfunding en una plataforma de financiación participativa con recompensas (botes de helado, tarjetas VIP).",
+      "opciones": [
+        {
+          "label": "Préstamo bancario: financiación ajena, mantenemos el 100 % de la empresa",
+          "kpi_delta": { "caja": 30000, "clientes": 0, "reputacion": 0 },
+          "feedback": "Financiación ajena con coste explícito: pagarás intereses pero conservas la propiedad completa. Con 30.000 € a 5 años al 6 % TAE, la cuota mensual es unos 580 €. El banco pedirá garantías (probablemente el local del primer punto de venta como aval). Lección: la financiación ajena tiene coste financiero; la propia tiene coste de oportunidad. Ambas cuestan.",
+          "next": "n2"
+        },
+        {
+          "label": "Business angel: dinero sin devolver pero perdemos el 25 % de participación",
+          "kpi_delta": { "caja": 30000, "clientes": 10, "reputacion": 2 },
+          "feedback": "Financiación propia externa: el inversor asume el riesgo a cambio de participación en los beneficios futuros. No hay cuota mensual, lo que reduce la presión sobre la caja. El riesgo es que el business angel puede tener voz en las decisiones si los estatutos lo permiten. Lección: cuando cedes participación, no solo cedes porcentaje de beneficio, también cedes control.",
+          "next": "n2"
+        },
+        {
+          "label": "Crowdfunding con recompensas: validamos la demanda y nos financiamos a la vez",
+          "kpi_delta": { "caja": 18000, "clientes": 45, "reputacion": 4 },
+          "feedback": "El crowdfunding de recompensas no es financiación tradicional: los participantes no son socios ni acreedores, sino clientes anticipados. Recaudáis 18.000 € en 30 días (no los 30.000 previstos) pero ganáis 45 clientes VIP del nuevo local antes de abrir. El déficit de 12.000 € lo cubriréis con un préstamo bancario menor. Lección: el crowdfunding también es una herramienta de marketing y validación de demanda.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisión 2 — Evaluar la inversión con VAN",
+      "situacion": "Con la financiación resuelta, hay que decidir si el proyecto vale la pena. Las proyecciones dicen: inversión inicial 45.000 €, flujos de caja anuales esperados: Año 1: 8.000 €, Año 2: 12.000 €, Año 3: 15.000 €, Año 4: 15.000 €. El coste de oportunidad del dinero es del 8 %.",
+      "opciones": [
+        {
+          "label": "Calculo el VAN para decidir si el proyecto es viable",
+          "kpi_delta": { "caja": 0, "clientes": 5, "reputacion": 2 },
+          "feedback": "VAN = -45.000 + 8.000/1,08 + 12.000/1,08^2 + 15.000/1,08^3 + 15.000/1,08^4 = -45.000 + 7.407 + 10.288 + 11.907 + 11.025 = -4.373 €. VAN negativo: el proyecto NO crea valor a esa tasa de descuento. No significa que sea imposible, sino que o bien los flujos previstos son optimistas, o bien el coste de oportunidad es demasiado alto, o bien hay que negociar mejor el precio de la reforma.",
+          "next": "n3"
+        },
+        {
+          "label": "Calculamos el PayBack: en 4 años recuperamos la inversión, eso es suficiente",
+          "kpi_delta": { "caja": 0, "clientes": 0, "reputacion": 0 },
+          "feedback": "El Plazo de Recuperación (PayBack) dice cuándo recuperas el dinero pero ignora el valor temporal del dinero: 15.000 € dentro de 4 años valen menos que hoy. Un proyecto con PayBack de 4 años puede tener VAN negativo (como este). Lección: el PayBack es fácil de calcular pero incompleto; el VAN es más complejo pero más fiable.",
+          "next": "n3"
+        },
+        {
+          "label": "No calculo nada: el primer local funciona bien, el segundo también funcionará",
+          "kpi_delta": { "caja": -5000, "clientes": -10, "reputacion": -2 },
+          "feedback": "El éxito de un primer negocio no garantiza el éxito del segundo: el barrio, el local, la competencia y los costes son distintos. Invertir 45.000 € sin evaluar financieramente el proyecto es el tipo de decisión que arruina a empresas rentables. Lección: la intuición empresarial es valiosa, pero no sustituye al análisis financiero en decisiones de inversión.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisión 3 — Liquidez durante el primer año",
+      "situacion": "Habéis decidido seguir adelante con el segundo local. El Año 1 se espera un flujo de caja de solo 8.000 € (la heladería tarda en coger clientela) pero tenéis que pagar la cuota del préstamo de 580 €/mes = 6.960 € al año. Quedáis con muy poca holgura de caja.",
+      "opciones": [
+        {
+          "label": "Negocio un período de carencia de 6 meses con el banco",
+          "kpi_delta": { "caja": 3480, "clientes": 0, "reputacion": 1 },
+          "feedback": "El período de carencia permite no pagar capital (o ni capital ni intereses) durante los primeros meses, que es cuando el negocio nuevo no ha generado suficientes ingresos. Es un instrumento habitual en préstamos para inversión empresarial. Reduce la presión sobre la caja en la fase crítica de lanzamiento. Lección: negociar las condiciones del préstamo antes de firmarlo es tan importante como el tipo de interés.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Mantengo el préstamo como está y ajusto gastos del primer local si hace falta",
+          "kpi_delta": { "caja": -3000, "clientes": -15, "reputacion": -2 },
+          "feedback": "Financiar el segundo local recortando el primero es una trampa de liquidez clásica: dañas el negocio que funciona para sostener el que todavía no funciona. Si el primer local baja su calidad o servicio, perdes clientes fieles que son tu mayor activo. Lección: rentabilidad y liquidez son distintas; puedes tener un negocio rentable que quiebra por falta de tesorería.",
+          "next": "final:fracaso_parcial"
+        },
+        {
+          "label": "Busco un socio capitalista para el segundo local que aporte caja extra",
+          "kpi_delta": { "caja": 10000, "clientes": 20, "reputacion": 1 },
+          "feedback": "Separar la estructura financiera de cada local tiene sentido si el segundo tiene un socio diferente. El socio capitalista aporta liquidez sin tocar el primer negocio. El riesgo es que ahora hay más personas con intereses en juego y las decisiones son más complejas. Lección: la estructura financiera de cada inversión se puede diseñar de forma independiente.",
+          "next": "final:exito"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "Sacromonte abre en el Realejo",
+      "resumen": "La segunda heladería abre con financiación saneada y sin tensión de caja el primer año. Rosa y Tomás han aprendido que evaluar una inversión no es solo calcular si recuperas el dinero, sino si el proyecto crea valor descontando el tiempo.",
+      "lecciones_clave": [
+        "El VAN negativo no siempre significa que el proyecto sea malo: puede significar que los flujos previstos son optimistas o que hay que mejorar las condiciones de financiación.",
+        "La liquidez y la rentabilidad son dos cosas distintas: un negocio rentable puede quebrar si no gestiona bien la tesorería en los primeros meses.",
+        "Negociar las condiciones del préstamo (carencia, plazo, tipo) es parte de la gestión financiera, no solo firmarlo."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "El segundo local arrastra al primero",
+      "resumen": "La segunda heladería abre pero la tensión de caja daña al primer local. Rosa y Tomás consiguen sobrevivir pero con ambos negocios por debajo de su potencial.",
+      "lecciones_clave": [
+        "Financiar una inversión nueva recortando el negocio que funciona puede destruir más valor del que crea.",
+        "El PayBack sin VAN da una imagen incompleta de la rentabilidad de una inversión."
+      ]
+    }
+  }
+}
+```

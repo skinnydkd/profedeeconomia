@@ -1,0 +1,117 @@
+---
+asignatura: eco-1bach
+unidad_relacionada: 9
+title: "Negocia tu primer contrato"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "15-20 min"
+descripcion: "Primera oferta de trabajo: SMI, convenio, brecha salarial. Negocia sabiendo qué pesa en el mercado laboral."
+competencias_clave: [CPSAA, CE, CD]
+competencias_especificas: [CE2]
+estado: publicado
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Caso · Mercado de trabajo",
+    "titulo": "Negocia tu primer contrato",
+    "contexto": "Eres Alba, 24 años, recién graduada en Administración y Dirección de Empresas por la Universitat de les Illes Balears. Has tenido tres entrevistas y has recibido una oferta de trabajo como técnica de administración en una empresa de gestión turística de Palma. La empresa te ofrece 18.000 € brutos anuales en 14 pagas. El convenio colectivo del sector de hostelería y turismo en Baleares fija el salario mínimo para tu categoría en 17.200 € anuales. El SMI 2026 está en 17.094 € brutos anuales. Una compañera que hace el mismo trabajo tiene 22.000 €.",
+    "kpi_inicial": { "salario_oferta": 18000, "satisfaccion_oferta": 5, "posicion_negociacion": 5 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisión 1 — ¿Cuánto vale tu trabajo en el mercado?",
+      "situacion": "Antes de negociar, necesitas información sobre el mercado de trabajo. Tienes tres fuentes disponibles: el convenio colectivo del sector, las encuestas salariales del INE y de webs especializadas (Glassdoor, InfoJobs), y lo que sabes de la compañera que cobra 22.000 €.",
+      "opciones": [
+        {
+          "label": "El convenio fija 17.200 €: si me ofrecen 18.000 €, ya estoy por encima",
+          "kpi_delta": { "salario_oferta": 0, "satisfaccion_oferta": -1, "posicion_negociacion": -2 },
+          "feedback": "El convenio marca el suelo, no el techo. El SMI y el convenio son los mínimos legales que ninguna empresa puede bajar; no son el salario de mercado para perfiles como el tuyo. Con ADE y conocimientos de inglés y Excel, el salario de mercado para técnicas de administración en Baleares está entre 20.000 y 24.000 € según InfoJobs (cierre 2025). Aceptar el mínimo del convenio porque «ya supera el mínimo» es negociar por debajo de lo que el mercado pagaría. Lección: el SMI y el convenio no son el precio de equilibrio — son el precio mínimo legal.",
+          "next": "n2"
+        },
+        {
+          "label": "Busco en InfoJobs y Glassdoor cuánto cobran perfiles similares en Baleares",
+          "kpi_delta": { "salario_oferta": 2000, "satisfaccion_oferta": 2, "posicion_negociacion": 3 },
+          "feedback": "Recabar información del mercado es la base de cualquier negociación salarial. Descubres que la mediana para tu perfil y ubicación está en 21.000-22.000 €. Con esa información, la oferta de 18.000 € está claramente por debajo de mercado. La información asimétrica juega en tu contra si la empresa sabe más sobre lo que paga el mercado que tú. Reduciéndola, mejoras tu posición. Lección: en el mercado laboral, la información es poder de negociación.",
+          "next": "n2"
+        },
+        {
+          "label": "Pregunto directamente a la compañera cuánto cobra y por qué",
+          "kpi_delta": { "salario_oferta": 3000, "satisfaccion_oferta": 3, "posicion_negociacion": 4 },
+          "feedback": "La compañera cobra 22.000 € con la misma categoría. Si hay diferencia salarial sin justificación objetiva (antigüedad, responsabilidades adicionales, negociación inicial), puede haber un caso de brecha salarial de género — Alba es mujer recién llegada, la compañera podría ser de cualquier género. El artículo 28 del Estatuto de los Trabajadores obliga a «igual retribución por trabajo de igual valor». Esta información refuerza la posición de negociación. Lección: la transparencia salarial es un derecho legal en España y una herramienta para reducir la brecha de género en el mercado laboral.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisión 2 — ¿Cómo negocias?",
+      "situacion": "Con la información del mercado, decides que la oferta está por debajo de lo razonable. La directora de RRHH te pregunta si has considerado la oferta. Tienes que decidir cómo presentas la contraoferta.",
+      "opciones": [
+        {
+          "label": "Pido directamente 22.000 €: el mismo salario que la compañera",
+          "kpi_delta": { "salario_oferta": 2500, "satisfaccion_oferta": 2, "posicion_negociacion": 1 },
+          "feedback": "Anclar en un número concreto es una estrategia de negociación válida. El sesgo de anclaje hará que la contraoferta de la empresa se mueva desde ese punto de referencia. El riesgo es citar el salario de la compañera sin bases adicionales: la empresa puede percibir que tu fuente es interna y que estás violando la confidencialidad salarial (aunque en España la transparencia salarial está reconocida por el RD 902/2020 de igualdad retributiva). Lección: anclar con datos del mercado externo es más sólido que anclar con salarios internos específicos.",
+          "next": "n3"
+        },
+        {
+          "label": "Presento datos del mercado: «Glassdoor y las encuestas del INE indican 21.000-22.000 €»",
+          "kpi_delta": { "salario_oferta": 3000, "satisfaccion_oferta": 3, "posicion_negociacion": 4 },
+          "feedback": "Negociación basada en evidencia externa. Usas la información de mercado como ancla objetiva, sin referencias a salarios internos específicos. La directora no puede rebatir datos del mercado con la misma facilidad que puede rechazar una cifra arbitraria. Si añades «tengo otra entrevista la semana que viene» (si es verdad), aumentas tu poder de negociación: la empresa sabe que tienes alternativas (oferta de trabajo del mercado laboral). Lección: el poder de negociación en el mercado de trabajo depende de las alternativas que tengas — la oferta y la demanda de tu perfil específico.",
+          "next": "n3"
+        },
+        {
+          "label": "Acepto los 18.000 € pero pido revisión a los 6 meses y beneficios extra",
+          "kpi_delta": { "salario_oferta": 0, "satisfaccion_oferta": 1, "posicion_negociacion": -1 },
+          "feedback": "Compromiso que parece equilibrado pero que en la práctica es débil: la revisión a los 6 meses rara vez sube más del 3-5 %, lo que llevaría tu salario a 18.500-18.900 €, aún por debajo de mercado. Los beneficios extra (tickets restaurante, seguro médico) tienen valor pero no se acumulan como salario base para cotizaciones y complementos futuros. Además, aceptar el primer número refuerza el anclaje de la empresa. Lección: el punto de partida salarial condiciona todos los incrementos futuros — es la decisión con mayor impacto a largo plazo.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisión 3 — La empresa contraoferta con 19.500 €",
+      "situacion": "La directora de RRHH vuelve con 19.500 €: «Es lo máximo que tenemos presupuestado para esta categoría». Tú habías pedido 21.500 €. La diferencia es de 2.000 € anuales. Tienes que decidir si aceptas, sigues negociando o rechazas.",
+      "opciones": [
+        {
+          "label": "Acepto los 19.500 €: es una mejora de 1.500 € y el trabajo me interesa",
+          "kpi_delta": { "salario_oferta": 1500, "satisfaccion_oferta": 2, "posicion_negociacion": 0 },
+          "feedback": "Decisión razonable si el trabajo en sí tiene valor (aprendizaje, red de contactos, condiciones de trabajo). Los 19.500 € están por encima del convenio y del SMI y te permiten ganarte una trayectoria en el sector. El coste de oportunidad de rechazar es real: sin otra oferta concreta, el riesgo de quedarse sin trabajo tiene valor. Lección: el mercado de trabajo no es solo el precio — las condiciones de trabajo, el aprendizaje y la red también tienen valor económico aunque no aparezcan en la nómina.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Propongo 20.500 €: partido la diferencia entre lo mío (21.500) y lo suyo (19.500)",
+          "kpi_delta": { "salario_oferta": 2500, "satisfaccion_oferta": 3, "posicion_negociacion": 2 },
+          "feedback": "Técnica del «partir la diferencia», habitual en negociaciones. El resultado final de 20.500 € te acerca al rango de mercado. El riesgo es que si la empresa tenía margen para 20.500 € desde el principio, has dejado dinero sobre la mesa al anclar en 21.500 €. La negociación salarial es un juego de información — la empresa sabe lo que puede pagar, tú no siempre lo sabes. Lección: en negociaciones con información asimétrica, el punto de ancla inicial importa más que la habilidad para regatear después.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Rechazo: si el mercado paga 21.000-22.000 €, busco otra oferta",
+          "kpi_delta": { "salario_oferta": -1500, "satisfaccion_oferta": -1, "posicion_negociacion": 4 },
+          "feedback": "Decisión válida si realmente tienes alternativas. La tasa de paro juvenil en España es del 24,5 % (EPA T1 2026) — pero en Baleares, con alta demanda de perfiles de administración en turismo, el mercado puede favorecerte. Si rechazas y no aparece otra oferta en 2-3 meses, la decisión habrá sido errónea en términos de análisis marginal (el coste de esperar superó el beneficio de un salario mayor). Lección: el coste de oportunidad de rechazar una oferta es real — se mide en tiempo de búsqueda, estrés y posibles pérdidas de sueldo durante la espera.",
+          "next": "final:fracaso_parcial"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "Alba entra al mercado laboral con criterio",
+      "resumen": "Has usado información del mercado laboral para negociar por encima del mínimo del convenio y del SMI. La diferencia entre 18.000 € y 20.500 € son 2.500 €/año: a lo largo de 5 años (con incrementos sobre la base) son más de 15.000 € de diferencia acumulada.",
+      "lecciones_clave": [
+        "El SMI y el convenio son el suelo, no el mercado. La oferta y demanda del perfil específico determinan el precio real de equilibrio.",
+        "La información del mercado laboral (encuestas salariales, rango del sector) es poder de negociación. La información asimétrica favorece siempre a quien más sabe.",
+        "El punto de partida salarial es la decisión más importante: condiciona todos los incrementos futuros durante años."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "Alba espera una oferta mejor",
+      "resumen": "Has rechazado la oferta esperando encontrar 21.000-22.000 € en el mercado. Puede salir bien o mal: depende de cuánto tarde la próxima oferta en llegar. En mercados laborales con alta rotación estacional como Baleares, la espera puede ser corta.",
+      "lecciones_clave": [
+        "El coste de oportunidad de rechazar una oferta se mide en tiempo de búsqueda y pérdida de ingresos durante la espera.",
+        "El paro juvenil alto en España hace que el poder de negociación de los trabajadores jóvenes sea más débil que el de los experimentados."
+      ]
+    }
+  }
+}
+```

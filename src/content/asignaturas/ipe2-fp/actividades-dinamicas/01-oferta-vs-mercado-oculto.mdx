@@ -1,0 +1,117 @@
+---
+asignatura: ipe2-fp
+unidad_relacionada: 1
+title: "La oferta que nadie ha publicado"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "15-20 min"
+descripcion: "Llevas 3 meses enviando CV a portales sin resultado. Tienes que decidir si pivotás la estrategia."
+competencias_clave: [CPSAA, CE, CD]
+competencias_especificas: [RA1]
+estado: publicado
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Caso · Mercado laboral",
+    "titulo": "La oferta que nadie ha publicado",
+    "contexto": "Claudia termina en junio un Grado Superior de Administración de Sistemas Informáticos en Red. Lleva 3 meses enviando CVs a InfoJobs y LinkedIn: 47 candidaturas, 3 respuestas, ninguna entrevista. Su ratio de conversión es del 6 %. El ciclo terminó hace dos semanas y sigue en casa. Su tutora de FCT le ha comentado que el 70 % de las contrataciones del sector se producen a través del mercado oculto. Tiene que decidir qué hace diferente.",
+    "kpi_inicial": { "candidaturas_activas": 47, "entrevistas_conseguidas": 3, "red_profesional": 2 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisión 1 — ¿Dónde está el problema?",
+      "situacion": "Claudia se pregunta por qué no recibe respuestas. Una amiga con menos nota pero de otra escuela ya tiene empleo. Las tres ofertas a las que respondió requerían '2 años de experiencia' o 'certificación específica'. ¿Cuál es el diagnóstico más probable?",
+      "opciones": [
+        {
+          "label": "El mercado no quiere perfiles junior, hay que esperar a que cambie",
+          "kpi_delta": { "candidaturas_activas": 0, "entrevistas_conseguidas": -1, "red_profesional": 0 },
+          "feedback": "La demanda de perfiles de informática es estructuralmente alta, no hay que esperar al ciclo económico. El problema casi nunca es el mercado global: es el segmento de oferta que se ataca. Claudia está compitiendo en el mercado abierto más saturado con 47 candidaturas genéricas. El diagnóstico debe ir más fino.",
+          "next": "n2"
+        },
+        {
+          "label": "El CV no pasa el filtro ATS: hay que optimizarlo con las palabras clave de cada oferta",
+          "kpi_delta": { "candidaturas_activas": 5, "entrevistas_conseguidas": 2, "red_profesional": 0 },
+          "feedback": "Diagnóstico correcto en parte. Un CV sin las palabras clave exactas de la oferta no pasa el filtro automático en grandes empresas. Pero con 47 envíos en el mercado abierto y 3 respuestas, el 93 % de las ofertas tampoco llegó al ATS. Optimizar el CV es necesario, pero no suficiente: hay que abrir otro canal.",
+          "next": "n2"
+        },
+        {
+          "label": "Estoy atacando el 25-30 % del mercado (el abierto); necesito estrategia para el mercado oculto",
+          "kpi_delta": { "candidaturas_activas": 3, "entrevistas_conseguidas": 3, "red_profesional": 2 },
+          "feedback": "Diagnóstico completo. El mercado oculto —el 60-75 % de las vacantes— se cubre por referidos, candidatura espontánea y networking. 47 candidaturas en portales son 47 apuestas en el segmento más competido. Hay que diversificar canales. Lección: medir el ratio de conversión (candidatura → respuesta) revela antes dónde falla la estrategia que seguir enviando a ciegas.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisión 2 — Candidatura espontánea",
+      "situacion": "Claudia ha identificado 8 pymes de servicios gestionados en su comarca. Ninguna tiene oferta publicada. Una de ellas, NETSEC BCNS S.L., acaba de publicar en LinkedIn que ha ganado un contrato de monitorización para 3 nuevos clientes. El responsable técnico tiene perfil de LinkedIn activo.",
+      "opciones": [
+        {
+          "label": "Envío un correo genérico a info@netsecbcns.com con el CV adjunto",
+          "kpi_delta": { "candidaturas_activas": 1, "entrevistas_conseguidas": 0, "red_profesional": 0 },
+          "feedback": "Un correo genérico a info@ compite con facturas, consultas de clientes y spam. La probabilidad de que llegue a quien decide contrataciones es baja. Sin personalización ni demostración de conocimiento de la empresa, el mensaje dice 'quiero trabajo', no 'puedo ayudarte con esto concreto'. Descartado en segundos.",
+          "next": "n3"
+        },
+        {
+          "label": "Espero a que publiquen una oferta antes de contactar",
+          "kpi_delta": { "candidaturas_activas": 0, "entrevistas_conseguidas": 0, "red_profesional": 0 },
+          "feedback": "Si esperas a que publiquen, abandonas la ventana de oportunidad. Cuando la empresa publica la oferta ya tiene en mente el perfil y a menudo candidatos internos. La candidatura espontánea vale precisamente porque llega antes. Perder el momento de la noticia del nuevo contrato es perder el mejor argumento.",
+          "next": "n3"
+        },
+        {
+          "label": "Localizo al responsable técnico en LinkedIn, menciono el nuevo contrato y propongo una conversación de 15 minutos",
+          "kpi_delta": { "candidaturas_activas": 2, "entrevistas_conseguidas": 3, "red_profesional": 3 },
+          "feedback": "Mejor jugada. Un mensaje corto, personalizado, que demuestra que has hecho deberes (el nuevo contrato, el perfil técnico) y pide poco (15 minutos, no el trabajo) tiene una tasa de respuesta muy superior a cualquier correo genérico. Aunque no haya vacante ahora, el responsable sabe quién eres cuando la haya. Eso es mercado oculto activado.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisión 3 — El proceso de selección arranca",
+      "situacion": "El responsable técnico de NETSEC le responde y la invita a una videoentrevista de 20 minutos. Le dice que están 'valorando reforzar el equipo' pero que no hay oferta publicada todavía. En la llamada le pregunta: 'Cuéntame una situación en la que tuviste que resolver un problema técnico con información incompleta.'",
+      "opciones": [
+        {
+          "label": "Improviso una respuesta general sobre que 'me gusta resolver problemas'",
+          "kpi_delta": { "candidaturas_activas": 0, "entrevistas_conseguidas": -1, "red_profesional": 0 },
+          "feedback": "Una respuesta genérica en una entrevista por competencias no aporta evidencia. El entrevistador busca un hecho concreto que demuestre la competencia, no una autoproclamación. 'Me gusta resolver problemas' podría decirlo cualquiera de los otros 200 candidatos. Sin STAR, sin diferenciación.",
+          "next": "final:fracaso_parcial"
+        },
+        {
+          "label": "Aplico STAR: describo la incidencia de red durante la FCT, mi diagnóstico con los logs disponibles y el resultado en tiempo de resolución",
+          "kpi_delta": { "candidaturas_activas": 2, "entrevistas_conseguidas": 4, "red_profesional": 2 },
+          "feedback": "Respuesta ganadora. Situación (incidencia de red en FCT), Tarea (diagnóstico con logs incompletos), Acción (pasos concretos que tomaste tú), Resultado (tiempo de resolución medido). El entrevistador obtiene evidencia de la competencia, no una opinión sobre ti mismo. Esto es lo que diferencia a un candidato preparado de uno improvisado.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Pido disculpas porque no he preparado esa pregunta y ofrezco responderla por escrito después",
+          "kpi_delta": { "candidaturas_activas": 0, "entrevistas_conseguidas": 1, "red_profesional": 0 },
+          "feedback": "Honesto, pero costoso. Una entrevista por competencias se gana con ejemplos concretos preparados de antemano. El entrevistador no va a esperar tu email: hay otros candidatos. La lección: prepara al menos 3 ejemplos STAR versátiles antes de cualquier entrevista. Son tu munición principal.",
+          "next": "final:fracaso_parcial"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "Primer contrato por mercado oculto",
+      "resumen": "Diagnosticaste el problema real (canal equivocado), activaste el mercado oculto con una candidatura espontánea personalizada y superaste la entrevista por competencias con el método STAR. NETSEC te llama a la semana para ofrecerte un contrato de formación en alternancia.",
+      "lecciones_clave": [
+        "Medir el ratio candidatura/respuesta revela antes el problema que seguir enviando CVs a ciegas.",
+        "El mercado oculto se activa con personalización y momento oportuno, no con volumen.",
+        "La entrevista por competencias se gana con ejemplos STAR preparados, no improvisados."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "En el proceso pero sin cerrar",
+      "resumen": "Conseguiste llamar la atención de una empresa que no tenía oferta publicada, pero perdiste la oportunidad en la entrevista por falta de preparación. NETSEC sigue con otros candidatos. El contacto está abierto para una segunda oportunidad.",
+      "lecciones_clave": [
+        "La candidatura espontánea bien hecha abre puertas que los portales no abren.",
+        "Sin ejemplos STAR preparados, la entrevista por competencias se convierte en una conversación sin evidencias."
+      ]
+    }
+  }
+}
+```

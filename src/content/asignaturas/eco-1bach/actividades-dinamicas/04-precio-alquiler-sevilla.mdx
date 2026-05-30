@@ -1,0 +1,117 @@
+---
+asignatura: eco-1bach
+unidad_relacionada: 4
+title: "Tienes una habitación libre en Sevilla"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "15-20 min"
+descripcion: "Alquiler turístico o residencial, el precio del mercado y los efectos de regular. Oferta, demanda y equilibrio en vivo."
+competencias_clave: [CPSAA, CE, CD]
+competencias_especificas: [CE2]
+estado: publicado
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Caso · Oferta, demanda y mercado",
+    "titulo": "Tienes una habitación libre en Sevilla",
+    "contexto": "Eres propietaria de un piso en el barrio de Triana (Sevilla). Vives en él pero tienes una habitación libre. Te planteas rentabilizarla. El precio del alquiler de habitaciones en Triana ronda los 550-600 €/mes para residentes y las plataformas de alquiler turístico pagan entre 60-90 €/noche en temporada alta. En el barrio hay mucha demanda: la Universidad Pablo de Olavide y la Pablo de Olavide han trasladado cursos de posgrado al centro y llegan más estudiantes de fuera. Al mismo tiempo, el Ayuntamiento ha declarado Triana 'zona saturada' de alquiler turístico y restringe nuevas licencias.",
+    "kpi_inicial": { "ingreso_mensual": 0, "ocupacion_pct": 0, "estabilidad": 5 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisión 1 — ¿A qué segmento te diriges?",
+      "situacion": "Tienes que decidir si alquilas la habitación a un estudiante o profesional (alquiler residencial de larga duración) o la pones en una plataforma turística (Airbnb, Booking). El alquiler residencial te da 580 €/mes seguros pero fijos. El turístico puede darte 1.200 €/mes en temporada alta (abril-octubre) y 400 €/mes en temporada baja (noviembre-marzo). La licencia turística para habitaciones sueltas aún no está restringida en tu caso concreto.",
+      "opciones": [
+        {
+          "label": "Alquiler residencial: 580 €/mes seguros y sin complicaciones",
+          "kpi_delta": { "ingreso_mensual": 580, "ocupacion_pct": 100, "estabilidad": 4 },
+          "feedback": "Eliges el segmento de demanda estable: estudiantes y profesionales que buscan vivienda de larga duración. La demanda ha aumentado (más estudiantes de posgrado en la zona) y con ella la disposición a pagar: el precio de mercado ha subido. Cobras al precio de equilibrio del mercado residencial. Lección: la ley de la oferta — a precios más altos, más propietarios entran al mercado, pero el proceso lleva tiempo, por eso los precios se mantienen altos en el corto plazo.",
+          "next": "n2"
+        },
+        {
+          "label": "Alquiler turístico: mayor variabilidad, pero ingreso potencial superior",
+          "kpi_delta": { "ingreso_mensual": 800, "ocupacion_pct": 75, "estabilidad": -2 },
+          "feedback": "Eliges el segmento de mayor rentabilidad pero mayor volatilidad. La entrada de propietarios al alquiler turístico (atraídos por los ingresos altos) aumenta la oferta turística: la curva de oferta se desplaza a la derecha y los precios en plataforma bajan. Si la ciudad satura la oferta, los precios se ajustan. El ayuntamiento restringe nuevas licencias precisamente para limitar este desplazamiento. Lección: cuando el precio sube, entran más oferentes — la ley de la oferta en acción.",
+          "next": "n2"
+        },
+        {
+          "label": "Pruebo el turístico en verano y el residencial en invierno",
+          "kpi_delta": { "ingreso_mensual": 650, "ocupacion_pct": 85, "estabilidad": 0 },
+          "feedback": "Estrategia de segmentación estacional. Maximizas ingresos en temporada alta turística y cubres el invierno con ingreso estable. El riesgo es la fricción: cambiar de arrendatario cada 6 meses tiene costes (tiempo, limpieza, gestión) y puede generar huecos entre ocupantes. Lección: el equilibrio de mercado varía según el segmento y la temporada — los mercados de alquiler no son homogéneos.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisión 2 — El precio: ¿qué señal te da el mercado?",
+      "situacion": "Decides alquiler residencial. Investigas el mercado y ves que otras habitaciones similares en Triana se anuncian a 550-620 €/mes. Tú estimabas cobrar 700 € porque la habitación tiene terraza privada y está muy bien ubicada. Un gestor inmobiliario te dice que «el mercado está en 580 €» pero tú crees que tu habitación vale más.",
+      "opciones": [
+        {
+          "label": "Publico a 700 €: si es mejor, la demanda lo reconocerá",
+          "kpi_delta": { "ingreso_mensual": 0, "ocupacion_pct": -30, "estabilidad": -2 },
+          "feedback": "La habitación lleva tres semanas sin alquilar. A 700 € estás por encima del precio de equilibrio del mercado: la cantidad demandada es inferior a la ofrecida. Los inquilinos con capacidad de pagar 700 € prefieren pisos completos. El exceso de oferta te obliga a bajar el precio o a asumir meses sin ingresos. Lección: el precio de equilibrio no lo fijas tú ni el arrendatario — emerge de la interacción de todos en el mercado.",
+          "next": "n3"
+        },
+        {
+          "label": "Publico a 580 € según el mercado: mejor ocupada que vacía",
+          "kpi_delta": { "ingreso_mensual": 580, "ocupacion_pct": 100, "estabilidad": 3 },
+          "feedback": "Decisión eficiente. Publicas al precio de equilibrio y en 48 horas recibes 5 consultas. La habitación se alquila al primer candidato adecuado. Si hubieras publicado por debajo del equilibrio (por ejemplo 450 €), habrías tenido cola de candidatos y podrías haber subido el precio: exceso de demanda. Por encima, como antes, vacío. Lección: el precio de mercado es una señal de información: te dice cuánto están dispuestos a pagar los que tienen la demanda más alta.",
+          "next": "n3"
+        },
+        {
+          "label": "Publico a 580 € pero con cláusula de revisión anual según IPC",
+          "kpi_delta": { "ingreso_mensual": 580, "ocupacion_pct": 100, "estabilidad": 4 },
+          "feedback": "Estrategia correcta. La cláusula de revisión ligada al IPC (actualmente al 3,2 % en España) protege tu ingreso real frente a la inflación. Sin revisión, un alquiler de 580 € en 2026 valdrá 530 € reales en 2029. La Ley de Arrendamientos Urbanos (LAU) española permite esta cláusula. Lección: el precio nominal puede mantenerse constante mientras el precio real cae — la inflación erosiona los contratos con precio fijo.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisión 3 — El efecto de la regulación municipal",
+      "situacion": "El Ayuntamiento aprueba un tope de precios para habitaciones en zonas tensionadas de Sevilla: máximo 500 €/mes (por debajo del precio actual de equilibrio de 580 €). La medida entra en vigor en 90 días. Como propietaria tienes que decidir qué haces.",
+      "opciones": [
+        {
+          "label": "Acepto el tope: 500 € es mejor que nada y el inquilino lo agradece",
+          "kpi_delta": { "ingreso_mensual": -80, "ocupacion_pct": 100, "estabilidad": 2 },
+          "feedback": "Complias con la normativa y reduces el ingreso mensual 80 €. El efecto sobre el mercado: muchos propietarios que alquilaban a 580 € ahora prefieren dejar la habitación vacía, usarla para familia o pasarla al turístico (si aún es posible). La oferta residencial se contrae. Lo que la regulación quería hacer barato acaba siendo más escaso. Lección: un precio máximo por debajo del equilibrio crea exceso de demanda — el modelo de oferta y demanda predice exactamente esto.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Saco la habitación del mercado y hago Airbnb mientras sea legal",
+          "kpi_delta": { "ingreso_mensual": 300, "ocupacion_pct": 60, "estabilidad": -3 },
+          "feedback": "Comportamiento típico ante precios máximos: el bien se desvía a un segmento no regulado. El resultado es menos oferta residencial (lo contrario de lo que buscaba la medida) y más oferta turística, que el Ayuntamiento está intentando frenar con otra regulación. Lección: las intervenciones sobre precios tienen efectos de segunda vuelta que el modelo de oferta y demanda ayuda a anticipar — y que suelen desplazar el problema, no resolverlo.",
+          "next": "final:fracaso_parcial"
+        },
+        {
+          "label": "Vendo el piso aprovechando el máximo histórico de precios",
+          "kpi_delta": { "ingreso_mensual": -580, "ocupacion_pct": 0, "estabilidad": -5 },
+          "feedback": "El precio de la vivienda en Triana ronda los 3.000-3.200 €/m². Si el piso tiene 70 m², obtienes más de 200.000 € que puedes invertir en un fondo indexado. El ingreso anual equivalente al 7 % son 14.000 €/año, frente a los 6.960 € del alquiler regulado. La regulación ha cambiado el equilibrio entre alquilar y vender: para muchos propietarios, la regulación hace la venta más atractiva que el alquiler. Esto reduce el parque de alquiler disponible. Lección: los agentes económicos responden a incentivos — cambia los incentivos y cambia el comportamiento, aunque no en la dirección prevista.",
+          "next": "final:fracaso_parcial"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "La habitación funciona y tú entiendes el mercado",
+      "resumen": "Has navegado las decisiones de precio, segmento y regulación con criterio de oferta y demanda. Cumples la ley, tienes ingreso y has aprendido a leer las señales del mercado en lugar de luchar contra ellas.",
+      "lecciones_clave": [
+        "El precio de equilibrio no lo fija ningún agente individualmente: emerge del cruce de la oferta y la demanda de todos.",
+        "Un precio máximo por debajo del equilibrio genera exceso de demanda y desincentiva la oferta: el modelo lo predice con exactitud.",
+        "Los agentes responden a incentivos: cambiar las reglas del juego cambia el comportamiento, a veces en la dirección contraria a la esperada."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "La habitación sale del mercado residencial",
+      "resumen": "La regulación ha cambiado los incentivos y has optado por salir del mercado residencial. El resultado agrega la paradoja de la intervención: menos oferta de lo que se quería proteger.",
+      "lecciones_clave": [
+        "Las intervenciones sobre precios tienen efectos no previstos que el modelo de oferta y demanda ayuda a anticipar.",
+        "Cuando el precio no puede ajustarse, los agentes buscan mercados alternativos no regulados."
+      ]
+    }
+  }
+}
+```

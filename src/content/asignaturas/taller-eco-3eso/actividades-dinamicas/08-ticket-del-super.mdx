@@ -1,0 +1,117 @@
+---
+asignatura: taller-eco-3eso
+unidad_relacionada: 8
+title: "El ticket del supermercado"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "10-15 min"
+descripcion: "Un ticket de 32 € te muestra cuánto pagas en impuestos sin saberlo."
+competencias_clave: [CPSAA, CE, CD]
+competencias_especificas: [CE2]
+estado: publicado
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Caso · Sector público e impuestos",
+    "titulo": "El ticket del supermercado",
+    "contexto": "Tu madre te manda a hacer la compra con 35 €. Al llegar a caja, el ticket sale 32,40 €. Mientras esperas el cambio, te fijas en que al lado del precio de cada producto pone un pequeño porcentaje: 10 % en los alimentos procesados, 4 % en el pan y los huevos, 21 % en los productos de limpieza. Llevas toda la vida comprando sin fijarte en eso. Esta vez vas a entender qué significa.",
+    "kpi_inicial": { "dinero": 35, "iva_pagado": 0, "comprension_fiscal": 0 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisión 1 — ¿Cuánto IVA has pagado sin saberlo?",
+      "situacion": "En tu ticket hay: pan y huevos (6 €, IVA 4 %), leche y fruta (8 €, IVA 4 %), refrescos y snacks (10 €, IVA 10 %), jabón y papel de cocina (8,40 €, IVA 21 %). Tienes que calcular cuánto IVA llevas pagado.",
+      "opciones": [
+        {
+          "label": "Calculo: (6×0,04) + (8×0,04) + (10×0,10) + (8,40×0,21) = 0,24 + 0,32 + 1 + 1,76 = 3,32 € de IVA",
+          "kpi_delta": { "dinero": -32, "iva_pagado": 3, "comprension_fiscal": 3 },
+          "feedback": "Correcto. De los 32,40 € que has pagado, unos 3,32 € son IVA — casi el 10 % del total. Y no has firmado nada, ni lo has visto en ningún recibo aparte. El IVA está ya incluido en el precio. Lección: los impuestos indirectos los pagas sin darte cuenta, cada vez que compras algo.",
+          "next": "n2"
+        },
+        {
+          "label": "No lo calculo: los impuestos son cosa de adultos",
+          "kpi_delta": { "dinero": -32, "iva_pagado": 0, "comprension_fiscal": -1 },
+          "feedback": "Los impuestos no son 'cosa de adultos': tú ya los pagas. Cada vez que compras algo con IVA, estás contribuyendo al Estado — aunque nadie te lo explique en el ticket. Lección: la educación fiscal empieza antes de los 18 años.",
+          "next": "n2"
+        },
+        {
+          "label": "Intento el cálculo pero me confundo: ¿el IVA se suma al precio o ya está incluido?",
+          "kpi_delta": { "dinero": -32, "iva_pagado": 0, "comprension_fiscal": 1 },
+          "feedback": "Buena pregunta. En España el precio que ves en el supermercado ya incluye el IVA (es el precio final). En otros contextos, como cuando una empresa emite una factura, el IVA se añade por separado. Para el consumidor normal: el precio que ves en la etiqueta es lo que pagas, IVA incluido.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisión 2 — Tu amigo dice que los impuestos son un robo",
+      "situacion": "De vuelta a casa, le cuentas lo del IVA a tu amigo. Él dice: 'Los impuestos son un robo del Estado. Ese dinero debería quedárselo la gente.' Tú tienes que responderle algo.",
+      "opciones": [
+        {
+          "label": "Le doy la razón: yo también preferiría tener ese dinero",
+          "kpi_delta": { "dinero": 0, "iva_pagado": 0, "comprension_fiscal": -1 },
+          "feedback": "Es una posición comprensible pero incompleta. Los servicios públicos tienen un coste real: el instituto donde estás estudiando, la calle por la que has vuelto a casa, el médico al que fuiste la semana pasada. Alguien los tiene que pagar, y ese alguien es todos. Lección: antes de decir que los impuestos son un robo, pregúntate quién pagaría los servicios que usas si no existieran.",
+          "next": "n3"
+        },
+        {
+          "label": "Le explico que sin impuestos no habría instituto, ni sanidad, ni carreteras",
+          "kpi_delta": { "dinero": 0, "iva_pagado": 0, "comprension_fiscal": 3 },
+          "feedback": "Exacto. Los impuestos son el precio colectivo de los servicios que individualmente no podríamos pagar. Una carretera, un hospital o un instituto no los puede costear una sola familia. El Estado recoge de todos y da a todos. Lección: la discusión no es si pagar impuestos, sino cuánto y cómo.",
+          "next": "n3"
+        },
+        {
+          "label": "Le digo que depende: algunos impuestos sirven bien y otros se gastan mal",
+          "kpi_delta": { "dinero": 0, "iva_pagado": 0, "comprension_fiscal": 2 },
+          "feedback": "Respuesta madura: los impuestos son necesarios, pero el debate sobre cuánto cobrar y cómo gastar es legítimo y es la base de la política democrática. Lección: criticar el gasto público con argumentos es ciudadanía activa; no pagar impuestos es fraude fiscal.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisión 3 — El ayuntamiento recorta la actividad extraescolar de tu instituto",
+      "situacion": "Tu ayuntamiento anuncia que recortará las actividades extraescolares por falta de presupuesto. Hay una reunión de vecinos donde se puede hablar. Tu madre te pregunta si quieres ir.",
+      "opciones": [
+        {
+          "label": "No voy: yo no voto, no sirve de nada",
+          "kpi_delta": { "dinero": 0, "iva_pagado": 0, "comprension_fiscal": -1 },
+          "feedback": "No votar no significa no estar afectado. Y participar en decisiones colectivas no empieza cuando cumples 18 años: empieza cuando empiezas a pensar en lo que pasa a tu alrededor. Lección: la democracia necesita ciudadanos activos de todas las edades.",
+          "next": "final:fracaso_parcial"
+        },
+        {
+          "label": "Voy a escuchar: quiero entender por qué no hay presupuesto",
+          "kpi_delta": { "dinero": 0, "iva_pagado": 0, "comprension_fiscal": 2 },
+          "feedback": "Ir a escuchar es el primer paso de la participación ciudadana. Entender cómo se decide el presupuesto público — de dónde viene el dinero y a dónde va — es educación fiscal y política al mismo tiempo.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Voy y propongo que busquen otra partida para no recortar las extraescolares",
+          "kpi_delta": { "dinero": 0, "iva_pagado": 0, "comprension_fiscal": 3 },
+          "feedback": "Participación activa: no solo escuchas, sino que aportas. El presupuesto público tiene prioridades y son decisiones políticas — no técnicas — que los ciudadanos pueden debatir y modificar. Lección: el sector público responde a quien participa.",
+          "next": "final:exito"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "Ya entiendes para qué sirven los impuestos",
+      "resumen": "Has calculado el IVA de un ticket, has reflexionado sobre los servicios públicos y has dado un paso de participación ciudadana. El Estado ya no es algo abstracto.",
+      "lecciones_clave": [
+        "El IVA lo pagas cada vez que compras algo — ya eres contribuyente aunque no lo sepas.",
+        "Los servicios públicos son el resultado de los impuestos de todos: sin recaudación, sin servicios.",
+        "Participar en decisiones colectivas no empieza a los 18 años: empieza cuando entiendes lo que pasa."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "Has pagado impuestos pero no has entendido para qué",
+      "resumen": "El IVA ha ido al Estado sin que sepas qué hace con él. Y una decisión que te afecta se ha tomado sin ti.",
+      "lecciones_clave": [
+        "Decir que los impuestos son un robo sin pensar en los servicios que cubren es una visión incompleta.",
+        "La indiferencia ciudadana no protege de las decisiones políticas — solo las deja en manos de otros."
+      ]
+    }
+  }
+}
+```

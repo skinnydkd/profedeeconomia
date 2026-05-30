@@ -1,0 +1,117 @@
+---
+asignatura: eco-4eso
+unidad_relacionada: 1
+title: "Tu primer negocio en las fiestas del pueblo"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "10-15 min"
+descripcion: "Tienes 200 € ahorrados y un puesto en las fiestas. Decide antes de perderlo todo."
+competencias_clave: [CPSAA, CE, CD]
+competencias_especificas: [CE3]
+estado: publicado
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Caso · Emprendimiento",
+    "titulo": "Tu primer negocio en las fiestas del pueblo",
+    "contexto": "Las fiestas del pueblo duran cuatro días. El Ayuntamiento ha sacado a sorteo puestos en el recinto ferial por 80 € los cuatro días. Te ha tocado uno. Tienes 200 € de la paga de todo el año y quieres montar algo. Tus opciones rondan: vender pulseras (material 40 €, margen alto), hacer limonadas (material 60 €, muy demandadas con el calor), o vender chapas personalizadas con una máquina que te presta tu prima (material 30 €, novedad pero incierto). Tienes que decidir esta tarde.",
+    "kpi_inicial": { "capital": 200, "dias_feria": 4, "ventas_estimadas": 0 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisión 1 — ¿Qué producto montas?",
+      "situacion": "El puesto cuesta 80 €. Te quedan 120 € para producto. Las pulseras son conocidas pero muchos puestos ya las venden. Las limonadas necesitan hielo y fruta fresca cada día. Las chapas son originales pero no sabes si la gente pagará por ellas.",
+      "opciones": [
+        {
+          "label": "Pulseras de hilo: conozco el producto y sé que se vende",
+          "kpi_delta": { "capital": -120, "ventas_estimadas": 180 },
+          "feedback": "Apuestas por lo conocido, pero hay tres puestos más de pulseras en la feria. Sin diferenciación, compites solo por precio. Vendes algo, pero el margen se reduce. Lección: saber que un producto se vende no es suficiente si ya lo venden otros. El perfil emprendedor detecta dónde hay hueco, no dónde hay demanda genérica.",
+          "next": "n2"
+        },
+        {
+          "label": "Limonadas artesanas: con este calor es imposible que no funcione",
+          "kpi_delta": { "capital": -140, "ventas_estimadas": 260 },
+          "feedback": "Aciertas con la demanda: la gente tiene calor y paga bien por una limonada fría. El problema es la logística: el hielo se derrite, la fruta se estropea el tercer día. Si no gestionas bien el stock diario, pierdes margen. Lección: una buena idea necesita también un buen sistema de operaciones.",
+          "next": "n2"
+        },
+        {
+          "label": "Chapas personalizadas: nadie más las tiene, aquí hay una oportunidad real",
+          "kpi_delta": { "capital": -110, "ventas_estimadas": 220 },
+          "feedback": "Diferenciación clara. La gente se para a mirar porque es algo nuevo. Las primeras horas son lentas pero el boca a oreja funciona: al segundo día tienes cola. Lección: encontrar un hueco no cubierto es la base del autoemprendimiento. El riesgo es real pero también lo es la recompensa.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisión 2 — Un imprevisto: la noche del sábado llueve",
+      "situacion": "El sábado es el día de más afluencia, pero llueve desde las 20h. Puedes cerrar el puesto antes (pierdes la tarde pero ahorras esfuerzo), bajar precios para atraer a quien pasa corriendo (reduces margen), o ofrecer algo nuevo rápido —bolsas de plástico a 1 € para los que van sin paraguas (metes la mano en el bolsillo y sacas una solución).",
+      "opciones": [
+        {
+          "label": "Cierro el puesto: con esta lluvia no vale la pena",
+          "kpi_delta": { "capital": 0, "ventas_estimadas": -60 },
+          "feedback": "Decisión segura, pero renuncias a las ventas de las dos últimas horas del día grande. La resiliencia emprendedora no es aguantar a toda costa, pero tampoco es ceder sin explorar alternativas. Lección: rendirse ante el primer imprevisto es la señal más clara de que falta mentalidad de crecimiento.",
+          "next": "n3"
+        },
+        {
+          "label": "Bajo el precio un 30 %: algo es algo",
+          "kpi_delta": { "capital": -20, "ventas_estimadas": 30 },
+          "feedback": "Vendes algo más, pero el margen cae tanto que casi no compensa el esfuerzo. Y los clientes del domingo recordarán el precio del sábado y pedirán lo mismo. Lección: bajar el precio como primer recurso ante una dificultad suele crear más problemas de los que resuelve.",
+          "next": "n3"
+        },
+        {
+          "label": "Improviso: vendo bolsas de plástico que tengo para empaquetar mis productos",
+          "kpi_delta": { "capital": 15, "ventas_estimadas": 40 },
+          "feedback": "Creatividad aplicada al momento. Conviertes un recurso que ya tenías en una solución para un problema nuevo. Vendes 15 bolsas a 1 € en veinte minutos. Lección: la adaptación rápida al entorno —y ver oportunidades donde otros ven problemas— es una de las habilidades más importantes del emprendedor.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisión 3 — El último día: te quedan existencias",
+      "situacion": "Quedan tres horas para cerrar la feria y tienes existencias por valor de 35 €. Puedes intentar vender a precio normal hasta el final, hacer un «descuento de cierre» y liquidar todo, o donar lo que sobre al comedor social del pueblo (que tiene un cartel a la entrada de la feria).",
+      "opciones": [
+        {
+          "label": "Mantengo el precio: si no lo vendo, me lo llevo a casa",
+          "kpi_delta": { "capital": 10, "ventas_estimadas": 20 },
+          "feedback": "Vendes algo a precio lleno, pero el resto vuelve a casa. Dependiendo del producto, puede ser perfecto (pulseras) o un problema (fruta). Lección: la gestión del stock al final de un ciclo de ventas corto es parte del modelo de negocio, no un detalle.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Descuento de cierre del 50 %: prefiero recuperar el coste y nada más",
+          "kpi_delta": { "capital": -5, "ventas_estimadas": 35 },
+          "feedback": "Liquidas todo y terminas con el inventario a cero. El margen total de la feria baja un poco, pero no arrastras producto sin salida. Una liquidación controlada es una estrategia válida en ciclos de venta cortos. Lección: el objetivo de un negocio de cuatro días no es maximizar el margen por unidad, sino el resultado total.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Dono el excedente al comedor social: queda bien y es lo correcto",
+          "kpi_delta": { "capital": -35, "ventas_estimadas": 0 },
+          "feedback": "Ganas visibilidad positiva y terminas con buenas sensaciones, pero asumes una pérdida real en tu primer negocio. El emprendimiento social existe y es valioso, pero donarlo todo sin haberlo planificado antes es más un gesto impulsivo que una decisión estratégica. Lección: la ética empresarial se diseña desde el inicio, no se improvisa al final.",
+          "next": "final:fracaso_parcial"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "Cuatro días de feria, primera lección de empresa",
+      "resumen": "Has recuperado la inversión y ganado algo. Más importante: has aprendido que emprender no es tener suerte, sino tomar decisiones con criterio cuando aparecen los imprevistos.",
+      "lecciones_clave": [
+        "El autoemprendimiento empieza con detectar un hueco, no solo una demanda genérica.",
+        "La resiliencia no es aguantar, es adaptarse cuando las circunstancias cambian.",
+        "Un negocio de ciclo corto exige gestionar el stock como parte del modelo, no como un imprevisto."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "No ha salido mal, pero el dinero no cuadra",
+      "resumen": "Has aprendido mucho sobre cómo funciona un pequeño negocio, pero la cuenta final no es positiva. La próxima vez ya sabes qué no hacer.",
+      "lecciones_clave": [
+        "Las decisiones impulsivas al final de un ciclo pueden borrar el margen de todo el resto.",
+        "Planificar el final del negocio forma parte del negocio."
+      ]
+    }
+  }
+}
+```

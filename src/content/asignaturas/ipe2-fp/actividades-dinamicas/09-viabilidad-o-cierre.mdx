@@ -1,0 +1,117 @@
+---
+asignatura: ipe2-fp
+unidad_relacionada: 9
+title: "¿Viable o no viable? El punto muerto no miente"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "15-20 min"
+descripcion: "Tu plan de empresa tiene los números sobre la mesa. Tienes que decidir si arrancar, iterar o aparcar."
+competencias_clave: [CPSAA, CE, CD]
+competencias_especificas: [RA1]
+estado: publicado
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Caso · Viabilidad y puesta en marcha",
+    "titulo": "¿Viable o no viable? El punto muerto no miente",
+    "contexto": "Álex (22 años, Grado Superior de Administración y Finanzas) ha desarrollado a lo largo del módulo un plan de empresa para una gestoría de trámites online para autónomos y pequeñas empresas de su ciudad. Propuesta: gestión de altas de autónomos, declaraciones trimestrales de IVA y IRPF, y nóminas, a precio fijo mensual de 75 €/cliente. Ha realizado entrevistas con 18 autónomos locales. 7 están dispuestos a ser clientes desde el primer mes. Los datos del plan financiero: Coste variable por cliente/mes: 12 € (tiempo de gestión, software). Costes fijos mensuales: cuota de autónomo 400 €, software de gestoría 80 €, seguro de responsabilidad civil 55 €, publicidad digital 60 €. Total fijos: 595 €/mes. Inversión inicial: portátil 900 €, software setup 200 €, certificado digital 50 €, colchón de tesorería 3 meses = 595 × 3 = 1.785 €. Total: 2.935 €.",
+    "kpi_inicial": { "clientes_captados": 7, "viabilidad_calculada": 5, "colchon_tesoreria": 1785 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisión 1 — El cálculo del punto muerto",
+      "situacion": "Álex calcula el punto muerto antes de decidir si arranca. El margen de contribución por cliente es 75 - 12 = 63 €/mes. Los costes fijos son 595 €/mes. ¿Cuántos clientes necesita para no perder dinero?",
+      "opciones": [
+        {
+          "label": "Punto muerto = 595 / 75 = 7,9 → necesito 8 clientes. Con 7 validados, me falta 1. Es viable.",
+          "kpi_delta": { "clientes_captados": 0, "viabilidad_calculada": 1, "colchon_tesoreria": 0 },
+          "feedback": "Error de cálculo crítico. El punto muerto se calcula dividiendo los costes fijos entre el MARGEN DE CONTRIBUCIÓN UNITARIO (precio menos coste variable), no entre el precio. 595 / 63 = 9,44 → necesita 10 clientes para no perder dinero. Con 7 validados, tiene un déficit de 3 clientes, no de 1. Este error sobreestima la viabilidad un 25 %. En un plan de empresa real, este error ante un banco o un PAE descalifica la presentación.",
+          "next": "n2"
+        },
+        {
+          "label": "Punto muerto = 595 / 63 = 9,44 → necesito 10 clientes. Con 7 validados, tengo un déficit de 3. No es viable aún tal como está.",
+          "kpi_delta": { "clientes_captados": 0, "viabilidad_calculada": 3, "colchon_tesoreria": 0 },
+          "feedback": "Cálculo correcto. El margen de contribución unitario es 63 €/mes (75 - 12), no 75 €. Con 595 € de costes fijos, el punto muerto es 9,44 → 10 clientes redondeando al alza. Los 7 validados representan el 70 % del punto muerto: hay que captar 3 más antes de arrancar o asumir que los primeros meses el colchón de tesorería absorberá las pérdidas mientras se alcanzan los 10. La honestidad del cálculo es la primera virtud del plan financiero.",
+          "next": "n2"
+        },
+        {
+          "label": "No sé calcularlo con seguridad. Prefiero consultar a un asesor antes de presentar el plan.",
+          "kpi_delta": { "clientes_captados": 0, "viabilidad_calculada": 0, "colchon_tesoreria": -200 },
+          "feedback": "Consultar es válido, pero en la presentación del plan de empresa el evaluador espera que el propio emprendedor sepa calcular su punto muerto. Presentarlo sin poder explicar el cálculo es una señal de alerta. El punto muerto es la cifra más básica del plan financiero: si Álex no puede calcularla, ¿cómo gestionará los costes reales de la empresa? La fórmula: Costes fijos / Margen de contribución unitario (Precio - Coste variable).",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisión 2 — El déficit de 3 clientes",
+      "situacion": "Álex necesita 10 clientes para el punto muerto y tiene 7 validados. Tiene el colchón de tesorería para aguantar 3 meses de pérdidas mientras crece. Dos opciones para cubrir los 3 clientes que faltan: (A) arrancar con 7 y captar los 3 restantes en los primeros 2 meses, asumiendo pérdidas controladas; o (B) esperar a tener 10 antes de arrancar.",
+      "opciones": [
+        {
+          "label": "Opción A: arranco con 7 y capturo los 3 restantes en 2 meses. El colchón de tesorería está para esto.",
+          "kpi_delta": { "clientes_captados": 3, "viabilidad_calculada": 3, "colchon_tesoreria": -400 },
+          "feedback": "Decisión correcta si el diagnóstico comercial apoya que captar 3 clientes adicionales en 2 meses es realista. El colchón de tesorería existe exactamente para cubrir el déficit mientras el negocio alcanza velocidad. Las pérdidas de 2 meses por debajo del punto muerto serían: (10 - 7) × 63 = 189 €/mes × 2 = 378 € contra un colchón de 1.785 €. El riesgo está controlado. Arrancar con 7 y crecer a 10 en 2 meses es más realista que esperar indefinidamente a tener 10 antes de empezar.",
+          "next": "n3"
+        },
+        {
+          "label": "Opción B: espero a tener 10 clientes firmados antes de arrancar formalmente.",
+          "kpi_delta": { "clientes_captados": 2, "viabilidad_calculada": 2, "colchon_tesoreria": 0 },
+          "feedback": "Esperar a 10 antes de arrancar reduce el riesgo inicial, pero puede ser ineficiente. Los 7 clientes validados están esperando un servicio: mientras Álex busca 3 más, puede perder alguno de los 7. Además, el proceso de alta como autónomo y la configuración del software son pasos que conviene completar mientras capta los últimos clientes, no después. Un arranque progresivo (alta formal + 7 clientes + captación activa de 3 más) es más dinámico.",
+          "next": "n3"
+        },
+        {
+          "label": "Reduzco los costes fijos: cancelo el seguro de responsabilidad civil (55 €/mes) para bajar el punto muerto.",
+          "kpi_delta": { "clientes_captados": 0, "viabilidad_calculada": -1, "colchon_tesoreria": 200 },
+          "feedback": "El seguro de responsabilidad civil es el coste que Álex no puede eliminar. Como gestor que maneja declaraciones fiscales y nóminas de terceros, un error en una declaración trimestral puede generar reclamaciones de sus clientes. Sin seguro, el riesgo patrimonial personal recae íntegramente sobre él. Reducir costes fijos es una palanca válida, pero el criterio de qué cortar no puede ignorar el riesgo legal.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisión 3 — La forma jurídica y el primer cliente difícil",
+      "situacion": "Álex decide arrancar con 7 clientes como autónomo. A los 2 meses tiene 11 clientes y supera el punto muerto. Pero uno de sus clientes (una SL con 3 empleados) le exige que contrate como empresa (SL), no como autónomo, para poder deducirle el IVA correctamente en su facturación. Álex se plantea si convertirse en SL.",
+      "opciones": [
+        {
+          "label": "Me doy de alta como SL inmediatamente para no perder este cliente: 1 cliente vale más que el coste de la constitución.",
+          "kpi_delta": { "clientes_captados": 1, "viabilidad_calculada": -1, "colchon_tesoreria": -600 },
+          "feedback": "La premisa de la pregunta es incorrecta: una SL factura con IVA exactamente igual que un autónomo, y el cliente puede deducirlo en ambos casos. El problema que plantea el cliente probablemente no es la forma jurídica sino la necesidad de una factura correctamente emitida con todos los datos fiscales. Constituir una SL tiene un coste de 600-1.000 € (notaría, registro, gestoría de constitución) y obligaciones contables adicionales. Antes de asumir ese coste, Álex debe verificar exactamente qué requiere el cliente.",
+          "next": "final:fracaso_parcial"
+        },
+        {
+          "label": "Verifico con el cliente qué necesita exactamente antes de actuar: probablemente necesita una factura correcta, no que yo sea SL.",
+          "kpi_delta": { "clientes_captados": 1, "viabilidad_calculada": 2, "colchon_tesoreria": 0 },
+          "feedback": "Correcto. El cliente tiene razón en que necesita facturas deducibles, pero como gestor profesional Álex emite facturas con IVA independientemente de si es autónomo o SL. Lo que quizás el cliente confunde es la diferencia entre una factura de autónomo con retención de IRPF (que sí tiene un trato diferente en la contabilidad del cliente) y una factura de SL. La verificación antes de actuar ahorra 600-1.000 € de constitución innecesaria.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Rechazo al cliente: si me pide algo que no corresponde a mi forma jurídica, mejor busco clientes menos exigentes.",
+          "kpi_delta": { "clientes_captados": -1, "viabilidad_calculada": -1, "colchon_tesoreria": 0 },
+          "feedback": "Rechazar a un cliente sin entender qué pide exactamente es una decisión precipitada. Como futuro gestor, Álex tiene que poder explicar a sus clientes la diferencia entre una factura de autónomo y una de SL, las implicaciones fiscales de cada una, y qué necesita el cliente para deducir correctamente. Si no sabe resolver esa duda básica, el problema no es la forma jurídica: es la competencia técnica del servicio que ofrece.",
+          "next": "final:fracaso_parcial"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "El plan de empresa que cuadra y se defiende",
+      "resumen": "Calculaste correctamente el punto muerto, arrancaste con un déficit controlado por el colchón de tesorería, alcanzaste los 11 clientes en 2 meses y resolviste el malentendido del cliente difícil sin asumir costes innecesarios. Al final del primer trimestre, el plan financiero real es mejor que el proyectado.",
+      "lecciones_clave": [
+        "El punto muerto se calcula con el margen de contribución (precio - coste variable), no con el precio. El error en esta fórmula es el más común y más costoso.",
+        "El colchón de tesorería existe para cubrir el déficit controlado de los primeros meses, no para emergencias imprevisibles.",
+        "Verificar qué pide realmente un cliente antes de actuar ahorra costes y revela si el problema es de forma jurídica o de competencia técnica."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "El plan mal calculado que no convence a nadie",
+      "resumen": "El error en el cálculo del punto muerto o la decisión de constituir una SL sin verificar si era necesario generaron un coste inesperado y una presentación con fallo técnico. El PAE te pide reformular la parte financiera del plan antes de tramitar las ayudas.",
+      "lecciones_clave": [
+        "Un error en el punto muerto en la presentación del plan descalifica la credibilidad financiera del proyecto ante cualquier evaluador.",
+        "Tomar decisiones de estructura societaria sin entender qué las genera es el tipo de error que revela falta de competencia técnica en un gestor."
+      ]
+    }
+  }
+}
+```
