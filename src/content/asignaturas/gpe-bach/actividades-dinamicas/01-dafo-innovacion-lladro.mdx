@@ -1,0 +1,117 @@
+---
+asignatura: gpe-bach
+unidad_relacionada: 1
+title: "Tres hermanos, un horno y una decisión"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "15-20 min"
+descripcion: "Es 1955 y tu equipo acaba de poner en marcha un pequeño taller de porcelana. Primera crisis real."
+competencias_clave: [CPSAA, CE, CD]
+competencias_especificas: [CE3]
+estado: publicado
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Caso · Innovación y emprendimiento",
+    "titulo": "Tres hermanos, un horno y una decisión",
+    "contexto": "Es 1955. Tu equipo lleva dos años fabricando figuras de porcelana en un pequeño obrador de Almàssera. Las figuritas se venden bien en el mercado local, pero un comprador de Barcelona os propone algo que lo cambia todo: replicar exactamente el estilo de una firma alemana de porcelana muy reconocida para venderlo como alternativa más barata. El comprador ofrece un contrato de 6.000 piezas al año. Tenéis 1.200 € en caja, cuatro meses de existencias y tres personas en el taller.",
+    "kpi_inicial": { "caja": 1200, "pedidos_mes": 80, "reputacion": 7 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisión 1 — La oferta de Barcelona",
+      "situacion": "El comprador os ofrece 6.000 piezas anuales si reproducís fielmente el estilo de Meissen (Alemania): moldes copiados, acabados similares, misma paleta cromática. El precio que paga es 3,20 € por pieza, cuando vuestro coste actual es de 2,10 €. Sería un margen del 52 %. Pero un conocido os avisa: copiar el estilo de una marca consolidada puede acabar en reclamación legal.",
+      "opciones": [
+        {
+          "label": "Aceptamos el contrato, el margen es demasiado bueno para rechazarlo",
+          "kpi_delta": { "caja": 3300, "reputacion": -2 },
+          "feedback": "El dinero entra, pero construyes el proyecto sobre una base frágil. Si Meissen denuncia o el comprador cambia de interés, te quedas sin contrato y sin haber desarrollado tu propio estilo. Lección: un margen alto no justifica una propuesta sin diferenciación propia. La innovación de proceso o de producto es más duradera que la copia.",
+          "next": "n2"
+        },
+        {
+          "label": "Rechazamos, queremos desarrollar nuestro propio estilo valenciano",
+          "kpi_delta": { "caja": -200, "reputacion": 2 },
+          "feedback": "Renuncias a ingresos seguros a corto plazo, pero proteges la identidad del proyecto. Ahora tienes que demostrar que el estilo propio tiene mercado. La innovación de producto empieza exactamente así: con la decisión de no copiar cuando sería más fácil hacerlo.",
+          "next": "n2"
+        },
+        {
+          "label": "Negociamos: aceptamos la escala pero proponemos un estilo fusión valenciano-europeo propio",
+          "kpi_delta": { "caja": 1800, "reputacion": 1 },
+          "feedback": "La opción más compleja pero más sólida: usas el volumen del comprador como palanca para financiar tu diferenciación. Si el comprador acepta, ganas dinero y construyes marca. Si no acepta, al menos sabes que quieres un cliente que valore tu propuesta, no solo el precio.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisión 2 — Tipo de innovación para crecer",
+      "situacion": "Necesitáis escalar para cubrir la demanda sin perder calidad. Tenéis tres opciones: (a) invertir 800 € en un segundo horno (innovación de proceso); (b) contratar a una pintora de la comarca que conoce técnicas artesanales únicas (innovación de producto); (c) abrir una pequeña tienda propia en el mercado central de Valencia, sin intermediarios (innovación de marketing). Solo podéis hacer una ahora mismo.",
+      "opciones": [
+        {
+          "label": "Segundo horno: producimos más en el mismo tiempo",
+          "kpi_delta": { "caja": -800, "pedidos_mes": 35 },
+          "feedback": "Innovación de proceso. Aumentas la capacidad y reduces el tiempo por pieza. El retorno de los 800 € se calcula fácil: si el margen neto es 1,10 € por pieza y produces 35 piezas más al mes, lo recuperas en unos 21 meses. ¿Lo aguanta la caja? Revisa el KPI de caja antes de decidir.",
+          "next": "n3"
+        },
+        {
+          "label": "Pintora artesana: nuestras figuras serán únicas en la comarca",
+          "kpi_delta": { "caja": -300, "reputacion": 3 },
+          "feedback": "Innovación de producto. Elevas la propuesta de valor y puedes subir el precio. La clave es si el mercado local paga más por exclusividad artesana. Más lento para escalar, pero construye una ventaja que nadie puede copiar fácilmente.",
+          "next": "n3"
+        },
+        {
+          "label": "Tienda propia en el mercado: eliminamos al intermediario y conocemos al cliente",
+          "kpi_delta": { "caja": -150, "pedidos_mes": 15, "reputacion": 1 },
+          "feedback": "Innovación de marketing. Ganas margen al eliminar al intermediario (+0,60 € por pieza) y empiezas a conocer al comprador final directamente. El riesgo es que la tienda consume tiempo de las personas que ahora producen. ¿Quién la atiende?",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisión 3 — El primer error grave",
+      "situacion": "Una partida de 200 figuras llega al cliente con un defecto de esmalte que no detectasteis. El cliente pide que reemplaces las 200 piezas sin coste adicional, lo que supone 420 € de pérdida directa. Tenéis tres formas de responder.",
+      "opciones": [
+        {
+          "label": "Reemplazamos las 200 piezas sin decir nada y seguimos",
+          "kpi_delta": { "caja": -420, "reputacion": 0 },
+          "feedback": "Resuelves el problema a corto plazo pero no aprendes de él. La misma causa (control de calidad insuficiente) volverá a ocurrir. Lección de proceso emprendedor: un error sin análisis es un coste que se repetirá. La perseverancia no es aguantar golpes, es aprender de ellos.",
+          "next": "final:fracaso_parcial"
+        },
+        {
+          "label": "Reemplazamos y además revisamos el proceso: añadimos una inspección visual antes de envasar",
+          "kpi_delta": { "caja": -420, "reputacion": 1 },
+          "feedback": "Lo mejor que puede hacer un equipo emprendedor con un error: resolverlo y mejorar el proceso para que no vuelva a ocurrir. El coste de 420 € es real, pero la mejora de proceso vale más a largo plazo. Eso es flexibilidad aplicada al error.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Negociamos: asumimos la mitad y le ofrecemos un descuento en el próximo pedido",
+          "kpi_delta": { "caja": -210, "reputacion": -1 },
+          "feedback": "Proteges la caja a corto plazo, pero el cliente percibe que no asumes responsabilidad completa. En un sector donde la confianza es básica, dejar un cliente insatisfecho cuesta más que los 210 € que ahorras. La reputación tarda años en construirse y semanas en perderse.",
+          "next": "final:fracaso_parcial"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "El taller tiene identidad propia",
+      "resumen": "Tres años después, el taller es reconocible por su estilo, tiene un proceso de control de calidad que funciona y un cliente fijo que vuelve. Pequeño, pero con base.",
+      "lecciones_clave": [
+        "Innovar es combinar lo existente de forma nueva: el estilo propio crea una ventaja que la copia no puede sostener.",
+        "El tipo de innovación (producto, proceso, marketing, organización) debe encajar con los recursos disponibles en cada momento.",
+        "La perseverancia no es no equivocarse, sino aprender del error y mejorar el proceso para que no se repita."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "El taller sobrevive, pero sin rumbo claro",
+      "resumen": "El proyecto sigue adelante, pero sin un estilo propio consolidado ni un proceso de calidad fiable. Cada error cuesta dinero y cada cliente nuevo requiere volver a convencer.",
+      "lecciones_clave": [
+        "Copiar da dinero rápido pero no construye diferenciación duradera.",
+        "Un error sin análisis es una oportunidad de mejora desperdiciada: la flexibilidad implica cambiar el proceso, no solo aguantar el golpe."
+      ]
+    }
+  }
+}
+```
