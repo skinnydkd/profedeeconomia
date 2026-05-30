@@ -1,0 +1,117 @@
+---
+asignatura: eco-1bach
+unidad_relacionada: 8
+title: "Llega la recesión. ¿Qué haces con tu empresa?"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "15-20 min"
+descripcion: "Un shock de demanda negativo golpea tu sector. AD-AS en vivo: decide antes de que el ciclo decida por ti."
+competencias_clave: [CPSAA, CE, CD]
+competencias_especificas: [CE2]
+estado: publicado
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Caso · AD-AS y ciclos económicos",
+    "titulo": "Llega la recesión. ¿Qué haces con tu empresa?",
+    "contexto": "Eres la propietaria de Talleres Mecánicos García, un taller de reparación de vehículos en Valladolid con 8 empleados. La empresa tiene 15 años, una cartera de 400 clientes regulares y factura 650.000 €/año. Es principios de 2023. El BCE acaba de subir los tipos de interés del 0 % al 3,5 % en menos de un año para combatir la inflación. Las familias reducen gastos discrecionales, el crédito al consumo se encarece y los concesionarios de coches nuevos reportan caídas del 20 % en ventas. Tu taller lleva dos meses con una ocupación del 70 % cuando lo normal es el 90 %.",
+    "kpi_inicial": { "facturacion_pct": 78, "empleo": 8, "liquidez_meses": 4 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisión 1 — ¿Qué tipo de shock es este y qué esperas que pase?",
+      "situacion": "Antes de actuar, necesitas entender el contexto macroeconómico. Las subidas de tipos del BCE encarecen el crédito, reducen el consumo y la inversión, y desplazan la demanda agregada (AD) a la izquierda. El PIB cae, pero la inflación también se modera. ¿Qué fase del ciclo económico estás viviendo y cuánto durará?",
+      "opciones": [
+        {
+          "label": "Es un shock de demanda negativo: el BCE ha enfriado la economía deliberadamente",
+          "kpi_delta": { "facturacion_pct": 0, "empleo": 0, "liquidez_meses": 1 },
+          "feedback": "Diagnóstico correcto en el modelo AD-AS. La subida de tipos del BCE desplaza la AD a la izquierda: menos consumo (crédito más caro), menos inversión (hipotecas y préstamos más caros), menor demanda agregada. El nivel de precios baja (el BCE lo quería) y la producción también cae a corto plazo. El ciclo económico entra en contracción. Tu taller experimenta este shock porque los hogares aplazan reparaciones no urgentes. Lección: las decisiones del BCE afectan a millones de empresas a través del canal de crédito y consumo.",
+          "next": "n2"
+        },
+        {
+          "label": "Es coyuntural: en pocos meses volverá todo a la normalidad",
+          "kpi_delta": { "facturacion_pct": -5, "empleo": 0, "liquidez_meses": -1 },
+          "feedback": "El sesgo de exceso de confianza. Los ciclos económicos tienen fases de distinta duración y la contracción de 2022-2023 en España duró más de 12 meses antes de que la demanda se recuperara. Si asumes que «pasará pronto» sin evidencia, puedes aplazar decisiones necesarias hasta que la situación se vuelva urgente. Lección: en el análisis del ciclo económico, el error más caro es subestimar la duración de la fase contractiva.",
+          "next": "n2"
+        },
+        {
+          "label": "Analizo los indicadores adelantados: índice de confianza, matriculaciones, PMI servicios",
+          "kpi_delta": { "facturacion_pct": 2, "empleo": 0, "liquidez_meses": 1 },
+          "feedback": "Enfoque analítico correcto. Los indicadores adelantados (PMI manufacturero < 50 significa contracción, matriculaciones de vehículos cayendo, IPC subyacente aún alto) te dicen que la contracción puede durar 6-18 meses. El BCE no bajaría tipos hasta que la inflación subyacente baje al 2 %. Con esa información, puedes planificar la respuesta con horizonte realista. Lección: los indicadores adelantados son la brújula para navegar el ciclo antes de que los datos oficiales lo confirmen.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisión 2 — ¿Cómo ajustas el negocio al ciclo?",
+      "situacion": "La facturación ha caído un 22 %. Con 650.000 € normales, facturas ahora 507.000 €. Tus costes fijos (nóminas, alquiler, seguros, suministros) son 430.000 €/año. El margen se ha reducido drásticamente. Tienes cuatro meses de liquidez en caja.",
+      "opciones": [
+        {
+          "label": "Despido a 2 empleados para reducir costes y aguantar la recesión",
+          "kpi_delta": { "facturacion_pct": 0, "empleo": -2, "liquidez_meses": 3 },
+          "feedback": "Ajuste de oferta clásico ante una caída de demanda. Reduces costes variables a corto plazo. El problema: en recesión, todos reducen empleo al mismo tiempo → más parados → menos consumo → la AD cae más → recesión más profunda. Esta es la paradoja de la frugalidad de Keynes a escala micro: lo que es racional para cada empresa individualmente puede ser catastrófico colectivamente. Además, perdes talento formado que tardas meses en recuperar. Lección: en recesiones cortas, el ajuste de empleo puede ser más costoso que el ahorro que genera.",
+          "next": "n3"
+        },
+        {
+          "label": "Mantengo el equipo y uso la recesión para inversión y formación",
+          "kpi_delta": { "facturacion_pct": 5, "empleo": 0, "liquidez_meses": -2 },
+          "feedback": "Estrategia contracíclica. Con el taller menos ocupado, usas el tiempo de los mecánicos para formación en vehículos eléctricos (los talleres que no se adapten perderán clientela en 3-5 años). El coste inmediato es alto (pierdes liquidez) pero el beneficio es una ventaja competitiva en la recuperación. Lección: las recesiones son momentos de inversión estratégica para quienes tienen liquidez suficiente — la SRAS puede desplazarse a la derecha con inversión en capital humano.",
+          "next": "n3"
+        },
+        {
+          "label": "Diversifico: ofrezco servicios de reparación a empresas de flotas (B2B)",
+          "kpi_delta": { "facturacion_pct": 8, "empleo": 0, "liquidez_meses": 1 },
+          "feedback": "Cambio de segmento para compensar la caída en el mercado B2C (familias). Las empresas con flotas tienen contrato y presupuesto anual menos sensible al ciclo de consumo. Si consigues 2-3 contratos de flota, reduces la exposición al ciclo coyuntural. Lección: la diversificación de segmentos reduce la correlación de ingresos con el ciclo económico — es la equivalencia empresarial de la diversificación de cartera en finanzas.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisión 3 — El BCE empieza a bajar tipos. ¿Cuándo aceleras?",
+      "situacion": "Es mediados de 2024. El BCE ha bajado tipos del 4 % al 3,5 % (primera bajada de junio 2024). La inflación española ha bajado al 3,2 %. La confianza del consumidor sube ligeramente. Tu taller ha aguantado con un equipo reducido al 85 % de ocupación. ¿Cuándo y cómo te preparas para la recuperación?",
+      "opciones": [
+        {
+          "label": "Espero a que el PIB real confirme la recuperación antes de contratar",
+          "kpi_delta": { "facturacion_pct": 0, "empleo": 0, "liquidez_meses": 2 },
+          "feedback": "Cautela excesiva. El PIB real se publica con 2-3 meses de retraso: cuando el INE confirme la recuperación, los competidores ya habrán contratado y tendrás menos candidatos disponibles. Los indicadores adelantados (tipos bajando, confianza subiendo, PMI por encima de 50) son señales más oportunas que los datos de PIB. Lección: los datos oficiales llegan tarde — el analista que actúa solo sobre datos confirmados siempre va por detrás del ciclo.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Me preparo ahora: proceso de selección abierto, acuerdo con proveedor para más piezas",
+          "kpi_delta": { "facturacion_pct": 10, "empleo": 1, "liquidez_meses": -1 },
+          "feedback": "Estrategia procíclica inteligente. Los indicadores adelantados apuntan a recuperación en 6-9 meses. Si empiezas el proceso de selección ahora (tarda 2-3 meses), tendrás el personal listo cuando la demanda repunte. Tu proveedor de piezas también te dará mejores condiciones si amplías el acuerdo en período de baja demanda. Lección: prepararse para la recuperación durante la recesión es la estrategia más rentable — es más barato contratar antes de que el mercado laboral se recaliente.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Aprovecho la bajada de tipos para pedir crédito e invertir en un segundo taller",
+          "kpi_delta": { "facturacion_pct": -5, "empleo": 2, "liquidez_meses": -3 },
+          "feedback": "Decisión arriesgada. Los tipos han bajado solo 0,5 puntos (del 4 % al 3,5 %) y el crédito sigue caro. Si la recuperación tarda más de lo previsto (lo que ocurre con frecuencia), el segundo taller puede hundir al primero. El modelo AD-AS enseña que la recuperación tras un shock de oferta puede ser lenta si la LRAS no se desplaza suficientemente. Lección: la expansión en recuperación temprana tiene el mismo riesgo de sobreextensión que en expansión tardía — el ciclo no ha terminado hasta que termina.",
+          "next": "final:fracaso_parcial"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "Talleres García supera el ciclo",
+      "resumen": "Has identificado el tipo de shock, tomado decisiones coherentes con la fase del ciclo y preparado la empresa para la recuperación antes de que llegara. El taller sale de la recesión más eficiente y con mejor posición que los competidores que reaccionaron tarde.",
+      "lecciones_clave": [
+        "El modelo AD-AS muestra que un shock de demanda negativo reduce PIB y precios a corto plazo. Reconocer el tipo de shock es el primer paso para responder bien.",
+        "Los indicadores adelantados (PMI, confianza, tipos) anticipan el ciclo mejor que los datos de PIB publicados con retraso.",
+        "Las recesiones son momentos de ventaja para quienes tienen liquidez: permiten invertir, contratar y negociar en condiciones favorables."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "Talleres García sobreexpande en recuperación temprana",
+      "resumen": "La decisión de expandirse antes de que la recuperación fuera sólida ha creado tensión financiera. El segundo taller necesita más tiempo de lo previsto para ser rentable y el primer taller absorbe el impacto.",
+      "lecciones_clave": [
+        "La recuperación tras una recesión suele ser más lenta de lo que los indicadores tempranos sugieren.",
+        "Expandirse con deuda en recuperación temprana tiene el mismo riesgo que en burbuja tardía — el timing del ciclo importa."
+      ]
+    }
+  }
+}
+```

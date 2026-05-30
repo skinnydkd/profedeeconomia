@@ -1,0 +1,117 @@
+---
+asignatura: eco-1bach
+unidad_relacionada: 3
+title: "Tu primer sueldo: 1.400 euros al mes"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "15-20 min"
+descripcion: "Primera nómina en Barcelona: alquiler, fondo de emergencia, interés compuesto. Decide antes de que el dinero decida por ti."
+competencias_clave: [CPSAA, CE, CD]
+competencias_especificas: [CE2]
+estado: publicado
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Caso · Planificación financiera personal",
+    "titulo": "Tu primer sueldo: 1.400 euros al mes",
+    "contexto": "Eres Lucía, tienes 23 años y acabas de empezar a trabajar como técnica de soporte en una empresa de software en Barcelona. Tu sueldo neto es de 1.400 €/mes. Vives en un piso compartido con dos compañeras: tu parte del alquiler son 550 €/mes. No tienes deudas. Has llegado al trabajo con 200 € en la cuenta. El primer día, una compañera te dice: «Yo no ahorro nada con este sueldo en Barcelona. Es imposible». Tienes que decidir si le das la razón o construyes un plan.",
+    "kpi_inicial": { "ahorro_mensual": 0, "fondo_emergencia": 200, "inversion_futura": 0 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisión 1 — ¿Construyes un presupuesto o vas al día?",
+      "situacion": "Primer mes. Tus gastos fijos son: alquiler 550 €, transporte T-Casual 40 €, móvil 25 €, seguro médico privado 35 €. Total fijos: 650 €. Te quedan 750 € para lo demás. Tienes que decidir cómo gestionas ese margen.",
+      "opciones": [
+        {
+          "label": "No hago presupuesto: vivo el mes y lo que sobre, lo ahorro",
+          "kpi_delta": { "ahorro_mensual": 50, "fondo_emergencia": 50, "inversion_futura": 0 },
+          "feedback": "El problema del «lo que sobre» es que casi nunca sobra nada. El gasto variable llena el espacio disponible. Los 750 € se distribuyen solos entre comida (250 €), ocio (150 €), ropa (100 €), cafés y varios (150 €): quedan apenas 100 € que a veces ni eso. La regla 50-30-20 no funciona si no se aplica de forma activa. Lección: sin presupuesto explícito, el consumo tiende a absorber el ingreso disponible completo.",
+          "next": "n2"
+        },
+        {
+          "label": "Aplico la regla 50-30-20: 20 % de ahorro automático desde el primer día",
+          "kpi_delta": { "ahorro_mensual": 280, "fondo_emergencia": 280, "inversion_futura": 0 },
+          "feedback": "Correcto. Configuras una transferencia automática de 280 € (20 % de 1.400) el día de cobro hacia una cuenta separada de ahorro. Lo que no ves no lo gastas. Los 50 % de necesidades (700 €) y 30 % de deseos (420 €) cuadran, aunque con ajuste: en Barcelona los gastos fijos son altos y el margen de deseos puede quedarse en 220-270 €. Lección: automatizar el ahorro elimina la decisión mensual y neutraliza la aversión a la pérdida.",
+          "next": "n2"
+        },
+        {
+          "label": "Primero necesito disfrutar: ya ahorraré cuando gane más",
+          "kpi_delta": { "ahorro_mensual": 0, "fondo_emergencia": 0, "inversion_futura": -50 },
+          "feedback": "El sesgo de optimismo: «cuando gane más» suele no llegar, porque los gastos escalan con el sueldo. Además, el coste de no empezar a ahorrar con 23 años es enorme: los 280 €/mes que no inviertes ahora al 7 % anual equivalen a dejar de acumular más de 90.000 € a los 65 años. La postergación del ahorro es el error financiero más caro que comete la generación joven española. Lección: el tiempo es el activo más valioso del interés compuesto — y es el único que no se recupera.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisión 2 — El fondo de emergencia vs invertir ya",
+      "situacion": "Llevas 3 meses ahorrando 280 €/mes: tienes 840 € ahorrados. Un amigo te dice que ya deberías invertirlo en un fondo indexado al MSCI World porque «el dinero parado pierde valor». Una compañera del trabajo te dice que sin fondo de emergencia de 3-6 meses no deberías invertir nada todavía.",
+      "opciones": [
+        {
+          "label": "Invierto los 840 € en un fondo indexado: el mercado no espera",
+          "kpi_delta": { "ahorro_mensual": 0, "fondo_emergencia": -840, "inversion_futura": 840 },
+          "feedback": "Decisión prematura. Si en el mes 4 tienes una avería del ordenador (necesitas uno para el trabajo: 700 €) o un imprevisto médico no cubierto por el seguro, tendrás que vender el fondo con posible pérdida si el mercado ha bajado. La regla estándar es construir primero el fondo de emergencia (3-6 meses de gastos = 1.950-3.900 € en tu caso) y después invertir el exceso. El fondo de emergencia no es inversión: es seguro. Lección: liquidez y rentabilidad son objetivos distintos; cada uno necesita su instrumento.",
+          "next": "n3"
+        },
+        {
+          "label": "Construyo el fondo de emergencia antes que todo lo demás",
+          "kpi_delta": { "ahorro_mensual": 280, "fondo_emergencia": 840, "inversion_futura": 0 },
+          "feedback": "Decisión correcta en secuencia. Con 280 €/mes de ahorro, tardas unos 7-10 meses en tener el fondo completo (2.000-3.000 €). Mientras tanto lo guardas en una cuenta remunerada al 1,5 % TAE (no en cuenta corriente). Una vez cubierto el fondo, el excedente mensual va a inversión. Lección: hay un orden de operaciones financieras: primero el fondo de emergencia, después la inversión.",
+          "next": "n3"
+        },
+        {
+          "label": "Hago las dos cosas a la vez: 140 € al fondo y 140 € al fondo indexado",
+          "kpi_delta": { "ahorro_mensual": 140, "fondo_emergencia": 420, "inversion_futura": 420 },
+          "feedback": "Opción razonable si se acepta el compromiso. El fondo de emergencia crece más lento (tardarás 14-20 meses) pero ya estás invirtiendo. El riesgo es que si tienes un imprevisto grande antes de completar el fondo, tendrás que liquidar la inversión en el peor momento posible. Es una gestión de riesgos menos sólida pero no catastrófica si los imprevistos son pequeños. Lección: no hay una única respuesta óptima — depende de tu perfil de riesgo y de la probabilidad de imprevistos en tu situación concreta.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisión 3 — ¿Dónde pones el dinero a largo plazo?",
+      "situacion": "Han pasado 10 meses. Tienes 2.800 € en el fondo de emergencia (suficiente). A partir de ahora, 200 € al mes van a inversión. Tienes tres opciones: (a) depósito a plazo fijo al 2,5 % TAE; (b) fondo indexado al MSCI World (comisión 0,2 %); (c) acciones de una sola empresa española que te parece «segura» (Inditex).",
+      "opciones": [
+        {
+          "label": "Depósito a plazo: es seguro y sé exactamente lo que gano",
+          "kpi_delta": { "ahorro_mensual": 5, "fondo_emergencia": 0, "inversion_futura": 100 },
+          "feedback": "El depósito al 2,5 % TAE con inflación española al 3,2 % (abril 2026) te da una rentabilidad real negativa de −0,7 %: tu dinero pierde poder adquisitivo aunque el número suba. El depósito es correcto para el fondo de emergencia (liquidez > rentabilidad) pero no para el ahorro a largo plazo. Lección: la inflación hace que el dinero «seguro» pierda valor real si la rentabilidad no la supera.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Fondo indexado al MSCI World: diversificado, comisiones bajas, largo plazo",
+          "kpi_delta": { "ahorro_mensual": 0, "fondo_emergencia": 0, "inversion_futura": 3200 },
+          "feedback": "Decisión de manual. El MSCI World replica casi 1.500 empresas de 23 países. Con 200 €/mes al 7 % anual durante 40 años (hasta los 63), acumularás más de 500.000 €. Las comisiones del 0,2 % frente al 1,5-2,5 % de fondos activos significan decenas de miles de euros más al final. Lección: la diversificación reduce el riesgo; las comisiones bajas mantienen más rentabilidad en tu bolsillo.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Acciones de Inditex: la conozco y me parece una empresa sólida",
+          "kpi_delta": { "ahorro_mensual": -50, "fondo_emergencia": -100, "inversion_futura": 500 },
+          "feedback": "El sesgo de disponibilidad: Zara está en tu calle, luego Inditex te parece «segura». Pero concentrar el ahorro en una sola empresa española significa que si Inditex va mal (cambio de tendencia en fast fashion, crisis sectorial) pierdes todo lo invertido. Una acción individual puede caer un 70 % sin que el mercado global lo haga. Lección: la diversificación es la única «comida gratis» de las finanzas, como dijo Markowitz. Conocer una empresa no la hace menos arriesgada.",
+          "next": "final:fracaso_parcial"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "Lucía construye su base financiera",
+      "resumen": "En menos de un año has montado un sistema financiero personal funcional: presupuesto con ahorro automatizado, fondo de emergencia completo e inversión iniciada. Con 23 años y 200 €/mes, el tiempo hará el resto.",
+      "lecciones_clave": [
+        "El interés compuesto premia el tiempo: 200 €/mes a los 23 años valen mucho más que 400 €/mes a los 33.",
+        "El orden importa: fondo de emergencia primero, inversión después. Son instrumentos distintos para objetivos distintos.",
+        "Automatizar el ahorro neutraliza los sesgos del gasto variable y la procrastinación."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "Lucía ahorra, pero con riesgo elevado",
+      "resumen": "Has conseguido ahorrar e invertir, pero la concentración en una sola acción española te expone a un riesgo innecesario. Si Inditex cae, pierdes los ahorros de años. La diversificación no cuesta nada más.",
+      "lecciones_clave": [
+        "Conocer una empresa no la hace menos arriesgada como inversión. El sesgo de disponibilidad engaña.",
+        "La rentabilidad esperada del mercado global supera a la de cualquier empresa individual en términos ajustados por riesgo."
+      ]
+    }
+  }
+}
+```

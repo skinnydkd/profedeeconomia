@@ -1,0 +1,117 @@
+---
+asignatura: eco-1bach
+unidad_relacionada: 2
+title: "Cambiar de carrera o aguantar"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "15-20 min"
+descripcion: "Tres años de Derecho, pero algo no cuadra. ¿Coste hundido o señal de que hay que actuar?"
+competencias_clave: [CPSAA, CE, CD]
+competencias_especificas: [CE2]
+estado: publicado
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Caso · Toma de decisiones",
+    "titulo": "Cambiar de carrera o aguantar",
+    "contexto": "Eres Marcos, estudiante de 3.º de Derecho en la Universidad de Valencia. Has aprobado todo, pero cada mañana te cuesta levantarte para ir a clase. En primero te entusiasmaba; ahora lo que realmente te apasiona es la economía de datos y el análisis cuantitativo, algo que descubriste en una optativa de estadística. Tus padres llevan tres años pagando la matrícula (unos 3.600 € en total) y viven en Alicante. Tienes 21 años y la presión de «no tirar lo que has hecho».",
+    "kpi_inicial": { "motivacion": 4, "coste_oportunidad_acumulado": 3600, "claridad_futuro": 3 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisión 1 — ¿Qué pesa más al decidir?",
+      "situacion": "Llevas semanas dándole vueltas. Tienes tres formas de enmarcar la decisión: (a) calcular el coste de lo ya invertido y decidir en función de eso; (b) hacer un análisis marginal de qué te aporta seguir frente a cambiar; (c) consultarlo con tus padres antes de pensar por tu cuenta.",
+      "opciones": [
+        {
+          "label": "Cuento los 3.600 € invertidos y digo que no puedo irme ahora",
+          "kpi_delta": { "motivacion": -1, "coste_oportunidad_acumulado": 0, "claridad_futuro": -1 },
+          "feedback": "Estás cayendo en la falacia del coste hundido. Los 3.600 € ya están gastados, decidas lo que decidas. La pregunta correcta no es «¿cuánto he invertido?» sino «¿qué decisión, a partir de hoy, maximiza mi bienestar?». El Concorde siguió volando 27 años perdiendo dinero por el mismo razonamiento. Lección: el dinero pasado no vota en las decisiones futuras.",
+          "next": "n2"
+        },
+        {
+          "label": "Hago un análisis marginal: comparo los beneficios y costes de seguir vs cambiar",
+          "kpi_delta": { "motivacion": 2, "coste_oportunidad_acumulado": 0, "claridad_futuro": 3 },
+          "feedback": "Decisión económicamente correcta. Comparas el beneficio marginal de un año más de Derecho (titulación en 2 años, salida laboral conocida) con el coste marginal de cambiar ahora (1-2 años extra de carrera, pero en algo que te motiva más). El análisis no te da la respuesta sola, pero te da claridad sobre qué estás comparando realmente. Lección: la buena decisión se toma con los costes y beneficios futuros, no con los pasados.",
+          "next": "n2"
+        },
+        {
+          "label": "Pregunto a mis padres antes de pensar qué quiero yo",
+          "kpi_delta": { "motivacion": 0, "coste_oportunidad_acumulado": 0, "claridad_futuro": -1 },
+          "feedback": "Tus padres tienen incentivos propios: el dinero invertido (coste hundido también para ellos), la imagen social del «hijo abogado», el miedo al riesgo. Sus consejos pueden estar sesgados hacia el statu quo por aversión a la pérdida. Consultar es útil, pero con una idea propia previa. Si consultas antes de pensar, el sesgo de otros sustituye al tuyo. Lección: distingue cuándo buscas perspectiva y cuándo buscas validación para una decisión ya tomada.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisión 2 — ¿Cómo evalúas las alternativas?",
+      "situacion": "Después de ordenar el problema, tienes tres escenarios concretos: (a) terminar Derecho y después hacer un máster en Análisis de Datos; (b) cambiar ahora a Economía + Data Science en la UPV, empezando casi de cero (3 años más); (c) pedir un año de baja y hacer cursos online de estadística y Python para ver si realmente te gusta.",
+      "opciones": [
+        {
+          "label": "Termino Derecho y después el máster: dos carreras son mejor que una",
+          "kpi_delta": { "motivacion": 1, "coste_oportunidad_acumulado": 7200, "claridad_futuro": 2 },
+          "feedback": "Opción aparentemente conservadora, pero con coste de oportunidad real: 2 años en algo que no te motiva, más el coste del máster. En el mercado laboral, un jurista con máster en datos compite bien, pero los 2 años de motivación baja pueden bajar tu rendimiento y tu red de contactos. El sesgo de exceso de confianza puede hacerte creer que «ya te motivarás después». Lección: aplazar el problema no lo resuelve.",
+          "next": "n3"
+        },
+        {
+          "label": "Cambio de carrera ahora: pierdo 3 años pero gano 40 años de trabajo que me gusta",
+          "kpi_delta": { "motivacion": 4, "coste_oportunidad_acumulado": -3600, "claridad_futuro": 4 },
+          "feedback": "Decisión con coste de oportunidad visible y alto en el corto plazo, pero análisis marginal correcto: si trabajas 40 años más en algo que te apasiona frente a algo que te es indiferente, el valor acumulado de la motivación supera ampliamente el coste de los años extra. Conecta con la lección de interés compuesto: empezar con el activo correcto (motivación, curiosidad) vale más a largo plazo. Lección: el coste hundido es irrelevante; el coste de oportunidad futuro, no.",
+          "next": "n3"
+        },
+        {
+          "label": "Pido un año de baja para explorar: bajo el riesgo antes de decidir",
+          "kpi_delta": { "motivacion": 2, "coste_oportunidad_acumulado": 1200, "claridad_futuro": 3 },
+          "feedback": "Reducción de incertidumbre antes de decidir. Con información más barata (cursos online, proyectos personales) puedes contrastar si realmente te gusta la programación y los datos o si es solo una fantasía de escapar. La racionalidad acotada de Simon dice que buscamos una opción «suficientemente buena»: el año de prueba te ayuda a saber si lo que imaginas existe de verdad. Lección: reducir incertidumbre antes de comprometerse tiene valor propio, aunque no sea «la» decisión.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisión 3 — Incentivos y framing familiar",
+      "situacion": "Tus padres reaccionan con preocupación. Te dicen dos cosas: (a) «Si cambias de carrera, te financiamos solo si haces algo que tenga salida laboral»; (b) «La generación que viene necesita abogados digitales, no solo programadores». Noticias en los medios amplían el debate: la IA está transformando el mercado laboral y algunos análisis dicen que el Derecho perderá el 30 % de los empleos rutinarios en 10 años.",
+      "opciones": [
+        {
+          "label": "Acepto el framing de mis padres: priorizo la seguridad económica",
+          "kpi_delta": { "motivacion": -1, "coste_oportunidad_acumulado": 0, "claridad_futuro": -1 },
+          "feedback": "El framing importa: tus padres presentan la decisión como «riesgo vs seguridad», pero eso es un encuadre concreto, no la realidad objetiva. La heurística de disponibilidad hace que el riesgo de cambiar sea más vívido que el riesgo de quedarse. Lección (efecto framing de Kahneman): la misma información presentada de distinto modo lleva a decisiones diferentes. Cuestiona el encuadre antes de aceptarlo.",
+          "next": "final:fracaso_parcial"
+        },
+        {
+          "label": "Reencuadro la decisión: cambiar de carrera no es «tirar» sino «redirigir»",
+          "kpi_delta": { "motivacion": 3, "coste_oportunidad_acumulado": 0, "claridad_futuro": 3 },
+          "feedback": "Corriges el efecto framing: en lugar de «perder 3 años» lo defines como «ganar 3 años de base correcta». Los tres años de Derecho te dan pensamiento jurídico y capacidad de análisis de textos complejos, que son habilidades muy valoradas en análisis de datos jurídicos, compliance y legal tech. No se tiran: se redirigen. Lección: el framing correcto cambia la percepción del coste de oportunidad real.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Decido en función de lo que dicen los datos del mercado laboral, no los miedos",
+          "kpi_delta": { "motivacion": 2, "coste_oportunidad_acumulado": 0, "claridad_futuro": 4 },
+          "feedback": "Economía positiva aplicada a la propia vida: consultas el Informe del Mercado Laboral del SEPE, estudios de demanda de empleos digitales del OECD, proyecciones de sectores. Los datos confirman crecimiento sostenido en perfiles híbridos (derecho + datos). Tomas la decisión con información en lugar de con miedos. Lección: distinguir lo positivo (qué dicen los datos) de lo normativo (qué deberías querer hacer) es la base del razonamiento económico bien aplicado a la vida personal.",
+          "next": "final:exito"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "Marcos redirige su carrera",
+      "resumen": "Has aplicado el análisis económico a la decisión más importante de tu vida inmediata: separar costes hundidos de costes futuros, detectar el efecto framing y usar datos en lugar de miedos. El resultado no garantiza el éxito, pero parte de una base racional.",
+      "lecciones_clave": [
+        "El coste hundido es dinero pasado: no vota en las decisiones futuras. La pregunta correcta siempre es «¿qué me conviene a partir de hoy?».",
+        "El efecto framing condiciona cómo percibimos las opciones. Cuestionar el encuadre antes de decidir es una habilidad económica aplicada a la vida real.",
+        "Reducir incertidumbre antes de comprometerse (un año de prueba, información del mercado) tiene valor económico real."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "Marcos sigue, sin convicción",
+      "resumen": "Te quedas en Derecho por presión externa y por el peso del coste hundido. Es posible que todo salga bien, pero la decisión no la has tomado tú con criterio económico: la ha tomado el framing de los demás.",
+      "lecciones_clave": [
+        "Dejar que el coste hundido decida por nosotros es la falacia más cara de la economía personal.",
+        "El efecto framing es silencioso: opera aunque no seamos conscientes de él."
+      ]
+    }
+  }
+}
+```

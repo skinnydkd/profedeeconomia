@@ -1,0 +1,117 @@
+---
+asignatura: eco-1bach
+unidad_relacionada: 1
+title: "El alcalde de un municipio en apuros"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "15-20 min"
+descripcion: "Presupuesto municipal recortado, tres necesidades urgentes. Elige y asume el coste de oportunidad."
+competencias_clave: [CPSAA, CE, CD]
+competencias_especificas: [CE2]
+estado: publicado
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Caso · Escasez y sistemas económicos",
+    "titulo": "El alcalde de un municipio en apuros",
+    "contexto": "Eres la alcaldesa de Villanueva del Río, un municipio de 8.000 habitantes en Extremadura. Este año el presupuesto municipal ha recibido un recorte del 15 % en transferencias de la Junta. Tienes 900.000 € disponibles para inversión y tres proyectos urgentes sobre la mesa: reparar el colegio público (500.000 €), construir una depuradora de aguas (600.000 €) y crear un polígono industrial pequeño para atraer empresas (700.000 €). Solo puedes financiar uno, tal vez dos parcialmente. Los vecinos te llaman cada semana.",
+    "kpi_inicial": { "presupuesto": 900000, "satisfaccion_vecinos": 6, "empleo_local": 520 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisión 1 — ¿Cuál es la prioridad inmediata?",
+      "situacion": "El colegio tiene grietas en la cubierta y la inspección técnica da 6 meses antes de que sea inhabitable. La depuradora incumple la normativa europea y la Junta puede sancionar al municipio con 80.000 € si no se actúa antes de fin de año. El polígono industrial llevaría 2 años en construirse y generaría unos 60 puestos de trabajo, pero no hay certeza de que lleguen empresas.",
+      "opciones": [
+        {
+          "label": "Priorizo el colegio: la seguridad de los niños no admite aplazamientos",
+          "kpi_delta": { "presupuesto": -500000, "satisfaccion_vecinos": 2, "empleo_local": 0 },
+          "feedback": "Decisión defensiva correcta. Con 400.000 € restantes, la depuradora no es financiable íntegramente y el polígono tampoco. Has protegido un bien público esencial, pero el coste de oportunidad es la sanción posible de la Junta y el empleo diferido. Lección: la FPP obliga a elegir — no hay punto por encima de la frontera con el presupuesto disponible.",
+          "next": "n2"
+        },
+        {
+          "label": "Priorizo la depuradora: evito la sanción y cumplo la normativa",
+          "kpi_delta": { "presupuesto": -600000, "satisfaccion_vecinos": 0, "empleo_local": 0 },
+          "feedback": "Evitas los 80.000 € de sanción y cumples la normativa europea. Quedan 300.000 €, insuficientes para el colegio completo. Tendrás que pedir una subvención de emergencia a la Diputación o aplazar las obras un año más. La decisión es técnicamente eficiente en términos de costes evitados, pero políticamente costosa.",
+          "next": "n2"
+        },
+        {
+          "label": "Divido el presupuesto: 450.000 € al colegio y 450.000 € a la depuradora",
+          "kpi_delta": { "presupuesto": -900000, "satisfaccion_vecinos": 1, "empleo_local": 0 },
+          "feedback": "Resultado ineficiente: ninguno de los dos proyectos queda completo. El colegio sigue con riesgos estructurales y la depuradora no cumple la normativa. Repartes la escasez pero no la resuelves. Lección: cuando los recursos no alcanzan para ambos, la solución a medias puede ser peor que elegir uno y hacerlo bien.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisión 2 — El polígono industrial: ¿ahora o después?",
+      "situacion": "Una empresa de componentes de energía solar de Badajoz está buscando suelo para instalarse. Su director te ha llamado: si el municipio no tiene suelo listo en 18 meses, se van a otro pueblo. Podrías solicitar un préstamo al ICO (Instituto de Crédito Oficial) a un tipo preferencial del 2,8 % para financiar el polígono, pero eso añade deuda al balance municipal.",
+      "opciones": [
+        {
+          "label": "Solicito el préstamo ICO: la oportunidad de empleo no puede esperar",
+          "kpi_delta": { "presupuesto": 700000, "satisfaccion_vecinos": 2, "empleo_local": 60 },
+          "feedback": "Decisión de inversión con deuda. La empresa solar puede generar 60 puestos directos y desplazar la FPP del municipio hacia afuera a largo plazo. El riesgo es que si la empresa no llega, el municipio carga con deuda sin activo productivo. Lección: endeudarse para inversión productiva puede ser racional — depende del retorno esperado.",
+          "next": "n3"
+        },
+        {
+          "label": "Rechazo el préstamo: no quiero endeudar el municipio",
+          "kpi_delta": { "presupuesto": 0, "satisfaccion_vecinos": -1, "empleo_local": 0 },
+          "feedback": "Decisión conservadora. Sin deuda adicional, pero sin crecimiento económico local. La empresa solar irá a otro municipio y el empleo se perderá. Esta elección tiene un coste de oportunidad invisible: los 60 empleos que no llegarán. Lección: no endeudarse es también una decisión con costes — los de no actuar.",
+          "next": "n3"
+        },
+        {
+          "label": "Busco cofinanciación europea con fondos FEDER para el polígono",
+          "kpi_delta": { "presupuesto": 350000, "satisfaccion_vecinos": 3, "empleo_local": 40 },
+          "feedback": "Los fondos FEDER pueden cofinanciar hasta el 70 % en regiones menos desarrolladas. El problema es el tiempo: el proceso tarda 12-24 meses y la empresa solar no puede esperar tanto. Consigues parte del proyecto pero pierdes la empresa concreta. Una subvención más pequeña puede atraer otra empresa en el futuro. Lección: la financiación pública europea es real pero lenta — no siempre cuadra con las urgencias del mercado.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisión 3 — El sistema económico del municipio",
+      "situacion": "Ante la escasez de recursos, el pleno municipal debate dos propuestas opuestas: (a) privatizar la gestión del agua potable a una empresa concesionaria que ofrece 200.000 € anuales de canon; (b) mantener el servicio público pero subir la tasa del agua un 12 % para sanear las cuentas. Los vecinos están divididos.",
+      "opciones": [
+        {
+          "label": "Privatizo el agua: 200.000 € anuales dan margen para otros servicios",
+          "kpi_delta": { "presupuesto": 200000, "satisfaccion_vecinos": -1, "empleo_local": 5 },
+          "feedback": "Sistema mixto con gestión privada de un servicio público. El canon es un ingreso seguro, pero la empresa privada tiene incentivos a maximizar beneficios, lo que puede subir la tarifa a largo plazo o reducir calidad. Muchos municipios españoles que privatizaron el agua en los 90 han vuelto a remunicipalizar (Terrassa, Valladolid). Lección: la frontera entre mercado y Estado no es fija — depende de qué objetivo se priorice.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Subo la tasa del agua un 12 %: que cada uno pague su parte",
+          "kpi_delta": { "presupuesto": 80000, "satisfaccion_vecinos": -2, "empleo_local": 0 },
+          "feedback": "El ingreso adicional es menor que el canon privado, pero el servicio permanece bajo control municipal. La subida del 12 % pesa más sobre las familias de renta baja, que gastan proporcionalmente más en suministros básicos. Lección: en economía normativa, «cada uno pague su parte» esconde un juicio de valor sobre la distribución de la carga.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Mantengo la tasa y busco eficiencia en el gasto: auditoría interna",
+          "kpi_delta": { "presupuesto": 30000, "satisfaccion_vecinos": 1, "empleo_local": 0 },
+          "feedback": "La auditoría detecta gastos duplicados y contratos sobredimensionados: ahorras 30.000 € anuales. Es la opción menos espectacular pero la más coherente con el principio de eficiencia: antes de buscar nuevos ingresos, asegúrate de que los existentes se usan bien. Lección: la ineficiencia asignativa (puntos por debajo de la FPP) es un recurso real que se puede recuperar sin nuevas fuentes.",
+          "next": "final:fracaso_parcial"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "Villanueva del Río avanza",
+      "resumen": "Las decisiones han sido difíciles, pero el municipio tiene infraestructura básica en orden y una hoja de ruta para el empleo. La alcaldesa ha aprendido que gestionar la escasez no es elegir lo mejor sino elegir lo menos malo con criterio económico.",
+      "lecciones_clave": [
+        "La escasez obliga a elegir: no hay presupuesto que cubra todas las necesidades simultáneamente. El coste de oportunidad es real aunque sea invisible.",
+        "Los sistemas económicos mixtos mezclan mercado e intervención pública: no hay solución pura correcta, sino contextos en los que uno u otro funciona mejor.",
+        "La FPP de un municipio puede desplazarse hacia afuera con inversión productiva o empeorar con deuda mal utilizada."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "El municipio sobrevive, con límites",
+      "resumen": "Las decisiones han sido prudentes pero insuficientes. El municipio sigue operativo pero sin crecimiento económico claro. Las infraestructuras siguen a medias y el empleo local no crece.",
+      "lecciones_clave": [
+        "La eficiencia interna es necesaria pero no suficiente para el desarrollo: hay un límite a lo que se puede ahorrar sin invertir.",
+        "No decidir también es una decisión con costes de oportunidad reales."
+      ]
+    }
+  }
+}
+```

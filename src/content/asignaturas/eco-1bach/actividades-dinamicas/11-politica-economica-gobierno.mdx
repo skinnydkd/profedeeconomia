@@ -1,0 +1,117 @@
+---
+asignatura: eco-1bach
+unidad_relacionada: 11
+title: "Eres ministra de Economía"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "15-20 min"
+descripcion: "Recesión, inflación y déficit al mismo tiempo. Decide qué palanca usar primero: fiscal, monetaria o ninguna."
+competencias_clave: [CPSAA, CE, CD]
+competencias_especificas: [CE2]
+estado: publicado
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Caso · Políticas económicas",
+    "titulo": "Eres ministra de Economía",
+    "contexto": "Es octubre de 2025. Eres la ministra de Economía de España. Los datos del tercer trimestre son preocupantes: el PIB ha crecido solo un 0,2 % en el último trimestre (casi estancamiento), el paro ha subido al 12,1 %, pero la inflación sigue en el 4,1 % (por encima del objetivo del BCE del 2 %). El déficit público es del 3,8 % del PIB, justo por encima del límite del Pacto de Estabilidad europeo. El BCE mantiene los tipos al 3 %. Hay presión política para «hacer algo». El dilema: si activas política fiscal expansiva, aumentas el déficit. Si esperas a que el BCE baje tipos, puede tardar meses. Si no haces nada, el paro sube.",
+    "kpi_inicial": { "pib_crecimiento_pct": 2, "paro_pct": 121, "deficit_pct_pib": 38 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisión 1 — ¿Qué tipo de problema económico es este?",
+      "situacion": "Tienes que diagnosticar antes de recetar. Estancamiento con inflación alta es una combinación especialmente difícil: si activas demanda, la inflación sube más; si la frías, el paro empeora. Los economistas de tu equipo no se ponen de acuerdo. Unos dicen que es un shock de oferta (energía cara, costes de materias primas). Otros dicen que es un shock de demanda tardío por las subidas de tipos del BCE.",
+      "opciones": [
+        {
+          "label": "Es estanflación: shock de oferta negativo que sube precios y baja producción a la vez",
+          "kpi_delta": { "pib_crecimiento_pct": 1, "paro_pct": 0, "deficit_pct_pib": 0 },
+          "feedback": "Diagnóstico probable correcto. La estanflación (stagnation + inflation) es la peor combinación para los responsables de política económica: cualquier medida que intente atacar un problema empeora el otro. Expansión fiscal → más inflación. Restricción monetaria → más paro. En el modelo AD-AS, es un desplazamiento de la SRAS a la izquierda (shock de oferta negativo): baja la producción Y y sube el nivel de precios P simultáneamente. Los años 70 con el petróleo y 2022-2023 en Europa son los casos históricos más claros. Lección: identificar si el shock es de demanda o de oferta determina qué instrumento de política económica es apropiado.",
+          "next": "n2"
+        },
+        {
+          "label": "Es un shock de demanda: las subidas de tipos del BCE han frenado demasiado la economía",
+          "kpi_delta": { "pib_crecimiento_pct": 0, "paro_pct": 0, "deficit_pct_pib": 0 },
+          "feedback": "Perspectiva alternativa. Si la causa es principalmente el enfriamiento excesivo de demanda por las subidas de tipos, la solución es política expansiva: fiscal (gasto público) o monetaria (bajar tipos). El problema es que la inflación del 4,1 % es más alta que en el escenario de shock puro de demanda. Si activas expansión fiscal mientras el BCE lucha contra la inflación, estás trabajando en sentido contrario al BCE, lo que genera tensión institucional y reduce la eficacia de ambas políticas. Lección: la coordinación entre política fiscal y monetaria es crucial — si van en sentidos opuestos, se anulan parcialmente.",
+          "next": "n2"
+        },
+        {
+          "label": "No hay consenso: consulto a la AIReF antes de decidir",
+          "kpi_delta": { "pib_crecimiento_pct": 0, "paro_pct": 0, "deficit_pct_pib": 0 },
+          "feedback": "Respuesta institucionalmente correcta. La Autoridad Independiente de Responsabilidad Fiscal (AIReF) evalúa las previsiones y la sostenibilidad fiscal del Gobierno con independencia política. Consultar antes de comprometer gasto público evita errores como los de la curva de Laffer mal aplicada (subir impuestos cuando la recaudación ya está en el máximo eficiente) o el gasto procíclico en el peor momento. Lección: las instituciones fiscales independientes reducen el sesgo político en la toma de decisiones económicas — su existencia es parte del marco de gobernanza económica europeo.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisión 2 — ¿Qué palanca activas?",
+      "situacion": "El diagnóstico apunta a estanflación. Las opciones disponibles: (a) política fiscal expansiva (más gasto público o menos impuestos), pero arriesgas superar el déficit del 3 % del PIB del Pacto de Estabilidad; (b) esperar a que el BCE baje tipos (política monetaria expansiva), pero no controlas cuando actuará; (c) política de oferta (reformas estructurales: educación, mercado laboral, digitalización), que mejoran la LRAS a largo plazo pero sin efecto a corto.",
+      "opciones": [
+        {
+          "label": "Política fiscal expansiva: 5.000 millones de € en inversión pública en digitalización e infraestructura",
+          "kpi_delta": { "pib_crecimiento_pct": 3, "paro_pct": -8, "deficit_pct_pib": 5 },
+          "feedback": "Expansión keynesiana. El multiplicador del gasto público en España se estima entre 1,0 y 1,5 (AIReF, 2023): cada euro de inversión genera 1,0-1,5 € adicionales de PIB. Los 5.000 M€ podrían añadir 0,4-0,6 puntos al crecimiento. El problema: el déficit sube del 3,8 % al 4,3-4,5 %, por encima del límite europeo del 3 %. La Comisión Europea puede abrir un Procedimiento de Déficit Excesivo contra España. Lección: la política fiscal expansiva tiene límites institucionales europeos — el Pacto de Estabilidad y Crecimiento (reformado en 2024) establece techos de déficit y deuda.",
+          "next": "n3"
+        },
+        {
+          "label": "Espero al BCE: si baja tipos, el crédito se abarata y la inversión privada se activa",
+          "kpi_delta": { "pib_crecimiento_pct": 0, "paro_pct": 3, "deficit_pct_pib": 0 },
+          "feedback": "La política monetaria del BCE no está bajo control del Gobierno español: es independiente por diseño institucional (Tratado de Funcionamiento de la UE, art. 130). El BCE decide según el objetivo de inflación de la eurozona (2 %), no según la coyuntura española. Con inflación española al 4,1 %, el BCE puede no bajar tipos incluso si la economía española está en recesión. Lección: la eurozona es una unión monetaria con política monetaria única y política fiscal nacional — este «desacoplamiento» puede crear tensiones, especialmente en asimetrías cíclicas entre países.",
+          "next": "n3"
+        },
+        {
+          "label": "Reformas estructurales: reforma del mercado laboral para reducir la dualidad temporal/indefinido",
+          "kpi_delta": { "pib_crecimiento_pct": 1, "paro_pct": -5, "deficit_pct_pib": -2 },
+          "feedback": "Las reformas estructurales desplazan la LRAS a la derecha: más producción potencial sin presión de precios. La reforma laboral de 2022 ya redujo la temporalidad del 26 % al 17 % — pero sus efectos sobre el paro estructural son graduales. A corto plazo no resuelven la urgencia, pero son las medidas más eficaces a largo plazo y no aumentan el déficit. Lección: la política de oferta actúa sobre la LRAS (largo plazo) mientras la fiscal y monetaria actúan sobre la AD (corto plazo) — una economía sana necesita las dos.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisión 3 — La Comisión Europea te presiona sobre el déficit",
+      "situacion": "La Comisión Europea envía una carta de advertencia: el déficit español supera el umbral del 3 % del PIB y pide un plan de consolidación fiscal. El presidente del Gobierno quiere retrasar el ajuste hasta después de las próximas elecciones (18 meses). Tú, como ministra, tienes que decidir tu posición.",
+      "opciones": [
+        {
+          "label": "Presento un plan de consolidación gradual: reducir déficit 0,5 puntos/año durante 4 años",
+          "kpi_delta": { "pib_crecimiento_pct": -1, "paro_pct": 5, "deficit_pct_pib": -5 },
+          "feedback": "Consolidación fiscal gradual: reduce el déficit sin aplicar un ajuste brusco que podría hundir la demanda en recesión. Es el enfoque que la nueva regla fiscal europea (aprobada en 2024) prefiere: ajustes graduales, acompañados de inversión en crecimiento potencial. El coste es político: el ajuste implica menos gasto social o más impuestos, lo que erosiona apoyo electoral. Lección: la curva de Laffer muestra que existe un nivel óptimo de presión fiscal más allá del cual la recaudación cae — la consolidación debe buscar ese punto, no superarlo.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Retraso el ajuste 18 meses: la economía está débil y el ajuste empeoraría el ciclo",
+          "kpi_delta": { "pib_crecimiento_pct": 1, "paro_pct": -3, "deficit_pct_pib": 2 },
+          "feedback": "El argumento tiene base económica: el ajuste fiscal procíclico (reducir gasto cuando la economía está débil) amplifica la recesión — es lo que pasó en España entre 2010 y 2013 con las políticas de austeridad impuestas por la Troika. Pero retrasar 18 meses aumenta el coste del endeudamiento (los mercados descuentan riesgo si ven que España no corrige el déficit) y puede deteriorar la prima de riesgo. Lección: timing del ajuste fiscal importa tanto como el tamaño — el ajuste procíclico en recesión amplifica el daño.",
+          "next": "final:fracaso_parcial"
+        },
+        {
+          "label": "Negocio con la Comisión cláusulas de escape por razones cíclicas: el nuevo Pacto las permite",
+          "kpi_delta": { "pib_crecimiento_pct": 2, "paro_pct": -2, "deficit_pct_pib": 0 },
+          "feedback": "La reforma del Pacto de Estabilidad de 2024 (el nuevo marco de gobernanza económica europea) introdujo mayor flexibilidad: los países pueden negociar planes de ajuste adaptados a su situación cíclica, con plazos de hasta 7 años para reformas e inversiones. Si España tiene un plan creíble de reforma estructural, la Comisión puede permitir el exceso temporal de déficit. Esta es la negociación real que los gobiernos llevan a cabo con Bruselas. Lección: las reglas fiscales europeas no son rígidas — tienen cláusulas de escape y mecanismos de negociación que reflejan el equilibrio entre disciplina y flexibilidad.",
+          "next": "final:exito"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "España gestiona el ciclo con credibilidad",
+      "resumen": "Has diagnosticado correctamente el tipo de shock, elegido el instrumento adecuado y gestionado la tensión con las reglas fiscales europeas con un plan creíble. La economía española no sale de inmediato de las dificultades, pero tiene un marco de política económica coherente.",
+      "lecciones_clave": [
+        "En estanflación, cualquier política de demanda tiene costes: la expansión sube la inflación, la restricción sube el paro. Las reformas de oferta son la solución a largo plazo.",
+        "La política monetaria en la eurozona no depende del Gobierno nacional: el BCE decide según el objetivo de inflación del conjunto de la zona euro.",
+        "Las reglas fiscales europeas (Pacto de Estabilidad reformado en 2024) son el marco institucional que limita el margen de maniobra fiscal de los gobiernos nacionales."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "España retrasa el ajuste, los mercados responden",
+      "resumen": "El retraso electoral del ajuste fiscal ha deteriorado la percepción de los mercados sobre la sostenibilidad de la deuda española. La prima de riesgo sube y el coste de financiación del Estado aumenta, erosionando parte del espacio fiscal que se pretendía conservar.",
+      "lecciones_clave": [
+        "El retraso del ajuste fiscal en una economía con déficit estructural puede elevar el coste de financiación del Estado, reduciendo el efecto expansivo previsto.",
+        "La credibilidad fiscal tiene valor económico: los mercados descuentan el riesgo de deuda antes de que se materialice."
+      ]
+    }
+  }
+}
+```
