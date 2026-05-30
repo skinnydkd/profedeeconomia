@@ -1,0 +1,117 @@
+---
+asignatura: eeae-bach
+unidad_relacionada: 8
+title: "La primera empleada de la empresa de tu madre"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "15-20 min"
+descripcion: "Tu madre tiene una pequeña empresa de catering y quiere contratar a su primera persona. Tú la ayudas a decidir. La cultura empieza aquí."
+competencias_clave: [CPSAA, CE, CD]
+competencias_especificas: [CE2]
+estado: publicado
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Caso · Empresa, cultura y gestión del talento",
+    "titulo": "La primera empleada de la empresa de tu madre",
+    "contexto": "Tu madre, Montserrat, lleva cuatro años con 'La Cuina de Montserrat', un servicio de catering para eventos familiares y corporativos. Trabaja sola con ayuda esporádica de familiares. Este año tiene más pedidos de los que puede gestionar y necesita contratar a su primera persona de forma estable. Te pide que la ayudes a pensar el proceso. El perfil que busca: alguien que cocine bien, sea de confianza y comparta su forma de trabajar —muy cuidadosa con la presentación, muy atenta a las restricciones alimentarias de los clientes—. Tiene tres candidatas.",
+    "kpi_inicial": { "pedidos_mensual": 12, "capacidad_actual": 8, "cultura_empresa": 7 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisión 1 — ¿Cómo seleccionar a la candidata adecuada?",
+      "situacion": "Montserrat tiene tres candidatas: (a) Raquel, con 10 años de experiencia en restaurantes pero sin experiencia en catering; exige horario fijo y salario un 20 % por encima del mínimo sectorial; (b) Daniela, recién titulada en cocina, muy ilusionada, sin experiencia pero dispuesta a aprender 'lo que haga falta'; (c) Yolanda, prima de una clienta habitual, sin titulación pero con experiencia en cocina familiar y en preparar banquetes para su familia. La recomendaron con entusiasmo.",
+      "opciones": [
+        {
+          "label": "Raquel: experiencia probada, aunque más cara",
+          "kpi_delta": { "capacidad_actual": 3, "cultura_empresa": -1 },
+          "feedback": "Raquel tiene experiencia real y sabe trabajar bajo presión. Pero su exigencia de horario fijo choca con el catering, donde los eventos son los fines de semana y los horarios son variables. Después de dos meses, las tensiones por los horarios generan fricción. La experiencia es valiosa, pero la incompatibilidad con las condiciones reales del trabajo es un problema que no desaparece. Lección: contratar talento con experiencia en un contexto diferente requiere verificar que las condiciones del trabajo nuevo son compatibles con lo que la persona espera.",
+          "next": "n2"
+        },
+        {
+          "label": "Daniela: sin experiencia pero alineada con los valores",
+          "kpi_delta": { "capacidad_actual": 1, "cultura_empresa": 2 },
+          "feedback": "Daniela aprende rápido y encaja bien con la forma de trabajar de Montserrat. Las primeras semanas son más lentas mientras aprende el ritmo, pero al tercer mes ya gestiona pedidos medianos de forma autónoma. La curva de aprendizaje tiene un coste inicial, pero el alineamiento cultural es difícil de encontrar y muy difícil de enseñar. Lección: en empresas pequeñas, la cultura y los valores compartidos suelen pesar más que la experiencia técnica, especialmente si la persona tiene capacidad de aprendizaje.",
+          "next": "n2"
+        },
+        {
+          "label": "Yolanda: recomendación de cliente de confianza",
+          "kpi_delta": { "capacidad_actual": 2, "cultura_empresa": 0 },
+          "feedback": "Yolanda trabaja bien y es de confianza, pero la relación se complica porque es prima de una clienta importante. Cuando hay un problema en un pedido de esa clienta, Yolanda queda en una posición incómoda y la clienta también. Las relaciones personales en pequeñas empresas pueden ser una ventaja (confianza inicial) y un riesgo (conflictos de interés o situaciones incómodas). Lección: las recomendaciones de personas cercanas pueden reducir el riesgo de contratación, pero también introducen relaciones complicadas que no existirían con una persona externa.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisión 2 — Cómo incorporar a la nueva persona a la cultura de la empresa",
+      "situacion": "Sea quien sea la elegida, los primeros meses son críticos. Montserrat te pregunta: '¿Cómo le explico cómo trabajamos aquí?' Tiene tres opciones: (a) darle una lista de normas y procedimientos escrita; (b) trabajar codo a codo las primeras dos semanas sin hacer nada formal, aprendiendo por observación; (c) explicarle por qué hace las cosas como las hace (las razones detrás de la cuidadosa presentación, las restricciones alimentarias, la comunicación con los clientes) antes de enseñarle los procedimientos.",
+      "opciones": [
+        {
+          "label": "Lista de normas escritas: claro y sin ambigüedad",
+          "kpi_delta": { "cultura_empresa": 0, "capacidad_actual": 1 },
+          "feedback": "Las normas están bien para los procedimientos técnicos (temperatura de conservación, etiquetado de alergenos), pero la cultura no se transmite con una lista. La nueva persona sabe qué hacer, pero no por qué lo hace Montserrat así. Cuando aparece una situación nueva que no está en la lista, actúa según su propio criterio, que puede no coincidir con el de Montserrat. Lección: los procedimientos codifican el qué; la cultura transmite el por qué. Sin por qué, las normas se cumplen de forma mecánica y se violan en cuanto la situación es nueva.",
+          "next": "n3"
+        },
+        {
+          "label": "Aprender por observación las primeras dos semanas",
+          "kpi_delta": { "cultura_empresa": 1, "capacidad_actual": 0 },
+          "feedback": "La nueva persona observa cómo trabaja Montserrat y capta el estilo de trabajo. Pero sin explicación explícita de por qué, interpreta algunas cosas de forma diferente a la intención de Montserrat. Al tercer mes, la nueva persona ha desarrollado sus propios atajos que no siempre coinciden con la calidad que Montserrat quiere mantener. Lección: la transmisión cultural por observación funciona, pero es lenta e imprecisa. Combinar observación con explicación de las razones es más eficiente.",
+          "next": "n3"
+        },
+        {
+          "label": "Explicar primero el por qué: la filosofía detrás de cada decisión",
+          "kpi_delta": { "cultura_empresa": 3, "capacidad_actual": 1 },
+          "feedback": "Montserrat dedica la primera semana a explicar: 'Por qué cuido tanto la presentación —porque los clientes recuerdan cómo entra la comida por los ojos—'; 'por qué pregunto siempre por las restricciones alimentarias antes del evento —porque tuve una mala experiencia con una alergia—'; 'por qué confirmo con el cliente 48 horas antes —porque los cambios de última hora cuestan mucho más si no hay margen—'. Con ese contexto, la nueva persona entiende la lógica y puede aplicarla en situaciones que Montserrat no ha previsto. Lección: la cultura empresarial se transmite explicando el por qué, no solo el qué. Quien entiende el por qué puede tomar decisiones coherentes aunque la situación sea nueva.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisión 3 — El primer conflicto: la nueva persona tiene otra forma de hacer una cosa",
+      "situacion": "Dos meses después de la incorporación, la nueva persona sugiere que Montserrat debería preparar los aliños de ensalada de forma diferente a como lo ha hecho siempre, porque en su anterior trabajo lo hacían así y quedaba más fresco. Montserrat no está del todo de acuerdo, pero tampoco sabe bien por qué lo hace de su forma. ¿Cómo gestiona este momento?",
+      "opciones": [
+        {
+          "label": "Montserrat: 'Aquí lo hacemos así, es como siempre ha funcionado'",
+          "kpi_delta": { "cultura_empresa": -1, "capacidad_actual": 0 },
+          "feedback": "La respuesta cierra la conversación sin aprender nada. La nueva persona deja de proponer mejoras porque aprende que sus ideas no son bienvenidas. A largo plazo, Montserrat pierde la oportunidad de que alguien con experiencia diferente mejore su empresa. El intraemprendimiento (proponer mejoras desde dentro) solo funciona si hay espacio para ello. Lección: una cultura empresarial que castiga las propuestas diferentes acaba perdiendo el talento que más tiene que aportar.",
+          "next": "final:fracaso_parcial"
+        },
+        {
+          "label": "Montserrat: 'Pruébalo y lo comparamos con los clientes habituales'",
+          "kpi_delta": { "cultura_empresa": 2, "capacidad_actual": 1 },
+          "feedback": "Respuesta madura: ni rechazar ni aceptar a ciegas, sino contrastar con evidencia real. Hacen una prueba con dos pedidos pequeños. Los clientes no notan diferencia significativa, pero el nuevo método es ligeramente más rápido. Adoptan el cambio. Montserrat aprende que una forma diferente de hacer las cosas puede ser mejor, y la nueva persona aprende que sus propuestas se escuchan si se fundamentan. Lección: la cultura empresarial saludable combina la coherencia con los valores propios y la apertura a mejorar cuando hay evidencia.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Montserrat: 'Si crees que es mejor, hazlo siempre tú a tu manera'",
+          "kpi_delta": { "cultura_empresa": -1, "capacidad_actual": 1 },
+          "feedback": "Evita el conflicto pero crea incoherencia: en la misma empresa ahora hay dos formas de preparar los aliños dependiendo de quién trabaje ese día. Los clientes empiezan a notar pequeñas diferencias. La nueva persona no sabe si su forma es mejor o peor, solo que tiene permiso para hacerlo diferente. La coherencia de la marca se erosiona. Lección: delegar sin criterio no es flexibilidad, es abdicación de la cultura empresarial. La coherencia en la calidad es parte de lo que los clientes pagan.",
+          "next": "final:fracaso_parcial"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "La primera contratación ha reforzado la empresa",
+      "resumen": "Has seleccionado con criterio, has transmitido la cultura de forma eficaz y has gestionado el primer conflicto con apertura y evidencia.",
+      "lecciones_clave": [
+        "En empresas pequeñas, el alineamiento cultural suele pesar más que la experiencia técnica en la selección de la primera persona contratada.",
+        "La cultura empresarial se transmite explicando el por qué de cada decisión, no solo el qué o el cómo. Quien entiende el por qué puede adaptar su conducta ante situaciones nuevas.",
+        "Una cultura que escucha propuestas y las contrasta con evidencia retiene el talento que tiene más que aportar."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "La empresa ha crecido, pero con fricciones evitables",
+      "resumen": "La contratación ha funcionado parcialmente, pero alguna decisión ha erosionado la cultura o ha creado incoherencias que costarán corregir.",
+      "lecciones_clave": [
+        "Las normas escritas sin explicación del por qué se cumplen mecánicamente y se violan en situaciones nuevas.",
+        "Delegar sin criterio no es flexibilidad: es dejar que la cultura empresarial se fragmente."
+      ]
+    }
+  }
+}
+```

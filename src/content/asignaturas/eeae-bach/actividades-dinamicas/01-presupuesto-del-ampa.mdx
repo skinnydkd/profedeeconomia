@@ -1,0 +1,117 @@
+---
+asignatura: eeae-bach
+unidad_relacionada: 1
+title: "El presupuesto del AMPA que nadie quiere recortar"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "15-20 min"
+descripcion: "El AMPA tiene 2.400 € y cuatro partidas que piden más de lo que hay. Decide qué financias y a qué renuncias."
+competencias_clave: [CPSAA, CE, CD]
+competencias_especificas: [CE2]
+estado: publicado
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Caso · Escasez y coste de oportunidad",
+    "titulo": "El presupuesto del AMPA que nadie quiere recortar",
+    "contexto": "Eres vocal del AMPA del IES Ponent. La asociación tiene 2.400 € para gastar antes de que acabe el curso. Las cuatro comisiones piden, en total, 4.600 €: el grupo de teatro necesita 800 € para el atrezo del musical; los delegados de curso quieren 1.200 € para una excursión de convivencia; la comisión de biblioteca pide 600 € para renovar estanterías y comprar libros; y el grupo de medioambiente necesita 400 € para instalar composteras. Solo tienes 2.400 €. Hay que repartir.",
+    "kpi_inicial": { "presupuesto": 2400, "partidas_demandadas": 4600, "satisfaccion_general": 6.0 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisión 1 — ¿Qué criterio aplicas al reparto?",
+      "situacion": "Antes de asignar ni un euro, el equipo directivo te pregunta con qué criterio vas a decidir. Hay tres posturas sobre la mesa: (a) financiar íntegramente las partidas más urgentes y dejar las demás a cero; (b) repartir proporcionalmente para que nadie se quede sin nada; (c) aplicar coste de oportunidad y financiar primero lo que más beneficio colectivo genera por euro gastado.",
+      "opciones": [
+        {
+          "label": "Urgencia: primero teatro y excursión porque tienen fecha límite",
+          "kpi_delta": { "presupuesto": 0, "satisfaccion_general": 0.3 },
+          "feedback": "Financias las urgencias inmediatas, pero la biblioteca y las composteras quedan a cero. Teatro y excursión eran las partidas con más visibilidad, pero no necesariamente las de mayor impacto colectivo. Lección: la urgencia y la importancia no son lo mismo. Elegir por fecha límite es una forma de no decidir, solo de posponer la decisión real.",
+          "next": "n2"
+        },
+        {
+          "label": "Proporcional: cada partida recibe el 52 % de lo que pide",
+          "kpi_delta": { "presupuesto": 0, "satisfaccion_general": 0.2 },
+          "feedback": "Parece justo, pero con 416 € teatro no puede montar el musical, con 624 € la excursión no cubre el autobús. El reparto proporcional puede hacer que nadie llegue a hacer nada bien. A veces es más eficiente concentrar los recursos en lo que realmente puede sacarse adelante. Lección: el reparto igualitario y el reparto eficiente no siempre coinciden.",
+          "next": "n2"
+        },
+        {
+          "label": "Coste de oportunidad: financio lo que más impacto tiene por euro",
+          "kpi_delta": { "presupuesto": 0, "satisfaccion_general": 0.5 },
+          "feedback": "Buen punto de partida. Antes de repartir, te preguntas qué se consigue con cada euro y qué dejarías de conseguir si lo gastases en otra cosa. Eso obliga a pensar en el beneficio real de cada partida, no en quién grita más fuerte. Lección: el coste de oportunidad no es una fórmula, es una forma de mirar: cada euro que asignas es un euro que no va a ninguna otra cosa.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisión 2 — La excursión o la biblioteca",
+      "situacion": "Has reducido el debate a dos partidas que compiten por los mismos 1.200 €: la excursión de convivencia (1.200 €, beneficia a 120 alumnos durante un día) o la renovación de la biblioteca (600 €, beneficia potencialmente a 400 alumnos durante todo el curso). La excursión tiene más apoyo emocional; la biblioteca, más impacto prolongado pero menos visible. Solo puedes financiar una de las dos íntegramente.",
+      "opciones": [
+        {
+          "label": "Excursión: el beneficio emocional y la cohesión de grupo son esenciales",
+          "kpi_delta": { "presupuesto": -1200, "satisfaccion_general": 0.4 },
+          "feedback": "La excursión genera impacto inmediato y cohesión de grupo, lo que también tiene valor económico en términos de bienestar colectivo. Pero has gastado la mitad del presupuesto en 120 personas durante un día. El coste por persona-día es mucho más alto que el de la biblioteca. Lección: el valor de uso y el valor percibido son cosas distintas. Lo que más se disfruta en el momento no siempre es lo que más valor genera a largo plazo.",
+          "next": "n3"
+        },
+        {
+          "label": "Biblioteca: más personas, más tiempo, más impacto por euro",
+          "kpi_delta": { "presupuesto": -600, "satisfaccion_general": 0.3 },
+          "feedback": "Has elegido la partida con mejor ratio impacto/coste. Con 600 € sirves a 400 alumnos durante todo el curso. El problema: la decisión no es popular. La excursión tiene más defensores, aunque tenga menos coste-efectividad. Lección: las buenas decisiones de asignación son a veces impopulares. Explicar el razonamiento al grupo es parte del trabajo de quien toma decisiones colectivas.",
+          "next": "n3"
+        },
+        {
+          "label": "Negocia: media excursión más cercana (600 €) + biblioteca (600 €)",
+          "kpi_delta": { "presupuesto": -1200, "satisfaccion_general": 0.6 },
+          "feedback": "Encuentras una solución que maximiza el impacto total: excursión de medio día en un espacio natural cercano más renovación de la biblioteca. Las dos partidas se ejecutan, aunque ninguna al 100 % de lo pedido. Lección: la negociación creativa puede generar más valor total que una elección binaria. No siempre hay que elegir entre A y B si cabe un C que sirve a más personas.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisión 3 — Las composteras y la eficiencia del último euro",
+      "situacion": "Quedan 1.200 € en el presupuesto (o menos, según tu decisión anterior). El grupo de medioambiente pide 400 € para instalar tres composteras en el patio. El dinero restante alcanza, pero algunos miembros del AMPA señalan que el mantenimiento posterior no está presupuestado y que sin mantenimiento las composteras acabarán abandonadas. ¿Inviertes?",
+      "opciones": [
+        {
+          "label": "Sí, las composteras conectan con los ODS y son visibles para el barrio",
+          "kpi_delta": { "presupuesto": -400, "satisfaccion_general": 0.5 },
+          "feedback": "Financia las composteras y queda dinero para teatro. Pero sin plan de mantenimiento, en tres meses puede que nadie las use. Has creado un activo que puede convertirse en una ineficiencia —recursos infrautilizados— si no hay seguimiento. Lección: la eficiencia no es solo producir bien, también es mantener lo que se produce. Una inversión sin uso es escasez autoinfligida.",
+          "next": "final:exito"
+        },
+        {
+          "label": "No, sin plan de mantenimiento es tirar el dinero",
+          "kpi_delta": { "presupuesto": 0, "satisfaccion_general": -0.2 },
+          "feedback": "Prudencia razonable, pero el grupo de medioambiente se desanima y pierdes su implicación para el año que viene. El coste de no hacer algo no es cero: tiene un coste de oportunidad en términos de energía y compromiso. Lección: a veces la decisión de no gastar también tiene costes que no aparecen en la cuenta.",
+          "next": "final:fracaso_parcial"
+        },
+        {
+          "label": "Sí, pero reserva 150 € del presupuesto restante para el primer trimestre de mantenimiento",
+          "kpi_delta": { "presupuesto": -550, "satisfaccion_general": 0.8 },
+          "feedback": "La mejor decisión de las tres: inviertes en las composteras y aseguras su arranque con un fondo de mantenimiento. El proyecto tiene más posibilidades de ser sostenible en el tiempo. Lección: la escasez nos obliga a elegir bien, no solo a elegir barato. Gastar un poco más ahora para que lo que gastas funcione de verdad suele ser más eficiente que gastar poco en algo que luego se abandona.",
+          "next": "final:exito"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "El AMPA ha repartido bien un presupuesto insuficiente",
+      "resumen": "Has tomado decisiones con criterio, explicado el coste de oportunidad de cada elección y conseguido que los recursos limitados sirvan al mayor número de personas posible.",
+      "lecciones_clave": [
+        "La escasez obliga a elegir, y toda elección tiene un coste de oportunidad: lo que financias es lo que no financia otro.",
+        "El criterio de asignación importa tanto como la cantidad: el reparto proporcional no siempre es el más eficiente.",
+        "La ineficiencia es escasez autoinfligida: tener recursos y no usarlos bien empeora el problema de la escasez."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "El presupuesto se ha gastado, pero con resultados desiguales",
+      "resumen": "Has evitado decisiones claramente malas, pero alguna elección deja recursos infrautilizados o partidas con menos impacto del posible.",
+      "lecciones_clave": [
+        "Elegir por urgencia o por popularidad no es lo mismo que elegir por impacto.",
+        "El coste de no hacer algo también existe: no es solo lo que gastas, también lo que dejas de conseguir."
+      ]
+    }
+  }
+}
+```

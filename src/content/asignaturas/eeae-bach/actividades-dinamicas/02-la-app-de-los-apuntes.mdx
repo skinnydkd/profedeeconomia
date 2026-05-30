@@ -1,0 +1,117 @@
+---
+asignatura: eeae-bach
+unidad_relacionada: 2
+title: "La app de apuntes que nadie descarga como se esperaba"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "15-20 min"
+descripcion: "Has lanzado una app de apuntes compartidos para tu instituto. Las descargas no van como esperabas. ¿Qué sesgos te jugaron la mala pasada?"
+competencias_clave: [CPSAA, CE, CD]
+competencias_especificas: [CE2]
+estado: publicado
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Caso · Sesgos y toma de decisiones",
+    "titulo": "La app de apuntes que nadie descarga como esperabas",
+    "contexto": "Llevas cuatro meses desarrollando 'ApuntaYa', una app para que los alumnos del instituto compartan apuntes y resúmenes por asignatura. La desarrollaste con dos amigos durante el verano. La semana del lanzamiento, cinco compañeros de tu clase la descargaron con entusiasmo. Tú interpretaste ese 5/5 como señal de que 'está claro que funciona'. Hoy, seis semanas después, tienes 23 descargas en todo el instituto (700 alumnos), 8 reseñas de 1 estrella que dicen 'muy vacía' y 0 apuntes subidos por nadie que no sea tu equipo. Te has quedado sin tiempo y con el dinero del plan de pago de la tienda de apps a punto de renovarse.",
+    "kpi_inicial": { "descargas": 23, "apuntes_subidos": 12, "dinero_restante": 40 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisión 1 — Diagnosricar por qué no funciona",
+      "situacion": "Antes de actuar, necesitas entender el problema. Tus dos socios proponen tres diagnósticos diferentes: (a) 'La gente no lo conoce suficiente, hay que hacer más marketing'; (b) 'El diseño es malo, hay que rehacerlo'; (c) 'Nadie sube apuntes porque no hay nadie que los suba, problema del huevo y la gallina'. ¿Cuál te parece más probable?",
+      "opciones": [
+        {
+          "label": "Es marketing: si lo conocieran más lo usarían",
+          "kpi_delta": { "dinero_restante": -20, "descargas": 15 },
+          "feedback": "Gastas 20 € en anuncios en Instagram. Consigues 15 descargas más, pero el problema sigue: nadie sube apuntes porque no hay apuntes, y sin apuntes no hay razón para quedarse. Has caído en el sesgo de confirmación: buscabas validar que el producto es bueno y que el problema es solo de visibilidad, sin contrastar que quizá el producto no resuelve bien el problema. Lección: más marketing en un producto que no funciona acelera su fracaso, no lo revierte.",
+          "next": "n2"
+        },
+        {
+          "label": "Es diseño: con mejor interfaz la gente se quedaría",
+          "kpi_delta": { "dinero_restante": 0, "descargas": 0 },
+          "feedback": "Dedicas tres semanas a rediseñar la app. Queda más bonita. Pero el problema de fondo —no hay apuntes— sigue igual. El diseño es el sesgo del anclaje: te has fijado en las reseñas de 1 estrella que mencionan la interfaz y has ignorado las que dicen 'muy vacía'. Lección: resolver el síntoma no es lo mismo que resolver el problema. El diagnóstico antes que la solución.",
+          "next": "n2"
+        },
+        {
+          "label": "Es el problema del huevo y la gallina: nadie sube porque nadie descarga y viceversa",
+          "kpi_delta": { "dinero_restante": 0, "descargas": 0 },
+          "feedback": "Diagnóstico correcto. Has resistido el sesgo de confirmación (buscar lo que valida tu idea) y el sesgo de disponibilidad (la queja más visible sobre el diseño). El problema real es estructural: sin contenido inicial no hay razón para descargar, y sin descargas no hay razón para subir contenido. Para resolverlo hay que romper el ciclo artificialmente. Lección: el pensamiento racional requiere preguntarse si el diagnóstico más incómodo podría ser el correcto.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisión 2 — Romper el ciclo del huevo y la gallina",
+      "situacion": "Has identificado el problema correcto. Ahora tienes tres estrategias para romper el ciclo: (a) ofrecer un pequeño incentivo (décimo de lotería de Navidad) al primer alumno de cada clase que suba cinco apuntes; (b) negociar con cuatro profesores para que ofrezcan 0,25 puntos extra a quien suba apuntes verificados; (c) subir vosotros mismos 50 apuntes de alta calidad en las asignaturas más cursadas para crear la masa crítica inicial.",
+      "opciones": [
+        {
+          "label": "Incentivo económico: el décimo motiva a actuar",
+          "kpi_delta": { "dinero_restante": -15, "apuntes_subidos": 30 },
+          "feedback": "El incentivo funciona a corto plazo: 30 apuntes nuevos en dos semanas. Pero cuando se acaba el sorteo, la subida se para. Has generado motivación extrínseca, que es eficaz pero temporal. La economía del comportamiento lo llama 'efecto multitarea': cuando pagas por algo que la gente haría por interés propio, a veces reduces su motivación intrínseca. Lección: los incentivos económicos funcionan, pero pueden sustituir a la motivación que quieres cultivar a largo plazo.",
+          "next": "n3"
+        },
+        {
+          "label": "Extra académico: los profesores dan 0,25 puntos",
+          "kpi_delta": { "apuntes_subidos": 80, "descargas": 60 },
+          "feedback": "La mejor jugada de las tres: creas un incentivo que alinea el interés del alumno (nota) con el interés de la plataforma (contenido) y que los profesores aceptan porque mejora la preparación de sus alumnos. En tres semanas tienes 80 apuntes nuevos y 60 nuevas descargas. El incentivo es sostenible porque la estructura del instituto lo refuerza. Lección: el mejor diseño de incentivos es el que aprovecha motivaciones que ya existen, no el que crea motivaciones artificiales de cero.",
+          "next": "n3"
+        },
+        {
+          "label": "Contenido propio: subís vosotros 50 apuntes para crear masa crítica",
+          "kpi_delta": { "apuntes_subidos": 50, "dinero_restante": 0 },
+          "feedback": "Correcto diagnóstico del problema: sin contenido no hay plataforma. Lo resolvéis con trabajo propio. El riesgo es que si los apuntes son de alta calidad, los usuarios descargan pero no sienten necesidad de subir los suyos. Habéis creado usuarios pasivos. Lección: actuar como primer oferente de contenido puede funcionar para arrancar, pero hay que diseñar también el paso siguiente para que los usuarios pasen de consumidores a productores.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisión 3 — El modelo de negocio y la decisión de seguir o pivotar",
+      "situacion": "La app tiene ahora más actividad, pero el plan de la tienda (40 €/año) se renueva en diez días y tenéis que decidir si seguir o parar. Un compañero sugiere cobrar 1 € al mes a los usuarios que descarguen más de 10 apuntes. Otro dice que es mejor dejarlo gratuito y buscar un patrocinio del AMPA. El tercero propone cerrar la app y redirigir el esfuerzo a un canal de Telegram que cuesta cero.",
+      "opciones": [
+        {
+          "label": "Freemium: gratuito hasta 10 descargas, luego 1 €/mes",
+          "kpi_delta": { "dinero_restante": 20, "descargas": -15 },
+          "feedback": "Introduces un modelo freemium razonable en teoría, pero en un instituto donde todo el mundo se conoce y puede compartir la cuenta, la monetización es difícil de sostener. Pierdes 15 descargas por la fricción del pago. Lección: el modelo freemium funciona cuando el valor percibido supera claramente la barrera del pago. En un mercado pequeño y social como un instituto, esa barrera puede ser demasiado alta.",
+          "next": "final:fracaso_parcial"
+        },
+        {
+          "label": "Patrocinio del AMPA: gratuito para todos, financiado por la asociación",
+          "kpi_delta": { "dinero_restante": 40, "descargas": 30 },
+          "feedback": "El AMPA acepta cubrir los 40 € anuales a cambio de visibilidad en la app. Mantienes la gratuidad, creces en usuarios y el modelo es sostenible para el curso. Habéis encontrado una forma de alinear vuestros intereses con los del AMPA, que también quiere herramientas de utilidad para el instituto. Lección: en mercados pequeños, los modelos de patrocinio o de alianza institucional a veces funcionan mejor que la monetización directa.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Pivotar a Telegram: cero coste, todos lo tienen ya instalado",
+          "kpi_delta": { "dinero_restante": 40, "descargas": 0 },
+          "feedback": "Decisión racional y honesta: reconoces que el canal más sencillo resuelve el mismo problema con menos fricción. Telegram es gratuito, todos lo usan y los apuntes se pueden compartir en segundos. Esto es pivotar, no fracasar: tomar la aversión a la pérdida por los cuatro meses de trabajo en la app y dejar de hacer algo que no funciona mejor que la alternativa gratuita sería irracional. Lección: la aversión a la pérdida puede hacer que sigamos invirtiendo en algo que no funciona solo porque ya hemos invertido mucho. Saber cuándo parar también es racionalidad.",
+          "next": "final:exito"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "ApuntaYa encuentra su camino",
+      "resumen": "Has diagnosticado los sesgos que te llevaron al error inicial, corregido el modelo y tomado una decisión de negocio con más fundamento que al principio.",
+      "lecciones_clave": [
+        "El sesgo de confirmación lleva a buscar evidencia que valide lo que ya creemos, en lugar de buscar lo que podría desmentirlo.",
+        "Los incentivos bien diseñados aprovechan motivaciones existentes; los mal diseñados crean dependencias o destruyen la motivación intrínseca.",
+        "La aversión a la pérdida puede mantenernos en proyectos que no funcionan solo porque ya hemos invertido en ellos: reconocer cuándo pivotar es una competencia racional, no un fracaso."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "La app sobrevive con más coste que beneficio",
+      "resumen": "Has tomado alguna buena decisión, pero sin abordar el problema central de los sesgos que llevaron al diseño inicial fallido.",
+      "lecciones_clave": [
+        "Sin diagnóstico honesto, las soluciones atacan síntomas, no causas.",
+        "La racionalidad acotada no es excusa: se pueden tomar mejores decisiones si se contrastan los supuestos antes de actuar."
+      ]
+    }
+  }
+}
+```

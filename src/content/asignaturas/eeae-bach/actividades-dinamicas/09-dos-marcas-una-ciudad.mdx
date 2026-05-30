@@ -1,0 +1,117 @@
+---
+asignatura: eeae-bach
+unidad_relacionada: 9
+title: "Dos marcas de tutorías, una ciudad, estrategias opuestas"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "15-20 min"
+descripcion: "Has montado una academia de tutorías online para Bachillerato. Un competidor acaba de llegar con precios más bajos. ¿Cómo compites?"
+competencias_clave: [CPSAA, CE, CD]
+competencias_especificas: [CE2]
+estado: publicado
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Caso · Estrategia y modelos de negocio",
+    "titulo": "Dos marcas de tutorías, una ciudad, estrategias opuestas",
+    "contexto": "Llevas un año con 'TutoríaClara', un servicio de tutorías online para Bachillerato que fundaste con tu amigo Diego. Os especializáis en Matemáticas, Física y Química. Tenéis 28 alumnos activos que pagan 35 €/hora, tutores que son estudiantes universitarios de 3.º y 4.º que cobran 20 €/hora, y un margen de 15 €/hora por tutoría. Las familias os valoran por la puntualidad, los tutores de calidad y el seguimiento personalizado. Este mes ha llegado al barrio 'MegaTutoría', una plataforma nacional con más de 200 tutores, tecnología propia, publicidad en Instagram y precios de 20 €/hora. Tienen descuento del 50 % el primer mes.",
+    "kpi_inicial": { "alumnos": 28, "precio_hora": 35, "reputacion_calidad": 8 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisión 1 — ¿Cómo respondes a la llegada de MegaTutoría?",
+      "situacion": "MegaTutoría lleva dos semanas en el mercado y ya has perdido a tres alumnos por el descuento inicial. Tienes tres opciones de respuesta: (a) bajar tu precio a 22 €/hora para competir directamente; (b) no mover el precio e invertir en comunicar mejor por qué vales más; (c) subir el precio a 40 €/hora y enfocarte explícitamente en familias que quieren la mejor calidad posible.",
+      "opciones": [
+        {
+          "label": "Bajo a 22 €/hora: no puedo dejar que se lleven a mis alumnos",
+          "kpi_delta": { "alumnos": 2, "precio_hora": -13, "reputacion_calidad": -1 },
+          "feedback": "Recuperas dos alumnos, pero tu margen pasa de 15 €/hora a 2 €/hora (20 € al tutor, 2 € para ti). Para cubrir costes fijos necesitas el doble de horas al mismo margen. Además, los tutores empiezan a preguntar por qué cobran lo mismo y la calidad baja. Has entrado en una guerra de precios con un rival que tiene más escala y puede aguantarla más tiempo que tú. Lección: la bajada de precios como respuesta a un competidor más grande casi nunca funciona si no tienes ventaja en costes. Y TutoríaClara no la tiene.",
+          "next": "n2"
+        },
+        {
+          "label": "Mantengo precio y explico por qué valgo más",
+          "kpi_delta": { "alumnos": -2, "precio_hora": 0, "reputacion_calidad": 1 },
+          "feedback": "Pierdes otros dos alumnos a corto plazo, pero los que se quedan son los que más valoran vuestra propuesta. Preparas un mensaje claro: 'En TutoríaClara, cada tutor conoce el expediente académico de tu hijo/a, garantizamos el mismo tutor durante todo el curso y tienes contacto directo conmigo si surge cualquier problema.' Eso no lo puede decir MegaTutoría con 200 tutores. Lección: competir por valor diferenciado es sostenible; competir por precio sin ventaja en costes, no. La comunicación de la diferencia es parte de la estrategia.",
+          "next": "n2"
+        },
+        {
+          "label": "Subo a 40 €/hora y me enfoco en las familias que quieren lo mejor",
+          "kpi_delta": { "alumnos": -5, "precio_hora": 5, "reputacion_calidad": 2 },
+          "feedback": "Pierdes cinco alumnos que van a MegaTutoría (los más sensibles al precio), pero los 23 que quedan pagan más y los ingresos totales pueden mantenerse o subir. El riesgo: para justificar 40 €/hora necesitas ofrecer algo claramente superior que las familias perciban. Si no hay diferencia percibida, pierdes alumnos sin recuperar suficiente margen. Lección: un posicionamiento premium requiere que la calidad diferencial sea visible y comunicable. No basta con cobrar más: hay que ofrecer más de forma que el cliente lo note.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisión 2 — El modelo de negocio: ¿hora suelta o suscripción?",
+      "situacion": "Un amigo que estudia ADE te sugiere cambiar el modelo de negocio: en lugar de cobrar por hora suelta, ofrecer una suscripción mensual fija (p. ej. 120 €/mes por 4 horas garantizadas). Así tienes ingresos predecibles y los alumnos se comprometen. TutoríaClara nunca ha probado modelos de suscripción. Tienes tres opciones:",
+      "opciones": [
+        {
+          "label": "Sigo con el pago por hora: simple y sin compromiso para el cliente",
+          "kpi_delta": { "alumnos": 0, "precio_hora": 0 },
+          "feedback": "El modelo de pago por hora es el más flexible para el cliente pero el menos predecible para ti. En meses de festivos o de menos exámenes, los ingresos caen. Sin ingresos predecibles es difícil comprometerte con tutores fijos. A largo plazo, la inestabilidad hace difícil crecer. Lección: el modelo de negocio no es solo cómo ganas dinero: también define la estabilidad de tus ingresos, tu capacidad de planificar y el tipo de relación que construyes con el cliente.",
+          "next": "n3"
+        },
+        {
+          "label": "Paso a suscripción mensual: ingresos predecibles y compromiso del cliente",
+          "kpi_delta": { "alumnos": -3, "precio_hora": 5 },
+          "feedback": "Tres alumnos no quieren comprometerse a un mes fijo y se van. Los 25 restantes pagan 120 €/mes por 4 horas. Tus ingresos mensuales son ahora 3.000 € predecibles. Puedes comprometer a los tutores con contratos más estables y mejorar la calidad del servicio. En tres meses, el servicio más consistente atrae a dos nuevos alumnos por boca a oreja. La suscripción ha cambiado la lógica del negocio. Lección: los modelos de suscripción crean valor para el proveedor (ingresos predecibles) y para el cliente si el servicio es continuo y tiene sentido consumirlo regularmente.",
+          "next": "n3"
+        },
+        {
+          "label": "Ofrezco los dos modelos: quienes quieran flexibilidad, pago por hora; quienes se comprometan, suscripción con descuento",
+          "kpi_delta": { "alumnos": 3, "precio_hora": 2 },
+          "feedback": "Captas a nuevos alumnos que valoran la flexibilidad y a otros que prefieren la suscripción. La gestión es más compleja (dos tipos de clientes, dos tipos de contrato), pero el mercado es más amplio. El riesgo: con dos modelos, el mensaje de TutoríaClara se vuelve menos claro. Lección: ofrecer demasiadas opciones puede confundir al cliente y hacer que no elija ninguna. La sencillez del modelo de negocio tiene valor en sí misma.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisión 3 — La RSC y los stakeholders: ¿qué hacéis con los alumnos que no pueden pagar?",
+      "situacion": "Un orientador del instituto os contacta: tiene cinco alumnos de familias con dificultades económicas que necesitarían tutorías pero no pueden pagar 35 €/hora. Os propone que ofrezcáis dos horas gratuitas al mes por alumno en riesgo de abandono escolar. Para TutoríaClara, eso son 10 horas al mes sin ingresos. Los tutores también tendrían que trabajar gratis esas horas.",
+      "opciones": [
+        {
+          "label": "No podemos: somos un negocio, no una ONG",
+          "kpi_delta": { "alumnos": 0, "reputacion_calidad": -1 },
+          "feedback": "Respuesta honesta pero que cierra una oportunidad. El orientador os recomienda igualmente a las familias que sí pueden pagar, porque tiene buena relación con el instituto. Pero esa relación podría haber sido mucho más fuerte. Además, los cinco alumnos que no reciben ayuda pueden acabar abandonando el curso, lo que también es un indicador social negativo en vuestro entorno. Lección: la responsabilidad social corporativa no es altruismo obligatorio, pero una empresa que puede ayudar a su comunidad y no lo hace pierde una conexión real con los actores que la rodean.",
+          "next": "final:fracaso_parcial"
+        },
+        {
+          "label": "Sí, pero lo hacemos público: 'TutoríaClara destina 10 horas al mes a becas de estudio'",
+          "kpi_delta": { "alumnos": 4, "reputacion_calidad": 2 },
+          "feedback": "Aceptáis la propuesta y la comunicáis: 'Por cada diez alumnos de pago, TutoríaClara ofrece una hora de tutoría gratuita a alumnos de familias con dificultades.' El orientador os recomienda activamente en las reuniones de padres del instituto. En dos meses conseguís cuatro nuevos alumnos de pago. Las 10 horas gratuitas cuestan 200 €/mes al negocio (sin cobrar al tutor), pero generan una reputación que vale mucho más. Lección: la RSC bien comunicada y auténtica es también una estrategia competitiva.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Lo hacemos discretamente, sin comunicarlo",
+          "kpi_delta": { "alumnos": 1, "reputacion_calidad": 1 },
+          "feedback": "Los cinco alumnos reciben ayuda, lo que está bien. Pero al no comunicarlo, nadie fuera del orientador lo sabe. El impacto sobre la reputación de TutoríaClara es mínimo. La decisión ética es la misma, pero el beneficio estratégico se pierde casi por completo. Lección: la RSC auténtica y la RSC comunicada no se excluyen. Hacer el bien sin contarlo puede ser modesto, pero también es una oportunidad estratégica desperdiciada.",
+          "next": "final:exito"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "TutoríaClara ha encontrado su ventaja competitiva",
+      "resumen": "Has resistido la tentación de la guerra de precios, has ajustado el modelo de negocio y has gestionado los stakeholders con criterio estratégico y ético.",
+      "lecciones_clave": [
+        "La ventaja competitiva de una empresa pequeña frente a una grande casi nunca es el precio: es la especialización, la calidad y la relación personalizada.",
+        "El modelo de negocio no es solo cómo se cobra: define la estabilidad de ingresos, la relación con el cliente y la capacidad de crecer.",
+        "La RSC auténtica y bien comunicada es una herramienta estratégica, no solo un gesto ético."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "TutoríaClara sobrevive, pero sin estrategia clara",
+      "resumen": "Has evitado los peores errores, pero sin una ventaja competitiva bien definida ni una relación estratégica con los stakeholders del entorno.",
+      "lecciones_clave": [
+        "Competir solo por precio frente a un rival más grande y con más escala es la forma más rápida de destruir el margen propio.",
+        "Ignorar los stakeholders no estratégicos (orientadores, familias sin recursos) puede costar caro en reputación a medio plazo."
+      ]
+    }
+  }
+}
+```
