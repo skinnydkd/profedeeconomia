@@ -1,0 +1,117 @@
+---
+asignatura: taller-eco-3eso
+unidad_relacionada: 7
+title: "El primer trabajo de verano"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "10-15 min"
+descripcion: "Consigues tu primer trabajo de verano. Tres decisiones antes de que empiece agosto."
+competencias_clave: [CPSAA, CE, CD]
+competencias_especificas: [CE2]
+estado: publicado
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Caso · Mundo del trabajo",
+    "titulo": "El primer trabajo de verano",
+    "contexto": "Tienes 15 años y has conseguido tu primer trabajo: monitor de actividades en el campamento de verano del ayuntamiento. Dos semanas de julio, ocho horas al día. El ayuntamiento te ofrece dos opciones: contrato de trabajo con 480 € brutos (pagas un pequeño porcentaje a la Seguridad Social, cobras unos 450 € netos) o trabajar 'en negro' sin papeles por 500 € en efectivo. Tu amigo ya ha firmado el contrato; tú todavía no has decidido.",
+    "kpi_inicial": { "dinero_cobrado": 0, "derechos_protegidos": 5, "experiencia": 0 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisión 1 — ¿Con contrato o en negro?",
+      "situacion": "Con contrato cobras 450 € netos y tienes todos los derechos. Sin contrato cobras 500 € en efectivo pero sin ninguna protección legal.",
+      "opciones": [
+        {
+          "label": "Sin contrato: 50 € más en el bolsillo y sin complicaciones",
+          "kpi_delta": { "dinero_cobrado": 500, "derechos_protegidos": -4, "experiencia": 1 },
+          "feedback": "50 € más, pero sin ningún derecho. Si te accidentas en el trabajo, no hay seguro. Si no te pagan al final, no tienes nada firmado para reclamar. Y el empleador también incumple la ley — si lo descubren, tiene problemas él, pero tú también puedes perder el trabajo de golpe. Lección: el trabajo no declarado parece más rentable a corto pero tiene riesgos reales.",
+          "next": "n2"
+        },
+        {
+          "label": "Con contrato: 450 € y todo en regla",
+          "kpi_delta": { "dinero_cobrado": 450, "derechos_protegidos": 4, "experiencia": 2 },
+          "feedback": "Correcto. El contrato te da protección: seguro de accidentes, derecho a cobrar aunque el empleador cambie, certificado de experiencia para el currículum. Los 50 € de diferencia son el precio de esa protección. Lección: el contrato no es un trámite burocrático — es tu garantía.",
+          "next": "n2"
+        },
+        {
+          "label": "Pido más información antes de decidir — no sé bien qué implica cada opción",
+          "kpi_delta": { "dinero_cobrado": 0, "derechos_protegidos": 2, "experiencia": 1 },
+          "feedback": "Excelente: preguntar antes de firmar algo que no entiendes es una de las habilidades más importantes en el mercado laboral. Pregunta al ayuntamiento, a un familiar o a un sindicato de jóvenes. Nadie te penaliza por pedir una explicación.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisión 2 — A mitad del campamento, el jefe te pide que trabajes horas extra sin pagar",
+      "situacion": "El coordinador del campamento te dice que esta semana hay más niños de lo previsto y necesita que te quedes una hora extra cada día sin cobrarla extra. 'Todos lo hacemos a veces', dice.",
+      "opciones": [
+        {
+          "label": "Acepto sin decir nada: es mi primer trabajo y no quiero problemas",
+          "kpi_delta": { "dinero_cobrado": 0, "derechos_protegidos": -1, "experiencia": 0 },
+          "feedback": "Entendible en un primer trabajo, pero conviene saber que las horas extra tienen que estar compensadas o pagadas. Si no dices nada ahora, el patrón aprende que puede hacerlo. Lección: respetar tus derechos laborales desde el primer empleo marca cómo te tratarán después.",
+          "next": "n3"
+        },
+        {
+          "label": "Le pregunto si las horas extra se compensarán con tiempo libre o con pago",
+          "kpi_delta": { "dinero_cobrado": 5, "derechos_protegidos": 1, "experiencia": 2 },
+          "feedback": "Pregunta directa y razonable. No te niegas, pero tampoco aceptas sin condiciones. El coordinador puede compensártelas con tiempo libre, que también es válido según la ley. Lección: conocer tus derechos no es ser conflictivo — es saber negociar.",
+          "next": "n3"
+        },
+        {
+          "label": "Me niego en redondo: el contrato dice 8 horas y punto",
+          "kpi_delta": { "dinero_cobrado": 0, "derechos_protegidos": 2, "experiencia": -1 },
+          "feedback": "Tienes razón en el fondo pero la forma importa. Negarse sin flexibilidad en un trabajo temporal puede generar tensión innecesaria. Hay formas de defender tus derechos sin crear conflicto: preguntar y negociar es mejor que negar directamente.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisión 3 — Fin del campamento: te ofrecen una carta de recomendación",
+      "situacion": "El campamento ha terminado. El coordinador te dice que has trabajado muy bien y te ofrece una carta de recomendación. También te propone repetir el año que viene pero advierte que el sueldo será el mismo. Hay otra oferta: un comercio del barrio que paga lo mismo pero en horario de tarde, compatible con el instituto en septiembre.",
+      "opciones": [
+        {
+          "label": "Acepto repetir en el campamento: ya conozco el trabajo y tengo la carta",
+          "kpi_delta": { "dinero_cobrado": 450, "derechos_protegidos": 0, "experiencia": 2 },
+          "feedback": "La experiencia conocida y la carta de recomendación tienen valor. Pero repetir exactamente lo mismo puede limitar tu aprendizaje. Lección: la experiencia diversa suma más al currículum que repetir el mismo trabajo años seguidos.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Pido la carta de recomendación y exploro el trabajo del comercio",
+          "kpi_delta": { "dinero_cobrado": 0, "derechos_protegidos": 0, "experiencia": 3 },
+          "feedback": "Muy buena decisión: te quedas con la carta (que ya has ganado) y abres la puerta a una experiencia nueva compatible con el instituto. El mercado laboral valora variedad de experiencias, especialmente a los 15-16 años.",
+          "next": "final:exito"
+        },
+        {
+          "label": "No pido la carta — no quiero parecer interesado",
+          "kpi_delta": { "dinero_cobrado": 0, "derechos_protegidos": 0, "experiencia": -1 },
+          "feedback": "Error por exceso de timidez. Pedir una carta de recomendación cuando la has ganado no es ser interesado: es gestionar tu carrera profesional. Nadie más lo va a hacer por ti. Lección: el currículum y las referencias son activos que tú construyes, nadie te los regala.",
+          "next": "final:fracaso_parcial"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "Has tenido tu primer verano laboral con cabeza",
+      "resumen": "Contrato firmado, derechos respetados, carta de recomendación y experiencia que sumar al currículum. El mundo laboral ya no es desconocido para ti.",
+      "lecciones_clave": [
+        "El contrato laboral no es burocracia: es la garantía de que cobrarás y estarás protegido.",
+        "Conocer tus derechos laborales no es ser conflictivo — es saber negociar desde el primer día.",
+        "El currículum se construye activamente: pide cartas de recomendación cuando las hayas ganado."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "Has trabajado pero has dejado cosas sobre la mesa",
+      "resumen": "Has ganado dinero y experiencia, pero has perdido protecciones o referencias que estaban a tu alcance.",
+      "lecciones_clave": [
+        "Trabajar sin contrato puede salir bien, pero si algo va mal no tienes ningún recurso.",
+        "La timidez en el trabajo cuesta dinero y oportunidades — pedir es parte del trabajo."
+      ]
+    }
+  }
+}
+```

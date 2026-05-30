@@ -1,0 +1,117 @@
+---
+asignatura: taller-eco-3eso
+unidad_relacionada: 5
+title: "El viaje de fin de curso"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "10-15 min"
+descripcion: "El viaje cuesta 120 €. Tienes 4 meses. ¿Consigues ahorrar sin agobiarte?"
+competencias_clave: [CPSAA, CE, CD]
+competencias_especificas: [CE2]
+estado: publicado
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Caso · Presupuesto y ahorro",
+    "titulo": "El viaje de fin de curso",
+    "contexto": "En enero se anuncia el viaje de fin de curso: 4 días en una ciudad nueva, 120 € todo incluido. Sale en mayo. Tienes 4 meses para ahorrar. Tus ingresos: 15 € de paga semanal = 60 € al mes. Tus gastos fijos: bocadillo del instituto (15 € al mes), transporte (10 € al mes). Te quedan unos 35 € libres cada mes. Si ahorras 30 € al mes durante 4 meses, llegas justo a los 120 €.",
+    "kpi_inicial": { "ahorro_acumulado": 0, "objetivo": 120, "meses_restantes": 4 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisión 1 — Enero: ¿cómo organizas el ahorro?",
+      "situacion": "Empiezas enero con 0 € ahorrados. Tienes 35 € libres al mes. El viaje cuesta 120 € y faltan 4 meses. ¿Cómo lo planificas?",
+      "opciones": [
+        {
+          "label": "Me propongo ahorrar 30 € al mes y los apunto en una hoja",
+          "kpi_delta": { "ahorro_acumulado": 30, "objetivo": 0, "meses_restantes": -1 },
+          "feedback": "Has aplicado la regla de 'pagarte a ti mismo primero': antes de gastar en ocio, reservas los 30 € del objetivo. Escribirlo hace que el compromiso sea más real. Al final de enero: 30 € ahorrados, 5 € para caprichos.",
+          "next": "n2"
+        },
+        {
+          "label": "Gasto lo que necesite y guardo lo que sobre al final del mes",
+          "kpi_delta": { "ahorro_acumulado": 10, "objetivo": 0, "meses_restantes": -1 },
+          "feedback": "El problema de ahorrar 'lo que sobre' es que casi nunca sobra lo que calculabas. Enero ha ido regular: has guardado 10 € en vez de 30. Ahora necesitas 110 € en 3 meses — más de 36 € al mes. El margen se ha reducido.",
+          "next": "n2"
+        },
+        {
+          "label": "Ya lo arreglaré en los últimos meses — ahora me lo quiero pasar bien",
+          "kpi_delta": { "ahorro_acumulado": 0, "objetivo": 0, "meses_restantes": -1 },
+          "feedback": "Posponer el ahorro es el error más habitual. En enero has gastado los 35 € libres. Ahora necesitas 120 € en 3 meses — 40 € al mes — que supera lo que tienes libre (35 €). Sin cambiar algo, el viaje estará en riesgo.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisión 2 — Febrero: aparece un gasto inesperado",
+      "situacion": "En febrero, tu amigo cumple años y hay una cena (15 €) más el regalo (10 €) = 25 € extra. No estaban en el plan. Si los pagas, solo te quedan 10 € para ahorrar este mes.",
+      "opciones": [
+        {
+          "label": "Pago la cena y el regalo: los amigos primero, el viaje ya se verá",
+          "kpi_delta": { "ahorro_acumulado": 10, "objetivo": 0, "meses_restantes": -1 },
+          "feedback": "Válido como decisión, pero el viaje ahora requiere un ajuste. Con 10 € de ahorro en febrero, necesitas 80 € en 2 meses (40 €/mes). Está justo en tu límite. Lección: los imprevistos rompen los presupuestos rígidos — hay que dejar un colchón.",
+          "next": "n3"
+        },
+        {
+          "label": "Propongo un regalo conjunto entre varios amigos para reducir mi parte a 5 €",
+          "kpi_delta": { "ahorro_acumulado": 25, "objetivo": 0, "meses_restantes": -1 },
+          "feedback": "Solución creativa que cuida la amistad y el presupuesto a la vez. Un regalo colectivo de más valor cuesta menos a cada uno. Has ahorrado 25 € este mes y el objetivo del viaje sigue en pie.",
+          "next": "n3"
+        },
+        {
+          "label": "Paso de la cena para no romper el plan de ahorro",
+          "kpi_delta": { "ahorro_acumulado": 30, "objetivo": 0, "meses_restantes": -1 },
+          "feedback": "Técnicamente correcto para el objetivo financiero, pero con un coste de oportunidad social real. Un presupuesto que no deja espacio para ningún imprevisto ni para amigos es un plan difícil de mantener. Lección: el ahorro rígido sin margen suele romperse antes.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisión 3 — Abril: falta un mes y tienes menos de 120 €",
+      "situacion": "Estamos en abril. Según cómo hayas ido, tienes entre 65 € y 95 € ahorrados. El viaje es en mayo y faltan los 120 €. Te quedan unos 35 € libres este mes. Hay una opción: recortar gastos este mes (bocadillo de casa en vez de cantina = 10 € menos de gasto).",
+      "opciones": [
+        {
+          "label": "Me traigo el bocadillo de casa este mes para ahorrar 10 € extra",
+          "kpi_delta": { "ahorro_acumulado": 40, "objetivo": 0, "meses_restantes": -1 },
+          "feedback": "Ajuste temporal y específico para alcanzar un objetivo concreto. No es privarte para siempre, es un cambio de un mes para conseguir algo que quieres. Lección: los ajustes con fecha de fin son mucho más llevaderos que los recortes indefinidos.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Pido 20 € a mis padres como adelanto y lo devuelvo en junio",
+          "kpi_delta": { "ahorro_acumulado": 30, "objetivo": 0, "meses_restantes": -1 },
+          "feedback": "Solución razonable si de verdad lo devuelves. Pero conviene no llegar a este punto: si en enero hubieras ahorrado 30 € fijos, ahora no necesitarías el adelanto. Lección: el crédito es más útil como último recurso, no como plan de base.",
+          "next": "final:fracaso_parcial"
+        },
+        {
+          "label": "Si no llego al dinero completo, no voy al viaje — no me endeudo",
+          "kpi_delta": { "ahorro_acumulado": 35, "objetivo": 0, "meses_restantes": -1 },
+          "feedback": "Honrado y coherente. Si no tienes el dinero, no gastar más de lo que tienes es la decisión financiera correcta. El problema es que cuatro meses antes podrías haberlo evitado con un plan mejor. Lección: la planificación es más útil que la disciplina de último momento.",
+          "next": "final:fracaso_parcial"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "Has llegado al viaje",
+      "resumen": "120 € reunidos en 4 meses. Has gestionado un imprevisto, has ajustado el plan sin romperlo y vas al viaje sin deber nada a nadie.",
+      "lecciones_clave": [
+        "Pagarte a ti mismo primero (reservar el ahorro antes de gastar) es la diferencia entre llegar y no llegar.",
+        "Los presupuestos necesitan margen para imprevistos — un plan rígido se rompe al primer gasto inesperado.",
+        "Los ajustes temporales con objetivo claro son la herramienta más eficaz del presupuesto personal."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "No has llegado al objetivo — o has llegado justo con deuda",
+      "resumen": "El viaje ha estado en riesgo o has necesitado un adelanto que tendrás que devolver. Con el mismo dinero y cuatro meses, era posible llegar.",
+      "lecciones_clave": [
+        "Guardar 'lo que sobre' al final del mes casi nunca funciona: casi nunca sobra lo calculado.",
+        "Empezar a ahorrar desde el primer mes es más fácil que compensar los meses que no ahorraste."
+      ]
+    }
+  }
+}
+```

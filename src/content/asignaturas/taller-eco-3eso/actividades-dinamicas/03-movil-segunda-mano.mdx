@@ -1,0 +1,117 @@
+---
+asignatura: taller-eco-3eso
+unidad_relacionada: 3
+title: "El móvil de segunda mano"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "10-15 min"
+descripcion: "Quieres cambiar de móvil. Hay anuncios por todas partes. ¿Compras con cabeza?"
+competencias_clave: [CPSAA, CE, CD]
+competencias_especificas: [CE2]
+estado: publicado
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Caso · Consumo inteligente",
+    "titulo": "El móvil de segunda mano",
+    "contexto": "Tu móvil tiene tres años y la pantalla está un poco rayada, pero funciona bien. Llevas semanas viendo anuncios de un modelo nuevo que te gusta mucho: 280 € nuevo en tienda. Tu amigo te dice que en Wallapop hay uno igual, de segunda mano, por 120 €. Y en el instituto un compañero te ofrece el suyo (mismo modelo, año anterior) por 80 €. Tienes 100 € ahorrados.",
+    "kpi_inicial": { "ahorro": 100, "calidad_movil": 6, "decision_inteligente": 5 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisión 1 — ¿Qué opción eliges?",
+      "situacion": "Nuevo en tienda (280 €, te falta dinero), segunda mano Wallapop (120 €, te falta 20 €) o el de tu compañero (80 €, dentro de tu presupuesto). Tu móvil actual todavía funciona.",
+      "opciones": [
+        {
+          "label": "El nuevo (280 €): pido el dinero que me falta a mis padres",
+          "kpi_delta": { "ahorro": -100, "calidad_movil": 3, "decision_inteligente": -2 },
+          "feedback": "Comprar nuevo cuando tienes un móvil que funciona y cuando no te alcanza el dinero propio es consumo impulsivo. Pedir a tus padres el dinero que te falta significa que alguien más paga tu impulso. Lección: si no puedes permitírtelo con tu propio dinero, no te lo puedes permitir ahora.",
+          "next": "n2"
+        },
+        {
+          "label": "El de Wallapop (120 €): ahorro un poco más y espero dos semanas",
+          "kpi_delta": { "ahorro": -20, "calidad_movil": 2, "decision_inteligente": 1 },
+          "feedback": "Esperar para comprar algo que no necesitas urgentemente es consumo inteligente. Además, second hand significa que no consumes recursos nuevos para fabricar un móvil. Pero asegúrate antes de comprarlo.",
+          "next": "n2"
+        },
+        {
+          "label": "El del compañero (80 €): lo puedo pagar ahora mismo",
+          "kpi_delta": { "ahorro": -80, "calidad_movil": 1, "decision_inteligente": 2 },
+          "feedback": "Dentro de presupuesto y accesible hoy. Lección: el mejor momento para comprar algo es cuando tienes el dinero, no cuando el anuncio te convence.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisión 2 — El vendedor del Wallapop insiste en que es urgente",
+      "situacion": "El vendedor del Wallapop te escribe: 'Hay otras tres personas interesadas, si no lo reservas hoy con 20 €, lo vendo a otro.' También ves un anuncio en Instagram del mismo modelo: '¡Últimas unidades — oferta solo hoy 10 %!'.",
+      "opciones": [
+        {
+          "label": "Reservo con 20 € ahora mismo para no perderlo",
+          "kpi_delta": { "ahorro": -20, "calidad_movil": 0, "decision_inteligente": -2 },
+          "feedback": "Estás cediendo a la técnica de urgencia artificial. 'Otras personas interesadas' y 'solo hoy' son las frases de presión más usadas para que compres rápido sin pensar. Ahora has entregado 20 € sin garantías. Lección: cuando alguien crea urgencia, respira y espera.",
+          "next": "n3"
+        },
+        {
+          "label": "Le digo que necesito verlo antes de dar ningún dinero",
+          "kpi_delta": { "ahorro": 0, "calidad_movil": 0, "decision_inteligente": 2 },
+          "feedback": "Correcto. Nunca se paga por adelantado sin ver el producto, especialmente en ventas entre particulares. Si el vendedor desaparece cuando le pides verlo en persona, era una estafa. Lección: la urgencia del vendedor no tiene que convertirse en la tuya.",
+          "next": "n3"
+        },
+        {
+          "label": "Ignoro el Wallapop y compro el del compañero directamente",
+          "kpi_delta": { "ahorro": -80, "calidad_movil": 1, "decision_inteligente": 1 },
+          "feedback": "Comprar a alguien que conoces tiene ventajas: puedes ver el móvil, probarlo y reclamar si algo va mal. Y no te engancha la presión del 'solo hoy'. Decisión práctica.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisión 3 — El móvil tiene un fallo que no te dijeron",
+      "situacion": "Has comprado el móvil (el del compañero o el de Wallapop). A los dos días descubres que la batería dura muy poco — menos de cuatro horas. Nadie te avisó. ¿Qué haces?",
+      "opciones": [
+        {
+          "label": "Me callo: ya está hecho y no quiero lío con el compañero",
+          "kpi_delta": { "ahorro": 0, "calidad_movil": -2, "decision_inteligente": -1 },
+          "feedback": "Silencio tiene un coste: te quedas con un producto que no funciona como esperabas. En ventas entre particulares la ley protege menos que en tiendas, pero si el vendedor ocultó el fallo, tienes argumentos. Lección: hablar claro al principio cuesta menos que aguantar un problema.",
+          "next": "final:fracaso_parcial"
+        },
+        {
+          "label": "Hablo con el vendedor: le explico el problema y pido una solución",
+          "kpi_delta": { "ahorro": 10, "calidad_movil": 1, "decision_inteligente": 2 },
+          "feedback": "Lo más directo y lo más efectivo. El vendedor puede que lo desconociera o puede que acepte devolverte parte del dinero. En ventas de segunda mano entre personas no hay garantía legal obligatoria, pero sí hay buena fe. La conversación honesta resuelve más de lo que parece.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Dejo una reseña negativa en Wallapop y lo publico en el grupo del instituto",
+          "kpi_delta": { "ahorro": 0, "calidad_movil": -1, "decision_inteligente": -1 },
+          "feedback": "La reseña pública puede estar justificada, pero el paso previo siempre es hablar primero con el vendedor. Ir directo a la queja pública sin dar opción a resolver el problema es desproporcionado como primer movimiento.",
+          "next": "final:fracaso_parcial"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "Has comprado con cabeza",
+      "resumen": "Has comparado opciones, has resistido la presión del 'solo hoy' y has resuelto el problema con el vendedor hablando. Tu móvil nuevo funciona y has ahorrado dinero respecto al precio del nuevo.",
+      "lecciones_clave": [
+        "Comparar antes de comprar es el hábito que más dinero ahorra a largo plazo.",
+        "La urgencia artificial es la técnica de ventas más efectiva — y la más fácil de evitar: espera.",
+        "Hablar directamente con el vendedor cuando algo falla siempre es el primer paso."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "Has comprado, pero podría haber ido mejor",
+      "resumen": "Tienes un móvil nuevo pero has cedido a presiones o te has callado cuando debías hablar. El coste no es solo dinero.",
+      "lecciones_clave": [
+        "Nunca pagues por adelantado sin ver el producto primero.",
+        "Quedarse callado cuando tienes un problema es la decisión más cara que puedes tomar."
+      ]
+    }
+  }
+}
+```

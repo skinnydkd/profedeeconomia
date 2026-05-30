@@ -1,0 +1,117 @@
+---
+asignatura: taller-eco-3eso
+unidad_relacionada: 6
+title: "Monta un puesto en el mercadillo"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "10-15 min"
+descripcion: "Quieres vender pulseras hechas a mano. 3 decisiones antes de abrir el puesto."
+competencias_clave: [CPSAA, CE, CD]
+competencias_especificas: [CE2]
+estado: publicado
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Caso · Empresas y emprendimiento",
+    "titulo": "Monta un puesto en el mercadillo",
+    "contexto": "Se acerca la feria de primavera de tu barrio y el ayuntamiento ofrece puestos para jóvenes a 5 € el día. Tu idea: vender pulseras de hilo que haces en casa. Has calculado que cada pulsera te cuesta en materiales 0,80 € y tardas 20 minutos en hacerla. El sábado de la feria tienes 6 horas disponibles. Máximo 18 pulseras fabricadas. Si las vendes todas a 3 €, ingresas 54 € y el beneficio sería 54 - 14,40 € (materiales) - 5 € (puesto) = 34,60 €.",
+    "kpi_inicial": { "caja": -5, "pulseras_vendidas": 0, "aprendizaje": 5 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisión 1 — ¿A qué precio vendes las pulseras?",
+      "situacion": "Coste de fabricación: 0,80 €/pulsera. Tiempo: 20 min cada una. En la feria hay otro puesto de pulseras similares a 2 €. Tienes que fijar tu precio.",
+      "opciones": [
+        {
+          "label": "A 1,50 €: más barato que la competencia para vender más",
+          "kpi_delta": { "caja": 27, "pulseras_vendidas": 18, "aprendizaje": 0 },
+          "feedback": "Has vendido todo pero has entrado en guerra de precios. Beneficio: 27 € - 14,40 € - 5 € = 7,60 €. Para 6 horas de trabajo más el tiempo de fabricación es muy poco. Lección: el precio más bajo no es siempre el mejor — tu trabajo también tiene valor.",
+          "next": "n2"
+        },
+        {
+          "label": "A 3 €: el doble del coste, precio justo para un producto artesanal",
+          "kpi_delta": { "caja": 30, "pulseras_vendidas": 10, "aprendizaje": 2 },
+          "feedback": "Has vendido 10 de 18 al precio que cubre bien tu trabajo. Beneficio: 30 € - 8 € - 5 € = 17 €. Mejor que a 1,50 € aunque hayas vendido menos. Lección: precio y volumen se compensan — a veces vender menos a mejor precio es más rentable.",
+          "next": "n2"
+        },
+        {
+          "label": "A 5 €: son artesanales y únicas, el precio alto marca diferencia",
+          "kpi_delta": { "caja": 25, "pulseras_vendidas": 5, "aprendizaje": 2 },
+          "feedback": "Has vendido solo 5 pero con buen margen. Beneficio: 25 € - 4 € - 5 € = 16 €. Similar al precio intermedio. El reto con el precio alto es que necesitas comunicar bien por qué las tuyas valen más que las de al lado.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisión 2 — A mediodía las ventas se frenan",
+      "situacion": "Han pasado tres horas, has vendido la mitad de lo esperado. El problema: hay mucha gente pero pasan de largo. El puesto de al lado tiene un cartel grande y colorido. El tuyo es una hoja escrita a mano.",
+      "opciones": [
+        {
+          "label": "Espero: si el producto es bueno, la gente se acercará sola",
+          "kpi_delta": { "caja": 0, "pulseras_vendidas": 2, "aprendizaje": -1 },
+          "feedback": "El producto bueno no se vende solo — necesita que la gente lo vea y lo quiera. Esperar pasivamente es la estrategia más cara. Lección: vender requiere comunicar, no solo producir.",
+          "next": "n3"
+        },
+        {
+          "label": "Me levanto y ofrezco una pulsera a la gente que pasa con una sonrisa",
+          "kpi_delta": { "caja": 12, "pulseras_vendidas": 4, "aprendizaje": 3 },
+          "feedback": "Has descubierto que vender en persona requiere iniciativa. Las cuatro personas a las que te has acercado, tres han comprado. Lección: en un puesto presencial, la comunicación directa multiplica las ventas más que cualquier cartel.",
+          "next": "n3"
+        },
+        {
+          "label": "Bajo el precio a la mitad para llamar la atención",
+          "kpi_delta": { "caja": 6, "pulseras_vendidas": 6, "aprendizaje": -1 },
+          "feedback": "Más ventas pero margen muy ajustado. Bajar el precio como respuesta automática a poca demanda es la táctica menos creativa y la que menos valor genera. Lección: hay muchas formas de atraer clientes — el precio es la última, no la primera.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisión 3 — Al final del día: ¿qué haces con lo aprendido?",
+      "situacion": "La feria ha terminado. Has ganado entre 10 € y 35 € según tus decisiones. Hay una feria más grande en otoño. Tienes que decidir qué hacer con la experiencia de hoy.",
+      "opciones": [
+        {
+          "label": "Lo apunto todo: cuánto he vendido, a qué precio, qué ha funcionado",
+          "kpi_delta": { "caja": 0, "pulseras_vendidas": 0, "aprendizaje": 5 },
+          "feedback": "El aprendizaje registrado vale más que el dinero de un día. Para la feria de otoño sabrás qué precio funciona, cuántas pulseras preparar y cómo presentar el puesto. Lección: los negocios mejoran cuando aprenden de cada experiencia.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Fue bien, lo repito igual en otoño sin cambiar nada",
+          "kpi_delta": { "caja": 0, "pulseras_vendidas": 0, "aprendizaje": 1 },
+          "feedback": "Repetir lo que funcionó está bien, pero no mejorarás lo que no funcionó. Lección: una empresa que no revisa sus resultados pierde oportunidades de crecer.",
+          "next": "final:fracaso_parcial"
+        },
+        {
+          "label": "No merece la pena: mucho trabajo para poco dinero, lo dejo",
+          "kpi_delta": { "caja": 0, "pulseras_vendidas": 0, "aprendizaje": -2 },
+          "feedback": "El primer día de cualquier negocio siempre es el peor: falta experiencia, no tienes cartera de clientes, no dominas el precio. Si todos los emprendedores cerraran después del primer intento, no existiría ningún negocio. Lección: la curva de aprendizaje tiene coste, pero también tiene valor.",
+          "next": "final:fracaso_parcial"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "Has aprendido a emprender",
+      "resumen": "Has ganado dinero, has descubierto cómo funciona el precio y la venta directa, y tienes un registro para mejorar en la próxima feria.",
+      "lecciones_clave": [
+        "El precio cubre costes pero también el valor de tu tiempo — calcula bien antes de fijarlo.",
+        "En ventas directas, la comunicación activa vale más que un buen producto sin presentar.",
+        "Registrar lo que aprendes en cada experiencia es la ventaja que acumula un emprendedor."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "Has ganado algo de dinero pero poco más",
+      "resumen": "El puesto ha ido bien o mal según el precio, pero no has sacado el máximo aprendizaje posible del día.",
+      "lecciones_clave": [
+        "El primer intento de cualquier negocio enseña más que cualquier libro — pero solo si te paras a pensar en lo que ha pasado.",
+        "Precio barato para competir es casi siempre el peor camino: los clientes que compran solo por precio no vuelven."
+      ]
+    }
+  }
+}
+```
