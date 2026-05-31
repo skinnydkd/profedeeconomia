@@ -1,0 +1,95 @@
+---
+/**
+ * A single phase of «De cero a empresa». Param `fase` is the zero-padded
+ * phase number ("01", "04", "08"). Reuses the editorial prose styling from
+ * the asignatura proyecto page.
+ */
+import BaseLayout from '@layouts/BaseLayout.astro';
+import FaseMeta from '@components/emprendimiento/FaseMeta.astro';
+import PuenteUnidades from '@components/emprendimiento/PuenteUnidades.astro';
+import { getCollection, render } from 'astro:content';
+import type { GetStaticPaths } from 'astro';
+
+export const getStaticPaths = (async () => {
+  const all = (await getCollection('proyectoTransversal')).filter(
+    (e) => e.data.estado === 'publicado'
+  );
+  all.sort((a, b) => a.data.fase - b.data.fase);
+  return all.map((entry, i) => ({
+    params: { fase: String(entry.data.fase).padStart(2, '0') },
+    props: {
+      entry,
+      prev: all[i - 1] ?? null,
+      next: all[i + 1] ?? null,
+    },
+  }));
+}) satisfies GetStaticPaths;
+
+const { entry, prev, next } = Astro.props;
+const d = entry.data;
+const { Content } = await render(entry);
+const faseHref = (e: typeof prev) =>
+  e ? `/emprendimiento/proyecto/${String(e.data.fase).padStart(2, '0')}` : '#';
+---
+
+<BaseLayout title={`${d.fase_label} — De cero a empresa`} description={d.entregable}>
+  <div class="container">
+    <nav class="breadcrumb">
+      <a href="/">Inicio</a> <span class="sep">›</span>
+      <a href="/emprendimiento/">Emprendimiento</a> <span class="sep">›</span>
+      <a href="/emprendimiento/proyecto/">De cero a empresa</a> <span class="sep">›</span>
+      <span>{d.fase_label}</span>
+    </nav>
+  </div>
+
+  <section class="body">
+    <div class="container container--narrow">
+      <span class="kicker">{d.fase_label}</span>
+      <h1>{d.title}</h1>
+      <FaseMeta
+        faseLabel={d.fase_label}
+        nivel={d.nivel}
+        nucleo={d.nucleo}
+        duracion={d.duracion}
+        entregable={d.entregable}
+        competenciasClave={d.competencias_clave}
+      />
+      <article class="prose">
+        <Content />
+      </article>
+      <PuenteUnidades unidades={d.unidades_relacionadas} />
+
+      <nav class="phase-nav">
+        {prev ? <a href={faseHref(prev)} class="phase-nav__prev">← {prev.data.fase_label}</a> : <span />}
+        {next ? <a href={faseHref(next)} class="phase-nav__next">{next.data.fase_label} →</a> : <span />}
+      </nav>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .container { max-width: 1240px; margin: 0 auto; padding: 0 clamp(1.5rem, 4vw, 3rem); }
+  .container--narrow { max-width: 820px; }
+  .breadcrumb { font-size: 0.92rem; color: var(--color-ink-mute); margin: 2rem 0; }
+  .breadcrumb a { color: var(--color-ink-mute); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--color-terra); }
+  .breadcrumb .sep { margin: 0 0.5em; color: var(--color-mustard); }
+  .body { padding: 1rem 0 clamp(3rem, 7vw, 6rem); }
+  .kicker { font-family: var(--font-sans); font-size: 0.8rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-terra); }
+  h1 { margin: 0.6rem 0 0; max-width: 24ch; }
+  .prose { font-size: 1.05rem; line-height: 1.7; color: var(--color-ink); }
+  .prose :global(h2) { font-family: var(--font-serif); font-size: 1.6rem; margin: 2.2em 0 0.7em; position: relative; padding-top: 1em; font-weight: 500; }
+  .prose :global(h2::before) { content: ""; position: absolute; top: 0; left: 0; width: 2.5rem; height: 4px; background: var(--color-terra); border-radius: 999px; }
+  .prose :global(h2:nth-of-type(2n)::before) { background: var(--color-mustard); }
+  .prose :global(h3) { font-family: var(--font-serif); font-size: 1.25rem; margin: 1.6em 0 0.5em; font-weight: 500; }
+  .prose :global(p) { margin: 0 0 1em; }
+  .prose :global(ul), .prose :global(ol) { padding-left: 1.4rem; margin: 0 0 1em; }
+  .prose :global(li) { margin-bottom: 0.4em; }
+  .prose :global(ul li::marker) { color: var(--color-mustard); }
+  .prose :global(table) { width: 100%; border-collapse: separate; border-spacing: 0; margin: 1.4em 0; font-size: 0.92rem; }
+  .prose :global(th), .prose :global(td) { text-align: left; padding: 0.55em 0.75em; border-bottom: 1px solid var(--color-line-soft); vertical-align: top; }
+  .prose :global(th) { font-family: var(--font-sans); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--color-terra-deep); background: var(--color-terra-soft); font-weight: 700; }
+  .phase-nav { display: flex; justify-content: space-between; gap: 1rem; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--color-line); font-family: var(--font-sans); font-size: 0.95rem; }
+  .phase-nav a { color: var(--color-terra); text-decoration: none; font-weight: 500; }
+  .phase-nav a:hover { text-decoration: underline; }
+</style>
