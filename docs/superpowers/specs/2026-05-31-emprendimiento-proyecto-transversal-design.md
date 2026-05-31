@@ -6,6 +6,8 @@
 
 ## Visión en una frase
 
+**Nombre del proyecto: «De cero a empresa».**
+
 Un proyecto de emprendimiento **transversal, modular y por niveles** que vive en
 `/emprendimiento/proyecto/`: en equipo, el alumnado crea una empresa que **resuelve
 un problema real de su entorno**, la valida con metodología lean, la somete a un
@@ -137,10 +139,9 @@ Calca el patrón `proyecto` de GPE (ya en producción).
 - Suavizar la tarjeta Emprendimiento de la home (va en PR #71 o aparte).
 - Catalán/valenciano (i18n): solo castellano en el MVP.
 
-## Pendiente de decidir (no bloquea la implementación)
+## Decidido
 
-- **Nombre propio del proyecto.** Candidatos: "De cero a empresa", "El Proyecto",
-  "Tu primera empresa", "Arranca". Se decide antes de redactar la intro.
+- **Nombre propio del proyecto: «De cero a empresa».** (2026-05-31)
 
 ## Aprendizajes a respetar (de tandas anteriores)
 
