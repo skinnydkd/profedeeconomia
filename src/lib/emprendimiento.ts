@@ -54,3 +54,31 @@ export function fasesForItinerario<T extends FaseLike>(all: T[], id: ItinerarioI
   const set = new Set(it.fases);
   return sorted.filter((f) => set.has(f.fase));
 }
+
+/** Minimal shape of a `libro` collection entry needed to resolve its route. */
+export interface UnidadLike {
+  id: string;
+  data: { asignatura: string; unidad: number; estado: string };
+}
+
+/**
+ * Resolves the real route slug for a unit, given the `libro` collection entries.
+ * The libro route param is the filename slug (e.g. "09-funcion-financiera"),
+ * NOT the unit number — so a transversal bridge that only knows
+ * (asignatura, número) must look the slug up here. Returns `null` when no
+ * published unit matches, so callers can avoid emitting a broken 404 link.
+ */
+export function unidadSlug(
+  libro: UnidadLike[],
+  asignatura: string,
+  unidad: number
+): string | null {
+  const entry = libro.find(
+    (u) =>
+      u.data.asignatura === asignatura &&
+      u.data.unidad === unidad &&
+      u.data.estado === 'publicado'
+  );
+  if (!entry) return null;
+  return entry.id.split('/').pop()?.replace(/\.mdx?$/, '') ?? null;
+}

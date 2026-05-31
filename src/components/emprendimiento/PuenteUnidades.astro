@@ -4,28 +4,45 @@
  * the core of the project's transversality. Links to each unit page.
  */
 import { ASIGNATURAS } from '@/lib/asignaturas';
+import { unidadSlug } from '@/lib/emprendimiento';
+import { getCollection } from 'astro:content';
 
 interface Bridge { asignatura: string; unidad: number; nota?: string; }
 interface Props { unidades: Bridge[]; }
 const { unidades } = Astro.props;
+
+// The libro route param is the filename slug, not the unit number — resolve it
+// against the real collection so bridges link to a page that exists (no 404s).
+const libro = await getCollection('libro');
+const bridges = unidades.map((u) => {
+  const a = ASIGNATURAS[u.asignatura as keyof typeof ASIGNATURAS];
+  const slug = unidadSlug(libro, u.asignatura, u.unidad);
+  return {
+    ...u,
+    label: a ? a.shortLabel : u.asignatura,
+    href: slug ? `/${u.asignatura}/libro/${slug}/` : null,
+  };
+});
 ---
 
-{unidades.length > 0 && (
+{bridges.length > 0 && (
   <aside class="puente">
     <h3 class="puente__title">Esto se trabaja en…</h3>
     <ul class="puente__list">
-      {unidades.map((u) => {
-        const a = ASIGNATURAS[u.asignatura as keyof typeof ASIGNATURAS];
-        const href = `/${u.asignatura}/libro/${u.unidad}`;
-        return (
-          <li>
-            <a href={href} class="puente__link">
-              <strong>{a ? a.shortLabel : u.asignatura}</strong> · Unidad {u.unidad}
+      {bridges.map((b) => (
+        <li>
+          {b.href ? (
+            <a href={b.href} class="puente__link">
+              <strong>{b.label}</strong> · Unidad {b.unidad}
             </a>
-            {u.nota && <span class="puente__nota">{u.nota}</span>}
-          </li>
-        );
-      })}
+          ) : (
+            <span class="puente__plain">
+              <strong>{b.label}</strong> · Unidad {b.unidad}
+            </span>
+          )}
+          {b.nota && <span class="puente__nota">{b.nota}</span>}
+        </li>
+      ))}
     </ul>
   </aside>
 )}
@@ -36,5 +53,6 @@ const { unidades } = Astro.props;
   .puente__list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.6rem; }
   .puente__link { color: var(--color-terra); text-decoration: none; font-weight: 500; }
   .puente__link:hover { text-decoration: underline; }
+  .puente__plain { color: var(--color-ink-soft); font-weight: 500; }
   .puente__nota { display: block; font-family: var(--font-serif); font-style: italic; font-size: 0.92rem; color: var(--color-ink-soft); margin-top: 0.15rem; }
 </style>

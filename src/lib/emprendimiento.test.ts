@@ -1,5 +1,11 @@
 import { describe, it, expect } from 'vitest';
-import { ITINERARIOS, fasesForItinerario, type FaseLike } from './emprendimiento';
+import {
+  ITINERARIOS,
+  fasesForItinerario,
+  unidadSlug,
+  type FaseLike,
+  type UnidadLike,
+} from './emprendimiento';
 
 const FASES: FaseLike[] = [
   { fase: 3 }, { fase: 1 }, { fase: 11 }, { fase: 4 }, { fase: 8 }, { fase: 2 },
@@ -41,5 +47,34 @@ describe('fasesForItinerario', () => {
   it('skips phases not present in the data (e.g. fase 5 absent)', () => {
     const out = fasesForItinerario(FASES, 'bach-fp').map((f) => f.fase);
     expect(out).toEqual([1, 2, 3, 4, 8, 11]); // 5,6,7,9,10 absent in fixture
+  });
+});
+
+describe('unidadSlug (bridge link resolution)', () => {
+  const LIBRO: UnidadLike[] = [
+    {
+      id: 'edmn-2bach/libro/09-funcion-financiera.mdx',
+      data: { asignatura: 'edmn-2bach', unidad: 9, estado: 'publicado' },
+    },
+    {
+      id: 'eco-1bach/libro/10-sistema-financiero-dinero.mdx',
+      data: { asignatura: 'eco-1bach', unidad: 10, estado: 'publicado' },
+    },
+    {
+      id: 'eco-4eso/libro/04-mercado-trabajo.mdx',
+      data: { asignatura: 'eco-4eso', unidad: 4, estado: 'borrador' },
+    },
+  ];
+
+  it('resolves (asignatura, número) to the real filename slug, not the bare number', () => {
+    // Bug: bridges linked to /edmn-2bach/libro/9 (404); the real route is the slug.
+    expect(unidadSlug(LIBRO, 'edmn-2bach', 9)).toBe('09-funcion-financiera');
+    expect(unidadSlug(LIBRO, 'eco-1bach', 10)).toBe('10-sistema-financiero-dinero');
+  });
+
+  it('returns null when no published unit matches (avoid a broken 404 link)', () => {
+    expect(unidadSlug(LIBRO, 'eco-4eso', 4)).toBeNull(); // exists but borrador
+    expect(unidadSlug(LIBRO, 'edmn-2bach', 99)).toBeNull(); // missing
+    expect(unidadSlug(LIBRO, 'no-existe', 1)).toBeNull(); // unknown asignatura
   });
 });
