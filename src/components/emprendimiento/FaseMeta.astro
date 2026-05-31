@@ -1,0 +1,46 @@
+---
+/**
+ * Metadata header for a phase page: nivel badge, duración, entregable,
+ * and the LOMLOE competence chips. Pure presentational.
+ */
+import type { Nivel } from '@/lib/emprendimiento';
+
+interface Props {
+  faseLabel: string;
+  nivel: Nivel;
+  nucleo: boolean;
+  duracion: string;
+  entregable: string;
+  competenciasClave: string[];
+}
+const { faseLabel, nivel, nucleo, duracion, entregable, competenciasClave } = Astro.props;
+const nivelLabel = nivel === 'eso' ? 'ESO' : nivel === 'bach-fp' ? 'Batx · FP' : 'Todos los niveles';
+---
+
+<header class="fase-meta">
+  <div class="badges">
+    <span class={`badge badge--${nucleo ? 'nucleo' : 'profundo'}`}>
+      {nucleo ? 'Núcleo' : 'Profundización'}
+    </span>
+    <span class="badge badge--nivel">{nivelLabel}</span>
+    <span class="badge badge--dur">{duracion}</span>
+  </div>
+  <p class="entregable"><strong>Entregable:</strong> {entregable}</p>
+  {competenciasClave.length > 0 && (
+    <ul class="comps" aria-label="Competencias clave">
+      {competenciasClave.map((c) => <li>{c}</li>)}
+    </ul>
+  )}
+</header>
+
+<style>
+  .fase-meta { margin: 1.5rem 0 2rem; padding: 1.2rem 1.4rem; background: var(--color-paper); border: 1px solid var(--color-line); border-radius: 6px; }
+  .badges { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.8rem; }
+  .badge { font-family: var(--font-sans); font-size: 0.72rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.25rem 0.6rem; border-radius: 999px; }
+  .badge--nucleo { background: var(--color-mustard-soft); color: var(--color-mustard-deep); }
+  .badge--profundo { background: var(--color-terra-soft); color: var(--color-terra-deep); }
+  .badge--nivel, .badge--dur { background: var(--color-bg-cream); color: var(--color-ink-soft); }
+  .entregable { font-size: 0.98rem; color: var(--color-ink-soft); margin: 0; line-height: 1.55; }
+  .comps { list-style: none; display: flex; flex-wrap: wrap; gap: 0.4rem; padding: 0; margin: 0.9rem 0 0; }
+  .comps li { font-family: var(--font-mono); font-size: 0.72rem; color: var(--color-ink-mute); border: 1px solid var(--color-line); border-radius: 4px; padding: 0.15rem 0.45rem; }
+</style>
