@@ -218,6 +218,46 @@ const proyecto = defineCollection({
 });
 
 /* =========================================================
+   emprendimiento/proyecto — «De cero a empresa».
+   Transversal entrepreneurship project. One MDX per phase,
+   NOT tied to any asignatura. Source of truth for the phase
+   pages and the project workbook PDF.
+   ========================================================= */
+const proyectoTransversal = defineCollection({
+  loader: glob({
+    pattern: 'emprendimiento/proyecto/**/*.{md,mdx}',
+    base: './src/content',
+  }),
+  schema: z.object({
+    /** Phase number; also the route param (zero-padded) and sort key. */
+    fase: z.number().int().min(1),
+    title: z.string(),
+    /** Display label, e.g. "Fase 1 — Detecta". */
+    fase_label: z.string(),
+    /** Core lean phase (true) vs. deepening phase for Batx/FP (false). */
+    nucleo: z.boolean().default(true),
+    nivel: z.enum(['todos', 'eso', 'bach-fp']).default('todos'),
+    duracion: z.string(),
+    /** One-line description of the deliverable produced in this phase. */
+    entregable: z.string(),
+    /** Bridges to specific units of each asignatura. */
+    unidades_relacionadas: z
+      .array(
+        z.object({
+          asignatura: z.enum(ASIGNATURA_SLUGS),
+          unidad: z.number().int().min(1),
+          nota: z.string().optional(),
+        })
+      )
+      .default([]),
+    competencias_clave: z.array(z.string()).default([]),
+    competencias_especificas: z.array(z.string()).default([]),
+    lang: z.enum(LANGS).default('es'),
+    estado: z.enum(ESTADOS).default('borrador'),
+  }),
+});
+
+/* =========================================================
    juegos — material transversal
    ========================================================= */
 const juegos = defineCollection({
@@ -293,6 +333,7 @@ export const collections = {
   programacion,
   ebau,
   proyecto,
+  proyectoTransversal,
   juegos,
   jocsEconomicsPreguntas,
   retoCurso,
