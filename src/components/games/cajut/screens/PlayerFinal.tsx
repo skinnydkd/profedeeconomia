@@ -34,10 +34,10 @@ export function PlayerFinal({ publicState, privateState }: Props) {
         >
           {privateState.myScore}
         </p>
-        <p class="subtle" style={{ marginTop: 4 }}>punts</p>
+        <p class="subtle" style={{ marginTop: 4 }}>puntos</p>
         {privateState.myRank !== null && totalPlayers > 0 && (
           <p class="subtle" style={{ marginTop: 8 }}>
-            Posició {privateState.myRank} de {totalPlayers}
+            Posición {privateState.myRank} de {totalPlayers}
           </p>
         )}
       </div>
@@ -57,7 +57,7 @@ export function PlayerFinal({ publicState, privateState }: Props) {
             alignSelf: 'center',
           }}
         >
-          Revisa les teues respostes
+          Revisa tus respuestas
         </button>
       ) : (
         <div style={{ marginTop: 16, overflowY: 'auto', flex: 1 }}>
@@ -77,8 +77,8 @@ export function PlayerFinal({ publicState, privateState }: Props) {
                 }}
               >
                 {a.myOptionIndex === null
-                  ? 'Sense resposta'
-                  : `La teua: ${String.fromCharCode(65 + a.myOptionIndex)} (${a.opciones[a.myOptionIndex]})`}
+                  ? 'Sin respuesta'
+                  : `Tu respuesta: ${String.fromCharCode(65 + a.myOptionIndex)} (${a.opciones[a.myOptionIndex]})`}
               </p>
               <p style={{ fontSize: 12, color: 'var(--cajut-pine)', margin: '2px 0 0' }}>
                 Correcta: {String.fromCharCode(65 + a.correcta)} ({a.opciones[a.correcta]})

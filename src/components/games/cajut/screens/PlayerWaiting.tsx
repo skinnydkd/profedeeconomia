@@ -22,10 +22,10 @@ export function PlayerWaiting({ publicState, privateState }: Props) {
           fontSize: 24,
         }}
       >
-        Esperant que comence la partida&hellip;
+        Esperando a que comience la partida&hellip;
       </h2>
       <p class="subtle" style={{ textAlign: 'center' }}>
-        {count} alumne{count === 1 ? '' : 's'} a la sala
+        {count} alumno{count === 1 ? '' : 's'} en la sala
       </p>
       <div
         style={{

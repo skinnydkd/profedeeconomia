@@ -117,7 +117,7 @@ export default function PlayerApp({ partykitHost }: Props) {
   if (!publicState || !privateState) {
     return (
       <div class="cajut-player" style={{ justifyContent: 'center', textAlign: 'center' }}>
-        <p class="subtle">Connectant…</p>
+        <p class="subtle">Conectando…</p>
       </div>
     );
   }
@@ -155,12 +155,12 @@ export default function PlayerApp({ partykitHost }: Props) {
 
 function reasonToMessage(reason: string): string {
   const m: Record<string, string> = {
-    'invalid-nick': 'El nick no és vàlid.',
-    'nick-taken': 'Ja hi ha un alumne amb aquest nick.',
-    'already-joined': 'Ja estàs a la sala.',
-    'too-many': 'Aquesta sala ja té 40 jugadors.',
-    'match-started': 'La partida ja ha començat. Espera la pròxima.',
-    'room-not-found': 'Aquest codi de sala no existeix.',
+    'invalid-nick': 'El nick no es válido.',
+    'nick-taken': 'Ya hay un alumno con ese nick.',
+    'already-joined': 'Ya estás en la sala.',
+    'too-many': 'Esta sala ya tiene 40 jugadores.',
+    'match-started': 'La partida ya ha comenzado. Espera la próxima.',
+    'room-not-found': 'Este código de sala no existe.',
   };
-  return m[reason] ?? 'Hi ha hagut un error.';
+  return m[reason] ?? 'Ha ocurrido un error.';
 }
