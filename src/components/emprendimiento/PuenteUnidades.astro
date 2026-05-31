@@ -1,0 +1,40 @@
+---
+/**
+ * "Esto se trabaja en…" — bridges a phase to specific units of each asignatura,
+ * the core of the project's transversality. Links to each unit page.
+ */
+import { ASIGNATURAS } from '@/lib/asignaturas';
+
+interface Bridge { asignatura: string; unidad: number; nota?: string; }
+interface Props { unidades: Bridge[]; }
+const { unidades } = Astro.props;
+---
+
+{unidades.length > 0 && (
+  <aside class="puente">
+    <h3 class="puente__title">Esto se trabaja en…</h3>
+    <ul class="puente__list">
+      {unidades.map((u) => {
+        const a = ASIGNATURAS[u.asignatura as keyof typeof ASIGNATURAS];
+        const href = `/${u.asignatura}/libro/${u.unidad}`;
+        return (
+          <li>
+            <a href={href} class="puente__link">
+              <strong>{a ? a.shortLabel : u.asignatura}</strong> · Unidad {u.unidad}
+            </a>
+            {u.nota && <span class="puente__nota">{u.nota}</span>}
+          </li>
+        );
+      })}
+    </ul>
+  </aside>
+)}
+
+<style>
+  .puente { margin: 2.5rem 0 1rem; padding: 1.2rem 1.4rem; border-left: 4px solid var(--color-mustard); background: var(--color-bg-cream); border-radius: 0 6px 6px 0; }
+  .puente__title { font-family: var(--font-sans); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-mustard-deep); margin: 0 0 0.7rem; }
+  .puente__list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.6rem; }
+  .puente__link { color: var(--color-terra); text-decoration: none; font-weight: 500; }
+  .puente__link:hover { text-decoration: underline; }
+  .puente__nota { display: block; font-family: var(--font-serif); font-style: italic; font-size: 0.92rem; color: var(--color-ink-soft); margin-top: 0.15rem; }
+</style>
