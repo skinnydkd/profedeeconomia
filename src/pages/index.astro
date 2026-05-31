@@ -1,12 +1,19 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
 import SubjectCard from '@components/SubjectCard.astro';
-import { ASIGNATURAS_LIST } from '@/lib/asignaturas';
+import { ASIGNATURAS_PUBLICADAS } from '@/lib/asignaturas';
+
+// Keep all subject counts in sync with the published catalogue so the
+// homepage never drifts out of date when new asignaturas ship.
+const NUM_WORDS = ['cero', 'una', 'dos', 'tres', 'cuatro', 'cinco', 'seis', 'siete', 'ocho', 'nueve', 'diez', 'once', 'doce'] as const;
+const numAsignaturas = ASIGNATURAS_PUBLICADAS.length;
+const numAsignaturasPalabra = NUM_WORDS[numAsignaturas] ?? String(numAsignaturas);
+const NumPalabraCap = numAsignaturasPalabra.charAt(0).toUpperCase() + numAsignaturasPalabra.slice(1);
 ---
 
 <BaseLayout
   title="Material para impartir economía, empresa y finanzas en el instituto"
-  description="Material editorial para profesores de instituto. Cuatro asignaturas con libro, diapositivas, actividades, tests y recursos. Currículo estatal LOMLOE."
+  description={`Material editorial para profesores de instituto. ${NumPalabraCap} asignaturas con libro, diapositivas, actividades, tests y recursos. Currículo estatal LOMLOE.`}
 >
 
   <section class="hero">
@@ -18,12 +25,12 @@ import { ASIGNATURAS_LIST } from '@/lib/asignaturas';
         en el instituto.
       </h1>
       <p class="lede">
-        Lo que llevamos años usando en clase, esta vez ordenado como hace falta el lunes
-        a las 8:15: por asignatura. Cada una con su libro, sus diapositivas, sus actividades,
-        sus tests y sus recursos.
+        Lo que llevamos años usando en clase, esta vez ordenado como de verdad
+        hace falta: por asignatura. Cada una con su libro, sus diapositivas, sus
+        actividades, sus tests y sus recursos.
       </p>
       <div class="hero-meta">
-        <span>Cuatro asignaturas</span>
+        <span>{NumPalabraCap} asignaturas</span>
         <span>Currículo estatal LOMLOE</span>
         <span>Probado en aula</span>
         <span>Hecho por profesores en activo</span>
@@ -35,16 +42,16 @@ import { ASIGNATURAS_LIST } from '@/lib/asignaturas';
     <div class="container">
       <div class="subjects-header">
         <h2>
-          Las cuatro <span class="ornament serif-italic-wonk">asignaturas</span>
+          Las {numAsignaturasPalabra} <span class="ornament serif-italic-wonk">asignaturas</span>
         </h2>
         <span class="note">
           Cada una es un producto entero: libro, diapositivas, actividades, tests y recursos.
-          La misma estructura interna en las cuatro.
+          La misma estructura interna en todas.
         </span>
       </div>
 
       <div class="subjects-grid">
-        {ASIGNATURAS_LIST.map((a) => <SubjectCard asignatura={a} />)}
+        {ASIGNATURAS_PUBLICADAS.map((a) => <SubjectCard asignatura={a} />)}
       </div>
     </div>
   </section>
@@ -66,8 +73,8 @@ import { ASIGNATURAS_LIST } from '@/lib/asignaturas';
           <span class="icon icon-1">J</span>
           <h3>Juegos</h3>
           <p>
-            Stonks, Insider, Communist Party, Econopoly, Econrisk, un Playground con diez juegos
-            para dos jugadores y un quiz competitivo. Todos probados en aula real.
+            Stonks, Econrisk, Econopoly, Insider y Cajút: simuladores, estrategia
+            y dinámicas multijugador para el aula. Todos probados en clase real.
           </p>
           <a href="/juegos/" class="editorial-link">Ver los juegos →</a>
         </div>
@@ -98,8 +105,7 @@ import { ASIGNATURAS_LIST } from '@/lib/asignaturas';
       <p class="kicker">Por qué este sitio existe</p>
       <p class="pullquote">
         Llevamos años publicando material suelto repartido entre ocho índices distintos.
-        Esto es lo mismo, pero ordenado como hace falta cuando uno entra a clase un lunes
-        a las 8:15.
+        Esto es lo mismo, pero ordenado como de verdad hace falta en clase.
       </p>
       <p class="why-body">
         Todo lo que verás aquí parte del currículo básico estatal LOMLOE:
