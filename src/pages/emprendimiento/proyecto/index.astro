@@ -1,0 +1,137 @@
+---
+/**
+ * «De cero a empresa» — project index. Shows the three itineraries, the
+ * transversal map, the phase cards, and the workbook PDF download.
+ */
+import BaseLayout from '@layouts/BaseLayout.astro';
+import MapaTransversal from '@components/emprendimiento/MapaTransversal.astro';
+import { ITINERARIOS } from '@/lib/emprendimiento';
+import { getCollection } from 'astro:content';
+
+const published = (await getCollection('proyectoTransversal'))
+  .filter((e) => e.data.estado === 'publicado')
+  .sort((a, b) => a.data.fase - b.data.fase);
+
+const fasesForMap = published.map((e) => ({
+  fase: e.data.fase,
+  fase_label: e.data.fase_label,
+  nucleo: e.data.nucleo,
+  unidades: e.data.unidades_relacionadas,
+}));
+
+const pdfHref = '/downloads/emprendimiento-proyecto.pdf';
+---
+
+<BaseLayout
+  title="De cero a empresa — proyecto de emprendimiento transversal"
+  description="Un proyecto modular y por niveles: el alumnado crea una empresa que resuelve un problema real, la valida con metodología lean y la pone a prueba. Transversal a todas las asignaturas."
+>
+  <div class="container">
+    <nav class="breadcrumb">
+      <a href="/">Inicio</a> <span class="sep">›</span>
+      <a href="/emprendimiento/">Emprendimiento</a> <span class="sep">›</span>
+      <span>De cero a empresa</span>
+    </nav>
+  </div>
+
+  <section class="hero">
+    <div class="container">
+      <span class="kicker">Proyecto transversal</span>
+      <h1>De cero a <span class="serif-italic-wonk accent">empresa</span>.</h1>
+      <p class="lede">
+        En equipo, vuestro alumnado crea una empresa que resuelve un problema real
+        de su entorno, la valida saliendo a la calle y la pone a prueba con datos.
+        Modular: lo montáis a vuestra medida.
+      </p>
+      <div class="downloads">
+        <a class="download-cta" href={pdfHref} download>
+          <span class="download-cta__icon" aria-hidden="true">↓</span>
+          <span class="download-cta__text">
+            <strong>Descargar el cuaderno del proyecto en PDF</strong>
+            <span class="muted">Todas las fases publicadas · listo para el aula</span>
+          </span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="container container--narrow">
+      <h2>Tres maneras de hacerlo</h2>
+      <div class="itin-grid">
+        {ITINERARIOS.map((it) => (
+          <div class="itin">
+            <h3>{it.label}</h3>
+            <p>{it.descripcion}</p>
+            {it.fases && <span class="itin__fases">Fases: {it.fases.join(' · ')}</span>}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="block block--alt">
+    <div class="container container--narrow">
+      <h2>Cómo cruza las asignaturas</h2>
+      <MapaTransversal fases={fasesForMap} />
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="container container--narrow">
+      <h2>Las fases</h2>
+      {published.length === 0 ? (
+        <p class="empty">Las fases se publicarán según se vayan completando.</p>
+      ) : (
+        <ul class="fase-cards">
+          {published.map((e) => (
+            <li class={`fase-card ${e.data.nucleo ? 'is-nucleo' : 'is-profundo'}`}>
+              <a href={`/emprendimiento/proyecto/${String(e.data.fase).padStart(2, '0')}`}>
+                <span class="fase-card__label">{e.data.fase_label}</span>
+                <span class="fase-card__title">{e.data.title}</span>
+                <span class="fase-card__meta">{e.data.nucleo ? 'Núcleo' : 'Profundización'} · {e.data.duracion}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .container { max-width: 1240px; margin: 0 auto; padding: 0 clamp(1.5rem, 4vw, 3rem); }
+  .container--narrow { max-width: 820px; }
+  .breadcrumb { font-size: 0.92rem; color: var(--color-ink-mute); margin: 2rem 0; }
+  .breadcrumb a { color: var(--color-ink-mute); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--color-terra); }
+  .breadcrumb .sep { margin: 0 0.5em; color: var(--color-mustard); }
+  .hero { padding: 1rem 0 clamp(2rem, 5vw, 3.5rem); }
+  .kicker { font-family: var(--font-sans); font-size: 0.8rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-terra); }
+  h1 { max-width: 18ch; margin: 0.6rem 0 0.8rem; }
+  .accent { color: var(--color-terra); }
+  .lede { font-family: var(--font-serif); font-style: italic; font-size: 1.35rem; color: var(--color-ink-soft); max-width: 54ch; margin: 1rem 0 1.5rem; line-height: 1.5; font-variation-settings: "SOFT" 80; }
+  .downloads { display: flex; flex-wrap: wrap; gap: 1.2rem; }
+  .download-cta { display: inline-flex; align-items: center; gap: 1rem; padding: 0.9rem 1.4rem 0.9rem 1.1rem; background: var(--color-terra); color: #fff; text-decoration: none; border-radius: 6px; transition: background .2s var(--ease-soft); }
+  .download-cta:hover { background: var(--color-terra-deep); }
+  .download-cta__icon { font-family: var(--font-serif); font-style: italic; font-size: 1.7rem; line-height: 1; color: var(--color-mustard-soft); }
+  .download-cta__text { display: flex; flex-direction: column; gap: 0.15rem; }
+  .download-cta__text strong { font-family: var(--font-sans); font-size: 0.95rem; font-weight: 600; }
+  .download-cta__text .muted { font-family: var(--font-sans); font-size: 0.78rem; opacity: 0.75; }
+  .block { padding: clamp(2rem, 5vw, 3.5rem) 0; }
+  .block--alt { background: var(--color-bg-soft); border-top: 1px solid var(--color-line); border-bottom: 1px solid var(--color-line); }
+  h2 { margin: 0 0 1.5rem; }
+  .itin-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; }
+  .itin { background: var(--color-paper); border: 1px solid var(--color-line); border-top: 3px solid var(--color-mustard); border-radius: 6px; padding: 1.3rem 1.4rem; }
+  .itin h3 { margin: 0 0 0.5rem; font-size: 1.2rem; }
+  .itin p { color: var(--color-ink-soft); font-size: 0.95rem; line-height: 1.55; margin: 0 0 0.7rem; }
+  .itin__fases { font-family: var(--font-mono); font-size: 0.78rem; color: var(--color-ink-mute); }
+  .fase-cards { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.2rem; }
+  .fase-card a { display: flex; flex-direction: column; gap: 0.35rem; background: var(--color-paper); border: 1px solid var(--color-line); border-top: 3px solid var(--color-mustard); border-radius: 6px; padding: 1.2rem 1.3rem; text-decoration: none; color: inherit; transition: transform .18s var(--ease-soft), box-shadow .18s var(--ease-soft); }
+  .fase-card.is-profundo a { border-top-color: var(--color-terra); }
+  .fase-card a:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(42,31,24,0.08); }
+  .fase-card__label { font-family: var(--font-sans); font-size: 0.72rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--color-mustard-deep); }
+  .fase-card__title { font-family: var(--font-serif); font-size: 1.15rem; line-height: 1.2; color: var(--color-ink); }
+  .fase-card__meta { font-family: var(--font-sans); font-size: 0.8rem; color: var(--color-ink-mute); }
+  .empty { color: var(--color-ink-soft); font-style: italic; font-family: var(--font-serif); }
+</style>
