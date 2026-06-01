@@ -24,7 +24,7 @@ export function HostQuestion({ publicState, onSkip, onEnd }: Props) {
   }, []);
 
   const q = publicState.currentQuestion!;
-  const respostes = publicState.players.filter((p) => p.hasAnswered).length;
+  const answered = publicState.players.filter((p) => p.hasAnswered).length;
   const total = publicState.players.length;
 
   const timerLeft = publicState.timerEndsAt
@@ -70,7 +70,7 @@ export function HostQuestion({ publicState, onSkip, onEnd }: Props) {
         }}
       >
         <span class="subtle">
-          Respostes: {respostes} / {total}
+          Respuestas: {answered} / {total}
         </span>
         <div style={{ display: 'flex', gap: '8px' }}>
           <button
@@ -101,7 +101,7 @@ export function HostQuestion({ publicState, onSkip, onEnd }: Props) {
               cursor: 'pointer',
             }}
           >
-            Acabar
+            Terminar
           </button>
         </div>
       </footer>
