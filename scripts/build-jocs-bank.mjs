@@ -8,7 +8,7 @@
 
 import { promises as fs } from 'node:fs';
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import matter from 'gray-matter';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -124,9 +124,10 @@ async function main() {
   console.log(`  bank:     ${path.relative(ROOT, outBank)}`);
 }
 
-// Executar només si invocat directament (mateix patró que build-cajut-manifest.mjs)
-const _argv1Url = process.argv[1] ? `file:///${path.resolve(process.argv[1]).replace(/\\/g, '/')}` : '';
-if (import.meta.url === _argv1Url) {
+// Executar només si invocat directament. pathToFileURL és cross-platform:
+// el guard anterior (`file:///` + ruta) afegia una barra de més en Linux
+// (file:////vercel/...) i main() no s'executava en Vercel.
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
   main().catch((err) => {
     console.error(err);
     process.exit(1);
