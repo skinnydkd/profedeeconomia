@@ -12,16 +12,21 @@ interface Props {
   duracion: string;
   entregable: string;
   competenciasClave: string[];
+  valiente?: boolean;
 }
-const { faseLabel, nivel, nucleo, duracion, entregable, competenciasClave } = Astro.props;
+const { faseLabel, nivel, nucleo, duracion, entregable, competenciasClave, valiente = false } = Astro.props;
 const nivelLabel = nivel === 'eso' ? 'ESO' : nivel === 'bach-fp' ? 'Batx · FP' : 'Todos los niveles';
 ---
 
 <header class="fase-meta">
   <div class="badges">
-    <span class={`badge badge--${nucleo ? 'nucleo' : 'profundo'}`}>
-      {nucleo ? 'Núcleo' : 'Profundización'}
-    </span>
+    {valiente ? (
+      <span class="badge badge--valiente">★ Tier valiente · opcional</span>
+    ) : (
+      <span class={`badge badge--${nucleo ? 'nucleo' : 'profundo'}`}>
+        {nucleo ? 'Núcleo' : 'Profundización'}
+      </span>
+    )}
     <span class="badge badge--nivel">{nivelLabel}</span>
     <span class="badge badge--dur">{duracion}</span>
   </div>
@@ -39,6 +44,7 @@ const nivelLabel = nivel === 'eso' ? 'ESO' : nivel === 'bach-fp' ? 'Batx · FP' 
   .badge { font-family: var(--font-sans); font-size: 0.72rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.25rem 0.6rem; border-radius: 999px; }
   .badge--nucleo { background: var(--color-mustard-soft); color: var(--color-mustard-deep); }
   .badge--profundo { background: var(--color-terra-soft); color: var(--color-terra-deep); }
+  .badge--valiente { background: var(--color-terra); color: #fff; }
   .badge--nivel, .badge--dur { background: var(--color-bg-cream); color: var(--color-ink-soft); }
   .entregable { font-size: 0.98rem; color: var(--color-ink-soft); margin: 0; line-height: 1.55; }
   .comps { list-style: none; display: flex; flex-wrap: wrap; gap: 0.4rem; padding: 0; margin: 0.9rem 0 0; }

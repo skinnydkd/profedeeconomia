@@ -237,6 +237,8 @@ const proyectoTransversal = defineCollection({
     /** Core lean phase (true) vs. deepening phase for Batx/FP (false). */
     nucleo: z.boolean().default(true),
     nivel: z.enum(['todos', 'eso', 'bach-fp']).default('todos'),
+    /** Brave optional tier (the ★ "venta real" phase). Excluded from numbered itineraries. */
+    valiente: z.boolean().default(false),
     duracion: z.string(),
     /** One-line description of the deliverable produced in this phase. */
     entregable: z.string(),
