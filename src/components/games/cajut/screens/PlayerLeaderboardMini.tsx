@@ -1,13 +1,9 @@
 // src/components/games/cajut/screens/PlayerLeaderboardMini.tsx
 import type { PublicState, PrivateState } from '../../../../lib/games-multi/cajut/types';
 
-// Catalan ordinal suffixes: 1r, 2n, 3r, 4t, 5è, 6è, ...
-function catOrdinal(n: number): string {
-  if (n === 1) return `${n}r`;
-  if (n === 2) return `${n}n`;
-  if (n === 3) return `${n}r`;
-  if (n === 4) return `${n}t`;
-  return `${n}è`;
+// Spanish ordinals: 1.º, 2.º, 3.º, ...
+function esOrdinal(n: number): string {
+  return `${n}.º`;
 }
 
 interface Props {
@@ -47,7 +43,7 @@ export function PlayerLeaderboardMini({ publicState, privateState }: Props) {
       </ol>
       {!meInTop && privateState.myRank !== null && (
         <p class="subtle" style={{ textAlign: 'center' }}>
-          Vas {catOrdinal(privateState.myRank!)} amb {privateState.myScore} punts
+          Vas {esOrdinal(privateState.myRank!)} con {privateState.myScore} puntos
         </p>
       )}
     </div>

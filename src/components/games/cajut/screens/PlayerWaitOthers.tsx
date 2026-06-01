@@ -6,15 +6,15 @@ interface Props {
 }
 
 export function PlayerWaitOthers({ publicState }: Props) {
-  const respostes = publicState.players.filter((p) => p.hasAnswered).length;
+  const answered = publicState.players.filter((p) => p.hasAnswered).length;
   const total = publicState.players.length;
 
   return (
     <div class="cajut-player" style={{ justifyContent: 'center', alignItems: 'center' }}>
       <h2 style={{ fontFamily: 'Fraunces, serif', textAlign: 'center', fontSize: 28 }}>
-        Resposta enviada!
+        ¡Respuesta enviada!
       </h2>
-      <p class="subtle" style={{ marginTop: 12 }}>Esperant els companys&hellip;</p>
+      <p class="subtle" style={{ marginTop: 12 }}>Esperando a los compañeros&hellip;</p>
       <p
         style={{
           marginTop: 16,
@@ -22,7 +22,7 @@ export function PlayerWaitOthers({ publicState }: Props) {
           fontSize: 24,
         }}
       >
-        {respostes}&nbsp;/&nbsp;{total}
+        {answered}&nbsp;/&nbsp;{total}
       </p>
     </div>
   );

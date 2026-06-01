@@ -33,7 +33,7 @@ export function HostFinal({ publicState, onRestart }: Props) {
         <div class="step second">
           {second ? (
             <>
-              <div style={{ fontWeight: 600, fontSize: 13, marginBottom: 6 }}>2n</div>
+              <div style={{ fontWeight: 600, fontSize: 13, marginBottom: 6 }}>2.º</div>
               <div style={{ fontSize: 22, fontFamily: 'Fraunces, serif' }}>{second.nick}</div>
               <div style={{ fontFamily: 'JetBrains Mono, monospace', marginTop: 6 }}>
                 {second.score}
@@ -48,7 +48,7 @@ export function HostFinal({ publicState, onRestart }: Props) {
         <div class="step first">
           {first ? (
             <>
-              <div style={{ fontWeight: 700, fontSize: 14, marginBottom: 6 }}>1r</div>
+              <div style={{ fontWeight: 700, fontSize: 14, marginBottom: 6 }}>1.º</div>
               <div style={{ fontSize: 28, fontFamily: 'Fraunces, serif' }}>{first.nick}</div>
               <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 20, marginTop: 8 }}>
                 {first.score}
@@ -63,7 +63,7 @@ export function HostFinal({ publicState, onRestart }: Props) {
         <div class="step third">
           {third ? (
             <>
-              <div style={{ fontWeight: 600, fontSize: 13, marginBottom: 6 }}>3r</div>
+              <div style={{ fontWeight: 600, fontSize: 13, marginBottom: 6 }}>3.º</div>
               <div style={{ fontSize: 20, fontFamily: 'Fraunces, serif' }}>{third.nick}</div>
               <div style={{ fontFamily: 'JetBrains Mono, monospace', marginTop: 6 }}>
                 {third.score}
@@ -76,7 +76,7 @@ export function HostFinal({ publicState, onRestart }: Props) {
       </div>
 
       <p class="subtle" style={{ textAlign: 'center', marginTop: '24px' }}>
-        Els alumnes poden revisar les seues respostes al mòbil.
+        Los alumnos pueden revisar sus respuestas en el móvil.
       </p>
 
       {/* Full ranking */}
@@ -113,7 +113,7 @@ export function HostFinal({ publicState, onRestart }: Props) {
             cursor: 'pointer',
           }}
         >
-          Nova partida
+          Nueva partida
         </button>
       </div>
     </div>

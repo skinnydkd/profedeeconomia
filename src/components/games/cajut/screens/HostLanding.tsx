@@ -10,7 +10,7 @@ export function HostLanding({ roomCode }: Props) {
   return (
     <div class="cajut-host" style={{ alignItems: 'center', justifyContent: 'center' }}>
       <h1 style={{ fontFamily: 'Fraunces, serif', fontSize: '64px', margin: '0 0 16px' }}>Cajut</h1>
-      <p class="subtle">Connectant{roomCode ? ` a sala ${roomCode}` : ''}…</p>
+      <p class="subtle">Conectando{roomCode ? ` a sala ${roomCode}` : ''}…</p>
     </div>
   );
 }

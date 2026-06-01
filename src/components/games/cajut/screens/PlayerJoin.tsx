@@ -11,7 +11,7 @@ export function PlayerJoin({ onSubmit }: Props) {
   return (
     <div class="cajut-player" style={{ justifyContent: 'center', alignItems: 'center' }}>
       <h1 style={{ fontFamily: 'Fraunces, serif', fontSize: 48, margin: '0 0 8px' }}>Cajut</h1>
-      <p class="subtle" style={{ marginBottom: 24 }}>Introdueix el codi de sala</p>
+      <p class="subtle" style={{ marginBottom: 24 }}>Introduce el código de sala</p>
       <input
         autoFocus
         maxLength={4}
