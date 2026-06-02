@@ -1,12 +1,27 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
-interface Props { title: string; wide?: boolean; }
-const { title, wide = false } = Astro.props;
+import PuenteUnidades from '@components/emprendimiento/PuenteUnidades.astro';
+import { JUEGOS } from '@/lib/juegos';
+interface Props { title: string; wide?: boolean; slug?: string; }
+const { title, wide = false, slug } = Astro.props;
+const juego = slug ? JUEGOS.find((j) => j.slug === slug) : undefined;
 ---
 <BaseLayout title={title} description={`${title} — juego de profedeeconomia.es`}>
   <div class={`game-shell${wide ? ' game-shell--wide' : ''}`}>
     <a class="game-exit" href="/juegos/">← Volver a Juegos</a>
     <slot />
+    {juego && (
+      <section class="game-ficha">
+        <h2>Para el profe</h2>
+        <PuenteUnidades unidades={juego.unidades_relacionadas} />
+        {juego.competencias_clave.length > 0 && (
+          <p class="game-comp"><strong>Competencias clave:</strong> {juego.competencias_clave.join(' · ')}</p>
+        )}
+        {juego.imprimible && (
+          <p class="game-print"><a href={`/juegos/${juego.slug}/imprimir/`}>Versión para imprimir →</a></p>
+        )}
+      </section>
+    )}
   </div>
 </BaseLayout>
 <style>
@@ -14,4 +29,10 @@ const { title, wide = false } = Astro.props;
   .game-shell--wide { max-width: 1180px; }
   .game-exit { display: inline-block; margin: 1rem 0; color: var(--color-ink-mute); text-decoration: none; font-size: .92rem; }
   .game-exit:hover { color: var(--color-terra); }
+  .game-ficha { max-width: 820px; margin: 3rem auto 0; padding-top: 1.5rem; border-top: 1px solid var(--color-line); }
+  .game-ficha h2 { font-family: var(--font-serif); font-size: 1.4rem; font-weight: 500; margin: 0 0 0.5rem; }
+  .game-comp { color: var(--color-ink-soft); margin-top: 0.8rem; }
+  .game-print { margin-top: 1rem; }
+  .game-print a { color: var(--color-terra); font-weight: 600; text-decoration: none; }
+  .game-print a:hover { text-decoration: underline; }
 </style>

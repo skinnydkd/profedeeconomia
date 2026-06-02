@@ -1,0 +1,161 @@
+---
+/**
+ * Print-and-play (teacher) version of Cajút. The questions are derived from the
+ * shared `tests` content collection so the printed set always matches the
+ * digital game. Each `.print-block` is one printable sheet; the @media print
+ * stylesheet hides the page chrome and prints only those blocks.
+ *
+ * IMPORTANT: this is the teacher's sheet — the correct option is marked. It is
+ * not meant to be seen by students.
+ */
+import BaseLayout from '@layouts/BaseLayout.astro';
+import PrintButton from '@components/dinamicas/PrintButton.astro';
+import { getCollection } from 'astro:content';
+import { ASIGNATURAS, ASIGNATURA_SLUGS, type AsignaturaSlug } from '@/lib/asignaturas';
+
+const tests = (await getCollection('tests')).filter((e) => e.data.estado === 'publicado');
+
+// Group published tests by asignatura, in the canonical asignatura order, and
+// sort each group's tests by their related unit number.
+type GroupedTest = {
+  slug: AsignaturaSlug;
+  shortLabel: string;
+  title: string;
+  tests: typeof tests;
+};
+
+const grouped: GroupedTest[] = ASIGNATURA_SLUGS.map((slug) => {
+  const own = tests
+    .filter((t) => t.data.asignatura === slug)
+    .sort((a, b) => a.data.unidad_relacionada - b.data.unidad_relacionada);
+  return {
+    slug,
+    shortLabel: ASIGNATURAS[slug].shortLabel,
+    title: ASIGNATURAS[slug].title,
+    tests: own,
+  };
+}).filter((g) => g.tests.length > 0);
+
+const totalAsignaturas = grouped.length;
+const totalPreguntas = tests.reduce((acc, t) => acc + t.data.preguntas.length, 0);
+
+// A, B, C, D… labels for the options.
+const OPTION_LABELS = ['A', 'B', 'C', 'D', 'E', 'F'];
+---
+
+<BaseLayout
+  title="Cajút — versión para imprimir (hoja del profe)"
+  description="Print-and-play de Cajút: todas las preguntas del concurso por asignatura y unidad, con la respuesta correcta marcada. Hoja del profe para jugar en clase sin pantallas."
+>
+  <div class="container">
+    <nav class="breadcrumb no-print">
+      <a href="/">Inicio</a> <span class="sep">›</span>
+      <a href="/juegos/">Juegos</a> <span class="sep">›</span>
+      <a href="/juegos/cajut/">Cajút</a> <span class="sep">›</span>
+      <span>Imprimir</span>
+    </nav>
+
+    <header class="intro no-print">
+      <span class="kicker">Versión para imprimir · hoja del profe</span>
+      <h1>Cajút <span class="serif-italic-wonk accent">en papel</span></h1>
+      <p class="lede">
+        Todas las preguntas del concurso, agrupadas por asignatura y unidad, con
+        la respuesta correcta marcada. Esta es la <strong>hoja del profe</strong>:
+        no la repartas al alumnado. Las reglas completas están en la
+        <a href="/juegos/cajut/" class="editorial-link">versión digital</a>.
+      </p>
+      <PrintButton />
+    </header>
+
+    <!-- Hoja 1: cómo se juega -->
+    <section class="print-block">
+      <h2>Cómo se juega</h2>
+      <ul class="rules">
+        <li><strong>Concurso de aula por equipos.</strong> La clase se divide en equipos que compiten por acertar el mayor número de preguntas.</li>
+        <li><strong>Versión normal:</strong> el profe proyecta el juego. Esta <strong>versión en papel</strong> permite jugar sin pantallas cuando no hay proyector.</li>
+        <li><strong>Turno:</strong> el profe lee cada pregunta en voz alta y los equipos eligen una opción (A, B, C o D).</li>
+        <li><strong>Puntuación:</strong> se puntúa al equipo más rápido en acertar. Si fallan, el turno pasa al siguiente.</li>
+        <li><strong>Hoja del profe:</strong> en estas páginas la opción correcta va marcada con <strong>✓</strong>. El alumnado <strong>no</strong> debe ver esta hoja.</li>
+      </ul>
+      <p class="hint">Material derivado de la versión digital: {totalAsignaturas} asignaturas · {totalPreguntas} preguntas.</p>
+    </section>
+
+    <!-- Una hoja por asignatura -->
+    {grouped.map((g) => (
+      <section class="print-block">
+        <h2>{g.shortLabel} <span class="count">({g.title})</span></h2>
+        {g.tests.map((t) => (
+          <div class="unit">
+            <h3 class="unit-title">Unidad {t.data.unidad_relacionada} — {t.data.title}</h3>
+            <ol class="q-list">
+              {t.data.preguntas.map((p) => (
+                <li class="q">
+                  <p class="q-text">{p.enunciado}</p>
+                  <ol class="q-opts">
+                    {p.opciones.map((op, oi) => (
+                      <li class={`q-opt${oi === p.correcta ? ' correct' : ''}`}>
+                        <span class="q-opt-label">{OPTION_LABELS[oi] ?? String(oi + 1)})</span>
+                        {oi === p.correcta ? (
+                          <span><strong>{op}</strong> <span class="check">✓</span></span>
+                        ) : (
+                          <span>{op}</span>
+                        )}
+                      </li>
+                    ))}
+                  </ol>
+                  {p.explicacion && <p class="q-exp">{p.explicacion}</p>}
+                </li>
+              ))}
+            </ol>
+          </div>
+        ))}
+      </section>
+    ))}
+  </div>
+</BaseLayout>
+
+<style>
+  .container { max-width: 920px; margin: 0 auto; padding: 0 clamp(1.5rem, 4vw, 3rem) 4rem; }
+  .breadcrumb { font-size: 0.92rem; color: var(--color-ink-mute); margin: 2rem 0; }
+  .breadcrumb a { color: var(--color-ink-mute); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--color-terra); }
+  .breadcrumb .sep { margin: 0 0.5em; color: var(--color-mustard); }
+  .intro { margin-bottom: 2.5rem; }
+  .kicker { font-family: var(--font-sans); font-size: .8rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--color-terra); }
+  h1 { margin: .5rem 0 .8rem; }
+  .accent { color: var(--color-terra); }
+  .lede { font-size: 1.15rem; color: var(--color-ink-soft); line-height: 1.55; max-width: 60ch; }
+
+  .print-block { margin: 0 0 3rem; }
+  .print-block h2 { font-family: var(--font-serif); font-size: 1.5rem; font-weight: 500; margin: 0 0 1rem; padding-bottom: .4rem; border-bottom: 2px solid var(--color-terra); }
+  .print-block h2 .count, .print-block h2 .kicker { font-size: 1rem; color: var(--color-ink-mute); }
+
+  .rules { list-style: none; padding: 0; margin: 0 0 1rem; display: flex; flex-direction: column; gap: .55rem; }
+  .rules li { padding-left: 1.1rem; position: relative; color: var(--color-ink); line-height: 1.5; }
+  .rules li::before { content: "→"; position: absolute; left: 0; color: var(--color-mustard); }
+  .hint { font-family: var(--font-mono); font-size: .78rem; color: var(--color-ink-mute); }
+
+  /* Per-unit grouping inside an asignatura sheet. */
+  .unit { margin: 0 0 1.6rem; }
+  .unit-title { font-family: var(--font-serif); font-size: 1.1rem; font-weight: 500; color: var(--color-ink); margin: 0 0 .7rem; }
+
+  /* Numbered question list. */
+  .q-list { list-style: decimal; padding-left: 1.4rem; margin: 0; display: flex; flex-direction: column; gap: 1rem; }
+  .q { line-height: 1.5; break-inside: avoid; }
+  .q-text { margin: 0 0 .45rem; color: var(--color-ink); font-weight: 500; }
+  .q-opts { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: .25rem; }
+  .q-opt { padding-left: 1.6rem; position: relative; color: var(--color-ink-soft); }
+  .q-opt-label { position: absolute; left: 0; font-family: var(--font-mono); font-size: .85rem; color: var(--color-ink-mute); }
+  .q-opt.correct { color: var(--color-ink); }
+  .q-opt .check { color: var(--color-terra); font-weight: 700; }
+  .q-exp { margin: .4rem 0 0; font-size: .85rem; font-style: italic; color: var(--color-ink-mute); line-height: 1.45; }
+
+  @media print {
+    :global(.site-header), :global(.site-footer), .no-print { display: none !important; }
+    .container { max-width: none; padding: 0; }
+    .print-block { margin: 0; break-inside: avoid; }
+    .print-block + .print-block { break-before: page; }
+    .q { break-inside: avoid; }
+    @page { margin: 1.5cm; }
+  }
+</style>

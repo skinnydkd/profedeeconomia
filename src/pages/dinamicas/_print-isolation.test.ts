@@ -16,7 +16,7 @@ import { dirname, join } from 'node:path';
  * that make the isolation happen so the regression can't silently come back.
  */
 const here = dirname(fileURLToPath(import.meta.url));
-const src = readFileSync(join(here, '[...slug].astro'), 'utf8');
+const src = readFileSync(join(here, '[familia]', '[slug].astro'), 'utf8');
 
 /**
  * Return everything from `@media print` to the end of the file. The print block

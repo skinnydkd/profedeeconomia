@@ -13,3 +13,16 @@ describe('SECCIONES_TRANSVERSALES', () => {
     expect(s?.description.length).toBeGreaterThan(0);
   });
 });
+
+describe('SECCIONES_TRANSVERSALES — jocs-economics', () => {
+  it('incluye jocs-economics tras dinamicas', () => {
+    const slugs = SECCIONES_TRANSVERSALES.map((s) => s.slug);
+    expect(slugs).toContain('jocs-economics');
+    expect(slugs.indexOf('jocs-economics')).toBe(slugs.indexOf('dinamicas') + 1);
+  });
+  it('lo presenta como las Olimpiadas', () => {
+    const s = SECCIONES_TRANSVERSALES.find((x) => x.slug === 'jocs-economics');
+    expect(s?.label).toBe('Jocs Econòmics');
+    expect(s?.description.toLowerCase()).toContain('olimpiada');
+  });
+});
