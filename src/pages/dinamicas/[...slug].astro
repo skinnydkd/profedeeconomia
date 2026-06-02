@@ -119,11 +119,24 @@ const familia = familiaMeta(d.familia);
   .back a { color: var(--color-terra); text-decoration: none; font-weight: 500; }
   .back a:hover { text-decoration: underline; }
 
-  /* Print: keep only the repartible materials, one .print-block per page */
+  /* Print: isolate ONLY the repartible materials (role cards, student sheets).
+     Everything else — app chrome, theory prose, hero, metadata — is hidden so the
+     PDF contains just the printable handouts, one .print-block per A4 page. */
   @media print {
     :global(.site-header), :global(.site-footer), .no-print { display: none !important; }
+    .breadcrumb, .kicker, .lede { display: none !important; }
+    :global(.meta) { display: none !important; }
     .body { padding: 0; }
-    .prose :global(.print-block) { break-after: page; }
+    .container--narrow { max-width: none; padding: 0; }
+    h1 { font-size: 1.4rem; margin: 0 0 1.2rem; max-width: none; }
+    /* Hide all the theory prose, then re-show only the printable materials. */
+    .prose > :global(*) { display: none !important; }
+    .prose :global(.print-block) {
+      display: block !important;
+      break-after: page;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
     .prose :global(.print-block:last-of-type) { break-after: auto; }
   }
 </style>
