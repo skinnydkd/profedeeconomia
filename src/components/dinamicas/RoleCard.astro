@@ -1,0 +1,28 @@
+---
+/**
+ * A printable role/position card for a classroom dynamic. Rendered as a visual
+ * block on the page and isolated to its own A4 page in print mode via
+ * `data-print` + `.print-block` (see [slug].astro print CSS).
+ */
+interface Props { rol: string; reparto?: string; }
+const { rol, reparto } = Astro.props;
+---
+<div class="role-card print-block" data-print>
+  <div class="role-card__head">
+    <span class="role-card__tag">Tarjeta de rol</span>
+    <h4 class="role-card__rol">{rol}</h4>
+    {reparto && <span class="role-card__reparto">{reparto}</span>}
+  </div>
+  <div class="role-card__body"><slot /></div>
+  <span class="role-card__cut" aria-hidden="true">✂ recorta por aquí</span>
+</div>
+<style>
+  .role-card { border: 1.5px dashed var(--color-line); border-radius: 8px; padding: 1.1rem 1.3rem; margin: 1rem 0; background: var(--color-paper); }
+  .role-card__head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.6rem; border-bottom: 1px solid var(--color-line-soft); padding-bottom: 0.5rem; margin-bottom: 0.7rem; }
+  .role-card__tag { font-family: var(--font-sans); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-terra); }
+  .role-card__rol { font-family: var(--font-serif); font-size: 1.2rem; margin: 0; font-weight: 500; }
+  .role-card__reparto { font-family: var(--font-sans); font-size: 0.8rem; color: var(--color-ink-mute); margin-left: auto; }
+  .role-card__body { font-size: 1rem; line-height: 1.55; }
+  .role-card__body :global(p) { margin: 0 0 0.6em; }
+  .role-card__cut { display: block; margin-top: 0.8rem; font-family: var(--font-mono); font-size: 0.7rem; color: var(--color-ink-mute); }
+</style>
