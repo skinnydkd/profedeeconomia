@@ -1,0 +1,27 @@
+---
+/**
+ * A printable student worksheet for a debate. Same print isolation as the
+ * Dinámicas FichaAlumno: lives inside .prose as a .print-block so the @media
+ * print rules in the detail page isolate it onto its own A4 page.
+ */
+interface Props { titulo: string; subtitulo?: string; }
+const { titulo, subtitulo } = Astro.props;
+---
+<div class="ficha print-block" data-print>
+  <div class="ficha__head">
+    <span class="ficha__tag">Ficha del alumno</span>
+    <h4 class="ficha__title">{titulo}</h4>
+    {subtitulo && <p class="ficha__sub">{subtitulo}</p>}
+  </div>
+  <div class="ficha__body"><slot /></div>
+</div>
+<style>
+  .ficha { border: 1.5px solid var(--color-line); border-radius: 8px; padding: 1.1rem 1.3rem; margin: 1rem 0; background: var(--color-paper); }
+  .ficha__head { margin-bottom: 0.8rem; }
+  .ficha__tag { font-family: var(--font-sans); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-mustard-deep); }
+  .ficha__title { font-family: var(--font-serif); font-size: 1.2rem; margin: 0.2rem 0 0; font-weight: 500; }
+  .ficha__sub { font-family: var(--font-serif); font-style: italic; color: var(--color-ink-soft); margin: 0.2rem 0 0; }
+  .ficha__body { font-size: 1rem; line-height: 1.6; }
+  .ficha__body :global(table) { width: 100%; border-collapse: collapse; margin: 0.6em 0; }
+  .ficha__body :global(th), .ficha__body :global(td) { border: 1px solid var(--color-line); padding: 0.5em 0.6em; text-align: left; }
+</style>

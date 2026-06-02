@@ -1,0 +1,15 @@
+---
+/** One side of the debate: its label and a one-line synthesis. */
+interface Props { label: string; sintesis: string; tono?: 'favor' | 'contra' | 'neutro'; }
+const { label, sintesis, tono = 'neutro' } = Astro.props;
+const COLOR: Record<string, string> = { favor: '--color-eco1', contra: '--color-terra', neutro: '--color-mustard' };
+---
+<div class="postura" style={`--postura-color: var(${COLOR[tono]})`}>
+  <span class="postura__tag">{label}</span>
+  <p class="postura__sintesis">{sintesis}</p>
+</div>
+<style>
+  .postura { border: 1.5px solid var(--color-line); border-left: 4px solid var(--postura-color); border-radius: 8px; padding: 1rem 1.2rem; background: var(--color-paper); }
+  .postura__tag { font-family: var(--font-sans); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--postura-color); }
+  .postura__sintesis { font-family: var(--font-serif); font-size: 1.05rem; margin: 0.3rem 0 0; color: var(--color-ink); }
+</style>
