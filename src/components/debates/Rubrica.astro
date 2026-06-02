@@ -1,0 +1,22 @@
+---
+/** Evaluation rubric: criteria and the competencia each one works. */
+interface Criterio { criterio: string; descripcion: string; competencia?: string; }
+interface Props { rubrica: Criterio[]; }
+const { rubrica } = Astro.props;
+---
+{rubrica.length > 0 && (
+  <table class="rubrica">
+    <thead><tr><th>Criterio</th><th>Qué se valora</th><th>Competencia</th></tr></thead>
+    <tbody>
+      {rubrica.map((r) => (
+        <tr><td>{r.criterio}</td><td>{r.descripcion}</td><td>{r.competencia ?? '—'}</td></tr>
+      ))}
+    </tbody>
+  </table>
+)}
+<style>
+  .rubrica { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.95rem; }
+  .rubrica th, .rubrica td { border: 1px solid var(--color-line); padding: 0.55em 0.7em; text-align: left; vertical-align: top; }
+  .rubrica th { font-family: var(--font-sans); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--color-ink-mute); background: var(--color-bg-cream); }
+  .rubrica td { color: var(--color-ink-soft); }
+</style>

@@ -1,0 +1,23 @@
+---
+/** The classroom procedure as an ordered list of phases (phase, time, what happens). */
+interface Fase { fase: string; tiempo?: string; descripcion: string; }
+interface Props { fases: Fase[]; }
+const { fases } = Astro.props;
+---
+<ol class="fases">
+  {fases.map((f) => (
+    <li class="fase">
+      <div class="fase__head"><span class="fase__name">{f.fase}</span>{f.tiempo && <span class="fase__time">{f.tiempo}</span>}</div>
+      <p class="fase__desc">{f.descripcion}</p>
+    </li>
+  ))}
+</ol>
+<style>
+  .fases { list-style: none; padding: 0; margin: 1.2rem 0; counter-reset: fase; }
+  .fase { position: relative; padding: 0 0 1rem 2rem; border-left: 2px solid var(--color-line); margin-left: 0.5rem; }
+  .fase::before { counter-increment: fase; content: counter(fase); position: absolute; left: -0.85rem; top: 0; width: 1.5rem; height: 1.5rem; border-radius: 50%; background: var(--color-terra); color: var(--color-paper); font-family: var(--font-sans); font-size: 0.8rem; font-weight: 700; display: grid; place-items: center; }
+  .fase__head { display: flex; align-items: baseline; gap: 0.6rem; }
+  .fase__name { font-family: var(--font-serif); font-size: 1.1rem; color: var(--color-ink); }
+  .fase__time { font-family: var(--font-mono); font-size: 0.78rem; color: var(--color-ink-mute); }
+  .fase__desc { color: var(--color-ink-soft); margin: 0.2rem 0 0; }
+</style>

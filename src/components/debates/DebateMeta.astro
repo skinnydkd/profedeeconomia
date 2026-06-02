@@ -1,0 +1,22 @@
+---
+/** Metadata badge row for a debate (format, duration, grouping, level). */
+interface Props { formato: string; duracion: string; agrupacion: string; nivel: string[]; }
+const { formato, duracion, agrupacion, nivel } = Astro.props;
+const FORMATO_LABEL: Record<string, string> = {
+  'parlamentario': 'Parlamentario', 'mesa-redonda': 'Mesa redonda',
+  'juicio-simulado': 'Juicio simulado', 'dilema-etico': 'Dilema ético', 'fishbowl': 'Fishbowl',
+};
+const NIVEL_LABEL: Record<string, string> = { eso: 'ESO', bach: 'Bachillerato', fp: 'FP' };
+---
+<dl class="meta">
+  <div><dt>Formato</dt><dd>{FORMATO_LABEL[formato] ?? formato}</dd></div>
+  <div><dt>Duración</dt><dd>{duracion}</dd></div>
+  <div><dt>Agrupación</dt><dd>{agrupacion}</dd></div>
+  <div><dt>Nivel</dt><dd>{nivel.map((n) => NIVEL_LABEL[n] ?? n).join(' · ')}</dd></div>
+</dl>
+<style>
+  .meta { display: flex; flex-wrap: wrap; gap: 1.4rem; margin: 1.4rem 0 2rem; padding: 1rem 1.2rem; background: var(--color-bg-cream); border-radius: 8px; }
+  .meta div { display: flex; flex-direction: column; gap: 0.15rem; }
+  .meta dt { font-family: var(--font-sans); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-ink-mute); margin: 0; }
+  .meta dd { font-family: var(--font-serif); font-size: 1rem; margin: 0; color: var(--color-ink); }
+</style>

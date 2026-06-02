@@ -1,20 +1,16 @@
 /**
  * Metadata and pure build helpers for the transversal «Dinámicas» section.
  * Family color-coding reuses already-validated tokens from global.css — no new colors.
+ * Generic grouping logic lives in familia-grouping.ts (shared with Debates, etc.).
  */
+
+import type { Familia } from './familia-grouping';
+export { groupByFamilia, findBrokenUnidadRefs } from './familia-grouping';
+export type { FamiliaGroup, HasFamilia, BrokenRef } from './familia-grouping';
 
 export type FamiliaSlug =
   | 'mercat-treball' | 'mercats-preus' | 'distribucion-produccion'
   | 'decisiones-comunes' | 'sistemas-debates' | 'empresa-organizacion' | 'teoria-juegos';
-
-export interface Familia {
-  slug: FamiliaSlug;
-  label: string;
-  /** One-line intro shown at the top of the family group on the hub. */
-  intro: string;
-  /** CSS custom property reused for the family accent (defined in global.css). */
-  colorVar: string;
-}
 
 export const FAMILIAS: Familia[] = [
   { slug: 'mercat-treball',         label: 'Mercado de trabajo',        intro: 'Entrevistas, selección y negociación salarial.',                 colorVar: '--color-fopp' },
@@ -36,35 +32,3 @@ export function familiaMeta(slug: string): Familia {
   return f;
 }
 
-interface HasFamilia {
-  slug: string;
-  data: { familia: string; orden: number; title: string;
-    unidades_relacionadas: { asignatura: string; unidad: number }[] };
-}
-
-export interface FamiliaGroup<T extends HasFamilia> { familia: Familia; dinamicas: T[]; }
-
-/** Group dinámicas by family in FAMILIAS order; within each, sort by `orden`. Empty families are dropped. */
-export function groupByFamilia<T extends HasFamilia>(items: T[]): FamiliaGroup<T>[] {
-  return FAMILIAS.map((familia) => ({
-    familia,
-    dinamicas: items
-      .filter((it) => it.data.familia === familia.slug)
-      .sort((a, b) => a.data.orden - b.data.orden),
-  })).filter((g) => g.dinamicas.length > 0);
-}
-
-export interface BrokenRef { slug: string; asignatura: string; unidad: number; }
-
-/** Return every `unidades_relacionadas` entry that does not match an existing published unit. */
-export function findBrokenUnidadRefs<T extends HasFamilia>(items: T[], libroUnits: Set<string>): BrokenRef[] {
-  const broken: BrokenRef[] = [];
-  for (const it of items) {
-    for (const u of it.data.unidades_relacionadas) {
-      if (!libroUnits.has(`${u.asignatura}#${u.unidad}`)) {
-        broken.push({ slug: it.slug, asignatura: u.asignatura, unidad: u.unidad });
-      }
-    }
-  }
-  return broken;
-}

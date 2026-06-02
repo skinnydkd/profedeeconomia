@@ -1,0 +1,17 @@
+---
+/** A prepared-arguments block for one debate side, placed in the MDX body. */
+interface Props { postura: string; tono?: 'favor' | 'contra' | 'neutro'; }
+const { postura, tono = 'neutro' } = Astro.props;
+const COLOR: Record<string, string> = { favor: '--color-eco1', contra: '--color-terra', neutro: '--color-mustard' };
+---
+<aside class="arg" style={`--arg-color: var(${COLOR[tono]})`}>
+  <h4 class="arg__head">{postura}</h4>
+  <div class="arg__body"><slot /></div>
+</aside>
+<style>
+  .arg { margin: 1.2rem 0; padding: 1rem 1.2rem; border-radius: 8px; background: var(--color-bg-cream); border-top: 3px solid var(--arg-color); }
+  .arg__head { font-family: var(--font-sans); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--arg-color); margin: 0 0 0.4rem; }
+  .arg__body :global(p) { margin: 0 0 0.6em; }
+  .arg__body :global(ul) { padding-left: 1.3rem; margin: 0; }
+  .arg__body :global(ul li::marker) { color: var(--arg-color); }
+</style>
