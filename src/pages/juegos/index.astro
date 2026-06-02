@@ -1,5 +1,8 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
+import { JUEGOS } from '@/lib/juegos';
+
+const NIVEL_LABEL: Record<string, string> = { eso: 'ESO', bach: 'Bachillerato', fp: 'FP' };
 ---
 
 <BaseLayout
@@ -15,51 +18,24 @@ import BaseLayout from '@layouts/BaseLayout.astro';
       <span class="kicker">Material transversal</span>
       <h1>Juegos para una <span class="serif-italic-wonk accent">clase activa</span>.</h1>
       <p class="lede">
-        Simuladores, dinámicas de aula y concursos. La sección se va migrando
-        progresivamente; el resto de juegos viven todavía en
-        <a href="https://legacy.profedeeconomia.es" class="editorial-link" rel="external">legacy.profedeeconomia.es</a>.
+        Simuladores, juegos de tablero y party para una clase activa. ¿Buscas el
+        concurso competitivo? Está en nuestras
+        <a href="/jocs-economics/" class="editorial-link">Olimpiadas de Economía</a>.
       </p>
 
       <div class="game-grid">
-        <a class="game-card available" href="/juegos/stonks/">
-          <div class="gc-eyebrow">Disponible</div>
-          <div class="gc-title serif">Stonks</div>
-          <p class="gc-desc">Invierte durante 25 años repartiendo tu patrimonio entre distintos activos. ¿Acabarás con más que la IA?</p>
-          <span class="gc-cta">Jugar →</span>
-        </a>
-        <a class="game-card available" href="/juegos/econrisk/">
-          <div class="gc-eyebrow">Disponible</div>
-          <div class="gc-title serif">Econrisk</div>
-          <p class="gc-desc">Juego de estrategia: conquista territorios con las grandes escuelas del pensamiento económico.</p>
-          <span class="gc-cta">Jugar →</span>
-        </a>
-        <a class="game-card available" href="/juegos/econopoly/">
-          <div class="gc-eyebrow">Disponible</div>
-          <div class="gc-title serif">Econopoly</div>
-          <p class="gc-desc">Monopoly económico: hot-seat 1-6 jugadores, monopolios sectoriales, R+D, ciclos, Banco Central y fiscalidad progresiva.</p>
-          <span class="gc-cta">Jugar →</span>
-        </a>
-        <a class="game-card available" href="/juegos/insider/host/">
-          <div class="gc-eyebrow">Disponible · Multijugador</div>
-          <div class="gc-title serif">Insider</div>
-          <p class="gc-desc">Among Us económico: 4-30 alumnos en el móvil, profesor proyecta. Deducción social con vocabulario económico.</p>
-          <p class="gc-note">El profesor abre esta página en el proyector y ve un código de 4 letras. Los alumnos entran en <strong>/juegos/insider/</strong> con ese código desde su móvil.</p>
-          <span class="gc-cta">Abrir sala (proyector) →</span>
-        </a>
-        <a class="game-card available cajut-card" href="/juegos/cajut/host/">
-          <div class="gc-eyebrow" style="color:#5B3A4E;">Disponible · Multijugador</div>
-          <div class="gc-title serif">Cajút</div>
-          <p class="gc-desc">Quiz de aula multijugador. El profe elige asignatura y unidades; los alumnos responden desde el móvil con un código de sala.</p>
-          <p class="gc-note">El profesor abre esta página en el proyector. Los alumnos entran en <strong>/juegos/cajut/</strong> con el código de sala desde su móvil.</p>
-          <span class="gc-cta" style="color:#5B3A4E;">Abrir sala (proyector) →</span>
-        </a>
-        <div class="game-card soon jocs-card">
-          <div class="gc-eyebrow" style="color:#1F4E6E;">Próximamente · Competitivo</div>
-          <div class="gc-title serif">Jocs Econòmics</div>
-          <p class="gc-desc">Quiz competitivo de economía, finanzas y empresa. Dificultad incremental, 3 vidas, ranking global por jugador y por instituto.</p>
-          <p class="gc-note">Asíncrono e individual. Compite con jugadores de toda España.</p>
-          <span class="gc-cta" style="color:#1F4E6E; opacity:0.6;">En preparación</span>
-        </div>
+        {JUEGOS.map((j) => (
+          <a class={`game-card ${j.estado}${j.tipo === 'party' ? ' party-card' : ''}`} href={j.href}>
+            <div class="gc-eyebrow">
+              {j.estado === 'disponible' ? 'Disponible' : 'Próximamente'}{j.tipo === 'party' && ' · Multijugador'}
+            </div>
+            <div class="gc-title serif">{j.title}</div>
+            <p class="gc-desc">{j.descripcion}</p>
+            {j.nota_aula && <p class="gc-note">{j.nota_aula}</p>}
+            <span class="gc-meta">{j.nivel.map((n) => NIVEL_LABEL[n]).join(' · ')} · {j.modo}</span>
+            <span class="gc-cta">{j.tipo === 'party' ? 'Abrir sala (proyector) →' : 'Jugar →'}</span>
+          </a>
+        ))}
       </div>
 
       <p class="note">
@@ -115,15 +91,10 @@ import BaseLayout from '@layouts/BaseLayout.astro';
   .gc-title { font-size: 1.75rem; font-variation-settings: "SOFT" 80; line-height: 1.1; margin-bottom: 0.75rem; }
   .gc-desc { color: var(--color-ink-soft); font-size: 0.95rem; line-height: 1.55; margin-bottom: 1rem; }
   .gc-note { font-size: 0.83rem; color: var(--color-ink-mute); line-height: 1.5; margin-bottom: 0.75rem; border-top: 1px solid var(--color-line); padding-top: 0.6rem; }
+  .gc-meta { display: block; font-family: var(--font-mono); font-size: 0.74rem; color: var(--color-ink-mute); margin: 0.3rem 0 0.6rem; }
   .gc-cta { font-size: 0.9rem; font-weight: 600; color: var(--color-terra); }
 
-  .cajut-card { border-top-color: #5B3A4E; }
-  .cajut-card:hover { border-top-color: #3f2736; }
-
-  .jocs-card { border-top-color: #1F4E6E; }
-  .jocs-card:hover { border-top-color: #153650; }
-
-  /* "Próximamente": no és <a>, no és clickable; visualment apagat */
-  .game-card.soon { opacity: 0.7; cursor: default; }
-  .game-card.soon:hover { box-shadow: none; border-top-color: inherit; }
+  .party-card { border-top-color: #5B3A4E; }
+  .party-card:hover { border-top-color: #3f2736; }
+  .party-card .gc-eyebrow, .party-card .gc-cta { color: #5B3A4E; }
 </style>
