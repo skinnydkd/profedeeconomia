@@ -10,7 +10,7 @@ import { getCollection } from 'astro:content';
 const all = (await getCollection('dinamicas')).filter((e) => e.data.estado === 'publicado');
 // entry.id from glob loader is "dinamicas/familia/nn-slug"; strip the collection prefix
 // so slugs resolve to "familia/nn-slug" and hrefs are /dinamicas/familia/nn-slug/
-const groups = groupByFamilia(all.map((e) => ({
+const groups = groupByFamilia(FAMILIAS, all.map((e) => ({
   slug: e.id.replace(/^dinamicas\//, ''),
   data: e.data,
 })));
@@ -55,7 +55,7 @@ const activeFamilias = new Set(groups.map((g) => g.familia.slug));
           <p>{g.familia.intro}</p>
         </div>
         <div class="card-grid">
-          {g.dinamicas.map((d) => (
+          {g.items.map((d) => (
             <a class="card" href={`/dinamicas/${d.slug}/`} style={`--fam-color: var(${g.familia.colorVar})`}>
               <span class="card__eyebrow">{g.familia.label}</span>
               <h3 class="card__title serif">{d.data.title}</h3>
