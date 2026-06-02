@@ -38,6 +38,13 @@ const NIVEL_LABEL: Record<string, string> = { eso: 'ESO', bach: 'Bachillerato', 
         ))}
       </div>
 
+      <p class="imprimibles">
+        ¿Sin pantallas? Versiones para imprimir:
+        {JUEGOS.filter((j) => j.imprimible).map((j, i) => (
+          <>{i > 0 && ' · '}<a href={`/juegos/${j.slug}/imprimir/`}>{j.title}</a></>
+        ))}
+      </p>
+
       <p class="note">
         El resto de juegos — Playground, Communist —
         se publicarán a lo largo del 2027.
@@ -71,6 +78,9 @@ const NIVEL_LABEL: Record<string, string> = { eso: 'ESO', bach: 'Bachillerato', 
     font-variation-settings: "SOFT" 80;
   }
   .note { color: var(--color-ink-soft); max-width: 60ch; }
+  .imprimibles { color: var(--color-ink-soft); max-width: 60ch; margin-top: 1.5rem; }
+  .imprimibles a { color: var(--color-terra); font-weight: 600; text-decoration: none; }
+  .imprimibles a:hover { text-decoration: underline; }
 
   .game-grid { margin: 2rem 0 1.5rem; display: flex; gap: 1.5rem; flex-wrap: wrap; }
 

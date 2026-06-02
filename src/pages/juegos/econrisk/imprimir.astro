@@ -1,0 +1,207 @@
+---
+/**
+ * Print-and-play version of Econrisk. Materials are derived from the game's
+ * own data (map territories, factions, event cards) so the printed set always
+ * matches the digital game. Each `.print-block` is one printable sheet; the
+ * @media print stylesheet hides the page chrome and prints only those blocks.
+ */
+import BaseLayout from '@layouts/BaseLayout.astro';
+import PrintButton from '@components/dinamicas/PrintButton.astro';
+import { TERRITORIES, CONTINENT_BONUS, CONTINENTS } from '@/lib/games/econrisk/map';
+import { FACTIONS } from '@/lib/games/econrisk/factions';
+import { EVENT_CARDS } from '@/lib/games/econrisk/events';
+import type { ContinentId } from '@/lib/games/econrisk/types';
+
+const CONTINENT_LABEL: Record<ContinentId, string> = {
+  norteamerica: 'Norteamérica',
+  sudamerica:   'Sudamérica',
+  europa:       'Europa',
+  africa:       'África',
+  asia:         'Asia',
+  oceania:      'Oceanía',
+};
+
+const CONTINENT_COLOR: Record<ContinentId, string> = {
+  norteamerica: '#C44E2C',
+  sudamerica:   '#D4A24C',
+  europa:       '#1F6E6E',
+  africa:       '#5B3A4E',
+  asia:         '#9C3A1C',
+  oceania:      '#2E5E3A',
+};
+
+// Dedupe edges: only draw each adjacency once (id ordering keeps a < b).
+const pos = Object.fromEntries(TERRITORIES.map((t) => [t.id, { x: t.x, y: t.y }]));
+const edges: Array<{ x1: number; y1: number; x2: number; y2: number }> = [];
+const seen = new Set<string>();
+for (const t of TERRITORIES) {
+  for (const n of t.adj) {
+    const key = t.id < n ? `${t.id}|${n}` : `${n}|${t.id}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    const a = pos[t.id];
+    const b = pos[n];
+    if (a && b) edges.push({ x1: a.x, y1: a.y, x2: b.x, y2: b.y });
+  }
+}
+
+// viewBox from min/max with ~20 units padding.
+const PAD = 20;
+const xs = TERRITORIES.map((t) => t.x);
+const ys = TERRITORIES.map((t) => t.y);
+const minX = Math.min(...xs) - PAD;
+const minY = Math.min(...ys) - PAD;
+const vbW = Math.max(...xs) - Math.min(...xs) + PAD * 2;
+const vbH = Math.max(...ys) - Math.min(...ys) + PAD * 2;
+---
+
+<BaseLayout
+  title="Econrisk — versión para imprimir"
+  description="Print-and-play de Econrisk: mapa de territorios, facciones y cartas de evento listos para imprimir y jugar en clase sin pantallas."
+>
+  <div class="container">
+    <nav class="breadcrumb no-print">
+      <a href="/">Inicio</a> <span class="sep">›</span>
+      <a href="/juegos/">Juegos</a> <span class="sep">›</span>
+      <a href="/juegos/econrisk/">Econrisk</a> <span class="sep">›</span>
+      <span>Imprimir</span>
+    </nav>
+
+    <header class="intro no-print">
+      <span class="kicker">Versión para imprimir</span>
+      <h1>Econrisk <span class="serif-italic-wonk accent">en papel</span></h1>
+      <p class="lede">
+        Imprime el mapa, recorta las cartas de evento y conquista el mundo sin
+        pantallas. Cada bloque es una hoja A4. Las reglas completas están en la
+        <a href="/juegos/econrisk/" class="editorial-link">versión digital</a>.
+      </p>
+      <PrintButton />
+    </header>
+
+    <!-- Hoja 1: cómo se juega -->
+    <section class="print-block">
+      <h2>Cómo se juega</h2>
+      <ul class="rules">
+        <li><strong>Jugadores:</strong> 1 a 4 (humanos o IA). Cada uno controla una <strong>facción</strong>, que representa una escuela de pensamiento económico.</li>
+        <li><strong>Objetivo:</strong> conquistar el mapa hasta controlar <strong>18 o más territorios</strong>, o ganar por eliminación de los rivales antes de la ronda 15.</li>
+        <li><strong>El turno tiene 4 fases:</strong> primero se roba una carta de <em>evento</em>; después se <em>refuerza</em> colocando unidades nuevas; luego se <em>ataca</em> a territorios adyacentes; y se cierra <em>fortificando</em> moviendo unidades entre territorios propios.</li>
+        <li><strong>Combate:</strong> los enfrentamientos se resuelven con <strong>dados</strong>: atacante y defensor comparan tiradas y pierde unidades quien saque menos.</li>
+        <li><strong>Continentes:</strong> controlar un continente entero otorga unidades de refuerzo extra cada ronda (ver la leyenda del mapa).</li>
+      </ul>
+      <p class="hint">24 territorios · 6 continentes · 4 facciones · 15 cartas</p>
+      <p class="hint">Material derivado de la <a href="/juegos/econrisk/" class="editorial-link">versión digital</a>, donde encontrarás las reglas completas.</p>
+    </section>
+
+    <!-- Hoja 2: mapa -->
+    <section class="print-block">
+      <h2>Mapa</h2>
+      <svg
+        class="map"
+        viewBox={`${minX} ${minY} ${vbW} ${vbH}`}
+        role="img"
+        aria-label="Mapa de territorios de Econrisk con sus conexiones"
+      >
+        {edges.map((e) => (
+          <line x1={e.x1} y1={e.y1} x2={e.x2} y2={e.y2} class="map-edge" />
+        ))}
+        {TERRITORIES.map((t) => (
+          <g class="map-node">
+            <circle cx={t.x} cy={t.y} r={9} style={`fill:${CONTINENT_COLOR[t.continent]}`} />
+            <text x={t.x} y={t.y - 13} class="map-label">{t.label}</text>
+          </g>
+        ))}
+      </svg>
+      <ul class="legend">
+        {CONTINENTS.map((c) => (
+          <li>
+            <span class="legend-dot" style={`background:${CONTINENT_COLOR[c]}`}></span>
+            <span class="legend-name">{CONTINENT_LABEL[c]}</span>
+            <span class="legend-bonus">+{CONTINENT_BONUS[c]}</span>
+          </li>
+        ))}
+      </ul>
+      <p class="hint">El bonus indica las unidades de refuerzo extra por controlar el continente entero.</p>
+    </section>
+
+    <!-- Hoja 3: facciones -->
+    <section class="print-block">
+      <h2>Facciones <span class="count">({FACTIONS.length})</span></h2>
+      <div class="cards">
+        {FACTIONS.map((f) => (
+          <div class="faction-card" style={`border-top-color:${f.color}`}>
+            <span class="card-kicker">{f.school}</span>
+            <h3 class="faction-name">{f.label}</h3>
+            <p class="card-text">{f.power}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Hoja 4+: cartas de evento -->
+    <section class="print-block">
+      <h2>Cartas de evento <span class="count">({EVENT_CARDS.length})</span></h2>
+      <div class="cards">
+        {EVENT_CARDS.map((card) => (
+          <div class="card">
+            <span class="card-kicker">Evento</span>
+            <p class="card-text">{card.text}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  .container { max-width: 920px; margin: 0 auto; padding: 0 clamp(1.5rem, 4vw, 3rem) 4rem; }
+  .breadcrumb { font-size: 0.92rem; color: var(--color-ink-mute); margin: 2rem 0; }
+  .breadcrumb a { color: var(--color-ink-mute); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--color-terra); }
+  .breadcrumb .sep { margin: 0 0.5em; color: var(--color-mustard); }
+  .intro { margin-bottom: 2.5rem; }
+  .kicker { font-family: var(--font-sans); font-size: .8rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--color-terra); }
+  h1 { margin: .5rem 0 .8rem; }
+  .accent { color: var(--color-terra); }
+  .lede { font-size: 1.15rem; color: var(--color-ink-soft); line-height: 1.55; max-width: 60ch; }
+
+  .print-block { margin: 0 0 3rem; }
+  .print-block h2 { font-family: var(--font-serif); font-size: 1.5rem; font-weight: 500; margin: 0 0 1rem; padding-bottom: .4rem; border-bottom: 2px solid var(--color-terra); }
+  .print-block h2 .count, .print-block h2 .kicker { font-size: 1rem; color: var(--color-ink-mute); }
+
+  .rules { list-style: none; padding: 0; margin: 0 0 1rem; display: flex; flex-direction: column; gap: .55rem; }
+  .rules li { padding-left: 1.1rem; position: relative; color: var(--color-ink); line-height: 1.5; }
+  .rules li::before { content: "→"; position: absolute; left: 0; color: var(--color-mustard); }
+  .hint { font-family: var(--font-mono); font-size: .78rem; color: var(--color-ink-mute); margin: .4rem 0 0; }
+  .hint a { color: var(--color-terra); }
+
+  /* Schematic territory graph. */
+  .map { display: block; width: 100%; max-width: 720px; height: auto; margin: 0 0 1rem; border: 2px solid var(--color-ink); background: #fff; padding: 4px; box-sizing: border-box; }
+  .map-edge { stroke: var(--color-line); stroke-width: 1.2; }
+  .map-node circle { stroke: var(--color-ink); stroke-width: 1; }
+  .map-label { font-family: var(--font-sans); font-size: 7px; font-weight: 600; fill: var(--color-ink); text-anchor: middle; }
+
+  .legend { list-style: none; padding: 0; margin: 0 0 .5rem; display: grid; grid-template-columns: repeat(3, 1fr); gap: .4rem .8rem; }
+  .legend li { display: flex; align-items: center; gap: .4em; font-size: .85rem; color: var(--color-ink); }
+  .legend-dot { display: inline-block; width: .8em; height: .8em; border-radius: 50%; border: 1px solid var(--color-ink); flex: none; }
+  .legend-name { flex: 1; }
+  .legend-bonus { font-family: var(--font-mono); font-size: .8rem; color: var(--color-terra); font-weight: 600; }
+
+  /* Cards (factions + events). */
+  .cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: .6rem; }
+  .card { border: 1.5px dashed var(--color-line); border-radius: 8px; padding: .8rem 1rem; min-height: 90px; display: flex; flex-direction: column; gap: .4rem; }
+  .card-kicker { font-family: var(--font-sans); font-size: .68rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--color-mustard-deep); }
+  .card-text { margin: 0; font-size: .85rem; line-height: 1.4; color: var(--color-ink); }
+
+  .faction-card { border: 1.5px solid var(--color-line); border-top: 6px solid var(--color-ink); border-radius: 8px; padding: .8rem 1rem; min-height: 90px; display: flex; flex-direction: column; gap: .25rem; }
+  .faction-name { font-family: var(--font-serif); font-size: 1.2rem; font-weight: 500; margin: 0; color: var(--color-ink); }
+
+  @media print {
+    :global(.site-header), :global(.site-footer), .no-print { display: none !important; }
+    .container { max-width: none; padding: 0; }
+    .print-block { margin: 0; break-inside: avoid; }
+    .print-block + .print-block { break-before: page; }
+    .map { max-width: 100%; }
+    .card, .faction-card { break-inside: avoid; }
+    @page { margin: 1.5cm; }
+  }
+</style>
