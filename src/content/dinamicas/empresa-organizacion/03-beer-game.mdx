@@ -1,0 +1,225 @@
+---
+title: "El juego de la cerveza (cadena de suministro)"
+familia: empresa-organizacion
+orden: 3
+descripcion: "Cuatro eslabones —fábrica, distribuidor, mayorista y tienda— gestionan stock sin hablar entre ellos, solo pasando pedidos. Un pequeño cambio en la demanda provoca el caos: el efecto látigo."
+tipo: juego-experimental
+duracion: "2 sesiones"
+agrupacion: "cadenas de 4 equipos"
+nivel: [bach, fp]
+objetivos:
+  - "Observar de primera mano el efecto látigo en una cadena de suministro y comprender por qué se produce aunque cada eslabón actúe racionalmente."
+  - "Analizar el papel de la información y la coordinación en la eficiencia logística, comparando los costes generados con y sin comunicación entre eslabones."
+  - "Aplicar conceptos de gestión de stock —coste de almacenamiento, coste de rotura, punto de pedido— en un entorno de simulación con datos reales."
+conceptos_clave:
+  - "Cadena de suministro"
+  - "Efecto látigo"
+  - "Gestión de stock"
+  - "Información y coordinación"
+materiales_necesarios:
+  - "Hojas de registro por eslabón (una por equipo) — ver ficha al final"
+  - "Fichas o monedas para representar unidades de stock (opcional, versión física)"
+  - "Calculadora o hoja de cálculo para los costes"
+  - "Proyector o pizarra para anotar la demanda real al final de la simulación"
+  - "Dado de 6 caras para la versión con demanda aleatoria (opcional)"
+unidades_relacionadas:
+  - { asignatura: "edmn-2bach", unidad: 7, nota: "La función productiva y la logística." }
+  - { asignatura: "gpe-bach", unidad: 4, nota: "Áreas de la empresa: aprovisionamiento y producción." }
+competencias_clave: [STEM, CPSAA, CE, CD]
+competencias_especificas: []
+lang: es
+estado: publicado
+---
+
+import Steps from '@components/Steps.astro';
+import Callout from '@components/Callout.astro';
+import RoleCard from '@components/dinamicas/RoleCard.astro';
+import FichaAlumno from '@components/dinamicas/FichaAlumno.astro';
+
+El juego de la cerveza es el experimento de gestión empresarial más replicado del mundo.
+Lo diseñó Jay Forrester en el MIT en los años 60 y sigue siendo la forma más efectiva de
+mostrar por qué las cadenas de suministro se descontrolan aunque nadie tome malas decisiones.
+El resultado siempre sorprende: un aumento de demanda del cliente de 4 a 8 unidades —
+un 100 % — genera pedidos de hasta 40 unidades en fábrica pocas semanas después. Nadie ha
+mentido. Nadie ha actuado de mala fe. El sistema ha fallado por sí solo.
+
+## Cómo funciona
+
+<Steps label="Desarrollo" title="De la cadena al colapso">
+  <li>**Formación de cadenas (5 min).** Se forman cadenas de 4 equipos: Tienda, Mayorista, Distribuidor y Fábrica. Con clases grandes, varias cadenas en paralelo compiten para ver cuál acumula menos costes totales.</li>
+  <li>**Briefing de reglas (10 min).** El docente explica las reglas (ver sección de preparación) y cada equipo recibe su hoja de registro. Stock inicial: 12 unidades en cada eslabón. Retardo de envío: 2 semanas (los pedidos tardan 2 semanas en llegar). Coste de stock: 0,50 € por unidad y semana. Coste de rotura: 1,00 € por unidad no servida y semana.</li>
+  <li>**Semanas 1-4: demanda estable (10 min).** El cliente compra 4 unidades por semana. Cada eslabón anota su stock, recibe el envío de la semana anterior y decide cuánto pedir al eslabón de arriba. La cadena funciona bien.</li>
+  <li>**Semana 5: el cambio (aviso solo a la tienda).** La demanda sube a 8 unidades y se mantiene así. Solo la Tienda sabe este dato. El resto de eslabones solo ve los pedidos que le llegan.</li>
+  <li>**Semanas 6-18: el caos (30-40 min).** Se simulan las semanas restantes. El docente anota en la pizarra los pedidos de cada eslabón semana a semana. Los costes se van acumulando.</li>
+  <li>**Cierre y cálculo de costes (10 min).** Cada equipo suma su coste total. El docente revela a todos la demanda real del cliente: 8 unidades constantes desde la semana 5. La diferencia entre lo que pedía el cliente y lo que pedía la fábrica genera el impacto visual del efecto látigo.</li>
+  <li>**Debrief (15-20 min).** Puesta en común con las preguntas clave.</li>
+</Steps>
+
+## Guía del profesor
+
+### Preparación
+
+La versión simplificada que se describe aquí prescinde del tablero físico del MIT original.
+Cada equipo solo necesita su hoja de registro y calcular dos números por semana: cuánto
+stock tiene y cuánto pide.
+
+**Reglas completas para distribuir al alumnado:**
+
+- Cada semana, en este orden: (1) recibes el envío que pediste hace 2 semanas, (2) sirves
+  los pedidos pendientes y actuales con tu stock disponible, (3) anotas el stock resultante
+  o la rotura, (4) decides cuánto pedir al eslabón superior.
+- No puedes comunicarte con otros eslabones. Solo pasas pedidos escritos.
+- No puedes ver el stock ni las decisiones de otros eslabones.
+- La Fábrica tarda 2 semanas en producir (mismo retardo que el transporte).
+
+**Consejo:** la primera vez que se juega, simula 3 semanas en voz alta con toda la clase
+para asegurarte de que todos entienden la mecánica del retardo. Los errores de comprensión
+de las reglas arruinan el experimento.
+
+### Gestión en el aula
+
+Durante las semanas 1-4 el ritmo es lento; aceléralas. A partir de la semana 6 el juego
+se acelera solo: los equipos empiezan a hacer pedidos grandes y el papel de anotaciones
+llena la mesa.
+
+Vigila especialmente:
+- Equipos que hacen pedidos muy grandes «por si acaso» en las primeras semanas. Ese
+  comportamiento de sobreacumulación es exactamente el que genera el efecto látigo.
+- La Fábrica, que no puede pedir a nadie: produce en función de lo que tiene capacidad.
+  Si se queda sin capacidad, genera roturas en cadena.
+- Equipos que intentan preguntar a otros eslabones. Recuérdales: la regla es no comunicarse.
+  Eso es parte del experimento.
+
+### El debrief (lo más importante)
+
+Reúne a toda la clase, muestra el gráfico de pedidos por eslabón semana a semana y pregunta:
+
+- ¿Cuánto pedía el cliente final en las semanas punta? ¿Y la fábrica? ¿Cómo se explica esa diferencia?
+- ¿Alguien tomó una decisión irracional? ¿O cada uno actuó de forma lógica desde su posición?
+- ¿Qué habría pasado si todos los eslabones hubieran podido ver la demanda real del cliente desde el principio?
+- ¿Qué soluciones reales usan las empresas para reducir el efecto látigo? (Pista: VMI, EDI, contratos de largo plazo.)
+
+<Callout label="Idea clave" title="El efecto látigo no es un fallo humano: es un fallo de diseño del sistema">
+Cada decisivo de la cadena tomó decisiones razonables con la información que tenía.
+El problema no es la irracionalidad de las personas: es que el sistema de información
+estaba roto. Esta es la lección central de la logística moderna: compartir información
+en tiempo real entre proveedores y clientes no es solo eficiencia — es la única forma
+de evitar que el sistema se amplifique hasta el colapso.
+</Callout>
+
+### Errores comunes
+
+- Explicar el efecto látigo antes de jugar. El impacto pedagógico viene de descubrirlo,
+  no de que el docente lo anuncie. Guarda el concepto para el debrief.
+- Simular pocas semanas. Con menos de 12 semanas el efecto látigo no se ve con claridad.
+  Las semanas 8-14 son las que generan los picos más dramáticos.
+- No anotar los pedidos de cada eslabón en la pizarra semana a semana. Sin ese registro
+  visual, el debrief pierde la mitad de su fuerza.
+
+## Materiales repartibles
+
+<RoleCard rol="Tienda" reparto="1 equipo por cadena">
+**Tu posición en la cadena:** eres el último eslabón. Sirves al cliente final.
+
+**Regla especial:** a partir de la semana 5, la demanda del cliente sube de 4 a 8 unidades
+y se mantiene así. Esta información es tuya: no se la comuniques a los demás eslabones.
+
+**Lo que haces cada semana:**
+1. Recibes el envío que pediste hace 2 semanas al Mayorista.
+2. Sirves la demanda del cliente. Si no tienes suficiente stock, anotas la rotura (unidades no servidas).
+3. Calculas tu stock: Stock anterior + envío recibido − ventas al cliente.
+4. Decides cuántas unidades pedir al Mayorista y pasas el pedido por escrito.
+
+**Costes:** 0,50 € por unidad en stock al final de cada semana · 1,00 € por unidad en rotura.
+</RoleCard>
+
+<RoleCard rol="Mayorista" reparto="1 equipo por cadena">
+**Tu posición en la cadena:** recibes pedidos de la Tienda y pides al Distribuidor.
+
+**Lo que haces cada semana:**
+1. Recibes el envío que pediste hace 2 semanas al Distribuidor.
+2. Sirves el pedido de la Tienda. Si no tienes suficiente stock, anotas la rotura.
+3. Calculas tu stock: Stock anterior + envío recibido − pedido servido a la Tienda.
+4. Decides cuántas unidades pedir al Distribuidor y pasas el pedido por escrito.
+
+**No sabes cuánto compra el cliente final. Solo ves los pedidos de la Tienda.**
+
+**Costes:** 0,50 € por unidad en stock al final de cada semana · 1,00 € por unidad en rotura.
+</RoleCard>
+
+<RoleCard rol="Distribuidor" reparto="1 equipo por cadena">
+**Tu posición en la cadena:** recibes pedidos del Mayorista y pides a la Fábrica.
+
+**Lo que haces cada semana:**
+1. Recibes el envío que pediste hace 2 semanas a la Fábrica.
+2. Sirves el pedido del Mayorista. Si no tienes suficiente stock, anotas la rotura.
+3. Calculas tu stock: Stock anterior + envío recibido − pedido servido al Mayorista.
+4. Decides cuántas unidades pedir a la Fábrica y pasas el pedido por escrito.
+
+**No sabes cuánto compra el cliente final ni qué pide la Tienda. Solo ves los pedidos del Mayorista.**
+
+**Costes:** 0,50 € por unidad en stock al final de cada semana · 1,00 € por unidad en rotura.
+</RoleCard>
+
+<RoleCard rol="Fábrica" reparto="1 equipo por cadena">
+**Tu posición en la cadena:** eres el primer eslabón. Produces bajo pedido.
+
+**Regla especial:** tienes capacidad de producción máxima de 20 unidades por semana. Si el
+Distribuidor pide más, produces 20 y anotas la rotura del resto.
+
+**Lo que haces cada semana:**
+1. Recibes las unidades que pusiste en producción hace 2 semanas (retardo de fabricación).
+2. Sirves el pedido del Distribuidor. Si no tienes suficiente stock + producción, anotas la rotura.
+3. Calculas tu stock: Stock anterior + producción recibida − pedido servido al Distribuidor.
+4. Decides cuántas unidades poner en producción esta semana (máximo 20). Anota la orden de producción.
+
+**No sabes nada de lo que ocurre más abajo en la cadena. Solo ves los pedidos del Distribuidor.**
+
+**Costes:** 0,50 € por unidad en stock al final de cada semana · 1,00 € por unidad en rotura.
+</RoleCard>
+
+<FichaAlumno titulo="Hoja de registro — semanas 1 a 18" subtitulo="Completa una fila por semana. Guarda todos los datos: los necesitarás para el debrief.">
+
+**Eslabón:** \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ **Cadena nº:** \_\_\_\_\_
+
+**Stock inicial (semana 0):** 12 unidades
+
+---
+
+| Sem. | Stock inicio | Envío recibido | Pedido recibido (de abajo) | Servido | Rotura | Stock final | Pedido enviado (a arriba) | Coste semana |
+|---|---|---|---|---|---|---|---|---|
+| 1 | 12 | — | 4 | | | | | |
+| 2 | | | 4 | | | | | |
+| 3 | | | 4 | | | | | |
+| 4 | | | 4 | | | | | |
+| 5 | | | **8*** | | | | | |
+| 6 | | | | | | | | |
+| 7 | | | | | | | | |
+| 8 | | | | | | | | |
+| 9 | | | | | | | | |
+| 10 | | | | | | | | |
+| 11 | | | | | | | | |
+| 12 | | | | | | | | |
+| 13 | | | | | | | | |
+| 14 | | | | | | | | |
+| 15 | | | | | | | | |
+| 16 | | | | | | | | |
+| 17 | | | | | | | | |
+| 18 | | | | | | | | |
+| | | | | | | **TOTAL** | | |
+
+*Solo para la Tienda: a partir de la semana 5 la demanda del cliente es 8 unidades. No comunicar.*
+
+---
+
+**Coste total acumulado:** \_\_\_\_\_\_\_ €
+
+**Semana con mayor stock:** \_\_\_\_\_\_\_ (\_\_\_\_\_\_ unidades)
+
+**Semana con mayor rotura:** \_\_\_\_\_\_\_ (\_\_\_\_\_\_ unidades no servidas)
+
+**En una frase, ¿por qué crees que vuestros pedidos variaron tanto si la demanda real era casi constante?**
+
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+
+</FichaAlumno>

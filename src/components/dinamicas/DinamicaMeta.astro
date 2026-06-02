@@ -1,0 +1,29 @@
+---
+/**
+ * Metadata badge row for a dinámica (duration, grouping, participants, level).
+ * Modeled on emprendimiento/FaseMeta.astro.
+ */
+interface Props {
+  tipo: string; duracion: string; agrupacion: string;
+  participantes?: string; nivel: string[];
+}
+const { tipo, duracion, agrupacion, participantes, nivel } = Astro.props;
+const TIPO_LABEL: Record<string, string> = {
+  'role-play': 'Role-play', 'simulacion-mercado': 'Simulación de mercado',
+  'juego-experimental': 'Juego experimental', 'debate': 'Debate', 'negociacion': 'Negociación',
+};
+const NIVEL_LABEL: Record<string, string> = { eso: 'ESO', bach: 'Bachillerato', fp: 'FP' };
+---
+<dl class="meta">
+  <div><dt>Tipo</dt><dd>{TIPO_LABEL[tipo] ?? tipo}</dd></div>
+  <div><dt>Duración</dt><dd>{duracion}</dd></div>
+  <div><dt>Agrupación</dt><dd>{agrupacion}</dd></div>
+  {participantes && <div><dt>Participantes</dt><dd>{participantes}</dd></div>}
+  <div><dt>Nivel</dt><dd>{nivel.map((n) => NIVEL_LABEL[n] ?? n).join(' · ')}</dd></div>
+</dl>
+<style>
+  .meta { display: flex; flex-wrap: wrap; gap: 1.4rem; margin: 1.4rem 0 2rem; padding: 1rem 1.2rem; background: var(--color-bg-cream); border-radius: 8px; }
+  .meta div { display: flex; flex-direction: column; gap: 0.15rem; }
+  .meta dt { font-family: var(--font-sans); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-ink-mute); margin: 0; }
+  .meta dd { font-family: var(--font-serif); font-size: 1rem; margin: 0; color: var(--color-ink); }
+</style>

@@ -234,4 +234,5 @@ export const SECCIONES_TRANSVERSALES = [
   { slug: 'juegos',         label: 'Juegos',         description: 'Material para una clase activa.' },
   { slug: 'herramientas',   label: 'Herramientas',   description: 'Generadores de SA LOMLOE y pruebas.' },
   { slug: 'emprendimiento', label: 'Emprendimiento', description: 'Plantillas y dinámicas transversales.' },
+  { slug: 'dinamicas',      label: 'Dinámicas',      description: 'Role-plays y simulaciones para hacer en clase.' },
 ] as const;
