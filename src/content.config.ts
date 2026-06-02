@@ -1,5 +1,6 @@
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
+import { FAMILIA_SLUGS } from './lib/dinamicas';
 
 const ASIGNATURA_SLUGS = [
   'edmn-2bach',
@@ -269,10 +270,7 @@ const dinamicas = defineCollection({
   loader: glob({ pattern: 'dinamicas/**/*.{md,mdx}', base: './src/content' }),
   schema: z.object({
     title: z.string(),
-    familia: z.enum([
-      'mercat-treball', 'mercats-preus', 'distribucion-produccion',
-      'decisiones-comunes', 'sistemas-debates', 'empresa-organizacion', 'teoria-juegos',
-    ]),
+    familia: z.enum(FAMILIA_SLUGS),
     /** Sort key within the family; also the filename prefix. */
     orden: z.number().int().min(0),
     /** One-line summary for the hub card. */

@@ -26,6 +26,8 @@ export const FAMILIAS: Familia[] = [
   { slug: 'teoria-juegos',          label: 'Teoría de juegos',          intro: 'Juegos clásicos y subastas para ver la estrategia en acción.',   colorVar: '--color-mustard' },
 ];
 
+export const FAMILIA_SLUGS = FAMILIAS.map((f) => f.slug) as [FamiliaSlug, ...FamiliaSlug[]];
+
 const BY_SLUG = new Map(FAMILIAS.map((f) => [f.slug, f]));
 
 export function familiaMeta(slug: string): Familia {
