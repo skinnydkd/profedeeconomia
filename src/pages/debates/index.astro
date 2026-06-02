@@ -1,46 +1,46 @@
 ---
 /**
- * Dinámicas hub. Lists published dinámicas grouped by family (FAMILIAS order),
- * each card linking to its detail page. A lightweight client-side family filter.
+ * Debates hub. Lists published debates grouped by family (FAMILIAS_DEBATE order),
+ * each card linking to its detail page, with a client-side family filter.
  */
 import BaseLayout from '@layouts/BaseLayout.astro';
-import { groupByFamilia, FAMILIAS } from '@/lib/dinamicas';
+import { groupByFamilia, FAMILIAS_DEBATE } from '@/lib/debates';
 import { getCollection } from 'astro:content';
 
-const all = (await getCollection('dinamicas')).filter((e) => e.data.estado === 'publicado');
-// entry.id from glob loader is "dinamicas/familia/nn-slug"; strip the collection prefix
-// so slugs resolve to "familia/nn-slug" and hrefs are /dinamicas/familia/nn-slug/
-const groups = groupByFamilia(FAMILIAS, all.map((e) => ({
-  slug: e.id.replace(/^dinamicas\//, ''),
+const all = (await getCollection('debates')).filter((e) => e.data.estado === 'publicado');
+// entry.id from glob loader is "debates/familia/nn-slug"; strip the prefix so
+// slugs resolve to "familia/nn-slug" and hrefs are /debates/familia/nn-slug/
+const groups = groupByFamilia(FAMILIAS_DEBATE, all.map((e) => ({
+  slug: e.id.replace(/^debates\//, ''),
   data: e.data,
 })));
 const activeFamilias = new Set(groups.map((g) => g.familia.slug));
 ---
 
 <BaseLayout
-  title="Dinámicas"
-  description="Role-plays, simulaciones de mercado, juegos y debates para hacer en clase, con materiales para profe y alumnado y su encaje curricular."
+  title="Debates"
+  description="Controversias económicas para argumentar en clase: moción, posturas, argumentario, mecánica de turnos y rúbrica, con su encaje curricular."
 >
   <div class="container">
-    <nav class="breadcrumb"><a href="/">Inicio</a> <span class="sep">›</span> <span>Dinámicas</span></nav>
+    <nav class="breadcrumb"><a href="/">Inicio</a> <span class="sep">›</span> <span>Debates</span></nav>
   </div>
 
   <section class="hero">
     <div class="container">
       <span class="kicker">Material transversal</span>
-      <h1><span class="serif-italic-wonk accent">Dinámicas</span> para hacer en clase.</h1>
+      <h1><span class="serif-italic-wonk accent">Debates</span> para argumentar en clase.</h1>
       <p class="lede">
-        Role-plays, simulaciones de mercado, juegos y debates listos para llevar al
-        aula. Cada uno con su guía para el profe, materiales para repartir e imprimir,
-        y el mapa de en qué unidades de qué asignaturas encaja.
+        Las grandes controversias económicas, listas para llevar al aula: la moción,
+        las posturas enfrentadas, el argumentario por bando, la mecánica de turnos y
+        una rúbrica de evaluación. Cada uno con su encaje curricular.
       </p>
     </div>
   </section>
 
   <section class="filters">
     <div class="container">
-      <button class="chip is-active" data-filter="all" type="button">Todas</button>
-      {FAMILIAS.filter((f) => activeFamilias.has(f.slug)).map((f) => (
+      <button class="chip is-active" data-filter="all" type="button">Todos</button>
+      {FAMILIAS_DEBATE.filter((f) => activeFamilias.has(f.slug)).map((f) => (
         <button class="chip" data-filter={f.slug} type="button"
           style={`--chip-color: var(${f.colorVar})`}>{f.label}</button>
       ))}
@@ -56,7 +56,7 @@ const activeFamilias = new Set(groups.map((g) => g.familia.slug));
         </div>
         <div class="card-grid">
           {g.items.map((d) => (
-            <a class="card" href={`/dinamicas/${d.slug}/`} style={`--fam-color: var(${g.familia.colorVar})`}>
+            <a class="card" href={`/debates/${d.slug}/`} style={`--fam-color: var(${g.familia.colorVar})`}>
               <span class="card__eyebrow">{g.familia.label}</span>
               <h3 class="card__title serif">{d.data.title}</h3>
               <p class="card__desc">{d.data.descripcion}</p>

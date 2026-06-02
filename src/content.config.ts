@@ -1,6 +1,7 @@
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { FAMILIA_SLUGS } from './lib/dinamicas';
+import { FAMILIA_DEBATE_SLUGS } from './lib/debates';
 
 const ASIGNATURA_SLUGS = [
   'edmn-2bach',
@@ -364,6 +365,52 @@ const retoCurso = defineCollection({
   }),
 });
 
+/* =========================================================
+   debates/{familia}/{nn}-{slug}.mdx — transversal classroom
+   debates (motion, sides, argumentary, mechanics, rubric).
+   ========================================================= */
+const debates = defineCollection({
+  loader: glob({ pattern: 'debates/**/*.{md,mdx}', base: './src/content' }),
+  schema: z.object({
+    title: z.string(),
+    mocion: z.string(),
+    familia: z.enum(FAMILIA_DEBATE_SLUGS),
+    /** Sort key within the family; also the filename prefix. */
+    orden: z.number().int().min(0),
+    /** One-line summary for the hub card. */
+    descripcion: z.string(),
+    formato: z.enum(['parlamentario', 'mesa-redonda', 'juicio-simulado', 'dilema-etico', 'fishbowl']),
+    duracion: z.string(),
+    agrupacion: z.string(),
+    nivel: z.array(z.enum(['eso', 'bach', 'fp'])).min(1),
+    objetivos: z.array(z.string()).min(1),
+    conceptos_clave: z.array(z.string()).default([]),
+    /** The opposing sides (>= 2). */
+    posturas: z.array(z.object({
+      id: z.string(),
+      label: z.string(),
+      sintesis: z.string(),
+    })).min(2),
+    /** Cross-asignatura curriculum map. */
+    unidades_relacionadas: z.array(z.object({
+      asignatura: z.enum(ASIGNATURA_SLUGS),
+      unidad: z.number().int().min(1),
+      nota: z.string().optional(),
+      competencias_especificas: z.array(z.string()).default([]),
+    })).default([]),
+    competencias_clave: z.array(z.string()).default([]),
+    competencias_especificas: z.array(z.string()).default([]),
+    /** Structured rubric → printable ficha + competency link. */
+    rubrica: z.array(z.object({
+      criterio: z.string(),
+      descripcion: z.string(),
+      competencia: z.string().optional(),
+    })).default([]),
+    lang: z.enum(LANGS).default('es'),
+    estado: z.enum(ESTADOS).default('borrador'),
+  }),
+});
+
 export const collections = {
   libro,
   actividades,
@@ -375,6 +422,7 @@ export const collections = {
   proyecto,
   proyectoTransversal,
   dinamicas,
+  debates,
   juegos,
   jocsEconomicsPreguntas,
   retoCurso,

@@ -236,4 +236,5 @@ export const SECCIONES_TRANSVERSALES = [
   { slug: 'emprendimiento', label: 'Emprendimiento', description: 'Plantillas y dinámicas transversales.' },
   { slug: 'dinamicas',      label: 'Dinámicas',      description: 'Role-plays y simulaciones para hacer en clase.' },
   { slug: 'jocs-economics', label: 'Jocs Econòmics', description: 'Nuestras Olimpiadas de Economía.' },
+  { slug: 'debates',        label: 'Debates',        description: 'Controversias económicas para argumentar en clase.' },
 ] as const;

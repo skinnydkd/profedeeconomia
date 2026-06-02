@@ -32,13 +32,13 @@ describe('groupByFamilia', () => {
       make('b1', 'mercats-preus', 2), make('a2', 'mercat-treball', 2),
       make('a1', 'mercat-treball', 1), make('b0', 'mercats-preus', 1),
     ];
-    const groups = groupByFamilia(items);
+    const groups = groupByFamilia(FAMILIAS, items);
     expect(groups.map((g) => g.familia.slug)).toEqual(['mercat-treball', 'mercats-preus']);
-    expect(groups[0].dinamicas.map((d) => d.slug)).toEqual(['a1', 'a2']);
-    expect(groups[1].dinamicas.map((d) => d.slug)).toEqual(['b0', 'b1']);
+    expect(groups[0].items.map((d) => d.slug)).toEqual(['a1', 'a2']);
+    expect(groups[1].items.map((d) => d.slug)).toEqual(['b0', 'b1']);
   });
   it('omits families that have no dinámicas', () => {
-    const groups = groupByFamilia([make('x', 'teoria-juegos', 1)]);
+    const groups = groupByFamilia(FAMILIAS, [make('x', 'teoria-juegos', 1)]);
     expect(groups).toHaveLength(1);
     expect(groups[0].familia.slug).toBe('teoria-juegos');
   });
