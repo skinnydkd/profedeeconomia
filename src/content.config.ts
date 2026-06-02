@@ -288,6 +288,7 @@ const dinamicas = defineCollection({
       asignatura: z.enum(ASIGNATURA_SLUGS),
       unidad: z.number().int().min(1),
       nota: z.string().optional(),
+      competencias_especificas: z.array(z.string()).default([]),
     })).default([]),
     competencias_clave: z.array(z.string()).default([]),
     competencias_especificas: z.array(z.string()).default([]),

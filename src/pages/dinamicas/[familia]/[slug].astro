@@ -1,9 +1,12 @@
 ---
 /**
- * A single dinámica. `slug` is the collection entry id (e.g.
- * "mercat-treball/01-entrevista-trabajo"). Renders MDX body (cómo funciona +
- * guía del profe + materiales) plus metadata, curriculum map and competences.
- * Includes an @media print mode that isolates the `.print-block` materials.
+ * A single dinámica. Routed by `[familia]/[slug]` (two single-segment params):
+ * the collection id is "dinamicas/familia/nn-slug", which maps cleanly to these
+ * two params and produces the URL /dinamicas/familia/nn-slug/.
+ *
+ * Renders MDX body (cómo funciona + guía del profe + materiales) plus metadata,
+ * curriculum map and competences. Includes an @media print mode that isolates
+ * the `.print-block` materials.
  */
 import BaseLayout from '@layouts/BaseLayout.astro';
 import DinamicaMeta from '@components/dinamicas/DinamicaMeta.astro';
@@ -15,12 +18,13 @@ import type { GetStaticPaths } from 'astro';
 
 export const getStaticPaths = (async () => {
   const all = (await getCollection('dinamicas')).filter((e) => e.data.estado === 'publicado');
-  // entry.id from glob loader is "dinamicas/familia/nn-slug"; strip the collection prefix
-  // so the [...slug] param resolves to "familia/nn-slug" and the URL is /dinamicas/familia/nn-slug/
-  return all.map((entry) => ({
-    params: { slug: entry.id.replace(/^dinamicas\//, '') },
-    props: { entry },
-  }));
+  // entry.id from the glob loader is "dinamicas/familia/nn-slug"; strip the
+  // collection prefix and split into [familia, slug] so the URL stays
+  // /dinamicas/familia/nn-slug/.
+  return all.map((entry) => {
+    const [familia, ...rest] = entry.id.replace(/^dinamicas\//, '').split('/');
+    return { params: { familia, slug: rest.join('/') }, props: { entry } };
+  });
 }) satisfies GetStaticPaths;
 
 const { entry } = Astro.props;
