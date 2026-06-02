@@ -1,0 +1,109 @@
+---
+/**
+ * Dinámicas hub. Lists published dinámicas grouped by family (FAMILIAS order),
+ * each card linking to its detail page. A lightweight client-side family filter.
+ */
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { groupByFamilia, FAMILIAS } from '@/lib/dinamicas';
+import { getCollection } from 'astro:content';
+
+const all = (await getCollection('dinamicas')).filter((e) => e.data.estado === 'publicado');
+// entry.id from glob loader is "dinamicas/familia/nn-slug"; strip the collection prefix
+// so slugs resolve to "familia/nn-slug" and hrefs are /dinamicas/familia/nn-slug/
+const groups = groupByFamilia(all.map((e) => ({
+  slug: e.id.replace(/^dinamicas\//, ''),
+  data: e.data,
+})));
+const activeFamilias = new Set(groups.map((g) => g.familia.slug));
+---
+
+<BaseLayout
+  title="Dinámicas"
+  description="Role-plays, simulaciones de mercado, juegos y debates para hacer en clase, con materiales para profe y alumnado y su encaje curricular."
+>
+  <div class="container">
+    <nav class="breadcrumb"><a href="/">Inicio</a> <span class="sep">›</span> <span>Dinámicas</span></nav>
+  </div>
+
+  <section class="hero">
+    <div class="container">
+      <span class="kicker">Material transversal</span>
+      <h1><span class="serif-italic-wonk accent">Dinámicas</span> para hacer en clase.</h1>
+      <p class="lede">
+        Role-plays, simulaciones de mercado, juegos y debates listos para llevar al
+        aula. Cada uno con su guía para el profe, materiales para repartir e imprimir,
+        y el mapa de en qué unidades de qué asignaturas encaja.
+      </p>
+    </div>
+  </section>
+
+  <section class="filters">
+    <div class="container">
+      <button class="chip is-active" data-filter="all" type="button">Todas</button>
+      {FAMILIAS.filter((f) => activeFamilias.has(f.slug)).map((f) => (
+        <button class="chip" data-filter={f.slug} type="button"
+          style={`--chip-color: var(${f.colorVar})`}>{f.label}</button>
+      ))}
+    </div>
+  </section>
+
+  {groups.map((g) => (
+    <section class="familia" data-familia={g.familia.slug}>
+      <div class="container">
+        <div class="familia__head" style={`--fam-color: var(${g.familia.colorVar})`}>
+          <h2>{g.familia.label}</h2>
+          <p>{g.familia.intro}</p>
+        </div>
+        <div class="card-grid">
+          {g.dinamicas.map((d) => (
+            <a class="card" href={`/dinamicas/${d.slug}/`} style={`--fam-color: var(${g.familia.colorVar})`}>
+              <span class="card__eyebrow">{g.familia.label}</span>
+              <h3 class="card__title serif">{d.data.title}</h3>
+              <p class="card__desc">{d.data.descripcion}</p>
+              <span class="card__meta">{d.data.duracion} · {d.data.agrupacion}</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  ))}
+</BaseLayout>
+
+<script>
+  const chips = document.querySelectorAll<HTMLButtonElement>('.chip');
+  const sections = document.querySelectorAll<HTMLElement>('.familia');
+  chips.forEach((chip) => chip.addEventListener('click', () => {
+    chips.forEach((c) => c.classList.remove('is-active'));
+    chip.classList.add('is-active');
+    const f = chip.dataset.filter;
+    sections.forEach((s) => { s.hidden = f !== 'all' && s.dataset.familia !== f; });
+  }));
+</script>
+
+<style>
+  .container { max-width: 1240px; margin: 0 auto; padding: 0 clamp(1.5rem, 4vw, 3rem); }
+  .breadcrumb { font-size: 0.92rem; color: var(--color-ink-mute); margin: 2rem 0; }
+  .breadcrumb a { color: var(--color-ink-mute); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--color-terra); }
+  .breadcrumb .sep { margin: 0 0.5em; color: var(--color-mustard); }
+  .hero { padding: 1rem 0 2rem; }
+  .kicker { font-family: var(--font-sans); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-terra); }
+  .accent { color: var(--color-terra); }
+  h1 { margin: 0.6rem 0 0.8rem; }
+  .lede { font-size: 1.2rem; color: var(--color-ink-soft); line-height: 1.55; max-width: 60ch; }
+  .filters .container { display: flex; flex-wrap: wrap; gap: 0.5rem; padding-top: 1rem; padding-bottom: 1.5rem; }
+  .chip { font-family: var(--font-sans); font-size: 0.85rem; font-weight: 600; color: var(--color-ink-soft); background: transparent; border: 1.5px solid var(--color-line); border-radius: 999px; padding: 0.4rem 0.9rem; cursor: pointer; transition: all .15s ease; }
+  .chip:hover { border-color: var(--chip-color, var(--color-terra)); color: var(--chip-color, var(--color-terra)); }
+  .chip.is-active { background: var(--chip-color, var(--color-ink)); border-color: var(--chip-color, var(--color-ink)); color: var(--color-paper); }
+  .familia { padding: 1.5rem 0; }
+  .familia__head { border-left: 4px solid var(--fam-color); padding-left: 1rem; margin-bottom: 1.5rem; }
+  .familia__head h2 { font-family: var(--font-serif); font-size: 1.7rem; font-weight: 500; margin: 0; }
+  .familia__head p { color: var(--color-ink-soft); margin: 0.3rem 0 0; }
+  .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 1.2rem; }
+  .card { display: flex; flex-direction: column; gap: 0.5rem; padding: 1.4rem; background: var(--color-paper); border: 1px solid var(--color-line); border-top: 4px solid var(--fam-color); border-radius: 10px; text-decoration: none; transition: transform .15s ease, box-shadow .15s ease; }
+  .card:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(42, 31, 24, 0.1); }
+  .card__eyebrow { font-family: var(--font-sans); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--fam-color); }
+  .card__title { font-size: 1.3rem; color: var(--color-ink); margin: 0; }
+  .card__desc { color: var(--color-ink-soft); font-size: 0.95rem; line-height: 1.5; margin: 0; flex: 1; }
+  .card__meta { font-family: var(--font-mono); font-size: 0.78rem; color: var(--color-ink-mute); margin-top: 0.3rem; }
+</style>

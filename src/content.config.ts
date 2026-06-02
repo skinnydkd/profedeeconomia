@@ -1,5 +1,6 @@
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
+import { FAMILIA_SLUGS } from './lib/dinamicas';
 
 const ASIGNATURA_SLUGS = [
   'edmn-2bach',
@@ -260,6 +261,42 @@ const proyectoTransversal = defineCollection({
 });
 
 /* =========================================================
+   dinamicas/{familia}/{nn}-{slug}.mdx — transversal classroom
+   dynamics (role-plays, market simulations, debates). NOT tied
+   to a single asignatura; each maps to units across asignaturas
+   via `unidades_relacionadas`. Single source for the page + print.
+   ========================================================= */
+const dinamicas = defineCollection({
+  loader: glob({ pattern: 'dinamicas/**/*.{md,mdx}', base: './src/content' }),
+  schema: z.object({
+    title: z.string(),
+    familia: z.enum(FAMILIA_SLUGS),
+    /** Sort key within the family; also the filename prefix. */
+    orden: z.number().int().min(0),
+    /** One-line summary for the hub card. */
+    descripcion: z.string(),
+    tipo: z.enum(['role-play', 'simulacion-mercado', 'juego-experimental', 'debate', 'negociacion']),
+    duracion: z.string(),
+    agrupacion: z.string(),
+    participantes: z.string().optional(),
+    nivel: z.array(z.enum(['eso', 'bach', 'fp'])).min(1),
+    objetivos: z.array(z.string()).min(1),
+    conceptos_clave: z.array(z.string()).default([]),
+    materiales_necesarios: z.array(z.string()).default([]),
+    /** Cross-asignatura curriculum map. */
+    unidades_relacionadas: z.array(z.object({
+      asignatura: z.enum(ASIGNATURA_SLUGS),
+      unidad: z.number().int().min(1),
+      nota: z.string().optional(),
+    })).default([]),
+    competencias_clave: z.array(z.string()).default([]),
+    competencias_especificas: z.array(z.string()).default([]),
+    lang: z.enum(LANGS).default('es'),
+    estado: z.enum(ESTADOS).default('borrador'),
+  }),
+});
+
+/* =========================================================
    juegos — material transversal
    ========================================================= */
 const juegos = defineCollection({
@@ -336,6 +373,7 @@ export const collections = {
   ebau,
   proyecto,
   proyectoTransversal,
+  dinamicas,
   juegos,
   jocsEconomicsPreguntas,
   retoCurso,
