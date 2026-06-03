@@ -4,8 +4,13 @@ import { SECCIONES_TRANSVERSALES } from './asignaturas.ts';
 describe('SECCIONES_TRANSVERSALES', () => {
   it('lista las secciones de «Otros» en el orden acordado', () => {
     expect(SECCIONES_TRANSVERSALES.map((s) => s.slug)).toEqual([
-      'dinamicas', 'herramientas', 'emprendimiento', 'debates', 'juegos', 'jocs-economics', 'generadores',
+      'dinamicas', 'herramientas', 'emprendimiento', 'proyectos', 'debates', 'juegos', 'jocs-economics', 'generadores',
     ]);
+  });
+  it('da label y descripción a proyectos', () => {
+    const s = SECCIONES_TRANSVERSALES.find((x) => x.slug === 'proyectos');
+    expect(s?.label).toBe('Proyectos interdisciplinares');
+    expect((s?.description.length ?? 0)).toBeGreaterThan(0);
   });
   it('gives the dinamicas section a label and description', () => {
     const s = SECCIONES_TRANSVERSALES.find((x) => x.slug === 'dinamicas');

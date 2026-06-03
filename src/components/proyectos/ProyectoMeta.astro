@@ -1,0 +1,22 @@
+---
+/** Metadata badge row for an interdisciplinary project. */
+interface Props { materia: string; nivel: string[]; duracion: string; agrupacion: string; }
+const { materia, nivel, duracion, agrupacion } = Astro.props;
+const NIVEL_LABEL: Record<string, string> = { eso: 'ESO', bach: 'Bachillerato', fp: 'FP' };
+const MATERIA_LABEL: Record<string, string> = {
+  historia: 'Historia', matematicas: 'Matemáticas', geografia: 'Geografía',
+  'etica-valores': 'Ética y valores', lengua: 'Lengua', tecnologia: 'Tecnología',
+};
+---
+<dl class="meta">
+  <div><dt>Conecta con</dt><dd>{MATERIA_LABEL[materia] ?? materia}</dd></div>
+  <div><dt>Nivel</dt><dd>{nivel.map((n) => NIVEL_LABEL[n] ?? n).join(' · ')}</dd></div>
+  <div><dt>Duración</dt><dd>{duracion}</dd></div>
+  <div><dt>Agrupación</dt><dd>{agrupacion}</dd></div>
+</dl>
+<style>
+  .meta { display: flex; flex-wrap: wrap; gap: 1.4rem; margin: 1.4rem 0 2rem; padding: 1rem 1.2rem; background: var(--color-bg-cream); border-radius: 8px; }
+  .meta div { display: flex; flex-direction: column; gap: 0.15rem; }
+  .meta dt { font-family: var(--font-sans); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-ink-mute); margin: 0; }
+  .meta dd { font-family: var(--font-serif); font-size: 1rem; margin: 0; color: var(--color-ink); }
+</style>
