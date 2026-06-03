@@ -2,6 +2,7 @@ import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { FAMILIA_SLUGS } from './lib/dinamicas';
 import { FAMILIA_DEBATE_SLUGS } from './lib/debates';
+import { MATERIA_SLUGS } from './lib/proyectos';
 
 const ASIGNATURA_SLUGS = [
   'edmn-2bach',
@@ -411,6 +412,42 @@ const debates = defineCollection({
   }),
 });
 
+/* =========================================================
+   proyectos/{materia}/{nn}-{slug}.mdx — interdisciplinary
+   ABP projects crossing economics with another subject.
+   ========================================================= */
+const proyectos = defineCollection({
+  loader: glob({ pattern: 'proyectos/**/*.{md,mdx}', base: './src/content' }),
+  schema: z.object({
+    title: z.string(),
+    materia: z.enum(MATERIA_SLUGS),
+    orden: z.number().int().min(0),
+    descripcion: z.string(),
+    reto: z.string(),
+    producto_final: z.string(),
+    nivel: z.array(z.enum(['eso', 'bach', 'fp'])).min(1),
+    duracion: z.string(),
+    agrupacion: z.string(),
+    objetivos: z.array(z.string()).min(1),
+    conceptos_clave: z.array(z.string()).default([]),
+    unidades_relacionadas: z.array(z.object({
+      asignatura: z.enum(ASIGNATURA_SLUGS),
+      unidad: z.number().int().min(1),
+      nota: z.string().optional(),
+      competencias_especificas: z.array(z.string()).default([]),
+    })).default([]),
+    competencias_clave: z.array(z.string()).default([]),
+    competencias_especificas: z.array(z.string()).default([]),
+    rubrica: z.array(z.object({
+      criterio: z.string(),
+      descripcion: z.string(),
+      competencia: z.string().optional(),
+    })).default([]),
+    lang: z.enum(LANGS).default('es'),
+    estado: z.enum(ESTADOS).default('borrador'),
+  }),
+});
+
 export const collections = {
   libro,
   actividades,
@@ -423,6 +460,7 @@ export const collections = {
   proyectoTransversal,
   dinamicas,
   debates,
+  proyectos,
   juegos,
   jocsEconomicsPreguntas,
   retoCurso,
