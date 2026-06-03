@@ -83,7 +83,17 @@ const TRANSVERSAL = [
       <div class="strip-grid">
         {TRANSVERSAL.map((t) => (
           <div class="strip-item">
-            <span class="icon" style={`background: var(${t.color})`}>{t.letra}</span>
+            <span class="icon" style={`background: var(${t.color})`}>
+              {t.slug === 'jocs-economics' ? (
+                <svg class="icon-rings" viewBox="0 0 30 16" width="26" height="14" fill="none" stroke="var(--color-paper)" stroke-width="1.7" aria-hidden="true">
+                  <circle cx="6" cy="6" r="4.2" />
+                  <circle cx="15" cy="6" r="4.2" />
+                  <circle cx="24" cy="6" r="4.2" />
+                  <circle cx="10.5" cy="10" r="4.2" />
+                  <circle cx="19.5" cy="10" r="4.2" />
+                </svg>
+              ) : t.letra}
+            </span>
             <h3>{t.title}</h3>
             <p>{t.desc}</p>
             <a href={`/${t.slug}/`} class="editorial-link">{t.cta} →</a>
