@@ -231,11 +231,11 @@ export const ASIGNATURAS_POR_ETAPA = {
 } as const;
 
 export const SECCIONES_TRANSVERSALES = [
-  { slug: 'juegos',         label: 'Juegos',         description: 'Material para una clase activa.' },
-  { slug: 'herramientas',   label: 'Herramientas',   description: 'Calculadoras y simuladores para usar en clase.' },
-  { slug: 'generadores',    label: 'Generadores',    description: 'Generadores LOMLOE y herramientas de evaluación y aula.' },
-  { slug: 'emprendimiento', label: 'Emprendimiento', description: 'Plantillas y dinámicas transversales.' },
   { slug: 'dinamicas',      label: 'Dinámicas',      description: 'Role-plays y simulaciones para hacer en clase.' },
-  { slug: 'jocs-economics', label: 'Jocs Econòmics', description: 'Nuestras Olimpiadas de Economía.' },
+  { slug: 'herramientas',   label: 'Herramientas',   description: 'Calculadoras y simuladores para usar en clase.' },
+  { slug: 'emprendimiento', label: 'Emprendimiento', description: 'Plantillas y dinámicas transversales.' },
   { slug: 'debates',        label: 'Debates',        description: 'Controversias económicas para argumentar en clase.' },
+  { slug: 'juegos',         label: 'Juegos',         description: 'Material para una clase activa.' },
+  { slug: 'jocs-economics', label: 'Jocs Econòmics', description: 'Nuestras Olimpiadas de Economía.' },
+  { slug: 'generadores',    label: 'Generadores',    description: 'Generadores LOMLOE y herramientas de evaluación y aula.' },
 ] as const;
