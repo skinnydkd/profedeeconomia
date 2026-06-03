@@ -1,15 +1,22 @@
 ---
+/**
+ * Herramientas hub. The toolbox: existing calculator/simulator islands grouped
+ * by family (FAMILIAS_HERRAMIENTA order), each card linking to its detail page.
+ */
 import BaseLayout from '@layouts/BaseLayout.astro';
+import { gruposHerramientas, FAMILIAS_HERRAMIENTA } from '@/lib/herramientas';
 
-// Both tools live in our sibling project oposicioneseconomia.es (same /programacion
-// page, two tabs). They are client-side generators that work for any LOMLOE
-// course, so we point teachers there instead of maintaining a fork here.
-const PROGRAMACION_URL = 'https://oposicioneseconomia.es/programacion';
+const groups = gruposHerramientas();
+const activeFamilias = new Set(groups.map((g) => g.familia.slug));
+const TIPO_LABEL: Record<string, string> = {
+  calculadora: 'Calculadora', simulador: 'Simulador', test: 'Test',
+  generador: 'Generador', buscador: 'Buscador', plantilla: 'Plantilla',
+};
 ---
 
 <BaseLayout
-  title="Herramientas docentes"
-  description="Generador de Situaciones de Aprendizaje LOMLOE y creador de pruebas de evaluación. Dos herramientas que usamos a diario en el instituto."
+  title="Herramientas"
+  description="Calculadoras y simuladores para usar en clase: punto muerto, ratios, VAN/TIR, elasticidad, nómina, IRPF y más, con su encaje curricular."
 >
   <div class="container">
     <nav class="breadcrumb"><a href="/">Inicio</a> <span class="sep">›</span> <span>Herramientas</span></nav>
@@ -18,117 +25,80 @@ const PROGRAMACION_URL = 'https://oposicioneseconomia.es/programacion';
   <section class="hero">
     <div class="container">
       <span class="kicker">Material transversal</span>
-      <h1>Herramientas <span class="serif-italic-wonk accent">docentes</span>.</h1>
+      <h1><span class="serif-italic-wonk accent">Herramientas</span> para usar en clase.</h1>
       <p class="lede">
-        Dos generadores que montamos para preparar oposiciones y que acabamos
-        usando cada semana en el instituto. Funcionan en el navegador, sin cuenta
-        ni instalación; el resultado se imprime o se guarda en PDF.
+        La caja de herramientas del web: calculadoras y simuladores interactivos
+        —punto muerto, ratios, VAN y TIR, elasticidad, nómina…— agrupados por tema
+        y con el mapa de en qué unidades de qué asignaturas encajan.
       </p>
     </div>
   </section>
 
-  <section class="tools">
+  <section class="filters">
     <div class="container">
-      <div class="tool-grid">
-        <a class="tool-card" href={PROGRAMACION_URL} rel="external noopener" target="_blank">
-          <span class="tc-eyebrow">Generador</span>
-          <h2 class="tc-title serif">Situaciones de Aprendizaje</h2>
-          <p class="tc-desc">
-            Un asistente por pasos que arma una Situación de Aprendizaje LOMLOE
-            completa: saberes, competencias específicas, criterios, secuencia de
-            actividades, instrumentos de evaluación y medidas DUA. Lista para
-            imprimir.
-          </p>
-          <span class="tc-cta">Abrir en oposicioneseconomia.es →</span>
-        </a>
-
-        <a class="tool-card" href={PROGRAMACION_URL} rel="external noopener" target="_blank">
-          <span class="tc-eyebrow">Creador</span>
-          <h2 class="tc-title serif">Pruebas de evaluación</h2>
-          <p class="tc-desc">
-            Configura una prueba escogiendo bloques, número de preguntas y formato,
-            y la genera maquetada para entregar en clase. Pensada para no perder la
-            tarde montando exámenes a mano.
-          </p>
-          <span class="tc-cta">Abrir en oposicioneseconomia.es →</span>
-        </a>
-      </div>
-
-      <p class="note">
-        Las dos viven en nuestro proyecto hermano,
-        <a href="https://oposicioneseconomia.es" class="editorial-link" rel="external noopener" target="_blank">oposicioneseconomia.es</a>,
-        donde las mantenemos. Las usamos también para preparar nuestras clases, por
-        si os sirven.
-      </p>
+      <button class="chip is-active" data-filter="all" type="button">Todas</button>
+      {FAMILIAS_HERRAMIENTA.filter((f) => activeFamilias.has(f.slug)).map((f) => (
+        <button class="chip" data-filter={f.slug} type="button"
+          style={`--chip-color: var(${f.colorVar})`}>{f.label}</button>
+      ))}
     </div>
   </section>
+
+  {groups.map((g) => (
+    <section class="familia" data-familia={g.familia.slug}>
+      <div class="container">
+        <div class="familia__head" style={`--fam-color: var(${g.familia.colorVar})`}>
+          <h2>{g.familia.label}</h2>
+          <p>{g.familia.intro}</p>
+        </div>
+        <div class="card-grid">
+          {g.items.map(({ h }) => (
+            <a class="card" href={`/herramientas/${h.familia}/${h.slug}/`} style={`--fam-color: var(${g.familia.colorVar})`}>
+              <span class="card__eyebrow">{TIPO_LABEL[h.tipo] ?? h.tipo}</span>
+              <h3 class="card__title serif">{h.title}</h3>
+              <p class="card__desc">{h.descripcion}</p>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  ))}
 </BaseLayout>
 
+<script>
+  const chips = document.querySelectorAll<HTMLButtonElement>('.chip');
+  const sections = document.querySelectorAll<HTMLElement>('.familia');
+  chips.forEach((chip) => chip.addEventListener('click', () => {
+    chips.forEach((c) => c.classList.remove('is-active'));
+    chip.classList.add('is-active');
+    const f = chip.dataset.filter;
+    sections.forEach((s) => { s.hidden = f !== 'all' && s.dataset.familia !== f; });
+  }));
+</script>
+
 <style>
-  .container {
-    max-width: 1240px;
-    margin: 0 auto;
-    padding: 0 clamp(1.5rem, 4vw, 3rem);
-  }
+  .container { max-width: 1240px; margin: 0 auto; padding: 0 clamp(1.5rem, 4vw, 3rem); }
   .breadcrumb { font-size: 0.92rem; color: var(--color-ink-mute); margin: 2rem 0; }
   .breadcrumb a { color: var(--color-ink-mute); text-decoration: none; }
   .breadcrumb a:hover { color: var(--color-terra); }
   .breadcrumb .sep { margin: 0 0.5em; color: var(--color-mustard); }
-
-  .hero { padding: 1rem 0 clamp(2rem, 5vw, 3.5rem); }
-  h1 { max-width: 22ch; margin: 1rem 0 0.6rem; }
+  .hero { padding: 1rem 0 2rem; }
+  .kicker { font-family: var(--font-sans); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-terra); }
   .accent { color: var(--color-terra); }
-  .lede {
-    font-family: var(--font-serif);
-    font-style: italic;
-    font-size: 1.4rem;
-    color: var(--color-ink-soft);
-    max-width: 55ch;
-    margin: 1.5rem 0;
-    line-height: 1.5;
-    font-variation-settings: "SOFT" 80;
-  }
-
-  .tools { padding: 0 0 clamp(3rem, 7vw, 6rem); }
-  .tool-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
-    margin-bottom: 2rem;
-  }
-  .tool-card {
-    display: block;
-    background: #fff;
-    border: 1px solid var(--color-line);
-    border-top: 3px solid var(--color-eco1, #1F6E6E);
-    padding: 1.6rem 1.75rem 1.4rem;
-    text-decoration: none;
-    color: inherit;
-    transition: box-shadow 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
-  }
-  .tool-card:hover {
-    box-shadow: 0 4px 18px rgba(42, 31, 24, 0.08);
-    border-top-color: var(--color-terra);
-    transform: translateY(-2px);
-  }
-  .tc-eyebrow {
-    font-size: 0.78rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--color-eco1, #1F6E6E);
-    font-weight: 600;
-  }
-  .tc-title { font-size: 1.6rem; line-height: 1.1; margin: 0.5rem 0 0.75rem; font-variation-settings: "SOFT" 80; }
-  .tc-desc { color: var(--color-ink-soft); font-size: 1rem; line-height: 1.6; margin: 0 0 1rem; }
-  .tc-cta { font-size: 0.9rem; font-weight: 600; color: var(--color-terra); }
-
-  .note {
-    font-family: var(--font-serif);
-    font-style: italic;
-    color: var(--color-ink-soft);
-    max-width: 60ch;
-    font-size: 1.05rem;
-    line-height: 1.55;
-    font-variation-settings: "SOFT" 80;
-  }
+  h1 { margin: 0.6rem 0 0.8rem; }
+  .lede { font-size: 1.2rem; color: var(--color-ink-soft); line-height: 1.55; max-width: 60ch; }
+  .filters .container { display: flex; flex-wrap: wrap; gap: 0.5rem; padding-top: 1rem; padding-bottom: 1.5rem; }
+  .chip { font-family: var(--font-sans); font-size: 0.85rem; font-weight: 600; color: var(--color-ink-soft); background: transparent; border: 1.5px solid var(--color-line); border-radius: 999px; padding: 0.4rem 0.9rem; cursor: pointer; transition: all .15s ease; }
+  .chip:hover { border-color: var(--chip-color, var(--color-terra)); color: var(--chip-color, var(--color-terra)); }
+  .chip.is-active { background: var(--chip-color, var(--color-ink)); border-color: var(--chip-color, var(--color-ink)); color: var(--color-paper); }
+  .familia { padding: 1.5rem 0; }
+  .familia__head { border-left: 4px solid var(--fam-color); padding-left: 1rem; margin-bottom: 1.5rem; }
+  .familia__head h2 { font-family: var(--font-serif); font-size: 1.7rem; font-weight: 500; margin: 0; }
+  .familia__head p { color: var(--color-ink-soft); margin: 0.3rem 0 0; }
+  .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 1.2rem; }
+  .card { display: flex; flex-direction: column; gap: 0.5rem; padding: 1.4rem; background: var(--color-paper); border: 1px solid var(--color-line); border-top: 4px solid var(--fam-color); border-radius: 10px; text-decoration: none; transition: transform .15s ease, box-shadow .15s ease; }
+  .card:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(42, 31, 24, 0.1); }
+  .card__eyebrow { font-family: var(--font-sans); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--fam-color); }
+  .card__title { font-size: 1.3rem; color: var(--color-ink); margin: 0; }
+  .card__desc { color: var(--color-ink-soft); font-size: 0.95rem; line-height: 1.5; margin: 0; flex: 1; }
 </style>
