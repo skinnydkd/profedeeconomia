@@ -115,7 +115,7 @@ export default function CalificacionesCalc() {
                       class="cg-calc__input"
                       type="number"
                       min={0}
-                      max={escala}
+                      max={10}
                       step={0.5}
                       value={row.nota}
                       onInput={(e) =>
