@@ -9,6 +9,18 @@ const NUM_WORDS = ['cero', 'una', 'dos', 'tres', 'cuatro', 'cinco', 'seis', 'sie
 const numAsignaturas = ASIGNATURAS_PUBLICADAS.length;
 const numAsignaturasPalabra = NUM_WORDS[numAsignaturas] ?? String(numAsignaturas);
 const NumPalabraCap = numAsignaturasPalabra.charAt(0).toUpperCase() + numAsignaturasPalabra.slice(1);
+
+// «Material transversal» strip — the cross-subject sections, in the same order
+// as the «Otros» menu. Each card links to its hub.
+const TRANSVERSAL = [
+  { slug: 'dinamicas',      letra: 'D', color: '--color-terra',   title: 'Dinámicas',      cta: 'Ver las dinámicas',   desc: 'Role-plays, simulaciones y juegos de aula, con guía para el profe, materiales para imprimir y su encaje curricular.' },
+  { slug: 'herramientas',   letra: 'H', color: '--color-eco1',    title: 'Herramientas',   cta: 'Ver las herramientas', desc: 'La caja de herramientas: calculadoras y simuladores interactivos —punto muerto, ratios, VAN y TIR, elasticidad, nómina…— listos para clase.' },
+  { slug: 'emprendimiento', letra: 'E', color: '--color-mustard', title: 'Emprendimiento', cta: 'Ver emprendimiento',   desc: 'Plantillas, casos prácticos y dinámicas que cruzan asignaturas, para los días en que apetece salir del libro.' },
+  { slug: 'debates',        letra: 'D', color: '--color-gpe',     title: 'Debates',        cta: 'Ver los debates',     desc: 'Las grandes controversias económicas para argumentar en clase: moción, posturas, argumentario, rúbrica y ficha imprimible.' },
+  { slug: 'juegos',         letra: 'J', color: '--color-fopp',    title: 'Juegos',         cta: 'Ver los juegos',      desc: 'Stonks, Econrisk, Econopoly, Insider y Cajút: simuladores, estrategia y dinámicas multijugador, todos probados en clase real.' },
+  { slug: 'jocs-economics', letra: 'O', color: '--color-taller3', title: 'Jocs Econòmics', cta: 'Ver las Olimpiadas',  desc: 'Nuestras Olimpiadas de Economía: un concurso por equipos para repasar economía jugando.' },
+  { slug: 'generadores',    letra: 'G', color: '--color-ipe2',    title: 'Generadores',    cta: 'Ver los generadores', desc: 'Generadores LOMLOE (situaciones de aprendizaje, programación) y herramientas de evaluación y aula: rúbricas, calificaciones y plantillas.' },
+] as const;
 ---
 
 <BaseLayout
@@ -69,33 +81,14 @@ const NumPalabraCap = numAsignaturasPalabra.charAt(0).toUpperCase() + numAsignat
       </div>
 
       <div class="strip-grid">
-        <div class="strip-item">
-          <span class="icon icon-1">J</span>
-          <h3>Juegos</h3>
-          <p>
-            Stonks, Econrisk, Econopoly, Insider y Cajút: simuladores, estrategia
-            y dinámicas multijugador para el aula. Todos probados en clase real.
-          </p>
-          <a href="/juegos/" class="editorial-link">Ver los juegos →</a>
-        </div>
-        <div class="strip-item">
-          <span class="icon icon-2">H</span>
-          <h3>Herramientas docentes</h3>
-          <p>
-            Generador de Situaciones de Aprendizaje LOMLOE y creador de pruebas, los
-            dos que usamos cada semana para no perder la tarde con el papeleo.
-          </p>
-          <a href="/herramientas/" class="editorial-link">Ver herramientas →</a>
-        </div>
-        <div class="strip-item">
-          <span class="icon icon-3">E</span>
-          <h3>Emprendimiento</h3>
-          <p>
-            Plantillas, casos prácticos y dinámicas que cruzan asignaturas. Útiles los días
-            en que apetece salir del libro y plantear algo más abierto.
-          </p>
-          <a href="/emprendimiento/" class="editorial-link">Ver emprendimiento →</a>
-        </div>
+        {TRANSVERSAL.map((t) => (
+          <div class="strip-item">
+            <span class="icon" style={`background: var(${t.color})`}>{t.letra}</span>
+            <h3>{t.title}</h3>
+            <p>{t.desc}</p>
+            <a href={`/${t.slug}/`} class="editorial-link">{t.cta} →</a>
+          </div>
+        ))}
       </div>
     </div>
   </section>
