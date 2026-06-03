@@ -1,0 +1,79 @@
+---
+/**
+ * Banco de preguntas interactivo por bloque temático.
+ * Builds `porBloque` from BANCO data and passes it to the BancoIsland Preact island.
+ */
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { BLOQUES } from '@/lib/olimpiada';
+import { preguntasDeBloque } from '@/lib/olimpiada/banco';
+import BancoIsland from '@components/olimpiada/BancoIsland.tsx';
+import type { Pregunta } from '@components/QuizPlayer.tsx';
+import type { PreguntaBanco } from '@/lib/olimpiada/banco';
+
+// Build the porBloque record — each block maps its questions to QuizPlayer's Pregunta shape.
+const porBloque: Record<string, Pregunta[]> = {};
+for (const b of BLOQUES) {
+  porBloque[b.slug] = preguntasDeBloque(b.slug).map((p: PreguntaBanco) => ({
+    enunciado: p.enunciado,
+    opciones: p.opciones,
+    correcta: p.correcta,
+    explicacion: p.explicacion,
+  }));
+}
+
+const bloqueTabs = BLOQUES.map((b) => ({ slug: b.slug, label: b.label }));
+---
+
+<BaseLayout
+  title="Banco de preguntas — Olimpiada de Economía"
+  description="Test interactivo por bloques temáticos para la Olimpiada de Economía. Selecciona un bloque y practica con feedback inmediato."
+>
+  <div class="container">
+    <nav class="breadcrumb">
+      <a href="/">Inicio</a> <span class="sep">›</span>
+      <a href="/olimpiada/">Olimpiada</a> <span class="sep">›</span>
+      <span>Banco de preguntas</span>
+    </nav>
+  </div>
+
+  <section class="hero">
+    <div class="container">
+      <span class="kicker">Práctica tipo test</span>
+      <h1 class="serif">Banco de preguntas</h1>
+      <p class="lede">
+        Selecciona un bloque temático y practica con preguntas tipo test.
+        Cada pregunta tiene feedback explicativo para consolidar la teoría.
+      </p>
+    </div>
+  </section>
+
+  <section class="banco-section">
+    <div class="container container--narrow">
+      <BancoIsland client:load porBloque={porBloque} bloques={bloqueTabs} />
+    </div>
+  </section>
+
+  <div class="container back-link">
+    <a href="/olimpiada/">← Olimpiada de Economía</a>
+  </div>
+</BaseLayout>
+
+<style>
+  .container { max-width: 1240px; margin: 0 auto; padding: 0 clamp(1.5rem, 4vw, 3rem); }
+  .container--narrow { max-width: 820px; }
+  .breadcrumb { font-size: 0.92rem; color: var(--color-ink-mute); margin: 2rem 0; }
+  .breadcrumb a { color: var(--color-ink-mute); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--color-terra); }
+  .breadcrumb .sep { margin: 0 0.5em; color: var(--color-mustard); }
+
+  .hero { padding: 1rem 0 2rem; }
+  .kicker { font-family: var(--font-sans); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-terra); }
+  h1 { margin: 0.6rem 0 0.8rem; }
+  .lede { font-size: 1.2rem; color: var(--color-ink-soft); line-height: 1.55; max-width: 60ch; }
+
+  .banco-section { padding: 0 0 3rem; }
+
+  .back-link { padding: 0 0 3rem; }
+  .back-link a { font-family: var(--font-sans); font-size: 0.95rem; font-weight: 500; color: var(--color-terra); text-decoration: none; }
+  .back-link a:hover { text-decoration: underline; }
+</style>
