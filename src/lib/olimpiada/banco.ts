@@ -58,7 +58,7 @@ export const BANCO: PreguntaBanco[] = [
     enunciado: 'La FPP tiene forma cóncava (curvada hacia el origen) porque:',
     opciones: ['Los recursos son perfectamente adaptables a cualquier uso', 'Los recursos son escasos y tienen usos alternativos con costes de oportunidad crecientes', 'El coste de oportunidad es constante', 'La tecnología es siempre decreciente'],
     correcta: 1,
-    explicacion: 'A medida que se especializamos en un bien, usamos recursos cada vez menos apropiados para ese uso, por lo que el coste de oportunidad aumenta (rendimientos decrecientes en la transferencia de recursos).',
+    explicacion: 'A medida que nos especializamos en un bien, empleamos recursos cada vez menos apropiados para ese uso (los factores no son homogéneos), por lo que el coste de oportunidad aumenta.',
   },
   {
     bloque: 'fpp',

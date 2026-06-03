@@ -184,7 +184,7 @@ export const LECTURAS: Lectura[] = [
 export interface ParteGuia { nombre: string; puntos: string; tiempo?: string; descripcion: string; }
 export const GUIA: { duracion: string; total: string; partes: ParteGuia[] } = {
   duracion: '2 horas y 30 minutos',
-  total: '8 puntos',
+  total: '10 puntos',
   partes: [
     { nombre: 'Parte I — Teoría', puntos: '4,5 pts (3 × 1,5)', descripcion: 'Elige 3 de 6 preguntas de desarrollo. Definir conceptos y representarlos gráficamente; razonar la veracidad de afirmaciones.' },
     { nombre: 'Parte II — Ejercicio', puntos: '3 pts', descripcion: 'Elige 1 de 2 ejercicios numéricos. El punto muerto aparece casi siempre; también FPP, oferta-demanda algebraica o contabilidad.' },
