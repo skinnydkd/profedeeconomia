@@ -1,0 +1,18 @@
+---
+/** Renders the teacher tool island matching `componente`. */
+import CalificacionesCalc from '@components/generadores/CalificacionesCalc.tsx';
+import RubricaGenerator from '@components/generadores/RubricaGenerator.tsx';
+import PlanRefuerzo from '@components/generadores/PlanRefuerzo.tsx';
+import RegistroAula from '@components/generadores/RegistroAula.tsx';
+import MedidasDUA from '@components/generadores/MedidasDUA.tsx';
+import Autoevaluacion from '@components/generadores/Autoevaluacion.tsx';
+
+interface Props { componente?: string }
+const { componente } = Astro.props;
+---
+{componente === 'Calificaciones' && <CalificacionesCalc client:load />}
+{componente === 'Rubrica' && <RubricaGenerator client:load />}
+{componente === 'PlanRefuerzo' && <PlanRefuerzo client:load />}
+{componente === 'RegistroAula' && <RegistroAula client:load />}
+{componente === 'MedidasDUA' && <MedidasDUA client:load />}
+{componente === 'Autoevaluacion' && <Autoevaluacion client:load />}
