@@ -1,0 +1,44 @@
+---
+/**
+ * Renders the interactive island that matches `componente`. Single source of the
+ * island dispatch, shared by the per-asignatura recurso page and the transversal
+ * «Herramientas» toolbox detail page. Add new identifiers here as components ship.
+ */
+import PuntoMuertoCalc from '@components/calculadoras/PuntoMuertoCalc.tsx';
+import VANTIRCalc from '@components/calculadoras/VANTIRCalc.tsx';
+import RatiosCalc from '@components/calculadoras/RatiosCalc.tsx';
+import ADASSimulator from '@components/calculadoras/ADASSimulator.tsx';
+import InteresCompuestoCalc from '@components/calculadoras/InteresCompuestoCalc.tsx';
+import CalculadoraNominaESO from '@components/calculadoras/CalculadoraNominaESO.tsx';
+import CalculadoraPresupuesto503020 from '@components/calculadoras/CalculadoraPresupuesto503020.tsx';
+import BuscadorItinerarios from '@components/calculadoras/BuscadorItinerarios.tsx';
+import GeneradorCVEuropass from '@components/calculadoras/GeneradorCVEuropass.tsx';
+import DCFCalc from '@components/calculadoras/DCFCalc.tsx';
+import RatiosBenchmark from '@components/calculadoras/RatiosBenchmark.tsx';
+import ElasticidadCalc from '@components/calculadoras/ElasticidadCalc.tsx';
+import MultiplicadorGasto from '@components/calculadoras/MultiplicadorGasto.tsx';
+import IRPFDeclaracion from '@components/calculadoras/IRPFDeclaracion.tsx';
+import CocheVsAlternativa from '@components/calculadoras/CocheVsAlternativa.tsx';
+import RIASECTest from '@components/calculadoras/RIASECTest.tsx';
+import PresupuestoUni from '@components/calculadoras/PresupuestoUni.tsx';
+
+interface Props { componente?: string }
+const { componente } = Astro.props;
+---
+{componente === 'PuntoMuerto' && <PuntoMuertoCalc client:load />}
+{componente === 'VANTIR' && <VANTIRCalc client:load />}
+{componente === 'Ratios' && <RatiosCalc client:load />}
+{componente === 'ADASSimulator' && <ADASSimulator client:load />}
+{componente === 'InteresCompuesto' && <InteresCompuestoCalc client:load />}
+{componente === 'NominaESO' && <CalculadoraNominaESO client:load />}
+{componente === 'Presupuesto503020' && <CalculadoraPresupuesto503020 client:load />}
+{componente === 'BuscadorItinerarios' && <BuscadorItinerarios client:load />}
+{componente === 'GeneradorCVEuropass' && <GeneradorCVEuropass client:load />}
+{componente === 'DCF' && <DCFCalc client:load />}
+{componente === 'RatiosBenchmark' && <RatiosBenchmark client:load />}
+{componente === 'Elasticidad' && <ElasticidadCalc client:load />}
+{componente === 'MultiplicadorGasto' && <MultiplicadorGasto client:load />}
+{componente === 'IRPFDeclaracion' && <IRPFDeclaracion client:load />}
+{componente === 'CocheVsAlternativa' && <CocheVsAlternativa client:load />}
+{componente === 'RIASEC' && <RIASECTest client:load />}
+{componente === 'PresupuestoUni' && <PresupuestoUni client:load />}

@@ -39,3 +39,18 @@ describe('SECCIONES_TRANSVERSALES — debates', () => {
     expect((s?.description.length ?? 0)).toBeGreaterThan(0);
   });
 });
+
+describe('SECCIONES_TRANSVERSALES — herramientas (caja) y generadores', () => {
+  it('mantiene herramientas apuntando a la caja de herramientas', () => {
+    const s = SECCIONES_TRANSVERSALES.find((x) => x.slug === 'herramientas');
+    expect(s?.label).toBe('Herramientas');
+    expect(s?.description.toLowerCase()).toContain('calculadora');
+  });
+  it('añade la sección generadores', () => {
+    const slugs = SECCIONES_TRANSVERSALES.map((s) => s.slug);
+    expect(slugs).toContain('generadores');
+    const s = SECCIONES_TRANSVERSALES.find((x) => x.slug === 'generadores');
+    expect(s?.label).toBe('Generadores');
+    expect(s?.description.length).toBeGreaterThan(0);
+  });
+});
