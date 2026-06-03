@@ -236,8 +236,8 @@ export default function MatrizBCG() {
           letter-spacing: 0.06em;
         }
         .bcg-cell--estrella .bcg-cell-title { color: var(--color-terra, #C44E2C); }
-        .bcg-cell--interrogante .bcg-cell-title { color: var(--color-mostassa-deep, #A87A2A); }
-        .bcg-cell--vaca .bcg-cell-title { color: var(--color-teal, #1F6E6E); }
+        .bcg-cell--interrogante .bcg-cell-title { color: var(--color-mustard-deep, #A87A2A); }
+        .bcg-cell--vaca .bcg-cell-title { color: var(--color-eco1, #1F6E6E); }
         .bcg-cell--perro .bcg-cell-title { color: var(--color-ink-mute, #8A7868); }
 
         .bcg-cell-subtitle {

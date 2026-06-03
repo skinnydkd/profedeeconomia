@@ -54,7 +54,7 @@ export default function DAFOCanvas() {
       <div class="dafo-lienzo" ref={lienzoRef}>
         <div class="dafo-header" aria-hidden="true">
           <div class="dafo-corner" />
-          <div class="dafo-col-label">Positivo</div>
+          <div class="dafo-col-label dafo-col-label--first">Positivo</div>
           <div class="dafo-col-label">Negativo</div>
         </div>
 
@@ -162,7 +162,7 @@ export default function DAFOCanvas() {
           background: var(--color-bg-soft, #F8E8D0);
           border-bottom: 1px solid var(--color-line, #E5D4BD);
         }
-        .dafo-col-label:first-of-type {
+        .dafo-col-label--first {
           border-right: none;
         }
         .dafo-col-label:last-of-type {
