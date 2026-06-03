@@ -31,7 +31,7 @@ export default function EquilibrioCalc() {
 
   // Intervention toggle
   const [topeActivo, setTopeActivo] = useState<boolean>(false);
-  const [topoTipo, setTopoTipo] = useState<'maximo' | 'minimo'>('maximo');
+  const [topeTipo, setTopeTipo] = useState<'maximo' | 'minimo'>('maximo');
   const [topePrecio, setTopePrecio] = useState<number>(7);
 
   const coef: Coef = { a, b, c, d };
@@ -41,8 +41,8 @@ export default function EquilibrioCalc() {
   const evalInsp = useMemo(() => evaluarPrecio(coef, precioInsp), [a, b, c, d, precioInsp]);
 
   const evalTope = useMemo(
-    () => (topeActivo ? intervencion(coef, topoTipo, topePrecio) : null),
-    [a, b, c, d, topeActivo, topoTipo, topePrecio],
+    () => (topeActivo ? intervencion(coef, topeTipo, topePrecio) : null),
+    [a, b, c, d, topeActivo, topeTipo, topePrecio],
   );
 
   return (
@@ -110,7 +110,7 @@ export default function EquilibrioCalc() {
           precioInsp={precioInsp}
           evalInsp={evalInsp}
           topeActivo={topeActivo}
-          topoTipo={topoTipo}
+          topeTipo={topeTipo}
           topePrecio={topePrecio}
         />
 
@@ -126,30 +126,36 @@ export default function EquilibrioCalc() {
               </div>
             </label>
           </div>
-          <div class="calc__metric-grid calc__metric-grid--three">
-            <div class="calc__metric-mini">
-              <span class="calc__metric-mini-label">Qd (cantidad demandada)</span>
-              <span class="calc__metric-mini-value">{fmtN(evalInsp.qd)}</span>
-            </div>
-            <div class="calc__metric-mini">
-              <span class="calc__metric-mini-label">Qs (cantidad ofrecida)</span>
-              <span class="calc__metric-mini-value">{fmtN(evalInsp.qs)}</span>
-            </div>
-            <div class="calc__metric-mini">
-              <span class="calc__metric-mini-label">{evalInsp.exceso >= 0 ? 'Excedente' : 'Escasez'}</span>
-              <span class={`calc__metric-mini-value ${evalInsp.exceso >= 0 ? 'ok' : 'fail'}`}>
-                {fmtN(Math.abs(evalInsp.exceso))} uds
-              </span>
-            </div>
-          </div>
-          {evalInsp.exceso > 0 && (
-            <div class="eq__note">Hay excedente: la oferta supera la demanda. Los productores tendrán presión para bajar el precio hacia P*.</div>
-          )}
-          {evalInsp.exceso < 0 && (
-            <div class="eq__note">Hay escasez: la demanda supera la oferta. Los consumidores tendrán presión para subir el precio hacia P*.</div>
-          )}
-          {evalInsp.exceso === 0 && (
-            <div class="eq__note ok">Este precio es el de equilibrio. El mercado está despejado.</div>
+          {!eq.valido ? (
+            <div class="eq__note">Introduce curvas con equilibrio válido para analizar un precio.</div>
+          ) : (
+            <>
+              <div class="calc__metric-grid calc__metric-grid--three">
+                <div class="calc__metric-mini">
+                  <span class="calc__metric-mini-label">Qd (cantidad demandada)</span>
+                  <span class="calc__metric-mini-value">{fmtN(evalInsp.qd)}</span>
+                </div>
+                <div class="calc__metric-mini">
+                  <span class="calc__metric-mini-label">Qs (cantidad ofrecida)</span>
+                  <span class="calc__metric-mini-value">{fmtN(evalInsp.qs)}</span>
+                </div>
+                <div class="calc__metric-mini">
+                  <span class="calc__metric-mini-label">{evalInsp.exceso >= 0 ? 'Excedente' : 'Escasez'}</span>
+                  <span class={`calc__metric-mini-value ${evalInsp.exceso >= 0 ? 'ok' : 'fail'}`}>
+                    {fmtN(Math.abs(evalInsp.exceso))} uds
+                  </span>
+                </div>
+              </div>
+              {evalInsp.exceso > 0 && (
+                <div class="eq__note">Hay excedente: la oferta supera la demanda. Los productores tendrán presión para bajar el precio hacia P*.</div>
+              )}
+              {evalInsp.exceso < 0 && (
+                <div class="eq__note">Hay escasez: la demanda supera la oferta. Los consumidores tendrán presión para subir el precio hacia P*.</div>
+              )}
+              {evalInsp.exceso === 0 && (
+                <div class="eq__note ok">Este precio es el de equilibrio. El mercado está despejado.</div>
+              )}
+            </>
           )}
         </div>
 
@@ -171,8 +177,8 @@ export default function EquilibrioCalc() {
                   <span class="calc__label">Tipo de intervención</span>
                   <div class="calc__input-wrap">
                     <select
-                      value={topoTipo}
-                      onChange={(e) => setTopoTipo((e.target as HTMLSelectElement).value as 'maximo' | 'minimo')}
+                      value={topeTipo}
+                      onChange={(e) => setTopeTipo((e.target as HTMLSelectElement).value as 'maximo' | 'minimo')}
                     >
                       <option value="maximo">Precio máximo (tope máximo)</option>
                       <option value="minimo">Precio mínimo (tope mínimo)</option>
@@ -192,7 +198,7 @@ export default function EquilibrioCalc() {
                 <div class="eq__tope-result">
                   {!evalTope.efectivo ? (
                     <div class="eq__note">
-                      {topoTipo === 'maximo'
+                      {topeTipo === 'maximo'
                         ? 'El precio máximo está por encima del precio de equilibrio: no tiene efecto sobre el mercado.'
                         : 'El precio mínimo está por debajo del precio de equilibrio: no tiene efecto sobre el mercado.'}
                     </div>
@@ -216,10 +222,10 @@ export default function EquilibrioCalc() {
                           </div>
                         )}
                       </div>
-                      {topoTipo === 'maximo' && evalTope.escasez > 0 && (
+                      {topeTipo === 'maximo' && evalTope.escasez > 0 && (
                         <div class="eq__note">Un precio máximo efectivo genera escasez: los demandantes quieren más de lo que los productores ofrecen a ese precio.</div>
                       )}
-                      {topoTipo === 'minimo' && evalTope.excedente > 0 && (
+                      {topeTipo === 'minimo' && evalTope.excedente > 0 && (
                         <div class="eq__note">Un precio mínimo efectivo genera excedente: los productores ofrecen más de lo que los demandantes quieren a ese precio.</div>
                       )}
                     </>
@@ -312,11 +318,11 @@ interface ChartProps {
   precioInsp: number;
   evalInsp: { qd: number; qs: number; exceso: number };
   topeActivo: boolean;
-  topoTipo: 'maximo' | 'minimo';
+  topeTipo: 'maximo' | 'minimo';
   topePrecio: number;
 }
 
-function EquilibrioChart({ coef, eq, precioInsp, evalInsp, topeActivo, topoTipo, topePrecio }: ChartProps) {
+function EquilibrioChart({ coef, eq, precioInsp, evalInsp, topeActivo, topeTipo, topePrecio }: ChartProps) {
   const W = 360;
   const H = 280;
   const ML = 48;
@@ -329,7 +335,8 @@ function EquilibrioChart({ coef, eq, precioInsp, evalInsp, topeActivo, topoTipo,
   const { a, b, c, d } = coef;
 
   // Domain: P from 0 to a/b (demand touches P-axis when Qd=0: P=a/b)
-  const maxP = b > 0 ? (a / b) * 1.05 : 20;
+  // Clamp to 0.1 to prevent division-by-zero in yOf when a=0.
+  const maxP = Math.max(b > 0 ? (a / b) * 1.05 : 20, 0.1);
   // Q domain: max of demand at P=0 (=a) and supply at P=maxP (=c + d*maxP)
   const maxQ = Math.max(a, c + d * maxP, 1) * 1.05;
 
@@ -457,7 +464,7 @@ function EquilibrioChart({ coef, eq, precioInsp, evalInsp, topeActivo, topoTipo,
       {/* Tope line (if active) */}
       {topeActivo && (
         <line x1={ML} y1={yOf(topeP)} x2={ML + iW} y2={yOf(topeP)}
-          stroke={topoTipo === 'maximo' ? '#B83A3A' : '#1F6E6E'}
+          stroke={topeTipo === 'maximo' ? '#B83A3A' : '#1F6E6E'}
           stroke-width="1.8" stroke-dasharray="6 3" />
       )}
 

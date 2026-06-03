@@ -47,13 +47,12 @@ export default function ProductividadCalc() {
   const r2 = useMemo(() => computePeriod(p2), [p2]);
 
   const delta = useMemo(() => ({
-    trabajo: variacionPct(r1.trabajo ?? 0, r2.trabajo ?? 0),
-    horasValido: r1.trabajo !== null && r2.trabajo !== null,
-    capital: variacionPct(r1.capital ?? 0, r2.capital ?? 0),
-    global: variacionPct(r1.global ?? 0, r2.global ?? 0),
     trabajoNull: r1.trabajo === null || r2.trabajo === null,
     capitalNull: r1.capital === null || r2.capital === null,
     globalNull: r1.global === null || r2.global === null,
+    trabajo: r1.trabajo !== null && r2.trabajo !== null ? variacionPct(r1.trabajo, r2.trabajo) : null,
+    capital: r1.capital !== null && r2.capital !== null ? variacionPct(r1.capital, r2.capital) : null,
+    global: r1.global !== null && r2.global !== null ? variacionPct(r1.global, r2.global) : null,
   }), [r1, r2]);
 
   return (
@@ -84,15 +83,15 @@ export default function ProductividadCalc() {
         <div class="calc__metric-grid calc__metric-grid--three">
           <DeltaMetric
             label="Productividad del trabajo"
-            value={delta.trabajoNull ? null : variacionPct(r1.trabajo!, r2.trabajo!)}
+            value={delta.trabajo}
           />
           <DeltaMetric
             label="Productividad del capital"
-            value={delta.capitalNull ? null : variacionPct(r1.capital!, r2.capital!)}
+            value={delta.capital}
           />
           <DeltaMetric
             label="Productividad global"
-            value={delta.globalNull ? null : variacionPct(r1.global!, r2.global!)}
+            value={delta.global}
           />
         </div>
       </div>
