@@ -3,6 +3,7 @@ import { glob } from 'astro/loaders';
 import { FAMILIA_SLUGS } from './lib/dinamicas';
 import { FAMILIA_DEBATE_SLUGS } from './lib/debates';
 import { MATERIA_SLUGS } from './lib/proyectos';
+import { BLOQUE_SLUGS } from './lib/olimpiada';
 
 const ASIGNATURA_SLUGS = [
   'edmn-2bach',
@@ -448,6 +449,34 @@ const proyectos = defineCollection({
   }),
 });
 
+/* =========================================================
+   olimpiada/fichas — one MDX per thematic block (FPP, oferta-demanda, etc.)
+   ========================================================= */
+const olimpiadaFichas = defineCollection({
+  loader: glob({ pattern: 'olimpiada/fichas/**/*.{md,mdx}', base: './src/content' }),
+  schema: z.object({
+    title: z.string(), bloque: z.enum(BLOQUE_SLUGS), orden: z.number().int().min(0),
+    resumen: z.string(), conceptos_clave: z.array(z.string()).default([]),
+    herramienta: z.enum(['PuntoMuerto', 'Equilibrio', 'Elasticidad', 'ADASSimulator']).optional(),
+    preguntas_tipicas: z.array(z.string()).default([]),
+    competencias_clave: z.array(z.string()).default([]),
+    lang: z.enum(LANGS).default('es'), estado: z.enum(ESTADOS).default('borrador'),
+  }),
+});
+
+/* =========================================================
+   olimpiada/textos — press/taller texts with guided questions
+   ========================================================= */
+const olimpiadaTextos = defineCollection({
+  loader: glob({ pattern: 'olimpiada/textos/**/*.{md,mdx}', base: './src/content' }),
+  schema: z.object({
+    title: z.string(), fuente: z.string(), fecha: z.string(), descripcion: z.string(),
+    orden: z.number().int().min(0), temas: z.array(z.string()).default([]),
+    bloque: z.enum(BLOQUE_SLUGS).optional(),
+    lang: z.enum(LANGS).default('es'), estado: z.enum(ESTADOS).default('borrador'),
+  }),
+});
+
 export const collections = {
   libro,
   actividades,
@@ -464,4 +493,6 @@ export const collections = {
   juegos,
   jocsEconomicsPreguntas,
   retoCurso,
+  olimpiadaFichas,
+  olimpiadaTextos,
 };
