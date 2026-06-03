@@ -1,15 +1,18 @@
 ---
+/**
+ * Generadores hub: the external LOMLOE generators (hosted on the sibling project)
+ * plus native teacher tools (rubric, grading, templates) grouped by purpose.
+ */
 import BaseLayout from '@layouts/BaseLayout.astro';
+import { GENERADORES_EXTERNOS, gruposNativos } from '@/lib/generadores';
 
-// Both tools live in our sibling project oposicioneseconomia.es (same /programacion
-// page, two tabs). They are client-side generators that work for any LOMLOE
-// course, so we point teachers there instead of maintaining a fork here.
-const PROGRAMACION_URL = 'https://oposicioneseconomia.es/programacion';
+const grupos = gruposNativos();
+const TIPO_LABEL: Record<string, string> = { rubrica: 'Rúbrica', calculadora: 'Calculadora', plantilla: 'Plantilla' };
 ---
 
 <BaseLayout
   title="Generadores docentes"
-  description="Generador de Situaciones de Aprendizaje LOMLOE y creador de pruebas de evaluación. Dos herramientas que usamos a diario en el instituto."
+  description="Generadores LOMLOE (situaciones de aprendizaje, programación) y herramientas de evaluación y aula: rúbricas, calificaciones y plantillas para imprimir."
 >
   <div class="container">
     <nav class="breadcrumb"><a href="/">Inicio</a> <span class="sep">›</span> <span>Generadores</span></nav>
@@ -17,118 +20,74 @@ const PROGRAMACION_URL = 'https://oposicioneseconomia.es/programacion';
 
   <section class="hero">
     <div class="container">
-      <span class="kicker">Material transversal</span>
+      <span class="kicker">Material para el profe</span>
       <h1><span class="serif-italic-wonk accent">Generadores</span> docentes.</h1>
       <p class="lede">
-        Dos generadores que montamos para preparar oposiciones y que acabamos
-        usando cada semana en el instituto. Funcionan en el navegador, sin cuenta
-        ni instalación; el resultado se imprime o se guarda en PDF.
+        Lo que usamos para preparar las clases: los generadores LOMLOE de nuestro
+        proyecto hermano y un puñado de herramientas de evaluación y aula que funcionan
+        en el navegador, se autoguardan y se exportan o imprimen.
       </p>
     </div>
   </section>
 
   <section class="tools">
     <div class="container">
+      <h2 class="group-title">Generadores LOMLOE</h2>
       <div class="tool-grid">
-        <a class="tool-card" href={PROGRAMACION_URL} rel="external noopener" target="_blank">
-          <span class="tc-eyebrow">Generador</span>
-          <h2 class="tc-title serif">Situaciones de Aprendizaje</h2>
-          <p class="tc-desc">
-            Un asistente por pasos que arma una Situación de Aprendizaje LOMLOE
-            completa: saberes, competencias específicas, criterios, secuencia de
-            actividades, instrumentos de evaluación y medidas DUA. Lista para
-            imprimir.
-          </p>
-          <span class="tc-cta">Abrir en oposicioneseconomia.es →</span>
-        </a>
-
-        <a class="tool-card" href={PROGRAMACION_URL} rel="external noopener" target="_blank">
-          <span class="tc-eyebrow">Creador</span>
-          <h2 class="tc-title serif">Pruebas de evaluación</h2>
-          <p class="tc-desc">
-            Configura una prueba escogiendo bloques, número de preguntas y formato,
-            y la genera maquetada para entregar en clase. Pensada para no perder la
-            tarde montando exámenes a mano.
-          </p>
-          <span class="tc-cta">Abrir en oposicioneseconomia.es →</span>
-        </a>
+        {GENERADORES_EXTERNOS.map((t) => (
+          <a class="tool-card" href={t.href} rel="external noopener" target="_blank">
+            <span class="tc-eyebrow">{t.eyebrow}</span>
+            <h3 class="tc-title serif">{t.title}</h3>
+            <p class="tc-desc">{t.descripcion}</p>
+            <span class="tc-cta">Abrir en oposicioneseconomia.es →</span>
+          </a>
+        ))}
       </div>
 
+      {grupos.map((g) => (
+        <>
+          <h2 class="group-title">{g.label}</h2>
+          <div class="tool-grid">
+            {g.items.map((t) => (
+              <a class="tool-card" href={`/generadores/${t.slug}/`}>
+                <span class="tc-eyebrow">{TIPO_LABEL[t.tipo] ?? t.tipo}</span>
+                <h3 class="tc-title serif">{t.title}</h3>
+                <p class="tc-desc">{t.descripcion}</p>
+                <span class="tc-cta">Abrir →</span>
+              </a>
+            ))}
+          </div>
+        </>
+      ))}
+
       <p class="note">
-        Las dos viven en nuestro proyecto hermano,
+        Los generadores LOMLOE viven en
         <a href="https://oposicioneseconomia.es" class="editorial-link" rel="external noopener" target="_blank">oposicioneseconomia.es</a>,
-        donde las mantenemos. Las usamos también para preparar nuestras clases, por
-        si os sirven.
+        donde los mantenemos. El resto son herramientas que hemos montado aquí, por si os sirven.
       </p>
     </div>
   </section>
 </BaseLayout>
 
 <style>
-  .container {
-    max-width: 1240px;
-    margin: 0 auto;
-    padding: 0 clamp(1.5rem, 4vw, 3rem);
-  }
+  .container { max-width: 1240px; margin: 0 auto; padding: 0 clamp(1.5rem, 4vw, 3rem); }
   .breadcrumb { font-size: 0.92rem; color: var(--color-ink-mute); margin: 2rem 0; }
   .breadcrumb a { color: var(--color-ink-mute); text-decoration: none; }
   .breadcrumb a:hover { color: var(--color-terra); }
   .breadcrumb .sep { margin: 0 0.5em; color: var(--color-mustard); }
-
-  .hero { padding: 1rem 0 clamp(2rem, 5vw, 3.5rem); }
+  .hero { padding: 1rem 0 clamp(1.5rem, 4vw, 2.5rem); }
   h1 { max-width: 22ch; margin: 1rem 0 0.6rem; }
+  .kicker { font-family: var(--font-sans); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-terra); }
   .accent { color: var(--color-terra); }
-  .lede {
-    font-family: var(--font-serif);
-    font-style: italic;
-    font-size: 1.4rem;
-    color: var(--color-ink-soft);
-    max-width: 55ch;
-    margin: 1.5rem 0;
-    line-height: 1.5;
-    font-variation-settings: "SOFT" 80;
-  }
-
+  .lede { font-family: var(--font-serif); font-style: italic; font-size: 1.3rem; color: var(--color-ink-soft); max-width: 58ch; margin: 1.2rem 0; line-height: 1.5; font-variation-settings: "SOFT" 80; }
   .tools { padding: 0 0 clamp(3rem, 7vw, 6rem); }
-  .tool-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
-    margin-bottom: 2rem;
-  }
-  .tool-card {
-    display: block;
-    background: #fff;
-    border: 1px solid var(--color-line);
-    border-top: 3px solid var(--color-eco1, #1F6E6E);
-    padding: 1.6rem 1.75rem 1.4rem;
-    text-decoration: none;
-    color: inherit;
-    transition: box-shadow 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
-  }
-  .tool-card:hover {
-    box-shadow: 0 4px 18px rgba(42, 31, 24, 0.08);
-    border-top-color: var(--color-terra);
-    transform: translateY(-2px);
-  }
-  .tc-eyebrow {
-    font-size: 0.78rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--color-eco1, #1F6E6E);
-    font-weight: 600;
-  }
-  .tc-title { font-size: 1.6rem; line-height: 1.1; margin: 0.5rem 0 0.75rem; font-variation-settings: "SOFT" 80; }
+  .group-title { font-family: var(--font-serif); font-size: 1.5rem; font-weight: 500; margin: 1.5rem 0 1rem; }
+  .tool-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-bottom: 1.5rem; }
+  .tool-card { display: block; background: #fff; border: 1px solid var(--color-line); border-top: 3px solid var(--color-eco1, #1F6E6E); padding: 1.6rem 1.75rem 1.4rem; text-decoration: none; color: inherit; transition: box-shadow 0.18s ease, border-color 0.18s ease, transform 0.18s ease; }
+  .tool-card:hover { box-shadow: 0 4px 18px rgba(42, 31, 24, 0.08); border-top-color: var(--color-terra); transform: translateY(-2px); }
+  .tc-eyebrow { font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-eco1, #1F6E6E); font-weight: 600; }
+  .tc-title { font-size: 1.5rem; line-height: 1.1; margin: 0.5rem 0 0.75rem; font-variation-settings: "SOFT" 80; }
   .tc-desc { color: var(--color-ink-soft); font-size: 1rem; line-height: 1.6; margin: 0 0 1rem; }
   .tc-cta { font-size: 0.9rem; font-weight: 600; color: var(--color-terra); }
-
-  .note {
-    font-family: var(--font-serif);
-    font-style: italic;
-    color: var(--color-ink-soft);
-    max-width: 60ch;
-    font-size: 1.05rem;
-    line-height: 1.55;
-    font-variation-settings: "SOFT" 80;
-  }
+  .note { font-family: var(--font-serif); font-style: italic; color: var(--color-ink-soft); max-width: 60ch; font-size: 1.05rem; line-height: 1.55; font-variation-settings: "SOFT" 80; }
 </style>
