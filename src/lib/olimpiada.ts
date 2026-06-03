@@ -14,6 +14,12 @@ export const BLOQUES: Familia[] = [
   { slug: 'politica-economica',  label: 'Política monetaria y fiscal',       intro: 'Objetivos, instrumentos y efectos sobre precios, producción y empleo.', colorVar: '--color-ipe2' },
   { slug: 'mercado-trabajo',     label: 'Mercado de trabajo y desempleo',    intro: 'EPA, tasas, tipos de paro y el funcionamiento del mercado laboral.', colorVar: '--color-fopp' },
   { slug: 'contabilidad',        label: 'Contabilidad y rentabilidad',       intro: 'Balance, resultado, fondo de maniobra y ratios de rentabilidad.', colorVar: '--color-gpe' },
+  { slug: 'estructuras-mercado', label: 'Estructuras de mercado',            intro: 'Competencia perfecta, monopolio, oligopolio y competencia monopolística.', colorVar: '--color-terra' },
+  { slug: 'macro-magnitudes',    label: 'Macromagnitudes: PIB, inflación y ciclo', intro: 'Medición del PIB, IPC e inflación, crecimiento y ciclo económico.', colorVar: '--color-ipe1' },
+  { slug: 'sistema-financiero',  label: 'Dinero y sistema financiero',       intro: 'Funciones del dinero, creación bancaria, bancos centrales y tipos de interés.', colorVar: '--color-eeae' },
+  { slug: 'comercio-internacional', label: 'Comercio internacional',         intro: 'Ventaja comparativa, balanza de pagos, tipos de cambio y proteccionismo.', colorVar: '--color-mustard' },
+  { slug: 'empresa',             label: 'La empresa y sus áreas',            intro: 'Formas jurídicas, crecimiento, organización y áreas funcionales.', colorVar: '--color-eco4' },
+  { slug: 'fallos-mercado',      label: 'Fallos de mercado e intervención',  intro: 'Externalidades, bienes públicos, información asimétrica y poder de mercado.', colorVar: '--color-fopp' },
 ];
 
 export const BLOQUE_SLUGS = BLOQUES.map((b) => b.slug) as [string, ...string[]];

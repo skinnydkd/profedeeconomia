@@ -2,9 +2,10 @@ import { describe, it, expect } from 'vitest';
 import { BLOQUES, BLOQUE_SLUGS, bloqueMeta, SIMULACROS, GUIA } from './olimpiada.ts';
 
 describe('BLOQUES', () => {
-  it('has 6 core blocks with a color token each', () => {
-    expect(BLOQUES).toHaveLength(6);
+  it('has 12 blocks with a color token and unique slug each', () => {
+    expect(BLOQUES).toHaveLength(12);
     for (const b of BLOQUES) expect(b.colorVar).toMatch(/^--color-[a-z0-9-]+$/);
+    expect(new Set(BLOQUE_SLUGS).size).toBe(BLOQUES.length);
   });
 });
 describe('bloqueMeta', () => {
