@@ -13,6 +13,7 @@ export const MATERIAS: Familia[] = [
   { slug: 'matematicas',   label: 'Matemáticas',      intro: 'Datos, porcentajes, índices y gráficos para entender la economía.', colorVar: '--color-ipe2' },
   { slug: 'geografia',     label: 'Geografía',        intro: 'Territorio, recursos y comercio: dónde pasa la economía.',      colorVar: '--color-taller3' },
   { slug: 'etica-valores', label: 'Ética y valores',  intro: 'Decisiones económicas con dilemas morales y ciudadanía.',      colorVar: '--color-fopp' },
+  { slug: 'filosofia',     label: 'Filosofía',        intro: 'La buena vida, la justicia y el sentido del dinero.',          colorVar: '--color-mustard' },
   { slug: 'lengua',        label: 'Lengua',           intro: 'Comunicar, persuadir y analizar el discurso económico.',       colorVar: '--color-terra' },
   { slug: 'tecnologia',    label: 'Tecnología',       intro: 'Construir, programar y prototipar con mirada económica.',      colorVar: '--color-eco1' },
 ];

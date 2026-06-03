@@ -4,7 +4,7 @@ import { MATERIAS, MATERIA_SLUGS, materiaMeta } from './proyectos.ts';
 describe('MATERIAS', () => {
   it('declares the 6 subjects in display order with a color token each', () => {
     expect(MATERIAS.map((m) => m.slug)).toEqual([
-      'historia', 'matematicas', 'geografia', 'etica-valores', 'lengua', 'tecnologia',
+      'historia', 'matematicas', 'geografia', 'etica-valores', 'filosofia', 'lengua', 'tecnologia',
     ]);
     for (const m of MATERIAS) expect(m.colorVar).toMatch(/^--color-[a-z0-9-]+$/);
   });
