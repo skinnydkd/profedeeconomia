@@ -13,7 +13,7 @@ export const COMPONENTE_KEYS = [
   'PuntoMuerto', 'VANTIR', 'Ratios', 'ADASSimulator', 'InteresCompuesto', 'NominaESO',
   'Presupuesto503020', 'BuscadorItinerarios', 'GeneradorCVEuropass', 'DCF', 'RatiosBenchmark',
   'Elasticidad', 'MultiplicadorGasto', 'IRPFDeclaracion', 'CocheVsAlternativa', 'RIASEC',
-  'PresupuestoUni',
+  'PresupuestoUni', 'Productividad', 'EquilibrioMercado', 'DAFO', 'CanvasBM', 'BCG',
 ] as const;
 export type ComponenteKey = typeof COMPONENTE_KEYS[number];
 
@@ -29,6 +29,7 @@ export interface Herramienta {
   descripcion: string;
   competencias_clave: string[];
   competencias_especificas: string[];
+  unidades_relacionadas?: { asignatura: string; unidad: number }[];
 }
 
 export const FAMILIAS_HERRAMIENTA: Familia[] = [
@@ -36,7 +37,8 @@ export const FAMILIAS_HERRAMIENTA: Familia[] = [
   { slug: 'mercados-macro',      label: 'Mercados y macroeconomía',intro: 'Elasticidad, oferta y demanda agregada, multiplicador.', colorVar: '--color-eco1' },
   { slug: 'inversion-finanzas',  label: 'Inversión y finanzas',    intro: 'Valorar inversiones: VAN, TIR, descuento e interés.',   colorVar: '--color-mustard' },
   { slug: 'finanzas-personales', label: 'Finanzas personales',     intro: 'Nómina, IRPF, presupuesto y decisiones de gasto.',      colorVar: '--color-fopp' },
-  { slug: 'orientacion-fp',      label: 'Orientación y FP',        intro: 'Intereses, itinerarios y currículum.',                  colorVar: '--color-ipe2' },
+  { slug: 'orientacion-fp',         label: 'Orientación y FP',          intro: 'Intereses, itinerarios y currículum.',                  colorVar: '--color-ipe2' },
+  { slug: 'estrategia-planificacion', label: 'Estrategia y planificación', intro: 'Diagnóstico y diseño: DAFO, modelo de negocio y cartera.', colorVar: '--color-gpe' },
 ];
 
 export const HERRAMIENTAS: Herramienta[] = [
@@ -57,6 +59,11 @@ export const HERRAMIENTAS: Herramienta[] = [
   { componente: 'RIASEC',             slug: 'test-riasec',         title: 'Test de intereses RIASEC',              familia: 'orientacion-fp',      orden: 1, tipo: 'test',        descripcion: 'Identifica perfiles de interés profesional (modelo RIASEC).', competencias_clave: ['CPSAA', 'CE'], competencias_especificas: [] },
   { componente: 'GeneradorCVEuropass',slug: 'cv-europass',         title: 'Generador de CV Europass',              familia: 'orientacion-fp',      orden: 2, tipo: 'generador',   descripcion: 'Rellena y descarga un currículum en formato Europass.', competencias_clave: ['CPSAA', 'CE'], competencias_especificas: [] },
   { componente: 'BuscadorItinerarios',slug: 'itinerarios',         title: 'Buscador de itinerarios formativos',    familia: 'orientacion-fp',      orden: 3, tipo: 'buscador',    descripcion: 'Explora qué estudiar después según tus intereses y nivel.', competencias_clave: ['CPSAA', 'CE'], competencias_especificas: [] },
+  { componente: 'Productividad', slug: 'productividad', title: 'Productividad', familia: 'costes-resultados', orden: 4, tipo: 'calculadora', descripcion: 'Productividad del trabajo y del capital, global y su variación entre periodos.', competencias_clave: ['STEM', 'CD', 'CE'], competencias_especificas: [], unidades_relacionadas: [{ asignatura: 'edmn-2bach', unidad: 7 }, { asignatura: 'gpe-bach', unidad: 4 }] },
+  { componente: 'EquilibrioMercado', slug: 'equilibrio-mercado', title: 'Equilibrio de mercado', familia: 'mercados-macro', orden: 4, tipo: 'calculadora', descripcion: 'Oferta y demanda lineales: precio y cantidad de equilibrio, topes y excesos.', competencias_clave: ['STEM', 'CD'], competencias_especificas: [], unidades_relacionadas: [{ asignatura: 'eco-1bach', unidad: 4 }, { asignatura: 'eco-1bach', unidad: 5 }] },
+  { componente: 'DAFO', slug: 'dafo', title: 'DAFO', familia: 'estrategia-planificacion', orden: 1, tipo: 'plantilla', descripcion: 'Lienzo de Debilidades, Amenazas, Fortalezas y Oportunidades para rellenar.', competencias_clave: ['CPSAA', 'CE'], competencias_especificas: [], unidades_relacionadas: [{ asignatura: 'edmn-2bach', unidad: 3 }, { asignatura: 'ipe1-fp', unidad: 3 }, { asignatura: 'eeae-bach', unidad: 9 }] },
+  { componente: 'CanvasBM', slug: 'business-model-canvas', title: 'Business Model Canvas', familia: 'estrategia-planificacion', orden: 2, tipo: 'plantilla', descripcion: 'Los 9 bloques del modelo de negocio para diseñar y pivotar.', competencias_clave: ['CPSAA', 'CE'], competencias_especificas: [], unidades_relacionadas: [{ asignatura: 'edmn-2bach', unidad: 4 }, { asignatura: 'eco-4eso', unidad: 9 }, { asignatura: 'ipe2-fp', unidad: 6 }] },
+  { componente: 'BCG', slug: 'matriz-bcg', title: 'Matriz BCG', familia: 'estrategia-planificacion', orden: 3, tipo: 'plantilla', descripcion: 'Cartera de productos por crecimiento y cuota: estrella, interrogante, vaca y perro.', competencias_clave: ['CPSAA', 'CE'], competencias_especificas: [], unidades_relacionadas: [{ asignatura: 'edmn-2bach', unidad: 3 }, { asignatura: 'eeae-bach', unidad: 9 }] },
 ];
 
 const BY_SLUG = new Map(HERRAMIENTAS.map((h) => [`${h.familia}/${h.slug}`, h]));

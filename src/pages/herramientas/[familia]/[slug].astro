@@ -27,8 +27,8 @@ const TIPO_LABEL: Record<string, string> = {
 };
 
 const recursos = await getCollection('recursos');
-const unidades = unidadesPorComponente(recursos.filter((r) => r.data.estado === 'publicado'))
-  .get(componente) ?? [];
+const derivadas = unidadesPorComponente(recursos.filter((r) => r.data.estado === 'publicado')).get(componente) ?? [];
+const unidades = h.unidades_relacionadas ?? derivadas;
 ---
 
 <BaseLayout title={`${h.title} — Herramientas`} description={h.descripcion}>
