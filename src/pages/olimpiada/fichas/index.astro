@@ -1,0 +1,143 @@
+---
+/**
+ * Hub for olimpiada fichas-resumen, grouped by BLOQUE (thematic block).
+ * If no fichas are published yet, shows a «próximamente» note.
+ */
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { BLOQUES } from '@/lib/olimpiada';
+import { getCollection } from 'astro:content';
+
+const all = (await getCollection('olimpiadaFichas')).filter((e) => e.data.estado === 'publicado');
+
+// Group by bloque, preserving BLOQUES order.
+// We can't use groupByFamilia here because olimpiadaFichas doesn't have unidades_relacionadas.
+interface FichaItem {
+  slug: string;
+  data: typeof all[number]['data'];
+}
+const byBloque = new Map<string, FichaItem[]>();
+for (const b of BLOQUES) byBloque.set(b.slug, []);
+for (const e of all) {
+  const slug = e.id.replace(/^olimpiada\/fichas\//, '').replace(/\.(md|mdx)$/, '');
+  byBloque.get(e.data.bloque)?.push({ slug, data: e.data });
+}
+for (const items of byBloque.values()) {
+  items.sort((a, b) => a.data.orden - b.data.orden);
+}
+const groups = BLOQUES
+  .map((b) => ({ bloque: b, items: byBloque.get(b.slug) ?? [] }))
+  .filter((g) => g.items.length > 0);
+---
+
+<BaseLayout
+  title="Fichas-resumen — Olimpiada de Economía"
+  description="Los 6 bloques del temario de la Olimpiada de Economía sintetizados: conceptos clave, gráficos canónicos y ejercicios resueltos."
+>
+  <div class="container">
+    <nav class="breadcrumb">
+      <a href="/">Inicio</a> <span class="sep">›</span>
+      <a href="/olimpiada/">Olimpiada</a> <span class="sep">›</span>
+      <span>Fichas-resumen</span>
+    </nav>
+  </div>
+
+  <section class="hero">
+    <div class="container">
+      <span class="kicker">Teoría condensada</span>
+      <h1 class="serif">Fichas-resumen por bloque</h1>
+      <p class="lede">
+        Los 6 bloques del temario sintetizados para la Olimpiada:
+        conceptos esenciales, gráficos canónicos y ejercicios tipo
+        examen, con nivel 2.º Bach y 1.º carrera.
+      </p>
+    </div>
+  </section>
+
+  {all.length === 0 && (
+    <section class="prox">
+      <div class="container">
+        <div class="prox__box">
+          <p class="prox__title">Fichas en preparación</p>
+          <p>
+            Las fichas-resumen de los 6 bloques se publicarán próximamente.
+            Mientras tanto, practica con los <a href="/olimpiada/simulacros/">simulacros</a>
+            y el <a href="/olimpiada/banco/">banco de preguntas</a>.
+          </p>
+        </div>
+      </div>
+    </section>
+  )}
+
+  {groups.map((g) => (
+    <section class="bloque">
+      <div class="container">
+        <div class="bloque__head" style={`--blq-color: var(${g.bloque.colorVar})`}>
+          <h2>{g.bloque.label}</h2>
+          <p>{g.bloque.intro}</p>
+        </div>
+        <div class="card-grid">
+          {g.items.map((item) => (
+            <a class="card" href={`/olimpiada/fichas/${item.slug}/`} style={`--fam-color: var(${g.bloque.colorVar})`}>
+              <span class="card__eyebrow">{g.bloque.label}</span>
+              <h3 class="card__title serif">{item.data.title}</h3>
+              <p class="card__desc">{item.data.resumen}</p>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  ))}
+
+  <div class="container back-link">
+    <a href="/olimpiada/">← Olimpiada de Economía</a>
+  </div>
+</BaseLayout>
+
+<style>
+  .container { max-width: 1240px; margin: 0 auto; padding: 0 clamp(1.5rem, 4vw, 3rem); }
+  .breadcrumb { font-size: 0.92rem; color: var(--color-ink-mute); margin: 2rem 0; }
+  .breadcrumb a { color: var(--color-ink-mute); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--color-terra); }
+  .breadcrumb .sep { margin: 0 0.5em; color: var(--color-mustard); }
+
+  .hero { padding: 1rem 0 2rem; }
+  .kicker { font-family: var(--font-sans); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-terra); }
+  h1 { margin: 0.6rem 0 0.8rem; }
+  .lede { font-size: 1.2rem; color: var(--color-ink-soft); line-height: 1.55; max-width: 60ch; }
+
+  .prox { padding: 1rem 0 3rem; }
+  .prox__box {
+    background: var(--color-bg-soft); border: 1px solid var(--color-line);
+    border-left: 4px solid var(--color-mustard); border-radius: 0 8px 8px 0;
+    padding: 1.2rem 1.4rem; max-width: 600px;
+  }
+  .prox__title { font-family: var(--font-sans); font-weight: 700; margin: 0 0 0.5rem; color: var(--color-ink); }
+  .prox__box p { margin: 0; color: var(--color-ink-soft); }
+  .prox__box a { color: var(--color-terra); text-decoration: none; }
+  .prox__box a:hover { text-decoration: underline; }
+
+  .bloque { padding: 1.5rem 0; }
+  .bloque__head { border-left: 4px solid var(--blq-color); padding-left: 1rem; margin-bottom: 1.5rem; }
+  .bloque__head h2 { font-family: var(--font-serif); font-size: 1.7rem; font-weight: 500; margin: 0; }
+  .bloque__head p { color: var(--color-ink-soft); margin: 0.3rem 0 0; }
+
+  .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 1.2rem; }
+  .card {
+    display: flex; flex-direction: column; gap: 0.5rem;
+    padding: 1.4rem; background: var(--color-paper);
+    border: 1px solid var(--color-line); border-top: 4px solid var(--fam-color);
+    border-radius: 10px; text-decoration: none;
+    transition: transform .15s ease, box-shadow .15s ease;
+  }
+  .card:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(42, 31, 24, 0.1); }
+  .card__eyebrow {
+    font-family: var(--font-sans); font-size: 0.7rem; font-weight: 700;
+    letter-spacing: 0.08em; text-transform: uppercase; color: var(--fam-color);
+  }
+  .card__title { font-size: 1.3rem; color: var(--color-ink); margin: 0; }
+  .card__desc { color: var(--color-ink-soft); font-size: 0.95rem; line-height: 1.5; margin: 0; flex: 1; }
+
+  .back-link { padding: 0 0 3rem; }
+  .back-link a { font-family: var(--font-sans); font-size: 0.95rem; font-weight: 500; color: var(--color-terra); text-decoration: none; }
+  .back-link a:hover { text-decoration: underline; }
+</style>

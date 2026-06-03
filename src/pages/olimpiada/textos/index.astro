@@ -1,0 +1,141 @@
+---
+/**
+ * Taller de textos — list of olimpiadaTextos entries (published).
+ * Includes a «Cómo afrontar el comentario de texto» advisory note.
+ */
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const all = (await getCollection('olimpiadaTextos'))
+  .filter((e) => e.data.estado === 'publicado')
+  .sort((a, b) => a.data.orden - b.data.orden);
+---
+
+<BaseLayout
+  title="Taller de textos — Olimpiada de Economía"
+  description="Textos de prensa económica con preguntas guiadas estilo Parte III de la Olimpiada de Economía. Aprende a conectar actualidad con el temario."
+>
+  <div class="container">
+    <nav class="breadcrumb">
+      <a href="/">Inicio</a> <span class="sep">›</span>
+      <a href="/olimpiada/">Olimpiada</a> <span class="sep">›</span>
+      <span>Taller de textos</span>
+    </nav>
+  </div>
+
+  <section class="hero">
+    <div class="container">
+      <span class="kicker">Parte III — Comentario</span>
+      <h1 class="serif">Taller de textos</h1>
+      <p class="lede">
+        Practica la Parte III del examen: textos de prensa económica
+        con preguntas que conectan cada párrafo con un concepto del temario.
+      </p>
+    </div>
+  </section>
+
+  <section class="nota-afrontar">
+    <div class="container">
+      <div class="nota">
+        <strong>Cómo afrontar el comentario de texto</strong>
+        <ol>
+          <li>Lee el texto completo una vez sin subrayar, para hacerte una idea global.</li>
+          <li>En la segunda lectura, identifica los conceptos económicos que aparecen — uno por párrafo suele funcionar.</li>
+          <li>Lee las preguntas y vuelve a los párrafos que las responden: define el concepto, razona brevemente y apoya con datos del texto cuando los haya.</li>
+          <li>No hace falta desarrollar teoría extensa: precisión y conexión texto–temario es lo que puntúa.</li>
+          <li>Reserva unos 35 minutos para esta parte.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  {all.length === 0 && (
+    <section class="prox">
+      <div class="container">
+        <div class="prox__box">
+          <p class="prox__title">Textos en preparación</p>
+          <p>
+            Los textos del taller se publicarán próximamente.
+            Mientras tanto, practica con los <a href="/olimpiada/simulacros/">simulacros</a>
+            (la Parte III está incluida en cada examen oficial).
+          </p>
+        </div>
+      </div>
+    </section>
+  )}
+
+  {all.length > 0 && (
+    <section class="lista">
+      <div class="container">
+        <div class="card-grid">
+          {all.map((e) => (
+            <a
+              class="card"
+              href={`/olimpiada/textos/${e.id.replace(/^olimpiada\/textos\//, '').replace(/\.(md|mdx)$/, '')}/`}
+            >
+              <h2 class="card__title serif">{e.data.title}</h2>
+              <p class="card__source">{e.data.fuente} · {e.data.fecha}</p>
+              <p class="card__desc">{e.data.descripcion}</p>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <div class="container back-link">
+    <a href="/olimpiada/">← Olimpiada de Economía</a>
+  </div>
+</BaseLayout>
+
+<style>
+  .container { max-width: 1240px; margin: 0 auto; padding: 0 clamp(1.5rem, 4vw, 3rem); }
+  .breadcrumb { font-size: 0.92rem; color: var(--color-ink-mute); margin: 2rem 0; }
+  .breadcrumb a { color: var(--color-ink-mute); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--color-terra); }
+  .breadcrumb .sep { margin: 0 0.5em; color: var(--color-mustard); }
+
+  .hero { padding: 1rem 0 2rem; }
+  .kicker { font-family: var(--font-sans); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-terra); }
+  h1 { margin: 0.6rem 0 0.8rem; }
+  .lede { font-size: 1.2rem; color: var(--color-ink-soft); line-height: 1.55; max-width: 60ch; }
+
+  .nota-afrontar { padding: 0 0 2rem; }
+  .nota {
+    background: var(--color-bg-soft); border-left: 4px solid var(--color-terra);
+    border-radius: 0 8px 8px 0; padding: 1rem 1.2rem; max-width: 720px;
+  }
+  .nota strong { font-family: var(--font-sans); font-size: 0.95rem; display: block; margin-bottom: 0.6rem; color: var(--color-ink); }
+  .nota ol { margin: 0; padding-left: 1.4rem; }
+  .nota li { margin-bottom: 0.4em; font-size: 0.95rem; color: var(--color-ink-soft); line-height: 1.55; }
+  .nota li::marker { color: var(--color-terra); font-weight: 700; }
+
+  .prox { padding: 1rem 0 3rem; }
+  .prox__box {
+    background: var(--color-bg-soft); border: 1px solid var(--color-line);
+    border-left: 4px solid var(--color-mustard); border-radius: 0 8px 8px 0;
+    padding: 1.2rem 1.4rem; max-width: 600px;
+  }
+  .prox__title { font-family: var(--font-sans); font-weight: 700; margin: 0 0 0.5rem; color: var(--color-ink); }
+  .prox__box p { margin: 0; color: var(--color-ink-soft); }
+  .prox__box a { color: var(--color-terra); text-decoration: none; }
+  .prox__box a:hover { text-decoration: underline; }
+
+  .lista { padding: 0 0 3rem; }
+  .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 1.2rem; }
+  .card {
+    display: flex; flex-direction: column; gap: 0.5rem;
+    padding: 1.4rem; background: var(--color-paper);
+    border: 1px solid var(--color-line); border-top: 4px solid var(--color-terra);
+    border-radius: 10px; text-decoration: none;
+    transition: transform .15s ease, box-shadow .15s ease;
+  }
+  .card:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(42, 31, 24, 0.1); }
+  .card__title { font-family: var(--font-serif); font-size: 1.2rem; font-weight: 500; color: var(--color-ink); margin: 0; }
+  .card__source { font-family: var(--font-mono); font-size: 0.78rem; color: var(--color-ink-mute); margin: 0; }
+  .card__desc { color: var(--color-ink-soft); font-size: 0.92rem; line-height: 1.5; margin: 0; flex: 1; }
+
+  .back-link { padding: 0 0 3rem; }
+  .back-link a { font-family: var(--font-sans); font-size: 0.95rem; font-weight: 500; color: var(--color-terra); text-decoration: none; }
+  .back-link a:hover { text-decoration: underline; }
+</style>

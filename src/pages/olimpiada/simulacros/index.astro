@@ -1,0 +1,128 @@
+---
+/**
+ * List of simulacros (official exams + practice megaexamen).
+ * Each card shows title, convocatoria, year (omitted when 0),
+ * and two links: «Ver PDF» and «Descargar».
+ */
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { SIMULACROS, GUIA } from '@/lib/olimpiada';
+---
+
+<BaseLayout
+  title="Simulacros — Olimpiada de Economía"
+  description="Exámenes oficiales de la Olimpiada de Economía y megaexamen de práctica. Entrena cronometrándote las 2h30 y las 3 partes del examen."
+>
+  <div class="container">
+    <nav class="breadcrumb">
+      <a href="/">Inicio</a> <span class="sep">›</span>
+      <a href="/olimpiada/">Olimpiada</a> <span class="sep">›</span>
+      <span>Simulacros</span>
+    </nav>
+  </div>
+
+  <section class="hero">
+    <div class="container">
+      <span class="kicker">Práctica real</span>
+      <h1 class="serif">Simulacros de examen</h1>
+      <p class="lede">
+        Exámenes de convocatorias anteriores y material de práctica.
+        Úsalos en condiciones reales para calibrar tu nivel.
+      </p>
+    </div>
+  </section>
+
+  <section class="nota-uso">
+    <div class="container">
+      <div class="nota">
+        <strong>Cómo usar los simulacros</strong>
+        <ul>
+          <li>Reserva <strong>{GUIA.duracion}</strong> sin interrupciones.</li>
+          <li>Responde las 3 partes en orden: teoría ({GUIA.partes[0]?.puntos}), ejercicio ({GUIA.partes[1]?.puntos}) y comentario de texto ({GUIA.partes[2]?.puntos}).</li>
+          <li>Corrige con el solucionario o el megaexamen e identifica los bloques con más margen de mejora.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="lista">
+    <div class="container">
+      <div class="card-grid">
+        {SIMULACROS.map((s) => (
+          <div class="card" data-oficial={s.oficial ? 'true' : 'false'}>
+            <div class="card__head">
+              {!s.oficial && <span class="badge badge--practica">Práctica</span>}
+              {s.oficial && <span class="badge badge--oficial">Oficial</span>}
+            </div>
+            <h2 class="card__title serif">{s.title}</h2>
+            <p class="card__conv">{s.convocatoria}{s.anio > 0 ? ` · ${s.anio}` : ''}</p>
+            <div class="card__actions">
+              <a class="btn btn--primary" href={s.pdf} target="_blank" rel="noopener noreferrer">Ver PDF</a>
+              <a class="btn btn--ghost" href={s.pdf} download>Descargar</a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <div class="container back-link">
+    <a href="/olimpiada/">← Olimpiada de Economía</a>
+  </div>
+</BaseLayout>
+
+<style>
+  .container { max-width: 1240px; margin: 0 auto; padding: 0 clamp(1.5rem, 4vw, 3rem); }
+  .breadcrumb { font-size: 0.92rem; color: var(--color-ink-mute); margin: 2rem 0; }
+  .breadcrumb a { color: var(--color-ink-mute); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--color-terra); }
+  .breadcrumb .sep { margin: 0 0.5em; color: var(--color-mustard); }
+
+  .hero { padding: 1rem 0 2rem; }
+  .kicker { font-family: var(--font-sans); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-terra); }
+  h1 { margin: 0.6rem 0 0.8rem; }
+  .lede { font-size: 1.2rem; color: var(--color-ink-soft); line-height: 1.55; max-width: 60ch; }
+
+  .nota-uso { padding: 0 0 1.5rem; }
+  .nota {
+    background: var(--color-bg-soft); border-left: 4px solid var(--color-mustard);
+    border-radius: 0 8px 8px 0; padding: 1rem 1.2rem; max-width: 720px;
+  }
+  .nota strong { font-family: var(--font-sans); font-size: 0.95rem; display: block; margin-bottom: 0.5rem; color: var(--color-ink); }
+  .nota ul { margin: 0; padding-left: 1.3rem; }
+  .nota li { margin-bottom: 0.3em; font-size: 0.95rem; color: var(--color-ink-soft); line-height: 1.5; }
+  .nota li::marker { color: var(--color-mustard); }
+
+  .lista { padding: 0 0 3rem; }
+  .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 1.2rem; }
+  .card {
+    display: flex; flex-direction: column; gap: 0.7rem;
+    padding: 1.4rem; background: var(--color-paper);
+    border: 1px solid var(--color-line); border-top: 4px solid var(--color-edmn, #C44E2C);
+    border-radius: 10px;
+  }
+  .card[data-oficial="false"] { border-top-color: var(--color-mustard); }
+  .card__head { min-height: 1.5rem; }
+  .badge {
+    display: inline-block; font-family: var(--font-sans); font-size: 0.72rem;
+    font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase;
+    padding: 0.2rem 0.6rem; border-radius: 999px;
+  }
+  .badge--oficial { background: color-mix(in srgb, var(--color-edmn, #C44E2C) 12%, transparent); color: var(--color-edmn, #C44E2C); }
+  .badge--practica { background: color-mix(in srgb, var(--color-mustard) 15%, transparent); color: var(--color-mustard); }
+  .card__title { font-family: var(--font-serif); font-size: 1.2rem; font-weight: 500; color: var(--color-ink); margin: 0; }
+  .card__conv { font-family: var(--font-mono); font-size: 0.8rem; color: var(--color-ink-mute); margin: 0; }
+  .card__actions { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-top: 0.4rem; }
+  .btn {
+    font-family: var(--font-sans); font-size: 0.85rem; font-weight: 600;
+    padding: 0.45rem 1rem; border-radius: 6px; text-decoration: none;
+    transition: background .15s ease, color .15s ease;
+  }
+  .btn--primary { background: var(--color-terra); color: #fff; }
+  .btn--primary:hover { background: var(--color-terra-deep, #9C3A1C); }
+  .btn--ghost { border: 1.5px solid var(--color-line); color: var(--color-ink-soft); background: transparent; }
+  .btn--ghost:hover { border-color: var(--color-terra); color: var(--color-terra); }
+
+  .back-link { padding: 0 0 3rem; }
+  .back-link a { font-family: var(--font-sans); font-size: 0.95rem; font-weight: 500; color: var(--color-terra); text-decoration: none; }
+  .back-link a:hover { text-decoration: underline; }
+</style>

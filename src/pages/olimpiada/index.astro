@@ -1,0 +1,163 @@
+---
+/**
+ * Hub page for the «Olimpiada de Economía» prep section.
+ * Renders the exam guide (GUIA) and a card grid to the 5 sub-areas.
+ */
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { GUIA } from '@/lib/olimpiada';
+
+const subAreas = [
+  {
+    href: '/olimpiada/simulacros/',
+    title: 'Simulacros',
+    desc: 'Exámenes oficiales de convocatorias anteriores y un megaexamen de práctica. Entrena en condiciones reales (2h30).',
+    color: '--color-edmn',
+  },
+  {
+    href: '/olimpiada/fichas/',
+    title: 'Fichas-resumen',
+    desc: 'Los 6 bloques temáticos sintetizados: conceptos clave, gráficos canónicos y ejercicios tipo Olimpiada.',
+    color: '--color-eco1',
+  },
+  {
+    href: '/olimpiada/banco/',
+    title: 'Banco de preguntas',
+    desc: 'Test interactivo por bloques. Elige un tema y practica tipo test con feedback inmediato.',
+    color: '--color-taller3',
+  },
+  {
+    href: '/olimpiada/textos/',
+    title: 'Taller de textos',
+    desc: 'Textos de prensa económica con preguntas guiadas. Prepara la Parte III del examen.',
+    color: '--color-ipe2',
+  },
+  {
+    href: '/olimpiada/lecturas/',
+    title: 'Lecturas recomendadas',
+    desc: 'Bibliografía seleccionada para ir más allá del temario: economía conductual, teoría de juegos, finanzas y empresa.',
+    color: '--color-fopp',
+  },
+];
+---
+
+<BaseLayout
+  title="Olimpiada de Economía — Preparación"
+  description="Prepara la Olimpiada de Economía: simulacros de examen, fichas-resumen de los 6 bloques, banco de preguntas interactivo, taller de textos y lecturas. Nivel 2.º Bach / 1.º carrera."
+>
+  <div class="container">
+    <nav class="breadcrumb">
+      <a href="/">Inicio</a> <span class="sep">›</span>
+      <span>Olimpiada de Economía</span>
+    </nav>
+  </div>
+
+  <section class="hero">
+    <div class="container">
+      <span class="kicker">Preparación para la competición</span>
+      <h1><span class="serif-italic-wonk accent">Olimpiada</span> de Economía.</h1>
+      <p class="lede">
+        Material para preparar la Olimpiada de Economía de Bachillerato:
+        los 6 bloques del temario, simulacros de exámenes reales, banco de
+        preguntas interactivo y taller para la Parte III. Nivel 2.º Bach
+        y primer curso de carrera.
+      </p>
+    </div>
+  </section>
+
+  <section class="guia">
+    <div class="container">
+      <h2 class="section-title">Cómo es el examen</h2>
+      <div class="guia__meta">
+        <span class="guia__chip">Duración: {GUIA.duracion}</span>
+        <span class="guia__chip">Total: {GUIA.total}</span>
+      </div>
+      <ol class="guia__partes">
+        {GUIA.partes.map((parte) => (
+          <li class="guia__parte">
+            <div class="guia__parte-head">
+              <strong class="guia__parte-nombre">{parte.nombre}</strong>
+              <span class="guia__parte-puntos">{parte.puntos}</span>
+            </div>
+            <p class="guia__parte-desc">{parte.descripcion}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="subareas">
+    <div class="container">
+      <h2 class="section-title">Recursos de preparación</h2>
+      <div class="card-grid">
+        {subAreas.map((s) => (
+          <a class="card" href={s.href} style={`--fam-color: var(${s.color})`}>
+            <span class="card__eyebrow">Olimpiada</span>
+            <h3 class="card__title serif">{s.title}</h3>
+            <p class="card__desc">{s.desc}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .container { max-width: 1240px; margin: 0 auto; padding: 0 clamp(1.5rem, 4vw, 3rem); }
+  .breadcrumb { font-size: 0.92rem; color: var(--color-ink-mute); margin: 2rem 0; }
+  .breadcrumb a { color: var(--color-ink-mute); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--color-terra); }
+  .breadcrumb .sep { margin: 0 0.5em; color: var(--color-mustard); }
+
+  .hero { padding: 1rem 0 2rem; }
+  .kicker { font-family: var(--font-sans); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-terra); }
+  .accent { color: var(--color-terra); }
+  h1 { margin: 0.6rem 0 0.8rem; }
+  .lede { font-size: 1.2rem; color: var(--color-ink-soft); line-height: 1.55; max-width: 60ch; }
+
+  .section-title {
+    font-family: var(--font-serif); font-size: 1.7rem; font-weight: 500;
+    margin: 0 0 1.2rem; color: var(--color-ink);
+  }
+
+  /* Guia del examen */
+  .guia { padding: 1.5rem 0 2rem; background: var(--color-bg-soft); }
+  .guia__meta { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 1.4rem; }
+  .guia__chip {
+    font-family: var(--font-sans); font-size: 0.85rem; font-weight: 600;
+    background: var(--color-paper); border: 1.5px solid var(--color-line);
+    border-radius: 999px; padding: 0.3rem 0.9rem; color: var(--color-ink-soft);
+  }
+  .guia__partes { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 1rem; }
+  .guia__parte {
+    background: var(--color-paper); border: 1px solid var(--color-line);
+    border-left: 4px solid var(--color-terra); border-radius: 0 8px 8px 0;
+    padding: 1rem 1.2rem;
+  }
+  .guia__parte:nth-child(2) { border-left-color: var(--color-mustard); }
+  .guia__parte:nth-child(3) { border-left-color: var(--color-eco1, #1F6E6E); }
+  .guia__parte-head { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin-bottom: 0.4rem; }
+  .guia__parte-nombre { font-family: var(--font-serif); font-size: 1.1rem; color: var(--color-ink); }
+  .guia__parte-puntos {
+    font-family: var(--font-mono); font-size: 0.85rem; font-weight: 600;
+    color: var(--color-terra); white-space: nowrap;
+  }
+  .guia__parte-desc { color: var(--color-ink-soft); font-size: 0.95rem; line-height: 1.55; margin: 0; }
+
+  /* Sub-areas card grid */
+  .subareas { padding: 2rem 0 3rem; }
+  .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 1.2rem; }
+  .card {
+    display: flex; flex-direction: column; gap: 0.5rem;
+    padding: 1.4rem; background: var(--color-paper);
+    border: 1px solid var(--color-line); border-top: 4px solid var(--fam-color);
+    border-radius: 10px; text-decoration: none;
+    transition: transform .15s ease, box-shadow .15s ease;
+  }
+  .card:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(42, 31, 24, 0.1); }
+  .card__eyebrow {
+    font-family: var(--font-sans); font-size: 0.7rem; font-weight: 700;
+    letter-spacing: 0.08em; text-transform: uppercase; color: var(--fam-color);
+  }
+  .card__title { font-size: 1.3rem; color: var(--color-ink); margin: 0; }
+  .card__desc { color: var(--color-ink-soft); font-size: 0.95rem; line-height: 1.5; margin: 0; flex: 1; }
+</style>

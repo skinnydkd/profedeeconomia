@@ -1,0 +1,138 @@
+---
+/**
+ * Lecturas recomendadas, grouped by categoria.
+ * LECTURAS is populated in Task 5; this page renders gracefully when empty.
+ */
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { LECTURAS } from '@/lib/olimpiada';
+
+// Group by categoria, preserving insertion order.
+const byCategoria = new Map<string, typeof LECTURAS>();
+for (const l of LECTURAS) {
+  if (!byCategoria.has(l.categoria)) byCategoria.set(l.categoria, []);
+  byCategoria.get(l.categoria)!.push(l);
+}
+const grupos = Array.from(byCategoria.entries());
+---
+
+<BaseLayout
+  title="Lecturas recomendadas — Olimpiada de Economía"
+  description="Bibliografía seleccionada para la Olimpiada de Economía: economía conductual, teoría de juegos, clásicos del pensamiento, finanzas y empresa."
+>
+  <div class="container">
+    <nav class="breadcrumb">
+      <a href="/">Inicio</a> <span class="sep">›</span>
+      <a href="/olimpiada/">Olimpiada</a> <span class="sep">›</span>
+      <span>Lecturas recomendadas</span>
+    </nav>
+  </div>
+
+  <section class="hero">
+    <div class="container">
+      <span class="kicker">Para ir más allá</span>
+      <h1 class="serif">Lecturas recomendadas</h1>
+      <p class="lede">
+        Libros y recursos seleccionados para comprender la economía más allá
+        del temario. Útiles tanto para la Olimpiada como para cualquiera que
+        quiera una formación económica sólida.
+      </p>
+    </div>
+  </section>
+
+  {LECTURAS.length === 0 && (
+    <section class="prox">
+      <div class="container">
+        <div class="prox__box">
+          <p class="prox__title">Lista en preparación</p>
+          <p>
+            La bibliografía recomendada se publicará próximamente.
+            Incluirá categorías de economía conductual, teoría de juegos,
+            clásicos del pensamiento económico, finanzas y empresa.
+          </p>
+        </div>
+      </div>
+    </section>
+  )}
+
+  {grupos.map(([categoria, lecturas]) => (
+    <section class="categoria-section">
+      <div class="container">
+        <h2 class="categoria-title">{categoria}</h2>
+        <ul class="lecturas-list">
+          {lecturas.map((l) => (
+            <li class="lectura-item">
+              <div class="lectura__meta">
+                <strong class="lectura__titulo">{l.titulo}</strong>
+                <span class="lectura__autor">{l.autor}</span>
+              </div>
+              <p class="lectura__comentario">{l.comentario}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  ))}
+
+  <section class="webs-section">
+    <div class="container">
+      <h2 class="categoria-title">Webs y vídeos</h2>
+      <p class="webs-nota">
+        Recursos digitales de calidad para complementar el estudio:
+        el Canal de Khan Academy en español (economía y microeconomía),
+        Expansión y El País Economía para seguir actualidad, y los
+        Informes Económicos del Banco de España y el BCE para datos macro.
+        La curación detallada estará disponible próximamente.
+      </p>
+    </div>
+  </section>
+
+  <div class="container back-link">
+    <a href="/olimpiada/">← Olimpiada de Economía</a>
+  </div>
+</BaseLayout>
+
+<style>
+  .container { max-width: 1240px; margin: 0 auto; padding: 0 clamp(1.5rem, 4vw, 3rem); }
+  .breadcrumb { font-size: 0.92rem; color: var(--color-ink-mute); margin: 2rem 0; }
+  .breadcrumb a { color: var(--color-ink-mute); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--color-terra); }
+  .breadcrumb .sep { margin: 0 0.5em; color: var(--color-mustard); }
+
+  .hero { padding: 1rem 0 2rem; }
+  .kicker { font-family: var(--font-sans); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-terra); }
+  h1 { margin: 0.6rem 0 0.8rem; }
+  .lede { font-size: 1.2rem; color: var(--color-ink-soft); line-height: 1.55; max-width: 60ch; }
+
+  .prox { padding: 1rem 0 3rem; }
+  .prox__box {
+    background: var(--color-bg-soft); border: 1px solid var(--color-line);
+    border-left: 4px solid var(--color-mustard); border-radius: 0 8px 8px 0;
+    padding: 1.2rem 1.4rem; max-width: 600px;
+  }
+  .prox__title { font-family: var(--font-sans); font-weight: 700; margin: 0 0 0.5rem; color: var(--color-ink); }
+  .prox__box p { margin: 0; color: var(--color-ink-soft); font-size: 0.95rem; }
+
+  .categoria-section { padding: 1.5rem 0; }
+  .categoria-title {
+    font-family: var(--font-serif); font-size: 1.5rem; font-weight: 500;
+    margin: 0 0 1.2rem; color: var(--color-ink);
+    border-left: 4px solid var(--color-mustard); padding-left: 0.8rem;
+  }
+  .lecturas-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 1.2rem; }
+  .lectura-item {
+    display: flex; flex-direction: column; gap: 0.3rem;
+    padding-bottom: 1rem; border-bottom: 1px solid var(--color-line-soft, var(--color-line));
+  }
+  .lectura-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .lectura__meta { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.5rem; }
+  .lectura__titulo { font-family: var(--font-serif); font-size: 1.05rem; color: var(--color-ink); }
+  .lectura__autor { font-family: var(--font-sans); font-size: 0.85rem; color: var(--color-ink-mute); }
+  .lectura__comentario { margin: 0; font-size: 0.92rem; color: var(--color-ink-soft); line-height: 1.55; }
+
+  .webs-section { padding: 1.5rem 0 2rem; }
+  .webs-nota { color: var(--color-ink-soft); font-size: 0.95rem; line-height: 1.6; max-width: 680px; }
+
+  .back-link { padding: 0 0 3rem; }
+  .back-link a { font-family: var(--font-sans); font-size: 0.95rem; font-weight: 500; color: var(--color-terra); text-decoration: none; }
+  .back-link a:hover { text-decoration: underline; }
+</style>
