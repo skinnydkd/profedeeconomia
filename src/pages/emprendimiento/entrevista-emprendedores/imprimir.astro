@@ -1,0 +1,89 @@
+---
+import '@/styles/global.css';
+const obligatorias = [
+  '¿Qué forma jurídica adoptaste y por qué? (autónomo, SL, SA…)',
+  '¿Necesitabas financiación?',
+  '¿Cuánta y cómo la conseguiste?',
+  '¿Cuál es el coste más importante que tienes?',
+  '¿Qué es lo más duro de emprender?',
+  '¿Cuántas horas trabajas a la semana?',
+  '¿Cuánto tiempo tardaste en obtener beneficios?',
+  '¿Qué harías diferente si volvieras a empezar?',
+  '¿Tienes alguna anécdota divertida o interesante como emprendedor/a?',
+  '¿Qué consejo le darías a alguien que está pensando en emprender?',
+];
+---
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>Plantilla · Entrevista a emprendedores</title>
+  </head>
+  <body>
+    <main class="sheet">
+      <header class="head">
+        <div class="brand">profedeeconomia.es</div>
+        <h1>Entrevista a un emprendedor/a</h1>
+        <p class="sub">Economía · proyecto de emprendimiento</p>
+      </header>
+
+      <section class="datos">
+        <div><span>Nombre del negocio</span><span class="line"></span></div>
+        <div><span>Nombre del emprendedor/a</span><span class="line"></span></div>
+        <div class="full"><span>Dirección del negocio</span><span class="line"></span></div>
+        <div><span>Alumno/a 1</span><span class="line"></span></div>
+        <div><span>Alumno/a 2</span><span class="line"></span></div>
+      </section>
+
+      <h2>Preguntas obligatorias</h2>
+      <ol class="preg">
+        {obligatorias.map((q) => (
+          <li>
+            <p class="q">{q}</p>
+            <div class="ans"></div>
+          </li>
+        ))}
+      </ol>
+
+      <h2 class="break">Preguntas optativas (elige 5)</h2>
+      <ol class="preg">
+        {[1, 2, 3, 4, 5].map(() => (
+          <li>
+            <p class="q">Nº de pregunta: ____ · <span class="muted">(escribe la pregunta y la respuesta)</span></p>
+            <div class="ans tall"></div>
+          </li>
+        ))}
+      </ol>
+
+      <footer class="foot">profedeeconomia.es · material abierto CC BY-NC-SA · ¡gracias por su tiempo!</footer>
+    </main>
+
+    <script src="https://unpkg.com/pagedjs/dist/paged.polyfill.js"></script>
+  </body>
+</html>
+
+<style is:global>
+  @page { size: A4; margin: 14mm 15mm; }
+  body { background: #fff; color: #2A1F18; margin: 0; font-family: var(--font-sans, system-ui); }
+  .sheet { max-width: 180mm; margin: 0 auto; }
+  .head { border-bottom: 2px solid var(--color-terra); padding-bottom: 4mm; margin-bottom: 5mm; }
+  .brand { font-family: var(--font-mono); font-size: 8pt; letter-spacing: .1em; text-transform: uppercase; color: var(--color-terra); }
+  .head h1 { font-family: var(--font-serif); font-size: 19pt; margin: 1mm 0 0; }
+  .head .sub { font-size: 9pt; color: #5C4A3D; margin: 0.5mm 0 0; }
+  .datos { display: grid; grid-template-columns: 1fr 1fr; gap: 3mm 6mm; margin-bottom: 6mm; }
+  .datos .full { grid-column: 1 / -1; }
+  .datos > div { display: flex; flex-direction: column; gap: 1mm; }
+  .datos span:first-child { font-family: var(--font-mono); font-size: 7.5pt; text-transform: uppercase; letter-spacing: .06em; color: #8A7868; }
+  .line { height: 6mm; border-bottom: 1px solid #C9B89E; }
+  h2 { font-family: var(--font-serif); font-size: 13pt; color: var(--color-terra-deep); border-bottom: 1px solid #E5D4BD; padding-bottom: 1mm; margin: 6mm 0 3mm; }
+  h2.break { break-before: page; }
+  .preg { list-style: none; padding: 0; margin: 0; counter-reset: q; }
+  .preg li { counter-increment: q; margin-bottom: 4mm; break-inside: avoid; }
+  .preg .q { font-size: 10pt; font-weight: 600; margin: 0 0 1.5mm; }
+  .preg .q::before { content: counter(q) ". "; color: var(--color-terra); }
+  .muted { font-weight: 400; color: #8A7868; }
+  .ans { height: 14mm; border: 1px dashed #C9B89E; border-radius: 3px; }
+  .ans.tall { height: 20mm; }
+  .foot { margin-top: 6mm; font-family: var(--font-mono); font-size: 7.5pt; color: #8A7868; text-align: center; }
+</style>

@@ -1,0 +1,72 @@
+---
+import { getCollection } from 'astro:content';
+
+interface Props {
+  ejemplo?: any;
+  /** Alternatively, look up the example by file slug (for embedding in phases). */
+  slug?: string;
+}
+let { ejemplo, slug } = Astro.props;
+if (!ejemplo && slug) {
+  const all = await getCollection('emprendimientoEjemplos');
+  ejemplo = all.find((e) => e.id.split('/').pop()?.replace(/\.mdx?$/, '') === slug)?.data;
+}
+const e = ejemplo;
+const tipoLabel: Record<string, string> = { real: 'Empresa real', ficticia: 'Ficticia (con chispa)', local: 'Negocio local' };
+const cuatroP = e && e.modelo === '4p';
+const bmc = e?.bmc ?? {};
+const bmcOrden: { k: string; label: string }[] = [
+  { k: 'socios', label: 'Socios clave' }, { k: 'actividades', label: 'Actividades clave' }, { k: 'recursos', label: 'Recursos clave' },
+  { k: 'propuesta', label: 'Propuesta de valor' }, { k: 'relaciones', label: 'Relación con clientes' }, { k: 'canales', label: 'Canales' },
+  { k: 'segmentos', label: 'Segmentos de cliente' }, { k: 'costes', label: 'Estructura de costes' }, { k: 'ingresos', label: 'Fuentes de ingreso' },
+];
+---
+{e && (
+  <article class="ejemplo" data-tipo={e.tipo}>
+    <div class="ejemplo__bar">
+      <span class="ejemplo__tipo">{tipoLabel[e.tipo] ?? e.tipo}</span>
+      <span class="ejemplo__sector">{e.sector}</span>
+      <span class="ejemplo__modelo">{cuatroP ? '4 P' : 'BMC'}</span>
+    </div>
+    <h3 class="ejemplo__nombre">{e.nombre}</h3>
+    <p class="ejemplo__meta"><strong>Resuelve:</strong> {e.problema} · <strong>Para:</strong> {e.segmento}</p>
+
+    {cuatroP ? (
+      <div class="ejemplo__4p">
+        <div><span class="k">Producto</span>{e.p_producto}</div>
+        <div><span class="k">Precio</span>{e.p_precio}</div>
+        <div><span class="k">Plaza</span>{e.p_plaza}</div>
+        <div><span class="k">Promoción</span>{e.p_promocion}</div>
+      </div>
+    ) : (
+      <div class="ejemplo__bmc">
+        {bmcOrden.map((b) => bmc[b.k] && (
+          <div><span class="k">{b.label}</span>{bmc[b.k]}</div>
+        ))}
+      </div>
+    )}
+
+    <p class="ejemplo__chispa"><span class="spark">La chispa —</span> {e.chispa}</p>
+  </article>
+)}
+
+<style>
+  .ejemplo { background: var(--color-paper); border: 1px solid var(--color-line); border-radius: 8px; padding: 1.4rem 1.6rem; margin: 1.5rem 0; --tipo: var(--color-eco1); }
+  .ejemplo[data-tipo="real"] { --tipo: var(--color-eco1); }
+  .ejemplo[data-tipo="ficticia"] { --tipo: var(--color-terra); }
+  .ejemplo[data-tipo="local"] { --tipo: var(--color-mustard); }
+  .ejemplo__bar { display: flex; flex-wrap: wrap; gap: 0.6rem; align-items: center; font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; }
+  .ejemplo__tipo { color: var(--color-bg); background: var(--tipo); padding: 0.2rem 0.6rem; border-radius: 999px; font-weight: 600; }
+  .ejemplo__sector { color: var(--color-ink-mute); }
+  .ejemplo__modelo { margin-left: auto; color: var(--tipo); font-weight: 700; }
+  .ejemplo__nombre { font-family: var(--font-serif); font-size: 1.5rem; margin: 0.6rem 0 0.3rem; }
+  .ejemplo__meta { font-size: 0.92rem; color: var(--color-ink-soft); margin: 0 0 1rem; }
+  .ejemplo__meta strong { color: var(--color-ink); }
+  .ejemplo__4p { display: grid; grid-template-columns: 1fr 1fr; gap: 0.7rem; }
+  .ejemplo__bmc { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.6rem; }
+  .ejemplo__4p > div, .ejemplo__bmc > div { background: var(--color-bg); border-left: 3px solid var(--tipo); border-radius: 0 5px 5px 0; padding: 0.5rem 0.7rem; font-size: 0.88rem; line-height: 1.4; color: var(--color-ink-soft); }
+  .ejemplo__4p .k, .ejemplo__bmc .k { display: block; font-family: var(--font-sans); font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--tipo); font-weight: 700; margin-bottom: 0.15rem; }
+  .ejemplo__chispa { margin: 1.1rem 0 0; font-family: var(--font-serif); font-style: italic; font-size: 1.02rem; color: var(--color-ink); }
+  .ejemplo__chispa .spark { color: var(--color-mustard-deep); font-style: normal; font-family: var(--font-sans); font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; }
+  @media (max-width: 600px) { .ejemplo__bmc { grid-template-columns: 1fr 1fr; } .ejemplo__4p { grid-template-columns: 1fr; } }
+</style>

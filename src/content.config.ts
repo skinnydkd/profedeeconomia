@@ -483,6 +483,52 @@ const olimpiadaTextos = defineCollection({
   }),
 });
 
+/* =========================================================
+   emprendimiento/ejemplos — worked company examples (4P / BMC) with chispa.
+   emprendimiento/actividades — entrepreneurial-attitude activity kit.
+   ========================================================= */
+const emprendimientoEjemplos = defineCollection({
+  loader: glob({ pattern: 'emprendimiento/ejemplos/**/*.{md,mdx}', base: './src/content' }),
+  schema: z.object({
+    nombre: z.string(),
+    tipo: z.enum(['real', 'ficticia', 'local']),
+    sector: z.string(),
+    problema: z.string(),
+    segmento: z.string(),
+    modelo: z.enum(['4p', 'bmc']),
+    p_producto: z.string().optional(),
+    p_precio: z.string().optional(),
+    p_plaza: z.string().optional(),
+    p_promocion: z.string().optional(),
+    bmc: z
+      .object({
+        socios: z.string(), actividades: z.string(), recursos: z.string(),
+        propuesta: z.string(), relaciones: z.string(), canales: z.string(),
+        segmentos: z.string(), costes: z.string(), ingresos: z.string(),
+      })
+      .partial()
+      .optional(),
+    chispa: z.string(),
+    orden: z.number().int().default(0),
+    lang: z.enum(LANGS).default('es'),
+    estado: z.enum(ESTADOS).default('borrador'),
+  }),
+});
+
+const emprendimientoActividades = defineCollection({
+  loader: glob({ pattern: 'emprendimiento/actividades/**/*.{md,mdx}', base: './src/content' }),
+  schema: z.object({
+    title: z.string(),
+    objetivo: z.string(),
+    duracion: z.string().optional(),
+    agrupacion: z.string().optional(),
+    materiales: z.array(z.string()).default([]),
+    orden: z.number().int().default(0),
+    lang: z.enum(LANGS).default('es'),
+    estado: z.enum(ESTADOS).default('borrador'),
+  }),
+});
+
 export const collections = {
   libro,
   actividades,
@@ -493,6 +539,8 @@ export const collections = {
   ebau,
   proyecto,
   proyectoTransversal,
+  emprendimientoEjemplos,
+  emprendimientoActividades,
   dinamicas,
   debates,
   proyectos,
