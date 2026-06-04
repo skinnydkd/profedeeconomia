@@ -44,7 +44,7 @@ preguntas:
       - "60.000 €."
       - "120.000 €."
     correcta: 2
-    explicacion: "La SA exige 60.000 € de capital mínimo dividido en acciones libremente transmisibles, frente a los 3.000 € de la SL en participaciones no cotizables."
+    explicacion: "La SA exige 60.000 € de capital mínimo dividido en acciones libremente transmisibles, frente a 1 € de la SL (desde la Ley 18/2022 «Crea y Crece»; antes 3.000 €) en participaciones no cotizables."
   - enunciado: "En una cooperativa, la regla básica de gobernanza es…"
     opciones:
       - "Cada socio vota en proporción al capital aportado."
