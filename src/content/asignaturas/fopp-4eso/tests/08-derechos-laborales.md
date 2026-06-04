@@ -9,10 +9,10 @@ preguntas:
     opciones:
       - "1.080 € brutos mensuales en 12 pagas."
       - "1.134 € brutos mensuales en 14 pagas."
-      - "1.184 € brutos mensuales en 14 pagas (16.576 € anuales)."
+      - "1.221 € brutos mensuales en 14 pagas (17.094 € anuales)."
       - "1.260 € brutos mensuales en 14 pagas."
     correcta: 2
-    explicacion: "El SMI 2026 está fijado en **1.184 € brutos mensuales en 14 pagas**, lo que equivale a 16.576 € anuales. Es un suelo legal absoluto: ningún contrato ni convenio puede pagar menos. Pagar por debajo del SMI es una infracción muy grave del Estatuto de los Trabajadores."
+    explicacion: "El SMI 2026 está fijado en **1.221 € brutos mensuales en 14 pagas**, lo que equivale a 17.094 € anuales. Es un suelo legal absoluto: ningún contrato ni convenio puede pagar menos. Pagar por debajo del SMI es una infracción muy grave del Estatuto de los Trabajadores."
   - enunciado: "¿Cuál es la jornada máxima legal establecida por el Estatuto de los Trabajadores (art. 34)?"
     opciones:
       - "35 horas semanales en cómputo mensual, con máximo de 8 horas diarias."
@@ -61,7 +61,7 @@ preguntas:
       - "Un accidente leve sin baja médica; no requiere parte oficial."
     correcta: 1
     explicacion: "El **accidente in itinere** es el sufrido en el trayecto habitual al trabajo (moto, coche, andando, transporte público), sin desvíos significativos y dentro de un margen razonable de tiempo. La ley lo equipara a **accidente laboral**: la Mutua paga el **75 % del salario desde el primer día** (frente al 60 % desde el cuarto en enfermedad común) y la asistencia sanitaria corre por cuenta de la Mutua."
-  - enunciado: "Tu empresa te paga el SMI (1.184 €/mes) pero el convenio colectivo de tu sector fija 1.350 € para tu categoría. ¿Qué dice la ley?"
+  - enunciado: "Tu empresa te paga el SMI (1.221 €/mes) pero el convenio colectivo de tu sector fija 1.350 € para tu categoría. ¿Qué dice la ley?"
     opciones:
       - "Es legal: el SMI siempre prevalece y el convenio solo es una recomendación."
       - "Es legal si tú firmaste el contrato aceptando el SMI: el principio de autonomía contractual lo permite."

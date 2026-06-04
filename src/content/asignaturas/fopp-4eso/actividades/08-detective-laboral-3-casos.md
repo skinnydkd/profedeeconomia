@@ -19,7 +19,7 @@ estado: publicado
 
 ## Planteamiento
 
-Hemos estudiado en el Tema 8 los diez derechos básicos que el Estatuto de los Trabajadores reconoce a cualquier persona asalariada en España. Sabes que el SMI 2026 son 1.184 €/mes en 14 pagas, que la jornada máxima son 40 horas semanales, que las vacaciones son 30 días naturales y que el convenio colectivo siempre mejora el ET. Toca **aplicar ese conocimiento a documentos reales**.
+Hemos estudiado en el Tema 8 los diez derechos básicos que el Estatuto de los Trabajadores reconoce a cualquier persona asalariada en España. Sabes que el SMI 2026 son 1.221 €/mes en 14 pagas, que la jornada máxima son 40 horas semanales, que las vacaciones son 30 días naturales y que el convenio colectivo siempre mejora el ET. Toca **aplicar ese conocimiento a documentos reales**.
 
 En esta actividad recibís, por parejas, tres casos anónimos basados en denuncias reales atendidas por la Inspección de Trabajo y por sindicatos sectoriales. Cada caso incluye **un contrato y dos nóminas**. Vuestra tarea es la de un detective laboral: leer con calma, aplicar la **checklist de 12 puntos**, **identificar las vulneraciones**, **citar el artículo concreto** del ET o de la LPRL que se incumple y **proponer la ruta de reclamación** adecuada.
 
@@ -47,7 +47,7 @@ Cada pareja trabaja con su dossier (contrato + dos nóminas) y aplica los **12 p
 - **AMARILLO** si hay duda o información insuficiente.
 - **ROJO** si detectan una vulneración, **citando el artículo concreto** (ET art. X o LPRL art. Y) y **explicando en una frase** qué se incumple.
 
-Pueden y deben consultar el convenio aplicable en el REGCON, calcular el precio/hora del SMI 2026 (1.184 × 14 / 1.826 horas anuales = **9,08 €/hora** aproximadamente) y comparar con lo que cobra el trabajador del caso.
+Pueden y deben consultar el convenio aplicable en el REGCON, calcular el precio/hora del SMI 2026 (1.221 × 14 / 1.826 horas anuales = **9,36 €/hora** aproximadamente) y comparar con lo que cobra el trabajador del caso.
 
 ### 3. Propuesta de ruta de reclamación (10 min)
 
@@ -80,7 +80,7 @@ Esta checklist se aplica a cada caso. Marca cada punto en VERDE, AMARILLO o ROJO
      indefinido.)
 
   3. ¿El salario base cumple o supera el SMI 2026
-     (1.184 €/mes en 14 pagas o 16.576 €/año)?
+     (1.221 €/mes en 14 pagas o 17.094 €/año)?
      (ET art. 27.)
 
   4. ¿El salario cumple o supera el del CONVENIO
@@ -145,14 +145,14 @@ Esta checklist se aplica a cada caso. Marca cada punto en VERDE, AMARILLO o ROJO
 - Tipo de contrato: **temporal eventual por circunstancias de la producción**, sin causa específica indicada.
 - Duración: 4 meses (1 junio a 30 septiembre 2026), **prorrogado verbalmente otros 2 meses** sin firmar nuevo documento.
 - Categoría: camarera.
-- Salario: **1.184 € brutos/mes** (= SMI 2026), sin pagas extras especificadas.
+- Salario: **1.221 € brutos/mes** (= SMI 2026), sin pagas extras especificadas.
 - Jornada: 40 horas semanales, "según necesidades del servicio".
 - No consta el convenio colectivo aplicable.
 - Cláusula: "La trabajadora se compromete a renunciar a sus vacaciones a cambio de un complemento de 50 €/mes."
 
 **Nóminas (resumen, dos meses representativos)**
 
-- Julio: salario base 1.184 €, sin línea de paga extra prorrateada, sin línea de vacaciones, complemento "renuncia vacaciones" 50 €.
+- Julio: salario base 1.221 €, sin línea de paga extra prorrateada, sin línea de vacaciones, complemento "renuncia vacaciones" 50 €.
 - Agosto: idéntica a julio.
 
 **Pistas para los detectives**
