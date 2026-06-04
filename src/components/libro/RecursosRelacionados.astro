@@ -1,0 +1,66 @@
+---
+import type { RecursosDeUnidad, TipoRecurso, RecursoRef } from '@/lib/recursos-relacionados';
+import { tieneRecursos } from '@/lib/recursos-relacionados';
+
+interface Props { recursos: RecursosDeUnidad; asignaturaLabel: string; unidad: number; }
+const { recursos, asignaturaLabel, unidad } = Astro.props;
+
+const GRUPOS: { tipo: TipoRecurso; label: string }[] = [
+  { tipo: 'dinamica', label: 'Dinámicas de aula' },
+  { tipo: 'debate', label: 'Debates' },
+  { tipo: 'herramienta', label: 'Herramientas' },
+  { tipo: 'proyecto', label: 'Proyectos interdisciplinares' },
+  { tipo: 'juego', label: 'Juegos' },
+  { tipo: 'emprendimiento', label: 'Proyecto de emprendimiento' },
+];
+const visibles = GRUPOS.filter((g) => recursos[g.tipo].length > 0);
+const cajutNota = `El profe elige ${asignaturaLabel} · Unidad ${unidad} y los alumnos responden desde el móvil.`;
+---
+
+<section class="recursos" aria-labelledby="recursos-title">
+  <h2 id="recursos-title" class="recursos__title">Para el aula</h2>
+
+  {tieneRecursos(recursos) ? (
+    <div class="recursos__grupos">
+      {visibles.map((g) => (
+        <div class="recursos__grupo">
+          <h3 class="recursos__grupo-title">{g.label}</h3>
+          <ul class="recursos__list">
+            {recursos[g.tipo].map((r: RecursoRef) => (
+              <li class="recursos__item" style={`--card: var(${r.familiaColorVar});`}>
+                <a class="recursos__link" href={r.href}>{r.title}</a>
+                {r.nota && <span class="recursos__nota">{r.nota}</span>}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  ) : (
+    <p class="recursos__vacio">Aún no hay recursos transversales ligados a esta unidad. Puedes repasarla con Cajút.</p>
+  )}
+
+  <a class="recursos__cajut" href="/juegos/cajut/host/">
+    <span class="recursos__cajut-kicker">Repaso en clase</span>
+    <strong>Repasa esta unidad con Cajút</strong>
+    <span class="recursos__cajut-nota">{cajutNota}</span>
+  </a>
+</section>
+
+<style>
+  .recursos { margin: 3rem 0 1rem; padding-top: 1.5rem; border-top: 1px solid var(--color-line); }
+  .recursos__title { font-family: var(--font-sans); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-mustard-deep); margin: 0 0 1.2rem; }
+  .recursos__grupos { display: grid; gap: 1.4rem; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+  .recursos__grupo-title { font-family: var(--font-sans); font-size: 0.95rem; font-weight: 600; margin: 0 0 0.5rem; color: var(--color-ink); }
+  .recursos__list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.5rem; }
+  .recursos__item { border-left: 3px solid var(--card, var(--color-mustard)); padding-left: 0.7rem; }
+  .recursos__link { color: var(--color-terra); text-decoration: none; font-weight: 500; }
+  .recursos__link:hover { text-decoration: underline; }
+  .recursos__nota { display: block; font-family: var(--font-serif); font-style: italic; font-size: 0.9rem; color: var(--color-ink-soft); margin-top: 0.1rem; }
+  .recursos__vacio { color: var(--color-ink-soft); font-style: italic; }
+  .recursos__cajut { display: block; margin-top: 1.6rem; padding: 1.1rem 1.3rem; border: 1px solid var(--color-line); border-left: 4px solid var(--color-terra); border-radius: 0 6px 6px 0; background: var(--color-bg-cream); color: var(--color-ink); text-decoration: none; }
+  .recursos__cajut:hover { box-shadow: 0 4px 16px rgba(42,31,24,0.08); }
+  .recursos__cajut-kicker { display: block; font-family: var(--font-sans); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-terra); }
+  .recursos__cajut strong { display: block; font-family: var(--font-serif); font-size: 1.2rem; margin: 0.15rem 0; }
+  .recursos__cajut-nota { display: block; font-size: 0.9rem; color: var(--color-ink-soft); }
+</style>
