@@ -1,6 +1,7 @@
 /** @jsxImportSource preact */
 import { useEffect, useMemo, useState } from 'preact/hooks';
 import { loadJSON, removeKey, saveJSON } from '../lib/storage';
+import './QuizPlayer.css';
 
 export type Pregunta = {
   enunciado: string;
