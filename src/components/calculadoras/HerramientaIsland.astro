@@ -30,6 +30,7 @@ import MatrizBCG from '@components/calculadoras/MatrizBCG.tsx';
 interface Props { componente?: string }
 const { componente } = Astro.props;
 ---
+<div class="hi__web">
 {componente === 'PuntoMuerto' && <PuntoMuertoCalc client:load />}
 {componente === 'VANTIR' && <VANTIRCalc client:load />}
 {componente === 'Ratios' && <RatiosCalc client:load />}
@@ -52,3 +53,13 @@ const { componente } = Astro.props;
 {componente === 'DAFO' && <DAFOCanvas client:load />}
 {componente === 'CanvasBM' && <BusinessModelCanvas client:load />}
 {componente === 'BCG' && <MatrizBCG client:load />}
+</div>
+<p class="hi__print">↗ Herramienta interactiva disponible en la versión digital del libro (profedeeconomia.es).</p>
+
+<style>
+  .hi__print { display: none; }
+  @media print {
+    .hi__web { display: none !important; }
+    .hi__print { display: block; font-family: var(--font-sans); font-style: italic; font-size: 9pt; color: var(--color-ink-mute); margin: 2mm 0; padding-left: 3mm; border-left: 2pt solid var(--color-mustard); }
+  }
+</style>
