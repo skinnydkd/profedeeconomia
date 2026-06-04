@@ -19,7 +19,13 @@ export default defineConfig({
   integrations: [
     preact({ compat: false }),
     mdx(),
-    sitemap(),
+    // Keep noindex routes (print editions and individual slide decks) out of the
+    // sitemap so they aren't submitted for indexing. The /diapositivas/ index stays.
+    sitemap({
+      filter: (page) =>
+        !page.includes('/imprimir/') &&
+        !/\/diapositivas\/[^/]+\/$/.test(page),
+    }),
   ],
 
   // i18n: at the MVP only Spanish is published. Catalan/Valencian is
