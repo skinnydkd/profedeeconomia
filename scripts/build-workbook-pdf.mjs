@@ -119,7 +119,7 @@ console.log(`\nIniciando servidor estático en http://localhost:${PORT}`);
 const server = await startStaticServer(distDir, PORT);
 
 {
-  const probeUrl = `http://localhost:${PORT}/${asignaturas[0]}/actividades/imprimir/`;
+  const probeUrl = `http://localhost:${PORT}/${asignaturas[0]}/actividades/imprimir/profesor/`;
   try {
     const probe = await fetch(probeUrl);
     if (!probe.ok) {
