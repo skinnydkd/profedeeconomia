@@ -1,0 +1,28 @@
+---
+import type { Deck } from '@/lib/slides/types';
+import Slide from './Slide.astro';
+
+interface Props { deck: Deck }
+const { deck } = Astro.props;
+const total = deck.slides.length;
+const pad = (n: number) => String(n).padStart(2, '0');
+---
+<div class="deck-page" data-asig={deck.asignatura}>
+  <div class="deck">
+    {deck.slides.map((s, i) => <Slide slide={s} pos={`${pad(i + 1)}/${pad(total)}`} />)}
+  </div>
+</div>
+
+<script>
+  // Arrow-key / space navigation: scroll between slides centered in the viewport.
+  const slides = Array.from(document.querySelectorAll('.slide'));
+  let i = 0;
+  const go = (n: number) => {
+    i = Math.max(0, Math.min(slides.length - 1, n));
+    slides[i]?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  };
+  window.addEventListener('keydown', (e) => {
+    if (['ArrowRight', 'ArrowDown', ' ', 'PageDown'].includes(e.key)) { e.preventDefault(); go(i + 1); }
+    if (['ArrowLeft', 'ArrowUp', 'PageUp'].includes(e.key)) { e.preventDefault(); go(i - 1); }
+  });
+</script>

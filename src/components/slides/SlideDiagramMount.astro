@@ -1,0 +1,13 @@
+---
+/**
+ * Mounts a real diagram component by name (mirrors HerramientaIsland's static
+ * dispatch). Extend the switch as new asignaturas are added in later phases.
+ */
+import BreakEvenChart from '@components/diagrams/BreakEvenChart.astro';
+import ProcesosProductivos from '@components/diagrams/ProcesosProductivos.astro';
+
+interface Props { diagrama: string }
+const { diagrama } = Astro.props;
+---
+{diagrama === 'BreakEvenChart' && <BreakEvenChart />}
+{diagrama === 'ProcesosProductivos' && <ProcesosProductivos />}
