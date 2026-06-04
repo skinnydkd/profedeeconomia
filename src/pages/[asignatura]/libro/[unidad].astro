@@ -3,6 +3,9 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 import { ASIGNATURAS } from '@/lib/asignaturas';
 import { getCollection, render } from 'astro:content';
 import UnitNotes from '@components/UnitNotes.tsx';
+import RecursosRelacionados from '@components/libro/RecursosRelacionados.astro';
+import { getIndiceRecursos } from '@/lib/recursos-relacionados-sources';
+import { recursosDeUnidad } from '@/lib/recursos-relacionados';
 import type { GetStaticPaths } from 'astro';
 
 export const getStaticPaths = (async () => {
@@ -34,6 +37,9 @@ const idToSlug = (id: string) => id.split('/').pop()?.replace(/\.mdx?$/, '') ?? 
 
 // Stable per-unit namespace for the UnitNotes localStorage state.
 const unitKey = `${a.slug}-u${unit.data.unidad}`;
+
+// Related transversal resources for this unit (inverse index, built once per build).
+const recursos = recursosDeUnidad(await getIndiceRecursos(), unit.data.asignatura, unit.data.unidad);
 ---
 
 <BaseLayout
@@ -129,6 +135,8 @@ const unitKey = `${a.slug}-u${unit.data.unidad}`;
             <span></span>
           )}
         </nav>
+
+        <RecursosRelacionados recursos={recursos} asignaturaLabel={a.shortLabel} unidad={unit.data.unidad} />
       </article>
     </div>
   </div>
