@@ -142,39 +142,45 @@ mkdirSync(distDownloads, { recursive: true });
 
 let failures = 0;
 
+// Two editions per asignatura: profesor (with solutions) and alumno (without).
+const ediciones = [
+  { modo: 'profesor', suffix: '' },
+  { modo: 'alumno', suffix: '-alumno' },
+];
+
 for (const slug of asignaturas) {
-  const url = `http://localhost:${PORT}/${slug}/actividades/imprimir/`;
-  const outDist = resolve(distDownloads, `${slug}-cuaderno.pdf`);
-  const outPublic = resolve(publicDownloads, `${slug}-cuaderno.pdf`);
+  for (const { modo, suffix } of ediciones) {
+    const url = `http://localhost:${PORT}/${slug}/actividades/imprimir/${modo}/`;
+    const outDist = resolve(distDownloads, `${slug}-cuaderno${suffix}.pdf`);
+    const outPublic = resolve(publicDownloads, `${slug}-cuaderno${suffix}.pdf`);
 
-  console.log(`\n— Generando cuaderno para ${slug}`);
-  console.log(`  URL    : ${url}`);
-  console.log(`  Output : ${outDist}`);
+    console.log(`\n— Generando cuaderno (${modo}) para ${slug}`);
+    console.log(`  URL    : ${url}`);
 
-  const exitCode = await new Promise((resolveExit) => {
-    const child = spawn(
-      'npx',
-      ['--no-install', 'pagedjs-cli', url, '-o', outDist, '-t', '120000', '--browserArgs', '--no-sandbox'],
-      { cwd: root, stdio: 'inherit', shell: true, env: { ...process.env, PUPPETEER_EXECUTABLE_PATH: chromePath ?? '' } }
-    );
-    child.on('close', (code) => resolveExit(code));
-    child.on('error', (err) => {
-      console.error(`✖ Error lanzando pagedjs-cli: ${err.message}`);
-      resolveExit(1);
+    const exitCode = await new Promise((resolveExit) => {
+      const child = spawn(
+        'npx',
+        ['--no-install', 'pagedjs-cli', url, '-o', outDist, '-t', '120000', '--browserArgs', '--no-sandbox'],
+        { cwd: root, stdio: 'inherit', shell: true, env: { ...process.env, PUPPETEER_EXECUTABLE_PATH: chromePath ?? '' } }
+      );
+      child.on('close', (code) => resolveExit(code));
+      child.on('error', (err) => {
+        console.error(`✖ Error lanzando pagedjs-cli: ${err.message}`);
+        resolveExit(1);
+      });
     });
-  });
 
-  if (exitCode !== 0) {
-    console.error(`✖ pagedjs-cli falló para ${slug} (código ${exitCode})`);
-    failures++;
-    continue;
-  }
+    if (exitCode !== 0) {
+      console.error(`✖ pagedjs-cli falló para ${slug} (${modo}, código ${exitCode})`);
+      failures++;
+      continue;
+    }
 
-  if (!inDistOnly) {
-    copyFileSync(outDist, outPublic);
-    console.log(`  Copiado a ${outPublic}`);
+    if (!inDistOnly) {
+      copyFileSync(outDist, outPublic);
+    }
+    console.log(`✓ ${slug}-cuaderno${suffix}.pdf listo`);
   }
-  console.log(`✓ ${slug}-cuaderno.pdf listo`);
 }
 
 server.close();

@@ -13,11 +13,16 @@
  */
 import { ASIGNATURA_SLUGS, ASIGNATURAS } from '@/lib/asignaturas';
 import { getCollection, render } from 'astro:content';
+import { sabersDeActividad } from '@/lib/cuaderno/sabers';
 import type { GetStaticPaths } from 'astro';
 
 export const getStaticPaths = (async () => {
   const acts = await getCollection('actividades');
   const tests = await getCollection('tests');
+  const libro = await getCollection('libro');
+  const libroByUnit = new Map<string, string[]>(
+    libro.map((u) => [`${u.data.asignatura}#${u.data.unidad}`, u.data.sabers ?? []]),
+  );
 
   return ASIGNATURA_SLUGS.flatMap((slug) => {
     const subjectActs = acts
@@ -30,14 +35,16 @@ export const getStaticPaths = (async () => {
     const subjectTests = tests
       .filter((t) => t.data.asignatura === slug && t.data.estado === 'publicado')
       .sort((a, b) => a.data.unidad_relacionada - b.data.unidad_relacionada);
-    return [{
-      params: { asignatura: slug },
-      props: { acts: subjectActs, tests: subjectTests, asignatura: ASIGNATURAS[slug] },
-    }];
+    const props = { acts: subjectActs, tests: subjectTests, asignatura: ASIGNATURAS[slug], libroByUnit };
+    return [
+      { params: { asignatura: slug, modo: 'profesor' }, props },
+      { params: { asignatura: slug, modo: 'alumno' }, props },
+    ];
   });
 }) satisfies GetStaticPaths;
 
-const { acts, tests, asignatura: a } = Astro.props;
+const { acts, tests, asignatura: a, libroByUnit } = Astro.props;
+const esProfesor = Astro.params.modo !== 'alumno';
 
 // Pre-render each activity's MDX body.
 const renderedActs = await Promise.all(
@@ -376,6 +383,19 @@ const letra = (i: number) => String.fromCharCode(97 + i); // 0 -> 'a'
         background: var(--color-bg-cream); border-radius: 4px; padding: 1.5mm 2.5mm; margin: 1.5mm 0 2mm;
       }
       .act__materials strong { text-transform: uppercase; letter-spacing: 0.08em; font-size: 7pt; color: var(--color-ink-mute); }
+      .act__curricular {
+        font-family: var(--font-mono); font-size: 7.2pt; line-height: 1.4; color: var(--color-ink-mute);
+        margin: 0.5mm 0 2mm; padding-left: 2.5mm; border-left: 1.5pt solid var(--book-accent);
+      }
+      .act__curricular-k { text-transform: uppercase; letter-spacing: 0.08em; color: var(--book-accent-deep); font-weight: 600; }
+      .act__curricular strong { color: var(--color-ink-soft); font-weight: 600; }
+      .act__solucion {
+        break-inside: avoid; margin: 2.5mm 0 1mm; padding: 2mm 3mm;
+        background: var(--color-bg-cream); border-left: 2pt solid var(--book-accent); border-radius: 0 4px 4px 0;
+      }
+      .act__solucion-h { font-family: var(--font-sans); text-transform: uppercase; letter-spacing: 0.08em; font-size: 7.5pt; font-weight: 700; color: var(--book-accent-deep); }
+      .act__solucion ol { margin: 1mm 0 0; padding-left: 5mm; font-size: 8.8pt; line-height: 1.4; }
+      .act__solucion li { margin-bottom: 0.6mm; }
       .act__body { font-size: 9.5pt; }
       .act__body h2 { font-size: 11pt; margin: 2.5mm 0 1mm; color: var(--book-accent-deep); }
       .act__body h3 { font-size: 10pt; margin: 2mm 0 0.8mm; }
@@ -430,12 +450,12 @@ const letra = (i: number) => String.fromCharCode(97 + i); // 0 -> 'a'
         <p class="cover__sub">{a.title}</p>
         <div class="cover__rule"></div>
         <p class="cover__inside">
-          <strong>{totalActs} actividades</strong> · {totalTests} tests con solucionario · Currículo LOMLOE
+          <strong>{totalActs} actividades</strong> · {totalTests} tests{esProfesor ? ' con solucionario' : ''} · Currículo LOMLOE
         </p>
       </div>
       <footer class="cover__bottom">
         <div class="stack"><span class="muted">Editorial</span><strong>profedeeconomia.es</strong></div>
-        <div class="stack"><span class="muted">Edición</span><strong>Profesorado · curso 2026/27</strong></div>
+        <div class="stack"><span class="muted">Edición</span><strong>{esProfesor ? 'Profesorado' : 'Alumnado'} · curso 2026/27</strong></div>
         <div class="stack"><span class="muted">Generado</span><strong>{today}</strong></div>
       </footer>
     </section>
@@ -446,9 +466,10 @@ const letra = (i: number) => String.fromCharCode(97 + i); // 0 -> 'a'
       <p>
         Este cuaderno recoge todas las <strong>actividades prácticas</strong> de
         {' '}{a.title} ({a.level}), agrupadas por unidad y acompañadas del
-        <strong> test de autoevaluación</strong> de cada una. Es la edición para
-        profesorado: al final encontraréis el <strong>solucionario</strong> con
-        las respuestas correctas y su comentario.
+        <strong> test de autoevaluación</strong> de cada una.
+        {esProfesor
+          ? <> Es la edición para <strong>profesorado</strong>: los ejercicios incluyen su <strong>solución</strong> y al final está el <strong>solucionario</strong> de los tests.</>
+          : <> Es la edición para <strong>alumnado</strong>: con los enunciados para trabajar; las soluciones están en la edición del profesor.</>}
       </p>
       <p>
         Cada actividad indica su tipo (caso, ejercicio, debate, dinámica o
@@ -500,7 +521,11 @@ const letra = (i: number) => String.fromCharCode(97 + i); // 0 -> 'a'
           <div class="unit__kicker">Unidad {u.unidad}</div>
         </header>
 
-        {u.activities.map(({ act, Content }) => (
+        {u.activities.map(({ act, Content }) => {
+          const sab = sabersDeActividad(act.data, libroByUnit);
+          const ce = act.data.competencias_especificas;
+          const cc = act.data.competencias_clave;
+          return (
           <article class="act">
             <div class="act__bar">
               <span class="act__tag">{tipoLabel[act.data.tipo] ?? act.data.tipo}</span>
@@ -509,6 +534,14 @@ const letra = (i: number) => String.fromCharCode(97 + i); // 0 -> 'a'
               {act.data.agrupacion && <span class="act__meta">· {act.data.agrupacion}</span>}
             </div>
             <h2 class="act__title">{act.data.title}</h2>
+            {(sab.length > 0 || ce.length > 0 || cc.length > 0) && (
+              <p class="act__curricular">
+                <span class="act__curricular-k">Encaje curricular</span>
+                {sab.length > 0 && <> · <strong>Saberes</strong> {sab.join(', ')}</>}
+                {ce.length > 0 && <> · <strong>Comp. específicas</strong> {ce.join(', ')}</>}
+                {cc.length > 0 && <> · <strong>Comp. clave</strong> {cc.join(', ')}</>}
+              </p>
+            )}
             {act.data.materiales && act.data.materiales.length > 0 && (
               <div class="act__materials">
                 <strong>Materiales:</strong> {act.data.materiales.join(' · ')}
@@ -517,8 +550,15 @@ const letra = (i: number) => String.fromCharCode(97 + i); // 0 -> 'a'
             <div class="act__body">
               <Content />
             </div>
+            {esProfesor && act.data.solucion.length > 0 && (
+              <div class="act__solucion">
+                <span class="act__solucion-h">Solución</span>
+                <ol>{act.data.solucion.map((p) => <li set:html={p} />)}</ol>
+              </div>
+            )}
           </article>
-        ))}
+          );
+        })}
 
         {u.test && (
           <section class="test">
@@ -538,7 +578,8 @@ const letra = (i: number) => String.fromCharCode(97 + i); // 0 -> 'a'
       </section>
     ))}
 
-    {/* SOLUCIONARIO */}
+    {/* SOLUCIONARIO — only in the teacher edition */}
+    {esProfesor && (
     <section class="solucionario">
       <h2 class="solucionario__title">Solucionario</h2>
       <p class="solucionario__intro">Respuestas correctas de los tests de autoevaluación, con comentario. Edición para profesorado.</p>
@@ -554,6 +595,7 @@ const letra = (i: number) => String.fromCharCode(97 + i); // 0 -> 'a'
         </div>
       ))}
     </section>
+    )}
 
     <script is:inline>
       if (new URLSearchParams(location.search).has('preview')) {
