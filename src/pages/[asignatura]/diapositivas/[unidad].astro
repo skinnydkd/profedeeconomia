@@ -1,0 +1,35 @@
+---
+import { getCollection } from 'astro:content';
+import { readFileSync } from 'node:fs';
+import { resolve } from 'node:path';
+import type { GetStaticPaths } from 'astro';
+import Deck from '@components/slides/Deck.astro';
+import { buildDeck } from '@/lib/slides/build-deck';
+import '@/styles/global.css';
+import '@/styles/slides.css';
+
+export const getStaticPaths = (async () => {
+  const units = await getCollection('libro');
+  return units
+    .filter((u) => u.data.estado === 'publicado')
+    .map((u) => {
+      const unidad = u.id.split('/').pop()!.replace(/\.mdx?$/, '');
+      return { params: { asignatura: u.data.asignatura, unidad }, props: { asignatura: u.data.asignatura, unidad } };
+    });
+}) satisfies GetStaticPaths;
+
+const { asignatura, unidad } = Astro.props as { asignatura: string; unidad: string };
+const raw = readFileSync(resolve('src/content/asignaturas', asignatura, 'libro', `${unidad}.mdx`), 'utf8');
+const deck = buildDeck(raw);
+---
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{deck.title} — Diapositivas · profedeeconomia.es</title>
+    <meta name="robots" content="noindex" />
+  </head>
+  <body>
+    <Deck deck={deck} />
+  </body>
+</html>

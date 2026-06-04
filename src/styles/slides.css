@@ -1,0 +1,95 @@
+/*
+ * House style for the native Astro slide decks. Sizing uses container-query
+ * units (cqh/cqw) so every slide scales perfectly to any size (web viewer and
+ * the 1280x720 PDF) and overflow is predictable. Tokens/fonts come from global.css.
+ */
+.deck-page { background: #14110e; margin: 0; padding: 4vh 0; min-height: 100vh; }
+.deck { display: flex; flex-direction: column; align-items: center; gap: 3.5vh; }
+
+.slide {
+  container-type: size;
+  width: min(94vw, 166.4vh);
+  aspect-ratio: 16 / 9;
+  background: var(--color-bg);
+  color: var(--color-ink);
+  border-radius: 6px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, .45);
+}
+/* per-asignatura accent: default terracota, overridden by [data-asig] below */
+.slide { --accent: var(--color-terra); --accent-soft: var(--color-terra-soft); }
+[data-asig="eco-1bach"]  .slide { --accent: var(--color-eco1); }
+[data-asig="eco-4eso"]   .slide { --accent: var(--color-mustard); }
+[data-asig="fopp-4eso"]  .slide { --accent: var(--color-fopp); }
+[data-asig="gpe-bach"]   .slide { --accent: var(--color-gpe); }
+[data-asig="eeae-bach"]  .slide { --accent: var(--color-eeae); }
+[data-asig="ipe1-fp"]    .slide { --accent: var(--color-ipe1); }
+[data-asig="ipe2-fp"]    .slide { --accent: var(--color-ipe2); }
+[data-asig="taller-eco-3eso"] .slide { --accent: var(--color-taller3); }
+
+/* shared furniture */
+.slide__pad { position: absolute; inset: 0; padding: 7cqh 7cqw 9cqh; display: flex; flex-direction: column; }
+.slide__eyebrow { font-family: var(--font-mono); font-size: 2.4cqh; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); }
+.slide__foot { position: absolute; left: 7cqw; right: 7cqw; bottom: 4cqh; display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 1.9cqh; letter-spacing: .06em; color: var(--color-ink-mute); }
+.slide__corner { position: absolute; top: 6cqh; right: 7cqw; width: 7cqw; height: 4.5cqh; }
+.slide__body { overflow: hidden; }
+
+/* COVER (editorial) */
+.s-cover .slide__pad { justify-content: center; }
+.s-cover h1 { font-family: var(--font-serif); font-weight: 500; font-size: 9.5cqh; line-height: .98; margin: 2cqh 0 3cqh; letter-spacing: -.01em; font-variation-settings: "SOFT" 70; max-width: 17ch; }
+.s-cover .rule { width: 12cqw; height: .8cqh; background: var(--accent); border-radius: 2px; margin-bottom: 3cqh; }
+.s-cover .sub { font-family: var(--font-serif); font-style: italic; font-size: 4cqh; color: var(--color-ink-soft); max-width: 30ch; line-height: 1.3; }
+
+/* CONCEPT (editorial) */
+.s-concept .slide__pad { justify-content: center; }
+.s-concept h2 { font-family: var(--font-serif); font-weight: 500; font-size: 5.8cqh; line-height: 1.05; margin: 1.5cqh 0 2.5cqh; max-width: 20ch; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden; }
+.s-concept .body { font-family: var(--font-sans); font-size: 3.5cqh; line-height: 1.45; color: var(--color-ink-soft); max-width: 46ch; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 6; overflow: hidden; }
+.s-concept .pull { font-family: var(--font-serif); font-style: italic; font-size: 4.4cqh; color: var(--accent); border-left: .5cqh solid var(--color-mustard); padding-left: 2cqw; max-width: 32ch; line-height: 1.25; margin-top: 1cqh; }
+
+/* DIAGRAM (protagonista) */
+.s-diagram { background: var(--color-paper); }
+.s-diagram .slide__pad { padding-bottom: 9cqh; }
+.s-diagram h2 { font-family: var(--font-serif); font-weight: 500; font-size: 3.6cqh; line-height: 1.15; margin: 1cqh 0 1.5cqh; max-width: 48ch; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; }
+.s-diagram .viz { flex: 1 1 0; min-height: 0; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+/* Fit any diagram SVG inside the box by the smaller dimension, keeping aspect. */
+.s-diagram .viz :global(svg) { width: auto !important; height: auto !important; max-width: 100%; max-height: 100%; display: block; }
+.s-diagram .viz :global(figure) { margin: 0; max-width: 100%; max-height: 100%; display: flex; align-items: center; justify-content: center; }
+.s-diagram .viz :global(figcaption) { display: none; }
+
+/* DATA (audaz) */
+.s-data { color: var(--color-bg); background: var(--color-ink); display: grid; grid-template-columns: 40% 60%; overflow: hidden; }
+.s-data .panel { background: var(--accent); color: var(--color-bg); display: flex; flex-direction: column; justify-content: center; padding: 0 6cqw; }
+.s-data .num { font-family: var(--font-serif); font-weight: 600; font-size: 17cqh; line-height: .85; }
+.s-data .panel .label { font-family: var(--font-mono); font-size: 2.6cqh; letter-spacing: .12em; text-transform: uppercase; margin-top: 2cqh; opacity: .9; }
+.s-data .bd { display: flex; flex-direction: column; justify-content: center; padding: 0 6cqw; }
+.s-data .bd h2 { font-family: var(--font-serif); font-weight: 500; font-size: 6cqh; color: var(--color-bg); margin: 0 0 2cqh; }
+.s-data .bd p { font-family: var(--font-sans); font-size: 3.4cqh; line-height: 1.5; color: var(--color-line); max-width: 30ch; }
+.s-data .slide__foot { color: var(--color-ink-mute); }
+
+/* QUOTE (editorial) */
+.s-quote { background: var(--color-bg-cream); }
+.s-quote .slide__pad { justify-content: center; }
+.s-quote blockquote { font-family: var(--font-serif); font-style: italic; font-weight: 500; font-size: 6.6cqh; line-height: 1.15; margin: 0; max-width: 24ch; color: var(--color-ink); font-variation-settings: "SOFT" 80; }
+.s-quote .mark { font-family: var(--font-serif); font-size: 12cqh; color: var(--color-mustard); line-height: .5; }
+
+/* EXERCISE (data-ish, numbered) */
+.s-exercise h2 { font-family: var(--font-serif); font-weight: 500; font-size: 4.8cqh; margin: 1cqh 0 2cqh; max-width: 26ch; }
+.s-exercise .enun { font-family: var(--font-sans); font-size: 3.2cqh; line-height: 1.45; color: var(--color-ink-soft); max-width: 50ch; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden; margin-bottom: 2cqh; }
+.s-exercise ol { margin: 0; padding-left: 4cqw; font-family: var(--font-sans); font-size: 3cqh; line-height: 1.4; color: var(--color-ink); display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 6; overflow: hidden; }
+.s-exercise ol li::marker { color: var(--accent); font-family: var(--font-mono); }
+
+/* CLOSE */
+.s-close { background: var(--color-ink); color: var(--color-bg); }
+.s-close .slide__pad { justify-content: center; align-items: flex-start; }
+.s-close h2 { font-family: var(--font-serif); font-style: italic; font-weight: 500; font-size: 7cqh; color: var(--color-bg); margin: 0 0 2cqh; font-variation-settings: "SOFT" 100, "WONK" 1; }
+.s-close p { font-family: var(--font-sans); font-size: 3.4cqh; color: var(--color-line); }
+.s-close .slide__foot { color: var(--color-ink-mute); }
+
+/* PRINT — one slide per landscape page, no chrome */
+@media print {
+  .deck-page { background: #fff; padding: 0; }
+  .deck { gap: 0; }
+  .slide { width: 1280px; height: 720px; aspect-ratio: auto; border-radius: 0; box-shadow: none; break-after: page; page-break-after: always; }
+  @page { size: 1280px 720px; margin: 0; }
+}

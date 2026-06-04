@@ -1,0 +1,95 @@
+---
+import type { Slide } from '@/lib/slides/types';
+import SlideDiagramMount from './SlideDiagramMount.astro';
+
+interface Props { slide: Slide; pos: string }
+const { slide, pos } = Astro.props;
+const s = slide as any;
+const brand = 'profedeeconomia.es';
+---
+{slide.tipo === 'cover' && (
+  <section class="slide s-cover">
+    <svg class="slide__corner" viewBox="0 0 22 14"><path d="M1 13 C7 13 11 3 21 1" fill="none" stroke="var(--color-mustard)" stroke-width="1.3"/></svg>
+    <div class="slide__pad">
+      {s.eyebrow && <div class="slide__eyebrow">{s.eyebrow}</div>}
+      <h1>{s.title}</h1>
+      <div class="rule"></div>
+      {s.subtitle && <div class="sub">{s.subtitle}</div>}
+    </div>
+    <div class="slide__foot"><span>{brand}</span><span>{pos}</span></div>
+  </section>
+)}
+
+{slide.tipo === 'concept' && (
+  <section class="slide s-concept">
+    <svg class="slide__corner" viewBox="0 0 22 14"><path d="M1 13 C7 13 11 3 21 1" fill="none" stroke="var(--color-mustard)" stroke-width="1.3"/></svg>
+    <div class="slide__pad">
+      {s.eyebrow && <div class="slide__eyebrow">{s.eyebrow}</div>}
+      {s.title && <h2>{s.title}</h2>}
+      {s.body && <p class="body">{s.body}</p>}
+      {s.pull && <p class="pull">{s.pull}</p>}
+    </div>
+    <div class="slide__foot"><span>{brand}</span><span>{pos}</span></div>
+  </section>
+)}
+
+{slide.tipo === 'diagram' && (
+  <section class="slide s-diagram">
+    <svg class="slide__corner" viewBox="0 0 22 14" style="z-index:2"><path d="M1 13 C7 13 11 3 21 1" fill="none" stroke="var(--color-mustard)" stroke-width="1.3"/></svg>
+    <div class="slide__pad">
+      <div class="slide__eyebrow">El gráfico</div>
+      {s.caption && <h2>{s.caption}</h2>}
+      <div class="viz"><SlideDiagramMount diagrama={s.diagrama} /></div>
+    </div>
+    <div class="slide__foot"><span>{brand}</span><span>{pos}</span></div>
+  </section>
+)}
+
+{slide.tipo === 'data' && (
+  <section class="slide s-data">
+    <div class="panel">
+      <div class="num">{s.numero}</div>
+      {s.label && <div class="label">{s.label}</div>}
+    </div>
+    <div class="bd">
+      {s.title && <h2>{s.title}</h2>}
+      {s.detalle && <p>{s.detalle}</p>}
+    </div>
+    <div class="slide__foot"><span>{brand}</span><span>{pos}</span></div>
+  </section>
+)}
+
+{slide.tipo === 'quote' && (
+  <section class="slide s-quote">
+    <div class="slide__pad">
+      <div class="mark">“</div>
+      <blockquote>{s.texto}</blockquote>
+    </div>
+    <div class="slide__foot"><span>{brand}</span><span>{pos}</span></div>
+  </section>
+)}
+
+{slide.tipo === 'exercise' && (
+  <section class="slide s-exercise">
+    <svg class="slide__corner" viewBox="0 0 22 14"><path d="M1 13 C7 13 11 3 21 1" fill="none" stroke="var(--color-mustard)" stroke-width="1.3"/></svg>
+    <div class="slide__pad">
+      <div class="slide__eyebrow">Ejercicio</div>
+      <h2>{s.title}</h2>
+      {s.enunciado && <p class="enun">{s.enunciado}</p>}
+      {Array.isArray(s.pasos) && s.pasos.length > 0 && (
+        <ol>{s.pasos.map((p: string) => <li>{p}</li>)}</ol>
+      )}
+    </div>
+    <div class="slide__foot"><span>{brand}</span><span>{pos}</span></div>
+  </section>
+)}
+
+{slide.tipo === 'close' && (
+  <section class="slide s-close">
+    <div class="slide__pad">
+      <h2>{s.title}</h2>
+      {s.nota && <p>{s.nota}</p>}
+    </div>
+    <div class="slide__foot"><span>{brand}</span><span>{pos}</span></div>
+  </section>
+)}
