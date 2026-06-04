@@ -71,6 +71,12 @@ const actividades = defineCollection({
     /** Subject-specific competences (ESO/Bach: "CE1", "CE3"…) or learning
      *  outcomes for FP ("RA1", "RA3"…), as worked by the activity. */
     competencias_especificas: z.array(z.string()).default([]),
+    /** LOMLOE saberes básicos worked, by code (e.g. "A.1", "B.2"). If empty,
+     *  derived from the libro unit (unidad_relacionada) at render time. */
+    sabers: z.array(z.string()).default([]),
+    /** Worked solution steps for `tipo: ejercicio`. Shown in the teacher edition
+     *  of the cuaderno only. Each item may contain inline HTML/markup. */
+    solucion: z.array(z.string()).default([]),
     /** True if the activity mirrors an EBAU/PAU exam exercise (only meaningful
      *  for 2.º Bach subjects with EBAU, e.g. EDMN). Shows an "EBAU" badge. */
     ebau: z.boolean().default(false),
