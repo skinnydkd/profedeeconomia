@@ -1,0 +1,115 @@
+---
+/**
+ * Creación de dinero bancario (el multiplicador monetario) como cascada de
+ * depósitos sucesivos con un coeficiente de reservas del 10 %. Cada ronda
+ * separa la reserva (10 %, mostaza) que la banca guarda del préstamo (90 %,
+ * terracota) que presta; ese préstamo vuelve al sistema como el depósito de la
+ * ronda siguiente, por lo que las barras se encogen proporcionalmente. Al pie,
+ * el total creado ≈ depósito × 1/coeficiente = 1.000 × 10 = 10.000 €.
+ *
+ * Used in Eco 1BACH · Unit 10 (sistema financiero y dinero).
+ */
+---
+<svg viewBox="0 0 840 500" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="creadin-title creadin-desc">
+  <title id="creadin-title">Creación de dinero bancario</title>
+  <desc id="creadin-desc">Cada depósito permite a la banca guardar una reserva y prestar el resto, que vuelve al sistema como un nuevo depósito. Así el dinero inicial se multiplica; el multiplicador es la inversa del coeficiente de reservas.</desc>
+  <defs>
+    <style>
+      .bg { fill: #FBF6EC; }
+      .reserva { fill: #D4A24C; stroke: #A87A2A; stroke-width: 1.2; }
+      .presta { fill: #C44E2C; stroke: #9C3A1C; stroke-width: 1.2; }
+      .bank-label { font-family: 'Switzer', sans-serif; font-size: 12.5px; font-weight: 700; fill: #2A1F18; }
+      .seg-label { font-family: 'Switzer', sans-serif; font-size: 9.5px; font-weight: 700; letter-spacing: 0.6px; text-transform: uppercase; fill: #FFFFFF; text-anchor: middle; }
+      .amt { font-family: 'JetBrains Mono', monospace; font-size: 12px; fill: #2A1F18; text-anchor: end; }
+      .amt-seg { font-family: 'JetBrains Mono', monospace; font-size: 11px; fill: #FFFFFF; text-anchor: middle; }
+      .flow { stroke: #8A7868; stroke-width: 1.4; fill: none; stroke-dasharray: 3 3; marker-end: url(#cd-arrow); }
+      .eyebrow { font-family: 'Switzer', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; fill: #5C4A3D; }
+      .head-amt { font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 500; fill: #2A1F18; }
+      .ellipsis { font-family: 'JetBrains Mono', monospace; font-size: 16px; fill: #8A7868; text-anchor: middle; }
+      .rule { stroke: #E5D4BD; stroke-width: 1.5; }
+      .total { font-family: 'Fraunces', serif; font-size: 16px; font-weight: 500; fill: #2A1F18; }
+      .total-em { font-family: 'JetBrains Mono', monospace; font-size: 16px; font-weight: 500; fill: #9C3A1C; }
+      .formula { font-family: 'Fraunces', serif; font-style: italic; font-size: 13px; fill: #5C4A3D; }
+    </style>
+    <marker id="cd-arrow" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 9 3, 0 6" fill="#8A7868"/>
+    </marker>
+  </defs>
+  <rect class="bg" x="0" y="0" width="840" height="500"/>
+
+  <!-- Header / column hints. Bars start at x=240, scale 0.62 px/€ (1.000 € = 620 px). -->
+  <text class="eyebrow" x="40" y="40">Coeficiente de reservas = 10 %</text>
+  <text class="seg-label" x="350" y="40" fill="#A87A2A" text-anchor="middle" style="fill:#A87A2A">Reserva (10 %)</text>
+  <text class="seg-label" x="560" y="40" fill="#9C3A1C" text-anchor="middle" style="fill:#9C3A1C">Préstamo (90 %) → nuevo depósito</text>
+
+  <!-- Round 0 / initial deposit: 1.000 € (full bar, terracota) -->
+  <text class="bank-label" x="40" y="76">Depósito inicial</text>
+  <text class="amt" x="225" y="76">1.000 €</text>
+  <rect class="presta" x="240" y="60" width="620" height="26" rx="2"/>
+  <text class="seg-label" x="550" y="77">DEPÓSITO INICIAL · 1.000 €</text>
+
+  <!-- flow into round 1 -->
+  <path class="flow" d="M 290 86 L 250 104"/>
+
+  <!-- Round 1: deposit 1.000 → reserva 100 (62 px) + presta 900 (558 px) -->
+  <text class="bank-label" x="40" y="124">Banco 1</text>
+  <text class="amt" x="225" y="124">1.000 €</text>
+  <rect class="reserva" x="240" y="108" width="62" height="26" rx="2"/>
+  <text class="amt-seg" x="271" y="125">100</text>
+  <rect class="presta" x="302" y="108" width="558" height="26" rx="2"/>
+  <text class="seg-label" x="581" y="125">PRESTA 900 €</text>
+
+  <!-- flow into round 2 -->
+  <path class="flow" d="M 350 134 L 310 152"/>
+
+  <!-- Round 2: deposit 900 → reserva 90 (56 px) + presta 810 (502 px) -->
+  <text class="bank-label" x="40" y="172">Banco 2</text>
+  <text class="amt" x="225" y="172">900 €</text>
+  <rect class="reserva" x="240" y="156" width="56" height="26" rx="2"/>
+  <text class="amt-seg" x="268" y="173">90</text>
+  <rect class="presta" x="296" y="156" width="502" height="26" rx="2"/>
+  <text class="seg-label" x="547" y="173">PRESTA 810 €</text>
+
+  <!-- flow into round 3 -->
+  <path class="flow" d="M 344 182 L 304 200"/>
+
+  <!-- Round 3: deposit 810 → reserva 81 (50 px) + presta 729 (452 px) -->
+  <text class="bank-label" x="40" y="220">Banco 3</text>
+  <text class="amt" x="225" y="220">810 €</text>
+  <rect class="reserva" x="240" y="204" width="50" height="26" rx="2"/>
+  <text class="amt-seg" x="265" y="221">81</text>
+  <rect class="presta" x="290" y="204" width="452" height="26" rx="2"/>
+  <text class="seg-label" x="516" y="221">PRESTA 729 €</text>
+
+  <!-- flow into round 4 -->
+  <path class="flow" d="M 338 230 L 298 248"/>
+
+  <!-- Round 4: deposit 729 → reserva 73 (45 px) + presta 656 (407 px) -->
+  <text class="bank-label" x="40" y="268">Banco 4</text>
+  <text class="amt" x="225" y="268">729 €</text>
+  <rect class="reserva" x="240" y="252" width="45" height="26" rx="2"/>
+  <text class="amt-seg" x="262" y="269">73</text>
+  <rect class="presta" x="285" y="252" width="407" height="26" rx="2"/>
+  <text class="seg-label" x="488" y="269">PRESTA 656 €</text>
+
+  <!-- flow into round 5 -->
+  <path class="flow" d="M 332 278 L 292 296"/>
+
+  <!-- Round 5: deposit 656 → reserva 66 (41 px) + presta 590 (366 px) -->
+  <text class="bank-label" x="40" y="316">Banco 5</text>
+  <text class="amt" x="225" y="316">656 €</text>
+  <rect class="reserva" x="240" y="300" width="41" height="26" rx="2"/>
+  <text class="amt-seg" x="260" y="317">66</text>
+  <rect class="presta" x="281" y="300" width="366" height="26" rx="2"/>
+  <text class="seg-label" x="464" y="317">PRESTA 590 €</text>
+
+  <!-- continuation -->
+  <text class="ellipsis" x="440" y="352">⋮  las rondas continúan, cada vez menores  ⋮</text>
+
+  <!-- separator rule -->
+  <line class="rule" x1="40" y1="378" x2="800" y2="378"/>
+
+  <!-- Summary -->
+  <text class="total" x="40" y="412">Total de dinero creado ≈ depósito × <tspan class="total-em">1 / coeficiente</tspan> = 1.000 × 10 = <tspan class="total-em">10.000 €</tspan></text>
+  <text class="formula" x="40" y="446">multiplicador = 1 / coeficiente de reservas  =  1 / 0,10  =  10</text>
+</svg>

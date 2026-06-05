@@ -1,0 +1,88 @@
+---
+/**
+ * El multiplicador fiscal como rondas sucesivas de gasto.
+ * Un aumento inicial del gasto público (terracota) genera consumo inducido en
+ * rondas cada vez menores (mostaza, c = 0,75), que se desvanecen al encogerse.
+ * Un corchete acumulado bajo la secuencia suma todas las rondas hasta la renta
+ * total: 100 × 1/(1−0,75) = 100 × 4 = 400.
+ *
+ * Used in Eco 1BACH · Unit 11 (políticas económicas).
+ */
+---
+<svg viewBox="0 0 840 480" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="mulfis-title mulfis-desc">
+  <title id="mulfis-title">El multiplicador fiscal</title>
+  <desc id="mulfis-desc">Un aumento del gasto público genera rondas sucesivas de consumo cada vez menores. La suma de todas amplía la renta más que el gasto inicial: el multiplicador es 1/(1−c).</desc>
+  <defs>
+    <style>
+      .bg { fill: #FBF6EC; }
+      .eyebrow { font-family: 'Switzer', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase; fill: #8A7868; }
+      .formula { font-family: 'Fraunces', serif; font-size: 21px; font-weight: 500; font-style: italic; fill: #2A1F18; }
+      .formula-mono { font-family: 'JetBrains Mono', monospace; font-size: 17px; font-weight: 500; fill: #9C3A1C; }
+      .round-name { font-family: 'Switzer', sans-serif; font-size: 11px; font-weight: 700; fill: #2A1F18; text-anchor: middle; }
+      .round-name-light { font-family: 'Switzer', sans-serif; font-size: 11px; font-weight: 700; fill: #FFFFFF; text-anchor: middle; }
+      .round-amt { font-family: 'JetBrains Mono', monospace; font-size: 14px; font-weight: 500; fill: #2A1F18; text-anchor: middle; }
+      .round-amt-light { font-family: 'JetBrains Mono', monospace; font-size: 14px; font-weight: 500; fill: #FFFFFF; text-anchor: middle; }
+      .round-sub { font-family: 'JetBrains Mono', monospace; font-size: 10px; fill: #5C4A3D; text-anchor: middle; }
+      .ellipsis { font-family: 'Fraunces', serif; font-size: 30px; font-weight: 600; fill: #8A7868; text-anchor: middle; }
+      .bracket { stroke: #C44E2C; stroke-width: 1.8; fill: none; }
+      .total-label { font-family: 'Switzer', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.6px; fill: #5C4A3D; text-anchor: middle; }
+      .total-amt { font-family: 'JetBrains Mono', monospace; font-size: 18px; font-weight: 500; fill: #C44E2C; text-anchor: middle; }
+      .total-amt strong { font-weight: 500; }
+    </style>
+  </defs>
+  <rect class="bg" x="0" y="0" width="840" height="480"/>
+
+  <!-- Eyebrow + formula header -->
+  <text class="eyebrow" x="60" y="56">Política fiscal expansiva</text>
+  <text class="formula" x="60" y="92">multiplicador = <tspan class="formula-mono" dy="-1">1 / (1 − c)</tspan></text>
+  <text class="round-sub" x="62" y="116" text-anchor="start">con una propensión marginal al consumo c = 0,75</text>
+
+  <!-- Sequence of decreasing blocks. Baseline at y=300, blocks grow downward from there. -->
+  <!-- Block heights proportional to amount: 100→160px, 80→128, 64→102, 51→82, ... -->
+
+  <!-- Round 0: initial public spending (terracota) -->
+  <rect x="60" y="158" width="118" height="160" rx="5" fill="#C44E2C"/>
+  <text class="round-name-light" x="119" y="140">Gasto público</text>
+  <text class="round-name-light" x="119" y="153">inicial</text>
+  <text class="round-amt-light" x="119" y="244">100</text>
+  <text class="round-sub" x="119" y="338" fill="#9C3A1C">inyección</text>
+
+  <!-- Round 1: induced consumption 75 (mustard, full) -->
+  <rect x="206" y="198" width="110" height="120" rx="5" fill="#D4A24C" fill-opacity="1"/>
+  <text class="round-name" x="261" y="180">Consumo</text>
+  <text class="round-name" x="261" y="180" dy="14">ronda 1</text>
+  <text class="round-amt" x="261" y="266">75</text>
+  <text class="round-sub" x="261" y="338">0,75 × 100</text>
+
+  <!-- Round 2: 56 -->
+  <rect x="344" y="228" width="102" height="90" rx="5" fill="#D4A24C" fill-opacity="0.82"/>
+  <text class="round-name" x="395" y="210">ronda 2</text>
+  <text class="round-amt" x="395" y="281">≈ 56</text>
+  <text class="round-sub" x="395" y="338">0,75 × 75</text>
+
+  <!-- Round 3: ~42 -->
+  <rect x="474" y="251" width="94" height="67" rx="5" fill="#D4A24C" fill-opacity="0.62"/>
+  <text class="round-name" x="521" y="233">ronda 3</text>
+  <text class="round-amt" x="521" y="292">≈ 42</text>
+  <text class="round-sub" x="521" y="338">0,75 × 56</text>
+
+  <!-- Round 4: ~32 -->
+  <rect x="596" y="267" width="84" height="51" rx="5" fill="#D4A24C" fill-opacity="0.42"/>
+  <text class="round-name" x="638" y="249">ronda 4</text>
+  <text class="round-amt" x="638" y="300">≈ 32</text>
+
+  <!-- Round 5: ~24 -->
+  <rect x="700" y="280" width="58" height="38" rx="5" fill="#D4A24C" fill-opacity="0.26"/>
+  <text class="round-amt" x="729" y="305" font-size="12">≈ 24</text>
+
+  <!-- Ellipsis: rounds continue -->
+  <text class="ellipsis" x="790" y="300">…</text>
+
+  <!-- Cumulative bracket below the sequence summing all rounds -->
+  <path class="bracket" d="M 60 348 L 60 362 L 808 362 L 808 348"/>
+  <line class="bracket" x1="434" y1="362" x2="434" y2="376"/>
+
+  <!-- Total renta -->
+  <text class="total-label" x="434" y="402">ΔRenta total = suma de todas las rondas</text>
+  <text class="total-amt" x="434" y="432">100 × 1/(1 − 0,75) = 100 × 4 = 400</text>
+</svg>

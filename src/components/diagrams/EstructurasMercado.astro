@@ -1,0 +1,166 @@
+---
+/**
+ * Comparison of four market structures (perfect competition, monopolistic
+ * competition, oligopoly, monopoly) shown as four side-by-side mini-panels,
+ * ordered by decreasing competition. As the number of firms falls (left to
+ * right), each firm's power to set the price grows: from a price-taker facing
+ * a horizontal demand line, to a single price-maker facing the whole downward
+ * market demand.
+ *
+ * Used in Eco 1BACH · Unit 4 (oferta, demanda y mercado).
+ */
+---
+<svg viewBox="0 0 1040 460" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="em-title em-desc">
+  <title id="em-title">Comparación de estructuras de mercado</title>
+  <desc id="em-desc">Comparación de cuatro estructuras de mercado (competencia perfecta, competencia monopolística, oligopolio y monopolio), ordenadas de mayor a menor competencia, según el número de empresas y su poder para fijar el precio.</desc>
+  <defs>
+    <style>
+      .bg { fill: #FBF6EC; }
+      .frame { fill: #FFFFFF; stroke: #E5D4BD; stroke-width: 1.5; }
+      .axis { stroke: #5C4A3D; stroke-width: 1.5; fill: none; }
+      .demand { stroke: #C44E2C; stroke-width: 2.6; fill: none; }
+      .price-line { stroke: #C44E2C; stroke-width: 2.6; fill: none; }
+      .guide { stroke: #8A7868; stroke-width: 1; stroke-dasharray: 4 4; fill: none; }
+      .firm { fill: #F5E5BC; stroke: #A87A2A; stroke-width: 1.4; }
+      .firm-big { fill: #F5E5BC; stroke: #A87A2A; stroke-width: 1.6; }
+      .panel-title { font-family: 'Fraunces', serif; font-size: 18px; font-weight: 500; font-style: italic; fill: #2A1F18; }
+      .axis-letter { font-family: 'Fraunces', serif; font-style: italic; font-size: 14px; font-weight: 500; fill: #5C4A3D; }
+      .curve-label { font-family: 'Fraunces', serif; font-size: 14px; font-weight: 500; font-style: italic; fill: #C44E2C; }
+      .firm-label { font-family: 'Switzer', sans-serif; font-size: 11px; font-weight: 600; fill: #5C4A3D; text-anchor: middle; }
+      .caption { font-family: 'Switzer', sans-serif; font-size: 12px; font-weight: 500; fill: #5C4A3D; text-anchor: middle; }
+      .note { font-family: 'Switzer', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.4px; fill: #2A1F18; text-anchor: middle; }
+      .legend { font-family: 'Switzer', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.6px; fill: #5C4A3D; text-anchor: middle; }
+    </style>
+    <marker id="em-arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#8A7868"/>
+    </marker>
+  </defs>
+  <rect class="bg" x="0" y="0" width="1040" height="460"/>
+
+  <!-- ===================== Panel 1: Competencia perfecta ===================== -->
+  <g transform="translate(20,0)">
+    <text class="panel-title" x="120" y="48" text-anchor="middle">Competencia perfecta</text>
+
+    <!-- framed plot area -->
+    <rect class="frame" x="20" y="70" width="200" height="200" rx="4"/>
+    <!-- inner axes (P vertical, Q horizontal) -->
+    <line class="axis" x1="50" y1="250" x2="210" y2="250" marker-end="url(#em-arrow)"/>
+    <line class="axis" x1="50" y1="250" x2="50" y2="85" marker-end="url(#em-arrow)"/>
+    <text class="axis-letter" x="214" y="266">Q</text>
+    <text class="axis-letter" x="40" y="86" text-anchor="end">P</text>
+
+    <!-- price-taker: horizontal demand at the market price -->
+    <line class="price-line" x1="50" y1="150" x2="205" y2="150"/>
+    <text class="curve-label" x="160" y="142">D = precio de mercado</text>
+    <!-- P* tick on the y-axis -->
+    <line class="guide" x1="46" y1="150" x2="50" y2="150"/>
+    <text class="axis-letter" x="42" y="155" text-anchor="end" fill="#C44E2C">P</text>
+
+    <!-- very many tiny firms -->
+    <g>
+      <rect class="firm" x="64"  y="290" width="14" height="14" rx="2"/>
+      <rect class="firm" x="84"  y="290" width="14" height="14" rx="2"/>
+      <rect class="firm" x="104" y="290" width="14" height="14" rx="2"/>
+      <rect class="firm" x="124" y="290" width="14" height="14" rx="2"/>
+      <rect class="firm" x="144" y="290" width="14" height="14" rx="2"/>
+      <rect class="firm" x="164" y="290" width="14" height="14" rx="2"/>
+      <rect class="firm" x="74"  y="310" width="14" height="14" rx="2"/>
+      <rect class="firm" x="94"  y="310" width="14" height="14" rx="2"/>
+      <rect class="firm" x="114" y="310" width="14" height="14" rx="2"/>
+      <rect class="firm" x="134" y="310" width="14" height="14" rx="2"/>
+      <rect class="firm" x="154" y="310" width="14" height="14" rx="2"/>
+    </g>
+    <text class="firm-label" x="120" y="342">muchísimas empresas</text>
+
+    <text class="note" x="120" y="370">producto homogéneo, precio dado</text>
+    <text class="caption" x="120" y="394">muchísimas empresas, producto</text>
+    <text class="caption" x="120" y="410">homogéneo, precio dado</text>
+  </g>
+
+  <!-- ===================== Panel 2: Competencia monopolística ===================== -->
+  <g transform="translate(270,0)">
+    <text class="panel-title" x="120" y="48" text-anchor="middle">Competencia monopolística</text>
+
+    <rect class="frame" x="20" y="70" width="200" height="200" rx="4"/>
+    <line class="axis" x1="50" y1="250" x2="210" y2="250" marker-end="url(#em-arrow)"/>
+    <line class="axis" x1="50" y1="250" x2="50" y2="85" marker-end="url(#em-arrow)"/>
+    <text class="axis-letter" x="214" y="266">Q</text>
+    <text class="axis-letter" x="40" y="86" text-anchor="end">P</text>
+
+    <!-- slightly downward demand: each firm a mini-monopoly over its variant -->
+    <line class="demand" x1="56" y1="128" x2="202" y2="208"/>
+    <text class="curve-label" x="198" y="194" text-anchor="end">D de la variante</text>
+
+    <!-- many firms, each differentiated -->
+    <g>
+      <rect class="firm" x="66"  y="290" width="18" height="18" rx="2"/>
+      <rect class="firm" x="92"  y="290" width="18" height="18" rx="2"/>
+      <rect class="firm" x="118" y="290" width="18" height="18" rx="2"/>
+      <rect class="firm" x="144" y="290" width="18" height="18" rx="2"/>
+      <rect class="firm" x="79"  y="314" width="18" height="18" rx="2"/>
+      <rect class="firm" x="105" y="314" width="18" height="18" rx="2"/>
+      <rect class="firm" x="131" y="314" width="18" height="18" rx="2"/>
+    </g>
+    <text class="firm-label" x="120" y="348">muchas empresas distintas</text>
+
+    <text class="note" x="120" y="370">producto diferenciado, libre entrada</text>
+    <text class="caption" x="120" y="394">muchas empresas, producto</text>
+    <text class="caption" x="120" y="410">diferenciado, libre entrada</text>
+  </g>
+
+  <!-- ===================== Panel 3: Oligopolio ===================== -->
+  <g transform="translate(520,0)">
+    <text class="panel-title" x="120" y="48" text-anchor="middle">Oligopolio</text>
+
+    <rect class="frame" x="20" y="70" width="200" height="200" rx="4"/>
+    <line class="axis" x1="50" y1="250" x2="210" y2="250" marker-end="url(#em-arrow)"/>
+    <line class="axis" x1="50" y1="250" x2="50" y2="85" marker-end="url(#em-arrow)"/>
+    <text class="axis-letter" x="214" y="266">Q</text>
+    <text class="axis-letter" x="40" y="86" text-anchor="end">P</text>
+
+    <!-- downward-sloping demand the group faces -->
+    <line class="demand" x1="58" y1="100" x2="200" y2="238"/>
+    <text class="curve-label" x="196" y="222" text-anchor="end">D del grupo</text>
+
+    <!-- a few firm blocks sharing the market -->
+    <g>
+      <rect class="firm-big" x="66"  y="292" width="34" height="34" rx="3"/>
+      <rect class="firm-big" x="106" y="292" width="34" height="34" rx="3"/>
+      <rect class="firm-big" x="146" y="292" width="34" height="34" rx="3"/>
+    </g>
+    <text class="firm-label" x="120" y="344">pocas empresas grandes</text>
+
+    <text class="note" x="120" y="370">pocas empresas, interdependencia</text>
+    <text class="caption" x="120" y="394">pocas empresas que vigilan</text>
+    <text class="caption" x="120" y="410">a las demás: interdependencia</text>
+  </g>
+
+  <!-- ===================== Panel 4: Monopolio ===================== -->
+  <g transform="translate(770,0)">
+    <text class="panel-title" x="120" y="48" text-anchor="middle">Monopolio</text>
+
+    <rect class="frame" x="20" y="70" width="200" height="200" rx="4"/>
+    <line class="axis" x1="50" y1="250" x2="210" y2="250" marker-end="url(#em-arrow)"/>
+    <line class="axis" x1="50" y1="250" x2="50" y2="85" marker-end="url(#em-arrow)"/>
+    <text class="axis-letter" x="214" y="266">Q</text>
+    <text class="axis-letter" x="40" y="86" text-anchor="end">P</text>
+
+    <!-- downward market demand the single firm controls -->
+    <line class="demand" x1="58" y1="100" x2="200" y2="238"/>
+    <text class="curve-label" x="196" y="222" text-anchor="end">D del mercado</text>
+
+    <!-- one firm block spanning the whole market -->
+    <rect class="firm-big" x="66" y="292" width="108" height="34" rx="3"/>
+    <text class="firm-label" x="120" y="344">una sola empresa</text>
+
+    <text class="note" x="120" y="370">una empresa, fija el precio</text>
+    <text class="caption" x="120" y="394">una empresa sin rivales que</text>
+    <text class="caption" x="120" y="410">controla el precio del mercado</text>
+  </g>
+
+  <!-- ===================== Bottom legend axis ===================== -->
+  <line class="axis" x1="80" y1="436" x2="960" y2="436"/>
+  <polygon points="72 436, 84 431, 84 441" fill="#5C4A3D"/>
+  <polygon points="968 436, 956 431, 956 441" fill="#5C4A3D"/>
+  <text class="legend" x="520" y="431">más competencia&#160;&#160;·&#160;&#160;más poder de mercado</text>
+</svg>

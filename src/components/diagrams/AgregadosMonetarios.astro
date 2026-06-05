@@ -1,0 +1,63 @@
+---
+/**
+ * Monetary aggregates ordered by liquidity as nested layers M0 ⊂ M1 ⊂ M2 ⊂ M3.
+ * Concentric rounded rectangles: the innermost (M0, cash) is the most liquid,
+ * and each larger aggregate contains the previous one and adds less liquid
+ * instruments. A side axis marks the liquidity gradient.
+ *
+ * Used in Eco 1BACH · Unit 10 (financial system and money).
+ */
+---
+<svg viewBox="0 0 820 480" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="am-title am-desc">
+  <title id="am-title">Agregados monetarios</title>
+  <desc id="am-desc">Los agregados monetarios ordenan el dinero por liquidez: M0 es el efectivo y cada agregado mayor incluye al anterior añadiendo instrumentos menos líquidos.</desc>
+  <defs>
+    <style>
+      .bg { fill: #FBF6EC; }
+      .band { stroke: #E5D4BD; stroke-width: 1.5; }
+      .band-m3 { fill: #F5EDD9; }
+      .band-m2 { fill: #DBEDED; }
+      .band-m1 { fill: #F5E5BC; }
+      .band-m0 { fill: #FBE3D6; }
+      .tag { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 600; font-style: italic; }
+      .tag-m0 { fill: #9C3A1C; }
+      .tag-m1 { fill: #A87A2A; }
+      .tag-m2 { fill: #1F6E6E; }
+      .tag-m3 { fill: #5C4A3D; }
+      .content { font-family: 'Switzer', sans-serif; font-size: 13px; font-weight: 500; fill: #5C4A3D; }
+      .axis-label { font-family: 'Switzer', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase; fill: #5C4A3D; }
+      .axis-line { stroke: #8A7868; stroke-width: 1.5; fill: none; }
+    </style>
+    <marker id="am-arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#8A7868"/>
+    </marker>
+  </defs>
+  <rect class="bg" x="0" y="0" width="820" height="480"/>
+
+  <!-- Liquidity axis on the left: top = más líquido, bottom = menos líquido -->
+  <line class="axis-line" x1="40" y1="60" x2="40" y2="430" marker-start="url(#am-arrow)" marker-end="url(#am-arrow)"/>
+  <text class="axis-label" x="28" y="100" text-anchor="middle" transform="rotate(-90 28 100)">Más líquido</text>
+  <text class="axis-label" x="28" y="395" text-anchor="middle" transform="rotate(-90 28 395)">Menos líquido</text>
+
+  <!-- Nested aggregates. Outer M3 → inner M0. Each band's label sits in its own ring (top of band). -->
+  <!-- M3: outer -->
+  <rect class="band band-m3" x="100" y="40" width="690" height="410" rx="14"/>
+  <text class="tag tag-m3" x="124" y="74">M3</text>
+  <text class="content" x="168" y="71">M2 + otros instrumentos a más plazo (repos, etc.)</text>
+
+  <!-- M2 -->
+  <rect class="band band-m2" x="140" y="100" width="610" height="310" rx="12"/>
+  <text class="tag tag-m2" x="164" y="134">M2</text>
+  <text class="content" x="208" y="131">M1 + depósitos de ahorro a corto plazo</text>
+
+  <!-- M1 -->
+  <rect class="band band-m1" x="180" y="160" width="530" height="210" rx="10"/>
+  <text class="tag tag-m1" x="204" y="194">M1</text>
+  <text class="content" x="248" y="191">M0 + depósitos a la vista</text>
+
+  <!-- M0: innermost, most liquid -->
+  <rect class="band band-m0" x="220" y="220" width="450" height="110" rx="8"/>
+  <text class="tag tag-m0" x="244" y="262">M0</text>
+  <text class="content" x="288" y="259">Efectivo: billetes y monedas</text>
+  <text class="content" x="244" y="298">El núcleo más líquido del dinero.</text>
+</svg>

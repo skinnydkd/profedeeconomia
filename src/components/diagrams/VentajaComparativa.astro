@@ -1,0 +1,119 @@
+---
+/**
+ * Comparative advantage and gains from trade (Eco 1BACH · SolvedExercise 12.1).
+ *
+ * Part A: a 2x2 table of HOURS needed to produce one unit (lower = more
+ * efficient) for Norpaís and Surpaís across two goods (trigo, tela).
+ *   Norpaís: trigo 2 h, tela 4 h   ·   Surpaís: trigo 5 h, tela 6 h.
+ * Norpaís has an ABSOLUTE advantage in both (2<5, 4<6), yet COMPARATIVE
+ * advantage splits the goods: the opportunity cost of 1 t de trigo is
+ * 2/4 = 0,5 m de tela in Norpaís vs 5/6 ≈ 0,83 m de tela in Surpaís, so
+ * Norpaís specialises in trigo and Surpaís in tela. Those cells are
+ * highlighted in the table.
+ * Part B: two stacked horizontal bars comparing total trigo output (100 h per
+ * country) without trade (50/50 split) vs. with full specialisation + trade;
+ * the extra output (gain from trade) is shaded.
+ *
+ * Used in Eco 1BACH · Unit 12 (globalización, comercio internacional).
+ */
+---
+<svg viewBox="0 0 860 470" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="vc-title vc-desc">
+  <title id="vc-title">Ventaja comparativa</title>
+  <desc id="vc-desc">Norpaís necesita menos horas que Surpaís para producir tanto trigo como tela, así que tiene ventaja absoluta en ambos bienes. Pero lo que decide la especialización es la ventaja comparativa: Norpaís renuncia a menos tela por cada unidad de trigo (0,5 m frente a 0,83 m), de modo que se especializa en trigo y Surpaís en tela. Al intercambiar, el total producido aumenta: esa es la ganancia del comercio.</desc>
+  <defs>
+    <style>
+      .bg { fill: #FBF6EC; }
+      .section-title { font-family: 'Fraunces', serif; font-size: 19px; font-weight: 500; font-style: italic; fill: #2A1F18; }
+      .eyebrow { font-family: 'Switzer', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 1.6px; text-transform: uppercase; fill: #C44E2C; }
+      .col-head { font-family: 'Switzer', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; fill: #5C4A3D; text-anchor: middle; }
+      .row-head { font-family: 'Switzer', sans-serif; font-size: 13px; font-weight: 700; fill: #2A1F18; }
+      .cell-line { stroke: #E5D4BD; stroke-width: 1.5; }
+      .cell-rule { stroke: #5C4A3D; stroke-width: 1.5; }
+      .cell-va { fill: #FBE3D6; }
+      .cell-vb { fill: #F5E5BC; }
+      .num { font-family: 'JetBrains Mono', monospace; font-size: 22px; font-weight: 500; fill: #2A1F18; text-anchor: middle; }
+      .num-unit { font-family: 'JetBrains Mono', monospace; font-size: 10px; fill: #8A7868; text-anchor: middle; }
+      .tag { font-family: 'Switzer', sans-serif; font-size: 9.5px; font-weight: 700; letter-spacing: 0.6px; text-transform: uppercase; text-anchor: middle; }
+      .tag-a { fill: #9C3A1C; }
+      .tag-b { fill: #A87A2A; }
+      .caption { font-family: 'Fraunces', serif; font-size: 13px; font-style: italic; fill: #5C4A3D; }
+      .bar-label { font-family: 'Switzer', sans-serif; font-size: 12px; font-weight: 700; fill: #2A1F18; }
+      .bar-sub { font-family: 'Switzer', sans-serif; font-size: 10.5px; font-weight: 500; fill: #8A7868; }
+      .bar-total { font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 500; fill: #2A1F18; }
+      .gain-label { font-family: 'Switzer', sans-serif; font-size: 10.5px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; fill: #9C3A1C; text-anchor: middle; }
+      .divider { stroke: #EFE2CB; stroke-width: 1.5; }
+    </style>
+    <marker id="vc-arrow" markerWidth="9" markerHeight="9" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 9 3, 0 6" fill="#9C3A1C"/>
+    </marker>
+  </defs>
+  <rect class="bg" x="0" y="0" width="860" height="470"/>
+
+  <!-- =================== PART A: hours table =================== -->
+  <text class="eyebrow" x="40" y="40">Horas por unidad producida</text>
+  <text class="section-title" x="40" y="64">Menos horas significa más eficiente</text>
+
+  <!-- Table geometry: cols at trigo [300..480], tela [480..660]; rows Norpaís [98..158], Surpaís [158..212] -->
+  <!-- Column headers -->
+  <text class="col-head" x="390" y="86">Trigo</text>
+  <text class="col-head" x="570" y="86">Tela</text>
+
+  <!-- Highlighted comparative-advantage cells: Norpaís→trigo (terracota), Surpaís→tela (mostaza) -->
+  <rect class="cell-va" x="300" y="98" width="180" height="60"/>
+  <rect class="cell-vb" x="480" y="158" width="180" height="54"/>
+
+  <!-- Grid lines -->
+  <line class="cell-line" x1="300" y1="98"  x2="660" y2="98"/>
+  <line class="cell-line" x1="300" y1="158" x2="660" y2="158"/>
+  <line class="cell-line" x1="300" y1="212" x2="660" y2="212"/>
+  <line class="cell-line" x1="480" y1="98"  x2="480" y2="212"/>
+  <line class="cell-rule" x1="300" y1="98"  x2="300" y2="212"/>
+  <line class="cell-rule" x1="660" y1="98"  x2="660" y2="212"/>
+
+  <!-- Row headers -->
+  <text class="row-head" x="60" y="135">Norpaís</text>
+  <text class="row-head" x="60" y="191">Surpaís</text>
+
+  <!-- Norpaís hours: Trigo 2 (ventaja comparativa), Tela 4 -->
+  <text class="tag tag-a" x="390" y="116">ventaja comparativa</text>
+  <text class="num" x="390" y="138">2</text>
+  <text class="num-unit" x="390" y="152">horas</text>
+  <text class="num" x="570" y="133">4</text>
+  <text class="num-unit" x="570" y="147">horas</text>
+
+  <!-- Surpaís hours: Trigo 5, Tela 6 (ventaja comparativa) -->
+  <text class="num" x="390" y="193">5</text>
+  <text class="num-unit" x="390" y="207">horas</text>
+  <text class="tag tag-b" x="570" y="176">ventaja comparativa</text>
+  <text class="num" x="570" y="190">6</text>
+  <text class="num-unit" x="570" y="204">horas</text>
+
+  <!-- Caption: opportunity cost -->
+  <text class="caption" x="40" y="244">Cada país se especializa donde su coste de oportunidad es menor: 1 t de trigo cuesta 0,5 m de tela en Norpaís y 0,83 m en Surpaís.</text>
+
+  <!-- Divider between parts -->
+  <line class="divider" x1="40" y1="266" x2="820" y2="266"/>
+
+  <!-- =================== PART B: output bars =================== -->
+  <text class="eyebrow" x="40" y="296">Trigo total (100 horas por país)</text>
+  <text class="section-title" x="40" y="320">El total crece con la especialización</text>
+
+  <!-- Bar geometry: bars start x=300; scale: 1 t de trigo = 6px. Sin comercio 35 t -> 210px; con especialización 50 t -> 300px (gain 15 t = 90px) -->
+  <!-- Sin comercio: reparto 50/50 -> Norpaís 25 t + Surpaís 10 t = 35 t -->
+  <text class="bar-label" x="40" y="356">Sin comercio</text>
+  <text class="bar-sub"   x="40" y="372">reparto a medias</text>
+  <rect x="300" y="340" width="210" height="34" rx="3" fill="#D4A24C" fill-opacity="0.55" stroke="#A87A2A" stroke-width="1.5"/>
+  <text class="bar-total" x="522" y="362">35 t</text>
+
+  <!-- Con especialización + comercio: Norpaís 100 h en trigo -> 50 t -->
+  <text class="bar-label" x="40" y="416">Con especialización</text>
+  <text class="bar-sub"   x="40" y="432">+ comercio</text>
+  <rect x="300" y="400" width="210" height="34" rx="3" fill="#D4A24C" fill-opacity="0.55" stroke="#A87A2A" stroke-width="1.5"/>
+  <!-- gain segment (15 extra t de trigo = 90px) -->
+  <rect x="510" y="400" width="90" height="34" rx="3" fill="#FBE3D6" stroke="#9C3A1C" stroke-width="1.5"/>
+  <text class="bar-total" x="612" y="422">50 t</text>
+
+  <!-- Gain-from-trade callout -->
+  <line x1="555" y1="394" x2="555" y2="382" stroke="#9C3A1C" stroke-width="1.5" marker-start="url(#vc-arrow)"/>
+  <text class="gain-label" x="555" y="392">ganancia del comercio</text>
+</svg>

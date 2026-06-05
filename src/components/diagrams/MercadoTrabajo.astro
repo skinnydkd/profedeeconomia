@@ -1,0 +1,97 @@
+---
+/**
+ * Labour market with a binding minimum wage.
+ * Labour demand D_L slopes down (terracota), labour supply O_L slopes up
+ * (mustard); their intersection E* fixes the equilibrium wage W* and
+ * employment L*. A minimum wage (SMI) set above W* creates an excess of
+ * labour supplied (L_o) over labour demanded (L_d): the gap is involuntary
+ * unemployment.
+ *
+ * Used in Eco 1BACH · Unit 9 (mercado de trabajo y desempleo).
+ */
+---
+<svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="mt-title mt-desc">
+  <title id="mt-title">Mercado de trabajo y salario mínimo</title>
+  <desc id="mt-desc">El salario de equilibrio surge del cruce entre la oferta y la demanda de trabajo. Un salario mínimo fijado por encima del equilibrio genera desempleo, porque más personas quieren trabajar de las que las empresas contratan.</desc>
+  <defs>
+    <style>
+      .bg { fill: #FBF6EC; }
+      .axis { stroke: #5C4A3D; stroke-width: 1.5; fill: none; }
+      .demand { stroke: #C44E2C; stroke-width: 2.5; fill: none; }
+      .supply { stroke: #D4A24C; stroke-width: 2.5; fill: none; }
+      .guide { stroke: #8A7868; stroke-width: 1; stroke-dasharray: 4 4; fill: none; }
+      .smi { stroke: #9C3A1C; stroke-width: 2; stroke-dasharray: 7 5; fill: none; }
+      .smi-guide { stroke: #9C3A1C; stroke-width: 1; stroke-dasharray: 4 4; fill: none; }
+      .brace { stroke: #9C3A1C; stroke-width: 1.6; fill: none; }
+      .axis-label { font-family: 'Switzer', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; fill: #5C4A3D; }
+      .axis-letter { font-family: 'Fraunces', serif; font-style: italic; font-size: 17px; font-weight: 500; fill: #2A1F18; }
+      .curve-label { font-family: 'Fraunces', serif; font-size: 18px; font-weight: 500; font-style: italic; }
+      .point-label { font-family: 'Fraunces', serif; font-size: 15px; font-weight: 500; font-style: italic; fill: #2A1F18; }
+      .smi-label { font-family: 'Switzer', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.6px; fill: #9C3A1C; }
+      .paro-label { font-family: 'Switzer', sans-serif; font-size: 13px; font-weight: 700; fill: #9C3A1C; text-anchor: middle; }
+      .tick { font-family: 'JetBrains Mono', monospace; font-size: 11px; fill: #5C4A3D; }
+    </style>
+    <marker id="mt-arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#5C4A3D"/>
+    </marker>
+  </defs>
+  <rect class="bg" x="0" y="0" width="800" height="500"/>
+
+  <!-- Geometry. Plot x:90..720, y:50..420.
+       Demand D_L: (120,80) -> (700,400).  Supply O_L: (120,400) -> (700,80).
+       Equilibrium E*: (410,240) -> W* line y=240, L* at x=410.
+       SMI above W* at y=170.
+         demand at y=170: x = 120 + (170-80)/320*580 = 283  -> L_d (left)
+         supply at y=170: x = 120 + (400-170)/320*580 = 537  -> L_o (right) -->
+
+  <!-- Axes with arrows -->
+  <line class="axis" x1="90" y1="420" x2="740" y2="420" marker-end="url(#mt-arrow)"/>
+  <line class="axis" x1="90" y1="440" x2="90" y2="40" marker-end="url(#mt-arrow)"/>
+
+  <!-- Origin -->
+  <text class="tick" x="80" y="438" text-anchor="end">0</text>
+
+  <!-- Axis titles -->
+  <text class="axis-letter" x="748" y="425">L</text>
+  <text class="axis-letter" x="82" y="48" text-anchor="end">W</text>
+  <text class="axis-label" x="415" y="478" text-anchor="middle">CANTIDAD DE TRABAJO (L)</text>
+  <text class="axis-label" x="32" y="235" text-anchor="middle" transform="rotate(-90 32 235)">SALARIO (W)</text>
+
+  <!-- Labour demand curve (terracota, downward) -->
+  <line class="demand" x1="120" y1="80" x2="700" y2="400"/>
+  <!-- Labour supply curve (mustard, upward) -->
+  <line class="supply" x1="120" y1="400" x2="700" y2="80"/>
+
+  <!-- Equilibrium guides + dot -->
+  <line class="guide" x1="410" y1="240" x2="410" y2="420"/>
+  <line class="guide" x1="90" y1="240" x2="410" y2="240"/>
+  <circle cx="410" cy="240" r="7" fill="#FFFFFF" stroke="#2A1F18" stroke-width="2.5"/>
+
+  <!-- Minimum wage (SMI) horizontal line, above W* -->
+  <line class="smi" x1="90" y1="170" x2="720" y2="170"/>
+
+  <!-- Guides from SMI down to L_d (demand) and L_o (supply) -->
+  <line class="smi-guide" x1="283" y1="170" x2="283" y2="420"/>
+  <line class="smi-guide" x1="537" y1="170" x2="537" y2="420"/>
+  <!-- Dots where SMI cuts each curve -->
+  <circle cx="283" cy="170" r="5" fill="#FFFFFF" stroke="#C44E2C" stroke-width="2.2"/>
+  <circle cx="537" cy="170" r="5" fill="#FFFFFF" stroke="#A87A2A" stroke-width="2.2"/>
+
+  <!-- Unemployment brace on x-axis between L_d and L_o -->
+  <path class="brace" d="M 283 432 q 0 8 8 8 L 406 440 q 8 0 8 8 q 0 -8 8 -8 L 529 440 q 8 0 8 -8"/>
+  <text class="paro-label" x="410" y="468">desempleo</text>
+
+  <!-- Curve labels -->
+  <text class="curve-label" x="708" y="402" fill="#C44E2C">D</text>
+  <text class="curve-label" x="722" y="406" fill="#C44E2C" font-size="12">L</text>
+  <text class="curve-label" x="708" y="78" fill="#A87A2A">O</text>
+  <text class="curve-label" x="722" y="82" fill="#A87A2A" font-size="12">L</text>
+
+  <!-- Point / wage labels -->
+  <text class="point-label" x="424" y="232">E*</text>
+  <text class="point-label" x="82" y="245" text-anchor="end">W*</text>
+  <text class="point-label" x="410" y="412" text-anchor="middle" dy="-2">L*</text>
+  <text class="smi-label" x="98" y="164">SMI</text>
+  <text class="point-label" x="283" y="412" text-anchor="middle" dy="-2" fill="#9C3A1C">L_d</text>
+  <text class="point-label" x="537" y="412" text-anchor="middle" dy="-2" fill="#9C3A1C">L_o</text>
+</svg>
