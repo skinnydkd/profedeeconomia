@@ -1,0 +1,91 @@
+---
+/**
+ * Spanish enterprise structure by firm size (DIRCE/INE). Drawn as a single
+ * proportional square broken into nested blocks: microempresas (0–9) dominate
+ * the visual at 94,2 %, then pequeñas (~4,8 %), medianas (~0,8 %) and a tiny
+ * sliver of grandes (~0,2 %), driving home that 99,8 % of firms are pymes.
+ *
+ * Used in Eco 4ESO (el tejido empresarial: tipos de empresa por tamaño).
+ */
+---
+<svg viewBox="0 0 820 460" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="pymes-title pymes-desc">
+  <title id="pymes-title">El tejido empresarial español</title>
+  <desc id="pymes-desc">Casi todas las empresas españolas son pequeñas: el 99,8 % son pymes y el 94,2 % microempresas de menos de diez trabajadores. Las grandes empresas son una porción mínima.</desc>
+  <defs>
+    <style>
+      .bg { fill: #FBF6EC; }
+      .micro { fill: #FBE3D6; }
+      .pequena { fill: #F5E5BC; }
+      .mediana { fill: #DBEDED; }
+      .grande { fill: #2A1F18; }
+      .block-stroke { stroke: #FBF6EC; stroke-width: 3; }
+      .eyebrow { font-family: 'Switzer', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 1.8px; text-transform: uppercase; fill: #8A7868; }
+      .headline { font-family: 'Fraunces', serif; font-style: italic; font-size: 26px; font-weight: 500; fill: #2A1F18; }
+      .headline-em { fill: #C44E2C; }
+      .pct { font-family: 'JetBrains Mono', monospace; font-weight: 500; }
+      .label { font-family: 'Switzer', sans-serif; font-weight: 600; }
+      .label-mute { font-family: 'Switzer', sans-serif; font-size: 12px; font-weight: 500; fill: #5C4A3D; }
+      .lead { font-family: 'Switzer', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+      .source { font-family: 'Switzer', sans-serif; font-size: 11px; font-weight: 500; fill: #8A7868; }
+      .has-tip { cursor: help; }
+    </style>
+  </defs>
+  <rect class="bg" x="0" y="0" width="820" height="460"/>
+
+  <!-- Eyebrow + headline -->
+  <text class="eyebrow" x="40" y="46">Empresas en España por tamaño</text>
+  <text class="headline" x="40" y="84">El <tspan class="headline-em">99,8 %</tspan> de las empresas españolas son pymes</text>
+  <text class="headline" x="40" y="116">y el <tspan class="headline-em">94,2 %</tspan> son microempresas</text>
+
+  <!-- ============================================================= -->
+  <!-- Proportional square: x 40..480 (w 440), y 150..400 (h 250).   -->
+  <!-- Microempresas fill 94,2 % of the area as a big block; the     -->
+  <!-- remaining thin right strip holds pequeñas, medianas, grandes. -->
+  <!-- Split horizontally: micro width = 440 * 0,90 = 396 (visually  -->
+  <!-- dominant); right strip width 44 stacked vertically by share.  -->
+  <!-- ============================================================= -->
+
+  <!-- Microempresas: the dominant block -->
+  <rect class="micro block-stroke has-tip" x="40" y="150" width="396" height="250"><title>Microempresas (de 0 a 9 trabajadores): son el 94,2 % de todas las empresas españolas. La mayoría son autónomos y negocios muy pequeños.</title></rect>
+  <text class="label headline-em" x="62" y="282" font-size="40">94,2 %</text>
+  <text class="label" x="62" y="318" font-size="20" fill="#9C3A1C">Microempresas</text>
+  <text class="label-mute" x="62" y="340">De 0 a 9 trabajadores</text>
+
+  <!-- Right strip: pequeñas (top, biggest of the strip), medianas, grandes (sliver) -->
+  <!-- strip x 436..480 (w 44). Heights scaled within the strip's 250px. -->
+  <!-- pequeñas ~4,8% -> ~210px ; medianas ~0,8% -> ~30px ; grandes ~0,2% -> ~10px -->
+  <rect class="pequena block-stroke has-tip" x="436" y="150" width="44" height="210"><title>Pequeñas empresas (de 10 a 49 trabajadores): cerca del 4,8 % del total.</title></rect>
+  <rect class="mediana block-stroke has-tip" x="436" y="360" width="44" height="30"><title>Medianas empresas (de 50 a 249 trabajadores): en torno al 0,8 % del total.</title></rect>
+  <rect class="grande block-stroke has-tip" x="436" y="390" width="44" height="10"><title>Grandes empresas (250 trabajadores o más): apenas el 0,2 % del total. Una porción mínima.</title></rect>
+
+  <!-- ============================================================= -->
+  <!-- Legend on the right (x from 520). One row per size band.       -->
+  <!-- ============================================================= -->
+  <text class="lead" x="520" y="172" fill="#8A7868">Las cuatro y su peso</text>
+
+  <!-- Pequeñas -->
+  <rect class="pequena" x="520" y="192" width="20" height="20" rx="3"/>
+  <text class="label" x="552" y="203" font-size="15" fill="#A87A2A">Pequeñas</text>
+  <text class="label-mute" x="552" y="221">10 a 49 trabajadores</text>
+  <text class="pct" x="780" y="207" font-size="18" fill="#A87A2A" text-anchor="end">4,8 %</text>
+
+  <!-- Medianas -->
+  <rect class="mediana" x="520" y="248" width="20" height="20" rx="3"/>
+  <text class="label" x="552" y="259" font-size="15" fill="#1F6E6E">Medianas</text>
+  <text class="label-mute" x="552" y="277">50 a 249 trabajadores</text>
+  <text class="pct" x="780" y="263" font-size="18" fill="#1F6E6E" text-anchor="end">0,8 %</text>
+
+  <!-- Grandes -->
+  <rect class="grande" x="520" y="304" width="20" height="20" rx="3"/>
+  <text class="label" x="552" y="315" font-size="15" fill="#2A1F18">Grandes</text>
+  <text class="label-mute" x="552" y="333">250 trabajadores o más</text>
+  <text class="pct" x="780" y="319" font-size="18" fill="#2A1F18" text-anchor="end">0,2 %</text>
+
+  <!-- Closing note: the sliver -->
+  <line x1="520" y1="358" x2="780" y2="358" stroke="#E5D4BD" stroke-width="1.5"/>
+  <text class="label-mute" x="520" y="384" font-size="13">Las grandes empresas son una</text>
+  <text class="label-mute" x="520" y="402" font-size="13" font-weight="700" fill="#5C4A3D">porción mínima del total.</text>
+
+  <!-- Source -->
+  <text class="source" x="40" y="436">Fuente: DIRCE, INE</text>
+</svg>
