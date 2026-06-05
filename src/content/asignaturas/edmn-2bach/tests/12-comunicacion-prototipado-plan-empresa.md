@@ -77,6 +77,22 @@ preguntas:
       - "Hay que sumar las dos cifras y dividir entre dos."
     correcta: 1
     explicacion: "La coherencia interna importa más que la longitud del plan. Bloques contradictorios destruyen la credibilidad del documento entero."
+  - tipo: verdadero-falso
+    enunciado: "El objetivo principal de un prototipo es presentar el producto lo más perfecto y acabado posible para venderlo cuanto antes."
+    correcta: false
+    explicacion: "Falso. El objetivo del prototipo no es vender, es aprender: hay que construirlo barato y rápido, suficientemente bueno para que alguien lo pruebe y dé feedback útil."
+  - tipo: numerico
+    enunciado: "El mercado total (TAM) de un producto es de 5.000.000 de clientes. La empresa estima alcanzar un SAM del 20 % del TAM y capturar un SOM del 10 % de ese SAM. ¿Cuántos clientes representa el SOM (sin decimales)?"
+    respuesta: 100000
+    tolerancia: 1
+    unidad: "personas"
+    explicacion: "SAM = 5.000.000 × 0,20 = 1.000.000. SOM = 1.000.000 × 0,10 = 100.000 clientes capturables realmente."
+  - tipo: relacionar
+    enunciado: "Asocia cada concepto con su definición:"
+    izquierda: ["MVP", "Elevator pitch", "TAM", "Escenario pesimista"]
+    derecha: ["Discurso de unos 60 segundos que termina con una petición concreta", "Mercado total potencial", "Versión mínima del producto que aún resuelve el problema central", "Comprueba si el proyecto sobrevive cuando las cosas van mal"]
+    correctas: [2, 0, 1, 3]
+    explicacion: "MVP → versión mínima viable; elevator pitch → discurso de 60 segundos; TAM → mercado total potencial; escenario pesimista → prueba de robustez del modelo."
 ---
 
 Test de autoevaluación de la Unidad 12 del libro de EDMN 2BACH.

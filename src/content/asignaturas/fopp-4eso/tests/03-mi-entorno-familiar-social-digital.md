@@ -69,6 +69,26 @@ preguntas:
       - "Solo se aplica a personas mayores de edad."
     correcta: 1
     explicacion: "El artículo 17 del RGPD reconoce el derecho de supresión (derecho al olvido): podéis solicitar a Google o a cualquier red social que borre contenido vuestro que ya no os representa. Es uno de los seis derechos del RGPD (acceso, rectificación, supresión, oposición, limitación, portabilidad) y funciona más a menudo de lo que parece."
+  - tipo: verdadero-falso
+    enunciado: "El techo familiar es un destino inevitable: nadie llega más lejos en estudios o trabajo que sus padres."
+    correcta: false
+    explicacion: "El techo familiar es una restricción real, pero no es un destino. La educación pública, las becas, las redes externas y la movilidad permiten superar el punto de partida que da la familia."
+  - tipo: verdadero-falso
+    enunciado: "En el triángulo del bullying, el cambio de actitud de los observadores es el factor que mejor predice que el acoso pare en pocos días."
+    correcta: true
+    explicacion: "Olweus demostró que el silencio de los observadores sostiene el acoso. Cuando el grupo cambia de actitud, acompaña a la víctima en público y avisa a un adulto, el bullying se desactiva en días."
+  - tipo: relacionar
+    enunciado: "Empareja cada tipo de capital de Bourdieu con su definición:"
+    izquierda: ["Capital económico", "Capital social", "Capital cultural"]
+    derecha: ["La red de contactos de la familia", "Saberes, hábitos y referencias adquiridos en casa", "El dinero y los bienes de la familia"]
+    correctas: [2, 0, 1]
+    explicacion: "Capital económico es el dinero y los bienes; capital social, la red de contactos; capital cultural, los saberes, hábitos y referencias que se adquieren simplemente por crecer en un determinado entorno."
+  - tipo: relacionar
+    enunciado: "Empareja cada tipo de presión grupal con su descripción:"
+    izquierda: ["Explícita", "Implícita", "Anticipada"]
+    derecha: ["La norma no escrita: todo el mundo lo hace", "Lo imaginas tú aunque el grupo no te pida nada", "Una petición directa del grupo"]
+    correctas: [2, 0, 1]
+    explicacion: "La presión explícita es una petición directa; la implícita es la norma social no escrita; la anticipada opera en tu cabeza sin que el grupo haya hecho nada, y es la más insidiosa."
 ---
 
 Test de autoevaluación de la Unidad 3 del libro de FOPP 4ESO.

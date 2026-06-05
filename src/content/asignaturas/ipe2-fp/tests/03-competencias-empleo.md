@@ -86,4 +86,18 @@ preguntas:
       - "Listándolas en una diapositiva."
     correcta: 1
     explicacion: "Las competencias transversales solo se desarrollan **en acción** y se demuestran en la entrevista con el **método STAR**: cada vez que resuelvas un conflicto, lideres una tarea o entregues a plazo bajo presión, anótalo como un ejemplo concreto. Afirmar que las tienes no convence; demostrarlas con un hecho real, sí."
+  - tipo: verdadero-falso
+    enunciado: "La fase de conflicto (storming) en un equipo es señal de que el equipo ha fracasado y debería disolverse."
+    correcta: false
+    explicacion: "Es falso. Según Tuckman, el storming es una fase normal y necesaria por la que pasa casi cualquier equipo antes de rendir bien. Saberlo evita dramatizarla; las cinco fases son formación, conflicto, normalización, desempeño y finalización."
+  - tipo: verdadero-falso
+    enunciado: "El estilo de comunicación asertivo consiste en imponer tu opinión con firmeza para que el equipo te respete."
+    correcta: false
+    explicacion: "Es falso. Imponer e interrumpir es el estilo agresivo, que gana la discusión pero pierde al equipo. La asertividad es expresar lo que piensas con claridad y respeto, sin agredir ni someterte; se sitúa entre el estilo pasivo y el agresivo."
+  - tipo: relacionar
+    enunciado: "Empareja cada componente de la inteligencia emocional de Goleman con su descripción:"
+    izquierda: ["Autoconciencia", "Autorregulación", "Empatía", "Habilidades sociales"]
+    derecha: ["Gestionar los propios impulsos y emociones", "Reconocer las propias emociones", "Construir relaciones, comunicar e influir", "Captar las emociones de los demás"]
+    correctas: [1, 0, 3, 2]
+    explicacion: "Autoconciencia es reconocer las propias emociones; autorregulación, gestionar los impulsos; empatía, captar las emociones de los demás; y habilidades sociales, construir relaciones e influir. Las dos primeras son personales y las dos últimas, sociales (junto con la motivación)."
 ---

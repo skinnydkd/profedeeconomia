@@ -69,6 +69,26 @@ preguntas:
       - "Producto, precio, distribución, promoción."
     correcta: 2
     explicacion: "Las cuatro casillas del mapa de empatía (versión simplificada) obligan a describir a la persona usuaria desde su punto de vista, no desde el nuestro: ve, oye, dice/hace, piensa/siente."
+  - tipo: verdadero-falso
+    enunciado: "Una necesidad, un problema y una oportunidad son tres formas de decir lo mismo en el lenguaje emprendedor."
+    correcta: false
+    explicacion: "Falso. Son tres cosas distintas que se encadenan: la necesidad es universal y estable (desplazarse), el problema es la dificultad concreta de hoy al cubrirla (atascos) y la oportunidad es una solución viable nueva o mejor a ese problema. La oportunidad solo aparece cuando las tres convergen."
+  - tipo: verdadero-falso
+    enunciado: "El diario de molestias consiste en preguntar a la gente qué le gustaría comprar."
+    correcta: false
+    explicacion: "Falso. El diario de molestias es observación etnográfica: durante una semana se anota cada molestia detectada (propia o ajena) en actividades cotidianas, sin filtrar en caliente. Se observa, no se pregunta. El filtrado se hace al final, y el 10-20 % de molestias suele tener potencial real."
+  - tipo: relacionar
+    enunciado: "Clasifica cada factor del entorno en su dimensión del PESTEL:"
+    izquierda: ["Una subida del Euríbor que encarece las hipotecas", "El RGPD de protección de datos", "Una peatonalización decidida por el ayuntamiento", "El envejecimiento de la población del barrio"]
+    derecha: ["Política", "Económica", "Social", "Legal"]
+    correctas: [1, 3, 0, 2]
+    explicacion: "Euríbor → Económica (afecta al bolsillo y al consumo). RGPD → Legal (norma en vigor que hay que cumplir). Peatonalización → Política (decisión de un gobierno). Envejecimiento → Social (cambios demográficos y de hábitos)."
+  - tipo: relacionar
+    enunciado: "Empareja cada elemento con su lugar en la secuencia necesidad → problema → oportunidad:"
+    izquierda: ["Desplazarse a diario al instituto", "El bus llega siempre 15 minutos tarde sin avisar", "Una app que envía un aviso si el bus se retrasa más de 5 minutos"]
+    derecha: ["Problema concreto", "Oportunidad", "Necesidad universal"]
+    correctas: [2, 0, 1]
+    explicacion: "Desplazarse es la necesidad universal y estable. Que el bus llegue tarde sin avisar es el problema concreto de hoy. La app de avisos es la oportunidad: una solución viable a ese problema."
 ---
 
 Test de autoevaluación de la Unidad 4 del libro de Economía 4ºESO.

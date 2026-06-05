@@ -77,6 +77,20 @@ preguntas:
       - "Porque reduce el tamaño de las empresas."
     correcta: 1
     explicacion: "Desaprovechar el talento de la mitad de la población es una forma de escasez autoinfligida, es decir, una ineficiencia. Además, los equipos directivos diversos suelen tomar mejores decisiones al integrar más puntos de vista."
+  - tipo: verdadero-falso
+    enunciado: "Tener un cargo de jefe equivale automáticamente a ejercer liderazgo sobre el equipo."
+    correcta: false
+    explicacion: "Liderazgo y autoridad formal no coinciden siempre: el liderazgo es la capacidad de influir para que la gente te siga porque quiere, mientras que la autoridad es el poder que da el cargo. Hay líderes sin cargo y jefes a los que nadie sigue de verdad."
+  - tipo: verdadero-falso
+    enunciado: "La empresa típica del tejido empresarial español es una gran empresa de más de 250 trabajadores."
+    correcta: false
+    explicacion: "Según el DIRCE del INE, la inmensa mayoría de las más de 3 millones de empresas españolas son microempresas y pymes; alrededor de la mitad no tiene ningún asalariado. La empresa típica es un negocio pequeño, no una multinacional."
+  - tipo: relacionar
+    enunciado: "Empareja cada concepto de la unidad con su definición:"
+    izquierda: ["Cultura empresarial", "Gestión del talento", "Techo de cristal", "Liderazgo situacional"]
+    derecha: ["Atraer, desarrollar y retener a las personas valiosas", "Barrera invisible al acceso de las mujeres a la alta dirección", "Valores y normas no escritas que comparte la organización", "Adaptar el estilo de mando a la situación, el equipo y la tarea"]
+    correctas: [2, 0, 1, 3]
+    explicacion: "La cultura empresarial es la personalidad de la organización; la gestión del talento, las prácticas para cuidar a las personas valiosas; el techo de cristal, la barrera invisible de género en la promoción; y el liderazgo situacional, la capacidad de ajustar el estilo a cada contexto."
 ---
 
 Test de autoevaluación de la Unidad 8 del libro de Economía, Emprendimiento y Actividad Empresarial (Bachillerato).

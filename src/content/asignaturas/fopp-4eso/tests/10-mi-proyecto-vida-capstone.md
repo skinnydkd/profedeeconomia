@@ -69,6 +69,26 @@ preguntas:
       - "Solo funciona para personas mayores de 30 años con experiencia laboral consolidada."
     correcta: 1
     explicacion: "El ikigai cruza cuatro círculos: **qué amas**, **qué se te da bien**, **qué necesita el mundo** y **por qué te pagarían**. En la Unidad 1 era un ejercicio introductorio sin datos. Tras nueve unidades sobre autoconocimiento, entorno, decisión, sistema educativo, mundo laboral y búsqueda de empleo, los cuatro círculos pueden rellenarse con material real y los cruces que aparecen en al menos tres de los cuatro marcan las **direcciones generales candidatas** del proyecto."
+  - tipo: verdadero-falso
+    enunciado: "El objetivo a largo plazo (10 años) debe escribirse con la misma precisión que el corto plazo, indicando puesto, salario y empresa concreta."
+    correcta: false
+    explicacion: "A los 16 años no hay datos para precisar tanto. El largo plazo es deliberadamente borroso: describe un tipo de vida deseada (entorno, relaciones, equilibrio), no un puesto concreto. La precisión SMART se reserva para el corto plazo."
+  - tipo: verdadero-falso
+    enunciado: "Un proyecto de vida útil debe contemplar fechas de revisión periódica en lugar de quedar fijado para siempre."
+    correcta: true
+    explicacion: "Un proyecto sin revisión se convierte en una losa. La unidad propone revisiones trimestrales, anuales y quinquenales: el proyecto es una hipótesis revisable, no un contrato cerrado."
+  - tipo: numerico
+    enunciado: "Una alumna recibe 60 € al mes y gasta 45 €. ¿Qué porcentaje de sus ingresos consigue ahorrar (sin decimales, en %)?"
+    respuesta: 25
+    tolerancia: 0.5
+    unidad: "%"
+    explicacion: "Ahorro mensual = 60 − 45 = 15 €. Porcentaje de ahorro = 15 ÷ 60 × 100 = 25 %. Un presupuesto personal sano reserva un porcentaje fijo de los ingresos para ahorro."
+  - tipo: relacionar
+    enunciado: "Empareja cada horizonte temporal del plan con su forma de redactarse:"
+    izquierda: ["Corto plazo (12 meses)", "Medio plazo (3-5 años)", "Largo plazo (10 años)"]
+    derecha: ["Dos o tres escenarios alternativos", "Tipo de vida deseada, deliberadamente borroso", "Objetivos SMART completos y operativos"]
+    correctas: [2, 0, 1]
+    explicacion: "El corto plazo se escribe con objetivos SMART completos; el medio plazo, con dos o tres escenarios alternativos; el largo plazo, en términos de tipo de vida, sin precisar puesto concreto."
 ---
 
 Test de autoevaluación de la Unidad 10 del libro de FOPP 4ESO. Ocho preguntas de síntesis sobre el capstone integrador: condiciones de un proyecto de vida útil, método SMART, plan a tres horizontes, red de apoyo, sistema de revisión periódica, ikigai aplicado y la naturaleza del proyecto como **hipótesis revisable, no como contrato**.

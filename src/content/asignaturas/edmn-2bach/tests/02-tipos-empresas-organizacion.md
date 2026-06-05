@@ -77,6 +77,22 @@ preguntas:
       - "Confundir salario bruto y coste empresa es un error habitual en planes financieros."
     correcta: 1
     explicacion: "El coste empresa NO es lo que cobra el trabajador (eso es el líquido). Es el bruto más las cuotas patronales: lo que la empresa desembolsa por cada persona empleada."
+  - tipo: verdadero-falso
+    enunciado: "En una Sociedad Limitada, los socios responden de las deudas sociales con todo su patrimonio personal, igual que un autónomo."
+    correcta: false
+    explicacion: "Falso. En la SL la responsabilidad está limitada al capital aportado: el patrimonio personal de los socios queda protegido. Es el autónomo quien responde con todo su patrimonio."
+  - tipo: numerico
+    enunciado: "Una empresa paga a un trabajador 1.800 € de salario bruto mensual. Si las cotizaciones patronales suponen un 32 % adicional sobre el bruto, ¿cuál es el coste empresa mensual en euros (sin decimales)?"
+    respuesta: 2376
+    tolerancia: 1
+    unidad: "€"
+    explicacion: "Coste empresa = bruto + cuotas patronales = 1.800 × (1 + 0,32) = 1.800 × 1,32 = 2.376 €."
+  - tipo: relacionar
+    enunciado: "Asocia cada forma jurídica con su rasgo característico:"
+    izquierda: ["Sociedad Anónima", "Cooperativa", "Autónomo", "Sociedad Limitada Unipersonal"]
+    derecha: ["Un socio, un voto; tributa al 20 %", "Capital mínimo de 60.000 € en acciones", "SL con un único socio y responsabilidad limitada", "Responsabilidad ilimitada con todo el patrimonio"]
+    correctas: [1, 0, 3, 2]
+    explicacion: "SA → 60.000 € en acciones; cooperativa → un socio, un voto y tipo del 20 %; autónomo → responsabilidad ilimitada; SLU → SL con un único socio."
 ---
 
 Test de autoevaluación de la Unidad 2 del libro de EDMN 2BACH.

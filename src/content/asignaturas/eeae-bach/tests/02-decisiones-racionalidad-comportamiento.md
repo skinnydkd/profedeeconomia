@@ -77,6 +77,20 @@ preguntas:
       - "La equidad es un criterio técnico que se deduce de los datos."
     correcta: 1
     explicacion: "La eficiencia de Pareto se ocupa del aprovechamiento de los recursos (que no se pueda mejorar a nadie sin empeorar a otro), pero no dice nada sobre la justicia del reparto. Una asignación puede ser eficiente y muy desigual; decidir cuánta equidad buscar es una decisión normativa, ética y política."
+  - tipo: verdadero-falso
+    enunciado: "La racionalidad acotada de Simon afirma que las personas siempre eligen la opción óptima entre todas las posibles."
+    correcta: false
+    explicacion: "Es justo lo contrario: como buscar e informarse cuesta, las personas no maximizan, sino que se conforman con la primera alternativa suficientemente buena (satisficing). La racionalidad está acotada por el tiempo, la información y la capacidad de cálculo."
+  - tipo: verdadero-falso
+    enunciado: "Una dosis moderada de exceso de confianza puede ser útil para atreverse a emprender, aunque en exceso lleve a infravalorar los riesgos."
+    correcta: true
+    explicacion: "Cierto: una pizca de exceso de confianza ayuda a dar el paso de emprender. El problema es el exceso, que hace subestimar costes y riesgos; por eso conviene contrastar con opiniones externas y fijar criterios por adelantado."
+  - tipo: relacionar
+    enunciado: "Empareja cada sesgo cognitivo con la conducta que mejor lo ilustra:"
+    izquierda: ["Sesgo de confirmación", "Sesgo de anclaje", "Aversión a la pérdida", "Exceso de confianza"]
+    derecha: ["Da más peso a la primera cifra que se escucha al negociar", "Sobrestima las propias probabilidades de éxito", "Solo atiende a la información que da la razón a lo que ya cree", "Duele más perder 100 que la satisfacción de ganar 100"]
+    correctas: [2, 0, 3, 1]
+    explicacion: "El sesgo de confirmación filtra la información a favor de lo que ya pensamos; el anclaje fija la decisión en un valor de referencia inicial; la aversión a la pérdida pondera más las pérdidas que las ganancias equivalentes; y el exceso de confianza infla nuestras probabilidades de acierto."
 ---
 
 Test de autoevaluación de la Unidad 2 del libro de EEAE. Cubre las dos formas de explicar la conducta (individualismo metodológico frente a perspectiva sociológica), el comportamiento racional y sus fallos (racionalidad acotada, sesgos del perfil decisor y emprendedor), la maximización de la utilidad y su raíz utilitarista, la felicidad (paradoja de Easterlin) y el debate ético entre eficiencia y equidad.

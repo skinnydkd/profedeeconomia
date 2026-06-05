@@ -69,6 +69,26 @@ preguntas:
       - "Si una idea fracasa, lo razonable es abandonar el sector y probar en otro distinto."
     correcta: 1
     explicacion: "La narrativa de *«fracasa rápido, fracasa a menudo»* romantiza el fracaso. La unidad es más realista: fracasar duele y cuesta, pero es probable. La diferencia la marcan tres estrategias concretas, no celebrar el fracaso en sí mismo."
+  - tipo: verdadero-falso
+    enunciado: "Gestionar bien las emociones al emprender consiste en no sentir miedo ni frustración cuando algo va mal."
+    correcta: false
+    explicacion: "Falso. No sentir las emociones es imposible. La gestión emocional consiste en reconocerlas, ponerles nombre y decidir qué hacer con ellas aunque sigan presentes: puedes tener miedo de hablar en público y aun así hablar bien."
+  - tipo: verdadero-falso
+    enunciado: "Según Carol Dweck, la mentalidad de crecimiento entiende las capacidades como un músculo que se entrena con la práctica."
+    correcta: true
+    explicacion: "Verdadero. La mentalidad de crecimiento ve la inteligencia y las capacidades como algo que mejora con esfuerzo y práctica, frente a la mentalidad fija, que las considera rasgos heredados e inmutables. La palabra clave es todavía: no sé hacer esto todavía."
+  - tipo: relacionar
+    enunciado: "Empareja cada habilidad emprendedora con su descripción correcta:"
+    izquierda: ["Escucha activa", "Creatividad", "Gestión emocional", "Comunicación efectiva"]
+    derecha: ["Combinar elementos que ya existen de formas nuevas", "Lograr que quien escucha entienda y recuerde lo importante", "Atender, reformular y preguntar para asegurar la comprensión", "Reconocer las emociones y decidir qué hacer con ellas"]
+    correctas: [2, 0, 3, 1]
+    explicacion: "Escucha activa: atender, reformular y preguntar. Creatividad: combinar lo conocido de un modo nuevo. Gestión emocional: reconocer las emociones y decidir la respuesta. Comunicación efectiva: que el receptor entienda y retenga la idea."
+  - tipo: relacionar
+    enunciado: "Empareja cada letra de la técnica SCAMPER con la acción que propone:"
+    izquierda: ["S — Sustituir", "C — Combinar", "E — Eliminar", "R — Reorganizar"]
+    derecha: ["Unir dos elementos en uno solo", "Quitar partes para simplificar", "Cambiar el orden o la disposición de las partes", "Reemplazar un material, ingrediente o componente por otro"]
+    correctas: [3, 0, 1, 2]
+    explicacion: "SCAMPER aplica siete preguntas a algo que ya existe. Sustituir: reemplazar un componente. Combinar: unir elementos. Eliminar: quitar partes para simplificar. Reorganizar: cambiar el orden o la disposición."
 ---
 
 Test de autoevaluación de la Unidad 2 del libro de Eco 4ESO.

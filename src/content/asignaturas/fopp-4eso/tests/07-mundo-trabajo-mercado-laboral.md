@@ -69,6 +69,22 @@ preguntas:
       - "Falta de jóvenes españoles dispuestos a trabajar más de 30 horas semanales."
     correcta: 3
     explicacion: "Las tres primeras (dualidad contractual, mismatch educativo y estacionalidad turística), junto con un SMI alto frente a la productividad juvenil baja, son las **cuatro causas estructurales** identificadas en los informes oficiales. La cuarta opción es un tópico sin respaldo en los datos: los jóvenes españoles no trabajan menos horas que sus homólogos europeos cuando consiguen empleo."
+  - tipo: verdadero-falso
+    enunciado: "Un estudiante de 20 años que estudia a tiempo completo y no busca trabajo se clasifica en la EPA como parado."
+    correcta: false
+    explicacion: "Para la EPA, parado es quien no tiene empleo y lo busca activamente. Quien estudia a tiempo completo sin buscar empleo es inactivo, no parado."
+  - tipo: numerico
+    enunciado: "En una ciudad hay 2.000.000 de personas ocupadas y 250.000 paradas. Con la fórmula de la EPA (parados ÷ población activa × 100), ¿cuál es la tasa de paro (1 decimal, en %)?"
+    respuesta: 11.1
+    tolerancia: 0.2
+    unidad: "%"
+    explicacion: "Población activa = ocupados + parados = 2.000.000 + 250.000 = 2.250.000. Tasa de paro = 250.000 ÷ 2.250.000 × 100 = 11,11 %, es decir, 11,1 %."
+  - tipo: relacionar
+    enunciado: "Empareja cada categoría de la EPA o forma de trabajar con su descripción:"
+    izquierda: ["Ocupado", "Parado", "Inactivo", "Autoempleo"]
+    derecha: ["No trabaja ni busca empleo activamente", "Trabaja para sí mismo dado de alta como autónomo", "Tiene un empleo remunerado", "No tiene empleo pero lo busca activamente"]
+    correctas: [2, 3, 0, 1]
+    explicacion: "Ocupado tiene empleo; parado no lo tiene pero lo busca; inactivo ni trabaja ni busca; el autoempleo es trabajar para uno mismo bajo el régimen de autónomos (RETA)."
 ---
 
 Test de autoevaluación de la Unidad 7 del libro de FOPP 4ESO. Ocho preguntas sobre el mercado laboral español: definiciones EPA y tres tasas básicas, cuatro sectores económicos, profesiones de futuro y en retroceso, salarios por nivel formativo, tres formas de trabajar y causas estructurales del paro juvenil.

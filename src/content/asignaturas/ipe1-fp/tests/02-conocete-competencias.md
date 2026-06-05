@@ -86,4 +86,14 @@ preguntas:
       - "¿Cómo me comporto?"
     correcta: 2
     explicacion: "El **interés** responde a *¿qué me gusta?* (lo que te atrae y harías por gusto). La aptitud responde a *¿para qué tengo facilidad?*; la competencia, a *¿qué sé hacer?*; y la actitud, a *¿cómo me comporto?*. Ordenar este vocabulario evita confundir lo que gusta con lo que se sabe hacer."
+  - tipo: verdadero-falso
+    enunciado: "Tener una aptitud natural para algo garantiza por sí sola ser competente en ello."
+    correcta: false
+    explicacion: "La aptitud es solo potencial: facilidad natural antes de entrenarla. Se convierte en competencia (saber hacer demostrable) cuando se trabaja con práctica y formación. Sin entrenamiento, una aptitud se queda en promesa."
+  - tipo: relacionar
+    enunciado: "Empareja cada categoría del autoconocimiento con la pregunta que responde:"
+    izquierda: ["Interés", "Aptitud", "Competencia", "Actitud"]
+    derecha: ["¿Qué sé hacer?", "¿Cómo me comporto?", "¿Qué me gusta?", "¿Para qué tengo facilidad?"]
+    correctas: [2, 3, 0, 1]
+    explicacion: "El interés responde a qué te gusta; la aptitud, para qué tienes facilidad; la competencia, qué sabes hacer de forma demostrable; y la actitud, cómo te comportas. Cruzar las cuatro evita decisiones de carrera equivocadas."
 ---

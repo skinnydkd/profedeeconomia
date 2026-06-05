@@ -77,6 +77,20 @@ preguntas:
       - "Para sustituir el trabajo del proyecto por un test."
     correcta: 1
     explicacion: "El autodiagnóstico no dice si alguien 'vale' —las actitudes se entrenan—, sino que ofrece una foto honesta del punto de partida de cada miembro. Es el primer paso de la Fase 0 del cuaderno y permite repartir tareas con criterio."
+  - tipo: verdadero-falso
+    enunciado: "Toda invención es, por definición, una innovación."
+    correcta: false
+    explicacion: "No: inventar es crear algo que antes no existía, pero solo se convierte en innovación cuando esa novedad llega al mercado o la sociedad y genera valor real. Una invención que se queda en un cajón no es innovación."
+  - tipo: verdadero-falso
+    enunciado: "Según la unidad, las actitudes emprendedoras (iniciativa, perseverancia, flexibilidad) son un don innato con el que se nace y no se pueden entrenar."
+    correcta: false
+    explicacion: "El perfil emprendedor no es un don innato: la unidad insiste en que las actitudes se entrenan a lo largo del proceso emprendedor. Por eso el autodiagnóstico sirve como punto de partida, no como sentencia."
+  - tipo: relacionar
+    enunciado: "Empareja cada tipo de innovación con un ejemplo:"
+    izquierda: ["Innovación de producto", "Innovación de proceso", "Innovación de marketing", "Innovación de organización"]
+    derecha: ["Reorganizar los turnos del equipo para trabajar mejor", "Lanzar al mercado un yogur sin lactosa nuevo", "Automatizar el amasado para producir más barato", "Vender por suscripción a un público que nadie atendía"]
+    correctas: [1, 2, 3, 0]
+    explicacion: "Producto: una novedad que se ofrece (yogur sin lactosa). Proceso: una forma nueva de producir (automatizar el amasado). Marketing: una forma nueva de llegar al cliente (suscripción a un público desatendido). Organización: un cambio en cómo se organiza el trabajo (reorganizar turnos)."
 ---
 
 Test de autoevaluación de la Unidad 1 del libro teórico de Gestión de Proyectos de Emprendimiento (Bachillerato, Comunitat Valenciana).

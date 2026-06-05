@@ -86,4 +86,20 @@ preguntas:
       - "Porque las familias dejan de dar dinero a sus hijos."
     correcta: 1
     explicacion: "Lo que enseña una paga no es la cantidad, sino el mecanismo: que el dinero es limitado, que cada elección tiene un coste y que apartar hoy permite conseguir algo mayor mañana. Equivocarse con 5 € a los 14 sale mucho más barato que con una nómina a los 25."
+  - tipo: verdadero-falso
+    enunciado: "Pagarse a uno mismo primero significa esperar a fin de mes y ahorrar lo que haya sobrado."
+    correcta: false
+    explicacion: "Es falso: pagarse a uno mismo primero es apartar el ahorro en cuanto entra el dinero, antes de gastar. Si esperas a ver qué sobra, casi nunca sobra nada."
+  - tipo: numerico
+    enunciado: "Recibes 40 € de paga al mes y aplicas la regla 50-30-20. ¿Cuánto deberías apartar para ahorro, en €?"
+    respuesta: 8
+    tolerancia: 0.1
+    unidad: "€"
+    explicacion: "El ahorro es el 20 %: 40 × 0,20 = 8 €. Las necesidades serían 20 € (50 %) y los deseos 12 € (30 %)."
+  - tipo: relacionar
+    enunciado: "Empareja cada gasto con el tipo que es:"
+    izquierda: ["Suscripción mensual a una app que pagas tú", "Comprar chuches este sábado", "Un regalo de cumpleaños para un amigo", "La cuota fija del gimnasio"]
+    derecha: ["Gasto variable", "Gasto fijo", "Gasto variable", "Gasto fijo"]
+    correctas: [1, 0, 2, 3]
+    explicacion: "Los gastos fijos se repiten cada mes con un importe parecido (suscripción, cuota del gimnasio); los variables cambian o no se repiten (chuches, un regalo puntual)."
 ---

@@ -77,6 +77,20 @@ preguntas:
       - "La antigüedad media en la empresa."
     correcta: 2
     explicacion: "Google esperaba encontrar que los mejores equipos eran los formados por los más brillantes o por amigos. Encontró lo contrario: el factor decisivo era la seguridad psicológica. En equipos donde la gente puede hablar sin miedo circulan más ideas, se detectan antes los errores y se queda más tiempo."
+  - tipo: verdadero-falso
+    enunciado: "Cinco compañeros que se reparten los apartados de un trabajo, lo hacen cada uno por su cuenta y juntan los archivos la noche antes forman un equipo bien organizado."
+    correcta: false
+    explicacion: "Falso. Eso es un grupo que trabaja en paralelo, no un equipo. Faltan la interdependencia (cada parte se hace aislada) y la sinergia (el resultado conjunto no es mayor que la suma de partes). Por eso muchos trabajos en grupo de aula fallan: se organizan como grupo, no como equipo."
+  - tipo: verdadero-falso
+    enunciado: "Un conflicto que pasa de discutir sobre la tarea (no me convence hacer una encuesta) a atacar a la persona (tú nunca trabajas) se considera un conflicto destructivo."
+    correcta: true
+    explicacion: "Verdadero. El conflicto constructivo gira en torno a ideas o tareas y mejora el resultado. Cuando salta de la tarea a la persona (tú nunca, siempre llegas tarde) se vuelve destructivo y empieza a romper el equipo. Por eso conviene intervenir pronto."
+  - tipo: relacionar
+    enunciado: "Empareja cada rol de equipo (simplificación Belbin) con su función:"
+    izquierda: ["Cerebro (creativo)", "Implementador", "Cohesionador", "Evaluador"]
+    derecha: ["Convierte ideas y decisiones en tareas entregadas a tiempo", "Analiza con frialdad si la idea es viable", "Propone ideas nuevas cuando el equipo está bloqueado", "Cuida el ambiente y une al equipo"]
+    correctas: [2, 0, 3, 1]
+    explicacion: "Cerebro: propone ideas imaginativas para romper bloqueos. Implementador: ejecuta y entrega a tiempo. Cohesionador: cuida el clima y une al equipo. Evaluador: analiza con frialdad la viabilidad de las propuestas."
 ---
 
 Test de autoevaluación de la Unidad 6 del libro de Eco 4ESO.

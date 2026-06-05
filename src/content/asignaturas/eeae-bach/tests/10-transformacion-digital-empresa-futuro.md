@@ -77,6 +77,20 @@ preguntas:
       - "Que los trabajadores deben ser siempre los dueños de la empresa."
     correcta: 1
     explicacion: "La visión clásica dice que la empresa solo rinde cuentas a sus accionistas. La de los stakeholders entiende que la empresa afecta a mucha más gente y que su éxito a largo plazo depende de la relación con todo su entorno. El compromiso voluntario con todos esos grupos es la responsabilidad social corporativa (RSC)."
+  - tipo: verdadero-falso
+    enunciado: "Digitalizar un proceso (pasar las fichas de papel a un programa para hacer lo mismo de siempre) es ya, por sí solo, una transformación digital."
+    correcta: false
+    explicacion: "No: eso es digitalización, que cambia las herramientas. La transformación digital va más allá: replantea qué se ofrece, cómo se organiza el trabajo y cómo se gana dinero. La primera cambia las herramientas; la segunda cambia la empresa."
+  - tipo: verdadero-falso
+    enunciado: "El derecho a la desconexión digital permite al trabajador no atender comunicaciones laborales fuera de su jornada."
+    correcta: true
+    explicacion: "Cierto, y está reconocido en la legislación española. Protege al trabajador frente al riesgo de que el trabajo (sobre todo con el teletrabajo) invada su vida personal: no está obligado a responder mensajes laborales fuera de su horario."
+  - tipo: relacionar
+    enunciado: "Empareja cada efecto de la inteligencia artificial sobre el empleo con su ejemplo:"
+    izquierda: ["Destruye", "Transforma", "Crea"]
+    derecha: ["El puesto cambia de contenido hacia tareas con criterio y trato", "Aparecen empleos nuevos que antes no existían", "Desaparecen tareas muy repetitivas y predecibles"]
+    correctas: [2, 0, 1]
+    explicacion: "El análisis serio reconoce tres efectos simultáneos: la automatización destruye puestos muy repetitivos, transforma la mayoría hacia lo que exige criterio o trato humano, y crea empleos nuevos que antes no existían."
 ---
 
 Test de autoevaluación de la Unidad 10 del libro de EEAE, última de la materia. Cubre la revolución tecnológica y el poder de la tecnología; la diferencia entre digitalización y transformación digital y por qué muchas transformaciones fracasan por cultura y no por tecnología; el impacto de la inteligencia artificial y la automatización sobre el empleo (destruir, transformar y crear) y las habilidades más a salvo; las tendencias del lugar de trabajo (teletrabajo, trabajo híbrido, derecho a la desconexión); y la sostenibilidad como estrategia de futuro, con la economía circular, los grupos de interés (stakeholders) y la responsabilidad social corporativa.

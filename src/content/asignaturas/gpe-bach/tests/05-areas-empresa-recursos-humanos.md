@@ -77,6 +77,22 @@ preguntas:
       - "No hay diferencia: son dos nombres para lo mismo."
     correcta: 1
     explicacion: "La comunicación interna circula dentro de la organización (entre los miembros del equipo y la coordinación); la externa se dirige hacia fuera (clientes, proveedores, administración, sociedad). Ambas deben ser coherentes entre sí."
+  - tipo: verdadero-falso
+    enunciado: "El salario neto es el dinero que de verdad llega a la cuenta de la persona trabajadora, una vez restadas del bruto las deducciones de Seguridad Social e IRPF."
+    correcta: true
+    explicacion: "Correcto. El salario bruto es el total que la empresa reconoce; de él se restan la aportación a la Seguridad Social y la retención de IRPF. Lo que queda es el salario neto, el dinero que llega a la cuenta."
+  - tipo: numerico
+    enunciado: "Una nómina tiene un salario bruto de 1.500 €. Se le deducen 95 € de Seguridad Social y 130 € de retención de IRPF. ¿Cuál es el salario neto? (en euros)"
+    respuesta: 1275
+    tolerancia: 0
+    unidad: "€"
+    explicacion: "Salario neto = salario bruto − deducciones = 1.500 − 95 − 130 = 1.275 €. Las deducciones (Seguridad Social e IRPF) son la diferencia entre lo que la empresa reconoce y lo que recibe la persona trabajadora."
+  - tipo: relacionar
+    enunciado: "Ordena el proceso de selección de personal emparejando cada fase con su orden:"
+    izquierda: ["Definir el perfil del puesto", "Publicar la oferta y recibir candidaturas", "Entrevistar a las personas candidatas", "Firmar el contrato de trabajo"]
+    derecha: ["Tercer paso", "Primer paso", "Cuarto paso", "Segundo paso"]
+    correctas: [1, 3, 0, 2]
+    explicacion: "El proceso empieza por definir el perfil (primer paso); luego se publica la oferta y se reciben candidaturas (segundo); después se entrevista (tercero) y, por último, se firma el contrato (cuarto). Sin un perfil claro al inicio, el resto falla."
 ---
 
 Test de autoevaluación de la Unidad 5 del libro teórico de Gestión de Proyectos de Emprendimiento (Bachillerato, Comunitat Valenciana).

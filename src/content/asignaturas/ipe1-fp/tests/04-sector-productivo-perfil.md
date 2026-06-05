@@ -86,4 +86,18 @@ preguntas:
       - "Están desapareciendo por completo."
     correcta: 1
     explicacion: "Alrededor del 76 % del empleo está en servicios, con mucha demanda pero también rotación y estacionalidad. Las familias del sector secundario tienen **menos volumen** pero **escasez crónica de profesionales cualificados**, lo que mejora salarios y estabilidad para quien se forma en ellas."
+  - tipo: verdadero-falso
+    enunciado: "Un título de FP habilita para trabajar en cualquier puesto, sin restricciones de ocupación."
+    correcta: false
+    explicacion: "No: cada ciclo de FP está vinculado a unas cualificaciones concretas del Catálogo Nacional de Cualificaciones Profesionales (CNCP/Incual), que definen un conjunto tasado de ocupaciones. El título es una llave hacia ocupaciones determinadas, no para cualquier puesto."
+  - tipo: verdadero-falso
+    enunciado: "Acceder a una bolsa de trabajo pública da directamente una plaza fija, igual que aprobar una oposición."
+    correcta: false
+    explicacion: "La bolsa de trabajo es una lista de aspirantes ordenada por baremo de la que la Administración llama para contratos temporales (sustituciones, interinidades), no para plazas fijas. La plaza fija se obtiene normalmente por oposición, tras pruebas selectivas."
+  - tipo: relacionar
+    enunciado: "Empareja cada herramienta o fuente con su contenido:"
+    izquierda: ["CNCP / Incual", "CNO-11", "Observatorio de las Ocupaciones del SEPE", "EBEP"]
+    derecha: ["Asigna un código a cada ocupación para la estadística", "Regula el acceso y los subgrupos de la función pública", "Define las cualificaciones y ocupaciones de cada título", "Publica la demanda real de contratación por ocupación y provincia"]
+    correctas: [2, 0, 3, 1]
+    explicacion: "El CNCP/Incual define las cualificaciones; la CNO-11 del INE codifica las ocupaciones; el Observatorio del SEPE publica la demanda real; y el EBEP regula el empleo público."
 ---

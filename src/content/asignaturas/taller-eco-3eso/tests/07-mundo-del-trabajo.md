@@ -86,4 +86,20 @@ preguntas:
       - "Solo con una foto y el nombre."
     correcta: 1
     explicacion: "Un buen primer CV es claro, sincero y de una sola página. No hay que mentir en idiomas o conocimientos (se nota en la entrevista) y conviene revisar la ortografía."
+  - tipo: verdadero-falso
+    enunciado: "El Salario Mínimo Interprofesional (SMI) es la cantidad máxima que una empresa puede pagar a un trabajador."
+    correcta: false
+    explicacion: "Es falso: el SMI es la cantidad mínima legal por una jornada completa. Es un suelo, no un techo: ningún empleo puede pagar menos, pero muchos pagan más."
+  - tipo: numerico
+    enunciado: "En un pueblo la población activa es de 200 personas y 30 están en paro buscando trabajo. ¿Cuál es la tasa de paro, en %?"
+    respuesta: 15
+    tolerancia: 0.1
+    unidad: "%"
+    explicacion: "Tasa de paro = (parados / población activa) × 100 = (30 / 200) × 100 = 15 %."
+  - tipo: relacionar
+    enunciado: "Empareja cada actividad con su sector económico:"
+    izquierda: ["Un agricultor que recoge naranjas", "Una fábrica que monta coches", "Un hotel que atiende a turistas", "Una empresa de construcción"]
+    derecha: ["Sector secundario", "Sector terciario", "Sector primario", "Sector secundario"]
+    correctas: [2, 0, 1, 3]
+    explicacion: "El sector primario obtiene materias primas de la naturaleza (agricultura); el secundario las transforma (industria y construcción); el terciario presta servicios (turismo, comercio)."
 ---

@@ -86,4 +86,18 @@ preguntas:
       - "Ocultar los resultados y seguir adelante."
     correcta: 1
     explicacion: "Si el problema no es real ni suficiente, hay que **volver a la detección de problemas**. **Descartar pronto una mala idea es una victoria, no un fracaso**: te ahorra tiempo y dinero. El objetivo de la validación es precisamente decidir si el problema merece seguir, no enamorarse de la propia idea."
+  - tipo: verdadero-falso
+    enunciado: "Cualquier idea que se te ocurra es ya una oportunidad de negocio, porque toda idea resuelve algún problema."
+    correcta: false
+    explicacion: "Es falso. Una idea es una ocurrencia barata e infinita; una oportunidad cumple tres condiciones a la vez: resuelve un problema real, de un número suficiente de personas, dispuestas a pagar por resolverlo. La mayoría de las ideas no son oportunidades."
+  - tipo: verdadero-falso
+    enunciado: "Durante una sesión de generación de ideas conviene ir descartando sobre la marcha las que parezcan poco viables, para ahorrar tiempo."
+    correcta: false
+    explicacion: "Es falso. Mezclar divergir (generar sin juzgar) y converger (filtrar con criterio) arruina la sesión: si alguien dice eso no funcionará mientras el grupo genera ideas, el grupo deja de arriesgar. Primero se abre y se generan muchas; después, en otra fase, se filtra y se elige."
+  - tipo: relacionar
+    enunciado: "Empareja cada concepto de la fase de descubrimiento con su idea central:"
+    izquierda: ["Doble diamante", "Mapa de empatía", "The Mom Test", "Prototipo de baja fidelidad"]
+    derecha: ["Preguntar por hechos pasados, no por intenciones futuras", "Dos ciclos: primero el problema, después la solución", "Versión barata para observar la reacción real del usuario", "Construirlo tras hablar con personas reales del público objetivo"]
+    correctas: [1, 3, 0, 2]
+    explicacion: "El doble diamante separa descubrir-definir el problema de desarrollar-validar la solución; el mapa de empatía solo vale si se construye tras hablar con gente real; The Mom Test pregunta por el pasado para evitar cumplidos vacíos; y el prototipo de baja fidelidad busca la reacción del usuario antes de invertir."
 ---

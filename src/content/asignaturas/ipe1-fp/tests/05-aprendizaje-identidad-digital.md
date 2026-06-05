@@ -86,4 +86,18 @@ preguntas:
       - "Para borrar internet por completo."
     correcta: 1
     explicacion: "Auditar tu nombre en un navegador en modo incógnito te muestra qué ven los demás de ti en los primeros resultados. Si no coincide con lo que quieres proyectar como profesional, puedes ajustar la privacidad, despublicar contenido o crear presencia profesional que empuje hacia abajo lo que no te conviene. Es la parte defensiva de la gestión de la identidad digital."
+  - tipo: verdadero-falso
+    enunciado: "Que una fuente digital tenga muchas visitas y aparezca primera en el buscador garantiza que sea fiable."
+    correcta: false
+    explicacion: "La popularidad no es un criterio de calidad: una fuente muy vista puede ser poco fiable. El filtro correcto es autoría (quién lo firma), actualidad (de cuándo es), propósito (informa o vende), contraste (lo confirman otras fuentes) y evidencia (cita sus fuentes)."
+  - tipo: verdadero-falso
+    enunciado: "El derecho al olvido garantiza que todo lo que publicas en internet se pueda borrar siempre y por completo."
+    correcta: false
+    explicacion: "El derecho al olvido (RGPD y LOPDGDD) permite pedir la retirada de información solo en ciertos casos y con condiciones. Lo que sube a la red rara vez desaparece del todo, por eso prevenir (no publicar lo que perjudica) es mucho más eficaz que intentar reparar después."
+  - tipo: relacionar
+    enunciado: "Empareja cada concepto de presencia digital con su descripción:"
+    izquierda: ["Identidad digital", "Huella digital", "Marca personal", "Netiqueta"]
+    derecha: ["El rastro que dejas, incluido lo que otros publican, casi permanente", "Lo que proyectas activamente con tus perfiles y publicaciones", "Las normas de cortesía y respeto en la comunicación digital", "La gestión estratégica y voluntaria de tu identidad con fin profesional"]
+    correctas: [1, 0, 3, 2]
+    explicacion: "La identidad digital es lo que proyectas; la huella es el rastro que dejas; la marca personal es gestionar esa identidad con estrategia profesional; y la netiqueta son las normas de cortesía en la red."
 ---

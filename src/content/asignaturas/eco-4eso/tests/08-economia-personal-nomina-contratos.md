@@ -77,6 +77,22 @@ preguntas:
       - "Que los riders debían tributar como personas físicas no residentes."
     correcta: 1
     explicacion: "La STS 805/2020, dictada por unanimidad por la Sala de lo Social, consideró que la relación de los riders con Glovo cumplía las notas de dependencia y ajenidad del Estatuto de los Trabajadores, pese al disfraz formal de contrato mercantil. La sentencia desencadenó la Ley Rider (Real Decreto-ley 9/2021), que estableció una presunción legal de laboralidad para los repartidores de plataformas digitales. Hoy Glovo opera en España con repartidores asalariados."
+  - tipo: verdadero-falso
+    enunciado: "Si por ganar 1 € más pasas del tramo de IRPF del 19 % al del 24 %, todo tu sueldo pasa a tributar al 24 %, así que conviene no subir de tramo."
+    correcta: false
+    explicacion: "Falso. El IRPF es progresivo por tramos: cada tramo se aplica solo a la franja de renta que cae dentro de él. Al subir de tramo, únicamente ese euro de más tributa al tipo nuevo; el resto sigue a los tipos de los tramos anteriores. Siempre conviene ganar más, aunque cambies de tramo."
+  - tipo: numerico
+    enunciado: "El total devengado (bruto) de una nómina es 1.500 €. Le descuentan un 6,35 % de Seguridad Social y 90 € de retención de IRPF. ¿Cuál es el líquido a percibir (neto)? (en euros, 2 decimales)"
+    respuesta: 1314.75
+    tolerancia: 0.5
+    unidad: "€"
+    explicacion: "Cotización a la Seguridad Social: 1.500 × 6,35 % = 95,25 €. Total de descuentos: 95,25 + 90 = 185,25 €. Líquido a percibir = 1.500 − 185,25 = 1.314,75 €. Es el dinero que efectivamente entra en la cuenta."
+  - tipo: relacionar
+    enunciado: "Empareja cada figura jurídica o contractual con su rasgo definitorio:"
+    izquierda: ["Sociedad Limitada (SL)", "Autónomo (RETA)", "Contrato para la práctica profesional", "Contrato de formación en alternancia"]
+    derecha: ["Responde de las deudas con todo su patrimonio personal", "Limita el tiempo de trabajo (65 %/85 %) porque parte se dedica a formación", "Responsabilidad limitada al capital aportado, tributa al 25 %", "Jornada completa cobrando el íntegro de convenio, para quien ya tiene el título"]
+    correctas: [2, 0, 3, 1]
+    explicacion: "SL: responsabilidad limitada al capital aportado. Autónomo: responde con todo su patrimonio (responsabilidad ilimitada). Práctica profesional: jornada completa y salario íntegro para quien ya tiene título. Formación en alternancia: jornada limitada al 65 %/85 % porque el resto es formación."
 ---
 
 Test de autoevaluación de la Unidad 8 del libro de Eco 4ESO. Nueve preguntas porque esta unidad es el diferenciador editorial del bloque C: leer una nómina, calcular el neto, distinguir contratos tras la reforma de 2021 y elegir forma jurídica son competencias que casi ningún libro de 4.º trabaja con este nivel de detalle.

@@ -86,4 +86,18 @@ preguntas:
       - "Que solo importan los accidentes mortales."
     correcta: 1
     explicacion: "La **pirámide de Frank Bird** halló que por cada accidente grave hay muchos accidentes leves, con daños materiales e incidentes sin lesión. La lección es que los **casi-accidentes son avisos gratuitos**: una empresa con cultura preventiva los investiga para evitar la tragedia futura, por eso conviene que cualquier trabajador pueda reportarlos sin miedo a represalias."
+  - tipo: verdadero-falso
+    enunciado: "El trabajador debe pagar de su salario los equipos de protección individual (EPI) que utiliza."
+    correcta: false
+    explicacion: "La prevención nunca puede recaer económicamente sobre el trabajador (art. 14.5 LPRL). El empresario entrega los EPI gratuitamente y los repone; el trabajador solo está obligado a usarlos correctamente (art. 29 LPRL)."
+  - tipo: verdadero-falso
+    enunciado: "Entregar equipos de protección individual es el primer principio de la acción preventiva, antes que evitar el riesgo."
+    correcta: false
+    explicacion: "El primer principio del art. 15 LPRL es evitar los riesgos: si pueden eliminarse de raíz, se eliminan. El EPI es el último recurso, cuando no hay protección colectiva equivalente. Los nueve principios son una jerarquía y solo se baja un escalón si el anterior no es posible."
+  - tipo: relacionar
+    enunciado: "Empareja cada color y forma de señal de seguridad con su significado:"
+    izquierda: ["Redonda azul", "Redonda roja", "Triangular amarilla", "Cuadrada verde"]
+    derecha: ["Advertencia de peligro", "Salvamento o socorro", "Obligación (casco, gafas)", "Prohibición"]
+    correctas: [2, 3, 0, 1]
+    explicacion: "El azul redondo indica obligación; el rojo redondo, prohibición; el amarillo triangular, advertencia de peligro; y el verde cuadrado, salvamento o socorro (RD 485/1997)."
 ---

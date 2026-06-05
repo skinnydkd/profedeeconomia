@@ -77,6 +77,22 @@ preguntas:
       - "La Seguridad Social."
     correcta: 2
     explicacion: "El IVACE (hoy IVACE+i) es la agencia de la Generalitat que apoya a las empresas con asesoramiento, formación y ayudas. Las cámaras de comercio y las agencias de desarrollo local completan la red en la CV."
+  - tipo: verdadero-falso
+    enunciado: "Una persona autónoma responde de las deudas de su actividad solo con el dinero que haya aportado al negocio, igual que en una Sociedad Limitada."
+    correcta: false
+    explicacion: "Falso. El autónomo tiene responsabilidad ilimitada: responde de las deudas con todo su patrimonio personal. La responsabilidad limitada al capital aportado es propia de la Sociedad Limitada y de la cooperativa, no del autónomo."
+  - tipo: numerico
+    enunciado: "Cuatro socios deciden constituir una Sociedad Limitada con un capital social de 3.000 € y aportan todos la misma cantidad. ¿Cuánto aporta cada socio? (en euros, sin decimales)"
+    respuesta: 750
+    tolerancia: 0
+    unidad: "€"
+    explicacion: "Capital por socio = capital total ÷ número de socios = 3.000 ÷ 4 = 750 €. Recuerda que tras la Ley Crea y Crece el mínimo legal de la SL es de 1 €, pero aquí el equipo ha decidido aportar 3.000 € entre los cuatro."
+  - tipo: relacionar
+    enunciado: "Empareja cada forma jurídica con uno de sus rasgos:"
+    izquierda: ["Autónomo", "Sociedad Limitada", "Cooperativa", "Punto de Atención al Emprendedor (PAE)"]
+    derecha: ["Responsabilidad limitada al capital aportado", "Cada socio es a la vez trabajador, con gestión democrática", "Responsabilidad ilimitada del titular", "Ventanilla única que asesora y tramita el alta"]
+    correctas: [2, 0, 1, 3]
+    explicacion: "El autónomo responde con todo su patrimonio (responsabilidad ilimitada); la SL limita la responsabilidad al capital aportado; la cooperativa une socio y trabajador con gestión democrática; el PAE no es una forma jurídica, sino la ventanilla única que asesora y tramita."
 ---
 
 Test de autoevaluación de la Unidad 3 del libro teórico de GPE (Gestión de Proyectos de Emprendimiento).

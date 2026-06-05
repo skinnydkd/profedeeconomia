@@ -77,6 +77,22 @@ preguntas:
       - "El dinero ahorrado por los socios antes de empezar."
     correcta: 2
     explicacion: "ENISA concede préstamos participativos públicos a emprendedores sin exigir avales ni garantías personales, apostando por la viabilidad del proyecto. Es financiación ajena (hay que devolverla); las aportaciones del equipo y los beneficios reinvertidos son financiación propia."
+  - tipo: verdadero-falso
+    enunciado: "Por debajo del punto muerto, como aún se vende algo, el proyecto ya obtiene beneficio."
+    correcta: false
+    explicacion: "Falso. El punto muerto es la cantidad que hay que vender para no perder ni ganar. Por debajo de él los ingresos no cubren los costes totales: hay pérdidas. El beneficio solo aparece al superar esa cantidad."
+  - tipo: numerico
+    enunciado: "Un proyecto tiene 1.200 € de costes fijos, vende cada unidad a 10 € y su coste variable por unidad es 4 €. ¿Cuál es su punto muerto? (en unidades)"
+    respuesta: 200
+    tolerancia: 1
+    unidad: "unidades"
+    explicacion: "Punto muerto Q* = Costes fijos ÷ (Precio − Coste variable unitario) = 1.200 ÷ (10 − 4) = 1.200 ÷ 6 = 200 unidades. A partir de la unidad 201 el proyecto empieza a obtener beneficio."
+  - tipo: relacionar
+    enunciado: "Clasifica cada fuente según sea financiación propia o ajena:"
+    izquierda: ["Aportaciones de capital del equipo", "Préstamo participativo de ENISA", "Beneficios reinvertidos en el proyecto", "Préstamo bancario con aval"]
+    derecha: ["Financiación ajena", "Financiación propia", "Financiación ajena", "Financiación propia"]
+    correctas: [1, 0, 3, 2]
+    explicacion: "Las aportaciones del equipo y los beneficios reinvertidos son financiación propia (no hay que devolverlos). El préstamo de ENISA y el préstamo bancario son financiación ajena: hay que devolverlos, normalmente con intereses."
 ---
 
 Test de autoevaluación de la Unidad 6 del libro teórico de Gestión de Proyectos de Emprendimiento (Bachillerato, Comunitat Valenciana).

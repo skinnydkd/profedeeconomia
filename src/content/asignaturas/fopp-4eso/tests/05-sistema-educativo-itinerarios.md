@@ -77,6 +77,22 @@ preguntas:
       - "España es el país europeo con mayor porcentaje de jóvenes en FP."
     correcta: 1
     explicacion: "Los datos de OCDE y SEPE desmontan el mito *Bachillerato = bueno / FP = otros*. En familias técnicas la empleabilidad supera el 90 %, y los salarios son competitivos. España es, de hecho, el país europeo con **menos jóvenes** eligiendo FP (12 % frente al 45-60 % de Alemania, Suiza o Países Bajos)."
+  - tipo: verdadero-falso
+    enunciado: "Desde la FP de Grado Medio se puede acceder directamente a la universidad sin pasar por Bachillerato ni por Grado Superior."
+    correcta: false
+    explicacion: "No existe ese atajo. Desde Grado Medio hay que pasar primero por Grado Superior (o por Bachillerato) para llegar a la universidad. El Técnico Superior sí da acceso directo."
+  - tipo: numerico
+    enunciado: "Una alumna tiene una media de Bachillerato de 7,5 y saca un 6,5 en la fase obligatoria de la EBAU. Aplicando la fórmula oficial (0,6 × media de Bachillerato + 0,4 × fase obligatoria), ¿cuál es su nota de acceso sobre 10 (2 decimales)?"
+    respuesta: 7.1
+    tolerancia: 0.05
+    unidad: "puntos"
+    explicacion: "Nota de acceso = 0,6 × 7,5 + 0,4 × 6,5 = 4,5 + 2,6 = 7,10 puntos. Sobre esta nota se pueden sumar hasta 4 puntos de la fase voluntaria, hasta el máximo de 14."
+  - tipo: relacionar
+    enunciado: "Empareja cada nivel del sistema educativo con su característica:"
+    izquierda: ["FP Grado Básico", "FP Grado Medio", "FP Grado Superior", "EOI"]
+    derecha: ["Titula como Técnico y exige el título de ESO", "Da acceso directo a la universidad", "Enseñanza reglada de idiomas de A1 a C2", "Pasarela para quien no tiene el título de ESO"]
+    correctas: [3, 0, 1, 2]
+    explicacion: "El Grado Básico es una pasarela para alumnado sin título de ESO; el Grado Medio titula como Técnico; el Grado Superior da acceso directo a la universidad; la EOI imparte idiomas reglados según el MCER."
 ---
 
 Test de autoevaluación de la Unidad 5 del libro de FOPP 4ESO. Nueve preguntas sobre el mapa completo del sistema educativo post-ESO: modalidades de Bachillerato, fórmula EBAU, familias y grados de FP, vías alternativas y pasarelas oficiales.

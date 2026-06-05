@@ -86,4 +86,14 @@ preguntas:
       - "Porque los productos solo pueden venderse a una persona."
     correcta: 1
     explicacion: "Cuanto más claro tengas quién es tu cliente, mejor funcionará tu proyecto. 'Para todo el mundo' no sirve: no es lo mismo dirigirse a estudiantes que a personas mayores."
+  - tipo: verdadero-falso
+    enunciado: "El beneficio de una empresa es todo el dinero que ingresa al vender sus productos."
+    correcta: false
+    explicacion: "Es falso: el beneficio es lo que le queda a la empresa después de pagar todos sus gastos (sueldos, materiales, local, luz). Lo que ingresa por vender son los ingresos, no el beneficio."
+  - tipo: relacionar
+    enunciado: "Empareja cada concepto con lo que le corresponde:"
+    izquierda: ["Una sola persona monta su actividad y asume todo el riesgo", "Una persona, un voto", "Iniciativa, organización de recursos y riesgo", "Resolver un problema por el que alguien pagaría"]
+    derecha: ["Los tres ingredientes de emprender", "Autónomo", "Una idea de negocio", "Cooperativa"]
+    correctas: [1, 3, 0, 2]
+    explicacion: "El autónomo trabaja solo y asume el riesgo; la una persona, un voto es la cooperativa; los tres ingredientes de emprender son iniciativa, recursos y riesgo; una idea de negocio resuelve un problema por el que alguien pagaría."
 ---

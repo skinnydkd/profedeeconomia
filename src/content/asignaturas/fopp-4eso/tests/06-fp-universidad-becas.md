@@ -69,6 +69,22 @@ preguntas:
       - "Solo cubre el viaje, sin asignación mensual."
     correcta: 1
     explicacion: "Erasmus+ Estudios paga entre 310 € y 540 € mensuales según el país (más en países nórdicos e Irlanda, menos en Portugal o Polonia) y es plenamente compatible con la beca MEFP. Además, el alumnado con beca MEFP recibe una ayuda complementaria adicional de 250-500 €/mes."
+  - tipo: verdadero-falso
+    enunciado: "La beca general MEFP conviene solicitarla después de matricularse y conocer las notas finales del curso, cuando ya está todo cerrado."
+    correcta: false
+    explicacion: "Es justo al revés y ese error cuesta becas cada año. La beca MEFP se solicita habitualmente entre marzo y mayo, antes de matricularse, con datos provisionales. Esperar a tenerlo todo cerrado suele significar perder el plazo."
+  - tipo: numerico
+    enunciado: "Un alumno tiene una media de Bachillerato de 8,0 y obtiene un 7,0 en la fase de acceso de la EBAU. Con la fórmula oficial (0,6 × media de Bachillerato + 0,4 × fase de acceso), ¿cuál es su nota de acceso sobre 10 (2 decimales)?"
+    respuesta: 7.6
+    tolerancia: 0.05
+    unidad: "puntos"
+    explicacion: "Nota de acceso = 0,6 × 8,0 + 0,4 × 7,0 = 4,8 + 2,8 = 7,60 puntos. Con las ponderaciones de la fase voluntaria podría sumar hasta 4 puntos más, hasta el máximo de 14."
+  - tipo: relacionar
+    enunciado: "Empareja cada titulación o ayuda con su rasgo principal:"
+    izquierda: ["Grado universitario", "Doble grado", "Máster oficial", "Erasmus+ Estudios"]
+    derecha: ["Especialización tras el grado, 60-120 ECTS", "Ayuda de 310-540 euros al mes para estudiar fuera", "Titulación inicial de 240 ECTS y 4 años", "Dos títulos compartiendo asignaturas, 5-6 años"]
+    correctas: [2, 3, 0, 1]
+    explicacion: "El grado es la titulación inicial (240 ECTS); el doble grado obtiene dos títulos en 5-6 años; el máster oficial es especialización (60-120 ECTS); Erasmus+ Estudios financia una estancia en el extranjero con 310-540 euros mensuales."
 ---
 
 Test de autoevaluación de la Unidad 6 del libro de FOPP 4ESO.

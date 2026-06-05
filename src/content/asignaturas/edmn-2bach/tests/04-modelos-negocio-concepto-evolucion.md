@@ -69,6 +69,26 @@ preguntas:
       - "Hacia los inversores."
     correcta: 1
     explicacion: "Cliente vs. interno: cinco áreas describen lo que la empresa ofrece y cobra; cuatro describen los recursos, actividades, alianzas y costes internos."
+  - tipo: verdadero-falso
+    enunciado: "En el modelo de negocio, capturar valor significa simplemente fabricar un producto útil, sin necesidad de obtener una contrapartida económica."
+    correcta: false
+    explicacion: "Falso. Fabricar algo útil es crear valor. Capturar valor es obtener una contrapartida que cubra los costes con margen; sin captura, el modelo no es sostenible."
+  - tipo: verdadero-falso
+    enunciado: "El modelo de suscripción ofrece a la empresa ingresos recurrentes y previsibles, lo que facilita la planificación y atrae a inversores y bancos."
+    correcta: true
+    explicacion: "Verdadero. La previsibilidad de los ingresos recurrentes es la principal ventaja del modelo de suscripción y un activo muy valorado por la financiación."
+  - tipo: numerico
+    enunciado: "Un servicio de suscripción tiene 2.500 clientes que pagan 9,99 €/mes. ¿Cuáles son sus ingresos recurrentes anuales en euros (sin decimales)?"
+    respuesta: 299700
+    tolerancia: 5
+    unidad: "€"
+    explicacion: "Ingresos anuales = 2.500 × 9,99 × 12 = 24.975 × 12 = 299.700 €."
+  - tipo: relacionar
+    enunciado: "Asocia cada patrón de modelo de negocio con su ejemplo o rasgo:"
+    izquierda: ["Long tail", "Multiplataforma", "Freemium", "Suscripción"]
+    derecha: ["Conecta dos grupos que se necesitan mutuamente", "Versión gratuita que capta usuarios y otra de pago", "Ingresos recurrentes previsibles", "Muchos productos de baja demanda con coste de stock casi nulo"]
+    correctas: [3, 0, 1, 2]
+    explicacion: "Long tail → muchos productos de baja demanda; multiplataforma → conecta dos grupos; freemium → gratis más pago; suscripción → ingresos recurrentes."
 ---
 
 Test de autoevaluación de la Unidad 4 del libro de EDMN 2BACH.

@@ -86,4 +86,20 @@ preguntas:
       - "Viabilidad a corto, medio y largo plazo."
     correcta: 1
     explicacion: "El análisis de viabilidad mira tres dimensiones: **técnica** (¿tienes recursos, conocimiento y proveedores?, ¿es legal?), **comercial** (¿hay mercado?, ¿alguien ha pagado de verdad?) y **económico-financiera** (¿los números cuadran?, ¿superas el punto muerto?, ¿tienes caja?). Falla una sola y el proyecto, tal como está, no se sostiene; pero eso no lo condena: obliga a **iterar** y recalcular."
+  - tipo: verdadero-falso
+    enunciado: "La mayoría de los negocios que cierran lo hacen porque no consiguen vender, no por quedarse sin caja."
+    correcta: false
+    explicacion: "Es falso. Muchos negocios no quiebran por no vender, sino por quedarse sin caja antes de que las ventas despeguen. Por eso la tesorería inicial o colchón —el dinero para cubrir los primeros meses— es el gasto que más se olvida y el que más empresas hunde."
+  - tipo: numerico
+    enunciado: "Un taller vende un servicio a 30 €, con un coste variable de 12 € por servicio y costes fijos de 900 €/mes. ¿Cuántos servicios al mes necesita para alcanzar el punto muerto? (en servicios)"
+    respuesta: 50
+    tolerancia: 0.5
+    unidad: "servicios"
+    explicacion: "Margen de contribución = Precio − Coste variable = 30 − 12 = 18 €/servicio. Punto muerto = Costes fijos ÷ Margen = 900 ÷ 18 = 50 servicios/mes. En ese nivel los ingresos igualan a los costes totales: ni se gana ni se pierde."
+  - tipo: relacionar
+    enunciado: "Empareja cada concepto de la puesta en marcha con su definición:"
+    izquierda: ["Recursos propios", "Recursos ajenos", "Autónomo", "Sistema CIRCE (DUE)"]
+    derecha: ["Financiación externa que hay que devolver, casi siempre con intereses", "Fondos de los socios o el emprendedor que no se devuelven", "Trámite telemático de alta con un único documento electrónico", "Forma jurídica sin capital mínimo y con responsabilidad ilimitada"]
+    correctas: [1, 0, 3, 2]
+    explicacion: "Los recursos propios los ponen los socios y no se devuelven; los ajenos son financiación externa a devolver con intereses; el autónomo no exige capital mínimo pero responde con su patrimonio personal; y el sistema CIRCE permite el alta telemática con el Documento Único Electrónico (DUE)."
 ---

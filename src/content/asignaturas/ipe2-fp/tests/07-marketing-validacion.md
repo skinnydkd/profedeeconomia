@@ -86,4 +86,20 @@ preguntas:
       - "Ninguno: todos los insatisfechos se quejan."
     correcta: 1
     explicacion: "Los estudios clásicos de TARP estimaron que, por cada cliente que presenta una queja formal, hay aproximadamente **26 clientes insatisfechos que no dicen nada**: simplemente no vuelven y cuentan su mala experiencia a otras 9-15 personas. Por eso el cliente que se queja te hace un favor enorme: te da la oportunidad de arreglar un problema que otros 25 sufren en silencio."
+  - tipo: verdadero-falso
+    enunciado: "Vender por debajo del coste variable unitario es aceptable durante el lanzamiento, porque así se captan muchos clientes rápido."
+    correcta: false
+    explicacion: "Es falso. La regla mínima que nunca debe romperse es que el precio no puede ser inferior al coste variable unitario: si vendes por debajo, cuantas más unidades vendas, más pierdes. Es el suelo absoluto de cualquier decisión de precio, también al lanzar."
+  - tipo: numerico
+    enunciado: "Un producto tiene un coste variable unitario de 2,50 € y se vende a 6,00 €. Con unos costes fijos de 700 €/mes, ¿cuántas unidades hay que vender al mes para alcanzar el punto muerto? (redondea al alza, en unidades)"
+    respuesta: 200
+    tolerancia: 0.5
+    unidad: "unidades"
+    explicacion: "Margen de contribución = Precio − Coste variable = 6,00 − 2,50 = 3,50 €. Punto muerto = Costes fijos ÷ Margen = 700 ÷ 3,50 = 200 unidades/mes. En ese nivel los ingresos igualan a los costes totales."
+  - tipo: relacionar
+    enunciado: "Empareja cada elemento del marketing con lo que define:"
+    izquierda: ["Producto", "Precio de penetración", "Plaza", "Promoción"]
+    derecha: ["Dónde y cómo se vende (distribución)", "Qué se vende", "Cómo se da a conocer (comunicación)", "Precio bajo para entrar y captar clientes rápido"]
+    correctas: [1, 3, 0, 2]
+    explicacion: "Las 4P son Producto (qué vendes), Precio (aquí, la estrategia de penetración con precio bajo de entrada), Plaza (distribución) y Promoción (comunicación). El marketing no es solo publicidad: la publicidad es solo una parte de la P de promoción."
 ---

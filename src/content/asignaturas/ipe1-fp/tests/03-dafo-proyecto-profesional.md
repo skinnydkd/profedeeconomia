@@ -86,4 +86,18 @@ preguntas:
       - "Consiste en abandonar el plan si algo no sale a la primera."
     correcta: 1
     explicacion: "El proyecto profesional no se guarda en un cajón: el mercado y tú cambiáis. El **seguimiento y ajuste** es una revisión periódica donde compruebas si has cumplido los objetivos de corto plazo, si hay que reajustar el DAFO y si la hoja de ruta sigue apuntando bien. Revisar no es fracasar: es señal de que el plan está vivo."
+  - tipo: verdadero-falso
+    enunciado: "Las casillas de Fortalezas y Debilidades del DAFO son factores externos que dependen del entorno y no de la persona."
+    correcta: false
+    explicacion: "Fortalezas y Debilidades son factores internos: dependen de ti y puedes mantenerlas o corregirlas. Los factores externos del entorno son las Oportunidades y las Amenazas, que salen de investigar el mercado con datos reales."
+  - tipo: verdadero-falso
+    enunciado: "El objetivo mejorar mi ingles es un buen objetivo SMART tal y como esta formulado."
+    correcta: false
+    explicacion: "No lo es: es vago. Un objetivo SMART debe ser específico, medible, alcanzable, relevante y temporal (con plazo). La versión SMART sería algo como alcanzar un B1 acreditado de inglés antes de junio. Un objetivo sin plazo no se persigue, se pospone."
+  - tipo: relacionar
+    enunciado: "Empareja cada cruce del análisis CAME con la estrategia que genera:"
+    izquierda: ["Fortaleza con Oportunidad", "Fortaleza con Amenaza", "Debilidad con Oportunidad", "Debilidad con Amenaza"]
+    derecha: ["Reorientación (corregir para no perder la oportunidad)", "Ofensiva (explotar la oportunidad)", "Supervivencia (minimizar el riesgo)", "Defensiva (afrontar la amenaza)"]
+    correctas: [1, 3, 0, 2]
+    explicacion: "Cruzar fortaleza con oportunidad da una estrategia ofensiva; fortaleza con amenaza, defensiva; debilidad con oportunidad, de reorientación; y debilidad con amenaza, de supervivencia. El valor del DAFO está en estos cruces."
 ---

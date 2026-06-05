@@ -77,6 +77,20 @@ preguntas:
       - "Prohibir que las empresas obtengan beneficios."
     correcta: 1
     explicacion: "B Corp es una certificación que conceden organizaciones independientes a las empresas que superan una evaluación sobre su impacto social y ambiental, su transparencia y su gobernanza. Sirve para separar el compromiso real del lavado de imagen (greenwashing) visto en la Unidad 3."
+  - tipo: verdadero-falso
+    enunciado: "Una empresa social es lo mismo que una ONG, porque ninguna de las dos puede vender productos ni cobrar por sus servicios."
+    correcta: false
+    explicacion: "La empresa social sí vende productos o servicios en el mercado para ser viable, a diferencia de la ONG que depende de donaciones. Lo que la distingue de una empresa convencional es que su fin último es una misión social o ambiental, no el beneficio."
+  - tipo: verdadero-falso
+    enunciado: "La propiedad intelectual de una obra (una novela, una canción) nace con la propia creación, sin necesidad de registro previo para tener el derecho."
+    correcta: true
+    explicacion: "Cierto: la propiedad intelectual protege obras artísticas y científicas y el derecho nace con la creación. Se diferencia así de la propiedad industrial (marcas, patentes), que normalmente exige registro en la OEPM."
+  - tipo: relacionar
+    enunciado: "Empareja cada elemento del proyecto con la pregunta a la que responde:"
+    izquierda: ["Misión", "Visión", "Valores", "Marca registrada"]
+    derecha: ["¿En qué creemos y cómo nos comportamos?", "¿Para qué existimos hoy y qué problema resolvemos?", "Signo en exclusiva que nos identifica y distingue", "¿Qué queremos llegar a ser en el futuro?"]
+    correctas: [1, 3, 0, 2]
+    explicacion: "La misión es la razón de ser en el presente; la visión, la aspiración de futuro; los valores, los principios que guían la conducta; y la marca, el signo registrado que identifica el producto y lo distingue de la competencia."
 ---
 
 Test de autoevaluación de la Unidad 7 del libro de EEAE. Cubre el salto de la idea al proyecto y el papel del propósito; la misión, la visión y los valores y cómo redactarlos sin frases huecas; la puesta en marcha como actitud (validar pronto, empezar pequeño, aprender del error) frente al plan de empresa formal; la protección de la idea, el producto y la marca (propiedad industrial e intelectual, marcas y patentes, OEPM); y el emprendimiento social, sus diferencias con la empresa convencional y con la ONG, y el sello B Corp.

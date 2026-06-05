@@ -86,4 +86,18 @@ preguntas:
       - "Vende agua al precio más alto del mercado."
     correcta: 1
     explicacion: "**Auara** vende agua mineral en botellas de **plástico 100 % reciclado** y dedica el **100 % de sus dividendos** a financiar proyectos de agua potable en países en desarrollo. Usa una herramienta de mercado —vender una botella que el consumidor compraría igualmente— para resolver un problema que la caridad por sí sola no resuelve a escala. Demuestra que primero hay que **generar** beneficio vendiendo bien para poder ayudar mejor."
+  - tipo: verdadero-falso
+    enunciado: "En el emprendimiento social el impacto es solo un efecto secundario, igual que en una empresa mercantil clásica, porque el verdadero fin sigue siendo el beneficio."
+    correcta: false
+    explicacion: "Es falso. En el emprendimiento social el impacto social es el fin y el beneficio es el medio para hacerlo sostenible. Lo contrario describe a la empresa mercantil clásica, donde el beneficio es el fin y el impacto, si lo hay, un efecto secundario."
+  - tipo: verdadero-falso
+    enunciado: "Presentar un proyecto como social solo por marketing, sin medir ni rendir cuentas de su impacto, es una forma legítima de emprendimiento social."
+    correcta: false
+    explicacion: "Es falso. Eso es social washing: el emprendimiento social real mide su impacto y rinde cuentas de él, el falso solo lo cuenta. La prueba: si retiras el discurso social y no queda ningún impacto medible, no es emprendimiento social, es publicidad."
+  - tipo: relacionar
+    enunciado: "Empareja cada fase del design thinking (d.school) con lo que se hace en ella:"
+    izquierda: ["Empatizar", "Definir", "Idear", "Prototipar"]
+    derecha: ["Generar muchas ideas sin juzgar", "Entender a fondo a la persona afectada", "Construir versiones rápidas y baratas", "Convertir lo escuchado en una frase de problema clara"]
+    correctas: [1, 3, 0, 2]
+    explicacion: "Empatizar es entender a la persona; definir es formular el problema con claridad; idear es generar muchas ideas sin juzgar; y prototipar es construir versiones rápidas y baratas. Después llega testar con personas reales e iterar."
 ---

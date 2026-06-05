@@ -77,6 +77,22 @@ preguntas:
       - "Ofensiva."
     correcta: 1
     explicacion: "FO = ofensivas, DO = reorientación, FA = defensivas, DA = supervivencia. Memorizar este cuadro es el resultado más útil del DAFO."
+  - tipo: verdadero-falso
+    enunciado: "En un análisis DAFO, las fortalezas y las debilidades se refieren a factores externos del entorno que la empresa no puede controlar."
+    correcta: false
+    explicacion: "Falso. Fortalezas y debilidades son siempre factores internos (controlables). Los factores externos no controlables son las oportunidades y las amenazas."
+  - tipo: numerico
+    enunciado: "En un sector entran 3 nuevos competidores sobre los 12 que ya operaban. ¿En qué porcentaje aumenta el número de competidores (1 decimal)?"
+    respuesta: 25.0
+    tolerancia: 0.5
+    unidad: "%"
+    explicacion: "Variación = 3 / 12 × 100 = 25,0 %. La amenaza de nuevos entrantes es una de las cinco fuerzas de Porter."
+  - tipo: relacionar
+    enunciado: "Asocia cada estrategia de la matriz de Ansoff con su combinación producto-mercado:"
+    izquierda: ["Penetración de mercado", "Desarrollo de producto", "Desarrollo de mercado", "Diversificación"]
+    derecha: ["Producto nuevo en mercado nuevo (más arriesgada)", "Producto actual en mercado actual (más segura)", "Producto actual en mercado nuevo", "Producto nuevo en mercado actual"]
+    correctas: [1, 3, 2, 0]
+    explicacion: "Penetración → producto y mercado actuales; desarrollo de producto → producto nuevo, mercado actual; desarrollo de mercado → producto actual, mercado nuevo; diversificación → ambos nuevos."
 ---
 
 Test de autoevaluación de la Unidad 3 del libro de EDMN 2BACH.

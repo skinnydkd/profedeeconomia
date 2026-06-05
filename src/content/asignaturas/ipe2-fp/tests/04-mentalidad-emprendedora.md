@@ -86,4 +86,18 @@ preguntas:
       - "Un plan de financiación."
     correcta: 1
     explicacion: "El ejemplo del alumno que numera los ganchos de las llaves no inventa nada: **detecta un problema, propone una solución y la ejecuta**. Eso es **intraemprendimiento, innovación de proceso e iniciativa**, todo a la vez, con coste casi cero. Es justo el tipo de conducta que hace que una empresa quiera quedarse con un alumno de prácticas."
+  - tipo: verdadero-falso
+    enunciado: "La mentalidad emprendedora es un don innato: o naces con ella o no la tendrás nunca."
+    correcta: false
+    explicacion: "Es falso. La mentalidad emprendedora es la capacidad de transformar ideas en acciones que generan valor, y se aprende y se entrena. El marco EntreComp la organiza precisamente en 15 competencias entrenables, no en un talento con el que se nace."
+  - tipo: verdadero-falso
+    enunciado: "La innovación radical es la más frecuente y accesible en una pyme, porque cualquiera puede tener una gran idea disruptiva."
+    correcta: false
+    explicacion: "Es falso. La innovación radical es escasa y arriesgada. La más frecuente y al alcance de cualquiera es la incremental: mejorar poco a poco lo que ya existe. Sumar cien mejoras pequeñas transforma más una empresa que esperar una única gran idea."
+  - tipo: relacionar
+    enunciado: "Empareja cada tipo de innovación del Manual de Oslo con su ejemplo:"
+    izquierda: ["Producto", "Proceso", "Organización", "Marketing"]
+    derecha: ["Reorganizar los turnos para reducir tiempos muertos", "Lanzar una bebida con una nueva fórmula mejorada", "Vender por suscripción en lugar de pago único", "Automatizar una fase de la cadena de montaje"]
+    correctas: [1, 3, 0, 2]
+    explicacion: "Innovación de producto es un bien o servicio nuevo o mejorado; de proceso, una nueva forma de producir o entregar; de organización, una nueva manera de organizar el trabajo; y de marketing, una nueva forma de presentar, vender o cobrar."
 ---

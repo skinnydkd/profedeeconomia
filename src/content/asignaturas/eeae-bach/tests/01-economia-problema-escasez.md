@@ -77,6 +77,22 @@ preguntas:
       - "Usar modelos demuestra que la economía no es una ciencia social."
     correcta: 1
     explicacion: "Un modelo es como un mapa: simplifica deliberadamente para iluminar lo esencial. Su valor está en su utilidad explicativa o predictiva, no en copiar cada detalle de la realidad."
+  - tipo: verdadero-falso
+    enunciado: "El coste de oportunidad de una decisión solo existe cuando se gasta dinero en ella."
+    correcta: false
+    explicacion: "El coste de oportunidad es el valor de la mejor alternativa a la que se renuncia, y existe siempre que haya que elegir, aunque no medie dinero: el tiempo dedicado a estudiar tiene como coste el ocio sacrificado."
+  - tipo: numerico
+    enunciado: "Con su tiempo y recursos, una persona puede producir como máximo 40 unidades del bien A o 60 del bien B. Si decide fabricar 40 de A y renuncia a todo B, ¿cuántas unidades de B asume como coste de oportunidad?"
+    respuesta: 60
+    tolerancia: 0
+    unidad: "unidades"
+    explicacion: "Al destinar todos sus recursos a producir las 40 unidades de A, renuncia a la mejor alternativa: las 60 unidades de B que podría haber fabricado. Ese sacrificio (60 unidades de B) es el coste de oportunidad."
+  - tipo: relacionar
+    enunciado: "Empareja cada mecanismo de asignación de recursos con su descripción:"
+    izquierda: ["Tradición", "Autoridad", "Mercado"]
+    derecha: ["Una instancia central decide qué se produce y para quién", "Los precios coordinan de forma descentralizada las decisiones", "Se reparte como siempre se ha hecho, por costumbre heredada"]
+    correctas: [2, 0, 1]
+    explicacion: "La tradición asigna por costumbre, la autoridad por decisión central y el mercado mediante precios descentralizados. Toda economía real combina los tres mecanismos."
 ---
 
 Test de autoevaluación de la Unidad 1 del libro de Economía, Emprendimiento y Actividad Empresarial (Bachillerato).

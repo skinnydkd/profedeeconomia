@@ -77,6 +77,20 @@ preguntas:
       - "Síntesis, Tiempo, Acuerdo, Reflexión."
     correcta: 1
     explicacion: "El método **STAR** = **Situación** (contexto breve, fechas, lugar) + **Tarea** (tu responsabilidad concreta) + **Acción** (qué hiciste tú específicamente, no qué hizo el equipo) + **Resultado** (desenlace cuantificado y lección aprendida). Es la fórmula universal para responder a preguntas del tipo \"describe una situación en la que…\". Una respuesta STAR completa dura entre 90 segundos y 2 minutos."
+  - tipo: verdadero-falso
+    enunciado: "Como la mayoría de los puestos se publican en portales de empleo, avisar a tu red de contactos apenas influye en encontrar trabajo."
+    correcta: false
+    explicacion: "Entre el 60 % y el 70 % de los puestos en España nunca se publican: es el mercado oculto, que se cubre por recomendación y contactos. Avisar a tu red es estadísticamente tan importante como enviar CV a portales."
+  - tipo: verdadero-falso
+    enunciado: "Responder soy perfeccionista a la pregunta sobre tus debilidades es una mala estrategia porque los reclutadores la detectan como evasiva."
+    correcta: true
+    explicacion: "Es la respuesta más usada y se reconoce al instante como una pseudo-debilidad disfrazada de fortaleza. Lo correcto es nombrar una debilidad real y la acción concreta que tomas para mejorarla."
+  - tipo: relacionar
+    enunciado: "Empareja cada formato de CV o método con aquello para lo que sirve:"
+    izquierda: ["Cronológico", "Funcional", "Mixto", "Método STAR"]
+    derecha: ["Responder a preguntas conductuales en la entrevista", "Agrupa la experiencia por habilidades, útil si cambias de sector", "Experiencia ordenada de más reciente a más antigua", "Bloque de competencias destacado más experiencia cronológica"]
+    correctas: [2, 1, 3, 0]
+    explicacion: "El cronológico ordena la experiencia por fechas; el funcional la agrupa por habilidades; el mixto combina ambos y es el recomendado por defecto; STAR es el método para responder a preguntas conductuales en la entrevista."
 ---
 
 Test de autoevaluación de la Unidad 9 del libro de FOPP 4ESO. Nueve preguntas sobre el kit completo de búsqueda activa de empleo: formatos de CV, errores comunes, carta de presentación, marca personal en LinkedIn, huella digital y RGPD, mercado oculto, entrevista, método STAR y fuentes de ofertas.

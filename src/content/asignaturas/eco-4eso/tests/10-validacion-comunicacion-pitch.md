@@ -85,6 +85,16 @@ preguntas:
       - "Pedir que se retire la observación del acta."
     correcta: 2
     explicacion: "La regla del manual es clara: escucha, no te defiendas. El feedback de un jurado externo es un regalo (opinión sincera de gente que no os debe nada). Discutir en directo se interpreta como inseguridad y se pierde la información. Tomar notas, agradecer y discutir luego en equipo es lo que distingue a un proyecto serio. Pivotar tras feedback honesto es de proyectos serios; ignorarlo es de proyectos que se mueren."
+  - tipo: verdadero-falso
+    enunciado: "El número de seguidores en TikTok y las reproducciones de un vídeo son métricas accionables que indican al equipo qué debe cambiar mañana."
+    correcta: false
+    explicacion: "Falso. Reproducciones y seguidores son métricas vanidad: quedan bien en una diapositiva pero no informan ninguna decisión. Las métricas accionables (como la conversión a registro o la retención al día siguiente) sí dicen qué cambiar: si la conversión es baja, se cambia la landing; si la retención es nula, se cambia el producto."
+  - tipo: relacionar
+    enunciado: "Empareja cada tipo de hipótesis con un ejemplo:"
+    izquierda: ["Hipótesis de problema", "Hipótesis de solución", "Hipótesis de viabilidad"]
+    derecha: ["Una app con apuntes verificados funciona mejor que un grupo de Telegram", "Al menos un 5 % de quienes prueban la app gratis pagarían 2,99 €/mes", "Los estudiantes no encuentran apuntes fiables online"]
+    correctas: [2, 0, 1]
+    explicacion: "La hipótesis de problema afirma que el problema existe (no encuentran apuntes). La de solución pone a prueba si la solución concreta resuelve mejor el problema. La de viabilidad pregunta si alguien está dispuesto a pagar o dedicar tiempo."
 ---
 
 Test de autoevaluación de la Unidad 10 del libro de Eco 4ESO.
