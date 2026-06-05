@@ -1,0 +1,16 @@
+---
+/** Generic blank table for the student team to fill in. */
+interface Props { columnas: string[]; filas?: number }
+const { columnas, filas = 6 } = Astro.props;
+const rows = Array.from({ length: filas });
+---
+<table class="cuad-tabla">
+  <thead><tr>{columnas.map((c) => <th>{c}</th>)}</tr></thead>
+  <tbody>{rows.map(() => <tr>{columnas.map(() => <td></td>)}</tr>)}</tbody>
+</table>
+<style>
+  .cuad-tabla { width: 100%; border-collapse: collapse; margin: 0.4rem 0; }
+  .cuad-tabla th { font-family: var(--font-sans); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-mustard-deep); text-align: left; padding: 0.4rem 0.6rem; border-bottom: 2px solid var(--color-mustard); }
+  .cuad-tabla td { border: 1px solid var(--color-line); height: 2.4rem; padding: 0.3rem 0.6rem; }
+  @media print { .cuad-tabla tr { break-inside: avoid; } }
+</style>

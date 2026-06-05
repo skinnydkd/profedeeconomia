@@ -6,6 +6,7 @@
  */
 import BaseLayout from '@layouts/BaseLayout.astro';
 import FaseMeta from '@components/emprendimiento/FaseMeta.astro';
+import BloqueCuaderno from '@components/emprendimiento/BloqueCuaderno.astro';
 import PuenteUnidades from '@components/emprendimiento/PuenteUnidades.astro';
 import { getCollection, render } from 'astro:content';
 import type { GetStaticPaths } from 'astro';
@@ -58,6 +59,7 @@ const faseHref = (e: typeof prev) =>
       <article class="prose">
         <Content />
       </article>
+      {d.cuaderno && <BloqueCuaderno cuaderno={d.cuaderno} modo="alumno" />}
       <PuenteUnidades unidades={d.unidades_relacionadas} />
 
       <nav class="phase-nav">

@@ -264,6 +264,20 @@ const proyectoTransversal = defineCollection({
       .default([]),
     competencias_clave: z.array(z.string()).default([]),
     competencias_especificas: z.array(z.string()).default([]),
+    /** Student-workbook content for this phase, rendered identically on the web
+     *  phase page and in the printable cuaderno PDF (single source). */
+    cuaderno: z
+      .object({
+        tarea: z.string(),
+        reflexion: z.string(),
+        orientacion_docente: z.string().optional(),
+        plantilla: z.object({
+          tipo: z.enum(['canvas-bm', '4p', 'punto-muerto', 'procesos', 'pitch', 'tabla']),
+          columnas: z.array(z.string()).optional(),
+          filas: z.number().int().optional(),
+        }),
+      })
+      .optional(),
     lang: z.enum(LANGS).default('es'),
     estado: z.enum(ESTADOS).default('borrador'),
   }),

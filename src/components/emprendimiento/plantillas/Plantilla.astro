@@ -1,0 +1,19 @@
+---
+import PlantillaCanvasBM from './PlantillaCanvasBM.astro';
+import Plantilla4P from './Plantilla4P.astro';
+import PlantillaPuntoMuerto from './PlantillaPuntoMuerto.astro';
+import PlantillaProcesos from './PlantillaProcesos.astro';
+import PlantillaPitch from './PlantillaPitch.astro';
+import PlantillaTabla from './PlantillaTabla.astro';
+
+interface Props {
+  plantilla: { tipo: string; columnas?: string[]; filas?: number };
+}
+const { plantilla: p } = Astro.props;
+---
+{p.tipo === 'canvas-bm' && <PlantillaCanvasBM />}
+{p.tipo === '4p' && <Plantilla4P />}
+{p.tipo === 'punto-muerto' && <PlantillaPuntoMuerto />}
+{p.tipo === 'procesos' && <PlantillaProcesos filas={p.filas} />}
+{p.tipo === 'pitch' && <PlantillaPitch filas={p.filas} />}
+{p.tipo === 'tabla' && <PlantillaTabla columnas={p.columnas ?? []} filas={p.filas} />}

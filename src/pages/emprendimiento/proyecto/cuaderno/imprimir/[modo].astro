@@ -1,0 +1,96 @@
+---
+/**
+ * Print-ready «Cuaderno del equipo» for «De cero a empresa».
+ * Used by pagedjs-cli (scripts/build-cuaderno-pdf.mjs) to produce the dual
+ * student/teacher workbook PDFs. Mustard accent (#D4A24C). noindex.
+ */
+import BloqueCuaderno from '@components/emprendimiento/BloqueCuaderno.astro';
+import type { GetStaticPaths } from 'astro';
+import { getCollection } from 'astro:content';
+
+export const getStaticPaths = (async () => {
+  const fases = (await getCollection('proyectoTransversal'))
+    .filter((f) => f.data.estado === 'publicado' && f.data.cuaderno)
+    .sort((a, b) => a.data.fase - b.data.fase);
+  const props = { fases };
+  return [
+    { params: { modo: 'alumno' }, props },
+    { params: { modo: 'profesor' }, props },
+  ];
+}) satisfies GetStaticPaths;
+
+const { fases } = Astro.props;
+const esProfesor = Astro.params.modo !== 'alumno';
+const edicion = esProfesor ? 'Profesorado' : 'Alumnado';
+---
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="robots" content="noindex" />
+    <title>De cero a empresa — Cuaderno del {edicion}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,0..100,0..1;1,9..144,300..700,0..100,0..1&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" />
+    <style is:inline>
+      @font-face { font-family: 'Switzer'; src: url('/fonts/switzer/switzer-400.woff2') format('woff2'); font-weight: 400; font-display: swap; font-style: normal; }
+      @font-face { font-family: 'Switzer'; src: url('/fonts/switzer/switzer-500.woff2') format('woff2'); font-weight: 500; font-display: swap; font-style: normal; }
+      @font-face { font-family: 'Switzer'; src: url('/fonts/switzer/switzer-600.woff2') format('woff2'); font-weight: 600; font-display: swap; font-style: normal; }
+      @font-face { font-family: 'Switzer'; src: url('/fonts/switzer/switzer-700.woff2') format('woff2'); font-weight: 700; font-display: swap; font-style: normal; }
+      :root {
+        --color-bg: #FBF6EC; --color-paper: #FFFFFF; --color-ink: #2A1F18;
+        --color-ink-soft: #5C4A3D; --color-ink-mute: #806C5A;
+        --color-line: #E5D4BD; --color-line-soft: #EFE2CB;
+        --color-mustard: #D4A24C; --color-mustard-deep: #A87A2A; --color-mustard-soft: #F5E5BC;
+        --color-terra: #C44E2C;
+        --font-serif: "Fraunces", Georgia, serif;
+        --font-sans: "Switzer", -apple-system, sans-serif;
+        --font-mono: "JetBrains Mono", monospace;
+      }
+      @page { size: A4; margin: 18mm 16mm 16mm; }
+      * { box-sizing: border-box; }
+      body { margin: 0; font-family: var(--font-sans); color: var(--color-ink); font-size: 10.5pt; line-height: 1.5; background: #fff; }
+      .cover { display: flex; flex-direction: column; justify-content: center; height: 244mm; break-after: page; }
+      .cover__eyebrow { color: var(--color-mustard-deep); font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; font-size: 11pt; }
+      .cover__title { font-family: var(--font-serif); font-size: 34pt; line-height: 1.05; margin: 0.4rem 0; }
+      .cover__ed { font-style: italic; font-family: var(--font-serif); color: var(--color-ink-soft); font-size: 14pt; }
+      .cover__equipo { margin-top: 2.2rem; border: 1.5px solid var(--color-line); border-top: 3px solid var(--color-mustard); border-radius: 6px; padding: 1.1rem 1.3rem; }
+      .cover__equipo h3 { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-mustard-deep); margin: 0 0 0.7rem; }
+      .cover__field { border-bottom: 1px dashed var(--color-line); height: 1.9rem; margin-bottom: 0.7rem; font-size: 0.9rem; color: var(--color-ink-mute); }
+      .toc { break-after: page; }
+      .toc h2 { font-family: var(--font-serif); font-size: 22pt; }
+      .toc ol { padding-left: 1.3rem; line-height: 1.9; }
+      .fase { break-before: page; min-height: 242mm; }
+      .fase__label { color: var(--color-mustard-deep); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.78rem; }
+      .fase__title { font-family: var(--font-serif); font-size: 20pt; margin: 0.2rem 0; }
+      .fase__entregable { color: var(--color-ink-soft); font-style: italic; margin: 0 0 0.6rem; font-size: 0.95rem; }
+    </style>
+  </head>
+  <body>
+    <section class="cover">
+      <div class="cover__eyebrow">De cero a empresa · Cuaderno del equipo</div>
+      <div class="cover__title">Vuestro proyecto, paso a paso</div>
+      <div class="cover__ed">Edición · {edicion}</div>
+      <div class="cover__equipo">
+        <h3>El equipo</h3>
+        <div class="cover__field">Nombre del proyecto:</div>
+        <div class="cover__field">Integrantes:</div>
+        <div class="cover__field">Curso y grupo:</div>
+      </div>
+    </section>
+
+    <section class="toc">
+      <h2>Las fases</h2>
+      <ol>{fases.map((f) => <li>{f.data.fase_label} — {f.data.title}</li>)}</ol>
+    </section>
+
+    {fases.map((f) => (
+      <section class="fase">
+        <div class="fase__label">{f.data.fase_label}</div>
+        <h2 class="fase__title">{f.data.title}</h2>
+        <p class="fase__entregable"><strong>Entregable:</strong> {f.data.entregable}</p>
+        <BloqueCuaderno cuaderno={f.data.cuaderno} modo={esProfesor ? 'profesor' : 'alumno'} />
+      </section>
+    ))}
+  </body>
+</html>

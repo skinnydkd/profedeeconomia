@@ -1,0 +1,35 @@
+---
+import Plantilla from './plantillas/Plantilla.astro';
+interface Props {
+  cuaderno: {
+    tarea: string;
+    reflexion: string;
+    orientacion_docente?: string;
+    plantilla: { tipo: string; columnas?: string[]; filas?: number };
+  };
+  modo?: 'alumno' | 'profesor';
+}
+const { cuaderno: c, modo = 'alumno' } = Astro.props;
+---
+<section class="cuad">
+  <p class="cuad__eyebrow">Manos a la obra</p>
+  <p class="cuad__tarea" set:html={c.tarea} />
+  <div class="cuad__plantilla"><Plantilla plantilla={c.plantilla} /></div>
+  <p class="cuad__reflexion"><span>Reflexión del equipo —</span> {c.reflexion}</p>
+  {modo === 'profesor' && c.orientacion_docente && (
+    <div class="cuad__orientacion">
+      <span class="cuad__orientacion-k">Orientación docente</span>
+      <p set:html={c.orientacion_docente} />
+    </div>
+  )}
+</section>
+<style>
+  .cuad { margin: 2rem 0; padding: 1.4rem 1.6rem; background: var(--color-mustard-soft); border: 1px solid var(--color-line); border-radius: 8px; }
+  .cuad__eyebrow { font-family: var(--font-sans); font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--color-mustard-deep); margin: 0 0 0.4rem; }
+  .cuad__tarea { margin: 0 0 1.1rem; font-size: 1.05rem; }
+  .cuad__plantilla { background: var(--color-bg); border-radius: 6px; padding: 1rem; }
+  .cuad__reflexion { margin: 1rem 0 0; font-family: var(--font-serif); font-style: italic; color: var(--color-ink-soft); }
+  .cuad__reflexion span { font-family: var(--font-sans); font-style: normal; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--color-mustard-deep); }
+  .cuad__orientacion { margin-top: 1.1rem; padding: 0.9rem 1.1rem; background: var(--color-paper); border-left: 3px solid var(--color-mustard-deep); border-radius: 0 6px 6px 0; }
+  .cuad__orientacion-k { display: block; font-family: var(--font-sans); font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-mustard-deep); margin-bottom: 0.3rem; }
+</style>

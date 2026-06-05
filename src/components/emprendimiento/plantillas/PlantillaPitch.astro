@@ -1,0 +1,24 @@
+---
+/** Blank pitch outline — the standard beats, each with blank writing lines. */
+interface Props { filas?: number }
+const { filas = 9 } = Astro.props;
+const BEATS = ['Problema', 'Solución', 'Mercado', 'Producto', 'Modelo de negocio', 'Competencia', 'Equipo', 'Números', 'Petición'];
+const beats = BEATS.slice(0, filas);
+---
+<ol class="pitch">
+  {beats.map((b) => (
+    <li class="pitch__beat">
+      <span class="pitch__k">{b}</span>
+      <span class="pitch__line"></span>
+      <span class="pitch__line"></span>
+    </li>
+  ))}
+</ol>
+<style>
+  .pitch { list-style: none; margin: 0; padding: 0; counter-reset: beat; }
+  .pitch__beat { counter-increment: beat; margin-bottom: 0.9rem; }
+  .pitch__k { display: block; font-family: var(--font-sans); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-mustard-deep); font-weight: 700; }
+  .pitch__k::before { content: counter(beat) ". "; color: var(--color-mustard); }
+  .pitch__line { display: block; border-bottom: 1px dashed var(--color-line); height: 1.4rem; }
+  @media print { .pitch__beat { break-inside: avoid; } }
+</style>
