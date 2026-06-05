@@ -170,6 +170,45 @@ a.editorial-link:hover {
   color: var(--color-terra-deep);
 }
 
+/* =========================================================
+   Accessibility
+   ========================================================= */
+
+/* Visible keyboard-focus ring on every interactive element. Only shows for
+   keyboard users (`:focus-visible`), so it never alters the look for pointer use. */
+:focus-visible {
+  outline: 2px solid var(--color-terra);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Skip-to-content link: off-screen until it receives keyboard focus. */
+.skip-link {
+  position: absolute;
+  left: 0.75rem;
+  top: -4rem;
+  z-index: 1000;
+  background: var(--color-ink);
+  color: var(--color-bg);
+  padding: 0.6rem 1.1rem;
+  border-radius: 6px;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  text-decoration: none;
+  transition: top 0.15s var(--ease-soft);
+}
+.skip-link:focus { top: 0.75rem; }
+
+/* Respect the user's reduced-motion preference. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 /* Brand mark — concentric circles (terracota / mostaza / cream) */
 .brand-mark {
   width: 26px;
