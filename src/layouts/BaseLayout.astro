@@ -8,14 +8,19 @@ type Props = {
   description?: string;
   /** Optional Open Graph image (absolute or path under /public). */
   ogImage?: string;
+  /** Open Graph type — "website" (default) for hubs, "article" for content pages. */
+  ogType?: string;
+  /** One or more schema.org JSON-LD objects (see src/lib/seo.ts). */
+  jsonLd?: object | object[];
 };
 
-const { title, description, ogImage } = Astro.props;
+const { title, description, ogImage, ogType = 'website', jsonLd } = Astro.props;
 const fullTitle = title.endsWith('profedeeconomia')
   ? title
   : `${title} — profedeeconomia`;
 
 const canonical = new URL(Astro.url.pathname, Astro.site).toString();
+const ldItems = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
 ---
 <!doctype html>
 <html lang={Astro.currentLocale ?? 'es'}>
@@ -45,12 +50,25 @@ const canonical = new URL(Astro.url.pathname, Astro.site).toString();
       href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap"
     />
 
-    <!-- OG -->
+    <!-- Open Graph -->
     <meta property="og:title" content={fullTitle} />
     {description && <meta property="og:description" content={description} />}
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
     <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content="profedeeconomia" />
+    <meta property="og:locale" content="es_ES" />
     {ogImage && <meta property="og:image" content={new URL(ogImage, Astro.site).toString()} />}
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content={ogImage ? 'summary_large_image' : 'summary'} />
+    <meta name="twitter:title" content={fullTitle} />
+    {description && <meta name="twitter:description" content={description} />}
+    {ogImage && <meta name="twitter:image" content={new URL(ogImage, Astro.site).toString()} />}
+
+    <!-- Structured data (JSON-LD) -->
+    {ldItems.map((item) => (
+      <script type="application/ld+json" set:html={JSON.stringify(item)} />
+    ))}
   </head>
   <body class="bg-bg text-ink font-sans">
     <SiteHeader />

@@ -6,6 +6,7 @@ import UnitNotes from '@components/UnitNotes.tsx';
 import RecursosRelacionados from '@components/libro/RecursosRelacionados.astro';
 import { getIndiceRecursos } from '@/lib/recursos-relacionados-sources';
 import { recursosDeUnidad } from '@/lib/recursos-relacionados';
+import { articleLd, breadcrumbLd } from '@/lib/seo';
 import type { GetStaticPaths } from 'astro';
 
 export const getStaticPaths = (async () => {
@@ -40,11 +41,32 @@ const unitKey = `${a.slug}-u${unit.data.unidad}`;
 
 // Related transversal resources for this unit (inverse index, built once per build).
 const recursos = recursosDeUnidad(await getIndiceRecursos(), unit.data.asignatura, unit.data.unidad);
+
+// Structured data (JSON-LD): the unit as an Article + its breadcrumb trail.
+const unitTitle = `Unidad ${unit.data.unidad}. ${unit.data.title}`;
+const unitPath = `/${a.slug}/libro/${idToSlug(unit.id)}/`;
+const jsonLd = [
+  articleLd({
+    title: unitTitle,
+    description: unit.data.lema ?? unit.data.title,
+    path: unitPath,
+    datePublished: unit.data.publicado_en?.toISOString().slice(0, 10),
+    section: a.shortLabel,
+  }),
+  breadcrumbLd([
+    { name: 'Inicio', path: '/' },
+    { name: a.shortLabel, path: `/${a.slug}/` },
+    { name: 'Libro', path: `/${a.slug}/libro/` },
+    { name: unitTitle, path: unitPath },
+  ]),
+];
 ---
 
 <BaseLayout
   title={`Unidad ${unit.data.unidad}. ${unit.data.title} — ${a.shortLabel}`}
   description={unit.data.lema ?? unit.data.title}
+  ogType="article"
+  jsonLd={jsonLd}
 >
   <div class="container">
     <nav class="breadcrumb">
