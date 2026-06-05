@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
 import { ASIGNATURA_SLUGS, ASIGNATURAS } from '@/lib/asignaturas';
+import { breadcrumbLd } from '@/lib/seo';
 import { getCollection } from 'astro:content';
 import type { GetStaticPaths } from 'astro';
 
@@ -31,11 +32,17 @@ const sections = [
   ...(hasEbau ? [{ slug: 'ebau', title: 'Preparación EBAU', desc: 'Estructura de la prueba, teoría esencial, problemas resueltos y simulacros con solucionario.' }] : []),
   ...(hasProyecto ? [{ slug: 'proyecto', title: 'Cuaderno de proyecto', desc: 'Guía paso a paso para que el alumnado desarrolle su propio proyecto emprendedor, fase a fase.' }] : []),
 ];
+
+const breadcrumb = breadcrumbLd([
+  { name: 'Inicio', path: '/' },
+  { name: a.shortLabel, path: `/${a.slug}/` },
+]);
 ---
 
 <BaseLayout
   title={`${a.title} — ${a.level}`}
   description={`Material para impartir ${a.title} en ${a.level}: libro, diapositivas, actividades, tests y recursos. Currículo estatal LOMLOE (${a.marcoNormativo}).`}
+  jsonLd={breadcrumb}
 >
 
   <div class="container">

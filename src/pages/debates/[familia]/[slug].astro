@@ -15,6 +15,7 @@ import Rubrica from '@components/debates/Rubrica.astro';
 import PrintButton from '@components/dinamicas/PrintButton.astro';
 import PuenteUnidades from '@components/emprendimiento/PuenteUnidades.astro';
 import { familiaMeta } from '@/lib/debates';
+import { breadcrumbLd } from '@/lib/seo';
 import { getCollection, render } from 'astro:content';
 import type { GetStaticPaths } from 'astro';
 
@@ -32,9 +33,14 @@ const { Content } = await render(entry);
 const familia = familiaMeta(d.familia);
 const tonoFor = (i: number, total: number): 'favor' | 'contra' | 'neutro' =>
   total === 2 ? (i === 0 ? 'favor' : 'contra') : 'neutro';
+const breadcrumb = breadcrumbLd([
+  { name: 'Inicio', path: '/' },
+  { name: 'Debates', path: '/debates/' },
+  { name: d.title, path: `/debates/${d.familia}/${Astro.params.slug}/` },
+]);
 ---
 
-<BaseLayout title={`${d.title} — Debates`} description={d.descripcion}>
+<BaseLayout title={`${d.title} — Debates`} description={d.descripcion} ogType="article" jsonLd={breadcrumb}>
   <div class="container">
     <nav class="breadcrumb no-print">
       <a href="/">Inicio</a> <span class="sep">›</span>
