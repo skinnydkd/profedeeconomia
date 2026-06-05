@@ -44,6 +44,9 @@ publicado_en: 2026-05-15
 ---
 
 import Callout from '@components/Callout.astro';
+import Diagram from '@components/Diagram.astro';
+import AgregadosMonetarios from '@components/diagrams/AgregadosMonetarios.astro';
+import CreacionDinero from '@components/diagrams/CreacionDinero.astro';
 import Curiosity from '@components/Curiosity.astro';
 import Figure from '@components/Figure.astro';
 import RealExample from '@components/RealExample.astro';
@@ -127,6 +130,10 @@ Para hacer política monetaria, el Banco Central Europeo necesita medir **cuánt
 - **M2 — Dinero ampliado**. M1 **más los depósitos a plazo hasta dos años** y los depósitos a la vista con preaviso de hasta tres meses. Se incluyen porque, aunque no son inmediatamente líquidos, pueden convertirse en dinero con un coste pequeño (penalización modesta o un breve plazo de espera).
 - **M3 — Agregado monetario amplio**. M2 **más instrumentos negociables**: participaciones en fondos del mercado monetario, repos (operaciones con pacto de recompra) y valores de deuda emitidos por entidades financieras a corto plazo (hasta dos años). M3 es el agregado que el BCE vigila con más atención para evaluar la liquidez de la economía.
 
+<Diagram caption="Los agregados monetarios ordenan el dinero por liquidez: del efectivo (M0) a los instrumentos menos líquidos (M3). Cada capa contiene a la anterior.">
+  <AgregadosMonetarios />
+</Diagram>
+
 ### Órdenes de magnitud en la zona euro (2025)
 
 - **M0** (billetes y monedas en circulación): aproximadamente **1,55 billones de euros** (BCE, datos diciembre 2025).
@@ -183,6 +190,10 @@ k = 1 / c
 ```
 
 Donde `c` es el coeficiente de reservas expresado en tanto por uno. Significa que cada euro depositado en el sistema bancario puede llegar a generar `1/c` euros de oferta monetaria total. Si `c = 10 %`, el multiplicador es 10; si `c = 20 %`, el multiplicador es 5; si `c = 1 %`, el multiplicador teórico es 100, aunque en la práctica nunca se alcanza por las reservas voluntarias y porque parte del dinero prestado vuelve al circuito en forma de efectivo, no de depósito.
+
+<Diagram caption="Cada depósito deja una reserva y presta el resto, que vuelve al sistema como un nuevo depósito. Así la banca multiplica el dinero inicial.">
+  <CreacionDinero />
+</Diagram>
 
 <SolvedExercise number="10.2" title="Creación de dinero a partir de un depósito inicial">
 

@@ -1,0 +1,72 @@
+---
+/**
+ * Monetary policy transmission mechanism as a left-to-right flow chain.
+ * Expansive policy: a lower policy rate cheapens credit, which lifts
+ * investment and consumption, raises aggregate demand and, finally,
+ * pushes up output (PIB) and inflation. Used in Eco 1BACH u11.
+ */
+---
+<svg viewBox="0 0 880 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="tm-title tm-desc">
+  <title id="tm-title">Mecanismo de transmisión de la política monetaria</title>
+  <desc id="tm-desc">La política monetaria llega a la economía por una cadena: del tipo de interés del banco central al crédito, la inversión y el consumo, la demanda agregada y, finalmente, el PIB y la inflación.</desc>
+  <defs>
+    <style>
+      .bg { fill: #FBF6EC; }
+      .box { fill: #FFFFFF; stroke: #E5D4BD; stroke-width: 1.5; }
+      .box-start { stroke: #C44E2C; stroke-width: 2; }
+      .box-end { fill: #FBE3D6; stroke: #C44E2C; stroke-width: 2; }
+      .flow { fill: none; stroke: #C44E2C; stroke-width: 2.5; }
+      .step-label { font-family: 'Switzer', sans-serif; font-size: 15px; font-weight: 700; fill: #2A1F18; }
+      .step-label-end { font-family: 'Switzer', sans-serif; font-size: 15px; font-weight: 700; fill: #9C3A1C; }
+      .eyebrow { font-family: 'Switzer', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; fill: #8A7868; }
+      .note { font-family: 'Switzer', sans-serif; font-size: 13px; font-style: italic; fill: #8A7868; }
+    </style>
+    <marker id="tm-arrow" markerWidth="10" markerHeight="8" refX="8.5" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#C44E2C"/>
+    </marker>
+  </defs>
+  <rect class="bg" x="0" y="0" width="880" height="360"/>
+
+  <!-- Eyebrow -->
+  <text class="eyebrow" x="40" y="40">Política monetaria expansiva</text>
+
+  <!-- Row 1: boxes 1, 2, 3 -->
+  <!-- Box 1 -->
+  <rect class="box box-start" x="40" y="60" width="240" height="74" rx="10"/>
+  <text class="step-label" x="160" y="92" text-anchor="middle">El banco central baja</text>
+  <text class="step-label" x="160" y="112" text-anchor="middle">el tipo de interés</text>
+
+  <!-- Arrow 1 → 2 -->
+  <line class="flow" x1="284" y1="97" x2="316" y2="97" marker-end="url(#tm-arrow)"/>
+
+  <!-- Box 2 -->
+  <rect class="box" x="320" y="60" width="240" height="74" rx="10"/>
+  <text class="step-label" x="440" y="102" text-anchor="middle">El crédito se abarata</text>
+
+  <!-- Arrow 2 → 3 -->
+  <line class="flow" x1="564" y1="97" x2="596" y2="97" marker-end="url(#tm-arrow)"/>
+
+  <!-- Box 3 -->
+  <rect class="box" x="600" y="60" width="240" height="74" rx="10"/>
+  <text class="step-label" x="720" y="92" text-anchor="middle">Suben la inversión</text>
+  <text class="step-label" x="720" y="112" text-anchor="middle">y el consumo</text>
+
+  <!-- Elbow connector: box 3 down and back left to box 4 -->
+  <path class="flow" d="M 720 138 L 720 186 L 440 186 L 440 222" marker-end="url(#tm-arrow)"/>
+
+  <!-- Row 2: boxes 4, 5 -->
+  <!-- Box 4 -->
+  <rect class="box" x="320" y="226" width="240" height="74" rx="10"/>
+  <text class="step-label" x="440" y="258" text-anchor="middle">Aumenta la demanda</text>
+  <text class="step-label" x="440" y="278" text-anchor="middle">agregada</text>
+
+  <!-- Arrow 4 → 5 -->
+  <line class="flow" x1="564" y1="263" x2="596" y2="263" marker-end="url(#tm-arrow)"/>
+
+  <!-- Box 5 (outcome) -->
+  <rect class="box box-end" x="600" y="226" width="240" height="74" rx="10"/>
+  <text class="step-label-end" x="720" y="268" text-anchor="middle">↑ PIB y ↑ inflación</text>
+
+  <!-- Muted note -->
+  <text class="note" x="40" y="338">(Si el banco central sube el tipo, el efecto es el contrario: enfría la economía.)</text>
+</svg>

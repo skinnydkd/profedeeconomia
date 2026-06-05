@@ -1,0 +1,104 @@
+---
+/**
+ * Negative externality in a competitive market.
+ * Demand slopes down (terra). The private marginal cost / supply (mustard)
+ * sits below the social marginal cost (terra-deep), which adds the external
+ * cost. The market equilibrium E_m (private intersection) yields a quantity
+ * Q_mercado that is larger than the social optimum Q_óptimo at E* (social
+ * intersection): the market overproduces. The wedge between both supply
+ * curves over [Q_óptimo, Q_mercado] is the welfare loss (unpriced social cost).
+ *
+ * Used in Eco 1BACH · Unit 6 (fallos de mercado).
+ */
+---
+<svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="ext-title ext-desc">
+  <title id="ext-title">Externalidad negativa</title>
+  <desc id="ext-desc">Externalidad negativa: el coste social supera al coste privado, de modo que el mercado por su cuenta produce más de lo eficiente (sobreproducción).</desc>
+  <defs>
+    <style>
+      .bg { fill: #FBF6EC; }
+      .axis { stroke: #5C4A3D; stroke-width: 1.5; fill: none; }
+      .demand { stroke: #C44E2C; stroke-width: 2.6; fill: none; }
+      .supply { stroke: #D4A24C; stroke-width: 2.6; fill: none; }
+      .supply-social { stroke: #9C3A1C; stroke-width: 2.6; fill: none; }
+      .guide { stroke: #8A7868; stroke-width: 1; stroke-dasharray: 4 4; fill: none; }
+      .loss { fill: #9C3A1C; fill-opacity: 0.25; stroke: #9C3A1C; stroke-width: 1.3; }
+      .ext-arrow-line { stroke: #9C3A1C; stroke-width: 1.6; fill: none; }
+      .axis-label { font-family: 'Switzer', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; fill: #5C4A3D; }
+      .axis-letter { font-family: 'Fraunces', serif; font-style: italic; font-size: 17px; font-weight: 500; fill: #2A1F18; }
+      .curve-label { font-family: 'Fraunces', serif; font-size: 16px; font-weight: 500; font-style: italic; }
+      .point-label { font-family: 'Fraunces', serif; font-size: 15px; font-weight: 500; font-style: italic; fill: #2A1F18; }
+      .note { font-family: 'Switzer', sans-serif; font-size: 11px; font-weight: 700; fill: #9C3A1C; }
+      .note-soft { font-family: 'Switzer', sans-serif; font-size: 11px; font-weight: 700; fill: #5C4A3D; letter-spacing: 0.4px; }
+      .tick { font-family: 'JetBrains Mono', monospace; font-size: 10px; fill: #5C4A3D; }
+      .has-tip { cursor: help; }
+    </style>
+    <marker id="ext-arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#5C4A3D"/>
+    </marker>
+    <marker id="ext-arrow-deep" markerWidth="9" markerHeight="9" refX="5" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#9C3A1C"/>
+    </marker>
+  </defs>
+  <rect class="bg" x="0" y="0" width="800" height="500"/>
+
+  <!-- Plot area: x 90..720, y 50..420.
+       Demand:        (120,80)  -> (700,400)
+       Cmg privado:   (120,400) -> (660,90)
+       Cmg social:    (120,330) -> (660,20)   (private + external cost, +70px up)
+       E_m (private): (404, 237)   Q_mercado
+       E* (social):   (342, 203)   Q_óptimo
+       Social curve at Q_mercado (x=404): y=167 -->
+
+  <!-- Welfare loss / unpriced social cost triangle (Q_óptimo .. Q_mercado, between supplies) -->
+  <path class="loss has-tip" d="M 342 203 L 404 167 L 404 237 Z">
+    <title>Pérdida de bienestar: el coste social que el mercado no asume. Son las unidades que se producen de más, desde Q óptimo hasta Q de mercado, cuyo coste para la sociedad supera el valor que aportan.</title>
+  </path>
+
+  <!-- Axes with arrows -->
+  <line class="axis" x1="90" y1="420" x2="740" y2="420" marker-end="url(#ext-arrow)"/>
+  <line class="axis" x1="90" y1="440" x2="90" y2="40" marker-end="url(#ext-arrow)"/>
+  <text class="tick" x="82" y="436" text-anchor="end">0</text>
+
+  <!-- Axis titles -->
+  <text class="axis-letter" x="748" y="425">Q</text>
+  <text class="axis-letter" x="82" y="38" text-anchor="end">P</text>
+  <text class="axis-label" x="415" y="475" text-anchor="middle">CANTIDAD</text>
+  <text class="axis-label" x="30" y="235" text-anchor="middle" transform="rotate(-90 30 235)">PRECIO</text>
+
+  <!-- Curves -->
+  <line class="demand" x1="120" y1="80" x2="700" y2="400"/>
+  <line class="supply" x1="120" y1="400" x2="660" y2="90"/>
+  <line class="supply-social" x1="120" y1="330" x2="660" y2="20"/>
+
+  <!-- Equilibrium guides dropping to the x-axis -->
+  <line class="guide" x1="342" y1="203" x2="342" y2="420"/>
+  <line class="guide" x1="404" y1="237" x2="404" y2="420"/>
+
+  <!-- Equilibrium dots -->
+  <circle class="has-tip" cx="342" cy="203" r="6" fill="#FFFFFF" stroke="#9C3A1C" stroke-width="2.4">
+    <title>Óptimo social E*: el cruce de la demanda con el coste marginal social. Es la cantidad eficiente, Q óptimo, donde se tiene en cuenta también el coste externo.</title>
+  </circle>
+  <circle class="has-tip" cx="404" cy="237" r="6" fill="#FFFFFF" stroke="#2A1F18" stroke-width="2.4">
+    <title>Equilibrio de mercado E_m: el cruce de la demanda con el coste marginal privado. El mercado, por su cuenta, llega a Q de mercado, mayor que el óptimo social.</title>
+  </circle>
+
+  <!-- Coste externo: vertical double-arrow between both supplies at x=520 (priv y=170, soc y=100) -->
+  <line class="ext-arrow-line" x1="520" y1="170" x2="520" y2="100" marker-start="url(#ext-arrow-deep)" marker-end="url(#ext-arrow-deep)"/>
+  <text class="note" x="532" y="138">coste externo</text>
+
+  <!-- Sobreproducción bracket between Q_óptimo and Q_mercado on the x-axis -->
+  <line class="ext-arrow-line" x1="342" y1="404" x2="404" y2="404" marker-start="url(#ext-arrow-deep)" marker-end="url(#ext-arrow-deep)"/>
+  <text class="note" x="373" y="397" text-anchor="middle">sobreproducción</text>
+
+  <!-- Curve labels -->
+  <text class="curve-label" x="704" y="402" fill="#C44E2C">D</text>
+  <text class="curve-label" x="664" y="92" fill="#A87A2A">Cmg privado</text>
+  <text class="curve-label" x="664" y="22" fill="#9C3A1C">Cmg social</text>
+
+  <!-- Point labels -->
+  <text class="point-label" x="326" y="198" text-anchor="end" fill="#9C3A1C">E*</text>
+  <text class="point-label" x="416" y="242">E_m</text>
+  <text class="point-label" x="342" y="437" text-anchor="middle" fill="#9C3A1C">Q_óptimo</text>
+  <text class="point-label" x="404" y="437" text-anchor="middle">Q_mercado</text>
+</svg>
