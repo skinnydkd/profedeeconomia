@@ -2,6 +2,7 @@
 import BaseLayout from '@layouts/BaseLayout.astro';
 import SubjectCard from '@components/SubjectCard.astro';
 import { ASIGNATURAS_PUBLICADAS } from '@/lib/asignaturas';
+import { organizationLd, websiteLd } from '@/lib/seo';
 
 // Keep all subject counts in sync with the published catalogue so the
 // homepage never drifts out of date when new asignaturas ship.
@@ -27,6 +28,7 @@ const TRANSVERSAL = [
 <BaseLayout
   title="Material para impartir economía, empresa y finanzas en el instituto"
   description={`Material editorial para profesores de instituto. ${NumPalabraCap} asignaturas con libro, diapositivas, actividades, tests y recursos. Currículo estatal LOMLOE.`}
+  jsonLd={[organizationLd(), websiteLd()]}
 >
 
   <section class="hero">
