@@ -77,6 +77,20 @@ preguntas:
       - "El superávit de la cuenta financiera por la entrada de capital extranjero."
     correcta: 2
     explicacion: "El superávit por cuenta corriente español se apoya en dos pilares: un superávit muy elevado de servicios (España es el segundo destino turístico mundial y exporta también servicios profesionales y de transporte) y un déficit moderado en bienes —importamos energía— compensado por exportaciones competitivas de automoción, alimentación y químicos. La cuenta financiera es la contrapartida contable, no el motor."
+  - tipo: numerico
+    enunciado: "Una economía tiene en un año un PIB nominal de 2.200 mill. € y un deflactor del PIB de 110 (año base = 100). ¿Cuál es su PIB real, en millones de euros?"
+    respuesta: 2000
+    tolerancia: 5
+    unidad: "mill. €"
+    explicacion: "PIB real = (PIB nominal / Deflactor) × 100 = (2.200 / 110) × 100 = 2.000 mill. €. El deflactor de 110 indica que los precios han subido un 10 % desde el año base, por eso el PIB real es menor que el nominal."
+  - tipo: verdadero-falso
+    enunciado: "Las pensiones que paga el Estado se incluyen como gasto público (G) en el cálculo del PIB por el método del gasto."
+    correcta: false
+    explicacion: "Las pensiones son transferencias: redistribuyen renta pero no remuneran producción nueva. En el método del gasto, G recoge solo el consumo e inversión públicos en bienes y servicios, no las transferencias."
+  - tipo: verdadero-falso
+    enunciado: "Una persona que no trabaja, está disponible para trabajar pero ha dejado de buscar empleo, se contabiliza como parada en la EPA."
+    correcta: false
+    explicacion: "La EPA exige tres requisitos simultáneos: no trabajar, estar disponible y buscar activamente. Si no busca, es inactiva (trabajador desanimado), no parada, aunque conserve la voluntad de trabajar."
 ---
 
 Test de autoevaluación de la Unidad 7 del libro de Eco 1BACH. Nueve preguntas que cubren los cuatro agentes económicos, la identidad del flujo circular ampliado, el cálculo del PIB por los métodos del gasto y de la producción, la conversión entre PIB nominal y real mediante el deflactor, la diferencia entre IPC y deflactor del PIB, el papel del IPCA en la zona euro, la definición de paro según la EPA y la estructura del superávit por cuenta corriente español.

@@ -77,6 +77,20 @@ preguntas:
       - "Las personas siempre prefieren el riesgo a la seguridad."
     correcta: 1
     explicacion: "El hallazgo central de la Teoría Prospectiva: valoramos asimétricamente ganancias y pérdidas, y las pérdidas pesan aproximadamente el doble. Por eso pagamos seguros que estadísticamente nos cuestan dinero, mantenemos suscripciones por inercia y los nudges tipo opt-out funcionan tan bien: cambiar el estado actual se percibe como una pérdida."
+  - tipo: verdadero-falso
+    enunciado: "Para decidir racionalmente si seguir con un proyecto, hay que tener en cuenta el dinero ya gastado, porque de lo contrario se desperdicia."
+    correcta: false
+    explicacion: "El dinero ya gastado es un coste hundido: no se recupera continúe o no el proyecto. La decisión racional compara solo costes y beneficios futuros. Tenerlo en cuenta es justamente la falacia del coste hundido."
+  - tipo: verdadero-falso
+    enunciado: "Según el análisis marginal, conviene aumentar la producción siempre que el ingreso marginal supere al coste marginal de esa unidad adicional."
+    correcta: true
+    explicacion: "La regla marginal es exactamente esa: producir una unidad más mientras el ingreso que aporta sea mayor que el coste que añade. Cuando el coste marginal supera al ingreso marginal, esa unidad reduce el beneficio."
+  - tipo: relacionar
+    enunciado: "Relaciona cada sesgo o concepto con el ejemplo que mejor lo ilustra:"
+    izquierda: ["Sesgo de anclaje", "Aversión a la pérdida", "Efecto framing", "Falacia del coste hundido"]
+    derecha: ["No vendo unas acciones en pérdidas porque «ya he aguantado tanto, sería tirar lo invertido»", "Compro porque el precio tachado de 200 € hace que 150 € parezca barato", "Acepto más una operación con «90 % de supervivencia» que con «10 % de mortalidad»", "Pago un seguro caro porque perder me duele más que ganar lo mismo"]
+    correctas: [1, 3, 2, 0]
+    explicacion: "Anclaje: el primer número condiciona la percepción. Aversión a la pérdida: pesa más perder que ganar. Framing: el modo de presentar cambia la decisión. Coste hundido: seguir por lo ya invertido."
 ---
 
 Test de autoevaluación de la Unidad 2 del libro de Eco 1BACH. Cubre las herramientas clásicas (coste de oportunidad, costes hundidos, análisis marginal, teoría de juegos) y la mirada moderna de la economía del comportamiento (racionalidad acotada de Simon, Sistemas 1 y 2 de Kahneman, sesgos cognitivos y Teoría Prospectiva).

@@ -77,6 +77,20 @@ preguntas:
       - "Implica que el mercado debe ser sustituido por planificación central."
     correcta: 1
     explicacion: "La conclusión metodológica moderna —desde Buchanan y la *public choice*— es modesta: el Estado real también falla. Solo conviene intervenir cuando el fallo de mercado está cuantificado, hay instrumento factible y el riesgo de fallo de gobierno es razonablemente menor. Comparamos instituciones reales, no idealizadas."
+  - tipo: verdadero-falso
+    enunciado: "Ante una externalidad negativa, como la contaminación, el mercado por sí solo tiende a producir una cantidad mayor que la socialmente óptima."
+    correcta: true
+    explicacion: "El productor solo considera su coste privado e ignora el daño a terceros, por lo que el coste social real es mayor que el privado. El resultado es una sobreproducción del bien contaminante respecto al óptimo social. El impuesto pigouviano corrige ese desajuste."
+  - tipo: verdadero-falso
+    enunciado: "El riesgo moral aparece antes de firmar el contrato, cuando una parte conoce la calidad del bien y la otra no."
+    correcta: false
+    explicacion: "Eso describe la selección adversa, que es ex ante. El riesgo moral es ex post: surge después de firmar el contrato, cuando la cobertura altera el comportamiento del asegurado (asume más riesgo porque otro soportará la pérdida)."
+  - tipo: relacionar
+    enunciado: "Relaciona cada tipo de fallo de mercado con un ejemplo representativo:"
+    izquierda: ["Externalidad negativa", "Bien público puro", "Información asimétrica", "Poder de mercado"]
+    derecha: ["El precio del medicamento de un único laboratorio con patente", "El humo de una fábrica que perjudica al vecindario", "El vendedor de un coche usado sabe sus averías y el comprador no", "El alumbrado público de una ciudad"]
+    correctas: [1, 3, 2, 0]
+    explicacion: "Externalidad negativa: el humo daña a terceros sin pagar por ello. Bien público: el alumbrado es no rival y no excluible. Información asimétrica: el vendedor sabe más que el comprador. Poder de mercado: el monopolista con patente fija precio por encima del coste marginal."
 ---
 
 Test de autoevaluación de la Unidad 6 del libro de Eco 1BACH. Nueve preguntas que cubren la definición de fallo de mercado, las externalidades positivas y negativas, el impuesto pigouviano, la matriz de bienes públicos y comunes de Ostrom, el problema del polizón, la información asimétrica (selección adversa y riesgo moral), el poder de mercado y los fallos de gobierno.

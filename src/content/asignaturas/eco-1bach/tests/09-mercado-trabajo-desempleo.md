@@ -77,6 +77,22 @@ preguntas:
       - "España no tiene negociación colectiva sectorial y los países nórdicos sí."
     correcta: 1
     explicacion: "El modelo nórdico (Dinamarca, Suecia) combina flexibilidad para la empresa (despido fácil) con seguridad para el trabajador (prestaciones generosas + políticas activas potentes). El modelo español ha sido históricamente dual: alta protección al indefinido y muy baja al temporal, con tasa de temporalidad doble que la media UE hasta la reforma laboral de 2021-2022, que la redujo del 25 % al 15 %."
+  - tipo: numerico
+    enunciado: "Un país tiene 23 millones de activos y 2,76 millones de parados. ¿Cuál es la tasa de paro, en % (sin decimales)?"
+    respuesta: 12
+    tolerancia: 0.2
+    unidad: "%"
+    explicacion: "Tasa de paro = (parados / activos) × 100 = (2,76 / 23) × 100 = 12 %. El denominador son los activos (ocupados + parados), no la población total: es uno de los errores de cálculo más frecuentes."
+  - tipo: verdadero-falso
+    enunciado: "Cuando un parado deja de buscar empleo y pasa a ser inactivo, la tasa de paro baja aunque no se haya creado ni un solo empleo nuevo."
+    correcta: true
+    explicacion: "Es el efecto desánimo. Al dejar de buscar, la persona sale de los activos: bajan a la vez parados y activos, y la tasa de paro mejora aritméticamente sin que exista nuevo empleo. Por eso conviene mirar las tres tasas de la EPA a la vez."
+  - tipo: relacionar
+    enunciado: "Relaciona cada tipo de paro con su definición:"
+    izquierda: ["Friccional", "Estacional", "Estructural", "Cíclico"]
+    derecha: ["Ligado a la fase de recesión del ciclo económico", "Tiempo de búsqueda entre dejar un empleo y encontrar otro", "Desajuste entre las habilidades de los parados y las vacantes", "Vinculado a actividades que solo operan en ciertas épocas del año"]
+    correctas: [1, 3, 2, 0]
+    explicacion: "Friccional: rotación normal en la búsqueda de empleo. Estacional: turismo, agricultura, campañas. Estructural: desajuste de cualificaciones o geográfico, no se cura con expansión. Cíclico: depende de la fase del ciclo económico."
 ---
 
 Test de autoevaluación de la Unidad 9 del libro de Eco 1BACH. Nueve preguntas que cubren las definiciones de la EPA (activos, ocupados, parados), el cálculo de las tasas de actividad y paro, el efecto desánimo, los cuatro tipos de desempleo, los efectos teóricos y la evidencia empírica del salario mínimo (Card-Krueger), la curva de Phillips y la NAIRU, la brecha salarial de género y la comparación entre el modelo laboral español y el nórdico de flexiguridad.

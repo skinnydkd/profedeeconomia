@@ -417,6 +417,14 @@ const letra = (i: number) => String.fromCharCode(97 + i); // 0 -> 'a'
         margin: 0 0 0.4mm; padding-left: 5mm; text-indent: -5mm;
       }
       .q__letra { font-family: var(--font-serif); font-style: italic; color: var(--color-ink-mute); margin-right: 2mm; }
+      .q__vf, .q__numr { font-family: var(--font-sans); font-size: 8.8pt; color: var(--color-ink-soft); margin: 0.6mm 0; }
+      .q__box { display: inline-block; width: 4mm; height: 4mm; border: 0.4mm solid var(--color-ink-mute); vertical-align: middle; margin-left: 1mm; }
+      .q__blank { display: inline-block; min-width: 32mm; border-bottom: 0.3mm solid var(--color-ink-mute); }
+      .q__blank--sm { min-width: 9mm; margin-left: 1mm; }
+      .q__rel { display: grid; grid-template-columns: 1fr 1fr; gap: 1mm 6mm; font-family: var(--font-sans); font-size: 8.5pt; color: var(--color-ink-soft); margin: 0.6mm 0; }
+      .q__rel-izq { margin: 0; padding-left: 5mm; }
+      .q__rel-der { list-style: none; margin: 0; padding: 0; }
+      .q__rel-der li { padding-left: 5mm; text-indent: -5mm; margin-bottom: 0.4mm; }
 
       /* ---- Solucionario ---- */
       .solucionario { break-before: page; }
@@ -566,11 +574,25 @@ const letra = (i: number) => String.fromCharCode(97 + i); // 0 -> 'a'
             {u.test.data.preguntas.map((q, qi) => (
               <div class="q">
                 <p class="q__text"><span class="q__num">{qi + 1}.</span> {q.enunciado}</p>
-                <ul class="q__opts">
-                  {q.opciones.map((op, oi) => (
-                    <li class="q__opt"><span class="q__letra">{letra(oi)})</span>{op}</li>
-                  ))}
-                </ul>
+                {q.tipo === 'opcion-multiple' && (
+                  <ul class="q__opts">
+                    {q.opciones.map((op, oi) => (
+                      <li class="q__opt"><span class="q__letra">{letra(oi)})</span>{op}</li>
+                    ))}
+                  </ul>
+                )}
+                {q.tipo === 'verdadero-falso' && (
+                  <p class="q__vf">Verdadero <span class="q__box"></span> &nbsp;&nbsp; Falso <span class="q__box"></span></p>
+                )}
+                {q.tipo === 'numerico' && (
+                  <p class="q__numr">Respuesta: <span class="q__blank"></span>{q.unidad ? ` ${q.unidad}` : ''}</p>
+                )}
+                {q.tipo === 'relacionar' && (
+                  <div class="q__rel">
+                    <ol class="q__rel-izq">{q.izquierda.map((iz) => <li>{iz} <span class="q__blank q__blank--sm"></span></li>)}</ol>
+                    <ul class="q__rel-der">{q.derecha.map((de, di) => <li><span class="q__letra">{letra(di)})</span>{de}</li>)}</ul>
+                  </div>
+                )}
               </div>
             ))}
           </section>
@@ -586,12 +608,19 @@ const letra = (i: number) => String.fromCharCode(97 + i); // 0 -> 'a'
       {porUnidad.filter((u) => u.test).map((u) => (
         <div class="sol-unit">
           <h3 class="sol-unit__h">Unidad {u.unidad} · {u.test!.data.preguntas.length} preguntas</h3>
-          {u.test!.data.preguntas.map((q, qi) => (
-            <p class="sol-q">
-              <span class="sol-q__a">{qi + 1}. {letra(q.correcta)})</span>{' '}
-              {q.explicacion && <span class="sol-q__e">{q.explicacion}</span>}
-            </p>
-          ))}
+          {u.test!.data.preguntas.map((q, qi) => {
+            const ans =
+              q.tipo === 'opcion-multiple' ? `${letra(q.correcta)})`
+              : q.tipo === 'verdadero-falso' ? (q.correcta ? 'Verdadero' : 'Falso')
+              : q.tipo === 'numerico' ? `${String(q.respuesta).replace('.', ',')}${q.unidad ? ' ' + q.unidad : ''}`
+              : q.correctas.map((d, i) => `${i + 1}→${letra(d)}`).join(', ');
+            return (
+              <p class="sol-q">
+                <span class="sol-q__a">{qi + 1}. {ans}</span>{' '}
+                {q.explicacion && <span class="sol-q__e">{q.explicacion}</span>}
+              </p>
+            );
+          })}
         </div>
       ))}
     </section>

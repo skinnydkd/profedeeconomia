@@ -85,6 +85,16 @@ preguntas:
       - "Sustituyen al Pacto Verde Europeo como marco regulatorio principal."
     correcta: 1
     explicacion: "La Agenda 2030 fue adoptada en 2015 por los 193 miembros de la ONU y sustituyó a los Objetivos del Milenio con tres novedades: universalidad (afectan también a países ricos), integralidad (combinan dimensiones económica, social y ambiental) y participación del sector privado. No son vinculantes pero sirven de referencia común. España se sitúa en torno al puesto 16 del SDG Index 2023, con buen desempeño en salud y educación y peor en empleo de calidad, biodiversidad y consumo responsable."
+  - tipo: verdadero-falso
+    enunciado: "Según la teoría de la ventaja comparativa de Ricardo, si un país es más eficiente que otro en la producción de todos los bienes, no hay margen para que ambos ganen comerciando."
+    correcta: false
+    explicacion: "Es justo lo contrario de lo que demostró Ricardo. Aunque un país sea absolutamente mejor en todo, ambos ganan si cada uno se especializa en el bien con menor coste de oportunidad (ventaja comparativa). La ventaja absoluta no determina los beneficios del comercio."
+  - tipo: relacionar
+    enunciado: "Relaciona cada hito de la construcción europea con su año:"
+    izquierda: ["CECA (carbón y acero)", "Tratados de Roma (CEE)", "Tratado de Maastricht (UE)", "Euro físico en circulación"]
+    derecha: ["1992", "2002", "1951", "1957"]
+    correctas: [2, 3, 0, 1]
+    explicacion: "CECA en 1951, Tratados de Roma en 1957, Maastricht en 1992 (crea la UE y sienta las bases de la unión monetaria) y la entrada en circulación del euro físico en 2002."
 ---
 
 Test de autoevaluación de la Unidad 12 del libro de Eco 1BACH. Diez preguntas que cubren ventaja absoluta y comparativa (con cálculo de coste de oportunidad), proteccionismo vs. libre comercio, OMC, hitos de la construcción europea, las cuatro libertades del mercado único, NextGenerationEU, beneficios y costes de la globalización, revolución digital (Frey-Osborne y polarización del mercado laboral), economía circular vs. decrecimiento y ODS de la Agenda 2030.

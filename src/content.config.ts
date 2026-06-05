@@ -85,6 +85,45 @@ const actividades = defineCollection({
   }),
 });
 
+/* Self-assessment question types. A question without `tipo` is treated as
+ * 'opcion-multiple' so the existing tests keep validating unchanged. */
+const preguntaMC = z.object({
+  tipo: z.literal('opcion-multiple'),
+  enunciado: z.string(),
+  opciones: z.array(z.string()).min(2).max(6),
+  correcta: z.number().int().min(0),
+  explicacion: z.string().optional(),
+});
+const preguntaVF = z.object({
+  tipo: z.literal('verdadero-falso'),
+  enunciado: z.string(),
+  correcta: z.boolean(),
+  explicacion: z.string().optional(),
+});
+const preguntaNum = z.object({
+  tipo: z.literal('numerico'),
+  enunciado: z.string(),
+  respuesta: z.number(),
+  tolerancia: z.number().min(0).default(0),
+  unidad: z.string().optional(),
+  explicacion: z.string().optional(),
+});
+const preguntaRel = z.object({
+  tipo: z.literal('relacionar'),
+  enunciado: z.string(),
+  // izquierda, derecha y correctas deben tener la misma longitud (validado en
+  // la autoría; el render tolera longitudes desiguales sin romper).
+  izquierda: z.array(z.string()).min(2),
+  derecha: z.array(z.string()).min(2),
+  correctas: z.array(z.number().int().min(0)),
+  explicacion: z.string().optional(),
+});
+const preguntaSchema = z.preprocess(
+  (val) =>
+    val && typeof val === 'object' && !('tipo' in val) ? { ...val, tipo: 'opcion-multiple' } : val,
+  z.discriminatedUnion('tipo', [preguntaMC, preguntaVF, preguntaNum, preguntaRel])
+);
+
 const tests = defineCollection({
   loader: glob({
     pattern: 'asignaturas/*/tests/**/*.{md,mdx}',
@@ -97,18 +136,7 @@ const tests = defineCollection({
     duracion_estimada: z.string().optional(),
     lang: z.enum(LANGS).default('es'),
     estado: z.enum(ESTADOS).default('borrador'),
-    preguntas: z.array(
-      z.object({
-        // The question itself.
-        enunciado: z.string(),
-        // 2..6 alternatives. The 0-indexed position of the right one
-        // is given by `correcta`.
-        opciones: z.array(z.string()).min(2).max(6),
-        correcta: z.number().int().min(0),
-        // Optional one-paragraph rationale shown after the user submits.
-        explicacion: z.string().optional(),
-      })
-    ).min(1),
+    preguntas: z.array(preguntaSchema).min(1),
   }),
 });
 

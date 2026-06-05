@@ -31,12 +31,16 @@ async function parseTest(file) {
     asignatura: String(data.asignatura),
     unidad: Number(data.unidad_relacionada),
     title: String(data.title ?? ''),
-    preguntas: data.preguntas.map((p) => ({
-      enunciado: String(p.enunciado),
-      opciones: p.opciones.map(String),
-      correcta: Number(p.correcta),
-      ...(p.explicacion ? { explicacion: String(p.explicacion) } : {}),
-    })),
+    // Cajút es un concurso multijugador de opción múltiple: solo toma las
+    // preguntas de ese tipo (las nuevas —V/F, numérico, relacionar— se ignoran).
+    preguntas: data.preguntas
+      .filter((p) => (p.tipo ?? 'opcion-multiple') === 'opcion-multiple' && Array.isArray(p.opciones))
+      .map((p) => ({
+        enunciado: String(p.enunciado),
+        opciones: p.opciones.map(String),
+        correcta: Number(p.correcta),
+        ...(p.explicacion ? { explicacion: String(p.explicacion) } : {}),
+      })),
   };
 }
 

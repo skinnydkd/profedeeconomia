@@ -77,6 +77,22 @@ preguntas:
       - "Un nuevo sistema de pago instantáneo gestionado por la banca comercial."
     correcta: 2
     explicacion: "El euro digital sería una CBDC (Central Bank Digital Currency) emitida por el BCE, complementaria —no sustitutiva— del efectivo. Los borradores actuales contemplan un límite de tenencia en torno a 3.000 € por persona para evitar que los depósitos huyan masivamente de los bancos comerciales al BCE en momentos de tensión financiera."
+  - tipo: numerico
+    enunciado: "Si el coeficiente legal de reservas (caja) es del 10 %, ¿cuál es el valor del multiplicador del dinero teórico?"
+    respuesta: 10
+    tolerancia: 0.1
+    unidad: ""
+    explicacion: "El multiplicador teórico es k = 1/c = 1/0,10 = 10. Un depósito inicial puede generar hasta 10 veces su importe en oferta monetaria a través de la cadena de préstamos y depósitos del sistema bancario."
+  - tipo: verdadero-falso
+    enunciado: "El multiplicador del dinero observado en la realidad suele ser mayor que el teórico 1/c."
+    correcta: false
+    explicacion: "El multiplicador efectivo es menor que el teórico, porque los bancos mantienen reservas voluntarias por encima del mínimo legal y parte del dinero circula como efectivo fuera del sistema bancario, en lugar de volver como depósito."
+  - tipo: relacionar
+    enunciado: "Relaciona cada agregado monetario con lo que incluye:"
+    izquierda: ["M0 (base monetaria)", "M1", "M2", "M3"]
+    derecha: ["M2 más instrumentos negociables a corto plazo (repos, participaciones en fondos del mercado monetario)", "Efectivo en circulación más reservas bancarias en el banco central", "M1 más depósitos de ahorro a corto plazo", "Efectivo en manos del público más depósitos a la vista"]
+    correctas: [1, 3, 2, 0]
+    explicacion: "Cada agregado es más amplio que el anterior: M0 es el dinero emitido por el banco central; M1 añade los depósitos a la vista; M2 suma el ahorro a corto plazo; M3 incorpora instrumentos negociables a corto plazo."
 ---
 
 Test de autoevaluación de la Unidad 10 del libro de Eco 1BACH.

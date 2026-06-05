@@ -88,7 +88,7 @@ const OPTION_LABELS = ['A', 'B', 'C', 'D', 'E', 'F'];
           <div class="unit">
             <h3 class="unit-title">Unidad {t.data.unidad_relacionada} — {t.data.title}</h3>
             <ol class="q-list">
-              {t.data.preguntas.map((p) => (
+              {t.data.preguntas.filter((p) => (p.tipo ?? 'opcion-multiple') === 'opcion-multiple' && 'opciones' in p).map((p) => (
                 <li class="q">
                   <p class="q-text">{p.enunciado}</p>
                   <ol class="q-opts">
