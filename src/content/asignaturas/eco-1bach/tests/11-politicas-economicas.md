@@ -77,6 +77,22 @@ preguntas:
       - "Una espiral salarios-precios desatada por la negociación colectiva."
     correcta: 2
     explicacion: "La crisis 2022-2023 fue mixta: cuellos de botella post-Covid (semiconductores, fletes, energía) y la guerra de Ucrania (gas, petróleo, cereales, fertilizantes) aportaron inflación de costes; el ahorro acumulado en confinamiento, liberado al reabrir, aportó inflación de demanda. La espiral salarios-precios fue un riesgo, no el factor desencadenante."
+  - tipo: numerico
+    enunciado: "Si la propensión marginal al consumo es 0,75, ¿cuál es el valor del multiplicador del gasto público en el modelo keynesiano simple?"
+    respuesta: 4
+    tolerancia: 0.1
+    unidad: ""
+    explicacion: "k = 1 / (1 − c) = 1 / (1 − 0,75) = 1 / 0,25 = 4. Un euro de gasto público adicional arrastra hasta 4 euros de PIB en el modelo simple sin impuestos ni sector exterior. En economías abiertas el multiplicador realista es bastante menor."
+  - tipo: verdadero-falso
+    enunciado: "Subir el tipo de interés oficial del BCE para enfriar la economía es un ejemplo de política fiscal restrictiva."
+    correcta: false
+    explicacion: "Las decisiones sobre el tipo de interés oficial son política monetaria, no fiscal, y las toma el BCE. La política fiscal la maneja el Gobierno mediante el gasto público y los impuestos."
+  - tipo: relacionar
+    enunciado: "Relaciona cada política económica con su instrumento característico:"
+    izquierda: ["Política fiscal expansiva", "Política fiscal restrictiva", "Política monetaria expansiva", "Política monetaria restrictiva"]
+    derecha: ["Subir el tipo de interés oficial y aplicar QT", "Bajar el gasto público y subir impuestos", "Aumentar el gasto público o reducir impuestos", "Bajar tipos de interés y aplicar QE (compra de activos)"]
+    correctas: [2, 1, 3, 0]
+    explicacion: "Fiscal expansiva: ↑G o ↓T. Fiscal restrictiva: ↓G o ↑T. Monetaria expansiva: bajar tipos y comprar activos (QE). Monetaria restrictiva: subir tipos y retirar liquidez (QT)."
 ---
 
 Test de autoevaluación de la Unidad 11 del libro de Eco 1BACH: políticas económicas, fiscal y monetaria.

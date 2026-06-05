@@ -77,6 +77,20 @@ preguntas:
       - "Fijar de forma autónoma el tipo de interés oficial del euro."
     correcta: 3
     explicacion: "Desde 1999 el Banco de España está integrado en el Eurosistema y no fija de forma autónoma el tipo de interés oficial: lo decide el Consejo de Gobierno del BCE. El Banco de España sí supervisa entidades, ejecuta la política monetaria en territorio español y coordina con la CNMV el Plan de Educación Financiera."
+  - tipo: numerico
+    enunciado: "Se invierten 1.000 € a un 4 % anual compuesto y se dejan quietos 10 años. ¿Cuál es el capital final, en euros (2 decimales)?"
+    respuesta: 1480.24
+    tolerancia: 1
+    unidad: "€"
+    explicacion: "Cf = Ci · (1 + i)^n = 1.000 · (1,04)^10 = 1.000 · 1,48024 ≈ 1.480,24 €. El interés compuesto reinvierte cada año los intereses generados, de ahí el crecimiento exponencial."
+  - tipo: verdadero-falso
+    enunciado: "Con el interés compuesto, lo determinante para acumular un gran capital es aportar mucho dinero al final; empezar pronto apenas influye."
+    correcta: false
+    explicacion: "Es justo al revés: el factor decisivo es el tiempo, porque los intereses se reinvierten y generan nuevos intereses. Empezar pronto, aunque sea con poco, suele superar a aportar mucho más pero tarde."
+  - tipo: verdadero-falso
+    enunciado: "La TAE de un préstamo nunca puede ser inferior a su TIN, porque incorpora comisiones y gastos que el TIN no incluye."
+    correcta: true
+    explicacion: "La TAE añade al tipo nominal (TIN) las comisiones, seguros vinculados y demás gastos. Por eso la TAE iguala al TIN cuando no hay gastos adicionales y lo supera cuando los hay, pero no puede ser menor."
 ---
 
 Test de autoevaluación de la Unidad 3 del libro de Eco 1BACH.

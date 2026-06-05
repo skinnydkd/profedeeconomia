@@ -77,6 +77,20 @@ preguntas:
       - "El salario mínimo es irrelevante porque siempre se fija por debajo del equilibrio."
     correcta: 2
     explicacion: "El consenso empírico actual es matizado: ni el desastre que predice el modelo competitivo puro ni la neutralidad que sugería Card-Krueger en aislado. El efecto depende de cuánto se aleja el mínimo del equilibrio y de la elasticidad de la demanda de trabajo en cada segmento."
+  - tipo: numerico
+    enunciado: "El precio de un bien sube de 10 € a 11 € y la cantidad demandada cae de 100 a 85 unidades. Usando el método simple (sobre los valores iniciales), ¿cuál es la elasticidad-precio de la demanda en valor absoluto (2 decimales)?"
+    respuesta: 1.5
+    tolerancia: 0.05
+    unidad: ""
+    explicacion: "%ΔQ = (85−100)/100 = −15 %. %ΔP = (11−10)/10 = +10 %. E = |−15/10| = 1,5. Al ser mayor que 1, la demanda es elástica: la cantidad reacciona más que proporcionalmente al precio."
+  - tipo: verdadero-falso
+    enunciado: "Si la demanda de un bien es elástica (|E| > 1), subir el precio aumenta los ingresos totales de la empresa."
+    correcta: false
+    explicacion: "Con demanda elástica domina el efecto cantidad: al subir el precio, la cantidad cae más que proporcionalmente y los ingresos totales bajan. Subir el precio aumenta ingresos solo cuando la demanda es inelástica."
+  - tipo: verdadero-falso
+    enunciado: "Cuanto más inelásticas son la oferta y la demanda, mayor es el peso muerto (pérdida de eficiencia) que provoca un impuesto."
+    correcta: false
+    explicacion: "Es al revés: cuanto más elásticas son oferta y demanda, más cae la cantidad intercambiada y mayor es el peso muerto. Por eso gravar bienes inelásticos (tabaco, alcohol) recauda mucho con poca pérdida de eficiencia."
 ---
 
 Test de autoevaluación de la Unidad 5 del libro de Eco 1BACH: elasticidad de la demanda y la oferta, excedentes del consumidor y del productor, y aplicaciones a precios máximos, mínimos e impuestos.

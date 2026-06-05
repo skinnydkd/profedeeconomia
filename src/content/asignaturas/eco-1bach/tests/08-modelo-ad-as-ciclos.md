@@ -77,6 +77,20 @@ preguntas:
       - "Gini ≈ 0,70 (desigualdad extrema, similar a Sudáfrica)."
     correcta: 2
     explicacion: "Aplicando la regla del trapecio con anchos de 0,2, el área bajo la curva de Lorenz es B = 0,285. El área entre la diagonal y la curva es A = 0,5 − 0,285 = 0,215. El Gini = A / 0,5 = 0,43. Es el ejercicio resuelto 8.2 del libro: el 20 % más rico concentra el 50 % de la renta y la desigualdad se acerca al patrón estadounidense."
+  - tipo: numerico
+    enunciado: "El IPC de un país pasa de 120 a 126 entre diciembre de un año y diciembre del siguiente. ¿Cuál es la tasa de inflación interanual, en % (sin decimales)?"
+    respuesta: 5
+    tolerancia: 0.2
+    unidad: "%"
+    explicacion: "Tasa de inflación = (IPC_final − IPC_inicial) / IPC_inicial × 100 = (126 − 120) / 120 × 100 = 5 %. Mide el encarecimiento medio de la cesta de consumo entre ambos momentos."
+  - tipo: verdadero-falso
+    enunciado: "Un shock negativo de oferta, como una fuerte subida del precio de la energía, provoca a la vez subida de precios y caída de la producción."
+    correcta: true
+    explicacion: "El encarecimiento de la energía eleva los costes y desplaza la SRAS a la izquierda: el nuevo equilibrio tiene precios más altos y menos producción. Esa combinación se denomina estanflación, el caso más temido por los bancos centrales."
+  - tipo: verdadero-falso
+    enunciado: "Según el modelo de Solow, la mera acumulación de capital físico permite aumentar indefinidamente el PIB por trabajador a largo plazo."
+    correcta: false
+    explicacion: "El capital físico tiene rendimientos decrecientes: acumular más máquinas eleva el PIB total pero el PIB por trabajador se topa con un límite. Solo la productividad total de los factores (tecnología, instituciones, capital humano) sostiene el crecimiento per cápita a largo plazo."
 ---
 
 Test de autoevaluación de la Unidad 8 del libro de Eco 1BACH. Nueve preguntas que cubren los componentes de la demanda agregada, la pendiente negativa de la AD, la distinción entre SRAS y LRAS, los cuatro tipos canónicos de shocks (demanda y oferta, positivos y negativos), las fases del ciclo económico, el modelo de crecimiento de Solow, el IDH del PNUD y el cálculo del índice de Gini a partir de una curva de Lorenz.

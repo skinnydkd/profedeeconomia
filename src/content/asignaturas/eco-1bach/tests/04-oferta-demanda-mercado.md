@@ -77,6 +77,22 @@ preguntas:
       - "Competencia monopolística — Renfe AVE antes de 2021."
     correcta: 2
     explicacion: "La telefonía móvil española es el caso típico de oligopolio: pocas empresas grandes con cuota dominante. Mercadona compite (competencia monopolística), Renfe AVE fue cuasi-monopolio hasta 2021, y el mercado eléctrico minorista es oligopolio, no competencia perfecta."
+  - tipo: numerico
+    enunciado: "En un mercado, la demanda es Qd = 100 − 2P y la oferta Qo = 20 + 2P (P en euros, Q en unidades). ¿Cuál es el precio de equilibrio, en euros?"
+    respuesta: 20
+    tolerancia: 0.5
+    unidad: "€"
+    explicacion: "En el equilibrio Qd = Qo: 100 − 2P = 20 + 2P → 80 = 4P → P* = 20 €. Sustituyendo, Q* = 100 − 2·20 = 60 unidades."
+  - tipo: verdadero-falso
+    enunciado: "Una subida del precio de un bien sustitutivo desplaza hacia la derecha la curva de demanda del bien analizado."
+    correcta: true
+    explicacion: "Si encarece un sustitutivo (por ejemplo, sube el té), los consumidores se pasan al bien analizado (café): su demanda aumenta y la curva se desplaza a la derecha. Es uno de los cinco factores que desplazan la demanda."
+  - tipo: relacionar
+    enunciado: "Relaciona cada estructura de mercado con su rasgo definitorio:"
+    izquierda: ["Competencia perfecta", "Monopolio", "Oligopolio", "Competencia monopolística"]
+    derecha: ["Una sola empresa que fija el precio", "Muchas empresas, producto homogéneo y precio dado", "Pocas empresas interdependientes", "Muchas empresas con producto diferenciado"]
+    correctas: [1, 0, 2, 3]
+    explicacion: "Competencia perfecta: muchas empresas precio-aceptantes con producto homogéneo. Monopolio: una empresa precio-fijadora. Oligopolio: pocas empresas que se vigilan entre sí. Competencia monopolística: muchas empresas que diferencian su producto."
 ---
 
 Test de autoevaluación de la Unidad 4 del libro de Economía 1.º de Bachillerato.

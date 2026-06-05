@@ -77,6 +77,20 @@ preguntas:
       - "Solo los modelos matemáticamente completos son aceptables como ciencia."
     correcta: 2
     explicacion: "Como recordaba Joan Robinson, un modelo tan complejo como la realidad sería tan incomprensible como ella. La validez de un modelo económico se mide por su capacidad para iluminar mecanismos, no por reproducir cada detalle."
+  - tipo: verdadero-falso
+    enunciado: "La escasez solo afecta a los países pobres; en una economía rica, los recursos dejan de ser escasos."
+    correcta: false
+    explicacion: "La escasez es el problema económico universal: existe siempre que los deseos superan a los recursos disponibles, y eso ocurre también en los países ricos. Lo que cambia entre países es el nivel de recursos, no la existencia de la escasez."
+  - tipo: verdadero-falso
+    enunciado: "Un punto situado fuera (por encima) de la frontera de posibilidades de producción es inalcanzable con los recursos y la tecnología actuales."
+    correcta: true
+    explicacion: "Los puntos exteriores a la FPP representan combinaciones que la economía no puede producir hoy. Solo se vuelven alcanzables si crecen los recursos o mejora la tecnología, lo que desplaza la frontera hacia fuera."
+  - tipo: relacionar
+    enunciado: "Clasifica cada afirmación como economía positiva o normativa:"
+    izquierda: ["El paro en España fue del 11,3 % en 2024 según la EPA", "El Gobierno debería bajar los impuestos a las rentas bajas", "Subir el IVA un punto reduciría el consumo un 0,5 %", "Es injusto que la sanidad no sea totalmente gratuita"]
+    derecha: ["Normativa (juicio de valor)", "Positiva (dato verificable)", "Positiva (predicción contrastable)", "Normativa (prescripción)"]
+    correctas: [1, 0, 2, 3]
+    explicacion: "La economía positiva describe o predice hechos contrastables con datos; la normativa prescribe lo que debería ser e incorpora juicios de valor («debería», «es injusto»)."
 ---
 
 Test de autoevaluación de la Unidad 1 del libro de Economía 1.º Bachillerato.
