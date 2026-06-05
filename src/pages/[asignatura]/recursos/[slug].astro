@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
 import { ASIGNATURAS } from '@/lib/asignaturas';
+import { breadcrumbLd } from '@/lib/seo';
 import { getCollection, render } from 'astro:content';
 import HerramientaIsland from '@components/calculadoras/HerramientaIsland.astro';
 import type { GetStaticPaths } from 'astro';
@@ -29,9 +30,17 @@ const unit = recurso.data.unidad_relacionada
     )
   : null;
 const unitSlug = unit?.id.split('/').pop()?.replace(/\.mdx?$/, '');
+
+const recursoSlug = recurso.id.split('/').pop()?.replace(/\.mdx?$/, '') ?? recurso.id;
+const breadcrumb = breadcrumbLd([
+  { name: 'Inicio', path: '/' },
+  { name: a.shortLabel, path: `/${a.slug}/` },
+  { name: 'Recursos', path: `/${a.slug}/recursos/` },
+  { name: recurso.data.title, path: `/${a.slug}/recursos/${recursoSlug}/` },
+]);
 ---
 
-<BaseLayout title={`${recurso.data.title} — ${a.shortLabel}`} description={recurso.data.descripcion}>
+<BaseLayout title={`${recurso.data.title} — ${a.shortLabel}`} description={recurso.data.descripcion} ogType="article" jsonLd={breadcrumb}>
   <div class="container">
     <nav class="breadcrumb">
       <a href="/">Inicio</a> <span class="sep">›</span>

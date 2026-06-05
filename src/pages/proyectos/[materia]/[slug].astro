@@ -9,6 +9,7 @@ import ProyectoMeta from '@components/proyectos/ProyectoMeta.astro';
 import Rubrica from '@components/debates/Rubrica.astro';
 import PuenteUnidades from '@components/emprendimiento/PuenteUnidades.astro';
 import { materiaMeta } from '@/lib/proyectos';
+import { breadcrumbLd } from '@/lib/seo';
 import { getCollection, render } from 'astro:content';
 import type { GetStaticPaths } from 'astro';
 
@@ -24,8 +25,13 @@ const { entry } = Astro.props;
 const d = entry.data;
 const { Content } = await render(entry);
 const materia = materiaMeta(d.materia);
+const breadcrumb = breadcrumbLd([
+  { name: 'Inicio', path: '/' },
+  { name: 'Proyectos', path: '/proyectos/' },
+  { name: d.title, path: `/proyectos/${d.materia}/${Astro.params.slug}/` },
+]);
 ---
-<BaseLayout title={`${d.title} — Proyectos`} description={d.descripcion}>
+<BaseLayout title={`${d.title} — Proyectos`} description={d.descripcion} ogType="article" jsonLd={breadcrumb}>
   <div class="container">
     <nav class="breadcrumb">
       <a href="/">Inicio</a> <span class="sep">›</span>

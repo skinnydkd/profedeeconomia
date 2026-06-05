@@ -8,6 +8,7 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 import HerramientaIsland from '@components/calculadoras/HerramientaIsland.astro';
 import PuenteUnidades from '@components/emprendimiento/PuenteUnidades.astro';
 import { HERRAMIENTAS, herramientaPorSlug, unidadesPorComponente, FAMILIAS_HERRAMIENTA } from '@/lib/herramientas';
+import { breadcrumbLd } from '@/lib/seo';
 import { getCollection } from 'astro:content';
 import type { GetStaticPaths } from 'astro';
 
@@ -29,9 +30,14 @@ const TIPO_LABEL: Record<string, string> = {
 const recursos = await getCollection('recursos');
 const derivadas = unidadesPorComponente(recursos.filter((r) => r.data.estado === 'publicado')).get(componente) ?? [];
 const unidades = h.unidades_relacionadas ?? derivadas;
+const breadcrumb = breadcrumbLd([
+  { name: 'Inicio', path: '/' },
+  { name: 'Herramientas', path: '/herramientas/' },
+  { name: h.title, path: `/herramientas/${familia}/${slug}/` },
+]);
 ---
 
-<BaseLayout title={`${h.title} — Herramientas`} description={h.descripcion}>
+<BaseLayout title={`${h.title} — Herramientas`} description={h.descripcion} ogType="article" jsonLd={breadcrumb}>
   <div class="container">
     <nav class="breadcrumb">
       <a href="/">Inicio</a> <span class="sep">›</span>
