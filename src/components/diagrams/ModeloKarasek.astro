@@ -1,0 +1,87 @@
+---
+/**
+ * Karasek demand-control model as a 2x2 quadrant. Rows = job demands
+ * (low to high), columns = control / autonomy (low to high). The four
+ * combinations describe high-strain, active, passive and low-strain
+ * work; the high-strain quadrant (high demand + low control) is flagged
+ * as the danger zone, and a note recalls that social support buffers
+ * strain across the board.
+ *
+ * Used in FOPP 4ESO · psychosocial risks at work.
+ */
+---
+<svg viewBox="0 0 740 580" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="km-title km-desc">
+  <title id="km-title">El modelo demanda-control de Karasek</title>
+  <desc id="km-desc">El estrés laboral no depende solo de cuánto trabajas, sino de cuánto control tienes. La peor combinación es alta exigencia con bajo control (trabajo de alta tensión); el apoyo social amortigua la tensión.</desc>
+  <defs>
+    <style>
+      .bg { fill: #FBF6EC; }
+      .cell { stroke: #E5D4BD; stroke-width: 1.5; }
+      .cell-strain { fill: #FBE3D6; fill-opacity: 0.85; }
+      .cell-active { fill: #DBEDED; fill-opacity: 0.7; }
+      .cell-passive { fill: #F5E5BC; fill-opacity: 0.55; }
+      .cell-low { fill: #DBEDED; fill-opacity: 0.35; }
+      .danger-frame { fill: none; stroke: #9C3A1C; stroke-width: 2.5; stroke-dasharray: 7 5; }
+      .axis-line { stroke: #2A1F18; stroke-width: 1.8; }
+      .axis-title { font-family: 'Switzer', sans-serif; font-size: 12.5px; font-weight: 700; letter-spacing: 1.6px; text-transform: uppercase; fill: #5C4A3D; text-anchor: middle; }
+      .axis-end { font-family: 'Switzer', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; fill: #8A7868; }
+      .cell-title { font-family: 'Fraunces', serif; font-size: 19px; font-weight: 500; fill: #2A1F18; text-anchor: middle; }
+      .cell-title-strain { fill: #9C3A1C; }
+      .cell-title-active { fill: #1F6E6E; }
+      .cell-title-passive { fill: #A87A2A; }
+      .cell-note { font-family: 'Switzer', sans-serif; font-size: 13px; font-weight: 500; fill: #5C4A3D; text-anchor: middle; }
+      .danger-tag { font-family: 'Switzer', sans-serif; font-size: 10.5px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; fill: #9C3A1C; text-anchor: middle; }
+      .support-bar { fill: #1F6E6E; }
+      .support-text { font-family: 'Switzer', sans-serif; font-size: 13px; font-weight: 500; fill: #FBF6EC; text-anchor: middle; }
+      .support-strong { font-weight: 700; }
+    </style>
+  </defs>
+  <rect class="bg" x="0" y="0" width="740" height="580"/>
+
+  <!-- Grid geometry: cells start at x=120, y=80. Each cell 290 wide, 175 tall. -->
+  <!-- Quadrants. Top row = altas exigencias; bottom row = bajas exigencias. -->
+  <!-- Left column = bajo control; right column = alto control. -->
+
+  <!-- Top-left: Altas exigencias + Bajo control = Alta tensión (peor) -->
+  <rect class="cell cell-strain" x="120" y="80" width="290" height="175" rx="5"/>
+  <rect class="danger-frame" x="126" y="86" width="278" height="163" rx="4"/>
+  <text class="danger-tag" x="265" y="108">Zona de peligro</text>
+  <text class="cell-title cell-title-strain" x="265" y="150">Trabajo de alta tensión</text>
+  <text class="cell-note" x="265" y="184">Mucha exigencia, poco margen:</text>
+  <text class="cell-note" x="265" y="203">más estrés y riesgo de enfermar.</text>
+
+  <!-- Top-right: Altas exigencias + Alto control = Trabajo activo -->
+  <rect class="cell cell-active" x="410" y="80" width="290" height="175" rx="5"/>
+  <text class="cell-title cell-title-active" x="555" y="150">Trabajo activo</text>
+  <text class="cell-note" x="555" y="184">Exigente pero saludable:</text>
+  <text class="cell-note" x="555" y="203">se aprende y motiva.</text>
+
+  <!-- Bottom-left: Bajas exigencias + Bajo control = Trabajo pasivo -->
+  <rect class="cell cell-passive" x="120" y="255" width="290" height="175" rx="5"/>
+  <text class="cell-title cell-title-passive" x="265" y="325">Trabajo pasivo</text>
+  <text class="cell-note" x="265" y="359">Poca exigencia, poca autonomía:</text>
+  <text class="cell-note" x="265" y="378">desmotiva.</text>
+
+  <!-- Bottom-right: Bajas exigencias + Alto control = Baja tensión -->
+  <rect class="cell cell-low" x="410" y="255" width="290" height="175" rx="5"/>
+  <text class="cell-title cell-title-active" x="555" y="325">Trabajo de baja tensión</text>
+  <text class="cell-note" x="555" y="359">Relajado: poca presión</text>
+  <text class="cell-note" x="555" y="378">y autonomía suficiente.</text>
+
+  <!-- Y axis: Exigencias del trabajo (bottom = bajas, top = altas) -->
+  <line class="axis-line" x1="120" y1="430" x2="120" y2="80"/>
+  <text class="axis-title" x="40" y="255" transform="rotate(-90 40 255)">Exigencias del trabajo</text>
+  <text class="axis-end" x="74" y="92">Altas</text>
+  <text class="axis-end" x="74" y="425">Bajas</text>
+
+  <!-- X axis: Control / autonomía (left = bajo, right = alto) -->
+  <line class="axis-line" x1="120" y1="430" x2="700" y2="430"/>
+  <text class="axis-title" x="410" y="462">Control / autonomía</text>
+  <text class="axis-end" x="124" y="450">Bajo</text>
+  <text class="axis-end" x="666" y="450">Alto</text>
+
+  <!-- Social support note as a buffering band -->
+  <rect class="support-bar" x="120" y="500" width="580" height="50" rx="6"/>
+  <text class="support-text" x="410" y="522"><tspan class="support-strong">El apoyo social</tspan> de jefes y compañeros</text>
+  <text class="support-text" x="410" y="540">amortigua la tensión en todos los casos.</text>
+</svg>
