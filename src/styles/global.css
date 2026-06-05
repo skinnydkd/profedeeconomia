@@ -15,7 +15,9 @@
 
   --color-ink: #2A1F18;
   --color-ink-soft: #5C4A3D;
-  --color-ink-mute: #8A7868;
+  /* Darkened from #8A7868 to reach WCAG AA (4.5:1) on cream for small muted
+     text (captions, citations, footer). Still reads as a muted tertiary brown. */
+  --color-ink-mute: #806C5A;
   --color-line: #E5D4BD;
   --color-line-soft: #EFE2CB;
 
@@ -125,7 +127,7 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.14em;
-  color: var(--color-terra);
+  color: var(--color-terra-deep);
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
@@ -142,7 +144,7 @@
   font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  color: var(--color-terra);
+  color: var(--color-terra-deep);
   font-weight: 700;
   display: inline-flex;
   align-items: center;
@@ -157,9 +159,9 @@
 }
 
 a.editorial-link {
-  color: var(--color-terra);
+  color: var(--color-terra-deep);
   text-decoration: none;
-  background-image: linear-gradient(transparent calc(100% - 1px), var(--color-terra) 1px);
+  background-image: linear-gradient(transparent calc(100% - 1px), var(--color-terra-deep) 1px);
   background-size: 0% 100%;
   background-repeat: no-repeat;
   transition: background-size .25s var(--ease-soft), color .15s ease;
@@ -168,6 +170,45 @@ a.editorial-link {
 a.editorial-link:hover {
   background-size: 100% 100%;
   color: var(--color-terra-deep);
+}
+
+/* =========================================================
+   Accessibility
+   ========================================================= */
+
+/* Visible keyboard-focus ring on every interactive element. Only shows for
+   keyboard users (`:focus-visible`), so it never alters the look for pointer use. */
+:focus-visible {
+  outline: 2px solid var(--color-terra);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Skip-to-content link: off-screen until it receives keyboard focus. */
+.skip-link {
+  position: absolute;
+  left: 0.75rem;
+  top: -4rem;
+  z-index: 1000;
+  background: var(--color-ink);
+  color: var(--color-bg);
+  padding: 0.6rem 1.1rem;
+  border-radius: 6px;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  text-decoration: none;
+  transition: top 0.15s var(--ease-soft);
+}
+.skip-link:focus { top: 0.75rem; }
+
+/* Respect the user's reduced-motion preference. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 /* Brand mark — concentric circles (terracota / mostaza / cream) */
