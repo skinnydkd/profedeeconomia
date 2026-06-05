@@ -1,0 +1,34 @@
+---
+/** Blank break-even chart for the team to plot, plus the formula and a small
+ *  input table (costes fijos / coste variable unitario / precio de venta). */
+const GRID_X = [200, 320, 440, 560, 680];
+const GRID_Y = [80, 150, 220, 290];
+---
+<div class="pm">
+  <svg viewBox="0 0 760 420" role="img" aria-label="Gráfica del punto muerto para rellenar">
+    <rect x="0" y="0" width="760" height="420" fill="#FBF6EC" />
+    {GRID_X.map((x) => <line x1={x} y1="50" x2={x} y2="350" stroke="#EFE2CB" stroke-width="1" />)}
+    {GRID_Y.map((y) => <line x1="90" y1={y} x2="720" y2={y} stroke="#EFE2CB" stroke-width="1" />)}
+    <line x1="90" y1="350" x2="730" y2="350" stroke="#5C4A3D" stroke-width="1.5" />
+    <line x1="90" y1="360" x2="90" y2="40" stroke="#5C4A3D" stroke-width="1.5" />
+    <text x="740" y="356" font-family="Switzer, sans-serif" font-size="13" font-weight="700" fill="#5C4A3D">Q (uds)</text>
+    <text x="86" y="34" text-anchor="end" font-family="Switzer, sans-serif" font-size="13" font-weight="700" fill="#5C4A3D">€</text>
+    <text x="405" y="392" text-anchor="middle" font-family="Switzer, sans-serif" font-size="11" letter-spacing="1" fill="#8A7868">CANTIDAD VENDIDA</text>
+  </svg>
+
+  <p class="pm__formula">Punto muerto (uds) = <strong>Costes fijos ÷ (Precio − Coste variable unitario)</strong></p>
+
+  <table class="cuad-tabla pm__datos">
+    <thead><tr><th>Costes fijos (€)</th><th>Coste variable por unidad (€)</th><th>Precio de venta (€)</th><th>Punto muerto (uds)</th></tr></thead>
+    <tbody><tr><td></td><td></td><td></td><td></td></tr></tbody>
+  </table>
+</div>
+<style>
+  .pm svg { width: 100%; height: auto; display: block; }
+  .pm__formula { margin: 0.8rem 0; font-size: 0.95rem; color: var(--color-ink-soft); }
+  .pm__formula strong { color: var(--color-ink); }
+  .cuad-tabla { width: 100%; border-collapse: collapse; margin: 0.4rem 0; }
+  .cuad-tabla th { font-family: var(--font-sans); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-mustard-deep); text-align: left; padding: 0.4rem 0.6rem; border-bottom: 2px solid var(--color-mustard); }
+  .cuad-tabla td { border: 1px solid var(--color-line); height: 2.6rem; padding: 0.3rem 0.6rem; }
+  @media print { .pm { break-inside: avoid; } }
+</style>

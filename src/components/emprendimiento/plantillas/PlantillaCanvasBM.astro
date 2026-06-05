@@ -1,0 +1,30 @@
+---
+/** Blank Business Model Canvas (9 blocks) for the student team to fill in. */
+const BLOQUES = [
+  { k: 'socios', label: 'Socios clave' },
+  { k: 'actividades', label: 'Actividades clave' },
+  { k: 'recursos', label: 'Recursos clave' },
+  { k: 'propuesta', label: 'Propuesta de valor' },
+  { k: 'relaciones', label: 'Relación con clientes' },
+  { k: 'canales', label: 'Canales' },
+  { k: 'segmentos', label: 'Segmentos de cliente' },
+  { k: 'costes', label: 'Estructura de costes' },
+  { k: 'ingresos', label: 'Fuentes de ingreso' },
+];
+---
+<div class="bmc">
+  {BLOQUES.map((b) => (
+    <div class={`bmc__cell bmc__cell--${b.k}`}>
+      <span class="bmc__k">{b.label}</span>
+    </div>
+  ))}
+</div>
+<style>
+  .bmc { display: grid; grid-template-columns: repeat(3, 1fr); grid-auto-rows: minmax(96px, auto); gap: 6px; }
+  .bmc__cell { border: 1.5px solid var(--color-line); border-top: 3px solid var(--color-mustard); border-radius: 0 5px 5px 0; padding: 0.5rem 0.6rem; background: var(--color-paper); }
+  .bmc__k { display: block; font-family: var(--font-sans); font-size: 0.66rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--color-mustard-deep); font-weight: 700; }
+  .bmc__cell--propuesta { grid-column: 2; grid-row: 1 / span 2; }
+  .bmc__cell--costes, .bmc__cell--ingresos { grid-row: 3; }
+  @media print { .bmc__cell { break-inside: avoid; } }
+  @media (max-width: 600px) { .bmc { grid-template-columns: 1fr 1fr; } .bmc__cell--propuesta { grid-column: auto; grid-row: auto; } .bmc__cell--costes, .bmc__cell--ingresos { grid-row: auto; } }
+</style>

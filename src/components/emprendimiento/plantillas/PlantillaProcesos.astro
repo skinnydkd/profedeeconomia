@@ -1,0 +1,25 @@
+---
+/** Blank process flow — `filas` boxes connected by arrows, each with a caption. */
+interface Props { filas?: number }
+const { filas = 5 } = Astro.props;
+const pasos = Array.from({ length: filas }, (_, i) => i + 1);
+---
+<div class="proc">
+  {pasos.map((n, i) => (
+    <>
+      <div class="proc__step">
+        <div class="proc__box"></div>
+        <span class="proc__cap">Paso {n}</span>
+      </div>
+      {i < pasos.length - 1 && <span class="proc__arrow">→</span>}
+    </>
+  ))}
+</div>
+<style>
+  .proc { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 0.4rem 0.6rem; }
+  .proc__step { display: flex; flex-direction: column; align-items: stretch; flex: 1 1 130px; min-width: 120px; }
+  .proc__box { min-height: 88px; border: 1.5px solid var(--color-line); border-top: 3px solid var(--color-mustard); border-radius: 0 5px 5px 0; background: var(--color-paper); }
+  .proc__cap { font-family: var(--font-sans); font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--color-mustard-deep); font-weight: 700; margin-top: 0.3rem; }
+  .proc__arrow { align-self: center; color: var(--color-mustard); font-size: 1.3rem; padding-top: 1.6rem; }
+  @media print { .proc__step { break-inside: avoid; } }
+</style>

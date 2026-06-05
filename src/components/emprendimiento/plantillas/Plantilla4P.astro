@@ -1,0 +1,16 @@
+---
+/** Blank marketing mix (4 P) — Producto, Precio, Plaza, Promoción. */
+const PES = ['Producto', 'Precio', 'Plaza', 'Promoción'];
+---
+<div class="p4">
+  {PES.map((p) => (
+    <div class="p4__cell"><span class="p4__k">{p}</span></div>
+  ))}
+</div>
+<style>
+  .p4 { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+  .p4__cell { border: 1.5px solid var(--color-line); border-top: 3px solid var(--color-mustard); border-radius: 0 5px 5px 0; padding: 0.5rem 0.6rem; background: var(--color-paper); min-height: 120px; }
+  .p4__k { display: block; font-family: var(--font-sans); font-size: 0.66rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--color-mustard-deep); font-weight: 700; }
+  @media print { .p4__cell { break-inside: avoid; } }
+  @media (max-width: 600px) { .p4 { grid-template-columns: 1fr; } }
+</style>
