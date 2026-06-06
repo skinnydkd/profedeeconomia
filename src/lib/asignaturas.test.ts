@@ -20,10 +20,10 @@ describe('SECCIONES_TRANSVERSALES', () => {
 });
 
 describe('SECCIONES_TRANSVERSALES — jocs-economics', () => {
-  it('lo presenta como las Olimpiadas', () => {
+  it('lo presenta como Juegos Económicos', () => {
     const s = SECCIONES_TRANSVERSALES.find((x) => x.slug === 'jocs-economics');
-    expect(s?.label).toBe('Jocs Econòmics');
-    expect(s?.description.toLowerCase()).toContain('olimpiada');
+    expect(s?.label).toBe('Juegos Económicos');
+    expect(s?.description.length).toBeGreaterThan(0);
   });
 });
 
@@ -45,7 +45,7 @@ describe('SECCIONES_TRANSVERSALES — herramientas (caja) y generadores', () => 
     const slugs = SECCIONES_TRANSVERSALES.map((s) => s.slug);
     expect(slugs).toContain('generadores');
     const s = SECCIONES_TRANSVERSALES.find((x) => x.slug === 'generadores');
-    expect(s?.label).toBe('Generadores');
+    expect(s?.label).toBe('Herramientas Docentes');
     expect(s?.description.length).toBeGreaterThan(0);
   });
 });

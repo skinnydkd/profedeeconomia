@@ -69,8 +69,8 @@ import { ASIGNATURAS_POR_ETAPA, SECCIONES_TRANSVERSALES } from '@/lib/asignatura
             ))}
           </div>
           <div class="dropdown-section">
-            <span class="dropdown-label">Competición</span>
-            <a href="/olimpiada/" role="menuitem" class="is-olimpiada">Olimpiada de Economía</a>
+            <span class="dropdown-label">Preparación</span>
+            <a href="/olimpiada/" role="menuitem">Olimpiada de Economía</a>
           </div>
         </div>
       </div>
@@ -82,12 +82,16 @@ import { ASIGNATURAS_POR_ETAPA, SECCIONES_TRANSVERSALES } from '@/lib/asignatura
           <span class="caret" aria-hidden="true">▾</span>
         </button>
         <div class="nav-dropdown nav-dropdown--single" role="menu">
-          {ASIGNATURAS_POR_ETAPA.fp.cursos.fp.asignaturas.map((a) => (
-            <a href={`/${a.slug}/`} role="menuitem" class={a.estado === 'proximamente' ? 'is-proximamente' : ''}>
-              <span class="opt-title">{a.title}</span>
-              {a.estado === 'proximamente' && <span class="badge">Próximamente</span>}
-            </a>
-          ))}
+          <div class="dropdown-section">
+            <span class="dropdown-label">Itinerario Personal para la Empleabilidad</span>
+            {ASIGNATURAS_POR_ETAPA.fp.cursos.fp.asignaturas.map((a) => (
+              <a href={`/${a.slug}/`} role="menuitem" class={a.estado === 'proximamente' ? 'is-proximamente' : ''}>
+                <span class="opt-title">{a.shortLabel}</span>
+                <span class="opt-desc">{a.slug === 'ipe1-fp' ? 'Primer curso · sustituye a la FOL' : 'Segundo curso · búsqueda de empleo y proyecto'}</span>
+                {a.estado === 'proximamente' && <span class="badge">Próximamente</span>}
+              </a>
+            ))}
+          </div>
         </div>
       </div>
 
@@ -347,10 +351,6 @@ import { ASIGNATURAS_POR_ETAPA, SECCIONES_TRANSVERSALES } from '@/lib/asignatura
   }
   .nav-dropdown a.is-proximamente {
     color: var(--color-ink-soft);
-  }
-  .nav-dropdown a.is-olimpiada {
-    color: var(--color-terra);
-    font-weight: 600;
   }
   .badge {
     font-family: var(--font-sans);
