@@ -233,7 +233,7 @@ export const ASIGNATURAS_POR_ETAPA = {
 export const SECCIONES_TRANSVERSALES = [
   { slug: 'dinamicas',      label: 'Dinámicas',      description: 'Role-plays y simulaciones para hacer en clase.' },
   { slug: 'herramientas',   label: 'Herramientas',   description: 'Calculadoras y simuladores para usar en clase.' },
-  { slug: 'emprendimiento', label: 'Emprendimiento', description: 'Plantillas y dinámicas transversales.' },
+  { slug: 'emprendimiento', label: 'Emprendimiento', description: '«De cero a empresa»: un proyecto para montar un negocio paso a paso.' },
   { slug: 'proyectos',      label: 'Proyectos interdisciplinares', description: 'Proyectos que cruzan la economía con otra materia.' },
   { slug: 'debates',        label: 'Debates',        description: 'Controversias económicas para argumentar en clase.' },
   { slug: 'juegos',         label: 'Juegos',         description: 'Material para una clase activa.' },
