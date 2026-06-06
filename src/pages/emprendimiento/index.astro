@@ -1,8 +1,27 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
-import { ASIGNATURAS } from '@/lib/asignaturas';
+import { ASIGNATURAS, ASIGNATURA_SLUGS } from '@/lib/asignaturas';
+import { getCollection } from 'astro:content';
 
 const gpe = ASIGNATURAS['gpe-bach'];
+const edmn = ASIGNATURAS['edmn-2bach'];
+
+// Inverse index: the emprendimiento angle of every subject. We surface the
+// project-type activities and the capstone projects (cuaderno de proyecto) that
+// already live inside each asignatura — single source of truth, no duplication.
+const actsAll = await getCollection('actividades');
+const proyAll = await getCollection('proyecto');
+const proyectoActs = actsAll.filter((x) => x.data.tipo === 'proyecto' && x.data.estado === 'publicado');
+
+const porAsignatura = ASIGNATURA_SLUGS
+  .map((slug) => ({
+    a: ASIGNATURAS[slug],
+    acts: proyectoActs
+      .filter((x) => x.data.asignatura === slug)
+      .sort((x, y) => x.data.unidad_relacionada - y.data.unidad_relacionada),
+    capstone: proyAll.some((x) => x.data.asignatura === slug && x.data.estado === 'publicado'),
+  }))
+  .filter((x) => x.a.estado === 'publicado' && (x.acts.length > 0 || x.capstone));
 ---
 
 <BaseLayout
@@ -18,9 +37,10 @@ const gpe = ASIGNATURAS['gpe-bach'];
       <span class="kicker">Material transversal</span>
       <h1><span class="serif-italic-wonk accent">Emprendimiento</span> en el aula.</h1>
       <p class="lede">
-        El emprendimiento atraviesa todas nuestras asignaturas. Aquí están las dos
-        puertas de entrada: la materia que lo trabaja a fondo y un proyecto para
-        montar con el alumnado, sea cual sea tu nivel.
+        El emprendimiento atraviesa todas nuestras asignaturas. Este es el sitio que
+        lo reúne: un proyecto para montar con el alumnado a cualquier nivel, las dos
+        materias que lo trabajan a fondo (GPE y EDMN) y el ángulo emprendedor de cada
+        asignatura, todo enlazado a donde de verdad vive.
       </p>
     </div>
   </section>
@@ -49,6 +69,17 @@ const gpe = ASIGNATURAS['gpe-bach'];
             al pitch final, con libro, cuaderno de proyecto, actividades y tests.
           </p>
           <span class="card__cta">Ir a la asignatura →</span>
+        </a>
+
+        <a class="card card--edmn" href={`/${edmn.slug}/proyecto/`}>
+          <span class="card__eyebrow">Capstone de 2.º BACH</span>
+          <h2 class="card__title serif">El plan de empresa de EDMN</h2>
+          <p class="card__desc">
+            El proyecto que recorre todo Empresa y Diseño de Modelos de Negocio:
+            seis fases del equipo y el mercado al plan económico-financiero y el
+            pitch, con plantillas para rellenar en cada paso.
+          </p>
+          <span class="card__cta">Ver el capstone →</span>
         </a>
       </div>
     </div>
@@ -85,6 +116,33 @@ const gpe = ASIGNATURAS['gpe-bach'];
       </div>
     </div>
   </section>
+
+  <section class="indice">
+    <div class="container">
+      <h2 class="indice__h">El emprendimiento, asignatura por asignatura</h2>
+      <p class="indice__lead">
+        No reinventamos nada: el emprendimiento ya está dentro de cada materia. Aquí
+        tienes el atajo a su proyecto-capstone y a sus actividades de proyecto, cada
+        una enlazada a su asignatura.
+      </p>
+      <div class="indice__grid">
+        {porAsignatura.map((x) => (
+          <div class={`materia c-${x.a.color}`}>
+            <a class="materia__name" href={`/${x.a.slug}/`}>{x.a.title}</a>
+            <span class="materia__level">{x.a.level}</span>
+            <ul class="materia__links">
+              {x.capstone && (
+                <li><a href={`/${x.a.slug}/proyecto/`}>Cuaderno de proyecto (capstone)</a></li>
+              )}
+              {x.acts.map((act) => (
+                <li><a href={`/${x.a.slug}/actividades/`}>{act.data.title}</a></li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
 </BaseLayout>
 
 <style>
@@ -114,4 +172,30 @@ const gpe = ASIGNATURAS['gpe-bach'];
   .card--rec { border-top-color: var(--color-terra); }
   .card--rec .card__eyebrow { color: var(--color-terra); }
   .card--rec .card__title { font-size: 1.35rem; }
+  .card--edmn { border-top-color: var(--color-edmn); }
+  .card--edmn .card__eyebrow { color: var(--color-edmn); }
+
+  /* Inverse index — emprendimiento angle of each subject */
+  .indice { padding: 0 0 clamp(3rem, 7vw, 6rem); border-top: 1px solid var(--color-line); padding-top: clamp(2.5rem, 5vw, 4rem); }
+  .indice__h { font-size: 1.5rem; margin: 0 0 0.6rem; }
+  .indice__lead { max-width: 64ch; margin: 0 0 1.8rem; color: var(--color-ink-soft); font-size: 1rem; line-height: 1.6; }
+  .indice__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.2rem; }
+  .materia { border: 1px solid var(--color-line); border-left: 4px solid var(--card-color, var(--color-mustard)); border-radius: 8px; padding: 1.1rem 1.3rem; background: var(--color-paper); }
+  .materia.c-edmn { --card-color: var(--color-edmn); }
+  .materia.c-eco1 { --card-color: var(--color-eco1); }
+  .materia.c-eco4 { --card-color: var(--color-eco4); }
+  .materia.c-fopp { --card-color: var(--color-fopp); }
+  .materia.c-taller3 { --card-color: var(--color-taller3); }
+  .materia.c-ipe1 { --card-color: var(--color-ipe1); }
+  .materia.c-ipe2 { --card-color: var(--color-ipe2); }
+  .materia.c-eeae { --card-color: var(--color-eeae); }
+  .materia.c-gpe { --card-color: var(--color-gpe); }
+  .materia__name { font-family: var(--font-serif); font-size: 1.15rem; font-weight: 500; color: var(--color-ink); text-decoration: none; display: block; }
+  .materia__name:hover { color: var(--card-color); }
+  .materia__level { font-family: var(--font-sans); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.07em; color: var(--color-ink-mute); font-weight: 600; }
+  .materia__links { list-style: none; margin: 0.7rem 0 0; padding: 0; display: flex; flex-direction: column; gap: 0.35rem; }
+  .materia__links a { font-size: 0.92rem; color: var(--color-ink-soft); text-decoration: none; line-height: 1.4; }
+  .materia__links a:hover { color: var(--card-color); }
+  .materia__links li { padding-left: 0.9rem; position: relative; }
+  .materia__links li::before { content: "→"; position: absolute; left: 0; color: var(--card-color); }
 </style>
