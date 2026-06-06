@@ -571,8 +571,37 @@ const emprendimientoActividades = defineCollection({
   }),
 });
 
+/* =========================================================
+   asignaturas/{slug}/refuerzo/{nn}-{slug}.mdx — atención a la
+   diversidad: cuadernos de refuerzo y de ampliación por evaluación.
+   ========================================================= */
+const refuerzo = defineCollection({
+  loader: glob({ pattern: 'asignaturas/*/refuerzo/**/*.{md,mdx}', base: './src/content' }),
+  schema: z.object({
+    asignatura: z.enum(ASIGNATURA_SLUGS),
+    evaluacion: z.number().int().min(1).max(3),
+    tipo: z.enum(['refuerzo', 'ampliacion']),
+    title: z.string(),
+    descripcion: z.string(),
+    unidades: z.array(z.number().int().min(1)).default([]),
+    /** Las 3-5 ideas ancla que el alumno debe llevarse sí o sí. */
+    esencial: z.array(z.string()).default([]),
+    conceptos_clave: z.array(z.string()).default([]),
+    /** Ejercicios graduados; la solución se muestra plegada para autocorrección. */
+    ejercicios: z.array(z.object({
+      enunciado: z.string(),
+      solucion: z.string().optional(),
+    })).default([]),
+    competencias_clave: z.array(z.string()).default([]),
+    orden: z.number().int().default(0),
+    lang: z.enum(LANGS).default('es'),
+    estado: z.enum(ESTADOS).default('borrador'),
+  }),
+});
+
 export const collections = {
   libro,
+  refuerzo,
   actividades,
   tests,
   recursos,

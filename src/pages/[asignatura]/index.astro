@@ -23,12 +23,17 @@ const hasEbau = ebauAll.some((e) => e.data.asignatura === a.slug && e.data.estad
 const proyectoAll = await getCollection('proyecto');
 const hasProyecto = proyectoAll.some((e) => e.data.asignatura === a.slug && e.data.estado === 'publicado');
 
+// Show the refuerzo/ampliación card only for subjects that have published content.
+const refuerzoAll = await getCollection('refuerzo');
+const hasRefuerzo = refuerzoAll.some((e) => e.data.asignatura === a.slug && e.data.estado === 'publicado');
+
 // Sections grouped by nature: the course material (book + printable), the
 // interactive practice, and what's for the teacher. Programación goes last.
 const material = [
   { slug: 'libro',        title: 'Libro',        desc: 'Los capítulos del curso, listos para leer en pantalla o descargar como PDF.' },
   { slug: 'diapositivas', title: 'Diapositivas', desc: 'Diapositivas derivadas automáticamente del libro. PDF al MVP, PPTX editable más adelante.' },
   { slug: 'actividades',  title: 'Actividades',  desc: 'Casos prácticos y ejercicios graduados por unidad, listos para imprimir.' },
+  ...(hasRefuerzo ? [{ slug: 'refuerzo', title: 'Refuerzo y ampliación', desc: 'Por evaluación: repaso esencial con ejercicios guiados (refuerzo) y retos de más nivel (ampliación).' }] : []),
   ...(hasProyecto ? [{ slug: 'proyecto', title: 'Cuaderno de proyecto', desc: 'Guía paso a paso para que el alumnado desarrolle su propio proyecto emprendedor, fase a fase.' }] : []),
 ];
 const interactivo = [
