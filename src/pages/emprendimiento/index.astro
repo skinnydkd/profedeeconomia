@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
 import { ASIGNATURAS, ASIGNATURA_SLUGS } from '@/lib/asignaturas';
+import { ITINERARIOS } from '@/lib/emprendimiento';
 import { getCollection } from 'astro:content';
 
 const gpe = ASIGNATURAS['gpe-bach'];
@@ -45,22 +46,40 @@ const porAsignatura = ASIGNATURA_SLUGS
     </div>
   </section>
 
-  <section class="cards">
+  <section class="feature">
     <div class="container">
-      <div class="card-grid">
-        <a class="card card--proyecto" href="/emprendimiento/proyecto/">
-          <span class="card__eyebrow">Proyecto transversal</span>
-          <h2 class="card__title serif">De cero a empresa</h2>
-          <p class="card__desc">
+      <a class="hero-card" href="/emprendimiento/proyecto/">
+        <div class="hero-card__main">
+          <span class="hero-card__eyebrow">El proyecto · Proyecto transversal</span>
+          <h2 class="hero-card__title serif">De cero a empresa</h2>
+          <p class="hero-card__desc">
             En equipo, el alumnado crea una empresa que resuelve un problema real,
             la valida saliendo a la calle y la pone a prueba con datos. Doce fases
             con <strong>cuaderno del alumno</strong> para rellenar —con sus plantillas
-            visuales (Business Model Canvas, punto muerto…)— y ejemplos, entrevistas
-            y actividades tejidos en cada paso. Modular: de un sprint a un curso entero.
+            visuales (Business Model Canvas, punto muerto…)— y los ejemplos, las
+            entrevistas y el kit de actitud tejidos en cada paso.
           </p>
-          <span class="card__cta">Ver el proyecto y el cuaderno →</span>
-        </a>
+          <span class="hero-card__cta">Ver el proyecto y el cuaderno →</span>
+        </div>
+        <div class="hero-card__aside">
+          <span class="hero-card__aside-h">Modular: de un sprint a un curso entero</span>
+          <ul class="itinerarios">
+            {ITINERARIOS.map((it) => (
+              <li class="itinerario">
+                <span class="itinerario__label">{it.label}</span>
+                <span class="itinerario__meta">{it.fases ? `${it.fases.length} fases` : 'Las fases que elijas'}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </a>
+    </div>
+  </section>
 
+  <section class="cards">
+    <div class="container">
+      <h2 class="cards__h">Las dos materias que lo trabajan a fondo</h2>
+      <div class="card-grid card-grid--2">
         <a class="card card--gpe" href={`/${gpe.slug}/`}>
           <span class="card__eyebrow">Asignatura</span>
           <h2 class="card__title serif">{gpe.title}</h2>
@@ -156,8 +175,30 @@ const porAsignatura = ASIGNATURA_SLUGS
   h1 { max-width: 22ch; margin: 0.6rem 0 0.8rem; }
   .accent { color: var(--color-terra); }
   .lede { font-family: var(--font-serif); font-style: italic; font-size: 1.4rem; color: var(--color-ink-soft); max-width: 56ch; margin: 1rem 0; line-height: 1.5; font-variation-settings: "SOFT" 80; }
+  /* Featured project — «De cero a empresa» pulled out as the protagonist */
+  .feature { padding: 0 0 clamp(2.5rem, 6vw, 4.5rem); }
+  .hero-card { display: grid; grid-template-columns: 1.6fr 1fr; gap: clamp(1.5rem, 4vw, 3rem); align-items: stretch; background: #fff; border: 1px solid var(--color-line); border-top: 4px solid var(--color-terra); padding: clamp(1.75rem, 4vw, 2.75rem); text-decoration: none; color: inherit; transition: box-shadow 0.18s ease, transform 0.18s ease; }
+  .hero-card:hover { box-shadow: 0 8px 30px rgba(42,31,24,0.1); transform: translateY(-2px); }
+  .hero-card__eyebrow { font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-terra); font-weight: 600; }
+  .hero-card__title { font-size: clamp(2rem, 5vw, 2.9rem); line-height: 1.05; margin: 0.5rem 0 0.9rem; font-variation-settings: "SOFT" 80; }
+  .hero-card__desc { color: var(--color-ink-soft); font-size: 1.075rem; line-height: 1.65; margin: 0 0 1.3rem; max-width: 52ch; }
+  .hero-card__cta { font-size: 1rem; font-weight: 600; color: var(--color-terra); }
+  .hero-card__aside { border-left: 1px solid var(--color-line); padding-left: clamp(1.5rem, 3vw, 2.25rem); display: flex; flex-direction: column; justify-content: center; }
+  .hero-card__aside-h { font-family: var(--font-sans); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.07em; color: var(--color-ink-mute); font-weight: 600; margin-bottom: 1rem; line-height: 1.4; }
+  .itinerarios { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.9rem; }
+  .itinerario { display: flex; flex-direction: column; gap: 0.1rem; padding-left: 0.95rem; position: relative; }
+  .itinerario::before { content: "→"; position: absolute; left: 0; color: var(--color-mustard); }
+  .itinerario__label { font-family: var(--font-serif); font-size: 1.1rem; font-weight: 500; color: var(--color-ink); font-variation-settings: "SOFT" 80; }
+  .itinerario__meta { font-size: 0.85rem; color: var(--color-ink-mute); }
+  @media (max-width: 720px) {
+    .hero-card { grid-template-columns: 1fr; }
+    .hero-card__aside { border-left: 0; padding-left: 0; border-top: 1px solid var(--color-line); padding-top: 1.5rem; }
+  }
+
   .cards { padding: 0 0 clamp(3rem, 7vw, 6rem); }
+  .cards__h { font-size: 1.5rem; margin: 0 0 1.2rem; }
   .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+  .card-grid--2 { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
   .card { display: block; background: #fff; border: 1px solid var(--color-line); border-top: 3px solid var(--color-mustard); padding: 1.6rem 1.75rem 1.4rem; text-decoration: none; color: inherit; transition: box-shadow 0.18s ease, transform 0.18s ease, border-color 0.18s ease; }
   .card--gpe { border-top-color: #8C2F39; }
   .card:hover { box-shadow: 0 4px 18px rgba(42,31,24,0.08); transform: translateY(-2px); }
