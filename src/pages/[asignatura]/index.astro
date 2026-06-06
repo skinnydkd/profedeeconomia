@@ -23,14 +23,25 @@ const hasEbau = ebauAll.some((e) => e.data.asignatura === a.slug && e.data.estad
 const proyectoAll = await getCollection('proyecto');
 const hasProyecto = proyectoAll.some((e) => e.data.asignatura === a.slug && e.data.estado === 'publicado');
 
-const sections = [
-  { slug: 'libro',         title: 'Libro',         desc: 'Los capítulos del curso, listos para leer en pantalla o descargar como PDF.' },
-  { slug: 'programacion',  title: 'Programación',  desc: 'Programación didáctica de referencia: objetivos, temporalización y evaluación, lista para adaptar.' },
-  { slug: 'diapositivas',  title: 'Diapositivas',  desc: 'Diapositivas derivadas automáticamente del libro. PDF al MVP, PPTX editable más adelante.' },
-  { slug: 'actividades',           title: 'Actividades',           desc: 'Casos prácticos, ejercicios graduados y dinámicas de aula por unidad.' },
-  { slug: 'actividades-dinamicas', title: 'Actividades dinámicas',  desc: 'Tests, simuladores de decisión y recursos interactivos por unidad.' },
-  ...(hasEbau ? [{ slug: 'ebau', title: 'Preparación EBAU', desc: 'Estructura de la prueba, teoría esencial, problemas resueltos y simulacros con solucionario.' }] : []),
+// Sections grouped by nature: the course material (book + printable), the
+// interactive practice, and what's for the teacher. Programación goes last.
+const material = [
+  { slug: 'libro',        title: 'Libro',        desc: 'Los capítulos del curso, listos para leer en pantalla o descargar como PDF.' },
+  { slug: 'diapositivas', title: 'Diapositivas', desc: 'Diapositivas derivadas automáticamente del libro. PDF al MVP, PPTX editable más adelante.' },
+  { slug: 'actividades',  title: 'Actividades',  desc: 'Casos prácticos y ejercicios graduados por unidad, listos para imprimir.' },
   ...(hasProyecto ? [{ slug: 'proyecto', title: 'Cuaderno de proyecto', desc: 'Guía paso a paso para que el alumnado desarrolle su propio proyecto emprendedor, fase a fase.' }] : []),
+];
+const interactivo = [
+  { slug: 'actividades-dinamicas', title: 'Actividades interactivas', desc: 'Tests autocorregibles, simuladores de decisión y recursos interactivos por unidad.' },
+  ...(hasEbau ? [{ slug: 'ebau', title: 'Preparación EBAU', desc: 'Estructura de la prueba, teoría esencial, problemas resueltos y simulacros con solucionario.' }] : []),
+];
+const profe = [
+  { slug: 'programacion', title: 'Programación', desc: 'Programación didáctica de referencia: objetivos, temporalización y evaluación competencial, lista para adaptar.' },
+];
+const grupos = [
+  { label: 'El material del curso', desc: 'Lo que llevas a clase: libro, diapositivas y actividades para imprimir.', sections: material },
+  { label: 'Práctica interactiva',  desc: 'Para trabajar en pantalla: se autocorrige, se autoguarda y engancha al alumnado.', sections: interactivo },
+  { label: 'Para el profesorado',   desc: 'La planificación del curso, lista para adaptar a tu centro.', sections: profe },
 ];
 
 const breadcrumb = breadcrumbLd([
@@ -95,14 +106,22 @@ const breadcrumb = breadcrumbLd([
           Lo que cambia es el contenido, no el sitio donde encontrarlo.
         </p>
 
-        <nav class="subject-sections" aria-label="Sub-apartados de la asignatura">
-          {sections.map((s) => (
-            <a href={`/${a.slug}/${s.slug}/`} class={`section-card c-${a.color}`}>
-              <h3>{s.title}</h3>
-              <p class="desc">{s.desc}</p>
-            </a>
-          ))}
-        </nav>
+        {grupos.map((g) => (
+          <div class="section-group">
+            <div class="section-group__head">
+              <h3 class="section-group__title">{g.label}</h3>
+              <p class="section-group__desc">{g.desc}</p>
+            </div>
+            <nav class="subject-sections" aria-label={g.label}>
+              {g.sections.map((s) => (
+                <a href={`/${a.slug}/${s.slug}/`} class={`section-card c-${a.color}`}>
+                  <h4>{s.title}</h4>
+                  <p class="desc">{s.desc}</p>
+                </a>
+              ))}
+            </nav>
+          </div>
+        ))}
 
         {(a.slug === 'edmn-2bach' || a.slug === 'eco-1bach') && (
           <a href="/olimpiada/" class="olimpiada-card">
@@ -191,11 +210,25 @@ const breadcrumb = breadcrumbLd([
     margin-bottom: 1.5rem;
   }
 
+  .section-group { margin-top: 2.6rem; }
+  .section-group:first-of-type { margin-top: 1.5rem; }
+  .section-group__head { margin-bottom: 0.9rem; }
+  .section-group__title {
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-terra);
+    font-weight: 700;
+    margin: 0 0 0.25rem;
+  }
+  .section-group__desc { font-size: 0.92rem; color: var(--color-ink-mute); margin: 0; max-width: 62ch; }
+
   .subject-sections {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 1.2rem;
-    margin-top: 2rem;
+    margin-top: 0;
   }
   .section-card {
     background: var(--color-paper);
@@ -255,7 +288,7 @@ const breadcrumb = breadcrumbLd([
     border-color: var(--card-color);
   }
 
-  .section-card h3 { font-size: 1.3rem; margin: 0; }
+  .section-card h4 { font-size: 1.3rem; margin: 0; font-weight: 500; font-family: var(--font-serif); }
   .section-card .count {
     font-family: var(--font-mono);
     font-size: 0.78rem;
