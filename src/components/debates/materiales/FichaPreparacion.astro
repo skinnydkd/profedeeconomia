@@ -1,0 +1,51 @@
+---
+/**
+ * Uniform student prep sheet for any debate, derived from the motion. Shown
+ * on the web detail page and as one A4 page in the material-pack PDF.
+ * Replaces the per-debate authored <FichaAlumno> block (single source).
+ */
+interface Props { mocion: string; }
+const { mocion } = Astro.props;
+const lineas = (n: number) => Array.from({ length: n });
+---
+<section class="ficha print-block">
+  <header class="ficha__head">
+    <span class="ficha__tag">Ficha del alumno · antes del debate</span>
+    <h2 class="ficha__title">Preparo mi postura</h2>
+  </header>
+
+  <p class="ficha__mocion"><strong>Moción:</strong> {mocion}</p>
+
+  <div class="ficha__field"><span>Mi postura</span><span class="line"></span></div>
+
+  <p class="ficha__q">Mis 3 argumentos (con una evidencia o ejemplo concreto en cada uno):</p>
+  {[1, 2, 3].map((n) => (
+    <div class="arg">
+      <div class="ficha__field"><span>{n}. Argumento</span><span class="line"></span></div>
+      <div class="ficha__field ficha__field--sub"><span>Evidencia</span><span class="line"></span></div>
+    </div>
+  ))}
+
+  <p class="ficha__q">Una pregunta que le haré al grupo rival:</p>
+  {lineas(2).map(() => <span class="line line--full"></span>)}
+
+  <p class="ficha__q">Un argumento del otro grupo que tendré que refutar:</p>
+  {lineas(2).map(() => <span class="line line--full"></span>)}
+
+  <p class="ficha__q">Notas durante el debate:</p>
+  {lineas(3).map(() => <span class="line line--full"></span>)}
+</section>
+<style>
+  .ficha { border: 1.5px solid var(--color-line); border-radius: 8px; padding: 1.2rem 1.4rem; margin: 1rem 0; background: var(--color-paper); }
+  .ficha__head { margin-bottom: 0.8rem; }
+  .ficha__tag { font-family: var(--font-sans); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-mustard-deep); }
+  .ficha__title { font-family: var(--font-serif); font-size: 1.35rem; margin: 0.2rem 0 0; font-weight: 500; }
+  .ficha__mocion { font-family: var(--font-serif); font-style: italic; color: var(--color-ink-soft); border-left: 3px solid var(--color-terra); padding-left: 0.8rem; margin: 0.6rem 0 1rem; }
+  .ficha__q { font-weight: 600; margin: 1rem 0 0.4rem; }
+  .ficha__field { display: flex; align-items: baseline; gap: 0.6rem; margin: 0.4rem 0; }
+  .ficha__field > span:first-child { font-size: 0.85rem; color: var(--color-ink-mute); white-space: nowrap; }
+  .ficha__field--sub { padding-left: 1rem; }
+  .arg { margin-bottom: 0.5rem; }
+  .line { flex: 1; border-bottom: 1px solid var(--color-line); height: 1.4rem; }
+  .line--full { display: block; border-bottom: 1px solid var(--color-line); height: 1.7rem; margin: 0.3rem 0; }
+</style>
