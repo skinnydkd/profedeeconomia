@@ -31,10 +31,13 @@ export function bloqueMeta(slug: string): Familia {
 }
 
 export interface Simulacro { slug: string; title: string; convocatoria: string; anio: number; pdf: string; oficial: boolean; }
+// Exámenes oficiales recientes de la fase local de la C. Valenciana, en el
+// formato actual (test + ejercicio + comentario). Fuente: Facultad de CC.
+// Económicas y Empresariales de la Universidad de Alicante.
 export const SIMULACROS: Simulacro[] = [
-  { slug: 'cv-2014', title: 'Fase Local C. Valenciana 2014', convocatoria: 'Fase Local · C. Valenciana', anio: 2014, pdf: '/olimpiada/examen-olimpiadas-1.pdf', oficial: true },
-  { slug: 'cv-2018', title: 'Fase Local C. Valenciana 2018', convocatoria: 'Fase Local · C. Valenciana', anio: 2018, pdf: '/olimpiada/examen-olimpiadas-3.pdf', oficial: true },
-  { slug: 'cv-2021', title: 'Fase Local C. Valenciana 2021', convocatoria: 'Fase Local · C. Valenciana', anio: 2021, pdf: '/olimpiada/examen-olimpiadas-2.pdf', oficial: true },
+  { slug: 'cv-2025', title: 'Fase Local C. Valenciana 2025', convocatoria: 'Fase Local · C. Valenciana', anio: 2025, pdf: '/olimpiada/examen-cv-2025.pdf', oficial: true },
+  { slug: 'cv-2024', title: 'Fase Local C. Valenciana 2024', convocatoria: 'Fase Local · C. Valenciana', anio: 2024, pdf: '/olimpiada/examen-cv-2024.pdf', oficial: true },
+  { slug: 'cv-2023', title: 'Fase Local C. Valenciana 2023', convocatoria: 'Fase Local · C. Valenciana', anio: 2023, pdf: '/olimpiada/examen-cv-2023.pdf', oficial: true },
   { slug: 'megaexamen', title: 'Megaexamen de práctica', convocatoria: 'Material de práctica del profesor', anio: 0, pdf: '/olimpiada/megaexamen-olimpiadas.pdf', oficial: false },
 ];
 
@@ -189,11 +192,11 @@ export const LECTURAS: Lectura[] = [
 
 export interface ParteGuia { nombre: string; puntos: string; tiempo?: string; descripcion: string; }
 export const GUIA: { duracion: string; total: string; partes: ParteGuia[] } = {
-  duracion: '2 horas y 30 minutos',
+  duracion: '2 horas',
   total: '10 puntos',
   partes: [
-    { nombre: 'Parte I — Teoría', puntos: '4,5 pts (3 × 1,5)', descripcion: 'Elige 3 de 6 preguntas de desarrollo. Definir conceptos y representarlos gráficamente; razonar la veracidad de afirmaciones.' },
-    { nombre: 'Parte II — Ejercicio', puntos: '3 pts', descripcion: 'Elige 1 de 2 ejercicios numéricos. El punto muerto aparece casi siempre; también FPP, oferta-demanda algebraica o contabilidad.' },
-    { nombre: 'Parte III — Comentario de texto', puntos: '2,5 pts', descripcion: 'Texto de prensa económica con preguntas que conectan cada párrafo con un concepto del temario.' },
+    { nombre: 'Parte I — Test teórico', puntos: '4 pts', descripcion: 'Dieciséis preguntas tipo test con una sola opción correcta, sobre Economía de 1.º y Empresa (EDMN) de 2.º. Penalizan los fallos: tres incorrectas restan una correcta; las no contestadas ni suman ni restan.' },
+    { nombre: 'Parte II — Ejercicio práctico', puntos: '3 pts', descripcion: 'Dos ejercicios, uno de Economía y otro de Empresa; eliges y resuelves solo uno. El punto muerto aparece casi siempre; también FPP, oferta-demanda algebraica o contabilidad.' },
+    { nombre: 'Parte III — Comentario de texto', puntos: '3 pts', descripcion: 'Texto de actualidad económica con preguntas que conectan cada párrafo con un concepto del temario.' },
   ],
 };
