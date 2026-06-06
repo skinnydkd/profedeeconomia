@@ -7,7 +7,7 @@
  * y el multi-dispositivo llegan en la Fase 1b, una vez validado el modelo.
  */
 import BaseLayout from '@layouts/BaseLayout.astro';
-import BusinessGame from '@components/business-game/BusinessGame.tsx';
+import BusinessGameOnline from '@components/business-game/BusinessGameOnline.tsx';
 ---
 
 <BaseLayout
@@ -29,17 +29,18 @@ import BusinessGame from '@components/business-game/BusinessGame.tsx';
         más o menos y ganan o pierden.
       </p>
       <div class="nota">
-        <strong>Esto es un prototipo local</strong> para afinar el modelo de mercado: se juega
-        en este dispositivo (el profe lleva la partida) y se guarda en el navegador. El
-        registro de alumnos e instituto y el ranking persistente —el mismo sistema que
-        «Juegos Económicos»— se conectan después, cuando el modelo esté validado.
+        El <strong>profe crea una liga</strong> y comparte el código; cada equipo se une
+        desde su dispositivo (nombre e instituto, como en «Juegos Económicos»). Cada ronda,
+        las empresas envían sus decisiones y el profe cierra la ronda: el mercado reparte las
+        ventas y el ranking queda registrado. También hay un <strong>modo práctica local</strong>
+        sin registro para probarlo en un solo dispositivo.
       </div>
     </div>
   </section>
 
   <section class="juego">
     <div class="container">
-      <BusinessGame client:only="preact" />
+      <BusinessGameOnline client:only="preact" />
     </div>
   </section>
 </BaseLayout>

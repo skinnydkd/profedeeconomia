@@ -11,6 +11,7 @@ import {
   type TeamState,
   type RoundResult,
 } from '@/lib/business-game/engine';
+import { CAMPOS, AREAS, decisionPorDefecto, eur, num } from '@/lib/business-game/ui';
 
 /**
  * Business Game — prototipo jugable LOCAL (sin backend todavía).
@@ -36,29 +37,7 @@ interface Persisted {
   historia: { ronda: number; resultados: RoundResult[] }[];
 }
 
-const decisionPorDefecto = (): TeamDecision => ({
-  precio: DEFAULT_PARAMS.precioReferencia,
-  marketing: 20000,
-  produccion: 5000,
-  calidad: 15000,
-  rrhh: 15000,
-  prestamo: 0,
-});
-
-const CAMPOS: { key: keyof TeamDecision; label: string; area: string; step: number; unidad: string }[] = [
-  { key: 'precio', label: 'Precio de venta', area: 'Comercial', step: 0.5, unidad: '€/ud' },
-  { key: 'marketing', label: 'Gasto en marketing', area: 'Comercial', step: 1000, unidad: '€' },
-  { key: 'produccion', label: 'Unidades a producir', area: 'Operaciones', step: 100, unidad: 'ud' },
-  { key: 'calidad', label: 'Inversión en calidad', area: 'Operaciones', step: 1000, unidad: '€' },
-  { key: 'rrhh', label: 'Inversión en RR. HH.', area: 'RR. HH.', step: 1000, unidad: '€' },
-  { key: 'prestamo', label: 'Préstamo solicitado', area: 'Finanzas', step: 1000, unidad: '€' },
-];
-
-const AREAS = ['Comercial', 'Operaciones', 'RR. HH.', 'Finanzas'];
-
 function nuevoId(): string { return 'e' + Math.floor(performance.now() * 1000).toString(36); }
-const eur = (n: number) => n.toLocaleString('es-ES', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 });
-const num = (n: number) => n.toLocaleString('es-ES');
 
 export default function BusinessGame() {
   const [st, setSt] = useState<Persisted | null>(null);
