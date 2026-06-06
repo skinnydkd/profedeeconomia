@@ -22,3 +22,17 @@ describe('familiaMeta', () => {
     expect(() => familiaMeta('nope')).toThrow(/unknown familia de debate/i);
   });
 });
+
+import { debatePdfName } from './debates';
+
+describe('debatePdfName', () => {
+  it('builds the canonical downloads filename from familia + slug', () => {
+    expect(debatePdfName('dinero-tecnologia-futuro', '01-criptomonedas'))
+      .toBe('debate-dinero-tecnologia-futuro-01-criptomonedas.pdf');
+  });
+
+  it('does not double-prefix or alter the segments', () => {
+    expect(debatePdfName('mercado-estado', '03-salario-minimo'))
+      .toBe('debate-mercado-estado-03-salario-minimo.pdf');
+  });
+});
