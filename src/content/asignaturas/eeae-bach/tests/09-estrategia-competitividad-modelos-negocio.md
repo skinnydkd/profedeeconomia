@@ -77,6 +77,22 @@ preguntas:
       - "Debilidades y Amenazas."
     correcta: 2
     explicacion: "El análisis externo examina el entorno (mercado, competidores, tecnología, regulación) y de él salen las Oportunidades y las Amenazas. Las Debilidades y Fortalezas surgen del análisis interno. La regla: si depende de la empresa, es interno; si viene de fuera, es externo."
+  - tipo: verdadero-falso
+    enunciado: "Dos empresas que venden exactamente el mismo producto tienen necesariamente el mismo modelo de negocio."
+    correcta: false
+    explicacion: "El modelo de negocio describe cómo se crea y se captura valor, no qué se vende. Dos empresas pueden vender lo mismo con modelos distintos: una por venta directa, otra por suscripción o por plataforma con comisión."
+  - tipo: numerico
+    enunciado: "Una empresa vende su producto a 20 € la unidad, con un coste variable de 12 € por unidad y unos costes fijos de 8.000 € al mes. ¿Cuántas unidades debe vender al mes para alcanzar el punto muerto (umbral de rentabilidad)?"
+    respuesta: 1000
+    tolerancia: 0
+    unidad: "unidades"
+    explicacion: "El margen de contribución por unidad es precio − coste variable = 20 − 12 = 8 €. El punto muerto se alcanza cuando ese margen cubre los costes fijos: 8.000 € ÷ 8 € = 1.000 unidades. A partir de ahí empieza el beneficio."
+  - tipo: relacionar
+    enunciado: "Empareja cada modelo o estrategia con su descripción:"
+    izquierda: ["Liderazgo en costes", "Diferenciación", "Modelo de plataforma", "Modelo de suscripción"]
+    derecha: ["Ofrecer algo único por lo que el cliente paga más", "Cobrar un pago periódico por un acceso continuado", "Ser más barato que los rivales manteniendo margen", "Conectar a dos grupos y cobrar una comisión"]
+    correctas: [2, 0, 3, 1]
+    explicacion: "Porter distingue el liderazgo en costes (ser más barato) y la diferenciación (ser único). El modelo de plataforma conecta a dos grupos mediante comisión, con efecto de red; el de suscripción cobra de forma recurrente por un acceso sostenido."
 ---
 
 Test de autoevaluación de la Unidad 9 del libro de Economía, Emprendimiento y Actividad Empresarial (Bachillerato).

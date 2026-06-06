@@ -86,4 +86,14 @@ preguntas:
       - "7,35 €."
     correcta: 1
     explicacion: "IVA de los alimentos: 20 × 0,04 = 0,80 €. IVA de la camiseta: 15 × 0,21 = 3,15 €. Total: 0,80 + 3,15 = 3,95 €."
+  - tipo: verdadero-falso
+    enunciado: "Los impuestos son un pago voluntario: cada persona decide si quiere contribuir o no."
+    correcta: false
+    explicacion: "Es falso: los impuestos son un pago obligatorio al Estado. Si fueran voluntarios, mucha gente intentaría no pagar (el problema del polizón) y no se podrían financiar los servicios públicos."
+  - tipo: relacionar
+    enunciado: "Empareja cada elemento con lo que le corresponde:"
+    izquierda: ["IRPF", "IVA", "El Estado gasta más de lo que ingresa", "Sanidad, educación, pensiones y protección social"]
+    derecha: ["Impuesto indirecto (grava el consumo)", "Déficit y deuda pública", "Impuesto directo (grava la renta)", "Los cuatro pilares del Estado del bienestar"]
+    correctas: [2, 0, 1, 3]
+    explicacion: "El IRPF es directo (grava lo que ganas); el IVA es indirecto (grava el consumo); gastar más de lo que se ingresa genera déficit y deuda; los cuatro pilares del bienestar son sanidad, educación, pensiones y protección social."
 ---

@@ -78,4 +78,14 @@ preguntas:
       - "¿Cuánto ahorrar, cuánto gastar y cuánto invertir?"
     correcta: 1
     explicacion: "Las tres preguntas que se hace toda economía son: qué producir, cómo producirlo y para quién, porque los recursos son escasos."
+  - tipo: verdadero-falso
+    enunciado: "Como tenemos que elegir entre opciones, siempre que elegimos algo renunciamos a otra cosa: eso es el coste de oportunidad."
+    correcta: true
+    explicacion: "Es verdadero: como los recursos (dinero, tiempo) son escasos, al elegir una opción renunciamos a la mejor alternativa. El valor de aquello a lo que renuncias es el coste de oportunidad."
+  - tipo: relacionar
+    enunciado: "Empareja cada elemento con el tipo de recurso o bien que es:"
+    izquierda: ["El trabajo de un panadero", "El petróleo bajo tierra", "Una máquina de una fábrica", "El aire que respiras"]
+    derecha: ["Recurso natural", "Bien libre", "Trabajo", "Capital"]
+    correctas: [2, 0, 3, 1]
+    explicacion: "El trabajo es el esfuerzo de las personas; el petróleo es un recurso natural; la máquina es capital (un bien fabricado para producir otros); el aire es un bien libre, abundante y gratuito."
 ---

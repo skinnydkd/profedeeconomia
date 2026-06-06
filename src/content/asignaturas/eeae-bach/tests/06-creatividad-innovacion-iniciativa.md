@@ -85,6 +85,20 @@ preguntas:
       - "Porque las amenazas externas son las únicas casillas que importan."
     correcta: 1
     explicacion: "Un DAFO donde todo son fortalezas y oportunidades no sirve: es autocomplacencia. Reconocer una debilidad no es admitir una derrota, sino ganar información para decidir mejor, mejorarla o rodearse de quien la complemente."
+  - tipo: verdadero-falso
+    enunciado: "Toda idea es, por sí misma, una oportunidad de negocio."
+    correcta: false
+    explicacion: "Una idea es cualquier ocurrencia; una oportunidad es una idea que responde a una necesidad real, que alguien valora y que es realizable con los recursos disponibles. Muchas ideas brillantes no son oportunidades porque nadie las necesita."
+  - tipo: verdadero-falso
+    enunciado: "Durante la fase divergente de generación de ideas conviene ir descartando y criticando las propuestas a medida que surgen."
+    correcta: false
+    explicacion: "Es justo lo que no debe hacerse: en la fase divergente se generan muchas ideas sin juzgarlas. Criticar mientras se crean frena la fluidez y cierra al grupo. La evaluación se reserva para la fase convergente."
+  - tipo: relacionar
+    enunciado: "Empareja cada casilla del DAFO con su clasificación correcta:"
+    izquierda: ["Fortalezas", "Debilidades", "Oportunidades", "Amenazas"]
+    derecha: ["Externo y favorable", "Interno y favorable", "Externo y desfavorable", "Interno y desfavorable"]
+    correctas: [1, 3, 0, 2]
+    explicacion: "El DAFO cruza interno/externo con favorable/desfavorable. Fortalezas (interno favorable) y Debilidades (interno desfavorable) dependen de ti; Oportunidades (externo favorable) y Amenazas (externo desfavorable) vienen del entorno."
 ---
 
 Test de autoevaluación de la Unidad 6 del libro de Economía, Emprendimiento y Actividad Empresarial (Bachillerato).

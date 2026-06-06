@@ -86,4 +86,20 @@ preguntas:
       - "Enviar el mismo CV genérico a muchas empresas a la vez."
     correcta: 1
     explicacion: "La **candidatura espontánea** consiste en presentarte a una empresa que **no ha publicado ninguna oferta** porque te interesa trabajar allí. Bien hecha, es una de las vías más rentables al mercado oculto, pero la clave es la **personalización**: identificar a la persona adecuada, demostrar que conoces la empresa y proponer qué puedes aportar. Un correo genérico va directo a la papelera."
+  - tipo: verdadero-falso
+    enunciado: "Buscar empleo solo en portales web es la estrategia más eficiente, porque ahí está la inmensa mayoría de las vacantes."
+    correcta: false
+    explicacion: "Es falso. Los portales publican solo el 30-40 % de los puestos, que además es el circuito más saturado. El 60-70 % restante está en el mercado oculto y se accede por contactos, recomendación y candidatura espontánea. Limitarse a los portales deja fuera la mayor parte de las oportunidades."
+  - tipo: numerico
+    enunciado: "Si el mercado oculto concentra el 65 % de los puestos, ¿qué porcentaje de las vacantes queda en el mercado visible (portales y ofertas publicadas), en %?"
+    respuesta: 35
+    tolerancia: 0.5
+    unidad: "%"
+    explicacion: "El total es el 100 %. Si el mercado oculto es el 65 %, el visible es 100 − 65 = 35 %. Por eso quien solo busca en portales compite por poco más de un tercio de los puestos."
+  - tipo: relacionar
+    enunciado: "Empareja cada herramienta o prueba de selección con lo que evalúa:"
+    izquierda: ["ATS", "Prueba psicotécnica", "Entrevista por competencias", "Dinámica de grupo"]
+    derecha: ["Conducta en equipo (escucha, aporta, integra)", "Filtrado del CV por palabras clave", "Ejemplos concretos de conducta pasada", "Aptitudes (verbal, numérica, abstracta) bajo presión"]
+    correctas: [1, 3, 2, 0]
+    explicacion: "El ATS filtra los CV por palabras clave; la prueba psicotécnica mide aptitudes bajo presión de tiempo; la entrevista por competencias pide ejemplos concretos de conducta pasada; y la dinámica de grupo observa cómo te comportas en equipo."
 ---

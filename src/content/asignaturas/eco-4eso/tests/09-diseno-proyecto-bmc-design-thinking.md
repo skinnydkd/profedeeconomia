@@ -69,6 +69,26 @@ preguntas:
       - "Mapa de empatía."
     correcta: 2
     explicacion: "El primer Airbnb es un MVP de manual: la versión más simple posible que ya prueba la hipótesis principal (¿alquilaría alguien un colchón hinchable en casa de un desconocido por menos que un hotel?). No es un prototipo —ya estaba en el mercado y se cobró dinero— ni un pivot —el modelo era el correcto desde el inicio—. Glovo (Excel + tres motos en un barrio de Barcelona) es otro MVP textbook."
+  - tipo: verdadero-falso
+    enunciado: "En el Design Thinking, la primera fase del primer recorrido es idear, porque lo importante es generar muchas ideas cuanto antes."
+    correcta: false
+    explicacion: "Falso. La primera fase es empatizar. Toda la lógica del Design Thinking consiste en empezar por la persona, no por la idea. El orden es empatizar → definir → idear → prototipar → testear. Idear va en tercer lugar, una vez se ha comprendido a la persona y definido el problema."
+  - tipo: verdadero-falso
+    enunciado: "Si tras tres semanas de trabajo el Business Model Canvas de un equipo es idéntico al del primer día, lo más probable es que el equipo no haya hablado con clientes reales."
+    correcta: true
+    explicacion: "Verdadero. La diferencia entre el BMC inicial y el final es la mejor señal del trabajo de campo. Lo normal es que cambien dos o tres bloques (propuesta de valor, canales o segmento) a partir del feedback. Si nada ha cambiado, el equipo se ha encerrado a defender su idea sin contrastarla."
+  - tipo: relacionar
+    enunciado: "Empareja cada concepto de diseño de producto con su definición:"
+    izquierda: ["Prototipo", "MVP", "Pivot", "Iteración"]
+    derecha: ["Versión más simple ya en el mercado que la gente usa de verdad", "Pequeño ajuste dentro del mismo modelo", "Maqueta que se enseña para obtener feedback", "Cambio grande de hipótesis (segmento, propuesta de valor...)"]
+    correctas: [2, 0, 3, 1]
+    explicacion: "Prototipo: maqueta para reaccionar y obtener feedback. MVP: versión mínima ya en el mercado que la gente usa. Pivot: cambio grande de hipótesis. Iteración: pequeño ajuste dentro del mismo modelo (cambiar un color, bajar el precio)."
+  - tipo: relacionar
+    enunciado: "Empareja cada nivel de fidelidad de un prototipo con la pregunta a la que responde:"
+    izquierda: ["Baja fidelidad (papel, cartón)", "Media fidelidad (flujo de pantallas)", "Alta fidelidad (cercana al MVP)"]
+    derecha: ["¿El flujo y la interacción funcionan bien?", "¿La gente lo usa de verdad cuando puede usarlo?", "¿La idea básica tiene sentido para la persona?"]
+    correctas: [2, 0, 1]
+    explicacion: "Cada nivel responde a una pregunta distinta. Baja fidelidad: si la idea básica tiene sentido (filtra ideas muertas antes de gastar). Media fidelidad: si el flujo funciona. Alta fidelidad: si la gente lo usa cuando puede usarlo de verdad."
 ---
 
 Test de autoevaluación de la Unidad 9 del libro de Eco 4ESO.

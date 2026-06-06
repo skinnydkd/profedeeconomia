@@ -86,4 +86,18 @@ preguntas:
       - "Consiste en hacer solo lo mínimo que marca el contrato."
     correcta: 2
     explicacion: "La **resiliencia** es la capacidad de afrontar la adversidad, adaptarse y salir fortalecido. No es un don innato ni 'aguantar callado': es una competencia que **se entrena** con apoyo social, propósito, hábitos saludables y flexibilidad mental. Se enmarca en la idea de las 'organizaciones saludables' de la psicología positiva."
+  - tipo: verdadero-falso
+    enunciado: "Los riesgos psicosociales nacen de la debilidad personal y por eso cada trabajador debe resolverlos por su cuenta, sin obligación de la empresa."
+    correcta: false
+    explicacion: "Los riesgos psicosociales (estrés, burnout, acoso) son riesgos laborales de pleno derecho que nacen de la organización del trabajo, no de la debilidad individual. La empresa tiene la obligación legal de evaluarlos y prevenirlos dentro de su evaluación de riesgos (art. 16 LPRL), igual que el ruido o los productos químicos."
+  - tipo: verdadero-falso
+    enunciado: "Ante una persona que sufre mobbing, la respuesta adecuada es decirle que se relaje y descanse, igual que en el burnout."
+    correcta: false
+    explicacion: "Confundir burnout y mobbing lleva a soluciones equivocadas. Al burnout se responde rediseñando el trabajo y descansando; al mobbing, activando el protocolo de acoso y, si hace falta, denunciando. Decirle a quien sufre mobbing que se relaje lo deja solo frente a su acosador."
+  - tipo: relacionar
+    enunciado: "Empareja cada problema de salud psicosocial con su rasgo definitorio:"
+    izquierda: ["Eustrés", "Distrés", "Burnout", "Mobbing"]
+    derecha: ["Violencia psicológica repetida y prolongada de un acosador", "Activación puntual que mejora el rendimiento y cesa", "Agotamiento, cinismo y baja realización por el propio trabajo", "Activación sostenida sin recuperación que enferma"]
+    correctas: [1, 3, 2, 0]
+    explicacion: "El eustrés es la activación sana y puntual; el distrés es el estrés crónico que enferma; el burnout combina agotamiento, cinismo y baja realización sin acosador; y el mobbing es violencia psicológica continuada ejercida por un acosador."
 ---

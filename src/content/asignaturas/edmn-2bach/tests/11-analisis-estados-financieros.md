@@ -77,6 +77,22 @@ preguntas:
       - "Porque opera bajo régimen fiscal especial."
     correcta: 1
     explicacion: "El cash flow estructural negativo es activo: el dinero del cliente entra inmediatamente y financia gratis las facturas pendientes. Las reglas estándar de equilibrio dependen del sector."
+  - tipo: verdadero-falso
+    enunciado: "Cuando la rentabilidad económica (ROA) es superior al coste medio de la deuda, el endeudamiento eleva la rentabilidad financiera (ROE) por encima del ROA."
+    correcta: true
+    explicacion: "Verdadero. Si ROA > coste de la deuda, cada euro endeudado aporta valor al accionista y el apalancamiento juega a favor: ROE > ROA. Si se invierte la relación, el apalancamiento perjudica."
+  - tipo: numerico
+    enunciado: "Una empresa tiene un activo corriente de 180.000 € y un pasivo corriente de 120.000 €. ¿Cuál es su ratio de liquidez general (2 decimales)?"
+    respuesta: 1.5
+    tolerancia: 0.05
+    unidad: ""
+    explicacion: "Liquidez general = Activo corriente / Pasivo corriente = 180.000 / 120.000 = 1,50. Está dentro del rango sano (1,5-2)."
+  - tipo: relacionar
+    enunciado: "Asocia cada ratio o magnitud con su fórmula:"
+    izquierda: ["Fondo de maniobra", "ROA (rentabilidad económica)", "ROE (rentabilidad financiera)", "Solvencia"]
+    derecha: ["BAII / Activo total", "Activo total / Pasivo total", "Activo corriente − Pasivo corriente", "Beneficio neto / Patrimonio neto"]
+    correctas: [2, 0, 3, 1]
+    explicacion: "Fondo de maniobra → AC − PC; ROA → BAII / Activo total; ROE → beneficio neto / patrimonio neto; solvencia → Activo total / Pasivo total."
 ---
 
 Test de autoevaluación de la Unidad 11 del libro de EDMN 2BACH.

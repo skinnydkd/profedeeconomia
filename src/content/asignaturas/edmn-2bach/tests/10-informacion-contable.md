@@ -77,6 +77,22 @@ preguntas:
       - "Falta registrar el resultado del ejercicio."
     correcta: 1
     explicacion: "El balance siempre cuadra por definición de partida doble. Una desviación significa apunte mal hecho, no realidad económica diferente."
+  - tipo: verdadero-falso
+    enunciado: "Una empresa puede cerrar el ejercicio con beneficio contable y, al mismo tiempo, tener una tesorería de cero, porque el beneficio se mide por devengo y no equivale a la caja disponible."
+    correcta: true
+    explicacion: "Verdadero. Rentabilidad (devengo) y liquidez (caja) son cosas distintas: vender a crédito y pagar los gastos al contado puede dejar la tesorería en cero con beneficio positivo."
+  - tipo: numerico
+    enunciado: "Una empresa tiene un activo total de 340.000 € y un pasivo (exigible) de 215.000 €. Aplicando la ecuación contable, ¿cuál es su patrimonio neto en euros (sin decimales)?"
+    respuesta: 125000
+    tolerancia: 1
+    unidad: "€"
+    explicacion: "Activo = Patrimonio neto + Pasivo → PN = Activo − Pasivo = 340.000 − 215.000 = 125.000 €."
+  - tipo: relacionar
+    enunciado: "Asocia cada partida con la masa patrimonial a la que pertenece:"
+    izquierda: ["Préstamo hipotecario a largo plazo", "Reservas (beneficios no distribuidos)", "Existencias y caja", "Maquinaria"]
+    derecha: ["Activo no corriente", "Pasivo no corriente", "Activo corriente", "Patrimonio neto"]
+    correctas: [1, 3, 2, 0]
+    explicacion: "Préstamo hipotecario a largo → pasivo no corriente; reservas → patrimonio neto; existencias y caja → activo corriente; maquinaria → activo no corriente."
 ---
 
 Test de autoevaluación de la Unidad 10 del libro de EDMN 2BACH.

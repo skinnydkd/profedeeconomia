@@ -77,6 +77,22 @@ preguntas:
       - "Un local físico."
     correcta: 1
     explicacion: "La asunción de riesgo —junto a la organización deliberada y la búsqueda de excedente— es uno de los tres elementos definitorios de empresa."
+  - tipo: verdadero-falso
+    enunciado: "Según la investigación reciente, el rasgo de personalidad es el factor que mejor predice el éxito de una persona emprendedora, por encima del entorno y la red de contactos."
+    correcta: false
+    explicacion: "Falso. El factor más correlacionado con el éxito no es la personalidad, sino el capital social: red de relaciones, mentores y acceso a financiación. Por eso la formación emprendedora busca igualar ese acceso."
+  - tipo: numerico
+    enunciado: "Una microempresa factura 360.000 € al año con un margen sobre ventas del 8 %. ¿Cuál es su beneficio anual en euros (sin decimales)?"
+    respuesta: 28800
+    tolerancia: 1
+    unidad: "€"
+    explicacion: "Beneficio = ventas × margen = 360.000 × 0,08 = 28.800 €."
+  - tipo: relacionar
+    enunciado: "Asocia cada concepto con su descripción:"
+    izquierda: ["Microempresa", "Destrucción creativa", "Capital social", "Asunción de riesgo"]
+    derecha: ["Red de relaciones, mentores y financiación", "Elemento definitorio de toda empresa", "Menos de 10 personas y hasta 2 M €", "Innovación que desplaza modelos menos eficientes"]
+    correctas: [2, 3, 0, 1]
+    explicacion: "Microempresa → menos de 10 personas y 2 M €; destrucción creativa (Schumpeter) → innovación que desplaza lo obsoleto; capital social → red de relaciones; asunción de riesgo → elemento definitorio de empresa."
 ---
 
 Test de autoevaluación de la Unidad 1 del libro de EDMN 2BACH.

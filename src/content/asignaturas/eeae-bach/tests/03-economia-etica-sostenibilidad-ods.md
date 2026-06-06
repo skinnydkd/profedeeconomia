@@ -77,6 +77,22 @@ preguntas:
       - "Que no admite ningún análisis racional."
     correcta: 1
     explicacion: "La ciencia económica puede medir costes y efectos con precisión (lo que es), pero decidir qué hacer con esos datos —cuánto sacrificar, quién paga, qué riesgo aceptar— exige juicios de valor (lo que debería ser). Confundir ambos planos es fuente de mala discusión pública."
+  - tipo: verdadero-falso
+    enunciado: "Que una empresa coloque el logo de los ODS en sus envases garantiza por sí mismo que su actividad es sostenible."
+    correcta: false
+    explicacion: "No lo garantiza: usar el lenguaje verde sin cambiar las prácticas reales es greenwashing. No basta con que algo parezca sostenible; hay que exigir datos, plazos y resultados verificables."
+  - tipo: numerico
+    enunciado: "Una fábrica emite 5.000 toneladas de CO₂ al año. El sector público establece un impuesto de 30 € por tonelada emitida. ¿Cuánto pagará la empresa al año en euros?"
+    respuesta: 150000
+    tolerancia: 0
+    unidad: "€"
+    explicacion: "El impuesto sobre emisiones hace pagar a quien contamina el coste que antes recaía sobre terceros. 5.000 toneladas × 30 €/tonelada = 150.000 €. Así se internaliza la externalidad negativa y se incentiva a contaminar menos."
+  - tipo: relacionar
+    enunciado: "Empareja cada concepto de sostenibilidad con su descripción:"
+    izquierda: ["Externalidad negativa", "Economía circular", "Desarrollo sostenible", "Greenwashing"]
+    derecha: ["Aparentar compromiso ambiental sin cambiar las prácticas", "Coste que recae sobre terceros y no entra en el precio", "Mantener los materiales en uso: reparar, reutilizar, regenerar", "Satisfacer hoy sin comprometer a las generaciones futuras"]
+    correctas: [1, 2, 3, 0]
+    explicacion: "La externalidad negativa traslada un coste a terceros; la economía circular cierra el ciclo de los materiales frente al modelo lineal; el desarrollo sostenible (Brundtland) une presente y futuro; y el greenwashing es lavado de imagen sin cambio real."
 ---
 
 Test de autoevaluación de la Unidad 3 del libro de EEAE. Cubre la economía como subsistema del planeta y sus límites, los fallos del mercado —en especial las externalidades ambientales— y la intervención pública, los fallos del propio sector público, el desarrollo sostenible (Brundtland), la economía circular frente al modelo lineal, la Agenda 2030 y los ODS, el greenwashing y la distinción entre lo técnico y lo ético en los retos de la sostenibilidad.

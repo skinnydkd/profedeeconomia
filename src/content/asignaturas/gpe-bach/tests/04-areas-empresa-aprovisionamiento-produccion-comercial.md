@@ -77,6 +77,22 @@ preguntas:
       - "La que informa del precio y las características del producto."
     correcta: 2
     explicacion: "La Ley General de Publicidad considera ilícita la publicidad que atenta contra la dignidad de las personas o que usa la imagen de la mujer de forma vejatoria o discriminatoria. Por eso una comunicación responsable evita la cosificación y los estereotipos."
+  - tipo: verdadero-falso
+    enunciado: "El albarán es el documento con valor legal y contable que detalla los precios y el IVA de una compra."
+    correcta: false
+    explicacion: "Falso. El albarán acompaña a la mercancía y sirve para comprobar que lo recibido coincide con lo pedido; no detalla necesariamente el precio. El documento con valor legal y contable, que incluye precios e IVA, es la factura."
+  - tipo: numerico
+    enunciado: "Un taller consume 20 unidades de materia prima al día. El proveedor tarda 5 días en servir un pedido y se quiere mantener un stock de seguridad de 30 unidades. ¿En qué nivel de existencias debe fijarse el punto de pedido? (en unidades)"
+    respuesta: 130
+    tolerancia: 0
+    unidad: "unidades"
+    explicacion: "Punto de pedido = (consumo diario × plazo de entrega) + stock de seguridad = (20 × 5) + 30 = 100 + 30 = 130 unidades. Al llegar a ese nivel se lanza el pedido para no quedarse sin material mientras llega el nuevo."
+  - tipo: relacionar
+    enunciado: "Empareja cada una de las cuatro P del marketing mix con la pregunta que responde:"
+    izquierda: ["Producto", "Precio", "Distribución (place)", "Comunicación (promotion)"]
+    derecha: ["¿Cuánto cuesta?", "¿Cómo lo doy a conocer?", "¿Qué ofrezco?", "¿Dónde y cómo llega al cliente?"]
+    correctas: [2, 0, 3, 1]
+    explicacion: "Producto responde a qué ofrezco; precio, a cuánto cuesta; distribución, a dónde y cómo llega al cliente; comunicación, a cómo lo doy a conocer. El valor del marketing mix está en que las cuatro decisiones sean coherentes entre sí."
 ---
 
 Test de autoevaluación de la Unidad 4 del libro teórico de Gestión de Proyectos de Emprendimiento (Bachillerato, Comunitat Valenciana).

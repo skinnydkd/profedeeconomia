@@ -69,6 +69,22 @@ preguntas:
       - "La prorrata de pagas extras."
     correcta: 2
     explicacion: "El coste empresa es bruto + cuotas patronales. El líquido (lo que cobra el trabajador) es bruto − deducciones, y NO forma parte del coste empresa."
+  - tipo: verdadero-falso
+    enunciado: "Tras la reforma laboral de 2021 (RD-Ley 32/2021), el contrato indefinido pasa a ser la modalidad ordinaria de contratación en España."
+    correcta: true
+    explicacion: "Verdadero. La reforma de 2021 devolvió el indefinido como modalidad ordinaria y reservó el temporal a causas tasadas, además de eliminar el contrato de obra y servicio."
+  - tipo: numerico
+    enunciado: "Una nómina tiene devengos por 2.000 € y deducciones (cotización del trabajador más IRPF) por 470 €. ¿Cuál es el líquido a percibir en euros (sin decimales)?"
+    respuesta: 1530
+    tolerancia: 1
+    unidad: "€"
+    explicacion: "Líquido = devengos − deducciones = 2.000 − 470 = 1.530 €."
+  - tipo: relacionar
+    enunciado: "Asocia cada concepto de la nómina y el coste laboral con su definición:"
+    izquierda: ["Devengos", "Deducciones", "Líquido a percibir", "Coste empresa"]
+    derecha: ["Cotización del trabajador más IRPF", "Bruto más cotizaciones patronales", "Lo que realmente cobra el trabajador", "Total de lo que se paga antes de descuentos"]
+    correctas: [3, 0, 2, 1]
+    explicacion: "Devengos → total antes de descuentos; deducciones → cotización trabajador e IRPF; líquido → lo que cobra el trabajador; coste empresa → bruto más cuotas patronales."
 ---
 
 Test de autoevaluación de la Unidad 8 del libro de EDMN 2BACH.

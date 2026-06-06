@@ -77,6 +77,22 @@ preguntas:
       - "El comercio cobra IVA dos veces."
     correcta: 1
     explicacion: "Por eso la ley obliga a publicitar la TAE (Tasa Anual Equivalente): permite comparar el coste real de ofertas con estructuras distintas de comisiones, seguros y plazos."
+  - tipo: verdadero-falso
+    enunciado: "Si la TIR de un proyecto es superior a la rentabilidad mínima exigida por la empresa, el proyecto debe rechazarse."
+    correcta: false
+    explicacion: "Falso. Si TIR > rentabilidad mínima exigida, el proyecto se acepta (es equivalente a tener VAN positivo a esa tasa). Se rechaza cuando la TIR queda por debajo del mínimo exigido."
+  - tipo: numerico
+    enunciado: "Una inversión de 1.000 € genera flujos netos de 600 € al final del año 1 y 600 € al final del año 2. Con una tasa de descuento del 10 %, ¿cuál es el VAN en euros (2 decimales)?"
+    respuesta: 41.32
+    tolerancia: 0.5
+    unidad: "€"
+    explicacion: "VAN = −1.000 + 600/1,10 + 600/1,10² = −1.000 + 545,45 + 495,87 = 41,32 €. Como VAN > 0, el proyecto crea valor."
+  - tipo: relacionar
+    enunciado: "Clasifica cada fuente de financiación como propia o ajena y por su naturaleza:"
+    izquierda: ["Préstamo bancario", "Beneficios reinvertidos", "Crowdlending", "Ampliación de capital"]
+    derecha: ["Financiación propia interna (autofinanciación)", "Financiación ajena de muchos pequeños prestamistas", "Financiación propia externa (nuevos fondos de socios)", "Financiación ajena con devolución e intereses"]
+    correctas: [3, 0, 1, 2]
+    explicacion: "Préstamo bancario → ajena con intereses; beneficios reinvertidos → propia interna; crowdlending → ajena de muchos prestamistas; ampliación de capital → propia externa."
 ---
 
 Test de autoevaluación de la Unidad 9 del libro de EDMN 2BACH.

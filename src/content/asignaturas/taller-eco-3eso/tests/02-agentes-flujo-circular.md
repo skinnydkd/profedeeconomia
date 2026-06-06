@@ -86,4 +86,14 @@ preguntas:
       - "Al banco donde tienes tu cuenta."
     correcta: 1
     explicacion: "El IVA es un impuesto que va al Estado, que lo devuelve en forma de servicios públicos como tu instituto, las carreteras o la sanidad."
+  - tipo: verdadero-falso
+    enunciado: "En el flujo circular, las familias solo gastan dinero y no reciben nada de las empresas."
+    correcta: false
+    explicacion: "Es falso: las familias aportan trabajo a las empresas y, a cambio, reciben rentas (como el salario). Con ese dinero consumen. El dinero circula en los dos sentidos, por eso el flujo es circular."
+  - tipo: relacionar
+    enunciado: "Empareja cada agente económico con lo que hace principalmente:"
+    izquierda: ["Familias", "Empresas", "Estado"]
+    derecha: ["Producen bienes y servicios buscando beneficio", "Cobra impuestos y ofrece servicios públicos", "Consumen y aportan trabajo a cambio de rentas"]
+    correctas: [2, 0, 1]
+    explicacion: "Las familias consumen y aportan trabajo; las empresas producen buscando beneficio; el Estado cobra impuestos y ofrece servicios públicos."
 ---

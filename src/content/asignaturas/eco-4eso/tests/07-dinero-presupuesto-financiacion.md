@@ -71,6 +71,26 @@ preguntas:
       - "Pedir al banco que avale a los prestamistas."
     correcta: 1
     explicacion: "El gran riesgo del Family & Friends no es el dinero: es la relación personal en juego si el negocio fracasa. La regla práctica de la unidad es formalizar por escrito las condiciones de la operación (importe, plazo, intereses, qué pasa si el proyecto no sale). Convertir el favor en contrato es lo que protege la relación a largo plazo."
+  - tipo: verdadero-falso
+    enunciado: "En la regla 50-30-20, el 20 % del ingreso mensual se destina al ahorro y conviene apartarlo al principio del mes, antes de gastar."
+    correcta: true
+    explicacion: "Verdadero. La regla reparte 50 % a necesidades, 30 % a deseos y 20 % a ahorro. La idea esencial es pagarse a uno mismo primero: apartar ese 20 % al inicio del mes y no esperar a ver qué sobra al final, porque casi nunca sobra nada."
+  - tipo: verdadero-falso
+    enunciado: "La TAE de un préstamo es siempre más baja que el TIN, por eso la ley obliga a publicarla."
+    correcta: false
+    explicacion: "Falso. La TAE suele ser igual o más alta que el TIN, porque además del tipo de interés nominal incluye las comisiones y el plazo. Precisamente por eso la ley obliga a publicarla: refleja el coste real y permite comparar préstamos de verdad."
+  - tipo: numerico
+    enunciado: "Metes 200 € en una cuenta al 5 % anual con interés SIMPLE durante 3 años. ¿Cuánto dinero tendrás al final? (en euros, sin decimales)"
+    respuesta: 230
+    tolerancia: 1
+    unidad: "€"
+    explicacion: "Con interés simple los intereses se calculan siempre sobre el capital inicial: 200 × 0,05 × 3 = 30 € de intereses. Capital final = 200 + 30 = 230 €. Con interés compuesto serían unos 231,53 €, algo más, porque cada año los intereses generan nuevos intereses."
+  - tipo: relacionar
+    enunciado: "Empareja cada fuente de financiación con su descripción:"
+    izquierda: ["Crowdfunding de recompensa", "Family & Friends (FFF)", "Business angel", "Tarifa plana de autónomos"]
+    derecha: ["Inversor particular que aporta capital y experiencia a cambio de participación", "Cuota reducida de 80 €/mes el primer año de alta en el RETA", "Dinero prestado por familiares y amigos para arrancar", "Los aportantes reciben el producto cuando el proyecto se materializa"]
+    correctas: [3, 2, 0, 1]
+    explicacion: "Crowdfunding de recompensa: los aportantes reciben el producto (típico en cómics o juegos, vía Verkami). FFF: préstamo de familiares y amigos. Business angel: inversor particular con capital y experiencia. Tarifa plana: cuota reducida de 80 €/mes el primer año como autónomo."
 ---
 
 Test de autoevaluación de la Unidad 7 del libro de Eco 4ESO.

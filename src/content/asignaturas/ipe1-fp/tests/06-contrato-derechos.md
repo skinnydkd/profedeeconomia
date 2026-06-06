@@ -86,4 +86,20 @@ preguntas:
       - "1.638 €."
     correcta: 1
     explicacion: "Seguridad Social: 1.800 × 0,0635 = 114,30 €. IRPF: 1.800 × 0,09 = 162,00 €. Total deducciones: 276,30 €. Salario neto = 1.800 − 276,30 = **1.523,70 €**. La brecha bruto-neto es del 15,4 %, dentro del rango habitual (15-25 %). El bruto no es lo que cobras."
+  - tipo: verdadero-falso
+    enunciado: "Durante el periodo de prueba el trabajador no cobra salario ni cotiza a la Seguridad Social."
+    correcta: false
+    explicacion: "Durante el periodo de prueba (art. 14 ET) se trabaja con todos los derechos: salario completo, cotización, vacaciones que se generan y prevención. Lo único distinto es que cualquiera de las partes puede rescindir el contrato sin alegar causa ni pagar indemnización. No es trabajar gratis."
+  - tipo: numerico
+    enunciado: "Un trabajador tiene un salario base de 1.300 € y complementos salariales de 250 €. ¿Cuál es su salario bruto mensual (sin decimales)?"
+    respuesta: 1550
+    tolerancia: 1
+    unidad: "€"
+    explicacion: "El salario bruto es la suma de los devengos salariales: salario base + complementos = 1.300 + 250 = 1.550 €. Es la cantidad sobre la que después se aplican las deducciones (Seguridad Social e IRPF) para obtener el neto."
+  - tipo: relacionar
+    enunciado: "Empareja cada fuente del derecho laboral con lo que puede hacer respecto a las demás:"
+    izquierda: ["Estatuto de los Trabajadores", "Convenio colectivo", "Contrato individual", "Cláusula que rebaja el convenio"]
+    derecha: ["Mejora la ley y concreta los salarios por categoría", "Es nula: no puede empeorar el convenio", "Fija los mínimos legales", "Solo puede mejorar el convenio, nunca empeorarlo"]
+    correctas: [2, 0, 3, 1]
+    explicacion: "La jerarquía va de la ley (mínimos) al convenio (los mejora) y al contrato individual (solo mejora el convenio). Una cláusula que rebaja el convenio es nula en ese punto: rige el principio de norma más favorable."
 ---

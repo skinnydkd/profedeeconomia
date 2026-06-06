@@ -86,4 +86,18 @@ preguntas:
       - "El derecho de propiedad intelectual, ante el Registro de la Propiedad."
     correcta: 1
     explicacion: "El **derecho al olvido** está regulado por el **artículo 17 del RGPD** (Reglamento General de Protección de Datos). Permite solicitar la supresión de datos personales que ya no son pertinentes, primero ante el responsable del sitio web y, si no responde, ante la **Agencia Española de Protección de Datos (AEPD)**. Es clave para auditar la huella antes de buscar empleo."
+  - tipo: verdadero-falso
+    enunciado: "Tu marca personal solo existe si decides crearla conscientemente; si no la trabajas, no tienes ninguna."
+    correcta: false
+    explicacion: "Es falso. Tu marca personal existe la trabajes o no: si un reclutador busca tu nombre, lo que encuentre forma parte de tu candidatura. La decisión real no es tenerla o no, sino gestionarla a propósito o dejarla al azar."
+  - tipo: verdadero-falso
+    enunciado: "Un titular de LinkedIn como joven proactivo, dinámico y con muchas ganas de aprender es eficaz porque transmite buena actitud."
+    correcta: false
+    explicacion: "Es falso. Esos adjetivos están vacíos porque los usa todo el mundo y no te diferencian ni te hacen aparecer en las búsquedas. Un buen titular es descriptivo: estudios más qué buscas más un matiz concreto, por ejemplo Técnico Superior en DAW · Front-end · Buscando primer empleo."
+  - tipo: relacionar
+    enunciado: "Empareja cada concepto de presencia digital con su definición:"
+    izquierda: ["Huella digital", "Identidad digital", "Reputación digital", "Portfolio"]
+    derecha: ["Valoración que los demás hacen de tu identidad en internet", "Rastro acumulado y persistente que dejas (publicaciones, fotos, cuentas)", "Colección de trabajos que evidencia tus competencias con pruebas", "Conjunto de datos que te representa en internet"]
+    correctas: [1, 3, 0, 2]
+    explicacion: "La huella digital es el rastro acumulado y persistente; la identidad digital es el conjunto de datos que te representa; la reputación digital es la valoración que los demás hacen de esa identidad; y el portfolio demuestra con pruebas lo que el CV solo afirma con palabras."
 ---

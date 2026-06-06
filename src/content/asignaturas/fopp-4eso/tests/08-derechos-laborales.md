@@ -77,6 +77,22 @@ preguntas:
       - "Esperar a que se acumulen varias vulneraciones y reclamar todas juntas al cabo del año."
     correcta: 1
     explicacion: "La ruta correcta es escalonada: primero **comité o sindicato** (asesoría gratuita), después **Inspección de Trabajo** (denuncia online, gratuita y puede ser anónima), y si no se resuelve, **conciliación previa ante el SMAC** (gratuita y obligatoria) antes de presentar demanda en el **Juzgado de lo Social**. Los plazos son cortos: 20 días hábiles desde el despido o la última nómina impagada."
+  - tipo: verdadero-falso
+    enunciado: "Si tu convenio colectivo fija para tu categoría un salario superior al SMI, la empresa puede pagarte solo el SMI porque este siempre prevalece sobre el convenio."
+    correcta: false
+    explicacion: "El convenio mejora los mínimos del Estatuto de los Trabajadores y es de obligado cumplimiento. Si tu categoría tiene fijado un salario mayor en convenio, ese es tu suelo real y la empresa debe abonar las diferencias."
+  - tipo: numerico
+    enunciado: "Un trabajador firma un contrato y lo deja a los 180 días. Las vacaciones se calculan de forma proporcional con la fórmula 30 × (días trabajados ÷ 365). ¿Cuántos días naturales de vacaciones le corresponden (2 decimales, en días)?"
+    respuesta: 14.79
+    tolerancia: 0.1
+    unidad: "días"
+    explicacion: "Vacaciones = 30 × (180 ÷ 365) = 30 × 0,4932 = 14,79 días naturales. Como no las disfrutó, se le abonan en el finiquito."
+  - tipo: relacionar
+    enunciado: "Empareja cada tipo de despido con su consecuencia legal:"
+    izquierda: ["Despido improcedente", "Despido procedente por causas objetivas", "Despido nulo"]
+    derecha: ["20 días por año, tope 12 mensualidades", "Readmisión obligatoria más salarios de tramitación", "33 días por año, tope 24 mensualidades"]
+    correctas: [2, 0, 1]
+    explicacion: "El despido improcedente (sin causa justificada) indemniza con 33 días por año, tope 24 mensualidades; el procedente por causas objetivas, con 20 días por año, tope 12; el nulo, por vulnerar derechos fundamentales, obliga a readmitir y pagar salarios de tramitación."
 ---
 
 Test de autoevaluación de la Unidad 8 del libro de FOPP 4ESO. Nueve preguntas sobre los derechos laborales básicos en España: SMI 2026, jornada máxima, vacaciones, pagas extras, indemnización por despido, Ley 31/1995 de PRL, accidente in itinere, jerarquía convenio-ET y la ruta administrativa y judicial para reclamar.

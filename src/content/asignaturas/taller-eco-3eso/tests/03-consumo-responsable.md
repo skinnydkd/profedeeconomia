@@ -78,4 +78,20 @@ preguntas:
       - "Ropa de segunda mano vendida en mercadillos."
     correcta: 1
     explicacion: "La fast fashion es ropa muy barata que cambia cada pocas semanas; ha disparado el consumo de ropa y la usamos poco tiempo, generando montañas de residuos como la del desierto de Atacama."
+  - tipo: verdadero-falso
+    enunciado: "La garantía legal de un producto nuevo la asume el fabricante, no la tienda donde lo compraste."
+    correcta: false
+    explicacion: "Es falso: la garantía legal la asume el vendedor, es decir, la tienda donde compraste el producto. Por eso conviene guardar el ticket como prueba de compra."
+  - tipo: numerico
+    enunciado: "Una sudadera cuesta 40 € y está rebajada un 30 %. ¿Cuánto pagas finalmente, en €?"
+    respuesta: 28
+    tolerancia: 0.1
+    unidad: "€"
+    explicacion: "Descuento = 40 × 0,30 = 12 €. Precio final = 40 − 12 = 28 €."
+  - tipo: relacionar
+    enunciado: "Empareja cada situación de consumo con lo que la describe:"
+    izquierda: ["Esperar 24 horas antes de comprar un capricho", "Un anuncio con Solo hoy, últimas unidades", "Un influencer que recomienda un producto pagado sin avisar", "Reducir, reutilizar, reparar y reciclar"]
+    derecha: ["Publicidad que crea urgencia", "Economía circular", "Publicidad encubierta (ilegal)", "Consumo inteligente"]
+    correctas: [3, 0, 2, 1]
+    explicacion: "Esperar 24 horas es consumo inteligente; el Solo hoy crea urgencia; la recomendación pagada sin avisar es publicidad encubierta; las cuatro erres son la economía circular."
 ---

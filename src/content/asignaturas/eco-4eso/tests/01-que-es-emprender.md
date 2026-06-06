@@ -69,6 +69,26 @@ preguntas:
       - "Porque indica que España necesita más empresas, no que las existentes crezcan."
     correcta: 1
     explicacion: "Los datos describen la estructura real del tejido empresarial español. Aceptarla cambia la mirada sobre el emprendimiento: emprender no es la excepción, es la forma habitual de organizar la actividad económica en España."
+  - tipo: verdadero-falso
+    enunciado: "Emprender significa necesariamente montar una empresa propia."
+    correcta: false
+    explicacion: "Falso. Emprender es identificar una oportunidad, organizar recursos y asumir el riesgo de que no funcione. Eso puede dar lugar a una empresa propia, pero también a un proyecto social o a una iniciativa dentro de otra organización (intraemprendimiento). La empresa es una de las formas posibles, no la definición."
+  - tipo: verdadero-falso
+    enunciado: "Según el estudio del MIT (2018), las personas jóvenes (en torno a los 25 años) tienen más probabilidades de fundar una empresa de éxito que las de mayor edad."
+    correcta: false
+    explicacion: "Falso. El estudio sobre 2,7 millones de fundadores mostró lo contrario: la edad media de quien funda una empresa que crece con éxito es de 45 años, y un fundador de 50 tiene casi el doble de probabilidades de éxito que uno de 30, gracias a más experiencia, red profesional y capital ahorrado."
+  - tipo: numerico
+    enunciado: "Si el 99,8 % de las empresas españolas son pymes (menos de 250 empleados), ¿qué porcentaje son grandes empresas de 250 o más empleados? (indica 1 decimal)"
+    respuesta: 0.2
+    tolerancia: 0.05
+    unidad: "%"
+    explicacion: "Si las pymes son el 99,8 % del total, las grandes empresas son el resto: 100 − 99,8 = 0,2 %. En toda España solo 5.211 empresas (ese 0,2 %) tienen 250 o más empleados."
+  - tipo: relacionar
+    enunciado: "Empareja cada situación con el tipo de emprendimiento que representa:"
+    izquierda: ["Una empleada lidera dentro de su banco un nuevo servicio de pagos con móvil", "Una persona monta su propio taller de reparación de bicicletas como autónoma", "Una cooperativa emplea a personas con discapacidad y reinvierte el excedente en su misión", "Una desarrolladora crea una app que vende a particulares para ganar dinero"]
+    derecha: ["Emprendimiento social", "Intraemprendimiento", "Emprendimiento con ánimo de lucro", "Autoemprendimiento"]
+    correctas: [1, 3, 0, 2]
+    explicacion: "Intraemprendimiento: liderar un proyecto nuevo dentro de una organización ajena. Autoemprendimiento: trabajar por cuenta propia. Emprendimiento social: el excedente se reinvierte en la misión, no se reparte. Emprendimiento con ánimo de lucro: la finalidad principal es obtener beneficio."
 ---
 
 Test de autoevaluación de la Unidad 1 del libro de Eco 4ESO.

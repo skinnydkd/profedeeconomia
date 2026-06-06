@@ -86,4 +86,14 @@ preguntas:
       - "Es seguro pinchar los enlaces de mensajes inesperados si parecen de Correos."
     correcta: 1
     explicacion: "Tu banco nunca te pide tus claves por mensaje, correo ni teléfono. Si alguien lo hace, es un fraude, sin excepción."
+  - tipo: verdadero-falso
+    enunciado: "Con una tarjeta de débito puedes gastar más dinero del que tienes en tu cuenta, porque el banco te lo adelanta."
+    correcta: false
+    explicacion: "Es falso: con la tarjeta de débito solo gastas el dinero que ya tienes en tu cuenta. La que adelanta dinero que devuelves después es la tarjeta de crédito."
+  - tipo: relacionar
+    enunciado: "Empareja cada función o medio con lo que le corresponde:"
+    izquierda: ["Pagar el pan en la panadería", "Poner precio a todo en euros para comparar", "Guardar dinero para más adelante", "Enviar dinero de móvil a móvil con el teléfono"]
+    derecha: ["Unidad de cuenta", "Bizum", "Medio de pago", "Depósito de valor"]
+    correctas: [2, 0, 3, 1]
+    explicacion: "Pagar el pan es la función de medio de pago; poner precios en euros es unidad de cuenta; guardar dinero es depósito de valor; enviar dinero de móvil a móvil es Bizum."
 ---

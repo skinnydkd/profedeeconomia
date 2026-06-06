@@ -69,6 +69,22 @@ preguntas:
       - "Coste fijo dividido por unidades vendidas."
     correcta: 1
     explicacion: "MC = P − CVu. Es lo que cada unidad aporta para cubrir los costes fijos y, una vez cubiertos, generar beneficio."
+  - tipo: verdadero-falso
+    enunciado: "Una empresa con un elevado peso de costes fijos respecto a los variables tiene un alto apalancamiento operativo, lo que aumenta el beneficio cuando crece el volumen pero también el riesgo cuando cae."
+    correcta: true
+    explicacion: "Verdadero. Mucho coste fijo y poco variable amplifica la sensibilidad del beneficio al volumen: ganancias explosivas si se vende mucho, pérdidas explosivas si se vende poco."
+  - tipo: numerico
+    enunciado: "Un taller produce 480 piezas empleando a 4 trabajadores durante 6 horas cada uno. ¿Cuál es la productividad por hora de trabajo en piezas/hora (sin decimales)?"
+    respuesta: 20
+    tolerancia: 0
+    unidad: "unidades"
+    explicacion: "Horas totales = 4 × 6 = 24 h. Productividad = 480 / 24 = 20 piezas por hora de trabajo."
+  - tipo: relacionar
+    enunciado: "Asocia cada modalidad de producción con su descripción:"
+    izquierda: ["Por proyecto", "Por lotes", "En cadena", "Continua"]
+    derecha: ["Operaciones idénticas que se repiten sin pausa por unidades", "Series limitadas de productos similares", "Cada output es único, como un edificio", "Proceso que no se detiene, como una refinería"]
+    correctas: [2, 1, 0, 3]
+    explicacion: "Por proyecto → output único; por lotes → series limitadas; en cadena → operaciones idénticas repetidas; continua → proceso que no se detiene."
 ---
 
 Test de autoevaluación de la Unidad 7 del libro de EDMN 2BACH.

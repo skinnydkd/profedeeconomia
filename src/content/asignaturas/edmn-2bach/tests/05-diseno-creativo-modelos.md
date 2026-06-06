@@ -69,6 +69,26 @@ preguntas:
       - "Resetear."
     correcta: 1
     explicacion: "Pivote: cambio significativo de hipótesis (segmento, propuesta de valor, canal) tras aprender del cliente. Iterar = pequeños ajustes; pivotar = giro estratégico."
+  - tipo: verdadero-falso
+    enunciado: "En la fase divergente del proceso creativo conviene juzgar y descartar cada idea según se va proponiendo, para no perder tiempo con propuestas inviables."
+    correcta: false
+    explicacion: "Falso. La fase divergente busca cantidad sin juicio. Juzgar mientras se generan ideas (mezclar divergencia y convergencia) bloquea la creatividad del grupo; el filtro va en la fase convergente."
+  - tipo: verdadero-falso
+    enunciado: "Difuminar el momento del pago (suscripciones, compra con un clic, contactless) reduce la fricción de compra porque atenúa el llamado dolor de pagar."
+    correcta: true
+    explicacion: "Verdadero. El neuromarketing asocia el dolor de pagar a la región cerebral del dolor físico; cuanto menos se note el pago, más fácil resulta comprar."
+  - tipo: numerico
+    enunciado: "Un equipo entrevista a 8 personas el lunes, 12 el martes y 5 el miércoles para alimentar su mapa de empatía. ¿A cuántas personas ha entrevistado en total?"
+    respuesta: 25
+    tolerancia: 0
+    unidad: "personas"
+    explicacion: "Total = 8 + 12 + 5 = 25 personas. El mapa de empatía solo funciona como síntesis de trabajo de campo real."
+  - tipo: relacionar
+    enunciado: "Asocia cada técnica o concepto con su definición:"
+    izquierda: ["SCAMPER", "Mapa de empatía", "Visual thinking", "Pivotar"]
+    derecha: ["Seis cuadrantes sobre lo que el cliente piensa, ve y siente", "Procesar la información gráficamente para revelar fricciones", "Giro estratégico tras aprender del cliente", "Siete verbos aplicados a una idea (sustituir, combinar...)"]
+    correctas: [3, 0, 1, 2]
+    explicacion: "SCAMPER → siete verbos; mapa de empatía → seis cuadrantes; visual thinking → procesar gráficamente; pivotar → giro estratégico."
 ---
 
 Test de autoevaluación de la Unidad 5 del libro de EDMN 2BACH.

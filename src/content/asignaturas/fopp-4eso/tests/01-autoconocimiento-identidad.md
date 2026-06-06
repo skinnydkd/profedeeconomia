@@ -69,6 +69,26 @@ preguntas:
       - "Cruza personal-profesional con seguro-arriesgado; la casilla de internos negativos son las Fortalezas."
     correcta: 1
     explicacion: "El DAFO cruza el eje interno/externo con el eje positivo/negativo. Las Debilidades son lo interno negativo (depende de ti mejorarlo); las Amenazas son lo externo negativo (viene del entorno)."
+  - tipo: verdadero-falso
+    enunciado: "Si una persona apoya casi toda su identidad en un único rol, está más protegida ante los cambios de la vida que quien reparte su identidad entre varios roles y valores."
+    correcta: false
+    explicacion: "Es al revés. Apoyar la identidad en un solo rol la vuelve frágil: si ese rol desaparece (una lesión, un cambio de centro), la persona entra en crisis. Repartir la identidad entre valores y varios roles la hace más resistente."
+  - tipo: verdadero-falso
+    enunciado: "Según Howard Gardner, una persona suele tener todas las inteligencias múltiples en distinto grado y conviene identificar las dos o tres dominantes."
+    correcta: true
+    explicacion: "Gardner sostiene que todas las personas poseen las ocho inteligencias en distinto grado: nadie es bueno en todas ni malo en todas. El objetivo del autoconocimiento es detectar las dominantes para apoyarse en ellas."
+  - tipo: relacionar
+    enunciado: "Empareja cada círculo del ikigai con lo que representa:"
+    izquierda: ["Vocación", "Competencia", "Misión", "Profesión"]
+    derecha: ["Lo que sabes hacer bien", "Aquello por lo que pueden pagarte", "Lo que amas", "Lo que el mundo necesita"]
+    correctas: [2, 0, 3, 1]
+    explicacion: "Vocación es lo que amas; competencia, lo que sabes hacer bien; misión, lo que el mundo necesita; profesión, aquello por lo que te pagan. El centro de los cuatro círculos es tu razón de ser."
+  - tipo: relacionar
+    enunciado: "Empareja cada casilla del DAFO personal con el tipo de factor que recoge:"
+    izquierda: ["Fortalezas", "Debilidades", "Oportunidades", "Amenazas"]
+    derecha: ["Externo negativo", "Interno positivo", "Externo positivo", "Interno negativo"]
+    correctas: [1, 3, 2, 0]
+    explicacion: "El DAFO cruza interno/externo con positivo/negativo: Fortalezas (interno positivo), Debilidades (interno negativo), Oportunidades (externo positivo) y Amenazas (externo negativo)."
 ---
 
 Test de autoevaluación de la Unidad 1 del libro de FOPP 4ESO.

@@ -86,4 +86,14 @@ preguntas:
       - "Trabajar en equipo."
     correcta: 1
     explicacion: "El error más común es soñar demasiado grande. Vale mucho más un proyecto pequeño pero realmente realizado que uno enorme que se queda solo en el papel."
+  - tipo: verdadero-falso
+    enunciado: "Reciclar es la mejor de las erres, así que es lo primero que deberíamos hacer para ser sostenibles."
+    correcta: false
+    explicacion: "Es falso: reciclar es la última de las erres y también gasta energía. Antes conviene reducir, reutilizar y reparar, porque evitan el residuo de raíz."
+  - tipo: relacionar
+    enunciado: "Empareja cada concepto con lo que le corresponde:"
+    izquierda: ["Satisfacer las necesidades de hoy sin perjudicar a las generaciones futuras", "Diseñar productos para que se estropeen pronto a propósito", "17 objetivos de la ONU firmados en 2015", "Extraer, fabricar, usar y tirar"]
+    derecha: ["Obsolescencia programada", "Economía lineal", "Desarrollo sostenible", "Los ODS de la Agenda 2030"]
+    correctas: [2, 0, 3, 1]
+    explicacion: "El desarrollo sostenible cuida a las generaciones futuras; la obsolescencia programada acorta la vida de los productos a propósito; los ODS son los 17 objetivos de la ONU; la economía lineal va en un solo sentido (extraer, fabricar, usar, tirar)."
 ---

@@ -78,4 +78,18 @@ preguntas:
       - "La rapidez con el teclado."
     correcta: 1
     explicacion: "Una parte importante de las competencias técnicas que se aprenden hoy queda desfasada en pocos años, sobre todo en sectores digitales. Lo que más dura no son las herramientas concretas (que cambian), sino la **capacidad de aprender a usar herramientas nuevas**: por eso aprender a aprender es la competencia que no caduca."
+  - tipo: verdadero-falso
+    enunciado: "La empleabilidad depende solo de la situación económica del país y no de lo que haga cada persona."
+    correcta: false
+    explicacion: "La situación económica influye, pero la empleabilidad es en gran parte personal: las competencias que mantienes actualizadas, tu actitud, tu red de contactos y tu disposición a formarte dependen de ti. Por eso dos personas con el mismo título y en el mismo país pueden tener empleabilidades muy distintas."
+  - tipo: verdadero-falso
+    enunciado: "Un título de FP recién obtenido es el techo de lo que se puede aprender: a partir de ahí ya no hace falta seguir formándose."
+    correcta: false
+    explicacion: "La formación inicial es la base, no el techo. Una vida laboral ronda las cuatro décadas y muchas competencias técnicas se desfasan en pocos años, así que hay que añadir capas durante toda la vida (lifelong learning), mediante upskilling y reskilling."
+  - tipo: relacionar
+    enunciado: "Empareja cada concepto con su definición:"
+    izquierda: ["Cualificación", "Empleo", "Upskilling", "Reskilling"]
+    derecha: ["Aprender competencias de una profesión distinta", "Lo que sabes hacer formalmente (título, certificados)", "Mejorar y ampliar competencias dentro de tu profesión actual", "El puesto concreto que ocupas hoy"]
+    correctas: [1, 3, 2, 0]
+    explicacion: "La cualificación es el reconocimiento formal de lo que sabes hacer; el empleo es el puesto concreto de hoy; el upskilling mejora tu profesión actual y el reskilling te prepara para otra distinta."
 ---

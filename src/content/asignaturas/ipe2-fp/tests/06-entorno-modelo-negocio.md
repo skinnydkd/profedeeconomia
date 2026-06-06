@@ -86,4 +86,18 @@ preguntas:
       - "Vendiendo solo a grandes supermercados."
     correcta: 1
     explicacion: "**Too Good To Go** conecta comercios con personas dispuestas a comprar, a precio reducido, los excedentes que acabarían en la basura. Su propuesta de valor es doble (al comercio le evita tirar y le da ingresos extra; al cliente le da comida barata), su fuente de ingresos es una **comisión por pack vendido** y su impacto —millones de comidas rescatadas— es su razón de ser: un problema real (el desperdicio) traducido a un modelo viable y sostenible."
+  - tipo: verdadero-falso
+    enunciado: "En la matriz DAFO, las oportunidades y las amenazas son factores internos del proyecto, que dependen de ti y puedes cambiar."
+    correcta: false
+    explicacion: "Es falso. Oportunidades y amenazas son factores externos: vienen del entorno y solo puedes anticiparlas y adaptarte. Lo interno son las debilidades y las fortalezas, que sí dependen de ti. Confundir las dos columnas es el error más típico al rellenar un DAFO."
+  - tipo: verdadero-falso
+    enunciado: "Si la propuesta de valor del Canvas es excelente pero nadie paga de forma sostenible, el modelo de negocio sigue siendo viable."
+    correcta: false
+    explicacion: "Es falso. Las fuentes de ingresos son el bloque más crítico: sin ingresos viables no hay negocio. Una propuesta de valor excelente que no se traduce en pagos sostenibles no sostiene el modelo, por muy buena que sea."
+  - tipo: relacionar
+    enunciado: "Empareja cada cuadrante del DAFO con la actuación que le corresponde en el método CAME:"
+    izquierda: ["Debilidades", "Amenazas", "Fortalezas", "Oportunidades"]
+    derecha: ["Mantener", "Corregir", "Explotar", "Afrontar"]
+    correctas: [1, 3, 0, 2]
+    explicacion: "El método CAME convierte cada cuadrante del DAFO en una línea de actuación: Corregir las debilidades, Afrontar las amenazas, Mantener las fortalezas y Explotar las oportunidades."
 ---

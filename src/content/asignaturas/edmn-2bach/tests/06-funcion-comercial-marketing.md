@@ -77,6 +77,22 @@ preguntas:
       - "Promoción."
     correcta: 3
     explicacion: "Toda comunicación con el mercado (publicidad, venta personal, promotion, RRPP) cae en la P de Promoción."
+  - tipo: verdadero-falso
+    enunciado: "Una propuesta de valor del tipo calidad y buen servicio a precios competitivos diferencia con claridad a la empresa de sus competidores."
+    correcta: false
+    explicacion: "Falso. Esa frase es aplicable a casi cualquier empresa, así que no diferencia: es ruido. La propuesta de valor real responde a por qué a ti y no al de al lado."
+  - tipo: numerico
+    enunciado: "Con CF = 4.800 €/mes, precio 5 € y CVu 2,60 €, ¿cuántas unidades hay que vender al mes para alcanzar el punto muerto (sin decimales)?"
+    respuesta: 2000
+    tolerancia: 1
+    unidad: "unidades"
+    explicacion: "Q* = CF / (P − CVu) = 4.800 / (5 − 2,60) = 4.800 / 2,40 = 2.000 unidades/mes."
+  - tipo: relacionar
+    enunciado: "Asocia cada una de las 4P del marketing mix con la decisión correspondiente:"
+    izquierda: ["Producto", "Precio", "Plaza", "Promoción"]
+    derecha: ["Anuncio de televisión de una fragancia", "Elegir un canal de distribución largo o directo", "Diseño y características del bien o servicio", "Fijar el importe que paga el cliente"]
+    correctas: [2, 3, 1, 0]
+    explicacion: "Producto → diseño y características; Precio → importe que paga el cliente; Plaza → canal de distribución; Promoción → comunicación como el anuncio de TV."
 ---
 
 Test de autoevaluación de la Unidad 6 del libro de EDMN 2BACH.

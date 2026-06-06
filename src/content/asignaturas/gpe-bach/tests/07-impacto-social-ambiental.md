@@ -77,6 +77,20 @@ preguntas:
       - "Evitar mencionar los ODS para no comprometerse."
     correcta: 1
     explicacion: "La regla es la honestidad: se eligen uno o dos ODS que el proyecto toca de forma real y demostrable, y se explica cómo. Estampar los 17 logos es lo contrario del propósito y se acerca al postureo o greenwashing."
+  - tipo: verdadero-falso
+    enunciado: "Si dos proyectos facturan lo mismo, su impacto sobre el desarrollo del territorio es necesariamente idéntico."
+    correcta: false
+    explicacion: "Falso. El impacto local depende de las decisiones de compra y contratación, no solo de la facturación. Un proyecto que compra a proveedores de su comarca y contrata a personas del pueblo tiene mayor retorno local que otro que lo compra todo fuera, aunque facturen igual."
+  - tipo: verdadero-falso
+    enunciado: "Crear valor compartido significa repartir una parte del beneficio entre los trabajadores al final del año."
+    correcta: false
+    explicacion: "Falso. El valor compartido no es filantropía ni reparto posterior de beneficio: se da cuando la propia forma de ganar dinero del proyecto genera, a la vez, beneficio para la comunidad y el medio ambiente. Es diseñar el negocio para que crear valor económico y crear valor para el entorno sean la misma cosa."
+  - tipo: relacionar
+    enunciado: "Empareja cada concepto de la unidad con su definición:"
+    izquierda: ["Retorno local", "Economía circular", "Huella ecológica", "Economía colaborativa"]
+    derecha: ["Recursos que consume y residuos y emisiones que genera la actividad", "Parte del gasto que se queda en la economía cercana y vuelve a circular", "Compartir recursos en lugar de poseerlos todos", "Convertir un residuo en recurso en vez de tirarlo"]
+    correctas: [1, 3, 0, 2]
+    explicacion: "Retorno local: gasto que se queda y recircula en el entorno. Economía circular: convertir un residuo en recurso. Huella ecológica: recursos consumidos y residuos y emisiones generados. Economía colaborativa: compartir recursos en lugar de poseerlos todos."
 ---
 
 Test de autoevaluación de la Unidad 7 del libro teórico de Gestión de Proyectos de Emprendimiento (Bachillerato, Comunitat Valenciana).

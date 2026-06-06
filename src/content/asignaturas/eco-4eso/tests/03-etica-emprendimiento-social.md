@@ -69,6 +69,26 @@ preguntas:
       - "No existe brecha de género medible en el emprendimiento español."
     correcta: 2
     explicacion: "La TEA masculina es del 7,5 % y la femenina del 5,3 % (por cada 10 hombres ~7 mujeres). En emprendimientos consolidados (> 3,5 años) la proporción cae a ~6 mujeres por cada 10 hombres. La brecha no es de capacidad ni de intención inicial, sino que se abre en el acceso a financiación, sesgos y peso del trabajo de cuidados."
+  - tipo: verdadero-falso
+    enunciado: "Que una empresa lance una colección llamada Eco-Conscious con un 10 % de algodón reciclado mientras mantiene un modelo de producción estructuralmente insostenible es un ejemplo de economía circular."
+    correcta: false
+    explicacion: "Falso. Es greenwashing: se destaca un detalle verde marginal mientras se oculta que el negocio principal es insostenible. La economía circular implica rediseñar todo el modelo para reducir residuos y reutilizar materiales, no maquillar un porcentaje pequeño del producto."
+  - tipo: verdadero-falso
+    enunciado: "La certificación B Corp es obligatoria por ley para todas las empresas españolas con más de 50 trabajadores."
+    correcta: false
+    explicacion: "Falso. B Corp es una certificación internacional voluntaria otorgada por B Lab. Exige superar el B Impact Assessment con al menos 80 puntos sobre 200 y modificar los estatutos para incluir el propósito de impacto. No la impone ninguna ley española."
+  - tipo: numerico
+    enunciado: "La Agenda 2030 de la ONU tiene 17 ODS. Si un proyecto emprendedor selecciona los 5 ODS con impacto directo en su actividad, ¿con cuántos ODS NO trabaja directamente? (número entero)"
+    respuesta: 12
+    tolerancia: 0.5
+    unidad: ""
+    explicacion: "La Agenda 2030 tiene 17 ODS en total. Si el proyecto elige 5 con impacto directo, los que quedan fuera son 17 − 5 = 12. La práctica habitual es seleccionar entre 3 y 5 ODS bien argumentados, no marcar los 17 de forma decorativa."
+  - tipo: relacionar
+    enunciado: "Empareja cada práctica empresarial con su nivel de RSC:"
+    izquierda: ["Una empresa social cuyo propio modelo de negocio resuelve un problema social", "Donar el 1 % del beneficio a una ONG sin cambiar la forma de operar", "Integrar criterios sociales y ambientales en la gestión diaria"]
+    derecha: ["Nivel 1: filantropía corporativa", "Nivel 3: estrategia", "Nivel 2: integración en la gestión"]
+    correctas: [1, 0, 2]
+    explicacion: "Nivel 1 (filantropía): se genera beneficio y luego se dona una parte, sin cambiar el negocio. Nivel 2 (integración): se incorporan criterios sociales y ambientales a la gestión. Nivel 3 (estrategia): el propósito social ES el modelo de negocio en sí mismo."
 ---
 
 Test de autoevaluación de la Unidad 3 del libro de Eco 4ESO.

@@ -69,6 +69,26 @@ preguntas:
       - "Cuanta más tolerancia al riesgo, mejores decisiones se toman."
     correcta: 2
     explicacion: "Puedes ser muy arriesgado socialmente y muy cauto financieramente, o al revés. Ningún perfil es intrínsecamente mejor: lo importante es saber dónde estás en cada ámbito para compensar (forzarte a salir de tu zona si eres muy cauto, frenar antes de decidir si eres muy lanzado)."
+  - tipo: verdadero-falso
+    enunciado: "Ante el sesgo del coste hundido, la pregunta correcta es cuánto tiempo o dinero llevas ya invertido en una actividad."
+    correcta: false
+    explicacion: "Lo ya invertido no se recupera, lo dejes o no, así que no debe pesar en la decisión. La pregunta correcta mira hacia delante: a partir de hoy, qué prefieres hacer con tu tiempo de los próximos meses."
+  - tipo: verdadero-falso
+    enunciado: "Según Jeff Bezos, las decisiones reversibles conviene tomarlas rápido y experimentando, mientras que las irreversibles conviene pensarlas despacio y consultar."
+    correcta: true
+    explicacion: "Bezos distingue puertas de un solo sentido (irreversibles, pensar despacio) y de doble sentido (reversibles, decidir rápido y probar). El error común es paralizarse con lo trivial y precipitarse con lo importante."
+  - tipo: relacionar
+    enunciado: "Empareja cada sesgo cognitivo con el ejemplo que lo ilustra:"
+    izquierda: ["Anclaje", "Coste hundido", "Sesgo del presente", "Confirmación"]
+    derecha: ["Sigo en una actividad que no me gusta porque llevo tres años", "Prefiero 10 euros hoy a 15 dentro de un mes", "Solo recuerdo los testimonios que apoyan lo que ya pienso", "El primer precio que oí condicionó toda la negociación"]
+    correctas: [3, 0, 1, 2]
+    explicacion: "El anclaje fija la referencia en el primer dato; el coste hundido retiene por lo ya invertido; el sesgo del presente sobrevalora lo inmediato; el de confirmación filtra la información que contradice nuestra hipótesis."
+  - tipo: relacionar
+    enunciado: "Empareja cada fase del proceso de decisión con la pregunta clave que responde:"
+    izquierda: ["Definir la decisión", "Generar alternativas", "Establecer criterios", "Decidir y comprometerse"]
+    derecha: ["Qué importa de verdad para elegir", "Qué tengo que decidir exactamente y con qué límites", "Paso a la acción y me responsabilizo", "Qué opciones distintas tengo, al menos tres"]
+    correctas: [1, 3, 0, 2]
+    explicacion: "Primero defines bien la pregunta y sus restricciones, luego generas al menos tres alternativas, después fijas los criterios y, por último, decides y te comprometes."
 ---
 
 Test de autoevaluación de la Unidad 4 del libro de FOPP 4ESO.

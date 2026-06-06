@@ -77,6 +77,20 @@ preguntas:
       - "Porque el cociente intelectual se puede subir a voluntad."
     correcta: 1
     explicacion: "El perfil emprendedor está hecho de competencias, cualidades y hábitos que se cultivan con práctica y repetición. Por eso LOMLOE incluye la competencia emprendedora para todo el alumnado, emprenda o no después."
+  - tipo: verdadero-falso
+    enunciado: "La persona intraemprendedora arriesga siempre su propio patrimonio al impulsar proyectos."
+    correcta: false
+    explicacion: "El intraemprendimiento es la actitud emprendedora ejercida dentro de una organización ajena: la persona impulsa mejoras sin arriesgar su patrimonio, aunque sí su esfuerzo y su reputación."
+  - tipo: verdadero-falso
+    enunciado: "La asertividad consiste en imponer la propia opinión por encima de la de los demás para que prevalezca."
+    correcta: false
+    explicacion: "Eso es agresividad. La asertividad es el punto medio entre la pasividad y la agresividad: defender las propias ideas con respeto y escuchar a la otra parte."
+  - tipo: relacionar
+    enunciado: "Empareja cada capacidad de la persona emprendedora con su definición:"
+    izquierda: ["Inteligencia emocional", "Inteligencia ejecutiva", "Asertividad", "Liderazgo"]
+    derecha: ["Influir en un grupo hacia un objetivo común", "Reconocer y gestionar las emociones propias y ajenas", "Defender las ideas con respeto escuchando al otro", "Dirigir la conducta hacia metas: planificar y mantener el esfuerzo"]
+    correctas: [1, 3, 2, 0]
+    explicacion: "La inteligencia emocional gestiona emociones; la ejecutiva (Marina) lleva las ideas a la acción; la asertividad comunica con respeto; y el liderazgo influye en el grupo hacia una meta común."
 ---
 
 Test de autoevaluación de la Unidad 5 del libro de Economía, Emprendimiento y Actividad Empresarial (Bachillerato).

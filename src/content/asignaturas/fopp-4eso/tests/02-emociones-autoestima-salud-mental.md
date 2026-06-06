@@ -69,6 +69,26 @@ preguntas:
       - "Nervios antes de un examen, tristeza por una ruptura y miedo escénico."
     correcta: 1
     explicacion: "Las tres señales son: insomnio persistente (más de dos semanas), aislamiento social (dejar de quedar con quienes antes veías) e ideación suicida (cualquier intensidad cuenta). Ante cualquiera de ellas, conviene hablar con un adulto de confianza, con el orientador del instituto o llamar a la línea 024 (24 h, gratuita, confidencial)."
+  - tipo: verdadero-falso
+    enunciado: "Una autoestima cuanto más alta mejor, sin límite, es siempre el objetivo más saludable."
+    correcta: false
+    explicacion: "No es cierto. La autoestima muy alta puede convertirse en autoestima inflada o narcisista: parece fuerte pero es frágil y vive cualquier crítica como un ataque. La meta es una autoestima sana, realista, que acepta fortalezas y límites."
+  - tipo: verdadero-falso
+    enunciado: "Pedir ayuda a un adulto, al orientador o a la línea 024 ante señales de alarma en salud mental es una decisión inteligente, no una muestra de debilidad."
+    correcta: true
+    explicacion: "Pedir ayuda a tiempo es lo más sensato. Las señales de alarma (insomnio persistente, aislamiento, ideación suicida) requieren apoyo de un adulto de confianza, del orientador o de la línea 024, gratuita y confidencial."
+  - tipo: relacionar
+    enunciado: "Empareja cada emoción primaria de Ekman con la situación que suele provocarla:"
+    izquierda: ["Miedo", "Asco", "Ira", "Alegría"]
+    derecha: ["Algo nos parece repugnante o dañino", "Conseguimos algo que deseábamos", "Percibimos una amenaza o peligro", "Sentimos una injusticia o un obstáculo"]
+    correctas: [2, 0, 3, 1]
+    explicacion: "El miedo avisa de una amenaza; el asco aleja de lo dañino; la ira surge ante una injusticia u obstáculo; la alegría acompaña a lo que deseamos. Todas son emociones primarias y universales según Ekman."
+  - tipo: relacionar
+    enunciado: "Empareja cada paso de la fórmula asertiva de Rosenberg con su contenido:"
+    izquierda: ["Emoción", "Hecho", "Necesidad", "Petición"]
+    derecha: ["Cuando tú llegaste tarde sin avisar", "Yo siento que no me tienes en cuenta", "Me gustaría que la próxima vez me escribas", "Porque necesito poder organizar mi tiempo"]
+    correctas: [1, 0, 3, 2]
+    explicacion: "La Comunicación No Violenta nombra la emoción propia, describe el hecho concreto sin generalizar, explica la necesidad y propone una petición concreta. Es la zona media entre callar y atacar."
 ---
 
 Test de autoevaluación de la Unidad 2 del libro de FOPP 4ESO.

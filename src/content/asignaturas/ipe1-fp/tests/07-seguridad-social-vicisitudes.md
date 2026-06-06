@@ -86,4 +86,20 @@ preguntas:
       - "La indemnización corresponde siempre y el finiquito casi nunca."
     correcta: 1
     explicacion: "El **finiquito** es lo que ya has ganado y no te han pagado (días trabajados del último mes, parte proporcional de pagas extras y vacaciones no disfrutadas): **te corresponde siempre**, te vayas como te vayas. La **indemnización** es una compensación adicional por perder el empleo y solo aparece en ciertos despidos (objetivo, improcedente) o fines de temporal."
+  - tipo: verdadero-falso
+    enunciado: "En el sistema español de Seguridad Social cada trabajador guarda sus cotizaciones en una hucha individual que recupera al jubilarse."
+    correcta: false
+    explicacion: "El sistema funciona por reparto y solidaridad intergeneracional (LGSS, art. 41 de la Constitución): no es una hucha individual, sino un fondo común donde las cotizaciones de quienes trabajan hoy pagan las prestaciones de quienes hoy no pueden trabajar, generando a cambio el derecho a ser protegido mañana."
+  - tipo: numerico
+    enunciado: "A un trabajador con salario diario de 50 € y 4 años exactos de antigüedad lo despiden por causas objetivas de forma procedente (20 días de salario por año). ¿Cuál es su indemnización en euros (sin decimales)?"
+    respuesta: 4000
+    tolerancia: 1
+    unidad: "€"
+    explicacion: "Despido objetivo procedente: 20 días de salario por año trabajado. Días = 20 × 4 = 80 días. Indemnización = 80 × 50 €/día = 4.000 €. No se alcanza el tope de 12 mensualidades, así que la cifra es válida."
+  - tipo: relacionar
+    enunciado: "Empareja cada tipo de despido con su consecuencia económica:"
+    izquierda: ["Objetivo procedente", "Improcedente", "Disciplinario procedente", "Nulo"]
+    derecha: ["No genera indemnización", "Obliga a readmitir al trabajador", "20 días por año, máximo 12 mensualidades", "33 días por año, máximo 24 mensualidades"]
+    correctas: [2, 3, 0, 1]
+    explicacion: "El despido objetivo procedente indemniza con 20 días por año; el improcedente con 33 días por año; el disciplinario procedente no indemniza; y el nulo obliga a la readmisión del trabajador."
 ---

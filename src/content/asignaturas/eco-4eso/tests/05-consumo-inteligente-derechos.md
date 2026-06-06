@@ -71,6 +71,26 @@ preguntas:
       - "Publicar una queja en redes sociales → esperar respuesta pública → cambiar de tienda."
     correcta: 1
     explicacion: "La ruta eficaz parte siempre del contacto directo por escrito y va escalando: hoja oficial → OMIC o Dirección General de Consumo de la CCAA → asociación (OCU, FACUA, ADICAE) → sistema arbitral de consumo si la empresa está adherida → vía judicial como último recurso (sin abogado por importes inferiores a 2.000 €). La mayoría de casos legítimos se resuelven entre los pasos 1 y 4."
+  - tipo: verdadero-falso
+    enunciado: "El derecho de desistimiento de 14 días permite devolver cualquier producto comprado online, incluidas las camisetas personalizadas con tu nombre."
+    correcta: false
+    explicacion: "Falso. Los productos personalizados están entre las excepciones legales al derecho de desistimiento. También quedan fuera los productos sellados abiertos por higiene, los perecederos, los servicios ya prestados por completo y las entradas o transportes con fecha concreta."
+  - tipo: verdadero-falso
+    enunciado: "En un banner de cookies, poner el botón Aceptar todo grande y verde y el de Rechazar pequeño y gris es un dark pattern de misdirection."
+    correcta: true
+    explicacion: "Verdadero. El misdirection manipula la mirada mediante la asimetría visual: la opción que beneficia a la empresa se hace grande y llamativa, y la que beneficia al usuario se hace pequeña y discreta. Es la base de la mayoría de banners de cookies."
+  - tipo: numerico
+    enunciado: "Compras un portátil nuevo en una tienda de la UE. La garantía legal es de 3 años y el derecho de desistimiento online es de 14 días naturales. ¿Cuántos meses dura la garantía legal? (número entero)"
+    respuesta: 36
+    tolerancia: 0.5
+    unidad: ""
+    explicacion: "La garantía legal de un producto nuevo es de 3 años desde la entrega (Real Decreto-ley 7/2021). 3 años × 12 meses/año = 36 meses. El derecho de desistimiento (14 días) es algo distinto: poder devolver sin justificar motivo, no una garantía por defectos."
+  - tipo: relacionar
+    enunciado: "Empareja cada dark pattern con la situación que lo describe:"
+    izquierda: ["Forced continuity", "Misdirection", "Confirmshaming", "Drip pricing"]
+    derecha: ["El botón de rechazar gastos extra dice no quiero ahorrar dinero para hacerte sentir mal", "El precio sube con cargos que solo aparecen al final del proceso de compra", "Una prueba gratis se convierte en suscripción de pago sin aviso claro", "Una opción se hace enorme y la contraria, diminuta y gris"]
+    correctas: [2, 3, 0, 1]
+    explicacion: "Forced continuity: la prueba gratis pasa a pago sin aviso visible. Misdirection: asimetría visual entre opciones. Confirmshaming: avergonzar al usuario que rechaza una opción. Drip pricing: cargos ocultos que aparecen al final."
 ---
 
 Test de autoevaluación de la Unidad 5 del libro de Eco 4ESO.

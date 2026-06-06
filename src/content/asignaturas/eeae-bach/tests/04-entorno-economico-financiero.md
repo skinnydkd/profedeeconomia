@@ -77,6 +77,22 @@ preguntas:
       - "Porque ahorrar joven está de moda."
     correcta: 1
     explicacion: "Con interés compuesto, los intereses se suman al ahorro y generan nuevos intereses. Cuanto más tiempo dejas el dinero trabajando, mayor es la diferencia: por eso el tiempo importa más que la cantidad inicial."
+  - tipo: verdadero-falso
+    enunciado: "Según la regla de oro de las finanzas, es posible obtener una rentabilidad alta sin asumir ningún riesgo."
+    correcta: false
+    explicacion: "A mayor rentabilidad esperada, mayor riesgo. Una promesa de mucha ganancia sin riesgo es una bandera roja de posible estafa: conviene desconfiar y comprobar en la CNMV si la entidad está autorizada."
+  - tipo: numerico
+    enunciado: "Inviertes 1.000 € a un interés compuesto anual del 5 %. ¿Cuánto dinero tendrás al cabo de 2 años, en euros (2 decimales)?"
+    respuesta: 1102.50
+    tolerancia: 0.5
+    unidad: "€"
+    explicacion: "Con interés compuesto se aplica 1.000 × (1 + 0,05)². Año 1: 1.000 × 1,05 = 1.050 €. Año 2: 1.050 × 1,05 = 1.102,50 €. Los intereses del primer año también generan intereses, por eso supera los 1.100 € del interés simple."
+  - tipo: relacionar
+    enunciado: "Empareja cada agente económico con su actuación característica:"
+    izquierda: ["Familias", "Empresas", "Sector público", "Sector exterior"]
+    derecha: ["Producen bienes y servicios e invierten", "Importan y exportan con otros países", "Consumen y ofrecen su trabajo", "Cobra impuestos, gasta y fija las reglas"]
+    correctas: [2, 0, 3, 1]
+    explicacion: "Las familias consumen y aportan trabajo; las empresas producen e invierten; el sector público recauda, gasta y regula; y el sector exterior recoge las relaciones comerciales con el resto del mundo."
 ---
 
 Test de autoevaluación de la Unidad 4 del libro de Economía, Emprendimiento y Actividad Empresarial (Bachillerato).

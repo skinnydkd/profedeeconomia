@@ -77,6 +77,20 @@ preguntas:
       - "Tenerlas en cuenta solo al final del curso, cuando ya esté todo decidido."
     correcta: 2
     explicacion: "Casi toda actividad genera alguna externalidad, así que no se trata de renunciar por cualquier efecto, sino de conocerlas, minimizar las negativas —en especial las que crean desigualdad sin necesidad— y favorecer las positivas, coherente con el emprendimiento sostenible."
+  - tipo: verdadero-falso
+    enunciado: "Durante la fase divergente de una sesión de creatividad conviene ir descartando y criticando las ideas malas para no perder tiempo."
+    correcta: false
+    explicacion: "En la fase divergente está prohibido criticar: el objetivo es generar muchas ideas sin juzgarlas. El primer 'esto no funcionaría' frena la fluidez y cierra al grupo. La evaluación y el descarte llegan después, en la fase convergente."
+  - tipo: verdadero-falso
+    enunciado: "Las oportunidades y las amenazas del DAFO son factores externos, que vienen del entorno y el equipo no controla."
+    correcta: true
+    explicacion: "Correcto. El DAFO cruza interno/externo con positivo/negativo: oportunidades (externo-positivo) y amenazas (externo-negativo) vienen del entorno. Las fortalezas y debilidades son internas y dependen del equipo."
+  - tipo: relacionar
+    enunciado: "Empareja cada situación con la casilla del DAFO que le corresponde:"
+    izquierda: ["El equipo domina las redes sociales", "Falta de presupuesto para arrancar", "Una nueva subvención para jóvenes emprendedores", "Un competidor grande baja sus precios"]
+    derecha: ["Amenaza", "Fortaleza", "Oportunidad", "Debilidad"]
+    correctas: [1, 3, 2, 0]
+    explicacion: "Dominar las redes es interno-positivo (fortaleza); la falta de presupuesto es interno-negativo (debilidad); una nueva subvención es externo-positivo (oportunidad); que un competidor baje precios es externo-negativo (amenaza)."
 ---
 
 Test de autoevaluación de la Unidad 2 del libro teórico de Gestión de Proyectos de Emprendimiento (Bachillerato, Comunitat Valenciana).
