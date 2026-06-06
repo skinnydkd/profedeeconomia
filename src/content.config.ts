@@ -599,9 +599,39 @@ const refuerzo = defineCollection({
   }),
 });
 
+/* =========================================================
+   asignaturas/{slug}/evaluacion/evaluacion.mdx — evaluación
+   competencial: competencias específicas oficiales con sus
+   criterios y una rúbrica de niveles de logro por competencia.
+   Complementa la programación (no duplica la planificación).
+   ========================================================= */
+const evaluacion = defineCollection({
+  loader: glob({ pattern: 'asignaturas/*/evaluacion/**/*.{md,mdx}', base: './src/content' }),
+  schema: z.object({
+    asignatura: z.enum(ASIGNATURA_SLUGS),
+    title: z.string(),
+    descripcion: z.string(),
+    /** Marco normativo del que salen las competencias específicas. */
+    marco: z.string(),
+    competencias: z.array(z.object({
+      codigo: z.string(),
+      descripcion: z.string(),
+      criterios: z.array(z.string()).default([]),
+      niveles: z.array(z.object({
+        nivel: z.string(),
+        descriptor: z.string(),
+      })).default([]),
+    })).default([]),
+    instrumentos: z.array(z.string()).default([]),
+    lang: z.enum(LANGS).default('es'),
+    estado: z.enum(ESTADOS).default('borrador'),
+  }),
+});
+
 export const collections = {
   libro,
   refuerzo,
+  evaluacion,
   actividades,
   tests,
   recursos,

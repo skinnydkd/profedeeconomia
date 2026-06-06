@@ -27,6 +27,10 @@ const hasProyecto = proyectoAll.some((e) => e.data.asignatura === a.slug && e.da
 const refuerzoAll = await getCollection('refuerzo');
 const hasRefuerzo = refuerzoAll.some((e) => e.data.asignatura === a.slug && e.data.estado === 'publicado');
 
+// Show the evaluación competencial card only for subjects that have published content.
+const evaluacionAll = await getCollection('evaluacion');
+const hasEvaluacion = evaluacionAll.some((e) => e.data.asignatura === a.slug && e.data.estado === 'publicado');
+
 // Sections grouped by nature: the course material (book + printable), the
 // interactive practice, and what's for the teacher. Programación goes last.
 const material = [
@@ -41,6 +45,7 @@ const interactivo = [
   ...(hasEbau ? [{ slug: 'ebau', title: 'Preparación EBAU', desc: 'Estructura de la prueba, teoría esencial, problemas resueltos y simulacros con solucionario.' }] : []),
 ];
 const profe = [
+  ...(hasEvaluacion ? [{ slug: 'evaluacion', title: 'Evaluación competencial', desc: 'Competencias específicas con sus criterios de evaluación y una rúbrica de niveles de logro por competencia.' }] : []),
   { slug: 'programacion', title: 'Programación', desc: 'Programación didáctica de referencia: objetivos, temporalización y evaluación competencial, lista para adaptar.' },
 ];
 const grupos = [
