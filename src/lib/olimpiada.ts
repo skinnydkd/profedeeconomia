@@ -30,16 +30,77 @@ export function bloqueMeta(slug: string): Familia {
   return b;
 }
 
-export interface Simulacro { slug: string; title: string; convocatoria: string; anio: number; pdf: string; oficial: boolean; }
-// Exámenes oficiales recientes de la fase local de la C. Valenciana, en el
-// formato actual (test + ejercicio + comentario). Fuente: Facultad de CC.
-// Económicas y Empresariales de la Universidad de Alicante.
-export const SIMULACROS: Simulacro[] = [
-  { slug: 'cv-2025', title: 'Fase Local C. Valenciana 2025', convocatoria: 'Fase Local · C. Valenciana', anio: 2025, pdf: '/olimpiada/examen-cv-2025.pdf', oficial: true },
-  { slug: 'cv-2024', title: 'Fase Local C. Valenciana 2024', convocatoria: 'Fase Local · C. Valenciana', anio: 2024, pdf: '/olimpiada/examen-cv-2024.pdf', oficial: true },
-  { slug: 'cv-2023', title: 'Fase Local C. Valenciana 2023', convocatoria: 'Fase Local · C. Valenciana', anio: 2023, pdf: '/olimpiada/examen-cv-2023.pdf', oficial: true },
-  { slug: 'megaexamen', title: 'Megaexamen de práctica', convocatoria: 'Material de práctica del profesor', anio: 0, pdf: '/olimpiada/megaexamen-olimpiadas.pdf', oficial: false },
+// Ámbitos territoriales en que se agrupan los exámenes. La C. Valenciana va
+// primera (es nuestro contexto) y la fase nacional la segunda; el resto, por
+// orden alfabético. El formato del examen VARÍA según la comunidad.
+export interface Ambito { slug: string; label: string; intro: string; }
+export const AMBITOS: Ambito[] = [
+  { slug: 'cv',            label: 'Comunitat Valenciana', intro: 'Fase local de la C. Valenciana (UA/UV/UPV/UJI/UMH). Es el formato que describe la guía: test + ejercicio + comentario, 2 horas.' },
+  { slug: 'nacional',      label: 'Fase nacional',        intro: 'Olimpiada Española de Economía: la final estatal a la que pasan los finalistas de cada fase local.' },
+  { slug: 'madrid',        label: 'Comunidad de Madrid',  intro: 'Fase local de Madrid (UAM, URJC, UCM, UAH, UC3M). Publicados con soluciones.' },
+  { slug: 'andalucia',     label: 'Andalucía',            intro: 'Fase local de Andalucía (Universidad de Sevilla).' },
+  { slug: 'castilla-leon', label: 'Castilla y León',      intro: 'Fase local de Castilla y León (Universidad de Valladolid).' },
+  { slug: 'pais-vasco',    label: 'País Vasco',           intro: 'Fase local del País Vasco (UPV/EHU).' },
+  { slug: 'navarra',       label: 'Navarra',              intro: 'Fase local de Navarra (Universidad Pública de Navarra).' },
+  { slug: 'extremadura',   label: 'Extremadura',          intro: 'Fase local de Extremadura (Universidad de Extremadura).' },
+  { slug: 'galicia',       label: 'Galicia',              intro: 'Fase local de Galicia (Universidade de Santiago de Compostela).' },
+  { slug: 'asturias',      label: 'Asturias',             intro: 'Fase local de Asturias (Universidad de Oviedo).' },
+  { slug: 'practica',      label: 'Material de práctica', intro: 'Material de práctica propio para entrenar sin presión de convocatoria.' },
 ];
+export const AMBITO_SLUGS = AMBITOS.map((a) => a.slug);
+
+export interface Simulacro { slug: string; title: string; convocatoria: string; anio: number; pdf: string; oficial: boolean; ambito: string; }
+// Exámenes oficiales recientes (en general los 3 últimos por ámbito), descargados
+// de las webs oficiales de las universidades organizadoras. El formato varía por
+// comunidad; casi todas usan ya un test teórico + ejercicio práctico + comentario.
+export const SIMULACROS: Simulacro[] = [
+  // Comunitat Valenciana (UA)
+  { slug: 'cv-2025', title: 'Examen 2025', convocatoria: 'Universidad de Alicante', anio: 2025, pdf: '/olimpiada/examen-cv-2025.pdf', oficial: true, ambito: 'cv' },
+  { slug: 'cv-2024', title: 'Examen 2024', convocatoria: 'Universidad de Alicante', anio: 2024, pdf: '/olimpiada/examen-cv-2024.pdf', oficial: true, ambito: 'cv' },
+  { slug: 'cv-2023', title: 'Examen 2023', convocatoria: 'Universidad de Alicante', anio: 2023, pdf: '/olimpiada/examen-cv-2023.pdf', oficial: true, ambito: 'cv' },
+  // Fase nacional (Olimpiada Española de Economía)
+  { slug: 'nac-2025', title: 'Examen 2025', convocatoria: 'Olimpiada Española de Economía', anio: 2025, pdf: '/olimpiada/examen-nacional-2025.pdf', oficial: true, ambito: 'nacional' },
+  { slug: 'nac-2024', title: 'Examen 2024 · Logroño', convocatoria: 'Olimpiada Española de Economía', anio: 2024, pdf: '/olimpiada/examen-nacional-2024.pdf', oficial: true, ambito: 'nacional' },
+  { slug: 'nac-2023', title: 'Examen 2023 · Sevilla', convocatoria: 'Olimpiada Española de Economía', anio: 2023, pdf: '/olimpiada/examen-nacional-2023.pdf', oficial: true, ambito: 'nacional' },
+  // Comunidad de Madrid (UCM, con soluciones)
+  { slug: 'mad-2026', title: 'Examen 2026 (con soluciones)', convocatoria: 'Olimpiada de Madrid · XVII', anio: 2026, pdf: '/olimpiada/examen-madrid-2026.pdf', oficial: true, ambito: 'madrid' },
+  { slug: 'mad-2025', title: 'Examen 2025 (con soluciones)', convocatoria: 'Olimpiada de Madrid · XVI', anio: 2025, pdf: '/olimpiada/examen-madrid-2025.pdf', oficial: true, ambito: 'madrid' },
+  { slug: 'mad-2024', title: 'Examen 2024 (con soluciones)', convocatoria: 'Olimpiada de Madrid · XV', anio: 2024, pdf: '/olimpiada/examen-madrid-2024.pdf', oficial: true, ambito: 'madrid' },
+  // Andalucía (Universidad de Sevilla)
+  { slug: 'and-2025', title: 'Examen 2025', convocatoria: 'Universidad de Sevilla', anio: 2025, pdf: '/olimpiada/examen-andalucia-2025.pdf', oficial: true, ambito: 'andalucia' },
+  { slug: 'and-2024', title: 'Examen 2024', convocatoria: 'Universidad de Sevilla', anio: 2024, pdf: '/olimpiada/examen-andalucia-2024.pdf', oficial: true, ambito: 'andalucia' },
+  { slug: 'and-2023', title: 'Examen 2023', convocatoria: 'Universidad de Sevilla', anio: 2023, pdf: '/olimpiada/examen-andalucia-2023.pdf', oficial: true, ambito: 'andalucia' },
+  // Castilla y León (Universidad de Valladolid)
+  { slug: 'cyl-2025', title: 'Examen 2025', convocatoria: 'Universidad de Valladolid', anio: 2025, pdf: '/olimpiada/examen-castilla-leon-2025.pdf', oficial: true, ambito: 'castilla-leon' },
+  { slug: 'cyl-2024', title: 'Examen 2024', convocatoria: 'Universidad de Valladolid', anio: 2024, pdf: '/olimpiada/examen-castilla-leon-2024.pdf', oficial: true, ambito: 'castilla-leon' },
+  { slug: 'cyl-2021', title: 'Examen 2021', convocatoria: 'Universidad de Valladolid', anio: 2021, pdf: '/olimpiada/examen-castilla-leon-2021.pdf', oficial: true, ambito: 'castilla-leon' },
+  // País Vasco (UPV/EHU)
+  { slug: 'pv-2023', title: 'Examen 2023', convocatoria: 'UPV/EHU', anio: 2023, pdf: '/olimpiada/examen-pais-vasco-2023.pdf', oficial: true, ambito: 'pais-vasco' },
+  { slug: 'pv-2022', title: 'Examen 2022', convocatoria: 'UPV/EHU', anio: 2022, pdf: '/olimpiada/examen-pais-vasco-2022.pdf', oficial: true, ambito: 'pais-vasco' },
+  { slug: 'pv-2021', title: 'Examen 2021', convocatoria: 'UPV/EHU', anio: 2021, pdf: '/olimpiada/examen-pais-vasco-2021.pdf', oficial: true, ambito: 'pais-vasco' },
+  // Navarra (UPNA)
+  { slug: 'nav-2025', title: 'Examen 2025', convocatoria: 'Universidad Pública de Navarra', anio: 2025, pdf: '/olimpiada/examen-navarra-2025.pdf', oficial: true, ambito: 'navarra' },
+  { slug: 'nav-2024', title: 'Examen 2024', convocatoria: 'Universidad Pública de Navarra', anio: 2024, pdf: '/olimpiada/examen-navarra-2024.pdf', oficial: true, ambito: 'navarra' },
+  { slug: 'nav-2023', title: 'Examen 2023', convocatoria: 'Universidad Pública de Navarra', anio: 2023, pdf: '/olimpiada/examen-navarra-2023.pdf', oficial: true, ambito: 'navarra' },
+  // Extremadura (UEx)
+  { slug: 'ext-2026', title: 'Examen 2026', convocatoria: 'Universidad de Extremadura', anio: 2026, pdf: '/olimpiada/examen-extremadura-2026.pdf', oficial: true, ambito: 'extremadura' },
+  { slug: 'ext-2025', title: 'Examen 2025', convocatoria: 'Universidad de Extremadura', anio: 2025, pdf: '/olimpiada/examen-extremadura-2025.pdf', oficial: true, ambito: 'extremadura' },
+  { slug: 'ext-2024', title: 'Examen 2024', convocatoria: 'Universidad de Extremadura', anio: 2024, pdf: '/olimpiada/examen-extremadura-2024.pdf', oficial: true, ambito: 'extremadura' },
+  // Galicia (USC)
+  { slug: 'gal-2024', title: 'Examen 2024', convocatoria: 'Universidade de Santiago de Compostela', anio: 2024, pdf: '/olimpiada/examen-galicia-2024.pdf', oficial: true, ambito: 'galicia' },
+  // Asturias (Uniovi)
+  { slug: 'ast-2024', title: 'Examen 2024', convocatoria: 'Universidad de Oviedo', anio: 2024, pdf: '/olimpiada/examen-asturias-2024.pdf', oficial: true, ambito: 'asturias' },
+  // Material de práctica
+  { slug: 'megaexamen', title: 'Megaexamen de práctica', convocatoria: 'Material de práctica del profesor', anio: 0, pdf: '/olimpiada/megaexamen-olimpiadas.pdf', oficial: false, ambito: 'practica' },
+];
+
+/** Agrupa los simulacros por ámbito, en el orden de AMBITOS, ya ordenados por año desc. */
+export function simulacrosPorAmbito(): { ambito: Ambito; examenes: Simulacro[] }[] {
+  return AMBITOS.map((ambito) => ({
+    ambito,
+    examenes: SIMULACROS.filter((s) => s.ambito === ambito.slug).sort((a, b) => b.anio - a.anio),
+  })).filter((g) => g.examenes.length > 0);
+}
 
 export interface Lectura { categoria: string; titulo: string; autor: string; comentario: string; }
 export const LECTURAS: Lectura[] = [
