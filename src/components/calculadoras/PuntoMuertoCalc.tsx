@@ -131,27 +131,13 @@ export default function PuntoMuertoCalc() {
               </div>
             </div>
 
-            <div class="calc__bar">
-              <div
-                class="calc__bar-fill"
-                style={{
-                  width: `${Math.min(100, (demandaPrevista / Math.max(result.Q!, demandaPrevista || 1)) * 100)}%`,
-                  background: result.cubrePuntoMuerto ? 'var(--color-terra)' : '#B83A3A',
-                }}
-              />
-              <div
-                class="calc__bar-marker"
-                style={{
-                  left: `${Math.min(100, (result.Q! / Math.max(result.Q!, demandaPrevista || 1)) * 100)}%`,
-                }}
-                title="Punto muerto"
-              />
-              <div class="calc__bar-legend">
-                <span>0</span>
-                <span class="calc__bar-pm">PM ≈ {Math.ceil(result.Q!).toLocaleString('es-ES')}</span>
-                <span>{Math.max(result.Q!, demandaPrevista).toLocaleString('es-ES')}</span>
-              </div>
-            </div>
+            <PuntoMuertoChart
+              cf={cf}
+              precio={precio}
+              cvu={cvu}
+              demanda={demandaPrevista}
+              Q={result.Q!}
+            />
 
             <details class="calc__details">
               <summary>Cómo se calcula</summary>
@@ -166,6 +152,184 @@ export default function PuntoMuertoCalc() {
       </div>
     </div>
   );
+}
+
+/* ── Break-even SVG chart ──────────────────────────────────────────────────
+ * Classic break-even diagram: total revenue (IT = P·Q), total cost
+ * (CT = CF + CVu·Q) and fixed cost (CF) lines, with the break-even point at
+ * their intersection and the loss / profit regions shaded. Mirrors the SVG
+ * style used by EquilibrioCalc for visual consistency.
+ */
+interface ChartProps {
+  cf: number;
+  precio: number;
+  cvu: number;
+  demanda: number;
+  Q: number;
+}
+
+function PuntoMuertoChart({ cf, precio, cvu, demanda, Q }: ChartProps) {
+  const W = 360;
+  const H = 280;
+  const ML = 52;
+  const MR = 16;
+  const MT = 18;
+  const MB = 36;
+  const iW = W - ML - MR;
+  const iH = H - MT - MB;
+
+  // Q domain: comfortably past both the break-even and the forecast demand.
+  const maxQ = Math.max(Q, demanda, 1) * 1.35;
+  // € domain: revenue is the highest line in the visible range (P > CVu here).
+  const maxMoney = Math.max(precio * maxQ, cf + cvu * maxQ, 1) * 1.05;
+
+  const xOf = (q: number) => ML + (q / maxQ) * iW;
+  const yOf = (m: number) => MT + iH - (m / maxMoney) * iH;
+
+  // Break-even money value (IT and CT coincide here).
+  const moneyPM = precio * Q;
+  const pmInRange = Q <= maxQ;
+
+  const ticks = 4;
+  const yTicks = Array.from({ length: ticks + 1 }, (_, i) => (maxMoney / ticks) * i);
+  const xTicks = Array.from({ length: ticks + 1 }, (_, i) => (maxQ / ticks) * i);
+
+  const demandaInRange = demanda > 0 && demanda <= maxQ;
+
+  return (
+    <svg
+      viewBox={`0 0 ${W} ${H}`}
+      xmlns="http://www.w3.org/2000/svg"
+      role="img"
+      aria-label="Gráfico del punto muerto con las rectas de ingresos, costes totales y costes fijos"
+      style={{
+        width: '100%',
+        height: 'auto',
+        background: 'var(--color-bg, #FBF6EC)',
+        border: '1px solid var(--color-line, #E5D4BD)',
+        borderRadius: '6px',
+        marginTop: '1.4rem',
+      }}
+    >
+      {/* Loss region (left of break-even): between CT above and IT below */}
+      {pmInRange && (
+        <polygon
+          points={`${xOf(0)},${yOf(0)} ${xOf(Q)},${yOf(moneyPM)} ${xOf(0)},${yOf(cf)}`}
+          fill="#B83A3A" fill-opacity="0.10"
+        />
+      )}
+      {/* Profit region (right of break-even): between IT above and CT below */}
+      {pmInRange && (
+        <polygon
+          points={`${xOf(Q)},${yOf(moneyPM)} ${xOf(maxQ)},${yOf(precio * maxQ)} ${xOf(maxQ)},${yOf(cf + cvu * maxQ)}`}
+          fill="var(--color-terra, #C44E2C)" fill-opacity="0.10"
+        />
+      )}
+
+      {/* Grid lines */}
+      {yTicks.map((m) => (
+        <line
+          x1={ML} y1={yOf(m)} x2={ML + iW} y2={yOf(m)}
+          stroke="var(--color-line-soft, #EFE2CB)" stroke-width="1" stroke-dasharray="3 4"
+        />
+      ))}
+
+      {/* Axes */}
+      <line x1={ML} y1={MT + iH} x2={ML + iW} y2={MT + iH} stroke="var(--color-ink, #2A1F18)" stroke-width="1.5" />
+      <line x1={ML} y1={MT} x2={ML} y2={MT + iH} stroke="var(--color-ink, #2A1F18)" stroke-width="1.5" />
+
+      {/* Y tick labels (€) */}
+      {yTicks.map((m) => (
+        <text x={ML - 6} y={yOf(m) + 4} text-anchor="end"
+          font-family="var(--font-mono)" font-size="9" fill="var(--color-ink-mute, #8A7868)">
+          {fmtAxis(m)}
+        </text>
+      ))}
+
+      {/* X tick labels (Q) */}
+      {xTicks.map((q) => (
+        <text x={xOf(q)} y={MT + iH + 15} text-anchor="middle"
+          font-family="var(--font-mono)" font-size="9" fill="var(--color-ink-mute, #8A7868)">
+          {fmtAxis(q)}
+        </text>
+      ))}
+
+      {/* Axis labels */}
+      <text x={ML - 40} y={MT + 6} font-family="var(--font-sans)" font-size="11" font-style="italic"
+        fill="var(--color-ink-soft, #5C4A3D)">€</text>
+      <text x={ML + iW} y={H - 4} text-anchor="end" font-family="var(--font-sans)" font-size="11"
+        font-style="italic" fill="var(--color-ink-soft, #5C4A3D)">Q (uds)</text>
+
+      {/* Fixed cost line (CF) — mustard dashed */}
+      <line x1={xOf(0)} y1={yOf(cf)} x2={xOf(maxQ)} y2={yOf(cf)}
+        stroke="var(--color-mustard-deep, #A87A2A)" stroke-width="1.6" stroke-dasharray="5 4" />
+      <text x={xOf(maxQ) - 2} y={yOf(cf) - 5} text-anchor="end"
+        font-family="var(--font-sans)" font-size="10" font-weight="700"
+        fill="var(--color-mustard-deep, #A87A2A)">CF</text>
+
+      {/* Total cost line (CT = CF + CVu·Q) — teal */}
+      <line x1={xOf(0)} y1={yOf(cf)} x2={xOf(maxQ)} y2={yOf(cf + cvu * maxQ)}
+        stroke="var(--color-eco1, #1F6E6E)" stroke-width="2.5" />
+      <text x={xOf(maxQ) - 2} y={yOf(cf + cvu * maxQ) + 14} text-anchor="end"
+        font-family="var(--font-sans)" font-size="11" font-weight="700"
+        fill="var(--color-eco1, #1F6E6E)">CT</text>
+
+      {/* Total revenue line (IT = P·Q) — terracota */}
+      <line x1={xOf(0)} y1={yOf(0)} x2={xOf(maxQ)} y2={yOf(precio * maxQ)}
+        stroke="var(--color-terra, #C44E2C)" stroke-width="2.5" />
+      <text x={xOf(maxQ) - 2} y={yOf(precio * maxQ) - 5} text-anchor="end"
+        font-family="var(--font-sans)" font-size="11" font-weight="700"
+        fill="var(--color-terra-deep, #9C3A1C)">IT</text>
+
+      {/* Demand forecast — vertical guide */}
+      {demandaInRange && (
+        <>
+          <line x1={xOf(demanda)} y1={MT} x2={xOf(demanda)} y2={MT + iH}
+            stroke="var(--color-ink-mute, #8A7868)" stroke-width="1" stroke-dasharray="2 3" />
+          <text x={xOf(demanda)} y={MT - 4} text-anchor="middle"
+            font-family="var(--font-mono)" font-size="8.5" fill="var(--color-ink-mute, #8A7868)">
+            demanda
+          </text>
+        </>
+      )}
+
+      {/* Break-even point */}
+      {pmInRange && (
+        <>
+          <line x1={ML} y1={yOf(moneyPM)} x2={xOf(Q)} y2={yOf(moneyPM)}
+            stroke="var(--color-ink-mute, #8A7868)" stroke-width="1" stroke-dasharray="3 3" />
+          <line x1={xOf(Q)} y1={MT + iH} x2={xOf(Q)} y2={yOf(moneyPM)}
+            stroke="var(--color-ink-mute, #8A7868)" stroke-width="1" stroke-dasharray="3 3" />
+          <circle cx={xOf(Q)} cy={yOf(moneyPM)} r="5"
+            fill="var(--color-mustard, #D4A24C)" stroke="var(--color-ink, #2A1F18)" stroke-width="1.5" />
+          <text x={xOf(Q) + 8} y={yOf(moneyPM) + 14}
+            font-family="var(--font-mono)" font-size="10" fill="var(--color-ink, #2A1F18)">
+            PM ({fmtAxis(Q)})
+          </text>
+        </>
+      )}
+
+      {/* Legend */}
+      <rect x={ML + 6} y={MT + 4} width="66" height="50" rx="3"
+        fill="var(--color-paper, #FFFFFF)" stroke="var(--color-line, #E5D4BD)" stroke-width="1" />
+      <line x1={ML + 12} y1={MT + 14} x2={ML + 26} y2={MT + 14}
+        stroke="var(--color-terra, #C44E2C)" stroke-width="2.5" />
+      <text x={ML + 30} y={MT + 18} font-family="var(--font-sans)" font-size="9"
+        fill="var(--color-ink-soft, #5C4A3D)">Ingresos</text>
+      <line x1={ML + 12} y1={MT + 28} x2={ML + 26} y2={MT + 28}
+        stroke="var(--color-eco1, #1F6E6E)" stroke-width="2.5" />
+      <text x={ML + 30} y={MT + 32} font-family="var(--font-sans)" font-size="9"
+        fill="var(--color-ink-soft, #5C4A3D)">C. totales</text>
+      <line x1={ML + 12} y1={MT + 42} x2={ML + 26} y2={MT + 42}
+        stroke="var(--color-mustard-deep, #A87A2A)" stroke-width="1.6" stroke-dasharray="5 4" />
+      <text x={ML + 30} y={MT + 46} font-family="var(--font-sans)" font-size="9"
+        fill="var(--color-ink-soft, #5C4A3D)">C. fijos</text>
+    </svg>
+  );
+}
+
+function fmtAxis(n: number): string {
+  return n.toLocaleString('es-ES', { maximumFractionDigits: n >= 100 ? 0 : 1 });
 }
 
 function fmtMoney(n: number): string {
