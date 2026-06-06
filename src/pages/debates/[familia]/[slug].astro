@@ -12,9 +12,9 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 import DebateMeta from '@components/debates/DebateMeta.astro';
 import PosturaCard from '@components/debates/PosturaCard.astro';
 import Rubrica from '@components/debates/Rubrica.astro';
-import PrintButton from '@components/dinamicas/PrintButton.astro';
+import FichaPreparacion from '@components/debates/materiales/FichaPreparacion.astro';
 import PuenteUnidades from '@components/emprendimiento/PuenteUnidades.astro';
-import { familiaMeta } from '@/lib/debates';
+import { familiaMeta, debatePdfName } from '@/lib/debates';
 import { breadcrumbLd } from '@/lib/seo';
 import { getCollection, render } from 'astro:content';
 import type { GetStaticPaths } from 'astro';
@@ -31,6 +31,7 @@ const { entry } = Astro.props;
 const d = entry.data;
 const { Content } = await render(entry);
 const familia = familiaMeta(d.familia);
+const pdfHref = `/downloads/${debatePdfName(d.familia, Astro.params.slug!)}`;
 const tonoFor = (i: number, total: number): 'favor' | 'contra' | 'neutro' =>
   total === 2 ? (i === 0 ? 'favor' : 'contra') : 'neutro';
 const breadcrumb = breadcrumbLd([
@@ -77,11 +78,21 @@ const breadcrumb = breadcrumbLd([
         </section>
       )}
 
-      <div class="print-bar no-print"><PrintButton /></div>
+      <div class="print-bar no-print">
+        <a class="download-cta" href={pdfHref} download>
+          <span class="download-cta__icon" aria-hidden="true">↓</span>
+          <span class="download-cta__text">
+            <strong>Descargar materiales del debate (PDF)</strong>
+            <span class="muted">Guía del profesor · hoja de evaluación · tarjetas · ficha del alumno</span>
+          </span>
+        </a>
+      </div>
 
       <article class="prose">
         <Content />
       </article>
+
+      <FichaPreparacion mocion={d.mocion} />
 
       <div class="no-print">
         {d.rubrica.length > 0 && (
@@ -130,6 +141,12 @@ const breadcrumb = breadcrumbLd([
   .mocion__q { font-family: var(--font-serif); font-style: italic; font-size: 1.3rem; line-height: 1.4; color: var(--color-ink); border-left: 4px solid var(--color-terra); margin: 0.4rem 0 1rem; padding: 0.2rem 0 0.2rem 1rem; }
   .posturas { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; }
   .print-bar { margin: 1.5rem 0; }
+  .download-cta { display: inline-flex; align-items: center; gap: 1rem; padding: 0.9rem 1.4rem 0.9rem 1.1rem; background: var(--color-terra); color: #fff; text-decoration: none; border-radius: 6px; }
+  .download-cta:hover { background: var(--color-terra-deep); }
+  .download-cta__icon { font-family: var(--font-serif); font-style: italic; font-size: 1.7rem; line-height: 1; color: var(--color-mustard-soft); }
+  .download-cta__text { display: flex; flex-direction: column; gap: 0.15rem; }
+  .download-cta__text strong { font-family: var(--font-sans); font-size: 0.95rem; font-weight: 600; }
+  .download-cta__text .muted { font-family: var(--font-sans); font-size: 0.78rem; opacity: 0.8; }
   .prose { font-size: 1.05rem; line-height: 1.7; color: var(--color-ink); }
   .prose :global(h2) { font-family: var(--font-serif); font-size: 1.6rem; margin: 2.2em 0 0.7em; position: relative; padding-top: 1em; font-weight: 500; }
   .prose :global(h2::before) { content: ""; position: absolute; top: 0; left: 0; width: 2.5rem; height: 4px; background: var(--color-terra); border-radius: 999px; }
