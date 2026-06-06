@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { BLOQUES, BLOQUE_SLUGS, bloqueMeta, SIMULACROS, GUIA } from './olimpiada.ts';
+import { BLOQUES, BLOQUE_SLUGS, bloqueMeta, SIMULACROS, GUIA, AMBITO_SLUGS } from './olimpiada.ts';
 
 describe('BLOQUES', () => {
   it('has 12 blocks with a color token and unique slug each', () => {
@@ -15,9 +15,13 @@ describe('bloqueMeta', () => {
   });
 });
 describe('SIMULACROS', () => {
-  it('lists the 3 official exams + megaexamen, each with a pdf path', () => {
-    expect(SIMULACROS.filter((s) => s.oficial)).toHaveLength(3);
+  it('lists official exams (several ámbitos) + the práctica megaexamen, each with a pdf path', () => {
+    expect(SIMULACROS.filter((s) => s.oficial).length).toBeGreaterThanOrEqual(20);
+    expect(SIMULACROS.some((s) => !s.oficial)).toBe(true);
     for (const s of SIMULACROS) expect(s.pdf).toMatch(/^\/olimpiada\/.*\.pdf$/);
+  });
+  it('every simulacro has a known ámbito', () => {
+    for (const s of SIMULACROS) expect(AMBITO_SLUGS).toContain(s.ambito);
   });
 });
 describe('GUIA', () => {

@@ -5,12 +5,15 @@
  * and two links: «Ver PDF» and «Descargar».
  */
 import BaseLayout from '@layouts/BaseLayout.astro';
-import { SIMULACROS, GUIA } from '@/lib/olimpiada';
+import { GUIA, simulacrosPorAmbito } from '@/lib/olimpiada';
+
+const grupos = simulacrosPorAmbito();
+const totalExamenes = grupos.reduce((n, g) => n + g.examenes.filter((e) => e.oficial).length, 0);
 ---
 
 <BaseLayout
   title="Simulacros — Olimpiada de Economía"
-  description="Exámenes oficiales de la Olimpiada de Economía y megaexamen de práctica. Entrena cronometrándote las 2h y las 3 partes del examen."
+  description="Exámenes oficiales de la Olimpiada de Economía (fase nacional y de varias comunidades autónomas) y megaexamen de práctica. Entrena cronometrándote las partes del examen."
 >
   <div class="container">
     <nav class="breadcrumb">
@@ -25,8 +28,9 @@ import { SIMULACROS, GUIA } from '@/lib/olimpiada';
       <span class="kicker">Práctica real</span>
       <h1 class="serif">Simulacros de examen</h1>
       <p class="lede">
-        Exámenes de convocatorias anteriores y material de práctica.
-        Úsalos en condiciones reales para calibrar tu nivel.
+        {totalExamenes} exámenes oficiales de convocatorias recientes —la fase nacional
+        y varias comunidades autónomas— más un megaexamen de práctica. Úsalos en
+        condiciones reales para calibrar tu nivel.
       </p>
     </div>
   </section>
@@ -39,6 +43,7 @@ import { SIMULACROS, GUIA } from '@/lib/olimpiada';
           <li>Reserva <strong>{GUIA.duracion}</strong> sin interrupciones.</li>
           <li>Responde las 3 partes en orden: teoría ({GUIA.partes[0]?.puntos}), ejercicio ({GUIA.partes[1]?.puntos}) y comentario de texto ({GUIA.partes[2]?.puntos}).</li>
           <li>Corrige con el solucionario o el megaexamen e identifica los bloques con más margen de mejora.</li>
+          <li><strong>El formato varía según la comunidad</strong> (número de preguntas, puntuación, duración). La guía describe el de la Comunitat Valenciana; usa los de otras comunidades como práctica adicional.</li>
         </ul>
       </div>
     </div>
@@ -46,22 +51,30 @@ import { SIMULACROS, GUIA } from '@/lib/olimpiada';
 
   <section class="lista">
     <div class="container">
-      <div class="card-grid">
-        {SIMULACROS.map((s) => (
-          <div class="card" data-oficial={s.oficial ? 'true' : 'false'}>
-            <div class="card__head">
-              {!s.oficial && <span class="badge badge--practica">Práctica</span>}
-              {s.oficial && <span class="badge badge--oficial">Oficial</span>}
-            </div>
-            <h2 class="card__title serif">{s.title}</h2>
-            <p class="card__conv">{s.convocatoria}{s.anio > 0 ? ` · ${s.anio}` : ''}</p>
-            <div class="card__actions">
-              <a class="btn btn--primary" href={s.pdf} target="_blank" rel="noopener noreferrer">Ver PDF</a>
-              <a class="btn btn--ghost" href={s.pdf} download>Descargar</a>
-            </div>
+      {grupos.map((g) => (
+        <div class="ambito">
+          <div class="ambito__head">
+            <h2 class="ambito__title serif">{g.ambito.label}</h2>
+            <p class="ambito__intro">{g.ambito.intro}</p>
           </div>
-        ))}
-      </div>
+          <div class="card-grid">
+            {g.examenes.map((s) => (
+              <div class="card" data-oficial={s.oficial ? 'true' : 'false'}>
+                <div class="card__head">
+                  {!s.oficial && <span class="badge badge--practica">Práctica</span>}
+                  {s.oficial && <span class="badge badge--oficial">Oficial</span>}
+                </div>
+                <h3 class="card__title serif">{s.title}</h3>
+                <p class="card__conv">{s.convocatoria}</p>
+                <div class="card__actions">
+                  <a class="btn btn--primary" href={s.pdf} target="_blank" rel="noopener noreferrer">Ver PDF</a>
+                  <a class="btn btn--ghost" href={s.pdf} download>Descargar</a>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
     </div>
   </section>
 
@@ -93,7 +106,11 @@ import { SIMULACROS, GUIA } from '@/lib/olimpiada';
   .nota li::marker { color: var(--color-mustard); }
 
   .lista { padding: 0 0 3rem; }
-  .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 1.2rem; }
+  .ambito { margin-bottom: 2.8rem; }
+  .ambito__head { margin: 0 0 1rem; padding-bottom: 0.6rem; border-bottom: 1px solid var(--color-line); }
+  .ambito__title { font-size: 1.5rem; margin: 0 0 0.25rem; color: var(--color-ink); }
+  .ambito__intro { font-size: 0.92rem; color: var(--color-ink-soft); line-height: 1.5; max-width: 72ch; margin: 0; }
+  .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1.2rem; }
   .card {
     display: flex; flex-direction: column; gap: 0.7rem;
     padding: 1.4rem; background: var(--color-paper);
