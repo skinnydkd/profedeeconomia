@@ -140,6 +140,21 @@ const tests = defineCollection({
   }),
 });
 
+const retos = defineCollection({
+  loader: glob({ pattern: 'asignaturas/*/retos/**/*.{md,mdx}', base: './src/content' }),
+  schema: z.object({
+    asignatura: z.enum(ASIGNATURA_SLUGS),
+    competencia: z.string(),
+    unidad_relacionada: z.number().int().min(1).optional(),
+    title: z.string(),
+    descripcion: z.string(),
+    duracion: z.string().optional(),
+    competencias_clave: z.array(z.string()).default([]),
+    lang: z.enum(LANGS).default('es'),
+    estado: z.enum(ESTADOS).default('borrador'),
+  }),
+});
+
 const recursos = defineCollection({
   loader: glob({
     pattern: 'asignaturas/*/recursos/**/*.{md,mdx}',
@@ -659,4 +674,5 @@ export const collections = {
   retoCurso,
   olimpiadaFichas,
   olimpiadaTextos,
+  retos,
 };
