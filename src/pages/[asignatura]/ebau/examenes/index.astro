@@ -1,0 +1,158 @@
+---
+/**
+ * Exámenes EBAU oficiales de años anteriores, por comunidad autónoma (EDMN 2BACH).
+ * Los PDFs reales se alojan en public/ebau-examenes/. La disponibilidad se detecta
+ * en build con fs.existsSync; lo que falta (y todo 2026) se muestra "próximamente".
+ */
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { ASIGNATURAS } from '@/lib/asignaturas';
+import { CCAA_LIST, ANIOS, CONVOCATORIAS, ebauPdfRelPath, ebauPdfHref } from '@/lib/ebau-examenes';
+import { getCollection } from 'astro:content';
+import { existsSync } from 'node:fs';
+import { resolve } from 'node:path';
+import type { GetStaticPaths } from 'astro';
+
+export const getStaticPaths = (async () => {
+  const all = await getCollection('ebau');
+  const slugs = [...new Set(all.filter((e) => e.data.estado === 'publicado').map((e) => e.data.asignatura))];
+  return slugs.map((slug) => ({ params: { asignatura: slug }, props: { asignatura: ASIGNATURAS[slug] } }));
+}) satisfies GetStaticPaths;
+
+const { asignatura: a } = Astro.props;
+
+const tiene = (ccaa: string, anio: number, conv: string, tipo: 'examen' | 'solucion') =>
+  existsSync(resolve(process.cwd(), 'public', ebauPdfRelPath(ccaa, anio, conv, tipo)));
+
+interface Fila {
+  anio: number; convLabel: string;
+  examen: string | null; solucion: string | null; proximamente: boolean;
+}
+
+const grupos = CCAA_LIST.map((c) => {
+  const filas: Fila[] = [];
+  for (const anio of ANIOS) {
+    for (const conv of CONVOCATORIAS) {
+      const tieneExamen = tiene(c.slug, anio, conv.slug, 'examen');
+      filas.push({
+        anio,
+        convLabel: conv.label,
+        examen: tieneExamen ? ebauPdfHref(c.slug, anio, conv.slug, 'examen') : null,
+        solucion: tiene(c.slug, anio, conv.slug, 'solucion') ? ebauPdfHref(c.slug, anio, conv.slug, 'solucion') : null,
+        proximamente: !tieneExamen,
+      });
+    }
+  }
+  // 2026: siempre próximamente
+  filas.push({ anio: 2026, convLabel: 'Junio (ordinaria)', examen: null, solucion: null, proximamente: true });
+  const disponibles = filas.filter((f) => f.examen).length;
+  return { ccaa: c, filas, disponibles };
+});
+
+const totalDisponibles = grupos.reduce((n, g) => n + g.disponibles, 0);
+---
+
+<BaseLayout
+  title={`Exámenes EBAU por comunidad — ${a.shortLabel}`}
+  description={`Exámenes oficiales de EBAU/PAU de Economía de la Empresa de años anteriores, por comunidad autónoma, con su resolución en PDF.`}
+>
+  <div class="container">
+    <nav class="breadcrumb">
+      <a href="/">Inicio</a> <span class="sep">›</span>
+      <a href={`/${a.slug}/`}>{a.shortLabel}</a> <span class="sep">›</span>
+      <a href={`/${a.slug}/ebau/`}>Preparación EBAU</a> <span class="sep">›</span>
+      <span>Exámenes por comunidad</span>
+    </nav>
+  </div>
+
+  <section class="hero">
+    <div class="container">
+      <span class="kicker">{a.shortLabel} · EBAU</span>
+      <h1>Exámenes EBAU por comunidad</h1>
+      <p class="lede">
+        Exámenes oficiales de la prueba de acceso (Economía de la Empresa) de años anteriores,
+        organizados por comunidad autónoma y convocatoria, con su resolución. {totalDisponibles > 0
+          ? `${totalDisponibles} exámenes disponibles; el resto, próximamente.`
+          : 'Se irán publicando por comunidad; los que faltan aparecen como próximamente.'}
+      </p>
+    </div>
+  </section>
+
+  <section class="lista">
+    <div class="container">
+      {grupos.map((g) => (
+        <div class="ccaa">
+          <h2 class="ccaa__title serif">{g.ccaa.label}</h2>
+          <table class="tabla">
+            <thead>
+              <tr><th>Convocatoria</th><th>Examen</th><th>Resolución</th></tr>
+            </thead>
+            <tbody>
+              {g.filas.map((f) => (
+                <tr class={f.proximamente ? 'is-prox' : ''}>
+                  <td class="conv">{f.anio} · {f.convLabel}</td>
+                  <td>
+                    {f.examen
+                      ? <a class="dl" href={f.examen} download>Descargar examen</a>
+                      : <span class="prox">Próximamente</span>}
+                  </td>
+                  <td>
+                    {f.solucion
+                      ? <a class="dl" href={f.solucion} download>Descargar resolución</a>
+                      : (f.examen ? <span class="prox">—</span> : <span class="prox">Próximamente</span>)}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="nota">
+    <div class="container">
+      <p class="nota-text">
+        Los exámenes son documentos oficiales de las pruebas de acceso a la universidad de
+        cada comunidad autónoma, alojados aquí con fines educativos y de estudio. Cada PDF
+        procede de la fuente oficial correspondiente. Confirma siempre el modelo vigente de
+        tu convocatoria en el portal oficial de tu comunidad.
+      </p>
+    </div>
+  </section>
+
+  <div class="container back-link">
+    <a href={`/${a.slug}/ebau/`}>← Preparación EBAU</a>
+  </div>
+</BaseLayout>
+
+<style>
+  .container { max-width: 1240px; margin: 0 auto; padding: 0 clamp(1.5rem, 4vw, 3rem); }
+  .breadcrumb { font-size: 0.92rem; color: var(--color-ink-mute); margin: 2rem 0; }
+  .breadcrumb a { color: var(--color-ink-mute); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--color-terra); }
+  .breadcrumb .sep { margin: 0 0.5em; color: var(--color-mustard); }
+
+  .hero { padding: 1rem 0 2rem; }
+  .kicker { font-family: var(--font-sans); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-terra); }
+  h1 { margin: 0.6rem 0 0.8rem; }
+  .lede { font-size: 1.2rem; color: var(--color-ink-soft); line-height: 1.55; max-width: 62ch; }
+
+  .lista { padding: 0 0 2rem; }
+  .ccaa { margin-bottom: 2.2rem; }
+  .ccaa__title { font-size: 1.4rem; margin: 0 0 0.7rem; padding-bottom: 0.4rem; border-bottom: 1px solid var(--color-line); color: var(--color-ink); }
+  .tabla { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+  .tabla th { text-align: left; font-family: var(--font-sans); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--color-ink-mute); font-weight: 700; padding: 0.4rem 0.6rem; border-bottom: 1px solid var(--color-line); }
+  .tabla td { padding: 0.55rem 0.6rem; border-bottom: 1px solid var(--color-line-soft, var(--color-line)); vertical-align: middle; }
+  .tabla .conv { font-family: var(--font-mono); font-size: 0.85rem; color: var(--color-ink); white-space: nowrap; }
+  tr.is-prox .conv { color: var(--color-ink-mute); }
+  .dl { font-family: var(--font-sans); font-size: 0.9rem; font-weight: 600; color: var(--color-terra); text-decoration: none; }
+  .dl:hover { text-decoration: underline; }
+  .prox { font-family: var(--font-sans); font-size: 0.85rem; color: var(--color-ink-mute); }
+
+  .nota { padding: 0 0 1.5rem; }
+  .nota-text { font-family: var(--font-serif); font-style: italic; font-size: 1rem; color: var(--color-ink-mute); max-width: 70ch; line-height: 1.5; border-top: 1px dashed var(--color-line); padding-top: 1.2rem; }
+
+  .back-link { padding: 0 0 3rem; }
+  .back-link a { font-family: var(--font-sans); font-size: 0.95rem; font-weight: 500; color: var(--color-terra); text-decoration: none; }
+  .back-link a:hover { text-decoration: underline; }
+</style>
