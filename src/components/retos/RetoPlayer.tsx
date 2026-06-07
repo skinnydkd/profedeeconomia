@@ -231,7 +231,7 @@ export default function RetoPlayer({ reto, niveles, competenciaTexto, competenci
             const corr = i === item.correcta;
             const sc = confirmada ? (corr ? 'is-correct' : sel ? 'is-incorrect' : '') : sel ? 'is-selected' : '';
             return (
-              <li>
+              <li key={i}>
                 <button type="button" class={['qp__opt', sc].join(' ').trim()} onClick={() => setRespuesta(i)} disabled={confirmada} aria-pressed={sel}>
                   <span class="qp__opt-letra">{String.fromCharCode(65 + i)}</span>
                   <span class="qp__opt-texto">{opt}</span>
@@ -249,7 +249,7 @@ export default function RetoPlayer({ reto, niveles, competenciaTexto, competenci
             const corr = v === item.correcta;
             const sc = confirmada ? (corr ? 'is-correct' : sel ? 'is-incorrect' : '') : sel ? 'is-selected' : '';
             return (
-              <button type="button" class={['qp__opt', sc].join(' ').trim()} onClick={() => setRespuesta(v)} disabled={confirmada} aria-pressed={sel}>
+              <button key={String(v)} type="button" class={['qp__opt', sc].join(' ').trim()} onClick={() => setRespuesta(v)} disabled={confirmada} aria-pressed={sel}>
                 <span class="qp__opt-texto">{v ? 'Verdadero' : 'Falso'}</span>
               </button>
             );
@@ -279,7 +279,7 @@ export default function RetoPlayer({ reto, niveles, competenciaTexto, competenci
               const chosen = arr[li] ?? -1;
               const okRow = confirmada && chosen === item.correctas[li];
               return (
-                <tr class={confirmada ? (okRow ? 'is-ok' : 'is-fail') : ''}>
+                <tr key={li} class={confirmada ? (okRow ? 'is-ok' : 'is-fail') : ''}>
                   <td class="qp__rel-num">{li + 1}</td>
                   <td class="qp__rel-izq">{izq}</td>
                   <td class="qp__rel-der">
@@ -300,7 +300,7 @@ export default function RetoPlayer({ reto, niveles, competenciaTexto, competenci
           {ordArr.map((el, pos) => {
             const okRow = confirmada && el === item.elementos[pos];
             return (
-              <li class={['rp__ord-item', confirmada ? (okRow ? 'is-ok' : 'is-fail') : ''].join(' ').trim()}>
+              <li key={el} class={['rp__ord-item', confirmada ? (okRow ? 'is-ok' : 'is-fail') : ''].join(' ').trim()}>
                 <span class="rp__ord-pos">{pos + 1}</span>
                 <span class="rp__ord-text">{el}</span>
                 {!confirmada && (
