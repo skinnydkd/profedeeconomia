@@ -25,3 +25,11 @@ export function familiaMeta(slug: string): Familia {
   if (!f) throw new Error(`unknown familia de debate: ${slug}`);
   return f;
 }
+
+/**
+ * Canonical filename for a debate's pre-generated material pack PDF, served
+ * from /downloads/. Must match the name produced by scripts/build-debates-pdf.mjs.
+ */
+export function debatePdfName(familia: string, slug: string): string {
+  return `debate-${familia}-${slug}.pdf`;
+}

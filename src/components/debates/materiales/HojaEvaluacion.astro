@@ -1,0 +1,65 @@
+---
+/**
+ * Printable scoring sheet: the debate's rubric turned into a 4-level grid
+ * (1 Inicio / 2 En proceso / 3 Bien / 4 Excelente). One A4 page, to photocopy
+ * per group or student. Levels are generic (the rubric schema stores no
+ * per-level descriptors).
+ */
+interface Criterio { criterio: string; descripcion: string; competencia?: string; }
+interface Props { rubrica: Criterio[]; title: string; }
+const { rubrica, title } = Astro.props;
+const niveles = ['1 Inicio', '2 En proceso', '3 Bien', '4 Excelente'];
+---
+<section class="hoja print-block">
+  <header class="hoja__head">
+    <span class="hoja__tag">Hoja de evaluación</span>
+    <h2 class="hoja__title">{title}</h2>
+    <div class="hoja__meta">
+      <span>Grupo / alumno: <span class="line"></span></span>
+      <span>Fecha: <span class="line line--sm"></span></span>
+    </div>
+  </header>
+
+  <table class="hoja__table">
+    <thead>
+      <tr>
+        <th class="c-crit">Criterio</th>
+        {niveles.map((n) => <th class="c-niv">{n}</th>)}
+      </tr>
+    </thead>
+    <tbody>
+      {rubrica.map((r) => (
+        <tr>
+          <td class="c-crit">
+            <strong>{r.criterio}</strong>
+            <span class="desc">{r.descripcion}</span>
+            {r.competencia && <span class="comp">{r.competencia}</span>}
+          </td>
+          {niveles.map(() => <td class="c-niv"><span class="box" aria-hidden="true"></span></td>)}
+        </tr>
+      ))}
+    </tbody>
+  </table>
+
+  <p class="hoja__obs"><strong>Observaciones:</strong></p>
+  <span class="line line--full"></span>
+  <span class="line line--full"></span>
+</section>
+<style>
+  .hoja { margin: 1rem 0; }
+  .hoja__tag { font-family: var(--font-sans); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-mustard-deep); }
+  .hoja__title { font-family: var(--font-serif); font-size: 1.3rem; margin: 0.2rem 0 0.6rem; font-weight: 500; }
+  .hoja__meta { display: flex; gap: 1.5rem; font-size: 0.85rem; color: var(--color-ink-mute); margin-bottom: 0.9rem; }
+  .hoja__meta span { display: inline-flex; align-items: baseline; gap: 0.4rem; }
+  .hoja__meta .line { display: inline-block; width: 14rem; border-bottom: 1px solid var(--color-line); height: 1rem; }
+  .hoja__meta .line--sm { width: 7rem; }
+  .hoja__table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+  .hoja__table th, .hoja__table td { border: 1px solid var(--color-line); padding: 0.5em 0.6em; vertical-align: top; }
+  .hoja__table th { font-family: var(--font-sans); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--color-ink-mute); background: var(--color-mustard-soft); }
+  .c-niv { width: 4.5rem; text-align: center; }
+  .desc { display: block; color: var(--color-ink-soft); font-weight: 400; margin-top: 0.2rem; }
+  .comp { display: inline-block; margin-top: 0.3rem; font-family: var(--font-mono); font-size: 0.72rem; color: var(--color-terra-deep); }
+  .box { display: inline-block; width: 1rem; height: 1rem; border: 1.5px solid var(--color-ink-mute); border-radius: 3px; }
+  .hoja__obs { margin: 1rem 0 0.3rem; }
+  .line--full { display: block; border-bottom: 1px solid var(--color-line); height: 1.7rem; margin: 0.3rem 0; }
+</style>

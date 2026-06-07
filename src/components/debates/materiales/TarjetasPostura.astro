@@ -1,0 +1,54 @@
+---
+/**
+ * Cut-out cards handed to each group: one per postura (label + síntesis) plus,
+ * for moderated formats, a moderador/observador card. One A4 page.
+ */
+interface Postura { id: string; label: string; sintesis: string; }
+interface Props { posturas: Postura[]; formato: string; mocion: string; }
+const { posturas, formato, mocion } = Astro.props;
+const conModerador = ['mesa-redonda', 'fishbowl', 'juicio-simulado'].includes(formato);
+---
+<section class="tarjetas print-block">
+  <header class="tarjetas__head">
+    <span class="tarjetas__tag">Tarjetas de postura · recortables</span>
+    <h2 class="tarjetas__title">Reparto de posturas</h2>
+    <p class="tarjetas__mocion">{mocion}</p>
+  </header>
+
+  <div class="tarjetas__grid">
+    {posturas.map((p) => (
+      <article class="tarjeta">
+        <span class="tarjeta__kicker">Defendéis esta postura</span>
+        <h3 class="tarjeta__label">{p.label}</h3>
+        <p class="tarjeta__sintesis">{p.sintesis}</p>
+        <span class="tarjeta__cut" aria-hidden="true">✂ recorta por aquí</span>
+      </article>
+    ))}
+
+    {conModerador && (
+      <article class="tarjeta tarjeta--mod">
+        <span class="tarjeta__kicker">Equipo de moderación</span>
+        <h3 class="tarjeta__label">Moderación y observación</h3>
+        <p class="tarjeta__sintesis">
+          Dais y quitáis turnos, controláis los tiempos de cada fase y anotáis qué
+          argumentos quedan sin respuesta. No defendéis ninguna postura: vuestra tarea
+          es que el debate sea limpio y ordenado.
+        </p>
+        <span class="tarjeta__cut" aria-hidden="true">✂ recorta por aquí</span>
+      </article>
+    )}
+  </div>
+</section>
+<style>
+  .tarjetas { margin: 1rem 0; }
+  .tarjetas__tag { font-family: var(--font-sans); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-terra); }
+  .tarjetas__title { font-family: var(--font-serif); font-size: 1.3rem; margin: 0.2rem 0 0.3rem; font-weight: 500; }
+  .tarjetas__mocion { font-family: var(--font-serif); font-style: italic; color: var(--color-ink-soft); margin: 0 0 1rem; }
+  .tarjetas__grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+  .tarjeta { border: 1.5px dashed var(--color-line); border-radius: 8px; padding: 1.1rem 1.3rem; background: var(--color-paper); break-inside: avoid; }
+  .tarjeta--mod { border-style: solid; border-color: var(--color-mustard); }
+  .tarjeta__kicker { font-family: var(--font-sans); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-ink-mute); }
+  .tarjeta__label { font-family: var(--font-serif); font-size: 1.25rem; margin: 0.2rem 0 0.5rem; font-weight: 500; }
+  .tarjeta__sintesis { font-size: 0.95rem; line-height: 1.55; color: var(--color-ink-soft); margin: 0; }
+  .tarjeta__cut { display: block; margin-top: 0.8rem; font-family: var(--font-mono); font-size: 0.7rem; color: var(--color-ink-mute); }
+</style>

@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { FAMILIAS_DEBATE, FAMILIA_DEBATE_SLUGS, familiaMeta } from './debates.ts';
+import { FAMILIAS_DEBATE, FAMILIA_DEBATE_SLUGS, familiaMeta, debatePdfName } from './debates.ts';
 
 describe('FAMILIAS_DEBATE', () => {
   it('declares the 6 families in display order with a color token each', () => {
@@ -20,5 +20,17 @@ describe('familiaMeta', () => {
   });
   it('throws on an unknown family', () => {
     expect(() => familiaMeta('nope')).toThrow(/unknown familia de debate/i);
+  });
+});
+
+describe('debatePdfName', () => {
+  it('builds the canonical downloads filename from familia + slug', () => {
+    expect(debatePdfName('dinero-tecnologia-futuro', '01-criptomonedas'))
+      .toBe('debate-dinero-tecnologia-futuro-01-criptomonedas.pdf');
+  });
+
+  it('does not double-prefix or alter the segments', () => {
+    expect(debatePdfName('mercado-estado', '03-salario-minimo'))
+      .toBe('debate-mercado-estado-03-salario-minimo.pdf');
   });
 });

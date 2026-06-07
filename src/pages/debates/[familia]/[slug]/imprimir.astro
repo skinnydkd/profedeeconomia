@@ -1,0 +1,100 @@
+---
+/**
+ * Print-ready material pack for one debate. Consumed by pagedjs-cli
+ * (scripts/build-debates-pdf.mjs) to produce debate-{familia}-{slug}.pdf.
+ * Composes: teacher guide (header + MDX body), scoring sheet, posture cards,
+ * student prep sheet. noindex.
+ */
+import GuiaProfesor from '@components/debates/materiales/GuiaProfesor.astro';
+import HojaEvaluacion from '@components/debates/materiales/HojaEvaluacion.astro';
+import TarjetasPostura from '@components/debates/materiales/TarjetasPostura.astro';
+import FichaPreparacion from '@components/debates/materiales/FichaPreparacion.astro';
+import { getCollection, render } from 'astro:content';
+import type { GetStaticPaths } from 'astro';
+
+export const getStaticPaths = (async () => {
+  const all = (await getCollection('debates')).filter((e) => e.data.estado === 'publicado');
+  return all.map((entry) => {
+    const [familia, ...rest] = entry.id.replace(/^debates\//, '').split('/');
+    return { params: { familia, slug: rest.join('/') }, props: { entry } };
+  });
+}) satisfies GetStaticPaths;
+
+const { entry } = Astro.props;
+const d = entry.data;
+const { Content } = await render(entry);
+---
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="robots" content="noindex" />
+    <title>{d.title} — Materiales para el aula</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,0..100,0..1;1,9..144,300..700,0..100,0..1&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" />
+    <style is:inline>
+      @font-face { font-family: 'Switzer'; src: url('/fonts/switzer/switzer-400.woff2') format('woff2'); font-weight: 400; font-display: swap; }
+      @font-face { font-family: 'Switzer'; src: url('/fonts/switzer/switzer-500.woff2') format('woff2'); font-weight: 500; font-display: swap; }
+      @font-face { font-family: 'Switzer'; src: url('/fonts/switzer/switzer-600.woff2') format('woff2'); font-weight: 600; font-display: swap; }
+      @font-face { font-family: 'Switzer'; src: url('/fonts/switzer/switzer-700.woff2') format('woff2'); font-weight: 700; font-display: swap; }
+      :root {
+        --color-bg: #FBF6EC; --color-bg-cream: #F5EDD9; --color-paper: #FFFFFF;
+        --color-ink: #2A1F18; --color-ink-soft: #5C4A3D; --color-ink-mute: #806C5A;
+        --color-line: #E5D4BD; --color-line-soft: #EFE2CB;
+        --color-mustard: #D4A24C; --color-mustard-deep: #A87A2A; --color-mustard-soft: #F5E5BC;
+        --color-terra: #C44E2C; --color-terra-deep: #9C3A1C;
+        --font-serif: "Fraunces", Georgia, serif;
+        --font-sans: "Switzer", -apple-system, sans-serif;
+        --font-mono: "JetBrains Mono", monospace;
+      }
+      @page { size: A4; margin: 16mm 15mm; }
+      * { box-sizing: border-box; }
+      body { margin: 0; font-family: var(--font-sans); color: var(--color-ink); font-size: 10.5pt; line-height: 1.5; background: #fff; }
+      .print-block { break-before: page; }
+      .print-block:first-child { break-before: auto; }
+      .pack-cover { break-after: page; padding-top: 4rem; }
+      .pack-cover__eyebrow { color: var(--color-mustard-deep); font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; font-size: 10pt; }
+      .pack-cover__title { font-family: var(--font-serif); font-size: 30pt; line-height: 1.05; margin: 0.5rem 0; }
+      .pack-cover__sub { font-style: italic; font-family: var(--font-serif); color: var(--color-ink-soft); font-size: 13pt; }
+      .pack-cover__index { margin-top: 2rem; font-size: 0.95rem; color: var(--color-ink-soft); }
+      .pack-cover__index li { margin-bottom: 0.3rem; }
+      /* Tame the web prose styles of the MDX body inside the guide */
+      :global(.guia h2) { font-family: var(--font-serif); font-size: 1.25rem; margin: 1.2em 0 0.4em; font-weight: 500; }
+      :global(.guia h3) { font-family: var(--font-serif); font-size: 1.05rem; margin: 1em 0 0.3em; font-weight: 500; }
+      :global(.guia p) { margin: 0 0 0.7em; }
+      :global(.guia ul) { padding-left: 1.3rem; }
+    </style>
+  </head>
+  <body>
+    <section class="pack-cover">
+      <div class="pack-cover__eyebrow">Debate · Materiales para el aula</div>
+      <h1 class="pack-cover__title">{d.title}</h1>
+      <p class="pack-cover__sub">{d.descripcion}</p>
+      <ol class="pack-cover__index">
+        <li>Guía del profesor (moción, cronograma y argumentario)</li>
+        <li>Hoja de evaluación</li>
+        <li>Tarjetas de postura (recortables)</li>
+        <li>Ficha de preparación del alumno (fotocopiar)</li>
+      </ol>
+    </section>
+
+    <GuiaProfesor
+      title={d.title}
+      mocion={d.mocion}
+      formato={d.formato}
+      duracion={d.duracion}
+      agrupacion={d.agrupacion}
+      objetivos={d.objetivos}
+      conceptos={d.conceptos_clave}
+      unidades={d.unidades_relacionadas}
+      competencias={d.competencias_clave}
+    >
+      <Content />
+    </GuiaProfesor>
+
+    <HojaEvaluacion rubrica={d.rubrica} title={d.title} />
+    <TarjetasPostura posturas={d.posturas} formato={d.formato} mocion={d.mocion} />
+    <FichaPreparacion mocion={d.mocion} />
+  </body>
+</html>
