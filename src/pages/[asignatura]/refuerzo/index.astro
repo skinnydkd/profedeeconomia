@@ -7,6 +7,8 @@
  */
 import BaseLayout from '@layouts/BaseLayout.astro';
 import { ASIGNATURA_SLUGS, ASIGNATURAS } from '@/lib/asignaturas';
+import BloqueRefuerzo from '@components/refuerzo/BloqueRefuerzo.astro';
+import { refuerzoPdfName } from '@/lib/refuerzo';
 import { getCollection } from 'astro:content';
 import type { GetStaticPaths } from 'astro';
 
@@ -72,42 +74,23 @@ const ORDINAL: Record<number, string> = { 1: '1.ª', 2: '2.ª', 3: '3.ª' };
                 {b.data.descripcion && <p class="bloque__desc">{b.data.descripcion}</p>}
               </header>
 
-              {b.data.esencial.length > 0 && (
-                <div class="bloque__sec">
-                  <h4 class="bloque__sub">Lo esencial</h4>
-                  <ul class="bloque__esencial">
-                    {b.data.esencial.map((e) => <li>{e}</li>)}
-                  </ul>
-                </div>
+              {b.data.repaso_teorico.length > 0 && (
+                <p class="bloque__download">
+                  <a href={`/downloads/${refuerzoPdfName(a.slug, b.data.evaluacion, b.data.tipo)}`} download>
+                    ↓ Descargar este cuaderno (PDF)
+                  </a>
+                </p>
               )}
 
-              {b.data.conceptos_clave.length > 0 && (
-                <div class="bloque__sec">
-                  <h4 class="bloque__sub">Vocabulario</h4>
-                  <ul class="bloque__chips">
-                    {b.data.conceptos_clave.map((c) => <li class="chip">{c}</li>)}
-                  </ul>
-                </div>
-              )}
-
-              {b.data.ejercicios.length > 0 && (
-                <div class="bloque__sec">
-                  <h4 class="bloque__sub">{b.data.tipo === 'refuerzo' ? 'Practica' : 'Retos'}</h4>
-                  <ol class="bloque__ejercicios">
-                    {b.data.ejercicios.map((ej) => (
-                      <li class="ejercicio">
-                        <p class="ejercicio__enunciado" set:html={ej.enunciado} />
-                        {ej.solucion && (
-                          <details class="ejercicio__sol">
-                            <summary>Ver solución</summary>
-                            <div class="ejercicio__sol-body" set:html={ej.solucion} />
-                          </details>
-                        )}
-                      </li>
-                    ))}
-                  </ol>
-                </div>
-              )}
+              <BloqueRefuerzo
+                esencial={b.data.esencial}
+                conceptos={b.data.conceptos_clave}
+                repaso={b.data.repaso_teorico}
+                ejemplos={b.data.ejemplos_resueltos}
+                ejercicios={b.data.ejercicios}
+                tipo={b.data.tipo}
+                mode="web"
+              />
             </article>
           ))}
         </div>
@@ -163,34 +146,12 @@ const ORDINAL: Record<number, string> = { 1: '1.ª', 2: '2.ª', 3: '3.ª' };
   .bloque__title { font-family: var(--font-serif); font-size: 1.3rem; font-weight: 500; margin: 0.3rem 0 0.3rem; }
   .bloque__desc { color: var(--color-ink-soft); font-size: 0.95rem; line-height: 1.5; margin: 0; }
 
-  .bloque__sec { margin-top: 1.1rem; }
-  .bloque__sub {
-    font-family: var(--font-sans); font-size: 0.74rem; text-transform: uppercase;
-    letter-spacing: 0.1em; color: var(--color-ink-mute); font-weight: 700; margin: 0 0 0.5rem;
+  .bloque__download { margin: 0.8rem 0 0; }
+  .bloque__download a {
+    font-family: var(--font-sans); font-size: 0.9rem; font-weight: 600;
+    color: var(--color-terra); text-decoration: none;
   }
-  .bloque__esencial { margin: 0; padding-left: 1.1rem; }
-  .bloque__esencial li { margin-bottom: 0.35rem; line-height: 1.5; color: var(--color-ink); }
-  .bloque__esencial li::marker { color: var(--card-color); }
-
-  .bloque__chips { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.4rem; }
-  .chip {
-    font-family: var(--font-mono); font-size: 0.78rem; color: var(--color-ink-soft);
-    background: var(--color-bg); border: 1px solid var(--color-line);
-    border-radius: 999px; padding: 0.15rem 0.7rem;
-  }
-
-  .bloque__ejercicios { margin: 0; padding-left: 1.2rem; display: flex; flex-direction: column; gap: 0.8rem; }
-  .ejercicio__enunciado { margin: 0 0 0.4rem; line-height: 1.55; color: var(--color-ink); }
-  .ejercicio__sol summary {
-    cursor: pointer; font-family: var(--font-sans); font-size: 0.85rem;
-    font-weight: 600; color: var(--color-terra);
-  }
-  .ejercicio__sol-body {
-    margin-top: 0.5rem; padding: 0.7rem 0.9rem; background: var(--color-bg);
-    border-left: 3px solid var(--card-color); border-radius: 0 5px 5px 0;
-    font-size: 0.92rem; line-height: 1.55; color: var(--color-ink-soft);
-  }
-  .ejercicio__sol-body :global(p) { margin: 0 0 0.4em; }
+  .bloque__download a:hover { text-decoration: underline; }
 
   .back-link { padding: 2rem 0 3rem; }
   .back-link a { font-family: var(--font-sans); font-size: 0.95rem; font-weight: 500; color: var(--color-terra); text-decoration: none; }
