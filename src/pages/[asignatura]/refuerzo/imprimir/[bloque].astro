@@ -1,0 +1,86 @@
+---
+/**
+ * Print-ready cuaderno for one refuerzo/ampliación block. Consumed by pagedjs-cli
+ * (scripts/build-refuerzo-pdf.mjs) to produce {asignatura}-{tipo}-eval{n}.pdf.
+ * Only blocks with expanded content (repaso_teorico) get a page, so PDF coverage
+ * tracks the migration. noindex.
+ */
+import BloqueRefuerzo from '@components/refuerzo/BloqueRefuerzo.astro';
+import { ASIGNATURAS } from '@/lib/asignaturas';
+import { getCollection } from 'astro:content';
+import type { GetStaticPaths } from 'astro';
+
+const ORDINAL: Record<number, string> = { 1: '1.ª', 2: '2.ª', 3: '3.ª' };
+
+export const getStaticPaths = (async () => {
+  const all = await getCollection('refuerzo');
+  return all
+    .filter((e) => e.data.estado === 'publicado' && e.data.repaso_teorico.length > 0)
+    .map((entry) => ({
+      params: {
+        asignatura: entry.data.asignatura,
+        bloque: `eval${entry.data.evaluacion}-${entry.data.tipo}`,
+      },
+      props: { entry },
+    }));
+}) satisfies GetStaticPaths;
+
+const { entry } = Astro.props;
+const d = entry.data;
+const a = ASIGNATURAS[d.asignatura];
+const tipoLabel = d.tipo === 'refuerzo' ? 'Refuerzo' : 'Ampliación';
+const unidadesLabel = d.unidades.length > 0 ? `Unidades ${d.unidades.join(', ')}` : '';
+---
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="robots" content="noindex" />
+    <title>{d.title} — {a?.shortLabel ?? d.asignatura}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,0..100,0..1;1,9..144,300..700,0..100,0..1&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" />
+    <style is:inline>
+      @font-face { font-family: 'Switzer'; src: url('/fonts/switzer/switzer-400.woff2') format('woff2'); font-weight: 400; font-display: swap; }
+      @font-face { font-family: 'Switzer'; src: url('/fonts/switzer/switzer-500.woff2') format('woff2'); font-weight: 500; font-display: swap; }
+      @font-face { font-family: 'Switzer'; src: url('/fonts/switzer/switzer-600.woff2') format('woff2'); font-weight: 600; font-display: swap; }
+      @font-face { font-family: 'Switzer'; src: url('/fonts/switzer/switzer-700.woff2') format('woff2'); font-weight: 700; font-display: swap; }
+      :root {
+        --color-bg: #FBF6EC; --color-bg-cream: #F5EDD9; --color-paper: #FFFFFF;
+        --color-ink: #2A1F18; --color-ink-soft: #5C4A3D; --color-ink-mute: #806C5A;
+        --color-line: #E5D4BD; --color-line-soft: #EFE2CB;
+        --color-mustard: #D4A24C; --color-mustard-deep: #A87A2A; --color-mustard-soft: #F5E5BC;
+        --color-terra: #C44E2C; --color-terra-deep: #9C3A1C;
+        --font-serif: "Fraunces", Georgia, serif;
+        --font-sans: "Switzer", -apple-system, sans-serif;
+        --font-mono: "JetBrains Mono", monospace;
+      }
+      @page { size: A4; margin: 16mm 15mm; }
+      * { box-sizing: border-box; }
+      body { margin: 0; font-family: var(--font-sans); color: var(--color-ink); font-size: 10.5pt; line-height: 1.5; background: #fff; }
+      .cover { break-after: page; padding-top: 4rem; }
+      .cover__eyebrow { color: var(--color-mustard-deep); font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; font-size: 10pt; }
+      .cover__title { font-family: var(--font-serif); font-size: 28pt; line-height: 1.08; margin: 0.5rem 0; }
+      .cover__sub { font-style: italic; font-family: var(--font-serif); color: var(--color-ink-soft); font-size: 12.5pt; }
+      .cover__meta { margin-top: 1.5rem; font-size: 0.95rem; color: var(--color-ink-soft); }
+    </style>
+  </head>
+  <body>
+    <section class="cover">
+      <div class="cover__eyebrow">{a?.shortLabel ?? d.asignatura} · {tipoLabel}</div>
+      <h1 class="cover__title">{d.title}</h1>
+      {d.descripcion && <p class="cover__sub">{d.descripcion}</p>}
+      <p class="cover__meta">{ORDINAL[d.evaluacion]} evaluación{unidadesLabel ? ` · ${unidadesLabel}` : ''}</p>
+    </section>
+
+    <BloqueRefuerzo
+      esencial={d.esencial}
+      conceptos={d.conceptos_clave}
+      repaso={d.repaso_teorico}
+      ejemplos={d.ejemplos_resueltos}
+      ejercicios={d.ejercicios}
+      tipo={d.tipo}
+      mode="print"
+    />
+  </body>
+</html>
