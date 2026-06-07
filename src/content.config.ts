@@ -592,6 +592,15 @@ const refuerzo = defineCollection({
       enunciado: z.string(),
       solucion: z.string().optional(),
     })).default([]),
+    repaso_teorico: z.array(z.object({
+      titulo: z.string(),
+      unidad: z.number().int().min(1).optional(),
+      contenido: z.string(),
+    })).default([]),
+    ejemplos_resueltos: z.array(z.object({
+      enunciado: z.string(),
+      desarrollo: z.string(),
+    })).default([]),
     competencias_clave: z.array(z.string()).default([]),
     orden: z.number().int().default(0),
     lang: z.enum(LANGS).default('es'),
