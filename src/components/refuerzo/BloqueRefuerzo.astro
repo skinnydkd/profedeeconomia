@@ -1,0 +1,143 @@
+---
+/**
+ * Shared body of a refuerzo/ampliación block: theory recap, key points,
+ * vocabulary, worked examples and the graded exercises. Rendered identically on
+ * the web (mode="web": per-exercise folded solutions) and in the print/PDF
+ * document (mode="print": enunciados only + a numbered solucionario at the end).
+ * Single source for /[asignatura]/refuerzo/ and the print route. All rich text
+ * fields are HTML strings (consistent with the rest of the refuerzo section).
+ */
+interface Repaso { titulo: string; unidad?: number; contenido: string; }
+interface Ejemplo { enunciado: string; desarrollo: string; }
+interface Ejercicio { enunciado: string; solucion?: string; }
+interface Props {
+  esencial: string[];
+  conceptos: string[];
+  repaso: Repaso[];
+  ejemplos: Ejemplo[];
+  ejercicios: Ejercicio[];
+  tipo: 'refuerzo' | 'ampliacion';
+  mode: 'web' | 'print';
+}
+const { esencial, conceptos, repaso, ejemplos, ejercicios, tipo, mode } = Astro.props;
+const ejerciciosLabel = tipo === 'refuerzo' ? 'Practica' : 'Retos';
+const haySoluciones = ejercicios.some((e) => e.solucion);
+---
+{repaso.length > 0 && (
+  <div class="rb-sec">
+    <h4 class="rb-sub">Repaso teórico</h4>
+    {repaso.map((r) => (
+      <div class="rb-repaso">
+        <h5 class="rb-repaso__t">{r.unidad ? `U${r.unidad}. ` : ''}{r.titulo}</h5>
+        <div class="rb-prose" set:html={r.contenido} />
+      </div>
+    ))}
+  </div>
+)}
+
+{esencial.length > 0 && (
+  <div class="rb-sec">
+    <h4 class="rb-sub">Lo esencial</h4>
+    <ul class="rb-esencial">{esencial.map((e) => <li>{e}</li>)}</ul>
+  </div>
+)}
+
+{conceptos.length > 0 && (
+  <div class="rb-sec">
+    <h4 class="rb-sub">Vocabulario</h4>
+    <ul class="rb-chips">{conceptos.map((c) => <li class="rb-chip">{c}</li>)}</ul>
+  </div>
+)}
+
+{ejemplos.length > 0 && (
+  <div class="rb-sec">
+    <h4 class="rb-sub">Ejemplos resueltos</h4>
+    <ol class="rb-ejemplos">
+      {ejemplos.map((ej) => (
+        <li class="rb-ejemplo">
+          <div class="rb-ejemplo__e" set:html={ej.enunciado} />
+          <div class="rb-ejemplo__d" set:html={ej.desarrollo} />
+        </li>
+      ))}
+    </ol>
+  </div>
+)}
+
+{ejercicios.length > 0 && (
+  <div class="rb-sec">
+    <h4 class="rb-sub">{ejerciciosLabel}</h4>
+    <ol class="rb-ejercicios">
+      {ejercicios.map((ej) => (
+        <li class="rb-ejercicio">
+          <div class="rb-ejercicio__en" set:html={ej.enunciado} />
+          {mode === 'web' && ej.solucion && (
+            <details class="rb-sol">
+              <summary>Ver solución</summary>
+              <div class="rb-sol__body" set:html={ej.solucion} />
+            </details>
+          )}
+        </li>
+      ))}
+    </ol>
+  </div>
+)}
+
+{mode === 'print' && haySoluciones && (
+  <div class="rb-sec rb-solucionario">
+    <h4 class="rb-sub">Solucionario</h4>
+    <ol class="rb-sols">
+      {ejercicios.map((ej) => (
+        <li class="rb-sol-item">
+          {ej.solucion ? <div set:html={ej.solucion} /> : <span>—</span>}
+        </li>
+      ))}
+    </ol>
+  </div>
+)}
+<style>
+  .rb-sec { margin-top: 1.1rem; }
+  .rb-sub {
+    font-family: var(--font-sans); font-size: 0.74rem; text-transform: uppercase;
+    letter-spacing: 0.1em; color: var(--color-ink-mute); font-weight: 700; margin: 0 0 0.5rem;
+  }
+  .rb-repaso { margin-bottom: 0.8rem; }
+  .rb-repaso__t { font-family: var(--font-serif); font-size: 1.02rem; font-weight: 500; margin: 0 0 0.25rem; }
+  .rb-prose { line-height: 1.55; color: var(--color-ink-soft); }
+  .rb-prose :global(p) { margin: 0 0 0.5em; }
+  .rb-prose :global(ul) { padding-left: 1.2rem; margin: 0 0 0.5em; }
+
+  .rb-esencial { margin: 0; padding-left: 1.1rem; }
+  .rb-esencial li { margin-bottom: 0.35rem; line-height: 1.5; color: var(--color-ink); }
+  .rb-esencial li::marker { color: var(--color-terra); }
+
+  .rb-chips { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .rb-chip {
+    font-family: var(--font-mono); font-size: 0.78rem; color: var(--color-ink-soft);
+    background: var(--color-bg); border: 1px solid var(--color-line);
+    border-radius: 999px; padding: 0.15rem 0.7rem;
+  }
+
+  .rb-ejemplos { margin: 0; padding-left: 1.2rem; display: flex; flex-direction: column; gap: 0.9rem; }
+  .rb-ejemplo__e { font-weight: 600; line-height: 1.5; margin-bottom: 0.3rem; }
+  .rb-ejemplo__d {
+    line-height: 1.55; color: var(--color-ink-soft);
+    background: var(--color-bg); border-left: 3px solid var(--color-mustard);
+    border-radius: 0 5px 5px 0; padding: 0.6rem 0.9rem;
+  }
+  .rb-ejemplo__d :global(p) { margin: 0 0 0.4em; }
+
+  .rb-ejercicios { margin: 0; padding-left: 1.2rem; display: flex; flex-direction: column; gap: 0.8rem; }
+  .rb-ejercicio__en { line-height: 1.55; color: var(--color-ink); margin-bottom: 0.3rem; }
+  .rb-sol summary { cursor: pointer; font-family: var(--font-sans); font-size: 0.85rem; font-weight: 600; color: var(--color-terra); }
+  .rb-sol__body {
+    margin-top: 0.5rem; padding: 0.7rem 0.9rem; background: var(--color-bg);
+    border-left: 3px solid var(--color-terra); border-radius: 0 5px 5px 0;
+    font-size: 0.92rem; line-height: 1.55; color: var(--color-ink-soft);
+  }
+  .rb-sol__body :global(p) { margin: 0 0 0.4em; }
+
+  .rb-solucionario { margin-top: 1.6rem; padding-top: 0.8rem; border-top: 2px solid var(--color-mustard); }
+  .rb-sols { margin: 0; padding-left: 1.4rem; display: flex; flex-direction: column; gap: 0.5rem; }
+  .rb-sol-item { line-height: 1.5; color: var(--color-ink-soft); }
+  .rb-sol-item :global(p) { margin: 0 0 0.3em; }
+</style>
