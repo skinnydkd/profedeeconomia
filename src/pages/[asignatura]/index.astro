@@ -31,6 +31,13 @@ const hasRefuerzo = refuerzoAll.some((e) => e.data.asignatura === a.slug && e.da
 const evaluacionAll = await getCollection('evaluacion');
 const hasEvaluacion = evaluacionAll.some((e) => e.data.asignatura === a.slug && e.data.estado === 'publicado');
 
+const testsAll = await getCollection('tests');
+const hasTests = testsAll.some((t) => t.data.asignatura === a.slug && t.data.estado === 'publicado');
+const recursosAll = await getCollection('recursos');
+const hasRecursos = recursosAll.some((rec) => rec.data.asignatura === a.slug && rec.data.estado === 'publicado');
+const retosAll = await getCollection('retos');
+const hasRetos = retosAll.some((r) => r.data.asignatura === a.slug && r.data.estado === 'publicado');
+
 // Sections grouped by nature: the course material (book + printable), the
 // interactive practice, and what's for the teacher. Programación goes last.
 const material = [
@@ -41,7 +48,10 @@ const material = [
   ...(hasProyecto ? [{ slug: 'proyecto', title: 'Cuaderno de proyecto', desc: 'Guía paso a paso para que el alumnado desarrolle su propio proyecto emprendedor, fase a fase.' }] : []),
 ];
 const interactivo = [
-  { slug: 'actividades-dinamicas', title: 'Actividades interactivas', desc: 'Tests autocorregibles, simuladores de decisión y recursos interactivos por unidad.' },
+  ...(hasTests ? [{ slug: 'tests', title: 'Tests', desc: 'Tests autocorregibles por unidad: respuesta inmediata, nota y repaso en el navegador.' }] : []),
+  ...(hasRecursos ? [{ slug: 'recursos', title: 'Simuladores', desc: 'Calculadoras y simuladores interactivos (punto muerto, VAN, equilibrio de mercado…) para experimentar con los modelos.' }] : []),
+  ...(hasRetos ? [{ slug: 'retos', title: 'Retos competenciales', desc: 'Escenarios paso a paso centrados en una competencia específica; al final, tu nivel de logro.' }] : []),
+  { slug: 'actividades-dinamicas', title: 'Árboles de decisión', desc: 'Casos con decisiones encadenadas: cada elección mueve unos indicadores y abre la siguiente.' },
   ...(hasEbau ? [{ slug: 'ebau', title: 'Preparación EBAU', desc: 'Estructura de la prueba, teoría esencial, problemas resueltos y simulacros con solucionario.' }] : []),
 ];
 const profe = [
