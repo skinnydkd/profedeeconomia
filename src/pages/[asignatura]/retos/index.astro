@@ -1,0 +1,83 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { ASIGNATURA_SLUGS, ASIGNATURAS } from '@/lib/asignaturas';
+import { getCollection } from 'astro:content';
+import type { GetStaticPaths } from 'astro';
+
+export const getStaticPaths = (async () => {
+  return ASIGNATURA_SLUGS.map((slug) => ({ params: { asignatura: slug }, props: { asignatura: ASIGNATURAS[slug] } }));
+}) satisfies GetStaticPaths;
+
+const { asignatura: a } = Astro.props;
+const all = await getCollection('retos');
+const retos = all
+  .filter((r) => r.data.asignatura === a.slug && r.data.estado === 'publicado')
+  .sort((x, y) => x.data.competencia.localeCompare(y.data.competencia));
+---
+
+<BaseLayout title={`Retos competenciales — ${a.shortLabel}`} description={`Retos competenciales interactivos de ${a.title}: escenarios paso a paso centrados en cada competencia específica, con tu nivel de logro al final.`}>
+  <div class="container">
+    <nav class="breadcrumb">
+      <a href="/">Inicio</a> <span class="sep">›</span>
+      <a href={`/${a.slug}/`}>{a.shortLabel}</a> <span class="sep">›</span>
+      <span>Retos competenciales</span>
+    </nav>
+  </div>
+
+  <section class="hero">
+    <div class="container">
+      <span class="kicker">{a.shortLabel} · retos competenciales</span>
+      <h1>Retos competenciales</h1>
+      <p class="lede">
+        {retos.length === 0
+          ? 'Los retos competenciales se publicarán a medida que se completen.'
+          : 'Escenarios paso a paso centrados en una competencia específica. Resuélvelos en pantalla: al final te sitúan en tu nivel de logro.'}
+      </p>
+    </div>
+  </section>
+
+  {retos.length > 0 && (
+    <section class="grid">
+      <div class="container">
+        <ul class="card-grid">
+          {retos.map((reto) => {
+            const slug = reto.id.split('/').pop()?.replace(/\.mdx?$/, '');
+            return (
+              <li class="card">
+                <div class="card__num">{reto.data.competencia}</div>
+                <h3 class="card__title">{reto.data.title}</h3>
+                <p class="card__lede">{reto.data.descripcion}</p>
+                <div class="card__meta">
+                  {reto.data.duracion && <span>{reto.data.duracion}</span>}
+                  {reto.data.unidad_relacionada && <span>· Unidad {reto.data.unidad_relacionada}</span>}
+                </div>
+                <a class="cta" href={`/${a.slug}/retos/${slug}/`}>Empezar reto →</a>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    </section>
+  )}
+</BaseLayout>
+
+<style>
+  .container { max-width: 1240px; margin: 0 auto; padding: 0 clamp(1.5rem, 4vw, 3rem); }
+  .breadcrumb { font-size: 0.92rem; color: var(--color-ink-mute); margin: 2rem 0; }
+  .breadcrumb a { color: var(--color-ink-mute); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--color-terra); }
+  .breadcrumb .sep { margin: 0 0.5em; color: var(--color-mustard); }
+  .hero { padding: 1rem 0 clamp(2rem, 5vw, 4rem); }
+  h1 { margin: 1rem 0 0.6rem; }
+  .lede { font-family: var(--font-serif); font-style: italic; font-size: 1.35rem; color: var(--color-ink-soft); max-width: 55ch; line-height: 1.5; margin: 1.5rem 0 0.6rem; font-variation-settings: "SOFT" 80; }
+  .grid { padding-bottom: clamp(3rem, 7vw, 6rem); }
+  .card-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; }
+  .card { background: var(--color-paper); border: 1px solid var(--color-line); border-radius: 8px; padding: 1.6rem 1.7rem 1.7rem; display: flex; flex-direction: column; gap: 0.6rem; transition: transform .2s var(--ease-soft), border-color .2s var(--ease-soft), box-shadow .2s var(--ease-soft); }
+  .card:hover { border-color: var(--color-terra); transform: translateY(-2px); box-shadow: 0 4px 18px rgba(42, 31, 24, 0.08); }
+  .card__num { font-family: var(--font-mono); font-size: 0.9rem; font-weight: 500; color: var(--color-terra); letter-spacing: 0.04em; }
+  .card__title { font-family: var(--font-serif); font-size: 1.2rem; line-height: 1.25; color: var(--color-ink); margin: 0; font-weight: 500; font-variation-settings: "SOFT" 60; }
+  .card__lede { font-family: var(--font-serif); font-style: italic; font-size: 0.95rem; color: var(--color-ink-soft); line-height: 1.45; margin: 0; font-variation-settings: "SOFT" 80; flex: 1; }
+  .card__meta { font-family: var(--font-sans); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-ink-mute); margin-top: 0.4rem; display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  .cta { display: inline-flex; align-items: center; justify-content: center; padding: 0.6rem 0.9rem; background: var(--color-terra); color: var(--color-bg); border-radius: 5px; text-decoration: none; font-family: var(--font-sans); font-size: 0.92rem; font-weight: 600; margin-top: 0.6rem; transition: background .2s var(--ease-soft); }
+  .cta:hover { background: var(--color-terra-deep); }
+</style>
