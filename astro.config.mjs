@@ -14,7 +14,11 @@ export default defineConfig({
   // functions. The Jocs Econòmics API routes (/api/jocs/*) need this so they
   // can access Supabase at runtime.
   output: 'static',
-  adapter: vercel(),
+  adapter: vercel({
+    // Inject Vercel Web Analytics (/_vercel/insights). Enable it also in the
+    // Vercel dashboard (Project → Analytics) for data to start flowing.
+    webAnalytics: { enabled: true },
+  }),
 
   integrations: [
     preact({ compat: false }),
