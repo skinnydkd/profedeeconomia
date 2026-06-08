@@ -293,7 +293,7 @@ Cada unitat dels llibres és **un sol fitxer MDX** del qual es generen totes les
 
 - Pàgina HTML del web (Astro)
 - PDF del llibre (paged.js o Puppeteer)
-- Diapositives PDF (Marp)
+- Diapositives PDF (motor natiu d'Astro)
 - Diapositives editables PPTX (Pandoc, futur premium)
 
 Convenció `:::slide` dins del MDX defineix què entra a les diapositives:
@@ -322,7 +322,7 @@ Un modelo de negocio describe cómo una empresa crea, entrega y captura valor.
 - **Estilat**: Tailwind 4
 - **Hosting**: Vercel
 - **Generació PDF llibres**: paged.js o Puppeteer
-- **Generació diapositives**: Marp CLI
+- **Generació diapositives**: motor natiu d'Astro (substitueix Marp)
 - **Backend**: cap al MVP. Fase 2 si activem newsletter o premium.
 - **Backend per a jocs multijugador (futur)**: PartyKit / Cloudflare Durable Objects (revisat al moment d'execució)
 - **Analytics**: Plausible
