@@ -139,8 +139,8 @@ Validada el 2026-05-10. Variant C va guanyar enfront de A (editorial pur, vermel
 - **Estils**: Tailwind 4
 - **Hosting**: Vercel
 - **Generació PDF llibres**: paged.js o Puppeteer (script Node)
-- **Generació diapositives**: Marp CLI
-- **Analytics**: Plausible
+- **Generació diapositives**: motor natiu d'Astro (renderitzat propi a `src/`; substitueix Marp, ja deprecat)
+- **Analytics**: Plausible + Vercel Web Analytics
 - **Errors**: Sentry free tier
 
 ### Fase 2 (NO al MVP)
@@ -332,7 +332,6 @@ El repo `webpde` actual conté el contingut antic. La migració es fa per fases:
 ## Recursos
 
 - **Astro docs**: https://docs.astro.build
-- **Marp CLI**: https://marp.app/
 - **paged.js**: https://pagedjs.org/
 - **Currículum LOMLOE**: BOE per assignatura
 - **Repo origen del contingut**: https://github.com/skinnydkd/webpde
