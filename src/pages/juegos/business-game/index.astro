@@ -1,0 +1,66 @@
+---
+/**
+ * Business Game — prototipo jugable local (Fase 1a).
+ *
+ * Aún sin backend: es para validar el modelo de mercado y la mecánica de juego.
+ * La persistencia (Supabase + registro nombre/instituto de «Juegos Económicos»)
+ * y el multi-dispositivo llegan en la Fase 1b, una vez validado el modelo.
+ */
+import BaseLayout from '@layouts/BaseLayout.astro';
+import BusinessGameOnline from '@components/business-game/BusinessGameOnline.tsx';
+---
+
+<BaseLayout
+  title="Business Game — simulador de empresa (prototipo)"
+  description="Prototipo del simulador de empresa de curso completo: equipos que dirigen empresas compitiendo en un mismo mercado, con decisiones en las 4 áreas y resultados interdependientes."
+>
+  <div class="container">
+    <nav class="breadcrumb"><a href="/">Inicio</a> <span class="sep">›</span> <a href="/juegos/">Juegos</a> <span class="sep">›</span> <span>Business Game</span></nav>
+  </div>
+
+  <section class="hero">
+    <div class="container">
+      <span class="kicker">Prototipo · validación del modelo</span>
+      <h1>Business <span class="serif-italic-wonk accent">Game</span>.</h1>
+      <p class="lede">
+        El simulador de empresa de curso completo: cada equipo dirige una empresa y compite
+        en el mismo mercado. Cada ronda (un año) deciden en las 4 áreas —comercial,
+        operaciones, RR. HH. y finanzas— y, según lo que decidan ellos y los demás, venden
+        más o menos y ganan o pierden.
+      </p>
+      <div class="nota">
+        El <strong>profe crea una liga</strong> y comparte el código; cada equipo se une
+        desde su dispositivo (nombre e instituto, como en «Juegos Económicos»). Cada ronda,
+        las empresas envían sus decisiones y el profe cierra la ronda: el mercado reparte las
+        ventas y el ranking queda registrado. También hay un <strong>modo práctica local</strong>
+        sin registro para probarlo en un solo dispositivo.
+      </div>
+    </div>
+  </section>
+
+  <section class="juego">
+    <div class="container">
+      <BusinessGameOnline client:only="preact" />
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .container { max-width: 1240px; margin: 0 auto; padding: 0 clamp(1.5rem, 4vw, 3rem); }
+  .breadcrumb { font-size: 0.92rem; color: var(--color-ink-mute); margin: 2rem 0; }
+  .breadcrumb a { color: var(--color-ink-mute); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--color-terra); }
+  .breadcrumb .sep { margin: 0 0.5em; color: var(--color-mustard); }
+
+  .hero { padding: 1rem 0 1.8rem; }
+  .kicker { font-family: var(--font-sans); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-terra); }
+  .accent { color: var(--color-terra); }
+  h1 { margin: 0.6rem 0 0.8rem; }
+  .lede { font-size: 1.2rem; color: var(--color-ink-soft); line-height: 1.6; max-width: 66ch; }
+  .nota {
+    margin-top: 1.3rem; max-width: 70ch; font-size: 0.95rem; line-height: 1.55;
+    color: var(--color-ink-soft); background: var(--color-mustard-soft);
+    border-left: 4px solid var(--color-mustard); border-radius: 0 6px 6px 0; padding: 0.9rem 1.1rem;
+  }
+  .juego { padding: 0 0 4rem; }
+</style>

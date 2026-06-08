@@ -1,0 +1,94 @@
+/* Business Game — prototipo jugable. Clases namespaced .bg__*. Tokens de global.css. */
+.bg { font-family: var(--font-sans); color: var(--color-ink); }
+.bg__loading { color: var(--color-ink-mute); }
+
+.bg__panel {
+  background: var(--color-paper);
+  border: 1px solid var(--color-line);
+  border-radius: 10px;
+  padding: 1.8rem 2rem 2rem;
+  box-shadow: 0 1px 2px rgba(42, 31, 24, 0.05), 0 6px 18px rgba(42, 31, 24, 0.06);
+}
+.bg__h2 { font-family: var(--font-serif); font-weight: 500; font-size: 1.6rem; margin: 0 0 0.3rem; }
+.bg__lead { color: var(--color-ink-soft); font-size: 1rem; line-height: 1.55; margin: 0 0 1.4rem; max-width: 70ch; }
+
+.bg__ronda-head { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+.bg__ronda-tag { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 700; color: var(--color-terra); }
+
+/* Setup */
+.bg__equipos { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 0.8rem; }
+.bg__equipo-row { display: flex; align-items: center; gap: 0.5rem; }
+.bg__x { border: 1px solid var(--color-line); background: var(--color-bg); border-radius: 5px; width: 2rem; height: 2rem; cursor: pointer; color: var(--color-ink-mute); font-size: 1.1rem; line-height: 1; }
+.bg__x:hover { border-color: #B83A3A; color: #B83A3A; }
+.bg__toggle { background: none; border: none; color: var(--color-terra); font-weight: 600; font-size: 0.9rem; cursor: pointer; padding: 0.8rem 0; }
+.bg__params { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.8rem 1rem; margin-bottom: 0.8rem; padding: 1rem; background: var(--color-bg); border: 1px solid var(--color-line); border-radius: 8px; }
+
+.bg__field { display: flex; flex-direction: column; gap: 0.3rem; }
+.bg__field--row { flex-direction: row; align-items: center; justify-content: space-between; gap: 0.6rem; }
+.bg__field-label { font-size: 0.82rem; color: var(--color-ink-soft); font-weight: 500; }
+.bg__field-input { display: inline-flex; align-items: center; gap: 0.35rem; }
+.bg__input { font-family: var(--font-mono); font-size: 0.95rem; padding: 0.45rem 0.6rem; border: 1.5px solid var(--color-line); border-radius: 5px; background: var(--color-bg); color: var(--color-ink); width: 100%; max-width: 130px; }
+.bg__input:focus-visible { outline: 2px solid var(--color-terra); outline-offset: 1px; border-color: var(--color-terra); }
+.bg__input--name { font-family: var(--font-serif); font-size: 1.05rem; max-width: none; flex: 1; }
+.bg__input[type="number"]::-webkit-outer-spin-button, .bg__input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.bg__input[type="number"] { -moz-appearance: textfield; appearance: textfield; }
+.bg__unit { font-size: 0.74rem; color: var(--color-ink-mute); flex: none; min-width: 2.6rem; }
+
+/* Decision cards */
+.bg__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.2rem; margin-bottom: 1.4rem; }
+.bg__card { border: 1px solid var(--color-line); border-top: 4px solid var(--color-terra); border-radius: 8px; padding: 1.1rem 1.2rem; background: var(--color-bg); }
+.bg__card-title { font-family: var(--font-serif); font-size: 1.25rem; font-weight: 500; margin: 0 0 0.2rem; }
+.bg__card-caja { font-size: 0.85rem; color: var(--color-ink-mute); margin: 0 0 0.8rem; }
+.bg__area { margin-bottom: 0.9rem; }
+.bg__area-name { display: block; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 700; color: var(--color-mustard-deep); margin-bottom: 0.4rem; border-bottom: 1px dashed var(--color-line); padding-bottom: 0.2rem; }
+
+/* Buttons */
+.bg__actions { display: flex; gap: 0.7rem; flex-wrap: wrap; margin-top: 1rem; }
+.bg__btn { font-family: var(--font-sans); font-size: 0.95rem; font-weight: 600; padding: 0.7rem 1.3rem; border-radius: 6px; cursor: pointer; border: 1.5px solid transparent; transition: background .15s, border-color .15s, color .15s; }
+.bg__btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.bg__btn--primary { background: var(--color-terra); color: #fff; border-color: var(--color-terra); }
+.bg__btn--primary:hover:not(:disabled) { background: var(--color-terra-deep, #9C3A1C); }
+.bg__btn--ghost { background: transparent; color: var(--color-ink-soft); border-color: var(--color-line); }
+.bg__btn--ghost:hover { border-color: var(--color-terra); color: var(--color-terra); }
+
+/* Results table */
+.bg__tabla-wrap { overflow-x: auto; margin-bottom: 1.2rem; }
+.bg__tabla { width: 100%; border-collapse: collapse; font-size: 0.9rem; min-width: 720px; }
+.bg__tabla th { text-align: right; font-family: var(--font-sans); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-ink-mute); font-weight: 700; padding: 0.5rem 0.6rem; border-bottom: 2px solid var(--color-line); }
+.bg__tabla td { text-align: right; padding: 0.55rem 0.6rem; border-bottom: 1px solid var(--color-line); font-variant-numeric: tabular-nums; }
+.bg__tabla th:nth-child(2), .bg__tabla td.bg__nombre { text-align: left; }
+.bg__pos { font-family: var(--font-mono); color: var(--color-mustard-deep); font-weight: 600; }
+.bg__nombre { font-family: var(--font-serif); }
+.bg__acum { font-weight: 600; }
+.bg__ok { color: #4F8C3F; }
+.bg__fail { color: #B83A3A; }
+.bg__tabla tr.is-perdida { background: #fbf0f0; }
+
+/* History */
+.bg__historia { margin-bottom: 1.2rem; }
+.bg__historia summary { cursor: pointer; font-weight: 600; color: var(--color-terra); font-size: 0.9rem; }
+.bg__historia-body { margin-top: 0.8rem; display: flex; flex-direction: column; gap: 0.4rem; }
+.bg__hist-row { display: flex; align-items: center; gap: 0.8rem; }
+.bg__hist-name { font-family: var(--font-serif); min-width: 9rem; }
+.bg__hist-vals { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.bg__hist-val { font-family: var(--font-mono); font-size: 0.82rem; }
+
+@media (max-width: 600px) {
+  .bg__panel { padding: 1.3rem 1.2rem 1.5rem; }
+  .bg__grid { grid-template-columns: 1fr; }
+}
+
+/* ── Online (Fase 1b) ── */
+.bg__h3 { font-family: var(--font-serif); font-weight: 500; font-size: 1.15rem; margin: 1.2rem 0 0.6rem; }
+.bg__error { color: #B83A3A; font-size: 0.92rem; margin: 0.6rem 0; }
+.bg__nota-mini { font-size: 0.82rem; color: var(--color-ink-mute); margin: 0.3rem 0; }
+.bg__elige { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin: 1.2rem 0 0.8rem; }
+.bg__elige-card { display: flex; flex-direction: column; gap: 0.3rem; text-align: left; padding: 1.3rem 1.4rem; border: 1.5px solid var(--color-line); border-radius: 10px; background: var(--color-bg); cursor: pointer; transition: border-color .15s, transform .15s; }
+.bg__elige-card:hover { border-color: var(--color-terra); transform: translateY(-2px); }
+.bg__elige-card strong { font-family: var(--font-serif); font-size: 1.25rem; font-weight: 500; }
+.bg__elige-card span { font-size: 0.9rem; color: var(--color-ink-soft); }
+.bg__codigo-box { background: var(--color-terra-soft); border: 1px solid var(--color-terra); border-radius: 8px; padding: 0.9rem 1.2rem; margin: 0.4rem 0 1.2rem; font-size: 1rem; }
+.bg__codigo-box strong { font-family: var(--font-mono); font-size: 1.5rem; letter-spacing: 0.2em; color: var(--color-terra-deep, #9C3A1C); }
+.bg__codigo-input { font-family: var(--font-mono) !important; letter-spacing: 0.25em; text-transform: uppercase; }
+.bg__espera { background: #E5F1DD; border-left: 4px solid #4F8C3F; border-radius: 0 6px 6px 0; padding: 0.9rem 1.1rem; margin: 0 0 1.2rem; font-size: 0.95rem; line-height: 1.5; }
+.bg__tabla tr.bg__yo { background: var(--color-terra-soft); }
