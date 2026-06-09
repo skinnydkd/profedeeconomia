@@ -1,0 +1,27 @@
+---
+/**
+ * "Errores que cuestan" — a short box flagging the 2-3 typical mistakes teams
+ * make in a given phase. Content (a list) goes in the default slot.
+ */
+type Props = {
+  /** Optional override for the box title. */
+  titulo?: string;
+};
+const { titulo = 'Errores que cuestan' } = Astro.props;
+---
+
+<aside class="errores">
+  <span class="errores__kicker">{titulo}</span>
+  <div class="errores__body"><slot /></div>
+</aside>
+
+<style>
+  .errores { margin: 2rem 0; padding: 1.3rem 1.6rem; background: var(--color-terra-soft); border-left: 4px solid var(--color-terra); border-radius: 0 4px 4px 0; }
+  .errores__kicker { font-family: var(--font-sans); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--color-terra-deep); font-weight: 700; display: block; margin-bottom: 0.6rem; }
+  .errores__body { font-size: 0.98rem; line-height: 1.55; color: var(--color-ink); }
+  .errores__body :global(ul) { margin: 0; padding-left: 1.2rem; }
+  .errores__body :global(li) { margin-bottom: 0.45em; }
+  .errores__body :global(li::marker) { color: var(--color-terra); }
+  .errores__body :global(strong) { color: var(--color-ink); }
+  @media print { .errores { break-inside: avoid; page-break-inside: avoid; } }
+</style>
