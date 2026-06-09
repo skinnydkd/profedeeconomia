@@ -157,9 +157,11 @@ citada o marcados "Adaptado de…"; casos compuestos con nombres ficticios si no
 
 ## Color y sello
 
-- Todos los acentos de portada y fase con el **color de asignatura de GPE: berenjena `#5B3A4E`**
-  (soft `#ECDCE5`), no terracota. Las páginas de DCaE usan terracota; GPE debe verse distinta y
-  coherente con su tag de asignatura en home/hub.
+- Todos los acentos de portada y fase con el **color de asignatura de GPE: granate `#8C2F39`**
+  (token `--color-gpe`, soft `#F1DADD` = `--color-gpe-soft`), no terracota. (Nota: la berenjena
+  `#5B3A4E` es el color de FOPP, no de GPE; el CLAUDE.md solo lista los 4 colores del MVP.) Las
+  páginas de DCaE usan terracota; GPE debe verse distinta y coherente con su tag de asignatura en
+  home/hub. El print de proyecto (`imprimir.astro`) ya usa `gpe → #8C2F39` en su mapa `ACCENTS`.
 - El **sello "anclado en lo local"** (reto de proximidad como hilo conductor de todo el proyecto)
   se mantiene como diferenciador de GPE frente a DCaE.
 
