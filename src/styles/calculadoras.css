@@ -308,6 +308,7 @@
     gap: 0.4rem;
   }
   .calc__radio {
+    position: relative;
     flex: 1;
     display: flex;
     align-items: center;
@@ -330,7 +331,22 @@
     color: var(--color-terra-deep);
     font-weight: 600;
   }
-  .calc__radio input { display: none; }
+  /* Visually hidden but kept in the tab order so keyboard users can reach and
+     operate the segmented control (display:none would remove it from focus).
+     The visible focus ring is shown on the label via :focus-within. */
+  .calc__radio input {
+    position: absolute;
+    opacity: 0;
+    width: 1px;
+    height: 1px;
+    margin: 0;
+    pointer-events: none;
+  }
+  .calc__radio:focus-within {
+    outline: 2px solid var(--color-terra);
+    outline-offset: 2px;
+  }
+  .calc__radio input:focus-visible { outline: none; }
 
   /* 50-30-20 stacked bars */
   .calc__stack-bars {
