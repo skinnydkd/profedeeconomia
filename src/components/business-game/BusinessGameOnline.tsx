@@ -1,5 +1,5 @@
 /** @jsxImportSource preact */
-import { useState, useEffect, useCallback } from 'preact/hooks';
+import { useState, useEffect, useCallback, useRef } from 'preact/hooks';
 import './BusinessGame.css';
 import BusinessGame from './BusinessGame';
 import { CAMPOS, AREAS, decisionPorDefecto, eur, num } from '@/lib/business-game/ui';
@@ -49,9 +49,16 @@ export default function BusinessGameOnline() {
     try { s ? localStorage.setItem(SESION_KEY, JSON.stringify(s)) : localStorage.removeItem(SESION_KEY); } catch {}
   };
 
+  // Monotonic sequence counter: prevents a slow fetch from overwriting a newer
+  // response. Each call increments the counter; the response is discarded if a
+  // newer request has already completed or started.
+  const reqSeq = useRef(0);
+
   const refrescar = useCallback(async (codigo: string) => {
+    const seq = ++reqSeq.current;
     try {
       const res = await fetch(`${API}/estado?codigo=${encodeURIComponent(codigo)}`);
+      if (seq !== reqSeq.current) return; // superseded by a newer request
       if (res.ok) setEstado(await res.json());
     } catch {}
   }, []);

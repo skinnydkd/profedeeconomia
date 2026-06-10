@@ -117,6 +117,81 @@ describe('palancas', () => {
   });
 });
 
+describe('edge cases — todos los equipos con precio = 0', () => {
+  it('no lanza, cuota se distribuye y ningún resultado es NaN/Infinity', () => {
+    // precio = 0 → compPrecio = 0 (rama del ternario); atractivo se basa solo en
+    // calidad y marketing. Con la configuración base, calidad = 40 (nivelCalidad(0,0))
+    // → atractivo > 0 → cuota se reparte normalmente.
+    const equipos = [team('A', { precio: 0 }), team('B', { precio: 0 })];
+    let res: ReturnType<typeof simularRonda>;
+    expect(() => { res = simularRonda(SIMPLE, equipos, 1); }).not.toThrow();
+    for (const r of res!) {
+      expect(Number.isFinite(r.ingresos)).toBe(true);
+      expect(Number.isFinite(r.costes)).toBe(true);
+      expect(Number.isFinite(r.beneficio)).toBe(true);
+      expect(Number.isFinite(r.cuota)).toBe(true);
+      expect(Number.isFinite(r.estado.caja)).toBe(true);
+    }
+    const suma = res!.reduce((s, r) => s + r.cuota, 0);
+    expect(suma).toBeCloseTo(1, 6);
+  });
+});
+
+describe('edge cases — todos los equipos con produccion = 0', () => {
+  it('ventas e ingresos son 0, costes ≥ 0, beneficio negativo, caja decrece, sin NaN', () => {
+    const [r] = simularRonda(SIMPLE, [team('A', { produccion: 0 })], 1);
+    expect(r.ventas).toBe(0);
+    expect(r.ingresos).toBe(0);
+    expect(r.costes).toBeGreaterThanOrEqual(0);
+    expect(r.beneficio).toBeLessThan(0); // solo costes fijos
+    expect(r.estado.caja).toBeLessThan(0); // caja baja
+    expect(Number.isFinite(r.costes)).toBe(true);
+    expect(Number.isFinite(r.beneficio)).toBe(true);
+    expect(Number.isFinite(r.estado.caja)).toBe(true);
+    expect(Number.isFinite(r.cuota)).toBe(true);
+  });
+
+  it('varios equipos con produccion = 0: sin NaN en ningún campo clave', () => {
+    const equipos = [team('A', { produccion: 0 }), team('B', { produccion: 0 })];
+    const res = simularRonda(SIMPLE, equipos, 1);
+    for (const r of res) {
+      expect(Number.isFinite(r.ingresos)).toBe(true);
+      expect(Number.isFinite(r.costes)).toBe(true);
+      expect(Number.isFinite(r.beneficio)).toBe(true);
+      expect(Number.isFinite(r.cuota)).toBe(true);
+      expect(Number.isFinite(r.estado.caja)).toBe(true);
+    }
+  });
+});
+
+describe('edge cases — demandaBase = 0', () => {
+  it('demandaTotal = 0, ventas = 0, cuota se reparte correctamente, sin NaN', () => {
+    const CERO: MarketParams = { ...SIMPLE, demandaBase: 0 };
+    const equipos = [team('A'), team('B')];
+    const res = simularRonda(CERO, equipos, 1);
+    for (const r of res) {
+      expect(r.ventas).toBe(0);
+      expect(r.ingresos).toBe(0);
+      expect(Number.isFinite(r.costes)).toBe(true);
+      expect(Number.isFinite(r.beneficio)).toBe(true);
+      expect(Number.isFinite(r.cuota)).toBe(true);
+      expect(Number.isFinite(r.estado.caja)).toBe(true);
+    }
+    // La cuota debe seguir sumando 1 incluso con demanda total = 0
+    const suma = res.reduce((s, r) => s + r.cuota, 0);
+    expect(suma).toBeCloseTo(1, 6);
+  });
+
+  it('monopolio con demandaBase = 0: demanda y ventas = 0, caja cae', () => {
+    const CERO: MarketParams = { ...SIMPLE, demandaBase: 0 };
+    const [r] = simularRonda(CERO, [team('A')], 1);
+    expect(r.demanda).toBe(0);
+    expect(r.ventas).toBe(0);
+    expect(r.cuota).toBeCloseTo(1, 6);
+    expect(r.estado.caja).toBeLessThan(0); // solo costes fijos + CVu sobre produccion
+  });
+});
+
 describe('rondas y ranking', () => {
   it('la demanda total crece con las rondas', () => {
     const r1 = simularRonda(DEFAULT_PARAMS, [team('A')], 1)[0];
