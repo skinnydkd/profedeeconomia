@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Build the dual-edition «Cuaderno del proyecto» PDFs for GPE (Gestió i Producció Empresarial)
+ * Build the dual-edition «Cuaderno del proyecto» PDFs for GPE (Gestión de Proyectos de Emprendimiento)
  * from the static build (same HTTP-server + pagedjs pattern as
  * build-entrevista-pdf). Renders the alumno and profesor print routes and
  * writes gpe-bach-cuaderno-alumno.pdf and …-profesor.pdf.
