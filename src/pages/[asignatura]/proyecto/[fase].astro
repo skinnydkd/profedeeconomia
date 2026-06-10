@@ -1,0 +1,110 @@
+---
+/**
+ * A single phase of an asignatura project workbook (currently GPE).
+ * Param `fase` is the zero-padded `orden` ("00", "01"…). Reuses FaseMeta,
+ * BloqueCuaderno, PuenteUnidades and the editorial prose styling.
+ */
+import BaseLayout from '@layouts/BaseLayout.astro';
+import FaseMeta from '@components/emprendimiento/FaseMeta.astro';
+import BloqueCuaderno from '@components/emprendimiento/BloqueCuaderno.astro';
+import PuenteUnidades from '@components/emprendimiento/PuenteUnidades.astro';
+import { ASIGNATURAS } from '@/lib/asignaturas';
+import { getCollection, render } from 'astro:content';
+import type { GetStaticPaths } from 'astro';
+
+export const getStaticPaths = (async () => {
+  const all = (await getCollection('proyecto')).filter((e) => e.data.estado === 'publicado');
+  const bySlug = new Map<string, typeof all>();
+  for (const e of all) {
+    const arr = bySlug.get(e.data.asignatura) ?? [];
+    arr.push(e);
+    bySlug.set(e.data.asignatura, arr);
+  }
+  const paths = [];
+  for (const [slug, secciones] of bySlug.entries()) {
+    secciones.sort((a, b) => a.data.orden - b.data.orden);
+    for (let i = 0; i < secciones.length; i++) {
+      paths.push({
+        params: { asignatura: slug, fase: String(secciones[i].data.orden).padStart(2, '0') },
+        props: {
+          entry: secciones[i],
+          prev: secciones[i - 1] ?? null,
+          next: secciones[i + 1] ?? null,
+          asignatura: ASIGNATURAS[slug],
+        },
+      });
+    }
+  }
+  return paths;
+}) satisfies GetStaticPaths;
+
+const { entry, prev, next, asignatura: a } = Astro.props;
+const d = entry.data;
+const { Content } = await render(entry);
+const faseHref = (e: typeof prev) =>
+  e ? `/${a.slug}/proyecto/${String(e.data.orden).padStart(2, '0')}` : '#';
+---
+
+<BaseLayout title={`${d.fase ?? d.title} — Cuaderno de proyecto · ${a.shortLabel}`} description={d.entregable ?? d.title}>
+  <div class="container">
+    <nav class="breadcrumb">
+      <a href="/">Inicio</a> <span class="sep">›</span>
+      <a href={`/${a.slug}/`}>{a.shortLabel}</a> <span class="sep">›</span>
+      <a href={`/${a.slug}/proyecto/`}>Cuaderno de proyecto</a> <span class="sep">›</span>
+      <span>{d.fase ?? d.title}</span>
+    </nav>
+  </div>
+
+  <section class="body" style={`--accent: var(--color-${a.color}); --accent-soft: var(--color-${a.color}-soft);`}>
+    <div class="container container--narrow">
+      <span class="kicker">{d.fase ?? `Fase ${d.orden}`}</span>
+      <h1>{d.title}</h1>
+      <FaseMeta
+        faseLabel={d.fase ?? `Fase ${d.orden}`}
+        nivel="bach-fp"
+        nucleo={true}
+        duracion={d.duracion ?? ''}
+        entregable={d.entregable ?? ''}
+        competenciasClave={d.competencia_especifica ? [d.competencia_especifica] : []}
+      />
+      <article class="prose">
+        <Content />
+      </article>
+      {d.cuaderno && <BloqueCuaderno cuaderno={d.cuaderno} modo="alumno" />}
+      <PuenteUnidades unidades={d.unidades_relacionadas} />
+
+      <nav class="phase-nav">
+        {prev ? <a href={faseHref(prev)} class="phase-nav__prev">← {prev.data.fase ?? prev.data.title}</a> : <span />}
+        {next ? <a href={faseHref(next)} class="phase-nav__next">{next.data.fase ?? next.data.title} →</a> : <span />}
+      </nav>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .container { max-width: 1240px; margin: 0 auto; padding: 0 clamp(1.5rem, 4vw, 3rem); }
+  .container--narrow { max-width: 820px; }
+  .breadcrumb { font-size: 0.92rem; color: var(--color-ink-mute); margin: 2rem 0; }
+  .breadcrumb a { color: var(--color-ink-mute); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--accent); }
+  .breadcrumb .sep { margin: 0 0.5em; color: var(--color-mustard); }
+  .body { padding: 1rem 0 clamp(3rem, 7vw, 6rem); }
+  .kicker { font-family: var(--font-sans); font-size: 0.8rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); }
+  h1 { margin: 0.6rem 0 0; max-width: 24ch; }
+  .prose { font-size: 1.05rem; line-height: 1.7; color: var(--color-ink); }
+  .prose :global(h2) { font-family: var(--font-serif); font-size: 1.6rem; margin: 2.2em 0 0.7em; position: relative; padding-top: 1em; font-weight: 500; }
+  .prose :global(h2::before) { content: ""; position: absolute; top: 0; left: 0; width: 2.5rem; height: 4px; background: var(--accent); border-radius: 999px; }
+  .prose :global(h2:nth-of-type(2n)::before) { background: var(--color-mustard); }
+  .prose :global(h3) { font-family: var(--font-serif); font-size: 1.25rem; margin: 1.6em 0 0.5em; font-weight: 500; }
+  .prose :global(p) { margin: 0 0 1em; }
+  .prose :global(ul), .prose :global(ol) { padding-left: 1.4rem; margin: 0 0 1em; }
+  .prose :global(li) { margin-bottom: 0.4em; }
+  .prose :global(ul li::marker) { color: var(--color-mustard); }
+  .prose :global(strong) { color: var(--color-ink); }
+  .prose :global(table) { width: 100%; border-collapse: separate; border-spacing: 0; margin: 1.4em 0; font-size: 0.92rem; }
+  .prose :global(th), .prose :global(td) { text-align: left; padding: 0.55em 0.75em; border-bottom: 1px solid var(--color-line-soft); vertical-align: top; }
+  .prose :global(th) { font-family: var(--font-sans); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--accent); background: var(--accent-soft); font-weight: 700; }
+  .phase-nav { display: flex; justify-content: space-between; gap: 1rem; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--color-line); font-family: var(--font-sans); font-size: 0.95rem; }
+  .phase-nav a { color: var(--accent); text-decoration: none; font-weight: 500; }
+  .phase-nav a:hover { text-decoration: underline; }
+</style>
