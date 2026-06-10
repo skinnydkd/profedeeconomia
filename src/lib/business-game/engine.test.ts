@@ -78,6 +78,18 @@ describe('reparto de mercado', () => {
   });
 });
 
+describe('coherencia ventas ↔ ingresos (unidades enteras)', () => {
+  it('los ingresos se calculan sobre las ventas enteras mostradas', () => {
+    // 3 equipos idénticos reparten 1000 de demanda → 333,33 cada uno (fraccional).
+    // Producción 1000 > demanda, así que ventas = demanda fraccional sin el fix.
+    const res = simularRonda(SIMPLE, [team('A'), team('B'), team('C')], 1);
+    for (const r of res) {
+      // ingresos deben ser exactamente las ventas enteras × precio (precio = 10).
+      expect(r.ingresos).toBe(r.ventas * 10);
+    }
+  });
+});
+
 describe('producción y stock', () => {
   it('no se vende más de lo producido; lo que sobra es stock', () => {
     const [r] = simularRonda(SIMPLE, [team('A', { produccion: 1300 })], 1); // demanda 1000 < 1300

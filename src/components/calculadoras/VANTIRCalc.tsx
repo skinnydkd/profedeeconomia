@@ -15,8 +15,11 @@ export default function VANTIRCalc() {
 
   const result = useMemo(() => {
     const r = k / 100;
-    if (inversion <= 0 || r <= -1) {
-      return { valido: false as const, mensaje: 'Inversión y tasa de descuento deben ser válidas.' };
+    if (inversion <= 0) {
+      return { valido: false as const, mensaje: 'La inversión inicial debe ser mayor que cero.' };
+    }
+    if (r < -0.5) {
+      return { valido: false as const, mensaje: 'La tasa de descuento debe ser mayor que −50%.' };
     }
     const van = vanCalc(inversion, flujos, r);
     const tir = tirCalc(inversion, flujos);

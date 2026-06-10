@@ -157,8 +157,14 @@ export interface RevenueEffect {
  *
  * For a normal demand curve this matches the elasticity rule:
  *   elástica → IT baja, inelástica → IT sube, unitaria → IT igual.
+ *
+ * Returns null when both prices are equal (a vertical/perfectly-elastic move):
+ * the price does not rise, so a "what happens to IT when the price rises"
+ * narrative would be misleading.
  */
-export function revenueEffect(a: PricePoint, b: PricePoint): RevenueEffect {
+export function revenueEffect(a: PricePoint, b: PricePoint): RevenueEffect | null {
+  if (a.P === b.P) return null;
+
   // Order by price so the result always describes a price *increase*.
   const low = a.P <= b.P ? a : b;
   const high = a.P <= b.P ? b : a;
@@ -179,7 +185,8 @@ export interface ElasticityReport {
   arc: ArcElasticityResult;
   kind: ElasticityKind;
   label: string;
-  revenue: RevenueEffect;
+  /** Effect on total revenue, or null when both prices are equal (no price rise). */
+  revenue: RevenueEffect | null;
 }
 
 /**
