@@ -106,6 +106,7 @@ function startStaticServer(distDir, port) {
     try {
       const url = decodeURIComponent(req.url.split('?')[0]);
       let filePath = join(distDir, url);
+      if (!filePath.startsWith(distDir)) { res.writeHead(403); res.end('forbidden'); return; }
       if (existsSync(filePath) && statSync(filePath).isDirectory()) {
         filePath = join(filePath, 'index.html');
       }
@@ -128,7 +129,7 @@ function startStaticServer(distDir, port) {
     }
   });
   return new Promise((resolveSrv, rejectSrv) => {
-    server.listen(port, '0.0.0.0', () => resolveSrv(server));
+    server.listen(port, '127.0.0.1', () => resolveSrv(server));
     server.on('error', rejectSrv);
   });
 }
@@ -186,9 +187,10 @@ for (const slug of asignaturas) {
   // server's event loop can serve Chrome's requests in parallel.
   // spawnSync blocks the Node main thread until the child exits,
   // which prevents the http server from responding.
+  const npxCmd = process.platform === 'win32' ? 'npx.cmd' : 'npx';
   const exitCode = await new Promise((resolveExit) => {
     const child = spawn(
-      'npx',
+      npxCmd,
       [
         '--no-install',
         'pagedjs-cli',
@@ -200,7 +202,6 @@ for (const slug of asignaturas) {
       {
         cwd: root,
         stdio: 'inherit',
-        shell: true,
         env: { ...process.env, PUPPETEER_EXECUTABLE_PATH: chromePath ?? '' },
       }
     );

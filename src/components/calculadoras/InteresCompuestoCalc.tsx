@@ -209,7 +209,9 @@ export default function InteresCompuestoCalc() {
               </div>
               <div class="calc__metric-mini">
                 <span class="calc__metric-mini-label">Intereses ganados</span>
-                <span class="calc__metric-mini-value ok">{fmtMoney(result.intereses)}</span>
+                <span class={`calc__metric-mini-value ${result.intereses >= 0 ? 'ok' : 'fail'}`}>
+                  {fmtMoney(result.intereses)}
+                </span>
               </div>
               <div class="calc__metric-mini">
                 <span class="calc__metric-mini-label">Ratio interés / aportado</span>

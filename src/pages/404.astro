@@ -1,0 +1,92 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { ASIGNATURAS_PUBLICADAS } from '@/lib/asignaturas';
+---
+<BaseLayout title="Página no encontrada">
+  <main class="prose">
+    <p class="eyebrow">Error 404</p>
+    <h1>Página no encontrada</h1>
+
+    <p class="lede">
+      La dirección que has buscado no existe o ha cambiado de lugar.
+      Prueba desde uno de estos puntos de partida.
+    </p>
+
+    <nav class="links-block">
+      <p class="section-label">General</p>
+      <ul class="link-list">
+        <li><a class="editorial-link" href="/">Inicio</a></li>
+        <li><a class="editorial-link" href="/juegos/">Juegos</a></li>
+        <li><a class="editorial-link" href="/herramientas/">Herramientas</a></li>
+        <li><a class="editorial-link" href="/dinamicas/">Dinámicas</a></li>
+        <li><a class="editorial-link" href="/debates/">Debates</a></li>
+      </ul>
+
+      <p class="section-label">Asignaturas</p>
+      <ul class="link-list">
+        {ASIGNATURAS_PUBLICADAS.map((a) => (
+          <li>
+            <a class="editorial-link" href={`/${a.slug}/`}>{a.shortLabel}</a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </main>
+</BaseLayout>
+
+<style>
+  .prose {
+    max-width: 62ch;
+    margin: 0 auto;
+    padding: 3rem clamp(1.5rem, 4vw, 3rem) 5rem;
+  }
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-terra);
+    margin: 0 0 0.5rem;
+  }
+  h1 {
+    margin: 0 0 1.2rem;
+    max-width: 18ch;
+  }
+  .lede {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.25rem;
+    line-height: 1.5;
+    color: var(--color-ink-soft);
+    margin: 0 0 2.5rem;
+    font-variation-settings: "SOFT" 80;
+  }
+  .links-block {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .section-label {
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-ink-mute);
+    margin: 1.8rem 0 0.6rem;
+    border-top: 1px solid var(--color-line);
+    padding-top: 1.2rem;
+  }
+  .link-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+  }
+  .link-list li::before {
+    content: "→";
+    margin-right: 0.5em;
+    color: var(--color-mustard);
+  }
+</style>

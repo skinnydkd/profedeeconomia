@@ -129,26 +129,34 @@ export default function ElasticidadCalc() {
               </div>
             </div>
 
-            <div class="el__revenue">
-              <div class="el__revenue-head">
-                Al subir el precio, el ingreso total{' '}
-                <strong class={revClass(result.revenue.direction)}>
-                  {revWord(result.revenue.direction)}
-                </strong>
-              </div>
-              <div class="calc__metric-grid">
-                <div class="calc__metric-mini">
-                  <span class="calc__metric-mini-label">IT antes (precio menor)</span>
-                  <span class="calc__metric-mini-value">{fmtMoney(result.revenue.before)}</span>
+            {result.revenue ? (
+              <div class="el__revenue">
+                <div class="el__revenue-head">
+                  Al subir el precio, el ingreso total{' '}
+                  <strong class={revClass(result.revenue.direction)}>
+                    {revWord(result.revenue.direction)}
+                  </strong>
                 </div>
-                <div class="calc__metric-mini">
-                  <span class="calc__metric-mini-label">IT después (precio mayor)</span>
-                  <span class={`calc__metric-mini-value ${result.revenue.change >= 0 ? 'ok' : 'fail'}`}>
-                    {fmtMoney(result.revenue.after)}
-                  </span>
+                <div class="calc__metric-grid">
+                  <div class="calc__metric-mini">
+                    <span class="calc__metric-mini-label">IT antes (precio menor)</span>
+                    <span class="calc__metric-mini-value">{fmtMoney(result.revenue.before)}</span>
+                  </div>
+                  <div class="calc__metric-mini">
+                    <span class="calc__metric-mini-label">IT después (precio mayor)</span>
+                    <span class={`calc__metric-mini-value ${result.revenue.change >= 0 ? 'ok' : 'fail'}`}>
+                      {fmtMoney(result.revenue.after)}
+                    </span>
+                  </div>
                 </div>
               </div>
-            </div>
+            ) : (
+              <div class="el__revenue">
+                <div class="el__revenue-head">
+                  Introduce dos precios distintos para analizar el efecto sobre los ingresos.
+                </div>
+              </div>
+            )}
 
             <DemandChart
               a={{ P: p1, Q: q1 }}
@@ -176,8 +184,10 @@ export default function ElasticidadCalc() {
                 <p>
                   <strong>Ingreso total</strong> (IT = P · Q): si la demanda es elástica, al
                   subir el precio el IT baja; si es inelástica, el IT sube; si es unitaria, no
-                  cambia. Aquí pasa de {fmtMoney(result.revenue.before)} a{' '}
-                  {fmtMoney(result.revenue.after)}.
+                  cambia.
+                  {result.revenue
+                    ? ` Aquí pasa de ${fmtMoney(result.revenue.before)} a ${fmtMoney(result.revenue.after)}.`
+                    : ' Introduce dos precios distintos para ver el efecto sobre los ingresos.'}
                 </p>
               </div>
             </details>

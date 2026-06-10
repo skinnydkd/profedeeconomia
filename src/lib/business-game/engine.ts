@@ -157,8 +157,12 @@ export function simularRonda(params: MarketParams, equipos: TeamInput[], ronda: 
   return pre.map((x) => {
     const cuota = sumaAtractivo > 0 ? x.atractivo / sumaAtractivo : 1 / pre.length;
     const demanda = demandaTotal * cuota;
-    const ventas = Math.min(demanda, x.e.decision.produccion);
-    const stock = Math.max(0, x.e.decision.produccion - demanda);
+    // Ventas en unidades enteras, para que la aritmética visible en la interfaz
+    // cuadre (unidades × precio = ingresos) y stock/beneficio deriven del mismo
+    // entero. El coste variable se paga sobre lo PRODUCIDO (no lo vendido): lo no
+    // vendido pasa a stock y genera coste de almacenamiento.
+    const ventas = Math.round(Math.min(demanda, x.e.decision.produccion));
+    const stock = Math.max(0, x.e.decision.produccion - ventas);
 
     const ingresos = ventas * x.e.decision.precio;
     const costes =
@@ -185,8 +189,8 @@ export function simularRonda(params: MarketParams, equipos: TeamInput[], ronda: 
       atractivo: round4(x.atractivo),
       cuota: round4(cuota),
       demanda: Math.round(demanda),
-      ventas: Math.round(ventas),
-      stock: Math.round(stock),
+      ventas,
+      stock,
       ingresos: round2(ingresos),
       costes: round2(costes),
       beneficio: round2(beneficio),

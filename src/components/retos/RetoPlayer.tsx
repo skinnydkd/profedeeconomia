@@ -5,6 +5,7 @@ import { nivelForScore, type NivelInfo } from '../../lib/retos';
 import type { Item, RetoData } from './parse-reto';
 import '../QuizPlayer.css';
 import './RetoPlayer.css';
+import { shuffleNoIdentidad } from './shuffle-utils';
 
 type Props = {
   reto: RetoData;
@@ -35,15 +36,6 @@ function aplanar(reto: RetoData): Entrada[] {
 
 const esAuto = (it: Item) => it.tipo !== 'abierta';
 
-function shuffle<T>(arr: T[]): T[] {
-  const a = [...arr];
-  for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [a[i], a[j]] = [a[j], a[i]];
-  }
-  return a;
-}
-
 function respondida(it: Item, r: Respuesta): boolean {
   switch (it.tipo) {
     case 'opcion-multiple':
@@ -73,7 +65,7 @@ type Estado = { idx: number; respuestas: Respuesta[]; confirmadas: boolean[]; fi
 function emptyState(entradas: Entrada[]): Estado {
   return {
     idx: 0,
-    respuestas: entradas.map((e) => (e.item.tipo === 'ordenar' ? shuffle(e.item.elementos) : null)),
+    respuestas: entradas.map((e) => (e.item.tipo === 'ordenar' ? shuffleNoIdentidad(e.item.elementos) : null)),
     confirmadas: entradas.map(() => false),
     finalizado: false,
   };

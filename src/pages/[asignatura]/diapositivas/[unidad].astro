@@ -1,6 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
-import { readFileSync } from 'node:fs';
+import { readFileSync, existsSync } from 'node:fs';
 import { resolve } from 'node:path';
 import type { GetStaticPaths } from 'astro';
 import Deck from '@components/slides/Deck.astro';
@@ -19,7 +19,10 @@ export const getStaticPaths = (async () => {
 }) satisfies GetStaticPaths;
 
 const { asignatura, unidad } = Astro.props as { asignatura: string; unidad: string };
-const raw = readFileSync(resolve('src/content/asignaturas', asignatura, 'libro', `${unidad}.mdx`), 'utf8');
+const mdxPath = resolve('src/content/asignaturas', asignatura, 'libro', `${unidad}.mdx`);
+const mdPath  = resolve('src/content/asignaturas', asignatura, 'libro', `${unidad}.md`);
+const filePath = existsSync(mdxPath) ? mdxPath : mdPath;
+const raw = readFileSync(filePath, 'utf8');
 const deck = buildDeck(raw);
 ---
 <html lang="es">

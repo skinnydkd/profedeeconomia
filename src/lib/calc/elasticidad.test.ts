@@ -102,7 +102,7 @@ describe('revenueEffect when the price rises', () => {
     const a: PricePoint = { P: 10, Q: 100 };
     const b: PricePoint = { P: 12, Q: 70 };
     expect(classify(arcElasticity(a, b).E)).toBe('elastica');
-    const r = revenueEffect(a, b);
+    const r = revenueEffect(a, b)!;
     expect(r.before).toBeCloseTo(1000);
     expect(r.after).toBeCloseTo(840);
     expect(r.change).toBeLessThan(0);
@@ -114,7 +114,7 @@ describe('revenueEffect when the price rises', () => {
     const a: PricePoint = { P: 10, Q: 100 };
     const b: PricePoint = { P: 12, Q: 95 };
     expect(classify(arcElasticity(a, b).E)).toBe('inelastica');
-    const r = revenueEffect(a, b);
+    const r = revenueEffect(a, b)!;
     expect(r.before).toBeCloseTo(1000);
     expect(r.after).toBeCloseTo(1140);
     expect(r.change).toBeGreaterThan(0);
@@ -125,7 +125,7 @@ describe('revenueEffect when the price rises', () => {
     // Constant IT = 1200 along the curve → unit elastic, IT igual.
     const a: PricePoint = { P: 10, Q: 120 };
     const b: PricePoint = { P: 12, Q: 100 };
-    const r = revenueEffect(a, b);
+    const r = revenueEffect(a, b)!;
     expect(r.before).toBeCloseTo(1200);
     expect(r.after).toBeCloseTo(1200);
     expect(r.direction).toBe('igual');
@@ -136,6 +136,19 @@ describe('revenueEffect when the price rises', () => {
     const down = revenueEffect({ P: 12, Q: 70 }, { P: 10, Q: 100 });
     expect(up).toEqual(down);
   });
+
+  it('returns null when the price does not change (perfectly elastic move)', () => {
+    // p1 === p2 with q1 ≠ q2: there is no price rise, so no revenue narrative.
+    expect(revenueEffect({ P: 10, Q: 100 }, { P: 10, Q: 120 })).toBeNull();
+  });
+});
+
+describe('analyze with equal prices', () => {
+  it('keeps the classification but drops the revenue effect when p1 === p2', () => {
+    const r = analyze({ P: 10, Q: 100 }, { P: 10, Q: 120 });
+    expect(r.kind).toBe('perfectamente_elastica');
+    expect(r.revenue).toBeNull();
+  });
 });
 
 describe('analyze (full report)', () => {
@@ -144,6 +157,6 @@ describe('analyze (full report)', () => {
     expect(r.arc.E).toBeCloseTo(-1);
     expect(r.kind).toBe('unitaria');
     expect(r.label).toMatch(/unitaria/);
-    expect(r.revenue.direction).toBe('igual');
+    expect(r.revenue!.direction).toBe('igual');
   });
 });
