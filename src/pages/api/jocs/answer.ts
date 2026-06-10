@@ -6,6 +6,7 @@ import { getSupabase } from '../../../lib/jocs-economics/server/supabase';
 import { nextQuestion, BankExhaustedError } from '../../../lib/jocs-economics/server/bank';
 import { verifyGameToken } from '../../../lib/jocs-economics/server/tokens';
 import { nextDifficulty } from '../../../lib/jocs-economics/server/difficulty';
+import { recordedElapsedMs } from '../../../lib/jocs-economics/server/elapsed';
 
 // SSR-only: no pre-render at build time (Supabase env vars not available)
 export const prerender = false;
@@ -122,7 +123,7 @@ export const POST: APIRoute = async ({ request }) => {
     elapsedMsRecorded = TIMER_QUESTION_MS;
   } else {
     isCorrect = optionIdx === currentQ.correcta;
-    elapsedMsRecorded = Math.min(serverElapsedMs, clientElapsedMs + CLIENT_TOLERANCE_MS);
+    elapsedMsRecorded = recordedElapsedMs(serverElapsedMs, clientElapsedMs, CLIENT_TOLERANCE_MS);
   }
 
   const scoreGain = isCorrect ? scoreFor(game.current_difficulty) : 0;
