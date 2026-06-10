@@ -2,6 +2,7 @@
 import SiteHeader from '@components/SiteHeader.astro';
 import SiteFooter from '@components/SiteFooter.astro';
 import { ASIGNATURA_SLUGS } from '@/lib/asignaturas';
+import { jsonLdToString } from '@/lib/seo';
 import '@/styles/global.css';
 import '@/styles/calculadoras.css';
 
@@ -14,9 +15,11 @@ type Props = {
   ogType?: string;
   /** One or more schema.org JSON-LD objects (see src/lib/seo.ts). */
   jsonLd?: object | object[];
+  /** When true, emits <meta name="robots" content="noindex,nofollow" />. */
+  noindex?: boolean;
 };
 
-const { title, description, ogImage, ogType = 'website', jsonLd } = Astro.props;
+const { title, description, ogImage, ogType = 'website', jsonLd, noindex = false } = Astro.props;
 const fullTitle = title.endsWith('profedeeconomia')
   ? title
   : `${title} — profedeeconomia`;
@@ -38,6 +41,7 @@ const resolvedOgImage = new URL(ogImage ?? autoOgImage, Astro.site).toString();
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{fullTitle}</title>
+    {noindex && <meta name="robots" content="noindex,nofollow" />}
     {description && <meta name="description" content={description} />}
     <link rel="canonical" href={canonical} />
 
@@ -80,7 +84,7 @@ const resolvedOgImage = new URL(ogImage ?? autoOgImage, Astro.site).toString();
 
     <!-- Structured data (JSON-LD) -->
     {ldItems.map((item) => (
-      <script type="application/ld+json" set:html={JSON.stringify(item)} />
+      <script type="application/ld+json" set:html={jsonLdToString(item)} />
     ))}
   </head>
   <body class="bg-bg text-ink font-sans">

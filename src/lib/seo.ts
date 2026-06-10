@@ -62,6 +62,15 @@ export function breadcrumbLd(items: { name: string; path: string }[]) {
   };
 }
 
+/**
+ * Serialize a JSON-LD object to a string safe for inline `<script>` injection.
+ * JSON.stringify does not escape `<`, so a title containing `</script>` could
+ * break out of the script tag. We replace `<` with the Unicode escape `<`.
+ */
+export function jsonLdToString(obj: object): string {
+  return JSON.stringify(obj).replace(/</g, '\\u003c');
+}
+
 /** schema.org Article for a long-form content page (e.g. a book unit). */
 export function articleLd(opts: {
   title: string;
