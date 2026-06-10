@@ -5,7 +5,7 @@
  * alumno/profesor workbook PDFs. noindex.
  */
 import BloqueCuaderno from '@components/emprendimiento/BloqueCuaderno.astro';
-import { ASIGNATURAS, ASIGNATURA_SLUGS } from '@/lib/asignaturas';
+import { ASIGNATURAS } from '@/lib/asignaturas';
 import type { GetStaticPaths } from 'astro';
 import { getCollection } from 'astro:content';
 
@@ -105,7 +105,7 @@ const accent = ACCENTS[a.color] ?? ACCENTS.gpe;
 
     <section class="toc">
       <h2>Las fases</h2>
-      <ol>{fases.map((f) => <li>{f.data.fase ?? f.data.title} — {f.data.title}</li>)}</ol>
+      <ol>{fases.map((f) => <li>{f.data.fase ?? `Fase ${f.data.orden}`}</li>)}</ol>
     </section>
 
     {fases.map((f) => (
