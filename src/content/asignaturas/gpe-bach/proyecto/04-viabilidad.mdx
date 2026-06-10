@@ -3,6 +3,22 @@ asignatura: gpe-bach
 orden: 4
 title: "Viabilidad: contabilidad, fiscalidad e impacto"
 fase: "Fase 4 — Viabilidad"
+duracion: "4-5 sesiones"
+entregable: "Presupuesto, cuenta de resultados previsional, punto muerto y análisis de impacto (económico, social y ambiental)."
+competencia_especifica: "CE4"
+saberes:
+  - "Presupuesto y cuenta de resultados previsional"
+  - "El punto muerto o umbral de rentabilidad"
+  - "Viabilidad económica, social y ambiental; impacto local"
+unidades_relacionadas:
+  - { asignatura: gpe-bach, unidad: 6, nota: "Contabilidad, fiscalidad y financiación" }
+  - { asignatura: gpe-bach, unidad: 7, nota: "Impacto social y ambiental" }
+cuaderno:
+  tarea: "Calculad el <strong>punto muerto</strong> de vuestro proyecto: cuántas unidades tenéis que vender para no perder dinero. Rellenad la plantilla con vuestros costes fijos, precio y coste variable unitario."
+  reflexion: "¿El punto muerto que os sale es alcanzable de verdad con vuestra clientela, o necesitáis vender una cantidad imposible?"
+  orientacion_docente: "El error más común es contar solo la viabilidad económica. Exigid las tres viabilidades: económica, social y ambiental. Y separad beneficio de caja: se puede tener beneficio en la cuenta de resultados y quedarse sin dinero para pagar a fin de mes."
+  plantilla:
+    tipo: punto-muerto
 lang: es
 estado: publicado
 ---
@@ -11,10 +27,32 @@ import Callout from '@components/Callout.astro';
 import Steps from '@components/Steps.astro';
 import Diagram from '@components/Diagram.astro';
 import BreakEvenChart from '@components/diagrams/BreakEvenChart.astro';
+import EnEstaFase from '@components/EnEstaFase.astro';
+import CasoReal from '@components/CasoReal.astro';
+import ErroresQueCuestan from '@components/ErroresQueCuestan.astro';
+import HerramientaIsland from '@components/calculadoras/HerramientaIsland.astro';
+
+<EnEstaFase
+  haras="Hacer los números del proyecto: presupuesto, cuenta de resultados, punto muerto y financiación; y comprobar que también es viable social y ambientalmente."
+  entregable="Números del proyecto + análisis de impacto"
+  sesiones="4-5 sesiones"
+>
+Repasad de la **Unidad 6** la cuenta de resultados y el punto muerto, y de la **Unidad 7** el impacto social y ambiental.
+</EnEstaFase>
 
 Tenéis un producto y una forma de venderlo. La pregunta de la Fase 4 es la más dura: **¿esto se sostiene?** Un proyecto que no cubre sus costes no llega a ningún sitio, por buena que sea la idea. Aquí hacéis los números: un presupuesto de lo que necesitáis, una cuenta de resultados previsional de lo que ganaríais o perderíais, el punto muerto que os dice cuánto hay que vender para no perder, y de dónde sacáis el dinero para arrancar.
 
 Pero en GPE la viabilidad no es solo económica. Un proyecto también debe ser viable **socialmente** y **ambientalmente**. Por eso esta fase cierra con un análisis de impacto en la triple vertiente —económica, social y ambiental— y en el desarrollo local, que es el corazón de la materia. Un proyecto rentable que daña su entorno no es viable para GPE.
+
+<CasoReal
+  titular="La Fageda: rentable y, a la vez, con impacto social real"
+  fuente="Adaptado de fuentes públicas sobre La Fageda"
+  pregunta="¿Vuestro proyecto sería viable contando también su impacto social y ambiental, no solo el económico?"
+>
+La Fageda es una cooperativa catalana que vende yogures y postres lácteos en un mercado muy competitivo, frente a grandes marcas, y se sostiene económicamente con sus propias ventas. No vive de donaciones: compite y vende.
+
+Y lo hace mientras su misión social —dar trabajo digno a personas con discapacidad o trastorno mental de su comarca— es el núcleo del proyecto, no un añadido para quedar bien. La lección es que en GPE la viabilidad es triple: un proyecto rentable que daña su entorno no es viable, y uno que mejora su comunidad mientras se sostiene es justo lo que la materia busca.
+</CasoReal>
 
 ## Objetivo de la fase y qué se trabaja
 
@@ -97,6 +135,10 @@ El punto muerto (o umbral de rentabilidad) es el número de unidades que tenéis
 La calculadora de punto muerto de la sección de recursos os da el resultado al instante, pero el examen no es el número: es saber qué significa. "Tenemos que vender X unidades solo para no perder dinero" es una frase que cambia decisiones. Si el punto muerto está muy por encima de lo que podéis vender, el proyecto necesita un replanteo, no más optimismo.
 </Callout>
 
+**Probadlo con vuestros datos:** introducid vuestros costes fijos, el precio de venta y el coste variable unitario, y la calculadora os da el punto muerto y la gráfica.
+
+<HerramientaIsland componente="PuntoMuerto" />
+
 ## Paso 4 — Fuentes de financiación
 
 ¿De dónde sale el dinero de la inversión inicial? Comparad las opciones realistas para un proyecto pequeño y decidid una combinación.
@@ -114,6 +156,10 @@ La calculadora de punto muerto de la sección de recursos os da el resultado al 
 | Combinación elegida y por qué |  |
 | ¿Es coherente con los valores del proyecto? |  |
 
+**Probadlo con vuestros datos:** comparad inversiones con el VAN y la TIR para decidir si una opción de financiación o inversión compensa.
+
+<HerramientaIsland componente="VANTIR" />
+
 ## Paso 5 — Análisis de impacto (triple vertiente)
 
 Aquí GPE marca su diferencia. Un proyecto viable lo es en tres dimensiones a la vez. Analizad el impacto de vuestro proyecto y proponed mejoras concretas, especialmente en lo que retiene valor en vuestra comunidad.
@@ -128,6 +174,12 @@ Aquí GPE marca su diferencia. Un proyecto viable lo es en tres dimensiones a la
 |---|---|
 | ¿A qué Objetivos de Desarrollo Sostenible contribuye nuestro proyecto? |  |
 | ¿Cómo retiene nuestro proyecto valor en la economía local? |  |
+
+<ErroresQueCuestan>
+- **Contar solo la viabilidad económica y olvidar la social y ambiental.** Un proyecto puede salir rentable sobre el papel y, aun así, no ser viable en GPE si daña su entorno o no aporta nada a la comunidad.
+- **Ingresos optimistas sin calcular el punto muerto.** Esperar vender mucho más de lo que el mercado permite hincha la cuenta de resultados; sin el punto muerto no sabéis cuánto hay que vender de verdad para no perder.
+- **Confundir beneficio con caja.** Se puede tener beneficio en la cuenta de resultados y, al mismo tiempo, no tener dinero en la cuenta para pagar a proveedores o nóminas a fin de mes.
+</ErroresQueCuestan>
 
 ## Entregable de la Fase 4
 
