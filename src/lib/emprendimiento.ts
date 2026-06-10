@@ -3,7 +3,7 @@
  * Pure helpers shared by the index page, the phase pages and the PDF route.
  */
 
-export type Nivel = 'todos' | 'eso' | 'bach-fp';
+export type Nivel = 'todos' | 'eso' | 'bach' | 'bach-fp';
 export type ItinerarioId = 'sprint-eso' | 'bach-fp' | 'a-la-carta';
 
 export interface Itinerario {
