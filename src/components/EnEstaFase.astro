@@ -1,0 +1,42 @@
+---
+/**
+ * "En esta fase" — phase-level TL;DR for the GPE project workbook.
+ * Generic (not GPE-bound) so «De cero a empresa» can adopt it later.
+ * Mirrors the visual language of TldrUnidad.
+ */
+type Props = {
+  /** What the team will do this phase (one line). */
+  haras: string;
+  /** Deliverable produced at the end of the phase. */
+  entregable: string;
+  /** Estimated sessions ("2-3 sesiones"). */
+  sesiones: string;
+};
+const { haras, entregable, sesiones } = Astro.props;
+---
+
+<aside class="enfase">
+  <header class="enfase__head">
+    <span class="enfase__kicker">En esta fase</span>
+    <span class="enfase__dur">{sesiones}</span>
+  </header>
+  <dl class="enfase__grid">
+    <div><dt>Qué haréis</dt><dd>{haras}</dd></div>
+    <div><dt>Qué entregáis</dt><dd>{entregable}</dd></div>
+  </dl>
+  <div class="enfase__repaso"><slot /></div>
+</aside>
+
+<style>
+  .enfase { margin: 0 0 2.4rem; padding: 1.4rem 1.6rem; background: var(--color-bg-soft); border-left: 4px solid var(--color-mustard); border-radius: 0 4px 4px 0; }
+  .enfase__head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.9rem; }
+  .enfase__kicker { font-family: var(--font-sans); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.16em; color: var(--color-mustard-deep); font-weight: 700; }
+  .enfase__dur { font-family: var(--font-mono); font-size: 0.74rem; color: var(--color-ink-mute); }
+  .enfase__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 0 0 0.9rem; }
+  .enfase__grid dt { font-family: var(--font-sans); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-ink-mute); font-weight: 700; margin-bottom: 0.2rem; }
+  .enfase__grid dd { margin: 0; font-size: 0.98rem; color: var(--color-ink); line-height: 1.45; }
+  .enfase__repaso { font-family: var(--font-serif); font-size: 1rem; line-height: 1.55; color: var(--color-ink-soft); border-top: 1px dashed var(--color-line); padding-top: 0.8rem; }
+  .enfase__repaso :global(p) { margin: 0; }
+  @media (max-width: 540px) { .enfase__grid { grid-template-columns: 1fr; } }
+  @media print { .enfase { break-inside: avoid; page-break-inside: avoid; } }
+</style>

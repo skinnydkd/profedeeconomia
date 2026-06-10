@@ -265,6 +265,37 @@ const proyecto = defineCollection({
     title: z.string(),
     /** Etiqueta de la fase del proyecto ("Fase 1 — Idea y oportunidad"). */
     fase: z.string().optional(),
+    /** Duración estimada de la fase ("2-3 sesiones"). */
+    duracion: z.string().optional(),
+    /** Descripción de una línea del entregable de la fase. */
+    entregable: z.string().optional(),
+    /** Competencia específica trabajada ("CE1"). */
+    competencia_especifica: z.string().optional(),
+    /** Bloques de saberes del Decret 108/2022 trabajados en la fase. */
+    saberes: z.array(z.string()).default([]),
+    /** Puentes a unidades del libro (alimenta «Para el aula» vía índice inverso). */
+    unidades_relacionadas: z
+      .array(
+        z.object({
+          asignatura: z.enum(ASIGNATURA_SLUGS),
+          unidad: z.number().int().min(1),
+          nota: z.string().optional(),
+        })
+      )
+      .default([]),
+    /** Contenido del cuaderno del alumno para esta fase (web + PDF, fuente única). */
+    cuaderno: z
+      .object({
+        tarea: z.string(),
+        reflexion: z.string(),
+        orientacion_docente: z.string().optional(),
+        plantilla: z.object({
+          tipo: z.enum(['canvas-bm', '4p', 'punto-muerto', 'procesos', 'pitch', 'tabla']),
+          columnas: z.array(z.string()).optional(),
+          filas: z.number().int().optional(),
+        }),
+      })
+      .optional(),
     lang: z.enum(LANGS).default('es'),
     estado: z.enum(ESTADOS).default('borrador'),
   }),
