@@ -1,0 +1,120 @@
+---
+/**
+ * Print-ready dual-edition «Cuaderno del equipo» for an asignatura project
+ * (currently GPE). Used by scripts/build-cuaderno-gpe-pdf.mjs to produce the
+ * alumno/profesor workbook PDFs. noindex.
+ */
+import BloqueCuaderno from '@components/emprendimiento/BloqueCuaderno.astro';
+import { ASIGNATURAS, ASIGNATURA_SLUGS } from '@/lib/asignaturas';
+import type { GetStaticPaths } from 'astro';
+import { getCollection } from 'astro:content';
+
+const ACCENTS: Record<string, { base: string; deep: string; soft: string }> = {
+  edmn: { base: '#C44E2C', deep: '#9C3A1C', soft: '#FBE3D6' },
+  eco1: { base: '#1F6E6E', deep: '#164F4F', soft: '#DBEDED' },
+  eco4: { base: '#D4A24C', deep: '#A87A2A', soft: '#F5E5BC' },
+  fopp: { base: '#5B3A4E', deep: '#46293A', soft: '#ECDCE5' },
+  taller3: { base: '#6B8E23', deep: '#4F6B18', soft: '#E4ECD2' },
+  ipe1: { base: '#4A6FA5', deep: '#36527D', soft: '#DCE5F0' },
+  ipe2: { base: '#2F4F7F', deep: '#22395C', soft: '#D5DEEB' },
+  eeae: { base: '#2E5E3A', deep: '#234A2D', soft: '#D9E6DC' },
+  gpe:  { base: '#8C2F39', deep: '#6E2530', soft: '#F1DADD' },
+};
+
+export const getStaticPaths = (async () => {
+  const all = (await getCollection('proyecto')).filter(
+    (f) => f.data.estado === 'publicado' && f.data.cuaderno
+  );
+  const bySlug = new Map<string, typeof all>();
+  for (const e of all) {
+    const arr = bySlug.get(e.data.asignatura) ?? [];
+    arr.push(e);
+    bySlug.set(e.data.asignatura, arr);
+  }
+  const paths = [];
+  for (const [slug, fases] of bySlug.entries()) {
+    fases.sort((a, b) => a.data.orden - b.data.orden);
+    for (const modo of ['alumno', 'profesor'] as const) {
+      paths.push({ params: { asignatura: slug, modo }, props: { fases, asignatura: ASIGNATURAS[slug] } });
+    }
+  }
+  return paths;
+}) satisfies GetStaticPaths;
+
+const { fases, asignatura: a } = Astro.props;
+const esProfesor = Astro.params.modo !== 'alumno';
+const edicion = esProfesor ? 'Profesorado' : 'Alumnado';
+const accent = ACCENTS[a.color] ?? ACCENTS.gpe;
+---
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="robots" content="noindex" />
+    <title>{a.shortLabel} — Cuaderno del {edicion}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,0..100,0..1;1,9..144,300..700,0..100,0..1&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" />
+    <style is:inline>
+      @font-face { font-family: 'Switzer'; src: url('/fonts/switzer/switzer-400.woff2') format('woff2'); font-weight: 400; font-display: swap; font-style: normal; }
+      @font-face { font-family: 'Switzer'; src: url('/fonts/switzer/switzer-500.woff2') format('woff2'); font-weight: 500; font-display: swap; font-style: normal; }
+      @font-face { font-family: 'Switzer'; src: url('/fonts/switzer/switzer-600.woff2') format('woff2'); font-weight: 600; font-display: swap; font-style: normal; }
+      @font-face { font-family: 'Switzer'; src: url('/fonts/switzer/switzer-700.woff2') format('woff2'); font-weight: 700; font-display: swap; font-style: normal; }
+      :root {
+        --color-bg: #FBF6EC; --color-paper: #FFFFFF; --color-bg-cream: #F5EDD9; --color-ink: #2A1F18;
+        --color-ink-soft: #5C4A3D; --color-ink-mute: #806C5A;
+        --color-line: #E5D4BD; --color-line-soft: #EFE2CB;
+        --color-mustard: #D4A24C; --color-mustard-deep: #A87A2A; --color-mustard-soft: #F5E5BC;
+        --color-terra: #C44E2C;
+        --font-serif: "Fraunces", Georgia, serif;
+        --font-sans: "Switzer", -apple-system, sans-serif;
+        --font-mono: "JetBrains Mono", monospace;
+      }
+      @page { size: A4; margin: 18mm 16mm 16mm; }
+      * { box-sizing: border-box; }
+      body { margin: 0; font-family: var(--font-sans); color: var(--color-ink); font-size: 10.5pt; line-height: 1.5; background: #fff; }
+      .cover { display: flex; flex-direction: column; justify-content: center; height: 244mm; break-after: page; }
+      .cover__eyebrow { color: var(--accent-deep); font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; font-size: 11pt; }
+      .cover__title { font-family: var(--font-serif); font-size: 34pt; line-height: 1.05; margin: 0.4rem 0; }
+      .cover__ed { font-style: italic; font-family: var(--font-serif); color: var(--color-ink-soft); font-size: 14pt; }
+      .cover__equipo { margin-top: 2.2rem; border: 1.5px solid var(--color-line); border-top: 3px solid var(--accent); border-radius: 6px; padding: 1.1rem 1.3rem; }
+      .cover__equipo h3 { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent-deep); margin: 0 0 0.7rem; }
+      .cover__field { border-bottom: 1px dashed var(--color-line); height: 1.9rem; margin-bottom: 0.7rem; font-size: 0.9rem; color: var(--color-ink-mute); }
+      .toc { break-after: page; }
+      .toc h2 { font-family: var(--font-serif); font-size: 22pt; }
+      .toc ol { padding-left: 1.3rem; line-height: 1.9; }
+      .fase { break-before: page; min-height: 242mm; }
+      .fase__label { color: var(--accent-deep); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.78rem; }
+      .fase__title { font-family: var(--font-serif); font-size: 20pt; margin: 0.2rem 0; }
+      .fase__entregable { color: var(--color-ink-soft); font-style: italic; margin: 0 0 0.6rem; font-size: 0.95rem; }
+    </style>
+    <style is:inline set:html={`body { --accent: ${accent.base}; --accent-deep: ${accent.deep}; --accent-soft: ${accent.soft}; }`}></style>
+  </head>
+  <body>
+    <section class="cover">
+      <div class="cover__eyebrow">{a.shortLabel} · Cuaderno de proyecto</div>
+      <div class="cover__title">Vuestro proyecto, paso a paso</div>
+      <div class="cover__ed">Edición · {edicion}</div>
+      <div class="cover__equipo">
+        <h3>El equipo</h3>
+        <div class="cover__field">Nombre del proyecto:</div>
+        <div class="cover__field">Integrantes:</div>
+        <div class="cover__field">Curso y grupo:</div>
+      </div>
+    </section>
+
+    <section class="toc">
+      <h2>Las fases</h2>
+      <ol>{fases.map((f) => <li>{f.data.fase ?? f.data.title} — {f.data.title}</li>)}</ol>
+    </section>
+
+    {fases.map((f) => (
+      <section class="fase">
+        <div class="fase__label">{f.data.fase ?? `Fase ${f.data.orden}`}</div>
+        <h2 class="fase__title">{f.data.title}</h2>
+        {f.data.entregable && <p class="fase__entregable"><strong>Entregable:</strong> {f.data.entregable}</p>}
+        <BloqueCuaderno cuaderno={f.data.cuaderno} modo={esProfesor ? 'profesor' : 'alumno'} />
+      </section>
+    ))}
+  </body>
+</html>
