@@ -1,10 +1,9 @@
 // POST /api/business-game/decisiones — el equipo envía sus decisiones de la ronda actual.
 import type { APIRoute } from 'astro';
 import { json, bad, getSupabase, auth } from '@/lib/business-game/server/api';
+import { validarDecision } from '@/lib/business-game/decision-validacion';
 
 export const prerender = false;
-
-const CAMPOS = ['precio', 'marketing', 'produccion', 'calidad', 'rrhh', 'prestamo'] as const;
 
 export const POST: APIRoute = async ({ request }) => {
   const payload = auth(request, 'equipo');
@@ -14,13 +13,9 @@ export const POST: APIRoute = async ({ request }) => {
   try { body = await request.json(); } catch { return bad('JSON inválido'); }
   const d = body?.decision ?? body;
 
-  const decision: Record<string, number> = {};
-  for (const c of CAMPOS) {
-    const v = Number(d?.[c]);
-    if (!Number.isFinite(v) || v < 0) return bad(`Decisión inválida en "${c}"`);
-    decision[c] = v;
-  }
-  if (decision.precio <= 0) return bad('El precio debe ser mayor que 0');
+  const r = validarDecision(d);
+  if (!r.ok) return bad(r.error);
+  const decision = r.decision;
 
   const supabase = getSupabase();
 

@@ -27,6 +27,21 @@ export const POST: APIRoute = async ({ request }) => {
   const params = liga.params as MarketParams;
   const ronda = liga.ronda as number;
 
+  // Atomically claim this round-close. No transactions available, so flip the
+  // phase to the transient 'resultados' state; only the first concurrent caller
+  // matches `fase='decisiones'` and proceeds. Duplicates/retries get 409.
+  const { data: claimed, error: claimErr } = await supabase
+    .from('bg_ligas')
+    .update({ fase: 'resultados', last_action_at: new Date().toISOString() })
+    .eq('id', liga.id)
+    .eq('ronda', ronda)
+    .eq('fase', 'decisiones')
+    .select('id');
+  if (claimErr) return bad('No se pudo cerrar la ronda', 500);
+  if (!claimed || claimed.length === 0) {
+    return bad('La ronda ya se está cerrando o ya se ha cerrado', 409);
+  }
+
   const { data: equipos, error: eqErr } = await supabase
     .from('bg_equipos')
     .select('id, nombre, caja, beneficio_acumulado, deuda')
@@ -71,6 +86,7 @@ export const POST: APIRoute = async ({ request }) => {
     }).eq('id', r.id);
   }
 
+  // Advance the round (or finish), clearing the transient 'resultados' claim.
   const esUltima = ronda >= (liga.num_rondas as number);
   await supabase.from('bg_ligas').update({
     ronda: esUltima ? ronda : ronda + 1,
