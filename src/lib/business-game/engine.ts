@@ -157,16 +157,17 @@ export function simularRonda(params: MarketParams, equipos: TeamInput[], ronda: 
   return pre.map((x) => {
     const cuota = sumaAtractivo > 0 ? x.atractivo / sumaAtractivo : 1 / pre.length;
     const demanda = demandaTotal * cuota;
-    // Ventas en unidades enteras: todo lo que se muestra abajo (ingresos, costes
-    // variables, stock, beneficio, caja) deriva de este mismo entero para que la
-    // aritmética visible en la interfaz cuadre (unidades × precio = ingresos).
+    // Ventas en unidades enteras, para que la aritmética visible en la interfaz
+    // cuadre (unidades × precio = ingresos) y stock/beneficio deriven del mismo
+    // entero. El coste variable se paga sobre lo PRODUCIDO (no lo vendido): lo no
+    // vendido pasa a stock y genera coste de almacenamiento.
     const ventas = Math.round(Math.min(demanda, x.e.decision.produccion));
     const stock = Math.max(0, x.e.decision.produccion - ventas);
 
     const ingresos = ventas * x.e.decision.precio;
     const costes =
       params.costeFijo +
-      x.cvu * ventas +
+      x.cvu * x.e.decision.produccion +
       x.e.decision.marketing +
       x.e.decision.calidad +
       x.e.decision.rrhh +
