@@ -18,7 +18,7 @@ import { findRefuerzoPrintJobs } from './lib/refuerzo-pdf-jobs.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = resolve(__dirname, '..');
-const PORT = 4339;
+const PORT = 4340;
 
 const args = new Set(process.argv.slice(2));
 const inDistOnly = args.has('--in-dist');
@@ -53,6 +53,7 @@ function startStaticServer(distDir, port) {
     try {
       const url = decodeURIComponent(req.url.split('?')[0]);
       let filePath = join(distDir, url);
+      if (!filePath.startsWith(distDir)) { res.writeHead(403); res.end('forbidden'); return; }
       if (existsSync(filePath) && statSync(filePath).isDirectory()) filePath = join(filePath, 'index.html');
       if (!existsSync(filePath)) { res.writeHead(404, { 'Content-Type': 'text/plain' }); res.end(`404 Not Found: ${url}`); return; }
       const ext = extname(filePath).toLowerCase();
@@ -60,7 +61,7 @@ function startStaticServer(distDir, port) {
       res.end(readFileSync(filePath));
     } catch (err) { res.writeHead(500, { 'Content-Type': 'text/plain' }); res.end(`500: ${err.message}`); }
   });
-  return new Promise((resolveSrv, rejectSrv) => { server.listen(port, '0.0.0.0', () => resolveSrv(server)); server.on('error', rejectSrv); });
+  return new Promise((resolveSrv, rejectSrv) => { server.listen(port, '127.0.0.1', () => resolveSrv(server)); server.on('error', rejectSrv); });
 }
 
 let distDir = resolve(root, 'dist/client');
@@ -89,10 +90,11 @@ for (const job of jobs) {
   const outDist = resolve(distDownloads, job.out);
   const outPublic = resolve(publicDownloads, job.out);
   console.log(`\n— Generando ${job.out}`);
+  const npxCmd = process.platform === 'win32' ? 'npx.cmd' : 'npx';
   const exitCode = await new Promise((resolveExit) => {
-    const child = spawn('npx',
+    const child = spawn(npxCmd,
       ['--no-install', 'pagedjs-cli', url, '-o', outDist, '-t', '120000', '--browserArgs', '--no-sandbox'],
-      { cwd: root, stdio: 'inherit', shell: true, env: { ...process.env, PUPPETEER_EXECUTABLE_PATH: chromePath ?? '' } });
+      { cwd: root, stdio: 'inherit', env: { ...process.env, PUPPETEER_EXECUTABLE_PATH: chromePath ?? '' } });
     child.on('close', (code) => resolveExit(code));
     child.on('error', (err) => { console.error(`✖ Error lanzando pagedjs-cli: ${err.message}`); resolveExit(1); });
   });

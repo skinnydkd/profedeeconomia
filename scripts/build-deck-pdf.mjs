@@ -57,8 +57,9 @@ const MIME = {
   '.jpeg': 'image/jpeg', '.webp': 'image/webp', '.woff': 'font/woff', '.woff2': 'font/woff2',
   '.ttf': 'font/ttf', '.ico': 'image/x-icon',
 };
-const distDir = resolve(root, 'dist/client');
-if (!existsSync(distDir)) { console.error(`✖ ${distDir} missing. Run \`npm run build\` first.`); process.exit(1); }
+let distDir = resolve(root, 'dist/client');
+if (!existsSync(distDir)) distDir = resolve(root, 'dist');
+if (!existsSync(distDir)) { console.error('✖ dist/ missing. Run `npm run build` first.'); process.exit(1); }
 
 const server = createServer((req, res) => {
   let urlPath = decodeURIComponent(req.url.split('?')[0]);

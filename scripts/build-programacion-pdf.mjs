@@ -83,6 +83,7 @@ function startStaticServer(distDir, port) {
     try {
       const url = decodeURIComponent(req.url.split('?')[0]);
       let filePath = join(distDir, url);
+      if (!filePath.startsWith(distDir)) { res.writeHead(403); res.end('forbidden'); return; }
       if (existsSync(filePath) && statSync(filePath).isDirectory()) {
         filePath = join(filePath, 'index.html');
       }
@@ -100,7 +101,7 @@ function startStaticServer(distDir, port) {
     }
   });
   return new Promise((resolveSrv, rejectSrv) => {
-    server.listen(port, '0.0.0.0', () => resolveSrv(server));
+    server.listen(port, '127.0.0.1', () => resolveSrv(server));
     server.on('error', rejectSrv);
   });
 }
@@ -150,10 +151,11 @@ for (const slug of asignaturas) {
   console.log(`  Output : ${outDist}`);
 
   const exitCode = await new Promise((resolveExit) => {
+    const npxCmd = process.platform === 'win32' ? 'npx.cmd' : 'npx';
     const child = spawn(
-      'npx',
+      npxCmd,
       ['--no-install', 'pagedjs-cli', url, '-o', outDist, '-t', '120000', '--browserArgs', '--no-sandbox'],
-      { cwd: root, stdio: 'inherit', shell: true, env: { ...process.env, PUPPETEER_EXECUTABLE_PATH: chromePath ?? '' } }
+      { cwd: root, stdio: 'inherit', env: { ...process.env, PUPPETEER_EXECUTABLE_PATH: chromePath ?? '' } }
     );
     child.on('close', (code) => resolveExit(code));
     child.on('error', (err) => {
