@@ -1,12 +1,12 @@
 ---
 /**
- * Cuaderno de proyecto de una asignatura (de momento GPE — Gestión de Proyectos
- * de Emprendimiento). Varias secciones (colección `proyecto`) renderizadas en
- * orden como una guía paso a paso por fases, con descarga en PDF.
+ * Portada del cuaderno de proyecto de una asignatura (de momento GPE).
+ * Muestra el recorrido de fases como tarjetas + las descargas (cuaderno
+ * alumno/profesor para rellenar y guía completa del profe).
  */
 import BaseLayout from '@layouts/BaseLayout.astro';
 import { ASIGNATURAS } from '@/lib/asignaturas';
-import { getCollection, render } from 'astro:content';
+import { getCollection } from 'astro:content';
 import type { GetStaticPaths } from 'astro';
 
 export const getStaticPaths = (async () => {
@@ -25,11 +25,16 @@ export const getStaticPaths = (async () => {
 }) satisfies GetStaticPaths;
 
 const { secciones, asignatura: a } = Astro.props;
-const rendered = await Promise.all(secciones.map(async (s) => ({ s, ...(await render(s)) })));
-const pdfHref = `/downloads/${a.slug}-proyecto.pdf`;
+const guiaHref = `/downloads/${a.slug}-proyecto.pdf`;
+const alumnoHref = `/downloads/${a.slug}-cuaderno-alumno.pdf`;
+const profesorHref = `/downloads/${a.slug}-cuaderno-profesor.pdf`;
+const faseHref = (orden: number) => `/${a.slug}/proyecto/${String(orden).padStart(2, '0')}`;
 ---
 
-<BaseLayout title={`Cuaderno de proyecto — ${a.shortLabel}`} description={`Cuaderno de proyecto de ${a.title}: guía paso a paso, por fases, para que el alumnado desarrolle su propia iniciativa emprendedora.`}>
+<BaseLayout
+  title={`Cuaderno de proyecto — ${a.shortLabel}`}
+  description={`Cuaderno de proyecto de ${a.title}: guía paso a paso, por fases, para que el alumnado desarrolle su propia iniciativa emprendedora.`}
+>
   <div class="container">
     <nav class="breadcrumb">
       <a href="/">Inicio</a> <span class="sep">›</span>
@@ -38,21 +43,31 @@ const pdfHref = `/downloads/${a.slug}-proyecto.pdf`;
     </nav>
   </div>
 
-  <section class="hero">
+  <section class="hero" style={`--accent: var(--color-${a.color}); --accent-soft: var(--color-${a.color}-soft);`}>
     <div class="container">
       <span class="kicker">{a.shortLabel} · Proyecto emprendedor</span>
       <h1>Cuaderno de proyecto</h1>
-      <p class="lede">Una guía paso a paso, fase a fase, para que el alumnado convierta una idea en un proyecto emprendedor: equipo, oportunidad, modelo de negocio, viabilidad y puesta en marcha.</p>
+      <p class="lede">Una guía paso a paso, fase a fase, para que vuestro alumnado convierta un reto de su entorno en un proyecto emprendedor: equipo, oportunidad, modelo de negocio, viabilidad y puesta en marcha.</p>
+
+      <p class="downloads-lead">Descargad el <strong>cuaderno del equipo</strong> y rellenadlo fase a fase, con sus plantillas visuales.</p>
       <div class="downloads">
-        <a class="download-cta" href={pdfHref} download>
+        <a class="download-cta" href={alumnoHref} download>
           <span class="download-cta__icon" aria-hidden="true">↓</span>
           <span class="download-cta__text">
-            <strong>Descargar el cuaderno de proyecto en PDF</strong>
-            <span class="muted">Plantillas y fichas por fase · listo para el aula</span>
+            <strong>Cuaderno del alumno (para rellenar)</strong>
+            <span class="muted">Una hoja por fase con plantilla visual en blanco</span>
           </span>
         </a>
-        <a class="download-secondary" href={`/${a.slug}/proyecto/imprimir/?preview=1`} target="_blank" rel="noopener">Previsualizar versión impresa</a>
+        <a class="download-cta" href={profesorHref} download>
+          <span class="download-cta__icon" aria-hidden="true">↓</span>
+          <span class="download-cta__text">
+            <strong>Cuaderno del profesor (con orientación)</strong>
+            <span class="muted">El mismo, con orientación docente por fase</span>
+          </span>
+        </a>
+        <a class="download-secondary" href={guiaHref} download>Guía completa del proyecto en PDF</a>
       </div>
+
       <p class="adapt-note">
         Cuaderno pensado para trabajar el proyecto a lo largo del curso. Adáptalo a la duración, el agrupamiento y el contexto de tu centro.
       </p>
@@ -64,51 +79,56 @@ const pdfHref = `/downloads/${a.slug}-proyecto.pdf`;
     </div>
   </section>
 
-  <section class="body">
-    <div class="container container--narrow">
-      <article class="prose">
-        {rendered.map(({ Content }) => <Content />)}
-      </article>
+  <section class="fases" style={`--accent: var(--color-${a.color}); --accent-soft: var(--color-${a.color}-soft);`}>
+    <div class="container">
+      <ol class="fase-grid">
+        {secciones.map((s) => (
+          <li>
+            <a class="fase-card" href={faseHref(s.data.orden)}>
+              <span class="fase-card__num">{String(s.data.orden).padStart(2, '0')}</span>
+              <span class="fase-card__label">{s.data.fase ?? `Fase ${s.data.orden}`}</span>
+              <span class="fase-card__title">{s.data.title}</span>
+              {s.data.entregable && <span class="fase-card__entregable">{s.data.entregable}</span>}
+              <span class="fase-card__go" aria-hidden="true">→</span>
+            </a>
+          </li>
+        ))}
+      </ol>
     </div>
   </section>
 </BaseLayout>
 
 <style>
   .container { max-width: 1240px; margin: 0 auto; padding: 0 clamp(1.5rem, 4vw, 3rem); }
-  .container--narrow { max-width: 820px; }
   .breadcrumb { font-size: 0.92rem; color: var(--color-ink-mute); margin: 2rem 0; }
   .breadcrumb a { color: var(--color-ink-mute); text-decoration: none; }
-  .breadcrumb a:hover { color: var(--color-terra); }
+  .breadcrumb a:hover { color: var(--color-gpe); }
   .breadcrumb .sep { margin: 0 0.5em; color: var(--color-mustard); }
   .hero { padding: 1rem 0 clamp(1.5rem, 4vw, 3rem); }
+  .kicker { font-family: var(--font-sans); font-size: 0.8rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); }
   h1 { max-width: 22ch; margin: 1rem 0 0.6rem; }
   .lede { font-family: var(--font-serif); font-style: italic; font-size: 1.35rem; color: var(--color-ink-soft); max-width: 52ch; margin: 1rem 0 1.5rem; line-height: 1.5; font-variation-settings: "SOFT" 80; }
+  .downloads-lead { font-size: 1rem; color: var(--color-ink-soft); margin: 0 0 1rem; }
   .downloads { display: flex; flex-wrap: wrap; align-items: center; gap: 1.2rem; }
-  .download-cta { display: inline-flex; align-items: center; gap: 1rem; padding: 0.9rem 1.4rem 0.9rem 1.1rem; background: var(--color-terra); color: #fff; text-decoration: none; border-radius: 6px; transition: background .2s var(--ease-soft), transform .2s var(--ease-soft); }
-  .download-cta:hover { background: var(--color-terra-deep); transform: translateY(-1px); }
+  .download-cta { display: inline-flex; align-items: center; gap: 1rem; padding: 0.9rem 1.4rem 0.9rem 1.1rem; background: var(--accent); color: #fff; text-decoration: none; border-radius: 6px; transition: filter .2s var(--ease-soft), transform .2s var(--ease-soft); }
+  .download-cta:hover { filter: brightness(0.92); transform: translateY(-1px); }
   .download-cta__icon { font-family: var(--font-serif); font-style: italic; font-size: 1.7rem; line-height: 1; color: var(--color-mustard-soft); font-variation-settings: "SOFT" 100, "WONK" 1; }
   .download-cta__text { display: flex; flex-direction: column; gap: 0.15rem; }
   .download-cta__text strong { font-family: var(--font-sans); font-size: 0.95rem; font-weight: 600; }
-  .download-cta__text .muted { font-family: var(--font-sans); font-size: 0.78rem; opacity: 0.75; letter-spacing: 0.04em; }
+  .download-cta__text .muted { font-family: var(--font-sans); font-size: 0.78rem; opacity: 0.8; letter-spacing: 0.04em; }
   .download-secondary { font-family: var(--font-serif); font-style: italic; font-size: 1rem; color: var(--color-ink-soft); text-decoration: none; border-bottom: 1px dashed var(--color-line); padding-bottom: 1px; font-variation-settings: "SOFT" 80; }
-  .download-secondary:hover { color: var(--color-terra); border-bottom-color: var(--color-terra); }
-  .adapt-note { margin: 1.6rem 0 0; font-family: var(--font-serif); font-style: italic; font-size: 1rem; color: var(--color-ink-soft); background: var(--color-mustard-soft); border-left: 4px solid var(--color-mustard); border-radius: 0 4px 4px 0; padding: 0.9rem 1.2rem; max-width: 60ch; }
+  .download-secondary:hover { color: var(--accent); border-bottom-color: var(--accent); }
+  .adapt-note { margin: 1.6rem 0 0; font-family: var(--font-serif); font-style: italic; font-size: 1rem; color: var(--color-ink-soft); background: var(--accent-soft); border-left: 4px solid var(--accent); border-radius: 0 4px 4px 0; padding: 0.9rem 1.2rem; max-width: 60ch; }
   .related-note { margin: 1rem 0 0; font-size: 0.98rem; color: var(--color-ink-soft); line-height: 1.6; max-width: 60ch; }
-  .related-note a { color: var(--color-terra); text-decoration: none; border-bottom: 1px solid var(--color-terra-soft); }
-  .related-note a:hover { border-bottom-color: var(--color-terra); }
-  .body { padding: clamp(1.5rem, 4vw, 3rem) 0 clamp(3rem, 7vw, 6rem); }
-  .prose { font-size: 1.05rem; line-height: 1.7; color: var(--color-ink); }
-  .prose :global(h2) { font-family: var(--font-serif); font-size: 1.6rem; margin: 2.2em 0 0.7em; position: relative; padding-top: 1em; font-weight: 500; }
-  .prose :global(h2::before) { content: ""; position: absolute; top: 0; left: 0; width: 2.5rem; height: 4px; background: var(--color-terra); border-radius: 999px; }
-  .prose :global(h2:nth-of-type(2n)::before) { background: var(--color-mustard); }
-  .prose :global(h3) { font-family: var(--font-serif); font-size: 1.25rem; margin: 1.6em 0 0.5em; font-weight: 500; }
-  .prose :global(p) { margin: 0 0 1em; }
-  .prose :global(ul), .prose :global(ol) { padding-left: 1.4rem; margin: 0 0 1em; }
-  .prose :global(li) { margin-bottom: 0.4em; }
-  .prose :global(ul li::marker) { color: var(--color-mustard); }
-  .prose :global(strong) { color: var(--color-ink); }
-  .prose :global(table) { width: 100%; border-collapse: separate; border-spacing: 0; margin: 1.4em 0; font-size: 0.92rem; }
-  .prose :global(th), .prose :global(td) { text-align: left; padding: 0.55em 0.75em; border-bottom: 1px solid var(--color-line-soft); vertical-align: top; }
-  .prose :global(th) { font-family: var(--font-sans); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--color-terra-deep); background: var(--color-terra-soft); font-weight: 700; }
-  .prose :global(blockquote) { margin: 1.4em 0; padding: 0.8em 1.2em; border-left: 3px solid var(--color-mustard); background: var(--color-bg-cream); font-style: italic; color: var(--color-ink-soft); border-radius: 0 4px 4px 0; }
+  .related-note a { color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent-soft); }
+  .related-note a:hover { border-bottom-color: var(--accent); }
+  .fases { padding: clamp(1.5rem, 4vw, 3rem) 0 clamp(3rem, 7vw, 6rem); }
+  .fase-grid { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.2rem; }
+  .fase-card { position: relative; display: flex; flex-direction: column; gap: 0.35rem; height: 100%; padding: 1.4rem 1.5rem; background: var(--color-paper); border: 1px solid var(--color-line); border-top: 3px solid var(--accent); border-radius: 8px; text-decoration: none; color: inherit; transition: transform .2s var(--ease-soft), box-shadow .2s var(--ease-soft); }
+  .fase-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(42, 31, 24, 0.08); }
+  .fase-card__num { font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent); font-weight: 500; }
+  .fase-card__label { font-family: var(--font-sans); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--color-ink-mute); font-weight: 600; }
+  .fase-card__title { font-family: var(--font-serif); font-size: 1.2rem; line-height: 1.2; color: var(--color-ink); margin-top: 0.1rem; }
+  .fase-card__entregable { font-size: 0.9rem; color: var(--color-ink-soft); line-height: 1.45; margin-top: 0.2rem; }
+  .fase-card__go { margin-top: auto; padding-top: 0.6rem; color: var(--accent); font-size: 1.1rem; }
 </style>
