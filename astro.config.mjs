@@ -23,12 +23,16 @@ export default defineConfig({
   integrations: [
     preact({ compat: false }),
     mdx(),
-    // Keep noindex routes (print editions and individual slide decks) out of the
-    // sitemap so they aren't submitted for indexing. The /diapositivas/ index stays.
+    // Keep noindex routes (print editions, individual slide decks, and the
+    // deprecated /tests/ index hubs) out of the sitemap so they aren't submitted
+    // for indexing. The /diapositivas/ index and individual /tests/[slug]/ stay.
     sitemap({
       filter: (page) =>
         !page.includes('/imprimir/') &&
-        !/\/diapositivas\/[^/]+\/$/.test(page),
+        !/\/diapositivas\/[^/]+\/$/.test(page) &&
+        // /[asignatura]/tests/ index is noindex (the tests hub moved to
+        // /actividades-dinamicas/). Individual tests /tests/[slug]/ stay indexable.
+        !/\/tests\/$/.test(page),
     }),
   ],
 
