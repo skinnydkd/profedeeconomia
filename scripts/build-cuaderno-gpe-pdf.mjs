@@ -91,10 +91,11 @@ for (const job of JOBS) {
   const outDist = resolve(distDownloads, job.out);
   const outPublic = resolve(publicDownloads, job.out);
   console.log(`\n— Generando ${job.out}`);
-  const npxCmd = process.platform === 'win32' ? 'npx.cmd' : 'npx';
+  // node <pagedjs-cli> directly: Node 24 on Windows can't spawn .cmd files (EINVAL).
+  const pagedjsCli = resolve(root, 'node_modules/pagedjs-cli/src/cli.js');
   const exitCode = await new Promise((resolveExit) => {
-    const child = spawn(npxCmd,
-      ['--no-install', 'pagedjs-cli', url, '-o', outDist, '-t', '120000', '--browserArgs', '--no-sandbox'],
+    const child = spawn(process.execPath,
+      [pagedjsCli, url, '-o', outDist, '-t', '120000', '--browserArgs', '--no-sandbox'],
       { cwd: root, stdio: 'inherit', env: { ...process.env, PUPPETEER_EXECUTABLE_PATH: chromePath ?? '' } });
     child.on('close', (code) => resolveExit(code));
     child.on('error', (err) => { console.error(`✖ Error lanzando pagedjs-cli: ${err.message}`); resolveExit(1); });

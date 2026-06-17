@@ -187,13 +187,16 @@ for (const slug of asignaturas) {
   // server's event loop can serve Chrome's requests in parallel.
   // spawnSync blocks the Node main thread until the child exits,
   // which prevents the http server from responding.
-  const npxCmd = process.platform === 'win32' ? 'npx.cmd' : 'npx';
+  // Spawn `node <pagedjs-cli>` directly instead of `npx.cmd`: Node 24 on
+  // Windows refuses to spawn .cmd/.bat files without shell:true (EINVAL),
+  // which silently breaks PDF regeneration. Calling the CLI's JS entry with
+  // the current node binary is cross-platform and version-proof.
+  const pagedjsCli = resolve(root, 'node_modules/pagedjs-cli/src/cli.js');
   const exitCode = await new Promise((resolveExit) => {
     const child = spawn(
-      npxCmd,
+      process.execPath,
       [
-        '--no-install',
-        'pagedjs-cli',
+        pagedjsCli,
         url,
         '-o', outDist,
         '-t', '120000',
