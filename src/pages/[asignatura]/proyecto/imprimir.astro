@@ -87,7 +87,9 @@ const accent = ACCENTS[a.color] ?? ACCENTS.edmn;
       blockquote { margin: 0.9em 0; padding: 0.6em 1em; border-left: 3px solid var(--color-mustard); background: var(--color-bg-cream); font-style: italic; color: var(--color-ink-soft); break-inside: avoid; }
       code { font-family: var(--font-mono); font-size: 0.92em; background: var(--color-bg-cream); padding: 0.05em 0.3em; border-radius: 2px; }
 
-      .cover { page: no-header; break-after: page; height: 211mm; display: flex; flex-direction: column; justify-content: space-between; }
+      /* height must stay <= page content box (235 - 12 - 13 = 210mm) or the
+         footer overflows onto a near-empty 2nd page. 209mm keeps 1mm of slack. */
+      .cover { page: no-header; break-after: page; height: 209mm; display: flex; flex-direction: column; justify-content: space-between; }
       .cover__top { display: flex; justify-content: space-between; align-items: flex-start; font-family: var(--font-sans); font-size: 8.5pt; letter-spacing: 0.12em; text-transform: uppercase; color: var(--book-accent); }
       .cover__top .mark { width: 20pt; height: 20pt; border-radius: 50%; background: var(--book-accent); position: relative; }
       .cover__top .mark::before { content: ""; position: absolute; inset: 4pt; background: var(--color-mustard); border-radius: 50%; }

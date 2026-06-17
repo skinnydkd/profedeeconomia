@@ -151,10 +151,11 @@ for (const slug of asignaturas) {
   console.log(`  Output : ${outDist}`);
 
   const exitCode = await new Promise((resolveExit) => {
-    const npxCmd = process.platform === 'win32' ? 'npx.cmd' : 'npx';
+    // node <pagedjs-cli> directly: Node 24 on Windows can't spawn .cmd files (EINVAL).
+    const pagedjsCli = resolve(root, 'node_modules/pagedjs-cli/src/cli.js');
     const child = spawn(
-      npxCmd,
-      ['--no-install', 'pagedjs-cli', url, '-o', outDist, '-t', '120000', '--browserArgs', '--no-sandbox'],
+      process.execPath,
+      [pagedjsCli, url, '-o', outDist, '-t', '120000', '--browserArgs', '--no-sandbox'],
       { cwd: root, stdio: 'inherit', env: { ...process.env, PUPPETEER_EXECUTABLE_PATH: chromePath ?? '' } }
     );
     child.on('close', (code) => resolveExit(code));

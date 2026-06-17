@@ -9,6 +9,16 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
   site: 'https://www.profedeeconomia.es',
 
+  // Fenced code blocks in this project hold economic formulas and fillable
+  // plantillas, not source code. Shiki's default github-dark theme paints them
+  // with an opaque dark background, which renders as black bars in the print
+  // PDFs (dark bg + the print templates' dark ink = invisible formulas).
+  // Disable syntax highlighting so code blocks are plain <pre><code>, styled
+  // by each context's own CSS.
+  markdown: {
+    syntaxHighlight: false,
+  },
+
   // Hybrid output: most pages are static-prerendered (default), only routes
   // that opt out via `export const prerender = false` run as Vercel serverless
   // functions. The Jocs Econòmics API routes (/api/jocs/*) need this so they
