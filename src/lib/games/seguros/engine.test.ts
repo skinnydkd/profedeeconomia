@@ -164,3 +164,55 @@ describe('debriefStats', () => {
     expect(t0.net).toBe(300);
   });
 });
+
+import { INSURANCE_KEYS as KEYS } from './data';
+
+// Deterministic PRNG (mulberry32) for reproducible Monte Carlo.
+function mulberry32(seed: number): () => number {
+  let a = seed >>> 0;
+  return () => {
+    a |= 0; a = (a + 0x6D2B79F5) | 0;
+    let t = Math.imul(a ^ (a >>> 15), 1 | a);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+function playOneGame(insureAll: boolean, rng: () => number): number {
+  let s = createInitialState({ ...DEFAULT_CONFIG, numTeams: 1, rounds: 10 });
+  for (let r = 0; r < 10; r++) {
+    if (insureAll) for (const k of KEYS) {
+      if (!s.teams[0].coverage[k]) s = setCoverage(s, 0, k);
+    }
+    s = lockCoverage(s);
+    s = revealEvent(s, rng);
+    s = nextRound(s);
+  }
+  return s.teams[0].cash;
+}
+
+function stats(values: number[]) {
+  const mean = values.reduce((a, b) => a + b, 0) / values.length;
+  const variance = values.reduce((a, b) => a + (b - mean) ** 2, 0) / values.length;
+  return { mean, sd: Math.sqrt(variance) };
+}
+
+describe('balance (Monte Carlo)', () => {
+  it('insuring reduces variance dramatically and means stay in a comparable band', () => {
+    const N = 4000;
+    const rng = mulberry32(12345);
+    const insured: number[] = [];
+    const uninsured: number[] = [];
+    for (let i = 0; i < N; i++) insured.push(playOneGame(true, rng));
+    for (let i = 0; i < N; i++) uninsured.push(playOneGame(false, rng));
+    const si = stats(insured);
+    const su = stats(uninsured);
+    // 1. Uninsured is far more volatile.
+    expect(su.sd).toBeGreaterThan(si.sd * 3);
+    // 2. Means are in a comparable band (insurance is roughly fair, within ~600€).
+    expect(Math.abs(si.mean - su.mean)).toBeLessThan(600);
+    // 3. Fully insured almost never goes broke; uninsured sometimes does.
+    expect(insured.filter((c) => c < 0).length).toBe(0);
+    expect(uninsured.filter((c) => c < 0).length).toBeGreaterThan(0);
+  });
+});
