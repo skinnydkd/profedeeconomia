@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { INSURANCES, INSURANCE_KEYS, EVENT_DECK, DEFAULT_CONFIG } from './data';
 import {
-  createInitialState, setCoverage, lockCoverage, premiumsFor,
+  createInitialState, setCoverage, lockCoverage, premiumsFor, drawCard, revealEvent,
 } from './engine';
 
 describe('data', () => {
@@ -74,5 +74,44 @@ describe('lockCoverage', () => {
   it('premiumsFor sums the primas of covered insurances', () => {
     const s = setCoverage(setCoverage(createInitialState(DEFAULT_CONFIG), 0, 'movil'), 0, 'rc');
     expect(premiumsFor(s.teams[0])).toBe(30 + 90);
+  });
+});
+
+describe('drawCard', () => {
+  it('selects a card by weight using rng in [0,1)', () => {
+    // rng=0 -> first card ('calma', peso 30)
+    expect(drawCard(EVENT_DECK, () => 0).key).toBe('calma');
+    // rng just below 1 -> last card ('rc')
+    expect(drawCard(EVENT_DECK, () => 0.999999).key).toBe('rc');
+  });
+});
+
+describe('revealEvent', () => {
+  it('charges the damage to uncovered teams and records avoided for covered teams', () => {
+    let s = createInitialState(DEFAULT_CONFIG);
+    s = setCoverage(s, 0, 'hogar');     // team 0 covered for hogar
+    s = lockCoverage(s);                // phase 'event'
+    // Force the 'hogar' card (dano 600). Its cumulative weight window: after calma(30)+movil(16)+coche(16)+salud(16)=78 .. 92.
+    // total weight 100, so rng must land in [78,92): rng = 0.80.
+    const resolved = revealEvent(s, () => 0.80);
+    expect(resolved.phase).toBe('resolved');
+    expect(resolved.currentEvent?.key).toBe('hogar');
+    // team 0 covered: cash unchanged from locked, avoided += 600
+    expect(resolved.teams[0].cash).toBe(s.teams[0].cash);
+    expect(resolved.teams[0].totalAvoided).toBe(600);
+    expect(resolved.teams[0].totalDamages).toBe(0);
+    // team 1 uncovered: pays 600
+    expect(resolved.teams[1].cash).toBe(s.teams[1].cash - 600);
+    expect(resolved.teams[1].totalDamages).toBe(600);
+  });
+
+  it('on calma nobody pays', () => {
+    const s = lockCoverage(createInitialState(DEFAULT_CONFIG));
+    const resolved = revealEvent(s, () => 0); // calma
+    expect(resolved.currentEvent?.key).toBe('calma');
+    for (const t of resolved.teams) {
+      expect(t.totalDamages).toBe(0);
+      expect(t.totalAvoided).toBe(0);
+    }
   });
 });
