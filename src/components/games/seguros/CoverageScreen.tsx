@@ -1,0 +1,67 @@
+/** @jsxImportSource preact */
+import type { Dispatch, StateUpdater } from 'preact/hooks';
+import type { GameState } from '@/lib/games/seguros/types';
+import { INSURANCES } from '@/lib/games/seguros/data';
+import { setCoverage, lockCoverage, premiumsFor } from '@/lib/games/seguros/engine';
+import Scoreboard from './Scoreboard';
+
+interface Props {
+  state: GameState;
+  setState: Dispatch<StateUpdater<GameState | null>>;
+}
+
+export default function CoverageScreen({ state, setState }: Props) {
+  // Functional updater: derive from the latest state, not the closed-over
+  // `state`. Otherwise several quick toggles between renders clobber each other
+  // (each handler would start from the same stale snapshot).
+  const toggle = (teamId: number, key: typeof INSURANCES[number]['key']) =>
+    setState((prev) => (prev ? setCoverage(prev, teamId, key) : prev));
+
+  return (
+    <div class="sg">
+      <span class="sg__kicker">Cobertura</span>
+      <h1>Ronda {state.round} <span class="sg__round">de {state.config.rounds}</span></h1>
+      <p>Cada equipo cobra <strong>{state.config.income} €</strong> esta ronda. Marca qué seguros
+        contrata cada equipo (se mantiene lo de la ronda anterior). Al confirmar se cobran las primas.</p>
+
+      <table class="sg-grid">
+        <thead>
+          <tr>
+            <th>Equipo</th>
+            {INSURANCES.map((ins) => (
+              <th key={ins.key}>{ins.label}<span class="prima">{ins.prima} €</span></th>
+            ))}
+            <th>Prima total</th>
+          </tr>
+        </thead>
+        <tbody>
+          {state.teams.map((t) => (
+            <tr key={t.id}>
+              <td>{t.name}<span class="prima">{t.cash} €</span></td>
+              {INSURANCES.map((ins) => (
+                <td key={ins.key}>
+                  <button
+                    class="sg-cell"
+                    aria-pressed={t.coverage[ins.key] ? 'true' : 'false'}
+                    aria-label={`${t.name} · ${ins.label}${t.coverage[ins.key] ? ' (cubierto)' : ''}`}
+                    onClick={() => toggle(t.id, ins.key)}
+                  >{t.coverage[ins.key] ? '✓' : ''}</button>
+                </td>
+              ))}
+              <td class="prima">{premiumsFor(t)} €</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+
+      <h2 style="margin-top:1.4rem">Clasificación</h2>
+      <Scoreboard state={state} />
+
+      <p style="margin-top:1.2rem">
+        <button class="sg-btn" onClick={() => setState((prev) => (prev ? lockCoverage(prev) : prev))}>
+          Confirmar cobertura y cobrar primas →
+        </button>
+      </p>
+    </div>
+  );
+}

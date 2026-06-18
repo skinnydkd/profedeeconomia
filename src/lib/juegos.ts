@@ -136,6 +136,34 @@ export const JUEGOS: Juego[] = [
     competencias_clave: ['CCL', 'STEM', 'CPSAA', 'CE'],
   },
   {
+    slug: 'seguros',
+    title: 'Asegurados',
+    descripcion:
+      'Cada equipo decide qué seguros paga. Cuando llega el imprevisto, quien está cubierto respira; quien no, paga. ¿Gana quien más se asegura o quien más arriesga?',
+    tipo: 'tablero',
+    nivel: ['eso', 'bach'],
+    modo: 'clase por equipos · proyector',
+    estado: 'disponible',
+    imprimible: false,
+    href: '/juegos/seguros/',
+    nota_aula:
+      'El profesor proyecta la pantalla y lleva el marcador; cada equipo decide su cobertura ronda a ronda.',
+    unidades_relacionadas: [
+      {
+        asignatura: 'eco-1bach',
+        unidad: 3,
+        nota: 'Planificación financiera personal: gestión del riesgo y seguros.',
+        competencias_especificas: ['CE2'],
+      },
+      {
+        asignatura: 'eco-4eso',
+        unidad: 7,
+        nota: 'Dinero, presupuesto y financiación: protección ante imprevistos.',
+      },
+    ],
+    competencias_clave: ['STEM', 'CD', 'CPSAA', 'CE'],
+  },
+  {
     slug: 'insider',
     title: 'Insider',
     descripcion:
