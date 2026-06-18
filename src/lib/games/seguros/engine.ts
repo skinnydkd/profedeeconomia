@@ -73,6 +73,9 @@ export function revealEvent(state: GameState, rng: () => number = Math.random): 
 }
 
 export function nextRound(state: GameState): GameState {
+  // Only advance from a resolved round, so a double-click (or a functional
+  // setState that re-applies) is idempotent and never skips a round.
+  if (state.phase !== 'resolved') return state;
   if (state.round >= state.config.rounds) {
     return { ...state, phase: 'debrief', currentEvent: null };
   }

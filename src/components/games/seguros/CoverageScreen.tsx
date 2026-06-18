@@ -10,8 +10,11 @@ interface Props {
 }
 
 export default function CoverageScreen({ state, setState }: Props) {
+  // Functional updater: derive from the latest state, not the closed-over
+  // `state`. Otherwise several quick toggles between renders clobber each other
+  // (each handler would start from the same stale snapshot).
   const toggle = (teamId: number, key: typeof INSURANCES[number]['key']) =>
-    setState(setCoverage(state, teamId, key));
+    setState((prev) => (prev ? setCoverage(prev, teamId, key) : prev));
 
   return (
     <div class="sg">
@@ -51,7 +54,7 @@ export default function CoverageScreen({ state, setState }: Props) {
       </table>
 
       <p style="margin-top:1.2rem">
-        <button class="sg-btn" onClick={() => setState(lockCoverage(state))}>
+        <button class="sg-btn" onClick={() => setState((prev) => (prev ? lockCoverage(prev) : prev))}>
           Confirmar cobertura y cobrar primas →
         </button>
       </p>
