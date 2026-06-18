@@ -2,6 +2,7 @@ import { describe, it, expect } from 'vitest';
 import { INSURANCES, INSURANCE_KEYS, EVENT_DECK, DEFAULT_CONFIG } from './data';
 import {
   createInitialState, setCoverage, lockCoverage, premiumsFor, drawCard, revealEvent,
+  nextRound, ranking, debriefStats, isFinished,
 } from './engine';
 
 describe('data', () => {
@@ -113,5 +114,53 @@ describe('revealEvent', () => {
       expect(t.totalDamages).toBe(0);
       expect(t.totalAvoided).toBe(0);
     }
+  });
+});
+
+describe('nextRound', () => {
+  it('advances to next round in coverage phase, keeping coverage, clearing event', () => {
+    let s = createInitialState(DEFAULT_CONFIG);
+    s = setCoverage(s, 0, 'hogar');
+    s = lockCoverage(s);
+    s = revealEvent(s, () => 0); // calma -> phase 'resolved'
+    const next = nextRound(s);
+    expect(next.round).toBe(2);
+    expect(next.phase).toBe('coverage');
+    expect(next.currentEvent).toBeNull();
+    expect(next.teams[0].coverage.hogar).toBe(true); // coverage carries over
+  });
+
+  it('goes to debrief after the last round', () => {
+    let s = createInitialState({ ...DEFAULT_CONFIG, rounds: 1 });
+    s = lockCoverage(s);
+    s = revealEvent(s, () => 0);
+    const next = nextRound(s);
+    expect(next.phase).toBe('debrief');
+    expect(isFinished(next)).toBe(true);
+  });
+});
+
+describe('ranking', () => {
+  it('sorts teams by cash descending', () => {
+    const s = createInitialState(DEFAULT_CONFIG);
+    s.teams[0].cash = 500;
+    s.teams[1].cash = 900;
+    s.teams[2].cash = 700;
+    // team 3 keeps DEFAULT_CONFIG.startingCash (1000), so rank is: 3(1000) > 1(900) > 2(700) > 0(500)
+    expect(ranking(s).map((t) => t.id)).toEqual([3, 1, 2, 0]);
+  });
+});
+
+describe('debriefStats', () => {
+  it('reports premiums, damages and avoided per team plus net insurance result', () => {
+    const s = createInitialState(DEFAULT_CONFIG);
+    s.teams[0] = { ...s.teams[0], totalPremiums: 300, totalDamages: 0, totalAvoided: 600 };
+    const stats = debriefStats(s);
+    const t0 = stats.find((x) => x.id === 0)!;
+    expect(t0.premiums).toBe(300);
+    expect(t0.damages).toBe(0);
+    expect(t0.avoided).toBe(600);
+    // net = avoided - premiums (positive means insurance "paid off")
+    expect(t0.net).toBe(300);
   });
 });
