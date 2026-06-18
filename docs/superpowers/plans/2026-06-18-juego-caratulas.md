@@ -20,7 +20,7 @@
 - TypeScript strict, no `any`. Files kebab-case, components PascalCase.
 - Conventional Commits, English. Branch `feat/juego-caratulas` (already created). Never push to main.
 - Identity colours (hex, from the validated palette):
-  `stonks #1F6E6E` · `econrisk #C44E2C` · `econopoly #D4A24C` · `cajut #5B3A4E` · `seguros #2E5E3A` · `insider #8C2F39`.
+  `stonks #1F6E6E` · `econrisk #C44E2C` · `econopoly #A87A2A` · `cajut #5B3A4E` · `seguros #2E5E3A` · `insider #8C2F39`.
 
 ---
 
@@ -217,7 +217,7 @@ In `src/lib/juegos.ts`, add a `color` line to each `JUEGOS` entry (place it righ
 
 - `stonks` → `color: '#1F6E6E',`
 - `econrisk` → `color: '#C44E2C',`
-- `econopoly` → `color: '#D4A24C',`
+- `econopoly` → `color: '#A87A2A',`
 - `cajut` → `color: '#5B3A4E',`
 - `seguros` → `color: '#2E5E3A',`
 - `insider` → `color: '#8C2F39',`

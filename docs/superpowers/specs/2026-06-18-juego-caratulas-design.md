@@ -47,7 +47,7 @@ Abstractos pero asociables a cada juego. Trazados en crema sobre el color de ide
 |-------------|---------------------------|-------------------------------------------------------|
 | Stonks      | teal `#1F6E6E`            | línea de mercado ascendente escalonada + vértices     |
 | Econrisk    | terracota `#C44E2C`       | teselado de triángulos (territorios), alguno relleno  |
-| Econopoly   | mostaza `#D4A24C`         | espiral cuadrada (tablero) con un nodo marcado        |
+| Econopoly   | mostaza profunda `#A87A2A` | espiral cuadrada (tablero) con un nodo marcado        |
 | Cajút       | berenjena `#5B3A4E`       | arcos concéntricos de señal (buzz del quiz)           |
 | Asegurados  | verde pino `#2E5E3A`      | cúpula/arco que cobija unos puntos (cobertura)        |
 | Insider     | granate `#8C2F39`         | retícula de puntos con uno señalado (el oculto)       |

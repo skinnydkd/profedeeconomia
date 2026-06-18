@@ -101,7 +101,7 @@ export const JUEGOS: Juego[] = [
     estado: 'disponible',
     imprimible: true,
     href: '/juegos/econopoly/',
-    color: '#D4A24C',
+    color: '#A87A2A',
     unidades_relacionadas: [
       {
         asignatura: 'eco-1bach',
