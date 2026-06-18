@@ -1,0 +1,36 @@
+---
+import { getMotif } from './caratula-motifs';
+
+interface Props {
+  slug: string;
+  color: string;
+}
+
+const { slug, color } = Astro.props;
+const motif = getMotif(slug);
+---
+
+<div class="caratula" style={`--gc-color: ${color}`}>
+  <svg
+    viewBox="0 0 320 132"
+    fill="none"
+    stroke="#FBF6EC"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    aria-hidden="true"
+    role="presentation"
+    set:html={motif}
+  ></svg>
+</div>
+
+<style>
+  .caratula {
+    aspect-ratio: 320 / 132;
+    background: var(--gc-color);
+  }
+  .caratula svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+</style>

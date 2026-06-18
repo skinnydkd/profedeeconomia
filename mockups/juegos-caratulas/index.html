@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mockup · Carátulas de juegos — profedeeconomia.es</title>
+
+  <!-- Variant C type stack: Fraunces (variable) + Switzer + JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,0..100,0..1;1,9..144,300..700,0..100,0..1&display=swap" />
+  <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=switzer@400,500,600,700&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" />
+
+  <style>
+    :root {
+      --color-bg: #FBF6EC;
+      --color-paper: #FFFFFF;
+      --color-ink: #2A1F18;
+      --color-ink-soft: #5C4A3D;
+      --color-ink-mute: #806C5A;
+      --color-line: #E5D4BD;
+      --color-line-soft: #EFE2CB;
+      --color-terra: #C44E2C;
+      --color-terra-deep: #9C3A1C;
+      --color-mustard: #D4A24C;
+      --color-mustard-deep: #A87A2A;
+
+      --font-serif: "Fraunces", Georgia, serif;
+      --font-sans: "Switzer", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --font-mono: "JetBrains Mono", ui-monospace, monospace;
+    }
+
+    * { box-sizing: border-box; }
+    html { font-size: 17px; -webkit-font-smoothing: antialiased; }
+    body {
+      margin: 0;
+      background: var(--color-bg);
+      color: var(--color-ink);
+      font-family: var(--font-sans);
+      font-size: 1.125rem;
+      line-height: 1.7;
+      font-feature-settings: "kern", "liga", "ss01";
+    }
+
+    .container { max-width: 1240px; margin: 0 auto; padding: 0 clamp(1.5rem, 4vw, 3rem); }
+
+    .page-head { padding: 3.5rem 0 1rem; }
+    .page-head .kicker {
+      font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--color-terra);
+    }
+    .page-head h1 {
+      font-family: var(--font-serif); font-weight: 400; font-size: clamp(2.4rem, 5vw, 3.4rem);
+      letter-spacing: -0.03em; line-height: 1.1; margin: 0.6rem 0 0.4rem;
+      font-variation-settings: "SOFT" 80, "WONK" 0;
+    }
+    .page-head .serif-italic { font-style: italic; color: var(--color-terra); font-variation-settings: "SOFT" 100, "WONK" 1; }
+    .page-head p { max-width: 64ch; color: var(--color-ink-soft); margin: 0.4rem 0 0; }
+
+    .direction { padding: 2.5rem 0; border-top: 1px solid var(--color-line); }
+    .direction:first-of-type { border-top: none; }
+    .dir-head { display: flex; align-items: baseline; gap: 1rem; margin-bottom: 0.4rem; }
+    .dir-num { font-family: var(--font-mono); font-size: 0.8rem; color: var(--color-mustard-deep); letter-spacing: 0.1em; }
+    .dir-head h2 {
+      font-family: var(--font-serif); font-weight: 500; font-size: 1.9rem; margin: 0;
+      letter-spacing: -0.02em; font-variation-settings: "SOFT" 70;
+    }
+    .dir-desc { max-width: 70ch; color: var(--color-ink-soft); font-size: 0.98rem; margin: 0 0 1.8rem; }
+    .dir-desc b { color: var(--color-ink); }
+
+    .game-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; }
+
+    /* ---- Card shell (shared) ---- */
+    .game-card {
+      display: flex; flex-direction: column;
+      background: var(--color-paper);
+      border: 1px solid var(--color-line);
+      text-decoration: none; color: inherit;
+      overflow: hidden;
+      transition: box-shadow 0.18s ease, transform 0.18s ease;
+    }
+    .game-card:hover { box-shadow: 0 8px 26px 0 rgba(44,31,24,.12); transform: translateY(-2px); }
+
+    .gc-body { padding: 1.25rem 1.5rem 1.35rem; display: flex; flex-direction: column; flex: 1; }
+    .gc-eyebrow {
+      font-size: 0.74rem; letter-spacing: 0.08em; text-transform: uppercase;
+      font-weight: 600; margin-bottom: 0.45rem; color: var(--gc-color);
+    }
+    .gc-title { font-family: var(--font-serif); font-size: 1.6rem; font-variation-settings: "SOFT" 80; line-height: 1.05; margin-bottom: 0.6rem; }
+    .gc-desc { color: var(--color-ink-soft); font-size: 0.9rem; line-height: 1.5; margin-bottom: 0.9rem; flex: 1; }
+    .gc-meta { font-family: var(--font-mono); font-size: 0.72rem; color: var(--color-ink-mute); margin-bottom: 0.5rem; }
+    .gc-cta { font-size: 0.88rem; font-weight: 600; color: var(--gc-color); }
+
+    /* ===== Direction A — Geometric plate (solid colour field) ===== */
+    .plate { position: relative; aspect-ratio: 320 / 132; background: var(--gc-color); }
+    .plate svg { display: block; width: 100%; height: 100%; }
+
+    /* ===== Direction B — Typographic cover ===== */
+    .cover-b {
+      position: relative; aspect-ratio: 320 / 150; background: var(--gc-color);
+      color: var(--color-bg); padding: 1rem 1.25rem; display: flex; flex-direction: column; justify-content: space-between;
+      overflow: hidden;
+    }
+    .cover-b .idx { font-family: var(--font-mono); font-size: 0.74rem; letter-spacing: 0.12em; opacity: 0.85; }
+    .cover-b .big {
+      font-family: var(--font-serif); font-style: italic; font-weight: 400;
+      font-size: clamp(2.4rem, 7vw, 3.1rem); line-height: 0.95; letter-spacing: -0.02em;
+      font-variation-settings: "SOFT" 100, "WONK" 1; margin: 0;
+    }
+    .cover-b .tag { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.1em; opacity: 0.85; text-transform: uppercase; }
+    .cover-b .rule { height: 1px; background: rgba(251,246,236,0.4); margin: 0.3rem 0; }
+
+    /* ===== Direction C — Hybrid index plate (cream field, soft tint, motif + label) ===== */
+    .cover-c {
+      position: relative; aspect-ratio: 320 / 132; background: var(--gc-soft);
+      display: grid; grid-template-columns: 96px 1fr; align-items: stretch;
+      border-bottom: 1px solid var(--color-line);
+    }
+    .cover-c .motif { background: var(--gc-color); }
+    .cover-c .motif svg { display: block; width: 100%; height: 100%; }
+    .cover-c .label { padding: 0.9rem 1rem; display: flex; flex-direction: column; justify-content: space-between; }
+    .cover-c .idx { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.12em; color: var(--gc-color); }
+    .cover-c .ctitle { font-family: var(--font-serif); font-size: 1.45rem; line-height: 1; font-variation-settings: "SOFT" 90; }
+    .cover-c .tag { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-ink-mute); }
+
+    .note { font-family: var(--font-mono); font-size: 0.78rem; color: var(--color-ink-mute); margin-top: 3rem; padding: 2rem 0 4rem; border-top: 1px dashed var(--color-line); }
+    .note b { color: var(--color-terra); }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="page-head">
+      <span class="kicker">Mockup · exploración de dirección</span>
+      <h1>Carátulas para los <span class="serif-italic">juegos</span>.</h1>
+      <p>Tres lenguajes visuales para la identidad de cada juego en el hub <code>/juegos/</code>.
+        Mismas tarjetas reales, mismo marco editorial (Fraunces + Switzer + paleta Variant C), una identidad
+        propia por juego. Compara y dime cuál seguimos. Nada de esto es código de producción todavía.</p>
+    </header>
+
+    <!-- ============================ DIRECTION A ============================ -->
+    <section class="direction">
+      <div class="dir-head"><span class="dir-num">A</span><h2>Plancha geométrica</h2></div>
+      <p class="dir-desc">Una banda de color macizo con un <b>motivo geométrico abstracto único</b> por juego,
+        trazado en crema. Lenguaje Bauhaus/Swiss editorial (Pelican, MUBI Notebook). Máxima distinción, generativo,
+        cero ilustración de stock. El motivo no «explica» el juego: lo <b>identifica</b>.</p>
+      <div class="game-grid" id="grid-a"></div>
+    </section>
+
+    <!-- ============================ DIRECTION B ============================ -->
+    <section class="direction">
+      <div class="dir-head"><span class="dir-num">B</span><h2>Cubierta tipográfica</h2></div>
+      <p class="dir-desc">El propio título en <b>Fraunces grande, itálica con swash (WONK 1)</b> sobre campo de color,
+        con índice en mono y filete editorial. Lenguaje Penguin Great Ideas / Magma Books. La tipografía <i>es</i> la portada.
+        Lo más barato de mantener y lo más fiel a la marca; riesgo de uniformidad si no se cuida.</p>
+      <div class="game-grid" id="grid-b"></div>
+    </section>
+
+    <!-- ============================ DIRECTION C ============================ -->
+    <section class="direction">
+      <div class="dir-head"><span class="dir-num">C</span><h2>Híbrida con índice</h2></div>
+      <p class="dir-desc">Versión contenida: campo de tinte suave, <b>motivo geométrico pequeño</b> a la izquierda
+        más índice numerado (<code>Nº 01…</code>) y etiqueta de tipo. Aire de colección catalogada. Menos protagonismo
+        visual, más «sistema». Combina la identidad de A con etiquetado editorial.</p>
+      <div class="game-grid" id="grid-c"></div>
+    </section>
+
+    <p class="note">
+      Colores de identidad propuestos (todos de la paleta validada): Stonks <b>teal</b> · Econrisk <b>terracota</b> ·
+      Econopoly <b>mostaza</b> · Cajút <b>berenjena</b> · Asegurados <b>verde pino</b> · Insider <b>granate</b>.
+      Ajustables. Mockup generado para validar dirección — abrir en navegador.
+    </p>
+  </div>
+
+  <script>
+    // ---- Real game data (from src/lib/juegos.ts) + proposed identity colours ----
+    const GAMES = [
+      { slug:'stonks', idx:'01', title:'Stonks', tipo:'Simulador', estado:'Disponible',
+        desc:'Invierte durante 25 años repartiendo tu patrimonio entre distintos activos. ¿Acabarás con más que la IA?',
+        meta:'Bachillerato · FP · 1 jugador', cta:'Jugar', color:'#1F6E6E', soft:'#DBEDED', big:'Stonks' },
+      { slug:'econrisk', idx:'02', title:'Econrisk', tipo:'Estrategia', estado:'Disponible',
+        desc:'Juego de estrategia: conquista territorios con las grandes escuelas del pensamiento económico.',
+        meta:'Bachillerato · 1 jugador vs IA', cta:'Jugar', color:'#C44E2C', soft:'#FBE3D6', big:'Econrisk' },
+      { slug:'econopoly', idx:'03', title:'Econopoly', tipo:'Tablero', estado:'Disponible',
+        desc:'Monopoly económico hot-seat 1-6: monopolios, R+D, ciclos, Banco Central y fiscalidad progresiva.',
+        meta:'ESO · Bachillerato · 1-6 hot-seat', cta:'Jugar', color:'#A87A2A', soft:'#F5E5BC', big:'Econopoly' },
+      { slug:'cajut', idx:'04', title:'Cajút', tipo:'Party · Multijugador', estado:'Disponible',
+        desc:'Quiz de aula multijugador. El profe elige unidades; los alumnos responden desde el móvil con un código de sala.',
+        meta:'ESO · Bachillerato · multijugador', cta:'Abrir sala (proyector)', color:'#5B3A4E', soft:'#ECDCE5', big:'Cajút' },
+      { slug:'seguros', idx:'05', title:'Asegurados', tipo:'Tablero', estado:'Disponible',
+        desc:'Cada equipo decide qué seguros paga. Cuando llega el imprevisto, quien está cubierto respira; quien no, paga.',
+        meta:'ESO · Bachillerato · por equipos', cta:'Jugar', color:'#2E5E3A', soft:'#D9E6DC', big:'Asegurados' },
+      { slug:'insider', idx:'06', title:'Insider', tipo:'Party · Multijugador', estado:'Disponible',
+        desc:'Deducción social: el grupo adivina una palabra; alguien sabe la respuesta… y nadie debe notarlo.',
+        meta:'ESO · Bach · FP · multijugador', cta:'Abrir sala (proyector)', color:'#8C2F39', soft:'#F1DADD', big:'Insider' },
+    ];
+
+    const CREAM = '#FBF6EC';
+
+    // ---- Geometric motifs (cream on colour field), one per game ----
+    function motif(slug) {
+      const s = (b) => `<svg viewBox="0 0 320 132" fill="none" stroke="${CREAM}" stroke-linecap="round" stroke-linejoin="round">${b}</svg>`;
+      switch (slug) {
+        case 'stonks': // rising stepped market line + vertices
+          return s(`
+            <g stroke="${CREAM}" opacity="0.28" stroke-width="1">
+              <line x1="28" y1="104" x2="292" y2="104"/>
+            </g>
+            <polyline points="28,96 78,80 118,86 162,52 206,60 250,32 292,18" stroke-width="3"/>
+            <g fill="${CREAM}" stroke="none">
+              <rect x="74" y="76" width="8" height="8"/><rect x="158" y="48" width="8" height="8"/>
+              <rect x="246" y="28" width="8" height="8"/><rect x="288" y="14" width="8" height="8"/>
+            </g>`);
+        case 'econrisk': // tessellated territory triangles, a couple filled
+          return s(`
+            <g stroke-width="1.5" opacity="0.85">
+              <path d="M40 96 L80 40 L120 96 Z"/><path d="M120 96 L80 40 L160 40 L120 96"/>
+              <path d="M120 96 L160 40 L200 96 Z"/><path d="M200 96 L160 40 L240 40 L200 96"/>
+              <path d="M200 96 L240 40 L280 96 Z"/>
+            </g>
+            <path d="M120 96 L80 40 L160 40 L120 96" fill="${CREAM}" opacity="0.9" stroke="none"/>
+            <path d="M200 96 L240 40 L280 96 Z" fill="${CREAM}" opacity="0.4" stroke="none"/>`);
+        case 'econopoly': // square spiral board with a marked node
+          return s(`
+            <g stroke-width="2">
+              <rect x="40" y="22" width="240" height="88"/>
+              <rect x="64" y="36" width="192" height="60"/>
+              <rect x="88" y="50" width="144" height="32"/>
+            </g>
+            <circle cx="40" cy="22" r="6" fill="${CREAM}" stroke="none"/>
+            <circle cx="280" cy="110" r="6" fill="${CREAM}" stroke="none" opacity="0.5"/>`);
+        case 'cajut': // concentric signal arcs from bottom-left (quiz buzz)
+          return s(`
+            <g stroke-width="2.5">
+              <path d="M46 110 A 28 28 0 0 1 74 82"/>
+              <path d="M46 110 A 58 58 0 0 1 104 52"/>
+              <path d="M46 110 A 88 88 0 0 1 134 22"/>
+            </g>
+            <circle cx="46" cy="110" r="6" fill="${CREAM}" stroke="none"/>`);
+        case 'seguros': // shelter dome over dots (some covered, some out)
+          return s(`
+            <path d="M70 92 A 90 90 0 0 1 250 92" stroke-width="3"/>
+            <line x1="160" y1="20" x2="160" y2="44" stroke-width="2.5"/>
+            <g fill="${CREAM}" stroke="none">
+              <circle cx="120" cy="84" r="5"/><circle cx="160" cy="80" r="5"/><circle cx="200" cy="84" r="5"/>
+            </g>
+            <g fill="${CREAM}" stroke="none" opacity="0.4">
+              <circle cx="60" cy="104" r="5"/><circle cx="270" cy="104" r="5"/>
+            </g>`);
+        case 'insider': // regular dot grid, one ringed (the hidden one)
+          let dots = '';
+          for (let r = 0; r < 3; r++) for (let c = 0; c < 6; c++) {
+            const x = 50 + c * 44, y = 36 + r * 30;
+            dots += `<circle cx="${x}" cy="${y}" r="4" fill="${CREAM}" stroke="none" opacity="0.55"/>`;
+          }
+          return s(`${dots}<circle cx="182" cy="66" r="4" fill="${CREAM}" stroke="none"/><circle cx="182" cy="66" r="12" stroke-width="2"/>`);
+        default: return s('');
+      }
+    }
+
+    // compact motif for direction C (96px column, viewBox square-ish)
+    function motifC(slug) {
+      const s = (b) => `<svg viewBox="0 0 96 132" fill="none" stroke="${CREAM}" stroke-linecap="round" stroke-linejoin="round">${b}</svg>`;
+      switch (slug) {
+        case 'stonks': return s(`<polyline points="18,96 38,78 56,86 78,40" stroke-width="3"/><rect x="74" y="36" width="8" height="8" fill="${CREAM}" stroke="none"/>`);
+        case 'econrisk': return s(`<path d="M20 92 L48 42 L76 92 Z" stroke-width="2"/><path d="M48 92 L48 42" stroke-width="1.5" opacity="0.5"/><path d="M20 92 L48 42 L48 92 Z" fill="${CREAM}" stroke="none" opacity="0.85"/>`);
+        case 'econopoly': return s(`<rect x="20" y="34" width="56" height="64" stroke-width="2"/><rect x="34" y="48" width="28" height="36" stroke-width="2"/><circle cx="20" cy="34" r="5" fill="${CREAM}" stroke="none"/>`);
+        case 'cajut': return s(`<path d="M28 100 A 22 22 0 0 1 50 78" stroke-width="2.5"/><path d="M28 100 A 44 44 0 0 1 72 56" stroke-width="2.5"/><circle cx="28" cy="100" r="5" fill="${CREAM}" stroke="none"/>`);
+        case 'seguros': return s(`<path d="M26 86 A 32 32 0 0 1 70 86" stroke-width="3"/><line x1="48" y1="40" x2="48" y2="54" stroke-width="2.5"/><circle cx="48" cy="78" r="4.5" fill="${CREAM}" stroke="none"/>`);
+        case 'insider': { let d=''; for(let r=0;r<3;r++)for(let c=0;c<3;c++){const x=28+c*20,y=44+r*22; d+=`<circle cx="${x}" cy="${y}" r="3.5" fill="${CREAM}" stroke="none" opacity="0.55"/>`;} return s(`${d}<circle cx="48" cy="66" r="3.5" fill="${CREAM}" stroke="none"/><circle cx="48" cy="66" r="10" stroke-width="2"/>`); }
+        default: return s('');
+      }
+    }
+
+    function body(g) {
+      return `
+        <div class="gc-body">
+          <div class="gc-eyebrow">${g.estado} · ${g.tipo}</div>
+          <div class="gc-title">${g.title}</div>
+          <p class="gc-desc">${g.desc}</p>
+          <div class="gc-meta">${g.meta}</div>
+          <span class="gc-cta">${g.cta} →</span>
+        </div>`;
+    }
+
+    const gridA = document.getElementById('grid-a');
+    const gridB = document.getElementById('grid-b');
+    const gridC = document.getElementById('grid-c');
+
+    for (const g of GAMES) {
+      // A
+      const a = document.createElement('a');
+      a.className = 'game-card'; a.href = '#';
+      a.style.setProperty('--gc-color', g.color);
+      a.innerHTML = `<div class="plate">${motif(g.slug)}</div>${body(g)}`;
+      gridA.appendChild(a);
+
+      // B
+      const b = document.createElement('a');
+      b.className = 'game-card'; b.href = '#';
+      b.style.setProperty('--gc-color', g.color);
+      b.innerHTML = `
+        <div class="cover-b">
+          <div class="idx">Nº ${g.idx}</div>
+          <h3 class="big">${g.big}</h3>
+          <div>
+            <div class="rule"></div>
+            <div class="tag">${g.tipo}</div>
+          </div>
+        </div>${body(g)}`;
+      gridB.appendChild(b);
+
+      // C
+      const c = document.createElement('a');
+      c.className = 'game-card'; c.href = '#';
+      c.style.setProperty('--gc-color', g.color);
+      c.style.setProperty('--gc-soft', g.soft);
+      c.innerHTML = `
+        <div class="cover-c">
+          <div class="motif">${motifC(g.slug)}</div>
+          <div class="label">
+            <span class="idx">Nº ${g.idx}</span>
+            <span class="ctitle">${g.title}</span>
+            <span class="tag">${g.tipo}</span>
+          </div>
+        </div>${body(g)}`;
+      gridC.appendChild(c);
+    }
+  </script>
+</body>
+</html>

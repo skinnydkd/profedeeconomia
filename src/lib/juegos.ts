@@ -30,6 +30,9 @@ export interface Juego {
   imprimible: boolean;
   /** Canonical entry URL from the hub (the /host/ page for multiplayer games). */
   href: string;
+  /** Identity colour for the game's cover plate on the hub. Hex from the validated
+   *  palette; single source of truth for the carátula. */
+  color: string;
   /** Projector/phone flow note, shown on the hub card for multiplayer games. */
   nota_aula?: string;
   unidades_relacionadas: JuegoBridge[];
@@ -48,6 +51,7 @@ export const JUEGOS: Juego[] = [
     estado: 'disponible',
     imprimible: false,
     href: '/juegos/stonks/',
+    color: '#1F6E6E',
     unidades_relacionadas: [
       {
         asignatura: 'eco-1bach',
@@ -75,6 +79,7 @@ export const JUEGOS: Juego[] = [
     estado: 'disponible',
     imprimible: true,
     href: '/juegos/econrisk/',
+    color: '#C44E2C',
     unidades_relacionadas: [
       {
         asignatura: 'eco-1bach',
@@ -96,6 +101,7 @@ export const JUEGOS: Juego[] = [
     estado: 'disponible',
     imprimible: true,
     href: '/juegos/econopoly/',
+    color: '#A87A2A',
     unidades_relacionadas: [
       {
         asignatura: 'eco-1bach',
@@ -123,6 +129,7 @@ export const JUEGOS: Juego[] = [
     estado: 'disponible',
     imprimible: true,
     href: '/juegos/cajut/host/',
+    color: '#5B3A4E',
     nota_aula:
       'El profesor abre esta página en el proyector. Los alumnos entran en /juegos/cajut/ con el código de sala desde su móvil.',
     unidades_relacionadas: [
@@ -146,6 +153,7 @@ export const JUEGOS: Juego[] = [
     estado: 'disponible',
     imprimible: false,
     href: '/juegos/seguros/',
+    color: '#2E5E3A',
     nota_aula:
       'El profesor proyecta la pantalla y lleva el marcador; cada equipo decide su cobertura ronda a ronda.',
     unidades_relacionadas: [
@@ -174,6 +182,7 @@ export const JUEGOS: Juego[] = [
     estado: 'disponible',
     imprimible: true,
     href: '/juegos/insider/host/',
+    color: '#8C2F39',
     nota_aula:
       'El profesor abre esta página en el proyector y ve un código de 4 letras. Los alumnos entran en /juegos/insider/ con ese código desde su móvil.',
     unidades_relacionadas: [

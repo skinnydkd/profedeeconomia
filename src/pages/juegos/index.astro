@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
 import { JUEGOS } from '@/lib/juegos';
+import JuegoCaratula from '@/components/juegos/JuegoCaratula.astro';
 
 const NIVEL_LABEL: Record<string, string> = { eso: 'ESO', bach: 'Bachillerato', fp: 'FP' };
 ---
@@ -25,15 +26,18 @@ const NIVEL_LABEL: Record<string, string> = { eso: 'ESO', bach: 'Bachillerato', 
 
       <div class="game-grid">
         {JUEGOS.map((j) => (
-          <a class={`game-card ${j.estado}${j.tipo === 'party' ? ' party-card' : ''}`} href={j.href}>
-            <div class="gc-eyebrow">
-              {j.estado === 'disponible' ? 'Disponible' : 'Próximamente'}{j.tipo === 'party' && ' · Multijugador'}
+          <a class={`game-card ${j.estado}`} href={j.href}>
+            <JuegoCaratula slug={j.slug} color={j.color} />
+            <div class="gc-body">
+              <div class="gc-eyebrow">
+                {j.estado === 'disponible' ? 'Disponible' : 'Próximamente'}{j.tipo === 'party' && ' · Multijugador'}
+              </div>
+              <div class="gc-title serif">{j.title}</div>
+              <p class="gc-desc">{j.descripcion}</p>
+              {j.nota_aula && <p class="gc-note">{j.nota_aula}</p>}
+              <span class="gc-meta">{j.nivel.map((n) => NIVEL_LABEL[n]).join(' · ')} · {j.modo}</span>
+              <span class="gc-cta">{j.tipo === 'party' ? 'Abrir sala (proyector) →' : 'Jugar →'}</span>
             </div>
-            <div class="gc-title serif">{j.title}</div>
-            <p class="gc-desc">{j.descripcion}</p>
-            {j.nota_aula && <p class="gc-note">{j.nota_aula}</p>}
-            <span class="gc-meta">{j.nivel.map((n) => NIVEL_LABEL[n]).join(' · ')} · {j.modo}</span>
-            <span class="gc-cta">{j.tipo === 'party' ? 'Abrir sala (proyector) →' : 'Jugar →'}</span>
           </a>
         ))}
       </div>
@@ -82,20 +86,34 @@ const NIVEL_LABEL: Record<string, string> = { eso: 'ESO', bach: 'Bachillerato', 
   .imprimibles a { color: var(--color-terra); font-weight: 600; text-decoration: none; }
   .imprimibles a:hover { text-decoration: underline; }
 
-  .game-grid { margin: 2rem 0 1.5rem; display: flex; gap: 1.5rem; flex-wrap: wrap; }
+  .game-grid {
+    margin: 2rem 0 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
 
   .game-card {
-    display: block;
+    display: flex;
+    flex-direction: column;
     background: #fff;
     border: 1px solid var(--color-line);
-    border-top: 3px solid var(--color-terra);
-    padding: 1.5rem 1.75rem 1.25rem;
-    max-width: 28ch;
+    overflow: hidden;
     text-decoration: none;
     color: inherit;
-    transition: box-shadow 0.18s ease, border-color 0.18s ease;
+    transition: box-shadow 0.18s ease, transform 0.18s ease;
   }
-  .game-card:hover { box-shadow: 0 4px 16px 0 rgba(44,31,24,.08); border-top-color: var(--color-terra-deep, #9C3A1C); }
+  .game-card:hover {
+    box-shadow: 0 8px 26px 0 rgba(44, 31, 24, 0.12);
+    transform: translateY(-2px);
+  }
+
+  .gc-body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 1.25rem 1.5rem 1.35rem;
+  }
 
   .gc-eyebrow { font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-terra); font-weight: 600; margin-bottom: 0.5rem; }
   .gc-title { font-size: 1.75rem; font-variation-settings: "SOFT" 80; line-height: 1.1; margin-bottom: 0.75rem; }
@@ -104,7 +122,4 @@ const NIVEL_LABEL: Record<string, string> = { eso: 'ESO', bach: 'Bachillerato', 
   .gc-meta { display: block; font-family: var(--font-mono); font-size: 0.74rem; color: var(--color-ink-mute); margin: 0.3rem 0 0.6rem; }
   .gc-cta { font-size: 0.9rem; font-weight: 600; color: var(--color-terra); }
 
-  .party-card { border-top-color: #5B3A4E; }
-  .party-card:hover { border-top-color: #3f2736; }
-  .party-card .gc-eyebrow, .party-card .gc-cta { color: #5B3A4E; }
 </style>
