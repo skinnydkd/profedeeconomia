@@ -29,3 +29,19 @@ describe('caratula motif registry', () => {
     }
   });
 });
+
+import { JUEGOS } from '../../lib/juegos';
+
+describe('every game is ready for a carátula', () => {
+  for (const j of JUEGOS) {
+    it(`${j.slug} has an identity colour`, () => {
+      expect(typeof j.color).toBe('string');
+      expect(j.color).toMatch(/^#[0-9A-Fa-f]{6}$/);
+    });
+
+    it(`${j.slug} has a bespoke motif (not the fallback)`, () => {
+      expect(MOTIF_SLUGS.has(j.slug)).toBe(true);
+      expect(getMotif(j.slug).length).toBeGreaterThan(0);
+    });
+  }
+});
