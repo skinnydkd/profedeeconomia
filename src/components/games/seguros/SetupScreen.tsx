@@ -15,15 +15,17 @@ export default function SetupScreen({ hasSave, onStart, onResume }: Props) {
   const [startingCash, setStartingCash] = useState(DEFAULT_CONFIG.startingCash);
   const [income, setIncome] = useState(DEFAULT_CONFIG.income);
 
+  const num = (v: number, fallback: number) => (Number.isFinite(v) ? v : fallback);
+
   const start = () => {
-    const n = Math.max(2, Math.min(8, numTeams));
+    const n = Math.max(2, Math.min(8, num(numTeams, DEFAULT_CONFIG.numTeams)));
     onStart({
       ...DEFAULT_CONFIG,
       numTeams: n,
       teamNames: DEFAULT_CONFIG.teamNames.slice(0, n),
-      rounds: Math.max(1, rounds),
-      startingCash: Math.max(0, startingCash),
-      income: Math.max(0, income),
+      rounds: Math.max(1, num(rounds, DEFAULT_CONFIG.rounds)),
+      startingCash: Math.max(0, num(startingCash, DEFAULT_CONFIG.startingCash)),
+      income: Math.max(0, num(income, DEFAULT_CONFIG.income)),
     });
   };
 

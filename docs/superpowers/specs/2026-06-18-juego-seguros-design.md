@@ -61,7 +61,7 @@ asegurarse que no, pero asegurarse elimina el riesgo de ruina.
 | — | — | **Todo tranquilo (no pasa nada)** | 30 % | — |
 
 - **Ingreso**: 350 €/ronda. **Saldo inicial**: 1.000 €. **Rondas**: 10.
-- Asegurarlo **todo** cuesta 320 €/ronda (< ingreso 350, pero deja poco margen): **obliga a
+- Asegurarlo **todo** cuesta 330 €/ronda (< ingreso 350, deja solo 20 € de margen): **obliga a
   priorizar**. La resp. civil (cara y rara) es la trampa clásica de cobertura de cola:
   la mayoría la quita y se sale con la suya… hasta que alguien se come los 1.200 €.
 - Las probabilidades son **pesos de una baraja**: cada ronda se extrae exactamente un

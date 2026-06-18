@@ -34,5 +34,5 @@ export default function SegurosGame() {
   }
   if (state.phase === 'coverage') return <CoverageScreen state={state} setState={setState} />;
   if (state.phase === 'event' || state.phase === 'resolved') return <EventScreen state={state} setState={setState} />;
-  return <DebriefScreen state={state} onRestart={() => { store.clear(); setState(null); }} />;
+  return <DebriefScreen state={state} onRestart={() => { store.clear(); setHasSave(false); setState(null); }} />;
 }

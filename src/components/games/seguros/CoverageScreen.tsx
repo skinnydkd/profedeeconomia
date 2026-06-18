@@ -3,6 +3,7 @@ import type { Dispatch, StateUpdater } from 'preact/hooks';
 import type { GameState } from '@/lib/games/seguros/types';
 import { INSURANCES } from '@/lib/games/seguros/data';
 import { setCoverage, lockCoverage, premiumsFor } from '@/lib/games/seguros/engine';
+import Scoreboard from './Scoreboard';
 
 interface Props {
   state: GameState;
@@ -42,7 +43,7 @@ export default function CoverageScreen({ state, setState }: Props) {
                   <button
                     class="sg-cell"
                     aria-pressed={t.coverage[ins.key] ? 'true' : 'false'}
-                    title={`${t.name} · ${ins.label}`}
+                    aria-label={`${t.name} · ${ins.label}${t.coverage[ins.key] ? ' (cubierto)' : ''}`}
                     onClick={() => toggle(t.id, ins.key)}
                   >{t.coverage[ins.key] ? '✓' : ''}</button>
                 </td>
@@ -52,6 +53,9 @@ export default function CoverageScreen({ state, setState }: Props) {
           ))}
         </tbody>
       </table>
+
+      <h2 style="margin-top:1.4rem">Clasificación</h2>
+      <Scoreboard state={state} />
 
       <p style="margin-top:1.2rem">
         <button class="sg-btn" onClick={() => setState((prev) => (prev ? lockCoverage(prev) : prev))}>

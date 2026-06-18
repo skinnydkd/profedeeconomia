@@ -20,6 +20,8 @@ export default function EventScreen({ state, setState }: Props) {
         <>
           <p>Primas cobradas. El azar decide qué pasa esta ronda…</p>
           <button class="sg-btn" onClick={() => setState((prev) => (prev ? revealEvent(prev) : prev))}>Revelar imprevisto</button>
+          <h2>Clasificación</h2>
+          <Scoreboard state={state} />
         </>
       )}
 
