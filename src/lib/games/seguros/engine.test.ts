@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { INSURANCES, INSURANCE_KEYS, EVENT_DECK, DEFAULT_CONFIG } from './data';
 import {
-  createInitialState, setCoverage,
+  createInitialState, setCoverage, lockCoverage, premiumsFor,
 } from './engine';
 
 describe('data', () => {
@@ -53,5 +53,26 @@ describe('setCoverage', () => {
   it('is a no-op outside coverage phase', () => {
     const s = { ...createInitialState(DEFAULT_CONFIG), phase: 'event' as const };
     expect(setCoverage(s, 0, 'hogar')).toBe(s);
+  });
+});
+
+describe('lockCoverage', () => {
+  it('adds income and subtracts the premiums of covered insurances, then moves to event phase', () => {
+    let s = createInitialState(DEFAULT_CONFIG);     // cash 1000, income 350
+    s = setCoverage(s, 0, 'hogar');                  // hogar prima 80
+    s = setCoverage(s, 0, 'salud');                  // salud prima 60
+    const locked = lockCoverage(s);
+    expect(locked.phase).toBe('event');
+    // team 0: 1000 + 350 - (80+60) = 1210
+    expect(locked.teams[0].cash).toBe(1210);
+    expect(locked.teams[0].totalPremiums).toBe(140);
+    // team 1 (no coverage): 1000 + 350 = 1350
+    expect(locked.teams[1].cash).toBe(1350);
+    expect(locked.teams[1].totalPremiums).toBe(0);
+  });
+
+  it('premiumsFor sums the primas of covered insurances', () => {
+    const s = setCoverage(setCoverage(createInitialState(DEFAULT_CONFIG), 0, 'movil'), 0, 'rc');
+    expect(premiumsFor(s.teams[0])).toBe(30 + 90);
   });
 });
