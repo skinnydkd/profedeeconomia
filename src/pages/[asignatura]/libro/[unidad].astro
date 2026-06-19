@@ -254,18 +254,24 @@ const jsonLd = [
       grid-template-columns: 220px minmax(0, var(--measure-prose)) 1fr;
       gap: 4rem;
     }
-    .article-toc { order: -1; }
+    /* Sidebar mode lives only here. Below 1100px the layout is a single column,
+       so the TOC must stay in normal flow — if it were sticky it would pin to the
+       top and the scrolling content (diagrams included) would slide under it and
+       overlap. */
+    .article-toc {
+      order: -1;
+      position: sticky;
+      top: 5rem;
+      align-self: start;
+      max-height: calc(100vh - 6rem);
+      overflow-y: auto;
+    }
   }
 
   .article-toc {
-    position: sticky;
-    top: 5rem;
-    align-self: start;
     font-size: 0.92rem;
     padding-left: 1.2rem;
     border-left: 3px solid var(--color-terra);
-    max-height: calc(100vh - 6rem);
-    overflow-y: auto;
   }
   .article-toc h4 { margin: 0 0 0.8rem; font-size: 0.78rem; color: var(--color-ink-mute); letter-spacing: 0.12em; }
   .article-toc ol {
