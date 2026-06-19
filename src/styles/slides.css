@@ -51,11 +51,15 @@
 .s-diagram { background: var(--color-paper); }
 .s-diagram .slide__pad { padding-bottom: 9cqh; }
 .s-diagram h2 { font-family: var(--font-serif); font-weight: 500; font-size: 3.6cqh; line-height: 1.15; margin: 1cqh 0 1.5cqh; max-width: 48ch; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; }
-.s-diagram .viz { flex: 1 1 0; min-height: 0; overflow: hidden; display: flex; align-items: center; justify-content: center; }
-/* Fit any diagram SVG inside the box by the smaller dimension, keeping aspect. */
-.s-diagram .viz :global(svg) { width: auto !important; height: auto !important; max-width: 100%; max-height: 100%; display: block; }
-.s-diagram .viz :global(figure) { margin: 0; max-width: 100%; max-height: 100%; display: flex; align-items: center; justify-content: center; }
-.s-diagram .viz :global(figcaption) { display: none; }
+.s-diagram .viz { flex: 1 1 0; min-height: 0; overflow: hidden; display: flex; align-items: center; justify-content: center; position: relative; }
+/* Absolutely fill the box so height:100% resolves against a definite containing block
+   (a flex-grown height is NOT definite, so a percentage height on a flow child falls
+   back to the SVG's aspect ratio and overflows vertically — that clipped edge labels
+   like axis names and curve letters). With the SVG = the box, its own
+   preserveAspectRatio="meet" scales the whole drawing to fit inside, centred. */
+.s-diagram .viz svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.s-diagram .viz figure { margin: 0; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+.s-diagram .viz figcaption { display: none; }
 
 /* DATA (audaz) */
 .s-data { color: var(--color-bg); background: var(--color-ink); display: grid; grid-template-columns: 40% 60%; overflow: hidden; }
