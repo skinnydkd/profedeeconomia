@@ -2,7 +2,7 @@
 /**
  * Exámenes EBAU oficiales de años anteriores, por comunidad autónoma (EDMN 2BACH).
  * Los PDFs reales se alojan en public/ebau-examenes/. La disponibilidad se detecta
- * en build con fs.existsSync; lo que falta (y todo 2026) se muestra "próximamente".
+ * en build con fs.existsSync; lo que falta se muestra "próximamente".
  */
 import BaseLayout from '@layouts/BaseLayout.astro';
 import { ASIGNATURAS } from '@/lib/asignaturas';
@@ -42,8 +42,6 @@ const grupos = CCAA_LIST.map((c) => {
       });
     }
   }
-  // 2026: siempre próximamente
-  filas.push({ anio: 2026, convLabel: 'Junio (ordinaria)', examen: null, solucion: null, proximamente: true });
   const disponibles = filas.filter((f) => f.examen).length;
   return { ccaa: c, filas, disponibles };
 });
