@@ -45,13 +45,18 @@ const recursos = recursosDeUnidad(await getIndiceRecursos(), unit.data.asignatur
 // Structured data (JSON-LD): the unit as an Article + its breadcrumb trail.
 const unitTitle = `Unidad ${unit.data.unidad}. ${unit.data.title}`;
 const unitPath = `/${a.slug}/libro/${idToSlug(unit.id)}/`;
+const isoDay = (d?: Date) => d?.toISOString().slice(0, 10);
 const jsonLd = [
   articleLd({
     title: unitTitle,
     description: unit.data.lema ?? unit.data.title,
     path: unitPath,
-    datePublished: unit.data.publicado_en?.toISOString().slice(0, 10),
+    datePublished: isoDay(unit.data.publicado_en),
+    dateModified: isoDay(unit.data.actualizado_en ?? unit.data.publicado_en),
     section: a.shortLabel,
+    image: `/og/${a.slug}.png`,
+    educationalLevel: a.level,
+    teaches: unit.data.conceptos_clave,
   }),
   breadcrumbLd([
     { name: 'Inicio', path: '/' },

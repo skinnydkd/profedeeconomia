@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
 import { ASIGNATURA_SLUGS, ASIGNATURAS } from '@/lib/asignaturas';
-import { breadcrumbLd } from '@/lib/seo';
+import { breadcrumbLd, courseLd } from '@/lib/seo';
 import { getCollection } from 'astro:content';
 import type { GetStaticPaths } from 'astro';
 
@@ -69,12 +69,34 @@ const breadcrumb = breadcrumbLd([
   { name: 'Inicio', path: '/' },
   { name: a.shortLabel, path: `/${a.slug}/` },
 ]);
+
+// Course JSON-LD (only for published subjects): `teaches` derived from the
+// published book unit titles, aligned to the LOMLOE Real Decreto.
+const libroAll = await getCollection('libro');
+const unitTitles = libroAll
+  .filter((u) => u.data.asignatura === a.slug && u.data.estado === 'publicado')
+  .sort((x, y) => x.data.unidad - y.data.unidad)
+  .map((u) => u.data.title);
+const jsonLd = isPublicado
+  ? [
+      breadcrumb,
+      courseLd({
+        name: `${a.title} (${a.level})`,
+        description: a.tagline,
+        path: `/${a.slug}/`,
+        educationalLevel: a.level,
+        marcoNormativo: a.marcoNormativo,
+        targetName: `${a.title}, ${a.level}`,
+        teaches: unitTitles,
+      }),
+    ]
+  : breadcrumb;
 ---
 
 <BaseLayout
   title={`${a.title} — ${a.level}`}
   description={`Material para impartir ${a.title} en ${a.level}: libro, diapositivas, actividades, tests y recursos. Currículo estatal LOMLOE (${a.marcoNormativo}).`}
-  jsonLd={breadcrumb}
+  jsonLd={jsonLd}
 >
 
   <div class="container">

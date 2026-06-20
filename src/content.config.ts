@@ -43,6 +43,9 @@ const libro = defineCollection({
     bloque: z.string().optional(),
     sabers: z.array(z.string()).default([]),
     publicado_en: z.coerce.date().optional(),
+    /** Last meaningful content revision → schema.org `dateModified` (freshness
+     *  signal for AI/search). Falls back to `publicado_en` when absent. */
+    actualizado_en: z.coerce.date().optional(),
   }),
 });
 

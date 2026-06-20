@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
 import { ASIGNATURA_SLUGS, ASIGNATURAS } from '@/lib/asignaturas';
+import { breadcrumbLd, itemListLd } from '@/lib/seo';
 import { getCollection } from 'astro:content';
 import type { GetStaticPaths } from 'astro';
 
@@ -23,11 +24,34 @@ const units = allUnits
 // if the file is not yet committed it will 404, which is acceptable
 // during early publishing.
 const pdfHref = `/downloads/${a.slug}-libro.pdf`;
+
+const idToSlug = (id: string) => id.split('/').pop()?.replace(/\.mdx?$/, '') ?? id;
+const unitPath = (id: string) => `/${a.slug}/libro/${idToSlug(id)}/`;
+
+const jsonLd = [
+  breadcrumbLd([
+    { name: 'Inicio', path: '/' },
+    { name: a.shortLabel, path: `/${a.slug}/` },
+    { name: 'Libro', path: `/${a.slug}/libro/` },
+  ]),
+  ...(units.length > 0
+    ? [
+        itemListLd({
+          name: `Libro ${a.shortLabel} — Índice de unidades`,
+          items: units.map((u) => ({
+            name: `Unidad ${u.data.unidad}. ${u.data.title}`,
+            path: unitPath(u.id),
+          })),
+        }),
+      ]
+    : []),
+];
 ---
 
 <BaseLayout
   title={`Libro — ${a.shortLabel}`}
   description={`Las unidades del libro de ${a.title}.`}
+  jsonLd={jsonLd}
 >
   <div class="container">
     <nav class="breadcrumb">
