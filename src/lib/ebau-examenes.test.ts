@@ -9,8 +9,8 @@ describe('ebau-examenes registry', () => {
     expect(new Set(CCAA_LIST.map((c) => c.slug)).size).toBe(17);
   });
 
-  it('exposes the available años (2025, 2024) and two convocatorias', () => {
-    expect([...ANIOS]).toEqual([2025, 2024]);
+  it('exposes the available años (2026, 2025, 2024) and two convocatorias', () => {
+    expect([...ANIOS]).toEqual([2026, 2025, 2024]);
     expect(CONVOCATORIAS.map((c) => c.slug)).toEqual(['junio', 'julio']);
   });
 

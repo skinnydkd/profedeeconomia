@@ -22,7 +22,7 @@ export const CCAA_LIST: Ccaa[] = [
   { slug: 'pais-vasco', label: 'País Vasco' },
 ];
 
-export const ANIOS = [2025, 2024] as const;
+export const ANIOS = [2026, 2025, 2024] as const;
 
 export const CONVOCATORIAS = [
   { slug: 'junio', label: 'Junio (ordinaria)' },
