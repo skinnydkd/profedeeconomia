@@ -13,7 +13,7 @@ const kicker = tipo === 'teorica' ? 'Pista EBAU · Teoría' : 'Pista EBAU · Pr�
 
 <aside class="pista-ebau" data-tipo={tipo}>
   <span class="pista-ebau__kicker">{kicker}</span>
-  <h4 class="pista-ebau__concepto">{concepto}</h4>
+  <div class="pista-ebau__concepto">{concepto}</div>
   <div class="pista-ebau__body"><slot /></div>
   {apendice && <p class="pista-ebau__ref">→ {apendice}</p>}
 </aside>
@@ -42,6 +42,9 @@ const kicker = tipo === 'teorica' ? 'Pista EBAU · Teoría' : 'Pista EBAU · Pr�
     margin: 0 0 0.5rem;
     color: var(--color-ink);
     font-weight: 500;
+    /* h4 element rule no longer applies (now a div): restore its uppercase + tracking */
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
     font-variation-settings: "SOFT" 80, "WONK" 0;
   }
   .pista-ebau__body {

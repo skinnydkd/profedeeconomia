@@ -7,11 +7,11 @@ const { deck } = Astro.props;
 const total = deck.slides.length;
 const pad = (n: number) => String(n).padStart(2, '0');
 ---
-<div class="deck-page" data-asig={deck.asignatura}>
+<main class="deck-page" data-asig={deck.asignatura}>
   <div class="deck">
     {deck.slides.map((s, i) => <Slide slide={s} pos={`${pad(i + 1)}/${pad(total)}`} />)}
   </div>
-</div>
+</main>
 
 <script>
   // Arrow-key / space navigation: scroll between slides centered in the viewport.
