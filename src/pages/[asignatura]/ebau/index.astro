@@ -6,6 +6,7 @@
  */
 import BaseLayout from '@layouts/BaseLayout.astro';
 import { ASIGNATURAS } from '@/lib/asignaturas';
+import { breadcrumbLd } from '@/lib/seo';
 import { getCollection, render } from 'astro:content';
 import type { GetStaticPaths } from 'astro';
 
@@ -28,9 +29,15 @@ const { secciones, asignatura: a } = Astro.props;
 const comunidad = secciones[0]?.data.comunidad ?? 'Comunitat Valenciana';
 const rendered = await Promise.all(secciones.map(async (s) => ({ s, ...(await render(s)) })));
 const pdfHref = `/downloads/${a.slug}-ebau.pdf`;
+
+const breadcrumb = breadcrumbLd([
+  { name: 'Inicio', path: '/' },
+  { name: a.shortLabel, path: `/${a.slug}/` },
+  { name: 'Preparación EBAU', path: `/${a.slug}/ebau/` },
+]);
 ---
 
-<BaseLayout title={`Preparación EBAU — ${a.shortLabel}`} description={`Cuaderno de preparación de la prueba de acceso (EBAU/PAU) de ${a.title} en ${comunidad}: estructura, teoría, problemas resueltos y simulacros.`}>
+<BaseLayout title={`Preparación EBAU — ${a.shortLabel}`} description={`Cuaderno de preparación de la prueba de acceso (EBAU/PAU) de ${a.title} en ${comunidad}: estructura, teoría, problemas resueltos y simulacros.`} jsonLd={breadcrumb}>
   <div class="container">
     <nav class="breadcrumb">
       <a href="/">Inicio</a> <span class="sep">›</span>

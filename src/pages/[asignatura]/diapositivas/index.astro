@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
 import { ASIGNATURA_SLUGS, ASIGNATURAS } from '@/lib/asignaturas';
+import { breadcrumbLd } from '@/lib/seo';
 import { getCollection } from 'astro:content';
 import type { GetStaticPaths } from 'astro';
 
@@ -28,11 +29,18 @@ const units = allUnits
   .sort((x, y) => x.data.unidad - y.data.unidad);
 
 const slidesBase = `/slides/${a.slug}`;
+
+const breadcrumb = breadcrumbLd([
+  { name: 'Inicio', path: '/' },
+  { name: a.shortLabel, path: `/${a.slug}/` },
+  { name: 'Diapositivas', path: `/${a.slug}/diapositivas/` },
+]);
 ---
 
 <BaseLayout
   title={`Diapositivas — ${a.shortLabel}`}
   description={`Diapositivas para cada unidad del libro de ${a.title}.`}
+  jsonLd={breadcrumb}
 >
   <div class="container">
     <nav class="breadcrumb">

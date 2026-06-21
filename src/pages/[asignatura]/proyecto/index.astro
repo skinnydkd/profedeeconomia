@@ -6,6 +6,7 @@
  */
 import BaseLayout from '@layouts/BaseLayout.astro';
 import { ASIGNATURAS } from '@/lib/asignaturas';
+import { breadcrumbLd } from '@/lib/seo';
 import { getCollection } from 'astro:content';
 import type { GetStaticPaths } from 'astro';
 
@@ -29,11 +30,18 @@ const guiaHref = `/downloads/${a.slug}-proyecto.pdf`;
 const alumnoHref = `/downloads/${a.slug}-cuaderno-alumno.pdf`;
 const profesorHref = `/downloads/${a.slug}-cuaderno-profesor.pdf`;
 const faseHref = (orden: number) => `/${a.slug}/proyecto/${String(orden).padStart(2, '0')}`;
+
+const breadcrumb = breadcrumbLd([
+  { name: 'Inicio', path: '/' },
+  { name: a.shortLabel, path: `/${a.slug}/` },
+  { name: 'Cuaderno de proyecto', path: `/${a.slug}/proyecto/` },
+]);
 ---
 
 <BaseLayout
   title={`Cuaderno de proyecto — ${a.shortLabel}`}
   description={`Cuaderno de proyecto de ${a.title}: guía paso a paso, por fases, para que el alumnado desarrolle su propia iniciativa emprendedora.`}
+  jsonLd={breadcrumb}
 >
   <div class="container">
     <nav class="breadcrumb">
