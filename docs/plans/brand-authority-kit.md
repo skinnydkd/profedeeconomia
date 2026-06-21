@@ -55,7 +55,7 @@ defecto). Necesitas una cuenta de Wikidata (gratis).
 | official website | P856 | https://www.profedeeconomia.es | (URL) |
 | language of work or name | P407 | Spanish | **Q1321** |
 | country of origin | P495 | Spain | **Q29** |
-| inception | P571 | año de lanzamiento del sitio | **[RELLENAR — año]** |
+| inception | P571 | año de lanzamiento del sitio | **2026** |
 | field of work | P101 | economics | **Q8134** |
 | field of work | P101 | education | **Q8434** |
 
