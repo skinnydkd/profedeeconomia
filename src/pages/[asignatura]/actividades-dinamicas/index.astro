@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
 import { ASIGNATURAS } from '@/lib/asignaturas';
+import { breadcrumbLd } from '@/lib/seo';
 import { getCollection } from 'astro:content';
 import type { GetStaticPaths } from 'astro';
 
@@ -29,9 +30,15 @@ const units = libroAll
     const numRec = recAll.filter((r) => r.data.asignatura === a.slug && r.data.unidad_relacionada === unidad && r.data.estado === 'publicado').length;
     return { unidad, slug, title: u.data.title, lema: u.data.lema, hasTest, numSim, numRec };
   });
+
+const breadcrumb = breadcrumbLd([
+  { name: 'Inicio', path: '/' },
+  { name: a.shortLabel, path: `/${a.slug}/` },
+  { name: 'Actividades interactivas', path: `/${a.slug}/actividades-dinamicas/` },
+]);
 ---
 
-<BaseLayout title={`Actividades interactivas — ${a.shortLabel}`} description={`Tests, simuladores y recursos interactivos por unidad de ${a.title}.`}>
+<BaseLayout title={`Actividades interactivas — ${a.shortLabel}`} description={`Tests, simuladores y recursos interactivos por unidad de ${a.title}.`} jsonLd={breadcrumb}>
   <div class="container">
     <nav class="breadcrumb">
       <a href="/">Inicio</a> <span class="sep">›</span>

@@ -7,6 +7,7 @@
  */
 import BaseLayout from '@layouts/BaseLayout.astro';
 import { ASIGNATURA_SLUGS, ASIGNATURAS } from '@/lib/asignaturas';
+import { breadcrumbLd } from '@/lib/seo';
 import { getCollection } from 'astro:content';
 import type { GetStaticPaths } from 'astro';
 
@@ -22,11 +23,18 @@ const { asignatura: a } = Astro.props;
 const all = await getCollection('evaluacion');
 const entry = all.find((x) => x.data.asignatura === a.slug && x.data.estado === 'publicado');
 const d = entry?.data;
+
+const breadcrumb = breadcrumbLd([
+  { name: 'Inicio', path: '/' },
+  { name: a.shortLabel, path: `/${a.slug}/` },
+  { name: 'Evaluación competencial', path: `/${a.slug}/evaluacion/` },
+]);
 ---
 
 <BaseLayout
   title={`Evaluación competencial — ${a.shortLabel}`}
   description={`Competencias específicas, criterios de evaluación y rúbricas de niveles de logro de ${a.title}, listas para evaluar por competencias.`}
+  jsonLd={breadcrumb}
 >
   <div class="container">
     <nav class="breadcrumb">

@@ -1,7 +1,9 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
 import { ASIGNATURA_SLUGS, ASIGNATURAS } from '@/lib/asignaturas';
-import { breadcrumbLd, courseLd } from '@/lib/seo';
+import { breadcrumbLd, courseLd, faqLd } from '@/lib/seo';
+import { subjectFaqs } from '@/lib/faq';
+import FaqHub from '@components/FaqHub.astro';
 import { getCollection } from 'astro:content';
 import type { GetStaticPaths } from 'astro';
 
@@ -77,6 +79,7 @@ const unitTitles = libroAll
   .filter((u) => u.data.asignatura === a.slug && u.data.estado === 'publicado')
   .sort((x, y) => x.data.unidad - y.data.unidad)
   .map((u) => u.data.title);
+const faqs = subjectFaqs(a);
 const jsonLd = isPublicado
   ? [
       breadcrumb,
@@ -89,6 +92,7 @@ const jsonLd = isPublicado
         targetName: `${a.title}, ${a.level}`,
         teaches: unitTitles,
       }),
+      faqLd(faqs),
     ]
   : breadcrumb;
 ---
@@ -177,6 +181,8 @@ const jsonLd = isPublicado
       </div>
     </section>
   )}
+
+  {isPublicado && <FaqHub faqs={faqs} />}
 
 </BaseLayout>
 

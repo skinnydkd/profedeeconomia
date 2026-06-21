@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { jsonLdToString, organizationLd, articleLd, courseLd, itemListLd, SAME_AS } from './seo';
+import { jsonLdToString, organizationLd, articleLd, courseLd, itemListLd, faqLd, SAME_AS } from './seo';
 
 describe('jsonLdToString', () => {
   it('escapes < to avoid </script> injection', () => {
@@ -83,6 +83,14 @@ describe('seo structured-data builders', () => {
     expect(ld.isAccessibleForFree).toBe(true);
     expect(ld.educationalAlignment.educationalFramework).toBe('LOMLOE — Real Decreto 243/2022');
     expect(ld.provider['@type']).toBe('EducationalOrganization');
+  });
+
+  it('faqLd builds a FAQPage with Question/Answer pairs', () => {
+    const ld = faqLd([{ q: '¿Es gratis?', a: 'Sí, gratis.' }]) as Record<string, any>;
+    expect(ld['@type']).toBe('FAQPage');
+    expect(ld.mainEntity[0]['@type']).toBe('Question');
+    expect(ld.mainEntity[0].name).toBe('¿Es gratis?');
+    expect(ld.mainEntity[0].acceptedAnswer.text).toBe('Sí, gratis.');
   });
 
   it('itemListLd numbers items from 1 with absolute urls', () => {

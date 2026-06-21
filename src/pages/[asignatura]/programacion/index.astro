@@ -7,6 +7,7 @@
  */
 import BaseLayout from '@layouts/BaseLayout.astro';
 import { ASIGNATURAS } from '@/lib/asignaturas';
+import { breadcrumbLd } from '@/lib/seo';
 import { getCollection, render } from 'astro:content';
 import type { GetStaticPaths } from 'astro';
 
@@ -24,9 +25,15 @@ const { prog } = Astro.props;
 const a = ASIGNATURAS[prog.data.asignatura];
 const { Content } = await render(prog);
 const pdfHref = `/downloads/${a.slug}-programacion.pdf`;
+
+const breadcrumb = breadcrumbLd([
+  { name: 'Inicio', path: '/' },
+  { name: a.shortLabel, path: `/${a.slug}/` },
+  { name: 'Programación', path: `/${a.slug}/programacion/` },
+]);
 ---
 
-<BaseLayout title={`Programación didáctica — ${a.shortLabel}`} description={prog.data.descripcion}>
+<BaseLayout title={`Programación didáctica — ${a.shortLabel}`} description={prog.data.descripcion} jsonLd={breadcrumb}>
   <div class="container">
     <nav class="breadcrumb">
       <a href="/">Inicio</a> <span class="sep">›</span>

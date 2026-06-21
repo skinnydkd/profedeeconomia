@@ -9,6 +9,7 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 import { ASIGNATURA_SLUGS, ASIGNATURAS } from '@/lib/asignaturas';
 import BloqueRefuerzo from '@components/refuerzo/BloqueRefuerzo.astro';
 import { refuerzoPdfName } from '@/lib/refuerzo';
+import { breadcrumbLd } from '@/lib/seo';
 import { getCollection } from 'astro:content';
 import type { GetStaticPaths } from 'astro';
 
@@ -35,11 +36,18 @@ const grupos = [1, 2, 3]
   .filter((g) => g.bloques.length > 0);
 
 const ORDINAL: Record<number, string> = { 1: '1.ª', 2: '2.ª', 3: '3.ª' };
+
+const breadcrumb = breadcrumbLd([
+  { name: 'Inicio', path: '/' },
+  { name: a.shortLabel, path: `/${a.slug}/` },
+  { name: 'Refuerzo y ampliación', path: `/${a.slug}/refuerzo/` },
+]);
 ---
 
 <BaseLayout
   title={`Refuerzo y ampliación — ${a.shortLabel}`}
   description={`Cuadernos de refuerzo (para quien va justo) y de ampliación (para quien quiere más) de ${a.title}, organizados por evaluación, con ejercicios y solución.`}
+  jsonLd={breadcrumb}
 >
   <div class="container">
     <nav class="breadcrumb">

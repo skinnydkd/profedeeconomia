@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
 import { ASIGNATURA_SLUGS, ASIGNATURAS } from '@/lib/asignaturas';
+import { breadcrumbLd } from '@/lib/seo';
 import { getCollection } from 'astro:content';
 import type { GetStaticPaths } from 'astro';
 
@@ -13,9 +14,15 @@ const all = await getCollection('retos');
 const retos = all
   .filter((r) => r.data.asignatura === a.slug && r.data.estado === 'publicado')
   .sort((x, y) => x.data.competencia.localeCompare(y.data.competencia));
+
+const breadcrumb = breadcrumbLd([
+  { name: 'Inicio', path: '/' },
+  { name: a.shortLabel, path: `/${a.slug}/` },
+  { name: 'Retos competenciales', path: `/${a.slug}/retos/` },
+]);
 ---
 
-<BaseLayout title={`Retos competenciales — ${a.shortLabel}`} description={`Retos competenciales interactivos de ${a.title}: escenarios paso a paso centrados en cada competencia específica, con tu nivel de logro al final.`}>
+<BaseLayout title={`Retos competenciales — ${a.shortLabel}`} description={`Retos competenciales interactivos de ${a.title}: escenarios paso a paso centrados en cada competencia específica, con tu nivel de logro al final.`} jsonLd={breadcrumb}>
   <div class="container">
     <nav class="breadcrumb">
       <a href="/">Inicio</a> <span class="sep">›</span>

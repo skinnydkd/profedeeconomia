@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
 import { ASIGNATURA_SLUGS, ASIGNATURAS } from '@/lib/asignaturas';
+import { breadcrumbLd } from '@/lib/seo';
 import { getCollection } from 'astro:content';
 import type { GetStaticPaths } from 'astro';
 
@@ -25,11 +26,18 @@ const TIPO_LABEL: Record<string, string> = {
   dinamica: 'Dinámica',
   proyecto: 'Proyecto',
 };
+
+const breadcrumb = breadcrumbLd([
+  { name: 'Inicio', path: '/' },
+  { name: a.shortLabel, path: `/${a.slug}/` },
+  { name: 'Actividades', path: `/${a.slug}/actividades/` },
+]);
 ---
 
 <BaseLayout
   title={`Actividades — ${a.shortLabel}`}
   description={`Actividades pensadas para el aula, una por unidad de ${a.title}.`}
+  jsonLd={breadcrumb}
 >
   <div class="container">
     <nav class="breadcrumb">

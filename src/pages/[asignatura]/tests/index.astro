@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
 import { ASIGNATURA_SLUGS, ASIGNATURAS } from '@/lib/asignaturas';
+import { breadcrumbLd } from '@/lib/seo';
 import { getCollection } from 'astro:content';
 import type { GetStaticPaths } from 'astro';
 
@@ -25,12 +26,19 @@ const libroBySlug = new Map(
     .filter((u) => u.data.asignatura === a.slug)
     .map((u) => [u.data.unidad, u])
 );
+
+const breadcrumb = breadcrumbLd([
+  { name: 'Inicio', path: '/' },
+  { name: a.shortLabel, path: `/${a.slug}/` },
+  { name: 'Tests', path: `/${a.slug}/tests/` },
+]);
 ---
 
 <BaseLayout
   title={`Tests — ${a.shortLabel}`}
   description={`Tests de autoevaluación para cada unidad de ${a.title}.`}
   noindex
+  jsonLd={breadcrumb}
 >
   <div class="container">
     <nav class="breadcrumb">
