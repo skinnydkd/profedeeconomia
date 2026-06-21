@@ -4,6 +4,32 @@ import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import vercel from '@astrojs/vercel';
 import tailwindcss from '@tailwindcss/vite';
+import { readdirSync, readFileSync, existsSync } from 'node:fs';
+import matter from 'gray-matter';
+
+// Build a map of book-unit URL path → ISO date for the sitemap's <lastmod>.
+// Derived from the libro MDX frontmatter (actualizado_en, falling back to
+// publicado_en) so the freshness signal is honest; only published units with a
+// date get a lastmod, everything else is left out (no fake build-time dates).
+function buildLibroLastmod() {
+  const map = new Map();
+  const base = './src/content/asignaturas';
+  if (!existsSync(base)) return map;
+  for (const slug of readdirSync(base)) {
+    const dir = `${base}/${slug}/libro`;
+    if (!existsSync(dir)) continue;
+    for (const file of readdirSync(dir)) {
+      if (!/\.mdx?$/.test(file)) continue;
+      const { data } = matter(readFileSync(`${dir}/${file}`, 'utf8'));
+      if (data.estado !== 'publicado') continue;
+      const d = data.actualizado_en ?? data.publicado_en;
+      if (!d) continue;
+      map.set(`/${slug}/libro/${file.replace(/\.mdx?$/, '')}/`, new Date(d).toISOString());
+    }
+  }
+  return map;
+}
+const LIBRO_LASTMOD = buildLibroLastmod();
 
 // https://astro.build/config
 export default defineConfig({
@@ -43,6 +69,12 @@ export default defineConfig({
         // /[asignatura]/tests/ index is noindex (the tests hub moved to
         // /actividades-dinamicas/). Individual tests /tests/[slug]/ stay indexable.
         !/\/tests\/$/.test(page),
+      // Add <lastmod> to book-unit URLs from their MDX dates (see above).
+      serialize(item) {
+        const lastmod = LIBRO_LASTMOD.get(new URL(item.url).pathname);
+        if (lastmod) item.lastmod = lastmod;
+        return item;
+      },
     }),
   ],
 
