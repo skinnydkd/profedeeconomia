@@ -298,6 +298,16 @@ import { ASIGNATURAS_POR_ETAPA, SECCIONES_TRANSVERSALES } from '@/lib/asignatura
     min-width: 240px;
     gap: 0.1rem;
   }
+  /* Pont invisible sobre el buit de 6px trigger↔dropdown: evita que el :hover
+     caiga quan el cursor baixa cap a una assignatura i tanque el menú. */
+  .nav-dropdown::before {
+    content: "";
+    position: absolute;
+    top: -8px;
+    left: 0;
+    right: 0;
+    height: 8px;
+  }
 
   .nav-group:hover .nav-dropdown,
   .nav-group:focus-within .nav-dropdown,
