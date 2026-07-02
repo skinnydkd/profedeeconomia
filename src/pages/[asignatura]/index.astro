@@ -113,9 +113,6 @@ const jsonLd = isPublicado
 
   <section class="hub-hero">
     <div class="container">
-      <span class="kicker kicker--sentence">
-        Asignatura · {a.level}{a.modalidad ? ` · ${a.modalidad}` : ''}
-      </span>
       <h1 class={`title c-${a.color}`}>{a.title}</h1>
 
       {isPublicado ? (
@@ -172,7 +169,6 @@ const jsonLd = isPublicado
 
         {(a.slug === 'edmn-2bach' || a.slug === 'eco-1bach') && (
           <a href="/olimpiada/" class="olimpiada-card">
-            <span class="ol-kicker">Competición</span>
             <h3>Olimpiada de Economía</h3>
             <p class="desc">Prepara la Olimpiada: la guía del examen, simulacros oficiales, fichas-resumen, banco de preguntas y taller de comentario de texto.</p>
             <span class="ol-cta">Preparar la Olimpiada →</span>
@@ -205,11 +201,21 @@ const jsonLd = isPublicado
   .hub-hero { padding: 1rem 0 3.5rem; }
   .hub-hero h1 { max-width: 22ch; margin: 0 0 0.6rem; }
 
-  /* Per-asignatura color of the title accent — used as a soft highlight */
-  .title.c-edmn { color: var(--color-ink); }
-  .title.c-eco1 { color: var(--color-ink); }
-  .title.c-eco4 { color: var(--color-ink); }
-  .title.c-fopp { color: var(--color-ink); }
+  /* Per-asignatura title colour carries the color-coding on the hub (the old
+     accent stripe is gone). Base vars for dark-enough hues; the 3 light ones
+     (mustard/olive/slate) get their darker ink hex — AA on cream at title size.
+     ponytail: hex hardcoded because Tailwind 4 tree-shakes the unused
+     --color-*-ink theme vars out of :root, so var(--color-eco4-ink) is empty
+     at runtime. If more subjects turn light, prefer forcing -ink emission. */
+  .title.c-edmn    { color: var(--color-edmn); }
+  .title.c-eco1    { color: var(--color-eco1); }
+  .title.c-eco4    { color: #835F20; }
+  .title.c-fopp    { color: var(--color-fopp); }
+  .title.c-taller3 { color: #546F1B; }
+  .title.c-ipe1    { color: #446697; }
+  .title.c-ipe2    { color: var(--color-ipe2); }
+  .title.c-eeae    { color: var(--color-eeae); }
+  .title.c-gpe     { color: var(--color-gpe); }
 
   .subtitle {
     font-family: var(--font-serif);
@@ -238,17 +244,6 @@ const jsonLd = isPublicado
     max-width: 62ch;
     line-height: 1.55;
     background: var(--color-mustard-soft);
-    border-left: 4px solid var(--color-mustard);
-    position: relative;
-  }
-  .curriculum-note::before {
-    content: "§";
-    position: absolute;
-    top: 1rem; right: 1.2rem;
-    color: var(--color-mustard-deep);
-    font-family: var(--font-serif);
-    font-size: 1.4rem;
-    font-style: normal;
   }
 
   .hub-sections { padding: 0 0 clamp(3rem, 7vw, 6rem); }
@@ -298,25 +293,15 @@ const jsonLd = isPublicado
     padding: 1.7rem 1.9rem;
     background: var(--color-bg-cream);
     border: 1px solid var(--color-line);
-    border-left: 4px solid var(--color-terra);
     border-radius: 6px;
     color: var(--color-ink);
     text-decoration: none;
     transition: transform .2s var(--ease-soft), box-shadow .2s var(--ease-soft);
   }
   .olimpiada-card:hover { transform: translateY(-2px); box-shadow: 0 6px 22px rgba(42, 31, 24, 0.1); }
-  .olimpiada-card .ol-kicker { font-family: var(--font-sans); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.04em; color: var(--color-terra); }
-  .olimpiada-card h3 { font-family: var(--font-serif); font-size: 1.5rem; font-weight: 500; margin: 0.3rem 0 0.4rem; }
+  .olimpiada-card h3 { font-family: var(--font-serif); font-size: 1.5rem; font-weight: 500; margin: 0 0 0.4rem; }
   .olimpiada-card .desc { color: var(--color-ink-soft); margin: 0 0 0.6rem; }
   .olimpiada-card .ol-cta { font-family: var(--font-sans); font-weight: 600; color: var(--color-terra); }
-  .section-card::before {
-    content: "";
-    position: absolute;
-    top: 0; left: 0;
-    width: 4px; height: 100%;
-    background: var(--card-color);
-    opacity: 0.85;
-  }
   .section-card.c-edmn { --card-color: var(--color-edmn); }
   .section-card.c-eco1 { --card-color: var(--color-eco1); }
   .section-card.c-eco4 { --card-color: var(--color-eco4); }
@@ -326,9 +311,6 @@ const jsonLd = isPublicado
   .section-card.c-ipe2 { --card-color: var(--color-ipe2); }
   .section-card.c-eeae { --card-color: var(--color-eeae); }
   .section-card.c-gpe { --card-color: var(--color-gpe); }
-
-  /* Make the 5th section's stripe lighter for visual rhythm */
-  .section-card:nth-child(5)::before { opacity: 0.5; }
 
   .section-card:hover {
     transform: translateY(-2px);
