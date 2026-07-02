@@ -113,7 +113,7 @@ const jsonLd = isPublicado
 
   <section class="hub-hero">
     <div class="container">
-      <h1 class={`title c-${a.color}`}>{a.title}</h1>
+      <h1 class="title" style={`color: var(--color-${a.color}-ink)`}>{a.title}</h1>
 
       {isPublicado ? (
         <>
@@ -201,22 +201,8 @@ const jsonLd = isPublicado
   .hub-hero { padding: 1rem 0 3.5rem; }
   .hub-hero h1 { max-width: 22ch; margin: 0 0 0.6rem; }
 
-  /* Per-asignatura title colour carries the color-coding on the hub (the old
-     accent stripe is gone). Base vars for dark-enough hues; the 3 light ones
-     (mustard/olive/slate) get their darker ink hex — AA on cream at title size.
-     ponytail: hex hardcoded because Tailwind 4 tree-shakes the unused
-     --color-*-ink theme vars out of :root, so var(--color-eco4-ink) is empty
-     at runtime. If more subjects turn light, prefer forcing -ink emission. */
-  .title.c-edmn    { color: var(--color-edmn); }
-  .title.c-eco1    { color: var(--color-eco1); }
-  .title.c-eco4    { color: #835F20; }
-  .title.c-fopp    { color: var(--color-fopp); }
-  .title.c-taller3 { color: #546F1B; }
-  .title.c-ipe1    { color: #446697; }
-  .title.c-ipe2    { color: var(--color-ipe2); }
-  .title.c-eeae    { color: var(--color-eeae); }
-  .title.c-gpe     { color: var(--color-gpe); }
-
+  /* Per-asignatura title colour carries the color-coding on the hub now that the
+     accent stripe is gone; the -ink hue is AA-safe on cream (see global.css). */
   .subtitle {
     font-family: var(--font-serif);
     font-style: italic;
