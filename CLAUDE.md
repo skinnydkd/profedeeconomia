@@ -22,7 +22,7 @@ Convertir profedeeconomia.es en la plataforma de referència per a professors d'
 Llig sempre aquests documents abans de proposar canvis estructurals:
 - `docs/PRD.md` — visió, audiència, abast del MVP, sitemap, distribució de contingut
 - `docs/migration-map.md` — mapa de migració peça per peça del webpde
-- `docs/design-system.md` (futur, post-mockups) — paleta validada, tipografia, components
+- `docs/design-system.md` — regles de components i convencions visuals (de-slop), amb la paleta i tipografia com a referència ràpida
 
 ## Estructura per assignatures (DECISIÓ VINCULANT)
 
@@ -101,7 +101,7 @@ Validada el 2026-05-10. Variant C va guanyar enfront de A (editorial pur, vermel
 - Línia: `#E5D4BD` · Línia suau: `#EFE2CB`
 
 **Accents principals**:
-- **Terracota** `#C44E2C` (primari, ús funcional: links, CTAs, eyebrow, drop cap, regles editorials) · profund `#9C3A1C` · soft `#FBE3D6`
+- **Terracota** `#C44E2C` (primari, ús funcional: links, CTAs, drop cap, regles editorials horitzontals) · profund `#9C3A1C` · soft `#FBE3D6`
 - **Mostassa** `#D4A24C` (decoratiu: bullets, dashes, *italics* ornamentals, regles superiors als `<h2>` alternant amb terracota) · profund `#A87A2A` · soft `#F5E5BC`
 
 **Color-coding per assignatura** (vinculant — cada assignatura té el seu color identificador a la home, hub i tags):
@@ -130,6 +130,8 @@ Validada el 2026-05-10. Variant C va guanyar enfront de A (editorial pur, vermel
 - ❌ Inter genèric a tot arreu
 - ❌ Capçaleres amb logo gegant
 - ❌ Banners amb CTAs en majúscules
+- ❌ **Eyebrow/kicker decoratiu amb `✱` damunt d'un `<h1>`** (la personalitat ve del títol Fraunces; les micro-etiquetes de categoria de targeta `card__eyebrow` sí que es mantenen)
+- ❌ **Ratlla d'accent en un sol costat de caixes/callouts** (`border-left`/`border-top` de color amb radi asimètric `0 N N 0`). Caixa amb vora simètrica 1px; el color funcional va a la vora sencera o al text. Veure `docs/design-system.md`.
 
 ## Stack tècnic
 
