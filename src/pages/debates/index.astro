@@ -27,7 +27,6 @@ const activeFamilias = new Set(groups.map((g) => g.familia.slug));
 
   <section class="hero">
     <div class="container">
-      <span class="kicker">Material transversal</span>
       <h1><span class="serif-italic-wonk accent">Debates</span> para argumentar en clase.</h1>
       <p class="lede">
         Las grandes controversias económicas, listas para llevar al aula: la moción,
@@ -50,7 +49,7 @@ const activeFamilias = new Set(groups.map((g) => g.familia.slug));
   {groups.map((g) => (
     <section class="familia" data-familia={g.familia.slug}>
       <div class="container">
-        <div class="familia__head" style={`--fam-color: var(${g.familia.colorVar})`}>
+        <div class="familia__head" style={`--fam-color: var(${g.familia.colorVar}); --fam-ink: var(${g.familia.colorVar}-ink)`}>
           <h2>{g.familia.label}</h2>
           <p>{g.familia.intro}</p>
         </div>
@@ -87,7 +86,6 @@ const activeFamilias = new Set(groups.map((g) => g.familia.slug));
   .breadcrumb a:hover { color: var(--color-terra); }
   .breadcrumb .sep { margin: 0 0.5em; color: var(--color-mustard); }
   .hero { padding: 1rem 0 2rem; }
-  .kicker { font-family: var(--font-sans); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-terra-deep); }
   .accent { color: var(--color-terra); }
   h1 { margin: 0.6rem 0 0.8rem; }
   .lede { font-size: 1.2rem; color: var(--color-ink-soft); line-height: 1.55; max-width: 60ch; }
@@ -96,11 +94,11 @@ const activeFamilias = new Set(groups.map((g) => g.familia.slug));
   .chip:hover { border-color: var(--chip-color, var(--color-terra)); color: var(--chip-color, var(--color-terra)); }
   .chip.is-active { background: var(--chip-color, var(--color-ink)); border-color: var(--chip-color, var(--color-ink)); color: var(--color-paper); }
   .familia { padding: 1.5rem 0; }
-  .familia__head { border-left: 4px solid var(--fam-color); padding-left: 1rem; margin-bottom: 1.5rem; }
-  .familia__head h2 { font-family: var(--font-serif); font-size: 1.7rem; font-weight: 500; margin: 0; }
+  .familia__head { margin-bottom: 1.5rem; }
+  .familia__head h2 { font-family: var(--font-serif); font-size: 1.7rem; font-weight: 500; margin: 0; color: var(--fam-ink); }
   .familia__head p { color: var(--color-ink-soft); margin: 0.3rem 0 0; }
   .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 1.2rem; }
-  .card { display: flex; flex-direction: column; gap: 0.5rem; padding: 1.4rem; background: var(--color-paper); border: 1px solid var(--color-line); border-top: 4px solid var(--fam-color); border-radius: 10px; text-decoration: none; transition: transform .15s ease, box-shadow .15s ease; }
+  .card { display: flex; flex-direction: column; gap: 0.5rem; padding: 1.4rem; background: var(--color-paper); border: 1px solid var(--color-line); border-radius: 10px; text-decoration: none; transition: transform .15s ease, box-shadow .15s ease; }
   .card:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(42, 31, 24, 0.1); }
   .card__eyebrow { font-family: var(--font-sans); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--fam-ink); }
   .card__title { font-size: 1.3rem; color: var(--color-ink); margin: 0; }

@@ -387,9 +387,8 @@ export default function CalificacionesCalc() {
           font-size: 0.85rem;
           color: var(--color-ink-soft, #5C4A3D);
           background: var(--color-cream, #F5EDD9);
-          border-left: 3px solid var(--color-mostassa, #D4A24C);
           padding: 0.5rem 0.75rem;
-          border-radius: 0 0.25rem 0.25rem 0;
+          border-radius: 0.25rem;
           margin: 0;
         }
 

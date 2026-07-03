@@ -293,10 +293,10 @@ export default function EquilibrioCalc() {
           color: var(--color-ink-soft, #5C4A3D);
           padding: 0.5rem 0.8rem;
           background: var(--color-soft, #F8E8D0);
-          border-left: 3px solid var(--color-mustard, #D4A24C);
-          border-radius: 0 4px 4px 0;
+          border: 1px solid var(--color-line, #E5D4BD);
+          border-radius: 4px;
         }
-        .eq__note.ok { border-left-color: var(--color-terra, #C44E2C); }
+        .eq__note.ok { border-color: var(--color-terra, #C44E2C); }
         .eq__chart {
           width: 100%;
           height: auto;

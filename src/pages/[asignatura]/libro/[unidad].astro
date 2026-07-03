@@ -189,17 +189,10 @@ const jsonLd = [
   }
   .unit-num {
     font-family: var(--font-sans);
-    font-size: 0.85rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--color-terra-deep);
-    margin-bottom: 1.5rem;
-    font-weight: 700;
-    display: inline-flex;
-    align-items: center;
-    background: var(--color-terra-soft);
-    padding: 0.4rem 0.85rem;
-    border-radius: 999px;
+    font-size: 0.9rem;
+    color: var(--color-ink-mute);
+    margin-bottom: 1.2rem;
+    font-weight: 500;
   }
   h1 { max-width: 20ch; margin: 0 0 0.6rem; }
   .lede {
@@ -234,15 +227,15 @@ const jsonLd = [
     font-weight: 600;
   }
   .unit-meta dd { margin: 0; font-size: 1rem; color: var(--color-ink); }
-  .tag-row { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .tag-row { line-height: 1.8; }
   .tag {
     font-family: var(--font-sans);
-    font-size: 0.82rem;
-    padding: 0.3rem 0.7rem;
-    background: var(--color-terra-soft);
-    color: var(--color-terra-deep);
-    border-radius: 999px;
-    font-weight: 500;
+    font-size: 0.95rem;
+    color: var(--color-ink);
+  }
+  .tag:not(:last-child)::after {
+    content: " · ";
+    color: var(--color-mustard);
   }
   .objetivos { margin: 0.4rem 0 0; padding-left: 1.1rem; font-size: 1rem; color: var(--color-ink-soft); }
   .objetivos li { margin-bottom: 0.4rem; }
@@ -275,8 +268,6 @@ const jsonLd = [
 
   .article-toc {
     font-size: 0.92rem;
-    padding-left: 1.2rem;
-    border-left: 3px solid var(--color-terra);
   }
   /* was an <h4>; now a <div>, so restore the h4 element rule's sans/bold/uppercase */
   .article-toc .toc-title { margin: 0 0 0.8rem; font-family: var(--font-sans); font-size: 0.78rem; font-weight: 600; color: var(--color-ink-mute); text-transform: uppercase; letter-spacing: 0.12em; }
@@ -320,14 +311,6 @@ const jsonLd = [
     letter-spacing: -0.02em;
     counter-increment: h2section;
     counter-reset: h3section;
-  }
-  .article-body :global(h2::before) {
-    content: "";
-    position: absolute;
-    top: 0; left: 0;
-    width: 4rem; height: 4px;
-    background: var(--color-terra);
-    border-radius: 999px;
   }
   /* Auto-numbering: §1, §2, §3 … as eyebrow before the heading text.
      `top: 1.5em` aligns the marker baseline to the cap-line of the heading

@@ -357,9 +357,8 @@ export default function ADASSimulator() {
         }
         .adas__interp {
           background: var(--color-bg-cream);
-          border-left: 3px solid var(--color-mustard);
           padding: 0.9rem 1.1rem;
-          border-radius: 0 4px 4px 0;
+          border-radius: 4px;
           margin: 1rem 0;
           font-family: var(--font-serif);
           font-size: 0.98rem;
