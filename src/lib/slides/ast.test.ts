@@ -29,4 +29,14 @@ describe('ast helpers', () => {
     expect(getAttr(callouts[0], 'title')).toBe('Punto muerto');
     expect(getText(callouts[0])).toContain('umbral de rentabilidad');
   });
+  it('joins inline formatting without inserting a space before punctuation', () => {
+    const { ast } = parseMdx(`---\ntitle: x\n---\n\nLa ciencia de la *escasez*, con recursos **limitados**.\n`);
+    const para = (ast.children || []).find((c) => c.type === 'paragraph')!;
+    expect(getText(para)).toBe('La ciencia de la escasez, con recursos limitados.');
+  });
+  it('separates sibling block nodes with a single space', () => {
+    const { ast } = parseMdx(`---\ntitle: x\n---\n\n> Primera frase.\n>\n> Segunda frase.\n`);
+    const bq = (ast.children || []).find((c) => c.type === 'blockquote')!;
+    expect(getText(bq)).toBe('Primera frase. Segunda frase.');
+  });
 });
