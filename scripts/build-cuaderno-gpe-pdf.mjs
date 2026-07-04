@@ -3,7 +3,9 @@
  * Build the dual-edition «Cuaderno del proyecto» PDFs for GPE (Gestión de Proyectos de Emprendimiento)
  * from the static build (same HTTP-server + pagedjs pattern as
  * build-entrevista-pdf). Renders the alumno and profesor print routes and
- * writes gpe-bach-cuaderno-alumno.pdf and …-profesor.pdf.
+ * writes gpe-bach-proyecto-cuaderno-alumno.pdf and …-profesor.pdf.
+ * (The `proyecto-` prefix keeps these distinct from the activity workbook
+ * gpe-bach-cuaderno[-alumno].pdf written by build-workbook-pdf.mjs.)
  *
  * Usage:
  *   node scripts/build-cuaderno-gpe-pdf.mjs            # copy to public/downloads/
@@ -20,8 +22,8 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = resolve(__dirname, '..');
 
 const JOBS = [
-  { path: 'gpe-bach/proyecto/cuaderno/imprimir/alumno',   out: 'gpe-bach-cuaderno-alumno.pdf' },
-  { path: 'gpe-bach/proyecto/cuaderno/imprimir/profesor', out: 'gpe-bach-cuaderno-profesor.pdf' },
+  { path: 'gpe-bach/proyecto/cuaderno/imprimir/alumno',   out: 'gpe-bach-proyecto-cuaderno-alumno.pdf' },
+  { path: 'gpe-bach/proyecto/cuaderno/imprimir/profesor', out: 'gpe-bach-proyecto-cuaderno-profesor.pdf' },
 ];
 const PORT = 4339;
 

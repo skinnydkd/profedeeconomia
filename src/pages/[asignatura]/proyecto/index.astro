@@ -4,6 +4,8 @@
  * Muestra el recorrido de fases como tarjetas + las descargas (cuaderno
  * alumno/profesor para rellenar y guía completa del profe).
  */
+import { existsSync } from 'node:fs';
+import { resolve } from 'node:path';
 import BaseLayout from '@layouts/BaseLayout.astro';
 import { ASIGNATURAS } from '@/lib/asignaturas';
 import { breadcrumbLd } from '@/lib/seo';
@@ -26,9 +28,18 @@ export const getStaticPaths = (async () => {
 }) satisfies GetStaticPaths;
 
 const { secciones, asignatura: a } = Astro.props;
-const guiaHref = `/downloads/${a.slug}-proyecto.pdf`;
-const alumnoHref = `/downloads/${a.slug}-cuaderno-alumno.pdf`;
-const profesorHref = `/downloads/${a.slug}-cuaderno-profesor.pdf`;
+// The project cuaderno uses a `proyecto-` prefix so it never collides with the
+// activity workbook (<slug>-cuaderno[-alumno].pdf). Only render the download
+// CTAs for subjects that actually have the generated files (currently GPE).
+const has = (file: string) => existsSync(resolve('public/downloads', file));
+const guiaFile = `${a.slug}-proyecto.pdf`;
+const alumnoFile = `${a.slug}-proyecto-cuaderno-alumno.pdf`;
+const profesorFile = `${a.slug}-proyecto-cuaderno-profesor.pdf`;
+const guiaHref = `/downloads/${guiaFile}`;
+const alumnoHref = `/downloads/${alumnoFile}`;
+const profesorHref = `/downloads/${profesorFile}`;
+const hasCuaderno = has(alumnoFile) && has(profesorFile);
+const hasGuia = has(guiaFile);
 const faseHref = (orden: number) => `/${a.slug}/proyecto/${String(orden).padStart(2, '0')}`;
 
 const breadcrumb = breadcrumbLd([
@@ -56,24 +67,28 @@ const breadcrumb = breadcrumbLd([
       <h1>Cuaderno de proyecto</h1>
       <p class="lede">Una guía paso a paso, fase a fase, para que vuestro alumnado convierta un reto de su entorno en un proyecto emprendedor: equipo, oportunidad, modelo de negocio, viabilidad y puesta en marcha.</p>
 
-      <p class="downloads-lead">Descargad el <strong>cuaderno del equipo</strong> y rellenadlo fase a fase, con sus plantillas visuales.</p>
-      <div class="downloads">
-        <a class="download-cta" href={alumnoHref} download>
-          <span class="download-cta__icon" aria-hidden="true">↓</span>
-          <span class="download-cta__text">
-            <strong>Cuaderno del alumno (para rellenar)</strong>
-            <span class="muted">Una hoja por fase con plantilla visual en blanco</span>
-          </span>
-        </a>
-        <a class="download-cta" href={profesorHref} download>
-          <span class="download-cta__icon" aria-hidden="true">↓</span>
-          <span class="download-cta__text">
-            <strong>Cuaderno del profesor (con orientación)</strong>
-            <span class="muted">El mismo, con orientación docente por fase</span>
-          </span>
-        </a>
-        <a class="download-secondary" href={guiaHref} download>Guía completa del proyecto en PDF</a>
-      </div>
+      {hasCuaderno && (
+        <>
+          <p class="downloads-lead">Descargad el <strong>cuaderno del equipo</strong> y rellenadlo fase a fase, con sus plantillas visuales.</p>
+          <div class="downloads">
+            <a class="download-cta" href={alumnoHref} download>
+              <span class="download-cta__icon" aria-hidden="true">↓</span>
+              <span class="download-cta__text">
+                <strong>Cuaderno del alumno (para rellenar)</strong>
+                <span class="muted">Una hoja por fase con plantilla visual en blanco</span>
+              </span>
+            </a>
+            <a class="download-cta" href={profesorHref} download>
+              <span class="download-cta__icon" aria-hidden="true">↓</span>
+              <span class="download-cta__text">
+                <strong>Cuaderno del profesor (con orientación)</strong>
+                <span class="muted">El mismo, con orientación docente por fase</span>
+              </span>
+            </a>
+            {hasGuia && <a class="download-secondary" href={guiaHref} download>Guía completa del proyecto en PDF</a>}
+          </div>
+        </>
+      )}
 
       <p class="adapt-note">
         Cuaderno pensado para trabajar el proyecto a lo largo del curso. Adáptalo a la duración, el agrupamiento y el contexto de tu centro.
