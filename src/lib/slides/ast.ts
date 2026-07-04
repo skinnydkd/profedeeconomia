@@ -46,12 +46,32 @@ export function findByName(node: MdxNode, name: string, out: MdxNode[] = []): Md
   return out;
 }
 
-/** Flatten all text under a node into a single normalised string. */
+/** mdast/mdxast block-level node types — these need a separator between siblings. */
+const BLOCK_TYPES = new Set([
+  'paragraph', 'heading', 'blockquote', 'list', 'listItem', 'code', 'html',
+  'thematicBreak', 'table', 'tableRow', 'tableCell', 'mdxJsxFlowElement',
+]);
+
+/**
+ * Flatten all text under a node into a single normalised string.
+ * Inline children are concatenated with no separator — markdown already
+ * encodes word spacing inside the text nodes, so joining with ' ' would
+ * inject a stray space before punctuation that follows inline formatting
+ * (e.g. `**escasez**:` → "escasez :"). Sibling *block* nodes, however, do
+ * need a space between them (two paragraphs must not glue: "exacta.El...").
+ */
 export function getText(node: MdxNode | undefined): string {
   if (!node) return '';
   if (typeof node.value === 'string') return node.value;
   if (Array.isArray(node.children)) {
-    return node.children.map(getText).join(' ').replace(/\s+/g, ' ').trim();
+    let out = '';
+    for (const child of node.children) {
+      const t = getText(child);
+      if (!t) continue;
+      if (out && BLOCK_TYPES.has(child.type)) out += ' ';
+      out += t;
+    }
+    return out.replace(/\s+/g, ' ').trim();
   }
   return '';
 }
