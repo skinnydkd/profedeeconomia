@@ -712,7 +712,7 @@ export const ASIGNATURAS_CA: Partial<Record<AsignaturaSlug, CAOverlay>> = {
     level: 'Batxillerat (1r/2n)',
     title: 'Gestió de Projectes d\'Emprenedoria',
     tagline:
-      'Una matèria de projecte: l\'alumnat monta la seua pròpia iniciativa emprenedora lligada al territori. Porta llibre teòric i quadern de projecte guiat per fases.',
+      'Una matèria de projecte: l\'alumnat munta la seua pròpia iniciativa emprenedora lligada al territori. Porta llibre teòric i quadern de projecte guiat per fases.',
     modalidad: 'Optativa d\'oferta obligatòria',
     marcoNormativo: 'Decret 108/2022 (CV) — optativa d\'oferta obligatòria',
   },
