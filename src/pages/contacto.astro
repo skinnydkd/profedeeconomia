@@ -1,33 +1,55 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
+import { getLocale } from '@/i18n/locale';
+
+const locale = getLocale(Astro.currentLocale);
+
+const copy = {
+  es: {
+    pageTitle: 'Contacto',
+    description: 'Cómo contactar con profedeeconomia.es: erratas, propuestas de material y colaboración del profesorado de economía.',
+    h1: 'Escríbeme',
+    lede: '¿Una errata, una propuesta de actividad, una duda sobre el material o ganas de colaborar? Me interesa lo que veis en el aula.',
+    correoLabel: 'Correo',
+    instagramLabel: 'Instagram',
+    p: 'Si me escribes para señalar un error en el contenido, indícame la asignatura y la unidad: así lo corrijo antes. El material es abierto (licencia Creative Commons BY-NC-SA); puedes usarlo y adaptarlo en tus clases citando la fuente.',
+  },
+  ca: {
+    pageTitle: 'Contacte',
+    description: "Com contactar amb profedeeconomia.es: errades, propostes de material i col·laboració del professorat d'economia.",
+    h1: 'Escriu-me',
+    lede: 'Una errada, una proposta d\'activitat, un dubte sobre el material o ganes de col·laborar? M\'interessa el que veieu a l\'aula.',
+    correoLabel: 'Correu',
+    instagramLabel: 'Instagram',
+    p: "Si m'escrius per a assenyalar un error en el contingut, indica'm l'assignatura i la unitat: així el corregisc abans. El material és obert (llicència Creative Commons BY-NC-SA); pots usar-lo i adaptar-lo a les teues classes citant la font.",
+  },
+}[locale];
 ---
 <BaseLayout
-  title="Contacto"
-  description="Cómo contactar con profedeeconomia.es: erratas, propuestas de material y colaboración del profesorado de economía."
+  title={copy.pageTitle}
+  description={copy.description}
+  contentLang={locale}
 >
   <main class="prose">
-    <h1>Escríbeme</h1>
+    <h1>{copy.h1}</h1>
 
     <p class="lede">
-      ¿Una errata, una propuesta de actividad, una duda sobre el material o ganas de
-      colaborar? Me interesa lo que veis en el aula.
+      {copy.lede}
     </p>
 
     <ul class="contact-list">
       <li>
-        <span class="contact-list__k">Correo</span>
+        <span class="contact-list__k">{copy.correoLabel}</span>
         <a class="editorial-link" href="mailto:hola@profedeeconomia.es">hola@profedeeconomia.es</a>
       </li>
       <li>
-        <span class="contact-list__k">Instagram</span>
+        <span class="contact-list__k">{copy.instagramLabel}</span>
         <a class="editorial-link" href="https://instagram.com/profedeeconomia" rel="external">@profedeeconomia</a>
       </li>
     </ul>
 
     <p>
-      Si me escribes para señalar un error en el contenido, indícame la asignatura y la
-      unidad: así lo corrijo antes. El material es abierto (licencia Creative Commons
-      BY-NC-SA); puedes usarlo y adaptarlo en tus clases citando la fuente.
+      {copy.p}
     </p>
   </main>
 </BaseLayout>
