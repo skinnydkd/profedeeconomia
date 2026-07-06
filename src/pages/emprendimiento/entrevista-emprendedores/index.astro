@@ -1,6 +1,11 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
+import { getLocale } from '@/i18n/locale';
 
+const locale = getLocale(Astro.currentLocale);
+
+// Question banks are content data (not the page's own editorial prose) and
+// stay in ES for both locales, per the Fase 1 skeleton plan.
 const obligatorias = [
   '¿Qué forma jurídica adoptaste y por qué? (autónomo, SL, SA…)',
   '¿Necesitabas financiación?',
@@ -45,78 +50,164 @@ const optativas = [
   '¿Cuál ha sido el mayor obstáculo que has enfrentado?',
   '¿Qué sacrificios personales has tenido que hacer por tu negocio?',
 ];
+
+const copy = {
+  es: {
+    pageTitle: 'Entrevista a emprendedores',
+    description: 'Proyecto: entrevista a propietarios de negocios locales para entender de primera mano cómo se monta y se gestiona una empresa. Con guion, banco de preguntas y plantilla descargable.',
+    bcInicio: 'Inicio',
+    bcEmprendimiento: 'Emprendimiento',
+    bcCurrent: 'Entrevista a emprendedores',
+    h1: 'Entrevista a emprendedores',
+    ledePre: 'La mejor clase de emprendimiento la dan quienes ya lo han hecho. En este proyecto sales a la calle, entrevistas a quien ha montado un negocio de verdad y aplicas lo de clase a su historia real. De paso, entrenas lo que más cuesta:',
+    ledeStrong: 'acercarte, preguntar y escuchar sin vergüenza',
+    dl: '↓ Descargar la plantilla (PDF para rellenar)',
+    h2Objetivo: 'Objetivo',
+    pObjetivo: 'Comprender mejor el funcionamiento y la gestión de los negocios locales mediante entrevistas directas con sus propietarios, aplicando los conceptos de clase a situaciones reales del entorno empresarial.',
+    h2Como: 'Cómo se hace',
+    pComoPre: 'Individual o por parejas. Visita',
+    pComoStrong1: 'tres negocios diferentes',
+    pComoMid: 'y pide entrevistar al',
+    pComoStrong2: 'propietario o dueño',
+    pComoPost: '(no a un empleado: puede que no tenga la información). En cada negocio:',
+    li1: 'Entra y pregunta por el propietario con educación.',
+    li2Pre: 'Preséntate y di algo así:',
+    blockquote: '«¡Buenos días/tardes! ¿Sería posible hacerle unas preguntas sobre su negocio para un proyecto de la asignatura de Economía? No le robaré más de 5 minutos.»',
+    li3Pre: 'Si acepta, haz las',
+    li3Strong1: '10 preguntas obligatorias',
+    li3Mid: 'y elige',
+    li3Strong2: '5 de las optativas',
+    li4: 'Si te da permiso, puedes grabar en audio o vídeo. Si no, anota las respuestas en la plantilla.',
+    li5: 'Si no consigues hablar con el propietario, prueba en otro negocio.',
+    h2Etica: 'Ética y respeto',
+    etica1Strong: 'Pide permiso siempre',
+    etica1Post: 'antes de grabar; si dice que no, anota a mano. Su respuesta manda.',
+    etica2Pre: 'Mantén una actitud respetuosa y profesional, y',
+    etica2Strong: 'da las gracias',
+    etica2Post: 'al terminar.',
+    etica3: 'No publiques la grabación: es solo para el proyecto. El nombre de la persona es opcional.',
+    etica4: 'Repasa antes las preguntas para que la conversación fluya.',
+    h2Obligatorias: 'Las 10 preguntas obligatorias',
+    h2Optativas: 'Preguntas optativas (elige 5)',
+    h2Entrega: 'Entrega',
+    pEntregaPre: 'Si has grabado, entrega el audio o vídeo a tu profesor/a por la vía que os indique. Si lo has hecho en papel, entrega la plantilla rellenada en clase. (Para dudas del material:',
+    pEntregaPost: '.)',
+    note: 'Este proyecto desarrolla la comunicación, el análisis crítico y la valentía de hablar con desconocidos. ¡Suerte! Cada «no» te acerca al siguiente «sí».',
+    linkProyecto: '← De cero a empresa',
+    linkActividades: 'Kit de actitud',
+  },
+  ca: {
+    pageTitle: 'Entrevista a emprenedors',
+    description: 'Projecte: entrevista a propietaris de negocis locals per a entendre de primera mà com es munta i es gestiona una empresa. Amb guió, banc de preguntes i plantilla descarregable.',
+    bcInicio: 'Inici',
+    bcEmprendimiento: 'Emprenedoria',
+    bcCurrent: 'Entrevista a emprenedors',
+    h1: 'Entrevista a emprenedors',
+    ledePre: 'La millor classe d\'emprenedoria la donen els qui ja ho han fet. En aquest projecte ixes al carrer, entrevistes qui ha muntat un negoci de veritat i apliques el de classe a la seua història real. De pas, entrenes el que més costa:',
+    ledeStrong: 'acostar-te, preguntar i escoltar sense vergonya',
+    dl: '↓ Descarregar la plantilla (PDF per a omplir)',
+    h2Objetivo: 'Objectiu',
+    pObjetivo: 'Comprendre millor el funcionament i la gestió dels negocis locals mitjançant entrevistes directes amb els seus propietaris, aplicant els conceptes de classe a situacions reals de l\'entorn empresarial.',
+    h2Como: 'Com es fa',
+    pComoPre: 'Individual o per parelles. Visita',
+    pComoStrong1: 'tres negocis diferents',
+    pComoMid: 'i demana entrevistar el',
+    pComoStrong2: 'propietari o l\'amo',
+    pComoPost: '(no un empleat: pot ser que no tinga la informació). En cada negoci:',
+    li1: 'Entra i pregunta pel propietari amb educació.',
+    li2Pre: 'Presenta\'t i digues alguna cosa així:',
+    blockquote: '«Bon dia/bona vesprada! Seria possible fer-li unes preguntes sobre el seu negoci per a un projecte de l\'assignatura d\'Economia? No li robaré més de 5 minuts.»',
+    li3Pre: 'Si accepta, fes les',
+    li3Strong1: '10 preguntes obligatòries',
+    li3Mid: 'i tria',
+    li3Strong2: '5 de les optatives',
+    li4: 'Si et dona permís, pots gravar en àudio o vídeo. Si no, anota les respostes en la plantilla.',
+    li5: 'Si no aconsegueixes parlar amb el propietari, prova en un altre negoci.',
+    h2Etica: 'Ètica i respecte',
+    etica1Strong: 'Demana permís sempre',
+    etica1Post: 'abans de gravar; si diu que no, anota a mà. La seua resposta mana.',
+    etica2Pre: 'Mantín una actitud respectuosa i professional, i',
+    etica2Strong: 'dona les gràcies',
+    etica2Post: 'en acabar.',
+    etica3: 'No publiques la gravació: és només per al projecte. El nom de la persona és opcional.',
+    etica4: 'Repassa abans les preguntes perquè la conversa flueixca.',
+    h2Obligatorias: 'Les 10 preguntes obligatòries',
+    h2Optativas: 'Preguntes optatives (tria 5)',
+    h2Entrega: 'Lliurament',
+    pEntregaPre: 'Si has gravat, lliura l\'àudio o el vídeo al teu professor/a per la via que us indique. Si ho has fet en paper, lliura la plantilla emplenada a classe. (Per a dubtes del material:',
+    pEntregaPost: '.)',
+    note: 'Aquest projecte desenvolupa la comunicació, l\'anàlisi crítica i la valentia de parlar amb desconeguts. Sort! Cada «no» t\'acosta al següent «sí».',
+    linkProyecto: '← De zero a empresa',
+    linkActividades: 'Kit d\'actitud',
+  },
+}[locale];
 ---
 <BaseLayout
-  title="Entrevista a emprendedores"
-  description="Proyecto: entrevista a propietarios de negocios locales para entender de primera mano cómo se monta y se gestiona una empresa. Con guion, banco de preguntas y plantilla descargable."
+  title={copy.pageTitle}
+  description={copy.description}
+  contentLang={locale}
 >
   <div class="container">
     <nav class="breadcrumb">
-      <a href="/">Inicio</a> <span class="sep">›</span>
-      <a href="/emprendimiento/">Emprendimiento</a> <span class="sep">›</span>
-      <span>Entrevista a emprendedores</span>
+      <a href="/">{copy.bcInicio}</a> <span class="sep">›</span>
+      <a href="/emprendimiento/">{copy.bcEmprendimiento}</a> <span class="sep">›</span>
+      <span>{copy.bcCurrent}</span>
     </nav>
   </div>
 
   <main class="prose">
-    <h1>Entrevista a emprendedores</h1>
+    <h1>{copy.h1}</h1>
     <p class="lede">
-      La mejor clase de emprendimiento la dan quienes ya lo han hecho. En este proyecto sales a la calle,
-      entrevistas a quien ha montado un negocio de verdad y aplicas lo de clase a su historia real. De
-      paso, entrenas lo que más cuesta: <strong>acercarte, preguntar y escuchar sin vergüenza</strong>.
+      {copy.ledePre} <strong>{copy.ledeStrong}</strong>.
     </p>
 
-    <a class="dl" href="/downloads/entrevista-emprendedores-plantilla.pdf" download>↓ Descargar la plantilla (PDF para rellenar)</a>
+    <a class="dl" href="/downloads/entrevista-emprendedores-plantilla.pdf" download>{copy.dl}</a>
 
-    <h2>Objetivo</h2>
+    <h2>{copy.h2Objetivo}</h2>
     <p>
-      Comprender mejor el funcionamiento y la gestión de los negocios locales mediante entrevistas
-      directas con sus propietarios, aplicando los conceptos de clase a situaciones reales del entorno
-      empresarial.
+      {copy.pObjetivo}
     </p>
 
-    <h2>Cómo se hace</h2>
+    <h2>{copy.h2Como}</h2>
     <p>
-      Individual o por parejas. Visita <strong>tres negocios diferentes</strong> y pide entrevistar al
-      <strong>propietario o dueño</strong> (no a un empleado: puede que no tenga la información). En cada
-      negocio:
+      {copy.pComoPre} <strong>{copy.pComoStrong1}</strong>
+      {copy.pComoMid}
+      <strong>{copy.pComoStrong2}</strong> {copy.pComoPost}
     </p>
     <ol>
-      <li>Entra y pregunta por el propietario con educación.</li>
-      <li>Preséntate y di algo así:
-        <blockquote>«¡Buenos días/tardes! ¿Sería posible hacerle unas preguntas sobre su negocio para un proyecto de la asignatura de Economía? No le robaré más de 5 minutos.»</blockquote>
+      <li>{copy.li1}</li>
+      <li>{copy.li2Pre}
+        <blockquote>{copy.blockquote}</blockquote>
       </li>
-      <li>Si acepta, haz las <strong>10 preguntas obligatorias</strong> y elige <strong>5 de las optativas</strong>.</li>
-      <li>Si te da permiso, puedes grabar en audio o vídeo. Si no, anota las respuestas en la plantilla.</li>
-      <li>Si no consigues hablar con el propietario, prueba en otro negocio.</li>
+      <li>{copy.li3Pre} <strong>{copy.li3Strong1}</strong> {copy.li3Mid} <strong>{copy.li3Strong2}</strong>.</li>
+      <li>{copy.li4}</li>
+      <li>{copy.li5}</li>
     </ol>
 
-    <h2>Ética y respeto</h2>
+    <h2>{copy.h2Etica}</h2>
     <ul>
-      <li><strong>Pide permiso siempre</strong> antes de grabar; si dice que no, anota a mano. Su respuesta manda.</li>
-      <li>Mantén una actitud respetuosa y profesional, y <strong>da las gracias</strong> al terminar.</li>
-      <li>No publiques la grabación: es solo para el proyecto. El nombre de la persona es opcional.</li>
-      <li>Repasa antes las preguntas para que la conversación fluya.</li>
+      <li><strong>{copy.etica1Strong}</strong> {copy.etica1Post}</li>
+      <li>{copy.etica2Pre} <strong>{copy.etica2Strong}</strong> {copy.etica2Post}</li>
+      <li>{copy.etica3}</li>
+      <li>{copy.etica4}</li>
     </ul>
 
-    <h2>Las 10 preguntas obligatorias</h2>
+    <h2>{copy.h2Obligatorias}</h2>
     <ol>{obligatorias.map((q) => <li>{q}</li>)}</ol>
 
-    <h2>Preguntas optativas (elige 5)</h2>
+    <h2>{copy.h2Optativas}</h2>
     <ol>{optativas.map((q) => <li>{q}</li>)}</ol>
 
-    <h2>Entrega</h2>
+    <h2>{copy.h2Entrega}</h2>
     <p>
-      Si has grabado, entrega el audio o vídeo a tu profesor/a por la vía que os indique. Si lo has hecho
-      en papel, entrega la plantilla rellenada en clase. (Para dudas del material:
-      <a class="editorial-link" href="mailto:hola@profedeeconomia.es">hola@profedeeconomia.es</a>.)
+      {copy.pEntregaPre}
+      <a class="editorial-link" href="mailto:hola@profedeeconomia.es">hola@profedeeconomia.es</a>{copy.pEntregaPost}
     </p>
     <p class="note">
-      Este proyecto desarrolla la comunicación, el análisis crítico y la valentía de hablar con
-      desconocidos. ¡Suerte! Cada «no» te acerca al siguiente «sí».
+      {copy.note}
     </p>
 
-    <p class="links"><a class="editorial-link" href="/emprendimiento/proyecto/">← De cero a empresa</a> · <a class="editorial-link" href="/emprendimiento/actividades/">Kit de actitud</a></p>
+    <p class="links"><a class="editorial-link" href="/emprendimiento/proyecto/">{copy.linkProyecto}</a> · <a class="editorial-link" href="/emprendimiento/actividades/">{copy.linkActividades}</a></p>
   </main>
 </BaseLayout>
 
