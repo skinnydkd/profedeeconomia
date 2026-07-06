@@ -4,7 +4,7 @@
 
 **Goal:** Fer `profedeeconomia.es` navegable en valencià (marc, navegació, pàgines d'UI i landings) mentre tot el contingut educatiu (llibres, hubs, MDX, PDFs) cau a castellà via fallback.
 
-**Architecture:** Reactivem el routing `ca` d'Astro amb `fallback: { ca: 'es' }` + `routing.fallbackType: 'rewrite'`. El locale actiu es deriva del prefix `/ca/` de la URL amb un helper propi `getLocale(url)` (no depenem d'`Astro.currentLocale`). Els components de xrome i les pàgines d'UI trien strings d'un diccionari `t(key, locale)` segons el locale. **Single-source**: cap pàgina es duplica a `/ca/`; el fallback rewrite re-renderitza cada pàgina sota `/ca/...` i el codi tria el text pel locale de la URL. El contingut sense traduir es renderitza en castellà amb `<article lang="es">`, `canonical` cap a la versió ES i `hreflang` correctes.
+**Architecture:** Reactivem el routing `ca` d'Astro amb `fallback: { ca: 'es' }` + `routing.fallbackType: 'rewrite'`. El locale actiu es deriva d'**`Astro.currentLocale`** amb un helper propi `getLocale(currentLocale)`. **[Resolt pel spike de la Task 1]** Sota `fallbackType: 'rewrite'` en build estàtic, Astro actualitza correctament `Astro.currentLocale` a `'ca'` a les pàgines `/ca/*` reescrites, però NO actualitza `Astro.url.pathname` (que es queda al path per defecte, sense prefix `/ca`). Per això la font de veritat del locale és `Astro.currentLocale`, no la URL. Els components de xrome i les pàgines d'UI trien strings d'un diccionari `t(key, locale)` segons el locale. **Single-source**: cap pàgina es duplica a `/ca/`; el fallback rewrite re-renderitza cada pàgina sota `/ca/...` amb `currentLocale='ca'` i el codi tria el text per eixe locale. Com que `Astro.url.pathname` ja ve sense prefix a totes les pàgines, serveix directament de path base per a canonical/hreflang. El contingut sense traduir es renderitza en castellà amb `<main lang="es">`, `canonical` cap a la versió ES i `hreflang` correctes. Sortida estàtica: el lloc es genera a `dist/client/` (adaptador Vercel).
 
 **Tech Stack:** Astro 5, TypeScript estricte, Vitest 4 (`npm test`), Tailwind 4. Sense dependències noves.
 
@@ -84,8 +84,8 @@ Aquesta part produeix un web bilingüe navegable (xrome en VAL, contingut en fal
   - `LOCALES: readonly ['es','ca']`
   - `type Locale = 'es' | 'ca'`
   - `DEFAULT_LOCALE: 'es'`
-  - `getLocale(url: URL | { pathname: string }): Locale` — `'ca'` si el pathname comença per `/ca` (o és `/ca`), si no `'es'`.
-  - `stripLocalePrefix(pathname: string): string` — lleva el prefix `/ca`, retornant sempre un path que comença per `/` (p.ex. `/ca/sobre/` → `/sobre/`, `/ca` → `/`).
+  - `getLocale(currentLocale: string | undefined): Locale` — `'ca'` si `currentLocale === 'ca'`, si no `'es'`. **Font: `Astro.currentLocale`** (que el fallback rewrite SÍ actualitza), NO `Astro.url`.
+  - `stripLocalePrefix(pathname: string): string` — lleva el prefix `/ca`, retornant sempre un path que comença per `/` (p.ex. `/ca/sobre/` → `/sobre/`, `/ca` → `/`). Defensiu: a la pràctica `Astro.url.pathname` ja ve sense prefix, però el mantenim per robustesa.
   - `localizePath(pathname: string, locale: Locale): string` — pren un path SENSE prefix i afig `/ca` si `locale==='ca'`.
   - `switchLocalePath(pathname: string, target: Locale): string` — donat el path actual (amb o sense prefix), retorna el mateix path en `target`.
 
@@ -97,15 +97,13 @@ import { describe, it, expect } from 'vitest';
 import { getLocale, stripLocalePrefix, localizePath, switchLocalePath } from './locale';
 
 describe('getLocale', () => {
-  it('detects ca from prefix', () => {
-    expect(getLocale({ pathname: '/ca/sobre/' })).toBe('ca');
-    expect(getLocale({ pathname: '/ca' })).toBe('ca');
+  it('reads ca from Astro.currentLocale', () => {
+    expect(getLocale('ca')).toBe('ca');
   });
-  it('defaults to es', () => {
-    expect(getLocale({ pathname: '/sobre/' })).toBe('es');
-    expect(getLocale({ pathname: '/' })).toBe('es');
-    // no fals positiu amb slugs que continguen "ca"
-    expect(getLocale({ pathname: '/cabecera/' })).toBe('es');
+  it('defaults to es for es / undefined / unknown', () => {
+    expect(getLocale('es')).toBe('es');
+    expect(getLocale(undefined)).toBe('es');
+    expect(getLocale('en')).toBe('es');
   });
 });
 
@@ -151,10 +149,13 @@ export const LOCALES = ['es', 'ca'] as const;
 export type Locale = (typeof LOCALES)[number];
 export const DEFAULT_LOCALE: Locale = 'es';
 
-/** Active locale from the URL prefix. `/ca` or `/ca/...` → 'ca', else 'es'. */
-export function getLocale(url: URL | { pathname: string }): Locale {
-  const p = url.pathname;
-  return p === '/ca' || p.startsWith('/ca/') ? 'ca' : 'es';
+/**
+ * Active locale from Astro.currentLocale. Under fallbackType 'rewrite' Astro
+ * updates currentLocale to 'ca' on rewritten /ca/* pages (but NOT Astro.url),
+ * so this is the reliable source. Anything not 'ca' resolves to the default.
+ */
+export function getLocale(currentLocale: string | undefined): Locale {
+  return currentLocale === 'ca' ? 'ca' : 'es';
 }
 
 /** Remove the `/ca` prefix; always returns a path starting with `/`. */
@@ -202,37 +203,39 @@ A `astro.config.mjs`, reemplaça el bloc `i18n` (línies ~86-93) per:
   },
 ```
 
-- [ ] **Step 6: SPIKE — verify fallback rewrite behaviour (GATE)**
+- [ ] **Step 6: SPIKE — confirm the currentLocale resolver works (GATE)**
 
-Temporalment, fes `src/pages/sobre.astro` conscient del locale per provar el mecanisme. Al frontmatter, després dels imports, afig:
+> Context: una passada anterior d'aquesta tasca ja va provar `getLocale(Astro.url)` i va donar `SPIKE-ES` a `/ca/sobre` (el rewrite NO actualitza `Astro.url`). Aquesta passada confirma que amb `Astro.currentLocale` el resultat és `SPIKE-CA`.
+
+Temporalment, fes `src/pages/sobre.astro` conscient del locale. Al frontmatter, després dels imports, afig:
 
 ```astro
 import { getLocale } from '@/i18n/locale';
-const spikeLocale = getLocale(Astro.url);
+const spikeLocale = getLocale(Astro.currentLocale);
 ```
 
-I just davall del `<h2>Quién lo hace</h2>` (o al principi del `<main>`), afig un marcador de prova:
+I al principi del `<main>` (o just davall del `<h2>Quién lo hace</h2>`), afig un marcador:
 
 ```astro
 <p data-spike>{spikeLocale === 'ca' ? 'SPIKE-CA' : 'SPIKE-ES'}</p>
 ```
 
-Run: `npm run build`
-Després inspecciona:
+Run: `npm run build` (triga uns minuts; corre el prebuild automàticament)
+Després inspecciona (**nota: sortida a `dist/client/`**, no `dist/`):
 
 ```bash
-grep -o 'SPIKE-[A-Z]*' dist/sobre/index.html
-grep -o 'SPIKE-[A-Z]*' dist/ca/sobre/index.html
-ls dist/ca/edmn-2bach/libro/ 2>/dev/null && echo "CA content route generated"
+grep -o 'SPIKE-[A-Z]*' dist/client/sobre/index.html
+grep -o 'SPIKE-[A-Z]*' dist/client/ca/sobre/index.html
+ls dist/client/ca/edmn-2bach/ 2>/dev/null && echo "CA content route generated"
 ```
 
-**Resultat esperat (Pla A confirmat):** `dist/sobre/index.html` → `SPIKE-ES`; `dist/ca/sobre/index.html` → `SPIKE-CA`; existeix `dist/ca/edmn-2bach/...`. Vol dir que el rewrite re-renderitza amb `Astro.url` = `/ca/...` i el single-source funciona. **Continua amb el pla tal com està.**
+**Resultat esperat (GATE OK):** `dist/client/sobre/index.html` → `SPIKE-ES`; `dist/client/ca/sobre/index.html` → `SPIKE-CA`; existeix `dist/client/ca/edmn-2bach/`. Confirma que `getLocale(Astro.currentLocale)` distingeix el locale a les pàgines fallback i el single-source funciona. **Continua.**
 
-**Si `dist/ca/sobre/index.html` mostra `SPIKE-ES`** (el rewrite no re-renderitza per URL) → **Pla B**: el single-source no val per a pàgines traduïdes. Cal, per a cada pàgina traduïda, extraure el cos a un component `src/components/pages/<Name>.astro` amb prop `locale: Locale` i crear un embolcall `src/pages/ca/<name>.astro` que el renderitze amb `locale="ca"` (el fitxer arrel el renderitza amb `locale="es"`). El contingut fallback (hubs/llibres) segueix igual (sense fitxer `/ca/`, el genera el fallback). Anota el resultat del spike a la descripció de la tasca 6 abans de continuar.
+**Si `dist/client/ca/sobre/index.html` encara mostra `SPIKE-ES`** amb `Astro.currentLocale`: para i escala al controlador (`BLOCKED`) — seria un comportament d'Astro diferent del documentat al report de la Task 1, i cal repensar el mecanisme abans de seguir. NO improvises embolcalls `/ca/`.
 
 - [ ] **Step 7: Revert the spike marker**
 
-Lleva les 3 línies del spike de `src/pages/sobre.astro` (l'import, `spikeLocale` i el `<p data-spike>`). `sobre.astro` es tradueix de veritat a la Task 9.
+Lleva les 3 línies del spike de `src/pages/sobre.astro` (l'import, `spikeLocale` i el `<p data-spike>`). `sobre.astro` es tradueix de veritat a la Task 9. Confirma `git diff src/pages/sobre.astro` buit.
 
 - [ ] **Step 8: Commit**
 
@@ -523,9 +526,9 @@ const { title, description, ogImage, ogType = 'website', jsonLd, noindex = false
 Reemplaça el càlcul de `canonical` (línia 27) per la resolució completa:
 
 ```astro
-const locale = getLocale(Astro.url);
+const locale = getLocale(Astro.currentLocale);
 const seo = resolveSeo({
-  pathname: Astro.url.pathname,
+  pathname: Astro.url.pathname, // already locale-less under fallback rewrite
   locale,
   contentLang,
   site: Astro.site!.toString(),
@@ -573,10 +576,10 @@ Run: `npm run build`
 Després:
 
 ```bash
-grep -c 'hreflang="ca"' dist/sobre/index.html          # espera: >=1
-grep -o 'lang="[a-z]*"' dist/ca/sobre/index.html | head -1   # espera: lang="ca"
-grep -o '<main[^>]*>' dist/ca/edmn-2bach/libro/*/index.html | head -1  # espera: conté lang="es"
-grep -o 'og:locale" content="[a-z_]*"' dist/ca/sobre/index.html       # espera: ca_ES
+grep -c 'hreflang="ca"' dist/client/sobre/index.html          # espera: >=1
+grep -o 'lang="[a-z]*"' dist/client/ca/sobre/index.html | head -1   # espera: lang="ca"
+grep -o '<main[^>]*>' dist/client/ca/edmn-2bach/libro/*/index.html | head -1  # espera: conté lang="es"
+grep -o 'og:locale" content="[a-z_]*"' dist/client/ca/sobre/index.html       # espera: ca_ES
 ```
 
 Expected: `<html lang="ca">` a `/ca/*`, `hreflang` presents, `<main lang="es">` a les rutes de contingut sota `/ca`, `og:locale=ca_ES` a `/ca`.
@@ -753,8 +756,8 @@ git commit -m "feat(i18n): add Valencian overlay for asignatura facing strings"
 import { getLocale, switchLocalePath, type Locale } from '@/i18n/locale';
 import { t } from '@/i18n/ui';
 
-const locale = getLocale(Astro.url);
-const pathname = Astro.url.pathname;
+const locale = getLocale(Astro.currentLocale);
+const pathname = Astro.url.pathname; // locale-less under fallback rewrite; switchLocalePath adds the prefix
 const options: { code: Locale; label: string }[] = [
   { code: 'es', label: t('lang.es', locale) },
   { code: 'ca', label: t('lang.ca', locale) },
@@ -797,7 +800,7 @@ import { t } from '@/i18n/ui';
 import { localizeAsignatura } from '@/i18n/asignaturas-ca';
 import LanguageSwitcher from '@components/LanguageSwitcher.astro';
 
-const locale = getLocale(Astro.url);
+const locale = getLocale(Astro.currentLocale);
 ---
 ```
 
@@ -840,9 +843,9 @@ Run: `npm run build`
 Després:
 
 ```bash
-grep -o 'Altres\|Pròximament\|Empresa i Disseny' dist/ca/index.html | sort -u   # espera VAL a /ca
-grep -c 'lang-switch' dist/index.html dist/ca/index.html                         # espera >=1 als dos
-grep -o 'Otros\|Próximamente' dist/index.html | sort -u                          # espera ES a l'arrel
+grep -o 'Altres\|Pròximament\|Empresa i Disseny' dist/client/ca/index.html | sort -u   # espera VAL a /ca
+grep -c 'lang-switch' dist/client/index.html dist/client/ca/index.html                  # espera >=1 als dos
+grep -o 'Otros\|Próximamente' dist/client/index.html | sort -u                          # espera ES a l'arrel
 ```
 
 Expected: el header a `/ca/*` mostra VAL (Altres, Pròximament, títols VAL) i el switcher; a l'arrel, ES intacte.
@@ -872,7 +875,7 @@ import { t } from '@/i18n/ui';
 import LanguageSwitcher from '@components/LanguageSwitcher.astro';
 
 const year = new Date().getFullYear();
-const locale = getLocale(Astro.url);
+const locale = getLocale(Astro.currentLocale);
 ---
 ```
 
@@ -897,8 +900,8 @@ Reemplaça el bloc `.container` (línies 6-13) per:
 
 Run: `npm run build`
 ```bash
-grep -o "Sobre el projecte\|Avís legal\|professorat d'institut" dist/ca/index.html | sort -u  # VAL a /ca
-grep -o 'Sobre el proyecto\|Aviso legal' dist/index.html | sort -u                             # ES a l'arrel
+grep -o "Sobre el projecte\|Avís legal\|professorat d'institut" dist/client/ca/index.html | sort -u  # VAL a /ca
+grep -o 'Sobre el proyecto\|Aviso legal' dist/client/index.html | sort -u                             # ES a l'arrel
 ```
 
 Expected: footer VAL a `/ca`, ES a l'arrel.
@@ -916,7 +919,7 @@ git commit -m "feat(i18n): localize SiteFooter"
 
 Cada tasca aplica el mateix patró a una pàgina. **Patró estàndard per pàgina** (referència; els passos de cada tasca només diuen quina pàgina i quines strings):
 
-1. Al frontmatter: `import { getLocale } from '@/i18n/locale';` i `const locale = getLocale(Astro.url);`.
+1. Al frontmatter: `import { getLocale } from '@/i18n/locale';` i `const locale = getLocale(Astro.currentLocale);`.
 2. Definir un objecte de còpia local al principi del frontmatter:
    ```astro
    const copy = {
@@ -940,7 +943,7 @@ npm run build && npm run check
 
 - [ ] **Step 1:** Llig `src/pages/index.astro` sencer i inventaria tots els literals ES (hero, targetes de dades, CTAs, textos de secció).
 - [ ] **Step 2:** Aplica el patró estàndard: mou tots els literals a `copy.es`, redacta `copy.ca` en VAL AVL (glossari), i substitueix per `{copy.*}`. Les targetes d'assignatura que rendien `a.title`/`a.tagline` s'han de passar per `localizeAsignatura(a, locale)` (importa'l). Les strings de JSON-LD (`SITE.locale`, descripcions) es queden en ES a la fase 1 (el JSON-LD de la home descriu l'entitat de marca, no depèn de l'idioma d'UI).
-- [ ] **Step 3:** `npm run build && npm run check` → sense errors. Inspecciona `dist/ca/index.html`: hero i targetes en VAL.
+- [ ] **Step 3:** `npm run build && npm run check` → sense errors. Inspecciona `dist/client/ca/index.html`: hero i targetes en VAL.
 - [ ] **Step 4:** Commit: `git commit -m "feat(i18n): translate home page to Valencian"`
 
 ### Task 9: `sobre` + `contacto` + `404`
@@ -952,7 +955,7 @@ npm run build && npm run check
 
   Tradueix també la resta de seccions de `sobre.astro` ("En qué se basa", "Quién lo hace", enllaços) segons glossari.
 - [ ] **Step 2:** `contacto.astro` i `404.astro`: mateix patró, redacta VAL.
-- [ ] **Step 3:** `npm run build && npm run check`. Inspecciona `dist/ca/sobre/index.html`, `dist/ca/contacto/index.html`, `dist/ca/404.html` en VAL; verifica que `dist/sobre/index.html` (ES) segueix intacte.
+- [ ] **Step 3:** `npm run build && npm run check`. Inspecciona `dist/client/ca/sobre/index.html`, `dist/client/ca/contacto/index.html`, `dist/client/ca/404.html` en VAL; verifica que `dist/client/sobre/index.html` (ES) segueix intacte.
 - [ ] **Step 4:** Commit: `git commit -m "feat(i18n): translate sobre, contacto and 404 pages to Valencian"`
 
 ### Task 10: Pàgines legals
@@ -976,7 +979,7 @@ npm run build && npm run check
 **Files:** Modify: `src/pages/olimpiada/index.astro`, `src/pages/olimpiada/simulacros/index.astro`, `src/pages/olimpiada/lecturas/index.astro`, `src/pages/olimpiada/banco/index.astro`, `src/pages/juegos/index.astro`, `src/pages/generadores/index.astro`, `src/pages/herramientas/index.astro`
 
 - [ ] **Step 1:** A cada hub, tradueix NOMÉS la còpia editorial d'intro (títol, subtítol, paràgrafs introductoris). Les **targetes** de la graella vénen de registres `.ts`/MDX i **es queden en ES** (fallback). Per marcar honestament que la graella és ES, passa `contentLang="es"` al `BaseLayout` d'aquestes pàgines (perquè barregen intro VAL amb targetes ES sota `/ca`).
-- [ ] **Step 2:** `npm run build && npm run check`. Verifica a `dist/ca/olimpiada/index.html`: intro en VAL, targetes en ES, `<main lang="es">` present.
+- [ ] **Step 2:** `npm run build && npm run check`. Verifica a `dist/client/ca/olimpiada/index.html`: intro en VAL, targetes en ES, `<main lang="es">` present.
 - [ ] **Step 3:** Commit: `git commit -m "feat(i18n): translate hub intros to Valencian"`
 
 ---
@@ -998,18 +1001,18 @@ Expected: tests PASS, build OK, `astro check` sense errors.
 
 ```bash
 # ES intacte
-grep -q 'Saltar al contenido principal' dist/sobre/index.html && echo "ES skip OK"
+grep -q 'Saltar al contenido principal' dist/client/sobre/index.html && echo "ES skip OK"
 # CA shell complet
-grep -q 'Salta al contingut principal' dist/ca/sobre/index.html && echo "CA skip OK"
+grep -q 'Salta al contingut principal' dist/client/ca/sobre/index.html && echo "CA skip OK"
 # contingut fallback: chrome VAL + body ES + canonical -> ES
-grep -o '<html lang="ca">' dist/ca/edmn-2bach/libro/*/index.html | head -1
-grep -o 'rel="canonical" href="[^"]*"' dist/ca/edmn-2bach/libro/*/index.html | head -1   # ha d'apuntar a URL SENSE /ca
+grep -o '<html lang="ca">' dist/client/ca/edmn-2bach/libro/*/index.html | head -1
+grep -o 'rel="canonical" href="[^"]*"' dist/client/ca/edmn-2bach/libro/*/index.html | head -1   # ha d'apuntar a URL SENSE /ca
 # hreflang a les dues versions
-grep -c 'hreflang=' dist/sobre/index.html dist/ca/sobre/index.html
+grep -c 'hreflang=' dist/client/sobre/index.html dist/client/ca/sobre/index.html
 ```
 Expected: tots els echoes surten; canonical de contingut `/ca` apunta a la URL ES; hreflang presents.
 
-- [ ] **Step 3:** Sitemap sanity — comprova que el sitemap no s'ha inflat amb `/ca/*` de manera no volguda (revisa `dist/sitemap-*.xml`); si cal excloure rutes `/ca` de contingut fallback del sitemap, anota-ho com a seguiment (fora d'aquesta tasca).
+- [ ] **Step 3:** Sitemap sanity — comprova que el sitemap no s'ha inflat amb `/ca/*` de manera no volguda (revisa `dist/client/sitemap-*.xml`); si cal excloure rutes `/ca` de contingut fallback del sitemap, anota-ho com a seguiment (fora d'aquesta tasca).
 
 - [ ] **Step 4:** Push + PR (revisió de Pau abans del merge):
 
@@ -1024,5 +1027,5 @@ gh pr create --base main --title "feat(i18n): Fase 1 — esquelet bilingüe VAL/
 
 ## Notes d'execució
 
-- **Ordre**: Part A (tasks 1-7) primer i mergeable per si sola. El spike de la Task 1 és un GATE: si falla, aplica el Pla B documentat abans de continuar.
+- **Ordre**: Part A (tasks 1-7) primer i mergeable per si sola. El spike de la Task 1 és un GATE ja resolt en una passada prèvia: la font del locale és `Astro.currentLocale` (no `Astro.url`), i el single-source es manté sense duplicar pàgines. La Task 1 el reconfirma; si tornara a fallar, escalar al controlador (no improvisar).
 - **Fora d'abast d'aquest pla** (fases futures, spec propi cadascuna): traducció del MDX de contingut, regeneració de PDFs/diapositives en VAL, illes de jocs Preact, i localització del `inLanguage` dels JSON-LD per pàgina de contingut.

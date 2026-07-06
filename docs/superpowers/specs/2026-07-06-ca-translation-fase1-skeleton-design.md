@@ -103,11 +103,12 @@ Claude tradueix a valencià AVL; **Pau revisa abans del merge**. Res d'auto-publ
 ## Riscos
 
 1. **Astro `fallbackType: 'rewrite'`** — incert si genera `/ca/*` per a TOTES les pàgines
-   de contingut i quin valor pren `currentLocale`. **Mitigació**: primera tasca del pla
-   és un *spike* que activa la infra amb una pàgina i verifica generació + render de
-   `/ca/sobre` (traduïda) i `/ca/edmn-2bach/libro/[u]` (fallback). Pla B si el fallback
-   no cobreix tot: middleware que fixa el locale des del prefix d'URL. La detecció via
-   `getLocale(Astro.url)` ja fa el codi robust enfront del comportament de `currentLocale`.
+   de contingut i quin valor pren `currentLocale`. **RESOLT (spike Task 1, 2026-07-06)**:
+   el fallback rewrite SÍ genera `/ca/*` per a tot el contingut i actualitza
+   `Astro.currentLocale` a `'ca'`, però NO actualitza `Astro.url.pathname` (es queda al
+   path per defecte). Conseqüència: la font del locale ha de ser **`Astro.currentLocale`**,
+   no la URL. El single-source es manté (cap pàgina duplicada). Sortida estàtica a
+   `dist/client/`. La resta del disseny queda igual.
 2. **SEO de pàgines fallback** — mitigat amb `canonical`→ES i `hreflang` correctes.
 3. **Deriva d'strings** — pàgines de contingut noves poden afegir strings de xrome sense
    clau al diccionari; la revisió i el build ho han de detectar.
