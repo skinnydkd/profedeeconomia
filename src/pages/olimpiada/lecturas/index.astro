@@ -5,6 +5,7 @@
  */
 import BaseLayout from '@layouts/BaseLayout.astro';
 import { LECTURAS } from '@/lib/olimpiada';
+import { getLocale } from '@/i18n/locale';
 
 // Group by categoria, preserving insertion order.
 const byCategoria = new Map<string, typeof LECTURAS>();
@@ -13,11 +14,28 @@ for (const l of LECTURAS) {
   byCategoria.get(l.categoria)!.push(l);
 }
 const grupos = Array.from(byCategoria.entries());
+
+const locale = getLocale(Astro.currentLocale);
+
+// Only the hero intro is localized — the «en preparación» notice, the
+// per-categoria reading lists (from the olimpiada registry) and the «Webs y
+// vídeos» note stay in Spanish under /ca.
+const copy = {
+  es: {
+    heroTitle: 'Lecturas recomendadas',
+    lede: 'Libros y recursos seleccionados para comprender la economía más allá del temario. Útiles tanto para la Olimpiada como para cualquiera que quiera una formación económica sólida.',
+  },
+  ca: {
+    heroTitle: 'Lectures recomanades',
+    lede: "Llibres i recursos seleccionats per a comprendre l'economia més enllà del temari. Útils tant per a l'Olimpíada com per a qualsevol que vulga una formació econòmica sòlida.",
+  },
+}[locale];
 ---
 
 <BaseLayout
   title="Lecturas recomendadas — Olimpiada de Economía"
   description="Bibliografía seleccionada para la Olimpiada de Economía: economía conductual, teoría de juegos, clásicos del pensamiento, finanzas y empresa."
+  contentLang="es"
 >
   <div class="container">
     <nav class="breadcrumb">
@@ -27,13 +45,11 @@ const grupos = Array.from(byCategoria.entries());
     </nav>
   </div>
 
-  <section class="hero">
+  <section class="hero" lang={locale}>
     <div class="container">
-      <h1 class="serif">Lecturas recomendadas</h1>
+      <h1 class="serif">{copy.heroTitle}</h1>
       <p class="lede">
-        Libros y recursos seleccionados para comprender la economía más allá
-        del temario. Útiles tanto para la Olimpiada como para cualquiera que
-        quiera una formación económica sólida.
+        {copy.lede}
       </p>
     </div>
   </section>

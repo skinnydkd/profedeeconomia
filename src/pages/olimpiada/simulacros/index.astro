@@ -6,14 +6,31 @@
  */
 import BaseLayout from '@layouts/BaseLayout.astro';
 import { GUIA, simulacrosPorAmbito } from '@/lib/olimpiada';
+import { getLocale } from '@/i18n/locale';
 
 const grupos = simulacrosPorAmbito();
 const totalExamenes = grupos.reduce((n, g) => n + g.examenes.filter((e) => e.oficial).length, 0);
+
+const locale = getLocale(Astro.currentLocale);
+
+// Only the hero intro is localized — the «Cómo usar los simulacros» note and
+// the exam list (from the olimpiada registry) stay in Spanish under /ca.
+const copy = {
+  es: {
+    heroTitle: 'Simulacros de examen',
+    lede: 'exámenes oficiales de convocatorias recientes —la fase nacional y varias comunidades autónomas— más un megaexamen de práctica. Úsalos en condiciones reales para calibrar tu nivel.',
+  },
+  ca: {
+    heroTitle: "Simulacres d'examen",
+    lede: "exàmens oficials de convocatòries recents —la fase nacional i diverses comunitats autònomes— més un megaexamen de pràctica. Usa'ls en condicions reals per a calibrar el teu nivell.",
+  },
+}[locale];
 ---
 
 <BaseLayout
   title="Simulacros — Olimpiada de Economía"
   description="Exámenes oficiales de la Olimpiada de Economía (fase nacional y de varias comunidades autónomas) y megaexamen de práctica. Entrena cronometrándote las partes del examen."
+  contentLang="es"
 >
   <div class="container">
     <nav class="breadcrumb">
@@ -23,13 +40,11 @@ const totalExamenes = grupos.reduce((n, g) => n + g.examenes.filter((e) => e.ofi
     </nav>
   </div>
 
-  <section class="hero">
+  <section class="hero" lang={locale}>
     <div class="container">
-      <h1 class="serif">Simulacros de examen</h1>
+      <h1 class="serif">{copy.heroTitle}</h1>
       <p class="lede">
-        {totalExamenes} exámenes oficiales de convocatorias recientes —la fase nacional
-        y varias comunidades autónomas— más un megaexamen de práctica. Úsalos en
-        condiciones reales para calibrar tu nivel.
+        {totalExamenes} {copy.lede}
       </p>
     </div>
   </section>

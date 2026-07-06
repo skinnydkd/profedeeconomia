@@ -5,6 +5,7 @@
  */
 import BaseLayout from '@layouts/BaseLayout.astro';
 import { gruposHerramientas, FAMILIAS_HERRAMIENTA } from '@/lib/herramientas';
+import { getLocale } from '@/i18n/locale';
 
 const groups = gruposHerramientas();
 const activeFamilias = new Set(groups.map((g) => g.familia.slug));
@@ -12,23 +13,39 @@ const TIPO_LABEL: Record<string, string> = {
   calculadora: 'Calculadora', simulador: 'Simulador', test: 'Test',
   generador: 'Generador', buscador: 'Buscador', plantilla: 'Plantilla',
 };
+
+const locale = getLocale(Astro.currentLocale);
+
+// Only the hero intro is localized — the family filters, family intros and
+// tool card grids (herramientas registry) stay in Spanish under /ca.
+const copy = {
+  es: {
+    heroAccent: 'Herramientas',
+    heroTail: 'para usar en clase.',
+    lede: 'La caja de herramientas del web: calculadoras y simuladores interactivos —punto muerto, ratios, VAN y TIR, elasticidad, nómina…— agrupados por tema y con el mapa de en qué unidades de qué asignaturas encajan.',
+  },
+  ca: {
+    heroAccent: 'Ferramentes',
+    heroTail: 'per a usar a classe.',
+    lede: "La caixa de ferramentes del web: calculadores i simuladors interactius —punt mort, ràtios, VAN i TIR, elasticitat, nòmina…— agrupats per tema i amb el mapa d'en quines unitats de quines assignatures encaixen.",
+  },
+}[locale];
 ---
 
 <BaseLayout
   title="Herramientas"
   description="Calculadoras y simuladores para usar en clase: punto muerto, ratios, VAN/TIR, elasticidad, nómina, IRPF y más, con su encaje curricular."
+  contentLang="es"
 >
   <div class="container">
     <nav class="breadcrumb"><a href="/">Inicio</a> <span class="sep">›</span> <span>Herramientas</span></nav>
   </div>
 
-  <section class="hero">
+  <section class="hero" lang={locale}>
     <div class="container">
-      <h1><span class="serif-italic-wonk accent">Herramientas</span> para usar en clase.</h1>
+      <h1><span class="serif-italic-wonk accent">{copy.heroAccent}</span> {copy.heroTail}</h1>
       <p class="lede">
-        La caja de herramientas del web: calculadoras y simuladores interactivos
-        —punto muerto, ratios, VAN y TIR, elasticidad, nómina…— agrupados por tema
-        y con el mapa de en qué unidades de qué asignaturas encajan.
+        {copy.lede}
       </p>
     </div>
   </section>
