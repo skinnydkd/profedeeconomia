@@ -9,19 +9,23 @@ import { getLocale } from '@/i18n/locale';
 
 const locale = getLocale(Astro.currentLocale);
 
-// Only the hero intro is localized — the sub-area card grid below comes from
-// a literal list (not a registry) but is treated the same as the rest of the
-// site's card grids and stays in Spanish under /ca (see Task 12 scope).
+// The hero intro and breadcrumb are localized — the sub-area card grid below
+// comes from a literal list (not a registry) but is treated the same as the
+// rest of the site's card grids and stays in Spanish under /ca (see Task 12 scope).
 const copy = {
   es: {
     heroAccent: 'Olimpiada',
     heroTail: 'de Economía.',
     lede: 'Material para preparar la Olimpiada de Economía de Bachillerato: los 6 bloques del temario, simulacros de exámenes reales, banco de preguntas interactivo y taller para la Parte III. Nivel 2.º Bach y primer curso de carrera.',
+    bcInicio: 'Inicio',
+    bcCurrent: 'Olimpiada de Economía',
   },
   ca: {
     heroAccent: 'Olimpíada',
     heroTail: "d'Economia.",
     lede: "Material per a preparar l'Olimpíada d'Economia de Batxillerat: els 6 blocs del temari, simulacres d'exàmens reals, banc de preguntes interactiu i taller per a la Part III. Nivell 2n Batx i primer curs de carrera.",
+    bcInicio: 'Inici',
+    bcCurrent: "Olimpíada d'Economia",
   },
 }[locale];
 
@@ -66,8 +70,8 @@ const subAreas = [
 >
   <div class="container">
     <nav class="breadcrumb">
-      <a href="/">Inicio</a> <span class="sep">›</span>
-      <span>Olimpiada de Economía</span>
+      <a href="/">{copy.bcInicio}</a> <span class="sep">›</span>
+      <span>{copy.bcCurrent}</span>
     </nav>
   </div>
 

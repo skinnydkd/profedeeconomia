@@ -12,18 +12,26 @@ const TIPO_LABEL: Record<string, string> = { rubrica: 'Rúbrica', calculadora: '
 
 const locale = getLocale(Astro.currentLocale);
 
-// Only the hero intro is localized — the tool card grids (external LOMLOE
-// generators + native tools registries) and the closing note stay ES under /ca.
+// The hero intro, breadcrumb and closing note are localized — the tool card
+// grids (external LOMLOE generators + native tools registries) stay ES under /ca.
 const copy = {
   es: {
     heroAccent: 'Herramientas',
     heroTail: 'docentes.',
     lede: 'Lo que uso para preparar las clases: los generadores LOMLOE de mi proyecto hermano y un puñado de herramientas de evaluación y aula que funcionan en el navegador, se autoguardan y se exportan o imprimen.',
+    bcInicio: 'Inicio',
+    bcCurrent: 'Herramientas docentes',
+    notePre: 'Los generadores LOMLOE viven en',
+    notePost: 'donde los mantengo. El resto son herramientas que he montado aquí, por si os sirven.',
   },
   ca: {
     heroAccent: 'Ferramentes',
     heroTail: 'docents.',
     lede: "El que use per a preparar les classes: els generadors LOMLOE del meu projecte germà i un grapat de ferramentes d'avaluació i aula que funcionen en el navegador, s'autoguarden i s'exporten o s'imprimeixen.",
+    bcInicio: 'Inici',
+    bcCurrent: 'Ferramentes docents',
+    notePre: 'Els generadors LOMLOE viuen en',
+    notePost: "on els mantinc. La resta són ferramentes que he muntat ací, per si us serveixen.",
   },
 }[locale];
 ---
@@ -34,7 +42,7 @@ const copy = {
   contentLang="es"
 >
   <div class="container">
-    <nav class="breadcrumb"><a href="/">Inicio</a> <span class="sep">›</span> <span>Herramientas docentes</span></nav>
+    <nav class="breadcrumb"><a href="/">{copy.bcInicio}</a> <span class="sep">›</span> <span>{copy.bcCurrent}</span></nav>
   </div>
 
   <section class="hero" lang={locale}>
@@ -76,10 +84,10 @@ const copy = {
         </>
       ))}
 
-      <p class="note">
-        Los generadores LOMLOE viven en
+      <p class="note" lang={locale}>
+        {copy.notePre}
         <a href="https://oposicioneseconomia.es" class="editorial-link" rel="external noopener" target="_blank">oposicioneseconomia.es</a>,
-        donde los mantengo. El resto son herramientas que he montado aquí, por si os sirven.
+        {copy.notePost}
       </p>
     </div>
   </section>

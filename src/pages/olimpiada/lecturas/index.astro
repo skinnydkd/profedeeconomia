@@ -17,17 +17,31 @@ const grupos = Array.from(byCategoria.entries());
 
 const locale = getLocale(Astro.currentLocale);
 
-// Only the hero intro is localized — the «en preparación» notice, the
-// per-categoria reading lists (from the olimpiada registry) and the «Webs y
-// vídeos» note stay in Spanish under /ca.
+// The hero intro, breadcrumb, «en preparación» notice and «Webs y vídeos»
+// note are localized — the per-categoria reading lists (from the olimpiada
+// registry) stay in Spanish under /ca.
 const copy = {
   es: {
     heroTitle: 'Lecturas recomendadas',
     lede: 'Libros y recursos seleccionados para comprender la economía más allá del temario. Útiles tanto para la Olimpiada como para cualquiera que quiera una formación económica sólida.',
+    bcInicio: 'Inicio',
+    bcOlimpiada: 'Olimpiada',
+    bcCurrent: 'Lecturas recomendadas',
+    proxTitulo: 'Lista en preparación',
+    proxTexto: 'La bibliografía recomendada se publicará próximamente. Incluirá categorías de economía conductual, teoría de juegos, clásicos del pensamiento económico, finanzas y empresa.',
+    websTitulo: 'Webs y vídeos',
+    websTexto: 'Recursos digitales de calidad para complementar el estudio: el Canal de Khan Academy en español (economía y microeconomía), Expansión y El País Economía para seguir actualidad, y los Informes Económicos del Banco de España y el BCE para datos macro. La curación detallada estará disponible próximamente.',
   },
   ca: {
     heroTitle: 'Lectures recomanades',
     lede: "Llibres i recursos seleccionats per a comprendre l'economia més enllà del temari. Útils tant per a l'Olimpíada com per a qualsevol que vulga una formació econòmica sòlida.",
+    bcInicio: 'Inici',
+    bcOlimpiada: 'Olimpíada',
+    bcCurrent: 'Lectures recomanades',
+    proxTitulo: 'Llista en preparació',
+    proxTexto: "La bibliografia recomanada es publicarà pròximament. Inclourà categories d'economia conductual, teoria de jocs, clàssics del pensament econòmic, finances i empresa.",
+    websTitulo: 'Webs i vídeos',
+    websTexto: "Recursos digitals de qualitat per a complementar l'estudi: el Canal de Khan Academy en espanyol (economia i microeconomia), Expansión i El País Economía per a seguir l'actualitat, i els Informes Econòmics del Banco de España i el BCE per a dades macro. La curació detallada estarà disponible pròximament.",
   },
 }[locale];
 ---
@@ -39,9 +53,9 @@ const copy = {
 >
   <div class="container">
     <nav class="breadcrumb">
-      <a href="/">Inicio</a> <span class="sep">›</span>
-      <a href="/olimpiada/">Olimpiada</a> <span class="sep">›</span>
-      <span>Lecturas recomendadas</span>
+      <a href="/">{copy.bcInicio}</a> <span class="sep">›</span>
+      <a href="/olimpiada/">{copy.bcOlimpiada}</a> <span class="sep">›</span>
+      <span>{copy.bcCurrent}</span>
     </nav>
   </div>
 
@@ -57,12 +71,10 @@ const copy = {
   {LECTURAS.length === 0 && (
     <section class="prox">
       <div class="container">
-        <div class="prox__box">
-          <p class="prox__title">Lista en preparación</p>
+        <div class="prox__box" lang={locale}>
+          <p class="prox__title">{copy.proxTitulo}</p>
           <p>
-            La bibliografía recomendada se publicará próximamente.
-            Incluirá categorías de economía conductual, teoría de juegos,
-            clásicos del pensamiento económico, finanzas y empresa.
+            {copy.proxTexto}
           </p>
         </div>
       </div>
@@ -89,14 +101,10 @@ const copy = {
   ))}
 
   <section class="webs-section">
-    <div class="container">
-      <h2 class="categoria-title">Webs y vídeos</h2>
+    <div class="container" lang={locale}>
+      <h2 class="categoria-title">{copy.websTitulo}</h2>
       <p class="webs-nota">
-        Recursos digitales de calidad para complementar el estudio:
-        el Canal de Khan Academy en español (economía y microeconomía),
-        Expansión y El País Economía para seguir actualidad, y los
-        Informes Económicos del Banco de España y el BCE para datos macro.
-        La curación detallada estará disponible próximamente.
+        {copy.websTexto}
       </p>
     </div>
   </section>
