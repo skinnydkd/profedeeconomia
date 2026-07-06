@@ -78,18 +78,19 @@ export default defineConfig({
     }),
   ],
 
-  // i18n: at the MVP only Spanish is published. Catalan/Valencian is
-  // architected (the content collections accept lang: 'es' | 'ca' and the
-  // file structure is prepared) but locale routing is disabled to avoid
-  // phantom /ca/* pages serving Spanish copy with the wrong <html lang>.
-  // To activate CA later, restore: locales: ['es', 'ca'], fallback: { ca: 'es' }.
+  // i18n: Spanish is the default (root URLs); Valencian lives under /ca/*.
+  // fallbackType 'rewrite' re-renders each page at its /ca/* URL so the shared
+  // .astro picks CA copy by URL locale, while untranslated content falls back
+  // to Spanish in place. See src/i18n/locale.ts (getLocale) for the resolver.
   i18n: {
     defaultLocale: 'es',
-    locales: ['es'],
+    locales: ['es', 'ca'],
     routing: {
       prefixDefaultLocale: false,
       redirectToDefaultLocale: false,
+      fallbackType: 'rewrite',
     },
+    fallback: { ca: 'es' },
   },
 
   // /oposiciones → https://oposicioneseconomia.es/ as a 301 is handled by
