@@ -3,51 +3,131 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 import SubjectCard from '@components/SubjectCard.astro';
 import { ASIGNATURAS_PUBLICADAS } from '@/lib/asignaturas';
 import { organizationLd, websiteLd } from '@/lib/seo';
+import { getLocale } from '@/i18n/locale';
+import { localizeAsignatura } from '@/i18n/asignaturas-ca';
+
+const locale = getLocale(Astro.currentLocale);
 
 // Keep all subject counts in sync with the published catalogue so the
 // homepage never drifts out of date when new asignaturas ship.
-const NUM_WORDS = ['cero', 'una', 'dos', 'tres', 'cuatro', 'cinco', 'seis', 'siete', 'ocho', 'nueve', 'diez', 'once', 'doce'] as const;
+const NUM_WORDS = {
+  es: ['cero', 'una', 'dos', 'tres', 'cuatro', 'cinco', 'seis', 'siete', 'ocho', 'nueve', 'diez', 'once', 'doce'],
+  ca: ['zero', 'una', 'dues', 'tres', 'quatre', 'cinc', 'sis', 'set', 'huit', 'nou', 'deu', 'onze', 'dotze'],
+} as const;
 const numAsignaturas = ASIGNATURAS_PUBLICADAS.length;
-const numAsignaturasPalabra = NUM_WORDS[numAsignaturas] ?? String(numAsignaturas);
+const numAsignaturasPalabra = NUM_WORDS[locale][numAsignaturas] ?? String(numAsignaturas);
 const NumPalabraCap = numAsignaturasPalabra.charAt(0).toUpperCase() + numAsignaturasPalabra.slice(1);
 
-// «Material transversal» strip — the cross-subject sections, in the same order
-// as the «Otros» menu. Each card links to its hub.
-const TRANSVERSAL = [
-  { slug: 'dinamicas',      letra: 'D', color: '--color-terra',   title: 'Dinámicas',      cta: 'Ver las dinámicas',   desc: 'Role-plays, simulaciones y juegos de aula, con guía para el profe, materiales para imprimir y su encaje curricular.' },
-  { slug: 'herramientas',   letra: 'H', color: '--color-eco1',    title: 'Herramientas',   cta: 'Ver las herramientas', desc: 'La caja de herramientas: calculadoras y simuladores interactivos —punto muerto, ratios, VAN y TIR, elasticidad, nómina…— listos para clase.' },
-  { slug: 'emprendimiento', letra: 'E', color: '--color-mustard', title: 'Emprendimiento', cta: 'Ver emprendimiento',   desc: '«De cero a empresa»: el alumnado crea y valida su propio negocio en doce fases, con cuaderno, plantillas y ejemplos reales.' },
-  { slug: 'proyectos',      letra: 'P', color: '--color-eeae',   title: 'Proyectos interdisciplinares', cta: 'Ver los proyectos',  desc: 'Proyectos ABP que cruzan la economía con otra materia (historia, matemáticas, geografía…), con su reto, secuencia de sesiones y rúbrica.' },
-  { slug: 'debates',        letra: 'D', color: '--color-gpe',     title: 'Debates',        cta: 'Ver los debates',     desc: 'Las grandes controversias económicas para argumentar en clase: moción, posturas, argumentario, rúbrica y ficha imprimible.' },
-  { slug: 'juegos',         letra: 'J', color: '--color-fopp',    title: 'Juegos',         cta: 'Ver los juegos',      desc: 'Stonks, Econrisk, Econopoly, Insider y Cajút: simuladores, estrategia y dinámicas multijugador, todos probados en clase real.' },
-  { slug: 'jocs-economics', letra: 'O', color: '--color-taller3', title: 'Juegos Económicos', cta: 'Ver el concurso',  desc: 'Un concurso competitivo por equipos para repasar economía jugando, con ranking por alumno e instituto.' },
-  { slug: 'generadores',    letra: 'G', color: '--color-ipe2',    title: 'Herramientas Docentes', cta: 'Ver las herramientas', desc: 'Generadores LOMLOE (situaciones de aprendizaje, programación) y herramientas de evaluación y aula: rúbricas, calificaciones y plantillas.' },
+// «Material transversal» strip metadata — locale-independent (slug, letter,
+// color), in the same order as the «Otros» menu. Titles/CTAs/descriptions
+// are localized via `copy.transversal` below. Each card links to its hub.
+const TRANSVERSAL_META = [
+  { slug: 'dinamicas',      letra: 'D', color: '--color-terra' },
+  { slug: 'herramientas',   letra: 'H', color: '--color-eco1' },
+  { slug: 'emprendimiento', letra: 'E', color: '--color-mustard' },
+  { slug: 'proyectos',      letra: 'P', color: '--color-eeae' },
+  { slug: 'debates',        letra: 'D', color: '--color-gpe' },
+  { slug: 'juegos',         letra: 'J', color: '--color-fopp' },
+  { slug: 'jocs-economics', letra: 'O', color: '--color-taller3' },
+  { slug: 'generadores',    letra: 'G', color: '--color-ipe2' },
 ] as const;
+
+const copy = {
+  es: {
+    pageTitle: 'Material para impartir economía, empresa y finanzas en el instituto',
+    descIntro: 'Material editorial para profesores de instituto.',
+    descBody: 'asignaturas con libro, diapositivas, actividades, tests y recursos. Currículo estatal LOMLOE.',
+    heroLead: 'Material para impartir',
+    heroAccent: 'economía, empresa y finanzas',
+    heroTail: 'en el instituto.',
+    lede: 'El material que uso cada día en clase, esta vez ordenado por asignatura. Cada una con su libro, sus diapositivas, sus actividades, sus tests y sus recursos.',
+    metaAsignaturas: 'asignaturas',
+    metaCurriculo: 'Currículo estatal LOMLOE',
+    metaProbado: 'Probado en aula',
+    metaProfes: 'Hecho por profesores en activo',
+    subjectsPrefix: 'Las',
+    subjectsWord: 'asignaturas',
+    subjectsNote: 'Cada una es un producto entero, con la misma estructura interna. Entras por la asignatura, no por el tipo de material.',
+    transversalTitle: 'Material',
+    transversalAccent: 'transversal',
+    transversalNote: 'Lo que no encaja dentro de una asignatura concreta vive aquí. Para los días en que la teoría no sostiene la sesión.',
+    transversal: {
+      dinamicas:        { title: 'Dinámicas',                  cta: 'Ver las dinámicas',    desc: 'Role-plays, simulaciones y juegos de aula, con guía para el profe, materiales para imprimir y su encaje curricular.' },
+      herramientas:     { title: 'Herramientas',                cta: 'Ver las herramientas', desc: 'La caja de herramientas: calculadoras y simuladores interactivos —punto muerto, ratios, VAN y TIR, elasticidad, nómina…— listos para clase.' },
+      emprendimiento:   { title: 'Emprendimiento',               cta: 'Ver emprendimiento',   desc: '«De cero a empresa»: el alumnado crea y valida su propio negocio en doce fases, con cuaderno, plantillas y ejemplos reales.' },
+      proyectos:        { title: 'Proyectos interdisciplinares', cta: 'Ver los proyectos',    desc: 'Proyectos ABP que cruzan la economía con otra materia (historia, matemáticas, geografía…), con su reto, secuencia de sesiones y rúbrica.' },
+      debates:          { title: 'Debates',                      cta: 'Ver los debates',      desc: 'Las grandes controversias económicas para argumentar en clase: moción, posturas, argumentario, rúbrica y ficha imprimible.' },
+      juegos:           { title: 'Juegos',                       cta: 'Ver los juegos',       desc: 'Stonks, Econrisk, Econopoly, Insider y Cajút: simuladores, estrategia y dinámicas multijugador, todos probados en clase real.' },
+      'jocs-economics': { title: 'Juegos Económicos',            cta: 'Ver el concurso',      desc: 'Un concurso competitivo por equipos para repasar economía jugando, con ranking por alumno e instituto.' },
+      generadores:      { title: 'Herramientas Docentes',        cta: 'Ver las herramientas', desc: 'Generadores LOMLOE (situaciones de aprendizaje, programación) y herramientas de evaluación y aula: rúbricas, calificaciones y plantillas.' },
+    },
+    pullquote: 'El material para impartir economía, empresa y finanzas en el instituto, reunido por asignatura en lugar de por tipo de archivo. Ordenado como hace falta cuando entras a clase un lunes a las 8:15.',
+    whyIntro: 'Todo lo que verás aquí parte del currículo básico estatal LOMLOE:',
+    whyRdBach: 'Real Decreto 243/2022',
+    whyParaBach: 'para Bachillerato,',
+    whyRdEso: 'Real Decreto 217/2022',
+    whyRest: 'para ESO. Cada comunidad autónoma añade su concreción, y conviene revisarla. Aquí no finjo cubrir las diecisiete: cubro la base común, que ya es bastante.',
+  },
+  ca: {
+    pageTitle: "Material per a impartir economia, empresa i finances a l'institut",
+    descIntro: "Material editorial per a professorat d'institut.",
+    descBody: 'assignatures amb llibre, diapositives, activitats, tests i recursos. Currículum estatal LOMLOE.',
+    heroLead: 'Material per a impartir',
+    heroAccent: 'economia, empresa i finances',
+    heroTail: "a l'institut.",
+    lede: 'El material que use cada dia a classe, esta vegada ordenat per assignatura. Cadascuna amb el seu llibre, les seues diapositives, les seues activitats, els seus tests i els seus recursos.',
+    metaAsignaturas: 'assignatures',
+    metaCurriculo: 'Currículum estatal LOMLOE',
+    metaProbado: "Provat a l'aula",
+    metaProfes: 'Fet per professorat en actiu',
+    subjectsPrefix: 'Les',
+    subjectsWord: 'assignatures',
+    subjectsNote: "Cadascuna és un producte sencer, amb la mateixa estructura interna. Entres per l'assignatura, no pel tipus de material.",
+    transversalTitle: 'Material',
+    transversalAccent: 'transversal',
+    transversalNote: "El que no encaixa dins d'una assignatura concreta viu ací. Per als dies en què la teoria no sosté la sessió.",
+    transversal: {
+      dinamicas:        { title: 'Dinàmiques',                    cta: 'Veure les dinàmiques',  desc: "Role-plays, simulacions i jocs d'aula, amb guia per al profe, materials per a imprimir i el seu encaix curricular." },
+      herramientas:     { title: 'Ferramentes',                   cta: 'Veure les ferramentes', desc: 'La caixa de ferramentes: calculadores i simuladors interactius —punt mort, ràtios, VAN i TIR, elasticitat, nòmina…— llestos per a classe.' },
+      emprendimiento:   { title: 'Emprenedoria',                  cta: 'Veure emprenedoria',    desc: "«De zero a empresa»: l'alumnat crea i valida el seu propi negoci en dotze fases, amb quadern, plantilles i exemples reals." },
+      proyectos:        { title: 'Projectes interdisciplinaris',  cta: 'Veure els projectes',   desc: "Projectes ABP que creuen l'economia amb una altra matèria (història, matemàtiques, geografia…), amb el seu repte, seqüència de sessions i rúbrica." },
+      debates:          { title: 'Debats',                        cta: 'Veure els debats',      desc: 'Les grans controvèrsies econòmiques per a argumentar a classe: moció, postures, argumentari, rúbrica i fitxa imprimible.' },
+      juegos:           { title: 'Jocs',                          cta: 'Veure els jocs',        desc: 'Stonks, Econrisk, Econopoly, Insider i Cajút: simuladors, estratègia i dinàmiques multijugador, tots provats en classe real.' },
+      'jocs-economics': { title: 'Jocs Econòmics',                cta: 'Veure el concurs',      desc: 'Un concurs competitiu per equips per a repassar economia jugant, amb rànquing per alumne i institut.' },
+      generadores:      { title: 'Ferramentes Docents',           cta: 'Veure les ferramentes', desc: "Generadors LOMLOE (situacions d'aprenentatge, programació) i ferramentes d'avaluació i aula: rúbriques, qualificacions i plantilles." },
+    },
+    pullquote: "El material per a impartir economia, empresa i finances a l'institut, reunit per assignatura en compte de per tipus d'arxiu. Ordenat com cal quan entres a classe un dilluns a les 8:15.",
+    whyIntro: 'Tot el que veuràs ací parteix del currículum bàsic estatal LOMLOE:',
+    whyRdBach: 'Reial Decret 243/2022',
+    whyParaBach: 'per a Batxillerat,',
+    whyRdEso: 'Reial Decret 217/2022',
+    whyRest: "per a l'ESO. Cada comunitat autònoma hi afig la seua concreció, i convé revisar-la. Ací no fingisc cobrir les disset: cobrisc la base comuna, que ja és bastant.",
+  },
+}[locale];
 ---
 
 <BaseLayout
-  title="Material para impartir economía, empresa y finanzas en el instituto"
-  description={`Material editorial para profesores de instituto. ${NumPalabraCap} asignaturas con libro, diapositivas, actividades, tests y recursos. Currículo estatal LOMLOE.`}
+  title={copy.pageTitle}
+  description={`${copy.descIntro} ${NumPalabraCap} ${copy.descBody}`}
   jsonLd={[organizationLd(), websiteLd()]}
+  contentLang={locale}
 >
 
   <section class="hero">
     <div class="container">
       <h1>
-        Material para impartir
-        <span class="serif-italic-wonk hero-accent">economía, empresa y finanzas</span>
-        en el instituto.
+        {copy.heroLead}
+        <span class="serif-italic-wonk hero-accent">{copy.heroAccent}</span>
+        {copy.heroTail}
       </h1>
       <p class="lede">
-        El material que uso cada día en clase, esta vez ordenado por
-        asignatura. Cada una con su libro, sus diapositivas, sus actividades,
-        sus tests y sus recursos.
+        {copy.lede}
       </p>
       <div class="hero-meta">
-        <span>{NumPalabraCap} asignaturas</span>
-        <span>Currículo estatal LOMLOE</span>
-        <span>Probado en aula</span>
-        <span>Hecho por profesores en activo</span>
+        <span>{NumPalabraCap} {copy.metaAsignaturas}</span>
+        <span>{copy.metaCurriculo}</span>
+        <span>{copy.metaProbado}</span>
+        <span>{copy.metaProfes}</span>
       </div>
     </div>
   </section>
@@ -56,16 +136,15 @@ const TRANSVERSAL = [
     <div class="container">
       <div class="subjects-header">
         <h2>
-          Las {numAsignaturasPalabra} <span class="ornament serif-italic-wonk">asignaturas</span>
+          {copy.subjectsPrefix} {numAsignaturasPalabra} <span class="ornament serif-italic-wonk">{copy.subjectsWord}</span>
         </h2>
         <span class="note">
-          Cada una es un producto entero, con la misma estructura interna.
-          Entras por la asignatura, no por el tipo de material.
+          {copy.subjectsNote}
         </span>
       </div>
 
       <div class="subjects-grid">
-        {ASIGNATURAS_PUBLICADAS.map((a) => <SubjectCard asignatura={a} />)}
+        {ASIGNATURAS_PUBLICADAS.map((a) => <SubjectCard asignatura={localizeAsignatura(a, locale)} />)}
       </div>
     </div>
   </section>
@@ -74,33 +153,35 @@ const TRANSVERSAL = [
     <div class="container">
       <div class="subjects-header">
         <h2>
-          Material <span class="ornament serif-italic-wonk">transversal</span>
+          {copy.transversalTitle} <span class="ornament serif-italic-wonk">{copy.transversalAccent}</span>
         </h2>
         <span class="note">
-          Lo que no encaja dentro de una asignatura concreta vive aquí.
-          Para los días en que la teoría no sostiene la sesión.
+          {copy.transversalNote}
         </span>
       </div>
 
       <div class="strip-grid">
-        {TRANSVERSAL.map((t) => (
-          <div class="strip-item">
-            <span class="icon" style={`background: var(${t.color})`}>
-              {t.slug === 'jocs-economics' ? (
-                <svg class="icon-rings" viewBox="0 0 30 16" width="26" height="14" fill="none" stroke="var(--color-paper)" stroke-width="1.7" aria-hidden="true">
-                  <circle cx="6" cy="6" r="4.2" />
-                  <circle cx="15" cy="6" r="4.2" />
-                  <circle cx="24" cy="6" r="4.2" />
-                  <circle cx="10.5" cy="10" r="4.2" />
-                  <circle cx="19.5" cy="10" r="4.2" />
-                </svg>
-              ) : t.letra}
-            </span>
-            <h3>{t.title}</h3>
-            <p>{t.desc}</p>
-            <a href={`/${t.slug}/`} class="editorial-link">{t.cta} →</a>
-          </div>
-        ))}
+        {TRANSVERSAL_META.map((t) => {
+          const tc = copy.transversal[t.slug];
+          return (
+            <div class="strip-item">
+              <span class="icon" style={`background: var(${t.color})`}>
+                {t.slug === 'jocs-economics' ? (
+                  <svg class="icon-rings" viewBox="0 0 30 16" width="26" height="14" fill="none" stroke="var(--color-paper)" stroke-width="1.7" aria-hidden="true">
+                    <circle cx="6" cy="6" r="4.2" />
+                    <circle cx="15" cy="6" r="4.2" />
+                    <circle cx="24" cy="6" r="4.2" />
+                    <circle cx="10.5" cy="10" r="4.2" />
+                    <circle cx="19.5" cy="10" r="4.2" />
+                  </svg>
+                ) : t.letra}
+              </span>
+              <h3>{tc.title}</h3>
+              <p>{tc.desc}</p>
+              <a href={`/${t.slug}/`} class="editorial-link">{tc.cta} →</a>
+            </div>
+          );
+        })}
       </div>
     </div>
   </section>
@@ -108,16 +189,12 @@ const TRANSVERSAL = [
   <section class="why">
     <div class="container-narrow">
       <p class="pullquote">
-        El material para impartir economía, empresa y finanzas en el instituto, reunido
-        por asignatura en lugar de por tipo de archivo. Ordenado como hace falta cuando
-        entras a clase un lunes a las 8:15.
+        {copy.pullquote}
       </p>
       <p class="why-body">
-        Todo lo que verás aquí parte del currículo básico estatal LOMLOE:
-        <em>Real Decreto 243/2022</em> para Bachillerato,
-        <em>Real Decreto 217/2022</em> para ESO. Cada comunidad autónoma añade su concreción,
-        y conviene revisarla. Aquí no finjo cubrir las diecisiete: cubro la base común,
-        que ya es bastante.
+        {copy.whyIntro}
+        <em>{copy.whyRdBach}</em> {copy.whyParaBach}
+        <em>{copy.whyRdEso}</em> {copy.whyRest}
       </p>
     </div>
   </section>
