@@ -928,7 +928,7 @@ Cada tasca aplica el mateix patró a una pàgina. **Patró estàndard per pàgin
    }[locale];
    ```
 3. Al marcatge, reemplaçar cada literal ES per `{copy.<clau>}`.
-4. Si la pàgina és de **contingut editorial curt** (no llista MDX), NO cal passar `contentLang` (el cos SÍ que es tradueix). Si fora una pàgina que barreja UI traduïda amb blocs de contingut ES, es passaria `contentLang="es"` al `BaseLayout`; a la fase 1 les pàgines d'UI d'aquesta part es tradueixen senceres, així que `contentLang` es queda per defecte.
+4. **Passar `contentLang={locale}` al `BaseLayout`** de la pàgina (`<BaseLayout ... contentLang={locale}>`). Açò és CRUCIAL: com que el cos d'aquestes pàgines es tradueix (matcheja el locale d'UI), `contentLang={locale}` fa que a `/ca` el `canonical` siga self (`/ca/...`, no la versió ES) i que NO es pose un `<main lang="es">` erroni. El defecte del `BaseLayout` és `'es'` (pensat per a les pàgines de contingut NO traduïdes: llibres/hubs), per això ací s'ha de passar explícitament. **Excepció**: els hubs de la Task 12 barregen intro VAL amb targetes ES → eixos passen `contentLang="es"` (el cos predominant és ES).
 5. **La còpia VAL la redacta el traductor (Claude) i la revisa Pau abans del merge.**
 
 Verificació comuna al final de cada tasca:
