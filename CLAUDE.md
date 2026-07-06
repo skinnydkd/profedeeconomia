@@ -11,7 +11,7 @@
 - **Idiomes preparats al codi des del dia 1**: Castellà (`es`), Català/Valencià (`ca`)
 - **Idioma de comunicació amb dev (Pau)**: Català/Valencià
 - **Idioma del codi**: Anglès
-- **Autor**: Pau Mompó (Valencia/Torrevieja, Spain)
+- **Autor**: Pau Monterde (Valencia/Torrevieja, Spain)
 
 ## Visió en una frase
 
