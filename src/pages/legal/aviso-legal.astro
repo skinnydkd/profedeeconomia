@@ -1,66 +1,102 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
-const updated = '4 de junio de 2026';
+import { getLocale } from '@/i18n/locale';
+
+const locale = getLocale(Astro.currentLocale);
+
+const copy = {
+  es: {
+    pageTitle: 'Aviso legal',
+    description: 'Aviso legal de profedeeconomia.es: titularidad, propiedad intelectual, licencia de uso del material y exención de responsabilidad.',
+    h1: 'Aviso legal',
+    updatedLabel: 'Última actualización:',
+    updatedDate: '4 de junio de 2026',
+    h2Titularidad: '1. Titularidad del sitio',
+    p1Pre: 'Este sitio web, accesible en',
+    p1Domain: 'profedeeconomia.es',
+    p1Mid: ', es un proyecto educativo sin ánimo de lucro dedicado a publicar material para el profesorado de economía de instituto. Para cualquier comunicación relativa a este aviso legal o al contenido del sitio puedes dirigirte a',
+    h2Objeto: '2. Objeto',
+    p2: 'profedeeconomia.es ofrece, de forma gratuita, materiales didácticos (libros, diapositivas, actividades, tests, herramientas interactivas y recursos) destinados a apoyar la enseñanza de la economía, la empresa y las finanzas en la ESO y el Bachillerato, conforme al currículo básico estatal LOMLOE.',
+    h2Propiedad: '3. Propiedad intelectual y licencia de uso',
+    p3Pre: 'Salvo que se indique lo contrario, el contenido original de este sitio se publica bajo licencia',
+    p3Strong: 'Creative Commons Reconocimiento-NoComercial-CompartirIgual (CC BY-NC-SA)',
+    p3Post: '. Puedes usarlo y adaptarlo con fines educativos citando la fuente (profedeeconomia.es) y sin uso comercial. Algunos materiales se basan en fuentes oficiales (BOE, organismos públicos) o incorporan imágenes de terceros con su propia licencia, indicada en cada caso; esos elementos se rigen por sus respectivas condiciones.',
+    h2Exencion: '4. Exención de responsabilidad',
+    p4: 'El material se ofrece «tal cual», con fines orientativos y educativos. Aunque se revisa con cuidado, puede contener errores o quedar desactualizado respecto a cambios normativos. No constituye asesoramiento profesional, jurídico ni fiscal. El profesorado debe contrastar y adaptar el material a la concreción curricular de su comunidad autónoma y a su grupo. No nos hacemos responsables del uso que se haga del contenido ni del de los sitios externos enlazados.',
+    h2Enlaces: '5. Enlaces a terceros',
+    p5: 'El sitio puede contener enlaces a páginas externas (fuentes oficiales, vídeos, lecturas). No nos responsabilizamos de sus contenidos ni de sus políticas. La sección de oposiciones redirige al sitio asociado oposicioneseconomia.es.',
+    h2Legislacion: '6. Legislación aplicable',
+    p6Pre: 'Este aviso legal se rige por la legislación española. Para cualquier cuestión relacionada con el sitio, escríbenos a',
+    linkPrivacidad: 'Política de privacidad',
+  },
+  ca: {
+    pageTitle: 'Avís legal',
+    description: 'Avís legal de profedeeconomia.es: titularitat, propietat intel·lectual, llicència d\'ús del material i exempció de responsabilitat.',
+    h1: 'Avís legal',
+    updatedLabel: 'Última actualització:',
+    updatedDate: '4 de juny de 2026',
+    h2Titularidad: '1. Titularitat del lloc',
+    p1Pre: 'Aquest lloc web, accessible a',
+    p1Domain: 'profedeeconomia.es',
+    p1Mid: ', és un projecte educatiu sense ànim de lucre dedicat a publicar material per al professorat d\'economia d\'institut. Per a qualsevol comunicació relativa a aquest avís legal o al contingut del lloc pots dirigir-te a',
+    h2Objeto: '2. Objecte',
+    p2: 'profedeeconomia.es ofereix, de manera gratuïta, materials didàctics (llibres, diapositives, activitats, tests, ferramentes interactives i recursos) destinats a donar suport a l\'ensenyament de l\'economia, l\'empresa i les finances a l\'ESO i el Batxillerat, d\'acord amb el currículum bàsic estatal LOMLOE.',
+    h2Propiedad: '3. Propietat intel·lectual i llicència d\'ús',
+    p3Pre: 'Llevat que s\'indique el contrari, el contingut original d\'aquest lloc es publica sota llicència',
+    p3Strong: 'Creative Commons Reconeixement-NoComercial-CompartirIgual (CC BY-NC-SA)',
+    p3Post: '. Pots usar-lo i adaptar-lo amb fins educatius citant la font (profedeeconomia.es) i sense ús comercial. Alguns materials es basen en fonts oficials (BOE, organismes públics) o incorporen imatges de tercers amb la seua pròpia llicència, indicada en cada cas; aquests elements es regeixen per les seues respectives condicions.',
+    h2Exencion: '4. Exempció de responsabilitat',
+    p4: 'El material s\'ofereix «tal qual», amb finalitats orientatives i educatives. Encara que es revisa amb cura, pot contindre errors o quedar desactualitzat respecte a canvis normatius. No constitueix assessorament professional, jurídic ni fiscal. El professorat ha de contrastar i adaptar el material a la concreció curricular de la seua comunitat autònoma i al seu grup. No ens fem responsables de l\'ús que es faça del contingut ni del dels llocs externs enllaçats.',
+    h2Enlaces: '5. Enllaços a tercers',
+    p5: 'El lloc pot contindre enllaços a pàgines externes (fonts oficials, vídeos, lectures). No ens responsabilitzem dels seus continguts ni de les seues polítiques. La secció d\'oposicions redirigeix al lloc associat oposicioneseconomia.es.',
+    h2Legislacion: '6. Legislació aplicable',
+    p6Pre: 'Aquest avís legal es regeix per la legislació espanyola. Per a qualsevol qüestió relacionada amb el lloc, escriu-nos a',
+    linkPrivacidad: 'Política de privacitat',
+  },
+}[locale];
 ---
 <BaseLayout
-  title="Aviso legal"
-  description="Aviso legal de profedeeconomia.es: titularidad, propiedad intelectual, licencia de uso del material y exención de responsabilidad."
+  title={copy.pageTitle}
+  description={copy.description}
+  contentLang={locale}
 >
   <main class="prose">
-    <h1>Aviso legal</h1>
-    <p class="updated">Última actualización: {updated}</p>
+    <h1>{copy.h1}</h1>
+    <p class="updated">{copy.updatedLabel} {copy.updatedDate}</p>
 
-    <h2>1. Titularidad del sitio</h2>
+    <h2>{copy.h2Titularidad}</h2>
     <p>
-      Este sitio web, accesible en <strong>profedeeconomia.es</strong>, es un proyecto
-      educativo sin ánimo de lucro dedicado a publicar material para el profesorado de
-      economía de instituto. Para cualquier comunicación relativa a este aviso legal o al
-      contenido del sitio puedes dirigirte a <a class="editorial-link" href="mailto:hola@profedeeconomia.es">hola@profedeeconomia.es</a>.
+      {copy.p1Pre} <strong>{copy.p1Domain}</strong>{copy.p1Mid}
+      <a class="editorial-link" href="mailto:hola@profedeeconomia.es">hola@profedeeconomia.es</a>.
     </p>
 
-    <h2>2. Objeto</h2>
+    <h2>{copy.h2Objeto}</h2>
     <p>
-      profedeeconomia.es ofrece, de forma gratuita, materiales didácticos (libros,
-      diapositivas, actividades, tests, herramientas interactivas y recursos) destinados
-      a apoyar la enseñanza de la economía, la empresa y las finanzas en la ESO y el
-      Bachillerato, conforme al currículo básico estatal LOMLOE.
+      {copy.p2}
     </p>
 
-    <h2>3. Propiedad intelectual y licencia de uso</h2>
+    <h2>{copy.h2Propiedad}</h2>
     <p>
-      Salvo que se indique lo contrario, el contenido original de este sitio se publica
-      bajo licencia <strong>Creative Commons Reconocimiento-NoComercial-CompartirIgual
-      (CC&nbsp;BY-NC-SA)</strong>. Puedes usarlo y adaptarlo con fines educativos citando
-      la fuente (profedeeconomia.es) y sin uso comercial. Algunos materiales se basan en
-      fuentes oficiales (BOE, organismos públicos) o incorporan imágenes de terceros con
-      su propia licencia, indicada en cada caso; esos elementos se rigen por sus
-      respectivas condiciones.
+      {copy.p3Pre} <strong>{copy.p3Strong}</strong>{copy.p3Post}
     </p>
 
-    <h2>4. Exención de responsabilidad</h2>
+    <h2>{copy.h2Exencion}</h2>
     <p>
-      El material se ofrece «tal cual», con fines orientativos y educativos. Aunque se
-      revisa con cuidado, puede contener errores o quedar desactualizado respecto a
-      cambios normativos. No constituye asesoramiento profesional, jurídico ni fiscal. El
-      profesorado debe contrastar y adaptar el material a la concreción curricular de su
-      comunidad autónoma y a su grupo. No nos hacemos responsables del uso que se haga del
-      contenido ni del de los sitios externos enlazados.
+      {copy.p4}
     </p>
 
-    <h2>5. Enlaces a terceros</h2>
+    <h2>{copy.h2Enlaces}</h2>
     <p>
-      El sitio puede contener enlaces a páginas externas (fuentes oficiales, vídeos,
-      lecturas). No nos responsabilizamos de sus contenidos ni de sus políticas. La
-      sección de oposiciones redirige al sitio asociado oposicioneseconomia.es.
+      {copy.p5}
     </p>
 
-    <h2>6. Legislación aplicable</h2>
+    <h2>{copy.h2Legislacion}</h2>
     <p>
-      Este aviso legal se rige por la legislación española. Para cualquier cuestión
-      relacionada con el sitio, escríbenos a <a class="editorial-link" href="mailto:hola@profedeeconomia.es">hola@profedeeconomia.es</a>.
+      {copy.p6Pre}
+      <a class="editorial-link" href="mailto:hola@profedeeconomia.es">hola@profedeeconomia.es</a>.
     </p>
 
-    <p class="links"><a class="editorial-link" href="/legal/privacidad/">Política de privacidad</a></p>
+    <p class="links"><a class="editorial-link" href="/legal/privacidad/">{copy.linkPrivacidad}</a></p>
   </main>
 </BaseLayout>
 
