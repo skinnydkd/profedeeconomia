@@ -6,43 +6,82 @@
  */
 import BaseLayout from '@layouts/BaseLayout.astro';
 import { GUIA, simulacrosPorAmbito } from '@/lib/olimpiada';
+import { getLocale } from '@/i18n/locale';
 
 const grupos = simulacrosPorAmbito();
 const totalExamenes = grupos.reduce((n, g) => n + g.examenes.filter((e) => e.oficial).length, 0);
+
+const locale = getLocale(Astro.currentLocale);
+
+// The hero intro, breadcrumb and «Cómo usar los simulacros» note are localized —
+// the exam list (from the olimpiada registry) stays in Spanish under /ca.
+const copy = {
+  es: {
+    heroTitle: 'Simulacros de examen',
+    lede: 'exámenes oficiales de convocatorias recientes —la fase nacional y varias comunidades autónomas— más un megaexamen de práctica. Úsalos en condiciones reales para calibrar tu nivel.',
+    bcInicio: 'Inicio',
+    bcOlimpiada: 'Olimpiada',
+    bcCurrent: 'Simulacros',
+    notaTitulo: 'Cómo usar los simulacros',
+    li1Pre: 'Reserva',
+    li1Post: 'sin interrupciones.',
+    li2Pre: 'Responde las 3 partes en orden: teoría',
+    li2Mid: 'ejercicio',
+    li2And: 'y comentario de texto',
+    li3: 'Corrige con el solucionario o el megaexamen e identifica los bloques con más margen de mejora.',
+    li4Strong: 'El formato varía según la comunidad',
+    li4Rest: '(número de preguntas, puntuación, duración). La guía describe el de la Comunitat Valenciana; usa los de otras comunidades como práctica adicional.',
+  },
+  ca: {
+    heroTitle: "Simulacres d'examen",
+    lede: "exàmens oficials de convocatòries recents —la fase nacional i diverses comunitats autònomes— més un megaexamen de pràctica. Usa'ls en condicions reals per a calibrar el teu nivell.",
+    bcInicio: 'Inici',
+    bcOlimpiada: 'Olimpíada',
+    bcCurrent: 'Simulacres',
+    notaTitulo: 'Com usar els simulacres',
+    li1Pre: 'Reserva',
+    li1Post: 'sense interrupcions.',
+    li2Pre: 'Respon les 3 parts en ordre: teoria',
+    li2Mid: 'exercici',
+    li2And: 'i comentari de text',
+    li3: 'Corregeix amb el solucionari o el megaexamen i identifica els blocs amb més marge de millora.',
+    li4Strong: 'El format varia segons la comunitat',
+    li4Rest: "(nombre de preguntes, puntuació, duració). La guia descriu el de la Comunitat Valenciana; usa els d'altres comunitats com a pràctica addicional.",
+  },
+}[locale];
 ---
 
 <BaseLayout
   title="Simulacros — Olimpiada de Economía"
   description="Exámenes oficiales de la Olimpiada de Economía (fase nacional y de varias comunidades autónomas) y megaexamen de práctica. Entrena cronometrándote las partes del examen."
+  contentLang="es"
 >
   <div class="container">
     <nav class="breadcrumb">
-      <a href="/">Inicio</a> <span class="sep">›</span>
-      <a href="/olimpiada/">Olimpiada</a> <span class="sep">›</span>
-      <span>Simulacros</span>
+      <a href="/">{copy.bcInicio}</a> <span class="sep">›</span>
+      <a href="/olimpiada/">{copy.bcOlimpiada}</a> <span class="sep">›</span>
+      <span>{copy.bcCurrent}</span>
     </nav>
   </div>
 
-  <section class="hero">
+  <section class="hero" lang={locale}>
     <div class="container">
-      <h1 class="serif">Simulacros de examen</h1>
+      <h1 class="serif">{copy.heroTitle}</h1>
       <p class="lede">
-        {totalExamenes} exámenes oficiales de convocatorias recientes —la fase nacional
-        y varias comunidades autónomas— más un megaexamen de práctica. Úsalos en
-        condiciones reales para calibrar tu nivel.
+        {totalExamenes} {copy.lede}
       </p>
     </div>
   </section>
 
   <section class="nota-uso">
     <div class="container">
-      <div class="nota">
-        <strong>Cómo usar los simulacros</strong>
+      <div class="nota" lang={locale}>
+        <strong>{copy.notaTitulo}</strong>
         <ul>
-          <li>Reserva <strong>{GUIA.duracion}</strong> sin interrupciones.</li>
-          <li>Responde las 3 partes en orden: teoría ({GUIA.partes[0]?.puntos}), ejercicio ({GUIA.partes[1]?.puntos}) y comentario de texto ({GUIA.partes[2]?.puntos}).</li>
-          <li>Corrige con el solucionario o el megaexamen e identifica los bloques con más margen de mejora.</li>
-          <li><strong>El formato varía según la comunidad</strong> (número de preguntas, puntuación, duración). La guía describe el de la Comunitat Valenciana; usa los de otras comunidades como práctica adicional.</li>
+          <li>{copy.li1Pre} <strong>{GUIA.duracion}</strong> {copy.li1Post}</li>
+          <li>{copy.li2Pre} ({GUIA.partes[0]?.puntos}), {copy.li2Mid} ({GUIA.partes[1]?.puntos}) {copy.li2And} ({GUIA.partes[2]?.puntos}).</li>
+          <li>{copy.li3}</li>
+          <li><strong>{copy.li4Strong}</strong> {copy.li4Rest}</li>
         </ul>
       </div>
     </div>

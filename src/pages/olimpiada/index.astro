@@ -5,6 +5,29 @@
  */
 import BaseLayout from '@layouts/BaseLayout.astro';
 import { GUIA } from '@/lib/olimpiada';
+import { getLocale } from '@/i18n/locale';
+
+const locale = getLocale(Astro.currentLocale);
+
+// The hero intro and breadcrumb are localized — the sub-area card grid below
+// comes from a literal list (not a registry) but is treated the same as the
+// rest of the site's card grids and stays in Spanish under /ca (see Task 12 scope).
+const copy = {
+  es: {
+    heroAccent: 'Olimpiada',
+    heroTail: 'de Economía.',
+    lede: 'Material para preparar la Olimpiada de Economía de Bachillerato: los 6 bloques del temario, simulacros de exámenes reales, banco de preguntas interactivo y taller para la Parte III. Nivel 2.º Bach y primer curso de carrera.',
+    bcInicio: 'Inicio',
+    bcCurrent: 'Olimpiada de Economía',
+  },
+  ca: {
+    heroAccent: 'Olimpíada',
+    heroTail: "d'Economia.",
+    lede: "Material per a preparar l'Olimpíada d'Economia de Batxillerat: els 6 blocs del temari, simulacres d'exàmens reals, banc de preguntes interactiu i taller per a la Part III. Nivell 2n Batx i primer curs de carrera.",
+    bcInicio: 'Inici',
+    bcCurrent: "Olimpíada d'Economia",
+  },
+}[locale];
 
 const subAreas = [
   {
@@ -43,22 +66,20 @@ const subAreas = [
 <BaseLayout
   title="Olimpiada de Economía — Preparación"
   description="Prepara la Olimpiada de Economía: simulacros de examen, fichas-resumen de los 6 bloques, banco de preguntas interactivo, taller de textos y lecturas. Nivel 2.º Bach / 1.º carrera."
+  contentLang="es"
 >
   <div class="container">
     <nav class="breadcrumb">
-      <a href="/">Inicio</a> <span class="sep">›</span>
-      <span>Olimpiada de Economía</span>
+      <a href="/">{copy.bcInicio}</a> <span class="sep">›</span>
+      <span>{copy.bcCurrent}</span>
     </nav>
   </div>
 
-  <section class="hero">
+  <section class="hero" lang={locale}>
     <div class="container">
-      <h1><span class="serif-italic-wonk accent">Olimpiada</span> de Economía.</h1>
+      <h1><span class="serif-italic-wonk accent">{copy.heroAccent}</span> {copy.heroTail}</h1>
       <p class="lede">
-        Material para preparar la Olimpiada de Economía de Bachillerato:
-        los 6 bloques del temario, simulacros de exámenes reales, banco de
-        preguntas interactivo y taller para la Parte III. Nivel 2.º Bach
-        y primer curso de carrera.
+        {copy.lede}
       </p>
     </div>
   </section>

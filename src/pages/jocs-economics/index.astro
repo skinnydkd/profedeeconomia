@@ -1,25 +1,69 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import JocsApp from '../../components/jocs-economics/JocsApp';
+import { getLocale } from '@/i18n/locale';
+
+const locale = getLocale(Astro.currentLocale);
+
+const copy = {
+  es: {
+    pageTitle: 'Juegos Económicos — un concurso de economía para clase',
+    description: 'Un concurso competitivo de economía, finanzas y empresa con ranking por alumno y por instituto. Participa y compite por ser el mejor alumno y el mejor instituto.',
+    bcInicio: 'Inicio',
+    bcCurrent: 'Juegos Económicos',
+    heroLead: 'Las',
+    heroAccent: 'Olimpiadas de Economía',
+    ledePre: 'Un quiz competitivo de economía, finanzas y empresa: tres vidas, dificultad creciente y un ranking que premia al',
+    ledeStrong1: 'mejor alumno',
+    ledeMid: 'y al',
+    ledeStrong2: 'mejor instituto',
+    ledePost: 'Participa, sube en la clasificación y lleva a tu centro a lo más alto.',
+    comoJuegaLabel: 'Cómo se juega:',
+    comoJuegaText: 'responde preguntas cada vez más difíciles; fallar cuesta una vida.',
+    comoGanaLabel: 'Cómo se gana:',
+    comoGanaText: 'tu puntuación cuenta para tu ranking individual y para la media de tu instituto.',
+    premiosLabel: 'Premios:',
+    premiosText: 'reconocimiento al mejor alumno y al mejor instituto de cada edición.',
+    verRanking: 'Ver la clasificación',
+  },
+  ca: {
+    pageTitle: 'Jocs Econòmics — un concurs d\'economia per a classe',
+    description: 'Un concurs competitiu d\'economia, finances i empresa amb rànquing per alumne i per institut. Participa i competeix per ser el millor alumne i el millor institut.',
+    bcInicio: 'Inici',
+    bcCurrent: 'Jocs Econòmics',
+    heroLead: 'Les',
+    heroAccent: 'Olimpíades d\'Economia',
+    ledePre: 'Un quiz competitiu d\'economia, finances i empresa: tres vides, dificultat creixent i un rànquing que premia el',
+    ledeStrong1: 'millor alumne',
+    ledeMid: 'i el',
+    ledeStrong2: 'millor institut',
+    ledePost: 'Participa, puja en la classificació i porta el teu centre al més alt.',
+    comoJuegaLabel: 'Com es juga:',
+    comoJuegaText: 'respon preguntes cada vegada més difícils; fallar costa una vida.',
+    comoGanaLabel: 'Com es guanya:',
+    comoGanaText: 'la teua puntuació compta per al teu rànquing individual i per a la mitjana del teu institut.',
+    premiosLabel: 'Premis:',
+    premiosText: 'reconeixement al millor alumne i al millor institut de cada edició.',
+    verRanking: 'Veure la classificació',
+  },
+}[locale];
 ---
 
-<BaseLayout title="Juegos Económicos — un concurso de economía para clase" description="Un concurso competitivo de economía, finanzas y empresa con ranking por alumno y por instituto. Participa y compite por ser el mejor alumno y el mejor instituto.">
+<BaseLayout title={copy.pageTitle} description={copy.description} contentLang={locale}>
   <main class="olimpiadas">
     <div class="container">
-      <nav class="breadcrumb"><a href="/">Inicio</a> <span class="sep">›</span> <span>Juegos Económicos</span></nav>
-      <h1>Las <span class="serif-italic-wonk accent">Olimpiadas de Economía</span>.</h1>
+      <nav class="breadcrumb"><a href="/">{copy.bcInicio}</a> <span class="sep">›</span> <span>{copy.bcCurrent}</span></nav>
+      <h1>{copy.heroLead} <span class="serif-italic-wonk accent">{copy.heroAccent}</span>.</h1>
       <p class="lede">
-        Un quiz competitivo de economía, finanzas y empresa: tres vidas, dificultad
-        creciente y un ranking que premia al <strong>mejor alumno</strong> y al
-        <strong>mejor instituto</strong>. Participa, sube en la clasificación y
-        lleva a tu centro a lo más alto.
+        {copy.ledePre} <strong>{copy.ledeStrong1}</strong> {copy.ledeMid}
+        <strong>{copy.ledeStrong2}</strong>. {copy.ledePost}
       </p>
       <ul class="como">
-        <li><strong>Cómo se juega:</strong> responde preguntas cada vez más difíciles; fallar cuesta una vida.</li>
-        <li><strong>Cómo se gana:</strong> tu puntuación cuenta para tu ranking individual y para la media de tu instituto.</li>
-        <li><strong>Premios:</strong> reconocimiento al mejor alumno y al mejor instituto de cada edición.</li>
+        <li><strong>{copy.comoJuegaLabel}</strong> {copy.comoJuegaText}</li>
+        <li><strong>{copy.comoGanaLabel}</strong> {copy.comoGanaText}</li>
+        <li><strong>{copy.premiosLabel}</strong> {copy.premiosText}</li>
       </ul>
-      <a class="ver-ranking" href="/jocs-economics/leaderboard/">Ver la clasificación →</a>
+      <a class="ver-ranking" href="/jocs-economics/leaderboard/">{copy.verRanking} →</a>
     </div>
     <div class="game-mount"><JocsApp client:only="preact" /></div>
   </main>

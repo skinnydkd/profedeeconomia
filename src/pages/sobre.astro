@@ -1,50 +1,88 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
+import { getLocale } from '@/i18n/locale';
+
+const locale = getLocale(Astro.currentLocale);
+
+const copy = {
+  es: {
+    pageTitle: 'Sobre el proyecto',
+    description: 'Qué es profedeeconomia.es: material editorial para impartir economía, empresa y finanzas en el instituto, organizado por asignatura y basado en el currículo LOMLOE.',
+    h1: 'Material para enseñar economía en el instituto',
+    lede1: 'profedeeconomia.es reúne el material para impartir',
+    ledeStrong1: 'economía, empresa y finanzas',
+    lede2: 'en la ESO y el Bachillerato: libro, diapositivas, actividades, tests y recursos interactivos, organizados',
+    ledeStrong2: 'por asignatura',
+    lede3: 'en lugar de por tipo de contenido.',
+    h2Organizado: 'Cómo está organizado',
+    pOrganizado: 'Cada asignatura reúne en un mismo sitio todo su material con la misma estructura. Lo que cambia de una a otra es el contenido, no el lugar donde encontrarlo. A las asignaturas se suman secciones transversales —dinámicas de aula, debates, herramientas, proyectos interdisciplinares, juegos y preparación de la Olimpiada— pensadas para usarse tal cual o adaptarse a cada grupo.',
+    h2Basa: 'En qué se basa',
+    pBasaPre: 'Los materiales se apoyan en el',
+    pBasaStrong: 'currículo básico estatal LOMLOE',
+    pBasaPost: '(Reales Decretos 217/2022 para la ESO y 243/2022 para el Bachillerato). Cada comunidad autónoma establece concreciones propias: conviene consultar la de tu comunidad para ajustar la programación a tu centro. Todo el contenido es original o está derivado de fuentes oficiales, citadas cuando corresponde.',
+    h2Quien: 'Quién lo hace',
+    pQuien: "Soy Pau Monterde, profesor de economía en la Comunidad Valenciana. Este es un proyecto hecho por y para profesorado de economía: lo uso en clase y lo voy puliendo con lo que funciona y lo que no. Si te sirve, es tuyo: el material es abierto. Si encuentras una errata o tienes una propuesta, escríbeme.",
+    linkContacto: 'Contacto',
+    linkAviso: 'Aviso legal',
+    linkPrivacidad: 'Privacidad',
+  },
+  ca: {
+    pageTitle: 'Sobre el projecte',
+    description: 'Què és profedeeconomia.es: material editorial per a impartir economia, empresa i finances a l\'institut, organitzat per assignatura i basat en el currículum LOMLOE.',
+    h1: "Material per a ensenyar economia a l'institut",
+    lede1: 'profedeeconomia.es reuneix el material per a impartir',
+    ledeStrong1: 'economia, empresa i finances',
+    lede2: "a l'ESO i el Batxillerat: llibre, diapositives, activitats, tests i recursos interactius, organitzats",
+    ledeStrong2: 'per assignatura',
+    lede3: 'en lloc de per tipus de contingut.',
+    h2Organizado: 'Com està organitzat',
+    pOrganizado: "Cada assignatura reuneix en un mateix lloc tot el seu material amb la mateixa estructura. El que canvia d'una a una altra és el contingut, no el lloc on trobar-lo. A les assignatures se sumen seccions transversals —dinàmiques d'aula, debats, ferramentes, projectes interdisciplinaris, jocs i preparació de l'Olimpíada— pensades per a usar-se tal qual o adaptar-se a cada grup.",
+    h2Basa: 'En què es basa',
+    pBasaPre: 'Els materials es basen en el',
+    pBasaStrong: 'currículum bàsic estatal LOMLOE',
+    pBasaPost: "(Reials Decrets 217/2022 per a l'ESO i 243/2022 per al Batxillerat). Cada comunitat autònoma estableix concrecions pròpies: convé consultar la de la teua comunitat per a ajustar la programació al teu centre. Tot el contingut és original o està derivat de fonts oficials, citades quan pertoca.",
+    h2Quien: 'Qui ho fa',
+    pQuien: "Soc Pau Monterde, professor d'economia a la Comunitat Valenciana. Aquest és un projecte fet per i per a professorat d'economia: l'use a classe i el vaig polint amb el que funciona i el que no. Si et serveix, és teu: el material és obert. Si trobes una errada o tens una proposta, escriu-me.",
+    linkContacto: 'Contacte',
+    linkAviso: 'Avís legal',
+    linkPrivacidad: 'Privacitat',
+  },
+}[locale];
 ---
 <BaseLayout
-  title="Sobre el proyecto"
-  description="Qué es profedeeconomia.es: material editorial para impartir economía, empresa y finanzas en el instituto, organizado por asignatura y basado en el currículo LOMLOE."
+  title={copy.pageTitle}
+  description={copy.description}
+  contentLang={locale}
 >
   <main class="prose">
-    <h1>Material para enseñar economía en el instituto</h1>
+    <h1>{copy.h1}</h1>
 
     <p class="lede">
-      profedeeconomia.es reúne el material para impartir <strong>economía, empresa y
-      finanzas</strong> en la ESO y el Bachillerato: libro, diapositivas, actividades,
-      tests y recursos interactivos, organizados <strong>por asignatura</strong> en
-      lugar de por tipo de contenido.
+      {copy.lede1} <strong>{copy.ledeStrong1}</strong>
+      {copy.lede2} <strong>{copy.ledeStrong2}</strong>
+      {copy.lede3}
     </p>
 
-    <h2>Cómo está organizado</h2>
+    <h2>{copy.h2Organizado}</h2>
     <p>
-      Cada asignatura reúne en un mismo sitio todo su material con la misma estructura.
-      Lo que cambia de una a otra es el contenido, no el lugar donde encontrarlo. A las
-      asignaturas se suman secciones transversales —dinámicas de aula, debates,
-      herramientas, proyectos interdisciplinares, juegos y preparación de la Olimpiada—
-      pensadas para usarse tal cual o adaptarse a cada grupo.
+      {copy.pOrganizado}
     </p>
 
-    <h2>En qué se basa</h2>
+    <h2>{copy.h2Basa}</h2>
     <p>
-      Los materiales se apoyan en el <strong>currículo básico estatal LOMLOE</strong>
-      (Reales Decretos 217/2022 para la ESO y 243/2022 para el Bachillerato). Cada
-      comunidad autónoma establece concreciones propias: conviene consultar la de tu
-      comunidad para ajustar la programación a tu centro. Todo el contenido es original
-      o está derivado de fuentes oficiales, citadas cuando corresponde.
+      {copy.pBasaPre} <strong>{copy.pBasaStrong}</strong>
+      {copy.pBasaPost}
     </p>
 
-    <h2>Quién lo hace</h2>
+    <h2>{copy.h2Quien}</h2>
     <p>
-      Soy Pau Monterde, profesor de economía en la Comunidad Valenciana. Este es un
-      proyecto hecho por y para profesorado de economía: lo uso en clase y lo voy
-      puliendo con lo que funciona y lo que no. Si te sirve, es tuyo: el material es
-      abierto. Si encuentras una errata o tienes una propuesta, escríbeme.
+      {copy.pQuien}
     </p>
 
     <p class="links">
-      <a class="editorial-link" href="/contacto/">Contacto</a> ·
-      <a class="editorial-link" href="/legal/aviso-legal/">Aviso legal</a> ·
-      <a class="editorial-link" href="/legal/privacidad/">Privacidad</a>
+      <a class="editorial-link" href="/contacto/">{copy.linkContacto}</a> ·
+      <a class="editorial-link" href="/legal/aviso-legal/">{copy.linkAviso}</a> ·
+      <a class="editorial-link" href="/legal/privacidad/">{copy.linkPrivacidad}</a>
     </p>
   </main>
 </BaseLayout>

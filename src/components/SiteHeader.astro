@@ -1,5 +1,11 @@
 ---
 import { ASIGNATURAS_POR_ETAPA, SECCIONES_TRANSVERSALES } from '@/lib/asignaturas';
+import { getLocale } from '@/i18n/locale';
+import { t, type UIKey } from '@/i18n/ui';
+import { localizeAsignatura } from '@/i18n/asignaturas-ca';
+import LanguageSwitcher from '@components/LanguageSwitcher.astro';
+
+const locale = getLocale(Astro.currentLocale);
 ---
 
 <header class="site-header">
@@ -8,30 +14,30 @@ import { ASIGNATURAS_POR_ETAPA, SECCIONES_TRANSVERSALES } from '@/lib/asignatura
       <span class="brand-mono" aria-hidden="true"><span class="brand-mono-p">p</span><span class="brand-mono-dot">.</span></span>
       <span class="brand-word">profedeeconomia</span>
     </a>
-    <nav class="site-nav" aria-label="Navegación principal">
+    <nav class="site-nav" aria-label={t('nav.aria', locale)}>
       <!-- ESO -->
       <div class="nav-group" data-nav-group>
         <button class="nav-trigger" type="button" aria-haspopup="true" aria-expanded="false">
-          ESO
+          {t('nav.eso', locale)}
           <span class="caret" aria-hidden="true">▾</span>
         </button>
         <div class="nav-dropdown" role="menu">
           <div class="dropdown-section">
-            <span class="dropdown-label">{ASIGNATURAS_POR_ETAPA.eso.cursos['3eso'].label}</span>
-            {ASIGNATURAS_POR_ETAPA.eso.cursos['3eso'].asignaturas.map((a) => (
+            <span class="dropdown-label">{t('curso.3eso', locale)}</span>
+            {ASIGNATURAS_POR_ETAPA.eso.cursos['3eso'].asignaturas.map((a0) => { const a = localizeAsignatura(a0, locale); return (
               <a href={`/${a.slug}/`} role="menuitem" class={a.estado === 'proximamente' ? 'is-proximamente' : ''}>
                 {a.title}
-                {a.estado === 'proximamente' && <span class="badge">Próximamente</span>}
+                {a.estado === 'proximamente' && <span class="badge">{t('nav.proximamente', locale)}</span>}
               </a>
-            ))}
+            ); })}
           </div>
           <div class="dropdown-section">
-            <span class="dropdown-label">{ASIGNATURAS_POR_ETAPA.eso.cursos['4eso'].label}</span>
-            {ASIGNATURAS_POR_ETAPA.eso.cursos['4eso'].asignaturas.map((a) => (
+            <span class="dropdown-label">{t('curso.4eso', locale)}</span>
+            {ASIGNATURAS_POR_ETAPA.eso.cursos['4eso'].asignaturas.map((a0) => { const a = localizeAsignatura(a0, locale); return (
               <a href={`/${a.slug}/`} role="menuitem">
                 {a.title}
               </a>
-            ))}
+            ); })}
           </div>
         </div>
       </div>
@@ -39,38 +45,38 @@ import { ASIGNATURAS_POR_ETAPA, SECCIONES_TRANSVERSALES } from '@/lib/asignatura
       <!-- BACH -->
       <div class="nav-group" data-nav-group>
         <button class="nav-trigger" type="button" aria-haspopup="true" aria-expanded="false">
-          BACH
+          {t('nav.bach', locale)}
           <span class="caret" aria-hidden="true">▾</span>
         </button>
         <div class="nav-dropdown" role="menu">
           <div class="dropdown-section">
-            <span class="dropdown-label">{ASIGNATURAS_POR_ETAPA.bach.cursos['1bach'].label}</span>
-            {ASIGNATURAS_POR_ETAPA.bach.cursos['1bach'].asignaturas.map((a) => (
+            <span class="dropdown-label">{t('curso.1bach', locale)}</span>
+            {ASIGNATURAS_POR_ETAPA.bach.cursos['1bach'].asignaturas.map((a0) => { const a = localizeAsignatura(a0, locale); return (
               <a href={`/${a.slug}/`} role="menuitem">
                 {a.title}
               </a>
-            ))}
+            ); })}
           </div>
           <div class="dropdown-section">
-            <span class="dropdown-label">{ASIGNATURAS_POR_ETAPA.bach.cursos['2bach'].label}</span>
-            {ASIGNATURAS_POR_ETAPA.bach.cursos['2bach'].asignaturas.map((a) => (
+            <span class="dropdown-label">{t('curso.2bach', locale)}</span>
+            {ASIGNATURAS_POR_ETAPA.bach.cursos['2bach'].asignaturas.map((a0) => { const a = localizeAsignatura(a0, locale); return (
               <a href={`/${a.slug}/`} role="menuitem">
                 {a.title}
               </a>
-            ))}
+            ); })}
           </div>
           <div class="dropdown-section">
-            <span class="dropdown-label">{ASIGNATURAS_POR_ETAPA.bach.cursos.bach.label}</span>
-            {ASIGNATURAS_POR_ETAPA.bach.cursos.bach.asignaturas.map((a) => (
+            <span class="dropdown-label">{t('curso.optativas', locale)}</span>
+            {ASIGNATURAS_POR_ETAPA.bach.cursos.bach.asignaturas.map((a0) => { const a = localizeAsignatura(a0, locale); return (
               <a href={`/${a.slug}/`} role="menuitem" class={a.estado === 'proximamente' ? 'is-proximamente' : ''}>
                 {a.title}
-                {a.estado === 'proximamente' && <span class="badge">Próximamente</span>}
+                {a.estado === 'proximamente' && <span class="badge">{t('nav.proximamente', locale)}</span>}
               </a>
-            ))}
+            ); })}
           </div>
           <div class="dropdown-section">
-            <span class="dropdown-label">Preparación</span>
-            <a href="/olimpiada/" role="menuitem">Olimpiada de Economía</a>
+            <span class="dropdown-label">{t('nav.preparacion', locale)}</span>
+            <a href="/olimpiada/" role="menuitem">{t('nav.olimpiada', locale)}</a>
           </div>
         </div>
       </div>
@@ -78,19 +84,19 @@ import { ASIGNATURAS_POR_ETAPA, SECCIONES_TRANSVERSALES } from '@/lib/asignatura
       <!-- FP -->
       <div class="nav-group" data-nav-group>
         <button class="nav-trigger" type="button" aria-haspopup="true" aria-expanded="false">
-          FP
+          {t('nav.fp', locale)}
           <span class="caret" aria-hidden="true">▾</span>
         </button>
         <div class="nav-dropdown nav-dropdown--single" role="menu">
           <div class="dropdown-section">
-            <span class="dropdown-label">Itinerario Personal para la Empleabilidad</span>
-            {ASIGNATURAS_POR_ETAPA.fp.cursos.fp.asignaturas.map((a) => (
+            <span class="dropdown-label">{t('nav.ipe.group', locale)}</span>
+            {ASIGNATURAS_POR_ETAPA.fp.cursos.fp.asignaturas.map((a0) => { const a = localizeAsignatura(a0, locale); return (
               <a href={`/${a.slug}/`} role="menuitem" class={a.estado === 'proximamente' ? 'is-proximamente' : ''}>
                 <span class="opt-title">{a.shortLabel}</span>
-                <span class="opt-desc">{a.slug === 'ipe1-fp' ? 'Primer curso · sustituye a la FOL' : 'Segundo curso · búsqueda de empleo y proyecto'}</span>
-                {a.estado === 'proximamente' && <span class="badge">Próximamente</span>}
+                <span class="opt-desc">{a.slug === 'ipe1-fp' ? t('nav.ipe1.desc', locale) : t('nav.ipe2.desc', locale)}</span>
+                {a.estado === 'proximamente' && <span class="badge">{t('nav.proximamente', locale)}</span>}
               </a>
-            ))}
+            ); })}
           </div>
         </div>
       </div>
@@ -98,7 +104,7 @@ import { ASIGNATURAS_POR_ETAPA, SECCIONES_TRANSVERSALES } from '@/lib/asignatura
       <!-- Otros -->
       <div class="nav-group" data-nav-group>
         <button class="nav-trigger" type="button" aria-haspopup="true" aria-expanded="false">
-          Otros
+          {t('nav.otros', locale)}
           <span class="caret" aria-hidden="true">▾</span>
         </button>
         <div class="nav-dropdown nav-dropdown--single" role="menu">
@@ -116,16 +122,17 @@ import { ASIGNATURAS_POR_ETAPA, SECCIONES_TRANSVERSALES } from '@/lib/asignatura
                     </svg>
                   </span>
                 )}
-                {s.label}
+                {t(`sec.${s.slug}.label` as UIKey, locale)}
               </span>
-              <span class="opt-desc">{s.description}</span>
+              <span class="opt-desc">{t(`sec.${s.slug}.desc` as UIKey, locale)}</span>
             </a>
           ))}
         </div>
       </div>
 
       <!-- Oposiciones (link directe, sense dropdown) -->
-      <a href="/oposiciones" class="nav-direct" rel="external">Oposiciones</a>
+      <a href="/oposiciones" class="nav-direct" rel="external">{t('nav.oposiciones', locale)}</a>
+      <LanguageSwitcher />
     </nav>
   </div>
 </header>

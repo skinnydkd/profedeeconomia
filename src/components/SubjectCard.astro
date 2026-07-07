@@ -1,9 +1,12 @@
 ---
 import type { Asignatura } from '@/lib/asignaturas';
+import { getLocale } from '@/i18n/locale';
+import { t } from '@/i18n/ui';
 
 type Props = { asignatura: Asignatura };
 const { asignatura: a } = Astro.props;
 const isPublicado = a.estado === 'publicado';
+const locale = getLocale(Astro.currentLocale);
 ---
 
 <a href={`/${a.slug}/`} class:list={['subject-card', `c-${a.color}`, !isPublicado && 'is-proximamente']}>
@@ -14,8 +17,8 @@ const isPublicado = a.estado === 'publicado';
   <h3>{a.title}</h3>
   <p class="tagline">{a.tagline}</p>
   {isPublicado
-    ? <span class="arrow">Entrar →</span>
-    : <span class="badge-proximamente">Próximamente</span>
+    ? <span class="arrow">{t('card.entrar', locale)} →</span>
+    : <span class="badge-proximamente">{t('nav.proximamente', locale)}</span>
   }
 </a>
 

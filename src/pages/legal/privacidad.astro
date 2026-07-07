@@ -1,71 +1,126 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
-const updated = '4 de junio de 2026';
+import { getLocale } from '@/i18n/locale';
+
+const locale = getLocale(Astro.currentLocale);
+
+const copy = {
+  es: {
+    pageTitle: 'Política de privacidad',
+    description: 'Política de privacidad de profedeeconomia.es: no recogemos datos personales, usamos analítica sin cookies y respetamos tus derechos del RGPD.',
+    h1: 'Política de privacidad',
+    updatedLabel: 'Última actualización:',
+    updatedDate: '4 de junio de 2026',
+    ledePre: 'En resumen:',
+    ledeStrong: 'profedeeconomia.es no recoge datos personales',
+    ledePost: '. No hay registro, ni cuentas de usuario, ni formularios que almacenen tu información, ni publicidad, ni rastreadores comerciales.',
+    h2Datos: '1. Datos personales',
+    p1: 'El sitio es estático y no dispone de backend que recopile o almacene datos personales. No te pedimos registrarte ni rellenar formularios. Si nos escribes por correo, trataremos tu mensaje únicamente para responderte y no lo usaremos para ningún otro fin ni lo cederemos a terceros.',
+    h2Analitica: '2. Analítica web',
+    p2Pre: 'Para conocer de forma agregada qué materiales se usan más, empleamos',
+    p2Strong1: 'analítica respetuosa con la privacidad',
+    p2Mid: '(tipo Plausible):',
+    p2Strong2: 'no usa cookies',
+    p2Post: ', no recoge datos personales ni identificadores individuales, y no permite seguir a las personas entre sitios. Las métricas son anónimas y agregadas.',
+    h2Almacenamiento: '3. Almacenamiento en tu navegador',
+    p3Pre: 'Algunas funciones interactivas (la mejor nota de un test, las notas que escribes en una unidad, el progreso de un simulador) se guardan',
+    p3Strong1: 'localmente en tu propio navegador',
+    p3Mid: 'mediante',
+    p3Em: 'localStorage',
+    p3Mid2: '. Esa información',
+    p3Strong2: 'nunca sale de tu dispositivo',
+    p3Post: ': no se envía a ningún servidor y puedes borrarla en cualquier momento desde los ajustes de tu navegador o con los botones de «borrar progreso» que ofrecen esas funciones.',
+    h2Terceros: '4. Contenido de terceros',
+    p4: 'El sitio enlaza a recursos externos (fuentes oficiales, vídeos, lecturas) y puede incrustar algún contenido de terceros. Esos servicios se rigen por sus propias políticas de privacidad, que no controlamos.',
+    h2Derechos: '5. Tus derechos',
+    p5Pre: 'Conforme al Reglamento General de Protección de Datos (RGPD), tienes derecho de acceso, rectificación, supresión, oposición, limitación y portabilidad sobre tus datos personales. Como no almacenamos datos personales, en la práctica solo pueden ejercerse sobre la correspondencia por correo que nos hayas enviado. Para cualquier consulta, escríbenos a',
+    h2Cambios: '6. Cambios',
+    p6: 'Si el proyecto incorpora en el futuro funciones que traten datos personales (por ejemplo, un boletín o un área de usuario), actualizaremos esta política y lo indicaremos claramente antes de recoger ningún dato.',
+    linkAviso: 'Aviso legal',
+  },
+  ca: {
+    pageTitle: 'Política de privacitat',
+    description: 'Política de privacitat de profedeeconomia.es: no recollim dades personals, usem analítica sense cookies i respectem els teus drets del RGPD.',
+    h1: 'Política de privacitat',
+    updatedLabel: 'Última actualització:',
+    updatedDate: '4 de juny de 2026',
+    ledePre: 'En resum:',
+    ledeStrong: 'profedeeconomia.es no recull dades personals',
+    ledePost: '. No hi ha registre, ni comptes d\'usuari, ni formularis que emmagatzemen la teua informació, ni publicitat, ni rastrejadors comercials.',
+    h2Datos: '1. Dades personals',
+    p1: 'El lloc és estàtic i no disposa de backend que reculla o emmagatzeme dades personals. No et demanem registrar-te ni omplir formularis. Si ens escrius per correu, tractarem el teu missatge únicament per a respondre\'t i no l\'usarem per a cap altra finalitat ni el cedirem a tercers.',
+    h2Analitica: '2. Analítica web',
+    p2Pre: 'Per a conéixer de manera agregada quins materials s\'usen més, emprem',
+    p2Strong1: 'analítica respectuosa amb la privacitat',
+    p2Mid: '(tipus Plausible):',
+    p2Strong2: 'no usa cookies',
+    p2Post: ', no recull dades personals ni identificadors individuals, i no permet seguir les persones entre llocs. Les mètriques són anònimes i agregades.',
+    h2Almacenamiento: '3. Emmagatzematge en el teu navegador',
+    p3Pre: 'Algunes funcions interactives (la millor nota d\'un test, les notes que escrius en una unitat, el progrés d\'un simulador) es guarden',
+    p3Strong1: 'localment en el teu propi navegador',
+    p3Mid: 'mitjançant',
+    p3Em: 'localStorage',
+    p3Mid2: '. Aquesta informació',
+    p3Strong2: 'mai no ix del teu dispositiu',
+    p3Post: ': no s\'envia a cap servidor i pots esborrar-la en qualsevol moment des dels ajustos del teu navegador o amb els botons de «esborrar progrés» que ofereixen aquestes funcions.',
+    h2Terceros: '4. Contingut de tercers',
+    p4: 'El lloc enllaça a recursos externs (fonts oficials, vídeos, lectures) i pot incrustar algun contingut de tercers. Aquests serveis es regeixen per les seues pròpies polítiques de privacitat, que no controlem.',
+    h2Derechos: '5. Els teus drets',
+    p5Pre: 'D\'acord amb el Reglament General de Protecció de Dades (RGPD), tens dret d\'accés, rectificació, supressió, oposició, limitació i portabilitat sobre les teues dades personals. Com que no emmagatzemem dades personals, en la pràctica només poden exercir-se sobre la correspondència per correu que ens hages enviat. Per a qualsevol consulta, escriu-nos a',
+    h2Cambios: '6. Canvis',
+    p6: 'Si el projecte incorpora en el futur funcions que tracten dades personals (per exemple, un butlletí o una àrea d\'usuari), actualitzarem aquesta política i ho indicarem clarament abans de recollir cap dada.',
+    linkAviso: 'Avís legal',
+  },
+}[locale];
 ---
 <BaseLayout
-  title="Política de privacidad"
-  description="Política de privacidad de profedeeconomia.es: no recogemos datos personales, usamos analítica sin cookies y respetamos tus derechos del RGPD."
+  title={copy.pageTitle}
+  description={copy.description}
+  contentLang={locale}
 >
   <main class="prose">
-    <h1>Política de privacidad</h1>
-    <p class="updated">Última actualización: {updated}</p>
+    <h1>{copy.h1}</h1>
+    <p class="updated">{copy.updatedLabel} {copy.updatedDate}</p>
 
     <p class="lede">
-      En resumen: <strong>profedeeconomia.es no recoge datos personales</strong>. No hay
-      registro, ni cuentas de usuario, ni formularios que almacenen tu información, ni
-      publicidad, ni rastreadores comerciales.
+      {copy.ledePre} <strong>{copy.ledeStrong}</strong>{copy.ledePost}
     </p>
 
-    <h2>1. Datos personales</h2>
+    <h2>{copy.h2Datos}</h2>
     <p>
-      El sitio es estático y no dispone de backend que recopile o almacene datos
-      personales. No te pedimos registrarte ni rellenar formularios. Si nos escribes por
-      correo, trataremos tu mensaje únicamente para responderte y no lo usaremos para
-      ningún otro fin ni lo cederemos a terceros.
+      {copy.p1}
     </p>
 
-    <h2>2. Analítica web</h2>
+    <h2>{copy.h2Analitica}</h2>
     <p>
-      Para conocer de forma agregada qué materiales se usan más, empleamos <strong>analítica
-      respetuosa con la privacidad</strong> (tipo Plausible): <strong>no usa cookies</strong>,
-      no recoge datos personales ni identificadores individuales, y no permite seguir a las
-      personas entre sitios. Las métricas son anónimas y agregadas.
+      {copy.p2Pre} <strong>{copy.p2Strong1}</strong>
+      {copy.p2Mid} <strong>{copy.p2Strong2}</strong>{copy.p2Post}
     </p>
 
-    <h2>3. Almacenamiento en tu navegador</h2>
+    <h2>{copy.h2Almacenamiento}</h2>
     <p>
-      Algunas funciones interactivas (la mejor nota de un test, las notas que escribes en
-      una unidad, el progreso de un simulador) se guardan <strong>localmente en tu propio
-      navegador</strong> mediante <em>localStorage</em>. Esa información <strong>nunca sale de
-      tu dispositivo</strong>: no se envía a ningún servidor y puedes borrarla en cualquier
-      momento desde los ajustes de tu navegador o con los botones de «borrar progreso» que
-      ofrecen esas funciones.
+      {copy.p3Pre} <strong>{copy.p3Strong1}</strong>
+      {copy.p3Mid} <em>{copy.p3Em}</em>{copy.p3Mid2}
+      <strong>{copy.p3Strong2}</strong>{copy.p3Post}
     </p>
 
-    <h2>4. Contenido de terceros</h2>
+    <h2>{copy.h2Terceros}</h2>
     <p>
-      El sitio enlaza a recursos externos (fuentes oficiales, vídeos, lecturas) y puede
-      incrustar algún contenido de terceros. Esos servicios se rigen por sus propias
-      políticas de privacidad, que no controlamos.
+      {copy.p4}
     </p>
 
-    <h2>5. Tus derechos</h2>
+    <h2>{copy.h2Derechos}</h2>
     <p>
-      Conforme al Reglamento General de Protección de Datos (RGPD), tienes derecho de
-      acceso, rectificación, supresión, oposición, limitación y portabilidad sobre tus
-      datos personales. Como no almacenamos datos personales, en la práctica solo pueden
-      ejercerse sobre la correspondencia por correo que nos hayas enviado. Para cualquier
-      consulta, escríbenos a <a class="editorial-link" href="mailto:hola@profedeeconomia.es">hola@profedeeconomia.es</a>.
+      {copy.p5Pre}
+      <a class="editorial-link" href="mailto:hola@profedeeconomia.es">hola@profedeeconomia.es</a>.
     </p>
 
-    <h2>6. Cambios</h2>
+    <h2>{copy.h2Cambios}</h2>
     <p>
-      Si el proyecto incorpora en el futuro funciones que traten datos personales (por
-      ejemplo, un boletín o un área de usuario), actualizaremos esta política y lo
-      indicaremos claramente antes de recoger ningún dato.
+      {copy.p6}
     </p>
 
-    <p class="links"><a class="editorial-link" href="/legal/aviso-legal/">Aviso legal</a></p>
+    <p class="links"><a class="editorial-link" href="/legal/aviso-legal/">{copy.linkAviso}</a></p>
   </main>
 </BaseLayout>
 

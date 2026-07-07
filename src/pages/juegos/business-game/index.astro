@@ -8,31 +8,58 @@
  */
 import BaseLayout from '@layouts/BaseLayout.astro';
 import BusinessGameOnline from '@components/business-game/BusinessGameOnline.tsx';
+import { getLocale } from '@/i18n/locale';
+
+const locale = getLocale(Astro.currentLocale);
+
+const copy = {
+  es: {
+    pageTitle: 'Business Game — simulador de empresa (prototipo)',
+    description: 'Prototipo del simulador de empresa de curso completo: equipos que dirigen empresas compitiendo en un mismo mercado, con decisiones en las 4 áreas y resultados interdependientes.',
+    bcInicio: 'Inicio',
+    bcJuegos: 'Juegos',
+    lede: 'El simulador de empresa de curso completo: cada equipo dirige una empresa y compite en el mismo mercado. Cada ronda (un año) deciden en las 4 áreas —comercial, operaciones, RR. HH. y finanzas— y, según lo que decidan ellos y los demás, venden más o menos y ganan o pierden.',
+    notaPre: 'El',
+    notaStrong1: 'profe crea una liga',
+    notaMid: 'y comparte el código; cada equipo se une desde su dispositivo (nombre e instituto, como en «Juegos Económicos»). Cada ronda, las empresas envían sus decisiones y el profe cierra la ronda: el mercado reparte las ventas y el ranking queda registrado. También hay un',
+    notaStrong2: 'modo práctica local',
+    notaPost: 'sin registro para probarlo en un solo dispositivo.',
+  },
+  ca: {
+    pageTitle: 'Business Game — simulador d\'empresa (prototip)',
+    description: 'Prototip del simulador d\'empresa de curs complet: equips que dirigeixen empreses competint en un mateix mercat, amb decisions en les 4 àrees i resultats interdependents.',
+    bcInicio: 'Inici',
+    bcJuegos: 'Jocs',
+    lede: 'El simulador d\'empresa de curs complet: cada equip dirigeix una empresa i competeix en el mateix mercat. Cada ronda (un any) decideixen en les 4 àrees —comercial, operacions, RR. HH. i finances— i, segons el que decidisquen ells i la resta, venen més o menys i guanyen o perden.',
+    notaPre: 'El',
+    notaStrong1: 'profe crea una lliga',
+    notaMid: 'i comparteix el codi; cada equip s\'uneix des del seu dispositiu (nom i institut, com en «Jocs Econòmics»). Cada ronda, les empreses envien les seues decisions i el profe tanca la ronda: el mercat reparteix les vendes i el rànquing queda registrat. També hi ha un',
+    notaStrong2: 'mode pràctica local',
+    notaPost: 'sense registre per a provar-lo en un sol dispositiu.',
+  },
+}[locale];
 ---
 
 <BaseLayout
-  title="Business Game — simulador de empresa (prototipo)"
-  description="Prototipo del simulador de empresa de curso completo: equipos que dirigen empresas compitiendo en un mismo mercado, con decisiones en las 4 áreas y resultados interdependientes."
+  title={copy.pageTitle}
+  description={copy.description}
+  contentLang={locale}
 >
   <div class="container">
-    <nav class="breadcrumb"><a href="/">Inicio</a> <span class="sep">›</span> <a href="/juegos/">Juegos</a> <span class="sep">›</span> <span>Business Game</span></nav>
+    <nav class="breadcrumb"><a href="/">{copy.bcInicio}</a> <span class="sep">›</span> <a href="/juegos/">{copy.bcJuegos}</a> <span class="sep">›</span> <span>Business Game</span></nav>
   </div>
 
   <section class="hero">
     <div class="container">
       <h1>Business <span class="serif-italic-wonk accent">Game</span>.</h1>
       <p class="lede">
-        El simulador de empresa de curso completo: cada equipo dirige una empresa y compite
-        en el mismo mercado. Cada ronda (un año) deciden en las 4 áreas —comercial,
-        operaciones, RR. HH. y finanzas— y, según lo que decidan ellos y los demás, venden
-        más o menos y ganan o pierden.
+        {copy.lede}
       </p>
       <div class="nota">
-        El <strong>profe crea una liga</strong> y comparte el código; cada equipo se une
-        desde su dispositivo (nombre e instituto, como en «Juegos Económicos»). Cada ronda,
-        las empresas envían sus decisiones y el profe cierra la ronda: el mercado reparte las
-        ventas y el ranking queda registrado. También hay un <strong>modo práctica local</strong>
-        sin registro para probarlo en un solo dispositivo.
+        {copy.notaPre} <strong>{copy.notaStrong1}</strong>
+        {copy.notaMid}
+        <strong>{copy.notaStrong2}</strong>
+        {copy.notaPost}
       </div>
     </div>
   </section>

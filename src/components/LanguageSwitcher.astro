@@ -1,0 +1,34 @@
+---
+import { getLocale, switchLocalePath, type Locale } from '@/i18n/locale';
+import { t } from '@/i18n/ui';
+
+const locale = getLocale(Astro.currentLocale);
+const pathname = Astro.url.pathname; // locale-less under fallback rewrite; switchLocalePath adds the prefix
+const options: { code: Locale; label: string }[] = [
+  { code: 'es', label: t('lang.es', locale) },
+  { code: 'ca', label: t('lang.ca', locale) },
+];
+---
+<div class="lang-switch" role="group" aria-label={t('lang.switch.aria', locale)}>
+  {options.map((o) => (
+    o.code === locale
+      ? <span class="lang-opt is-active" aria-current="true">{o.label}</span>
+      : <a class="lang-opt" href={switchLocalePath(pathname, o.code)} hreflang={o.code}>{o.label}</a>
+  ))}
+</div>
+
+<style>
+  .lang-switch { display: inline-flex; align-items: center; gap: 0.15rem; margin-left: 0.4rem; }
+  .lang-opt {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    color: var(--color-ink-mute);
+    text-decoration: none;
+    padding: 0.25rem 0.4rem;
+    border-radius: 4px;
+    transition: color .15s ease, background .15s ease;
+  }
+  a.lang-opt:hover, a.lang-opt:focus-visible { color: var(--color-terra); background: var(--color-bg-cream); }
+  .lang-opt.is-active { color: var(--color-ink); font-weight: 700; }
+</style>

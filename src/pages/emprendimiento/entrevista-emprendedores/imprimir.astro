@@ -1,5 +1,11 @@
 ---
 import '@/styles/global.css';
+import { getLocale } from '@/i18n/locale';
+
+const locale = getLocale(Astro.currentLocale);
+
+// Question bank is content data (not the page's own editorial prose) and
+// stays in ES for both locales, per the Fase 1 skeleton plan.
 const obligatorias = [
   '¿Qué forma jurídica adoptaste y por qué? (autónomo, SL, SA…)',
   '¿Necesitabas financiación?',
@@ -12,32 +18,65 @@ const obligatorias = [
   '¿Tienes alguna anécdota divertida o interesante como emprendedor/a?',
   '¿Qué consejo le darías a alguien que está pensando en emprender?',
 ];
+
+const copy = {
+  es: {
+    title: 'Plantilla · Entrevista a emprendedores',
+    h1: 'Entrevista a un emprendedor/a',
+    sub: 'Economía · proyecto de emprendimiento',
+    negocio: 'Nombre del negocio',
+    nombreEmprendedor: 'Nombre del emprendedor/a',
+    direccion: 'Dirección del negocio',
+    alumno1: 'Alumno/a 1',
+    alumno2: 'Alumno/a 2',
+    h2Obligatorias: 'Preguntas obligatorias',
+    h2Optativas: 'Preguntas optativas (elige 5)',
+    numPregunta: 'Nº de pregunta: ____ ·',
+    numPreguntaMuted: '(escribe la pregunta y la respuesta)',
+    footer: 'profedeeconomia.es · material abierto CC BY-NC-SA · ¡gracias por su tiempo!',
+  },
+  ca: {
+    title: 'Plantilla · Entrevista a emprenedors',
+    h1: 'Entrevista a un emprenedor/a',
+    sub: "Economia · projecte d'emprenedoria",
+    negocio: 'Nom del negoci',
+    nombreEmprendedor: "Nom de l'emprenedor/a",
+    direccion: 'Adreça del negoci',
+    alumno1: 'Alumne/a 1',
+    alumno2: 'Alumne/a 2',
+    h2Obligatorias: 'Preguntes obligatòries',
+    h2Optativas: 'Preguntes optatives (tria 5)',
+    numPregunta: 'Núm. de pregunta: ____ ·',
+    numPreguntaMuted: '(escriu la pregunta i la resposta)',
+    footer: 'profedeeconomia.es · material obert CC BY-NC-SA · gràcies pel seu temps!',
+  },
+}[locale];
 ---
-<html lang="es">
+<html lang={locale}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex" />
-    <title>Plantilla · Entrevista a emprendedores</title>
+    <title>{copy.title}</title>
   </head>
   <body>
     <main class="sheet">
       <header class="head">
         <div class="brand">profedeeconomia.es</div>
-        <h1>Entrevista a un emprendedor/a</h1>
-        <p class="sub">Economía · proyecto de emprendimiento</p>
+        <h1>{copy.h1}</h1>
+        <p class="sub">{copy.sub}</p>
       </header>
 
       <section class="datos">
-        <div><span>Nombre del negocio</span><span class="line"></span></div>
-        <div><span>Nombre del emprendedor/a</span><span class="line"></span></div>
-        <div class="full"><span>Dirección del negocio</span><span class="line"></span></div>
-        <div><span>Alumno/a 1</span><span class="line"></span></div>
-        <div><span>Alumno/a 2</span><span class="line"></span></div>
+        <div><span>{copy.negocio}</span><span class="line"></span></div>
+        <div><span>{copy.nombreEmprendedor}</span><span class="line"></span></div>
+        <div class="full"><span>{copy.direccion}</span><span class="line"></span></div>
+        <div><span>{copy.alumno1}</span><span class="line"></span></div>
+        <div><span>{copy.alumno2}</span><span class="line"></span></div>
       </section>
 
-      <h2>Preguntas obligatorias</h2>
-      <ol class="preg">
+      <h2>{copy.h2Obligatorias}</h2>
+      <ol class="preg" lang="es">
         {obligatorias.map((q) => (
           <li>
             <p class="q">{q}</p>
@@ -46,17 +85,17 @@ const obligatorias = [
         ))}
       </ol>
 
-      <h2 class="break">Preguntas optativas (elige 5)</h2>
+      <h2 class="break">{copy.h2Optativas}</h2>
       <ol class="preg">
         {[1, 2, 3, 4, 5].map(() => (
           <li>
-            <p class="q">Nº de pregunta: ____ · <span class="muted">(escribe la pregunta y la respuesta)</span></p>
+            <p class="q">{copy.numPregunta} <span class="muted">{copy.numPreguntaMuted}</span></p>
             <div class="ans tall"></div>
           </li>
         ))}
       </ol>
 
-      <footer class="foot">profedeeconomia.es · material abierto CC BY-NC-SA · ¡gracias por su tiempo!</footer>
+      <footer class="foot">{copy.footer}</footer>
     </main>
 
     <script src="https://unpkg.com/pagedjs/dist/paged.polyfill.js"></script>

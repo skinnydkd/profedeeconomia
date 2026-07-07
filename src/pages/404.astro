@@ -1,27 +1,56 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
 import { ASIGNATURAS_PUBLICADAS } from '@/lib/asignaturas';
+import { getLocale } from '@/i18n/locale';
+
+const locale = getLocale(Astro.currentLocale);
+
+const copy = {
+  es: {
+    pageTitle: 'Página no encontrada',
+    h1: 'Página no encontrada',
+    lede: 'La dirección que has buscado no existe o ha cambiado de lugar. Prueba desde uno de estos puntos de partida.',
+    labelGeneral: 'General',
+    linkInicio: 'Inicio',
+    linkJuegos: 'Juegos',
+    linkHerramientas: 'Herramientas',
+    linkDinamicas: 'Dinámicas',
+    linkDebates: 'Debates',
+    labelAsignaturas: 'Asignaturas',
+  },
+  ca: {
+    pageTitle: 'Pàgina no trobada',
+    h1: 'Pàgina no trobada',
+    lede: "L'adreça que has buscat no existeix o ha canviat de lloc. Prova des d'un d'aquests punts de partida.",
+    labelGeneral: 'General',
+    linkInicio: 'Inici',
+    linkJuegos: 'Jocs',
+    linkHerramientas: 'Ferramentes',
+    linkDinamicas: 'Dinàmiques',
+    linkDebates: 'Debats',
+    labelAsignaturas: 'Assignatures',
+  },
+}[locale];
 ---
-<BaseLayout title="Página no encontrada">
+<BaseLayout title={copy.pageTitle} contentLang={locale}>
   <main class="prose">
-    <h1>Página no encontrada</h1>
+    <h1>{copy.h1}</h1>
 
     <p class="lede">
-      La dirección que has buscado no existe o ha cambiado de lugar.
-      Prueba desde uno de estos puntos de partida.
+      {copy.lede}
     </p>
 
     <nav class="links-block">
-      <p class="section-label">General</p>
+      <p class="section-label">{copy.labelGeneral}</p>
       <ul class="link-list">
-        <li><a class="editorial-link" href="/">Inicio</a></li>
-        <li><a class="editorial-link" href="/juegos/">Juegos</a></li>
-        <li><a class="editorial-link" href="/herramientas/">Herramientas</a></li>
-        <li><a class="editorial-link" href="/dinamicas/">Dinámicas</a></li>
-        <li><a class="editorial-link" href="/debates/">Debates</a></li>
+        <li><a class="editorial-link" href="/">{copy.linkInicio}</a></li>
+        <li><a class="editorial-link" href="/juegos/">{copy.linkJuegos}</a></li>
+        <li><a class="editorial-link" href="/herramientas/">{copy.linkHerramientas}</a></li>
+        <li><a class="editorial-link" href="/dinamicas/">{copy.linkDinamicas}</a></li>
+        <li><a class="editorial-link" href="/debates/">{copy.linkDebates}</a></li>
       </ul>
 
-      <p class="section-label">Asignaturas</p>
+      <p class="section-label">{copy.labelAsignaturas}</p>
       <ul class="link-list">
         {ASIGNATURAS_PUBLICADAS.map((a) => (
           <li>

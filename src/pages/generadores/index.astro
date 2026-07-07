@@ -5,26 +5,51 @@
  */
 import BaseLayout from '@layouts/BaseLayout.astro';
 import { GENERADORES_EXTERNOS, gruposNativos } from '@/lib/generadores';
+import { getLocale } from '@/i18n/locale';
 
 const grupos = gruposNativos();
 const TIPO_LABEL: Record<string, string> = { rubrica: 'Rúbrica', calculadora: 'Calculadora', plantilla: 'Plantilla' };
+
+const locale = getLocale(Astro.currentLocale);
+
+// The hero intro, breadcrumb and closing note are localized — the tool card
+// grids (external LOMLOE generators + native tools registries) stay ES under /ca.
+const copy = {
+  es: {
+    heroAccent: 'Herramientas',
+    heroTail: 'docentes.',
+    lede: 'Lo que uso para preparar las clases: los generadores LOMLOE de mi proyecto hermano y un puñado de herramientas de evaluación y aula que funcionan en el navegador, se autoguardan y se exportan o imprimen.',
+    bcInicio: 'Inicio',
+    bcCurrent: 'Herramientas docentes',
+    notePre: 'Los generadores LOMLOE viven en',
+    notePost: 'donde los mantengo. El resto son herramientas que he montado aquí, por si os sirven.',
+  },
+  ca: {
+    heroAccent: 'Ferramentes',
+    heroTail: 'docents.',
+    lede: "El que use per a preparar les classes: els generadors LOMLOE del meu projecte germà i un grapat de ferramentes d'avaluació i aula que funcionen en el navegador, s'autoguarden i s'exporten o s'imprimeixen.",
+    bcInicio: 'Inici',
+    bcCurrent: 'Ferramentes docents',
+    notePre: 'Els generadors LOMLOE viuen en',
+    notePost: "on els mantinc. La resta són ferramentes que he muntat ací, per si us serveixen.",
+  },
+}[locale];
 ---
 
 <BaseLayout
   title="Herramientas docentes"
   description="Generadores LOMLOE (situaciones de aprendizaje, programación) y herramientas de evaluación y aula: rúbricas, calificaciones y plantillas para imprimir."
+  contentLang="es"
 >
   <div class="container">
-    <nav class="breadcrumb"><a href="/">Inicio</a> <span class="sep">›</span> <span>Herramientas docentes</span></nav>
+    <nav class="breadcrumb"><a href="/">{copy.bcInicio}</a> <span class="sep">›</span> <span>{copy.bcCurrent}</span></nav>
   </div>
 
-  <section class="hero">
+  <section class="hero" lang={locale}>
     <div class="container">
-      <h1><span class="serif-italic-wonk accent">Herramientas</span> docentes.</h1>
+      <h1><span class="serif-italic-wonk accent">{copy.heroAccent}</span> {copy.heroTail}</h1>
       <p class="lede">
-        Lo que uso para preparar las clases: los generadores LOMLOE de mi
-        proyecto hermano y un puñado de herramientas de evaluación y aula que funcionan
-        en el navegador, se autoguardan y se exportan o imprimen.
+        {copy.lede}
       </p>
     </div>
   </section>
@@ -59,10 +84,10 @@ const TIPO_LABEL: Record<string, string> = { rubrica: 'Rúbrica', calculadora: '
         </>
       ))}
 
-      <p class="note">
-        Los generadores LOMLOE viven en
+      <p class="note" lang={locale}>
+        {copy.notePre}
         <a href="https://oposicioneseconomia.es" class="editorial-link" rel="external noopener" target="_blank">oposicioneseconomia.es</a>,
-        donde los mantengo. El resto son herramientas que he montado aquí, por si os sirven.
+        {copy.notePost}
       </p>
     </div>
   </section>

@@ -9,6 +9,7 @@ import { preguntasDeBloque } from '@/lib/olimpiada/banco';
 import BancoIsland from '@components/olimpiada/BancoIsland.tsx';
 import type { Pregunta } from '@components/QuizPlayer.tsx';
 import type { PreguntaBanco } from '@/lib/olimpiada/banco';
+import { getLocale } from '@/i18n/locale';
 
 // Build the porBloque record — each block maps its questions to QuizPlayer's Pregunta shape.
 const porBloque: Record<string, Pregunta[]> = {};
@@ -22,26 +23,47 @@ for (const b of BLOQUES) {
 }
 
 const bloqueTabs = BLOQUES.map((b) => ({ slug: b.slug, label: b.label }));
+
+const locale = getLocale(Astro.currentLocale);
+
+// The hero intro and breadcrumb are localized — the BancoIsland quiz (bloque
+// labels, questions) comes from the olimpiada registry and stays in Spanish under /ca.
+const copy = {
+  es: {
+    heroTitle: 'Banco de preguntas',
+    lede: 'Selecciona un bloque temático y practica con preguntas tipo test. Cada pregunta tiene feedback explicativo para consolidar la teoría.',
+    bcInicio: 'Inicio',
+    bcOlimpiada: 'Olimpiada',
+    bcCurrent: 'Banco de preguntas',
+  },
+  ca: {
+    heroTitle: 'Banc de preguntes',
+    lede: 'Selecciona un bloc temàtic i practica amb preguntes tipus test. Cada pregunta té feedback explicatiu per a consolidar la teoria.',
+    bcInicio: 'Inici',
+    bcOlimpiada: 'Olimpíada',
+    bcCurrent: 'Banc de preguntes',
+  },
+}[locale];
 ---
 
 <BaseLayout
   title="Banco de preguntas — Olimpiada de Economía"
   description="Test interactivo por bloques temáticos para la Olimpiada de Economía. Selecciona un bloque y practica con feedback inmediato."
+  contentLang="es"
 >
   <div class="container">
     <nav class="breadcrumb">
-      <a href="/">Inicio</a> <span class="sep">›</span>
-      <a href="/olimpiada/">Olimpiada</a> <span class="sep">›</span>
-      <span>Banco de preguntas</span>
+      <a href="/">{copy.bcInicio}</a> <span class="sep">›</span>
+      <a href="/olimpiada/">{copy.bcOlimpiada}</a> <span class="sep">›</span>
+      <span>{copy.bcCurrent}</span>
     </nav>
   </div>
 
-  <section class="hero">
+  <section class="hero" lang={locale}>
     <div class="container">
-      <h1 class="serif">Banco de preguntas</h1>
+      <h1 class="serif">{copy.heroTitle}</h1>
       <p class="lede">
-        Selecciona un bloque temático y practica con preguntas tipo test.
-        Cada pregunta tiene feedback explicativo para consolidar la teoría.
+        {copy.lede}
       </p>
     </div>
   </section>
