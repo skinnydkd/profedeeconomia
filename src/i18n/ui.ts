@@ -46,6 +46,7 @@ export const ui = {
     'sec.jocs-economics.desc': 'Concurso competitivo de economía con ranking por alumno e instituto.',
     'sec.generadores.label': 'Herramientas Docentes',
     'sec.generadores.desc': 'Generadores LOMLOE y herramientas de evaluación y aula.',
+    'card.entrar': 'Entrar',
   },
   ca: {
     'skip.main': 'Salta al contingut principal',
@@ -91,6 +92,7 @@ export const ui = {
     'sec.jocs-economics.desc': "Concurs competitiu d'economia amb rànquing per alumne i institut.",
     'sec.generadores.label': 'Ferramentes Docents',
     'sec.generadores.desc': "Generadors LOMLOE i ferramentes d'avaluació i aula.",
+    'card.entrar': 'Entra',
   },
 } as const;
 

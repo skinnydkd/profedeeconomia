@@ -17,4 +17,11 @@ describe('localizeAsignatura', () => {
       expect(ASIGNATURAS[slug as keyof typeof ASIGNATURAS]).toBeDefined();
     }
   });
+  it('every published asignatura has a CA overlay', () => {
+    for (const a of Object.values(ASIGNATURAS)) {
+      if (a.estado === 'publicado') {
+        expect(ASIGNATURAS_CA[a.slug]).toBeDefined();
+      }
+    }
+  });
 });
