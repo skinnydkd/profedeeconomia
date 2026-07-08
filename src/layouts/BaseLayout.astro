@@ -114,5 +114,10 @@ const resolvedOgImage = new URL(ogImage ?? autoOgImage, Astro.site).toString();
       <slot />
     </main>
     <SiteFooter />
+    <script>
+      // Keep the VAL locale sticky across navigation (progressive enhancement).
+      import { applyStickyLocale } from '@/i18n/sticky-locale';
+      applyStickyLocale();
+    </script>
   </body>
 </html>
