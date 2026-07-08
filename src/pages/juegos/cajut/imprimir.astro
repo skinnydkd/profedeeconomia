@@ -41,6 +41,12 @@ const totalPreguntas = tests.reduce((acc, t) => acc + t.data.preguntas.length, 0
 
 // A, B, C, D… labels for the options.
 const OPTION_LABELS = ['A', 'B', 'C', 'D', 'E', 'F'];
+
+// Only multiple-choice questions get a printable option list. Typed guard so the
+// template narrows to the `opcion-multiple` variant (opciones/correcta present).
+type PreguntaTest = (typeof tests)[number]['data']['preguntas'][number];
+const esOpcionMultiple = (p: PreguntaTest): p is Extract<PreguntaTest, { tipo: 'opcion-multiple' }> =>
+  p.tipo === 'opcion-multiple';
 ---
 
 <BaseLayout
@@ -89,7 +95,7 @@ const OPTION_LABELS = ['A', 'B', 'C', 'D', 'E', 'F'];
           <div class="unit">
             <h3 class="unit-title">Unidad {t.data.unidad_relacionada} — {t.data.title}</h3>
             <ol class="q-list">
-              {t.data.preguntas.filter((p) => (p.tipo ?? 'opcion-multiple') === 'opcion-multiple' && 'opciones' in p).map((p) => (
+              {t.data.preguntas.filter(esOpcionMultiple).map((p) => (
                 <li class="q">
                   <p class="q-text">{p.enunciado}</p>
                   <ol class="q-opts">
