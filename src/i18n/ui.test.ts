@@ -14,6 +14,10 @@ describe('ui dictionary', () => {
     expect(t('footer.tagline', 'ca')).toContain('professorat');
     expect(t('footer.tagline', 'es')).toContain('profesores');
   });
+  it('localizes a card CTA to Valencian', () => {
+    expect(t('card.abrir', 'es')).toBe('Abrir →');
+    expect(t('card.abrir', 'ca')).not.toBe('Abrir →');
+  });
   it('every transversal section has label + desc keys in every locale', () => {
     for (const s of SECCIONES_TRANSVERSALES) {
       const labelKey = `sec.${s.slug}.label` as UIKey;
