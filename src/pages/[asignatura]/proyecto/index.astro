@@ -7,14 +7,14 @@
 import { existsSync } from 'node:fs';
 import { resolve } from 'node:path';
 import BaseLayout from '@layouts/BaseLayout.astro';
-import { ASIGNATURAS } from '@/lib/asignaturas';
+import { ASIGNATURAS, type AsignaturaSlug } from '@/lib/asignaturas';
 import { breadcrumbLd } from '@/lib/seo';
 import { getCollection } from 'astro:content';
 import type { GetStaticPaths } from 'astro';
 
 export const getStaticPaths = (async () => {
   const all = await getCollection('proyecto');
-  const bySlug = new Map<string, typeof all>();
+  const bySlug = new Map<AsignaturaSlug, typeof all>();
   for (const e of all) {
     if (e.data.estado !== 'publicado') continue;
     const arr = bySlug.get(e.data.asignatura) ?? [];

@@ -18,8 +18,8 @@ import {
   toPublicState,
   toPrivateState,
   type MatchState,
-  type Question,
 } from './state';
+import type { Question } from './questions';
 import { MAX_PLAYERS, SCORE_MAX, SCORE_MIN_ON_CORRECT, TIMER_QUESTION_S } from './constants';
 
 function rng(seed: number): () => number {

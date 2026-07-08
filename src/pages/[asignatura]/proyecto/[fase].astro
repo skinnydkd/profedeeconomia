@@ -8,13 +8,13 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 import FaseMeta from '@components/emprendimiento/FaseMeta.astro';
 import BloqueCuaderno from '@components/emprendimiento/BloqueCuaderno.astro';
 import PuenteUnidades from '@components/emprendimiento/PuenteUnidades.astro';
-import { ASIGNATURAS } from '@/lib/asignaturas';
+import { ASIGNATURAS, type AsignaturaSlug } from '@/lib/asignaturas';
 import { getCollection, render } from 'astro:content';
 import type { GetStaticPaths } from 'astro';
 
 export const getStaticPaths = (async () => {
   const all = (await getCollection('proyecto')).filter((e) => e.data.estado === 'publicado');
-  const bySlug = new Map<string, typeof all>();
+  const bySlug = new Map<AsignaturaSlug, typeof all>();
   for (const e of all) {
     const arr = bySlug.get(e.data.asignatura) ?? [];
     arr.push(e);

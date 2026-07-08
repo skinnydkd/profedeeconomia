@@ -4,13 +4,13 @@
  * Several ordered sections per subject; reuses the editorial print system.
  * Mirror of ebau/imprimir.astro, adapted to the `proyecto` collection.
  */
-import { ASIGNATURAS } from '@/lib/asignaturas';
+import { ASIGNATURAS, type AsignaturaSlug } from '@/lib/asignaturas';
 import { getCollection, render } from 'astro:content';
 import type { GetStaticPaths } from 'astro';
 
 export const getStaticPaths = (async () => {
   const all = await getCollection('proyecto');
-  const bySlug = new Map<string, typeof all>();
+  const bySlug = new Map<AsignaturaSlug, typeof all>();
   for (const e of all) {
     if (e.data.estado !== 'publicado') continue;
     const arr = bySlug.get(e.data.asignatura) ?? [];
