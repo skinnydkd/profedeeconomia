@@ -6,20 +6,34 @@
 import BaseLayout from '@layouts/BaseLayout.astro';
 import { gruposHerramientas, FAMILIAS_HERRAMIENTA } from '@/lib/herramientas';
 import { getLocale } from '@/i18n/locale';
-
-const groups = gruposHerramientas();
-const activeFamilias = new Set(groups.map((g) => g.familia.slug));
-const TIPO_LABEL: Record<string, string> = {
-  calculadora: 'Calculadora', simulador: 'Simulador', test: 'Test',
-  generador: 'Generador', buscador: 'Buscador', plantilla: 'Plantilla',
-};
+import { t } from '@/i18n/ui';
+import { localizeHerramienta } from '@/i18n/herramientas-ca';
+import { localizeFamilias, FAMILIAS_HERRAMIENTA_CA } from '@/i18n/familias-ca';
 
 const locale = getLocale(Astro.currentLocale);
 
-// The hero intro and breadcrumb are localized — the family filters, family
-// intros and tool card grids (herramientas registry) stay in Spanish under /ca.
+const groups = gruposHerramientas();
+const activeFamilias = new Set(groups.map((g) => g.familia.slug));
+
+// Family headers and filter chips read from the localized list; the grouping
+// itself stays keyed by the ES registry slugs.
+const familias = localizeFamilias(FAMILIAS_HERRAMIENTA, FAMILIAS_HERRAMIENTA_CA, locale);
+const familiaPorSlug = new Map(familias.map((f) => [f.slug, f]));
+
+const TIPO_LABEL: Record<string, string> = {
+  calculadora: t('tipo.calculadora', locale),
+  simulador: t('tipo.simulador', locale),
+  test: t('tipo.test', locale),
+  generador: t('tipo.generador', locale),
+  buscador: t('tipo.buscador', locale),
+  plantilla: t('tipo.plantilla', locale),
+};
+
 const copy = {
   es: {
+    metaTitle: 'Herramientas',
+    metaDesc:
+      'Calculadoras y simuladores para usar en clase: punto muerto, ratios, VAN/TIR, elasticidad, nómina, IRPF y más, con su encaje curricular.',
     heroAccent: 'Herramientas',
     heroTail: 'para usar en clase.',
     lede: 'La caja de herramientas del web: calculadoras y simuladores interactivos —punto muerto, ratios, VAN y TIR, elasticidad, nómina…— agrupados por tema y con el mapa de en qué unidades de qué asignaturas encajan.',
@@ -27,6 +41,9 @@ const copy = {
     bcCurrent: 'Herramientas',
   },
   ca: {
+    metaTitle: 'Ferramentes',
+    metaDesc:
+      "Calculadores i simuladors per a usar a classe: punt mort, ràtios, VAN/TIR, elasticitat, nòmina, IRPF i més, amb el seu encaix curricular.",
     heroAccent: 'Ferramentes',
     heroTail: 'per a usar a classe.',
     lede: "La caixa de ferramentes del web: calculadores i simuladors interactius —punt mort, ràtios, VAN i TIR, elasticitat, nòmina…— agrupats per tema i amb el mapa d'en quines unitats de quines assignatures encaixen.",
@@ -37,15 +54,15 @@ const copy = {
 ---
 
 <BaseLayout
-  title="Herramientas"
-  description="Calculadoras y simuladores para usar en clase: punto muerto, ratios, VAN/TIR, elasticidad, nómina, IRPF y más, con su encaje curricular."
-  contentLang="es"
+  title={copy.metaTitle}
+  description={copy.metaDesc}
+  contentLang={locale}
 >
   <div class="container">
     <nav class="breadcrumb"><a href="/">{copy.bcInicio}</a> <span class="sep">›</span> <span>{copy.bcCurrent}</span></nav>
   </div>
 
-  <section class="hero" lang={locale}>
+  <section class="hero">
     <div class="container">
       <h1><span class="serif-italic-wonk accent">{copy.heroAccent}</span> {copy.heroTail}</h1>
       <p class="lede">
@@ -56,33 +73,39 @@ const copy = {
 
   <section class="filters">
     <div class="container">
-      <button class="chip is-active" data-filter="all" type="button">Todas</button>
-      {FAMILIAS_HERRAMIENTA.filter((f) => activeFamilias.has(f.slug)).map((f) => (
+      <button class="chip is-active" data-filter="all" type="button">{t('filtro.todas', locale)}</button>
+      {familias.filter((f) => activeFamilias.has(f.slug)).map((f) => (
         <button class="chip" data-filter={f.slug} type="button"
           style={`--chip-color: var(${f.colorVar})`}>{f.label}</button>
       ))}
     </div>
   </section>
 
-  {groups.map((g) => (
-    <section class="familia" data-familia={g.familia.slug}>
-      <div class="container">
-        <div class="familia__head" style={`--fam-color: var(${g.familia.colorVar})`}>
-          <h2>{g.familia.label}</h2>
-          <p>{g.familia.intro}</p>
+  {groups.map((g) => {
+    const familia = familiaPorSlug.get(g.familia.slug) ?? g.familia;
+    return (
+      <section class="familia" data-familia={familia.slug}>
+        <div class="container">
+          <div class="familia__head" style={`--fam-color: var(${familia.colorVar})`}>
+            <h2>{familia.label}</h2>
+            <p>{familia.intro}</p>
+          </div>
+          <div class="card-grid">
+            {g.items.map(({ h: raw }) => {
+              const h = localizeHerramienta(raw, locale);
+              return (
+                <a class="card" href={`/herramientas/${h.familia}/${h.slug}/`} style={`--fam-color: var(${familia.colorVar}); --fam-ink: var(${familia.colorVar}-ink)`}>
+                  <span class="card__eyebrow">{TIPO_LABEL[h.tipo] ?? h.tipo}</span>
+                  <h3 class="card__title serif">{h.title}</h3>
+                  <p class="card__desc">{h.descripcion}</p>
+                </a>
+              );
+            })}
+          </div>
         </div>
-        <div class="card-grid">
-          {g.items.map(({ h }) => (
-            <a class="card" href={`/herramientas/${h.familia}/${h.slug}/`} style={`--fam-color: var(${g.familia.colorVar}); --fam-ink: var(${g.familia.colorVar}-ink)`}>
-              <span class="card__eyebrow">{TIPO_LABEL[h.tipo] ?? h.tipo}</span>
-              <h3 class="card__title serif">{h.title}</h3>
-              <p class="card__desc">{h.descripcion}</p>
-            </a>
-          ))}
-        </div>
-      </div>
-    </section>
-  ))}
+      </section>
+    );
+  })}
 </BaseLayout>
 
 <script>

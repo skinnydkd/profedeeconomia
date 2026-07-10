@@ -64,6 +64,10 @@ export const ui = {
     'tipo.simulador': 'Simulador',
     'tipo.rubrica': 'Rúbrica',
     'tipo.plantilla': 'Plantilla',
+    'tipo.test': 'Test',
+    'tipo.generador': 'Generador',
+    'tipo.buscador': 'Buscador',
+    'filtro.todas': 'Todas',
   },
   ca: {
     'skip.main': 'Salta al contingut principal',
@@ -127,6 +131,10 @@ export const ui = {
     'tipo.simulador': 'Simulador',
     'tipo.rubrica': 'Rúbrica',
     'tipo.plantilla': 'Plantilla',
+    'tipo.test': 'Test',
+    'tipo.generador': 'Generador',
+    'tipo.buscador': 'Cercador',
+    'filtro.todas': 'Totes',
   },
 } as const;
 
