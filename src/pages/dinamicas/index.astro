@@ -6,11 +6,19 @@
 import BaseLayout from '@layouts/BaseLayout.astro';
 import { groupByFamilia, FAMILIAS } from '@/lib/dinamicas';
 import { getCollection } from 'astro:content';
+import { getLocale } from '@/i18n/locale';
+import { t } from '@/i18n/ui';
+import { localizeFamilias, FAMILIAS_DINAMICAS_CA } from '@/i18n/familias-ca';
+
+const locale = getLocale(Astro.currentLocale);
+// Only the family headers and filter chips are localized: the dinámica cards
+// come from MDX frontmatter and stay ES until the content phase.
+const familias = localizeFamilias(FAMILIAS, FAMILIAS_DINAMICAS_CA, locale);
 
 const all = (await getCollection('dinamicas')).filter((e) => e.data.estado === 'publicado');
 // entry.id from glob loader is "dinamicas/familia/nn-slug"; strip the collection prefix
 // so slugs resolve to "familia/nn-slug" and hrefs are /dinamicas/familia/nn-slug/
-const groups = groupByFamilia(FAMILIAS, all.map((e) => ({
+const groups = groupByFamilia(familias, all.map((e) => ({
   slug: e.id.replace(/^dinamicas\//, ''),
   data: e.data,
 })));
@@ -38,8 +46,8 @@ const activeFamilias = new Set(groups.map((g) => g.familia.slug));
 
   <section class="filters">
     <div class="container">
-      <button class="chip is-active" data-filter="all" type="button">Todas</button>
-      {FAMILIAS.filter((f) => activeFamilias.has(f.slug)).map((f) => (
+      <button class="chip is-active" data-filter="all" type="button">{t('filtro.todas', locale)}</button>
+      {familias.filter((f) => activeFamilias.has(f.slug)).map((f) => (
         <button class="chip" data-filter={f.slug} type="button"
           style={`--chip-color: var(${f.colorVar})`}>{f.label}</button>
       ))}

@@ -68,6 +68,7 @@ export const ui = {
     'tipo.generador': 'Generador',
     'tipo.buscador': 'Buscador',
     'filtro.todas': 'Todas',
+    'filtro.todos': 'Todos',
   },
   ca: {
     'skip.main': 'Salta al contingut principal',
@@ -135,6 +136,7 @@ export const ui = {
     'tipo.generador': 'Generador',
     'tipo.buscador': 'Cercador',
     'filtro.todas': 'Totes',
+    'filtro.todos': 'Tots',
   },
 } as const;
 
