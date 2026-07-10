@@ -2,14 +2,26 @@
 import BaseLayout from '@layouts/BaseLayout.astro';
 import { groupByFamilia, MATERIAS } from '@/lib/proyectos';
 import { getCollection } from 'astro:content';
+import { getLocale } from '@/i18n/locale';
+import { t } from '@/i18n/ui';
+import { localizeFamilias, MATERIAS_PROYECTOS_CA } from '@/i18n/familias-ca';
+
+const locale = getLocale(Astro.currentLocale);
+// Only the materia headers and filter chips are localized: the project cards
+// come from MDX frontmatter and stay ES until the content phase.
+const materias = localizeFamilias(MATERIAS, MATERIAS_PROYECTOS_CA, locale);
 
 const all = (await getCollection('proyectos')).filter((e) => e.data.estado === 'publicado');
-const groups = groupByFamilia(MATERIAS, all.map((e) => ({
+const groups = groupByFamilia(materias, all.map((e) => ({
   slug: e.id.replace(/^proyectos\//, ''),
   data: { ...e.data, familia: e.data.materia },
 })));
 const activeMaterias = new Set(groups.map((g) => g.familia.slug));
-const NIVEL_LABEL: Record<string, string> = { eso: 'ESO', bach: 'Bachillerato', fp: 'FP' };
+const NIVEL_LABEL: Record<string, string> = {
+  eso: t('nivel.eso', locale),
+  bach: t('nivel.bach', locale),
+  fp: t('nivel.fp', locale),
+};
 ---
 <BaseLayout
   title="Proyectos interdisciplinares"
@@ -30,8 +42,8 @@ const NIVEL_LABEL: Record<string, string> = { eso: 'ESO', bach: 'Bachillerato', 
   </section>
   <section class="filters">
     <div class="container">
-      <button class="chip is-active" data-filter="all" type="button">Todos</button>
-      {MATERIAS.filter((m) => activeMaterias.has(m.slug)).map((m) => (
+      <button class="chip is-active" data-filter="all" type="button">{t('filtro.todos', locale)}</button>
+      {materias.filter((m) => activeMaterias.has(m.slug)).map((m) => (
         <button class="chip" data-filter={m.slug} type="button" style={`--chip-color: var(${m.colorVar})`}>{m.label}</button>
       ))}
     </div>

@@ -10,6 +10,7 @@ import BancoIsland from '@components/olimpiada/BancoIsland.tsx';
 import type { Pregunta } from '@components/QuizPlayer.tsx';
 import type { PreguntaBanco } from '@/lib/olimpiada/banco';
 import { getLocale } from '@/i18n/locale';
+import { localizeFamilias, BLOQUES_OLIMPIADA_CA } from '@/i18n/familias-ca';
 
 // Build the porBloque record — each block maps its questions to QuizPlayer's Pregunta shape.
 const porBloque: Record<string, Pregunta[]> = {};
@@ -23,9 +24,11 @@ for (const b of BLOQUES) {
   }));
 }
 
-const bloqueTabs = BLOQUES.map((b) => ({ slug: b.slug, label: b.label }));
-
 const locale = getLocale(Astro.currentLocale);
+
+// Only the block labels are localized; the questions themselves stay ES.
+const bloqueTabs = localizeFamilias(BLOQUES, BLOQUES_OLIMPIADA_CA, locale)
+  .map((b) => ({ slug: b.slug, label: b.label }));
 
 // The hero intro and breadcrumb are localized — the BancoIsland quiz (bloque
 // labels, questions) comes from the olimpiada registry and stays in Spanish under /ca.

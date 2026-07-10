@@ -1,0 +1,105 @@
+import { type Herramienta } from '@/lib/herramientas';
+import { type Locale } from './locale';
+
+type HerramientaCA = Partial<Pick<Herramienta, 'title' | 'descripcion'>>;
+
+// Valencian (AVL) overlay for the /herramientas/ toolbox cards. Structural
+// fields (slug, familia, componente, tipo, orden, competencias) stay in the ES
+// source of truth. Acronyms (VAN, TIR, DCF, IRPF, DAFO, BCG, RIASEC, Europass)
+// and «Business Model Canvas» are kept as-is: they are the terms used in class.
+export const HERRAMIENTAS_CA: Partial<Record<string, HerramientaCA>> = {
+  'punto-muerto': {
+    title: 'Punt mort (llindar de rendibilitat)',
+    descripcion: "Calcula el punt mort i el llindar de rendibilitat d'un producte.",
+  },
+  ratios: {
+    title: 'Ràtios financeres',
+    descripcion: 'Liquiditat, solvència, endeutament i rendibilitat a partir del balanç.',
+  },
+  'ratios-benchmark': {
+    title: 'Ràtios amb comparativa sectorial',
+    descripcion: "Compara les ràtios d'una empresa amb referències del sector.",
+  },
+  productividad: {
+    title: 'Productivitat',
+    descripcion:
+      'Productivitat del treball i del capital, global i la seua variació entre periodes.',
+  },
+  elasticidad: {
+    title: 'Elasticitat de la demanda',
+    descripcion: "Elasticitat preu de la demanda i el seu efecte sobre l'ingrés.",
+  },
+  'oferta-demanda-agregada': {
+    title: 'Simulador oferta i demanda agregada',
+    descripcion: "Mou l'AD i l'AS i observa l'efecte sobre producció i preus.",
+  },
+  'multiplicador-gasto': {
+    title: 'Multiplicador de la despesa',
+    descripcion: 'Efecte multiplicador d\'una variació de la despesa sobre la renda.',
+  },
+  'equilibrio-mercado': {
+    title: 'Equilibri de mercat',
+    descripcion: "Oferta i demanda lineals: preu i quantitat d'equilibri, topalls i excessos.",
+  },
+  'van-tir': {
+    title: 'VAN i TIR',
+    descripcion: "Valor actual net i taxa interna de retorn d'una inversió.",
+  },
+  'descuento-flujos': {
+    title: 'Descompte de fluxos (DCF)',
+    descripcion: 'Valora un projecte descomptant els seus fluxos de caixa futurs.',
+  },
+  'interes-compuesto': {
+    title: 'Interés compost',
+    descripcion: "Creixement d'un capital amb interés compost i aportacions.",
+  },
+  nomina: {
+    title: 'Calculadora de nòmina',
+    descripcion: "Del salari brut al net: cotitzacions i retenció d'IRPF.",
+  },
+  irpf: {
+    title: "Declaració d'IRPF",
+    descripcion: 'Simula una declaració de la renda senzilla pas a pas.',
+  },
+  'presupuesto-universidad': {
+    title: 'Pressupost per a la universitat',
+    descripcion: "Estima el cost d'estudiar fora i com finançar-ho.",
+  },
+  'presupuesto-50-30-20': {
+    title: 'Pressupost 50/30/20',
+    descripcion: 'Reparteix uns ingressos entre necessitats, desitjos i estalvi.',
+  },
+  'coche-vs-alternativa': {
+    title: 'Cotxe propi o alternatives?',
+    descripcion: 'Compara el cost real del cotxe davant altres opcions de mobilitat.',
+  },
+  'test-riasec': {
+    title: "Test d'interessos RIASEC",
+    descripcion: "Identifica perfils d'interés professional (model RIASEC).",
+  },
+  'cv-europass': {
+    title: 'Generador de CV Europass',
+    descripcion: 'Ompli i descarrega un currículum en format Europass.',
+  },
+  itinerarios: {
+    title: 'Cercador d\'itineraris formatius',
+    descripcion: 'Explora què estudiar després segons els teus interessos i nivell.',
+  },
+  dafo: {
+    title: 'DAFO',
+    descripcion: 'Llenç de Debilitats, Amenaces, Fortaleses i Oportunitats per a omplir.',
+  },
+  'business-model-canvas': {
+    title: 'Business Model Canvas',
+    descripcion: 'Els 9 blocs del model de negoci per a dissenyar i pivotar.',
+  },
+  'matriz-bcg': {
+    title: 'Matriu BCG',
+    descripcion: 'Cartera de productes per creixement i quota: estrella, interrogant, vaca i gos.',
+  },
+};
+
+/** Overlay the Valencian strings onto a tool when locale is 'ca'. */
+export function localizeHerramienta(h: Herramienta, locale: Locale): Herramienta {
+  return locale === 'es' ? h : { ...h, ...HERRAMIENTAS_CA[h.slug] };
+}

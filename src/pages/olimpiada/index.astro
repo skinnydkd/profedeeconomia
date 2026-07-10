@@ -6,67 +6,104 @@
 import BaseLayout from '@layouts/BaseLayout.astro';
 import { GUIA } from '@/lib/olimpiada';
 import { getLocale } from '@/i18n/locale';
+import { localizeGuia } from '@/i18n/olimpiada-ca';
 
 const locale = getLocale(Astro.currentLocale);
 
-// The hero intro and breadcrumb are localized — the sub-area card grid below
-// comes from a literal list (not a registry) but is treated the same as the
-// rest of the site's card grids and stays in Spanish under /ca (see Task 12 scope).
+// The sub-area cards come from a literal list, not a registry, so their copy
+// lives inline here alongside the page chrome; hrefs and colors are structural.
 const copy = {
   es: {
+    metaTitle: 'Olimpiada de Economía — Preparación',
+    metaDesc:
+      'Prepara la Olimpiada de Economía: simulacros de examen, fichas-resumen de los 6 bloques, banco de preguntas interactivo, taller de textos y lecturas. Nivel 2.º Bach / 1.º carrera.',
     heroAccent: 'Olimpiada',
     heroTail: 'de Economía.',
     lede: 'Material para preparar la Olimpiada de Economía de Bachillerato: los 6 bloques del temario, simulacros de exámenes reales, banco de preguntas interactivo y taller para la Parte III. Nivel 2.º Bach y primer curso de carrera.',
     bcInicio: 'Inicio',
     bcCurrent: 'Olimpiada de Economía',
+    eyebrow: 'Olimpiada',
+    tituloExamen: 'Cómo es el examen',
+    tituloRecursos: 'Recursos de preparación',
+    guiaDuracion: 'Duración',
+    guiaTotal: 'Total',
+    subAreas: {
+      simulacros: {
+        title: 'Simulacros',
+        desc: 'Exámenes oficiales recientes de la fase nacional y de varias comunidades autónomas, más un megaexamen de práctica. Entrena en condiciones reales.',
+      },
+      fichas: {
+        title: 'Fichas-resumen',
+        desc: 'Los 6 bloques temáticos sintetizados: conceptos clave, gráficos canónicos y ejercicios tipo Olimpiada.',
+      },
+      banco: {
+        title: 'Banco de preguntas',
+        desc: 'Test interactivo por bloques. Elige un tema y practica tipo test con feedback inmediato.',
+      },
+      textos: {
+        title: 'Taller de textos',
+        desc: 'Textos de prensa económica con preguntas guiadas. Prepara la Parte III del examen.',
+      },
+      lecturas: {
+        title: 'Lecturas recomendadas',
+        desc: 'Bibliografía seleccionada para ir más allá del temario: economía conductual, teoría de juegos, finanzas y empresa.',
+      },
+    },
   },
   ca: {
+    metaTitle: "Olimpíada d'Economia — Preparació",
+    metaDesc:
+      "Prepara l'Olimpíada d'Economia: simulacres d'examen, fitxes-resum dels 6 blocs, banc de preguntes interactiu, taller de textos i lectures. Nivell 2n Batx / 1r carrera.",
     heroAccent: 'Olimpíada',
     heroTail: "d'Economia.",
     lede: "Material per a preparar l'Olimpíada d'Economia de Batxillerat: els 6 blocs del temari, simulacres d'exàmens reals, banc de preguntes interactiu i taller per a la Part III. Nivell 2n Batx i primer curs de carrera.",
     bcInicio: 'Inici',
     bcCurrent: "Olimpíada d'Economia",
+    eyebrow: 'Olimpíada',
+    tituloExamen: "Com és l'examen",
+    tituloRecursos: 'Recursos de preparació',
+    guiaDuracion: 'Duració',
+    guiaTotal: 'Total',
+    subAreas: {
+      simulacros: {
+        title: 'Simulacres',
+        desc: "Exàmens oficials recents de la fase nacional i de diverses comunitats autònomes, més un megaexamen de pràctica. Entrena en condicions reals.",
+      },
+      fichas: {
+        title: 'Fitxes-resum',
+        desc: 'Els 6 blocs temàtics sintetitzats: conceptes clau, gràfics canònics i exercicis tipus Olimpíada.',
+      },
+      banco: {
+        title: 'Banc de preguntes',
+        desc: 'Test interactiu per blocs. Tria un tema i practica tipus test amb retroacció immediata.',
+      },
+      textos: {
+        title: 'Taller de textos',
+        desc: 'Textos de premsa econòmica amb preguntes guiades. Prepara la Part III de l\'examen.',
+      },
+      lecturas: {
+        title: 'Lectures recomanades',
+        desc: 'Bibliografia seleccionada per a anar més enllà del temari: economia conductual, teoria de jocs, finances i empresa.',
+      },
+    },
   },
 }[locale];
 
+const guia = localizeGuia(GUIA, locale);
+
 const subAreas = [
-  {
-    href: '/olimpiada/simulacros/',
-    title: 'Simulacros',
-    desc: 'Exámenes oficiales recientes de la fase nacional y de varias comunidades autónomas, más un megaexamen de práctica. Entrena en condiciones reales.',
-    color: '--color-edmn',
-  },
-  {
-    href: '/olimpiada/fichas/',
-    title: 'Fichas-resumen',
-    desc: 'Los 6 bloques temáticos sintetizados: conceptos clave, gráficos canónicos y ejercicios tipo Olimpiada.',
-    color: '--color-eco1',
-  },
-  {
-    href: '/olimpiada/banco/',
-    title: 'Banco de preguntas',
-    desc: 'Test interactivo por bloques. Elige un tema y practica tipo test con feedback inmediato.',
-    color: '--color-taller3',
-  },
-  {
-    href: '/olimpiada/textos/',
-    title: 'Taller de textos',
-    desc: 'Textos de prensa económica con preguntas guiadas. Prepara la Parte III del examen.',
-    color: '--color-ipe2',
-  },
-  {
-    href: '/olimpiada/lecturas/',
-    title: 'Lecturas recomendadas',
-    desc: 'Bibliografía seleccionada para ir más allá del temario: economía conductual, teoría de juegos, finanzas y empresa.',
-    color: '--color-fopp',
-  },
-];
+  { key: 'simulacros', href: '/olimpiada/simulacros/', color: '--color-edmn' },
+  { key: 'fichas', href: '/olimpiada/fichas/', color: '--color-eco1' },
+  { key: 'banco', href: '/olimpiada/banco/', color: '--color-taller3' },
+  { key: 'textos', href: '/olimpiada/textos/', color: '--color-ipe2' },
+  { key: 'lecturas', href: '/olimpiada/lecturas/', color: '--color-fopp' },
+] as const;
 ---
 
 <BaseLayout
-  title="Olimpiada de Economía — Preparación"
-  description="Prepara la Olimpiada de Economía: simulacros de examen, fichas-resumen de los 6 bloques, banco de preguntas interactivo, taller de textos y lecturas. Nivel 2.º Bach / 1.º carrera."
-  contentLang="es"
+  title={copy.metaTitle}
+  description={copy.metaDesc}
+  contentLang={locale}
 >
   <div class="container">
     <nav class="breadcrumb">
@@ -75,7 +112,7 @@ const subAreas = [
     </nav>
   </div>
 
-  <section class="hero" lang={locale}>
+  <section class="hero">
     <div class="container">
       <h1><span class="serif-italic-wonk accent">{copy.heroAccent}</span> {copy.heroTail}</h1>
       <p class="lede">
@@ -86,13 +123,13 @@ const subAreas = [
 
   <section class="guia">
     <div class="container">
-      <h2 class="section-title">Cómo es el examen</h2>
+      <h2 class="section-title">{copy.tituloExamen}</h2>
       <div class="guia__meta">
-        <span class="guia__chip">Duración: {GUIA.duracion}</span>
-        <span class="guia__chip">Total: {GUIA.total}</span>
+        <span class="guia__chip">{copy.guiaDuracion}: {guia.duracion}</span>
+        <span class="guia__chip">{copy.guiaTotal}: {guia.total}</span>
       </div>
       <ol class="guia__partes">
-        {GUIA.partes.map((parte) => (
+        {guia.partes.map((parte) => (
           <li class="guia__parte">
             <div class="guia__parte-head">
               <strong class="guia__parte-nombre">{parte.nombre}</strong>
@@ -107,13 +144,13 @@ const subAreas = [
 
   <section class="subareas">
     <div class="container">
-      <h2 class="section-title">Recursos de preparación</h2>
+      <h2 class="section-title">{copy.tituloRecursos}</h2>
       <div class="card-grid">
         {subAreas.map((s) => (
           <a class="card" href={s.href} style={`--fam-color: var(${s.color}); --fam-ink: var(${s.color}-ink)`}>
-            <span class="card__eyebrow">Olimpiada</span>
-            <h3 class="card__title serif">{s.title}</h3>
-            <p class="card__desc">{s.desc}</p>
+            <span class="card__eyebrow">{copy.eyebrow}</span>
+            <h3 class="card__title serif">{copy.subAreas[s.key].title}</h3>
+            <p class="card__desc">{copy.subAreas[s.key].desc}</p>
           </a>
         ))}
       </div>

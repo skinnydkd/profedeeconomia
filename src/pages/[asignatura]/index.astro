@@ -6,6 +6,8 @@ import { subjectFaqs } from '@/lib/faq';
 import FaqHub from '@components/FaqHub.astro';
 import { getCollection } from 'astro:content';
 import type { GetStaticPaths } from 'astro';
+import { getLocale } from '@/i18n/locale';
+import { localizeAsignatura } from '@/i18n/asignaturas-ca';
 
 export const getStaticPaths = (() => {
   return ASIGNATURA_SLUGS.map((slug) => ({
@@ -14,7 +16,9 @@ export const getStaticPaths = (() => {
   }));
 }) satisfies GetStaticPaths;
 
-const { asignatura: a } = Astro.props;
+const locale = getLocale(Astro.currentLocale);
+const { asignatura: asignaturaEs } = Astro.props;
+const a = localizeAsignatura(asignaturaEs, locale);
 const isPublicado = a.estado === 'publicado';
 
 // Show the EBAU card only for subjects that have published EBAU content.
@@ -40,35 +44,114 @@ const hasRecursos = recursosAll.some((rec) => rec.data.asignatura === a.slug && 
 const retosAll = await getCollection('retos');
 const hasRetos = retosAll.some((r) => r.data.asignatura === a.slug && r.data.estado === 'publicado');
 
+// Every user-facing string on this hub, keyed by section slug / group id so the
+// structure below stays language-agnostic.
+const copy = {
+  es: {
+    bcInicio: 'Inicio',
+    metaDesc: (titulo: string, nivel: string, marco: string) =>
+      `Material para impartir ${titulo} en ${nivel}: libro, diapositivas, actividades, tests y recursos. Currículo estatal LOMLOE (${marco}).`,
+    curriculumNote: (titulo: string, marco: string) =>
+      `Este libro se basa en el currículo básico estatal LOMLOE para ${titulo}, establecido en el ${marco}. Cada comunidad autónoma establece concreciones específicas: conviene consultar la de tu comunidad para ajustar la programación a tu centro.`,
+    curriculumPendiente: (marco: string) =>
+      `El material se basará en el ${marco}. Si quieres estar al tanto de cuándo se publica, sigue`,
+    proximamente: 'Próximamente',
+    enPreparacion:
+      'Este material está en preparación. Cuando se publique tendrá la misma estructura que el resto: libro, diapositivas, actividades, tests y recursos.',
+    sectionsH: 'Todo el material, un solo curso',
+    hubIntro:
+      'Cada asignatura reúne aquí todo su material con la misma estructura. Lo que cambia es el contenido, no el sitio donde encontrarlo.',
+    olimpiadaTitle: 'Olimpiada de Economía',
+    olimpiadaDesc:
+      'Prepara la Olimpiada: la guía del examen, simulacros oficiales, fichas-resumen, banco de preguntas y taller de comentario de texto.',
+    olimpiadaCta: 'Preparar la Olimpiada →',
+    grupos: {
+      material: { label: 'El material del curso', desc: 'Lo que llevas a clase: libro, diapositivas y actividades para imprimir.' },
+      interactivo: { label: 'Práctica interactiva', desc: 'Para trabajar en pantalla: se autocorrige, se autoguarda y engancha al alumnado.' },
+      profe: { label: 'Para el profesorado', desc: 'La planificación del curso, lista para adaptar a tu centro.' },
+    },
+    secciones: {
+      'libro': { title: 'Libro', desc: 'Los capítulos del curso, listos para leer en pantalla o descargar como PDF.' },
+      'diapositivas': { title: 'Diapositivas', desc: 'Diapositivas derivadas automáticamente del libro. PDF al MVP, PPTX editable más adelante.' },
+      'actividades': { title: 'Actividades', desc: 'Casos prácticos y ejercicios graduados por unidad, listos para imprimir.' },
+      'refuerzo': { title: 'Refuerzo y ampliación', desc: 'Por evaluación: repaso esencial con ejercicios guiados (refuerzo) y retos de más nivel (ampliación).' },
+      'proyecto': { title: 'Cuaderno de proyecto', desc: 'Guía paso a paso para que el alumnado desarrolle su propio proyecto emprendedor, fase a fase.' },
+      'tests': { title: 'Tests', desc: 'Tests autocorregibles por unidad: respuesta inmediata, nota y repaso en el navegador.' },
+      'recursos': { title: 'Simuladores', desc: 'Calculadoras y simuladores interactivos (punto muerto, VAN, equilibrio de mercado…) para experimentar con los modelos.' },
+      'retos': { title: 'Retos competenciales', desc: 'Escenarios paso a paso centrados en una competencia específica; al final, tu nivel de logro.' },
+      'actividades-dinamicas': { title: 'Árboles de decisión', desc: 'Casos con decisiones encadenadas: cada elección mueve unos indicadores y abre la siguiente.' },
+      'ebau': { title: 'Preparación EBAU', desc: 'Estructura de la prueba, teoría esencial, problemas resueltos y simulacros con solucionario.' },
+      'ebau/examenes': { title: 'Exámenes EBAU por comunidad', desc: 'Exámenes oficiales de años anteriores de las comunidades autónomas, con su resolución en PDF descargable.' },
+      'evaluacion': { title: 'Evaluación competencial', desc: 'Competencias específicas con sus criterios de evaluación y una rúbrica de niveles de logro por competencia.' },
+      'programacion': { title: 'Programación', desc: 'Programación didáctica de referencia: objetivos, temporalización y evaluación competencial, lista para adaptar.' },
+    },
+  },
+  ca: {
+    bcInicio: 'Inici',
+    metaDesc: (titulo: string, nivel: string, marco: string) =>
+      `Material per a impartir ${titulo} en ${nivel}: llibre, diapositives, activitats, tests i recursos. Currículum estatal LOMLOE (${marco}).`,
+    curriculumNote: (titulo: string, marco: string) =>
+      `Este llibre es basa en el currículum bàsic estatal LOMLOE per a ${titulo}, establit en el ${marco}. Cada comunitat autònoma establix concrecions específiques: convé consultar la de la teua comunitat per a ajustar la programació al teu centre.`,
+    curriculumPendiente: (marco: string) =>
+      `El material es basarà en el ${marco}. Si vols estar al corrent de quan es publica, seguix`,
+    proximamente: 'Pròximament',
+    enPreparacion:
+      'Este material està en preparació. Quan es publique tindrà la mateixa estructura que la resta: llibre, diapositives, activitats, tests i recursos.',
+    sectionsH: 'Tot el material, un sol curs',
+    hubIntro:
+      "Cada assignatura reunix ací tot el seu material amb la mateixa estructura. El que canvia és el contingut, no el lloc on trobar-lo.",
+    olimpiadaTitle: "Olimpíada d'Economia",
+    olimpiadaDesc:
+      "Prepara l'Olimpíada: la guia de l'examen, simulacres oficials, fitxes-resum, banc de preguntes i taller de comentari de text.",
+    olimpiadaCta: "Preparar l'Olimpíada →",
+    grupos: {
+      material: { label: 'El material del curs', desc: 'El que portes a classe: llibre, diapositives i activitats per a imprimir.' },
+      interactivo: { label: 'Pràctica interactiva', desc: "Per a treballar en pantalla: s'autocorregix, s'autoguarda i enganxa l'alumnat." },
+      profe: { label: 'Per al professorat', desc: 'La planificació del curs, llesta per a adaptar al teu centre.' },
+    },
+    secciones: {
+      'libro': { title: 'Llibre', desc: 'Els capítols del curs, llestos per a llegir en pantalla o descarregar com a PDF.' },
+      'diapositivas': { title: 'Diapositives', desc: 'Diapositives derivades automàticament del llibre. PDF al MVP, PPTX editable més avant.' },
+      'actividades': { title: 'Activitats', desc: 'Casos pràctics i exercicis graduats per unitat, llestos per a imprimir.' },
+      'refuerzo': { title: 'Reforç i ampliació', desc: "Per avaluació: repàs essencial amb exercicis guiats (reforç) i reptes de més nivell (ampliació)." },
+      'proyecto': { title: 'Quadern de projecte', desc: "Guia pas a pas perquè l'alumnat desenvolupe el seu propi projecte emprenedor, fase a fase." },
+      'tests': { title: 'Tests', desc: 'Tests autocorregibles per unitat: resposta immediata, nota i repàs en el navegador.' },
+      'recursos': { title: 'Simuladors', desc: 'Calculadores i simuladors interactius (punt mort, VAN, equilibri de mercat…) per a experimentar amb els models.' },
+      'retos': { title: 'Reptes competencials', desc: "Escenaris pas a pas centrats en una competència específica; al final, el teu nivell d'assoliment." },
+      'actividades-dinamicas': { title: 'Arbres de decisió', desc: 'Casos amb decisions encadenades: cada elecció mou uns indicadors i obri la següent.' },
+      'ebau': { title: 'Preparació EBAU', desc: 'Estructura de la prova, teoria essencial, problemes resolts i simulacres amb solucionari.' },
+      'ebau/examenes': { title: 'Exàmens EBAU per comunitat', desc: "Exàmens oficials d'anys anteriors de les comunitats autònomes, amb la seua resolució en PDF descarregable." },
+      'evaluacion': { title: 'Avaluació competencial', desc: "Competències específiques amb els seus criteris d'avaluació i una rúbrica de nivells d'assoliment per competència." },
+      'programacion': { title: 'Programació', desc: 'Programació didàctica de referència: objectius, temporalització i avaluació competencial, llesta per a adaptar.' },
+    },
+  },
+}[locale];
+
 // Sections grouped by nature: the course material (book + printable), the
 // interactive practice, and what's for the teacher. Programación goes last.
 const material = [
-  { slug: 'libro',        title: 'Libro',        desc: 'Los capítulos del curso, listos para leer en pantalla o descargar como PDF.' },
-  { slug: 'diapositivas', title: 'Diapositivas', desc: 'Diapositivas derivadas automáticamente del libro. PDF al MVP, PPTX editable más adelante.' },
-  { slug: 'actividades',  title: 'Actividades',  desc: 'Casos prácticos y ejercicios graduados por unidad, listos para imprimir.' },
-  ...(hasRefuerzo ? [{ slug: 'refuerzo', title: 'Refuerzo y ampliación', desc: 'Por evaluación: repaso esencial con ejercicios guiados (refuerzo) y retos de más nivel (ampliación).' }] : []),
-  ...(hasProyecto ? [{ slug: 'proyecto', title: 'Cuaderno de proyecto', desc: 'Guía paso a paso para que el alumnado desarrolle su propio proyecto emprendedor, fase a fase.' }] : []),
+  'libro',
+  'diapositivas',
+  'actividades',
+  ...(hasRefuerzo ? ['refuerzo'] : []),
+  ...(hasProyecto ? ['proyecto'] : []),
 ];
 const interactivo = [
-  ...(hasTests ? [{ slug: 'tests', title: 'Tests', desc: 'Tests autocorregibles por unidad: respuesta inmediata, nota y repaso en el navegador.' }] : []),
-  ...(hasRecursos ? [{ slug: 'recursos', title: 'Simuladores', desc: 'Calculadoras y simuladores interactivos (punto muerto, VAN, equilibrio de mercado…) para experimentar con los modelos.' }] : []),
-  ...(hasRetos ? [{ slug: 'retos', title: 'Retos competenciales', desc: 'Escenarios paso a paso centrados en una competencia específica; al final, tu nivel de logro.' }] : []),
-  { slug: 'actividades-dinamicas', title: 'Árboles de decisión', desc: 'Casos con decisiones encadenadas: cada elección mueve unos indicadores y abre la siguiente.' },
-  ...(hasEbau ? [{ slug: 'ebau', title: 'Preparación EBAU', desc: 'Estructura de la prueba, teoría esencial, problemas resueltos y simulacros con solucionario.' }] : []),
-  ...(hasEbau ? [{ slug: 'ebau/examenes', title: 'Exámenes EBAU por comunidad', desc: 'Exámenes oficiales de años anteriores de las comunidades autónomas, con su resolución en PDF descargable.' }] : []),
+  ...(hasTests ? ['tests'] : []),
+  ...(hasRecursos ? ['recursos'] : []),
+  ...(hasRetos ? ['retos'] : []),
+  'actividades-dinamicas',
+  ...(hasEbau ? ['ebau', 'ebau/examenes'] : []),
 ];
-const profe = [
-  ...(hasEvaluacion ? [{ slug: 'evaluacion', title: 'Evaluación competencial', desc: 'Competencias específicas con sus criterios de evaluación y una rúbrica de niveles de logro por competencia.' }] : []),
-  { slug: 'programacion', title: 'Programación', desc: 'Programación didáctica de referencia: objetivos, temporalización y evaluación competencial, lista para adaptar.' },
-];
+const profe = [...(hasEvaluacion ? ['evaluacion'] : []), 'programacion'];
 const grupos = [
-  { label: 'El material del curso', desc: 'Lo que llevas a clase: libro, diapositivas y actividades para imprimir.', sections: material },
-  { label: 'Práctica interactiva',  desc: 'Para trabajar en pantalla: se autocorrige, se autoguarda y engancha al alumnado.', sections: interactivo },
-  { label: 'Para el profesorado',   desc: 'La planificación del curso, lista para adaptar a tu centro.', sections: profe },
-];
+  { ...copy.grupos.material, sections: material },
+  { ...copy.grupos.interactivo, sections: interactivo },
+  { ...copy.grupos.profe, sections: profe },
+] as { label: string; desc: string; sections: (keyof typeof copy.secciones)[] }[];
 
 const breadcrumb = breadcrumbLd([
-  { name: 'Inicio', path: '/' },
+  { name: copy.bcInicio, path: '/' },
   { name: a.shortLabel, path: `/${a.slug}/` },
 ]);
 
@@ -79,7 +162,9 @@ const unitTitles = libroAll
   .filter((u) => u.data.asignatura === a.slug && u.data.estado === 'publicado')
   .sort((x, y) => x.data.unidad - y.data.unidad)
   .map((u) => u.data.title);
-const faqs = subjectFaqs(a);
+// The FAQ is ES prose (visible block + FAQPage JSON-LD); it is built from the
+// ES asignatura so its sentences don't end up half-translated. Content phase.
+const faqs = subjectFaqs(asignaturaEs);
 const jsonLd = isPublicado
   ? [
       breadcrumb,
@@ -99,13 +184,14 @@ const jsonLd = isPublicado
 
 <BaseLayout
   title={`${a.title} — ${a.level}`}
-  description={`Material para impartir ${a.title} en ${a.level}: libro, diapositivas, actividades, tests y recursos. Currículo estatal LOMLOE (${a.marcoNormativo}).`}
+  description={copy.metaDesc(a.title, a.level, a.marcoNormativo)}
   jsonLd={jsonLd}
+  contentLang={locale}
 >
 
   <div class="container">
     <nav class="breadcrumb" aria-label="Breadcrumb">
-      <a href="/">Inicio</a>
+      <a href="/">{copy.bcInicio}</a>
       <span class="sep">›</span>
       <span>{a.shortLabel}</span>
     </nav>
@@ -121,21 +207,20 @@ const jsonLd = isPublicado
         </>
       ) : (
         <>
-          <p class="subtitle proximamente-tag">Próximamente</p>
+          <p class="subtitle proximamente-tag">{copy.proximamente}</p>
           <p class="desc">
             {a.tagline}
           </p>
           <p class="desc">
-            Este material está en preparación. Cuando se publique tendrá la misma estructura
-            que el resto: libro, diapositivas, actividades, tests y recursos.
+            {copy.enPreparacion}
           </p>
         </>
       )}
 
       <div class="curriculum-note">
         {isPublicado
-          ? <>Este libro se basa en el currículo básico estatal LOMLOE para {a.title.toLowerCase()}, establecido en el {a.marcoNormativo}. Cada comunidad autónoma establece concreciones específicas: conviene consultar la de tu comunidad para ajustar la programación a tu centro.</>
-          : <>El material se basará en el {a.marcoNormativo}. Si quieres estar al tanto de cuándo se publica, sigue <a class="editorial-link" href="https://instagram.com/profedeeconomia" rel="external">@profedeeconomia</a>.</>
+          ? copy.curriculumNote(a.title.toLowerCase(), a.marcoNormativo)
+          : <>{copy.curriculumPendiente(a.marcoNormativo)} <a class="editorial-link" href="https://instagram.com/profedeeconomia" rel="external">@profedeeconomia</a>.</>
         }
       </div>
     </div>
@@ -144,10 +229,9 @@ const jsonLd = isPublicado
   {isPublicado && (
     <section class="hub-sections">
       <div class="container">
-        <h2>Todo el material, un solo curso</h2>
+        <h2>{copy.sectionsH}</h2>
         <p class="hub-intro">
-          Cada asignatura reúne aquí todo su material con la misma estructura.
-          Lo que cambia es el contenido, no el sitio donde encontrarlo.
+          {copy.hubIntro}
         </p>
 
         {grupos.map((g) => (
@@ -157,10 +241,10 @@ const jsonLd = isPublicado
               <p class="section-group__desc">{g.desc}</p>
             </div>
             <nav class="subject-sections" aria-label={g.label}>
-              {g.sections.map((s) => (
-                <a href={`/${a.slug}/${s.slug}/`} class={`section-card c-${a.color}`}>
-                  <h4>{s.title}</h4>
-                  <p class="desc">{s.desc}</p>
+              {g.sections.map((slug) => (
+                <a href={`/${a.slug}/${slug}/`} class={`section-card c-${a.color}`}>
+                  <h4>{copy.secciones[slug].title}</h4>
+                  <p class="desc">{copy.secciones[slug].desc}</p>
                 </a>
               ))}
             </nav>
@@ -169,9 +253,9 @@ const jsonLd = isPublicado
 
         {(a.slug === 'edmn-2bach' || a.slug === 'eco-1bach') && (
           <a href="/olimpiada/" class="olimpiada-card">
-            <h3>Olimpiada de Economía</h3>
-            <p class="desc">Prepara la Olimpiada: la guía del examen, simulacros oficiales, fichas-resumen, banco de preguntas y taller de comentario de texto.</p>
-            <span class="ol-cta">Preparar la Olimpiada →</span>
+            <h3>{copy.olimpiadaTitle}</h3>
+            <p class="desc">{copy.olimpiadaDesc}</p>
+            <span class="ol-cta">{copy.olimpiadaCta}</span>
           </a>
         )}
       </div>
