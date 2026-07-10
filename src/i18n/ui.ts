@@ -69,6 +69,11 @@ export const ui = {
     'tipo.buscador': 'Buscador',
     'filtro.todas': 'Todas',
     'filtro.todos': 'Todos',
+    'island.print': '↗ Herramienta interactiva disponible en la versión digital del libro (profedeeconomia.es).',
+    'herramienta.competencias': 'Competencias que se trabajan',
+    'herramienta.clave': 'Clave',
+    'herramienta.especificas': 'Específicas',
+    'herramienta.volver': '← Todas las herramientas',
   },
   ca: {
     'skip.main': 'Salta al contingut principal',
@@ -137,6 +142,11 @@ export const ui = {
     'tipo.buscador': 'Cercador',
     'filtro.todas': 'Totes',
     'filtro.todos': 'Tots',
+    'island.print': '↗ Ferramenta interactiva disponible en la versió digital del llibre (profedeeconomia.es).',
+    'herramienta.competencias': 'Competències que es treballen',
+    'herramienta.clave': 'Clau',
+    'herramienta.especificas': 'Específiques',
+    'herramienta.volver': '← Totes les ferramentes',
   },
 } as const;
 

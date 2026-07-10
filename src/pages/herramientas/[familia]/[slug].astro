@@ -11,6 +11,10 @@ import { HERRAMIENTAS, herramientaPorSlug, unidadesPorComponente, FAMILIAS_HERRA
 import { breadcrumbLd } from '@/lib/seo';
 import { getCollection } from 'astro:content';
 import type { GetStaticPaths } from 'astro';
+import { getLocale } from '@/i18n/locale';
+import { t } from '@/i18n/ui';
+import { localizeHerramienta } from '@/i18n/herramientas-ca';
+import { localizeFamilias, FAMILIAS_HERRAMIENTA_CA } from '@/i18n/familias-ca';
 
 export const getStaticPaths = (async () => {
   return HERRAMIENTAS.map((h) => ({
@@ -19,29 +23,32 @@ export const getStaticPaths = (async () => {
   }));
 }) satisfies GetStaticPaths;
 
+const locale = getLocale(Astro.currentLocale);
 const { componente, familia, slug } = Astro.props;
-const h = herramientaPorSlug(familia, slug)!;
-const famMeta = FAMILIAS_HERRAMIENTA.find((f) => f.slug === familia)!;
-const TIPO_LABEL: Record<string, string> = {
-  calculadora: 'Calculadora', simulador: 'Simulador', test: 'Test',
-  generador: 'Generador', buscador: 'Buscador', plantilla: 'Plantilla',
-};
+const h = localizeHerramienta(herramientaPorSlug(familia, slug)!, locale);
+const famMeta = localizeFamilias(FAMILIAS_HERRAMIENTA, FAMILIAS_HERRAMIENTA_CA, locale)
+  .find((f) => f.slug === familia)!;
+
+const copy = {
+  es: { bcInicio: 'Inicio', bcHerramientas: 'Herramientas', metaSuffix: 'Herramientas' },
+  ca: { bcInicio: 'Inici', bcHerramientas: 'Ferramentes', metaSuffix: 'Ferramentes' },
+}[locale];
 
 const recursos = await getCollection('recursos');
 const derivadas = unidadesPorComponente(recursos.filter((r) => r.data.estado === 'publicado')).get(componente) ?? [];
 const unidades = h.unidades_relacionadas ?? derivadas;
 const breadcrumb = breadcrumbLd([
-  { name: 'Inicio', path: '/' },
-  { name: 'Herramientas', path: '/herramientas/' },
+  { name: copy.bcInicio, path: '/' },
+  { name: copy.bcHerramientas, path: '/herramientas/' },
   { name: h.title, path: `/herramientas/${familia}/${slug}/` },
 ]);
 ---
 
-<BaseLayout title={`${h.title} — Herramientas`} description={h.descripcion} ogType="article" jsonLd={breadcrumb}>
+<BaseLayout title={`${h.title} — ${copy.metaSuffix}`} description={h.descripcion} ogType="article" jsonLd={breadcrumb} contentLang={locale}>
   <div class="container">
     <nav class="breadcrumb">
-      <a href="/">Inicio</a> <span class="sep">›</span>
-      <a href="/herramientas/">Herramientas</a> <span class="sep">›</span>
+      <a href="/">{copy.bcInicio}</a> <span class="sep">›</span>
+      <a href="/herramientas/">{copy.bcHerramientas}</a> <span class="sep">›</span>
       <span>{h.title}</span>
     </nav>
   </div>
@@ -55,7 +62,7 @@ const breadcrumb = breadcrumbLd([
 
   <section class="player-wrap">
     <div class="container container--narrow">
-      <HerramientaIsland componente={componente} />
+      <HerramientaIsland componente={componente} locale={locale} />
     </div>
   </section>
 
@@ -65,15 +72,15 @@ const breadcrumb = breadcrumbLd([
 
       {h.competencias_clave.length > 0 && (
         <section class="block">
-          <h2>Competencias que se trabajan</h2>
-          <p><strong>Clave:</strong> {h.competencias_clave.join(' · ')}</p>
+          <h2>{t('herramienta.competencias', locale)}</h2>
+          <p><strong>{t('herramienta.clave', locale)}:</strong> {h.competencias_clave.join(' · ')}</p>
           {h.competencias_especificas.length > 0 && (
-            <p><strong>Específicas:</strong> {h.competencias_especificas.join(' · ')}</p>
+            <p><strong>{t('herramienta.especificas', locale)}:</strong> {h.competencias_especificas.join(' · ')}</p>
           )}
         </section>
       )}
 
-      <nav class="back"><a href="/herramientas/">← Todas las herramientas</a></nav>
+      <nav class="back"><a href="/herramientas/">{t('herramienta.volver', locale)}</a></nav>
     </div>
   </section>
 </BaseLayout>

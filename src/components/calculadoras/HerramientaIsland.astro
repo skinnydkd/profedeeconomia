@@ -27,11 +27,20 @@ import DAFOCanvas from '@components/calculadoras/DAFOCanvas.tsx';
 import BusinessModelCanvas from '@components/calculadoras/BusinessModelCanvas.tsx';
 import MatrizBCG from '@components/calculadoras/MatrizBCG.tsx';
 
-interface Props { componente?: string }
-const { componente } = Astro.props;
+import { type Locale } from '@/i18n/locale';
+import { t } from '@/i18n/ui';
+
+/**
+ * `locale` is an explicit prop, never derived from `Astro.currentLocale`: the
+ * same islands are embedded in the per-asignatura recurso pages and in the
+ * slide decks, whose content is still ES under /ca. Only a caller that has
+ * localized its own page passes a locale; everyone else gets the ES default.
+ */
+interface Props { componente?: string; locale?: Locale }
+const { componente, locale = 'es' } = Astro.props;
 ---
 <div class="hi__web">
-{componente === 'PuntoMuerto' && <PuntoMuertoCalc client:load />}
+{componente === 'PuntoMuerto' && <PuntoMuertoCalc client:load locale={locale} />}
 {componente === 'VANTIR' && <VANTIRCalc client:load />}
 {componente === 'Ratios' && <RatiosCalc client:load />}
 {componente === 'ADASSimulator' && <ADASSimulator client:load />}
@@ -54,7 +63,7 @@ const { componente } = Astro.props;
 {componente === 'CanvasBM' && <BusinessModelCanvas client:load />}
 {componente === 'BCG' && <MatrizBCG client:load />}
 </div>
-<p class="hi__print">↗ Herramienta interactiva disponible en la versión digital del libro (profedeeconomia.es).</p>
+<p class="hi__print">{t('island.print', locale)}</p>
 
 <style>
   .hi__print { display: none; }

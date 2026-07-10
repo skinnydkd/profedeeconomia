@@ -1,5 +1,71 @@
 /** @jsxImportSource preact */
 import { useMemo, useState } from 'preact/hooks';
+import { type Locale } from '@/i18n/locale';
+
+/**
+ * UI strings, Valencian (AVL) alongside the ES source. Economic notation
+ * (CF, P, CVu, Q, €) is not translated. Guarded by copy-parity.test.ts.
+ */
+export const COPY = {
+  es: {
+    cfLabel: 'Costes fijos mensuales (CF)',
+    cfUnit: '€/mes',
+    precioLabel: 'Precio de venta unitario (P)',
+    unidadUnit: '€/unidad',
+    cvuLabel: 'Coste variable unitario (CVu)',
+    demandaLabel: 'Demanda prevista (opcional)',
+    demandaUnit: 'unidades/mes',
+    avisoMargen: 'El precio debe ser mayor que el coste variable unitario para tener punto muerto.',
+    puntoMuerto: 'Punto muerto',
+    facturacion: (v: string) => `≈ ${v} de facturación mensual`,
+    margenContribucion: 'Margen contribución unitario',
+    beneficioPrevisto: 'Beneficio previsto (con la demanda)',
+    margenSeguridad: 'Margen de seguridad',
+    comoSeCalcula: 'Cómo se calcula',
+    formulaMargen: 'Margen de contribución unitario',
+    formulaPuntoMuerto: 'Punto muerto',
+    unidades: 'unidades',
+    explicacionSeguridad: 'El margen de seguridad indica cuánto puede caer la demanda antes de entrar en pérdidas. En este caso:',
+    sobran: 'sobran',
+    faltan: 'faltan',
+    unidadesHastaPM: 'unidades para llegar al punto muerto.',
+    chartAria: 'Gráfico del punto muerto con las rectas de ingresos, costes totales y costes fijos',
+    chartEjeQ: 'Q (uds)',
+    chartIngresos: 'Ingresos',
+    chartCostesTotales: 'C. totales',
+    chartCostesFijos: 'C. fijos',
+  },
+  ca: {
+    cfLabel: 'Costos fixos mensuals (CF)',
+    cfUnit: '€/mes',
+    precioLabel: 'Preu de venda unitari (P)',
+    unidadUnit: '€/unitat',
+    cvuLabel: 'Cost variable unitari (CVu)',
+    demandaLabel: 'Demanda prevista (opcional)',
+    demandaUnit: 'unitats/mes',
+    avisoMargen: 'El preu ha de ser major que el cost variable unitari per a tindre punt mort.',
+    puntoMuerto: 'Punt mort',
+    facturacion: (v: string) => `≈ ${v} de facturació mensual`,
+    margenContribucion: 'Marge de contribució unitari',
+    beneficioPrevisto: 'Benefici previst (amb la demanda)',
+    margenSeguridad: 'Marge de seguretat',
+    comoSeCalcula: 'Com es calcula',
+    formulaMargen: 'Marge de contribució unitari',
+    formulaPuntoMuerto: 'Punt mort',
+    unidades: 'unitats',
+    explicacionSeguridad: "El marge de seguretat indica quant pot caure la demanda abans d'entrar en pèrdues. En este cas:",
+    sobran: 'sobren',
+    faltan: 'falten',
+    unidadesHastaPM: 'unitats per a arribar al punt mort.',
+    chartAria: "Gràfic del punt mort amb les rectes d'ingressos, costos totals i costos fixos",
+    chartEjeQ: 'Q (unitats)',
+    chartIngresos: 'Ingressos',
+    chartCostesTotales: 'C. totals',
+    chartCostesFijos: 'C. fixos',
+  },
+} as const;
+
+interface Props { locale?: Locale }
 
 /**
  * Punto muerto / umbral de rentabilidad calculator.
@@ -9,7 +75,8 @@ import { useMemo, useState } from 'preact/hooks';
  * Useful for the capstone project when each team needs to estimate
  * the break-even of their proposed business.
  */
-export default function PuntoMuertoCalc() {
+export default function PuntoMuertoCalc({ locale = 'es' }: Props) {
+  const c = COPY[locale];
   const [cf, setCf] = useState<number>(3000);
   const [precio, setPrecio] = useState<number>(1.5);
   const [cvu, setCvu] = useState<number>(0.5);
@@ -20,7 +87,7 @@ export default function PuntoMuertoCalc() {
     if (margen <= 0) {
       return {
         valido: false,
-        mensaje: 'El precio debe ser mayor que el coste variable unitario para tener punto muerto.',
+        mensaje: c.avisoMargen,
         margen,
       };
     }
@@ -37,12 +104,12 @@ export default function PuntoMuertoCalc() {
       margenSeguridad,
       cubrePuntoMuerto: demandaPrevista >= Q,
     };
-  }, [cf, precio, cvu, demandaPrevista]);
+  }, [cf, precio, cvu, demandaPrevista, c]);
   return (
     <div class="calc">
       <div class="calc__form">
         <label class="calc__field">
-          <span class="calc__label">Costes fijos mensuales (CF)</span>
+          <span class="calc__label">{c.cfLabel}</span>
           <div class="calc__input-wrap">
             <input
               type="number"
@@ -51,12 +118,12 @@ export default function PuntoMuertoCalc() {
               value={cf}
               onInput={(e) => setCf(parseFloat((e.target as HTMLInputElement).value) || 0)}
             />
-            <span class="calc__unit">€/mes</span>
+            <span class="calc__unit">{c.cfUnit}</span>
           </div>
         </label>
 
         <label class="calc__field">
-          <span class="calc__label">Precio de venta unitario (P)</span>
+          <span class="calc__label">{c.precioLabel}</span>
           <div class="calc__input-wrap">
             <input
               type="number"
@@ -65,12 +132,12 @@ export default function PuntoMuertoCalc() {
               value={precio}
               onInput={(e) => setPrecio(parseFloat((e.target as HTMLInputElement).value) || 0)}
             />
-            <span class="calc__unit">€/unidad</span>
+            <span class="calc__unit">{c.unidadUnit}</span>
           </div>
         </label>
 
         <label class="calc__field">
-          <span class="calc__label">Coste variable unitario (CVu)</span>
+          <span class="calc__label">{c.cvuLabel}</span>
           <div class="calc__input-wrap">
             <input
               type="number"
@@ -79,12 +146,12 @@ export default function PuntoMuertoCalc() {
               value={cvu}
               onInput={(e) => setCvu(parseFloat((e.target as HTMLInputElement).value) || 0)}
             />
-            <span class="calc__unit">€/unidad</span>
+            <span class="calc__unit">{c.unidadUnit}</span>
           </div>
         </label>
 
         <label class="calc__field">
-          <span class="calc__label">Demanda prevista (opcional)</span>
+          <span class="calc__label">{c.demandaLabel}</span>
           <div class="calc__input-wrap">
             <input
               type="number"
@@ -93,7 +160,7 @@ export default function PuntoMuertoCalc() {
               value={demandaPrevista}
               onInput={(e) => setDemandaPrevista(parseFloat((e.target as HTMLInputElement).value) || 0)}
             />
-            <span class="calc__unit">unidades/mes</span>
+            <span class="calc__unit">{c.demandaUnit}</span>
           </div>
         </label>
       </div>
@@ -104,27 +171,27 @@ export default function PuntoMuertoCalc() {
         ) : (
           <>
             <div class="calc__metric calc__metric--primary">
-              <span class="calc__metric-label">Punto muerto</span>
+              <span class="calc__metric-label">{c.puntoMuerto}</span>
               <span class="calc__metric-value">{Math.ceil(result.Q!).toLocaleString('es-ES')}</span>
-              <span class="calc__metric-unit">unidades/mes</span>
+              <span class="calc__metric-unit">{c.demandaUnit}</span>
               <span class="calc__metric-detail">
-                ≈ {fmtMoney(result.facturacionEnPM!)} de facturación mensual
+                {c.facturacion(fmtMoney(result.facturacionEnPM!))}
               </span>
             </div>
 
             <div class="calc__metric-grid">
               <div class="calc__metric-mini">
-                <span class="calc__metric-mini-label">Margen contribución unitario</span>
+                <span class="calc__metric-mini-label">{c.margenContribucion}</span>
                 <span class="calc__metric-mini-value">{fmtMoney(result.margen!)}</span>
               </div>
               <div class="calc__metric-mini">
-                <span class="calc__metric-mini-label">Beneficio previsto (con la demanda)</span>
+                <span class="calc__metric-mini-label">{c.beneficioPrevisto}</span>
                 <span class={`calc__metric-mini-value ${result.beneficioPrevisto! >= 0 ? 'ok' : 'fail'}`}>
                   {fmtMoney(result.beneficioPrevisto!)}/mes
                 </span>
               </div>
               <div class="calc__metric-mini">
-                <span class="calc__metric-mini-label">Margen de seguridad</span>
+                <span class="calc__metric-mini-label">{c.margenSeguridad}</span>
                 <span class={`calc__metric-mini-value ${result.cubrePuntoMuerto ? 'ok' : 'fail'}`}>
                   {result.margenSeguridad!.toFixed(1).replace('.', ',')} %
                 </span>
@@ -137,14 +204,15 @@ export default function PuntoMuertoCalc() {
               cvu={cvu}
               demanda={demandaPrevista}
               Q={result.Q!}
+              locale={locale}
             />
 
             <details class="calc__details">
-              <summary>Cómo se calcula</summary>
+              <summary>{c.comoSeCalcula}</summary>
               <div class="calc__formula">
-                <p><strong>Margen de contribución unitario</strong> = P − CVu = {fmtMoney(precio)} − {fmtMoney(cvu)} = <strong>{fmtMoney(result.margen!)}</strong></p>
-                <p><strong>Punto muerto</strong> = CF / (P − CVu) = {fmtMoney(cf)} / {fmtMoney(result.margen!)} = <strong>{Math.ceil(result.Q!).toLocaleString('es-ES')} unidades</strong></p>
-                <p>El margen de seguridad indica cuánto puede caer la demanda antes de entrar en pérdidas. En este caso: {result.margenSeguridad! >= 0 ? 'sobran' : 'faltan'} {Math.abs(demandaPrevista - result.Q!).toFixed(0)} unidades para llegar al punto muerto.</p>
+                <p><strong>{c.formulaMargen}</strong> = P − CVu = {fmtMoney(precio)} − {fmtMoney(cvu)} = <strong>{fmtMoney(result.margen!)}</strong></p>
+                <p><strong>{c.formulaPuntoMuerto}</strong> = CF / (P − CVu) = {fmtMoney(cf)} / {fmtMoney(result.margen!)} = <strong>{Math.ceil(result.Q!).toLocaleString('es-ES')} {c.unidades}</strong></p>
+                <p>{c.explicacionSeguridad} {result.margenSeguridad! >= 0 ? c.sobran : c.faltan} {Math.abs(demandaPrevista - result.Q!).toFixed(0)} {c.unidadesHastaPM}</p>
               </div>
             </details>
           </>
@@ -166,9 +234,11 @@ interface ChartProps {
   cvu: number;
   demanda: number;
   Q: number;
+  locale: Locale;
 }
 
-function PuntoMuertoChart({ cf, precio, cvu, demanda, Q }: ChartProps) {
+function PuntoMuertoChart({ cf, precio, cvu, demanda, Q, locale }: ChartProps) {
+  const c = COPY[locale];
   const W = 360;
   const H = 280;
   const ML = 52;
@@ -201,7 +271,7 @@ function PuntoMuertoChart({ cf, precio, cvu, demanda, Q }: ChartProps) {
       viewBox={`0 0 ${W} ${H}`}
       xmlns="http://www.w3.org/2000/svg"
       role="img"
-      aria-label="Gráfico del punto muerto con las rectas de ingresos, costes totales y costes fijos"
+      aria-label={c.chartAria}
       style={{
         width: '100%',
         height: 'auto',
@@ -258,7 +328,7 @@ function PuntoMuertoChart({ cf, precio, cvu, demanda, Q }: ChartProps) {
       <text x={ML - 40} y={MT + 6} font-family="var(--font-sans)" font-size="11" font-style="italic"
         fill="var(--color-ink-soft, #5C4A3D)">€</text>
       <text x={ML + iW} y={H - 4} text-anchor="end" font-family="var(--font-sans)" font-size="11"
-        font-style="italic" fill="var(--color-ink-soft, #5C4A3D)">Q (uds)</text>
+        font-style="italic" fill="var(--color-ink-soft, #5C4A3D)">{c.chartEjeQ}</text>
 
       {/* Fixed cost line (CF) — mustard dashed */}
       <line x1={xOf(0)} y1={yOf(cf)} x2={xOf(maxQ)} y2={yOf(cf)}
@@ -315,15 +385,15 @@ function PuntoMuertoChart({ cf, precio, cvu, demanda, Q }: ChartProps) {
       <line x1={ML + 12} y1={MT + 14} x2={ML + 26} y2={MT + 14}
         stroke="var(--color-terra, #C44E2C)" stroke-width="2.5" />
       <text x={ML + 30} y={MT + 18} font-family="var(--font-sans)" font-size="9"
-        fill="var(--color-ink-soft, #5C4A3D)">Ingresos</text>
+        fill="var(--color-ink-soft, #5C4A3D)">{c.chartIngresos}</text>
       <line x1={ML + 12} y1={MT + 28} x2={ML + 26} y2={MT + 28}
         stroke="var(--color-eco1, #1F6E6E)" stroke-width="2.5" />
       <text x={ML + 30} y={MT + 32} font-family="var(--font-sans)" font-size="9"
-        fill="var(--color-ink-soft, #5C4A3D)">C. totales</text>
+        fill="var(--color-ink-soft, #5C4A3D)">{c.chartCostesTotales}</text>
       <line x1={ML + 12} y1={MT + 42} x2={ML + 26} y2={MT + 42}
         stroke="var(--color-mustard-deep, #A87A2A)" stroke-width="1.6" stroke-dasharray="5 4" />
       <text x={ML + 30} y={MT + 46} font-family="var(--font-sans)" font-size="9"
-        fill="var(--color-ink-soft, #5C4A3D)">C. fijos</text>
+        fill="var(--color-ink-soft, #5C4A3D)">{c.chartCostesFijos}</text>
     </svg>
   );
 }
