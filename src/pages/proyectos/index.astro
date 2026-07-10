@@ -5,11 +5,35 @@ import { getCollection } from 'astro:content';
 import { getLocale } from '@/i18n/locale';
 import { t } from '@/i18n/ui';
 import { localizeFamilias, MATERIAS_PROYECTOS_CA } from '@/i18n/familias-ca';
+import { localizeFicha, PROYECTOS_CA } from '@/i18n/fichas-ca';
 
 const locale = getLocale(Astro.currentLocale);
-// Only the materia headers and filter chips are localized: the project cards
-// come from MDX frontmatter and stay ES until the content phase.
 const materias = localizeFamilias(MATERIAS, MATERIAS_PROYECTOS_CA, locale);
+
+// The card fields (title, descripcion, duracion) are overlaid from fichas-ca.ts;
+// the MDX bodies behind each card stay ES until the content phase.
+const copy = {
+  es: {
+    metaTitle: 'Proyectos interdisciplinares',
+    metaDesc:
+      'Proyectos ABP que cruzan la economía con otra materia —historia, matemáticas, geografía, ética, lengua, tecnología— con su reto, secuencia de sesiones, conexión curricular y rúbrica.',
+    bcInicio: 'Inicio',
+    bcCurrent: 'Proyectos',
+    heroAccent: 'Proyectos',
+    heroTail: 'que cruzan materias.',
+    lede: 'Aprendizaje por proyectos donde la economía se cruza con otra materia: un reto, un producto final, la secuencia de sesiones y la rúbrica. Cada uno con su encaje curricular en las unidades de economía.',
+  },
+  ca: {
+    metaTitle: 'Projectes interdisciplinaris',
+    metaDesc:
+      "Projectes ABP que creuen l'economia amb una altra matèria —història, matemàtiques, geografia, ètica, llengua, tecnologia— amb el seu repte, seqüència de sessions, connexió curricular i rúbrica.",
+    bcInicio: 'Inici',
+    bcCurrent: 'Projectes',
+    heroAccent: 'Projectes',
+    heroTail: 'que creuen matèries.',
+    lede: "Aprenentatge per projectes on l'economia es creua amb una altra matèria: un repte, un producte final, la seqüència de sessions i la rúbrica. Cada un amb el seu encaix curricular en les unitats d'economia.",
+  },
+}[locale];
 
 const all = (await getCollection('proyectos')).filter((e) => e.data.estado === 'publicado');
 const groups = groupByFamilia(materias, all.map((e) => ({
@@ -24,19 +48,18 @@ const NIVEL_LABEL: Record<string, string> = {
 };
 ---
 <BaseLayout
-  title="Proyectos interdisciplinares"
-  description="Proyectos ABP que cruzan la economía con otra materia —historia, matemáticas, geografía, ética, lengua, tecnología— con su reto, secuencia de sesiones, conexión curricular y rúbrica."
+  title={copy.metaTitle}
+  description={copy.metaDesc}
+  contentLang={locale}
 >
   <div class="container">
-    <nav class="breadcrumb"><a href="/">Inicio</a> <span class="sep">›</span> <span>Proyectos</span></nav>
+    <nav class="breadcrumb"><a href="/">{copy.bcInicio}</a> <span class="sep">›</span> <span>{copy.bcCurrent}</span></nav>
   </div>
   <section class="hero">
     <div class="container">
-      <h1><span class="serif-italic-wonk accent">Proyectos</span> que cruzan materias.</h1>
+      <h1><span class="serif-italic-wonk accent">{copy.heroAccent}</span> {copy.heroTail}</h1>
       <p class="lede">
-        Aprendizaje por proyectos donde la economía se cruza con otra materia: un reto,
-        un producto final, la secuencia de sesiones y la rúbrica. Cada uno con su encaje
-        curricular en las unidades de economía.
+        {copy.lede}
       </p>
     </div>
   </section>
@@ -56,14 +79,17 @@ const NIVEL_LABEL: Record<string, string> = {
           <p>{g.familia.intro}</p>
         </div>
         <div class="card-grid">
-          {g.items.map((d) => (
-            <a class="card" href={`/proyectos/${d.slug}/`} style={`--fam-color: var(${g.familia.colorVar}); --fam-ink: var(${g.familia.colorVar}-ink)`}>
-              <span class="card__eyebrow">{g.familia.label}</span>
-              <h3 class="card__title serif">{d.data.title}</h3>
-              <p class="card__desc">{d.data.descripcion}</p>
-              <span class="card__meta">{d.data.nivel.map((n) => NIVEL_LABEL[n] ?? n).join(' · ')} · {d.data.duracion}</span>
-            </a>
-          ))}
+          {g.items.map((d) => {
+            const data = localizeFicha(d.data, d.slug, PROYECTOS_CA, locale);
+            return (
+              <a class="card" href={`/proyectos/${d.slug}/`} style={`--fam-color: var(${g.familia.colorVar}); --fam-ink: var(${g.familia.colorVar}-ink)`}>
+                <span class="card__eyebrow">{g.familia.label}</span>
+                <h3 class="card__title serif">{data.title}</h3>
+                <p class="card__desc">{data.descripcion}</p>
+                <span class="card__meta">{data.nivel.map((n) => NIVEL_LABEL[n] ?? n).join(' · ')} · {data.duracion}</span>
+              </a>
+            );
+          })}
         </div>
       </div>
     </section>

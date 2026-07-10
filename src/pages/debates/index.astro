@@ -9,11 +9,35 @@ import { getCollection } from 'astro:content';
 import { getLocale } from '@/i18n/locale';
 import { t } from '@/i18n/ui';
 import { localizeFamilias, FAMILIAS_DEBATE_CA } from '@/i18n/familias-ca';
+import { localizeFicha, DEBATES_CA } from '@/i18n/fichas-ca';
 
 const locale = getLocale(Astro.currentLocale);
-// Only the family headers and filter chips are localized: the debate cards
-// come from MDX frontmatter and stay ES until the content phase.
 const familias = localizeFamilias(FAMILIAS_DEBATE, FAMILIAS_DEBATE_CA, locale);
+
+// The card fields (title, descripcion, duracion, agrupacion) are overlaid from
+// fichas-ca.ts; the MDX bodies behind each card stay ES until the content phase.
+const copy = {
+  es: {
+    metaTitle: 'Debates',
+    metaDesc:
+      'Controversias económicas para argumentar en clase: moción, posturas, argumentario, mecánica de turnos y rúbrica, con su encaje curricular.',
+    bcInicio: 'Inicio',
+    bcCurrent: 'Debates',
+    heroAccent: 'Debates',
+    heroTail: 'para argumentar en clase.',
+    lede: 'Las grandes controversias económicas, listas para llevar al aula: la moción, las posturas enfrentadas, el argumentario por bando, la mecánica de turnos y una rúbrica de evaluación. Cada uno con su encaje curricular.',
+  },
+  ca: {
+    metaTitle: 'Debats',
+    metaDesc:
+      "Controvèrsies econòmiques per a argumentar a classe: moció, postures, argumentari, mecànica de torns i rúbrica, amb el seu encaix curricular.",
+    bcInicio: 'Inici',
+    bcCurrent: 'Debats',
+    heroAccent: 'Debats',
+    heroTail: 'per a argumentar a classe.',
+    lede: "Les grans controvèrsies econòmiques, llestes per a portar a l'aula: la moció, les postures enfrontades, l'argumentari per bàndol, la mecànica de torns i una rúbrica d'avaluació. Cada un amb el seu encaix curricular.",
+  },
+}[locale];
 
 const all = (await getCollection('debates')).filter((e) => e.data.estado === 'publicado');
 // entry.id from glob loader is "debates/familia/nn-slug"; strip the prefix so
@@ -26,20 +50,19 @@ const activeFamilias = new Set(groups.map((g) => g.familia.slug));
 ---
 
 <BaseLayout
-  title="Debates"
-  description="Controversias económicas para argumentar en clase: moción, posturas, argumentario, mecánica de turnos y rúbrica, con su encaje curricular."
+  title={copy.metaTitle}
+  description={copy.metaDesc}
+  contentLang={locale}
 >
   <div class="container">
-    <nav class="breadcrumb"><a href="/">Inicio</a> <span class="sep">›</span> <span>Debates</span></nav>
+    <nav class="breadcrumb"><a href="/">{copy.bcInicio}</a> <span class="sep">›</span> <span>{copy.bcCurrent}</span></nav>
   </div>
 
   <section class="hero">
     <div class="container">
-      <h1><span class="serif-italic-wonk accent">Debates</span> para argumentar en clase.</h1>
+      <h1><span class="serif-italic-wonk accent">{copy.heroAccent}</span> {copy.heroTail}</h1>
       <p class="lede">
-        Las grandes controversias económicas, listas para llevar al aula: la moción,
-        las posturas enfrentadas, el argumentario por bando, la mecánica de turnos y
-        una rúbrica de evaluación. Cada uno con su encaje curricular.
+        {copy.lede}
       </p>
     </div>
   </section>
@@ -62,14 +85,17 @@ const activeFamilias = new Set(groups.map((g) => g.familia.slug));
           <p>{g.familia.intro}</p>
         </div>
         <div class="card-grid">
-          {g.items.map((d) => (
-            <a class="card" href={`/debates/${d.slug}/`} style={`--fam-color: var(${g.familia.colorVar}); --fam-ink: var(${g.familia.colorVar}-ink)`}>
-              <span class="card__eyebrow">{g.familia.label}</span>
-              <h3 class="card__title serif">{d.data.title}</h3>
-              <p class="card__desc">{d.data.descripcion}</p>
-              <span class="card__meta">{d.data.duracion} · {d.data.agrupacion}</span>
-            </a>
-          ))}
+          {g.items.map((d) => {
+            const data = localizeFicha(d.data, d.slug, DEBATES_CA, locale);
+            return (
+              <a class="card" href={`/debates/${d.slug}/`} style={`--fam-color: var(${g.familia.colorVar}); --fam-ink: var(${g.familia.colorVar}-ink)`}>
+                <span class="card__eyebrow">{g.familia.label}</span>
+                <h3 class="card__title serif">{data.title}</h3>
+                <p class="card__desc">{data.descripcion}</p>
+                <span class="card__meta">{data.duracion} · {data.agrupacion}</span>
+              </a>
+            );
+          })}
         </div>
       </div>
     </section>
