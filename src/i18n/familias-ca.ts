@@ -3,8 +3,16 @@ import { type Locale } from './locale';
 
 export type FamiliaOverlay = Partial<Record<string, Pick<Familia, 'label' | 'intro'>>>;
 
-/** Overlay VAL label/intro onto family headers; structural fields (slug, colorVar) stay ES. */
-export function localizeFamilias(list: Familia[], overlay: FamiliaOverlay, locale: Locale): Familia[] {
+/**
+ * Overlay VAL label/intro onto family headers; structural fields (slug,
+ * colorVar) stay ES. Generic over the item type: the olimpiada `Ambito` and
+ * `Bloque` registries are family-shaped but carry no `colorVar`.
+ */
+export function localizeFamilias<T extends Pick<Familia, 'slug' | 'label' | 'intro'>>(
+  list: T[],
+  overlay: FamiliaOverlay,
+  locale: Locale,
+): T[] {
   return locale === 'es' ? list : list.map((f) => ({ ...f, ...overlay[f.slug] }));
 }
 

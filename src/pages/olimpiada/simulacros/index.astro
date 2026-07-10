@@ -5,13 +5,19 @@
  * and two links: «Ver PDF» and «Descargar».
  */
 import BaseLayout from '@layouts/BaseLayout.astro';
-import { GUIA, simulacrosPorAmbito } from '@/lib/olimpiada';
+import { GUIA, AMBITOS, simulacrosPorAmbito } from '@/lib/olimpiada';
 import { getLocale } from '@/i18n/locale';
+import { localizeFamilias, AMBITOS_OLIMPIADA_CA } from '@/i18n/familias-ca';
 
 const grupos = simulacrosPorAmbito();
 const totalExamenes = grupos.reduce((n, g) => n + g.examenes.filter((e) => e.oficial).length, 0);
 
 const locale = getLocale(Astro.currentLocale);
+
+// Only the ámbito headers are localized; the exam list stays ES.
+const ambitos = new Map(
+  localizeFamilias(AMBITOS, AMBITOS_OLIMPIADA_CA, locale).map((a) => [a.slug, a]),
+);
 
 // The hero intro, breadcrumb and «Cómo usar los simulacros» note are localized —
 // the exam list (from the olimpiada registry) stays in Spanish under /ca.
@@ -92,8 +98,8 @@ const copy = {
       {grupos.map((g) => (
         <div class="ambito">
           <div class="ambito__head">
-            <h2 class="ambito__title serif">{g.ambito.label}</h2>
-            <p class="ambito__intro">{g.ambito.intro}</p>
+            <h2 class="ambito__title serif">{(ambitos.get(g.ambito.slug) ?? g.ambito).label}</h2>
+            <p class="ambito__intro">{(ambitos.get(g.ambito.slug) ?? g.ambito).intro}</p>
           </div>
           <div class="card-grid">
             {g.examenes.map((s) => (
