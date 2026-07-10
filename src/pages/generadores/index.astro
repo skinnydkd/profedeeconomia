@@ -6,16 +6,27 @@
 import BaseLayout from '@layouts/BaseLayout.astro';
 import { GENERADORES_EXTERNOS, gruposNativos } from '@/lib/generadores';
 import { getLocale } from '@/i18n/locale';
-
-const grupos = gruposNativos();
-const TIPO_LABEL: Record<string, string> = { rubrica: 'Rúbrica', calculadora: 'Calculadora', plantilla: 'Plantilla' };
+import { t } from '@/i18n/ui';
+import { localizeGeneradorNativo, localizeGeneradorExterno } from '@/i18n/generadores-ca';
 
 const locale = getLocale(Astro.currentLocale);
 
-// The hero intro, breadcrumb and closing note are localized — the tool card
-// grids (external LOMLOE generators + native tools registries) stay ES under /ca.
+const grupos = gruposNativos();
+const TIPO_LABEL: Record<string, string> = {
+  rubrica: t('tipo.rubrica', locale),
+  calculadora: t('tipo.calculadora', locale),
+  plantilla: t('tipo.plantilla', locale),
+};
+const GRUPO_LABEL: Record<string, string> = {
+  evaluacion: t('gen.grupo.evaluacion', locale),
+  aula: t('gen.grupo.aula', locale),
+};
+
 const copy = {
   es: {
+    metaTitle: 'Herramientas docentes',
+    metaDesc:
+      'Generadores LOMLOE (situaciones de aprendizaje, programación) y herramientas de evaluación y aula: rúbricas, calificaciones y plantillas para imprimir.',
     heroAccent: 'Herramientas',
     heroTail: 'docentes.',
     lede: 'Lo que uso para preparar las clases: los generadores LOMLOE de mi proyecto hermano y un puñado de herramientas de evaluación y aula que funcionan en el navegador, se autoguardan y se exportan o imprimen.',
@@ -25,6 +36,9 @@ const copy = {
     notePost: 'donde los mantengo. El resto son herramientas que he montado aquí, por si os sirven.',
   },
   ca: {
+    metaTitle: 'Ferramentes docents',
+    metaDesc:
+      "Generadors LOMLOE (situacions d'aprenentatge, programació) i ferramentes d'avaluació i aula: rúbriques, qualificacions i plantilles per a imprimir.",
     heroAccent: 'Ferramentes',
     heroTail: 'docents.',
     lede: "El que use per a preparar les classes: els generadors LOMLOE del meu projecte germà i un grapat de ferramentes d'avaluació i aula que funcionen en el navegador, s'autoguarden i s'exporten o s'imprimeixen.",
@@ -37,15 +51,15 @@ const copy = {
 ---
 
 <BaseLayout
-  title="Herramientas docentes"
-  description="Generadores LOMLOE (situaciones de aprendizaje, programación) y herramientas de evaluación y aula: rúbricas, calificaciones y plantillas para imprimir."
-  contentLang="es"
+  title={copy.metaTitle}
+  description={copy.metaDesc}
+  contentLang={locale}
 >
   <div class="container">
     <nav class="breadcrumb"><a href="/">{copy.bcInicio}</a> <span class="sep">›</span> <span>{copy.bcCurrent}</span></nav>
   </div>
 
-  <section class="hero" lang={locale}>
+  <section class="hero">
     <div class="container">
       <h1><span class="serif-italic-wonk accent">{copy.heroAccent}</span> {copy.heroTail}</h1>
       <p class="lede">
@@ -56,35 +70,41 @@ const copy = {
 
   <section class="tools">
     <div class="container">
-      <h2 class="group-title">Generadores LOMLOE</h2>
+      <h2 class="group-title">{t('gen.lomloe', locale)}</h2>
       <div class="tool-grid">
-        {GENERADORES_EXTERNOS.map((t) => (
-          <a class="tool-card" href={t.href} rel="external noopener" target="_blank">
-            <span class="tc-eyebrow">{t.eyebrow}</span>
-            <h3 class="tc-title serif">{t.title}</h3>
-            <p class="tc-desc">{t.descripcion}</p>
-            <span class="tc-cta">Abrir en oposicioneseconomia.es →</span>
-          </a>
-        ))}
+        {GENERADORES_EXTERNOS.map((raw) => {
+          const g = localizeGeneradorExterno(raw, locale);
+          return (
+            <a class="tool-card" href={g.href} rel="external noopener" target="_blank">
+              <span class="tc-eyebrow">{g.eyebrow}</span>
+              <h3 class="tc-title serif">{g.title}</h3>
+              <p class="tc-desc">{g.descripcion}</p>
+              <span class="tc-cta">{t('card.abrirExterno', locale)}</span>
+            </a>
+          );
+        })}
       </div>
 
-      {grupos.map((g) => (
+      {grupos.map((grupo) => (
         <>
-          <h2 class="group-title">{g.label}</h2>
+          <h2 class="group-title">{GRUPO_LABEL[grupo.grupo] ?? grupo.label}</h2>
           <div class="tool-grid">
-            {g.items.map((t) => (
-              <a class="tool-card" href={`/generadores/${t.slug}/`}>
-                <span class="tc-eyebrow">{TIPO_LABEL[t.tipo] ?? t.tipo}</span>
-                <h3 class="tc-title serif">{t.title}</h3>
-                <p class="tc-desc">{t.descripcion}</p>
-                <span class="tc-cta">Abrir →</span>
-              </a>
-            ))}
+            {grupo.items.map((raw) => {
+              const g = localizeGeneradorNativo(raw, locale);
+              return (
+                <a class="tool-card" href={`/generadores/${g.slug}/`}>
+                  <span class="tc-eyebrow">{TIPO_LABEL[g.tipo] ?? g.tipo}</span>
+                  <h3 class="tc-title serif">{g.title}</h3>
+                  <p class="tc-desc">{g.descripcion}</p>
+                  <span class="tc-cta">{t('card.abrir', locale)}</span>
+                </a>
+              );
+            })}
           </div>
         </>
       ))}
 
-      <p class="note" lang={locale}>
+      <p class="note">
         {copy.notePre}
         <a href="https://oposicioneseconomia.es" class="editorial-link" rel="external noopener" target="_blank">oposicioneseconomia.es</a>,
         {copy.notePost}
