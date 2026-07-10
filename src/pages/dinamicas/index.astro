@@ -9,11 +9,35 @@ import { getCollection } from 'astro:content';
 import { getLocale } from '@/i18n/locale';
 import { t } from '@/i18n/ui';
 import { localizeFamilias, FAMILIAS_DINAMICAS_CA } from '@/i18n/familias-ca';
+import { localizeFicha, DINAMICAS_CA } from '@/i18n/fichas-ca';
 
 const locale = getLocale(Astro.currentLocale);
-// Only the family headers and filter chips are localized: the dinámica cards
-// come from MDX frontmatter and stay ES until the content phase.
 const familias = localizeFamilias(FAMILIAS, FAMILIAS_DINAMICAS_CA, locale);
+
+// The card fields (title, descripcion, duracion, agrupacion) are overlaid from
+// fichas-ca.ts; the MDX bodies behind each card stay ES until the content phase.
+const copy = {
+  es: {
+    metaTitle: 'Dinámicas',
+    metaDesc:
+      'Role-plays, simulaciones de mercado, juegos y debates para hacer en clase, con materiales para profe y alumnado y su encaje curricular.',
+    bcInicio: 'Inicio',
+    bcCurrent: 'Dinámicas',
+    heroAccent: 'Dinámicas',
+    heroTail: 'para hacer en clase.',
+    lede: 'Role-plays, simulaciones de mercado, juegos y debates listos para llevar al aula. Cada uno con su guía para el profe, materiales para repartir e imprimir, y el mapa de en qué unidades de qué asignaturas encaja.',
+  },
+  ca: {
+    metaTitle: 'Dinàmiques',
+    metaDesc:
+      "Role-plays, simulacions de mercat, jocs i debats per a fer a classe, amb materials per al profe i l'alumnat i el seu encaix curricular.",
+    bcInicio: 'Inici',
+    bcCurrent: 'Dinàmiques',
+    heroAccent: 'Dinàmiques',
+    heroTail: 'per a fer a classe.',
+    lede: "Role-plays, simulacions de mercat, jocs i debats llestos per a portar a l'aula. Cada un amb la seua guia per al profe, materials per a repartir i imprimir, i el mapa d'en quines unitats de quines assignatures encaixa.",
+  },
+}[locale];
 
 const all = (await getCollection('dinamicas')).filter((e) => e.data.estado === 'publicado');
 // entry.id from glob loader is "dinamicas/familia/nn-slug"; strip the collection prefix
@@ -26,20 +50,19 @@ const activeFamilias = new Set(groups.map((g) => g.familia.slug));
 ---
 
 <BaseLayout
-  title="Dinámicas"
-  description="Role-plays, simulaciones de mercado, juegos y debates para hacer en clase, con materiales para profe y alumnado y su encaje curricular."
+  title={copy.metaTitle}
+  description={copy.metaDesc}
+  contentLang={locale}
 >
   <div class="container">
-    <nav class="breadcrumb"><a href="/">Inicio</a> <span class="sep">›</span> <span>Dinámicas</span></nav>
+    <nav class="breadcrumb"><a href="/">{copy.bcInicio}</a> <span class="sep">›</span> <span>{copy.bcCurrent}</span></nav>
   </div>
 
   <section class="hero">
     <div class="container">
-      <h1><span class="serif-italic-wonk accent">Dinámicas</span> para hacer en clase.</h1>
+      <h1><span class="serif-italic-wonk accent">{copy.heroAccent}</span> {copy.heroTail}</h1>
       <p class="lede">
-        Role-plays, simulaciones de mercado, juegos y debates listos para llevar al
-        aula. Cada uno con su guía para el profe, materiales para repartir e imprimir,
-        y el mapa de en qué unidades de qué asignaturas encaja.
+        {copy.lede}
       </p>
     </div>
   </section>
@@ -62,14 +85,17 @@ const activeFamilias = new Set(groups.map((g) => g.familia.slug));
           <p>{g.familia.intro}</p>
         </div>
         <div class="card-grid">
-          {g.items.map((d) => (
-            <a class="card" href={`/dinamicas/${d.slug}/`} style={`--fam-color: var(${g.familia.colorVar}); --fam-ink: var(${g.familia.colorVar}-ink)`}>
-              <span class="card__eyebrow">{g.familia.label}</span>
-              <h3 class="card__title serif">{d.data.title}</h3>
-              <p class="card__desc">{d.data.descripcion}</p>
-              <span class="card__meta">{d.data.duracion} · {d.data.agrupacion}</span>
-            </a>
-          ))}
+          {g.items.map((d) => {
+            const data = localizeFicha(d.data, d.slug, DINAMICAS_CA, locale);
+            return (
+              <a class="card" href={`/dinamicas/${d.slug}/`} style={`--fam-color: var(${g.familia.colorVar}); --fam-ink: var(${g.familia.colorVar}-ink)`}>
+                <span class="card__eyebrow">{g.familia.label}</span>
+                <h3 class="card__title serif">{data.title}</h3>
+                <p class="card__desc">{data.descripcion}</p>
+                <span class="card__meta">{data.duracion} · {data.agrupacion}</span>
+              </a>
+            );
+          })}
         </div>
       </div>
     </section>
