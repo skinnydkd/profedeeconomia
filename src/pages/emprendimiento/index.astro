@@ -3,9 +3,145 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 import { ASIGNATURAS, ASIGNATURA_SLUGS } from '@/lib/asignaturas';
 import { ITINERARIOS } from '@/lib/emprendimiento';
 import { getCollection } from 'astro:content';
+import { getLocale } from '@/i18n/locale';
+import { localizeAsignatura } from '@/i18n/asignaturas-ca';
+import { localizeItinerario } from '@/i18n/emprendimiento-ca';
 
-const gpe = ASIGNATURAS['gpe-bach'];
+const locale = getLocale(Astro.currentLocale);
+
+const gpe = localizeAsignatura(ASIGNATURAS['gpe-bach'], locale);
 const edmn = ASIGNATURAS['edmn-2bach'];
+
+// The activity titles under «asignatura por asignatura» come from MDX
+// frontmatter and stay ES until the content phase.
+const copy = {
+  es: {
+    metaTitle: 'Emprendimiento',
+    metaDesc:
+      'La asignatura de emprendimiento puro (GPE) y «De cero a empresa», un proyecto transversal para llevar al aula en cualquier nivel.',
+    bcInicio: 'Inicio',
+    bcCurrent: 'Emprendimiento',
+    heroAccent: 'Emprendimiento',
+    heroTail: 'en el aula.',
+    lede: 'El emprendimiento atraviesa todas mis asignaturas. Este es el sitio que lo reúne: un proyecto para montar con el alumnado a cualquier nivel, las dos materias que lo trabajan a fondo (GPE y EDMN) y el ángulo emprendedor de cada asignatura, todo enlazado a donde de verdad vive.',
+    featEyebrow: 'El proyecto · Proyecto transversal',
+    featTitle: 'De cero a empresa',
+    featDescPre:
+      'En equipo, el alumnado crea una empresa que resuelve un problema real, la valida saliendo a la calle y la pone a prueba con datos. Doce fases con',
+    featDescStrong: 'cuaderno del alumno',
+    featDescPost:
+      'para rellenar —con sus plantillas visuales (Business Model Canvas, punto muerto…)— y los ejemplos, las entrevistas y el kit de actitud tejidos en cada paso.',
+    featCta: 'Ver el proyecto y el cuaderno →',
+    featAsideH: 'Modular: de un sprint a un curso entero',
+    fases: (n: number) => `${n} fases`,
+    fasesLibres: 'Las fases que elijas',
+    materiasH: 'Las dos materias que lo trabajan a fondo',
+    gpeEyebrow: 'Asignatura',
+    gpeDesc:
+      'La materia de emprendimiento puro de Bachillerato: del equipo y la idea al pitch final, con libro, cuaderno de proyecto, actividades y tests.',
+    gpeCta: 'Ir a la asignatura →',
+    edmnEyebrow: 'Capstone de 2.º BACH',
+    edmnTitle: 'El plan de empresa de EDMN',
+    edmnDesc:
+      'El proyecto que recorre todo Empresa y Diseño de Modelos de Negocio: seis fases del equipo y el mercado al plan económico-financiero y el pitch, con plantillas para rellenar en cada paso.',
+    edmnCta: 'Ver el capstone →',
+    recursosH: 'Las herramientas, ya dentro del proyecto',
+    recursosLeadPre: 'Estos recursos aparecen',
+    recursosLeadStrong: 'integrados en la fase donde se usan',
+    recursosLeadPost:
+      ': los ejemplos en el modelo de negocio, la entrevista en la validación, el kit de actitud en las primeras fases. Aquí los tenéis también sueltos, como biblioteca de consulta.',
+    indiceLead:
+      'No reinventamos nada: el emprendimiento ya está dentro de cada materia. Aquí tienes el atajo a su proyecto-capstone y a sus actividades de proyecto, cada una enlazada a su asignatura.',
+    recursosCards: [
+      {
+        href: '/emprendimiento/ejemplos/',
+        eyebrow: 'Ejemplos con chispa',
+        title: 'Empresas, 4P y BMC en acción',
+        desc: 'Casos reales, ficticios divertidos y locales, con su marketing mix o su modelo de negocio rellenado. Espejos para vuestro proyecto.',
+        cta: 'Ver ejemplos →',
+      },
+      {
+        href: '/emprendimiento/actividades/',
+        eyebrow: 'Kit de actitud',
+        title: 'Perder la vergüenza',
+        desc: 'Actividades cortas para atreverse a pedir, preguntar y hablar en público: la actitud que más cuesta y más vale al emprender.',
+        cta: 'Abrir el kit →',
+      },
+      {
+        href: '/emprendimiento/entrevista-emprendedores/',
+        eyebrow: 'Proyecto',
+        title: 'Entrevista a emprendedores',
+        desc: 'El alumnado sale a la calle a entrevistar a propietarios de negocios locales. Guion, banco de preguntas y plantilla descargable.',
+        cta: 'Ver el proyecto →',
+      },
+    ],
+    indiceH: 'El emprendimiento, asignatura por asignatura',
+    capstoneLink: 'Cuaderno de proyecto (capstone)',
+  },
+  ca: {
+    metaTitle: 'Emprenedoria',
+    metaDesc:
+      "L'assignatura d'emprenedoria pura (GPE) i «De zero a empresa», un projecte transversal per a portar a l'aula en qualsevol nivell.",
+    bcInicio: 'Inici',
+    bcCurrent: 'Emprenedoria',
+    heroAccent: 'Emprenedoria',
+    heroTail: "a l'aula.",
+    lede: "L'emprenedoria travessa totes les meues assignatures. Este és el lloc que la reunix: un projecte per a muntar amb l'alumnat a qualsevol nivell, les dues matèries que la treballen a fons (GPE i EDMN) i l'angle emprenedor de cada assignatura, tot enllaçat a on de veritat viu.",
+    featEyebrow: 'El projecte · Projecte transversal',
+    featTitle: 'De zero a empresa',
+    featDescPre:
+      "En equip, l'alumnat crea una empresa que resol un problema real, la valida eixint al carrer i la posa a prova amb dades. Dotze fases amb",
+    featDescStrong: "quadern de l'alumne",
+    featDescPost:
+      'per a omplir —amb les seues plantilles visuals (Business Model Canvas, punt mort…)— i els exemples, les entrevistes i el kit d\'actitud teixits en cada pas.',
+    featCta: 'Veure el projecte i el quadern →',
+    featAsideH: "Modular: d'un sprint a un curs sencer",
+    fases: (n: number) => `${n} fases`,
+    fasesLibres: 'Les fases que tries',
+    materiasH: 'Les dues matèries que la treballen a fons',
+    gpeEyebrow: 'Assignatura',
+    gpeDesc:
+      "La matèria d'emprenedoria pura de Batxillerat: de l'equip i la idea al pitch final, amb llibre, quadern de projecte, activitats i tests.",
+    gpeCta: "Anar a l'assignatura →",
+    edmnEyebrow: 'Capstone de 2n BATX',
+    edmnTitle: "El pla d'empresa d'EDMN",
+    edmnDesc:
+      "El projecte que recorre tota Empresa i Disseny de Models de Negoci: sis fases de l'equip i el mercat al pla economicofinancer i el pitch, amb plantilles per a omplir en cada pas.",
+    edmnCta: 'Veure el capstone →',
+    recursosH: 'Les ferramentes, ja dins del projecte',
+    recursosLeadPre: 'Estos recursos apareixen',
+    recursosLeadStrong: 'integrats en la fase on s\'usen',
+    recursosLeadPost:
+      ": els exemples en el model de negoci, l'entrevista en la validació, el kit d'actitud en les primeres fases. Ací els teniu també solts, com a biblioteca de consulta.",
+    indiceLead:
+      "No reinventem res: l'emprenedoria ja està dins de cada matèria. Ací tens la drecera al seu projecte-capstone i a les seues activitats de projecte, cada una enllaçada a la seua assignatura.",
+    recursosCards: [
+      {
+        href: '/emprendimiento/ejemplos/',
+        eyebrow: 'Exemples amb espurna',
+        title: 'Empreses, 4P i BMC en acció',
+        desc: 'Casos reals, ficticis divertits i locals, amb el seu marketing mix o el seu model de negoci omplit. Espills per al vostre projecte.',
+        cta: 'Veure exemples →',
+      },
+      {
+        href: '/emprendimiento/actividades/',
+        eyebrow: "Kit d'actitud",
+        title: 'Perdre la vergonya',
+        desc: "Activitats curtes per a atrevir-se a demanar, preguntar i parlar en públic: l'actitud que més costa i més val en emprendre.",
+        cta: 'Obrir el kit →',
+      },
+      {
+        href: '/emprendimiento/entrevista-emprendedores/',
+        eyebrow: 'Projecte',
+        title: 'Entrevista a emprenedors',
+        desc: "L'alumnat ix al carrer a entrevistar propietaris de negocis locals. Guió, banc de preguntes i plantilla descarregable.",
+        cta: 'Veure el projecte →',
+      },
+    ],
+    indiceH: "L'emprenedoria, assignatura per assignatura",
+    capstoneLink: 'Quadern de projecte (capstone)',
+  },
+}[locale];
 
 // Inverse index: the emprendimiento angle of every subject. We surface the
 // project-type activities and the capstone projects (cuaderno de proyecto) that
@@ -16,7 +152,7 @@ const proyectoActs = actsAll.filter((x) => x.data.tipo === 'proyecto' && x.data.
 
 const porAsignatura = ASIGNATURA_SLUGS
   .map((slug) => ({
-    a: ASIGNATURAS[slug],
+    a: localizeAsignatura(ASIGNATURAS[slug], locale),
     acts: proyectoActs
       .filter((x) => x.data.asignatura === slug)
       .sort((x, y) => x.data.unidad_relacionada - y.data.unidad_relacionada),
@@ -26,21 +162,19 @@ const porAsignatura = ASIGNATURA_SLUGS
 ---
 
 <BaseLayout
-  title="Emprendimiento"
-  description="La asignatura de emprendimiento puro (GPE) y «De cero a empresa», un proyecto transversal para llevar al aula en cualquier nivel."
+  title={copy.metaTitle}
+  description={copy.metaDesc}
+  contentLang={locale}
 >
   <div class="container">
-    <nav class="breadcrumb"><a href="/">Inicio</a> <span class="sep">›</span> <span>Emprendimiento</span></nav>
+    <nav class="breadcrumb"><a href="/">{copy.bcInicio}</a> <span class="sep">›</span> <span>{copy.bcCurrent}</span></nav>
   </div>
 
   <section class="hero">
     <div class="container">
-      <h1><span class="serif-italic-wonk accent">Emprendimiento</span> en el aula.</h1>
+      <h1><span class="serif-italic-wonk accent">{copy.heroAccent}</span> {copy.heroTail}</h1>
       <p class="lede">
-        El emprendimiento atraviesa todas mis asignaturas. Este es el sitio que
-        lo reúne: un proyecto para montar con el alumnado a cualquier nivel, las dos
-        materias que lo trabajan a fondo (GPE y EDMN) y el ángulo emprendedor de cada
-        asignatura, todo enlazado a donde de verdad vive.
+        {copy.lede}
       </p>
     </div>
   </section>
@@ -49,26 +183,25 @@ const porAsignatura = ASIGNATURA_SLUGS
     <div class="container">
       <a class="hero-card" href="/emprendimiento/proyecto/">
         <div class="hero-card__main">
-          <span class="hero-card__eyebrow">El proyecto · Proyecto transversal</span>
-          <h2 class="hero-card__title serif">De cero a empresa</h2>
+          <span class="hero-card__eyebrow">{copy.featEyebrow}</span>
+          <h2 class="hero-card__title serif">{copy.featTitle}</h2>
           <p class="hero-card__desc">
-            En equipo, el alumnado crea una empresa que resuelve un problema real,
-            la valida saliendo a la calle y la pone a prueba con datos. Doce fases
-            con <strong>cuaderno del alumno</strong> para rellenar —con sus plantillas
-            visuales (Business Model Canvas, punto muerto…)— y los ejemplos, las
-            entrevistas y el kit de actitud tejidos en cada paso.
+            {copy.featDescPre} <strong>{copy.featDescStrong}</strong> {copy.featDescPost}
           </p>
-          <span class="hero-card__cta">Ver el proyecto y el cuaderno →</span>
+          <span class="hero-card__cta">{copy.featCta}</span>
         </div>
         <div class="hero-card__aside">
-          <span class="hero-card__aside-h">Modular: de un sprint a un curso entero</span>
+          <span class="hero-card__aside-h">{copy.featAsideH}</span>
           <ul class="itinerarios">
-            {ITINERARIOS.map((it) => (
-              <li class="itinerario">
-                <span class="itinerario__label">{it.label}</span>
-                <span class="itinerario__meta">{it.fases ? `${it.fases.length} fases` : 'Las fases que elijas'}</span>
-              </li>
-            ))}
+            {ITINERARIOS.map((raw) => {
+              const it = localizeItinerario(raw, locale);
+              return (
+                <li class="itinerario">
+                  <span class="itinerario__label">{it.label}</span>
+                  <span class="itinerario__meta">{it.fases ? copy.fases(it.fases.length) : copy.fasesLibres}</span>
+                </li>
+              );
+            })}
           </ul>
         </div>
       </a>
@@ -77,27 +210,24 @@ const porAsignatura = ASIGNATURA_SLUGS
 
   <section class="cards">
     <div class="container">
-      <h2 class="cards__h">Las dos materias que lo trabajan a fondo</h2>
+      <h2 class="cards__h">{copy.materiasH}</h2>
       <div class="card-grid card-grid--2">
         <a class="card card--gpe" href={`/${gpe.slug}/`}>
-          <span class="card__eyebrow">Asignatura</span>
+          <span class="card__eyebrow">{copy.gpeEyebrow}</span>
           <h2 class="card__title serif">{gpe.title}</h2>
           <p class="card__desc">
-            La materia de emprendimiento puro de Bachillerato: del equipo y la idea
-            al pitch final, con libro, cuaderno de proyecto, actividades y tests.
+            {copy.gpeDesc}
           </p>
-          <span class="card__cta">Ir a la asignatura →</span>
+          <span class="card__cta">{copy.gpeCta}</span>
         </a>
 
         <a class="card card--edmn" href={`/${edmn.slug}/proyecto/`}>
-          <span class="card__eyebrow">Capstone de 2.º BACH</span>
-          <h2 class="card__title serif">El plan de empresa de EDMN</h2>
+          <span class="card__eyebrow">{copy.edmnEyebrow}</span>
+          <h2 class="card__title serif">{copy.edmnTitle}</h2>
           <p class="card__desc">
-            El proyecto que recorre todo Empresa y Diseño de Modelos de Negocio:
-            seis fases del equipo y el mercado al plan económico-financiero y el
-            pitch, con plantillas para rellenar en cada paso.
+            {copy.edmnDesc}
           </p>
-          <span class="card__cta">Ver el capstone →</span>
+          <span class="card__cta">{copy.edmnCta}</span>
         </a>
       </div>
     </div>
@@ -105,43 +235,28 @@ const porAsignatura = ASIGNATURA_SLUGS
 
   <section class="recursos">
     <div class="container">
-      <h2 class="recursos__h">Las herramientas, ya dentro del proyecto</h2>
+      <h2 class="recursos__h">{copy.recursosH}</h2>
       <p class="recursos__lead">
-        Estos recursos aparecen <strong>integrados en la fase donde se usan</strong>:
-        los ejemplos en el modelo de negocio, la entrevista en la validación, el kit
-        de actitud en las primeras fases. Aquí los tenéis también sueltos, como
-        biblioteca de consulta.
+        {copy.recursosLeadPre} <strong>{copy.recursosLeadStrong}</strong>{copy.recursosLeadPost}
       </p>
       <div class="card-grid">
-        <a class="card card--rec" href="/emprendimiento/ejemplos/">
-          <span class="card__eyebrow">Ejemplos con chispa</span>
-          <h3 class="card__title serif">Empresas, 4P y BMC en acción</h3>
-          <p class="card__desc">Casos reales, ficticios divertidos y locales, con su marketing mix o su modelo de negocio rellenado. Espejos para vuestro proyecto.</p>
-          <span class="card__cta">Ver ejemplos →</span>
-        </a>
-        <a class="card card--rec" href="/emprendimiento/actividades/">
-          <span class="card__eyebrow">Kit de actitud</span>
-          <h3 class="card__title serif">Perder la vergüenza</h3>
-          <p class="card__desc">Actividades cortas para atreverse a pedir, preguntar y hablar en público: la actitud que más cuesta y más vale al emprender.</p>
-          <span class="card__cta">Abrir el kit →</span>
-        </a>
-        <a class="card card--rec" href="/emprendimiento/entrevista-emprendedores/">
-          <span class="card__eyebrow">Proyecto</span>
-          <h3 class="card__title serif">Entrevista a emprendedores</h3>
-          <p class="card__desc">El alumnado sale a la calle a entrevistar a propietarios de negocios locales. Guion, banco de preguntas y plantilla descargable.</p>
-          <span class="card__cta">Ver el proyecto →</span>
-        </a>
+        {copy.recursosCards.map((c) => (
+          <a class="card card--rec" href={c.href}>
+            <span class="card__eyebrow">{c.eyebrow}</span>
+            <h3 class="card__title serif">{c.title}</h3>
+            <p class="card__desc">{c.desc}</p>
+            <span class="card__cta">{c.cta}</span>
+          </a>
+        ))}
       </div>
     </div>
   </section>
 
   <section class="indice">
     <div class="container">
-      <h2 class="indice__h">El emprendimiento, asignatura por asignatura</h2>
+      <h2 class="indice__h">{copy.indiceH}</h2>
       <p class="indice__lead">
-        No reinventamos nada: el emprendimiento ya está dentro de cada materia. Aquí
-        tienes el atajo a su proyecto-capstone y a sus actividades de proyecto, cada
-        una enlazada a su asignatura.
+        {copy.indiceLead}
       </p>
       <div class="indice__grid">
         {porAsignatura.map((x) => (
@@ -150,7 +265,7 @@ const porAsignatura = ASIGNATURA_SLUGS
             <span class="materia__level">{x.a.level}</span>
             <ul class="materia__links">
               {x.capstone && (
-                <li><a href={`/${x.a.slug}/proyecto/`}>Cuaderno de proyecto (capstone)</a></li>
+                <li><a href={`/${x.a.slug}/proyecto/`}>{copy.capstoneLink}</a></li>
               )}
               {x.acts.map((act) => (
                 <li><a href={`/${x.a.slug}/actividades/`}>{act.data.title}</a></li>
