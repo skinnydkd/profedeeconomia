@@ -3,41 +3,54 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 import { JUEGOS } from '@/lib/juegos';
 import JuegoCaratula from '@/components/juegos/JuegoCaratula.astro';
 import { getLocale } from '@/i18n/locale';
-
-const NIVEL_LABEL: Record<string, string> = { eso: 'ESO', bach: 'Bachillerato', fp: 'FP' };
+import { localizeJuego } from '@/i18n/juegos-ca';
+import { t } from '@/i18n/ui';
 
 const locale = getLocale(Astro.currentLocale);
 
-// The hero H1 + lede, breadcrumb and closing note are localized — the game
-// card grid (JUEGOS registry) and the «imprimibles» list stay in Spanish
-// under /ca. The hero section wraps the intro AND the card grid together, so
-// there is no single container to tag lang="ca" on without restructuring markup.
+const NIVEL_LABEL: Record<string, string> = {
+  eso: t('nivel.eso', locale),
+  bach: t('nivel.bach', locale),
+  fp: t('nivel.fp', locale),
+};
+
+// Page chrome is localized inline here; the game card grid and the
+// «imprimibles» list go through localizeJuego() (src/i18n/juegos-ca.ts),
+// which overlays VAL title/descripcion/nota_aula/modo onto the ES registry.
 const copy = {
   es: {
+    metaTitle: 'Juegos',
+    metaDesc:
+      'Material transversal: simuladores, dinámicas, parties y un quiz competitivo. Para los días en que la teoría no sostiene la sesión.',
     heroPre: 'Juegos para una',
     heroAccent: 'clase activa',
     ledeIntro: 'Simuladores, juegos de tablero y party para una clase activa. ¿Buscas el concurso competitivo? Está en las',
     ledeLink: 'Olimpiadas de Economía',
     bcInicio: 'Inicio',
     bcCurrent: 'Juegos',
+    imprimibles: '¿Sin pantallas? Versiones para imprimir:',
     note: 'El resto de juegos — Playground, Communist — se publicarán a lo largo del 2027.',
   },
   ca: {
+    metaTitle: 'Jocs',
+    metaDesc:
+      "Material transversal: simuladors, dinàmiques, parties i un quiz competitiu. Per als dies en què la teoria no sosté la sessió.",
     heroPre: 'Jocs per a una',
     heroAccent: 'classe activa',
     ledeIntro: 'Simuladors, jocs de taula i party per a una classe activa. Busques el concurs competitiu? Està a les',
     ledeLink: "Olimpíades d'Economia",
     bcInicio: 'Inici',
     bcCurrent: 'Jocs',
+    imprimibles: 'Sense pantalles? Versions per a imprimir:',
     note: 'La resta de jocs — Playground, Communist — es publicaran al llarg del 2027.',
   },
 }[locale];
 ---
 
 <BaseLayout
-  title="Juegos"
-  description="Material transversal: simuladores, dinámicas, parties y un quiz competitivo. Para los días en que la teoría no sostiene la sesión."
-  contentLang="es"
+  title={copy.metaTitle}
+  description={copy.metaDesc}
+  contentLang={locale}
 >
   <div class="container">
     <nav class="breadcrumb"><a href="/">{copy.bcInicio}</a> <span class="sep">›</span> <span>{copy.bcCurrent}</span></nav>
@@ -52,31 +65,38 @@ const copy = {
       </p>
 
       <div class="game-grid">
-        {JUEGOS.map((j) => (
-          <a class={`game-card ${j.estado}`} href={j.href}>
-            <JuegoCaratula slug={j.slug} color={j.color} />
-            <div class="gc-body">
-              <div class="gc-eyebrow">
-                {j.estado === 'disponible' ? 'Disponible' : 'Próximamente'}{j.tipo === 'party' && ' · Multijugador'}
+        {JUEGOS.map((raw) => {
+          const j = localizeJuego(raw, locale);
+          return (
+            <a class={`game-card ${j.estado}`} href={j.href}>
+              <JuegoCaratula slug={j.slug} color={j.color} />
+              <div class="gc-body">
+                <div class="gc-eyebrow">
+                  {t(j.estado === 'disponible' ? 'estado.disponible' : 'estado.proximamente', locale)}
+                  {j.tipo === 'party' && ` · ${t('meta.multijugador', locale)}`}
+                </div>
+                <div class="gc-title serif">{j.title}</div>
+                <p class="gc-desc">{j.descripcion}</p>
+                {j.nota_aula && <p class="gc-note">{j.nota_aula}</p>}
+                <span class="gc-meta">{j.nivel.map((n) => NIVEL_LABEL[n]).join(' · ')} · {j.modo}</span>
+                <span class="gc-cta">{j.tipo === 'party' ? t('card.abrirSala', locale) : t('card.jugar', locale)}</span>
               </div>
-              <div class="gc-title serif">{j.title}</div>
-              <p class="gc-desc">{j.descripcion}</p>
-              {j.nota_aula && <p class="gc-note">{j.nota_aula}</p>}
-              <span class="gc-meta">{j.nivel.map((n) => NIVEL_LABEL[n]).join(' · ')} · {j.modo}</span>
-              <span class="gc-cta">{j.tipo === 'party' ? 'Abrir sala (proyector) →' : 'Jugar →'}</span>
-            </div>
-          </a>
-        ))}
+            </a>
+          );
+        })}
       </div>
 
       <p class="imprimibles">
-        ¿Sin pantallas? Versiones para imprimir:
-        {JUEGOS.filter((j) => j.imprimible).map((j, i) => (
-          <>{i > 0 && ' · '}<a href={`/juegos/${j.slug}/imprimir/`}>{j.title}</a></>
-        ))}
+        {copy.imprimibles}
+        {JUEGOS.filter((j) => j.imprimible).map((raw, i) => {
+          const j = localizeJuego(raw, locale);
+          return (
+            <>{i > 0 && ' · '}<a href={`/juegos/${j.slug}/imprimir/`}>{j.title}</a></>
+          );
+        })}
       </p>
 
-      <p class="note" lang={locale}>
+      <p class="note">
         {copy.note}
       </p>
     </div>
