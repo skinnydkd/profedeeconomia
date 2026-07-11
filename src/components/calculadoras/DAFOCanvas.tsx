@@ -2,6 +2,61 @@
 import { useRef, useState } from 'preact/hooks';
 import { usePersistentState } from '@/lib/plantillas/persistence';
 import { exportarNodo } from '@/lib/plantillas/export';
+import { type Locale } from '@/i18n/locale';
+
+/**
+ * UI strings, Valencian (AVL) alongside the ES source. The DAFO acronym and
+ * the persisted quadrant ids (fortalezas, debilidades, oportunidades,
+ * amenazas) are storage keys and stay in ES; only labels are translated.
+ */
+export const COPY = {
+  es: {
+    intro:
+      'Analiza la situación de una empresa u organización: factores internos (fortalezas y debilidades) y externos (oportunidades y amenazas).',
+    colPositivo: 'Positivo',
+    colNegativo: 'Negativo',
+    rowInterno: 'Interno',
+    rowExterno: 'Externo',
+    fortalezasTitle: 'Fortalezas',
+    debilidadesTitle: 'Debilidades',
+    oportunidadesTitle: 'Oportunidades',
+    amenazasTitle: 'Amenazas',
+    fortalezasPlaceholder: '¿Qué hace bien la empresa? ¿Qué recursos o capacidades diferenciales tiene?',
+    debilidadesPlaceholder: '¿Qué aspectos internos limitan su rendimiento o competitividad?',
+    oportunidadesPlaceholder: '¿Qué factores del entorno puede aprovechar a su favor?',
+    amenazasPlaceholder: '¿Qué factores externos pueden perjudicarla?',
+    confirmVaciar: '¿Vaciar la plantilla?',
+    generando: 'Generando…',
+    exportarPng: 'Exportar PNG',
+    exportarPdf: 'Exportar PDF',
+    imprimir: 'Imprimir',
+    vaciar: 'Vaciar',
+  },
+  ca: {
+    intro:
+      "Analitza la situació d'una empresa o organització: factors interns (fortaleses i debilitats) i externs (oportunitats i amenaces).",
+    colPositivo: 'Positiu',
+    colNegativo: 'Negatiu',
+    rowInterno: 'Intern',
+    rowExterno: 'Extern',
+    fortalezasTitle: 'Fortaleses',
+    debilidadesTitle: 'Debilitats',
+    oportunidadesTitle: 'Oportunitats',
+    amenazasTitle: 'Amenaces',
+    fortalezasPlaceholder: "Què fa bé l'empresa? Quins recursos o capacitats diferencials té?",
+    debilidadesPlaceholder: 'Quins aspectes interns limiten el seu rendiment o competitivitat?',
+    oportunidadesPlaceholder: "Quins factors de l'entorn pot aprofitar al seu favor?",
+    amenazasPlaceholder: 'Quins factors externs poden perjudicar-la?',
+    confirmVaciar: 'Voleu buidar la plantilla?',
+    generando: 'Generant…',
+    exportarPng: 'Exportar PNG',
+    exportarPdf: 'Exportar PDF',
+    imprimir: 'Imprimir',
+    vaciar: 'Buidar',
+  },
+} as const;
+
+interface Props { locale?: Locale }
 
 type DAFOState = {
   fortalezas: string;
@@ -17,7 +72,8 @@ const INITIAL: DAFOState = {
   amenazas: '',
 };
 
-export default function DAFOCanvas() {
+export default function DAFOCanvas({ locale = 'es' }: Props) {
+  const c = COPY[locale];
   const [state, setState] = usePersistentState<DAFOState>('pde:plantilla:dafo', INITIAL);
   const [exporting, setExporting] = useState<'png' | 'pdf' | null>(null);
   const lienzoRef = useRef<HTMLDivElement>(null);
@@ -39,60 +95,57 @@ export default function DAFOCanvas() {
   }
 
   function handleVaciar() {
-    if (confirm('¿Vaciar la plantilla?')) {
+    if (confirm(c.confirmVaciar)) {
       setState(INITIAL);
     }
   }
 
   return (
     <div class="dafo-root">
-      <p class="dafo-intro">
-        Analiza la situación de una empresa u organización: factores internos (fortalezas y
-        debilidades) y externos (oportunidades y amenazas).
-      </p>
+      <p class="dafo-intro">{c.intro}</p>
 
       <div class="dafo-lienzo" ref={lienzoRef}>
         <div class="dafo-header" aria-hidden="true">
           <div class="dafo-corner" />
-          <div class="dafo-col-label dafo-col-label--first">Positivo</div>
-          <div class="dafo-col-label">Negativo</div>
+          <div class="dafo-col-label dafo-col-label--first">{c.colPositivo}</div>
+          <div class="dafo-col-label">{c.colNegativo}</div>
         </div>
 
         <div class="dafo-row">
-          <div class="dafo-row-label">Interno</div>
+          <div class="dafo-row-label">{c.rowInterno}</div>
           <div class="dafo-cell dafo-cell--positivo-interno">
-            <span class="dafo-cell-title">Fortalezas</span>
+            <span class="dafo-cell-title">{c.fortalezasTitle}</span>
             <textarea
               value={state.fortalezas}
-              placeholder="¿Qué hace bien la empresa? ¿Qué recursos o capacidades diferenciales tiene?"
+              placeholder={c.fortalezasPlaceholder}
               onInput={(e) => setField('fortalezas', (e.target as HTMLTextAreaElement).value)}
             />
           </div>
           <div class="dafo-cell dafo-cell--negativo-interno">
-            <span class="dafo-cell-title">Debilidades</span>
+            <span class="dafo-cell-title">{c.debilidadesTitle}</span>
             <textarea
               value={state.debilidades}
-              placeholder="¿Qué aspectos internos limitan su rendimiento o competitividad?"
+              placeholder={c.debilidadesPlaceholder}
               onInput={(e) => setField('debilidades', (e.target as HTMLTextAreaElement).value)}
             />
           </div>
         </div>
 
         <div class="dafo-row">
-          <div class="dafo-row-label">Externo</div>
+          <div class="dafo-row-label">{c.rowExterno}</div>
           <div class="dafo-cell dafo-cell--positivo-externo">
-            <span class="dafo-cell-title">Oportunidades</span>
+            <span class="dafo-cell-title">{c.oportunidadesTitle}</span>
             <textarea
               value={state.oportunidades}
-              placeholder="¿Qué factores del entorno puede aprovechar a su favor?"
+              placeholder={c.oportunidadesPlaceholder}
               onInput={(e) => setField('oportunidades', (e.target as HTMLTextAreaElement).value)}
             />
           </div>
           <div class="dafo-cell dafo-cell--negativo-externo">
-            <span class="dafo-cell-title">Amenazas</span>
+            <span class="dafo-cell-title">{c.amenazasTitle}</span>
             <textarea
               value={state.amenazas}
-              placeholder="¿Qué factores externos pueden perjudicarla?"
+              placeholder={c.amenazasPlaceholder}
               onInput={(e) => setField('amenazas', (e.target as HTMLTextAreaElement).value)}
             />
           </div>
@@ -105,20 +158,20 @@ export default function DAFOCanvas() {
           onClick={() => handleExport('png')}
           disabled={exporting !== null}
         >
-          {exporting === 'png' ? 'Generando…' : 'Exportar PNG'}
+          {exporting === 'png' ? c.generando : c.exportarPng}
         </button>
         <button
           class="dafo-btn dafo-btn--primary"
           onClick={() => handleExport('pdf')}
           disabled={exporting !== null}
         >
-          {exporting === 'pdf' ? 'Generando…' : 'Exportar PDF'}
+          {exporting === 'pdf' ? c.generando : c.exportarPdf}
         </button>
         <button class="dafo-btn" onClick={() => window.print()}>
-          Imprimir
+          {c.imprimir}
         </button>
         <button class="dafo-btn dafo-btn--danger" onClick={handleVaciar}>
-          Vaciar
+          {c.vaciar}
         </button>
       </div>
 

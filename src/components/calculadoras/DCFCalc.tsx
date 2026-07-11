@@ -2,6 +2,70 @@
 import { useMemo, useState } from 'preact/hooks';
 import { valorarDCF } from '../../lib/calc/dcf';
 import { formatEUR, formatPercent, formatNumber } from '../../lib/calc/format';
+import { type Locale } from '@/i18n/locale';
+
+/**
+ * UI strings, Valencian (AVL) alongside the ES source. Economic notation
+ * (WACC, g, VAN, TIR, €, %) is not translated. Guarded by copy-parity.test.ts.
+ */
+export const COPY = {
+  es: {
+    waccLabel: 'Coste medio del capital (WACC)',
+    porcentajeUnit: '% anual',
+    gLabel: 'Crecimiento perpetuo (g)',
+    flujosLabel: 'Flujos de caja libres proyectados',
+    anio: (n: number) => `Año ${n}`,
+    btnRemoveAnio: '− Año',
+    btnAddAnio: '+ Año',
+    valorEmpresaLabel: 'Valor de empresa',
+    valorEmpresaDetail: 'Suma de los flujos descontados más el valor residual actualizado',
+    flujosDescontadosLabel: 'Flujos descontados',
+    flujosDescontadosDetail: (n: number) => `Valor actual de los ${n} años proyectados`,
+    valorResidualLabel: 'Valor residual (hoy)',
+    valorResidualConDetail: 'Renta perpetua de Gordon, traída al presente',
+    valorResidualSinDetail: 'Sin valor residual aplicable',
+    detalleSummary: 'Detalle del descuento año a año',
+    thAnio: 'Año',
+    thFlujo: 'Flujo',
+    thFactor: 'Factor (1+WACC)^t',
+    thValorActual: 'Valor actual',
+    sumaFlujosDescontados: 'Suma de flujos descontados',
+    valorResidualRow: (n: number, money: string) =>
+      `Valor residual en el año ${n} (${money}), actualizado a hoy`,
+    valorEmpresaRow: '= Valor de empresa',
+    resumenResidual:
+      'El valor residual recoge todos los flujos posteriores al horizonte como una renta perpetua creciente.',
+  },
+  ca: {
+    waccLabel: 'Cost mitjà del capital (WACC)',
+    porcentajeUnit: '% anual',
+    gLabel: 'Creixement perpetu (g)',
+    flujosLabel: 'Fluxos de caixa lliures projectats',
+    anio: (n: number) => `Any ${n}`,
+    btnRemoveAnio: '− Any',
+    btnAddAnio: '+ Any',
+    valorEmpresaLabel: "Valor d'empresa",
+    valorEmpresaDetail: 'Suma dels fluxos descomptats més el valor residual actualitzat',
+    flujosDescontadosLabel: 'Fluxos descomptats',
+    flujosDescontadosDetail: (n: number) => `Valor actual dels ${n} anys projectats`,
+    valorResidualLabel: 'Valor residual (hui)',
+    valorResidualConDetail: 'Renda perpètua de Gordon, portada al present',
+    valorResidualSinDetail: 'Sense valor residual aplicable',
+    detalleSummary: 'Detall del descompte any a any',
+    thAnio: 'Any',
+    thFlujo: 'Flux',
+    thFactor: 'Factor (1+WACC)^t',
+    thValorActual: 'Valor actual',
+    sumaFlujosDescontados: 'Suma de fluxos descomptats',
+    valorResidualRow: (n: number, money: string) =>
+      `Valor residual en l'any ${n} (${money}), actualitzat a hui`,
+    valorEmpresaRow: "= Valor d'empresa",
+    resumenResidual:
+      "El valor residual recull tots els fluxos posteriors a l'horitzó com una renda perpètua creixent.",
+  },
+} as const;
+
+interface Props { locale?: Locale }
 
 /**
  * DCF (descuento de flujos de caja) calculator for EDMN 2BACH.
@@ -10,7 +74,8 @@ import { formatEUR, formatPercent, formatNumber } from '../../lib/calc/format';
  * value (Gordon perpetuity from the perpetual growth rate g) to obtain the
  * enterprise value. Mirrors the .calc__* layout of the other calculators.
  */
-export default function DCFCalc() {
+export default function DCFCalc({ locale = 'es' }: Props) {
+  const c = COPY[locale];
   const [wacc, setWacc] = useState<number>(10);
   const [g, setG] = useState<number>(2);
   const [flujos, setFlujos] = useState<number[]>([50000, 60000, 70000, 80000, 90000]);
@@ -43,7 +108,7 @@ export default function DCFCalc() {
     <div class="calc">
       <div class="calc__form">
         <label class="calc__field">
-          <span class="calc__label">Coste medio del capital (WACC)</span>
+          <span class="calc__label">{c.waccLabel}</span>
           <div class="calc__input-wrap">
             <input
               type="number"
@@ -52,12 +117,12 @@ export default function DCFCalc() {
               value={wacc}
               onInput={(e) => setWacc(parseFloat((e.target as HTMLInputElement).value) || 0)}
             />
-            <span class="calc__unit">% anual</span>
+            <span class="calc__unit">{c.porcentajeUnit}</span>
           </div>
         </label>
 
         <label class="calc__field">
-          <span class="calc__label">Crecimiento perpetuo (g)</span>
+          <span class="calc__label">{c.gLabel}</span>
           <div class="calc__input-wrap">
             <input
               type="number"
@@ -66,16 +131,16 @@ export default function DCFCalc() {
               value={g}
               onInput={(e) => setG(parseFloat((e.target as HTMLInputElement).value) || 0)}
             />
-            <span class="calc__unit">% anual</span>
+            <span class="calc__unit">{c.porcentajeUnit}</span>
           </div>
         </label>
 
         <div class="calc__field" style="grid-column: 1 / -1;">
-          <span class="calc__label">Flujos de caja libres proyectados</span>
+          <span class="calc__label">{c.flujosLabel}</span>
           <div class="calc__flujos">
             {flujos.map((f, i) => (
               <label class="calc__flujo">
-                <span class="calc__flujo-label">Año {i + 1}</span>
+                <span class="calc__flujo-label">{c.anio(i + 1)}</span>
                 <div class="calc__input-wrap">
                   <input
                     type="number"
@@ -95,7 +160,7 @@ export default function DCFCalc() {
               onClick={removeAnio}
               disabled={flujos.length <= 1}
             >
-              − Año
+              {c.btnRemoveAnio}
             </button>
             <button
               type="button"
@@ -103,7 +168,7 @@ export default function DCFCalc() {
               onClick={addAnio}
               disabled={flujos.length >= 10}
             >
-              + Año
+              {c.btnAddAnio}
             </button>
           </div>
         </div>
@@ -116,26 +181,26 @@ export default function DCFCalc() {
           <>
             <div class="calc__metric-grid calc__metric-grid--three">
               <div class="calc__metric calc__metric--primary">
-                <span class="calc__metric-label">Valor de empresa</span>
+                <span class="calc__metric-label">{c.valorEmpresaLabel}</span>
                 <span class="calc__metric-value">{formatEUR(result.valorEmpresa)}</span>
                 <span class="calc__metric-detail">
-                  Suma de los flujos descontados más el valor residual actualizado
+                  {c.valorEmpresaDetail}
                 </span>
               </div>
 
               <div class="calc__metric">
-                <span class="calc__metric-label">Flujos descontados</span>
+                <span class="calc__metric-label">{c.flujosDescontadosLabel}</span>
                 <span class="calc__metric-value">{formatEUR(result.valorActualFlujos)}</span>
-                <span class="calc__metric-detail">Valor actual de los {n} años proyectados</span>
+                <span class="calc__metric-detail">{c.flujosDescontadosDetail(n)}</span>
               </div>
 
               <div class="calc__metric">
-                <span class="calc__metric-label">Valor residual (hoy)</span>
+                <span class="calc__metric-label">{c.valorResidualLabel}</span>
                 <span class="calc__metric-value">{formatEUR(result.valorActualResidual)}</span>
                 <span class="calc__metric-detail">
                   {result.valorActualResidual > 0
-                    ? 'Renta perpetua de Gordon, traída al presente'
-                    : 'Sin valor residual aplicable'}
+                    ? c.valorResidualConDetail
+                    : c.valorResidualSinDetail}
                 </span>
               </div>
             </div>
@@ -143,7 +208,7 @@ export default function DCFCalc() {
             {result.aviso && <div class="calc__warning">{result.aviso}</div>}
 
             <details class="calc__details">
-              <summary>Detalle del descuento año a año</summary>
+              <summary>{c.detalleSummary}</summary>
               <div class="calc__formula">
                 <p>
                   VA(flujo<sub>t</sub>) = flujo<sub>t</sub> / (1 + WACC)<sup>t</sup> &nbsp;·&nbsp;
@@ -152,10 +217,10 @@ export default function DCFCalc() {
                 <table class="calc__table">
                   <thead>
                     <tr>
-                      <th>Año</th>
-                      <th>Flujo</th>
-                      <th>Factor (1+WACC)^t</th>
-                      <th>Valor actual</th>
+                      <th>{c.thAnio}</th>
+                      <th>{c.thFlujo}</th>
+                      <th>{c.thFactor}</th>
+                      <th>{c.thValorActual}</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -169,7 +234,7 @@ export default function DCFCalc() {
                     ))}
                     <tr>
                       <td colSpan={3}>
-                        <strong>Suma de flujos descontados</strong>
+                        <strong>{c.sumaFlujosDescontados}</strong>
                       </td>
                       <td>
                         <strong>{formatEUR(result.valorActualFlujos)}</strong>
@@ -177,14 +242,13 @@ export default function DCFCalc() {
                     </tr>
                     <tr>
                       <td colSpan={3}>
-                        Valor residual en el año {n} ({formatEUR(result.valorResidual)}),
-                        actualizado a hoy
+                        {c.valorResidualRow(n, formatEUR(result.valorResidual))}
                       </td>
                       <td>{formatEUR(result.valorActualResidual)}</td>
                     </tr>
                     <tr>
                       <td colSpan={3}>
-                        <strong>= Valor de empresa</strong>
+                        <strong>{c.valorEmpresaRow}</strong>
                       </td>
                       <td>
                         <strong>{formatEUR(result.valorEmpresa)}</strong>
@@ -194,8 +258,7 @@ export default function DCFCalc() {
                 </table>
                 <p>
                   WACC = {formatPercent(wacc, 1, false)} &nbsp;·&nbsp; g ={' '}
-                  {formatPercent(g, 1, false)}. El valor residual recoge todos los flujos
-                  posteriores al horizonte como una renta perpetua creciente.
+                  {formatPercent(g, 1, false)}. {c.resumenResidual}
                 </p>
               </div>
             </details>
