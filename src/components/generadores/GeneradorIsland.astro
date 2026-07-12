@@ -15,9 +15,9 @@ import { type Locale } from '@/i18n/locale';
 interface Props { componente?: string; locale?: Locale }
 const { componente, locale = 'es' } = Astro.props;
 ---
-{componente === 'Calificaciones' && <CalificacionesCalc client:load />}
+{componente === 'Calificaciones' && <CalificacionesCalc client:load locale={locale} />}
 {componente === 'Rubrica' && <RubricaGenerator client:load locale={locale} />}
-{componente === 'PlanRefuerzo' && <PlanRefuerzo client:load />}
-{componente === 'RegistroAula' && <RegistroAula client:load />}
-{componente === 'MedidasDUA' && <MedidasDUA client:load />}
-{componente === 'Autoevaluacion' && <Autoevaluacion client:load />}
+{componente === 'PlanRefuerzo' && <PlanRefuerzo client:load locale={locale} />}
+{componente === 'RegistroAula' && <RegistroAula client:load locale={locale} />}
+{componente === 'MedidasDUA' && <MedidasDUA client:load locale={locale} />}
+{componente === 'Autoevaluacion' && <Autoevaluacion client:load locale={locale} />}

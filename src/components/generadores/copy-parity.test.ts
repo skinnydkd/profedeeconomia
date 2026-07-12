@@ -1,5 +1,10 @@
 import { describe, it, expect } from 'vitest';
 import { COPY as Rubrica } from './RubricaGenerator';
+import { COPY as Calificaciones } from './CalificacionesCalc';
+import { COPY as Autoevaluacion } from './Autoevaluacion';
+import { COPY as PlanRefuerzo } from './PlanRefuerzo';
+import { COPY as RegistroAula } from './RegistroAula';
+import { COPY as MedidasDUA } from './MedidasDUA';
 
 /**
  * Every localized generador island exports a `COPY = { es, ca }`. This guard
@@ -8,6 +13,11 @@ import { COPY as Rubrica } from './RubricaGenerator';
  */
 const ISLANDS: [string, { es: Record<string, unknown>; ca: Record<string, unknown> }][] = [
   ['RubricaGenerator', Rubrica],
+  ['CalificacionesCalc', Calificaciones],
+  ['Autoevaluacion', Autoevaluacion],
+  ['PlanRefuerzo', PlanRefuerzo],
+  ['RegistroAula', RegistroAula],
+  ['MedidasDUA', MedidasDUA],
 ];
 
 const isRecord = (v: unknown): v is Record<string, unknown> =>

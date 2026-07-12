@@ -2,6 +2,76 @@
 import { useRef, useState } from 'preact/hooks';
 import { usePersistentState } from '@/lib/plantillas/persistence';
 import { exportarNodo } from '@/lib/plantillas/export';
+import { type Locale } from '@/i18n/locale';
+
+/**
+ * UI strings, Valencian (AVL) alongside the ES source. The persisted state key
+ * (pde:generador:autoevaluacion) and criterio ids stay structural; only what the
+ * teacher/student reads is translated. `escalaDefault` seeds a FRESH sheet, so a
+ * Valencian teacher starting one sees Valencian scale labels.
+ */
+export const COPY = {
+  es: {
+    escalaDefault: ['Poco', 'Bastante', 'Mucho'],
+    intro:
+      'Diseña una ficha de autoevaluación o coevaluación: define los criterios a valorar, ajusta ' +
+      'las etiquetas de la escala y entrégala al alumno para que marque su nivel.',
+    heading: 'Autoevaluación / coevaluación',
+    tituloLabel: 'Título / tarea',
+    tituloPlaceholder: 'Ej. Trabajo cooperativo — Unidad 3',
+    nombreLabel: 'Nombre del alumno/a',
+    nombrePlaceholder: 'Nombre y apellidos',
+    equipoLabel: 'Equipo / grupo',
+    equipoPlaceholder: 'Ej. Grupo A',
+    fechaLabel: 'Fecha',
+    fechaPlaceholder: 'dd/mm/aaaa',
+    escalaLabel: 'Etiquetas de la escala',
+    nivelPlaceholder: (i: number) => `Nivel ${i}`,
+    thCriterio: 'Criterio',
+    eliminarFila: 'Eliminar fila',
+    criterioPlaceholder: 'Describe el criterio o aspecto a valorar…',
+    marcarAria: (label: string) => `Marcar ${label}`,
+    eliminarCriterio: 'Eliminar criterio',
+    addCriterio: '+ Añadir criterio',
+    generando: 'Generando…',
+    exportarPng: 'Exportar PNG',
+    exportarPdf: 'Exportar PDF',
+    imprimir: 'Imprimir',
+    vaciar: 'Vaciar',
+    confirmVaciar: '¿Vaciar la plantilla?',
+  },
+  ca: {
+    escalaDefault: ['Poc', 'Bastant', 'Molt'],
+    intro:
+      "Dissenya una fitxa d'autoavaluació o coavaluació: definix els criteris a valorar, ajusta " +
+      "les etiquetes de l'escala i entrega-la a l'alumne perquè marque el seu nivell.",
+    heading: 'Autoavaluació / coavaluació',
+    tituloLabel: 'Títol / tasca',
+    tituloPlaceholder: 'Ex. Treball cooperatiu — Unitat 3',
+    nombreLabel: "Nom de l'alumne/a",
+    nombrePlaceholder: 'Nom i cognoms',
+    equipoLabel: 'Equip / grup',
+    equipoPlaceholder: 'Ex. Grup A',
+    fechaLabel: 'Data',
+    fechaPlaceholder: 'dd/mm/aaaa',
+    escalaLabel: "Etiquetes de l'escala",
+    nivelPlaceholder: (i: number) => `Nivell ${i}`,
+    thCriterio: 'Criteri',
+    eliminarFila: 'Eliminar fila',
+    criterioPlaceholder: 'Descriu el criteri o aspecte a valorar…',
+    marcarAria: (label: string) => `Marcar ${label}`,
+    eliminarCriterio: 'Eliminar criteri',
+    addCriterio: '+ Afegir criteri',
+    generando: 'Generant…',
+    exportarPng: 'Exportar PNG',
+    exportarPdf: 'Exportar PDF',
+    imprimir: 'Imprimir',
+    vaciar: 'Buidar',
+    confirmVaciar: 'Voleu buidar la plantilla?',
+  },
+} as const;
+
+interface Props { locale?: Locale }
 
 type Criterio = {
   id: string;
@@ -17,20 +87,24 @@ type AutoevaluacionState = {
   criterios: Criterio[];
 };
 
-const INITIAL: AutoevaluacionState = {
-  titulo: '',
-  nombre: '',
-  equipo: '',
-  fecha: '',
-  escala: ['Poco', 'Bastante', 'Mucho'],
-  criterios: [
-    { id: 'c1', texto: '' },
-    { id: 'c2', texto: '' },
-    { id: 'c3', texto: '' },
-  ],
-};
+function makeInitial(escala: readonly string[]): AutoevaluacionState {
+  return {
+    titulo: '',
+    nombre: '',
+    equipo: '',
+    fecha: '',
+    escala: [...escala],
+    criterios: [
+      { id: 'c1', texto: '' },
+      { id: 'c2', texto: '' },
+      { id: 'c3', texto: '' },
+    ],
+  };
+}
 
-export default function Autoevaluacion() {
+export default function Autoevaluacion({ locale = 'es' }: Props) {
+  const c = COPY[locale];
+  const INITIAL = makeInitial(c.escalaDefault);
   const [state, setState] = usePersistentState<AutoevaluacionState>('pde:generador:autoevaluacion', INITIAL);
   const [exporting, setExporting] = useState<'png' | 'pdf' | null>(null);
   const lienzoRef = useRef<HTMLDivElement>(null);
@@ -75,7 +149,7 @@ export default function Autoevaluacion() {
   }
 
   function handleVaciar() {
-    if (confirm('¿Vaciar la plantilla?')) {
+    if (confirm(c.confirmVaciar)) {
       setState(INITIAL);
     }
   }
@@ -83,62 +157,61 @@ export default function Autoevaluacion() {
   return (
     <div class="ae-root">
       <p class="ae-intro">
-        Diseña una ficha de autoevaluación o coevaluación: define los criterios a valorar, ajusta
-        las etiquetas de la escala y entrégala al alumno para que marque su nivel.
+        {c.intro}
       </p>
 
       <div class="lienzo" ref={lienzoRef}>
-        <h2 class="ae-heading">Autoevaluación / coevaluación</h2>
+        <h2 class="ae-heading">{c.heading}</h2>
 
         <div class="ae-meta-grid">
           <div class="ae-field ae-field--titulo">
-            <label class="ae-label" for="ae-titulo">Título / tarea</label>
+            <label class="ae-label" for="ae-titulo">{c.tituloLabel}</label>
             <input
               id="ae-titulo"
               class="ae-input"
               type="text"
               value={state.titulo}
-              placeholder="Ej. Trabajo cooperativo — Unidad 3"
+              placeholder={c.tituloPlaceholder}
               onInput={(e) => setField('titulo', (e.target as HTMLInputElement).value)}
             />
           </div>
           <div class="ae-field">
-            <label class="ae-label" for="ae-nombre">Nombre del alumno/a</label>
+            <label class="ae-label" for="ae-nombre">{c.nombreLabel}</label>
             <input
               id="ae-nombre"
               class="ae-input"
               type="text"
               value={state.nombre}
-              placeholder="Nombre y apellidos"
+              placeholder={c.nombrePlaceholder}
               onInput={(e) => setField('nombre', (e.target as HTMLInputElement).value)}
             />
           </div>
           <div class="ae-field">
-            <label class="ae-label" for="ae-equipo">Equipo / grupo</label>
+            <label class="ae-label" for="ae-equipo">{c.equipoLabel}</label>
             <input
               id="ae-equipo"
               class="ae-input"
               type="text"
               value={state.equipo}
-              placeholder="Ej. Grupo A"
+              placeholder={c.equipoPlaceholder}
               onInput={(e) => setField('equipo', (e.target as HTMLInputElement).value)}
             />
           </div>
           <div class="ae-field">
-            <label class="ae-label" for="ae-fecha">Fecha</label>
+            <label class="ae-label" for="ae-fecha">{c.fechaLabel}</label>
             <input
               id="ae-fecha"
               class="ae-input"
               type="text"
               value={state.fecha}
-              placeholder="dd/mm/aaaa"
+              placeholder={c.fechaPlaceholder}
               onInput={(e) => setField('fecha', (e.target as HTMLInputElement).value)}
             />
           </div>
         </div>
 
         <div class="ae-escala-config no-print">
-          <span class="ae-label">Etiquetas de la escala</span>
+          <span class="ae-label">{c.escalaLabel}</span>
           <div class="ae-escala-inputs">
             {state.escala.map((label, idx) => (
               <div key={idx} class="ae-escala-item">
@@ -147,7 +220,7 @@ export default function Autoevaluacion() {
                   class="ae-input ae-input--escala"
                   type="text"
                   value={label}
-                  placeholder={`Nivel ${idx + 1}`}
+                  placeholder={c.nivelPlaceholder(idx + 1)}
                   onInput={(e) => setEscalaLabel(idx, (e.target as HTMLInputElement).value)}
                 />
               </div>
@@ -159,13 +232,13 @@ export default function Autoevaluacion() {
           <table class="ae-table">
             <thead>
               <tr>
-                <th class="ae-th ae-th--criterio">Criterio</th>
+                <th class="ae-th ae-th--criterio">{c.thCriterio}</th>
                 {state.escala.map((label, idx) => (
                   <th key={idx} class="ae-th ae-th--nivel">
-                    {label || `Nivel ${idx + 1}`}
+                    {label || c.nivelPlaceholder(idx + 1)}
                   </th>
                 ))}
-                <th class="ae-th ae-th--remove no-print" aria-label="Eliminar fila" />
+                <th class="ae-th ae-th--remove no-print" aria-label={c.eliminarFila} />
               </tr>
             </thead>
             <tbody>
@@ -175,7 +248,7 @@ export default function Autoevaluacion() {
                     <textarea
                       class="ae-criterio-input"
                       value={criterio.texto}
-                      placeholder="Describe el criterio o aspecto a valorar…"
+                      placeholder={c.criterioPlaceholder}
                       onInput={(e) =>
                         setCriterio(criterio.id, (e.target as HTMLTextAreaElement).value)
                       }
@@ -183,7 +256,7 @@ export default function Autoevaluacion() {
                   </td>
                   {state.escala.map((_, idx) => (
                     <td key={idx} class="ae-td ae-td--check">
-                      <div class="ae-check-box" aria-label={`Marcar ${state.escala[idx]}`} />
+                      <div class="ae-check-box" aria-label={c.marcarAria(state.escala[idx])} />
                     </td>
                   ))}
                   <td class="ae-td no-print">
@@ -191,8 +264,8 @@ export default function Autoevaluacion() {
                       class="ae-remove-btn"
                       onClick={() => removeCriterio(criterio.id)}
                       disabled={state.criterios.length <= 1}
-                      aria-label="Eliminar criterio"
-                      title="Eliminar criterio"
+                      aria-label={c.eliminarCriterio}
+                      title={c.eliminarCriterio}
                     >
                       ×
                     </button>
@@ -206,27 +279,27 @@ export default function Autoevaluacion() {
 
       <div class="ae-actions no-print">
         <button class="ae-btn ae-btn--add" onClick={addCriterio}>
-          + Añadir criterio
+          {c.addCriterio}
         </button>
         <button
           class="ae-btn ae-btn--primary"
           onClick={() => handleExport('png')}
           disabled={exporting !== null}
         >
-          {exporting === 'png' ? 'Generando…' : 'Exportar PNG'}
+          {exporting === 'png' ? c.generando : c.exportarPng}
         </button>
         <button
           class="ae-btn ae-btn--primary"
           onClick={() => handleExport('pdf')}
           disabled={exporting !== null}
         >
-          {exporting === 'pdf' ? 'Generando…' : 'Exportar PDF'}
+          {exporting === 'pdf' ? c.generando : c.exportarPdf}
         </button>
         <button class="ae-btn" onClick={() => window.print()}>
-          Imprimir
+          {c.imprimir}
         </button>
         <button class="ae-btn ae-btn--danger" onClick={handleVaciar}>
-          Vaciar
+          {c.vaciar}
         </button>
       </div>
 

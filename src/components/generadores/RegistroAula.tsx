@@ -2,6 +2,74 @@
 import { useRef, useState } from 'preact/hooks';
 import { usePersistentState } from '@/lib/plantillas/persistence';
 import { exportarNodo } from '@/lib/plantillas/export';
+import { type Locale } from '@/i18n/locale';
+
+/**
+ * UI strings, Valencian (AVL) alongside the ES source. The persisted state key
+ * (pde:generador:registro-aula) and alumno ids stay structural; only what the
+ * teacher reads is translated. INITIAL seeds empty fields (no visible default
+ * labels), so nothing in the seed needs localizing.
+ */
+export const COPY = {
+  es: {
+    intro:
+      'Registra la asistencia, actitud y entrega de tareas de cada alumno por sesión. Añade o elimina filas según el número de alumnos del grupo.',
+    heading: 'Registro de aula',
+    fechaLabel: 'Fecha',
+    fechaPlaceholder: 'dd/mm/aaaa',
+    sesionLabel: 'Sesión / unidad',
+    sesionPlaceholder: 'Ej. Sesión 3 — Mercado de trabajo',
+    thAlumno: 'Alumno/a',
+    thAsistencia: 'Asistencia',
+    thActitud: 'Actitud',
+    thEntregas: 'Entregas',
+    thObservaciones: 'Observaciones',
+    eliminarFilaAria: 'Eliminar fila',
+    nombrePlaceholder: 'Nombre',
+    asistenciaPlaceholder: 'P / A / R',
+    actitudPlaceholder: '1–5',
+    entregasPlaceholder: 'Sí / No',
+    observacionesPlaceholder: 'Observaciones',
+    eliminarAlumnoTitle: 'Eliminar alumno',
+    addAlumno: '+ Añadir alumno',
+    generando: 'Generando…',
+    exportarPng: 'Exportar PNG',
+    exportarPdf: 'Exportar PDF',
+    imprimir: 'Imprimir',
+    vaciar: 'Vaciar',
+    confirmVaciar: '¿Vaciar la plantilla?',
+  },
+  ca: {
+    intro:
+      "Registra l'assistència, l'actitud i l'entrega de tasques de cada alumne per sessió. Afig o elimina files segons el nombre d'alumnes del grup.",
+    heading: "Registre d'aula",
+    fechaLabel: 'Data',
+    fechaPlaceholder: 'dd/mm/aaaa',
+    sesionLabel: 'Sessió / unitat',
+    sesionPlaceholder: 'P. ex. Sessió 3 — Mercat de treball',
+    thAlumno: 'Alumne/a',
+    thAsistencia: 'Assistència',
+    thActitud: 'Actitud',
+    thEntregas: 'Entregues',
+    thObservaciones: 'Observacions',
+    eliminarFilaAria: 'Eliminar fila',
+    nombrePlaceholder: 'Nom',
+    asistenciaPlaceholder: 'P / A / R',
+    actitudPlaceholder: '1–5',
+    entregasPlaceholder: 'Sí / No',
+    observacionesPlaceholder: 'Observacions',
+    eliminarAlumnoTitle: 'Eliminar alumne',
+    addAlumno: '+ Afegir alumne',
+    generando: 'Generant…',
+    exportarPng: 'Exportar PNG',
+    exportarPdf: 'Exportar PDF',
+    imprimir: 'Imprimir',
+    vaciar: 'Buidar',
+    confirmVaciar: 'Voleu buidar la plantilla?',
+  },
+} as const;
+
+interface Props { locale?: Locale }
 
 type Alumno = {
   id: string;
@@ -28,7 +96,8 @@ const INITIAL: RegistroAulaState = {
   ],
 };
 
-export default function RegistroAula() {
+export default function RegistroAula({ locale = 'es' }: Props) {
+  const c = COPY[locale];
   const [state, setState] = usePersistentState<RegistroAulaState>('pde:generador:registro-aula', INITIAL);
   const [exporting, setExporting] = useState<'png' | 'pdf' | null>(null);
   const lienzoRef = useRef<HTMLDivElement>(null);
@@ -73,7 +142,7 @@ export default function RegistroAula() {
   }
 
   function handleVaciar() {
-    if (confirm('¿Vaciar la plantilla?')) {
+    if (confirm(c.confirmVaciar)) {
       setState(INITIAL);
     }
   }
@@ -81,33 +150,32 @@ export default function RegistroAula() {
   return (
     <div class="ra-root">
       <p class="ra-intro">
-        Registra la asistencia, actitud y entrega de tareas de cada alumno por sesión. Añade o
-        elimina filas según el número de alumnos del grupo.
+        {c.intro}
       </p>
 
       <div class="lienzo" ref={lienzoRef}>
-        <h2 class="ra-heading">Registro de aula</h2>
+        <h2 class="ra-heading">{c.heading}</h2>
 
         <div class="ra-header-grid">
           <div class="ra-field">
-            <label class="ra-label" for="ra-fecha">Fecha</label>
+            <label class="ra-label" for="ra-fecha">{c.fechaLabel}</label>
             <input
               id="ra-fecha"
               class="ra-input"
               type="text"
               value={state.fecha}
-              placeholder="dd/mm/aaaa"
+              placeholder={c.fechaPlaceholder}
               onInput={(e) => setHeader('fecha', (e.target as HTMLInputElement).value)}
             />
           </div>
           <div class="ra-field">
-            <label class="ra-label" for="ra-sesion">Sesión / unidad</label>
+            <label class="ra-label" for="ra-sesion">{c.sesionLabel}</label>
             <input
               id="ra-sesion"
               class="ra-input"
               type="text"
               value={state.sesion}
-              placeholder="Ej. Sesión 3 — Mercado de trabajo"
+              placeholder={c.sesionPlaceholder}
               onInput={(e) => setHeader('sesion', (e.target as HTMLInputElement).value)}
             />
           </div>
@@ -117,12 +185,12 @@ export default function RegistroAula() {
           <table class="ra-table">
             <thead>
               <tr>
-                <th class="ra-th ra-th--alumno">Alumno/a</th>
-                <th class="ra-th">Asistencia</th>
-                <th class="ra-th">Actitud</th>
-                <th class="ra-th">Entregas</th>
-                <th class="ra-th ra-th--obs">Observaciones</th>
-                <th class="ra-th ra-th--remove no-print" aria-label="Eliminar fila" />
+                <th class="ra-th ra-th--alumno">{c.thAlumno}</th>
+                <th class="ra-th">{c.thAsistencia}</th>
+                <th class="ra-th">{c.thActitud}</th>
+                <th class="ra-th">{c.thEntregas}</th>
+                <th class="ra-th ra-th--obs">{c.thObservaciones}</th>
+                <th class="ra-th ra-th--remove no-print" aria-label={c.eliminarFilaAria} />
               </tr>
             </thead>
             <tbody>
@@ -133,7 +201,7 @@ export default function RegistroAula() {
                       class="ra-cell-input"
                       type="text"
                       value={alumno.nombre}
-                      placeholder="Nombre"
+                      placeholder={c.nombrePlaceholder}
                       onInput={(e) =>
                         setAlumnoField(alumno.id, 'nombre', (e.target as HTMLInputElement).value)
                       }
@@ -144,7 +212,7 @@ export default function RegistroAula() {
                       class="ra-cell-input"
                       type="text"
                       value={alumno.asistencia}
-                      placeholder="P / A / R"
+                      placeholder={c.asistenciaPlaceholder}
                       onInput={(e) =>
                         setAlumnoField(alumno.id, 'asistencia', (e.target as HTMLInputElement).value)
                       }
@@ -155,7 +223,7 @@ export default function RegistroAula() {
                       class="ra-cell-input"
                       type="text"
                       value={alumno.actitud}
-                      placeholder="1–5"
+                      placeholder={c.actitudPlaceholder}
                       onInput={(e) =>
                         setAlumnoField(alumno.id, 'actitud', (e.target as HTMLInputElement).value)
                       }
@@ -166,7 +234,7 @@ export default function RegistroAula() {
                       class="ra-cell-input"
                       type="text"
                       value={alumno.entregas}
-                      placeholder="Sí / No"
+                      placeholder={c.entregasPlaceholder}
                       onInput={(e) =>
                         setAlumnoField(alumno.id, 'entregas', (e.target as HTMLInputElement).value)
                       }
@@ -176,7 +244,7 @@ export default function RegistroAula() {
                     <textarea
                       class="ra-cell-textarea"
                       value={alumno.observaciones}
-                      placeholder="Observaciones"
+                      placeholder={c.observacionesPlaceholder}
                       onInput={(e) =>
                         setAlumnoField(
                           alumno.id,
@@ -191,8 +259,8 @@ export default function RegistroAula() {
                       class="ra-remove-btn"
                       onClick={() => removeAlumno(alumno.id)}
                       disabled={state.alumnos.length <= 1}
-                      aria-label="Eliminar fila"
-                      title="Eliminar alumno"
+                      aria-label={c.eliminarFilaAria}
+                      title={c.eliminarAlumnoTitle}
                     >
                       ×
                     </button>
@@ -206,27 +274,27 @@ export default function RegistroAula() {
 
       <div class="ra-actions no-print">
         <button class="ra-btn ra-btn--add" onClick={addAlumno}>
-          + Añadir alumno
+          {c.addAlumno}
         </button>
         <button
           class="ra-btn ra-btn--primary"
           onClick={() => handleExport('png')}
           disabled={exporting !== null}
         >
-          {exporting === 'png' ? 'Generando…' : 'Exportar PNG'}
+          {exporting === 'png' ? c.generando : c.exportarPng}
         </button>
         <button
           class="ra-btn ra-btn--primary"
           onClick={() => handleExport('pdf')}
           disabled={exporting !== null}
         >
-          {exporting === 'pdf' ? 'Generando…' : 'Exportar PDF'}
+          {exporting === 'pdf' ? c.generando : c.exportarPdf}
         </button>
         <button class="ra-btn" onClick={() => window.print()}>
-          Imprimir
+          {c.imprimir}
         </button>
         <button class="ra-btn ra-btn--danger" onClick={handleVaciar}>
-          Vaciar
+          {c.vaciar}
         </button>
       </div>
 

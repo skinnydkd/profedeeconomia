@@ -2,12 +2,75 @@
 import { useMemo, useState } from 'preact/hooks';
 import { mediaPonderada, rubricaANota, sumaPesos } from '@/lib/calc/calificaciones';
 import { formatNumber } from '@/lib/calc/format';
+import { type Locale } from '@/i18n/locale';
 
 /**
  * Grading calculator island — two independent blocks:
  *   1. Weighted average across assessment instruments.
  *   2. Rubric levels → numeric mark converter.
+ *
+ * UI strings live in COPY (es + ca, AVL). Numeric grades, weights, the
+ * rubric→mark conversion and % notation stay structural. `filasDefault` seeds a
+ * fresh calculator so a Valencian teacher sees Valencian instrument names.
  */
+export const COPY = {
+  es: {
+    filasDefault: ['Examen', 'Trabajo', 'Actitud'],
+    nuevaFila: 'Nueva prueba',
+    mediaTitulo: 'Media ponderada',
+    thInstrumento: 'Instrumento',
+    thPeso: 'Peso (%)',
+    thNota: 'Nota (0–10)',
+    eliminarFila: 'Eliminar fila',
+    instrumentoAria: (i: number) => `Nombre del instrumento ${i}`,
+    pesoAria: (nombre: string) => `Peso de ${nombre}`,
+    notaAria: (nombre: string) => `Nota de ${nombre}`,
+    eliminarAria: (nombre: string) => `Eliminar ${nombre}`,
+    addInstrumento: '+ Añadir instrumento',
+    pesosNotice: (total: number) =>
+      `Los pesos suman ${total} %, no 100 %. La media se calcula proporcionalmente.`,
+    notaFinal: 'Nota final',
+    sumaPesos: 'Suma de pesos',
+    rubricaTitulo: 'Rúbrica → nota',
+    rubricaDesc:
+      'Convierte los puntos obtenidos en una rúbrica en una nota sobre la escala deseada.',
+    puntosObtenidos: 'Puntos obtenidos',
+    puntosMaximos: 'Puntos máximos',
+    escalaLabel: 'Escala de calificación',
+    notaResultante: 'Nota resultante',
+    porcentaje: 'Porcentaje',
+    maximosNotice: 'Los puntos máximos deben ser mayores que 0.',
+  },
+  ca: {
+    filasDefault: ['Examen', 'Treball', 'Actitud'],
+    nuevaFila: 'Nova prova',
+    mediaTitulo: 'Mitjana ponderada',
+    thInstrumento: 'Instrument',
+    thPeso: 'Pes (%)',
+    thNota: 'Nota (0–10)',
+    eliminarFila: 'Eliminar fila',
+    instrumentoAria: (i: number) => `Nom de l'instrument ${i}`,
+    pesoAria: (nombre: string) => `Pes de ${nombre}`,
+    notaAria: (nombre: string) => `Nota de ${nombre}`,
+    eliminarAria: (nombre: string) => `Eliminar ${nombre}`,
+    addInstrumento: '+ Afegir instrument',
+    pesosNotice: (total: number) =>
+      `Els pesos sumen ${total} %, no 100 %. La mitjana es calcula proporcionalment.`,
+    notaFinal: 'Nota final',
+    sumaPesos: 'Suma de pesos',
+    rubricaTitulo: 'Rúbrica → nota',
+    rubricaDesc:
+      "Convertix els punts obtinguts en una rúbrica en una nota sobre l'escala desitjada.",
+    puntosObtenidos: 'Punts obtinguts',
+    puntosMaximos: 'Punts màxims',
+    escalaLabel: 'Escala de qualificació',
+    notaResultante: 'Nota resultant',
+    porcentaje: 'Percentatge',
+    maximosNotice: 'Els punts màxims han de ser majors que 0.',
+  },
+} as const;
+
+interface Props { locale?: Locale }
 
 interface Row {
   nombre: string;
@@ -15,15 +78,26 @@ interface Row {
   nota: number;
 }
 
-const DEFAULT_ROWS: Row[] = [
-  { nombre: 'Examen', peso: 50, nota: 6.5 },
-  { nombre: 'Trabajo', peso: 30, nota: 8 },
-  { nombre: 'Actitud', peso: 20, nota: 9 },
+// Structural seed values (grades/weights never localized); names come from COPY.
+const DEFAULT_ROW_VALUES: readonly { peso: number; nota: number }[] = [
+  { peso: 50, nota: 6.5 },
+  { peso: 30, nota: 8 },
+  { peso: 20, nota: 9 },
 ];
 
-export default function CalificacionesCalc() {
+function makeDefaultRows(nombres: readonly string[]): Row[] {
+  return DEFAULT_ROW_VALUES.map((v, i) => ({
+    nombre: nombres[i] ?? '',
+    peso: v.peso,
+    nota: v.nota,
+  }));
+}
+
+export default function CalificacionesCalc({ locale = 'es' }: Props) {
+  const c = COPY[locale];
+
   // ── Block 1: weighted average ──────────────────────────────────────────────
-  const [rows, setRows] = useState<Row[]>(DEFAULT_ROWS);
+  const [rows, setRows] = useState<Row[]>(() => makeDefaultRows(c.filasDefault));
 
   const totalPesos = useMemo(() => sumaPesos(rows), [rows]);
   const mediaFinal = useMemo(() => mediaPonderada(rows), [rows]);
@@ -42,7 +116,7 @@ export default function CalificacionesCalc() {
   }
 
   function addRow() {
-    setRows((prev) => [...prev, { nombre: 'Nueva prueba', peso: 0, nota: 0 }]);
+    setRows((prev) => [...prev, { nombre: c.nuevaFila, peso: 0, nota: 0 }]);
   }
 
   function removeRow(i: number) {
@@ -70,16 +144,16 @@ export default function CalificacionesCalc() {
 
       {/* ── BLOCK 1: Media ponderada ─────────────────────────────────────── */}
       <section class="cg-calc__block">
-        <h3 class="cg-calc__block-title">Media ponderada</h3>
+        <h3 class="cg-calc__block-title">{c.mediaTitulo}</h3>
 
         <div class="cg-calc__table-wrap">
           <table class="cg-calc__table">
             <thead>
               <tr>
-                <th class="cg-calc__th cg-calc__th--nombre">Instrumento</th>
-                <th class="cg-calc__th">Peso (%)</th>
-                <th class="cg-calc__th">Nota (0–10)</th>
-                <th class="cg-calc__th cg-calc__th--action" aria-label="Eliminar fila" />
+                <th class="cg-calc__th cg-calc__th--nombre">{c.thInstrumento}</th>
+                <th class="cg-calc__th">{c.thPeso}</th>
+                <th class="cg-calc__th">{c.thNota}</th>
+                <th class="cg-calc__th cg-calc__th--action" aria-label={c.eliminarFila} />
               </tr>
             </thead>
             <tbody>
@@ -93,7 +167,7 @@ export default function CalificacionesCalc() {
                       onInput={(e) =>
                         updateRow(i, 'nombre', (e.target as HTMLInputElement).value)
                       }
-                      aria-label={`Nombre del instrumento ${i + 1}`}
+                      aria-label={c.instrumentoAria(i + 1)}
                     />
                   </td>
                   <td class="cg-calc__td">
@@ -107,7 +181,7 @@ export default function CalificacionesCalc() {
                       onInput={(e) =>
                         updateRow(i, 'peso', (e.target as HTMLInputElement).value)
                       }
-                      aria-label={`Peso de ${row.nombre}`}
+                      aria-label={c.pesoAria(row.nombre)}
                     />
                   </td>
                   <td class="cg-calc__td">
@@ -121,15 +195,15 @@ export default function CalificacionesCalc() {
                       onInput={(e) =>
                         updateRow(i, 'nota', (e.target as HTMLInputElement).value)
                       }
-                      aria-label={`Nota de ${row.nombre}`}
+                      aria-label={c.notaAria(row.nombre)}
                     />
                   </td>
                   <td class="cg-calc__td cg-calc__td--action">
                     <button
                       class="cg-calc__btn-remove"
                       onClick={() => removeRow(i)}
-                      title="Eliminar fila"
-                      aria-label={`Eliminar ${row.nombre}`}
+                      title={c.eliminarFila}
+                      aria-label={c.eliminarAria(row.nombre)}
                       disabled={rows.length <= 1}
                     >
                       ×
@@ -142,23 +216,23 @@ export default function CalificacionesCalc() {
         </div>
 
         <button class="cg-calc__btn-add" onClick={addRow}>
-          + Añadir instrumento
+          {c.addInstrumento}
         </button>
 
         {totalPesos !== 100 && (
           <p class="cg-calc__notice">
-            Los pesos suman {totalPesos} %, no 100 %. La media se calcula proporcionalmente.
+            {c.pesosNotice(totalPesos)}
           </p>
         )}
 
         <div class="cg-calc__result-row">
           <div class="cg-calc__metric cg-calc__metric--primary">
-            <span class="cg-calc__metric-label">Nota final</span>
+            <span class="cg-calc__metric-label">{c.notaFinal}</span>
             <span class="cg-calc__metric-value">{fmtNota(mediaFinal)}</span>
             <span class="cg-calc__metric-unit">/ 10</span>
           </div>
           <div class="cg-calc__metric">
-            <span class="cg-calc__metric-label">Suma de pesos</span>
+            <span class="cg-calc__metric-label">{c.sumaPesos}</span>
             <span class="cg-calc__metric-value">{totalPesos}</span>
             <span class="cg-calc__metric-unit">%</span>
           </div>
@@ -167,14 +241,14 @@ export default function CalificacionesCalc() {
 
       {/* ── BLOCK 2: Rúbrica → nota ──────────────────────────────────────── */}
       <section class="cg-calc__block">
-        <h3 class="cg-calc__block-title">Rúbrica → nota</h3>
+        <h3 class="cg-calc__block-title">{c.rubricaTitulo}</h3>
         <p class="cg-calc__block-desc">
-          Convierte los puntos obtenidos en una rúbrica en una nota sobre la escala deseada.
+          {c.rubricaDesc}
         </p>
 
         <div class="cg-calc__form">
           <label class="cg-calc__field">
-            <span class="cg-calc__label">Puntos obtenidos</span>
+            <span class="cg-calc__label">{c.puntosObtenidos}</span>
             <div class="cg-calc__input-wrap">
               <input
                 class="cg-calc__input"
@@ -190,7 +264,7 @@ export default function CalificacionesCalc() {
           </label>
 
           <label class="cg-calc__field">
-            <span class="cg-calc__label">Puntos máximos</span>
+            <span class="cg-calc__label">{c.puntosMaximos}</span>
             <div class="cg-calc__input-wrap">
               <input
                 class="cg-calc__input"
@@ -206,7 +280,7 @@ export default function CalificacionesCalc() {
           </label>
 
           <label class="cg-calc__field">
-            <span class="cg-calc__label">Escala de calificación</span>
+            <span class="cg-calc__label">{c.escalaLabel}</span>
             <div class="cg-calc__input-wrap">
               <input
                 class="cg-calc__input"
@@ -224,13 +298,13 @@ export default function CalificacionesCalc() {
 
         <div class="cg-calc__result-row">
           <div class="cg-calc__metric cg-calc__metric--primary">
-            <span class="cg-calc__metric-label">Nota resultante</span>
+            <span class="cg-calc__metric-label">{c.notaResultante}</span>
             <span class="cg-calc__metric-value">{fmtNota(notaRubrica)}</span>
             <span class="cg-calc__metric-unit">/ {escala}</span>
           </div>
           {notaRubrica !== null && (
             <div class="cg-calc__metric">
-              <span class="cg-calc__metric-label">Porcentaje</span>
+              <span class="cg-calc__metric-label">{c.porcentaje}</span>
               <span class="cg-calc__metric-value">
                 {formatNumber((obtenidos / maximos) * 100, 1)}
               </span>
@@ -241,7 +315,7 @@ export default function CalificacionesCalc() {
 
         {maximos <= 0 && (
           <p class="cg-calc__notice">
-            Los puntos máximos deben ser mayores que 0.
+            {c.maximosNotice}
           </p>
         )}
       </section>
