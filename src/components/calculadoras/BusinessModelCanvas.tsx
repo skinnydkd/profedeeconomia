@@ -2,6 +2,74 @@
 import { useRef, useState } from 'preact/hooks';
 import { usePersistentState } from '@/lib/plantillas/persistence';
 import { exportarNodo } from '@/lib/plantillas/export';
+import { type Locale } from '@/i18n/locale';
+
+/**
+ * UI strings, Valencian (AVL) alongside the ES source. "Business Model Canvas"
+ * is a product name and stays untranslated. The persisted state field names /
+ * block ids (socios_clave, propuestas_valor, …) are storage keys and stay in
+ * ES; only the visible labels and placeholders are translated.
+ */
+export const COPY = {
+  es: {
+    intro:
+      'Describe el modelo de negocio de una empresa en nueve bloques clave, siguiendo el Business Model Canvas de Osterwalder y Pigneur.',
+    sociosClaveLabel: 'Socios clave',
+    sociosClavePlaceholder: '¿Quiénes son los principales socios y proveedores?',
+    actividadesClaveLabel: 'Actividades clave',
+    actividadesClavePlaceholder: '¿Qué actividades críticas requiere la propuesta de valor?',
+    recursosClaveLabel: 'Recursos clave',
+    recursosClavePlaceholder: '¿Qué activos son imprescindibles para el modelo?',
+    propuestasValorLabel: 'Propuestas de valor',
+    propuestasValorPlaceholder: '¿Qué problema resuelve o necesidad satisface? ¿Qué valor entrega a cada segmento?',
+    relacionesClientesLabel: 'Relaciones con clientes',
+    relacionesClientesPlaceholder: '¿Qué tipo de relación establece con cada segmento?',
+    canalesLabel: 'Canales',
+    canalesPlaceholder: '¿Cómo llega a los clientes y cómo les entrega la propuesta?',
+    segmentosClientesLabel: 'Segmentos de clientes',
+    segmentosClientesPlaceholder: '¿Para quién crea valor? ¿Quiénes son sus clientes más importantes?',
+    estructuraCostesLabel: 'Estructura de costes',
+    estructuraCostesPlaceholder: '¿Cuáles son los costes más importantes del modelo?',
+    fuentesIngresosLabel: 'Fuentes de ingresos',
+    fuentesIngresosPlaceholder: '¿Por qué valor están dispuestos a pagar los clientes? ¿Cómo pagan actualmente?',
+    confirmVaciar: '¿Vaciar la plantilla?',
+    generando: 'Generando…',
+    exportarPng: 'Exportar PNG',
+    exportarPdf: 'Exportar PDF',
+    imprimir: 'Imprimir',
+    vaciar: 'Vaciar',
+  },
+  ca: {
+    intro:
+      "Descriu el model de negoci d'una empresa en nou blocs clau, seguint el Business Model Canvas d'Osterwalder i Pigneur.",
+    sociosClaveLabel: 'Socis clau',
+    sociosClavePlaceholder: 'Qui són els principals socis i proveïdors?',
+    actividadesClaveLabel: 'Activitats clau',
+    actividadesClavePlaceholder: 'Quines activitats crítiques requerix la proposta de valor?',
+    recursosClaveLabel: 'Recursos clau',
+    recursosClavePlaceholder: 'Quins actius són imprescindibles per al model?',
+    propuestasValorLabel: 'Proposta de valor',
+    propuestasValorPlaceholder: 'Quin problema resol o quina necessitat satisfà? Quin valor entrega a cada segment?',
+    relacionesClientesLabel: 'Relació amb els clients',
+    relacionesClientesPlaceholder: 'Quin tipus de relació establix amb cada segment?',
+    canalesLabel: 'Canals',
+    canalesPlaceholder: 'Com arriba als clients i com els entrega la proposta?',
+    segmentosClientesLabel: 'Segments de clients',
+    segmentosClientesPlaceholder: 'Per a qui crea valor? Qui són els seus clients més importants?',
+    estructuraCostesLabel: 'Estructura de costos',
+    estructuraCostesPlaceholder: 'Quins són els costos més importants del model?',
+    fuentesIngresosLabel: 'Fonts d\'ingressos',
+    fuentesIngresosPlaceholder: 'Per quin valor estan disposats a pagar els clients? Com paguen actualment?',
+    confirmVaciar: 'Voleu buidar la plantilla?',
+    generando: 'Generant…',
+    exportarPng: 'Exportar PNG',
+    exportarPdf: 'Exportar PDF',
+    imprimir: 'Imprimir',
+    vaciar: 'Buidar',
+  },
+} as const;
+
+interface Props { locale?: Locale }
 
 type BMCState = {
   socios_clave: string;
@@ -54,7 +122,8 @@ function Block({
   );
 }
 
-export default function BusinessModelCanvas() {
+export default function BusinessModelCanvas({ locale = 'es' }: Props) {
+  const c = COPY[locale];
   const [state, setState] = usePersistentState<BMCState>('pde:plantilla:canvas', INITIAL);
   const [exporting, setExporting] = useState<'png' | 'pdf' | null>(null);
   const lienzoRef = useRef<HTMLDivElement>(null);
@@ -76,73 +145,70 @@ export default function BusinessModelCanvas() {
   }
 
   function handleVaciar() {
-    if (confirm('¿Vaciar la plantilla?')) {
+    if (confirm(c.confirmVaciar)) {
       setState(INITIAL);
     }
   }
 
   return (
     <div class="bmc-root">
-      <p class="bmc-intro">
-        Describe el modelo de negocio de una empresa en nueve bloques clave, siguiendo el
-        Business Model Canvas de Osterwalder y Pigneur.
-      </p>
+      <p class="bmc-intro">{c.intro}</p>
 
       <div class="bmc-lienzo" ref={lienzoRef}>
         {/* Top 5-column area */}
         <div class="bmc-top">
           <Block
             id="socios_clave"
-            label="Socios clave"
+            label={c.sociosClaveLabel}
             value={state.socios_clave}
             onUpdate={setField}
-            placeholder="¿Quiénes son los principales socios y proveedores?"
+            placeholder={c.sociosClavePlaceholder}
           />
           <div class="bmc-stack">
             <Block
               id="actividades_clave"
-              label="Actividades clave"
+              label={c.actividadesClaveLabel}
               value={state.actividades_clave}
               onUpdate={setField}
-              placeholder="¿Qué actividades críticas requiere la propuesta de valor?"
+              placeholder={c.actividadesClavePlaceholder}
             />
             <Block
               id="recursos_clave"
-              label="Recursos clave"
+              label={c.recursosClaveLabel}
               value={state.recursos_clave}
               onUpdate={setField}
-              placeholder="¿Qué activos son imprescindibles para el modelo?"
+              placeholder={c.recursosClavePlaceholder}
             />
           </div>
           <Block
             id="propuestas_valor"
-            label="Propuestas de valor"
+            label={c.propuestasValorLabel}
             value={state.propuestas_valor}
             onUpdate={setField}
-            placeholder="¿Qué problema resuelve o necesidad satisface? ¿Qué valor entrega a cada segmento?"
+            placeholder={c.propuestasValorPlaceholder}
           />
           <div class="bmc-stack">
             <Block
               id="relaciones_clientes"
-              label="Relaciones con clientes"
+              label={c.relacionesClientesLabel}
               value={state.relaciones_clientes}
               onUpdate={setField}
-              placeholder="¿Qué tipo de relación establece con cada segmento?"
+              placeholder={c.relacionesClientesPlaceholder}
             />
             <Block
               id="canales"
-              label="Canales"
+              label={c.canalesLabel}
               value={state.canales}
               onUpdate={setField}
-              placeholder="¿Cómo llega a los clientes y cómo les entrega la propuesta?"
+              placeholder={c.canalesPlaceholder}
             />
           </div>
           <Block
             id="segmentos_clientes"
-            label="Segmentos de clientes"
+            label={c.segmentosClientesLabel}
             value={state.segmentos_clientes}
             onUpdate={setField}
-            placeholder="¿Para quién crea valor? ¿Quiénes son sus clientes más importantes?"
+            placeholder={c.segmentosClientesPlaceholder}
           />
         </div>
 
@@ -150,17 +216,17 @@ export default function BusinessModelCanvas() {
         <div class="bmc-bottom">
           <Block
             id="estructura_costes"
-            label="Estructura de costes"
+            label={c.estructuraCostesLabel}
             value={state.estructura_costes}
             onUpdate={setField}
-            placeholder="¿Cuáles son los costes más importantes del modelo?"
+            placeholder={c.estructuraCostesPlaceholder}
           />
           <Block
             id="fuentes_ingresos"
-            label="Fuentes de ingresos"
+            label={c.fuentesIngresosLabel}
             value={state.fuentes_ingresos}
             onUpdate={setField}
-            placeholder="¿Por qué valor están dispuestos a pagar los clientes? ¿Cómo pagan actualmente?"
+            placeholder={c.fuentesIngresosPlaceholder}
           />
         </div>
       </div>
@@ -171,20 +237,20 @@ export default function BusinessModelCanvas() {
           onClick={() => handleExport('png')}
           disabled={exporting !== null}
         >
-          {exporting === 'png' ? 'Generando…' : 'Exportar PNG'}
+          {exporting === 'png' ? c.generando : c.exportarPng}
         </button>
         <button
           class="bmc-btn bmc-btn--primary"
           onClick={() => handleExport('pdf')}
           disabled={exporting !== null}
         >
-          {exporting === 'pdf' ? 'Generando…' : 'Exportar PDF'}
+          {exporting === 'pdf' ? c.generando : c.exportarPdf}
         </button>
         <button class="bmc-btn" onClick={() => window.print()}>
-          Imprimir
+          {c.imprimir}
         </button>
         <button class="bmc-btn bmc-btn--danger" onClick={handleVaciar}>
-          Vaciar
+          {c.vaciar}
         </button>
       </div>
 

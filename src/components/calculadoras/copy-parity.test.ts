@@ -7,6 +7,13 @@ import { COPY as DAFO } from './DAFOCanvas';
 import { COPY as Productividad } from './ProductividadCalc';
 import { COPY as Presupuesto503020 } from './CalculadoraPresupuesto503020';
 import { COPY as MatrizBCG } from './MatrizBCG';
+import { COPY as Ratios } from './RatiosCalc';
+import { COPY as IRPF } from './IRPFDeclaracion';
+import { COPY as RIASEC } from './RIASECTest';
+import { COPY as NominaESO } from './CalculadoraNominaESO';
+import { COPY as BusinessModelCanvas } from './BusinessModelCanvas';
+import { COPY as BuscadorItinerarios } from './BuscadorItinerarios';
+import { COPY as Elasticidad } from './ElasticidadCalc';
 
 /**
  * Every localized island exports a `COPY = { es, ca }`. This guard fails when a
@@ -24,6 +31,13 @@ const ISLANDS: [string, { es: Record<string, unknown>; ca: Record<string, unknow
   ['ProductividadCalc', Productividad],
   ['CalculadoraPresupuesto503020', Presupuesto503020],
   ['MatrizBCG', MatrizBCG],
+  ['RatiosCalc', Ratios],
+  ['IRPFDeclaracion', IRPF],
+  ['RIASECTest', RIASEC],
+  ['CalculadoraNominaESO', NominaESO],
+  ['BusinessModelCanvas', BusinessModelCanvas],
+  ['BuscadorItinerarios', BuscadorItinerarios],
+  ['ElasticidadCalc', Elasticidad],
 ];
 
 const isRecord = (v: unknown): v is Record<string, unknown> =>

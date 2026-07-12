@@ -8,6 +8,7 @@ import {
   type RIASEC,
   type Puntuaciones,
 } from '../../lib/calc/riasec';
+import { type Locale } from '@/i18n/locale';
 
 /**
  * RIASEC vocational interest test for FOPP 4ESO. All the data and scoring lives
@@ -16,19 +17,95 @@ import {
  * three-letter Holland code with the dominant types and their study/career
  * orientations, plus a hexagonal score wheel. Reuses the shared `.calc__*` /
  * `.bi__*` styles (Variant C). It is an orientation tool, not a diagnosis.
+ *
+ * NOTE: the 30 questionnaire statements (PREGUNTAS) and the six type
+ * descriptions (TIPOS: nombre, lema, descripcion, orientaciones) live in the
+ * pure lib module and are NOT translated here — they render as-is (ES fallback).
  */
+
+/**
+ * UI strings, Valencian (AVL) alongside the ES source. The RIASEC acronym and
+ * the letters R/I/A/S/E/C are scoring keys and stay untouched. Guarded by
+ * copy-parity.test.ts.
+ */
+export const COPY = {
+  es: {
+    escala: { 1: 'Nada', 2: 'Poco', 3: 'Algo', 4: 'Bastante', 5: 'Mucho' },
+    tuCodigoHolland: 'Tu código Holland',
+    estudiosQueEncajan: 'Estudios que encajan',
+    profesionesEjemplo: 'Profesiones de ejemplo',
+    volverHacer: 'Volver a hacer el test',
+    comoInterpreta: 'Cómo se interpreta',
+    interpIntro: 'El modelo RIASEC de John L. Holland describe seis tipos de intereses:',
+    sufRealista: 'ealista',
+    sufInvestigador: 'nvestigador',
+    sufArtistico: 'rtístico',
+    sufSocial: 'ocial',
+    sufEmprendedor: 'mprendedor',
+    sufConvencional: 'onvencional',
+    interpY: ' y ',
+    interpTipo: 'Nadie es de un solo tipo: tu perfil son las',
+    interpTres: 'tres',
+    interpPerfil:
+      'letras con mayor puntuación (tu código Holland). Sirve para orientarte hacia estudios y profesiones afines,',
+    interpNo: 'no',
+    interpDiagnostico:
+      ' es un diagnóstico cerrado. Coméntalo con tu tutor/a y con orientación del centro.',
+    bloque: (actual: number, total: number, contestadas: number, preguntas: number) =>
+      `Bloque ${actual} de ${total} · ${contestadas}/${preguntas} respondidas`,
+    indicaPre: 'Indica cuánto te gustaría hacer cada cosa, de',
+    indicaNada: 'nada',
+    indicaEntre: 'a',
+    indicaMucho: 'mucho',
+    anterior: '← Anterior',
+    verResultado: 'Ver resultado',
+    siguiente: 'Siguiente →',
+    respondePara: (n: number) => `Responde las ${n} afirmaciones para continuar.`,
+    hexAria: 'Rueda hexagonal con tu puntuación en cada uno de los seis tipos RIASEC',
+  },
+  ca: {
+    escala: { 1: 'Gens', 2: 'Poc', 3: 'Una mica', 4: 'Bastant', 5: 'Molt' },
+    tuCodigoHolland: 'El teu codi Holland',
+    estudiosQueEncajan: 'Estudis que encaixen',
+    profesionesEjemplo: "Professions d'exemple",
+    volverHacer: 'Tornar a fer el test',
+    comoInterpreta: "Com s'interpreta",
+    interpIntro: "El model RIASEC de John L. Holland descriu sis tipus d'interessos:",
+    sufRealista: 'ealista',
+    sufInvestigador: 'nvestigador',
+    sufArtistico: 'rtístic',
+    sufSocial: 'ocial',
+    sufEmprendedor: 'mprenedor',
+    sufConvencional: 'onvencional',
+    interpY: ' i ',
+    interpTipo: "Ningú és d'un sol tipus: el teu perfil són les",
+    interpTres: 'tres',
+    interpPerfil:
+      'lletres amb més puntuació (el teu codi Holland). Servix per a orientar-te cap a estudis i professions afins,',
+    interpNo: 'no',
+    interpDiagnostico:
+      " és un diagnòstic tancat. Comenta-ho amb el teu tutor/a i amb l'orientació del centre.",
+    bloque: (actual: number, total: number, contestadas: number, preguntas: number) =>
+      `Bloc ${actual} de ${total} · ${contestadas}/${preguntas} respostes`,
+    indicaPre: "Indica quant t'agradaria fer cada cosa, de",
+    indicaNada: 'gens',
+    indicaEntre: 'a',
+    indicaMucho: 'molt',
+    anterior: '← Anterior',
+    verResultado: 'Veure resultat',
+    siguiente: 'Següent →',
+    respondePara: (n: number) => `Respon les ${n} afirmacions per a continuar.`,
+    hexAria: 'Roda hexagonal amb la teua puntuació en cadascun dels sis tipus RIASEC',
+  },
+} as const;
+
+interface Props { locale?: Locale }
 
 const POR_PAGINA = 5;
 const TOTAL_PAGINAS = Math.ceil(PREGUNTAS.length / POR_PAGINA);
 
-/** Labels for the 1-5 Likert scale. */
-const ESCALA: { valor: number; corta: string }[] = [
-  { valor: 1, corta: 'Nada' },
-  { valor: 2, corta: 'Poco' },
-  { valor: 3, corta: 'Algo' },
-  { valor: 4, corta: 'Bastante' },
-  { valor: 5, corta: 'Mucho' },
-];
+/** The 1-5 Likert scale values; labels are localized in COPY.escala. */
+const ESCALA = [1, 2, 3, 4, 5] as const;
 
 /** Brand color per dimension (Variant C accents). */
 const COLOR: Record<RIASEC, string> = {
@@ -40,7 +117,8 @@ const COLOR: Record<RIASEC, string> = {
   C: '#A87A2A', // mostaza profundo
 };
 
-export default function RIASECTest() {
+export default function RIASECTest({ locale = 'es' }: Props) {
+  const c = COPY[locale];
   const [respuestas, setRespuestas] = useState<Record<string, number>>({});
   const [pagina, setPagina] = useState(0);
   const [finalizado, setFinalizado] = useState(false);
@@ -84,7 +162,7 @@ export default function RIASECTest() {
       <div class="calc">
         <div class="calc__results" style="margin-top:0; padding-top:0; border-top:none;">
           <p class="calc__eyebrow" style="text-align:center;">
-            Tu código Holland
+            {c.tuCodigoHolland}
           </p>
           <h2
             class="qp__nota"
@@ -96,7 +174,11 @@ export default function RIASECTest() {
             {resultado.tipos.map((t) => t.nombre).join(' · ')}
           </p>
 
-          <HexWheel puntuaciones={resultado.puntuaciones} dominantes={resultado.dominantes} />
+          <HexWheel
+            puntuaciones={resultado.puntuaciones}
+            dominantes={resultado.dominantes}
+            locale={locale}
+          />
 
           <div class="bi__cards" style="margin-top:1.6rem;">
             {resultado.tipos.map((t, i) => (
@@ -108,14 +190,14 @@ export default function RIASECTest() {
                 <p style="font-style:italic; color:#5C4A3D; margin:0.2rem 0 0.7rem;">{t.lema}</p>
                 <p>{t.descripcion}</p>
 
-                <p class="bi__card-section">Estudios que encajan</p>
+                <p class="bi__card-section">{c.estudiosQueEncajan}</p>
                 <ul class="bi__card-list">
                   {t.orientaciones.estudios.map((e) => (
                     <li>{e}</li>
                   ))}
                 </ul>
 
-                <p class="bi__card-section">Profesiones de ejemplo</p>
+                <p class="bi__card-section">{c.profesionesEjemplo}</p>
                 <ul class="bi__card-list">
                   {t.orientaciones.profesiones.map((pr) => (
                     <li>{pr}</li>
@@ -127,21 +209,20 @@ export default function RIASECTest() {
 
           <div class="bi__actions" style="margin-top:1.6rem;">
             <button type="button" class="calc__btn calc__btn--ghost" onClick={reiniciar}>
-              Volver a hacer el test
+              {c.volverHacer}
             </button>
           </div>
 
           <details class="calc__details">
-            <summary>Cómo se interpreta</summary>
+            <summary>{c.comoInterpreta}</summary>
             <div class="calc__formula">
               <p>
-                El modelo RIASEC de John L. Holland describe seis tipos de intereses:{' '}
-                <strong>R</strong>ealista, <strong>I</strong>nvestigador, <strong>A</strong>rtístico,{' '}
-                <strong>S</strong>ocial, <strong>E</strong>mprendedor y <strong>C</strong>onvencional.
-                Nadie es de un solo tipo: tu perfil son las <em>tres</em> letras con mayor
-                puntuación (tu código Holland). Sirve para orientarte hacia estudios y profesiones
-                afines, <em>no</em> es un diagnóstico cerrado. Coméntalo con tu tutor/a y con
-                orientación del centro.
+                {c.interpIntro}{' '}
+                <strong>R</strong>{c.sufRealista}, <strong>I</strong>{c.sufInvestigador},{' '}
+                <strong>A</strong>{c.sufArtistico}, <strong>S</strong>{c.sufSocial},{' '}
+                <strong>E</strong>{c.sufEmprendedor}{c.interpY}<strong>C</strong>{c.sufConvencional}.{' '}
+                {c.interpTipo} <em>{c.interpTres}</em> {c.interpPerfil} <em>{c.interpNo}</em>
+                {c.interpDiagnostico}
               </p>
             </div>
           </details>
@@ -155,7 +236,7 @@ export default function RIASECTest() {
     <div class="calc">
       <div class="qp__header">
         <span class="qp__eyebrow">
-          Bloque {pagina + 1} de {TOTAL_PAGINAS} · {contestadas}/{PREGUNTAS.length} respondidas
+          {c.bloque(pagina + 1, TOTAL_PAGINAS, contestadas, PREGUNTAS.length)}
         </span>
         <div class="qp__progress">
           {Array.from({ length: TOTAL_PAGINAS }, (_, i) => (
@@ -170,7 +251,7 @@ export default function RIASECTest() {
       </div>
 
       <p class="calc__sub" style="margin-top:0.4rem;">
-        Indica cuánto te gustaría hacer cada cosa, de <em>nada</em> a <em>mucho</em>.
+        {c.indicaPre} <em>{c.indicaNada}</em> {c.indicaEntre} <em>{c.indicaMucho}</em>.
       </p>
 
       <div class="riasec__items">
@@ -183,13 +264,13 @@ export default function RIASECTest() {
                 {ESCALA.map((opt) => (
                   <button
                     type="button"
-                    class={`bi__chip ${valor === opt.valor ? 'is-on' : ''}`}
-                    aria-pressed={valor === opt.valor}
-                    onClick={() => elegir(p.id, opt.valor)}
+                    class={`bi__chip ${valor === opt ? 'is-on' : ''}`}
+                    aria-pressed={valor === opt}
+                    onClick={() => elegir(p.id, opt)}
                     style="flex:1; justify-content:center; text-align:center;"
                   >
-                    <span style="display:block; font-weight:700;">{opt.valor}</span>
-                    <span style="display:block; font-size:0.78rem;">{opt.corta}</span>
+                    <span style="display:block; font-weight:700;">{opt}</span>
+                    <span style="display:block; font-size:0.78rem;">{c.escala[opt]}</span>
                   </button>
                 ))}
               </div>
@@ -205,7 +286,7 @@ export default function RIASECTest() {
           onClick={anterior}
           disabled={pagina === 0}
         >
-          ← Anterior
+          {c.anterior}
         </button>
         <button
           type="button"
@@ -213,12 +294,12 @@ export default function RIASECTest() {
           onClick={siguiente}
           disabled={!paginaCompleta}
         >
-          {esUltima ? 'Ver resultado' : 'Siguiente →'}
+          {esUltima ? c.verResultado : c.siguiente}
         </button>
       </div>
       {!paginaCompleta && (
         <p class="bi__hint" style="text-align:right;">
-          Responde las {preguntasPagina.length} afirmaciones para continuar.
+          {c.respondePara(preguntasPagina.length)}
         </p>
       )}
     </div>
@@ -235,10 +316,13 @@ const PUNTUACION_MAX = ESCALA_MAX * 5;
 function HexWheel({
   puntuaciones,
   dominantes,
+  locale,
 }: {
   puntuaciones: Puntuaciones;
   dominantes: RIASEC[];
+  locale: Locale;
 }) {
+  const c = COPY[locale];
   const cx = 200;
   const cy = 185;
   const rMax = 130;
@@ -263,7 +347,7 @@ function HexWheel({
       viewBox="0 0 400 380"
       xmlns="http://www.w3.org/2000/svg"
       role="img"
-      aria-label="Rueda hexagonal con tu puntuación en cada uno de los seis tipos RIASEC"
+      aria-label={c.hexAria}
       style="max-width:420px; width:100%; height:auto; display:block; margin:1.4rem auto 0;"
     >
       {/* Concentric reference rings */}
