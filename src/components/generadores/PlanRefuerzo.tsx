@@ -2,6 +2,86 @@
 import { useRef, useState } from 'preact/hooks';
 import { usePersistentState } from '@/lib/plantillas/persistence';
 import { exportarNodo } from '@/lib/plantillas/export';
+import { type Locale } from '@/i18n/locale';
+
+/**
+ * UI strings, Valencian (AVL) alongside the ES source. The persisted state key
+ * (pde:generador:plan-refuerzo), field ids (pr-*) and INITIAL keys stay
+ * structural; only what the teacher reads is translated. INITIAL is all-empty,
+ * so no default labels need seeding from COPY.
+ */
+export const COPY = {
+  es: {
+    intro:
+      'Documenta el plan de refuerzo o recuperación de un alumno: áreas a reforzar, medidas adoptadas, actividades propuestas y seguimiento.',
+    heading: 'Plan de refuerzo / recuperación',
+    alumnoLabel: 'Alumno/a',
+    grupoLabel: 'Grupo',
+    cursoLabel: 'Curso',
+    fechaLabel: 'Fecha',
+    areasLabel: 'Áreas / criterios a reforzar',
+    medidasLabel: 'Medidas / apoyos',
+    actividadesLabel: 'Actividades propuestas',
+    temporizacionLabel: 'Temporización',
+    seguimientoLabel: 'Seguimiento / observaciones',
+    alumnoPlaceholder: 'Nombre y apellidos',
+    grupoPlaceholder: 'Ej. 2.º A',
+    cursoPlaceholder: 'Ej. 2024-2025',
+    fechaPlaceholder: 'dd/mm/aaaa',
+    areasPlaceholder:
+      'Indica las competencias, criterios de evaluación o contenidos en los que el alumno presenta dificultades.',
+    medidasPlaceholder:
+      'Describe las medidas de atención a la diversidad, apoyos dentro o fuera del aula, adaptaciones metodológicas, etc.',
+    actividadesPlaceholder:
+      'Lista las actividades, ejercicios o tareas específicas que se proponen para superar las dificultades.',
+    temporizacionPlaceholder:
+      'Ej. Del 10 de octubre al 30 de noviembre; revisión semanal los martes.',
+    seguimientoPlaceholder:
+      'Registra los avances, incidencias y cualquier observación relevante durante el período de refuerzo.',
+    generando: 'Generando…',
+    exportarPng: 'Exportar PNG',
+    exportarPdf: 'Exportar PDF',
+    imprimir: 'Imprimir',
+    vaciar: 'Vaciar',
+    confirmVaciar: '¿Vaciar la plantilla?',
+  },
+  ca: {
+    intro:
+      "Documenta el pla de reforç o recuperació d'un alumne: àrees a reforçar, mesures adoptades, activitats proposades i seguiment.",
+    heading: 'Pla de reforç / recuperació',
+    alumnoLabel: 'Alumne/a',
+    grupoLabel: 'Grup',
+    cursoLabel: 'Curs',
+    fechaLabel: 'Data',
+    areasLabel: 'Àrees / criteris a reforçar',
+    medidasLabel: 'Mesures / suports',
+    actividadesLabel: 'Activitats proposades',
+    temporizacionLabel: 'Temporització',
+    seguimientoLabel: 'Seguiment / observacions',
+    alumnoPlaceholder: 'Nom i cognoms',
+    grupoPlaceholder: 'Ex. 2n A',
+    cursoPlaceholder: 'Ex. 2024-2025',
+    fechaPlaceholder: 'dd/mm/aaaa',
+    areasPlaceholder:
+      "Indica les competències, criteris d'avaluació o continguts en què l'alumne presenta dificultats.",
+    medidasPlaceholder:
+      "Descriu les mesures d'atenció a la diversitat, suports dins o fora de l'aula, adaptacions metodològiques, etc.",
+    actividadesPlaceholder:
+      'Llista les activitats, exercicis o tasques específiques que es proposen per a superar les dificultats.',
+    temporizacionPlaceholder:
+      "Ex. Del 10 d'octubre al 30 de novembre; revisió setmanal els dimarts.",
+    seguimientoPlaceholder:
+      'Registra els avanços, incidències i qualsevol observació rellevant durant el període de reforç.',
+    generando: 'Generant…',
+    exportarPng: 'Exportar PNG',
+    exportarPdf: 'Exportar PDF',
+    imprimir: 'Imprimir',
+    vaciar: 'Buidar',
+    confirmVaciar: 'Voleu buidar la plantilla?',
+  },
+} as const;
+
+interface Props { locale?: Locale }
 
 type PlanRefuerzoState = {
   alumno: string;
@@ -27,7 +107,8 @@ const INITIAL: PlanRefuerzoState = {
   seguimiento: '',
 };
 
-export default function PlanRefuerzo() {
+export default function PlanRefuerzo({ locale = 'es' }: Props) {
+  const c = COPY[locale];
   const [state, setState] = usePersistentState<PlanRefuerzoState>('pde:generador:plan-refuerzo', INITIAL);
   const [exporting, setExporting] = useState<'png' | 'pdf' | null>(null);
   const lienzoRef = useRef<HTMLDivElement>(null);
@@ -49,7 +130,7 @@ export default function PlanRefuerzo() {
   }
 
   function handleVaciar() {
-    if (confirm('¿Vaciar la plantilla?')) {
+    if (confirm(c.confirmVaciar)) {
       setState(INITIAL);
     }
   }
@@ -57,112 +138,111 @@ export default function PlanRefuerzo() {
   return (
     <div class="pr-root">
       <p class="pr-intro">
-        Documenta el plan de refuerzo o recuperación de un alumno: áreas a reforzar, medidas
-        adoptadas, actividades propuestas y seguimiento.
+        {c.intro}
       </p>
 
       <div class="lienzo" ref={lienzoRef}>
-        <h2 class="pr-heading">Plan de refuerzo / recuperación</h2>
+        <h2 class="pr-heading">{c.heading}</h2>
 
         <div class="pr-meta-grid">
           <div class="pr-field">
-            <label class="pr-label" for="pr-alumno">Alumno/a</label>
+            <label class="pr-label" for="pr-alumno">{c.alumnoLabel}</label>
             <input
               id="pr-alumno"
               class="pr-input"
               type="text"
               value={state.alumno}
-              placeholder="Nombre y apellidos"
+              placeholder={c.alumnoPlaceholder}
               onInput={(e) => setField('alumno', (e.target as HTMLInputElement).value)}
             />
           </div>
           <div class="pr-field">
-            <label class="pr-label" for="pr-grupo">Grupo</label>
+            <label class="pr-label" for="pr-grupo">{c.grupoLabel}</label>
             <input
               id="pr-grupo"
               class="pr-input"
               type="text"
               value={state.grupo}
-              placeholder="Ej. 2.º A"
+              placeholder={c.grupoPlaceholder}
               onInput={(e) => setField('grupo', (e.target as HTMLInputElement).value)}
             />
           </div>
           <div class="pr-field">
-            <label class="pr-label" for="pr-curso">Curso</label>
+            <label class="pr-label" for="pr-curso">{c.cursoLabel}</label>
             <input
               id="pr-curso"
               class="pr-input"
               type="text"
               value={state.curso}
-              placeholder="Ej. 2024-2025"
+              placeholder={c.cursoPlaceholder}
               onInput={(e) => setField('curso', (e.target as HTMLInputElement).value)}
             />
           </div>
           <div class="pr-field">
-            <label class="pr-label" for="pr-fecha">Fecha</label>
+            <label class="pr-label" for="pr-fecha">{c.fechaLabel}</label>
             <input
               id="pr-fecha"
               class="pr-input"
               type="text"
               value={state.fecha}
-              placeholder="dd/mm/aaaa"
+              placeholder={c.fechaPlaceholder}
               onInput={(e) => setField('fecha', (e.target as HTMLInputElement).value)}
             />
           </div>
         </div>
 
         <div class="pr-section">
-          <label class="pr-label" for="pr-areas">Áreas / criterios a reforzar</label>
+          <label class="pr-label" for="pr-areas">{c.areasLabel}</label>
           <textarea
             id="pr-areas"
             class="pr-textarea"
             value={state.areas}
-            placeholder="Indica las competencias, criterios de evaluación o contenidos en los que el alumno presenta dificultades."
+            placeholder={c.areasPlaceholder}
             onInput={(e) => setField('areas', (e.target as HTMLTextAreaElement).value)}
           />
         </div>
 
         <div class="pr-section">
-          <label class="pr-label" for="pr-medidas">Medidas / apoyos</label>
+          <label class="pr-label" for="pr-medidas">{c.medidasLabel}</label>
           <textarea
             id="pr-medidas"
             class="pr-textarea"
             value={state.medidas}
-            placeholder="Describe las medidas de atención a la diversidad, apoyos dentro o fuera del aula, adaptaciones metodológicas, etc."
+            placeholder={c.medidasPlaceholder}
             onInput={(e) => setField('medidas', (e.target as HTMLTextAreaElement).value)}
           />
         </div>
 
         <div class="pr-section">
-          <label class="pr-label" for="pr-actividades">Actividades propuestas</label>
+          <label class="pr-label" for="pr-actividades">{c.actividadesLabel}</label>
           <textarea
             id="pr-actividades"
             class="pr-textarea"
             value={state.actividades}
-            placeholder="Lista las actividades, ejercicios o tareas específicas que se proponen para superar las dificultades."
+            placeholder={c.actividadesPlaceholder}
             onInput={(e) => setField('actividades', (e.target as HTMLTextAreaElement).value)}
           />
         </div>
 
         <div class="pr-section">
-          <label class="pr-label" for="pr-temporizacion">Temporización</label>
+          <label class="pr-label" for="pr-temporizacion">{c.temporizacionLabel}</label>
           <input
             id="pr-temporizacion"
             class="pr-input"
             type="text"
             value={state.temporizacion}
-            placeholder="Ej. Del 10 de octubre al 30 de noviembre; revisión semanal los martes."
+            placeholder={c.temporizacionPlaceholder}
             onInput={(e) => setField('temporizacion', (e.target as HTMLInputElement).value)}
           />
         </div>
 
         <div class="pr-section">
-          <label class="pr-label" for="pr-seguimiento">Seguimiento / observaciones</label>
+          <label class="pr-label" for="pr-seguimiento">{c.seguimientoLabel}</label>
           <textarea
             id="pr-seguimiento"
             class="pr-textarea"
             value={state.seguimiento}
-            placeholder="Registra los avances, incidencias y cualquier observación relevante durante el período de refuerzo."
+            placeholder={c.seguimientoPlaceholder}
             onInput={(e) => setField('seguimiento', (e.target as HTMLTextAreaElement).value)}
           />
         </div>
@@ -174,20 +254,20 @@ export default function PlanRefuerzo() {
           onClick={() => handleExport('png')}
           disabled={exporting !== null}
         >
-          {exporting === 'png' ? 'Generando…' : 'Exportar PNG'}
+          {exporting === 'png' ? c.generando : c.exportarPng}
         </button>
         <button
           class="pr-btn pr-btn--primary"
           onClick={() => handleExport('pdf')}
           disabled={exporting !== null}
         >
-          {exporting === 'pdf' ? 'Generando…' : 'Exportar PDF'}
+          {exporting === 'pdf' ? c.generando : c.exportarPdf}
         </button>
         <button class="pr-btn" onClick={() => window.print()}>
-          Imprimir
+          {c.imprimir}
         </button>
         <button class="pr-btn pr-btn--danger" onClick={handleVaciar}>
-          Vaciar
+          {c.vaciar}
         </button>
       </div>
 

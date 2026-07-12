@@ -74,6 +74,7 @@ export const ui = {
     'herramienta.clave': 'Clave',
     'herramienta.especificas': 'Específicas',
     'herramienta.volver': '← Todas las herramientas',
+    'generadores.volver': '← Todos los generadores',
   },
   ca: {
     'skip.main': 'Salta al contingut principal',
@@ -147,6 +148,7 @@ export const ui = {
     'herramienta.clave': 'Clau',
     'herramienta.especificas': 'Específiques',
     'herramienta.volver': '← Totes les ferramentes',
+    'generadores.volver': '← Tots els generadors',
   },
 } as const;
 

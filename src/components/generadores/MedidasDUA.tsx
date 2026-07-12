@@ -2,6 +2,88 @@
 import { useRef, useState } from 'preact/hooks';
 import { usePersistentState } from '@/lib/plantillas/persistence';
 import { exportarNodo } from '@/lib/plantillas/export';
+import { type Locale } from '@/i18n/locale';
+
+/**
+ * UI strings, Valencian (AVL) alongside the ES source. The persisted state key
+ * (pde:generador:medidas-dua), the field ids and the roman numerals I/II/III
+ * stay structural; only what the teacher reads is translated. INITIAL is all
+ * empty, so there are no user-facing default labels to seed.
+ */
+export const COPY = {
+  es: {
+    intro:
+      'Planifica los ajustes de diseño universal para el aprendizaje (DUA): cómo presentar la información, qué formas de expresión se ofrecen y cómo se mantiene la motivación del alumno.',
+    heading: 'Medidas DUA / adaptación',
+    contextoLabel: 'Contexto / alumno',
+    contextoPlaceholder:
+      'Describe brevemente el contexto del aula o las características del alumno para quien se diseñan las medidas.',
+    barrerasLabel: 'Barreras detectadas',
+    barrerasPlaceholder:
+      '¿Qué obstáculos dificultan el aprendizaje? (barreras de acceso, de comprensión, de motivación…)',
+    repTitle: 'Representación',
+    repDesc: 'Cómo se presenta la información al alumno',
+    repPlaceholder:
+      'Ej. Texto simplificado, esquemas visuales, audio, glosario de términos, ajuste de tipografía o contraste…',
+    accTitle: 'Acción y expresión',
+    accDesc: 'Cómo el alumno demuestra lo que sabe',
+    accPlaceholder:
+      'Ej. Producción oral en lugar de escrita, tiempo adicional, uso de herramientas digitales, formato alternativo de tarea…',
+    impTitle: 'Implicación',
+    impDesc: 'Cómo se mantiene la motivación y el compromiso',
+    impPlaceholder:
+      'Ej. Elección de temas, trabajo cooperativo, retroalimentación inmediata, metas a corto plazo, refuerzo positivo…',
+    recursosLabel: 'Recursos y materiales',
+    recursosPlaceholder:
+      'Lista los materiales, herramientas o apoyos concretos que se utilizarán (aplicaciones, fichas adaptadas, persona de apoyo…).',
+    seguimientoLabel: 'Seguimiento',
+    seguimientoPlaceholder:
+      '¿Cómo y cuándo se evaluará la eficacia de las medidas? ¿Qué indicadores usarás para ajustarlas?',
+    generando: 'Generando…',
+    exportarPng: 'Exportar PNG',
+    exportarPdf: 'Exportar PDF',
+    imprimir: 'Imprimir',
+    vaciar: 'Vaciar',
+    confirmVaciar: '¿Vaciar la plantilla?',
+  },
+  ca: {
+    intro:
+      "Planifica els ajustos de disseny universal per a l'aprenentatge (DUA): com presentar la informació, quines formes d'expressió s'oferixen i com es manté la motivació de l'alumne.",
+    heading: 'Mesures DUA / adaptació',
+    contextoLabel: 'Context / alumne',
+    contextoPlaceholder:
+      "Descriu breument el context de l'aula o les característiques de l'alumne per a qui es dissenyen les mesures.",
+    barrerasLabel: 'Barreres detectades',
+    barrerasPlaceholder:
+      "Quins obstacles dificulten l'aprenentatge? (barreres d'accés, de comprensió, de motivació…)",
+    repTitle: 'Representació',
+    repDesc: "Com es presenta la informació a l'alumne",
+    repPlaceholder:
+      'Ex. Text simplificat, esquemes visuals, àudio, glossari de termes, ajust de tipografia o contrast…',
+    accTitle: 'Acció i expressió',
+    accDesc: "Com l'alumne demostra el que sap",
+    accPlaceholder:
+      "Ex. Producció oral en lloc d'escrita, temps addicional, ús de ferramentes digitals, format alternatiu de tasca…",
+    impTitle: 'Implicació',
+    impDesc: 'Com es manté la motivació i el compromís',
+    impPlaceholder:
+      'Ex. Elecció de temes, treball cooperatiu, retroalimentació immediata, metes a curt termini, reforç positiu…',
+    recursosLabel: 'Recursos i materials',
+    recursosPlaceholder:
+      "Llista els materials, ferramentes o suports concrets que s'utilitzaran (aplicacions, fitxes adaptades, persona de suport…).",
+    seguimientoLabel: 'Seguiment',
+    seguimientoPlaceholder:
+      'Com i quan s\'avaluarà l\'eficàcia de les mesures? Quins indicadors utilitzaràs per a ajustar-les?',
+    generando: 'Generant…',
+    exportarPng: 'Exportar PNG',
+    exportarPdf: 'Exportar PDF',
+    imprimir: 'Imprimir',
+    vaciar: 'Buidar',
+    confirmVaciar: 'Voleu buidar la plantilla?',
+  },
+} as const;
+
+interface Props { locale?: Locale }
 
 type MedidasDUAState = {
   contexto: string;
@@ -23,7 +105,8 @@ const INITIAL: MedidasDUAState = {
   seguimiento: '',
 };
 
-export default function MedidasDUA() {
+export default function MedidasDUA({ locale = 'es' }: Props) {
+  const c = COPY[locale];
   const [state, setState] = usePersistentState<MedidasDUAState>('pde:generador:medidas-dua', INITIAL);
   const [exporting, setExporting] = useState<'png' | 'pdf' | null>(null);
   const lienzoRef = useRef<HTMLDivElement>(null);
@@ -45,7 +128,7 @@ export default function MedidasDUA() {
   }
 
   function handleVaciar() {
-    if (confirm('¿Vaciar la plantilla?')) {
+    if (confirm(c.confirmVaciar)) {
       setState(INITIAL);
     }
   }
@@ -53,32 +136,30 @@ export default function MedidasDUA() {
   return (
     <div class="dua-root">
       <p class="dua-intro">
-        Planifica los ajustes de diseño universal para el aprendizaje (DUA): cómo presentar la
-        información, qué formas de expresión se ofrecen y cómo se mantiene la motivación del
-        alumno.
+        {c.intro}
       </p>
 
       <div class="lienzo" ref={lienzoRef}>
-        <h2 class="dua-heading">Medidas DUA / adaptación</h2>
+        <h2 class="dua-heading">{c.heading}</h2>
 
         <div class="dua-section">
-          <label class="dua-label" for="dua-contexto">Contexto / alumno</label>
+          <label class="dua-label" for="dua-contexto">{c.contextoLabel}</label>
           <textarea
             id="dua-contexto"
             class="dua-textarea"
             value={state.contexto}
-            placeholder="Describe brevemente el contexto del aula o las características del alumno para quien se diseñan las medidas."
+            placeholder={c.contextoPlaceholder}
             onInput={(e) => setField('contexto', (e.target as HTMLTextAreaElement).value)}
           />
         </div>
 
         <div class="dua-section">
-          <label class="dua-label" for="dua-barreras">Barreras detectadas</label>
+          <label class="dua-label" for="dua-barreras">{c.barrerasLabel}</label>
           <textarea
             id="dua-barreras"
             class="dua-textarea"
             value={state.barreras}
-            placeholder="¿Qué obstáculos dificultan el aprendizaje? (barreras de acceso, de comprensión, de motivación…)"
+            placeholder={c.barrerasPlaceholder}
             onInput={(e) => setField('barreras', (e.target as HTMLTextAreaElement).value)}
           />
         </div>
@@ -87,14 +168,14 @@ export default function MedidasDUA() {
           <div class="dua-principle dua-principle--rep">
             <div class="dua-principle-header">
               <span class="dua-principle-num">I</span>
-              <span class="dua-principle-title">Representación</span>
+              <span class="dua-principle-title">{c.repTitle}</span>
             </div>
-            <p class="dua-principle-desc">Cómo se presenta la información al alumno</p>
+            <p class="dua-principle-desc">{c.repDesc}</p>
             <textarea
               id="dua-representacion"
               class="dua-textarea dua-textarea--principle"
               value={state.representacion}
-              placeholder="Ej. Texto simplificado, esquemas visuales, audio, glosario de términos, ajuste de tipografía o contraste…"
+              placeholder={c.repPlaceholder}
               onInput={(e) => setField('representacion', (e.target as HTMLTextAreaElement).value)}
             />
           </div>
@@ -102,14 +183,14 @@ export default function MedidasDUA() {
           <div class="dua-principle dua-principle--acc">
             <div class="dua-principle-header">
               <span class="dua-principle-num">II</span>
-              <span class="dua-principle-title">Acción y expresión</span>
+              <span class="dua-principle-title">{c.accTitle}</span>
             </div>
-            <p class="dua-principle-desc">Cómo el alumno demuestra lo que sabe</p>
+            <p class="dua-principle-desc">{c.accDesc}</p>
             <textarea
               id="dua-accion"
               class="dua-textarea dua-textarea--principle"
               value={state.accion}
-              placeholder="Ej. Producción oral en lugar de escrita, tiempo adicional, uso de herramientas digitales, formato alternativo de tarea…"
+              placeholder={c.accPlaceholder}
               onInput={(e) => setField('accion', (e.target as HTMLTextAreaElement).value)}
             />
           </div>
@@ -117,37 +198,37 @@ export default function MedidasDUA() {
           <div class="dua-principle dua-principle--imp">
             <div class="dua-principle-header">
               <span class="dua-principle-num">III</span>
-              <span class="dua-principle-title">Implicación</span>
+              <span class="dua-principle-title">{c.impTitle}</span>
             </div>
-            <p class="dua-principle-desc">Cómo se mantiene la motivación y el compromiso</p>
+            <p class="dua-principle-desc">{c.impDesc}</p>
             <textarea
               id="dua-implicacion"
               class="dua-textarea dua-textarea--principle"
               value={state.implicacion}
-              placeholder="Ej. Elección de temas, trabajo cooperativo, retroalimentación inmediata, metas a corto plazo, refuerzo positivo…"
+              placeholder={c.impPlaceholder}
               onInput={(e) => setField('implicacion', (e.target as HTMLTextAreaElement).value)}
             />
           </div>
         </div>
 
         <div class="dua-section">
-          <label class="dua-label" for="dua-recursos">Recursos y materiales</label>
+          <label class="dua-label" for="dua-recursos">{c.recursosLabel}</label>
           <textarea
             id="dua-recursos"
             class="dua-textarea"
             value={state.recursos}
-            placeholder="Lista los materiales, herramientas o apoyos concretos que se utilizarán (aplicaciones, fichas adaptadas, persona de apoyo…)."
+            placeholder={c.recursosPlaceholder}
             onInput={(e) => setField('recursos', (e.target as HTMLTextAreaElement).value)}
           />
         </div>
 
         <div class="dua-section">
-          <label class="dua-label" for="dua-seguimiento">Seguimiento</label>
+          <label class="dua-label" for="dua-seguimiento">{c.seguimientoLabel}</label>
           <textarea
             id="dua-seguimiento"
             class="dua-textarea"
             value={state.seguimiento}
-            placeholder="¿Cómo y cuándo se evaluará la eficacia de las medidas? ¿Qué indicadores usarás para ajustarlas?"
+            placeholder={c.seguimientoPlaceholder}
             onInput={(e) => setField('seguimiento', (e.target as HTMLTextAreaElement).value)}
           />
         </div>
@@ -159,20 +240,20 @@ export default function MedidasDUA() {
           onClick={() => handleExport('png')}
           disabled={exporting !== null}
         >
-          {exporting === 'png' ? 'Generando…' : 'Exportar PNG'}
+          {exporting === 'png' ? c.generando : c.exportarPng}
         </button>
         <button
           class="dua-btn dua-btn--primary"
           onClick={() => handleExport('pdf')}
           disabled={exporting !== null}
         >
-          {exporting === 'pdf' ? 'Generando…' : 'Exportar PDF'}
+          {exporting === 'pdf' ? c.generando : c.exportarPdf}
         </button>
         <button class="dua-btn" onClick={() => window.print()}>
-          Imprimir
+          {c.imprimir}
         </button>
         <button class="dua-btn dua-btn--danger" onClick={handleVaciar}>
-          Vaciar
+          {c.vaciar}
         </button>
       </div>
 

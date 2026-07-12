@@ -2,6 +2,74 @@
 import { useRef, useState } from 'preact/hooks';
 import { usePersistentState } from '@/lib/plantillas/persistence';
 import { exportarNodo } from '@/lib/plantillas/export';
+import { type Locale } from '@/i18n/locale';
+
+/**
+ * UI strings, Valencian (AVL) alongside the ES source. The persisted state key
+ * (pde:generador:rubricas) and criterio ids stay structural; only what the
+ * teacher reads is translated. `nivelesDefault` seeds a FRESH rubric, so a
+ * Valencian teacher starting one sees Valencian level names.
+ */
+export const COPY = {
+  es: {
+    nivelesDefault: ['Insuficiente', 'Suficiente', 'Notable', 'Sobresaliente'],
+    intro:
+      'Diseña una rúbrica de evaluación: define los criterios, los niveles de desempeño y los descriptores para cada combinación. Se guarda automáticamente en tu navegador.',
+    tituloPlaceholder: 'Título de la rúbrica',
+    thCriterio: 'Criterio',
+    thCompetencia: 'Competencia',
+    nivelPlaceholder: (i: number) => `Nivel ${i}`,
+    nivelAria: (i: number) => `Etiqueta del nivel ${i}`,
+    criterioPlaceholder: 'Nombre del criterio',
+    criterioAria: 'Nombre del criterio',
+    competenciaPlaceholder: 'p. ej. CE4',
+    competenciaAria: 'Competencia relacionada',
+    descriptorPlaceholder: 'Descriptor…',
+    descriptorAria: (crit: string, col: number) => `Descriptor: ${crit} — nivel ${col}`,
+    criterioFallback: 'criterio',
+    eliminarTitle: 'Eliminar criterio',
+    eliminarAria: (crit: string) => `Eliminar criterio ${crit}`,
+    addCriterio: '+ Añadir criterio',
+    addNivel: '+ Añadir nivel',
+    quitarNivel: '− Quitar nivel',
+    generando: 'Generando…',
+    exportarPng: 'Exportar PNG',
+    exportarPdf: 'Exportar PDF',
+    imprimir: 'Imprimir',
+    vaciar: 'Vaciar',
+    confirmVaciar: '¿Vaciar la rúbrica?',
+  },
+  ca: {
+    nivelesDefault: ['Insuficient', 'Suficient', 'Notable', 'Excel·lent'],
+    intro:
+      "Dissenya una rúbrica d'avaluació: definix els criteris, els nivells d'assoliment i els descriptors per a cada combinació. Es guarda automàticament al teu navegador.",
+    tituloPlaceholder: 'Títol de la rúbrica',
+    thCriterio: 'Criteri',
+    thCompetencia: 'Competència',
+    nivelPlaceholder: (i: number) => `Nivell ${i}`,
+    nivelAria: (i: number) => `Etiqueta del nivell ${i}`,
+    criterioPlaceholder: 'Nom del criteri',
+    criterioAria: 'Nom del criteri',
+    competenciaPlaceholder: 'p. ex. CE4',
+    competenciaAria: 'Competència relacionada',
+    descriptorPlaceholder: 'Descriptor…',
+    descriptorAria: (crit: string, col: number) => `Descriptor: ${crit} — nivell ${col}`,
+    criterioFallback: 'criteri',
+    eliminarTitle: 'Eliminar criteri',
+    eliminarAria: (crit: string) => `Eliminar criteri ${crit}`,
+    addCriterio: '+ Afegir criteri',
+    addNivel: '+ Afegir nivell',
+    quitarNivel: '− Llevar nivell',
+    generando: 'Generant…',
+    exportarPng: 'Exportar PNG',
+    exportarPdf: 'Exportar PDF',
+    imprimir: 'Imprimir',
+    vaciar: 'Buidar',
+    confirmVaciar: 'Voleu buidar la rúbrica?',
+  },
+} as const;
+
+interface Props { locale?: Locale }
 
 // ── Types ────────────────────────────────────────────────────────────────────
 
@@ -18,16 +86,18 @@ interface RubricaState {
   criterios: Criterio[];
 }
 
-// ── Static initial state (no dynamic ids/Date.now/Math.random here) ──────────
+// ── Initial state seed (no dynamic ids/Date.now/Math.random here) ────────────
 
-const INITIAL: RubricaState = {
-  titulo: '',
-  niveles: ['Insuficiente', 'Suficiente', 'Notable', 'Sobresaliente'],
-  criterios: [
-    { id: 'c1', nombre: '', competencia: '', celdas: ['', '', '', ''] },
-    { id: 'c2', nombre: '', competencia: '', celdas: ['', '', '', ''] },
-  ],
-};
+function makeInitial(niveles: readonly string[]): RubricaState {
+  return {
+    titulo: '',
+    niveles: [...niveles],
+    criterios: [
+      { id: 'c1', nombre: '', competencia: '', celdas: niveles.map(() => '') },
+      { id: 'c2', nombre: '', competencia: '', celdas: niveles.map(() => '') },
+    ],
+  };
+}
 
 // ── Counter ref for handler-generated ids (browser-only, not in INITIAL) ─────
 let _idCounter = 3;
@@ -41,7 +111,9 @@ function genId(): string {
 
 // ── Component ────────────────────────────────────────────────────────────────
 
-export default function RubricaGenerator() {
+export default function RubricaGenerator({ locale = 'es' }: Props) {
+  const c = COPY[locale];
+  const INITIAL = makeInitial(c.nivelesDefault);
   const [state, setState] = usePersistentState<RubricaState>('pde:generador:rubricas', INITIAL);
   const [exporting, setExporting] = useState<'png' | 'pdf' | null>(null);
   const lienzoRef = useRef<HTMLDivElement>(null);
@@ -135,7 +207,7 @@ export default function RubricaGenerator() {
   }
 
   function handleVaciar() {
-    if (confirm('¿Vaciar la rúbrica?')) {
+    if (confirm(c.confirmVaciar)) {
       setState(INITIAL);
     }
   }
@@ -145,8 +217,7 @@ export default function RubricaGenerator() {
   return (
     <div class="rg-root">
       <p class="rg-intro">
-        Diseña una rúbrica de evaluación: define los criterios, los niveles de desempeño y los
-        descriptores para cada combinación. Se guarda automáticamente en tu navegador.
+        {c.intro}
       </p>
 
       {/* ── Lienzo (capturado para exportar) ─────────────────────────────── */}
@@ -157,7 +228,7 @@ export default function RubricaGenerator() {
             <input
               class="rg-titulo-input"
               type="text"
-              placeholder="Título de la rúbrica"
+              placeholder={c.tituloPlaceholder}
               value={state.titulo}
               onInput={(e) => setTitulo((e.target as HTMLInputElement).value)}
             />
@@ -168,17 +239,17 @@ export default function RubricaGenerator() {
             <table class="rg-table">
               <thead>
                 <tr class="rg-thead-row">
-                  <th class="rg-th rg-th--criterio">Criterio</th>
-                  <th class="rg-th rg-th--competencia">Competencia</th>
+                  <th class="rg-th rg-th--criterio">{c.thCriterio}</th>
+                  <th class="rg-th rg-th--competencia">{c.thCompetencia}</th>
                   {state.niveles.map((nivel, i) => (
                     <th key={i} class="rg-th rg-th--nivel">
                       <input
                         class="rg-nivel-input"
                         type="text"
                         value={nivel}
-                        placeholder={`Nivel ${i + 1}`}
+                        placeholder={c.nivelPlaceholder(i + 1)}
                         onInput={(e) => setNivelLabel(i, (e.target as HTMLInputElement).value)}
-                        aria-label={`Etiqueta del nivel ${i + 1}`}
+                        aria-label={c.nivelAria(i + 1)}
                       />
                     </th>
                   ))}
@@ -194,11 +265,11 @@ export default function RubricaGenerator() {
                         class="rg-input rg-input--criterio"
                         type="text"
                         value={criterio.nombre}
-                        placeholder="Nombre del criterio"
+                        placeholder={c.criterioPlaceholder}
                         onInput={(e) =>
                           setCriterioNombre(criterio.id, (e.target as HTMLInputElement).value)
                         }
-                        aria-label="Nombre del criterio"
+                        aria-label={c.criterioAria}
                       />
                     </td>
                     <td class="rg-td rg-td--competencia">
@@ -206,14 +277,14 @@ export default function RubricaGenerator() {
                         class="rg-input rg-input--competencia"
                         type="text"
                         value={criterio.competencia}
-                        placeholder="p.&nbsp;ej. CE4"
+                        placeholder={c.competenciaPlaceholder}
                         onInput={(e) =>
                           setCriterioCompetencia(
                             criterio.id,
                             (e.target as HTMLInputElement).value,
                           )
                         }
-                        aria-label="Competencia relacionada"
+                        aria-label={c.competenciaAria}
                       />
                     </td>
                     {criterio.celdas.map((celda, col) => (
@@ -221,11 +292,11 @@ export default function RubricaGenerator() {
                         <textarea
                           class="rg-textarea"
                           value={celda}
-                          placeholder="Descriptor…"
+                          placeholder={c.descriptorPlaceholder}
                           onInput={(e) =>
                             setCelda(criterio.id, col, (e.target as HTMLTextAreaElement).value)
                           }
-                          aria-label={`Descriptor: ${criterio.nombre || 'criterio'} — nivel ${col + 1}`}
+                          aria-label={c.descriptorAria(criterio.nombre || c.criterioFallback, col + 1)}
                         />
                       </td>
                     ))}
@@ -233,8 +304,8 @@ export default function RubricaGenerator() {
                       <button
                         class="rg-btn-remove"
                         onClick={() => removeCriterio(criterio.id)}
-                        title="Eliminar criterio"
-                        aria-label={`Eliminar criterio ${criterio.nombre || ''}`}
+                        title={c.eliminarTitle}
+                        aria-label={c.eliminarAria(criterio.nombre || '')}
                         disabled={state.criterios.length <= 1}
                       >
                         ×
@@ -249,18 +320,18 @@ export default function RubricaGenerator() {
           {/* Controls inside lienzo but hidden at print */}
           <div class="rg-table-controls no-print">
             <button class="rg-btn-table-ctrl" onClick={addCriterio}>
-              + Añadir criterio
+              {c.addCriterio}
             </button>
             <div class="rg-nivel-controls">
               <button class="rg-btn-table-ctrl" onClick={addNivel}>
-                + Añadir nivel
+                {c.addNivel}
               </button>
               <button
                 class="rg-btn-table-ctrl rg-btn-table-ctrl--quitar"
                 onClick={quitarNivel}
                 disabled={state.niveles.length <= 2}
               >
-                − Quitar nivel
+                {c.quitarNivel}
               </button>
             </div>
           </div>
@@ -274,20 +345,20 @@ export default function RubricaGenerator() {
           onClick={() => handleExport('png')}
           disabled={exporting !== null}
         >
-          {exporting === 'png' ? 'Generando…' : 'Exportar PNG'}
+          {exporting === 'png' ? c.generando : c.exportarPng}
         </button>
         <button
           class="rg-btn rg-btn--primary"
           onClick={() => handleExport('pdf')}
           disabled={exporting !== null}
         >
-          {exporting === 'pdf' ? 'Generando…' : 'Exportar PDF'}
+          {exporting === 'pdf' ? c.generando : c.exportarPdf}
         </button>
         <button class="rg-btn" onClick={() => window.print()}>
-          Imprimir
+          {c.imprimir}
         </button>
         <button class="rg-btn rg-btn--danger" onClick={handleVaciar}>
-          Vaciar
+          {c.vaciar}
         </button>
       </div>
 
