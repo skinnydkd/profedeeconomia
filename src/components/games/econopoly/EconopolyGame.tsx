@@ -45,6 +45,8 @@ import { SidePanel } from './SidePanel';
 import { AuctionModal } from './AuctionModal';
 import { EndScreen } from './EndScreen';
 
+import { GameLocaleContext } from '../locale-context';
+import { DEFAULT_LOCALE, type Locale } from '@/i18n/locale';
 import './econopoly.css';
 
 // ─── Storage ──────────────────────────────────────────────────────────────────
@@ -77,7 +79,15 @@ function shouldAiDrive(s: GameState): boolean {
 }
 
 // ─── Root island ─────────────────────────────────────────────────────────────
-export default function EconopolyGame() {
+export default function EconopolyGame({ locale = DEFAULT_LOCALE }: { locale?: Locale }) {
+  return (
+    <GameLocaleContext.Provider value={locale}>
+      <EconopolyGameInner />
+    </GameLocaleContext.Provider>
+  );
+}
+
+function EconopolyGameInner() {
   // Game state — null while on setup screen.
   // NEVER initialized from localStorage here (SSR safety).
   const [state, setState] = useState<GameState | null>(null);

@@ -47,6 +47,8 @@ import { SidePanel } from './SidePanel';
 import { PhaseBar } from './PhaseBar';
 import { EndScreen } from './EndScreen';
 
+import { GameLocaleContext } from '../locale-context';
+import { DEFAULT_LOCALE, type Locale } from '@/i18n/locale';
 import './econrisk.css';
 
 // ─── Storage ──────────────────────────────────────────────────────────────────
@@ -58,7 +60,15 @@ const store = makeGameStorage<GameState>('econrisk');
 type UIState = 'setup' | 'pass' | 'playing' | 'finished';
 
 // ─── Root island ─────────────────────────────────────────────────────────────
-export default function EconriskGame() {
+export default function EconriskGame({ locale = DEFAULT_LOCALE }: { locale?: Locale }) {
+  return (
+    <GameLocaleContext.Provider value={locale}>
+      <EconriskGameInner />
+    </GameLocaleContext.Provider>
+  );
+}
+
+function EconriskGameInner() {
   // UI sub-state — never read localStorage in this initializer (SSR safety).
   const [ui, setUi] = useState<UIState>('setup');
 

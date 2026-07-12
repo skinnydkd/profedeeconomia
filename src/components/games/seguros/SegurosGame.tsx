@@ -7,11 +7,21 @@ import SetupScreen from './SetupScreen';
 import CoverageScreen from './CoverageScreen';
 import EventScreen from './EventScreen';
 import DebriefScreen from './DebriefScreen';
+import { GameLocaleContext } from '../locale-context';
+import { DEFAULT_LOCALE, type Locale } from '@/i18n/locale';
 import './seguros.css';
 
 const store = makeGameStorage<GameState>('seguros');
 
-export default function SegurosGame() {
+export default function SegurosGame({ locale = DEFAULT_LOCALE }: { locale?: Locale }) {
+  return (
+    <GameLocaleContext.Provider value={locale}>
+      <SegurosGameInner />
+    </GameLocaleContext.Provider>
+  );
+}
+
+function SegurosGameInner() {
   const [state, setState] = useState<GameState | null>(null);
   const [hasSave, setHasSave] = useState(false);
 

@@ -14,6 +14,8 @@ import { NewsScreen } from './NewsScreen';
 import { AllocateScreen } from './AllocateScreen';
 import { ResultScreen } from './ResultScreen';
 import { FinalScreen } from './FinalScreen';
+import { GameLocaleContext } from '../locale-context';
+import { DEFAULT_LOCALE, type Locale } from '@/i18n/locale';
 import './stonks.css';
 
 // Root Preact island — game UI state machine.
@@ -27,7 +29,15 @@ import './stonks.css';
 
 const store = makeGameStorage<GameState>('stonks');
 
-export default function StonksGame() {
+export default function StonksGame({ locale = DEFAULT_LOCALE }: { locale?: Locale }) {
+  return (
+    <GameLocaleContext.Provider value={locale}>
+      <StonksGameInner />
+    </GameLocaleContext.Provider>
+  );
+}
+
+function StonksGameInner() {
   // Initialized unconditionally (never reading storage during server render)
   // to avoid an SSR/client hydration mismatch — mirrors QuizPlayer pattern.
   const [state, setState] = useState<GameState>(createInitialState);
