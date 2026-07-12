@@ -3,10 +3,15 @@
 // Props are passed from EconopolyGame; all action callbacks are void→void.
 
 import type { GameState } from '@/lib/games/econopoly/types';
-import { CELLS, SECTOR_LABEL } from '@/lib/games/econopoly/board';
 import { netWorth, giniIndex } from '@/lib/games/econopoly/engine';
 import { RD_MULTIPLIERS } from '@/lib/games/econopoly/constants';
 import type { RdLevel } from '@/lib/games/econopoly/types';
+import { useGameLocale } from '../locale-context';
+import {
+  localizeCells,
+  localizeSectorLabel,
+  localizeNewsCard,
+} from '@/i18n/games/econopoly-ca';
 
 interface Props {
   state: GameState;
@@ -17,15 +22,77 @@ interface Props {
   onEndTurn: () => void;
 }
 
-// Phase bar step labels
-const PHASE_LABELS = ['Tirar', 'Resolver', 'Acción'];
-
 // Map phase string to step index
 function phaseIndex(phase: string): number {
   if (phase === 'roll') return 0;
   if (phase === 'resolve') return 1;
   return 2;
 }
+
+export const COPY = {
+  es: {
+    phases: ['Tirar', 'Resolver', 'Acción'],
+    aiTurn: 'Turno de la IA',
+    aiPlaying: (name: string) => `${name} está jugando...`,
+    auctionLab: 'Subasta en curso',
+    auctionTxt: 'Hay una subasta activa. Usa el panel emergente para pujar o pasar.',
+    buyLab: 'Acción: Comprar o subastar',
+    caido: 'Has caído en',
+    caidoResto: (price: number) => `. Precio: ${price} €. Compra ahora o pasa a subasta.`,
+    buy: (price: number) => `Comprar por ${price} €`,
+    noFunds: 'Sin fondos suficientes',
+    passAuction: 'Pasar (subastar)',
+    rollLab: 'Acción: Tirar dados',
+    rollTxt: 'Tira 2d6 para avanzar. Si caes en propiedad libre, podrás comprarla al precio base o pasar a subasta.',
+    roll: 'Tirar 2d6',
+    upgradeLab: 'Acción: Fase de mejora',
+    upgradeTxt: 'Puedes mejorar R+D en tus propiedades (50% del precio base por nivel) o terminar el turno.',
+    needCash: (cost: number) => `Necesitas ${cost} €`,
+    rdBtn: (label: string, cost: number) => `R+D ${label} (${cost} €)`,
+    endTurn: 'Terminar turno',
+    roleHuman: 'En turno · Humano',
+    roleAI: 'En turno · IA',
+    cash: 'Efectivo',
+    worth: 'Patrimonio',
+    props: (n: number) => `Propiedades (${n})`,
+    rdMult: (mult: string) => `R+D x${mult}`,
+    cbRate: 'BC tipo',
+    gini: 'Gini',
+    publicFund: 'F. público',
+    event: 'Evento',
+  },
+  ca: {
+    phases: ['Tirar', 'Resoldre', 'Acció'],
+    aiTurn: 'Torn de la IA',
+    aiPlaying: (name: string) => `${name} està jugant...`,
+    auctionLab: 'Subhasta en curs',
+    auctionTxt: 'Hi ha una subhasta activa. Usa el panell emergent per a pujar o passar.',
+    buyLab: 'Acció: Comprar o subhastar',
+    caido: 'Has caigut en',
+    caidoResto: (price: number) => `. Preu: ${price} €. Compra ara o passa a subhasta.`,
+    buy: (price: number) => `Compra per ${price} €`,
+    noFunds: 'Sense fons suficients',
+    passAuction: 'Passa (subhasta)',
+    rollLab: 'Acció: Tirar els daus',
+    rollTxt: 'Tira 2d6 per a avançar. Si caus en una propietat lliure, podràs comprar-la al preu base o passar a subhasta.',
+    roll: 'Tira 2d6',
+    upgradeLab: 'Acció: Fase de millora',
+    upgradeTxt: 'Pots millorar R+D en les teues propietats (50% del preu base per nivell) o acabar el torn.',
+    needCash: (cost: number) => `Necessites ${cost} €`,
+    rdBtn: (label: string, cost: number) => `R+D ${label} (${cost} €)`,
+    endTurn: 'Acaba el torn',
+    roleHuman: 'En torn · Humà',
+    roleAI: 'En torn · IA',
+    cash: 'Efectiu',
+    worth: 'Patrimoni',
+    props: (n: number) => `Propietats (${n})`,
+    rdMult: (mult: string) => `R+D x${mult}`,
+    cbRate: 'BC tipus',
+    gini: 'Gini',
+    publicFund: 'F. públic',
+    event: 'Esdeveniment',
+  },
+};
 
 export function SidePanel({
   state,
@@ -35,6 +102,11 @@ export function SidePanel({
   onUpgradeRd,
   onEndTurn,
 }: Props) {
+  const locale = useGameLocale();
+  const c = COPY[locale];
+  const cells = localizeCells(locale);
+  const sectorLabel = localizeSectorLabel(locale);
+
   const currentPlayer = state.players[state.current];
   if (!currentPlayer) return null;
 
@@ -47,28 +119,28 @@ export function SidePanel({
   const gini = giniIndex(state);
 
   // Current position label
-  const posCell = CELLS[currentPlayer.position];
+  const posCell = cells[currentPlayer.position];
   const posLabel = posCell.property
-    ? `${posCell.label} (${SECTOR_LABEL[posCell.property.sector]} · ${posCell.property.sector})`
+    ? `${posCell.label} (${sectorLabel[posCell.property.sector]} · ${posCell.property.sector})`
     : posCell.label;
 
   // Properties owned by current player
   const ownedProps = Object.values(state.properties)
     .filter((ps) => ps.owner === state.current)
     .map((ps) => {
-      const cell = CELLS[ps.cellId];
+      const cell = cells[ps.cellId];
       return { cellId: ps.cellId, label: cell.label, sector: cell.property!.sector, rdLevel: ps.rdLevel };
     });
 
   // Pending purchase info
-  const pendingCell = state.pendingPurchase !== null ? CELLS[state.pendingPurchase] : null;
+  const pendingCell = state.pendingPurchase !== null ? cells[state.pendingPurchase] : null;
   const pendingPrice = pendingCell?.property?.basePrice ?? 0;
 
   // R+D upgrade candidates (action phase, owned, rdLevel < 3, can afford)
   const upgradeable = Object.values(state.properties)
     .filter((ps) => ps.owner === state.current && ps.rdLevel < 3)
     .map((ps) => {
-      const cell = CELLS[ps.cellId];
+      const cell = cells[ps.cellId];
       const cost = cell.property ? Math.round(cell.property.basePrice * 0.5) : 0;
       const canAfford = currentPlayer.cash >= cost;
       return { cellId: ps.cellId, label: cell.label, cost, canAfford };
@@ -79,10 +151,10 @@ export function SidePanel({
     if (isAI) {
       return (
         <div class="ep2-action">
-          <div class="lab">Turno de la IA</div>
+          <div class="lab">{c.aiTurn}</div>
           <div class="ep2-ai-thinking">
             <span class="ep2-ai-dot" />
-            {currentPlayer.name} está jugando...
+            {c.aiPlaying(currentPlayer.name)}
           </div>
         </div>
       );
@@ -92,10 +164,8 @@ export function SidePanel({
     if (state.activeAuction !== null) {
       return (
         <div class="ep2-action">
-          <div class="lab">Subasta en curso</div>
-          <div class="txt">
-            Hay una subasta activa. Usa el panel emergente para pujar o pasar.
-          </div>
+          <div class="lab">{c.auctionLab}</div>
+          <div class="txt">{c.auctionTxt}</div>
         </div>
       );
     }
@@ -104,22 +174,21 @@ export function SidePanel({
     if (state.pendingPurchase !== null && pendingCell) {
       return (
         <div class="ep2-action">
-          <div class="lab">Acción: Comprar o subastar</div>
+          <div class="lab">{c.buyLab}</div>
           <div class="txt">
-            Has caído en <strong>{pendingCell.label}</strong>. Precio: {pendingPrice} €.
-            Compra ahora o pasa a subasta.
+            {c.caido} <strong>{pendingCell.label}</strong>{c.caidoResto(pendingPrice)}
           </div>
           <div class="ep2-btns">
             <button
               class="primary"
               onClick={onBuyPending}
               disabled={currentPlayer.cash < pendingPrice}
-              title={currentPlayer.cash < pendingPrice ? 'Sin fondos suficientes' : undefined}
+              title={currentPlayer.cash < pendingPrice ? c.noFunds : undefined}
             >
-              Comprar por {pendingPrice} €
+              {c.buy(pendingPrice)}
             </button>
             <button class="ghost" onClick={onPassPending}>
-              Pasar (subastar)
+              {c.passAuction}
             </button>
           </div>
         </div>
@@ -129,13 +198,11 @@ export function SidePanel({
     if (state.phase === 'roll') {
       return (
         <div class="ep2-action">
-          <div class="lab">Acción: Tirar dados</div>
-          <div class="txt">
-            Tira 2d6 para avanzar. Si caes en propiedad libre, podrás comprarla al precio base o pasar a subasta.
-          </div>
+          <div class="lab">{c.rollLab}</div>
+          <div class="txt">{c.rollTxt}</div>
           <div class="ep2-btns">
             <button class="primary" onClick={onRollDice}>
-              Tirar 2d6
+              {c.roll}
               {state.lastRoll
                 ? ` (${state.lastRoll.d1}+${state.lastRoll.d2})`
                 : ''}
@@ -148,10 +215,8 @@ export function SidePanel({
     // action phase
     return (
       <div class="ep2-action">
-        <div class="lab">Acción: Fase de mejora</div>
-        <div class="txt">
-          Puedes mejorar R+D en tus propiedades (50% del precio base por nivel) o terminar el turno.
-        </div>
+        <div class="lab">{c.upgradeLab}</div>
+        <div class="txt">{c.upgradeTxt}</div>
         {upgradeable.length > 0 && (
           <div style={{ marginTop: '8px', display: 'flex', flexDirection: 'column', gap: '5px' }}>
             {upgradeable.map((u) => (
@@ -160,10 +225,10 @@ export function SidePanel({
                   class="ghost"
                   onClick={() => onUpgradeRd(u.cellId)}
                   disabled={!u.canAfford}
-                  title={!u.canAfford ? `Necesitas ${u.cost} €` : undefined}
+                  title={!u.canAfford ? c.needCash(u.cost) : undefined}
                   style={{ fontSize: '11px', flex: 'none', width: '100%' }}
                 >
-                  R+D {u.label} ({u.cost} €)
+                  {c.rdBtn(u.label, u.cost)}
                 </button>
               </div>
             ))}
@@ -171,7 +236,7 @@ export function SidePanel({
         )}
         <div class="ep2-btns" style={{ marginTop: upgradeable.length > 0 ? '8px' : '12px' }}>
           <button class="primary" onClick={onEndTurn}>
-            Terminar turno
+            {c.endTurn}
           </button>
         </div>
       </div>
@@ -182,7 +247,7 @@ export function SidePanel({
     <aside class="ep2-panel">
       {/* Phase bar */}
       <div class="ep2-phases">
-        {PHASE_LABELS.map((label, i) => {
+        {c.phases.map((label, i) => {
           let cls = 'ep2-phase';
           if (i < currentPhaseIdx) cls += ' done';
           else if (i === currentPhaseIdx) cls += ' on';
@@ -200,7 +265,7 @@ export function SidePanel({
         style={{ borderTopColor: currentPlayer.color }}
       >
         <div class="role">
-          {isHuman ? 'En turno · Humano' : 'En turno · IA'}
+          {isHuman ? c.roleHuman : c.roleAI}
         </div>
         <div class="pname" style={{ color: currentPlayer.color }}>
           {currentPlayer.name}
@@ -208,11 +273,11 @@ export function SidePanel({
         <div class="pos">{posLabel}</div>
         <div class="ep2-money">
           <div>
-            <div class="lab">Efectivo</div>
+            <div class="lab">{c.cash}</div>
             <div class="v">{currentPlayer.cash} €</div>
           </div>
           <div>
-            <div class="lab">Patrimonio</div>
+            <div class="lab">{c.worth}</div>
             <div class="v">{Math.round(nw)} €</div>
           </div>
         </div>
@@ -221,13 +286,13 @@ export function SidePanel({
       {/* Properties hand */}
       {ownedProps.length > 0 && (
         <div class="ep2-hand">
-          <h4>Propiedades ({ownedProps.length})</h4>
+          <h4>{c.props(ownedProps.length)}</h4>
           <div class="ep2-hand-grid">
             {ownedProps.map((p) => (
               <div key={p.cellId} class={`ep2-prop sec-${p.sector}`}>
                 <div class="pn">{p.label}</div>
                 <span class="rd">
-                  R+D x{RD_MULTIPLIERS[p.rdLevel as RdLevel].toFixed(1)}
+                  {c.rdMult(RD_MULTIPLIERS[p.rdLevel as RdLevel].toFixed(1))}
                 </span>
               </div>
             ))}
@@ -238,15 +303,15 @@ export function SidePanel({
       {/* Econ stats strip */}
       <div class="ep2-econ">
         <div>
-          <div class="lab">BC tipo</div>
+          <div class="lab">{c.cbRate}</div>
           <div class="v">{state.cbRate}%</div>
         </div>
         <div>
-          <div class="lab">Gini</div>
+          <div class="lab">{c.gini}</div>
           <div class="v">{gini.toFixed(2)}</div>
         </div>
         <div>
-          <div class="lab">F. público</div>
+          <div class="lab">{c.publicFund}</div>
           <div class="v">{state.publicFund} €</div>
         </div>
       </div>
@@ -257,8 +322,8 @@ export function SidePanel({
       {/* Last event ticker */}
       {state.lastEvent && (
         <div class="ep2-ticker">
-          <span class="l">Evento</span>
-          <span class="t">{state.lastEvent.text}</span>
+          <span class="l">{c.event}</span>
+          <span class="t">{localizeNewsCard(state.lastEvent, locale)}</span>
         </div>
       )}
 

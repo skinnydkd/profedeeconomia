@@ -5,8 +5,9 @@
 // When the AI is the current bidder, shows a waiting message instead.
 
 import type { GameState } from '@/lib/games/econopoly/types';
-import { CELLS } from '@/lib/games/econopoly/board';
 import { AUCTION_MIN_INCREMENT } from '@/lib/games/econopoly/constants';
+import { useGameLocale } from '../locale-context';
+import { localizeCells } from '@/i18n/games/econopoly-ca';
 
 // Chip background color by sector (mirrors CSS chip classes)
 const CHIP_BG: Record<string, string> = {
@@ -22,11 +23,43 @@ interface Props {
   onPass: () => void;
 }
 
+export const COPY = {
+  es: {
+    eyebrow: 'Subasta en curso',
+    sector: (s: string) => `Sector ${s}`,
+    basePrice: 'Precio base',
+    highest: 'Puja más alta',
+    nextMin: 'Siguiente puja mínima',
+    turn: 'Turno de:',
+    passed: 'Han pasado:',
+    bid: (amount: number) => `Pujar ${amount} €`,
+    noFunds: 'Sin fondos suficientes',
+    pass: 'Pasar',
+    waiting: (name: string) => `Esperando a ${name} (IA)...`,
+  },
+  ca: {
+    eyebrow: 'Subhasta en curs',
+    sector: (s: string) => `Sector ${s}`,
+    basePrice: 'Preu base',
+    highest: 'Puja més alta',
+    nextMin: 'Pròxima puja mínima',
+    turn: 'Torn de:',
+    passed: 'Han passat:',
+    bid: (amount: number) => `Puja ${amount} €`,
+    noFunds: 'Sense fons suficients',
+    pass: 'Passa',
+    waiting: (name: string) => `Esperant ${name} (IA)...`,
+  },
+};
+
 export function AuctionModal({ state, onBid, onPass }: Props) {
+  const locale = useGameLocale();
+  const c = COPY[locale];
+  const cells = localizeCells(locale);
   const auction = state.activeAuction;
   if (!auction) return null;
 
-  const cell = CELLS[auction.cellId];
+  const cell = cells[auction.cellId];
   const property = cell.property;
   if (!property) return null;
 
@@ -45,23 +78,23 @@ export function AuctionModal({ state, onBid, onPass }: Props) {
     <div class="ep2-modal-backdrop">
       <div class="ep2-modal">
         {/* Header */}
-        <div class="ep2-modal-eyebrow">Subasta en curso</div>
+        <div class="ep2-modal-eyebrow">{c.eyebrow}</div>
         <h2 class="ep2-modal-title">{property.label}</h2>
         <span
           class="ep2-modal-sector"
           style={{ background: CHIP_BG[property.sector] ?? '#8A7868' }}
         >
-          Sector {property.sector}
+          {c.sector(property.sector)}
         </span>
 
         {/* Bid info rows */}
         <div style={{ marginTop: '18px' }}>
           <div class="ep2-auction-row">
-            <span>Precio base</span>
+            <span>{c.basePrice}</span>
             <span class="v">{property.basePrice} €</span>
           </div>
           <div class="ep2-auction-row">
-            <span>Puja más alta</span>
+            <span>{c.highest}</span>
             <span class="v">
               {auction.highestBidder !== null
                 ? `${auction.highestBid} € — ${highestBidderName}`
@@ -69,14 +102,14 @@ export function AuctionModal({ state, onBid, onPass }: Props) {
             </span>
           </div>
           <div class="ep2-auction-row" style={{ borderBottom: 'none' }}>
-            <span>Siguiente puja mínima</span>
+            <span>{c.nextMin}</span>
             <span class="v">{nextBid} €</span>
           </div>
         </div>
 
         {/* Current bidder */}
         <div class="ep2-auction-bidder">
-          Turno de: <strong style={{ color: currentBidderPlayer?.color ?? '#2A1F18' }}>
+          {c.turn} <strong style={{ color: currentBidderPlayer?.color ?? '#2A1F18' }}>
             {currentBidderPlayer?.name ?? '?'}
           </strong>
           {!isHumanTurn && ' (IA)'}
@@ -85,7 +118,7 @@ export function AuctionModal({ state, onBid, onPass }: Props) {
         {/* Passed players */}
         {auction.passed.length > 0 && (
           <div class="ep2-passed-list">
-            Han pasado:{' '}
+            {c.passed}{' '}
             {auction.passed.map((pid) => (
               <span key={pid} class="badge">
                 {state.players[pid]?.name ?? `J${pid}`}
@@ -101,17 +134,17 @@ export function AuctionModal({ state, onBid, onPass }: Props) {
               class="primary"
               onClick={() => onBid(nextBid)}
               disabled={!canAffordBid}
-              title={!canAffordBid ? 'Sin fondos suficientes' : undefined}
+              title={!canAffordBid ? c.noFunds : undefined}
             >
-              Pujar {nextBid} €
+              {c.bid(nextBid)}
             </button>
             <button class="ghost" onClick={onPass}>
-              Pasar
+              {c.pass}
             </button>
           </div>
         ) : (
           <div class="ep2-auction-waiting">
-            Esperando a {currentBidderPlayer?.name ?? '?'} (IA)...
+            {c.waiting(currentBidderPlayer?.name ?? '?')}
           </div>
         )}
       </div>

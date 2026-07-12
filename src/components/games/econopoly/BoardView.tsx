@@ -12,6 +12,8 @@
 
 import type { GameState } from '@/lib/games/econopoly/types';
 import { CELLS } from '@/lib/games/econopoly/board';
+import { useGameLocale } from '../locale-context';
+import { localizeCells } from '@/i18n/games/econopoly-ca';
 
 // ─── pos() ───────────────────────────────────────────────────────────────────
 // Map cell id 0..27 to (gridColumn, gridRow) in an 8×8 CSS grid (1-indexed).
@@ -57,21 +59,45 @@ function buildChipIndex(): Map<number, string> {
 
 const CHIP_INDEX = buildChipIndex();
 
+// ─── Copy ────────────────────────────────────────────────────────────────────
+export const COPY = {
+  es: {
+    ronda: (n: number) => `Ronda ${n} / 20`,
+    expansion: 'Expansión',
+    recesion: 'Recesión',
+    expansionSub: 'Rentas +30%. Valor de las propiedades +20%.',
+    recesionSub: 'Rentas -30%. Valor de las propiedades -20%.',
+    corner: { start: '+200 €', tax: '5/10/15 %', freemarket: 'sin renta', news: 'Carta' },
+    special: { news: 'Carta', cb: 'Tipos', rd: 'Mejorar', tax: '5/10/15 %' },
+  },
+  ca: {
+    ronda: (n: number) => `Ronda ${n} / 20`,
+    expansion: 'Expansió',
+    recesion: 'Recessió',
+    expansionSub: 'Rendes +30%. Valor de les propietats +20%.',
+    recesionSub: 'Rendes -30%. Valor de les propietats -20%.',
+    corner: { start: '+200 €', tax: '5/10/15 %', freemarket: 'sense renda', news: 'Carta' },
+    special: { news: 'Carta', cb: 'Tipus', rd: 'Millorar', tax: '5/10/15 %' },
+  },
+};
+
+type Copy = (typeof COPY)[keyof typeof COPY];
+
 // ─── cornerSubtitle() ────────────────────────────────────────────────────────
-function cornerSubtitle(id: number): string {
-  if (id === 0) return '+200 €';
-  if (id === 7) return '5/10/15 %';
-  if (id === 14) return 'sin renta';
-  if (id === 21) return 'Carta';
+function cornerSubtitle(id: number, c: Copy): string {
+  if (id === 0) return c.corner.start;
+  if (id === 7) return c.corner.tax;
+  if (id === 14) return c.corner.freemarket;
+  if (id === 21) return c.corner.news;
   return '';
 }
 
 // ─── specialSubtitle() ───────────────────────────────────────────────────────
-function specialSubtitle(kind: string): string {
-  if (kind === 'news') return 'Carta';
-  if (kind === 'cb') return 'Tipos';
-  if (kind === 'rd') return 'Mejorar';
-  if (kind === 'tax') return '5/10/15 %';
+function specialSubtitle(kind: string, c: Copy): string {
+  if (kind === 'news') return c.special.news;
+  if (kind === 'cb') return c.special.cb;
+  if (kind === 'rd') return c.special.rd;
+  if (kind === 'tax') return c.special.tax;
   return '';
 }
 
@@ -83,25 +109,26 @@ interface Props {
 }
 
 export function BoardView({ state, onCellClick }: Props) {
+  const locale = useGameLocale();
+  const t = COPY[locale];
+  const cells = localizeCells(locale);
   return (
     <div class="ep2-board">
       {/* Center cycle protagonist — spans inner 6×6 */}
       <div class="ep2-center" style={{ gridColumn: '2 / 8', gridRow: '2 / 8' }}>
         <div class="round-lab">
-          Ronda {state.round} / 20
+          {t.ronda(state.round)}
         </div>
         <div class={`pro serif-it${state.cycle === 'recession' ? ' rec' : ''}`}>
-          {state.cycle === 'expansion' ? 'Expansión' : 'Recesión'}
+          {state.cycle === 'expansion' ? t.expansion : t.recesion}
         </div>
         <div class="subt">
-          {state.cycle === 'expansion'
-            ? 'Rentas +30%. Valor de las propiedades +20%.'
-            : 'Rentas -30%. Valor de las propiedades -20%.'}
+          {state.cycle === 'expansion' ? t.expansionSub : t.recesionSub}
         </div>
       </div>
 
       {/* 28 ring cells */}
-      {CELLS.map((c) => {
+      {cells.map((c) => {
         const { col, row } = pos(c.id);
         const cls = cellClass(c.id);
         const tokens = state.players.filter(
@@ -127,16 +154,16 @@ export function BoardView({ state, onCellClick }: Props) {
               // corners
               <>
                 <div class="cl">{c.label}</div>
-                {cornerSubtitle(c.id) && (
-                  <div class="ci">{cornerSubtitle(c.id)}</div>
+                {cornerSubtitle(c.id, t) && (
+                  <div class="ci">{cornerSubtitle(c.id, t)}</div>
                 )}
               </>
             ) : (
               // specials
               <>
                 <div class="sl">{c.label}</div>
-                {specialSubtitle(c.kind) && (
-                  <div class="si">{specialSubtitle(c.kind)}</div>
+                {specialSubtitle(c.kind, t) && (
+                  <div class="si">{specialSubtitle(c.kind, t)}</div>
                 )}
               </>
             )}
