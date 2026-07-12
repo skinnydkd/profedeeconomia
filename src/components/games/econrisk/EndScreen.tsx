@@ -3,18 +3,47 @@
 // Props: { state, onRestart }
 
 import type { GameState, FactionId } from '@/lib/games/econrisk/types';
-import { FACTIONS, factionMeta } from '@/lib/games/econrisk/factions';
 import { ownedCount } from '@/lib/games/econrisk/engine';
+import { useGameLocale } from '../locale-context';
+import { localizeFactions, localizeFactionMeta } from '@/i18n/games/econrisk-ca';
 
-const LESSONS: Record<FactionId, string> = {
-  keynes:
-    'El keynesianismo demuestra que la inversión pública puede estabilizar la economía en crisis: el Estado como motor de demanda agregada.',
-  marx:
-    'El marxismo analiza las contradicciones del capital: la conquista territorial refleja cómo la acumulación genera conflicto estructural.',
-  austrian:
-    'La escuela austríaca defiende la solidez monetaria y la espontaneidad del mercado: la defensa robusta es la base de la prosperidad.',
-  neoclassic:
-    'La economía neoclásica usa el concepto de ventaja comparativa: especializarse donde eres más eficiente maximiza el bienestar global.',
+export const COPY = {
+  es: {
+    lessons: {
+      keynes:
+        'El keynesianismo demuestra que la inversión pública puede estabilizar la economía en crisis: el Estado como motor de demanda agregada.',
+      marx:
+        'El marxismo analiza las contradicciones del capital: la conquista territorial refleja cómo la acumulación genera conflicto estructural.',
+      austrian:
+        'La escuela austríaca defiende la solidez monetaria y la espontaneidad del mercado: la defensa robusta es la base de la prosperidad.',
+      neoclassic:
+        'La economía neoclásica usa el concepto de ventaja comparativa: especializarse donde eres más eficiente maximiza el bienestar global.',
+    } as Record<FactionId, string>,
+    endEyebrow: (round: number) => `Ronda ${round} · Partida terminada`,
+    ganan: 'Ganan los',
+    partidaTerminada: 'Partida terminada',
+    eliminado: '(eliminado)',
+    leccionTitle: 'Lección de economía',
+    jugarOtraVez: 'Jugar otra vez',
+  },
+  ca: {
+    lessons: {
+      keynes:
+        "El keynesianisme demostra que la inversió pública pot estabilitzar l'economia en crisi: l'Estat com a motor de la demanda agregada.",
+      marx:
+        "El marxisme analitza les contradiccions del capital: la conquista territorial reflectix com l'acumulació genera conflicte estructural.",
+      austrian:
+        "L'escola austríaca defén la solidesa monetària i l'espontaneïtat del mercat: la defensa robusta és la base de la prosperitat.",
+      neoclassic:
+        "L'economia neoclàssica usa el concepte d'avantatge comparatiu: especialitzar-se on eres més eficient maximitza el benestar global.",
+    } as Record<FactionId, string>,
+    endEyebrow: (round: number) => `Ronda ${round} · Partida acabada`,
+    ganan: 'Guanyen els',
+    partidaTerminada: 'Partida acabada',
+    eliminado: '(eliminat)',
+    leccionTitle: "Lliçó d'economia",
+    jugarOtraVez: 'Torna a jugar',
+  },
 };
 
 interface Props {
@@ -23,11 +52,14 @@ interface Props {
 }
 
 export function EndScreen({ state, onRestart }: Props) {
+  const locale = useGameLocale();
+  const c = COPY[locale];
   const winner = state.winner;
-  const winnerMeta = winner ? factionMeta[winner] : null;
+  const winnerMeta = winner ? localizeFactionMeta(locale)[winner] : null;
 
   // Sort factions by territory count descending
-  const sorted = [...FACTIONS].sort(
+  const factions = localizeFactions(locale);
+  const sorted = [...factions].sort(
     (a, b) => ownedCount(state, b.id) - ownedCount(state, a.id),
   );
 
@@ -35,19 +67,19 @@ export function EndScreen({ state, onRestart }: Props) {
     <div class="er-end">
       <div class="er-end-card">
         <div class="er-end-eyebrow">
-          Ronda {state.round} &middot; Partida terminada
+          {c.endEyebrow(state.round)}
         </div>
 
         <h2 class="er-end-headline">
           {winnerMeta ? (
             <>
-              Ganan los{' '}
+              {c.ganan}{' '}
               <span class="ac" style={{ color: winnerMeta.color }}>
                 {winnerMeta.label}
               </span>
             </>
           ) : (
-            'Partida terminada'
+            c.partidaTerminada
           )}
         </h2>
 
@@ -85,7 +117,7 @@ export function EndScreen({ state, onRestart }: Props) {
                   {f.label}
                   {!alive && (
                     <span style={{ color: '#8A7868', fontWeight: 400, fontSize: '0.78rem' }}>
-                      {' '}(eliminado)
+                      {' '}{c.eliminado}
                     </span>
                   )}
                 </span>
@@ -98,15 +130,15 @@ export function EndScreen({ state, onRestart }: Props) {
         {/* Economic lesson for the winning school */}
         {winner && (
           <div class="er-lessons">
-            <h3>Lección de economía</h3>
+            <h3>{c.leccionTitle}</h3>
             <ul>
-              <li>{LESSONS[winner]}</li>
+              <li>{c.lessons[winner]}</li>
             </ul>
           </div>
         )}
 
         <button class="er-end-cta" onClick={onRestart}>
-          Jugar otra vez
+          {c.jugarOtraVez}
         </button>
       </div>
     </div>
