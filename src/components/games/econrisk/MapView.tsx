@@ -5,10 +5,12 @@
 // Click on a node calls onSelect(id). Highlights selectedId with a border ring.
 
 import type { GameState } from '@/lib/games/econrisk/types';
-import { TERRITORIES, byId } from '@/lib/games/econrisk/map';
-import { factionMeta } from '@/lib/games/econrisk/factions';
+import { byId } from '@/lib/games/econrisk/map';
+import { useGameLocale } from '../locale-context';
+import { localizeTerritories, localizeFactionMeta } from '@/i18n/games/econrisk-ca';
 
-// Continent background rect config: [continent, label, x, y, w, h]
+// Continent background rect config: [continent label, x, y, w, h]
+// The ES label doubles as a stable key; the display text is resolved from COPY.
 const CONTINENT_REGIONS: Array<[string, number, number, number, number]> = [
   // label, x, y, w, h  (bounding box for the cluster)
   ['N. América',   20,  18, 150, 152],
@@ -19,6 +21,35 @@ const CONTINENT_REGIONS: Array<[string, number, number, number, number]> = [
   ['Oceanía',     428, 200, 160, 152],
 ];
 
+export const COPY = {
+  es: {
+    mapAria: 'Mapa de territorios de Econrisk',
+    nodeAria: (label: string, units: number, faction: string) =>
+      `${label}: ${units} unidades (${faction})`,
+    continents: {
+      'N. América': 'N. América',
+      'S. América': 'S. América',
+      'Europa': 'Europa',
+      'África': 'África',
+      'Asia': 'Asia',
+      'Oceanía': 'Oceanía',
+    } as Record<string, string>,
+  },
+  ca: {
+    mapAria: "Mapa de territoris d'Econrisk",
+    nodeAria: (label: string, units: number, faction: string) =>
+      `${label}: ${units} unitats (${faction})`,
+    continents: {
+      'N. América': 'N. Amèrica',
+      'S. América': 'S. Amèrica',
+      'Europa': 'Europa',
+      'África': 'Àfrica',
+      'Asia': 'Àsia',
+      'Oceanía': 'Oceania',
+    } as Record<string, string>,
+  },
+};
+
 interface Props {
   state: GameState;
   selectedId: string | null;
@@ -26,6 +57,11 @@ interface Props {
 }
 
 export function MapView({ state, selectedId, onSelect }: Props) {
+  const locale = useGameLocale();
+  const c = COPY[locale];
+  const territories = localizeTerritories(locale);
+  const fmeta = localizeFactionMeta(locale);
+
   return (
     <svg
       viewBox="0 0 600 360"
@@ -33,7 +69,7 @@ export function MapView({ state, selectedId, onSelect }: Props) {
       height="100%"
       class="er-map-svg"
       role="img"
-      aria-label="Mapa de territorios de Econrisk"
+      aria-label={c.mapAria}
     >
       {/* Continent background regions */}
       <g>
@@ -53,7 +89,7 @@ export function MapView({ state, selectedId, onSelect }: Props) {
               y={y + 12}
               class="er-continent-label"
             >
-              {label}
+              {c.continents[label] ?? label}
             </text>
           </g>
         ))}
@@ -61,7 +97,7 @@ export function MapView({ state, selectedId, onSelect }: Props) {
 
       {/* Adjacency lines — draw each pair once (only when neighbour id > territory id) */}
       <g stroke="#C9B79A" stroke-width="1.5" opacity="0.7">
-        {TERRITORIES.flatMap((t) =>
+        {territories.flatMap((t) =>
           t.adj
             .filter((n) => n > t.id)
             .map((n) => {
@@ -85,10 +121,10 @@ export function MapView({ state, selectedId, onSelect }: Props) {
         font-weight="700"
         text-anchor="middle"
       >
-        {TERRITORIES.map((t) => {
+        {territories.map((t) => {
           const cell = state.territories[t.id];
           if (!cell) return null;
-          const meta = factionMeta[cell.owner];
+          const meta = fmeta[cell.owner];
           const col = meta?.color ?? '#8A7868';
           const isSelected = selectedId === t.id;
           return (
@@ -97,7 +133,7 @@ export function MapView({ state, selectedId, onSelect }: Props) {
               class="er-node"
               onClick={() => onSelect(t.id)}
               style={{ cursor: 'pointer' }}
-              aria-label={`${t.label}: ${cell.units} unidades (${meta?.label ?? cell.owner})`}
+              aria-label={c.nodeAria(t.label, cell.units, meta?.label ?? cell.owner)}
             >
               {/* Outer ring for selected state */}
               {isSelected && (
@@ -130,7 +166,7 @@ export function MapView({ state, selectedId, onSelect }: Props) {
 
       {/* Territory labels (below each node) */}
       <g>
-        {TERRITORIES.map((t) => (
+        {territories.map((t) => (
           <text
             key={`lbl-${t.id}`}
             x={t.x}

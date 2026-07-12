@@ -1,7 +1,9 @@
 ---
+import type { Locale } from '@/i18n/locale';
 import GameShell from '@components/games/GameShell.astro';
 import EconriskGame from '@components/games/econrisk/EconriskGame.tsx';
+const locale = Astro.currentLocale as Locale;
 ---
 <GameShell title="Econrisk" wide slug="econrisk">
-  <EconriskGame client:load />
+  <EconriskGame client:load locale={locale} />
 </GameShell>

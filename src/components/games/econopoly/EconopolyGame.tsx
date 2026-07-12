@@ -36,7 +36,7 @@ import {
 } from '@/lib/games/econopoly/engine';
 import { aiTakeTurn, aiAuctionDecide } from '@/lib/games/econopoly/ai';
 import { makeGameStorage } from '@/lib/games/storage';
-import { CELLS, SECTOR_LABEL } from '@/lib/games/econopoly/board';
+import { CELLS } from '@/lib/games/econopoly/board';
 
 import { SetupScreen } from './SetupScreen';
 import { PassDeviceScreen } from './PassDeviceScreen';
@@ -45,6 +45,9 @@ import { SidePanel } from './SidePanel';
 import { AuctionModal } from './AuctionModal';
 import { EndScreen } from './EndScreen';
 
+import { GameLocaleContext, useGameLocale } from '../locale-context';
+import { DEFAULT_LOCALE, type Locale } from '@/i18n/locale';
+import { localizeSectorLabel } from '@/i18n/games/econopoly-ca';
 import './econopoly.css';
 
 // ─── Storage ──────────────────────────────────────────────────────────────────
@@ -77,7 +80,29 @@ function shouldAiDrive(s: GameState): boolean {
 }
 
 // ─── Root island ─────────────────────────────────────────────────────────────
-export default function EconopolyGame() {
+export const COPY = {
+  es: {
+    eyebrow: 'Juegos · Economia',
+    meta: (round: number, players: number) => `Ronda ${round}/20 · ${players} jugadores`,
+    turn: 'Turno:',
+  },
+  ca: {
+    eyebrow: 'Jocs · Economia',
+    meta: (round: number, players: number) => `Ronda ${round}/20 · ${players} jugadors`,
+    turn: 'Torn:',
+  },
+};
+
+export default function EconopolyGame({ locale = DEFAULT_LOCALE }: { locale?: Locale }) {
+  return (
+    <GameLocaleContext.Provider value={locale}>
+      <EconopolyGameInner />
+    </GameLocaleContext.Provider>
+  );
+}
+
+function EconopolyGameInner() {
+  const locale = useGameLocale();
   // Game state — null while on setup screen.
   // NEVER initialized from localStorage here (SSR safety).
   const [state, setState] = useState<GameState | null>(null);
@@ -304,17 +329,19 @@ export default function EconopolyGame() {
 
   const currentPlayer = state.players[state.current];
   const isCurrentAI = !currentPlayer?.isHuman;
+  const c = COPY[locale];
+  const sectorLabel = localizeSectorLabel(locale);
 
   return (
     <div class="ep2">
       {/* Top bar */}
       <header class="ep2-topbar">
         <div>
-          <div class="ep2-topbar-eyebrow">Juegos · Economia</div>
+          <div class="ep2-topbar-eyebrow">{c.eyebrow}</div>
           <h1 class="ep2-topbar-title">Econopoly</h1>
         </div>
         <div class="ep2-topbar-meta">
-          Ronda {state.round}/20 · {state.players.filter((p) => p.alive).length} jugadores
+          {c.meta(state.round, state.players.filter((p) => p.alive).length)}
         </div>
         <span class="ep2-topbar-sep" />
         {/* Current player turn pill */}
@@ -324,7 +351,7 @@ export default function EconopolyGame() {
             style={{ background: currentPlayer?.color ?? '#8A7868' }}
           />
           <span>
-            Turno:{' '}
+            {c.turn}{' '}
             <strong>{currentPlayer?.name ?? '?'}</strong>
             {isCurrentAI ? ' (IA)' : ''}
           </span>
@@ -342,22 +369,22 @@ export default function EconopolyGame() {
             <span>
               <i style={{ background: '#1F6E6E' }} />
               <span class="pair">A · B</span>
-              {SECTOR_LABEL.A} · {SECTOR_LABEL.B}
+              {sectorLabel.A} · {sectorLabel.B}
             </span>
             <span>
               <i style={{ background: '#A87A2A' }} />
               <span class="pair">C · D</span>
-              {SECTOR_LABEL.C} · {SECTOR_LABEL.D}
+              {sectorLabel.C} · {sectorLabel.D}
             </span>
             <span>
               <i style={{ background: '#C44E2C' }} />
               <span class="pair">E · F</span>
-              {SECTOR_LABEL.E} · {SECTOR_LABEL.F}
+              {sectorLabel.E} · {sectorLabel.F}
             </span>
             <span>
               <i style={{ background: '#2E5E3A' }} />
               <span class="pair">G · H</span>
-              {SECTOR_LABEL.G} · {SECTOR_LABEL.H}
+              {sectorLabel.G} · {sectorLabel.H}
             </span>
           </div>
         </main>

@@ -36,7 +36,6 @@ import {
   ownedCount,
 } from '@/lib/games/econrisk/engine';
 import { aiTakeTurn } from '@/lib/games/econrisk/ai';
-import { factionMeta } from '@/lib/games/econrisk/factions';
 import { byId, TERRITORIES } from '@/lib/games/econrisk/map';
 import { makeGameStorage } from '@/lib/games/storage';
 
@@ -47,6 +46,9 @@ import { SidePanel } from './SidePanel';
 import { PhaseBar } from './PhaseBar';
 import { EndScreen } from './EndScreen';
 
+import { GameLocaleContext, useGameLocale } from '../locale-context';
+import { DEFAULT_LOCALE, type Locale } from '@/i18n/locale';
+import { localizeFactions, localizeFactionMeta } from '@/i18n/games/econrisk-ca';
 import './econrisk.css';
 
 // ─── Storage ──────────────────────────────────────────────────────────────────
@@ -58,7 +60,27 @@ const store = makeGameStorage<GameState>('econrisk');
 type UIState = 'setup' | 'pass' | 'playing' | 'finished';
 
 // ─── Root island ─────────────────────────────────────────────────────────────
-export default function EconriskGame() {
+export const COPY = {
+  es: {
+    round: (r: number) => `Ronda ${r}/15`,
+    goal: (owned: number, total: number) => `${owned} / ${total} — objetivo: 18+`,
+  },
+  ca: {
+    round: (r: number) => `Ronda ${r}/15`,
+    goal: (owned: number, total: number) => `${owned} / ${total} — objectiu: 18+`,
+  },
+};
+
+export default function EconriskGame({ locale = DEFAULT_LOCALE }: { locale?: Locale }) {
+  return (
+    <GameLocaleContext.Provider value={locale}>
+      <EconriskGameInner />
+    </GameLocaleContext.Provider>
+  );
+}
+
+function EconriskGameInner() {
+  const locale = useGameLocale();
   // UI sub-state — never read localStorage in this initializer (SSR safety).
   const [ui, setUi] = useState<UIState>('setup');
 
@@ -305,7 +327,7 @@ export default function EconriskGame() {
 
   if (ui === 'pass') {
     const cf = state.order[state.current];
-    const meta = factionMeta[cf];
+    const meta = localizeFactionMeta(locale)[cf];
     return (
       <PassDeviceScreen
         factionLabel={meta.label}
@@ -317,8 +339,10 @@ export default function EconriskGame() {
 
   // ─── Playing screen ───────────────────────────────────────────────────────
   const currentFaction = state.order[state.current];
-  const meta = factionMeta[currentFaction];
+  const meta = localizeFactionMeta(locale)[currentFaction];
   const isAI = !state.factions[currentFaction].isHuman;
+  const c = COPY[locale];
+  const legendFactions = localizeFactions(locale);
 
   // Determine if the "Siguiente fase" button should be disabled
   // During 'reinforce' phase, force the player to place all units first
@@ -332,7 +356,7 @@ export default function EconriskGame() {
       {/* Top bar */}
       <header class="er-topbar">
         <h1 class="er-topbar-title">Econrisk</h1>
-        <span class="er-topbar-round">Ronda {state.round}/15</span>
+        <span class="er-topbar-round">{c.round(state.round)}</span>
         <span class="er-topbar-sep" />
         <span
           class="er-faction-badge"
@@ -357,19 +381,14 @@ export default function EconriskGame() {
 
           {/* Map legend */}
           <div class="er-legend">
-            {[
-              { label: 'Keynesianos', color: '#1F6E6E' },
-              { label: 'Marxistas', color: '#8C2F39' },
-              { label: 'Austríacos', color: '#A87A2A' },
-              { label: 'Neoclásicos', color: '#2E5E3A' },
-            ].map((f) => (
-              <div key={f.label} class="er-legend-item">
+            {legendFactions.map((f) => (
+              <div key={f.id} class="er-legend-item">
                 <span class="er-legend-dot" style={{ background: f.color }} />
                 {f.label}
               </div>
             ))}
             <span style={{ marginLeft: 'auto', fontSize: '0.7rem', color: '#8A7868', fontStyle: 'italic' }}>
-              {ownedCount(state, currentFaction)} / {TERRITORIES.length} — objetivo: 18+
+              {c.goal(ownedCount(state, currentFaction), TERRITORIES.length)}
             </span>
           </div>
 

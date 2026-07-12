@@ -4,7 +4,8 @@
 
 import { useState } from 'preact/hooks';
 import type { FactionId } from '@/lib/games/econrisk/types';
-import { FACTIONS } from '@/lib/games/econrisk/factions';
+import { useGameLocale } from '../locale-context';
+import { localizeFactions } from '@/i18n/games/econrisk-ca';
 
 interface Props {
   onStart: (humanFactions: FactionId[]) => void;
@@ -12,7 +13,34 @@ interface Props {
   onContinue: () => void;
 }
 
+export const COPY = {
+  es: {
+    subtitle:
+      'Juego de estrategia de escuelas de pensamiento económico. 4 facciones, 24 territorios, 6 continentes. Conquista por estímulo fiscal, revolución, solidez monetaria o ventaja comparativa.',
+    sectionLabel: 'Selecciona las facciones humanas',
+    humano: 'Humano',
+    ia: 'IA',
+    continuar: 'Continuar partida',
+    minPlayers: 'Selecciona al menos 1 jugador humano',
+    empezar: 'Empezar',
+  },
+  ca: {
+    subtitle:
+      "Joc d'estratègia d'escoles de pensament econòmic. 4 faccions, 24 territoris, 6 continents. Conquista per estímul fiscal, revolució, solidesa monetària o avantatge comparatiu.",
+    sectionLabel: 'Selecciona les faccions humanes',
+    humano: 'Humà',
+    ia: 'IA',
+    continuar: 'Continua la partida',
+    minPlayers: 'Selecciona almenys 1 jugador humà',
+    empezar: 'Comença',
+  },
+};
+
 export function SetupScreen({ onStart, hasSave, onContinue }: Props) {
+  const locale = useGameLocale();
+  const c = COPY[locale];
+  const factions = localizeFactions(locale);
+
   // Default: only Keynes is human
   const [humanFactions, setHumanFactions] = useState<Set<FactionId>>(new Set(['keynes']));
 
@@ -38,16 +66,13 @@ export function SetupScreen({ onStart, hasSave, onContinue }: Props) {
       <div class="er-setup-card">
         <div>
           <h1 class="er-setup-title">Econrisk</h1>
-          <p class="er-setup-subtitle">
-            Juego de estrategia de escuelas de pensamiento económico. 4 facciones, 24 territorios, 6 continentes.
-            Conquista por estímulo fiscal, revolución, solidez monetaria o ventaja comparativa.
-          </p>
+          <p class="er-setup-subtitle">{c.subtitle}</p>
         </div>
 
         <div>
-          <div class="er-setup-section-label">Selecciona las facciones humanas</div>
+          <div class="er-setup-section-label">{c.sectionLabel}</div>
           <div class="er-faction-list">
-            {FACTIONS.map((f) => {
+            {factions.map((f) => {
               const isHuman = humanFactions.has(f.id);
               return (
                 <div
@@ -72,7 +97,7 @@ export function SetupScreen({ onStart, hasSave, onContinue }: Props) {
                     class="er-faction-row-tag"
                     style={{ background: isHuman ? f.color : '#8A7868' }}
                   >
-                    {isHuman ? 'Humano' : 'IA'}
+                    {isHuman ? c.humano : c.ia}
                   </span>
                 </div>
               );
@@ -83,12 +108,12 @@ export function SetupScreen({ onStart, hasSave, onContinue }: Props) {
         <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
           {hasSave && (
             <button class="er-setup-cta ghost" onClick={onContinue}>
-              Continuar partida
+              {c.continuar}
             </button>
           )}
           {humanFactions.size === 0 && (
             <p style={{ margin: 0, fontSize: '0.8rem', color: '#C44E2C', textAlign: 'center' }}>
-              Selecciona al menos 1 jugador humano
+              {c.minPlayers}
             </p>
           )}
           <button
@@ -96,7 +121,7 @@ export function SetupScreen({ onStart, hasSave, onContinue }: Props) {
             onClick={handleStart}
             disabled={humanFactions.size === 0}
           >
-            Empezar
+            {c.empezar}
           </button>
         </div>
       </div>
