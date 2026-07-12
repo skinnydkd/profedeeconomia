@@ -1,11 +1,117 @@
 /** @jsxImportSource preact */
 import { useMemo, useState } from 'preact/hooks';
+import { type Locale } from '@/i18n/locale';
 import {
   equilibrio,
   evaluarPrecio,
   intervencion,
   type Coef,
 } from '../../lib/calc/equilibrio';
+
+/**
+ * UI strings, Valencian (AVL) alongside the ES source. Economic notation
+ * (P, Q, Qd, Qs, P*, Q*, €, %, coefficients a/b/c/d) is not translated.
+ * Mirrors the sibling calculators.
+ *
+ * Note: the alias used inside the components is `t` (not `c`), because `c`
+ * is already the supply-intercept coefficient/state in this file.
+ */
+export const COPY = {
+  es: {
+    curvaDemanda: 'Curva de demanda: Qd = a − b · P',
+    interceptoDemanda: 'a (intercepto demanda)',
+    pendienteDemanda: 'b (pendiente demanda, >0)',
+    curvaOferta: 'Curva de oferta: Qs = c + d · P',
+    interceptoOferta: 'c (intercepto oferta)',
+    pendienteOferta: 'd (pendiente oferta, >0)',
+    sinEquilibrio: 'No hay equilibrio válido con estos parámetros. Comprueba que a > c y que b, d > 0.',
+    precioEquilibrio: 'Precio de equilibrio (P*)',
+    cantidadEquilibrio: 'Cantidad de equilibrio (Q*)',
+    analizarPrecio: 'Analizar un precio',
+    precioInspeccionar: 'Precio a inspeccionar (P)',
+    introduceCurvas: 'Introduce curvas con equilibrio válido para analizar un precio.',
+    qdLabel: 'Qd (cantidad demandada)',
+    qsLabel: 'Qs (cantidad ofrecida)',
+    excedente: 'Excedente',
+    escasez: 'Escasez',
+    udsUnit: 'uds',
+    hayExcedente: 'Hay excedente: la oferta supera la demanda. Los productores tendrán presión para bajar el precio hacia P*.',
+    hayEscasez: 'Hay escasez: la demanda supera la oferta. Los consumidores tendrán presión para subir el precio hacia P*.',
+    precioEquilibrioNota: 'Este precio es el de equilibrio. El mercado está despejado.',
+    activarIntervencion: 'Activar intervención de precio',
+    tipoIntervencion: 'Tipo de intervención',
+    opcionMaximo: 'Precio máximo (tope máximo)',
+    opcionMinimo: 'Precio mínimo (tope mínimo)',
+    precioFijado: 'Precio fijado',
+    maxSinEfecto: 'El precio máximo está por encima del precio de equilibrio: no tiene efecto sobre el mercado.',
+    minSinEfecto: 'El precio mínimo está por debajo del precio de equilibrio: no tiene efecto sobre el mercado.',
+    cantidadIntercambiada: 'Cantidad intercambiada',
+    maxEscasez: 'Un precio máximo efectivo genera escasez: los demandantes quieren más de lo que los productores ofrecen a ese precio.',
+    minExcedente: 'Un precio mínimo efectivo genera excedente: los productores ofrecen más de lo que los demandantes quieren a ese precio.',
+    comoSeCalcula: 'Cómo se calcula',
+    formulaEqTitle: 'Equilibrio',
+    formulaEqDesc: ': igualamos Qd = Qs → a − b·P* = c + d·P* → P* = (a − c) / (b + d); Q* = a − b·P*.',
+    formulaPrecioTitle: 'A un precio P dado',
+    formulaPrecioDesc: ': Qd = a − b·P; Qs = c + d·P; exceso = Qs − Qd.',
+    formulaMaxTitle: 'Precio máximo',
+    formulaMaxDesc: ' (tope): efectivo solo si P_max < P*. Genera escasez = Qd − Qs.',
+    formulaMinTitle: 'Precio mínimo',
+    formulaMinDesc: ' (suelo): efectivo solo si P_min > P*. Genera excedente = Qs − Qd.',
+    chartAria: 'Gráfico de oferta y demanda con punto de equilibrio',
+    chartEscasez: 'escasez',
+    chartExcedente: 'excedente',
+    leyendaDemanda: 'Demanda',
+    leyendaOferta: 'Oferta',
+  },
+  ca: {
+    curvaDemanda: 'Corba de demanda: Qd = a − b · P',
+    interceptoDemanda: 'a (intercepció demanda)',
+    pendienteDemanda: 'b (pendent demanda, >0)',
+    curvaOferta: "Corba d'oferta: Qs = c + d · P",
+    interceptoOferta: 'c (intercepció oferta)',
+    pendienteOferta: 'd (pendent oferta, >0)',
+    sinEquilibrio: 'No hi ha equilibri vàlid amb estos paràmetres. Comprova que a > c i que b, d > 0.',
+    precioEquilibrio: "Preu d'equilibri (P*)",
+    cantidadEquilibrio: "Quantitat d'equilibri (Q*)",
+    analizarPrecio: 'Analitzar un preu',
+    precioInspeccionar: 'Preu a inspeccionar (P)',
+    introduceCurvas: 'Introduïx corbes amb equilibri vàlid per a analitzar un preu.',
+    qdLabel: 'Qd (quantitat demandada)',
+    qsLabel: 'Qs (quantitat oferida)',
+    excedente: 'Excedent',
+    escasez: 'Escassetat',
+    udsUnit: 'unitats',
+    hayExcedente: "Hi ha excedent: l'oferta supera la demanda. Els productors tindran pressió per a abaixar el preu cap a P*.",
+    hayEscasez: "Hi ha escassetat: la demanda supera l'oferta. Els consumidors tindran pressió per a pujar el preu cap a P*.",
+    precioEquilibrioNota: "Este preu és el d'equilibri. El mercat es buida.",
+    activarIntervencion: 'Activar intervenció de preu',
+    tipoIntervencion: "Tipus d'intervenció",
+    opcionMaximo: 'Preu màxim (límit màxim)',
+    opcionMinimo: 'Preu mínim (límit mínim)',
+    precioFijado: 'Preu fixat',
+    maxSinEfecto: "El preu màxim està per damunt del preu d'equilibri: no té efecte sobre el mercat.",
+    minSinEfecto: "El preu mínim està per davall del preu d'equilibri: no té efecte sobre el mercat.",
+    cantidadIntercambiada: 'Quantitat intercanviada',
+    maxEscasez: 'Un preu màxim efectiu genera escassetat: els demandants volen més del que els productors oferixen a este preu.',
+    minExcedente: 'Un preu mínim efectiu genera excedent: els productors oferixen més del que els demandants volen a este preu.',
+    comoSeCalcula: 'Com es calcula',
+    formulaEqTitle: 'Equilibri',
+    formulaEqDesc: ': igualem Qd = Qs → a − b·P* = c + d·P* → P* = (a − c) / (b + d); Q* = a − b·P*.',
+    formulaPrecioTitle: 'A un preu P donat',
+    formulaPrecioDesc: ': Qd = a − b·P; Qs = c + d·P; excés = Qs − Qd.',
+    formulaMaxTitle: 'Preu màxim',
+    formulaMaxDesc: ' (sostre): efectiu només si P_max < P*. Genera escassetat = Qd − Qs.',
+    formulaMinTitle: 'Preu mínim',
+    formulaMinDesc: ' (sòl): efectiu només si P_min > P*. Genera excedent = Qs − Qd.',
+    chartAria: "Gràfic d'oferta i demanda amb punt d'equilibri",
+    chartEscasez: 'escassetat',
+    chartExcedente: 'excedent',
+    leyendaDemanda: 'Demanda',
+    leyendaOferta: 'Oferta',
+  },
+} as const;
+
+interface Props { locale?: Locale }
 
 /**
  * Market equilibrium calculator.
@@ -19,7 +125,8 @@ import {
  *
  * Eco 1BACH · Unit 4 / EDMN 2BACH · Unit 3.
  */
-export default function EquilibrioCalc() {
+export default function EquilibrioCalc({ locale = 'es' }: Props) {
+  const t = COPY[locale];
   // Curve coefficients: Qd = a − b·P, Qs = c + d·P
   const [a, setA] = useState<number>(200);
   const [b, setB] = useState<number>(10);
@@ -48,17 +155,17 @@ export default function EquilibrioCalc() {
   return (
     <div class="calc">
       {/* ── Parameters ── */}
-      <div class="eq__section-label">Curva de demanda: Qd = a − b · P</div>
+      <div class="eq__section-label">{t.curvaDemanda}</div>
       <div class="calc__form eq__form-row">
         <label class="calc__field">
-          <span class="calc__label">a (intercepto demanda)</span>
+          <span class="calc__label">{t.interceptoDemanda}</span>
           <div class="calc__input-wrap">
             <input type="number" min={1} step={10} value={a}
               onInput={(e) => setA(parseFloat((e.target as HTMLInputElement).value) || 0)} />
           </div>
         </label>
         <label class="calc__field">
-          <span class="calc__label">b (pendiente demanda, &gt;0)</span>
+          <span class="calc__label">{t.pendienteDemanda}</span>
           <div class="calc__input-wrap">
             <input type="number" min={0.1} step={1} value={b}
               onInput={(e) => setB(parseFloat((e.target as HTMLInputElement).value) || 0)} />
@@ -66,17 +173,17 @@ export default function EquilibrioCalc() {
         </label>
       </div>
 
-      <div class="eq__section-label">Curva de oferta: Qs = c + d · P</div>
+      <div class="eq__section-label">{t.curvaOferta}</div>
       <div class="calc__form eq__form-row">
         <label class="calc__field">
-          <span class="calc__label">c (intercepto oferta)</span>
+          <span class="calc__label">{t.interceptoOferta}</span>
           <div class="calc__input-wrap">
             <input type="number" step={10} value={c}
               onInput={(e) => setC(parseFloat((e.target as HTMLInputElement).value) || 0)} />
           </div>
         </label>
         <label class="calc__field">
-          <span class="calc__label">d (pendiente oferta, &gt;0)</span>
+          <span class="calc__label">{t.pendienteOferta}</span>
           <div class="calc__input-wrap">
             <input type="number" min={0.1} step={1} value={d}
               onInput={(e) => setD(parseFloat((e.target as HTMLInputElement).value) || 0)} />
@@ -88,16 +195,16 @@ export default function EquilibrioCalc() {
       <div class="calc__results">
         {!eq.valido ? (
           <div class="calc__warning">
-            No hay equilibrio válido con estos parámetros. Comprueba que a &gt; c y que b, d &gt; 0.
+            {t.sinEquilibrio}
           </div>
         ) : (
           <div class="calc__metric-grid">
             <div class="calc__metric-mini">
-              <span class="calc__metric-mini-label">Precio de equilibrio (P*)</span>
+              <span class="calc__metric-mini-label">{t.precioEquilibrio}</span>
               <span class="calc__metric-mini-value">{fmtN(eq.P)}</span>
             </div>
             <div class="calc__metric-mini">
-              <span class="calc__metric-mini-label">Cantidad de equilibrio (Q*)</span>
+              <span class="calc__metric-mini-label">{t.cantidadEquilibrio}</span>
               <span class="calc__metric-mini-value">{fmtN(eq.Q)}</span>
             </div>
           </div>
@@ -112,14 +219,15 @@ export default function EquilibrioCalc() {
           topeActivo={topeActivo}
           topeTipo={topeTipo}
           topePrecio={topePrecio}
+          locale={locale}
         />
 
         {/* ── Inspect a price ── */}
         <div class="eq__inspect">
-          <div class="eq__section-label">Analizar un precio</div>
+          <div class="eq__section-label">{t.analizarPrecio}</div>
           <div class="calc__form eq__form-row">
             <label class="calc__field">
-              <span class="calc__label">Precio a inspeccionar (P)</span>
+              <span class="calc__label">{t.precioInspeccionar}</span>
               <div class="calc__input-wrap">
                 <input type="number" step={0.5} value={precioInsp}
                   onInput={(e) => setPrecioInsp(parseFloat((e.target as HTMLInputElement).value) || 0)} />
@@ -127,33 +235,33 @@ export default function EquilibrioCalc() {
             </label>
           </div>
           {!eq.valido ? (
-            <div class="eq__note">Introduce curvas con equilibrio válido para analizar un precio.</div>
+            <div class="eq__note">{t.introduceCurvas}</div>
           ) : (
             <>
               <div class="calc__metric-grid calc__metric-grid--three">
                 <div class="calc__metric-mini">
-                  <span class="calc__metric-mini-label">Qd (cantidad demandada)</span>
+                  <span class="calc__metric-mini-label">{t.qdLabel}</span>
                   <span class="calc__metric-mini-value">{fmtN(evalInsp.qd)}</span>
                 </div>
                 <div class="calc__metric-mini">
-                  <span class="calc__metric-mini-label">Qs (cantidad ofrecida)</span>
+                  <span class="calc__metric-mini-label">{t.qsLabel}</span>
                   <span class="calc__metric-mini-value">{fmtN(evalInsp.qs)}</span>
                 </div>
                 <div class="calc__metric-mini">
-                  <span class="calc__metric-mini-label">{evalInsp.exceso >= 0 ? 'Excedente' : 'Escasez'}</span>
+                  <span class="calc__metric-mini-label">{evalInsp.exceso >= 0 ? t.excedente : t.escasez}</span>
                   <span class={`calc__metric-mini-value ${evalInsp.exceso >= 0 ? 'ok' : 'fail'}`}>
-                    {fmtN(Math.abs(evalInsp.exceso))} uds
+                    {fmtN(Math.abs(evalInsp.exceso))} {t.udsUnit}
                   </span>
                 </div>
               </div>
               {evalInsp.exceso > 0 && (
-                <div class="eq__note">Hay excedente: la oferta supera la demanda. Los productores tendrán presión para bajar el precio hacia P*.</div>
+                <div class="eq__note">{t.hayExcedente}</div>
               )}
               {evalInsp.exceso < 0 && (
-                <div class="eq__note">Hay escasez: la demanda supera la oferta. Los consumidores tendrán presión para subir el precio hacia P*.</div>
+                <div class="eq__note">{t.hayEscasez}</div>
               )}
               {evalInsp.exceso === 0 && (
-                <div class="eq__note ok">Este precio es el de equilibrio. El mercado está despejado.</div>
+                <div class="eq__note ok">{t.precioEquilibrioNota}</div>
               )}
             </>
           )}
@@ -167,26 +275,26 @@ export default function EquilibrioCalc() {
               checked={topeActivo}
               onChange={(e) => setTopeActivo((e.target as HTMLInputElement).checked)}
             />
-            <span class="eq__section-label" style="display:inline;margin:0;">Activar intervención de precio</span>
+            <span class="eq__section-label" style="display:inline;margin:0;">{t.activarIntervencion}</span>
           </label>
 
           {topeActivo && (
             <div class="eq__tope-controls">
               <div class="calc__form eq__form-row">
                 <label class="calc__field">
-                  <span class="calc__label">Tipo de intervención</span>
+                  <span class="calc__label">{t.tipoIntervencion}</span>
                   <div class="calc__input-wrap">
                     <select
                       value={topeTipo}
                       onChange={(e) => setTopeTipo((e.target as HTMLSelectElement).value as 'maximo' | 'minimo')}
                     >
-                      <option value="maximo">Precio máximo (tope máximo)</option>
-                      <option value="minimo">Precio mínimo (tope mínimo)</option>
+                      <option value="maximo">{t.opcionMaximo}</option>
+                      <option value="minimo">{t.opcionMinimo}</option>
                     </select>
                   </div>
                 </label>
                 <label class="calc__field">
-                  <span class="calc__label">Precio fijado</span>
+                  <span class="calc__label">{t.precioFijado}</span>
                   <div class="calc__input-wrap">
                     <input type="number" min={0} step={0.5} value={topePrecio}
                       onInput={(e) => setTopePrecio(parseFloat((e.target as HTMLInputElement).value) || 0)} />
@@ -198,35 +306,33 @@ export default function EquilibrioCalc() {
                 <div class="eq__tope-result">
                   {!evalTope.efectivo ? (
                     <div class="eq__note">
-                      {topeTipo === 'maximo'
-                        ? 'El precio máximo está por encima del precio de equilibrio: no tiene efecto sobre el mercado.'
-                        : 'El precio mínimo está por debajo del precio de equilibrio: no tiene efecto sobre el mercado.'}
+                      {topeTipo === 'maximo' ? t.maxSinEfecto : t.minSinEfecto}
                     </div>
                   ) : (
                     <>
                       <div class="calc__metric-grid calc__metric-grid--three">
                         <div class="calc__metric-mini">
-                          <span class="calc__metric-mini-label">Cantidad intercambiada</span>
-                          <span class="calc__metric-mini-value">{fmtN(evalTope.intercambiada)} uds</span>
+                          <span class="calc__metric-mini-label">{t.cantidadIntercambiada}</span>
+                          <span class="calc__metric-mini-value">{fmtN(evalTope.intercambiada)} {t.udsUnit}</span>
                         </div>
                         {evalTope.escasez > 0 && (
                           <div class="calc__metric-mini">
-                            <span class="calc__metric-mini-label">Escasez</span>
-                            <span class="calc__metric-mini-value fail">{fmtN(evalTope.escasez)} uds</span>
+                            <span class="calc__metric-mini-label">{t.escasez}</span>
+                            <span class="calc__metric-mini-value fail">{fmtN(evalTope.escasez)} {t.udsUnit}</span>
                           </div>
                         )}
                         {evalTope.excedente > 0 && (
                           <div class="calc__metric-mini">
-                            <span class="calc__metric-mini-label">Excedente</span>
-                            <span class="calc__metric-mini-value ok">{fmtN(evalTope.excedente)} uds</span>
+                            <span class="calc__metric-mini-label">{t.excedente}</span>
+                            <span class="calc__metric-mini-value ok">{fmtN(evalTope.excedente)} {t.udsUnit}</span>
                           </div>
                         )}
                       </div>
                       {topeTipo === 'maximo' && evalTope.escasez > 0 && (
-                        <div class="eq__note">Un precio máximo efectivo genera escasez: los demandantes quieren más de lo que los productores ofrecen a ese precio.</div>
+                        <div class="eq__note">{t.maxEscasez}</div>
                       )}
                       {topeTipo === 'minimo' && evalTope.excedente > 0 && (
-                        <div class="eq__note">Un precio mínimo efectivo genera excedente: los productores ofrecen más de lo que los demandantes quieren a ese precio.</div>
+                        <div class="eq__note">{t.minExcedente}</div>
                       )}
                     </>
                   )}
@@ -237,12 +343,12 @@ export default function EquilibrioCalc() {
         </div>
 
         <details class="calc__details">
-          <summary>Cómo se calcula</summary>
+          <summary>{t.comoSeCalcula}</summary>
           <div class="calc__formula">
-            <p><strong>Equilibrio</strong>: igualamos Qd = Qs → a − b·P* = c + d·P* → P* = (a − c) / (b + d); Q* = a − b·P*.</p>
-            <p><strong>A un precio P dado</strong>: Qd = a − b·P; Qs = c + d·P; exceso = Qs − Qd.</p>
-            <p><strong>Precio máximo</strong> (tope): efectivo solo si P_max &lt; P*. Genera escasez = Qd − Qs.</p>
-            <p><strong>Precio mínimo</strong> (suelo): efectivo solo si P_min &gt; P*. Genera excedente = Qs − Qd.</p>
+            <p><strong>{t.formulaEqTitle}</strong>{t.formulaEqDesc}</p>
+            <p><strong>{t.formulaPrecioTitle}</strong>{t.formulaPrecioDesc}</p>
+            <p><strong>{t.formulaMaxTitle}</strong>{t.formulaMaxDesc}</p>
+            <p><strong>{t.formulaMinTitle}</strong>{t.formulaMinDesc}</p>
           </div>
         </details>
       </div>
@@ -320,9 +426,11 @@ interface ChartProps {
   topeActivo: boolean;
   topeTipo: 'maximo' | 'minimo';
   topePrecio: number;
+  locale: Locale;
 }
 
-function EquilibrioChart({ coef, eq, precioInsp, evalInsp, topeActivo, topeTipo, topePrecio }: ChartProps) {
+function EquilibrioChart({ coef, eq, precioInsp, evalInsp, topeActivo, topeTipo, topePrecio, locale }: ChartProps) {
+  const t = COPY[locale];
   const W = 360;
   const H = 280;
   const ML = 48;
@@ -373,7 +481,7 @@ function EquilibrioChart({ coef, eq, precioInsp, evalInsp, topeActivo, topeTipo,
       class="eq__chart"
       xmlns="http://www.w3.org/2000/svg"
       role="img"
-      aria-label="Gráfico de oferta y demanda con punto de equilibrio"
+      aria-label={t.chartAria}
     >
       {/* Grid lines */}
       {yTicks.map((p) => (
@@ -456,7 +564,7 @@ function EquilibrioChart({ coef, eq, precioInsp, evalInsp, topeActivo, topeTipo,
             x={xOf((inspQd + inspQs) / 2)} y={yOf(inspP) - 7}
             text-anchor="middle" font-family="var(--font-mono)" font-size="9"
             fill={evalInsp.exceso < 0 ? '#B83A3A' : 'var(--color-eco1, #1F6E6E)'}>
-            {evalInsp.exceso < 0 ? 'escasez' : 'excedente'}
+            {evalInsp.exceso < 0 ? t.chartEscasez : t.chartExcedente}
           </text>
         </>
       )}
@@ -474,11 +582,11 @@ function EquilibrioChart({ coef, eq, precioInsp, evalInsp, topeActivo, topeTipo,
       <line x1={ML + iW - 74} y1={MT + 14} x2={ML + iW - 60} y2={MT + 14}
         stroke="var(--color-terra, #C44E2C)" stroke-width="2.5" />
       <text x={ML + iW - 56} y={MT + 18} font-family="var(--font-sans)" font-size="9"
-        fill="var(--color-ink-soft, #5C4A3D)">Demanda</text>
+        fill="var(--color-ink-soft, #5C4A3D)">{t.leyendaDemanda}</text>
       <line x1={ML + iW - 74} y1={MT + 28} x2={ML + iW - 60} y2={MT + 28}
         stroke="var(--color-eco1, #1F6E6E)" stroke-width="2.5" />
       <text x={ML + iW - 56} y={MT + 32} font-family="var(--font-sans)" font-size="9"
-        fill="var(--color-ink-soft, #5C4A3D)">Oferta</text>
+        fill="var(--color-ink-soft, #5C4A3D)">{t.leyendaOferta}</text>
     </svg>
   );
 }

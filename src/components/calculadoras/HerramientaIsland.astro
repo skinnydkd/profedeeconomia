@@ -27,34 +27,43 @@ import DAFOCanvas from '@components/calculadoras/DAFOCanvas.tsx';
 import BusinessModelCanvas from '@components/calculadoras/BusinessModelCanvas.tsx';
 import MatrizBCG from '@components/calculadoras/MatrizBCG.tsx';
 
-interface Props { componente?: string }
-const { componente } = Astro.props;
+import { type Locale } from '@/i18n/locale';
+import { t } from '@/i18n/ui';
+
+/**
+ * `locale` is an explicit prop, never derived from `Astro.currentLocale`: the
+ * same islands are embedded in the per-asignatura recurso pages and in the
+ * slide decks, whose content is still ES under /ca. Only a caller that has
+ * localized its own page passes a locale; everyone else gets the ES default.
+ */
+interface Props { componente?: string; locale?: Locale }
+const { componente, locale = 'es' } = Astro.props;
 ---
 <div class="hi__web">
-{componente === 'PuntoMuerto' && <PuntoMuertoCalc client:load />}
-{componente === 'VANTIR' && <VANTIRCalc client:load />}
-{componente === 'Ratios' && <RatiosCalc client:load />}
-{componente === 'ADASSimulator' && <ADASSimulator client:load />}
-{componente === 'InteresCompuesto' && <InteresCompuestoCalc client:load />}
-{componente === 'NominaESO' && <CalculadoraNominaESO client:load />}
-{componente === 'Presupuesto503020' && <CalculadoraPresupuesto503020 client:load />}
-{componente === 'BuscadorItinerarios' && <BuscadorItinerarios client:load />}
-{componente === 'GeneradorCVEuropass' && <GeneradorCVEuropass client:load />}
-{componente === 'DCF' && <DCFCalc client:load />}
-{componente === 'RatiosBenchmark' && <RatiosBenchmark client:load />}
-{componente === 'Elasticidad' && <ElasticidadCalc client:load />}
-{componente === 'MultiplicadorGasto' && <MultiplicadorGasto client:load />}
-{componente === 'IRPFDeclaracion' && <IRPFDeclaracion client:load />}
-{componente === 'CocheVsAlternativa' && <CocheVsAlternativa client:load />}
-{componente === 'RIASEC' && <RIASECTest client:load />}
-{componente === 'PresupuestoUni' && <PresupuestoUni client:load />}
-{componente === 'Productividad' && <ProductividadCalc client:load />}
-{componente === 'EquilibrioMercado' && <EquilibrioCalc client:load />}
-{componente === 'DAFO' && <DAFOCanvas client:load />}
-{componente === 'CanvasBM' && <BusinessModelCanvas client:load />}
-{componente === 'BCG' && <MatrizBCG client:load />}
+{componente === 'PuntoMuerto' && <PuntoMuertoCalc client:load locale={locale} />}
+{componente === 'VANTIR' && <VANTIRCalc client:load locale={locale} />}
+{componente === 'Ratios' && <RatiosCalc client:load locale={locale} />}
+{componente === 'ADASSimulator' && <ADASSimulator client:load locale={locale} />}
+{componente === 'InteresCompuesto' && <InteresCompuestoCalc client:load locale={locale} />}
+{componente === 'NominaESO' && <CalculadoraNominaESO client:load locale={locale} />}
+{componente === 'Presupuesto503020' && <CalculadoraPresupuesto503020 client:load locale={locale} />}
+{componente === 'BuscadorItinerarios' && <BuscadorItinerarios client:load locale={locale} />}
+{componente === 'GeneradorCVEuropass' && <GeneradorCVEuropass client:load locale={locale} />}
+{componente === 'DCF' && <DCFCalc client:load locale={locale} />}
+{componente === 'RatiosBenchmark' && <RatiosBenchmark client:load locale={locale} />}
+{componente === 'Elasticidad' && <ElasticidadCalc client:load locale={locale} />}
+{componente === 'MultiplicadorGasto' && <MultiplicadorGasto client:load locale={locale} />}
+{componente === 'IRPFDeclaracion' && <IRPFDeclaracion client:load locale={locale} />}
+{componente === 'CocheVsAlternativa' && <CocheVsAlternativa client:load locale={locale} />}
+{componente === 'RIASEC' && <RIASECTest client:load locale={locale} />}
+{componente === 'PresupuestoUni' && <PresupuestoUni client:load locale={locale} />}
+{componente === 'Productividad' && <ProductividadCalc client:load locale={locale} />}
+{componente === 'EquilibrioMercado' && <EquilibrioCalc client:load locale={locale} />}
+{componente === 'DAFO' && <DAFOCanvas client:load locale={locale} />}
+{componente === 'CanvasBM' && <BusinessModelCanvas client:load locale={locale} />}
+{componente === 'BCG' && <MatrizBCG client:load locale={locale} />}
 </div>
-<p class="hi__print">↗ Herramienta interactiva disponible en la versión digital del libro (profedeeconomia.es).</p>
+<p class="hi__print">{t('island.print', locale)}</p>
 
 <style>
   .hi__print { display: none; }

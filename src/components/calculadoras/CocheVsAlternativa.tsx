@@ -1,11 +1,152 @@
 /** @jsxImportSource preact */
 import { useMemo, useState } from 'preact/hooks';
+import { type Locale } from '@/i18n/locale';
 import {
   costeCocheAnual,
   costeAlternativaAnual,
   compararMovilidad,
 } from '../../lib/calc/coche';
 import { formatEUR, formatNumber } from '../../lib/calc/format';
+
+/**
+ * UI strings, Valencian (AVL) alongside the ES source. Economic notation and
+ * units (€, %, km, L/100 km, €/L…) are not translated. Mirrors the sibling
+ * calculators.
+ */
+export const COPY = {
+  es: {
+    reiniciar: 'Reiniciar valores',
+    cocheSub: 'Coche propio',
+    precioCompra: 'Precio de compra',
+    anosVidaUtil: 'Años de vida útil',
+    unitAnos: 'años',
+    kmAnuales: 'Kilómetros al año',
+    unitKmAnio: 'km/año',
+    consumo: 'Consumo',
+    unitL100: 'L/100 km',
+    precioCombustible: 'Precio del combustible',
+    unitEurL: '€/L',
+    seguro: 'Seguro',
+    unitEurAnio: '€/año',
+    mantenimiento: 'Mantenimiento y reparaciones',
+    impuestos: 'Impuestos (IVTM…)',
+    aparcamiento: 'Aparcamiento',
+    altSub: 'Alternativa sin coche',
+    abonoTransporte: 'Abono de transporte público',
+    unitEurMes: '€/mes',
+    viajesTaxi: 'Viajes en taxi / VTC al mes',
+    unitViajesMes: 'viajes/mes',
+    costeMedioTaxi: 'Coste medio del viaje en taxi',
+    unitEurViaje: '€/viaje',
+    diasAlquiler: 'Días de alquiler / car-sharing al año',
+    unitDiasAnio: 'días/año',
+    costeAlquilerDia: 'Coste del día de alquiler',
+    unitEurDia: '€/día',
+    recuerda: 'Recuerda',
+    recuerdaDetalle:
+      'La alternativa no incluye depreciación, seguro ni impuestos: no tienes un coche que pierda valor cada año.',
+    verdictEmpate: 'Las dos opciones cuestan lo mismo',
+    verdictCoche: 'Sale más barato el coche propio',
+    verdictAlt: 'Sale más barata la alternativa sin coche',
+    deDiferencia: 'de diferencia al año',
+    costeTotalAnual: 'Coste total anual de cada opción',
+    barCoche: 'Coche',
+    barAlt: 'Alternativa',
+    costePorKm: 'Coste del coche por km',
+    depreciacionAnual: 'Depreciación anual',
+    combustibleAnual: 'Combustible anual',
+    costesFijos: 'Costes fijos del coche',
+    kmEquilibrioPre: 'A partir de unos',
+    kmEquilibrioKmAnio: 'km al año',
+    kmEquilibrioPost:
+      ' el coche propio empezaría a salir más barato que esta alternativa (manteniendo el resto de datos igual).',
+    ocultosSummary: 'Los costes ocultos del coche',
+    ocultosP1a: 'Cuando pensamos en lo que cuesta un coche solemos fijarnos solo en la ',
+    ocultosGasolina: 'gasolina',
+    ocultosP1b:
+      '. Pero el combustible suele ser la parte pequeña: lo caro es lo que no se ve en el día a día.',
+    ocultosP2a: 'La ',
+    ocultosDepreciacion: 'depreciación',
+    ocultosP2b:
+      ' (el valor que pierde el coche cada año) es casi siempre el mayor coste, seguida del ',
+    ocultosSeguro: 'seguro',
+    ocultosP2c: ', el ',
+    ocultosMantenimiento: 'mantenimiento',
+    ocultosP2d: ', los ',
+    ocultosImpuestos: 'impuestos',
+    ocultosP2e: ' y el ',
+    ocultosAparcamiento: 'aparcamiento',
+    ocultosP2f:
+      '. Por eso dividir el coste total entre los kilómetros recorridos (coste por km) ayuda a comparar de forma justa con no tener coche.',
+  },
+  ca: {
+    reiniciar: 'Reiniciar valors',
+    cocheSub: 'Cotxe propi',
+    precioCompra: 'Preu de compra',
+    anosVidaUtil: 'Anys de vida útil',
+    unitAnos: 'anys',
+    kmAnuales: "Quilòmetres a l'any",
+    unitKmAnio: 'km/any',
+    consumo: 'Consum',
+    unitL100: 'L/100 km',
+    precioCombustible: 'Preu del combustible',
+    unitEurL: '€/L',
+    seguro: 'Assegurança',
+    unitEurAnio: '€/any',
+    mantenimiento: 'Manteniment i reparacions',
+    impuestos: 'Impostos (IVTM…)',
+    aparcamiento: 'Aparcament',
+    altSub: 'Alternativa sense cotxe',
+    abonoTransporte: 'Abonament de transport públic',
+    unitEurMes: '€/mes',
+    viajesTaxi: 'Viatges en taxi / VTC al mes',
+    unitViajesMes: 'viatges/mes',
+    costeMedioTaxi: 'Cost mitjà del viatge en taxi',
+    unitEurViaje: '€/viatge',
+    diasAlquiler: "Dies de lloguer / car-sharing a l'any",
+    unitDiasAnio: 'dies/any',
+    costeAlquilerDia: 'Cost del dia de lloguer',
+    unitEurDia: '€/dia',
+    recuerda: 'Recorda',
+    recuerdaDetalle:
+      "L'alternativa no inclou depreciació, assegurança ni impostos: no tens un cotxe que perda valor cada any.",
+    verdictEmpate: 'Les dues opcions costen el mateix',
+    verdictCoche: 'Ix més barat el cotxe propi',
+    verdictAlt: "Ix més barata l'alternativa sense cotxe",
+    deDiferencia: "de diferència a l'any",
+    costeTotalAnual: 'Cost total anual de cada opció',
+    barCoche: 'Cotxe',
+    barAlt: 'Alternativa',
+    costePorKm: 'Cost del cotxe per km',
+    depreciacionAnual: 'Depreciació anual',
+    combustibleAnual: 'Combustible anual',
+    costesFijos: 'Costos fixos del cotxe',
+    kmEquilibrioPre: "A partir d'uns",
+    kmEquilibrioKmAnio: "km a l'any",
+    kmEquilibrioPost:
+      ' el cotxe propi començaria a eixir més barat que esta alternativa (mantenint la resta de dades igual).',
+    ocultosSummary: 'Els costos ocults del cotxe',
+    ocultosP1a: 'Quan pensem en el que costa un cotxe, solem fixar-nos només en la ',
+    ocultosGasolina: 'gasolina',
+    ocultosP1b:
+      '. Però el combustible sol ser la part xicoteta: el car és el que no es veu en el dia a dia.',
+    ocultosP2a: 'La ',
+    ocultosDepreciacion: 'depreciació',
+    ocultosP2b:
+      " (el valor que perd el cotxe cada any) és quasi sempre el major cost, seguida de l'",
+    ocultosSeguro: 'assegurança',
+    ocultosP2c: ', el ',
+    ocultosMantenimiento: 'manteniment',
+    ocultosP2d: ', els ',
+    ocultosImpuestos: 'impostos',
+    ocultosP2e: " i l'",
+    ocultosAparcamiento: 'aparcament',
+    ocultosP2f:
+      '. Per això, dividir el cost total entre els quilòmetres recorreguts (cost per km) ajuda a comparar de manera justa amb no tindre cotxe.',
+  },
+} as const;
+
+interface Props { locale?: Locale }
 
 /**
  * Coche propio vs. alternativa de movilidad — calculator for Eco 4ESO
@@ -18,7 +159,8 @@ import { formatEUR, formatNumber } from '../../lib/calc/format';
  *
  * Mirrors the .calc__* layout shared by the other interactive calculators.
  */
-export default function CocheVsAlternativa() {
+export default function CocheVsAlternativa({ locale = 'es' }: Props) {
+  const c = COPY[locale];
   // Car inputs — realistic Spanish defaults (mid-size used car, average use).
   const [precioCompra, setPrecioCompra] = useState<number>(18000);
   const [anosVidaUtil, setAnosVidaUtil] = useState<number>(10);
@@ -107,7 +249,7 @@ export default function CocheVsAlternativa() {
     <div class="calc">
       <div class="calc__presets">
         <button type="button" class="calc__btn calc__btn--ghost" onClick={reset}>
-          Reiniciar valores
+          {c.reiniciar}
         </button>
       </div>
 
@@ -116,10 +258,10 @@ export default function CocheVsAlternativa() {
       <div class="calc__metric-grid">
         {/* ---- Columna coche ---- */}
         <div>
-          <p class="calc__sub">Coche propio</p>
+          <p class="calc__sub">{c.cocheSub}</p>
 
           <label class="calc__field">
-            <span class="calc__label">Precio de compra</span>
+            <span class="calc__label">{c.precioCompra}</span>
             <div class="calc__input-wrap">
               <input
                 type="number"
@@ -133,7 +275,7 @@ export default function CocheVsAlternativa() {
           </label>
 
           <label class="calc__field">
-            <span class="calc__label">Años de vida útil</span>
+            <span class="calc__label">{c.anosVidaUtil}</span>
             <div class="calc__input-wrap">
               <input
                 type="number"
@@ -142,12 +284,12 @@ export default function CocheVsAlternativa() {
                 value={anosVidaUtil}
                 onInput={(e) => setAnosVidaUtil(num(e))}
               />
-              <span class="calc__unit">años</span>
+              <span class="calc__unit">{c.unitAnos}</span>
             </div>
           </label>
 
           <label class="calc__field">
-            <span class="calc__label">Kilómetros al año</span>
+            <span class="calc__label">{c.kmAnuales}</span>
             <div class="calc__input-wrap">
               <input
                 type="number"
@@ -156,12 +298,12 @@ export default function CocheVsAlternativa() {
                 value={kmAnuales}
                 onInput={(e) => setKmAnuales(num(e))}
               />
-              <span class="calc__unit">km/año</span>
+              <span class="calc__unit">{c.unitKmAnio}</span>
             </div>
           </label>
 
           <label class="calc__field">
-            <span class="calc__label">Consumo</span>
+            <span class="calc__label">{c.consumo}</span>
             <div class="calc__input-wrap">
               <input
                 type="number"
@@ -170,12 +312,12 @@ export default function CocheVsAlternativa() {
                 value={consumoL100}
                 onInput={(e) => setConsumoL100(num(e))}
               />
-              <span class="calc__unit">L/100 km</span>
+              <span class="calc__unit">{c.unitL100}</span>
             </div>
           </label>
 
           <label class="calc__field">
-            <span class="calc__label">Precio del combustible</span>
+            <span class="calc__label">{c.precioCombustible}</span>
             <div class="calc__input-wrap">
               <input
                 type="number"
@@ -184,20 +326,20 @@ export default function CocheVsAlternativa() {
                 value={precioCombustible}
                 onInput={(e) => setPrecioCombustible(num(e))}
               />
-              <span class="calc__unit">€/L</span>
+              <span class="calc__unit">{c.unitEurL}</span>
             </div>
           </label>
 
           <label class="calc__field">
-            <span class="calc__label">Seguro</span>
+            <span class="calc__label">{c.seguro}</span>
             <div class="calc__input-wrap">
               <input type="number" min={0} step={10} value={seguro} onInput={(e) => setSeguro(num(e))} />
-              <span class="calc__unit">€/año</span>
+              <span class="calc__unit">{c.unitEurAnio}</span>
             </div>
           </label>
 
           <label class="calc__field">
-            <span class="calc__label">Mantenimiento y reparaciones</span>
+            <span class="calc__label">{c.mantenimiento}</span>
             <div class="calc__input-wrap">
               <input
                 type="number"
@@ -206,12 +348,12 @@ export default function CocheVsAlternativa() {
                 value={mantenimiento}
                 onInput={(e) => setMantenimiento(num(e))}
               />
-              <span class="calc__unit">€/año</span>
+              <span class="calc__unit">{c.unitEurAnio}</span>
             </div>
           </label>
 
           <label class="calc__field">
-            <span class="calc__label">Impuestos (IVTM…)</span>
+            <span class="calc__label">{c.impuestos}</span>
             <div class="calc__input-wrap">
               <input
                 type="number"
@@ -220,12 +362,12 @@ export default function CocheVsAlternativa() {
                 value={impuestos}
                 onInput={(e) => setImpuestos(num(e))}
               />
-              <span class="calc__unit">€/año</span>
+              <span class="calc__unit">{c.unitEurAnio}</span>
             </div>
           </label>
 
           <label class="calc__field">
-            <span class="calc__label">Aparcamiento</span>
+            <span class="calc__label">{c.aparcamiento}</span>
             <div class="calc__input-wrap">
               <input
                 type="number"
@@ -234,17 +376,17 @@ export default function CocheVsAlternativa() {
                 value={aparcamiento}
                 onInput={(e) => setAparcamiento(num(e))}
               />
-              <span class="calc__unit">€/año</span>
+              <span class="calc__unit">{c.unitEurAnio}</span>
             </div>
           </label>
         </div>
 
         {/* ---- Columna alternativa ---- */}
         <div>
-          <p class="calc__sub">Alternativa sin coche</p>
+          <p class="calc__sub">{c.altSub}</p>
 
           <label class="calc__field">
-            <span class="calc__label">Abono de transporte público</span>
+            <span class="calc__label">{c.abonoTransporte}</span>
             <div class="calc__input-wrap">
               <input
                 type="number"
@@ -253,12 +395,12 @@ export default function CocheVsAlternativa() {
                 value={abonoTransporteMensual}
                 onInput={(e) => setAbono(num(e))}
               />
-              <span class="calc__unit">€/mes</span>
+              <span class="calc__unit">{c.unitEurMes}</span>
             </div>
           </label>
 
           <label class="calc__field">
-            <span class="calc__label">Viajes en taxi / VTC al mes</span>
+            <span class="calc__label">{c.viajesTaxi}</span>
             <div class="calc__input-wrap">
               <input
                 type="number"
@@ -267,12 +409,12 @@ export default function CocheVsAlternativa() {
                 value={viajesTaxiMes}
                 onInput={(e) => setViajesTaxi(num(e))}
               />
-              <span class="calc__unit">viajes/mes</span>
+              <span class="calc__unit">{c.unitViajesMes}</span>
             </div>
           </label>
 
           <label class="calc__field">
-            <span class="calc__label">Coste medio del viaje en taxi</span>
+            <span class="calc__label">{c.costeMedioTaxi}</span>
             <div class="calc__input-wrap">
               <input
                 type="number"
@@ -281,12 +423,12 @@ export default function CocheVsAlternativa() {
                 value={costeMedioTaxi}
                 onInput={(e) => setCosteTaxi(num(e))}
               />
-              <span class="calc__unit">€/viaje</span>
+              <span class="calc__unit">{c.unitEurViaje}</span>
             </div>
           </label>
 
           <label class="calc__field">
-            <span class="calc__label">Días de alquiler / car-sharing al año</span>
+            <span class="calc__label">{c.diasAlquiler}</span>
             <div class="calc__input-wrap">
               <input
                 type="number"
@@ -295,12 +437,12 @@ export default function CocheVsAlternativa() {
                 value={alquilerPuntualDias}
                 onInput={(e) => setAlquilerDias(num(e))}
               />
-              <span class="calc__unit">días/año</span>
+              <span class="calc__unit">{c.unitDiasAnio}</span>
             </div>
           </label>
 
           <label class="calc__field">
-            <span class="calc__label">Coste del día de alquiler</span>
+            <span class="calc__label">{c.costeAlquilerDia}</span>
             <div class="calc__input-wrap">
               <input
                 type="number"
@@ -309,15 +451,14 @@ export default function CocheVsAlternativa() {
                 value={costeAlquilerDia}
                 onInput={(e) => setCosteAlquiler(num(e))}
               />
-              <span class="calc__unit">€/día</span>
+              <span class="calc__unit">{c.unitEurDia}</span>
             </div>
           </label>
 
           <div class="calc__metric" style="margin-top: 0.6rem;">
-            <span class="calc__metric-label">Recuerda</span>
+            <span class="calc__metric-label">{c.recuerda}</span>
             <span class="calc__metric-detail">
-              La alternativa no incluye depreciación, seguro ni impuestos: no
-              tienes un coche que pierda valor cada año.
+              {c.recuerdaDetalle}
             </span>
           </div>
         </div>
@@ -332,21 +473,21 @@ export default function CocheVsAlternativa() {
         >
           <span class="calc__metric-label">
             {comparacion.opcionMasBarata === 'empate'
-              ? 'Las dos opciones cuestan lo mismo'
+              ? c.verdictEmpate
               : ganaCoche
-                ? 'Sale más barato el coche propio'
-                : 'Sale más barata la alternativa sin coche'}
+                ? c.verdictCoche
+                : c.verdictAlt}
           </span>
           <span class="calc__metric-value">{formatEUR(comparacion.diferenciaAnual, 0)}</span>
-          <span class="calc__metric-unit">de diferencia al año</span>
+          <span class="calc__metric-unit">{c.deDiferencia}</span>
         </div>
 
         {/* Comparative bars. */}
-        <p class="calc__sub">Coste total anual de cada opción</p>
+        <p class="calc__sub">{c.costeTotalAnual}</p>
         {/* Comparative bars built on the existing .calc__bar / .calc__bar-fill
             classes; the row layout is inline as it has no dedicated CSS. */}
         <div style="display: flex; align-items: center; gap: 0.7rem; margin-bottom: 0.6rem;">
-          <span style="flex: 0 0 5.5rem; font-weight: 600;">Coche</span>
+          <span style="flex: 0 0 5.5rem; font-weight: 600;">{c.barCoche}</span>
           <div class="calc__bar" style="flex: 1; margin: 0;">
             <div
               class="calc__bar-fill"
@@ -358,7 +499,7 @@ export default function CocheVsAlternativa() {
           </span>
         </div>
         <div style="display: flex; align-items: center; gap: 0.7rem;">
-          <span style="flex: 0 0 5.5rem; font-weight: 600;">Alternativa</span>
+          <span style="flex: 0 0 5.5rem; font-weight: 600;">{c.barAlt}</span>
           <div class="calc__bar" style="flex: 1; margin: 0;">
             <div
               class="calc__bar-fill"
@@ -373,7 +514,7 @@ export default function CocheVsAlternativa() {
         {/* Key metrics. */}
         <div class="calc__metric-grid">
           <div class="calc__metric-mini">
-            <span class="calc__metric-mini-label">Coste del coche por km</span>
+            <span class="calc__metric-mini-label">{c.costePorKm}</span>
             <span class="calc__metric-mini-value">
               {coche.costePorKm === null
                 ? '—'
@@ -381,43 +522,36 @@ export default function CocheVsAlternativa() {
             </span>
           </div>
           <div class="calc__metric-mini">
-            <span class="calc__metric-mini-label">Depreciación anual</span>
+            <span class="calc__metric-mini-label">{c.depreciacionAnual}</span>
             <span class="calc__metric-mini-value">{formatEUR(coche.depreciacion, 0)}</span>
           </div>
           <div class="calc__metric-mini">
-            <span class="calc__metric-mini-label">Combustible anual</span>
+            <span class="calc__metric-mini-label">{c.combustibleAnual}</span>
             <span class="calc__metric-mini-value">{formatEUR(coche.combustible, 0)}</span>
           </div>
           <div class="calc__metric-mini">
-            <span class="calc__metric-mini-label">Costes fijos del coche</span>
+            <span class="calc__metric-mini-label">{c.costesFijos}</span>
             <span class="calc__metric-mini-value">{formatEUR(coche.fijos, 0)}</span>
           </div>
         </div>
 
         {comparacion.kmEquilibrio !== null && (
           <div class="calc__warning is-ok">
-            A partir de unos{' '}
-            <strong>{formatNumber(comparacion.kmEquilibrio, 0)} km al año</strong> el
-            coche propio empezaría a salir más barato que esta alternativa
-            (manteniendo el resto de datos igual).
+            {c.kmEquilibrioPre}{' '}
+            <strong>{formatNumber(comparacion.kmEquilibrio, 0)} {c.kmEquilibrioKmAnio}</strong>{c.kmEquilibrioPost}
           </div>
         )}
 
         <details class="calc__details">
-          <summary>Los costes ocultos del coche</summary>
+          <summary>{c.ocultosSummary}</summary>
           <div class="calc__formula">
             <p>
-              Cuando pensamos en lo que cuesta un coche solemos fijarnos solo en
-              la <strong>gasolina</strong>. Pero el combustible suele ser la parte
-              pequeña: lo caro es lo que no se ve en el día a día.
+              {c.ocultosP1a}<strong>{c.ocultosGasolina}</strong>{c.ocultosP1b}
             </p>
             <p>
-              La <strong>depreciación</strong> (el valor que pierde el coche cada
-              año) es casi siempre el mayor coste, seguida del{' '}
-              <strong>seguro</strong>, el <strong>mantenimiento</strong>, los{' '}
-              <strong>impuestos</strong> y el <strong>aparcamiento</strong>. Por eso
-              dividir el coste total entre los kilómetros recorridos (coste por km)
-              ayuda a comparar de forma justa con no tener coche.
+              {c.ocultosP2a}<strong>{c.ocultosDepreciacion}</strong>{c.ocultosP2b}
+              <strong>{c.ocultosSeguro}</strong>{c.ocultosP2c}<strong>{c.ocultosMantenimiento}</strong>{c.ocultosP2d}
+              <strong>{c.ocultosImpuestos}</strong>{c.ocultosP2e}<strong>{c.ocultosAparcamiento}</strong>{c.ocultosP2f}
             </p>
           </div>
         </details>

@@ -2,6 +2,73 @@
 import { useRef, useState } from 'preact/hooks';
 import { usePersistentState } from '@/lib/plantillas/persistence';
 import { exportarNodo } from '@/lib/plantillas/export';
+import { type Locale } from '@/i18n/locale';
+
+/**
+ * UI strings, Valencian (AVL) alongside the ES source. The BCG acronym and
+ * the persisted quadrant ids (estrella, interrogante, vaca, perro) are storage
+ * keys and stay in ES; only labels are translated.
+ */
+export const COPY = {
+  es: {
+    intro:
+      'Clasifica las unidades de negocio o productos de una empresa en la Matriz BCG (Boston Consulting Group) según su cuota de mercado relativa y el crecimiento del mercado.',
+    axisYLabel: 'Crecimiento del mercado',
+    axisYAlto: 'Alto',
+    axisYBajo: 'Bajo',
+    axisXAlta: 'Alta',
+    axisXLabel: 'Cuota de mercado relativa',
+    axisXBaja: 'Baja',
+    estrellaTitle: 'Estrella',
+    estrellaSubtitle: 'Crecimiento alto · Cuota alta',
+    estrellaPlaceholder: 'Productos con alta cuota en un mercado en expansión. Requieren inversión para mantener el liderazgo.',
+    interroganteTitle: 'Interrogante',
+    interroganteSubtitle: 'Crecimiento alto · Cuota baja',
+    interrogantePlaceholder: 'Mercado en crecimiento pero baja cuota. Decisión clave: invertir para crecer o desinvertir.',
+    vacaTitle: 'Vaca',
+    vacaSubtitle: 'Crecimiento bajo · Cuota alta',
+    vacaPlaceholder: 'Alta cuota en un mercado maduro. Generan caja con poca inversión: financian a otros.',
+    perroTitle: 'Perro',
+    perroSubtitle: 'Crecimiento bajo · Cuota baja',
+    perroPlaceholder: 'Baja cuota en un mercado estancado. Candidatos a desinversión salvo nicho rentable.',
+    confirmVaciar: '¿Vaciar la plantilla?',
+    generando: 'Generando…',
+    exportarPng: 'Exportar PNG',
+    exportarPdf: 'Exportar PDF',
+    imprimir: 'Imprimir',
+    vaciar: 'Vaciar',
+  },
+  ca: {
+    intro:
+      "Classifica les unitats de negoci o productes d'una empresa en la Matriu BCG (Boston Consulting Group) segons la seua quota de mercat relativa i el creixement del mercat.",
+    axisYLabel: 'Creixement del mercat',
+    axisYAlto: 'Alt',
+    axisYBajo: 'Baix',
+    axisXAlta: 'Alta',
+    axisXLabel: 'Quota de mercat relativa',
+    axisXBaja: 'Baixa',
+    estrellaTitle: 'Estrella',
+    estrellaSubtitle: 'Creixement alt · Quota alta',
+    estrellaPlaceholder: 'Productes amb alta quota en un mercat en expansió. Requerixen inversió per a mantindre el lideratge.',
+    interroganteTitle: 'Interrogant',
+    interroganteSubtitle: 'Creixement alt · Quota baixa',
+    interrogantePlaceholder: 'Mercat en creixement però baixa quota. Decisió clau: invertir per a créixer o desinvertir.',
+    vacaTitle: 'Vaca',
+    vacaSubtitle: 'Creixement baix · Quota alta',
+    vacaPlaceholder: 'Alta quota en un mercat madur. Generen caixa amb poca inversió: financen els altres.',
+    perroTitle: 'Gos',
+    perroSubtitle: 'Creixement baix · Quota baixa',
+    perroPlaceholder: 'Baixa quota en un mercat estancat. Candidats a desinversió excepte nínxol rendible.',
+    confirmVaciar: 'Voleu buidar la plantilla?',
+    generando: 'Generant…',
+    exportarPng: 'Exportar PNG',
+    exportarPdf: 'Exportar PDF',
+    imprimir: 'Imprimir',
+    vaciar: 'Buidar',
+  },
+} as const;
+
+interface Props { locale?: Locale }
 
 type BCGState = {
   estrella: string;
@@ -17,7 +84,8 @@ const INITIAL: BCGState = {
   perro: '',
 };
 
-export default function MatrizBCG() {
+export default function MatrizBCG({ locale = 'es' }: Props) {
+  const c = COPY[locale];
   const [state, setState] = usePersistentState<BCGState>('pde:plantilla:bcg', INITIAL);
   const [exporting, setExporting] = useState<'png' | 'pdf' | null>(null);
   const lienzoRef = useRef<HTMLDivElement>(null);
@@ -39,7 +107,7 @@ export default function MatrizBCG() {
   }
 
   function handleVaciar() {
-    if (confirm('¿Vaciar la plantilla?')) {
+    if (confirm(c.confirmVaciar)) {
       setState(INITIAL);
     }
   }
@@ -47,66 +115,65 @@ export default function MatrizBCG() {
   return (
     <div class="bcg-root">
       <p class="bcg-intro">
-        Clasifica las unidades de negocio o productos de una empresa en la Matriz BCG (Boston
-        Consulting Group) según su cuota de mercado relativa y el crecimiento del mercado.
+        {c.intro}
       </p>
 
       <div class="bcg-lienzo" ref={lienzoRef}>
         {/* Axis label: vertical (Crecimiento del mercado) */}
         <div class="bcg-axis-y" aria-hidden="true">
-          <span class="bcg-axis-label">Crecimiento del mercado</span>
+          <span class="bcg-axis-label">{c.axisYLabel}</span>
           <span class="bcg-axis-ends">
-            <span>Alto</span>
-            <span>Bajo</span>
+            <span>{c.axisYAlto}</span>
+            <span>{c.axisYBajo}</span>
           </span>
         </div>
 
         <div class="bcg-inner">
           {/* Axis label: horizontal (Cuota relativa) */}
           <div class="bcg-axis-x" aria-hidden="true">
-            <span class="bcg-axis-x-end bcg-axis-x-end--left">Alta</span>
-            <span class="bcg-axis-label">Cuota de mercado relativa</span>
-            <span class="bcg-axis-x-end bcg-axis-x-end--right">Baja</span>
+            <span class="bcg-axis-x-end bcg-axis-x-end--left">{c.axisXAlta}</span>
+            <span class="bcg-axis-label">{c.axisXLabel}</span>
+            <span class="bcg-axis-x-end bcg-axis-x-end--right">{c.axisXBaja}</span>
           </div>
 
           {/* 2x2 grid */}
           <div class="bcg-grid">
             {/* Row 1 */}
             <div class="bcg-cell bcg-cell--estrella">
-              <span class="bcg-cell-title">Estrella</span>
-              <span class="bcg-cell-subtitle">Crecimiento alto · Cuota alta</span>
+              <span class="bcg-cell-title">{c.estrellaTitle}</span>
+              <span class="bcg-cell-subtitle">{c.estrellaSubtitle}</span>
               <textarea
                 value={state.estrella}
-                placeholder="Productos con alta cuota en un mercado en expansión. Requieren inversión para mantener el liderazgo."
+                placeholder={c.estrellaPlaceholder}
                 onInput={(e) => setField('estrella', (e.target as HTMLTextAreaElement).value)}
               />
             </div>
             <div class="bcg-cell bcg-cell--interrogante">
-              <span class="bcg-cell-title">Interrogante</span>
-              <span class="bcg-cell-subtitle">Crecimiento alto · Cuota baja</span>
+              <span class="bcg-cell-title">{c.interroganteTitle}</span>
+              <span class="bcg-cell-subtitle">{c.interroganteSubtitle}</span>
               <textarea
                 value={state.interrogante}
-                placeholder="Mercado en crecimiento pero baja cuota. Decisión clave: invertir para crecer o desinvertir."
+                placeholder={c.interrogantePlaceholder}
                 onInput={(e) => setField('interrogante', (e.target as HTMLTextAreaElement).value)}
               />
             </div>
 
             {/* Row 2 */}
             <div class="bcg-cell bcg-cell--vaca">
-              <span class="bcg-cell-title">Vaca</span>
-              <span class="bcg-cell-subtitle">Crecimiento bajo · Cuota alta</span>
+              <span class="bcg-cell-title">{c.vacaTitle}</span>
+              <span class="bcg-cell-subtitle">{c.vacaSubtitle}</span>
               <textarea
                 value={state.vaca}
-                placeholder="Alta cuota en un mercado maduro. Generan caja con poca inversión: financian a otros."
+                placeholder={c.vacaPlaceholder}
                 onInput={(e) => setField('vaca', (e.target as HTMLTextAreaElement).value)}
               />
             </div>
             <div class="bcg-cell bcg-cell--perro">
-              <span class="bcg-cell-title">Perro</span>
-              <span class="bcg-cell-subtitle">Crecimiento bajo · Cuota baja</span>
+              <span class="bcg-cell-title">{c.perroTitle}</span>
+              <span class="bcg-cell-subtitle">{c.perroSubtitle}</span>
               <textarea
                 value={state.perro}
-                placeholder="Baja cuota en un mercado estancado. Candidatos a desinversión salvo nicho rentable."
+                placeholder={c.perroPlaceholder}
                 onInput={(e) => setField('perro', (e.target as HTMLTextAreaElement).value)}
               />
             </div>
@@ -120,20 +187,20 @@ export default function MatrizBCG() {
           onClick={() => handleExport('png')}
           disabled={exporting !== null}
         >
-          {exporting === 'png' ? 'Generando…' : 'Exportar PNG'}
+          {exporting === 'png' ? c.generando : c.exportarPng}
         </button>
         <button
           class="bcg-btn bcg-btn--primary"
           onClick={() => handleExport('pdf')}
           disabled={exporting !== null}
         >
-          {exporting === 'pdf' ? 'Generando…' : 'Exportar PDF'}
+          {exporting === 'pdf' ? c.generando : c.exportarPdf}
         </button>
         <button class="bcg-btn" onClick={() => window.print()}>
-          Imprimir
+          {c.imprimir}
         </button>
         <button class="bcg-btn bcg-btn--danger" onClick={handleVaciar}>
-          Vaciar
+          {c.vaciar}
         </button>
       </div>
 

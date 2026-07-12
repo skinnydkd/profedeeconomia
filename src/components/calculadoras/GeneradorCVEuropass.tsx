@@ -11,6 +11,7 @@ import {
   type FormacionItem,
   type IdiomaItem,
 } from '../../lib/calc/cv-pdf';
+import { type Locale } from '@/i18n/locale';
 
 /**
  * Simplified Europass-style CV builder. Students get a live HTML preview plus
@@ -21,6 +22,123 @@ import {
  * Fields are intentionally minimal — enough to cover the FOPP curriculum's
  * "first CV" learning outcome without overwhelming students.
  */
+
+/**
+ * UI strings, Valencian (AVL) alongside the ES source. "Europass" and "CV" are
+ * product terms and stay untranslated. State field names / object ids (nombre,
+ * ciudad, puesto, empresa, …) are structural keys and stay in ES; only the
+ * on-screen labels, placeholders and buttons are translated. The generated PDF
+ * (renderCVToDoc) and the validation messages from lib/calc/cv-pdf.ts keep
+ * their ES strings — they are not part of the on-screen app UI.
+ */
+export const COPY = {
+  es: {
+    introPre:
+      'Rellena los campos y verás abajo una previsualización del CV con estilo Europass. Cuando esté listo, pulsa ',
+    introMid: ' para obtener el archivo, o ',
+    introPost: ' si prefieres usar el diálogo del navegador.',
+    seccion1: '1 · Datos personales',
+    labelNombre: 'Nombre y apellidos',
+    labelCiudad: 'Ciudad',
+    labelEmail: 'Email',
+    labelMovil: 'Móvil',
+    labelLinkedin: 'LinkedIn (opcional)',
+    seccion2: '2 · Resumen profesional (3-4 líneas)',
+    resumenPlaceholder: 'Estudiante de 4º ESO con interés en…',
+    seccion3: '3 · Experiencia laboral / prácticas',
+    labelPuesto: 'Puesto',
+    labelEmpresa: 'Empresa / centro',
+    labelFechas: 'Fechas (ej. 06/2025 - 09/2025)',
+    descripcionPlaceholder: 'Tareas principales en 2-3 líneas…',
+    quitar: '− Quitar',
+    anadirExperiencia: '+ Añadir experiencia',
+    seccion4: '4 · Formación',
+    labelTitulo: 'Título',
+    labelCentro: 'Centro',
+    labelAnio: 'Año',
+    anadirFormacion: '+ Añadir formación',
+    seccion5: '5 · Idiomas (nivel MCER)',
+    labelIdioma: 'Idioma',
+    labelNivel: 'Nivel',
+    anadirIdioma: '+ Añadir idioma',
+    seccion6: '6 · Habilidades digitales',
+    habilidadesPlaceholder:
+      'Ofimática (Word, Excel, Drive), edición de imagen (Canva), redes sociales…',
+    seccion7: '7 · Voluntariado y aficiones',
+    voluntariadoPlaceholder:
+      'Banco de alimentos, club deportivo, monitor de tiempo libre, lectura…',
+    descargarPdf: 'Descargar PDF',
+    imprimir: 'Imprimir',
+    reiniciar: 'Reiniciar',
+    previewNombrePlaceholder: 'Tu nombre y apellidos',
+    previewIdiomas: 'Idiomas',
+    previewHabilidades: 'Habilidades digitales',
+    previewVoluntariado: 'Voluntariado / aficiones',
+    previewResumen: 'Resumen profesional',
+    previewExperiencia: 'Experiencia',
+    previewFormacion: 'Formación',
+    emptyIdiomas: 'Aún sin idiomas.',
+    emptyHabilidades: 'Aún sin habilidades.',
+    emptyVoluntariado: 'Aún sin entradas.',
+    emptyResumen: 'Aún sin resumen.',
+    emptyExperiencia: 'Aún sin experiencia.',
+    emptyFormacion: 'Aún sin formación.',
+  },
+  ca: {
+    introPre:
+      'Ompli els camps i veuràs davall una previsualització del CV amb estil Europass. Quan estiga a punt, prem ',
+    introMid: ' per obtindre el fitxer, o ',
+    introPost: ' si preferixes usar el diàleg del navegador.',
+    seccion1: '1 · Dades personals',
+    labelNombre: 'Nom i cognoms',
+    labelCiudad: 'Ciutat',
+    labelEmail: 'Correu electrònic',
+    labelMovil: 'Mòbil',
+    labelLinkedin: 'LinkedIn (opcional)',
+    seccion2: '2 · Resum professional (3-4 línies)',
+    resumenPlaceholder: "Estudiant de 4t d'ESO amb interés en…",
+    seccion3: '3 · Experiència laboral / pràctiques',
+    labelPuesto: 'Lloc',
+    labelEmpresa: 'Empresa / centre',
+    labelFechas: 'Dates (p. ex. 06/2025 - 09/2025)',
+    descripcionPlaceholder: 'Tasques principals en 2-3 línies…',
+    quitar: '− Llevar',
+    anadirExperiencia: '+ Afegir experiència',
+    seccion4: '4 · Formació',
+    labelTitulo: 'Títol',
+    labelCentro: 'Centre',
+    labelAnio: 'Any',
+    anadirFormacion: '+ Afegir formació',
+    seccion5: '5 · Idiomes (nivell MCER)',
+    labelIdioma: 'Idioma',
+    labelNivel: 'Nivell',
+    anadirIdioma: '+ Afegir idioma',
+    seccion6: '6 · Habilitats digitals',
+    habilidadesPlaceholder:
+      "Ofimàtica (Word, Excel, Drive), edició d'imatge (Canva), xarxes socials…",
+    seccion7: '7 · Voluntariat i aficions',
+    voluntariadoPlaceholder:
+      "Banc d'aliments, club esportiu, monitor de temps lliure, lectura…",
+    descargarPdf: 'Descarregar PDF',
+    imprimir: 'Imprimir',
+    reiniciar: 'Reiniciar',
+    previewNombrePlaceholder: 'El teu nom i cognoms',
+    previewIdiomas: 'Idiomes',
+    previewHabilidades: 'Habilitats digitals',
+    previewVoluntariado: 'Voluntariat / aficions',
+    previewResumen: 'Resum professional',
+    previewExperiencia: 'Experiència',
+    previewFormacion: 'Formació',
+    emptyIdiomas: 'Encara sense idiomes.',
+    emptyHabilidades: 'Encara sense habilitats.',
+    emptyVoluntariado: 'Encara sense entrades.',
+    emptyResumen: 'Encara sense resum.',
+    emptyExperiencia: 'Encara sense experiència.',
+    emptyFormacion: 'Encara sense formació.',
+  },
+} as const;
+
+interface Props { locale?: Locale }
 
 // Brand colours, sober editorial palette.
 const INK: [number, number, number] = [42, 31, 24]; // #2A1F18
@@ -37,7 +155,8 @@ const PERSONALES_INI = {
   linkedin: '',
 };
 
-export default function GeneradorCVEuropass() {
+export default function GeneradorCVEuropass({ locale = 'es' }: Props) {
+  const c = COPY[locale];
   const [personales, setPersonales] = useState({ ...PERSONALES_INI });
   const [resumen, setResumen] = useState('');
   const [experiencia, setExperiencia] = useState<ExperienciaItem[]>([
@@ -122,65 +241,67 @@ export default function GeneradorCVEuropass() {
   return (
     <div class="calc">
       <p class="cv__intro">
-        Rellena los campos y verás abajo una previsualización del CV con estilo Europass.
-        Cuando esté listo, pulsa <strong>Descargar PDF</strong> para obtener el archivo, o{' '}
-        <strong>Imprimir</strong> si prefieres usar el diálogo del navegador.
+        {c.introPre}
+        <strong>{c.descargarPdf}</strong>
+        {c.introMid}
+        <strong>{c.imprimir}</strong>
+        {c.introPost}
       </p>
 
-      <p class="calc__sub">1 · Datos personales</p>
+      <p class="calc__sub">{c.seccion1}</p>
       <div class="calc__form">
         <CVInput
-          label="Nombre y apellidos"
+          label={c.labelNombre}
           value={personales.nombre}
           onInput={(v) => setPersonales({ ...personales, nombre: v })}
         />
         <CVInput
-          label="Ciudad"
+          label={c.labelCiudad}
           value={personales.ciudad}
           onInput={(v) => setPersonales({ ...personales, ciudad: v })}
         />
         <CVInput
-          label="Email"
+          label={c.labelEmail}
           value={personales.email}
           onInput={(v) => setPersonales({ ...personales, email: v })}
         />
         <CVInput
-          label="Móvil"
+          label={c.labelMovil}
           value={personales.movil}
           onInput={(v) => setPersonales({ ...personales, movil: v })}
         />
         <CVInput
-          label="LinkedIn (opcional)"
+          label={c.labelLinkedin}
           value={personales.linkedin}
           onInput={(v) => setPersonales({ ...personales, linkedin: v })}
         />
       </div>
 
-      <p class="calc__sub">2 · Resumen profesional (3-4 líneas)</p>
+      <p class="calc__sub">{c.seccion2}</p>
       <textarea
         class="cv__textarea"
         rows={3}
         value={resumen}
-        placeholder="Estudiante de 4º ESO con interés en…"
+        placeholder={c.resumenPlaceholder}
         onInput={(e) => setResumen((e.target as HTMLTextAreaElement).value)}
       />
 
-      <p class="calc__sub">3 · Experiencia laboral / prácticas</p>
+      <p class="calc__sub">{c.seccion3}</p>
       {experiencia.map((it, i) => (
         <div class="cv__list-item">
           <div class="calc__form">
             <CVInput
-              label="Puesto"
+              label={c.labelPuesto}
               value={it.puesto}
               onInput={(v) => updateExperiencia(i, { puesto: v })}
             />
             <CVInput
-              label="Empresa / centro"
+              label={c.labelEmpresa}
               value={it.empresa}
               onInput={(v) => updateExperiencia(i, { empresa: v })}
             />
             <CVInput
-              label="Fechas (ej. 06/2025 - 09/2025)"
+              label={c.labelFechas}
               value={it.fechas}
               onInput={(v) => updateExperiencia(i, { fechas: v })}
             />
@@ -189,7 +310,7 @@ export default function GeneradorCVEuropass() {
             class="cv__textarea"
             rows={2}
             value={it.descripcion}
-            placeholder="Tareas principales en 2-3 líneas…"
+            placeholder={c.descripcionPlaceholder}
             onInput={(e) =>
               updateExperiencia(i, { descripcion: (e.target as HTMLTextAreaElement).value })
             }
@@ -201,31 +322,31 @@ export default function GeneradorCVEuropass() {
               onClick={() => removeExperiencia(i)}
               disabled={experiencia.length <= 1}
             >
-              − Quitar
+              {c.quitar}
             </button>
           </div>
         </div>
       ))}
       <button type="button" class="calc__btn calc__btn--ghost" onClick={addExperiencia}>
-        + Añadir experiencia
+        {c.anadirExperiencia}
       </button>
 
-      <p class="calc__sub">4 · Formación</p>
+      <p class="calc__sub">{c.seccion4}</p>
       {formacion.map((it, i) => (
         <div class="cv__list-item">
           <div class="calc__form">
             <CVInput
-              label="Título"
+              label={c.labelTitulo}
               value={it.titulo}
               onInput={(v) => updateFormacion(i, { titulo: v })}
             />
             <CVInput
-              label="Centro"
+              label={c.labelCentro}
               value={it.centro}
               onInput={(v) => updateFormacion(i, { centro: v })}
             />
             <CVInput
-              label="Año"
+              label={c.labelAnio}
               value={it.anio}
               onInput={(v) => updateFormacion(i, { anio: v })}
             />
@@ -237,25 +358,25 @@ export default function GeneradorCVEuropass() {
               onClick={() => removeFormacion(i)}
               disabled={formacion.length <= 1}
             >
-              − Quitar
+              {c.quitar}
             </button>
           </div>
         </div>
       ))}
       <button type="button" class="calc__btn calc__btn--ghost" onClick={addFormacion}>
-        + Añadir formación
+        {c.anadirFormacion}
       </button>
 
-      <p class="calc__sub">5 · Idiomas (nivel MCER)</p>
+      <p class="calc__sub">{c.seccion5}</p>
       {idiomas.map((it, i) => (
         <div class="cv__list-item cv__list-item--inline">
           <CVInput
-            label="Idioma"
+            label={c.labelIdioma}
             value={it.idioma}
             onInput={(v) => updateIdioma(i, { idioma: v })}
           />
           <label class="calc__field">
-            <span class="calc__label">Nivel</span>
+            <span class="calc__label">{c.labelNivel}</span>
             <div class="calc__input-wrap">
               <select
                 value={it.nivel}
@@ -277,53 +398,53 @@ export default function GeneradorCVEuropass() {
               onClick={() => removeIdioma(i)}
               disabled={idiomas.length <= 1}
             >
-              − Quitar
+              {c.quitar}
             </button>
           </div>
         </div>
       ))}
       <button type="button" class="calc__btn calc__btn--ghost" onClick={addIdioma}>
-        + Añadir idioma
+        {c.anadirIdioma}
       </button>
 
-      <p class="calc__sub">6 · Habilidades digitales</p>
+      <p class="calc__sub">{c.seccion6}</p>
       <textarea
         class="cv__textarea"
         rows={2}
         value={habilidades}
-        placeholder="Ofimática (Word, Excel, Drive), edición de imagen (Canva), redes sociales…"
+        placeholder={c.habilidadesPlaceholder}
         onInput={(e) => setHabilidades((e.target as HTMLTextAreaElement).value)}
       />
 
-      <p class="calc__sub">7 · Voluntariado y aficiones</p>
+      <p class="calc__sub">{c.seccion7}</p>
       <textarea
         class="cv__textarea"
         rows={2}
         value={voluntariado}
-        placeholder="Banco de alimentos, club deportivo, monitor de tiempo libre, lectura…"
+        placeholder={c.voluntariadoPlaceholder}
         onInput={(e) => setVoluntariado((e.target as HTMLTextAreaElement).value)}
       />
 
       <div class="cv__actions">
         <button type="button" class="bi__btn bi__btn--primary" onClick={downloadPdf}>
-          Descargar PDF
+          {c.descargarPdf}
         </button>
         <button
           type="button"
           class="calc__btn calc__btn--ghost"
           onClick={() => window.print()}
         >
-          Imprimir
+          {c.imprimir}
         </button>
         <button type="button" class="calc__btn calc__btn--ghost" onClick={reset}>
-          Reiniciar
+          {c.reiniciar}
         </button>
       </div>
 
       <div class="cv__preview" id="cv-preview">
         <header class="cv__preview-head">
           <h2 class="cv__preview-name">
-            {personales.nombre || <span class="cv__placeholder">Tu nombre y apellidos</span>}
+            {personales.nombre || <span class="cv__placeholder">{c.previewNombrePlaceholder}</span>}
           </h2>
           <div class="cv__preview-contact">
             {personales.ciudad && <span>{personales.ciudad}</span>}
@@ -336,7 +457,7 @@ export default function GeneradorCVEuropass() {
         <div class="cv__preview-grid">
           <aside class="cv__preview-side">
             <section>
-              <h3 class="cv__preview-h3">Idiomas</h3>
+              <h3 class="cv__preview-h3">{c.previewIdiomas}</h3>
               {idiomas.some((x) => x.idioma) ? (
                 <ul>
                   {idiomas
@@ -348,41 +469,41 @@ export default function GeneradorCVEuropass() {
                     ))}
                 </ul>
               ) : (
-                <p class="cv__placeholder">Aún sin idiomas.</p>
+                <p class="cv__placeholder">{c.emptyIdiomas}</p>
               )}
             </section>
 
             <section>
-              <h3 class="cv__preview-h3">Habilidades digitales</h3>
+              <h3 class="cv__preview-h3">{c.previewHabilidades}</h3>
               {habilidades ? (
                 <p>{habilidades}</p>
               ) : (
-                <p class="cv__placeholder">Aún sin habilidades.</p>
+                <p class="cv__placeholder">{c.emptyHabilidades}</p>
               )}
             </section>
 
             <section>
-              <h3 class="cv__preview-h3">Voluntariado / aficiones</h3>
+              <h3 class="cv__preview-h3">{c.previewVoluntariado}</h3>
               {voluntariado ? (
                 <p>{voluntariado}</p>
               ) : (
-                <p class="cv__placeholder">Aún sin entradas.</p>
+                <p class="cv__placeholder">{c.emptyVoluntariado}</p>
               )}
             </section>
           </aside>
 
           <main class="cv__preview-main">
             <section>
-              <h3 class="cv__preview-h3">Resumen profesional</h3>
+              <h3 class="cv__preview-h3">{c.previewResumen}</h3>
               {resumen ? (
                 <p>{resumen}</p>
               ) : (
-                <p class="cv__placeholder">Aún sin resumen.</p>
+                <p class="cv__placeholder">{c.emptyResumen}</p>
               )}
             </section>
 
             <section>
-              <h3 class="cv__preview-h3">Experiencia</h3>
+              <h3 class="cv__preview-h3">{c.previewExperiencia}</h3>
               {experiencia.some((x) => x.puesto || x.empresa) ? (
                 <ul class="cv__preview-list">
                   {experiencia
@@ -399,12 +520,12 @@ export default function GeneradorCVEuropass() {
                     ))}
                 </ul>
               ) : (
-                <p class="cv__placeholder">Aún sin experiencia.</p>
+                <p class="cv__placeholder">{c.emptyExperiencia}</p>
               )}
             </section>
 
             <section>
-              <h3 class="cv__preview-h3">Formación</h3>
+              <h3 class="cv__preview-h3">{c.previewFormacion}</h3>
               {formacion.some((x) => x.titulo || x.centro) ? (
                 <ul class="cv__preview-list">
                   {formacion
@@ -420,7 +541,7 @@ export default function GeneradorCVEuropass() {
                     ))}
                 </ul>
               ) : (
-                <p class="cv__placeholder">Aún sin formación.</p>
+                <p class="cv__placeholder">{c.emptyFormacion}</p>
               )}
             </section>
           </main>

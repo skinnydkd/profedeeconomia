@@ -5,6 +5,68 @@ import {
   productividadGlobal,
   variacionPct,
 } from '../../lib/calc/productividad';
+import { type Locale } from '@/i18n/locale';
+
+/**
+ * UI strings, Valencian (AVL) alongside the ES source. Economic notation
+ * (uds, pers., h, €, %) is not translated. Guarded by copy-parity.test.ts.
+ */
+export const COPY = {
+  es: {
+    periodo1: 'Periodo 1',
+    periodo2: 'Periodo 2',
+    variacionTitulo: 'Variación Periodo 1 → Periodo 2',
+    productividadTrabajo: 'Productividad del trabajo',
+    productividadCapital: 'Productividad del capital',
+    productividadGlobal: 'Productividad global',
+    productividadHora: 'Productividad por hora',
+    variacionLabel: 'Variación (%)',
+    comoSeCalcula: 'Cómo se calcula',
+    formTrabajoRest: ' = Producción / Trabajadores. Mide cuánto produce cada trabajador.',
+    formHoraRest: ' = Producción / Horas totales trabajadas.',
+    formCapitalRest: ' = Producción / Capital. Mide el rendimiento de cada euro de capital.',
+    formGlobalRest: ' = Valor de la producción / Valor de los factores. Permite comparar períodos con diferentes precios.',
+    formVariacionRest: ' = ( Nuevo − Base ) / Base × 100.',
+    labelProduccion: 'Producción (unidades)',
+    labelTrabajadores: 'Trabajadores',
+    labelHoras: 'Horas trabajadas (total)',
+    labelCapital: 'Capital empleado',
+    labelValorProduccion: 'Valor de la producción',
+    labelValorFactores: 'Valor de los factores',
+    rowTrabajoTrab: 'Prod. trabajo (uds/trabajador)',
+    rowTrabajoHora: 'Prod. trabajo (uds/hora)',
+    rowCapital: 'Prod. capital (uds/€)',
+    rowGlobal: 'Prod. global (€ prod / € fact.)',
+  },
+  ca: {
+    periodo1: 'Període 1',
+    periodo2: 'Període 2',
+    variacionTitulo: 'Variació Període 1 → Període 2',
+    productividadTrabajo: 'Productivitat del treball',
+    productividadCapital: 'Productivitat del capital',
+    productividadGlobal: 'Productivitat global',
+    productividadHora: 'Productivitat per hora',
+    variacionLabel: 'Variació (%)',
+    comoSeCalcula: 'Com es calcula',
+    formTrabajoRest: ' = Producció / Treballadors. Mesura quant produïx cada treballador.',
+    formHoraRest: ' = Producció / Hores totals treballades.',
+    formCapitalRest: ' = Producció / Capital. Mesura el rendiment de cada euro de capital.',
+    formGlobalRest: ' = Valor de la producció / Valor dels factors. Permet comparar períodes amb preus diferents.',
+    formVariacionRest: ' = ( Nou − Base ) / Base × 100.',
+    labelProduccion: 'Producció (unitats)',
+    labelTrabajadores: 'Treballadors',
+    labelHoras: 'Hores treballades (total)',
+    labelCapital: 'Capital emprat',
+    labelValorProduccion: 'Valor de la producció',
+    labelValorFactores: 'Valor dels factors',
+    rowTrabajoTrab: 'Prod. treball (uds/treballador)',
+    rowTrabajoHora: 'Prod. treball (uds/hora)',
+    rowCapital: 'Prod. capital (uds/€)',
+    rowGlobal: 'Prod. global (€ prod / € fact.)',
+  },
+} as const;
+
+interface Props { locale?: Locale }
 
 /**
  * Productivity calculator — partial (labour, hours, capital) and global.
@@ -39,7 +101,8 @@ const DEFAULT_P2: Period = {
   valorFactores: 22000,
 };
 
-export default function ProductividadCalc() {
+export default function ProductividadCalc({ locale = 'es' }: Props) {
+  const c = COPY[locale];
   const [p1, setP1] = useState<Period>({ ...DEFAULT_P1 });
   const [p2, setP2] = useState<Period>({ ...DEFAULT_P2 });
 
@@ -60,50 +123,50 @@ export default function ProductividadCalc() {
       <div class="prod__grid">
         {/* ── Period 1 ── */}
         <section class="prod__period">
-          <h3 class="prod__period-title">Periodo 1</h3>
+          <h3 class="prod__period-title">{c.periodo1}</h3>
           <div class="calc__form">
-            <PeriodInputs period={p1} onChange={setP1} />
+            <PeriodInputs period={p1} onChange={setP1} locale={locale} />
           </div>
-          <ResultsPanel r={r1} />
+          <ResultsPanel r={r1} locale={locale} />
         </section>
 
         {/* ── Period 2 ── */}
         <section class="prod__period">
-          <h3 class="prod__period-title">Periodo 2</h3>
+          <h3 class="prod__period-title">{c.periodo2}</h3>
           <div class="calc__form">
-            <PeriodInputs period={p2} onChange={setP2} />
+            <PeriodInputs period={p2} onChange={setP2} locale={locale} />
           </div>
-          <ResultsPanel r={r2} />
+          <ResultsPanel r={r2} locale={locale} />
         </section>
       </div>
 
       {/* ── Variation row ── */}
       <div class="prod__delta">
-        <h3 class="prod__delta-title">Variación Periodo 1 → Periodo 2</h3>
+        <h3 class="prod__delta-title">{c.variacionTitulo}</h3>
         <div class="calc__metric-grid calc__metric-grid--three">
           <DeltaMetric
-            label="Productividad del trabajo"
+            label={c.productividadTrabajo}
             value={delta.trabajo}
           />
           <DeltaMetric
-            label="Productividad del capital"
+            label={c.productividadCapital}
             value={delta.capital}
           />
           <DeltaMetric
-            label="Productividad global"
+            label={c.productividadGlobal}
             value={delta.global}
           />
         </div>
       </div>
 
       <details class="calc__details">
-        <summary>Cómo se calcula</summary>
+        <summary>{c.comoSeCalcula}</summary>
         <div class="calc__formula">
-          <p><strong>Productividad del trabajo</strong> = Producción / Trabajadores. Mide cuánto produce cada trabajador.</p>
-          <p><strong>Productividad por hora</strong> = Producción / Horas totales trabajadas.</p>
-          <p><strong>Productividad del capital</strong> = Producción / Capital. Mide el rendimiento de cada euro de capital.</p>
-          <p><strong>Productividad global</strong> = Valor de la producción / Valor de los factores. Permite comparar períodos con diferentes precios.</p>
-          <p><strong>Variación (%)</strong> = ( Nuevo − Base ) / Base × 100.</p>
+          <p><strong>{c.productividadTrabajo}</strong>{c.formTrabajoRest}</p>
+          <p><strong>{c.productividadHora}</strong>{c.formHoraRest}</p>
+          <p><strong>{c.productividadCapital}</strong>{c.formCapitalRest}</p>
+          <p><strong>{c.productividadGlobal}</strong>{c.formGlobalRest}</p>
+          <p><strong>{c.variacionLabel}</strong>{c.formVariacionRest}</p>
         </div>
       </details>
 
@@ -180,7 +243,8 @@ export default function ProductividadCalc() {
 
 /* ── Sub-components ──────────────────────────────────────────────────────── */
 
-function PeriodInputs({ period, onChange }: { period: Period; onChange: (p: Period) => void }) {
+function PeriodInputs({ period, onChange, locale }: { period: Period; onChange: (p: Period) => void; locale: Locale }) {
+  const c = COPY[locale];
   const set = (key: keyof Period) => (e: Event) => {
     const val = parseFloat((e.target as HTMLInputElement).value) || 0;
     onChange({ ...period, [key]: val });
@@ -189,42 +253,42 @@ function PeriodInputs({ period, onChange }: { period: Period; onChange: (p: Peri
   return (
     <>
       <label class="calc__field">
-        <span class="calc__label">Producción (unidades)</span>
+        <span class="calc__label">{c.labelProduccion}</span>
         <div class="calc__input-wrap">
           <input type="number" min={0} step={10} value={period.produccion} onInput={set('produccion')} />
           <span class="calc__unit">uds</span>
         </div>
       </label>
       <label class="calc__field">
-        <span class="calc__label">Trabajadores</span>
+        <span class="calc__label">{c.labelTrabajadores}</span>
         <div class="calc__input-wrap">
           <input type="number" min={1} step={1} value={period.trabajadores} onInput={set('trabajadores')} />
           <span class="calc__unit">pers.</span>
         </div>
       </label>
       <label class="calc__field">
-        <span class="calc__label">Horas trabajadas (total)</span>
+        <span class="calc__label">{c.labelHoras}</span>
         <div class="calc__input-wrap">
           <input type="number" min={1} step={10} value={period.horas} onInput={set('horas')} />
           <span class="calc__unit">h</span>
         </div>
       </label>
       <label class="calc__field">
-        <span class="calc__label">Capital empleado</span>
+        <span class="calc__label">{c.labelCapital}</span>
         <div class="calc__input-wrap">
           <input type="number" min={1} step={1000} value={period.capital} onInput={set('capital')} />
           <span class="calc__unit">€</span>
         </div>
       </label>
       <label class="calc__field">
-        <span class="calc__label">Valor de la producción</span>
+        <span class="calc__label">{c.labelValorProduccion}</span>
         <div class="calc__input-wrap">
           <input type="number" min={0} step={500} value={period.valorProduccion} onInput={set('valorProduccion')} />
           <span class="calc__unit">€</span>
         </div>
       </label>
       <label class="calc__field">
-        <span class="calc__label">Valor de los factores</span>
+        <span class="calc__label">{c.labelValorFactores}</span>
         <div class="calc__input-wrap">
           <input type="number" min={1} step={500} value={period.valorFactores} onInput={set('valorFactores')} />
           <span class="calc__unit">€</span>
@@ -234,29 +298,30 @@ function PeriodInputs({ period, onChange }: { period: Period; onChange: (p: Peri
   );
 }
 
-function ResultsPanel({ r }: { r: ReturnType<typeof computePeriod> }) {
+function ResultsPanel({ r, locale }: { r: ReturnType<typeof computePeriod>; locale: Locale }) {
+  const c = COPY[locale];
   return (
     <div class="prod__results">
       <div class="prod__row">
-        <span class="prod__row-label">Prod. trabajo (uds/trabajador)</span>
+        <span class="prod__row-label">{c.rowTrabajoTrab}</span>
         <span class={`prod__row-value${r.trabajo === null ? ' null-val' : ''}`}>
           {r.trabajo === null ? '—' : fmtN(r.trabajo)}
         </span>
       </div>
       <div class="prod__row">
-        <span class="prod__row-label">Prod. trabajo (uds/hora)</span>
+        <span class="prod__row-label">{c.rowTrabajoHora}</span>
         <span class={`prod__row-value${r.trabajoPorHora === null ? ' null-val' : ''}`}>
           {r.trabajoPorHora === null ? '—' : fmtN(r.trabajoPorHora)}
         </span>
       </div>
       <div class="prod__row">
-        <span class="prod__row-label">Prod. capital (uds/€)</span>
+        <span class="prod__row-label">{c.rowCapital}</span>
         <span class={`prod__row-value${r.capital === null ? ' null-val' : ''}`}>
           {r.capital === null ? '—' : fmtN(r.capital, 4)}
         </span>
       </div>
       <div class="prod__row">
-        <span class="prod__row-label">Prod. global (€ prod / € fact.)</span>
+        <span class="prod__row-label">{c.rowGlobal}</span>
         <span class={`prod__row-value${r.global === null ? ' null-val' : ''}`}>
           {r.global === null ? '—' : fmtN(r.global, 3)}
         </span>

@@ -1,11 +1,114 @@
 /** @jsxImportSource preact */
 import { useMemo, useState } from 'preact/hooks';
+import { type Locale } from '@/i18n/locale';
 import {
   analyze,
   type ElasticityKind,
   type PricePoint,
   type RevenueDirection,
 } from '../../lib/calc/elasticidad';
+
+/**
+ * UI strings, Valencian (AVL) alongside the ES source. Economic notation
+ * (P, Q, E, IT, €, %, subscripts) is not translated. Mirrors the sibling
+ * calculators.
+ */
+export const COPY = {
+  es: {
+    precioInicial: 'Precio inicial (P₁)',
+    cantidadInicial: 'Cantidad inicial (Q₁)',
+    precioFinal: 'Precio final (P₂)',
+    cantidadFinal: 'Cantidad final (Q₂)',
+    udsUnit: 'uds',
+    dosPuntosDistintos: 'Introduce dos puntos distintos de la curva de demanda.',
+    precioMedioCero: 'El precio medio no puede ser cero.',
+    cantidadMediaCero: 'La cantidad media no puede ser cero.',
+    elasticidadLabel: 'Elasticidad (método del punto medio)',
+    variacionCantidad: 'Variación de la cantidad',
+    variacionPrecio: 'Variación del precio',
+    clasificacion: 'Clasificación',
+    alSubirPrecio: 'Al subir el precio, el ingreso total',
+    itAntes: 'IT antes (precio menor)',
+    itDespues: 'IT después (precio mayor)',
+    dosPreciosAnalizar: 'Introduce dos precios distintos para analizar el efecto sobre los ingresos.',
+    chartAria: 'Curva de demanda con los dos puntos introducidos',
+    comoSeCalcula: 'Cómo se calcula',
+    metodoTitle: 'Método del punto medio (elasticidad arco):',
+    metodoDesc: ' usa la media de los dos valores como base, por lo que el resultado es el mismo suba o baje el precio.',
+    signoNegativo: 'El signo es negativo porque cantidad y precio se mueven en sentidos opuestos (ley de la demanda). Para clasificar se usa el valor absoluto |E|: |E| > 1 elástica, |E| < 1 inelástica, |E| = 1 unitaria.',
+    itTitle: 'Ingreso total',
+    itDesc: ' (IT = P · Q): si la demanda es elástica, al subir el precio el IT baja; si es inelástica, el IT sube; si es unitaria, no cambia.',
+    aquiPasaDe: (before: string, after: string) => ` Aquí pasa de ${before} a ${after}.`,
+    dosPreciosVer: ' Introduce dos precios distintos para ver el efecto sobre los ingresos.',
+    kindShort: {
+      elastica: 'elástica',
+      inelastica: 'inelástica',
+      unitaria: 'unitaria',
+      perfectamente_elastica: 'perf. elástica',
+      perfectamente_inelastica: 'perf. inelástica',
+    },
+    kindLabel: {
+      elastica: 'Demanda elástica',
+      inelastica: 'Demanda inelástica',
+      unitaria: 'Demanda de elasticidad unitaria',
+      perfectamente_elastica: 'Demanda perfectamente elástica',
+      perfectamente_inelastica: 'Demanda perfectamente inelástica',
+    },
+    revWord: {
+      sube: 'sube',
+      baja: 'baja',
+      igual: 'no cambia',
+    },
+  },
+  ca: {
+    precioInicial: 'Preu inicial (P₁)',
+    cantidadInicial: 'Quantitat inicial (Q₁)',
+    precioFinal: 'Preu final (P₂)',
+    cantidadFinal: 'Quantitat final (Q₂)',
+    udsUnit: 'unitats',
+    dosPuntosDistintos: 'Introduïx dos punts distints de la corba de demanda.',
+    precioMedioCero: 'El preu mitjà no pot ser zero.',
+    cantidadMediaCero: 'La quantitat mitjana no pot ser zero.',
+    elasticidadLabel: 'Elasticitat (mètode del punt mig)',
+    variacionCantidad: 'Variació de la quantitat',
+    variacionPrecio: 'Variació del preu',
+    clasificacion: 'Classificació',
+    alSubirPrecio: "En pujar el preu, l'ingrés total",
+    itAntes: 'IT abans (preu menor)',
+    itDespues: 'IT després (preu major)',
+    dosPreciosAnalizar: "Introduïx dos preus distints per a analitzar l'efecte sobre els ingressos.",
+    chartAria: 'Corba de demanda amb els dos punts introduïts',
+    comoSeCalcula: 'Com es calcula',
+    metodoTitle: 'Mètode del punt mig (elasticitat arc):',
+    metodoDesc: ' usa la mitjana dels dos valors com a base, de manera que el resultat és el mateix tant si puja com si baixa el preu.',
+    signoNegativo: "El signe és negatiu perquè quantitat i preu es mouen en sentits oposats (llei de la demanda). Per a classificar s'usa el valor absolut |E|: |E| > 1 elàstica, |E| < 1 inelàstica, |E| = 1 unitària.",
+    itTitle: 'Ingrés total',
+    itDesc: " (IT = P · Q): si la demanda és elàstica, en pujar el preu l'IT baixa; si és inelàstica, l'IT puja; si és unitària, no canvia.",
+    aquiPasaDe: (before: string, after: string) => ` Ací passa de ${before} a ${after}.`,
+    dosPreciosVer: " Introduïx dos preus distints per a veure l'efecte sobre els ingressos.",
+    kindShort: {
+      elastica: 'elàstica',
+      inelastica: 'inelàstica',
+      unitaria: 'unitària',
+      perfectamente_elastica: 'perf. elàstica',
+      perfectamente_inelastica: 'perf. inelàstica',
+    },
+    kindLabel: {
+      elastica: 'Demanda elàstica',
+      inelastica: 'Demanda inelàstica',
+      unitaria: "Demanda d'elasticitat unitària",
+      perfectamente_elastica: 'Demanda perfectament elàstica',
+      perfectamente_inelastica: 'Demanda perfectament inelàstica',
+    },
+    revWord: {
+      sube: 'puja',
+      baja: 'baixa',
+      igual: 'no canvia',
+    },
+  },
+} as const;
+
+interface Props { locale?: Locale }
 
 /**
  * Price elasticity of demand calculator (Eco 1BACH · Unit 5).
@@ -19,7 +122,8 @@ import {
  * how a steeper curve means a more inelastic demand. Variant C palette
  * (terracota + mostaza) via CSS variables for site coherence.
  */
-export default function ElasticidadCalc() {
+export default function ElasticidadCalc({ locale = 'es' }: Props) {
+  const c = COPY[locale];
   const [p1, setP1] = useState<number>(4);
   const [q1, setQ1] = useState<number>(120);
   const [p2, setP2] = useState<number>(6);
@@ -31,13 +135,13 @@ export default function ElasticidadCalc() {
 
     // Same point on both axes, or zero average price/quantity → not analysable.
     if (p1 === p2 && q1 === q2) {
-      return { valido: false as const, mensaje: 'Introduce dos puntos distintos de la curva de demanda.' };
+      return { valido: false as const, mensaje: c.dosPuntosDistintos };
     }
     if (p1 + p2 === 0) {
-      return { valido: false as const, mensaje: 'El precio medio no puede ser cero.' };
+      return { valido: false as const, mensaje: c.precioMedioCero };
     }
     if (q1 + q2 === 0) {
-      return { valido: false as const, mensaje: 'La cantidad media no puede ser cero.' };
+      return { valido: false as const, mensaje: c.cantidadMediaCero };
     }
 
     try {
@@ -45,13 +149,13 @@ export default function ElasticidadCalc() {
     } catch (e) {
       return { valido: false as const, mensaje: (e as Error).message };
     }
-  }, [p1, q1, p2, q2]);
+  }, [p1, q1, p2, q2, c]);
 
   return (
     <div class="calc">
       <div class="calc__form">
         <label class="calc__field">
-          <span class="calc__label">Precio inicial (P₁)</span>
+          <span class="calc__label">{c.precioInicial}</span>
           <div class="calc__input-wrap">
             <input
               type="number"
@@ -64,7 +168,7 @@ export default function ElasticidadCalc() {
         </label>
 
         <label class="calc__field">
-          <span class="calc__label">Cantidad inicial (Q₁)</span>
+          <span class="calc__label">{c.cantidadInicial}</span>
           <div class="calc__input-wrap">
             <input
               type="number"
@@ -72,12 +176,12 @@ export default function ElasticidadCalc() {
               value={q1}
               onInput={(e) => setQ1(parseFloat((e.target as HTMLInputElement).value) || 0)}
             />
-            <span class="calc__unit">uds</span>
+            <span class="calc__unit">{c.udsUnit}</span>
           </div>
         </label>
 
         <label class="calc__field">
-          <span class="calc__label">Precio final (P₂)</span>
+          <span class="calc__label">{c.precioFinal}</span>
           <div class="calc__input-wrap">
             <input
               type="number"
@@ -90,7 +194,7 @@ export default function ElasticidadCalc() {
         </label>
 
         <label class="calc__field">
-          <span class="calc__label">Cantidad final (Q₂)</span>
+          <span class="calc__label">{c.cantidadFinal}</span>
           <div class="calc__input-wrap">
             <input
               type="number"
@@ -98,7 +202,7 @@ export default function ElasticidadCalc() {
               value={q2}
               onInput={(e) => setQ2(parseFloat((e.target as HTMLInputElement).value) || 0)}
             />
-            <span class="calc__unit">uds</span>
+            <span class="calc__unit">{c.udsUnit}</span>
           </div>
         </label>
       </div>
@@ -109,41 +213,41 @@ export default function ElasticidadCalc() {
         ) : (
           <>
             <div class="calc__metric calc__metric--primary">
-              <span class="calc__metric-label">Elasticidad (método del punto medio)</span>
+              <span class="calc__metric-label">{c.elasticidadLabel}</span>
               <span class="calc__metric-value">{fmtE(result.arc.E)}</span>
-              <span class="calc__metric-detail">{result.label}</span>
+              <span class="calc__metric-detail">{c.kindLabel[result.kind]}</span>
             </div>
 
             <div class="calc__metric-grid calc__metric-grid--three">
               <div class="calc__metric-mini">
-                <span class="calc__metric-mini-label">Variación de la cantidad</span>
+                <span class="calc__metric-mini-label">{c.variacionCantidad}</span>
                 <span class="calc__metric-mini-value">{fmtPct(result.arc.pctChangeQ)}</span>
               </div>
               <div class="calc__metric-mini">
-                <span class="calc__metric-mini-label">Variación del precio</span>
+                <span class="calc__metric-mini-label">{c.variacionPrecio}</span>
                 <span class="calc__metric-mini-value">{fmtPct(result.arc.pctChangeP)}</span>
               </div>
               <div class="calc__metric-mini">
-                <span class="calc__metric-mini-label">Clasificación</span>
-                <span class="calc__metric-mini-value">{kindShort(result.kind)}</span>
+                <span class="calc__metric-mini-label">{c.clasificacion}</span>
+                <span class="calc__metric-mini-value">{c.kindShort[result.kind]}</span>
               </div>
             </div>
 
             {result.revenue ? (
               <div class="el__revenue">
                 <div class="el__revenue-head">
-                  Al subir el precio, el ingreso total{' '}
+                  {c.alSubirPrecio}{' '}
                   <strong class={revClass(result.revenue.direction)}>
-                    {revWord(result.revenue.direction)}
+                    {c.revWord[result.revenue.direction]}
                   </strong>
                 </div>
                 <div class="calc__metric-grid">
                   <div class="calc__metric-mini">
-                    <span class="calc__metric-mini-label">IT antes (precio menor)</span>
+                    <span class="calc__metric-mini-label">{c.itAntes}</span>
                     <span class="calc__metric-mini-value">{fmtMoney(result.revenue.before)}</span>
                   </div>
                   <div class="calc__metric-mini">
-                    <span class="calc__metric-mini-label">IT después (precio mayor)</span>
+                    <span class="calc__metric-mini-label">{c.itDespues}</span>
                     <span class={`calc__metric-mini-value ${result.revenue.change >= 0 ? 'ok' : 'fail'}`}>
                       {fmtMoney(result.revenue.after)}
                     </span>
@@ -153,7 +257,7 @@ export default function ElasticidadCalc() {
             ) : (
               <div class="el__revenue">
                 <div class="el__revenue-head">
-                  Introduce dos precios distintos para analizar el efecto sobre los ingresos.
+                  {c.dosPreciosAnalizar}
                 </div>
               </div>
             )}
@@ -165,29 +269,23 @@ export default function ElasticidadCalc() {
             />
 
             <details class="calc__details">
-              <summary>Cómo se calcula</summary>
+              <summary>{c.comoSeCalcula}</summary>
               <div class="calc__formula">
                 <p>
-                  <strong>Método del punto medio (elasticidad arco):</strong> usa la media de
-                  los dos valores como base, por lo que el resultado es el mismo suba o baje el
-                  precio.
+                  <strong>{c.metodoTitle}</strong>{c.metodoDesc}
                 </p>
                 <p>
                   E = ( ΔQ / Q̄ ) / ( ΔP / P̄ ) = ({fmtPct(result.arc.pctChangeQ)}) / ({fmtPct(result.arc.pctChangeP)}) ={' '}
                   <strong>{fmtE(result.arc.E)}</strong>
                 </p>
                 <p>
-                  El signo es negativo porque cantidad y precio se mueven en sentidos opuestos
-                  (ley de la demanda). Para clasificar se usa el valor absoluto |E|:
-                  {' '}|E| &gt; 1 elástica, |E| &lt; 1 inelástica, |E| = 1 unitaria.
+                  {c.signoNegativo}
                 </p>
                 <p>
-                  <strong>Ingreso total</strong> (IT = P · Q): si la demanda es elástica, al
-                  subir el precio el IT baja; si es inelástica, el IT sube; si es unitaria, no
-                  cambia.
+                  <strong>{c.itTitle}</strong>{c.itDesc}
                   {result.revenue
-                    ? ` Aquí pasa de ${fmtMoney(result.revenue.before)} a ${fmtMoney(result.revenue.after)}.`
-                    : ' Introduce dos precios distintos para ver el efecto sobre los ingresos.'}
+                    ? c.aquiPasaDe(fmtMoney(result.revenue.before), fmtMoney(result.revenue.after))
+                    : c.dosPreciosVer}
                 </p>
               </div>
             </details>

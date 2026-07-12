@@ -1,5 +1,6 @@
 /** @jsxImportSource preact */
 import { useMemo, useState } from 'preact/hooks';
+import { type Locale } from '@/i18n/locale';
 
 /**
  * Interés compuesto con aportaciones periódicas mensuales.
@@ -14,35 +15,117 @@ import { useMemo, useState } from 'preact/hooks';
  * interés compuesto a lo largo del tiempo.
  */
 
+/**
+ * UI strings, Valencian (AVL) alongside the ES source. Economic notation
+ * (€, %, r/12, numeric values) is not translated. Mirrors the sibling
+ * calculators.
+ */
+export const COPY = {
+  es: {
+    presetsTitle: 'Presets',
+    reiniciar: 'Reiniciar',
+    presets: {
+      planPensiones: {
+        label: 'Plan de pensiones 30 años',
+        note: 'Ahorro a largo plazo con rentabilidad media de mercado.',
+      },
+      huchaAgresiva: {
+        label: 'Hucha agresiva',
+        note: 'Aportación alta con rentabilidad moderada.',
+      },
+    },
+    capitalInicial: 'Capital inicial',
+    aportacionMensual: 'Aportación mensual',
+    eurMes: '€/mes',
+    tipoInteresAnual: 'Tipo de interés anual',
+    pctAnual: '% anual',
+    aniosLabel: 'Años',
+    aniosUnit: 'años',
+    horizonteInvalido: 'El horizonte temporal debe estar entre 1 y 70 años.',
+    tipoInvalido: 'El tipo de interés no es válido.',
+    capitalFinal: 'Capital final',
+    alCabo1: 'Al cabo de ',
+    alCabo2: ' años con ',
+    alCabo3: ' al mes al',
+    alCabo4: ' % anual.',
+    totalAportado: 'Total aportado',
+    interesesGanados: 'Intereses ganados',
+    ratioLabel: 'Ratio interés / aportado',
+    comoSeCalcula: 'Cómo se calcula',
+    saldoActualiza1: 'El saldo se actualiza cada mes con el tipo mensual r/12 =',
+    saldoActualiza2: ' % y se suma la aportación mensual de ',
+    deLos1: 'De los ',
+    deLos2: ' finales, has aportado',
+    deLos3: ' y los intereses son',
+    deLos4: '. Eso significa que cada euro aportado se ha convertido en',
+    chartAria: 'Evolución del capital frente a aportaciones',
+    aniosAxis: 'años',
+    capitalTotal: 'Capital total',
+    aportacionesAcumuladas: 'Aportaciones acumuladas',
+    interesesGenerados: 'Intereses generados',
+  },
+  ca: {
+    presetsTitle: 'Presets',
+    reiniciar: 'Reiniciar',
+    presets: {
+      planPensiones: {
+        label: 'Pla de pensions 30 anys',
+        note: 'Estalvi a llarg termini amb rendibilitat mitjana de mercat.',
+      },
+      huchaAgresiva: {
+        label: 'Guardiola agressiva',
+        note: 'Aportació alta amb rendibilitat moderada.',
+      },
+    },
+    capitalInicial: 'Capital inicial',
+    aportacionMensual: 'Aportació mensual',
+    eurMes: '€/mes',
+    tipoInteresAnual: "Tipus d'interés anual",
+    pctAnual: '% anual',
+    aniosLabel: 'Anys',
+    aniosUnit: 'anys',
+    horizonteInvalido: "L'horitzó temporal ha d'estar entre 1 i 70 anys.",
+    tipoInvalido: "El tipus d'interés no és vàlid.",
+    capitalFinal: 'Capital final',
+    alCabo1: 'Al cap de ',
+    alCabo2: ' anys amb ',
+    alCabo3: ' al mes al',
+    alCabo4: ' % anual.',
+    totalAportado: 'Total aportat',
+    interesesGanados: 'Interessos guanyats',
+    ratioLabel: 'Ràtio interés / aportat',
+    comoSeCalcula: 'Com es calcula',
+    saldoActualiza1: "El saldo s'actualitza cada mes amb el tipus mensual r/12 =",
+    saldoActualiza2: " % i se suma l'aportació mensual de ",
+    deLos1: 'Dels ',
+    deLos2: ' finals, has aportat',
+    deLos3: ' i els interessos són',
+    deLos4: ". Això vol dir que cada euro aportat s'ha convertit en",
+    chartAria: 'Evolució del capital enfront de les aportacions',
+    aniosAxis: 'anys',
+    capitalTotal: 'Capital total',
+    aportacionesAcumuladas: 'Aportacions acumulades',
+    interesesGenerados: 'Interessos generats',
+  },
+} as const;
+
+interface Props { locale?: Locale }
+
 type Preset = {
-  label: string;
+  id: 'planPensiones' | 'huchaAgresiva';
   capitalInicial: number;
   aportacionMensual: number;
   tipoAnual: number;
   anios: number;
-  note: string;
 };
 
 const PRESETS: Preset[] = [
-  {
-    label: 'Plan de pensiones 30 años',
-    capitalInicial: 1000,
-    aportacionMensual: 200,
-    tipoAnual: 6,
-    anios: 30,
-    note: 'Ahorro a largo plazo con rentabilidad media de mercado.',
-  },
-  {
-    label: 'Hucha agresiva',
-    capitalInicial: 5000,
-    aportacionMensual: 500,
-    tipoAnual: 4,
-    anios: 20,
-    note: 'Aportación alta con rentabilidad moderada.',
-  },
+  { id: 'planPensiones', capitalInicial: 1000, aportacionMensual: 200, tipoAnual: 6, anios: 30 },
+  { id: 'huchaAgresiva', capitalInicial: 5000, aportacionMensual: 500, tipoAnual: 4, anios: 20 },
 ];
 
-export default function InteresCompuestoCalc() {
+export default function InteresCompuestoCalc({ locale = 'es' }: Props) {
+  const c = COPY[locale];
   const [capitalInicial, setCapitalInicial] = useState<number>(1000);
   const [aportacionMensual, setAportacionMensual] = useState<number>(100);
   const [tipoAnual, setTipoAnual] = useState<number>(5);
@@ -52,11 +135,11 @@ export default function InteresCompuestoCalc() {
     if (anios <= 0 || anios > 70) {
       return {
         valido: false as const,
-        mensaje: 'El horizonte temporal debe estar entre 1 y 70 años.',
+        mensaje: c.horizonteInvalido,
       };
     }
     if (tipoAnual <= -100) {
-      return { valido: false as const, mensaje: 'El tipo de interés no es válido.' };
+      return { valido: false as const, mensaje: c.tipoInvalido };
     }
     const rMensual = tipoAnual / 100 / 12;
     const meses = Math.round(anios * 12);
@@ -90,7 +173,7 @@ export default function InteresCompuestoCalc() {
       serieCapital,
       serieAportado,
     };
-  }, [capitalInicial, aportacionMensual, tipoAnual, anios]);
+  }, [capitalInicial, aportacionMensual, tipoAnual, anios, c]);
 
   function reset() {
     setCapitalInicial(1000);
@@ -108,26 +191,26 @@ export default function InteresCompuestoCalc() {
 
   return (
     <div class="calc">
-      <div class="calc__sub">Presets</div>
+      <div class="calc__sub">{c.presetsTitle}</div>
       <div class="ic__presets">
         {PRESETS.map((p) => (
           <button
             type="button"
             class="calc__btn calc__btn--ghost"
             onClick={() => applyPreset(p)}
-            title={p.note}
+            title={c.presets[p.id].note}
           >
-            {p.label}
+            {c.presets[p.id].label}
           </button>
         ))}
         <button type="button" class="calc__btn calc__btn--ghost" onClick={reset}>
-          Reiniciar
+          {c.reiniciar}
         </button>
       </div>
 
       <div class="calc__form">
         <label class="calc__field">
-          <span class="calc__label">Capital inicial</span>
+          <span class="calc__label">{c.capitalInicial}</span>
           <div class="calc__input-wrap">
             <input
               type="number"
@@ -143,7 +226,7 @@ export default function InteresCompuestoCalc() {
         </label>
 
         <label class="calc__field">
-          <span class="calc__label">Aportación mensual</span>
+          <span class="calc__label">{c.aportacionMensual}</span>
           <div class="calc__input-wrap">
             <input
               type="number"
@@ -154,12 +237,12 @@ export default function InteresCompuestoCalc() {
                 setAportacionMensual(parseFloat((e.target as HTMLInputElement).value) || 0)
               }
             />
-            <span class="calc__unit">€/mes</span>
+            <span class="calc__unit">{c.eurMes}</span>
           </div>
         </label>
 
         <label class="calc__field">
-          <span class="calc__label">Tipo de interés anual</span>
+          <span class="calc__label">{c.tipoInteresAnual}</span>
           <div class="calc__input-wrap">
             <input
               type="number"
@@ -168,12 +251,12 @@ export default function InteresCompuestoCalc() {
               value={tipoAnual}
               onInput={(e) => setTipoAnual(parseFloat((e.target as HTMLInputElement).value) || 0)}
             />
-            <span class="calc__unit">% anual</span>
+            <span class="calc__unit">{c.pctAnual}</span>
           </div>
         </label>
 
         <label class="calc__field">
-          <span class="calc__label">Años</span>
+          <span class="calc__label">{c.aniosLabel}</span>
           <div class="calc__input-wrap">
             <input
               type="number"
@@ -183,7 +266,7 @@ export default function InteresCompuestoCalc() {
               value={anios}
               onInput={(e) => setAnios(parseInt((e.target as HTMLInputElement).value, 10) || 0)}
             />
-            <span class="calc__unit">años</span>
+            <span class="calc__unit">{c.aniosUnit}</span>
           </div>
         </label>
       </div>
@@ -194,27 +277,27 @@ export default function InteresCompuestoCalc() {
         ) : (
           <>
             <div class="calc__metric calc__metric--primary">
-              <span class="calc__metric-label">Capital final</span>
+              <span class="calc__metric-label">{c.capitalFinal}</span>
               <span class="calc__metric-value">{fmtMoney(result.capitalFinal)}</span>
               <span class="calc__metric-detail">
-                Al cabo de {anios} años con {fmtMoney(aportacionMensual)} al mes al{' '}
-                {tipoAnual.toFixed(2).replace('.', ',')} % anual.
+                {c.alCabo1}{anios}{c.alCabo2}{fmtMoney(aportacionMensual)}{c.alCabo3}{' '}
+                {tipoAnual.toFixed(2).replace('.', ',')}{c.alCabo4}
               </span>
             </div>
 
             <div class="calc__metric-grid calc__metric-grid--three">
               <div class="calc__metric-mini">
-                <span class="calc__metric-mini-label">Total aportado</span>
+                <span class="calc__metric-mini-label">{c.totalAportado}</span>
                 <span class="calc__metric-mini-value">{fmtMoney(result.totalAportado)}</span>
               </div>
               <div class="calc__metric-mini">
-                <span class="calc__metric-mini-label">Intereses ganados</span>
+                <span class="calc__metric-mini-label">{c.interesesGanados}</span>
                 <span class={`calc__metric-mini-value ${result.intereses >= 0 ? 'ok' : 'fail'}`}>
                   {fmtMoney(result.intereses)}
                 </span>
               </div>
               <div class="calc__metric-mini">
-                <span class="calc__metric-mini-label">Ratio interés / aportado</span>
+                <span class="calc__metric-mini-label">{c.ratioLabel}</span>
                 <span class="calc__metric-mini-value">
                   {(result.ratio * 100).toFixed(1).replace('.', ',')} %
                 </span>
@@ -225,22 +308,21 @@ export default function InteresCompuestoCalc() {
               serieCapital={result.serieCapital}
               serieAportado={result.serieAportado}
               anios={anios}
+              locale={locale}
             />
 
             <details class="calc__details">
-              <summary>Cómo se calcula</summary>
+              <summary>{c.comoSeCalcula}</summary>
               <div class="calc__formula">
                 <p>
-                  El saldo se actualiza cada mes con el tipo mensual r/12 =
+                  {c.saldoActualiza1}
                   {' '}
-                  {(tipoAnual / 12).toFixed(4).replace('.', ',')} % y se suma la aportación
-                  mensual de {fmtMoney(aportacionMensual)}.
+                  {(tipoAnual / 12).toFixed(4).replace('.', ',')}{c.saldoActualiza2}{fmtMoney(aportacionMensual)}.
                 </p>
                 <p>
-                  De los <strong>{fmtMoney(result.capitalFinal)}</strong> finales, has aportado{' '}
-                  <strong>{fmtMoney(result.totalAportado)}</strong> y los intereses son{' '}
-                  <strong>{fmtMoney(result.intereses)}</strong>. Eso significa que cada euro
-                  aportado se ha convertido en{' '}
+                  {c.deLos1}<strong>{fmtMoney(result.capitalFinal)}</strong>{c.deLos2}{' '}
+                  <strong>{fmtMoney(result.totalAportado)}</strong>{c.deLos3}{' '}
+                  <strong>{fmtMoney(result.intereses)}</strong>{c.deLos4}{' '}
                   <strong>
                     {(result.capitalFinal / Math.max(result.totalAportado, 1))
                       .toFixed(2)
@@ -296,11 +378,14 @@ function ICChart({
   serieCapital,
   serieAportado,
   anios,
+  locale,
 }: {
   serieCapital: number[];
   serieAportado: number[];
   anios: number;
+  locale: Locale;
 }) {
+  const c = COPY[locale];
   const W = 600;
   const H = 320;
   const ML = 60;
@@ -343,7 +428,7 @@ function ICChart({
         class="ic__chart"
         xmlns="http://www.w3.org/2000/svg"
         role="img"
-        aria-label="Evolución del capital frente a aportaciones"
+        aria-label={c.chartAria}
       >
         {/* Grid */}
         {yTicks.map((v) => (
@@ -416,7 +501,7 @@ function ICChart({
           fill="var(--color-ink-soft)"
           font-style="italic"
         >
-          años
+          {c.aniosAxis}
         </text>
 
         {/* Area between aportado and capital (interest gap) */}
@@ -435,21 +520,21 @@ function ICChart({
             class="ic__legend-swatch"
             style={{ background: 'var(--color-terra)' }}
           />
-          Capital total
+          {c.capitalTotal}
         </span>
         <span>
           <span
             class="ic__legend-swatch"
             style={{ background: 'var(--color-mustard-deep)' }}
           />
-          Aportaciones acumuladas
+          {c.aportacionesAcumuladas}
         </span>
         <span>
           <span
             class="ic__legend-swatch"
             style={{ background: 'var(--color-terra-soft)', height: '10px' }}
           />
-          Intereses generados
+          {c.interesesGenerados}
         </span>
       </div>
     </div>
