@@ -6,12 +6,17 @@ import PlanRefuerzo from '@components/generadores/PlanRefuerzo.tsx';
 import RegistroAula from '@components/generadores/RegistroAula.tsx';
 import MedidasDUA from '@components/generadores/MedidasDUA.tsx';
 import Autoevaluacion from '@components/generadores/Autoevaluacion.tsx';
+import { type Locale } from '@/i18n/locale';
 
-interface Props { componente?: string }
-const { componente } = Astro.props;
+/**
+ * `locale` is an explicit prop (default 'es'), mirroring the /herramientas
+ * dispatch. These teacher tools render only on the localized detail page.
+ */
+interface Props { componente?: string; locale?: Locale }
+const { componente, locale = 'es' } = Astro.props;
 ---
 {componente === 'Calificaciones' && <CalificacionesCalc client:load />}
-{componente === 'Rubrica' && <RubricaGenerator client:load />}
+{componente === 'Rubrica' && <RubricaGenerator client:load locale={locale} />}
 {componente === 'PlanRefuerzo' && <PlanRefuerzo client:load />}
 {componente === 'RegistroAula' && <RegistroAula client:load />}
 {componente === 'MedidasDUA' && <MedidasDUA client:load />}

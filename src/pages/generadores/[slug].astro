@@ -4,21 +4,29 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 import GeneradorIsland from '@components/generadores/GeneradorIsland.astro';
 import { GENERADORES_NATIVOS, generadorPorSlug } from '@/lib/generadores';
 import type { GetStaticPaths } from 'astro';
+import { getLocale } from '@/i18n/locale';
+import { t } from '@/i18n/ui';
+import { localizeGeneradorNativo } from '@/i18n/generadores-ca';
 
 export const getStaticPaths = (async () => {
   return GENERADORES_NATIVOS.map((g) => ({ params: { slug: g.slug }, props: { componente: g.componente, slug: g.slug } }));
 }) satisfies GetStaticPaths;
 
+const locale = getLocale(Astro.currentLocale);
 const { componente, slug } = Astro.props;
-const g = generadorPorSlug(slug)!;
-const TIPO_LABEL: Record<string, string> = { rubrica: 'Rúbrica', calculadora: 'Calculadora', plantilla: 'Plantilla' };
+const g = localizeGeneradorNativo(generadorPorSlug(slug)!, locale);
+
+const copy = {
+  es: { bcInicio: 'Inicio', bcGeneradores: 'Herramientas docentes', metaSuffix: 'Herramientas docentes' },
+  ca: { bcInicio: 'Inici', bcGeneradores: 'Ferramentes docents', metaSuffix: 'Ferramentes docents' },
+}[locale];
 ---
 
-<BaseLayout title={`${g.title} — Herramientas docentes`} description={g.descripcion}>
+<BaseLayout title={`${g.title} — ${copy.metaSuffix}`} description={g.descripcion} contentLang={locale}>
   <div class="container">
     <nav class="breadcrumb">
-      <a href="/">Inicio</a> <span class="sep">›</span>
-      <a href="/generadores/">Herramientas docentes</a> <span class="sep">›</span>
+      <a href="/">{copy.bcInicio}</a> <span class="sep">›</span>
+      <a href="/generadores/">{copy.bcGeneradores}</a> <span class="sep">›</span>
       <span>{g.title}</span>
     </nav>
   </div>
@@ -33,13 +41,13 @@ const TIPO_LABEL: Record<string, string> = { rubrica: 'Rúbrica', calculadora: '
 
   <section class="player-wrap">
     <div class="container container--narrow">
-      <GeneradorIsland componente={componente} />
+      <GeneradorIsland componente={componente} locale={locale} />
     </div>
   </section>
 
   <section class="body">
     <div class="container container--narrow">
-      <nav class="back"><a href="/generadores/">← Todos los generadores</a></nav>
+      <nav class="back"><a href="/generadores/">{t('generadores.volver', locale)}</a></nav>
     </div>
   </section>
 </BaseLayout>
