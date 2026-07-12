@@ -1,4 +1,5 @@
 /** @jsxImportSource preact */
+import { useGameLocale } from '../locale-context';
 
 // Hand-written SVG line chart: player net worth vs AI benchmark over the game history.
 // No external chart library. Player line → terracota #C44E2C; AI line → muted #8A7868 dashed.
@@ -9,7 +10,13 @@ interface Point {
   aiNet: number;
 }
 
+export const COPY = {
+  es: { ariaLabel: 'Evolución del patrimonio frente a la IA' },
+  ca: { ariaLabel: 'Evolució del patrimoni enfront de la IA' },
+};
+
 export function EvolucionChart({ history }: { history: Point[] }) {
+  const c = COPY[useGameLocale()];
   if (history.length === 0) return null;
 
   const W = 600, H = 220, padL = 50, padR = 20, padT = 20, padB = 30;
@@ -25,7 +32,7 @@ export function EvolucionChart({ history }: { history: Point[] }) {
       viewBox={`0 0 ${W} ${H}`}
       width="100%"
       role="img"
-      aria-label="Evolución del patrimonio frente a la IA"
+      aria-label={c.ariaLabel}
     >
       {/* Axes */}
       <line x1={padL} y1={H - padB} x2={W - padR} y2={H - padB} stroke="#E5D4BD" strokeWidth="1" />
