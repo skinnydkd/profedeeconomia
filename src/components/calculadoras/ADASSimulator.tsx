@@ -1,5 +1,6 @@
 /** @jsxImportSource preact */
 import { useMemo, useState } from 'preact/hooks';
+import { type Locale } from '@/i18n/locale';
 import {
   BASE_Y,
   BASE_P,
@@ -14,6 +15,177 @@ import {
 import { formatNumber } from '@/lib/calc/format';
 
 /**
+ * UI strings, Valencian (AVL) alongside the ES source. Economic notation
+ * (AD, SRAS, LRAS, P, Y, E*, E**, %, €, subscripts, numeric values) is not
+ * translated. Preset/cause ids stay structural; their translated labels are
+ * nested under those ids. Mirrors the sibling calculators.
+ */
+export const COPY = {
+  es: {
+    escenarios: 'Escenarios',
+    reiniciar: 'Reiniciar',
+    demandaAgregada: 'Demanda agregada (AD)',
+    adHint:
+      'Un desplazamiento positivo empuja la AD a la derecha (más consumo, inversión, gasto público o exportaciones netas).',
+    adShiftLabel: 'Desplazamiento total de la AD',
+    ofertaCortoPlazo: 'Oferta de corto plazo (SRAS)',
+    srasHint:
+      'Un choque negativo (energía o salarios al alza) desplaza la SRAS a la izquierda; una mejora de productividad la lleva a la derecha.',
+    srasShiftLabel: 'Desplazamiento total de la SRAS',
+    produccionPotencial: 'Producción potencial (LRAS)',
+    lrasShiftLabel: 'Cambio estructural del potencial',
+    ajusteTitle:
+      'La SRAS se ajusta hasta que el producto vuelve al potencial: la brecha se cierra y todo el ajuste recae en los precios.',
+    ajusteBtn: 'Ajuste a largo plazo →',
+    yaEnPotencial: 'La economía ya produce en el potencial.',
+    brechaProduccion: 'Brecha de producción',
+    nivelPrecios: 'Nivel de precios P*',
+    sobreIndiceBase: ' sobre el índice base 100',
+    produccionY: 'Producción Y*',
+    delPotencial: ' del potencial',
+    potencialLras: 'Potencial (LRAS)',
+    plenoEmpleo: 'Pleno empleo de los recursos',
+    comoSeCalculan: 'Cómo se calculan los equilibrios',
+    equilibrioCortoPlazo: 'Equilibrio de corto plazo',
+    largoPlazo: 'Largo plazo',
+    largoPlazoDesc1: 'el producto vuelve al potencial',
+    largoPlazoDesc2: 'y todo el ajuste recae en el nivel de precios.',
+    chartAria: 'Modelo AD-AS con brecha de producción',
+    yAxis: 'Y (PIB real)',
+    sinVariacion: 'Sin variación',
+    gapNeutra: 'Pleno empleo: la economía produce justo en el potencial.',
+    gapInflacionaria: (mag: string) =>
+      `Brecha inflacionaria (+${mag} % sobre el potencial): la economía se sobrecalienta y presiona los precios al alza.`,
+    gapRecesiva: (mag: string) =>
+      `Brecha recesiva (−${mag} % bajo el potencial): hay recursos ociosos y desempleo cíclico.`,
+    interpretInicial:
+      'La economía parte del equilibrio: produce en el potencial con precios estables. Aplica un escenario o desplaza las curvas para ver qué ocurre.',
+    interpretEstanflacion:
+      'Estanflación: el choque negativo de oferta sube los precios y, a la vez, hunde la producción. La política de demanda no puede arreglar las dos cosas a la vez.',
+    interpretExpansion:
+      'La expansión de la demanda empuja producto y precios al alza por encima del potencial. A largo plazo, los costes se ajustan y la economía vuelve al potencial con precios más altos: pulsa "Ajuste a largo plazo".',
+    interpretRecesion:
+      'La caída de la demanda deja la economía por debajo del potencial: desempleo cíclico. A largo plazo, costes y salarios ceden y la SRAS recupera el potencial con precios más bajos.',
+    interpretMejoraOferta:
+      'La mejora de oferta abarata producir: el producto sube y los precios bajan. Es el escenario más favorable, propio de avances de productividad.',
+    interpretDefault:
+      'Las curvas se han desplazado: observa cómo cambian el equilibrio de corto plazo (E*) y la brecha respecto al potencial (LRAS).',
+    presets: {
+      fiscal: {
+        label: 'Política fiscal expansiva',
+        note: 'El sector público sube el gasto y la inversión: la demanda agregada se desplaza a la derecha. Suben el producto y los precios, y se abre una brecha inflacionaria.',
+      },
+      oferta: {
+        label: 'Shock de oferta (petróleo)',
+        note: 'El encarecimiento de la energía dispara los costes: la SRAS se desplaza a la izquierda. Suben los precios y cae el producto: estanflación.',
+      },
+      recesion: {
+        label: 'Recesión de demanda',
+        note: 'El pesimismo recorta consumo e inversión: la demanda agregada cae. Bajan precios y producto, y aparece una brecha recesiva con desempleo cíclico.',
+      },
+      boom: {
+        label: 'Boom inflacionario',
+        note: 'Crédito barato y euforia disparan la demanda muy por encima del potencial: el producto se sobrecalienta y la inflación se acelera.',
+      },
+    },
+    adCauses: {
+      consumo: 'Consumo de las familias',
+      inversion: 'Inversión empresarial',
+      gasto: 'Gasto público',
+      export: 'Exportaciones netas',
+    },
+    srasCauses: {
+      energia: 'Precio de la energía ↑',
+      salarios: 'Salarios ↑',
+      productividad: 'Productividad ↑',
+    },
+  },
+  ca: {
+    escenarios: 'Escenaris',
+    reiniciar: 'Reiniciar',
+    demandaAgregada: 'Demanda agregada (AD)',
+    adHint:
+      'Un desplaçament positiu empeny la AD a la dreta (més consum, inversió, despesa pública o exportacions netes).',
+    adShiftLabel: 'Desplaçament total de la AD',
+    ofertaCortoPlazo: 'Oferta de curt termini (SRAS)',
+    srasHint:
+      "Un xoc negatiu (energia o salaris a l'alça) desplaça la SRAS a l'esquerra; una millora de productivitat la porta a la dreta.",
+    srasShiftLabel: 'Desplaçament total de la SRAS',
+    produccionPotencial: 'Producció potencial (LRAS)',
+    lrasShiftLabel: 'Canvi estructural del potencial',
+    ajusteTitle:
+      "La SRAS s'ajusta fins que el producte torna al potencial: la bretxa es tanca i tot l'ajust recau en els preus.",
+    ajusteBtn: 'Ajust a llarg termini →',
+    yaEnPotencial: "L'economia ja produïx en el potencial.",
+    brechaProduccion: 'Bretxa de producció',
+    nivelPrecios: 'Nivell de preus P*',
+    sobreIndiceBase: " sobre l'índex base 100",
+    produccionY: 'Producció Y*',
+    delPotencial: ' del potencial',
+    potencialLras: 'Potencial (LRAS)',
+    plenoEmpleo: 'Plena ocupació dels recursos',
+    comoSeCalculan: 'Com es calculen els equilibris',
+    equilibrioCortoPlazo: 'Equilibri de curt termini',
+    largoPlazo: 'Llarg termini',
+    largoPlazoDesc1: 'el producte torna al potencial',
+    largoPlazoDesc2: "i tot l'ajust recau en el nivell de preus.",
+    chartAria: 'Model AD-AS amb bretxa de producció',
+    yAxis: 'Y (PIB real)',
+    sinVariacion: 'Sense variació',
+    gapNeutra: "Plena ocupació: l'economia produïx just en el potencial.",
+    gapInflacionaria: (mag: string) =>
+      `Bretxa inflacionària (+${mag} % sobre el potencial): l'economia es sobreescalfa i pressiona els preus a l'alça.`,
+    gapRecesiva: (mag: string) =>
+      `Bretxa recessiva (−${mag} % davall del potencial): hi ha recursos ociosos i desocupació cíclica.`,
+    interpretInicial:
+      "L'economia parteix de l'equilibri: produïx en el potencial amb preus estables. Aplica un escenari o desplaça les corbes per a vore què passa.",
+    interpretEstanflacion:
+      "Estanflació: el xoc negatiu d'oferta apuja els preus i, alhora, enfonsa la producció. La política de demanda no pot arreglar les dos coses alhora.",
+    interpretExpansion:
+      "L'expansió de la demanda empeny producte i preus a l'alça per damunt del potencial. A llarg termini, els costos s'ajusten i l'economia torna al potencial amb preus més alts: prem «Ajust a llarg termini».",
+    interpretRecesion:
+      "La caiguda de la demanda deixa l'economia per davall del potencial: desocupació cíclica. A llarg termini, costos i salaris cedixen i la SRAS recupera el potencial amb preus més baixos.",
+    interpretMejoraOferta:
+      "La millora d'oferta abarateix produir: el producte puja i els preus baixen. És l'escenari més favorable, propi d'avanços de productivitat.",
+    interpretDefault:
+      "Les corbes s'han desplaçat: observa com canvien l'equilibri de curt termini (E*) i la bretxa respecte al potencial (LRAS).",
+    presets: {
+      fiscal: {
+        label: 'Política fiscal expansiva',
+        note: "El sector públic apuja la despesa i la inversió: la demanda agregada es desplaça a la dreta. Pugen el producte i els preus, i s'obri una bretxa inflacionària.",
+      },
+      oferta: {
+        label: "Xoc d'oferta (petroli)",
+        note: "L'encariment de l'energia dispara els costos: la SRAS es desplaça a l'esquerra. Pugen els preus i cau el producte: estanflació.",
+      },
+      recesion: {
+        label: 'Recessió de demanda',
+        note: 'El pessimisme retalla consum i inversió: la demanda agregada cau. Baixen preus i producte, i apareix una bretxa recessiva amb desocupació cíclica.',
+      },
+      boom: {
+        label: 'Boom inflacionari',
+        note: "Crèdit barat i eufòria disparen la demanda molt per damunt del potencial: el producte es sobreescalfa i la inflació s'accelera.",
+      },
+    },
+    adCauses: {
+      consumo: 'Consum de les famílies',
+      inversion: 'Inversió empresarial',
+      gasto: 'Despesa pública',
+      export: 'Exportacions netes',
+    },
+    srasCauses: {
+      energia: "Preu de l'energia ↑",
+      salarios: 'Salaris ↑',
+      productividad: 'Productivitat ↑',
+    },
+  },
+} as const;
+
+interface Props {
+  locale?: Locale;
+}
+
+/**
  * AD-AS interactive simulator — the editorial diferenciador of Eco 1BACH U8.
  *
  * All the economics live in the pure, unit-tested module `lib/calc/ad-as.ts`.
@@ -24,51 +196,51 @@ import { formatNumber } from '@/lib/calc/format';
  * the scene with a one-line explanation each.
  */
 
+type PresetId = 'fiscal' | 'oferta' | 'recesion' | 'boom';
+type AdCauseKey = 'consumo' | 'inversion' | 'gasto' | 'export';
+type SrasCauseKey = 'energia' | 'salarios' | 'productividad';
+
 interface Preset {
-  label: string;
+  id: PresetId;
   state: ADASState;
-  note: string;
 }
 
 const PRESETS: Preset[] = [
   {
-    label: 'Política fiscal expansiva',
+    id: 'fiscal',
     state: { adShift: 25, srasShift: 0, lrasShift: 0 },
-    note: 'El sector público sube el gasto y la inversión: la demanda agregada se desplaza a la derecha. Suben el producto y los precios, y se abre una brecha inflacionaria.',
   },
   {
-    label: 'Shock de oferta (petróleo)',
+    id: 'oferta',
     state: { adShift: 0, srasShift: -25, lrasShift: 0 },
-    note: 'El encarecimiento de la energía dispara los costes: la SRAS se desplaza a la izquierda. Suben los precios y cae el producto: estanflación.',
   },
   {
-    label: 'Recesión de demanda',
+    id: 'recesion',
     state: { adShift: -25, srasShift: 0, lrasShift: 0 },
-    note: 'El pesimismo recorta consumo e inversión: la demanda agregada cae. Bajan precios y producto, y aparece una brecha recesiva con desempleo cíclico.',
   },
   {
-    label: 'Boom inflacionario',
+    id: 'boom',
     state: { adShift: 35, srasShift: 0, lrasShift: 0 },
-    note: 'Crédito barato y euforia disparan la demanda muy por encima del potencial: el producto se sobrecalienta y la inflación se acelera.',
   },
 ];
 
 // Demand-side causes the student can toggle (each nudges adShift).
-const AD_CAUSES: ReadonlyArray<{ key: string; label: string; delta: number }> = [
-  { key: 'consumo', label: 'Consumo de las familias', delta: 10 },
-  { key: 'inversion', label: 'Inversión empresarial', delta: 10 },
-  { key: 'gasto', label: 'Gasto público', delta: 10 },
-  { key: 'export', label: 'Exportaciones netas', delta: 10 },
+const AD_CAUSES: ReadonlyArray<{ key: AdCauseKey; delta: number }> = [
+  { key: 'consumo', delta: 10 },
+  { key: 'inversion', delta: 10 },
+  { key: 'gasto', delta: 10 },
+  { key: 'export', delta: 10 },
 ];
 
 // Supply-side causes (each nudges srasShift; cost rises shift SRAS left).
-const SRAS_CAUSES: ReadonlyArray<{ key: string; label: string; delta: number }> = [
-  { key: 'energia', label: 'Precio de la energía ↑', delta: -10 },
-  { key: 'salarios', label: 'Salarios ↑', delta: -10 },
-  { key: 'productividad', label: 'Productividad ↑', delta: 10 },
+const SRAS_CAUSES: ReadonlyArray<{ key: SrasCauseKey; delta: number }> = [
+  { key: 'energia', delta: -10 },
+  { key: 'salarios', delta: -10 },
+  { key: 'productividad', delta: 10 },
 ];
 
-export default function ADASSimulator() {
+export default function ADASSimulator({ locale = 'es' }: Props) {
+  const c = COPY[locale];
   const [state, setState] = useState<ADASState>({ adShift: 0, srasShift: 0, lrasShift: 0 });
 
   const result = useMemo(() => solveADAS(state), [state]);
@@ -93,41 +265,38 @@ export default function ADASSimulator() {
 
   return (
     <div class="calc">
-      <div class="calc__sub">Escenarios</div>
+      <div class="calc__sub">{c.escenarios}</div>
       <div class="calc__presets">
         {PRESETS.map((p) => (
           <button
             type="button"
             class="calc__btn calc__btn--ghost"
             onClick={() => applyPreset(p)}
-            title={p.note}
+            title={c.presets[p.id].note}
           >
-            {p.label}
+            {c.presets[p.id].label}
           </button>
         ))}
         <button type="button" class="calc__btn calc__btn--ghost" onClick={reset}>
-          Reiniciar
+          {c.reiniciar}
         </button>
       </div>
 
-      <div class="calc__sub">Demanda agregada (AD)</div>
-      <p class="adas__hint">
-        Un desplazamiento positivo empuja la AD a la derecha (más consumo, inversión, gasto
-        público o exportaciones netas).
-      </p>
+      <div class="calc__sub">{c.demandaAgregada}</div>
+      <p class="adas__hint">{c.adHint}</p>
       <div class="adas__causes">
-        {AD_CAUSES.map((c) => (
+        {AD_CAUSES.map((cause) => (
           <button
             type="button"
             class="adas__cause adas__cause--terra"
-            onClick={() => set('adShift', state.adShift + c.delta)}
+            onClick={() => set('adShift', state.adShift + cause.delta)}
           >
-            {c.label} <span class="adas__cause-plus">+</span>
+            {c.adCauses[cause.key]} <span class="adas__cause-plus">+</span>
           </button>
         ))}
       </div>
       <SliderField
-        label="Desplazamiento total de la AD"
+        label={c.adShiftLabel}
         min={-50}
         max={50}
         step={5}
@@ -136,24 +305,21 @@ export default function ADASSimulator() {
         accent="terra"
       />
 
-      <div class="calc__sub">Oferta de corto plazo (SRAS)</div>
-      <p class="adas__hint">
-        Un choque negativo (energía o salarios al alza) desplaza la SRAS a la izquierda; una
-        mejora de productividad la lleva a la derecha.
-      </p>
+      <div class="calc__sub">{c.ofertaCortoPlazo}</div>
+      <p class="adas__hint">{c.srasHint}</p>
       <div class="adas__causes">
-        {SRAS_CAUSES.map((c) => (
+        {SRAS_CAUSES.map((cause) => (
           <button
             type="button"
             class="adas__cause adas__cause--mustard"
-            onClick={() => set('srasShift', state.srasShift + c.delta)}
+            onClick={() => set('srasShift', state.srasShift + cause.delta)}
           >
-            {c.label} <span class="adas__cause-plus">{c.delta > 0 ? '+' : '−'}</span>
+            {c.srasCauses[cause.key]} <span class="adas__cause-plus">{cause.delta > 0 ? '+' : '−'}</span>
           </button>
         ))}
       </div>
       <SliderField
-        label="Desplazamiento total de la SRAS"
+        label={c.srasShiftLabel}
         min={-50}
         max={50}
         step={5}
@@ -162,9 +328,9 @@ export default function ADASSimulator() {
         accent="mustard"
       />
 
-      <div class="calc__sub">Producción potencial (LRAS)</div>
+      <div class="calc__sub">{c.produccionPotencial}</div>
       <SliderField
-        label="Cambio estructural del potencial"
+        label={c.lrasShiftLabel}
         min={-30}
         max={30}
         step={5}
@@ -179,48 +345,48 @@ export default function ADASSimulator() {
           class="calc__btn calc__btn--ghost"
           onClick={toLongRun}
           disabled={atPotential}
-          title="La SRAS se ajusta hasta que el producto vuelve al potencial: la brecha se cierra y todo el ajuste recae en los precios."
+          title={c.ajusteTitle}
         >
-          Ajuste a largo plazo →
+          {c.ajusteBtn}
         </button>
         {atPotential && (
-          <span class="adas__lr-note">La economía ya produce en el potencial.</span>
+          <span class="adas__lr-note">{c.yaEnPotencial}</span>
         )}
       </div>
 
       <div class="calc__results">
-        <ADASChart state={state} result={result} />
+        <ADASChart state={state} result={result} locale={locale} />
 
         <div class="calc__metric calc__metric--primary">
-          <span class="calc__metric-label">Brecha de producción</span>
+          <span class="calc__metric-label">{c.brechaProduccion}</span>
           <span class="calc__metric-value">{fmtGap(result.outputGap)}</span>
-          <span class="calc__metric-detail">{gapHeadline(result.gapKind, result.outputGapPct)}</span>
+          <span class="calc__metric-detail">{gapHeadline(result.gapKind, result.outputGapPct, locale)}</span>
         </div>
 
         <div class="calc__metric-grid calc__metric-grid--three">
           <div class="calc__metric">
-            <span class="calc__metric-label">Nivel de precios P*</span>
+            <span class="calc__metric-label">{c.nivelPrecios}</span>
             <span class="calc__metric-value">{formatNumber(result.shortRun.P, 1)}</span>
-            <span class="calc__metric-detail">{fmtDelta(result.shortRun.P - BASE_P)} sobre el índice base 100</span>
+            <span class="calc__metric-detail">{fmtDelta(result.shortRun.P - BASE_P, locale)}{c.sobreIndiceBase}</span>
           </div>
           <div class="calc__metric">
-            <span class="calc__metric-label">Producción Y*</span>
+            <span class="calc__metric-label">{c.produccionY}</span>
             <span class="calc__metric-value">{formatNumber(result.shortRun.Y, 1)}</span>
-            <span class="calc__metric-detail">{fmtPctOfPotential(result.shortRun.Y, result.potentialY)} del potencial</span>
+            <span class="calc__metric-detail">{fmtPctOfPotential(result.shortRun.Y, result.potentialY)}{c.delPotencial}</span>
           </div>
           <div class="calc__metric">
-            <span class="calc__metric-label">Potencial (LRAS)</span>
+            <span class="calc__metric-label">{c.potencialLras}</span>
             <span class="calc__metric-value">{formatNumber(result.potentialY, 1)}</span>
-            <span class="calc__metric-detail">Pleno empleo de los recursos</span>
+            <span class="calc__metric-detail">{c.plenoEmpleo}</span>
           </div>
         </div>
 
         <div class="adas__interp">
-          <p>{interpret(state, result)}</p>
+          <p>{interpret(state, result, locale)}</p>
         </div>
 
         <details class="calc__details">
-          <summary>Cómo se calculan los equilibrios</summary>
+          <summary>{c.comoSeCalculan}</summary>
           <div class="calc__formula">
             <p>
               <strong>AD:</strong> P = {BASE_P} + ({BASE_Y} + {fmtSigned(state.adShift)}) − Y
@@ -228,14 +394,13 @@ export default function ADASSimulator() {
               <strong>SRAS:</strong> P = {BASE_P} + (Y − {BASE_Y} − {fmtSigned(state.srasShift)})
             </p>
             <p>
-              <strong>Equilibrio de corto plazo</strong> (AD = SRAS): Y* ={' '}
+              <strong>{c.equilibrioCortoPlazo}</strong> (AD = SRAS): Y* ={' '}
               <strong>{formatNumber(result.shortRun.Y, 1)}</strong>, P* ={' '}
               <strong>{formatNumber(result.shortRun.P, 1)}</strong>.
             </p>
             <p>
-              <strong>Largo plazo</strong> (AD = LRAS): el producto vuelve al potencial Y** ={' '}
-              <strong>{formatNumber(result.potentialY, 1)}</strong> y todo el ajuste recae en el
-              nivel de precios.
+              <strong>{c.largoPlazo}</strong> (AD = LRAS): {c.largoPlazoDesc1} Y** ={' '}
+              <strong>{formatNumber(result.potentialY, 1)}</strong> {c.largoPlazoDesc2}
             </p>
           </div>
         </details>
@@ -420,10 +585,13 @@ function SliderField({
 function ADASChart({
   state,
   result,
+  locale,
 }: {
   state: ADASState;
   result: ReturnType<typeof solveADAS>;
+  locale: Locale;
 }) {
+  const c = COPY[locale];
   const W = 600;
   const H = 400;
   const ML = 60;
@@ -465,7 +633,7 @@ function ADASChart({
       class="adas__chart"
       xmlns="http://www.w3.org/2000/svg"
       role="img"
-      aria-label="Modelo AD-AS con brecha de producción"
+      aria-label={c.chartAria}
     >
       {/* Output-gap shading between actual output and potential */}
       {gapVisible && (
@@ -500,7 +668,7 @@ function ADASChart({
         fill="var(--color-ink-soft)"
         font-style="italic"
       >
-        Y (PIB real)
+        {c.yAxis}
       </text>
       <text
         x={ML - 14}
@@ -641,8 +809,8 @@ function inDomain(
 /* =========================================================
    Interpretation helpers (presentation only).
    ========================================================= */
-function fmtDelta(d: number): string {
-  if (Math.abs(d) < 0.05) return 'Sin variación';
+function fmtDelta(d: number, locale: Locale): string {
+  if (Math.abs(d) < 0.05) return COPY[locale].sinVariacion;
   const sign = d > 0 ? '+' : '−';
   return `${sign}${formatNumber(Math.abs(d), 1)}`;
 }
@@ -662,32 +830,33 @@ function fmtPctOfPotential(Y: number, potential: number): string {
   return formatNumber((Y / potential) * 100, 0) + ' %';
 }
 
-function gapHeadline(kind: GapKind, pct: number): string {
+function gapHeadline(kind: GapKind, pct: number, locale: Locale): string {
+  const c = COPY[locale];
   const mag = formatNumber(Math.abs(pct), 1);
-  if (kind === 'neutra') return 'Pleno empleo: la economía produce justo en el potencial.';
-  if (kind === 'inflacionaria')
-    return `Brecha inflacionaria (+${mag} % sobre el potencial): la economía se sobrecalienta y presiona los precios al alza.`;
-  return `Brecha recesiva (−${mag} % bajo el potencial): hay recursos ociosos y desempleo cíclico.`;
+  if (kind === 'neutra') return c.gapNeutra;
+  if (kind === 'inflacionaria') return c.gapInflacionaria(mag);
+  return c.gapRecesiva(mag);
 }
 
-function interpret(state: ADASState, result: ReturnType<typeof solveADAS>): string {
+function interpret(state: ADASState, result: ReturnType<typeof solveADAS>, locale: Locale): string {
+  const c = COPY[locale];
   const { adShift, srasShift } = state;
   const noShock = adShift === 0 && srasShift === 0 && state.lrasShift === 0;
   if (noShock) {
-    return 'La economía parte del equilibrio: produce en el potencial con precios estables. Aplica un escenario o desplaza las curvas para ver qué ocurre.';
+    return c.interpretInicial;
   }
   // Headline the dominant story.
   if (srasShift < 0 && result.shortRun.P > BASE_P && result.shortRun.Y < BASE_Y) {
-    return 'Estanflación: el choque negativo de oferta sube los precios y, a la vez, hunde la producción. La política de demanda no puede arreglar las dos cosas a la vez.';
+    return c.interpretEstanflacion;
   }
   if (adShift > 0 && result.gapKind === 'inflacionaria') {
-    return 'La expansión de la demanda empuja producto y precios al alza por encima del potencial. A largo plazo, los costes se ajustan y la economía vuelve al potencial con precios más altos: pulsa "Ajuste a largo plazo".';
+    return c.interpretExpansion;
   }
   if (adShift < 0 && result.gapKind === 'recesiva') {
-    return 'La caída de la demanda deja la economía por debajo del potencial: desempleo cíclico. A largo plazo, costes y salarios ceden y la SRAS recupera el potencial con precios más bajos.';
+    return c.interpretRecesion;
   }
   if (srasShift > 0) {
-    return 'La mejora de oferta abarata producir: el producto sube y los precios bajan. Es el escenario más favorable, propio de avances de productividad.';
+    return c.interpretMejoraOferta;
   }
-  return 'Las curvas se han desplazado: observa cómo cambian el equilibrio de corto plazo (E*) y la brecha respecto al potencial (LRAS).';
+  return c.interpretDefault;
 }

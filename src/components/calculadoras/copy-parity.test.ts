@@ -14,6 +14,13 @@ import { COPY as NominaESO } from './CalculadoraNominaESO';
 import { COPY as BusinessModelCanvas } from './BusinessModelCanvas';
 import { COPY as BuscadorItinerarios } from './BuscadorItinerarios';
 import { COPY as Elasticidad } from './ElasticidadCalc';
+import { COPY as Equilibrio } from './EquilibrioCalc';
+import { COPY as Multiplicador } from './MultiplicadorGasto';
+import { COPY as InteresCompuesto } from './InteresCompuestoCalc';
+import { COPY as CocheVsAlternativa } from './CocheVsAlternativa';
+import { COPY as PresupuestoUni } from './PresupuestoUni';
+import { COPY as GeneradorCVEuropass } from './GeneradorCVEuropass';
+import { COPY as ADASSimulator } from './ADASSimulator';
 
 /**
  * Every localized island exports a `COPY = { es, ca }`. This guard fails when a
@@ -38,6 +45,13 @@ const ISLANDS: [string, { es: Record<string, unknown>; ca: Record<string, unknow
   ['BusinessModelCanvas', BusinessModelCanvas],
   ['BuscadorItinerarios', BuscadorItinerarios],
   ['ElasticidadCalc', Elasticidad],
+  ['EquilibrioCalc', Equilibrio],
+  ['MultiplicadorGasto', Multiplicador],
+  ['InteresCompuestoCalc', InteresCompuesto],
+  ['CocheVsAlternativa', CocheVsAlternativa],
+  ['PresupuestoUni', PresupuestoUni],
+  ['GeneradorCVEuropass', GeneradorCVEuropass],
+  ['ADASSimulator', ADASSimulator],
 ];
 
 const isRecord = (v: unknown): v is Record<string, unknown> =>

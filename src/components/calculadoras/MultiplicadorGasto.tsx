@@ -1,5 +1,6 @@
 /** @jsxImportSource preact */
 import { useMemo, useState } from 'preact/hooks';
+import { type Locale } from '@/i18n/locale';
 import {
   multiplier,
   solveMultiplier,
@@ -23,7 +24,78 @@ import { formatNumber } from '@/lib/calc/format';
 
 const ROUNDS_SHOWN = 8;
 
-export default function MultiplicadorGasto() {
+/**
+ * UI strings, Valencian (AVL) alongside the ES source. Economic notation
+ * (PMC, PMS, k, t, ΔGasto, ΔY, €, %, mill.) is not translated. Mirrors the
+ * sibling calculators.
+ */
+export const COPY = {
+  es: {
+    pmc: 'Propensión marginal al consumo (PMC)',
+    pmsAhorro: '(lo que las familias ahorran de cada euro)',
+    inyeccionGasto: 'Inyección de gasto autónomo (ΔGasto)',
+    millEuros: 'mill. €',
+    ejemploGasto: 'Por ejemplo, un aumento del gasto público, la inversión o las exportaciones.',
+    incluirTipo: 'Incluir un tipo impositivo proporcional (t)',
+    tipoImpositivo: 'Tipo impositivo (t)',
+    impuestosDrenan:
+      'Los impuestos drenan parte de cada ronda de renta antes de consumirse, así que el multiplicador se reduce.',
+    noConverge:
+      'Con PMC = 1 (las familias gastan todo lo que ganan) la serie no converge: el multiplicador tiende a infinito. Baja la PMC por debajo de 1 para ver un resultado finito.',
+    multiplicadorGasto: 'Multiplicador del gasto (k)',
+    cadaEuro: (k: string) => `Cada euro de gasto autónomo genera ${k} € de renta.`,
+    variacionRentaEquilibrio: 'Variación de la renta de equilibrio (ΔY)',
+    inyeccionInicial: 'Inyección inicial (ΔGasto)',
+    efectoNeto: 'Efecto neto (ΔY − ΔGasto)',
+    comoSeCalcula: 'Cómo se calcula',
+    multiplicadorWord: 'Multiplicador',
+    variacionRenta: 'Variación de la renta',
+    rondasExplica: (pct: string) =>
+      `La inyección inicial pone en marcha rondas sucesivas de consumo inducido: cada ronda reinyecta el ${pct} % de la renta de la anterior. La suma de todas las rondas converge a ΔY.`,
+    sinImpuestos: (noTax: string, k: string) =>
+      `Sin impuestos el multiplicador sería ${noTax}; el tipo impositivo lo reduce a ${k}.`,
+    chartAria: 'Cascada de rondas de gasto que converge a la variación total de la renta',
+    rondasGasto: 'Rondas de gasto',
+    gastoInducido: 'Gasto inducido por ronda',
+    chartCaption:
+      'La inyección inicial (ronda 1) genera rondas decrecientes de consumo inducido. Su suma converge a la variación total de la renta ΔY (línea discontinua).',
+  },
+  ca: {
+    pmc: 'Propensió marginal al consum (PMC)',
+    pmsAhorro: '(el que les famílies estalvien de cada euro)',
+    inyeccionGasto: 'Injecció de despesa autònoma (ΔGasto)',
+    millEuros: 'mil. €',
+    ejemploGasto: 'Per exemple, un augment de la despesa pública, la inversió o les exportacions.',
+    incluirTipo: 'Incloure un tipus impositiu proporcional (t)',
+    tipoImpositivo: 'Tipus impositiu (t)',
+    impuestosDrenan:
+      'Els impostos drenen part de cada ronda de renda abans de consumir-se, així que el multiplicador es reduïx.',
+    noConverge:
+      "Amb PMC = 1 (les famílies gasten tot el que guanyen) la sèrie no convergix: el multiplicador tendix a infinit. Baixa la PMC per davall d'1 per a vore un resultat finit.",
+    multiplicadorGasto: 'Multiplicador de la despesa (k)',
+    cadaEuro: (k: string) => `Cada euro de despesa autònoma genera ${k} € de renda.`,
+    variacionRentaEquilibrio: "Variació de la renda d'equilibri (ΔY)",
+    inyeccionInicial: 'Injecció inicial (ΔGasto)',
+    efectoNeto: 'Efecte net (ΔY − ΔGasto)',
+    comoSeCalcula: 'Com es calcula',
+    multiplicadorWord: 'Multiplicador',
+    variacionRenta: 'Variació de la renda',
+    rondasExplica: (pct: string) =>
+      `La injecció inicial posa en marxa rondes successives de consum induït: cada ronda reinjecta el ${pct} % de la renda de l'anterior. La suma de totes les rondes convergix a ΔY.`,
+    sinImpuestos: (noTax: string, k: string) =>
+      `Sense impostos el multiplicador seria ${noTax}; el tipus impositiu el reduïx a ${k}.`,
+    chartAria: 'Cascada de rondes de despesa que convergix a la variació total de la renda',
+    rondasGasto: 'Rondes de despesa',
+    gastoInducido: 'Despesa induïda per ronda',
+    chartCaption:
+      "La injecció inicial (ronda 1) genera rondes decreixents de consum induït. La seua suma convergix a la variació total de la renda ΔY (línia discontínua).",
+  },
+} as const;
+
+interface Props { locale?: Locale }
+
+export default function MultiplicadorGasto({ locale = 'es' }: Props) {
+  const c = COPY[locale];
   const [pmc, setPmc] = useState<number>(0.8);
   const [deltaGasto, setDeltaGasto] = useState<number>(100);
   const [useTax, setUseTax] = useState<boolean>(false);
@@ -48,7 +120,7 @@ export default function MultiplicadorGasto() {
       <div class="calc__form">
         <label class="calc__field mg__slider-field">
           <div class="mg__slider-head">
-            <span class="calc__label">Propensión marginal al consumo (PMC)</span>
+            <span class="calc__label">{c.pmc}</span>
             <span class="mg__slider-value">{formatNumber(pmc, 2)}</span>
           </div>
           <input
@@ -61,12 +133,12 @@ export default function MultiplicadorGasto() {
             onInput={(e) => setPmc(parseFloat((e.target as HTMLInputElement).value))}
           />
           <span class="calc__metric-detail">
-            PMS = 1 − PMC = {formatNumber(result.pms, 2)} (lo que las familias ahorran de cada euro)
+            PMS = 1 − PMC = {formatNumber(result.pms, 2)} {c.pmsAhorro}
           </span>
         </label>
 
         <label class="calc__field">
-          <span class="calc__label">Inyección de gasto autónomo (ΔGasto)</span>
+          <span class="calc__label">{c.inyeccionGasto}</span>
           <div class="calc__input-wrap">
             <input
               type="number"
@@ -74,10 +146,10 @@ export default function MultiplicadorGasto() {
               value={deltaGasto}
               onInput={(e) => setDeltaGasto(parseFloat((e.target as HTMLInputElement).value) || 0)}
             />
-            <span class="calc__unit">mill. €</span>
+            <span class="calc__unit">{c.millEuros}</span>
           </div>
           <span class="calc__metric-detail">
-            Por ejemplo, un aumento del gasto público, la inversión o las exportaciones.
+            {c.ejemploGasto}
           </span>
         </label>
 
@@ -87,13 +159,13 @@ export default function MultiplicadorGasto() {
             checked={useTax}
             onChange={(e) => setUseTax((e.target as HTMLInputElement).checked)}
           />
-          <span>Incluir un tipo impositivo proporcional (t)</span>
+          <span>{c.incluirTipo}</span>
         </label>
 
         {useTax && (
           <label class="calc__field mg__slider-field">
             <div class="mg__slider-head">
-              <span class="calc__label">Tipo impositivo (t)</span>
+              <span class="calc__label">{c.tipoImpositivo}</span>
               <span class="mg__slider-value">{formatNumber(t * 100, 0)} %</span>
             </div>
             <input
@@ -106,8 +178,7 @@ export default function MultiplicadorGasto() {
               onInput={(e) => setT(parseFloat((e.target as HTMLInputElement).value))}
             />
             <span class="calc__metric-detail">
-              Los impuestos drenan parte de cada ronda de renta antes de consumirse, así que el
-              multiplicador se reduce.
+              {c.impuestosDrenan}
             </span>
           </label>
         )}
@@ -116,34 +187,33 @@ export default function MultiplicadorGasto() {
       <div class="calc__results">
         {!result.converges ? (
           <div class="calc__warning">
-            Con PMC = 1 (las familias gastan todo lo que ganan) la serie no converge: el multiplicador
-            tiende a infinito. Baja la PMC por debajo de 1 para ver un resultado finito.
+            {c.noConverge}
           </div>
         ) : (
           <>
             <div class="calc__metric calc__metric--primary">
-              <span class="calc__metric-label">Multiplicador del gasto (k)</span>
+              <span class="calc__metric-label">{c.multiplicadorGasto}</span>
               <span class="calc__metric-value">{formatNumber(result.k, 2)}</span>
               <span class="calc__metric-detail">
-                Cada euro de gasto autónomo genera {formatNumber(result.k, 2)} € de renta.
+                {c.cadaEuro(formatNumber(result.k, 2))}
               </span>
             </div>
 
             <div class="calc__metric-grid">
               <div class="calc__metric-mini">
-                <span class="calc__metric-mini-label">Variación de la renta de equilibrio (ΔY)</span>
+                <span class="calc__metric-mini-label">{c.variacionRentaEquilibrio}</span>
                 <span class="calc__metric-mini-value">
-                  {fmtSigned(result.deltaIncome)} mill. €
+                  {fmtSigned(result.deltaIncome)} {c.millEuros}
                 </span>
               </div>
               <div class="calc__metric-mini">
-                <span class="calc__metric-mini-label">Inyección inicial (ΔGasto)</span>
-                <span class="calc__metric-mini-value">{fmtSigned(result.deltaSpending)} mill. €</span>
+                <span class="calc__metric-mini-label">{c.inyeccionInicial}</span>
+                <span class="calc__metric-mini-value">{fmtSigned(result.deltaSpending)} {c.millEuros}</span>
               </div>
               <div class="calc__metric-mini">
-                <span class="calc__metric-mini-label">Efecto neto (ΔY − ΔGasto)</span>
+                <span class="calc__metric-mini-label">{c.efectoNeto}</span>
                 <span class="calc__metric-mini-value">
-                  {fmtSigned(result.deltaIncome - result.deltaSpending)} mill. €
+                  {fmtSigned(result.deltaIncome - result.deltaSpending)} {c.millEuros}
                 </span>
               </div>
             </div>
@@ -152,13 +222,14 @@ export default function MultiplicadorGasto() {
               rounds={rounds}
               total={result.deltaIncome}
               deltaSpending={deltaGasto}
+              locale={locale}
             />
 
             <details class="calc__details">
-              <summary>Cómo se calcula</summary>
+              <summary>{c.comoSeCalcula}</summary>
               <div class="calc__formula">
                 <p>
-                  <strong>Multiplicador</strong> ={' '}
+                  <strong>{c.multiplicadorWord}</strong> ={' '}
                   {useTax ? (
                     <>
                       1 / (1 − PMC·(1 − t)) = 1 / (1 − {formatNumber(pmc, 2)}·(1 −{' '}
@@ -172,19 +243,16 @@ export default function MultiplicadorGasto() {
                   )}
                 </p>
                 <p>
-                  <strong>Variación de la renta</strong> = k · ΔGasto = {formatNumber(result.k, 2)} ·{' '}
+                  <strong>{c.variacionRenta}</strong> = k · ΔGasto = {formatNumber(result.k, 2)} ·{' '}
                   {formatNumber(deltaGasto, 0)} ={' '}
-                  <strong>{formatNumber(result.deltaIncome, 1)} mill. €</strong>
+                  <strong>{formatNumber(result.deltaIncome, 1)} {c.millEuros}</strong>
                 </p>
                 <p>
-                  La inyección inicial pone en marcha rondas sucesivas de consumo inducido: cada ronda
-                  reinyecta el {formatNumber(spendRatio * 100, 0)} % de la renta de la anterior. La suma
-                  de todas las rondas converge a ΔY.
+                  {c.rondasExplica(formatNumber(spendRatio * 100, 0))}
                 </p>
                 {useTax && (
                   <p>
-                    Sin impuestos el multiplicador sería {formatNumber(noTaxK, 2)}; el tipo impositivo lo
-                    reduce a {formatNumber(result.k, 2)}.
+                    {c.sinImpuestos(formatNumber(noTaxK, 2), formatNumber(result.k, 2))}
                   </p>
                 )}
               </div>
@@ -280,11 +348,14 @@ function RoundsChart({
   rounds,
   total,
   deltaSpending,
+  locale,
 }: {
   rounds: ReturnType<typeof spendingRounds>;
   total: number;
   deltaSpending: number;
+  locale: Locale;
 }) {
+  const c = COPY[locale];
   if (rounds.length === 0) return null;
 
   const W = 600;
@@ -315,7 +386,7 @@ function RoundsChart({
         class="mg__chart"
         xmlns="http://www.w3.org/2000/svg"
         role="img"
-        aria-label="Cascada de rondas de gasto que converge a la variación total de la renta"
+        aria-label={c.chartAria}
       >
         {/* Baseline */}
         <line x1={ML} y1={baseY} x2={ML + innerW} y2={baseY} stroke="var(--color-ink)" stroke-width="1.5" />
@@ -383,7 +454,7 @@ function RoundsChart({
           font-style="italic"
           fill="var(--color-ink-soft)"
         >
-          Rondas de gasto
+          {c.rondasGasto}
         </text>
         <text
           x={ML - 8}
@@ -394,12 +465,11 @@ function RoundsChart({
           font-style="italic"
           fill="var(--color-ink-soft)"
         >
-          Gasto inducido por ronda
+          {c.gastoInducido}
         </text>
       </svg>
       <p class="mg__chart-caption">
-        La inyección inicial (ronda 1) genera rondas decrecientes de consumo inducido. Su suma converge
-        a la variación total de la renta ΔY (línea discontinua).
+        {c.chartCaption}
       </p>
     </>
   );
