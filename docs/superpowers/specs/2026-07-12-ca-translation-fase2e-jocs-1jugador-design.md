@@ -22,6 +22,8 @@ Els **2 jocs multijugador** (cajut 16 illes + insider 12 illes = 28) es tradueix
 | **econrisk** (7) | `EconriskGame` | SetupScreen, PassDeviceScreen, MapView, PhaseBar, SidePanel, EndScreen |
 | **seguros** (6) | `SegurosGame` | SetupScreen, CoverageScreen, EventScreen, DebriefScreen, Scoreboard |
 
+A més de les 27 illes (chrome), **4 overlays de contingut** (un per joc) a `src/i18n/games/`: `stonks-ca.ts`, `seguros-ca.ts`, `econopoly-ca.ts`, `econrisk-ca.ts` — traducció dels camps de text dels fitxers de dades de `src/lib/games/**` (veure §Contingut de joc).
+
 ### Fora d'abast
 
 - **Jocs multijugador** cajut i insider → PR-2 (batch 2).
@@ -43,7 +45,7 @@ Nou mòdul `src/components/games/locale-context.ts`:
 ```ts
 import { createContext } from 'preact';
 import { useContext } from 'preact/hooks';
-import { type Locale, DEFAULT_LOCALE } from '@i18n/locale';
+import { type Locale, DEFAULT_LOCALE } from '@/i18n/locale';
 
 export const GameLocaleContext = createContext<Locale>(DEFAULT_LOCALE);
 export const useGameLocale = (): Locale => useContext(GameLocaleContext);
@@ -67,13 +69,44 @@ i dins del component `const c = COPY[useGameLocale()]`, substituint els literals
 
 Els components purament visuals (p.ex. `MapView`, `BoardView`, `EvolucionChart` si no tenen text llegible) no exporten `COPY`. Si només tenen etiquetes d'eixos o poques cadenes, sí que en porten (minimal).
 
+### Contingut de joc (fitxers de dades) — overlay CA per id (patró de Fase 2A)
+
+**Discovery (2026-07-12):** el contingut de joc NO viu als `.tsx` sinó en fitxers de dades sota `src/lib/games/**`: `stonks/data.ts` (actius + blurbs + esdeveniments de vida), `seguros/data.ts` (assegurances + cartes d'esdeveniment + noms d'equip), `econopoly/board.ts` + `events.ts` (caselles + cartes de notícies), `econrisk/factions.ts` + `events.ts` + `map.ts` (faccions + esdeveniments + territoris). Cada ítem té un `id`/`key` estable; el **motor només llig els camps numèrics/estructurals** (`risk`, `prima`, `dano`, `peso`, `returns`, posicions), i els camps de text (`label`, `blurb`, `school`, `power`, `text`…) són **només display**.
+
+Mecanisme (idèntic als overlays de Fase 2A `juegos-ca`/`herramientas-ca`, keyed per id):
+
+- Nou fitxer per joc a `src/i18n/games/<joc>-ca.ts` amb un mapa CA per id per cada col·lecció de contingut, més un **resolver** que fusiona ES+CA:
+
+```ts
+// src/i18n/games/stonks-ca.ts
+import type { Locale } from '@/i18n/locale';
+import type { AssetId, AssetMeta } from '@/lib/games/stonks/types';
+import { ASSETS } from '@/lib/games/stonks/data';
+
+const ASSETS_CA: Record<AssetId, { label: string; blurb: string }> = {
+  ahorro: { label: 'Estalvi', blurb: '…' },
+  // … una entrada per cada id d'ASSETS
+};
+
+export function localizeAssets(locale: Locale): AssetMeta[] {
+  return locale === 'ca'
+    ? ASSETS.map((a) => ({ ...a, ...ASSETS_CA[a.id] }))
+    : ASSETS;
+}
+```
+
+- El component, en lloc d'`import { ASSETS }`, crida `localizeAssets(useGameLocale())`. El fitxer `data.ts` i el motor NO es toquen (mantenen ES cru; el motor ignora els camps de text).
+- **Regla dura:** els components rendereixen contingut resolent `id → text localitzat`. Si el motor guardés text display a l'estat (denormalitzat), es refactoritza perquè guarde l'`id` i el component resolga; MAI es guarda text traduïble a l'estat/`localStorage`.
+
+**Completesa:** un test per overlay exigix que **tot** `id` de la col·lecció ES tinga entrada al mapa CA (cap buit silenciós), com els overlays de Fase 2A.
+
 ### Detecció del locale a la pàgina
 
 Cada `src/pages/juegos/<joc>/index.astro`:
 
 ```astro
 ---
-import type { Locale } from '@i18n/locale';
+import type { Locale } from '@/i18n/locale';
 const locale = Astro.currentLocale as Locale;   // GOTCHA vinculant: de currentLocale, MAI de la URL
 ---
 <GameRoot client:load locale={locale} />
@@ -81,14 +114,12 @@ const locale = Astro.currentLocale as Locale;   // GOTCHA vinculant: de currentL
 
 Sense JS o sota `/` (arrel), el default `'es'` mana → castellà. SEO intacte (servidor emet ES net).
 
-## Guarda de paritat
+## Guardes (dues)
 
-`src/components/games/copy-parity.test.ts`, mirall exacte de `src/components/generadores/copy-parity.test.ts`: **llista explícita d'imports** de `COPY` de cada illa traduïda de batch-1, amb dos tests per illa:
+1. **Paritat de chrome** — `src/components/games/copy-parity.test.ts`, mirall exacte de `src/components/generadores/copy-parity.test.ts`: **llista explícita d'imports** de `COPY` de cada illa traduïda, amb dos tests per illa: (a) `es`/`ca` tenen conjunts de claus idèntics (recursiu, `keyPaths`); (b) cap valor `ca` és buit.
+2. **Completesa de contingut** — `src/i18n/games/content-parity.test.ts`: per cada overlay, tot `id` de la col·lecció ES té entrada al mapa CA i cap valor CA és buit.
 
-1. `es` i `ca` tenen conjunts de claus idèntics (recursiu, `keyPaths`).
-2. Cap valor `ca` és buit.
-
-A PR-2 s'amplia la llista amb les illes de cajut/insider (o es crea un segon fitxer). El test és un import estàtic, no un escaneig de disc.
+A PR-2 s'amplien les llistes amb cajut/insider. Tots dos són imports estàtics, no escanejos de disc.
 
 ## Regles de traducció (valencià AVL)
 
@@ -98,25 +129,27 @@ A PR-2 s'amplia la llista amb les illes de cajut/insider (o es crea un segon fit
 - Notació econòmica, xifres, símbols de moneda: intactes.
 - Contingut curt de joc (notícies stonks, cartes d'esdeveniment, noms de casella/territori, esdeveniments de seguros): **sí que es tradueix** — és UI inline curta, no prosa llarga com els cossos MDX.
 
-## Execució (operativa provada 3 cops)
+## Execució (operativa provada 3 cops) — pilot stonks, després fan-out
 
-1. Jo (main) cablege primer: mòdul `locale-context.ts` + provider a cada root + `locale` a cada `index.astro` + esquelet del test de paritat. Això evita curses entre subagents.
-2. **1 subagent per fitxer `.tsx`** amb text. Prompt: apunta a un germà JA fet com a referència + regles dures (strings only, no tocar maths/ids/storage keys/notació). L'agent afig `export const COPY = {es,ca}`, `const c = COPY[useGameLocale()]`, substituix literals.
+**Pilot end-to-end amb stonks primer** (chrome + overlay de contingut + resolver + les dues guardes + cablejat de pàgina) per validar la combinació de patrons abans de fanejar als altres 3 jocs. Ordre dins del mateix PR-1: stonks → (revisió) → econopoly + econrisk + seguros en paral·lel.
+
+1. Jo (main) cablege primer: mòdul `locale-context.ts` + provider (patró wrapper prim `XGame`→`XGameInner`) a cada root + `locale` a cada `index.astro` + esquelets dels dos tests de guarda. Això evita curses entre subagents.
+2. **1 subagent per fitxer** (chrome `.tsx` amb text; overlay de contingut `<joc>-ca.ts`). Prompt: apunta a un germà JA fet com a referència + regles dures (strings only, no tocar maths/ids/storage keys/notació). Chrome: afig `export const COPY = {es,ca}` + `const c = COPY[useGameLocale()]`. Overlay: mapa CA per id + resolver.
 3. **Verificar l'estat REAL del fitxer, no l'informe de l'agent** (els subagents completen l'edició encara que caiguen escrivint l'informe per límit de sessió): `grep -c "export const COPY"`, `npm run check`, grep de castellà sobrant.
 4. Commit per lots (per família). **No `git checkout -- <file>`** sobre feina d'agent sense commitejar.
-5. Afegir cada illa traduïda a `copy-parity.test.ts` a mesura que es confirma.
+5. Afegir cada illa/overlay traduït a la guarda corresponent a mesura que es confirma.
 
 ## Verificació (abans de merge)
 
 - `npm run check` — typecheck estricte (vitest NO fa typecheck).
-- `npm run test` — inclou la nova guarda de paritat.
-- Grep de castellà sobrant a les 4 carpetes.
-- Carregar `/ca/juegos/stonks/` (i un altre) i comprovar VAL; carregar `/juegos/stonks/` i comprovar que segueix ES.
+- `npm run test` — inclou les dues guardes (paritat de chrome + completesa de contingut).
+- Grep de castellà sobrant a les 4 carpetes de components i als 4 overlays.
+- Carregar `/ca/juegos/stonks/` (i un altre) i comprovar VAL (chrome **i** contingut: actius, notícies, esdeveniments…); carregar `/juegos/stonks/` i comprovar que segueix ES.
 - Build de Vercel verd al PR abans de merge.
 
 ## Criteris d'èxit
 
-- Les 27 illes rendereixen en valencià sota `/ca/juegos/<joc>/` i en castellà sota `/juegos/<joc>/`.
-- `npm run check` i `npm run test` verds; guarda de paritat cobrix totes les illes traduïdes.
-- Cap canvi de comportament del joc (lògica/estat/matemàtiques idèntics).
+- Les 27 illes (chrome) **i** el contingut de joc rendereixen en valencià sota `/ca/juegos/<joc>/` i en castellà sota `/juegos/<joc>/`.
+- `npm run check` i `npm run test` verds; les dues guardes cobrixen tot el traduït (chrome + tots els ids de contingut).
+- Cap canvi de comportament del joc (lògica/estat/matemàtiques idèntics; `data.ts` i motor intactes).
 - Cap regressió SEO (canonical/hreflang intactes; servidor emet ES).
