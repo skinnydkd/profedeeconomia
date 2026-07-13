@@ -1,18 +1,26 @@
 ---
+import type { Locale } from '@/i18n/locale';
 /** Metadata badge row for a debate (format, duration, grouping, level). */
-interface Props { formato: string; duracion: string; agrupacion: string; nivel: string[]; }
-const { formato, duracion, agrupacion, nivel } = Astro.props;
-const FORMATO_LABEL: Record<string, string> = {
-  'parlamentario': 'Parlamentario', 'mesa-redonda': 'Mesa redonda',
-  'juicio-simulado': 'Juicio simulado', 'dilema-etico': 'Dilema ético', 'fishbowl': 'Fishbowl',
-};
-const NIVEL_LABEL: Record<string, string> = { eso: 'ESO', bach: 'Bachillerato', fp: 'FP' };
+interface Props { formato: string; duracion: string; agrupacion: string; nivel: string[]; locale?: Locale; }
+const { formato, duracion, agrupacion, nivel, locale = 'es' } = Astro.props;
+const copy = {
+  es: {
+    dt: { formato: 'Formato', duracion: 'Duración', agrupacion: 'Agrupación', nivel: 'Nivel' },
+    formatoLabel: { 'parlamentario': 'Parlamentario', 'mesa-redonda': 'Mesa redonda', 'juicio-simulado': 'Juicio simulado', 'dilema-etico': 'Dilema ético', 'fishbowl': 'Fishbowl' } as Record<string, string>,
+    nivelLabel: { eso: 'ESO', bach: 'Bachillerato', fp: 'FP' } as Record<string, string>,
+  },
+  ca: {
+    dt: { formato: 'Format', duracion: 'Durada', agrupacion: 'Agrupació', nivel: 'Nivell' },
+    formatoLabel: { 'parlamentario': 'Parlamentari', 'mesa-redonda': 'Taula redona', 'juicio-simulado': 'Juí simulat', 'dilema-etico': 'Dilema ètic', 'fishbowl': 'Fishbowl' } as Record<string, string>,
+    nivelLabel: { eso: 'ESO', bach: 'Batxillerat', fp: 'FP' } as Record<string, string>,
+  },
+}[locale];
 ---
 <dl class="meta">
-  <div><dt>Formato</dt><dd>{FORMATO_LABEL[formato] ?? formato}</dd></div>
-  <div><dt>Duración</dt><dd>{duracion}</dd></div>
-  <div><dt>Agrupación</dt><dd>{agrupacion}</dd></div>
-  <div><dt>Nivel</dt><dd>{nivel.map((n) => NIVEL_LABEL[n] ?? n).join(' · ')}</dd></div>
+  <div><dt>{copy.dt.formato}</dt><dd>{copy.formatoLabel[formato] ?? formato}</dd></div>
+  <div><dt>{copy.dt.duracion}</dt><dd>{duracion}</dd></div>
+  <div><dt>{copy.dt.agrupacion}</dt><dd>{agrupacion}</dd></div>
+  <div><dt>{copy.dt.nivel}</dt><dd>{nivel.map((n) => copy.nivelLabel[n] ?? n).join(' · ')}</dd></div>
 </dl>
 <style>
   .meta { display: flex; flex-wrap: wrap; gap: 1.4rem; margin: 1.4rem 0 2rem; padding: 1rem 1.2rem; background: var(--color-bg-cream); border-radius: 8px; }
