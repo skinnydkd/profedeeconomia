@@ -28,6 +28,35 @@ import { COPY as SegurosCoverage } from './seguros/CoverageScreen';
 import { COPY as SegurosEvent } from './seguros/EventScreen';
 import { COPY as SegurosDebrief } from './seguros/DebriefScreen';
 import { COPY as SegurosScore } from './seguros/Scoreboard';
+// cajut (multiplayer)
+import { COPY as CajPlayer } from './cajut/PlayerApp';
+import { COPY as CajHostFinal } from './cajut/screens/HostFinal';
+import { COPY as CajHostLanding } from './cajut/screens/HostLanding';
+import { COPY as CajHostLeaderboard } from './cajut/screens/HostLeaderboardMini';
+import { COPY as CajHostLobby } from './cajut/screens/HostLobby';
+import { COPY as CajHostQuestion } from './cajut/screens/HostQuestion';
+import { COPY as CajHostReveal } from './cajut/screens/HostReveal';
+import { COPY as CajPlayerAnswer } from './cajut/screens/PlayerAnswer';
+import { COPY as CajPlayerFinal } from './cajut/screens/PlayerFinal';
+import { COPY as CajPlayerJoin } from './cajut/screens/PlayerJoin';
+import { COPY as CajPlayerLeaderboard } from './cajut/screens/PlayerLeaderboardMini';
+import { COPY as CajPlayerName } from './cajut/screens/PlayerName';
+import { COPY as CajPlayerReveal } from './cajut/screens/PlayerRevealLocal';
+import { COPY as CajPlayerWaitOthers } from './cajut/screens/PlayerWaitOthers';
+import { COPY as CajPlayerWaiting } from './cajut/screens/PlayerWaiting';
+// insider (multiplayer)
+import { COPY as InsPlayer } from './insider/PlayerApp';
+import { COPY as InsHost } from './insider/HostApp';
+import { COPY as InsHostFinal } from './insider/screens/HostFinal';
+import { COPY as InsHostGame } from './insider/screens/HostGame';
+import { COPY as InsHostLobby } from './insider/screens/HostLobby';
+import { COPY as InsPlayerFinal } from './insider/screens/PlayerFinal';
+import { COPY as InsPlayerGuess } from './insider/screens/PlayerGuess';
+import { COPY as InsPlayerJoin } from './insider/screens/PlayerJoin';
+import { COPY as InsPlayerLobby } from './insider/screens/PlayerLobby';
+import { COPY as InsPlayerReveal } from './insider/screens/PlayerReveal';
+import { COPY as InsPlayerVote } from './insider/screens/PlayerVote';
+import { COPY as InsPlayerWord } from './insider/screens/PlayerWordOrSilence';
 
 /**
  * Every localized game-chrome island exports a `COPY = { es, ca }`. This guard
@@ -62,6 +91,33 @@ const ISLANDS: [string, { es: Record<string, unknown>; ca: Record<string, unknow
   ['seguros/EventScreen', SegurosEvent],
   ['seguros/DebriefScreen', SegurosDebrief],
   ['seguros/Scoreboard', SegurosScore],
+  ['cajut/PlayerApp', CajPlayer],
+  ['cajut/HostFinal', CajHostFinal],
+  ['cajut/HostLanding', CajHostLanding],
+  ['cajut/HostLeaderboardMini', CajHostLeaderboard],
+  ['cajut/HostLobby', CajHostLobby],
+  ['cajut/HostQuestion', CajHostQuestion],
+  ['cajut/HostReveal', CajHostReveal],
+  ['cajut/PlayerAnswer', CajPlayerAnswer],
+  ['cajut/PlayerFinal', CajPlayerFinal],
+  ['cajut/PlayerJoin', CajPlayerJoin],
+  ['cajut/PlayerLeaderboardMini', CajPlayerLeaderboard],
+  ['cajut/PlayerName', CajPlayerName],
+  ['cajut/PlayerRevealLocal', CajPlayerReveal],
+  ['cajut/PlayerWaitOthers', CajPlayerWaitOthers],
+  ['cajut/PlayerWaiting', CajPlayerWaiting],
+  ['insider/PlayerApp', InsPlayer],
+  ['insider/HostApp', InsHost],
+  ['insider/HostFinal', InsHostFinal],
+  ['insider/HostGame', InsHostGame],
+  ['insider/HostLobby', InsHostLobby],
+  ['insider/PlayerFinal', InsPlayerFinal],
+  ['insider/PlayerGuess', InsPlayerGuess],
+  ['insider/PlayerJoin', InsPlayerJoin],
+  ['insider/PlayerLobby', InsPlayerLobby],
+  ['insider/PlayerReveal', InsPlayerReveal],
+  ['insider/PlayerVote', InsPlayerVote],
+  ['insider/PlayerWordOrSilence', InsPlayerWord],
 ];
 
 const isRecord = (v: unknown): v is Record<string, unknown> =>
@@ -80,15 +136,19 @@ describe('game chrome COPY parity', () => {
       expect(keyPaths(copy.ca).sort()).toEqual(keyPaths(copy.es).sort());
     });
 
-    it(`${name}: no ca value is empty`, () => {
-      const walk = (obj: Record<string, unknown>, prefix = '') => {
-        for (const [key, value] of Object.entries(obj)) {
-          if (typeof value === 'function') continue;
-          if (isRecord(value)) walk(value, `${prefix}${key}.`);
-          else expect(value, `${name}.ca.${prefix}${key}`).toBeTruthy();
+    it(`${name}: ca is non-empty wherever es has content`, () => {
+      // Only require a ca value where es actually has text; fields that are
+      // intentionally empty in both languages (e.g. a phase with no subtitle)
+      // are legitimate and must not be flagged.
+      const walk = (es: Record<string, unknown>, ca: Record<string, unknown>, prefix = '') => {
+        for (const [key, esVal] of Object.entries(es)) {
+          const caVal = ca?.[key];
+          if (typeof esVal === 'function') continue;
+          if (isRecord(esVal)) walk(esVal, isRecord(caVal) ? caVal : {}, `${prefix}${key}.`);
+          else if (esVal) expect(caVal, `${name}.ca.${prefix}${key}`).toBeTruthy();
         }
       };
-      walk(copy.ca);
+      walk(copy.es, copy.ca);
     });
   }
 });
