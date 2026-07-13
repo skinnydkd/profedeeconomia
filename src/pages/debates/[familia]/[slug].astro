@@ -16,11 +16,15 @@ import FichaPreparacion from '@components/debates/materiales/FichaPreparacion.as
 import PuenteUnidades from '@components/emprendimiento/PuenteUnidades.astro';
 import { familiaMeta, debatePdfName } from '@/lib/debates';
 import { breadcrumbLd } from '@/lib/seo';
+import { getLocale } from '@/i18n/locale';
+import { pickLocalizedEntry } from '@/i18n/content-locale';
 import { getCollection, render } from 'astro:content';
 import type { GetStaticPaths } from 'astro';
 
 export const getStaticPaths = (async () => {
-  const all = (await getCollection('debates')).filter((e) => e.data.estado === 'publicado');
+  const all = (await getCollection('debates')).filter(
+    (e) => e.data.estado === 'publicado' && e.data.lang === 'es',
+  );
   return all.map((entry) => {
     const [familia, ...rest] = entry.id.replace(/^debates\//, '').split('/');
     return { params: { familia, slug: rest.join('/') }, props: { entry } };
@@ -28,8 +32,15 @@ export const getStaticPaths = (async () => {
 }) satisfies GetStaticPaths;
 
 const { entry } = Astro.props;
-const d = entry.data;
-const { Content } = await render(entry);
+const locale = getLocale(Astro.currentLocale);
+const caById = new Map(
+  (await getCollection('debates'))
+    .filter((e) => e.data.estado === 'publicado' && e.data.lang === 'ca')
+    .map((e) => [e.id, e]),
+);
+const view = pickLocalizedEntry(entry, caById, locale);
+const d = view.data;
+const { Content } = await render(view);
 const familia = familiaMeta(d.familia);
 const pdfHref = `/downloads/${debatePdfName(d.familia, Astro.params.slug!)}`;
 const tonoFor = (i: number, total: number): 'favor' | 'contra' | 'neutro' =>
@@ -41,7 +52,7 @@ const breadcrumb = breadcrumbLd([
 ]);
 ---
 
-<BaseLayout title={`${d.title} — Debates`} description={d.descripcion} ogType="article" jsonLd={breadcrumb}>
+<BaseLayout title={`${d.title} — Debates`} description={d.descripcion} ogType="article" jsonLd={breadcrumb} contentLang={locale}>
   <div class="container">
     <nav class="breadcrumb no-print">
       <a href="/">Inicio</a> <span class="sep">›</span>
