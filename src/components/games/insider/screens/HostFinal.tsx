@@ -3,24 +3,39 @@
 // Displays the final ranking and a restart button.
 
 import type { PublicState } from '@/lib/games-multi/insider/types';
+import { useGameLocale } from '../../locale-context';
 
 interface Props {
   publicState: PublicState;
   onRestart: () => void;
 }
 
+export const COPY = {
+  es: {
+    finPartida: 'Fin de partida',
+    laPalabraEra: 'La palabra era: ',
+    jugarOtraVez: 'Jugar otra vez',
+  },
+  ca: {
+    finPartida: 'Fi de la partida',
+    laPalabraEra: 'La paraula era: ',
+    jugarOtraVez: 'Torna a jugar',
+  },
+};
+
 export function HostFinal({ publicState, onRestart }: Props) {
+  const c = COPY[useGameLocale()];
   const ranking = publicState.finalRanking ?? [...publicState.players]
     .sort((a, b) => b.score - a.score)
     .map((p) => ({ id: p.id, name: p.name, score: p.score }));
 
   return (
     <div class="ins-final">
-      <h2 class="serif">Fin de partida</h2>
+      <h2 class="serif">{c.finPartida}</h2>
 
       {publicState.word && (
         <p style="font-size:14px;color:var(--soft);margin-bottom:20px;font-style:italic;font-family:'Fraunces',serif;">
-          La palabra era: <strong style="color:var(--teal);font-size:18px;">{publicState.word}</strong>
+          {c.laPalabraEra}<strong style="color:var(--teal);font-size:18px;">{publicState.word}</strong>
         </p>
       )}
 
@@ -36,7 +51,7 @@ export function HostFinal({ publicState, onRestart }: Props) {
 
       <div class="ins-btn-row" style="justify-content:center;">
         <button class="ins-btn" onClick={onRestart}>
-          Jugar otra vez
+          {c.jugarOtraVez}
         </button>
       </div>
     </div>

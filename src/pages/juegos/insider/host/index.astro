@@ -4,15 +4,17 @@
 // Students join via /juegos/insider/ using the 4-char room code displayed here.
 import BaseLayout from '@layouts/BaseLayout.astro';
 import HostApp from '@components/games/insider/HostApp.tsx';
+import type { Locale } from '@/i18n/locale';
 
 const partykitHost = import.meta.env.PUBLIC_PARTYKIT_HOST ?? '127.0.0.1:1999';
+const locale = Astro.currentLocale as Locale;
 ---
 <BaseLayout
   title="Insider — sala (proyector)"
   description="Sala de proyector para Insider. El profesor proyecta el código; los alumnos entran en /juegos/insider/."
 >
   <div class="insider-host-page">
-    <HostApp client:load partykitHost={partykitHost} />
+    <HostApp client:load partykitHost={partykitHost} locale={locale} />
   </div>
 </BaseLayout>
 

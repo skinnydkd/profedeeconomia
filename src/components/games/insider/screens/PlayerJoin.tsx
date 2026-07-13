@@ -3,12 +3,37 @@
 // Name + code inputs; on submit redirects to ?room=CODE&name=NAME.
 
 import { useState } from 'preact/hooks';
+import { useGameLocale } from '../../locale-context';
 
 interface Props {
   onJoin: (name: string, code: string) => void;
 }
 
+export const COPY = {
+  es: {
+    errNombre: 'Introduce tu nombre.',
+    errCodigo: 'El código tiene 4 caracteres.',
+    titulo: 'Insider',
+    sub: 'Juego de deducción social con vocabulario económico. Introduce el código que aparece en la pantalla del proyector.',
+    tuNombre: 'Tu nombre',
+    placeholderNombre: 'p. ej. María',
+    codigoSala: 'Código de sala',
+    unirse: 'Unirse a la partida',
+  },
+  ca: {
+    errNombre: 'Introduïx el teu nom.',
+    errCodigo: 'El codi té 4 caràcters.',
+    titulo: 'Insider',
+    sub: 'Joc de deducció social amb vocabulari econòmic. Introduïx el codi que apareix a la pantalla del projector.',
+    tuNombre: 'El teu nom',
+    placeholderNombre: 'p. ex. Maria',
+    codigoSala: 'Codi de sala',
+    unirse: "Unix-te a la partida",
+  },
+};
+
 export function PlayerJoin({ onJoin }: Props) {
+  const c = COPY[useGameLocale()];
   const [name, setName] = useState('');
   const [code, setCode] = useState('');
   const [error, setError] = useState('');
@@ -17,27 +42,26 @@ export function PlayerJoin({ onJoin }: Props) {
     e.preventDefault();
     const trimName = name.trim();
     const trimCode = code.trim().toUpperCase();
-    if (!trimName) { setError('Introduce tu nombre.'); return; }
-    if (trimCode.length !== 4) { setError('El código tiene 4 caracteres.'); return; }
+    if (!trimName) { setError(c.errNombre); return; }
+    if (trimCode.length !== 4) { setError(c.errCodigo); return; }
     setError('');
     onJoin(trimName, trimCode);
   };
 
   return (
     <div class="ins-join">
-      <h1 class="serif">Insider</h1>
+      <h1 class="serif">{c.titulo}</h1>
       <p class="sub">
-        Juego de deducción social con vocabulario económico. Introduce el código
-        que aparece en la pantalla del proyector.
+        {c.sub}
       </p>
 
       <form class="ins-join-form" onSubmit={handleSubmit}>
         <div class="ins-join-field">
-          <label for="player-name">Tu nombre</label>
+          <label for="player-name">{c.tuNombre}</label>
           <input
             id="player-name"
             type="text"
-            placeholder="p. ej. María"
+            placeholder={c.placeholderNombre}
             maxLength={20}
             value={name}
             onInput={(e) => setName((e.target as HTMLInputElement).value)}
@@ -47,7 +71,7 @@ export function PlayerJoin({ onJoin }: Props) {
         </div>
 
         <div class="ins-join-field">
-          <label for="room-code">Código de sala</label>
+          <label for="room-code">{c.codigoSala}</label>
           <input
             id="room-code"
             class="code-input"
@@ -69,7 +93,7 @@ export function PlayerJoin({ onJoin }: Props) {
         )}
 
         <button type="submit" class="ins-btn">
-          Unirse a la partida
+          {c.unirse}
         </button>
       </form>
     </div>

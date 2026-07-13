@@ -5,6 +5,7 @@
 
 import { useState } from 'preact/hooks';
 import type { PublicState, PrivateState } from '@/lib/games-multi/insider/types';
+import { useGameLocale } from '../../locale-context';
 
 interface Props {
   publicState: PublicState;
@@ -12,7 +13,31 @@ interface Props {
   onGuess: (word: string) => void;
 }
 
+export const COPY = {
+  es: {
+    ultimoIntento: 'Último intento',
+    intentandoAdivinar: 'El impostor está intentando adivinar la palabra…',
+    eresImpostor: 'Eres el impostor',
+    ultimaOportunidad: '¡Última oportunidad!',
+    hint: 'Adivina la palabra que describieron los ciudadanos. Si aciertas, ganas puntos de todas formas.',
+    respuestaEnviada: 'Respuesta enviada. Esperando resultado…',
+    placeholder: 'Escribe la palabra…',
+    enviar: 'Enviar respuesta',
+  },
+  ca: {
+    ultimoIntento: 'Últim intent',
+    intentandoAdivinar: "L'impostor està intentant endevinar la paraula…",
+    eresImpostor: "Eres l'impostor",
+    ultimaOportunidad: 'Última oportunitat!',
+    hint: "Endevina la paraula que han descrit els ciutadans. Si l'encertes, guanyes punts igualment.",
+    respuestaEnviada: 'Resposta enviada. Esperant el resultat…',
+    placeholder: 'Escriu la paraula…',
+    enviar: 'Envia la resposta',
+  },
+};
+
 export function PlayerGuess({ publicState: _publicState, privateState, onGuess }: Props) {
+  const c = COPY[useGameLocale()];
   const [guess, setGuess] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const canGuess = privateState?.canGuess ?? false;
@@ -28,9 +53,9 @@ export function PlayerGuess({ publicState: _publicState, privateState, onGuess }
   if (!canGuess) {
     return (
       <>
-        <div class="ins-eyebrow" style="text-align:center;">Último intento</div>
+        <div class="ins-eyebrow" style="text-align:center;">{c.ultimoIntento}</div>
         <div class="ins-player-lobby">
-          <div class="waiting">El impostor está intentando adivinar la palabra…</div>
+          <div class="waiting">{c.intentandoAdivinar}</div>
         </div>
       </>
     );
@@ -38,24 +63,24 @@ export function PlayerGuess({ publicState: _publicState, privateState, onGuess }
 
   return (
     <>
-      <div class="ins-role-impostor" style="margin-bottom:4px;">Eres el impostor</div>
+      <div class="ins-role-impostor" style="margin-bottom:4px;">{c.eresImpostor}</div>
       <div class="ins-impostor-big serif-it">
-        ¡Última oportunidad!
+        {c.ultimaOportunidad}
       </div>
       <div class="ins-hint">
-        Adivina la palabra que describieron los ciudadanos. Si aciertas, ganas puntos de todas formas.
+        {c.hint}
       </div>
 
       {submitted ? (
         <div class="ins-notice">
-          Respuesta enviada. Esperando resultado…
+          {c.respuestaEnviada}
         </div>
       ) : (
         <form onSubmit={handleSubmit} class="ins-guess-input-wrap">
           <input
             class="ins-guess-input"
             type="text"
-            placeholder="Escribe la palabra…"
+            placeholder={c.placeholder}
             value={guess}
             onInput={(e) => setGuess((e.target as HTMLInputElement).value)}
             autocomplete="off"
@@ -63,7 +88,7 @@ export function PlayerGuess({ publicState: _publicState, privateState, onGuess }
             maxLength={60}
           />
           <button type="submit" class="ins-btn" disabled={!guess.trim()}>
-            Enviar respuesta
+            {c.enviar}
           </button>
         </form>
       )}

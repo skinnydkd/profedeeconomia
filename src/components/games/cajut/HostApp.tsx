@@ -14,9 +14,12 @@ import { HostReveal } from './screens/HostReveal';
 import { HostLeaderboardMini } from './screens/HostLeaderboardMini';
 import { HostFinal } from './screens/HostFinal';
 import './cajut.css';
+import { GameLocaleContext } from '../locale-context';
+import { DEFAULT_LOCALE, type Locale } from '@/i18n/locale';
 
 interface Props {
   partykitHost: string;
+  locale?: Locale;
 }
 
 const HOST_ID_KEY = 'pde:cajut:hostId';
@@ -38,7 +41,15 @@ function generateRoomCode(): string {
   return s;
 }
 
-export default function HostApp({ partykitHost }: Props) {
+export default function HostApp({ partykitHost, locale = DEFAULT_LOCALE }: Props) {
+  return (
+    <GameLocaleContext.Provider value={locale}>
+      <HostAppInner partykitHost={partykitHost} />
+    </GameLocaleContext.Provider>
+  );
+}
+
+function HostAppInner({ partykitHost }: { partykitHost: string }) {
   const [hostId, setHostId] = useState<string | null>(null);
   const [roomCode, setRoomCode] = useState<string | null>(null);
   const [client, setClient] = useState<CajutClient | null>(null);

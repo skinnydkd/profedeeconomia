@@ -5,12 +5,23 @@
 // per-option vote counts + percentages.
 
 import type { PublicState } from '../../../../lib/games-multi/cajut/types';
+import { useGameLocale } from '../../locale-context';
 
 interface Props {
   publicState: PublicState;
 }
 
+export const COPY = {
+  es: {
+    pregunta: (n: number, total: number) => `Pregunta ${n} / ${total} — Resultado`,
+  },
+  ca: {
+    pregunta: (n: number, total: number) => `Pregunta ${n} / ${total} — Resultat`,
+  },
+};
+
 export function HostReveal({ publicState }: Props) {
+  const c = COPY[useGameLocale()];
   // currentQuestion is exposed during reveal phase (without `correcta`)
   // lastReveal carries correctOption + perOptionCounts
   const q = publicState.currentQuestion!;
@@ -20,9 +31,7 @@ export function HostReveal({ publicState }: Props) {
   return (
     <div class="cajut-host">
       <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <span class="subtle">
-          Pregunta {q.index + 1} / {q.total} &mdash; Resultat
-        </span>
+        <span class="subtle">{c.pregunta(q.index + 1, q.total)}</span>
       </header>
 
       <h2 class="enunciado-host" style={{ marginTop: '24px' }}>

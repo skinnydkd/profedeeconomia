@@ -1,9 +1,19 @@
 // src/components/games/cajut/screens/PlayerLeaderboardMini.tsx
 import type { PublicState, PrivateState } from '../../../../lib/games-multi/cajut/types';
+import { useGameLocale } from '../../locale-context';
 
 // Spanish ordinals: 1.º, 2.º, 3.º, ...
 function esOrdinal(n: number): string {
   return `${n}.º`;
+}
+
+// Valencian (AVL) masculine ordinals: 1r, 2n, 3r, 4t, then Né
+function caOrdinal(n: number): string {
+  if (n === 1) return '1r';
+  if (n === 2) return '2n';
+  if (n === 3) return '3r';
+  if (n === 4) return '4t';
+  return `${n}é`;
 }
 
 interface Props {
@@ -11,7 +21,19 @@ interface Props {
   privateState: PrivateState;
 }
 
+export const COPY = {
+  es: {
+    vas: (ord: string, score: number) => `Vas ${ord} con ${score} puntos`,
+  },
+  ca: {
+    vas: (ord: string, score: number) => `Vas ${ord} amb ${score} punts`,
+  },
+};
+
 export function PlayerLeaderboardMini({ publicState, privateState }: Props) {
+  const locale = useGameLocale();
+  const c = COPY[locale];
+  const ordinal = locale === 'ca' ? caOrdinal : esOrdinal;
   const top5 = publicState.lastReveal?.top5 ?? [];
   const meInTop = top5.some((p) => p.id === privateState.myId);
 
@@ -43,7 +65,7 @@ export function PlayerLeaderboardMini({ publicState, privateState }: Props) {
       </ol>
       {!meInTop && privateState.myRank !== null && (
         <p class="subtle" style={{ textAlign: 'center' }}>
-          Vas {esOrdinal(privateState.myRank!)} con {privateState.myScore} puntos
+          {c.vas(ordinal(privateState.myRank), privateState.myScore)}
         </p>
       )}
     </div>

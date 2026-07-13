@@ -11,8 +11,10 @@ import { PlayerRevealLocal } from './screens/PlayerRevealLocal';
 import { PlayerLeaderboardMini } from './screens/PlayerLeaderboardMini';
 import { PlayerFinal } from './screens/PlayerFinal';
 import './cajut.css';
+import { GameLocaleContext, useGameLocale } from '../locale-context';
+import { DEFAULT_LOCALE, type Locale } from '@/i18n/locale';
 
-interface Props { partykitHost: string; }
+interface Props { partykitHost: string; locale?: Locale; }
 
 const PLAYER_ID_KEY = 'pde:cajut:playerId';
 const NICK_KEY = 'pde:cajut:nick';
@@ -27,7 +29,44 @@ function getOrCreatePlayerId(): string | null {
   return id;
 }
 
-export default function PlayerApp({ partykitHost }: Props) {
+export const COPY = {
+  es: {
+    backToJoin: 'Volver a entrar',
+    connecting: 'Conectando…',
+    errorGeneric: 'Ha ocurrido un error.',
+    errors: {
+      'invalid-nick': 'El nick no es válido.',
+      'nick-taken': 'Ya hay un alumno con ese nick.',
+      'already-joined': 'Ya estás en la sala.',
+      'too-many': 'Esta sala ya tiene 40 jugadores.',
+      'match-started': 'La partida ya ha comenzado. Espera la próxima.',
+      'room-not-found': 'Este código de sala no existe.',
+    } as Record<string, string>,
+  },
+  ca: {
+    backToJoin: 'Torna a entrar',
+    connecting: 'Connectant…',
+    errorGeneric: "S'ha produït un error.",
+    errors: {
+      'invalid-nick': 'El nick no és vàlid.',
+      'nick-taken': 'Ja hi ha un alumne amb eixe nick.',
+      'already-joined': 'Ja estàs a la sala.',
+      'too-many': 'Esta sala ja té 40 jugadors.',
+      'match-started': 'La partida ja ha començat. Espera la pròxima.',
+      'room-not-found': 'Este codi de sala no existix.',
+    } as Record<string, string>,
+  },
+};
+
+export default function PlayerApp({ partykitHost, locale = DEFAULT_LOCALE }: Props) {
+  return (
+    <GameLocaleContext.Provider value={locale}>
+      <PlayerAppInner partykitHost={partykitHost} />
+    </GameLocaleContext.Provider>
+  );
+}
+
+function PlayerAppInner({ partykitHost }: { partykitHost: string }) {
   const [playerId, setPlayerId] = useState<string | null>(null);
   const [roomCode, setRoomCode] = useState<string | null>(null);
   const [nick, setNick] = useState<string | null>(null);
@@ -35,6 +74,7 @@ export default function PlayerApp({ partykitHost }: Props) {
   const [publicState, setPublicState] = useState<PublicState | null>(null);
   const [privateState, setPrivateState] = useState<PrivateState | null>(null);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
+  const copy = COPY[useGameLocale()];
 
   // SSR-safe: all storage/URL reads deferred to useEffect
   useEffect(() => {
@@ -57,10 +97,10 @@ export default function PlayerApp({ partykitHost }: Props) {
     });
     c.on('public', (m) => setPublicState(m.state));
     c.on('private', (m) => setPrivateState(m.state));
-    c.on('error', (m) => setErrorMsg(reasonToMessage(m.reason)));
+    c.on('error', (m) => setErrorMsg(reasonToMessage(m.reason, copy)));
     setClient(c);
     return () => c.close();
-  }, [playerId, roomCode, nick, partykitHost]);
+  }, [playerId, roomCode, nick, partykitHost, copy]);
 
   // --- Routing ---
 
@@ -108,7 +148,7 @@ export default function PlayerApp({ partykitHost }: Props) {
             cursor: 'pointer',
           }}
         >
-          Tornar a entrar
+          {copy.backToJoin}
         </button>
       </div>
     );
@@ -117,7 +157,7 @@ export default function PlayerApp({ partykitHost }: Props) {
   if (!publicState || !privateState) {
     return (
       <div class="cajut-player" style={{ justifyContent: 'center', textAlign: 'center' }}>
-        <p class="subtle">Conectando…</p>
+        <p class="subtle">{copy.connecting}</p>
       </div>
     );
   }
@@ -153,14 +193,6 @@ export default function PlayerApp({ partykitHost }: Props) {
   return <PlayerFinal publicState={publicState} privateState={privateState} />;
 }
 
-function reasonToMessage(reason: string): string {
-  const m: Record<string, string> = {
-    'invalid-nick': 'El nick no es válido.',
-    'nick-taken': 'Ya hay un alumno con ese nick.',
-    'already-joined': 'Ya estás en la sala.',
-    'too-many': 'Esta sala ya tiene 40 jugadores.',
-    'match-started': 'La partida ya ha comenzado. Espera la próxima.',
-    'room-not-found': 'Este código de sala no existe.',
-  };
-  return m[reason] ?? 'Ha ocurrido un error.';
+function reasonToMessage(reason: string, copy: (typeof COPY)['es']): string {
+  return copy.errors[reason] ?? copy.errorGeneric;
 }

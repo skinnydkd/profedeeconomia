@@ -5,6 +5,7 @@
 
 import { useEffect, useState } from 'preact/hooks';
 import type { PublicState } from '../../../../lib/games-multi/cajut/types';
+import { useGameLocale } from '../../locale-context';
 
 interface ManifestUnidad {
   numero: number;
@@ -30,7 +31,43 @@ interface Props {
   onKick: (playerId: string) => void;
 }
 
+export const COPY = {
+  es: {
+    salaAbierta: (n: number) => `Sala abierta · ${n} alumno${n === 1 ? '' : 's'}`,
+    codigoSala: 'Código de sala',
+    entranEn: 'Los alumnos entran en',
+    asignatura: 'Asignatura',
+    unidades: 'Unidades',
+    numPreguntas: 'Número de preguntas',
+    todas: 'Todas',
+    alumnosConectados: 'Alumnos conectados',
+    expulsar: (nick: string) => `¿Expulsar a ${nick}?`,
+    clicExpulsar: 'Haz clic para expulsar',
+    ningunAlumno: 'Ningún alumno conectado aún.',
+    comenzar: 'Comenzar partida',
+    esperandoAlumno: 'Esperando a que entre algún alumno.',
+    eligeUnidad: 'Elige al menos una unidad.',
+  },
+  ca: {
+    salaAbierta: (n: number) => `Sala oberta · ${n} alumne${n === 1 ? '' : 's'}`,
+    codigoSala: 'Codi de sala',
+    entranEn: 'Els alumnes entren a',
+    asignatura: 'Assignatura',
+    unidades: 'Unitats',
+    numPreguntas: 'Nombre de preguntes',
+    todas: 'Totes',
+    alumnosConectados: 'Alumnes connectats',
+    expulsar: (nick: string) => `Vols expulsar ${nick}?`,
+    clicExpulsar: 'Fes clic per expulsar',
+    ningunAlumno: 'Encara no hi ha cap alumne connectat.',
+    comenzar: 'Comença la partida',
+    esperandoAlumno: 'Esperant que entre algun alumne.',
+    eligeUnidad: 'Tria almenys una unitat.',
+  },
+};
+
 export function HostLobby({ publicState, onStart, onKick }: Props) {
+  const c = COPY[useGameLocale()];
   const [manifest, setManifest] = useState<Manifest | null>(null);
   const [selectedAsig, setSelectedAsig] = useState<string | null>(null);
   const [selectedUnidades, setSelectedUnidades] = useState<number[]>([]);
@@ -60,26 +97,23 @@ export function HostLobby({ publicState, onStart, onKick }: Props) {
     <div class="cajut-host">
       <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
         <h1 style={{ fontFamily: 'Fraunces, serif', fontSize: '32px', margin: 0 }}>Cajut</h1>
-        <span class="subtle">
-          Sala abierta &middot; {publicState.players.length} alumno
-          {publicState.players.length === 1 ? '' : 's'}
-        </span>
+        <span class="subtle">{c.salaAbierta(publicState.players.length)}</span>
       </header>
 
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '32px', marginTop: '24px' }}>
         {/* Left: room code */}
         <section>
-          <p class="subtle">Código de sala</p>
+          <p class="subtle">{c.codigoSala}</p>
           <div class="codi-sala">{publicState.roomCode}</div>
           <p class="subtle" style={{ textAlign: 'center', marginTop: '8px' }}>
-            Los alumnos entran en{' '}
+            {c.entranEn}{' '}
             <code>profedeeconomia.es/juegos/cajut?room={publicState.roomCode}</code>
           </p>
         </section>
 
         {/* Right: asignatura + unit selector */}
         <section>
-          <p class="subtle">Asignatura</p>
+          <p class="subtle">{c.asignatura}</p>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
             {manifest?.asignaturas.map((a) => (
               <button
@@ -106,7 +140,7 @@ export function HostLobby({ publicState, onStart, onKick }: Props) {
 
           {asigMeta && (
             <div style={{ marginTop: '14px' }}>
-              <p class="subtle">Unidades</p>
+              <p class="subtle">{c.unidades}</p>
               <div
                 style={{
                   display: 'grid',
@@ -136,7 +170,7 @@ export function HostLobby({ publicState, onStart, onKick }: Props) {
                 ))}
               </div>
 
-              <p class="subtle" style={{ marginTop: '10px' }}>Número de preguntas</p>
+              <p class="subtle" style={{ marginTop: '10px' }}>{c.numPreguntas}</p>
               <select
                 value={String(totalQ)}
                 onChange={(e) => {
@@ -149,7 +183,7 @@ export function HostLobby({ publicState, onStart, onKick }: Props) {
                 <option value="15">15</option>
                 <option value="20">20</option>
                 <option value="25">25</option>
-                <option value="all">Todas</option>
+                <option value="all">{c.todas}</option>
               </select>
             </div>
           )}
@@ -158,13 +192,13 @@ export function HostLobby({ publicState, onStart, onKick }: Props) {
 
       {/* Player list */}
       <section style={{ marginTop: '24px' }}>
-        <p class="subtle">Alumnos conectados</p>
+        <p class="subtle">{c.alumnosConectados}</p>
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
           {publicState.players.map((p) => (
             <button
               key={p.id}
               onClick={() => {
-                if (confirm(`¿Expulsar a ${p.nick}?`)) onKick(p.id);
+                if (confirm(c.expulsar(p.nick))) onKick(p.id);
               }}
               style={{
                 padding: '6px 10px',
@@ -174,13 +208,13 @@ export function HostLobby({ publicState, onStart, onKick }: Props) {
                 fontSize: 13,
                 cursor: 'pointer',
               }}
-              title="Haz clic para expulsar"
+              title={c.clicExpulsar}
             >
               {p.nick}
             </button>
           ))}
           {publicState.players.length === 0 && (
-            <span class="subtle">Ningún alumno conectado aún.</span>
+            <span class="subtle">{c.ningunAlumno}</span>
           )}
         </div>
       </section>
@@ -201,14 +235,14 @@ export function HostLobby({ publicState, onStart, onKick }: Props) {
             cursor: canStart ? 'pointer' : 'not-allowed',
           }}
         >
-          Comenzar partida
+          {c.comenzar}
         </button>
         {!canStart && (
           <p class="subtle" style={{ marginTop: 8 }}>
             {publicState.players.length === 0
-              ? 'Esperando a que entre algún alumno.'
+              ? c.esperandoAlumno
               : selectedUnidades.length === 0
-                ? 'Elige al menos una unidad.'
+                ? c.eligeUnidad
                 : ''}
           </p>
         )}

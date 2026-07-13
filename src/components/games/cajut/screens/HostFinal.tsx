@@ -4,13 +4,34 @@
 // Shows: top-3 podium (rising boxes), full ranking, "Nova partida" button.
 
 import type { PublicState } from '../../../../lib/games-multi/cajut/types';
+import { useGameLocale } from '../../locale-context';
 
 interface Props {
   publicState: PublicState;
   onRestart: () => void;
 }
 
+export const COPY = {
+  es: {
+    title: 'Final de la partida',
+    first: '1.º',
+    second: '2.º',
+    third: '3.º',
+    reviewNote: 'Los alumnos pueden revisar sus respuestas en el móvil.',
+    newMatch: 'Nueva partida',
+  },
+  ca: {
+    title: 'Final de la partida',
+    first: '1r',
+    second: '2n',
+    third: '3r',
+    reviewNote: 'Els alumnes poden revisar les seues respostes al mòbil.',
+    newMatch: 'Nova partida',
+  },
+};
+
 export function HostFinal({ publicState, onRestart }: Props) {
+  const c = COPY[useGameLocale()];
   const ranking = publicState.finalRanking ?? [];
   const [first, second, third] = [ranking[0], ranking[1], ranking[2]];
 
@@ -24,7 +45,7 @@ export function HostFinal({ publicState, onRestart }: Props) {
           margin: '0 0 8px',
         }}
       >
-        Final de la partida
+        {c.title}
       </h2>
 
       {/* Podium top-3 */}
@@ -33,7 +54,7 @@ export function HostFinal({ publicState, onRestart }: Props) {
         <div class="step second">
           {second ? (
             <>
-              <div style={{ fontWeight: 600, fontSize: 13, marginBottom: 6 }}>2.º</div>
+              <div style={{ fontWeight: 600, fontSize: 13, marginBottom: 6 }}>{c.second}</div>
               <div style={{ fontSize: 22, fontFamily: 'Fraunces, serif' }}>{second.nick}</div>
               <div style={{ fontFamily: 'JetBrains Mono, monospace', marginTop: 6 }}>
                 {second.score}
@@ -48,7 +69,7 @@ export function HostFinal({ publicState, onRestart }: Props) {
         <div class="step first">
           {first ? (
             <>
-              <div style={{ fontWeight: 700, fontSize: 14, marginBottom: 6 }}>1.º</div>
+              <div style={{ fontWeight: 700, fontSize: 14, marginBottom: 6 }}>{c.first}</div>
               <div style={{ fontSize: 28, fontFamily: 'Fraunces, serif' }}>{first.nick}</div>
               <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 20, marginTop: 8 }}>
                 {first.score}
@@ -63,7 +84,7 @@ export function HostFinal({ publicState, onRestart }: Props) {
         <div class="step third">
           {third ? (
             <>
-              <div style={{ fontWeight: 600, fontSize: 13, marginBottom: 6 }}>3.º</div>
+              <div style={{ fontWeight: 600, fontSize: 13, marginBottom: 6 }}>{c.third}</div>
               <div style={{ fontSize: 20, fontFamily: 'Fraunces, serif' }}>{third.nick}</div>
               <div style={{ fontFamily: 'JetBrains Mono, monospace', marginTop: 6 }}>
                 {third.score}
@@ -76,7 +97,7 @@ export function HostFinal({ publicState, onRestart }: Props) {
       </div>
 
       <p class="subtle" style={{ textAlign: 'center', marginTop: '24px' }}>
-        Los alumnos pueden revisar sus respuestas en el móvil.
+        {c.reviewNote}
       </p>
 
       {/* Full ranking */}
@@ -113,7 +134,7 @@ export function HostFinal({ publicState, onRestart }: Props) {
             cursor: 'pointer',
           }}
         >
-          Nueva partida
+          {c.newMatch}
         </button>
       </div>
     </div>

@@ -13,6 +13,8 @@ import { PlayerReveal } from './screens/PlayerReveal';
 import { PlayerGuess } from './screens/PlayerGuess';
 import { PlayerFinal } from './screens/PlayerFinal';
 import './insider.css';
+import { GameLocaleContext, useGameLocale } from '../locale-context';
+import { DEFAULT_LOCALE, type Locale } from '@/i18n/locale';
 
 // ---------------------------------------------------------------------------
 // Helpers
@@ -53,13 +55,36 @@ function storePlayerName(name: string) {
 
 interface Props {
   partykitHost: string;
+  locale?: Locale;
 }
+
+export const COPY = {
+  es: {
+    reconectando: 'Reconectando…',
+    sala: (code: string) => `Sala ${code}`,
+    conectando: 'Conectando…',
+  },
+  ca: {
+    reconectando: 'Reconnectant…',
+    sala: (code: string) => `Sala ${code}`,
+    conectando: 'Connectant…',
+  },
+};
 
 // ---------------------------------------------------------------------------
 // Component
 // ---------------------------------------------------------------------------
 
-export default function PlayerApp({ partykitHost }: Props) {
+export default function PlayerApp({ partykitHost, locale = DEFAULT_LOCALE }: Props) {
+  return (
+    <GameLocaleContext.Provider value={locale}>
+      <PlayerAppInner partykitHost={partykitHost} />
+    </GameLocaleContext.Provider>
+  );
+}
+
+function PlayerAppInner({ partykitHost }: { partykitHost: string }) {
+  const c = COPY[useGameLocale()];
   const [publicState, setPublicState] = useState<PublicState | null>(null);
   const [privateState, setPrivateState] = useState<PrivateState | null>(null);
   const [connected, setConnected] = useState(false);
@@ -155,7 +180,7 @@ export default function PlayerApp({ partykitHost }: Props) {
     <div class="ins">
       {/* Reconnecting badge */}
       {!connected && publicState !== null && (
-        <div class="ins-reconnecting">Reconectando…</div>
+        <div class="ins-reconnecting">{c.reconectando}</div>
       )}
 
       {/* Error notice */}
@@ -175,12 +200,12 @@ export default function PlayerApp({ partykitHost }: Props) {
               />
               {playerName}
             </div>
-            <div>Sala {roomCode}</div>
+            <div>{c.sala(roomCode)}</div>
           </div>
 
           {/* Body: phase-driven content */}
           {!publicState ? (
-            <div class="ins-connecting">Conectando…</div>
+            <div class="ins-connecting">{c.conectando}</div>
           ) : (
             <div class="ins-phone-body">
               {phase === 'lobby' && (

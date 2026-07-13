@@ -3,13 +3,20 @@
 // The student reads the question from the classroom board.
 import type { PublicState } from '../../../../lib/games-multi/cajut/types';
 import { useEffect, useState } from 'preact/hooks';
+import { useGameLocale } from '../../locale-context';
 
 interface Props {
   publicState: PublicState;
   onAnswer: (optionIndex: number) => void;
 }
 
+export const COPY = {
+  es: { miraPregunta: 'Mira la pregunta en la pizarra' },
+  ca: { miraPregunta: 'Mira la pregunta a la pissarra' },
+};
+
 export function PlayerAnswer({ publicState, onAnswer }: Props) {
+  const c = COPY[useGameLocale()];
   const q = publicState.currentQuestion!;
   const [selected, setSelected] = useState<number | null>(null);
   const [timeLeft, setTimeLeft] = useState<number>(0);
@@ -83,7 +90,7 @@ export function PlayerAnswer({ publicState, onAnswer }: Props) {
           margin: 0,
         }}
       >
-        Mira la pregunta a la pissarra
+        {c.miraPregunta}
       </p>
 
       {/* Answer buttons — full-screen grid, only color + letter */}
