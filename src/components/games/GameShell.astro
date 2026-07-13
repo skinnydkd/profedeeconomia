@@ -2,23 +2,31 @@
 import BaseLayout from '@layouts/BaseLayout.astro';
 import PuenteUnidades from '@components/emprendimiento/PuenteUnidades.astro';
 import { JUEGOS } from '@/lib/juegos';
+import { getLocale } from '@/i18n/locale';
 interface Props { title: string; wide?: boolean; slug?: string; }
 const { title, wide = false, slug } = Astro.props;
 const juego = slug ? JUEGOS.find((j) => j.slug === slug) : undefined;
+const locale = getLocale(Astro.currentLocale);
+// Shell chrome is localized here. The curricular panel (PuenteUnidades unit
+// titles) stays ES for now — it derives from book content (later phase).
+const copy = {
+  es: { desc: `${title} — juego de profedeeconomia.es`, back: '← Volver a Juegos', paraProfe: 'Para el profe', compClave: 'Competencias clave:', imprimir: 'Versión para imprimir →' },
+  ca: { desc: `${title} — joc de profedeeconomia.es`, back: '← Torna a Jocs', paraProfe: 'Per al profe', compClave: 'Competències clau:', imprimir: 'Versió per a imprimir →' },
+}[locale];
 ---
-<BaseLayout title={title} description={`${title} — juego de profedeeconomia.es`}>
+<BaseLayout title={title} description={copy.desc} contentLang={locale}>
   <div class={`game-shell${wide ? ' game-shell--wide' : ''}`}>
-    <a class="game-exit" href="/juegos/">← Volver a Juegos</a>
+    <a class="game-exit" href="/juegos/">{copy.back}</a>
     <slot />
     {juego && (
       <section class="game-ficha">
-        <h2>Para el profe</h2>
+        <h2>{copy.paraProfe}</h2>
         <PuenteUnidades unidades={juego.unidades_relacionadas} />
         {juego.competencias_clave.length > 0 && (
-          <p class="game-comp"><strong>Competencias clave:</strong> {juego.competencias_clave.join(' · ')}</p>
+          <p class="game-comp"><strong>{copy.compClave}</strong> {juego.competencias_clave.join(' · ')}</p>
         )}
         {juego.imprimible && (
-          <p class="game-print"><a href={`/juegos/${juego.slug}/imprimir/`}>Versión para imprimir →</a></p>
+          <p class="game-print"><a href={`/juegos/${juego.slug}/imprimir/`}>{copy.imprimir}</a></p>
         )}
       </section>
     )}

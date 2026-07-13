@@ -7,19 +7,67 @@
  */
 import BaseLayout from '@layouts/BaseLayout.astro';
 import PrintButton from '@components/dinamicas/PrintButton.astro';
+import { getLocale } from '@/i18n/locale';
 import { TERRITORIES, CONTINENT_BONUS, CONTINENTS } from '@/lib/games/econrisk/map';
-import { FACTIONS } from '@/lib/games/econrisk/factions';
 import { EVENT_CARDS } from '@/lib/games/econrisk/events';
+import { localizeFactions, localizeEventText, localizeTerritoryName } from '@/i18n/games/econrisk-ca';
 import type { ContinentId } from '@/lib/games/econrisk/types';
 
-const CONTINENT_LABEL: Record<ContinentId, string> = {
-  norteamerica: 'Norteamérica',
-  sudamerica:   'Sudamérica',
-  europa:       'Europa',
-  africa:       'África',
-  asia:         'Asia',
-  oceania:      'Oceanía',
-};
+const locale = getLocale(Astro.currentLocale);
+const factions = localizeFactions(locale);
+
+// Print-page chrome. Faction/event/territory display text comes from the shared
+// econrisk-ca overlay; only the instructional chrome + continent names live here.
+const copy = {
+  es: {
+    metaTitle: 'Econrisk — versión para imprimir',
+    metaDesc: 'Print-and-play de Econrisk: mapa de territorios, facciones y cartas de evento listos para imprimir y jugar en clase sin pantallas.',
+    bcInicio: 'Inicio', bcJuegos: 'Juegos', bcImprimir: 'Imprimir',
+    kicker: 'Versión para imprimir', enPapel: 'en papel',
+    ledePre: 'Imprime el mapa, recorta las cartas de evento y conquista el mundo sin pantallas. Cada bloque es una hoja A4. Las reglas completas están en la ',
+    ledeLink: 'versión digital', ledePost: '.',
+    comoSeJuega: 'Cómo se juega',
+    rules: [
+      '<strong>Jugadores:</strong> 1 a 4 (humanos o IA). Cada uno controla una <strong>facción</strong>, que representa una escuela de pensamiento económico.',
+      '<strong>Objetivo:</strong> conquistar el mapa hasta controlar <strong>18 o más territorios</strong>, o ganar por eliminación de los rivales antes de la ronda 15.',
+      '<strong>El turno tiene 4 fases:</strong> primero se roba una carta de <em>evento</em>; después se <em>refuerza</em> colocando unidades nuevas; luego se <em>ataca</em> a territorios adyacentes; y se cierra <em>fortificando</em> moviendo unidades entre territorios propios.',
+      '<strong>Combate:</strong> los enfrentamientos se resuelven con <strong>dados</strong>: atacante y defensor comparan tiradas y pierde unidades quien saque menos.',
+      '<strong>Continentes:</strong> controlar un continente entero otorga unidades de refuerzo extra cada ronda (ver la leyenda del mapa).',
+    ],
+    hintStats: '24 territorios · 6 continentes · 4 facciones · 15 cartas',
+    hintMaterialPre: 'Material derivado de la ', hintMaterialLink: 'versión digital', hintMaterialPost: ', donde encontrarás las reglas completas.',
+    mapa: 'Mapa',
+    ariaMapa: 'Mapa de territorios de Econrisk con sus conexiones',
+    legendHint: 'El bonus indica las unidades de refuerzo extra por controlar el continente entero.',
+    facciones: 'Facciones', cartasEvento: 'Cartas de evento', evento: 'Evento',
+  },
+  ca: {
+    metaTitle: 'Econrisk — versió per a imprimir',
+    metaDesc: "Print-and-play d'Econrisk: mapa de territoris, faccions i cartes d'esdeveniment a punt per a imprimir i jugar a classe sense pantalles.",
+    bcInicio: 'Inici', bcJuegos: 'Jocs', bcImprimir: 'Imprimir',
+    kicker: 'Versió per a imprimir', enPapel: 'en paper',
+    ledePre: "Imprimeix el mapa, retalla les cartes d'esdeveniment i conquista el món sense pantalles. Cada bloc és un full A4. Les regles completes estan a la ",
+    ledeLink: 'versió digital', ledePost: '.',
+    comoSeJuega: 'Com es juga',
+    rules: [
+      '<strong>Jugadors:</strong> 1 a 4 (humans o IA). Cadascú controla una <strong>facció</strong>, que representa una escola de pensament econòmic.',
+      '<strong>Objectiu:</strong> conquistar el mapa fins a controlar <strong>18 o més territoris</strong>, o guanyar per eliminació dels rivals abans de la ronda 15.',
+      "<strong>El torn té 4 fases:</strong> primer es roba una carta d'<em>esdeveniment</em>; després es <em>reforça</em> col·locant unitats noves; després s'<em>ataca</em> territoris adjacents; i es tanca <em>fortificant</em>, movent unitats entre territoris propis.",
+      '<strong>Combat:</strong> els enfrontaments es resolen amb <strong>daus</strong>: atacant i defensor comparen tirades i perd unitats qui trau menys.',
+      '<strong>Continents:</strong> controlar un continent sencer dóna unitats de reforç extra cada ronda (mira la llegenda del mapa).',
+    ],
+    hintStats: '24 territoris · 6 continents · 4 faccions · 15 cartes',
+    hintMaterialPre: 'Material derivat de la ', hintMaterialLink: 'versió digital', hintMaterialPost: ', on trobaràs les regles completes.',
+    mapa: 'Mapa',
+    ariaMapa: "Mapa de territoris d'Econrisk amb les seues connexions",
+    legendHint: 'El bonus indica les unitats de reforç extra per controlar el continent sencer.',
+    facciones: 'Faccions', cartasEvento: "Cartes d'esdeveniment", evento: 'Esdeveniment',
+  },
+}[locale];
+
+const CONTINENT_LABEL: Record<ContinentId, string> = locale === 'ca'
+  ? { norteamerica: 'Amèrica del Nord', sudamerica: 'Amèrica del Sud', europa: 'Europa', africa: 'Àfrica', asia: 'Àsia', oceania: 'Oceania' }
+  : { norteamerica: 'Norteamérica', sudamerica: 'Sudamérica', europa: 'Europa', africa: 'África', asia: 'Asia', oceania: 'Oceanía' };
 
 const CONTINENT_COLOR: Record<ContinentId, string> = {
   norteamerica: '#C44E2C',
@@ -55,52 +103,42 @@ const vbW = Math.max(...xs) - Math.min(...xs) + PAD * 2;
 const vbH = Math.max(...ys) - Math.min(...ys) + PAD * 2;
 ---
 
-<BaseLayout
-  title="Econrisk — versión para imprimir"
-  description="Print-and-play de Econrisk: mapa de territorios, facciones y cartas de evento listos para imprimir y jugar en clase sin pantallas."
-  noindex
->
+<BaseLayout title={copy.metaTitle} description={copy.metaDesc} contentLang={locale} noindex>
   <div class="container">
     <nav class="breadcrumb no-print">
-      <a href="/">Inicio</a> <span class="sep">›</span>
-      <a href="/juegos/">Juegos</a> <span class="sep">›</span>
+      <a href="/">{copy.bcInicio}</a> <span class="sep">›</span>
+      <a href="/juegos/">{copy.bcJuegos}</a> <span class="sep">›</span>
       <a href="/juegos/econrisk/">Econrisk</a> <span class="sep">›</span>
-      <span>Imprimir</span>
+      <span>{copy.bcImprimir}</span>
     </nav>
 
     <header class="intro no-print">
-      <span class="kicker">Versión para imprimir</span>
-      <h1>Econrisk <span class="serif-italic-wonk accent">en papel</span></h1>
+      <span class="kicker">{copy.kicker}</span>
+      <h1>Econrisk <span class="serif-italic-wonk accent">{copy.enPapel}</span></h1>
       <p class="lede">
-        Imprime el mapa, recorta las cartas de evento y conquista el mundo sin
-        pantallas. Cada bloque es una hoja A4. Las reglas completas están en la
-        <a href="/juegos/econrisk/" class="editorial-link">versión digital</a>.
+        {copy.ledePre}<a href="/juegos/econrisk/" class="editorial-link">{copy.ledeLink}</a>{copy.ledePost}
       </p>
       <PrintButton />
     </header>
 
     <!-- Hoja 1: cómo se juega -->
     <section class="print-block">
-      <h2>Cómo se juega</h2>
+      <h2>{copy.comoSeJuega}</h2>
       <ul class="rules">
-        <li><strong>Jugadores:</strong> 1 a 4 (humanos o IA). Cada uno controla una <strong>facción</strong>, que representa una escuela de pensamiento económico.</li>
-        <li><strong>Objetivo:</strong> conquistar el mapa hasta controlar <strong>18 o más territorios</strong>, o ganar por eliminación de los rivales antes de la ronda 15.</li>
-        <li><strong>El turno tiene 4 fases:</strong> primero se roba una carta de <em>evento</em>; después se <em>refuerza</em> colocando unidades nuevas; luego se <em>ataca</em> a territorios adyacentes; y se cierra <em>fortificando</em> moviendo unidades entre territorios propios.</li>
-        <li><strong>Combate:</strong> los enfrentamientos se resuelven con <strong>dados</strong>: atacante y defensor comparan tiradas y pierde unidades quien saque menos.</li>
-        <li><strong>Continentes:</strong> controlar un continente entero otorga unidades de refuerzo extra cada ronda (ver la leyenda del mapa).</li>
+        {copy.rules.map((r) => <li set:html={r} />)}
       </ul>
-      <p class="hint">24 territorios · 6 continentes · 4 facciones · 15 cartas</p>
-      <p class="hint">Material derivado de la <a href="/juegos/econrisk/" class="editorial-link">versión digital</a>, donde encontrarás las reglas completas.</p>
+      <p class="hint">{copy.hintStats}</p>
+      <p class="hint">{copy.hintMaterialPre}<a href="/juegos/econrisk/" class="editorial-link">{copy.hintMaterialLink}</a>{copy.hintMaterialPost}</p>
     </section>
 
     <!-- Hoja 2: mapa -->
     <section class="print-block">
-      <h2>Mapa</h2>
+      <h2>{copy.mapa}</h2>
       <svg
         class="map"
         viewBox={`${minX} ${minY} ${vbW} ${vbH}`}
         role="img"
-        aria-label="Mapa de territorios de Econrisk con sus conexiones"
+        aria-label={copy.ariaMapa}
       >
         {edges.map((e) => (
           <line x1={e.x1} y1={e.y1} x2={e.x2} y2={e.y2} class="map-edge" />
@@ -108,7 +146,7 @@ const vbH = Math.max(...ys) - Math.min(...ys) + PAD * 2;
         {TERRITORIES.map((t) => (
           <g class="map-node">
             <circle cx={t.x} cy={t.y} r={9} style={`fill:${CONTINENT_COLOR[t.continent]}`} />
-            <text x={t.x} y={t.y - 13} class="map-label">{t.label}</text>
+            <text x={t.x} y={t.y - 13} class="map-label">{localizeTerritoryName(t.id, locale)}</text>
           </g>
         ))}
       </svg>
@@ -121,14 +159,14 @@ const vbH = Math.max(...ys) - Math.min(...ys) + PAD * 2;
           </li>
         ))}
       </ul>
-      <p class="hint">El bonus indica las unidades de refuerzo extra por controlar el continente entero.</p>
+      <p class="hint">{copy.legendHint}</p>
     </section>
 
     <!-- Hoja 3: facciones -->
     <section class="print-block">
-      <h2>Facciones <span class="count">({FACTIONS.length})</span></h2>
+      <h2>{copy.facciones} <span class="count">({factions.length})</span></h2>
       <div class="cards">
-        {FACTIONS.map((f) => (
+        {factions.map((f) => (
           <div class="faction-card" style={`border-top-color:${f.color}`}>
             <span class="card-kicker">{f.school}</span>
             <h3 class="faction-name">{f.label}</h3>
@@ -140,12 +178,12 @@ const vbH = Math.max(...ys) - Math.min(...ys) + PAD * 2;
 
     <!-- Hoja 4+: cartas de evento -->
     <section class="print-block">
-      <h2>Cartas de evento <span class="count">({EVENT_CARDS.length})</span></h2>
+      <h2>{copy.cartasEvento} <span class="count">({EVENT_CARDS.length})</span></h2>
       <div class="cards">
         {EVENT_CARDS.map((card) => (
           <div class="card">
-            <span class="card-kicker">Evento</span>
-            <p class="card-text">{card.text}</p>
+            <span class="card-kicker">{copy.evento}</span>
+            <p class="card-text">{localizeEventText(card, locale)}</p>
           </div>
         ))}
       </div>

@@ -4,15 +4,16 @@
 // Students join via /juegos/cajut/ using the room code displayed here.
 import BaseLayout from '@layouts/BaseLayout.astro';
 import HostApp from '@components/games/cajut/HostApp';
-import type { Locale } from '@/i18n/locale';
+import { getLocale } from '@/i18n/locale';
 
 const partykitHost = import.meta.env.PUBLIC_PARTYKIT_HOST ?? '127.0.0.1:1999';
-const locale = Astro.currentLocale as Locale;
+const locale = getLocale(Astro.currentLocale);
+const copy = {
+  es: { title: 'Cajút — host', desc: 'Pantalla de control del profe para una partida de Cajút.' },
+  ca: { title: 'Cajút — host', desc: 'Pantalla de control del profe per a una partida de Cajút.' },
+}[locale];
 ---
-<BaseLayout
-  title="Cajút — host"
-  description="Pantalla de control del profe para una partida de Cajút."
->
+<BaseLayout title={copy.title} description={copy.desc} contentLang={locale}>
   <div class="cajut-host-page">
     <HostApp client:only="preact" partykitHost={partykitHost} locale={locale} />
   </div>

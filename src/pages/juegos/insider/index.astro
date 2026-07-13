@@ -3,15 +3,16 @@
 // Player entry point — students open this on their phones and enter the room code.
 import BaseLayout from '@layouts/BaseLayout.astro';
 import PlayerApp from '@components/games/insider/PlayerApp.tsx';
-import type { Locale } from '@/i18n/locale';
+import { getLocale } from '@/i18n/locale';
 
 const partykitHost = import.meta.env.PUBLIC_PARTYKIT_HOST ?? '127.0.0.1:1999';
-const locale = Astro.currentLocale as Locale;
+const locale = getLocale(Astro.currentLocale);
+const copy = {
+  es: { title: 'Insider — jugar', desc: 'Insider, juego de deducción económica multijugador.' },
+  ca: { title: 'Insider — jugar', desc: 'Insider, joc de deducció econòmica multijugador.' },
+}[locale];
 ---
-<BaseLayout
-  title="Insider — jugar"
-  description="Insider, juego de deducción económica multijugador."
->
+<BaseLayout title={copy.title} description={copy.desc} contentLang={locale}>
   <div class="insider-page">
     <PlayerApp client:load partykitHost={partykitHost} locale={locale} />
   </div>
