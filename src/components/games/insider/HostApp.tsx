@@ -9,7 +9,7 @@ import { HostLobby } from './screens/HostLobby';
 import { HostGame } from './screens/HostGame';
 import { HostFinal } from './screens/HostFinal';
 import './insider.css';
-import { GameLocaleContext } from '../locale-context';
+import { GameLocaleContext, useGameLocale } from '../locale-context';
 import { DEFAULT_LOCALE, type Locale } from '@/i18n/locale';
 
 // ---------------------------------------------------------------------------
@@ -54,6 +54,23 @@ interface Props {
   locale?: Locale;
 }
 
+export const COPY = {
+  es: {
+    reconectando: 'Reconectando…',
+    eyebrow: 'Juegos · Multijugador',
+    titulo: 'Insider',
+    sala: 'Sala',
+    conectando: 'Conectando a la sala…',
+  },
+  ca: {
+    reconectando: 'Reconnectant…',
+    eyebrow: 'Jocs · Multijugador',
+    titulo: 'Insider',
+    sala: 'Sala',
+    conectando: 'Connectant a la sala…',
+  },
+};
+
 // ---------------------------------------------------------------------------
 // Component
 // ---------------------------------------------------------------------------
@@ -67,6 +84,7 @@ export default function HostApp({ partykitHost, locale = DEFAULT_LOCALE }: Props
 }
 
 function HostAppInner({ partykitHost }: { partykitHost: string }) {
+  const c = COPY[useGameLocale()];
   const [publicState, setPublicState] = useState<PublicState | null>(null);
   const [privateState, setPrivateState] = useState<PrivateState | null>(null);
   const [connected, setConnected] = useState(false);
@@ -140,7 +158,7 @@ function HostAppInner({ partykitHost }: { partykitHost: string }) {
     <div class="ins">
       {/* Reconnecting badge */}
       {!connected && publicState !== null && (
-        <div class="ins-reconnecting">Reconectando…</div>
+        <div class="ins-reconnecting">{c.reconectando}</div>
       )}
 
       {/* Error notice */}
@@ -155,18 +173,18 @@ function HostAppInner({ partykitHost }: { partykitHost: string }) {
           {/* Top bar: always visible */}
           <div class="ins-host-top">
             <div class="left">
-              <div class="eyebrow">Juegos · Multijugador</div>
-              <div class="title serif">Insider</div>
+              <div class="eyebrow">{c.eyebrow}</div>
+              <div class="title serif">{c.titulo}</div>
             </div>
             <div class="code">
-              <div class="l">Sala</div>
+              <div class="l">{c.sala}</div>
               <div class="v mono">{roomCode ?? '----'}</div>
             </div>
           </div>
 
           {/* Body: phase-driven screens */}
           {!publicState ? (
-            <div class="ins-connecting">Conectando a la sala…</div>
+            <div class="ins-connecting">{c.conectando}</div>
           ) : phase === 'lobby' ? (
             <HostLobby
               publicState={publicState}

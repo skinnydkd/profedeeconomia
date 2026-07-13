@@ -4,6 +4,7 @@
 
 import { useState } from 'preact/hooks';
 import type { PublicState, PrivateState } from '@/lib/games-multi/insider/types';
+import { useGameLocale } from '../../locale-context';
 
 interface Props {
   publicState: PublicState;
@@ -12,7 +13,25 @@ interface Props {
   onVote: (targetId: string) => void;
 }
 
+export const COPY = {
+  es: {
+    faseVotacion: 'Fase de votación',
+    noParticipas: 'No participas en la votación esta ronda.',
+    votoEmitido: 'Voto emitido. Esperando a los demás jugadores…',
+    votos: (cast: number, total: number) => `${cast} de ${total} votos`,
+    quienImpostor: '¿Quién crees que es el impostor? Toca para votar.',
+  },
+  ca: {
+    faseVotacion: 'Fase de votació',
+    noParticipas: "No participes en la votació d'esta ronda.",
+    votoEmitido: 'Vot emés. Esperant els altres jugadors…',
+    votos: (cast: number, total: number) => `${cast} de ${total} vots`,
+    quienImpostor: "Qui creus que és l'impostor? Toca per a votar.",
+  },
+};
+
 export function PlayerVote({ publicState, privateState, myId, onVote }: Props) {
+  const c = COPY[useGameLocale()];
   const [voted, setVoted] = useState<string | null>(null);
   const canVote = privateState?.canVote ?? true;
   const aliveOthers = publicState.players.filter((p) => p.alive && p.id !== myId);
@@ -28,24 +47,24 @@ export function PlayerVote({ publicState, privateState, myId, onVote }: Props) {
 
   return (
     <>
-      <div class="ins-eyebrow" style="text-align:center;">Fase de votación</div>
+      <div class="ins-eyebrow" style="text-align:center;">{c.faseVotacion}</div>
 
       {!canVote ? (
         <div class="ins-notice info">
-          No participas en la votación esta ronda.
+          {c.noParticipas}
         </div>
       ) : hasVoted ? (
         <div class="ins-notice">
-          Voto emitido. Esperando a los demás jugadores…
+          {c.votoEmitido}
           <br />
           <span style="font-size:11px;color:var(--soft);">
-            {publicState.votesCast} de {aliveOthers.length + 1} votos
+            {c.votos(publicState.votesCast, aliveOthers.length + 1)}
           </span>
         </div>
       ) : (
         <>
           <p style="font-size:13px;color:var(--soft);margin:0;font-style:italic;font-family:'Fraunces',serif;">
-            ¿Quién crees que es el impostor? Toca para votar.
+            {c.quienImpostor}
           </p>
           <div class="ins-vote-grid">
             {aliveOthers.map((p) => (

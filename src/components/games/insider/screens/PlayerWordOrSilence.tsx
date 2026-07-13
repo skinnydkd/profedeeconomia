@@ -5,12 +5,52 @@
 
 import { useState, useEffect } from 'preact/hooks';
 import type { PublicState, PrivateState } from '@/lib/games-multi/insider/types';
+import { useGameLocale } from '../../locale-context';
 
 interface Props {
   publicState: PublicState;
   privateState: PrivateState | null;
   playerName: string;
 }
+
+export const COPY = {
+  es: {
+    eresImpostor: 'Eres el impostor',
+    eresCiudadano: 'Eres ciudadano',
+    noConoces: 'No conoces la palabra',
+    laPalabraEs: 'La palabra es',
+    hintImpostor:
+      'Escucha lo que dicen los demás. Cuando te toque, inventa una frase coherente con las pistas que has oído.',
+    estrategiaLabel: 'Estrategia:',
+    estrategiaTexto: ' si te votan, podrás intentar adivinar la palabra. Acertar = ganas igualmente.',
+    tuPalabraEs: 'Tu palabra es',
+    hintCiudadano:
+      'Descríbela con UNA frase cuando llegue tu turno. No la digas literalmente: hazla adivinar.',
+    hablaAhora: 'Habla ahora',
+    esTuTurno: (name: string) => `${name} — ¡es tu turno!`,
+    tiempoRestante: 'Tiempo restante',
+    tuTurno: 'Tu turno',
+    turnos: (n: number) => `${n} ${n === 1 ? 'turno' : 'turnos'}`,
+  },
+  ca: {
+    eresImpostor: "Eres l'impostor",
+    eresCiudadano: 'Eres ciutadà',
+    noConoces: 'No coneixes la paraula',
+    laPalabraEs: 'La paraula és',
+    hintImpostor:
+      'Escolta el que diuen els altres. Quan et toque, inventa una frase coherent amb les pistes que has sentit.',
+    estrategiaLabel: 'Estratègia:',
+    estrategiaTexto: ' si et voten, podràs intentar endevinar la paraula. Encertar = guanyes igualment.',
+    tuPalabraEs: 'La teua paraula és',
+    hintCiudadano:
+      'Descriu-la amb UNA frase quan arribe el teu torn. No la digues literalment: fes-la endevinar.',
+    hablaAhora: 'Parla ara',
+    esTuTurno: (name: string) => `${name} — és el teu torn!`,
+    tiempoRestante: 'Temps restant',
+    tuTurno: 'El teu torn',
+    turnos: (n: number) => `${n} ${n === 1 ? 'torn' : 'torns'}`,
+  },
+};
 
 function useCountdown(timerEndsAt: number | null): number | null {
   const [remaining, setRemaining] = useState<number | null>(null);
@@ -36,6 +76,7 @@ function useCountdown(timerEndsAt: number | null): number | null {
 }
 
 export function PlayerWordOrSilence({ publicState, privateState, playerName }: Props) {
+  const c = COPY[useGameLocale()];
   const { phase, currentSpeakerId, speakerOrder, timerEndsAt, players } = publicState;
   const remaining = useCountdown(timerEndsAt);
   const isImpostor = privateState?.role === 'impostor';
@@ -52,30 +93,30 @@ export function PlayerWordOrSilence({ publicState, privateState, playerName }: P
     <>
       {/* Role badge */}
       {isImpostor ? (
-        <div class="ins-role-impostor">Eres el impostor</div>
+        <div class="ins-role-impostor">{c.eresImpostor}</div>
       ) : (
-        <div class="ins-role-citizen">Eres ciudadano</div>
+        <div class="ins-role-citizen">{c.eresCiudadano}</div>
       )}
 
       {/* Word section */}
       {isImpostor ? (
         <>
-          <div class="ins-impostor-big serif-it">No conoces la palabra</div>
-          <div class="ins-word-label">La palabra es</div>
+          <div class="ins-impostor-big serif-it">{c.noConoces}</div>
+          <div class="ins-word-label">{c.laPalabraEs}</div>
           <div class="ins-word-hidden">???</div>
           <div class="ins-hint">
-            Escucha lo que dicen los demás. Cuando te toque, inventa una frase coherente con las pistas que has oído.
+            {c.hintImpostor}
           </div>
           <div class="ins-strategy-box">
-            <strong>Estrategia:</strong> si te votan, podrás intentar adivinar la palabra. Acertar = ganas igualmente.
+            <strong>{c.estrategiaLabel}</strong>{c.estrategiaTexto}
           </div>
         </>
       ) : (
         <>
-          <div class="ins-word-label">Tu palabra es</div>
+          <div class="ins-word-label">{c.tuPalabraEs}</div>
           <div class="ins-word-display">{word}</div>
           <div class="ins-hint">
-            Descríbela con UNA frase cuando llegue tu turno. No la digas literalmente: hazla adivinar.
+            {c.hintCiudadano}
           </div>
         </>
       )}
@@ -83,10 +124,10 @@ export function PlayerWordOrSilence({ publicState, privateState, playerName }: P
       {/* Current speaker status */}
       {phase === 'discussion' && currentSpeaker && (
         <div class="ins-status-box">
-          <div class="l">{isMyTurn ? 'Habla ahora' : 'Habla ahora'}</div>
+          <div class="l">{c.hablaAhora}</div>
           <div class="t">
             {isMyTurn
-              ? `${playerName} — ¡es tu turno!`
+              ? c.esTuTurno(playerName)
               : currentSpeaker.name}
           </div>
         </div>
@@ -95,7 +136,7 @@ export function PlayerWordOrSilence({ publicState, privateState, playerName }: P
       {/* Timer */}
       {remaining !== null && phase === 'discussion' && (
         <div class="ins-turn-info">
-          <span>Tiempo restante</span>
+          <span>{c.tiempoRestante}</span>
           <span class={`v mono${remaining <= 10 ? '' : ''}`}>
             {remaining}s
           </span>
@@ -105,8 +146,8 @@ export function PlayerWordOrSilence({ publicState, privateState, playerName }: P
       {/* Turn order info for non-impostors */}
       {phase === 'discussion' && !isMyTurn && turnsUntilMe !== null && turnsUntilMe > 0 && (
         <div class="ins-turn-info">
-          <span>Tu turno</span>
-          <span class="v mono">{turnsUntilMe} {turnsUntilMe === 1 ? 'turno' : 'turnos'}</span>
+          <span>{c.tuTurno}</span>
+          <span class="v mono">{c.turnos(turnsUntilMe)}</span>
         </div>
       )}
     </>

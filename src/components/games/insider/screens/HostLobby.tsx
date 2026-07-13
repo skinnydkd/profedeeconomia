@@ -4,6 +4,7 @@
 
 import { useState } from 'preact/hooks';
 import type { PublicState } from '@/lib/games-multi/insider/types';
+import { useGameLocale } from '../../locale-context';
 
 interface Props {
   publicState: PublicState;
@@ -13,7 +14,41 @@ interface Props {
 
 const MIN_PLAYERS = 4;
 
+export const COPY = {
+  es: {
+    salaEspera: 'Sala de espera',
+    titulo: 'Insider',
+    codigoSala: 'Código de sala',
+    hintPre: 'Los alumnos entran en ',
+    hintPost: ' e introducen este código.',
+    jugadoresConectados: (n: number) => `${n} ${n === 1 ? 'jugador' : 'jugadores'} conectados`,
+    esperando: 'Esperando a que se unan los alumnos…',
+    rondas: 'Rondas',
+    impostores: 'Impostores',
+    auto: 'Auto',
+    empezar: 'Empezar partida',
+    faltan: (n: number) => `Faltan ${n} jugadores para empezar`,
+    minimo: (n: number) => `Mínimo ${n} jugadores para iniciar.`,
+  },
+  ca: {
+    salaEspera: "Sala d'espera",
+    titulo: 'Insider',
+    codigoSala: 'Codi de sala',
+    hintPre: 'Els alumnes entren a ',
+    hintPost: ' i introduïxen este codi.',
+    jugadoresConectados: (n: number) => `${n} ${n === 1 ? 'jugador' : 'jugadors'} connectats`,
+    esperando: "Esperant que s'unisquen els alumnes…",
+    rondas: 'Rondes',
+    impostores: 'Impostors',
+    auto: 'Auto',
+    empezar: 'Comença la partida',
+    faltan: (n: number) => `Falten ${n} jugadors per a començar`,
+    minimo: (n: number) => `Mínim ${n} jugadors per a iniciar.`,
+  },
+};
+
 export function HostLobby({ publicState, roomCode, onStart }: Props) {
+  const c = COPY[useGameLocale()];
   const [rounds, setRounds] = useState(5);
   const [impostorOverride, setImpostorOverride] = useState<number | undefined>(undefined);
 
@@ -31,23 +66,23 @@ export function HostLobby({ publicState, roomCode, onStart }: Props) {
     <div class="ins-lobby">
       {/* Header */}
       <div class="ins-lobby-header">
-        <div class="eyebrow">Sala de espera</div>
-        <h1 class="serif">Insider</h1>
+        <div class="eyebrow">{c.salaEspera}</div>
+        <h1 class="serif">{c.titulo}</h1>
       </div>
 
       {/* Prominent room code */}
       <div class="ins-lobby-code-block">
-        <div class="l">Código de sala</div>
+        <div class="l">{c.codigoSala}</div>
         <div class="code mono">{roomCode}</div>
-        <div class="hint">Los alumnos entran en <strong>profedeeconomia.es/juegos/insider/</strong> e introducen este código.</div>
+        <div class="hint">{c.hintPre}<strong>profedeeconomia.es/juegos/insider/</strong>{c.hintPost}</div>
       </div>
 
       {/* Players list */}
       <div class="ins-lobby-players">
-        <h4>{players.length} {players.length === 1 ? 'jugador' : 'jugadores'} conectados</h4>
+        <h4>{c.jugadoresConectados(players.length)}</h4>
         {players.length === 0 ? (
           <div class="ins-empty-players">
-            Esperando a que se unan los alumnos…
+            {c.esperando}
           </div>
         ) : (
           <div class="ins-lobby-players-list">
@@ -64,7 +99,7 @@ export function HostLobby({ publicState, roomCode, onStart }: Props) {
       {/* Config controls */}
       <div class="ins-config">
         <div class="ins-config-field">
-          <label for="rounds-select">Rondas</label>
+          <label for="rounds-select">{c.rondas}</label>
           <select
             id="rounds-select"
             value={rounds}
@@ -78,7 +113,7 @@ export function HostLobby({ publicState, roomCode, onStart }: Props) {
           </select>
         </div>
         <div class="ins-config-field">
-          <label for="impostor-select">Impostores</label>
+          <label for="impostor-select">{c.impostores}</label>
           <select
             id="impostor-select"
             value={impostorOverride ?? ''}
@@ -87,7 +122,7 @@ export function HostLobby({ publicState, roomCode, onStart }: Props) {
               setImpostorOverride(v === '' ? undefined : Number(v));
             }}
           >
-            <option value="">Auto</option>
+            <option value="">{c.auto}</option>
             <option value={1}>1</option>
             <option value={2}>2</option>
             <option value={3}>3</option>
@@ -103,14 +138,14 @@ export function HostLobby({ publicState, roomCode, onStart }: Props) {
           onClick={handleStart}
         >
           {canStart
-            ? 'Empezar partida'
-            : `Faltan ${MIN_PLAYERS - players.length} jugadores para empezar`}
+            ? c.empezar
+            : c.faltan(MIN_PLAYERS - players.length)}
         </button>
       </div>
 
       {!canStart && players.length > 0 && (
         <p style="font-size:12px;color:var(--mute);margin-top:8px;font-style:italic;font-family:'Fraunces',serif;">
-          Mínimo {MIN_PLAYERS} jugadores para iniciar.
+          {c.minimo(MIN_PLAYERS)}
         </p>
       )}
     </div>

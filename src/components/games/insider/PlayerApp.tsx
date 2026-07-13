@@ -13,7 +13,7 @@ import { PlayerReveal } from './screens/PlayerReveal';
 import { PlayerGuess } from './screens/PlayerGuess';
 import { PlayerFinal } from './screens/PlayerFinal';
 import './insider.css';
-import { GameLocaleContext } from '../locale-context';
+import { GameLocaleContext, useGameLocale } from '../locale-context';
 import { DEFAULT_LOCALE, type Locale } from '@/i18n/locale';
 
 // ---------------------------------------------------------------------------
@@ -58,6 +58,19 @@ interface Props {
   locale?: Locale;
 }
 
+export const COPY = {
+  es: {
+    reconectando: 'Reconectando…',
+    sala: (code: string) => `Sala ${code}`,
+    conectando: 'Conectando…',
+  },
+  ca: {
+    reconectando: 'Reconnectant…',
+    sala: (code: string) => `Sala ${code}`,
+    conectando: 'Connectant…',
+  },
+};
+
 // ---------------------------------------------------------------------------
 // Component
 // ---------------------------------------------------------------------------
@@ -71,6 +84,7 @@ export default function PlayerApp({ partykitHost, locale = DEFAULT_LOCALE }: Pro
 }
 
 function PlayerAppInner({ partykitHost }: { partykitHost: string }) {
+  const c = COPY[useGameLocale()];
   const [publicState, setPublicState] = useState<PublicState | null>(null);
   const [privateState, setPrivateState] = useState<PrivateState | null>(null);
   const [connected, setConnected] = useState(false);
@@ -166,7 +180,7 @@ function PlayerAppInner({ partykitHost }: { partykitHost: string }) {
     <div class="ins">
       {/* Reconnecting badge */}
       {!connected && publicState !== null && (
-        <div class="ins-reconnecting">Reconectando…</div>
+        <div class="ins-reconnecting">{c.reconectando}</div>
       )}
 
       {/* Error notice */}
@@ -186,12 +200,12 @@ function PlayerAppInner({ partykitHost }: { partykitHost: string }) {
               />
               {playerName}
             </div>
-            <div>Sala {roomCode}</div>
+            <div>{c.sala(roomCode)}</div>
           </div>
 
           {/* Body: phase-driven content */}
           {!publicState ? (
-            <div class="ins-connecting">Conectando…</div>
+            <div class="ins-connecting">{c.conectando}</div>
           ) : (
             <div class="ins-phone-body">
               {phase === 'lobby' && (

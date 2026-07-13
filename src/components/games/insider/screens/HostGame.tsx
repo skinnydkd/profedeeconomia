@@ -4,6 +4,7 @@
 
 import { useState, useEffect } from 'preact/hooks';
 import type { PublicState, PrivateState, Phase } from '@/lib/games-multi/insider/types';
+import { useGameLocale } from '../../locale-context';
 
 interface Props {
   publicState: PublicState;
@@ -11,30 +12,101 @@ interface Props {
   onAdvancePhase: () => void;
 }
 
-// Phase display metadata
-const PHASE_META: Record<Phase, { label: string; sub: string }> = {
-  lobby: { label: 'Sala de espera', sub: '' },
-  show_word: {
-    label: 'Memoriza la palabra',
-    sub: 'Los ciudadanos ven la palabra en su móvil. El impostor no la conoce. Tiempo para leerla.',
+export const COPY = {
+  es: {
+    phases: {
+      lobby: { label: 'Sala de espera', sub: '' },
+      show_word: {
+        label: 'Memoriza la palabra',
+        sub: 'Los ciudadanos ven la palabra en su móvil. El impostor no la conoce. Tiempo para leerla.',
+      },
+      discussion: {
+        label: 'Discusión',
+        sub: 'Cada jugador describe la palabra con una frase. El impostor disimula.',
+      },
+      voting: {
+        label: 'Votación',
+        sub: 'Los jugadores votan quién creen que es el impostor.',
+      },
+      reveal: {
+        label: 'Revelación',
+        sub: 'Se desvela quién ha sido eliminado y si era el impostor.',
+      },
+      guess: {
+        label: 'Último intento',
+        sub: 'El impostor atrapado intenta adivinar la palabra.',
+      },
+      finished: { label: 'Fin de partida', sub: '' },
+    } as Record<Phase, { label: string; sub: string }>,
+    ronda: (r: number, total: number) => `Ronda ${r} / ${total}`,
+    eliminado: 'Eliminado',
+    eraImpostor: 'Era el impostor',
+    eraCiudadano: 'Era ciudadano',
+    laPalabraEra: 'La palabra era: ',
+    hablaAhora: 'Habla ahora',
+    adivina: 'Adivina',
+    leePalabra: 'Lee la palabra',
+    restante: 'RESTANTE',
+    turnosRonda: (n: number) => `Turnos esta ronda · ${n} jugadores`,
+    jugadoresVivos: (n: number) => `Jugadores · ${n} vivos`,
+    clasificacion: 'Clasificación',
+    avanzarFase: 'Avanzar fase',
+    footer: {
+      showWord: 'Próxima fase: discusión',
+      discussion: 'Próxima fase: votación — los alumnos votan en su móvil',
+      voting: (cast: number, alive: number) => `${cast} votos emitidos de ${alive} jugadores vivos`,
+      revealImpostor: (name: string) => `${name} era el impostor`,
+      revealCitizen: (name: string) => `${name} era ciudadano`,
+      guess: 'El impostor tiene 30 segundos para adivinar la palabra',
+    },
   },
-  discussion: {
-    label: 'Discusión',
-    sub: 'Cada jugador describe la palabra con una frase. El impostor disimula.',
+  ca: {
+    phases: {
+      lobby: { label: "Sala d'espera", sub: '' },
+      show_word: {
+        label: 'Memoritza la paraula',
+        sub: "Els ciutadans veuen la paraula al mòbil. L'impostor no la coneix. Temps per a llegir-la.",
+      },
+      discussion: {
+        label: 'Discussió',
+        sub: "Cada jugador descriu la paraula amb una frase. L'impostor dissimula.",
+      },
+      voting: {
+        label: 'Votació',
+        sub: "Els jugadors voten qui creuen que és l'impostor.",
+      },
+      reveal: {
+        label: 'Revelació',
+        sub: "Es desvela qui ha sigut eliminat i si era l'impostor.",
+      },
+      guess: {
+        label: 'Últim intent',
+        sub: "L'impostor atrapat intenta endevinar la paraula.",
+      },
+      finished: { label: 'Fi de la partida', sub: '' },
+    } as Record<Phase, { label: string; sub: string }>,
+    ronda: (r: number, total: number) => `Ronda ${r} / ${total}`,
+    eliminado: 'Eliminat',
+    eraImpostor: "Era l'impostor",
+    eraCiudadano: 'Era ciutadà',
+    laPalabraEra: 'La paraula era: ',
+    hablaAhora: 'Parla ara',
+    adivina: 'Endevina',
+    leePalabra: 'Llig la paraula',
+    restante: 'RESTANT',
+    turnosRonda: (n: number) => `Torns d'esta ronda · ${n} jugadors`,
+    jugadoresVivos: (n: number) => `Jugadors · ${n} vius`,
+    clasificacion: 'Classificació',
+    avanzarFase: 'Avança de fase',
+    footer: {
+      showWord: 'Pròxima fase: discussió',
+      discussion: 'Pròxima fase: votació — els alumnes voten al mòbil',
+      voting: (cast: number, alive: number) => `${cast} vots emesos de ${alive} jugadors vius`,
+      revealImpostor: (name: string) => `${name} era l'impostor`,
+      revealCitizen: (name: string) => `${name} era ciutadà`,
+      guess: "L'impostor té 30 segons per a endevinar la paraula",
+    },
   },
-  voting: {
-    label: 'Votación',
-    sub: 'Los jugadores votan quién creen que es el impostor.',
-  },
-  reveal: {
-    label: 'Revelación',
-    sub: 'Se desvela quién ha sido eliminado y si era el impostor.',
-  },
-  guess: {
-    label: 'Último intento',
-    sub: 'El impostor atrapado intenta adivinar la palabra.',
-  },
-  finished: { label: 'Fin de partida', sub: '' },
 };
 
 // ---------------------------------------------------------------------------
@@ -84,9 +156,10 @@ function formatTimer(seconds: number): string {
 // ---------------------------------------------------------------------------
 
 export function HostGame({ publicState, privateState: _privateState, onAdvancePhase }: Props) {
+  const c = COPY[useGameLocale()];
   const { phase, round, totalRounds, players, currentSpeakerId, speakerOrder, timerEndsAt, votesCast } = publicState;
   const remaining = useCountdown(timerEndsAt);
-  const meta = PHASE_META[phase];
+  const meta = c.phases[phase];
 
   // Current speaker info
   const currentSpeaker = players.find((p) => p.id === currentSpeakerId);
@@ -103,13 +176,15 @@ export function HostGame({ publicState, privateState: _privateState, onAdvancePh
 
   // Footer hint based on phase
   const footerTexts: Partial<Record<Phase, string>> = {
-    show_word: 'Próxima fase: discusión',
-    discussion: 'Próxima fase: votación — los alumnos votan en su móvil',
-    voting: `${votesCast} votos emitidos de ${players.filter((p) => p.alive).length} jugadores vivos`,
+    show_word: c.footer.showWord,
+    discussion: c.footer.discussion,
+    voting: c.footer.voting(votesCast, players.filter((p) => p.alive).length),
     reveal: lastReveal
-      ? `${players.find((p) => p.id === lastReveal.eliminatedId)?.name ?? ''} era ${lastReveal.wasImpostor ? 'el impostor' : 'ciudadano'}`
+      ? lastReveal.wasImpostor
+        ? c.footer.revealImpostor(players.find((p) => p.id === lastReveal.eliminatedId)?.name ?? '')
+        : c.footer.revealCitizen(players.find((p) => p.id === lastReveal.eliminatedId)?.name ?? '')
       : '',
-    guess: 'El impostor tiene 30 segundos para adivinar la palabra',
+    guess: c.footer.guess,
   };
 
   return (
@@ -117,7 +192,7 @@ export function HostGame({ publicState, privateState: _privateState, onAdvancePh
       {/* Phase header */}
       <div class="ins-phase">
         <div class="eyebrow">
-          Ronda {round} / {totalRounds}
+          {c.ronda(round, totalRounds)}
         </div>
         <div class="name serif-it">{meta.label}</div>
         {meta.sub && <div class="sub">{meta.sub}</div>}
@@ -128,14 +203,14 @@ export function HostGame({ publicState, privateState: _privateState, onAdvancePh
         const eliminated = players.find((p) => p.id === lastReveal.eliminatedId);
         return (
           <div class="ins-reveal-box">
-            <div class="lab">Eliminado</div>
+            <div class="lab">{c.eliminado}</div>
             <div class="name serif">{eliminated?.name ?? '?'}</div>
             <div class={`verdict ${lastReveal.wasImpostor ? 'impostor' : 'citizen'}`}>
-              {lastReveal.wasImpostor ? 'Era el impostor' : 'Era ciudadano'}
+              {lastReveal.wasImpostor ? c.eraImpostor : c.eraCiudadano}
             </div>
             {publicState.word && (
               <div class="word-reveal">
-                La palabra era: <strong>{publicState.word}</strong>
+                {c.laPalabraEra}<strong>{publicState.word}</strong>
               </div>
             )}
           </div>
@@ -148,14 +223,14 @@ export function HostGame({ publicState, privateState: _privateState, onAdvancePh
           <div class="avatar">{initial(currentSpeaker.name)}</div>
           <div class="info">
             <div class="lab">
-              {phase === 'discussion' ? 'Habla ahora' : phase === 'guess' ? 'Adivina' : 'Lee la palabra'}
+              {phase === 'discussion' ? c.hablaAhora : phase === 'guess' ? c.adivina : c.leePalabra}
             </div>
             <div class="nm serif">{currentSpeaker.name}</div>
           </div>
           {remaining !== null && (
             <div class={`timer mono${remaining <= 10 ? ' urgent' : ''}`}>
               {formatTimer(remaining)}
-              <span class="sm">RESTANTE</span>
+              <span class="sm">{c.restante}</span>
             </div>
           )}
         </div>
@@ -166,7 +241,7 @@ export function HostGame({ publicState, privateState: _privateState, onAdvancePh
         <div class="ins-spot" style="justify-content:center;">
           <div class={`timer mono${remaining <= 10 ? ' urgent' : ''}`} style="font-size:56px;">
             {formatTimer(remaining)}
-            <span class="sm">RESTANTE</span>
+            <span class="sm">{c.restante}</span>
           </div>
         </div>
       )}
@@ -175,8 +250,8 @@ export function HostGame({ publicState, privateState: _privateState, onAdvancePh
       <div class="ins-players">
         <h4>
           {phase === 'discussion'
-            ? `Turnos esta ronda · ${players.filter((p) => p.alive).length} jugadores`
-            : `Jugadores · ${players.filter((p) => p.alive).length} vivos`}
+            ? c.turnosRonda(players.filter((p) => p.alive).length)
+            : c.jugadoresVivos(players.filter((p) => p.alive).length)}
         </h4>
         <div class="ins-players-grid">
           {players.map((p) => {
@@ -202,7 +277,7 @@ export function HostGame({ publicState, privateState: _privateState, onAdvancePh
       {/* Mini scoreboard */}
       {top3.length > 0 && (
         <div class="ins-score">
-          <div class="l">Clasificación</div>
+          <div class="l">{c.clasificacion}</div>
           <div class="top3">
             {top3.map((p, i) => (
               <div key={p.id} class="e">
@@ -223,7 +298,7 @@ export function HostGame({ publicState, privateState: _privateState, onAdvancePh
       {/* Host force-advance (skip timer / next phase) */}
       <div class="ins-btn-row" style="justify-content:center;padding-bottom:16px;">
         <button class="ins-btn ghost" onClick={onAdvancePhase}>
-          Avanzar fase
+          {c.avanzarFase}
         </button>
       </div>
     </div>
