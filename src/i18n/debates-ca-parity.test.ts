@@ -7,7 +7,7 @@ import { join } from 'node:path';
  * Every `nn-slug.ca.mdx` debate must (1) have an ES sibling, (2) declare
  * `lang: ca` + `estado: publicado`, (3) share `orden` with its ES sibling,
  * (4) carry a non-trivial body. `astro:content` is not importable from Vitest,
- * so files are read straight off disk (same approach as fichas-ca.test.ts).
+ * so files are read straight off disk because content collections are not available at test time.
  */
 const ROOT = join('src', 'content', 'debates');
 const fm = (text: string) => text.split('---')[1] ?? '';
@@ -34,6 +34,7 @@ describe('debates CA sibling parity', () => {
       const es = readFileSync(esPath, 'utf8'); // throws if missing
       expect(fm(ca)).toMatch(/^lang:\s*ca\s*$/m);
       expect(fm(ca)).toMatch(/^estado:\s*publicado\s*$/m);
+      expect(orden(ca)).toBeDefined();
       expect(orden(ca)).toBe(orden(es));
       expect(body(ca).trim().length).toBeGreaterThan(200);
       // slug override REQUIRED (Astro strips dots from ids → else silent ES fallback)
