@@ -7,8 +7,10 @@
  */
 import BaseLayout from '@layouts/BaseLayout.astro';
 import PrintButton from '@components/dinamicas/PrintButton.astro';
-import { CELLS, SECTOR_LABEL, SECTOR_COLOR } from '@/lib/games/econopoly/board';
+import { getLocale } from '@/i18n/locale';
+import { SECTOR_COLOR } from '@/lib/games/econopoly/board';
 import { NEWS_CARDS } from '@/lib/games/econopoly/events';
+import { localizeCells, localizeSectorLabel, localizeNewsCard } from '@/i18n/games/econopoly-ca';
 
 // 28 cells laid out clockwise around the perimeter of an 8×8 grid.
 function gridPos(i: number): { row: number; col: number } {
@@ -18,57 +20,95 @@ function gridPos(i: number): { row: number; col: number } {
   return { row: 29 - i, col: 1 };
 }
 
-const KIND_LABEL: Record<string, string> = {
-  start: 'Salida', tax: 'Impuesto', news: 'Noticia', cb: 'Banco Central',
-  rd: 'I+D', freemarket: 'Mercado libre',
-};
+const locale = getLocale(Astro.currentLocale);
+const cells = localizeCells(locale);
+const sectorLabel = localizeSectorLabel(locale);
+const properties = cells.filter((c) => c.property).map((c) => c.property!);
 
-const properties = CELLS.filter((c) => c.property).map((c) => c.property!);
+const KIND_LABEL: Record<string, string> = locale === 'ca'
+  ? { start: 'Eixida', tax: 'Impost', news: 'Notícia', cb: 'Banc Central', rd: 'R+D', freemarket: 'Mercat lliure' }
+  : { start: 'Salida', tax: 'Impuesto', news: 'Noticia', cb: 'Banco Central', rd: 'I+D', freemarket: 'Mercado libre' };
+
+// Print-page chrome. Cell/property/sector/news-card display text comes from the
+// shared econopoly-ca overlay; only the instructional chrome lives here.
+const copy = {
+  es: {
+    metaTitle: 'Econopoly — versión para imprimir',
+    metaDesc: 'Print-and-play de Econopoly: tablero, cartas de noticia y referencia de propiedades listos para imprimir y jugar en clase sin pantallas.',
+    bcInicio: 'Inicio', bcJuegos: 'Juegos', bcImprimir: 'Imprimir',
+    kicker: 'Versión para imprimir', enPapel: 'en papel',
+    ledePre: 'Imprime el tablero, recorta las cartas de noticia y juega sin pantallas. Cada bloque es una hoja A4. Las reglas completas están en la ',
+    ledeLink: 'versión digital', ledePost: '.',
+    comoSeJuega: 'Cómo se juega',
+    rules: [
+      '<strong>Jugadores:</strong> 1 a 6. Cada uno coge una ficha y sale de la casilla <em>Salida</em>.',
+      '<strong>Objetivo:</strong> ser quien tenga <strong>mayor patrimonio neto</strong> al cabo de 20 rondas.',
+      '<strong>Turno:</strong> tira el dado, avanza y resuelve la casilla: compra la propiedad libre, paga renta si es de otro, o aplica la casilla especial.',
+      '<strong>Monopolios:</strong> tener todas las propiedades de un sector multiplica sus rentas.',
+      '<strong>Banco Central:</strong> ajusta el tipo de interés del crédito. <strong>Impuesto:</strong> tributación progresiva sobre el patrimonio.',
+      '<strong>Noticias:</strong> al caer en <em>Noticia</em>, roba una carta y aplica su efecto ese turno.',
+    ],
+    hintMaterial: `Material derivado de la versión digital: ${cells.length} casillas · ${properties.length} propiedades · ${NEWS_CARDS.length} cartas de noticia.`,
+    tablero: 'Tablero', cartasNoticia: 'Cartas de noticia', noticia: 'Noticia',
+    propiedadesPorSector: 'Propiedades por sector', renta: 'renta',
+    thPropiedad: 'Propiedad', thSector: 'Sector', thPrecio: 'Precio', thRenta: 'Renta base',
+  },
+  ca: {
+    metaTitle: 'Econopoly — versió per a imprimir',
+    metaDesc: "Print-and-play d'Econopoly: tauler, cartes de notícia i referència de propietats a punt per a imprimir i jugar a classe sense pantalles.",
+    bcInicio: 'Inici', bcJuegos: 'Jocs', bcImprimir: 'Imprimir',
+    kicker: 'Versió per a imprimir', enPapel: 'en paper',
+    ledePre: 'Imprimeix el tauler, retalla les cartes de notícia i juga sense pantalles. Cada bloc és un full A4. Les regles completes estan a la ',
+    ledeLink: 'versió digital', ledePost: '.',
+    comoSeJuega: 'Com es juga',
+    rules: [
+      '<strong>Jugadors:</strong> 1 a 6. Cadascú agafa una fitxa i ix de la casella <em>Eixida</em>.',
+      '<strong>Objectiu:</strong> ser qui tinga <strong>major patrimoni net</strong> al cap de 20 rondes.',
+      "<strong>Torn:</strong> tira el dau, avança i resol la casella: compra la propietat lliure, paga renda si és d'un altre, o aplica la casella especial.",
+      "<strong>Monopolis:</strong> tindre totes les propietats d'un sector multiplica les seues rendes.",
+      "<strong>Banc Central:</strong> ajusta el tipus d'interés del crèdit. <strong>Impost:</strong> tributació progressiva sobre el patrimoni.",
+      '<strong>Notícies:</strong> en caure en <em>Notícia</em>, roba una carta i aplica el seu efecte este torn.',
+    ],
+    hintMaterial: `Material derivat de la versió digital: ${cells.length} caselles · ${properties.length} propietats · ${NEWS_CARDS.length} cartes de notícia.`,
+    tablero: 'Tauler', cartasNoticia: 'Cartes de notícia', noticia: 'Notícia',
+    propiedadesPorSector: 'Propietats per sector', renta: 'renda',
+    thPropiedad: 'Propietat', thSector: 'Sector', thPrecio: 'Preu', thRenta: 'Renda base',
+  },
+}[locale];
 ---
 
-<BaseLayout
-  title="Econopoly — versión para imprimir"
-  description="Print-and-play de Econopoly: tablero, cartas de noticia y referencia de propiedades listos para imprimir y jugar en clase sin pantallas."
-  noindex
->
+<BaseLayout title={copy.metaTitle} description={copy.metaDesc} contentLang={locale} noindex>
   <div class="container">
     <nav class="breadcrumb no-print">
-      <a href="/">Inicio</a> <span class="sep">›</span>
-      <a href="/juegos/">Juegos</a> <span class="sep">›</span>
+      <a href="/">{copy.bcInicio}</a> <span class="sep">›</span>
+      <a href="/juegos/">{copy.bcJuegos}</a> <span class="sep">›</span>
       <a href="/juegos/econopoly/">Econopoly</a> <span class="sep">›</span>
-      <span>Imprimir</span>
+      <span>{copy.bcImprimir}</span>
     </nav>
 
     <header class="intro no-print">
-      <span class="kicker">Versión para imprimir</span>
-      <h1>Econopoly <span class="serif-italic-wonk accent">en papel</span></h1>
+      <span class="kicker">{copy.kicker}</span>
+      <h1>Econopoly <span class="serif-italic-wonk accent">{copy.enPapel}</span></h1>
       <p class="lede">
-        Imprime el tablero, recorta las cartas de noticia y juega sin pantallas.
-        Cada bloque es una hoja A4. Las reglas completas están en la
-        <a href="/juegos/econopoly/" class="editorial-link">versión digital</a>.
+        {copy.ledePre}<a href="/juegos/econopoly/" class="editorial-link">{copy.ledeLink}</a>{copy.ledePost}
       </p>
       <PrintButton />
     </header>
 
     <!-- Hoja 1: cómo se juega -->
     <section class="print-block">
-      <h2>Cómo se juega</h2>
+      <h2>{copy.comoSeJuega}</h2>
       <ul class="rules">
-        <li><strong>Jugadores:</strong> 1 a 6. Cada uno coge una ficha y sale de la casilla <em>Salida</em>.</li>
-        <li><strong>Objetivo:</strong> ser quien tenga <strong>mayor patrimonio neto</strong> al cabo de 20 rondas.</li>
-        <li><strong>Turno:</strong> tira el dado, avanza y resuelve la casilla: compra la propiedad libre, paga renta si es de otro, o aplica la casilla especial.</li>
-        <li><strong>Monopolios:</strong> tener todas las propiedades de un sector multiplica sus rentas.</li>
-        <li><strong>Banco Central:</strong> ajusta el tipo de interés del crédito. <strong>Impuesto:</strong> tributación progresiva sobre el patrimonio.</li>
-        <li><strong>Noticias:</strong> al caer en <em>Noticia</em>, roba una carta y aplica su efecto ese turno.</li>
+        {copy.rules.map((r) => <li set:html={r} />)}
       </ul>
-      <p class="hint">Material derivado de la versión digital: {CELLS.length} casillas · {properties.length} propiedades · {NEWS_CARDS.length} cartas de noticia.</p>
+      <p class="hint">{copy.hintMaterial}</p>
     </section>
 
     <!-- Hoja 2: tablero -->
     <section class="print-block">
-      <h2>Tablero</h2>
+      <h2>{copy.tablero}</h2>
       <div class="board">
-        {CELLS.map((c) => {
+        {cells.map((c) => {
           const { row, col } = gridPos(c.id);
           const bg = c.property ? SECTOR_COLOR[c.property.sector] : '#fff';
           return (
@@ -78,7 +118,7 @@ const properties = CELLS.filter((c) => c.property).map((c) => c.property!);
             >
               <span class="cell-pos">{c.id}</span>
               <span class="cell-label">{c.property ? c.property.label : (KIND_LABEL[c.kind] ?? c.label)}</span>
-              {c.property && <span class="cell-price">{c.property.basePrice} · renta {c.property.baseRent}</span>}
+              {c.property && <span class="cell-price">{c.property.basePrice} · {copy.renta} {c.property.baseRent}</span>}
             </div>
           );
         })}
@@ -88,12 +128,12 @@ const properties = CELLS.filter((c) => c.property).map((c) => c.property!);
 
     <!-- Hoja 3+: cartas de noticia -->
     <section class="print-block">
-      <h2>Cartas de noticia <span class="count">({NEWS_CARDS.length})</span></h2>
+      <h2>{copy.cartasNoticia} <span class="count">({NEWS_CARDS.length})</span></h2>
       <div class="cards">
         {NEWS_CARDS.map((card) => (
           <div class="card">
-            <span class="card-kicker">Noticia</span>
-            <p class="card-text">{card.text}</p>
+            <span class="card-kicker">{copy.noticia}</span>
+            <p class="card-text">{localizeNewsCard(card, locale)}</p>
           </div>
         ))}
       </div>
@@ -101,14 +141,14 @@ const properties = CELLS.filter((c) => c.property).map((c) => c.property!);
 
     <!-- Hoja: referencia de propiedades -->
     <section class="print-block">
-      <h2>Propiedades por sector</h2>
+      <h2>{copy.propiedadesPorSector}</h2>
       <table class="ref">
-        <thead><tr><th>Propiedad</th><th>Sector</th><th>Precio</th><th>Renta base</th></tr></thead>
+        <thead><tr><th>{copy.thPropiedad}</th><th>{copy.thSector}</th><th>{copy.thPrecio}</th><th>{copy.thRenta}</th></tr></thead>
         <tbody>
           {properties.map((p) => (
             <tr>
               <td>{p.label}</td>
-              <td><span class="dot" style={`background:${SECTOR_COLOR[p.sector]}`}></span>{SECTOR_LABEL[p.sector]}</td>
+              <td><span class="dot" style={`background:${SECTOR_COLOR[p.sector]}`}></span>{sectorLabel[p.sector]}</td>
               <td>{p.basePrice}</td>
               <td>{p.baseRent}</td>
             </tr>
