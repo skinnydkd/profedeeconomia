@@ -9,6 +9,8 @@ import { HostLobby } from './screens/HostLobby';
 import { HostGame } from './screens/HostGame';
 import { HostFinal } from './screens/HostFinal';
 import './insider.css';
+import { GameLocaleContext } from '../locale-context';
+import { DEFAULT_LOCALE, type Locale } from '@/i18n/locale';
 
 // ---------------------------------------------------------------------------
 // Helpers
@@ -49,13 +51,22 @@ function getRoomCodeFromUrl(): string | null {
 
 interface Props {
   partykitHost: string;
+  locale?: Locale;
 }
 
 // ---------------------------------------------------------------------------
 // Component
 // ---------------------------------------------------------------------------
 
-export default function HostApp({ partykitHost }: Props) {
+export default function HostApp({ partykitHost, locale = DEFAULT_LOCALE }: Props) {
+  return (
+    <GameLocaleContext.Provider value={locale}>
+      <HostAppInner partykitHost={partykitHost} />
+    </GameLocaleContext.Provider>
+  );
+}
+
+function HostAppInner({ partykitHost }: { partykitHost: string }) {
   const [publicState, setPublicState] = useState<PublicState | null>(null);
   const [privateState, setPrivateState] = useState<PrivateState | null>(null);
   const [connected, setConnected] = useState(false);

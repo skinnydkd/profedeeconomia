@@ -11,8 +11,10 @@ import { PlayerRevealLocal } from './screens/PlayerRevealLocal';
 import { PlayerLeaderboardMini } from './screens/PlayerLeaderboardMini';
 import { PlayerFinal } from './screens/PlayerFinal';
 import './cajut.css';
+import { GameLocaleContext } from '../locale-context';
+import { DEFAULT_LOCALE, type Locale } from '@/i18n/locale';
 
-interface Props { partykitHost: string; }
+interface Props { partykitHost: string; locale?: Locale; }
 
 const PLAYER_ID_KEY = 'pde:cajut:playerId';
 const NICK_KEY = 'pde:cajut:nick';
@@ -27,7 +29,15 @@ function getOrCreatePlayerId(): string | null {
   return id;
 }
 
-export default function PlayerApp({ partykitHost }: Props) {
+export default function PlayerApp({ partykitHost, locale = DEFAULT_LOCALE }: Props) {
+  return (
+    <GameLocaleContext.Provider value={locale}>
+      <PlayerAppInner partykitHost={partykitHost} />
+    </GameLocaleContext.Provider>
+  );
+}
+
+function PlayerAppInner({ partykitHost }: { partykitHost: string }) {
   const [playerId, setPlayerId] = useState<string | null>(null);
   const [roomCode, setRoomCode] = useState<string | null>(null);
   const [nick, setNick] = useState<string | null>(null);

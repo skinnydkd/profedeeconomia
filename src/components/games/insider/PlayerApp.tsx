@@ -13,6 +13,8 @@ import { PlayerReveal } from './screens/PlayerReveal';
 import { PlayerGuess } from './screens/PlayerGuess';
 import { PlayerFinal } from './screens/PlayerFinal';
 import './insider.css';
+import { GameLocaleContext } from '../locale-context';
+import { DEFAULT_LOCALE, type Locale } from '@/i18n/locale';
 
 // ---------------------------------------------------------------------------
 // Helpers
@@ -53,13 +55,22 @@ function storePlayerName(name: string) {
 
 interface Props {
   partykitHost: string;
+  locale?: Locale;
 }
 
 // ---------------------------------------------------------------------------
 // Component
 // ---------------------------------------------------------------------------
 
-export default function PlayerApp({ partykitHost }: Props) {
+export default function PlayerApp({ partykitHost, locale = DEFAULT_LOCALE }: Props) {
+  return (
+    <GameLocaleContext.Provider value={locale}>
+      <PlayerAppInner partykitHost={partykitHost} />
+    </GameLocaleContext.Provider>
+  );
+}
+
+function PlayerAppInner({ partykitHost }: { partykitHost: string }) {
   const [publicState, setPublicState] = useState<PublicState | null>(null);
   const [privateState, setPrivateState] = useState<PrivateState | null>(null);
   const [connected, setConnected] = useState(false);
