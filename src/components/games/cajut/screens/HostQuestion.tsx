@@ -7,6 +7,7 @@
 
 import { useState, useEffect } from 'preact/hooks';
 import type { PublicState } from '../../../../lib/games-multi/cajut/types';
+import { useGameLocale } from '../../locale-context';
 
 interface Props {
   publicState: PublicState;
@@ -15,7 +16,23 @@ interface Props {
   onKick: (playerId: string) => void;
 }
 
+export const COPY = {
+  es: {
+    pregunta: (n: number, total: number) => `Pregunta ${n} / ${total}`,
+    respuestas: (answered: number, total: number) => `Respuestas: ${answered} / ${total}`,
+    saltar: 'Saltar',
+    terminar: 'Terminar',
+  },
+  ca: {
+    pregunta: (n: number, total: number) => `Pregunta ${n} / ${total}`,
+    respuestas: (answered: number, total: number) => `Respostes: ${answered} / ${total}`,
+    saltar: 'Salta',
+    terminar: 'Acaba',
+  },
+};
+
 export function HostQuestion({ publicState, onSkip, onEnd }: Props) {
+  const c = COPY[useGameLocale()];
   // Force a re-render every 250ms so the countdown ticks smoothly
   const [, forceTick] = useState(0);
   useEffect(() => {
@@ -38,9 +55,7 @@ export function HostQuestion({ publicState, onSkip, onEnd }: Props) {
   return (
     <div class="cajut-host">
       <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <span class="subtle">
-          Pregunta {q.index + 1} / {q.total}
-        </span>
+        <span class="subtle">{c.pregunta(q.index + 1, q.total)}</span>
         <div class="timer-big">
           00:{String(timerLeft).padStart(2, '0')}
         </div>
@@ -69,9 +84,7 @@ export function HostQuestion({ publicState, onSkip, onEnd }: Props) {
           borderTop: '1px solid var(--cajut-line-soft)',
         }}
       >
-        <span class="subtle">
-          Respuestas: {answered} / {total}
-        </span>
+        <span class="subtle">{c.respuestas(answered, total)}</span>
         <div style={{ display: 'flex', gap: '8px' }}>
           <button
             onClick={onSkip}
@@ -86,7 +99,7 @@ export function HostQuestion({ publicState, onSkip, onEnd }: Props) {
               cursor: 'pointer',
             }}
           >
-            Saltar
+            {c.saltar}
           </button>
           <button
             onClick={onEnd}
@@ -101,7 +114,7 @@ export function HostQuestion({ publicState, onSkip, onEnd }: Props) {
               cursor: 'pointer',
             }}
           >
-            Terminar
+            {c.terminar}
           </button>
         </div>
       </footer>

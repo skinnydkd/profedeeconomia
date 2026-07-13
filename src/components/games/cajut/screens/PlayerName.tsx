@@ -1,17 +1,30 @@
 // src/components/games/cajut/screens/PlayerName.tsx
 import { useState } from 'preact/hooks';
+import { useGameLocale } from '../../locale-context';
 
 interface Props {
   onSubmit: (nick: string) => void;
 }
 
+export const COPY = {
+  es: {
+    prompt: '¿Cuál es tu nick?',
+    enter: 'Entrar',
+  },
+  ca: {
+    prompt: 'Quin és el teu nick?',
+    enter: 'Entra',
+  },
+};
+
 export function PlayerName({ onSubmit }: Props) {
+  const c = COPY[useGameLocale()];
   const [nick, setNick] = useState('');
   const valid = nick.trim().length >= 1 && nick.trim().length <= 20;
 
   return (
     <div class="cajut-player" style={{ justifyContent: 'center', alignItems: 'center' }}>
-      <p class="subtle" style={{ marginBottom: 16 }}>¿Cuál es tu nick?</p>
+      <p class="subtle" style={{ marginBottom: 16 }}>{c.prompt}</p>
       <input
         autoFocus
         maxLength={20}
@@ -41,7 +54,7 @@ export function PlayerName({ onSubmit }: Props) {
           cursor: valid ? 'pointer' : 'not-allowed',
         }}
       >
-        Entrar
+        {c.enter}
       </button>
     </div>
   );

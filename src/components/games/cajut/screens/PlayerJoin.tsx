@@ -1,17 +1,30 @@
 // src/components/games/cajut/screens/PlayerJoin.tsx
 import { useState } from 'preact/hooks';
+import { useGameLocale } from '../../locale-context';
 
 interface Props {
   onSubmit: (code: string) => void;
 }
 
+export const COPY = {
+  es: {
+    prompt: 'Introduce el código de sala',
+    enter: 'Entrar',
+  },
+  ca: {
+    prompt: 'Introduïx el codi de sala',
+    enter: 'Entra',
+  },
+};
+
 export function PlayerJoin({ onSubmit }: Props) {
+  const c = COPY[useGameLocale()];
   const [code, setCode] = useState('');
 
   return (
     <div class="cajut-player" style={{ justifyContent: 'center', alignItems: 'center' }}>
       <h1 style={{ fontFamily: 'Fraunces, serif', fontSize: 48, margin: '0 0 8px' }}>Cajut</h1>
-      <p class="subtle" style={{ marginBottom: 24 }}>Introduce el código de sala</p>
+      <p class="subtle" style={{ marginBottom: 24 }}>{c.prompt}</p>
       <input
         autoFocus
         maxLength={4}
@@ -50,7 +63,7 @@ export function PlayerJoin({ onSubmit }: Props) {
           cursor: code.length === 4 ? 'pointer' : 'not-allowed',
         }}
       >
-        Entrar
+        {c.enter}
       </button>
     </div>
   );

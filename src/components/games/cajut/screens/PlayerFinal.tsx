@@ -1,13 +1,36 @@
 // src/components/games/cajut/screens/PlayerFinal.tsx
 import { useState } from 'preact/hooks';
 import type { PublicState, PrivateState } from '../../../../lib/games-multi/cajut/types';
+import { useGameLocale } from '../../locale-context';
 
 interface Props {
   publicState: PublicState;
   privateState: PrivateState;
 }
 
+export const COPY = {
+  es: {
+    title: 'Final de la partida',
+    puntos: 'puntos',
+    posicion: (rank: number, total: number) => `Posición ${rank} de ${total}`,
+    revisa: 'Revisa tus respuestas',
+    sinRespuesta: 'Sin respuesta',
+    tuRespuesta: (letter: string, opt: string) => `Tu respuesta: ${letter} (${opt})`,
+    correcta: (letter: string, opt: string) => `Correcta: ${letter} (${opt})`,
+  },
+  ca: {
+    title: 'Final de la partida',
+    puntos: 'punts',
+    posicion: (rank: number, total: number) => `Posició ${rank} de ${total}`,
+    revisa: 'Revisa les teues respostes',
+    sinRespuesta: 'Sense resposta',
+    tuRespuesta: (letter: string, opt: string) => `La teua resposta: ${letter} (${opt})`,
+    correcta: (letter: string, opt: string) => `Correcta: ${letter} (${opt})`,
+  },
+};
+
 export function PlayerFinal({ publicState, privateState }: Props) {
+  const c = COPY[useGameLocale()];
   const [showReview, setShowReview] = useState(false);
   const totalPlayers = publicState.finalRanking?.length ?? 0;
 
@@ -21,7 +44,7 @@ export function PlayerFinal({ publicState, privateState }: Props) {
           fontSize: 28,
         }}
       >
-        Final de la partida
+        {c.title}
       </h2>
 
       <div style={{ textAlign: 'center', marginTop: 32 }}>
@@ -34,10 +57,10 @@ export function PlayerFinal({ publicState, privateState }: Props) {
         >
           {privateState.myScore}
         </p>
-        <p class="subtle" style={{ marginTop: 4 }}>puntos</p>
+        <p class="subtle" style={{ marginTop: 4 }}>{c.puntos}</p>
         {privateState.myRank !== null && totalPlayers > 0 && (
           <p class="subtle" style={{ marginTop: 8 }}>
-            Posición {privateState.myRank} de {totalPlayers}
+            {c.posicion(privateState.myRank, totalPlayers)}
           </p>
         )}
       </div>
@@ -57,7 +80,7 @@ export function PlayerFinal({ publicState, privateState }: Props) {
             alignSelf: 'center',
           }}
         >
-          Revisa tus respuestas
+          {c.revisa}
         </button>
       ) : (
         <div style={{ marginTop: 16, overflowY: 'auto', flex: 1 }}>
@@ -77,11 +100,11 @@ export function PlayerFinal({ publicState, privateState }: Props) {
                 }}
               >
                 {a.myOptionIndex === null
-                  ? 'Sin respuesta'
-                  : `Tu respuesta: ${String.fromCharCode(65 + a.myOptionIndex)} (${a.opciones[a.myOptionIndex]})`}
+                  ? c.sinRespuesta
+                  : c.tuRespuesta(String.fromCharCode(65 + a.myOptionIndex), a.opciones[a.myOptionIndex])}
               </p>
               <p style={{ fontSize: 12, color: 'var(--cajut-pine)', margin: '2px 0 0' }}>
-                Correcta: {String.fromCharCode(65 + a.correcta)} ({a.opciones[a.correcta]})
+                {c.correcta(String.fromCharCode(65 + a.correcta), a.opciones[a.correcta])}
               </p>
               {a.explicacion && (
                 <p

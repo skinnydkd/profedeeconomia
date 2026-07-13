@@ -4,12 +4,27 @@
 // Shows top-5 ranking with nick + score. Auto-advances after TIMER_LEADERBOARD_S.
 
 import type { PublicState } from '../../../../lib/games-multi/cajut/types';
+import { useGameLocale } from '../../locale-context';
 
 interface Props {
   publicState: PublicState;
 }
 
+export const COPY = {
+  es: {
+    title: 'Clasificación',
+    auto: 'Continúa automáticamente…',
+    noData: 'Sin datos de clasificación.',
+  },
+  ca: {
+    title: 'Classificació',
+    auto: 'Continua automàticament…',
+    noData: 'Sense dades de classificació.',
+  },
+};
+
 export function HostLeaderboardMini({ publicState }: Props) {
+  const c = COPY[useGameLocale()];
   const top5 = publicState.lastReveal?.top5 ?? [];
 
   return (
@@ -22,10 +37,10 @@ export function HostLeaderboardMini({ publicState }: Props) {
           margin: '0 0 8px',
         }}
       >
-        Clasificación
+        {c.title}
       </h2>
       <p class="subtle" style={{ textAlign: 'center', marginBottom: 0 }}>
-        Continúa automáticamente…
+        {c.auto}
       </p>
 
       <ol style={{ listStyle: 'none', padding: 0, maxWidth: 600, margin: '24px auto 0' }}>
@@ -64,7 +79,7 @@ export function HostLeaderboardMini({ publicState }: Props) {
         ))}
         {top5.length === 0 && (
           <li style={{ padding: '12px 16px', color: 'var(--cajut-ink-mute)' }}>
-            Sin datos de clasificación.
+            {c.noData}
           </li>
         )}
       </ol>
