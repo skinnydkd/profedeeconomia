@@ -13,7 +13,7 @@ import { getCollection, render } from 'astro:content';
 import type { GetStaticPaths } from 'astro';
 
 export const getStaticPaths = (async () => {
-  const all = (await getCollection('debates')).filter((e) => e.data.estado === 'publicado');
+  const all = (await getCollection('debates')).filter((e) => e.data.estado === 'publicado' && e.data.lang === 'es');
   return all.map((entry) => {
     const [familia, ...rest] = entry.id.replace(/^debates\//, '').split('/');
     return { params: { familia, slug: rest.join('/') }, props: { entry } };

@@ -39,7 +39,7 @@ const copy = {
   },
 }[locale];
 
-const all = (await getCollection('debates')).filter((e) => e.data.estado === 'publicado');
+const all = (await getCollection('debates')).filter((e) => e.data.estado === 'publicado' && e.data.lang === 'es');
 // entry.id from glob loader is "debates/familia/nn-slug"; strip the prefix so
 // slugs resolve to "familia/nn-slug" and hrefs are /debates/familia/nn-slug/
 const groups = groupByFamilia(familias, all.map((e) => ({
