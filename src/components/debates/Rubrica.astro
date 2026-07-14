@@ -1,12 +1,17 @@
 ---
+import type { Locale } from '@/i18n/locale';
 /** Evaluation rubric: criteria and the competencia each one works. */
 interface Criterio { criterio: string; descripcion: string; competencia?: string; }
-interface Props { rubrica: Criterio[]; }
-const { rubrica } = Astro.props;
+interface Props { rubrica: Criterio[]; locale?: Locale; }
+const { rubrica, locale = 'es' } = Astro.props;
+const copy = {
+  es: { criterio: 'Criterio', valora: 'Qué se valora', competencia: 'Competencia' },
+  ca: { criterio: 'Criteri', valora: 'Què es valora', competencia: 'Competència' },
+}[locale];
 ---
 {rubrica.length > 0 && (
   <table class="rubrica">
-    <thead><tr><th>Criterio</th><th>Qué se valora</th><th>Competencia</th></tr></thead>
+    <thead><tr><th>{copy.criterio}</th><th>{copy.valora}</th><th>{copy.competencia}</th></tr></thead>
     <tbody>
       {rubrica.map((r) => (
         <tr><td>{r.criterio}</td><td>{r.descripcion}</td><td>{r.competencia ?? '—'}</td></tr>

@@ -1,38 +1,43 @@
 ---
+import type { Locale } from '@/i18n/locale';
 /**
  * Uniform student prep sheet for any debate, derived from the motion. Shown
  * on the web detail page and as one A4 page in the material-pack PDF.
  * Replaces the per-debate authored <FichaAlumno> block (single source).
  */
-interface Props { mocion: string; }
-const { mocion } = Astro.props;
+interface Props { mocion: string; locale?: Locale; }
+const { mocion, locale = 'es' } = Astro.props;
 const lineas = (n: number) => Array.from({ length: n });
+const copy = {
+  es: { tag: 'Ficha del alumno · antes del debate', title: 'Preparo mi postura', mocion: 'Moción:', postura: 'Mi postura', args: 'Mis 3 argumentos (con una evidencia o ejemplo concreto en cada uno):', arg: 'Argumento', evidencia: 'Evidencia', pregunta: 'Una pregunta que le haré al grupo rival:', refutar: 'Un argumento del otro grupo que tendré que refutar:', notas: 'Notas durante el debate:' },
+  ca: { tag: "Fitxa de l'alumne · abans del debat", title: 'Preparo la meua postura', mocion: 'Moció:', postura: 'La meua postura', args: 'Els meus 3 arguments (amb una evidència o exemple concret en cadascun):', arg: 'Argument', evidencia: 'Evidència', pregunta: 'Una pregunta que li faré al grup rival:', refutar: "Un argument de l'altre grup que hauré de refutar:", notas: 'Notes durant el debat:' },
+}[locale];
 ---
 <section class="ficha print-block">
   <header class="ficha__head">
-    <span class="ficha__tag">Ficha del alumno · antes del debate</span>
-    <h2 class="ficha__title">Preparo mi postura</h2>
+    <span class="ficha__tag">{copy.tag}</span>
+    <h2 class="ficha__title">{copy.title}</h2>
   </header>
 
-  <p class="ficha__mocion"><strong>Moción:</strong> {mocion}</p>
+  <p class="ficha__mocion"><strong>{copy.mocion}</strong> {mocion}</p>
 
-  <div class="ficha__field"><span>Mi postura</span><span class="line"></span></div>
+  <div class="ficha__field"><span>{copy.postura}</span><span class="line"></span></div>
 
-  <p class="ficha__q">Mis 3 argumentos (con una evidencia o ejemplo concreto en cada uno):</p>
+  <p class="ficha__q">{copy.args}</p>
   {[1, 2, 3].map((n) => (
     <div class="arg">
-      <div class="ficha__field"><span>{n}. Argumento</span><span class="line"></span></div>
-      <div class="ficha__field ficha__field--sub"><span>Evidencia</span><span class="line"></span></div>
+      <div class="ficha__field"><span>{n}. {copy.arg}</span><span class="line"></span></div>
+      <div class="ficha__field ficha__field--sub"><span>{copy.evidencia}</span><span class="line"></span></div>
     </div>
   ))}
 
-  <p class="ficha__q">Una pregunta que le haré al grupo rival:</p>
+  <p class="ficha__q">{copy.pregunta}</p>
   {lineas(2).map(() => <span class="line line--full"></span>)}
 
-  <p class="ficha__q">Un argumento del otro grupo que tendré que refutar:</p>
+  <p class="ficha__q">{copy.refutar}</p>
   {lineas(2).map(() => <span class="line line--full"></span>)}
 
-  <p class="ficha__q">Notas durante el debate:</p>
+  <p class="ficha__q">{copy.notas}</p>
   {lineas(3).map(() => <span class="line line--full"></span>)}
 </section>
 <style>

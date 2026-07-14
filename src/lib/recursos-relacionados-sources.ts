@@ -24,7 +24,7 @@ async function fromFamiliaContent(
 ): Promise<RecursoEntrada[]> {
   const items = await getCollection(collection as any);
   return items
-    .filter((e: any) => e.data.estado === 'publicado')
+    .filter((e: any) => e.data.estado === 'publicado' && e.data.lang === 'es')
     .map((e: any) => {
       const familia = e.data.familia as string;
       const slug = lastSeg(e.id);
@@ -41,7 +41,7 @@ async function fromFamiliaContent(
 async function fromProyectos(): Promise<RecursoEntrada[]> {
   const items = await getCollection('proyectos' as any);
   return items
-    .filter((e: any) => e.data.estado === 'publicado')
+    .filter((e: any) => e.data.estado === 'publicado' && e.data.lang === 'es')
     .map((e: any) => {
       const materia = e.data.materia as string;
       const slug = lastSeg(e.id);
@@ -59,7 +59,7 @@ async function fromProyectos(): Promise<RecursoEntrada[]> {
 async function fromEmprendimiento(): Promise<RecursoEntrada[]> {
   const items = await getCollection('proyectoTransversal' as any);
   return items
-    .filter((e: any) => e.data.estado === 'publicado')
+    .filter((e: any) => e.data.estado === 'publicado' && e.data.lang === 'es')
     .map((e: any) => {
       const fase = String(e.data.fase).padStart(2, '0');
       return {
