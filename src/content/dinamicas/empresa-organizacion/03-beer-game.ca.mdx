@@ -1,0 +1,231 @@
+---
+title: "El joc de la cervesa (cadena de subministrament)"
+familia: empresa-organizacion
+orden: 3
+descripcion: "Quatre baules —fàbrica, distribuïdor, majorista i botiga— gestionen estoc sense parlar entre ells, només passant comandes. Un xicotet canvi en la demanda provoca el caos: l'efecte làtec."
+tipo: juego-experimental
+duracion: "2 sessions"
+agrupacion: "cadenes de 4 equips"
+nivel: [bach, fp]
+objetivos:
+  - "Observar de primera mà l'efecte làtec en una cadena de subministrament i comprendre per què es produïx encara que cada baula actue racionalment."
+  - "Analitzar el paper de la informació i la coordinació en l'eficiència logística, comparant els costos generats amb i sense comunicació entre baules."
+  - "Aplicar conceptes de gestió d'estoc —cost d'emmagatzematge, cost de ruptura, punt de comanda— en un entorn de simulació amb dades reals."
+conceptos_clave:
+  - "Cadena de subministrament"
+  - "Efecte làtec"
+  - "Gestió d'estoc"
+  - "Informació i coordinació"
+materiales_necesarios:
+  - "Fulls de registre per baula (un per equip) — vore fitxa al final"
+  - "Fitxes o monedes per a representar unitats d'estoc (opcional, versió física)"
+  - "Calculadora o full de càlcul per als costos"
+  - "Projector o pissarra per a anotar la demanda real al final de la simulació"
+  - "Dau de 6 cares per a la versió amb demanda aleatòria (opcional)"
+unidades_relacionadas:
+  - { asignatura: "edmn-2bach", unidad: 7, nota: "La funció productiva i la logística.", competencias_especificas: [CE4] }
+  - { asignatura: "gpe-bach", unidad: 4, nota: "Àrees de l'empresa: aprovisionament i producció.", competencias_especificas: [CE3] }
+competencias_clave: [STEM, CPSAA, CE, CD]
+competencias_especificas: []
+lang: ca
+estado: publicado
+# Astro's default glob-loader id generation runs each path segment through
+# github-slugger, which strips dots — so "03-beer-game.ca.mdx" would
+# collide with the ES entry's id instead of producing "...03-beer-game.ca".
+# The `slug` frontmatter key is read before schema parsing and overrides id
+# generation directly, so this is required on every CA dinámica sibling.
+slug: "dinamicas/empresa-organizacion/03-beer-game.ca"
+---
+
+import Steps from '@components/Steps.astro';
+import Callout from '@components/Callout.astro';
+import RoleCard from '@components/dinamicas/RoleCard.astro';
+import FichaAlumno from '@components/dinamicas/FichaAlumno.astro';
+
+El joc de la cervesa és l'experiment de gestió empresarial més replicat del món.
+El va dissenyar Jay Forrester al MIT en els anys 60 i seguix sent la forma més efectiva de
+mostrar per què les cadenes de subministrament es descontrolen encara que ningú prenga males decisions.
+El resultat sempre sorprén: un augment de demanda del client de 4 a 8 unitats —
+un 100 %— genera comandes de fins a 40 unitats en fàbrica poques setmanes després. Ningú ha
+mentit. Ningú ha actuat de mala fe. El sistema ha fallat per si sol.
+
+## Com funciona
+
+<Steps label="Desenvolupament" title="De la cadena al col·lapse">
+  <li>**Formació de cadenes (5 min).** Es formen cadenes de 4 equips: Botiga, Majorista, Distribuïdor i Fàbrica. Amb classes grans, diverses cadenes en paral·lel competixen per a vore quina acumula menys costos totals.</li>
+  <li>**Briefing de regles (10 min).** El docent explica les regles (vore secció de preparació) i cada equip rep el seu full de registre. Estoc inicial: 12 unitats en cada baula. Retard d'enviament: 2 setmanes (les comandes triguen 2 setmanes a arribar). Cost d'estoc: 0,50 € per unitat i setmana. Cost de ruptura: 1,00 € per unitat no servida i setmana.</li>
+  <li>**Setmanes 1-4: demanda estable (10 min).** El client compra 4 unitats per setmana. Cada baula anota el seu estoc, rep l'enviament de la setmana anterior i decidix quant demanar a la baula de dalt. La cadena funciona bé.</li>
+  <li>**Setmana 5: el canvi (avís només a la botiga).** La demanda puja a 8 unitats i es manté així. Només la Botiga sap esta dada. La resta de baules només veu les comandes que li arriben.</li>
+  <li>**Setmanes 6-18: el caos (30-40 min).** Se simulen les setmanes restants. El docent anota en la pissarra les comandes de cada baula setmana a setmana. Els costos es van acumulant.</li>
+  <li>**Tancament i càlcul de costos (10 min).** Cada equip suma el seu cost total. El docent revela a tots la demanda real del client: 8 unitats constants des de la setmana 5. La diferència entre el que demanava el client i el que demanava la fàbrica genera l'impacte visual de l'efecte làtec.</li>
+  <li>**Debrief (15-20 min).** Posada en comú amb les preguntes clau.</li>
+</Steps>
+
+## Guia del professor
+
+### Preparació
+
+La versió simplificada que es descriu ací prescindix del tauler físic del MIT original.
+Cada equip només necessita el seu full de registre i calcular dos números per setmana: quant
+estoc té i quant demana.
+
+**Regles completes per a repartir a l'alumnat:**
+
+- Cada setmana, en este orde: (1) reps l'enviament que vas demanar fa 2 setmanes, (2) servixes
+  les comandes pendents i actuals amb el teu estoc disponible, (3) anotes l'estoc resultant
+  o la ruptura, (4) decidixes quant demanar a la baula superior.
+- No pots comunicar-te amb altres baules. Només passes comandes per escrit.
+- No pots vore l'estoc ni les decisions d'altres baules.
+- La Fàbrica triga 2 setmanes a produir (mateix retard que el transport).
+
+**Consell:** la primera vegada que es juga, simula 3 setmanes en veu alta amb tota la classe
+per a assegurar-te que tots entenen la mecànica del retard. Els errors de comprensió
+de les regles arruïnen l'experiment.
+
+### Gestió en l'aula
+
+Durant les setmanes 1-4 el ritme és lent; accelera-les. A partir de la setmana 6 el joc
+s'accelera sol: els equips comencen a fer comandes grans i el paper d'anotacions
+omple la taula.
+
+Vigila especialment:
+- Equips que fan comandes molt grans «per si de cas» en les primeres setmanes. Eixe
+  comportament de sobreacumulació és exactament el que genera l'efecte làtec.
+- La Fàbrica, que no pot demanar a ningú: produïx en funció del que té capacitat.
+  Si es queda sense capacitat, genera ruptures en cadena.
+- Equips que intenten preguntar a altres baules. Recorda'ls: la regla és no comunicar-se.
+  Això és part de l'experiment.
+
+### El debrief (el més important)
+
+Reuniu tota la classe, mostra el gràfic de comandes per baula setmana a setmana i pregunta:
+
+- Quant demanava el client final en les setmanes punta? I la fàbrica? Com s'explica eixa diferència?
+- Algú va prendre una decisió irracional? O cada u va actuar de forma lògica des de la seua posició?
+- Què hauria passat si totes les baules haguessen pogut vore la demanda real del client des del principi?
+- Quines solucions reals usen les empreses per a reduir l'efecte làtec? (Pista: VMI, EDI, contractes a llarg termini.)
+
+<Callout label="Idea clau" title="L'efecte làtec no és una fallada humana: és una fallada de disseny del sistema">
+Cada decisor de la cadena va prendre decisions raonables amb la informació que tenia.
+El problema no és la irracionalitat de les persones: és que el sistema d'informació
+estava trencat. Esta és la lliçó central de la logística moderna: compartir informació
+en temps real entre proveïdors i clients no és només eficiència — és l'única forma
+d'evitar que el sistema s'amplifique fins al col·lapse.
+</Callout>
+
+### Errors comuns
+
+- Explicar l'efecte làtec abans de jugar. L'impacte pedagògic ve de descobrir-lo,
+  no que el docent l'anuncie. Guarda el concepte per al debrief.
+- Simular poques setmanes. Amb menys de 12 setmanes l'efecte làtec no es veu amb claredat.
+  Les setmanes 8-14 són les que generen els pics més dramàtics.
+- No anotar les comandes de cada baula en la pissarra setmana a setmana. Sense eixe registre
+  visual, el debrief perd la meitat de la seua força.
+
+## Materials repartibles
+
+<RoleCard rol="Botiga" reparto="1 equip per cadena">
+**La teua posició en la cadena:** eres l'última baula. Servixes el client final.
+
+**Regla especial:** a partir de la setmana 5, la demanda del client puja de 4 a 8 unitats
+i es manté així. Esta informació és teua: no la comuniques a les altres baules.
+
+**El que fas cada setmana:**
+1. Reps l'enviament que vas demanar fa 2 setmanes al Majorista.
+2. Servixes la demanda del client. Si no tens prou estoc, anotes la ruptura (unitats no servides).
+3. Calcules el teu estoc: Estoc anterior + enviament rebut − vendes al client.
+4. Decidixes quantes unitats demanar al Majorista i passes la comanda per escrit.
+
+**Costos:** 0,50 € per unitat en estoc al final de cada setmana · 1,00 € per unitat en ruptura.
+</RoleCard>
+
+<RoleCard rol="Majorista" reparto="1 equip per cadena">
+**La teua posició en la cadena:** reps comandes de la Botiga i demanes al Distribuïdor.
+
+**El que fas cada setmana:**
+1. Reps l'enviament que vas demanar fa 2 setmanes al Distribuïdor.
+2. Servixes la comanda de la Botiga. Si no tens prou estoc, anotes la ruptura.
+3. Calcules el teu estoc: Estoc anterior + enviament rebut − comanda servida a la Botiga.
+4. Decidixes quantes unitats demanar al Distribuïdor i passes la comanda per escrit.
+
+**No saps quant compra el client final. Només veus les comandes de la Botiga.**
+
+**Costos:** 0,50 € per unitat en estoc al final de cada setmana · 1,00 € per unitat en ruptura.
+</RoleCard>
+
+<RoleCard rol="Distribuïdor" reparto="1 equip per cadena">
+**La teua posició en la cadena:** reps comandes del Majorista i demanes a la Fàbrica.
+
+**El que fas cada setmana:**
+1. Reps l'enviament que vas demanar fa 2 setmanes a la Fàbrica.
+2. Servixes la comanda del Majorista. Si no tens prou estoc, anotes la ruptura.
+3. Calcules el teu estoc: Estoc anterior + enviament rebut − comanda servida al Majorista.
+4. Decidixes quantes unitats demanar a la Fàbrica i passes la comanda per escrit.
+
+**No saps quant compra el client final ni què demana la Botiga. Només veus les comandes del Majorista.**
+
+**Costos:** 0,50 € per unitat en estoc al final de cada setmana · 1,00 € per unitat en ruptura.
+</RoleCard>
+
+<RoleCard rol="Fàbrica" reparto="1 equip per cadena">
+**La teua posició en la cadena:** eres la primera baula. Produïxes davall comanda.
+
+**Regla especial:** tens capacitat de producció màxima de 20 unitats per setmana. Si el
+Distribuïdor demana més, produïxes 20 i anotes la ruptura de la resta.
+
+**El que fas cada setmana:**
+1. Reps les unitats que vas posar en producció fa 2 setmanes (retard de fabricació).
+2. Servixes la comanda del Distribuïdor. Si no tens prou estoc + producció, anotes la ruptura.
+3. Calcules el teu estoc: Estoc anterior + producció rebuda − comanda servida al Distribuïdor.
+4. Decidixes quantes unitats posar en producció esta setmana (màxim 20). Anota l'orde de producció.
+
+**No saps res del que ocorre més avall en la cadena. Només veus les comandes del Distribuïdor.**
+
+**Costos:** 0,50 € per unitat en estoc al final de cada setmana · 1,00 € per unitat en ruptura.
+</RoleCard>
+
+<FichaAlumno titulo="Full de registre — setmanes 1 a 18" subtitulo="Completa una fila per setmana. Guarda totes les dades: les necessitaràs per al debrief.">
+
+**Baula:** \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ **Cadena núm.:** \_\_\_\_\_
+
+**Estoc inicial (setmana 0):** 12 unitats
+
+---
+
+| Set. | Estoc inici | Enviament rebut | Comanda rebuda (de baix) | Servit | Ruptura | Estoc final | Comanda enviada (a dalt) | Cost setmana |
+|---|---|---|---|---|---|---|---|---|
+| 1 | 12 | — | 4 | | | | | |
+| 2 | | | 4 | | | | | |
+| 3 | | | 4 | | | | | |
+| 4 | | | 4 | | | | | |
+| 5 | | | **8*** | | | | | |
+| 6 | | | | | | | | |
+| 7 | | | | | | | | |
+| 8 | | | | | | | | |
+| 9 | | | | | | | | |
+| 10 | | | | | | | | |
+| 11 | | | | | | | | |
+| 12 | | | | | | | | |
+| 13 | | | | | | | | |
+| 14 | | | | | | | | |
+| 15 | | | | | | | | |
+| 16 | | | | | | | | |
+| 17 | | | | | | | | |
+| 18 | | | | | | | | |
+| | | | | | | **TOTAL** | | |
+
+*Només per a la Botiga: a partir de la setmana 5 la demanda del client és 8 unitats. No comunicar.*
+
+---
+
+**Cost total acumulat:** \_\_\_\_\_\_\_ €
+
+**Setmana amb major estoc:** \_\_\_\_\_\_\_ (\_\_\_\_\_\_ unitats)
+
+**Setmana amb major ruptura:** \_\_\_\_\_\_\_ (\_\_\_\_\_\_ unitats no servides)
+
+**En una frase, per què creus que les vostres comandes van variar tant si la demanda real era quasi constant?**
+
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+
+</FichaAlumno>

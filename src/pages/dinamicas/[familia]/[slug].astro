@@ -14,11 +14,17 @@ import PrintButton from '@components/dinamicas/PrintButton.astro';
 import PuenteUnidades from '@components/emprendimiento/PuenteUnidades.astro';
 import { familiaMeta } from '@/lib/dinamicas';
 import { breadcrumbLd } from '@/lib/seo';
+import { getLocale } from '@/i18n/locale';
+import { pickLocalizedEntry } from '@/i18n/content-locale';
 import { getCollection, render } from 'astro:content';
 import type { GetStaticPaths } from 'astro';
 
 export const getStaticPaths = (async () => {
-  const all = (await getCollection('dinamicas')).filter((e) => e.data.estado === 'publicado');
+  // ES entries define the canonical routes; CA siblings (lang: ca) must NOT
+  // create their own routes.
+  const all = (await getCollection('dinamicas')).filter(
+    (e) => e.data.estado === 'publicado' && e.data.lang === 'es',
+  );
   // entry.id from the glob loader is "dinamicas/familia/nn-slug"; strip the
   // collection prefix and split into [familia, slug] so the URL stays
   // /dinamicas/familia/nn-slug/.
@@ -29,21 +35,32 @@ export const getStaticPaths = (async () => {
 }) satisfies GetStaticPaths;
 
 const { entry } = Astro.props;
-const d = entry.data;
-const { Content } = await render(entry);
+const locale = getLocale(Astro.currentLocale);
+const caById = new Map(
+  (await getCollection('dinamicas'))
+    .filter((e) => e.data.estado === 'publicado' && e.data.lang === 'ca')
+    .map((e) => [e.id, e]),
+);
+const view = pickLocalizedEntry(entry, caById, locale);
+const d = view.data;
+const { Content } = await render(view);
 const familia = familiaMeta(d.familia);
+const copy = {
+  es: { dinamicas: 'Dinámicas', inicio: 'Inicio', objetivos: 'Objetivos', conceptos: 'Conceptos:', queNecesitas: 'Qué necesitas', compH: 'Competencias que se trabajan', clave: 'Clave:', especificas: 'Específicas:', volver: '← Todas las dinámicas' },
+  ca: { dinamicas: 'Dinàmiques', inicio: 'Inici', objetivos: 'Objectius', conceptos: 'Conceptes:', queNecesitas: 'Què necessites', compH: 'Competències que es treballen', clave: 'Clau:', especificas: 'Específiques:', volver: '← Totes les dinàmiques' },
+}[locale];
 const breadcrumb = breadcrumbLd([
-  { name: 'Inicio', path: '/' },
-  { name: 'Dinámicas', path: '/dinamicas/' },
+  { name: copy.inicio, path: '/' },
+  { name: copy.dinamicas, path: '/dinamicas/' },
   { name: d.title, path: `/dinamicas/${d.familia}/${Astro.params.slug}/` },
 ]);
 ---
 
-<BaseLayout title={`${d.title} — Dinámicas`} description={d.descripcion} ogType="article" jsonLd={breadcrumb}>
+<BaseLayout title={`${d.title} — ${copy.dinamicas}`} description={d.descripcion} ogType="article" jsonLd={breadcrumb} contentLang={locale}>
   <div class="container">
     <nav class="breadcrumb no-print">
-      <a href="/">Inicio</a> <span class="sep">›</span>
-      <a href="/dinamicas/">Dinámicas</a> <span class="sep">›</span>
+      <a href="/">{copy.inicio}</a> <span class="sep">›</span>
+      <a href="/dinamicas/">{copy.dinamicas}</a> <span class="sep">›</span>
       <span>{d.title}</span>
     </nav>
   </div>
@@ -54,26 +71,26 @@ const breadcrumb = breadcrumbLd([
       <p class="lede">{d.descripcion}</p>
 
       <DinamicaMeta tipo={d.tipo} duracion={d.duracion} agrupacion={d.agrupacion}
-        participantes={d.participantes} nivel={d.nivel} />
+        participantes={d.participantes} nivel={d.nivel} locale={locale} />
 
       {d.objetivos.length > 0 && (
         <section class="block no-print">
-          <h2>Objetivos</h2>
+          <h2>{copy.objetivos}</h2>
           <ul>{d.objetivos.map((o) => <li>{o}</li>)}</ul>
           {d.conceptos_clave.length > 0 && (
-            <p class="conceptos"><strong>Conceptos:</strong> {d.conceptos_clave.join(' · ')}</p>
+            <p class="conceptos"><strong>{copy.conceptos}</strong> {d.conceptos_clave.join(' · ')}</p>
           )}
         </section>
       )}
 
       {d.materiales_necesarios.length > 0 && (
         <section class="block no-print">
-          <h2>Qué necesitas</h2>
+          <h2>{copy.queNecesitas}</h2>
           <ul>{d.materiales_necesarios.map((m) => <li>{m}</li>)}</ul>
         </section>
       )}
 
-      <div class="print-bar no-print"><PrintButton /></div>
+      <div class="print-bar no-print"><PrintButton locale={locale} /></div>
 
       <article class="prose">
         <Content />
@@ -84,17 +101,17 @@ const breadcrumb = breadcrumbLd([
 
         {(d.competencias_clave.length > 0 || d.competencias_especificas.length > 0) && (
           <section class="block">
-            <h2>Competencias que se trabajan</h2>
+            <h2>{copy.compH}</h2>
             {d.competencias_clave.length > 0 && (
-              <p><strong>Clave:</strong> {d.competencias_clave.join(' · ')}</p>
+              <p><strong>{copy.clave}</strong> {d.competencias_clave.join(' · ')}</p>
             )}
             {d.competencias_especificas.length > 0 && (
-              <p><strong>Específicas:</strong> {d.competencias_especificas.join(' · ')}</p>
+              <p><strong>{copy.especificas}</strong> {d.competencias_especificas.join(' · ')}</p>
             )}
           </section>
         )}
 
-        <nav class="back"><a href="/dinamicas/">← Todas las dinámicas</a></nav>
+        <nav class="back"><a href="/dinamicas/">{copy.volver}</a></nav>
       </div>
     </div>
   </section>

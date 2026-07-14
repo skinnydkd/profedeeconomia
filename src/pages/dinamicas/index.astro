@@ -39,7 +39,7 @@ const copy = {
   },
 }[locale];
 
-const all = (await getCollection('dinamicas')).filter((e) => e.data.estado === 'publicado');
+const all = (await getCollection('dinamicas')).filter((e) => e.data.estado === 'publicado' && e.data.lang === 'es');
 // entry.id from glob loader is "dinamicas/familia/nn-slug"; strip the collection prefix
 // so slugs resolve to "familia/nn-slug" and hrefs are /dinamicas/familia/nn-slug/
 const groups = groupByFamilia(familias, all.map((e) => ({

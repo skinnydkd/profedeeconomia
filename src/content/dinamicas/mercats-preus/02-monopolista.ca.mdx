@@ -1,0 +1,149 @@
+---
+title: "El monopolista"
+familia: mercats-preus
+orden: 2
+descripcion: "Un únic venedor controla tot el mercat i fixa el preu. L'alumnat descobrix el poder de mercat i per què el monopoli reduïx la quantitat i perjudica el consumidor."
+tipo: simulacion-mercado
+duracion: "1 sessió"
+agrupacion: "grup classe (1 monopolista rotatiu, resta compradors)"
+participantes: "grup classe"
+nivel:
+  - bach
+objetivos:
+  - Experimentar com un monopolista maximitza el seu ingrés triant preu i quantitat, i comparar-lo amb el resultat competitiu.
+  - Identificar la pèrdua d'eficiència del monopoli com el nombre d'intercanvis mútuament beneficiosos que no es produïxen.
+  - Reflexionar sobre per què els mercats amb poder de mercat requerixen regulació pública.
+conceptos_clave:
+  - Monopoli
+  - Poder de mercat
+  - Pèrdua d'eficiència
+  - Preu i quantitat de monopoli
+materiales_necesarios:
+  - Targetes de comprador amb valor màxim secret (les mateixes que en la doble subhasta)
+  - Full de decisió del monopolista (taula preu → quantitat demandada → ingrés total)
+  - Pissarra per a comparar resultats competitiu vs. monopoli
+  - (Opcional) Fitxes de moneda de joc per a fer els pagaments tangibles
+unidades_relacionadas:
+  - asignatura: eco-1bach
+    unidad: 4
+    nota: "Microeconomia I: del mercat competitiu al poder de mercat."
+    competencias_especificas: [CE3]
+  - asignatura: eco-1bach
+    unidad: 6
+    nota: "Microeconomia III: fallades de mercat i monopoli."
+    competencias_especificas: [CE3]
+competencias_clave:
+  - STEM
+  - CPSAA
+  - CE
+  - CC
+competencias_especificas: []
+lang: ca
+estado: publicado
+# Astro's default glob-loader id generation runs each path segment through
+# github-slugger, which strips dots — so "02-monopolista.ca.mdx" would
+# collide with the ES entry's id instead of producing "...02-monopolista.ca".
+# The `slug` frontmatter key is read before schema parsing and overrides id
+# generation directly, so this is required on every CA dinámica sibling.
+slug: "dinamicas/mercats-preus/02-monopolista.ca"
+---
+
+import Steps from '@components/Steps.astro';
+import Callout from '@components/Callout.astro';
+import RoleCard from '@components/dinamicas/RoleCard.astro';
+import FichaAlumno from '@components/dinamicas/FichaAlumno.astro';
+
+Esta dinàmica és la seqüela directa de la doble subhasta. Els compradors són els mateixos, els valors són els mateixos — però ara no hi ha dotzenes de venedors competint entre si: n'hi ha **un de sol**. Eixe canvi ho transforma tot. La primera pregunta que sorgix en l'aula quan el monopolista tria un preu de 8 € i la mitat de la classe es queda sense comprar sol ser: «Però això és legal?». Exactament la pregunta que volem que facen.
+
+## Com funciona
+
+<Steps label="Seqüència de la sessió">
+  <li>**Context i comparació (5 min).** Recorda breument els resultats de la doble subhasta: preu d'equilibri ~5,50 €, 8 intercanvis, excedent total de 24 €. Explica que ara repetireu l'exercici, però amb una sola diferència: **hi ha un únic venedor que controla tota l'oferta**.</li>
+  <li>**Selecció del monopolista (2 min).** Tria un alumne voluntari com a primer monopolista. La resta de la classe manté les seues targetes de comprador amb els mateixos valors secrets que en la ronda anterior (o entrega targetes noves amb la mateixa distribució: valors de 9, 8, 7, 6, 5, 4 € — dos alumnes per cada valor).</li>
+  <li>**Decisió privada del monopolista (5 min).** El monopolista rep el full de decisió amb la corba de demanda del mercat (nombre de compradors disposats a comprar a cada preu possible). Ha de triar en secret **un únic preu** al qual vendrà. El cost del monopolista és de **2 € per unitat** — qualsevol venda per damunt li genera benefici.</li>
+  <li>**Ronda de mercat (5 min).** El monopolista anuncia el seu preu. Tots els compradors amb valor ≥ preu anunciat alcen la mà i compren una unitat. S'anota en la pissarra: preu triat, nombre d'unitats venudes i ingrés total del monopolista.</li>
+  <li>**Rotació i segona ronda (10 min).** Un altre alumne voluntari es convertix en monopolista i repetix el procés. Compara les decisions: trien el mateix preu? Per què?</li>
+  <li>**Anàlisi col·lectiva i debrief (20 min).** Amb les dades en la pissarra, calcula l'ingrés total a cada nivell de preu possible. On és màxim? Compara amb la doble subhasta: qui ix guanyant? qui perd? quants intercanvis beneficiosos no es produïxen?</li>
+</Steps>
+
+<Callout label="Taula de demanda del monopolista" title="Amb la distribució de valors recomanada (24 compradors)">
+
+| Preu (€) | Compradors que compren | Ingressos totals (€) | Benefici (€) (cost = 2 €/u.) |
+|-----------|------------------------|----------------------|-------------------------------|
+| 9 | 2 | 18 | 14 |
+| 8 | 4 | 32 | 24 |
+| 7 | 6 | 42 | **30** ← màxim |
+| 6 | 8 | 48 | 32 ← *ingrés màx.* |
+| 5 | 10 | 50 | 30 |
+| 4 | 12 | 48 | 24 |
+
+El monopolista tria **preu = 7 €** (màxim benefici) o **preu = 6 €** (màxim ingrés) enfront de l'equilibri competitiu de 5,50 € amb 8 intercanvis. Els compradors amb valor de 5 i 4 € queden exclosos encara que haguera sigut mútuament beneficiós intercanviar — eixa és la pèrdua d'eficiència.
+</Callout>
+
+## Guia del professor
+
+### Preparació
+
+Esta dinàmica funciona millor si es realitza **en la mateixa sessió** que la doble subhasta, o a l'inici de la següent recordant els resultats. El contrast és la clau pedagògica: l'alumnat ja sap com funciona el mercat competitiu i ara veu exactament què canvia quan desapareix la competència. Prepara la taula de demanda en la pissarra abans de començar — no la mostres fins que el monopolista haja pres la seua decisió en privat.
+
+### Gestió en l'aula
+
+El monopolista estudiarà la taula i quasi sempre escollirà el preu que maximitza el seu benefici. Si no ho fa, millor: pregunta al grup quin preu triaria ell per a maximitzar el seu guany i per què. Durant la ronda de mercat, els alumnes exclosos solen reaccionar amb frustració («Però jo volia comprar!»). Eixe moment d'incomoditat és exactament l'aprenentatge: la pèrdua d'eficiència no és un concepte abstracte, sinó la sensació real de quedar-se fora d'un intercanvi que haguera sigut possible.
+
+Si tens temps, fes una tercera ronda amb un preu **per damunt de l'òptim del monopolista** (per exemple 9 €) i una altra **per davall** (per exemple 4 €). Els alumnes comproven que el monopolista també pot equivocar-se, i que el mercat competitiu era en realitat més eficient fins i tot per al venedor agregat.
+
+### El debrief (el més important)
+
+- **Quantes unitats es van vendre en la doble subhasta? Quantes en el monopoli?** La reducció de quantitat és el nucli de l'anàlisi.
+- **Quant van guanyar en total els compradors que sí que van poder comprar? I els que no van poder?** Els que van comprar paguen més i tenen menys excedent; els exclosos no en tenen cap.
+- **Guanya més el monopolista que els venedors en la doble subhasta?** Sí, però el guany del monopolista és menor que la pèrdua agregada dels consumidors — el pastís total és més xicotet.
+- **Per què existixen lleis de competència (antitrust)?** Esta pregunta connecta directament amb la unitat 6 sobre fallades de mercat.
+
+### Errors comuns
+
+- **El monopolista tria un preu molt baix** (per ser generós amb els seus companys). És vàlid com a experiment social, però recorda'ls que l'exercici modelitza una empresa que busca maximitzar el seu benefici, no una persona benintencionada.
+- **Confusió sobre el cost del monopolista.** Deixa-ho clar des del principi: el monopolista «produïx» al cost de 2 € per unitat; el seu benefici és la diferència amb el preu de venda.
+- **Alumnes que creuen que el monopolista pot cobrar qualsevol preu.** El monopolista tria el preu, però no pot obligar ningú a comprar — la demanda limita el seu poder. Això es veu molt clarament en la taula: a 9 € només venen 2 unitats.
+
+## Materials repartibles
+
+<RoleCard rol="Monopolista" color="terra">
+Eres l'**únic venedor** del mercat. El teu cost de producció és de **2 € per unitat**. Pots fixar el preu que vulgues, però els compradors només compraran si el teu preu és igual o inferior al seu valor màxim secret.
+
+**El teu objectiu:** triar el preu que **maximitza el teu benefici total** (ingressos − costos).
+
+**Procediment:**
+1. Estudia la taula de demanda que t'entrega el professor.
+2. Tria en secret un preu entre 1 € i 10 €.
+3. Anuncia'l quan el professor t'ho indique.
+4. Tots els compradors el valor dels quals supere el teu preu compraran una unitat.
+</RoleCard>
+
+<FichaAlumno titulo="Full de decisió del monopolista">
+
+**Completa la taula abans d'anunciar el teu preu.**
+
+| Preu que fixe (€) | Quants compraran? | Ingressos totals (€) | Cost total (€) (× 2 €) | El meu benefici (€) |
+|--------------------|--------------------|-----------------------|-------------------------|-----------------|
+| 9 | 2 | 18 | 4 | 14 |
+| 8 | 4 | 32 | 8 | 24 |
+| 7 | 6 | 42 | 12 | 30 |
+| 6 | 8 | 48 | 16 | 32 |
+| 5 | 10 | 50 | 20 | 30 |
+| 4 | 12 | 48 | 24 | 24 |
+
+**Quin preu tries?** ▸ _______ €
+
+**Per què?** ▸ _______________________________________________
+
+**Després del joc — compara amb la doble subhasta:**
+
+| | Mercat competitiu | Monopoli |
+|--|--------------------|-----------|
+| Preu de mercat | ~5,50 € | _______ € |
+| Unitats intercanviades | 8 | _______ |
+| Excedent del consumidor | 12 € | _______ € |
+| Benefici del venedor | 12 € | _______ € |
+| Excedent total | 24 € | _______ € |
+| Pèrdua d'eficiència | 0 € | _______ € |
+</FichaAlumno>
