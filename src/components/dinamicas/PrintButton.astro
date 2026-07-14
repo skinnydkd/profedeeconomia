@@ -1,8 +1,12 @@
 ---
+import type { Locale } from '@/i18n/locale';
 /** Button that triggers the browser print dialog. Hidden in print output. */
+interface Props { locale?: Locale; }
+const { locale = 'es' } = Astro.props;
+const label = locale === 'ca' ? 'Imprimir materials' : 'Imprimir materiales';
 ---
 <button class="print-btn no-print" type="button" data-print-trigger>
-  Imprimir materiales
+  {label}
 </button>
 <script>
   document.querySelector('[data-print-trigger]')?.addEventListener('click', () => window.print());

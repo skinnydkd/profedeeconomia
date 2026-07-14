@@ -3,23 +3,31 @@
  * Metadata badge row for a dinámica (duration, grouping, participants, level).
  * Modeled on emprendimiento/FaseMeta.astro.
  */
+import type { Locale } from '@/i18n/locale';
 interface Props {
   tipo: string; duracion: string; agrupacion: string;
-  participantes?: string; nivel: string[];
+  participantes?: string; nivel: string[]; locale?: Locale;
 }
-const { tipo, duracion, agrupacion, participantes, nivel } = Astro.props;
-const TIPO_LABEL: Record<string, string> = {
-  'role-play': 'Role-play', 'simulacion-mercado': 'Simulación de mercado',
-  'juego-experimental': 'Juego experimental', 'debate': 'Debate', 'negociacion': 'Negociación',
-};
-const NIVEL_LABEL: Record<string, string> = { eso: 'ESO', bach: 'Bachillerato', fp: 'FP' };
+const { tipo, duracion, agrupacion, participantes, nivel, locale = 'es' } = Astro.props;
+const copy = {
+  es: {
+    dt: { tipo: 'Tipo', duracion: 'Duración', agrupacion: 'Agrupación', participantes: 'Participantes', nivel: 'Nivel' },
+    tipoLabel: { 'role-play': 'Role-play', 'simulacion-mercado': 'Simulación de mercado', 'juego-experimental': 'Juego experimental', 'debate': 'Debate', 'negociacion': 'Negociación' } as Record<string, string>,
+    nivelLabel: { eso: 'ESO', bach: 'Bachillerato', fp: 'FP' } as Record<string, string>,
+  },
+  ca: {
+    dt: { tipo: 'Tipus', duracion: 'Durada', agrupacion: 'Agrupació', participantes: 'Participants', nivel: 'Nivell' },
+    tipoLabel: { 'role-play': 'Role-play', 'simulacion-mercado': 'Simulació de mercat', 'juego-experimental': 'Joc experimental', 'debate': 'Debat', 'negociacion': 'Negociació' } as Record<string, string>,
+    nivelLabel: { eso: 'ESO', bach: 'Batxillerat', fp: 'FP' } as Record<string, string>,
+  },
+}[locale];
 ---
 <dl class="meta">
-  <div><dt>Tipo</dt><dd>{TIPO_LABEL[tipo] ?? tipo}</dd></div>
-  <div><dt>Duración</dt><dd>{duracion}</dd></div>
-  <div><dt>Agrupación</dt><dd>{agrupacion}</dd></div>
-  {participantes && <div><dt>Participantes</dt><dd>{participantes}</dd></div>}
-  <div><dt>Nivel</dt><dd>{nivel.map((n) => NIVEL_LABEL[n] ?? n).join(' · ')}</dd></div>
+  <div><dt>{copy.dt.tipo}</dt><dd>{copy.tipoLabel[tipo] ?? tipo}</dd></div>
+  <div><dt>{copy.dt.duracion}</dt><dd>{duracion}</dd></div>
+  <div><dt>{copy.dt.agrupacion}</dt><dd>{agrupacion}</dd></div>
+  {participantes && <div><dt>{copy.dt.participantes}</dt><dd>{participantes}</dd></div>}
+  <div><dt>{copy.dt.nivel}</dt><dd>{nivel.map((n) => copy.nivelLabel[n] ?? n).join(' · ')}</dd></div>
 </dl>
 <style>
   .meta { display: flex; flex-wrap: wrap; gap: 1.4rem; margin: 1.4rem 0 2rem; padding: 1rem 1.2rem; background: var(--color-bg-cream); border-radius: 8px; }
