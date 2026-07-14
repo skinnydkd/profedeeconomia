@@ -1,18 +1,26 @@
 ---
 /** Metadata badge row for an interdisciplinary project. */
-interface Props { materia: string; nivel: string[]; duracion: string; agrupacion: string; }
-const { materia, nivel, duracion, agrupacion } = Astro.props;
-const NIVEL_LABEL: Record<string, string> = { eso: 'ESO', bach: 'Bachillerato', fp: 'FP' };
-const MATERIA_LABEL: Record<string, string> = {
-  historia: 'Historia', matematicas: 'Matemáticas', geografia: 'Geografía',
-  'etica-valores': 'Ética y valores', filosofia: 'Filosofía', lengua: 'Lengua', tecnologia: 'Tecnología',
+import type { Locale } from '@/i18n/locale';
+interface Props { materia: string; nivel: string[]; duracion: string; agrupacion: string; locale?: Locale; }
+const { materia, nivel, duracion, agrupacion, locale = 'es' } = Astro.props;
+const NIVEL_LABEL: Record<Locale, Record<string, string>> = {
+  es: { eso: 'ESO', bach: 'Bachillerato', fp: 'FP' },
+  ca: { eso: 'ESO', bach: 'Batxillerat', fp: 'FP' },
 };
+const MATERIA_LABEL: Record<Locale, Record<string, string>> = {
+  es: { historia: 'Historia', matematicas: 'Matemáticas', geografia: 'Geografía', 'etica-valores': 'Ética y valores', filosofia: 'Filosofía', lengua: 'Lengua', tecnologia: 'Tecnología' },
+  ca: { historia: 'Història', matematicas: 'Matemàtiques', geografia: 'Geografia', 'etica-valores': 'Ètica i valors', filosofia: 'Filosofia', lengua: 'Llengua', tecnologia: 'Tecnologia' },
+};
+const copy = {
+  es: { conecta: 'Conecta con', nivel: 'Nivel', duracion: 'Duración', agrupacion: 'Agrupación' },
+  ca: { conecta: 'Connecta amb', nivel: 'Nivell', duracion: 'Durada', agrupacion: 'Agrupació' },
+}[locale];
 ---
 <dl class="meta">
-  <div><dt>Conecta con</dt><dd>{MATERIA_LABEL[materia] ?? materia}</dd></div>
-  <div><dt>Nivel</dt><dd>{nivel.map((n) => NIVEL_LABEL[n] ?? n).join(' · ')}</dd></div>
-  <div><dt>Duración</dt><dd>{duracion}</dd></div>
-  <div><dt>Agrupación</dt><dd>{agrupacion}</dd></div>
+  <div><dt>{copy.conecta}</dt><dd>{MATERIA_LABEL[locale][materia] ?? materia}</dd></div>
+  <div><dt>{copy.nivel}</dt><dd>{nivel.map((n) => NIVEL_LABEL[locale][n] ?? n).join(' · ')}</dd></div>
+  <div><dt>{copy.duracion}</dt><dd>{duracion}</dd></div>
+  <div><dt>{copy.agrupacion}</dt><dd>{agrupacion}</dd></div>
 </dl>
 <style>
   .meta { display: flex; flex-wrap: wrap; gap: 1.4rem; margin: 1.4rem 0 2rem; padding: 1rem 1.2rem; background: var(--color-bg-cream); border-radius: 8px; }

@@ -35,7 +35,9 @@ const copy = {
   },
 }[locale];
 
-const all = (await getCollection('proyectos')).filter((e) => e.data.estado === 'publicado');
+// CA siblings (lang: ca) render via the fichas-ca overlay above, not as their
+// own cards — keep only the ES entries.
+const all = (await getCollection('proyectos')).filter((e) => e.data.estado === 'publicado' && e.data.lang === 'es');
 const groups = groupByFamilia(materias, all.map((e) => ({
   slug: e.id.replace(/^proyectos\//, ''),
   data: { ...e.data, familia: e.data.materia },

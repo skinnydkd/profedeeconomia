@@ -10,11 +10,17 @@ import Rubrica from '@components/debates/Rubrica.astro';
 import PuenteUnidades from '@components/emprendimiento/PuenteUnidades.astro';
 import { materiaMeta } from '@/lib/proyectos';
 import { breadcrumbLd } from '@/lib/seo';
+import { getLocale } from '@/i18n/locale';
+import { pickLocalizedEntry } from '@/i18n/content-locale';
 import { getCollection, render } from 'astro:content';
 import type { GetStaticPaths } from 'astro';
 
 export const getStaticPaths = (async () => {
-  const all = (await getCollection('proyectos')).filter((e) => e.data.estado === 'publicado');
+  // ES entries define the canonical routes; CA siblings (lang: ca) must NOT
+  // create their own routes.
+  const all = (await getCollection('proyectos')).filter(
+    (e) => e.data.estado === 'publicado' && e.data.lang === 'es',
+  );
   return all.map((entry) => {
     const [materia, ...rest] = entry.id.replace(/^proyectos\//, '').split('/');
     return { params: { materia, slug: rest.join('/') }, props: { entry } };
@@ -22,20 +28,31 @@ export const getStaticPaths = (async () => {
 }) satisfies GetStaticPaths;
 
 const { entry } = Astro.props;
-const d = entry.data;
-const { Content } = await render(entry);
+const locale = getLocale(Astro.currentLocale);
+const caById = new Map(
+  (await getCollection('proyectos'))
+    .filter((e) => e.data.estado === 'publicado' && e.data.lang === 'ca')
+    .map((e) => [e.id, e]),
+);
+const view = pickLocalizedEntry(entry, caById, locale);
+const d = view.data;
+const { Content } = await render(view);
 const materia = materiaMeta(d.materia);
+const copy = {
+  es: { proyectos: 'Proyectos', inicio: 'Inicio', reto: 'El reto', productoFinal: 'Producto final:', objetivos: 'Objetivos', conceptos: 'Conceptos:', rubrica: 'Rúbrica de evaluación', compH: 'Competencias que se trabajan', clave: 'Clave:', especificas: 'Específicas:', volver: '← Todos los proyectos' },
+  ca: { proyectos: 'Projectes', inicio: 'Inici', reto: 'El repte', productoFinal: 'Producte final:', objetivos: 'Objectius', conceptos: 'Conceptes:', rubrica: "Rúbrica d'avaluació", compH: 'Competències que es treballen', clave: 'Clau:', especificas: 'Específiques:', volver: '← Tots els projectes' },
+}[locale];
 const breadcrumb = breadcrumbLd([
-  { name: 'Inicio', path: '/' },
-  { name: 'Proyectos', path: '/proyectos/' },
+  { name: copy.inicio, path: '/' },
+  { name: copy.proyectos, path: '/proyectos/' },
   { name: d.title, path: `/proyectos/${d.materia}/${Astro.params.slug}/` },
 ]);
 ---
-<BaseLayout title={`${d.title} — Proyectos`} description={d.descripcion} ogType="article" jsonLd={breadcrumb}>
+<BaseLayout title={`${d.title} — ${copy.proyectos}`} description={d.descripcion} ogType="article" jsonLd={breadcrumb} contentLang={locale}>
   <div class="container">
     <nav class="breadcrumb">
-      <a href="/">Inicio</a> <span class="sep">›</span>
-      <a href="/proyectos/">Proyectos</a> <span class="sep">›</span>
+      <a href="/">{copy.inicio}</a> <span class="sep">›</span>
+      <a href="/proyectos/">{copy.proyectos}</a> <span class="sep">›</span>
       <span>{d.title}</span>
     </nav>
   </div>
@@ -44,20 +61,20 @@ const breadcrumb = breadcrumbLd([
       <h1 style={`color: var(${materia.colorVar}-ink)`}>{d.title}</h1>
       <p class="lede">{d.descripcion}</p>
 
-      <ProyectoMeta materia={d.materia} nivel={d.nivel} duracion={d.duracion} agrupacion={d.agrupacion} />
+      <ProyectoMeta materia={d.materia} nivel={d.nivel} duracion={d.duracion} agrupacion={d.agrupacion} locale={locale} />
 
       <section class="block reto">
-        <h2>El reto</h2>
+        <h2>{copy.reto}</h2>
         <blockquote class="reto__q">{d.reto}</blockquote>
-        <p class="producto"><strong>Producto final:</strong> {d.producto_final}</p>
+        <p class="producto"><strong>{copy.productoFinal}</strong> {d.producto_final}</p>
       </section>
 
       {d.objetivos.length > 0 && (
         <section class="block">
-          <h2>Objetivos</h2>
+          <h2>{copy.objetivos}</h2>
           <ul>{d.objetivos.map((o) => <li>{o}</li>)}</ul>
           {d.conceptos_clave.length > 0 && (
-            <p class="conceptos"><strong>Conceptos:</strong> {d.conceptos_clave.join(' · ')}</p>
+            <p class="conceptos"><strong>{copy.conceptos}</strong> {d.conceptos_clave.join(' · ')}</p>
           )}
         </section>
       )}
@@ -66,8 +83,8 @@ const breadcrumb = breadcrumbLd([
 
       {d.rubrica.length > 0 && (
         <section class="block">
-          <h2>Rúbrica de evaluación</h2>
-          <Rubrica rubrica={d.rubrica} />
+          <h2>{copy.rubrica}</h2>
+          <Rubrica rubrica={d.rubrica} locale={locale} />
         </section>
       )}
 
@@ -75,13 +92,13 @@ const breadcrumb = breadcrumbLd([
 
       {(d.competencias_clave.length > 0 || d.competencias_especificas.length > 0) && (
         <section class="block">
-          <h2>Competencias que se trabajan</h2>
-          {d.competencias_clave.length > 0 && (<p><strong>Clave:</strong> {d.competencias_clave.join(' · ')}</p>)}
-          {d.competencias_especificas.length > 0 && (<p><strong>Específicas:</strong> {d.competencias_especificas.join(' · ')}</p>)}
+          <h2>{copy.compH}</h2>
+          {d.competencias_clave.length > 0 && (<p><strong>{copy.clave}</strong> {d.competencias_clave.join(' · ')}</p>)}
+          {d.competencias_especificas.length > 0 && (<p><strong>{copy.especificas}</strong> {d.competencias_especificas.join(' · ')}</p>)}
         </section>
       )}
 
-      <nav class="back"><a href="/proyectos/">← Todos los proyectos</a></nav>
+      <nav class="back"><a href="/proyectos/">{copy.volver}</a></nav>
     </div>
   </section>
 </BaseLayout>
