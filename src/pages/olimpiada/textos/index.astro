@@ -4,45 +4,86 @@
  * Includes a «Cómo afrontar el comentario de texto» advisory note.
  */
 import BaseLayout from '@layouts/BaseLayout.astro';
+import { getLocale } from '@/i18n/locale';
 import { getCollection } from 'astro:content';
 
+const locale = getLocale(Astro.currentLocale);
 const all = (await getCollection('olimpiadaTextos'))
-  .filter((e) => e.data.estado === 'publicado')
+  .filter((e) => e.data.estado === 'publicado' && e.data.lang === 'es')
   .sort((a, b) => a.data.orden - b.data.orden);
+// Card fields come from the .ca.mdx sibling under 'ca' (keyed "<esId>.ca").
+const caById = new Map(
+  (await getCollection('olimpiadaTextos'))
+    .filter((e) => e.data.estado === 'publicado' && e.data.lang === 'ca')
+    .map((e) => [e.id, e.data]),
+);
+const items = all.map((e) => ({
+  slug: e.id.replace(/^olimpiada\/textos\//, '').replace(/\.(md|mdx)$/, ''),
+  data: locale === 'ca' ? (caById.get(`${e.id}.ca`) ?? e.data) : e.data,
+}));
+
+const copy = {
+  es: {
+    metaTitle: 'Taller de textos — Olimpiada de Economía',
+    metaDesc: 'Textos de prensa económica con preguntas guiadas estilo Parte III de la Olimpiada de Economía. Aprende a conectar actualidad con el temario.',
+    bcInicio: 'Inicio', bcOlimpiada: 'Olimpiada', bcCurrent: 'Taller de textos',
+    heroH1: 'Taller de textos',
+    lede: 'Practica la Parte III del examen: textos de prensa económica con preguntas que conectan cada párrafo con un concepto del temario.',
+    notaTitle: 'Cómo afrontar el comentario de texto',
+    notaSteps: [
+      'Lee el texto completo una vez sin subrayar, para hacerte una idea global.',
+      'En la segunda lectura, identifica los conceptos económicos que aparecen — uno por párrafo suele funcionar.',
+      'Lee las preguntas y vuelve a los párrafos que las responden: define el concepto, razona brevemente y apoya con datos del texto cuando los haya.',
+      'No hace falta desarrollar teoría extensa: precisión y conexión texto–temario es lo que puntúa.',
+      'Reserva unos 35 minutos para esta parte.',
+    ],
+    volver: '← Olimpiada de Economía',
+  },
+  ca: {
+    metaTitle: "Taller de textos — Olimpíada d'Economia",
+    metaDesc: "Textos de premsa econòmica amb preguntes guiades estil Part III de l'Olimpíada d'Economia. Aprén a connectar l'actualitat amb el temari.",
+    bcInicio: 'Inici', bcOlimpiada: 'Olimpíada', bcCurrent: 'Taller de textos',
+    heroH1: 'Taller de textos',
+    lede: "Practica la Part III de l'examen: textos de premsa econòmica amb preguntes que connecten cada paràgraf amb un concepte del temari.",
+    notaTitle: 'Com afrontar el comentari de text',
+    notaSteps: [
+      "Llig el text complet una vegada sense subratllar, per a fer-te una idea global.",
+      'En la segona lectura, identifica els conceptes econòmics que apareixen — un per paràgraf sol funcionar.',
+      'Llig les preguntes i torna als paràgrafs que les responen: definix el concepte, raona breument i recolza-ho amb dades del text quan n\'hi haja.',
+      'No cal desenvolupar teoria extensa: precisió i connexió text–temari és el que puntua.',
+      'Reserva uns 35 minuts per a esta part.',
+    ],
+    volver: "← Olimpíada d'Economia",
+  },
+}[locale];
 ---
 
 <BaseLayout
-  title="Taller de textos — Olimpiada de Economía"
-  description="Textos de prensa económica con preguntas guiadas estilo Parte III de la Olimpiada de Economía. Aprende a conectar actualidad con el temario."
+  title={copy.metaTitle}
+  description={copy.metaDesc}
+  contentLang={locale}
 >
   <div class="container">
     <nav class="breadcrumb">
-      <a href="/">Inicio</a> <span class="sep">›</span>
-      <a href="/olimpiada/">Olimpiada</a> <span class="sep">›</span>
-      <span>Taller de textos</span>
+      <a href="/">{copy.bcInicio}</a> <span class="sep">›</span>
+      <a href="/olimpiada/">{copy.bcOlimpiada}</a> <span class="sep">›</span>
+      <span>{copy.bcCurrent}</span>
     </nav>
   </div>
 
   <section class="hero">
     <div class="container">
-      <h1 class="serif">Taller de textos</h1>
-      <p class="lede">
-        Practica la Parte III del examen: textos de prensa económica
-        con preguntas que conectan cada párrafo con un concepto del temario.
-      </p>
+      <h1 class="serif">{copy.heroH1}</h1>
+      <p class="lede">{copy.lede}</p>
     </div>
   </section>
 
   <section class="nota-afrontar">
     <div class="container">
       <div class="nota">
-        <strong>Cómo afrontar el comentario de texto</strong>
+        <strong>{copy.notaTitle}</strong>
         <ol>
-          <li>Lee el texto completo una vez sin subrayar, para hacerte una idea global.</li>
-          <li>En la segunda lectura, identifica los conceptos económicos que aparecen — uno por párrafo suele funcionar.</li>
-          <li>Lee las preguntas y vuelve a los párrafos que las responden: define el concepto, razona brevemente y apoya con datos del texto cuando los haya.</li>
-          <li>No hace falta desarrollar teoría extensa: precisión y conexión texto–temario es lo que puntúa.</li>
-          <li>Reserva unos 35 minutos para esta parte.</li>
+          {copy.notaSteps.map((s) => <li>{s}</li>)}
         </ol>
       </div>
     </div>
@@ -63,18 +104,15 @@ const all = (await getCollection('olimpiadaTextos'))
     </section>
   )}
 
-  {all.length > 0 && (
+  {items.length > 0 && (
     <section class="lista">
       <div class="container">
         <div class="card-grid">
-          {all.map((e) => (
-            <a
-              class="card"
-              href={`/olimpiada/textos/${e.id.replace(/^olimpiada\/textos\//, '').replace(/\.(md|mdx)$/, '')}/`}
-            >
-              <h2 class="card__title serif">{e.data.title}</h2>
-              <p class="card__source">{e.data.fuente} · {e.data.fecha}</p>
-              <p class="card__desc">{e.data.descripcion}</p>
+          {items.map((item) => (
+            <a class="card" href={`/olimpiada/textos/${item.slug}/`}>
+              <h2 class="card__title serif">{item.data.title}</h2>
+              <p class="card__source">{item.data.fuente} · {item.data.fecha}</p>
+              <p class="card__desc">{item.data.descripcion}</p>
             </a>
           ))}
         </div>
@@ -83,7 +121,7 @@ const all = (await getCollection('olimpiadaTextos'))
   )}
 
   <div class="container back-link">
-    <a href="/olimpiada/">← Olimpiada de Economía</a>
+    <a href="/olimpiada/">{copy.volver}</a>
   </div>
 </BaseLayout>
 

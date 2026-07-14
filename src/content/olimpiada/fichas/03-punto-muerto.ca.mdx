@@ -1,0 +1,203 @@
+---
+title: "Producció, costos i punt mort"
+bloque: punto-muerto
+orden: 1
+resumen: "L'exercici estrella de la Part II: el llindar de rendibilitat i les seues variants."
+conceptos_clave:
+  - costos fixos
+  - costos variables
+  - cost total
+  - ingrés total
+  - punt mort
+  - llindar de rendibilitat
+  - marge de contribució
+herramienta: PuntoMuerto
+preguntas_tipicas:
+  - "Calcular el punt mort (llindar de rendibilitat) donats el preu de venda, el cost variable unitari i els costos fixos."
+  - "Calcular les unitats venudes i el benefici obtingut si els ingressos són X euros."
+  - "Els dos socis decidixen assignar-se un sou anual de Y euros cada un. Quin és el nou punt mort?"
+  - "Puja el lloguer del local en Z euros anuals. Es pot mantindre el sou pactat? Justifica-ho amb càlculs."
+  - "A quin preu cal vendre N unitats per a obtindre un benefici de B euros? I per a no tindre pèrdues?"
+competencias_clave:
+  - STEM
+  - CE
+lang: ca
+estado: publicado
+# Astro's default glob-loader id generation runs each path segment through
+# github-slugger, which strips dots — so "03-punto-muerto.ca.mdx" would
+# collide with the ES entry's id instead of producing "...03-punto-muerto.ca".
+# The `slug` frontmatter key is read before schema parsing and overrides id
+# generation directly, so this is required on every CA olimpiada sibling.
+slug: "olimpiada/fichas/03-punto-muerto.ca"
+---
+
+## De què va
+
+Tota empresa suporta dos tipus de costos:
+
+- **Costos fixos (CF)**: no depenen de la quantitat produïda. El lloguer, les assegurances, els sous del personal administratiu, les amortitzacions. Es paguen encara que no es produïsca ni una sola unitat.
+- **Costos variables (CV)**: creixen amb la producció. Si cada unitat costa CVu euros de materials, mà d'obra directa, energia, etc., aleshores CV = CVu · Q.
+
+El **cost total** és la suma de tots dos:
+
+**CT = CF + CVu · Q**
+
+Per la seua banda, si cada unitat es ven al preu P, l'**ingrés total** és:
+
+**IT = P · Q**
+
+La pregunta més important en la gestió d'una empresa xicoteta és: a partir de quantes unitats deixe de perdre diners? Eixa és exactament la pregunta que respon el **punt mort** (també anomenat llindar de rendibilitat).
+
+---
+
+## La fórmula i la seua deducció
+
+El punt mort Q\* és la quantitat on l'empresa ni guanya ni perd, és a dir, on el benefici és zero. El benefici és IT − CT, així que:
+
+**Benefici = IT − CT = 0**
+
+Substituint:
+
+P · Q\* = CF + CVu · Q\*
+
+Passant el terme en Q\* al mateix costat:
+
+P · Q\* − CVu · Q\* = CF
+
+Q\* · (P − CVu) = CF
+
+I aïllant Q\*:
+
+**Q\* = CF / (P − CVu)**
+
+### El marge de contribució
+
+El terme **(P − CVu)** rep el nom de **marge de contribució unitari**. La seua interpretació és directa: cada unitat venuda «aporta» (P − CVu) euros a cobrir els costos fixos. Tan prompte com hàgem venut prou unitats per a cobrir la totalitat dels CF, comencem a guanyar diners.
+
+Si CF = 42 000 € i cada unitat aporta 2 € a cobrir eixos costos fixos, necessitarem vendre 21 000 unitats abans d'obtindre el primer euro de benefici.
+
+### Punt mort en euros (ingrés d'equilibri)
+
+A vegades l'enunciat demana el llindar en euros de facturació, no en unitats. N'hi ha prou amb multiplicar Q\* pel preu:
+
+**IT\* = Q\* · P = CF · P / (P − CVu)**
+
+O bé, expressat mitjançant la ràtio marge/preu:
+
+**IT\* = CF / (1 − CVu / P)**
+
+Les dues expressions són equivalents; usa la primera si ja has calculat Q\*.
+
+---
+
+## El gràfic canònic
+
+El gràfic IT/CT és obligatori en l'examen: pot valdre fins a 0,5 punts per si sol. Convé dibuixar-lo amb precisió i etiquetar-lo bé.
+
+L'eix horitzontal representa les **unitats produïdes i venudes (Q)**; l'eix vertical, els **euros (€)**.
+
+- La **recta IT** parteix de l'origen (0, 0) amb pendent P. Cada unitat que es ven afig exactament P euros als ingressos.
+- La **recta CT** parteix del punt (0, CF) amb pendent CVu. Fins i tot amb Q = 0 l'empresa ja ha de pagar els costos fixos.
+- El **punt de tall** d'IT i CT és el punt mort Q\*. A l'esquerra d'eixe punt, CT > IT: l'empresa incorre en pèrdues. A la dreta, IT > CT: l'empresa obté beneficis.
+
+La separació vertical entre IT i CT en qualsevol Q > Q\* representa el benefici obtingut a eixe nivell de producció.
+
+La calculadora al final d'esta fitxa genera este gràfic automàticament amb els valors que introduïsques.
+
+---
+
+## Les variants que cauen en l'examen
+
+### Variant 1 — Benefici objectiu
+
+L'enunciat demana quantes unitats cal vendre per a obtindre un benefici B concret (no zero). N'hi ha prou amb traslladar B al numerador:
+
+Benefici = IT − CT = P · Q − CF − CVu · Q = (P − CVu) · Q − CF = B
+
+Aïllant:
+
+**Q = (CF + B) / (P − CVu)**
+
+**Mini-càlcul.** CF = 42 000 €, CVu = 0,50 €, P = 2,50 €, B = 6 000 €:
+
+Q = (42 000 + 6 000) / (2,50 − 0,50) = 48 000 / 2 = **24 000 unitats**
+
+### Variant 2 — Canvia un cost fix (sou, lloguer)
+
+Els socis s'assignen un sou total anual de 10 000 €, o puja el lloguer 3 000 €. El nou CF' = CF + increment, i el punt mort puja:
+
+**Q\*' = CF' / (P − CVu)**
+
+**Mini-càlcul.** CF' = 42 000 + 10 000 = 52 000 €:
+
+Q\*' = 52 000 / 2 = **26 000 unitats**
+
+Interpretació: per a poder pagar-se eixe sou l'empresa necessita vendre 5 000 unitats més a l'any.
+
+### Variant 3 — Canvia el CVu o el preu
+
+Si baixen les matèries primeres i el nou CVu' = 0,30 € (marge de contribució = 2,20 €):
+
+Q\*' = 42 000 / 2,20 ≈ **19 091 unitats**
+
+Si el preu puja a P' = 3 € (marge de contribució = 2,50 €):
+
+Q\*' = 42 000 / 2,50 = **16 800 unitats**
+
+En tots dos casos el marge de contribució augmenta i el punt mort baixa: són notícies favorables per a l'empresa.
+
+### Variant 4 — Es manté un objectiu si puja un cost?
+
+L'enunciat planteja: «Si el lloguer puja 4 000 €, es pot continuar pagant el sou de 10 000 € mantenint el punt mort inicial?».
+
+El CF necessari perquè el punt mort no supere Q\* = 21 000 és:
+
+CF_màxim = Q\* · (P − CVu) = 21 000 · 2 = 42 000 €
+
+Si ja tenim CF = 42 000 + 4 000 (lloguer) = 46 000 €, no hi ha marge per a afegir el sou: 46 000 + 10 000 = 56 000 > 42 000. El punt mort pujaria a 28 000 unitats. La resposta és **no es pot mantindre** a eixe volum de producció, tret que es puge el preu o es reduïsca el CVu.
+
+La clau en esta variant és aïllar la incògnita demanada i interpretar el resultat.
+
+---
+
+## Mini-exemple resolt complet
+
+**Enunciat.** Una empresa xicoteta de sucs artesanals té les dades següents:
+
+- Costos fixos anuals: **42 000 €** (lloguer, sous administració, assegurances)
+- Cost variable unitari: **0,50 €/botella** (fruita, envàs, etiqueta)
+- Preu de venda: **2,50 €/botella**
+
+**a) Calcula el punt mort.**
+
+Marge de contribució = P − CVu = 2,50 − 0,50 = **2,00 €/botella**
+
+Q\* = CF / (P − CVu) = 42 000 / 2 = **21 000 botelles/any**
+
+Interpretació: l'empresa necessita vendre 21 000 botelles a l'any per a cobrir tots els seus costos. Per davall d'eixa xifra incorre en pèrdues; per damunt, obté beneficis.
+
+**b) Variant: els dos socis decidixen assignar-se un sou de 6 000 € anuals cada un. Quant és el nou punt mort?**
+
+Els sous són un cost fix addicional: CF' = 42 000 + 6 000 + 6 000 = **54 000 €**
+
+Q\*' = 54 000 / 2 = **27 000 botelles/any**
+
+Interpretació: perquè l'empresa puga cobrir tant els costos operatius com la retribució dels socis, la producció i la venda haurà d'arribar a les 27 000 botelles anuals, és a dir, 6 000 botelles més que abans.
+
+---
+
+## En l'examen
+
+La Part II de l'Olimpíada sol estructurar-se en quatre apartats (**a, b, c, d**) de 0,75 punts cada un. L'exercici del punt mort seguix eixe patró quasi sempre:
+
+- **Apartat (a)**: dades, funcions de CT i IT, i càlcul de Q\*.
+- **Apartat (b)**: benefici o pèrdua a un volum donat, o unitats per a un ingrés donat.
+- **Apartat (c)**: nova situació (sou, lloguer, preu) → nou punt mort.
+- **Apartat (d)**: interpretació, comparació o decisió raonada.
+
+Recorda sempre:
+
+1. **Dibuixa el gràfic** (rectes IT i CT, punt de tall, zona de pèrdues i zona de beneficis): suma punts encara que el càlcul tinga errors.
+2. **Indica les unitats** del resultat (unitats/any, botelles, kg…): sense unitats, el corrector pot descomptar.
+3. **Escriu una frase d'interpretació** després de cada resultat: «açò significa que…».
+4. **Practica amb la calculadora** de baix: introduïx les dades de l'enunciat, verifica els teus càlculs i observa el gràfic abans de l'examen.

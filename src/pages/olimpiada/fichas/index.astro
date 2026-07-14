@@ -5,9 +5,21 @@
  */
 import BaseLayout from '@layouts/BaseLayout.astro';
 import { BLOQUES } from '@/lib/olimpiada';
+import { getLocale } from '@/i18n/locale';
+import { localizeFamilias, BLOQUES_OLIMPIADA_CA } from '@/i18n/familias-ca';
 import { getCollection } from 'astro:content';
 
-const all = (await getCollection('olimpiadaFichas')).filter((e) => e.data.estado === 'publicado');
+const locale = getLocale(Astro.currentLocale);
+const bloques = localizeFamilias(BLOQUES, BLOQUES_OLIMPIADA_CA, locale);
+
+const all = (await getCollection('olimpiadaFichas')).filter((e) => e.data.estado === 'publicado' && e.data.lang === 'es');
+// Card fields (title, resumen) come from the .ca.mdx sibling under 'ca'
+// (keyed "<esId>.ca"); the MDX body behind each card is served by the detail page.
+const caById = new Map(
+  (await getCollection('olimpiadaFichas'))
+    .filter((e) => e.data.estado === 'publicado' && e.data.lang === 'ca')
+    .map((e) => [e.id, e.data]),
+);
 
 // Group by bloque, preserving BLOQUES order.
 // We can't use groupByFamilia here because olimpiadaFichas doesn't have unidades_relacionadas.
@@ -16,39 +28,56 @@ interface FichaItem {
   data: typeof all[number]['data'];
 }
 const byBloque = new Map<string, FichaItem[]>();
-for (const b of BLOQUES) byBloque.set(b.slug, []);
+for (const b of bloques) byBloque.set(b.slug, []);
 for (const e of all) {
   const slug = e.id.replace(/^olimpiada\/fichas\//, '').replace(/\.(md|mdx)$/, '');
-  byBloque.get(e.data.bloque)?.push({ slug, data: e.data });
+  const data = locale === 'ca' ? (caById.get(`${e.id}.ca`) ?? e.data) : e.data;
+  byBloque.get(e.data.bloque)?.push({ slug, data });
 }
 for (const items of byBloque.values()) {
   items.sort((a, b) => a.data.orden - b.data.orden);
 }
-const groups = BLOQUES
+const groups = bloques
   .map((b) => ({ bloque: b, items: byBloque.get(b.slug) ?? [] }))
   .filter((g) => g.items.length > 0);
+
+const copy = {
+  es: {
+    metaTitle: 'Fichas-resumen — Olimpiada de Economía',
+    metaDesc: 'Los 6 bloques del temario de la Olimpiada de Economía sintetizados: conceptos clave, gráficos canónicos y ejercicios resueltos.',
+    bcInicio: 'Inicio', bcOlimpiada: 'Olimpiada', bcCurrent: 'Fichas-resumen',
+    heroH1: 'Fichas-resumen por bloque',
+    lede: 'Los 6 bloques del temario sintetizados para la Olimpiada: conceptos esenciales, gráficos canónicos y ejercicios tipo examen, con nivel 2.º Bach y 1.º carrera.',
+    volver: '← Olimpiada de Economía',
+  },
+  ca: {
+    metaTitle: "Fitxes-resum — Olimpíada d'Economia",
+    metaDesc: "Els 6 blocs del temari de l'Olimpíada d'Economia sintetitzats: conceptes clau, gràfics canònics i exercicis resolts.",
+    bcInicio: 'Inici', bcOlimpiada: 'Olimpíada', bcCurrent: 'Fitxes-resum',
+    heroH1: 'Fitxes-resum per bloc',
+    lede: "Els 6 blocs del temari sintetitzats per a l'Olimpíada: conceptes essencials, gràfics canònics i exercicis tipus examen, amb nivell 2n Batx i 1r de carrera.",
+    volver: "← Olimpíada d'Economia",
+  },
+}[locale];
 ---
 
 <BaseLayout
-  title="Fichas-resumen — Olimpiada de Economía"
-  description="Los 6 bloques del temario de la Olimpiada de Economía sintetizados: conceptos clave, gráficos canónicos y ejercicios resueltos."
+  title={copy.metaTitle}
+  description={copy.metaDesc}
+  contentLang={locale}
 >
   <div class="container">
     <nav class="breadcrumb">
-      <a href="/">Inicio</a> <span class="sep">›</span>
-      <a href="/olimpiada/">Olimpiada</a> <span class="sep">›</span>
-      <span>Fichas-resumen</span>
+      <a href="/">{copy.bcInicio}</a> <span class="sep">›</span>
+      <a href="/olimpiada/">{copy.bcOlimpiada}</a> <span class="sep">›</span>
+      <span>{copy.bcCurrent}</span>
     </nav>
   </div>
 
   <section class="hero">
     <div class="container">
-      <h1 class="serif">Fichas-resumen por bloque</h1>
-      <p class="lede">
-        Los 6 bloques del temario sintetizados para la Olimpiada:
-        conceptos esenciales, gráficos canónicos y ejercicios tipo
-        examen, con nivel 2.º Bach y 1.º carrera.
-      </p>
+      <h1 class="serif">{copy.heroH1}</h1>
+      <p class="lede">{copy.lede}</p>
     </div>
   </section>
 
@@ -88,7 +117,7 @@ const groups = BLOQUES
   ))}
 
   <div class="container back-link">
-    <a href="/olimpiada/">← Olimpiada de Economía</a>
+    <a href="/olimpiada/">{copy.volver}</a>
   </div>
 </BaseLayout>
 

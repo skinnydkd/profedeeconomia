@@ -6,11 +6,17 @@
  */
 import BaseLayout from '@layouts/BaseLayout.astro';
 import { bloqueMeta } from '@/lib/olimpiada';
+import { getLocale } from '@/i18n/locale';
+import { pickLocalizedEntry } from '@/i18n/content-locale';
 import { getCollection, render } from 'astro:content';
 import type { GetStaticPaths } from 'astro';
 
 export const getStaticPaths = (async () => {
-  const all = (await getCollection('olimpiadaFichas')).filter((e) => e.data.estado === 'publicado');
+  // ES entries define the canonical routes; CA siblings (lang: ca) must NOT
+  // create their own routes.
+  const all = (await getCollection('olimpiadaFichas')).filter(
+    (e) => e.data.estado === 'publicado' && e.data.lang === 'es',
+  );
   return all.map((entry) => ({
     params: { slug: entry.id.replace(/^olimpiada\/fichas\//, '').replace(/\.(md|mdx)$/, '') },
     props: { entry },
@@ -18,9 +24,20 @@ export const getStaticPaths = (async () => {
 }) satisfies GetStaticPaths;
 
 const { entry } = Astro.props;
-const d = entry.data;
-const { Content } = await render(entry);
+const locale = getLocale(Astro.currentLocale);
+const caById = new Map(
+  (await getCollection('olimpiadaFichas'))
+    .filter((e) => e.data.estado === 'publicado' && e.data.lang === 'ca')
+    .map((e) => [e.id, e]),
+);
+const view = pickLocalizedEntry(entry, caById, locale);
+const d = view.data;
+const { Content } = await render(view);
 const bloque = bloqueMeta(d.bloque);
+const copy = {
+  es: { fichasOlimpiada: 'Fichas Olimpiada', inicio: 'Inicio', olimpiada: 'Olimpiada', fichas: 'Fichas', conceptos: 'Conceptos:', practicalo: 'Practícalo', preguntasH: 'Preguntas típicas de examen', volver: '← Todas las fichas' },
+  ca: { fichasOlimpiada: 'Fitxes Olimpíada', inicio: 'Inici', olimpiada: 'Olimpíada', fichas: 'Fitxes', conceptos: 'Conceptes:', practicalo: 'Practica-ho', preguntasH: "Preguntes típiques d'examen", volver: '← Totes les fitxes' },
+}[locale];
 
 // Calculator dispatch — only the matching component is imported to keep bundles small.
 // PuntoMuertoCalc, EquilibrioCalc, ElasticidadCalc and ADASSimulator are Preact islands.
@@ -30,12 +47,12 @@ import ElasticidadCalc from '@components/calculadoras/ElasticidadCalc.tsx';
 import ADASSimulator from '@components/calculadoras/ADASSimulator.tsx';
 ---
 
-<BaseLayout title={`${d.title} — Fichas Olimpiada`} description={d.resumen}>
+<BaseLayout title={`${d.title} — ${copy.fichasOlimpiada}`} description={d.resumen} contentLang={locale}>
   <div class="container">
     <nav class="breadcrumb">
-      <a href="/">Inicio</a> <span class="sep">›</span>
-      <a href="/olimpiada/">Olimpiada</a> <span class="sep">›</span>
-      <a href="/olimpiada/fichas/">Fichas</a> <span class="sep">›</span>
+      <a href="/">{copy.inicio}</a> <span class="sep">›</span>
+      <a href="/olimpiada/">{copy.olimpiada}</a> <span class="sep">›</span>
+      <a href="/olimpiada/fichas/">{copy.fichas}</a> <span class="sep">›</span>
       <span>{d.title}</span>
     </nav>
   </div>
@@ -46,7 +63,7 @@ import ADASSimulator from '@components/calculadoras/ADASSimulator.tsx';
       <p class="lede">{d.resumen}</p>
 
       {d.conceptos_clave.length > 0 && (
-        <p class="conceptos"><strong>Conceptos:</strong> {d.conceptos_clave.join(' · ')}</p>
+        <p class="conceptos"><strong>{copy.conceptos}</strong> {d.conceptos_clave.join(' · ')}</p>
       )}
 
       <article class="prose">
@@ -55,7 +72,7 @@ import ADASSimulator from '@components/calculadoras/ADASSimulator.tsx';
 
       {d.herramienta && (
         <section class="calculadora-section">
-          <h2>Practícalo</h2>
+          <h2>{copy.practicalo}</h2>
           {d.herramienta === 'PuntoMuerto' && <PuntoMuertoCalc client:load />}
           {d.herramienta === 'Equilibrio' && <EquilibrioCalc client:load />}
           {d.herramienta === 'Elasticidad' && <ElasticidadCalc client:load />}
@@ -65,14 +82,14 @@ import ADASSimulator from '@components/calculadoras/ADASSimulator.tsx';
 
       {d.preguntas_tipicas.length > 0 && (
         <section class="block">
-          <h2>Preguntas típicas de examen</h2>
+          <h2>{copy.preguntasH}</h2>
           <ol class="preguntas-list">
             {d.preguntas_tipicas.map((p) => <li>{p}</li>)}
           </ol>
         </section>
       )}
 
-      <nav class="back"><a href="/olimpiada/fichas/">← Todas las fichas</a></nav>
+      <nav class="back"><a href="/olimpiada/fichas/">{copy.volver}</a></nav>
     </div>
   </section>
 </BaseLayout>

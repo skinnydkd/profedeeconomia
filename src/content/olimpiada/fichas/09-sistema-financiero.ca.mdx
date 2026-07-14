@@ -1,0 +1,210 @@
+---
+title: "Diners i sistema financer"
+bloque: sistema-financiero
+orden: 1
+resumen: "Els diners, la seua creació bancària mitjançant reserva fraccionària i els mecanismes del banc central per a controlar l'oferta monetària i els tipus d'interés."
+conceptos_clave:
+  - funcions dels diners
+  - reserva fraccionària
+  - multiplicador dels diners
+  - agregats monetaris (M1/M2/M3)
+  - política monetària
+  - operacions de mercat obert
+  - relació inversa tipus d'interés–preu de bons
+  - coeficient de caixa
+preguntas_tipicas:
+  - "Un banc rep un depòsit inicial de 2.000 € amb un coeficient de caixa del 5 %. Quin és el multiplicador dels diners i quina és l'oferta monetària màxima que pot generar el sistema bancari?"
+  - "Explica per què, quan el BCE apuja els tipus d'interés, el preu dels bons de l'Estat cau. Quines conseqüències va tindre eixe mecanisme en la fallida del Silicon Valley Bank?"
+  - "Distingix entre M1, M2 i M3. Per què els diners fiduciaris no tenen valor intrínsec i, no obstant això, són acceptats universalment?"
+  - "En què consistix una política monetària expansiva? Descriu els seus instruments i el seu efecte sobre la inflació i el tipus de canvi."
+  - "Quina és la diferència entre diners legals i diners bancaris? Quin percentatge dels diners en circulació és creat pels bancs comercials en la zona euro?"
+competencias_clave:
+  - STEM
+  - CE
+lang: ca
+estado: publicado
+# Astro's default glob-loader id generation runs each path segment through
+# github-slugger, which strips dots — so "09-sistema-financiero.ca.mdx" would
+# collide with the ES entry's id instead of producing "...09-sistema-financiero.ca".
+# The `slug` frontmatter key is read before schema parsing and overrides id
+# generation directly, so this is required on every CA olimpiada sibling.
+slug: "olimpiada/fichas/09-sistema-financiero.ca"
+---
+
+## De què va
+
+Els diners són un dels grans invents institucionals de la humanitat: permeten superar les limitacions del bescanvi i coordinar milions de decisions econòmiques descentralitzades. En l'Olimpiada d'Economia este bloc s'examina amb freqüència mitjançant problemes numèrics (el multiplicador) i preguntes d'anàlisi sobre política monetària. L'actualitat —pujades de tipus del BCE, fallida del SVB en 2023— fa que els vincles entre tipus d'interés, preu de bons i estabilitat bancària siguen matèria quasi segura.
+
+---
+
+## Les funcions dels diners
+
+Els diners complixen tres funcions clàssiques:
+
+**1. Mitjà de canvi** — elimina la necessitat de doble coincidència de desitjos del bescanvi. Qualsevol bé es pot vendre a canvi de diners i eixos diners es poden usar per a comprar qualsevol altre bé.
+
+**2. Unitat de compte** — proporciona un numerari comú que permet expressar els preus de tots els béns en una sola escala i calcular costos, beneficis i deutes de manera homogènia.
+
+**3. Depòsit de valor** — permet transferir poder adquisitiu al futur. Esta funció es deteriora amb la inflació: com més inflació, menys servixen els diners com a reserva de valor.
+
+### Tipus de diners
+
+| Tipus | Descripció | Exemple |
+|---|---|---|
+| **Diners mercaderia** | Tenen valor intrínsec per si mateixos | Or, plata, sal |
+| **Diners fiduciaris** | Sense valor intrínsec; acceptats per decret i confiança | Bitllets i monedes de curs legal |
+| **Diners bancaris** | Depòsits creats pels bancs mitjançant préstecs | Saldo en compte corrent |
+
+En la zona euro, els bitllets i monedes (emesos pel BCE/bancs centrals nacionals) representen menys del 15 % de l'oferta monetària àmplia. La resta són **diners bancaris**, creats pels bancs comercials quan concedixen crèdits.
+
+---
+
+## Com creen diners els bancs
+
+### La reserva fraccionària
+
+Els bancs no guarden en caixa tots els depòsits que reben. Només mantenen una fracció —el **coeficient de caixa** o coeficient de reserves— i presten la resta. Eixe préstec acaba depositat en un altre banc, que al seu torn presta una fracció, i així successivament. Este procés s'anomena **reserva fraccionària** i és el mecanisme pel qual el sistema bancari en el seu conjunt crea diners.
+
+### El multiplicador dels diners
+
+**Multiplicador dels diners = 1 ÷ coeficient de caixa**
+
+Si el coeficient de caixa és el 10 % (0,10):
+
+**Multiplicador = 1 ÷ 0,10 = 10**
+
+Això significa que cada euro de base monetària (diners emesos pel banc central) pot generar fins a 10 euros d'oferta monetària total.
+
+### Exemple numèric desenvolupat
+
+Suposem un coeficient de caixa del **10 %** i un depòsit inicial de **1.000 €**:
+
+| Ronda | Depòsit rebut | Reserves (10 %) | Préstec concedit |
+|---|---|---|---|
+| 1 | 1.000 € | 100 € | 900 € |
+| 2 | 900 € | 90 € | 810 € |
+| 3 | 810 € | 81 € | 729 € |
+| … | … | … | … |
+| **Total** | **10.000 €** | **1.000 €** | **9.000 €** |
+
+La suma de tots els depòsits convergix cap a: **1.000 × 10 = 10.000 €**. El sistema bancari ha creat 9.000 € de diners bancaris a partir d'un depòsit inicial de 1.000 €.
+
+> **Nota de precisió:** Este model assumix que tot préstec torna al sistema bancari com a depòsit i que el públic no reté efectiu. En la pràctica, la creació monetària és una mica menor, però el mecanisme és correcte per a l'examen.
+
+### Qui controla la base monetària?
+
+El **banc central** (en la zona euro, el BCE) és l'únic emissor de base monetària (bitllets + reserves bancàries en el banc central). Els bancs comercials multipliquen eixa base, però no la poden crear.
+
+---
+
+## Els agregats monetaris
+
+El BCE definix tres agregats que medixen l'oferta monetària amb distint grau de liquiditat:
+
+| Agregat | Components | Liquiditat |
+|---|---|---|
+| **M1** | Efectiu en circulació + depòsits a la vista | Màxima |
+| **M2** | M1 + depòsits a termini ≤ 2 anys + depòsits disponibles amb preavís ≤ 3 mesos | Alta |
+| **M3** | M2 + cessions temporals + participacions en fons del mercat monetari + deute a curt termini | Àmplia |
+
+M3 és l'agregat de referència del BCE per a avaluar els riscos inflacionistes a mitjà termini. La regla pràctica: **M1 ⊂ M2 ⊂ M3**.
+
+---
+
+## El banc central i la política monetària
+
+### El BCE: mandat i estructura
+
+El **Banc Central Europeu** té com a objectiu primari l'estabilitat de preus, definida com una taxa d'inflació del 2 % a mitjà termini en la zona euro. És independent dels governs nacionals (independència institucional).
+
+### Instruments principals
+
+**1. Tipus d'interés oficials**
+
+El BCE fixa tres tipus de referència:
+
+- **Tipus de les operacions principals de finançament (MRO):** tipus al qual els bancs comercials prenen préstecs del BCE a una setmana.
+- **Tipus de la facilitat de depòsit:** tipus que reben els bancs per depositar excés de liquiditat en el BCE (el tipus «sòl»).
+- **Tipus de la facilitat marginal de crèdit:** tipus marginal al qual els bancs poden demanar liquiditat urgent (el tipus «sostre»).
+
+**2. Operacions de mercat obert**
+
+El BCE compra o ven actius financers (habitualment deute públic) en els mercats secundaris:
+
+- **Compra de bons** → injecta liquiditat → augmenta la base monetària → pressió a la baixa sobre els tipus d'interés → estímul al crèdit i a la despesa.
+- **Venda de bons** → retira liquiditat → contrau la base monetària → pressió a l'alça sobre els tipus → fre al crèdit i a la despesa.
+
+**3. Coeficient de reserves mínimes**
+
+El BCE exigix als bancs comercials mantindre un percentatge mínim dels seus passius exigibles en forma de reserves. Un augment del coeficient reduïx la capacitat de creació de diners; una reducció l'amplia. En la zona euro, el coeficient obligatori és actualment del **1 %** (històricament va ser del 2 %).
+
+### Política expansiva vs. restrictiva
+
+| Objectiu | Política | Accions del BCE | Efecte esperat |
+|---|---|---|---|
+| Estimular l'economia / combatre deflació | **Expansiva** | Abaixa tipus · compra bons · reduïx coeficient | ↑ crèdit · ↑ demanda · ↑ inflació · ↓ tipus de canvi |
+| Frenar la inflació | **Restrictiva** | Apuja tipus · ven bons · augmenta coeficient | ↓ crèdit · ↓ demanda · ↓ inflació · ↑ tipus de canvi |
+
+---
+
+## Tipus d'interés i preu dels bons
+
+Esta relació inversa és **un dels conceptes més examinats** en l'Olimpiada i connecta la política monetària amb l'estabilitat del sistema financer.
+
+### La mecànica
+
+Un bo és un títol que paga cupons fixos. Si un bo paga **50 € a l'any** i el tipus d'interés de mercat és del **5 %**, el seu preu de mercat és:
+
+**Preu del bo = Cupó ÷ tipus d'interés = 50 ÷ 0,05 = 1.000 €**
+
+Si el tipus d'interés puja al **10 %**:
+
+**Preu del bo = 50 ÷ 0,10 = 500 €**
+
+El bo perd la **meitat** del seu valor de mercat. La relació és:
+
+**↑ tipus d'interés → ↓ preu dels bons**
+
+**↓ tipus d'interés → ↑ preu dels bons**
+
+### El cas SVB (Silicon Valley Bank, 2023)
+
+El SVB havia invertit massivament en bons del Tresor dels EUA a llarg termini durant el període 2020–2021, quan els tipus estaven en mínims històrics. Quan la Reserva Federal va apujar els tipus agressivament en 2022–2023, el preu d'eixos bons es va desplomar. El banc va acumular pèrdues no realitzades gegantines en la seua cartera. Quan els depositants van començar a retirar fons, el SVB va haver de vendre bons a pèrdua, la qual cosa va precipitar una correguda bancària i la seua fallida en març de 2023.
+
+**Lliçó:** un banc pot ser tècnicament solvent en condicions normals i convertir-se en insolvent si una pujada brusca de tipus destruïx el valor dels seus actius de renda fixa.
+
+---
+
+## Errors típics en l'examen
+
+- **Confondre base monetària amb oferta monetària.** La base monetària són els diners emesos pel banc central; l'oferta monetària és el resultat de la multiplicació bancària. Són magnituds distintes.
+
+- **Aplicar el multiplicador sense comprovar les hipòtesis.** El multiplicador **1 ÷ coeficient de caixa** és un màxim teòric. Si el públic reté efectiu o els bancs mantenen reserves excedentàries, la creació real de diners és menor.
+
+- **Invertir la relació tipus–bons.** La relació és *inversa*: tipus pugen → bons baixen. És fàcil confondre-la si es pensa que «més interés = més rendibilitat», però això ignora que el cupó és fix; el que varia és el preu.
+
+- **Creure que el BCE pot controlar directament M3.** El BCE controla la base monetària i els tipus. M3 depén també del comportament dels bancs i del públic (demanda de crèdit, retenció d'efectiu).
+
+- **Confondre política monetària amb política fiscal.** La política monetària la conduïx el BCE (independent); la política fiscal la decidixen els governs nacionals. Són instruments separats amb objectius que de vegades es coordinen.
+
+---
+
+## En l'examen
+
+**Per als problemes numèrics:**
+
+1. Identifica el coeficient de caixa (es pot donar en % o en tant per u).
+2. Calcula el multiplicador: **Multiplicador = 1 ÷ coeficient de caixa**.
+3. Multiplica el depòsit inicial pel multiplicador per a obtindre l'oferta monetària màxima.
+4. Si el problema demana la quantitat de diners *creats* (no total), resta el depòsit inicial: **Diners creats = Depòsit inicial × (Multiplicador − 1)**.
+
+**Per a les preguntes de política monetària:**
+
+- Identifica sempre l'objectiu (combatre la inflació o estimular l'economia?).
+- Enumera els instruments i la seua direcció (apuja/abaixa tipus, compra/ven bons).
+- Tanca amb els efectes en cadena: tipus → crèdit → demanda agregada → preus → tipus de canvi.
+
+**Per a la relació tipus–bons:**
+
+- Parteix de la fórmula **Preu = Cupó ÷ tipus** i fes el càlcul explícit.
+- Connecta amb l'aplicació real (SVB, deute sobirà de l'eurocrisi 2010–2012) si l'enunciat ho suggerix.
