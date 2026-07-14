@@ -1,24 +1,38 @@
 ---
 import { getCollection } from 'astro:content';
+import type { Locale } from '@/i18n/locale';
 
 interface Props {
   ejemplo?: any;
   /** Alternatively, look up the example by file slug (for embedding in phases). */
   slug?: string;
+  locale?: Locale;
 }
-let { ejemplo, slug } = Astro.props;
+let { ejemplo, slug, locale = 'es' } = Astro.props;
 if (!ejemplo && slug) {
   const all = await getCollection('emprendimientoEjemplos');
   ejemplo = all.find((e) => e.id.split('/').pop()?.replace(/\.mdx?$/, '') === slug)?.data;
 }
 const e = ejemplo;
-const tipoLabel: Record<string, string> = { real: 'Empresa real', ficticia: 'Ficticia (con chispa)', local: 'Negocio local' };
+const copy = {
+  es: {
+    tipo: { real: 'Empresa real', ficticia: 'Ficticia (con chispa)', local: 'Negocio local' } as Record<string, string>,
+    resuelve: 'Resuelve:', para: 'Para:', producto: 'Producto', precio: 'Precio', plaza: 'Plaza', promocion: 'Promoción', chispa: 'La chispa —',
+    bmc: { socios: 'Socios clave', actividades: 'Actividades clave', recursos: 'Recursos clave', propuesta: 'Propuesta de valor', relaciones: 'Relación con clientes', canales: 'Canales', segmentos: 'Segmentos de cliente', costes: 'Estructura de costes', ingresos: 'Fuentes de ingreso' } as Record<string, string>,
+  },
+  ca: {
+    tipo: { real: 'Empresa real', ficticia: 'Fictícia (amb espurna)', local: 'Negoci local' } as Record<string, string>,
+    resuelve: 'Resol:', para: 'Per a:', producto: 'Producte', precio: 'Preu', plaza: 'Plaça', promocion: 'Promoció', chispa: "L'espurna —",
+    bmc: { socios: 'Socis clau', actividades: 'Activitats clau', recursos: 'Recursos clau', propuesta: 'Proposta de valor', relaciones: 'Relació amb clients', canales: 'Canals', segmentos: 'Segments de client', costes: 'Estructura de costos', ingresos: "Fonts d'ingrés" } as Record<string, string>,
+  },
+}[locale];
+const tipoLabel = copy.tipo;
 const cuatroP = e && e.modelo === '4p';
 const bmc = e?.bmc ?? {};
-const bmcOrden: { k: string; label: string }[] = [
-  { k: 'socios', label: 'Socios clave' }, { k: 'actividades', label: 'Actividades clave' }, { k: 'recursos', label: 'Recursos clave' },
-  { k: 'propuesta', label: 'Propuesta de valor' }, { k: 'relaciones', label: 'Relación con clientes' }, { k: 'canales', label: 'Canales' },
-  { k: 'segmentos', label: 'Segmentos de cliente' }, { k: 'costes', label: 'Estructura de costes' }, { k: 'ingresos', label: 'Fuentes de ingreso' },
+const bmcOrden: { k: string }[] = [
+  { k: 'socios' }, { k: 'actividades' }, { k: 'recursos' },
+  { k: 'propuesta' }, { k: 'relaciones' }, { k: 'canales' },
+  { k: 'segmentos' }, { k: 'costes' }, { k: 'ingresos' },
 ];
 ---
 {e && (
@@ -29,24 +43,24 @@ const bmcOrden: { k: string; label: string }[] = [
       <span class="ejemplo__modelo">{cuatroP ? '4 P' : 'BMC'}</span>
     </div>
     <h3 class="ejemplo__nombre">{e.nombre}</h3>
-    <p class="ejemplo__meta"><strong>Resuelve:</strong> {e.problema} · <strong>Para:</strong> {e.segmento}</p>
+    <p class="ejemplo__meta"><strong>{copy.resuelve}</strong> {e.problema} · <strong>{copy.para}</strong> {e.segmento}</p>
 
     {cuatroP ? (
       <div class="ejemplo__4p">
-        <div><span class="k">Producto</span>{e.p_producto}</div>
-        <div><span class="k">Precio</span>{e.p_precio}</div>
-        <div><span class="k">Plaza</span>{e.p_plaza}</div>
-        <div><span class="k">Promoción</span>{e.p_promocion}</div>
+        <div><span class="k">{copy.producto}</span>{e.p_producto}</div>
+        <div><span class="k">{copy.precio}</span>{e.p_precio}</div>
+        <div><span class="k">{copy.plaza}</span>{e.p_plaza}</div>
+        <div><span class="k">{copy.promocion}</span>{e.p_promocion}</div>
       </div>
     ) : (
       <div class="ejemplo__bmc">
         {bmcOrden.map((b) => bmc[b.k] && (
-          <div><span class="k">{b.label}</span>{bmc[b.k]}</div>
+          <div><span class="k">{copy.bmc[b.k]}</span>{bmc[b.k]}</div>
         ))}
       </div>
     )}
 
-    <p class="ejemplo__chispa"><span class="spark">La chispa —</span> {e.chispa}</p>
+    <p class="ejemplo__chispa"><span class="spark">{copy.chispa}</span> {e.chispa}</p>
   </article>
 )}
 

@@ -4,6 +4,7 @@
  * and the LOMLOE competence chips. Pure presentational.
  */
 import type { Nivel } from '@/lib/emprendimiento';
+import type { Locale } from '@/i18n/locale';
 
 interface Props {
   faseLabel: string;
@@ -13,24 +14,29 @@ interface Props {
   entregable: string;
   competenciasClave: string[];
   valiente?: boolean;
+  locale?: Locale;
 }
-const { faseLabel, nivel, nucleo, duracion, entregable, competenciasClave, valiente = false } = Astro.props;
-const nivelLabel = nivel === 'eso' ? 'ESO' : nivel === 'bach' ? 'Bachillerato' : nivel === 'bach-fp' ? 'Batx · FP' : 'Todos los niveles';
+const { faseLabel, nivel, nucleo, duracion, entregable, competenciasClave, valiente = false, locale = 'es' } = Astro.props;
+const copy = {
+  es: { eso: 'ESO', bach: 'Bachillerato', bachfp: 'Batx · FP', todos: 'Todos los niveles', valiente: '★ Tier valiente · opcional', nucleo: 'Núcleo', profundo: 'Profundización', entregable: 'Entregable:' },
+  ca: { eso: 'ESO', bach: 'Batxillerat', bachfp: 'Batx · FP', todos: 'Tots els nivells', valiente: '★ Nivell valent · opcional', nucleo: 'Nucli', profundo: 'Aprofundiment', entregable: 'Lliurable:' },
+}[locale];
+const nivelLabel = nivel === 'eso' ? copy.eso : nivel === 'bach' ? copy.bach : nivel === 'bach-fp' ? copy.bachfp : copy.todos;
 ---
 
 <header class="fase-meta">
   <div class="badges">
     {valiente ? (
-      <span class="badge badge--valiente">★ Tier valiente · opcional</span>
+      <span class="badge badge--valiente">{copy.valiente}</span>
     ) : (
       <span class={`badge badge--${nucleo ? 'nucleo' : 'profundo'}`}>
-        {nucleo ? 'Núcleo' : 'Profundización'}
+        {nucleo ? copy.nucleo : copy.profundo}
       </span>
     )}
     <span class="badge badge--nivel">{nivelLabel}</span>
     <span class="badge badge--dur">{duracion}</span>
   </div>
-  <p class="entregable"><strong>Entregable:</strong> {entregable}</p>
+  <p class="entregable"><strong>{copy.entregable}</strong> {entregable}</p>
   {competenciasClave.length > 0 && (
     <ul class="comps" aria-label="Competencias clave">
       {competenciasClave.map((c) => <li>{c}</li>)}

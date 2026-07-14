@@ -8,12 +8,16 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 import FaseMeta from '@components/emprendimiento/FaseMeta.astro';
 import BloqueCuaderno from '@components/emprendimiento/BloqueCuaderno.astro';
 import PuenteUnidades from '@components/emprendimiento/PuenteUnidades.astro';
+import { getLocale } from '@/i18n/locale';
+import { pickLocalizedEntry } from '@/i18n/content-locale';
 import { getCollection, render } from 'astro:content';
 import type { GetStaticPaths } from 'astro';
 
 export const getStaticPaths = (async () => {
+  // ES entries define the canonical routes; CA siblings (lang: ca) must NOT
+  // create their own routes.
   const all = (await getCollection('proyectoTransversal')).filter(
-    (e) => e.data.estado === 'publicado'
+    (e) => e.data.estado === 'publicado' && e.data.lang === 'es'
   );
   all.sort((a, b) => a.data.fase - b.data.fase);
   return all.map((entry, i) => ({
@@ -27,18 +31,32 @@ export const getStaticPaths = (async () => {
 }) satisfies GetStaticPaths;
 
 const { entry, prev, next } = Astro.props;
-const d = entry.data;
-const { Content } = await render(entry);
+const locale = getLocale(Astro.currentLocale);
+const caById = new Map(
+  (await getCollection('proyectoTransversal'))
+    .filter((e) => e.data.estado === 'publicado' && e.data.lang === 'ca')
+    .map((e) => [e.id, e]),
+);
+const view = pickLocalizedEntry(entry, caById, locale);
+const d = view.data;
+const { Content } = await render(view);
+// Localize the prev/next phase labels too.
+const faseLabelOf = (e: typeof prev) =>
+  e ? (locale === 'ca' ? (caById.get(`${e.id}.ca`)?.data.fase_label ?? e.data.fase_label) : e.data.fase_label) : '';
 const faseHref = (e: typeof prev) =>
   e ? `/emprendimiento/proyecto/${String(e.data.fase).padStart(2, '0')}` : '#';
+const copy = {
+  es: { deCero: 'De cero a empresa', inicio: 'Inicio', empr: 'Emprendimiento' },
+  ca: { deCero: 'De zero a empresa', inicio: 'Inici', empr: 'Emprenedoria' },
+}[locale];
 ---
 
-<BaseLayout title={`${d.fase_label} — De cero a empresa`} description={d.entregable}>
+<BaseLayout title={`${d.fase_label} — ${copy.deCero}`} description={d.entregable} contentLang={locale}>
   <div class="container">
     <nav class="breadcrumb">
-      <a href="/">Inicio</a> <span class="sep">›</span>
-      <a href="/emprendimiento/">Emprendimiento</a> <span class="sep">›</span>
-      <a href="/emprendimiento/proyecto/">De cero a empresa</a> <span class="sep">›</span>
+      <a href="/">{copy.inicio}</a> <span class="sep">›</span>
+      <a href="/emprendimiento/">{copy.empr}</a> <span class="sep">›</span>
+      <a href="/emprendimiento/proyecto/">{copy.deCero}</a> <span class="sep">›</span>
       <span>{d.fase_label}</span>
     </nav>
   </div>
@@ -54,16 +72,17 @@ const faseHref = (e: typeof prev) =>
         entregable={d.entregable}
         competenciasClave={d.competencias_clave}
         valiente={d.valiente}
+        locale={locale}
       />
       <article class="prose">
         <Content />
       </article>
-      {d.cuaderno && <BloqueCuaderno cuaderno={d.cuaderno} modo="alumno" />}
+      {d.cuaderno && <BloqueCuaderno cuaderno={d.cuaderno} modo="alumno" locale={locale} />}
       <PuenteUnidades unidades={d.unidades_relacionadas} />
 
       <nav class="phase-nav">
-        {prev ? <a href={faseHref(prev)} class="phase-nav__prev">← {prev.data.fase_label}</a> : <span />}
-        {next ? <a href={faseHref(next)} class="phase-nav__next">{next.data.fase_label} →</a> : <span />}
+        {prev ? <a href={faseHref(prev)} class="phase-nav__prev">← {faseLabelOf(prev)}</a> : <span />}
+        {next ? <a href={faseHref(next)} class="phase-nav__next">{faseLabelOf(next)} →</a> : <span />}
       </nav>
     </div>
   </section>

@@ -1,30 +1,65 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
+import { getLocale } from '@/i18n/locale';
+import { pickLocalizedEntry } from '@/i18n/content-locale';
 import { getCollection, render } from 'astro:content';
 
-const entries = (await getCollection('emprendimientoActividades'))
-  .filter((a) => a.data.estado === 'publicado')
+const locale = getLocale(Astro.currentLocale);
+// ES entries drive order; each renders its CA sibling body inline under 'ca'.
+const esEntries = (await getCollection('emprendimientoActividades'))
+  .filter((a) => a.data.estado === 'publicado' && a.data.lang === 'es')
   .sort((a, b) => a.data.orden - b.data.orden || a.data.title.localeCompare(b.data.title));
+const caById = new Map(
+  (await getCollection('emprendimientoActividades'))
+    .filter((a) => a.data.estado === 'publicado' && a.data.lang === 'ca')
+    .map((a) => [a.id, a]),
+);
+const entries = esEntries.map((a) => pickLocalizedEntry(a, caById, locale));
 const rendered = await Promise.all(entries.map(async (a) => ({ a, Content: (await render(a)).Content })));
+
+const copy = {
+  es: {
+    metaTitle: 'Kit de actitud emprendedora',
+    metaDesc: 'Actividades para trabajar la actitud emprendedora: perder la vergüenza a pedir y a hablar en público, pitch, negociar. Para usar tal cual en clase.',
+    bcInicio: 'Inicio', bcEmpr: 'Emprendimiento', bcCurrent: 'Kit de actitud',
+    heroH1: 'Perder la vergüenza (y otras valentías)',
+    ledeA: 'Emprender es, sobre todo, atreverse: ',
+    ledeStrong: 'pedir, preguntar, hablar en público, decir que no, negociar',
+    ledeB: '. Estas actividades cortas entrenan esa actitud antes (y durante) el proyecto.',
+    trabaja: 'Trabaja:',
+    empty: 'Pronto, un kit de actividades para perder la vergüenza.',
+  },
+  ca: {
+    metaTitle: "Kit d'actitud emprenedora",
+    metaDesc: "Activitats per a treballar l'actitud emprenedora: perdre la vergonya a demanar i a parlar en públic, pitch, negociar. Per a usar tal qual a classe.",
+    bcInicio: 'Inici', bcEmpr: 'Emprenedoria', bcCurrent: "Kit d'actitud",
+    heroH1: 'Perdre la vergonya (i altres valenties)',
+    ledeA: 'Emprendre és, sobretot, atrevir-se: ',
+    ledeStrong: 'demanar, preguntar, parlar en públic, dir que no, negociar',
+    ledeB: '. Estes activitats curtes entrenen eixa actitud abans (i durant) el projecte.',
+    trabaja: 'Treballa:',
+    empty: "Pròximament, un kit d'activitats per a perdre la vergonya.",
+  },
+}[locale];
 ---
 <BaseLayout
-  title="Kit de actitud emprendedora"
-  description="Actividades para trabajar la actitud emprendedora: perder la vergüenza a pedir y a hablar en público, pitch, negociar. Para usar tal cual en clase."
+  title={copy.metaTitle}
+  description={copy.metaDesc}
+  contentLang={locale}
 >
   <div class="container">
     <nav class="breadcrumb">
-      <a href="/">Inicio</a> <span class="sep">›</span>
-      <a href="/emprendimiento/">Emprendimiento</a> <span class="sep">›</span>
-      <span>Kit de actitud</span>
+      <a href="/">{copy.bcInicio}</a> <span class="sep">›</span>
+      <a href="/emprendimiento/">{copy.bcEmpr}</a> <span class="sep">›</span>
+      <span>{copy.bcCurrent}</span>
     </nav>
   </div>
 
   <section class="hero">
     <div class="container">
-      <h1>Perder la vergüenza (y otras valentías)</h1>
+      <h1>{copy.heroH1}</h1>
       <p class="lede">
-        Emprender es, sobre todo, atreverse: <strong>pedir, preguntar, hablar en público, decir que no,
-        negociar</strong>. Estas actividades cortas entrenan esa actitud antes (y durante) el proyecto.
+        {copy.ledeA}<strong>{copy.ledeStrong}</strong>{copy.ledeB}
       </p>
     </div>
   </section>
@@ -32,12 +67,12 @@ const rendered = await Promise.all(entries.map(async (a) => ({ a, Content: (awai
   <section class="list">
     <div class="container">
       {rendered.length === 0
-        ? <p class="empty">Pronto, un kit de actividades para perder la vergüenza.</p>
+        ? <p class="empty">{copy.empty}</p>
         : rendered.map(({ a, Content }) => (
           <article class="act">
             <h2 class="act__title">{a.data.title}</h2>
             <p class="act__meta">
-              <strong>Trabaja:</strong> {a.data.objetivo}
+              <strong>{copy.trabaja}</strong> {a.data.objetivo}
               {a.data.duracion && <> · {a.data.duracion}</>}
               {a.data.agrupacion && <> · {a.data.agrupacion}</>}
             </p>
