@@ -9,8 +9,9 @@ import type { GetStaticPaths } from 'astro';
 import { getCollection } from 'astro:content';
 
 export const getStaticPaths = (async () => {
+  // ES-only print edition; CA .ca.mdx siblings must not double the phases.
   const fases = (await getCollection('proyectoTransversal'))
-    .filter((f) => f.data.estado === 'publicado' && f.data.cuaderno)
+    .filter((f) => f.data.estado === 'publicado' && f.data.lang === 'es' && f.data.cuaderno)
     .sort((a, b) => a.data.fase - b.data.fase);
   const props = { fases };
   return [

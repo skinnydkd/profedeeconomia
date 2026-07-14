@@ -7,8 +7,9 @@
 import { getCollection, render } from 'astro:content';
 
 const all = await getCollection('proyectoTransversal');
+// ES-only print edition; CA .ca.mdx siblings must not double the phases.
 const secciones = all
-  .filter((e) => e.data.estado === 'publicado')
+  .filter((e) => e.data.estado === 'publicado' && e.data.lang === 'es')
   .sort((a, b) => a.data.fase - b.data.fase);
 const rendered = await Promise.all(secciones.map(async (s) => ({ s, ...(await render(s)) })));
 const today = new Date().toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' });

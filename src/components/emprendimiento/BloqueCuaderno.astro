@@ -1,5 +1,6 @@
 ---
 import Plantilla from './plantillas/Plantilla.astro';
+import type { Locale } from '@/i18n/locale';
 interface Props {
   cuaderno: {
     tarea: string;
@@ -8,17 +9,22 @@ interface Props {
     plantilla: { tipo: string; columnas?: string[]; filas?: number };
   };
   modo?: 'alumno' | 'profesor';
+  locale?: Locale;
 }
-const { cuaderno: c, modo = 'alumno' } = Astro.props;
+const { cuaderno: c, modo = 'alumno', locale = 'es' } = Astro.props;
+const copy = {
+  es: { manos: 'Manos a la obra', reflexion: 'Reflexión del equipo —', orientacion: 'Orientación docente' },
+  ca: { manos: "Mans a l'obra", reflexion: "Reflexió de l'equip —", orientacion: 'Orientació docent' },
+}[locale];
 ---
 <section class="cuad">
-  <p class="cuad__eyebrow">Manos a la obra</p>
+  <p class="cuad__eyebrow">{copy.manos}</p>
   <p class="cuad__tarea" set:html={c.tarea} />
   <div class="cuad__plantilla"><Plantilla plantilla={c.plantilla} /></div>
-  <p class="cuad__reflexion"><span>Reflexión del equipo —</span> {c.reflexion}</p>
+  <p class="cuad__reflexion"><span>{copy.reflexion}</span> {c.reflexion}</p>
   {modo === 'profesor' && c.orientacion_docente && (
     <div class="cuad__orientacion">
-      <span class="cuad__orientacion-k">Orientación docente</span>
+      <span class="cuad__orientacion-k">{copy.orientacion}</span>
       <p set:html={c.orientacion_docente} />
     </div>
   )}
