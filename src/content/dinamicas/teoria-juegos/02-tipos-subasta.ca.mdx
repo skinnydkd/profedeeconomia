@@ -1,0 +1,221 @@
+---
+title: "Tipus de subhasta"
+familia: teoria-juegos
+orden: 2
+descripcion: "L'alumnat puja en els quatre formats de subhasta —anglesa, holandesa, sobre tancat a primer preu i Vickrey (segon preu)— i descobrix com canvia la seua estratègia i per què a vegades guanya… però paga de més."
+tipo: juego-experimental
+duracion: "1-2 sessions"
+agrupacion: "grup classe (postors)"
+participantes: "grup classe"
+nivel: [bach]
+objetivos:
+  - "Comparar els quatre formats de subhasta clàssics i deduir l'estratègia òptima de puja en cada un, distingint quan convé revelar el valor real i quan no."
+  - "Explicar el teorema d'equivalència d'ingressos de forma intuïtiva i verificar-lo amb les dades arreplegades a classe."
+  - "Identificar la maledicció del guanyador en subhastes de valor comú i relacionar-la amb situacions reals (licitacions públiques, espectre radioelèctric, petroli)."
+conceptos_clave:
+  - "Subhastes"
+  - "Formació de preus"
+  - "Revelació del valor"
+  - "Maledicció del guanyador"
+materiales_necesarios:
+  - "Targetes de valor privat (una per postor, veure fitxes al final)"
+  - "Sobres en blanc per a la subhasta de sobre tancat (dos per postor: primer preu i Vickrey)"
+  - "Taula de resultats projectable o en pissarra (una columna per format)"
+  - "Pot opac amb monedes per a la ronda de valor comú"
+  - "Calculadora o projector per a computar excedents en temps real"
+unidades_relacionadas:
+  - { asignatura: "eco-1bach", unidad: 4, nota: "Microeconomia I: formació de preus.", competencias_especificas: [CE3] }
+  - { asignatura: "eco-1bach", unidad: 2, nota: "La presa de decisions davall incertesa.", competencias_especificas: [CE1, CE2] }
+competencias_clave: [STEM, CPSAA, CE, CD]
+competencias_especificas: []
+lang: ca
+estado: publicado
+# Astro's default glob-loader id generation runs each path segment through
+# github-slugger, which strips dots — so "02-tipos-subasta.ca.mdx" would
+# collide with the ES entry's id instead of producing "...02-tipos-subasta.ca".
+# The `slug` frontmatter key is read before schema parsing and overrides id
+# generation directly, so this is required on every CA dinámica sibling.
+slug: "dinamicas/teoria-juegos/02-tipos-subasta.ca"
+---
+
+import Steps from '@components/Steps.astro';
+import Callout from '@components/Callout.astro';
+import RoleCard from '@components/dinamicas/RoleCard.astro';
+import FichaAlumno from '@components/dinamicas/FichaAlumno.astro';
+
+Una subhasta no és només un mecanisme per a vendre art car. És el disseny institucional
+que usem per a assignar espectre radioelèctric a operadores de telefonia, concessions
+d'autopista, drets d'emissió de CO₂ o habitatge públic. Les regles de la subhasta
+determinen qui guanya, quant paga i si el guanyador acaba arruïnat. Esta dinàmica fa
+exactament el mateix que els dissenyadors de mercats: provem formats, observem
+conductes i deduïm quin induïx la veritat i quin convida al farol.
+
+El mateix «lot» es subhasta quatre vegades amb regles distintes. Cada postor porta una
+targeta amb el seu valor privat secret. Al final, les dades de tota la classe permeten
+comparar preus de venda, excedents i grau de revelació del valor real.
+
+## Com funciona
+
+<Steps label="Desenvolupament" title="Quatre formats, un debrief">
+  <li>**Repartiment de valors privats (3 min).** Es lliura a cada postor una targeta de valor privat de forma discreta. Ningú ha de revelar el seu valor fins al debrief final. S'explica que el valor és quant val per a ells l'objecte: si paguen menys que el seu valor, guanyen la diferència com a excedent.</li>
+  <li>**Ronda 1 — Subhasta anglesa (10 min).** El docent puja el preu d'1 en 1 (o de 5 en 5 segons el rang). Els postors alcen la mà per a confirmar que seguixen pujant; la baixen quan es retiren. Guanya qui queda dret. S'anota el preu final i el guanyador.</li>
+  <li>**Ronda 2 — Subhasta holandesa (10 min).** El docent comença amb un preu alt (per damunt del valor més alt possible) i el baixa de 5 en 5. El primer que cride «meu!» guanya i paga eixe preu. Si ningú accepta en arribar a 0, l'objecte queda desert.</li>
+  <li>**Ronda 3 — Sobre tancat a primer preu (8 min).** Cada postor escriu la seua puja en un sobre, el tanca i l'entrega. El docent obri tots en públic. Guanya la puja més alta; el guanyador paga el que va pujar. Es revelen totes les pujes.</li>
+  <li>**Ronda 4 — Vickrey / segon preu (8 min).** Mateixa mecànica que la ronda anterior, però el guanyador paga la segona puja més alta. Es revelen totes les pujes.</li>
+  <li>**Ronda 5 — Valor comú: el pot (10 min).** Es mostra un pot amb monedes. Cada postor estima el valor total i anota la seua puja en un sobre. Guanya qui puge més, però paga el que va pujar. Després d'obrir els sobres, es compta el valor real del pot.</li>
+  <li>**Debrief (15-20 min).** Amb la taula de resultats a la vista, el docent conduïx la posada en comú.</li>
+</Steps>
+
+## Guia del professor
+
+### Preparació
+
+Dissenya els valors privats abans de classe. Una distribució funcional per a 20 postors:
+valors de 10 a 29 (un per postor, sense repetir). Això garantix que hi ha un guanyador
+clar en cada ronda i que els excedents són variats i calculables.
+
+Per a la ronda anglesa, fixa el punt de partida en 1 i puja d'1 en 1 si el grup és
+xicotet, de 2 en 2 si són més de 15. Per a la holandesa, comença en 35 (per damunt del
+valor màxim possible) i baixa de 2 en 2.
+
+Per al pot de valor comú, omple'l tu abans de classe i anota el valor exacte. Un
+rang de 3-6 € en monedes de 5 i 10 cèntims funciona bé: hi ha incertesa real però
+no és impossible d'estimar. Deixa el pot visible durant 1 minut abans de tancar els
+sobres, sense que ningú el toque.
+
+### Gestió en l'aula
+
+En la subhasta anglesa i holandesa, mantín un ritme constant i sense pauses: la urgència
+és part del disseny. En l'anglesa, quan només queden dos postors, alentix lleugerament
+perquè la classe puga observar el moment en què un es retira.
+
+En les rondes de sobre tancat, assegura't que els sobres són opacs i que ningú veu
+la puja d'un altre abans d'obrir. La simultaneïtat és la clau del format.
+
+Quan obris els sobres de Vickrey, assenyala explícitament la diferència entre la puja
+guanyadora i el preu pagat: eixe moment sol provocar sorpresa i és el millor ham
+per a explicar la revelació del valor.
+
+### El debrief (el més important)
+
+Projecta o dibuixa en pissarra la taula de resultats amb les quatre rondes i pregunta:
+
+- En quina ronda heu pujat més prop del vostre valor real? Per què en Vickrey l'estratègia òptima és pujar exactament el teu valor? (Si pugeu per damunt, podeu guanyar i pagar més del que val per a vosaltres; si pugeu per davall, podeu perdre encara que l'objecte valguera més per a vosaltres que per al guanyador.)
+- En el sobre tancat a primer preu, heu pujat per davall del vostre valor? Quant per davall? Com vau decidir eixa xifra? (L'estratègia òptima teòrica depén de la distribució de valors dels altres, que no coneixeu exactament.)
+- El preu de venda va ser semblant en els quatre formats? (Idea intuïtiva del teorema d'equivalència d'ingressos: en condicions ideals, els quatre formats generen el mateix ingrés esperat per al venedor.)
+- En el pot, qui va guanyar? Era el que tenia l'estimació més precisa o el que va pujar més alt perquè va sobreestimar? Què li va passar al seu excedent?
+
+<Callout label="Concepte clau" title="Vickrey induïx a dir la veritat perquè el preu no depén de tu">
+En una subhasta de Vickrey, si pugeu el vostre valor real no podeu millorar el vostre
+resultat pujant més o menys: si guanyeu, pagueu la segona puja (que no controleu);
+si perdeu, és perquè algú valora més l'objecte que vosaltres. Esta propietat
+—anomenada «dominància de l'estratègia sincera»— fa que el mecanisme siga robust:
+no necessiteu saber quant valoren els altres per a prendre la decisió correcta.
+</Callout>
+
+### Errors comuns
+
+- Postors que revelen el seu valor abans del debrief. Recordeu a l'inici que el secret és part del disseny: si els altres saben el teu valor, la subhasta de sobre tancat deixa de ser informativa.
+- Confusió entre la subhasta holandesa i la holandesa de flors (que també és descendent, així que en realitat són el mateix format). Si algun alumne ho coneix, aprofiteu per a enllaçar-ho amb el mercat de flors d'Aalsmeer, la subhasta més gran del món per volum.
+- En la ronda de Vickrey, alguns postors creuen que és avantatjós pujar un euro per damunt del seu valor per a «assegurar-se la victòria». És el moment de demostrar amb un exemple numèric que això pot produir excedent negatiu.
+- Maledicció del guanyador: és habitual que el guanyador del pot haja sobreestimat i tinga excedent negatiu. Si no ocorre, busqueu el postor que haja perdut per poc i pregunteu què li haguera passat si haguera guanyat.
+
+## Materials repartibles
+
+<FichaAlumno titulo="Targetes de valor privat" subtitulo="Retalla'n una per postor. NO revelar fins al debrief final.">
+
+*Instrucció al docent: imprimix esta fitxa, retalla les targetes i reparteix-les de forma discreta.*
+*Adapta els valors a la grandària del grup: per a N postors usa valors de (30 − N) a 29.*
+
+| Postor | Valor privat | | Postor | Valor privat |
+|---|---|---|---|---|
+| A | **29** | | K | **19** |
+| B | **28** | | L | **18** |
+| C | **27** | | M | **17** |
+| D | **26** | | N | **16** |
+| E | **25** | | O | **15** |
+| F | **24** | | P | **14** |
+| G | **23** | | Q | **13** |
+| H | **22** | | R | **12** |
+| I | **21** | | S | **11** |
+| J | **20** | | T | **10** |
+
+*Guarda per al docent: valor del pot = \_\_\_ € (omplir abans de classe).*
+
+</FichaAlumno>
+
+<FichaAlumno titulo="Full de resultats — Tipus de subhasta" subtitulo="Omple després de cada ronda. No revels el teu valor privat fins al debrief.">
+
+**El meu valor privat (només per a mi):** \_\_\_ €
+
+---
+
+**Ronda 1 — Subhasta anglesa (ascendent)**
+
+- He guanyat? □ Sí □ No
+- Preu final: \_\_\_ €  ·  Guanyador: \_\_\_ (postor)
+- Si he guanyat → el meu excedent: valor − preu = \_\_\_ − \_\_\_ = \_\_\_ €
+- Fins a quin preu hauria pujat si haguera seguit? \_\_\_ €
+
+---
+
+**Ronda 2 — Subhasta holandesa (descendent)**
+
+- He guanyat? □ Sí □ No
+- Preu al qual algú va dir «meu!»: \_\_\_ €
+- Si he guanyat → el meu excedent: \_\_\_ € · Per què em vaig detindre en eixe preu i no vaig esperar més?
+
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+
+---
+
+**Ronda 3 — Sobre tancat, primer preu**
+
+- La meua puja: \_\_\_ €  ·  He guanyat? □ Sí □ No
+- Preu pagat (= la meua puja si guanye): \_\_\_ €
+- El meu excedent: \_\_\_ €
+- Segona puja més alta: \_\_\_ €
+- Has pujat per davall del teu valor? Quant? \_\_\_ €. Per què?
+
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+
+---
+
+**Ronda 4 — Vickrey (sobre tancat, segon preu)**
+
+- La meua puja: \_\_\_ €  ·  He guanyat? □ Sí □ No
+- Preu pagat (= segona puja més alta): \_\_\_ €
+- El meu excedent: \_\_\_ €
+- Has canviat la teua estratègia de puja respecte a la ronda anterior? Per què?
+
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+
+---
+
+**Ronda 5 — Valor comú: el pot**
+
+- La meua estimació del valor del pot: \_\_\_ €
+- La meua puja: \_\_\_ €  ·  He guanyat? □ Sí □ No
+- Valor real del pot (revelat al final): \_\_\_ €
+- Si he guanyat → el meu excedent REAL: valor real − preu pagat = \_\_\_ €
+- Era positiu o negatiu? Què significa això?
+
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+
+---
+
+**Taula comparativa final** *(omple amb les dades del debrief col·lectiu)*
+
+| Format | Guanyador | Preu pagat | Excedent del guanyador |
+|---|---|---|---|
+| Anglesa | | | |
+| Holandesa | | | |
+| 1r preu | | | |
+| Vickrey | | | |
+| Pot | | | |
+
+**En quin format ha pagat més el guanyador? En quin menys? Quin patró veus?**
+
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+
+</FichaAlumno>
