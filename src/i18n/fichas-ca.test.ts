@@ -20,7 +20,7 @@ function slugsOf(coleccion: string): string[] {
     .filter((d) => d.isDirectory())
     .flatMap((familia) =>
       readdirSync(join(root, familia.name))
-        .filter((f) => f.endsWith('.mdx'))
+        .filter((f) => f.endsWith('.mdx') && !f.endsWith('.ca.mdx'))
         .map((f) => `${familia.name}/${f.replace(/\.mdx$/, '')}`),
     );
 }
