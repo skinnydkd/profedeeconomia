@@ -4,11 +4,17 @@
  * Route param: slug = entry id stripped of "olimpiada/textos/" prefix.
  */
 import BaseLayout from '@layouts/BaseLayout.astro';
+import { getLocale } from '@/i18n/locale';
+import { pickLocalizedEntry } from '@/i18n/content-locale';
 import { getCollection, render } from 'astro:content';
 import type { GetStaticPaths } from 'astro';
 
 export const getStaticPaths = (async () => {
-  const all = (await getCollection('olimpiadaTextos')).filter((e) => e.data.estado === 'publicado');
+  // ES entries define the canonical routes; CA siblings (lang: ca) must NOT
+  // create their own routes.
+  const all = (await getCollection('olimpiadaTextos')).filter(
+    (e) => e.data.estado === 'publicado' && e.data.lang === 'es',
+  );
   return all.map((entry) => ({
     params: {
       slug: entry.id.replace(/^olimpiada\/textos\//, '').replace(/\.(md|mdx)$/, ''),
@@ -18,16 +24,27 @@ export const getStaticPaths = (async () => {
 }) satisfies GetStaticPaths;
 
 const { entry } = Astro.props;
-const d = entry.data;
-const { Content } = await render(entry);
+const locale = getLocale(Astro.currentLocale);
+const caById = new Map(
+  (await getCollection('olimpiadaTextos'))
+    .filter((e) => e.data.estado === 'publicado' && e.data.lang === 'ca')
+    .map((e) => [e.id, e]),
+);
+const view = pickLocalizedEntry(entry, caById, locale);
+const d = view.data;
+const { Content } = await render(view);
+const copy = {
+  es: { taller: 'Taller de textos', inicio: 'Inicio', olimpiada: 'Olimpiada', volver: '← Todos los textos' },
+  ca: { taller: 'Taller de textos', inicio: 'Inici', olimpiada: 'Olimpíada', volver: '← Tots els textos' },
+}[locale];
 ---
 
-<BaseLayout title={`${d.title} — Taller de textos`} description={d.descripcion}>
+<BaseLayout title={`${d.title} — ${copy.taller}`} description={d.descripcion} contentLang={locale}>
   <div class="container">
     <nav class="breadcrumb">
-      <a href="/">Inicio</a> <span class="sep">›</span>
-      <a href="/olimpiada/">Olimpiada</a> <span class="sep">›</span>
-      <a href="/olimpiada/textos/">Taller de textos</a> <span class="sep">›</span>
+      <a href="/">{copy.inicio}</a> <span class="sep">›</span>
+      <a href="/olimpiada/">{copy.olimpiada}</a> <span class="sep">›</span>
+      <a href="/olimpiada/textos/">{copy.taller}</a> <span class="sep">›</span>
       <span>{d.title}</span>
     </nav>
   </div>
@@ -42,7 +59,7 @@ const { Content } = await render(entry);
         <Content />
       </article>
 
-      <nav class="back"><a href="/olimpiada/textos/">← Todos los textos</a></nav>
+      <nav class="back"><a href="/olimpiada/textos/">{copy.volver}</a></nav>
     </div>
   </section>
 </BaseLayout>

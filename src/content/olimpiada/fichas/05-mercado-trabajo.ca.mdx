@@ -1,0 +1,216 @@
+---
+title: "Mercat de treball i desocupació"
+bloque: mercado-trabajo
+orden: 1
+resumen: "Com classificar la població activa segons l'EPA, calcular les tres taxes fonamentals i distingir els quatre tipus d'atur; a més de l'efecte del salari mínim i la paradoxa de la productivitat."
+conceptos_clave:
+  - "població activa"
+  - "taxa d'activitat"
+  - "taxa d'atur"
+  - "taxa d'ocupació"
+  - "atur friccional/estructural/cíclic/estacional"
+  - "EPA"
+  - "salari mínim"
+preguntas_tipicas:
+  - "En un país, la població de 16 anys o més és de 35 milions; els ocupats són 18 milions i els aturats 3 milions. Calcula la taxa d'activitat, la taxa d'atur i la taxa d'ocupació. Explica què ocorre amb la taxa d'atur si 500 000 aturats abandonen la busca d'ocupació."
+  - "Definix els quatre tipus d'atur (friccional, estructural, cíclic i estacional) i proporciona un exemple real de cadascun. Quina política econòmica és més adequada per a combatre cada tipus?"
+  - "A partir d'un gràfic del mercat de treball, explica l'efecte de fixar un salari mínim per damunt del salari d'equilibri. Contrasta la predicció del model competitiu amb l'evidència empírica del monopsoni."
+  - "Una economia destruïx ocupació neta durant una recessió i, no obstant això, la seua productivitat mitjana per treballador puja. Explica el mecanisme econòmic que ho fa possible."
+competencias_clave:
+  - "STEM"
+  - "CC"
+lang: ca
+estado: publicado
+# Astro's default glob-loader id generation runs each path segment through
+# github-slugger, which strips dots — so "05-mercado-trabajo.ca.mdx" would
+# collide with the ES entry's id instead of producing "...05-mercado-trabajo.ca".
+# The `slug` frontmatter key is read before schema parsing and overrides id
+# generation directly, so this is required on every CA olimpiada sibling.
+slug: "olimpiada/fichas/05-mercado-trabajo.ca"
+---
+
+## De què va
+
+El mercat de treball és on es determina el nivell d'ocupació i el salari d'una economia. Per a mesurar-lo amb precisió, Espanya —i la majoria de països de l'OCDE— utilitza l'**Enquesta de Població Activa (EPA)**, elaborada per l'INE cada trimestre enquestant unes 65 000 vivendes.
+
+### La classificació EPA
+
+L'EPA partix de la **població en edat de treballar** (tota persona de 16 anys o més) i la dividix en dos grans grups:
+
+- **Actius**: participen en el mercat laboral.
+  - *Ocupats*: han treballat almenys una hora retribuïda durant la setmana de referència, o estan temporalment absents d'una ocupació que mantenen.
+  - *Aturats*: no han treballat, estan **disponibles** per a fer-ho i han **buscat activament** ocupació en les últimes quatre setmanes. Les tres condicions han de complir-se alhora.
+- **Inactius**: no treballen ni busquen ocupació. Inclou estudiants a temps complet, jubilats, persones dedicades a cures no remunerades i **treballadors desanimats** (els que han deixat de buscar perquè creuen que no trobaran res).
+
+La relació fonamental és:
+
+> Població 16+ = Actius + Inactius  
+> Actius = Ocupats + Aturats
+
+L'**atur registrat** del SEPE és una font complementària, sempre inferior a l'atur EPA: només compta els qui s'inscriuen com a demandants, no tots els que complixen els criteris de l'enquesta.
+
+---
+
+## Les taxes (fórmules exactes)
+
+Estes tres taxes són les que l'examen demana calcular a partir d'una taula. Memoritza denominadors i numeradors.
+
+**Taxa d'activitat = (Actius / Població de 16 anys o més) × 100**
+
+**Taxa d'atur = (Aturats / Actius) × 100**
+
+**Taxa d'ocupació = (Ocupats / Població de 16 anys o més) × 100**
+
+**Error freqüent:** usar la població total (incloent-hi menors de 16) com a denominador, o posar la població total en el denominador de la taxa d'atur en compte dels actius. La taxa d'atur sempre dividix entre actius, no entre la població de 16 o més.
+
+**La paradoxa del treballador desanimat:** si 500 000 aturats deixen de buscar i passen a inactius, els actius disminuïxen i la taxa d'atur *baixa* encara que no s'haja creat cap ocupació. Per això convé analitzar les tres taxes conjuntament: si la taxa d'atur cau mentres cau també la taxa d'activitat, la millora és espúria.
+
+### Exemple numèric resolt
+
+| Dada | Valor |
+|---|---|
+| Població 16+ | 35 000 000 |
+| Ocupats | 18 000 000 |
+| Aturats | 3 000 000 |
+
+Actius = 18 000 000 + 3 000 000 = **21 000 000**  
+Inactius = 35 000 000 − 21 000 000 = 14 000 000
+
+- Taxa d'activitat = (21 000 000 / 35 000 000) × 100 = **60,0 %**
+- Taxa d'atur = (3 000 000 / 21 000 000) × 100 = **14,3 %**
+- Taxa d'ocupació = (18 000 000 / 35 000 000) × 100 = **51,4 %**
+
+Si 500 000 aturats passen a inactius: actius = 20 500 000, aturats = 2 500 000.  
+Nova taxa d'atur = (2 500 000 / 20 500 000) × 100 = **12,2 %** — sense crear una sola ocupació.
+
+---
+
+## El gràfic canònic
+
+El mercat de treball es representa com qualsevol mercat: **oferta de treball** (ascendent, L_s) i **demanda de treball** (descendent, L_d), amb el salari W en l'eix vertical i la quantitat de treball L en l'eix horitzontal.
+
+<svg viewBox="0 0 480 360" width="480" height="360" aria-label="Gràfic del mercat de treball: oferta, demanda, equilibri i salari mínim" style="font-family: serif; font-size: 14px; max-width: 100%; height: auto;">
+  <line x1="60" y1="300" x2="60" y2="30" stroke="#2A1F18" stroke-width="2"/>
+  <line x1="60" y1="300" x2="440" y2="300" stroke="#2A1F18" stroke-width="2"/>
+
+  <text x="30" y="35" fill="#2A1F18" font-size="14" font-style="italic">W</text>
+  <text x="25" y="50" fill="#5C4A3D" font-size="11">(salari)</text>
+
+  <text x="445" y="304" fill="#2A1F18" font-size="14" font-style="italic">L</text>
+  <text x="420" y="318" fill="#5C4A3D" font-size="11">(ocupació)</text>
+
+  <line x1="80" y1="60" x2="400" y2="280" stroke="#C44E2C" stroke-width="2.5"/>
+  <text x="403" y="285" fill="#C44E2C" font-size="13" font-style="italic">L_d</text>
+
+  <line x1="80" y1="280" x2="400" y2="60" stroke="#1F6E6E" stroke-width="2.5"/>
+  <text x="403" y="60" fill="#1F6E6E" font-size="13" font-style="italic">L_s</text>
+
+  <circle cx="240" cy="170" r="5" fill="#2A1F18"/>
+
+  <line x1="60" y1="170" x2="240" y2="170" stroke="#8A7868" stroke-width="1.2" stroke-dasharray="5,4"/>
+  <line x1="240" y1="170" x2="240" y2="300" stroke="#8A7868" stroke-width="1.2" stroke-dasharray="5,4"/>
+
+  <text x="38" y="174" fill="#2A1F18" font-size="13" font-style="italic">W*</text>
+  <text x="232" y="318" fill="#2A1F18" font-size="13" font-style="italic">L*</text>
+
+  <line x1="60" y1="115" x2="440" y2="115" stroke="#D4A24C" stroke-width="1.8" stroke-dasharray="8,4"/>
+  <text x="355" y="108" fill="#A87A2A" font-size="12" font-weight="bold">W_min</text>
+  <text x="355" y="122" fill="#A87A2A" font-size="10">(salari mínim)</text>
+
+  <line x1="160" y1="115" x2="160" y2="300" stroke="#D4A24C" stroke-width="1.2" stroke-dasharray="5,3"/>
+  <text x="148" y="318" fill="#A87A2A" font-size="11" font-style="italic">L_d'</text>
+
+  <line x1="320" y1="115" x2="320" y2="300" stroke="#D4A24C" stroke-width="1.2" stroke-dasharray="5,3"/>
+  <text x="308" y="318" fill="#A87A2A" font-size="11" font-style="italic">L_s'</text>
+
+  <line x1="165" y1="108" x2="315" y2="108" stroke="#C44E2C" stroke-width="1.5" marker-end="url(#arrow-r)" marker-start="url(#arrow-l)"/>
+  <text x="210" y="98" fill="#C44E2C" font-size="11" font-weight="bold">excés d'oferta</text>
+  <text x="213" y="110" fill="#C44E2C" font-size="10">(atur involuntari)</text>
+
+  <defs>
+    <marker id="arrow-r" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#C44E2C"/>
+    </marker>
+    <marker id="arrow-l" markerWidth="8" markerHeight="8" refX="2" refY="3" orient="auto-start-reverse">
+      <path d="M0,0 L0,6 L8,3 z" fill="#C44E2C"/>
+    </marker>
+  </defs>
+</svg>
+
+**Lectura del gràfic:**
+- L'equilibri (W\*, L\*) és el salari i el nivell d'ocupació que buida el mercat: tots els que volen treballar a eixe salari troben ocupació i totes les empreses que volen contractar troben treballadors.
+- Un **salari mínim W_min > W\*** crea excés d'oferta de treball: les empreses contracten menys (L_d') però més gent vol treballar (L_s'). La diferència L_s' − L_d' és **atur involuntari**.
+- Si W_min < W\*, no té efecte real sobre l'ocupació (ningú cobrava tan poc).
+
+---
+
+## Tipus d'atur
+
+| Tipus | Causa | Duració típica | Política eficaç |
+|---|---|---|---|
+| **Friccional** | Temps de busca entre ocupacions | Curta | Millorar la informació: portals d'ocupació, orientació professional |
+| **Estructural** | Desajust entre habilitats dels aturats i les demandades per les empreses; també desajust geogràfic | Llarga | Formació, reciclatge professional, ajudes a la mobilitat |
+| **Cíclic** | Caiguda de la demanda agregada en una recessió | Variable amb el cicle | Política fiscal i monetària expansiva |
+| **Estacional** | Activitat concentrada en determinades èpoques de l'any | Predictible i recurrent | Diversificació productiva del territori |
+
+**Friccional.** Existix fins i tot amb una economia sana. Un graduat que envia currículums, algú que ha deixat voluntàriament la seua ocupació per a buscar-ne una altra millor: tots dos són atur friccional. És inevitable i, en xicotetes dosis, desitjable perquè millora l'emparellament entre treballadors i llocs.
+
+**Estructural.** L'exemple canònic és el miner asturià quan van tancar les mines, o el traductor literari desplaçat pels grans models de llenguatge. No desapareix amb l'expansió: encara que cresca el PIB, si les habilitats no encaixen amb les vacants, estes i els aturats conviuen sense arribar a trobar-se.
+
+**Cíclic.** Puja ràpid en recessió i baixa en expansió. Espanya va passar d'una taxa d'atur del ~8 % en 2007 al 27 % en 2013 —el pic de la sèrie històrica EPA— a mesura que la demanda agregada va col·lapsar. Es combat amb polítiques macroeconòmiques: baixades de tipus, augments de la despesa pública, ERTO.
+
+**Estacional.** El cambrer de Benidorm acomiadat al novembre o el temporer de la fresa a Huelva quan acaba la campanya. Es repetix cada any; les dades es publiquen desestacionalitzades per a eliminar este soroll en les comparacions interanuals.
+
+---
+
+## El salari mínim
+
+### Model competitiu
+
+En un mercat de treball perfectament competitiu, el salari es determina en W\*. Un salari mínim W_min > W\* genera:
+
+- Reducció de la demanda de treball: les empreses contracten menys a eixe preu.
+- Augment de l'oferta de treball: més persones volen treballar a eixe salari.
+- Resultat: **excés d'oferta = atur involuntari** igual a L_s' − L_d'.
+
+### Matís del monopsoni (nivell alt)
+
+Si l'ocupador té **poder de mercat** —un sol comprador de treball, o pocs— pot fixar salaris per davall de la productivitat marginal del treballador. En eixe cas, l'«equilibri» sense regulació ja és ineficient: el salari és artificialment baix i l'ocupació, artificialment escassa. Un salari mínim moderat pot llavors **no destruir ocupació** i fins i tot augmentar-la, en corregir la distorsió del monopsoni.
+
+Esta és la intuïció darrere de l'estudi de **Card i Krueger (1994)**: van comparar establiments de menjar ràpid a Nova Jersey (pujada del mínim) amb Pennsilvània (sense pujada) i no van trobar caiguda de l'ocupació en el costat amb pujada. Card va rebre el Premi Nobel d'Economia en 2021 en part per este treball.
+
+**Conclusió per a l'examen:** la teoria neoclàssica bàsica prediu destrucció d'ocupació amb el salari mínim. L'evidència empírica mostra que l'efecte sobre l'ocupació agregada és xicotet quan la pujada és moderada, i que pot fins i tot ser positiu en mercats amb poder monopsonístic de l'ocupador. El matís importa en la Part I de l'examen quan pregunten «raona si esta afirmació és vertadera, falsa o depén».
+
+---
+
+## Un clàssic de la Part III: la productivitat puja quan cau l'ocupació
+
+Una notícia habitual de premsa econòmica diu: *«La productivitat per treballador puja un 2 % malgrat la destrucció d'ocupació»*. Contradicció?
+
+No. El mecanisme és l'**efecte composició** (de vegades anomenat «efecte neteja» o *cleansing effect*):
+
+1. En una recessió, les empreses menys productives —les que operen amb costos per damunt del preu de mercat— són les primeres a tancar o reduir plantilla.
+2. Els treballadors que perden l'ocupació són, de mitjana, els que estaven en les empreses o sectors menys productius.
+3. Els que conserven l'ocupació estan, de mitjana, en empreses més productives.
+4. La **mitjana ponderada** de productivitat del conjunt de treballadors que continuen actius puja, encara que la productivitat de cada empresa individual no haja canviat.
+
+L'efecte es pot amplificar si les empreses supervivents invertixen en capital i automatitzen per a reduir costos amb menys treballadors, la qual cosa fa pujar l'output per treballador restant.
+
+**En l'examen (Part III):** quan el text menciona simultàniament «destrucció d'ocupació» i «pujada de productivitat mitjana», el comentari esperat és precisament este: no hi ha contradicció perquè la productivitat mitjana és una estadística agregada afectada per la composició de les empreses i treballadors actius, no només per canvis en l'eficiència de cada lloc.
+
+---
+
+## En l'examen
+
+**Part I — Teoria:**
+- Definix taxa d'activitat, taxa d'atur i taxa d'ocupació. Indica què mesura cadascuna i en què es diferencien.
+- Classifica els quatre tipus d'atur i dona un exemple de política adequada per a cadascun.
+- «Un salari mínim sempre destruïx ocupació». Vertader, fals o depén? Raona.
+
+**Part II — Exercici:**
+- Calcular les tres taxes a partir d'una taula EPA. Atenció al denominador de cada taxa.
+- Analitzar què ocorre amb cada taxa si un nombre donat d'aturats passa a inactius (efecte desànim).
+
+**Part III — Comentari de text:**
+- Els textos sobre l'atur juvenil, la reforma laboral o l'SMI són freqüents. Identifica el tipus d'atur predominant en el text, usa les taxes per a quantificar el problema i connecta amb la política econòmica adequada.
+- Si el text menciona productivitat i ocupació conjuntament, aplica l'efecte composició.
