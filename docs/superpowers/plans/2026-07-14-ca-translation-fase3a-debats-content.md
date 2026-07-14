@@ -13,6 +13,8 @@
 - **Locale source (VINCULANT):** always derive locale from `Astro.currentLocale`, NEVER from `Astro.url.pathname` (under `fallbackType: 'rewrite'` Astro updates currentLocale but not the pathname). Use `getLocale(Astro.currentLocale)` from `@/i18n/locale`.
 - **Preserve structural frontmatter identical between ES and CA:** `familia`, `orden`, `formato`, `nivel[]`, `competencias_clave[]` (codes CCL/CD/…), `competencias_especificas[]`, `posturas[].id`, `unidades_relacionadas[].asignatura`/`.unidad`/`.competencias_especificas[]`, rubric weights/ids. Translate only prose: `title`, `descripcion`, `mocion`, `objetivos[]`, `conceptos_clave[]`, `posturas[].label`, `posturas[].sintesis`, `rubrica[].criterio`, `rubrica[].descripcion`, `unidades_relacionadas[].nota`, `duracion`/`agrupacion` text, and the whole MDX body.
 - **CA files:** `lang: ca`, `estado: publicado`. Same folder as the ES file, name `nn-slug.ca.mdx`.
+- **`slug:` override (REQUIRED on every CA file):** add `slug: "debates/<familia>/<nn-slug>.ca"` to the CA frontmatter. Astro's glob loader runs each path segment through github-slugger, which **strips dots** — so `01-x.ca.mdx` would otherwise get the id `...01-xca` (colliding with the ES entry) and `pickLocalizedEntry` would silently fall back to ES under `/ca`. The `slug:` field is read before schema parsing and used verbatim as the id; the debates zod schema doesn't declare it, so it's dropped from `data` after parsing (no schema change, no render leak). Discovered in Task 2.
+- **Route/card guards for CA siblings:** any page that generates debate routes or cards via `getCollection('debates')` must filter `e.data.lang === 'es'`, or CA siblings produce bogus `.ca` routes / duplicate 404 cards. Consumers: `[familia]/[slug].astro` (detail), `index.astro` (hub), `[familia]/[slug]/imprimir.astro` (print view).
 - **Vocabulary:** Valencian, AVL norm. Same register as prior phases (incoatives `-ix`, "despesa" not "gasto", "este/esta", "seua/seues"). Not line-reviewed yet — Pau reviews post-merge.
 - **TypeScript strict, no `any`.** Comments in English. Conventional Commits.
 - **Verify commands:** `npx astro check` (0 errors), `npx vitest run` (green). Never trust a subagent's report over the real file state (`grep`, re-read).
@@ -376,6 +378,9 @@ describe('debates CA sibling parity', () => {
       expect(fm(ca)).toMatch(/^estado:\s*publicado\s*$/m);
       expect(orden(ca)).toBe(orden(es));
       expect(body(ca).trim().length).toBeGreaterThan(200);
+      // slug override REQUIRED (Astro strips dots from ids → else silent ES fallback)
+      const expectedSlug = `debates/${familia}/${file.replace(/\.mdx$/, '')}`;
+      expect(fm(ca)).toContain(`slug: "${expectedSlug}"`);
     });
   }
 });
@@ -423,8 +428,13 @@ trabajo-desigualdad/03-impuesto-sucesiones.ca.mdx
 Dispatch one subagent per file (or batch by família). Each subagent prompt MUST include:
 - The reference: `src/content/debates/dinero-tecnologia-futuro/01-criptomonedas.ca.mdx` (the pilot) — replicate its shape exactly.
 - The ES source to translate (the matching `.mdx`).
-- Hard rules (Global Constraints): translate prose only; preserve `familia`/`orden`/`formato`/`nivel`/`competencias_*` codes/`posturas[].id`/`unidades_relacionadas` codes/rubric ids identical; set `lang: ca`, `estado: publicado`; keep MDX/markdown structure intact; AVL vocabulary; economic notation untouched.
+- Hard rules (Global Constraints): translate prose only; preserve `familia`/`orden`/`formato`/`nivel`/`competencias_*` codes/`posturas[].id`/`unidades_relacionadas` codes/rubric ids identical; set `lang: ca`, `estado: publicado`; **set the REQUIRED `slug: "debates/<familia>/<nn-slug>.ca"` field** (else /ca silently serves ES — see Global Constraints); keep MDX/markdown structure intact; AVL vocabulary; economic notation untouched.
+- Reference the pilot `01-criptomonedas.ca.mdx` for the exact frontmatter shape (including the `slug:` line).
 - Output: write ONLY the `.ca.mdx` file. Do not touch pages, components, or tests.
+
+- [ ] **Step 1b: Add the `lang === 'es'` route/card guards (once, before verifying the fan-out)**
+
+Confirm these two consumers filter `e.data.lang === 'es'` (done in Task 2's follow-up, but verify): `src/pages/debates/index.astro` (hub cards) and `src/pages/debates/[familia]/[slug]/imprimir.astro` (print routes). Without them, CA siblings double-list on the hub / create bogus `.ca` print routes.
 
 - [ ] **Step 2: Verify real file state (not agent reports)**
 
