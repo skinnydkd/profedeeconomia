@@ -1,0 +1,543 @@
+---
+asignatura: eco-1bach
+unidad: 2
+title: La presa de decisions econòmiques
+lema: >-
+  Tota elecció té un cost ocult: el que deixem de fer. Tota decisió
+  està condicionada per biaixos que ni tan sols detectem. Esta unitat ensenya
+  a decidir millor —i a reconéixer per què tantes vegades decidim malament.
+lang: ca
+estado: publicado
+slug: "asignaturas/eco-1bach/libro/02-toma-decisiones-economicas.ca"
+duracion: 5-6 sessions · 1,5 setmanes
+bloque: Bloc A
+sabers:
+  - A.2
+  - A.5
+conceptos_clave:
+  - racionalitat acotada
+  - cost d'oportunitat
+  - costos enfonsats
+  - anàlisi marginal
+  - incentius
+  - teoria de jocs
+  - dilema del presoner
+  - biaixos cognitius
+  - heurístiques
+  - framing
+objetivos:
+  - Aplicar el concepte de cost d'oportunitat i de cost enfonsat a decisions quotidianes i empresarials.
+  - Realitzar una anàlisi marginal senzilla comparant ingrés marginal i cost marginal.
+  - Explicar el dilema del presoner com a model bàsic de teoria de jocs i identificar situacions reals amb eixa estructura.
+  - Reconéixer almenys cinc biaixos cognitius sistemàtics descrits per Kahneman i Tversky i connectar-los amb decisions econòmiques reals.
+  - Distingir la racionalitat clàssica de la racionalitat acotada (Herbert Simon) i argumentar les implicacions per a la política econòmica.
+publicado_en: 2026-05-15
+---
+
+import Callout from '@components/Callout.astro';
+import Curiosity from '@components/Curiosity.astro';
+import RealExample from '@components/RealExample.astro';
+import SolvedExercise from '@components/SolvedExercise.astro';
+import Steps from '@components/Steps.astro';
+import KeyTakeaways from '@components/KeyTakeaways.astro';
+import Diagram from '@components/Diagram.astro';
+import TeoriaProspectiva from '@components/diagrams/TeoriaProspectiva.astro';
+import Figure from '@components/Figure.astro';
+import Bibliography from '@components/Bibliography.astro';
+import TldrUnidad from '@components/TldrUnidad.astro';
+import CasoDilema from '@components/CasoDilema.astro';
+import VuelveAlCaso from '@components/VuelveAlCaso.astro';
+import MirarFora from '@components/MirarFora.astro';
+import VocesDesacuerdo from '@components/VocesDesacuerdo.astro';
+
+import concordePlane from '@assets/libro/eco-1bach/02/concorde.jpg';
+import johnNash from '@assets/libro/eco-1bach/02/john-nash.jpg';
+import herbertSimon from '@assets/libro/eco-1bach/02/herbert-simon.jpg';
+import danielKahneman from '@assets/libro/eco-1bach/02/kahneman.jpg';
+
+> **Temps estimat de lectura**: ~25 min · **Sabers LOMLOE**: A.2, A.5 · **Pre-requisits**: Unitat 1 (què és l'economia i l'escassetat).
+>
+> **En acabar esta unitat sabràs**:
+> - Aplicar el cost d'oportunitat i els costos enfonsats a decisions quotidianes i empresarials.
+> - Resoldre una anàlisi marginal senzilla comparant benefici marginal i cost marginal.
+> - Explicar el dilema del presoner i reconéixer la seua estructura en situacions econòmiques reals.
+> - Identificar almenys cinc biaixos cognitius sistemàtics de Kahneman i Tversky en decisions reals.
+> - Distingir racionalitat clàssica de racionalitat acotada (Simon) i entendre com els nudges aprofiten els biaixos.
+
+<TldrUnidad>
+Les decisions econòmiques tenen **cost d'oportunitat** (el que renuncies) i **cost enfonsat** (el ja gastat, que no hauria de pesar però pesa). Esta unitat ensenya a decidir millor amb anàlisi marginal i a reconéixer els **biaixos cognitius** que sistemàticament ens porten a decidir malament.
+
+És una de les unitats més útils del curs fora de l'aula: les ferramentes que vas a aprendre —cost d'oportunitat, anàlisi marginal, biaixos de Kahneman i Tversky, *nudges* de Thaler— servixen per a decidir millor en la teua pròpia vida.
+</TldrUnidad>
+
+<CasoDilema
+  titular="El Concorde va volar 27 anys perdent diners. Britànics i francesos el van mantindre per orgull"
+  fuente="British Airways i Air France · 1976-2003 (operativa) · anàlisis econòmiques de l'AEA i The Economist"
+  pregunta="Per què continuar invertint en una cosa que perd diners clarament? Quin biaix cognitiu explica la decisió?"
+>
+El supersònic Concorde —en servici comercial entre 1976 i 2003— va ser un dels projectes més cars de la història de l'aviació. Ja als anys huitanta les xifres eren clares: l'avió perdia diners per vol, els costos operatius triplicaven els d'un Boeing 747 i els passatgers pagaven un sobrecost enorme per estalviar 3 hores en transatlàntic. Malgrat això, els governs britànic i francés —que havien invertit milers de milions en el seu desenvolupament— es van negar a retirar-lo durant dècades.
+</CasoDilema>
+
+L'economia, abans de ser una ciència de mercats, indicadors i polítiques públiques, és una ciència de **decisions**. Cada vegada que algú compra un café en lloc d'un altre, decidix estudiar dos hores més o jugar a la consola, accepta una ocupació o la rebutja, estalvia o gasta, està resolent —conscientment o inconscientment— un problema econòmic. La manera com prenem eixes decisions, individuals i col·lectives, és el que esta unitat tracta d'explicar.
+
+Durant quasi dos segles, l'economia va partir del supòsit que l'ésser humà decidix de forma **racional**: amb informació completa, capacitat de càlcul il·limitada i preferències estables. Eixe model, anomenat *homo economicus*, va ser molt útil per a construir teoria, però falla quan es contrasta amb la realitat. Les últimes dècades d'investigació —psicologia cognitiva, economia experimental, neurociència— han mostrat que decidim pitjor del que pensem, que cometem errors **sistemàtics** i que eixos errors són tan predictibles que ja s'han convertit en un camp propi: l'**economia del comportament**.
+
+Esta unitat recorre les dos mirades. Primer, les ferramentes clàssiques que qualsevol estudiant d'economia ha de dominar: cost d'oportunitat, costos enfonsats, anàlisi marginal, incentius, teoria de jocs. Després, la mirada moderna: per què la racionalitat humana és *acotada* i quins biaixos cognitius expliquen les nostres decisions reals. És una de les unitats més útils del curs fora de l'aula: el que ací s'aprén servix per a decidir millor en la pròpia vida.
+
+## El problema econòmic bàsic: triar davall escassetat
+
+En la Unitat 1 vam veure que l'economia naix del desajust entre **necessitats il·limitades** i **recursos limitats**. Eixa tensió obliga a triar, i triar implica, inevitablement, **renunciar**. Tota decisió econòmica és, en el fons, una elecció entre alternatives amb valor.
+
+El model clàssic suposa que l'agent econòmic —consumidor, empresa o govern— resol eixe problema en tres passos:
+
+1. **Identifica les alternatives** disponibles. Què puc fer amb estos diners, este temps, este recurs?
+2. **Valora cada alternativa** segons els beneficis i costos esperats.
+3. **Tria l'alternativa que maximitza** el benestar, el benefici o la utilitat, segons el cas.
+
+Sobre el paper, el procediment és impecable. En la pràctica, quasi ningú decidix així. I, tanmateix, conéixer el model és imprescindible: només entenent com *hauria* de decidir un agent racional podem mesurar quant s'allunya d'eixe ideal i per què.
+
+### Racionalitat clàssica i *homo economicus*
+
+La **racionalitat econòmica clàssica** assumix tres supòsits forts sobre qui decidix:
+
+- **Informació completa.** L'agent coneix totes les alternatives, tots els preus i totes les conseqüències.
+- **Capacitat de càlcul il·limitada.** L'agent pot comparar totes les opcions i triar l'òptima sense cost cognitiu.
+- **Preferències estables i consistents.** El que preferisc hui ho preferisc demà; si A és millor que B i B és millor que C, A és millor que C.
+
+Eixe personatge teòric —l'*homo economicus*— no existix, però ha sigut tremendament productiu: la major part de la teoria microeconòmica que veurem a partir de la Unitat 4 (oferta, demanda, elasticitat, eficiència) es construïx sobre ell. Com deia George Box, *«tots els models són falsos; alguns són útils»*.
+
+## El cost d'oportunitat: el que deixem de fer
+
+De tots els conceptes que l'economia aporta al pensament quotidià, el **cost d'oportunitat** és probablement el més valuós. La seua definició és enganyosament simple: el cost d'oportunitat d'una decisió és **el valor de la millor alternativa a la qual renunciem** en prendre-la.
+
+Quan un estudiant decidix passar la vesprada estudiant, el cost d'oportunitat no és sols els diners de l'entrepà i del transport; és també el valor de les dos hores de descans, de la pel·lícula que no veurà o de l'estona amb les seues amigues. Quan una persona decidix estudiar un grau universitari en lloc d'incorporar-se al mercat laboral, el cost d'oportunitat inclou el salari que hauria cobrat durant eixos quatre anys, no sols el preu de les matrícules. Quan un país destina 10.000 milions a infraestructura ferroviària, el cost d'oportunitat és el que hauria pogut fer amb eixos diners: sanitat, educació, defensa, reducció d'impostos.
+
+<Callout label="Concepte clau" title="Cost d'oportunitat">
+
+El cost d'oportunitat de triar A és **el valor de la millor alternativa B a la qual renunciem**. No és la suma de totes les alternatives descartades, sinó només la millor d'elles. Inclou costos monetaris *i* no monetaris (temps, esforç, oportunitats futures).
+
+</Callout>
+
+### Per què costa veure'l
+
+El cost d'oportunitat és **invisible**. Les factures que paguem les veiem en l'extracte del banc; el que deixem de fer no apareix en cap lloc. Per això una decisió que pareix *gratis* —*«total, ja he pagat el gimnàs, l'usaré»*— sol tindre un cost d'oportunitat important: el temps que dediquem a una cosa que no ens aporta podria dedicar-se a una cosa que sí.
+
+Els manuals clàssics anomenen açò **pensament en marges** o **pensament econòmic**. És un dels hàbits mentals més útils que un curs d'economia pot formar: davant de cada decisió, preguntar *què estic deixant de fer en triar això?*
+
+### Costos comptables vs costos econòmics
+
+Una xicoteta empresària que dirigix el seu propi negoci probablement cobra un salari que es paga a si mateixa. Però el cost real del seu treball no és sols eixe salari comptable: és **el sou més alt** que hauria cobrat en una altra ocupació. Si el seu negoci li reporta 25.000 € a l'any i, treballant per a una altra empresa, hauria cobrat 35.000 €, el cost d'oportunitat anual és de 10.000 € que el balanç comptable mai reflectix.
+
+A eixa diferència entre el que es paga (cost comptable) i el que se sacrifica (cost econòmic) els manuals l'anomenen **benefici econòmic** enfront de **benefici comptable**. Una empresa pot ser rendible comptablement i, tanmateix, destruir valor econòmic si el seu propietari hauria guanyat més amb els seus recursos en una altra activitat.
+
+## Els costos enfonsats: el que ja no podem canviar
+
+El segon concepte fonamental és la cara oposada del cost d'oportunitat. Els **costos enfonsats** (*sunk costs*) són les despeses **ja realitzades que no es poden recuperar**, decidim el que decidim ara. I la regla econòmica és radical: **els costos enfonsats no han d'influir en les decisions futures**.
+
+L'exemple clàssic: algú compra una entrada de cine no reembossable per 9 €. A l'hora d'eixir, està plovent a bots i barrals, fa fred i la pel·lícula ja no li fa il·lusió. Ha d'anar-hi? El raonament intuïtiu diu *«ja he pagat, seria tirar els diners»*. El raonament econòmic diu una altra cosa: els 9 € estan perduts faça el que faça; la decisió real és entre *«veure la pel·lícula mullant-me i agafant fred»* o *«quedar-me còmodament a casa»*. Si la segona opció li aporta més benestar, eixa és la decisió racional. Els 9 € són irrellevants.
+
+### La fal·làcia del cost enfonsat
+
+A la tendència psicològica de continuar invertint en projectes que no funcionen *perquè ja hem invertit molt* l'anomenem **fal·làcia del cost enfonsat** (*sunk cost fallacy*). Apareix per tot arreu:
+
+- L'estudiant que persistix en una carrera que detesta *perquè ja porta dos anys*.
+- La parella que no trenca una relació nociva *perquè porten deu anys junts*.
+- L'empresa que continua finançant un projecte fallit *perquè ja ha gastat milions*.
+- L'inversor que manté una acció que perd valor *perquè la va comprar més cara*.
+
+La pregunta econòmica correcta mai és *quant he invertit?*, sinó *quina decisió, a partir de hui, maximitza el meu benestar futur?* Qualsevol altra cosa és psicologia, no economia.
+
+<Figure
+  src={concordePlane}
+  alt="Avió supersònic Concorde de British Airways (matrícula G-BOAC) enlairant-se, amb el seu característic morro inclinat i ales en delta."
+  caption="El Concorde de British Airways en operació. Trenta anys de vols comercials sense generar mai beneficis: el cas canònic que l'economia conductual coneix com a Concorde fallacy."
+  credit="Foto: Eduard Marmet, CC BY-SA 3.0 via Wikimedia Commons"
+  aspectHint="16/9"
+  variant="wide"
+/>
+
+<RealExample title="L'avió supersònic Concorde i la fal·làcia del cost enfonsat" source="Arkes, H. R. i Blumer, C. (1985). *The Psychology of Sunk Cost*. Organizational Behavior and Human Decision Processes.">
+El Concorde, avió supersònic desenvolupat conjuntament pel Regne Unit i França entre 1962 i 1976, és el cas d'estudi canònic de la fal·làcia del cost enfonsat. Cap al 1973, els governs britànic i francés ja sabien que l'avió no seria rendible: era car, sorollós, consumia massa combustible i només podia operar en rutes específiques. Tot i això, els dos països van continuar finançant-lo durant dècades. L'argument explícit en els debats parlamentaris va ser sempre el mateix: *«ja hem invertit massa per a parar ara»*. L'avió va volar comercialment des de 1976 fins a 2003, sense generar mai beneficis. Hui els manuals d'economia conductual anomenen *Concorde fallacy* la versió institucional de la fal·làcia del cost enfonsat.
+</RealExample>
+
+## L'anàlisi marginal: pensar en la unitat següent
+
+El tercer pilar del pensament econòmic és l'**anàlisi marginal**. La seua idea central és que les bones decisions rara vegada es prenen comparant totals: es prenen comparant **increments**. No preguntem *he de produir o no produir?*, sinó *he de produir una unitat més?* No preguntem *he d'estudiar o no estudiar?*, sinó *he de dedicar una hora més a l'examen de demà?*
+
+La regla general de l'anàlisi marginal és directa: **una acció paga la pena mentre el benefici marginal de la unitat següent siga major o igual que el seu cost marginal**. Si produir una unitat més afig 12 € d'ingressos i només 8 € de costos, convé produir-la. Si afig 12 € d'ingressos però 15 € de costos, no convé.
+
+- **Benefici marginal (BMg)**: increment de benefici (o utilitat) que aporta consumir o produir una unitat més.
+- **Cost marginal (CMg)**: increment de cost que suposa consumir o produir una unitat més.
+- **Regla òptima**: continuar actuant mentre BMg ≥ CMg. Detindre's quan BMg < CMg. L'òptim s'aconseguix, en condicions de continuïtat, quan BMg = CMg.
+
+### Per què els totals enganyen
+
+Imaginem una empresa que produïx motxilles. Vendre 1.000 motxilles li reporta 30.000 € d'ingressos i li costa 20.000 €: guanya 10.000 €. Vendre 1.100 motxilles li reporta 32.500 € i li costa 23.500 €: guanya 9.000 €. Mirant totals, *«les dos opcions donen beneficis»*. Mirant marges, les 100 motxilles addicionals aporten **2.500 € d'ingrés marginal** i **3.500 € de cost marginal**: produir-les destruïx 1.000 € de benefici. L'anàlisi marginal ho detecta immediatament; l'anàlisi per totals requerix comparar resultats finals.
+
+<SolvedExercise number="2.1" title="Quantes hores estudiar per a l'examen de selectivitat?">
+
+**Enunciat**
+
+Marta prepara l'examen d'Economia de selectivitat. Estima la següent taula de **punts addicionals** que guanyaria en l'examen per cada hora extra d'estudi (el seu benefici marginal expressat en punts). El cost de cada hora és el valor que ella concedix al temps d'oci sacrificat: 0,4 punts equivalents per hora.
+
+| Hora d'estudi | Punts extra esperats (BMg) | Cost per hora (CMg) |
+| ---: | ---: | ---: |
+| 1a | 1,8 | 0,4 |
+| 2a | 1,2 | 0,4 |
+| 3a | 0,8 | 0,4 |
+| 4a | 0,5 | 0,4 |
+| 5a | 0,3 | 0,4 |
+| 6a | 0,1 | 0,4 |
+
+Quantes hores hauria d'estudiar Marta eixa vesprada per a maximitzar el seu rendiment net?
+
+**Solució**
+
+1. Apliquem la regla de l'anàlisi marginal: estudiar una hora més paga la pena mentre **BMg ≥ CMg**.
+2. Comparem hora a hora.
+   - 1a hora: BMg = 1,8 > CMg = 0,4 → estudiar.
+   - 2a hora: BMg = 1,2 > 0,4 → estudiar.
+   - 3a hora: BMg = 0,8 > 0,4 → estudiar.
+   - 4a hora: BMg = 0,5 > 0,4 → estudiar (just).
+   - 5a hora: BMg = 0,3 < 0,4 → **detindre's**.
+   - 6a hora: BMg = 0,1 < 0,4 → no estudiar.
+3. Marta ha d'estudiar **4 hores**. La cinquena hora destruïx més valor del que aporta.
+4. Benefici net total: (1,8 + 1,2 + 0,8 + 0,5) − (4 × 0,4) = 4,3 − 1,6 = **2,7 punts nets**.
+5. Si decidira estudiar 6 hores *«per si de cas»*, el benefici net baixaria a (1,8 + 1,2 + 0,8 + 0,5 + 0,3 + 0,1) − (6 × 0,4) = 4,7 − 2,4 = **2,3 punts nets**. Estudiar de més empitjora el resultat.
+6. Conclusió: el rendiment marginal de l'estudi és **decreixent** (cada hora extra aporta menys) i existix un punt òptim més enllà del qual convé deixar-ho. La intuïció *«com més, millor»* és econòmicament errònia.
+
+</SolvedExercise>
+
+### Les decisions empresarials es prenen al marge
+
+En la Unitat 7 veurem que la decisió clàssica de l'empresa —*quant produir?*— es resol amb esta mateixa regla: produir mentre **l'ingrés marginal siga major o igual al cost marginal**. En la Unitat 11 veurem que la política monetària també raona al marge: pujar un tipus d'interés quan el benefici marginal sobre la inflació siga major que el cost marginal sobre l'ocupació. L'anàlisi marginal no és un truc tècnic: és la lògica comuna de bona part de la teoria econòmica.
+
+## Els incentius: el motor silenciós de les decisions
+
+Si hi ha una idea que distingix l'economista de la resta de les ciències socials, és la convicció que **la gent respon a incentius**. Canvia els incentius i canviaràs el comportament, encara que les persones, els valors i les institucions siguen els mateixos. Esta intuïció —desenvolupada per Gary Becker als anys setanta i popularitzada després per Steven Levitt en *Freakonomics*— ha resultat tan productiva que l'economia l'ha exportada a l'estudi del crim, l'educació, la salut, la política i la família.
+
+Un **incentiu** és qualsevol estímul que altera el cost o el benefici d'una acció. Poden ser:
+
+- **Monetaris.** Una bonificació per objectius, una subvenció, un impost, una multa.
+- **No monetaris.** El reconeixement social, el sentit de pertinença, la por al càstig, la satisfacció personal.
+- **Positius.** Recompensen una conducta desitjada.
+- **Negatius.** Penalitzen una conducta no desitjada.
+
+### Compte amb els incentius perversos
+
+L'advertència important: **els incentius mal dissenyats produïxen efectes contraris als que es buscava**. Si una escola paga als seus professors en funció de l'aprovat dels seus alumnes, pot baixar el nivell dels exàmens. Si una farmacèutica premia els seus comercials per nombre de visites a metges, els comercials faran moltes visites curtes i ineficaces. Si una administració mesura els seus hospitals per temps mitjà d'espera, els hospitals aprendran a *gestionar la llista* —retardar diagnòstics, derivar casos— en lloc de millorar l'atenció.
+
+Els economistes anomenen este fenomen **llei de Goodhart**: *«quan una mesura es convertix en objectiu, deixa de ser una bona mesura»*. Dissenyar incentius és difícil; mal dissenyats, són contraproduents.
+
+<RealExample title="Les cobres de Delhi: la mare dels incentius perversos" source="Anècdota arreplegada per Horst Siebert en *The Cobra Effect* (2001). Recurrent en manuals d'economia conductual.">
+Durant el domini colonial britànic a l'Índia, les autoritats de Delhi es van enfrontar a una plaga de cobres verinoses. El govern va oferir una recompensa per cada cobra morta. Va funcionar al principi; després, els habitants van començar a **criar cobres a casa seua** per a matar-les i cobrar la recompensa. En descobrir-ho, el govern va cancel·lar el programa. Els criadors van soltar les cobres inservibles. La població de cobres en llibertat va acabar sent major que abans de l'incentiu. Hui a este fenomen se l'anomena *cobra effect* i apareix en qualsevol manual de disseny de polítiques públiques com a advertència inicial.
+</RealExample>
+
+## Teoria de jocs: quan la meua decisió depén de la teua
+
+Fins ací hem parlat de decisions **individuals**: una persona, una empresa o un govern que decidix davant d'alternatives fixes. Però moltes decisions econòmiques reals tenen una característica addicional: el resultat de la meua elecció depén també de **el que decidisquen els altres**. Si rebaixe el preu del meu producte, el resultat depén de si els meus competidors també el rebaixen. Si decidisc no estudiar per a un treball en grup, el resultat depén de si els meus companys sí que estudien. Estes situacions s'anomenen **estratègiques** i la branca que les estudia és la **teoria de jocs**.
+
+La teoria de jocs —desenvolupada per John von Neumann i Oskar Morgenstern en 1944 i ampliada per John Nash, premi Nobel en 1994— analitza decisions interdependents mitjançant tres elements: **els jugadors**, **les estratègies** disponibles per a cadascun i **els pagaments** que rep cada jugador segons la combinació d'estratègies triades.
+
+<Figure
+  src={johnNash}
+  alt="Retrat fotogràfic en blanc i negre del matemàtic John Forbes Nash Jr., autor del concepte d'equilibri que porta el seu nom."
+  caption="John Forbes Nash Jr. (1928-2015), Premi Nobel d'Economia en 1994 per la seua tesi doctoral de 28 pàgines sobre equilibris en jocs no cooperatius."
+  credit="Foto: Peter Badge / Typos1, CC BY-SA 3.0 via Wikimedia Commons"
+  aspectHint="3/2"
+/>
+
+### El dilema del presoner
+
+El joc més famós —i més útil pedagògicament— és el **dilema del presoner**. La seua versió clàssica: dos sospitosos d'un atracament són detinguts i interrogats per separat. La policia no té proves suficients per a condemnar-los pel delicte greu, només per una falta menor. A cadascun li oferixen el mateix tracte:
+
+- Si **confessa i l'altre no confessa**, queda lliure i l'altre rep 10 anys de presó.
+- Si **els dos confessen**, els dos reben 5 anys.
+- Si **cap confessa**, els dos reben 1 any per la falta menor.
+
+La matriu de pagaments (anys de presó per a cadascun; **menys anys és millor**) queda així:
+
+| | **B calla** | **B confessa** |
+| :---: | :---: | :---: |
+| **A calla** | A: 1, B: 1 | A: 10, B: 0 |
+| **A confessa** | A: 0, B: 10 | A: 5, B: 5 |
+
+Analitzem què li convé a A. **Si B calla**, a A li convé confessar (0 anys en lloc d'1). **Si B confessa**, a A també li convé confessar (5 anys en lloc de 10). És a dir: passe el que passe, a A li convé confessar. Confessar és el que els teòrics anomenen una **estratègia dominant**. Per simetria, a B també li convé confessar.
+
+El resultat és paradoxal: els dos confessen i reben **5 anys cadascun**, quan si hagueren cooperat (callant els dos) haurien rebut **només 1 any**. La busca de l'interés individual produïx un resultat col·lectivament pitjor. A eixa configuració estable —cap té incentiu a desviar-se unilateralment— l'anomenem **equilibri de Nash**.
+
+<Callout label="Concepte clau" title="Equilibri de Nash">
+
+Un equilibri de Nash és una combinació d'estratègies en la qual **cap jugador pot millorar el seu resultat canviant d'estratègia, donades les estratègies dels altres**. El dilema del presoner mostra que l'equilibri de Nash no és necessàriament la millor solució col·lectiva: pot ser **ineficient**.
+
+</Callout>
+
+### Dilemes del presoner en la vida real
+
+Esta estructura apareix per tot arreu en la realitat econòmica:
+
+- **Carrera armamentística.** Dos països preferirien no gastar en armes; però si un desarma i l'altre no, el que desarma queda en desavantatge. Resultat: els dos sobre-armen.
+- **Càrtels i guerres de preus.** A dos empreses competidores els convé mantindre preus alts; però a cadascuna li convé unilateralment baixar preus per a guanyar quota. Resultat: la competència tira els preus cap al cost.
+- **Canvi climàtic.** A cada país li interessa que els altres reduïsquen emissions; però a cadascun individualment li ix més barat continuar contaminant. Resultat: les negociacions col·lectives són extraordinàriament difícils.
+- **Estudis en grup.** A cada alumne li convé que els altres treballen molt; però individualment cadascun té incentiu a esforçar-se poc. Resultat: treballs en grup on ningú treballa.
+
+Quan un dilema del presoner es repetix indefinidament —no és una jugada única—, la cooperació es torna possible. Robert Axelrod va demostrar als anys huitanta que estratègies simples com *«faig el que tu vas fer en la jugada anterior»* (estratègia *tit for tat*) són les més exitoses a llarg termini. Eixa és la base teòrica de per què confiem en proveïdors habituals, repetim clients i mantenim vincles professionals: perquè la repetició convertix el dilema en cooperació.
+
+<SolvedExercise number="2.2" title="Dilema del presoner numèric: guerra de preus entre dos gasolineres">
+
+**Enunciat**
+
+Dos gasolineres veïnes, **Repsa** i **Cepso**, decidixen cada mes si mantenen el preu **alt** (cooperar) o el **baixen** (competir). La matriu arreplega el **benefici mensual de cadascuna, en milers d'euros** (més és millor):
+
+| | **Cepso preu alt** | **Cepso preu baix** |
+| :---: | :---: | :---: |
+| **Repsa preu alt** | Repsa: 8, Cepso: 8 | Repsa: 2, Cepso: 10 |
+| **Repsa preu baix** | Repsa: 10, Cepso: 2 | Repsa: 5, Cepso: 5 |
+
+a) Trobar l'estratègia dominant de cada gasolinera i l'equilibri de Nash en una jugada única.
+b) Quin seria el resultat cooperatiu i per què no és estable?
+c) Si el joc es repetix indefinidament i les dos apliquen *tit for tat*, quin resultat per període es pot esperar?
+
+**Solució**
+
+1. **Estratègia dominant de Repsa**. Si Cepso posa preu alt, a Repsa li convé baixar (10 > 8). Si Cepso posa preu baix, a Repsa també li convé baixar (5 > 2). Baixar és **estratègia dominant** per a Repsa.
+2. **Per simetria**, baixar també és l'estratègia dominant de Cepso.
+3. **Equilibri de Nash (jugada única)**: les dos baixen el preu i guanyen **5 cadascuna** (casella inferior dreta). Cap millora desviant-se unilateralment.
+4. **Resultat cooperatiu**: si les dos mantingueren el preu alt guanyarien **8 cadascuna**, millor per a les dos. Però no és estable: cadascuna té la temptació de baixar per a endur-se 10 mentre l'altra es queda en 2. La busca de l'interés individual porta a un resultat (5, 5) **pitjor que el cooperatiu (8, 8)**.
+5. **Joc repetit amb *tit for tat***. Si cada gasolinera comença cooperant (preu alt) i replica en cada període el que va fer la rival en l'anterior, la desviació es castiga el mes següent. Com que la pèrdua futura de provocar la guerra de preus (caure de 8 a 5 indefinidament) supera el guany puntual d'un mes a 10, **la cooperació se sosté**: el resultat esperat és **(8, 8) per període**. La repetició convertix el dilema en cooperació, igual que ocorre en els càrtels tàcits reals —i per això la CNMC vigila la coordinació entre competidors—.
+
+</SolvedExercise>
+
+## Eficiència, risc i incertesa
+
+Abans de passar al costat fosc de la racionalitat humana, convé fixar dos conceptes que vertebren la resta del curs.
+
+L'**eficiència** econòmica es dona quan els recursos s'assignen de forma que **no és possible millorar la situació d'algú sense empitjorar la d'un altre**. Esta definició —deguda a l'economista italià Vilfredo Pareto— s'anomena *eficiència paretiana*. Una assignació és ineficient quan podríem reorganitzar-la i deixar algú millor sense perjudicar ningú. La busca de l'eficiència és un dels criteris fonamentals de l'anàlisi econòmica, encara que convé recordar que **una assignació pot ser eficient i profundament injusta**: la justícia distributiva és un criteri distint, no contingut en l'eficiència.
+
+El **risc** i la **incertesa** són dos conceptes semblants però distints, una distinció que devem a Frank Knight (1921). Hi ha **risc** quan coneixem les **probabilitats** dels distints resultats possibles (llançar un dau, jugar a la ruleta, vendre un producte la demanda històrica del qual coneixem). Hi ha **incertesa** quan **ni tan sols coneixem les probabilitats** (què passarà amb el mercat laboral d'ací a quinze anys? com afectarà la intel·ligència artificial el meu sector?). El primer cas es pot modelar amb càlcul de probabilitats; el segon, no. La major part de les grans decisions econòmiques es prenen davall incertesa, no davall risc.
+
+## La racionalitat acotada: quan decidir costa
+
+Passem ara a la segona meitat de la unitat: la mirada moderna sobre com decidim realment. El primer pas el va donar als anys cinquanta l'economista i psicòleg **Herbert Simon**, que va substituir la hipòtesi de racionalitat il·limitada per la idea de **racionalitat acotada** (*bounded rationality*).
+
+La idea de Simon és senzilla i demolidora: les persones **no maximitzen**, **satisfan**. No exploren totes les alternatives possibles per a triar l'òptima; exploren fins a trobar una alternativa **prou bona** i es detenen. Ho fan perquè buscar té un cost —temps, esforç cognitiu, oportunitats perdudes— i perquè la seua capacitat de processar informació és limitada.
+
+Simon va anomenar este comportament *satisficing*, paraula encunyada per ell combinant *satisfy* i *suffice*. La conseqüència teòrica va ser enorme: si les persones no maximitzen, els models econòmics basats en maximització fallen en moltes prediccions. Simon va rebre el Premi Nobel d'Economia en 1978 per este gir.
+
+<Figure
+  src={herbertSimon}
+  alt="Retrat pintat a l'oli de Herbert A. Simon, assegut, amb expressió serena, part de la col·lecció de Carnegie Mellon University."
+  caption="Herbert A. Simon (1916-2001), Premi Nobel d'Economia en 1978 per la teoria de la racionalitat acotada. Retrat de Richard Rappaport, Carnegie Mellon University."
+  credit="Imatge: Richard Rappaport, CC BY 3.0 via Wikimedia Commons"
+  aspectHint="3/2"
+  variant="right"
+/>
+
+Els manuals clàssics d'economia continuen, en bona mesura, assumint racionalitat completa. Però els teòrics moderns han anat incorporant la racionalitat acotada en camps com l'economia financera (per què els inversors cometen errors sistemàtics), l'organització industrial (per què les empreses s'assemblen tant en lloc d'optimitzar) i la política econòmica (per què alguns incentius no funcionen com preveu el model). Tot açò desemboca, ja als anys setanta, en el camp que ha revolucionat l'economia contemporània: l'**economia del comportament**.
+
+<VocesDesacuerdo
+  tema="L'homo economicus existix?"
+  postura_a={{
+    etiqueta: 'Model neoclàssic',
+    tesis: 'Els agents són racionals: maximitzen la seua utilitat amb informació completa i preferències estables. El model permet prediccions i polítiques clares.',
+  }}
+  postura_b={{
+    etiqueta: 'Kahneman · Tversky · Thaler',
+    tesis: 'La ment humana està sistemàticament esbiaixada. La racionalitat acotada de Simon és la regla, no l\'excepció. Qualsevol model realista l\'ha d\'incorporar.',
+  }}
+>
+Hui l'economia del comportament ha entrat en els models macro i micro. La política pública aplica *nudges* —xicotetes espentes de disseny— perquè la gent decidisca millor sense restringir la seua llibertat. La discussió no és ja *si* els biaixos importen, sinó **quant pesen en cada context** i quan convé corregir-los.
+</VocesDesacuerdo>
+
+## Economia del comportament: el llegat de Kahneman i Tversky
+
+Si Simon va obrir la porta, **Daniel Kahneman** i **Amos Tversky** la van creuar amb totes les conseqüències. Els dos eren psicòlegs —no economistes— que, en una col·laboració intensa que va durar dècades, van demostrar experimentalment que els éssers humans cometem errors **sistemàtics i predictibles** en prendre decisions davall incertesa. El treball és tan important que Kahneman va rebre el **Premi Nobel d'Economia en 2002**, sent psicòleg de formació.
+
+<Figure
+  src={danielKahneman}
+  alt="Retrat fotogràfic del psicòleg Daniel Kahneman, amb cabell blanc, mirant lleugerament fora de càmera."
+  caption="Daniel Kahneman (1934-2024), psicòleg israelià-estatunidenc, Premi Nobel d'Economia en 2002 pel seu treball amb Amos Tversky sobre el judici humà i la presa de decisions davall incertesa."
+  credit="Foto: Eirik Solheim / nrkbeta, CC BY-SA 2.0 via Wikimedia Commons"
+  aspectHint="3/2"
+  variant="left"
+/>
+
+La seua síntesi per al gran públic —el llibre *Pensar rápido, pensar despacio* (2011)— s'ha convertit en una de les obres més influents de la divulgació científica contemporània. La idea central és que el nostre cervell funciona amb **dos sistemes mentals** que cooperen, però que tenen lògiques distintes.
+
+<Curiosity title="Un psicòleg guanya el Premi Nobel d'Economia">
+Daniel Kahneman va rebre el Premi Nobel d'Economia en 2002 *«per haver integrat coneixements de la investigació psicològica en la ciència econòmica, especialment pel que fa al judici humà i la presa de decisions davall incertesa»*. El seu col·laborador i coautor durant tres dècades, Amos Tversky, no el va poder rebre: havia mort en 1996 i el Nobel no s'atorga a títol pòstum. En el seu discurs d'acceptació, Kahneman va dir: *«este premi és tant seu com meu»*. L'amistat i el mètode de treball dels dos —dos hores diàries discutint a fons cada experiment, durant quinze anys— és un dels grans exemples moderns de col·laboració intel·lectual.
+</Curiosity>
+
+### Sistema 1 i Sistema 2
+
+Kahneman proposa que el nostre pensament es repartix entre dos sistemes:
+
+- **Sistema 1.** Ràpid, automàtic, intuïtiu, emocional. Detecta la cara enfadada d'algú abans que acabem de mirar-la; calcula 2 + 2 sense esforç; conduïx el cotxe en una carretera buida. Opera sense que hàgem de decidir conscientment. És el sistema *per defecte*.
+- **Sistema 2.** Lent, deliberat, analític, esforçat. Resol 17 × 24 amb llapis i paper; revisa un argument complicat; ompli la declaració de la renda. Consumix energia mental, fatiga i, per això mateix, l'usem el menys possible.
+
+La majoria de les nostres decisions les pren el Sistema 1; el Sistema 2 només entra quan el primer no sap respondre o quan fem un esforç conscient. El problema és que el Sistema 1, rapidíssim i eficientíssim, comet **errors predictibles**. Eixos errors són els **biaixos cognitius**.
+
+### Heurístiques: dreceres mentals
+
+Les **heurístiques** són dreceres mentals que el Sistema 1 utilitza per a prendre decisions ràpides sense esgotar recursos cognitius. Solen funcionar; quan fallen, fallen de manera sistemàtica. Kahneman i Tversky en van identificar diverses, però les dos més importants per a l'economia són les següents.
+
+**Heurística de disponibilitat.** Jutgem la probabilitat d'un succés per la facilitat amb què recordem exemples. Si els mitjans cobrixen intensament accidents d'avió, sobreestimem la seua freqüència i subestimem la del cotxe, molt més mortífer. Si recordem vívidament un amic enriquit amb criptomonedes, sobreestimem la probabilitat de fer-nos rics amb elles; els milers d'inversors que van perdre diners no són tan vívids en la nostra memòria. Esta heurística explica moltes decisions financeres: invertim en el que recordem, no en el que és estadísticament prometedor.
+
+**Heurística de representativitat.** Jutgem si una cosa pertany a una categoria per quant s'*assembla* a l'estereotip d'eixa categoria, ignorant freqüències reals. Si ens descriuen algú tímid, curós i aficionat als trencaclosques, tendirem a pensar que és bibliotecari, encara que hi haja cent vegades més comercials tímids que bibliotecaris tímids. En economia, esta heurística explica per què confonem *empresa que pareix d'èxit* amb *empresa que és d'èxit*.
+
+### Cinc biaixos cognitius essencials
+
+Dels més de cent biaixos catalogats, convé dominar-ne almenys cinc que apareixen una i altra vegada en decisions econòmiques.
+
+<Steps label="Biaixos essencials" title="Cinc biaixos cognitius sistemàtics" variant="roman">
+
+<li><strong>Biaix d'ancoratge.</strong> Donem un pes desproporcionat a la <em>primera</em> dada que rebem. En negociacions, la primera xifra posada sobre la taula condiciona tota la conversa posterior, encara que siga arbitrària. En tendes, un preu inicial alt ratllat fa paréixer barat qualsevol preu posterior. Tversky i Kahneman van demostrar que fins i tot números aleatoris obtinguts amb una ruleta esbiaixen estimacions posteriors que no tenen res a veure amb la ruleta.</li>
+
+<li><strong>Aversió a la pèrdua.</strong> Les pèrdues fan mal aproximadament <em>el doble</em> del que gaudim els guanys equivalents. Perdre 100 € genera més malestar que la felicitat de guanyar 100 €. Kahneman i Tversky van formalitzar esta asimetria en la <em>Teoria Prospectiva</em> (Prospect Theory, 1979), un dels pilars de l'economia conductual. Explica per què ens costa tant vendre una acció a pèrdues, per què paguem assegurances que estadísticament ens costen diners i per què els polítics preferixen no llevar subsidis existents encara que siguen ineficients.</li>
+
+<li><strong>Biaix de confirmació.</strong> Busquem i recordem informació que <em>confirma</em> les nostres creences prèvies i ignorem la que les contradiu. En inversió, llegim les anàlisis que avalen la nostra decisió i descartem les crítiques. En política econòmica, valorem les dades que recolzen la nostra ideologia i desconfiem de les altres. És un dels biaixos més estudiats precisament perquè opera sense que ens n'adonem.</li>
+
+<li><strong>Efecte framing (enquadrament).</strong> Les decisions canvien segons <em>com</em> es presenten les opcions, encara que la substància siga idèntica. Una operació mèdica amb <em>«90&nbsp;% de supervivència»</em> s'accepta més que la mateixa operació amb <em>«10&nbsp;% de mortalitat»</em>. Una hamburguesa amb <em>«75&nbsp;% magra»</em> es compra més que la mateixa amb <em>«25&nbsp;% de greix»</em>. Les empreses, els governs i els mitjans saben enquadrar; els consumidors rara vegada ho detectem.</li>
+
+<li><strong>Biaix d'excés de confiança.</strong> Sobreestimem sistemàticament les nostres capacitats, coneixements i probabilitats d'èxit. El 80&nbsp;% dels conductors es creu millor que la mitjana. El 90&nbsp;% dels emprenedors creu que la seua empresa estarà entre el 10&nbsp;% que sobreviu. És un dels biaixos més persistents i explica bona part de les bombolles financeres, els projectes empresarials fallits i els pronòstics massa optimistes.</li>
+
+</Steps>
+
+### Teoria Prospectiva: la corba de la pèrdua
+
+El gran model formal que Kahneman i Tversky van aportar a l'economia és la **Teoria Prospectiva** (1979). La seua idea central, ja esmentada, és que **valorem asimètricament guanys i pèrdues**. La funció de valor que proposen té tres trets essencials:
+
+- Està centrada en un **punt de referència** (típicament, la situació actual). No valorem resultats absoluts: valorem canvis respecte a una referència.
+- És **còncava en els guanys** (rendiments decreixents: el segon milió emociona menys que el primer).
+- És **convexa i més pronunciada en les pèrdues** (perdre fa mal molt més, i els següents euros perduts fan mal progressivament menys).
+
+Esta corba explica moltes decisions reals: per què preferim un guany segur a un d'incert de major valor esperat, però una pèrdua incerta a una pèrdua segura del mateix valor esperat. Per què els inversors mantenen accions perdedores i venen les guanyadores (just al revés del que aconsellaria la teoria clàssica). Per què els plans de pensions amb subscripció automàtica (*opt-out*) tenen taxes de participació molt més altes que els de subscripció voluntària (*opt-in*).
+
+<Diagram caption="La funció de valor és còncava en els guanys i convexa —i més pronunciada— en les pèrdues: una pèrdua fa més mal del que agrada un guany equivalent. Tot es mesura respecte a un punt de referència, no en termes absoluts." source="Kahneman i Tversky (1979), Prospect Theory">
+  <TeoriaProspectiva />
+</Diagram>
+
+<RealExample title="Com les apps de cites, comerç i xarxes socials exploten els nostres biaixos" source="Adaptat d'Eyal, N. (2014). *Hooked: How to Build Habit-Forming Products*. I Thaler, R. i Sunstein, C. (2008). *Nudge*.">
+Els dissenyadors de productes digitals coneixen perfectament els biaixos descrits per Kahneman. Les notificacions en roig amb número aprofiten la **heurística de disponibilitat** (el més vívid rep més atenció). Les subscripcions que es renoven automàticament aprofiten l'**aversió a la pèrdua** de l'estat actual (cancel·lar requerix actuar; mantindre, no). Els preus *«abans 99 €, ara 39 €»* aprofiten l'**ancoratge**. Els carrusels de productes *«altres usuaris van comprar també»* exploten el biaix de **conformitat social**. Les apps de cites presenten les persones en un **enquadrament** específic (foto + tres dades) que maximitza el lliscament ràpid del Sistema 1. Estes pràctiques, agrupades a vegades davall el nom de *dark patterns*, estan al centre del debat ètic contemporani sobre la regulació digital. El Reglament europeu de Servicis Digitals (DSA, 2022) ha començat a posar límits legals a les més abusives.
+</RealExample>
+
+## Richard Thaler i els *nudges*: arquitectura d'elecció
+
+La racionalitat acotada i els biaixos cognitius no són curiositats de laboratori: estan darrere de moltes decisions de política pública contemporània. **Richard Thaler** —Premi Nobel d'Economia en 2017— va portar el llegat de Kahneman al disseny institucional. La seua tesi és que, si la gent no decidix racionalment, els governs poden ajudar a **millorar la decisió sense restringir la llibertat**, mitjançant el que ell i Cass Sunstein van anomenar en 2008 *nudges* (espentes) i, en castellà, **arquitectura d'elecció**.
+
+Un *nudge* no és una prohibició ni un impost: és un canvi en la **forma de presentar** les opcions que aprofita els biaixos per a espentar el ciutadà cap a la decisió socialment preferible, conservant sempre la seua llibertat per a fer el contrari.
+
+### Nudges aplicats a Espanya
+
+Més enllà del laboratori, diversos exemples quotidians a Espanya mostren com l'economia del comportament ja estructura decisions públiques:
+
+- **Donació d'òrgans per consentiment presumpte.** Espanya és des de fa dècades líder mundial en taxa de donació (més de 50 donants per milió d'habitants en 2024 segons l'ONT). El secret institucional és l'*opt-out*: *tots som donants excepte manifestació expressa en contra*. Països amb sistema *opt-in* (Alemanya, Estats Units) tenen taxes la meitat de baixes, no perquè els seus ciutadans siguen menys generosos, sinó perquè la **inèrcia i l'aversió a la pèrdua** juguen a favor de l'statu quo. Si la donació és l'opció per defecte, quasi ningú canvia.
+- **Etiquetatge nutricional Nutriscore.** Des de 2018 el Ministeri de Sanitat recomana el codi de cinc colors (verd-A a roig-E). Aprofita l'**enquadrament visual** perquè el Sistema 1 detecte d'un colp d'ull opcions saludables. La indústria ha reaccionat reformulant productes per a escalar d'E a B, la qual cosa prova l'efecte.
+- **Cancel·lació amb un clic.** Des de 2022 la normativa europea de consum obliga que donar-se de baixa d'una subscripció siga tan fàcil com donar-se d'alta. És un *anti-nudge* explícit contra l'aversió a la pèrdua que les subscripcions explotaven.
+- **Bo cultural jove i Bo lloguer.** Missatges simples, terminis clars i formularis curts per a reduir la fricció cognitiva. Si omplir és complicat, molta gent —especialment amb menys capital cultural— renuncia.
+- **Renda agrària per subscripció automàtica** i, en debat des de 2023, **inscripció automàtica en plans d'ocupació de pensions complementàries** per a nous treballadors (model *NEST* britànic, que va passar d'un 40 % de cobertura voluntària a més del 90 % després d'introduir l'opt-out).
+
+La qüestió ètica és rellevant: fins on pot l'Estat *espentar-nos* cap a decisions que considera millors per a nosaltres? Crítics com Cass Sunstein han matisat que el nudge ha de ser **transparent, evitable i orientat al benestar** del propi subjecte, no a recaptació o control. El que sí que pareix clar és que **no decidir com es presenten les opcions ja és una decisió**: algú dissenya l'arquitectura. Si no ho fa el regulador, ho farà el mercat, i no necessàriament amb els nostres interessos en ment.
+
+<VuelveAlCaso referencia="Concorde i la fal·làcia del cost enfonsat">
+El cas il·lustra amb precisió clínica la **fal·làcia del cost enfonsat**: continuar invertint en una cosa perdedora perquè «ja hem invertit molt». La inversió passada és **irrecuperable**; s'hauria d'ignorar en decidir si continuar o no. L'únic que importa és el càlcul de cost i benefici **futur** des de hui.
+
+Però emocionalment els diners ja gastats pesen: per això clausurar negocis, retirar productes del mercat o admetre errors estratègics és psicològicament costós, fins i tot quan és la decisió racional. Reconéixer el biaix és el primer pas per a neutralitzar-lo —en el teu propi CV, en una relació, en una carrera universitària que ja no t'interessa, o en un projecte empresarial que no funciona—.
+</VuelveAlCaso>
+
+<KeyTakeaways title="L'essencial de la unitat">
+- El **cost d'oportunitat** és el valor de la millor alternativa a la qual renunciem. És invisible, i per això fàcil d'oblidar.
+- Els **costos enfonsats** són despeses no recuperables. La regla econòmica: no han d'influir en decisions futures. La psicologia, tanmateix, ens espenta a tindre'ls en compte (*fal·làcia del cost enfonsat*).
+- L'**anàlisi marginal** compara increments, no totals. Una activitat paga la pena mentre el benefici marginal siga major o igual al cost marginal.
+- Els **incentius** funcionen, però mal dissenyats produïxen efectes perversos (llei de Goodhart, efecte cobra).
+- La **teoria de jocs** estudia decisions interdependents. El **dilema del presoner** mostra que l'interés individual racional pot portar a un resultat col·lectivament pitjor.
+- La **racionalitat acotada** (Herbert Simon) reconeix que les persones no maximitzen: *satisfan*.
+- **Kahneman i Tversky** van identificar errors sistemàtics del raonament: heurístiques (disponibilitat, representativitat) i biaixos (ancoratge, aversió a la pèrdua, confirmació, framing, excés de confiança).
+- La **Teoria Prospectiva** establix que valorem asimètricament guanys i pèrdues: les pèrdues fan mal el doble.
+- L'**arquitectura d'elecció** (nudges) usa estos descobriments per a millorar decisions públiques sense restringir llibertats.
+</KeyTakeaways>
+
+## Connexió amb les unitats següents
+
+El que s'ha aprés ací no és ornament: vertebra la resta del curs. El **cost d'oportunitat** reapareixerà en la decisió del consumidor (Unitat 4), en la decisió de l'estalviador (Unitat 3) i en l'elecció entre alternatives d'inversió pública (Unitat 11). L'**anàlisi marginal** és la ferramenta central de la teoria del consumidor i del productor (Unitats 4 i 7). Els **incentius** i la **teoria de jocs** tornen a aparéixer en estudiar el comportament dels mercats oligopolístics (Unitat 6) i les negociacions internacionals (Unitat 12). I l'**economia del comportament** condiciona com entenem hui l'educació financera personal (Unitat 3), les decisions dels inversors (Unitat 10) i el disseny de la política econòmica (Unitat 11). Convé tornar a esta unitat cada vegada que aparega un d'estos fils.
+
+## Glossari
+
+- **Cost d'oportunitat**: valor de la millor alternativa a la qual es renuncia en triar. Inclou costos monetaris i no monetaris; és invisible i per això s'oblida.
+- **Cost enfonsat**: despesa ja realitzada i irrecuperable. La regla econòmica és que no ha d'influir en les decisions futures (el contrari és la *fal·làcia del cost enfonsat*).
+- **Anàlisi marginal**: mètode de decisió que compara el benefici marginal i el cost marginal de la unitat següent. L'òptim està on BMg = CMg.
+- **Incentiu**: estímul que altera el cost o el benefici d'una acció. Mal dissenyat, produïx efectes perversos (llei de Goodhart, efecte cobra).
+- **Teoria de jocs**: anàlisi de decisions interdependents mitjançant jugadors, estratègies i pagaments.
+- **Equilibri de Nash**: combinació d'estratègies en la qual cap jugador millora canviant unilateralment d'estratègia. Pot ser col·lectivament ineficient.
+- **Estratègia dominant**: la que convé a un jugador amb independència del que facen els altres.
+- **Racionalitat acotada** (Simon): les persones no maximitzen, *satisfan*: busquen una opció prou bona perquè buscar té cost.
+- **Sistema 1 / Sistema 2** (Kahneman): pensament ràpid, automàtic i intuïtiu enfront de pensament lent, deliberat i esforçat.
+- **Heurística**: drecera mental del Sistema 1 (disponibilitat, representativitat) que sol funcionar però falla de manera sistemàtica.
+- **Biaix cognitiu**: error sistemàtic i predictible del raonament (ancoratge, aversió a la pèrdua, confirmació, framing, excés de confiança).
+- **Teoria Prospectiva** (Kahneman-Tversky, 1979): valorem asimètricament guanys i pèrdues respecte a un punt de referència; les pèrdues fan mal aproximadament el doble.
+- **Nudge (arquitectura d'elecció)**: canvi en la forma de presentar les opcions que espenta cap a la decisió preferible sense restringir la llibertat (Thaler-Sunstein, 2008).
+
+## Per a aprofundir
+
+Si esta unitat t'ha interessat, ací tens algunes lectures i recursos per a anar més enllà:
+
+- **Pensar rápido, pensar despacio** — *Daniel Kahneman* (2011). Per què encaixa: l'obra que va popularitzar el Sistema 1 / Sistema 2 i els biaixos; els capítols sobre ancoratge i aversió a la pèrdua són lectura directa per a esta unitat.
+- **Un pequeño empujón (Nudge)** — *Richard Thaler i Cass Sunstein* (2008). Per què encaixa: explica amb casos reals com l'Estat pot millorar decisions sense prohibir res. Connecta amb els nudges espanyols del text.
+- **Misbehaving: la formación de la economía conductual** — *Richard Thaler* (2015). Per què encaixa: la història, en primera persona i amb humor, de com l'economia del comportament es va obrir pas enfront de l'*homo economicus*.
+- **The Prisoner's Dilemma** — *vídeo de Veritasium, "What Game Theory Reveals About Life"* (2023). Per què encaixa: 25 minuts que mostren el dilema repetit i l'èxit de *tit for tat* amb simulacions visuals.
+- **Predictably Irrational** — *Dan Ariely* (2008). Per què encaixa: desenes d'experiments curts sobre com decidim malament, ideals per a proposar a classe com a minicasos.
+
+## Preguntes per a reflexionar
+
+Estes preguntes no tenen una resposta única. Servixen per a discutir a classe o per a pensar individualment en tancar la unitat:
+
+1. Identifica una decisió recent teua en la qual caigueres en la fal·làcia del cost enfonsat ("ja he arribat fins ací, no puc deixar-ho ara"). Què hauries fet aplicant l'anàlisi marginal pura?
+2. Les apps que uses a diari exploten els teus biaixos (notificacions, autorenovació, "abans 99 €, ara 39 €"). Fins a quin punt eres lliure en decidir dins d'elles? S'hauria de regular?
+3. El sistema espanyol de donació d'òrgans per *opt-out* salva vides aprofitant la inèrcia. És legítim que l'Estat dissenye l'opció per defecte pensant per nosaltres? On posaries el límit del *nudge*?
+4. El dilema del presoner explica des dels càrtels fins al canvi climàtic. Per què creus que és tan difícil cooperar quan el benefici col·lectiu és evident? Quins mecanismes ho faciliten?
+
+<Bibliography>
+
+1. Kahneman, D. (2011). *Pensar rápido, pensar despacio*. Debate.
+2. Kahneman, D. i Tversky, A. (1979). *Prospect Theory: An Analysis of Decision under Risk*. Econometrica, 47(2).
+3. Simon, H. A. (1955). *A Behavioral Model of Rational Choice*. Quarterly Journal of Economics, 69(1).
+4. Thaler, R. H. i Sunstein, C. R. (2008). *Nudge: Improving Decisions about Health, Wealth, and Happiness*. Yale University Press.
+5. Axelrod, R. (1984). *The Evolution of Cooperation*. Basic Books.
+6. Nash, J. F. (1950). *Equilibrium Points in N-Person Games*. Proceedings of the National Academy of Sciences, 36(1).
+7. Knight, F. H. (1921). *Risk, Uncertainty, and Profit*. Houghton Mifflin.
+8. Arkes, H. R. i Blumer, C. (1985). *The Psychology of Sunk Cost*. Organizational Behavior and Human Decision Processes, 35(1).
+9. Levitt, S. D. i Dubner, S. J. (2005). *Freakonomics*. William Morrow.
+10. Reial Decret 243/2022, de 5 d'abril, pel qual s'establixen l'ordenació i els ensenyaments mínims del Batxillerat (BOE‑A‑2022‑5521).
+
+</Bibliography>
+
+<MirarFora
+  unidad={2}
+  libro={{
+    titulo: 'Pensar rápido, pensar despacio',
+    meta: 'Daniel Kahneman · Debate, 2011',
+    porque: 'El manual de referència sobre els dos sistemes de pensament (intuïtiu i analític) i els biaixos associats a cadascun. Els capítols sobre ancoratge i aversió a la pèrdua són lectura directa per a esta unitat.',
+    paginas: 'Parts I i IV',
+  }}
+  video={{
+    titulo: 'El dilema del prisionero · MIS PROBLEMAS FAVORITOS',
+    meta: 'Mates Mike · YouTube',
+    duracion: '~10-12 min',
+    porque: 'Explicació visual del dilema del presoner clàssic i de com canvia quan es repetix moltes vegades. Connecta directament amb la secció de teoria de jocs.',
+    url: 'https://www.youtube.com/results?search_query=dilema+del+prisionero+mis+problemas+favoritos',
+  }}
+  cuenta={{
+    titulo: '@ArielRubinstein',
+    meta: 'X / Twitter',
+    porque: 'Catedràtic de Tel-Aviv, fils curts i accessibles sobre teoria de jocs i racionalitat en economia. Útil per a entrenar la intuïció estratègica.',
+  }}
+  actividad_titulo="Caça el teu propi biaix"
+  actividad_duracion="25 min"
+>
+  <Fragment slot="actividad">
+    Identifica **una decisió recent teua** —compra, elecció d'optativa, ruptura, abandonament d'un curs— on reconegues haver caigut en un dels biaixos vistos (ancoratge, disponibilitat, aversió a la pèrdua, cost enfonsat, excés de confiança). Descriu el biaix, la decisió i com hauries decidit **sense ell**.
+  </Fragment>
+  <Fragment slot="para-clase">
+    Variant *experiment d'aula*: el professor proposa una elecció amb ancoratge («pagaries 5 € per este quadern? i 25 €? quina seria la teua disposició a pagar?»). Es comparen respostes a la pissarra, es revela el biaix i es discutix. Durada: 45 min.
+  </Fragment>
+</MirarFora>
