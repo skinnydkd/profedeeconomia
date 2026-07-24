@@ -1,0 +1,485 @@
+---
+asignatura: edmn-2bach
+unidad: 11
+title: Anàlisi i interpretació dels estats financers
+lema: >-
+  Qualsevol pot llegir un balanç. El difícil és entendre què diu
+  sobre la salut real d'una empresa, quins riscos amaga i quines
+  decisions de gestió revela. Això és anàlisi financera.
+lang: ca
+estado: publicado
+slug: "asignaturas/edmn-2bach/libro/11-analisis-estados-financieros.ca"
+duracion: 7 sessions · 2 setmanes
+bloque: Bloque D
+sabers:
+  - D.3
+  - D.4
+  - D.5
+  - D.6
+conceptos_clave:
+  - fons de maniobra
+  - ratios financers
+  - solvència
+  - liquiditat
+  - ROA
+  - ROE
+  - període mitjà de maduració
+objetivos:
+  - Calcular el fons de maniobra i diagnosticar l'equilibri patrimonial.
+  - Interpretar els ratios principals de liquiditat, solvència i endeutament.
+  - Calcular les rendibilitats econòmica (ROA) i financera (ROE).
+  - Reconéixer l'efecte del palanquejament financer sobre la rendibilitat.
+  - Calcular el període mitjà de maduració i entendre el seu impacte en la tresoreria.
+publicado_en: 2026-05-10
+---
+
+import Callout from '@components/Callout.astro';
+import Curiosity from '@components/Curiosity.astro';
+import RealExample from '@components/RealExample.astro';
+import SolvedExercise from '@components/SolvedExercise.astro';
+import Steps from '@components/Steps.astro';
+import KeyTakeaways from '@components/KeyTakeaways.astro';
+import Figure from '@components/Figure.astro';
+import Diagram from '@components/Diagram.astro';
+import FondoManiobra from '@components/diagrams/FondoManiobra.astro';
+import PiramideDuPont from '@components/diagrams/PiramideDuPont.astro';
+import Bibliography from '@components/Bibliography.astro';
+import TldrUnidad from '@components/TldrUnidad.astro';
+import CasoDilema from '@components/CasoDilema.astro';
+import VuelveAlCaso from '@components/VuelveAlCaso.astro';
+import PistaEbau from '@components/PistaEbau.astro';
+import VocesDesacuerdo from '@components/VocesDesacuerdo.astro';
+import RetoEtapa from '@components/RetoEtapa.astro';
+import MirarFora from '@components/MirarFora.astro';
+import HerramientaIsland from '@components/calculadoras/HerramientaIsland.astro';
+
+import bloombergTerminal from '@assets/libro/edmn-2bach/11/bloomberg-terminal.jpg';
+import cnmvEdison from '@assets/libro/edmn-2bach/11/cnmv-edison.jpg';
+import abengoaPalmasAltas from '@assets/libro/edmn-2bach/11/abengoa-palmas-altas.jpg';
+import lehmanBrothers from '@assets/libro/edmn-2bach/11/lehman-brothers.jpg';
+
+> **Temps estimat de lectura**: ~25 min · **Sabers LOMLOE**: D.3, D.4, D.5, D.6 · **Pre-requisits**: Unitat 10 (informació comptable)
+>
+> **En acabar esta unitat sabràs**:
+> - Calcular el **fons de maniobra** per les dues formulacions equivalents i diagnosticar l'equilibri patrimonial.
+> - Interpretar els **ratios principals** de liquiditat, solvència i endeutament dins del seu rang sectorial.
+> - Calcular les **rendibilitats** econòmica (ROA) i financera (ROE) d'una empresa qualsevol.
+> - Reconéixer l'efecte de l'**palanquejament financer** sobre la rendibilitat dels accionistes, en els seus dos sentits.
+> - Calcular el **període mitjà de maduració** i entendre el seu impacte en la pressió de tresoreria.
+
+<TldrUnidad>
+Qualsevol pot **llegir un balanç**. El difícil és saber **què significa**. Esta unitat dóna les quatre eines per a diagnosticar la salut financera d'una empresa: el **fons de maniobra**, els **ratios** (liquiditat, solvència, endeutament), les **rendibilitats** (ROA, ROE) i el **període mitjà de maduració**.
+
+En l'EBAU el càlcul del ratio val 1 punt; la **interpretació** i la **recomanació de millora** valen l'altre. La meitat de l'exercici es perd per respostes que només donen xifres sense explicar-les.
+</TldrUnidad>
+
+<CasoDilema
+  titular="DIA va ser el quart supermercat d'Espanya. En 2019 cotitzava a 0,06 €/acció i perdia 600 M€ a l'any"
+  fuente="CNMV, memòries DIA · anàlisi borsària 2018-2024"
+  pregunta="Si els ratios d'una empresa cotitzada es publiquen cada trimestre i els analistes els lligen, com és que el mercat va tardar anys a castigar el deteriorament de DIA?"
+>
+**Distribuidora Internacional de Alimentación (DIA)** va ser durant anys el quart operador de gran consum a Espanya. Entre 2014 i 2018, els seus ratios contaven una història que pocs van voler escoltar: l'endeutament va pujar del 60 % al 85 %, la rendibilitat econòmica (ROA) va caure del 6 % a l'1 %, el període mitjà de maduració es va allargar. En 2018 va reconéixer errors comptables. En 2019 l'acció va caure al **mínim històric de 0,06 €/acció** (enfront dels 5-6 € de 2014). L'empresa va eixir de l'IBEX 35, va atraure el fons LetterOne com a salvador i va emprendre un tancament massiu de botigues. La recuperació ha portat **més de cinc anys**. Els ratios estaven ací, públics, des de 2015.
+</CasoDilema>
+
+La unitat anterior ens va ensenyar a llegir els comptes anuals. Esta ens ensenya a **interpretar-los**: què diu realment un balanç sobre l'equilibri patrimonial de l'empresa, què assenyalen els ratios sobre la seua solvència futura, quina rendibilitat genera els diners invertits i per què dues empreses amb el mateix benefici poden estar en situacions radicalment distintes. L'anàlisi financera és la disciplina que convertix els números bruts dels comptes anuals en judicis útils per a prendre decisions.
+
+<Figure
+  src={bloombergTerminal}
+  alt="Pantalla d'un terminal Bloomberg mostrant dades financeres en temps real amb cotitzacions, gràfics i notícies de mercat."
+  caption="Terminal Bloomberg en ús professional. L'eina canònica de l'anàlisi financera institucional integra balanços, comptes de resultats, ratios sectorials i dades de mercat en una sola interfície."
+  credit="Foto: Amin, CC BY-SA 4.0 via Wikimedia Commons"
+  aspectHint="4/3"
+/>
+
+## Anàlisi del balanç: el fons de maniobra
+
+La primera anàlisi que convé fer sobre un balanç és comprovar si l'empresa complix la **regla bàsica de l'equilibri financer**: les inversions a llarg termini s'han de finançar amb recursos a llarg termini. Quan això es complix, l'empresa té un **fons de maniobra positiu**.
+
+```
+Fondo de maniobra = Activo corriente − Pasivo corriente
+                  = (Patrimonio neto + Pasivo no corriente) − Activo no corriente
+```
+
+Les dues formulacions són equivalents i corresponen a les dues maneres de llegir la mateixa magnitud:
+
+- **Per la part de baix del balanç** (corrent): l'actiu corrent excedix el passiu corrent, és a dir, els recursos disponibles a curt termini cobrixen les obligacions a curt termini i sobra un coixí.
+- **Per la part de dalt** (no corrent): els recursos permanents (patrimoni net + passiu no corrent) financen tot l'actiu no corrent i, a més, una part de l'actiu corrent.
+
+Tres interpretacions possibles:
+
+- **Fons de maniobra positiu**: situació d'equilibri. L'empresa té marge per a absorbir imprevistos a curt termini.
+- **Fons de maniobra zero**: situació fràgil. Qualsevol retard en cobraments o augment de despeses pot causar tensions.
+- **Fons de maniobra negatiu**: situació de desequilibri. L'empresa finança part del seu actiu no corrent amb passiu a curt termini. Pot funcionar puntualment —alguns sectors com la gran distribució ho fan estructuralment perquè cobren al comptat i paguen a termini— però en la majoria d'empreses és senyal d'alarma.
+
+<Diagram caption="Fons de maniobra positiu: l'actiu corrent supera el passiu corrent, de manera que part del circulant es finança amb recursos permanents. Eixe excés és el coixí de liquiditat de l'empresa.">
+  <FondoManiobra />
+</Diagram>
+
+## Ratios de liquiditat, solvència i endeutament
+
+Els **ratios financers** comprimixen informació del balanç en una sola xifra fàcil de comparar entre empreses i al llarg del temps. Els que convé conéixer en este curs són els següents:
+
+### Ratios de liquiditat
+
+Mesuren la capacitat de l'empresa per a fer front als seus deutes a curt termini:
+
+- **Ratio de liquiditat general** = Actiu corrent / Passiu corrent. Valor sa: entre 1,5 i 2.
+- **Ratio de tresoreria (acid test)** = (Actiu corrent − Existències) / Passiu corrent. Valor sa: al voltant d'1.
+- **Ratio de disponibilitat** = Disponible (caixa + bancs) / Passiu corrent. Valor sa: entre 0,1 i 0,3.
+
+### Ratios de solvència
+
+Mesuren la capacitat de l'empresa per a fer front a tots els seus deutes (curt i llarg termini):
+
+- **Ratio de solvència o garantia** = Actiu total / Passiu total. Valor sa: per damunt d'1,5.
+
+Per davall d'1, l'empresa està tècnicament en fallida: els seus actius no cobrixen els seus deutes.
+
+### Ratios d'endeutament
+
+Mesuren quant del finançament prové de tercers:
+
+- **Ratio d'endeutament total** = Passiu total / (Patrimoni net + Passiu total). Valor sa: entre 0,4 i 0,6 (és a dir, deute entre el 40% i el 60% del balanç).
+- **Ratio d'autonomia financera** = Patrimoni net / Passiu total. Mesura l'invers: quant patrimoni propi respalda cada euro de deute.
+
+Els rangs "sans" són orientatius i depenen molt del sector: una empresa del sector elèctric viu amb endeutaments del 70% sense problema, una *startup* tecnològica sol estar per davall del 30%.
+
+<PistaEbau tipo="practica" concepto="RE vs RF + palanquejament — fórmules + interpretació" apendice="Apèndix · Ratios">
+Per a traure tots els punts de l'exercici de ratios:
+
+1. **Distingix les dues fórmules**: **RE = BAII / Actiu Total** (rendibilitat econòmica, mesura eficiència de l'actiu); **RF = BN / Patrimoni Net** (rendibilitat financera, mesura rendiment per als socis). Confondre-les és l'error més castigat dels ratios en EBAU.
+2. **Compara RF amb RE per a detectar palanquejament**. Si **RF > RE**, el palanquejament és **positiu** (el deute barat multiplica el rendiment dels socis). Si **RF < RE**, és **negatiu** (el deute costa més del que aporta).
+3. **Interpreta cada ratio amb frase i recomanació**. Calcular sense interpretar = perdre la meitat del punt. Si el ratio està fora del rang òptim, **proposa una millora concreta** —ampliar capital, renegociar deute, vendre actiu ociós—.
+</PistaEbau>
+
+<SolvedExercise number="11.1" title="Diagnòstic de liquiditat i solvència de dues pimes del mateix sector">
+
+**Enunciat**
+
+Dues xicotetes empreses de fusteria metàl·lica presenten els següents balanços (imports en milers d'euros). Calcula els principals ratios de liquiditat, solvència i endeutament per a cada una i emet un diagnòstic comparat.
+
+|  | Empresa A | Empresa B |
+| --- | --- | --- |
+| Actiu no corrent | 220 | 90 |
+| Existències | 60 | 40 |
+| Realitzable (clients) | 50 | 70 |
+| Disponible (caixa + bancs) | 10 | 30 |
+| **Total actiu** | **340** | **230** |
+| Patrimoni net | 80 | 130 |
+| Passiu no corrent | 120 | 60 |
+| Passiu corrent | 140 | 40 |
+| **Total PN + passiu** | **340** | **230** |
+
+**Solució**
+
+1. **Ratio de liquiditat general** = Actiu corrent / Passiu corrent.
+   - Empresa A: (60 + 50 + 10) / 140 = 120 / 140 = **0,86**.
+   - Empresa B: (40 + 70 + 30) / 40 = 140 / 40 = **3,50**.
+2. **Ratio de tresoreria (acid test)** = (AC − Existències) / PC.
+   - A: (120 − 60) / 140 = 60 / 140 = **0,43**.
+   - B: (140 − 40) / 40 = 100 / 40 = **2,50**.
+3. **Ratio de disponibilitat** = Disponible / PC.
+   - A: 10 / 140 = **0,07**.
+   - B: 30 / 40 = **0,75**.
+4. **Ratio de solvència** = Actiu total / Passiu total.
+   - A: 340 / (120 + 140) = 340 / 260 = **1,31**.
+   - B: 230 / (60 + 40) = 230 / 100 = **2,30**.
+5. **Ratio d'endeutament total** = Passiu / (PN + Passiu).
+   - A: 260 / 340 = **0,76** (76 % del balanç és deute).
+   - B: 100 / 230 = **0,43** (43 % del balanç és deute).
+6. **Diagnòstic**:
+   - **Empresa A** està en zona de risc greu. Liquiditat general per davall d'1: l'actiu corrent no cobrix el passiu a curt termini (fons de maniobra negatiu de −20 mil €). Endeutament del 76 %, molt per damunt del rang raonable (40-60 %). Solvència d'1,31, just per damunt del límit. Qualsevol retard de cobrament o caiguda de vendes la col·loca en suspensió de pagaments.
+   - **Empresa B** està en sobreliquiditat. Ratios còmodes (3,5 de liquiditat general; 0,75 de disponibilitat), baix endeutament (43 %). Però convé preguntar-se: no estarà l'empresa B desaprofitant recursos? Mantindre 30.000 € en caixa sense invertir té un cost d'oportunitat: eixos diners podrien estar generant rendibilitat en actius productius.
+   - Conclusió pràctica: cap ratio és bo o roïn en abstracte. **Massa poca liquiditat** mata; **massa liquiditat** llastra la rendibilitat. La gestió financera consistix a navegar entre tots dos riscos.
+
+</SolvedExercise>
+
+<Callout label="Concepte clau" title="Ratios — comparar i vigilar la tendència">
+
+Els ratios financers tenen dos usos principals: **comparar** l'empresa amb altres del mateix sector (els rangs saludables varien entre sectors) i **vigilar la tendència** de la mateixa empresa en el temps. Un ratio aïllat diu poc; un ratio que empitjora tres exercicis seguits diu molt. La trampa habitual és interpretar un ratio fora de context sectorial o sense comparar-lo amb l'històric de la mateixa empresa.
+
+</Callout>
+
+**Prova-ho tu mateix:** introduïx les dades del balanç de la teua empresa o del projecte capstone i obtín els ratios de liquiditat, solvència i endeutament amb el seu diagnòstic automàtic.
+
+<HerramientaIsland componente="Ratios" />
+
+## Anàlisi del compte de resultats: rendibilitats
+
+Mentre el balanç ens diu com està estructurada l'empresa, el compte de resultats ens diu quant guanya. Per a interpretar-lo, els dos ratios fonamentals són les dues rendibilitats:
+
+### Rendibilitat econòmica (ROA)
+
+Mesura el rendiment que l'empresa obté dels seus actius, independentment de com els haja finançat. És l'indicador pur de l'**eficiència operativa**:
+
+```
+ROA = BAII / Activo total × 100
+```
+
+On BAII és el Benefici Abans d'Interessos i Impostos (també anomenat EBIT). Una ROA del 8% significa que cada 100 € d'actiu generen 8 € de benefici operatiu a l'any.
+
+### Rendibilitat financera (ROE)
+
+Mesura el rendiment que obtenen els accionistes pels seus diners invertits en l'empresa:
+
+```
+ROE = Beneficio neto / Patrimonio neto × 100
+```
+
+Una ROE del 15% significa que cada 100 € que els socis tenen aportats o reinvertits generen 15 € de benefici net a l'any.
+
+### Palanquejament financer
+
+La diferència entre ROE i ROA mesura l'efecte del **palanquejament financer**: quan una empresa demana deute barat per a invertir en actius que renden més que el cost del deute, la rendibilitat per a l'accionista augmenta. És el que en finances s'anomena "treballar amb diners aliens" per a multiplicar el rendiment del propi.
+
+El palanquejament és palanca i, com tota palanca, **funciona en els dos sentits**: si els actius renden menys que el cost del deute, la rendibilitat financera cau per davall de la rendibilitat econòmica i, en casos extrems, pot ser negativa encara que l'empresa continue generant benefici operatiu. Les grans fallides d'empreses tècnicament rendibles solen tindre darrere un palanquejament mal calculat.
+
+La **descomposició de DuPont** permet veure d'on naix exactament la rendibilitat financera, separant-la en tres palanques independents: el marge sobre vendes, la rotació de l'actiu i el palanquejament. Dues empreses amb el mateix ROE poden estar generant-lo de maneres molt distintes.
+
+<VocesDesacuerdo
+  tema="L'empresa ha de maximitzar el valor de l'accionista o el de tots els stakeholders?"
+  postura_a={{
+    etiqueta: 'Friedman (1970) · doctrina del shareholder value',
+    tesis: 'L\'única responsabilitat social de l\'empresa és augmentar els seus beneficis, dins de les regles del joc. Maximitzar el ROE és maximitzar el valor agregat.',
+  }}
+  postura_b={{
+    etiqueta: 'Mazzucato / Business Roundtable (2019)',
+    tesis: 'L\'empresa ha de servir múltiples grups d\'interés —empleats, clients, proveïdors, comunitats, planeta— i retre comptes a tots. El ROE és només un indicador entre molts.',
+  }}
+>
+És un dels debats **estratègics** més vius del segle XXI: l'empresa existix per als accionistes o per a alguna cosa més? En 2019, els CEO de les **181 majors empreses estatunidenques** van firmar una declaració —la *Business Roundtable Statement*— trencant amb la doctrina de Friedman. La posició pragmàtica de l'EBAU: **conéixer les dues postures**, reconéixer que cada empresa tria la seua mescla i entendre que els ratios mesuren **una sola** dimensió —la financera— mentre hi ha altres (socials, ambientals, laborals) que també conten en l'era ESG. El **ROE** continua sent l'indicador més vigilat pels inversors, però ja no l'únic.
+</VocesDesacuerdo>
+
+<Diagram caption="Descomposició de DuPont: el ROE s'explica com a producte de marge, rotació i palanquejament. Cada factor és una palanca distinta per a millorar la rendibilitat dels recursos propis.">
+  <PiramideDuPont />
+</Diagram>
+
+**Prova-ho tu mateix:** compara els ratios de la teua empresa amb els rangs mitjans del sector per a detectar si estàs per damunt o per davall de l'estàndard.
+
+<HerramientaIsland componente="RatiosBenchmark" />
+
+<Figure
+  src={lehmanBrothers}
+  alt="Edifici de la seu de Lehman Brothers a Times Square (Nova York) fotografiat en 2007, un any abans de la fallida."
+  caption="Seu de Lehman Brothers a Times Square en 2007. Un any més tard, el banc feia fallida amb un palanquejament de més de 30 vegades el seu patrimoni: l'exemple canònic de com la palanca financera amplifica les pèrdues tant com els beneficis."
+  credit="Foto: David Shankbone, CC BY-SA 3.0 via Wikimedia Commons"
+  aspectHint="2/3"
+  variant="inline-small"
+/>
+
+<SolvedExercise number="11.2" title="ROA, ROE i efecte del palanquejament financer">
+
+**Enunciat**
+
+Una empresa d'arts gràfiques té les següents dades de l'exercici (imports en €):
+
+- Actiu total: **500.000**
+- Patrimoni net: **200.000**
+- Passiu total: **300.000** (amb un cost mitjà anual del deute del 5 %)
+- Benefici abans d'interessos i impostos (BAII): **60.000**
+- Tipus de l'Impost de Societats: **25 %**
+
+a) Calcula la rendibilitat econòmica (ROA).
+b) Calcula la rendibilitat financera (ROE).
+c) Explica si el palanquejament financer està aportant valor als accionistes.
+
+**Solució**
+
+1. **ROA (rendibilitat econòmica)** = BAII / Actiu total × 100 = 60.000 / 500.000 × 100 = **12 %**.
+2. Per a calcular el **ROE** necessitem primer el benefici net:
+   - Interessos pagats = 5 % × 300.000 = **15.000 €**
+   - BAI (Benefici abans d'impostos) = 60.000 − 15.000 = **45.000 €**
+   - Impost = 25 % × 45.000 = **11.250 €**
+   - Benefici net = 45.000 − 11.250 = **33.750 €**
+3. **ROE** = Benefici net / Patrimoni net × 100 = 33.750 / 200.000 × 100 = **16,9 %**.
+4. **Anàlisi del palanquejament**:
+   - El **cost del deute** és del 5 %.
+   - La **rendibilitat dels actius** (ROA) és del 12 %.
+   - Com que ROA (12 %) > Cost deute (5 %), cada euro endeutat **guanya 7 cèntims** que es queden els accionistes. L'empresa està usant diners aliens per a generar rendibilitat per damunt del seu cost, i eixa diferència amplifica la rendibilitat dels socis.
+   - Resultat visible: ROE (16,9 %) > ROA (12 %). El palanquejament va sumar 4,9 punts a la rendibilitat financera.
+5. **Avís clàssic**: si l'empresa entrara en una crisi i el ROA caiguera al 4 %, la situació s'invertiria —ROA (4 %) < Cost deute (5 %)— i el palanquejament jugaria en contra: el ROE seria inferior al ROA. Per això les empreses amb molt palanquejament són extraordinàriament rendibles en els bons anys i devastadores en els roïns.
+
+</SolvedExercise>
+
+<Figure
+  src={abengoaPalmasAltas}
+  alt="Vista del Campus Palmas Altas a Sevilla, complex d'oficines que va ser seu central d'Abengoa, amb edificis de vidre i estructures metàl·liques roges."
+  caption="Campus Palmas Altas, antiga seu central d'Abengoa a Sevilla. Inaugurat en 2009 amb la primera certificació LEED Platinum d'Europa, el complex es va vendre a la Junta d'Andalusia en 2021 després de la major fallida empresarial de la història d'Espanya."
+  credit="Foto: Arup, CC BY-SA 3.0 via Wikimedia Commons"
+  aspectHint="16/9"
+  variant="full"
+/>
+
+<RealExample title="El cas Abengoa: el palanquejament que va destruir un líder mundial" source="Informe de la Comisión Nacional del Mercado de Valores (CNMV) i premsa especialitzada 2015-2022">
+**Abengoa**, empresa sevillana especialitzada en infraestructures energètiques i aigua, va arribar a ser en 2014 una de les grans referències mundials del sector amb presència en més de 80 països. La seua estratègia de creixement es va basar en deute agressiu: demanava préstecs per a construir grans plantes d'energia solar tèrmica, biocombustibles i infraestructures hídriques, confiant que els fluxos futurs pagarien de sobres els interessos. Mentre la rendibilitat econòmica dels projectes superava el cost del deute, el model va funcionar: la cotització va passar d'1 a 4 € entre 2010 i 2014 i els accionistes van obtindre rendibilitats excepcionals. El problema va arribar quan diversos projectes —especialment els de bioetanol als Estats Units i plantes solars al Brasil— van rendir menys del previst i, simultàniament, els tipus d'interés van començar a pujar. La companyia va entrar en pre-concurs de creditors al novembre de 2015 amb un deute total de **9.500 M€** i un patrimoni net comptable que es va fer negatiu. Després de dos rescats fallits, en 2022 va acabar liquidada en el major concurs de creditors de la història empresarial espanyola. El cas és un manual sencer sobre el palanquejament financer: la palanca funciona en els dos sentits.
+</RealExample>
+
+## Període mitjà de maduració
+
+El **període mitjà de maduració (PMM)** mesura quant tarda l'empresa a recuperar els diners invertits en el cicle d'explotació. Per a una empresa industrial típica, el PMM econòmic és la suma de quatre temps:
+
+```
+PMM económico = días de almacén materias primas
+               + días de fabricación
+               + días de almacén producto terminado
+               + días de cobro a clientes
+```
+
+A este se li resta el **període mitjà de pagament a proveïdors** per a obtindre el **PMM financer**, que és el que l'empresa realment ha de finançar amb els seus propis diners o amb deute:
+
+```
+PMM financiero = PMM económico − Período medio de pago a proveedores
+```
+
+Un PMM financer curt (l'empresa cobra ràpid i paga lent) reduïx les necessitats de finançament i millora la liquiditat. Un PMM financer llarg —típic de les pimes espanyoles enfront de les grans administracions, que pagaven tradicionalment amb molts mesos de retard— és una de les causes estructurals de la mortalitat empresarial a Espanya.
+
+<Callout label="Exemple pràctic" title="Per què la gran distribució viu amb fons de maniobra negatiu" variant="example">
+
+Una cadena com Mercadona cobra al comptat als seus clients (el client paga en caixa abans d'eixir) i paga als seus proveïdors a 30, 60 o 90 dies. El resultat és que l'empresa té en el seu compte corrent, tots els dies, els diners de les vendes dels últims mesos sense haver-los pagat encara a qui li servix. Això li permet operar amb fons de maniobra negatiu —el seu passiu corrent és enorme perquè inclou totes eixes factures pendents— sense cap problema de liquiditat. De fet, li permet finançar gratis el seu creixement. És un cas extrem de PMM financer negatiu i demostra que les regles d'equilibri financer, com quasi tot en finances, depenen del sector.
+
+</Callout>
+
+## Com es fa una anàlisi financera completa
+
+Reunir les eines anteriors en un procés ordenat dóna el següent flux:
+
+<Figure
+  src={cnmvEdison}
+  alt="Edifici Edison en el carrer Edison de Madrid, seu de la Comisión Nacional del Mercado de Valores (CNMV)."
+  caption="Seu de la CNMV en l'Edifici Edison de Madrid. El supervisor dels mercats espanyols obliga les societats cotitzades a publicar els seus comptes anuals auditats, el que convertix els seus arxius en la font principal per a qualsevol anàlisi financera comparada."
+  credit="Foto: Zarateman, CC0 via Wikimedia Commons"
+  aspectHint="4/3"
+  variant="wide"
+/>
+
+<Steps label="Anàlisi financera" title="Set passos per a diagnosticar la salut financera d'una empresa" variant="arabic">
+
+<li><strong>Obtindre els comptes anuals</strong> dels últims 2-3 exercicis (Registre Mercantil, Insight View, eInforma, web de l'empresa si cotitza).</li>
+
+<li><strong>Lectura ràpida del balanç</strong> en cinc grans masses. Detectar la composició de l'actiu (molt fix o molt circulant?) i la del passiu (molt endeutada o molt capitalitzada?).</li>
+
+<li><strong>Calcular el fons de maniobra</strong> i els tres ratios de liquiditat (general, acid test, disponibilitat).</li>
+
+<li><strong>Calcular ratios de solvència i endeutament</strong>. Comparar amb rangs sectorials habituals (no amb la regla genèrica).</li>
+
+<li><strong>Calcular ROA i ROE</strong>. Comparar la diferència per a avaluar l'efecte del palanquejament.</li>
+
+<li><strong>Calcular el període mitjà de maduració</strong>. Creuar amb la liquiditat per a entendre si la tresoreria és estructuralment còmoda o estructuralment tensa.</li>
+
+<li><strong>Comparar l'evolució temporal</strong>. Tres anys de ratios millorant diuen més que un any aïllat de ratios excel·lents.</li>
+
+</Steps>
+
+<VuelveAlCaso referencia="DIA: ratios públics durant 5 anys abans del col·lapse">
+La paradoxa de DIA és la **gran lliçó** de l'anàlisi financera: els ratios **estaven ací**, públics, cada trimestre. Qualsevol persona amb la formació d'esta unitat podia llegir els comptes anuals de 2015-2018 i veure que alguna cosa anava malament. Per què va tardar el mercat tants anys a castigar la situació? Tres raons documentades:
+
+1. **Asimetria d'incentius**: els analistes que cobrien DIA cobraven del banc que l'assessorava en operacions; criticar agressivament els comptes era professionalment costós.
+2. **Biaix de confirmació**: una empresa amb marca històrica i dividends estables resulta «creïble» encara que els ratios diguen el contrari. La marca actua com a amortidor cognitiu.
+3. **Maquillatge comptable dins de la norma**: moltes decisions de DIA eren legals però forçaven els principis (allargar vida útil d'actius, capitalitzar despeses, retardar reconeixement de pèrdues).
+
+La conclusió operativa: **els ratios són fiables només si es lligen amb sentit crític** —comparant-los amb el sector, mirant la seua evolució temporal i desconfiant quan una empresa amb xifres dubtoses presenta una narrativa massa neta—. Saber llegir un balanç no garantix veure el problema; però **no saber-ho ho garantix**.
+</VuelveAlCaso>
+
+<KeyTakeaways title="L'essencial de l'anàlisi financera">
+- El **fons de maniobra** mesura l'equilibri a curt termini. Positiu = saludable; negatiu = alarma (excepte en gran distribució).
+- Els **ratios de liquiditat, solvència i endeutament** permeten comparar empreses i vigilar tendències. Els rangs sans varien entre sectors.
+- **ROA** mesura eficiència operativa de l'actiu; **ROE** mesura rendibilitat del capital aportat pels socis. La diferència és l'efecte del palanquejament financer.
+- El **període mitjà de maduració** financer és el que l'empresa ha de finançar de la seua butxaca o del deute. Com més curt, menor pressió de tresoreria.
+- Un ratio aïllat diu poc. La **comparació amb el sector** i la **tendència temporal** són el que de veritat informa.
+</KeyTakeaways>
+
+## Connexió amb el projecte capstone
+
+<RetoEtapa
+  etapa={11}
+  titulo="Ratios previsionals + pla de mitigació de riscos"
+  entregable="Una pàgina amb: 5 ratios calculats del balanç previsional any 1 (etapa 10), interpretació amb frase, dos ratios fora de rang amb proposta de millora concreta."
+>
+Pren el teu **balanç previsional tancament any 1** de l'etapa 10 i els fluxos previstos de l'etapa 9. Calcula els **5 ratios principals**:
+
+1. **Fons de maniobra** (AC − PC) → diagnòstic d'equilibri curt termini.
+2. **Liquiditat general** = AC / PC → òptim 1,5-2.
+3. **Solvència (garantia)** = AT / PT → òptim 1,5-2.
+4. **Endeutament** = PT / (PN + PT) → òptim 0,4-0,6.
+5. **ROE** estimat = BN / PN → comparar amb tipus sense risc (deute públic ~3,5 %) per a veure si val la pena el projecte sobre la butxaca de l'accionista.
+
+**Interpreta cada un** amb una frase del tipus *«ratio de X = Y, està en zona Z, recomanació W»*. Identifica els **dos ratios més fora de rang** —quasi tots els projectes els tenen en l'any 1— i proposa una **acció concreta** de millora per a cada un. No val «augmentar la liquiditat»; val *«renegociar terminis de pagament amb proveïdors principals per a passar 20.000 € de PC a PnC»*.
+
+Si el teu projecte ix amb ratios excel·lents des de l'any 1, **revisa els números**: és més probable que hages sigut optimista que que el teu pla siga genial.
+</RetoEtapa>
+
+Cada equip tanca esta unitat amb un **diagnòstic financer** del primer any previst: càlcul del fons de maniobra, ratios de liquiditat i solvència, ROA i ROE estimats. La majoria descobriran que el seu projecte, com quasi tots els projectes en el seu primer any, presenta ratios mediocres —una cosa normal i esperable en una fase d'inversió inicial— i han d'argumentar com evolucionaran cap a valors saludables a partir del segon o tercer any.
+
+<Callout label="En l'EBAU" title="Bloc 3 · entra en la part pràctica" variant="concept">Esta unitat tanca el bloc pràctic: l'anàlisi d'estats financers és habitual en la **Part II (Bloc 3)**, amb **2 punts per exercici**. El problema típic demana calcular el **fons de maniobra** i diversos **ratios** (liquiditat, solvència, endeutament, ROA, ROE) a partir d'un balanç donat i **interpretar** el que indiquen sobre la salut de l'empresa. No basta amb el número: cal comentar el resultat. Practica-ho en el quadern de preparació EBAU.</Callout>
+
+## Glossari de la unitat
+
+- **Fons de maniobra**: actiu corrent menys passiu corrent. Coixí de liquiditat a curt termini.
+- **Ratio de liquiditat general**: actiu corrent / passiu corrent. Rang sa: 1,5-2.
+- **Acid test** (ratio de tresoreria): (actiu corrent − existències) / passiu corrent. Rang sa: al voltant d'1.
+- **Ratio de solvència**: actiu total / passiu total. Per davall d'1, fallida tècnica.
+- **Ratio d'endeutament**: passiu / (PN + passiu). Rang sa genèric: 0,4-0,6, varia per sector.
+- **Ratio d'autonomia financera**: patrimoni net / passiu. Invers de l'endeutament.
+- **ROA** (*Return on Assets*): BAII / actiu total. Rendibilitat econòmica. Mesura eficiència de l'actiu.
+- **ROE** (*Return on Equity*): benefici net / patrimoni net. Rendibilitat financera. Mesura rendiment per a l'accionista.
+- **BAII / EBIT**: benefici abans d'interessos i impostos.
+- **Palanquejament financer**: efecte del deute sobre la rendibilitat. Positiu si ROA > cost deute; negatiu si ROA < cost deute.
+- **Descomposició DuPont**: ROE = marge × rotació × palanquejament. Permet veure d'on ve la rendibilitat financera.
+- **PMM econòmic**: dies que transcorren des que es compra matèria primera fins que es cobra al client.
+- **PMM financer**: PMM econòmic menys període mitjà de pagament a proveïdors. El que l'empresa finança de la seua butxaca.
+
+## Per a aprofundir
+
+- **Amat, O. (2021)**, *Análisis de estados financieros* (11a ed.), Gestión 2000. El manual espanyol canònic d'anàlisi financera. Casos reals detallats i explicació accessible de cada ratio.
+- **Penman, S. H. (2017)**, *Financial Statement Analysis and Security Valuation* (5a ed.), McGraw-Hill. Manual avançat per a alumnat que vulga continuar amb valoració d'empreses.
+- **Documental "*The China Hustle*"** (Jed Rothstein, 2017). Investiga el frau massiu d'empreses xineses cotitzades a Wall Street amb balanços inflats. Cas d'estudi sobre els límits de l'anàlisi financera quan les dades són falses.
+- **Pàgina del Registro Mercantil Central** (rmc.es) i **Insight View** o **eInforma** per a accedir a comptes anuals reals. Exercici recomanat: descarregar i analitzar els comptes de tres pimes del mateix sector.
+- **Butlletí mensual del Banc d'Espanya** sobre la **Central de Balanços**. Publica ratios sectorials agregats de milers d'empreses espanyoles — la millor font per a saber què és "normal" en cada sector.
+
+## Preguntes per a reflexionar
+
+1. Dues empreses tenen el mateix benefici net. Una té ROE del 25 %, l'altra del 8 %. Quina és millor inversió per a un accionista? Quina és més arriscada? Poden ser les dues coses alhora?
+2. El cas Abengoa mostra que el palanquejament financer funciona en els dos sentits. Hauria sigut possible detectar el risc anys abans mirant només els ratios públics? Què van fallar: els ratios, els analistes o la confiança col·lectiva?
+3. La gran distribució (Mercadona, Carrefour) opera amb fons de maniobra negatiu i ningú es preocupa. Una pime qualsevol amb fons de maniobra negatiu entra en alarma. Per què? Quan és legítim trencar la regla genèrica?
+
+<Bibliography>
+
+1. Brealey, R. A., Myers, S. C., Allen, F. y Edmans, A. (2022). *Principles of Corporate Finance* (14ª ed.). McGraw-Hill.
+2. Amat, O. (2021). *Análisis de estados financieros: fundamentos y aplicaciones* (11ª ed.). Gestión 2000.
+3. Garrido Miralles, P. e Íñiguez Sánchez, R. (2017). *Análisis de estados contables: elaboración e interpretación de la información financiera*. Pirámide.
+4. Penman, S. H. (2013). *Financial Statement Analysis and Security Valuation* (5ª ed.). McGraw-Hill.
+5. Higgins, R. C., Koski, J. y Mitton, T. (2022). *Analysis for Financial Management* (13ª ed.). McGraw-Hill.
+6. Pérez-Carballo Veiga, J. F. (2015). *La gestión financiera de la empresa*. ESIC.
+
+</Bibliography>
+
+<MirarFora
+  unidad={11}
+  libro={{
+    titulo: 'Principios',
+    meta: 'Ray Dalio · Conecta, 2018',
+    porque: 'Dalio, fundador de Bridgewater Associates (un dels majors hedge funds del món), descriu com analitza la salut d\'empreses i economies a partir de ratios i indicadors. Útil per a veure l\'anàlisi financera aplicada per algú que mou milers de milions basant-se en ella.',
+    paginas: 'Part II: Principis de vida i treball',
+  }}
+  video={{
+    titulo: 'How Bridgewater\'s Ray Dalio Reads a Balance Sheet',
+    meta: 'Canal d\'educació financera · YouTube',
+    duracion: '~12 min',
+    porque: 'Versió visual de com un gestor professional examina ratios per a detectar fortaleses i vulnerabilitats d\'empreses cotitzades. Complement perfecte a la teoria de la unitat.',
+    url: 'https://www.youtube.com/results?search_query=ray+dalio+how+to+read+balance+sheet',
+  }}
+  cuenta={{
+    titulo: 'finviz.com',
+    meta: 'Web · screener borsari amb ratios precalculats',
+    porque: 'Per a cada empresa cotitzada als EUA mostra ratios, marges, ROA, ROE, deute. Útil per a exercitar la mirada: filtrar empreses per ratio i veure patrons (quins sectors tenen ROE alt? quins més deute?).',
+  }}
+  actividad_titulo="Diagnostica una empresa cotitzada en 10 minuts"
+  actividad_duracion="25-30 min"
+>
+  <Fragment slot="actividad">
+    Tria una **empresa cotitzada de l'IBEX 35** (Inditex, Telefónica, Iberdrola, BBVA, Mercadona no cotitza però publica memòria). Busca els seus **5 ratios principals** de l'últim exercici en la seua web o en finviz / similars. **Interpreta cada un** en una frase: està en rang? és coherent amb el sector? Acaba amb una recomanació: *«invertiria / no invertiria en esta empresa perquè...»*. No has de tindre raó —has d'**argumentar amb els ratios**.
+  </Fragment>
+  <Fragment slot="para-clase">
+    Variant en grups de 3 (60 min): cada grup tria una **empresa diferent**. Calcula els 5 ratios i prepara una anàlisi de 2 minuts. Després, **simulació de junta d'inversió**: cada grup presenta la seua empresa a la resta, que vota amb 100 € imaginaris on invertir. L'empresa més votada guanya l'exercici. El debat revela quins ratios pesen més per a cada perfil d'inversor —alguns prefereixen ROE alt encara que hi haja molt deute; altres prefereixen solvència encara que baixe rendibilitat—. No hi ha resposta correcta; hi ha **criteris ben aplicats**. Materials: ordinadors amb accés a memòries anuals.
+  </Fragment>
+</MirarFora>

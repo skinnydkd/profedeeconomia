@@ -1,0 +1,508 @@
+---
+asignatura: edmn-2bach
+unidad: 7
+title: La funció productiva
+lema: >-
+  Produir bé no és produir molt. És produir el que es ven, en
+  el moment en què es ven, amb el menor malbaratament possible. La
+  diferència entre eficàcia i eficiència es decidix en esta funció.
+lang: ca
+estado: publicado
+slug: "asignaturas/edmn-2bach/libro/07-funcion-productiva.ca"
+duracion: 6 sessions · 1,5 setmanes
+bloque: Bloque B
+sabers:
+  - B.3
+conceptos_clave:
+  - procés productiu
+  - eficiència
+  - productivitat
+  - costos fixos i variables
+  - punt mort
+  - lean
+objetivos:
+  - Descriure el procés productiu d'una empresa identificant entrades, transformació i eixides.
+  - Diferenciar eficàcia, eficiència i productivitat i aplicar les tres a un cas real.
+  - Calcular costos fixos, costos variables i cost total.
+  - Calcular el punt mort o llindar de rendibilitat d'un producte.
+  - Reconéixer els principis bàsics dels sistemes Lean de producció.
+publicado_en: 2026-05-10
+---
+
+import Callout from '@components/Callout.astro';
+import Curiosity from '@components/Curiosity.astro';
+import RealExample from '@components/RealExample.astro';
+import SolvedExercise from '@components/SolvedExercise.astro';
+import Steps from '@components/Steps.astro';
+import KeyTakeaways from '@components/KeyTakeaways.astro';
+import Diagram from '@components/Diagram.astro';
+import Figure from '@components/Figure.astro';
+import BreakEvenChart from '@components/diagrams/BreakEvenChart.astro';
+import ProcesosProductivos from '@components/diagrams/ProcesosProductivos.astro';
+import Bibliography from '@components/Bibliography.astro';
+import TldrUnidad from '@components/TldrUnidad.astro';
+import CasoDilema from '@components/CasoDilema.astro';
+import VuelveAlCaso from '@components/VuelveAlCaso.astro';
+import PistaEbau from '@components/PistaEbau.astro';
+import RetoEtapa from '@components/RetoEtapa.astro';
+import MirarFora from '@components/MirarFora.astro';
+import HerramientaIsland from '@components/calculadoras/HerramientaIsland.astro';
+
+import opelGliwice from '@assets/libro/edmn-2bach/07/opel-gliwice-cadena.jpg';
+import almacenPalletRack from '@assets/libro/edmn-2bach/07/almacen-pallet-rack.jpg';
+import fordHighlandPark from '@assets/libro/edmn-2bach/07/ford-highland-park-1913.jpg';
+import kukaRobots from '@assets/libro/edmn-2bach/07/kuka-robots-industriales.jpg';
+
+> **Temps estimat de lectura**: ~12 min · **Sabers LOMLOE**: B.3 · **Prerequisits**: Unit 4 (models de negoci) i matemàtiques bàsiques de costos
+>
+> **En acabar esta unitat sabràs**:
+> - Descriure el procés productiu d'una empresa identificant entrades, transformació i eixides, i classificar el tipus de procés (projecte, lots, cadena, contínua).
+> - Diferenciar eficàcia, eficiència i productivitat i aplicar les tres a un cas real.
+> - Calcular costos fixos, costos variables, cost total i cost mitjà, i raonar el palanquejament operatiu.
+> - Calcular el punt mort Q* = CF/(P − CVu) i el marge de seguretat d'un producte, i aplicar els principis Lean (eliminació dels 7 *muda*) a un procés concret.
+
+<TldrUnidad>
+La funció productiva **transforma recursos en producte** amb el menor malbaratament possible. Ací entren els costos (fixos i variables), el **punt mort** —la quantitat mínima a vendre per no perdre diners— i els principis **Lean** que porten 70 anys polint com es treballa en una fàbrica o un servici.
+
+És la **unitat més numèrica** del llibre fins ara. Q\*, marge de contribució i palanquejament operatiu s'examinen habitualment en l'EBAU; els càlculs estan al teu abast si els practiques amb dades.
+</TldrUnidad>
+
+<CasoDilema
+  titular="Toyota produïx cotxes amb menys defectes que Ford amb la meitat d'hores de mà d'obra. El secret es diu Lean"
+  fuente="Womack, Jones, Roos · The Machine That Changed the World (MIT, 1990)"
+  pregunta="Per què una empresa pot produir millor —menys defectes, menys cost, més rapidesa— sense invertir més, simplement canviant com organitza el treball?"
+>
+A finals dels anys 70, els fabricants estatunidencs van descobrir que Toyota produïa cotxes amb **menys del 50 %** de l'esforç humà, **un terç** de l'espai físic, **una sisena part** de l'inventari i **dos vegades menys** defectes per vehicle. Les fàbriques eren les mateixes, els obrers igual de capacitats, la tecnologia semblant. La diferència estava en com s'organitzava el treball: Toyota havia desenvolupat al llarg de tres dècades (1950-1980) un **sistema** —el TPS, *Toyota Production System*— que en 1990 va ser batejat a Occident com *Lean*. Hui, quasi totes les empreses industrials del món —i moltes de servicis— apliquen alguna versió dels seus principis.
+</CasoDilema>
+
+La funció productiva és la que **transforma recursos en producte**: el que l'empresa fa, dia rere dia, amb les seues màquines, les seues persones i el seu temps. Mentres la funció comercial decidix *què* es ven i la funció financera decidix *com* es paga, la productiva decidix *com* es fa. En empreses industrials és el cor del negoci; en empreses de servicis o digitals adopta altres formes —desenvolupament de programari, prestació del servici, atenció al client— però conserva la mateixa lògica: combinar inputs per generar outputs amb el menor malbaratament possible.
+
+Esta unitat és la més numèrica del llibre fins ara. El **punt mort** i els **costos** són ferramentes que l'alumnat utilitzarà després en el pla financer (Unitat 9) i en l'anàlisi de viabilitat del capstone (Unitat 12). Convé assegurar bé els conceptes abans d'avançar.
+
+## El procés productiu
+
+Tot procés productiu té la mateixa estructura bàsica: **entrades (inputs)**, **transformació** i **eixides (outputs)**. Les entrades són els recursos que l'empresa adquirix: matèries primeres, energia, mà d'obra, informació, capital. La transformació és el que l'empresa fa amb eixos recursos —cuinar, ensamblar, programar, atendre, transportar—. Les eixides són els productes o servicis entregats al client.
+
+### La cadena de valor
+
+Michael Porter va proposar en 1985 un marc més detallat per analitzar el procés productiu: la **cadena de valor**. Distingix activitats primàries (logística d'entrada, operacions, logística d'eixida, màrqueting i vendes, servici postvenda) d'activitats de suport (infraestructura de l'empresa, gestió de recursos humans, desenvolupament tecnològic, aprovisionament). La idea és que cada activitat afig valor —o no— al producte final, i que la rendibilitat de l'empresa depén de la suma d'eixe valor afegit menys els costos de cada baula.
+
+### Quatre tipus de processos productius
+
+Els processos productius es classifiquen habitualment en quatre tipus segons la repetitivitat i la personalització de l'output:
+
+- **Producció per projecte.** Cada output és únic: construcció d'un edifici, desenvolupament d'un programari a mida, organització d'un festival. El procés és intensiu en planificació; la corba d'aprenentatge no s'aprofita entre projectes.
+- **Producció per lots.** Es fabriquen sèries limitades de productes semblants (fleca, taller artesà, edicions d'un llibre). Combina certa flexibilitat amb economies d'escala parcials.
+- **Producció en cadena.** Seqüència contínua d'operacions idèntiques (automoció, refineria, fàbrica de begudes embotellades). Màxima eficiència, mínima flexibilitat.
+- **Producció contínua.** El procés no s'atura (centrals elèctriques, subministrament d'aigua, alts forns). El cost d'aturar és major que el de seguir produint encara que hi haja menys demanda.
+
+<Diagram caption="Els quatre tipus de procés productiu s'ordenen en una diagonal: a poc volum i molta varietat, producció per projecte; a molt volum i poca varietat, producció contínua.">
+  <ProcesosProductivos />
+</Diagram>
+
+<Figure
+  src={opelGliwice}
+  alt="Cadena de muntatge de la fàbrica Opel a Gliwice (Polònia): una seqüència de carrosseries de l'Opel Astra J avança sobre una línia contínua mentres els operaris munten components al llarg del recorregut."
+  caption="Cadena de muntatge de l'Opel Astra J a la planta de General Motors Manufacturing Poland a Gliwice. La producció en cadena repartix el cost fix entre milers d'unitats idèntiques, però perd quasi tota la flexibilitat."
+  credit="Foto: Marek Ślusarczyk (Tupungato), CC BY 3.0 via Wikimedia Commons"
+  aspectHint="3/2"
+  variant="wide"
+/>
+
+Cada tipus exigix un disseny organitzatiu distint. Una fleca que decidisca fabricar pa en cadena perd la flexibilitat que era el seu avantatge competitiu. Una refineria que intente produir per projecte s'enfonsa en costos de canvi. L'elecció del tipus de procés és estratègica.
+
+### Localització productiva
+
+Encara que la cobrim en la Unitat 2, recordar ací els factors **específicament productius**: proximitat a les matèries primeres (indústries agroalimentàries i mineres), disponibilitat de mà d'obra qualificada (indústria avançada), disponibilitat d'infraestructura energètica (indústria intensiva en energia) i connexió logística (ports, autopistes, ferrocarril). En l'era digital, tots estos factors continuen pesant per a producció física; en producció de servicis digitals pesen menys.
+
+## Eficàcia, eficiència, productivitat
+
+Tres conceptes que es confonen sovint i que convé separar abans d'avançar:
+
+### Eficàcia
+
+És fer el correcte: **assolir l'objectiu**. Una fleca eficaç aconseguix vendre tot el pa que fornea. L'eficàcia es mesura en termes absoluts: o s'assolix l'objectiu o no.
+
+### Eficiència
+
+És **fer-ho bé amb pocs recursos**: assolir l'objectiu amb el mínim cost, temps o malbaratament. Una fleca eficient aconseguix vendre tot el seu pa utilitzant la farina justa, sense minva, sense hores extres innecessàries. L'eficiència es mesura com a ràtio output/input.
+
+### Productivitat
+
+És la **relació entre el produït i els recursos consumits**. Si una fleca produïx 200 pans amb 4 treballadors, la seua productivitat per treballador és 50 pans; si una altra produïx 200 pans amb 2 treballadors, la seua productivitat és 100. La segona és més productiva.
+
+### Per què importa la distinció
+
+Maximitzar una sense atendre l'altra produïx empreses perverses:
+
+- Una empresa **eficaç però no eficient** crema recursos per arribar al resultat. Ven tot el que fornea però al preu d'un cost excessiu.
+- Una empresa **eficient però no eficaç** fa impecablement una cosa que no li servix a ningú. Producció optimitzada d'un producte sense demanda.
+- Una empresa **productiva però no eficaç** produïx molt del que no es ven. Magatzem ple, caixa buida.
+
+La gestió empresarial moderna intenta equilibrar les tres dimensions, no prioritzar una a costa de les altres.
+
+**Prova-ho tu mateix:** calcula la productivitat del treball i del capital amb dades reals del teu projecte o d'una empresa coneguda.
+
+<HerramientaIsland componente="Productividad" />
+
+### La productivitat espanyola en perspectiva
+
+Una dada rellevant: la **productivitat per hora treballada** a Espanya se situa al voltant del **91,7 % de la mitjana de la Unió Europea** (UE-27 = 100), segons les dades més recents d'Eurostat publicades en 2025. És a dir, una **bretxa d'aproximadament el 8 %** que s'ha estretit els últims anys però que continua sent significativa enfront d'Alemanya (108), França (110) o els Països Baixos (118). Açò significa que un treballador espanyol, en una hora, produïx de mitjana menys valor afegit que un treballador alemany, francés o holandés. Els motius són múltiples: estructura empresarial dominada per microempreses amb menys inversió en automatització, menor despesa en R+D (1,49 % del PIB en 2024 enfront del 2,24 % de la mitjana UE), menor qualitat mitjana de la gestió empresarial. Però també significa que hi ha **marge de millora real**: les pimes espanyoles que invertixen en productivitat capturen avantatge competitiu immediat.
+
+## Estructura de costos
+
+Per gestionar la funció productiva cal entendre com es comporten els costos. La distinció clau és entre **costos fixos** i **costos variables**.
+
+### Costos fixos (CF)
+
+No depenen del volum de producció. L'empresa els paga encara que venga zero unitats:
+
+- Lloguer del local
+- Sous del personal estructural
+- Amortització de maquinària
+- Assegurances, subministraments bàsics (manteniment)
+- Cànons de franquícia, llicències de *software*
+
+Els costos fixos no són fixos per sempre: canvien per esglaons (en llogar un altre local, en contractar una altra persona estructural) però són insensibles a fluctuacions de curt termini en el volum.
+
+### Costos variables (CV)
+
+Depenen directament del volum produït:
+
+- Matèries primeres
+- Energia consumida en la producció
+- Comissions per venda
+- Embalatges
+- Mà d'obra variable (hores extres, eventuals)
+
+El **cost variable unitari (CVu)** és el que aporta cada unitat produïda al cost variable total: CVu = CV / Q.
+
+### Cost total i cost mitjà
+
+- **Cost total**: `CT = CF + CV = CF + CVu · Q`.
+- **Cost mitjà o cost unitari**: `CMe = CT / Q`.
+
+A mesura que Q creix, els costos fixos es reparteixen entre més unitats i el cost mitjà baixa —almenys fins que s'arriba al límit de capacitat i cal obrir un altre local o contractar una altra persona estructural—. És el que s'anomena **economies d'escala**.
+
+### Palanquejament operatiu
+
+La relació CF/CV determina el que s'anomena el **palanquejament operatiu**: com major siga la proporció de costos fixos, major sensibilitat del benefici al volum.
+
+- Una empresa amb **molt CF i poc CV** té **alt palanquejament operatiu**: si ven molt, multiplica beneficis; si ven poc, enfonsa el resultat. Casos típics: aerolínies, cines, *software* B2B.
+- Una empresa amb **poc CF i molt CV** té **baix palanquejament operatiu**: més estable però amb menys potencial de creixement explosiu. Casos típics: comerços xicotets, consultories.
+
+## El punt mort o llindar de rendibilitat
+
+El **punt mort** (també anomenat *llindar de rendibilitat* o *break-even*) és el nivell de producció i vendes en què els **ingressos totals** igualen els **costos totals**. A partir d'eixe punt, cada unitat venuda genera benefici; per davall, l'empresa perd diners.
+
+### La fórmula
+
+La fórmula clàssica del punt mort en unitats és:
+
+```
+Q* = CF / (P − CVu)
+```
+
+On:
+
+- **CF** són els costos fixos totals del període.
+- **P** és el preu de venda unitari.
+- **CVu** és el cost variable unitari.
+- **Q\*** és el nombre d'unitats a vendre per començar a guanyar diners.
+
+El denominador `P − CVu` s'anomena **marge de contribució unitari**: el que cada unitat venuda aporta per cobrir els costos fixos. Si una fleca té `CF = 3.000 €/mes`, ven cada barra a `P = 1,50 €` i el cost variable per barra és `CVu = 0,50 €`, el seu punt mort és:
+
+`Q* = 3.000 / (1,50 − 0,50) = 3.000 barres al mes`
+
+### La gràfica del punt mort
+
+Visualment, el punt mort és la intersecció entre la recta d'**ingressos totals** (que passa per l'origen amb pendent P) i la recta de **costos totals** (que parteix de l'altura CF i creix amb pendent CVu).
+
+<Diagram caption="El punt mort és la intersecció de les rectes d'ingrés total (verd) i cost total (terracota). A l'esquerra de l'encreuament, pèrdua; a la dreta, benefici.">
+  <BreakEvenChart />
+</Diagram>
+
+### Marge de seguretat
+
+Una vegada calculat el punt mort, convé calcular el **marge de seguretat**: quantes unitats per damunt del punt mort està la demanda real (o prevista). Com major el marge de seguretat, més robust el negoci enfront de caigudes de demanda.
+
+`Marge de seguretat (%) = (Demanda − Q*) / Demanda × 100`
+
+Un marge de seguretat del 30 % significa que la demanda real és un 30 % major que el punt mort: la demanda podria caure fins a un 30 % abans d'entrar en pèrdues. Per davall del 10 % l'empresa és vulnerable; per damunt del 30 % és raonablement estable.
+
+<PistaEbau tipo="practica" concepto="Llindar de rendibilitat — els 5 passos que costen punts si s'obliden" apendice="Apèndix · Llindar">
+La fórmula sola **no és la resposta completa**. Per traure tots els punts de l'exercici:
+
+1. **Identifica CF, CVu, P** de l'enunciat abans de calcular.
+2. Aplica la fórmula `Q* = CF / (P − CVu)` i obtín Q\*.
+3. **Arredonix cap amunt** a la unitat immediatament superior (no pots vendre 1.234,34 cadires).
+4. **Dibuixa el gràfic**: eixos Q i €, rectes IT i CT, marca **Q\*** en l'encreuament.
+5. **Interpreta amb una frase**: *«cal vendre 1.235 uds per no tindre pèrdues; a partir d'ací, benefici»*. Sense frase, el corrector resta.
+</PistaEbau>
+
+<Callout label="Concepte clau" title="Punt mort">
+
+El punt mort és el volum de producció i vendes a partir del qual una empresa comença a guanyar diners. És una xifra fonamental per decidir si una idea de negoci és viable i per fixar objectius comercials realistes. Si les vendes previstes són molt inferiors al punt mort, el pla no funciona encara que el producte siga bo: o es baixa el cost fix, o es millora el marge unitari, o es descarta el projecte.
+
+</Callout>
+
+**Prova-ho tu mateix:** introduïx els costos fixos, el preu unitari i el cost variable unitari del teu projecte per calcular el llindar de rendibilitat a l'instant.
+
+<HerramientaIsland componente="PuntoMuerto" />
+
+<SolvedExercise number="7.1" title="Punt mort d'una franquícia de café per emportar">
+
+**Enunciat**
+
+Una persona estudia obrir una xicoteta franquícia de café per emportar al centre d'una ciutat mitjana. Les xifres estimades són:
+
+- Lloguer del local: **1.800 €/mes**
+- Sou d'una persona empleada (amb costos socials): **2.200 €/mes**
+- Cànon mensual fix a la franquícia: **600 €/mes**
+- Altres costos fixos (llum, internet, subministraments bàsics): **400 €/mes**
+- Preu mitjà de venda per café: **2,80 €**
+- Cost variable mitjà per café (gra, llet, got, tapa, comissió de targeta): **0,90 €**
+
+a) Calcular el punt mort en unitats mensuals i diàries (suposant 26 dies laborables al mes).
+b) Si la previsió és vendre **220 cafés/dia**, és viable el projecte?
+
+**Solució**
+
+1. Calculem els **costos fixos totals mensuals**: CF = 1.800 + 2.200 + 600 + 400 = **5.000 €/mes**.
+2. Calculem el **marge de contribució unitari**: MC = P − CVu = 2,80 − 0,90 = **1,90 €/café**.
+3. Apliquem la fórmula del punt mort: `Q* = CF / MC = 5.000 / 1,90 ≈ 2.632 cafés/mes`.
+4. Convertim a cafés/dia: 2.632 / 26 ≈ **101 cafés/dia** per cobrir despeses.
+5. Comparem amb la previsió de 220 cafés/dia (5.720 al mes). Marge per damunt del punt mort: 5.720 − 2.632 = **3.088 cafés extra/mes**.
+6. Benefici esperat: 3.088 × 1,90 = **5.867 €/mes**.
+7. Conclusió: el projecte és viable si la previsió de demanda es complix. El senyal d'alarma seria baixar de **100 cafés/dia sostinguts**: per davall d'eixa xifra, la franquícia entra en pèrdues i convé replantejar preu, ubicació o estructura de costos.
+
+</SolvedExercise>
+
+<SolvedExercise number="7.2" title="Palanquejament operatiu: dos plans per fabricar mascaretes">
+
+**Enunciat**
+
+Una empresa tèxtil decidix entrar en la fabricació de mascaretes i compara dos plans industrials:
+
+- **Pla A — màquines semiautomàtiques**: CF = 12.000 €/mes, CVu = 0,30 €/mascareta.
+- **Pla B — màquines totalment automàtiques**: CF = 28.000 €/mes, CVu = 0,10 €/mascareta.
+
+Les mascaretes es venen a P = 0,50 € a farmàcies. L'empresa creu que podrà vendre entre 60.000 i 200.000 mascaretes/mes segons la demanda real.
+
+a) Quin és el punt mort de cada pla?
+b) A partir de quin volum mensual convé canviar del pla A al pla B?
+
+**Solució**
+
+1. Marge de contribució unitari.
+   - Pla A: MC_A = 0,50 − 0,30 = **0,20 €/unitat**.
+   - Pla B: MC_B = 0,50 − 0,10 = **0,40 €/unitat**.
+2. Punt mort de cada pla.
+   - Q*_A = 12.000 / 0,20 = **60.000 unitats/mes**.
+   - Q*_B = 28.000 / 0,40 = **70.000 unitats/mes**.
+3. Per trobar el **punt d'indiferència** entre ambdós plans (on el benefici és el mateix) igualem els beneficis:
+   `MC_A · Q − CF_A = MC_B · Q − CF_B`
+   `0,20·Q − 12.000 = 0,40·Q − 28.000`
+   `16.000 = 0,20·Q`
+   `Q = 80.000 unitats/mes`.
+4. Interpretació pràctica:
+   - Si l'empresa va a vendre **menys de 80.000 mascaretes/mes**, Pla A: costos fixos menors compensen el marge unitari més baix.
+   - Si va a vendre **més de 80.000 mascaretes/mes**, Pla B: el major marge unitari absorbix els costos fixos més alts.
+5. Lliçó general: com major és el palanquejament operatiu (més CF respecte a CV), major és el potencial de benefici quan el volum creix i major el risc quan cau.
+
+</SolvedExercise>
+
+## Sistemes Lean de producció
+
+El sistema **Lean Manufacturing** —desenvolupat per Toyota a partir dels anys cinquanta i popularitzat a occident amb el llibre *The Machine That Changed the World* (1990)— ha redefinit la funció productiva moderna. La seua idea central és que la vertadera font de productivitat no és produir més ràpid, sinó **eliminar malbaratament** (en japonés, *muda*) en cada pas del procés.
+
+### Els set malbarataments (muda)
+
+Lean identifica set tipus de malbaratament que convé reduir o eliminar:
+
+<Steps label="Els 7 muda" title="Els set tipus de malbaratament segons Toyota Production System" variant="roman">
+
+<li><strong>Sobreproducció.</strong> Produir més del que es va a vendre. És el pitjor de tots perquè consumix tots els altres recursos.</li>
+
+<li><strong>Esperes.</strong> Temps en què el material o la persona no està sent utilitzat productivament. Colls d'ampolla, retards, sincronització dolenta.</li>
+
+<li><strong>Transport.</strong> Moure materials més del necessari entre etapes del procés. Generalment símptoma d'un layout mal dissenyat.</li>
+
+<li><strong>Processos innecessaris.</strong> Passos que no afigen valor per al client. Inspeccions redundants, informes que ningú llig, controls dobles.</li>
+
+<li><strong>Inventari excessiu.</strong> Estoc que ocupa espai i capital sense aportar. L'inventari amaga problemes: com més baixem l'inventari, més ràpid afloren les ineficiències del procés.</li>
+
+<li><strong>Moviments innecessaris.</strong> Gestos repetitius del treballador que es podrien eliminar. Buscar ferramentes, doblegar-se, arribar lluny.</li>
+
+<li><strong>Defectes.</strong> Producte que cal refer o rebutjar. No sols es perd el cost del producte defectuós; també el temps de detectar-lo i reprocessar.</li>
+
+</Steps>
+
+### Les tècniques Lean clàssiques
+
+<Figure
+  src={almacenPalletRack}
+  alt="Vista interior d'un magatzem modern amb prestatgeries metàl·liques de diversos pisos plenes de palets europeus, perspectiva en fuga cap al fons del passadís central."
+  caption="Magatzem logístic amb sistema de paletització. L'inventari és alhora una assegurança enfront de la demanda i un cost ocult: ocupa capital, ocupa espai i, sobretot, amaga els problemes del procés que el precedix."
+  credit="Foto: Axisadman, CC BY-SA 3.0 via Wikimedia Commons"
+  aspectHint="3/2"
+  variant="right"
+/>
+
+L'aplicació pràctica de Lean genera tècniques que convé reconéixer:
+
+- **Just in Time (JIT).** Produir només el que es necessita, quan es necessita, en la quantitat que es necessita. Reduïx l'inventari al mínim. Exigix proveïdors fiables i processos sense defectes.
+- **Kanban.** Senyalització visual del flux de treball, normalment amb targetes o columnes (pendent, en preparació, llest). El coll d'ampolla es veu sense necessitat d'informes. Hui s'usa en cuines, hospitals, equips de programari, no sols en fàbriques.
+- **Kaizen.** Millora contínua a través de xicotets canvis incrementals proposats pels mateixos treballadors. La cultura de millora distribuïda és el que distingix les empreses Lean madures.
+- **Poka-yoke.** Disseny a prova d'errors. Mecanismes que fan impossible o molt difícil cometre un error: endolls que només entren en un sentit, formularis que no permeten enviar si falta un camp obligatori.
+- **5S.** Cinc paraules japoneses (*seiri, seiton, seiso, seiketsu, shitsuke*) que traduïxen *classificar, ordenar, netejar, estandarditzar, mantindre*. La disciplina del lloc de treball ordenat és la base sobre la qual es construïx la resta.
+
+### Lean més enllà de la fàbrica
+
+Encara que van nàixer en la fàbrica, les tècniques Lean s'apliquen hui en sectors tan distints com hospitals (Hospital Virginia Mason a Seattle va reduir errors mèdics un 50 % amb metodologia Lean), restaurants, *startups* digitals (Lean Startup adapta els principis al desenvolupament de producte) i centres educatius. La universalitat del model es deu al fet que el concepte d'*eliminar malbaratament* aplica a qualsevol procés que combine inputs en outputs.
+
+<Curiosity title="La primera línia de muntatge no va ser la de Ford — va ser una d'especejament">
+A Henry Ford se li atribuïx la invenció de la cadena de muntatge en 1913 a la seua fàbrica de Highland Park, on va fabricar el Ford T en menys temps que qualsevol cotxe anterior. Però Ford no la va inventar: la va veure als **escorxadors de Chicago** durant una visita als anys 1900. Allí, les grans empacadores de porc i boví havien dissenyat des de la dècada de 1870 el que ells anomenaven *disassembly line* —línia d'especejament—: una canal passava penjada d'un rail mecànic mentres desenes de treballadors, cadascú especialitzat en un tall, feien la seua tasca sense moure's del lloc. Ford simplement **va invertir la lògica**: en compte d'especejar una vaca, ensamblava un cotxe. La fertilització creuada entre sectors és sovint la font més poderosa d'innovació —i quasi mai es reconeix.
+</Curiosity>
+
+<Figure
+  src={fordHighlandPark}
+  alt="Fotografia d'arxiu de 1913 que mostra la cadena de muntatge del Ford Model T a la planta de Highland Park, amb xassís en distintes fases d'ensamblatge sobre la cinta i operaris treballant al llarg de la línia."
+  caption="Cadena de muntatge del Ford Model T a Highland Park, 1913. La idea no era nova: Ford la va traslladar des dels escorxadors de Chicago, on portava trenta anys funcionant al revés."
+  credit="Foto: Library of Congress, domini públic via Wikimedia Commons"
+  aspectHint="3/2"
+  variant="full"
+/>
+
+<RealExample title="Inditex a Arteixo: lean aplicat a la moda amb un cicle de 2-3 setmanes" source="Inditex, Resultats Consolidats Exercici 2025 i reportatges de The Economist 2023-2024">
+La seu central d'**Inditex** a Arteixo (A Corunya) és la major implementació de filosofia lean al sector tèxtil mundial. El grup va tancar l'exercici 2025 amb unes **vendes de 41.420 M€** (+7,5 % enfront de 2024), un **EBIT de 7.643 M€** —marge operatiu del **18,5 %**, enfront del 5-8 % que es considera bo al sector— i una plantilla mitjana de **165.700 persones**.
+
+Com se sostenen eixos marges? Els dissenyadors treballen en plantes obertes al costat dels responsables de producció i els analistes de venda diària. Quan un encarregat de tenda a Madrid o Tòquio detecta que un patró es ven millor, les dades arriben en poques hores a Arteixo. Els nous dissenys es prototipen en pocs dies, es proven en un grapat de tendes pilot, s'ajusten i es fabriquen en lots xicotets en tallers pròxims (Galícia, Portugal, Marroc, Turquia). El cicle complet —des de la idea al penjador en una tenda— ronda les **2-3 setmanes en les col·leccions més reactives**, enfront dels 6-9 mesos del model tèxtil tradicional (la xifra clàssica de «15 dies» que circula en molts manuals correspon al pic del sistema; la mitjana real és una mica major).
+
+La conseqüència: Zara manté **nivells d'estoc no venut molt inferiors** als del sector i la rotació de peces és la més alta entre els grans operadors globals de moda. El *muda* —malbaratament— en estoc no venut és el principal cost invisible de la moda; reduir-lo és el que ha permés a Inditex sostindre marges operatius impossibles per als seus competidors.
+</RealExample>
+
+## Qualitat i millora contínua
+
+<Figure
+  src={kukaRobots}
+  alt="Filera de braços robòtics industrials taronges de la marca KUKA disposats sobre una plataforma d'exposició, amb els manipuladors articulats en distintes posicions."
+  caption="Robots industrials KUKA. L'automatització no resol per si sola la qualitat: fa repetible el procés, però la millora contínua continua depenent de la cultura de l'empresa."
+  credit="Foto: Mixabest, CC BY-SA 3.0 via Wikimedia Commons"
+  aspectHint="3/2"
+  variant="left"
+/>
+
+Estretament vinculada a la funció productiva està la **gestió de la qualitat**. Les dos corrents clàssiques són:
+
+- **Total Quality Management (TQM).** Filosofia iniciada als anys 80, basada en la idea que la qualitat és responsabilitat de tots en l'empresa, no sols del departament de control. Es mesura i millora contínuament.
+- **Six Sigma.** Metodologia més rigorosa desenvolupada per Motorola en 1986, que aspira a no més de 3,4 defectes per milió d'unitats produïdes. Usa ferramentes estadístiques avançades (DMAIC: Define, Measure, Analyze, Improve, Control).
+
+Per a una pime espanyola típica, la implementació completa de Six Sigma rarament compensa el cost. El raonable és adoptar **els principis** —mesurament rigorós, millora contínua, responsabilitat distribuïda— sense la sobrecàrrega metodològica de les grans corporacions.
+
+<VuelveAlCaso referencia="Toyota Production System (Lean)">
+El TPS no va ser un invent d'un geni en una sala. Es va desenvolupar durant **tres dècades** (1948-1980) per una llarga cadena d'enginyers (Toyoda, Ohno, Shingo) que **observaven el flux del treball cada dia** i eliminaven un malbaratament cada vegada. El secret no és una tècnica: és una **cultura** que considera normal **aturar-se a pensar** per què una cosa va lenta, una peça arriba tard o un operari dubta. El que en altres fàbriques eren «incidents a oblidar», en Toyota eren **dades a investigar**.
+
+Per al teu projecte del capstone, la lliçó operativa és directa: no esperes a tindre el problema per pensar en el procés. **Dibuixa el flux de la teua activitat abans de començar**, identifica on s'acumula treball (colls d'ampolla, esperes), i reflexiona quin dels **7 *muda*** —sobreproducció, esperes, transport, processos, inventari, moviments, defectes— amenaça més el teu negoci. La diferència entre una empresa que escala bé i una altra que s'ofega en complexitat operativa comença el dia de la seua fundació, no el dia que té cent clients.
+</VuelveAlCaso>
+
+<KeyTakeaways title="L'essencial de la funció productiva">
+- **Inputs → Transformació → Outputs**: l'estructura és universal encara que el contingut varie entre sectors.
+- **Eficàcia, eficiència i productivitat** no són sinònims. Cal equilibrar les tres.
+- Els **costos fixos** no depenen del volum; els **variables** sí. El quocient CF/CV definix el palanquejament operatiu.
+- El **punt mort** Q* = CF/(P − CVu) és la xifra clau per decidir si una idea de negoci és viable.
+- **Lean** elimina els 7 *muda* (sobreproducció, esperes, transport, processos, inventari, moviments, defectes). Aplica més enllà de la fàbrica.
+</KeyTakeaways>
+
+## Connexió amb el projecte capstone
+
+<RetoEtapa
+  etapa={7}
+  titulo="Procés productiu + estructura de costos + llindar de rendibilitat"
+  entregable="Una pàgina amb: diagrama del procés productiu (inputs → transformació → outputs), taula de costos (CF + CVu), càlcul Q* amb arredoniment i gràfic, 2 muda identificats."
+>
+Dibuixa el **procés productiu** del teu projecte: quins són els teus inputs (què compres o consumixes), quina és la transformació (què fas tu amb eixos inputs) i quins els teus outputs (què entregues al client)? Si el teu projecte és servici o digital, el procés existix igual encara que no hi haja cadena de muntatge.
+
+Estima els **costos**: identifica almenys 3 partides fixes (CF) i 3 variables (CVu) realistes. Calcula el teu **punt mort** `Q* = CF / (P − CVu)` amb el preu de venda unitari que has fixat en l'**etapa 6** (estratègia comercial). **Arredonix cap amunt** i **dibuixa el gràfic** amb les dos rectes i Q\* marcat.
+
+Acaba identificant els **2 tipus de malbaratament** (*muda*) que més amenacen el teu projecte des del dia u. No és un exercici teòric: estos dos seran els KPIs que controlaràs en l'etapa 11 (ràtios) per detectar si el negoci s'està degradant.
+</RetoEtapa>
+
+Cada equip tanca esta unitat amb tres entregables: el **diagrama de procés productiu** del projecte (entrades, transformació, eixides, pas a pas), el càlcul del **punt mort** estimat per al primer any d'activitat i la identificació dels **dos principals tipus de malbaratament** que el projecte ha de vigilar des del principi. El càlcul del punt mort s'utilitzarà després en la Unitat 9 en dissenyar el pla financer.
+
+<Callout label="En l'EBAU" title="Bloc 3 · entra en la part pràctica" variant="concept">Esta unitat és de les més rendibles per a l'EBAU: els **costos i el punt mort** són un clàssic de la **Part II (Bloc 3)**, que val **2 punts per exercici**. També poden demanar-te calcular la **productivitat** o resoldre una decisió de **produir o comprar (make-or-buy)**. Recorda donar el resultat **amb les seues unitats** i, si escau, representar el punt mort gràficament. Practica-ho al quadern de preparació EBAU.</Callout>
+
+## Glossari
+
+- **Procés productiu.** Estructura bàsica que combina entrades (inputs), transformació i eixides (outputs) per generar productes o servicis.
+- **Cadena de valor.** Marc de Michael Porter (1985) que descompon l'empresa en activitats primàries (logística, operacions, màrqueting, vendes, servici) i de suport (infraestructura, RH, tecnologia, aprovisionament) per analitzar on s'afig valor.
+- **Eficàcia.** Capacitat d'assolir l'objectiu proposat. Es mesura en termes absoluts: s'assolix o no.
+- **Eficiència.** Capacitat d'assolir l'objectiu amb el mínim cost, temps o malbaratament. Es mesura com a ràtio output/input.
+- **Productivitat.** Relació entre el produït i els recursos consumits. Sol expressar-se per treballador, per hora treballada o per unitat de capital.
+- **Costos fixos (CF).** Costos que no depenen del volum de producció a curt termini (lloguer, sous estructurals, amortització, assegurances).
+- **Costos variables (CV).** Costos que depenen directament del volum produït (matèries primeres, energia, comissions, embalatges). El cost variable unitari (CVu) és CV/Q.
+- **Cost total i cost mitjà.** CT = CF + CVu·Q; CMe = CT/Q. A mesura que Q creix, CMe baixa pel repartiment dels costos fixos (economies d'escala).
+- **Palanquejament operatiu.** Relació entre costos fixos i costos variables. Com major el pes dels CF, major sensibilitat del benefici al volum.
+- **Punt mort (llindar de rendibilitat).** Volum de producció i vendes en què ingressos totals = costos totals. Q* = CF / (P − CVu).
+- **Marge de seguretat.** Diferència percentual entre la demanda real i el punt mort. Indica quant pot caure la demanda abans d'entrar en pèrdues.
+- **Lean Manufacturing.** Sistema de producció desenvolupat per Toyota la idea central del qual és eliminar malbaratament (*muda*) en cada pas del procés.
+- **Muda.** Paraula japonesa per a *malbaratament*. Lean identifica set tipus: sobreproducció, esperes, transport, processos innecessaris, inventari, moviments, defectes.
+- **Just in Time (JIT).** Principi de produir només el necessari, quan es necessita, en la quantitat que es necessita. Reduïx l'inventari al mínim.
+
+## Per aprofundir
+
+- Womack, J. P., Jones, D. T. i Roos, D. (1990). *The Machine That Changed the World*. Rawson Associates. Obra que va popularitzar *lean manufacturing* a Occident; continua sent la referència més citada del sector.
+- Goldratt, E. M. (1984). *The Goal: A Process of Ongoing Improvement*. North River Press. Novel·la industrial sobre la teoria de les restriccions; lectura amena per entendre els colls d'ampolla en producció.
+- Toyota Production System (documental, 2017). *Inside the Toyota Way*. Visita guiada a la planta de Takaoka que mostra els principis Lean en operació real.
+- Eurostat. *Labour productivity per hour worked* — base de dades comparada Espanya/UE. Dades oficials i actualitzades sobre la bretxa de productivitat espanyola.
+- Adler, P. S. (1993). *Time-and-motion regained*. Harvard Business Review, 71(1). Lectura clàssica sobre com NUMMI (joint venture entre Toyota i GM) va demostrar que les tècniques Lean podien aplicar-se en contextos culturals molt distints al japonés.
+
+## Preguntes per reflexionar
+
+1. Una empresa pot ser molt eficient a fer una cosa que el mercat no vol. Quins senyals primerencs permeten detectar que un equip està optimitzant un procés productiu equivocat? Com es connecta açò amb les ferramentes de la Unitat 5 (mapa d'empatia, iteració del BMC)?
+2. El palanquejament operatiu alt multiplica beneficis quan les vendes pugen però enfonsa el resultat quan cauen. En quina fase d'un projecte emprenedor creus que convé assumir un palanquejament alt i en quina és preferible mantindre costos variables encara que això reduïsca el marge unitari? Argumenta amb un cas concret.
+3. La filosofia Lean va nàixer en una fàbrica de cotxes però hui s'aplica en hospitals, cuines i escoles. Identifica un procés del teu propi institut o entorn (matrícules, menjador, biblioteca, repartiment de torns) i descriu quins dos tipus de *muda* podrien reduir-se amb tècniques Lean bàsiques. Quines resistències culturals esperaries trobar?
+
+<Bibliography>
+
+1. Womack, J. P., Jones, D. T. i Roos, D. (1990). *The Machine That Changed the World*. Rawson Associates.
+2. Ohno, T. (1988). *Toyota Production System: Beyond Large-Scale Production*. Productivity Press.
+3. Porter, M. E. (1985). *Competitive Advantage: Creating and Sustaining Superior Performance*. Free Press.
+4. Goldratt, E. M. (1984). *The Goal: A Process of Ongoing Improvement*. North River Press.
+5. Liker, J. K. (2004). *The Toyota Way: 14 Management Principles from the World's Greatest Manufacturer*. McGraw-Hill.
+6. Eurostat (2025). *Labour productivity per hour worked* — base de dades `nama_10_lp_ulc`. Comissió Europea.
+7. Inditex (2026). *Resultats Consolidats Exercici 2025*. Inditex Investor Relations.
+8. Pham, H. H. et al. (2007). *Episode-Based Performance Measurement and Payment: Making It a Reality*. Health Affairs, 26(4) — sobre els resultats del programa Lean a Virginia Mason.
+
+</Bibliography>
+
+<MirarFora
+  unidad={7}
+  libro={{
+    titulo: "Economics: The User's Guide",
+    meta: 'Ha-Joon Chang · Pelican Books, 2014',
+    porque: 'Chang dedica un capítol sencer a com Toyota, Samsung i altres empreses asiàtiques van construir avantatge productiu sense innovació tecnològica de ruptura —polida operativa, formació industrial, paciència estatal—. Útil per entendre que Lean no va ser màgia, va ser context.',
+    paginas: 'Capítol 7 (com es fa diner)',
+  }}
+  video={{
+    titulo: "mi problema con nespresso (análisis de procesos productivos)",
+    meta: 'Canal en castellà · YouTube',
+    duracion: '~12 min',
+    porque: 'Una mirada crítica al procés productiu de les càpsules Nespresso: marges, residus, eficiència i malbaratament (els 7 muda en la seua versió moderna). Bon complement al cas de la unitat 6 sobre Nespresso.',
+    url: 'https://www.youtube.com/results?search_query=mi+problema+con+nespresso',
+  }}
+  cuenta={{
+    titulo: '@TrungTPhan',
+    meta: 'X / Twitter',
+    porque: 'Fils sobre com funcionen processos productius d\'empreses famoses (Costco, Aldi, Toyota, Domino\'s) amb dades concretes. La versió Twitter del «darrere de les xifres».',
+  }}
+  actividad_titulo="Compta els muda de la teua rutina"
+  actividad_duracion="20 min"
+>
+  <Fragment slot="actividad">
+    Tria **una rutina quotidiana** teua (preparar l'esmorzar, arribar a l'institut, fer un treball de classe). Cronometra-la honestament i enumera **els 7 muda** que detectes: quant temps d'espera? quant moviment innecessari? quins passos estan sobreproduïts? L'exercici és lleuger però entrena la mirada Lean en un objecte familiar abans d'aplicar-la a un projecte.
+  </Fragment>
+  <Fragment slot="para-clase">
+    Variant en grups de 3 (45 min): cada grup tria **un procés de l'aula o del centre** (entrar/eixir de classe, menjar a la cafeteria, demanar un llibre a la biblioteca) i l'observa durant un dia. L'endemà, presenta els muda detectats i **una proposta de millora mesurable**. La proposta no cal que s'aplique —s'avalua la mirada operativa, no el resultat—. Materials: cronòmetre, full d'observació.
+  </Fragment>
+</MirarFora>
