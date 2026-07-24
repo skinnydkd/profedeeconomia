@@ -1,0 +1,523 @@
+---
+asignatura: eco-1bach
+unidad: 4
+title: 'Microeconomia I: oferta, demanda i mercat'
+lema: >-
+  El preu no el fixa ni qui produïx ni qui compra. El fixa la trobada
+  entre els dos en un lloc que anomenem mercat. Entendre com es mou eixe
+  preu quan canvia el món és el cor de l'anàlisi microeconòmica.
+lang: ca
+estado: publicado
+slug: "asignaturas/eco-1bach/libro/04-oferta-demanda-mercado.ca"
+duracion: 7-8 sessions · 2,5 setmanes
+bloque: Bloc B
+sabers:
+  - B.1
+conceptos_clave:
+  - llei de la demanda
+  - llei de l'oferta
+  - equilibri de mercat
+  - preu d'equilibri
+  - excés de demanda
+  - excés d'oferta
+  - desplaçament de la corba
+  - moviment al llarg de la corba
+  - factors que desplacen la demanda
+  - factors que desplacen l'oferta
+  - competència perfecta
+  - monopoli
+  - oligopoli
+  - competència monopolística
+objetivos:
+  - Aplicar la llei de la demanda i la llei de l'oferta a casos reals del mercat espanyol.
+  - Distingir un moviment al llarg d'una corba d'un desplaçament de la corba.
+  - Identificar els cinc factors principals que desplacen la demanda i els que desplacen l'oferta.
+  - Trobar l'equilibri de mercat gràficament i algebraicament a partir de funcions lineals.
+  - Reconéixer les quatre estructures de mercat bàsiques amb exemples espanyols actuals.
+publicado_en: 2026-05-15
+---
+
+import Callout from '@components/Callout.astro';
+import Curiosity from '@components/Curiosity.astro';
+import RealExample from '@components/RealExample.astro';
+import SolvedExercise from '@components/SolvedExercise.astro';
+import Steps from '@components/Steps.astro';
+import KeyTakeaways from '@components/KeyTakeaways.astro';
+import Diagram from '@components/Diagram.astro';
+import Figure from '@components/Figure.astro';
+import OfertaDemanda from '@components/diagrams/OfertaDemanda.astro';
+import EstructurasMercado from '@components/diagrams/EstructurasMercado.astro';
+import Bibliography from '@components/Bibliography.astro';
+import TldrUnidad from '@components/TldrUnidad.astro';
+import CasoDilema from '@components/CasoDilema.astro';
+import VuelveAlCaso from '@components/VuelveAlCaso.astro';
+import MirarFora from '@components/MirarFora.astro';
+import VocesDesacuerdo from '@components/VocesDesacuerdo.astro';
+
+import HerramientaIsland from '@components/calculadoras/HerramientaIsland.astro';
+import alfredMarshall from '@assets/libro/eco-1bach/04/alfred-marshall.jpg';
+import olivarJaen from '@assets/libro/eco-1bach/04/olivar-jaen.jpg';
+import mercamadridPuesto from '@assets/libro/eco-1bach/04/mercamadrid-puesto.jpg';
+import aveRenfe from '@assets/libro/eco-1bach/04/ave-renfe.jpg';
+
+> **Temps estimat de lectura**: ~25 min · **Sabers LOMLOE**: B.1 · **Pre-requisits**: Unitat 1 (mercats com a sistema d'assignació).
+>
+> **En acabar esta unitat sabràs**:
+> - Aplicar la llei de la demanda i la llei de l'oferta a casos reals del mercat espanyol.
+> - Distingir un moviment al llarg de la corba d'un desplaçament de la corba.
+> - Identificar els cinc factors que desplacen la demanda i els cinc que desplacen l'oferta.
+> - Calcular l'equilibri de mercat gràficament i algebraicament amb funcions lineals.
+> - Reconéixer les quatre estructures de mercat amb exemples espanyols actuals.
+
+<TldrUnidad>
+El preu de qualsevol cosa és on es creuen dos corbes: el que la gent vol comprar (**demanda**) i el que les empreses volen produir (**oferta**). Esta unitat mostra com es mouen eixes corbes i per què els preus canvien.
+
+La intuïció val per al pa, el lloguer de Barcelona, l'entrada d'un concert o el bitcoin. Una vegada interioritzada, no es desaprén.
+</TldrUnidad>
+
+<CasoDilema
+  titular="El lloguer mitjà a Barcelona va passar de 850 € en 2014 a 1.200 € en 2024. Les lleis de control de preus no l'han parat"
+  fuente="Idealista, Fotocasa, observatoris autonòmics del lloguer · 2014-2024"
+  pregunta="Per què els topalls de preus oficialment baixen el preu però el mercat real no s'immuta? És realment qüestió d'oferta i demanda?"
+>
+El preu del lloguer a Barcelona ha pujat al voltant del **40 %** en una dècada. Les administracions han intentat frenar-lo amb índexs de referència, declaració de zones tensionades i, recentment, topalls de preus. Els preus oficials s'han moderat, però el mercat real **opera al marge**: subarrendaments, contractes en negre, eixida de pisos del mercat de lloguer residencial cap al lloguer turístic o la venda.
+</CasoDilema>
+
+Fins ací hem parlat de **decisions individuals**: com tria una persona, com planifica un estalviador, com raona un consumidor amb racionalitat acotada. Ara canviem d'escala. Un mercat no és la suma aritmètica de decisions aïllades: és la **trobada coordinada** entre moltes persones que volen comprar i moltes que volen vendre un mateix bé o servici. D'eixa trobada emergix una xifra —el **preu**— que cap de les parts ha fixat individualment però que totes acaben respectant.
+
+Esta unitat presenta el model més cèlebre de la teoria econòmica: **oferta i demanda**. És una simplificació deliberada de la realitat —els mercats reals rara vegada es comporten amb esta netedat— però és la ferramenta que permet predir la direcció del canvi quan ocorre alguna cosa nova al món. Quan puja el preu de l'oli d'oliva, quan baixen els smartphones, quan es dispara el lloguer a Madrid: en tots els casos hi ha una història d'oferta i demanda darrere. Aprendre-la bé ací és la base de les Unitats 5 (elasticitat) i 6 (fallades de mercat).
+
+## El mercat: definició i tipus
+
+Un **mercat** és qualsevol institució —física, virtual, formal o informal— que posa en contacte qui oferix un bé o servici amb qui el demana, i que permet que entre ells s'acorden un preu i una quantitat. Eixa definició, deliberadament àmplia, abasta tant el mercat central d'una ciutat com Amazon, la Borsa de Madrid, una subhasta de peix a Vigo o el grup de WhatsApp on un veïnat ven coses de segona mà.
+
+### El que un mercat fa
+
+Tots els mercats, per distints que semblen, complixen **tres funcions**:
+
+- **Assignen recursos.** Decidixen qui acaba consumint cada unitat disponible. Els béns escassos acaben en mans de qui està disposat a pagar més per ells.
+- **Fixen preus.** El preu que emergix del mercat actua com a **senyal** per a tots els agents: indica a qui produïx què convé fabricar més o menys, i a qui compra què convé substituir.
+- **Coordinen sense coordinador.** Ningú dirigix el mercat. Tanmateix, cada fleca d'Espanya acaba fornejant aproximadament la quantitat de pa que es va a vendre, sense que cap autoritat central ho planifique. Adam Smith va anomenar *mà invisible* esta coordinació espontània.
+
+### Tipus de mercat segons el grau de competència
+
+Els economistes classifiquen els mercats segons **quants venedors hi ha** i **com de paregut és el que venen**. Esta classificació dona les quatre estructures de mercat bàsiques, que veurem en profunditat al final de la unitat: **competència perfecta**, **competència monopolística**, **oligopoli** i **monopoli**. El model d'oferta-demanda que estudiem a continuació descriu amb precisió el primer —competència perfecta— i servix com a aproximació útil per als altres.
+
+<Curiosity title="Dos-cents anys de mercat sense gràfic d'oferta i demanda">
+Adam Smith va publicar *La riquesa de les nacions* en **1776** i va parlar llargament del mercat, els preus i la mà invisible, però **mai va dibuixar una corba d'oferta o demanda**. La representació gràfica que hui pareix òbvia —dos corbes que es creuen en un eix preu-quantitat— no es va formalitzar fins a **1890**, cent catorze anys després, quan l'economista anglés **Alfred Marshall** va publicar els seus *Principis d'economia*. Marshall també va convertir en convenció el que encara confon generacions d'estudiants: col·locar el preu a l'eix vertical i la quantitat a l'horitzontal quan, matemàticament, el preu és la variable independent i hauria d'anar a l'eix horitzontal. Van passar **dos segles sencers** entre la intuïció de Smith i el gràfic que hui pareix tan natural com un mapa.
+</Curiosity>
+
+<Figure
+  src={alfredMarshall}
+  alt="Retrat fotogràfic d'Alfred Marshall, economista anglés, cap al 1921."
+  caption="Alfred Marshall (1842-1924) fotografiat en 1921, tres anys abans de la seua mort. Els seus *Principis d'economia* (1890) van formalitzar per primera vegada l'encreuament de les corbes d'oferta i demanda que hui ompli tots els manuals."
+  credit="Foto: Emery Walker, 1921, domini públic via Wikimedia Commons"
+  aspectHint="2/3"
+  variant="inline-small"
+/>
+
+## La demanda
+
+La **demanda** d'un bé és la quantitat que els consumidors estan **disposats a comprar** —i poden pagar— a cada preu possible, durant un període determinat i en un mercat concret. Dos matisos són importants: *disposats* (voler comprar) i *poden pagar* (tindre capacitat econòmica). Un adolescent que vol un cotxe elèctric no forma part de la demanda fins que té els 35 000 € per a pagar-lo.
+
+### La llei de la demanda
+
+La regularitat empírica més sòlida de la microeconomia és la **llei de la demanda**: quan el preu d'un bé puja, la quantitat demandada baixa; quan el preu baixa, la quantitat demandada puja. És una **relació inversa** entre preu i quantitat, i es complix en quasi tots els mercats imaginables.
+
+Per què? Per dos raons simultànies:
+
+- **Efecte substitució.** Si puja el preu del café, part dels consumidors canvien a te, a xicòria, a una altra beguda. El bé es torna relativament més car enfront dels seus substituts.
+- **Efecte renda.** Si puja el preu del café i el meu sou no canvia, la meua renda real ha baixat: ara em puc permetre menys coses, inclòs menys café.
+
+Els dos efectes espenten en la mateixa direcció i per això la llei de la demanda és tan robusta. Hi ha **excepcions documentades** (béns Giffen, béns de Veblen, béns d'estatus) però són rares i les tractarem breument en la Unitat 5.
+
+### La taula i la corba de demanda
+
+La forma més directa de representar la demanda és una **taula** que enumera, per a cada preu, la quantitat que els consumidors demanden. Imaginem el mercat mensual d'entrades de cine en una ciutat mitjana:
+
+| Preu (€/entrada) | Quantitat demandada (entrades/mes) |
+| ---: | ---: |
+| 12 | 8 000 |
+| 10 | 12 000 |
+| 8 | 18 000 |
+| 6 | 26 000 |
+| 4 | 36 000 |
+
+La taula complix la llei de la demanda: a preus més alts, menys entrades; a preus més baixos, més. Si traslladem la taula a un eix cartesià amb el preu en vertical i la quantitat en horitzontal, els cinc punts queden alineats al llarg d'una línia **descendent d'esquerra a dreta**: eixa és la **corba de demanda**. En este llibre la dibuixarem com una recta per a simplificar; en la realitat pot ser més corba, però la **direcció descendent** es manté sempre.
+
+Algebraicament, la corba de demanda de l'exemple s'aproxima per la funció lineal **Q_d = 60 000 − 4 000·P**: cada euro addicional reduïx la demanda en 4 000 entrades mensuals.
+
+### Demanda individual vs demanda de mercat
+
+La corba que acabem de dibuixar és la **demanda agregada del mercat**: la suma horitzontal de les demandes individuals de tots els consumidors. Cadascun té la seua pròpia corba —alguns continuen comprant encara que puge el preu, altres desapareixen del mercat tan bon punt puja un euro—. Sumades, totes elles donen la demanda del mercat.
+
+## L'oferta
+
+L'**oferta** d'un bé és la quantitat que els productors estan **disposats a vendre** a cada preu possible, durant un període determinat i en un mercat concret. De nou, dos matisos: *disposats* (voler produir i vendre) i *capaços* (tindre els recursos per a fer-ho). Un forner que volguera fabricar 10 000 barres al dia però només té un forn per a 800 no forma part de l'oferta per damunt d'eixa xifra.
+
+### La llei de l'oferta
+
+La **llei de l'oferta** establix una relació **directa** entre preu i quantitat: quan el preu puja, els productors oferixen més; quan el preu baixa, oferixen menys. La intuïció és clara: a preus alts, vendre resulta més rendible; entren al mercat productors marginals que abans no compensaven; els existents amplien capacitat. A preus baixos, els productors menys eficients ixen del mercat i els altres reduïxen la producció.
+
+La corba d'oferta, per tant, és **ascendent d'esquerra a dreta**: a més preu, més quantitat oferida. Una formulació lineal típica seria **Q_o = a + b·P**, amb b positiu.
+
+### Oferta individual vs oferta de mercat
+
+Com en la demanda, l'oferta de mercat és la **suma horitzontal** de les ofertes de tots els productors. Si una fleca oferix 800 barres al dia a 1,50 € i una altra oferix 1 200, l'oferta de mercat a eixe preu és 2 000 barres.
+
+## L'equilibri de mercat
+
+Si dibuixem en el mateix gràfic la corba de demanda (descendent) i la d'oferta (ascendent), les dos corbes es **creuen en un únic punt**. Eixe punt és l'**equilibri de mercat**: el preu al qual els consumidors volen comprar exactament la mateixa quantitat que els productors volen vendre. L'anomenem **preu d'equilibri (P\*)** i **quantitat d'equilibri (Q\*)**.
+
+### Per què el mercat tendix a l'equilibri
+
+Què passa si el preu està **per damunt** de l'equilibri? Els productors volen vendre més del que els consumidors volen comprar. Apareix un **excés d'oferta** (també anomenat *excedent*): existències que es queden sense vendre. Els productors, en veure que no col·loquen el seu producte, **baixen el preu** per a desfer-se de l'estoc. El preu cau fins a tocar l'equilibri.
+
+I si el preu està **per davall** de l'equilibri? Els consumidors volen comprar més del que els productors volen vendre. Apareix un **excés de demanda** (també anomenat *escassetat*): cues, esgotaments, llista d'espera. Els consumidors competixen entre si, els productors s'adonen que poden cobrar més, i el preu **puja** fins a l'equilibri.
+
+El mercat, en este model, és un mecanisme **autocorrectiu**: qualsevol desviació del preu respecte de l'equilibri genera pressions que el tornen a l'equilibri. Esta propietat —l'*estabilitat de l'equilibri*— és el que fa tan poderós el model d'oferta i demanda.
+
+<Diagram caption="Equilibri en un mercat competitiu: preu i quantitat determinats per la intersecció d'oferta i demanda.">
+  <OfertaDemanda />
+</Diagram>
+
+<Callout label="Concepte clau" title="Equilibri de mercat">
+
+L'equilibri de mercat és la combinació de preu i quantitat en la qual la quantitat oferida i la quantitat demandada coincidixen. En eixe punt no hi ha tendència al canvi: cap consumidor o productor troba interés a modificar el seu comportament. Qualsevol pertorbació —un canvi en la renda, en la tecnologia, en les preferències— desplaça una de les dos corbes i genera un nou equilibri.
+
+</Callout>
+
+**Prova-ho tu mateix:**
+
+<HerramientaIsland componente="EquilibrioMercado" />
+
+<SolvedExercise number="4.1" title="Càlcul algebraic de l'equilibri de mercat">
+
+**Enunciat**
+
+En el mercat mensual d'un cert model d'auriculars sense fil, les funcions de demanda i oferta són lineals:
+
+- Demanda: **Q_d = 100 − 2P**
+- Oferta: **Q_o = 20 + 3P**
+
+(P en euros, Q en milers d'unitats mensuals.)
+
+a) Calcular el preu i la quantitat d'equilibri.
+b) Què ocorre si el Govern fixa un preu màxim de 12 € per auriculars amb l'objectiu de fer-los més accessibles? Calcular l'excés de demanda resultant.
+
+**Solució**
+
+1. En l'equilibri es complix Q_d = Q_o.
+   `100 − 2P = 20 + 3P`
+   `100 − 20 = 3P + 2P`
+   `80 = 5P`
+   `P* = 16 €`.
+2. Substituïm en qualsevol de les dos funcions per a obtindre la quantitat:
+   `Q* = 100 − 2·16 = 68 mil unitats/mes` (o equivalentment `20 + 3·16 = 68`). L'equilibri és **(P\* = 16 €, Q\* = 68 000 unitats/mes)**.
+3. Amb un preu màxim legal de 12 € (per davall de l'equilibri):
+   - Quantitat **demandada** a P = 12: Q_d = 100 − 2·12 = **76 mil unitats**.
+   - Quantitat **oferida** a P = 12: Q_o = 20 + 3·12 = **56 mil unitats**.
+4. **Excés de demanda** = Q_d − Q_o = 76 − 56 = **20 mil unitats/mes**. Apareixen 20 000 consumidors al mes que voldrien comprar al preu fixat però no troben producte.
+5. Conseqüències previsibles: cues, llistes d'espera, possible mercat negre, deteriorament de la qualitat o reducció del servici postvenda. El control de preus, excepte emergències molt concretes, sol empitjorar el problema que pretén resoldre. (Veurem casos reals —topalls al lloguer— en la **Unitat 5**.)
+
+</SolvedExercise>
+
+## Moviments al llarg de la corba vs desplaçaments de la corba
+
+Este és un dels punts on l'alumnat es confon més sovint en els exàmens. La distinció és crucial i convé fixar-la bé abans d'avançar.
+
+### Moviment al llarg de la corba
+
+Ocorre quan **canvia el preu del mateix bé** i, en conseqüència, canvia la quantitat demandada o oferida **sense que canvie la corba**. Passem d'un punt a un altre **sobre la mateixa corba**. Si el preu del cine puja de 8 € a 10 €, ens movem de (8 €, 18 000) a (10 €, 12 000): és un moviment al llarg de la corba de demanda, no un canvi de corba.
+
+### Desplaçament de la corba
+
+Ocorre quan canvia **qualsevol altre factor distint del preu del bé**. La corba sencera es desplaça —a la dreta si la demanda o oferta augmenta a tots els preus, a l'esquerra si disminuïx—. En eixe cas apareix un **nou equilibri** distint de l'anterior.
+
+La regla mnemotècnica és directa: **si canvia el preu del bé, ens movem sobre la corba; si canvia qualsevol altra cosa, la corba es desplaça**.
+
+### Els cinc factors que desplacen la demanda
+
+- **La renda dels consumidors.** Si puja la renda mitjana, puja la demanda de **béns normals** (la corba es desplaça a la dreta). En el cas dels **béns inferiors** (genèrics de supermercat, transport públic) la relació és la contrària: quan puja la renda, baixa la demanda.
+- **Els preus de béns relacionats.** Si puja el preu d'un **substitutiu** (el te quan estudiem la demanda de café), la demanda del bé analitzat puja. Si puja el preu d'un **complementari** (la pasta quan estudiem el tomàquet fregit), la demanda del bé baixa.
+- **Els gustos i preferències.** Modes, campanyes publicitàries, recomanacions sanitàries, escàndols. Quan l'OMS va publicar en 2015 que les carns processades eren probablement cancerígenes, la demanda d'embotits va caure visiblement durant setmanes a Espanya.
+- **Les expectatives.** Si els consumidors esperen que el preu puge demà, compren hui (la demanda actual puja). Les compres massives de paper higiènic al març de 2020 són l'exemple més recordat.
+- **El nombre de consumidors.** Més compradors al mercat, més demanda. El creixement de la població, l'arribada de turistes en temporada, l'obertura del mercat a un nou país: tot desplaça la demanda a la dreta.
+
+### Els cinc factors que desplacen l'oferta
+
+- **Els costos de producció.** Si pugen els costos —energia, matèries primeres, salaris— l'oferta es reduïx a cada preu: la corba es desplaça a l'esquerra. Si baixen, es desplaça a la dreta.
+- **La tecnologia.** Les millores tecnològiques permeten produir més amb els mateixos recursos: l'oferta augmenta. L'automatització en fàbriques de smartphones ha desplaçat fortament la corba d'oferta a la dreta en l'última dècada.
+- **Els preus de béns relacionats en la producció.** Si un llaurador pot dedicar la mateixa terra a gira-sol o a forment i el preu del gira-sol puja, dedicarà menys hectàrees al forment: l'oferta de forment cau.
+- **Les expectatives dels productors.** Si esperen que el preu puge pròximament, retiren producte del mercat per a vendre'l després: l'oferta actual baixa.
+- **El nombre de productors.** Més empreses al mercat, més oferta. L'entrada d'Ouigo i Iryo a l'AVE espanyol ha desplaçat fortament l'oferta de bitllets d'alta velocitat a la dreta des de 2021.
+
+<RealExample title="L'oli d'oliva 2022-2026: cicle complet de desplaçament de l'oferta" source="MAPA — Ministeri d'Agricultura, Pesca i Alimentació; INE; Plataforma Tierra (campanya 2025/2026)">
+Entre la campanya 2021/2022 i la 2023/2024, el preu mitjà de l'oli d'oliva verge extra en origen va passar de **3,30 €/kg** a superar els **9 €/kg** en alguns moments de 2023, multiplicant-se per quasi tres en 18 mesos. Què va passar? Una **sequera severa i prolongada** a Andalusia —que produïx més del 80 % de l'oli espanyol i aproximadament la meitat del mundial— va reduir la collita 2022/2023 a **666 000 tones**, enfront de la mitjana d'1,4 milions de tones habituals: pràcticament la **meitat d'oli** arribant al mercat. Traduït al llenguatge d'oferta i demanda: la corba d'oferta es va desplaçar fortament a l'esquerra, mentre la corba de demanda amb prou faenes es va moure. L'equilibri es va traslladar a un preu molt més alt amb una quantitat molt menor. En les campanyes 2024/2025 i 2025/2026, amb les pluges de primavera i produccions nacionals recuperades a **1,37-1,42 milions de tones**, l'oferta es va desplaçar de nou a la dreta i el preu en origen ha tornat a nivells pròxims a **3,7 €/kg** al maig de 2026. Cap consumidor va canviar de sobte els seus gustos per l'oli; ningú va boicotejar els productors. Tota la història s'explica per **desplaçaments successius de l'oferta**, exactament com prediu el model.
+</RealExample>
+
+<Figure
+  src={olivarJaen}
+  alt="Vista d'un olivar a la província de Jaén, amb fileres d'oliveres estenent-se fins a l'horitzó davall cel despejat."
+  caption="Olivar a la província de Jaén, vista des de la finestra d'un cortijo abandonat. Andalusia concentra més del 80 % de la producció nacional d'oli d'oliva; quan una sequera afecta esta terra, el preu mundial de l'oli es mou en qüestió de mesos."
+  credit="Foto: Veinticuatro de Jahén, CC BY-SA 4.0 via Wikimedia Commons"
+  aspectHint="3/2"
+  variant="wide"
+/>
+
+<RealExample title="Smartphones: una dècada de desplaçament de l'oferta a la dreta" source="IDC Worldwide Quarterly Mobile Phone Tracker; Statista; CIS Eurobaròmetre Tecnològic">
+En 2014, el preu mitjà d'un smartphone de gamma mitjana a Espanya rondava els **350-400 €**. Deu anys més tard, en 2024, un telèfon amb prestacions equivalents o superiors es ven per **150-200 €**: el preu real ha caigut aproximadament a la meitat. Què ha passat? Tres forces, totes elles desplaçant l'oferta a la dreta. Primer, la **tecnologia**: els processos de fabricació de xips, pantalles i bateries són hui molt més eficients que fa una dècada. Segon, la **competència**: l'entrada de fabricants xinesos (Xiaomi, Realme, Oppo, OnePlus) a Europa va multiplicar el nombre de productors al mercat. Tercer, les **economies d'escala**: la producció global anual va passar de 1 300 milions d'unitats en 2014 a més de 1 600 milions en anys pic, abaratint el cost mitjà. La demanda, mentrestant, també creixia —més usuaris, més recanvis— però **l'oferta va créixer més ràpid**. És la diferència entre el cas de l'oli d'oliva (oferta cau, preu puja) i el dels smartphones (oferta creix més que la demanda, preu baixa).
+</RealExample>
+
+<SolvedExercise number="4.2" title="Anàlisi de desplaçaments: el mercat de lloguer a Madrid">
+
+**Enunciat**
+
+Entre 2020 i 2025, el preu mitjà del lloguer a Madrid va passar d'uns **15 €/m²/mes** a més de **22 €/m²/mes** (idealista/INE, tancament 2025). Simultàniament, les dades de l'INE indiquen que el nombre de vivendes en lloguer residencial es va mantindre o fins i tot va baixar lleugerament. Analitzar la situació amb el model d'oferta i demanda:
+
+a) Identificar quins factors han desplaçat la demanda de lloguer a Madrid en este període.
+b) Identificar quins factors han desplaçat (o no han desplaçat) l'oferta.
+c) És coherent la pujada simultània de preu i la caiguda de quantitat amb un desplaçament de l'**oferta** o de la **demanda**?
+
+**Solució**
+
+1. Factors que han desplaçat la **demanda** a la dreta:
+   - Creixement poblacional: Madrid va sumar més de 250 000 habitants entre 2020 i 2025 (INE, Padró Continu).
+   - Arribada massiva de **nòmades digitals** i treballadors en remot estrangers després de la pandèmia.
+   - **Expectatives** de continuar pujant de preu (compres i lloguers preventius).
+   - Augment de llars unipersonals (factor estructural).
+2. Factors que han afectat l'**oferta**:
+   - Traspàs de pisos de lloguer residencial a **lloguer turístic** (reduïx oferta de llarga duració).
+   - **Encariment de la construcció** (costos de producció més alts).
+   - Certa **regulació restrictiva** (incertesa normativa, retenció de pisos).
+   - Resultat net: l'oferta probablement s'ha **desplaçat lleugerament a l'esquerra**.
+3. Coherència amb el model: si la **demanda puja** i l'**oferta cau o es manté**, el preu d'equilibri puja i la quantitat es pot mantindre o caure lleugerament —exactament l'observat—. Si només s'haguera mogut la demanda a l'alça, esperaríem preu i quantitat pujant alhora. La caiguda lleugera de quantitat confirma que l'oferta **també** s'ha desplaçat a l'esquerra.
+4. Conclusió pedagògica: el model permet **descartar explicacions**. La narrativa de *«és només culpa dels fons voltor»* no encaixa amb les dades si mirem les quantitats; la realitat és una combinació de pressió pel costat de la demanda i restricció pel costat de l'oferta. La política pública eficaç ha d'actuar sobre els dos costats.
+
+</SolvedExercise>
+
+## Com canvia l'equilibri quan es desplaça una corba
+
+El gran valor analític del model és que permet **predir la direcció del canvi** quan una de les dos corbes es desplaça. Resumim els quatre casos bàsics:
+
+<Steps label="Els 4 desplaçaments" title="Efecte de cada desplaçament sobre l'equilibri">
+
+<li><strong>Augmenta la demanda</strong> (corba D a la dreta). Puja P*, puja Q*. Exemple: campanya publicitària exitosa, arribada de turistes, millora de la renda per a un bé normal.</li>
+
+<li><strong>Cau la demanda</strong> (corba D a l'esquerra). Baixa P*, baixa Q*. Exemple: escàndol sanitari sobre un aliment, recessió econòmica per a béns de luxe.</li>
+
+<li><strong>Augmenta l'oferta</strong> (corba O a la dreta). Baixa P*, puja Q*. Exemple: avanç tecnològic (smartphones), entrada de nous competidors (Ouigo).</li>
+
+<li><strong>Cau l'oferta</strong> (corba O a l'esquerra). Puja P*, baixa Q*. Exemple: sequera en oli d'oliva, pujada del cost de l'energia en fàbriques.</li>
+
+</Steps>
+
+Quan es mouen **les dos corbes alhora** —cas freqüent en la realitat— una de les dos variables de l'equilibri queda **indeterminada** sense informació addicional sobre quina de les dos es mou més. Per això l'anàlisi professional combina el model amb dades empíriques sobre la magnitud de cada desplaçament.
+
+<SolvedExercise number="4.3" title="Desplaçament simultani de les dos corbes: quina variable queda indeterminada">
+
+**Enunciat**
+
+En el mercat espanyol de **cotxes elèctrics** durant 2024-2026 ocorren dos coses alhora:
+
+- Pel costat de la **demanda**: els plans públics d'ajuda (Pla MOVES) i la major consciència ambiental augmenten el nombre de compradors. La demanda es desplaça **a la dreta**.
+- Pel costat de l'**oferta**: la caiguda del preu de les bateries i les noves gigafactories abaraten la producció. L'oferta també es desplaça **a la dreta**.
+
+a) Què li ocorre amb seguretat a la **quantitat** d'equilibri?
+b) Què li ocorre al **preu** d'equilibri?
+c) Formula la regla general dels desplaçaments simultanis.
+
+**Solució**
+
+1. **Quantitat d'equilibri**. Un augment de la demanda eleva Q*; un augment de l'oferta també eleva Q*. Com que **els dos desplaçaments espenten la quantitat en la mateixa direcció**, la quantitat d'equilibri **puja amb seguretat**. Més cotxes elèctrics venuts: és el que confirmen les dades de matriculacions.
+2. **Preu d'equilibri**. Ací els dos efectes **es contraresten**: l'augment de la demanda tendix a pujar P*, però l'augment de l'oferta tendix a baixar-lo. El resultat depén de **quin dels dos desplaçaments siga major**:
+   - Si l'oferta creix més que la demanda → el preu **baixa**.
+   - Si la demanda creix més que l'oferta → el preu **puja**.
+   - Si els dos creixen per igual → el preu **es manté**.
+   Per tant, **el preu queda indeterminat** sense dades sobre la magnitud relativa de cada desplaçament. (En el cas real dels cotxes elèctrics, l'abaratiment de bateries ha pesat més, i el preu ha tendit a baixar mentre la quantitat es disparava.)
+3. **Regla general**. Quan **les dos corbes es desplacen alhora**, queda determinada amb seguretat la variable sobre la qual **els dos efectes espenten en el mateix sentit**, i queda **indeterminada** la variable sobre la qual els efectes s'oposen. Conéixer la direcció dels desplaçaments no basta: cal conéixer també la seua **magnitud relativa**. Este és el motiu pel qual l'anàlisi econòmica seriosa mai es queda en el gràfic: necessita dades empíriques.
+
+</SolvedExercise>
+
+<VocesDesacuerdo
+  tema="Topalls de lloguer: protecció o trampa?"
+  postura_a={{
+    etiqueta: 'Posició pro-topall',
+    tesis: 'La vivenda és un dret. El mercat falla en béns bàsics: deixa fora qui més ho necessita. Cal regular preus i protegir el llogater enfront del propietari.',
+  }}
+  postura_b={{
+    etiqueta: 'Posició anti-topall',
+    tesis: 'Els topalls destruïxen oferta de lloguer (es retiren pisos del mercat), creen economia submergida i desplacen la qualitat cap avall. Perjudiquen qui diuen protegir.',
+  }}
+>
+Les dos posicions tenen evidència empírica al seu favor segons el context. La política realista combina **topalls selectius** (en zones tensionades, amb criteris objectius) amb **inversió pública directa** en vivenda assequible i reformes que augmenten l'oferta. El consens tècnic —no polític— és que **sense atacar l'oferta** els topalls només desplacen el problema.
+</VocesDesacuerdo>
+
+## Les quatre estructures de mercat
+
+El model d'oferta i demanda que acabem de veure descriu amb precisió la **competència perfecta**. Els mercats reals rara vegada ho són. Convé distingir les quatre estructures clàssiques segons el **nombre d'empreses** i el **grau de diferenciació del producte**.
+
+<Diagram caption="De la competència perfecta al monopoli: com menys empreses hi ha —i més diferenciat és el producte—, més poder té cadascuna per a fixar el preu.">
+  <EstructurasMercado />
+</Diagram>
+
+### Competència perfecta
+
+**Moltes empreses, producte homogeni, lliure entrada i eixida**. Cap empresa és prou gran per a influir en el preu: totes són *preu-acceptants*. El comprador és indiferent entre comprar-li a un o a un altre perquè el producte és el mateix. Informació transparent, sense barreres d'entrada.
+
+L'exemple més pròxim a Espanya són els **mercats agrícoles majoristes** —Mercabarna, Mercamadrid—: milers de productors de tomàquet, poma o taronja venen un producte essencialment intercanviable a un preu que es forma per l'encreuament d'oferta i demanda diària. Cap productor individual pot pujar el seu preu per damunt del de mercat sense perdre totes les seues vendes. La competència perfecta és més una **referència teòrica** que una realitat quotidiana, però l'aproximació és útil per a entendre molts mercats de matèries primeres.
+
+<Figure
+  src={mercamadridPuesto}
+  alt="Parada de venda de fruita i verdura en una nau majorista de Mercamadrid, amb caixes apilades i preus visibles."
+  caption="Parada majorista a Mercamadrid, el segon mercat de fruita i hortalisses més gran del món. Centenars d'operadors venen producte homogeni a comerciants que poden comparar preus a l'instant: l'aproximació més pròxima a la competència perfecta que es veu en una ciutat espanyola."
+  credit="Foto: Esferadeoro, CC BY-SA 4.0 via Wikimedia Commons"
+  aspectHint="3/2"
+/>
+
+### Monopoli
+
+**Una sola empresa, sense substituts pròxims, barreres d'entrada altes**. L'empresa monopolista decidix el preu que més li convé: és *preu-fixadora*. El monopoli pot sorgir per concessió legal (monopolis públics), per control d'un recurs clau, per patents o per **economies d'escala** que fan inviable que entre un altre competidor.
+
+Casos purs de monopoli en queden pocs. Històricament, **Renfe** va mantindre durant dècades un quasi-monopoli en l'alta velocitat ferroviària espanyola: l'única forma de creuar Madrid-Barcelona en tren ràpid era l'AVE de Renfe. Des de 2021 eixe monopoli s'ha trencat amb l'entrada d'**Ouigo** (filial de SNCF francesa) i **Iryo** (Trenitalia + Air Nostrum + Globalvia), passant a una estructura d'**oligopoli** amb tres operadors. Altres casos pròxims al monopoli a Espanya: **Adif** en la gestió d'infraestructura ferroviària, **Aena** en la gestió d'aeroports comercials, distribuïdores elèctriques a la seua zona geogràfica.
+
+<Figure
+  src={aveRenfe}
+  alt="Tren d'alta velocitat Renfe AVE sèrie 103 estacionat en una andana de l'estació de Girona."
+  caption="Un AVE sèrie 103 de Renfe a Girona. Durant quasi dos dècades, tot viatger que creuava Espanya en alta velocitat ho feia en un d'estos trens; des de 2021 compartix vies amb Ouigo i Iryo, transformant un monopoli en oligopoli."
+  credit="Foto: Robot8A, CC BY-SA 4.0 via Wikimedia Commons"
+  aspectHint="3/2"
+/>
+
+### Oligopoli
+
+**Poques empreses grans, molt poder de mercat, producte homogeni o diferenciat**. Les decisions de cadascuna afecten la resta. Hi ha barreres d'entrada significatives (capital, regulació, marca). Els oligopolis són extremadament comuns en l'economia espanyola.
+
+L'exemple més nítid és el **mercat elèctric minorista**: **Iberdrola (33,6 % de punts de subministrament), Endesa (32,6 %) i Naturgy (14,6 %)** concentraven en 2024 més del **80 % del mercat domèstic** d'electricitat a Espanya (CNMC, Informe de Supervisió dels Mercats Minoristes 2024). En quota de vendes d'energia, Endesa lidera amb el 28 %, Iberdrola el 23 % i Naturgy el 8 %. Encara que existixen desenes de comercialitzadores xicotetes, les decisions de preu i oferta de les tres grans marquen el ritme del mercat. Altres oligopolis espanyols rellevants: **telefonia mòbil** (Telefónica/Movistar, Vodafone, Orange/MásMóvil-Digi), **banca** (Santander, BBVA, CaixaBank), **distribució de combustibles** (Repsol, Cepsa/Moeve, BP).
+
+En un oligopoli, les empreses poden competir agressivament (guerres de preus), coordinar-se tàcitament (líder de preus) o, en casos il·legals, **col·ludir**: pactar preus o repartir-se el mercat. La CNMC vigila i sanciona estos casos —el càrtel dels fabricants de cotxes per intercanvi d'informació comercial sensible (2015-2021) és un cas recent.
+
+### Competència monopolística
+
+**Moltes empreses, producte diferenciat, lliure entrada**. És l'estructura més estesa en sectors de consum: cada empresa ven un producte **paregut però no idèntic** al de les altres, la qual cosa li permet cert marge per a fixar preu (un mini-monopoli sobre *la seua* versió del producte) sense escapar de la pressió de la competència.
+
+L'exemple quotidià és el **supermercat**: **Mercadona, Lidl, Carrefour, Dia, Alcampo, Aldi, Eroski** competixen en el mateix terreny però amb propostes diferenciades —Mercadona aposta per la marca pròpia consolidada, Lidl per preus baixos en assortiment reduït, Carrefour per amplitud de gamma, Dia per proximitat—. Hi ha desenes d'actors, però el lideratge quantitatiu està concentrat: Mercadona ronda el **27 %** del mercat, Carrefour el 9 %, Lidl el 7 %. La competència és real —cap supermercat pot pujar preus bruscament sense perdre clients— però el producte està diferenciat per marca, qualitat percebuda, ubicació i servici. Altres exemples típics: restauració, perruqueries, llibreries, roba de carrer.
+
+### Resum comparat
+
+| Estructura | Nre. d'empreses | Producte | Poder de fixar preu | Exemple espanyol |
+| --- | --- | --- | --- | --- |
+| Competència perfecta | Moltíssimes | Homogeni | Nul | Productors de taronges a Mercabarna |
+| Competència monopolística | Moltes | Diferenciat | Baix | Mercadona vs Lidl vs Carrefour (distribució alimentària) |
+| Oligopoli | Poques | Homogeni o diferenciat | Alt | Iberdrola, Endesa, Naturgy (electricitat) |
+| Monopoli | Una | Sense substituts | Total | Renfe AVE (fins a 2021), Aena |
+
+<Callout label="Avís per a l'examen" title="No confondre oligopoli amb monopoli">
+
+Un error freqüent en proves és etiquetar com a *monopoli* qualsevol mercat dominat per marques conegudes. Mercadona —amb una **quota de mercat al voltant del 27-29 %** en la distribució alimentària espanyola (Kantar Worldpanel, tancament 2025), seguida per Lidl (6,9 %) i Carrefour (≈ 8 %)— **no és monopoli**: hi ha competència real, encara que concentrada. La banca espanyola no és monopoli: hi ha cinc grans i desenes de mitjanes (l'OPA hostil de BBVA sobre Sabadell **va fracassar** a l'octubre de 2025 en quedar-se en el 25,33 % del capital). La regla pràctica: si una empresa pot pujar el preu un 20 % sense perdre quasi clients, és quasi-monopoli; si perd clients en massa cap a un substitut pròxim, no ho és. Per a l'anàlisi detallada del **model de negoci** de Mercadona (proveïdors, marca pròpia, RH, logística), vegeu **EDMN 2BACH**, on és cas central recurrent.
+
+</Callout>
+
+<VuelveAlCaso referencia="Lloguer de Barcelona i els topalls de preu">
+Els topalls operen com a **preus màxims per davall de l'equilibri**: oficialment baixen el preu, però creen tres efectes col·laterals ben documentats:
+
+- **Escassetat**: menys pisos en lloguer residencial. Qui no troba el «preu oficial» no aconseguix pis per cap preu.
+- **Mercats paral·lels**: subarrendaments, lloguer turístic, venda. Els pisos ixen del segment regulat cap a segments sense topall.
+- **Degradació de la qualitat**: amb marge comprimit, el propietari reduïx manteniment.
+
+La lliçó operativa, transversal a la política econòmica: les intervencions **només sobre preus** —sense atacar l'oferta mitjançant construcció, vivenda pública o reforma del sòl— solen **desplaçar el problema**, no resoldre'l. És un dels consensos més sòlids en economia aplicada, encara que políticament siga incòmode d'acceptar.
+</VuelveAlCaso>
+
+<KeyTakeaways title="L'essencial de la unitat">
+- El **mercat** assigna recursos, fixa preus i coordina sense coordinador. La seua anàlisi bàsica es fa amb el model d'**oferta i demanda**.
+- **Llei de la demanda**: a més preu, menys quantitat demandada (relació inversa). **Llei de l'oferta**: a més preu, més quantitat oferida (relació directa).
+- L'**equilibri de mercat** és el punt on es creuen les dos corbes. Per damunt de l'equilibri hi ha excés d'oferta; per davall, excés de demanda.
+- **Moviment al llarg de la corba**: canvia el preu del bé. **Desplaçament de la corba**: canvia qualsevol altra variable.
+- La demanda es desplaça per **renda, preus de béns relacionats, gustos, expectatives i nombre de consumidors**. L'oferta, per **costos, tecnologia, preus relacionats en la producció, expectatives i nombre de productors**.
+- Hi ha quatre estructures de mercat: **competència perfecta** (agrícola), **monopoli** (Renfe AVE històric), **oligopoli** (elèctriques, banca, telefonia) i **competència monopolística** (supermercats, restauració).
+</KeyTakeaways>
+
+## Connexió amb les pròximes unitats
+
+Esta unitat assenta les bases per a tot el Bloc B. En la **Unitat 5** aprendrem a mesurar *quant* respon la demanda i l'oferta a un canvi de preu —l'**elasticitat**— i usarem eixa mesura per a entendre per què pujar l'IVA del tabac recapta molt i pujar l'IVA del pa recapta poc. En la **Unitat 6** veurem les **fallades de mercat**: situacions en les quals l'equilibri que produïx el mercat no és socialment desitjable (externalitats, béns públics, poder de mercat, informació asimètrica) i la intervenció pública pot millorar el resultat.
+
+## Glossari
+
+- **Mercat**: institució que posa en contacte oferents i demandants d'un bé i permet acordar preu i quantitat. Assigna recursos, fixa preus i coordina sense coordinador.
+- **Demanda**: quantitat que els consumidors estan disposats i poden comprar a cada preu en un període donat.
+- **Llei de la demanda**: relació inversa entre preu i quantitat demandada (efecte substitució + efecte renda).
+- **Oferta**: quantitat que els productors estan disposats i poden vendre a cada preu en un període donat.
+- **Llei de l'oferta**: relació directa entre preu i quantitat oferida.
+- **Equilibri de mercat**: preu i quantitat (P*, Q*) on es creuen oferta i demanda. No hi ha tendència al canvi.
+- **Excés d'oferta / excés de demanda**: per damunt de l'equilibri sobra producte (excedent); per davall en falta (escassetat). Els dos s'autocorregixen via preu.
+- **Moviment al llarg de la corba**: canvi de quantitat per un canvi del preu del mateix bé. No canvia la corba.
+- **Desplaçament de la corba**: canvi de tota la corba per una variable distinta del preu del bé (renda, costos, tecnologia, gustos, expectatives, nombre d'agents).
+- **Bé normal / inferior**: el normal augmenta la seua demanda quan puja la renda; l'inferior la reduïx.
+- **Béns substitutius / complementaris**: el substitutiu es consumix en lloc del bé (te i café); el complementari, junt amb ell (cotxe i gasolina).
+- **Estructures de mercat**: competència perfecta, competència monopolística, oligopoli i monopoli, segons el nombre d'empreses i la diferenciació del producte.
+
+## Per a aprofundir
+
+Si esta unitat t'ha interessat, ací tens algunes lectures i recursos per a anar més enllà:
+
+- **Principios de economía** — *N. Gregory Mankiw* (10a ed., 2024), capítols 4-6. Per què encaixa: la millor explicació introductòria d'oferta, demanda, equilibri i controls de preus, amb gràfics nets.
+- **Microeconomía** — *Paul Krugman i Robin Wells* (Reverté, edicions recents). Per què encaixa: abundants casos reals que connecten el model amb notícies econòmiques, en línia amb els RealExample del manual.
+- **Informe anual de supervisión de los mercados minoristas** — *CNMC*. Per què encaixa: dades oficials i actualitzades de quotes de mercat (electricitat, telecos) per a discutir estructures de mercat amb xifres reals.
+- **Supply and Demand** — *Marginal Revolution University, sèrie de Tyler Cowen i Alex Tabarrok*. Per què encaixa: vídeos curts i rigorosos que visualitzen desplaçaments de corbes pas a pas. Gratis i en anglés amb subtítols.
+- **El mercado del aceite de oliva** — *informes mensuals del Ministeri d'Agricultura (MAPA)*. Per què encaixa: permet seguir en temps real el cas del RealExample i comprovar com els desplaçaments d'oferta mouen el preu.
+
+## Preguntes per a reflexionar
+
+Estes preguntes no tenen una resposta única. Servixen per a discutir a classe o per a pensar individualment en tancar la unitat:
+
+1. El model d'oferta i demanda prediu que un preu màxim al lloguer genera escassetat. Per què creus que, malgrat això, molts governs l'apliquen? Què pesa més, l'eficiència o l'equitat?
+2. El preu de l'oli es va multiplicar per tres sense que ningú canviara els seus gustos. Et pareix "just" que una sequera dispare el preu d'un aliment bàsic? Qui hauria d'intervindre, si algú?
+3. Mercadona té quasi un 30 % de quota però no és monopoli. Quina prova usaries tu per a decidir si un mercat és "massa concentrat"? Basta amb la quota de mercat?
+4. En el cas dels desplaçaments simultanis, conéixer la direcció no basta: cal la magnitud. Què diu això sobre el paper de les dades enfront de la teoria en economia?
+
+<Bibliography>
+
+1. Marshall, A. (1890). *Principles of Economics*. Macmillan.
+2. Mankiw, N. G. (2021). *Principios de economía* (9a ed.). Cengage Learning.
+3. Krugman, P. i Wells, R. (2019). *Microeconomía* (5a ed.). Reverté.
+4. Ministeri d'Agricultura, Pesca i Alimentació. *Informes mensuales del mercado del aceite de oliva* — sèries 2021-2024.
+5. INE. *Índice de precios del alquiler de vivienda* i *Encuesta continua de hogares* — Madrid, 2020-2024.
+6. CNMC. *Informe anual de supervisión de los mercados eléctricos minoristas* — edicions 2022-2024.
+7. RD 243/2022, de 5 d'abril, pel qual s'establixen l'ordenació i els ensenyaments mínims del Batxillerat (BOE-A-2022-5521).
+
+</Bibliography>
+
+<MirarFora
+  unidad={4}
+  libro={{
+    titulo: 'Freakonomics',
+    meta: 'Steven Levitt i Stephen Dubner · Vintage, 2005',
+    porque: 'Capítols sobre incentius i mercats reals (drogues, agents immobiliaris, sumo japonés). Una entrada divertida i rigorosa a la microeconomia aplicada.',
+    paginas: 'Capítols 1, 2 i 6',
+  }}
+  video={{
+    titulo: 'los precios no existen · ¿cómo funciona la economía?',
+    meta: 'Canal de divulgació en castellà · YouTube',
+    duracion: '~10-12 min',
+    porque: 'Sobre com els preus són **senyals agregades** que cap agent fixa individualment i per què això els fa tan difícils de controlar per decret.',
+    url: 'https://www.youtube.com/results?search_query=los+precios+no+existen+como+funciona+la+economia',
+  }}
+  cuenta={{
+    titulo: 'econgraphs.org',
+    meta: 'Web · ferramenta interactiva',
+    porque: 'Permet moure les corbes d\'oferta i demanda amb el ratolí i veure el nou equilibri en temps real. La millor ferramenta gratuïta per a entrenar la intuïció gràfica.',
+  }}
+  actividad_titulo="Prediu el preu d'un mercat real"
+  actividad_duracion="25 min"
+>
+  <Fragment slot="actividad">
+    Tria un **mercat real** (lloguer a la teua ciutat, gasolina, entrades a un concert, productes de Halloween, maduixes al maig vs novembre). Identifica què desplaça cada corba: què fa pujar o baixar la demanda? què fa pujar o baixar l'oferta? Prediu com canviarà el preu si X varia.
+  </Fragment>
+  <Fragment slot="para-clase">
+    Variant *predicció de preus*: el professor tria un mercat i un *shock* concret (pujada del forment, sequera a Catalunya, llançament d'un iPhone). Els grups prediuen l'efecte sobre el preu d'equilibri i argumenten amb el model. Comprovació amb dades reals al final. Durada: 45 min.
+  </Fragment>
+</MirarFora>
+
+<Callout label="Juga a classe" variant="example">
+Les estructures de mercat —competència, monopoli, oligopoli— es viuen en [**Econopoly**](/juegos/econopoly/), un Monopoly econòmic amb monopolis sectorials, cicles i Banc Central, per a 1-6 jugadors.
+</Callout>
