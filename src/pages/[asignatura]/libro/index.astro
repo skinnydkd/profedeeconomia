@@ -3,6 +3,9 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 import { ASIGNATURA_SLUGS, ASIGNATURAS } from '@/lib/asignaturas';
 import { breadcrumbLd, itemListLd } from '@/lib/seo';
 import { getCollection } from 'astro:content';
+import { getLocale } from '@/i18n/locale';
+import { pickLocalizedEntry } from '@/i18n/content-locale';
+import { localizeAsignatura } from '@/i18n/asignaturas-ca';
 import type { GetStaticPaths } from 'astro';
 
 export const getStaticPaths = (async () => {
@@ -12,12 +15,46 @@ export const getStaticPaths = (async () => {
   }));
 }) satisfies GetStaticPaths;
 
-const { asignatura: a } = Astro.props;
+const locale = getLocale(Astro.currentLocale);
+const a = localizeAsignatura(Astro.props.asignatura, locale);
 
 const allUnits = await getCollection('libro');
+const caById = new Map(
+  allUnits
+    .filter((u) => u.data.estado === 'publicado' && u.data.lang === 'ca')
+    .map((u) => [u.id, u]),
+);
 const units = allUnits
-  .filter((u) => u.data.asignatura === a.slug && u.data.estado === 'publicado')
-  .sort((x, y) => x.data.unidad - y.data.unidad);
+  .filter((u) => u.data.asignatura === a.slug && u.data.estado === 'publicado' && u.data.lang === 'es')
+  .sort((x, y) => x.data.unidad - y.data.unidad)
+  .map((u) => pickLocalizedEntry(u, caById, locale));
+
+const copy = {
+  es: {
+    inicio: 'Inicio', libro: 'Libro',
+    kicker: `${a.shortLabel} · Libro`,
+    descripcion: `Las unidades del libro de ${a.title}.`,
+    vacio: 'Las unidades publicadas aparecerán aquí a medida que se vayan completando.',
+    unidad: (n: number) => `${n} ${n === 1 ? 'unidad publicada' : 'unidades publicadas'}.`,
+    descargar: 'Descargar libro completo',
+    descargarSub: (n: number) => `PDF · ${n} unidades · todas las páginas`,
+    previsualizar: 'Previsualizar versión impresa en navegador',
+    indice: `Libro ${a.shortLabel} — Índice de unidades`,
+    unidadLd: (n: number, t: string) => `Unidad ${n}. ${t}`,
+  },
+  ca: {
+    inicio: 'Inici', libro: 'Llibre',
+    kicker: `${a.shortLabel} · Llibre`,
+    descripcion: `Les unitats del llibre de ${a.title}.`,
+    vacio: 'Les unitats publicades apareixeran ací a mesura que es completen.',
+    unidad: (n: number) => `${n} ${n === 1 ? 'unitat publicada' : 'unitats publicades'}.`,
+    descargar: 'Descarregar llibre complet',
+    descargarSub: (n: number) => `PDF · ${n} unitats · totes les pàgines`,
+    previsualizar: 'Previsualitzar versió impresa al navegador',
+    indice: `Llibre ${a.shortLabel} — Índex d'unitats`,
+    unidadLd: (n: number, t: string) => `Unitat ${n}. ${t}`,
+  },
+}[locale];
 
 // The PDF is published to /downloads/<slug>-libro.pdf when the
 // `npm run build:pdf` step has been run. We always render the CTA;
@@ -25,21 +62,21 @@ const units = allUnits
 // during early publishing.
 const pdfHref = `/downloads/${a.slug}-libro.pdf`;
 
-const idToSlug = (id: string) => id.split('/').pop()?.replace(/\.mdx?$/, '') ?? id;
+const idToSlug = (id: string) => id.split('/').pop()?.replace(/\.mdx?$/, '').replace(/\.ca$/, '') ?? id;
 const unitPath = (id: string) => `/${a.slug}/libro/${idToSlug(id)}/`;
 
 const jsonLd = [
   breadcrumbLd([
-    { name: 'Inicio', path: '/' },
+    { name: copy.inicio, path: '/' },
     { name: a.shortLabel, path: `/${a.slug}/` },
-    { name: 'Libro', path: `/${a.slug}/libro/` },
+    { name: copy.libro, path: `/${a.slug}/libro/` },
   ]),
   ...(units.length > 0
     ? [
         itemListLd({
-          name: `Libro ${a.shortLabel} — Índice de unidades`,
+          name: copy.indice,
           items: units.map((u) => ({
-            name: `Unidad ${u.data.unidad}. ${u.data.title}`,
+            name: copy.unidadLd(u.data.unidad, u.data.title),
             path: unitPath(u.id),
           })),
         }),
@@ -49,26 +86,25 @@ const jsonLd = [
 ---
 
 <BaseLayout
-  title={`Libro — ${a.shortLabel}`}
-  description={`Las unidades del libro de ${a.title}.`}
+  title={`${copy.libro} — ${a.shortLabel}`}
+  description={copy.descripcion}
   jsonLd={jsonLd}
+  contentLang={locale}
 >
   <div class="container">
     <nav class="breadcrumb">
-      <a href="/">Inicio</a> <span class="sep">›</span>
+      <a href="/">{copy.inicio}</a> <span class="sep">›</span>
       <a href={`/${a.slug}/`}>{a.shortLabel}</a> <span class="sep">›</span>
-      <span>Libro</span>
+      <span>{copy.libro}</span>
     </nav>
   </div>
 
   <section class="hero">
     <div class="container">
-      <span class="kicker kicker--sentence">{a.shortLabel} · Libro</span>
+      <span class="kicker kicker--sentence">{copy.kicker}</span>
       <h1>{a.title}</h1>
       <p class="subtitle">
-        {units.length === 0
-          ? 'Las unidades publicadas aparecerán aquí a medida que se vayan completando.'
-          : `${units.length} ${units.length === 1 ? 'unidad publicada' : 'unidades publicadas'}.`}
+        {units.length === 0 ? copy.vacio : copy.unidad(units.length)}
       </p>
 
       {units.length > 0 && (
@@ -76,12 +112,12 @@ const jsonLd = [
           <a class="download-cta" href={pdfHref} download>
             <span class="download-cta__icon" aria-hidden="true">↓</span>
             <span class="download-cta__text">
-              <strong>Descargar libro completo</strong>
-              <span class="muted">PDF · {units.length} unidades · todas las páginas</span>
+              <strong>{copy.descargar}</strong>
+              <span class="muted">{copy.descargarSub(units.length)}</span>
             </span>
           </a>
           <a class="download-secondary" href={`/${a.slug}/libro/imprimir/?preview=1`} target="_blank" rel="noopener">
-            Previsualizar versión impresa en navegador
+            {copy.previsualizar}
           </a>
         </div>
       )}
@@ -95,7 +131,7 @@ const jsonLd = [
           {units.map((u) => (
             <li>
               <span class="num">{String(u.data.unidad).padStart(2, '0')}</span>
-              <a class="title" href={`/${a.slug}/libro/${u.id.split('/').pop()?.replace(/\.mdx?$/, '')}/`}>
+              <a class="title" href={unitPath(u.id)}>
                 {u.data.title}
               </a>
             </li>

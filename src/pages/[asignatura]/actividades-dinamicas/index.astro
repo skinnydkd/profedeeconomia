@@ -20,7 +20,7 @@ const [libroAll, testsAll, dinAll, recAll] = await Promise.all([
 ]);
 
 const units = libroAll
-  .filter((u) => u.data.asignatura === a.slug && u.data.estado === 'publicado')
+  .filter((u) => u.data.asignatura === a.slug && u.data.estado === 'publicado' && u.data.lang === 'es')
   .sort((x, y) => x.data.unidad - y.data.unidad)
   .map((u) => {
     const unidad = u.data.unidad;

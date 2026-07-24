@@ -19,7 +19,7 @@ export const GET: APIRoute = async () => {
       marcoNormativo: a.marcoNormativo,
       modalidad: a.modalidad,
       units: allUnits
-        .filter((u) => u.data.asignatura === a.slug && u.data.estado === 'publicado')
+        .filter((u) => u.data.asignatura === a.slug && u.data.estado === 'publicado' && u.data.lang === 'es')
         .sort((x, y) => x.data.unidad - y.data.unidad)
         .map((u) => ({
           unidad: u.data.unidad,
