@@ -14,7 +14,7 @@ import type { GetStaticPaths } from 'astro';
 
 export const getStaticPaths = (async () => {
   const all = await getCollection('ebau');
-  const slugs = [...new Set(all.filter((e) => e.data.estado === 'publicado').map((e) => e.data.asignatura))];
+  const slugs = [...new Set(all.filter((e) => e.data.estado === 'publicado' && e.data.lang === 'es').map((e) => e.data.asignatura))];
   return slugs.map((slug) => ({ params: { asignatura: slug }, props: { asignatura: ASIGNATURAS[slug] } }));
 }) satisfies GetStaticPaths;
 
