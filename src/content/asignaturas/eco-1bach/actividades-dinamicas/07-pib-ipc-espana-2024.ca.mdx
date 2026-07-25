@@ -1,0 +1,119 @@
+---
+asignatura: eco-1bach
+unidad_relacionada: 7
+title: "Eres analista del Banc d'Espanya"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "15-20 min"
+descripcion: "PIB, IPC i taxa d'atur arriben a la teua taula. Interpreta les dades i elabora el diagnòstic de l'any."
+competencias_clave: [CPSAA, CE, CD]
+competencias_especificas: [CE2]
+lang: ca
+estado: publicado
+slug: "asignaturas/eco-1bach/actividades-dinamicas/07-pib-ipc-espana-2024.ca"
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Cas · Macroeconomia i indicadors",
+    "titulo": "Eres analista del Banc d'Espanya",
+    "contexto": "És gener de 2025. Eres analista júnior al Departament d'Anàlisi Econòmica del Banc d'Espanya. La teua primera tasca és preparar l'informe trimestral de conjuntura usant les dades del tancament de 2024: PIB nominal d'1.503.000 milions d'euros (creixement nominal del 6,2 %), deflactor del PIB del 3,0 %, IPC general del 2,8 %, taxa d'atur EPA de l'11,3 % (tercer trimestre de 2024). El teu cap vol l'informe en 45 minuts. Comença a treballar.",
+    "kpi_inicial": { "pib_real_crecimiento_pct": 0, "confianza_diagnostico": 5, "precision_analisis": 5 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisió 1 — Com calcules el creixement real del PIB?",
+      "situacion": "El PIB nominal ha crescut un 6,2 % però part d'eixe creixement és inflació, no producció real addicional. Tens el deflactor del PIB al 3,0 %. Has de decidir quina xifra posar a l'informe: el creixement nominal, el real amb la fórmula del deflactor, o simplement l'IPC com a aproximació.",
+      "opciones": [
+        {
+          "label": "Use el 6,2 %: el creixement nominal és el que es veu als comptes",
+          "kpi_delta": { "pib_real_crecimiento_pct": -2, "confianza_diagnostico": -2, "precision_analisis": -3 },
+          "feedback": "Error greu. El 6,2 % inclou inflació: part d'eixe «creixement» és simplement que els preus són més alts, no que es produïx més. Un país amb 20 % d'inflació i 0 % de creixement real mostraria un 20 % de creixement nominal. Les anàlisis professionals sempre usen el PIB real. Lliçó: PIB nominal = PIB real × deflactor. El nominal puja amb producció I amb preus; el real només amb producció. Només el real mesura benestar econòmic.",
+          "next": "n2"
+        },
+        {
+          "label": "Calcule el creixement real: 6,2 % − 3,0 % = aproximadament 3,2 % real",
+          "kpi_delta": { "pib_real_crecimiento_pct": 3, "confianza_diagnostico": 3, "precision_analisis": 4 },
+          "feedback": "Correcte amb l'aproximació estàndard. La fórmula exacta és: creixement real ≈ creixement nominal − taxa d'inflació. Amb deflactor del 3 %, el creixement real és aproximadament (1,062 / 1,030) − 1 = 3,1 %. Espanya va créixer un 3,1 % en termes reals en 2024, per damunt de la mitjana de l'eurozona (1,0 %). Lliçó: separar els efectes preu dels efectes volum és el primer pas de l'anàlisi macroeconòmica.",
+          "next": "n2"
+        },
+        {
+          "label": "Use l'IPC del 2,8 % com a deflactor: és l'índex de preus més conegut",
+          "kpi_delta": { "pib_real_crecimiento_pct": 1, "confianza_diagnostico": 0, "precision_analisis": -1 },
+          "feedback": "Aproximació raonable però imprecisa. L'IPC mesura preus de la cistella de consum de les llars. El deflactor del PIB mesura els preus de TOT el que produïx l'economia (béns de consum, d'inversió, despesa pública, exportacions). Són conceptualment distints. En 2024, la diferència és només 0,2 punts (2,8 vs 3,0), però en anys d'energia volàtil la diferència pot ser major. Lliçó: hi ha múltiples índexs de preus per a contextos distints — triar el correcte importa per a la precisió de l'anàlisi.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisió 2 — Interpretes la taxa d'atur de l'11,3 %",
+      "situacion": "L'EPA del tercer trimestre de 2024 diu 11,3 % d'atur. El teu cap pregunta: «És bona o mala notícia?». Per a respondre necessites context: la mitjana històrica espanyola des de 1990 és del 16 %; en 2013 va arribar al 26,9 %; la mitjana de l'eurozona en 2024 és del 5,9 %; la plena ocupació se sol situar entorn del 4-5 % en economies madures.",
+      "opciones": [
+        {
+          "label": "És mala notícia: 11,3 % és el doble de la mitjana europea",
+          "kpi_delta": { "pib_real_crecimiento_pct": 0, "confianza_diagnostico": 1, "precision_analisis": 1 },
+          "feedback": "Perspectiva comparativa correcta. Espanya té crònicament el doble de desocupació que la mitjana europea per raons estructurals: dualitat del mercat laboral (treballadors fixos vs temporals), alta temporalitat en sectors d'hostaleria i construcció, barreres a la mobilitat geogràfica, insuficient formació contínua. Lliçó: comparar un indicador amb la mitjana internacional revela problemes estructurals que la comparació temporal amaga.",
+          "next": "n3"
+        },
+        {
+          "label": "És bona notícia: venim del 26,9 % en 2013 i estem al nivell més baix des de 2008",
+          "kpi_delta": { "pib_real_crecimiento_pct": 0, "confianza_diagnostico": 1, "precision_analisis": 1 },
+          "feedback": "Perspectiva temporal correcta. L'11,3 % de 2024 és la millor dada des de 2008. La reducció de quasi 16 punts des del pic de la Gran Recessió reflectix la recuperació postCovid i el dinamisme del sector servicis. Lliçó: els indicadors econòmics sempre s'interpreten en context — el mateix número pot ser «bo» o «roín» segons la referència històrica o comparativa que uses.",
+          "next": "n3"
+        },
+        {
+          "label": "Depén de quin tipus d'atur siga: necessite desglossar friccional, estructural i cíclic",
+          "kpi_delta": { "pib_real_crecimiento_pct": 0, "confianza_diagnostico": 3, "precision_analisis": 3 },
+          "feedback": "Resposta més completa. L'atur friccional (en trànsit entre ocupacions) és inevitable i relativament baix a Espanya. L'atur cíclic (lligat al cicle econòmic) ha baixat amb l'expansió. El problema espanyol és l'atur estructural: treballadors les habilitats dels quals no encaixen amb la demanda actual (desqualificació, sectors en declivi, bretxa digital). Un 11,3 % amb molt d'atur estructural és més preocupant que el mateix percentatge amb més atur friccional. Lliçó: un agregat macroeconòmic amaga composició — l'anàlisi de qualitat sempre desagrega.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisió 3 — Quin titular poses a l'informe?",
+      "situacion": "Has de condensar el diagnòstic en una frase per al titular de l'informe. Les dades són: creixement real ~3,1 %, IPC 2,8 % (dins de l'objectiu del BCE), atur 11,3 % (millor en 16 anys). L'índex de confiança del consumidor de l'INE ha baixat 3 punts en l'últim trimestre. Com et posiciones?",
+      "opciones": [
+        {
+          "label": "L'economia espanyola tanca 2024 amb el millor PIB real des de 2007",
+          "kpi_delta": { "pib_real_crecimiento_pct": 0, "confianza_diagnostico": 2, "precision_analisis": 2 },
+          "feedback": "Titular d'economia positiva: descrius el que les dades diuen, sense judicis de valor sobre si és bo o roín per a la societat. És el tipus d'afirmació verificable que distingix anàlisi d'opinió. El 3,1 % real és factualment el major des d'abans de la crisi financera. El periodista i el polític ja posaran el qualificatiu normatiu. Lliçó: en economia, separar el positiu (el que les dades diuen) del normatiu (el que hauria de passar) és la primera norma de l'analista.",
+          "next": "final:exito"
+        },
+        {
+          "label": "L'economia espanyola creix, però l'atur continua sent el gran problema estructural",
+          "kpi_delta": { "pib_real_crecimiento_pct": 0, "confianza_diagnostico": 3, "precision_analisis": 3 },
+          "feedback": "Titular que equilibra les dades positives i les limitacions estructurals. El creixement és real però la desocupació de l'11,3 % (doble de l'eurozona) indica que el model de creixement espanyol no genera prou ocupació de qualitat. Esta perspectiva connecta el PIB (indicador de producció) amb l'atur (indicador de distribució dels beneficis del creixement). Lliçó: el PIB no mesura benestar directament — un país pot créixer i tindre ciutadans que no perceben la millora.",
+          "next": "final:exito"
+        },
+        {
+          "label": "La caiguda de l'índex de confiança anuncia riscos a la baixa per a 2025",
+          "kpi_delta": { "pib_real_crecimiento_pct": 0, "confianza_diagnostico": 1, "precision_analisis": 1 },
+          "feedback": "Titular sobre les expectatives, que també formen part dels indicadors avançats. L'índex de confiança del consumidor és un indicador avançat: precedix les dades reals en 2-3 mesos. Si la confiança baixa, pot anunciar menor consum futur, desplaçant la demanda agregada a l'esquerra. Però compte amb l'economia normativa disfressada de positiva: «anuncia riscos» és una predicció, no un fet verificat. Lliçó: els indicadors avançats són útils però no infal·libles — són senyals, no certeses.",
+          "next": "final:fracaso_parcial"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "Informe entregat, diagnòstic sòlid",
+      "resumen": "Has calculat correctament el PIB real, interpretat la taxa d'atur amb context històric i comparatiu, i triat un titular que separa el que les dades diuen dels judicis de valor. Un bon inici al Banc d'Espanya.",
+      "lecciones_clave": [
+        "PIB real = PIB nominal ajustat pel deflactor. Només el real mesura producció; el nominal mescla producció i inflació.",
+        "Un indicador com l'atur té dues lectures vàlides: temporal (millor o pitjor que abans?) i internacional (millor o pitjor que altres?). Les dues són necessàries.",
+        "Economia positiva: el que diuen les dades. Economia normativa: el que hauria de passar. L'analista descriu; el polític decidix."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "Informe entregat, amb biaix normatiu",
+      "resumen": "Has confós indicadors avançats amb certeses i has mesclat anàlisi amb predicció sense prou base empírica. El teu cap et demana que revises el llenguatge del titular.",
+      "lecciones_clave": [
+        "Els indicadors avançats són senyals, no prediccions segures. Presentar-los com a certeses és passar del positiu al normatiu sense dir-ho.",
+        "El PIB nominal sobreestima el creixement en contextos d'inflació alta — sempre es treballa amb xifres reals en anàlisi macroeconòmica."
+      ]
+    }
+  }
+}
+```

@@ -1,0 +1,119 @@
+---
+asignatura: edmn-2bach
+unidad_relacionada: 9
+title: "Segona gelateria: amb quins diners?"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "15-20 min"
+descripcion: "Una gelateria artesana de Granada vol obrir un segon local. VAN, fonts de finançament i risc de liquiditat: decidix abans de firmar."
+competencias_clave: [CPSAA, CE, CD]
+competencias_especificas: [CE3]
+lang: ca
+estado: publicado
+slug: "asignaturas/edmn-2bach/actividades-dinamicas/09-financiacion-heladeria.ca"
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Cas · Funció financera",
+    "titulo": "Segona gelateria: amb quins diners?",
+    "contexto": "Gelats Sacromonte porta 8 anys al centre de Granada i té fama dels millors gelats de la ciutat. Els propietaris, Rosa i Tomás, volen obrir un segon local al barri del Realejo. El local costa 45.000 € de reforma i equipament. Esperen recuperar la inversió en 4 anys. Tenen 15.000 € estalviats. Els falten 30.000 €.",
+    "kpi_inicial": { "caja": 15000, "clientes": 190, "reputacion": 9 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisió 1 — Com finances els 30.000 € que et falten?",
+      "situacion": "Rosa i Tomás necessiten 30.000 € addicionals. Tenen tres opcions: (a) préstec bancari a 5 anys al 6 % TAE; (b) un inversor privat (business angel) que posa 30.000 € a canvi del 25 % de la nova societat; (c) crowdfunding en una plataforma de finançament participatiu amb recompenses (pots de gelat, targetes VIP).",
+      "opciones": [
+        {
+          "label": "Préstec bancari: finançament aliè, mantenim el 100 % de l'empresa",
+          "kpi_delta": { "caja": 30000, "clientes": 0, "reputacion": 0 },
+          "feedback": "Finançament aliè amb cost explícit: pagaràs interessos però conserves la propietat completa. Amb 30.000 € a 5 anys al 6 % TAE, la quota mensual és uns 580 €. El banc demanarà garanties (probablement el local del primer punt de venda com a aval). Lliçó: el finançament aliè té cost financer; el propi té cost d'oportunitat. Ambdós costen.",
+          "next": "n2"
+        },
+        {
+          "label": "Business angel: diners sense tornar però perdem el 25 % de participació",
+          "kpi_delta": { "caja": 30000, "clientes": 10, "reputacion": 2 },
+          "feedback": "Finançament propi extern: l'inversor assumix el risc a canvi de participació en els beneficis futurs. No hi ha quota mensual, cosa que reduïx la pressió sobre la caixa. El risc és que el business angel pot tindre veu en les decisions si els estatuts ho permeten. Lliçó: quan cedixes participació, no només cedixes percentatge de benefici, també cedixes control.",
+          "next": "n2"
+        },
+        {
+          "label": "Crowdfunding amb recompenses: validem la demanda i ens financem alhora",
+          "kpi_delta": { "caja": 18000, "clientes": 45, "reputacion": 4 },
+          "feedback": "El crowdfunding de recompenses no és finançament tradicional: els participants no són socis ni creditors, sinó clients anticipats. Arreplegueu 18.000 € en 30 dies (no els 30.000 previstos) però guanyeu 45 clients VIP del nou local abans d'obrir. El dèficit de 12.000 € el cobrireu amb un préstec bancari menor. Lliçó: el crowdfunding també és una ferramenta de màrqueting i validació de demanda.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisió 2 — Avaluar la inversió amb VAN",
+      "situacion": "Amb el finançament resolt, cal decidir si el projecte val la pena. Les projeccions diuen: inversió inicial 45.000 €, fluxos de caixa anuals esperats: Any 1: 8.000 €, Any 2: 12.000 €, Any 3: 15.000 €, Any 4: 15.000 €. El cost d'oportunitat dels diners és del 8 %.",
+      "opciones": [
+        {
+          "label": "Calcule el VAN per a decidir si el projecte és viable",
+          "kpi_delta": { "caja": 0, "clientes": 5, "reputacion": 2 },
+          "feedback": "VAN = -45.000 + 8.000/1,08 + 12.000/1,08^2 + 15.000/1,08^3 + 15.000/1,08^4 = -45.000 + 7.407 + 10.288 + 11.907 + 11.025 = -4.373 €. VAN negatiu: el projecte NO crea valor a eixa taxa de descompte. No significa que siga impossible, sinó que o bé els fluxos previstos són optimistes, o bé el cost d'oportunitat és massa alt, o bé cal negociar millor el preu de la reforma.",
+          "next": "n3"
+        },
+        {
+          "label": "Calculem el PayBack: en 4 anys recuperem la inversió, això és suficient",
+          "kpi_delta": { "caja": 0, "clientes": 0, "reputacion": 0 },
+          "feedback": "El Termini de Recuperació (PayBack) diu quan recuperes els diners però ignora el valor temporal dels diners: 15.000 € d'ací a 4 anys valen menys que hui. Un projecte amb PayBack de 4 anys pot tindre VAN negatiu (com este). Lliçó: el PayBack és fàcil de calcular però incomplet; el VAN és més complex però més fiable.",
+          "next": "n3"
+        },
+        {
+          "label": "No calcule res: el primer local funciona bé, el segon també funcionarà",
+          "kpi_delta": { "caja": -5000, "clientes": -10, "reputacion": -2 },
+          "feedback": "L'èxit d'un primer negoci no garantix l'èxit del segon: el barri, el local, la competència i els costos són distints. Invertir 45.000 € sense avaluar financerament el projecte és el tipus de decisió que arruïna empreses rendibles. Lliçó: la intuïció empresarial és valuosa, però no substituïx l'anàlisi financera en decisions d'inversió.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisió 3 — Liquiditat durant el primer any",
+      "situacion": "Heu decidit seguir avant amb el segon local. L'Any 1 s'espera un flux de caixa de només 8.000 € (la gelateria tarda a agafar clientela) però heu de pagar la quota del préstec de 580 €/mes = 6.960 € a l'any. Quedeu amb molt poca folgança de caixa.",
+      "opciones": [
+        {
+          "label": "Negocie un període de carència de 6 mesos amb el banc",
+          "kpi_delta": { "caja": 3480, "clientes": 0, "reputacion": 1 },
+          "feedback": "El període de carència permet no pagar capital (o ni capital ni interessos) durant els primers mesos, que és quan el negoci nou no ha generat prou ingressos. És un instrument habitual en préstecs per a inversió empresarial. Reduïx la pressió sobre la caixa en la fase crítica de llançament. Lliçó: negociar les condicions del préstec abans de firmar-lo és tan important com el tipus d'interés.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Mantinc el préstec com està i ajuste despeses del primer local si fa falta",
+          "kpi_delta": { "caja": -3000, "clientes": -15, "reputacion": -2 },
+          "feedback": "Finançar el segon local retallant el primer és una trampa de liquiditat clàssica: danyes el negoci que funciona per a sostindre el que encara no funciona. Si el primer local baixa la seua qualitat o servici, perds clients fidels que són el teu major actiu. Lliçó: rendibilitat i liquiditat són distintes; pots tindre un negoci rendible que fa fallida per falta de tresoreria.",
+          "next": "final:fracaso_parcial"
+        },
+        {
+          "label": "Busque un soci capitalista per al segon local que aporte caixa extra",
+          "kpi_delta": { "caja": 10000, "clientes": 20, "reputacion": 1 },
+          "feedback": "Separar l'estructura financera de cada local té sentit si el segon té un soci diferent. El soci capitalista aporta liquiditat sense tocar el primer negoci. El risc és que ara hi ha més persones amb interessos en joc i les decisions són més complexes. Lliçó: l'estructura financera de cada inversió es pot dissenyar de manera independent.",
+          "next": "final:exito"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "Sacromonte obri al Realejo",
+      "resumen": "La segona gelateria obri amb finançament sanejat i sense tensió de caixa el primer any. Rosa i Tomás han aprés que avaluar una inversió no és només calcular si recuperes els diners, sinó si el projecte crea valor descomptant el temps.",
+      "lecciones_clave": [
+        "El VAN negatiu no sempre significa que el projecte siga roín: pot significar que els fluxos previstos són optimistes o que cal millorar les condicions de finançament.",
+        "La liquiditat i la rendibilitat són dues coses distintes: un negoci rendible pot fer fallida si no gestiona bé la tresoreria en els primers mesos.",
+        "Negociar les condicions del préstec (carència, termini, tipus) és part de la gestió financera, no només firmar-lo."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "El segon local arrossega el primer",
+      "resumen": "La segona gelateria obri però la tensió de caixa danya el primer local. Rosa i Tomás aconseguixen sobreviure però amb ambdós negocis per davall del seu potencial.",
+      "lecciones_clave": [
+        "Finançar una inversió nova retallant el negoci que funciona pot destruir més valor del que crea.",
+        "El PayBack sense VAN dona una imatge incompleta de la rendibilitat d'una inversió."
+      ]
+    }
+  }
+}
+```
