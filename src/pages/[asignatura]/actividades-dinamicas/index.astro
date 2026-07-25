@@ -33,9 +33,9 @@ const units = libroAll
     const u = pickLocalizedEntry(esU, libroCaById, locale);
     const unidad = esU.data.unidad;
     const slug = esU.id.split('/').pop()?.replace(/\.mdx?$/, '') ?? esU.id;
-    const hasTest = testsAll.some((t) => t.data.asignatura === a.slug && t.data.unidad_relacionada === unidad && t.data.estado === 'publicado');
-    const numSim = dinAll.filter((d) => d.data.asignatura === a.slug && d.data.unidad_relacionada === unidad && d.data.estado === 'publicado').length;
-    const numRec = recAll.filter((r) => r.data.asignatura === a.slug && r.data.unidad_relacionada === unidad && r.data.estado === 'publicado').length;
+    const hasTest = testsAll.some((t) => t.data.asignatura === a.slug && t.data.unidad_relacionada === unidad && t.data.estado === 'publicado' && t.data.lang === 'es');
+    const numSim = dinAll.filter((d) => d.data.asignatura === a.slug && d.data.unidad_relacionada === unidad && d.data.estado === 'publicado' && d.data.lang === 'es').length;
+    const numRec = recAll.filter((r) => r.data.asignatura === a.slug && r.data.unidad_relacionada === unidad && r.data.estado === 'publicado' && r.data.lang === 'es').length;
     return { unidad, slug, title: u.data.title, lema: u.data.lema, hasTest, numSim, numRec };
   });
 

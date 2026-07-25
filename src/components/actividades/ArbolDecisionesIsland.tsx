@@ -7,7 +7,14 @@ interface Props {
   data: ArbolJSON;
   /** Stable id used as the sessionStorage key. */
   simuladorId: string;
+  /** UI chrome locale (defaults to Castilian). */
+  locale?: 'es' | 'ca';
 }
+
+const COPY = {
+  es: { empezar: 'Empezar', consecuencia: 'Consecuencia', continuar: 'Continuar', final: 'Final', lecciones: 'Lecciones clave', reiniciar: 'Reiniciar simulación' },
+  ca: { empezar: 'Començar', consecuencia: 'Conseqüència', continuar: 'Continuar', final: 'Final', lecciones: 'Lliçons clau', reiniciar: 'Reiniciar la simulació' },
+} as const;
 
 type Phase = 'intro' | 'node' | 'feedback' | 'final';
 
@@ -18,7 +25,8 @@ interface SessionState {
   lastChoice: { feedback: string; next: string } | null;
 }
 
-export default function ArbolDecisionesIsland({ data, simuladorId }: Props) {
+export default function ArbolDecisionesIsland({ data, simuladorId, locale = 'es' }: Props) {
+  const t = COPY[locale];
   const storageKey = `arbol:${simuladorId}`;
   const initialState: SessionState = { phase: 'intro', nodeId: '', kpis: data.intro.kpi_inicial, lastChoice: null };
 
@@ -67,7 +75,7 @@ export default function ArbolDecisionesIsland({ data, simuladorId }: Props) {
           <p class="arbol__kicker">{data.intro.kicker}</p>
           <h2 class="arbol__h2">{data.intro.titulo}</h2>
           <p class="arbol__contexto">{data.intro.contexto}</p>
-          <button class="arbol__btn-primary" type="button" onClick={start}>Empezar</button>
+          <button class="arbol__btn-primary" type="button" onClick={start}>{t.empezar}</button>
         </div>
       )}
 
@@ -87,22 +95,22 @@ export default function ArbolDecisionesIsland({ data, simuladorId }: Props) {
 
       {state.phase === 'feedback' && state.lastChoice && (
         <div class="arbol__feedback">
-          <p class="arbol__kicker arbol__kicker--mustard">Consecuencia</p>
+          <p class="arbol__kicker arbol__kicker--mustard">{t.consecuencia}</p>
           <p>{state.lastChoice.feedback}</p>
-          <button class="arbol__btn-primary" type="button" onClick={advance}>Continuar</button>
+          <button class="arbol__btn-primary" type="button" onClick={advance}>{t.continuar}</button>
         </div>
       )}
 
       {state.phase === 'final' && data.finales[state.nodeId] && (
         <div class="arbol__final">
-          <p class="arbol__kicker">Final</p>
+          <p class="arbol__kicker">{t.final}</p>
           <h2 class="arbol__h2">{data.finales[state.nodeId].titulo}</h2>
           <p class="arbol__resumen">{data.finales[state.nodeId].resumen}</p>
-          <h3 class="arbol__h3">Lecciones clave</h3>
+          <h3 class="arbol__h3">{t.lecciones}</h3>
           <ul class="arbol__lecciones">
             {data.finales[state.nodeId].lecciones_clave.map((l, i) => <li key={i}>{l}</li>)}
           </ul>
-          <button class="arbol__btn-secondary" type="button" onClick={restart}>Reiniciar simulación</button>
+          <button class="arbol__btn-secondary" type="button" onClick={restart}>{t.reiniciar}</button>
         </div>
       )}
     </div>

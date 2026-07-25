@@ -13,7 +13,35 @@ type Props = {
   competenciaTexto: string;
   competenciaCodigo: string;
   storageKey: string;            // localStorage namespace, pass the reto slug
+  locale?: 'es' | 'ca';          // UI chrome locale (defaults to Castilian)
 };
+
+const COPY = {
+  es: {
+    genericos: ['En desarrollo', 'Adecuado', 'Avanzado'],
+    resultado: 'Resultado', nivelLogro: 'Nivel de logro',
+    de: 'de', itemEval: 'ítem evaluable', itemsEval: 'ítems evaluables', correctos: 'correctos',
+    mejorNivel: 'Tu mejor nivel:', reintentar: 'Volver a intentarlo', borrar: 'Borrar mi progreso',
+    paso: 'Paso', pasoDe: 'de', verdadero: 'Verdadero', falso: 'Falso',
+    tuRespuesta: 'Tu respuesta', elige: '— elige —', subir: 'Subir', bajar: 'Bajar',
+    escribeRespuesta: 'Escribe tu respuesta…', respuestaModelo: 'Respuesta modelo (compárala con la tuya):',
+    correcto: '¡Correcto!', incorrecto: 'Incorrecto.',
+    anterior: '← Anterior', verModelo: 'Ver respuesta modelo', confirmar: 'Confirmar',
+    verNivel: 'Ver mi nivel', siguiente: 'Siguiente →',
+  },
+  ca: {
+    genericos: ['En desenvolupament', 'Adequat', 'Avançat'],
+    resultado: 'Resultat', nivelLogro: "Nivell d'assoliment",
+    de: 'de', itemEval: 'ítem avaluable', itemsEval: 'ítems avaluables', correctos: 'correctes',
+    mejorNivel: 'El teu millor nivell:', reintentar: 'Tornar a intentar-ho', borrar: 'Esborrar el meu progrés',
+    paso: 'Pas', pasoDe: 'de', verdadero: 'Vertader', falso: 'Fals',
+    tuRespuesta: 'La teua resposta', elige: '— tria —', subir: 'Pujar', bajar: 'Baixar',
+    escribeRespuesta: 'Escriu la teua resposta…', respuestaModelo: 'Resposta model (compara-la amb la teua):',
+    correcto: 'Correcte!', incorrecto: 'Incorrecte.',
+    anterior: '← Anterior', verModelo: 'Veure resposta model', confirmar: 'Confirmar',
+    verNivel: 'Veure el meu nivell', siguiente: 'Següent →',
+  },
+} as const;
 
 type Respuesta = number | boolean | number[] | string[] | string | null;
 
@@ -75,7 +103,8 @@ function bestKey(storageKey: string): string {
   return `reto:${storageKey}:best`;
 }
 
-export default function RetoPlayer({ reto, niveles, competenciaTexto, competenciaCodigo, storageKey }: Props) {
+export default function RetoPlayer({ reto, niveles, competenciaTexto, competenciaCodigo, storageKey, locale = 'es' }: Props) {
+  const t = COPY[locale];
   const entradas = useMemo(() => aplanar(reto), [reto]);
   const totalAuto = useMemo(() => entradas.filter((e) => esAuto(e.item)).length, [entradas]);
   const [estado, setEstado] = useState<Estado>(() => emptyState(entradas));
@@ -160,25 +189,25 @@ export default function RetoPlayer({ reto, niveles, competenciaTexto, competenci
 
   // ─── Final screen: achievement level ─────────────────────
   if (estado.finalizado) {
-    const nivel = niveles[nivelIdx] ?? { nivel: ['En desarrollo', 'Adecuado', 'Avanzado'][nivelIdx], descriptor: '' };
+    const nivel = niveles[nivelIdx] ?? { nivel: t.genericos[nivelIdx], descriptor: '' };
     return (
       <div class="qp rp">
         <div class="qp__final">
-          <div class="qp__eyebrow">Resultado · {competenciaCodigo}</div>
+          <div class="qp__eyebrow">{t.resultado} · {competenciaCodigo}</div>
           <div class={`rp__nivel rp__nivel--${nivelIdx}`}>
-            <span class="rp__nivel-label">Nivel de logro</span>
+            <span class="rp__nivel-label">{t.nivelLogro}</span>
             <strong class="rp__nivel-name">{nivel.nivel}</strong>
           </div>
-          <p class="qp__detail">{aciertos} de {totalAuto} {totalAuto === 1 ? 'ítem evaluable' : 'ítems evaluables'} correctos</p>
+          <p class="qp__detail">{aciertos} {t.de} {totalAuto} {totalAuto === 1 ? t.itemEval : t.itemsEval} {t.correctos}</p>
           {nivel.descriptor && <p class="rp__nivel-desc">{nivel.descriptor}</p>}
           <p class="rp__comp"><strong>{competenciaCodigo}.</strong> {competenciaTexto}</p>
           {bestNivel !== null && (
-            <p class="qp__best">Tu mejor nivel: {(niveles[bestNivel]?.nivel) ?? ['En desarrollo', 'Adecuado', 'Avanzado'][bestNivel]}</p>
+            <p class="qp__best">{t.mejorNivel} {(niveles[bestNivel]?.nivel) ?? t.genericos[bestNivel]}</p>
           )}
           <div class="qp__actions">
-            <button class="qp__btn qp__btn--primary" type="button" onClick={reiniciar}>Volver a intentarlo</button>
+            <button class="qp__btn qp__btn--primary" type="button" onClick={reiniciar}>{t.reintentar}</button>
             {bestNivel !== null && (
-              <button class="qp__btn qp__btn--ghost" type="button" onClick={borrarProgreso}>Borrar mi progreso</button>
+              <button class="qp__btn qp__btn--ghost" type="button" onClick={borrarProgreso}>{t.borrar}</button>
             )}
           </div>
         </div>
@@ -193,7 +222,7 @@ export default function RetoPlayer({ reto, niveles, competenciaTexto, competenci
   return (
     <div class="qp rp">
       <div class="qp__header">
-        <span class="qp__eyebrow">Paso {estado.idx + 1} de {total}</span>
+        <span class="qp__eyebrow">{t.paso} {estado.idx + 1} {t.pasoDe} {total}</span>
         <div class="qp__progress">
           {entradas.map((e, i) => {
             const done = estado.confirmadas[i];
@@ -242,7 +271,7 @@ export default function RetoPlayer({ reto, niveles, competenciaTexto, competenci
             const sc = confirmada ? (corr ? 'is-correct' : sel ? 'is-incorrect' : '') : sel ? 'is-selected' : '';
             return (
               <button key={String(v)} type="button" class={['qp__opt', sc].join(' ').trim()} onClick={() => setRespuesta(v)} disabled={confirmada} aria-pressed={sel}>
-                <span class="qp__opt-texto">{v ? 'Verdadero' : 'Falso'}</span>
+                <span class="qp__opt-texto">{v ? t.verdadero : t.falso}</span>
               </button>
             );
           })}
@@ -252,7 +281,7 @@ export default function RetoPlayer({ reto, niveles, competenciaTexto, competenci
       {item.tipo === 'numerico' && (
         <div class={['qp__num', confirmada ? (acerto ? 'is-correct' : 'is-incorrect') : ''].join(' ').trim()}>
           <label class="qp__num-label">
-            <span>Tu respuesta</span>
+            <span>{t.tuRespuesta}</span>
             <span class="qp__num-field">
               <input type="text" inputMode="decimal" class="qp__num-input" disabled={confirmada}
                 value={typeof r === 'number' && !Number.isNaN(r) ? numComma(r) : ''}
@@ -276,7 +305,7 @@ export default function RetoPlayer({ reto, niveles, competenciaTexto, competenci
                   <td class="qp__rel-izq">{izq}</td>
                   <td class="qp__rel-der">
                     <select disabled={confirmada} value={String(chosen)} onChange={(e) => elegirRel(li, Number(e.currentTarget.value))}>
-                      <option value="-1">— elige —</option>
+                      <option value="-1">{t.elige}</option>
                       {item.derecha.map((der, di) => (<option value={String(di)}>{String.fromCharCode(97 + di)}) {der}</option>))}
                     </select>
                   </td>
@@ -297,8 +326,8 @@ export default function RetoPlayer({ reto, niveles, competenciaTexto, competenci
                 <span class="rp__ord-text">{el}</span>
                 {!confirmada && (
                   <span class="rp__ord-btns">
-                    <button type="button" onClick={() => mover(pos, -1)} disabled={pos === 0} aria-label="Subir">↑</button>
-                    <button type="button" onClick={() => mover(pos, 1)} disabled={pos === ordArr.length - 1} aria-label="Bajar">↓</button>
+                    <button type="button" onClick={() => mover(pos, -1)} disabled={pos === 0} aria-label={t.subir}>↑</button>
+                    <button type="button" onClick={() => mover(pos, 1)} disabled={pos === ordArr.length - 1} aria-label={t.bajar}>↓</button>
                   </span>
                 )}
               </li>
@@ -311,11 +340,11 @@ export default function RetoPlayer({ reto, niveles, competenciaTexto, competenci
         <div class="rp__abierta">
           <textarea class="rp__abierta-input" rows={4} disabled={confirmada}
             value={typeof r === 'string' ? r : ''}
-            placeholder="Escribe tu respuesta…"
+            placeholder={t.escribeRespuesta}
             onInput={(e) => setRespuesta(e.currentTarget.value)} />
           {confirmada && (
             <div class="rp__modelo">
-              <span class="rp__modelo-label">Respuesta modelo (compárala con la tuya):</span>
+              <span class="rp__modelo-label">{t.respuestaModelo}</span>
               <div class="rp__modelo-body" dangerouslySetInnerHTML={{ __html: item.modelo }} />
             </div>
           )}
@@ -324,20 +353,20 @@ export default function RetoPlayer({ reto, niveles, competenciaTexto, competenci
 
       {confirmada && item.tipo !== 'abierta' && (
         <div class={['qp__feedback', acerto ? 'is-ok' : 'is-fail'].join(' ')}>
-          <strong>{acerto ? '¡Correcto!' : 'Incorrecto.'}</strong>
+          <strong>{acerto ? t.correcto : t.incorrecto}</strong>
           {'explicacion' in item && item.explicacion && <p>{item.explicacion}</p>}
         </div>
       )}
 
       <div class="qp__actions">
-        <button class="qp__btn qp__btn--ghost" type="button" onClick={anterior} disabled={estado.idx === 0}>← Anterior</button>
+        <button class="qp__btn qp__btn--ghost" type="button" onClick={anterior} disabled={estado.idx === 0}>{t.anterior}</button>
         {!confirmada ? (
           <button class="qp__btn qp__btn--primary" type="button" onClick={confirmar} disabled={!respondida(item, r)}>
-            {item.tipo === 'abierta' ? 'Ver respuesta modelo' : 'Confirmar'}
+            {item.tipo === 'abierta' ? t.verModelo : t.confirmar}
           </button>
         ) : (
           <button class="qp__btn qp__btn--primary" type="button" onClick={siguiente}>
-            {estado.idx + 1 === total ? 'Ver mi nivel' : 'Siguiente →'}
+            {estado.idx + 1 === total ? t.verNivel : t.siguiente}
           </button>
         )}
       </div>

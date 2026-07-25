@@ -7,7 +7,38 @@ type Props = {
   unitKey: string;
   /** Optional unit title, shown in the panel header for context. */
   unitTitle?: string;
+  /** UI locale for the panel chrome. Defaults to Castilian. */
+  locale?: 'es' | 'ca';
 };
+
+const COPY = {
+  es: {
+    eyebrow: 'Tus apuntes',
+    title: 'Notas de esta unidad',
+    marked: 'Marcada ✓',
+    mark: 'Marcar esta unidad',
+    hintTitled: (t: string) => `Anota lo que quieras recordar de «${t}». Se guarda solo en este dispositivo.`,
+    hint: 'Anota lo que quieras recordar. Se guarda solo en este dispositivo.',
+    placeholder: 'Escribe aquí tus notas…',
+    loading: 'Cargando…',
+    ariaArea: 'Notas de la unidad',
+    saved: 'Guardado',
+    clear: 'Borrar notas',
+  },
+  ca: {
+    eyebrow: 'Els teus apunts',
+    title: "Notes d'esta unitat",
+    marked: 'Marcada ✓',
+    mark: 'Marcar esta unitat',
+    hintTitled: (t: string) => `Apunta el que vulgues recordar de «${t}». Es guarda només en este dispositiu.`,
+    hint: 'Apunta el que vulgues recordar. Es guarda només en este dispositiu.',
+    placeholder: 'Escriu ací les teues notes…',
+    loading: 'Carregant…',
+    ariaArea: 'Notes de la unitat',
+    saved: 'Guardat',
+    clear: 'Esborrar notes',
+  },
+} as const;
 
 /** localStorage key holding the free-text notes for this unit. */
 function notesKey(unitKey: string): string {
@@ -25,7 +56,8 @@ const SAVE_DEBOUNCE_MS = 600;
 /** How long the "guardado" indicator stays visible after a save (ms). */
 const SAVED_FLASH_MS = 1800;
 
-export default function UnitNotes({ unitKey, unitTitle }: Props) {
+export default function UnitNotes({ unitKey, unitTitle, locale = 'es' }: Props) {
+  const t = COPY[locale];
   const [notes, setNotes] = useState('');
   const [bookmarked, setBookmarked] = useState(false);
   // `saved` shows a discreet confirmation after a successful persist.
@@ -101,9 +133,9 @@ export default function UnitNotes({ unitKey, unitTitle }: Props) {
     <section class="un" aria-labelledby="un-title">
       <div class="un__head">
         <div>
-          <div class="un__eyebrow">Tus apuntes</div>
+          <div class="un__eyebrow">{t.eyebrow}</div>
           <h2 id="un-title" class="un__title">
-            Notas de esta unidad
+            {t.title}
           </h2>
         </div>
         <button
@@ -113,14 +145,12 @@ export default function UnitNotes({ unitKey, unitTitle }: Props) {
           disabled={!hydrated}
           aria-pressed={bookmarked}
         >
-          {bookmarked ? 'Marcada ✓' : 'Marcar esta unidad'}
+          {bookmarked ? t.marked : t.mark}
         </button>
       </div>
 
       <p class="un__hint">
-        {unitTitle
-          ? `Anota lo que quieras recordar de «${unitTitle}». Se guarda solo en este dispositivo.`
-          : 'Anota lo que quieras recordar. Se guarda solo en este dispositivo.'}
+        {unitTitle ? t.hintTitled(unitTitle) : t.hint}
       </p>
 
       <textarea
@@ -129,14 +159,14 @@ export default function UnitNotes({ unitKey, unitTitle }: Props) {
         onInput={onInput}
         onBlur={onBlur}
         disabled={!hydrated}
-        placeholder={hydrated ? 'Escribe aquí tus notas…' : 'Cargando…'}
+        placeholder={hydrated ? t.placeholder : t.loading}
         rows={6}
-        aria-label="Notas de la unidad"
+        aria-label={t.ariaArea}
       />
 
       <div class="un__foot">
         <span class={['un__saved', saved ? 'is-visible' : ''].join(' ').trim()} aria-live="polite">
-          Guardado
+          {t.saved}
         </span>
         <button
           type="button"
@@ -144,7 +174,7 @@ export default function UnitNotes({ unitKey, unitTitle }: Props) {
           onClick={clearNotes}
           disabled={!hydrated || notes.length === 0}
         >
-          Borrar notas
+          {t.clear}
         </button>
       </div>
     </section>
