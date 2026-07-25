@@ -1,0 +1,119 @@
+---
+asignatura: edmn-2bach
+unidad_relacionada: 10
+title: "El taller que no quadrava"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "15-20 min"
+descripcion: "Un taller de reparació de bicicletes a Pamplona factura bé però sempre va just de diners. El balanç i el compte de resultats revelen per què."
+competencias_clave: [CPSAA, CE, CD]
+competencias_especificas: [CE3]
+lang: ca
+estado: publicado
+slug: "asignaturas/edmn-2bach/actividades-dinamicas/10-contabilidad-taller.ca"
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Cas · Comptabilitat",
+    "titulo": "El taller que no quadrava",
+    "contexto": "BiciPamplona és un taller de reparació i venda de bicicletes al casc antic de Pamplona. El porta Amaia des de fa 4 anys. Factura uns 6.500 € al mes i sempre acaba el mes amb menys diners dels que esperava. El seu gestor li ha donat el balanç anual i el compte de pèrdues i guanys. Amaia mai els ha llegit bé. Hui ha de fer-ho.",
+    "kpi_inicial": { "caja": 4800, "clientes": 95, "reputacion": 8 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisió 1 — Llegir el balanç",
+      "situacion": "El balanç de BiciPamplona mostra: Actiu corrent (caixa 4.800 €, clients a cobrar 9.200 €, estoc de peces 6.000 €) i Actiu no corrent (local en lloguer capitalitzat 0 €, ferramentes 3.500 €). Passiu corrent (proveïdors a pagar 11.000 €, préstec a curt termini 3.000 €). Patrimoni net positiu. Què veus?",
+      "opciones": [
+        {
+          "label": "Em fixe que tinc 9.200 € pendents de cobrar de clients",
+          "kpi_delta": { "caja": 0, "clientes": 5, "reputacion": 1 },
+          "feedback": "Els deutors (clients que et deuen diners) són part de l'actiu corrent, però no són caixa. 9.200 € de factures sense cobrar és un actiu que existix en el paper però no en el teu compte bancari. Això explica per què Amaia factura bé i té poca caixa: està finançant els seus clients. Lliçó: el balanç et mostra què tens, però has de distingir actiu líquid d'actiu pendent de cobrament.",
+          "next": "n2"
+        },
+        {
+          "label": "Em preocupa que els proveïdors a pagar siguen 11.000 €",
+          "kpi_delta": { "caja": 0, "clientes": 0, "reputacion": 1 },
+          "feedback": "Els creditors (el que deus a proveïdors) són passiu corrent: deute a curt termini. 11.000 € de deute amb proveïdors davant de 4.800 € en caixa és una situació de tensió de liquiditat. Si els proveïdors et cobren abans que els teus clients et paguen, no tens amb què. El balanç et mostra esta estructura de venciments.",
+          "next": "n2"
+        },
+        {
+          "label": "El balanç quadra: actiu = passiu + patrimoni net, tot bé",
+          "kpi_delta": { "caja": 0, "clientes": -5, "reputacion": -1 },
+          "feedback": "Que el balanç quadre és una condició necessària però no suficient perquè l'empresa estiga bé. El balanç sempre quadra per construcció comptable. El que revela és l'estructura patrimonial: què tens, com ho has finançat i quant deute tens a curt termini. Lliçó: llegir el balanç no és verificar que suma, és entendre què diu sobre la salut de l'empresa.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisió 2 — Llegir el compte de pèrdues i guanys",
+      "situacion": "El compte de PiG diu: ingressos 78.000 €/any, cost de vendes 42.000 €, despeses de personal 18.000 €, lloguer 7.200 €, subministraments 3.600 €, amortitzacions 1.200 €, altres despeses 2.400 €. Benefici abans d'impostos: 3.600 €. Quina conclusió en traus?",
+      "opciones": [
+        {
+          "label": "El benefici és 3.600 €, que dividit entre 12 són 300 €/mes: massa poc",
+          "kpi_delta": { "caja": 0, "clientes": 5, "reputacion": 2 },
+          "feedback": "Correcte: el marge net sobre vendes és 3.600/78.000 = 4,6 %. Per a un taller artesà amb eixe nivell de facturació, és un marge molt ajustat. Mirant l'estructura de costos, el cost de vendes (peces + productes) representa el 54 % dels ingressos. Amaia compra car o ven barat. Ací està el problema real, no en el benefici final.",
+          "next": "n3"
+        },
+        {
+          "label": "L'empresa té beneficis: si guanya diners, tot bé",
+          "kpi_delta": { "caja": 0, "clientes": 0, "reputacion": 0 },
+          "feedback": "Tindre benefici comptable no garantix tindre diners en caixa. El compte de pèrdues i guanys registra ingressos quan es factura (principi de la meritació), no quan es cobren. Amaia pot tindre 3.600 € de benefici en la PiG i només 4.800 € en caixa (dels quals 11.000 € ha de pagar a proveïdors). Lliçó: el benefici comptable i la caixa són coses distintes.",
+          "next": "n3"
+        },
+        {
+          "label": "Les amortitzacions són 1.200 €: això és una despesa real?",
+          "kpi_delta": { "caja": 0, "clientes": 0, "reputacion": 2 },
+          "feedback": "Les amortitzacions representen la pèrdua de valor dels actius (ferramentes) amb el temps. Són una despesa comptable però no són un pagament en efectiu: no ix diners de caixa. Això significa que el flux de caixa real de l'empresa és 3.600 + 1.200 = 4.800 € (benefici + amortitzacions). És el principi que diferencia el compte de resultats de l'estat de fluxos de tresoreria.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisió 3 — Aplicar els principis comptables",
+      "situacion": "Amaia descobrix que el seu gestor no havia registrat unes factures d'octubre (3.200 €) perquè 'encara no les havia cobrat'. També hi ha un estoc de peces que ja no s'usen (700 €) però continuen en el balanç. Com actueu?",
+      "opciones": [
+        {
+          "label": "Registre les factures d'octubre encara que no les haja cobrat encara",
+          "kpi_delta": { "caja": 0, "clientes": 8, "reputacion": 3 },
+          "feedback": "Principi de la meritació: els ingressos i despeses es registren quan es generen, no quan es cobren o paguen. Les factures d'octubre són ingressos d'octubre encara que el pagament arribe en novembre. No registrar-les és incomplir un principi comptable bàsic recollit en el Pla General Comptable (PGC). La imatge fidel de l'empresa requerix aplicar la meritació correctament.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Mantinc l'estoc sense usar en el balanç: està pagat, continua sent actiu",
+          "kpi_delta": { "caja": 0, "clientes": 0, "reputacion": -1 },
+          "feedback": "Principi de prudència: si un actiu ha perdut valor (peces obsoletes que no es vendran), s'ha de registrar eixe deteriorament. Mantindre en el balanç actius sobrevalorats dona una imatge no fidel de l'empresa. El PGC requerix ajustar el valor dels actius quan hi ha indicis de pèrdua de valor. Lliçó: la imatge fidel no és pintar l'empresa millor del que està.",
+          "next": "final:fracaso_parcial"
+        },
+        {
+          "label": "Corregisc ambdues coses i demane al meu gestor que aplique els principis comptables del PGC",
+          "kpi_delta": { "caja": 0, "clientes": 10, "reputacion": 4 },
+          "feedback": "La comptabilitat no és un tràmit: és el llenguatge amb el qual l'empresa es conta a si mateixa. Un balanç que no reflectix la realitat dona decisions equivocades. Amaia aprén que el PGC establix principis d'obligat compliment (empresa en funcionament, meritació, prudència, imatge fidel) que protegixen l'empresa i els seus stakeholders.",
+          "next": "final:exito"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "Amaia entén la seua pròpia empresa",
+      "resumen": "BiciPamplona continua igual de grandària però Amaia ja sap llegir els seus comptes. Identifica que el problema de caixa és el període de cobrament de clients i que el marge brut és massa baix. Amb això pot prendre decisions concretes.",
+      "lecciones_clave": [
+        "El balanç i el compte de PiG són llenguatges: si no els llegixes, no entens el que et diuen sobre la teua empresa.",
+        "Benefici comptable i caixa són coses distintes: el principi de la meritació separa el registre comptable del moviment de diners real.",
+        "Els principis comptables (imatge fidel, meritació, prudència) no són burocràcia: són garanties que la informació que uses per a prendre decisions és fiable."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "El balanç no reflectix la realitat",
+      "resumen": "Amaia continua sense entendre bé els seus comptes. El balanç sobrevalora actius i no reflectix fidelment la situació de l'empresa. Les decisions que prenga sobre eixe balanç seran decisions sobre dades errònies.",
+      "lecciones_clave": [
+        "Un balanç que no aplica els principis comptables dona una imatge enganyosa que porta a decisions equivocades.",
+        "Delegar la comptabilitat totalment sense entendre-la mínimament és un risc per a qualsevol empresari."
+      ]
+    }
+  }
+}
+```
