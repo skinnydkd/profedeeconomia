@@ -1,0 +1,213 @@
+---
+asignatura: gpe-bach
+orden: 4
+title: "Viabilitat: comptabilitat, fiscalitat i impacte"
+fase: "Fase 4 — Viabilitat"
+duracion: "4-5 sessions"
+entregable: "Pressupost, compte de resultats previsional, punt mort i anàlisi d'impacte (econòmic, social i ambiental)."
+competencia_especifica: "CE4"
+saberes:
+  - "Presupuesto y cuenta de resultados previsional"
+  - "El punto muerto o umbral de rentabilidad"
+  - "Viabilidad económica, social y ambiental; impacto local"
+unidades_relacionadas:
+  - { asignatura: gpe-bach, unidad: 6, nota: "Comptabilitat, fiscalitat i finançament" }
+  - { asignatura: gpe-bach, unidad: 7, nota: "Impacte social i ambiental" }
+cuaderno:
+  tarea: "Calculeu el <strong>punt mort</strong> del vostre projecte: quantes unitats heu de vendre per a no perdre diners. Ompliu la plantilla amb els vostres costos fixos, preu i cost variable unitari."
+  reflexion: "El punt mort que vos ix és assolible de veritat amb la vostra clientela, o necessiteu vendre una quantitat impossible?"
+  orientacion_docente: "L'error més comú és comptar només la viabilitat econòmica. Exigiu les tres viabilitats: econòmica, social i ambiental. I separeu benefici de caixa: es pot tindre benefici en el compte de resultats i quedar-se sense diners per a pagar a fi de mes."
+  plantilla:
+    tipo: punto-muerto
+lang: ca
+estado: publicado
+slug: "asignaturas/gpe-bach/proyecto/04-viabilidad.ca"
+---
+
+import Callout from '@components/Callout.astro';
+import Steps from '@components/Steps.astro';
+import Diagram from '@components/Diagram.astro';
+import BreakEvenChart from '@components/diagrams/BreakEvenChart.astro';
+import EnEstaFase from '@components/EnEstaFase.astro';
+import CasoReal from '@components/CasoReal.astro';
+import ErroresQueCuestan from '@components/ErroresQueCuestan.astro';
+import HerramientaIsland from '@components/calculadoras/HerramientaIsland.astro';
+
+<EnEstaFase
+  haras="Fer els números del projecte: pressupost, compte de resultats, punt mort i finançament; i comprovar que també és viable social i ambientalment."
+  entregable="Números del projecte + anàlisi d'impacte"
+  sesiones="4-5 sessions"
+>
+Repasseu de la **Unitat 6** el compte de resultats i el punt mort, i de la **Unitat 7** l'impacte social i ambiental.
+</EnEstaFase>
+
+Teniu un producte i una manera de vendre'l. La pregunta de la Fase 4 és la més dura: **això se sosté?** Un projecte que no cobrix els seus costos no arriba enlloc, per bona que siga la idea. Ací feu els números: un pressupost del que necessiteu, un compte de resultats previsional del que guanyaríeu o perdríeu, el punt mort que vos diu quant cal vendre per a no perdre, i d'on traeu el diner per a arrancar.
+
+Però en GPE la viabilitat no és només econòmica. Un projecte també ha de ser viable **socialment** i **ambientalment**. Per això esta fase tanca amb una anàlisi d'impacte en la triple vessant —econòmica, social i ambiental— i en el desenvolupament local, que és el cor de la matèria. Un projecte rendible que danya el seu entorn no és viable per a GPE.
+
+<CasoReal
+  titular="La Fageda: rendible i, alhora, amb impacte social real"
+  fuente="Fonts públiques sobre La Fageda, cooperativa de La Garrotxa (Girona): web corporativa i premsa"
+  pregunta="El vostre projecte seria viable comptant també el seu impacte social i ambiental, no només l'econòmic?"
+>
+La Fageda és una cooperativa catalana que ven iogurts i postres lactis en un mercat molt competitiu, davant de grans marques, i se sosté econòmicament amb les seues pròpies vendes. No viu de donacions: competix i ven.
+
+I ho fa mentres la seua missió social —donar treball digne a persones amb discapacitat o trastorn mental de la seua comarca— és el nucli del projecte, no un afegit per a quedar bé. La lliçó és que en GPE la viabilitat és triple: un projecte rendible que danya el seu entorn no és viable, i un que millora la seua comunitat mentres se sosté és justament el que la matèria busca.
+</CasoReal>
+
+## Objectiu de la fase i què es treballa
+
+- **Objectiu**: comprovar la viabilitat econòmica del projecte (pressupost, compte previsional, punt mort, finançament) i analitzar el seu impacte social i ambiental.
+- **Competències específiques**: CE4 (comptabilitat i fiscalitat com a responsabilitat ciutadana) i CE5 (impacte social i mediambiental).
+- **Bloc de sabers (Decret 108/2022)**: Bloc 3 — pressupost del projecte (B3.5.2), avaluació d'inversions (B3.5.1), fonts de finançament (B3.5.3), anàlisi d'un balanç i compte de resultats bàsics (B3.4.3), fiscalitat responsable (B3.4.1, B3.4.2); i Bloc 4 — impacte social i local (B4.1.1, B4.1.2), impacte ambiental, economia circular i ODS (B4.2.1, B4.2.2, B4.2.3).
+
+<Callout label="Repàs del llibre" title="Abans de començar, repassa les Unitats 6 i 7">
+La Unitat 6 explica el **pressupost**, el **compte de resultats**, el **punt mort**, les **fonts de finançament** i la **fiscalitat responsable**. La Unitat 7 explica l'**impacte social i ambiental**, l'**economia circular** i els **ODS**. No repetim eixa teoria: l'apliqueu als vostres números i al vostre impacte. Per al punt mort podeu usar la **calculadora de punt mort** de la secció de recursos.
+</Callout>
+
+## Pas 1 — Pressupost del projecte
+
+El pressupost distingix dues coses: el que necessiteu **una vegada** per a arrancar (inversió inicial) i el que gasteu **cada mes o any** per a funcionar (despeses corrents). Sigueu realistes: és millor un número lleig i vertader que un bonic i inventat.
+
+Inversió inicial (despesa única d'arrancada):
+
+| Concepte | Import (€) |
+|---|---|
+| Equips / maquinària / eines |  |
+| Condicionament del local |  |
+| Materials inicials / estoc |  |
+| Altres (llicències, web…) |  |
+| **Total inversió inicial** |  |
+
+Despeses corrents (periòdiques):
+
+| Concepte | Import periòdic (€) |
+|---|---|
+| Matèries primeres / aprovisionament |  |
+| Personal (si n'hi ha) |  |
+| Lloguer i subministraments |  |
+| Màrqueting i comunicació |  |
+| Altres |  |
+| **Total despeses corrents** |  |
+
+## Pas 2 — Compte de resultats previsional
+
+El compte previsional estima si guanyeu o perdeu en un període. És una resta senzilla: ingressos menys despeses. Useu un període realista (per exemple, el primer any) i els preus de l'estudi de mercat de la Fase 3.
+
+| Concepte | Import (€) |
+|---|---|
+| **Ingressos per vendes** (unitats × preu) |  |
+| (−) Cost de les vendes / aprovisionament |  |
+| (−) Despeses de personal |  |
+| (−) Altres despeses (lloguer, subministraments, màrqueting) |  |
+| **= Resultat previsional** (benefici o pèrdua) |  |
+
+| Lectura del resultat | Resposta |
+|---|---|
+| El projecte dóna benefici o pèrdua en el període? |  |
+| Si dóna pèrdua, quines palanques tenim (pujar preu, baixar cost, vendre més)? |  |
+
+## Pas 3 — Punt mort
+
+El punt mort (o llindar de rendibilitat) és el nombre d'unitats que heu de vendre perquè els ingressos igualen els costos: ni guanyeu ni perdeu. Per davall, perdeu; per damunt, guanyeu. Vos dóna una meta de vendes molt concreta.
+
+<Diagram caption="El punt mort és l'encreuament entre la recta d'ingressos i la de costos totals: a la seua esquerra hi ha pèrdues, a la seua dreta beneficis. Els números del gràfic són un exemple; vosaltres calculareu els vostres en la taula de baix.">
+  <BreakEvenChart />
+</Diagram>
+
+<Steps label="Seqüència de treball" title="Com calcular el punt mort">
+  <li>**Identifiqueu els costos fixos** (els que no depenen de quant veneu: lloguer, sous fixos…).</li>
+  <li>**Identifiqueu el cost variable per unitat** (el que costa produir cada unitat).</li>
+  <li>**Calculeu el marge per unitat**: preu de venda menys cost variable unitari.</li>
+  <li>**Dividiu** els costos fixos entre eixe marge: eixe és el vostre punt mort en unitats.</li>
+  <li>**Compareu** amb el que espereu vendre segons l'estudi de mercat: és assolible?</li>
+</Steps>
+
+| Dada | Valor |
+|---|---|
+| Costos fixos del període (€) |  |
+| Preu de venda per unitat (€) |  |
+| Cost variable per unitat (€) |  |
+| Marge per unitat (preu − cost variable) (€) |  |
+| **Punt mort** = costos fixos ÷ marge (unitats) |  |
+| És assolible segons l'estudi de mercat? (sí/no i per què) |  |
+
+<Callout label="Recomanació d'aula" title="Useu la calculadora, però enteneu el número" variant="example">
+La calculadora de punt mort de la secció de recursos vos dóna el resultat a l'instant, però l'examen no és el número: és saber què significa. «Hem de vendre X unitats només per a no perdre diners» és una frase que canvia decisions. Si el punt mort està molt per damunt del que podeu vendre, el projecte necessita un replantejament, no més optimisme.
+</Callout>
+
+**Proveu-ho amb les vostres dades:** introduïu els vostres costos fixos, el preu de venda i el cost variable unitari, i la calculadora vos dóna el punt mort i la gràfica.
+
+<HerramientaIsland componente="PuntoMuerto" />
+
+## Pas 4 — Fonts de finançament
+
+D'on ix el diner de la inversió inicial? Compareu les opcions realistes per a un projecte xicotet i decidiu una combinació.
+
+| Font | Quant aportaria? | Avantatge | Inconvenient |
+|---|---|---|---|
+| Estalvis propis / aportació de socis |  |  |  |
+| Préstec bancari |  |  |  |
+| Ajudes o subvencions públiques |  |  |  |
+| Crowdfunding / finançament col·lectiu |  |  |  |
+| Família i amics |  |  |  |
+
+| Decisió de finançament | Resposta |
+|---|---|
+| Combinació triada i per què |  |
+| És coherent amb els valors del projecte? |  |
+
+**Proveu-ho amb les vostres dades:** compareu inversions amb el VAN i la TIR per a decidir si una opció de finançament o inversió compensa.
+
+<HerramientaIsland componente="VANTIR" />
+
+## Pas 5 — Anàlisi d'impacte (triple vessant)
+
+Ací GPE marca la seua diferència. Un projecte viable ho és en tres dimensions alhora. Analitzeu l'impacte del vostre projecte i proposeu millores concretes, especialment en el que reté valor en la vostra comunitat.
+
+| Vessant | Impacte positiu del nostre projecte | Impacte negatiu a minimitzar | Millora que proposem |
+|---|---|---|---|
+| **Econòmica (local)** | (ocupació local, consum pròxim, proveïdors de la zona) |  |  |
+| **Social** | (necessitat coberta, col·lectius beneficiats) |  |  |
+| **Ambiental** | (residus, energia, economia circular) |  |  |
+
+| Connexió amb els ODS | Resposta |
+|---|---|
+| A quins Objectius de Desenvolupament Sostenible contribuïx el nostre projecte? |  |
+| Com reté el nostre projecte valor en l'economia local? |  |
+
+<ErroresQueCuestan>
+- **Comptar només la viabilitat econòmica i oblidar la social i ambiental.** Un projecte pot eixir rendible sobre el paper i, tot i això, no ser viable en GPE si danya el seu entorn o no aporta res a la comunitat.
+- **Ingressos optimistes sense calcular el punt mort.** Esperar vendre molt més del que el mercat permet infla el compte de resultats; sense el punt mort no sabeu quant cal vendre de veritat per a no perdre.
+- **Confondre benefici amb caixa.** Es pot tindre benefici en el compte de resultats i, alhora, no tindre diner en el compte per a pagar a proveïdors o nòmines a fi de mes.
+</ErroresQueCuestan>
+
+## Lliurable de la Fase 4
+
+- [ ] Pressupost del projecte (inversió inicial + despeses corrents).
+- [ ] Compte de resultats previsional amb la seua lectura.
+- [ ] Càlcul del punt mort i comparació amb les vendes esperades.
+- [ ] Decisió de fonts de finançament justificada.
+- [ ] Anàlisi d'impacte en la triple vessant amb millores i connexió amb els ODS.
+- [ ] Tot afegit al document-projecte, a continuació de la Fase 3.
+
+## Criteris d'avaluació de la fase
+
+| Criteri | Insuficient | Adequat | Excel·lent |
+|---|---|---|---|
+| **Pressupost** | Irreal o incomplet | Distingix inversió i despeses amb xifres realistes | Detallat, realista i traçable al projecte |
+| **Compte previsional** | Mal plantejat | Ingressos − despeses correctes, amb lectura | Lectura amb palanques de millora identificades |
+| **Punt mort** | Mal calculat o sense unitats | Ben calculat, amb unitats i interpretació | Comparat amb el mercat i usat per a decidir |
+| **Finançament** | Una font sense justificar | Combinació raonada | Coherent amb la viabilitat i els valors |
+| **Impacte** | Absent o genèric | Triple vessant analitzada | Millores concretes i valor retingut en el local |
+
+## Reflexió i coavaluació
+
+| Pregunta de reflexió | Resposta |
+|---|---|
+| Els números confirmen la idea o ens obliguen a replantejar-la? |  |
+| Quant hem de vendre de veritat per a no perdre? |  |
+| Pagar impostos forma part de fer bé les coses? Per què? |  |
+| El nostre projecte deixa l'entorn millor del que el va trobar? |  |
+
+Coavaluació: la fase de números sol recaure en qui «es porta bé amb les matemàtiques». Valoreu si tot l'equip ha entés els càlculs, no només qui els va fer. Ningú hauria de presentar el pitch sense saber què és el punt mort del projecte.
