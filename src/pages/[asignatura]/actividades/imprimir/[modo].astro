@@ -26,14 +26,14 @@ export const getStaticPaths = (async () => {
 
   return ASIGNATURA_SLUGS.flatMap((slug) => {
     const subjectActs = acts
-      .filter((a) => a.data.asignatura === slug && a.data.estado === 'publicado')
+      .filter((a) => a.data.asignatura === slug && a.data.estado === 'publicado' && a.data.lang === 'es')
       .sort((a, b) =>
         a.data.unidad_relacionada - b.data.unidad_relacionada ||
         a.id.localeCompare(b.id)
       );
     if (subjectActs.length === 0) return [];
     const subjectTests = tests
-      .filter((t) => t.data.asignatura === slug && t.data.estado === 'publicado')
+      .filter((t) => t.data.asignatura === slug && t.data.estado === 'publicado' && t.data.lang === 'es')
       .sort((a, b) => a.data.unidad_relacionada - b.data.unidad_relacionada);
     const props = { acts: subjectActs, tests: subjectTests, asignatura: ASIGNATURAS[slug], libroByUnit };
     return [

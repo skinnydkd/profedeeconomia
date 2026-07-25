@@ -17,7 +17,31 @@ type Props = {
   /** Used as a localStorage namespace so two quizzes on the same site
    *  don't share state. Pass the test slug. */
   storageKey: string;
+  /** UI chrome locale (defaults to Castilian). */
+  locale?: 'es' | 'ca';
 };
+
+const COPY = {
+  es: {
+    sinResponder: '— sin responder —', verdadero: 'Verdadero', falso: 'Falso',
+    resultado: 'Resultado', mejorNota: 'Tu mejor nota:', acierto: 'acierto', aciertos: 'aciertos',
+    de: 'de', pregunta: 'pregunta', preguntas: 'preguntas', apto: 'Apto', repasa: 'Repasa la unidad',
+    tuRespuesta: 'Tu respuesta:', correcta: 'Correcta:', reintentar: 'Volver a intentarlo', borrar: 'Borrar mi progreso',
+    preguntaN: 'Pregunta', tuRespuestaLbl: 'Tu respuesta', elige: '— elige —',
+    correcto: '¡Correcto!', incorrecto: 'Incorrecto.', respuestaCorrecta: 'Respuesta correcta:',
+    anterior: '← Anterior', confirmar: 'Confirmar respuesta', verResultado: 'Ver resultado', siguiente: 'Siguiente →',
+  },
+  ca: {
+    sinResponder: '— sense respondre —', verdadero: 'Vertader', falso: 'Fals',
+    resultado: 'Resultat', mejorNota: 'La teua millor nota:', acierto: 'encert', aciertos: 'encerts',
+    de: 'de', pregunta: 'pregunta', preguntas: 'preguntes', apto: 'Apte', repasa: 'Repassa la unitat',
+    tuRespuesta: 'La teua resposta:', correcta: 'Correcta:', reintentar: 'Tornar a intentar-ho', borrar: 'Esborrar el meu progrés',
+    preguntaN: 'Pregunta', tuRespuestaLbl: 'La teua resposta', elige: '— tria —',
+    correcto: 'Correcte!', incorrecto: 'Incorrecte.', respuestaCorrecta: 'Resposta correcta:',
+    anterior: '← Anterior', confirmar: 'Confirmar resposta', verResultado: 'Veure resultat', siguiente: 'Següent →',
+  },
+} as const;
+type Copy = (typeof COPY)[keyof typeof COPY];
 
 type Estado = {
   idx: number;
@@ -64,13 +88,13 @@ function esCorrecta(p: Pregunta, r: Respuesta): boolean {
 const numComma = (n: number) => String(n).replace('.', ',');
 
 /** Human-readable rendering of the user's answer (for the review screen). */
-function formatResp(p: Pregunta, r: Respuesta): string {
-  if (r === null || r === undefined) return '— sin responder —';
+function formatResp(p: Pregunta, r: Respuesta, t: Copy): string {
+  if (r === null || r === undefined) return t.sinResponder;
   switch (p.tipo) {
     case 'opcion-multiple':
       return typeof r === 'number' ? p.opciones[r] : '—';
     case 'verdadero-falso':
-      return r ? 'Verdadero' : 'Falso';
+      return r ? t.verdadero : t.falso;
     case 'numerico':
       return typeof r === 'number' ? numComma(r) + (p.unidad ? ' ' + p.unidad : '') : '—';
     case 'relacionar':
@@ -81,12 +105,12 @@ function formatResp(p: Pregunta, r: Respuesta): string {
 }
 
 /** Human-readable rendering of the correct answer (for the review screen). */
-function formatCorr(p: Pregunta): string {
+function formatCorr(p: Pregunta, t: Copy): string {
   switch (p.tipo) {
     case 'opcion-multiple':
       return p.opciones[p.correcta];
     case 'verdadero-falso':
-      return p.correcta ? 'Verdadero' : 'Falso';
+      return p.correcta ? t.verdadero : t.falso;
     case 'numerico':
       return numComma(p.respuesta) + (p.unidad ? ' ' + p.unidad : '');
     case 'relacionar':
@@ -99,7 +123,8 @@ function bestKey(storageKey: string): string {
   return `quiz:${storageKey}:best`;
 }
 
-export default function QuizPlayer({ preguntas, storageKey }: Props) {
+export default function QuizPlayer({ preguntas, storageKey, locale = 'es' }: Props) {
+  const t = COPY[locale];
   const total = preguntas.length;
   const [estado, setEstado] = useState<Estado>(() => emptyState(total));
 
@@ -190,17 +215,17 @@ export default function QuizPlayer({ preguntas, storageKey }: Props) {
     return (
       <div class="qp">
         <div class="qp__final">
-          <div class="qp__eyebrow">Resultado</div>
+          <div class="qp__eyebrow">{t.resultado}</div>
           <h2 class="qp__nota">
             <span class="qp__nota-num">{formatNota(nota10)}</span>
             <span class="qp__nota-sobre">/ 10</span>
           </h2>
-          {bestNota !== null && <p class="qp__best">Tu mejor nota: {formatNota(bestNota)} / 10</p>}
+          {bestNota !== null && <p class="qp__best">{t.mejorNota} {formatNota(bestNota)} / 10</p>}
           <p class="qp__detail">
-            {aciertos} {aciertos === 1 ? 'acierto' : 'aciertos'} de {total}{' '}
-            {total === 1 ? 'pregunta' : 'preguntas'}
+            {aciertos} {aciertos === 1 ? t.acierto : t.aciertos} {t.de} {total}{' '}
+            {total === 1 ? t.pregunta : t.preguntas}
             {' · '}
-            <strong class={aprobado ? 'ok' : 'fail'}>{aprobado ? 'Apto' : 'Repasa la unidad'}</strong>
+            <strong class={aprobado ? 'ok' : 'fail'}>{aprobado ? t.apto : t.repasa}</strong>
           </p>
 
           <ol class="qp__review">
@@ -213,11 +238,11 @@ export default function QuizPlayer({ preguntas, storageKey }: Props) {
                   <span class="qp__review-text">
                     <strong>{p.enunciado}</strong>
                     <br />
-                    Tu respuesta: <em>{formatResp(p, r)}</em>
+                    {t.tuRespuesta} <em>{formatResp(p, r, t)}</em>
                     {!ok && (
                       <>
                         <br />
-                        Correcta: <em>{formatCorr(p)}</em>
+                        {t.correcta} <em>{formatCorr(p, t)}</em>
                       </>
                     )}
                   </span>
@@ -228,11 +253,11 @@ export default function QuizPlayer({ preguntas, storageKey }: Props) {
 
           <div class="qp__actions">
             <button class="qp__btn qp__btn--primary" type="button" onClick={reiniciar}>
-              Volver a intentarlo
+              {t.reintentar}
             </button>
             {bestNota !== null && (
               <button class="qp__btn qp__btn--ghost" type="button" onClick={borrarProgreso}>
-                Borrar mi progreso
+                {t.borrar}
               </button>
             )}
           </div>
@@ -247,7 +272,7 @@ export default function QuizPlayer({ preguntas, storageKey }: Props) {
   return (
     <div class="qp">
       <div class="qp__header">
-        <span class="qp__eyebrow">Pregunta {estado.idx + 1} de {total}</span>
+        <span class="qp__eyebrow">{t.preguntaN} {estado.idx + 1} {t.de} {total}</span>
         <div class="qp__progress">
           {preguntas.map((_, i) => {
             const done = estado.confirmadas[i];
@@ -268,7 +293,7 @@ export default function QuizPlayer({ preguntas, storageKey }: Props) {
       </div>
 
       {estado.idx === 0 && !confirmada && bestNota !== null && (
-        <p class="qp__best">Tu mejor nota: {formatNota(bestNota)} / 10</p>
+        <p class="qp__best">{t.mejorNota} {formatNota(bestNota)} / 10</p>
       )}
 
       <h3 class="qp__enunciado">{pregunta.enunciado}</h3>
@@ -301,7 +326,7 @@ export default function QuizPlayer({ preguntas, storageKey }: Props) {
             const sc = confirmada ? (corr ? 'is-correct' : sel ? 'is-incorrect' : '') : sel ? 'is-selected' : '';
             return (
               <button type="button" class={['qp__opt', sc].join(' ').trim()} onClick={() => setRespuesta(v)} disabled={confirmada} aria-pressed={sel}>
-                <span class="qp__opt-texto">{v ? 'Verdadero' : 'Falso'}</span>
+                <span class="qp__opt-texto">{v ? t.verdadero : t.falso}</span>
               </button>
             );
           })}
@@ -312,7 +337,7 @@ export default function QuizPlayer({ preguntas, storageKey }: Props) {
       {pregunta.tipo === 'numerico' && (
         <div class={['qp__num', confirmada ? (acerto ? 'is-correct' : 'is-incorrect') : ''].join(' ').trim()}>
           <label class="qp__num-label">
-            <span>Tu respuesta</span>
+            <span>{t.tuRespuestaLbl}</span>
             <span class="qp__num-field">
               <input
                 type="text"
@@ -345,7 +370,7 @@ export default function QuizPlayer({ preguntas, storageKey }: Props) {
                   <td class="qp__rel-izq">{izq}</td>
                   <td class="qp__rel-der">
                     <select disabled={confirmada} value={String(chosen)} onChange={(e) => elegirRel(li, Number(e.currentTarget.value))}>
-                      <option value="-1">— elige —</option>
+                      <option value="-1">{t.elige}</option>
                       {pregunta.derecha.map((der, di) => (
                         <option value={String(di)}>{String.fromCharCode(97 + di)}) {der}</option>
                       ))}
@@ -360,9 +385,9 @@ export default function QuizPlayer({ preguntas, storageKey }: Props) {
 
       {confirmada && (
         <div class={['qp__feedback', acerto ? 'is-ok' : 'is-fail'].join(' ')}>
-          <strong>{acerto ? '¡Correcto!' : 'Incorrecto.'}</strong>
+          <strong>{acerto ? t.correcto : t.incorrecto}</strong>
           {!acerto && pregunta.tipo !== 'opcion-multiple' && (
-            <p class="qp__feedback-corr">Respuesta correcta: <em>{formatCorr(pregunta)}</em></p>
+            <p class="qp__feedback-corr">{t.respuestaCorrecta} <em>{formatCorr(pregunta, t)}</em></p>
           )}
           {pregunta.explicacion && <p>{pregunta.explicacion}</p>}
         </div>
@@ -370,15 +395,15 @@ export default function QuizPlayer({ preguntas, storageKey }: Props) {
 
       <div class="qp__actions">
         <button class="qp__btn qp__btn--ghost" type="button" onClick={anterior} disabled={estado.idx === 0}>
-          ← Anterior
+          {t.anterior}
         </button>
         {!confirmada ? (
           <button class="qp__btn qp__btn--primary" type="button" onClick={confirmar} disabled={!respondida(pregunta, respuestaActual)}>
-            Confirmar respuesta
+            {t.confirmar}
           </button>
         ) : (
           <button class="qp__btn qp__btn--primary" type="button" onClick={siguiente}>
-            {estado.idx + 1 === total ? 'Ver resultado' : 'Siguiente →'}
+            {estado.idx + 1 === total ? t.verResultado : t.siguiente}
           </button>
         )}
       </div>

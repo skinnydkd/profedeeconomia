@@ -3,13 +3,16 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 import { ASIGNATURAS } from '@/lib/asignaturas';
 import { breadcrumbLd } from '@/lib/seo';
 import { getCollection, render } from 'astro:content';
+import { getLocale } from '@/i18n/locale';
+import { pickLocalizedEntry } from '@/i18n/content-locale';
+import { localizeAsignatura } from '@/i18n/asignaturas-ca';
 import HerramientaIsland from '@components/calculadoras/HerramientaIsland.astro';
 import type { GetStaticPaths } from 'astro';
 
 export const getStaticPaths = (async () => {
   const all = await getCollection('recursos');
   return all
-    .filter((x) => x.data.estado === 'publicado')
+    .filter((x) => x.data.estado === 'publicado' && x.data.lang === 'es')
     .map((x) => {
       const slug = x.id.split('/').pop()?.replace(/\.mdx?$/, '') ?? x.id;
       return {
@@ -19,46 +22,60 @@ export const getStaticPaths = (async () => {
     });
 }) satisfies GetStaticPaths;
 
-const { recurso } = Astro.props;
-const a = ASIGNATURAS[recurso.data.asignatura];
+const locale = getLocale(Astro.currentLocale);
+const recursoEs = Astro.props.recurso;
+const a = localizeAsignatura(ASIGNATURAS[recursoEs.data.asignatura], locale);
+const recCaById = new Map(
+  (await getCollection('recursos'))
+    .filter((x) => x.data.estado === 'publicado' && x.data.lang === 'ca')
+    .map((x) => [x.id, x]),
+);
+const recurso = pickLocalizedEntry(recursoEs, recCaById, locale);
 const { Content } = await render(recurso);
 
 const allLibro = await getCollection('libro');
-const unit = recurso.data.unidad_relacionada
+const libroCaById = new Map(allLibro.filter((u) => u.data.lang === 'ca').map((u) => [u.id, u]));
+const unitEs = recurso.data.unidad_relacionada
   ? allLibro.find(
       (u) => u.data.asignatura === a.slug && u.data.unidad === recurso.data.unidad_relacionada && u.data.lang === 'es'
     )
   : null;
-const unitSlug = unit?.id.split('/').pop()?.replace(/\.mdx?$/, '');
+const unit = unitEs ? pickLocalizedEntry(unitEs, libroCaById, locale) : null;
+const unitSlug = unitEs?.id.split('/').pop()?.replace(/\.mdx?$/, '');
 
-const recursoSlug = recurso.id.split('/').pop()?.replace(/\.mdx?$/, '') ?? recurso.id;
+const copy = {
+  es: { inicio: 'Inicio', recursos: 'Recursos', unidad: 'Unidad', kicker: 'Recurso interactivo', volver: 'Volver a la Unidad' },
+  ca: { inicio: 'Inici', recursos: 'Recursos', unidad: 'Unitat', kicker: 'Recurs interactiu', volver: 'Tornar a la Unitat' },
+}[locale];
+
+const recursoSlug = recursoEs.id.split('/').pop()?.replace(/\.mdx?$/, '') ?? recursoEs.id;
 const breadcrumb = breadcrumbLd([
-  { name: 'Inicio', path: '/' },
+  { name: copy.inicio, path: '/' },
   { name: a.shortLabel, path: `/${a.slug}/` },
-  { name: 'Recursos', path: `/${a.slug}/recursos/` },
+  { name: copy.recursos, path: `/${a.slug}/recursos/` },
   { name: recurso.data.title, path: `/${a.slug}/recursos/${recursoSlug}/` },
 ]);
 ---
 
-<BaseLayout title={`${recurso.data.title} — ${a.shortLabel}`} description={recurso.data.descripcion} ogType="article" jsonLd={breadcrumb}>
+<BaseLayout title={`${recurso.data.title} — ${a.shortLabel}`} description={recurso.data.descripcion} ogType="article" jsonLd={breadcrumb} contentLang={locale}>
   <div class="container">
     <nav class="breadcrumb">
-      <a href="/">Inicio</a> <span class="sep">›</span>
+      <a href="/">{copy.inicio}</a> <span class="sep">›</span>
       <a href={`/${a.slug}/`}>{a.shortLabel}</a> <span class="sep">›</span>
-      <a href={`/${a.slug}/recursos/`}>Recursos</a> <span class="sep">›</span>
+      <a href={`/${a.slug}/recursos/`}>{copy.recursos}</a> <span class="sep">›</span>
       <span>{recurso.data.title}</span>
     </nav>
   </div>
 
   <section class="hero">
     <div class="container">
-      <span class="kicker kicker--sentence">Recurso interactivo{recurso.data.unidad_relacionada !== undefined ? ` · Unidad ${recurso.data.unidad_relacionada}` : ''}</span>
+      <span class="kicker kicker--sentence">{copy.kicker}{recurso.data.unidad_relacionada !== undefined ? ` · ${copy.unidad} ${recurso.data.unidad_relacionada}` : ''}</span>
       <h1>{recurso.data.title}</h1>
       <p class="lede">{recurso.data.descripcion}</p>
       {unit && unitSlug && (
         <p class="meta">
           <a class="link" href={`/${a.slug}/libro/${unitSlug}/`}>
-            Volver a la Unidad {unit.data.unidad}: {unit.data.title}
+            {copy.volver} {unit.data.unidad}: {unit.data.title}
           </a>
         </p>
       )}
