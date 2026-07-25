@@ -6,13 +6,15 @@ type Props = {
   data: ArbolJSON;
   /** Stable identifier (e.g. the MDX file slug) used as the sessionStorage key. */
   simuladorId: string;
+  /** UI chrome locale (defaults to Castilian). */
+  locale?: 'es' | 'ca';
 };
 
-const { data, simuladorId } = Astro.props;
+const { data, simuladorId, locale = 'es' } = Astro.props;
 ---
 
 <div class="arbol-wrap">
-  <ArbolDecisionesIsland data={data} simuladorId={simuladorId} client:load />
+  <ArbolDecisionesIsland data={data} simuladorId={simuladorId} locale={locale} client:load />
 </div>
 
 <style is:global>

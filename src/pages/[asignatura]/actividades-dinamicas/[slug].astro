@@ -3,6 +3,9 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 import { ASIGNATURAS } from '@/lib/asignaturas';
 import { breadcrumbLd } from '@/lib/seo';
 import { getCollection } from 'astro:content';
+import { getLocale } from '@/i18n/locale';
+import { pickLocalizedEntry } from '@/i18n/content-locale';
+import { localizeAsignatura } from '@/i18n/asignaturas-ca';
 import QuizPlayer from '@components/QuizPlayer.tsx';
 import ArbolDecisiones from '@components/actividades/ArbolDecisiones.astro';
 import { parseTreeFromMdxBody } from '@components/actividades/parse-tree.ts';
@@ -21,22 +24,31 @@ export const getStaticPaths = (async () => {
     });
 }) satisfies GetStaticPaths;
 
-const { unit } = Astro.props;
-const a = ASIGNATURAS[unit.data.asignatura as keyof typeof ASIGNATURAS];
-const unidad = unit.data.unidad;
+const locale = getLocale(Astro.currentLocale);
+const unitEs = Astro.props.unit;
+const a = localizeAsignatura(ASIGNATURAS[unitEs.data.asignatura as keyof typeof ASIGNATURAS], locale);
+const unidad = unitEs.data.unidad;
 
-const [testsAll, dinAll, recAll] = await Promise.all([
+const [libroAll, testsAll, dinAll, recAll] = await Promise.all([
+  getCollection('libro'),
   getCollection('tests'),
   getCollection('actividadesDinamicas'),
   getCollection('recursos'),
 ]);
-const test = testsAll.find((t) => t.data.asignatura === a.slug && t.data.unidad_relacionada === unidad && t.data.estado === 'publicado');
-const simuladores = dinAll.filter((d) => d.data.asignatura === a.slug && d.data.unidad_relacionada === unidad && d.data.estado === 'publicado');
-const recursos = recAll.filter((r) => r.data.asignatura === a.slug && r.data.unidad_relacionada === unidad && r.data.estado === 'publicado');
+const libroCaById = new Map(libroAll.filter((u) => u.data.lang === 'ca').map((u) => [u.id, u]));
+const unit = pickLocalizedEntry(unitEs, libroCaById, locale);
 
-// Pre-parse simulator JSON so build-time errors surface clearly.
-const simuladoresParsed = simuladores.map((s) => {
-  const simSlug = s.id.split('/').pop()?.replace(/\.mdx?$/, '') ?? s.id;
+// Serve ES entries as the source of truth, swapped to their CA sibling under /ca.
+const dinCaById = new Map(dinAll.filter((d) => d.data.lang === 'ca').map((d) => [d.id, d]));
+const test = testsAll.find((t) => t.data.asignatura === a.slug && t.data.unidad_relacionada === unidad && t.data.estado === 'publicado' && t.data.lang === 'es');
+const simuladores = dinAll.filter((d) => d.data.asignatura === a.slug && d.data.unidad_relacionada === unidad && d.data.estado === 'publicado' && d.data.lang === 'es');
+const recursos = recAll.filter((r) => r.data.asignatura === a.slug && r.data.unidad_relacionada === unidad && r.data.estado === 'publicado' && r.data.lang === 'es');
+
+// Pre-parse simulator JSON so build-time errors surface clearly. The route slug
+// and storage id stay ES-stable; the CA sibling only supplies localized display.
+const simuladoresParsed = simuladores.map((esSim) => {
+  const s = pickLocalizedEntry(esSim, dinCaById, locale);
+  const simSlug = esSim.id.split('/').pop()?.replace(/\.mdx?$/, '') ?? esSim.id;
   try {
     return { entry: s, simSlug, tree: parseTreeFromMdxBody(s.body ?? '') };
   } catch (err) {
@@ -44,28 +56,33 @@ const simuladoresParsed = simuladores.map((s) => {
   }
 });
 
-const unitSlug = unit.id.split('/').pop()?.replace(/\.mdx?$/, '') ?? unit.id;
+const copy = {
+  es: { inicio: 'Inicio', actividades: 'Actividades interactivas', unidad: 'Unidad', actividadesShort: 'Actividades', descripcion: `Test, simuladores y recursos interactivos de la unidad ${unidad}.`, test: 'Test de autoevaluación', preguntas: 'preguntas', simuladores: 'Simuladores de decisión', recursos: 'Recursos interactivos' },
+  ca: { inicio: 'Inici', actividades: 'Activitats interactives', unidad: 'Unitat', actividadesShort: 'Activitats', descripcion: `Test, simuladors i recursos interactius de la unitat ${unidad}.`, test: "Test d'autoavaluació", preguntas: 'preguntes', simuladores: 'Simuladors de decisió', recursos: 'Recursos interactius' },
+}[locale];
+
+const unitSlug = unitEs.id.split('/').pop()?.replace(/\.mdx?$/, '') ?? unitEs.id;
 const breadcrumb = breadcrumbLd([
-  { name: 'Inicio', path: '/' },
+  { name: copy.inicio, path: '/' },
   { name: a.shortLabel, path: `/${a.slug}/` },
-  { name: 'Actividades interactivas', path: `/${a.slug}/actividades-dinamicas/` },
-  { name: `Unidad ${unidad}: ${unit.data.title}`, path: `/${a.slug}/actividades-dinamicas/${unitSlug}/` },
+  { name: copy.actividades, path: `/${a.slug}/actividades-dinamicas/` },
+  { name: `${copy.unidad} ${unidad}: ${unit.data.title}`, path: `/${a.slug}/actividades-dinamicas/${unitSlug}/` },
 ]);
 ---
 
-<BaseLayout title={`Actividades · ${unit.data.title} — ${a.shortLabel}`} description={`Test, simuladores y recursos interactivos de la unidad ${unidad}.`} ogType="article" jsonLd={breadcrumb}>
+<BaseLayout title={`${copy.actividadesShort} · ${unit.data.title} — ${a.shortLabel}`} description={copy.descripcion} ogType="article" jsonLd={breadcrumb} contentLang={locale}>
   <div class="container">
     <nav class="breadcrumb">
-      <a href="/">Inicio</a> <span class="sep">›</span>
+      <a href="/">{copy.inicio}</a> <span class="sep">›</span>
       <a href={`/${a.slug}/`}>{a.shortLabel}</a> <span class="sep">›</span>
-      <a href={`/${a.slug}/actividades-dinamicas/`}>Actividades interactivas</a> <span class="sep">›</span>
-      <span>Unidad {unidad}</span>
+      <a href={`/${a.slug}/actividades-dinamicas/`}>{copy.actividades}</a> <span class="sep">›</span>
+      <span>{copy.unidad} {unidad}</span>
     </nav>
   </div>
 
   <section class="hero">
     <div class="container">
-      <span class="kicker kicker--sentence">Unidad {unidad} · {a.shortLabel}</span>
+      <span class="kicker kicker--sentence">{copy.unidad} {unidad} · {a.shortLabel}</span>
       <h1>{unit.data.title}</h1>
       {unit.data.lema && <p class="lede">{unit.data.lema}</p>}
     </div>
@@ -74,8 +91,8 @@ const breadcrumb = breadcrumbLd([
   {test && (
     <section class="bloque">
       <div class="container container--narrow">
-        <h2 class="bloque__h2">Test de autoevaluación</h2>
-        <p class="bloque__meta">{test.data.preguntas.length} preguntas{test.data.duracion_estimada && <> · {test.data.duracion_estimada}</>}</p>
+        <h2 class="bloque__h2">{copy.test}</h2>
+        <p class="bloque__meta">{test.data.preguntas.length} {copy.preguntas}{test.data.duracion_estimada && <> · {test.data.duracion_estimada}</>}</p>
         <QuizPlayer preguntas={test.data.preguntas} storageKey={`test-${a.slug}-u${unidad}`} client:load />
       </div>
     </section>
@@ -84,12 +101,12 @@ const breadcrumb = breadcrumbLd([
   {simuladoresParsed.length > 0 && (
     <section class="bloque bloque--alt">
       <div class="container container--narrow">
-        <h2 class="bloque__h2">Simuladores de decisión</h2>
+        <h2 class="bloque__h2">{copy.simuladores}</h2>
         {simuladoresParsed.map(({ entry, simSlug, tree }) => (
           <article class="simulador">
             <h3 class="simulador__h3">{entry.data.title}</h3>
             {entry.data.descripcion && <p class="simulador__lede">{entry.data.descripcion}</p>}
-            <ArbolDecisiones data={tree} simuladorId={`${a.slug}-${simSlug}`} />
+            <ArbolDecisiones data={tree} simuladorId={`${a.slug}-${simSlug}`} locale={locale} />
           </article>
         ))}
       </div>
@@ -99,7 +116,7 @@ const breadcrumb = breadcrumbLd([
   {recursos.length > 0 && (
     <section class="bloque">
       <div class="container container--narrow">
-        <h2 class="bloque__h2">Recursos interactivos</h2>
+        <h2 class="bloque__h2">{copy.recursos}</h2>
         <ul class="recurso-list">
           {recursos.map((r) => {
             const rSlug = r.id.split('/').pop()?.replace(/\.mdx?$/, '') ?? r.id;
