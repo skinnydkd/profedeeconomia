@@ -1,0 +1,119 @@
+---
+asignatura: edmn-2bach
+unidad_relacionada: 8
+title: "La primera contractació de Velorex"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "15-20 min"
+descripcion: "Una empresa de missatgeria urbana en bici creix i ha de contractar el seu primer empleat. Tipus de contracte, onboarding i conflicte: gestionar persones per primera vegada."
+competencias_clave: [CPSAA, CE, CD]
+competencias_especificas: [CE3]
+lang: ca
+estado: publicado
+slug: "asignaturas/edmn-2bach/actividades-dinamicas/08-rrhh-primera-contratacion.ca"
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Cas · Recursos Humans",
+    "titulo": "La primera contractació de Velorex",
+    "contexto": "Velorex és una startup de missatgeria urbana en bicicleta que opera a Bilbao. La va fundar Iker fa dos anys, treballa sol i fa tots els repartiments. Ja té 120 clients fixos, factura 3.800 € al mes i no pot assumir més faena ell sol. Necessita contractar la seua primera persona. Té 6.000 € en caixa i no sap res de contractes laborals.",
+    "kpi_inicial": { "caja": 6000, "clientes": 120, "reputacion": 8 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisió 1 — Quin tipus de contracte?",
+      "situacion": "Iker té tres opcions per a incorporar Josu, un repartidor de 22 anys que vol treballar amb ell: (a) contracte indefinit a temps complet; (b) contracte temporal de 6 mesos per a provar; (c) que Josu es done d'alta com a autònom i li facture per hores.",
+      "opciones": [
+        {
+          "label": "Contracte indefinit a temps complet des del primer dia",
+          "kpi_delta": { "caja": -1800, "clientes": 30, "reputacion": 2 },
+          "feedback": "El contracte indefinit oferix al treballador estabilitat i genera costos laborals immediats: salari brut + cotitzacions a la Seguretat Social (l'empresa paga aprox el 30 % addicional sobre el salari brut). Amb un salari de 1.200 € bruts, el cost real per a Iker és uns 1.560 €/mes. Val la pena si els ingressos addicionals que genera Josu superen eixe cost, cosa molt probable amb 30 clients nous.",
+          "next": "n2"
+        },
+        {
+          "label": "Contracte temporal de 6 mesos per a vore si funciona",
+          "kpi_delta": { "caja": -1600, "clientes": 25, "reputacion": 1 },
+          "feedback": "El contracte temporal té un ús legítim quan l'activitat és temporal per naturalesa (campanya nadalenca, substitució, etc.). Usar un temporal per a una activitat permanent és una figura en frau de llei que pot ser sancionada. A més, Josu treballa amb menys compromís perquè sap que en 6 mesos pot estar al carrer. Lliçó: el tipus de contracte envia un senyal sobre l'estabilitat que oferixes.",
+          "next": "n2"
+        },
+        {
+          "label": "Josu factura com a autònom: més barat per a mi i més flexible",
+          "kpi_delta": { "caja": -1200, "clientes": 20, "reputacion": -2 },
+          "feedback": "Si Josu treballa exclusivament per a Velorex, amb horari fixat per Iker i ferramentes de l'empresa, la relació és laboral encara que es diga autònom. Això s'anomena fals autònom i està tipificat com a infracció molt greu en la Llei d'Infraccions i Sancions en l'Orde Social. La Inspecció de Treball pot reclamar cotitzacions endarrerides més multa. L'economia de plataformes (Glovo, Deliveroo) ha generat milers de casos semblants.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisió 2 — L'onboarding i les primeres setmanes",
+      "situacion": "Josu porta dues setmanes i ja hi ha tensions: un client habitual d'Iker es queixa que Josu arriba tard. Josu diu que ningú li va explicar bé les rutes prioritàries. Iker no havia fet cap procés d'onboarding estructurat.",
+      "opciones": [
+        {
+          "label": "Cride Josu i li explique les rutes prioritàries amb un mapa escrit",
+          "kpi_delta": { "caja": -100, "clientes": 0, "reputacion": 1 },
+          "feedback": "L'onboarding no acaba el dia de la firma del contracte. Un procés d'incorporació ben dissenyat reduïx el temps fins a la productivitat plena del nou empleat i evita errors que danyen la reputació de l'empresa. Documentar les rutes prioritàries és coneixement tàcit que cal externalitzar. Lliçó: el coneixement que només està al teu cap és un risc quan creixes.",
+          "next": "n3"
+        },
+        {
+          "label": "Parle directament amb el client per a calmar la situació",
+          "kpi_delta": { "caja": 0, "clientes": -3, "reputacion": -1 },
+          "feedback": "Gestionar el símptoma sense resoldre la causa: apaivagues el client però Josu continuarà sense saber què s'espera d'ell. El pròxim error serà diferent però igual d'evitable. Lliçó: en RH, els problemes de rendiment tenen quasi sempre un component de comunicació o formació abans que un problema d'actitud de l'empleat.",
+          "next": "n3"
+        },
+        {
+          "label": "Dissenye un manual d'onboarding bàsic per als pròxims 30 dies",
+          "kpi_delta": { "caja": -200, "clientes": 5, "reputacion": 3 },
+          "feedback": "Sistematitzar l'onboarding encara que sigues una empresa de dues persones és una de les decisions de gestió més rendibles que existixen. El manual inclou: rutes prioritàries, protocol amb clients, ús de l'app de tracking, i expectatives de puntualitat. Quan contractes la tercera persona, l'onboarding ja estarà fet. Lliçó: la documentació de processos és infraestructura, no burocràcia.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisió 3 — Conflicte i desenvolupament professional",
+      "situacion": "Al quart mes, Josu et diu que un competidor li ha oferit 200 € més al mes. No vol anar-se'n però necessita eixos diners. L'empresa no pot pagar-los ara mateix. A més, l'empresa ha crescut i cal pensar en un segon repartidor.",
+      "opciones": [
+        {
+          "label": "Li puge el sou encara que m'ajuste més: no vull perdre algú format",
+          "kpi_delta": { "caja": -2400, "clientes": 15, "reputacion": 2 },
+          "feedback": "Cost de retenció vs cost de substitució: formar un nou repartidor té un cost real (temps d'Iker, errors inicials, reputació amb clients). Si Josu ja coneix les rutes, els clients i els protocols, retindre'l per 200 € més és una inversió amb retorn positiu. Lliçó: el cost laboral no és només el salari; és el cost total de tindre i mantindre capacitada una persona.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Li oferisc un pla de desenvolupament: si els resultats milloren, revisem el sou en 3 mesos",
+          "kpi_delta": { "caja": -300, "clientes": 10, "reputacion": 3 },
+          "feedback": "Retenció mitjançant desenvolupament professional: no només salari, sinó perspectiva de creixement. Les habilitats del segle XXI inclouen la capacitat de donar i rebre feedback i construir plans de millora amb objectius mesurables. Josu accepta perquè vol quedar-se i el pla li dóna alguna cosa concreta a treballar.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Si se'n vol anar que se'n vaja: hi ha més repartidors buscant faena",
+          "kpi_delta": { "caja": 0, "clientes": -20, "reputacion": -3 },
+          "feedback": "La rotació de personal té un cost alt i poc visible: el nou repartidor tarda setmanes a ser tan productiu com Josu, alguns clients se'n van mentrestant i la reputació de Velorex com a ocupador es danya al sector. El mercat laboral té memòria: si tractes malament els empleats, costa més reclutar els següents.",
+          "next": "final:fracaso_parcial"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "Velorex creix amb equip estable",
+      "resumen": "Iker ja no treballa sol. Josu és un empleat fidelitzat amb un procés d'onboarding clar i un pla de desenvolupament. L'empresa pot contractar el segon repartidor usant el mateix manual.",
+      "lecciones_clave": [
+        "El tipus de contracte no és només un tràmit administratiu: definix la relació laboral, els costos reals i els drets del treballador.",
+        "L'onboarding ben dissenyat reduïx el temps fins a la productivitat plena i evita errors costosos que danyen la relació amb els clients.",
+        "El cost de retindre un empleat format quasi sempre és menor que el cost de buscar-ne i formar-ne un de nou."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "Velorex perd el seu primer empleat",
+      "resumen": "Josu se'n va, s'emporta el coneixement de les rutes i alguns clients amb ell. Iker ha de començar el procés de contractació des de zero amb menys reputació com a ocupador.",
+      "lecciones_clave": [
+        "Tractar la rotació de personal com a inevitable sol convertir-la en una profecia autocomplida.",
+        "El coneixement operatiu que només està al cap de les persones és un actiu fràgil: cal documentar-lo abans que la persona se'n vaja."
+      ]
+    }
+  }
+}
+```

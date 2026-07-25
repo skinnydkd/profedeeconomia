@@ -1,0 +1,439 @@
+---
+asignatura: edmn-2bach
+unidad: 5
+title: Disseny creatiu de models de negoci
+lema: >-
+  Tindre un model de negoci sobre el paper no garantix que funcione.
+  Abans de construir, cal entendre el client, generar idees
+  divergents i traduir-les a alguna cosa que es puga ensenyar i refinar.
+lang: ca
+estado: publicado
+slug: "asignaturas/edmn-2bach/libro/05-diseno-creativo-modelos.ca"
+duracion: 6 sessions · 1,5 setmanes
+bloque: Bloque C
+sabers:
+  - C.2
+  - C.3
+  - C.4
+conceptos_clave:
+  - mapa d'empatia
+  - neuromàrqueting
+  - divergència i convergència
+  - visual thinking
+  - ideació
+objetivos:
+  - Aplicar el mapa d'empatia per a descriure profundament el client objectiu.
+  - Distingir les fases de divergència i convergència en un procés creatiu.
+  - Conduir una sessió d'ideació amb tècniques bàsiques (brainwriting, SCAMPER).
+  - Sintetitzar idees complexes amb visual thinking.
+  - Iterar el Business Model Canvas a partir de les idees generades.
+publicado_en: 2026-05-10
+---
+
+import Callout from '@components/Callout.astro';
+import Curiosity from '@components/Curiosity.astro';
+import RealExample from '@components/RealExample.astro';
+import Steps from '@components/Steps.astro';
+import KeyTakeaways from '@components/KeyTakeaways.astro';
+import Diagram from '@components/Diagram.astro';
+import Figure from '@components/Figure.astro';
+import EmpathyMap from '@components/diagrams/EmpathyMap.astro';
+import DoubleDiamond from '@components/diagrams/DoubleDiamond.astro';
+import ValuePropositionCanvas from '@components/diagrams/ValuePropositionCanvas.astro';
+import Bibliography from '@components/Bibliography.astro';
+import TldrUnidad from '@components/TldrUnidad.astro';
+import CasoDilema from '@components/CasoDilema.astro';
+import VuelveAlCaso from '@components/VuelveAlCaso.astro';
+import RetoEtapa from '@components/RetoEtapa.astro';
+import MirarFora from '@components/MirarFora.astro';
+
+import designThinkingWorkshop from '@assets/libro/edmn-2bach/05/design-thinking-workshop.jpg';
+import citycampIdeaBoard from '@assets/libro/edmn-2bach/05/citycamp-idea-board.jpg';
+import macintosh128k from '@assets/libro/edmn-2bach/05/macintosh-128k.jpg';
+import ipod1g from '@assets/libro/edmn-2bach/05/ipod-1g.jpg';
+
+> **Temps estimat de lectura**: ~11 min · **Sabers LOMLOE**: C.2, C.3, C.4 · **Prerequisits**: Unitat 4 (models de negoci)
+>
+> **En acabar esta unitat sabràs**:
+> - Aplicar el mapa d'empatia per a descriure profundament un client objectiu concret.
+> - Distingir les fases de divergència i convergència en una sessió creativa i protegir la seua separació.
+> - Conduir una sessió d'ideació amb tècniques bàsiques (brainwriting, SCAMPER) i triar idees amb vot puntuat o matrius d'avaluació.
+> - Sintetitzar idees complexes amb visual thinking (customer journey, storyboards, models visuals) i iterar el Business Model Canvas a partir del feedback del client.
+
+<TldrUnidad>
+Un model de negoci sobre el paper no funciona fins que es confronta amb la realitat d'un client. Esta unitat t'ensenya a **mirar el client amb honestedat** (mapa d'empatia + VPC), **generar idees divergents** i després **convergir** sense perdre el que és bo pel camí.
+
+La trampa de qualsevol sessió creativa és **barrejar divergir i convergir a la mateixa reunió**. Quan jutges mentres generes, les idees moren abans de nàixer. Esta unitat dona eines per a separar-les.
+</TldrUnidad>
+
+<CasoDilema
+  titular="Dropbox va gravar un vídeo de 3 minuts abans de tindre el producte. La llista d'espera va saltar de 5.000 a 75.000 persones en una nit"
+  fuente="Drew Houston, fundador de Dropbox · entrevistas a Y Combinator, 2007-2008"
+  pregunta="Per què un vídeo que ensenya un producte que no existix pot valdre més que el producte mateix en les primeres etapes?"
+>
+El 2007, Drew Houston —fundador de Dropbox— es va trobar amb un problema clàssic: el programari de sincronització d'arxius que volia construir era tècnicament complex i car de prototipar. Sense recursos per a construir un prototip funcional, va fer una cosa distinta: va gravar un **vídeo de 3 minuts** simulant com funcionaria Dropbox quan estiguera llest. El va pujar a Hacker News (fòrum tècnic) amb un enllaç per a «entrar en llista d'espera». La nit del llançament, la llista va passar de 5.000 a 75.000 persones. El producte real va tardar **més d'un any** a estar disponible, però ja tenien demanda demostrada abans d'escriure una sola línia de codi de producció.
+</CasoDilema>
+
+En la unitat anterior vam aprendre a *descriure* un model de negoci amb l'ajuda del Business Model Canvas. En esta toca aprendre a **dissenyar-lo**: com es generen idees per a cada bloc, com es valida si la proposta de valor encaixa realment amb qui volem servir i com es traduïx tot això a alguna cosa prou visual com per a ensenyar-la a un equip, a un mentor o a un inversor sense obrir un document de quaranta pàgines.
+
+El tancament del Bloc C és esta unitat: la del *com*, complementària a la del *què* (Unitat 4). Juntes donen les eines conceptuals i metodològiques que la resta del curs aplicarà a cada funció concreta de l'empresa.
+
+## Començar pel client: el mapa d'empatia
+
+L'error clàssic en dissenyar un model de negoci és **començar per la idea** —*farem una app per a X*— en compte de començar pel client. La conseqüència és predictible: equips que invertixen mesos construint alguna cosa tècnicament bonica que ningú vol comprar. Per a evitar-ho, les metodologies modernes de disseny empresarial comencen per una pregunta més antiga: *qui és exactament la persona a la qual pretenem servir i què li passa pel cap quan té el problema que volem resoldre?*
+
+L'eina estàndard per a respondre eixa pregunta és el **mapa d'empatia**, popularitzat per la consultora XPLANE el 2009 i àmpliament adoptat tant en *design thinking* com en metodologies Lean.
+
+<Diagram caption="El mapa d'empatia: sis quadrants que s'omplin pensant en una persona concreta del segment objectiu, no en un segment abstracte." source="XPLANE (2009). Empathy Map Canvas.">
+  <EmpathyMap />
+</Diagram>
+
+### Les sis preguntes del mapa
+
+Cada quadrant respon a una pregunta distinta sobre la persona objectiu. Convé pensar en una sola persona —amb nom, edat, context— en compte d'en un perfil genèric.
+
+- **Què pensa i què sent.** Les seues motivacions profundes, preocupacions, aspiracions. El que rarament verbalitza però condiciona les seues decisions.
+- **Què escolta.** El que li diuen amics, família, caps, xarxes socials, *influencers*. Les veus que té al cap quan decidix.
+- **Què veu.** El seu entorn físic, els seus referents visuals, el que percep al mercat. Què competix per la seua atenció.
+- **Què diu i què fa.** El seu comportament observable, el seu discurs públic. Important perquè rarament coincidix del tot amb el que pensa i sent.
+- **Què li fa mal.** Frustracions, pors, obstacles, friccions recurrents. El que voldria evitar si poguera.
+- **Què guanya.** Necessitats reals, desitjos, mètriques d'èxit personals. El que de veres li importa.
+
+### La regla del treball de camp
+
+El mapa d'empatia ben fet **no s'ompli en cinc minuts en una pissarra**: es construïx després de parlar amb persones reals del segment objectiu. La diferència entre un mapa que servix i un que no és la quantitat de camp —entrevistes, observació, converses informals— que hi ha darrere.
+
+Una bona regla pràctica: si el teu mapa d'empatia només conté coses que ja sabies abans d'entrevistar ningú, no has aprés res i has de repetir l'exercici. El que és útil de l'exercici no és la plantilla; és **la disciplina d'eixir a parlar amb clients potencials** abans d'invertir temps i diners a construir.
+
+<Callout label="Concepte clau" title="Mapa d'empatia">
+
+El mapa d'empatia és una eina visual que sintetitza, en sis quadrants, el que un client ideal pensa, sent, escolta, veu, diu, fa, patix i guanya. La seua utilitat principal no és decorar una presentació, sinó forçar l'equip a eixir de l'oficina i obtindre informació de camp abans d'invertir temps i diners a construir el producte.
+
+</Callout>
+
+## Investigació amb usuaris: tècniques bàsiques
+
+Abans d'omplir un mapa d'empatia cal **obtindre informació real**. Les tres tècniques bàsiques que qualsevol equip emprenedor hauria de dominar són les següents.
+
+<Figure
+  src={designThinkingWorkshop}
+  alt="Sessió col·laborativa de design thinking amb participants treballant en grup al voltant de taules amb materials de paper i notes adhesives."
+  caption="Sessió presencial de design thinking. La metodologia, popularitzada per IDEO i la d.school de Stanford, exigix treball de camp i col·laboració abans de tocar el primer prototip."
+  credit="Foto: edulabsde, CC BY-SA 4.0 via Wikimedia Commons"
+  aspectHint="3/2"
+/>
+
+### Entrevistes en profunditat
+
+Converses de 30-60 minuts amb persones del segment objectiu. No són enquestes: són xarrades obertes amb un guió flexible. Les preguntes clau no són sobre el producte sinó sobre el problema:
+
+- *Conta'm l'última vegada que [va viure el problema]. Què va passar exactament?*
+- *Què vas fer per a resoldre-ho? Va funcionar?*
+- *Si pogueres canviar alguna cosa d'eixa situació, què canviaries?*
+- *Has provat alguna solució abans? Per què la vas deixar o la mantens?*
+
+La regla bàsica: l'entrevistat ha de parlar el 80 % del temps; l'entrevistador escolta i reformula. Les preguntes que comencen per *«compraries això si...?»* són inútils perquè quasi tothom respon que sí per cortesia. Les que pregunten per fets passats són fiables.
+
+### Observació
+
+Mirar el client potencial en el seu context real fent el que normalment fa. És la tècnica més subestimada i més informativa. Una hora veient com gent real intenta resoldre un problema revela fricció, *workarounds* i necessitats que cap entrevista verbalitza. L'observació és especialment útil per a detectar gestos de frustració —sospirs, doble comprovació, abandó— que l'entrevistat no menciona perquè ja estan normalitzats en la seua rutina.
+
+### Proves de prototip
+
+Mostrar una versió incompleta del producte i veure com reacciona l'usuari. Pot ser un dibuix en paper, una maqueta en cartó, una pantalla en Figma, un vídeo que simula com funcionaria. L'objectiu no és vendre: és veure on l'usuari s'encalla, què entén malament, què l'emociona i què l'avorrix. La fidelitat del prototip importa menys que la **fidelitat de la reacció** que provoca.
+
+## Neuromàrqueting i les troballes clau
+
+El **neuromàrqueting** estudia com el cervell humà respon als estímuls comercials fent servir tècniques de neurociència (ressonància magnètica funcional, *eye tracking*, electroencefalografia, resposta galvànica de la pell). Va sorgir als anys 2000 quan es van fer assequibles els primers equips d'imatge cerebral per a investigació comercial.
+
+Les seues troballes principals han desplaçat conclusions que el màrqueting clàssic donava per bones:
+
+### Les decisions de compra són majoritàriament emocionals
+
+Les investigacions del neuroeconomista Antonio Damasio van mostrar que les persones amb lesions a la regió orbitofrontal del cervell —que processa emocions— perden la capacitat de decidir, no la de raonar. Això suggerix que la decisió és essencialment un procés emocional amb justificació racional posterior. *Decidim amb el cor i ens contem per què amb el cap*.
+
+Implicació pràctica: els arguments racionals (preu, especificacions, garantia) són **necessaris però no suficients**. Una proposta de valor que no genere connexió emocional difícilment convertix.
+
+### L'atenció als anuncis dura entre 3 i 7 segons
+
+Els estudis d'*eye tracking* sobre publicitat mostren que l'atenció plena del cervell a un estímul comercial és molt breu. Els formats llargs només funcionen si **enganxen en el primer segon**. Si no, el cervell filtra l'estímul com a soroll de fons.
+
+Implicació pràctica: el primer segon d'un vídeo, el primer titular d'una landing page, la primera línia d'un correu comercial — són la major part del treball de comunicació. El que ve després només reforça el que l'obertura va prometre.
+
+### El dolor de pagar és real
+
+Els estudis d'fMRI mostren que la regió cerebral que processa el **dolor físic** (la *ínsula anterior*) s'activa també quan una persona veu el preu d'alguna cosa que considera cara. Per això els models de negoci que difuminen el dolor —pagaments automàtics, subscripcions, *one-click checkout*, finançament a terminis sense interessos aparents— reduïxen la fricció de compra de manera mesurable.
+
+Implicació pràctica: gran part de les decisions de disseny dels grans *e-commerce* (Amazon, Booking, Uber) estan orientades a anestesiar el dolor de pagar. És una de les palanques més rendibles de l'*e-commerce* modern.
+
+### Precaució amb la divulgació
+
+Convé presentar el neuromàrqueting a l'aula amb prudència: una part de la seua literatura de divulgació s'ha popularitzat més per la seua capacitat de vendre's en ponències TED que per la seua solidesa metodològica. Algunes troballes famoses (el *centre del comprar* al cervell, per exemple) són simplificacions que la investigació seriosa no avala. Tot i això, els principis bàsics —el pes de l'emoció, la importància dels primers segons, la fricció del pagament— són hui àmpliament acceptats.
+
+<Curiosity title='El fracàs de "New Coke" va obligar a inventar el neuromàrqueting'>
+El 1985, Coca-Cola va decidir reformular el seu producte estrela. Els estudis de mercat eren aclaparadorament positius: en proves cegues, la majoria dels consumidors preferia la nova fórmula —més dolça, més pareguda a Pepsi—. Van llançar *New Coke* amb publicitat massiva i van retirar la recepta clàssica. Resultat: protestes al carrer, telefonades de queixa a la seu a un ritme de **8.000 al dia**, devolucions massives, i una caiguda de vendes tan brutal que l'empresa va rectificar en 79 dies i va tornar a vendre la fórmula original com a *Coca-Cola Classic*. Els estudis havien mesurat el sabor, però no la **connexió emocional** —el ritual, la identitat, el record d'infància— que el consumidor tenia amb la marca. L'anècdota és un dels detonants del corrent que més tard s'anomenaria neuromàrqueting: mesurar el que la gent *sent*, no només el que *diu* preferir.
+</Curiosity>
+
+## Creativitat: divergència i convergència
+
+El procés creatiu aplicat al disseny empresarial es descompon en **dues fases** que l'equip ha de saber separar mentalment per a no espatlar cap de les dues. La metodologia del *design thinking* les representa visualment com dos diamants encadenats.
+
+<Diagram caption="El doble diamant: dos cicles de divergència/convergència. El primer descobrix i definix el problema; el segon desenvolupa i entrega la solució." source="British Design Council (2005), modelo Double Diamond.">
+  <DoubleDiamond />
+</Diagram>
+
+### La fase divergent
+
+Consistix a **generar la major quantitat possible d'idees, sense filtres ni judicis**. La regla és simple i antiga: la quantitat genera qualitat, perquè les idees mediocres són el material en brut del qual després emergix la idea brillant.
+
+Les regles que qualsevol facilitador competent imposa durant esta fase són quatre:
+
+1. **Ajornar el judici.** No es valora si una idea és bona, només si és nova.
+2. **Quantitat abans que qualitat.** Les bones idees emergixen del volum.
+3. **Les idees rares són benvingudes.** A vegades són brillants; a vegades són esglaons per a arribar a les brillants.
+4. **Construir sobre les idees dels altres.** *Sí, i…* en compte de *no, però…*
+
+### La fase convergent
+
+Consistix a **filtrar, agrupar i triar**. Ací el judici crític és benvingut. Les tècniques habituals són el vot puntuat (cada participant reparteix punts entre les idees que més li interessen), les matrius d'avaluació (cada idea es puntua en eixos com a impacte, viabilitat, cost) i la priorització per valor enfront d'esforç.
+
+### L'error que arruïna sessions creatives
+
+L'error que arruïna sessions creatives és **barrejar les dues fases**. Quan algú diu *"eixa idea no funcionarà perquè..."* durant la fase divergent, el grup deixa de proposar idees arriscades i es queda en el segur. Quan es trien idees en plena divergència, es trien les primeres o les més conservadores. La regla bàsica de qualsevol facilitador competent és **decretar i protegir la separació** entre les dues fases.
+
+## Tècniques de divergència
+
+<Figure
+  src={citycampIdeaBoard}
+  alt="Tauler d'idees cobert de notes adhesives de colors agrupades per temes durant una sessió de brainstorming."
+  caption="Tauler d'ideació al final d'una sessió de brainwriting. Cada nota adhesiva és una idea individual; els grups de colors reflectixen la fase convergent d'agrupació per afinitat."
+  credit="Foto: Tony Webster, CC BY-SA 3.0 via Wikimedia Commons"
+  aspectHint="3/2"
+  variant="tight"
+/>
+
+### Brainstorming clàssic
+
+La tècnica més coneguda i, paradoxalment, una de les menys eficaces si no es facilita bé. Les investigacions sobre productivitat creativa mostren que el *brainstorming* en grup sense estructura genera **menys idees** que el mateix nombre de persones pensant individualment i compartint després. El motiu: el biaix de conformitat (la gent s'autocensura per a encaixar) i el bloqueig de producció (mentres un parla, els altres esperen).
+
+### Brainwriting
+
+Variant millorada del *brainstorming*. Cada participant **escriu idees en silenci** durant 5-10 minuts al seu propi full. Després els fulls roten al company del costat, que llig les idees existents i n'afig 5 més, ara amb la inspiració del que ha llegit. Després de 3-4 rotacions, el grup té típicament 80-150 idees escrites, sense que ningú haja parlat.
+
+Funciona millor que el *brainstorming* perquè elimina els dos problemes de l'original: ningú s'autocensura perquè escriu en privat, i ningú ha d'esperar el seu torn perquè tots escriuen alhora.
+
+### SCAMPER
+
+Mètode estructurat que aplica **set verbs** a una idea inicial per a generar variacions:
+
+- **S**ubstituir: què es pot substituir? Un component, un material, un procés.
+- **C**ombinar: amb quina altra cosa es pot combinar? Un altre producte, un altre servei.
+- **A**daptar: què es pot adaptar d'un sector distint? Com ho fan altres sectors amb problemes pareguts.
+- **M**odificar (o magnificar): què es pot modificar? Grandària, forma, freqüència, intensitat.
+- **P**er a altres usos: en quin altre context serviria? Client distint, problema distint, geografia distinta.
+- **E**liminar: què es pot eliminar? Passos, components, intermediaris que no aporten valor.
+- **R**eordenar (o invertir): i si els passos foren distints? I si es fera al revés?
+
+<Curiosity title="SCAMPER el va inventar un mestre de primària">
+La tècnica dels set verbs —Substituir, Combinar, Adaptar, Modificar, Per a altres usos, Eliminar, Reordenar— no va nàixer en una consultora ni en una escola de negocis. La va formular **Bob Eberle** al seu llibre *SCAMPER: Games for Imagination Development* (1971), pensada per a **alumnes d'educació primària**. Eberle era un mestre d'Illinois que buscava una manera fàcil d'ensenyar pensament divergent a xiquets de 7-12 anys. Dècades després, les grans consultores van adoptar exactament la mateixa plantilla per a facilitar sessions d'innovació amb directius. La conclusió que val per a classe és que les tècniques creatives que funcionen solen ser senzilles: el que importa és aplicar-les amb disciplina, no la seua complexitat teòrica.
+</Curiosity>
+
+## Tècniques de convergència
+
+### Vot puntuat
+
+Cada participant rep un nombre limitat de punts (típicament 3-5) que reparteix entre les idees escrites. Pot donar-los tots a una sola idea, repartir-los entre diverses, agrupar-los per afinitat. Després de votar, les 3-5 idees més puntuades són les que passen a la fase següent. És una de les tècniques més ràpides i més democràtiques.
+
+### Matriu d'impacte vs. esforç
+
+Cada idea se situa en una matriu 2×2 on l'eix vertical és l'**impacte** esperat (alt/baix) i l'horitzontal l'**esforç** necessari per a executar-la (alt/baix). Les prioritats queden clares:
+
+- **Alt impacte, baix esforç** → executar primer (*quick wins*).
+- **Alt impacte, alt esforç** → planificar a mitjà termini.
+- **Baix impacte, baix esforç** → executar quan sobre temps.
+- **Baix impacte, alt esforç** → descartar.
+
+### Criteris ponderats
+
+Quan les idees s'avaluen segons diversos factors (cost, risc, encaix amb la proposta de valor, escalabilitat…), es construïx una taula on cada criteri té un pes i cada idea rep una puntuació. La suma ponderada dona el rànquing. És més lent que el vot puntuat però més rigorós per a decisions importants.
+
+## Visual thinking: pensar dibuixant
+
+El **visual thinking** —pensament visual— és la disciplina que defén que entendre un problema complex es fa **més ràpid i més profundament quan es dibuixa que quan s'escriu**. La xifra exacta del diferencial entre processament visual i textual circula amb valors molt dispars (30x, 60.000x) sense un estudi primari sòlid darrere, però la **psicologia cognitiva sí que ha documentat** consistentment que la informació codificada simultàniament en format visual i verbal es recorda millor que la codificada només en un dels dos canals —l'anomenat *efecte de superioritat de la imatge* descrit per Paivio (1971) i replicat en desenes d'experiments posteriors.
+
+Aplicat al disseny de models de negoci, el visual thinking té tres usos típics:
+
+### Customer journey
+
+Es dibuixa pas a pas el que fa un client des que detecta una necessitat fins que rep el servei. El format típic és una línia horitzontal amb etapes (consciència → consideració → compra → ús → retenció) i, davall de cada etapa, el que el client *pensa*, *sent*, *fa* i *quina fricció troba*.
+
+Sol revelar punts de fricció que en una descripció textual passen desapercebuts. Per exemple: una empresa pot tindre un producte excel·lent però un procés de devolució horrible que destruïx tota l'experiència.
+
+### Storyboards de proposta de valor
+
+Vinyetes que conten en 4-6 quadros la història del problema i de com el nostre producte el resol. Útil per a presentar a un inversor o validar internament la coherència narrativa de la proposta. Si la història no es pot contar en sis vinyetes, probablement està mal definida.
+
+### Models visuals de negoci
+
+El mateix Business Model Canvas és visual thinking aplicat al model de negoci. Altres marcs visuals habituals: la *Value Proposition Canvas* (una altra plantilla d'Osterwalder per a aprofundir en la proposta de valor), la *Lean Canvas* d'Ash Maurya (versió adaptada per a *startups*), i el mateix mapa d'empatia vist abans.
+
+<Diagram caption="Value Proposition Canvas: el quadrat de la proposta de valor (productes, aliviadors i creadors) ha d'encaixar amb el cercle del perfil del client (treballs, frustracions i alegries)." source="Osterwalder et al. (2014), Value Proposition Design.">
+  <ValuePropositionCanvas />
+</Diagram>
+
+> **No cal saber dibuixar bé.** Un *sketch* lleig entés és sempre superior a un text bonic ignorat.
+
+<Figure
+  src={macintosh128k}
+  alt="Ordinador Macintosh 128K original de 1984 fotografiat de front sobre fons neutre."
+  caption="El Macintosh 128K de 1984. El primer ordinador personal que va vendre disseny abans que especificacions tècniques: interfície gràfica, ratolí, tipografia cuidada, caixa compacta. Una proposta de valor construïda des de l'empatia amb un usuari que encara no existia."
+  credit="Foto: Bernard Gotfryd, dominio público via Wikimedia Commons"
+  aspectHint="4/3"
+/>
+
+## Iteració del Business Model Canvas
+
+Les eines anteriors —mapa d'empatia, tècniques de divergència i convergència, visual thinking— es fan servir per a **iterar el Business Model Canvas** que cada equip va construir en la Unitat 4. La iteració no és un acte únic: és un cicle que es repetix diverses vegades durant el disseny.
+
+<Steps label="Sessió d'iteració" title="Cinc passos per a una sessió d'iteració del BMC" variant="arabic">
+
+<li><strong>Entrevistar tres clients potencials</strong> i actualitzar el mapa d'empatia amb el que has aprés. Si res canvia, no s'ha fet treball de camp de veres.</li>
+
+<li><strong>Identificar quin bloc del BMC actual no encaixa</strong> amb el mapa d'empatia actualitzat. Habitualment és la proposta de valor o el canal.</li>
+
+<li><strong>Generar deu alternatives</strong> per a eixe bloc (fase divergent). Brainwriting o SCAMPER funcionen bé per a esta etapa.</li>
+
+<li><strong>Triar les dues o tres més prometedores</strong> (fase convergent). Vot puntuat o matriu impacte/esforç.</li>
+
+<li><strong>Reescriure el bloc</strong> amb l'alternativa triada i comprovar coherència amb la resta del Canvas. Si el canvi trenca altres blocs, cal iterar també eixos.</li>
+
+</Steps>
+
+<RealExample title='Wallapop es va començar a dir "Wallabox" i venia caixes físiques' source="Entrevista a Gerard Olivé, El Referente, 2018">
+La idea original de **Wallapop**, el 2013, no era l'*app* que coneixem hui. Els fundadors —Agustín Gómez, Gerard Olivé i Miguel Vicente— volien llançar *Wallabox*: un servei físic de caixes que arreplegaven objectes a domicili per a revendre'ls en una plataforma en línia. Després d'un treball de camp seriós —entrevistes, observació, prototip a grandària real amb caixes reals en barris de Barcelona—, van descobrir dos problemes: la gent no volia esperar que vingueren a arreplegar les coses i, sobretot, no volia tocar caixes usades que arribaven d'altres desconeguts. L'equip va pivotar: *«oblidem la caixa, deixem que cada un fotografie el que és seu amb el mòbil i connecte directament amb el comprador»*. El **mapa d'empatia** dels primers usuaris havia mostrat que la fricció no estava en el preu ni en el catàleg, sinó en el contacte físic. Wallapop va nàixer amb eixa decisió i hui és el primer *marketplace* de segona mà a Espanya, amb **més de 19 milions d'usuaris actius al mes** i un impacte estimat de 1.112 € anuals per usuari en economia domèstica reutilitzada (Wallapop, *La Red del Cambio 2025*).
+</RealExample>
+
+<Callout label="Exemple pràctic" title="Quan una sessió d'ideació canvia tota la proposta de valor" variant="example">
+
+Un equip del capstone dissenya una *app* perquè adolescents registren les seues emocions diàries. Després de tres entrevistes amb l'audiència objectiu (mapa d'empatia), descobrix que cap dels entrevistats voldria una *app* —els resulta una intrusió més en una vida ja saturada de pantalles— però que tots passen temps escrivint en quaderns físics. La sessió d'ideació que seguix genera vint alternatives; l'equip tria convertir el producte en un quadern de paper amb un sistema d'etiquetatge i un company digital opcional. La proposta de valor original ("registrar emocions") sobreviu; el canal i els recursos clau canvien per complet. Este gir —que en metodologia Lean Startup s'anomena *pivot*— és exactament el que les iteracions primerenques pretenen facilitar.
+
+</Callout>
+
+<Figure
+  src={ipod1g}
+  alt="iPod de primera generació de 2001 exposat en un museu, mostrant la roda tàctil mecànica original i la pantalla monocroma."
+  caption="iPod de primera generació (2001). Apple no va inventar el reproductor d'MP3 —ja n'existien desenes— però va redissenyar la proposta de valor: capacitat de mil cançons, interfície d'una mà, integració amb iTunes. Iteració com a diferencial competitiu."
+  credit="Foto: Tokumeigakarinoaoshima, CC0 via Wikimedia Commons"
+  aspectHint="2/3"
+  variant="inline-small"
+/>
+
+<VuelveAlCaso referencia="Dropbox: 75.000 persones a la llista abans del producte">
+El vídeo de Dropbox és l'exemple canònic de **MVP no funcional**: un prototip que **demostra el valor** sense tindre encara el producte. Drew Houston va entendre una cosa que molts fundadors ignoren: en les primeres etapes, el que escasseja no és la capacitat de construir, sinó la **certesa que algú vol el que vas a construir**. Un vídeo de 3 minuts a cost zero va validar la hipòtesi principal del BMC —el segment existix i sent el dolor— abans de gastar un any d'enginyeria.
+
+La lliçó operativa per al teu projecte: quan faces el VPC (Value Proposition Canvas) i descobrisques que la teua proposta depén d'**una hipòtesi arriscada** (*pagarien?*, *els importa?*, *ho trobarien útil?*), busca el **vídeo de Dropbox d'eixa hipòtesi**: la prova mínima possible, **abans** de construir, que et diga si continuar avant o pivotar. No sempre és un vídeo; pot ser una landing page amb botó de «comprar», una enquesta en una classe, un Google Form. El que importa és **moure la hipòtesi al món real com més prompte millor**.
+</VuelveAlCaso>
+
+<KeyTakeaways title="Els principis del disseny creatiu">
+- **Comença pel client, no per la idea.** El mapa d'empatia només servix si es construïx amb treball de camp real (entrevistes, observació, prototips).
+- Les decisions de compra són **emocionals** amb justificació racional posterior. Els models que no generen connexió emocional fracassen encara que siguen racionalment òptims.
+- El procés creatiu té **dues fases que no es barregen**: divergir (generar idees sense judici) i convergir (filtrar amb judici). Barrejar-les mata la creativitat.
+- **SCAMPER, brainwriting i vot puntuat** són les tres tècniques que qualsevol facilitador ha de dominar.
+- El **visual thinking** accelera la comprensió: customer journey, storyboards i BMC són tres aplicacions útils.
+- Iterar el BMC amb feedback del client és el que separa projectes que sobreviuen dels que moren per enamorament de la idea inicial.
+</KeyTakeaways>
+
+## Connexió amb el projecte capstone
+
+<RetoEtapa
+  etapa={5}
+  titulo="Value Proposition Canvas + prototip mínim"
+  entregable="VPC en una pàgina + un prototip mínim (landing, vídeo, enquesta, mockup) que valide o invalide almenys una de les hipòtesis [H] marcades en el BMC v1 de l'etapa 4."
+>
+Recupera el teu **BMC v1** de l'etapa 4 i les hipòtesis [H] que vas marcar. Tria **la hipòtesi més arriscada** —aquella on, si t'equivoques, el projecte sencer cau— i dissenya una **prova mínima** que la valide o invalide en una setmana. Pot ser un vídeo de 90 s, una landing page amb botó d'«apuntar-me», una enquesta a 20 persones del segment, un mockup interactiu en Figma o paper.
+
+Construïx també el **Value Proposition Canvas**: del costat del client, els *jobs*, *pains* i *gains* que has identificat amb el mapa d'empatia; del costat del teu producte, els *pain relievers*, *gain creators* i *productes / serveis* que oferixes. Si els dos costats no encaixen clarament (encaix **problema-solució**), tens treball pendent abans de seguir.
+
+Entrega el VPC + el resultat de la prova (amb dades: quantes persones l'han vista, quantes han reaccionat, què han dit). Si la prova **falla**, registra què has aprés i torna a iterar el BMC. **No esperes a l'etapa 11 per a descobrir que la teua idea no encaixa amb el seu segment.**
+</RetoEtapa>
+
+Cada equip tanca esta unitat amb una **iteració 2.0 del seu Business Model Canvas**: el de la Unitat 4 després d'haver passat per entrevistes amb tres clients potencials, una sessió d'ideació facilitada amb el seu grup i una representació visual del *customer journey*. La diferència entre el BMC inicial i l'iterat ha de ser visible —si després de tres sessions res ha canviat, l'equip no ha fet el treball de camp o ha barrejat les fases divergent i convergent.
+
+Amb esta unitat tanquem el Bloc C. A partir de la Unitat 6 entrarem en les funcions operatives de l'empresa (comercial, productiva, RH, financera, comptable), aplicant totes les eines conceptuals dels blocs anteriors a problemes concrets.
+
+<Callout label="A l'EBAU" title="Bloc 1 · contingut teòric" variant="concept">Esta unitat pertany al **Bloc 1** i entra en la **Part I (teoria)**. La qüestió típica demana explicar eines de **disseny i validació de models** (mapa d'empatia, *design thinking*, prototipatge, encaix proposta de valor-client) o raonar com es valida una hipòtesi de negoci amb clients reals. Sol plantejar-se de manera aplicada a un cas breu. Practica-ho en el quadern de preparació EBAU.</Callout>
+
+## Glossari
+
+- **Mapa d'empatia.** Plantilla visual de sis quadrants (pensa/sent, escolta, veu, diu/fa, li fa mal, guanya) que sintetitza el perfil profund d'un client concret. Només funciona si s'ompli després de parlar amb persones reals del segment.
+- **Neuromàrqueting.** Disciplina que estudia com el cervell humà respon a estímuls comercials fent servir tècniques de neurociència (fMRI, *eye tracking*, EEG, resposta galvànica).
+- **Divergència.** Fase del procés creatiu dedicada a generar la major quantitat possible d'idees sense filtres ni judicis.
+- **Convergència.** Fase del procés creatiu en què es filtra, agrupa i tria entre les idees generades, aplicant criteris explícits.
+- **Visual thinking.** Disciplina que defén que entendre un problema complex es fa més ràpid quan es dibuixa que quan s'escriu.
+- **Ideació.** Conjunt de tècniques dirigides a generar idees (brainstorming, brainwriting, SCAMPER) en una fase divergent facilitada.
+- **Doble diamant.** Model del British Design Council que representa el procés de disseny com dos cicles successius de divergència/convergència: descobrir-definir el problema i desenvolupar-entregar la solució.
+- **SCAMPER.** Tècnica de creativitat estructurada que aplica set verbs (Substituir, Combinar, Adaptar, Modificar, Per a altres usos, Eliminar, Reordenar) a una idea inicial per a generar variacions.
+- **Brainwriting.** Variant del brainstorming en què cada participant escriu idees en silenci al seu propi full abans de fer-les rotar. Elimina l'autocensura i el bloqueig de producció del brainstorming clàssic.
+- **Customer journey.** Representació visual pas a pas del que el client pensa, sent, fa i quines friccions troba des que detecta una necessitat fins que rep el servei.
+- **Pivot.** Canvi substancial en la proposta de valor, el segment o el canal d'un projecte a partir del que s'ha aprés en les primeres iteracions (concepte popularitzat per Eric Ries a *Lean Startup*).
+- **Value Proposition Canvas.** Plantilla germana del Business Model Canvas, desenvolupada per Osterwalder, que aprofundix en la connexió entre les tasques, dolors i guanys del client i les característiques de la proposta.
+
+## Per a aprofundir
+
+- Osterwalder, A., Pigneur, Y., Bernarda, G. y Smith, A. (2014). *Value Proposition Design*. Wiley. Manual pràctic del Value Proposition Canvas; encaixa amb la secció final de la unitat.
+- Brown, T. (2009). *Change by Design*. Harper Business. Una de les introduccions més completes al *design thinking* aplicat a negocis, escrita pel CEO d'IDEO.
+- Tim Brown (TED, 2009). *Designers — think big!*. Xarrada breu (17 min) que sintetitza els principis del *design thinking* amb casos reals.
+- IDEO (2015). *The Field Guide to Human-Centered Design*. Manual gratuït en PDF amb plantilles i mètodes descarregables per a treball de camp amb usuaris.
+- Magretta, J. (2002). *Why Business Models Matter*. Harvard Business Review, 80(5). L'article seminal sobre la diferència entre estratègia i model de negoci; lectura curta i molt citada.
+
+## Preguntes per a reflexionar
+
+1. La unitat insistix que el mapa d'empatia només servix si s'ompli després de parlar amb persones reals del segment. Per què creus que és tan habitual saltar-se eixe pas encara que tothom sàpia que és important? Quins incentius empenyen els equips a omplir la plantilla a la pissarra sense eixir a entrevistar?
+2. Pensa en una decisió de compra recent teua (una *app* de pagament, una subscripció, un producte físic). Intenta separar quina part de la decisió va ser emocional i quina part va ser racional. En quin moment concret et vas decidir? Recordes haver buscat *després* arguments racionals per a justificar el que ja havies decidit?
+3. Imagina que el teu equip del capstone descobrix en les entrevistes que la seua proposta de valor original no resol un problema real. Teniu dues opcions: pivotar (canviar el producte mantenint el segment o viceversa) o continuar perquè ja heu invertit temps. Quines conseqüències pràctiques, emocionals i d'aprenentatge té cada opció? Quan creus que convé de veres pivotar i quan és només fugir d'un problema?
+
+<Bibliography>
+
+1. Osterwalder, A., Pigneur, Y., Bernarda, G. y Smith, A. (2014). *Value Proposition Design*. Wiley.
+2. XPLANE (2009). *Empathy Map Canvas*. Disponible en xplane.com.
+3. Lindstrom, M. (2008). *Buyology: Truth and Lies About Why We Buy*. Doubleday.
+4. Damasio, A. (1994). *Descartes' Error: Emotion, Reason and the Human Brain*. Putnam.
+5. British Design Council (2005). *The Double Diamond Design Process Model*.
+6. Osborn, A. F. (1953). *Applied Imagination*. Charles Scribner's Sons.
+7. Eberle, B. (1971). *SCAMPER: Games for Imagination Development*. DOK Publishers.
+8. Roam, D. (2008). *The Back of the Napkin: Solving Problems and Selling Ideas with Pictures*. Portfolio.
+9. Ries, E. (2011). *The Lean Startup*. Crown Business.
+10. Maurya, A. (2012). *Running Lean: Iterate from Plan A to a Plan That Works*. O'Reilly.
+
+</Bibliography>
+
+<MirarFora
+  unidad={5}
+  libro={{
+    titulo: 'Cisne Negro',
+    meta: 'Nassim Nicholas Taleb · Paidós, 2008',
+    porque: 'Taleb explica per què les grans fites —tecnològiques, empresarials, històriques— quasi mai es prediuen i venen d\'idees que pareixien marginals. Útil quan estàs generant idees divergents i dubtes si les rares valen la pena.',
+    paginas: 'Pròleg + capítols 1-3',
+  }}
+  video={{
+    titulo: 'How Dropbox started — Drew Houston en Y Combinator',
+    meta: 'Y Combinator · YouTube',
+    duracion: '~15 min',
+    porque: 'El mateix Drew Houston explica l\'origen de Dropbox, incloent-hi el vídeo de 3 minuts. Útil per a veure el cas del dilema d\'obertura des de la veu del fundador, no de la premsa.',
+    url: 'https://www.youtube.com/results?search_query=drew+houston+dropbox+y+combinator+how+started',
+  }}
+  cuenta={{
+    titulo: 'marketingexamples.com',
+    meta: 'Web · exemples visuals de màrqueting efectiu',
+    porque: 'Una col·lecció curada de campanyes, landing pages i prototips que han funcionat. Cada cas explica per què amb dues imatges i tres frases. Útil per a inspirar prototips ràpids per al teu propi projecte.',
+  }}
+  actividad_titulo="El teu vídeo de Dropbox"
+  actividad_duracion="30 min"
+>
+  <Fragment slot="actividad">
+    Torna a la **hipòtesi més arriscada** del teu BMC. Dissenya en una pàgina el **prototip mínim** que la validaria: una landing? un vídeo? un Google Form? una conversa amb tres persones? Especifica (a) què li ensenyes al client, (b) quin senyal mesuraries (clics, registres, frases textuals) i (c) en quin llindar concloves que la hipòtesi és vàlida o no. **No construïsques encara**: només dissenya la prova.
+  </Fragment>
+  <Fragment slot="para-clase">
+    Variant en grups de 4 (45 min): cada grup presenta el seu disseny de prova a la resta en 90 s. La resta vota amb el polze amunt / avall si la prova **realment** validaria la hipòtesi o si és trampa (biaix de confirmació, mostra dolenta, senyal dèbil). Les crítiques són l'aprenentatge: mesurar malament una hipòtesi és pitjor que no mesurar-la. Materials: paper, projector opcional per a mostrar mockups.
+  </Fragment>
+</MirarFora>

@@ -1,0 +1,119 @@
+---
+asignatura: taller-eco-3eso
+unidad_relacionada: 4
+title: "La teua primera targeta de dèbit"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "10-15 min"
+descripcion: "Tens targeta de dèbit per primera vegada. 3 decisions abans que t'isca cara."
+competencias_clave: [CPSAA, CE, CD]
+competencias_especificas: [CE2]
+estado: publicado
+lang: ca
+slug: "asignaturas/taller-eco-3eso/actividades-dinamicas/04-primera-tarjeta.ca"
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Cas · Diners i mitjans de pagament",
+    "titulo": "La teua primera targeta de dèbit",
+    "contexto": "Acabes de complir 14 anys i el teu banc t'ha enviat la teua primera targeta de dèbit vinculada al teu compte. Hi ha 60 € de la paga d'aniversari. Ta mare t'explica ràpid: «És dèbit, no crèdit: sols pots gastar el que tens.» La guardes al mòbil amb l'app del banc. Primera setmana: tres situacions.",
+    "kpi_inicial": { "saldo": 60, "seguridad_digital": 7, "control_gastos": 5 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisió 1 — Primer pagament: la cantina de l'institut",
+      "situacion": "A la cantina et cobren 3,20 € pel entrepà. Pots pagar amb el mòbil (contactless) o traure efectiu del caixer que hi ha al costat. El caixer del teu banc és gratis; el d'una altra entitat cobra 0,50 € de comissió.",
+      "opciones": [
+        {
+          "label": "Pague amb el mòbil: és més ràpid i no toque efectiu",
+          "kpi_delta": { "saldo": -3, "seguridad_digital": 1, "control_gastos": 1 },
+          "feedback": "El pagament contactless amb mòbil és segur si el dispositiu és teu i l'app és l'oficial del teu banc. Avantatge: rapidesa i registre automàtic al teu compte. Inconvenient: és tan fàcil pagar que a vegades perds la noció de quant portes gastat.",
+          "next": "n2"
+        },
+        {
+          "label": "Trac 10 € del caixer del meu banc i pague en efectiu",
+          "kpi_delta": { "saldo": -10, "seguridad_digital": 0, "control_gastos": 2 },
+          "feedback": "Pagar en efectiu té un avantatge psicològic: vore els diners físics eixir de la teua mà activa més la sensació de despesa que un toc amb el mòbil. Molts estudis mostren que la gent gasta menys quan usa bitllets. Gratis si el caixer és del teu banc.",
+          "next": "n2"
+        },
+        {
+          "label": "Trac 10 € del caixer d'un altre banc — n'hi ha un més a prop",
+          "kpi_delta": { "saldo": -11, "seguridad_digital": 0, "control_gastos": 0 },
+          "feedback": "Has pagat 0,50 € de comissió per usar el caixer d'un altre banc. Sols per este entrepà. Si ho fas 20 vegades a l'any, són 10 € extra a l'any en comissions — més d'una paga sencera. Lliçó: les comissions xicotetes s'acumulen.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisió 2 — T'arriba un missatge sospitós",
+      "situacion": "Reps un SMS que pareix del teu banc: «Moviment sospitós detectat. Confirma les teues dades o el teu compte serà bloquejat.» Hi ha un enllaç. Ta mare no està a prop. Què fas?",
+      "opciones": [
+        {
+          "label": "Entre a l'enllaç i òmpliga les meues dades — el banc ho demana i és urgent",
+          "kpi_delta": { "saldo": -60, "seguridad_digital": -5, "control_gastos": -3 },
+          "feedback": "Això és phishing: una estafa que imita el teu banc per a robar-te les dades. Has donat el teu PIN i número de compte a un estafador. Els bancs MAI demanen les teues dades per SMS ni per enllaç. Ara el teu compte està en risc. Lliçó: davant de qualsevol missatge urgent que demana dades, primer telefona al teu banc pel número oficial.",
+          "next": "n3"
+        },
+        {
+          "label": "Ignore l'SMS i el borre — pareix una estafa",
+          "kpi_delta": { "saldo": 0, "seguridad_digital": 2, "control_gastos": 0 },
+          "feedback": "Correcte. Els bancs no sol·liciten dades per SMS. Si tens dubtes, telefona al número oficial del teu banc (el del revers de la targeta) o entra directament a l'app oficial. Lliçó: l'urgència en un SMS és quasi sempre un senyal d'alerta, no d'emergència real.",
+          "next": "n3"
+        },
+        {
+          "label": "Li reenvie l'SMS a ma mare perquè ella decidisca",
+          "kpi_delta": { "saldo": 0, "seguridad_digital": 1, "control_gastos": 0 },
+          "feedback": "Bona decisió quan no estàs segur: preguntar a algú de confiança abans d'actuar. Demanar ajuda no és un signe de debilitat — és una pràctica segura. Ta mare confirmarà que és phishing.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisió 3 — Fi de mes: revises l'app",
+      "situacion": "Han passat quatre setmanes. Obris l'app del banc i veus l'historial: 14 pagaments amb la targeta. En recordes uns cinc. Els altres no saps ben bé en què els has gastat. Queden 8 € dels 60 €.",
+      "opciones": [
+        {
+          "label": "No passa res: he gaudit dels diners i ja en vindran més",
+          "kpi_delta": { "saldo": 0, "seguridad_digital": 0, "control_gastos": -2 },
+          "feedback": "Sense registre, sense control. Gastar sense saber en què és el parany més comú dels pagaments digitals: el tacte fàcil esborra la sensació de despesa. Lliçó: l'historial de la teua app és un regal — usa'l per a saber on van els teus diners.",
+          "next": "final:fracaso_parcial"
+        },
+        {
+          "label": "Revise cada pagament, identifique quins eren necessaris i anote el que no repetiria",
+          "kpi_delta": { "saldo": 0, "seguridad_digital": 0, "control_gastos": 3 },
+          "feedback": "Això és educació financera aplicada: revisar l'historial i aprendre'n. No canvia el que has gastat, però sí el que gastaràs el mes següent. Lliçó: els diners digitals es veuen igual a la pantalla, però l'hàbit de revisar el teu compte marca la diferència.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Pose un límit de despesa diària a l'app per al mes que ve",
+          "kpi_delta": { "saldo": 0, "seguridad_digital": 1, "control_gastos": 2 },
+          "feedback": "Excel·lent ferramenta: molts bancs permeten fixar límits diaris o setmanals. Combinar la revisió de l'historial amb un límit actiu és la forma més eficaç de no perdre el control dels diners digitals.",
+          "next": "final:exito"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "Domines la teua primera targeta",
+      "resumen": "Has aprés a pagar sense comissions, has detectat el phishing i al final del mes saps on han anat els teus diners. Bon primer mes amb targeta.",
+      "lecciones_clave": [
+        "Les comissions xicotetes s'acumulen: usa sempre el caixer del teu propi banc.",
+        "Els bancs mai demanen les teues dades per SMS — si te n'arriba un, ignora'l o telefona al número oficial.",
+        "L'historial de la teua app bancària és la ferramenta més útil per a controlar el que gastes."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "La targeta t'ha costat més del que esperaves",
+      "resumen": "Comissions evitables, possible frau o diners gastats sense saber en què. La targeta és una ferramenta — qui no la controla, ella el controla a ell.",
+      "lecciones_clave": [
+        "El pagament contactless és tan còmode que fa fàcil perdre la noció de la despesa.",
+        "Caure en phishing pot buidar-te el compte en minuts — dubta sempre dels missatges urgents."
+      ]
+    }
+  }
+}
+```

@@ -1,0 +1,119 @@
+---
+asignatura: eco-1bach
+unidad_relacionada: 5
+title: "La gasolinera de l'autovia"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "15-20 min"
+descripcion: "Apuges el preu de la gasolina un 10 %. Recaptes més o menys? L'elasticitat decidix abans que ho faces tu."
+competencias_clave: [CPSAA, CE, CD]
+competencias_especificas: [CE2]
+lang: ca
+estado: publicado
+slug: "asignaturas/eco-1bach/actividades-dinamicas/05-elasticidad-gasolinera.ca"
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Cas · Elasticitat i benestar",
+    "titulo": "La gasolinera de l'autovia",
+    "contexto": "Eres el gestor d'una gasolinera independent al costat de l'A-7, entre Múrcia i Cartagena. No eres Repsol ni Cepsa: eres un operador independent que compra el combustible a l'engròs. El teu preu actual és d'1,65 €/litre per a la gasolina de 95. La gasolinera més pròxima està a 12 km. Vens uns 150.000 litres/mes. El teu marge brut és de 0,08 €/litre. El proveïdor acaba d'anunciar-te que el preu majorista puja 0,05 € en 30 dies. Has de decidir com traslladar (o no) eixe augment al preu final.",
+    "kpi_inicial": { "precio_litro_cts": 165, "litros_mes": 150000, "margen_bruto_cts": 8 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisió 1 — Traslades la pujada de costos al preu?",
+      "situacion": "El cost majorista puja 5 cèntims/litre. El teu marge actual de 8 cèntims quedaria en 3 cèntims si no apuges el preu. Tens tres opcions: apujar el preu íntegrament 5 cèntims (d'1,65 a 1,70 €), apujar només 2 cèntims (repartixes la pujada amb el client) o no apujar i absorbir el cost.",
+      "opciones": [
+        {
+          "label": "Apuge el preu 5 cèntims: el cost puja, el preu puja",
+          "kpi_delta": { "precio_litro_cts": 5, "litros_mes": -12000, "margen_bruto_cts": 5 },
+          "feedback": "La pregunta clau és l'elasticitat. La teua gasolinera està a l'autovia, sense competidors pròxims: la demanda és relativament inelàstica. Els conductors que ompliguen abans d'arribar a Cartagena no tenen alternativa fàcil. Amb una elasticitat estimada de −0,3, una pujada del 3 % (0,05/1,65) reduïx la quantitat només un 0,9 %, uns 1.350 litres menys. Els teus ingressos totals pugen. Lliçó: quan la demanda és inelàstica, apujar el preu augmenta els ingressos totals.",
+          "next": "n2"
+        },
+        {
+          "label": "Apuge només 2 cèntims: repartisc la càrrega amb el client",
+          "kpi_delta": { "precio_litro_cts": 2, "litros_mes": -4000, "margen_bruto_cts": -3 },
+          "feedback": "Absorbixes 3 dels 5 cèntims de pujada de cost. El teu marge cau a 5 cèntims, amb menys quantitat. La pèrdua de marge no es compensa amb prou fidelització si els clients de l'autovia són principalment de pas. Però si tens clientela local fidel, l'estratègia de «compartir la càrrega» pot tindre valor quant a imatge i repetició de compra. Lliçó: el preu és senyal de qualitat i de relació amb el client, no només variable d'ingrés immediat.",
+          "next": "n2"
+        },
+        {
+          "label": "No apuge el preu: absorbisc el cost per a no perdre ni un client",
+          "kpi_delta": { "precio_litro_cts": 0, "litros_mes": 2000, "margen_bruto_cts": -5 },
+          "feedback": "Un marge de 3 cèntims en 150.000 litres són només 4.500 € mensuals abans de costos fixos. Si els teus costos fixos (lloguer, personal, electricitat) són 8.000 €/mes, estàs perdent diners. Sostindre un preu artificialment baix perquè tens demanda inelàstica significa deixar de capturar l'excedent del productor que el mercat et permet. Lliçó: quan la demanda és inelàstica, no apujar el preu és una decisió estratègicament roïna — el productor pot capturar més benestar sense perdre vendes significatives.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisió 2 — L'impost especial sobre carburants",
+      "situacion": "El Govern anuncia una pujada de l'impost especial de carburants de 3 cèntims/litre. Hi ha debat polític: alguns diuen que l'impost el paguen els conductors; altres, que el paguen les gasolineres. Tu has de decidir si el traslades tot al client o no.",
+      "opciones": [
+        {
+          "label": "L'impost el traslade íntegre al preu: el paga el consumidor",
+          "kpi_delta": { "precio_litro_cts": 3, "litros_mes": -4500, "margen_bruto_cts": 0 },
+          "feedback": "Correcte des del punt de vista de la incidència fiscal. Amb demanda inelàstica (els conductors d'autovia no poden substituir fàcilment la gasolina), la major part de l'impost la suporta el consumidor. La càrrega tributària es repartix entre oferent i demandant segons les seues elasticitats: qui és més inelàstic paga més. Amb demanda molt inelàstica i oferta més elàstica, el consumidor absorbix quasi tot. Lliçó: la incidència fiscal no depén de qui el pague legalment, sinó de les elasticitats.",
+          "next": "n3"
+        },
+        {
+          "label": "Absorbisc 1 cèntim i traslade 2: millor que perdre clientela",
+          "kpi_delta": { "precio_litro_cts": 2, "litros_mes": -3000, "margen_bruto_cts": -1 },
+          "feedback": "Repartixes la càrrega. Econòmicament, qui més flexible siga (el que té més alternatives) suporta menys impost. Tu com a empresari tens alternativa — podries dedicar l'espai a una altra activitat. El conductor té menys alternatives a l'autovia. Però absorbir alguna cosa pot ser un senyal de servei. Lliçó: la incidència fiscal dividix la càrrega segons les elasticitats, però l'empresari pot triar absorbir-ne una part per a generar lleialtat.",
+          "next": "n3"
+        },
+        {
+          "label": "Use l'impost com a excusa per a apujar el preu 5 cèntims en lloc de 3",
+          "kpi_delta": { "precio_litro_cts": 5, "litros_mes": -10000, "margen_bruto_cts": 2 },
+          "feedback": "Intentes capturar excedent addicional aprofitant la cobertura de l'impost. El problema és que si competidors pròxims només apugen 3 cèntims i tu apuges 5, el diferencial visible pot portar conductors conscients del preu a esperar a la gasolinera de Cartagena. L'excedent del productor que intentes capturar pot convertir-se en pes mort si perds massa clients. Lliçó: el pes mort apareix quan el preu s'allunya de l'equilibri competitiu — també quan el venedor intenta capturar massa.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisió 3 — I si oferixes un producte diferenciat?",
+      "situacion": "Una distribuïdora t'oferix incorporar gasolina d'alt octanatge (98 octans) a 1,85 €/litre. El teu marge seria de 12 cèntims en lloc de 8. Però només el 15 % dels cotxes que passen necessiten o preferixen el 98. La resta mai el comprarà encara que siga bo. Has de calcular si és rendible ampliar l'oferta.",
+      "opciones": [
+        {
+          "label": "Incorpore el 98: més marge i diferenciació del producte",
+          "kpi_delta": { "precio_litro_cts": 0, "litros_mes": 12000, "margen_bruto_cts": 6 },
+          "feedback": "L'elasticitat creuada entra en joc: el 98 i el 95 són béns complementaris per a alguns conductors (els que només usen el 98 per especificació del fabricant) i béns substitutius per a altres (els que compren el 98 per elecció encara que el cotxe accepta el 95). El 15 % del teu mercat amb elasticitat baixa per al 98 justifica el marge més gran. Lliçó: la diferenciació de producte crea demandes amb elasticitats distintes — el mateix establiment pot servir segments amb distinta sensibilitat al preu.",
+          "next": "final:exito"
+        },
+        {
+          "label": "No incorpore el 98: complica el subministrament per a una demanda xicoteta",
+          "kpi_delta": { "precio_litro_cts": 0, "litros_mes": 0, "margen_bruto_cts": 0 },
+          "feedback": "Decisió operativa vàlida. Simplificació del catàleg. El 15 % de conductors que preferixen el 98 pot anar a una altra gasolinera sense que tu ho notes massa. El cost d'afegir un tanc d'emmagatzematge i les comandes extra pot no justificar l'ingrés marginal. Lliçó: l'anàlisi marginal s'aplica també a les decisions d'ampliació de producte — incorporar un nou bé val la pena mentres l'ingrés marginal supere el cost marginal.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Oferisc el 98 a 1,75 € per a captar quota: el mateix marge que el 95",
+          "kpi_delta": { "precio_litro_cts": 0, "litros_mes": 18000, "margen_bruto_cts": 0 },
+          "feedback": "Estratègia de penetració de mercat. Abaixes el preu per a guanyar volum. Si els conductors de 98 de la zona saben que tens el millor preu, el boca a boca et pot portar quota de les gasolineres de ciutat pròximes. L'excedent del consumidor augmenta (preu més baix per a la mateixa qualitat) però no captures tant excedent del productor. Lliçó: hi ha estratègies on cedir excedent al consumidor genera volum que a llarg termini és rendible.",
+          "next": "final:fracaso_parcial"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "La gasolinera optimitza els seus ingressos",
+      "resumen": "Has usat el concepte d'elasticitat per a prendre decisions de preu, gestió d'impostos i ampliació de producte. La inelasticitat de la demanda de gasolina a l'autovia és un avantatge que has sabut aprofitar sense abusar-ne.",
+      "lecciones_clave": [
+        "Quan la demanda és inelàstica, apujar el preu augmenta els ingressos totals. Quan és elàstica, els reduïx.",
+        "La incidència fiscal no depén de qui pague l'impost legalment: qui té la demanda més inelàstica suporta més càrrega.",
+        "La diferenciació de producte crea segments amb distinta elasticitat — i permet capturar més excedent del productor."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "La gasolinera guanya volum, no marge",
+      "resumen": "Has optat per captar quota amb preus baixos. El volum puja però el marge per litre no millora. En un negoci amb alts costos fixos, el marge unitari importa tant com el volum.",
+      "lecciones_clave": [
+        "L'estratègia de preu baix per a guanyar volum només funciona si els costos fixos són baixos o si el volum addicional supera àmpliament el marge sacrificat.",
+        "En mercats amb demanda inelàstica, cedir preu al consumidor té un cost d'oportunitat elevat."
+      ]
+    }
+  }
+}
+```

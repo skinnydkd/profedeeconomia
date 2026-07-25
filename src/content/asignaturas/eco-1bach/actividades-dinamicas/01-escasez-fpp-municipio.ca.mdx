@@ -1,0 +1,119 @@
+---
+asignatura: eco-1bach
+unidad_relacionada: 1
+title: "L'alcalde d'un municipi en dificultats"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "15-20 min"
+descripcion: "Pressupost municipal retallat, tres necessitats urgents. Tria i assumix el cost d'oportunitat."
+competencias_clave: [CPSAA, CE, CD]
+competencias_especificas: [CE2]
+lang: ca
+estado: publicado
+slug: "asignaturas/eco-1bach/actividades-dinamicas/01-escasez-fpp-municipio.ca"
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Cas · Escassetat i sistemes econòmics",
+    "titulo": "L'alcalde d'un municipi en dificultats",
+    "contexto": "Eres l'alcaldessa de Villanueva del Río, un municipi de 8.000 habitants a Extremadura. Enguany el pressupost municipal ha rebut una retallada del 15 % en transferències de la Junta. Tens 900.000 € disponibles per a inversió i tres projectes urgents damunt la taula: reparar el col·legi públic (500.000 €), construir una depuradora d'aigües (600.000 €) i crear un polígon industrial xicotet per a atraure empreses (700.000 €). Només en pots finançar un, potser dos parcialment. Els veïns et telefonen cada setmana.",
+    "kpi_inicial": { "presupuesto": 900000, "satisfaccion_vecinos": 6, "empleo_local": 520 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisió 1 — Quina és la prioritat immediata?",
+      "situacion": "El col·legi té esquerdes a la coberta i la inspecció tècnica dóna 6 mesos abans que siga inhabitable. La depuradora incomplix la normativa europea i la Junta pot sancionar el municipi amb 80.000 € si no s'actua abans de finals d'any. El polígon industrial tardaria 2 anys a construir-se i generaria uns 60 llocs de treball, però no hi ha certesa que arriben empreses.",
+      "opciones": [
+        {
+          "label": "Prioritze el col·legi: la seguretat dels xiquets no admet ajornaments",
+          "kpi_delta": { "presupuesto": -500000, "satisfaccion_vecinos": 2, "empleo_local": 0 },
+          "feedback": "Decisió defensiva correcta. Amb 400.000 € restants, la depuradora no es pot finançar íntegrament i el polígon tampoc. Has protegit un bé públic essencial, però el cost d'oportunitat és la sanció possible de la Junta i l'ocupació diferida. Lliçó: la FPP obliga a triar — no hi ha cap punt per damunt de la frontera amb el pressupost disponible.",
+          "next": "n2"
+        },
+        {
+          "label": "Prioritze la depuradora: evite la sanció i complisc la normativa",
+          "kpi_delta": { "presupuesto": -600000, "satisfaccion_vecinos": 0, "empleo_local": 0 },
+          "feedback": "Evites els 80.000 € de sanció i complixes la normativa europea. Queden 300.000 €, insuficients per al col·legi complet. Hauràs de demanar una subvenció d'emergència a la Diputació o ajornar les obres un any més. La decisió és tècnicament eficient quant a costos evitats, però políticament costosa.",
+          "next": "n2"
+        },
+        {
+          "label": "Dividisc el pressupost: 450.000 € al col·legi i 450.000 € a la depuradora",
+          "kpi_delta": { "presupuesto": -900000, "satisfaccion_vecinos": 1, "empleo_local": 0 },
+          "feedback": "Resultat ineficient: cap dels dos projectes queda complet. El col·legi continua amb riscos estructurals i la depuradora no complix la normativa. Repartixes l'escassetat però no la resols. Lliçó: quan els recursos no basten per als dos, la solució a mitges pot ser pitjor que triar-ne un i fer-lo bé.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisió 2 — El polígon industrial: ara o després?",
+      "situacion": "Una empresa de components d'energia solar de Badajoz busca sòl per a instal·lar-se. El seu director t'ha telefonat: si el municipi no té sòl a punt en 18 mesos, se'n van a un altre poble. Podries sol·licitar un préstec a l'ICO (Institut de Crèdit Oficial) a un tipus preferencial del 2,8 % per a finançar el polígon, però això afig deute al balanç municipal.",
+      "opciones": [
+        {
+          "label": "Sol·licite el préstec de l'ICO: l'oportunitat d'ocupació no pot esperar",
+          "kpi_delta": { "presupuesto": 700000, "satisfaccion_vecinos": 2, "empleo_local": 60 },
+          "feedback": "Decisió d'inversió amb deute. L'empresa solar pot generar 60 llocs directes i desplaçar la FPP del municipi cap a fora a llarg termini. El risc és que, si l'empresa no arriba, el municipi carrega amb deute sense actiu productiu. Lliçó: endeutar-se per a inversió productiva pot ser racional — depén del rendiment esperat.",
+          "next": "n3"
+        },
+        {
+          "label": "Rebutge el préstec: no vull endeutar el municipi",
+          "kpi_delta": { "presupuesto": 0, "satisfaccion_vecinos": -1, "empleo_local": 0 },
+          "feedback": "Decisió conservadora. Sense deute addicional, però sense creixement econòmic local. L'empresa solar anirà a un altre municipi i es perdrà l'ocupació. Esta elecció té un cost d'oportunitat invisible: els 60 llocs de treball que no arribaran. Lliçó: no endeutar-se és també una decisió amb costos — els de no actuar.",
+          "next": "n3"
+        },
+        {
+          "label": "Busque cofinançament europeu amb fons FEDER per al polígon",
+          "kpi_delta": { "presupuesto": 350000, "satisfaccion_vecinos": 3, "empleo_local": 40 },
+          "feedback": "Els fons FEDER poden cofinançar fins al 70 % en regions menys desenvolupades. El problema és el temps: el procés tarda 12-24 mesos i l'empresa solar no pot esperar tant. Aconseguixes una part del projecte però perds l'empresa concreta. Una subvenció més xicoteta pot atraure una altra empresa en el futur. Lliçó: el finançament públic europeu és real però lent — no sempre quadra amb les urgències del mercat.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisió 3 — El sistema econòmic del municipi",
+      "situacion": "Davant l'escassetat de recursos, el ple municipal debat dues propostes oposades: (a) privatitzar la gestió de l'aigua potable a una empresa concessionària que oferix 200.000 € anuals de cànon; (b) mantindre el servei públic però apujar la taxa de l'aigua un 12 % per a sanejar els comptes. Els veïns estan dividits.",
+      "opciones": [
+        {
+          "label": "Privatitze l'aigua: 200.000 € anuals donen marge per a altres serveis",
+          "kpi_delta": { "presupuesto": 200000, "satisfaccion_vecinos": -1, "empleo_local": 5 },
+          "feedback": "Sistema mixt amb gestió privada d'un servei públic. El cànon és un ingrés segur, però l'empresa privada té incentius a maximitzar beneficis, cosa que pot apujar la tarifa a llarg termini o reduir la qualitat. Molts municipis espanyols que van privatitzar l'aigua als anys 90 han tornat a remunicipalitzar (Terrassa, Valladolid). Lliçó: la frontera entre mercat i Estat no és fixa — depén de quin objectiu es prioritze.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Apuge la taxa de l'aigua un 12 %: que cadascú pague la seua part",
+          "kpi_delta": { "presupuesto": 80000, "satisfaccion_vecinos": -2, "empleo_local": 0 },
+          "feedback": "L'ingrés addicional és menor que el cànon privat, però el servei continua sota control municipal. La pujada del 12 % pesa més sobre les famílies de renda baixa, que gasten proporcionalment més en subministraments bàsics. Lliçó: en economia normativa, «que cadascú pague la seua part» amaga un juí de valor sobre la distribució de la càrrega.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Mantinc la taxa i busque eficiència en la despesa: auditoria interna",
+          "kpi_delta": { "presupuesto": 30000, "satisfaccion_vecinos": 1, "empleo_local": 0 },
+          "feedback": "L'auditoria detecta despeses duplicades i contractes sobredimensionats: estalvies 30.000 € anuals. És l'opció menys espectacular però la més coherent amb el principi d'eficiència: abans de buscar nous ingressos, assegura't que els que ja tens s'utilitzen bé. Lliçó: la ineficiència assignativa (punts per davall de la FPP) és un recurs real que es pot recuperar sense noves fonts.",
+          "next": "final:fracaso_parcial"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "Villanueva del Río avança",
+      "resumen": "Les decisions han sigut difícils, però el municipi té la infraestructura bàsica en orde i un full de ruta per a l'ocupació. L'alcaldessa ha aprés que gestionar l'escassetat no és triar el millor sinó triar el menys roín amb criteri econòmic.",
+      "lecciones_clave": [
+        "L'escassetat obliga a triar: no hi ha cap pressupost que cobrisca totes les necessitats alhora. El cost d'oportunitat és real encara que siga invisible.",
+        "Els sistemes econòmics mixtos barregen mercat i intervenció pública: no hi ha cap solució pura correcta, sinó contextos en què l'un o l'altre funciona millor.",
+        "La FPP d'un municipi pot desplaçar-se cap a fora amb inversió productiva o empitjorar amb deute mal utilitzat."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "El municipi sobreviu, amb límits",
+      "resumen": "Les decisions han sigut prudents però insuficients. El municipi continua operatiu però sense creixement econòmic clar. Les infraestructures continuen a mitges i l'ocupació local no creix.",
+      "lecciones_clave": [
+        "L'eficiència interna és necessària però no suficient per al desenvolupament: hi ha un límit al que es pot estalviar sense invertir.",
+        "No decidir és també una decisió amb costos d'oportunitat reals."
+      ]
+    }
+  }
+}
+```

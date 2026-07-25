@@ -23,7 +23,7 @@ const ACCENTS: Record<string, { base: string; deep: string; soft: string }> = {
 
 export const getStaticPaths = (async () => {
   const all = (await getCollection('proyecto')).filter(
-    (f) => f.data.estado === 'publicado' && f.data.cuaderno
+    (f) => f.data.estado === 'publicado' && f.data.lang === 'es' && f.data.cuaderno
   );
   const bySlug = new Map<AsignaturaSlug, typeof all>();
   for (const e of all) {

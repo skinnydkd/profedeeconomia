@@ -11,7 +11,7 @@ import '@/styles/slides.css';
 export const getStaticPaths = (async () => {
   const units = await getCollection('libro');
   return units
-    .filter((u) => u.data.estado === 'publicado')
+    .filter((u) => u.data.estado === 'publicado' && u.data.lang === 'es')
     .map((u) => {
       const unidad = u.id.split('/').pop()!.replace(/\.mdx?$/, '');
       return { params: { asignatura: u.data.asignatura, unidad }, props: { asignatura: u.data.asignatura, unidad } };

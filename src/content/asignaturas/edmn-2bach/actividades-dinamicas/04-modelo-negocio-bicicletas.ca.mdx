@@ -1,0 +1,119 @@
+---
+asignatura: edmn-2bach
+unidad_relacionada: 4
+title: "Bicicletes en subscripció: funciona el model?"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "15-20 min"
+descripcion: "Una startup valenciana vol llogar bicis elèctriques per subscripció mensual. El model existix a Europa. Pot funcionar ací?"
+competencias_clave: [CPSAA, CE, CD]
+competencias_especificas: [CE3]
+lang: ca
+estado: publicado
+slug: "asignaturas/edmn-2bach/actividades-dinamicas/04-modelo-negocio-bicicletas.ca"
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Cas · Models de negoci",
+    "titulo": "Bicicletes en subscripció: funciona el model?",
+    "contexto": "Pol i Neus tenen 25 anys i viuen a València. Han vist que a Holanda existix una empresa (Swapfiets) que lloga bicis per subscripció mensual: tu pagues 15-20 € al mes i ells s'encarreguen de tot el manteniment. Si la bici es trenca, la canvien en 12 hores. Volen replicar-ho a València. Tenen 12.000 € estalviats entre els dos.",
+    "kpi_inicial": { "caja": 12000, "clientes": 0, "reputacion": 5 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisió 1 — Quin model exactament?",
+      "situacion": "Hi ha tres variants del model que podries llançar: (a) subscripció pura a 19 €/mes, tu gestiones el manteniment; (b) freemium: bici bàsica gratis, elèctrica premium a 29 €/mes; (c) marketplace: connectes persones que tenen bicis amb persones que les necessiten, tu cobres comissió.",
+      "opciones": [
+        {
+          "label": "Subscripció pura: 19 €/mes, jo gestione tot",
+          "kpi_delta": { "caja": -4000, "clientes": 50, "reputacion": 2 },
+          "feedback": "El model de subscripció crea ingressos recurrents predictibles: 50 clients a 19 € són 950 € al mes. El repte és el cost del manteniment i la flota inicial. Amb 12.000 € pots comprar unes 25-30 bicis i la resta la reserves per a manteniment. La clau del model és la taxa de rotació (quants se'n van cada mes) i el cost per subscriptor.",
+          "next": "n2"
+        },
+        {
+          "label": "Freemium: la bici bàsica gratis enganxa i l'elèctrica paga",
+          "kpi_delta": { "caja": -5000, "clientes": 120, "reputacion": 3 },
+          "feedback": "El freemium funciona quan el cost marginal de l'usuari gratuït és baix (programari) o quan la taxa de conversió a premium és alta. En bicis físiques, cada usuari gratuït té un cost real de manteniment. Amb 12.000 € i 120 usuaris gratuïts, la caixa es buida en setmanes. Lliçó: freemium amb producte físic requerix un balanç de conversió molt ben calculat.",
+          "next": "n2"
+        },
+        {
+          "label": "Marketplace: connecte propietaris amb usuaris, sense gestionar flota",
+          "kpi_delta": { "caja": -500, "clientes": 30, "reputacion": 1 },
+          "feedback": "Model multiplataforma: no tens actius físics, generes ingressos per comissió. L'avantatge és que el capital inicial és mínim. El problema és l'efecte de xarxa: un marketplace de bicis necessita massa crítica dels dos costats (propietaris i usuaris) abans de ser útil per a cap. Lliçó: en marketplaces, l'ou i la gallina són el primer repte.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisió 2 — La proposta de valor",
+      "situacion": "Amb el model triat, has de definir què promets exactament al client. En Swapfiets la promesa central és: 'si la bici es trenca, la canviem en 12 hores'. Has de decidir quina és la teua promesa central a València.",
+      "opciones": [
+        {
+          "label": "Promet substitució en 12 hores com Swapfiets",
+          "kpi_delta": { "caja": -1500, "clientes": 20, "reputacion": 3 },
+          "feedback": "La proposta de valor ha de ser creïble i executable. Per a substituir en 12 hores necessites stock de bicis extra i un tècnic disponible. Amb 12.000 € és ajustat però possible si comences xicotet. Si no pots complir la promesa, el dany reputacional és major que el benefici de la promesa ambiciosa. Lliçó: la proposta de valor definix el que has de ser capaç de fer operativament.",
+          "next": "n3"
+        },
+        {
+          "label": "Promet manteniment inclòs sense garantir temps de resposta",
+          "kpi_delta": { "caja": -800, "clientes": 15, "reputacion": 1 },
+          "feedback": "Proposta més conservadora: reduïx el risc operatiu però també la diferenciació. A València hi ha moltes opcions de lloguer. Sense una promesa que destaque, ets un més. La vaguetat en la proposta de valor fa que el client no tinga raó específica per a triar-te.",
+          "next": "n3"
+        },
+        {
+          "label": "Promet bici sempre llesta + app per a reportar incidències en temps real",
+          "kpi_delta": { "caja": -2000, "clientes": 35, "reputacion": 4 },
+          "feedback": "Proposta de valor digital + física: diferencies l'experiència amb tecnologia. El canal digital (app) reduïx el cost de gestió d'incidències i dóna dades d'ús que milloren el servici. El risc és que desenvolupar l'app té cost i si l'app falla, la promesa cau. Lliçó: una proposta de valor digital potent requerix que la part tecnològica siga robusta des del primer dia.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisió 3 — Iterar o pivotar?",
+      "situacion": "Portes tres mesos i tens 45 subscriptors. La taxa de cancel·lació és del 30 % mensual (molt alta). La raó principal que donen els que se'n van: 'el preu està bé però preferisc tindre la meua pròpia bici'. El model funciona a Holanda però a València la cultura de propietat és distinta.",
+      "opciones": [
+        {
+          "label": "Itere: baixe el preu a 14 €/mes per a reduir la cancel·lació",
+          "kpi_delta": { "caja": -800, "clientes": 10, "reputacion": 0 },
+          "feedback": "Iterar el preu és una palanca, però si el problema és cultural (preferència per la propietat) el preu no ho resol. Baixar el preu reduïx marge sense atacar la causa real de cancel·lació. Lliçó: abans de tocar el preu, cal entendre si el problema és de preu o de proposta de valor.",
+          "next": "final:fracaso_parcial"
+        },
+        {
+          "label": "Pivote: venc bicis en lloc de llogar-les, amb servici de manteniment premium de postpagament",
+          "kpi_delta": { "caja": 3000, "clientes": 30, "reputacion": 2 },
+          "feedback": "Pivotar és canviar el model de negoci mantenint l'aprenentatge acumulat. El teu avantatge continua sent el manteniment i la logística: ara véns la bici (ingressos immediats) i cobres un abonament de manteniment mensual de 8 €. Menys recurrència però més compatibilitat amb la cultura local. El pivot ben executat no és fracàs: és el mètode.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Pivote cap a empreses: venc subscripcions B2B a empreses per als seus empleats",
+          "kpi_delta": { "caja": 1500, "clientes": 20, "reputacion": 3 },
+          "feedback": "Canvi de segment: en B2B la cultura de subscripció està més acceptada (les empreses ja paguen Spotify Business, Microsoft 365, etc.) i el tiquet és major. Una empresa de 50 empleats pot ser 50 vegades millor client que 50 individus. Lliçó: de vegades el model és correcte però per al segment equivocat.",
+          "next": "final:exito"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "El model troba el seu encaix",
+      "resumen": "Pol i Neus han adaptat el model a la realitat local. No van copiar Swapfiets literalment: van aprendre d'ell i el van ajustar. Caixa positiva, clients que no cancel·len i una proposta de valor que sí que es pot executar.",
+      "lecciones_clave": [
+        "Copiar un model de negoci d'un altre mercat requerix validar que les condicions culturals i de comportament són comparables.",
+        "Iterar és canviar detalls del model; pivotar és canviar el model mentres mantens l'aprenentatge acumulat. Saber quan fer cada cosa és clau.",
+        "La proposta de valor definix el que has de ser capaç d'executar operativament: prometre el que no pots complir destruïx més valor del que crea."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "El model no acaba de quallar",
+      "resumen": "Les bicis en subscripció sobreviuen a València però amb taxa de cancel·lació alta i marges molt ajustats. Sense un pivot clar, el model se sosté amb esforç però no creix.",
+      "lecciones_clave": [
+        "Un model de negoci que funciona en un altre mercat no es pot replicar sense validar les hipòtesis culturals locals.",
+        "Baixar el preu és quasi sempre la resposta més fàcil i quasi sempre no és la correcta quan el problema és de proposta de valor."
+      ]
+    }
+  }
+}
+```

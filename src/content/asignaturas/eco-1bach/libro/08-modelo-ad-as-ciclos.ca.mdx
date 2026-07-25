@@ -1,0 +1,551 @@
+---
+asignatura: eco-1bach
+unidad: 8
+title: 'Macroeconomia II: model AD-AS i cicles econòmics'
+lema: >-
+  El model AD-AS és la millor ferramenta de què disposem
+  per entendre per què un país creix o s'enfonsa, per què els
+  preus pugen després d'un xoc energètic, per què una recessió
+  pot ser breu o llarga. Esta unitat construïx eixe model
+  peça a peça i l'usa per llegir la història econòmica d'
+  Espanya dels últims quinze anys.
+lang: ca
+estado: publicado
+slug: "asignaturas/eco-1bach/libro/08-modelo-ad-as-ciclos.ca"
+duracion: 7-8 sessions · 2,5 setmanes
+bloque: Bloque C
+sabers:
+  - C.1
+  - C.2
+conceptos_clave:
+  - demanda agregada (AD)
+  - oferta agregada de curt termini (SRAS)
+  - oferta agregada de llarg termini (LRAS)
+  - producció potencial
+  - xoc de demanda
+  - xoc d'oferta
+  - cicle econòmic
+  - expansió
+  - recessió
+  - depressió
+  - recuperació
+  - creixement econòmic
+  - desenvolupament econòmic
+  - IDH
+  - índex de Gini
+  - corba de Lorenz
+  - productivitat total dels factors
+  - model de Solow
+objetivos:
+  - Construir gràficament el model AD-AS distingint els tres components (AD, SRAS, LRAS) i explicar el pendent de cada corba amb els seus mecanismes econòmics.
+  - Analitzar els efectes sobre el nivell de preus (P) i la producció (Y) dels quatre tipus de xocs (positius i negatius de demanda i oferta) en el curt i en el llarg termini.
+  - Identificar les quatre fases del cicle econòmic (expansió, recessió, depressió, recuperació) i aplicar este esquema a l'economia espanyola entre 2008 i 2024.
+  - Distingir creixement econòmic (PIB per capita) de desenvolupament econòmic (IDH) i enumerar els factors del creixement segons el model de Solow.
+  - Interpretar la corba de Lorenz i calcular l'índex de Gini a partir de dades senzilles, comparant Espanya amb economies de referència.
+publicado_en: 2026-05-15
+---
+
+import Callout from '@components/Callout.astro';
+import Curiosity from '@components/Curiosity.astro';
+import RealExample from '@components/RealExample.astro';
+import SolvedExercise from '@components/SolvedExercise.astro';
+import Steps from '@components/Steps.astro';
+import KeyTakeaways from '@components/KeyTakeaways.astro';
+import Diagram from '@components/Diagram.astro';
+import Figure from '@components/Figure.astro';
+import ADAS from '@components/diagrams/ADAS.astro';
+import CicloEconomico from '@components/diagrams/CicloEconomico.astro';
+import CurvaLorenz from '@components/diagrams/CurvaLorenz.astro';
+import DescomposicionSolow from '@components/diagrams/DescomposicionSolow.astro';
+import Bibliography from '@components/Bibliography.astro';
+import TldrUnidad from '@components/TldrUnidad.astro';
+import CasoDilema from '@components/CasoDilema.astro';
+import VuelveAlCaso from '@components/VuelveAlCaso.astro';
+import MirarFora from '@components/MirarFora.astro';
+
+import HerramientaIsland from '@components/calculadoras/HerramientaIsland.astro';
+import pozoPetroleo from '@assets/libro/eco-1bach/08/pozo-petroleo.jpg';
+import robertSolow from '@assets/libro/eco-1bach/08/robert-solow.jpg';
+import madridPreciadosCovid from '@assets/libro/eco-1bach/08/madrid-preciados-covid.jpg';
+import amartyaSen from '@assets/libro/eco-1bach/08/amartya-sen.jpg';
+
+> **Temps estimat de lectura**: 45-50 min · **Sabers LOMLOE**: C.1, C.2 · **Prerequisits**: Unitat 7 (PIB, IPC, EPA i els indicadors macro).
+>
+> **En acabar esta unitat sabràs**:
+> - Construir el model AD-AS (AD, SRAS, LRAS) i explicar el pendent de cada corba amb els seus mecanismes econòmics.
+> - Analitzar els efectes sobre preus i producció dels quatre tipus de xocs (de demanda i d'oferta, positius i negatius), inclosa l'estanflació.
+> - Identificar les quatre fases del cicle econòmic i aplicar-les a l'economia espanyola entre 2008 i 2024.
+> - Distingir creixement de desenvolupament, enumerar els motors del model de Solow i interpretar la corba de Lorenz i l'índex de Gini.
+
+<TldrUnidad>
+La macroeconomia **oscil·la**. Hi ha períodes de bonança i períodes de crisi, separats per mesos o anys. El model **AD-AS** —demanda agregada i oferta agregada— explica per què oscil·la i quina política pot suavitzar-ho.
+
+És la base teòrica de tota la política macro que veuràs en titulars: baixades de tipus del BCE, estímuls fiscals, ajudes a l'energia, debats sobre inflació. Sense este model, els telenotícies sobre economia són soroll.
+</TldrUnidad>
+
+<CasoDilema
+  titular="En el primer semestre de 2020 el PIB espanyol va caure un 22 % acumulat. Mai havia caigut tant en tan poc temps"
+  fuente="INE, Banc d'Espanya · 2020-2021"
+  pregunta="Si el model AD-AS no explica del tot la COVID, és perquè el model és roín o perquè la COVID va ser un fenomen especial?"
+>
+El xoc COVID-19 va ser un esdeveniment macroeconòmic sense precedents en l'era moderna. En uns mesos el PIB espanyol va caure prop d'un quart del seu nivell previ, l'atur va saltar per damunt del 16 %, milers d'empreses van tancar i les llars van perdre ingressos massivament. Però la recuperació també va ser ràpida: a finals de 2021 ja quasi s'havia recuperat el nivell previ a la pandèmia. Cap cicle econòmic clàssic podia explicar una caiguda i un rebot tan abruptes.
+</CasoDilema>
+
+En la unitat anterior vam deixar quatre ferramentes muntades sobre la taula: el flux circular de la renda, el PIB i els seus tres enfocaments, l'IPC i la taxa d'atur. Eren termòmetres: ens diuen *com està* l'economia en un moment concret. Esta unitat dóna el següent pas. Aprendrem a *explicar per què* eixos termòmetres es mouen com es mouen, què passa quan puja el preu del gas natural en un trimestre concret, per què l'economia espanyola es va enfonsar el 2008 i es va alçar —a poc a poc— el 2014.
+
+L'instrument central de la macroeconomia moderna per respondre a eixes preguntes és el **model de demanda i oferta agregades**, conegut com a model **AD-AS** (*Aggregate Demand–Aggregate Supply*). És la traducció al pla macro del model d'oferta i demanda que vas aprendre en la Unitat 4: canvia l'eix vertical (ja no és el preu d'un bé, sinó el **nivell general de preus**), canvia l'eix horitzontal (ja no és la quantitat d'un bé, sinó la **producció real agregada** de tota l'economia) i apareix una corba addicional —l'oferta agregada de llarg termini— que recorda al model quant pot produir el país si està a ple rendiment.
+
+Una nota abans de començar. Esta unitat compta amb un **simulador interactiu d'AD-AS** disponible a [`/eco-1bach/recursos/simulador-ad-as/`](/eco-1bach/recursos/simulador-ad-as/) on pots manipular xocs i veure els desplaçaments de les corbes en temps real. Està pensat perquè primer llisques el text, després manipules el simulador amb cadascun dels casos que es presenten i, per últim, intentes anticipar què passaria amb un xoc que el manual no menciona. La intuïció gràfica de l'AD-AS és de les que s'assenta fent, no llegint.
+
+## 1. La demanda agregada (AD)
+
+La **demanda agregada** és la quantitat total de béns i servicis que les famílies, les empreses, el sector públic i la resta del món estan disposats a comprar en una economia a cada nivell de preus. La seua composició és exactament la del PIB pel mètode de la despesa que vam estudiar en la Unitat 7:
+
+$$
+AD = C + I + G + (X - M)
+$$
+
+on **C** és el consum de les famílies, **I** la inversió privada, **G** la despesa pública corrent i de capital, **X** les exportacions i **M** les importacions.
+
+En el pla *P–Y* la corba de demanda agregada té **pendent negatiu**: quan el nivell de preus puja, la quantitat demandada de béns i servicis disminuïx. Esta inclinació, però, **no s'explica** per les mateixes raons que el pendent negatiu d'una demanda microeconòmica (efectes substitució i ingrés entre béns). A nivell agregat tots els béns i tots els preus es mouen junts, així que cal invocar tres mecanismes distints.
+
+### 1.1. Efecte riquesa (Pigou)
+
+Quan pugen els preus, el valor real dels actius nominals que posseïxen les famílies —diner en efectiu, comptes corrents, bons a tipus fix— perd poder adquisitiu. Les famílies se senten més pobres en termes reals i retallen consum. El mecanisme el va formalitzar Arthur Cecil Pigou en els anys 40 i per això es coneix com a **efecte Pigou** o **efecte riquesa real**.
+
+### 1.2. Efecte tipus d'interés (Keynes)
+
+Quan pugen els preus, les famílies necessiten més diner en efectiu per fer les mateixes compres quotidianes. Eixa major demanda de diner, amb una oferta monetària donada, pressiona a l'alça el **tipus d'interés**. I amb tipus més alts, la inversió empresarial (I) i el consum de béns duradors a crèdit (vehicles, habitatge) s'encarixen i cauen. És l'**efecte Keynes**.
+
+### 1.3. Efecte tipus de canvi (Mundell-Fleming)
+
+Si els preus interns pugen més que els de la resta del món, els productes espanyols es tornen relativament més cars. Les **exportacions (X) cauen** i les **importacions (M) pugen**, així que el saldo exterior es reduïx i la demanda agregada amb ell. Este canal funciona especialment bé en economies molt obertes com l'espanyola, on el comerç exterior representa més del 70 % del PIB.
+
+<Callout label="Concepte clau" title="Per què l'AD té pendent negatiu">
+
+La corba de demanda agregada inclina cap avall perquè un nivell de preus més alt reduïx simultàniament el consum (efecte riquesa), la inversió (efecte tipus d'interés) i les exportacions netes (efecte tipus de canvi). Els tres mecanismes sumen; cap per si sol dóna la inclinació completa.
+
+</Callout>
+
+### 1.4. Què desplaça la corba AD
+
+Distingir un **moviment al llarg** de la corba AD (causat per un canvi en P) d'un **desplaçament de tota la corba** és decisiu. La corba es desplaça quan canvia algun dels seus components per motius distints al nivell de preus:
+
+- **Consum (C)**: canvis en la renda disponible, les expectatives, la riquesa immobiliària, els tipus d'interés reals, els impostos directes.
+- **Inversió (I)**: canvis en les expectatives empresarials, el tipus d'interés, els costos de finançament, les polítiques d'incentius fiscals.
+- **Despesa pública (G)**: decisions discrecionals del govern (política fiscal expansiva o contractiva).
+- **Exportacions netes (X − M)**: situació econòmica dels socis comercials, tipus de canvi nominal, competitivitat-preu i no preu.
+
+Un augment de qualsevol component desplaça l'AD cap a la dreta (més demanda a cada nivell de preus); una caiguda la desplaça a l'esquerra.
+
+## 2. L'oferta agregada (AS)
+
+L'**oferta agregada** descriu la quantitat total de béns i servicis que les empreses del país estan disposades a produir i vendre a cada nivell de preus. La macroeconomia moderna —des de la síntesi neokeynesiana dels anys 70— distingix dos corbes distintes segons l'horitzó temporal: l'**oferta de curt termini** (SRAS, *short-run aggregate supply*) i l'**oferta de llarg termini** (LRAS, *long-run aggregate supply*). Esta distinció és la peça més important del model, perquè permet explicar per què un xoc que puja els preus hui pot deixar la producció intacta dins de cinc anys.
+
+### 2.1. Oferta agregada de curt termini (SRAS): pendent positiu
+
+La SRAS té **pendent positiu**: a major nivell de preus, major quantitat oferida. La intuïció és la següent. En el curt termini, alguns costos de les empreses són **rígids**: els salaris estan fixats en convenis col·lectius, els lloguers en contractes pluriennals, les matèries primeres en contractes de subministrament. Quan pugen els preus de venda, els costos no pugen (o pugen més a poc a poc), així que el marge unitari augmenta i a les empreses els ix rendible produir més, contractar a temps parcial, ampliar torns. Hi ha, a més, un efecte d'**informació imperfecta**: els empresaris confonen inicialment una pujada del nivell general de preus amb una pujada del preu del seu producte en particular i reaccionen produint més.
+
+Els desplaçaments de la SRAS els provoquen els **costos de producció**:
+
+- **Salaris**: una pujada del SMI o dels convenis col·lectius per damunt de la productivitat desplaça la SRAS a l'esquerra.
+- **Energia i matèries primeres**: un encariment del petroli o del gas natural desplaça la SRAS a l'esquerra.
+- **Impostos sobre la producció** (cotitzacions empresarials, IVA): a l'esquerra si pugen.
+- **Tipus de canvi**: una depreciació de l'euro encarix importacions i desplaça la SRAS a l'esquerra.
+- **Expectatives d'inflació**: si les empreses anticipen més inflació, fixen preus hui més alts.
+
+### 2.2. Oferta agregada de llarg termini (LRAS): vertical
+
+A llarg termini, tots els costos (inclosos els salaris) s'ajusten plenament al nivell de preus. La distinció entre cost nominal i cost real es diluïx, i la quantitat produïda ja no depén del nivell de preus: depén dels **factors productius disponibles** —capital físic **K**, treball **L** i tecnologia **A**— i de la seua productivitat. Eixa quantitat és el que anomenem **producció potencial** (Y\*), també denominada **PIB potencial** o **PIB de plena ocupació**: la que l'economia pot produir quan tots els recursos estan ocupats a un ritme sostenible sense generar pressions inflacionistes creixents.
+
+La corba LRAS és, per tant, **vertical** en Y\*. Només es desplaça quan canvien els factors que determinen la capacitat productiva del país:
+
+- Acumulació de **capital físic** (inversió neta positiva).
+- Canvis en la **població activa** i el seu nivell de formació (capital humà).
+- Millores de **tecnologia i organització** (la *A* del model de Solow).
+- **Reformes estructurals** que milloren l'eficiència (mercat laboral, regulació, justícia).
+
+<Callout label="Concepte clau" title="Les tres corbes en una sola figura" variant="example">
+
+En el pla *P-Y*, AD inclina cap avall, SRAS inclina cap amunt i LRAS és vertical en Y\*. L'equilibri macroeconòmic de **llarg termini** ocorre quan les tres corbes es creuen en el mateix punt: l'economia produïx exactament la seua producció potencial al nivell de preus coherent amb eixa producció. En el **curt termini**, AD i SRAS poden tallar-se a la dreta o a l'esquerra de Y\*: si ho fan a la dreta, parlem de **bretxa inflacionista**; si ho fan a l'esquerra, de **bretxa recessiva**.
+
+</Callout>
+
+<Diagram caption="Model AD-AS: equilibri macroeconòmic de curt i llarg termini.">
+  <ADAS />
+</Diagram>
+
+**Prova-ho tu mateix:**
+
+<HerramientaIsland componente="ADASSimulator" />
+
+## 3. Equilibri macroeconòmic i xocs
+
+L'equilibri de **curt termini** és el punt on es creuen AD i SRAS. Determina un nivell de preus i una producció que poden coincidir o no amb la producció potencial. L'equilibri de **llarg termini** és el punt on les tres corbes es creuen alhora: l'economia produïx Y\* sense tensions inflacionistes ni capacitat ociosa. L'interés del model està a analitzar com un **xoc** —és a dir, un canvi inesperat que desplaça alguna corba— mou l'economia fora d'eixe equilibri i com torna (o no) a ell.
+
+Anomenem **xoc de demanda** a un desplaçament de l'AD i **xoc d'oferta** a un desplaçament de la SRAS (o, més rarament, de la LRAS). I diferenciem entre **xoc positiu** (la corba es desplaça a la dreta, més demanda o oferta) i **xoc negatiu** (la corba es desplaça a l'esquerra). Combinem els dos eixos i obtenim els quatre casos canònics.
+
+### 3.1. Xoc positiu de demanda
+
+L'AD es desplaça a la dreta (per exemple, un pla d'inversió pública o una caiguda de tipus del BCE). En el curt termini, **puja P i puja Y**: l'economia es sobreescalfa, amb producció per damunt de Y\* i atur per davall del NAIRU. A llarg termini, els salaris i els costos s'ajusten al nou nivell de preus, la SRAS es desplaça a l'esquerra i l'economia torna a Y\*. L'efecte durador del xoc és **només sobre els preus**: l'AD-AS prediu que una expansió monetària o fiscal sostinguda acaba traduïda íntegrament en inflació a llarg termini. És el que anomenem **neutralitat del diner a llarg termini**.
+
+### 3.2. Xoc negatiu de demanda
+
+L'AD es desplaça a l'esquerra (caiguda del consum, esfondrament de la confiança empresarial, contracció pressupostària). En el curt termini, **baixen P i baixa Y**: l'economia entra en **recessió**, amb producció per davall de Y\* i atur elevat. Si els preus i els salaris foren perfectament flexibles, els costos caurien, la SRAS es desplaçaria a la dreta i l'economia tornaria a Y\*. Però els salaris **no cauen** amb la mateixa facilitat amb què pugen (és la *rigidesa nominal a la baixa* descrita per Keynes), així que l'ajust per l'oferta pot tardar anys o no arribar a produir-se sense intervenció. Esta asimetria és la raó principal per la qual les recessions són tan danyoses i per la qual la majoria de governs responen amb política fiscal o monetària expansiva.
+
+### 3.3. Xoc positiu d'oferta
+
+La SRAS es desplaça a la dreta (per exemple, una caiguda del preu del petroli, una millora tecnològica, una reforma que reduïx costos laborals unitaris). El resultat és el somni macroeconòmic: **baixen P i puja Y** alhora. L'economia produïx més a menors preus. És el que va viure els Estats Units en la segona meitat dels anys noranta amb la digitalització, o l'economia global durant l'auge de la globalització 1995-2008, quan la integració de la Xina en el comerç mundial va injectar desenes de milions de treballadors barats en el sistema productiu.
+
+### 3.4. Xoc negatiu d'oferta (estanflació)
+
+La SRAS es desplaça a l'esquerra (encariment del petroli, ruptura de cadenes de subministrament, pujada brusca de salaris per damunt de la productivitat). **Puja P i baixa Y**: alhora. És el cas més temut pels bancs centrals, perquè les dos variables que voldrien controlar es mouen en direccions oposades: si pugen tipus per contindre la inflació, aprofundixen la recessió; si baixen tipus per estimular l'activitat, retroalimenten la inflació. Esta combinació d'inflació amb estancament s'anomena **estanflació** i va ser el tret distintiu dels anys 70 després dels dos xocs del petroli (1973 OPEP, 1979 revolució iraniana). Va tornar a aparéixer el 2022 després de la invasió russa d'Ucraïna.
+
+<Curiosity title="Robert Solow, el Nobel de 1987 i el 'residu Solow'">
+Robert Solow, professor del MIT, va rebre el Premi Nobel d'Economia el 1987 pel seu model de creixement publicat el 1956. Solow va descompondre el creixement del PIB en tres fonts: acumulació de capital físic, augment de l'ocupació i un *residu* que arreplegava tot el que les dos primeres no explicaven. Quan va aplicar la descomposició a les dades dels Estats Units del període 1909-1949, va descobrir una cosa que canviaria l'economia del creixement: aproximadament **un 80 % del creixement per treballador no es devia a més capital ni a més treball**, sinó a eixe residu. El va anomenar *technical change* (canvi tècnic), però la professió el coneix com a **residu Solow** o **productivitat total dels factors (PTF)**. És la mètrica que mesura quant produïm per unitat d'inputs combinats, i en ella es condensa tot el que importa de veritat per al benestar a llarg termini: tecnologia, eficiència organitzativa, qualitat institucional, capital humà. La frase atribuïda a Solow per resumir la troballa —*"You can see the computer age everywhere but in the productivity statistics"*— es va convertir en lema de l'economia del creixement moderna.
+</Curiosity>
+
+<Figure
+  src={pozoPetroleo}
+  alt="Pumpjack (cavallet de bombeig) extraient petroli junt al flanc d'un anticlinal, amb la silueta de la maquinària retallada sobre un cel blau intens."
+  caption="Un *pumpjack* extrau cru en un jaciment estatunidenc. Quan el preu del barril Brent va passar de 75 a 120 dòlars entre març i agost de 2022 després de la invasió russa d'Ucraïna, la SRAS de tota l'economia europea es va desplaçar cap a l'esquerra: van pujar els preus i es va desaccelerar la producció alhora."
+  credit="Foto: Michael C. Rygel, CC BY-SA 3.0 via Wikimedia Commons"
+  aspectHint="16/9"
+  variant="wide"
+/>
+
+<SolvedExercise number="8.1" title="Xoc petrolier sobre l'economia espanyola el 2022">
+
+**Enunciat**
+
+Després de la invasió russa d'Ucraïna (febrer 2022), el preu del gas natural TTF europeu es va multiplicar per sis entre març i agost, i el preu mitjà del petroli Brent va passar de 75 a 120 dòlars per barril. Analitza, usant el model AD-AS, l'impacte sobre l'economia espanyola de curt termini en termes de nivell de preus (P) i producció (Y). Justifica si la resposta del BCE (pujada de tipus de 0 a 4,5 % entre juliol de 2022 i setembre de 2023) va ser coherent amb el model.
+
+**Dades**
+
+- IPC Espanya: 5,8 % interanual al febrer 2022 → 10,8 % al juliol 2022 (màxim des de 1985).
+- PIB real Espanya 2022: +5,8 % (efecte rebot post-COVID); 2023: +2,7 % (revisat); 2024: +3,2 %; 2025: al voltant del +2,5-2,7 % (projecció Banc d'Espanya).
+- Tipus BCE refinançament: 0,00 % al juny 2022 → 4,50 % al setembre 2023 → cicle de baixades iniciat al juny 2024, situant-se al voltant del 2,40 % en el primer trimestre de 2026.
+
+**Solució**
+
+1. **Identificació del xoc.** L'encariment simultani del gas i el petroli encarix l'energia i les matèries primeres per al conjunt de les empreses espanyoles. És un **xoc negatiu d'oferta**: la SRAS es desplaça cap a l'esquerra.
+2. **Efectes predits pel model.** Amb AD inicialment estable, un desplaçament de SRAS a l'esquerra produïx una **pujada de P** i una **baixada de Y** respecte de l'equilibri previ. És a dir, el model prediu exactament *inflació amb desacceleració* —estanflació incipient—. Les dades ho confirmen: l'IPC va passar del 5,8 % al 10,8 % en cinc mesos i el creixement del PIB va passar del 5,5 % al 2,5 % l'any següent, una desacceleració notable encara que sense recessió tècnica gràcies al fort rebot turístic.
+3. **Resposta del BCE.** El BCE va optar per pujar tipus per contindre la inflació, acceptant aprofundir la desacceleració. En el llenguatge del model: aplica una contracció monetària que desplaça l'AD a l'esquerra. L'estratègia és coherent amb el mandat del BCE (estabilitat de preus com a objectiu prioritari), però implica sacrificar Y en el curt termini per ancorar les expectatives d'inflació a mitjà termini i evitar una espiral salaris-preus.
+4. **Conclusió.** L'episodi 2022-2024 espanyol encaixa amb el patró canònic de xoc negatiu d'oferta en el model AD-AS, i la resposta de política monetària —antipàtica però coherent— il·lustra el dilema clàssic del banc central davant d'este tipus de xoc.
+
+</SolvedExercise>
+
+## 4. El cicle econòmic
+
+Les economies reals no romanen quietes en l'equilibri de llarg termini. Combinen tendència i fluctuació: una tendència creixent del PIB potencial (més capital, més treball, més tecnologia) i oscil·lacions recurrents al voltant d'eixa tendència. Anomenem **cicle econòmic** al patró repetit d'eixes oscil·lacions.
+
+### 4.1. Les quatre fases
+
+La datació oficial dels cicles econòmics als Estats Units la realitza des de 1854 el **National Bureau of Economic Research (NBER)** mitjançant el *Business Cycle Dating Committee*. A Europa fa una cosa semblant el **CEPR** (Centre for Economic Policy Research). Tots dos organismes identifiquen quatre fases canòniques en cada cicle complet:
+
+- **Expansió**. Creixement del PIB real durant diversos trimestres consecutius, atur descendent, inflació moderada i creixent. L'AD s'expandix, AD ∩ SRAS està a la dreta de Y\*.
+- **Recessió**. Caiguda del PIB real durant almenys dos trimestres consecutius (regla d'or, no és una definició oficial), atur creixent, inflació continguda. L'AD es contrau, AD ∩ SRAS queda a l'esquerra de Y\*.
+- **Depressió**. Recessió prolongada i profunda, amb caiguda del PIB que es manté durant anys i desocupació massiva. És un fenomen rar: el segle XX només arreplega dos episodis clars a escala global (la Gran Depressió 1929-1933 i la *Lost Decade* japonesa dels 90).
+- **Recuperació**. Eixida de la recessió: el PIB torna a créixer, l'atur comença a baixar, les expectatives es reancoren. Quan la recuperació arriba al nivell previ al pic cíclic, diem que l'economia ha *tancat la bretxa de producció* i torna a la fase d'expansió.
+
+<Diagram caption="Les quatre fases del cicle econòmic al voltant del PIB potencial.">
+  <CicloEconomico />
+</Diagram>
+
+### 4.2. Espanya 2008-2024: un cicle de manual
+
+L'economia espanyola dels últims quinze anys oferix totes les fases del cicle concentrades en un únic arc temporal. Val la pena seguir-lo any a any perquè il·lustra com s'entrellacen xocs de demanda, xocs d'oferta i respostes de política econòmica.
+
+<Steps title="El cicle espanyol 2008-2024">
+1. **2008-2009 — Recessió immobiliària.** Esclata la bambolla immobiliària, s'enfonsa el crèdit (xoc negatiu de demanda i d'oferta alhora via credit crunch). El PIB cau un −3,8 % el 2009 i l'atur es duplica del 8 % al 18 % en dos anys.
+2. **2010-2011 — Falsa recuperació.** Estímuls fiscals i monetaris sostenen artificialment la demanda. Però el deute públic puja del 36 % al 70 % del PIB.
+3. **2012-2013 — Doble recessió i rescat bancari.** Crisi de deute sobirà a l'Eurozona, prima de risc espanyola en 638 pb al juliol de 2012, rescat bancari MEDE (61.000 M€), austeritat fiscal agressiva. El PIB torna a caure el 2012 (−2,9 %) i 2013 (−1,4 %), l'atur toca el 26,9 % en el primer trimestre de 2013.
+4. **2014-2019 — Expansió llarga.** Reforma laboral, ajust salarial, depreciació de l'euro, caiguda del preu del petroli i QE del BCE (tots xocs combinats favorables) generen sis anys de creixement sostingut entre el 2 % i el 3,8 %. L'atur baixa al 13,8 % a finals de 2019.
+5. **2020 — Xoc COVID.** La caiguda més brusca de la història econòmica espanyola en temps de pau: PIB **−10,8 %** en un sol any. És un xoc atípic, **simultàniament de demanda** (confinaments, aturada del turisme) i **d'oferta** (paralització de cadenes de subministrament globals).
+6. **2021-2026 — Recuperació post-COVID i expansió moderada.** Desplegament dels fons Next Generation EU, rebot del turisme internacional (rècord històric de 94 milions de visitants el 2024), mercat laboral més resistent que en cicles anteriors. El PIB pre-COVID es recupera plenament en el segon trimestre de 2024, amb un creixement del 3,2 % eixe any —el més alt de les grans economies de la zona euro—. El 2025 el ritme es modera al 2,5-2,7 %, i l'EPA del primer trimestre de 2026 situa l'atur en el 10,4 %, mínim des de 2008.
+</Steps>
+
+<Figure
+  src={madridPreciadosCovid}
+  alt="Carrer Preciados de Madrid completament desert el 22 de març de 2020, durant la primera setmana del confinament per la COVID-19, amb els aparadors de les botigues tancats."
+  caption="Carrer Preciados (Madrid), 22 de març de 2020, una setmana després del decret de l'estat d'alarma. La imatge de la principal artèria comercial del centre de Madrid completament buida resumix el caràcter atípic del xoc COVID: **simultàniament de demanda** (consum i turisme paralitzats) **i d'oferta** (cadenes de subministrament globals trencades, plantilles confinades). El PIB espanyol va caure un −10,8 % el 2020, el major desplom en temps de pau."
+  credit="Foto: Nemo, CC BY-SA 4.0 via Wikimedia Commons"
+  aspectHint="3/2"
+  variant="full"
+/>
+
+<RealExample title="La doble recessió espanyola 2008-2014 vs la resta de l'Eurozona" source="Eurostat (PIB real, base 2015) e INE (Contabilidad Nacional Trimestral)" sourceUrl="https://ec.europa.eu/eurostat">
+Espanya va viure entre 2008 i 2014 el que es coneix com una **doble recessió** o *double-dip recession*: dos recessions tècniques seguides separades per una recuperació frustrada. La primera (2008Q3-2009Q4) va ser compartida amb totes les economies avançades i va respondre al xoc financer global. La segona (2011Q2-2013Q2) va ser quasi exclusiva del sud d'Europa i va respondre a la crisi de deute sobirà de l'Eurozona i a les polítiques de consolidació fiscal exigides per la Unió. En termes de PIB real, Espanya no va recuperar el nivell pre-crisi fins al 2017 —nou anys després del pic cíclic—. Per fer-se una idea de la magnitud: Alemanya havia recuperat el nivell pre-crisi ja el 2011; els Estats Units el 2012; Itàlia, en canvi, ni tan sols el 2024. La lliçó que van deixar estos anys a la política econòmica europea està en l'origen del canvi de doctrina post-2020: la resposta a la pandèmia es va dissenyar deliberadament com a contracíclica i solidària (fons NGEU, suspensió del Pacte d'Estabilitat) per evitar repetir el patró de la dècada anterior.
+</RealExample>
+
+## 5. Creixement econòmic: el model de Solow simplificat
+
+Fins ací hem parlat de fluctuacions al voltant de Y\*. Però la pregunta més important de la macroeconomia a llarg termini és una altra: què determina **el nivell i el creixement del mateix Y\***? És a dir, per què alguns països són rics i altres pobres, per què Espanya és 25 vegades més rica per capita que Moçambic, per què Corea del Sud era més pobra que Ghana el 1960 i hui és set vegades més rica?
+
+El marc analític de referència per respondre a estes preguntes és el **model de creixement de Solow** (1956), també anomenat model neoclàssic de creixement. No desenvoluparem la seua matemàtica —s'estudia amb detall en Economia 2n de carrera—, però sí la seua intuïció central, que és accessible i molt potent.
+
+<Figure
+  src={robertSolow}
+  alt="Retrat fotogràfic de Robert Solow, economista estatunidenc del MIT, en un acte acadèmic."
+  caption="Robert M. Solow (1924-2023), professor del MIT i premi Nobel d'Economia el 1987. El seu model de creixement de 1956 va demostrar, contra la intuïció de l'època, que el motor últim del creixement per capita a llarg termini no és l'acumulació de capital sinó el **canvi tècnic**: el que hui anomenem *productivitat total dels factors*."
+  credit="Foto: Olaf Storbeck, CC BY-SA 2.0 via Wikimedia Commons"
+  aspectHint="4/3"
+  variant="tight"
+/>
+
+### 5.1. Els tres motors del creixement
+
+Solow proposa una funció de producció agregada del tipus:
+
+$$
+Y = A \cdot F(K, L)
+$$
+
+on la producció **Y** depén del capital físic **K** (màquines, edificis, infraestructures), del treball **L** (quantitat i qualificació de la força laboral) i d'un paràmetre **A** que arreplega la **productivitat total dels factors** (PTF): l'eficiència amb què es combinen K i L. La PTF abasta tecnologia, organització empresarial, institucions, capital humà qualificatiu no mesurat en anys d'escolarització.
+
+Els tres motors del creixement són, per tant:
+
+- **Acumulació de capital físic (K)**: invertir en màquines, fàbriques, carreteres, fibra òptica, xarxes elèctriques, infraestructura digital. És el motor més visible i el que més van usar les economies emergents de finals del segle XX (la Xina en els 2000, Vietnam en els 2010).
+- **Augment del treball (L)**: fer créixer la població activa (demografia, immigració, taxa d'activitat) o millorar la seua qualificació (capital humà, sistema educatiu).
+- **Millora de la productivitat total dels factors (A)**: tecnologia, I+D, millor gestió empresarial, millor regulació, qualitat institucional. És la font més esquiva però l'única que sosté creixement per capita a llarg termini, perquè K i L tenen rendiments decreixents.
+
+La **comptabilitat del creixement** descompon quant aporta cada motor al creixement total del PIB. La PTF no es mesura directament: s'obté com a **residu** —el que queda del creixement una vegada restada la contribució del capital i del treball—. Per això se l'anomena el «residu de Solow».
+
+<Diagram caption="El creixement del PIB es repartix entre la contribució del capital, la del treball i la PTF, que s'obté com a residu. En l'exemple (Exercici 8.3), d'un 2,4 % de creixement quasi tot procedix de més ocupació (1,8 punts) i capital (0,7), mentre la PTF resta 0,1: el país creix «a l'ample», sense guanyar eficiència." source="Comptabilitat del creixement (Solow, 1957)">
+  <DescomposicionSolow />
+</Diagram>
+
+### 5.2. Per què Espanya té un problema de productivitat
+
+Les dades del BCE, la Comissió Europea i l'INE coincidixen en un diagnòstic: l'economia espanyola creix, però ho fa sobretot per més ocupació, no per més productivitat. La PTF espanyola ha crescut entre 2000 i 2024 a una taxa mitjana inferior al 0,5 % anual, enfront de l'1 % de la zona euro i l'1,5 % dels Estats Units. Els factors que expliquen eixa diferència, segons consens tècnic:
+
+- **Grandària empresarial**: Espanya té un teixit productiu dominat per microempreses (menys de 10 empleats són prop del 95 % del total), i les pimes molt xicotetes tenen productivitat estructuralment inferior per menor capacitat d'inversió en I+D, digitalització i formació interna.
+- **Especialització sectorial**: l'economia espanyola està sobrerepresentada en hostaleria, comerç minorista i construcció, sectors de baixa productivitat per hora treballada.
+- **Inversió en I+D**: Espanya gasta l'1,49 % del PIB en I+D (dada INE 2024), enfront del 2,2 % de la mitjana UE i el 3,5 % d'Alemanya o Corea del Sud.
+- **Governança i capital humà específic**: literatura recent apunta a deficiències en formació professional dual, en la transició del sistema educatiu al laboral i en la gestió empresarial professionalitzada.
+- **Regulació i barreres d'entrada**: en alguns sectors regulats (energia, telecomunicacions, professions col·legiades) persistixen rendes de posició que reduïxen la pressió competitiva i, amb ella, els incentius a innovar.
+
+Resoldre el problema de productivitat és l'**agenda econòmica d'Espanya per als pròxims 25 anys**, i en bona mesura el que justifica la condicionalitat dels fons Next Generation EU.
+
+## 6. Creixement vs desenvolupament: l'IDH
+
+Una economia pot créixer molt en PIB i tanmateix no millorar significativament el benestar de la seua població; o, al revés, una economia amb creixement modest pot registrar millores notables en salut, educació i llibertat. La distinció entre **creixement econòmic** (variació del PIB real per capita) i **desenvolupament econòmic** (millora de les condicions materials i no materials de vida) és una de les contribucions conceptuals més importants del Programa de les Nacions Unides per al Desenvolupament (PNUD).
+
+L'indicador sintètic que operacionalitza eixa distinció és l'**Índex de Desenvolupament Humà (IDH)**, publicat anualment pel PNUD des de 1990. Combina tres dimensions, cadascuna amb pes igual:
+
+- **Salut**: esperança de vida en nàixer.
+- **Educació**: mitjana geomètrica entre anys mitjans d'escolarització (adults de 25+) i anys esperats d'escolarització (xiquets en edat escolar).
+- **Renda**: Renda Nacional Bruta (RNB) per capita en dòlars PPA, transformada logarítmicament.
+
+Cada dimensió es normalitza a una escala 0-1 i l'IDH és la mitjana geomètrica de les tres. Per la seua construcció, un país només pot tindre IDH alt si destaca en les tres dimensions simultàniament: no compensa una esperança de vida molt alta amb una educació pèssima, ni una renda enorme amb sanitat col·lapsada.
+
+### 6.1. On està Espanya?
+
+Espanya apareix habitualment entre els llocs 25-30 del rànquing mundial (lloc 27 en l'Informe de Desenvolupament Humà 2023-2024 del PNUD, amb IDH 0,911 —categoria *molt alt*—). Per damunt queden els països nòrdics, Suïssa, Alemanya, els Països Baixos, el Canadà, Austràlia, el Regne Unit, el Japó, Corea del Sud. Encapçala el rànquing **Noruega** (0,966) o **Suïssa** (0,967) segons l'any. En l'altre extrem, països de l'Àfrica subsahariana en conflicte recent o crònic apareixen amb IDH inferior a 0,4 (Sudan del Sud, República Centreafricana, Txad).
+
+<Figure
+  src={amartyaSen}
+  alt="Retrat fotogràfic d'Amartya Sen en una conferència del cicle Fronteiras do Pensamento (São Paulo, 2012)."
+  caption="Amartya Sen (Santiniketan, 1933), Premi Nobel d'Economia 1998. La seua teoria de les *capabilities* —les capacitats reals que té cada persona per portar la vida que valora— va donar el marc filosòfic a l'**Índex de Desenvolupament Humà** que el seu amic Mahbub ul Haq va dissenyar el 1990 per al PNUD com a alternativa a l'ús exclusiu del PIB."
+  credit="Foto: Fronteiras do Pensamento, CC BY-SA 2.0 via Wikimedia Commons"
+  aspectHint="3/2"
+  variant="tight"
+/>
+
+<Curiosity title="Mahbub ul Haq, Amartya Sen i el naixement de l'IDH">
+L'IDH no és una ferramenta neutra: va nàixer d'una crítica explícita a l'ús exclusiu del PIB com a mesura del progrés humà. El seu artífex principal va ser l'economista pakistanés **Mahbub ul Haq**, exministre de Finances del Pakistan i posteriorment economista en cap del PNUD. A finals dels 80 ul Haq va decidir que el debat del desenvolupament necessitava un indicador comprensible que rivalitzara amb el PIB en simplicitat però que recordara que *desenvolupament no és només producció*. Per dissenyar-lo es va envoltar de l'economista indi **Amartya Sen**, futur Nobel d'Economia 1998, la teoria del qual de les **capabilities** (capacitats reals per portar una vida que un valore) va proporcionar el marc conceptual. El primer Informe de Desenvolupament Humà es va publicar el 1990 amb la frase d'obertura *"People are the real wealth of a nation"*. Trenta-cinc anys després, l'IDH és l'indicador alternatiu al PIB més citat del món, ha sigut refinat diverses vegades (versió ajustada per desigualtat IDH-D des de 2010, IDH de gènere, IDH multidimensional) i s'ha convertit en ferramenta estàndard de la diplomàcia del desenvolupament, els ODS de l'ONU i l'avaluació de polítiques públiques.
+</Curiosity>
+
+## 7. Distribució de la renda: corba de Lorenz i índex de Gini
+
+Dos economies amb el mateix PIB per capita poden tindre benestars molt distints segons com es repartisca eixa renda entre la població. L'**estudi de la distribució de la renda** intenta capturar eixa informació amb dos instruments clàssics: la corba de Lorenz i l'índex de Gini, formulats tots dos en els anys 1905-1912.
+
+### 7.1. La corba de Lorenz
+
+Si ordenem tota la població del país de menor a major renda i representem en l'eix horitzontal el percentatge acumulat de població i en l'eix vertical el percentatge acumulat de renda, obtenim la **corba de Lorenz**. En una economia perfectament igualitària, el 10 % més pobre concentraria el 10 % de la renda, el 20 % més pobre el 20 %, i així successivament: la corba seria la diagonal del quadrat (la *línia d'equidistribució*). En una economia desigual, la corba queda per davall de la diagonal: el 10 % més pobre acumula molt menys del 10 % de la renda, mentre que el 10 % més ric acumula bastant més del 10 %. Com més avall cau la corba respecte de la diagonal, major és la desigualtat.
+
+<Diagram caption="Corba de Lorenz i la geometria de l'índex de Gini.">
+  <CurvaLorenz />
+</Diagram>
+
+### 7.2. L'índex de Gini
+
+L'**índex de Gini** convertix eixa informació gràfica en un número entre 0 i 1 (o entre 0 i 100 en presentacions percentuals). Es calcula com el quocient entre l'**àrea compresa entre la diagonal i la corba de Lorenz** i l'**àrea del triangle sota la diagonal**. Per construcció:
+
+- Gini = 0 → igualtat perfecta (tots cobren el mateix).
+- Gini = 1 → desigualtat màxima (una sola persona es queda amb tota la renda).
+
+Per fer-se una idea de l'escala internacional amb dades recents d'Eurostat, INE, OCDE i Banc Mundial (al voltant de 2022):
+
+- **Suècia**: 0,28 (un dels més igualitaris de l'OCDE).
+- **Països Baixos**: 0,28.
+- **Alemanya**: 0,30.
+- **França**: 0,29.
+- **Espanya**: 0,33 (al voltant de la mediana europea).
+- **Itàlia**: 0,33.
+- **Regne Unit**: 0,35.
+- **Estats Units**: 0,41 (el més desigual de les economies avançades).
+- **Brasil**: 0,52; **Sud-àfrica**: 0,63 (dels més desiguals del món).
+
+Un Gini de 0,33 situa Espanya en la zona mitjana-alta de la UE: ni entre els més igualitaris (escandinaus, Països Baixos) ni entre els més desiguals (Regne Unit, països bàltics). La desigualtat espanyola va augmentar durant la doble recessió 2008-2014 (Gini va passar de 0,32 a 0,35) i s'ha moderat des de 2015, però roman per damunt dels nivells pre-crisi.
+
+<SolvedExercise number="8.2" title="Càlcul simplificat de l'índex de Gini">
+
+**Enunciat**
+
+Considera una economia amb 5 persones les rendes anuals de les quals són, ordenades de menor a major, **10.000 €, 15.000 €, 25.000 €, 50.000 € i 100.000 €**. (a) Calcula els percentatges acumulats de població i renda per construir els punts de la corba de Lorenz. (b) Estima l'índex de Gini usant l'aproximació de l'àrea per trapezis.
+
+**Dades**
+
+- Renda total = 10.000 + 15.000 + 25.000 + 50.000 + 100.000 = **200.000 €**.
+- Cada persona = 20 % de la població.
+
+**Solució**
+
+1. **Percentatges acumulats** (% població, % renda acumulada):
+   - Persona 1: (20 %, 10.000/200.000 = 5 %).
+   - Persona 2: (40 %, 25.000/200.000 = 12,5 %).
+   - Persona 3: (60 %, 50.000/200.000 = 25 %).
+   - Persona 4: (80 %, 100.000/200.000 = 50 %).
+   - Persona 5: (100 %, 200.000/200.000 = 100 %).
+2. **Àrea sota la corba de Lorenz (B)** mitjançant regla del trapezi amb amplàries de 0,2:
+   - B = 0,2 · [(0+0,05)/2 + (0,05+0,125)/2 + (0,125+0,25)/2 + (0,25+0,50)/2 + (0,50+1,00)/2]
+   - B = 0,2 · [0,025 + 0,0875 + 0,1875 + 0,375 + 0,75] = 0,2 · 1,425 = **0,285**.
+3. **Àrea entre diagonal i Lorenz (A)** = 0,5 − B = 0,5 − 0,285 = **0,215**.
+4. **Índex de Gini** = A / 0,5 = 0,215 / 0,5 = **0,43**.
+5. **Interpretació.** Una economia de 5 persones amb esta distribució té un Gini pròxim al dels Estats Units. La raó: el 20 % més ric concentra el 50 % de la renda total, mentre que el 40 % més pobre només acumula el 12,5 %. Si volguérem reduir el Gini a 0,30 (nivell europeu), hauríem de redistribuir aproximadament 20.000 € des de la persona 5 cap a les persones 1, 2 i 3.
+
+</SolvedExercise>
+
+<SolvedExercise number="8.3" title="Descomposició del creixement del PIB potencial (comptabilitat del creixement)">
+
+**Enunciat**
+
+A partir de la funció de producció de Solow, el creixement del PIB potencial es descompon (en la seua versió simplificada, amb elasticitats estàndard α = 1/3 per al capital i 1−α = 2/3 per al treball) així:
+
+```
+Δ%Y  =  Δ%A  +  (1/3) · Δ%K  +  (2/3) · Δ%L
+```
+
+on Δ%A és la variació de la productivitat total dels factors (PTF), Δ%K la del capital i Δ%L la del treball. Un país presenta estes dades mitjanes anuals de l'última dècada:
+
+- Creixement del PIB real (Δ%Y): **2,4 %**
+- Creixement del capital (Δ%K): **2,1 %**
+- Creixement de l'ocupació (Δ%L): **2,7 %**
+
+a) Calcular quant aporten al creixement el capital i el treball.
+b) Obtindre la contribució de la PTF com a residu (el «residu Solow»).
+c) Interpretar el resultat a la llum del «problema de productivitat» que el text atribuïx a Espanya.
+
+**Solució**
+
+1. **Aportació del capital** = (1/3) · 2,1 = **0,7 punts** de creixement.
+2. **Aportació del treball** = (2/3) · 2,7 = **1,8 punts** de creixement.
+3. **Aportació combinada de K i L** = 0,7 + 1,8 = **2,5 punts**.
+4. **Residu Solow (PTF)** = Δ%Y − aportació de K − aportació de L = 2,4 − 0,7 − 1,8 = **−0,1 punts**.
+5. **Interpretació.** Tot el creixement (i fins i tot un poc més) procedix d'**acumular més factors**, sobretot més ocupació (1,8 dels 2,4 punts). La PTF aporta pràcticament zero o lleugerament negatiu: el país creix «a l'ample» (més treballadors, més màquines) però **no millora l'eficiència amb què els combina**. És exactament el patró espanyol que descriu la secció 5.2: creixement basat en ocupació, amb PTF estancada. El problema és que K i L tenen rendiments decreixents, així que un creixement sense PTF no és sostenible a llarg termini: quan s'esgote el marge per sumar ocupació (demografia, taxa d'activitat), el creixement es frenarà llevat que s'enlaire la productivitat.
+
+</SolvedExercise>
+
+<VuelveAlCaso referencia="COVID-19 i el xoc d'oferta i demanda simultani">
+La COVID va ser un **xoc d'oferta i demanda simultani**:
+
+- L'**oferta** va caure perquè no es podia produir sota confinament (fàbriques tancades, cadenes logístiques trencades).
+- La **demanda** també va caure perquè no es podia consumir (comerç, hostaleria, viatges tancats o restringits).
+
+El model AD-AS descriu bé l'equilibri agregat, però els **xocs externs** d'esta magnitud —pandèmia, guerra, terratrémol, embargament petrolier— excedixen el que qualsevol model macro estàndard **prediu**. La resposta política va ser massiva i coordinada: bancs centrals van baixar tipus a zero i van comprar deute; governs van llançar transferències directes (ERTO, ajudes a autònoms, prestacions extraordinàries). La recuperació va arribar.
+
+El model no va fallar: simplement, els xocs d'eixa magnitud requerixen intervenció política a una escala que el model **descriu** —«desplaçar l'AD a la dreta via despesa pública»— però no anticipa quan ni quant. És ciència social, no profecia.
+</VuelveAlCaso>
+
+<KeyTakeaways title="Les cinc idees per emportar-se a casa">
+- El **model AD-AS** combina una **AD** amb pendent negatiu (efecte riquesa, tipus d'interés, tipus de canvi), una **SRAS** amb pendent positiu (rigidesa nominal de costos) i una **LRAS vertical** en la producció potencial Y\*.
+- Els **xocs** de demanda i oferta, positius o negatius, generen quatre casos canònics. L'**estanflació** (xoc negatiu d'oferta) és el cas més temut perquè P i Y es mouen en sentits oposats i la política monetària no pot atendre ambdues alhora.
+- El **cicle econòmic** (NBER, CEPR) té quatre fases —expansió, recessió, depressió, recuperació—. Espanya va viure entre 2008 i 2024 totes les fases concentrades: doble recessió, expansió llarga 2014-2019, xoc COVID i recuperació post-pandèmia.
+- El **model de Solow** identifica tres motors del creixement: capital físic (K), treball (L) i productivitat total dels factors (A). Només la PTF sosté creixement per capita a llarg termini; Espanya té un problema estructural de PTF baixa.
+- **Creixement ≠ desenvolupament**: l'**IDH** (PNUD, Mahbub ul Haq i Amartya Sen) combina renda, salut i educació. Espanya ocupa el lloc ~27. La **corba de Lorenz** i l'**índex de Gini** mesuren la desigualtat: Espanya té Gini ≈ 0,33, entre Suècia (0,28) i els Estats Units (0,41).
+</KeyTakeaways>
+
+## Glossari
+
+- **Demanda agregada (AD)**: quantitat total de béns i servicis que tots els agents desitgen comprar a cada nivell de preus; AD = C + I + G + (X − M).
+- **Oferta agregada de curt termini (SRAS)**: quantitat que les empreses produïxen a cada nivell de preus quan alguns costos són rígids; té pendent positiu.
+- **Oferta agregada de llarg termini (LRAS)**: producció potencial Y\*, independent del nivell de preus; corba vertical.
+- **Producció potencial (Y\*)**: PIB que l'economia pot generar amb tots els recursos ocupats de forma sostenible, sense tensions inflacionistes.
+- **Xoc de demanda / d'oferta**: desplaçament inesperat de l'AD o de la SRAS; positiu si va a la dreta, negatiu si va a l'esquerra.
+- **Estanflació**: combinació d'inflació i estancament, típica d'un xoc negatiu d'oferta; el cas més difícil per a un banc central.
+- **Cicle econòmic**: oscil·lació recurrent del PIB real al voltant de la seua tendència, amb quatre fases: expansió, recessió, depressió i recuperació.
+- **Bretxa de producció (*output gap*)**: diferència entre el PIB real i el potencial; positiva (inflacionista) o negativa (recessiva).
+- **Model de Solow**: marc de creixement (Y = A·F(K, L)) que descompon el creixement en capital, treball i productivitat.
+- **Productivitat total dels factors (PTF)**: eficiència amb què es combinen capital i treball (la *A* del model); el «residu Solow».
+- **Creixement vs desenvolupament econòmic**: el primer és la variació del PIB real per capita; el segon, la millora de les condicions de vida materials i no materials.
+- **IDH (Índex de Desenvolupament Humà)**: indicador del PNUD que combina renda, salut i educació en una escala 0-1.
+- **Corba de Lorenz**: representació del percentatge acumulat de renda enfront del de població; com més allunyada de la diagonal, major desigualtat.
+- **Índex de Gini**: mesura de desigualtat entre 0 (igualtat perfecta) i 1 (desigualtat màxima).
+
+## Per aprofundir
+
+Si esta unitat t'ha interessat, ací van algunes lectures i recursos per anar més enllà:
+
+- **Macroeconomía** — *Olivier Blanchard* (cap. 7-13, ed. espanyola Pearson). Per què encaixa: el desenvolupament més clar del model AD-AS, els xocs i el mitjà termini, amb el rigor just per a qui vulga anar més enllà del batxillerat.
+- **Desarrollo y libertad** — *Amartya Sen* (*Development as Freedom*, 1999, ed. espanyola Planeta). Per què encaixa: el fonament filosòfic de l'IDH i de la distinció creixement/desenvolupament, escrit pel Nobel que va inspirar l'indicador.
+- **Por qué fracasan los países** — *Daron Acemoglu i James Robinson* (2012, ed. espanyola Deusto). Per què encaixa: explica per què unes economies creixen i altres no des de la qualitat de les institucions, el factor que està darrere de la PTF del model de Solow.
+- **Growth, Capital and Solow Model** — *sèrie Marginal Revolution University*. Per què encaixa: vídeos curts que expliquen la comptabilitat del creixement i el residu Solow amb exemples numèrics. Accés lliure a mru.org.
+- **World Economic Outlook** — *Fons Monetari Internacional* (semestral). Per què encaixa: permet seguir en temps real el cicle econòmic mundial i comparar el creixement i la inflació d'Espanya amb la resta del món. Accés lliure a imf.org.
+
+## Preguntes per reflexionar
+
+Estes preguntes no tenen una resposta única. Servixen per discutir a classe o per pensar individualment en tancar la unitat:
+
+1. Davant d'una estanflació (puja P i baixa Y alhora), un banc central no pot arreglar les dos coses. Si hagueres de decidir, prioritzaries controlar la inflació o sostindre l'ocupació? De què depén la teua resposta?
+2. Espanya creix sobretot per més ocupació, no per més productivitat. Per què no és sostenible créixer així indefinidament? Quines polítiques concretes millorarien la PTF, i per què són més difícils d'aplicar que «crear ocupació»?
+3. Dos països poden tindre el mateix PIB per capita i un Gini molt distint. Si pogueres triar on nàixer sense saber en quina família, preferiries el país més ric o el més igualitari? Què diu la teua elecció sobre com mesures el benestar?
+
+<Bibliography>
+
+1. Mankiw, N. G. (2024). *Macroeconomics* (11.ª ed.). Worth Publishers.
+2. Blanchard, O. (2024). *Macroeconomics* (9.ª ed.). Pearson.
+3. Solow, R. M. (1956). *A Contribution to the Theory of Economic Growth*. Quarterly Journal of Economics, 70(1), 65-94.
+4. Solow, R. M. (1957). *Technical Change and the Aggregate Production Function*. Review of Economics and Statistics, 39(3), 312-320.
+5. UNDP (2024). *Human Development Report 2023-2024*. United Nations Development Programme. https://hdr.undp.org
+6. Sen, A. (1999). *Development as Freedom*. Oxford University Press.
+7. Banco Central Europeo (2024). *Economic Bulletin* y *Statistical Data Warehouse*. https://www.ecb.europa.eu
+8. Banco de España (2024). *Informe anual 2023*. https://www.bde.es
+9. Instituto Nacional de Estadística (INE). *Contabilidad Nacional Trimestral de España*; *Encuesta de Condiciones de Vida* (Gini e indicadores de desigualdad). https://www.ine.es
+10. FMI (2024). *World Economic Outlook*, October 2024. https://www.imf.org/en/Publications/WEO
+11. Eurostat. *National accounts and GDP* y *Income distribution statistics*. https://ec.europa.eu/eurostat
+12. NBER. *US Business Cycle Expansions and Contractions*. https://www.nber.org/cycles
+13. OECD (2024). *OECD Economic Outlook* y *Income Distribution Database*. https://www.oecd.org
+
+</Bibliography>
+
+<MirarFora
+  unidad={8}
+  libro={{
+    titulo: 'Macroeconomics: A Very Short Introduction',
+    meta: 'Partha Dasgupta · Oxford University Press, 2007',
+    porque: 'Breu, clar i rigorós. Una introducció als models macro estàndard (AD-AS, cicles, creixement, distribució) sense la longitud d\'un manual universitari.',
+    paginas: 'Capítols 2 i 4',
+  }}
+  video={{
+    titulo: 'Why Recessions Happen',
+    meta: 'Two Cents · PBS · YouTube',
+    duracion: '~8 min',
+    porque: 'Encaixa perfectament amb esta unitat: els cicles AD-AS explicats amb animació curta i casos reals. Útil després de llegir el model formal.',
+    url: 'https://www.youtube.com/results?search_query=Two+Cents+Why+Recessions+Happen',
+  }}
+  cuenta={{
+    titulo: '@GGBengoechea',
+    meta: 'X / Twitter · Gonzalo García Bengoechea',
+    porque: 'Economista espanyol, fils sobre conjuntura macro nacional i europea. Bona font per connectar el model AD-AS amb els titulars setmanals del Banc d\'Espanya.',
+  }}
+  actividad_titulo="Mapa de xocs recents"
+  actividad_duracion="25 min"
+>
+  <Fragment slot="actividad">
+    Identifica **tres xocs** econòmics recents (COVID, guerra d'Ucraïna, pujada de tipus del BCE 2022-2024, sequera agrària, DANA València 2024). Per a cadascun, digues si va ser *xoc d'oferta*, *de demanda* o **ambdós**. Com es van desplaçar les corbes AD, SRAS i LRAS?
+  </Fragment>
+  <Fragment slot="para-clase">
+    Simulació: cada grup rep un xoc distint en una targeta i ha d'explicar a la resta quina corba desplaça, cap a on, què passa amb P i Y a curt i llarg termini, i quina política aplicaria per suavitzar-lo. Durada: 45 min.
+  </Fragment>
+</MirarFora>

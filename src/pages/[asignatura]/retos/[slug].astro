@@ -5,51 +5,70 @@ import { getCollection } from 'astro:content';
 import RetoPlayer from '@components/retos/RetoPlayer.tsx';
 import { parseRetoFromMdxBody } from '@components/retos/parse-reto';
 import { resolveNiveles, type NivelInfo } from '@/lib/retos';
+import { getLocale } from '@/i18n/locale';
+import { pickLocalizedEntry } from '@/i18n/content-locale';
 import type { GetStaticPaths } from 'astro';
 
 export const getStaticPaths = (async () => {
   const all = await getCollection('retos');
   return all
-    .filter((r) => r.data.estado === 'publicado')
+    .filter((r) => r.data.estado === 'publicado' && r.data.lang === 'es')
     .map((r) => {
       const slug = r.id.split('/').pop()?.replace(/\.mdx?$/, '') ?? r.id;
       return { params: { asignatura: r.data.asignatura, slug }, props: { reto: r } };
     });
 }) satisfies GetStaticPaths;
 
-const { reto } = Astro.props;
-const a = ASIGNATURAS[reto.data.asignatura];
+const locale = getLocale(Astro.currentLocale);
+const retoEs = Astro.props.reto;
+const a = ASIGNATURAS[retoEs.data.asignatura];
+const retoCaById = new Map(
+  (await getCollection('retos'))
+    .filter((r) => r.data.estado === 'publicado' && r.data.lang === 'ca')
+    .map((r) => [r.id, r]),
+);
+const reto = pickLocalizedEntry(retoEs, retoCaById, locale);
 const data = parseRetoFromMdxBody(reto.body ?? '');
 
-// Resolve the real achievement-level descriptors from the subject's evaluación.
+const copy = {
+  es: { inicio: 'Inicio', retos: 'Retos competenciales', kicker: 'Reto competencial', niveles: ['En desarrollo', 'Adecuado', 'Avanzado'] },
+  ca: { inicio: 'Inici', retos: 'Reptes competencials', kicker: 'Repte competencial', niveles: ['En desenvolupament', 'Adequat', 'Avançat'] },
+}[locale];
+
+// Resolve the real achievement-level descriptors from the subject's evaluación
+// (localized: prefer the CA evaluación sibling under /ca).
 const evalAll = await getCollection('evaluacion');
-const evalEntry = evalAll.find((e) => e.data.asignatura === a.slug && e.data.estado === 'publicado');
+const evalCaById = new Map(
+  evalAll.filter((e) => e.data.estado === 'publicado' && e.data.lang === 'ca').map((e) => [e.id, e]),
+);
+const evalEs = evalAll.find((e) => e.data.asignatura === a.slug && e.data.estado === 'publicado' && e.data.lang === 'es');
+const evalEntry = evalEs ? pickLocalizedEntry(evalEs, evalCaById, locale) : undefined;
 const resolved = evalEntry ? resolveNiveles(evalEntry.data, reto.data.competencia) : null;
 if (!resolved) {
   console.warn(`[retos] No 3-level competencia "${reto.data.competencia}" in evaluacion for ${a.slug} — using generic labels.`);
 }
 const niveles: NivelInfo[] = resolved?.niveles ?? [
-  { nivel: 'En desarrollo', descriptor: '' },
-  { nivel: 'Adecuado', descriptor: '' },
-  { nivel: 'Avanzado', descriptor: '' },
+  { nivel: copy.niveles[0], descriptor: '' },
+  { nivel: copy.niveles[1], descriptor: '' },
+  { nivel: copy.niveles[2], descriptor: '' },
 ];
 const competenciaTexto = resolved?.competenciaTexto ?? '';
-const slug = reto.id.split('/').pop()?.replace(/\.mdx?$/, '') ?? reto.id;
+const slug = retoEs.id.split('/').pop()?.replace(/\.mdx?$/, '') ?? retoEs.id;
 ---
 
-<BaseLayout title={`${reto.data.title} — ${a.shortLabel}`} description={reto.data.descripcion}>
+<BaseLayout title={`${reto.data.title} — ${a.shortLabel}`} description={reto.data.descripcion} contentLang={locale}>
   <div class="container">
     <nav class="breadcrumb">
-      <a href="/">Inicio</a> <span class="sep">›</span>
+      <a href="/">{copy.inicio}</a> <span class="sep">›</span>
       <a href={`/${a.slug}/`}>{a.shortLabel}</a> <span class="sep">›</span>
-      <a href={`/${a.slug}/retos/`}>Retos competenciales</a> <span class="sep">›</span>
+      <a href={`/${a.slug}/retos/`}>{copy.retos}</a> <span class="sep">›</span>
       <span>{reto.data.competencia}</span>
     </nav>
   </div>
 
   <section class="hero">
     <div class="container">
-      <span class="kicker kicker--sentence">Reto competencial · {reto.data.competencia}</span>
+      <span class="kicker kicker--sentence">{copy.kicker} · {reto.data.competencia}</span>
       <h1>{reto.data.title}</h1>
       <p class="lede">{reto.data.descripcion}</p>
       {reto.data.duracion && <p class="meta">{reto.data.duracion}</p>}

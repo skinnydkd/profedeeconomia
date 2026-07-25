@@ -11,7 +11,7 @@ export const getStaticPaths = (async () => {
   const all = await getCollection('ebau');
   const bySlug = new Map<AsignaturaSlug, typeof all>();
   for (const e of all) {
-    if (e.data.estado !== 'publicado') continue;
+    if (e.data.estado !== 'publicado' || e.data.lang !== 'es') continue;
     const arr = bySlug.get(e.data.asignatura) ?? [];
     arr.push(e);
     bySlug.set(e.data.asignatura, arr);

@@ -1,0 +1,119 @@
+---
+asignatura: taller-eco-3eso
+unidad_relacionada: 2
+title: "Un dissabte al mercadet"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "10-15 min"
+descripcion: "Vas al mercadet i sense voler et converteixes en el centre del flux circular."
+competencias_clave: [CPSAA, CE, CD]
+competencias_especificas: [CE2]
+estado: publicado
+lang: ca
+slug: "asignaturas/taller-eco-3eso/actividades-dinamicas/02-mercadillo-del-barrio.ca"
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Cas · Agents i flux circular",
+    "titulo": "Un dissabte al mercadet",
+    "contexto": "Són les deu del matí. Ta mare t'ha demanat que vages al mercadet del barri a comprar fruita i verdura per a la setmana. T'ha donat 20 € i una llista curta: tomaques, pomes i alguna cosa per a berenar. Al mercadet hi ha tres parades de fruita, un lloc de roba de segona mà i una senyora que ven melmelada casolana. L'ajuntament ha posat cartells amb els preus màxims i un inspector passa entre els llocs.",
+    "kpi_inicial": { "dinero": 20, "compras_lista": 0, "relacion_vendedor": 5 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisió 1 — En quin lloc compres les tomaques?",
+      "situacion": "Hi ha tres llocs de tomaques. El primer cobra 1,80 €/kg i les tomaques són grans i boniques. El segon cobra 1,20 €/kg, són menys perfectes però fan bona olor. El tercer cobra 2,50 €/kg i diu que són «ecològiques i del poble». Necessites 1 kg.",
+      "opciones": [
+        {
+          "label": "El més barat (1,20 €): necessite estalviar els diners de ma mare",
+          "kpi_delta": { "dinero": -1, "compras_lista": 1, "relacion_vendedor": 0 },
+          "feedback": "Has comparat preus i has triat el més baix. Ben fet. Ara tens més diners per a la resta de la llista. Lliçó: comparar preus entre venedors del mateix mercat és el que fa funcionar la competència — i ix bé per al comprador.",
+          "next": "n2"
+        },
+        {
+          "label": "El del mig (1,80 €): pareixen millors i el preu és raonable",
+          "kpi_delta": { "dinero": -2, "compras_lista": 1, "relacion_vendedor": 1 },
+          "feedback": "Decisió vàlida: has valorat la qualitat, no sols el preu. El mercat permet això: cada comprador decidix segons els seus criteris. El venedor rep els teus diners i amb ells paga el lloc i el seu treball. El flux circular en acció.",
+          "next": "n2"
+        },
+        {
+          "label": "L'ecològic (2,50 €): si són del poble done suport als agricultors locals",
+          "kpi_delta": { "dinero": -2, "compras_lista": 1, "relacion_vendedor": 2 },
+          "feedback": "Has triat segons valors, no sols preu. El venedor cobra més però oferix alguna cosa diferent. Lliçó: en un mercat lliure, el preu reflectix alguna cosa més que el cost — també reflectix la proposta del venedor i el que tu decidixes valorar.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisió 2 — El venedor et cobra malament",
+      "situacion": "Compres les pomes (1 kg) i el venedor et cobra 3 € quan al cartell posava 2,50 €/kg. No ho diu en veu alta, simplement et dona el canvi de menys. Què fas?",
+      "opciones": [
+        {
+          "label": "No dic res per a no muntar un embolic",
+          "kpi_delta": { "dinero": -1, "compras_lista": 1, "relacion_vendedor": -1 },
+          "feedback": "Has perdut 0,50 € per no reclamar. Poc de moment, però si això passara cada vegada que compres l'efecte s'acumula. Lliçó: tens dret que et cobren el preu que estava anunciat. Reclamar amb educació és un dret del consumidor, no un problema.",
+          "next": "n3"
+        },
+        {
+          "label": "Li dic tranquil·lament que al cartell posava 2,50 € i demane el canvi correcte",
+          "kpi_delta": { "dinero": 0, "compras_lista": 1, "relacion_vendedor": 1 },
+          "feedback": "Perfecte. Has reclamat amb calma i amb raó. El venedor segurament s'ha equivocat sense voler, et torna els 0,50 € i ja està. Lliçó: els mercats funcionen bé quan compradors i venedors es tracten amb respecte i complixen les regles.",
+          "next": "n3"
+        },
+        {
+          "label": "M'enfade i me'n vaig a un altre lloc sense comprar",
+          "kpi_delta": { "dinero": -3, "compras_lista": 0, "relacion_vendedor": -2 },
+          "feedback": "Reacció desproporcionada: probablement era un error, no una estafa. Has pagat de més i damunt t'has quedat sense pomes. Reclamar amb calma primer és sempre millor que anar-se'n sense resoldre.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisió 3 — Què fas amb els diners que sobren?",
+      "situacion": "Ja tens les tomaques, les pomes i alguna cosa per a berenar. T'han sobrat entre 5 € i 8 € segons com hages decidit abans. Veus la melmelada casolana (3,50 €) que no estava a la llista però fa una olor fenomenal. També hi ha un lloc de roba amb una samarreta per 4 €.",
+      "opciones": [
+        {
+          "label": "Compre la melmelada: no estava a la llista però és menjar i li agradarà a ma mare",
+          "kpi_delta": { "dinero": -4, "compras_lista": 0, "relacion_vendedor": 1 },
+          "feedback": "Has pres una decisió de compra extra amb diners que sobren i amb un argument raonable. No és la llista, però és coherent amb l'encàrrec (menjar per a casa). Lliçó: no totes les compres fora de llista són impulsives — la clau és l'argument amb què te la justifiques.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Torne a casa amb el canvi exacte: he fet el que em van demanar",
+          "kpi_delta": { "dinero": 0, "compras_lista": 0, "relacion_vendedor": 0 },
+          "feedback": "Fiable i responsable. Has complit l'encàrrec i tornes el canvi. Lliçó: quan gestiones els diners d'un altre, el més important és ser predictible i transparent. L'Estat funciona igual amb els impostos que cobrem entre tots.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Em compre la samarreta amb el canvi: és de segona mà i molt barata",
+          "kpi_delta": { "dinero": -4, "compras_lista": 0, "relacion_vendedor": 0 },
+          "feedback": "Has usat diners de ta mare en alguna cosa per a tu sense demanar-li permís. Encara que la samarreta siga barata, els diners no eren teus per a este ús. Lliçó: administrar diners d'altri amb honradesa és la base de la confiança — i la base de com l'Estat gestiona els impostos.",
+          "next": "final:fracaso_parcial"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "Has completat l'encàrrec",
+      "resumen": "La compra està feta, el canvi és correcte i has entés com funciona el mercadet: famílies, empreses i Estat en la mateixa plaça.",
+      "lecciones_clave": [
+        "En un mercat, el preu és el senyal que posa d'acord el comprador i el venedor.",
+        "Reclamar amb calma quan alguna cosa està malament és un dret del consumidor, no un drama.",
+        "Administrar els diners d'un altre amb la mateixa honradesa que els teus és la base de la confiança."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "La compra ha eixit regular",
+      "resumen": "Has comprat el de la llista però has perdut diners o has pres una decisió que no et pertocava prendre.",
+      "lecciones_clave": [
+        "No reclamar quan tens raó té un cost xicotet però real.",
+        "Gestionar diners d'altri sense permís trenca la confiança, encara que la decisió et parega bona."
+      ]
+    }
+  }
+}
+```

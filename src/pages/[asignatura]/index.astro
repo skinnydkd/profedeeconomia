@@ -159,7 +159,7 @@ const breadcrumb = breadcrumbLd([
 // published book unit titles, aligned to the LOMLOE Real Decreto.
 const libroAll = await getCollection('libro');
 const unitTitles = libroAll
-  .filter((u) => u.data.asignatura === a.slug && u.data.estado === 'publicado')
+  .filter((u) => u.data.asignatura === a.slug && u.data.estado === 'publicado' && u.data.lang === 'es')
   .sort((x, y) => x.data.unidad - y.data.unidad)
   .map((u) => u.data.title);
 // The FAQ is ES prose (visible block + FAQPage JSON-LD); it is built from the

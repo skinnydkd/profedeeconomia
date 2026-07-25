@@ -11,6 +11,9 @@ import BloqueRefuerzo from '@components/refuerzo/BloqueRefuerzo.astro';
 import { refuerzoPdfName } from '@/lib/refuerzo';
 import { breadcrumbLd } from '@/lib/seo';
 import { getCollection } from 'astro:content';
+import { getLocale } from '@/i18n/locale';
+import { pickLocalizedEntry } from '@/i18n/content-locale';
+import { localizeAsignatura } from '@/i18n/asignaturas-ca';
 import type { GetStaticPaths } from 'astro';
 
 export const getStaticPaths = (async () => {
@@ -20,10 +23,16 @@ export const getStaticPaths = (async () => {
   }));
 }) satisfies GetStaticPaths;
 
-const { asignatura: a } = Astro.props;
+const locale = getLocale(Astro.currentLocale);
+const a = localizeAsignatura(Astro.props.asignatura, locale);
 
 const all = await getCollection('refuerzo');
-const items = all.filter((x) => x.data.asignatura === a.slug && x.data.estado === 'publicado');
+const caById = new Map(
+  all.filter((x) => x.data.estado === 'publicado' && x.data.lang === 'ca').map((x) => [x.id, x]),
+);
+const items = all
+  .filter((x) => x.data.asignatura === a.slug && x.data.estado === 'publicado' && x.data.lang === 'es')
+  .map((x) => pickLocalizedEntry(x, caById, locale));
 
 const ORD_TIPO: Record<string, number> = { refuerzo: 0, ampliacion: 1 };
 const grupos = [1, 2, 3]
@@ -35,35 +44,53 @@ const grupos = [1, 2, 3]
   }))
   .filter((g) => g.bloques.length > 0);
 
-const ORDINAL: Record<number, string> = { 1: '1.ª', 2: '2.ª', 3: '3.ª' };
+const copy = {
+  es: {
+    inicio: 'Inicio', titulo: 'Refuerzo y ampliación',
+    descripcion: `Cuadernos de refuerzo (para quien va justo) y de ampliación (para quien quiere más) de ${a.title}, organizados por evaluación, con ejercicios y solución.`,
+    vacio: 'Los cuadernos de refuerzo y ampliación se publicarán por evaluación a medida que se completen.',
+    intro: 'Por evaluación: un repaso de lo esencial con ejercicios muy guiados para quien va justo (refuerzo), y retos de más profundidad para quien quiere ir más allá (ampliación). Las soluciones van plegadas para que primero lo intentes.',
+    ordinal: { 1: '1.ª', 2: '2.ª', 3: '3.ª' } as Record<number, string>,
+    evaluacion: 'evaluación', refuerzo: 'Refuerzo', ampliacion: 'Ampliación',
+    descargar: '↓ Descargar este cuaderno (PDF)',
+  },
+  ca: {
+    inicio: 'Inici', titulo: 'Reforç i ampliació',
+    descripcion: `Quaderns de reforç (per a qui va just) i d'ampliació (per a qui vol més) de ${a.title}, organitzats per avaluació, amb exercicis i solució.`,
+    vacio: "Els quaderns de reforç i ampliació es publicaran per avaluació a mesura que es completen.",
+    intro: "Per avaluació: un repàs del que és essencial amb exercicis molt guiats per a qui va just (reforç), i reptes de més profunditat per a qui vol anar més enllà (ampliació). Les solucions van plegades perquè primer ho intentes.",
+    ordinal: { 1: '1a', 2: '2a', 3: '3a' } as Record<number, string>,
+    evaluacion: 'avaluació', refuerzo: 'Reforç', ampliacion: 'Ampliació',
+    descargar: '↓ Descarregar este quadern (PDF)',
+  },
+}[locale];
 
 const breadcrumb = breadcrumbLd([
-  { name: 'Inicio', path: '/' },
+  { name: copy.inicio, path: '/' },
   { name: a.shortLabel, path: `/${a.slug}/` },
-  { name: 'Refuerzo y ampliación', path: `/${a.slug}/refuerzo/` },
+  { name: copy.titulo, path: `/${a.slug}/refuerzo/` },
 ]);
 ---
 
 <BaseLayout
-  title={`Refuerzo y ampliación — ${a.shortLabel}`}
-  description={`Cuadernos de refuerzo (para quien va justo) y de ampliación (para quien quiere más) de ${a.title}, organizados por evaluación, con ejercicios y solución.`}
+  title={`${copy.titulo} — ${a.shortLabel}`}
+  description={copy.descripcion}
   jsonLd={breadcrumb}
+  contentLang={locale}
 >
   <div class="container">
     <nav class="breadcrumb">
-      <a href="/">Inicio</a> <span class="sep">›</span>
+      <a href="/">{copy.inicio}</a> <span class="sep">›</span>
       <a href={`/${a.slug}/`}>{a.shortLabel}</a> <span class="sep">›</span>
-      <span>Refuerzo y ampliación</span>
+      <span>{copy.titulo}</span>
     </nav>
   </div>
 
   <section class="hero">
     <div class="container">
-      <h1>Refuerzo y ampliación</h1>
+      <h1>{copy.titulo}</h1>
       <p class="lede">
-        {grupos.length === 0
-          ? 'Los cuadernos de refuerzo y ampliación se publicarán por evaluación a medida que se completen.'
-          : 'Por evaluación: un repaso de lo esencial con ejercicios muy guiados para quien va justo (refuerzo), y retos de más profundidad para quien quiere ir más allá (ampliación). Las soluciones van plegadas para que primero lo intentes.'}
+        {grupos.length === 0 ? copy.vacio : copy.intro}
       </p>
     </div>
   </section>
@@ -71,12 +98,12 @@ const breadcrumb = breadcrumbLd([
   {grupos.map((g) => (
     <section class="eval">
       <div class="container">
-        <h2 class="eval__title">{ORDINAL[g.evaluacion]} evaluación</h2>
+        <h2 class="eval__title">{copy.ordinal[g.evaluacion]} {copy.evaluacion}</h2>
         <div class="bloques">
           {g.bloques.map((b) => (
             <article class={`bloque bloque--${b.data.tipo} c-${a.color}`}>
               <header class="bloque__head">
-                <span class="bloque__tag">{b.data.tipo === 'refuerzo' ? 'Refuerzo' : 'Ampliación'}</span>
+                <span class="bloque__tag">{b.data.tipo === 'refuerzo' ? copy.refuerzo : copy.ampliacion}</span>
                 <h3 class="bloque__title">{b.data.title}</h3>
                 {b.data.descripcion && <p class="bloque__desc">{b.data.descripcion}</p>}
               </header>
@@ -84,7 +111,7 @@ const breadcrumb = breadcrumbLd([
               {b.data.repaso_teorico.length > 0 && (
                 <p class="bloque__download">
                   <a href={`/downloads/${refuerzoPdfName(a.slug, b.data.evaluacion, b.data.tipo)}`} download>
-                    ↓ Descargar este cuaderno (PDF)
+                    {copy.descargar}
                   </a>
                 </p>
               )}

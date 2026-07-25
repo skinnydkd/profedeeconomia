@@ -10,13 +10,16 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 import { ASIGNATURAS, type AsignaturaSlug } from '@/lib/asignaturas';
 import { breadcrumbLd } from '@/lib/seo';
 import { getCollection } from 'astro:content';
+import { getLocale } from '@/i18n/locale';
+import { pickLocalizedEntry } from '@/i18n/content-locale';
+import { localizeAsignatura } from '@/i18n/asignaturas-ca';
 import type { GetStaticPaths } from 'astro';
 
 export const getStaticPaths = (async () => {
   const all = await getCollection('proyecto');
   const bySlug = new Map<AsignaturaSlug, typeof all>();
   for (const e of all) {
-    if (e.data.estado !== 'publicado') continue;
+    if (e.data.estado !== 'publicado' || e.data.lang !== 'es') continue;
     const arr = bySlug.get(e.data.asignatura) ?? [];
     arr.push(e);
     bySlug.set(e.data.asignatura, arr);
@@ -27,7 +30,39 @@ export const getStaticPaths = (async () => {
   });
 }) satisfies GetStaticPaths;
 
-const { secciones, asignatura: a } = Astro.props;
+const locale = getLocale(Astro.currentLocale);
+const a = localizeAsignatura(Astro.props.asignatura, locale);
+const caById = new Map(
+  (await getCollection('proyecto'))
+    .filter((e) => e.data.estado === 'publicado' && e.data.lang === 'ca')
+    .map((e) => [e.id, e]),
+);
+const secciones = Astro.props.secciones.map((s) => pickLocalizedEntry(s, caById, locale));
+
+const copy = {
+  es: {
+    inicio: 'Inicio', cuaderno: 'Cuaderno de proyecto', fase: 'Fase',
+    descripcion: `Cuaderno de proyecto de ${a.title}: guía paso a paso, por fases, para que el alumnado desarrolle su propia iniciativa emprendedora.`,
+    lede: 'Una guía paso a paso, fase a fase, para que vuestro alumnado convierta un reto de su entorno en un proyecto emprendedor: equipo, oportunidad, modelo de negocio, viabilidad y puesta en marcha.',
+    downloadsLead: ['Descargad el ', 'cuaderno del equipo', ' y rellenadlo fase a fase, con sus plantillas visuales.'],
+    alumno: 'Cuaderno del alumno (para rellenar)', alumnoSub: 'Una hoja por fase con plantilla visual en blanco',
+    profesor: 'Cuaderno del profesor (con orientación)', profesorSub: 'El mismo, con orientación docente por fase',
+    guia: 'Guía completa del proyecto en PDF',
+    adapt: 'Cuaderno pensado para trabajar el proyecto a lo largo del curso. Adáptalo a la duración, el agrupamiento y el contexto de tu centro.',
+    relatedPre: 'Este es el recorrido anclado al temario de ', relatedPost: '. Si buscas la versión transversal y modular —de un sprint a un curso entero, para cualquier asignatura y nivel—, es el mismo viaje en ', relatedLink: '«De cero a empresa»',
+  },
+  ca: {
+    inicio: 'Inici', cuaderno: 'Quadern de projecte', fase: 'Fase',
+    descripcion: `Quadern de projecte de ${a.title}: guia pas a pas, per fases, perquè l'alumnat desenvolupe la seua pròpia iniciativa emprenedora.`,
+    lede: "Una guia pas a pas, fase a fase, perquè el vostre alumnat convertisca un repte del seu entorn en un projecte emprenedor: equip, oportunitat, model de negoci, viabilitat i posada en marxa.",
+    downloadsLead: ['Descarregueu el ', "quadern de l'equip", ' i ompliu-lo fase a fase, amb les seues plantilles visuals.'],
+    alumno: "Quadern de l'alumne (per a omplir)", alumnoSub: 'Un full per fase amb plantilla visual en blanc',
+    profesor: 'Quadern del professor (amb orientació)', profesorSub: 'El mateix, amb orientació docent per fase',
+    guia: 'Guia completa del projecte en PDF',
+    adapt: "Quadern pensat per a treballar el projecte al llarg del curs. Adapta'l a la durada, l'agrupament i el context del teu centre.",
+    relatedPre: 'Este és el recorregut ancorat al temari de ', relatedPost: '. Si busques la versió transversal i modular —d\'un sprint a un curs sencer, per a qualsevol assignatura i nivell—, és el mateix viatge en ', relatedLink: '«De zero a empresa»',
+  },
+}[locale];
 // The project cuaderno uses a `proyecto-` prefix so it never collides with the
 // activity workbook (<slug>-cuaderno[-alumno].pdf). Only render the download
 // CTAs for subjects that actually have the generated files (currently GPE).
@@ -43,60 +78,59 @@ const hasGuia = has(guiaFile);
 const faseHref = (orden: number) => `/${a.slug}/proyecto/${String(orden).padStart(2, '0')}`;
 
 const breadcrumb = breadcrumbLd([
-  { name: 'Inicio', path: '/' },
+  { name: copy.inicio, path: '/' },
   { name: a.shortLabel, path: `/${a.slug}/` },
-  { name: 'Cuaderno de proyecto', path: `/${a.slug}/proyecto/` },
+  { name: copy.cuaderno, path: `/${a.slug}/proyecto/` },
 ]);
 ---
 
 <BaseLayout
-  title={`Cuaderno de proyecto — ${a.shortLabel}`}
-  description={`Cuaderno de proyecto de ${a.title}: guía paso a paso, por fases, para que el alumnado desarrolle su propia iniciativa emprendedora.`}
+  title={`${copy.cuaderno} — ${a.shortLabel}`}
+  description={copy.descripcion}
   jsonLd={breadcrumb}
+  contentLang={locale}
 >
   <div class="container">
     <nav class="breadcrumb">
-      <a href="/">Inicio</a> <span class="sep">›</span>
+      <a href="/">{copy.inicio}</a> <span class="sep">›</span>
       <a href={`/${a.slug}/`}>{a.shortLabel}</a> <span class="sep">›</span>
-      <span>Cuaderno de proyecto</span>
+      <span>{copy.cuaderno}</span>
     </nav>
   </div>
 
   <section class="hero" style={`--accent: var(--color-${a.color}); --accent-soft: var(--color-${a.color}-soft);`}>
     <div class="container">
-      <h1>Cuaderno de proyecto</h1>
-      <p class="lede">Una guía paso a paso, fase a fase, para que vuestro alumnado convierta un reto de su entorno en un proyecto emprendedor: equipo, oportunidad, modelo de negocio, viabilidad y puesta en marcha.</p>
+      <h1>{copy.cuaderno}</h1>
+      <p class="lede">{copy.lede}</p>
 
       {hasCuaderno && (
         <>
-          <p class="downloads-lead">Descargad el <strong>cuaderno del equipo</strong> y rellenadlo fase a fase, con sus plantillas visuales.</p>
+          <p class="downloads-lead">{copy.downloadsLead[0]}<strong>{copy.downloadsLead[1]}</strong>{copy.downloadsLead[2]}</p>
           <div class="downloads">
             <a class="download-cta" href={alumnoHref} download>
               <span class="download-cta__icon" aria-hidden="true">↓</span>
               <span class="download-cta__text">
-                <strong>Cuaderno del alumno (para rellenar)</strong>
-                <span class="muted">Una hoja por fase con plantilla visual en blanco</span>
+                <strong>{copy.alumno}</strong>
+                <span class="muted">{copy.alumnoSub}</span>
               </span>
             </a>
             <a class="download-cta" href={profesorHref} download>
               <span class="download-cta__icon" aria-hidden="true">↓</span>
               <span class="download-cta__text">
-                <strong>Cuaderno del profesor (con orientación)</strong>
-                <span class="muted">El mismo, con orientación docente por fase</span>
+                <strong>{copy.profesor}</strong>
+                <span class="muted">{copy.profesorSub}</span>
               </span>
             </a>
-            {hasGuia && <a class="download-secondary" href={guiaHref} download>Guía completa del proyecto en PDF</a>}
+            {hasGuia && <a class="download-secondary" href={guiaHref} download>{copy.guia}</a>}
           </div>
         </>
       )}
 
       <p class="adapt-note">
-        Cuaderno pensado para trabajar el proyecto a lo largo del curso. Adáptalo a la duración, el agrupamiento y el contexto de tu centro.
+        {copy.adapt}
       </p>
       <p class="related-note">
-        Este es el recorrido anclado al temario de <strong>{a.shortLabel}</strong>. Si buscas la versión
-        transversal y modular —de un sprint a un curso entero, para cualquier asignatura y nivel—,
-        es el mismo viaje en <a href="/emprendimiento/proyecto/">«De cero a empresa»</a>.
+        {copy.relatedPre}<strong>{a.shortLabel}</strong>{copy.relatedPost}<a href="/emprendimiento/proyecto/">{copy.relatedLink}</a>.
       </p>
     </div>
   </section>
@@ -108,7 +142,7 @@ const breadcrumb = breadcrumbLd([
           <li>
             <a class="fase-card" href={faseHref(s.data.orden)}>
               <span class="fase-card__num">{String(s.data.orden).padStart(2, '0')}</span>
-              <span class="fase-card__label">{s.data.fase ?? `Fase ${s.data.orden}`}</span>
+              <span class="fase-card__label">{s.data.fase ?? `${copy.fase} ${s.data.orden}`}</span>
               <span class="fase-card__title">{s.data.title}</span>
               {s.data.entregable && <span class="fase-card__entregable">{s.data.entregable}</span>}
               <span class="fase-card__go" aria-hidden="true">→</span>

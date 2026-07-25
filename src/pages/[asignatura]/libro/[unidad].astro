@@ -7,12 +7,14 @@ import RecursosRelacionados from '@components/libro/RecursosRelacionados.astro';
 import { getIndiceRecursos } from '@/lib/recursos-relacionados-sources';
 import { recursosDeUnidad } from '@/lib/recursos-relacionados';
 import { articleLd, breadcrumbLd } from '@/lib/seo';
+import { getLocale } from '@/i18n/locale';
+import { pickLocalizedEntry } from '@/i18n/content-locale';
 import type { GetStaticPaths } from 'astro';
 
 export const getStaticPaths = (async () => {
   const allUnits = await getCollection('libro');
   return allUnits
-    .filter((u) => u.data.estado === 'publicado')
+    .filter((u) => u.data.estado === 'publicado' && u.data.lang === 'es')
     .map((u) => {
       const slug = u.id.split('/').pop()?.replace(/\.mdx?$/, '') ?? u.id;
       return {
@@ -24,17 +26,33 @@ export const getStaticPaths = (async () => {
 
 const { unit } = Astro.props;
 const a = ASIGNATURAS[unit.data.asignatura];
-const { Content, headings } = await render(unit);
+const locale = getLocale(Astro.currentLocale);
 
-// Adjacent units within the same asignatura
+// Valencian siblings (published), keyed by "<esId>.ca". Swap the ES unit for
+// its CA sibling under /ca (ES fallback when the translation is missing).
+const caById = new Map(
+  (await getCollection('libro'))
+    .filter((u) => u.data.estado === 'publicado' && u.data.lang === 'ca')
+    .map((u) => [u.id, u]),
+);
+const view = pickLocalizedEntry(unit, caById, locale);
+const { Content, headings } = await render(view);
+
+const copy = {
+  es: { inicio: 'Inicio', libro: 'Libro', unidad: 'Unidad', duracion: 'Duración estimada', conceptos: 'Conceptos clave', objetivos: 'Objetivos', enEsta: 'En esta unidad', volver: '← Volver al índice', volverSub: 'Libro' },
+  ca: { inicio: 'Inici', libro: 'Llibre', unidad: 'Unitat', duracion: 'Durada estimada', conceptos: 'Conceptes clau', objetivos: 'Objectius', enEsta: 'En esta unitat', volver: "← Tornar a l'índex", volverSub: 'Llibre' },
+}[locale];
+
+// Adjacent units within the same asignatura (ordered on the ES source of truth;
+// titles shown are localized via the CA sibling when present).
 const all = (await getCollection('libro'))
-  .filter((u) => u.data.asignatura === unit.data.asignatura && u.data.estado === 'publicado')
+  .filter((u) => u.data.asignatura === unit.data.asignatura && u.data.estado === 'publicado' && u.data.lang === 'es')
   .sort((x, y) => x.data.unidad - y.data.unidad);
 
 const idx = all.findIndex((u) => u.id === unit.id);
-const prev = idx > 0 ? all[idx - 1] : null;
-const next = idx < all.length - 1 ? all[idx + 1] : null;
-const idToSlug = (id: string) => id.split('/').pop()?.replace(/\.mdx?$/, '') ?? id;
+const prev = idx > 0 ? pickLocalizedEntry(all[idx - 1], caById, locale) : null;
+const next = idx < all.length - 1 ? pickLocalizedEntry(all[idx + 1], caById, locale) : null;
+const idToSlug = (id: string) => id.split('/').pop()?.replace(/\.mdx?$/, '').replace(/\.ca$/, '') ?? id;
 
 // Stable per-unit namespace for the UnitNotes localStorage state.
 const unitKey = `${a.slug}-u${unit.data.unidad}`;
@@ -42,79 +60,83 @@ const unitKey = `${a.slug}-u${unit.data.unidad}`;
 // Related transversal resources for this unit (inverse index, built once per build).
 const recursos = recursosDeUnidad(await getIndiceRecursos(), unit.data.asignatura, unit.data.unidad);
 
+// Localized view of the unit (CA sibling under /ca, ES otherwise).
+const d = view.data;
+
 // Structured data (JSON-LD): the unit as an Article + its breadcrumb trail.
-const unitTitle = `Unidad ${unit.data.unidad}. ${unit.data.title}`;
+const unitTitle = `${copy.unidad} ${d.unidad}. ${d.title}`;
 const unitPath = `/${a.slug}/libro/${idToSlug(unit.id)}/`;
-const isoDay = (d?: Date) => d?.toISOString().slice(0, 10);
+const isoDay = (day?: Date) => day?.toISOString().slice(0, 10);
 const jsonLd = [
   articleLd({
     title: unitTitle,
-    description: unit.data.lema ?? unit.data.title,
+    description: d.lema ?? d.title,
     path: unitPath,
-    datePublished: isoDay(unit.data.publicado_en),
-    dateModified: isoDay(unit.data.actualizado_en ?? unit.data.publicado_en),
+    datePublished: isoDay(d.publicado_en),
+    dateModified: isoDay(d.actualizado_en ?? d.publicado_en),
     section: a.shortLabel,
     image: `/og/${a.slug}.png`,
     educationalLevel: a.level,
-    teaches: unit.data.conceptos_clave,
+    teaches: d.conceptos_clave,
   }),
   breadcrumbLd([
-    { name: 'Inicio', path: '/' },
+    { name: copy.inicio, path: '/' },
     { name: a.shortLabel, path: `/${a.slug}/` },
-    { name: 'Libro', path: `/${a.slug}/libro/` },
+    { name: copy.libro, path: `/${a.slug}/libro/` },
     { name: unitTitle, path: unitPath },
   ]),
 ];
 ---
 
 <BaseLayout
-  title={`Unidad ${unit.data.unidad}. ${unit.data.title} — ${a.shortLabel}`}
-  description={unit.data.lema ?? unit.data.title}
+  title={`${copy.unidad} ${d.unidad}. ${d.title} — ${a.shortLabel}`}
+  description={d.lema ?? d.title}
   ogType="article"
   jsonLd={jsonLd}
+  contentLang={locale}
 >
   <div class="container">
     <nav class="breadcrumb">
-      <a href="/">Inicio</a> <span class="sep">›</span>
+      <a href="/">{copy.inicio}</a> <span class="sep">›</span>
       <a href={`/${a.slug}/`}>{a.shortLabel}</a> <span class="sep">›</span>
-      <a href={`/${a.slug}/libro/`}>Libro</a> <span class="sep">›</span>
-      <span>Unidad {unit.data.unidad}</span>
+      <a href={`/${a.slug}/libro/`}>{copy.libro}</a> <span class="sep">›</span>
+      <span>{copy.unidad} {d.unidad}</span>
     </nav>
   </div>
 
   <section class="unit-opener">
     <div class="container">
       <div class="unit-num">
-        Unidad {unit.data.unidad}
-        {unit.data.bloque ? ` · ${unit.data.bloque}` : ''}
-        {unit.data.sabers.length > 0 ? ` · Sabers ${unit.data.sabers.join(', ')}` : ''}
+        {copy.unidad} {d.unidad}
+        {d.bloque ? ` · ${d.bloque}` : ''}
+        {d.sabers.length > 0 ? ` · Sabers ${d.sabers.join(', ')}` : ''}
       </div>
-      <h1>{unit.data.title}</h1>
-      {unit.data.lema && <p class="lede">{unit.data.lema}</p>}
+      <h1>{d.title}</h1>
+      {d.lema && <p class="lede">{d.lema}</p>}
 
       <dl class="unit-meta">
-        {unit.data.duracion && (
+        {d.duracion && (
           <div>
-            <dt>Duración estimada</dt>
-            <dd>{unit.data.duracion}</dd>
+            <dt>{copy.duracion}</dt>
+            <dd>{d.duracion}</dd>
           </div>
         )}
-        {unit.data.conceptos_clave.length > 0 && (
+        {d.conceptos_clave.length > 0 && (
           <div>
-            <dt>Conceptos clave</dt>
+            <dt>{copy.conceptos}</dt>
             <dd>
               <div class="tag-row">
-                {unit.data.conceptos_clave.map((c) => <span class="tag">{c}</span>)}
+                {d.conceptos_clave.map((c) => <span class="tag">{c}</span>)}
               </div>
             </dd>
           </div>
         )}
-        {unit.data.objetivos.length > 0 && (
+        {d.objetivos.length > 0 && (
           <div style="grid-column: 1 / -1;">
-            <dt>Objetivos</dt>
+            <dt>{copy.objetivos}</dt>
             <dd>
               <ul class="objetivos">
-                {unit.data.objetivos.map((o) => <li>{o}</li>)}
+                {d.objetivos.map((o) => <li>{o}</li>)}
               </ul>
             </dd>
           </div>
@@ -126,8 +148,8 @@ const jsonLd = [
   <div class="container">
     <div class="article-layout">
       {headings.length > 0 && (
-        <aside class="article-toc" aria-label="Índice de la unidad">
-          <div class="toc-title">En esta unidad</div>
+        <aside class="article-toc" aria-label={copy.enEsta}>
+          <div class="toc-title">{copy.enEsta}</div>
           <ol>
             {headings.filter((h) => h.depth <= 3).map((h) => (
               <li><a href={`#${h.slug}`}>{h.text}</a></li>
@@ -139,23 +161,23 @@ const jsonLd = [
       <article class="article-body">
         <Content />
 
-        <UnitNotes client:idle unitKey={unitKey} unitTitle={unit.data.title} />
+        <UnitNotes client:idle unitKey={unitKey} unitTitle={d.title} />
 
         <nav class="unit-nav">
           {prev ? (
             <a class="prev" href={`/${a.slug}/libro/${idToSlug(prev.id)}/`}>
-              <span class="label">← Unidad {prev.data.unidad}</span>
+              <span class="label">← {copy.unidad} {prev.data.unidad}</span>
               <span class="title">{prev.data.title}</span>
             </a>
           ) : (
             <a class="prev" href={`/${a.slug}/libro/`}>
-              <span class="label">← Volver al índice</span>
-              <span class="title">{a.shortLabel} · Libro</span>
+              <span class="label">{copy.volver}</span>
+              <span class="title">{a.shortLabel} · {copy.volverSub}</span>
             </a>
           )}
           {next ? (
             <a class="next" href={`/${a.slug}/libro/${idToSlug(next.id)}/`}>
-              <span class="label">Unidad {next.data.unidad} →</span>
+              <span class="label">{copy.unidad} {next.data.unidad} →</span>
               <span class="title">{next.data.title}</span>
             </a>
           ) : (

@@ -1,0 +1,119 @@
+---
+asignatura: gpe-bach
+unidad_relacionada: 3
+title: "Tres socis, tres formes de muntar el negoci"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "15-20 min"
+descripcion: "La vostra app d'intercanvi de roba entre instituts comença a funcionar. Toca decidir forma jurídica, on operar i com tramitar-ho."
+competencias_clave: [CPSAA, CE, CD]
+competencias_especificas: [CE3]
+estado: publicado
+lang: ca
+slug: "asignaturas/gpe-bach/actividades-dinamicas/03-mercadillo-forma-juridica.ca"
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Cas · Decisions d'arrancada",
+    "titulo": "Tres socis, tres formes de muntar el negoci",
+    "contexto": "Sou tres estudiants de Batxillerat que heu desenvolupat durant el curs una app senzilla per a intercanviar roba entre estudiants d'instituts de la comarca. L'app funciona: 340 usuaris registrats, 78 intercanvis completats, 0 € d'ingressos perquè tot ha sigut gratuït. Ara voleu convertir-la en un negoci real. L'app costa 12 € al mes d'allotjament, teniu 600 € en un compte conjunt i el primer ingrés previst ve d'una quota d'1,50 €/mes als usuaris premium. Cal decidir com existir legalment.",
+    "kpi_inicial": { "caja": 600, "usuarios": 340, "ingresos_mes": 0 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisió 1 — Forma jurídica",
+      "situacion": "Tres socis, ingressos previstos d'uns 400-600 €/mes si el 40 % d'usuaris paga el premium. No teniu béns propis rellevants. Una gestoria vos presenta tres opcions.",
+      "opciones": [
+        {
+          "label": "Cadascú com a autònom independent que cobra la seua part: sense societat",
+          "kpi_delta": { "caja": -30, "usuarios": 0 },
+          "feedback": "Senzill al principi, però amb tres autònoms treballant junts sense contracte, la divisió del treball i dels diners es torna complicada molt ràpid. Qui factura a l'usuari premium? Qui paga l'allotjament? Sense una estructura comuna, els tres responeu individualment amb el vostre patrimoni personal. I cada autònom paga quota mínima a la Seguretat Social (~291 €/mes tarifa plana el primer any), la qual cosa podria superar els ingressos del projecte en els seus primers mesos.",
+          "next": "n2"
+        },
+        {
+          "label": "Societat Limitada amb 1 € de capital: els tres com a socis al 33,3 %",
+          "kpi_delta": { "caja": -200, "usuarios": 0 },
+          "feedback": "L'opció correcta per a un equip de tres amb un poc de risc i voluntat d'escalar. Responsabilitat limitada al capital aportat (només perdeu allò que vau posar, no els vostres béns personals), tributació per Impost sobre Societats i estructura formal per a repartir dividends si hi ha benefici. El cost de constitució via PAE i CIRCE ronda els 150-300 € (notaria + taxes). Amb 600 € en caixa, cobrix.",
+          "next": "n2"
+        },
+        {
+          "label": "Cooperativa de treball associat: els tres com a socis-treballadors",
+          "kpi_delta": { "caja": -150, "usuarios": 0 },
+          "feedback": "Encaixa perfectament amb l'esperit de la matèria: decisions democràtiques, cada soci és alhora treballador, règim fiscal propi amb tipus reduïts. A la Comunitat Valenciana les cooperatives tenen suport de l'IVACE. La dificultat és que exigix almenys 3 socis (compliu) i uns estatuts més detallats. Val la pena si el projecte té vocació d'impacte social i voleu que la gestió siga veritablement compartida.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisió 2 — Localització i dimensió d'arrancada",
+      "situacion": "L'app funciona sense local físic, però cal decidir quina escala d'usuari abordar primer. Opció A: només el vostre institut (80 potencials usuaris, molt conegut). Opció B: els quatre instituts de la comarca (340 potencials usuaris, però l'app necessita moderació que consumix temps). Opció C: obrir a tota la província des del primer dia (2.000+ potencials, però necessitaríeu contractar algú per al suport).",
+      "opciones": [
+        {
+          "label": "Només el nostre institut: dominar el nínxol abans de saltar",
+          "kpi_delta": { "caja": 0, "usuarios": 40 },
+          "feedback": "Producte mínim viable pur. Amb 80 possibles usuaris, podeu atendre personalment cada problema, aprendre què falla i millorar l'app amb recursos mínims. El risc és que el mercat siga massa xicotet per a cobrir els costos fixos de la societat acabada de constituir. Calculeu: quants premium necessiteu per a cobrir els 12 € d'allotjament + la quota a la Seguretat Social si hi ha socis treballadors?",
+          "next": "n3"
+        },
+        {
+          "label": "Els quatre instituts de la comarca: creixement controlat",
+          "kpi_delta": { "caja": 50, "usuarios": 120 },
+          "feedback": "L'opció més equilibrada. Ja teniu 340 usuaris coneguts d'ací. Si el 30 % paga premium: 102 usuaris × 1,50 € = 153 €/mes. Amb l'allotjament cobert i un poc de marge per a la quota de la SS, el projecte és autosuficient sense contractar ningú. La dimensió encaixa amb la vostra capacitat de gestió.",
+          "next": "n3"
+        },
+        {
+          "label": "Tota la província des del primer dia: a per totes",
+          "kpi_delta": { "caja": -300, "usuarios": 80 },
+          "feedback": "L'ambició excedix els recursos. Gestionar 2.000+ usuaris requerix suport, moderació i potser una versió millorada de l'app. Amb 600 € en caixa i tres persones que també estudien, la dimensió provincial és un error clàssic d'arrancada: escalar abans d'haver validat que el model funciona. Primer, que els quatre instituts paguen. Després, la província.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisió 3 — Tràmits i organismes d'ajuda",
+      "situacion": "Heu de constituir la forma jurídica triada i donar d'alta el projecte legalment. Vos arriben tres consells distints de persones del vostre entorn.",
+      "opciones": [
+        {
+          "label": "Anar directament a un notari privat i pagar uns 400-600 € per la constitució completa",
+          "kpi_delta": { "caja": -500, "usuarios": 0 },
+          "feedback": "És una opció vàlida però cara per a un projecte d'arrancada. El notari privat fa el treball bé, però el cost pot ser 2-3 vegades major que usant el sistema CIRCE via PAE. Si la vostra caixa és de 600 €, gastar-ne 500 en constitució és arriscat. Reserva capital per als primers mesos d'operació.",
+          "next": "final:fracaso_parcial"
+        },
+        {
+          "label": "Anar al PAE de la Cambra de Comerç més pròxima i usar el sistema CIRCE amb el DUE",
+          "kpi_delta": { "caja": -180, "usuarios": 0 },
+          "feedback": "L'opció correcta: el Punt d'Atenció a l'Emprenedor vos assessora gratis, vos explica quina forma encaixa millor amb el vostre projecte i tramita el DUE (Document Únic Electrònic), que dispara automàticament els tràmits davant d'Hisenda, Seguretat Social i Registre Mercantil. Cost real: taxes de registre (~150-200 €). A més, a la Comunitat Valenciana, l'IVACE té suport específic per a projectes jóvens. Guardeu capital per a operar.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Buscar a internet com fer-ho sols per a estalviar-nos els tràmits",
+          "kpi_delta": { "caja": 0, "usuarios": 0 },
+          "feedback": "Sense assessorament, és fàcil triar la forma jurídica equivocada, cometre errors en la denominació social o no donar d'alta correctament a la Seguretat Social. El PAE existix exactament per a evitar això, és gratuït i està a la vostra comarca. Usar-lo no és signe de no saber: és saber que existixen recursos públics per a emprendre sense cometre errors bàsics.",
+          "next": "final:fracaso_parcial"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "El projecte existix legalment i comença a operar",
+      "resumen": "Amb la forma jurídica correcta, una dimensió ajustada als recursos de l'equip i els tràmits completats via PAE, l'app pot començar a cobrar als usuaris premium. La base legal està ben posada.",
+      "lecciones_clave": [
+        "La forma jurídica es tria per encaix amb el projecte: responsabilitat, nombre de socis i escala són els criteris, no la imitació.",
+        "Començar xicotet no és falta d'ambició: és el camí per a no comprometre recursos abans de validar que el model funciona.",
+        "El PAE és gratuït i evita errors que costarien molt més que el temps de la visita."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "El projecte arranca amb problemes de base",
+      "resumen": "O s'ha gastat massa capital en la constitució, o els tràmits tenen errors que caldrà corregir. El projecte pot sobreviure, però arranca amb menys marge del necessari.",
+      "lecciones_clave": [
+        "El capital inicial és escàs: cada euro gastat en tràmits és un euro menys per al primer mes d'operacions.",
+        "No usar els recursos públics gratuïts disponibles (PAE, IVACE) és un error que es paga dos vegades: en diners i en temps."
+      ]
+    }
+  }
+}
+```

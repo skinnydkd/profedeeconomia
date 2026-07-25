@@ -1,0 +1,125 @@
+---
+asignatura: gpe-bach
+unidad_relacionada: 6
+title: "El viver que no quadra"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "15-20 min"
+descripcion: "El vostre viver de plantes d'interior ven bé, però els diners mai basten. Tres decisions de comptabilitat, fiscalitat i finançament."
+competencias_clave: [CPSAA, CE, CD]
+competencias_especificas: [CE3]
+estado: publicado
+lang: ca
+slug: "asignaturas/gpe-bach/actividades-dinamicas/06-punto-muerto-vivero-plantas.ca"
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Cas · Comptabilitat i finançament",
+    "titulo": "El viver que no quadra",
+    "contexto": "Porteu cinc mesos amb un viver de plantes d'interior i terrasses urbanes, distribuïdes en mercats de barri de València. Les vendes van bé —unes 110 plantes per setmana a un preu mitjà de 8,50 €—, però al final de cada mes vos sorpreneu mirant el compte bancari i preguntant-vos on han anat els diners. Esta setmana heu de pagar la quota de l'obrador (240 €), a l'agricultora que vos subministra (380 €, termini a 15 dies ja complit) i el transport del dissabte (45 €). En caixa només hi ha 190 €.",
+    "kpi_inicial": { "ventas_semana": 935, "caja": 190, "deudas_pendientes": 665 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisió 1 — Entendre per què hi ha benefici però no hi ha caixa",
+      "situacion": "Calculeu el compte de resultats del mes: ingressos 3.740 €, costos variables (plantes + terra + testos) 1.680 €, costos fixos (obrador + transport + comunicació) 580 €. Resultat: benefici de 1.480 €. Però al compte només hi ha 190 €. Com és possible?",
+      "opciones": [
+        {
+          "label": "És impossible: si hi ha benefici ha d'haver-hi diners al compte",
+          "kpi_delta": { "caja": 0 },
+          "feedback": "És el malentés més freqüent en gestió de tresoreria. El compte de resultats registra quan es genera el dret a cobrar (meritació), no quan els diners entren físicament. Si veneu plantes en consignació a una botiga i vos paguen a 30 dies, l'ingrés ja està al compte de pèrdues i guanys però els diners encara no han arribat. Benefici i liquiditat són dues coses distintes. Moltes pimes tanquen amb benefici positiu perquè es van quedar sense liquiditat per a pagar els seus proveïdors abans de cobrar dels seus clients.",
+          "next": "n2"
+        },
+        {
+          "label": "El desfасe pot vindre que paguem abans de cobrar",
+          "kpi_delta": { "caja": 50 },
+          "feedback": "Exactament. Pagueu a l'agricultora a 15 dies i als mercats per avançat, però dues botigues de barri amb les quals treballeu vos paguen a 30 dies. En eixe interval, els diners estan «en la cadena» però no al vostre compte. Gestioneu bé el compte de resultats, però no el flux de caixa. La solució no és vendre menys: és escurçar el termini de cobrament o allargar el de pagament.",
+          "next": "n2"
+        },
+        {
+          "label": "Hem gastat més del que crèiem en costos que no vam apuntar bé",
+          "kpi_delta": { "caja": -30 },
+          "feedback": "També possible, però secundari. Si el compte de resultats està ben calculat (ingressos 3.740 €, costos 2.260 €), el benefici és real. El problema de no anotar totes les despeses afecta la precisió del compte de pèrdues i guanys, però no explica el desfасe entre benefici i caixa. El registre de despeses és important per una altra raó: sense ell no podeu calcular bé el punt mort ni saber quin marge de contribució té cada planta.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisió 2 — Punt mort: quantes plantes cal vendre per a no perdre?",
+      "situacion": "Decidiu calcular el punt mort del viver. Dades: costos fixos mensuals = 580 €; preu mitjà de venda = 8,50 €; cost variable mitjà per planta (preu compra + test + terra + bossa) = 3,20 €. Quin és el punt mort en unitats?",
+      "opciones": [
+        {
+          "label": "Punt mort = 580 ÷ 8,50 = 68 plantes al mes",
+          "kpi_delta": { "caja": -20 },
+          "feedback": "Error freqüent: heu dividit els costos fixos entre el preu, no entre el marge de contribució. El marge de contribució és el que aporta cada planta a cobrir els costos fixos, i és la diferència entre preu i cost variable: 8,50 − 3,20 = 5,30 €. Si dividiu els costos fixos entre el preu de venda, esteu assumint que cada euro de venda és marge pur, la qual cosa no és certa.",
+          "next": "n3"
+        },
+        {
+          "label": "Punt mort = 580 ÷ (8,50 − 3,20) = 580 ÷ 5,30 = 109 plantes al mes",
+          "kpi_delta": { "caja": 40 },
+          "feedback": "Correcte. El marge de contribució és 5,30 € per planta. Necessiteu vendre 109 plantes al mes per a cobrir exactament els costos fixos. Veneu 440 al mes (110 × 4 setmanes), així que esteu 331 per damunt del punt mort. Això genera: 331 × 5,30 € = 1.754 € de benefici mensual. La xifra no quadra exactament amb el compte de pèrdues i guanys (1.480 €) perquè hi ha algun cost que no s'ha classificat bé. Reviseu-ho.",
+          "next": "n3"
+        },
+        {
+          "label": "El punt mort no ens servix perquè venem plantes distintes a preus distints",
+          "kpi_delta": { "caja": 0 },
+          "feedback": "Raonament correcte però que no vos paralitza: podeu usar un preu mitjà ponderat i un cost variable mitjà, com s'ha fet en les dades de l'enunciat. El punt mort amb mitjanes no és perfecte, però sí que és suficient per a prendre decisions sobre si el volum de vendes cobrix els costos. Perfecte és enemic d'útil.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisió 3 — Fonts de finançament per a resoldre la crisi de liquiditat",
+      "situacion": "Amb 190 € en caixa i 665 € de deutes imminents, necessiteu 475 € en els pròxims dies. Teniu quatre opcions reals.",
+      "opciones": [
+        {
+          "label": "Demanem un microcrèdit bancari de 1.000 € a 12 mesos al 8 % anual",
+          "kpi_delta": { "caja": 475, "costes_mes": 90 },
+          "feedback": "Solució vàlida però amb cost. A 12 mesos al 8 % sobre 1.000 €, pagareu uns 1.043 € en total (~87 €/mes). Amb un marge brut de 1.480 €/mes, és assumible. El risc és que el banc pot demanar garanties o exigir temps mínim d'activitat. Per a un projecte de menys d'un any, l'accés al crèdit bancari pot ser difícil.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Llancem un micromecenatge de 600 € oferint plantes com a recompensa als mecenes",
+          "kpi_delta": { "caja": 410, "reputacion": 2 },
+          "feedback": "Interessant per dues raons: resol la liquiditat sense deute i genera comunitat al voltant del projecte. El risc és el temps: una campanya de micromecenatge pot tardar 2-4 setmanes a finançar-se, i vosaltres necessiteu els diners en dies. Per a una crisi de liquiditat immediata, el micromecenatge és massa lent, encara que pot ser una bona ferramenta de finançament per a la fase següent.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Negociem amb l'agricultora: li demanem ampliar el termini de pagament a 30 dies",
+          "kpi_delta": { "caja": 190, "costes_mes": 0 },
+          "feedback": "L'opció més intel·ligent a curt termini. Allargar el termini de pagament amb un proveïdor clau no resol el desequilibri estructural (continueu pagant abans de cobrar), però vos dona temps per a cobrar de les botigues abans de pagar a l'agricultora. A més, si teniu una relació de confiança amb ella, la negociació pot ser fàcil. No hi ha cost financer si accepta. Complementeu-ho amb escurçar el termini de cobrament de les botigues.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Deixem de pagar l'obrador este mes i el regularitzem el següent",
+          "kpi_delta": { "caja": 43, "reputacion": -3 },
+          "feedback": "No pagar el propietari de l'obrador sense avisar és un error de relació que pot costar-vos molt més que els 240 €: pot suposar la pèrdua de l'espai de treball. L'economia submergida i l'impagament d'obligacions no són només un problema legal, sinó de reputació dins de la xarxa local de proveïdors. La solució correcta és negociar abans d'incomplir, mai al revés.",
+          "next": "final:fracaso_parcial"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "La crisi de liquiditat està resolta i el projecte continua",
+      "resumen": "Heu entés la diferència entre benefici i liquiditat, sabeu calcular el punt mort i heu resolt el desfасe amb una combinació de finançament extern i negociació amb el proveïdor. El viver pot continuar.",
+      "lecciones_clave": [
+        "Benefici i caixa no són el mateix: podeu guanyar diners sobre el paper i no tindre liquiditat per a pagar demà.",
+        "El punt mort es calcula sobre el marge de contribució, no sobre el preu de venda.",
+        "Negociar amb un proveïdor abans d'incomplir protegix la relació; incomplir sense avisar la destruïx."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "El viver sobreviu però amb reputació danyada",
+      "resumen": "La crisi de liquiditat s'ha gestionat malament: el proveïdor afectat pot no renovar l'espai i la xarxa local d'abastiment comença a desconfiar del projecte.",
+      "lecciones_clave": [
+        "Incomplir sense negociar primer no és una decisió financera: és una decisió de reputació que costa més que els diners que estalvieu.",
+        "La fiscalitat i el compliment d'obligacions no són costos a evitar, són la base de confiança sobre la qual opera un projecte local."
+      ]
+    }
+  }
+}
+```

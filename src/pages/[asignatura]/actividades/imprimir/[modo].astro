@@ -19,7 +19,7 @@ import type { GetStaticPaths } from 'astro';
 export const getStaticPaths = (async () => {
   const acts = await getCollection('actividades');
   const tests = await getCollection('tests');
-  const libro = await getCollection('libro');
+  const libro = (await getCollection('libro')).filter((u) => u.data.lang === 'es');
   const libroByUnit = new Map<string, string[]>(
     libro.map((u) => [`${u.data.asignatura}#${u.data.unidad}`, u.data.sabers ?? []]),
   );

@@ -1,0 +1,119 @@
+---
+asignatura: ipe2-fp
+unidad_relacionada: 9
+title: "Viable o no viable? El punt mort no ment"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "15-20 min"
+descripcion: "El teu pla d'empresa té els números sobre la taula. Has de decidir si arrancar, iterar o aparcar."
+competencias_clave: [CPSAA, CE, CD]
+competencias_especificas: [RA1]
+lang: ca
+estado: publicado
+slug: "asignaturas/ipe2-fp/actividades-dinamicas/09-viabilidad-o-cierre.ca"
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Cas · Viabilitat i posada en marxa",
+    "titulo": "Viable o no viable? El punt mort no ment",
+    "contexto": "Álex (22 anys, Grau Superior d'Administració i Finances) ha desenvolupat al llarg del mòdul un pla d'empresa per a una gestoria de tràmits en línia per a autònoms i xicotetes empreses de la seua ciutat. Proposta: gestió d'altes d'autònoms, declaracions trimestrals d'IVA i IRPF, i nòmines, a preu fix mensual de 75 €/client. Ha realitzat entrevistes amb 18 autònoms locals. 7 estan disposats a ser clients des del primer mes. Les dades del pla financer: Cost variable per client/mes: 12 € (temps de gestió, software). Costos fixos mensuals: quota d'autònom 400 €, software de gestoria 80 €, assegurança de responsabilitat civil 55 €, publicitat digital 60 €. Total fixos: 595 €/mes. Inversió inicial: portàtil 900 €, software setup 200 €, certificat digital 50 €, coixí de tresoreria 3 mesos = 595 × 3 = 1.785 €. Total: 2.935 €.",
+    "kpi_inicial": { "clientes_captados": 7, "viabilidad_calculada": 5, "colchon_tesoreria": 1785 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisió 1 — El càlcul del punt mort",
+      "situacion": "Álex calcula el punt mort abans de decidir si arranca. El marge de contribució per client és 75 - 12 = 63 €/mes. Els costos fixos són 595 €/mes. Quants clients necessita per a no perdre diners?",
+      "opciones": [
+        {
+          "label": "Punt mort = 595 / 75 = 7,9 → necessite 8 clients. Amb 7 validats, me'n falta 1. És viable.",
+          "kpi_delta": { "clientes_captados": 0, "viabilidad_calculada": 1, "colchon_tesoreria": 0 },
+          "feedback": "Error de càlcul crític. El punt mort es calcula dividint els costos fixos entre el MARGE DE CONTRIBUCIÓ UNITARI (preu menys cost variable), no entre el preu. 595 / 63 = 9,44 → necessita 10 clients per a no perdre diners. Amb 7 validats, té un dèficit de 3 clients, no d'1. Este error sobreestima la viabilitat un 25 %. En un pla d'empresa real, este error davant d'un banc o un PAE desqualifica la presentació.",
+          "next": "n2"
+        },
+        {
+          "label": "Punt mort = 595 / 63 = 9,44 → necessite 10 clients. Amb 7 validats, tinc un dèficit de 3. No és viable encara tal com està.",
+          "kpi_delta": { "clientes_captados": 0, "viabilidad_calculada": 3, "colchon_tesoreria": 0 },
+          "feedback": "Càlcul correcte. El marge de contribució unitari és 63 €/mes (75 - 12), no 75 €. Amb 595 € de costos fixos, el punt mort és 9,44 → 10 clients arredonint a l'alça. Els 7 validats representen el 70 % del punt mort: cal captar-ne 3 més abans d'arrancar o assumir que els primers mesos el coixí de tresoreria absorbirà les pèrdues mentres s'arriba als 10. L'honestedat del càlcul és la primera virtut del pla financer.",
+          "next": "n2"
+        },
+        {
+          "label": "No sé calcular-lo amb seguretat. Preferisc consultar un assessor abans de presentar el pla.",
+          "kpi_delta": { "clientes_captados": 0, "viabilidad_calculada": 0, "colchon_tesoreria": -200 },
+          "feedback": "Consultar és vàlid, però en la presentació del pla d'empresa l'avaluador espera que el mateix emprenedor sàpia calcular el seu punt mort. Presentar-lo sense poder explicar el càlcul és un senyal d'alerta. El punt mort és la xifra més bàsica del pla financer: si Álex no pot calcular-la, com gestionarà els costos reals de l'empresa? La fórmula: Costos fixos / Marge de contribució unitari (Preu - Cost variable).",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisió 2 — El dèficit de 3 clients",
+      "situacion": "Álex necessita 10 clients per al punt mort i en té 7 validats. Té el coixí de tresoreria per a aguantar 3 mesos de pèrdues mentres creix. Dues opcions per a cobrir els 3 clients que falten: (A) arrancar amb 7 i captar els 3 restants en els primers 2 mesos, assumint pèrdues controlades; o (B) esperar a tindre'n 10 abans d'arrancar.",
+      "opciones": [
+        {
+          "label": "Opció A: arranque amb 7 i capture els 3 restants en 2 mesos. El coixí de tresoreria està per a això.",
+          "kpi_delta": { "clientes_captados": 3, "viabilidad_calculada": 3, "colchon_tesoreria": -400 },
+          "feedback": "Decisió correcta si el diagnòstic comercial dóna suport que captar 3 clients addicionals en 2 mesos és realista. El coixí de tresoreria existix exactament per a cobrir el dèficit mentres el negoci agafa velocitat. Les pèrdues de 2 mesos per davall del punt mort serien: (10 - 7) × 63 = 189 €/mes × 2 = 378 € contra un coixí de 1.785 €. El risc està controlat. Arrancar amb 7 i créixer a 10 en 2 mesos és més realista que esperar indefinidament a tindre'n 10 abans de començar.",
+          "next": "n3"
+        },
+        {
+          "label": "Opció B: espere a tindre 10 clients firmats abans d'arrancar formalment.",
+          "kpi_delta": { "clientes_captados": 2, "viabilidad_calculada": 2, "colchon_tesoreria": 0 },
+          "feedback": "Esperar a 10 abans d'arrancar reduïx el risc inicial, però pot ser ineficient. Els 7 clients validats estan esperant un servici: mentres Álex busca 3 més, pot perdre algun dels 7. A més, el procés d'alta com a autònom i la configuració del software són passos que convé completar mentres capta els últims clients, no després. Un arrancament progressiu (alta formal + 7 clients + captació activa de 3 més) és més dinàmic.",
+          "next": "n3"
+        },
+        {
+          "label": "Reduïsc els costos fixos: cancel·le l'assegurança de responsabilitat civil (55 €/mes) per a baixar el punt mort.",
+          "kpi_delta": { "clientes_captados": 0, "viabilidad_calculada": -1, "colchon_tesoreria": 200 },
+          "feedback": "L'assegurança de responsabilitat civil és el cost que Álex no pot eliminar. Com a gestor que maneja declaracions fiscals i nòmines de tercers, un error en una declaració trimestral pot generar reclamacions dels seus clients. Sense assegurança, el risc patrimonial personal recau íntegrament sobre ell. Reduir costos fixos és una palanca vàlida, però el criteri de què tallar no pot ignorar el risc legal.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisió 3 — La forma jurídica i el primer client difícil",
+      "situacion": "Álex decidix arrancar amb 7 clients com a autònom. Als 2 mesos té 11 clients i supera el punt mort. Però un dels seus clients (una SL amb 3 empleats) li exigix que contracte com a empresa (SL), no com a autònom, per a poder deduir-li l'IVA correctament en la seua facturació. Álex es planteja si convertir-se en SL.",
+      "opciones": [
+        {
+          "label": "Em done d'alta com a SL immediatament per a no perdre este client: 1 client val més que el cost de la constitució.",
+          "kpi_delta": { "clientes_captados": 1, "viabilidad_calculada": -1, "colchon_tesoreria": -600 },
+          "feedback": "La premissa de la pregunta és incorrecta: una SL factura amb IVA exactament igual que un autònom, i el client pot deduir-lo en ambdós casos. El problema que planteja el client probablement no és la forma jurídica sinó la necessitat d'una factura correctament emesa amb totes les dades fiscals. Constituir una SL té un cost de 600-1.000 € (notaria, registre, gestoria de constitució) i obligacions comptables addicionals. Abans d'assumir eixe cost, Álex ha de verificar exactament què requerix el client.",
+          "next": "final:fracaso_parcial"
+        },
+        {
+          "label": "Verifique amb el client què necessita exactament abans d'actuar: probablement necessita una factura correcta, no que jo siga SL.",
+          "kpi_delta": { "clientes_captados": 1, "viabilidad_calculada": 2, "colchon_tesoreria": 0 },
+          "feedback": "Correcte. El client té raó en què necessita factures deduïbles, però com a gestor professional Álex emet factures amb IVA independentment de si és autònom o SL. El que potser el client confon és la diferència entre una factura d'autònom amb retenció d'IRPF (que sí que té un tracte diferent en la comptabilitat del client) i una factura de SL. La verificació abans d'actuar estalvia 600-1.000 € de constitució innecessària.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Rebutge el client: si em demana alguna cosa que no correspon a la meua forma jurídica, millor busque clients menys exigents.",
+          "kpi_delta": { "clientes_captados": -1, "viabilidad_calculada": -1, "colchon_tesoreria": 0 },
+          "feedback": "Rebutjar un client sense entendre què demana exactament és una decisió precipitada. Com a futur gestor, Álex ha de poder explicar als seus clients la diferència entre una factura d'autònom i una de SL, les implicacions fiscals de cada una, i què necessita el client per a deduir correctament. Si no sap resoldre eixe dubte bàsic, el problema no és la forma jurídica: és la competència tècnica del servici que oferix.",
+          "next": "final:fracaso_parcial"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "El pla d'empresa que quadra i es defén",
+      "resumen": "Vas calcular correctament el punt mort, vas arrancar amb un dèficit controlat pel coixí de tresoreria, vas arribar als 11 clients en 2 mesos i vas resoldre el malentés del client difícil sense assumir costos innecessaris. Al final del primer trimestre, el pla financer real és millor que el projectat.",
+      "lecciones_clave": [
+        "El punt mort es calcula amb el marge de contribució (preu - cost variable), no amb el preu. L'error en esta fórmula és el més comú i més costós.",
+        "El coixí de tresoreria existix per a cobrir el dèficit controlat dels primers mesos, no per a emergències imprevisibles.",
+        "Verificar què demana realment un client abans d'actuar estalvia costos i revela si el problema és de forma jurídica o de competència tècnica."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "El pla mal calculat que no convenç ningú",
+      "resumen": "L'error en el càlcul del punt mort o la decisió de constituir una SL sense verificar si era necessari van generar un cost inesperat i una presentació amb fallada tècnica. El PAE et demana reformular la part financera del pla abans de tramitar les ajudes.",
+      "lecciones_clave": [
+        "Un error en el punt mort en la presentació del pla desqualifica la credibilitat financera del projecte davant de qualsevol avaluador.",
+        "Prendre decisions d'estructura societària sense entendre què les genera és el tipus d'error que revela falta de competència tècnica en un gestor."
+      ]
+    }
+  }
+}
+```

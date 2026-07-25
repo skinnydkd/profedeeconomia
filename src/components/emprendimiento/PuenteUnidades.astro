@@ -13,7 +13,7 @@ const { unidades } = Astro.props;
 
 // The libro route param is the filename slug, not the unit number — resolve it
 // against the real collection so bridges link to a page that exists (no 404s).
-const libro = await getCollection('libro');
+const libro = (await getCollection('libro')).filter((u) => u.data.lang === 'es');
 const bridges = unidades.map((u) => {
   const a = ASIGNATURAS[u.asignatura as keyof typeof ASIGNATURAS];
   const slug = unidadSlug(libro, u.asignatura, u.unidad);

@@ -15,7 +15,7 @@ const ORDINAL: Record<number, string> = { 1: '1.ª', 2: '2.ª', 3: '3.ª' };
 export const getStaticPaths = (async () => {
   const all = await getCollection('refuerzo');
   return all
-    .filter((e) => e.data.estado === 'publicado' && e.data.repaso_teorico.length > 0)
+    .filter((e) => e.data.estado === 'publicado' && e.data.lang === 'es' && e.data.repaso_teorico.length > 0)
     .map((entry) => ({
       params: {
         asignatura: entry.data.asignatura,

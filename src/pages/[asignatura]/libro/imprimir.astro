@@ -17,9 +17,11 @@ export const getStaticPaths = (async () => {
   const allReto = await getCollection('retoCurso');
   const allEbau = await getCollection('ebau');
 
+  // Printable ES book. CA printable editions are out of scope here, so keep the
+  // ES source of truth only (CA siblings would otherwise duplicate every unit).
   const bySlug = new Map<string, typeof all>();
   for (const u of all) {
-    if (u.data.estado !== 'publicado') continue;
+    if (u.data.estado !== 'publicado' || u.data.lang !== 'es') continue;
     const arr = bySlug.get(u.data.asignatura) ?? [];
     arr.push(u);
     bySlug.set(u.data.asignatura, arr);
@@ -27,7 +29,7 @@ export const getStaticPaths = (async () => {
 
   const retoBySlug = new Map<string, typeof allReto>();
   for (const r of allReto) {
-    if (r.data.estado !== 'publicado') continue;
+    if (r.data.estado !== 'publicado' || r.data.lang !== 'es') continue;
     const arr = retoBySlug.get(r.data.asignatura) ?? [];
     arr.push(r);
     retoBySlug.set(r.data.asignatura, arr);
@@ -35,7 +37,7 @@ export const getStaticPaths = (async () => {
 
   const ebauBySlug = new Map<string, typeof allEbau>();
   for (const e of allEbau) {
-    if (e.data.estado !== 'publicado') continue;
+    if (e.data.estado !== 'publicado' || e.data.lang !== 'es') continue;
     const arr = ebauBySlug.get(e.data.asignatura) ?? [];
     arr.push(e);
     ebauBySlug.set(e.data.asignatura, arr);

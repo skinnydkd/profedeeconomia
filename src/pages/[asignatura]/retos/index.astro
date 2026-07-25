@@ -3,42 +3,65 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 import { ASIGNATURA_SLUGS, ASIGNATURAS } from '@/lib/asignaturas';
 import { breadcrumbLd } from '@/lib/seo';
 import { getCollection } from 'astro:content';
+import { getLocale } from '@/i18n/locale';
+import { pickLocalizedEntry } from '@/i18n/content-locale';
+import { localizeAsignatura } from '@/i18n/asignaturas-ca';
 import type { GetStaticPaths } from 'astro';
 
 export const getStaticPaths = (async () => {
   return ASIGNATURA_SLUGS.map((slug) => ({ params: { asignatura: slug }, props: { asignatura: ASIGNATURAS[slug] } }));
 }) satisfies GetStaticPaths;
 
-const { asignatura: a } = Astro.props;
+const locale = getLocale(Astro.currentLocale);
+const a = localizeAsignatura(Astro.props.asignatura, locale);
 const all = await getCollection('retos');
+const caById = new Map(
+  all.filter((r) => r.data.estado === 'publicado' && r.data.lang === 'ca').map((r) => [r.id, r]),
+);
 const retos = all
-  .filter((r) => r.data.asignatura === a.slug && r.data.estado === 'publicado')
-  .sort((x, y) => x.data.competencia.localeCompare(y.data.competencia));
+  .filter((r) => r.data.asignatura === a.slug && r.data.estado === 'publicado' && r.data.lang === 'es')
+  .sort((x, y) => x.data.competencia.localeCompare(y.data.competencia))
+  .map((r) => pickLocalizedEntry(r, caById, locale));
+
+const copy = {
+  es: {
+    inicio: 'Inicio', retos: 'Retos competenciales',
+    descripcion: `Retos competenciales interactivos de ${a.title}: escenarios paso a paso centrados en cada competencia específica, con tu nivel de logro al final.`,
+    vacio: 'Los retos competenciales se publicarán a medida que se completen.',
+    intro: 'Escenarios paso a paso centrados en una competencia específica. Resuélvelos en pantalla: al final te sitúan en tu nivel de logro.',
+    unidad: 'Unidad', empezar: 'Empezar reto →',
+  },
+  ca: {
+    inicio: 'Inici', retos: 'Reptes competencials',
+    descripcion: `Reptes competencials interactius de ${a.title}: escenaris pas a pas centrats en cada competència específica, amb el teu nivell de assoliment al final.`,
+    vacio: 'Els reptes competencials es publicaran a mesura que es completen.',
+    intro: "Escenaris pas a pas centrats en una competència específica. Resol-los en pantalla: al final et situen en el teu nivell d'assoliment.",
+    unidad: 'Unitat', empezar: 'Començar repte →',
+  },
+}[locale];
 
 const breadcrumb = breadcrumbLd([
-  { name: 'Inicio', path: '/' },
+  { name: copy.inicio, path: '/' },
   { name: a.shortLabel, path: `/${a.slug}/` },
-  { name: 'Retos competenciales', path: `/${a.slug}/retos/` },
+  { name: copy.retos, path: `/${a.slug}/retos/` },
 ]);
 ---
 
-<BaseLayout title={`Retos competenciales — ${a.shortLabel}`} description={`Retos competenciales interactivos de ${a.title}: escenarios paso a paso centrados en cada competencia específica, con tu nivel de logro al final.`} jsonLd={breadcrumb}>
+<BaseLayout title={`${copy.retos} — ${a.shortLabel}`} description={copy.descripcion} jsonLd={breadcrumb} contentLang={locale}>
   <div class="container">
     <nav class="breadcrumb">
-      <a href="/">Inicio</a> <span class="sep">›</span>
+      <a href="/">{copy.inicio}</a> <span class="sep">›</span>
       <a href={`/${a.slug}/`}>{a.shortLabel}</a> <span class="sep">›</span>
-      <span>Retos competenciales</span>
+      <span>{copy.retos}</span>
     </nav>
   </div>
 
   <section class="hero">
     <div class="container">
-      <span class="kicker kicker--sentence">{a.shortLabel} · Retos competenciales</span>
-      <h1>Retos competenciales</h1>
+      <span class="kicker kicker--sentence">{a.shortLabel} · {copy.retos}</span>
+      <h1>{copy.retos}</h1>
       <p class="lede">
-        {retos.length === 0
-          ? 'Los retos competenciales se publicarán a medida que se completen.'
-          : 'Escenarios paso a paso centrados en una competencia específica. Resuélvelos en pantalla: al final te sitúan en tu nivel de logro.'}
+        {retos.length === 0 ? copy.vacio : copy.intro}
       </p>
     </div>
   </section>
@@ -48,7 +71,7 @@ const breadcrumb = breadcrumbLd([
       <div class="container">
         <ul class="card-grid">
           {retos.map((reto) => {
-            const slug = reto.id.split('/').pop()?.replace(/\.mdx?$/, '');
+            const slug = reto.id.split('/').pop()?.replace(/\.mdx?$/, '').replace(/\.ca$/, '');
             return (
               <li class="card">
                 <div class="card__num">{reto.data.competencia}</div>
@@ -56,9 +79,9 @@ const breadcrumb = breadcrumbLd([
                 <p class="card__lede">{reto.data.descripcion}</p>
                 <div class="card__meta">
                   {reto.data.duracion && <span>{reto.data.duracion}</span>}
-                  {reto.data.unidad_relacionada && <span>· Unidad {reto.data.unidad_relacionada}</span>}
+                  {reto.data.unidad_relacionada && <span>· {copy.unidad} {reto.data.unidad_relacionada}</span>}
                 </div>
-                <a class="cta" href={`/${a.slug}/retos/${slug}/`}>Empezar reto →</a>
+                <a class="cta" href={`/${a.slug}/retos/${slug}/`}>{copy.empezar}</a>
               </li>
             );
           })}

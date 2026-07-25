@@ -1,0 +1,119 @@
+---
+asignatura: ipe2-fp
+unidad_relacionada: 7
+title: "Pivotar l'MVP o insistir: 300 € en joc"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "15-20 min"
+descripcion: "La teua parada pilot al mercat ambulant porta 3 caps de setmana sense cobrir el punt mort. Les dades diuen alguna cosa."
+competencias_clave: [CPSAA, CE, CD]
+competencias_especificas: [RA1]
+lang: ca
+estado: publicado
+slug: "asignaturas/ipe2-fp/actividades-dinamicas/07-pivotar-el-mvp.ca"
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Cas · Màrqueting i validació",
+    "titulo": "Pivotar l'MVP o insistir: 300 € en joc",
+    "contexto": "Dani (21 anys, Grau Superior d'Imatge Personal) ha muntat una parada pilot de manicura exprés en un mercat ambulant de cap de setmana de la seua ciutat. L'objectiu era validar si el servici de 15 minuts a 12 € funciona com a MVP abans de llogar un local. Ha invertit 300 € en materials i el permís del mercat. Porta 3 caps de setmana (6 dies de parada). Les dades: 48 persones s'han acostat, 11 han comprat (23 % de conversió), 4 han repetit. Punt mort: 18 servicis per jornada per a cobrir costos variables. Mitjana real: 11/jornada. La parada tanca amb pèrdues de 35-40 € cada cap de setmana.",
+    "kpi_inicial": { "servicios_vendidos": 11, "tasa_conversion": 23, "punto_muerto_distancia": -7 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisió 1 — Què diuen les dades?",
+      "situacion": "Dani revisa els números abans de decidir què fa el pròxim cap de setmana. El punt mort és 18 servicis/jornada i la mitjana és 11. La taxa de conversió és 23 %. 4 d'11 compradors han repetit (36 % de repetició). Quin és el diagnòstic més correcte?",
+      "opciones": [
+        {
+          "label": "El negoci no funciona: 3 setmanes de pèrdues confirmen que la idea és dolenta. Cal tancar.",
+          "kpi_delta": { "servicios_vendidos": 0, "tasa_conversion": 0, "punto_muerto_distancia": 0 },
+          "feedback": "3 setmanes de dades en un MVP de validació no són suficients per a concloure que la idea és dolenta. El que diuen les dades és més matisat: la taxa de repetició (36 %) és molt alta i suggerix que qui compra valora el servici. El problema pot ser de trànsit (poca gent s'acosta), de preu, d'hora del mercat o de comunicació. Tancar ara és perdre informació que encara no has arreplegat.",
+          "next": "n2"
+        },
+        {
+          "label": "El producte agrada (36 % de repetició) però el volum és insuficient. El problema és atraure més gent a la parada.",
+          "kpi_delta": { "tasa_conversion": 3, "servicios_vendidos": 2, "punto_muerto_distancia": -2 },
+          "feedback": "Diagnòstic correcte. La taxa de repetició del 36 % és un senyal positiu molt fort en un MVP: de cada 3 compradors, 1 torna. Això valida el producte. El problema no és la proposta de valor, és el canal: no arriba prou gent a la parada. El pas següent és investigar com augmentar el trànsit abans de canviar el producte o tancar.",
+          "next": "n2"
+        },
+        {
+          "label": "El preu està malament: 12 € és massa car per a un mercat ambulant. Si abaixe a 9 €, venc més.",
+          "kpi_delta": { "tasa_conversion": 2, "servicios_vendidos": 3, "punto_muerto_distancia": -3 },
+          "feedback": "Abaixar el preu pot augmentar la conversió, però també el punt mort (necessites més servicis per a cobrir els mateixos costos). Si el cost variable per servici és de 4 €, abaixar a 9 € reduïx el marge de contribució a 5 € davant dels 8 € actuals: necessitaries 36 servicis per a cobrir els mateixos costos fixos, no 18. La palanca preu és la més fàcil de tocar i la més cara d'equivocar.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisió 2 — Experiment de trànsit",
+      "situacion": "Dani decidix atacar el problema de trànsit. Té tres opcions per al pròxim cap de setmana: (A) apegar cartells al mercat el divendres, (B) publicar 3 stories d'Instagram amb ubicació de la parada des del dijous, o (C) oferir el primer servici gratis a qui porte una amiga.",
+      "opciones": [
+        {
+          "label": "Opció A: cartells físics al mercat el divendres",
+          "kpi_delta": { "tasa_conversion": 1, "servicios_vendidos": 2, "punto_muerto_distancia": -1 },
+          "feedback": "Els cartells tenen un abast limitat a qui ja està al mercat. És una acció de baixa inversió però també de baix impacte: la majoria dels visitants del mercat ja saben que la parada està ahí. El que és útil és captar gent que encara no ha vingut al mercat. Els cartells són P de promoció per a qui ja està al canal, no per a atraure canal nou.",
+          "next": "n3"
+        },
+        {
+          "label": "Opció B: 3 stories d'Instagram amb ubicació des del dijous",
+          "kpi_delta": { "tasa_conversion": 2, "servicios_vendidos": 4, "punto_muerto_distancia": 1 },
+          "feedback": "Acció correcta. Instagram amb ubicació i contingut de producte (mostrar el procés de manicura exprés) arriba a persones que encara no han visitat el mercat. Amb un compte de perfil d'imatge personal ja construït, les stories de dijous i divendres poden generar intenció de visita el dissabte. Cost: zero euros, 30 minuts. És el canal de major ROI potencial per a un MVP d'este tipus.",
+          "next": "n3"
+        },
+        {
+          "label": "Opció C: primer servici gratis per a qui porte una amiga",
+          "kpi_delta": { "tasa_conversion": 3, "servicios_vendidos": 3, "punto_muerto_distancia": -2 },
+          "feedback": "L'incentiu de referit és potencialment eficaç, però car: si l'amiga paga i la que referix va gratis, el marge per parella és 12 € en lloc de 24 €. Amb 11 servicis de mitjana, no hi ha marge per a absorbir servicis gratuïts. Pot funcionar com a experiment d'una setmana, però eleva el punt mort real. Millor provar Instagram primer (cost zero) i usar el referit només si el trànsit continua sent el problema.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisió 3 — El resultat de l'experiment i la decisió final",
+      "situacion": "Després de publicar les stories amb ubicació, el quart cap de setmana Dani atén 19 persones (de 23 que s'acosten, 83 % de conversió). Supera el punt mort per primera vegada. Però ha rebut també feedback de 6 clientes: 'estaria bé que oferires també dissenys amb nail art, no només color llis'. El nail art requeriria 25-30 minuts per servici, no 15. Dani ha de decidir si amplia el servici o manté el format exprés.",
+      "opciones": [
+        {
+          "label": "Amplie a nail art: si ho demanen 6 de 19 és un senyal clar. Puge el preu a 20 € i dedique 30 minuts.",
+          "kpi_delta": { "servicios_vendidos": -3, "tasa_conversion": -2, "punto_muerto_distancia": 2 },
+          "feedback": "Ampliar el servici quan acabes d'assolir el punt mort amb el format exprés pot trencar el que acaba de funcionar. Amb 30 minuts per servici en lloc de 15, la capacitat màxima de la jornada es reduïx a la meitat. I pujar a 20 € pot reduir la conversió. Abans de pivotar el producte, valida si les 6 que van demanar nail art pagarien 20 € per ell. Preguntar no costa res.",
+          "next": "final:fracaso_parcial"
+        },
+        {
+          "label": "Mantinc l'exprés com a producte principal i afig nail art com a opció premium només sota reserva prèvia",
+          "kpi_delta": { "servicios_vendidos": 3, "tasa_conversion": 2, "punto_muerto_distancia": 3 },
+          "feedback": "Solució òptima. El format exprés continua sent el producte que et va donar el punt mort. El nail art premium sota reserva prèvia captura la demanda de les 6 sense sacrificar la capacitat exprés. La reserva prèvia també és una forma de validació: si ningú reserva nail art abans del cap de setmana, la demanda no era tan real com semblava. I si reserven, cobres més pel mateix temps.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Ignore el feedback de nail art: el model exprés funciona, no el canvie",
+          "kpi_delta": { "servicios_vendidos": 1, "tasa_conversion": 0, "punto_muerto_distancia": 0 },
+          "feedback": "Ignorar feedback de clientes que han pagat és perdre informació gratuïta sobre com ampliar la proposta de valor. El model exprés funciona, és cert, i no cal canviar-lo. Però una opció premium pot capturar més marge sense sacrificar el volum. No escoltar no és prudència: és perdre dades de mercat que no has pagat.",
+          "next": "final:exito"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "L'MVP supera el punt mort i té una segona línia",
+      "resumen": "Vas usar les dades correctament per a diagnosticar el problema de trànsit (no de producte), vas experimentar amb el canal correcte (Instagram), vas superar el punt mort i vas afegir una opció premium que no trenca el model base. En 6 setmanes tens la dada que necessitaves per a decidir si llogar un local.",
+      "lecciones_clave": [
+        "Una taxa de repetició alta valida el producte; el volum baix assenyala un problema de canal, no de proposta de valor.",
+        "L'experiment de canal correcte (Instagram, cost zero) és sempre millor que abaixar el preu com a primera palanca.",
+        "Una opció premium sota reserva captura demanda addicional sense sacrificar el model base validat."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "Vas superar el punt mort i després el vas perdre",
+      "resumen": "Vas ampliar el servici just quan havies assolit l'equilibri. Amb 30 minuts per servici, la capacitat es va reduir a la meitat i vas tornar a perdre. Les 6 que van demanar nail art resulta que no estaven disposades a pagar 20 €.",
+      "lecciones_clave": [
+        "Validar la disposició a pagar abans de pivotar el producte és tan important com validar el problema.",
+        "Canviar el model just quan comença a funcionar és un error clàssic: primer consolida, després expandix."
+      ]
+    }
+  }
+}
+```

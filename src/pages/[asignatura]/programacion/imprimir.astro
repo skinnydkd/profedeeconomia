@@ -11,7 +11,7 @@ import type { GetStaticPaths } from 'astro';
 export const getStaticPaths = (async () => {
   const all = await getCollection('programacion');
   return all
-    .filter((p) => p.data.estado === 'publicado')
+    .filter((p) => p.data.estado === 'publicado' && p.data.lang === 'es')
     .map((p) => ({ params: { asignatura: p.data.asignatura }, props: { prog: p } }));
 }) satisfies GetStaticPaths;
 

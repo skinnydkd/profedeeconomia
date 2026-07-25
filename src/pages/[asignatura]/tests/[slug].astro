@@ -24,7 +24,7 @@ const a = ASIGNATURAS[test.data.asignatura];
 // Find the related libro unit so we can link back and show its lema.
 const allLibro = await getCollection('libro');
 const unit = allLibro.find(
-  (u) => u.data.asignatura === a.slug && u.data.unidad === test.data.unidad_relacionada
+  (u) => u.data.asignatura === a.slug && u.data.unidad === test.data.unidad_relacionada && u.data.lang === 'es'
 );
 const unitSlug = unit?.id.split('/').pop()?.replace(/\.mdx?$/, '');
 ---

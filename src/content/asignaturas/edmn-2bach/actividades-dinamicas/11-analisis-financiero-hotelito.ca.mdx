@@ -1,0 +1,119 @@
+---
+asignatura: edmn-2bach
+unidad_relacionada: 11
+title: "L'hotelet que semblava sa"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "15-20 min"
+descripcion: "Un hotel rural a Extremadura té bons beneficis però ràtios que inquieten. Fons de maniobra, ràtios i rendibilitat: l'anàlisi que va més enllà del benefici."
+competencias_clave: [CPSAA, CE, CD]
+competencias_especificas: [CE3]
+lang: ca
+estado: publicado
+slug: "asignaturas/edmn-2bach/actividades-dinamicas/11-analisis-financiero-hotelito.ca"
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Cas · Anàlisi financera",
+    "titulo": "L'hotelet que semblava sa",
+    "contexto": "La Posada del Jerte és un hotel rural de 12 habitacions a la vall del Jerte, Càceres. El porten Sofía i Pedro des de 2018. En 2024 van tindre benefici net de 28.000 €, cosa que sembla molt bé. Però el seu banc els ha denegat un préstec per a ampliar l'spa perquè els 'ràtios no són bons'. Sofía i Pedro no entenen per què.",
+    "kpi_inicial": { "caja": 8000, "clientes": 210, "reputacion": 9 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisió 1 — Calcular el fons de maniobra",
+      "situacion": "El balanç mostra: Actiu corrent (caixa 8.000 €, clients 4.200 €, existències 2.800 €) = 15.000 €. Passiu corrent (proveïdors 12.000 €, deute bancari a curt 9.000 €) = 21.000 €. Actiu no corrent (edifici i equipament) = 380.000 €. Passiu no corrent (hipoteca) = 210.000 €.",
+      "opciones": [
+        {
+          "label": "Calcule el fons de maniobra: Actiu corrent - Passiu corrent",
+          "kpi_delta": { "caja": 0, "clientes": 5, "reputacion": 2 },
+          "feedback": "Fons de maniobra = 15.000 - 21.000 = -6.000 €. Negatiu. Això significa que els deutes a curt termini superen els actius que pots liquidar a curt termini. Encara que l'hotel tinga beneficis i un edifici que val 380.000 €, té un problema de liquiditat estructural: si els creditors cobren abans que tu cobres els teus ingressos, pots no tindre amb què pagar. El banc ho va veure.",
+          "next": "n2"
+        },
+        {
+          "label": "L'edifici val 380.000 €: som solvents, el banc està equivocat",
+          "kpi_delta": { "caja": 0, "clientes": -5, "reputacion": -1 },
+          "feedback": "Solvència i liquiditat són conceptes distints: solvència mesura si l'actiu total cobrix el passiu total (i ací sí que cobrix), però liquiditat mesura si pots pagar els teus deutes quan vencen. Un edifici no es pot liquidar en 30 dies. El banc no finançarà qui té deutes a curt termini que superen els seus actius líquids, encara que tinga molt de patrimoni.",
+          "next": "n2"
+        },
+        {
+          "label": "Em centre en la hipoteca: 210.000 € és molt de deute",
+          "kpi_delta": { "caja": 0, "clientes": 0, "reputacion": 1 },
+          "feedback": "La hipoteca és deute a llarg termini, finançada amb actiu no corrent (l'edifici): això és estructura correcta. El problema no està ahí sinó en què el deute a curt termini (21.000 €) supera l'actiu corrent (15.000 €). L'anàlisi financera requerix separar els terminis: no és el mateix deure diners que vencen en 30 dies que deure diners que vencen en 20 anys.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisió 2 — Interpretar els ràtios de rendibilitat",
+      "situacion": "L'actiu total de l'hotel és 395.000 €. El patrimoni net és 172.000 €. El benefici abans d'interessos i impostos (BAII) és 45.000 €. El benefici net és 28.000 €. Calcula la rendibilitat econòmica (ROA) i financera (ROE) i interpreta-les.",
+      "opciones": [
+        {
+          "label": "ROA = BAII/Actiu = 45.000/395.000 = 11,4 %. És una rendibilitat raonable per al sector hoteler.",
+          "kpi_delta": { "caja": 0, "clientes": 10, "reputacion": 3 },
+          "feedback": "Correcte. El ROA (Return on Assets) mesura quant benefici genera cada euro invertit en actius, independentment de com es finança. Un 11,4 % en un hotel rural és acceptable. Ara el ROE = Benefici net/Patrimoni net = 28.000/172.000 = 16,3 %. El ROE supera el ROA: això indica palanquejament financer positiu. El deute està amplificant la rendibilitat per als socis.",
+          "next": "n3"
+        },
+        {
+          "label": "ROE = Benefici/Vendes: el que importa és quant guanyem per cada euro venut",
+          "kpi_delta": { "caja": 0, "clientes": 0, "reputacion": -1 },
+          "feedback": "El que descrius és el marge net sobre vendes, no el ROE. El ROE (Return on Equity) mesura la rendibilitat sobre el patrimoni dels socis: quant guanya cada euro que els propietaris tenen invertit en l'empresa. Confondre ràtios produïx anàlisis incorrectes. Lliçó: en anàlisi financera, la definició exacta del ràtio importa tant com el número.",
+          "next": "n3"
+        },
+        {
+          "label": "Els dos ràtios positius signifiquen que tot va bé",
+          "kpi_delta": { "caja": 0, "clientes": 0, "reputacion": 0 },
+          "feedback": "ROA i ROE positius són bones notícies, però no conten tota la història. L'hotel té fons de maniobra negatiu malgrat ràtios de rendibilitat acceptables. Les empreses poden ser rendibles i estar en problemes de liquiditat al mateix temps. Els ràtios cal llegir-los en conjunt, no cadascun per separat.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisió 3 — El període mitjà de maduració",
+      "situacion": "L'hotel cobra per avançat (els clients paguen en reservar o en el check-in). Els proveïdors (alimentació, llenceria) esperen cobrar a 30 dies. Sofía calcula que l'estoc d'existències dura uns 15 dies. Quin impacte té això en la tresoreria?",
+      "opciones": [
+        {
+          "label": "Calculem el PMM: l'hotel cobra abans de pagar a proveïdors, això és favorable",
+          "kpi_delta": { "caja": 3000, "clientes": 10, "reputacion": 3 },
+          "feedback": "El període mitjà de maduració econòmic = termini de cobrament de clients + termini de rotació d'existències = 0 (cobrament avançat) + 15 dies = 15 dies. El PMM financer = PMM econòmic - termini de pagament a proveïdors = 15 - 30 = -15 dies. Un PMM financer negatiu és ideal: cobres abans de pagar. Este és un punt fort del sector hoteler que compensa parcialment el fons de maniobra negatiu.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Allargue el termini de pagament a proveïdors a 60 dies per a millorar la caixa",
+          "kpi_delta": { "caja": 4000, "clientes": -8, "reputacion": -2 },
+          "feedback": "Allargar el termini de pagament millora la caixa a curt termini però pot deteriorar les relacions amb proveïdors locals (productes frescos de la vall). Els proveïdors xicotets no poden finançar l'hotel durant 60 dies. Lliçó: el termini de pagament a proveïdors és també una decisió estratègica que afecta les relacions amb l'ecosistema de l'empresa.",
+          "next": "final:fracaso_parcial"
+        },
+        {
+          "label": "Presentem el PMM negatiu al banc com a argument per al préstec",
+          "kpi_delta": { "caja": 15000, "clientes": 15, "reputacion": 4 },
+          "feedback": "Argument financer correcte: el PMM negatiu mostra que l'hotel genera caixa abans de gastar-la, cosa que compensa el fons de maniobra negatiu. El banc revisa l'anàlisi i entén que l'estructura de cobraments del sector hoteler fa que el fons de maniobra negatiu no siga tan preocupant com en altres sectors. El préstec s'aprova amb garanties addicionals.",
+          "next": "final:exito"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "L'hotelet aconseguix el préstec per a l'spa",
+      "resumen": "Sofía i Pedro aprenen a llegir els seus propis estats financers i a comunicar-los al banc. L'anàlisi correcta del PMM negatiu i del palanquejament positiu convenç l'entitat financera.",
+      "lecciones_clave": [
+        "Un fons de maniobra negatiu no sempre és roín: en sectors que cobren per avançat (hotels, comerç en línia) és estructural i no implica problemes de liquiditat.",
+        "ROA i ROE mesuren coses distintes: el ROA mesura l'eficiència dels actius, el ROE mesura la rendibilitat per als socis. Quan el ROE és major que el ROA, el palanquejament està funcionant a favor.",
+        "El període mitjà de maduració connecta la comptabilitat amb la gestió diària de la tresoreria: és el ràtio que diu quants dies tarda el cicle operatiu de l'empresa a convertir-se en caixa."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "L'anàlisi incompleta no convenç el banc",
+      "resumen": "Sofía i Pedro no aconseguixen el préstec perquè no saben argumentar que la seua estructura financera és compatible amb el seu model de negoci. El banc veu els ràtios superficialment i denega.",
+      "lecciones_clave": [
+        "Els ràtios cal interpretar-los en context del sector: un ràtio roín en manufactura pot ser normal en hostaleria.",
+        "Delegar l'anàlisi financera sense entendre-la significa no poder defendre-la quan la necessites."
+      ]
+    }
+  }
+}
+```

@@ -11,7 +11,7 @@ import type { GetStaticPaths } from 'astro';
 export const getStaticPaths = (async () => {
   const libroAll = await getCollection('libro');
   return libroAll
-    .filter((u) => u.data.estado === 'publicado')
+    .filter((u) => u.data.estado === 'publicado' && u.data.lang === 'es')
     .map((u) => {
       const slug = u.id.split('/').pop()?.replace(/\.mdx?$/, '') ?? u.id;
       return {

@@ -1,0 +1,119 @@
+---
+asignatura: ipe1-fp
+unidad_relacionada: 8
+title: "Incident al taller: protocol PAS"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "15-20 min"
+descripcion: "Un company es lesiona al taller durant la teua primera setmana de treball. Cada segon compta i cada decisió té conseqüències."
+competencias_clave: [CPSAA, CC, CD]
+competencias_especificas: [RA1]
+lang: ca
+estado: publicado
+slug: "asignaturas/ipe1-fp/actividades-dinamicas/08-incidente-prl-taller.ca"
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Cas · Prevenció de riscos laborals",
+    "titulo": "Incident al taller: protocol PAS",
+    "contexto": "Portes 4 dies treballant com a tècnic/a de Manteniment Electromecànic a la nau de producció de METALMEC S.A. (Sagunt), una empresa de 40 treballadors que fabrica estructures metàl·liques. Són les 10:15 del dimarts. Estàs muntant un quadre elèctric quan escoltes un colp sec i un crit a 8 metres de distància. El teu company Adrián, de 24 anys, ha perdut l'equilibri damunt d'una escala de tisora i ha caigut a terra. Està a terra, conscient, però s'agarra el braç esquerre i es queixa amb intensitat.",
+    "kpi_inicial": { "seguridad_escena": 5, "atencion_accidentado": 3, "gestion_emergencia": 4 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisió 1 — Primer: protegir l'escena",
+      "situacion": "L'escala ha caigut damunt d'un cable d'alimentació de 220V que alimenta la cisalla. No saps si el cable està danyat. Adrián et demana que t'acostes. Hi ha altres tres companys que també han sentit el colp i comencen a acostar-se.",
+      "opciones": [
+        {
+          "label": "M'acoste corrent a Adrián per a veure com està",
+          "kpi_delta": { "seguridad_escena": -3, "atencion_accidentado": 1, "gestion_emergencia": -1 },
+          "feedback": "La primera P del protocol PAS és PROTEGIR: a tu i a la víctima de nous riscos. Un cable de 220V danyat pot electrocutar-te si trepitges el bassal d'oli del terra. La intenció d'ajudar sense avaluar el risc pot convertir qui auxilia en segona víctima. El primer pas sempre és assegurar l'escena.",
+          "next": "n2"
+        },
+        {
+          "label": "Cride als companys que no toquen res, talle l'alimentació del quadre més pròxim i llavors m'acoste",
+          "kpi_delta": { "seguridad_escena": 3, "atencion_accidentado": 1, "gestion_emergencia": 2 },
+          "feedback": "Protocol PAS correcte: Protegir primer. Tallar l'alimentació abans d'acostar-te elimina el risc d'electrocució. Avisar els companys perquè no toquen res evita que l'accident es multiplique. Només quan l'escena és segura pots atendre Adrián.",
+          "next": "n2"
+        },
+        {
+          "label": "Cride el 112 immediatament sense fer res més",
+          "kpi_delta": { "seguridad_escena": 0, "atencion_accidentado": 0, "gestion_emergencia": 1 },
+          "feedback": "Cridar el 112 és part del protocol (la segona A: Avisar), però si ho fas abans de protegir l'escena, els altres companys poden estar acostant-se al risc mentre parles per telèfon. L'ordre importa: Protegir → Avisar → Socórrer.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisió 2 — Adrián està a terra",
+      "situacion": "L'escena ja està assegurada. Adrián està conscient, respira amb normalitat, però té l'avantbraç esquerre en una posició anormal (possible fractura). No pot moure els dits de la mà esquerra. Et demana que l'ajudes a alçar-se perquè «el terra està fred».",
+      "opciones": [
+        {
+          "label": "L'ajude a alçar-se: si està conscient, pot caminar",
+          "kpi_delta": { "seguridad_escena": 0, "atencion_accidentado": -3, "gestion_emergencia": -2 },
+          "feedback": "Moure un accidentat amb possible fractura i pèrdua de mobilitat en extremitats pot agreujar la lesió. Si hi ha afectació neurològica (no mou els dits), mobilitzar-lo sense immobilització prèvia pot convertir una fractura simple en una lesió amb dany nerviós o vascular permanent. Lliçó crítica: no moure l'accidentat excepte per a eliminar un perill major (foc, esfondrament, asfíxia).",
+          "next": "n3"
+        },
+        {
+          "label": "Li dic que no es moga, el tape amb el granota de treball d'un company per a mantindre la calor i espere els servicis d'emergència",
+          "kpi_delta": { "seguridad_escena": 0, "atencion_accidentado": 3, "gestion_emergencia": 2 },
+          "feedback": "Correcte. Un accidentat conscient amb possible fractura i signes d'afectació neurològica (no mou els dits) no es mou. Mantindre'l calent, parlar-li amb calma perquè no s'agite i esperar els servicis d'emergència és el que marca la diferència entre una fractura que es resol i una lesió permanent.",
+          "next": "n3"
+        },
+        {
+          "label": "Li done aigua: està suant i segurament té set",
+          "kpi_delta": { "seguridad_escena": 0, "atencion_accidentado": -1, "gestion_emergencia": -1 },
+          "feedback": "No donar líquids ni medicació a un accidentat. Si hi ha intervenció quirúrgica (freqüent en fractures amb lesió neurològica), l'estómac ha d'estar buit. Donar aigua amb bona intenció pot retardar l'operació hores. Primers auxilis bàsics: no donar líquids ni medicació excepte indicació mèdica.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisió 3 — L'encarregat arriba i diu que no cal avisar la Inspecció",
+      "situacion": "L'encarregat de producció arriba i, abans que arribe l'ambulància, et diu: «No crides el SEPE ni Inspecció de Treball. Això ho gestionem internament. Adrián és un bon xic i l'empresa li pagarà la baixa sense problemes. Si reportem l'accident, tenim auditoria a sobre». Adrián ho ha sentit però no diu res.",
+      "opciones": [
+        {
+          "label": "Accepte: l'encarregat sap com es gestiona en esta empresa i no és la meua primera setmana per a crear problemes",
+          "kpi_delta": { "seguridad_escena": -1, "atencion_accidentado": -2, "gestion_emergencia": -3 },
+          "feedback": "No notificar un accident de treball amb baixa és una infracció greu segons la Llei 31/1995 de PRL i el RD 1299/2006. L'empresa té obligació legal de comunicar-ho al SEPE en 5 dies hàbils. Si Adrián té seqüeles i l'accident no està registrat, pot perdre drets a prestacions i que l'empresa en siga responsable. Acceptar no et protegix: et fa còmplice d'una infracció.",
+          "next": "final:fracaso_parcial"
+        },
+        {
+          "label": "No intervinc: és decisió de l'encarregat i d'Adrián, no meua",
+          "kpi_delta": { "seguridad_escena": 0, "atencion_accidentado": -1, "gestion_emergencia": -1 },
+          "feedback": "Com a testimoni de l'accident, tens obligació de col·laborar en el comunicat d'accident. No tens autoritat per a reportar tu sol, però quedar-te en silenci quan saps que s'omet un accident de treball amb possibles conseqüències greus per a Adrián no és neutralitat: és passivitat davant d'una vulneració de drets.",
+          "next": "final:fracaso_parcial"
+        },
+        {
+          "label": "Li dic a Adrián (no a l'encarregat) que té dret que l'accident quede registrat i que això el protegix si té seqüeles",
+          "kpi_delta": { "seguridad_escena": 1, "atencion_accidentado": 3, "gestion_emergencia": 3 },
+          "feedback": "Informar Adrián dels seus drets és el correcte. L'accident de treball ben documentat protegix el treballador: cobrix la prestació d'IT per accident de treball (75 % des de l'endemà, sense dies sense cobertura), la indemnització per seqüeles i la responsabilitat de l'empresa. Adrián pren la seua pròpia decisió, però informat.",
+          "next": "final:exito"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "Has actuat amb criteri preventiu i legal",
+      "resumen": "Vas protegir l'escena abans d'acostar-te, no vas mobilitzar l'accidentat sense criteri i vas respectar els drets d'Adrián enfront de la pressió de l'encarregat. La PRL no és un tràmit: és el que determina si un incident queda en un ensurt o en una lesió permanent.",
+      "lecciones_clave": [
+        "El protocol PAS no és teòric: Protegir → Avisar → Socórrer, en eixe ordre i sense saltar-se passos.",
+        "No moure l'accidentat excepte per a eliminar un perill major.",
+        "No notificar un accident de treball és una infracció greu: el registre protegix el treballador, no l'empresa."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "Adrián rep atenció, però els seus drets estan en risc",
+      "resumen": "Les decisions a l'escena han pogut agreujar la lesió o deixar Adrián sense cobertura legal. La PRL existix per a evitar exactament això.",
+      "lecciones_clave": [
+        "La intenció d'ajudar sense avaluar el risc pot convertir l'auxiliador en segona víctima.",
+        "Un accident de treball sense registrar pot deixar el treballador sense prestacions si hi ha seqüeles."
+      ]
+    }
+  }
+}
+```

@@ -1,0 +1,535 @@
+---
+asignatura: eco-1bach
+unidad: 5
+title: 'Microeconomia II: elasticitat i aplicacions'
+lema: >-
+  Saber que el preu puja no és prou. Cal saber **quant** es mou
+  la quantitat quan ho fa, **qui** suporta realment el canvi i **quant
+  benestar** queda destruït pel camí. L'elasticitat posa número a estes
+  preguntes.
+lang: ca
+estado: publicado
+slug: "asignaturas/eco-1bach/libro/05-elasticidad-aplicaciones.ca"
+duracion: 5-6 sessions · 1,5 setmanes
+bloque: Bloque B
+sabers:
+  - B.2
+  - B.3
+conceptos_clave:
+  - elasticitat preu de la demanda
+  - elasticitat renda
+  - elasticitat encreuada
+  - elasticitat preu de l'oferta
+  - béns elàstics vs inelàstics
+  - ingressos totals i elasticitat
+  - excedent del consumidor
+  - excedent del productor
+  - eficiència
+  - preu màxim
+  - preu mínim
+  - impostos i pes mort
+objetivos:
+  - Calcular i interpretar les tres elasticitats de la demanda (preu, renda i encreuada).
+  - Relacionar l'elasticitat-preu de la demanda amb la variació dels ingressos totals.
+  - Calcular l'excedent del consumidor i del productor en un mercat simple.
+  - Analitzar els efectes sobre el benestar de preus màxims, preus mínims i impostos, identificant el pes mort.
+  - Reconéixer aplicacions reals d'estos models (lloguer amb preu màxim, salari mínim, impostos al tabac i al sucre).
+publicado_en: 2026-05-15
+---
+
+import Callout from '@components/Callout.astro';
+import Curiosity from '@components/Curiosity.astro';
+import RealExample from '@components/RealExample.astro';
+import SolvedExercise from '@components/SolvedExercise.astro';
+import Steps from '@components/Steps.astro';
+import KeyTakeaways from '@components/KeyTakeaways.astro';
+import Diagram from '@components/Diagram.astro';
+import ElasticidadCasos from '@components/diagrams/ElasticidadCasos.astro';
+import PesoMuerto from '@components/diagrams/PesoMuerto.astro';
+import Figure from '@components/Figure.astro';
+import Bibliography from '@components/Bibliography.astro';
+import TldrUnidad from '@components/TldrUnidad.astro';
+import CasoDilema from '@components/CasoDilema.astro';
+import VuelveAlCaso from '@components/VuelveAlCaso.astro';
+import MirarFora from '@components/MirarFora.astro';
+
+import HerramientaIsland from '@components/calculadoras/HerramientaIsland.astro';
+import estancoCeuta from '@assets/libro/eco-1bach/05/estanco-ceuta.jpg';
+import refineriaCepsa from '@assets/libro/eco-1bach/05/refineria-cepsa-tenerife.jpg';
+import mietendeckelBerlin from '@assets/libro/eco-1bach/05/mietendeckel-berlin.jpg';
+import davidCard from '@assets/libro/eco-1bach/05/david-card.png';
+
+> **Temps estimat de lectura**: 35-40 min · **Sabers LOMLOE**: B.2, B.3 · **Prerequisits**: Unitat 4 (oferta, demanda i equilibri de mercat).
+>
+> **En acabar esta unitat sabràs**:
+> - Calcular les tres elasticitats de la demanda (preu, renda i encreuada) i l'elasticitat de l'oferta, i interpretar-ne el signe i la magnitud.
+> - Predir com varia l'ingrés total d'una empresa quan canvia el preu, segons la demanda siga elàstica o inelàstica.
+> - Mesurar l'excedent del consumidor i del productor en un mercat simple i calcular el pes mort d'una intervenció.
+> - Analitzar els efectes sobre el benestar de preus màxims, preus mínims i impostos, amb casos reals (lloguer, salari mínim, tabac, sucre).
+
+<TldrUnidad>
+No tots els preus reaccionen igual. La gasolina puja i la gent continua omplint el depòsit (demanda **inelàstica**); el cine es buida si pugen les entrades (demanda **elàstica**).
+
+Esta unitat ensenya a mesurar la **sensibilitat** de la demanda al preu i a usar-la per prendre decisions —des de pujar impostos al tabac fins a posar preu a un producte nou—. Sense elasticitat, els models de mercat són geometria sense escala.
+</TldrUnidad>
+
+<CasoDilema
+  titular="Espanya va pujar l'impost al tabac un 15 % el 2021. La recaptació va créixer només un 3 %. Què va passar?"
+  fuente="Adaptat d'informes de l'Agència Tributària sobre impostos especials · 2021-2022"
+  pregunta="Si puges l'impost a un producte, sempre recaptes més? De què depén?"
+>
+El govern va pujar l'impost especial sobre el tabac esperant recaptar més i, secundàriament, reduir el consum. El consum va caure moderadament, però no tant com esperava l'administració. I la recaptació, en lloc de créixer un 12-15 %, va créixer només un 3 %. La diferència entre la previsió i el resultat no s'explica només per l'elasticitat del consumidor: hi ha un tercer actor que entra en escena.
+</CasoDilema>
+
+En la unitat anterior vam veure *què* mouen l'oferta i la demanda. En esta anem a precisar *quant*. Que la quantitat demandada caiga quan puja el preu és trivial; la pregunta interessant és **quant cau** i, sobretot, **quant cau en relació a quant ha pujat el preu**. Eixa proporció —quant es mou la quantitat per cada 1 % que es mou el preu— s'anomena **elasticitat**, i és probablement el concepte més útil de tota la microeconomia aplicada.
+
+Esta unitat cobrix dos sabers del Bloc B que van de la mà: l'**elasticitat** (B.2) com a ferramenta per mesurar la sensibilitat dels mercats, i l'**anàlisi cost-benefici en termes de benestar** (B.3) que utilitza els excedents del consumidor i del productor per jutjar si una intervenció pública millora o empitjora la situació. El fil entre les dos parts és clar: sense saber l'elasticitat d'un mercat, no es pot preveure l'efecte sobre el benestar d'un preu màxim, un salari mínim o un impost.
+
+## L'elasticitat-preu de la demanda
+
+L'**elasticitat-preu de la demanda** (E<sub>p</sub><sup>d</sup>) mesura quant varia percentualment la quantitat demandada d'un bé davant d'una variació percentual del seu preu. La seua fórmula bàsica és:
+
+```
+E_p^d = %ΔQ / %ΔP
+```
+
+Com que la corba de demanda té pendent negatiu, una pujada de preu (ΔP > 0) provoca una caiguda de quantitat (ΔQ < 0), i el quocient ix negatiu. Per convenció quasi universal, a classe treballem amb el **valor absolut** —el signe es dóna per descomptat— i la comparem amb 1.
+
+### Mètode del punt mitjà
+
+Calcular el percentatge de variació de Q dividint entre Q<sub>inicial</sub> i de P entre P<sub>inicial</sub> dóna un resultat diferent si pugem el preu que si el baixem. Per evitar eixa asimetria, els manuals usen el **mètode del punt mitjà** (també anomenat fórmula de l'arc):
+
+```
+E_p^d = [ (Q₂ − Q₁) / ((Q₁ + Q₂)/2) ]  /  [ (P₂ − P₁) / ((P₁ + P₂)/2) ]
+```
+
+És a dir: el percentatge es calcula sobre la *mitjana* dels dos valors, no sobre l'inicial. Amb això, moure el preu de 10 a 12 dóna la mateixa elasticitat que moure'l de 12 a 10.
+
+### Classificació dels béns segons la seua elasticitat
+
+Una vegada calculat el valor absolut d'E<sub>p</sub><sup>d</sup>, el comparem amb la unitat:
+
+- **Demanda elàstica (|E| > 1).** La quantitat reacciona *més* que proporcionalment al preu. Una pujada del 10 % del preu provoca una caiguda de la quantitat superior al 10 %. Casos típics: béns de luxe, restaurants, viatges, marques amb molts substituts pròxims.
+- **Demanda inelàstica (|E| < 1).** La quantitat reacciona *menys* que proporcionalment. Casos típics: béns de primera necessitat (pa, electricitat, aigua) i béns addictius a curt termini (tabac, café).
+- **Demanda d'elasticitat unitària (|E| = 1).** La variació percentual de la quantitat coincidix amb la del preu. És un cas teòric de referència.
+- **Demanda perfectament inelàstica (E = 0).** La quantitat demandada no varia amb el preu: corba vertical. Aproximació útil per a béns dels quals cal una dosi fixa (medicaments vitals, en horitzons molt curts).
+- **Demanda perfectament elàstica (E → ∞).** Una variació mínima del preu anul·la la demanda: corba horitzontal. Aproximació útil per a productes perfectament substituïbles en mercats molt competitius (un agricultor que ven blat a granel en un mercat mundial).
+
+<Diagram caption="Els quatre casos extrems de l'elasticitat-preu de la demanda.">
+  <ElasticidadCasos />
+</Diagram>
+
+**Prova-ho tu mateix:**
+
+<HerramientaIsland componente="Elasticidad" />
+
+### Què determina que una demanda siga més o menys elàstica
+
+Quatre factors expliquen la major part de les diferències entre béns:
+
+- **Existència de substituts pròxims.** Com més fàcil siga canviar a un altre producte, més elàstica la demanda. Una marca concreta de iogurt té demanda molt elàstica; el iogurt en general, molt menys.
+- **Proporció del pressupost que ocupa.** Com més pesa el bé en la despesa de la llar, més elàstica sol ser la demanda. Una pujada del 10 % en la sal a penes es nota; una pujada del 10 % en el lloguer obliga a retallades de veritat.
+- **Necessitat vs luxe.** Les necessitats són inelàstiques; els luxes són elàstics. Menjar és inelàstic, anar a un restaurant de moda és elàstic.
+- **Horitzó temporal.** A curt termini els consumidors s'adapten poc —costa canviar de cotxe, de calefacció, d'hàbits—; a llarg termini els ajustos són majors. Per això quasi totes les elasticitats creixen amb l'horitzó.
+
+### Elasticitats reals que convé memoritzar
+
+A tall d'orientació, estos són valors d'elasticitat-preu estimats en estudis empírics per a béns habituals a Espanya i la UE:
+
+| Bé o servei | E<sub>p</sub><sup>d</sup> (aprox.) | Classificació |
+|---|---|---|
+| Pa i cereals | 0,2 | Molt inelàstic |
+| Electricitat domèstica | 0,3 | Inelàstic |
+| Tabac (curt termini) | 0,4 | Inelàstic |
+| Tabac (llarg termini) | 0,8 | Inelàstic, quasi unitari |
+| Begudes ensucrades | 0,9 | Quasi unitari |
+| Carn de vedella | 1,1 | Lleugerament elàstic |
+| Restaurants | 1,5 | Elàstic |
+| Viatges en avió per oci | 1,8 | Elàstic |
+| Marques concretes de cereal | 3,0 | Molt elàstic |
+
+La regla intuïtiva: com més necessari i menys substituïble, més a prop del 0; com més prescindible o més substituïble, més per damunt de l'1.
+
+<Figure
+  src={estancoCeuta}
+  alt="Façana d'un estanc espanyol amb el rètol groc i roig característic de Tabacalera i la paraula «Tabacos»."
+  caption="Estanc a Ceuta. El tabac és l'exemple canònic de demanda inelàstica: un impost que duplica el preu a penes reduïx el consum a curt termini, cosa que el convertix alhora en ferramenta recaptatòria i dissuasòria."
+  credit="Foto: CarlosVdeHabsburgo, CC BY-SA 4.0 via Wikimedia Commons"
+  aspectHint="3/2"
+  variant="tight"
+/>
+
+## Elasticitat i ingressos totals
+
+L'**ingrés total** que rep una empresa per un producte és `IT = P · Q`. Quan puja el preu, P empeny a l'alça; però Q cau. Qui guanya o perd el pols depén de l'elasticitat:
+
+- **Si la demanda és inelàstica (|E| < 1)** i pugem el preu, la quantitat cau poc. L'efecte preu domina i l'**ingrés total puja**. És el cas del tabac: pujar el preu recapta més, perquè els consumidors a penes reduïxen el consum.
+- **Si la demanda és elàstica (|E| > 1)** i pugem el preu, la quantitat cau molt. L'efecte quantitat domina i l'**ingrés total baixa**. És el cas d'un restaurant de gamma mitjana: pujar els preus un 10 % pot enfonsar la facturació.
+- **Si la demanda és unitària (|E| = 1)** els dos efectes es compensen: l'ingrés total no varia.
+
+<Callout label="Regla pràctica" title="Preu i ingressos">
+Per augmentar ingressos en béns **inelàstics**, convé **pujar el preu**. En béns **elàstics**, convé **baixar-lo**. Les rebaixes d'un gran magatzem funcionen perquè la demanda de moda és elàstica; els peatges i el tabac es mantenen cars perquè la seua demanda és inelàstica.
+</Callout>
+
+<SolvedExercise number="5.1" title="Elasticitat-preu pel mètode del punt mitjà">
+
+**Enunciat**
+
+Un forn del centre de València ven el seu pa de massa mare a 3,00 €/barra i ven 400 barres al dia. Decidix pujar el preu a 3,60 €/barra i observa que les vendes cauen a 360 barres al dia.
+
+a) Calcular l'elasticitat-preu de la demanda pel mètode del punt mitjà.
+b) Classificar la demanda.
+c) Què passa amb l'ingrés total? Va encertar el forn en pujar el preu?
+
+**Solució**
+
+1. Variació de quantitat: ΔQ = 360 − 400 = **−40 barres**. Mitjana de quantitats: (400 + 360)/2 = **380**. Variació percentual: −40/380 = **−10,53 %**.
+2. Variació de preu: ΔP = 3,60 − 3,00 = **+0,60 €**. Mitjana de preus: (3,00 + 3,60)/2 = **3,30 €**. Variació percentual: 0,60/3,30 = **+18,18 %**.
+3. Apliquem la fórmula del punt mitjà: E<sub>p</sub><sup>d</sup> = −10,53 % / 18,18 % = **−0,58** → en valor absolut, **0,58**.
+4. Com que |E| = 0,58 < 1, la demanda és **inelàstica**.
+5. Ingrés total abans: 3,00 · 400 = **1.200 €/dia**. Ingrés total després: 3,60 · 360 = **1.296 €/dia**. La diferència és +96 €/dia → el forn **va encertar en pujar el preu**: en un bé inelàstic, pujar P augmenta IT.
+6. *Limitació important.* Si la pujada continuara, l'elasticitat podria créixer (els clients troben substituts). La regla «pujar preu en inelàstics» funciona en marges raonables, no indefinidament.
+
+</SolvedExercise>
+
+## Les altres dos elasticitats de la demanda
+
+L'elasticitat-preu no és l'única que es mesura. Les altres dos elasticitats clàssiques són l'**elasticitat-renda** i l'**elasticitat encreuada**.
+
+### Elasticitat-renda de la demanda (E<sub>y</sub>)
+
+Mesura la sensibilitat de la quantitat demandada d'un bé davant de variacions de la **renda** del consumidor:
+
+```
+E_y = %ΔQ / %ΔY
+```
+
+Segons el seu signe i magnitud, classifiquem els béns:
+
+- **Bé normal (E<sub>y</sub> > 0).** En pujar la renda, es demana més. La majoria de béns són normals.
+  - **Bé de primera necessitat (0 < E<sub>y</sub> < 1).** La quantitat puja amb la renda però menys que proporcionalment. Pa, llet, electricitat bàsica.
+  - **Bé de luxe (E<sub>y</sub> > 1).** La quantitat puja més que proporcionalment. Restaurants, viatges internacionals, automòbils de gamma alta.
+- **Bé inferior (E<sub>y</sub> < 0).** En pujar la renda, es consumix *menys*. Marques blanques de baix nivell, transport públic de llarga distància en alguns contextos, llentilles en països que s'enriquixen.
+
+L'elasticitat-renda és clau per entendre el creixement dels sectors: quan un país s'enriquix, la demanda de béns de luxe creix més ràpid que la del PIB, i la de béns inferiors s'estanca o cau.
+
+### Elasticitat encreuada de la demanda (E<sub>xy</sub>)
+
+Mesura com varia la quantitat demandada del bé X davant d'una variació del preu del bé Y:
+
+```
+E_xy = %ΔQ_x / %ΔP_y
+```
+
+El signe ho diu tot:
+
+- **Substituts (E<sub>xy</sub> > 0).** Si puja el preu del bé Y, els consumidors canvien a X i la demanda de X augmenta. Café i infusions, mantega i margarina, taxi i VTC.
+- **Complementaris (E<sub>xy</sub> < 0).** Si puja el preu de Y, es consumix menys Y *i* menys X, perquè van junts. Cotxes i gasolina, impressores i cartutxos, consoles i videojocs.
+- **Independents (E<sub>xy</sub> ≈ 0).** Els dos béns no s'afecten. Pa i sabates.
+
+L'elasticitat encreuada és la ferramenta que usen les autoritats de competència per definir **mercats rellevants**: si dos productes tenen elasticitat encreuada alta, estan en el mateix mercat.
+
+## Elasticitat-preu de l'oferta
+
+Simètricament, l'**elasticitat-preu de l'oferta** (E<sub>p</sub><sup>s</sup>) mesura com varia la quantitat oferida davant d'una variació del preu:
+
+```
+E_p^s = %ΔQ_s / %ΔP
+```
+
+Com que l'oferta té pendent positiu, el quocient és positiu. L'oferta és **elàstica** si les empreses poden expandir ràpidament la producció (indústries manufactureres amb capacitat ociosa, *software*) i **inelàstica** si topa amb colls d'ampolla (habitatge en sòl urbà escàs, vi amb denominació d'origen, or extret de mines). L'horitzó temporal torna a importar: a curt termini l'oferta és quasi sempre més inelàstica que a llarg termini, perquè cal temps per construir fàbriques, obrir mines o plantar vinyes.
+
+<Figure
+  src={refineriaCepsa}
+  alt="Vista general de la refineria de CEPSA a Santa Cruz de Tenerife, amb torres de destil·lació, torxes i depòsits d'emmagatzematge sobre el litoral."
+  caption="Refineria de CEPSA a Santa Cruz de Tenerife. Construir una refineria nova exigix deu anys i milers de milions d'euros, per la qual cosa l'oferta mundial de gasolina és molt inelàstica a curt termini: quan puja el preu del cru, la quantitat oferida a penes reacciona en mesos."
+  credit="Foto: Benjamín Núñez González, CC BY-SA 4.0 via Wikimedia Commons"
+  aspectHint="4/3"
+  variant="wide"
+/>
+
+<Curiosity title="La paradoxa de Giffen: béns que es compren més quan s'encarixen">
+La regla «si puja el preu, baixa la quantitat» admet una excepció famosa que quasi mai s'observa en la realitat però és un exemple preciós de teoria microeconòmica: els **béns Giffen**. Són béns inferiors que ocupen una part tan gran del pressupost de la llar que, quan pugen de preu, els consumidors no poden permetre's alternatives més cares i acaben comprant *més* del mateix bé que s'ha encarit. Robert Giffen els va descriure a finals del s. XIX parlant del pa en famílies angleses pobres, encara que la seua evidència empírica va ser sempre dubtosa. Les úniques estimacions empíriques modernes amb cert consens són les de l'economista Robert Jensen en províncies rurals de la Xina (2003-2007): l'arròs i els fideus per a famílies molt pobres van mostrar comportament Giffen quan es van subsidiar o dessubsidiar. La paradoxa existix, però requerix condicions molt extremes. En una economia desenvolupada com l'espanyola, no s'observa.
+</Curiosity>
+
+## Excedent del consumidor i del productor
+
+Fins ací hem mesurat quantitats i preus. Per jutjar si un mercat funciona *bé* —si una intervenció de l'Estat millora o empitjora la situació— necessitem mesurar **benestar**. La ferramenta és l'**excedent**.
+
+### L'excedent del consumidor (EC)
+
+Cada consumidor té una **disposició màxima a pagar** pel bé: el que estaria disposat a desemborsar abans de quedar-se sense ell. La corba de demanda no és més que la suma ordenada d'eixes disposicions a pagar: el primer consumidor pagaria fins a 10 €, el segon fins a 8 €, i així successivament. En el mercat, però, **tots paguen el mateix preu d'equilibri**.
+
+L'**excedent del consumidor** és la diferència entre el que el consumidor estava disposat a pagar i el que efectivament paga. Gràficament, és l'**àrea compresa entre la corba de demanda i el preu d'equilibri**, fins a la quantitat intercanviada. És l'equivalent monetari al «bon tracte» que s'emporten els consumidors agregadament.
+
+### L'excedent del productor (EP)
+
+Simètricament, cada empresa té un **cost marginal** mínim al qual estaria disposada a vendre. La corba d'oferta és la suma ordenada d'eixos costos. En el mercat, totes venen al mateix preu d'equilibri.
+
+L'**excedent del productor** és la diferència entre el preu cobrat i el cost mínim. Gràficament, és l'**àrea compresa entre el preu d'equilibri i la corba d'oferta**, fins a la quantitat intercanviada.
+
+### El benestar total i l'eficiència
+
+La suma `EC + EP` s'anomena **excedent total** o **benestar agregat del mercat**. El primer teorema de l'economia del benestar afirma que, en condicions idealitzades (competència perfecta, sense fallades de mercat), l'equilibri competitiu maximitza l'excedent total: qualsevol desviació —un preu imposat, un impost, un monopoli— reduïx el benestar agregat. La part de benestar que **es destruïx** i no la captura ningú s'anomena **pèrdua d'eficiència** o **pes mort** (en anglés, *deadweight loss*).
+
+<Callout label="Concepte clau" title="Pes mort">
+El pes mort és el benestar que el mercat *deixaria* de generar respecte a l'òptim competitiu quan una intervenció (preu màxim, preu mínim, impost, monopoli) impedix que es produïsquen intercanvis mútuament beneficiosos. No és diners que es transferixen del consumidor al productor o a l'Estat: és valor que **directament no es crea**.
+</Callout>
+
+<Diagram caption="Un impost introduïx una falca entre el preu que paga el consumidor (Pc) i el que rep el productor (Pp), i reduïx la quantitat de Q* a Qt. L'excedent del consumidor i del productor s'encongixen, part es convertix en recaptació, i el triangle del pes mort és el valor que ja ningú capta." source="Elaboració pròpia">
+  <PesoMuerto />
+</Diagram>
+
+## Aplicacions: preus màxims, mínims i impostos
+
+Amb els excedents i l'elasticitat sobre la taula, podem analitzar les tres intervencions públiques clàssiques en mercats concrets. L'estructura del raonament és sempre la mateixa: identificar l'equilibri sense intervenció, mesurar EC i EP, introduir la intervenció, recalcular i comparar.
+
+### Preu màxim: el cas del lloguer
+
+Un **preu màxim** (també anomenat *preu topall* o *price ceiling*) és un preu legal per damunt del qual no es pot vendre un bé. Té sentit econòmic només si es fixa **per davall del preu d'equilibri**; si es fixa per damunt, no té efecte.
+
+Quan el preu màxim és inferior al d'equilibri, ocorre el següent:
+
+- A eixe preu baix, la quantitat demandada augmenta i la quantitat oferida disminuïx.
+- Apareix una **escassetat**: hi ha més gent que vol comprar que la que troba producte.
+- L'excedent del consumidor dels qui *aconseguixen* comprar al preu baix és major; el dels qui *no ho aconseguixen* desapareix.
+- L'excedent del productor cau sempre.
+- Apareix un **pes mort** perquè hi ha intercanvis mútuament beneficiosos —el consumidor pagaria més del que costa produir eixa unitat— que no es produïxen.
+- Apareixen efectes secundaris típics: **llistes d'espera, mercats negres, deteriorament de la qualitat** (si la llei fixa preu però no qualitat, les empreses reduïxen la qualitat perquè el cost quadre).
+
+El cas més estudiat és el **control del lloguer**. Berlín va aprovar el 2020 un topall als lloguers (*Mietendeckel*) que el Tribunal Constitucional alemany va anul·lar el 2021 per excés de competències del Land. Catalunya va aprovar el 2024 una nova llei de zones tensionades que limita els lloguers en mercats amb preus creixents; l'evidència preliminar mostra una caiguda de l'oferta de lloguer de llarga durada i un desplaçament cap al lloguer turístic, igual que va passar a San Francisco anys abans.
+
+<Figure
+  src={mietendeckelBerlin}
+  alt="Manifestació multitudinària a Berlín el 15 d'abril de 2021 reclamant un topall nacional al lloguer després de l'anul·lació del Mietendeckel, amb pancartes i cartells reivindicatius."
+  caption="Manifestació a Berlín del 15 d'abril de 2021, dies després de l'anul·lació del Mietendeckel pel Tribunal Constitucional alemany. Quan un preu màxim deixa d'aplicar-se, els preus es realineen amb l'equilibri i reobrin el debat polític sobre com redistribuir l'excedent del mercat."
+  credit="Foto: Leonhard Lenz, CC0 (domini públic) via Wikimedia Commons"
+  aspectHint="3/2"
+/>
+
+### Preu mínim: el cas del salari mínim
+
+Un **preu mínim** (també anomenat *price floor*) és un preu legal per davall del qual no es pot vendre un bé o servei. Només té efecte si es fixa **per damunt** del preu d'equilibri.
+
+Aplicat al mercat de treball, el preu és el salari. Un **salari mínim** per damunt del salari d'equilibri implica:
+
+- Quantitat demandada de treball menor (les empreses contracten menys a eixe salari).
+- Quantitat oferida major (més treballadors volen entrar al mercat).
+- Apareix **excedent d'oferta**: atur entre els treballadors menys qualificats o amb menor experiència, que són els que estan al voltant del salari mínim.
+- Els treballadors que **mantenen l'ocupació** guanyen més.
+- L'excedent del productor (de les empreses) cau.
+- Hi ha pes mort si la demanda de treball és prou elàstica.
+
+El debat empíric sobre el salari mínim és un dels més vius de l'economia contemporània, i ací n'hi ha prou amb anticipar-lo: l'estudi canònic de **Card i Krueger (1994)** sobre Nova Jersey va trobar efectes molt xicotets sobre l'ocupació, contradient la teoria més senzilla. La realitat és que l'efecte **depén de l'elasticitat de la demanda de treball** en cada segment i de quant s'allunya el mínim del salari d'equilibri. El cas complet —Espanya 2019-2026, evidència internacional, debat Banc d'Espanya vs AIReF— es desenvolupa en la **Unitat 9** (mercat de treball).
+
+En clau de model, n'hi ha prou amb retindre que el **SMI espanyol** ha passat de **735,90 €/mes** el 2018 a **1.221 €/mes** en 14 pagues el 2026 (RD 126/2026): una pujada del **66 % en huit anys**. És un cas real de preu mínim notablement per damunt del salari d'equilibri en alguns segments (jóvens sense qualificació, sector agrícola, servei domèstic) i molt per davall en altres (qualificats urbans). L'efecte agregat depén de la mescla.
+
+### Impostos sobre el consum i pes mort
+
+Un **impost unitari** (per exemple, un impost especial sobre el tabac o sobre les begudes ensucrades) introduïx una **falca fiscal** entre el preu que paga el consumidor (P<sub>c</sub>) i el preu que rep el productor (P<sub>p</sub>): `P_c − P_p = t`, on `t` és l'impost per unitat.
+
+L'impost desplaça la corba d'oferta cap amunt en la quantia `t`. En el nou equilibri:
+
+- La quantitat intercanviada cau (menys transaccions).
+- El consumidor paga més, el productor rep menys.
+- L'Estat recapta `t · Q_nova`.
+- L'excedent del consumidor i del productor cauen.
+- La caiguda de benestar (EC + EP) és **major** que la recaptació: la diferència és el **pes mort de l'impost**.
+
+**Com es repartix l'impost: el principi d'incidència.** El repartiment de l'impost entre consumidors i productors no depén de a qui el cobre formalment l'administració, sinó de les **elasticitats**:
+
+- Si la demanda és **més inelàstica** que l'oferta, els consumidors suporten la major part de l'impost (cas del tabac).
+- Si l'oferta és **més inelàstica** que la demanda, els productors suporten la major part (cas dels productes amb denominació d'origen estricta quan es grava el consum).
+
+**Quan el pes mort és xicotet.** Com més inelàstica siga la demanda (o l'oferta), menor és la pèrdua d'eficiència, perquè la quantitat a penes cau amb l'impost. Per això els impostos sobre el tabac recapten molt amb poc pes mort: la demanda és inelàstica. El mateix ocorre amb impostos sobre alcohol i begudes ensucrades en horitzons curts.
+
+**Quan l'impost té un objectiu extrafiscal.** Quan un bé genera externalitats negatives (tabac, sucre, emissions de CO₂), el pes mort de l'impost pot ser xicotet *o fins i tot negatiu* —l'impost **millora** el benestar en reduir el consum d'un bé socialment costós—. Són els anomenats **impostos pigouvians**, que veurem amb detall en la Unitat 6.
+
+<RealExample title="Sugar Tax britànica (2018): menys sucre, mateix refresc, recaptació discreta" source="HM Treasury, Public Health England, The Lancet (2023)">
+A l'abril de 2018, el Regne Unit va introduir la **Soft Drinks Industry Levy**: un impost especial sobre les begudes ensucrades amb dos trams (18 penics/litre si la beguda té 5-8 g de sucre per 100 ml, 24 penics/litre si supera els 8 g/100 ml). El seu disseny és interessant:
+
+- L'impost es cobra al **fabricant**, no al consumidor final, però pel principi d'incidència es trasllada en bona part al preu de venda.
+- Hi ha un **tram zero** per a begudes amb menys de 5 g/100 ml: les empreses tenen incentiu a reformular els seus productes.
+
+Els resultats a cinc anys (estudi publicat en *The Lancet*, 2023):
+
+1. **Reformulació massiva**: més del 50 % dels refrescos van canviar la seua recepta per reduir sucre i caure per davall del llindar de 5 g. Coca-Cola Zero i Pepsi Max van guanyar quota.
+2. **Reducció del sucre consumit per llar**: caiguda del 10 % en la quantitat de sucre comprat a través de begudes, sense que les vendes totals de refrescos caigueren tant (la demanda és inelàstica, però la composició canvia).
+3. **Recaptació discreta**: aproximadament 340 milions de lliures anuals, menys del que es preveia inicialment, *precisament perquè l'impost va funcionar* i moltes begudes van deixar de tributar.
+4. **Xicotet pes mort** des de la perspectiva tradicional, *gran guany de benestar* des de la perspectiva pigouviana: menys sucre consumit, millora marginal d'indicadors d'obesitat infantil.
+
+El cas britànic és la prova de manual d'un impost ben dissenyat: l'objectiu no era recaptar sinó canviar comportaments, i la inelasticitat de la demanda total es va compaginar amb l'elasticitat de la *composició* de la cistella.
+</RealExample>
+
+<SolvedExercise number="5.2" title="Excedents i pes mort d'un impost al tabac">
+
+**Enunciat**
+
+En un mercat simplificat, la demanda i l'oferta de caixetilles de tabac estan donades per:
+
+- Demanda: P = 12 − 0,02 · Q (amb Q en milers de caixetilles/dia i P en €)
+- Oferta:    P =  2 + 0,03 · Q
+
+El govern introduïx un impost especial de **t = 1 €/caixetilla**, que es trasllada com un desplaçament vertical de la corba d'oferta cap amunt.
+
+a) Calcular l'equilibri inicial (P*, Q*) i l'excedent total inicial.
+b) Calcular el nou equilibri amb l'impost (P<sub>c</sub>, P<sub>p</sub>, Q<sub>t</sub>).
+c) Calcular la recaptació i el pes mort.
+
+**Solució**
+
+1. **Equilibri inicial.** Igualem 12 − 0,02·Q = 2 + 0,03·Q → 10 = 0,05·Q → Q* = **200 mil caixetilles/dia**. P* = 12 − 0,02·200 = **8 €/caixetilla**.
+2. **Excedent del consumidor inicial.** Preu màxim de la demanda (quan Q = 0): P = 12 €. EC = base · altura / 2 = 200 · (12 − 8) / 2 = **400 mil €/dia**.
+3. **Excedent del productor inicial.** Preu mínim de l'oferta (quan Q = 0): P = 2 €. EP = 200 · (8 − 2) / 2 = **600 mil €/dia**.
+4. **Excedent total inicial.** EC + EP = 400 + 600 = **1.000 mil €/dia = 1 milió €/dia**.
+5. **Equilibri amb impost.** La nova oferta és P = 2 + 0,03·Q + 1 = 3 + 0,03·Q. Igualem amb la demanda: 12 − 0,02·Q = 3 + 0,03·Q → 9 = 0,05·Q → Q<sub>t</sub> = **180 mil caixetilles/dia**. P<sub>c</sub> = 12 − 0,02·180 = **8,40 €** (el que paga el consumidor). P<sub>p</sub> = P<sub>c</sub> − t = 8,40 − 1 = **7,40 €** (el que rep el productor). Diferència: 1 € = t, correcte.
+6. **Repartiment de l'impost.** Consumidors: paguen 0,40 € més per caixetilla (de 8 € a 8,40 €). Productors: reben 0,60 € menys (de 8 € a 7,40 €). El productor suporta el 60 % de l'impost perquè l'oferta (pendent 0,03) és més inelàstica que la demanda (pendent 0,02) en este mercat simplificat.
+7. **Recaptació.** R = t · Q<sub>t</sub> = 1 · 180 = **180 mil €/dia**.
+8. **Pes mort.** PM = (1/2) · t · (Q* − Q<sub>t</sub>) = (1/2) · 1 · (200 − 180) = **10 mil €/dia**.
+9. **Comprovació de benestar.** EC<sub>nou</sub> = 180 · (12 − 8,40)/2 = 324. EP<sub>nou</sub> = 180 · (7,40 − 2)/2 = 486. Suma: 324 + 486 + 180 (Estat) + 10 (PM) = 1.000. Abans de l'impost el milió estava tot en consumidors i productors; després de l'impost, **10 mil €/dia han desaparegut**: ningú els guanya.
+
+</SolvedExercise>
+
+<SolvedExercise number="5.3" title="Preu màxim en el lloguer: escassetat i pes mort">
+
+**Enunciat**
+
+El mercat de lloguer d'un barri tensionat té les corbes següents (Q en milers d'habitatges, P en €/mes):
+
+- Demanda: P = 1.600 − 0,5 · Q
+- Oferta:    P =  400 + 0,5 · Q
+
+L'ajuntament, per «protegir els inquilins», fixa un **preu màxim de 800 €/mes**.
+
+a) Calcular l'equilibri sense intervenció (P*, Q*).
+b) Calcular la quantitat oferida, la demandada i l'escassetat al preu màxim.
+c) Calcular el pes mort que genera la mesura.
+
+**Solució**
+
+1. **Equilibri sense intervenció.** Igualem 1.600 − 0,5·Q = 400 + 0,5·Q → 1.200 = Q → Q* = **1.200 mil habitatges**. P* = 1.600 − 0,5·1.200 = **1.000 €/mes**.
+2. **Al preu màxim de 800 €** (per davall de l'equilibri, així que té efecte):
+   - **Quantitat oferida**: 800 = 400 + 0,5·Q<sub>s</sub> → Q<sub>s</sub> = **800 mil habitatges**. És la quantitat realment llogada, perquè l'oferta és el costat curt del mercat.
+   - **Quantitat demandada**: 800 = 1.600 − 0,5·Q<sub>d</sub> → Q<sub>d</sub> = **1.600 mil habitatges**.
+   - **Escassetat** = Q<sub>d</sub> − Q<sub>s</sub> = 1.600 − 800 = **800 mil habitatges** que busquen lloguer i no el troben. És l'arrel de les llistes d'espera i el mercat negre.
+3. **Pes mort.** Es reduïx la quantitat intercanviada de 1.200 a 800 (caiguda de 400 mil habitatges). El pes mort és el triangle entre la corba de demanda i la d'oferta sobre eixe tram no transaccionat. En Q = 800, la demanda valora l'habitatge en 1.600 − 0,5·800 = **1.200 €** i l'oferta el produiria a 400 + 0,5·800 = **800 €**. La «falca» màxima de valor perdut és 1.200 − 800 = 400 €. PM = (1/2) · base · altura = (1/2) · (1.200 − 800) mil · (1.200 − 800) € = (1/2) · 400 · 400 = **80.000 mil €/mes = 80 milions €/mes**.
+4. **Lectura.** La mesura ajuda els qui *aconseguixen* lloguer barat (paguen 800 € per una cosa que valoren més), però deixa fora 800 mil llars i destruïx 80 milions d'euros mensuals de benestar que ningú captura. És el patró empíric del control de lloguers que vam veure en el text: preus baixos per a uns pocs, escassetat per a molts.
+
+</SolvedExercise>
+
+<Steps label="Procediment" title="Anàlisi d'una intervenció pública en un mercat" variant="roman">
+
+<li><strong>Identificar l'equilibri sense intervenció.</strong> Calcular P* i Q* igualant oferta i demanda. Dibuixar el gràfic.</li>
+
+<li><strong>Calcular EC i EP inicials.</strong> Àrees dels triangles entre la corba i el preu d'equilibri.</li>
+
+<li><strong>Introduir la intervenció.</strong> Traçar la línia horitzontal del preu màxim/mínim, o desplaçar l'oferta per l'impost.</li>
+
+<li><strong>Recalcular quantitat intercanviada.</strong> Serà la menor entre la quantitat demandada i l'oferida al preu rellevant.</li>
+
+<li><strong>Recalcular EC, EP, recaptació (si hi ha impost) i pes mort.</strong> El pes mort és el triangle que queda «atrapat» entre les dos corbes i la nova quantitat.</li>
+
+<li><strong>Interpretar.</strong> Qui guanya, qui perd, quant benestar es destruïx, quins efectes secundaris pràctics cal esperar (escassetat, mercat negre, atur, canvi de composició)?</li>
+
+</Steps>
+
+<VuelveAlCaso referencia="Pujada del 15 % al tabac i recaptació del +3 %">
+El tabac té **demanda inelàstica** —la gent addicta no deixa de fumar encara que puge el preu—, però eixa inelasticitat té límits. La pujada del 15 % va provocar dos efectes:
+
+- **Lleu caiguda del consum legal**: part del consumidor moderat va reduir o abandonar.
+- **Desplaçament al mercat paral·lel**: contraban des d'Andorra, Portugal, Gibraltar i nord d'Àfrica. Tabac amb la mateixa marca, sense passar per la Hisenda espanyola.
+
+La recaptació va créixer només un 3 % perquè **part del consum va escapar del circuit fiscal**. La lliçó operativa: els impostos sobre productes inelàstics són una **bona font de recaptació**, però només dins d'un marge. Superat eixe marge, el contraban entra, la recaptació s'estanca i, a més, es perd control sanitari del producte. És la corba de Laffer aplicada a la fiscalitat indirecta.
+</VuelveAlCaso>
+
+<KeyTakeaways title="L'essencial d'elasticitat i benestar">
+- **E<sub>p</sub><sup>d</sup> = %ΔQ / %ΔP** en valor absolut. Compara-la amb 1: si és major, demanda elàstica; si menor, inelàstica.
+- Les tres elasticitats de la demanda són **preu, renda i encreuada**. La renda classifica béns en normals (luxe, primera necessitat) i inferiors; l'encreuada els classifica en substituts, complementaris i independents.
+- En béns **inelàstics**, pujar el preu augmenta l'ingrés total; en béns **elàstics**, baixar-lo l'augmenta.
+- **Excedent del consumidor + excedent del productor = benestar total** del mercat. Qualsevol intervenció (preu màxim, mínim, impost) altera el repartiment i, en general, destruïx una part: el **pes mort**.
+- La **incidència** d'un impost (qui el paga al final) depén de les **elasticitats relatives** d'oferta i demanda, no de a qui el cobre formalment l'administració.
+- Els **impostos sobre béns amb externalitats negatives** (tabac, sucre, CO₂) tenen poc pes mort i poden millorar el benestar agregat: són **impostos pigouvians**.
+</KeyTakeaways>
+
+## Connexió amb les pròximes unitats
+
+L'elasticitat i els excedents tornen a aparéixer en la Unitat 6 (fallades de mercat i externalitats, on formalitzarem els impostos pigouvians), en la Unitat 9 (mercat de treball, on el salari mínim i l'elasticitat de la demanda de treball determinen l'atur estructural) i en la Unitat 11 (polítiques econòmiques, on l'elasticitat guia el disseny dels impostos especials i dels aranzels). Convé tindre estes ferramentes assentades abans de continuar.
+
+## Glossari
+
+- **Elasticitat-preu de la demanda (E<sub>p</sub><sup>d</sup>)**: variació percentual de la quantitat demandada dividida entre la variació percentual del preu, en valor absolut. Mesura la sensibilitat de la demanda al preu.
+- **Demanda elàstica / inelàstica**: elàstica si |E| > 1 (la quantitat reacciona més que el preu); inelàstica si |E| < 1 (reacciona menys).
+- **Mètode del punt mitjà (fórmula de l'arc)**: càlcul de l'elasticitat usant la mitjana dels valors inicial i final, perquè el resultat siga simètric en pujar o baixar el preu.
+- **Elasticitat-renda (E<sub>y</sub>)**: variació percentual de la quantitat demandada davant d'una variació de la renda. Classifica béns en normals (E<sub>y</sub> > 0) i inferiors (E<sub>y</sub> < 0).
+- **Elasticitat encreuada (E<sub>xy</sub>)**: variació percentual de la quantitat de X davant d'una variació del preu de Y. Positiva en substituts, negativa en complementaris.
+- **Elasticitat-preu de l'oferta (E<sub>p</sub><sup>s</sup>)**: sensibilitat de la quantitat oferida davant de canvis del preu; creix amb l'horitzó temporal.
+- **Ingrés total (IT)**: producte del preu per la quantitat venuda (IT = P · Q). La seua reacció a una pujada de preu depén de l'elasticitat.
+- **Excedent del consumidor (EC)**: diferència entre el que el consumidor estava disposat a pagar i el que paga realment; àrea entre la demanda i el preu.
+- **Excedent del productor (EP)**: diferència entre el preu cobrat i el cost mínim de producció; àrea entre el preu i l'oferta.
+- **Pes mort (pèrdua d'eficiència)**: benestar que deixa de generar-se quan una intervenció impedix intercanvis mútuament beneficiosos. No es transferix a ningú: desapareix.
+- **Preu màxim / preu mínim**: topall legal per davall (màxim) o per damunt (mínim) del qual no es pot transaccionar; només té efecte si es fixa al costat «equivocat» de l'equilibri.
+- **Incidència fiscal**: repartiment efectiu d'un impost entre consumidors i productors, determinat per les elasticitats relatives, no per a qui el cobre l'administració.
+- **Impost pigouvià**: impost sobre un bé amb externalitat negativa, calibrat al dany marginal que causa a tercers; pot millorar el benestar agregat.
+
+## Per aprofundir
+
+Si esta unitat t'ha interessat, ací van algunes lectures i recursos per anar més enllà:
+
+- **Principles of Economics** — *N. Gregory Mankiw* (cap. 5-8). Per què encaixa: el tractament més clar i gradual d'elasticitat, excedents i pes mort, amb gràfics canònics. És la referència de la majoria de manuals de batxillerat i selectivitat.
+- **El cost d'oportunitat i altres 24 idees econòmiques** — *Tim Harford* (*The Undercover Economist*, 2005, ed. espanyola). Per què encaixa: explica amb casos quotidians per què uns preus pugen sense que caiga la demanda i altres no, sense una sola fórmula.
+- **Document Ocasional 2210: el SMI sobre l'ocupació i la pobresa laboral** — *Banc d'Espanya* (2022). Per què encaixa: mostra amb dades espanyoles com l'elasticitat de la demanda de treball determina l'efecte real d'un preu mínim. Accés lliure a bde.es.
+- **The Market for Lemons / Price Elasticity** — *sèrie Marginal Revolution University* (Tyler Cowen i Alex Tabarrok). Per què encaixa: vídeos curts de 5-8 minuts que resolen exercicis d'elasticitat i incidència pas a pas. Accés lliure a mru.org.
+- **Impact of the UK Soft Drinks Industry Levy** — *Rogers et al., The Lancet Public Health* (2023). Per què encaixa: l'estudi empíric complet del cas de la *sugar tax* britànica que es resumix en el text, ideal per discutir impostos pigouvians amb evidència real.
+
+## Preguntes per reflexionar
+
+Estes preguntes no tenen una resposta única. Servixen per discutir a classe o per pensar individualment en tancar la unitat:
+
+1. Si la demanda de tabac és inelàstica, un impost al tabac recapta molt o poc? Reduïx molt o poc el consum? Poden ser certes les dos coses alhora, i què diu això de l'objectiu de l'impost?
+2. El control de lloguers protegix qui ja té un pis llogat, però perjudica qui el busca. Qui «guanya» i qui «perd» amb la mesura? Per què creus que continua sent políticament popular malgrat l'evidència econòmica?
+3. La incidència d'un impost depén de les elasticitats, no de a qui el cobre la llei. Per què llavors els governs insistixen a dir que «graven les empreses» i no els consumidors? És només comunicació política?
+
+<Bibliography>
+
+1. Mankiw, N. G. (2021). *Principles of Economics* (9a ed.). Cengage. Capítols 5, 6 i 8.
+2. Krugman, P. i Wells, R. (2018). *Economics* (5a ed.). Worth Publishers. Capítols 6 i 7.
+3. Banc d'Espanya (2022). *El efecto del salario mínimo interprofesional sobre el empleo y la pobreza laboral en España*. Documentos Ocasionales núm. 2210.
+4. AIReF (2023). *Evaluación del impacto del Salario Mínimo Interprofesional 2018-2023*.
+5. Card, D. i Krueger, A. (1994). «Minimum Wages and Employment: A Case Study of the Fast-Food Industry in New Jersey and Pennsylvania». *American Economic Review*, 84(4).
+6. Jensen, R. i Miller, N. (2008). «Giffen Behavior and Subsistence Consumption». *American Economic Review*, 98(4).
+7. Rogers, N. T. et al. (2023). «Impact of the UK soft drinks industry levy on health outcomes: a national observational study». *The Lancet Public Health*.
+8. INE. *Encuesta de Presupuestos Familiares* i *Índice de Precios de Consumo*.
+9. Reial Decret 243/2022, de 5 d'abril, pel qual s'estableixen l'ordenació i els ensenyaments mínims del Batxillerat. BOE núm. 82, 6 d'abril de 2022.
+
+</Bibliography>
+
+<MirarFora
+  unidad={5}
+  libro={{
+    titulo: 'El economista camuflado',
+    meta: 'Tim Harford · Temas de Hoy, 2007',
+    porque: 'Capítols sobre com Starbucks fixa preus, per què el café de l\'aeroport costa més, per què els productes «orgànics» són tan cars. Microeconomia aplicada a la vida diària, amb l\'elasticitat com a fil invisible.',
+    paginas: 'Capítols 1, 2 i 4',
+  }}
+  video={{
+    titulo: 'INFLATION, Explained in 6 Minutes',
+    meta: 'Two Cents · PBS · YouTube',
+    duracion: '~6 min',
+    porque: 'Sobre com canvis xicotets de preu agregats es convertixen en inflació i com l\'elasticitat de cada bé modula l\'impacte sobre cada llar.',
+    url: 'https://www.youtube.com/results?search_query=Two+Cents+INFLATION+Explained+in+6+Minutes',
+  }}
+  cuenta={{
+    titulo: '@vrosales74',
+    meta: 'X / Twitter · Vicente Rosales',
+    porque: 'Economista, fils sobre política econòmica espanyola i elasticitats aplicades (habitatge, energia, fiscalitat). Bona font per entendre els debats fiscals actuals.',
+  }}
+  actividad_titulo="La teua cistella setmanal, classificada"
+  actividad_duracion="20 min"
+>
+  <Fragment slot="actividad">
+    Classifica **10 productes** de la teua cistella setmanal en **elàstics** o **inelàstics**: aigua, llet, cine, roba de marca, transport públic, gasolina, subscripció de streaming, etc. Quin és el més inelàstic de la teua llista? Què passaria amb el teu consum si el seu preu pujara un 30 %?
+  </Fragment>
+  <Fragment slot="para-clase">
+    Variant *subhasta inversa*: el professor anuncia que pujarà un 50 % el preu d'un producte del bar de l'escola. L'alumnat vota a mà alçada qui deixaria de comprar-lo. El percentatge que continua comprant és una **mesura de la inelasticitat**. Es repetix amb diversos productes i s'ordenen. Durada: 45 min.
+  </Fragment>
+</MirarFora>

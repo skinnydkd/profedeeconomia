@@ -1,0 +1,119 @@
+---
+asignatura: gpe-bach
+unidad_relacionada: 4
+title: "Melmelada artesana: de l'obrador al client"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "15-20 min"
+descripcion: "Produïu melmelada de taronja valenciana. Tres decisions d'aprovisionament, producció i comercial abans del primer mercat."
+competencias_clave: [CPSAA, CE, CD]
+competencias_especificas: [CE3]
+estado: publicado
+lang: ca
+slug: "asignaturas/gpe-bach/actividades-dinamicas/04-mermelada-marketing-mix.ca"
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Cas · Àrees de l'empresa",
+    "titulo": "Melmelada artesana: de l'obrador al client",
+    "contexto": "El vostre equip de quatre persones produïx melmelada artesana de taronja DOP en un obrador compartit llogat per 80 €/mes. Teniu un contracte informal amb un agricultor local que vos ven taronja a 0,35 €/kg. Cada pot de 250 g necessita 400 g de taronja + 120 g de sucre + el pot de vidre. Al mercat del dissabte podeu vendre a 4,50 €/pot. Teniu 600 € en caixa i 3 setmanes per al primer mercat.",
+    "kpi_inicial": { "caja": 600, "tarros_stock": 0, "reputacion": 6 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisió 1 — Pla de compres i proveïdors",
+      "situacion": "Necessiteu comprar per a produir 150 pots per al primer mercat. Cost estimat: taronja (60 kg × 0,35 € = 21 €), sucre (18 kg × 0,90 € = 16,20 €), pots de vidre (150 u.). Els pots els podeu comprar en tres llocs: (A) Proveïdor local d'hostaleria: 0,62 €/u., mínim 100 u., entrega en 3 dies. (B) Amazon: 0,48 €/u., mínim 50 u., entrega en 5 dies. (C) Gran superfície: 0,55 €/u., sense mínim, disponible hui.",
+      "opciones": [
+        {
+          "label": "Comprem a Amazon: és el més barat per unitat",
+          "kpi_delta": { "caja": -129, "tarros_stock": 150 },
+          "feedback": "Estalvi de 21 € respecte al proveïdor local (150 × 0,14 €), però la comanda ix d'un magatzem de fora: sense retorn local. A més, amb entrega en 5 dies i el mercat en 3 setmanes, el marge temporal és just. Si hi ha un problema amb la comanda, no hi ha temps per a reaccionar. El pla de compres sempre ha d'incloure el termini d'entrega com a variable crítica.",
+          "next": "n2"
+        },
+        {
+          "label": "Comprem al proveïdor local: un poc més car però ens garantix el termini",
+          "kpi_delta": { "caja": -150, "tarros_stock": 150, "reputacion": 1 },
+          "feedback": "Pagues 0,14 €/pot més, però tens el material en 3 dies i el proveïdor està a una telefonada de distància si alguna cosa falla. El retorn local és un benefici extra: eixos diners es queden en l'economia de la comarca. Al vostre estudi de mercat, podeu comunicar que useu proveïdors locals, la qual cosa pot ser part de la proposta de valor.",
+          "next": "n2"
+        },
+        {
+          "label": "Comprem a la gran superfície: sense mínim, l'agafem hui i controlem l'estoc",
+          "kpi_delta": { "caja": -139, "tarros_stock": 150 },
+          "feedback": "Solució intermèdia en preu. L'avantatge és el control immediat: podeu ajustar exactament quants pots compreu. El desavantatge és que el preu per unitat és major que Amazon i sense els avantatges relacionals del proveïdor local. Per a una primera comanda amb incertesa de demanda, la flexibilitat té valor.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisió 2 — Control d'estocs i punt de comanda",
+      "situacion": "El primer mercat va anar bé: vau vendre 128 dels 150 pots. Vos en queden 22. Vos reuniu per a decidir quan fer la comanda següent de taronja. L'agricultor tarda 4 dies a preparar-vos la comanda. En 4 dies, si el ritme de producció és normal, podríeu consumir fins a 30 kg de taronja. Teniu 8 kg emmagatzemats.",
+      "opciones": [
+        {
+          "label": "Esperem a quedar-nos a zero de taronja per a fer la comanda",
+          "kpi_delta": { "caja": 0, "tarros_stock": -22 },
+          "feedback": "Error clàssic de control d'estocs. Si espereu a zero i l'agricultor tarda 4 dies, vos quedareu sense producció durant 4 dies, amb els pots que ja teníeu acabats i sense poder reabastir per al mercat següent. El punt de comanda existix exactament per a evitar això: demaneu quan encara vos quede marge per a operar mentres arriba el subministrament.",
+          "next": "n3"
+        },
+        {
+          "label": "Fixem el punt de comanda en 15 kg: quan baixem d'ahí, demanem",
+          "kpi_delta": { "caja": -25, "tarros_stock": 30 },
+          "feedback": "Correcte. Amb un consum de fins a 30 kg en 4 dies i un estoc de seguretat de 15 kg, teniu temps de rebre la comanda abans de parar la producció. El punt de comanda = consum durant el termini d'entrega + estoc de seguretat. 30 kg de consum + 5 kg de marge = 35 kg com a referència, encara que amb 15 kg de seguretat ja és raonable per al vostre volum.",
+          "next": "n3"
+        },
+        {
+          "label": "Comprem taronja per a 3 mesos de colp per a assegurar-nos",
+          "kpi_delta": { "caja": -180, "tarros_stock": 0 },
+          "feedback": "Immobilitzeu capital i, el més important, la taronja fresca es deteriora. Un estoc de taronja per a 3 mesos no és viable amb el tipus de producte que fabriqueu. El just-in-time té una lliçó aplicada a la vostra situació: no mantingueu més estoc del que podeu consumir abans que es faça malbé.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisió 3 — Màrqueting mix: decidir el preu per al segon mercat",
+      "situacion": "El mercat va anar bé però vau observar una cosa: els visitants comparaven el vostre pot a 4,50 € amb el d'una melmelada industrial a 2,10 € del supermercat del costat. Alguns el compraven igual, però molts dubtaven. Una companya proposa baixar a 3,80 €. Un altre company proposa pujar a 5,50 € amb una etiqueta més cuidada i comunicar l'origen DOP.",
+      "opciones": [
+        {
+          "label": "Baixem a 3,80 €: així guanyem més clients que dubten",
+          "kpi_delta": { "caja": -80, "reputacion": -1 },
+          "feedback": "El cost variable per pot és: taronja (0,14 kg × 0,35 € = 0,049 € × 400 g = 0,14 €) + sucre (0,11 €) + pot (0,62 €) + altres (0,15 €) ≈ 1,02 €. Amb 4,50 € teníeu 3,48 € de marge; amb 3,80 €, tindríeu 2,78 €. Això reduïx el vostre marge un 20 %. I el client que compara amb la industrial a 2,10 € continuarà veient diferència: baixar de 4,50 € a 3,80 € no canvia que la vostra melmelada és molt més cara que la industrial. El preu és senyal: baixar-lo sense canviar la proposta de valor és perdre marge sense guanyar clients.",
+          "next": "final:fracaso_parcial"
+        },
+        {
+          "label": "Pugem a 5,50 € i millorem l'etiqueta comunicant l'origen DOP",
+          "kpi_delta": { "caja": 80, "reputacion": 2 },
+          "feedback": "Moviment coherent amb el màrqueting mix. Si el producte és artesà DOP i els clients que compren ho fan precisament per això, el preu ha de reflectir eixa proposta de valor. Una etiqueta cuidada (+15 € de cost per lot de 150) que comunica l'origen pot justificar els 5,50 €. Esteu fent el que fa una marca artesana de qualitat: no competix amb l'industrial en preu, sinó en proposta de valor diferenciada.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Mantenim 4,50 € però afegim una targeta que explica el procés artesà",
+          "kpi_delta": { "caja": 10, "reputacion": 1 },
+          "feedback": "Opció intermèdia vàlida. El preu es manté i la comunicació millora sense pujar el cost de forma significativa. El risc és que la targeta no siga suficient per a justificar el preu davant de qui només mira el número. Però és coherent amb el màrqueting mix: si el producte és el mateix, millorar la comunicació pot captar qui dubtava per falta d'informació, no per falta de voluntat de pagar.",
+          "next": "final:exito"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "El projecte té una cadena operativa que funciona",
+      "resumen": "Aprovisionament amb punt de comanda definit, producció controlada i un màrqueting mix coherent. El marge cobrix costos i el projecte pot repetir el cicle sense perdre diners.",
+      "lecciones_clave": [
+        "El pla de compres sempre inclou preu, termini i proveïdor: els tres determinen el risc d'abastiment.",
+        "El punt de comanda és la frontera entre continuar produint i parar: calculeu-lo abans de necessitar-lo.",
+        "El preu és senyal: baixar el preu d'un producte artesà no convertix els clients d'allò industrial, però sí que reduïx el marge dels clients que ja vos triaven."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "El projecte opera però amb marge insuficient",
+      "resumen": "La cadena funciona, però les decisions de preu i aprovisionament han reduït el marge al límit. Cada fallada d'estoc o de demanda genera pèrdues.",
+      "lecciones_clave": [
+        "Baixar el preu com a primera resposta a la competència és el camí més ràpid per a reduir el marge sense guanyar clients nous.",
+        "Un estoc de seguretat mal calculat pot parar la producció en el pitjor moment: el punt de comanda no és opcional."
+      ]
+    }
+  }
+}
+```

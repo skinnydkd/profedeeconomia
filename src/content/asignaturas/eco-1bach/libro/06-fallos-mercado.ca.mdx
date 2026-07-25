@@ -1,0 +1,456 @@
+---
+asignatura: eco-1bach
+unidad: 6
+title: 'Microeconomia III: fallades de mercat'
+lema: >-
+  El mercat coordina milions de decisions sense que ningú les dirigisca,
+  però de vegades falla. Esta unitat estudia quan i per què la mà
+  invisible deixa buits —externalitats, béns públics, informació
+  asimètrica, poder de mercat— i sota quines condicions l'Estat pot
+  tapar-los sense obrir-ne de majors.
+lang: ca
+estado: publicado
+slug: "asignaturas/eco-1bach/libro/06-fallos-mercado.ca"
+duracion: 5-6 sessions · 2 setmanes
+bloque: Bloque B
+sabers:
+  - B.4
+conceptos_clave:
+  - fallada de mercat
+  - externalitat
+  - bé públic
+  - bé comú
+  - free-rider
+  - informació asimètrica
+  - selecció adversa
+  - risc moral
+  - monopoli
+  - impost pigouvià
+objetivos:
+  - Definir el concepte de fallada de mercat i enumerar els quatre tipus principals reconeguts per la teoria econòmica.
+  - Identificar externalitats positives i negatives amb exemples reals i proposar instruments correctors (impostos, subvencions, mercats de drets).
+  - Distingir béns públics, privats, comuns i de club a partir de la matriu rivalitat × exclusió.
+  - Explicar els mecanismes de selecció adversa i risc moral en mercats amb informació asimètrica (assegurances, banca, mercat laboral).
+  - Argumentar quan escau la intervenció pública per corregir una fallada i quan el remei pot ser pitjor que la malaltia (fallades de govern).
+publicado_en: 2026-05-15
+---
+
+import Callout from '@components/Callout.astro';
+import Curiosity from '@components/Curiosity.astro';
+import RealExample from '@components/RealExample.astro';
+import Steps from '@components/Steps.astro';
+import KeyTakeaways from '@components/KeyTakeaways.astro';
+import Diagram from '@components/Diagram.astro';
+import Externalidad from '@components/diagrams/Externalidad.astro';
+import BienesPublicos from '@components/diagrams/BienesPublicos.astro';
+import Figure from '@components/Figure.astro';
+import Bibliography from '@components/Bibliography.astro';
+import TldrUnidad from '@components/TldrUnidad.astro';
+import CasoDilema from '@components/CasoDilema.astro';
+import VuelveAlCaso from '@components/VuelveAlCaso.astro';
+import MirarFora from '@components/MirarFora.astro';
+import VocesDesacuerdo from '@components/VocesDesacuerdo.astro';
+import RecursoDestacado from '@components/libro/RecursoDestacado.astro';
+
+import vwLogoWolfsburg from '@assets/libro/eco-1bach/06/vw-logo-wolfsburg.jpg';
+import faroChipiona from '@assets/libro/eco-1bach/06/faro-chipiona.jpg';
+import elinorOstrom from '@assets/libro/eco-1bach/06/elinor-ostrom.jpg';
+import georgeAkerlof from '@assets/libro/eco-1bach/06/george-akerlof.jpg';
+
+> **Temps estimat de lectura**: 35-40 min · **Sabers LOMLOE**: B.4 · **Prerequisits**: Unitats 4 i 5 (mercat, equilibri, elasticitat i excedents).
+>
+> **En acabar esta unitat sabràs**:
+> - Definir què és una fallada de mercat i enumerar els quatre tipus canònics (externalitats, béns públics, informació asimètrica, poder de mercat).
+> - Identificar externalitats positives i negatives i proposar instruments correctors (impostos pigouvians, subvencions, regulació, mercats de drets).
+> - Classificar els béns en la matriu rivalitat × exclusió i explicar el problema del polissó i la tragèdia dels comuns.
+> - Distingir selecció adversa de risc moral en mercats amb informació asimètrica i argumentar quan convé (o no) la intervenció pública.
+
+<TldrUnidad>
+El mercat lliure **no sempre** assigna recursos eficientment. Hi ha quatre situacions on falla sistemàticament: monopolis, **externalitats** (positives o negatives), **béns públics** i **informació asimètrica**.
+
+Esta unitat t'ensenya a reconéixer-les i a entendre per què l'Estat hi intervé no com a caprici, sinó com a **correcció tècnica** d'una fallada que el mateix model de mercat prediu.
+</TldrUnidad>
+
+<CasoDilema
+  titular="Volkswagen va falsificar les proves d'emissions d'11 milions de vehicles. La multa global va superar els 30.000 M€"
+  fuente="Investigació de l'EPA (Agència de Protecció Ambiental EUA) · setembre 2015"
+  pregunta="Si Volkswagen venia cotxes eficients i bonics, per què va fer trampa? Per què el mercat lliure no detecta i castiga estos comportaments a temps?"
+>
+El 2015 l'EPA va descobrir que Volkswagen havia instal·lat en els seus motors dièsel un programari que detectava quan el cotxe estava sent testat i reduïa les emissions per passar els controls. En conducció real, els vehicles emetien fins a **40 vegades més NOx** (òxids de nitrogen) que el límit legal. Les multes, indemnitzacions i compres forçoses de vehicles van costar a VW més de 30.000 M€. Més greu: les emissions extra de NOx durant set anys van provocar, segons estudis mèdics posteriors, milers de morts prematures a Europa.
+</CasoDilema>
+
+Les dos unitats anteriors ens han mostrat un mercat que funciona raonablement bé. Oferta i demanda es creuen, els preus transmeten informació, els recursos fluïxen cap als seus usos més valorats i l'elasticitat ajuda a anticipar els efectes d'un canvi impositiu o d'una pujada de costos. És la versió del mercat que Adam Smith celebrava el 1776 amb la metàfora de la *mà invisible*: ningú coordina, i tanmateix la coordinació ocorre.
+
+Esta unitat estudia el revés. Hi ha situacions —nombroses, importants, quotidianes— en què el mercat, deixat a si mateix, **no** aconseguix el resultat eficient. Produïm més contaminació de la que voldríem col·lectivament, menys investigació bàsica de la que seria rendible a llarg termini, massa assegurances per a sans i poques per a malalts, massa concentració de poder en algunes plataformes digitals. L'economia anomena eixos buits **fallades de mercat**, i són la principal justificació tècnica de la intervenció pública en l'economia.
+
+Convé aclarir una cosa des del principi. Parlar de fallada de mercat **no** és un judici ideològic contra el mercat; és un diagnòstic tècnic que identifica els supòsits sota els quals el model competitiu perfecte deixa de complir-se. Reconéixer una fallada tampoc implica que l'Estat haja d'intervindre automàticament: la intervenció també té costos, biaixos i efectes no desitjats, com veurem en l'últim apartat.
+
+## Què és una fallada de mercat?
+
+Una **fallada de mercat** és una situació en què l'assignació de recursos resultant de la interacció lliure d'oferta i demanda **no és eficient** en el sentit de Pareto. Recordem de la Unitat 5 que una assignació és eficient en sentit de Pareto quan no és possible millorar la situació d'algú sense empitjorar la d'un altre; una fallada de mercat descriu assignacions en què sí que existixen millores mútuament beneficioses que el mercat no aconseguix implementar per si sol.
+
+Els quatre grans tipus de fallada, reconeguts des de mitjan segle XX per la teoria econòmica del benestar (Pigou, Samuelson, Arrow), són els següents:
+
+1. **Externalitats**: l'activitat d'un agent genera costos o beneficis sobre tercers que no participen de la transacció i que no es reflectixen en el preu.
+2. **Béns públics**: béns el consum dels quals no és rival ni excloïble, cosa que provoca infrasubministrament privat.
+3. **Informació asimètrica**: una de les parts de la transacció disposa d'informació rellevant que l'altra no té, distorsionant l'equilibri.
+4. **Poder de mercat**: un nombre reduït d'agents amb capacitat de fixar el preu trenca el supòsit de competència perfecta.
+
+Hi ha a més un *quint* fall que alguns manuals tracten a banda —els **cicles macroeconòmics** i la desocupació involuntària— i que s'estudiarà dins del Bloc C quan entrem en macroeconomia. La distribució desigual de la renda, per la seua banda, no és una fallada de mercat en sentit estricte (un mercat pot ser eficient i desigual alhora), però sí una motivació complementària per a la intervenció pública que abordarem en el Bloc D.
+
+Convé retindre des d'ara una distinció important. Algunes fallades —externalitats, béns públics— són **fallades d'assignació**: la quantitat produïda del bé està sistemàticament desviada de l'òptim social. Altres —informació asimètrica, poder de mercat— són **fallades de funcionament**: fins i tot quan la quantitat agregada s'aproxima a l'òptim, el mecanisme mitjançant el qual s'arriba allí no és competitiu i genera transferències de renda indegudes o exclusions injustificades. Les dos justifiquen intervenció pública, però els instruments correctors són distints.
+
+<Callout label="Concepte clau" title="Fallada de mercat">
+
+Una fallada de mercat és una situació en què el funcionament lliure del mercat no aconseguix una assignació eficient dels recursos. Els quatre tipus canònics són externalitats, béns públics, informació asimètrica i poder de mercat. Identificar una fallada és condició necessària, però no suficient, per justificar una intervenció pública: cal comprovar també que eixa intervenció millorarà el resultat i no introduirà fallades pitjors.
+
+</Callout>
+
+## Externalitats
+
+Una **externalitat** és un efecte —positiu o negatiu— que l'activitat d'un agent econòmic produïx sobre tercers que no participen en la transacció i que no es reflectix en el preu. La fàbrica que contamina el riu, el veí que posa música a les dos de la matinada, la persona que es vacuna i reduïx la circulació d'un virus, l'inquilí que reforma el portal: tots generen efectes sobre altres que el mercat, per si sol, no factura.
+
+El concepte va ser formalitzat per l'economista britànic **Arthur Cecil Pigou** en *The Economics of Welfare* (1920). Pigou distingia entre el **cost privat** (el que paga qui produïx) i el **cost social** (el que paga la societat en conjunt, incloent-hi els tercers afectats). Quan tots dos no coincidixen, el mercat produïx massa del bé amb externalitat negativa i massa poc del bé amb externalitat positiva.
+
+<Diagram caption="Amb una externalitat negativa, el cost social està per damunt del privat: el mercat, pel seu compte, produïx més del que és eficient (sobreproducció).">
+  <Externalidad />
+</Diagram>
+
+### Externalitats negatives
+
+Són les més visibles i políticament urgents. La fàbrica que emet CO₂ a l'atmosfera no paga el cost climàtic que les seues emissions causen a la humanitat; eixe cost es repartix entre tots. El resultat: com que el cost privat és menor que el social, l'empresa produïx més del que és eficient. Exemples quotidians:
+
+- **Contaminació industrial i atmosfèrica.** Emissions de gasos, abocaments, soroll, residus.
+- **Congestió del trànsit.** Cada cotxe que entra en la M-30 madrilenya en hora punta no sols paga la seua gasolina: imposa temps perdut a la resta de conductors.
+- **Resistència a antibiòtics.** L'ús indiscriminat d'antibiòtics en ramaderia o medicina genera soques resistents que perjudiquen futurs pacients.
+- **Soroll nocturn** de l'oci en barris residencials.
+
+### Externalitats positives
+
+Existixen també externalitats positives: activitats el benefici social de les quals excedix el benefici privat de qui les realitza. Sense intervenció, el mercat les **infraproduirà**:
+
+- **Vacunació.** Qui es vacuna es protegix a si mateix i a més reduïx la circulació del patogen; eixe benefici per a tercers no entra en la seua decisió.
+- **Educació.** Una població més formada eleva la productivitat agregada, reduïx la criminalitat i enriquix el debat democràtic: beneficis que escapen a qui estudia.
+- **Investigació bàsica.** Qui finança investigació sobre un nou material no s'apropiarà de tots els seus usos futurs.
+- **Manteniment d'un edifici històric** que dóna caràcter a un carrer sencer.
+
+### Instruments correctors: Pigou i Coase
+
+L'economia disposa de tres grans famílies d'instruments per corregir externalitats.
+
+**Impostos pigouvians i subvencions.** Proposats per Pigou (1920): es grava l'activitat amb externalitat negativa amb un impost igual al dany marginal causat a tercers, i es subvenciona l'activitat amb externalitat positiva pel benefici marginal que reporta. El preu de mercat, així corregit, torna a reflectir el cost o benefici social i la quantitat produïda s'ajusta a l'òptim. Exemples a Espanya: l'impost al CO₂ en hidrocarburs, els impostos especials sobre tabac i alcohol, les subvencions al transport públic o a la rehabilitació energètica.
+
+**Regulació directa (normes i prohibicions).** L'Estat fixa un límit quantitatiu: emissions màximes, prohibicions d'abocament, estàndards d'eficiència obligatòria per a vehicles o electrodomèstics. És la ferramenta més usada històricament i la més fàcil de comunicar, però ignora que distints agents tenen distints costos de reducció: una norma uniforme pot ser molt ineficient comparada amb un impost ben calibrat.
+
+**Mercats de drets d'emissió.** Solució proposada per l'economista **Ronald Coase** en *The Problem of Social Cost* (1960), que li va valdre el Nobel el 1991. La idea: si els drets de propietat sobre el medi (l'aire, l'aigua) estan clarament assignats, les parts poden negociar i aconseguir el resultat eficient sense necessitat d'intervenció addicional. L'**EU ETS** (*Emissions Trading System*) europeu funciona així des de 2005: la UE fixa un sostre d'emissions, repartix drets a les empreses industrials i elèctriques, i permet que els compren i venguen entre elles. Qui pot reduir emissions barat ho fa i ven el dret sobrant; qui té costos alts compra drets. El preu del dret d'emissió, després del pic de 90-100 €/tCO₂ assolit el 2023, s'ha relaxat el 2025-2026 a un rang de 65-75 €/tCO₂ a causa de la incorporació del sector marítim a l'esquema i de la major oferta de drets; internalitza així parcialment el cost climàtic.
+
+La diferència pràctica entre un impost pigouvià i un mercat de drets és subtil però rellevant. L'impost fixa el **preu** del dany i deixa que el mercat determine la quantitat emesa; el sistema de drets fixa la **quantitat** total i deixa que el mercat determine el preu. Si l'objectiu prioritari és respectar un sostre climàtic ineludible (per exemple, no superar 1,5 °C), el sistema de drets dóna més seguretat sobre el resultat físic. Si l'objectiu prioritari és protegir la indústria de pujades brusques de costos, l'impost dóna més previsibilitat sobre el cost. La decisió entre un i altre és, per tant, tècnica i política alhora.
+
+<VocesDesacuerdo
+  tema="Com s'internalitzen les externalitats?"
+  postura_a={{
+    etiqueta: 'Arthur Cecil Pigou (1920)',
+    tesis: 'L\'Estat ha d\'imposar al contaminador un impost igual al cost social que genera. El preu corregit conduïx el mercat a l\'òptim.',
+  }}
+  postura_b={{
+    etiqueta: 'Ronald Coase (1960)',
+    tesis: 'Si els drets de propietat estan ben definits i els costos de negociació són baixos, les parts resolen l\'externalitat per si soles sense intervenció.',
+  }}
+>
+En la pràctica s'usen tots dos enfocaments, segons el cas. Els impostos al carboni i els cèntims sanitaris són **pigouvians**; els mercats de drets d'emissió (EU ETS) són **coasians**. La discussió tècnica contemporània no és *Pigou o Coase*, sinó quina combinació és més eficaç per a cada externalitat concreta.
+</VocesDesacuerdo>
+
+<Curiosity title="El teorema de Coase i el cas del metge i el confiter">
+Per il·lustrar la seua tesi, Ronald Coase va recuperar un cas judicial anglés del segle XIX: un confiter i un metge veïns. La maquinària del confiter feia vibracions que impedien al metge sentir els sons dels seus pacients. El tribunal va donar la raó al metge. Coase va argumentar una cosa aparentment provocadora: si els costos de transacció són baixos, dóna igual a qui done la raó el jutge —el confiter al metge o el metge al confiter—, perquè les parts negociaran fins a arribar al mateix resultat eficient. Si val més al metge exercir que al confiter produir, el metge pagarà al confiter perquè pare (o el confiter indemnitzarà el metge, segons el repartiment inicial de drets). El veritable problema no és l'externalitat en si: són els **costos de transacció** que impedixen la negociació. Esta intuïció —els drets de propietat ben definits i els costos de transacció baixos permeten resoldre externalitats sense intervenció— va transformar el dret econòmic i va donar origen a l'anàlisi econòmica del dret.
+</Curiosity>
+
+<Figure
+  src={vwLogoWolfsburg}
+  alt="Emblema gegant de Volkswagen sobre la central tèrmica de la fàbrica matriu de Wolfsburg (Alemanya)."
+  caption="El logotip de Volkswagen sobre la central tèrmica de la planta matriu a Wolfsburg. El 2015 es va descobrir que 11 milions de vehicles de la marca portaven un programari trampa per falsejar les proves d'emissions: el cas paradigmàtic d'externalitat negativa multiplicada per engany deliberat."
+  credit="Foto: High Contrast, CC BY 3.0 DE via Wikimedia Commons"
+  aspectHint="4/3"
+  variant="wide"
+/>
+
+<RealExample title="L'escàndol de les emissions de Volkswagen (2015)" source="EPA i comunicat oficial de Volkswagen AG, setembre 2015" sourceUrl="https://www.epa.gov/vw">
+Al setembre de 2015 l'Agència de Protecció Ambiental dels Estats Units va revelar que Volkswagen havia instal·lat en 11 milions de vehicles dièsel un *programari* trampa que detectava quan el cotxe estava sent sotmés a una prova d'emissions i activava un mode de funcionament net. Fora del laboratori, els mateixos cotxes emetien fins a 40 vegades el límit legal d'òxids de nitrogen (NOx). És un cas paradigmàtic d'externalitat negativa multiplicada per engany deliberat: cada propietari *creia* estar conduint un cotxe net, però estava imposant danys sanitaris sobre tots els habitants de les ciutats on circulava. El dany ambiental i sanitari està quantificat en milers de morts prematures per NOx a Europa. Volkswagen ha pagat més de 32.000 milions d'euros en multes, compensacions i recompres. El cas il·lustra tres idees: (1) les externalitats són reals i mesurables en termes sanitaris i econòmics; (2) la regulació funciona només si el regulador pot verificar el compliment; (3) quan la verificació falla, l'escàndol retroactiu és car però els danys ja estan fets.
+</RealExample>
+
+## Béns públics i béns comuns
+
+La segona gran fallada de mercat naix de les propietats físiques d'alguns béns. L'economista **Paul Samuelson** va formalitzar la teoria dels béns públics en *The Pure Theory of Public Expenditure* (1954) amb dos criteris tècnics.
+
+- **Rivalitat.** Un bé és rival si el consum per una persona impedix o reduïx el consum d'una altra. Una poma és rival (si me la menge, tu no pots); una emissió de ràdio no ho és (que tu l'escoltes no em priva a mi).
+- **Exclusió.** Un bé és excloïble si és possible impedir a algú que el consumisca. El cine és excloïble mitjançant el control d'entrades; un foc artificial sobre la ciutat no ho és: si el llancen, el veuen tots els que miren al cel.
+
+Encreuant estos dos criteris obtenim quatre tipus de béns, en una matriu que tot manual d'economia pública reproduïx i que la politòloga **Elinor Ostrom** (Nobel 2009) va popularitzar com a ferramenta d'anàlisi institucional:
+
+|              | **Excloïble**            | **No excloïble**             |
+|--------------|--------------------------|------------------------------|
+| **Rival**    | Bé privat                | Bé comú (*commons*)          |
+| **No rival** | Bé de club               | Bé públic pur                |
+
+<Diagram caption="Encreuant rivalitat (el consum d'un reduïx el d'un altre?) i exclusió (es pot impedir consumir a qui no paga?) obtenim quatre tipus de béns. El mercat assigna bé els privats, però falla amb els comuns (sobreexplotació) i, sobretot, amb els públics purs (problema del polissó)." source="Samuelson (1954); Ostrom (1990)">
+  <BienesPublicos />
+</Diagram>
+
+### Les quatre caselles
+
+**Bé privat.** Rival i excloïble. El cas estàndard del mercat: una poma, un tall de cabell, una hora de treball. El mercat els assigna habitualment amb eficiència i no necessita correcció.
+
+**Bé de club.** No rival però excloïble. Una vegada produït, molta gent pot consumir-lo sense estorbar-se, però es pot cobrar entrada: Netflix, una piscina municipal amb abonament, un programa informàtic amb llicència, una autopista de peatge. El mercat pot produir-los, encara que de vegades amb infraproducció si el cost fix és molt alt.
+
+**Bé comú (*common-pool resource*).** Rival però no excloïble. La pastura comunal on diversos ramaders porten les seues vaques, el caladero de pesca, l'aigua d'un aqüífer compartit, els sòls forestals. La rivalitat genera tensió (el que tu consumixes ja no puc consumir-ho jo), però com que no hi ha exclusió ningú se sent propietari i tots sobreexploten. És el problema clàssic de la **tragèdia dels comuns**.
+
+**Bé públic pur.** Ni rival ni excloïble. L'exemple de manual és la **defensa nacional**: si l'exèrcit protegix el territori, protegix tots els habitants sense que el cost marginal d'afegir un beneficiari siga positiu, i no es pot excloure del benefici qui no pague impostos. Altres: l'**enllumenat públic**, un **far marítim** senyalant una costa, la **investigació bàsica** una vegada publicada, l'**estabilitat macroeconòmica**, el **coneixement científic obert**.
+
+<Figure
+  src={faroChipiona}
+  alt="Far de Chipiona (Cadis), torre de 62 metres sobre la costa atlàntica andalusa, reflectit en la plenamar."
+  caption="El far de Chipiona, a la província de Cadis, és el més alt d'Espanya (62 metres) i guia l'entrada a l'estuari del Guadalquivir des de 1869. Un far és l'exemple clàssic de bé públic pur: la seua llum no es gasta perquè la mire un vaixell més i no es pot impedir que la vegen els bucs que no han pagat taxes portuàries."
+  credit="Foto: Diego Delso, CC BY-SA 4.0 via Wikimedia Commons"
+  aspectHint="3/2"
+/>
+
+<RecursoDestacado href="/dinamicas/decisiones-comunes/01-tragedia-comunes/" kicker="Dinàmica d'aula" title="La tragèdia dels comuns" descripcion="L'alumnat gestiona un recurs compartit per rondes i decidix quant explotar, comprovant en viu la sobreexplotació i les solucions col·lectives." colorVar="--color-taller3" />
+
+### El problema del polissó (*free-rider*)
+
+Els béns públics purs plantegen un problema específic de finançament. Si pregunte a cada ciutadà quant està disposat a pagar voluntàriament per la defensa nacional, tots tenen incentiu a declarar *zero* i esperar que paguen els altres: la defensa es prestarà igualment i ells la gaudiran gratis. És el **problema del polissó** o *free-rider problem*. Resultat previsible: el mercat privat infraproduïx greument els béns públics purs, i per això quasi tots els Estats els financen amb impostos coercitius. Pagar impostos no és una donació: és la forma tècnica de superar el problema del polissó.
+
+<Figure
+  src={elinorOstrom}
+  alt="Retrat de la politòloga estatunidenca Elinor Ostrom, primera dona Premi Nobel d'Economia (2009), durant el dinar dels Nobel a Estocolm."
+  caption="Elinor Ostrom (1933-2012) en el dinar de laureats dels Nobel a Estocolm, desembre de 2009. Va ser la primera dona a rebre el Premi Nobel d'Economia, pel seu treball de quaranta anys documentant com les comunitats locals poden governar béns comuns sense recórrer ni a la privatització ni al control estatal."
+  credit="Foto: US Embassy Sweden (Flickr), CC BY 2.0 via Wikimedia Commons"
+  aspectHint="2/3"
+  variant="tight"
+/>
+
+<Curiosity title="Hardin, Ostrom i el retorn dels comuns">
+El 1968 el biòleg Garrett Hardin va publicar en *Science* un article titulat *The Tragedy of the Commons* que es va convertir en peça canònica de la teoria econòmica. Hardin argumentava que quan diversos pastors comparteixen una pastura sense regles, cadascú té incentiu a posar-hi una vaca més: el benefici individual és íntegre, mentre que el cost de la sobreexplotació es repartix entre tots. El resultat, ineludible segons ell, és el col·lapse del recurs. Hardin concloïa que només hi ha dos solucions: privatitzar (dividir la pastura) o estatalitzar (gestió central). Durant dècades la professió va assumir eixa dicotomia. Aleshores va arribar **Elinor Ostrom**. Esta politòloga estatunidenca va passar quaranta anys documentant casos reals —pesqueries de Maine, sistemes de regadiu valencians com el Tribunal de les Aigües, boscos comunals a Suïssa i el Nepal— i va demostrar que les comunitats locals sí que poden governar béns comuns sense privatitzar-los ni estatalitzar-los, sempre que complisquen huit principis de disseny institucional (regles clares, sancions graduades, monitoratge mutu, mecanismes de resolució de conflictes). El 2009 li van concedir el Premi Nobel d'Economia, sent la primera dona a rebre'l. La moralitat: la tragèdia dels comuns no és inevitable; és una conseqüència d'institucions mal dissenyades.
+</Curiosity>
+
+## Informació asimètrica
+
+La tercera gran fallada de mercat naix quan una de les parts d'una transacció disposa d'informació rellevant que l'altra no té. La microeconomia competitiva clàssica suposava informació perfecta i simètrica; en la pràctica, el món està ple de situacions en què el venedor sap més que el comprador (l'amo del cotxe usat sap que té una fallada de motor) o el comprador sap més que el venedor (la persona que contracta una assegurança de salut sap si fuma).
+
+El camp va enlairar-se en els anys 70 amb tres economistes que compartirien el **Nobel el 2001**: **George Akerlof**, **Michael Spence** i **Joseph Stiglitz**. Van distingir dos problemes distints segons el moment en què apareix l'asimetria:
+
+- **Selecció adversa**: l'asimetria existix **abans** de tancar el contracte i afecta *qui* accepta la transacció.
+- **Risc moral**: l'asimetria apareix **després** de tancar el contracte i afecta el *comportament* de les parts una vegada assegurades.
+
+### Selecció adversa: el mercat dels llimons
+
+<Figure
+  src={georgeAkerlof}
+  alt="Retrat de l'economista estatunidenc George Akerlof, Premi Nobel d'Economia 2001, a Berkeley."
+  caption="George Akerlof, Premi Nobel d'Economia 2001, a la Universitat de Califòrnia a Berkeley. El seu article de 1970 The Market for Lemons va mostrar que l'asimetria d'informació pot destruir un mercat sencer, no sols distorsionar-lo: quan els compradors no distingixen qualitat, els venedors bons es retiren."
+  credit="Foto: Yan Chi Vinci Chow (Flickr), CC BY 3.0 via Wikimedia Commons"
+  aspectHint="2/3"
+  variant="left"
+/>
+
+El 1970 Akerlof va publicar un article titulat *The Market for "Lemons"* (els *llimons* eren, en argot estatunidenc, els cotxes usats defectuosos). L'argument, simplificat:
+
+Imagina un mercat de cotxes usats amb dos tipus de vehicles: la meitat bons (valor real 10.000 €) i la meitat roïns (valor real 4.000 €). Els compradors no poden distingir-los a simple vista; els venedors sí que saben què tenen. Un comprador racional oferirà com a molt **el valor esperat**: 7.000 €. A eixe preu, els amos de cotxes bons retiren el seu cotxe del mercat (val més quedar-se'l). Només entren al mercat els cotxes roïns. Els compradors, en veure-ho, ajusten la seua oferta a la baixa… i el mercat s'enfonsa. L'asimetria d'informació fa que només es transaccionen els llimons, perjudicant fins i tot els venedors de cotxes bons que volien vendre de veritat.
+
+El mateix mecanisme afecta:
+
+- **Assegurances de salut.** Qui sap que està malalt busca assegurança; qui sap que està sa no. Si la companyia no pot distingir, puja primes, els sans se'n van i només queden malalts pagant primes insostenibles.
+- **Mercat de crèdit.** El prestatari sap si el seu projecte és arriscat; el banc no del tot. Si el banc puja tipus per protegir-se, només accepten els prestataris més arriscats (els segurs no accepten tipus alts), i el risc mitjà de la cartera empitjora.
+- **Mercat laboral.** Si una empresa puja el salari per atraure millors candidats, també atrau candidats sobrequalificats o desesperats; sense informació addicional (currículum, prova tècnica), no pot distingir.
+
+Com combat el mercat la selecció adversa? Mitjançant **senyalització** (Spence, 1973): l'agent informat emet senyals costoses que només li compensen si el seu tipus és bo. El títol universitari, la garantia de devolució, les revisions tècniques obligatòries o la marca coneguda funcionen com a senyals que reduïxen l'asimetria. I mitjançant **screening** o garbellament: la part desinformada dissenya contractes que porten l'altre costat a revelar el seu tipus (una assegurança amb diverses franquícies a triar: el sa tria franquícia alta, el malalt preferix franquícia baixa). Tots dos mecanismes —senyalització i screening— consumixen recursos que en un món d'informació perfecta no farien falta, cosa que constituïx precisament la prova de la fallada de mercat: l'asimetria té un cost real.
+
+### Risc moral
+
+El risc moral apareix **després** del contracte: una vegada assegurat, el comportament de l'assegurat canvia perquè les conseqüències de la seua acció es traslladen a un altre. Qui té assegurança a tot risc del cotxe conduïx amb menys cura de la que tindria si pagara de la seua butxaca qualsevol bonyet; el banc *massa gran per caure* assumix riscos excessius perquè sap que, si fa fallida, l'Estat el rescatarà.
+
+Mecanismes típics de correcció:
+
+- **Franquícies i copagaments** en assegurances: l'assegurat paga els primers 300 € de cada sinistre, mantenint així un incentiu per evitar el dany.
+- **Auditories i supervisió.** En banca, la supervisió prudencial del BCE i el ràtio mínim de capital reduïxen l'incentiu a assumir riscos descontrolats.
+- **Clàusules d'exclusió.** Algunes conductes (conducció sota efectes de l'alcohol, esports extrems sense declarar) estan excloses de la cobertura.
+- **Reputació repetida.** Quan la relació és a llarg termini, l'incentiu a portar-se malament disminuïx.
+
+<RealExample title="La bambolla immobiliària i la crisi financera de 2008" source="Informe oficial de la Comissió d'Investigació de la Crisi Financera (FCIC), 2011" sourceUrl="https://www.govinfo.gov/content/pkg/GPO-FCIC/pdf/GPO-FCIC.pdf">
+La crisi financera global de 2008 és un manual vivent d'informació asimètrica i risc moral en cascada. Als Estats Units, bancs i *brokers* concedien hipoteques a famílies amb escassa capacitat de pagament (les *subprime*), sabent que la seua capacitat d'impagament era alta però que cobrarien comissió per la firma. Eixa informació no es traslladava a l'inversor que després comprava els paquets hipotecaris titulitzats (MBS, CDO): l'originador coneixia la qualitat real del crèdit; el comprador final, no. Selecció adversa de manual. A més, els grans bancs sabien que en cas de fallida serien rescatats per l'Estat (*too big to fail*): pur risc moral, van assumir palanquejaments de 30:1 sense témer les conseqüències. A Espanya la versió local va ser paral·lela: caixes d'estalvis amb governança polititzada concedint hipoteques i crèdits al promotor sense disciplina prudencial, conscients d'un rescat implícit que va arribar el 2012 amb el programa MEDE (més de 60.000 milions d'euros, dels quals s'han recuperat menys d'un 5 %). És el cas paradigmàtic que mostra per què la regulació financera moderna —Basilea III, Unió Bancària europea, MUS i MUR— es va dissenyar precisament per neutralitzar selecció adversa i risc moral simultàniament.
+</RealExample>
+
+## Poder de mercat
+
+La quarta fallada apareix quan una empresa, o un grup xicotet d'empreses, té capacitat de **fixar el preu** (no d'acceptar-lo, com en competència perfecta). Recordem del marc de la Unitat 4 les quatre estructures de mercat:
+
+- **Competència perfecta**: moltes empreses, producte homogeni, lliure entrada. El preu el fixa el mercat.
+- **Competència monopolística**: moltes empreses, producte diferenciat (restauració, moda). Un poc de poder, però limitat per l'entrada de competidors.
+- **Oligopoli**: poques empreses grans (telecomunicacions, energia, banca, supermercats). Interdependència estratègica.
+- **Monopoli**: una sola empresa. Cas extrem de poder de mercat.
+
+Quan hi ha poder de mercat, l'empresa amb eixe poder restringix la quantitat oferida i puja el preu per damunt del cost marginal, capturant un excedent que en competència hauria correspost al consumidor. El resultat: preus més alts, quantitats inferiors, **pèrdua irrecuperable d'eficiència** (*deadweight loss*) i, de vegades, fre a la innovació si el monopolista no sent la pressió de la competència.
+
+### Per què sorgix el poder de mercat
+
+Les raons són variades i convé distingir-les:
+
+- **Barreres legals.** Patents (un fàrmac protegit 20 anys, una tecnologia sota propietat intel·lectual), llicències administratives (taxis, oficines de farmàcia), concessions públiques (ports, autopistes).
+- **Economies d'escala molt grans.** Sectors on el cost mitjà decreix al llarg de tota la corba rellevant; produir a gran escala és tan barat que només hi cap una empresa eficient. És el **monopoli natural** (xarxa elèctrica, ferrocarril, aigua). Ací la solució no és trencar-lo en trossos —es perdria eficiència— sinó regular-lo intensament.
+- **Efectes de xarxa.** Una plataforma val més com més gent la usa (WhatsApp, Visa, Google Search). Una vegada la xarxa arriba a una massa crítica, els competidors tenen molt difícil entrar encara que el seu producte siga tècnicament millor.
+- **Control d'un recurs essencial.** Una mina que concentra una proporció molt alta de l'oferta mundial d'un mineral crític (liti, cobalt, terres rares).
+- **Estratègies anticompetitives.** Acords col·lusoris entre empreses (càrtels), abús de posició dominant per expulsar competidors, fusions per reduir pressió competitiva.
+
+### Defensa de la competència a Espanya i la UE
+
+La política pública respon amb dos grans famílies d'instruments. La primera és la **regulació de sectors amb monopoli natural** mitjançant autoritats sectorials que fixen tarifes, qualitats i obligacions d'accés a la xarxa (CNMC en electricitat i telecomunicacions, Banc d'Espanya per a banca, CNMV per a mercats de valors).
+
+La segona és la **defensa de la competència** pròpiament dita. A Espanya la porta la **Comissió Nacional dels Mercats i la Competència (CNMC)**; a la UE, la **Direcció General de Competència** de la Comissió Europea. Els seus instruments:
+
+- **Control de fusions**: qualsevol operació gran necessita autorització prèvia per impedir que dos competidors es convertisquen en un únic actor dominant.
+- **Persecució de càrtels** i acords col·lusoris. Multes de fins al 10 % de la facturació anual.
+- **Sanció de l'abús de posició dominant**, especialment en sectors digitals.
+
+En els últims anys la UE ha multat amb milers de milions d'euros les grans tecnològiques: 2.420 M€ a **Google** el 2017 per afavorir el seu comparador de compres; 4.340 M€ el 2018 per imposar Android a fabricants; 1.490 M€ el 2019 per abús en el mercat publicitari. El 2024 va entrar en vigor la **Digital Markets Act** que designa explícitament com a *gatekeepers* un grapat de plataformes (Alphabet, Apple, Meta, Amazon, Microsoft, ByteDance) i els imposa obligacions específiques d'interoperabilitat i no autopreferència. **Apple** ha sigut sancionada el 2024 amb 1.840 M€ per restringir la informació que els servicis musicals rivals podien donar als seus usuaris sobre alternatives més barates fora de l'App Store, i **Meta** afronta en paral·lel procediments pel seu model de *pagar o acceptar publicitat personalitzada*. El debat no és si estes plataformes són útils —ho són— sinó si la seua posició de *gatekeeper* permet extraure rendes que en un mercat competitiu no serien sostenibles.
+
+<Callout label="Concepte clau" title="Poder de mercat i benestar" variant="example">
+
+Una empresa té poder de mercat quan pot fixar el preu per damunt del cost marginal sense perdre tota la seua demanda. En competència perfecta eixe marge seria zero; en monopoli pur és màxim. El cost social del poder de mercat es mesura per la pèrdua irrecuperable d'eficiència (consumidors que hagueren comprat a un preu competitiu i ja no compren al preu monopolístic). La defensa de la competència no protegix els competidors, sinó el procés competitiu i, a través d'ell, el consumidor.
+
+</Callout>
+
+## Intervindre o no intervindre? Les fallades de govern
+
+Hem vist quatre fallades del mercat i els instruments correctors típics. La conclusió còmoda seria: identificada una fallada, intervindre. L'economia moderna —des de la teoria de la *public choice* de **James Buchanan** (Nobel 1986) en avant— adverteix que eixa inferència és precipitada. La intervenció pública té també les seues fallades, i de vegades el remei és pitjor que la malaltia. Convé tancar la unitat explicitant eixes **fallades de govern**.
+
+### Tipus de fallades de govern
+
+- **Informació limitada del regulador.** Per fixar un impost pigouvià òptim cal conéixer el dany marginal de l'externalitat. En la pràctica el regulador estima eixa xifra amb incertesa considerable: pot gravar de menys (continua havent-hi externalitat) o de més (es penalitza una activitat per damunt del seu dany real).
+- **Captura del regulador.** Les empreses regulades tenen incentiu a influir sobre qui les regula (lobby, portes giratòries, redacció tècnica de les normes). El resultat: regulacions que protegixen l'incumbent i dificulten l'entrada de competidors nous.
+- **Rent-seeking (cerca de rendes).** Quan l'Estat distribuïx llicències, subvencions o proteccions, els agents dediquen recursos a aconseguir-les en lloc de a produir valor. Temps i diners gastats en passadissos parlamentaris i despatxos ministerials que no produïxen cap bé o servei.
+- **Cicle polític i horitzó curt.** Les decisions de política econòmica es prenen en marcs temporals de 4 anys; els problemes estructurals (transició energètica, sostenibilitat de pensions, deute públic) tenen horitzons de 20-40 anys. El biaix curterminista del cicle electoral és real i documentat.
+- **Burocràcia i costos administratius.** Complir amb regulacions complexes té un cost fix que recau proporcionalment més sobre la pime que sobre la gran empresa, distorsionant la competència en el sentit contrari al desitjat.
+
+### Exemples quotidians de fallada de govern
+
+Tres casos clàssics que il·lustren com una intervenció ben intencionada pot generar més distorsió que la que pretenia corregir.
+
+- **Control de lloguers mal dissenyat.** Pensat per protegir els inquilins en zones tensionades, congela els preus per davall de l'equilibri, reduïx l'oferta de pisos en lloguer (els amos els retiren o els passen a temporada), envellix el parc per falta d'incentius a reformar i desplaça l'ajust cap al mercat informal. La literatura empírica recent sobre Berlín, Estocolm i San Francisco és bastant consistent en este diagnòstic.
+- **Subvencions agrícoles mantingudes durant dècades** que van beneficiar sobretot les explotacions més grans i professionalitzades, mentre es justificaven en el discurs per protegir el xicotet agricultor familiar. És el patró típic de captura pel regulat.
+- **Llicències administratives heretades** (taxis amb llicència prèvia al sistema VTC, oficines de farmàcia amb distàncies mínimes, notaries amb concurs restringit) que protegixen rendes instal·lades sense generar a canvi una millora proporcional de qualitat o seguretat del servei per al consumidor.
+
+### El criteri pràctic
+
+La conclusió metodològica de l'anàlisi econòmica moderna és modesta i honesta: la intervenció pública es justifica només quan es complixen, de forma simultània, tres condicions.
+
+<Steps title="Quan està justificada una intervenció pública">
+1. **Hi ha una fallada de mercat identificada i quantificada.** No n'hi ha prou amb que una cosa no ens agrade; cal demostrar que el mercat, deixat sol, produïx un resultat ineficient. La quantificació és important: com de gran és la pèrdua de benestar per la fallada?
+2. **Existix un instrument d'intervenció factible el cost esperat del qual és menor que el dany de la fallada.** Un impost, una subvenció, una regulació, un mercat de drets. L'instrument ha de poder implementar-se amb la capacitat administrativa real del país, no sols en el paper.
+3. **El risc de fallada de govern (captura, informació limitada, rent-seeking) és raonablement menor que la fallada de mercat que es vol corregir.** Si la intervenció generarà una fallada major, millor conviure amb la fallada original.
+</Steps>
+
+Este marc de tres condicions és el que en política econòmica s'anomena l'**enfocament comparatiu institucional**: no comparem el mercat real amb un Estat idealitzat, ni l'Estat real amb un mercat idealitzat, sinó institucions reals amb institucions reals. La decisió final poques vegades és **intervindre o no intervindre**; sol ser **quin grau, quin instrument i quin nivell de govern**.
+
+<VuelveAlCaso referencia="Volkswagen i el dieselgate">
+El cas il·lustra **dos fallades de mercat interactuant** alhora:
+
+- **Externalitat negativa**: les emissions contaminants costen a la societat (salut pública, canvi climàtic), però eixe cost no apareixia en el preu del cotxe.
+- **Informació asimètrica**: el comprador no pot comprovar les emissions reals del seu vehicle; ha de confiar en certificacions que el fabricant pot manipular.
+
+Les regulacions —límits d'emissió, certificacions independents, assajos en carretera real (RDE), homologacions aleatoritzades— són la resposta a estes dos fallades. **Sense regulació, el mercat afavorix qui fa trampa**, no qui complix: el fabricant honest perd competitivitat davant el tramposo, fins que el tramposo és descobert. Però el dany sanitari i ambiental ja està fet i és irreversible.
+</VuelveAlCaso>
+
+<KeyTakeaways title="Les cinc idees per emportar-se a casa">
+- **Fallada de mercat** és un diagnòstic tècnic, no ideològic: hi ha quatre tipus canònics (externalitats, béns públics, informació asimètrica, poder de mercat).
+- Les **externalitats** es corregixen amb impostos pigouvians, subvencions, regulació directa o mercats de drets (model Coase, EU ETS).
+- Els **béns públics purs** (no rivals i no excloïbles) patixen el problema del polissó i exigixen finançament coercitiu; els **béns comuns** poden governar-se col·lectivament amb bones regles (Ostrom).
+- La **informació asimètrica** genera selecció adversa abans del contracte i risc moral després; es combat amb senyalització, franquícies, supervisió i reputació.
+- El **poder de mercat** es controla amb autoritats de competència (CNMC, DG COMP) i, en monopolis naturals, amb regulació tarifària.
+- Identificar una fallada de mercat **no implica automàticament** que l'Estat haja d'intervindre: les **fallades de govern** (captura, rent-seeking, informació limitada) poden ser pitjors que la fallada que es pretén corregir.
+</KeyTakeaways>
+
+## Glossari
+
+- **Fallada de mercat**: situació en què la interacció lliure d'oferta i demanda no aconseguix una assignació eficient dels recursos.
+- **Externalitat**: efecte (positiu o negatiu) que l'activitat d'un agent produïx sobre tercers i que no es reflectix en el preu.
+- **Cost privat vs cost social**: el que paga qui produïx enfront del que suporta tota la societat incloent-hi els afectats. La seua divergència genera l'externalitat.
+- **Impost pigouvià**: impost igual al dany marginal d'una externalitat negativa, que internalitza el cost social en el preu.
+- **Teorema de Coase**: si els drets de propietat estan ben definits i els costos de transacció són baixos, les parts negocien fins a l'assignació eficient sense intervenció.
+- **Bé públic pur**: bé no rival i no excloïble (defensa, enllumenat, far). El mercat l'infraproduïx.
+- **Bé comú (*common-pool resource*)**: bé rival però no excloïble (pesqueries, aqüífers); propens a la sobreexplotació.
+- **Problema del polissó (*free-rider*)**: incentiu a gaudir d'un bé públic sense pagar per ell, esperant que paguen els altres.
+- **Tragèdia dels comuns**: sobreexplotació d'un recurs comú quan ningú té incentiu individual a conservar-lo (Hardin); evitable amb bones regles (Ostrom).
+- **Informació asimètrica**: una part de la transacció disposa d'informació rellevant que l'altra no té.
+- **Selecció adversa**: distorsió que apareix *abans* del contracte perquè l'asimetria afecta *qui* accepta la transacció (mercat dels llimons).
+- **Risc moral**: canvi de comportament *després* del contracte perquè les conseqüències es traslladen a un altre (assegurança a tot risc, *too big to fail*).
+- **Poder de mercat**: capacitat d'una empresa de fixar el preu per damunt del cost marginal sense perdre tota la seua demanda.
+- **Fallada de govern**: ineficiència generada per la mateixa intervenció pública (captura del regulador, rent-seeking, informació limitada, curterminisme).
+
+## Per aprofundir
+
+Si esta unitat t'ha interessat, ací van algunes lectures i recursos per anar més enllà:
+
+- **El govern dels béns comuns** — *Elinor Ostrom* (*Governing the Commons*, 1990, ed. espanyola FCE). Per què encaixa: l'obra que li va valdre el Nobel; desmunta la idea que la tragèdia dels comuns només es resol privatitzant o estatalitzant, amb casos reals com el regadiu valencià.
+- **The Market for "Lemons"** — *George A. Akerlof* (*QJE*, 1970). Per què encaixa: un article curt i llegible que va fundar tota l'economia de la informació; mostra com l'asimetria pot enfonsar un mercat sencer.
+- **El malestar en la globalització** — *Joseph E. Stiglitz* (2002). Per què encaixa: aplica la teoria de la informació asimètrica i les fallades de mercat a casos macroeconòmics i de política internacional, en llenguatge divulgatiu.
+- **Externalities & Public Goods** — *sèrie Marginal Revolution University*. Per què encaixa: vídeos curts que il·lustren externalitats, béns públics i el teorema de Coase amb animacions clares. Accés lliure a mru.org.
+- **Annual Report on Competition Policy** — *Comissió Europea, DG Competition* (últim any). Per què encaixa: els casos reals de multes a les grans tecnològiques i l'aplicació de la *Digital Markets Act* permeten discutir poder de mercat amb exemples actuals.
+
+## Preguntes per reflexionar
+
+Estes preguntes no tenen una resposta única. Servixen per discutir a classe o per pensar individualment en tancar la unitat:
+
+1. Per què un impost pigouvià «ben calibrat» és tan difícil de fixar en la pràctica? Com s'estima el dany marginal del CO₂, del soroll o del sucre, i què passa si el regulador s'equivoca per excés o per defecte?
+2. Ostrom va demostrar que les comunitats poden governar béns comuns sense privatitzar-los ni estatalitzar-los. Quins exemples pròxims (un grup de WhatsApp de veïns, una biblioteca, un hort urbà) funcionen amb els seus principis? Per què uns sí i altres no?
+3. La defensa de la competència «no protegix els competidors, sinó el procés competitiu». Quina diferència hi ha entre les dos coses? Pot una multa a una gran tecnològica acabar perjudicant el consumidor que la usa gratis?
+
+<Bibliography>
+
+1. Pigou, A. C. (1920). *The Economics of Welfare*. Macmillan.
+2. Samuelson, P. A. (1954). *The Pure Theory of Public Expenditure*. Review of Economics and Statistics, 36(4), 387-389.
+3. Coase, R. H. (1960). *The Problem of Social Cost*. Journal of Law and Economics, 3, 1-44.
+4. Hardin, G. (1968). *The Tragedy of the Commons*. Science, 162(3859), 1243-1248.
+5. Akerlof, G. A. (1970). *The Market for "Lemons": Quality Uncertainty and the Market Mechanism*. Quarterly Journal of Economics, 84(3), 488-500.
+6. Spence, M. (1973). *Job Market Signaling*. Quarterly Journal of Economics, 87(3), 355-374.
+7. Stiglitz, J. E. i Weiss, A. (1981). *Credit Rationing in Markets with Imperfect Information*. American Economic Review, 71(3), 393-410.
+8. Ostrom, E. (1990). *Governing the Commons: The Evolution of Institutions for Collective Action*. Cambridge University Press.
+9. Buchanan, J. M. i Tullock, G. (1962). *The Calculus of Consent: Logical Foundations of Constitutional Democracy*. University of Michigan Press.
+10. Comisión Nacional de los Mercados y la Competencia (CNMC). Memòries anuals 2020-2024. https://www.cnmc.es
+11. European Commission, DG Competition (2024). *Annual Report on Competition Policy*.
+12. Reglament (UE) 2022/1925, *Digital Markets Act*, DOUE L 265/1.
+
+</Bibliography>
+
+<MirarFora
+  unidad={6}
+  libro={{
+    titulo: 'Economía rosquilla (Doughnut Economics)',
+    meta: 'Kate Raworth · Paidós, 2018',
+    porque: 'Sobre com l\'economia ha de respectar sostres socials i terres ecològics. Connecta les fallades de mercat clàssiques amb el marc ESG i la sostenibilitat contemporània.',
+    paginas: 'Capítols 1 i 5',
+  }}
+  video={{
+    titulo: 'Why Recessions Happen',
+    meta: 'Two Cents · PBS · YouTube',
+    duracion: '~8 min',
+    porque: 'Sobre per què el mercat lliure genera cicles i crisis recurrents —una fallada macro complementària a les fallades micro d\'esta unitat—.',
+    url: 'https://www.youtube.com/results?search_query=Two+Cents+Why+Recessions+Happen',
+  }}
+  cuenta={{
+    titulo: '@rethinkecon',
+    meta: 'X / Twitter · Rethinking Economics',
+    porque: 'Xarxa internacional d\'alumnes universitaris que critiquen l\'ensenyament neoclàssic estàndard i proposen una economia pluralista que incorpore les fallades de mercat des del primer curs.',
+  }}
+  actividad_titulo="Tres externalitats de la teua vida"
+  actividad_duracion="25 min"
+>
+  <Fragment slot="actividad">
+    Identifica **tres externalitats negatives** i **dos positives** en la teua vida quotidiana (mòbil a l'aula, soroll al bar, vacunació, donació de sang, instal·lació de plaques solars al teu edifici). Com es podrien internalitzar cadascuna? (Impost, subvenció, regulació, mercat de drets, propietat ben definida.)
+  </Fragment>
+  <Fragment slot="para-clase">
+    Variant *tribunal d'externalitats*: els grups jutgen casos reals (vapejadors, xarxes socials per a menors, soroll d'obres, drons en parcs) decidint quin tipus de fallada és i quina intervenció seria raonable. Durada: 45 min.
+  </Fragment>
+</MirarFora>
+
+<Callout label="Juga a classe" variant="example">
+La informació asimètrica d'esta unitat és el motor d'[**Insider**](/juegos/insider/host/), un «Among Us econòmic» de deducció social: l'alumnat juga des del mòbil mentre el professor projecta. Qui sap què, i qui fingix saber-ho.
+</Callout>

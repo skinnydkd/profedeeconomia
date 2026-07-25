@@ -26,7 +26,7 @@ const { Content } = await render(recurso);
 const allLibro = await getCollection('libro');
 const unit = recurso.data.unidad_relacionada
   ? allLibro.find(
-      (u) => u.data.asignatura === a.slug && u.data.unidad === recurso.data.unidad_relacionada
+      (u) => u.data.asignatura === a.slug && u.data.unidad === recurso.data.unidad_relacionada && u.data.lang === 'es'
     )
   : null;
 const unitSlug = unit?.id.split('/').pop()?.replace(/\.mdx?$/, '');
