@@ -1,0 +1,119 @@
+---
+asignatura: taller-eco-3eso
+unidad_relacionada: 8
+title: "El tiquet del supermercat"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "10-15 min"
+descripcion: "Un tiquet de 32 € et mostra quant pagues en impostos sense saber-ho."
+competencias_clave: [CPSAA, CE, CD]
+competencias_especificas: [CE2]
+estado: publicado
+lang: ca
+slug: "asignaturas/taller-eco-3eso/actividades-dinamicas/08-ticket-del-super.ca"
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Cas · Sector públic i impostos",
+    "titulo": "El tiquet del supermercat",
+    "contexto": "Ta mare t'envia a fer la compra amb 35 €. En arribar a caixa, el tiquet ix 32,40 €. Mentres esperes el canvi, et fixes que al costat del preu de cada producte posa un xicotet percentatge: 10 % en els aliments processats, 4 % en el pa i els ous, 21 % en els productes de neteja. Portes tota la vida comprant sense fixar-te en això. Esta vegada vas a entendre què significa.",
+    "kpi_inicial": { "dinero": 35, "iva_pagado": 0, "comprension_fiscal": 0 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisió 1 — Quant IVA has pagat sense saber-ho?",
+      "situacion": "Al teu tiquet hi ha: pa i ous (6 €, IVA 4 %), llet i fruita (8 €, IVA 4 %), refrescs i snacks (10 €, IVA 10 %), sabó i paper de cuina (8,40 €, IVA 21 %). Has de calcular quant IVA portes pagat.",
+      "opciones": [
+        {
+          "label": "Calcule: (6×0,04) + (8×0,04) + (10×0,10) + (8,40×0,21) = 0,24 + 0,32 + 1 + 1,76 = 3,32 € d'IVA",
+          "kpi_delta": { "dinero": -32, "iva_pagado": 3, "comprension_fiscal": 3 },
+          "feedback": "Correcte. Dels 32,40 € que has pagat, uns 3,32 € són IVA — quasi el 10 % del total. I no has firmat res, ni ho has vist en cap rebut a banda. L'IVA ja està inclòs en el preu. Lliçó: els impostos indirectes els pagues sense adonar-te'n, cada vegada que compres alguna cosa.",
+          "next": "n2"
+        },
+        {
+          "label": "No ho calcule: els impostos són cosa d'adults",
+          "kpi_delta": { "dinero": -32, "iva_pagado": 0, "comprension_fiscal": -1 },
+          "feedback": "Els impostos no són «cosa d'adults»: tu ja els pagues. Cada vegada que compres alguna cosa amb IVA, estàs contribuint a l'Estat — encara que ningú t'ho explique al tiquet. Lliçó: l'educació fiscal comença abans dels 18 anys.",
+          "next": "n2"
+        },
+        {
+          "label": "Intente el càlcul però em confonc: l'IVA se suma al preu o ja està inclòs?",
+          "kpi_delta": { "dinero": -32, "iva_pagado": 0, "comprension_fiscal": 1 },
+          "feedback": "Bona pregunta. A Espanya el preu que veus al supermercat ja inclou l'IVA (és el preu final). En altres contextos, com quan una empresa emet una factura, l'IVA s'afig a banda. Per al consumidor normal: el preu que veus a l'etiqueta és el que pagues, IVA inclòs.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisió 2 — El teu amic diu que els impostos són un robatori",
+      "situacion": "De tornada a casa, li contes el de l'IVA al teu amic. Ell diu: «Els impostos són un robatori de l'Estat. Eixos diners se'ls hauria de quedar la gent.» Tu has de respondre-li alguna cosa.",
+      "opciones": [
+        {
+          "label": "Li done la raó: jo també preferiria tindre eixos diners",
+          "kpi_delta": { "dinero": 0, "iva_pagado": 0, "comprension_fiscal": -1 },
+          "feedback": "És una posició comprensible però incompleta. Els servicis públics tenen un cost real: l'institut on estàs estudiant, el carrer per on has tornat a casa, el metge a qui vas anar la setmana passada. Algú els ha de pagar, i eixe algú és tots. Lliçó: abans de dir que els impostos són un robatori, pregunta't qui pagaria els servicis que uses si no existiren.",
+          "next": "n3"
+        },
+        {
+          "label": "Li explique que sense impostos no hi hauria institut, ni sanitat, ni carreteres",
+          "kpi_delta": { "dinero": 0, "iva_pagado": 0, "comprension_fiscal": 3 },
+          "feedback": "Exacte. Els impostos són el preu col·lectiu dels servicis que individualment no podríem pagar. Una carretera, un hospital o un institut no els pot costejar una sola família. L'Estat recull de tots i dona a tots. Lliçó: la discussió no és si pagar impostos, sinó quant i com.",
+          "next": "n3"
+        },
+        {
+          "label": "Li dic que depén: alguns impostos servixen bé i altres es gasten malament",
+          "kpi_delta": { "dinero": 0, "iva_pagado": 0, "comprension_fiscal": 2 },
+          "feedback": "Resposta madura: els impostos són necessaris, però el debat sobre quant cobrar i com gastar és legítim i és la base de la política democràtica. Lliçó: criticar la despesa pública amb arguments és ciutadania activa; no pagar impostos és frau fiscal.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisió 3 — L'ajuntament retalla l'activitat extraescolar del teu institut",
+      "situacion": "El teu ajuntament anuncia que retallarà les activitats extraescolars per falta de pressupost. Hi ha una reunió de veïns on es pot parlar. Ta mare et pregunta si vols anar-hi.",
+      "opciones": [
+        {
+          "label": "No hi vaig: jo no vote, no servix de res",
+          "kpi_delta": { "dinero": 0, "iva_pagado": 0, "comprension_fiscal": -1 },
+          "feedback": "No votar no significa no estar afectat. I participar en decisions col·lectives no comença quan complixes 18 anys: comença quan comences a pensar en el que passa al teu voltant. Lliçó: la democràcia necessita ciutadans actius de totes les edats.",
+          "next": "final:fracaso_parcial"
+        },
+        {
+          "label": "Hi vaig a escoltar: vull entendre per què no hi ha pressupost",
+          "kpi_delta": { "dinero": 0, "iva_pagado": 0, "comprension_fiscal": 2 },
+          "feedback": "Anar a escoltar és el primer pas de la participació ciutadana. Entendre com es decidix el pressupost públic — d'on ve els diners i on van — és educació fiscal i política alhora.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Hi vaig i propose que busquen una altra partida per a no retallar les extraescolars",
+          "kpi_delta": { "dinero": 0, "iva_pagado": 0, "comprension_fiscal": 3 },
+          "feedback": "Participació activa: no sols escoltes, sinó que aportes. El pressupost públic té prioritats i són decisions polítiques — no tècniques — que els ciutadans poden debatre i modificar. Lliçó: el sector públic respon a qui participa.",
+          "next": "final:exito"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "Ja entens per a què servixen els impostos",
+      "resumen": "Has calculat l'IVA d'un tiquet, has reflexionat sobre els servicis públics i has fet un pas de participació ciutadana. L'Estat ja no és alguna cosa abstracta.",
+      "lecciones_clave": [
+        "L'IVA el pagues cada vegada que compres alguna cosa — ja eres contribuent encara que no ho sàpigues.",
+        "Els servicis públics són el resultat dels impostos de tots: sense recaptació, sense servicis.",
+        "Participar en decisions col·lectives no comença als 18 anys: comença quan entens el que passa."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "Has pagat impostos però no has entés per a què",
+      "resumen": "L'IVA ha anat a l'Estat sense que sàpigues què fa amb ell. I una decisió que t'afecta s'ha pres sense tu.",
+      "lecciones_clave": [
+        "Dir que els impostos són un robatori sense pensar en els servicis que cobrixen és una visió incompleta.",
+        "La indiferència ciutadana no protegix de les decisions polítiques — sols les deixa en mans d'altres."
+      ]
+    }
+  }
+}
+```

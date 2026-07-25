@@ -1,0 +1,119 @@
+---
+asignatura: edmn-2bach
+unidad_relacionada: 7
+title: "La fàbrica de Pasalia: produir sense malgastar"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "15-20 min"
+descripcion: "Una empresa de pastes alimentàries a La Rioja necessita baixar costos sense perdre qualitat. Punt mort, eficiència i lean: les ferramentes de la funció productiva."
+competencias_clave: [CPSAA, CE, CD]
+competencias_especificas: [CE3]
+lang: ca
+estado: publicado
+slug: "asignaturas/edmn-2bach/actividades-dinamicas/07-fabrica-pasalia.ca"
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Cas · Funció productiva",
+    "titulo": "La fàbrica de Pasalia: produir sense malgastar",
+    "contexto": "Pasalia és una empresa familiar de La Rioja que fabrica pastes alimentàries artesanes des del 1987. Produïxen 12.000 kg al mes de pasta fresca amb 9 empleats. Els seus costos fixos mensuals són 18.000 € i el cost variable és d'1,20 € per kg. Venen a 3,50 € el kg a botigues delicatessen. Enguany l'electricitat ha pujat un 40 % i el blat dur un 25 %. Necessiten revisar el model productiu.",
+    "kpi_inicial": { "caja": 15000, "clientes": 85, "reputacion": 8 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisió 1 — Calcular el punt mort",
+      "situacion": "Abans de prendre cap decisió, el director de producció, Javier, vol saber quants kg han de vendre al mes per a no perdre diners. El cost variable ha pujat a 1,60 € per kg amb les noves tarifes. Els costos fixos continuen en 18.000 €. El preu de venda es manté en 3,50 €. Què fas amb eixa informació?",
+      "opciones": [
+        {
+          "label": "Calcule el nou punt mort i el compare amb la producció actual",
+          "kpi_delta": { "caja": 0, "clientes": 5, "reputacion": 1 },
+          "feedback": "Punt mort = Costos fixos / (Preu - Cost variable) = 18.000 / (3,50 - 1,60) = 18.000 / 1,90 = 9.474 kg al mes. Produïxen 12.000 kg, així que continuen per damunt del llindar, però el coixí és molt menor que abans (va passar de 6.000 kg de marge a 2.526 kg). Amb esta anàlisi, qualsevol baixada de vendes del 21 % et posa en pèrdues. El diagnòstic és clar: cal actuar.",
+          "next": "n2"
+        },
+        {
+          "label": "Puge el preu a 4 €/kg per a mantindre el marge",
+          "kpi_delta": { "caja": 1500, "clientes": -15, "reputacion": -1 },
+          "feedback": "Pujar el preu sense calcular el punt mort nou és un moviment a cegues. Perds 15 clients (botigues que canvien a competidors) i encara que el marge per unitat puja, el volum cau. Lliçó: el punt mort connecta preu, volum i costos en una sola xifra. Sense calcular-lo, no pots saber si pujar el preu millora o empitjora el resultat total.",
+          "next": "n2"
+        },
+        {
+          "label": "Retalle producció a 9.000 kg per a estalviar en costos variables",
+          "kpi_delta": { "caja": -2000, "clientes": -10, "reputacion": -2 },
+          "feedback": "Reduir producció sense calcular el punt mort pot portar-te per davall del llindar. Amb costos fixos de 18.000 € i marge de contribució d'1,90 €/kg, necessites almenys 9.474 kg per a cobrir fixos. Produir 9.000 kg significa pèrdues de 900 €/mes. La intuïció sense números és perillosa en producció.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisió 2 — Lean o automatització",
+      "situacion": "Saps que el marge de seguretat és ajustat. Hi ha dues vies per a millorar l'eficiència: (a) aplicar principis Lean en el procés actual, sense inversió en maquinària (identificar i eliminar malbarataments); (b) comprar una pastadora automàtica nova per 22.000 € que reduïx el cost variable d'1,60 a 1,10 €/kg.",
+      "opciones": [
+        {
+          "label": "Lean primer: identifiquem els set malbarataments sense invertir en maquinària",
+          "kpi_delta": { "caja": -500, "clientes": 0, "reputacion": 2 },
+          "feedback": "Lean manufacturing busca eliminar muda (malbaratament): sobreproducció, esperes, transport innecessari, processos sense valor, inventari excessiu, moviments innecessaris, defectes. En Pasalia, l'anàlisi identifica que el 12 % de la pasta fresca es fabrica abans de tindre comanda confirmada i es perd per caducitat. Eliminar eixe malbaratament baixa el cost variable en 0,15 €/kg sense inversió.",
+          "next": "n3"
+        },
+        {
+          "label": "Compre la pastadora: l'automatització baixa el cost variable de colp",
+          "kpi_delta": { "caja": -22000, "clientes": 0, "reputacion": 1 },
+          "feedback": "La inversió en maquinària baixa el cost variable d'1,60 a 1,10 €/kg, la qual cosa baixa el punt mort a 7.500 kg. Però el cost de la màquina buida quasi tota la caixa disponible. Sense reserva de liquiditat, qualsevol imprevist (avaria, caiguda de vendes d'un mes) pot ser fatal. Lliçó: l'automatització millora l'eficiència però primer cal tindre caixa suficient per a absorbir el risc.",
+          "next": "n3"
+        },
+        {
+          "label": "Combine les dues: lean per a guanyar marge ràpid i pastadora en 12 mesos",
+          "kpi_delta": { "caja": -500, "clientes": 5, "reputacion": 3 },
+          "feedback": "Seqüenciació correcta: primer reduïxes malbaratament (millora immediata i gratuïta), recuperes marge durant 12 mesos i amb eixe marge finances l'automatització. La productivitat es millora en dues fases: primer procés, després tecnologia. Lliçó: la tecnologia no resol un procés ineficient; només fa la ineficiència més cara i més ràpida.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisió 3 — Productivitat de l'equip",
+      "situacion": "Una de les millores Lean identificades és reorganitzar els torns: els 9 empleats treballen ara en torns de 8h. Si canvies a torns de 6h amb més descansos, els estudis interns mostren que la productivitat per hora puja un 22 %. Però els empleats tenen contractes de 8h i caldria negociar.",
+      "opciones": [
+        {
+          "label": "Propose el canvi als empleats amb un incentiu de productivitat",
+          "kpi_delta": { "caja": -800, "clientes": 10, "reputacion": 3 },
+          "feedback": "Eficiència i productivitat no són el mateix: eficiència és fer el mateix amb menys recursos; productivitat és el ràtio d'output per unitat d'input (en este cas, kg per hora treballada). Torns de 6h amb descans milloren la concentració i reduïxen errors en tasques repetitives. L'incentiu de productivitat alinea els interessos de l'empresa i els empleats.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Impose el canvi de torn: és una decisió de la direcció",
+          "kpi_delta": { "caja": -300, "clientes": 0, "reputacion": -2 },
+          "feedback": "Canviar condicions laborals de manera unilateral sense negociar pot incomplir el conveni col·lectiu i generar conflicte laboral. La productivitat real baixa quan els treballadors no se senten part del canvi. Lliçó: en producció, els canvis de procés que afecten persones requerixen gestió de persones, no només gestió de procés.",
+          "next": "final:fracaso_parcial"
+        },
+        {
+          "label": "No canvie els torns: els empleats són majors i el canvi genera incertesa",
+          "kpi_delta": { "caja": 0, "clientes": 0, "reputacion": 0 },
+          "feedback": "Conservar l'statu quo quan les dades mostren una millora possible és una decisió activa, no neutral. Perds 12 mesos de millora de productivitat. Lliçó: la funció productiva no és només gestionar el que existix sinó millorar contínuament. La millora contínua (kaizen en Lean) requerix disposició al canvi, encara que siga gradual.",
+          "next": "final:fracaso_parcial"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "Pasalia produïx millor amb els mateixos recursos",
+      "resumen": "El punt mort baixa de 9.474 a 7.800 kg gràcies a l'eliminació de malbarataments i la millora de torns. El marge de seguretat creix i Pasalia pot absorbir noves pujades de costos sense entrar en pèrdues.",
+      "lecciones_clave": [
+        "El punt mort és la brúixola de la funció productiva: et diu quant has de vendre per a no perdre diners i quant marge tens abans que una baixada de vendes t'enfonse.",
+        "Lean abans que automatització: primer elimina el malbaratament de procés, després aplica tecnologia sobre un procés eficient.",
+        "Eficiència i productivitat són conceptes distints i complementaris: la funció productiva treballa amb els dos alhora."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "Pasalia sobreviu però sense millora",
+      "resumen": "L'empresa no entra en pèrdues però el marge de seguretat continua sent molt ajustat. Sense millores en el procés productiu, qualsevol nova pujada de costos de matèries primeres els posarà en roig.",
+      "lecciones_clave": [
+        "Calcular el punt mort no és suficient: cal usar eixa dada per a prendre decisions, no només per a saber on estàs.",
+        "La resistència al canvi en producció té un cost real i mesurable: cada mes d'inacció és un mes d'oportunitat perduda."
+      ]
+    }
+  }
+}
+```

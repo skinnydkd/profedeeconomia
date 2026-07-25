@@ -1,0 +1,119 @@
+---
+asignatura: eco-1bach
+unidad_relacionada: 6
+title: "La granja solar i l'apicultor veí"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "15-20 min"
+descripcion: "Una planta solar vol expandir-se. L'apicultor del costat veu amenaçada la seua producció. Fallada de mercat o negociació privada?"
+competencias_clave: [CPSAA, CE, CD]
+competencias_especificas: [CE2]
+lang: ca
+estado: publicado
+slug: "asignaturas/eco-1bach/actividades-dinamicas/06-externalidad-granja-solar.ca"
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Cas · Fallades de mercat",
+    "titulo": "La granja solar i l'apicultor veí",
+    "contexto": "Eres la directora de desenvolupament d'Energies Netes del Llevant, una empresa que opera una planta fotovoltaica de 50 MW a Albacete. Voleu ampliar la planta en 30 MW addicionals, cosa que requerix instal·lar panells en 40 hectàrees noves. El problema: les parcel·les contigües les usa Antoni, un apicultor que fa 20 anys que produïx mel de romer i timó. Antoni diu que les obres i els panells alteraran el paisatge floral i perjudicaran les seues abelles, i reduiran la seua producció en un 30 %. Calculeu que la seua pèrdua anual serien uns 18.000 €.",
+    "kpi_inicial": { "mw_instalados": 50, "ingreso_apicultor": 60000, "impacto_ambiental": 3 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisió 1 — Com classifiques el problema?",
+      "situacion": "Abans d'actuar, necessites entendre a quin tipus de fallada de mercat t'enfrontes. És una externalitat negativa? És un problema d'informació asimètrica? O és simplement un conflicte d'interessos privats que el mercat pot resoldre a soles?",
+      "opciones": [
+        {
+          "label": "És una externalitat negativa: la meua activitat imposa un cost extern a Antoni",
+          "kpi_delta": { "mw_instalados": 0, "ingreso_apicultor": 0, "impacto_ambiental": 0 },
+          "feedback": "Diagnòstic correcte. L'expansió de la planta solar genera un cost sobre un tercer (Antoni) que no està inclòs en el càlcul privat de rendibilitat de l'empresa. El mercat no l'internalitza perquè Antoni no els pot cobrar pel dany. Resultat: l'empresa sobreexpandix perquè no paga el cost social complet. Lliçó: les externalitats negatives porten a la sobreproducció del bé que genera el dany — l'empresa instal·la més panells dels socialment òptims.",
+          "next": "n2"
+        },
+        {
+          "label": "És un conflicte privat: que el resolguen els propietaris entre ells",
+          "kpi_delta": { "mw_instalados": 30, "ingreso_apicultor": -18000, "impacto_ambiental": -1 },
+          "feedback": "Parcialment correcte: el Teorema de Coase diu que, amb drets de propietat ben definits i sense costos de transacció, els agents negocien un acord eficient sense intervenció de l'Estat. Però a la pràctica els costos de negociació són reals, els drets no sempre estan clars i el poder de negociació és asimètric. Una empresa amb 30 MW d'inversió enfront d'un apicultor individual no negocia en igualtat. Lliçó: el Teorema de Coase funciona com a referència teòrica; a la pràctica, les externalitats solen requerir alguna intervenció.",
+          "next": "n2"
+        },
+        {
+          "label": "És un problema de béns comuns: les abelles d'Antoni són un recurs compartit",
+          "kpi_delta": { "mw_instalados": 0, "ingreso_apicultor": 0, "impacto_ambiental": 2 },
+          "feedback": "Perspectiva interessant. Les abelles són un bé comú en cert sentit: els seus serveis de pol·linització beneficien l'agricultura de tota la zona (externalitat positiva d'Antoni sobre els seus veïns) però el mercat no li paga per això. Si les abelles desapareixen, tota l'agricultura local perd. Lliçó: els béns comuns i les externalitats positives són també fallades de mercat — l'apicultor produïx menys de l'òptim social perquè el mercat no el compensa per la pol·linització.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisió 2 — Quin instrument corrector uses?",
+      "situacion": "Heu identificat l'externalitat negativa. Ara has de proposar un mecanisme per a internalitzar-la. Tres opcions estan damunt la taula: compensació directa a Antoni, impost pigouvià que el regulador podria imposar a l'empresa, o negociació de drets d'ús amb el municipi.",
+      "opciones": [
+        {
+          "label": "Compensem Antoni directament: 18.000 €/any pel lucre cessant",
+          "kpi_delta": { "mw_instalados": 30, "ingreso_apicultor": 0, "impacto_ambiental": 1 },
+          "feedback": "Solució coasiana privada. L'empresa internalitza el cost extern pagant-lo directament a qui el patix. És eficient si la negociació no té costos alts. El problema: com es verifica que el dany és de 18.000 € exactament? Què passa si hi ha més apicultors a la zona? I si les abelles d'Antoni també pol·linitzen els camps d'altres agricultors que també perden? La compensació directa funciona en casos bilaterals simples però escala malament. Lliçó: la compensació privada és eficient en casos simples; en cadenes d'externalitats complexes necessites instruments més sistèmics.",
+          "next": "n3"
+        },
+        {
+          "label": "Proposem al regulador un impost equivalent al dany: 18.000 €/any per l'ampliació",
+          "kpi_delta": { "mw_instalados": 25, "ingreso_apicultor": 9000, "impacto_ambiental": 2 },
+          "feedback": "Impost pigouvià clàssic. L'Estat fixa un impost igual al cost marginal extern (el dany d'Antoni), cosa que fa que l'empresa internalitze eixe cost en la seua decisió de producció. Resultat: l'empresa instal·la menys panells (només els que són eficients quan es compten els costos socials) i la recaptació pot compensar els afectats. El problema pràctic: el regulador necessita conéixer el cost extern exacte, cosa que no sempre és possible. Lliçó: l'impost pigouvià és la solució teòricament ideal per a les externalitats, però requerix informació que l'Estat no sempre té.",
+          "next": "n3"
+        },
+        {
+          "label": "Negociem drets d'ús amb el municipi: comprem els drets de pas per 5 anys",
+          "kpi_delta": { "mw_instalados": 30, "ingreso_apicultor": 6000, "impacto_ambiental": 0 },
+          "feedback": "Enfocament de mercat de drets. Creeu un mercat on abans no hi havia preu: el dret a alterar l'entorn floral durant 5 anys. El municipi actua com a mediador i definix els drets. És eficient si el preu reflectix el dany real (incloent-hi la pol·linització perduda per a tota la zona). Lliçó: els mercats de drets (com els mercats d'emissions de CO2 a la UE) són una forma de posar preu a externalitats que abans no tenien mercat.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisió 3 — La informació asimètrica complica la negociació",
+      "situacion": "Antoni afirma que el dany és de 18.000 €/any, però l'empresa ha encarregat un estudi tècnic independent que l'estima en només 8.000 €. Hi ha informació asimètrica: cada part té incentius a exagerar o minimitzar. El mediador ha de decidir com resoldre la discrepància.",
+      "opciones": [
+        {
+          "label": "Acceptem la xifra d'Antoni: és qui patix el dany i coneix millor el seu negoci",
+          "kpi_delta": { "mw_instalados": 20, "ingreso_apicultor": 18000, "impacto_ambiental": 2 },
+          "feedback": "Selecció adversa clàssica. Antoni té informació privada sobre el seu negoci però també incentius a exagerar el dany per a maximitzar la compensació. Si l'empresa accepta sempre la xifra del perjudicat, els perjudicats aprendran a inflar les demandes. Lliçó: la informació asimètrica crea incentius al comportament estratègic (el risc moral del que rep la compensació) — per això els contractes d'assegurança i compensació necessiten verificació.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Acceptem la xifra de l'estudi tècnic: 8.000 € i punt",
+          "kpi_delta": { "mw_instalados": 30, "ingreso_apicultor": 8000, "impacto_ambiental": -1 },
+          "feedback": "L'empresa també té incentius a minimitzar el dany en el seu estudi. Un estudi tècnic encarregat per l'empresa no és neutre: és informació esbiaixada per qui el paga. La informació asimètrica opera en les dues direccions. Lliçó: quan les parts tenen interessos oposats i la informació és privada, un àrbitre independent o una auditoria conjunta produïx estimacions més fiables que qualsevol de les dues per separat.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Proposem una auditoria conjunta amb un pèrit neutral nomenat de comú acord",
+          "kpi_delta": { "mw_instalados": 28, "ingreso_apicultor": 13000, "impacto_ambiental": 2 },
+          "feedback": "Solució eficient davant d'informació asimètrica. Un pèrit independent reduïx el problema de selecció adversa i risc moral. El cost de l'auditoria (uns 3.000-5.000 €) és baix enfront de la diferència en disputa (10.000 €/any). Les dues parts tenen menys incentius a exagerar si saben que hi haurà verificació independent. Lliçó: les institucions dissenyades per a reduir la informació asimètrica (pèrits, auditors, qualificadores de crèdit, inspectors) tenen valor econòmic real — eliminen el cost de desconfiança.",
+          "next": "final:exito"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "El conflicte es resol amb criteri econòmic",
+      "resumen": "Has gestionat una externalitat negativa real identificant el tipus de fallada de mercat, triant l'instrument corrector i resolent la informació asimètrica. La planta solar amplia i Antoni rep una compensació justa.",
+      "lecciones_clave": [
+        "Les externalitats negatives porten a la sobreproducció del bé que genera el dany perquè el productor no paga el cost social complet.",
+        "L'impost pigouvià i la negociació coasiana són les dues solucions teòriques; les dues tenen limitacions pràctiques.",
+        "La informació asimètrica crea incentius al comportament estratègic — les institucions de verificació reduïxen este problema."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "El conflicte s'arrossega sense resoldre's bé",
+      "resumen": "L'externalitat no s'ha internalitzat correctament: o l'empresa paga massa o massa poc. La fallada de mercat persistix encara que la negociació haja arribat a algun acord.",
+      "lecciones_clave": [
+        "Sense institucions de verificació, la informació asimètrica afavorix sempre qui té més poder de negociació.",
+        "Un acord que no reflectix els costos socials reals pot ser eficient per a les parts però no per a la societat."
+      ]
+    }
+  }
+}
+```

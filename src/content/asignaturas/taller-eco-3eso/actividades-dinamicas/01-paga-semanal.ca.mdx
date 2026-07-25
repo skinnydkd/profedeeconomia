@@ -1,0 +1,119 @@
+---
+asignatura: taller-eco-3eso
+unidad_relacionada: 1
+title: "La paga del dissabte"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "10-15 min"
+descripcion: "Tens 15 € de paga. Cada euro gastat és un euro que no va a una altra cosa."
+competencias_clave: [CPSAA, CE, CD]
+competencias_especificas: [CE2]
+estado: publicado
+lang: ca
+slug: "asignaturas/taller-eco-3eso/actividades-dinamicas/01-paga-semanal.ca"
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Cas · Escassetat i decisió",
+    "titulo": "La paga del dissabte",
+    "contexto": "Són les 11 del matí del dissabte. Tens 15 € a la butxaca, que són tots els teus estalvis de la setmana. Hi ha dos plans possibles: anar al cine amb els teus amics (entrada + crispetes = 10 €) o comprar-te unes bambes de segona mà que fa setmanes que mires (15 €). També recordes que la setmana que ve hi ha una excursió optativa de l'institut que costa 8 €.",
+    "kpi_inicial": { "dinero": 15, "satisfaccion": 7, "objetivos_cumplidos": 0 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisió 1 — Cine, bambes o guardar?",
+      "situacion": "Tens 15 € i tres opcions davant. El cine costa 10 €, les bambes 15 € i l'excursió de la setmana que ve 8 €. No et basta per a tot.",
+      "opciones": [
+        {
+          "label": "Me'n vaig al cine (10 €) i guarde 5 € per a l'excursió",
+          "kpi_delta": { "dinero": -10, "satisfaccion": 1, "objetivos_cumplidos": 0 },
+          "feedback": "Bona decisió parcial: gaudixes amb els teus amics i guardes alguna cosa. Però amb 5 € no et basta per a l'excursió (8 €). Necessitaràs més diners abans de la setmana que ve. El cost d'oportunitat són les bambes que no t'has comprat.",
+          "next": "n2"
+        },
+        {
+          "label": "Em compre les bambes (15 €) i em quede sense res",
+          "kpi_delta": { "dinero": -15, "satisfaccion": 2, "objetivos_cumplidos": 0 },
+          "feedback": "Has gastat tot de colp. Les bambes estan bé, però ara no pots anar al cine ni a l'excursió. Lliçó: gastar-ho tot en una sola cosa sense pensar en el que ve després és consum impulsiu, encara que ho hages volgut molt de temps.",
+          "next": "n2"
+        },
+        {
+          "label": "Guarde els 15 € per a l'excursió i el cine de la setmana que ve",
+          "kpi_delta": { "dinero": 0, "satisfaccion": -1, "objetivos_cumplidos": 1 },
+          "feedback": "Decisió conservadora però intel·ligent. Renuncies a alguna cosa hui per a tindre opcions demà. El cost d'oportunitat és el pla de hui. Lliçó: estalviar no és no gastar mai — és triar quan gastar.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisió 2 — El teu amic et proposa posar diners entre diversos",
+      "situacion": "El teu amic proposa que cadascú pose 5 € per a comprar entre quatre una pizza gran i vore una sèrie a sa casa. Seria més barat que el cine, però perds el pla original. Què fas?",
+      "opciones": [
+        {
+          "label": "Accepte: 5 € per una vesprada completa és bon preu",
+          "kpi_delta": { "dinero": -5, "satisfaccion": 2, "objetivos_cumplidos": 0 },
+          "feedback": "Has aplicat la comparació abans de gastar: mateix resultat (vesprada amb amics) per menys diners. Això és consum intel·ligent. Et queden més euros per a l'excursió.",
+          "next": "n3"
+        },
+        {
+          "label": "No, preferisc el pla original encara que coste més",
+          "kpi_delta": { "dinero": -10, "satisfaccion": 1, "objetivos_cumplidos": 0 },
+          "feedback": "No hi ha res de roïn a voler el que volies. Però convé saber que has triat gastar el doble pel mateix resultat bàsic (vesprada amb amics). Lliçó: comparar opcions abans de pagar quasi sempre ix bé.",
+          "next": "n3"
+        },
+        {
+          "label": "Passe dels dos plans i em quede a casa estalviant",
+          "kpi_delta": { "dinero": 0, "satisfaccion": -2, "objetivos_cumplidos": 1 },
+          "feedback": "Màxim estalvi, però el cost d'oportunitat és real: una vesprada sola/sol a casa quan podries haver estat amb amics. L'estalvi té sentit quan renuncies a alguna cosa de poc valor, no quan renuncies a alguna cosa important.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisió 3 — L'excursió i el cost d'oportunitat final",
+      "situacion": "Arriba la setmana de l'excursió. Segons el que hages gastat, pot ser que tingues o no tingues els 8 € que necessites. Ta mare t'oferix donar-te un avançament de la paga del mes que ve, però hauràs de tornar-l'hi.",
+      "opciones": [
+        {
+          "label": "Demane l'avançament — m'ho passe bé ara i ja tornaré",
+          "kpi_delta": { "dinero": -8, "satisfaccion": 1, "objetivos_cumplidos": 0 },
+          "feedback": "Deute a curt termini: funciona si després compleixes. Però si gastes el mes que ve com este mes, la pròxima vegada el deute serà major. Lliçó: demanar avançaments no és roïn, però cal tornar. El crèdit té cost d'oportunitat futur.",
+          "next": "final:fracaso_parcial"
+        },
+        {
+          "label": "Si tinc els 8 €, hi vaig. Si no, m'ho perc.",
+          "kpi_delta": { "dinero": -8, "satisfaccion": 2, "objetivos_cumplidos": 1 },
+          "feedback": "Decisió honesta: gastes el que tens i no t'endeutes. Si havies guardat, hi vas. Si no, aprens per a la pròxima. Lliçó clau: viure dins dels teus ingressos és l'hàbit financer més important que existix.",
+          "next": "final:exito"
+        },
+        {
+          "label": "No vaig a l'excursió encara que tinga els diners — ho guarde tot",
+          "kpi_delta": { "dinero": 0, "satisfaccion": -1, "objetivos_cumplidos": 0 },
+          "feedback": "Guardar diners està bé, però no té sentit renunciar a alguna cosa que valoraves i que et pots permetre. L'estalvi servix per a alguna cosa, no per a acumular sense usar-lo mai. Lliçó: l'objectiu de l'estalvi és poder gastar en el que importa, no l'estalvi per l'estalvi.",
+          "next": "final:fracaso_parcial"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "Has gestionat bé la teua paga",
+      "resumen": "Has anat a l'excursió, has passat temps amb els teus amics i no has demanat diners prestats. Amb 15 € has pres tres decisions i has eixit avant.",
+      "lecciones_clave": [
+        "El cost d'oportunitat és real: cada euro gastat en alguna cosa és un euro que no va a una altra cosa.",
+        "Comparar opcions abans de pagar és la diferència entre el consum intel·ligent i l'impulsiu.",
+        "Guardar per a un objectiu concret té més sentit que guardar sense saber per a què."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "Has arribat just — o t'has endeutat",
+      "resumen": "Has gaudit d'algunes coses però t'has quedat sense diners abans de temps o has demanat un avançament que hauràs de tornar.",
+      "lecciones_clave": [
+        "Gastar tot de colp sense pensar en el que ve després és el parany més comú de la paga.",
+        "El crèdit (encara que siga de ta mare) té cost: el mes que ve tindràs menys diners lliures."
+      ]
+    }
+  }
+}
+```

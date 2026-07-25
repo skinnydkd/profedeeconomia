@@ -1,0 +1,119 @@
+---
+asignatura: taller-eco-3eso
+unidad_relacionada: 3
+title: "El mòbil de segona mà"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "10-15 min"
+descripcion: "Vols canviar de mòbil. Hi ha anuncis per tot arreu. Compres amb cap?"
+competencias_clave: [CPSAA, CE, CD]
+competencias_especificas: [CE2]
+estado: publicado
+lang: ca
+slug: "asignaturas/taller-eco-3eso/actividades-dinamicas/03-movil-segunda-mano.ca"
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Cas · Consum intel·ligent",
+    "titulo": "El mòbil de segona mà",
+    "contexto": "El teu mòbil té tres anys i la pantalla està una mica ratllada, però funciona bé. Fa setmanes que veus anuncis d'un model nou que t'agrada molt: 280 € nou a la botiga. El teu amic et diu que a Wallapop n'hi ha un d'igual, de segona mà, per 120 €. I a l'institut un company t'oferix el seu (mateix model, any anterior) per 80 €. Tens 100 € estalviats.",
+    "kpi_inicial": { "ahorro": 100, "calidad_movil": 6, "decision_inteligente": 5 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisió 1 — Quina opció tries?",
+      "situacion": "Nou a la botiga (280 €, et falten diners), segona mà Wallapop (120 €, et falten 20 €) o el del teu company (80 €, dins del teu pressupost). El teu mòbil actual encara funciona.",
+      "opciones": [
+        {
+          "label": "El nou (280 €): demane els diners que em falten als meus pares",
+          "kpi_delta": { "ahorro": -100, "calidad_movil": 3, "decision_inteligente": -2 },
+          "feedback": "Comprar nou quan tens un mòbil que funciona i quan no t'arriben els diners propis és consum impulsiu. Demanar als teus pares els diners que et falten significa que algú més paga el teu impuls. Lliçó: si no pots permetre-t'ho amb els teus propis diners, no t'ho pots permetre ara.",
+          "next": "n2"
+        },
+        {
+          "label": "El de Wallapop (120 €): estalvie una mica més i espere dues setmanes",
+          "kpi_delta": { "ahorro": -20, "calidad_movil": 2, "decision_inteligente": 1 },
+          "feedback": "Esperar per a comprar alguna cosa que no necessites urgentment és consum intel·ligent. A més, la segona mà significa que no consumixes recursos nous per a fabricar un mòbil. Però assegura't abans de comprar-lo.",
+          "next": "n2"
+        },
+        {
+          "label": "El del company (80 €): el puc pagar ara mateix",
+          "kpi_delta": { "ahorro": -80, "calidad_movil": 1, "decision_inteligente": 2 },
+          "feedback": "Dins del pressupost i accessible hui. Lliçó: el millor moment per a comprar alguna cosa és quan tens els diners, no quan l'anunci et convenç.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisió 2 — El venedor de Wallapop insistix que és urgent",
+      "situacion": "El venedor de Wallapop t'escriu: «Hi ha altres tres persones interessades, si no el reserves hui amb 20 €, el venc a un altre.» També veus un anunci a Instagram del mateix model: «Últimes unitats — oferta sols hui 10 %!».",
+      "opciones": [
+        {
+          "label": "Reserve amb 20 € ara mateix per a no perdre'l",
+          "kpi_delta": { "ahorro": -20, "calidad_movil": 0, "decision_inteligente": -2 },
+          "feedback": "Estàs cedint a la tècnica d'urgència artificial. «Altres persones interessades» i «sols hui» són les frases de pressió més usades perquè compres ràpid sense pensar. Ara has entregat 20 € sense garanties. Lliçó: quan algú crea urgència, respira i espera.",
+          "next": "n3"
+        },
+        {
+          "label": "Li dic que necessite vore'l abans de donar cap diner",
+          "kpi_delta": { "ahorro": 0, "calidad_movil": 0, "decision_inteligente": 2 },
+          "feedback": "Correcte. Mai es paga per avançat sense vore el producte, especialment en vendes entre particulars. Si el venedor desapareix quan li demanes vore'l en persona, era una estafa. Lliçó: l'urgència del venedor no s'ha de convertir en la teua.",
+          "next": "n3"
+        },
+        {
+          "label": "Ignore el Wallapop i compre el del company directament",
+          "kpi_delta": { "ahorro": -80, "calidad_movil": 1, "decision_inteligente": 1 },
+          "feedback": "Comprar a algú que coneixes té avantatges: pots vore el mòbil, provar-lo i reclamar si alguna cosa va malament. I no t'enganxa la pressió del «sols hui». Decisió pràctica.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisió 3 — El mòbil té una fallada que no et van dir",
+      "situacion": "Has comprat el mòbil (el del company o el de Wallapop). Al cap de dos dies descobrixes que la bateria dura molt poc — menys de quatre hores. Ningú et va avisar. Què fas?",
+      "opciones": [
+        {
+          "label": "Em calle: ja està fet i no vull embolics amb el company",
+          "kpi_delta": { "ahorro": 0, "calidad_movil": -2, "decision_inteligente": -1 },
+          "feedback": "El silenci té un cost: et quedes amb un producte que no funciona com esperaves. En vendes entre particulars la llei protegix menys que a les botigues, però si el venedor va ocultar la fallada, tens arguments. Lliçó: parlar clar al principi costa menys que aguantar un problema.",
+          "next": "final:fracaso_parcial"
+        },
+        {
+          "label": "Parle amb el venedor: li explique el problema i demane una solució",
+          "kpi_delta": { "ahorro": 10, "calidad_movil": 1, "decision_inteligente": 2 },
+          "feedback": "El més directe i el més efectiu. El venedor potser ho desconeixia o potser accepta tornar-te part dels diners. En vendes de segona mà entre persones no hi ha garantia legal obligatòria, però sí que hi ha bona fe. La conversa honesta resol més del que pareix.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Deixe una ressenya negativa a Wallapop i ho publique al grup de l'institut",
+          "kpi_delta": { "ahorro": 0, "calidad_movil": -1, "decision_inteligente": -1 },
+          "feedback": "La ressenya pública pot estar justificada, però el pas previ sempre és parlar primer amb el venedor. Anar directe a la queixa pública sense donar opció a resoldre el problema és desproporcionat com a primer moviment.",
+          "next": "final:fracaso_parcial"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "Has comprat amb cap",
+      "resumen": "Has comparat opcions, has resistit la pressió del «sols hui» i has resolt el problema amb el venedor parlant. El teu mòbil nou funciona i has estalviat diners respecte al preu del nou.",
+      "lecciones_clave": [
+        "Comparar abans de comprar és l'hàbit que més diners estalvia a llarg termini.",
+        "L'urgència artificial és la tècnica de vendes més efectiva — i la més fàcil d'evitar: espera.",
+        "Parlar directament amb el venedor quan alguna cosa falla sempre és el primer pas."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "Has comprat, però podria haver anat millor",
+      "resumen": "Tens un mòbil nou però has cedit a pressions o t'has callat quan havies de parlar. El cost no és sols diners.",
+      "lecciones_clave": [
+        "Mai pagues per avançat sense vore el producte primer.",
+        "Quedar-se callat quan tens un problema és la decisió més cara que pots prendre."
+      ]
+    }
+  }
+}
+```

@@ -1,0 +1,119 @@
+---
+asignatura: edmn-2bach
+unidad_relacionada: 6
+title: "Has heretat la cafeteria del barri"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "15-20 min"
+descripcion: "El teu tio et deixa la Cafeteria Central. Les vendes cauen, la caixa s'esgota. Dissenya el marketing mix abans de quedar-te sense pista."
+competencias_clave: [CPSAA, CE, CD]
+competencias_especificas: [CE3]
+lang: ca
+estado: publicado
+slug: "asignaturas/edmn-2bach/actividades-dinamicas/06-cafeteria-del-barrio.ca"
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Cas · Màrqueting",
+    "titulo": "Has heretat la cafeteria del barri",
+    "contexto": "El teu tio Antonio t'ha deixat en herència la Cafeteria Central. Tres taules, terrassa xicoteta, clientela fidel de jubilats que ve cada matí al café amb llet i la tertúlia. Les vendes cauen un 12 % cada any des del 2022. Et queden 8.000 € en caixa i 6 mesos abans d'haver de tancar. Estudies 2n de Batxillerat, així que hauràs de decidir mentres et prepares la EBAU.",
+    "kpi_inicial": { "caja": 8000, "clientes_mes": 240, "satisfaccion": 8.5 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisió 1 — L'oferta de Coca-Cola",
+      "situacion": "Un comercial de Coca-Cola t'oferix: nevera nova + 600 € a l'any si véns només els seus refrescos. Els teus clients actuals són majors i no demanen refrescos quasi mai, però el comercial insistix que «tots els bars accepten».",
+      "opciones": [
+        {
+          "label": "Accepte, 600 € són 600 € i la nevera no em costa res",
+          "kpi_delta": { "caja": 600, "satisfaccion": -1 },
+          "feedback": "Vas agafar els diners, però vas signar un contracte que limita la teua proposta de valor. Si demà canvia el teu segment (p. ex. atraure joves que demanen Aquarius), no pots adaptar-te. Lliçó: una decisió de preu o subministrament mai és només financera — definix amb quin segment pots treballar.",
+          "next": "n2"
+        },
+        {
+          "label": "No accepte, mantinc llibertat de marca",
+          "kpi_delta": { "caja": 0, "satisfaccion": 0 },
+          "feedback": "Conserves marge de maniobra. El comercial torna dins de dos mesos amb millor oferta — això sol passar quan dius que no la primera vegada.",
+          "next": "n2"
+        },
+        {
+          "label": "Negocie 1.200 € + llibertat per a vendre altres marques premium",
+          "kpi_delta": { "caja": 800, "satisfaccion": 0 },
+          "feedback": "Millor jugada: uses l'interés de Coca-Cola com a leverage per a obtindre millors termes. Coca-Cola continua guanyant amb el teu volum, tu no signes exclusivitat. Lliçó: el preu és senyal, també per als teus proveïdors.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisió 2 — Segmentació del local",
+      "situacion": "Has identificat tres segments possibles: (a) els jubilats de sempre — gasten 3 €/visita, venen 3 vegades per setmana; (b) opositors que venen a estudiar — gasten 6 €/visita, es queden 3 hores; (c) famílies del cap de setmana — gasten 18 €/visita, venen 1 vegada per setmana. No tens recursos per a atendre'ls els tres bé.",
+      "opciones": [
+        {
+          "label": "Em concentre en els opositors (wifi, taules grans, ambient silenciós)",
+          "kpi_delta": { "clientes_mes": 60, "satisfaccion": 0.3 },
+          "feedback": "Segmentació concentrada (nínxol). Puges el tiquet mitjà perquè l'opositor es queda 3 hores però consumix 2 coses, i atraus nous clients amb la mateixa proposta. Els jubilats de sempre es queixen del silenci però la majoria es queda.",
+          "next": "n3"
+        },
+        {
+          "label": "Mantinc els jubilats però òbric els caps de setmana per a famílies",
+          "kpi_delta": { "clientes_mes": 30, "caja": -800, "satisfaccion": 0.1 },
+          "feedback": "Màrqueting diferenciat. Necessites dos mixes distints (matins tranquils vs caps de setmana amb xiquets), això puja els teus costos operatius. Funciona, però requerix més esforç i els caps de setmana cal contractar reforç.",
+          "next": "n3"
+        },
+        {
+          "label": "Continue amb tothom com fins ara",
+          "kpi_delta": { "clientes_mes": -20, "satisfaccion": -0.5 },
+          "feedback": "Màrqueting indiferenciat. Si el teu local no destaca per a ningú, no destaca per a ningú. La caiguda del 12 % anual continua. Lliçó clau: «un missatge per a tots» és un missatge per a ningú.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisió 3 — Preu del café",
+      "situacion": "El café et costa 0,35 € (gra + llet + electricitat + amortització de la cafetera). El véns a 1,50 €. La cafeteria de la cantonada ha baixat el seu a 1,20 € i la cadena 'Coffee Lab' acaba d'obrir a 200 m venent el cappuccino a 3,50 € amb llet de civada.",
+      "opciones": [
+        {
+          "label": "Baixe a 1,20 € per a no perdre clients vs l'altra cafeteria",
+          "kpi_delta": { "caja": -1200, "clientes_mes": 10, "satisfaccion": -0.2 },
+          "feedback": "Guerra de preus. El teu marge baixa un 25 % i els clients que ja tenies no compren més perquè no és això el que els retén. És un moviment defensiu costós. Lliçó: el preu és la P més fàcil de baixar i la que més costa recuperar.",
+          "next": "final:fracaso_parcial"
+        },
+        {
+          "label": "Mantinc 1,50 € i millore l'experiència (tassa bona, café de torrat local)",
+          "kpi_delta": { "caja": -400, "clientes_mes": 25, "satisfaccion": 1.0 },
+          "feedback": "Producte + Plaça coherents amb el segment. Puges el marge percebut sense tocar el preu. El boca a orella et porta clients nous. Lliçó clau: la millor resposta a una baixada de preu del competidor quasi mai és baixar el teu.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Puge a 2,20 € amb llet de civada i barista certificat",
+          "kpi_delta": { "caja": -600, "clientes_mes": -30, "satisfaccion": 0.3 },
+          "feedback": "Et mous al segment 'Coffee Lab', però el teu local no té la decoració ni la marca. Perds els jubilats i no captes els hipster premium perquè no és coherent amb la proposta. Lliçó: el posicionament es construïx amb totes les P alhora, no només pujant el preu.",
+          "next": "final:fracaso_parcial"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "Has reflotat la cafeteria",
+      "resumen": "Vendes mensuals +20 %, satisfacció del client per damunt de 9, caixa sostenible al tancament de l'any.",
+      "lecciones_clave": [
+        "Una proposta de valor coherent amb el segment guanya al volum barat.",
+        "Les 4P es dissenyen juntes, no per separat: canviar una sense les altres trenca la coherència.",
+        "El preu és senyal, no resultat del cost. I quasi mai és la primera P a tocar."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "La cafeteria sobreviu, justa",
+      "resumen": "Has evitat el tancament però el negoci queda fràgil. Marge ajustat, cap segment clarament conquistat.",
+      "lecciones_clave": [
+        "Diluir la teua proposta per a no perdre ningú sol significar no convéncer ningú.",
+        "Guerra de preus només funciona si tens avantatge en costos — i tu no la tens."
+      ]
+    }
+  }
+}
+```

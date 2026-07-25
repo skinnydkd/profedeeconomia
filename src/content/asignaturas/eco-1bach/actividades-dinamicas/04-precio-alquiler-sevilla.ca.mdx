@@ -1,0 +1,119 @@
+---
+asignatura: eco-1bach
+unidad_relacionada: 4
+title: "Tens una habitació lliure a Sevilla"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "15-20 min"
+descripcion: "Lloguer turístic o residencial, el preu del mercat i els efectes de regular. Oferta, demanda i equilibri en directe."
+competencias_clave: [CPSAA, CE, CD]
+competencias_especificas: [CE2]
+lang: ca
+estado: publicado
+slug: "asignaturas/eco-1bach/actividades-dinamicas/04-precio-alquiler-sevilla.ca"
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Cas · Oferta, demanda i mercat",
+    "titulo": "Tens una habitació lliure a Sevilla",
+    "contexto": "Eres propietària d'un pis al barri de Triana (Sevilla). Hi vius però tens una habitació lliure. Et planteges rendibilitzar-la. El preu del lloguer d'habitacions a Triana ronda els 550-600 €/mes per a residents i les plataformes de lloguer turístic paguen entre 60-90 €/nit en temporada alta. Al barri hi ha molta demanda: la Universitat Pablo de Olavide ha traslladat cursos de postgrau al centre i arriben més estudiants de fora. Alhora, l'Ajuntament ha declarat Triana «zona saturada» de lloguer turístic i restringix noves llicències.",
+    "kpi_inicial": { "ingreso_mensual": 0, "ocupacion_pct": 0, "estabilidad": 5 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisió 1 — A quin segment t'adreces?",
+      "situacion": "Has de decidir si llogues l'habitació a un estudiant o professional (lloguer residencial de llarga durada) o la poses en una plataforma turística (Airbnb, Booking). El lloguer residencial et dóna 580 €/mes segurs però fixos. El turístic et pot donar 1.200 €/mes en temporada alta (abril-octubre) i 400 €/mes en temporada baixa (novembre-març). La llicència turística per a habitacions soltes encara no està restringida en el teu cas concret.",
+      "opciones": [
+        {
+          "label": "Lloguer residencial: 580 €/mes segurs i sense complicacions",
+          "kpi_delta": { "ingreso_mensual": 580, "ocupacion_pct": 100, "estabilidad": 4 },
+          "feedback": "Tries el segment de demanda estable: estudiants i professionals que busquen habitatge de llarga durada. La demanda ha augmentat (més estudiants de postgrau a la zona) i amb ella la disposició a pagar: el preu de mercat ha pujat. Cobres al preu d'equilibri del mercat residencial. Lliçó: la llei de l'oferta — a preus més alts, més propietaris entren al mercat, però el procés tarda temps, per això els preus es mantenen alts a curt termini.",
+          "next": "n2"
+        },
+        {
+          "label": "Lloguer turístic: més variabilitat, però ingrés potencial superior",
+          "kpi_delta": { "ingreso_mensual": 800, "ocupacion_pct": 75, "estabilidad": -2 },
+          "feedback": "Tries el segment de més rendibilitat però més volatilitat. L'entrada de propietaris al lloguer turístic (atrets pels ingressos alts) augmenta l'oferta turística: la corba d'oferta es desplaça a la dreta i els preus a la plataforma baixen. Si la ciutat satura l'oferta, els preus s'ajusten. L'ajuntament restringix noves llicències precisament per a limitar este desplaçament. Lliçó: quan el preu puja, entren més oferents — la llei de l'oferta en acció.",
+          "next": "n2"
+        },
+        {
+          "label": "Prove el turístic a l'estiu i el residencial a l'hivern",
+          "kpi_delta": { "ingreso_mensual": 650, "ocupacion_pct": 85, "estabilidad": 0 },
+          "feedback": "Estratègia de segmentació estacional. Maximitzes ingressos en temporada alta turística i cobrixes l'hivern amb ingrés estable. El risc és la fricció: canviar d'arrendatari cada 6 mesos té costos (temps, neteja, gestió) i pot generar buits entre ocupants. Lliçó: l'equilibri de mercat varia segons el segment i la temporada — els mercats de lloguer no són homogenis.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisió 2 — El preu: quin senyal et dóna el mercat?",
+      "situacion": "Decidixes lloguer residencial. Investigues el mercat i veus que altres habitacions semblants a Triana s'anuncien a 550-620 €/mes. Tu estimaves cobrar 700 € perquè l'habitació té terrassa privada i està molt ben ubicada. Un gestor immobiliari et diu que «el mercat està en 580 €» però tu creus que la teua habitació val més.",
+      "opciones": [
+        {
+          "label": "Publique a 700 €: si és millor, la demanda ho reconeixerà",
+          "kpi_delta": { "ingreso_mensual": 0, "ocupacion_pct": -30, "estabilidad": -2 },
+          "feedback": "L'habitació fa tres setmanes que no es lloga. A 700 € estàs per damunt del preu d'equilibri del mercat: la quantitat demandada és inferior a l'oferta. Els inquilins amb capacitat de pagar 700 € preferixen pisos sencers. L'excés d'oferta t'obliga a abaixar el preu o a assumir mesos sense ingressos. Lliçó: el preu d'equilibri no el fixes tu ni l'arrendatari — emergix de la interacció de tots al mercat.",
+          "next": "n3"
+        },
+        {
+          "label": "Publique a 580 € segons el mercat: millor ocupada que buida",
+          "kpi_delta": { "ingreso_mensual": 580, "ocupacion_pct": 100, "estabilidad": 3 },
+          "feedback": "Decisió eficient. Publiques al preu d'equilibri i en 48 hores reps 5 consultes. L'habitació es lloga al primer candidat adequat. Si hagueres publicat per davall de l'equilibri (per exemple 450 €), hauries tingut cua de candidats i podries haver pujat el preu: excés de demanda. Per damunt, com abans, buit. Lliçó: el preu de mercat és un senyal d'informació: et diu quant estan disposats a pagar els que tenen la demanda més alta.",
+          "next": "n3"
+        },
+        {
+          "label": "Publique a 580 € però amb clàusula de revisió anual segons IPC",
+          "kpi_delta": { "ingreso_mensual": 580, "ocupacion_pct": 100, "estabilidad": 4 },
+          "feedback": "Estratègia correcta. La clàusula de revisió lligada a l'IPC (actualment al 3,2 % a Espanya) protegix el teu ingrés real enfront de la inflació. Sense revisió, un lloguer de 580 € el 2026 valdrà 530 € reals el 2029. La Llei d'Arrendaments Urbans (LAU) espanyola permet esta clàusula. Lliçó: el preu nominal pot mantindre's constant mentres el preu real cau — la inflació erosiona els contractes amb preu fix.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisió 3 — L'efecte de la regulació municipal",
+      "situacion": "L'Ajuntament aprova un límit de preus per a habitacions en zones tensionades de Sevilla: màxim 500 €/mes (per davall del preu actual d'equilibri de 580 €). La mesura entra en vigor en 90 dies. Com a propietària has de decidir què fas.",
+      "opciones": [
+        {
+          "label": "Accepte el límit: 500 € és millor que res i l'inquilí ho agraïx",
+          "kpi_delta": { "ingreso_mensual": -80, "ocupacion_pct": 100, "estabilidad": 2 },
+          "feedback": "Complixes la normativa i reduïxes l'ingrés mensual 80 €. L'efecte sobre el mercat: molts propietaris que llogaven a 580 € ara preferixen deixar l'habitació buida, usar-la per a la família o passar-la al turístic (si encara és possible). L'oferta residencial es contrau. El que la regulació volia fer barat acaba sent més escàs. Lliçó: un preu màxim per davall de l'equilibri crea excés de demanda — el model d'oferta i demanda ho prediu exactament.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Trac l'habitació del mercat i faig Airbnb mentres siga legal",
+          "kpi_delta": { "ingreso_mensual": 300, "ocupacion_pct": 60, "estabilidad": -3 },
+          "feedback": "Comportament típic davant de preus màxims: el bé es desvia a un segment no regulat. El resultat és menys oferta residencial (el contrari del que buscava la mesura) i més oferta turística, que l'Ajuntament està intentant frenar amb una altra regulació. Lliçó: les intervencions sobre preus tenen efectes de segona volta que el model d'oferta i demanda ajuda a anticipar — i que solen desplaçar el problema, no resoldre'l.",
+          "next": "final:fracaso_parcial"
+        },
+        {
+          "label": "Venc el pis aprofitant el màxim històric de preus",
+          "kpi_delta": { "ingreso_mensual": -580, "ocupacion_pct": 0, "estabilidad": -5 },
+          "feedback": "El preu de l'habitatge a Triana ronda els 3.000-3.200 €/m². Si el pis té 70 m², obtens més de 200.000 € que pots invertir en un fons indexat. L'ingrés anual equivalent al 7 % són 14.000 €/any, enfront dels 6.960 € del lloguer regulat. La regulació ha canviat l'equilibri entre llogar i vendre: per a molts propietaris, la regulació fa la venda més atractiva que el lloguer. Això reduïx el parc de lloguer disponible. Lliçó: els agents econòmics responen a incentius — canvia els incentius i canvia el comportament, encara que no en la direcció prevista.",
+          "next": "final:fracaso_parcial"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "L'habitació funciona i tu entens el mercat",
+      "resumen": "Has navegat les decisions de preu, segment i regulació amb criteri d'oferta i demanda. Complixes la llei, tens ingrés i has aprés a llegir els senyals del mercat en lloc de lluitar-hi en contra.",
+      "lecciones_clave": [
+        "El preu d'equilibri no el fixa cap agent individualment: emergix de l'encreuament de l'oferta i la demanda de tots.",
+        "Un preu màxim per davall de l'equilibri genera excés de demanda i desincentiva l'oferta: el model ho prediu amb exactitud.",
+        "Els agents responen a incentius: canviar les regles del joc canvia el comportament, de vegades en la direcció contrària a l'esperada."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "L'habitació ix del mercat residencial",
+      "resumen": "La regulació ha canviat els incentius i has optat per eixir del mercat residencial. El resultat agrega la paradoxa de la intervenció: menys oferta del que es volia protegir.",
+      "lecciones_clave": [
+        "Les intervencions sobre preus tenen efectes no previstos que el model d'oferta i demanda ajuda a anticipar.",
+        "Quan el preu no es pot ajustar, els agents busquen mercats alternatius no regulats."
+      ]
+    }
+  }
+}
+```

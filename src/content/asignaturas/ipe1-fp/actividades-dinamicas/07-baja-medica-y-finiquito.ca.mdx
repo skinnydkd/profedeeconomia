@@ -1,0 +1,119 @@
+---
+asignatura: ipe1-fp
+unidad_relacionada: 7
+title: "Baixa mèdica i quitança: que no te la colen"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "15-20 min"
+descripcion: "Contracte temporal, una baixa de 9 dies i una quitança amb números estranys. Has de saber llegir el que firmes."
+competencias_clave: [CPSAA, CC, CD]
+competencias_especificas: [RA3]
+lang: ca
+estado: publicado
+slug: "asignaturas/ipe1-fp/actividades-dinamicas/07-baja-medica-y-finiquito.ca"
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Cas · Seguretat Social",
+    "titulo": "Baixa mèdica i quitança: que no te la colen",
+    "contexto": "Treballes des de fa 4 mesos amb un contracte temporal de 6 mesos en un magatzem logístic a Múrcia (DISTRIBUCIONES TORAL S.L.), 1.200 € bruts al mes, jornada completa. Al mes 5 t'operen del menisc i el metge de capçalera et dona una baixa de 9 dies per incapacitat temporal. En reincorporar-te et diuen que el contracte no es renova i et donen la quitança. El document inclou: dies treballats, vacances no gaudides i la part proporcional de pagues extres. No inclou res de la baixa.",
+    "kpi_inicial": { "conocimiento_ss": 3, "proteccion_prestaciones": 4, "capacidad_reclamacion": 3 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisió 1 — La baixa de 9 dies: qui paga què?",
+      "situacion": "En revisar la nòmina del mes que vas estar de baixa veus que els primers 3 dies no apareix cap compensació i del dia 4 al 9 només apareix el 60 % de la teua base reguladora. L'empresa no t'ha pagat cap complement. Creus que hauries d'haver cobrat més.",
+      "opciones": [
+        {
+          "label": "L'accepte: en la baixa sempre cobres menys i ja està",
+          "kpi_delta": { "conocimiento_ss": -1, "proteccion_prestaciones": -1, "capacidad_reclamacion": -1 },
+          "feedback": "La distribució legal és: dies 1-3 sense prestació de la Seguretat Social (a càrrec de l'empresa si el conveni ho establix, o sense cobrament si no ho fa), dies 4-15 al 60 % a càrrec de l'empresa, dies 16-20 al 60 % a càrrec de la SS, dia 21 en avant al 75 %. Molts convenis milloren estes condicions. Sense consultar el teu, no saps si vas cobrar el que et corresponia.",
+          "next": "n2"
+        },
+        {
+          "label": "Consulte el conveni del sector de logística i emmagatzematge per a veure si hi ha millora de la IT per conveni",
+          "kpi_delta": { "conocimiento_ss": 2, "proteccion_prestaciones": 2, "capacidad_reclamacion": 1 },
+          "feedback": "Correcte. Molts convenis sectorials obliguen l'empresa a completar la prestació fins al 100 % del salari durant la IT. Si el conveni de logística de la teua província ho preveu i l'empresa no ho ha aplicat, tens dret a reclamar la diferència. Conéixer el conveni és el primer pas.",
+          "next": "n2"
+        },
+        {
+          "label": "Cride la Seguretat Social perquè m'expliquen la nòmina",
+          "kpi_delta": { "conocimiento_ss": 1, "proteccion_prestaciones": 1, "capacidad_reclamacion": 0 },
+          "feedback": "La Seguretat Social pot aclarir-te què li correspon pagar a ella, però la part de millora per conveni depén de l'acord sectorial. Per a la part a càrrec de l'empresa, l'interlocutor és el conveni i, si hi ha conflicte, la Inspecció de Treball o el SMAC (Servici de Mediació, Arbitratge i Conciliació).",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisió 2 — La quitança: està ben calculada?",
+      "situacion": "La quitança que et lliuren inclou: 8 dies de vacances no gaudides (tens dret a 30 dies anuals × (5/12 mesos) = 12,5 dies, proporcional als 5 mesos i 10 dies treballats) i les pagues extres proporcionals. L'empresa ha calculat només 8 dies de vacances en compte de 12,5. La diferència són uns 180 €.",
+      "opciones": [
+        {
+          "label": "Firme la quitança: el càlcul l'han fet ells i supose que està bé",
+          "kpi_delta": { "conocimiento_ss": -1, "proteccion_prestaciones": -2, "capacidad_reclamacion": -2 },
+          "feedback": "La quitança firmada té valor alliberador: en principi, en firmar-la reconeixes que els imports són correctes. Encara que pots reclamar després si hi va haver error, és més difícil i més costós. Revisar el càlcul abans de firmar et porta 5 minuts i pot suposar 180 €.",
+          "next": "n3"
+        },
+        {
+          "label": "Calcule jo les vacances proporcionals (30 dies × mesos treballats / 12) i assenyale la diferència",
+          "kpi_delta": { "conocimiento_ss": 2, "proteccion_prestaciones": 2, "capacidad_reclamacion": 2 },
+          "feedback": "Exacte. La fórmula de vacances proporcionals és pública i senzilla. 30 dies anuals × 5,33 mesos / 12 = 13,3 dies, arredonint. Assenyalar l'error amb el càlcul fet és diferent a queixar-se «crec que està mal»: tens la xifra concreta i la justificació. L'empresa sol corregir sense conflicte.",
+          "next": "n3"
+        },
+        {
+          "label": "Firme amb la nota «no conforme» escrita a mà i ja reclame si cal",
+          "kpi_delta": { "conocimiento_ss": 1, "proteccion_prestaciones": 0, "capacidad_reclamacion": 1 },
+          "feedback": "Firmar «no conforme» és una opció vàlida que preserva el teu dret a reclamar posteriorment. No elimina el problema, però evita l'efecte alliberador de la quitança. És millor que firmar directament si no tens temps de revisar, però menys eficient que detectar l'error abans de firmar.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisió 3 — Tens dret a prestació per desocupació?",
+      "situacion": "Amb 5 mesos i 10 dies cotitzats en este contracte, més 3 mesos previs cotitzats en un treball d'estiu anterior (total: 8 mesos i 10 dies), et preguntes si pots cobrar l'atur. El requisit mínim per a la prestació contributiva per desocupació és 360 dies cotitzats en els últims 6 anys.",
+      "opciones": [
+        {
+          "label": "No tinc dret a l'atur: només porte 8 mesos cotitzant i es necessita molt més",
+          "kpi_delta": { "conocimiento_ss": -1, "proteccion_prestaciones": -2, "capacidad_reclamacion": 0 },
+          "feedback": "El requisit són 360 dies (12 mesos) cotitzats per a la prestació contributiva. Amb 8 mesos i 10 dies no hi arribes. No obstant això, existix el subsidi per desocupació per a persones que esgoten la prestació contributiva o no la tenen, amb condicions de renda. Val la pena informar-se al SEPE: el subsidi existix precisament per a situacions com esta.",
+          "next": "final:fracaso_parcial"
+        },
+        {
+          "label": "Vaig al SEPE a informar-me sobre quina prestació o subsidi em correspon amb les meues cotitzacions reals",
+          "kpi_delta": { "conocimiento_ss": 2, "proteccion_prestaciones": 2, "capacidad_reclamacion": 2 },
+          "feedback": "Amb menys de 360 dies cotitzats no tens dret a prestació contributiva, però el SEPE pot informar-te sobre el subsidi per desocupació (si complixes els requisits de renda) i sobre com acumular cotitzacions en el futur per a accedir a la prestació contributiva com més prompte millor. Anar al SEPE és sempre la primera decisió correcta.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Deixe passar el temps: ja miraré si trobe un altre treball ràpid",
+          "kpi_delta": { "conocimiento_ss": -1, "proteccion_prestaciones": -1, "capacidad_reclamacion": -1 },
+          "feedback": "La sol·licitud de prestació o subsidi té un termini: si no la sol·licites dins dels 15 dies hàbils des de la desocupació, pots perdre dies de cobertura. No conéixer els terminis costa diners reals.",
+          "next": "final:fracaso_parcial"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "Has cobrat el que et corresponia i coneixes la teua situació real",
+      "resumen": "Vas consultar el conveni, vas calcular les vacances proporcionals, vas detectar l'error en la quitança i vas anar al SEPE a conéixer les teues opcions. El sistema de protecció existix per a això: funciona si l'actives.",
+      "lecciones_clave": [
+        "El conveni col·lectiu pot millorar la prestació per IT: consulta sempre abans d'acceptar el que et diguen.",
+        "La quitança firmada té valor alliberador: revisa el càlcul abans de firmar-la.",
+        "La sol·licitud de prestació té termini: no esperes més de 15 dies hàbils des de la desocupació."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "Has cobrat menys del que et corresponia",
+      "resumen": "Vas firmar sense revisar i no vas demanar informació sobre prestacions. Els diners perduts no es recuperen fàcilment. La pròxima vegada, el conveni i la calculadora van abans que la firma.",
+      "lecciones_clave": [
+        "Firmar sense revisar la quitança és l'error més car del final d'un contracte.",
+        "El sistema de protecció social funciona si l'actives: no s'activa sol."
+      ]
+    }
+  }
+}
+```

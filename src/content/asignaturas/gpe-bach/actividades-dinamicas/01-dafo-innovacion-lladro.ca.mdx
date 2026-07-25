@@ -1,0 +1,119 @@
+---
+asignatura: gpe-bach
+unidad_relacionada: 1
+title: "Tres germans, un forn i una decisió"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "15-20 min"
+descripcion: "És 1955 i el teu equip acaba de posar en marxa un xicotet taller de porcellana. Primera crisi real."
+competencias_clave: [CPSAA, CE, CD]
+competencias_especificas: [CE3]
+estado: publicado
+lang: ca
+slug: "asignaturas/gpe-bach/actividades-dinamicas/01-dafo-innovacion-lladro.ca"
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Cas · Innovació i emprenedoria",
+    "titulo": "Tres germans, un forn i una decisió",
+    "contexto": "És 1955. El teu equip porta dos anys fabricant figures de porcellana en un xicotet obrador d'Almàssera. Les figuretes es venen bé al mercat local, però un comprador de Barcelona vos proposa una cosa que ho canvia tot: replicar exactament l'estil d'una firma alemanya de porcellana molt reconeguda per a vendre'l com a alternativa més barata. El comprador oferix un contracte de 6.000 peces a l'any. Teniu 1.200 € en caixa, quatre mesos d'existències i tres persones al taller.",
+    "kpi_inicial": { "caja": 1200, "pedidos_mes": 80, "reputacion": 7 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisió 1 — L'oferta de Barcelona",
+      "situacion": "El comprador vos oferix 6.000 peces anuals si reproduïu fidelment l'estil de Meissen (Alemanya): motles copiats, acabats semblants, mateixa paleta cromàtica. El preu que paga és 3,20 € per peça, quan el vostre cost actual és de 2,10 €. Seria un marge del 52 %. Però un conegut vos avisa: copiar l'estil d'una marca consolidada pot acabar en reclamació legal.",
+      "opciones": [
+        {
+          "label": "Acceptem el contracte, el marge és massa bo per a rebutjar-lo",
+          "kpi_delta": { "caja": 3300, "reputacion": -2 },
+          "feedback": "Els diners entren, però construïxes el projecte sobre una base fràgil. Si Meissen denuncia o el comprador canvia d'interés, et quedes sense contracte i sense haver desenvolupat el teu propi estil. Lliçó: un marge alt no justifica una proposta sense diferenciació pròpia. La innovació de procés o de producte és més duradora que la còpia.",
+          "next": "n2"
+        },
+        {
+          "label": "Rebutgem, volem desenvolupar el nostre propi estil valencià",
+          "kpi_delta": { "caja": -200, "reputacion": 2 },
+          "feedback": "Renuncies a ingressos segurs a curt termini, però protegixes la identitat del projecte. Ara has de demostrar que l'estil propi té mercat. La innovació de producte comença exactament així: amb la decisió de no copiar quan seria més fàcil fer-ho.",
+          "next": "n2"
+        },
+        {
+          "label": "Negociem: acceptem l'escala però proposem un estil fusió valencià-europeu propi",
+          "kpi_delta": { "caja": 1800, "reputacion": 1 },
+          "feedback": "L'opció més complexa però més sòlida: uses el volum del comprador com a palanca per a finançar la teua diferenciació. Si el comprador accepta, guanyes diners i construïxes marca. Si no accepta, almenys saps que vols un client que valore la teua proposta, no sols el preu.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisió 2 — Tipus d'innovació per a créixer",
+      "situacion": "Necessiteu escalar per a cobrir la demanda sense perdre qualitat. Teniu tres opcions: (a) invertir 800 € en un segon forn (innovació de procés); (b) contractar una pintora de la comarca que coneix tècniques artesanals úniques (innovació de producte); (c) obrir una xicoteta botiga pròpia al mercat central de València, sense intermediaris (innovació de màrqueting). Només podeu fer-ne una ara mateix.",
+      "opciones": [
+        {
+          "label": "Segon forn: produïm més en el mateix temps",
+          "kpi_delta": { "caja": -800, "pedidos_mes": 35 },
+          "feedback": "Innovació de procés. Augmentes la capacitat i reduïxes el temps per peça. El retorn dels 800 € es calcula fàcil: si el marge net és 1,10 € per peça i produïxes 35 peces més al mes, el recuperes en uns 21 mesos. Ho aguanta la caixa? Revisa el KPI de caixa abans de decidir.",
+          "next": "n3"
+        },
+        {
+          "label": "Pintora artesana: les nostres figures seran úniques a la comarca",
+          "kpi_delta": { "caja": -300, "reputacion": 3 },
+          "feedback": "Innovació de producte. Eleves la proposta de valor i pots pujar el preu. La clau és si el mercat local paga més per exclusivitat artesana. Més lent per a escalar, però construïx un avantatge que ningú pot copiar fàcilment.",
+          "next": "n3"
+        },
+        {
+          "label": "Botiga pròpia al mercat: eliminem l'intermediari i coneixem el client",
+          "kpi_delta": { "caja": -150, "pedidos_mes": 15, "reputacion": 1 },
+          "feedback": "Innovació de màrqueting. Guanyes marge en eliminar l'intermediari (+0,60 € per peça) i comences a conéixer el comprador final directament. El risc és que la botiga consumix temps de les persones que ara produïxen. Qui l'atén?",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisió 3 — El primer error greu",
+      "situacion": "Una partida de 200 figures arriba al client amb un defecte d'esmalt que no vau detectar. El client demana que reemplaces les 200 peces sense cost addicional, la qual cosa suposa 420 € de pèrdua directa. Teniu tres formes de respondre.",
+      "opciones": [
+        {
+          "label": "Reemplacem les 200 peces sense dir res i continuem",
+          "kpi_delta": { "caja": -420, "reputacion": 0 },
+          "feedback": "Resols el problema a curt termini però no n'aprens. La mateixa causa (control de qualitat insuficient) tornarà a ocórrer. Lliçó de procés emprenedor: un error sense anàlisi és un cost que es repetirà. La perseverança no és aguantar colps, és aprendre'n.",
+          "next": "final:fracaso_parcial"
+        },
+        {
+          "label": "Reemplacem i a més revisem el procés: afegim una inspecció visual abans d'envasar",
+          "kpi_delta": { "caja": -420, "reputacion": 1 },
+          "feedback": "El millor que pot fer un equip emprenedor amb un error: resoldre'l i millorar el procés perquè no torne a ocórrer. El cost de 420 € és real, però la millora de procés val més a llarg termini. Això és flexibilitat aplicada a l'error.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Negociem: assumim la meitat i li oferim un descompte en la pròxima comanda",
+          "kpi_delta": { "caja": -210, "reputacion": -1 },
+          "feedback": "Protegixes la caixa a curt termini, però el client percep que no assumixes responsabilitat completa. En un sector on la confiança és bàsica, deixar un client insatisfet costa més que els 210 € que estalvies. La reputació tarda anys a construir-se i setmanes a perdre's.",
+          "next": "final:fracaso_parcial"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "El taller té identitat pròpia",
+      "resumen": "Tres anys després, el taller és reconeixible pel seu estil, té un procés de control de qualitat que funciona i un client fix que torna. Xicotet, però amb base.",
+      "lecciones_clave": [
+        "Innovar és combinar allò existent de forma nova: l'estil propi crea un avantatge que la còpia no pot sostindre.",
+        "El tipus d'innovació (producte, procés, màrqueting, organització) ha d'encaixar amb els recursos disponibles en cada moment.",
+        "La perseverança no és no equivocar-se, sinó aprendre de l'error i millorar el procés perquè no es repetisca."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "El taller sobreviu, però sense rumb clar",
+      "resumen": "El projecte continua avant, però sense un estil propi consolidat ni un procés de qualitat fiable. Cada error costa diners i cada client nou requerix tornar a convéncer.",
+      "lecciones_clave": [
+        "Copiar dona diners ràpid però no construïx diferenciació duradora.",
+        "Un error sense anàlisi és una oportunitat de millora desaprofitada: la flexibilitat implica canviar el procés, no sols aguantar el colp."
+      ]
+    }
+  }
+}
+```

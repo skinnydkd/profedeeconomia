@@ -1,0 +1,119 @@
+---
+asignatura: ipe2-fp
+unidad_relacionada: 5
+title: "Validar o construir: el dilema de l'MVP"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "15-20 min"
+descripcion: "La teua idea sembla bona però no tens dades reals. Invertixes 2.400 € o construïxes el prototip mínim primer?"
+competencias_clave: [CPSAA, CE, CD]
+competencias_especificas: [RA1]
+lang: ca
+estado: publicado
+slug: "asignaturas/ipe2-fp/actividades-dinamicas/05-validar-o-construir.ca"
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Cas · Idea a oportunitat",
+    "titulo": "Validar o construir: el dilema de l'MVP",
+    "contexto": "Alba (20 anys, Grau Superior de Màrqueting i Publicitat) ha detectat un problema als mercats ambulants de la seua ciutat: els venedors no tenen manera de gestionar reserves en línia ni de comunicar quins productes tenen eixe cap de setmana. Alba porta 3 setmanes entrevistant 8 venedors. Tots diuen que 'seria molt útil'. Un desenvolupador li ha pressupostat una app bàsica en 2.400 €. Els seus estalvis són 800 €. La seua mare està disposada a prestar-li els 1.600 € restants. Ha de decidir si encarrega l'app o si valida més abans d'invertir.",
+    "kpi_inicial": { "dinero_disponible": 800, "validacion_real": 2, "confianza_hipotesis": 6 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisió 1 — És suficient validació dir que 'seria útil'?",
+      "situacion": "Els 8 venedors entrevistats han dit que el sistema 'seria molt útil' i que 'l'usarien'. Alba interpreta això com a senyal verd per a encarregar l'app. Abans de trucar el desenvolupador, el seu company de classe li pregunta: 'Cap d'ells ha pagat res, reservat una demo o donat el seu correu?'",
+      "opciones": [
+        {
+          "label": "Amb 8 de 8 dient que sí, la validació és més que suficient. Encarregue l'app.",
+          "kpi_delta": { "dinero_disponible": -2400, "validacion_real": 1, "confianza_hipotesis": 2 },
+          "feedback": "8 de 8 dient 'seria útil' és l'error clàssic de The Mom Test. La gent és amable: quan algú et pregunta si li sembla bona la teua idea, la majoria diu que sí per a no ferir. El que importa no és el que diuen que farien: és el que fan quan els ho poses davant. Sense compromís concret (correu, pagament de senyal, reserva) la validació verbal és quasi inútil com a predictor de conversió real.",
+          "next": "n2"
+        },
+        {
+          "label": "El meu company té raó. Necessite compromís real abans de gastar 2.400 €. Dissenye una prova més barata primer.",
+          "kpi_delta": { "dinero_disponible": 0, "validacion_real": 3, "confianza_hipotesis": 3 },
+          "feedback": "Decisió correcta. La distinció entre 'l'usaria' i 'l'use' és la diferència entre una hipòtesi i una oportunitat. Una prova barata pot ser: un full de Google Sheets compartit amb els venedors que simule el sistema, un grup de WhatsApp de reserves manual, o un formulari de Typeform amb què gestiones les reserves a mà durant 3 caps de setmana. Si els venedors usen això, la hipòtesi es consolida amb 0 euros de desenvolupament.",
+          "next": "n2"
+        },
+        {
+          "label": "Pregunte al desenvolupador si pot fer una versió més barata per a provar primer",
+          "kpi_delta": { "dinero_disponible": -600, "validacion_real": 2, "confianza_hipotesis": 2 },
+          "feedback": "No està malament, però una versió 'més barata' del desenvolupador pot continuar costant 600-900 € i continua sent construir abans de validar. El punt de The Mom Test és que la validació mínima sovint no requerix codi: requerix observar comportament real. Abans d'anar al desenvolupador, esgota les opcions de prototip sense tecnologia.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisió 2 — L'experiment de validació",
+      "situacion": "Alba dissenya un prototip manual: crea un formulari de Typeform perquè els compradors reserven productes, i gestiona les notificacions als venedors per WhatsApp. Ho proposa a 3 dels 8 venedors per a provar-ho durant 2 caps de setmana. Resultat: 1 venedor l'usa activament (12 reserves en 2 setmanes), 1 el prova i abandona, i 1 diu que 'no ha tingut temps de configurar-lo'.",
+      "opciones": [
+        {
+          "label": "Amb 1 de 3 venedors actiu ja tinc senyal suficient. Encarregue l'app.",
+          "kpi_delta": { "dinero_disponible": -2400, "validacion_real": 2, "confianza_hipotesis": 2 },
+          "feedback": "1 de 3 és un senyal, però no és suficient per a invertir 2.400 €. El venedor que funciona pot ser un early adopter atípic. El que va abandonar i el que 'no va tindre temps' són senyals de fricció real en l'adopció. Abans d'invertir, convé entendre per què el segon va abandonar: el flux era complicat? el comprador no trobava el formulari? Eixa fricció s'ha de resoldre abans de construir.",
+          "next": "n3"
+        },
+        {
+          "label": "Els resultats són mixtos. Entreviste el venedor que va abandonar per a entendre la fricció abans de decidir.",
+          "kpi_delta": { "dinero_disponible": 0, "validacion_real": 4, "confianza_hipotesis": 2 },
+          "feedback": "Exactament correcte. El venedor que va abandonar és la informació més valuosa de l'experiment. Les dades del que funciona confirmen que hi ha interés; les dades del que abandona revelen on falla la proposta. Si la fricció és d'interfície (el Typeform era confús) l'app pot resoldre-ho. Si és d'hàbit ('els compradors no reserven en línia als mercats ambulants') l'app no canviarà això.",
+          "next": "n3"
+        },
+        {
+          "label": "Amplie l'experiment als 8 venedors abans de decidir. Més dades, millor decisió.",
+          "kpi_delta": { "dinero_disponible": 0, "validacion_real": 3, "confianza_hipotesis": 1 },
+          "feedback": "Més dades ajuden, però el problema no és la mida de la mostra: és entendre per què falla, no quantes vegades falla. Ampliar l'experiment sense haver entés la fricció del segon venedor pot donar més dades del mateix problema sense revelar-ne la causa. El pas següent és qualitatiu (parlar amb qui va abandonar), no quantitatiu (més venedors).",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisió 3 — El pivot",
+      "situacion": "L'entrevista amb el venedor que va abandonar revela que el problema no és la gestió de reserves: és la visibilitat de quins productes té cada parada eixe cap de setmana. Els compradors li pregunten per Instagram si té 'les bosses de vímet del mes passat', però no hi ha manera que vegen l'estoc actualitzat. La reserva és secundària; el primari és el catàleg visual actualitzat. Alba té ara 800 € intactes i 2 setmanes de treball de camp.",
+      "opciones": [
+        {
+          "label": "La meua idea original eren les reserves. Continue amb això i assumisc que el catàleg és un problema menor.",
+          "kpi_delta": { "dinero_disponible": -2400, "validacion_real": 0, "confianza_hipotesis": -1 },
+          "feedback": "Enamorar-te de la teua solució original quan el treball de camp et diu que el problema real és un altre és l'error que mata més startups. Construir l'app de reserves quan el problema principal és el catàleg visual significa construir la solució equivocada amb diners reals. Descartar dades de camp perquè contradiuen la hipòtesi inicial és l'oposat de la mentalitat emprenedora.",
+          "next": "final:fracaso_parcial"
+        },
+        {
+          "label": "Pivote: dissenye un perfil d'Instagram amb catàleg visual setmanal per als venedors i el gestione jo com a servici. MVP de zero euros.",
+          "kpi_delta": { "dinero_disponible": 0, "validacion_real": 5, "confianza_hipotesis": 4 },
+          "feedback": "Pivot brillant. El catàleg visual setmanal a Instagram és un MVP de zero euros: Alba gestiona el contingut de 3-4 venedors, cobra per això (servici de community management local) i, si funciona, construïx després el sistema de reserves com a capa addicional. Ha passat d''app de 2.400 €' a 'servici de 0 € de cost fix que genera ingressos des del primer mes'. Això és pensar com a emprenedora.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Busque un soci tècnic que construïsca el catàleg visual abans que l'app de reserves, sense cost inicial",
+          "kpi_delta": { "dinero_disponible": 0, "validacion_real": 2, "confianza_hipotesis": 2 },
+          "feedback": "Buscar un cofundador tècnic per a validar més ràpid pot ser correcte, però afig complexitat societària i de dependència abans de tindre ingressos. Si l'MVP del catàleg visual el pot gestionar Alba sola amb ferramentes existents (Instagram, Google Sheets), portar un soci tècnic ara és una solució més cara al problema. La regla: afig socis quan el problema ho requerix, no quan la solució és més còmoda amb ajuda.",
+          "next": "final:fracaso_parcial"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "El mercat digital que ningú havia muntat",
+      "resumen": "Vas validar amb 0 euros que el problema real era el catàleg visual, vas pivotar abans de gastar res i vas crear un servici de community management local que genera ingressos des del primer mes. En 3 mesos tens 5 venedors de clients i 650 €/mes recurrents.",
+      "lecciones_clave": [
+        "Les dades de camp del que abandona són més valuoses que les del que funciona: revelen la fricció real.",
+        "Pivotar no és fracassar: és usar la informació del mercat per a no gastar diners en la solució equivocada.",
+        "Un MVP de zero euros que genera ingressos és sempre millor que una app de 2.400 € que resol el problema equivocat."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "L'app construïda, el mercat no convençut",
+      "resumen": "Vas invertir els 2.400 € en l'app de reserves. Als 2 mesos tens 2 venedors actius i 8 que 'l'aniran a provar'. Els ingressos no cobrixen ni el hosting. El problema real —el catàleg visual— continua sense resoldre's i els venedors comencen a preguntar si l'app 'també pot mostrar els productes'.",
+      "lecciones_clave": [
+        "Construir abans de validar el problema real és l'error més car de l'emprenedoria amateur.",
+        "Quan el treball de camp contradiu la hipòtesi inicial, és una victòria: t'estalvia gastar en allò equivocat."
+      ]
+    }
+  }
+}
+```

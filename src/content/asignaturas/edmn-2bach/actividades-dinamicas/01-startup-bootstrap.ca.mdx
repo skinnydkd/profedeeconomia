@@ -1,0 +1,119 @@
+---
+asignatura: edmn-2bach
+unidad_relacionada: 1
+title: "La startup que ningú va creure possible"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "15-20 min"
+descripcion: "Claudio vol llançar una startup de programari des de Múrcia. Tothom dubta. Pren les decisions que definiran si arranca."
+competencias_clave: [CPSAA, CE, CD]
+competencias_especificas: [CE3]
+lang: ca
+estado: publicado
+slug: "asignaturas/edmn-2bach/actividades-dinamicas/01-startup-bootstrap.ca"
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Cas · Emprenedoria",
+    "titulo": "La startup que ningú va creure possible",
+    "contexto": "Claudio té 24 anys, viu a Múrcia i fa dos anys que desenvolupa una app de gestió per a tallers mecànics. El seu ex cap li diu que «a Múrcia no hi ha mercat per a això». Son pare li demana que busque una faena fixa. Té 4.000 € estalviats, un client pilot a Cartagena i el domini registrat. Ha de decidir si llança, i com.",
+    "kpi_inicial": { "caja": 4000, "clientes": 1, "reputacion": 6 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisió 1 — Llances o esperes?",
+      "situacion": "El client pilot fa tres mesos que usa l'app gratis i està content. Et demana una nova funció: gestió de garanties. Desenvolupar-la et duria 6 setmanes més. Podries llançar la versió actual ja, o esperar i llançar amb la nova funció.",
+      "opciones": [
+        {
+          "label": "Llance ara amb el que tinc i cobre des del primer dia",
+          "kpi_delta": { "caja": 600, "clientes": 2, "reputacion": 1 },
+          "feedback": "Llançar abans de la perfecció és una característica del perfil emprenedor, no un defecte. El product-market fit es valida amb clients reals que paguen, no amb funcions extra. Moltes startups moren esperant el moment perfecte. El teu primer client et dóna feedback real que cap pla arreplega.",
+          "next": "n2"
+        },
+        {
+          "label": "Espere 6 setmanes, llance amb la funció de garanties inclosa",
+          "kpi_delta": { "caja": -500, "clientes": 0, "reputacion": 0 },
+          "feedback": "Esperar té un cost invisible: 6 setmanes sense ingressos, sense aprenentatge de mercat i amb la caixa baixant. La funció de garanties pot ser valuosa, però si el client pilot no l'ha demanada urgent, potser no era el primer. Lliçó: la perfecció és enemiga del progrés quan tens recursos limitats.",
+          "next": "n2"
+        },
+        {
+          "label": "Oferisc al client pilot un contracte de pagament a canvi de finançar el desenvolupament",
+          "kpi_delta": { "caja": 1500, "clientes": 1, "reputacion": 2 },
+          "feedback": "Finançament amb client àncora: el taller paga per avançat a canvi d'una funció a mida. És una de les formes més saludables de validar la demanda i finançar el desenvolupament al mateix temps. Només funciona si el client confia en tu, i el teu sí que confia.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisió 2 — El primer empleat",
+      "situacion": "El teu cosí Álvaro, tècnic en informàtica, s'oferix a treballar amb tu a mitat de sou (800 €/mes) a canvi d'un 10 % de l'empresa. Un programador freelance t'oferix el mateix sense participació per 1.500 €/mes. L'empresa comença a captar atenció: tens tres tallers interessats.",
+      "opciones": [
+        {
+          "label": "Contracte el meu cosí: estalvie diners i ell s'implica més",
+          "kpi_delta": { "caja": -800, "clientes": 3, "reputacion": 0 },
+          "feedback": "La barreja de família i participació societària és una de les fonts més habituals de conflicte en startups primerenques. No és impossible, però l'acord ha d'estar molt ben documentat: valoració de l'empresa, condicions d'eixida, drets de vot. Sense això, el 10 % pot convertir-se en un problema car.",
+          "next": "n3"
+        },
+        {
+          "label": "Contracte el freelance: més car però sense lligar-me amb participació",
+          "kpi_delta": { "caja": -1500, "clientes": 3, "reputacion": 1 },
+          "feedback": "L'opció més cara a curt termini però més neta en govern corporatiu. Si l'empresa creix, no hauràs de negociar participació amb algú que no assumix el mateix risc que tu. Lliçó: l'estructura societària d'una empresa jove és difícil de desfer; pensa-la bé abans de comprometre equity.",
+          "next": "n3"
+        },
+        {
+          "label": "Treballe sol per ara, prioritze els tres clients nous abans de contractar",
+          "kpi_delta": { "caja": 0, "clientes": 2, "reputacion": -1 },
+          "feedback": "Créixer sense equip té un límit clar: el teu temps. Pots tancar dos dels tres clients però el tercer se n'anirà per falta de capacitat de resposta. La cultura emprenedora inclou saber delegar en el moment correcte, no només treballar més hores.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisió 3 — El primer fracàs",
+      "situacion": "Un dels tallers nous cancel·la abans de començar perquè acaba de signar amb un competidor nacional (una empresa gran de Madrid). El competidor oferix l'app gratis el primer any. Has de decidir com reaccionar.",
+      "opciones": [
+        {
+          "label": "Oferisc també el primer any gratis per a no perdre els altres dos",
+          "kpi_delta": { "caja": -1200, "clientes": 2, "reputacion": 0 },
+          "feedback": "Competir en preu contra una empresa amb més recursos és una trampa: ells poden aguantar més temps gratis que tu. El primer fracàs no és perdre un client, és perdre la perspectiva de què et fa diferent. Lliçó: el fracàs és informació. La pregunta correcta no és com baixar el preu sinó per què el taller va triar l'altre.",
+          "next": "final:fracaso_parcial"
+        },
+        {
+          "label": "Analitze per què vaig perdre eixe client i reforce el que em diferencia",
+          "kpi_delta": { "caja": 200, "clientes": 2, "reputacion": 2 },
+          "feedback": "Resposta d'emprenedor madur: el fracàs és la font d'aprenentatge més barata que existix si saps extraure-li informació. Crides el taller, preguntes què van valorar de l'altre, i descobrixes que va ser només el preu el primer any. Decidixes centrar-te en el servici de suport local que l'empresa de Madrid no pot donar.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Em rendisc amb eixe segment i pivote cap a tallers de moto, on no hi ha competidor",
+          "kpi_delta": { "caja": -300, "clientes": 1, "reputacion": 1 },
+          "feedback": "El pivot no és rendir-se: és redirigir recursos cap a on hi ha oportunitat real. Canviar de segment té sentit si el nou té menys competència i demanda real, però requerix validar de nou la hipòtesi. Lliçó: un pivot ben fet és estratègia, no fugida.",
+          "next": "final:fracaso_parcial"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "Claudio té empresa, no només app",
+      "resumen": "Tres tallers de pagament, caixa positiva, i una proposta de valor clara: suport local enfront de grans plataformes nacionals. El fracàs del primer client va ser la millor classe del curs.",
+      "lecciones_clave": [
+        "El perfil emprenedor no és el que no falla, sinó el que convertix cada fracàs en informació accionable.",
+        "Les decisions primerenques d'estructura societària i equip condicionen tot el que ve després.",
+        "Llançar abans de la perfecció amb clients reals ensenya més que qualsevol investigació de mercat prèvia."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "L'app funciona, el negoci rasca",
+      "resumen": "Claudio té clients però la caixa està al límit. Competix en preu en lloc de en valor i no ha trobat encara el seu diferenciador real.",
+      "lecciones_clave": [
+        "Copiar les condicions del competidor més gran és quasi sempre una trampa per a l'emprenedor xicotet.",
+        "El fracàs només ensenya si et pares a analitzar-lo; ignorar-lo o córrer a compensar-lo són els dos errors més freqüents."
+      ]
+    }
+  }
+}
+```

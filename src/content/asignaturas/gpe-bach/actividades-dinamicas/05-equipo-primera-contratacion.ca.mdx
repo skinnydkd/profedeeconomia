@@ -1,0 +1,119 @@
+---
+asignatura: gpe-bach
+unidad_relacionada: 5
+title: "L'equip es queda xicotet"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "15-20 min"
+descripcion: "El vostre servei de reparació de bicicletes creix i necessiteu incorporar algú. Tres decisions de recursos humans abans de firmar res."
+competencias_clave: [CPSAA, CE, CD]
+competencias_especificas: [CE3]
+estado: publicado
+lang: ca
+slug: "asignaturas/gpe-bach/actividades-dinamicas/05-equipo-primera-contratacion.ca"
+publicado_en: 2026-05-30
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Cas · Recursos humans",
+    "titulo": "L'equip es queda xicotet",
+    "contexto": "El vostre projecte de reparació i manteniment de bicicletes porta sis mesos funcionant en un local compartit de Torrent. Teniu 280 clients registrats, una mitjana de 22 reparacions per setmana i una llista d'espera de 8 dies. Amb només dues persones a l'equip (vosaltres), no podeu assumir més treball sense baixar la qualitat. Els ingressos mensuals són de 1.840 € i els costos fixos (local, materials bàsics, assegurances) sumen 820 €/mes. Marge brut: 1.020 €/mes. Necessiteu incorporar algú.",
+    "kpi_inicial": { "ingresos_mes": 1840, "costes_mes": 820, "lista_espera_dias": 8 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisió 1 — Definir el perfil abans de buscar",
+      "situacion": "La primera temptació és cridar un amic que sap de bicis. Abans de fer-ho, cal decidir quin perfil necessiteu realment. Analitzeu les vostres mancances: (a) tècnica — algú que sàpiga reparar sistemes de canvi electrònic que vosaltres no domineu; (b) comercial — algú que atenga el taulell i gestione les cites en línia mentres vosaltres repareu; (c) comodí — algú amb ganes d'aprendre-ho tot, encara que ara sàpiga poc.",
+      "opciones": [
+        {
+          "label": "Tècnica: busquem algú amb habilitat en electrònica de bici que nosaltres no tenim",
+          "kpi_delta": { "ingresos_mes": 380, "lista_espera_dias": -4 },
+          "feedback": "Decisió basada en fortaleses de l'equip: cobrir el buit tècnic que vos frena. Les reparacions de canvi electrònic tenen un tiquet 3 vegades major que les mecàniques bàsiques. Si esta persona pot atendre 3-4 reparacions electròniques setmanals a 80-90 €, l'impacte en ingressos és directe. El perfil professional està clar: això facilita la selecció i l'entrevista.",
+          "next": "n2"
+        },
+        {
+          "label": "Comercial: algú que allibere temps de taller gestionant cites i atenció al client",
+          "kpi_delta": { "ingresos_mes": 200, "lista_espera_dias": -3 },
+          "feedback": "Útil però menys directe. Si vosaltres sou els que repareu, tindre suport comercial-administratiu vos allibera temps de taller. El problema és que el perfil comercial té un cost semblant al tècnic però un impacte en ingressos menys immediat. Pot tindre sentit si la llista d'espera ve de falta de gestió, no de falta de mans al taller.",
+          "next": "n2"
+        },
+        {
+          "label": "Comodí: un amic amb ganes que aprén sobre la marxa",
+          "kpi_delta": { "ingresos_mes": 80, "lista_espera_dias": -1 },
+          "feedback": "El perfil més arriscat perquè no cobrix una mancança específica. Contractar per amistat o per disponibilitat en lloc de per encaix amb el perfil necessari és l'error de selecció més freqüent. Si l'amic acaba en tasques que ningú de l'equip vol fer, la desmotivació arriba aviat. Definiu primer el perfil, després busqueu la persona.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisió 2 — Tipus de contracte i cost empresa",
+      "situacion": "Heu definit el perfil i trobat una candidata que encaixa bé: Paula, 19 anys, FP de mecànica, experiència en bicicletes elèctriques. Vol treballar 20 hores setmanals. Teniu tres opcions de formalitzar la relació.",
+      "opciones": [
+        {
+          "label": "Contracte de pràctiques a temps parcial (20 h/setmana): salari ~600 €/mes brut",
+          "kpi_delta": { "costes_mes": 720, "lista_espera_dias": -4 },
+          "feedback": "Per a un perfil jove amb formació recent, el contracte de pràctiques permet un salari menor (mínim 60-75 % del conveni) amb cotitzacions reduïdes. El cost empresa estimat: ~600 € brut + ~150 € Seguretat Social patronal = 750 €/mes. Amb un marge brut actual de 1.020 €, queden 270 € de marge després del cost. Just, però sostenible si Paula afig les reparacions electròniques. Calculeu el punt mort abans de firmar.",
+          "next": "n3"
+        },
+        {
+          "label": "Autònom col·laborador: Paula factura al projecte per les hores treballades",
+          "kpi_delta": { "costes_mes": 600, "lista_espera_dias": -3 },
+          "feedback": "Aparenta més barat perquè només pagueu la factura. Però si Paula treballa de forma habitual i sota la vostra organització, Hisenda pot considerar que hi ha una relació laboral encoberta (frau a la Seguretat Social). El risc legal i econòmic per al projecte és alt. La Inspecció de Treball sanciona este tipus de relacions amb multes que superen amb molt l'estalvi.",
+          "next": "n3"
+        },
+        {
+          "label": "Contracte indefinit a temps complet: 1.000 €/mes brut",
+          "kpi_delta": { "costes_mes": 1200, "lista_espera_dias": -6 },
+          "feedback": "Paula estaria a temps complet i el projecte guanyaria molta capacitat. El cost empresa seria ~1.000 + 300 SS patronal = 1.300 €/mes. Amb un marge brut de 1.020 €, el cost supera el marge actual: el projecte entraria en pèrdues sense que els ingressos cresquen. La dimensió de la contractació ha d'encaixar amb la situació financera actual, no amb la que espereu.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisió 3 — Comunicació interna: com integrar Paula a l'equip",
+      "situacion": "Paula porta dues setmanes al projecte. Les reparacions electròniques van bé, però hi ha frec: Paula no sap qui decidix què, de vegades rep instruccions contradictòries dels dos fundadors i va preguntar pel xat de l'equip i va descobrir que no existix. Teniu tres opcions per a millorar la comunicació interna.",
+      "opciones": [
+        {
+          "label": "Reunió setmanal de 30 minuts els dilluns per a revisar llista d'espera i repartir tasques",
+          "kpi_delta": { "lista_espera_dias": -2, "ingresos_mes": 50 },
+          "feedback": "La palanca més eficaç. Una reunió breu i regular genera tres coses que no tenen cost econòmic: saber en quin estat està el treball, evitar que ningú reba instruccions contradictòries i que Paula sàpiga que les seues preguntes tenen un moment previst de resposta. Els conflictes d'equip solen vindre de la incertesa, no de la mala voluntat.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Creem un grup de WhatsApp per als tres i acordem que tot allò important va ahí",
+          "kpi_delta": { "lista_espera_dias": -1, "ingresos_mes": 20 },
+          "feedback": "Millor que res, però un grup de WhatsApp sense una estructura clara (qui pot assignar tasques, com es registren els acords) es convertix ràpidament en un caos de missatges. La comunicació interna sana necessita un canal clar, sí, però també unes regles sobre quin tipus d'informació va ahí i quines decisions es prenen així. Un grup ben usat funciona; sense regles, genera soroll.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Deixem que cadascú faça el seu treball i ens coordinem sobre la marxa",
+          "kpi_delta": { "lista_espera_dias": 1, "ingresos_mes": -40 },
+          "feedback": "L'opció de no decidir. Sense canals de comunicació acordats, cada persona crea els seus i es coordinen quan hi ha un problema, no abans. Això genera exactament el que està passant: instruccions contradictòries, incertesa sobre qui decidix i un empleat nou que no sap a qui preguntar. El cost de la comunicació interna deficient es mesura en temps perdut i en errors que podrien haver-se evitat.",
+          "next": "final:fracaso_parcial"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "L'equip té tres persones i funciona millor que amb dos",
+      "resumen": "La incorporació de Paula s'ha fet amb criteri: perfil definit, contracte adequat a la situació financera i comunicació interna acordada des del principi. La llista d'espera baixa i el marge del projecte continua sent positiu.",
+      "lecciones_clave": [
+        "Definir el perfil abans de buscar la persona és la primera decisió de recursos humans: sense perfil clar, qualsevol candidat pareix suficient.",
+        "El cost empresa és sempre major que el salari brut: calculeu-lo abans de firmar per a saber si el projecte pot pagar-lo.",
+        "La comunicació interna no es gestiona sola: necessita un canal, unes regles i un moment regular de sincronització."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "L'equip té tres persones però opera pitjor que amb dos",
+      "resumen": "La incorporació ha generat més fricció que capacitat. Sense estructura de comunicació, la coordinació falla i Paula treballa sense direcció clara. El projecte té més costos i no necessàriament més ingressos.",
+      "lecciones_clave": [
+        "Un equip descoordinat consumix energia en resolució de conflictes que hauria d'anar al treball real.",
+        "Contractar sense definir com s'integrarà la persona nova és la forma més cara d'aprendre que la comunicació interna importa."
+      ]
+    }
+  }
+}
+```
