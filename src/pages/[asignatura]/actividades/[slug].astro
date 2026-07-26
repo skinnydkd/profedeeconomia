@@ -3,12 +3,15 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 import { ASIGNATURAS } from '@/lib/asignaturas';
 import { breadcrumbLd } from '@/lib/seo';
 import { getCollection, render } from 'astro:content';
+import { getLocale } from '@/i18n/locale';
+import { pickLocalizedEntry } from '@/i18n/content-locale';
+import { localizeAsignatura } from '@/i18n/asignaturas-ca';
 import type { GetStaticPaths } from 'astro';
 
 export const getStaticPaths = (async () => {
   const all = await getCollection('actividades');
   return all
-    .filter((x) => x.data.estado === 'publicado')
+    .filter((x) => x.data.estado === 'publicado' && x.data.lang === 'es')
     .map((x) => {
       const slug = x.id.split('/').pop()?.replace(/\.mdx?$/, '') ?? x.id;
       return {
@@ -18,49 +21,60 @@ export const getStaticPaths = (async () => {
     });
 }) satisfies GetStaticPaths;
 
-const { actividad } = Astro.props;
-const a = ASIGNATURAS[actividad.data.asignatura];
+const locale = getLocale(Astro.currentLocale);
+const actividadEs = Astro.props.actividad;
+const a = localizeAsignatura(ASIGNATURAS[actividadEs.data.asignatura], locale);
+const actCaById = new Map(
+  (await getCollection('actividades'))
+    .filter((x) => x.data.estado === 'publicado' && x.data.lang === 'ca')
+    .map((x) => [x.id, x]),
+);
+const actividad = pickLocalizedEntry(actividadEs, actCaById, locale);
 const { Content } = await render(actividad);
 
 const allLibro = await getCollection('libro');
-const unit = allLibro.find(
+const libroCaById = new Map(allLibro.filter((u) => u.data.lang === 'ca').map((u) => [u.id, u]));
+const unitEs = allLibro.find(
   (u) => u.data.asignatura === a.slug && u.data.unidad === actividad.data.unidad_relacionada && u.data.lang === 'es'
 );
-const unitSlug = unit?.id.split('/').pop()?.replace(/\.mdx?$/, '');
+const unit = unitEs ? pickLocalizedEntry(unitEs, libroCaById, locale) : undefined;
+const unitSlug = unitEs?.id.split('/').pop()?.replace(/\.mdx?$/, '');
 
-const TIPO_LABEL: Record<string, string> = {
-  caso: 'Caso',
-  ejercicio: 'Ejercicio',
-  debate: 'Debate',
-  dinamica: 'Dinámica',
-  proyecto: 'Proyecto',
+const TIPO_LABEL: Record<'es' | 'ca', Record<string, string>> = {
+  es: { caso: 'Caso', ejercicio: 'Ejercicio', debate: 'Debate', dinamica: 'Dinámica', proyecto: 'Proyecto' },
+  ca: { caso: 'Cas', ejercicio: 'Exercici', debate: 'Debat', dinamica: 'Dinàmica', proyecto: 'Projecte' },
 };
 
-const actividadSlug = actividad.id.split('/').pop()?.replace(/\.mdx?$/, '') ?? actividad.id;
+const copy = {
+  es: { inicio: 'Inicio', actividades: 'Actividades', unidad: 'Unidad', actividad: 'Actividad', ebau: 'Tipo EBAU', duracion: 'Duración', agrupacion: 'Agrupación', materiales: 'Materiales', conexion: 'Conexión con el libro' },
+  ca: { inicio: 'Inici', actividades: 'Activitats', unidad: 'Unitat', actividad: 'Activitat', ebau: 'Tipus EBAU', duracion: 'Durada', agrupacion: 'Agrupament', materiales: 'Materials', conexion: 'Connexió amb el llibre' },
+}[locale];
+
+const actividadSlug = actividadEs.id.split('/').pop()?.replace(/\.mdx?$/, '') ?? actividadEs.id;
 const breadcrumb = breadcrumbLd([
-  { name: 'Inicio', path: '/' },
+  { name: copy.inicio, path: '/' },
   { name: a.shortLabel, path: `/${a.slug}/` },
-  { name: 'Actividades', path: `/${a.slug}/actividades/` },
+  { name: copy.actividades, path: `/${a.slug}/actividades/` },
   { name: actividad.data.title, path: `/${a.slug}/actividades/${actividadSlug}/` },
 ]);
 ---
 
-<BaseLayout title={`${actividad.data.title} — ${a.shortLabel}`} description={actividad.data.descripcion} ogType="article" jsonLd={breadcrumb}>
+<BaseLayout title={`${actividad.data.title} — ${a.shortLabel}`} description={actividad.data.descripcion} ogType="article" jsonLd={breadcrumb} contentLang={locale}>
   <div class="container">
     <nav class="breadcrumb">
-      <a href="/">Inicio</a> <span class="sep">›</span>
+      <a href="/">{copy.inicio}</a> <span class="sep">›</span>
       <a href={`/${a.slug}/`}>{a.shortLabel}</a> <span class="sep">›</span>
-      <a href={`/${a.slug}/actividades/`}>Actividades</a> <span class="sep">›</span>
-      <span>Unidad {actividad.data.unidad_relacionada}</span>
+      <a href={`/${a.slug}/actividades/`}>{copy.actividades}</a> <span class="sep">›</span>
+      <span>{copy.unidad} {actividad.data.unidad_relacionada}</span>
     </nav>
   </div>
 
   <section class="hero">
     <div class="container">
       <div class="kicker-row">
-        <span class="kicker kicker--sentence">Actividad · Unidad {actividad.data.unidad_relacionada}</span>
-        <span class={`badge badge--${actividad.data.tipo}`}>{TIPO_LABEL[actividad.data.tipo]}</span>
-        {actividad.data.ebau && <span class="badge badge--ebau">Tipo EBAU</span>}
+        <span class="kicker kicker--sentence">{copy.actividad} · {copy.unidad} {actividad.data.unidad_relacionada}</span>
+        <span class={`badge badge--${actividad.data.tipo}`}>{TIPO_LABEL[locale][actividad.data.tipo]}</span>
+        {actividad.data.ebau && <span class="badge badge--ebau">{copy.ebau}</span>}
       </div>
       <h1>{actividad.data.title}</h1>
       <p class="lede">{actividad.data.descripcion}</p>
@@ -68,19 +82,19 @@ const breadcrumb = breadcrumbLd([
       <dl class="meta-grid">
         {actividad.data.duracion && (
           <div>
-            <dt>Duración</dt>
+            <dt>{copy.duracion}</dt>
             <dd>{actividad.data.duracion}</dd>
           </div>
         )}
         {actividad.data.agrupacion && (
           <div>
-            <dt>Agrupación</dt>
+            <dt>{copy.agrupacion}</dt>
             <dd>{actividad.data.agrupacion}</dd>
           </div>
         )}
         {actividad.data.materiales.length > 0 && (
           <div style="grid-column: 1 / -1;">
-            <dt>Materiales</dt>
+            <dt>{copy.materiales}</dt>
             <dd>
               <ul>
                 {actividad.data.materiales.map((m) => <li>{m}</li>)}
@@ -90,10 +104,10 @@ const breadcrumb = breadcrumbLd([
         )}
         {unit && unitSlug && (
           <div style="grid-column: 1 / -1;">
-            <dt>Conexión con el libro</dt>
+            <dt>{copy.conexion}</dt>
             <dd>
               <a class="link" href={`/${a.slug}/libro/${unitSlug}/`}>
-                Unidad {unit.data.unidad}: {unit.data.title}
+                {copy.unidad} {unit.data.unidad}: {unit.data.title}
               </a>
             </dd>
           </div>
