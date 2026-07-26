@@ -13,6 +13,7 @@ solucion:
   - "Pas 2 (estalvi acumulat en 12 mesos sense interés): 16,00 × 12 = **192,00 €**."
   - "Pas 3 (interés simple al 2 % anual sobre el capital estalviat): I = Capital × tipus × temps = 192,00 × 0,02 × 1 = **3,84 €**."
   - "Pas 4 (total al cap de l'any): 192,00 + 3,84 = **195,84 €**. Amb la regla 50/30/20 i un compte remunerat al 2 %, els 80 € mensuals es convertixen en quasi 196 € a l'any sense cap esforç extra."
+lang: ca
 estado: publicado
 slug: "asignaturas/taller-eco-3eso/actividades/ejercicio-u5-regla-50-30-20-ahorro-interes-simple.ca"
 ---

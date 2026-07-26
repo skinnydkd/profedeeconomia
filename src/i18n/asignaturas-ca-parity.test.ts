@@ -22,7 +22,7 @@ function walk(dir: string): string[] {
   return readdirSync(dir, { withFileTypes: true }).flatMap((d) => {
     const p = join(dir, d.name);
     if (d.isDirectory()) return walk(p);
-    return d.name.endsWith('.ca.mdx') ? [p] : [];
+    return d.name.endsWith('.ca.mdx') || d.name.endsWith('.ca.md') ? [p] : [];
   });
 }
 
@@ -34,9 +34,9 @@ describe('asignaturas CA sibling parity', () => {
   });
 
   for (const caPath of caFiles) {
-    const esPath = caPath.replace(/\.ca\.mdx$/, '.mdx');
+    const esPath = caPath.replace(/\.ca\.(mdx|md)$/, '.$1');
     const rel = relative(ROOT, caPath).split(sep).join('/'); // posix id segment
-    const expectedSlug = `asignaturas/${rel.replace(/\.mdx$/, '')}`;
+    const expectedSlug = `asignaturas/${rel.replace(/\.(mdx|md)$/, '')}`;
 
     it(`${rel} is a published CA sibling of an ES file with the slug override`, () => {
       const ca = readFileSync(caPath, 'utf8');
