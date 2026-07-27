@@ -2,14 +2,14 @@
 import type { Deck } from '@/lib/slides/types';
 import Slide from './Slide.astro';
 
-interface Props { deck: Deck }
-const { deck } = Astro.props;
+interface Props { deck: Deck; locale?: 'es' | 'ca' }
+const { deck, locale = 'es' } = Astro.props;
 const total = deck.slides.length;
 const pad = (n: number) => String(n).padStart(2, '0');
 ---
 <main class="deck-page" data-asig={deck.asignatura}>
   <div class="deck">
-    {deck.slides.map((s, i) => <Slide slide={s} pos={`${pad(i + 1)}/${pad(total)}`} />)}
+    {deck.slides.map((s, i) => <Slide slide={s} pos={`${pad(i + 1)}/${pad(total)}`} locale={locale} />)}
   </div>
 </main>
 

@@ -14,6 +14,22 @@ const DROP = new Set([
 ]);
 const CONCEPT_COMPONENTS = new Set(['Callout', 'Curiosity', 'RealExample', 'VuelveAlCaso']);
 
+/** Deck-chrome labels by locale (slide content itself comes from the MDX). */
+const LABELS = {
+  es: {
+    unidad: 'Unidad', ejercicioResuelto: 'Ejercicio resuelto', elCaso: 'El caso',
+    loEsencial: 'Lo esencial', cierreTitulo: 'Hasta aquí la teoría',
+    cierreNota: 'Continúa en el libro de la unidad.',
+  },
+  ca: {
+    unidad: 'Unitat', ejercicioResuelto: 'Exercici resolt', elCaso: 'El cas',
+    loEsencial: "L'essencial", cierreTitulo: 'Fins ací la teoria',
+    cierreNota: 'Continua al llibre de la unitat.',
+  },
+} as const;
+export type DeckLocale = keyof typeof LABELS;
+type DeckLabels = (typeof LABELS)[DeckLocale];
+
 const MAX_BODY = 340;
 
 /** Truncate to a sentence boundary near MAX_BODY without cutting a word ugly. */
@@ -43,9 +59,9 @@ function chunkBody(text: string): string[] {
 }
 
 /** Split a SolvedExercise into enunciado text + solution steps. */
-function exerciseFrom(node: MdxNode): Slide {
+function exerciseFrom(node: MdxNode, L: DeckLabels): Slide {
   const number = getAttr(node, 'number');
-  const titleAttr = getAttr(node, 'title') || getAttr(node, 'titulo') || 'Ejercicio resuelto';
+  const titleAttr = getAttr(node, 'title') || getAttr(node, 'titulo') || L.ejercicioResuelto;
   const title = number ? `${number} · ${titleAttr}` : titleAttr;
   const children = node.children || [];
   let splitIdx = children.findIndex(
@@ -135,7 +151,8 @@ function condenseDeck(slides: Slide[]): Slide[] {
   return out;
 }
 
-export function buildDeck(rawMdx: string): Deck {
+export function buildDeck(rawMdx: string, locale: DeckLocale = 'es'): Deck {
+  const L = LABELS[locale];
   const { frontmatter: fm, ast } = parseMdx(rawMdx);
   const slides: Slide[] = [];
 
@@ -143,7 +160,7 @@ export function buildDeck(rawMdx: string): Deck {
   slides.push({
     tipo: 'cover',
     eyebrow: fm.bloque ? String(fm.bloque) : undefined,
-    title: String(fm.title ?? 'Unidad'),
+    title: String(fm.title ?? L.unidad),
     subtitle: fm.lema ? String(fm.lema).replace(/\s+/g, ' ').trim() : undefined,
   });
 
@@ -198,8 +215,8 @@ export function buildDeck(rawMdx: string): Deck {
       } else if (name === 'CasoDilema') {
         slides.push({
           tipo: 'concept',
-          eyebrow: 'El caso',
-          title: getAttr(node, 'titular') || 'El caso',
+          eyebrow: L.elCaso,
+          title: getAttr(node, 'titular') || L.elCaso,
           pull: getAttr(node, 'pregunta') || undefined,
           body: getAttr(node, 'pregunta') ? undefined : condense(getText(node)),
         });
@@ -209,9 +226,9 @@ export function buildDeck(rawMdx: string): Deck {
           slides.push({ tipo: 'diagram', diagrama, caption: getAttr(node, 'caption') || undefined });
         }
       } else if (name === 'SolvedExercise') {
-        slides.push(exerciseFrom(node));
+        slides.push(exerciseFrom(node, L));
       } else if (name === 'KeyTakeaways') {
-        slides.push({ tipo: 'concept', eyebrow: 'Lo esencial', title: getAttr(node, 'title') || 'Lo esencial', body: condense(getText(node)) });
+        slides.push({ tipo: 'concept', eyebrow: L.loEsencial, title: getAttr(node, 'title') || L.loEsencial, body: condense(getText(node)) });
       } else if (CONCEPT_COMPONENTS.has(name)) {
         slides.push({ tipo: 'concept', title: getAttr(node, 'title') || undefined, body: condense(getText(node)) });
       }
@@ -223,8 +240,8 @@ export function buildDeck(rawMdx: string): Deck {
   const cleaned = condenseDeck(slides);
   cleaned.push({
     tipo: 'close',
-    title: 'Hasta aquí la teoría',
-    nota: 'Continúa en el libro de la unidad.',
+    title: L.cierreTitulo,
+    nota: L.cierreNota,
   });
 
   return {
