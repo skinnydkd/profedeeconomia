@@ -5,6 +5,7 @@ import { resolve } from 'node:path';
 import type { GetStaticPaths } from 'astro';
 import Deck from '@components/slides/Deck.astro';
 import { buildDeck } from '@/lib/slides/build-deck';
+import { getLocale } from '@/i18n/locale';
 import '@/styles/global.css';
 import '@/styles/slides.css';
 
@@ -19,20 +20,32 @@ export const getStaticPaths = (async () => {
 }) satisfies GetStaticPaths;
 
 const { asignatura, unidad } = Astro.props as { asignatura: string; unidad: string };
-const mdxPath = resolve('src/content/asignaturas', asignatura, 'libro', `${unidad}.mdx`);
-const mdPath  = resolve('src/content/asignaturas', asignatura, 'libro', `${unidad}.md`);
-const filePath = existsSync(mdxPath) ? mdxPath : mdPath;
+const locale = getLocale(Astro.currentLocale);
+
+// Under /ca, build the deck from the Valencian libro sibling (ES fallback when
+// the translation is missing). The route slug stays the ES unit slug.
+const dir = resolve('src/content/asignaturas', asignatura, 'libro');
+const candidates =
+  locale === 'ca'
+    ? [`${unidad}.ca.mdx`, `${unidad}.ca.md`, `${unidad}.mdx`, `${unidad}.md`]
+    : [`${unidad}.mdx`, `${unidad}.md`];
+const filePath = candidates.map((f) => resolve(dir, f)).find((p) => existsSync(p))!;
 const raw = readFileSync(filePath, 'utf8');
-const deck = buildDeck(raw);
+const deck = buildDeck(raw, locale);
+
+const copy = {
+  es: { diapositivas: 'Diapositivas' },
+  ca: { diapositivas: 'Diapositives' },
+}[locale];
 ---
-<html lang="es">
+<html lang={locale}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{deck.title} — Diapositivas · profedeeconomia.es</title>
+    <title>{deck.title} — {copy.diapositivas} · profedeeconomia.es</title>
     <meta name="robots" content="noindex" />
   </head>
   <body>
-    <Deck deck={deck} />
+    <Deck deck={deck} locale={locale} />
   </body>
 </html>

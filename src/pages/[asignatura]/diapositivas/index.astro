@@ -3,6 +3,9 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 import { ASIGNATURA_SLUGS, ASIGNATURAS } from '@/lib/asignaturas';
 import { breadcrumbLd } from '@/lib/seo';
 import { getCollection } from 'astro:content';
+import { getLocale } from '@/i18n/locale';
+import { pickLocalizedEntry } from '@/i18n/content-locale';
+import { localizeAsignatura } from '@/i18n/asignaturas-ca';
 import type { GetStaticPaths } from 'astro';
 
 /**
@@ -21,49 +24,73 @@ export const getStaticPaths = (async () => {
   }));
 }) satisfies GetStaticPaths;
 
-const { asignatura: a } = Astro.props;
+const locale = getLocale(Astro.currentLocale);
+const a = localizeAsignatura(Astro.props.asignatura, locale);
 
 const allUnits = await getCollection('libro');
+const caById = new Map(
+  allUnits.filter((u) => u.data.estado === 'publicado' && u.data.lang === 'ca').map((u) => [u.id, u]),
+);
 const units = allUnits
   .filter((u) => u.data.asignatura === a.slug && u.data.estado === 'publicado' && u.data.lang === 'es')
-  .sort((x, y) => x.data.unidad - y.data.unidad);
+  .sort((x, y) => x.data.unidad - y.data.unidad)
+  .map((u) => ({ es: u, view: pickLocalizedEntry(u, caById, locale) }));
 
 const slidesBase = `/slides/${a.slug}`;
 
+const copy = {
+  es: {
+    inicio: 'Inicio', diapositivas: 'Diapositivas', titulo: 'Diapositivas para clase',
+    descripcion: `Diapositivas para cada unidad del libro de ${a.title}.`,
+    vacio: 'Las diapositivas se publicarán a medida que el libro se vaya completando.',
+    intro: 'Un deck por unidad. Auto-generado desde el libro, pensado como esqueleto para clase: cada profesor puede afinarlo según el grupo y el tiempo disponible.',
+    meta: (n: number) => `${n} ${n === 1 ? 'unidad' : 'unidades'} · PDF + HTML por cada una · estética ${a.shortLabel}`,
+    descargar: 'Descargar PDF', ver: 'Ver presentación',
+    nota: 'Cada deck se genera automáticamente desde el MDX del libro. Los esqueletos contienen el título, los objetivos, los conceptos clave y una diapositiva por sección del capítulo. Si encuentras errores o quieres aportar diapositivas refinadas, escríbenos a',
+  },
+  ca: {
+    inicio: 'Inici', diapositivas: 'Diapositives', titulo: 'Diapositives per a classe',
+    descripcion: `Diapositives per a cada unitat del llibre de ${a.title}.`,
+    vacio: 'Les diapositives es publicaran a mesura que el llibre es vaja completant.',
+    intro: 'Un deck per unitat. Autogenerat des del llibre, pensat com a esquelet per a classe: cada professor pot afinar-lo segons el grup i el temps disponible.',
+    meta: (n: number) => `${n} ${n === 1 ? 'unitat' : 'unitats'} · PDF + HTML per cadascuna · estètica ${a.shortLabel}`,
+    descargar: 'Descarregar PDF', ver: 'Veure presentació',
+    nota: "Cada deck es genera automàticament des de l'MDX del llibre. Els esquelets contenen el títol, els objectius, els conceptes clau i una diapositiva per secció del capítol. Si trobes errors o vols aportar diapositives refinades, escriu-nos a",
+  },
+}[locale];
+
 const breadcrumb = breadcrumbLd([
-  { name: 'Inicio', path: '/' },
+  { name: copy.inicio, path: '/' },
   { name: a.shortLabel, path: `/${a.slug}/` },
-  { name: 'Diapositivas', path: `/${a.slug}/diapositivas/` },
+  { name: copy.diapositivas, path: `/${a.slug}/diapositivas/` },
 ]);
 ---
 
 <BaseLayout
-  title={`Diapositivas — ${a.shortLabel}`}
-  description={`Diapositivas para cada unidad del libro de ${a.title}.`}
+  title={`${copy.diapositivas} — ${a.shortLabel}`}
+  description={copy.descripcion}
   jsonLd={breadcrumb}
+  contentLang={locale}
 >
   <div class="container">
     <nav class="breadcrumb">
-      <a href="/">Inicio</a> <span class="sep">›</span>
+      <a href="/">{copy.inicio}</a> <span class="sep">›</span>
       <a href={`/${a.slug}/`}>{a.shortLabel}</a> <span class="sep">›</span>
-      <span>Diapositivas</span>
+      <span>{copy.diapositivas}</span>
     </nav>
   </div>
 
   <section class="hero">
     <div class="container">
-      <span class="kicker kicker--sentence">{a.shortLabel} · Diapositivas</span>
-      <h1>Diapositivas para clase</h1>
+      <span class="kicker kicker--sentence">{a.shortLabel} · {copy.diapositivas}</span>
+      <h1>{copy.titulo}</h1>
       <p class="lede">
-        {units.length === 0
-          ? 'Las diapositivas se publicarán a medida que el libro se vaya completando.'
-          : `Un deck por unidad. Auto-generado desde el libro, pensado como esqueleto para clase: cada profesor puede afinarlo según el grupo y el tiempo disponible.`}
+        {units.length === 0 ? copy.vacio : copy.intro}
       </p>
 
       {units.length > 0 && (
         <p class="meta">
-          {units.length} {units.length === 1 ? 'unidad' : 'unidades'} · PDF + HTML por
-          cada una · estética {a.shortLabel}
+          {copy.meta(units.length)}
         </p>
       )}
     </div>
@@ -73,24 +100,24 @@ const breadcrumb = breadcrumbLd([
     <section class="grid">
       <div class="container">
         <ul class="card-grid">
-          {units.map((u) => {
-            const slug = u.id.split('/').pop()?.replace(/\.mdx?$/, '');
+          {units.map(({ es, view }) => {
+            const slug = es.id.split('/').pop()?.replace(/\.mdx?$/, '');
             return (
               <li class="card">
-                <div class="card__num">{String(u.data.unidad).padStart(2, '0')}</div>
-                <h3 class="card__title">{u.data.title}</h3>
-                {u.data.lema && <p class="card__lede">{u.data.lema}</p>}
+                <div class="card__num">{String(view.data.unidad).padStart(2, '0')}</div>
+                <h3 class="card__title">{view.data.title}</h3>
+                {view.data.lema && <p class="card__lede">{view.data.lema}</p>}
                 <div class="card__meta">
-                  {u.data.duracion && <span>{u.data.duracion}</span>}
-                  {u.data.bloque && <span>· {u.data.bloque}</span>}
+                  {view.data.duracion && <span>{view.data.duracion}</span>}
+                  {view.data.bloque && <span>· {view.data.bloque}</span>}
                 </div>
                 <div class="card__cta">
                   <a class="cta cta--primary" href={`${slidesBase}/${slug}.pdf`} download>
                     <span class="cta__icon" aria-hidden="true">↓</span>
-                    Descargar PDF
+                    {copy.descargar}
                   </a>
                   <a class="cta cta--ghost" href={`/${a.slug}/diapositivas/${slug}/`} target="_blank" rel="noopener">
-                    Ver presentación
+                    {copy.ver}
                   </a>
                 </div>
               </li>
@@ -104,10 +131,7 @@ const breadcrumb = breadcrumbLd([
   <section class="note">
     <div class="container">
       <p class="note-text">
-        Cada deck se genera automáticamente desde el MDX del libro. Los esqueletos
-        contienen el título, los objetivos, los conceptos clave y una diapositiva
-        por sección del capítulo. Si encuentras errores o quieres aportar
-        diapositivas refinadas, escríbenos a
+        {copy.nota}
         <a class="editorial-link" href="mailto:hola@profedeeconomia.es">hola@profedeeconomia.es</a>.
       </p>
     </div>
