@@ -8,6 +8,9 @@ import BloqueCuaderno from '@components/emprendimiento/BloqueCuaderno.astro';
 import { ASIGNATURAS, type AsignaturaSlug } from '@/lib/asignaturas';
 import type { GetStaticPaths } from 'astro';
 import { getCollection } from 'astro:content';
+import { getLocale } from '@/i18n/locale';
+import { pickLocalizedEntry } from '@/i18n/content-locale';
+import { localizeAsignatura } from '@/i18n/asignaturas-ca';
 
 const ACCENTS: Record<string, { base: string; deep: string; soft: string }> = {
   edmn: { base: '#C44E2C', deep: '#9C3A1C', soft: '#FBE3D6' },
@@ -41,16 +44,26 @@ export const getStaticPaths = (async () => {
   return paths;
 }) satisfies GetStaticPaths;
 
-const { fases, asignatura: a } = Astro.props;
+const locale = getLocale(Astro.currentLocale);
+const a = localizeAsignatura(Astro.props.asignatura, locale);
 const esProfesor = Astro.params.modo !== 'alumno';
-const edicion = esProfesor ? 'Profesorado' : 'Alumnado';
+const caById = new Map(
+  (await getCollection('proyecto')).filter((f) => f.data.estado === 'publicado' && f.data.lang === 'ca' && f.data.cuaderno).map((f) => [f.id, f]),
+);
+const fases = Astro.props.fases.map((f) => pickLocalizedEntry(f, caById, locale));
+
+const copy = {
+  es: { edProfesor: 'Profesorado', edAlumno: 'Alumnado', cuadernoDel: 'Cuaderno del', cuadernoProyecto: 'Cuaderno de proyecto', title: 'Vuestro proyecto, paso a paso', edicion: 'Edición', elEquipo: 'El equipo', nombreProyecto: 'Nombre del proyecto:', integrantes: 'Integrantes:', cursoGrupo: 'Curso y grupo:', lasFases: 'Las fases', fase: 'Fase', entregable: 'Entregable:' },
+  ca: { edProfesor: 'Professorat', edAlumno: 'Alumnat', cuadernoDel: 'Quadern del', cuadernoProyecto: 'Quadern de projecte', title: 'El vostre projecte, pas a pas', edicion: 'Edició', elEquipo: 'L\'equip', nombreProyecto: 'Nom del projecte:', integrantes: 'Integrants:', cursoGrupo: 'Curs i grup:', lasFases: 'Les fases', fase: 'Fase', entregable: 'Lliurable:' },
+}[locale];
+const edicion = esProfesor ? copy.edProfesor : copy.edAlumno;
 const accent = ACCENTS[a.color] ?? ACCENTS.gpe;
 ---
-<html lang="es">
+<html lang={locale}>
   <head>
     <meta charset="utf-8" />
     <meta name="robots" content="noindex" />
-    <title>{a.shortLabel} — Cuaderno del {edicion}</title>
+    <title>{a.shortLabel} — {copy.cuadernoDel} {edicion}</title>
     <style is:inline>
       @font-face { font-family: 'Fraunces'; src: url('/fonts/fraunces-latin-normal.woff2') format('woff2'); font-weight: 300 700; font-style: normal; font-display: swap; }
       @font-face { font-family: 'Fraunces'; src: url('/fonts/fraunces-latin-italic.woff2') format('woff2'); font-weight: 300 700; font-style: italic; font-display: swap; }
@@ -91,28 +104,28 @@ const accent = ACCENTS[a.color] ?? ACCENTS.gpe;
   </head>
   <body>
     <section class="cover">
-      <div class="cover__eyebrow">{a.shortLabel} · Cuaderno de proyecto</div>
-      <div class="cover__title">Vuestro proyecto, paso a paso</div>
-      <div class="cover__ed">Edición · {edicion}</div>
+      <div class="cover__eyebrow">{a.shortLabel} · {copy.cuadernoProyecto}</div>
+      <div class="cover__title">{copy.title}</div>
+      <div class="cover__ed">{copy.edicion} · {edicion}</div>
       <div class="cover__equipo">
-        <h3>El equipo</h3>
-        <div class="cover__field">Nombre del proyecto:</div>
-        <div class="cover__field">Integrantes:</div>
-        <div class="cover__field">Curso y grupo:</div>
+        <h3>{copy.elEquipo}</h3>
+        <div class="cover__field">{copy.nombreProyecto}</div>
+        <div class="cover__field">{copy.integrantes}</div>
+        <div class="cover__field">{copy.cursoGrupo}</div>
       </div>
     </section>
 
     <section class="toc">
-      <h2>Las fases</h2>
-      <ol>{fases.map((f) => <li>{f.data.fase ?? `Fase ${f.data.orden}`}</li>)}</ol>
+      <h2>{copy.lasFases}</h2>
+      <ol>{fases.map((f) => <li>{f.data.fase ?? `${copy.fase} ${f.data.orden}`}</li>)}</ol>
     </section>
 
     {fases.map((f) => (
       <section class="fase">
-        <div class="fase__label">{f.data.fase ?? `Fase ${f.data.orden}`}</div>
+        <div class="fase__label">{f.data.fase ?? `${copy.fase} ${f.data.orden}`}</div>
         <h2 class="fase__title">{f.data.title}</h2>
-        {f.data.entregable && <p class="fase__entregable"><strong>Entregable:</strong> {f.data.entregable}</p>}
-        {f.data.cuaderno && <BloqueCuaderno cuaderno={f.data.cuaderno} modo={esProfesor ? 'profesor' : 'alumno'} />}
+        {f.data.entregable && <p class="fase__entregable"><strong>{copy.entregable}</strong> {f.data.entregable}</p>}
+        {f.data.cuaderno && <BloqueCuaderno cuaderno={f.data.cuaderno} modo={esProfesor ? 'profesor' : 'alumno'} locale={locale} />}
       </section>
     ))}
   </body>

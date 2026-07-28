@@ -1,8 +1,11 @@
 ---
 /** Blank pitch outline — the standard beats, each with blank writing lines. */
-interface Props { filas?: number }
-const { filas = 9 } = Astro.props;
-const BEATS = ['Problema', 'Solución', 'Mercado', 'Producto', 'Modelo de negocio', 'Competencia', 'Equipo', 'Números', 'Petición'];
+import type { Locale } from '@/i18n/locale';
+interface Props { filas?: number; locale?: Locale }
+const { filas = 9, locale = 'es' } = Astro.props;
+const BEATS = locale === 'ca'
+  ? ['Problema', 'Solució', 'Mercat', 'Producte', 'Model de negoci', 'Competència', 'Equip', 'Xifres', 'Petició']
+  : ['Problema', 'Solución', 'Mercado', 'Producto', 'Modelo de negocio', 'Competencia', 'Equipo', 'Números', 'Petición'];
 const beats = BEATS.slice(0, filas);
 ---
 <ol class="pitch">

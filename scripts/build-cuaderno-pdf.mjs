@@ -19,10 +19,18 @@ import { createServer } from 'node:http';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = resolve(__dirname, '..');
 
-const JOBS = [
-  { path: 'emprendimiento/proyecto/cuaderno/imprimir/alumno',   out: 'emprendimiento-cuaderno-alumno.pdf' },
-  { path: 'emprendimiento/proyecto/cuaderno/imprimir/profesor', out: 'emprendimiento-cuaderno-profesor.pdf' },
+// Each route also has a Valencian edition under /ca → …-alumno.ca.pdf etc.
+const BASE_JOBS = [
+  { path: 'emprendimiento/proyecto/cuaderno/imprimir/alumno',   out: 'emprendimiento-cuaderno-alumno' },
+  { path: 'emprendimiento/proyecto/cuaderno/imprimir/profesor', out: 'emprendimiento-cuaderno-profesor' },
 ];
+const LOCALES = [
+  { prefix: '', suffix: '' },
+  { prefix: 'ca/', suffix: '.ca' },
+];
+const JOBS = BASE_JOBS.flatMap((j) =>
+  LOCALES.map((l) => ({ path: `${l.prefix}${j.path}`, out: `${j.out}${l.suffix}.pdf` })),
+);
 const PORT = 4337;
 
 const args = new Set(process.argv.slice(2));
@@ -31,6 +39,10 @@ const inDistOnly = args.has('--in-dist');
 function findChromeExecutable() {
   if (process.env.PUPPETEER_EXECUTABLE_PATH && existsSync(process.env.PUPPETEER_EXECUTABLE_PATH)) {
     return process.env.PUPPETEER_EXECUTABLE_PATH;
+  }
+  if (process.env.PLAYWRIGHT_BROWSERS_PATH) {
+    const pw = join(process.env.PLAYWRIGHT_BROWSERS_PATH, 'chromium');
+    if (existsSync(pw)) return pw;
   }
   const candidates = platform() === 'win32'
     ? ['C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',

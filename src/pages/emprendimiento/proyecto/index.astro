@@ -36,7 +36,8 @@ const fasesForMap = fasesNumeradas.map((e) => ({
   unidades: e.data.unidades_relacionadas,
 }));
 
-const pdfHref = '/downloads/emprendimiento-proyecto.pdf';
+const caSuffix = locale === 'ca' ? '.ca' : '';
+const pdfHref = `/downloads/emprendimiento-proyecto${caSuffix}.pdf`;
 const copy = {
   es: {
     metaTitle: 'De cero a empresa — proyecto de emprendimiento transversal',
@@ -88,14 +89,14 @@ const copy = {
       <p class="lede">{copy.lede}</p>
       <p class="downloads-lead">{copy.downloadsLeadA}<strong>{copy.downloadsLeadStrong}</strong>{copy.downloadsLeadB}</p>
       <div class="downloads">
-        <a class="download-cta download-cta--mustard" href="/downloads/emprendimiento-cuaderno-alumno.pdf" download>
+        <a class="download-cta download-cta--mustard" href={`/downloads/emprendimiento-cuaderno-alumno${caSuffix}.pdf`} download>
           <span class="download-cta__icon" aria-hidden="true">↓</span>
           <span class="download-cta__text">
             <strong>{copy.ctaAlumnoT}</strong>
             <span class="muted">{copy.ctaAlumnoS}</span>
           </span>
         </a>
-        <a class="download-cta download-cta--mustard" href="/downloads/emprendimiento-cuaderno-profesor.pdf" download>
+        <a class="download-cta download-cta--mustard" href={`/downloads/emprendimiento-cuaderno-profesor${caSuffix}.pdf`} download>
           <span class="download-cta__icon" aria-hidden="true">↓</span>
           <span class="download-cta__text">
             <strong>{copy.ctaProfeT}</strong>
