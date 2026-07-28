@@ -1,15 +1,15 @@
 ---
 asignatura: edmn-2bach
 unidad_relacionada: 5
-title: "Debat: la creativitat empresarial s''aprén o s''hi naix?"
-descripcion: "Debat sobre si la capacitat d''innovar és un talent innat o una competència entrenable, amb implicacions per a la gestió de la innovació a l''empresa."
+title: "Debat: la creativitat empresarial s'aprén o s'hi naix?"
+descripcion: "Debat sobre si la capacitat d'innovar és un talent innat o una competència entrenable, amb implicacions per a la gestió de la innovació a l'empresa."
 tipo: debate
 duracion: "50 min · 1 sessió"
 agrupacion: "dos equips grans + jurat"
 materiales:
-  - "Fitxa amb exemples de persones innovadores i d''empreses amb cultura innovadora (3M, IDEO)"
+  - "Fitxa amb exemples de persones innovadores i d'empreses amb cultura innovadora (3M, IDEO)"
   - "Cronòmetre visible"
-  - "Plantilla d''arguments per equip"
+  - "Plantilla d'arguments per equip"
 competencias_clave: [CCL, CC, CPSAA]
 competencias_especificas: [CE3]
 lang: ca

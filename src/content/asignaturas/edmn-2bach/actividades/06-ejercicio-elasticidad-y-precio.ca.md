@@ -2,7 +2,7 @@
 asignatura: edmn-2bach
 unidad_relacionada: 6
 title: "Política de preus: elasticitat i decisió de rebaixar o pujar"
-descripcion: "Exercici de càlcul de l''elasticitat-preu de la demanda a partir de dades de vendes i decisió raonada sobre la política de preus òptima."
+descripcion: "Exercici de càlcul de l'elasticitat-preu de la demanda a partir de dades de vendes i decisió raonada sobre la política de preus òptima."
 tipo: ejercicio
 duracion: "50 min · 1 sessió"
 agrupacion: "individual + posada en comú"

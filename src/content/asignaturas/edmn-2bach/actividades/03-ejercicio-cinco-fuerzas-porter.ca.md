@@ -2,7 +2,7 @@
 asignatura: edmn-2bach
 unidad_relacionada: 3
 title: "Les cinc forces de Porter aplicades a un gimnàs low cost"
-descripcion: "Exercici guiat per a puntuar i justificar les cinc forces competitives d''un sector concret i deduir el seu atractiu i l''estratègia recomanable."
+descripcion: "Exercici guiat per a puntuar i justificar les cinc forces competitives d'un sector concret i deduir el seu atractiu i l'estratègia recomanable."
 tipo: ejercicio
 duracion: "50 min · 1 sessió"
 agrupacion: "parelles + posada en comú"

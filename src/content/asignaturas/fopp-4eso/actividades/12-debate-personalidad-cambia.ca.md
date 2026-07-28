@@ -7,7 +7,7 @@ tipo: debate
 duracion: "50 min · 1 sessió"
 agrupacion: "grup classe dividit en dos equips + moderació"
 materiales:
-  - "Targetes de rol (Equip A / Equip B) repartides a l''atzar"
+  - "Targetes de rol (Equip A / Equip B) repartides a l'atzar"
   - "Fitxa de preparació amb arguments guia (inclosa davall)"
   - "Pissarra per a anotar la votació inicial i final"
   - "Cronòmetre visible"

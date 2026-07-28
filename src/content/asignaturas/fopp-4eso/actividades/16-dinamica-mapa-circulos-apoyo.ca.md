@@ -2,7 +2,7 @@
 asignatura: fopp-4eso
 unidad_relacionada: 3
 title: "El meu mapa de cercles de suport: qui em sosté al meu entorn"
-descripcion: "Dinàmica de cartografia personal de l''entorn. Cada alumne dibuixa els seus cercles de suport (família, amistats, comunitat, xarxa digital) i detecta on està ben acompanyat i on té buits, per a usar eixa informació al projecte de vida del final de curs."
+descripcion: "Dinàmica de cartografia personal de l'entorn. Cada alumne dibuixa els seus cercles de suport (família, amistats, comunitat, xarxa digital) i detecta on està ben acompanyat i on té buits, per a usar eixa informació al projecte de vida del final de curs."
 tipo: dinamica
 duracion: "50 min · 1 sessió"
 agrupacion: "individual + contrast per parelles"

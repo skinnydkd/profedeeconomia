@@ -2,16 +2,16 @@
 asignatura: fopp-4eso
 unidad_relacionada: 2
 title: "Practiquem assertivitat: rol-play de tres situacions difícils"
-descripcion: "Entrenar la fórmula «jo sent… quan tu… perquè… m''agradaria que…» de Marshall Rosenberg en tres situacions quotidianes adolescents, amb observació entre iguals i feedback estructurat."
+descripcion: "Entrenar la fórmula «jo sent… quan tu… perquè… m'agradaria que…» de Marshall Rosenberg en tres situacions quotidianes adolescents, amb observació entre iguals i feedback estructurat."
 tipo: dinamica
 duracion: "45 min · 1 sessió"
 agrupacion: "grups xicotets (3-4)"
 materiales:
   - "Tres targetes de situació impreses per grup (una per escena)"
-  - "Plantilla d''observació amb els quatre passos de la fórmula"
+  - "Plantilla d'observació amb els quatre passos de la fórmula"
   - "Plantilla de feedback (1 cosa que ha funcionat + 1 cosa que provaries diferent)"
   - "Cronòmetre visible"
-  - "Cartell a la paret amb la fórmula completa i els recursos d''ajuda (línia 024, ANAR)"
+  - "Cartell a la paret amb la fórmula completa i els recursos d'ajuda (línia 024, ANAR)"
 competencias_clave: [CPSAA, CC, CCL]
 competencias_especificas: [CE2]
 estado: publicado

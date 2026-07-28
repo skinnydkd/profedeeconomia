@@ -2,15 +2,15 @@
 asignatura: fopp-4eso
 unidad_relacionada: 3
 title: "Audita la teua identitat digital: Google yourself i revisa la privacitat de les teues xarxes"
-descripcion: "Auditoria personal de la pròpia petjada digital i de la configuració de privacitat de les principals xarxes socials, seguida d''una posada en comú sense exposar informació sensible. Aterra les cinc regles d''identitat digital i el dret a l''oblit del RGPD al compte real de l''alumnat."
+descripcion: "Auditoria personal de la pròpia petjada digital i de la configuració de privacitat de les principals xarxes socials, seguida d'una posada en comú sense exposar informació sensible. Aterra les cinc regles d'identitat digital i el dret a l'oblit del RGPD al compte real de l'alumnat."
 tipo: ejercicio
 duracion: "50 min · 1 sessió (35 min treball individual + 15 min posada en comú)"
 agrupacion: "individual amb posada en comú grup classe"
 materiales:
   - "Telèfon intel·ligent o ordinador amb connexió a internet (cada alumne amb el seu propi compte)"
-  - "Plantilla d''auditoria impresa o en PDF (apartats 1 a 5)"
+  - "Plantilla d'auditoria impresa o en PDF (apartats 1 a 5)"
   - "Accés al navegador en mode incògnit per a la busca de Google"
-  - "Enllaç al formulari de dret a l''oblit de Google i als ajustos de privacitat d''Instagram, TikTok, X i YouTube"
+  - "Enllaç al formulari de dret a l'oblit de Google i als ajustos de privacitat d'Instagram, TikTok, X i YouTube"
 competencias_clave: [CD, CC, CPSAA]
 competencias_especificas: [CE3]
 estado: publicado

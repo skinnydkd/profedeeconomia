@@ -1,8 +1,8 @@
 ---
 asignatura: edmn-2bach
 unidad_relacionada: 10
-title: "Miniprojecte: porta la comptabilitat d''un mes del teu negoci"
-descripcion: "Miniprojecte en què cada equip inventa un xicotet negoci, registra un mes d''operacions i elabora el seu balanç i compte de resultats."
+title: "Miniprojecte: porta la comptabilitat d'un mes del teu negoci"
+descripcion: "Miniprojecte en què cada equip inventa un xicotet negoci, registra un mes d'operacions i elabora el seu balanç i compte de resultats."
 tipo: proyecto
 duracion: "100 min · 2 sessions"
 agrupacion: "equips de 3-4"

@@ -9,7 +9,7 @@ agrupacion: "dos equips grans + jurat"
 materiales:
   - "Dades de partida amb taxes de supervivència empresarial (INE, GEM Espanya)"
   - "Cronòmetre visible"
-  - "Plantilla d''arguments per equip"
+  - "Plantilla d'arguments per equip"
 competencias_clave: [CCL, CC, CPSAA]
 competencias_especificas: [CE1]
 lang: ca

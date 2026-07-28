@@ -1,8 +1,8 @@
 ---
 asignatura: edmn-2bach
 unidad_relacionada: 3
-title: "Mural PESTEL: l''entorn que ve per al cotxe elèctric"
-descripcion: "Dinàmica de mural col·laboratiu per factors per a anticipar amenaces i oportunitats de l''entorn general al sector de l''automoció elèctrica."
+title: "Mural PESTEL: l'entorn que ve per al cotxe elèctric"
+descripcion: "Dinàmica de mural col·laboratiu per factors per a anticipar amenaces i oportunitats de l'entorn general al sector de l'automoció elèctrica."
 tipo: dinamica
 duracion: "55 min · 1 sessió"
 agrupacion: "sis estacions rotatives + grup classe"

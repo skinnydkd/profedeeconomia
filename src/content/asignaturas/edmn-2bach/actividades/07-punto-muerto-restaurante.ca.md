@@ -2,7 +2,7 @@
 asignatura: edmn-2bach
 unidad_relacionada: 7
 title: "Dos plans de cuina: punt mort i palanquejament operatiu"
-descripcion: "Calcular el punt mort d''un restaurant en dos escenaris (cuina manual vs. cuina automatitzada) i discutir les implicacions del palanquejament operatiu."
+descripcion: "Calcular el punt mort d'un restaurant en dos escenaris (cuina manual vs. cuina automatitzada) i discutir les implicacions del palanquejament operatiu."
 tipo: ejercicio
 duracion: "55 min · 1 sessió"
 agrupacion: "individual + posada en comú en grups xicotets"

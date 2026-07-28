@@ -1,9 +1,9 @@
 ---
 asignatura: edmn-2bach
 unidad_relacionada: 7
-title: "Taller d''artesania: punt mort, benefici i productivitat del treball"
+title: "Taller d'artesania: punt mort, benefici i productivitat del treball"
 tipo: ejercicio
-descripcion: "Calcular el llindar de rendibilitat, el benefici a un volum donat, el nou punt mort després d''una pujada de costos fixos i la variació de la productivitat del treball."
+descripcion: "Calcular el llindar de rendibilitat, el benefici a un volum donat, el nou punt mort després d'una pujada de costos fixos i la variació de la productivitat del treball."
 duracion: "25-35 min · individual"
 agrupacion: "individual"
 competencias_clave: [STEM, CD, CE]
@@ -15,7 +15,7 @@ solucion:
   - "2. Benefici a Q = 900: B = (PVu − CVu) × Q − CF = 24 × 900 − 18.000 = 21.600 − 18.000 = **+3.600 €/mes**."
   - "3. Nou Q* amb CF = 21.600 €: Q* = 21.600 / 24 = **900 unitats/mes** (el punt mort puja un 20 %)."
   - "4a. Productivitat al març = 480 unitats / 8 treballadors = **60 unitats per treballador**."
-  - "4b. Productivitat a l''abril = 520 / 8 = 65 u/treballador. Variació = (65 − 60) / 60 × 100 = **+8,33 %**."
+  - "4b. Productivitat a l'abril = 520 / 8 = 65 u/treballador. Variació = (65 − 60) / 60 × 100 = **+8,33 %**."
 lang: ca
 estado: publicado
 slug: "asignaturas/edmn-2bach/actividades/ejercicio-u7-punto-muerto-productividad.ca"

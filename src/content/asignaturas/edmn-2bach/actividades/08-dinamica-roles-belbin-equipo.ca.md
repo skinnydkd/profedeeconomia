@@ -1,15 +1,15 @@
 ---
 asignatura: edmn-2bach
 unidad_relacionada: 8
-title: "Dinàmica d''equips: els rols de Belbin en acció"
-descripcion: "Dinàmica vivencial en què l''alumnat resol un repte en equip i descobrix els rols de Belbin observant com es repartixen naturalment les funcions."
+title: "Dinàmica d'equips: els rols de Belbin en acció"
+descripcion: "Dinàmica vivencial en què l'alumnat resol un repte en equip i descobrix els rols de Belbin observant com es repartixen naturalment les funcions."
 tipo: dinamica
 duracion: "55 min · 1 sessió"
 agrupacion: "equips de 5-6"
 materiales:
   - "Materials del repte (espaguetis crus, cinta, un núvol de sucre per equip) o un repte de paper equivalent"
   - "Fitxa resum dels nou rols de Belbin"
-  - "Full d''observació"
+  - "Full d'observació"
 competencias_clave: [CPSAA, CC, CE]
 competencias_especificas: [CE4]
 lang: ca

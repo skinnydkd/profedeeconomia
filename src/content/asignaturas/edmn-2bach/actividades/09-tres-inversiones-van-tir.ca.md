@@ -2,14 +2,14 @@
 asignatura: edmn-2bach
 unidad_relacionada: 9
 title: "Tres inversions, una sola decisió: VAN, TIR i PayBack"
-descripcion: "Comparar tres alternatives d''inversió amb perfils de fluxos distints i decidir quina executar aplicant els tres criteris financers estàndard."
+descripcion: "Comparar tres alternatives d'inversió amb perfils de fluxos distints i decidir quina executar aplicant els tres criteris financers estàndard."
 tipo: ejercicio
 duracion: "55 min · 1 sessió"
 agrupacion: "individual + correcció en parelles"
 materiales:
   - "Calculadora financera o calculadora amb potències"
   - "Plantilla amb els fluxos de les tres inversions"
-  - "Full de càlcul (opcional, per a automatitzar l''actualització de fluxos)"
+  - "Full de càlcul (opcional, per a automatitzar l'actualització de fluxos)"
 competencias_clave: [STEM, CD, CPSAA]
 competencias_especificas: [CE4]
 ebau: true

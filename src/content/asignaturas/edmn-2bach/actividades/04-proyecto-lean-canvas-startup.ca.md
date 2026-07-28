@@ -8,7 +8,7 @@ duracion: "150 min · 3 sessions"
 agrupacion: "equips de 3-4"
 materiales:
   - "Plantilla Lean Canvas en A3"
-  - "Guió d''entrevista de validació"
+  - "Guió d'entrevista de validació"
   - "Mòbil amb accés a un formulari en línia (Google Forms)"
 competencias_clave: [CE, CD, CCL, CPSAA]
 competencias_especificas: [CE3]

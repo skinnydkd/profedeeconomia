@@ -2,14 +2,14 @@
 asignatura: edmn-2bach
 unidad_relacionada: 10
 title: "Construir el balanç i el compte de resultats de Tallers Aragó"
-descripcion: "A partir d''un llistat desordenat de comptes i operacions, construir el balanç al tancament i el compte de pèrdues i guanys d''un taller mecànic fictici."
+descripcion: "A partir d'un llistat desordenat de comptes i operacions, construir el balanç al tancament i el compte de pèrdues i guanys d'un taller mecànic fictici."
 tipo: ejercicio
 duracion: "70 min · 1 sessió doble"
 agrupacion: "individual"
 materiales:
   - "Plantilla de balanç (cinc masses) i de compte de pèrdues i guanys"
   - "Calculadora"
-  - "Full amb l''enunciat i les dades"
+  - "Full amb l'enunciat i les dades"
 competencias_clave: [STEM, CD, CPSAA]
 competencias_especificas: [CE5]
 ebau: true

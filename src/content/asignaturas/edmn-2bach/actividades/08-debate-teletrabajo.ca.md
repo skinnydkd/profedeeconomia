@@ -1,16 +1,16 @@
 ---
 asignatura: edmn-2bach
 unidad_relacionada: 8
-title: "Debat: haurien les empreses d''obligar a tornar a l''oficina?"
-descripcion: "Debat estructurat d''aula sobre el retorn al treball presencial post-pandèmia, amb preparació prèvia, normes de rèplica i rúbrica d''avaluació de l''argumentació."
+title: "Debat: haurien les empreses d'obligar a tornar a l'oficina?"
+descripcion: "Debat estructurat d'aula sobre el retorn al treball presencial post-pandèmia, amb preparació prèvia, normes de rèplica i rúbrica d'avaluació de l'argumentació."
 tipo: debate
 duracion: "100 min · 2 sessions (45 min preparació + 50 min debat + 5 min tancament)"
 agrupacion: "dos equips grans de 8-12 persones + jurat opcional"
 materiales:
   - "Dades de partida amb enquestes i estudis sobre teletreball (Eurostat, Adecco, Randstad)"
   - "Rellotge o cronòmetre visible"
-  - "Plantilla d''arguments per equip (preparació)"
-  - "Rúbrica d''avaluació impresa per al jurat"
+  - "Plantilla d'arguments per equip (preparació)"
+  - "Rúbrica d'avaluació impresa per al jurat"
 competencias_clave: [CCL, CC, CPSAA]
 competencias_especificas: [CE4]
 lang: ca

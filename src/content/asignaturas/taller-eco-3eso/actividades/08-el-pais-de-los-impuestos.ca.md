@@ -11,7 +11,7 @@ competencias_especificas: [CE5]
 materiales:
   - "100 fitxes, cigrons o gomets per equip (representen el pressupost públic)"
   - "Tauler o full amb les 8 partides de despesa pública"
-  - "Targetes d''imprevist' per a la segona ronda"
+  - "Targetes d'imprevist' per a la segona ronda"
   - "Pissarra per a comparar els repartiments de cada govern"
 lang: ca
 estado: publicado

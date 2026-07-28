@@ -1,7 +1,7 @@
 ---
 asignatura: edmn-2bach
 unidad_relacionada: 9
-title: "Com finançar el creixement: el cas d''una startup que ha de triar"
+title: "Com finançar el creixement: el cas d'una startup que ha de triar"
 descripcion: "Cas de decisió de finançament en què una startup compara préstec bancari, business angel i crowdfunding segons cost, control i risc."
 tipo: caso
 duracion: "55 min · 1 sessió"

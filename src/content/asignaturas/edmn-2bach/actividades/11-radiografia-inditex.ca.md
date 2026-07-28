@@ -1,16 +1,16 @@
 ---
 asignatura: edmn-2bach
 unidad_relacionada: 11
-title: "Radiografia financera d''Inditex"
-descripcion: "Anàlisi guiada dels comptes anuals publicats d''Inditex: fons de maniobra, ratios principals, rendibilitat econòmica i financera. Comparació amb el sector."
+title: "Radiografia financera d'Inditex"
+descripcion: "Anàlisi guiada dels comptes anuals publicats d'Inditex: fons de maniobra, ratios principals, rendibilitat econòmica i financera. Comparació amb el sector."
 tipo: caso
 duracion: "75 min · 1 sessió doble"
 agrupacion: "parelles"
 materiales:
-  - "Resum del balanç consolidat d''Inditex 2023 (extracte adaptat de l''informe anual)"
+  - "Resum del balanç consolidat d'Inditex 2023 (extracte adaptat de l'informe anual)"
   - "Resum del compte de resultats 2023"
   - "Calculadora"
-  - "Accés opcional a l''informe anual complet a inditex.com/investors"
+  - "Accés opcional a l'informe anual complet a inditex.com/investors"
 competencias_clave: [STEM, CD, CCL, CPSAA]
 competencias_especificas: [CE5]
 ebau: true

@@ -1,8 +1,8 @@
 ---
 asignatura: edmn-2bach
 unidad_relacionada: 8
-title: "Cas: per què se''n va la gent — la rotació en una cadena de restaurants"
-descripcion: "Cas d''anàlisi de l''alta rotació de personal en hostaleria: calcular el cost de rotació i proposar un pla de retenció basat en la motivació."
+title: "Cas: per què se'n va la gent — la rotació en una cadena de restaurants"
+descripcion: "Cas d'anàlisi de l'alta rotació de personal en hostaleria: calcular el cost de rotació i proposar un pla de retenció basat en la motivació."
 tipo: caso
 duracion: "55 min · 1 sessió"
 agrupacion: "grups xicotets (3-4)"

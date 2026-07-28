@@ -2,15 +2,15 @@
 asignatura: fopp-4eso
 unidad_relacionada: 8
 title: "Detectiu laboral: analitza 3 contractes i nòmines reals i detecta les vulneracions"
-descripcion: "Per parelles i durant 60 minuts, l''alumnat examina tres contractes i nòmines anònimes (temporal abusiu, jornada excessiva sense compensació, salari per davall de conveni) aplicant una checklist de 12 punts. Per a cada cas ha d''identificar les vulneracions concretes, citar l''article de l''Estatut o de la Llei 31/1995 vulnerat i proposar la via de reclamació."
+descripcion: "Per parelles i durant 60 minuts, l'alumnat examina tres contractes i nòmines anònimes (temporal abusiu, jornada excessiva sense compensació, salari per davall de conveni) aplicant una checklist de 12 punts. Per a cada cas ha d'identificar les vulneracions concretes, citar l'article de l'Estatut o de la Llei 31/1995 vulnerat i proposar la via de reclamació."
 tipo: caso
 duracion: "60 min (1 sessió)"
 agrupacion: "parelles"
 materiales:
   - "Tres dossiers impresos (un per parella) amb contracte + dos nòmines anònimes de cada cas (inclosos davall, fotocopiables)"
   - "Checklist de 12 punts impresa per parella (inclosa davall)"
-  - "Accés al BOE / REGCON per a consultar el conveni d''hostaleria i de comerç (mòbil o aula amb ordinadors)"
-  - "Calculadora (o mòbil) per a verificar l''SMI per hora i el càlcul de vacacions proporcionals"
+  - "Accés al BOE / REGCON per a consultar el conveni d'hostaleria i de comerç (mòbil o aula amb ordinadors)"
+  - "Calculadora (o mòbil) per a verificar l'SMI per hora i el càlcul de vacacions proporcionals"
   - "Pissarra per a la posada en comú final"
 competencias_clave: [CC, CCL, CPSAA, STEM]
 competencias_especificas: [CE6]

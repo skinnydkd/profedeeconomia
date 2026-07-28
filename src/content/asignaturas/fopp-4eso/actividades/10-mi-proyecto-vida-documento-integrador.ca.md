@@ -2,15 +2,15 @@
 asignatura: fopp-4eso
 unidad_relacionada: 10
 title: "El meu Projecte de Vida: document integrador i presentació de tancament"
-descripcion: "Capstone de tancament del llibre i de l''assignatura. En quatre sessions, cada alumne integra tot el material treballat durant el curs en un document personal de 4-6 pàgines (DAFO + ikigai + objectius SMART a tres horitzons + pla d''acció a 12 mesos + xarxa de suport + sistema de revisió) i el defén en una presentació oral de 5 minuts davant del grup."
+descripcion: "Capstone de tancament del llibre i de l'assignatura. En quatre sessions, cada alumne integra tot el material treballat durant el curs en un document personal de 4-6 pàgines (DAFO + ikigai + objectius SMART a tres horitzons + pla d'acció a 12 mesos + xarxa de suport + sistema de revisió) i el defén en una presentació oral de 5 minuts davant del grup."
 tipo: proyecto
 duracion: "4 sessions · 2 setmanes (redacció + revisió creuada + presentacions + feedback)"
 agrupacion: "individual"
 materiales:
-  - "Carpeta personal de l''alumne amb el material acumulat durant el curs (DAFO personal Unit 1, mapa de gestió emocional Unit 2, mapa d''entorn Unit 3, arbre de decisions Unit 4, dossier d''itineraris Unit 5, mapa d''FP Unit 6, drets laborals Units 7-8, CV-esborrany Unit 9)"
+  - "Carpeta personal de l'alumne amb el material acumulat durant el curs (DAFO personal Unit 1, mapa de gestió emocional Unit 2, mapa d'entorn Unit 3, arbre de decisions Unit 4, dossier d'itineraris Unit 5, mapa d'FP Unit 6, drets laborals Units 7-8, CV-esborrany Unit 9)"
   - "Plantilla del document integrador en format A4 (inclosa davall) en PDF imprimible i en document editable compartit"
-  - "Accés a internet a l''aula per a verificar dades d''ocupabilitat i oferta formativa actualitzada"
-  - "Rúbrica d''avaluació impresa per al professor i per a la coavaluació entre alumnes"
+  - "Accés a internet a l'aula per a verificar dades d'ocupabilitat i oferta formativa actualitzada"
+  - "Rúbrica d'avaluació impresa per al professor i per a la coavaluació entre alumnes"
   - "Cronòmetre visible per a les presentacions de la sessió 3"
   - "Fulls de feedback estructurat per a la sessió 4 (format carta del company)"
 competencias_clave: [CPSAA, CE, CCL]

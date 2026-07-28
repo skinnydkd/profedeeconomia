@@ -2,12 +2,12 @@
 asignatura: fopp-4eso
 unidad_relacionada: 6
 title: "Simula la teua sol·licitud de beca MEFP: et correspon i per quant?"
-descripcion: "Exercici individual de 50 minuts: a partir de tres perfils familiars ficticis (amb dades de renda, patrimoni, membres de la unitat familiar i distància al centre), l''alumnat calcula quines quanties de la beca MEFP li correspondrien i emplena una plantilla simplificada de sol·licitud."
+descripcion: "Exercici individual de 50 minuts: a partir de tres perfils familiars ficticis (amb dades de renda, patrimoni, membres de la unitat familiar i distància al centre), l'alumnat calcula quines quanties de la beca MEFP li correspondrien i emplena una plantilla simplificada de sol·licitud."
 tipo: ejercicio
 duracion: "50 min · 1 sessió"
 agrupacion: "individual"
 materiales:
-  - "Fitxa de l''alumne amb els tres perfils familiars ficticis (Perfil A, B i C) — es lliura impresa"
+  - "Fitxa de l'alumne amb els tres perfils familiars ficticis (Perfil A, B i C) — es lliura impresa"
   - "Plantilla simplificada de sol·licitud MEFP (inclosa davall, 1 pàgina A4)"
   - "Calculadora (el mòbil val, sense accés a internet durant el càlcul)"
   - "Taula resum de llindars i quanties 2024-2025 (projectada a la pissarra o a la fitxa)"

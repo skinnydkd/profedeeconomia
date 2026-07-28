@@ -2,16 +2,16 @@
 asignatura: fopp-4eso
 unidad_relacionada: 5
 title: "El meu itinerari post-ESO: dossier de tres opcions"
-descripcion: "Projecte en tres sessions: cada alumne investiga tres itineraris concrets després de 4t ESO (mínim un de Batxillerat, un d''FP i un tercer lliure), elabora un dossier estructurat amb dades reals i el presenta al grup en cinc minuts."
+descripcion: "Projecte en tres sessions: cada alumne investiga tres itineraris concrets després de 4t ESO (mínim un de Batxillerat, un d'FP i un tercer lliure), elabora un dossier estructurat amb dades reals i el presenta al grup en cinc minuts."
 tipo: proyecto
 duracion: "3 sessions · 1 setmana i mitja (investigació + redacció + presentació)"
 agrupacion: "individual"
 materiales:
   - "Plantilla de dossier en PDF o document compartit (inclosa davall)"
-  - "Accés a internet a l''aula (portal TodoFP, web de la universitat de referència autonòmica, SEPE, observatori autonòmic d''ocupació)"
-  - "Llista actualitzada de centres educatius de l''entorn (en províncies grans, mapa interactiu de la conselleria/consejería d''Educació)"
+  - "Accés a internet a l'aula (portal TodoFP, web de la universitat de referència autonòmica, SEPE, observatori autonòmic d'ocupació)"
+  - "Llista actualitzada de centres educatius de l'entorn (en províncies grans, mapa interactiu de la conselleria/consejería d'Educació)"
   - "Cronòmetre visible per a les presentacions"
-  - "Rúbrica d''avaluació impresa per al professor i per a coavaluació entre alumnes"
+  - "Rúbrica d'avaluació impresa per al professor i per a coavaluació entre alumnes"
 competencias_clave: [CPSAA, CD, CE, CCL]
 competencias_especificas: [CE5, CE8]
 estado: publicado

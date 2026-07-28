@@ -1,8 +1,8 @@
 ---
 asignatura: fopp-4eso
 unidad_relacionada: 7
-title: "Investiga tres professions que t''interessen: salari, requisits i projeccions"
-descripcion: "Exercici d''investigació guiada en una sessió: cada alumne selecciona tres professions del mercat laboral espanyol i ompli una fitxa estructurada per a cadascuna amb dades verificables sobre salari mitjà, requisits formatius i projeccions de demanda 2024-2030, usant fonts oficials (SEPE Observatori, INE EPA, Informe Adecco)."
+title: "Investiga tres professions que t'interessen: salari, requisits i projeccions"
+descripcion: "Exercici d'investigació guiada en una sessió: cada alumne selecciona tres professions del mercat laboral espanyol i ompli una fitxa estructurada per a cadascuna amb dades verificables sobre salari mitjà, requisits formatius i projeccions de demanda 2024-2030, usant fonts oficials (SEPE Observatori, INE EPA, Informe Adecco)."
 tipo: ejercicio
 duracion: "1 sessió · 55 min"
 agrupacion: "individual"
@@ -10,8 +10,8 @@ materiales:
   - "Ordinador o tauleta amb connexió a internet (un per alumne o per parella si falta equip)"
   - "Plantilla de tres fitxes en PDF o document compartit (inclosa davall)"
   - "Enllaços preparats de les tres fonts obligatòries: SEPE Observatori de les Ocupacions, INE EPA, Informe Infoempleo Adecco més recent"
-  - "Accés al portal autonòmic d''ocupació (Labora CV, SOC, Lanbide, SEPECAM, etc.) segons comunitat"
-  - "Projector per a mostrar a l''inici els passos de navegació de cada portal"
+  - "Accés al portal autonòmic d'ocupació (Labora CV, SOC, Lanbide, SEPECAM, etc.) segons comunitat"
+  - "Projector per a mostrar a l'inici els passos de navegació de cada portal"
 competencias_clave: [CPSAA, CD, CE]
 competencias_especificas: [CE6]
 estado: publicado

@@ -4,6 +4,7 @@ import { ASIGNATURAS, ASIGNATURA_SLUGS } from '@/lib/asignaturas';
 import { ITINERARIOS } from '@/lib/emprendimiento';
 import { getCollection } from 'astro:content';
 import { getLocale } from '@/i18n/locale';
+import { pickLocalizedEntry } from '@/i18n/content-locale';
 import { localizeAsignatura } from '@/i18n/asignaturas-ca';
 import { localizeItinerario } from '@/i18n/emprendimiento-ca';
 
@@ -148,7 +149,15 @@ const copy = {
 // already live inside each asignatura — single source of truth, no duplication.
 const actsAll = await getCollection('actividades');
 const proyAll = await getCollection('proyecto');
-const proyectoActs = actsAll.filter((x) => x.data.tipo === 'proyecto' && x.data.estado === 'publicado');
+// Drive off the Spanish entries and swap to the CA sibling under /ca — filtering
+// by lang is REQUIRED, else both language versions of each project activity are
+// listed (the collection holds ES and CA entries).
+const actsCaById = new Map(
+  actsAll.filter((x) => x.data.tipo === 'proyecto' && x.data.estado === 'publicado' && x.data.lang === 'ca').map((x) => [x.id, x]),
+);
+const proyectoActs = actsAll
+  .filter((x) => x.data.tipo === 'proyecto' && x.data.estado === 'publicado' && x.data.lang === 'es')
+  .map((x) => pickLocalizedEntry(x, actsCaById, locale));
 
 const porAsignatura = ASIGNATURA_SLUGS
   .map((slug) => ({

@@ -1,15 +1,15 @@
 ---
 asignatura: fopp-4eso
 unidad_relacionada: 2
-title: "El cas de la nit abans de l''examen: distingir nervis normals d''ansietat que demana ajuda"
-descripcion: "Estudi de cas sobre salut mental adolescent. A partir de la història de Marta, l''alumnat aprén a diferenciar els nervis funcionals del malestar que ja interferix en la vida, identifica senyals d''alarma i coneix els recursos d''ajuda reals i gratuïts disponibles a Espanya."
+title: "El cas de la nit abans de l'examen: distingir nervis normals d'ansietat que demana ajuda"
+descripcion: "Estudi de cas sobre salut mental adolescent. A partir de la història de Marta, l'alumnat aprén a diferenciar els nervis funcionals del malestar que ja interferix en la vida, identifica senyals d'alarma i coneix els recursos d'ajuda reals i gratuïts disponibles a Espanya."
 tipo: caso
 duracion: "55 min · 1 sessió"
 agrupacion: "grups xicotets (3-4) + posada en comú"
 materiales:
   - "Fitxa del cas impresa (una per grup, inclosa davall)"
   - "Semàfor de senyals en A4 (verd/ambre/roig, inclòs davall)"
-  - "Cartell visible amb els recursos d''ajuda: línia 024, telèfon ANAR 900 20 20 10, orientació del centre"
+  - "Cartell visible amb els recursos d'ajuda: línia 024, telèfon ANAR 900 20 20 10, orientació del centre"
   - "Pissarra per a la posada en comú"
 competencias_clave: [CPSAA, CC, CCL]
 competencias_especificas: [CE2]

@@ -3,17 +3,17 @@ asignatura: edmn-2bach
 unidad_relacionada: 11
 title: "Balanç en mà: rendibilitat econòmica, financera i fons de maniobra"
 tipo: ejercicio
-descripcion: "Calcular i interpretar la rendibilitat econòmica (RE), la rendibilitat financera (RF) i el fons de maniobra a partir d''un balanç i un compte de resultats simplificats."
+descripcion: "Calcular i interpretar la rendibilitat econòmica (RE), la rendibilitat financera (RF) i el fons de maniobra a partir d'un balanç i un compte de resultats simplificats."
 duracion: "25-35 min · individual"
 agrupacion: "individual"
 competencias_clave: [STEM, CD, CE]
 competencias_especificas: [CE5]
 ebau: true
 solucion:
-  - "1. Fons de maniobra = Actiu corrent − Passiu corrent = 40.000 − 35.000 = **+5.000 €**. Positiu: l''empresa pot atendre els seus deutes a curt termini amb folgança."
+  - "1. Fons de maniobra = Actiu corrent − Passiu corrent = 40.000 − 35.000 = **+5.000 €**. Positiu: l'empresa pot atendre els seus deutes a curt termini amb folgança."
   - "2. RE (ROA) = BAII / Actiu total = 18.000 / 120.000 = **0,15 → 15 %**. Per cada 100 € invertits en actius, el negoci genera 15 € de benefici operatiu."
-  - "3. RF (ROE) = Benefici net / Patrimoni net = 11.925 / 50.000 = **0,2385 → 23,85 %**. Per cada 100 € aportats pels socis, s''obtenen quasi 24 € de benefici."
-  - "4. L''efecte palanquejament és positiu: RF (23,85 %) > RE (15 %) perquè el cost del deute (6 %) és menor que la RE (15 %). Endeutar-se per a finançar actius productius amplifica la rendibilitat de l''accionista."
+  - "3. RF (ROE) = Benefici net / Patrimoni net = 11.925 / 50.000 = **0,2385 → 23,85 %**. Per cada 100 € aportats pels socis, s'obtenen quasi 24 € de benefici."
+  - "4. L'efecte palanquejament és positiu: RF (23,85 %) > RE (15 %) perquè el cost del deute (6 %) és menor que la RE (15 %). Endeutar-se per a finançar actius productius amplifica la rendibilitat de l'accionista."
 lang: ca
 estado: publicado
 slug: "asignaturas/edmn-2bach/actividades/ejercicio-u11-rentabilidad-fondo-maniobra.ca"

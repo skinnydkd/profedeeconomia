@@ -2,7 +2,7 @@
 asignatura: fopp-4eso
 unidad_relacionada: 4
 title: "Batxillerat o FP? Aplica les cinc fases a la teua decisió real"
-descripcion: "Cada alumne aplica el procés de cinc fases a la decisió més important del curs: què estudiar l''any que ve. Construïx una matriu ponderada amb tres alternatives mínim i argumenta per escrit la seua decisió."
+descripcion: "Cada alumne aplica el procés de cinc fases a la decisió més important del curs: què estudiar l'any que ve. Construïx una matriu ponderada amb tres alternatives mínim i argumenta per escrit la seua decisió."
 tipo: ejercicio
 duracion: "60 min · 1 sessió"
 agrupacion: "individual + parelles per a revisió creuada"
