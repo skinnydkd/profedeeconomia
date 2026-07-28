@@ -28,6 +28,11 @@ function findChromeExecutable() {
   if (process.env.PUPPETEER_EXECUTABLE_PATH && existsSync(process.env.PUPPETEER_EXECUTABLE_PATH)) {
     return process.env.PUPPETEER_EXECUTABLE_PATH;
   }
+  // Playwright's pre-installed Chromium (e.g. CI / sandboxes without system Chrome).
+  if (process.env.PLAYWRIGHT_BROWSERS_PATH) {
+    const pw = join(process.env.PLAYWRIGHT_BROWSERS_PATH, 'chromium');
+    if (existsSync(pw)) return pw;
+  }
   const candidates = platform() === 'win32'
     ? ['C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',
        'C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe',
@@ -79,7 +84,14 @@ console.log('→ Static server ready on :4322 (serving dist/client).');
 
 const chromePath = findChromeExecutable();
 if (!chromePath) { console.error('✖ Could not find Chrome. Set PUPPETEER_EXECUTABLE_PATH.'); process.exit(1); }
-const browser = await puppeteer.launch({ headless: 'new', executablePath: chromePath, defaultViewport: { width: 1440, height: 900 } });
+const browser = await puppeteer.launch({ headless: 'new', executablePath: chromePath, defaultViewport: { width: 1440, height: 900 }, args: ['--no-sandbox', '--disable-setuid-sandbox'] });
+
+// Locales to print: Spanish (root) plus Valencian (/ca) when the unit has a
+// translated libro sibling. CA decks land next to the ES ones as `<unit>.ca.pdf`.
+const LOCALES = [
+  { code: 'es', prefix: '', suffix: '' },
+  { code: 'ca', prefix: 'ca/', suffix: '.ca' },
+];
 
 let totalPdf = 0;
 const overflows = [];
@@ -87,7 +99,7 @@ const overflows = [];
 for (const slug of asigFilter) {
   const dir = resolve(root, `src/content/asignaturas/${slug}/libro`);
   if (!existsSync(dir)) continue;
-  let units = readdirSync(dir).filter((f) => f.endsWith('.mdx'))
+  let units = readdirSync(dir).filter((f) => f.endsWith('.mdx') && !f.endsWith('.ca.mdx'))
     .filter((f) => parseFm(readFileSync(resolve(dir, f), 'utf8')).estado === 'publicado')
     .map((f) => basename(f, '.mdx'));
   if (unitFilter) units = units.filter((u) => u === unitFilter);
@@ -96,35 +108,44 @@ for (const slug of asigFilter) {
   mkdirSync(outDir, { recursive: true });
 
   for (const unit of units) {
-    const url = `http://localhost:4322/${slug}/diapositivas/${unit}/`;
-    const page = await browser.newPage();
-    try {
-      await page.goto(url, { waitUntil: 'networkidle0', timeout: 60000 });
-      await page.emulateMediaType('print');
-      await page.evaluateHandle('document.fonts.ready');
+    for (const loc of LOCALES) {
+      // Skip the Valencian deck when the unit has no translated libro sibling
+      // (the /ca route would just fall back to Spanish — no separate PDF needed).
+      if (loc.code === 'ca'
+        && !existsSync(resolve(dir, `${unit}.ca.mdx`))
+        && !existsSync(resolve(dir, `${unit}.ca.md`))) continue;
 
-      const bad = await page.evaluate(() => {
-        const out = [];
-        document.querySelectorAll('.slide').forEach((el, i) => {
-          if (el.scrollHeight > el.clientHeight + 2 || el.scrollWidth > el.clientWidth + 2) {
-            out.push({ i: i + 1, sh: el.scrollHeight, ch: el.clientHeight, sw: el.scrollWidth, cw: el.clientWidth });
-          }
+      const label = `${loc.prefix}${slug}/${unit}${loc.suffix}`;
+      const url = `http://localhost:4322/${loc.prefix}${slug}/diapositivas/${unit}/`;
+      const page = await browser.newPage();
+      try {
+        await page.goto(url, { waitUntil: 'networkidle0', timeout: 60000 });
+        await page.emulateMediaType('print');
+        await page.evaluateHandle('document.fonts.ready');
+
+        const bad = await page.evaluate(() => {
+          const out = [];
+          document.querySelectorAll('.slide').forEach((el, i) => {
+            if (el.scrollHeight > el.clientHeight + 2 || el.scrollWidth > el.clientWidth + 2) {
+              out.push({ i: i + 1, sh: el.scrollHeight, ch: el.clientHeight, sw: el.scrollWidth, cw: el.clientWidth });
+            }
+          });
+          return out;
         });
-        return out;
-      });
-      if (bad.length) {
-        for (const b of bad) overflows.push(`${slug}/${unit} slide ${b.i}: ${b.sw}x${b.sh} > ${b.cw}x${b.ch}`);
-        console.log(`  ! ${slug}/${unit}: ${bad.length} slide(s) overflow`);
-      }
+        if (bad.length) {
+          for (const b of bad) overflows.push(`${label} slide ${b.i}: ${b.sw}x${b.sh} > ${b.cw}x${b.ch}`);
+          console.log(`  ! ${label}: ${bad.length} slide(s) overflow`);
+        }
 
-      await page.pdf({ path: join(outDir, `${unit}.pdf`), width: '1280px', height: '720px', printBackground: true });
-      console.log(`  ✓ ${slug}/${unit}.pdf`);
-      totalPdf++;
-    } catch (err) {
-      console.error(`  ✖ ${slug}/${unit}: ${err.message}`);
-      overflows.push(`${slug}/${unit}: ERROR ${err.message}`);
+        await page.pdf({ path: join(outDir, `${unit}${loc.suffix}.pdf`), width: '1280px', height: '720px', printBackground: true });
+        console.log(`  ✓ ${label}.pdf`);
+        totalPdf++;
+      } catch (err) {
+        console.error(`  ✖ ${label}: ${err.message}`);
+        overflows.push(`${label}: ERROR ${err.message}`);
+      }
+      await page.close();
     }
-    await page.close();
   }
 }
 
