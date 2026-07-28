@@ -12,7 +12,7 @@
  */
 
 import { spawn } from 'node:child_process';
-import { existsSync, mkdirSync, copyFileSync, statSync, readFileSync } from 'node:fs';
+import { existsSync, mkdirSync, copyFileSync, statSync, readFileSync, readdirSync } from 'node:fs';
 import { resolve, dirname, join, extname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { platform } from 'node:os';
@@ -37,6 +37,10 @@ if (asignaturas.length === 0) {
 function findChromeExecutable() {
   if (process.env.PUPPETEER_EXECUTABLE_PATH && existsSync(process.env.PUPPETEER_EXECUTABLE_PATH)) {
     return process.env.PUPPETEER_EXECUTABLE_PATH;
+  }
+  if (process.env.PLAYWRIGHT_BROWSERS_PATH) {
+    const pw = join(process.env.PLAYWRIGHT_BROWSERS_PATH, 'chromium');
+    if (existsSync(pw)) return pw;
   }
   const candidates = platform() === 'win32'
     ? [
@@ -141,12 +145,23 @@ mkdirSync(distDownloads, { recursive: true });
 
 let failures = 0;
 
-for (const slug of asignaturas) {
-  const url = `http://localhost:${PORT}/${slug}/ebau/imprimir/`;
-  const outDist = resolve(distDownloads, `${slug}-ebau.pdf`);
-  const outPublic = resolve(publicDownloads, `${slug}-ebau.pdf`);
+const LOCALES = [
+  { code: 'es', prefix: '', suffix: '' },
+  { code: 'ca', prefix: 'ca/', suffix: '.ca' },
+];
+const hasCa = (slug) => {
+  const dir = resolve(root, `src/content/asignaturas/${slug}/ebau`);
+  return existsSync(dir) && readdirSync(dir).some((f) => f.endsWith('.ca.mdx') || f.endsWith('.ca.md'));
+};
 
-  console.log(`\n— Generando cuaderno EBAU para ${slug}`);
+for (const slug of asignaturas) {
+ for (const loc of LOCALES) {
+  if (loc.code === 'ca' && !hasCa(slug)) continue;
+  const url = `http://localhost:${PORT}/${loc.prefix}${slug}/ebau/imprimir/`;
+  const outDist = resolve(distDownloads, `${slug}-ebau${loc.suffix}.pdf`);
+  const outPublic = resolve(publicDownloads, `${slug}-ebau${loc.suffix}.pdf`);
+
+  console.log(`\n— Generando cuaderno EBAU para ${loc.prefix}${slug}`);
   console.log(`  URL    : ${url}`);
   console.log(`  Output : ${outDist}`);
 
@@ -167,7 +182,7 @@ for (const slug of asignaturas) {
   });
 
   if (exitCode !== 0) {
-    console.error(`✖ pagedjs-cli falló para ${slug} (código ${exitCode})`);
+    console.error(`✖ pagedjs-cli falló para ${loc.prefix}${slug} (código ${exitCode})`);
     failures++;
     continue;
   }
@@ -176,7 +191,8 @@ for (const slug of asignaturas) {
     copyFileSync(outDist, outPublic);
     console.log(`  Copiado a ${outPublic}`);
   }
-  console.log(`✓ ${slug}-ebau.pdf listo`);
+  console.log(`✓ ${slug}-ebau${loc.suffix}.pdf listo`);
+ }
 }
 
 server.close();
