@@ -5,15 +5,17 @@ import PlantillaPuntoMuerto from './PlantillaPuntoMuerto.astro';
 import PlantillaProcesos from './PlantillaProcesos.astro';
 import PlantillaPitch from './PlantillaPitch.astro';
 import PlantillaTabla from './PlantillaTabla.astro';
+import type { Locale } from '@/i18n/locale';
 
 interface Props {
   plantilla: { tipo: string; columnas?: string[]; filas?: number };
+  locale?: Locale;
 }
-const { plantilla: p } = Astro.props;
+const { plantilla: p, locale = 'es' } = Astro.props;
 ---
-{p.tipo === 'canvas-bm' && <PlantillaCanvasBM />}
-{p.tipo === '4p' && <Plantilla4P />}
-{p.tipo === 'punto-muerto' && <PlantillaPuntoMuerto />}
-{p.tipo === 'procesos' && <PlantillaProcesos filas={p.filas} />}
-{p.tipo === 'pitch' && <PlantillaPitch filas={p.filas} />}
+{p.tipo === 'canvas-bm' && <PlantillaCanvasBM locale={locale} />}
+{p.tipo === '4p' && <Plantilla4P locale={locale} />}
+{p.tipo === 'punto-muerto' && <PlantillaPuntoMuerto locale={locale} />}
+{p.tipo === 'procesos' && <PlantillaProcesos filas={p.filas} locale={locale} />}
+{p.tipo === 'pitch' && <PlantillaPitch filas={p.filas} locale={locale} />}
 {p.tipo === 'tabla' && <PlantillaTabla columnas={p.columnas ?? []} filas={p.filas} />}

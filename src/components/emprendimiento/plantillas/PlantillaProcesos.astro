@@ -1,7 +1,9 @@
 ---
 /** Blank process flow — `filas` boxes connected by arrows, each with a caption. */
-interface Props { filas?: number }
-const { filas = 5 } = Astro.props;
+import type { Locale } from '@/i18n/locale';
+interface Props { filas?: number; locale?: Locale }
+const { filas = 5, locale = 'es' } = Astro.props;
+const pasoLabel = locale === 'ca' ? 'Pas' : 'Paso';
 const pasos = Array.from({ length: filas }, (_, i) => i + 1);
 ---
 <div class="proc">
@@ -9,7 +11,7 @@ const pasos = Array.from({ length: filas }, (_, i) => i + 1);
     <>
       <div class="proc__step">
         <div class="proc__box"></div>
-        <span class="proc__cap">Paso {n}</span>
+        <span class="proc__cap">{pasoLabel} {n}</span>
       </div>
       {i < pasos.length - 1 && <span class="proc__arrow">→</span>}
     </>

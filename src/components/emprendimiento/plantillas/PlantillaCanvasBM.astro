@@ -1,15 +1,30 @@
 ---
 /** Blank Business Model Canvas (9 blocks) for the student team to fill in. */
+import type { Locale } from '@/i18n/locale';
+interface Props { locale?: Locale }
+const { locale = 'es' } = Astro.props;
+const LABELS = {
+  es: {
+    socios: 'Socios clave', actividades: 'Actividades clave', recursos: 'Recursos clave',
+    propuesta: 'Propuesta de valor', relaciones: 'Relación con clientes', canales: 'Canales',
+    segmentos: 'Segmentos de cliente', costes: 'Estructura de costes', ingresos: 'Fuentes de ingreso',
+  },
+  ca: {
+    socios: 'Socis clau', actividades: 'Activitats clau', recursos: 'Recursos clau',
+    propuesta: 'Proposta de valor', relaciones: 'Relació amb els clients', canales: 'Canals',
+    segmentos: 'Segments de clients', costes: 'Estructura de costos', ingresos: 'Fonts d\'ingressos',
+  },
+}[locale];
 const BLOQUES = [
-  { k: 'socios', label: 'Socios clave' },
-  { k: 'actividades', label: 'Actividades clave' },
-  { k: 'recursos', label: 'Recursos clave' },
-  { k: 'propuesta', label: 'Propuesta de valor' },
-  { k: 'relaciones', label: 'Relación con clientes' },
-  { k: 'canales', label: 'Canales' },
-  { k: 'segmentos', label: 'Segmentos de cliente' },
-  { k: 'costes', label: 'Estructura de costes' },
-  { k: 'ingresos', label: 'Fuentes de ingreso' },
+  { k: 'socios', label: LABELS.socios },
+  { k: 'actividades', label: LABELS.actividades },
+  { k: 'recursos', label: LABELS.recursos },
+  { k: 'propuesta', label: LABELS.propuesta },
+  { k: 'relaciones', label: LABELS.relaciones },
+  { k: 'canales', label: LABELS.canales },
+  { k: 'segmentos', label: LABELS.segmentos },
+  { k: 'costes', label: LABELS.costes },
+  { k: 'ingresos', label: LABELS.ingresos },
 ];
 ---
 <div class="bmc">

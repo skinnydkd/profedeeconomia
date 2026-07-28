@@ -67,9 +67,10 @@ const copy = {
 // activity workbook (<slug>-cuaderno[-alumno].pdf). Only render the download
 // CTAs for subjects that actually have the generated files (currently GPE).
 const has = (file: string) => existsSync(resolve('public/downloads', file));
-const guiaFile = `${a.slug}-proyecto.pdf`;
-const alumnoFile = `${a.slug}-proyecto-cuaderno-alumno.pdf`;
-const profesorFile = `${a.slug}-proyecto-cuaderno-profesor.pdf`;
+const caSuffix = locale === 'ca' ? '.ca' : '';
+const guiaFile = `${a.slug}-proyecto${caSuffix}.pdf`;
+const alumnoFile = `${a.slug}-proyecto-cuaderno-alumno${caSuffix}.pdf`;
+const profesorFile = `${a.slug}-proyecto-cuaderno-profesor${caSuffix}.pdf`;
 const guiaHref = `/downloads/${guiaFile}`;
 const alumnoHref = `/downloads/${alumnoFile}`;
 const profesorHref = `/downloads/${profesorFile}`;

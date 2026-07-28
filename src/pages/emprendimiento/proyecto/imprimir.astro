@@ -5,23 +5,36 @@
  * `proyectoTransversal` collection (no asignatura param). Single static page.
  */
 import { getCollection, render } from 'astro:content';
+import { getLocale } from '@/i18n/locale';
+import { pickLocalizedEntry } from '@/i18n/content-locale';
 
+const locale = getLocale(Astro.currentLocale);
 const all = await getCollection('proyectoTransversal');
-// ES-only print edition; CA .ca.mdx siblings must not double the phases.
+const caById = new Map(
+  all.filter((e) => e.data.estado === 'publicado' && e.data.lang === 'ca').map((e) => [e.id, e]),
+);
+// Drive the ordering off the ES entries so the CA .ca.mdx siblings never
+// double the phases; then swap each for its Valencian sibling under /ca.
 const secciones = all
   .filter((e) => e.data.estado === 'publicado' && e.data.lang === 'es')
-  .sort((a, b) => a.data.fase - b.data.fase);
+  .sort((a, b) => a.data.fase - b.data.fase)
+  .map((e) => pickLocalizedEntry(e, caById, locale));
 const rendered = await Promise.all(secciones.map(async (s) => ({ s, ...(await render(s)) })));
-const today = new Date().toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
+const today = new Date().toLocaleDateString(locale === 'ca' ? 'ca-ES' : 'es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
+
+const copy = {
+  es: { header: 'De cero a empresa', eyebrow: 'Proyecto de emprendimiento transversal', titlePre: 'De cero a', titleEm: 'empresa', sub: 'Un proyecto modular para todas las asignaturas', editorial: 'Editorial', material: 'Material', materialV: 'Emprendimiento', generado: 'Generado' },
+  ca: { header: 'De zero a empresa', eyebrow: 'Projecte d\'emprenedoria transversal', titlePre: 'De zero a', titleEm: 'empresa', sub: 'Un projecte modular per a totes les assignatures', editorial: 'Editorial', material: 'Material', materialV: 'Emprenedoria', generado: 'Generat' },
+}[locale];
 
 const accent = { base: '#D4A24C', deep: '#A87A2A', soft: '#F5E5BC' };
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang={locale}>
   <head>
     <meta charset="utf-8" />
-    <title>De cero a empresa — profedeeconomia</title>
+    <title>{copy.header} — profedeeconomia</title>
     <meta name="robots" content="noindex,nofollow" />
     <style is:inline>
       @font-face { font-family: 'Fraunces'; src: url('/fonts/fraunces-latin-normal.woff2') format('woff2'); font-weight: 300 700; font-style: normal; font-display: swap; }
@@ -43,7 +56,7 @@ const accent = { base: '#D4A24C', deep: '#A87A2A', soft: '#F5E5BC' };
       @page {
         size: 165mm 235mm; margin: 12mm 12mm 13mm 12mm;
         @top-left { content: string(doc-title); font-family: var(--font-sans); font-size: 8.5pt; letter-spacing: 0.06em; text-transform: uppercase; color: var(--color-ink-mute); }
-        @top-right { content: "De cero a empresa"; font-family: var(--font-serif); font-style: italic; font-size: 9pt; color: var(--color-ink-mute); }
+        @top-right { content: string(doc-header); font-family: var(--font-serif); font-style: italic; font-size: 9pt; color: var(--color-ink-mute); }
         @bottom-right { content: counter(page); font-family: var(--font-serif); font-size: 10pt; color: var(--book-accent); }
       }
       @page :first { @top-left { content: none; } @top-right { content: none; } @bottom-right { content: none; } }
@@ -91,24 +104,24 @@ const accent = { base: '#D4A24C', deep: '#A87A2A', soft: '#F5E5BC' };
       .proyecto-sec__label { font-family: var(--font-sans); font-size: 8pt; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--book-accent); }
     </style>
   </head>
-  <style is:inline set:html={`body { --book-accent: ${accent.base}; --book-accent-deep: ${accent.deep}; --book-accent-soft: ${accent.soft}; } .doc-title-string { string-set: doc-title "De cero a empresa"; }`}></style>
+  <style is:inline set:html={`body { --book-accent: ${accent.base}; --book-accent-deep: ${accent.deep}; --book-accent-soft: ${accent.soft}; } .doc-title-string { string-set: doc-title "${copy.header}" , doc-header "${copy.header}"; }`}></style>
   <body class="doc-title-string">
     <section class="cover">
       <header class="cover__top"><span>profedeeconomia.es</span><span class="mark"></span></header>
       <div class="cover__center">
-        <div class="cover__eyebrow">Proyecto de emprendimiento transversal</div>
-        <h1 class="cover__title">De cero a <em>empresa</em></h1>
-        <p class="cover__sub">Un proyecto modular para todas las asignaturas</p>
+        <div class="cover__eyebrow">{copy.eyebrow}</div>
+        <h1 class="cover__title">{copy.titlePre} <em>{copy.titleEm}</em></h1>
+        <p class="cover__sub">{copy.sub}</p>
         <div class="cover__rule"></div>
       </div>
       <footer class="cover__bottom">
-        <div class="stack"><span class="muted">Editorial</span><strong>profedeeconomia.es</strong></div>
-        <div class="stack"><span class="muted">Material</span><strong>Emprendimiento</strong></div>
-        <div class="stack"><span class="muted">Generado</span><strong>{today}</strong></div>
+        <div class="stack"><span class="muted">{copy.editorial}</span><strong>profedeeconomia.es</strong></div>
+        <div class="stack"><span class="muted">{copy.material}</span><strong>{copy.materialV}</strong></div>
+        <div class="stack"><span class="muted">{copy.generado}</span><strong>{today}</strong></div>
       </footer>
     </section>
 
-    <section class="doc" data-doc-title="De cero a empresa">
+    <section class="doc" data-doc-title={copy.header}>
       {rendered.map(({ s, Content }) => (
         <div class="proyecto-sec">
           <span class="proyecto-sec__label">{s.data.fase_label}</span>

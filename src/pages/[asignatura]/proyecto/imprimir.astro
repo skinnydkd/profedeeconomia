@@ -6,6 +6,9 @@
  */
 import { ASIGNATURAS, type AsignaturaSlug } from '@/lib/asignaturas';
 import { getCollection, render } from 'astro:content';
+import { getLocale } from '@/i18n/locale';
+import { pickLocalizedEntry } from '@/i18n/content-locale';
+import { localizeAsignatura } from '@/i18n/asignaturas-ca';
 import type { GetStaticPaths } from 'astro';
 
 export const getStaticPaths = (async () => {
@@ -23,9 +26,19 @@ export const getStaticPaths = (async () => {
   });
 }) satisfies GetStaticPaths;
 
-const { secciones, asignatura: a } = Astro.props;
+const locale = getLocale(Astro.currentLocale);
+const a = localizeAsignatura(Astro.props.asignatura, locale);
+const caById = new Map(
+  (await getCollection('proyecto')).filter((e) => e.data.estado === 'publicado' && e.data.lang === 'ca').map((e) => [e.id, e]),
+);
+const secciones = Astro.props.secciones.map((s) => pickLocalizedEntry(s, caById, locale));
 const rendered = await Promise.all(secciones.map(async (s) => ({ s, ...(await render(s)) })));
-const today = new Date().toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
+const today = new Date().toLocaleDateString(locale === 'ca' ? 'ca-ES' : 'es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
+
+const copy = {
+  es: { header: 'Cuaderno de proyecto', titlePre: 'Cuaderno de', titleEm: 'proyecto', eyebrow: 'Proyecto emprendedor', editorial: 'Editorial', materia: 'Materia', generado: 'Generado', docSuffix: 'Proyecto' },
+  ca: { header: 'Quadern de projecte', titlePre: 'Quadern de', titleEm: 'projecte', eyebrow: 'Projecte emprenedor', editorial: 'Editorial', materia: 'Matèria', generado: 'Generat', docSuffix: 'Projecte' },
+}[locale];
 
 const ACCENTS: Record<string, { base: string; deep: string; soft: string }> = {
   edmn: { base: '#C44E2C', deep: '#9C3A1C', soft: '#FBE3D6' },
@@ -42,10 +55,10 @@ const accent = ACCENTS[a.color] ?? ACCENTS.edmn;
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang={locale}>
   <head>
     <meta charset="utf-8" />
-    <title>Cuaderno de proyecto · {a.title} — profedeeconomia</title>
+    <title>{copy.header} · {a.title} — profedeeconomia</title>
     <meta name="robots" content="noindex,nofollow" />
     <style is:inline>
       @font-face { font-family: 'Fraunces'; src: url('/fonts/fraunces-latin-normal.woff2') format('woff2'); font-weight: 300 700; font-style: normal; font-display: swap; }
@@ -67,7 +80,7 @@ const accent = ACCENTS[a.color] ?? ACCENTS.edmn;
       @page {
         size: 165mm 235mm; margin: 12mm 12mm 13mm 12mm;
         @top-left { content: string(doc-title); font-family: var(--font-sans); font-size: 8.5pt; letter-spacing: 0.06em; text-transform: uppercase; color: var(--color-ink-mute); }
-        @top-right { content: "Cuaderno de proyecto"; font-family: var(--font-serif); font-style: italic; font-size: 9pt; color: var(--color-ink-mute); }
+        @top-right { content: string(doc-header); font-family: var(--font-serif); font-style: italic; font-size: 9pt; color: var(--color-ink-mute); }
         @bottom-right { content: counter(page); font-family: var(--font-serif); font-size: 10pt; color: var(--book-accent); }
       }
       @page :first { @top-left { content: none; } @top-right { content: none; } @bottom-right { content: none; } }
@@ -114,24 +127,24 @@ const accent = ACCENTS[a.color] ?? ACCENTS.edmn;
       .proyecto-sec:first-of-type { break-before: avoid; }
     </style>
   </head>
-  <style is:inline set:html={`body { --book-accent: ${accent.base}; --book-accent-deep: ${accent.deep}; --book-accent-soft: ${accent.soft}; } .doc-title-string { string-set: doc-title "${a.shortLabel} · Proyecto"; }`}></style>
+  <style is:inline set:html={`body { --book-accent: ${accent.base}; --book-accent-deep: ${accent.deep}; --book-accent-soft: ${accent.soft}; } .doc-title-string { string-set: doc-title "${a.shortLabel} · ${copy.docSuffix}" , doc-header "${copy.header}"; }`}></style>
   <body class="doc-title-string">
     <section class="cover">
       <header class="cover__top"><span>profedeeconomia.es</span><span class="mark"></span></header>
       <div class="cover__center">
-        <div class="cover__eyebrow">{a.shortLabel} · Proyecto emprendedor</div>
-        <h1 class="cover__title">Cuaderno de <em>proyecto</em></h1>
+        <div class="cover__eyebrow">{a.shortLabel} · {copy.eyebrow}</div>
+        <h1 class="cover__title">{copy.titlePre} <em>{copy.titleEm}</em></h1>
         <p class="cover__sub">{a.title}</p>
         <div class="cover__rule"></div>
       </div>
       <footer class="cover__bottom">
-        <div class="stack"><span class="muted">Editorial</span><strong>profedeeconomia.es</strong></div>
-        <div class="stack"><span class="muted">Materia</span><strong>{a.shortLabel}</strong></div>
-        <div class="stack"><span class="muted">Generado</span><strong>{today}</strong></div>
+        <div class="stack"><span class="muted">{copy.editorial}</span><strong>profedeeconomia.es</strong></div>
+        <div class="stack"><span class="muted">{copy.materia}</span><strong>{a.shortLabel}</strong></div>
+        <div class="stack"><span class="muted">{copy.generado}</span><strong>{today}</strong></div>
       </footer>
     </section>
 
-    <section class="doc" data-doc-title={`${a.shortLabel} · Proyecto`}>
+    <section class="doc" data-doc-title={`${a.shortLabel} · ${copy.docSuffix}`}>
       {rendered.map(({ Content }) => (
         <div class="proyecto-sec"><Content /></div>
       ))}
