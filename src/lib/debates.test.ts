@@ -33,4 +33,9 @@ describe('debatePdfName', () => {
     expect(debatePdfName('mercado-estado', '03-salario-minimo'))
       .toBe('debate-mercado-estado-03-salario-minimo.pdf');
   });
+
+  it('appends the .ca suffix for the Valencian edition', () => {
+    expect(debatePdfName('mercado-estado', '03-salario-minimo', true))
+      .toBe('debate-mercado-estado-03-salario-minimo.ca.pdf');
+  });
 });

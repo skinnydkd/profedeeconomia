@@ -5,25 +5,30 @@
  * per group or student. Levels are generic (the rubric schema stores no
  * per-level descriptors).
  */
+import type { Locale } from '@/i18n/locale';
 interface Criterio { criterio: string; descripcion: string; competencia?: string; }
-interface Props { rubrica: Criterio[]; title: string; }
-const { rubrica, title } = Astro.props;
-const niveles = ['1 Inicio', '2 En proceso', '3 Bien', '4 Excelente'];
+interface Props { rubrica: Criterio[]; title: string; locale?: Locale; }
+const { rubrica, title, locale = 'es' } = Astro.props;
+const copy = {
+  es: { tag: 'Hoja de evaluación', grupo: 'Grupo / alumno:', fecha: 'Fecha:', criterio: 'Criterio', observaciones: 'Observaciones:', niveles: ['1 Inicio', '2 En proceso', '3 Bien', '4 Excelente'] },
+  ca: { tag: 'Full d\'avaluació', grupo: 'Grup / alumne:', fecha: 'Data:', criterio: 'Criteri', observaciones: 'Observacions:', niveles: ['1 Inici', '2 En procés', '3 Bé', '4 Excel·lent'] },
+}[locale];
+const niveles = copy.niveles;
 ---
 <section class="hoja print-block">
   <header class="hoja__head">
-    <span class="hoja__tag">Hoja de evaluación</span>
+    <span class="hoja__tag">{copy.tag}</span>
     <h2 class="hoja__title">{title}</h2>
     <div class="hoja__meta">
-      <span>Grupo / alumno: <span class="line"></span></span>
-      <span>Fecha: <span class="line line--sm"></span></span>
+      <span>{copy.grupo} <span class="line"></span></span>
+      <span>{copy.fecha} <span class="line line--sm"></span></span>
     </div>
   </header>
 
   <table class="hoja__table">
     <thead>
       <tr>
-        <th class="c-crit">Criterio</th>
+        <th class="c-crit">{copy.criterio}</th>
         {niveles.map((n) => <th class="c-niv">{n}</th>)}
       </tr>
     </thead>
@@ -41,7 +46,7 @@ const niveles = ['1 Inicio', '2 En proceso', '3 Bien', '4 Excelente'];
     </tbody>
   </table>
 
-  <p class="hoja__obs"><strong>Observaciones:</strong></p>
+  <p class="hoja__obs"><strong>{copy.observaciones}</strong></p>
   <span class="line line--full"></span>
   <span class="line line--full"></span>
 </section>

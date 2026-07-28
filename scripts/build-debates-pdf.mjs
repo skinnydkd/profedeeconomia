@@ -27,6 +27,10 @@ function findChromeExecutable() {
   if (process.env.PUPPETEER_EXECUTABLE_PATH && existsSync(process.env.PUPPETEER_EXECUTABLE_PATH)) {
     return process.env.PUPPETEER_EXECUTABLE_PATH;
   }
+  if (process.env.PLAYWRIGHT_BROWSERS_PATH) {
+    const pw = join(process.env.PLAYWRIGHT_BROWSERS_PATH, 'chromium');
+    if (existsSync(pw)) return pw;
+  }
   const candidates = platform() === 'win32'
     ? ['C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',
        'C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe',
@@ -68,9 +72,22 @@ let distDir = resolve(root, 'dist/client');
 if (!existsSync(distDir)) distDir = resolve(root, 'dist');
 if (!existsSync(distDir)) { console.error('✖ No existe dist/ ni dist/client/. Corre "npm run build" antes.'); process.exit(1); }
 
-const jobs = findDebatePrintJobs(distDir);
-if (jobs.length === 0) { console.error('✖ No se encontraron rutas de impresión de debates en dist/.'); process.exit(1); }
-console.log(`\nDebates encontrados: ${jobs.length}`);
+const esJobs = findDebatePrintJobs(distDir);
+if (esJobs.length === 0) { console.error('✖ No se encontraron rutas de impresión de debates en dist/.'); process.exit(1); }
+
+// A debate also gets a Valencian edition (route under /ca, out .ca.pdf) when
+// its .ca.mdx sibling exists — otherwise /ca just renders the Spanish fallback
+// and we must not emit a redundant .ca.pdf.
+const contentDir = resolve(root, 'src/content/debates');
+const jobs = esJobs.flatMap((job) => {
+  const out = [job];
+  const caFile = resolve(contentDir, job.familia, `${job.slug}.ca.mdx`);
+  if (existsSync(caFile)) {
+    out.push({ ...job, route: `ca/${job.route}`, out: job.out.replace(/\.pdf$/, '.ca.pdf') });
+  }
+  return out;
+});
+console.log(`\nDebates encontrados: ${esJobs.length} (es) + ${jobs.length - esJobs.length} (ca) = ${jobs.length}`);
 
 console.log(`Iniciando servidor estático en http://localhost:${PORT}`);
 const server = await startStaticServer(distDir, PORT);
