@@ -38,7 +38,7 @@ const caById = new Map(
 const secciones = Astro.props.secciones.map((s) => pickLocalizedEntry(s, caById, locale));
 const comunidad = secciones[0]?.data.comunidad ?? 'Comunitat Valenciana';
 const rendered = await Promise.all(secciones.map(async (s) => ({ s, ...(await render(s)) })));
-const pdfHref = `/downloads/${a.slug}-ebau.pdf`;
+const pdfHref = `/downloads/${a.slug}-ebau${locale === 'ca' ? '.ca' : ''}.pdf`;
 
 const copy = {
   es: {
