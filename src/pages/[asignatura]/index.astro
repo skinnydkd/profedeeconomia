@@ -153,7 +153,7 @@ const grupos = [
 const breadcrumb = breadcrumbLd([
   { name: copy.bcInicio, path: '/' },
   { name: a.shortLabel, path: `/${a.slug}/` },
-]);
+], locale);
 
 // Course JSON-LD (only for published subjects): `teaches` derived from the
 // published book unit titles, aligned to the LOMLOE Real Decreto.
@@ -176,6 +176,7 @@ const jsonLd = isPublicado
         marcoNormativo: a.marcoNormativo,
         targetName: `${a.title}, ${a.level}`,
         teaches: unitTitles,
+        locale,
       }),
       faqLd(faqs),
     ]

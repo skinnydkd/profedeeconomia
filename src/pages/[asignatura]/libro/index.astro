@@ -70,11 +70,12 @@ const jsonLd = [
     { name: copy.inicio, path: '/' },
     { name: a.shortLabel, path: `/${a.slug}/` },
     { name: copy.libro, path: `/${a.slug}/libro/` },
-  ]),
+  ], locale),
   ...(units.length > 0
     ? [
         itemListLd({
           name: copy.indice,
+          locale,
           items: units.map((u) => ({
             name: copy.unidadLd(u.data.unidad, u.data.title),
             path: unitPath(u.id),
