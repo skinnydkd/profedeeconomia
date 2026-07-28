@@ -4,6 +4,8 @@
  * Comunitat Valenciana). Varias secciones (colección `ebau`) renderizadas en
  * orden como un solo documento, con descarga en PDF.
  */
+import { existsSync } from 'node:fs';
+import { resolve } from 'node:path';
 import BaseLayout from '@layouts/BaseLayout.astro';
 import { ASIGNATURAS, type AsignaturaSlug } from '@/lib/asignaturas';
 import { breadcrumbLd } from '@/lib/seo';
@@ -38,7 +40,9 @@ const caById = new Map(
 const secciones = Astro.props.secciones.map((s) => pickLocalizedEntry(s, caById, locale));
 const comunidad = secciones[0]?.data.comunidad ?? 'Comunitat Valenciana';
 const rendered = await Promise.all(secciones.map(async (s) => ({ s, ...(await render(s)) })));
-const pdfHref = `/downloads/${a.slug}-ebau${locale === 'ca' ? '.ca' : ''}.pdf`;
+// Link the Valencian PDF only when it exists; else fall back to Spanish (no 404).
+const caEbau = locale === 'ca' && existsSync(resolve('public/downloads', `${a.slug}-ebau.ca.pdf`));
+const pdfHref = `/downloads/${a.slug}-ebau${caEbau ? '.ca' : ''}.pdf`;
 
 const copy = {
   es: {
@@ -90,7 +94,7 @@ const breadcrumb = breadcrumbLd([
             <span class="muted">{copy.descargarSub}</span>
           </span>
         </a>
-        <a class="download-secondary" href={`/${a.slug}/ebau/imprimir/?preview=1`} target="_blank" rel="noopener">{copy.previsualizar}</a>
+        <a class="download-secondary" href={`${locale === 'ca' ? '/ca' : ''}/${a.slug}/ebau/imprimir/?preview=1`} target="_blank" rel="noopener">{copy.previsualizar}</a>
       </div>
       <p class="examenes-link">
         <a href={`/${a.slug}/ebau/examenes/`}>{copy.examenes}</a>

@@ -1,4 +1,6 @@
 ---
+import { existsSync } from 'node:fs';
+import { resolve } from 'node:path';
 import BaseLayout from '@layouts/BaseLayout.astro';
 import { ASIGNATURA_SLUGS, ASIGNATURAS } from '@/lib/asignaturas';
 import { breadcrumbLd } from '@/lib/seo';
@@ -17,6 +19,13 @@ export const getStaticPaths = (async () => {
 
 const locale = getLocale(Astro.currentLocale);
 const a = localizeAsignatura(Astro.props.asignatura, locale);
+
+// Under /ca, link the Valencian PDF only when it was actually generated
+// (a subject may have ES activities but no CA translation yet); otherwise
+// fall back to the Spanish file so the button never 404s.
+const dlHref = (base: string) =>
+  `/downloads/${base}${locale === 'ca' && existsSync(resolve('public/downloads', `${base}.ca.pdf`)) ? '.ca' : ''}.pdf`;
+const preview = (path: string) => `${locale === 'ca' ? '/ca' : ''}${path}`;
 
 const all = await getCollection('actividades');
 const caById = new Map(
@@ -93,21 +102,21 @@ const breadcrumb = breadcrumbLd([
 
       {items.length > 0 && (
         <div class="downloads">
-          <a class="download-cta" href={`/downloads/${a.slug}-cuaderno-alumno${locale === 'ca' ? '.ca' : ''}.pdf`} download>
+          <a class="download-cta" href={dlHref(`${a.slug}-cuaderno-alumno`)} download>
             <span class="download-cta__icon" aria-hidden="true">↓</span>
             <span class="download-cta__text">
               <strong>{copy.alumno}</strong>
               <span class="muted">{copy.alumnoSub}</span>
             </span>
           </a>
-          <a class="download-cta download-cta--alt" href={`/downloads/${a.slug}-cuaderno${locale === 'ca' ? '.ca' : ''}.pdf`} download>
+          <a class="download-cta download-cta--alt" href={dlHref(`${a.slug}-cuaderno`)} download>
             <span class="download-cta__icon" aria-hidden="true">↓</span>
             <span class="download-cta__text">
               <strong>{copy.profesor}</strong>
               <span class="muted">{copy.profesorSub}</span>
             </span>
           </a>
-          <a class="download-secondary" href={`/${a.slug}/actividades/imprimir/profesor/?preview=1`} target="_blank" rel="noopener">
+          <a class="download-secondary" href={preview(`/${a.slug}/actividades/imprimir/profesor/?preview=1`)} target="_blank" rel="noopener">
             {copy.previsualizar}
           </a>
         </div>

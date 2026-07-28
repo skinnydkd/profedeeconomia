@@ -143,8 +143,9 @@ for (const slug of asigFilter) {
       } catch (err) {
         console.error(`  ✖ ${label}: ${err.message}`);
         overflows.push(`${label}: ERROR ${err.message}`);
+      } finally {
+        await page.close().catch(() => {});
       }
-      await page.close();
     }
   }
 }
