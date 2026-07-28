@@ -10,6 +10,9 @@
  */
 import { ASIGNATURA_SLUGS, ASIGNATURAS } from '@/lib/asignaturas';
 import { getCollection, render } from 'astro:content';
+import { getLocale } from '@/i18n/locale';
+import { pickLocalizedEntry } from '@/i18n/content-locale';
+import { localizeAsignatura } from '@/i18n/asignaturas-ca';
 import type { GetStaticPaths } from 'astro';
 
 export const getStaticPaths = (async () => {
@@ -53,7 +56,25 @@ export const getStaticPaths = (async () => {
   });
 }) satisfies GetStaticPaths;
 
-const { units, reto, ebau, asignatura: a } = Astro.props;
+const locale = getLocale(Astro.currentLocale);
+const a = localizeAsignatura(Astro.props.asignatura, locale);
+
+// Swap each ES entry for its Valencian sibling under /ca (ES fallback). Each
+// map is built from a concrete getCollection call so the entry types stay
+// specific (a shared helper would widen them to a union).
+const caPub = 'publicado';
+const libroCa = new Map(
+  (await getCollection('libro')).filter((e) => e.data.estado === caPub && e.data.lang === 'ca').map((e) => [e.id, e]),
+);
+const retoCa = new Map(
+  (await getCollection('retoCurso')).filter((e) => e.data.estado === caPub && e.data.lang === 'ca').map((e) => [e.id, e]),
+);
+const ebauCa = new Map(
+  (await getCollection('ebau')).filter((e) => e.data.estado === caPub && e.data.lang === 'ca').map((e) => [e.id, e]),
+);
+const units = Astro.props.units.map((u) => pickLocalizedEntry(u, libroCa, locale));
+const reto = Astro.props.reto.map((r) => pickLocalizedEntry(r, retoCa, locale));
+const ebau = Astro.props.ebau.map((e) => pickLocalizedEntry(e, ebauCa, locale));
 
 // Pre-render each unit so we have headings + Content
 const rendered = await Promise.all(
@@ -75,8 +96,33 @@ const renderedEbau = await Promise.all(
   })
 );
 
-const today = new Date().toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
+const today = new Date().toLocaleDateString(locale === 'ca' ? 'ca-ES' : 'es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
 const totalUnits = units.length;
+
+const copy = {
+  es: {
+    unidades: 'unidades', curriculo: 'Currículo estatal LOMLOE', editorial: 'Editorial', edicion: 'Edición',
+    edicionVal: 'Curso 2026/27 · borrador', generado: 'Generado',
+    sobreH: 'Sobre este libro',
+    sobreP1a: 'Este libro forma parte de los materiales abiertos de', sobreP1b: ', una plataforma de recursos para profesores de instituto de economía, empresa y finanzas. Todo el contenido se publica bajo licencia', sobreP1c: ': podéis copiarlo, redistribuirlo y adaptarlo siempre que citéis la autoría y no lo uséis con fines comerciales.',
+    sobreP2a: 'Este libro se basa en el currículo básico estatal LOMLOE para', sobreP2b: '). Cada comunidad autónoma establece concreciones específicas en su currículo propio; conviene consultar la concreción de vuestra CCAA para ajustar la programación al centro.',
+    colofon: 'Composición tipográfica con Fraunces y Switzer. Generado con Astro y paged.js. Comentarios, erratas y propuestas:',
+    indice: 'Índice general', contenido: 'Contenido', unidad: 'Unidad', pagina: 'Página',
+    duracion: 'Duración', conceptos: 'Conceptos clave', objetivos: 'Objetivos de la unidad',
+    apendice: 'Apéndice', guiaEbau: 'Guía EBAU', guiaEbauLede: 'Para llegar al examen con la cabeza en su sitio.',
+  },
+  ca: {
+    unidades: 'unitats', curriculo: 'Currículum estatal LOMLOE', editorial: 'Editorial', edicion: 'Edició',
+    edicionVal: 'Curs 2026/27 · esborrany', generado: 'Generat',
+    sobreH: 'Sobre este llibre',
+    sobreP1a: 'Este llibre forma part dels materials oberts de', sobreP1b: ', una plataforma de recursos per a professors d\'institut d\'economia, empresa i finances. Tot el contingut es publica sota llicència', sobreP1c: ': podeu copiar-lo, redistribuir-lo i adaptar-lo sempre que en citeu l\'autoria i no l\'useu amb fins comercials.',
+    sobreP2a: 'Este llibre es basa en el currículum bàsic estatal LOMLOE per a', sobreP2b: '). Cada comunitat autònoma estableix concrecions específiques al seu currículum propi; convé consultar la concreció de la vostra CCAA per a ajustar la programació al centre.',
+    colofon: 'Composició tipogràfica amb Fraunces i Switzer. Generat amb Astro i paged.js. Comentaris, errades i propostes:',
+    indice: 'Índex general', contenido: 'Contingut', unidad: 'Unitat', pagina: 'Pàgina',
+    duracion: 'Durada', conceptos: 'Conceptes clau', objetivos: 'Objectius de la unitat',
+    apendice: 'Apèndix', guiaEbau: 'Guia EBAU', guiaEbauLede: "Per a arribar a l'examen amb el cap al seu lloc.",
+  },
+}[locale];
 
 // Per-asignatura accent palette so each book's PDF carries its own identity
 // instead of the default terracota. Mirrors the color-coding in global.css.
@@ -92,7 +138,7 @@ const accent = ACCENTS[a.color] ?? ACCENTS.edmn;
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang={locale}>
   <head>
     <meta charset="utf-8" />
     <title>{a.title} — profedeeconomia</title>
@@ -945,20 +991,20 @@ const accent = ACCENTS[a.color] ?? ACCENTS.edmn;
         </h1>
         <p class="cover__lede">{a.tagline}</p>
         <p class="cover__inside">
-          <strong>{totalUnits} unidades</strong> · Currículo estatal LOMLOE · {a.marcoNormativo}
+          <strong>{totalUnits} {copy.unidades}</strong> · {copy.curriculo} · {a.marcoNormativo}
         </p>
       </div>
       <footer class="cover__bottom">
         <div class="stack">
-          <span class="muted">Editorial</span>
+          <span class="muted">{copy.editorial}</span>
           <strong>profedeeconomia.es</strong>
         </div>
         <div class="stack">
-          <span class="muted">Edición</span>
-          <strong>Curso 2026/27 · borrador</strong>
+          <span class="muted">{copy.edicion}</span>
+          <strong>{copy.edicionVal}</strong>
         </div>
         <div class="stack">
-          <span class="muted">Generado</span>
+          <span class="muted">{copy.generado}</span>
           <strong>{today}</strong>
         </div>
       </footer>
@@ -966,25 +1012,17 @@ const accent = ACCENTS[a.color] ?? ACCENTS.edmn;
 
     {/* ------------------------------------------------------------ CREDITS */}
     <section class="credits">
-      <h2>Sobre este libro</h2>
+      <h2>{copy.sobreH}</h2>
       <p>
-        Este libro forma parte de los materiales abiertos de
-        <strong>profedeeconomia.es</strong>, una plataforma de recursos para
-        profesores de instituto de economía, empresa y finanzas. Todo el
-        contenido se publica bajo licencia <em>Creative Commons BY-NC-SA</em>:
-        podéis copiarlo, redistribuirlo y adaptarlo siempre que citéis la
-        autoría y no lo uséis con fines comerciales.
+        {copy.sobreP1a}
+        <strong>profedeeconomia.es</strong>{copy.sobreP1b} <em>Creative Commons BY-NC-SA</em>{copy.sobreP1c}
       </p>
       <p>
-        Este libro se basa en el currículo básico estatal LOMLOE para
-        <strong>{a.title}</strong> ({a.marcoNormativo}). Cada comunidad autónoma
-        establece concreciones específicas en su currículo propio; conviene
-        consultar la concreción de vuestra CCAA para ajustar la programación
-        al centro.
+        {copy.sobreP2a}
+        <strong>{a.title}</strong> ({a.marcoNormativo}{copy.sobreP2b}
       </p>
       <p class="colophon-note">
-        Composición tipográfica con Fraunces y Switzer. Generado con Astro y paged.js.
-        Comentarios, erratas y propuestas:
+        {copy.colofon}
         <a href="mailto:hola@profedeeconomia.es">hola@profedeeconomia.es</a>.
       </p>
     </section>
@@ -1002,8 +1040,8 @@ const accent = ACCENTS[a.color] ?? ACCENTS.edmn;
 
     {/* ------------------------------------------------------------ TOC */}
     <section class="toc">
-      <div class="toc__kicker">Índice general · {totalUnits} unidades</div>
-      <h2>Contenido</h2>
+      <div class="toc__kicker">{copy.indice} · {totalUnits} {copy.unidades}</div>
+      <h2>{copy.contenido}</h2>
       <ol class="toc__list">
         {rendered.map(({ unit }) => (
           <li class="toc__item">
@@ -1012,7 +1050,7 @@ const accent = ACCENTS[a.color] ?? ACCENTS.edmn;
               <a class="toc__title" href={`#cap-${unit.data.unidad}`}>{unit.data.title}</a>
               {unit.data.lema && <span class="toc__lede">{unit.data.lema}</span>}
             </div>
-            <a class="toc__page" href={`#cap-${unit.data.unidad}`} aria-label="Página"></a>
+            <a class="toc__page" href={`#cap-${unit.data.unidad}`} aria-label={copy.pagina}></a>
           </li>
         ))}
       </ol>
@@ -1024,7 +1062,7 @@ const accent = ACCENTS[a.color] ?? ACCENTS.edmn;
         <div class="chapter__opener">
           <div>
             <div class="chapter__kicker">
-              Unidad {unit.data.unidad}
+              {copy.unidad} {unit.data.unidad}
               {unit.data.bloque ? ` · ${unit.data.bloque}` : ''}
             </div>
             <div class="chapter__num">{String(unit.data.unidad).padStart(2, '0')}</div>
@@ -1034,19 +1072,19 @@ const accent = ACCENTS[a.color] ?? ACCENTS.edmn;
             <dl class="chapter__meta">
               {unit.data.duracion && (
                 <div>
-                  <dt>Duración</dt>
+                  <dt>{copy.duracion}</dt>
                   <dd>{unit.data.duracion}</dd>
                 </div>
               )}
               {unit.data.conceptos_clave.length > 0 && (
                 <div>
-                  <dt>Conceptos clave</dt>
+                  <dt>{copy.conceptos}</dt>
                   <dd>{unit.data.conceptos_clave.slice(0, 6).join(' · ')}</dd>
                 </div>
               )}
               {unit.data.objetivos.length > 0 && (
                 <div style="grid-column: 1 / -1;">
-                  <dt>Objetivos de la unidad</dt>
+                  <dt>{copy.objetivos}</dt>
                   <dd>
                     <ul>
                       {unit.data.objetivos.map((o) => <li>· {o}</li>)}
@@ -1058,7 +1096,7 @@ const accent = ACCENTS[a.color] ?? ACCENTS.edmn;
           </div>
         </div>
 
-        <div class="chapter__content" data-unit-title={`Unidad ${unit.data.unidad} · ${unit.data.title}`}>
+        <div class="chapter__content" data-unit-title={`${copy.unidad} ${unit.data.unidad} · ${unit.data.title}`}>
           <Content />
         </div>
       </section>
@@ -1068,9 +1106,9 @@ const accent = ACCENTS[a.color] ?? ACCENTS.edmn;
     {renderedEbau.length > 0 && (
       <section class="ebau-apendix">
         <div class="ebau-apendix__cover">
-          <span class="ebau-apendix__kicker">Apéndice</span>
-          <h2 class="ebau-apendix__title">Guía EBAU</h2>
-          <p class="ebau-apendix__lede">Para llegar al examen con la cabeza en su sitio.</p>
+          <span class="ebau-apendix__kicker">{copy.apendice}</span>
+          <h2 class="ebau-apendix__title">{copy.guiaEbau}</h2>
+          <p class="ebau-apendix__lede">{copy.guiaEbauLede}</p>
         </div>
         {renderedEbau.map(({ entry, Content }) => (
           <article class="ebau-apendix__section" data-orden={entry.data.orden}>
