@@ -7,6 +7,7 @@ export function refuerzoPdfName(
   asignatura: string,
   evaluacion: number,
   tipo: 'refuerzo' | 'ampliacion',
+  locale: 'es' | 'ca' = 'es',
 ): string {
-  return `${asignatura}-${tipo}-eval${evaluacion}.pdf`;
+  return `${asignatura}-${tipo}-eval${evaluacion}${locale === 'ca' ? '.ca' : ''}.pdf`;
 }

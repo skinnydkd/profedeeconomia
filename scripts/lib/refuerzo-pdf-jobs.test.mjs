@@ -8,6 +8,7 @@ describe('parseRefuerzoPrintPath', () => {
       asignatura: 'edmn-2bach',
       evaluacion: 1,
       tipo: 'refuerzo',
+      locale: 'es',
       route: 'edmn-2bach/refuerzo/imprimir/eval1-refuerzo',
       out: 'edmn-2bach-refuerzo-eval1.pdf',
     });
@@ -16,6 +17,14 @@ describe('parseRefuerzoPrintPath', () => {
   it('handles ampliacion', () => {
     const rel = 'eco-1bach/refuerzo/imprimir/eval3-ampliacion/index.html';
     expect(parseRefuerzoPrintPath(rel)?.out).toBe('eco-1bach-ampliacion-eval3.pdf');
+  });
+
+  it('handles the Valencian /ca route → .ca.pdf', () => {
+    const rel = 'ca/edmn-2bach/refuerzo/imprimir/eval1-refuerzo/index.html';
+    const job = parseRefuerzoPrintPath(rel);
+    expect(job?.locale).toBe('ca');
+    expect(job?.route).toBe('ca/edmn-2bach/refuerzo/imprimir/eval1-refuerzo');
+    expect(job?.out).toBe('edmn-2bach-refuerzo-eval1.ca.pdf');
   });
 
   it('returns null for non-matching paths', () => {

@@ -8,9 +8,9 @@
 import BloqueRefuerzo from '@components/refuerzo/BloqueRefuerzo.astro';
 import { ASIGNATURAS } from '@/lib/asignaturas';
 import { getCollection } from 'astro:content';
+import { getLocale } from '@/i18n/locale';
+import { pickLocalizedEntry } from '@/i18n/content-locale';
 import type { GetStaticPaths } from 'astro';
-
-const ORDINAL: Record<number, string> = { 1: '1.ª', 2: '2.ª', 3: '3.ª' };
 
 export const getStaticPaths = (async () => {
   const all = await getCollection('refuerzo');
@@ -25,13 +25,21 @@ export const getStaticPaths = (async () => {
     }));
 }) satisfies GetStaticPaths;
 
-const { entry } = Astro.props;
+const locale = getLocale(Astro.currentLocale);
+const caById = new Map(
+  (await getCollection('refuerzo')).filter((e) => e.data.estado === 'publicado' && e.data.lang === 'ca').map((e) => [e.id, e]),
+);
+const entry = pickLocalizedEntry(Astro.props.entry, caById, locale);
 const d = entry.data;
 const a = ASIGNATURAS[d.asignatura];
-const tipoLabel = d.tipo === 'refuerzo' ? 'Refuerzo' : 'Ampliación';
-const unidadesLabel = d.unidades.length > 0 ? `Unidades ${d.unidades.join(', ')}` : '';
+const copy = {
+  es: { refuerzo: 'Refuerzo', ampliacion: 'Ampliación', unidades: 'Unidades', ordinal: { 1: '1.ª', 2: '2.ª', 3: '3.ª' } as Record<number, string>, evaluacion: 'evaluación' },
+  ca: { refuerzo: 'Reforç', ampliacion: 'Ampliació', unidades: 'Unitats', ordinal: { 1: '1a', 2: '2a', 3: '3a' } as Record<number, string>, evaluacion: 'avaluació' },
+}[locale];
+const tipoLabel = d.tipo === 'refuerzo' ? copy.refuerzo : copy.ampliacion;
+const unidadesLabel = d.unidades.length > 0 ? `${copy.unidades} ${d.unidades.join(', ')}` : '';
 ---
-<html lang="es">
+<html lang={locale}>
   <head>
     <meta charset="utf-8" />
     <meta name="robots" content="noindex" />
@@ -69,7 +77,7 @@ const unidadesLabel = d.unidades.length > 0 ? `Unidades ${d.unidades.join(', ')}
       <div class="cover__eyebrow">{a?.shortLabel ?? d.asignatura} · {tipoLabel}</div>
       <h1 class="cover__title">{d.title}</h1>
       {d.descripcion && <p class="cover__sub">{d.descripcion}</p>}
-      <p class="cover__meta">{ORDINAL[d.evaluacion]} evaluación{unidadesLabel ? ` · ${unidadesLabel}` : ''}</p>
+      <p class="cover__meta">{copy.ordinal[d.evaluacion]} {copy.evaluacion}{unidadesLabel ? ` · ${unidadesLabel}` : ''}</p>
     </section>
 
     <BloqueRefuerzo
@@ -80,6 +88,7 @@ const unidadesLabel = d.unidades.length > 0 ? `Unidades ${d.unidades.join(', ')}
       ejercicios={d.ejercicios}
       tipo={d.tipo}
       mode="print"
+      locale={locale}
     />
   </body>
 </html>
