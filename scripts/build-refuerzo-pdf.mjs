@@ -27,6 +27,10 @@ function findChromeExecutable() {
   if (process.env.PUPPETEER_EXECUTABLE_PATH && existsSync(process.env.PUPPETEER_EXECUTABLE_PATH)) {
     return process.env.PUPPETEER_EXECUTABLE_PATH;
   }
+  if (process.env.PLAYWRIGHT_BROWSERS_PATH) {
+    const pw = join(process.env.PLAYWRIGHT_BROWSERS_PATH, 'chromium');
+    if (existsSync(pw)) return pw;
+  }
   const candidates = platform() === 'win32'
     ? ['C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',
        'C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe',

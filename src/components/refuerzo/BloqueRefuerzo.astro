@@ -18,14 +18,19 @@ interface Props {
   ejercicios: Ejercicio[];
   tipo: 'refuerzo' | 'ampliacion';
   mode: 'web' | 'print';
+  locale?: 'es' | 'ca';
 }
-const { esencial, conceptos, repaso, ejemplos, ejercicios, tipo, mode } = Astro.props;
-const ejerciciosLabel = tipo === 'refuerzo' ? 'Practica' : 'Retos';
+const { esencial, conceptos, repaso, ejemplos, ejercicios, tipo, mode, locale = 'es' } = Astro.props;
+const L = {
+  es: { repaso: 'Repaso teórico', esencial: 'Lo esencial', vocab: 'Vocabulario', ejemplos: 'Ejemplos resueltos', practica: 'Practica', retos: 'Retos', verSol: 'Ver solución', solucionario: 'Solucionario' },
+  ca: { repaso: 'Repàs teòric', esencial: "El que és essencial", vocab: 'Vocabulari', ejemplos: 'Exemples resolts', practica: 'Practica', retos: 'Reptes', verSol: 'Veure solució', solucionario: 'Solucionari' },
+}[locale];
+const ejerciciosLabel = tipo === 'refuerzo' ? L.practica : L.retos;
 const haySoluciones = ejercicios.some((e) => e.solucion);
 ---
 {repaso.length > 0 && (
   <div class="rb-sec">
-    <h4 class="rb-sub">Repaso teórico</h4>
+    <h4 class="rb-sub">{L.repaso}</h4>
     {repaso.map((r) => (
       <div class="rb-repaso">
         <h5 class="rb-repaso__t">{r.unidad ? `U${r.unidad}. ` : ''}{r.titulo}</h5>
@@ -37,21 +42,21 @@ const haySoluciones = ejercicios.some((e) => e.solucion);
 
 {esencial.length > 0 && (
   <div class="rb-sec">
-    <h4 class="rb-sub">Lo esencial</h4>
+    <h4 class="rb-sub">{L.esencial}</h4>
     <ul class="rb-esencial">{esencial.map((e) => <li>{e}</li>)}</ul>
   </div>
 )}
 
 {conceptos.length > 0 && (
   <div class="rb-sec">
-    <h4 class="rb-sub">Vocabulario</h4>
+    <h4 class="rb-sub">{L.vocab}</h4>
     <ul class="rb-chips">{conceptos.map((c) => <li class="rb-chip">{c}</li>)}</ul>
   </div>
 )}
 
 {ejemplos.length > 0 && (
   <div class="rb-sec">
-    <h4 class="rb-sub">Ejemplos resueltos</h4>
+    <h4 class="rb-sub">{L.ejemplos}</h4>
     <ol class="rb-ejemplos">
       {ejemplos.map((ej) => (
         <li class="rb-ejemplo">
@@ -72,7 +77,7 @@ const haySoluciones = ejercicios.some((e) => e.solucion);
           <div class="rb-ejercicio__en" set:html={ej.enunciado} />
           {mode === 'web' && ej.solucion && (
             <details class="rb-sol">
-              <summary>Ver solución</summary>
+              <summary>{L.verSol}</summary>
               <div class="rb-sol__body" set:html={ej.solucion} />
             </details>
           )}
@@ -84,7 +89,7 @@ const haySoluciones = ejercicios.some((e) => e.solucion);
 
 {mode === 'print' && haySoluciones && (
   <div class="rb-sec rb-solucionario">
-    <h4 class="rb-sub">Solucionario</h4>
+    <h4 class="rb-sub">{L.solucionario}</h4>
     <ol class="rb-sols">
       {ejercicios.map((ej) => (
         <li class="rb-sol-item">

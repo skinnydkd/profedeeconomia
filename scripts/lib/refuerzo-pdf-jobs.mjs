@@ -8,7 +8,10 @@ import { join } from 'node:path';
  * Expected shape: <asignatura>/refuerzo/imprimir/eval<n>-<tipo>/index.html
  */
 export function parseRefuerzoPrintPath(relPath) {
-  const parts = relPath.replace(/\\/g, '/').split('/');
+  let parts = relPath.replace(/\\/g, '/').split('/');
+  // A leading `ca/` segment marks the Valencian edition of the route.
+  let locale = 'es';
+  if (parts[0] === 'ca') { locale = 'ca'; parts = parts.slice(1); }
   if (parts.length !== 5) return null;
   const [asignatura, sec, leaf, bloque, file] = parts;
   if (sec !== 'refuerzo' || leaf !== 'imprimir' || file !== 'index.html') return null;
@@ -16,12 +19,15 @@ export function parseRefuerzoPrintPath(relPath) {
   if (!m) return null;
   const evaluacion = Number(m[1]);
   const tipo = m[2];
+  const prefix = locale === 'ca' ? 'ca/' : '';
+  const suffix = locale === 'ca' ? '.ca' : '';
   return {
     asignatura,
     evaluacion,
     tipo,
-    route: `${asignatura}/refuerzo/imprimir/${bloque}`,
-    out: `${asignatura}-${tipo}-eval${evaluacion}.pdf`,
+    locale,
+    route: `${prefix}${asignatura}/refuerzo/imprimir/${bloque}`,
+    out: `${asignatura}-${tipo}-eval${evaluacion}${suffix}.pdf`,
   };
 }
 
