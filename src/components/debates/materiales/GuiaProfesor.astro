@@ -6,6 +6,7 @@
  * the default <slot/>.
  */
 import { ASIGNATURAS } from '@/lib/asignaturas';
+import type { Locale } from '@/i18n/locale';
 
 interface Unidad { asignatura: string; unidad: number; nota?: string; }
 interface Props {
@@ -18,35 +19,40 @@ interface Props {
   conceptos: string[];
   unidades: Unidad[];
   competencias: string[];
+  locale?: Locale;
 }
-const { title, mocion, formato, duracion, agrupacion, objetivos, conceptos, unidades, competencias } = Astro.props;
+const { title, mocion, formato, duracion, agrupacion, objetivos, conceptos, unidades, competencias, locale = 'es' } = Astro.props;
 const asigLabel = (slug: string) => ASIGNATURAS[slug as keyof typeof ASIGNATURAS]?.shortLabel ?? slug;
+const copy = {
+  es: { tag: 'Guía del profesor', formato: 'Formato', duracion: 'Duración', agrupacion: 'Agrupación', objetivos: 'Objetivos', conceptos: 'Conceptos clave:', encaje: 'Encaje curricular', competencias: 'Competencias clave:' },
+  ca: { tag: 'Guia del professor', formato: 'Format', duracion: 'Durada', agrupacion: 'Agrupament', objetivos: 'Objectius', conceptos: 'Conceptes clau:', encaje: 'Encaix curricular', competencias: 'Competències clau:' },
+}[locale];
 ---
 <section class="guia print-block">
-  <span class="guia__tag">Guía del profesor</span>
+  <span class="guia__tag">{copy.tag}</span>
   <h2 class="guia__title">{title}</h2>
   <p class="guia__mocion">{mocion}</p>
 
   <dl class="guia__meta">
-    <div><dt>Formato</dt><dd>{formato}</dd></div>
-    <div><dt>Duración</dt><dd>{duracion}</dd></div>
-    <div><dt>Agrupación</dt><dd>{agrupacion}</dd></div>
+    <div><dt>{copy.formato}</dt><dd>{formato}</dd></div>
+    <div><dt>{copy.duracion}</dt><dd>{duracion}</dd></div>
+    <div><dt>{copy.agrupacion}</dt><dd>{agrupacion}</dd></div>
   </dl>
 
   {objetivos.length > 0 && (
     <div class="guia__block">
-      <h3>Objetivos</h3>
+      <h3>{copy.objetivos}</h3>
       <ul>{objetivos.map((o) => <li>{o}</li>)}</ul>
     </div>
   )}
 
   {conceptos.length > 0 && (
-    <p class="guia__conceptos"><strong>Conceptos clave:</strong> {conceptos.join(' · ')}</p>
+    <p class="guia__conceptos"><strong>{copy.conceptos}</strong> {conceptos.join(' · ')}</p>
   )}
 
   {unidades.length > 0 && (
     <div class="guia__block">
-      <h3>Encaje curricular</h3>
+      <h3>{copy.encaje}</h3>
       <ul>
         {unidades.map((u) => (
           <li><strong>{asigLabel(u.asignatura)} · U{u.unidad}</strong>{u.nota ? ` — ${u.nota}` : ''}</li>
@@ -56,7 +62,7 @@ const asigLabel = (slug: string) => ASIGNATURAS[slug as keyof typeof ASIGNATURAS
   )}
 
   {competencias.length > 0 && (
-    <p class="guia__conceptos"><strong>Competencias clave:</strong> {competencias.join(' · ')}</p>
+    <p class="guia__conceptos"><strong>{copy.competencias}</strong> {competencias.join(' · ')}</p>
   )}
 
   <hr class="guia__rule" />

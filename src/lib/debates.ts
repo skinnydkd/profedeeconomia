@@ -30,6 +30,6 @@ export function familiaMeta(slug: string): Familia {
  * Canonical filename for a debate's pre-generated material pack PDF, served
  * from /downloads/. Must match the name produced by scripts/build-debates-pdf.mjs.
  */
-export function debatePdfName(familia: string, slug: string): string {
-  return `debate-${familia}-${slug}.pdf`;
+export function debatePdfName(familia: string, slug: string, ca = false): string {
+  return `debate-${familia}-${slug}${ca ? '.ca' : ''}.pdf`;
 }

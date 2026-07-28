@@ -19,8 +19,11 @@ import { createServer } from 'node:http';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = resolve(__dirname, '..');
 
-const PRINT_PATH = 'emprendimiento/entrevista-emprendedores/imprimir';
-const OUT_NAME = 'entrevista-emprendedores-plantilla.pdf';
+// The template page is locale-aware and has a Valencian edition under /ca.
+const JOBS = [
+  { path: 'emprendimiento/entrevista-emprendedores/imprimir', out: 'entrevista-emprendedores-plantilla.pdf' },
+  { path: 'ca/emprendimiento/entrevista-emprendedores/imprimir', out: 'entrevista-emprendedores-plantilla.ca.pdf' },
+];
 const PORT = 4336;
 
 const args = new Set(process.argv.slice(2));
@@ -29,6 +32,10 @@ const inDistOnly = args.has('--in-dist');
 function findChromeExecutable() {
   if (process.env.PUPPETEER_EXECUTABLE_PATH && existsSync(process.env.PUPPETEER_EXECUTABLE_PATH)) {
     return process.env.PUPPETEER_EXECUTABLE_PATH;
+  }
+  if (process.env.PLAYWRIGHT_BROWSERS_PATH) {
+    const pw = join(process.env.PLAYWRIGHT_BROWSERS_PATH, 'chromium');
+    if (existsSync(pw)) return pw;
   }
   const candidates = platform() === 'win32'
     ? ['C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',
@@ -74,32 +81,37 @@ if (!existsSync(distDir)) { console.error('✖ No existe dist/ ni dist/client/. 
 console.log(`\nIniciando servidor estático en http://localhost:${PORT}`);
 const server = await startStaticServer(distDir, PORT);
 
-const url = `http://localhost:${PORT}/${PRINT_PATH}/`;
-try {
-  const probe = await fetch(url);
-  if (!probe.ok) { console.error(`✖ El servidor no sirve ${url} (status ${probe.status}).`); server.close(); process.exit(1); }
-  console.log(`Servidor verificado: ${url} → ${probe.status}`);
-} catch (e) { console.error(`✖ No se puede conectar a ${url}: ${e.message}`); server.close(); process.exit(1); }
-
 const publicDownloads = resolve(root, 'public/downloads');
 const distDownloads = resolve(root, 'dist/downloads');
 mkdirSync(publicDownloads, { recursive: true });
 mkdirSync(distDownloads, { recursive: true });
-const outDist = resolve(distDownloads, OUT_NAME);
-const outPublic = resolve(publicDownloads, OUT_NAME);
 
-console.log(`\n— Generando plantilla de entrevista`);
-// node <pagedjs-cli> directly: Node 24 on Windows can't spawn .cmd files (EINVAL).
-const pagedjsCli = resolve(root, 'node_modules/pagedjs-cli/src/cli.js');
-const exitCode = await new Promise((resolveExit) => {
-  const child = spawn(process.execPath,
-    [pagedjsCli, url, '-o', outDist, '-t', '120000', '--browserArgs', '--no-sandbox'],
-    { cwd: root, stdio: 'inherit', env: { ...process.env, PUPPETEER_EXECUTABLE_PATH: chromePath ?? '' } });
-  child.on('close', (code) => resolveExit(code));
-  child.on('error', (err) => { console.error(`✖ Error lanzando pagedjs-cli: ${err.message}`); resolveExit(1); });
-});
+for (const job of JOBS) {
+  const url = `http://localhost:${PORT}/${job.path}/`;
+  try {
+    const probe = await fetch(url);
+    if (!probe.ok) { console.error(`✖ El servidor no sirve ${url} (status ${probe.status}).`); server.close(); process.exit(1); }
+    console.log(`Servidor verificado: ${url} → ${probe.status}`);
+  } catch (e) { console.error(`✖ No se puede conectar a ${url}: ${e.message}`); server.close(); process.exit(1); }
+
+  const outDist = resolve(distDownloads, job.out);
+  const outPublic = resolve(publicDownloads, job.out);
+
+  console.log(`\n— Generando plantilla de entrevista (${job.path})`);
+  // node <pagedjs-cli> directly: Node 24 on Windows can't spawn .cmd files (EINVAL).
+  const pagedjsCli = resolve(root, 'node_modules/pagedjs-cli/src/cli.js');
+  const exitCode = await new Promise((resolveExit) => {
+    const child = spawn(process.execPath,
+      [pagedjsCli, url, '-o', outDist, '-t', '120000', '--browserArgs', '--no-sandbox'],
+      { cwd: root, stdio: 'inherit', env: { ...process.env, PUPPETEER_EXECUTABLE_PATH: chromePath ?? '' } });
+    child.on('close', (code) => resolveExit(code));
+    child.on('error', (err) => { console.error(`✖ Error lanzando pagedjs-cli: ${err.message}`); resolveExit(1); });
+  });
+
+  if (exitCode !== 0) { server.close(); console.error(`✖ pagedjs-cli falló (código ${exitCode})`); process.exit(1); }
+  if (!inDistOnly) { copyFileSync(outDist, outPublic); console.log(`  Copiado a ${outPublic}`); }
+  console.log(`✓ ${job.out} listo.`);
+}
 
 server.close();
-if (exitCode !== 0) { console.error(`✖ pagedjs-cli falló (código ${exitCode})`); process.exit(1); }
-if (!inDistOnly) { copyFileSync(outDist, outPublic); console.log(`  Copiado a ${outPublic}`); }
-console.log(`\n✓ ${OUT_NAME} listo.`);
+console.log(`\n✓ Plantilla de entrevista (es + ca) lista.`);

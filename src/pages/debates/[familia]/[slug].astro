@@ -46,7 +46,7 @@ const copy = {
 }[locale];
 const { Content } = await render(view);
 const familia = familiaMeta(d.familia);
-const pdfHref = `/downloads/${debatePdfName(d.familia, Astro.params.slug!)}`;
+const pdfHref = `/downloads/${debatePdfName(d.familia, Astro.params.slug!, locale === 'ca' && caById.has(entry.id))}`;
 const tonoFor = (i: number, total: number): 'favor' | 'contra' | 'neutro' =>
   total === 2 ? (i === 0 ? 'favor' : 'contra') : 'neutro';
 const breadcrumb = breadcrumbLd([
