@@ -14,6 +14,9 @@
 import { ASIGNATURA_SLUGS, ASIGNATURAS } from '@/lib/asignaturas';
 import { getCollection, render } from 'astro:content';
 import { sabersDeActividad } from '@/lib/cuaderno/sabers';
+import { getLocale } from '@/i18n/locale';
+import { pickLocalizedEntry } from '@/i18n/content-locale';
+import { localizeAsignatura } from '@/i18n/asignaturas-ca';
 import type { GetStaticPaths } from 'astro';
 
 export const getStaticPaths = (async () => {
@@ -43,8 +46,20 @@ export const getStaticPaths = (async () => {
   });
 }) satisfies GetStaticPaths;
 
-const { acts, tests, asignatura: a, libroByUnit } = Astro.props;
+const locale = getLocale(Astro.currentLocale);
+const a = localizeAsignatura(Astro.props.asignatura, locale);
+const { libroByUnit } = Astro.props;
 const esProfesor = Astro.params.modo !== 'alumno';
+
+// Swap ES entries for their Valencian siblings under /ca (falls back to ES).
+const actsCaById = new Map(
+  (await getCollection('actividades')).filter((x) => x.data.estado === 'publicado' && x.data.lang === 'ca').map((x) => [x.id, x]),
+);
+const testsCaById = new Map(
+  (await getCollection('tests')).filter((x) => x.data.estado === 'publicado' && x.data.lang === 'ca').map((x) => [x.id, x]),
+);
+const acts = Astro.props.acts.map((x) => pickLocalizedEntry(x, actsCaById, locale));
+const tests = Astro.props.tests.map((x) => pickLocalizedEntry(x, testsCaById, locale));
 
 // Pre-render each activity's MDX body.
 const renderedActs = await Promise.all(
@@ -66,15 +81,38 @@ const porUnidad = unidades.map((u) => ({
   test: tests.find((t) => t.data.unidad_relacionada === u) ?? null,
 }));
 
-const tipoLabel: Record<string, string> = {
-  caso: 'Caso',
-  ejercicio: 'Ejercicio',
-  debate: 'Debate',
-  dinamica: 'Dinámica',
-  proyecto: 'Proyecto',
-};
+const tipoLabel: Record<string, string> = locale === 'ca'
+  ? { caso: 'Cas', ejercicio: 'Exercici', debate: 'Debat', dinamica: 'Dinàmica', proyecto: 'Projecte' }
+  : { caso: 'Caso', ejercicio: 'Ejercicio', debate: 'Debate', dinamica: 'Dinámica', proyecto: 'Proyecto' };
 
-const today = new Date().toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
+const copy = {
+  es: {
+    docHeader: 'Cuaderno de actividades', pageTitle: 'Cuaderno de actividades',
+    coverTitlePre: 'Cuaderno de', coverTitleEm: 'actividades',
+    coverInsideActs: 'actividades', coverInsideTests: 'tests', coverConSolucionario: ' con solucionario', curriculo: 'Currículo LOMLOE',
+    editorial: 'Editorial', edicion: 'Edición', profesorado: 'Profesorado', alumnado: 'Alumnado', curso: 'curso 2026/27', generado: 'Generado',
+    comoUsar: 'Cómo usar este cuaderno',
+    indice: 'Índice', unidades: 'unidades', contenido: 'Contenido', unidad: 'Unidad', act: 'act.', test: 'test',
+    encaje: 'Encaje curricular', saberes: 'Saberes', compEsp: 'Comp. específicas', compClave: 'Comp. clave', materiales: 'Materiales:',
+    solucion: 'Solución', testHead: 'Test de autoevaluación', preguntas: 'preguntas',
+    verdadero: 'Verdadero', falso: 'Falso', respuesta: 'Respuesta:',
+    solucionario: 'Solucionario', solucionarioIntro: 'Respuestas correctas de los tests de autoevaluación, con comentario. Edición para profesorado.',
+  },
+  ca: {
+    docHeader: 'Quadern d\'activitats', pageTitle: 'Quadern d\'activitats',
+    coverTitlePre: 'Quadern d\'', coverTitleEm: 'activitats',
+    coverInsideActs: 'activitats', coverInsideTests: 'tests', coverConSolucionario: ' amb solucionari', curriculo: 'Currículum LOMLOE',
+    editorial: 'Editorial', edicion: 'Edició', profesorado: 'Professorat', alumnado: 'Alumnat', curso: 'curs 2026/27', generado: 'Generat',
+    comoUsar: 'Com fer servir este quadern',
+    indice: 'Índex', unidades: 'unitats', contenido: 'Contingut', unidad: 'Unitat', act: 'act.', test: 'test',
+    encaje: 'Encaix curricular', saberes: 'Sabers', compEsp: 'Comp. específiques', compClave: 'Comp. clau', materiales: 'Materials:',
+    solucion: 'Solució', testHead: 'Test d\'autoavaluació', preguntas: 'preguntes',
+    verdadero: 'Vertader', falso: 'Fals', respuesta: 'Resposta:',
+    solucionario: 'Solucionari', solucionarioIntro: 'Respostes correctes dels tests d\'autoavaluació, amb comentari. Edició per al professorat.',
+  },
+}[locale];
+
+const today = new Date().toLocaleDateString(locale === 'ca' ? 'ca-ES' : 'es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
 const totalActs = acts.length;
 const totalTests = tests.length;
 
@@ -93,10 +131,10 @@ const letra = (i: number) => String.fromCharCode(97 + i); // 0 -> 'a'
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang={locale}>
   <head>
     <meta charset="utf-8" />
-    <title>{a.title} · Cuaderno de actividades — profedeeconomia</title>
+    <title>{a.title} · {copy.pageTitle} — profedeeconomia</title>
     <meta name="robots" content="noindex,nofollow" />
 
     <style is:inline>
@@ -141,7 +179,7 @@ const letra = (i: number) => String.fromCharCode(97 + i); // 0 -> 'a'
           color: var(--color-ink-mute);
         }
         @top-right {
-          content: "Cuaderno de actividades";
+          content: string(doc-header);
           font-family: var(--font-serif);
           font-style: italic;
           font-size: 9pt;
@@ -460,7 +498,7 @@ const letra = (i: number) => String.fromCharCode(97 + i); // 0 -> 'a'
       .sol-q__e { color: var(--color-ink-soft); }
     </style>
   </head>
-  <style is:inline set:html={`.book-title-string { string-set: book-title "${a.shortLabel} · Cuaderno"; } body { --book-accent: ${accent.base}; --book-accent-deep: ${accent.deep}; --book-accent-soft: ${accent.soft}; }`}></style>
+  <style is:inline set:html={`.book-title-string { string-set: book-title "${a.shortLabel} · ${locale === 'ca' ? 'Quadern' : 'Cuaderno'}" , doc-header "${copy.docHeader}"; } body { --book-accent: ${accent.base}; --book-accent-deep: ${accent.deep}; --book-accent-soft: ${accent.soft}; }`}></style>
   <body class="book-title-string">
 
     {/* COVER */}
@@ -471,67 +509,109 @@ const letra = (i: number) => String.fromCharCode(97 + i); // 0 -> 'a'
       </header>
       <div class="cover__center">
         <div class="cover__eyebrow">{a.shortLabel} · {a.level}</div>
-        <h1 class="cover__title">Cuaderno de <em>actividades</em></h1>
+        <h1 class="cover__title">{copy.coverTitlePre} <em>{copy.coverTitleEm}</em></h1>
         <p class="cover__sub">{a.title}</p>
         <div class="cover__rule"></div>
         <p class="cover__inside">
-          <strong>{totalActs} actividades</strong> · {totalTests} tests{esProfesor ? ' con solucionario' : ''} · Currículo LOMLOE
+          <strong>{totalActs} {copy.coverInsideActs}</strong> · {totalTests} {copy.coverInsideTests}{esProfesor ? copy.coverConSolucionario : ''} · {copy.curriculo}
         </p>
       </div>
       <footer class="cover__bottom">
-        <div class="stack"><span class="muted">Editorial</span><strong>profedeeconomia.es</strong></div>
-        <div class="stack"><span class="muted">Edición</span><strong>{esProfesor ? 'Profesorado' : 'Alumnado'} · curso 2026/27</strong></div>
-        <div class="stack"><span class="muted">Generado</span><strong>{today}</strong></div>
+        <div class="stack"><span class="muted">{copy.editorial}</span><strong>profedeeconomia.es</strong></div>
+        <div class="stack"><span class="muted">{copy.edicion}</span><strong>{esProfesor ? copy.profesorado : copy.alumnado} · {copy.curso}</strong></div>
+        <div class="stack"><span class="muted">{copy.generado}</span><strong>{today}</strong></div>
       </footer>
     </section>
 
     {/* INTRO */}
     <section class="intro">
-      <h2>Cómo usar este cuaderno</h2>
-      <p>
-        Este cuaderno recoge todas las <strong>actividades prácticas</strong> de
-        {' '}{a.title} ({a.level}), agrupadas por unidad y acompañadas del
-        <strong> test de autoevaluación</strong> de cada una.
-        {esProfesor
-          ? <> Es la edición para <strong>profesorado</strong>: los ejercicios incluyen su <strong>solución</strong> y al final está el <strong>solucionario</strong> de los tests.</>
-          : <> Es la edición para <strong>alumnado</strong>: con los enunciados para trabajar; las soluciones están en la edición del profesor.</>}
-      </p>
-      <p>
-        Cada actividad indica su tipo (caso, ejercicio, debate, dinámica o
-        proyecto), la duración orientativa, el agrupamiento sugerido y los
-        materiales necesarios. Todo está pensado para usarse tal cual o adaptarse
-        a vuestro grupo.
-      </p>
-      <p>
-        El contenido se basa en el currículo básico estatal LOMLOE para
-        {' '}{a.title} ({a.marcoNormativo}). Conviene consultar la concreción de
-        vuestra comunidad autónoma.
-      </p>
-      {a.curso === '2bach' && acts.some((x) => x.data.ebau) && (
+      <h2>{copy.comoUsar}</h2>
+      {locale === 'ca' ? (
+        <p>
+          Este quadern recull totes les <strong>activitats pràctiques</strong> de
+          {' '}{a.title} ({a.level}), agrupades per unitat i acompanyades del
+          <strong> test d'autoavaluació</strong> de cadascuna.
+          {esProfesor
+            ? <> És l'edició per al <strong>professorat</strong>: els exercicis inclouen la seua <strong>solució</strong> i al final hi ha el <strong>solucionari</strong> dels tests.</>
+            : <> És l'edició per a l'<strong>alumnat</strong>: amb els enunciats per a treballar; les solucions estan en l'edició del professorat.</>}
+        </p>
+      ) : (
+        <p>
+          Este cuaderno recoge todas las <strong>actividades prácticas</strong> de
+          {' '}{a.title} ({a.level}), agrupadas por unidad y acompañadas del
+          <strong> test de autoevaluación</strong> de cada una.
+          {esProfesor
+            ? <> Es la edición para <strong>profesorado</strong>: los ejercicios incluyen su <strong>solución</strong> y al final está el <strong>solucionario</strong> de los tests.</>
+            : <> Es la edición para <strong>alumnado</strong>: con los enunciados para trabajar; las soluciones están en la edición del profesor.</>}
+        </p>
+      )}
+      {locale === 'ca' ? (
+        <p>
+          Cada activitat indica el seu tipus (cas, exercici, debat, dinàmica o
+          projecte), la duració orientativa, l'agrupament suggerit i els
+          materials necessaris. Tot està pensat per fer-se servir tal qual o adaptar-se
+          al vostre grup.
+        </p>
+      ) : (
+        <p>
+          Cada actividad indica su tipo (caso, ejercicio, debate, dinámica o
+          proyecto), la duración orientativa, el agrupamiento sugerido y los
+          materiales necesarios. Todo está pensado para usarse tal cual o adaptarse
+          a vuestro grupo.
+        </p>
+      )}
+      {locale === 'ca' ? (
+        <p>
+          El contingut es basa en el currículum bàsic estatal LOMLOE per a
+          {' '}{a.title} ({a.marcoNormativo}). Convé consultar la concreció de
+          la vostra comunitat autònoma.
+        </p>
+      ) : (
+        <p>
+          El contenido se basa en el currículo básico estatal LOMLOE para
+          {' '}{a.title} ({a.marcoNormativo}). Conviene consultar la concreción de
+          vuestra comunidad autónoma.
+        </p>
+      )}
+      {a.curso === '2bach' && acts.some((x) => x.data.ebau) && (locale === 'ca' ? (
+        <p>
+          Les activitats marcades amb l'etiqueta <strong>«Tipus EBAU»</strong> repliquen
+          exercicis de la prova d'accés a la universitat (Part II, Bloc 3). Per a
+          preparar la prova a fons, feu servir el <strong>quadern de preparació EBAU</strong>,
+          amb l'estructura de l'examen, problemes resolts i simulacres.
+        </p>
+      ) : (
         <p>
           Las actividades marcadas con la etiqueta <strong>«Tipo EBAU»</strong> replican
           ejercicios de la prueba de acceso a la universidad (Parte II, Bloque 3). Para
           preparar la prueba a fondo, usad el <strong>cuaderno de preparación EBAU</strong>,
           con la estructura del examen, problemas resueltos y simulacros.
         </p>
+      ))}
+      {locale === 'ca' ? (
+        <p class="note">
+          Material obert de profedeeconomia.es · Llicència Creative Commons
+          BY-NC-SA · Errates i propostes: hola@profedeeconomia.es
+        </p>
+      ) : (
+        <p class="note">
+          Material abierto de profedeeconomia.es · Licencia Creative Commons
+          BY-NC-SA · Erratas y propuestas: hola@profedeeconomia.es
+        </p>
       )}
-      <p class="note">
-        Material abierto de profedeeconomia.es · Licencia Creative Commons
-        BY-NC-SA · Erratas y propuestas: hola@profedeeconomia.es
-      </p>
     </section>
 
     {/* TOC */}
     <section class="toc">
-      <div class="toc__kicker">Índice · {porUnidad.length} unidades</div>
-      <h2>Contenido</h2>
+      <div class="toc__kicker">{copy.indice} · {porUnidad.length} {copy.unidades}</div>
+      <h2>{copy.contenido}</h2>
       <div>
         {porUnidad.map((u) => (
           <div class="toc__item">
             <span class="toc__num">{String(u.unidad).padStart(2, '0')}</span>
-            <span class="toc__t">Unidad {u.unidad}</span>
+            <span class="toc__t">{copy.unidad} {u.unidad}</span>
             <span class="toc__c">
-              {u.activities.length} act.{u.test ? ` · test (${u.test.data.preguntas.length})` : ''}
+              {u.activities.length} {copy.act}{u.test ? ` · ${copy.test} (${u.test.data.preguntas.length})` : ''}
             </span>
           </div>
         ))}
@@ -543,7 +623,7 @@ const letra = (i: number) => String.fromCharCode(97 + i); // 0 -> 'a'
       <section class="unit">
         <header class="unit__head">
           <div class="unit__num">{String(u.unidad).padStart(2, '0')}</div>
-          <div class="unit__kicker">Unidad {u.unidad}</div>
+          <div class="unit__kicker">{copy.unidad} {u.unidad}</div>
         </header>
 
         {u.activities.map(({ act, Content }) => {
@@ -554,22 +634,22 @@ const letra = (i: number) => String.fromCharCode(97 + i); // 0 -> 'a'
           <article class="act">
             <div class="act__bar">
               <span class="act__tag">{tipoLabel[act.data.tipo] ?? act.data.tipo}</span>
-              {act.data.ebau && <span class="act__tag act__tag--ebau">Tipo EBAU</span>}
+              {act.data.ebau && <span class="act__tag act__tag--ebau">{locale === 'ca' ? 'Tipus EBAU' : 'Tipo EBAU'}</span>}
               {act.data.duracion && <span class="act__meta">{act.data.duracion}</span>}
               {act.data.agrupacion && <span class="act__meta">· {act.data.agrupacion}</span>}
             </div>
             <h2 class="act__title">{act.data.title}</h2>
             {(sab.length > 0 || ce.length > 0 || cc.length > 0) && (
               <p class="act__curricular">
-                <span class="act__curricular-k">Encaje curricular</span>
-                {sab.length > 0 && <> · <strong>Saberes</strong> {sab.join(', ')}</>}
-                {ce.length > 0 && <> · <strong>Comp. específicas</strong> {ce.join(', ')}</>}
-                {cc.length > 0 && <> · <strong>Comp. clave</strong> {cc.join(', ')}</>}
+                <span class="act__curricular-k">{copy.encaje}</span>
+                {sab.length > 0 && <> · <strong>{copy.saberes}</strong> {sab.join(', ')}</>}
+                {ce.length > 0 && <> · <strong>{copy.compEsp}</strong> {ce.join(', ')}</>}
+                {cc.length > 0 && <> · <strong>{copy.compClave}</strong> {cc.join(', ')}</>}
               </p>
             )}
             {act.data.materiales && act.data.materiales.length > 0 && (
               <div class="act__materials">
-                <strong>Materiales:</strong> {act.data.materiales.join(' · ')}
+                <strong>{copy.materiales}</strong> {act.data.materiales.join(' · ')}
               </div>
             )}
             <div class="act__body">
@@ -577,7 +657,7 @@ const letra = (i: number) => String.fromCharCode(97 + i); // 0 -> 'a'
             </div>
             {esProfesor && act.data.solucion.length > 0 && (
               <div class="act__solucion">
-                <span class="act__solucion-h">Solución</span>
+                <span class="act__solucion-h">{copy.solucion}</span>
                 <ol>{act.data.solucion.map((p) => <li set:html={p} />)}</ol>
               </div>
             )}
@@ -587,7 +667,7 @@ const letra = (i: number) => String.fromCharCode(97 + i); // 0 -> 'a'
 
         {u.test && (
           <section class="test">
-            <div class="test__head">Test de autoevaluación · {u.test.data.preguntas.length} preguntas</div>
+            <div class="test__head">{copy.testHead} · {u.test.data.preguntas.length} {copy.preguntas}</div>
             {u.test.data.preguntas.map((q, qi) => (
               <div class="q">
                 <p class="q__text"><span class="q__num">{qi + 1}.</span> {q.enunciado}</p>
@@ -599,10 +679,10 @@ const letra = (i: number) => String.fromCharCode(97 + i); // 0 -> 'a'
                   </ul>
                 )}
                 {q.tipo === 'verdadero-falso' && (
-                  <p class="q__vf">Verdadero <span class="q__box"></span> &nbsp;&nbsp; Falso <span class="q__box"></span></p>
+                  <p class="q__vf">{copy.verdadero} <span class="q__box"></span> &nbsp;&nbsp; {copy.falso} <span class="q__box"></span></p>
                 )}
                 {q.tipo === 'numerico' && (
-                  <p class="q__numr">Respuesta: <span class="q__blank"></span>{q.unidad ? ` ${q.unidad}` : ''}</p>
+                  <p class="q__numr">{copy.respuesta} <span class="q__blank"></span>{q.unidad ? ` ${q.unidad}` : ''}</p>
                 )}
                 {q.tipo === 'relacionar' && (
                   <div class="q__rel">
@@ -620,15 +700,15 @@ const letra = (i: number) => String.fromCharCode(97 + i); // 0 -> 'a'
     {/* SOLUCIONARIO — only in the teacher edition */}
     {esProfesor && (
     <section class="solucionario">
-      <h2 class="solucionario__title">Solucionario</h2>
-      <p class="solucionario__intro">Respuestas correctas de los tests de autoevaluación, con comentario. Edición para profesorado.</p>
+      <h2 class="solucionario__title">{copy.solucionario}</h2>
+      <p class="solucionario__intro">{copy.solucionarioIntro}</p>
       {porUnidad.filter((u) => u.test).map((u) => (
         <div class="sol-unit">
-          <h3 class="sol-unit__h">Unidad {u.unidad} · {u.test!.data.preguntas.length} preguntas</h3>
+          <h3 class="sol-unit__h">{copy.unidad} {u.unidad} · {u.test!.data.preguntas.length} {copy.preguntas}</h3>
           {u.test!.data.preguntas.map((q, qi) => {
             const ans =
               q.tipo === 'opcion-multiple' ? `${letra(q.correcta)})`
-              : q.tipo === 'verdadero-falso' ? (q.correcta ? 'Verdadero' : 'Falso')
+              : q.tipo === 'verdadero-falso' ? (q.correcta ? copy.verdadero : copy.falso)
               : q.tipo === 'numerico' ? `${String(q.respuesta).replace('.', ',')}${q.unidad ? ' ' + q.unidad : ''}`
               : q.correctas.map((d, i) => `${i + 1}→${letra(d)}`).join(', ');
             return (

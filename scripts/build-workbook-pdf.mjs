@@ -12,7 +12,7 @@
  */
 
 import { spawn } from 'node:child_process';
-import { existsSync, mkdirSync, copyFileSync, statSync, readFileSync } from 'node:fs';
+import { existsSync, mkdirSync, copyFileSync, statSync, readFileSync, readdirSync } from 'node:fs';
 import { resolve, dirname, join, extname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { platform } from 'node:os';
@@ -37,6 +37,10 @@ if (asignaturas.length === 0) {
 function findChromeExecutable() {
   if (process.env.PUPPETEER_EXECUTABLE_PATH && existsSync(process.env.PUPPETEER_EXECUTABLE_PATH)) {
     return process.env.PUPPETEER_EXECUTABLE_PATH;
+  }
+  if (process.env.PLAYWRIGHT_BROWSERS_PATH) {
+    const pw = join(process.env.PLAYWRIGHT_BROWSERS_PATH, 'chromium');
+    if (existsSync(pw)) return pw;
   }
   const candidates = platform() === 'win32'
     ? [
@@ -149,13 +153,26 @@ const ediciones = [
   { modo: 'alumno', suffix: '-alumno' },
 ];
 
-for (const slug of asignaturas) {
-  for (const { modo, suffix } of ediciones) {
-    const url = `http://localhost:${PORT}/${slug}/actividades/imprimir/${modo}/`;
-    const outDist = resolve(distDownloads, `${slug}-cuaderno${suffix}.pdf`);
-    const outPublic = resolve(publicDownloads, `${slug}-cuaderno${suffix}.pdf`);
+// Each subject also has a Valencian edition under /ca when it has translated
+// activities. Emits <slug>-cuaderno[-alumno].ca.pdf alongside the Spanish PDF.
+const LOCALES = [
+  { code: 'es', prefix: '', suffix: '' },
+  { code: 'ca', prefix: 'ca/', suffix: '.ca' },
+];
+const hasCa = (slug) => {
+  const dir = resolve(root, `src/content/asignaturas/${slug}/actividades`);
+  return existsSync(dir) && readdirSync(dir).some((f) => f.endsWith('.ca.mdx') || f.endsWith('.ca.md'));
+};
 
-    console.log(`\n— Generando cuaderno (${modo}) para ${slug}`);
+for (const slug of asignaturas) {
+ for (const loc of LOCALES) {
+  if (loc.code === 'ca' && !hasCa(slug)) continue;
+  for (const { modo, suffix } of ediciones) {
+    const url = `http://localhost:${PORT}/${loc.prefix}${slug}/actividades/imprimir/${modo}/`;
+    const outDist = resolve(distDownloads, `${slug}-cuaderno${suffix}${loc.suffix}.pdf`);
+    const outPublic = resolve(publicDownloads, `${slug}-cuaderno${suffix}${loc.suffix}.pdf`);
+
+    console.log(`\n— Generando cuaderno (${modo}) para ${loc.prefix}${slug}`);
     console.log(`  URL    : ${url}`);
 
     // node <pagedjs-cli> directly: Node 24 on Windows can't spawn .cmd files
@@ -175,7 +192,7 @@ for (const slug of asignaturas) {
     });
 
     if (exitCode !== 0) {
-      console.error(`✖ pagedjs-cli falló para ${slug} (${modo}, código ${exitCode})`);
+      console.error(`✖ pagedjs-cli falló para ${loc.prefix}${slug} (${modo}, código ${exitCode})`);
       failures++;
       continue;
     }
@@ -183,8 +200,9 @@ for (const slug of asignaturas) {
     if (!inDistOnly) {
       copyFileSync(outDist, outPublic);
     }
-    console.log(`✓ ${slug}-cuaderno${suffix}.pdf listo`);
+    console.log(`✓ ${slug}-cuaderno${suffix}${loc.suffix}.pdf listo`);
   }
+ }
 }
 
 server.close();
