@@ -2,7 +2,7 @@
 asignatura: edmn-2bach
 unidad_relacionada: 6
 title: "Llancem una pastisseria sense gluten: marketing mix complet"
-descripcion: "Dissenyar les 4P d''una pastisseria especialitzada en rebosteria sense gluten que obrirà en una ciutat mitjana, partint d''un perfil de client concret."
+descripcion: "Dissenyar les 4P d'una pastisseria especialitzada en rebosteria sense gluten que obrirà en una ciutat mitjana, partint d'un perfil de client concret."
 tipo: caso
 duracion: "75 min · 1 sessió doble"
 agrupacion: "grups xicotets (3-4)"

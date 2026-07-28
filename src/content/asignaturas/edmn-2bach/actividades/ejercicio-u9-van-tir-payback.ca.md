@@ -1,16 +1,16 @@
 ---
 asignatura: edmn-2bach
 unidad_relacionada: 9
-title: "Renovar la línia de producció: VAN, TIR i PayBack d''un projecte d''inversió"
+title: "Renovar la línia de producció: VAN, TIR i PayBack d'un projecte d'inversió"
 tipo: ejercicio
-descripcion: "Avaluar la viabilitat d''un projecte de renovació de maquinària calculant el PayBack, el VAN i la TIR, i interpretant conjuntament els tres criteris."
+descripcion: "Avaluar la viabilitat d'un projecte de renovació de maquinària calculant el PayBack, el VAN i la TIR, i interpretant conjuntament els tres criteris."
 duracion: "25-35 min · individual"
 agrupacion: "individual"
 competencias_clave: [STEM, CD, CE]
 competencias_especificas: [CE4]
 ebau: true
 solucion:
-  - "1. PayBack: any 1 → acumulat 15.000 €; any 2 → 35.000 €; any 3 → 60.000 € (se supera la inversió de 50.000 €). Fracció de l''any 3: (50.000 − 35.000) / 25.000 = 0,6. **PayBack = 2 anys i 7 mesos (≈ 2,6 anys)**."
+  - "1. PayBack: any 1 → acumulat 15.000 €; any 2 → 35.000 €; any 3 → 60.000 € (se supera la inversió de 50.000 €). Fracció de l'any 3: (50.000 − 35.000) / 25.000 = 0,6. **PayBack = 2 anys i 7 mesos (≈ 2,6 anys)**."
   - "2. Factors de descompte (k = 10 %): 1/1,10¹ = 0,9091; 1/1,10² = 0,8264; 1/1,10³ = 0,7513; 1/1,10⁴ = 0,6830."
   - "   VA₁ = 15.000 × 0,9091 = 13.636 €"
   - "   VA₂ = 20.000 × 0,8264 = 16.529 €"

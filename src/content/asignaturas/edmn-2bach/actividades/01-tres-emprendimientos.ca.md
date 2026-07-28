@@ -1,7 +1,7 @@
 ---
 asignatura: edmn-2bach
 unidad_relacionada: 1
-title: "Tres empreniments en l''espill"
+title: "Tres empreniments en l'espill"
 descripcion: "Comparar Mercadona, Glovo i Mondragón identificant oportunitat inicial, assumpció de risc i forma de generar excedent."
 tipo: caso
 duracion: "60 min · 1 sessió"

@@ -2,7 +2,7 @@
 asignatura: edmn-2bach
 unidad_relacionada: 6
 title: "Construir el buyer persona: dinàmica de segmentació amb targetes"
-descripcion: "Dinàmica per a segmentar un mercat i construir buyer personas detallades d''un producte, descobrint que no es ven a tots de la mateixa manera."
+descripcion: "Dinàmica per a segmentar un mercat i construir buyer personas detallades d'un producte, descobrint que no es ven a tots de la mateixa manera."
 tipo: dinamica
 duracion: "55 min · 1 sessió"
 agrupacion: "grups xicotets (4-5)"

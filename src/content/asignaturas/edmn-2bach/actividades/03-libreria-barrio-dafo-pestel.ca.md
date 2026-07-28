@@ -1,8 +1,8 @@
 ---
 asignatura: edmn-2bach
 unidad_relacionada: 3
-title: "La llibreria de barri enfront de l''e-commerce"
-descripcion: "Construir un PESTEL i un DAFO complet per a una llibreria independent que afronta la pressió d''Amazon, i derivar una estratègia inicial."
+title: "La llibreria de barri enfront de l'e-commerce"
+descripcion: "Construir un PESTEL i un DAFO complet per a una llibreria independent que afronta la pressió d'Amazon, i derivar una estratègia inicial."
 tipo: caso
 duracion: "75 min · 1 sessió doble"
 agrupacion: "grups xicotets (3-4)"

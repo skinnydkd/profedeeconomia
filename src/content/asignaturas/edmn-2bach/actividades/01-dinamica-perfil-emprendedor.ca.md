@@ -2,13 +2,13 @@
 asignatura: edmn-2bach
 unidad_relacionada: 1
 title: "Mapa de fortaleses: quin tipus de persona emprenedora eres?"
-descripcion: "Dinàmica d''autoconeixement per estacions perquè l''alumnat identifique les seues competències emprenedores i dissenye un equip complementari."
+descripcion: "Dinàmica d'autoconeixement per estacions perquè l'alumnat identifique les seues competències emprenedores i dissenye un equip complementari."
 tipo: dinamica
 duracion: "50 min · 1 sessió"
 agrupacion: "individual + grups de 4"
 materiales:
   - "Plantilla de les cinc competències emprenedores (impresa)"
-  - "Quatre cartells d''estació penjats a les parets de l''aula"
+  - "Quatre cartells d'estació penjats a les parets de l'aula"
   - "Post-its de colors"
 competencias_clave: [CPSAA, CE, CC]
 competencias_especificas: [CE1]

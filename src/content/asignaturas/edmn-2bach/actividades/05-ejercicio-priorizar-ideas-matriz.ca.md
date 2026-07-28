@@ -1,8 +1,8 @@
 ---
 asignatura: edmn-2bach
 unidad_relacionada: 5
-title: "De la pluja d''idees a la decisió: matriu impacte-esforç"
-descripcion: "Exercici de priorització en què l''alumnat puntua idees creatives segons impacte i esforç i les ordena amb una matriu per a triar quines executar."
+title: "De la pluja d'idees a la decisió: matriu impacte-esforç"
+descripcion: "Exercici de priorització en què l'alumnat puntua idees creatives segons impacte i esforç i les ordena amb una matriu per a triar quines executar."
 tipo: ejercicio
 duracion: "45 min · 1 sessió"
 agrupacion: "grups xicotets (3-4)"

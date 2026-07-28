@@ -1,8 +1,8 @@
 ---
 asignatura: fopp-4eso
 unidad_relacionada: 2
-title: "Debat: «les xarxes socials destrossen l''autoestima dels adolescents»"
-descripcion: "Debat estructurat amb postures assignades sobre l''efecte de les xarxes socials en l''autoestima i el benestar emocional. L''alumnat contrasta el mal de la comparació constant amb el valor de la connexió i el suport que també oferixen les xarxes, i construïx una conclusió matisada."
+title: "Debat: «les xarxes socials destrossen l'autoestima dels adolescents»"
+descripcion: "Debat estructurat amb postures assignades sobre l'efecte de les xarxes socials en l'autoestima i el benestar emocional. L'alumnat contrasta el mal de la comparació constant amb el valor de la connexió i el suport que també oferixen les xarxes, i construïx una conclusió matisada."
 tipo: debate
 duracion: "55 min · 1 sessió"
 agrupacion: "grup classe en dos equips + jurat de tres alumnes"

@@ -2,14 +2,14 @@
 asignatura: edmn-2bach
 unidad_relacionada: 9
 title: "Debat: endeutar-se per a créixer o créixer amb recursos propis?"
-descripcion: "Debat sobre la conveniència del palanquejament financer, contrastant la lògica de créixer amb deute enfront de la prudència de l''autofinançament."
+descripcion: "Debat sobre la conveniència del palanquejament financer, contrastant la lògica de créixer amb deute enfront de la prudència de l'autofinançament."
 tipo: debate
 duracion: "50 min · 1 sessió"
 agrupacion: "dos equips grans + jurat"
 materiales:
   - "Fitxa amb dos exemples: una empresa molt palanquejada i una altra autofinançada"
   - "Cronòmetre visible"
-  - "Plantilla d''arguments per equip"
+  - "Plantilla d'arguments per equip"
 competencias_clave: [CCL, STEM, CC, CPSAA]
 competencias_especificas: [CE4]
 lang: ca

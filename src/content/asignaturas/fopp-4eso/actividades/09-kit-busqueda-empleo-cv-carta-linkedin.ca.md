@@ -1,20 +1,20 @@
 ---
 asignatura: fopp-4eso
 unidad_relacionada: 9
-title: "El meu kit de busca d''ocupació: CV Europass, carta de presentació i perfil LinkedIn bàsic"
-descripcion: "Capstone part 1: en tres sessions cada alumne construïx el seu propi kit real de busca d''ocupació dirigit a una oferta concreta. Sessió 1, CV Europass amb el mètode dels set passos; sessió 2, carta de presentació de quatre paràgrafs personalitzada; sessió 3, perfil bàsic de LinkedIn amb foto, titular i resum. Lliurament final com a portafolis digital."
+title: "El meu kit de busca d'ocupació: CV Europass, carta de presentació i perfil LinkedIn bàsic"
+descripcion: "Capstone part 1: en tres sessions cada alumne construïx el seu propi kit real de busca d'ocupació dirigit a una oferta concreta. Sessió 1, CV Europass amb el mètode dels set passos; sessió 2, carta de presentació de quatre paràgrafs personalitzada; sessió 3, perfil bàsic de LinkedIn amb foto, titular i resum. Lliurament final com a portafolis digital."
 tipo: proyecto
 duracion: "3 sessions · 1 setmana i mitja (CV + carta + LinkedIn)"
 agrupacion: "individual"
 materiales:
   - "Ordinador amb accés a internet (un equip per alumne)"
   - "Compte a europass.europa.eu (gratuït, es pot crear al moment o entrar amb compte de Google)"
-  - "Compte de LinkedIn (creat a classe si l''alumne no el té; amb consentiment familiar si és menor)"
-  - "Foto professional recent de l''alumne (es pot fer a classe amb fons neutre i un mòbil)"
+  - "Compte de LinkedIn (creat a classe si l'alumne no el té; amb consentiment familiar si és menor)"
+  - "Foto professional recent de l'alumne (es pot fer a classe amb fons neutre i un mòbil)"
   - "Plantilla de carta de presentació (inclosa davall) en document compartit"
-  - "Tres ofertes d''ocupació reals descarregades prèviament pel professor des d''InfoJobs, LinkedIn i SEPE (sectors variats, accessibles a perfil junior)"
-  - "Rúbrica d''avaluació del kit complet, en paper per al professor i compartida digitalment per a coavaluació"
-  - "Carpeta del portafolis digital de l''alumne (Drive, OneDrive o similar) on es fa el lliurament final"
+  - "Tres ofertes d'ocupació reals descarregades prèviament pel professor des d'InfoJobs, LinkedIn i SEPE (sectors variats, accessibles a perfil junior)"
+  - "Rúbrica d'avaluació del kit complet, en paper per al professor i compartida digitalment per a coavaluació"
+  - "Carpeta del portafolis digital de l'alumne (Drive, OneDrive o similar) on es fa el lliurament final"
 competencias_clave: [CD, CCL, CE, CPSAA]
 competencias_especificas: [CE7]
 estado: publicado

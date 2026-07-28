@@ -2,7 +2,7 @@
 asignatura: fopp-4eso
 unidad_relacionada: 3
 title: "Debat: «tot allò que penges a internet hauria de poder esborrar-se per sempre»"
-descripcion: "Debat estructurat sobre el dret a l''oblit i la permanència de la petjada digital. L''alumnat contrasta el dret a refer-se i deixar arrere errors del passat amb el dret a la informació i la dificultat tècnica real d''esborrar alguna cosa d''internet."
+descripcion: "Debat estructurat sobre el dret a l'oblit i la permanència de la petjada digital. L'alumnat contrasta el dret a refer-se i deixar arrere errors del passat amb el dret a la informació i la dificultat tècnica real d'esborrar alguna cosa d'internet."
 tipo: debate
 duracion: "50 min · 1 sessió"
 agrupacion: "grup classe en dos equips + moderació"

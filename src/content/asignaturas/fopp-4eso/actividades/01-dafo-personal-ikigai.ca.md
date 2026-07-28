@@ -2,7 +2,7 @@
 asignatura: fopp-4eso
 unidad_relacionada: 1
 title: "El meu DAFO personal i el meu ikigai"
-descripcion: "Construir el primer DAFO personal i un ikigai inicial com a fonaments del projecte de vida, amb treball individual d''introspecció i contrast per parelles."
+descripcion: "Construir el primer DAFO personal i un ikigai inicial com a fonaments del projecte de vida, amb treball individual d'introspecció i contrast per parelles."
 tipo: dinamica
 duracion: "55 min · 1 sessió"
 agrupacion: "individual + parelles per a contrastar"

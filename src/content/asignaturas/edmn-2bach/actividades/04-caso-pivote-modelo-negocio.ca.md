@@ -1,7 +1,7 @@
 ---
 asignatura: edmn-2bach
 unidad_relacionada: 4
-title: "El pivot que va salvar l''empresa: tres girs de model de negoci"
+title: "El pivot que va salvar l'empresa: tres girs de model de negoci"
 descripcion: "Cas comparat de tres empreses que van canviar radicalment el seu model de negoci (Netflix, Nokia, Slack) per a entendre què és un pivot i quan convé."
 tipo: caso
 duracion: "55 min · 1 sessió"

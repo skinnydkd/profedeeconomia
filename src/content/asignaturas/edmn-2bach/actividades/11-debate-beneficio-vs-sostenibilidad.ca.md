@@ -1,15 +1,15 @@
 ---
 asignatura: edmn-2bach
 unidad_relacionada: 11
-title: "Debat: mana el benefici o la sostenibilitat? L''empresa davant els seus comptes"
-descripcion: "Debat sobre si l''empresa ha de prioritzar maximitzar el benefici per als seus accionistes o equilibrar-lo amb criteris socials i ambientals (stakeholders)."
+title: "Debat: mana el benefici o la sostenibilitat? L'empresa davant els seus comptes"
+descripcion: "Debat sobre si l'empresa ha de prioritzar maximitzar el benefici per als seus accionistes o equilibrar-lo amb criteris socials i ambientals (stakeholders)."
 tipo: debate
 duracion: "50 min · 1 sessió"
 agrupacion: "dos equips grans + jurat"
 materiales:
-  - "Fitxa amb la teoria de l''accionista (Friedman) i la dels grups d''interés (stakeholders)"
+  - "Fitxa amb la teoria de l'accionista (Friedman) i la dels grups d'interés (stakeholders)"
   - "Cronòmetre visible"
-  - "Plantilla d''arguments per equip"
+  - "Plantilla d'arguments per equip"
 competencias_clave: [CCL, CC, CPSAA]
 competencias_especificas: [CE5]
 lang: ca

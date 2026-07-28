@@ -1,7 +1,7 @@
 ---
 asignatura: edmn-2bach
 unidad_relacionada: 7
-title: "Fabricar o comprar? El dilema d''un fabricant de motxilles"
+title: "Fabricar o comprar? El dilema d'un fabricant de motxilles"
 descripcion: "Cas de decisió make-or-buy en què un fabricant valora externalitzar un component, combinant càlcul de costos i factors qualitatius."
 tipo: caso
 duracion: "55 min · 1 sessió"

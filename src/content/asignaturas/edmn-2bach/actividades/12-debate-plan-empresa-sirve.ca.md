@@ -1,15 +1,15 @@
 ---
 asignatura: edmn-2bach
 unidad_relacionada: 12
-title: "Debat: servix d''alguna cosa el pla d''empresa o és paper mullat?"
-descripcion: "Debat sobre la utilitat real del pla d''empresa enfront de la metodologia lean, contrastant planificar abans d''actuar amb experimentar i ajustar sobre la marxa."
+title: "Debat: servix d'alguna cosa el pla d'empresa o és paper mullat?"
+descripcion: "Debat sobre la utilitat real del pla d'empresa enfront de la metodologia lean, contrastant planificar abans d'actuar amb experimentar i ajustar sobre la marxa."
 tipo: debate
 duracion: "50 min · 1 sessió"
 agrupacion: "dos equips grans + jurat"
 materiales:
-  - "Fitxa amb arguments del pla d''empresa clàssic i de l''enfocament lean startup"
+  - "Fitxa amb arguments del pla d'empresa clàssic i de l'enfocament lean startup"
   - "Cronòmetre visible"
-  - "Plantilla d''arguments per equip"
+  - "Plantilla d'arguments per equip"
 competencias_clave: [CCL, CC, CPSAA]
 competencias_especificas: [CE6]
 lang: ca

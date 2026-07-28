@@ -1,7 +1,7 @@
 ---
 asignatura: edmn-2bach
 unidad_relacionada: 12
-title: "Elevator pitch del projecte capstone amb feedback d''iguals"
+title: "Elevator pitch del projecte capstone amb feedback d'iguals"
 descripcion: "Cada equip presenta el seu projecte en 60 segons a un jurat rotatiu de companys i rep feedback estructurat en quatre dimensions."
 tipo: proyecto
 duracion: "100 min · 2 sessions (40 min preparació + 50 min pitches + 10 min tancament)"

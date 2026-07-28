@@ -2,14 +2,14 @@
 asignatura: edmn-2bach
 unidad_relacionada: 10
 title: "Dinàmica de la partida doble: el balanç humà"
-descripcion: "Dinàmica vivencial en què l''alumnat representa físicament comptes i assentaments per a interioritzar la partida doble i l''equilibri del balanç."
+descripcion: "Dinàmica vivencial en què l'alumnat representa físicament comptes i assentaments per a interioritzar la partida doble i l'equilibri del balanç."
 tipo: dinamica
 duracion: "50 min · 1 sessió"
 agrupacion: "grup classe + rols individuals"
 materiales:
   - "Targetons de compte (Caixa, Banc, Proveïdors, Capital, Mercaderies…)"
   - "Dues zones marcades al terra o pissarra: DEURE i HAVER"
-  - "Targetes d''operacions a registrar"
+  - "Targetes d'operacions a registrar"
 competencias_clave: [STEM, CPSAA, CC]
 competencias_especificas: [CE5]
 lang: ca

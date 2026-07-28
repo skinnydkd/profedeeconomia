@@ -2,7 +2,7 @@
 asignatura: edmn-2bach
 unidad_relacionada: 7
 title: "Miniprojecte: cronometrar i redissenyar un procés real"
-descripcion: "Miniprojecte de millora de processos: l''alumnat mapa, cronometra i redissenya un procés real de l''institut aplicant productivitat i eliminació de balafiaments."
+descripcion: "Miniprojecte de millora de processos: l'alumnat mapa, cronometra i redissenya un procés real de l'institut aplicant productivitat i eliminació de balafiaments."
 tipo: proyecto
 duracion: "100 min · 2 sessions"
 agrupacion: "equips de 3-4"

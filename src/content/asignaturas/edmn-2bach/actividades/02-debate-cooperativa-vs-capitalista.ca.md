@@ -7,9 +7,9 @@ tipo: debate
 duracion: "50 min · 1 sessió"
 agrupacion: "dos equips grans + jurat"
 materiales:
-  - "Fitxa de dades sobre Mondragón i sobre empreses SA/SL de l''IBEX"
+  - "Fitxa de dades sobre Mondragón i sobre empreses SA/SL de l'IBEX"
   - "Cronòmetre visible"
-  - "Plantilla d''arguments per equip"
+  - "Plantilla d'arguments per equip"
 competencias_clave: [CCL, CC, CPSAA]
 competencias_especificas: [CE1]
 lang: ca

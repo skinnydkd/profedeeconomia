@@ -1,15 +1,15 @@
 ---
 asignatura: edmn-2bach
 unidad_relacionada: 2
-title: "Quan el negoci creix: el cas de l''autònom que es queda curt"
-descripcion: "Cas real d''un autònom en expansió que ha de decidir si es transforma en SL, analitzant responsabilitat patrimonial, fiscalitat i capacitat de finançament."
+title: "Quan el negoci creix: el cas de l'autònom que es queda curt"
+descripcion: "Cas real d'un autònom en expansió que ha de decidir si es transforma en SL, analitzant responsabilitat patrimonial, fiscalitat i capacitat de finançament."
 tipo: caso
 duracion: "55 min · 1 sessió"
 agrupacion: "grups xicotets (3-4)"
 materiales:
   - "Fitxa del cas amb xifres de facturació i benefici"
   - "Taula comparativa autònom / SL (en blanc)"
-  - "Accés a internet per a consultar tipus d''IRPF i Impost de Societats"
+  - "Accés a internet per a consultar tipus d'IRPF i Impost de Societats"
 competencias_clave: [CCL, STEM, CPSAA, CC]
 competencias_especificas: [CE1]
 lang: ca

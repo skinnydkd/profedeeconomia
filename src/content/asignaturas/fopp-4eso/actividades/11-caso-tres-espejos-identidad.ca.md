@@ -2,7 +2,7 @@
 asignatura: fopp-4eso
 unidad_relacionada: 1
 title: "El cas dels tres espills: quan allò que creus ser no coincidix amb allò que veuen els altres"
-descripcion: "Estudi de cas sobre la distància entre autoimatge, imatge projectada i imatge percebuda. A partir de la història de Dani, l''alumnat analitza per què de vegades ens perceben molt distint de com creiem ser i què es pot fer amb eixa informació sense perdre la pròpia identitat."
+descripcion: "Estudi de cas sobre la distància entre autoimatge, imatge projectada i imatge percebuda. A partir de la història de Dani, l'alumnat analitza per què de vegades ens perceben molt distint de com creiem ser i què es pot fer amb eixa informació sense perdre la pròpia identitat."
 tipo: caso
 duracion: "50 min · 1 sessió"
 agrupacion: "grups xicotets (3-4) + posada en comú"
