@@ -7,7 +7,8 @@
 - **Etapa**: Batxillerat (2n curs)
 - **Modalitat**: Humanitats i Ciències Socials
 - **Caràcter**: Matèria específica de modalitat
-- **Marc normatiu estatal**: RD 243/2022 (BOE-A-2022-5521)
+- **Marc normatiu estatal**: RD 243/2022 (BOE-A-2022-5521) — **vigent i sense canvis**
+- **Concreció valenciana**: Decret 108/2022, **annex II substituït pel Decret 103/2026** (DOGV 10396, 02.07.2026). Mateixos codis de criteri, redacció nova, i **s'aplica a 2n de Batxillerat des del curs 2027-2028** (no al 2026-2027).
 
 ## 2. Finalitat de la matèria
 

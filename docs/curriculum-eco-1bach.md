@@ -7,7 +7,8 @@
 - **Etapa**: Batxillerat (1r curs)
 - **Modalitat**: Humanitats i Ciències Socials
 - **Caràcter**: Matèria específica de modalitat
-- **Marc normatiu estatal**: RD 243/2022 (BOE-A-2022-5521)
+- **Marc normatiu estatal**: RD 243/2022 (BOE-A-2022-5521) — **vigent i sense canvis**
+- **Concreció valenciana**: Decret 108/2022, **annex II substituït pel Decret 103/2026** (DOGV 10396, 02.07.2026). Redacció nova de competències, criteris i sabers d'Economia, **amb canvi en el nombre de criteris**, aplicable a 1r **des del curs 2026-2027**. El llibre continua basat en el currículum estatal.
 
 ## 2. Finalitat de la matèria
 

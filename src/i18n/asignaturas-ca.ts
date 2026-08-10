@@ -64,15 +64,15 @@ export const ASIGNATURAS_CA: Partial<Record<AsignaturaSlug, CAOverlay>> = {
     tagline:
       'La matèria de modalitat General que ajunta economia, iniciativa emprenedora i activitat empresarial. Per a entendre com es crea valor abans de triar itinerari.',
     modalidad: 'Modalitat General',
-    marcoNormativo: 'Reial Decret 243/2022 · Decret 108/2022 (CV)',
+    marcoNormativo: 'Reial Decret 243/2022 · Decret 108/2022, mod. Decret 103/2026 (CV)',
   },
   'gpe-bach': {
     level: 'Batxillerat (1r/2n)',
     title: 'Gestió de Projectes d\'Emprenedoria',
     tagline:
       'Una matèria de projecte: l\'alumnat munta la seua pròpia iniciativa emprenedora lligada al territori. Porta llibre teòric i quadern de projecte guiat per fases.',
-    modalidad: 'Optativa d\'oferta obligatòria',
-    marcoNormativo: 'Decret 108/2022 (CV) — optativa d\'oferta obligatòria',
+    modalidad: 'Optativa (1r o 2n)',
+    marcoNormativo: 'Decret 108/2022, mod. Decret 103/2026 (CV) — optativa',
   },
 };
 

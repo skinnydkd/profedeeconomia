@@ -8,9 +8,9 @@
 
 - **Etapa**: Batxillerat
 - **Curs**: **1r O 2n de Batxillerat** (el centre decideix en quin curs l'ofereix; oferible a qualsevol dels dos)
-- **Caràcter**: **Optativa d'oferta obligatòria** per a tot l'alumnat de Batxillerat a la Comunitat Valenciana (el centre l'ha d'oferir; l'alumne tria)
+- **Caràcter**: **Matèria optativa autonòmica**. El centre decideix si l'ofereix (art. 16.4 del Decret 108/2022, redacció del Decret 103/2026); **no és d'oferta obligada** — només ho són Segona Llengua Estrangera i Informàtica. L'alumnat només pot cursar-la en un dels dos cursos.
 - **Modalitat**: matèria optativa autonòmica, **no vinculada a una modalitat concreta** (interessant tant per a itineraris econòmics com per a la resta de l'alumnat)
-- **Marc normatiu**: **Decret 108/2022** (Comunitat Valenciana). **Sense base estatal al RD 243/2022.**
+- **Marc normatiu**: **Decret 108/2022** (Comunitat Valenciana), annex de matèries optatives. **Sense base estatal al RD 243/2022.** El **Decret 103/2026**, de 26 de juny (DOGV 10396, 02.07.2026) modifica el 108/2022 però **només substitueix l'annex II** (matèries comunes i de modalitat): el currículum d'aquesta optativa **no canvia**. Sí que canvia l'ordenació — art. 16 i taules d'optatives —, aplicable des del curs 2026-2027.
 - **Slug intern**: `gpe-bach`
 - **Naturalesa**: matèria **totalment pràctica i competencial**; els continguts teòrics s'han reduït al mínim i tots s'apliquen directament a la pràctica
 - **Continuïtat**: enllaça amb matèries de l'ESO com Emprenedoria Social i Sostenible, Taller d'Economia, Economia i Emprenedoria, i FOPP
@@ -141,7 +141,7 @@ Objectius principals de la matèria:
 - B5.2.1. Eines digitals de comunicació i exposició.
 - B5.2.2. Les xarxes socials com a mitjà de comunicació empresarial.
 
-> **Nota de currículum**: aquesta matèria es basa exclusivament en el **currículum autonòmic de la Comunitat Valenciana (Decret 108/2022)**, ja que GPE no té base estatal al RD 243/2022. És una optativa d'oferta obligatòria pròpia de la CV. Els centres d'altres CCAA poden no oferir-la o oferir matèries optatives equivalents amb estructura diferent; cal consultar la normativa autonòmica corresponent.
+> **Nota de currículum**: aquesta matèria es basa exclusivament en el **currículum autonòmic de la Comunitat Valenciana (Decret 108/2022)**, ja que GPE no té base estatal al RD 243/2022. És una optativa pròpia de la CV que el centre decideix si ofereix, en 1r o en 2n. Els centres d'altres CCAA poden no oferir-la o oferir matèries optatives equivalents amb estructura diferent; cal consultar la normativa autonòmica corresponent.
 
 ## 5. Distribució editorial — DOS materials
 
