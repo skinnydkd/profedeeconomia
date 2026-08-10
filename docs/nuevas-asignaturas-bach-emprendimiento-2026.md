@@ -15,7 +15,7 @@ El catálogo oficial de Batxillerat de la Comunitat Valenciana (Decret 108/2022)
 
 Matices verificados:
 - **No existe** ninguna materia CV llamada "Fundamentos de gestión de empresa" ni "Gestió de Projectes Empresarials" (eran recuerdos aproximados de Pau; probablemente la antigua "Fonaments d'Administració i Gestió" de LOMCE, ya sustituida por EDMN).
-- **GPE** es una **optativa de oferta obligatoria** ofertable en **1.º O 2.º** de Batxillerat (la normativa no la fija a un curso). Es la única optativa autonómica puramente de emprendimiento. Enfocada a que el alumnado **desarrolle su propio proyecto emprendedor** ligado al desarrollo económico local.
+- **GPE** es una **optativa autonómica** ofertable en **1.º O 2.º** de Batxillerat (la normativa no la fija a un curso, y el alumnado solo puede cursarla en uno de los dos). *Corregido 2026-08-10: no es de oferta obligada — esa condición la tienen solo Segunda Lengua Extranjera e Informática (art. 16.5, redacción del Decret 103/2026).* Es la única optativa autonómica puramente de emprendimiento. Enfocada a que el alumnado **desarrolle su propio proyecto emprendedor** ligado al desarrollo económico local.
 - **EEAE** es materia de **modalidad General** (RD 243/2022 · Decret 108/2022), con fuerte peso de emprendimiento y actividad empresarial; distinta de `eco-1bach`.
 
 ## Decisiones de Pau
@@ -27,8 +27,8 @@ Matices verificados:
 
 ## Marco normativo (verificado)
 
-- **EEAE** (`eeae-bach`): RD 243/2022 (currículo básico estatal, materia de modalidad General) · Decret 108/2022 (concreción CV). 3 bloques de saberes, 6 competencias específicas.
-- **GPE** (`gpe-bach`): Decret 108/2022 (CV), optativa autonómica de oferta obligatoria. 3 bloques (Economia / Emprenedoria / Activitat empresarial), competencias específicas CE1–CE7.
+- **EEAE** (`eeae-bach`): RD 243/2022 (currículo básico estatal, materia de modalidad General) · Decret 108/2022 (concreción CV), **anexo II sustituido por el Decret 103/2026**, aplicable a 1.º desde 2026-2027. 3 bloques de saberes, 6 competencias específicas.
+- **GPE** (`gpe-bach`): Decret 108/2022 (CV), optativa autonómica. Su currículo vive en el anexo de optativas, que el Decret 103/2026 **no toca**. 3 bloques (Economia / Emprenedoria / Activitat empresarial), competencias específicas CE1–CE7.
 
 Nota de introducción de cada libro (igual que el resto): basado en el currículo CV (Decret 108/2022); cada centro/CCAA concreta su programación.
 
@@ -50,7 +50,7 @@ Cambios de modelo de datos:
 - Añadir `'eeae' | 'gpe'` al type `color`.
 - En `ASIGNATURAS_POR_ETAPA.bach.cursos` añadir un subgrupo `bach` → label "Optativas (1.º/2.º)", `asignaturas: filter(curso === 'bach')`, después de 1bach/2bach.
 - `eeae-bach`: `modalidad: 'Modalidad General'`.
-- `gpe-bach`: `modalidad: 'Optativa de oferta obligatoria'`.
+- `gpe-bach`: `modalidad: 'Optativa (1.º o 2.º)'`.
 
 ## Colores (sistema visual — aprobado por Pau)
 

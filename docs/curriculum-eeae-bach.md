@@ -8,7 +8,7 @@
 - **Modalitat**: General — l'oferta a 1r de Batxillerat és obligatòria per als centres
 - **Caràcter**: Matèria de modalitat (General). NO és la mateixa que "Economía" (matèria d'Humanitats i Ciències Socials, que correspon a `eco-1bach`)
 - **Marc normatiu estatal**: RD 243/2022 (BOE-A-2022-5521)
-- **Concreció autonòmica (CV)**: Decret 108/2022
+- **Concreció autonòmica (CV)**: Decret 108/2022, **annex II substituït íntegrament pel Decret 103/2026**, de 26 de juny (DOGV 10396, 02.07.2026). Redacció nova de competències, criteris i sabers, aplicable a les matèries de 1r **des del curs 2026-2027**. EEAE és de 1r → ja aplica. El currículum estatal (RD 243/2022) no canvia.
 - **Slug intern**: `eeae-bach`
 
 ## 2. Finalitat de la matèria
@@ -89,7 +89,7 @@ L'empresa com a unitat bàsica de producció, les seues estratègies i els nous 
 - C.5. Estratègia i gestió de l'empresa. Transformació digital. Innovació. Sostenibilitat (RSC, stakeholders).
 - C.6. Anàlisi de casos: anàlisi intern i extern. DAFO empresarial.
 
-> **Nota de currículum**: aquest llibre es basa en el currículum bàsic estatal LOMLOE per a Economia, Emprenedoria i Activitat Empresarial (Reial Decret 243/2022). Cada comunitat autònoma estableix concrecions específiques al seu currículum propi (a la Comunitat Valenciana, el Decret 108/2022). Cal consultar la concreció de la teua CCAA per a ajustar la programació al teu centre.
+> **Nota de currículum**: aquest llibre es basa en el currículum bàsic estatal LOMLOE per a Economia, Emprenedoria i Activitat Empresarial (Reial Decret 243/2022). Cada comunitat autònoma estableix concrecions específiques al seu currículum propi (a la Comunitat Valenciana, el Decret 108/2022, amb el currículum de les matèries de modalitat reescrit pel Decret 103/2026, aplicable a 1r des del curs 2026-2027). Cal consultar la concreció de la teua CCAA per a ajustar la programació al teu centre.
 
 ## 5. Distribució en unitats (10 units)
 

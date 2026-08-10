@@ -1,6 +1,6 @@
 # Diagnóstico GPE Bach (Gestión de Proyectos de Emprendimiento)
 
-> Diagnóstico editorial completo de la asignatura **GPE** (`gpe-bach`), optativa de oferta obligatoria de Bachillerato de la **Comunitat Valenciana** (Decret 108/2022). Asignatura de **doble formato**: un **libro teórico** (7 unidades) + un **cuaderno de proyecto** (6 fases). Material **nuevo, nunca revisado por humano**: auditoría profunda en tres ejes — (A) rigor y actualidad, (B) pedagogía, (C) tono y cumplimiento del `CLAUDE.md`.
+> Diagnóstico editorial completo de la asignatura **GPE** (`gpe-bach`), optativa de Bachillerato de la **Comunitat Valenciana** (Decret 108/2022). *(Corregido 2026-08-10: este documento la llamaba «de oferta obligatoria»; no lo es — el centro decide si la ofrece, en 1.º o en 2.º.)* Asignatura de **doble formato**: un **libro teórico** (7 unidades) + un **cuaderno de proyecto** (6 fases). Material **nuevo, nunca revisado por humano**: auditoría profunda en tres ejes — (A) rigor y actualidad, (B) pedagogía, (C) tono y cumplimiento del `CLAUDE.md`.
 > Fecha: 2026-05-24 · Autor: sub-agent GPE.
 > Alcance leído: `libro/01`–`07`, `proyecto/00`–`05` y `programacion/programacion.mdx` (íntegros).
 
