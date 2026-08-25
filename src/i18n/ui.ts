@@ -75,6 +75,12 @@ export const ui = {
     'herramienta.especificas': 'Específicas',
     'herramienta.volver': '← Todas las herramientas',
     'generadores.volver': '← Todos los generadores',
+    'consent.aria': 'Consentimiento de analítica',
+    'consent.title': 'Analítica de uso',
+    'consent.body': 'Usamos Google Analytics para saber, de forma agregada, qué materiales se usan más y cuáles conviene mejorar. Solo se activa si lo aceptas: si no, no se carga nada de Google.',
+    'consent.more': 'Cómo tratamos los datos',
+    'consent.accept': 'Aceptar',
+    'consent.reject': 'Rechazar',
   },
   ca: {
     'skip.main': 'Salta al contingut principal',
@@ -149,6 +155,12 @@ export const ui = {
     'herramienta.especificas': 'Específiques',
     'herramienta.volver': '← Totes les ferramentes',
     'generadores.volver': '← Tots els generadors',
+    'consent.aria': "Consentiment d'analítica",
+    'consent.title': "Analítica d'ús",
+    'consent.body': "Usem Google Analytics per a saber, de manera agregada, quins materials s'usen més i quins convé millorar. Només s'activa si ho acceptes: si no, no es carrega res de Google.",
+    'consent.more': 'Com tractem les dades',
+    'consent.accept': 'Acceptar',
+    'consent.reject': 'Rebutjar',
   },
 } as const;
 

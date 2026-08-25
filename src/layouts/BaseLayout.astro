@@ -1,6 +1,8 @@
 ---
 import SiteHeader from '@components/SiteHeader.astro';
 import SiteFooter from '@components/SiteFooter.astro';
+import Analytics from '@components/Analytics.astro';
+import ConsentBanner from '@components/ConsentBanner.astro';
 import { ASIGNATURA_SLUGS } from '@/lib/asignaturas';
 import { jsonLdToString } from '@/lib/seo';
 import { getLocale, type Locale } from '@/i18n/locale';
@@ -106,6 +108,10 @@ const resolvedOgImage = new URL(ogImage ?? autoOgImage, Astro.site).toString();
     {ldItems.map((item) => (
       <script type="application/ld+json" set:html={jsonLdToString(item)} />
     ))}
+
+    <!-- Google Analytics 4. Nothing is requested from Google until the visitor
+         accepts in <ConsentBanner /> (see src/lib/consent.ts). -->
+    <Analytics />
   </head>
   <body class="bg-bg text-ink font-sans">
     <a href="#main" class="skip-link">{t('skip.main', locale)}</a>
@@ -114,6 +120,7 @@ const resolvedOgImage = new URL(ogImage ?? autoOgImage, Astro.site).toString();
       <slot />
     </main>
     <SiteFooter />
+    <ConsentBanner />
     <script>
       // Keep the VAL locale sticky across navigation (progressive enhancement).
       import { applyStickyLocale } from '@/i18n/sticky-locale';
