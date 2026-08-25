@@ -325,7 +325,7 @@ Un modelo de negocio describe cómo una empresa crea, entrega y captura valor.
 - **Generació diapositives**: motor natiu d'Astro (substitueix Marp)
 - **Backend**: cap al MVP. Fase 2 si activem newsletter o premium.
 - **Backend per a jocs multijugador (futur)**: PartyKit / Cloudflare Durable Objects (revisat al moment d'execució)
-- **Analytics**: Plausible
+- **Analytics**: Google Analytics 4 + Vercel Web Analytics (GA4 rere consentiment explícit)
 - **Errors**: Sentry
 - **i18n**: nativa Astro (es default, ca preparada)
 
