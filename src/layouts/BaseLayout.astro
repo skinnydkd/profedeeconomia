@@ -24,10 +24,26 @@ type Props = {
   noindex?: boolean;
   /** Language of the page body when it differs from the UI locale (fallback ES under /ca). */
   contentLang?: Locale;
+  /**
+   * Append " — profedeeconomia" to the title. Default true. Set false on pages
+   * whose title already spends Google's ~60-character display budget on
+   * keywords — the suffix would only be truncated away, and Google appends the
+   * site name itself from og:site_name.
+   */
+  brandSuffix?: boolean;
 };
 
-const { title, description, ogImage, ogType = 'website', jsonLd, noindex = false, contentLang = 'es' } = Astro.props;
-const fullTitle = title.endsWith('profedeeconomia')
+const {
+  title,
+  description,
+  ogImage,
+  ogType = 'website',
+  jsonLd,
+  noindex = false,
+  contentLang = 'es',
+  brandSuffix = true,
+} = Astro.props;
+const fullTitle = !brandSuffix || title.endsWith('profedeeconomia')
   ? title
   : `${title} — profedeeconomia`;
 

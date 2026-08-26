@@ -164,7 +164,7 @@ Una quarta opció, opcional i de sostre baix: una pàgina honesta de comparativa
 
 Ordenat per (impacte ÷ esforç). Les tres primeres són la finestra de setembre.
 
-### 5.1 Acrònims i intenció als `<title>` — **màxima prioritat, 1 sessió**
+### 5.1 Acrònims i intenció als `<title>` — ✅ **fet** (en este mateix PR)
 
 El `BaseLayout` afig `— profedeeconomia` a tot títol que no acabe amb la marca, i els *hubs* fan servir `${a.title} — ${a.level}`. Resultat: 67+ caràcters, sense acrònim i sense promesa. Proposta: afegir un camp `seoTitle` opcional a `ASIGNATURAS` i deixar que el sufix de marca siga opcional per pàgina.
 
@@ -181,6 +181,8 @@ El `BaseLayout` afig `— profedeeconomia` a tot títol que no acabe amb la marc
 | `eco-1bach` | Economía — 1.º Bachillerato — profedeeconomia | **Economía 1.º Bachillerato: libro, actividades y tests** |
 
 Els d'IPE arriben avui als 88 caràcters: Google en mostra ~60, així que la meitat del títol ni s'arriba a veure. El nom complet no es perd: va a l'`<h1>`, a la `meta description` i al cos. Google indexa igual les consultes llargues (`formación y orientación personal y profesional 4 eso`, 72 impressions) i mostra l'acrònim a qui busca l'acrònim.
+
+**Implementat així:** camp `seoTitle` requerit a `ASIGNATURAS` (`src/lib/asignaturas.ts`) amb l'equivalent valencià a `ASIGNATURAS_CA`, i prop `brandSuffix` al `BaseLayout` perquè el hub renderitze sense el sufix de marca — Google ja afig el nom del lloc pel seu compte i el sufix només robava caràcters. El nom complet de l'assignatura es manté a l'`<h1>` i a la `meta description`, així que les consultes llargues no es toquen.
 
 **Retorn esperat:** només `fopp` (393 impressions, 1,27%) portada a un CTR realista del 4-5% són ~+12-15 clics/mes d'una sola consulta. Sumant `eeae`, `edmn`, `fop asignatura` i companyia, l'ordre de magnitud és **+40-60 clics/mes sense moure cap posició**.
 

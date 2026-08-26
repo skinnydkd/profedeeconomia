@@ -25,3 +25,37 @@ describe('localizeAsignatura', () => {
     }
   });
 });
+
+describe('ASIGNATURAS_CA — seoTitle', () => {
+  const MAX_TITLE_CHARS = 60;
+
+  it('every published asignatura has a Valencian seoTitle', () => {
+    for (const a of Object.values(ASIGNATURAS)) {
+      if (a.estado !== 'publicado') continue;
+      expect(ASIGNATURAS_CA[a.slug]?.seoTitle?.trim().length ?? 0).toBeGreaterThan(0);
+    }
+  });
+
+  it('keeps every Valencian seoTitle inside the display budget', () => {
+    for (const o of Object.values(ASIGNATURAS_CA)) {
+      expect((o.seoTitle ?? '').length).toBeLessThanOrEqual(MAX_TITLE_CHARS);
+    }
+  });
+
+  it('front-loads the same acronym as the ES title — teachers search it in both languages', () => {
+    for (const a of Object.values(ASIGNATURAS)) {
+      const overlay = ASIGNATURAS_CA[a.slug];
+      if (!overlay?.seoTitle) continue;
+      const head = a.shortLabel.split(' ')[0];
+      // Acronym subjects keep the acronym verbatim; named ones are translated
+      // (Economía → Economia, Taller de Economía → Taller d'Economia).
+      if (head === head.toUpperCase()) expect(overlay.seoTitle.startsWith(head)).toBe(true);
+    }
+  });
+
+  it('ca overlays the Valencian seoTitle onto the asignatura', () => {
+    expect(localizeAsignatura(ASIGNATURAS['fopp-4eso'], 'ca').seoTitle).toBe(
+      'FOPP 4t ESO: llibre, diapositives i activitats gratis',
+    );
+  });
+});
