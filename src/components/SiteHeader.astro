@@ -14,7 +14,17 @@ const locale = getLocale(Astro.currentLocale);
       <span class="brand-mono" aria-hidden="true"><span class="brand-mono-p">p</span><span class="brand-mono-dot">.</span></span>
       <span class="brand-word">profedeeconomia</span>
     </a>
-    <nav class="site-nav" aria-label={t('nav.aria', locale)}>
+    <button
+      class="nav-toggle"
+      type="button"
+      aria-expanded="false"
+      aria-controls="site-nav"
+      data-nav-toggle
+    >
+      <span class="nav-toggle-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+      {t('nav.menu', locale)}
+    </button>
+    <nav class="site-nav" id="site-nav" aria-label={t('nav.aria', locale)}>
       <!-- ESO -->
       <div class="nav-group" data-nav-group>
         <button class="nav-trigger" type="button" aria-haspopup="true" aria-expanded="false">
@@ -142,6 +152,29 @@ const locale = getLocale(Astro.currentLocale);
   // Necessari per accessibilitat al mòbil i per teclat.
   const groups = document.querySelectorAll<HTMLElement>('[data-nav-group]');
 
+  // Phone menu: the nav does not fit beside the wordmark below ~760px, so it
+  // collapses into a panel toggled by this button (CSS handles the breakpoint;
+  // on desktop the button is display:none and never fires).
+  const header = document.querySelector<HTMLElement>('.site-header');
+  const navToggle = document.querySelector<HTMLButtonElement>('[data-nav-toggle]');
+
+  function closeGroups(): void {
+    groups.forEach((g) => {
+      g.classList.remove('is-open');
+      g.querySelector<HTMLButtonElement>('.nav-trigger')?.setAttribute('aria-expanded', 'false');
+    });
+  }
+
+  function setMenu(open: boolean): void {
+    header?.classList.toggle('is-menu-open', open);
+    navToggle?.setAttribute('aria-expanded', String(open));
+    if (!open) closeGroups();
+  }
+
+  navToggle?.addEventListener('click', () => {
+    setMenu(!header?.classList.contains('is-menu-open'));
+  });
+
   groups.forEach((group) => {
     const trigger = group.querySelector<HTMLButtonElement>('.nav-trigger');
     const dropdown = group.querySelector<HTMLElement>('.nav-dropdown');
@@ -162,25 +195,22 @@ const locale = getLocale(Astro.currentLocale);
     });
   });
 
-  // Tancar dropdowns en clicar fora
+  // Tancar dropdowns (i el menu de mobil) en clicar fora
   document.addEventListener('click', (e) => {
     const target = e.target as HTMLElement;
-    if (!target.closest('[data-nav-group]')) {
-      groups.forEach((g) => {
-        g.classList.remove('is-open');
-        g.querySelector<HTMLButtonElement>('.nav-trigger')?.setAttribute('aria-expanded', 'false');
-      });
-    }
+    // The toggle handles itself; clicks inside the panel must not close it.
+    if (target.closest('[data-nav-toggle]') || target.closest('#site-nav')) return;
+    closeGroups();
+    setMenu(false);
   });
 
   // ESC tanca tots
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      groups.forEach((g) => {
-        g.classList.remove('is-open');
-        g.querySelector<HTMLButtonElement>('.nav-trigger')?.setAttribute('aria-expanded', 'false');
-      });
-    }
+    if (e.key !== 'Escape') return;
+    const menuWasOpen = header?.classList.contains('is-menu-open');
+    closeGroups();
+    setMenu(false);
+    if (menuWasOpen) navToggle?.focus();
   });
 </script>
 
@@ -413,6 +443,42 @@ const locale = getLocale(Astro.currentLocale);
     padding: 0.55rem 0.55rem 0.65rem;
   }
 
+  /* ──────────── boto de menu (nomes telefon) ──────────── */
+  .nav-toggle {
+    display: none; /* the phone media query below turns it on */
+    align-items: center;
+    gap: 0.5rem;
+    background: transparent;
+    border: 0;
+    color: var(--color-ink-soft);
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    padding: 0.45rem 0.2rem;
+    cursor: pointer;
+  }
+  .nav-toggle:hover { color: var(--color-terra); }
+  .nav-toggle-bars {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 1.05rem;
+    height: 0.72rem;
+  }
+  .nav-toggle-bars span {
+    display: block;
+    height: 1.5px;
+    width: 100%;
+    background: currentColor;
+    border-radius: 1px;
+    transition: transform .18s var(--ease-soft), opacity .12s ease;
+  }
+  /* Bars fold into a cross while the panel is open. */
+  .site-header.is-menu-open .nav-toggle-bars span:nth-child(1) { transform: translateY(0.345rem) rotate(45deg); }
+  .site-header.is-menu-open .nav-toggle-bars span:nth-child(2) { opacity: 0; }
+  .site-header.is-menu-open .nav-toggle-bars span:nth-child(3) { transform: translateY(-0.345rem) rotate(-45deg); }
+
   /* ──────────── link directe (Oposiciones) ──────────── */
   .nav-direct {
     color: var(--color-ink-soft);
@@ -426,7 +492,7 @@ const locale = getLocale(Astro.currentLocale);
   }
   .nav-direct:hover { color: var(--color-terra); }
 
-  /* ──────────── mobile ──────────── */
+  /* ──────────── tablet: same inline nav, tighter ──────────── */
   @media (max-width: 860px) {
     .site-header-inner {
       gap: 0.8rem;
@@ -455,9 +521,72 @@ const locale = getLocale(Astro.currentLocale);
     }
   }
 
-  @media (max-width: 560px) {
+  /* ──────────── phone: the nav collapses into a panel ────────────
+     The five groups plus the language switcher need ~336px, and the wordmark
+     another ~205px. Below this width they cannot share a row, and the old
+     `flex-wrap: nowrap` row simply ran off-screen — that is what made every
+     page scroll sideways with a dead gutter on the right. */
+  @media (max-width: 760px) {
+    .nav-toggle { display: inline-flex; }
+
+    .site-nav {
+      display: none;
+      position: absolute; /* .site-header is sticky, so this anchors to it */
+      top: 100%;
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+      padding: 0.3rem clamp(1.2rem, 4vw, 2rem) 1.1rem;
+      background: var(--color-paper);
+      border-bottom: 1px solid var(--color-line);
+      box-shadow: 0 14px 28px rgba(42, 31, 24, 0.10);
+      max-height: calc(100vh - 100%);
+      max-height: calc(100dvh - 100%);
+      overflow-y: auto;
+      overscroll-behavior: contain;
+    }
+    .site-header.is-menu-open .site-nav { display: flex; }
+
+    .nav-group { position: static; }
     .nav-trigger,
-    .nav-direct { font-size: 0.78rem; padding: 0.4rem 0.35rem; }
-    .caret { display: none; } /* a mòbil molt petit treu fletxes */
+    .nav-direct {
+      width: 100%;
+      font-size: 1rem;
+      padding: 0.8rem 0.2rem;
+      border-radius: 0;
+      border-bottom: 1px solid var(--color-line-soft);
+    }
+    .nav-trigger { justify-content: space-between; }
+    .caret { display: inline; font-size: 0.72em; }
+
+    /* Dropdowns become an in-flow accordion inside the panel. */
+    .nav-dropdown {
+      position: static;
+      min-width: 0;
+      border: 0;
+      border-radius: 0;
+      box-shadow: none;
+      background: transparent;
+      padding: 0.55rem 0 0.85rem 0.7rem;
+      gap: 0.9rem;
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+    .nav-dropdown::before { content: none; }
+
+    /* Touch devices latch :hover, so only an explicit tap opens a group. These
+       must out-specify the base hover/focus rules, which carry the
+       translateX(-50%) centring meant for the absolute desktop dropdown. */
+    .nav-dropdown,
+    .nav-group:hover .nav-dropdown,
+    .nav-group:focus-within .nav-dropdown,
+    .nav-group.is-open .nav-dropdown { transform: none; display: none; }
+    .nav-group.is-open .nav-dropdown { display: flex; }
+
+    .site-nav :global(.lang-switch) { margin: 1rem 0 0; }
+    .site-nav :global(.lang-opt) { font-size: 0.82rem; padding: 0.35rem 0.55rem; }
   }
 </style>

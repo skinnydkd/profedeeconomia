@@ -5,6 +5,7 @@ export const ui = {
   es: {
     'skip.main': 'Saltar al contenido principal',
     'nav.aria': 'Navegación principal',
+    'nav.menu': 'Menú',
     'nav.eso': 'ESO',
     'nav.bach': 'BACH',
     'nav.fp': 'FP',
@@ -85,6 +86,7 @@ export const ui = {
   ca: {
     'skip.main': 'Salta al contingut principal',
     'nav.aria': 'Navegació principal',
+    'nav.menu': 'Menú',
     'nav.eso': 'ESO',
     'nav.bach': 'BATX',
     'nav.fp': 'FP',

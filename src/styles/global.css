@@ -297,6 +297,25 @@ a.editorial-link:hover {
    Accessibility
    ========================================================= */
 
+/* Long unbreakable strings — raw URLs in the "Mirar fora" resources, mostly —
+   used to run off the side of a phone screen. break-word only kicks in when a
+   word genuinely does not fit, so normal typography is untouched. (It does not
+   change intrinsic min-content sizing, which is why the grids that hold such
+   text also use minmax(0, …).) */
+body {
+  overflow-wrap: break-word;
+}
+/* On the narrowest phones a display heading can hold a word longer than the
+   column (e.g. "Emprendimiento" at 320px), where break-word alone splits it
+   mid-syllable. Ask for real hyphenation there; browsers without a Spanish
+   dictionary ignore this and fall back to the rule above. Desktop typography
+   is deliberately left unhyphenated. */
+@media (max-width: 480px) {
+  h1, h2, h3 {
+    hyphens: auto;
+  }
+}
+
 /* Visible keyboard-focus ring on every interactive element. Only shows for
    keyboard users (`:focus-visible`), so it never alters the look for pointer use. */
 :focus-visible {

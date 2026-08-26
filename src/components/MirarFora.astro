@@ -88,6 +88,10 @@ const { unidad, libro, video, cuenta, actividad_titulo, actividad_duracion } = A
   }
   .mirar-fora__recursos {
     display: grid;
+    /* An implicit `auto` track is floored at min-content, and these resources
+       carry raw URLs. Without minmax(0, …) one long link widened the track,
+       the article column and the whole page. */
+    grid-template-columns: minmax(0, 1fr);
     gap: 1.6rem;
     margin-bottom: 2rem;
   }
