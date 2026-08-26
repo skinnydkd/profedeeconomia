@@ -59,3 +59,25 @@ describe('ASIGNATURAS_CA — seoTitle', () => {
     );
   });
 });
+
+describe('ASIGNATURAS_CA — seoName', () => {
+  it('every published asignatura has a Valencian seoName', () => {
+    for (const a of Object.values(ASIGNATURAS)) {
+      if (a.estado !== 'publicado') continue;
+      expect(ASIGNATURAS_CA[a.slug]?.seoName?.trim().length ?? 0).toBeGreaterThan(0);
+    }
+  });
+
+  it('every Valencian seoTitle starts with its Valencian seoName', () => {
+    for (const o of Object.values(ASIGNATURAS_CA)) {
+      if (!o.seoTitle || !o.seoName) continue;
+      expect(o.seoTitle.startsWith(o.seoName)).toBe(true);
+    }
+  });
+
+  it('leaves room for the child-page prefix it gets composed into', () => {
+    for (const o of Object.values(ASIGNATURAS_CA)) {
+      expect(`Llibre de ${o.seoName} en PDF gratis`.length).toBeLessThanOrEqual(60);
+    }
+  });
+});

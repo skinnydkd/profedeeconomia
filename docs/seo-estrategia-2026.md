@@ -186,7 +186,7 @@ Els d'IPE arriben avui als 88 caràcters: Google en mostra ~60, així que la mei
 
 **Retorn esperat:** només `fopp` (393 impressions, 1,27%) portada a un CTR realista del 4-5% són ~+12-15 clics/mes d'una sola consulta. Sumant `eeae`, `edmn`, `fop asignatura` i companyia, l'ordre de magnitud és **+40-60 clics/mes sense moure cap posició**.
 
-### 5.2 "PDF" i "gratis" a `/[asignatura]/libro/` — **1 sessió**
+### 5.2 "PDF" i "gratis" a `/[asignatura]/libro/` — ✅ **fet**
 
 Les consultes amb `pdf gratis` explícit converteixen al 20-25%; les mateixes sense, a zero. Cal:
 
@@ -196,11 +196,31 @@ Les consultes amb `pdf gratis` explícit converteixen al 20-25%; les mateixes se
 
 Això toca `/[asignatura]/libro/index.astro` × 9 i és el punt on Econosublime guanya avui per pura claredat de promesa.
 
-### 5.3 Reescriure els 10 títols de pàgines amb volum i CTR <1,5% — **1 sessió**
+**Implementat així:** títol `Libro de {seoName} en PDF gratis` (`Llibre de…` en valencià) i descripció que obri amb «Descarga gratis en PDF el libro completo de…» i tanca amb el recompte real d'unitats. El botó de descàrrega ja estava dins del `hero`, damunt de la llista d'unitats, així que no ha calgut moure'l.
+
+### 5.3 Reescriure els títols de pàgines amb volum i CTR <1,5% — ✅ **fet**
 
 Prioritat per impressions: `taller-eco-3eso/libro/02-agentes-flujo-circular` (941), `ipe1-fp/libro/08-prevencion-riesgos-laborales` (388), `eco-4eso/libro/08-economia-personal-nomina-contratos` (280), `eco-4eso/recursos/calculadora-nomina` (260), `olimpiada/fichas/01-fpp` (233), `dinamicas/teoria-juegos/02-tipos-subasta` (220).
 
-Regla: el títol ha d'oferir **el que una AI Overview no dona** — l'exercici, la calculadora, la fitxa imprimible, l'activitat d'aula. `Agentes económicos y flujo circular: esquema, ejemplos y actividad de aula` bat `Los agentes económicos y el flujo circular` quan dalt hi ha un resum generat.
+Regla: el títol ha d'oferir **el que una AI Overview no dona** — l'exercici, la calculadora, la fitxa imprimible, l'activitat d'aula. `Agentes económicos y flujo circular: esquema y actividad` bat `Los agentes económicos y el flujo circular` quan dalt hi ha un resum generat.
+
+**Implementat així:** camp opcional `seoTitle` al frontmatter de `libro`, `actividades`, `recursos`, `dinamicas` i `olimpiadaFichas`; quan hi és, la plantilla el fa servir i renderitza sense sufix de marca. Escrit a mà per a 9 pàgines en castellà i valencià (18 fitxers):
+
+| Pàgina | Impr. | Títol nou |
+|---|---:|---|
+| `taller-eco-3eso/libro/02-agentes-flujo-circular` | 941 | Agentes económicos y flujo circular: esquema y actividad |
+| `ipe1-fp/libro/08-prevencion-riesgos-laborales` | 388 | Prevención de riesgos laborales: Ley 31/1995 explicada (FP) |
+| `eco-4eso/libro/08-economia-personal-nomina-contratos` | 280 | Nómina y contratos: bruto, neto e IRPF con ejemplos |
+| `eco-4eso/recursos/calculadora-nomina` | 260 | Calculadora de nómina: de bruto a neto con IRPF y SS |
+| `olimpiada/fichas/01-fpp` | 233 | Frontera de posibilidades de producción (FPP): ejercicios |
+| `dinamicas/teoria-juegos/02-tipos-subasta` | 220 | Tipos de subasta: inglesa, holandesa y a sobre cerrado |
+| `fopp-4eso/actividades/06-simula-solicitud-beca-mefp` | 153 | Beca MEFP: simula la solicitud y calcula la renta familiar |
+| `eco-1bach/recursos/calculadora-interes-compuesto` | 101 | Calculadora de interés compuesto: simula tu ahorro año a año |
+| `taller-eco-3eso/recursos/calculadora-ahorro` | 91 | Calculadora de ahorro: cuánto puedes ahorrar cada mes |
+
+A més, s'ha arreglat el **patró per defecte** de les unitats del llibre, que gastava els dos primers mots en `Unidad N.` — text mort que no casa amb cap consulta i que empenyia el tema fora del tall. Ara les ~200 unitats fan `{títol} — {seoName}`, amb l'acrònim de l'assignatura dins.
+
+**No inclou** `/herramientas/costes-resultados/ratios-benchmark/` (271 impr, pos 40,7), `/herramientas/mercados-macro/elasticidad/` (105, pos 37,5) ni `/emprendimiento/` (141, pos 22,7). A posició 22-40 el títol no canvia res perquè quasi ningú les veu: eixes pàgines són feina de §5.6, enllaçat intern, no de metadades.
 
 ### 5.4 Empènyer IPE I / IPE II — **la Jugada A, diverses sessions**
 
@@ -214,7 +234,13 @@ L'única categoria de resultat enriquit encara viva i rellevant per a un lloc ed
 
 `/herramientas/costes-resultados/ratios-benchmark/` (271 impressions, posició 40,7), `/emprendimiento/` (141, posició 22,7), `/herramientas/mercados-macro/elasticidad/` (105, posició 37,5). Tenen demanda i no tenen enllaços. Enllaçar-les des de les unitats del llibre que tracten el tema és gratis i mou posicions.
 
-### 5.7 `/ca/` com a actiu diferencial — **fase 2**
+### 5.7 Sufix de marca sensible a la longitud — **pendent de decisió, 1 hora**
+
+Mesurat sobre el build sencer un cop fetes 5.1-5.3: **1.527 de 2.115 títols (72%) encara passen dels 60 caràcters**, i de tots ells **239 caurien dins del pressupost només llevant el ` — profedeeconomia` final**. En eixes pàgines el sufix ja no es veu (Google talla per la dreta) però sí que desplaça paraules que sí que es veurien.
+
+La solució és una regla automàtica al `BaseLayout`: afegir el sufix només quan `títol + 18 ≤ 60`. És determinista i comprovable, i no pot empitjorar cap títol, perquè només lleva text que ja era invisible. Queda fora d'este PR perquè toca 239 pàgines que no s'han revisat una a una — decisió de Pau.
+
+### 5.8 `/ca/` com a actiu diferencial — **fase 2**
 
 80 URLs fan 745 impressions amb un CTR del 4,97%, per damunt de la mitjana del lloc. Econosublime hi té dos PDFs de 2021. Amb el currículum valencià (Taller 3r ESO, EEAE, GPE) ja cobert en castellà, completar el `/ca/` és terreny sense ningú.
 

@@ -46,6 +46,13 @@ export type Asignatura = {
    * description, so long-tail queries are unaffected.
    */
   seoTitle: string;
+  /**
+   * Acronym-first short name for search-facing titles on child pages (book
+   * index, units, activities, resources). Always the head of `seoTitle`.
+   * Distinct from `shortLabel`, which is compact UI chrome ("FOPP 4ESO") and
+   * from `title`, which is the full curriculum name.
+   */
+  seoName: string;
   tagline: string;
   num: string;
   color: 'edmn' | 'eco1' | 'eco4' | 'fopp' | 'taller3' | 'ipe1' | 'ipe2' | 'eeae' | 'gpe' | 'proximamente';
@@ -63,6 +70,7 @@ export const ASIGNATURAS: Record<AsignaturaSlug, Asignatura> = {
     shortLabel: 'EDMN 2BACH',
     title: 'Empresa y Diseño de Modelos de Negocio',
     seoTitle: 'EDMN 2.º Bachillerato: libro, diapositivas y EBAU',
+    seoName: 'EDMN 2.º Bachillerato',
     tagline:
       'Doce unidades alrededor del Business Model Canvas, las áreas funcionales y un proyecto capstone de plan de empresa que recorre todo el curso.',
     num: '01',
@@ -79,6 +87,7 @@ export const ASIGNATURAS: Record<AsignaturaSlug, Asignatura> = {
     shortLabel: 'Eco 1BACH',
     title: 'Economía',
     seoTitle: 'Economía 1.º Bachillerato: libro, actividades y tests',
+    seoName: 'Economía 1.º Bachillerato',
     tagline:
       'Microeconomía, macroeconomía, sistemas e introducción a las finanzas. Con simulador AD‑AS y la teoría de la decisión, que casi siempre se nos queda fuera del temario.',
     num: '02',
@@ -95,6 +104,7 @@ export const ASIGNATURAS: Record<AsignaturaSlug, Asignatura> = {
     shortLabel: 'Eco 4ESO',
     title: 'Economía y Emprendimiento',
     seoTitle: 'Economía y Emprendimiento 4.º ESO: libro y actividades',
+    seoName: 'Economía y Emprendimiento 4.º ESO',
     tagline:
       'Economía básica con la mirada puesta en lo que el alumnado se va a encontrar fuera: nómina, IRPF, contratos, decisiones de consumo.',
     num: '03',
@@ -110,6 +120,7 @@ export const ASIGNATURAS: Record<AsignaturaSlug, Asignatura> = {
     shortLabel: 'FOPP 4ESO',
     title: 'Formación y Orientación Personal y Profesional',
     seoTitle: 'FOPP 4.º ESO: libro, diapositivas y actividades gratis',
+    seoName: 'FOPP 4.º ESO',
     tagline:
       'Itinerarios, derechos laborales y orientación. La asignatura nueva de la LOMLOE, sin material decente disponible. Hasta ahora.',
     num: '04',
@@ -125,6 +136,7 @@ export const ASIGNATURAS: Record<AsignaturaSlug, Asignatura> = {
     shortLabel: 'Taller 3ESO',
     title: 'Taller de Economía',
     seoTitle: 'Taller de Economía 3.º ESO: libro, actividades y tests',
+    seoName: 'Taller de Economía 3.º ESO',
     tagline:
       'Primer contacto con la economía: consumo responsable, dinero y ahorro, empresas y emprendimiento, trabajo e impuestos. La optativa que abre el camino hacia 4.º ESO.',
     num: '05',
@@ -140,6 +152,7 @@ export const ASIGNATURAS: Record<AsignaturaSlug, Asignatura> = {
     shortLabel: 'IPE I',
     title: 'Itinerario Personal para la Empleabilidad I',
     seoTitle: 'IPE I (FP): libro, actividades y recursos LOMLOE',
+    seoName: 'IPE I (FP)',
     tagline:
       'El módulo que sustituye a la FOL en primer curso: autoconocimiento profesional, prevención de riesgos laborales, contrato y derechos, y salud psicosocial.',
     num: '06',
@@ -155,6 +168,7 @@ export const ASIGNATURAS: Record<AsignaturaSlug, Asignatura> = {
     shortLabel: 'IPE II',
     title: 'Itinerario Personal para la Empleabilidad II',
     seoTitle: 'IPE II (FP): libro, actividades y proyecto de empresa',
+    seoName: 'IPE II (FP)',
     tagline:
       'Continuación de IPE I en segundo curso: búsqueda activa de empleo, marca personal, competencias para el empleo y un proyecto emprendedor de innovación social.',
     num: '07',
@@ -170,6 +184,7 @@ export const ASIGNATURAS: Record<AsignaturaSlug, Asignatura> = {
     shortLabel: 'EEAE',
     title: 'Economía, Emprendimiento y Actividad Empresarial',
     seoTitle: 'EEAE Bachillerato: libro y actividades de emprendimiento',
+    seoName: 'EEAE Bachillerato',
     tagline:
       'La materia de modalidad General que junta economía, iniciativa emprendedora y actividad empresarial. Para entender cómo se crea valor antes de elegir itinerario.',
     num: '08',
@@ -186,6 +201,7 @@ export const ASIGNATURAS: Record<AsignaturaSlug, Asignatura> = {
     shortLabel: 'GPE',
     title: 'Gestión de Proyectos de Emprendimiento',
     seoTitle: 'GPE Bachillerato: libro y proyecto de emprendimiento',
+    seoName: 'GPE Bachillerato',
     tagline:
       'Una materia de proyecto: el alumnado monta su propia iniciativa emprendedora ligada al territorio. Lleva libro teórico y cuaderno de proyecto guiado por fases.',
     num: '09',

@@ -92,3 +92,28 @@ describe('ASIGNATURAS — seoTitle', () => {
     }
   });
 });
+
+/**
+ * `seoName` is the head of `seoTitle`, reused by every child page (book index,
+ * units, activities, resources) so the acronym reaches those titles too.
+ */
+describe('ASIGNATURAS — seoName', () => {
+  it('every seoTitle starts with its seoName', () => {
+    for (const a of Object.values(ASIGNATURAS)) {
+      expect(a.seoTitle.startsWith(a.seoName)).toBe(true);
+    }
+  });
+
+  it('leaves room for the child-page prefix it gets composed into', () => {
+    // Worst composition is the book index: `Libro de ${seoName} en PDF gratis`.
+    for (const a of Object.values(ASIGNATURAS)) {
+      expect(`Libro de ${a.seoName} en PDF gratis`.length).toBeLessThanOrEqual(60);
+    }
+  });
+
+  it('carries the level, so a child-page title is unambiguous on its own', () => {
+    for (const a of Object.values(ASIGNATURAS)) {
+      expect(a.seoName).toMatch(/ESO|Bachillerato|FP/);
+    }
+  });
+});

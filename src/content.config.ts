@@ -34,6 +34,15 @@ const libro = defineCollection({
     asignatura: z.enum(ASIGNATURA_SLUGS),
     unidad: z.number().int().min(1),
     title: z.string(),
+    /**
+     * Optional search-facing `<title>` override. Set it when the page's own
+     * `title` is written for the classroom but the query behind the page is
+     * phrased differently, or when the topic needs an "and here's what you
+     * get" hook that an AI Overview cannot supply (an exercise, a printable
+     * sheet, a calculator). Falls back to `title`.
+     * See docs/seo-estrategia-2026.md §5.3.
+     */
+    seoTitle: z.string().optional(),
     lema: z.string().optional(),
     lang: z.enum(LANGS).default('es'),
     estado: z.enum(ESTADOS).default('borrador'),
@@ -61,6 +70,7 @@ const actividades = defineCollection({
     asignatura: z.enum(ASIGNATURA_SLUGS),
     unidad_relacionada: z.number().int().min(1),
     title: z.string(),
+    seoTitle: z.string().optional(),
     tipo: z.enum(['caso', 'ejercicio', 'debate', 'dinamica', 'proyecto']),
     /** Short summary shown on the card grid. */
     descripcion: z.string(),
@@ -167,6 +177,7 @@ const recursos = defineCollection({
     asignatura: z.enum(ASIGNATURA_SLUGS),
     unidad_relacionada: z.number().int().min(1).optional(),
     title: z.string(),
+    seoTitle: z.string().optional(),
     descripcion: z.string(),
     tipo: z.enum(['simulador', 'calculadora', 'plantilla', 'visualizacion']),
     /**
@@ -370,6 +381,7 @@ const dinamicas = defineCollection({
   loader: glob({ pattern: 'dinamicas/**/*.{md,mdx}', base: './src/content' }),
   schema: z.object({
     title: z.string(),
+    seoTitle: z.string().optional(),
     familia: z.enum(FAMILIA_SLUGS),
     /** Sort key within the family; also the filename prefix. */
     orden: z.number().int().min(0),
@@ -553,6 +565,7 @@ const olimpiadaFichas = defineCollection({
   loader: glob({ pattern: 'olimpiada/fichas/**/*.{md,mdx}', base: './src/content' }),
   schema: z.object({
     title: z.string(), bloque: z.enum(BLOQUE_SLUGS), orden: z.number().int().min(0),
+    seoTitle: z.string().optional(),
     resumen: z.string(), conceptos_clave: z.array(z.string()).default([]),
     herramienta: z.enum(['PuntoMuerto', 'Equilibrio', 'Elasticidad', 'ADASSimulator']).optional(),
     preguntas_tipicas: z.array(z.string()).default([]),
