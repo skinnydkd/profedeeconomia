@@ -220,7 +220,7 @@ Regla: el títol ha d'oferir **el que una AI Overview no dona** — l'exercici, 
 
 A més, s'ha arreglat el **patró per defecte** de les unitats del llibre, que gastava els dos primers mots en `Unidad N.` — text mort que no casa amb cap consulta i que empenyia el tema fora del tall. Ara les ~200 unitats fan `{títol} — {seoName}`, amb l'acrònim de l'assignatura dins.
 
-**No inclou** `/herramientas/costes-resultados/ratios-benchmark/` (271 impr, pos 40,7), `/herramientas/mercados-macro/elasticidad/` (105, pos 37,5) ni `/emprendimiento/` (141, pos 22,7). A posició 22-40 el títol no canvia res perquè quasi ningú les veu: eixes pàgines són feina de §5.6, enllaçat intern, no de metadades.
+**No inclou** `/herramientas/costes-resultados/ratios-benchmark/` (271 impr, pos 40,7), `/herramientas/mercados-macro/elasticidad/` (105, pos 37,5) ni `/emprendimiento/` (141, pos 22,7). A posició 22-40 el títol no canvia res perquè quasi ningú les veu. Eixes pàgines es tracten a §5.6 — i el motiu real de per què estan allà no era el que semblava.
 
 ### 5.4 Empènyer IPE I / IPE II — ✅ **la part pendent, feta**
 
@@ -249,9 +249,36 @@ L'única categoria de resultat enriquit encara viva i rellevant per a un lloc ed
 - `relacionar` → **s'omet**: no té una resposta única en text i forçar-la falsejaria la pàgina.
 - L'explicació de cada pregunta va com a `answerExplanation`, i el Markdown s'aplana a text pla.
 
-### 5.6 Enllaçat intern cap a les pàgines encallades en posició 35-45 — **continu**
+### 5.6 Les pàgines encallades en posició 22-45 — ✅ **fet, però no com deia ací**
 
-`/herramientas/costes-resultados/ratios-benchmark/` (271 impressions, posició 40,7), `/emprendimiento/` (141, posició 22,7), `/herramientas/mercados-macro/elasticidad/` (105, posició 37,5). Tenen demanda i no tenen enllaços. Enllaçar-les des de les unitats del llibre que tracten el tema és gratis i mou posicions.
+> **Correcció.** Este apartat deia que eixes pàgines «tenen demanda i no tenen enllaços» i que enllaçar-les des de les unitats del llibre mouria posicions. **La premissa era falsa.** En comptar els enllaços interns reals sobre el build:
+>
+> | Pàgina | Impr. | Posició | Enllaços entrants |
+> |---|---:|---:|---:|
+> | `/herramientas/costes-resultados/ratios-benchmark/` | 271 | 40,7 | 6 |
+> | `/emprendimiento/` | 141 | 22,7 | **1.724** |
+> | `/herramientas/mercados-macro/elasticidad/` | 105 | 37,5 | 6 |
+> | `/eco-1bach/recursos/calculadora-elasticidad/` | — | **6,7** | 6 |
+>
+> `/emprendimiento/` està al menú global: 1.724 enllaços entrants. No és un problema d'enllaçat i cap enllaç més el va a moure. I l'eina i el seu bessó d'assignatura tenen **exactament els mateixos 6 enllaços** amb 30 llocs de diferència, o siga que l'enllaçat tampoc explica el buit. La mediana del lloc és de 2 enllaços entrants: eixes pàgines no estan poc enllaçades, estan **duplicades**.
+
+**El diagnòstic real: canibalització.** Cada eina viu a dues URL — la fitxa transversal de `/herramientas/` i el recurs de l'assignatura — amb la mateixa illa interactiva i un text que coincideix entre el **81% i el 87%**:
+
+| Eina | Similitud del text | `/herramientas/` | Bessó d'assignatura |
+|---|---:|---:|---:|
+| elasticidad | 81% | pos 37,5 | pos 6,7 |
+| ratios-benchmark | 87% | pos 40,7 | pos 17,6 |
+| multiplicador-gasto | 85% | pos 14,5 | pos 14,1 |
+
+Totes dues eren *self-canonical*, o siga que competien entre elles i Google es quedava amb una.
+
+**Implementat així:** quan una eina té **un sol** bessó d'assignatura, la fitxa de `/herramientas/` hi apunta amb `rel=canonical` i deixa d'emetre `hreflang` (només les pàgines *self-canonical* poden declarar-lo). La pàgina segueix navegable i l'illa funciona igual: només deixa de competir amb el seu propi duplicat. La correspondència es deriva de `recursos` en temps de build (`recursoCanonicoPorComponente`), no es manté a mà.
+
+Resultat al build: **22 pàgines consolidades** (11 eines × 2 idiomes), 22 que segueixen *self-canonical*, 0 amb `hreflang` contradictori.
+
+**El que queda obert i és decisió de Pau.** Les altres 11 eines tenen entre 2 i 5 bessons, així que no hi ha un destí únic i s'han deixat com estaven. El cas extrem és la calculadora de nòmina: **sis URL per a la mateixa eina** (`/herramientas/finanzas-personales/nomina/` i els recursos d'eco-4eso, taller-eco-3eso, gpe-bach, ipe1-fp i fopp-4eso), competint totes entre elles — eco-4eso a la posició 8,25 amb 260 impressions i taller-eco-3eso a la 13,8 amb 71. Consolidar-les vol dir triar qui ha de guanyar la consulta `calculadora de nómina`, i això és una decisió de producte, no de codi.
+
+**Una inconsistència menor coneguda:** les 22 URL consolidades continuen al `sitemap.xml`. Google segueix el `canonical` i les consolida igual, i filtrar-les exigiria duplicar la derivació dins d'`astro.config.mjs` (que no pot importar el `lib` de TypeScript). El senyal que compta ja és correcte; no compensa la fragilitat.
 
 ### 5.7 Sufix de marca sensible a la longitud — ✅ **fet**
 

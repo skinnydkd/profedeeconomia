@@ -2,6 +2,7 @@ import { describe, it, expect } from 'vitest';
 import {
   COMPONENTE_KEYS, FAMILIAS_HERRAMIENTA, HERRAMIENTAS,
   herramientaPorSlug, gruposHerramientas, unidadesPorComponente,
+  recursoCanonicoPorComponente,
 } from './herramientas.ts';
 
 describe('HERRAMIENTAS registry', () => {
@@ -77,5 +78,42 @@ describe('herramientas nuevas (plantillas + calc)', () => {
       expect(h.tipo).toBe('calculadora');
       expect((h.unidades_relacionadas ?? []).length).toBeGreaterThan(0);
     }
+  });
+});
+
+describe('recursoCanonicoPorComponente (§5.6)', () => {
+  const r = (id: string, componente: string, asignatura: string) => ({
+    id,
+    data: { componente, asignatura },
+  });
+
+  it('maps a componente with exactly one subject resource to that path', () => {
+    const m = recursoCanonicoPorComponente([
+      r('asignaturas/eco-1bach/recursos/calculadora-elasticidad.md', 'Elasticidad', 'eco-1bach'),
+    ]);
+    expect(m.get('Elasticidad')).toBe('/eco-1bach/recursos/calculadora-elasticidad/');
+  });
+
+  it('refuses to pick a target when several subjects embed the same tool', () => {
+    const m = recursoCanonicoPorComponente([
+      r('asignaturas/eco-4eso/recursos/calculadora-nomina.md', 'NominaESO', 'eco-4eso'),
+      r('asignaturas/ipe1-fp/recursos/calculadora-nomina.md', 'NominaESO', 'ipe1-fp'),
+    ]);
+    expect(m.has('NominaESO')).toBe(false);
+  });
+
+  it('counts a repeated path once, so a duplicate entry still consolidates', () => {
+    const m = recursoCanonicoPorComponente([
+      r('asignaturas/eco-1bach/recursos/x.md', 'Elasticidad', 'eco-1bach'),
+      r('asignaturas/eco-1bach/recursos/x.md', 'Elasticidad', 'eco-1bach'),
+    ]);
+    expect(m.get('Elasticidad')).toBe('/eco-1bach/recursos/x/');
+  });
+
+  it('ignores resources that embed no componente', () => {
+    const m = recursoCanonicoPorComponente([
+      { id: 'asignaturas/eco-1bach/recursos/ficha.md', data: { asignatura: 'eco-1bach' } },
+    ]);
+    expect(m.size).toBe(0);
   });
 });

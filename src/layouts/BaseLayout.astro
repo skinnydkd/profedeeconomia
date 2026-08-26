@@ -30,6 +30,11 @@ type Props = {
    * outright on pages whose copy is deliberately tuned to fill the budget.
    */
   brandSuffix?: boolean;
+  /**
+   * Locale-less path of the page this one duplicates. Sets rel=canonical there
+   * and suppresses hreflang. Only for genuine near-duplicates.
+   */
+  canonicalPath?: string;
 };
 
 const {
@@ -41,6 +46,7 @@ const {
   noindex = false,
   contentLang = 'es',
   brandSuffix = true,
+  canonicalPath,
 } = Astro.props;
 const fullTitle = pageTitle(title, brandSuffix);
 
@@ -50,6 +56,7 @@ const seo = resolveSeo({
   locale,
   contentLang,
   site: Astro.site!.toString(),
+  canonicalPath,
 });
 const canonical = seo.canonical;
 const ldItems = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
