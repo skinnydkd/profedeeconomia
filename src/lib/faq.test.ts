@@ -27,3 +27,30 @@ describe('subjectFaqs', () => {
     }
   });
 });
+
+describe('subjectFaqs — naming questions (§5.4)', () => {
+  it('answers the IPE/FOL question on both IPE hubs', () => {
+    for (const slug of ['ipe1-fp', 'ipe2-fp'] as const) {
+      const faqs = subjectFaqs(ASIGNATURAS[slug]);
+      expect(faqs.some((f) => /FOL/.test(f.q))).toBe(true);
+      expect(faqs.some((f) => /Ley Orgánica 3\/2022|RD 659\/2023/.test(f.a))).toBe(true);
+    }
+  });
+
+  it('answers what FOPP is, and that it is not FOL', () => {
+    const faqs = subjectFaqs(ASIGNATURAS['fopp-4eso']);
+    expect(faqs.some((f) => /FOPP/.test(f.q) && /FOL/.test(f.q))).toBe(true);
+    expect(faqs.some((f) => /Formación y Orientación Personal y Profesional/.test(f.a))).toBe(true);
+  });
+
+  it('leaves the derived entries first, so the tagline still leads', () => {
+    for (const a of Object.values(ASIGNATURAS)) {
+      expect(subjectFaqs(a)[0].a).toBe(a.tagline);
+    }
+  });
+
+  it('adds naming questions only where a real naming confusion exists', () => {
+    const withNaming = Object.values(ASIGNATURAS).filter((a) => subjectFaqs(a).length > 4);
+    expect(withNaming.map((a) => a.slug).sort()).toEqual(['fopp-4eso', 'ipe1-fp', 'ipe2-fp']);
+  });
+});

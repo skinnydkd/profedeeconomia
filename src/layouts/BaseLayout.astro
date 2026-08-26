@@ -4,7 +4,7 @@ import SiteFooter from '@components/SiteFooter.astro';
 import Analytics from '@components/Analytics.astro';
 import ConsentBanner from '@components/ConsentBanner.astro';
 import { ASIGNATURA_SLUGS } from '@/lib/asignaturas';
-import { jsonLdToString } from '@/lib/seo';
+import { jsonLdToString, pageTitle } from '@/lib/seo';
 import { getLocale, type Locale } from '@/i18n/locale';
 import { resolveSeo } from '@/i18n/seo-locale';
 import { t } from '@/i18n/ui';
@@ -25,10 +25,9 @@ type Props = {
   /** Language of the page body when it differs from the UI locale (fallback ES under /ca). */
   contentLang?: Locale;
   /**
-   * Append " — profedeeconomia" to the title. Default true. Set false on pages
-   * whose title already spends Google's ~60-character display budget on
-   * keywords — the suffix would only be truncated away, and Google appends the
-   * site name itself from og:site_name.
+   * Allow the brand suffix on this title. Default true. `pageTitle` still
+   * drops it when the title has no room left; set this false to suppress it
+   * outright on pages whose copy is deliberately tuned to fill the budget.
    */
   brandSuffix?: boolean;
 };
@@ -43,9 +42,7 @@ const {
   contentLang = 'es',
   brandSuffix = true,
 } = Astro.props;
-const fullTitle = !brandSuffix || title.endsWith('profedeeconomia')
-  ? title
-  : `${title} — profedeeconomia`;
+const fullTitle = pageTitle(title, brandSuffix);
 
 const locale = getLocale(Astro.currentLocale);
 const seo = resolveSeo({

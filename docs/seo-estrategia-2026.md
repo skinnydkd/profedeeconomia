@@ -222,23 +222,46 @@ A més, s'ha arreglat el **patró per defecte** de les unitats del llibre, que g
 
 **No inclou** `/herramientas/costes-resultados/ratios-benchmark/` (271 impr, pos 40,7), `/herramientas/mercados-macro/elasticidad/` (105, pos 37,5) ni `/emprendimiento/` (141, pos 22,7). A posició 22-40 el títol no canvia res perquè quasi ningú les veu: eixes pàgines són feina de §5.6, enllaçat intern, no de metadades.
 
-### 5.4 Empènyer IPE I / IPE II — **la Jugada A, diverses sessions**
+### 5.4 Empènyer IPE I / IPE II — ✅ **la part pendent, feta**
 
-1.489 impressions ja, sense cap competidor gratuït i amb el sistema de FP sencer d'Espanya com a públic. Accions: completar les unitats que falten, publicar la programació d'aula d'IPE I i IPE II (les programacions atrauen exactament el professor que decideix el material del curs), i crear una pàgina d'aterratge que explique la relació IPE ↔ FOL — la consulta `itinerario personal para la empleabilidad es lo mismo que fol` ja apareix, i `asignatura fol 4 eso` fa 48 impressions.
+1.489 impressions ja, sense cap competidor gratuït i amb el sistema de FP sencer d'Espanya com a públic.
 
-### 5.5 Dades estructurades `Quiz` / Education Q&A als tests — **1-2 sessions**
+**Revisat l'inventari, dues de les tres accions ja estaven fetes**: IPE I i IPE II tenen les 9 unitats publicades cada un (RD 659/2023, Annex V), 21 i 20 activitats, 9 tests, 5 recursos, 5 reptes, avaluació, reforç i la programació d'aula publicada. No faltava contingut curricular.
+
+**El que sí que faltava** era el posicionament IPE ↔ FOL, i s'ha fet dins de l'estructura existent, com a preguntes freqüents del hub (visibles i dins del `FAQPage` JSON-LD, que és exactament el que un extractor de respostes d'IA agafa):
+
+- IPE I: «¿IPE es lo mismo que FOL?», «¿Qué se da en IPE I y en qué se diferencia de IPE II?», «¿IPE se imparte en Grado Medio y en Grado Superior?»
+- IPE II: «¿IPE II es lo mismo que la antigua FOL de segundo?», «¿Hace falta haber dado IPE I para seguir IPE II?»
+- FOPP: «¿Qué es FOPP y por qué mucha gente la busca como "FOL de 4.º ESO"?», «¿En qué se diferencia FOPP de Economía y Emprendimiento de 4.º ESO?»
+
+El clúster que ataca: `asignatura fol 4 eso` (48 impr, pos 6,94), `fop asignatura` (31), `fol 4 eso` (20), `que es fopp` (22), `asignatura ipe fp` (12), `itinerario personal para la empleabilidad fol` (9), `ipe fol` (7), `itinerario personal para la empleabilidad es lo mismo que fol`.
+
+**No inclou** escriure unitats noves de llibre: el contingut curricular passa revisió manual de Pau abans de publicar-se (CLAUDE.md), i no hi havia buits.
+
+### 5.5 Dades estructurades `Quiz` / Education Q&A als tests — ✅ **fet**
 
 L'única categoria de resultat enriquit encara viva i rellevant per a un lloc educatiu (les *practice problems* es van deprecar el gener de 2026; les FAQ, el 2023). Marcar `/[asignatura]/tests/[slug]` amb `Quiz` + `Question` obri la porta al carrusel d'Educació Q&A a Cerca, Assistant i Lens. **Econosublime no ho pot fer**: els seus tests són PDF sobre Blogger. És l'avantatge estructural més net que tenim.
+
+**Implementat així:** `quizLd()` a `src/lib/seo.ts`, alimentat pel mateix frontmatter que el `QuizPlayer` renderitza — requisit de Google: les preguntes marcades han de ser les que el visitant pot respondre a la pàgina. Cobertura real al build: **176 de 176 pàgines de test, 1.958 preguntes marcades**.
+
+- `opcion-multiple` i `verdadero-falso` → `eduQuestionType: "Multiple choice"`, amb `acceptedAnswer` i la resta com a `suggestedAnswer`.
+- `numerico` → `eduQuestionType: "Flashcard"`, amb la unitat dins de la resposta.
+- `relacionar` → **s'omet**: no té una resposta única en text i forçar-la falsejaria la pàgina.
+- L'explicació de cada pregunta va com a `answerExplanation`, i el Markdown s'aplana a text pla.
 
 ### 5.6 Enllaçat intern cap a les pàgines encallades en posició 35-45 — **continu**
 
 `/herramientas/costes-resultados/ratios-benchmark/` (271 impressions, posició 40,7), `/emprendimiento/` (141, posició 22,7), `/herramientas/mercados-macro/elasticidad/` (105, posició 37,5). Tenen demanda i no tenen enllaços. Enllaçar-les des de les unitats del llibre que tracten el tema és gratis i mou posicions.
 
-### 5.7 Sufix de marca sensible a la longitud — **pendent de decisió, 1 hora**
+### 5.7 Sufix de marca sensible a la longitud — ✅ **fet**
 
-Mesurat sobre el build sencer un cop fetes 5.1-5.3: **1.527 de 2.115 títols (72%) encara passen dels 60 caràcters**, i de tots ells **239 caurien dins del pressupost només llevant el ` — profedeeconomia` final**. En eixes pàgines el sufix ja no es veu (Google talla per la dreta) però sí que desplaça paraules que sí que es veurien.
+Mesurat sobre el build sencer un cop fetes 5.1-5.3: **684 títols portaven el sufix ` — profedeeconomia` tot i passar ja dels 60 caràcters**. En eixes pàgines el sufix no es veu (Google talla per la dreta) però desplaça paraules que sí que es veurien.
 
-La solució és una regla automàtica al `BaseLayout`: afegir el sufix només quan `títol + 18 ≤ 60`. És determinista i comprovable, i no pot empitjorar cap títol, perquè només lleva text que ja era invisible. Queda fora d'este PR perquè toca 239 pàgines que no s'han revisat una a una — decisió de Pau.
+**Implementat així:** funció `pageTitle()` a `src/lib/seo.ts`, que el `BaseLayout` fa servir: el sufix s'afig només quan `títol + 18 ≤ 60`. No pot empitjorar cap títol perquè només lleva text que ja era invisible, i Google ja afig el nom del lloc pel seu compte des de l'`og:site_name`.
+
+Resultat al build: **de 684 a 0 pàgines indexables** amb marca sobrant (els 61 casos que queden són `/imprimir`, bloquejades a `robots.txt`). 623 títols han recuperat eixos 18 caràcters.
+
+Queda un residu que **no** és cosa del sufix: el 59% dels títols indexables encara passa dels 60 caràcters pel títol mateix. Això ja és feina d'autoria, títol a títol, no de codi.
 
 ### 5.8 `/ca/` com a actiu diferencial — **fase 2**
 

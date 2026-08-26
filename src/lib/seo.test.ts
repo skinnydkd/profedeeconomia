@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { jsonLdToString, organizationLd, articleLd, courseLd, itemListLd, faqLd, SAME_AS } from './seo';
+import { jsonLdToString, organizationLd, articleLd, courseLd, itemListLd, faqLd, SAME_AS, pageTitle, MAX_TITLE_CHARS, quizLd } from './seo';
 
 describe('jsonLdToString', () => {
   it('escapes < to avoid </script> injection', () => {
@@ -104,5 +104,80 @@ describe('seo structured-data builders', () => {
     expect(ld.numberOfItems).toBe(2);
     expect(ld.itemListElement[0].position).toBe(1);
     expect(ld.itemListElement[1].url).toBe('https://www.profedeeconomia.es/a/libro/02/');
+  });
+});
+
+describe('pageTitle — length-aware brand suffix (§5.7)', () => {
+  it('appends the brand when the title has room', () => {
+    expect(pageTitle('Juegos')).toBe('Juegos — profedeeconomia');
+  });
+
+  it('drops the brand when appending it would overflow the display budget', () => {
+    const long = 'Corrige el CV imposible: encuentra y arregla los 15 errores';
+    expect(long.length + ' — profedeeconomia'.length).toBeGreaterThan(MAX_TITLE_CHARS);
+    expect(pageTitle(long)).toBe(long);
+  });
+
+  it('never emits a title longer than the budget purely because of the brand', () => {
+    for (let n = 1; n <= 120; n++) {
+      const t = 'x'.repeat(n);
+      const out = pageTitle(t);
+      expect(out === t || out.length <= MAX_TITLE_CHARS).toBe(true);
+    }
+  });
+
+  it('respects an explicit opt-out even when the brand would fit', () => {
+    expect(pageTitle('Juegos', false)).toBe('Juegos');
+  });
+
+  it('does not double the brand on a title that already ends with it', () => {
+    expect(pageTitle('Algo — profedeeconomia')).toBe('Algo — profedeeconomia');
+  });
+});
+
+describe('quizLd — Education Q&A (§5.5)', () => {
+  const base = { name: 'Test · Unidad 3', about: 'DAFO', educationalLevel: '4.º ESO', path: '/fopp-4eso/tests/03/' };
+
+  it('maps a multiple-choice question to one accepted and the rest suggested', () => {
+    const ld = quizLd({
+      ...base,
+      questions: [
+        { tipo: 'opcion-multiple', enunciado: '¿Qué es el **DAFO**?', opciones: ['Mal', 'Bien', 'Peor'], correcta: 1, explicacion: 'Porque *sí*.' },
+      ],
+    })!;
+    expect(ld['@type']).toBe('Quiz');
+    const q = ld.hasPart[0] as Record<string, any>;
+    expect(q.eduQuestionType).toBe('Multiple choice');
+    expect(q.text).toBe('¿Qué es el DAFO?'); // Markdown stripped
+    expect(q.acceptedAnswer.text).toBe('Bien');
+    expect(q.acceptedAnswer.answerExplanation.text).toBe('Porque sí.');
+    expect(q.suggestedAnswer.map((s: any) => s.text)).toEqual(['Mal', 'Peor']);
+  });
+
+  it('renders true/false in the page language', () => {
+    const es = quizLd({ ...base, questions: [{ tipo: 'verdadero-falso', enunciado: 'X', correcta: true }] })!;
+    expect((es.hasPart[0] as any).acceptedAnswer.text).toBe('Verdadero');
+    const ca = quizLd({ ...base, locale: 'ca', questions: [{ tipo: 'verdadero-falso', enunciado: 'X', correcta: false }] })!;
+    expect((ca.hasPart[0] as any).acceptedAnswer.text).toBe('Fals');
+    expect(ca.inLanguage).toBe('ca-ES');
+  });
+
+  it('carries the unit on a numeric answer', () => {
+    const ld = quizLd({ ...base, questions: [{ tipo: 'numerico', enunciado: 'X', respuesta: 12, unidad: '€' }] })!;
+    expect((ld.hasPart[0] as any).acceptedAnswer.text).toBe('12 €');
+    expect((ld.hasPart[0] as any).eduQuestionType).toBe('Flashcard');
+  });
+
+  it('skips matching questions, which have no single answer string', () => {
+    expect(quizLd({ ...base, questions: [{ tipo: 'relacionar', enunciado: 'X' }] })).toBeNull();
+  });
+
+  it('drops a multiple-choice question whose correct index is out of range', () => {
+    expect(quizLd({ ...base, questions: [{ tipo: 'opcion-multiple', enunciado: 'X', opciones: ['a'], correcta: 7 }] })).toBeNull();
+  });
+
+  it('points at the Valencian URL on a ca page', () => {
+    const ld = quizLd({ ...base, locale: 'ca', questions: [{ tipo: 'numerico', enunciado: 'X', respuesta: 1 }] })!;
+    expect(ld.url).toContain('/ca/fopp-4eso/tests/03/');
   });
 });
