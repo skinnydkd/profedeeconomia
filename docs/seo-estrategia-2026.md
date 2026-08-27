@@ -290,9 +290,23 @@ Resultat al build: **de 684 a 0 pàgines indexables** amb marca sobrant (els 61 
 
 Queda un residu que **no** és cosa del sufix: el 59% dels títols indexables encara passa dels 60 caràcters pel títol mateix. Això ja és feina d'autoria, títol a títol, no de codi.
 
-### 5.8 `/ca/` com a actiu diferencial — **fase 2**
+### 5.8 `/ca/` com a actiu diferencial — ✅ **fet, i tampoc era el que semblava**
 
-80 URLs fan 745 impressions amb un CTR del 4,97%, per damunt de la mitjana del lloc. Econosublime hi té dos PDFs de 2021. Amb el currículum valencià (Taller 3r ESO, EEAE, GPE) ja cobert en castellà, completar el `/ca/` és terreny sense ningú.
+80 URLs fan 745 impressions amb un CTR del 4,97%, per damunt de la mitjana del lloc. Econosublime hi té dos PDFs de 2021.
+
+> **Correcció.** Este apartat parlava de «completar el `/ca/`» com a feina de fase 2. **El contingut ja està complet**: 786 fitxers ES i 786 germans CA, **100% de paritat, cap fitxer ES sense traduir**, a totes les col·leccions. El que fallava era una altra cosa.
+
+**Defecte 1 — mig lloc fora del sitemap.** El `sitemap.xml` tenia 839 entrades per a 1.678 pàgines indexables: **totes les ES, cap de les 840 CA**. El *fallback rewrite* d'i18n d'Astro genera les rutes `/ca/` sense registrar-les com a rutes, així que `@astrojs/sitemap` no les veu mai. Declarar-li `i18n` no serveix de res — només pot anotar pàgines que ja ha descobert (provat: 0 canvis).
+
+Arreglat amb un *hook* d'`astro:build:done` que replica cada URL a la seua bessona `/ca/` **només quan eixa pàgina existeix de veritat al disc** (res d'endevinar) i dona a tots dos membres les alternates `xhtml:link` que Google espera. El `<lastmod>` es preserva. La lògica viu a `scripts/sitemap-i18n.mjs`, com a funció pura sobre la cadena XML, per poder provar-la sense un build.
+
+Resultat: **de 839 a 1.678 entrades, del 50% al 100% de cobertura**, 0 duplicats, 1.678 alternates per idioma. L'única pàgina que en queda fora és `/ca/404/`, que no hi ha d'estar.
+
+**Defecte 2 — els hubs valencians parlaven castellà.** El bloc de preguntes freqüents d'un hub `lang="ca"` es renderitzava sencer en castellà, encapçalament inclòs («Preguntas frecuentes»), i emetia el `FAQPage` JSON-LD també en castellà. És la fuga de rellevància més directa que pot tindre una pàgina valenciana. `subjectFaqs()` ara rep la locale i l'assignatura ja localitzada; el `FaqHub` localitza l'encapçalament. Comprovat al build: **0 caràcters `¿` als blocs FAQ de `/ca/`**.
+
+**El que queda de veritat.** Els *hubs* CA posicionen bé (`/ca/eco-4eso/` a la 6,45 amb un 18,37% de CTR; `/ca/taller-eco-3eso/` a la 5,29 amb un 42,86%). Les unitats de llibre CA que van mal ho fan sobre termes generals en català (`autoconeixement` 68 impr pos 43,7; `emprenedoria` 62 impr pos 33,9), on la competència és de llocs catalans consolidats. Això és autoritat i temps, no un defecte tècnic.
+
+**Un candidat per a més avant:** els *slugs* de les URL `/ca/` són en castellà (`/ca/fopp-4eso/libro/01-autoconocimiento-identidad/` per a la consulta `autoconeixement`). Traduir-los és un canvi estructural amb redireccions i no s'ha tocat.
 
 ---
 
