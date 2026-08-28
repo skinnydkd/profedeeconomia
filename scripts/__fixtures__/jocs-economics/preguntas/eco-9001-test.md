@@ -12,4 +12,4 @@ estado: publicado
 font: "fixture"
 ---
 
-Cos no usat.
+Quin és l'enunciat de prova d'economia?

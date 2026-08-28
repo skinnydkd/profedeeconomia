@@ -37,6 +37,7 @@ describe('build-jocs-bank', () => {
     expect(eco.explicacion).toBe('Explicació econometria de test.');
     expect(eco.dificultat).toBe(2.5);
     expect(eco.categoria).toBe('economia');
+    expect(eco.enunciado).toBe("Quin és l'enunciat de prova d'economia?");
   });
 
   it('excludes borrador entries from both manifest and bank', () => {
