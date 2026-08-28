@@ -33,7 +33,14 @@ const copy = {
   es: {
     inicio: 'Inicio', libro: 'Libro',
     kicker: `${a.shortLabel} · Libro`,
-    descripcion: `Las unidades del libro de ${a.title}.`,
+    // Search-facing. "libro … pdf gratis" is the highest-converting intent on
+    // the site (20-25% CTR); the promise has to be in the snippet, not behind
+    // a click. See docs/seo-estrategia-2026.md §5.2.
+    metaTitle: `Libro de ${a.seoName} en PDF gratis`,
+    descripcion: (n: number) =>
+      n === 0
+        ? `El libro de ${a.title} para ${a.level}, en preparación.`
+        : `Descarga gratis en PDF el libro completo de ${a.title} (${a.level}) o léelo online por unidades. ${n} unidades del currículo LOMLOE.`,
     vacio: 'Las unidades publicadas aparecerán aquí a medida que se vayan completando.',
     unidad: (n: number) => `${n} ${n === 1 ? 'unidad publicada' : 'unidades publicadas'}.`,
     descargar: 'Descargar libro completo',
@@ -45,7 +52,11 @@ const copy = {
   ca: {
     inicio: 'Inici', libro: 'Llibre',
     kicker: `${a.shortLabel} · Llibre`,
-    descripcion: `Les unitats del llibre de ${a.title}.`,
+    metaTitle: `Llibre de ${a.seoName} en PDF gratis`,
+    descripcion: (n: number) =>
+      n === 0
+        ? `El llibre de ${a.title} per a ${a.level}, en preparació.`
+        : `Descarrega gratis en PDF el llibre complet de ${a.title} (${a.level}) o llig-lo en línia per unitats. ${n} unitats del currículum LOMLOE.`,
     vacio: 'Les unitats publicades apareixeran ací a mesura que es completen.',
     unidad: (n: number) => `${n} ${n === 1 ? 'unitat publicada' : 'unitats publicades'}.`,
     descargar: 'Descarregar llibre complet',
@@ -87,8 +98,9 @@ const jsonLd = [
 ---
 
 <BaseLayout
-  title={`${copy.libro} — ${a.shortLabel}`}
-  description={copy.descripcion}
+  title={copy.metaTitle}
+  brandSuffix={false}
+  description={copy.descripcion(units.length)}
   jsonLd={jsonLd}
   contentLang={locale}
 >

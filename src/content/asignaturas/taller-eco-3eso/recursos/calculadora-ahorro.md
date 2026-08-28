@@ -2,6 +2,7 @@
 asignatura: taller-eco-3eso
 unidad_relacionada: 5
 title: "Calculadora de ahorro e interés compuesto"
+seoTitle: "Calculadora de ahorro: cuánto puedes ahorrar cada mes"
 descripcion: "Descubre cuánto puede crecer tu ahorro con el tiempo y la fuerza del interés compuesto: pequeñas cantidades constantes se convierten en mucho."
 tipo: calculadora
 componente: InteresCompuesto

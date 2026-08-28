@@ -2,6 +2,7 @@
 asignatura: eco-4eso
 unidad_relacionada: 8
 title: "Calculadora de nómina española"
+seoTitle: "Calculadora de nómina: de bruto a neto con IRPF y SS"
 descripcion: "Introduce tu salario bruto mensual y descubre tu nómina paso a paso: IRPF estimado, cotización a la Seguridad Social y salario neto."
 tipo: calculadora
 componente: NominaESO

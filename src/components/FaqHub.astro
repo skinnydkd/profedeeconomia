@@ -5,16 +5,19 @@
  * JSON-LD is emitted from the page via faqLd() (src/lib/seo.ts).
  */
 import type { Faq } from '@/lib/faq';
+import { getLocale } from '@/i18n/locale';
 
 interface Props {
   faqs: Faq[];
 }
 const { faqs } = Astro.props;
+const locale = getLocale(Astro.currentLocale);
+const heading = locale === 'ca' ? 'Preguntes freqüents' : 'Preguntas frecuentes';
 ---
 
 <section class="faq">
   <div class="container">
-    <h2>Preguntas frecuentes</h2>
+    <h2>{heading}</h2>
     <dl class="faq-list">
       {faqs.map((f) => (
         <div class="faq-item">

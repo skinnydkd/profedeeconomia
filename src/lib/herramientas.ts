@@ -83,6 +83,38 @@ export function gruposHerramientas() {
 }
 
 /** Derive, per componente, the {asignatura, unidad} pairs from the recursos that embed it. */
+/**
+ * Path of the subject resource page that duplicates this tool, when there is
+ * exactly one. The two render the same island over 81-87% identical text and
+ * they compete: measured on the August 2026 build, the toolbox copy sat at
+ * position 37-41 while its subject twin sat at 6-18, on the same six inbound
+ * links each. Where the twin is unique, the toolbox page canonicalises to it
+ * and the signals consolidate. Where several subjects embed the same tool
+ * (nómina, punto muerto, VAN/TIR…) there is no single target, so the toolbox
+ * page stays self-canonical and the duplication is left for a content
+ * decision. See docs/seo-estrategia-2026.md §5.6.
+ */
+export function recursoCanonicoPorComponente(
+  recursos: { id: string; data: { componente?: string; asignatura: string } }[]
+): Map<string, string> {
+  const byComponente = new Map<string, string[]>();
+  for (const r of recursos) {
+    const { componente, asignatura } = r.data;
+    if (!componente) continue;
+    const slug = r.id.split('/').pop()?.replace(/\.mdx?$/, '') ?? '';
+    if (!slug) continue;
+    const paths = byComponente.get(componente) ?? [];
+    const path = `/${asignatura}/recursos/${slug}/`;
+    if (!paths.includes(path)) paths.push(path);
+    byComponente.set(componente, paths);
+  }
+  const unique = new Map<string, string>();
+  for (const [componente, paths] of byComponente) {
+    if (paths.length === 1) unique.set(componente, paths[0]);
+  }
+  return unique;
+}
+
 export function unidadesPorComponente(
   recursos: { data: { componente?: string; asignatura: string; unidad_relacionada?: number } }[]
 ): Map<string, { asignatura: string; unidad: number }[]> {

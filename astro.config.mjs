@@ -4,8 +4,12 @@ import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import vercel from '@astrojs/vercel';
 import tailwindcss from '@tailwindcss/vite';
-import { readdirSync, readFileSync, existsSync } from 'node:fs';
+import { readdirSync, readFileSync, existsSync, writeFileSync } from 'node:fs';
 import matter from 'gray-matter';
+import { mirrorSitemapLocale } from './scripts/sitemap-i18n.mjs';
+
+/** Canonical origin. Kept in sync with SITE.url in src/lib/seo.ts. */
+const SITE_URL = 'https://www.profedeeconomia.es';
 
 // Build a map of book-unit URL path → ISO date for the sitemap's <lastmod>.
 // Derived from the libro MDX frontmatter (actualizado_en, falling back to
@@ -32,8 +36,39 @@ function buildLibroLastmod() {
 const LIBRO_LASTMOD = buildLibroLastmod();
 
 // https://astro.build/config
+
+// Adds the /ca/ half of the sitemap and the hreflang alternates. The mirroring
+// itself lives in scripts/sitemap-i18n.mjs so it can be unit-tested; this hook
+// only supplies the real filesystem check and writes the result back.
+// See docs/seo-estrategia-2026.md §5.8.
+function sitemapI18nAlternates({ site, localePrefix = 'ca' }) {
+  return {
+    name: 'sitemap-i18n-alternates',
+    hooks: {
+      'astro:build:done': ({ dir, logger }) => {
+        const files = readdirSync(dir).filter((f) => /^sitemap-\d+\.xml$/.test(f));
+        if (files.length === 0) {
+          logger.warn('no sitemap-N.xml found — nothing to mirror');
+          return;
+        }
+        const exists = (p) => existsSync(new URL(`.${p}index.html`, dir));
+        for (const file of files) {
+          const target = new URL(file, dir);
+          const { xml, mirrored } = mirrorSitemapLocale(readFileSync(target, 'utf8'), {
+            site,
+            localePrefix,
+            exists,
+          });
+          writeFileSync(target, xml);
+          logger.info(`${file}: mirrored ${mirrored} URLs into /${localePrefix}/ with hreflang alternates`);
+        }
+      },
+    },
+  };
+}
+
 export default defineConfig({
-  site: 'https://www.profedeeconomia.es',
+  site: SITE_URL,
 
   // Fenced code blocks in this project hold economic formulas and fillable
   // plantillas, not source code. Shiki's default github-dark theme paints them
@@ -76,6 +111,7 @@ export default defineConfig({
         return item;
       },
     }),
+    sitemapI18nAlternates({ site: SITE_URL }),
   ],
 
   // i18n: Spanish is the default (root URLs); Valencian lives under /ca/*.
