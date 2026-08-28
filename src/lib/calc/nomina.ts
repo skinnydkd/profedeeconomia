@@ -9,11 +9,12 @@
  *  - Contingencias comunes:        4,70 %
  *  - Desempleo (indefinido):       1,55 %  ·  (temporal): 1,60 %
  *  - Formación profesional:        0,10 %
- *  - MEI (Mecanismo de Equidad Intergeneracional), parte trabajador: 0,13 %
+ *  - MEI (Mecanismo de Equidad Intergeneracional), parte trabajador: 0,15 %
  *
- * The MEI worker share rises each year by 0,01 pp (0,12 % in 2025 ->
- * 0,13 % in 2026), per the official MEI schedule. If the TGSS publishes a
- * different 2026 figure, update the constant below; the maths is unchanged.
+ * The MEI total rises 0,10 pp per year (0,80 % in 2025 -> 0,90 % in 2026)
+ * and is split 5/6 employer, 1/6 worker, so the worker share is 0,15 % in
+ * 2026 (0,13 % in 2025). If the TGSS publishes a different figure, update
+ * the constant below; the maths is unchanged.
  *
  * Simplifications (teaching tool): contribution bases equal the gross salary
  * (no min/max base capping), and the IRPF withholding equals the annual IRPF
@@ -31,7 +32,7 @@ export const COTIZACIONES_TRABAJADOR_2026 = {
   desempleoIndefinido: 0.0155,
   desempleoTemporal: 0.016,
   formacionProfesional: 0.001,
-  mei: 0.0013,
+  mei: 0.0015,
 } as const;
 
 export interface OpcionesNomina {
