@@ -7,6 +7,7 @@ import tailwindcss from '@tailwindcss/vite';
 import { readdirSync, readFileSync, existsSync, writeFileSync } from 'node:fs';
 import matter from 'gray-matter';
 import { mirrorSitemapLocale } from './scripts/sitemap-i18n.mjs';
+import stripDeckBlocks from './src/lib/remark/strip-deck-blocks.mjs';
 
 /** Canonical origin. Kept in sync with SITE.url in src/lib/seo.ts. */
 const SITE_URL = 'https://www.profedeeconomia.es';
@@ -78,6 +79,9 @@ export default defineConfig({
   // by each context's own CSS.
   markdown: {
     syntaxHighlight: false,
+    // ```deck fences are slide-authoring data for the deck builder, not book
+    // content — strip them from every rendered page (see lib/slides/authored.ts).
+    remarkPlugins: [stripDeckBlocks],
   },
 
   // Hybrid output: most pages are static-prerendered (default), only routes

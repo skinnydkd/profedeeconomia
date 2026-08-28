@@ -9,7 +9,18 @@ export type Slide =
   | { tipo: 'data'; numero: string; label?: string; title?: string; detalle?: string }
   | { tipo: 'quote'; texto: string; fuente?: string }
   | { tipo: 'exercise'; title: string; enunciado: string; pasos?: string[] }
+  // Authored-deck archetypes (see lib/slides/authored.ts). They exist so a
+  // slide can carry real study density — definitions, comparisons, data,
+  // images, self-check questions — instead of one condensed paragraph.
+  | { tipo: 'terms'; eyebrow?: string; title?: string; terms: { t: string; d: string }[] }
+  | { tipo: 'table'; eyebrow?: string; title?: string; head: string[]; rows: string[][]; caption?: string }
+  | { tipo: 'split'; eyebrow?: string; title?: string; left: SplitCol; right: SplitCol }
+  | { tipo: 'list'; eyebrow?: string; title?: string; items: string[]; ordered?: boolean }
+  | { tipo: 'figure'; src: string; alt: string; title?: string; caption?: string; credit?: string; meta?: unknown }
+  | { tipo: 'quiz'; eyebrow?: string; pregunta: string; opciones: string[]; correcta: number; explicacion?: string }
   | { tipo: 'close'; title: string; nota?: string };
+
+export interface SplitCol { h?: string; items: string[] }
 
 export type SlideTipo = Slide['tipo'];
 
