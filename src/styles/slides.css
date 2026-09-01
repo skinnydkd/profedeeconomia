@@ -83,6 +83,69 @@
 .s-exercise ol { margin: 0; padding-left: 4cqw; font-family: var(--font-sans); font-size: 3cqh; line-height: 1.4; color: var(--color-ink); display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 6; overflow: hidden; }
 .s-exercise ol li::marker { color: var(--accent); font-family: var(--font-mono); }
 
+/* Shared heading for the authored dense archetypes */
+.s-terms h2, .s-table h2, .s-split h2, .s-list h2, .s-quiz h2 {
+  font-family: var(--font-serif); font-weight: 500; font-size: 5cqh; line-height: 1.08;
+  margin: 1.2cqh 0 2.6cqh; max-width: 30ch;
+  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden;
+}
+
+/* TERMS — definition cards, 2-4 per slide */
+.s-terms .grid { display: grid; gap: 2cqh 2cqw; grid-template-columns: 1fr 1fr; flex: 1 1 0; min-height: 0; align-content: start; }
+.s-terms .grid[data-n="2"] { grid-template-columns: 1fr 1fr; }
+.s-terms .grid[data-n="3"] { grid-template-columns: repeat(3, 1fr); }
+.s-terms .term { background: var(--color-paper); border: 1px solid var(--color-line); border-radius: 8px; padding: 2.4cqh 2cqw; overflow: hidden; }
+.s-terms .term__t { font-family: var(--font-serif); font-weight: 600; font-size: 3.4cqh; color: var(--accent-ink); margin-bottom: 1cqh; }
+.s-terms .term__d { font-family: var(--font-sans); font-size: 2.7cqh; line-height: 1.42; color: var(--color-ink-soft); display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 5; overflow: hidden; }
+
+/* TABLE — editorial comparison table */
+.s-table table { width: 100%; border-collapse: collapse; font-family: var(--font-sans); table-layout: fixed; }
+.s-table thead th { font-family: var(--font-mono); font-size: 2.2cqh; letter-spacing: .1em; text-transform: uppercase; color: var(--accent-ink); text-align: left; padding: 0 1cqw 1.2cqh 0; border-bottom: .45cqh solid var(--accent); }
+.s-table tbody th { font-family: var(--font-serif); font-weight: 600; font-size: 2.9cqh; text-align: left; padding: 1.6cqh 1cqw 1.6cqh 0; color: var(--color-ink); vertical-align: top; }
+.s-table tbody td { font-size: 2.8cqh; line-height: 1.35; padding: 1.6cqh 1cqw 1.6cqh 0; color: var(--color-ink-soft); vertical-align: top; }
+.s-table tbody tr + tr th, .s-table tbody tr + tr td { border-top: 1px solid var(--color-line-soft); }
+.s-table .cap { font-family: var(--font-serif); font-style: italic; font-size: 2.5cqh; color: var(--color-ink-mute); margin-top: auto; }
+
+/* SPLIT — two labelled columns with a soft central rail */
+.s-split .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 0 5cqw; flex: 1 1 0; min-height: 0; position: relative; }
+.s-split .cols::before { content: ''; position: absolute; top: 0; bottom: 2cqh; left: 50%; width: 1px; background: var(--color-line); }
+.s-split .col__h { font-family: var(--font-mono); font-size: 2.4cqh; letter-spacing: .12em; text-transform: uppercase; color: var(--accent-ink); margin-bottom: 1.6cqh; }
+.s-split ul { margin: 0; padding: 0; list-style: none; }
+.s-split li { font-family: var(--font-sans); font-size: 2.9cqh; line-height: 1.4; color: var(--color-ink-soft); padding-left: 2.2cqw; position: relative; margin-bottom: 1.5cqh; }
+.s-split li::before { content: '·'; position: absolute; left: 0; color: var(--color-mustard); font-weight: 700; }
+
+/* LIST — big process/checklist */
+.s-list .items { margin: 0; padding: 0; flex: 1 1 0; min-height: 0; }
+.s-list ul.items { list-style: none; }
+.s-list ul.items li { padding-left: 2.4cqw; position: relative; }
+.s-list ul.items li::before { content: '·'; position: absolute; left: 0; color: var(--color-mustard); font-weight: 700; }
+.s-list ol.items { list-style: none; counter-reset: deck-item; }
+.s-list ol.items li { padding-left: 5cqw; position: relative; counter-increment: deck-item; }
+.s-list ol.items li::before { content: counter(deck-item, decimal-leading-zero); position: absolute; left: 0; font-family: var(--font-mono); font-size: 2.6cqh; color: var(--accent-ink); top: .5cqh; }
+.s-list .items li { font-family: var(--font-sans); font-size: 3.3cqh; line-height: 1.4; color: var(--color-ink); margin-bottom: 2.2cqh; max-width: 58ch; }
+
+/* FIGURE — image as protagonist, editorial strip below */
+.s-figure { background: var(--color-ink); display: grid; grid-template-rows: 1fr auto; }
+/* min-width/height 0: a grid track otherwise grows to the image's intrinsic
+   size (4000px+ originals) and blows the 16:9 box sideways. */
+.s-figure .img { min-height: 0; min-width: 0; overflow: hidden; }
+.s-figure .img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.s-figure .img .missing { color: var(--color-bg); font-family: var(--font-mono); font-size: 2.6cqh; display: flex; align-items: center; justify-content: center; height: 100%; }
+.s-figure .strip { background: var(--color-bg); display: flex; align-items: baseline; justify-content: space-between; gap: 3cqw; padding: 2.6cqh 7cqw 5.4cqh; }
+.s-figure .strip__title { font-family: var(--font-serif); font-weight: 600; font-size: 3.4cqh; color: var(--color-ink); }
+.s-figure .strip__cap { font-family: var(--font-serif); font-style: italic; font-size: 2.9cqh; line-height: 1.3; color: var(--color-ink-soft); max-width: 60ch; }
+.s-figure .strip__credit { font-family: var(--font-mono); font-size: 1.9cqh; color: var(--color-ink-mute); white-space: nowrap; }
+.s-figure .slide__foot--figure { color: var(--color-ink-mute); }
+
+/* QUIZ — self-check question; correct option marked with a full accent border */
+.s-quiz .opts { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 1.6cqh 2cqw; }
+.s-quiz .opt { display: flex; gap: 1.6cqw; align-items: flex-start; border: .3cqh solid var(--color-line); border-radius: 8px; padding: 1.8cqh 1.8cqw; background: var(--color-paper); }
+.s-quiz .opt--ok { border-color: var(--accent); }
+.s-quiz .opt__key { font-family: var(--font-mono); font-size: 2.6cqh; color: var(--accent-ink); }
+.s-quiz .opt__text { font-family: var(--font-sans); font-size: 2.7cqh; line-height: 1.35; color: var(--color-ink); display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden; }
+.s-quiz .expl { font-family: var(--font-sans); font-size: 2.6cqh; line-height: 1.4; color: var(--color-ink-soft); margin: 2.2cqh 0 0; max-width: 70ch; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden; }
+.s-quiz .expl strong { color: var(--accent-ink); }
+
 /* CLOSE */
 .s-close { background: var(--color-ink); color: var(--color-bg); }
 .s-close .slide__pad { justify-content: center; align-items: flex-start; }

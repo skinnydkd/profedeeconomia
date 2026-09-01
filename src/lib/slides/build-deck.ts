@@ -6,11 +6,12 @@
  * bibliography) are dropped from the deck — they live in the book.
  */
 import { parseMdx, getText, getAttr, firstJsxChildName, type MdxNode } from './ast.ts';
+import { extractAuthoredYaml, parseAuthoredSlides } from './authored.ts';
 import type { Slide, Deck } from './types.ts';
 
 const DROP = new Set([
   'PistaEbau', 'MirarFora', 'RetoEtapa', 'Steps', 'VocesDesacuerdo',
-  'Bibliography', 'Figure', 'HerramientaIsland',
+  'Bibliography', 'HerramientaIsland',
 ]);
 const CONCEPT_COMPONENTS = new Set(['Callout', 'Curiosity', 'RealExample', 'VuelveAlCaso']);
 
@@ -151,6 +152,22 @@ function condenseDeck(slides: Slide[]): Slide[] {
   return out;
 }
 
+/** Book `<Figure src={import('@assets/libro/…')} …/>` → deck figure slide. */
+function figureFrom(node: MdxNode): Slide | null {
+  const srcAttr = node.attributes?.find((a) => a.name === 'src');
+  const srcExpr = typeof srcAttr?.value === 'object' && srcAttr.value ? String(srcAttr.value.value ?? '') : String(srcAttr?.value ?? '');
+  const m = srcExpr.match(/@assets\/libro\/([^'")]+\.(?:jpg|jpeg|png|webp))/i);
+  if (!m) return null;
+  const alt = getAttr(node, 'alt');
+  const caption = getAttr(node, 'caption');
+  if (!alt) return null;
+  return {
+    tipo: 'figure', src: m[1], alt,
+    caption: caption ? condense(caption).slice(0, 150) : undefined,
+    credit: getAttr(node, 'credit') || undefined,
+  };
+}
+
 export function buildDeck(rawMdx: string, locale: DeckLocale = 'es'): Deck {
   const L = LABELS[locale];
   const { frontmatter: fm, ast } = parseMdx(rawMdx);
@@ -163,6 +180,21 @@ export function buildDeck(rawMdx: string, locale: DeckLocale = 'es'): Deck {
     title: String(fm.title ?? L.unidad),
     subtitle: fm.lema ? String(fm.lema).replace(/\s+/g, ' ').trim() : undefined,
   });
+
+  // Authored mode: a `{/* deck … */}` block replaces the auto skeleton
+  // entirely (cover and close stay automatic, so authors never repeat them).
+  const authoredYaml = extractAuthoredYaml(ast);
+  if (authoredYaml) {
+    const authored = parseAuthoredSlides(authoredYaml);
+    slides.push(...authored);
+    slides.push({ tipo: 'close', title: L.cierreTitulo, nota: L.cierreNota });
+    return {
+      asignatura: String(fm.asignatura ?? ''),
+      unidad: Number(fm.unidad ?? 0),
+      title: String(fm.title ?? ''),
+      slides,
+    };
+  }
 
   // H2 sections that are book apparatus, not presentation content.
   const DROP_SECTION = /glosario|para profundizar|preguntas para reflexion|conexi[oó]n con el proyecto|bibliograf/i;
@@ -227,6 +259,9 @@ export function buildDeck(rawMdx: string, locale: DeckLocale = 'es'): Deck {
         }
       } else if (name === 'SolvedExercise') {
         slides.push(exerciseFrom(node, L));
+      } else if (name === 'Figure') {
+        const fig = figureFrom(node);
+        if (fig) slides.push(fig);
       } else if (name === 'KeyTakeaways') {
         slides.push({ tipo: 'concept', eyebrow: L.loEsencial, title: getAttr(node, 'title') || L.loEsencial, body: condense(getText(node)) });
       } else if (CONCEPT_COMPONENTS.has(name)) {

@@ -2,7 +2,7 @@
 import { getCollection } from 'astro:content';
 import { readFileSync, existsSync } from 'node:fs';
 import { resolve } from 'node:path';
-import type { GetStaticPaths } from 'astro';
+import type { GetStaticPaths, ImageMetadata } from 'astro';
 import Deck from '@components/slides/Deck.astro';
 import { buildDeck } from '@/lib/slides/build-deck';
 import { getLocale } from '@/i18n/locale';
@@ -32,6 +32,22 @@ const candidates =
 const filePath = candidates.map((f) => resolve(dir, f)).find((p) => existsSync(p))!;
 const raw = readFileSync(filePath, 'utf8');
 const deck = buildDeck(raw, locale);
+
+// Resolve figure-slide images against the book's asset tree. A dangling path
+// is a build error on purpose: a deck that silently drops its images is the
+// exact failure mode this authored layer exists to kill.
+const LIBRO_IMAGES = import.meta.glob<{ default: ImageMetadata }>(
+  '/src/assets/libro/**/*.{jpg,jpeg,png,webp}',
+);
+for (const s of deck.slides) {
+  if (s.tipo !== 'figure') continue;
+  const key = `/src/assets/libro/${s.src}`;
+  const loader = LIBRO_IMAGES[key];
+  if (!loader) {
+    throw new Error(`[deck ${asignatura}/${unidad}] figure "${s.src}" no existe bajo src/assets/libro/`);
+  }
+  s.meta = (await loader()).default;
+}
 
 const copy = {
   es: { diapositivas: 'Diapositivas' },
