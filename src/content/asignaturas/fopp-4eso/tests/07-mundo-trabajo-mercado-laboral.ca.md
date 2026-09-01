@@ -70,7 +70,7 @@ preguntas:
       - "Model productiu turístic i estacional que infla l'ocupació a l'estiu i la desploma a l'hivern."
       - "Falta de jóvens espanyols disposats a treballar més de 30 hores setmanals."
     correcta: 3
-    explicacion: "Les tres primeres (dualitat contractual, mismatch educatiu i estacionalitat turística), junt amb un SMI alt enfront de la productivitat juvenil baixa, són les **quatre causes estructurals** identificades en els informes oficials. La quarta opció és un tòpic sense respatler en les dades: els jóvens espanyols no treballen menys hores que els seus homòlegs europeus quan aconseguixen treball."
+    explicacion: "Les tres primeres (dualitat contractual, mismatch educatiu i estacionalitat turística), junt amb un SMI alt enfront de la productivitat juvenil baixa, són les **quatre causes estructurals** identificades en els informes oficials. La quarta opció és un tòpic sense suport en les dades: els jóvens espanyols no treballen menys hores que els seus homòlegs europeus quan aconseguixen treball."
   - tipo: verdadero-falso
     enunciado: "Un estudiant de 20 anys que estudia a temps complet i no busca treball es classifica en la EPA com a aturat."
     correcta: false
