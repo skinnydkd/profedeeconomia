@@ -23,6 +23,18 @@ import { COPY as GeneradorCVEuropass } from './GeneradorCVEuropass';
 import { COPY as ADASSimulator } from './ADASSimulator';
 import { COPY as TasasEPA } from './TasasEPACalc';
 import { COPY as MatrizDecision } from './MatrizDecision';
+import { COPY as FPP } from './FPPCalc';
+import { COPY as Externalidad } from './ExternalidadCalc';
+import { COPY as MultiplicadorBancario } from './MultiplicadorBancarioCalc';
+import { COPY as VentajaComparativa } from './VentajaComparativaCalc';
+import { COPY as CuentaResultados } from './CuentaResultadosCalc';
+import { COPY as CosteContratacion } from './CosteContratacionCalc';
+import { COPY as MarketingCliente } from './MarketingClienteCalc';
+import { COPY as Tesoreria } from './TesoreriaCalc';
+import { COPY as TamanoMercado } from './TamanoMercadoCalc';
+import { COPY as CompraInteligente } from './CompraInteligenteCalc';
+import { COPY as EmbudoValidacion } from './EmbudoValidacionCalc';
+import { COPY as Semana168 } from './Semana168Calc';
 
 /**
  * Every localized island exports a `COPY = { es, ca }`. This guard fails when a
@@ -56,6 +68,18 @@ const ISLANDS: [string, { es: Record<string, unknown>; ca: Record<string, unknow
   ['ADASSimulator', ADASSimulator],
   ['TasasEPACalc', TasasEPA],
   ['MatrizDecision', MatrizDecision],
+  ['FPPCalc', FPP],
+  ['ExternalidadCalc', Externalidad],
+  ['MultiplicadorBancarioCalc', MultiplicadorBancario],
+  ['VentajaComparativaCalc', VentajaComparativa],
+  ['CuentaResultadosCalc', CuentaResultados],
+  ['CosteContratacionCalc', CosteContratacion],
+  ['MarketingClienteCalc', MarketingCliente],
+  ['TesoreriaCalc', Tesoreria],
+  ['TamanoMercadoCalc', TamanoMercado],
+  ['CompraInteligenteCalc', CompraInteligente],
+  ['EmbudoValidacionCalc', EmbudoValidacion],
+  ['Semana168Calc', Semana168],
 ];
 
 const isRecord = (v: unknown): v is Record<string, unknown> =>

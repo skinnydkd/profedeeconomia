@@ -105,6 +105,65 @@ export const HERRAMIENTAS_CA: Partial<Record<string, HerramientaCA>> = {
     title: 'Matriu de decisió ponderada',
     descripcion: 'Compara opcions amb criteris explícits i amb la mateixa vara.',
   },
+  'frontera-posibilidades': {
+    title: 'Frontera de possibilitats de producció',
+    descripcion:
+      "Escassetat i cost d'oportunitat: punts eficients, ineficients i inabastables, i el desplaçament per creixement.",
+  },
+  'externalidad-impuesto': {
+    title: 'Externalitats i impost pigovià',
+    descripcion:
+      "Equilibri de mercat enfront d'òptim social, impost o subvenció correctora i pèrdua d'eficiència.",
+  },
+  'multiplicador-bancario': {
+    title: 'Creació de diners bancaris',
+    descripcion: "Quants diners crea el sistema bancari a partir d'un depòsit, ronda a ronda.",
+  },
+  'ventaja-comparativa': {
+    title: 'Avantatge comparatiu i comerç',
+    descripcion:
+      "Costos d'oportunitat de dos països, qui s'especialitza en què i el rang de la relació d'intercanvi.",
+  },
+  'cuenta-resultados': {
+    title: 'Compte de resultats escalonat',
+    descripcion:
+      "De la xifra de negocis al resultat de l'exercici, parant en marge brut, EBITDA, BAII i BAI.",
+  },
+  'coste-contratacion': {
+    title: "Cost real d'una contractació",
+    descripcion:
+      "El que costa un empleat a l'empresa, el que cobra la persona i la distància entre les dues xifres.",
+  },
+  'cac-ltv': {
+    title: 'Cost de captació i valor del client',
+    descripcion:
+      'CAC, LTV, ràtio entre els dos i mesos que es tarda a recuperar el que s\'ha invertit a captar.',
+  },
+  'prevision-tesoreria': {
+    title: 'Previsió de tresoreria a 12 mesos',
+    descripcion:
+      'Cobraments i pagaments mes a mes, el pitjor moment de caixa i per què el benefici no són els diners disponibles.',
+  },
+  'tamano-mercado': {
+    title: 'Grandària de mercat (TAM, SAM i SOM)',
+    descripcion:
+      'De tota la població als clients que un projecte pot aconseguir de veritat, i quants en fan falta per al seu objectiu.',
+  },
+  'embudo-validacion': {
+    title: 'Embut de validació',
+    descripcion:
+      'Conversió pas a pas d\'un projecte, el pas que més gent perd i el cost de cada venda.',
+  },
+  'compra-inteligente': {
+    title: 'Preu per unitat i cost de pagar a terminis',
+    descripcion:
+      'Compara formats amb la mateixa vara i esbrina quina TAE amaga una quota mensual que sembla xicoteta.',
+  },
+  'semana-168-horas': {
+    title: 'El pressupost de les 168 hores',
+    descripcion:
+      'Repartix les hores d\'una setmana entre son, classes, estudi, esport i pantalles, i mira què ix.',
+  },
 };
 
 /** Overlay the Valencian strings onto a tool when locale is 'ca'. */
