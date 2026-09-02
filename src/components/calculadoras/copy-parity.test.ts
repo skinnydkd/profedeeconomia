@@ -21,6 +21,8 @@ import { COPY as CocheVsAlternativa } from './CocheVsAlternativa';
 import { COPY as PresupuestoUni } from './PresupuestoUni';
 import { COPY as GeneradorCVEuropass } from './GeneradorCVEuropass';
 import { COPY as ADASSimulator } from './ADASSimulator';
+import { COPY as TasasEPA } from './TasasEPACalc';
+import { COPY as MatrizDecision } from './MatrizDecision';
 
 /**
  * Every localized island exports a `COPY = { es, ca }`. This guard fails when a
@@ -52,6 +54,8 @@ const ISLANDS: [string, { es: Record<string, unknown>; ca: Record<string, unknow
   ['PresupuestoUni', PresupuestoUni],
   ['GeneradorCVEuropass', GeneradorCVEuropass],
   ['ADASSimulator', ADASSimulator],
+  ['TasasEPACalc', TasasEPA],
+  ['MatrizDecision', MatrizDecision],
 ];
 
 const isRecord = (v: unknown): v is Record<string, unknown> =>
