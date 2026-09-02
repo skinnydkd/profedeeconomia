@@ -144,6 +144,26 @@ export const HERRAMIENTAS_CA: Partial<Record<string, HerramientaCA>> = {
     descripcion:
       'Cobraments i pagaments mes a mes, el pitjor moment de caixa i per què el benefici no són els diners disponibles.',
   },
+  'tamano-mercado': {
+    title: 'Grandària de mercat (TAM, SAM i SOM)',
+    descripcion:
+      'De tota la població als clients que un projecte pot aconseguir de veritat, i quants en fan falta per al seu objectiu.',
+  },
+  'embudo-validacion': {
+    title: 'Embut de validació',
+    descripcion:
+      'Conversió pas a pas d\'un projecte, el pas que més gent perd i el cost de cada venda.',
+  },
+  'compra-inteligente': {
+    title: 'Preu per unitat i cost de pagar a terminis',
+    descripcion:
+      'Compara formats amb la mateixa vara i esbrina quina TAE amaga una quota mensual que sembla xicoteta.',
+  },
+  'semana-168-horas': {
+    title: 'El pressupost de les 168 hores',
+    descripcion:
+      'Repartix les hores d\'una setmana entre son, classes, estudi, esport i pantalles, i mira què ix.',
+  },
 };
 
 /** Overlay the Valencian strings onto a tool when locale is 'ca'. */

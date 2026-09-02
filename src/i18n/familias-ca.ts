@@ -124,11 +124,11 @@ export const FAMILIAS_HERRAMIENTA_CA: FamiliaOverlay = {
   },
   'finanzas-personales': {
     label: 'Finances personals',
-    intro: 'Nòmina, IRPF, pressupost i decisions de despesa.',
+    intro: 'Nòmina, IRPF, pressupost, compres i crèdit.',
   },
   'orientacion-fp': {
     label: 'Orientació i FP',
-    intro: 'Interessos, itineraris i currículum.',
+    intro: 'Interessos, itineraris, currículum i organització del temps.',
   },
   'estrategia-planificacion': {
     label: 'Estratègia i planificació',
