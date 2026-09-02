@@ -97,6 +97,14 @@ export const HERRAMIENTAS_CA: Partial<Record<string, HerramientaCA>> = {
     title: 'Matriu BCG',
     descripcion: 'Cartera de productes per creixement i quota: estrella, interrogant, vaca i gos.',
   },
+  'tasas-epa': {
+    title: "Les tres taxes de l'EPA",
+    descripcion: "Taxa d'activitat, d'ocupació i d'atur a partir de tres xifres de població.",
+  },
+  'matriz-decision': {
+    title: 'Matriu de decisió ponderada',
+    descripcion: 'Compara opcions amb criteris explícits i amb la mateixa vara.',
+  },
 };
 
 /** Overlay the Valencian strings onto a tool when locale is 'ca'. */

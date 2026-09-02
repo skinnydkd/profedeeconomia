@@ -26,18 +26,21 @@ import EquilibrioCalc from '@components/calculadoras/EquilibrioCalc.tsx';
 import DAFOCanvas from '@components/calculadoras/DAFOCanvas.tsx';
 import BusinessModelCanvas from '@components/calculadoras/BusinessModelCanvas.tsx';
 import MatrizBCG from '@components/calculadoras/MatrizBCG.tsx';
+import TasasEPACalc from '@components/calculadoras/TasasEPACalc.tsx';
+import MatrizDecision from '@components/calculadoras/MatrizDecision.tsx';
 
-import { type Locale } from '@/i18n/locale';
+import { getLocale, type Locale } from '@/i18n/locale';
 import { t } from '@/i18n/ui';
 
 /**
- * `locale` is an explicit prop, never derived from `Astro.currentLocale`: the
- * same islands are embedded in the per-asignatura recurso pages and in the
- * slide decks, whose content is still ES under /ca. Only a caller that has
- * localized its own page passes a locale; everyone else gets the ES default.
+ * `locale` defaults to the locale of the page the island is on. Most call
+ * sites are `<HerramientaIsland componente="…" />` inside a unit body, which
+ * cannot reach `Astro.currentLocale` itself, so without this a Valencian unit
+ * rendered a Spanish tool. Pass the prop explicitly to override — the slide
+ * decks never mount this component, so nothing depends on the old ES default.
  */
 interface Props { componente?: string; locale?: Locale }
-const { componente, locale = 'es' } = Astro.props;
+const { componente, locale = getLocale(Astro.currentLocale) } = Astro.props;
 ---
 <div class="hi__web">
 {componente === 'PuntoMuerto' && <PuntoMuertoCalc client:load locale={locale} />}
@@ -62,6 +65,8 @@ const { componente, locale = 'es' } = Astro.props;
 {componente === 'DAFO' && <DAFOCanvas client:load locale={locale} />}
 {componente === 'CanvasBM' && <BusinessModelCanvas client:load locale={locale} />}
 {componente === 'BCG' && <MatrizBCG client:load locale={locale} />}
+{componente === 'TasasEPA' && <TasasEPACalc client:load locale={locale} />}
+{componente === 'MatrizDecision' && <MatrizDecision client:load locale={locale} />}
 </div>
 <p class="hi__print">{t('island.print', locale)}</p>
 

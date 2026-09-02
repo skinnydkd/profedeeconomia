@@ -197,7 +197,7 @@ Cada alumno trabaja **los tres perfiles**. No se reparten por filas: todos hacen
 - **Variante familiar.** Tras la sesión, cada alumno comenta con su familia los tres perfiles y trae una breve nota (5 líneas) sobre cuál se parece más al perfil real de la suya. **Sin obligación de compartir la nota en clase**: el dato es privado. La conversación en casa es el aprendizaje real.
 - **Variante con datos autonómicos.** Si el grupo es de la Comunitat Valenciana, Cataluña, Andalucía o Madrid, añadir un quinto cálculo con la beca autonómica complementaria correspondiente (Generalitat, EQUITAT, Plan andaluz, etc.). Permite ver que la suma puede llegar fácilmente a 5.000-6.000 €.
 - **Variante Erasmus+.** Para el Perfil A, calcular adicionalmente cuánto cobraría si en tercero pidiera Erasmus+ Estudios a Alemania (540 €/mes × 9 meses + ayuda complementaria MEFP de 400 €/mes × 9 meses). Resultado: el Erasmus se autofinancia por completo para una becaria MEFP.
-- **Conexión con la Unit 7.** Reutilizar los tres perfiles en la próxima unidad para discutir tasas de inserción laboral según el itinerario elegido por cada uno (universidad, FP, abandono temprano).
+- **Conexión con la Unidad 7.** Reutilizar los tres perfiles en la próxima unidad para discutir tasas de inserción laboral según el itinerario elegido por cada uno (universidad, FP, abandono temprano).
 
 ## Para el docente
 

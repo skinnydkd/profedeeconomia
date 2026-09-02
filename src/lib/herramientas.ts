@@ -14,6 +14,7 @@ export const COMPONENTE_KEYS = [
   'Presupuesto503020', 'BuscadorItinerarios', 'GeneradorCVEuropass', 'DCF', 'RatiosBenchmark',
   'Elasticidad', 'MultiplicadorGasto', 'IRPFDeclaracion', 'CocheVsAlternativa', 'RIASEC',
   'PresupuestoUni', 'Productividad', 'EquilibrioMercado', 'DAFO', 'CanvasBM', 'BCG',
+  'TasasEPA', 'MatrizDecision',
 ] as const;
 export type ComponenteKey = typeof COMPONENTE_KEYS[number];
 
@@ -64,6 +65,8 @@ export const HERRAMIENTAS: Herramienta[] = [
   { componente: 'DAFO', slug: 'dafo', title: 'DAFO', familia: 'estrategia-planificacion', orden: 1, tipo: 'plantilla', descripcion: 'Lienzo de Debilidades, Amenazas, Fortalezas y Oportunidades para rellenar.', competencias_clave: ['CPSAA', 'CE'], competencias_especificas: [], unidades_relacionadas: [{ asignatura: 'edmn-2bach', unidad: 3 }, { asignatura: 'ipe1-fp', unidad: 3 }, { asignatura: 'eeae-bach', unidad: 9 }] },
   { componente: 'CanvasBM', slug: 'business-model-canvas', title: 'Business Model Canvas', familia: 'estrategia-planificacion', orden: 2, tipo: 'plantilla', descripcion: 'Los 9 bloques del modelo de negocio para diseñar y pivotar.', competencias_clave: ['CPSAA', 'CE'], competencias_especificas: [], unidades_relacionadas: [{ asignatura: 'edmn-2bach', unidad: 4 }, { asignatura: 'eco-4eso', unidad: 9 }, { asignatura: 'ipe2-fp', unidad: 6 }] },
   { componente: 'BCG', slug: 'matriz-bcg', title: 'Matriz BCG', familia: 'estrategia-planificacion', orden: 3, tipo: 'plantilla', descripcion: 'Cartera de productos por crecimiento y cuota: estrella, interrogante, vaca y perro.', competencias_clave: ['CPSAA', 'CE'], competencias_especificas: [], unidades_relacionadas: [{ asignatura: 'edmn-2bach', unidad: 3 }, { asignatura: 'eeae-bach', unidad: 9 }] },
+  { componente: 'TasasEPA', slug: 'tasas-epa', title: 'Las tres tasas de la EPA', familia: 'orientacion-fp', orden: 4, tipo: 'calculadora', descripcion: 'Tasa de actividad, de empleo y de paro a partir de tres cifras de población.', competencias_clave: ['STEM', 'CD', 'CC'], competencias_especificas: [], unidades_relacionadas: [{ asignatura: 'fopp-4eso', unidad: 7 }] },
+  { componente: 'MatrizDecision', slug: 'matriz-decision', title: 'Matriz de decisión ponderada', familia: 'orientacion-fp', orden: 5, tipo: 'plantilla', descripcion: 'Compara opciones con criterios explícitos y con el mismo rasero.', competencias_clave: ['CPSAA', 'CE', 'STEM'], competencias_especificas: [], unidades_relacionadas: [{ asignatura: 'fopp-4eso', unidad: 4 }] },
 ];
 
 const BY_SLUG = new Map(HERRAMIENTAS.map((h) => [`${h.familia}/${h.slug}`, h]));
