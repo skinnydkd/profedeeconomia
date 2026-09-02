@@ -1,4 +1,7 @@
 ---
+import { getLocale } from '@/i18n/locale';
+import { t } from '@/i18n/ui';
+const locale = getLocale(Astro.currentLocale);
 /**
  * "En esta fase" — phase-level TL;DR for the GPE project workbook.
  * Generic (not GPE-bound) so «De cero a empresa» can adopt it later.
@@ -17,12 +20,12 @@ const { haras, entregable, sesiones } = Astro.props;
 
 <aside class="enfase">
   <header class="enfase__head">
-    <span class="enfase__kicker">En esta fase</span>
+    <span class="enfase__kicker">{t('libro.enEstaFase', locale)}</span>
     <span class="enfase__dur">{sesiones}</span>
   </header>
   <dl class="enfase__grid">
-    <div><dt>Qué haréis</dt><dd>{haras}</dd></div>
-    <div><dt>Qué entregáis</dt><dd>{entregable}</dd></div>
+    <div><dt>{t('libro.queHareis', locale)}</dt><dd>{haras}</dd></div>
+    <div><dt>{t('libro.queEntregais', locale)}</dt><dd>{entregable}</dd></div>
   </dl>
   <div class="enfase__repaso"><slot /></div>
 </aside>

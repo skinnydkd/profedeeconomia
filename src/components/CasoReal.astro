@@ -1,4 +1,7 @@
 ---
+import { getLocale } from '@/i18n/locale';
+import { t } from '@/i18n/ui';
+const locale = getLocale(Astro.currentLocale);
 /**
  * "Caso real" — a short proximity-economy case that illustrates a project phase.
  * Variant of CasoDilema: the closing question is optional (not every phase is a
@@ -16,7 +19,7 @@ const { titular, fuente, pregunta } = Astro.props;
 ---
 
 <aside class="caso">
-  <span class="caso__kicker">Caso real · Cerca de ti</span>
+  <span class="caso__kicker">{t('libro.casoReal', locale)}</span>
   <div class="caso__titular">{titular}</div>
   <p class="caso__fuente">{fuente}</p>
   <div class="caso__body"><slot /></div>

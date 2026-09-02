@@ -1,4 +1,7 @@
 ---
+import { getLocale } from '@/i18n/locale';
+import { t } from '@/i18n/ui';
+const locale = getLocale(Astro.currentLocale);
 type Props = {
   /** Titular del cas. */
   titular: string;
@@ -11,7 +14,7 @@ const { titular, fuente, pregunta } = Astro.props;
 ---
 
 <aside class="caso">
-  <span class="caso__kicker">Caso real · Dilema</span>
+  <span class="caso__kicker">{t('libro.casoDilema', locale)}</span>
   <div class="caso__titular">{titular}</div>
   <p class="caso__fuente">{fuente}</p>
   <div class="caso__body"><slot /></div>

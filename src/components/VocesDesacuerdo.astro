@@ -1,4 +1,7 @@
 ---
+import { getLocale } from '@/i18n/locale';
+import { t } from '@/i18n/ui';
+const locale = getLocale(Astro.currentLocale);
 type Postura = {
   /** Nom de la postura / escola / autor. */
   etiqueta: string;
@@ -15,7 +18,7 @@ const { tema, postura_a, postura_b } = Astro.props;
 ---
 
 <aside class="voces">
-  <span class="voces__kicker">Voces en desacuerdo</span>
+  <span class="voces__kicker">{t('libro.vocesDesacuerdo', locale)}</span>
   <h4 class="voces__tema">{tema}</h4>
   <div class="voces__grid">
     <div class="voces__postura">

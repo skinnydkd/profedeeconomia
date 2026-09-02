@@ -1,4 +1,7 @@
 ---
+import { getLocale } from '@/i18n/locale';
+import { t } from '@/i18n/ui';
+const locale = getLocale(Astro.currentLocale);
 type Recurso = {
   /** Títol del recurs (llibre, vídeo, compte…). */
   titulo: string;
@@ -34,7 +37,7 @@ const { unidad, libro, video, cuenta, actividad_titulo, actividad_duracion } = A
 
   <div class="mirar-fora__recursos">
     <article class="mirar-fora__recurso">
-      <span class="mirar-fora__et">Libro</span>
+      <span class="mirar-fora__et">{t('libro.recursoLibro', locale)}</span>
       <h4>{libro.titulo}</h4>
       <p class="mirar-fora__meta">{libro.meta}</p>
       <p class="mirar-fora__porque">{libro.porque}</p>
@@ -42,7 +45,7 @@ const { unidad, libro, video, cuenta, actividad_titulo, actividad_duracion } = A
     </article>
 
     <article class="mirar-fora__recurso">
-      <span class="mirar-fora__et">Vídeo {video.duracion && `· ${video.duracion}`}</span>
+      <span class="mirar-fora__et">{t('libro.recursoVideo', locale)} {video.duracion && `· ${video.duracion}`}</span>
       <h4>{video.titulo}</h4>
       <p class="mirar-fora__meta">{video.meta}</p>
       <p class="mirar-fora__porque">{video.porque}</p>
@@ -50,7 +53,7 @@ const { unidad, libro, video, cuenta, actividad_titulo, actividad_duracion } = A
     </article>
 
     <article class="mirar-fora__recurso">
-      <span class="mirar-fora__et">Cuenta · Podcast · Web</span>
+      <span class="mirar-fora__et">{t('libro.recursoCuenta', locale)}</span>
       <h4>{cuenta.titulo}</h4>
       <p class="mirar-fora__meta">{cuenta.meta}</p>
       <p class="mirar-fora__porque">{cuenta.porque}</p>
@@ -59,12 +62,12 @@ const { unidad, libro, video, cuenta, actividad_titulo, actividad_duracion } = A
 
   <div class="mirar-fora__actividad">
     <header class="mirar-fora__act-head">
-      <span class="mirar-fora__et">Actividad · {actividad_duracion}</span>
+      <span class="mirar-fora__et">{t('libro.actividad', locale)} · {actividad_duracion}</span>
       <h4>{actividad_titulo}</h4>
     </header>
     <div class="mirar-fora__act-body"><slot name="actividad" /></div>
     <aside class="mirar-fora__para-clase">
-      <span class="mirar-fora__et">Para clase</span>
+      <span class="mirar-fora__et">{t('libro.paraClase', locale)}</span>
       <slot name="para-clase" />
     </aside>
   </div>
