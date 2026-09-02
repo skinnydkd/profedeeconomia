@@ -28,6 +28,10 @@ import BusinessModelCanvas from '@components/calculadoras/BusinessModelCanvas.ts
 import MatrizBCG from '@components/calculadoras/MatrizBCG.tsx';
 import TasasEPACalc from '@components/calculadoras/TasasEPACalc.tsx';
 import MatrizDecision from '@components/calculadoras/MatrizDecision.tsx';
+import FPPCalc from '@components/calculadoras/FPPCalc.tsx';
+import ExternalidadCalc from '@components/calculadoras/ExternalidadCalc.tsx';
+import MultiplicadorBancarioCalc from '@components/calculadoras/MultiplicadorBancarioCalc.tsx';
+import VentajaComparativaCalc from '@components/calculadoras/VentajaComparativaCalc.tsx';
 
 import { getLocale, type Locale } from '@/i18n/locale';
 import { t } from '@/i18n/ui';
@@ -67,6 +71,10 @@ const { componente, locale = getLocale(Astro.currentLocale) } = Astro.props;
 {componente === 'BCG' && <MatrizBCG client:load locale={locale} />}
 {componente === 'TasasEPA' && <TasasEPACalc client:load locale={locale} />}
 {componente === 'MatrizDecision' && <MatrizDecision client:load locale={locale} />}
+{componente === 'FPP' && <FPPCalc client:load locale={locale} />}
+{componente === 'Externalidad' && <ExternalidadCalc client:load locale={locale} />}
+{componente === 'MultiplicadorBancario' && <MultiplicadorBancarioCalc client:load locale={locale} />}
+{componente === 'VentajaComparativa' && <VentajaComparativaCalc client:load locale={locale} />}
 </div>
 <p class="hi__print">{t('island.print', locale)}</p>
 

@@ -14,7 +14,8 @@ export const COMPONENTE_KEYS = [
   'Presupuesto503020', 'BuscadorItinerarios', 'GeneradorCVEuropass', 'DCF', 'RatiosBenchmark',
   'Elasticidad', 'MultiplicadorGasto', 'IRPFDeclaracion', 'CocheVsAlternativa', 'RIASEC',
   'PresupuestoUni', 'Productividad', 'EquilibrioMercado', 'DAFO', 'CanvasBM', 'BCG',
-  'TasasEPA', 'MatrizDecision',
+  'TasasEPA', 'MatrizDecision', 'FPP', 'Externalidad', 'MultiplicadorBancario',
+  'VentajaComparativa',
 ] as const;
 export type ComponenteKey = typeof COMPONENTE_KEYS[number];
 
@@ -35,7 +36,7 @@ export interface Herramienta {
 
 export const FAMILIAS_HERRAMIENTA: Familia[] = [
   { slug: 'costes-resultados',   label: 'Costes y resultados',     intro: 'Umbral de rentabilidad y análisis de cuentas.',        colorVar: '--color-edmn' },
-  { slug: 'mercados-macro',      label: 'Mercados y macroeconomía',intro: 'Elasticidad, oferta y demanda agregada, multiplicador.', colorVar: '--color-eco1' },
+  { slug: 'mercados-macro',      label: 'Mercados y macroeconomía',intro: 'Escasez, mercados, fallos, macroeconomía y comercio.',   colorVar: '--color-eco1' },
   { slug: 'inversion-finanzas',  label: 'Inversión y finanzas',    intro: 'Valorar inversiones: VAN, TIR, descuento e interés.',   colorVar: '--color-mustard' },
   { slug: 'finanzas-personales', label: 'Finanzas personales',     intro: 'Nómina, IRPF, presupuesto y decisiones de gasto.',      colorVar: '--color-fopp' },
   { slug: 'orientacion-fp',         label: 'Orientación y FP',          intro: 'Intereses, itinerarios y currículum.',                  colorVar: '--color-ipe2' },
@@ -67,6 +68,10 @@ export const HERRAMIENTAS: Herramienta[] = [
   { componente: 'BCG', slug: 'matriz-bcg', title: 'Matriz BCG', familia: 'estrategia-planificacion', orden: 3, tipo: 'plantilla', descripcion: 'Cartera de productos por crecimiento y cuota: estrella, interrogante, vaca y perro.', competencias_clave: ['CPSAA', 'CE'], competencias_especificas: [], unidades_relacionadas: [{ asignatura: 'edmn-2bach', unidad: 3 }, { asignatura: 'eeae-bach', unidad: 9 }] },
   { componente: 'TasasEPA', slug: 'tasas-epa', title: 'Las tres tasas de la EPA', familia: 'orientacion-fp', orden: 4, tipo: 'calculadora', descripcion: 'Tasa de actividad, de empleo y de paro a partir de tres cifras de población.', competencias_clave: ['STEM', 'CD', 'CC'], competencias_especificas: [], unidades_relacionadas: [{ asignatura: 'fopp-4eso', unidad: 7 }] },
   { componente: 'MatrizDecision', slug: 'matriz-decision', title: 'Matriz de decisión ponderada', familia: 'orientacion-fp', orden: 5, tipo: 'plantilla', descripcion: 'Compara opciones con criterios explícitos y con el mismo rasero.', competencias_clave: ['CPSAA', 'CE', 'STEM'], competencias_especificas: [], unidades_relacionadas: [{ asignatura: 'fopp-4eso', unidad: 4 }] },
+  { componente: 'FPP', slug: 'frontera-posibilidades', title: 'Frontera de posibilidades de producción', familia: 'mercados-macro', orden: 5, tipo: 'simulador', descripcion: 'Escasez y coste de oportunidad: puntos eficientes, ineficientes e inalcanzables, y el desplazamiento por crecimiento.', competencias_clave: ['STEM', 'CD'], competencias_especificas: [], unidades_relacionadas: [{ asignatura: 'eco-1bach', unidad: 1 }] },
+  { componente: 'Externalidad', slug: 'externalidad-impuesto', title: 'Externalidades e impuesto pigouviano', familia: 'mercados-macro', orden: 6, tipo: 'calculadora', descripcion: 'Equilibrio de mercado frente a óptimo social, impuesto o subvención correctora y pérdida de eficiencia.', competencias_clave: ['STEM', 'CD', 'CC'], competencias_especificas: [], unidades_relacionadas: [{ asignatura: 'eco-1bach', unidad: 6 }] },
+  { componente: 'MultiplicadorBancario', slug: 'multiplicador-bancario', title: 'Creación de dinero bancario', familia: 'mercados-macro', orden: 7, tipo: 'calculadora', descripcion: 'Cuánto dinero crea el sistema bancario a partir de un depósito, ronda a ronda.', competencias_clave: ['STEM', 'CD'], competencias_especificas: [], unidades_relacionadas: [{ asignatura: 'eco-1bach', unidad: 10 }] },
+  { componente: 'VentajaComparativa', slug: 'ventaja-comparativa', title: 'Ventaja comparativa y comercio', familia: 'mercados-macro', orden: 8, tipo: 'calculadora', descripcion: 'Costes de oportunidad de dos países, quién se especializa en qué y el rango de la relación de intercambio.', competencias_clave: ['STEM', 'CD', 'CC'], competencias_especificas: [], unidades_relacionadas: [{ asignatura: 'eco-1bach', unidad: 12 }] },
 ];
 
 const BY_SLUG = new Map(HERRAMIENTAS.map((h) => [`${h.familia}/${h.slug}`, h]));

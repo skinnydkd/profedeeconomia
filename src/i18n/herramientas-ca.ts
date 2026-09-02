@@ -105,6 +105,25 @@ export const HERRAMIENTAS_CA: Partial<Record<string, HerramientaCA>> = {
     title: 'Matriu de decisió ponderada',
     descripcion: 'Compara opcions amb criteris explícits i amb la mateixa vara.',
   },
+  'frontera-posibilidades': {
+    title: 'Frontera de possibilitats de producció',
+    descripcion:
+      "Escassetat i cost d'oportunitat: punts eficients, ineficients i inabastables, i el desplaçament per creixement.",
+  },
+  'externalidad-impuesto': {
+    title: 'Externalitats i impost pigovià',
+    descripcion:
+      "Equilibri de mercat enfront d'òptim social, impost o subvenció correctora i pèrdua d'eficiència.",
+  },
+  'multiplicador-bancario': {
+    title: 'Creació de diners bancaris',
+    descripcion: "Quants diners crea el sistema bancari a partir d'un depòsit, ronda a ronda.",
+  },
+  'ventaja-comparativa': {
+    title: 'Avantatge comparatiu i comerç',
+    descripcion:
+      "Costos d'oportunitat de dos països, qui s'especialitza en què i el rang de la relació d'intercanvi.",
+  },
 };
 
 /** Overlay the Valencian strings onto a tool when locale is 'ca'. */
