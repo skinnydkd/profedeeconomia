@@ -91,6 +91,12 @@ preguntas:
     derecha: ["Normativa (juicio de valor)", "Positiva (dato verificable)", "Positiva (predicción contrastable)", "Normativa (prescripción)"]
     correctas: [1, 0, 2, 3]
     explicacion: "La economía positiva describe o predice hechos contrastables con datos; la normativa prescribe lo que debería ser e incorpora juicios de valor («debería», «es injusto»)."
+  - tipo: numerico
+    enunciado: "Renuncias a un trabajo de verano que te pagaría 900 € para hacer un curso que cuesta 300 €. ¿Cuál es el coste total de la decisión, sumando coste explícito y coste de oportunidad, en euros?"
+    respuesta: 1200
+    tolerancia: 1
+    unidad: "€"
+    explicacion: "El coste explícito son los 300 € que pagas. El coste de oportunidad son los 900 € que dejas de ingresar por no trabajar. El coste económico total es 300 + 900 = 1.200 €. El coste contable, en cambio, solo vería los 300 €."
 ---
 
 Test de autoevaluación de la Unidad 1 del libro de Economía 1.º Bachillerato.

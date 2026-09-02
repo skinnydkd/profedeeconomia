@@ -93,6 +93,12 @@ preguntas:
     derecha: ["Subir el tipo de interés oficial y aplicar QT", "Bajar el gasto público y subir impuestos", "Aumentar el gasto público o reducir impuestos", "Bajar tipos de interés y aplicar QE (compra de activos)"]
     correctas: [2, 1, 3, 0]
     explicacion: "Fiscal expansiva: ↑G o ↓T. Fiscal restrictiva: ↓G o ↑T. Monetaria expansiva: bajar tipos y comprar activos (QE). Monetaria restrictiva: subir tipos y retirar liquidez (QT)."
+  - tipo: numerico
+    enunciado: "Con una propensión marginal al consumo de 0,75, el Estado aumenta el gasto público en 2.000 mill. €. ¿En cuántos mill. € aumenta la renta según el multiplicador keynesiano simple?"
+    respuesta: 8000
+    tolerancia: 10
+    unidad: "mill. €"
+    explicacion: "El multiplicador es 1 / (1 − 0,75) = 4. El efecto total sobre la renta es 2.000 × 4 = 8.000 mill. €. Es un modelo muy simplificado: ignora impuestos, importaciones y el efecto sobre los tipos de interés, que reducen el multiplicador real."
 ---
 
 Test de autoevaluación de la Unidad 11 del libro de Eco 1BACH: políticas económicas, fiscal y monetaria.

@@ -93,6 +93,12 @@ preguntas:
     derecha: ["Inversor particular que aporta capital i experiència a canvi de participació", "Quota reduïda de 80 €/mes el primer any d'alta en el RETA", "Diners prestats per familiars i amics per a arrancar", "Els aportants reben el producte quan el projecte es materialitza"]
     correctas: [3, 2, 0, 1]
     explicacion: "Crowdfunding de recompensa: els aportants reben el producte (típic en còmics o jocs, via Verkami). FFF: préstec de familiars i amics. Business angel: inversor particular amb capital i experiència. Tarifa plana: quota reduïda de 80 €/mes el primer any com a autònom."
+  - tipo: numerico
+    enunciado: "Apliques la regla 50-30-20 a uns ingressos de 1.400 € al mes. Quants euros haurien d'anar a l'estalvi?"
+    respuesta: 280
+    tolerancia: 1
+    unidad: "€"
+    explicacion: "La regla repartix 50 % a necessitats, 30 % a capricis i 20 % a estalvi i deutes. El 20 % de 1.400 € són 280 €. És una referència, no una llei: amb lloguers alts el bloc del 50 % es menja la resta, i llavors el que és honest és ajustar el 30 %, no el 20 %."
 ---
 
 Test d'autoavaluació de la Unitat 7 del llibre d'Eco 4ESO.

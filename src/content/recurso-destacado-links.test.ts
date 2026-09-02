@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { join, relative, sep } from 'node:path';
+import { ASIGNATURA_SLUGS } from '../lib/asignaturas';
 
 /**
  * Guard for the `<RecursoDestacado>` cross-links embedded in unit bodies.
@@ -39,11 +40,20 @@ const links: Link[] = walk(ROOT).flatMap((path) => {
   }));
 });
 
-/** Content path that backs a site route, e.g. /debates/fam/slug/ → debates/fam/slug. */
+/**
+ * Content path that backs a site route:
+ *   /debates/fam/slug/                  → debates/fam/slug
+ *   /eco-1bach/recursos/calculadora/    → asignaturas/eco-1bach/recursos/calculadora
+ *
+ * Subject-scoped routes lose their `asignaturas/` prefix in the URL, so a card
+ * pointing at a unit's calculator would otherwise resolve to nothing and pass
+ * this guard by accident.
+ */
 function entryFor(href: string): string | null {
   const parts = href.replace(/^\/|\/$/g, '').split('/');
   if (parts.length !== 3) return null;
-  return parts.join('/');
+  const prefix = ASIGNATURA_SLUGS.includes(parts[0]) ? 'asignaturas/' : '';
+  return prefix + parts.join('/');
 }
 
 describe('RecursoDestacado cross-links', () => {

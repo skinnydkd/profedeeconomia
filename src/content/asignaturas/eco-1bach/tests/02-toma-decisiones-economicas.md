@@ -91,6 +91,12 @@ preguntas:
     derecha: ["No vendo unas acciones en pérdidas porque «ya he aguantado tanto, sería tirar lo invertido»", "Compro porque el precio tachado de 200 € hace que 150 € parezca barato", "Acepto más una operación con «90 % de supervivencia» que con «10 % de mortalidad»", "Pago un seguro caro porque perder me duele más que ganar lo mismo"]
     correctas: [1, 3, 2, 0]
     explicacion: "Anclaje: el primer número condiciona la percepción. Aversión a la pérdida: pesa más perder que ganar. Framing: el modo de presentar cambia la decisión. Coste hundido: seguir por lo ya invertido."
+  - tipo: numerico
+    enunciado: "Producir una unidad más aporta 12 € de ingreso y añade 8 € de coste. ¿Cuál es el beneficio marginal neto de esa unidad, en euros?"
+    respuesta: 4
+    tolerancia: 0.01
+    unidad: "€"
+    explicacion: "BMg − CMg = 12 − 8 = 4 €. Como es positivo, conviene producirla. La regla es seguir mientras el beneficio marginal iguale o supere al coste marginal, y el óptimo está justo donde se cruzan."
 ---
 
 Test de autoevaluación de la Unidad 2 del libro de Eco 1BACH. Cubre las herramientas clásicas (coste de oportunidad, costes hundidos, análisis marginal, teoría de juegos) y la mirada moderna de la economía del comportamiento (racionalidad acotada de Simon, Sistemas 1 y 2 de Kahneman, sesgos cognitivos y Teoría Prospectiva).

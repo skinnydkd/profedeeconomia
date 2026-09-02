@@ -93,6 +93,12 @@ preguntas:
     enunciado: "La TAE d'un préstec mai pot ser inferior al seu TIN, perquè incorpora comissions i despeses que el TIN no inclou."
     correcta: true
     explicacion: "La TAE afig al tipus nominal (TIN) les comissions, assegurances vinculades i altres despeses. Per això la TAE iguala el TIN quan no hi ha despeses addicionals i el supera quan n'hi ha, però no pot ser menor."
+  - tipo: relacionar
+    enunciado: "Relaciona cada producte financer amb el tret que el definix:"
+    izquierda: ["Compte corrent", "Depòsit a termini", "Acció", "Bo"]
+    derecha: ["Títol de deute: cobres un cupó i et tornen el nominal", "Liquiditat immediata i rendibilitat quasi nul·la", "Part del capital d'una empresa: rendibilitat i risc alts", "Rendibilitat pactada a canvi d'immobilitzar els diners un termini"]
+    correctas: [1, 3, 2, 0]
+    explicacion: "El compte corrent prioritza la liquiditat; el depòsit canvia liquiditat per una rendibilitat pactada; l'acció és propietat de l'empresa, amb dividend incert; el bo és deute, amb cupó conegut."
 ---
 
 Test d'autoavaluació de la Unitat 3 del llibre d'Eco 1BACH.

@@ -26,8 +26,16 @@ import { parse as parseYaml } from 'yaml';
 import type { MdxNode } from './ast.ts';
 import type { Slide } from './types.ts';
 
-/** Slides a unit may author in its ```deck block; buildDeck adds a cover and a close on top. */
-export const MAX_AUTHORED_SLIDES = 30;
+/**
+ * Slides a unit may author in its ```deck block; buildDeck adds a cover and a
+ * close on top.
+ *
+ * Raised from 30 when the decks stopped being projection aids and became study
+ * material: every unit now opens with its curricular frame and closes with a
+ * recap checklist, and both of those are slides. The ceiling still exists to
+ * keep a deck reviewable in one sitting, not to ration content.
+ */
+export const MAX_AUTHORED_SLIDES = 34;
 
 /** Find the authored deck block's YAML source in a parsed MDX AST, if any. */
 export function extractAuthoredYaml(ast: MdxNode): string | null {

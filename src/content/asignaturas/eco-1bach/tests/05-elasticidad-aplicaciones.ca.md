@@ -93,6 +93,18 @@ preguntas:
     enunciado: "Com més inelàstiques són l'oferta i la demanda, major és el pes mort (pèrdua d'eficiència) que provoca un impost."
     correcta: false
     explicacion: "És al revés: com més elàstiques són oferta i demanda, més cau la quantitat intercanviada i major és el pes mort. Per això gravar béns inelàstics (tabac, alcohol) recapta molt amb poca pèrdua d'eficiència."
+  - tipo: numerico
+    enunciado: "La demanda d'un mercat és P = 60 − Q i el preu d'equilibri és 20 €. Quin és l'excedent del consumidor, en euros?"
+    respuesta: 800
+    tolerancia: 5
+    unidad: "€"
+    explicacion: "A P = 20 la quantitat és Q = 40. L'excedent és el triangle entre la corba de demanda i el preu: ½ · (60 − 20) · 40 = ½ · 40 · 40 = 800 €."
+  - tipo: relacionar
+    enunciado: "Relaciona cada valor de l'elasticitat-preu de la demanda amb la seua interpretació:"
+    izquierda: ["|E| = 0", "|E| < 1", "|E| = 1", "|E| > 1"]
+    derecha: ["Elàstica: la quantitat es mou més que el preu", "Perfectament inelàstica: la quantitat no reacciona", "Unitària: els dos es mouen en la mateixa proporció", "Inelàstica: la quantitat es mou menys que el preu"]
+    correctas: [1, 3, 2, 0]
+    explicacion: "La frontera està en la unitat. Per davall, domina l'efecte preu i pujar el preu augmenta l'ingrés total; per damunt, domina l'efecte quantitat i pujar-lo el reduïx."
 ---
 
 Test d'autoavaluació de la Unitat 5 del llibre d'Eco 1BACH: elasticitat de la demanda i l'oferta, excedents del consumidor i del productor, i aplicacions a preus màxims, mínims i impostos.

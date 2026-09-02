@@ -95,6 +95,12 @@ preguntas:
     derecha: ["Actiu no corrent", "Passiu no corrent", "Actiu corrent", "Patrimoni net"]
     correctas: [1, 3, 2, 0]
     explicacion: "Préstec hipotecari a llarg → passiu no corrent; reserves → patrimoni net; existències i caixa → actiu corrent; maquinària → actiu no corrent."
+  - tipo: numerico
+    enunciado: "Una empresa registra 480.000 € d'ingressos d'explotació i 415.000 € de gastos d'explotació. Quin és el seu resultat d'explotació, en euros?"
+    respuesta: 65000
+    tolerancia: 100
+    unidad: "€"
+    explicacion: "Resultat d'explotació = ingressos − gastos d'explotació = 480.000 − 415.000 = 65.000 €. És el resultat de l'activitat ordinària: encara no descompta els gastos financers ni l'impost de societats, que porten del resultat d'explotació al resultat de l'exercici."
 ---
 
 Test d'autoavaluació de la Unitat 10 del llibre d'EDMN 2BACH.

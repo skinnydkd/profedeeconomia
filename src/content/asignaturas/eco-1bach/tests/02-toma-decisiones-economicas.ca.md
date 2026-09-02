@@ -93,6 +93,12 @@ preguntas:
     derecha: ["No venc unes accions en pèrdues perquè «ja he aguantat tant, seria tirar el que he invertit»", "Compre perquè el preu ratllat de 200 € fa que 150 € parega barat", "Accepte més una operació amb «90 % de supervivència» que amb «10 % de mortalitat»", "Pague una assegurança cara perquè perdre em fa més mal que guanyar el mateix"]
     correctas: [1, 3, 2, 0]
     explicacion: "Ancoratge: el primer número condiciona la percepció. Aversió a la pèrdua: pesa més perdre que guanyar. Framing: la manera de presentar canvia la decisió. Cost enfonsat: continuar pel que ja s'ha invertit."
+  - tipo: numerico
+    enunciado: "Produir una unitat més aporta 12 € d'ingrés i afig 8 € de cost. Quin és el benefici marginal net d'eixa unitat, en euros?"
+    respuesta: 4
+    tolerancia: 0.01
+    unidad: "€"
+    explicacion: "BMg − CMg = 12 − 8 = 4 €. Com que és positiu, convé produir-la. La regla és continuar mentres el benefici marginal iguale o supere el cost marginal, i l'òptim està just on es creuen."
 ---
 
 Test d'autoavaluació de la Unitat 2 del llibre d'Eco 1BACH. Cobrix les ferramentes clàssiques (cost d'oportunitat, costos enfonsats, anàlisi marginal, teoria de jocs) i la mirada moderna de l'economia del comportament (racionalitat acotada de Simon, Sistemes 1 i 2 de Kahneman, biaixos cognitius i Teoria Prospectiva).

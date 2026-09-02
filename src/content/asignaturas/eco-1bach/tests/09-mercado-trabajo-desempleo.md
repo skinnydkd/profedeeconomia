@@ -93,6 +93,12 @@ preguntas:
     derecha: ["Ligado a la fase de recesión del ciclo económico", "Tiempo de búsqueda entre dejar un empleo y encontrar otro", "Desajuste entre las habilidades de los parados y las vacantes", "Vinculado a actividades que solo operan en ciertas épocas del año"]
     correctas: [1, 3, 2, 0]
     explicacion: "Friccional: rotación normal en la búsqueda de empleo. Estacional: turismo, agricultura, campañas. Estructural: desajuste de cualificaciones o geográfico, no se cura con expansión. Cíclico: depende de la fase del ciclo económico."
+  - tipo: numerico
+    enunciado: "Una comarca tiene 40.000 personas de 16 o más años, de las cuales 21.000 están ocupadas y 3.000 paradas. ¿Cuál es la tasa de actividad, en % (sin decimales)?"
+    respuesta: 60
+    tolerancia: 1
+    unidad: "%"
+    explicacion: "Activos = ocupados + parados = 21.000 + 3.000 = 24.000. Tasa de actividad = activos / población de 16+ × 100 = 24.000 / 40.000 × 100 = 60 %. Ojo al denominador: aquí es toda la población de 16 o más, no solo la activa."
 ---
 
 Test de autoevaluación de la Unidad 9 del libro de Eco 1BACH. Nueve preguntas que cubren las definiciones de la EPA (activos, ocupados, parados), el cálculo de las tasas de actividad y paro, el efecto desánimo, los cuatro tipos de desempleo, los efectos teóricos y la evidencia empírica del salario mínimo (Card-Krueger), la curva de Phillips y la NAIRU, la brecha salarial de género y la comparación entre el modelo laboral español y el nórdico de flexiguridad.

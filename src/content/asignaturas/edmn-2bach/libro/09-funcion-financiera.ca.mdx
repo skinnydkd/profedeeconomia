@@ -53,6 +53,7 @@ import bolsaMadridSala from '@assets/libro/edmn-2bach/09/bolsa-madrid-sala-princ
 import nyseTradingFloor from '@assets/libro/edmn-2bach/09/nyse-trading-floor.jpg';
 import frankfurtStockExchange from '@assets/libro/edmn-2bach/09/frankfurt-stock-exchange.jpg';
 import bancoSanCarlos1782 from '@assets/libro/edmn-2bach/09/banco-san-carlos-1782.jpg';
+import RecursoDestacado from '@components/libro/RecursoDestacado.astro';
 
 > **Temps estimat de lectura**: ~25 min · **Sabers LOMLOE**: B.5 · **Prerequisits**: Unitat 7 (funció productiva)
 >
@@ -300,6 +301,8 @@ Els tres criteris responen preguntes distintes: el **PayBack** mesura risc (quan
 
 <HerramientaIsland componente="VANTIR" />
 
+<RecursoDestacado href="/edmn-2bach/recursos/calculadora-van-tir/" kicker="Ferramenta" title="Calculadora de VAN, TIR i PayBack" descripcion="Inversió inicial, taxa de descompte i fluxos anuals fins a deu anys: els tres criteris estàndard calculats alhora, que és com es comparen." colorVar="--color-edmn" />
+
 ## Recursos financers: les quatre categories
 
 <Figure
@@ -391,6 +394,8 @@ Una *startup* madrilenya passa per una seqüència habitual: comença amb **esta
 <li><strong>Eixida — adquisició, IPO o continuïtat.</strong> O un comprador estratègic adquirix l'empresa, o ix a borsa, o continua sent privada i repartix dividends als seus socis.</li>
 
 </Steps>
+
+<RecursoDestacado href="/edmn-2bach/recursos/calculadora-dcf/" kicker="Ferramenta" title="Calculadora de descompte de fluxos (DCF)" descripcion="Projecta els fluxos de caixa lliures d'un negoci, descompta'ls a una taxa i obtín el valor d'empresa, valor residual inclòs." colorVar="--color-edmn" />
 
 ## L'estructura òptima de capital
 
@@ -520,11 +525,23 @@ Cada equip tanca esta unitat amb tres entregables: una **estimació de la invers
 </MirarFora>
 
 ```deck
-- tipo: concept
-  eyebrow: El cas
-  title: Comandes per 12.000 M€ i fallida per 750 M€
-  body: "Abengoa va ser durant dos dècades líder mundial en plantes termosolars, present en 50 països i amb comandes per 12.000 M€. El 2015 va intentar refinançar 750 M€ en bons i els creditors la van trobar amb un flux de caixa insuficient: les comandes eren reals, però cobrar-les portava anys i l'expansió s'havia finançat amb deute curt. Beneficis en el balanç, caixa buida."
-  pull: "Com acaba en concurs una empresa rendible amb un llibre de comandes enorme?"
+- tipo: curriculum
+  eyebrow: "A què respon esta unitat"
+  title: "El marc de la unitat"
+  saberes:
+    - "Bloc B: funció financera i inversió."
+    - "Bloc B: fonts de finançament i selecció d'inversions."
+  competencias:
+    - "Gestionar les àrees funcionals de l'empresa: la funció financera."
+- tipo: caso
+  eyebrow: "El cas"
+  title: "Comandes per 12.000 M€ i fallida per 750 M€"
+  contexto: "Abengoa va ser durant dos dècades líder mundial en plantes termosolars. Les comandes eren reals, però cobrar-les portava anys i l'expansió s'havia finançat amb deute curt. Beneficis en el balanç, caixa buida."
+  datos:
+    - "Present en 50 països, amb comandes per 12.000 M€."
+    - "El 2015 va intentar refinançar 750 M€ en bons."
+    - "Els creditors la van trobar sense flux de caixa suficient."
+  pregunta: "Com acaba en concurs una empresa rendible amb un llibre de comandes enorme?"
 - tipo: section
   title: Estructura econòmica i estructura financera
   subtitle: "Tota empresa es mira des de dos costats: en què està invertit el diner i d'on ve."
@@ -561,9 +578,20 @@ Cada equip tanca esta unitat amb tres entregables: una **estimació de la invers
 - tipo: diagram
   diagrama: VANTimeline
   caption: "Cada flux futur es dividix per (1+k) elevat a l'any que li toca; la suma actualitzada menys la inversió inicial és el VAN."
-- tipo: concept
-  title: El VAN traduïx el futur a euros de hui
-  body: "Mil euros de hui no valen el mateix que mil d'ací a cinc anys, perquè hui podrien invertir-se i rendir. El VAN descompta cada flux, suma eixos imports actualitzats i resta la inversió inicial. La regla és directa: VAN > 0, el projecte genera més valor de l'exigit i s'accepta; VAN = 0, indiferent; VAN < 0, destruïx valor i es rebutja."
+- tipo: formula
+  eyebrow: "Selecció d'inversions"
+  title: "El VAN traduïx el futur a euros de hui"
+  formula: "VAN = −A + Σ FCt / (1 + k)^t"
+  terminos:
+    - s: "A"
+      d: "Desemborsament inicial de la inversió."
+    - s: "FCt"
+      d: "Flux de caixa net de l'any t."
+    - s: "k"
+      d: "Taxa de descompte: la rendibilitat exigida al projecte."
+    - s: "t"
+      d: "Any en què es cobra o es paga cada flux."
+  ejemplo: "VAN > 0, el projecte genera més valor de l'exigit i s'accepta; VAN = 0, indiferent; VAN < 0, destruïx valor i es rebutja. Mil euros de hui no valen mil d'ací a cinc anys."
 - tipo: list
   title: Com es tria la taxa de descompte (k)
   items:
@@ -711,4 +739,13 @@ Cada equip tanca esta unitat amb tres entregables: una **estimació de la invers
   title: Rendible no és el mateix que líquid
   body: "Abengoa donava beneficis comptables, però no tenia efectiu quan van véncer els bons: un actiu llarg, amb cobraments a anys vista, finançat amb deute que vencia prompte. És la regla de l'equilibri incomplida, i és la causa més freqüent de fallida empresarial. Abans de tancar un pla d'inversió, comprova que el que tarda a convertir-se en caixa està finançat a llarg termini."
   pull: Les empreses no fan fallida quan perden diners, sinó quan es queden sense liquiditat.
+- tipo: recap
+  eyebrow: "Repassa"
+  title: "Abans de tancar la unitat"
+  items:
+    - "Sabries separar l'estructura econòmica (actiu) de la financera (passiu i patrimoni net)."
+    - "Sabries calcular el VAN i el termini de recuperació d'una inversió simple."
+    - "Sabries interpretar la TIR com a criteri d'acceptació d'un projecte."
+    - "Sabries classificar les fonts de finançament en internes i externes, pròpies i alienes."
+    - "Sabries explicar crowdfunding, business angels i capital risc."
 ```

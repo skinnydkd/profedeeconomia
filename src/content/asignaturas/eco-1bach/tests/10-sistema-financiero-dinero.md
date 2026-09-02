@@ -93,6 +93,12 @@ preguntas:
     derecha: ["M2 más instrumentos negociables a corto plazo (repos, participaciones en fondos del mercado monetario)", "Efectivo en circulación más reservas bancarias en el banco central", "M1 más depósitos de ahorro a corto plazo", "Efectivo en manos del público más depósitos a la vista"]
     correctas: [1, 3, 2, 0]
     explicacion: "Cada agregado es más amplio que el anterior: M0 es el dinero emitido por el banco central; M1 añade los depósitos a la vista; M2 suma el ahorro a corto plazo; M3 incorpora instrumentos negociables a corto plazo."
+  - tipo: numerico
+    enunciado: "Con un coeficiente de reservas del 10 %, un depósito inicial de 5.000 € puede llegar a generar como máximo cuántos euros de depósitos en el conjunto del sistema bancario?"
+    respuesta: 50000
+    tolerancia: 100
+    unidad: "€"
+    explicacion: "El multiplicador es 1 / 0,10 = 10, así que 5.000 € × 10 = 50.000 € de depósitos totales. De ellos, 45.000 € son dinero bancario creado por el sistema, no billetes emitidos por el banco central."
 ---
 
 Test de autoevaluación de la Unidad 10 del libro de Eco 1BACH.

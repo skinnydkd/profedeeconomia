@@ -91,6 +91,12 @@ preguntas:
     derecha: ["Què importa de veritat per a triar", "Què he de decidir exactament i amb quins límits", "Passe a l'acció i me'n responsabilitze", "Quines opcions distintes tinc, almenys tres"]
     correctas: [1, 3, 0, 2]
     explicacion: "Primer definixes bé la pregunta i les seues restriccions, després generes almenys tres alternatives, després fixes els criteris i, per últim, decidixes i et compromets."
+  - tipo: numerico
+    enunciado: "En la teua matriu de decisió poses tres criteris amb pesos 5, 3 i 2, i una opció trau 4, 4 i 5 sobre 5. Quina és la seua puntuació total (2 decimals)?"
+    respuesta: 4.2
+    tolerancia: 0.05
+    unidad: "punts"
+    explicacion: "Els pesos es normalitzen: 5/10 = 0,5, 3/10 = 0,3 i 2/10 = 0,2. La puntuació és 4(0,5) + 4(0,3) + 5(0,2) = 2 + 1,2 + 1 = 4,20 sobre 5. Normalitzar és el que permet posar els pesos que vulgues sense haver de fer que sumen 10."
 ---
 
 Test d'autoavaluació de la Unitat 4 del llibre de FOPP 4ESO.

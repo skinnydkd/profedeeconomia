@@ -93,6 +93,12 @@ preguntas:
     derecha: ["Activo no corriente", "Pasivo no corriente", "Activo corriente", "Patrimonio neto"]
     correctas: [1, 3, 2, 0]
     explicacion: "Préstamo hipotecario a largo → pasivo no corriente; reservas → patrimonio neto; existencias y caja → activo corriente; maquinaria → activo no corriente."
+  - tipo: numerico
+    enunciado: "Una empresa registra 480.000 € de ingresos de explotación y 415.000 € de gastos de explotación. ¿Cuál es su resultado de explotación, en euros?"
+    respuesta: 65000
+    tolerancia: 100
+    unidad: "€"
+    explicacion: "Resultado de explotación = ingresos − gastos de explotación = 480.000 − 415.000 = 65.000 €. Es el resultado de la actividad ordinaria: aún no descuenta los gastos financieros ni el impuesto de sociedades, que llevan del resultado de explotación al resultado del ejercicio."
 ---
 
 Test de autoevaluación de la Unidad 10 del libro de EDMN 2BACH.

@@ -91,6 +91,12 @@ preguntas:
     enunciado: "La TAE de un préstamo nunca puede ser inferior a su TIN, porque incorpora comisiones y gastos que el TIN no incluye."
     correcta: true
     explicacion: "La TAE añade al tipo nominal (TIN) las comisiones, seguros vinculados y demás gastos. Por eso la TAE iguala al TIN cuando no hay gastos adicionales y lo supera cuando los hay, pero no puede ser menor."
+  - tipo: relacionar
+    enunciado: "Relaciona cada producto financiero con el rasgo que lo define:"
+    izquierda: ["Cuenta corriente", "Depósito a plazo", "Acción", "Bono"]
+    derecha: ["Título de deuda: cobras un cupón y te devuelven el nominal", "Liquidez inmediata y rentabilidad casi nula", "Parte del capital de una empresa: rentabilidad y riesgo altos", "Rentabilidad pactada a cambio de inmovilizar el dinero un plazo"]
+    correctas: [1, 3, 2, 0]
+    explicacion: "La cuenta corriente prioriza la liquidez; el depósito cambia liquidez por una rentabilidad pactada; la acción es propiedad de la empresa, con dividendo incierto; el bono es deuda, con cupón conocido."
 ---
 
 Test de autoevaluación de la Unidad 3 del libro de Eco 1BACH.

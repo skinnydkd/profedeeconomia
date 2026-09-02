@@ -87,6 +87,12 @@ preguntas:
     derecha: ["No treballa ni busca treball activament", "Treballa per a si mateix donat d'alta com a autònom", "Té un treball remunerat", "No té treball però el busca activament"]
     correctas: [2, 3, 0, 1]
     explicacion: "Ocupat té treball; aturat no el té però el busca; inactiu ni treballa ni busca; l'autoocupació és treballar per a un mateix sota el règim d'autònoms (RETA)."
+  - tipo: numerico
+    enunciado: "Un municipi té 15.000 persones de 16 anys o més, de les quals 7.200 estan ocupades. Quina és la taxa d'ocupació, en % (sense decimals)?"
+    respuesta: 48
+    tolerancia: 1
+    unidad: "%"
+    explicacion: "Taxa d'ocupació = ocupats / població de 16+ × 100 = 7.200 / 15.000 × 100 = 48 %. Compartix denominador amb la taxa d'activitat, no amb la d'atur: la d'atur és l'única de les tres que es dividix entre la població activa."
 ---
 
 Test d'autoavaluació de la Unitat 7 del llibre de FOPP 4ESO. Huit preguntes sobre el mercat laboral espanyol: definicions EPA i tres taxes bàsiques, quatre sectors econòmics, professions de futur i en retrocés, salaris per nivell formatiu, tres formes de treballar i causes estructurals de l'atur juvenil.

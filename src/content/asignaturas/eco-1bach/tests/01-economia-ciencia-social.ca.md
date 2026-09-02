@@ -93,6 +93,12 @@ preguntas:
     derecha: ["Normativa (judici de valor)", "Positiva (dada verificable)", "Positiva (predicció contrastable)", "Normativa (prescripció)"]
     correctas: [1, 0, 2, 3]
     explicacion: "L'economia positiva descriu o prediu fets contrastables amb dades; la normativa prescriu allò que hauria de ser i incorpora judicis de valor («hauria», «és injust»)."
+  - tipo: numerico
+    enunciado: "Renuncies a una faena d'estiu que et pagaria 900 € per a fer un curs que costa 300 €. Quin és el cost total de la decisió, sumant cost explícit i cost d'oportunitat, en euros?"
+    respuesta: 1200
+    tolerancia: 1
+    unidad: "€"
+    explicacion: "El cost explícit són els 300 € que pagues. El cost d'oportunitat són els 900 € que deixes d'ingressar per no treballar. El cost econòmic total és 300 + 900 = 1.200 €. El cost comptable, en canvi, només veuria els 300 €."
 ---
 
 Test d'autoavaluació de la Unitat 1 del llibre d'Economia 1r Batxillerat.

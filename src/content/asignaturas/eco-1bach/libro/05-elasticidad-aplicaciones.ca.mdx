@@ -58,6 +58,7 @@ import estancoCeuta from '@assets/libro/eco-1bach/05/estanco-ceuta.jpg';
 import refineriaCepsa from '@assets/libro/eco-1bach/05/refineria-cepsa-tenerife.jpg';
 import mietendeckelBerlin from '@assets/libro/eco-1bach/05/mietendeckel-berlin.jpg';
 import davidCard from '@assets/libro/eco-1bach/05/david-card.png';
+import RecursoDestacado from '@components/libro/RecursoDestacado.astro';
 
 > **Temps estimat de lectura**: 35-40 min · **Sabers LOMLOE**: B.2, B.3 · **Prerequisits**: Unitat 4 (oferta, demanda i equilibri de mercat).
 >
@@ -158,6 +159,8 @@ La regla intuïtiva: com més necessari i menys substituïble, més a prop del 0
   aspectHint="3/2"
   variant="tight"
 />
+
+<RecursoDestacado href="/eco-1bach/recursos/calculadora-elasticidad/" kicker="Ferramenta" title="Calculadora d'elasticitat-preu" descripcion="Dos punts de la corba de demanda i el mètode del punt mitjà fet: la classifica i ensenya què li passa a l'ingrés total." colorVar="--color-eco1" />
 
 ## Elasticitat i ingressos totals
 
@@ -535,6 +538,14 @@ Estes preguntes no tenen una resposta única. Servixen per discutir a classe o p
 </MirarFora>
 
 ```deck
+- tipo: curriculum
+  eyebrow: "A què respon esta unitat"
+  title: "El marc de la unitat"
+  saberes:
+    - "Bloc B: elasticitat i les seues aplicacions."
+    - "Bloc B: ingrés total, impostos indirectes i incidència."
+  competencias:
+    - "Analitzar els mercats amb els models d'oferta i demanda i l'elasticitat."
 - tipo: concept
   eyebrow: El cas
   title: Van pujar l'impost un 15 % i van recaptar un 3 % més
@@ -543,10 +554,18 @@ Estes preguntes no tenen una resposta única. Servixen per discutir a classe o p
 - tipo: section
   title: L'elasticitat-preu de la demanda
   subtitle: Que la quantitat caiga quan puja el preu és trivial. La pregunta interessant és quant cau en relació amb quant ha pujat.
-- tipo: concept
-  title: El mètode del punt mitjà, i per què s'usa
-  body: "Calcular el percentatge de variació dividint pel valor inicial dona un resultat distint si pugem el preu que si l'abaixem. Per a evitar eixa asimetria s'usa el mètode del punt mitjà: el percentatge es calcula sobre la mitjana dels dos valors, no sobre l'inicial. Amb això, moure el preu de 10 a 12 dona exactament la mateixa elasticitat que moure'l de 12 a 10."
-  pull: "E = [ΔQ / mitjana de Q] / [ΔP / mitjana de P], i després es compara el seu valor absolut amb la unitat."
+- tipo: formula
+  eyebrow: "Mètode del punt mitjà"
+  title: "El mètode del punt mitjà, i per què s'usa"
+  formula: "E = (ΔQ / Qm) / (ΔP / Pm)"
+  terminos:
+    - s: "ΔQ, ΔP"
+      d: "Variació absoluta de quantitat i de preu entre els dos punts."
+    - s: "Qm, Pm"
+      d: "Mitjana dels dos valors de quantitat i de preu, no l'inicial."
+    - s: "|E|"
+      d: "Es compara amb la unitat: per damunt és elàstica, per davall inelàstica."
+  ejemplo: "Dividir entre el valor inicial dona resultats distints en pujar i en baixar el preu. Amb la mitjana, moure el preu de 10 a 12 dona la mateixa elasticitat que de 12 a 10."
 - tipo: diagram
   diagrama: ElasticidadCasos
   caption: Els quatre casos extrems de l'elasticitat-preu de la demanda, de la vertical perfecta a l'horitzontal.
@@ -596,11 +615,18 @@ Estes preguntes no tenen una resposta única. Servixen per discutir a classe o p
       - "3,0"
       - Molt elàstic
   caption: Com més necessari i menys substituïble, més a prop del 0. Com més prescindible o substituïble, més per damunt de l'1.
-- tipo: concept
-  eyebrow: Regla pràctica
-  title: Què li passa a l'ingrés total quan mous el preu
-  body: "L'ingrés total és IT = P · Q. En pujar el preu, P empeny a l'alça però Q cau, i qui guanya el pols ho decidix l'elasticitat. En demanda inelàstica la quantitat cau poc, domina l'efecte preu i l'ingrés puja. En demanda elàstica es desploma, domina l'efecte quantitat i l'ingrés baixa. En unitària es compensen."
-  pull: Les rebaixes d'un gran magatzem funcionen perquè la moda és elàstica. El tabac i els peatges continuen cars perquè no ho són.
+- tipo: formula
+  eyebrow: "Regla pràctica"
+  title: "Què li passa a l'ingrés total quan mous el preu"
+  formula: "IT = P · Q"
+  terminos:
+    - s: "IT"
+      d: "Ingrés total: el que entra per les vendes."
+    - s: "P"
+      d: "Preu unitari, que puja quan el puges."
+    - s: "Q"
+      d: "Quantitat venuda, que cau quan el preu puja."
+  ejemplo: "Amb demanda inelàstica mana el preu i l'ingrés puja; amb demanda elàstica mana la quantitat i baixa. Les rebaixes funcionen perquè la moda és elàstica; el tabac no ho és."
 - tipo: exercise
   title: "Exercici 5.1 · Elasticitat pel mètode del punt mitjà"
   enunciado: "Una fleca de València ven el seu pa de massa mare a 3,00 €/barra i en despatxa 400 al dia. Puja el preu a 3,60 € i les vendes cauen a 360 barres. Calcula l'elasticitat pel mètode del punt mitjà, classifica la demanda i decidix si va encertar en pujar el preu."
@@ -738,4 +764,13 @@ Estes preguntes no tenen una resposta única. Servixen per discutir a classe o p
   title: La inelasticitat també té un límit
   body: "El tabac té demanda inelàstica, però no infinitament. La pujada del 15 % va produir dos efectes alhora: una caiguda lleu del consum legal, amb part del consumidor moderat reduint o abandonant, i un desplaçament al mercat paral·lel —contraban des d'Andorra, Portugal, Gibraltar i el nord d'Àfrica—. La recaptació va créixer només un 3 % perquè part del consum va escapar del circuit fiscal."
   pull: És la corba de Laffer aplicada a la fiscalitat indirecta. I a més es perd el control sanitari del producte.
+- tipo: recap
+  eyebrow: "Repassa"
+  title: "Abans de tancar la unitat"
+  items:
+    - "Sabries calcular i interpretar les elasticitats preu, renda i creuada de la demanda."
+    - "Sabries relacionar l'elasticitat-preu amb el que li passa a l'ingrés total."
+    - "Sabries calcular l'excedent del consumidor i del productor en un mercat simple."
+    - "Sabries analitzar preus màxims, preus mínims i impostos i identificar el pes mort."
+    - "Sabries citar casos reals: lloguer amb topall, salari mínim, impostos al tabac i al sucre."
 ```

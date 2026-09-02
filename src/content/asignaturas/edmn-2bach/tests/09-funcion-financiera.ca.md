@@ -95,6 +95,12 @@ preguntas:
     derecha: ["Finançament propi intern (autofinançament)", "Finançament aliè de molts xicotets prestadors", "Finançament propi extern (nous fons de socis)", "Finançament aliè amb devolució i interessos"]
     correctas: [3, 0, 1, 2]
     explicacion: "Préstec bancari → aliè amb interessos; beneficis reinvertits → propi intern; crowdlending → aliè de molts prestadors; ampliació de capital → propi extern."
+  - tipo: numerico
+    enunciado: "Una inversió de 10.000 € genera fluxos nets de 4.000 € a l'any. En quants anys es recupera el desemborsament inicial (termini de recuperació, amb 2 decimals)?"
+    respuesta: 2.5
+    tolerancia: 0.05
+    unidad: "anys"
+    explicacion: "PayBack = desemborsament / flux anual = 10.000 / 4.000 = 2,5 anys. El criteri és senzill però incomplet: no descompta el valor dels diners en el temps ni mira el que ocorre després de recuperar la inversió. Per això s'usa al costat del VAN, no en el seu lloc."
 ---
 
 Test d'autoavaluació de la Unitat 9 del llibre d'EDMN 2BACH.
