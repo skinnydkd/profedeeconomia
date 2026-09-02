@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { parseMdx } from './ast';
-import { extractAuthoredYaml, parseAuthoredSlides } from './authored';
+import { extractAuthoredYaml, MAX_AUTHORED_SLIDES, parseAuthoredSlides } from './authored';
 import { buildDeck } from './build-deck';
 
 const FM = `---
@@ -109,9 +109,14 @@ describe('parseAuthoredSlides — validation', () => {
   it('rejects invalid YAML loudly', () => {
     expect(one('- tipo: concept\n  title: "unclosed\n')).toThrow(/YAML inválido/);
   });
-  it('caps the deck at 30 authored slides', () => {
-    const y = Array.from({ length: 31 }, (_, i) => `- tipo: concept\n  title: S${i}\n`).join('');
-    expect(one(y)).toThrow(/máximo autorado es 30/);
+  it('caps the deck at MAX_AUTHORED_SLIDES', () => {
+    const over = MAX_AUTHORED_SLIDES + 1;
+    const y = Array.from({ length: over }, (_, i) => `- tipo: concept\n  title: S${i}\n`).join('');
+    expect(one(y)).toThrow(new RegExp(`máximo autorado es ${MAX_AUTHORED_SLIDES}`));
+  });
+  it('accepts a deck exactly at the cap', () => {
+    const y = Array.from({ length: MAX_AUTHORED_SLIDES }, (_, i) => `- tipo: concept\n  title: S${i}\n`).join('');
+    expect(one(y)).not.toThrow();
   });
 });
 
