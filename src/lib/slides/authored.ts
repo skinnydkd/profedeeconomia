@@ -26,6 +26,9 @@ import { parse as parseYaml } from 'yaml';
 import type { MdxNode } from './ast.ts';
 import type { Slide } from './types.ts';
 
+/** Slides a unit may author in its ```deck block; buildDeck adds a cover and a close on top. */
+export const MAX_AUTHORED_SLIDES = 30;
+
 /** Find the authored deck block's YAML source in a parsed MDX AST, if any. */
 export function extractAuthoredYaml(ast: MdxNode): string | null {
   for (const node of ast.children || []) {
@@ -71,8 +74,10 @@ export function parseAuthoredSlides(yamlSrc: string): Slide[] {
   if (!Array.isArray(raw) || raw.length === 0) {
     throw new Error('deck block: se esperaba una lista YAML de diapositivas');
   }
-  if (raw.length > 30) {
-    throw new Error(`deck block: ${raw.length} diapositivas — el máximo autorado es 30`);
+  if (raw.length > MAX_AUTHORED_SLIDES) {
+    throw new Error(
+      `deck block: ${raw.length} diapositivas — el máximo autorado es ${MAX_AUTHORED_SLIDES}`,
+    );
   }
 
   let sectionN = 0;
