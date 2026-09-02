@@ -124,6 +124,26 @@ export const HERRAMIENTAS_CA: Partial<Record<string, HerramientaCA>> = {
     descripcion:
       "Costos d'oportunitat de dos països, qui s'especialitza en què i el rang de la relació d'intercanvi.",
   },
+  'cuenta-resultados': {
+    title: 'Compte de resultats escalonat',
+    descripcion:
+      "De la xifra de negocis al resultat de l'exercici, parant en marge brut, EBITDA, BAII i BAI.",
+  },
+  'coste-contratacion': {
+    title: "Cost real d'una contractació",
+    descripcion:
+      "El que costa un empleat a l'empresa, el que cobra la persona i la distància entre les dues xifres.",
+  },
+  'cac-ltv': {
+    title: 'Cost de captació i valor del client',
+    descripcion:
+      'CAC, LTV, ràtio entre els dos i mesos que es tarda a recuperar el que s\'ha invertit a captar.',
+  },
+  'prevision-tesoreria': {
+    title: 'Previsió de tresoreria a 12 mesos',
+    descripcion:
+      'Cobraments i pagaments mes a mes, el pitjor moment de caixa i per què el benefici no són els diners disponibles.',
+  },
 };
 
 /** Overlay the Valencian strings onto a tool when locale is 'ca'. */

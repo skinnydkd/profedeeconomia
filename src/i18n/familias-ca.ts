@@ -116,7 +116,7 @@ export const FAMILIAS_HERRAMIENTA_CA: FamiliaOverlay = {
   },
   'mercados-macro': {
     label: 'Mercats i macroeconomia',
-    intro: 'Elasticitat, oferta i demanda agregada, multiplicador.',
+    intro: 'Escassetat, mercats, fallades, macroeconomia i comerç.',
   },
   'inversion-finanzas': {
     label: 'Inversió i finances',
@@ -132,7 +132,7 @@ export const FAMILIAS_HERRAMIENTA_CA: FamiliaOverlay = {
   },
   'estrategia-planificacion': {
     label: 'Estratègia i planificació',
-    intro: 'Diagnòstic i disseny: DAFO, model de negoci i cartera.',
+    intro: 'Diagnòstic, disseny i pla: model de negoci, cartera, clients i tresoreria.',
   },
 };
 

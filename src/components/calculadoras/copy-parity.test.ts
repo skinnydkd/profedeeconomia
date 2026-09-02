@@ -27,6 +27,10 @@ import { COPY as FPP } from './FPPCalc';
 import { COPY as Externalidad } from './ExternalidadCalc';
 import { COPY as MultiplicadorBancario } from './MultiplicadorBancarioCalc';
 import { COPY as VentajaComparativa } from './VentajaComparativaCalc';
+import { COPY as CuentaResultados } from './CuentaResultadosCalc';
+import { COPY as CosteContratacion } from './CosteContratacionCalc';
+import { COPY as MarketingCliente } from './MarketingClienteCalc';
+import { COPY as Tesoreria } from './TesoreriaCalc';
 
 /**
  * Every localized island exports a `COPY = { es, ca }`. This guard fails when a
@@ -64,6 +68,10 @@ const ISLANDS: [string, { es: Record<string, unknown>; ca: Record<string, unknow
   ['ExternalidadCalc', Externalidad],
   ['MultiplicadorBancarioCalc', MultiplicadorBancario],
   ['VentajaComparativaCalc', VentajaComparativa],
+  ['CuentaResultadosCalc', CuentaResultados],
+  ['CosteContratacionCalc', CosteContratacion],
+  ['MarketingClienteCalc', MarketingCliente],
+  ['TesoreriaCalc', Tesoreria],
 ];
 
 const isRecord = (v: unknown): v is Record<string, unknown> =>

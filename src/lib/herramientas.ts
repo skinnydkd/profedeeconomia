@@ -15,7 +15,8 @@ export const COMPONENTE_KEYS = [
   'Elasticidad', 'MultiplicadorGasto', 'IRPFDeclaracion', 'CocheVsAlternativa', 'RIASEC',
   'PresupuestoUni', 'Productividad', 'EquilibrioMercado', 'DAFO', 'CanvasBM', 'BCG',
   'TasasEPA', 'MatrizDecision', 'FPP', 'Externalidad', 'MultiplicadorBancario',
-  'VentajaComparativa',
+  'VentajaComparativa', 'CuentaResultados', 'CosteContratacion', 'MarketingCliente',
+  'Tesoreria',
 ] as const;
 export type ComponenteKey = typeof COMPONENTE_KEYS[number];
 
@@ -40,7 +41,7 @@ export const FAMILIAS_HERRAMIENTA: Familia[] = [
   { slug: 'inversion-finanzas',  label: 'Inversión y finanzas',    intro: 'Valorar inversiones: VAN, TIR, descuento e interés.',   colorVar: '--color-mustard' },
   { slug: 'finanzas-personales', label: 'Finanzas personales',     intro: 'Nómina, IRPF, presupuesto y decisiones de gasto.',      colorVar: '--color-fopp' },
   { slug: 'orientacion-fp',         label: 'Orientación y FP',          intro: 'Intereses, itinerarios y currículum.',                  colorVar: '--color-ipe2' },
-  { slug: 'estrategia-planificacion', label: 'Estrategia y planificación', intro: 'Diagnóstico y diseño: DAFO, modelo de negocio y cartera.', colorVar: '--color-gpe' },
+  { slug: 'estrategia-planificacion', label: 'Estrategia y planificación', intro: 'Diagnóstico, diseño y plan: modelo de negocio, cartera, clientes y tesorería.', colorVar: '--color-gpe' },
 ];
 
 export const HERRAMIENTAS: Herramienta[] = [
@@ -72,6 +73,10 @@ export const HERRAMIENTAS: Herramienta[] = [
   { componente: 'Externalidad', slug: 'externalidad-impuesto', title: 'Externalidades e impuesto pigouviano', familia: 'mercados-macro', orden: 6, tipo: 'calculadora', descripcion: 'Equilibrio de mercado frente a óptimo social, impuesto o subvención correctora y pérdida de eficiencia.', competencias_clave: ['STEM', 'CD', 'CC'], competencias_especificas: [], unidades_relacionadas: [{ asignatura: 'eco-1bach', unidad: 6 }] },
   { componente: 'MultiplicadorBancario', slug: 'multiplicador-bancario', title: 'Creación de dinero bancario', familia: 'mercados-macro', orden: 7, tipo: 'calculadora', descripcion: 'Cuánto dinero crea el sistema bancario a partir de un depósito, ronda a ronda.', competencias_clave: ['STEM', 'CD'], competencias_especificas: [], unidades_relacionadas: [{ asignatura: 'eco-1bach', unidad: 10 }] },
   { componente: 'VentajaComparativa', slug: 'ventaja-comparativa', title: 'Ventaja comparativa y comercio', familia: 'mercados-macro', orden: 8, tipo: 'calculadora', descripcion: 'Costes de oportunidad de dos países, quién se especializa en qué y el rango de la relación de intercambio.', competencias_clave: ['STEM', 'CD', 'CC'], competencias_especificas: [], unidades_relacionadas: [{ asignatura: 'eco-1bach', unidad: 12 }] },
+  { componente: 'CuentaResultados', slug: 'cuenta-resultados', title: 'Cuenta de resultados escalonada', familia: 'costes-resultados', orden: 5, tipo: 'calculadora', descripcion: 'De la cifra de negocios al resultado del ejercicio, parando en margen bruto, EBITDA, BAII y BAI.', competencias_clave: ['STEM', 'CD', 'CE'], competencias_especificas: [], unidades_relacionadas: [{ asignatura: 'edmn-2bach', unidad: 10 }] },
+  { componente: 'CosteContratacion', slug: 'coste-contratacion', title: 'Coste real de una contratación', familia: 'costes-resultados', orden: 6, tipo: 'calculadora', descripcion: 'Lo que cuesta un empleado a la empresa, lo que cobra la persona y la distancia entre las dos cifras.', competencias_clave: ['STEM', 'CD', 'CC'], competencias_especificas: [], unidades_relacionadas: [{ asignatura: 'edmn-2bach', unidad: 8 }] },
+  { componente: 'MarketingCliente', slug: 'cac-ltv', title: 'Coste de captación y valor del cliente', familia: 'estrategia-planificacion', orden: 4, tipo: 'calculadora', descripcion: 'CAC, LTV, ratio entre los dos y meses que se tarda en recuperar lo invertido en captar.', competencias_clave: ['STEM', 'CD', 'CE'], competencias_especificas: [], unidades_relacionadas: [{ asignatura: 'edmn-2bach', unidad: 6 }] },
+  { componente: 'Tesoreria', slug: 'prevision-tesoreria', title: 'Previsión de tesorería a 12 meses', familia: 'estrategia-planificacion', orden: 5, tipo: 'simulador', descripcion: 'Cobros y pagos mes a mes, el peor momento de caja y por qué el beneficio no es el dinero disponible.', competencias_clave: ['STEM', 'CD', 'CE'], competencias_especificas: [], unidades_relacionadas: [{ asignatura: 'edmn-2bach', unidad: 12 }] },
 ];
 
 const BY_SLUG = new Map(HERRAMIENTAS.map((h) => [`${h.familia}/${h.slug}`, h]));
