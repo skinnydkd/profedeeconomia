@@ -49,10 +49,15 @@ const links: Link[] = walk(ROOT).flatMap((path) => {
  * pointing at a unit's calculator would otherwise resolve to nothing and pass
  * this guard by accident.
  */
+// ASIGNATURA_SLUGS is a readonly tuple of literals, so `.includes` would only
+// accept one of those literals. Widen it here: the input is an arbitrary href
+// segment, and a miss is exactly the answer we want.
+const SUBJECTS: readonly string[] = ASIGNATURA_SLUGS;
+
 function entryFor(href: string): string | null {
   const parts = href.replace(/^\/|\/$/g, '').split('/');
   if (parts.length !== 3) return null;
-  const prefix = ASIGNATURA_SLUGS.includes(parts[0]) ? 'asignaturas/' : '';
+  const prefix = SUBJECTS.includes(parts[0]) ? 'asignaturas/' : '';
   return prefix + parts.join('/');
 }
 
