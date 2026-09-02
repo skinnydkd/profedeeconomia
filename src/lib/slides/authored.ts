@@ -152,6 +152,62 @@ export function parseAuthoredSlides(yamlSrc: string): Slide[] {
         }
         return { tipo, eyebrow: opt(i, tipo, s.eyebrow, 'eyebrow', 40), pregunta: req(i, tipo, s.pregunta, 'pregunta', 190), opciones, correcta, explicacion: opt(i, tipo, s.explicacion, 'explicacion', 220) };
       }
+      case 'formula': {
+        // The legend is what makes a formula studiable: a symbol nobody can
+        // expand is decoration. Two to five entries keep it readable at 16:9.
+        const terminos = s.terminos == null ? undefined : (() => {
+          if (!Array.isArray(s.terminos) || s.terminos.length < 2 || s.terminos.length > 5) {
+            throw new SlideError(i, tipo, '"terminos" debe tener entre 2 y 5 símbolos');
+          }
+          return s.terminos.map((t: any, j: number) => ({
+            s: req(i, tipo, t?.s, `terminos[${j}].s`, 18),
+            d: req(i, tipo, t?.d, `terminos[${j}].d`, 90),
+          }));
+        })();
+        return {
+          tipo, eyebrow: opt(i, tipo, s.eyebrow, 'eyebrow', 40), title: opt(i, tipo, s.title, 'title', 90),
+          formula: req(i, tipo, s.formula, 'formula', 90), terminos,
+          ejemplo: opt(i, tipo, s.ejemplo, 'ejemplo', 200),
+        };
+      }
+      case 'timeline': {
+        if (!Array.isArray(s.hitos) || s.hitos.length < 3 || s.hitos.length > 6) {
+          throw new SlideError(i, tipo, '"hitos" debe tener entre 3 y 6 entradas');
+        }
+        return {
+          tipo, eyebrow: opt(i, tipo, s.eyebrow, 'eyebrow', 40), title: opt(i, tipo, s.title, 'title', 90),
+          hitos: s.hitos.map((h: any, j: number) => ({
+            fecha: req(i, tipo, h?.fecha, `hitos[${j}].fecha`, 14),
+            hito: req(i, tipo, h?.hito, `hitos[${j}].hito`, 60),
+            detalle: opt(i, tipo, h?.detalle, `hitos[${j}].detalle`, 95),
+          })),
+        };
+      }
+      case 'caso':
+        return {
+          tipo, eyebrow: opt(i, tipo, s.eyebrow, 'eyebrow', 40), title: req(i, tipo, s.title, 'title', 90),
+          contexto: req(i, tipo, s.contexto, 'contexto', 260),
+          datos: s.datos == null ? undefined : strList(i, tipo, s.datos, 'datos', 2, 5, 80),
+          pregunta: req(i, tipo, s.pregunta, 'pregunta', 160),
+        };
+      case 'recap':
+        return {
+          tipo, eyebrow: opt(i, tipo, s.eyebrow, 'eyebrow', 40), title: opt(i, tipo, s.title, 'title', 90),
+          items: strList(i, tipo, s.items, 'items', 3, 6, 120),
+        };
+      case 'curriculum':
+        // Fill these from the subject's own programación, never from memory.
+        // It states the competencias específicas as unnumbered capacities on
+        // purpose: the numbering and the criterios de evaluación are set by each
+        // comunidad autónoma, and CLAUDE.md keeps CCAA concretions out of the
+        // MVP. So never invent a number here; `criterios` stays optional for
+        // when a real autonomic concretion is added.
+        return {
+          tipo, eyebrow: opt(i, tipo, s.eyebrow, 'eyebrow', 40), title: opt(i, tipo, s.title, 'title', 90),
+          saberes: strList(i, tipo, s.saberes, 'saberes', 1, 5, 95),
+          competencias: strList(i, tipo, s.competencias, 'competencias', 1, 4, 95),
+          criterios: s.criterios == null ? undefined : strList(i, tipo, s.criterios, 'criterios', 1, 4, 95),
+        };
       case 'data':
         return { tipo, numero: req(i, tipo, s.numero, 'numero', 14), label: opt(i, tipo, s.label, 'label', 44), title: opt(i, tipo, s.title, 'title', 84), detalle: opt(i, tipo, s.detalle, 'detalle', 230) };
       case 'quote':

@@ -8,8 +8,12 @@ const { slide, pos, locale = 'es' } = Astro.props;
 const s = slide as any;
 const brand = 'profedeeconomia.es';
 const L = locale === 'ca'
-  ? { ejercicio: 'Exercici', comprueba: 'Comprova el que saps', solucion: 'Solució', fuente: 'Font' }
-  : { ejercicio: 'Ejercicio', comprueba: 'Comprueba lo que sabes', solucion: 'Solución', fuente: 'Fuente' };
+  ? { ejercicio: 'Exercici', comprueba: 'Comprova el que saps', solucion: 'Solució', fuente: 'Font',
+      donde: 'On', ejemplo: 'Exemple', elCaso: 'El cas', datos: 'Dades', pregunta: 'La pregunta',
+      repasa: 'Repassa abans de l\u2019examen', saberes: 'Sabers bàsics', competencias: 'Competències específiques', criterios: 'Criteris d\u2019avaluació' }
+  : { ejercicio: 'Ejercicio', comprueba: 'Comprueba lo que sabes', solucion: 'Solución', fuente: 'Fuente',
+      donde: 'Donde', ejemplo: 'Ejemplo', elCaso: 'El caso', datos: 'Datos', pregunta: 'La pregunta',
+      repasa: 'Repasa antes del examen', saberes: 'Saberes básicos', competencias: 'Competencias específicas', criterios: 'Criterios de evaluación' };
 const letters = ['A', 'B', 'C', 'D'];
 ---
 {slide.tipo === 'cover' && (
@@ -190,6 +194,107 @@ const letters = ['A', 'B', 'C', 'D'];
         ))}
       </ol>
       {s.explicacion && <p class="expl"><strong>{L.solucion}: {letters[s.correcta]}.</strong> {s.explicacion}</p>}
+    </div>
+    <div class="slide__foot"><span>{brand}</span><span>{pos}</span></div>
+  </section>
+)}
+
+{slide.tipo === 'formula' && (
+  <section class="slide s-formula">
+    <svg class="slide__corner" viewBox="0 0 22 14"><path d="M1 13 C7 13 11 3 21 1" fill="none" stroke="var(--color-mustard)" stroke-width="1.3"/></svg>
+    <div class="slide__pad">
+      {s.eyebrow && <div class="slide__eyebrow">{s.eyebrow}</div>}
+      {s.title && <h2>{s.title}</h2>}
+      <p class="f">{s.formula}</p>
+      {s.terminos && (
+        <>
+          <div class="lbl">{L.donde}</div>
+          <dl class="legend">
+            {s.terminos.map((t: { s: string; d: string }) => (<><dt>{t.s}</dt><dd>{t.d}</dd></>))}
+          </dl>
+        </>
+      )}
+      {s.ejemplo && <p class="ex"><span class="lbl">{L.ejemplo}</span>{s.ejemplo}</p>}
+    </div>
+    <div class="slide__foot"><span>{brand}</span><span>{pos}</span></div>
+  </section>
+)}
+
+{slide.tipo === 'timeline' && (
+  <section class="slide s-timeline">
+    <svg class="slide__corner" viewBox="0 0 22 14"><path d="M1 13 C7 13 11 3 21 1" fill="none" stroke="var(--color-mustard)" stroke-width="1.3"/></svg>
+    <div class="slide__pad">
+      {s.eyebrow && <div class="slide__eyebrow">{s.eyebrow}</div>}
+      {s.title && <h2>{s.title}</h2>}
+      <ol class="rail" data-n={s.hitos.length}>
+        {s.hitos.map((h: { fecha: string; hito: string; detalle?: string }) => (
+          <li>
+            <span class="dot" aria-hidden="true"></span>
+            <span class="date">{h.fecha}</span>
+            <span class="what">{h.hito}</span>
+            {h.detalle && <span class="det">{h.detalle}</span>}
+          </li>
+        ))}
+      </ol>
+    </div>
+    <div class="slide__foot"><span>{brand}</span><span>{pos}</span></div>
+  </section>
+)}
+
+{slide.tipo === 'caso' && (
+  <section class="slide s-caso">
+    <svg class="slide__corner" viewBox="0 0 22 14"><path d="M1 13 C7 13 11 3 21 1" fill="none" stroke="var(--color-mustard)" stroke-width="1.3"/></svg>
+    <div class="slide__pad">
+      <div class="slide__eyebrow">{s.eyebrow || L.elCaso}</div>
+      <h2>{s.title}</h2>
+      <p class="ctx">{s.contexto}</p>
+      {s.datos && (
+        <ul class="datos">{s.datos.map((d: string) => <li>{d}</li>)}</ul>
+      )}
+      <p class="q"><span class="lbl">{L.pregunta}</span>{s.pregunta}</p>
+    </div>
+    <div class="slide__foot"><span>{brand}</span><span>{pos}</span></div>
+  </section>
+)}
+
+{slide.tipo === 'recap' && (
+  <section class="slide s-recap">
+    <svg class="slide__corner" viewBox="0 0 22 14"><path d="M1 13 C7 13 11 3 21 1" fill="none" stroke="var(--color-mustard)" stroke-width="1.3"/></svg>
+    <div class="slide__pad">
+      <div class="slide__eyebrow">{s.eyebrow || L.repasa}</div>
+      {s.title && <h2>{s.title}</h2>}
+      <ul class="checks">
+        {s.items.map((it: string) => (
+          <li><span class="box" aria-hidden="true"></span><span>{it}</span></li>
+        ))}
+      </ul>
+    </div>
+    <div class="slide__foot"><span>{brand}</span><span>{pos}</span></div>
+  </section>
+)}
+
+{slide.tipo === 'curriculum' && (
+  <section class="slide s-curriculum">
+    <svg class="slide__corner" viewBox="0 0 22 14"><path d="M1 13 C7 13 11 3 21 1" fill="none" stroke="var(--color-mustard)" stroke-width="1.3"/></svg>
+    <div class="slide__pad">
+      {s.eyebrow && <div class="slide__eyebrow">{s.eyebrow}</div>}
+      {s.title && <h2>{s.title}</h2>}
+      <div class="cols" data-n={s.criterios ? 3 : 2}>
+        <div class="col">
+          <div class="col__h">{L.saberes}</div>
+          <ul>{s.saberes.map((x: string) => <li>{x}</li>)}</ul>
+        </div>
+        <div class="col">
+          <div class="col__h">{L.competencias}</div>
+          <ul>{s.competencias.map((x: string) => <li>{x}</li>)}</ul>
+        </div>
+        {s.criterios && (
+          <div class="col">
+            <div class="col__h">{L.criterios}</div>
+            <ul>{s.criterios.map((x: string) => <li>{x}</li>)}</ul>
+          </div>
+        )}
+      </div>
     </div>
     <div class="slide__foot"><span>{brand}</span><span>{pos}</span></div>
   </section>

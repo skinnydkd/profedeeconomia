@@ -160,3 +160,126 @@ Prosa suficiente para un concepto con algo de cuerpo que contar aquí.
     expect(fig.alt).toBe('Taller de FP');
   });
 });
+
+/* ── Second authored wave ─────────────────────────────────────────────────
+   Five archetypes added so a slide can be a formula, a chronology, a case,
+   a revision checklist or the unit's curricular frame instead of prose. */
+
+const wave2 = (yaml: string) => parseAuthoredSlides(yaml);
+
+describe('formula slides', () => {
+  it('keeps the expression, its legend and a worked example', () => {
+    const [s] = wave2(`
+- tipo: formula
+  title: La tasa de paro
+  formula: Tasa de paro = (parados / población activa) × 100
+  terminos:
+    - s: parados
+      d: Personas sin empleo que buscan activamente.
+    - s: población activa
+      d: Ocupados más parados.
+  ejemplo: Con 1.400 parados y 11.000 activos, la tasa es del 12,7 %.
+`) as any[];
+    expect(s.tipo).toBe('formula');
+    expect(s.formula).toContain('población activa');
+    expect(s.terminos).toHaveLength(2);
+    expect(s.ejemplo).toContain('12,7');
+  });
+
+  it('allows a bare formula with no legend', () => {
+    const [s] = wave2('- tipo: formula\n  formula: Q* = CF / (P − CVu)\n') as any[];
+    expect(s.terminos).toBeUndefined();
+  });
+
+  it('rejects a legend with a single symbol', () => {
+    expect(() => wave2('- tipo: formula\n  formula: a = b\n  terminos:\n    - s: a\n      d: Sola.\n'))
+      .toThrow(/entre 2 y 5 símbolos/);
+  });
+
+  it('rejects a missing formula', () => {
+    expect(() => wave2('- tipo: formula\n  title: Sin nada\n')).toThrow(/falta "formula"/);
+  });
+});
+
+describe('timeline slides', () => {
+  it('keeps milestones in the authored order', () => {
+    const [s] = wave2(`
+- tipo: timeline
+  title: Del patrón oro al euro
+  hitos:
+    - fecha: "1944"
+      hito: Bretton Woods
+      detalle: El dólar queda ligado al oro.
+    - fecha: "1971"
+      hito: Nixon cierra la ventanilla del oro
+    - fecha: "1999"
+      hito: Nace el euro
+`) as any[];
+    expect(s.hitos.map((h: any) => h.fecha)).toEqual(['1944', '1971', '1999']);
+    expect(s.hitos[1].detalle).toBeUndefined();
+  });
+
+  it('rejects fewer than three milestones', () => {
+    expect(() => wave2('- tipo: timeline\n  hitos:\n    - fecha: "1"\n      hito: Uno\n    - fecha: "2"\n      hito: Dos\n'))
+      .toThrow(/entre 3 y 6 entradas/);
+  });
+});
+
+describe('caso slides', () => {
+  it('carries context, figures and the question', () => {
+    const [s] = wave2(`
+- tipo: caso
+  title: Paro juvenil y vacantes sin cubrir
+  contexto: España tenía un paro juvenil del 26 % con 150.000 vacantes sin cubrir.
+  datos:
+    - Paro juvenil 26 %
+    - 150.000 vacantes
+  pregunta: ¿Por qué no se encuentran unos con otros?
+`) as any[];
+    expect(s.eyebrow).toBeUndefined(); // the renderer falls back to "El caso"
+    expect(s.datos).toHaveLength(2);
+    expect(s.pregunta).toMatch(/^¿/);
+  });
+
+  it('requires the question', () => {
+    expect(() => wave2('- tipo: caso\n  title: T\n  contexto: C\n')).toThrow(/falta "pregunta"/);
+  });
+});
+
+describe('recap slides', () => {
+  it('takes three to six retrieval prompts', () => {
+    const [s] = wave2('- tipo: recap\n  items:\n    - Uno\n    - Dos\n    - Tres\n') as any[];
+    expect(s.items).toHaveLength(3);
+  });
+
+  it('rejects two prompts', () => {
+    expect(() => wave2('- tipo: recap\n  items:\n    - Uno\n    - Dos\n')).toThrow(/entre 3 y 6/);
+  });
+});
+
+describe('curriculum slides', () => {
+  it('keeps saberes and competencias, with optional criterios', () => {
+    const [s] = wave2(`
+- tipo: curriculum
+  saberes:
+    - El mercado de trabajo y sus tasas
+  competencias:
+    - CE3 · Analizar datos económicos reales
+  criterios:
+    - 3.1 Interpreta las tasas de la EPA
+`) as any[];
+    expect(s.saberes).toHaveLength(1);
+    expect(s.competencias).toHaveLength(1);
+    expect(s.criterios).toHaveLength(1);
+  });
+
+  it('works without criterios', () => {
+    const [s] = wave2('- tipo: curriculum\n  saberes:\n    - A\n  competencias:\n    - B\n') as any[];
+    expect(s.criterios).toBeUndefined();
+  });
+
+  it('requires at least one competencia', () => {
+    expect(() => wave2('- tipo: curriculum\n  saberes:\n    - A\n  competencias: []\n'))
+      .toThrow(/"competencias" debe tener entre 1 y 4/);
+  });
+});
