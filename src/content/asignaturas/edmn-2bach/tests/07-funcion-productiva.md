@@ -85,6 +85,12 @@ preguntas:
     derecha: ["Operaciones idénticas que se repiten sin pausa por unidades", "Series limitadas de productos similares", "Cada output es único, como un edificio", "Proceso que no se detiene, como una refinería"]
     correctas: [2, 1, 0, 3]
     explicacion: "Por proyecto → output único; por lotes → series limitadas; en cadena → operaciones idénticas repetidas; continua → proceso que no se detiene."
+  - tipo: numerico
+    enunciado: "Una empresa tiene 12.000 € de costes fijos al mes, vende su producto a 8 € y le cuesta 5 € de coste variable unitario. ¿Cuál es su punto muerto, en unidades al mes?"
+    respuesta: 4000
+    tolerancia: 1
+    unidad: "unidades"
+    explicacion: "Q* = CF / (P − CVu) = 12.000 / (8 − 5) = 12.000 / 3 = 4.000 unidades. El denominador es el margen de contribución: cada unidad vendida aporta 3 € a cubrir los fijos. Desde la unidad 4.001, cada venta es beneficio."
 ---
 
 Test de autoevaluación de la Unidad 7 del libro de EDMN 2BACH.

@@ -93,6 +93,12 @@ preguntas:
     derecha: ["Responde de las deudas con todo su patrimonio personal", "Limita el tiempo de trabajo (65 %/85 %) porque parte se dedica a formación", "Responsabilidad limitada al capital aportado, tributa al 25 %", "Jornada completa cobrando el íntegro de convenio, para quien ya tiene el título"]
     correctas: [2, 0, 3, 1]
     explicacion: "SL: responsabilidad limitada al capital aportado. Autónomo: responde con todo su patrimonio (responsabilidad ilimitada). Práctica profesional: jornada completa y salario íntegro para quien ya tiene título. Formación en alternancia: jornada limitada al 65 %/85 % porque el resto es formación."
+  - tipo: numerico
+    enunciado: "Con un salario bruto mensual de 1.800 € y una cotización a la Seguridad Social del 6,35 %, ¿cuántos euros se descuentan por ese concepto (2 decimales)?"
+    respuesta: 114.3
+    tolerancia: 0.5
+    unidad: "€"
+    explicacion: "1.800 × 6,35 / 100 = 114,30 €. Ese 6,35 % es solo la parte del trabajador (contingencias comunes, desempleo y formación). La empresa paga aparte alrededor de un 30 % más sobre esa misma base, que no aparece en la nómina pero forma parte del coste laboral."
 ---
 
 Test de autoevaluación de la Unidad 8 del libro de Eco 4ESO. Nueve preguntas porque esta unidad es el diferenciador editorial del bloque C: leer una nómina, calcular el neto, distinguir contratos tras la reforma de 2021 y elegir forma jurídica son competencias que casi ningún libro de 4.º trabaja con este nivel de detalle.

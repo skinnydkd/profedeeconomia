@@ -95,6 +95,12 @@ preguntas:
     derecha: ["Respon dels deutes amb tot el seu patrimoni personal", "Limita el temps de treball (65 %/85 %) perquè una part es dedica a formació", "Responsabilitat limitada al capital aportat, tributa al 25 %", "Jornada completa cobrant l'íntegre de conveni, per a qui ja té el títol"]
     correctas: [2, 0, 3, 1]
     explicacion: "SL: responsabilitat limitada al capital aportat. Autònom: respon amb tot el seu patrimoni (responsabilitat il·limitada). Pràctica professional: jornada completa i salari íntegre per a qui ja té títol. Formació en alternança: jornada limitada al 65 %/85 % perquè la resta és formació."
+  - tipo: numerico
+    enunciado: "Amb un salari brut mensual de 1.800 € i una cotització a la Seguretat Social del 6,35 %, quants euros es descompten per eixe concepte (2 decimals)?"
+    respuesta: 114.3
+    tolerancia: 0.5
+    unidad: "€"
+    explicacion: "1.800 × 6,35 / 100 = 114,30 €. Eixe 6,35 % és només la part del treballador (contingències comunes, desocupació i formació). L'empresa paga a banda al voltant d'un 30 % més sobre eixa mateixa base, que no apareix en la nòmina però forma part del cost laboral."
 ---
 
 Test d'autoavaluació de la Unitat 8 del llibre d'Eco 4ESO. Nou preguntes perquè esta unitat és el diferenciador editorial del bloc C: llegir una nòmina, calcular el net, distingir contractes després de la reforma de 2021 i triar forma jurídica són competències que quasi cap llibre de 4t treballa amb este nivell de detall.

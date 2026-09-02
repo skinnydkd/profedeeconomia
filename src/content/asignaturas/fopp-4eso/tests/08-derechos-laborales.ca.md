@@ -95,6 +95,12 @@ preguntas:
     derecha: ["20 dies per any, topall 12 mensualitats", "Readmissió obligatòria més salaris de tramitació", "33 dies per any, topall 24 mensualitats"]
     correctas: [2, 0, 1]
     explicacion: "L'acomiadament improcedent (sense causa justificada) indemnitza amb 33 dies per any, topall 24 mensualitats; el procedent per causes objectives, amb 20 dies per any, topall 12; el nul, per vulnerar drets fonamentals, obliga a readmetre i pagar salaris de tramitació."
+  - tipo: numerico
+    enunciado: "El teu conveni fixa una jornada anual de 1.750 hores ordinàries i ja en portes 1.600 de treballades enguany. Quantes hores ordinàries et queden?"
+    respuesta: 150
+    tolerancia: 1
+    unidad: "hores"
+    explicacion: "1.750 − 1.600 = 150 hores. A partir d'ahí, el que es treballe són hores extraordinàries, amb el seu propi límit legal de 80 a l'any i la seua compensació en diners o en descans. L'Estatut fixa un màxim de 40 hores setmanals de mitjana anual; el conveni pot baixar-lo, mai pujar-lo."
 ---
 
 Test d'autoavaluació de la Unitat 8 del llibre de FOPP 4ESO. Nou preguntes sobre els drets laborals bàsics a Espanya: SMI 2026, jornada màxima, vacances, pagues extres, indemnització per acomiadament, Llei 31/1995 de PRL, accident in itinere, jerarquia conveni-ET i la ruta administrativa i judicial per a reclamar.

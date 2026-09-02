@@ -95,6 +95,12 @@ preguntas:
     derecha: ["Pujar el tipus d'interés oficial i aplicar QT", "Abaixar la despesa pública i pujar impostos", "Augmentar la despesa pública o reduir impostos", "Abaixar tipus d'interés i aplicar QE (compra d'actius)"]
     correctas: [2, 1, 3, 0]
     explicacion: "Fiscal expansiva: ↑G o ↓T. Fiscal restrictiva: ↓G o ↑T. Monetària expansiva: abaixar tipus i comprar actius (QE). Monetària restrictiva: pujar tipus i retirar liquiditat (QT)."
+  - tipo: numerico
+    enunciado: "Amb una propensió marginal al consum de 0,75, l'Estat augmenta la despesa pública en 2.000 mil. €. En quants mil. € augmenta la renda segons el multiplicador keynesià simple?"
+    respuesta: 8000
+    tolerancia: 10
+    unidad: "mil. €"
+    explicacion: "El multiplicador és 1 / (1 − 0,75) = 4. L'efecte total sobre la renda és 2.000 × 4 = 8.000 mil. €. És un model molt simplificat: ignora impostos, importacions i l'efecte sobre els tipus d'interés, que reduïxen el multiplicador real."
 ---
 
 Test d'autoavaluació de la Unitat 11 del llibre d'Eco 1BACH: polítiques econòmiques, fiscal i monetària.

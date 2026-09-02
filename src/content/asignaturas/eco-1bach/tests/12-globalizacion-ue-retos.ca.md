@@ -97,6 +97,12 @@ preguntas:
     derecha: ["1992", "2002", "1951", "1957"]
     correctas: [2, 3, 0, 1]
     explicacion: "CECA en 1951, Tractats de Roma en 1957, Maastricht en 1992 (crea la UE i assenta les bases de la unió monetària) i l'entrada en circulació de l'euro físic en 2002."
+  - tipo: numerico
+    enunciado: "Amb els seus recursos, Espanya pot produir 100 unitats de vi o 200 de tela. Quin és el cost d'oportunitat d'una unitat de vi, en unitats de tela?"
+    respuesta: 2
+    tolerancia: 0.01
+    unidad: "unitats de tela"
+    explicacion: "Renunciar a les 200 de tela permet obtindre 100 de vi, així que cada unitat de vi costa 200 / 100 = 2 de tela. Comparant este cost amb el de l'altre país es veu qui té l'avantatge comparatiu en cada bé."
 ---
 
 Test d'autoavaluació de la Unitat 12 del llibre d'Eco 1BACH. Deu preguntes que cobrixen avantatge absolut i comparatiu (amb càlcul de cost d'oportunitat), proteccionisme vs. lliure comerç, OMC, fites de la construcció europea, les quatre llibertats del mercat únic, NextGenerationEU, beneficis i costos de la globalització, revolució digital (Frey-Osborne i polarització del mercat laboral), economia circular vs. decreixement i ODS de l'Agenda 2030.

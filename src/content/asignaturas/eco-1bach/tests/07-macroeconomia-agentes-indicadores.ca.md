@@ -93,6 +93,18 @@ preguntas:
     enunciado: "Una persona que no treballa, està disponible per a treballar però ha deixat de buscar ocupació, es comptabilitza com a aturada en l'EPA."
     correcta: false
     explicacion: "L'EPA exigix tres requisits simultanis: no treballar, estar disponible i buscar activament. Si no busca, és inactiva (treballador desanimat), no aturada, encara que conserve la voluntat de treballar."
+  - tipo: numerico
+    enunciado: "Una economia registra en un any: consum 700.000, inversió 200.000, despesa pública 250.000, exportacions 350.000 i importacions 300.000 (mil. €). Quin és el PIB pel mètode de la despesa, en mil. €?"
+    respuesta: 1200000
+    tolerancia: 1000
+    unidad: "mil. €"
+    explicacion: "PIB = C + I + G + (X − M) = 700.000 + 200.000 + 250.000 + (350.000 − 300.000) = 1.200.000 mil. €. Les importacions resten perquè no s'han produït dins del país."
+  - tipo: relacionar
+    enunciado: "Relaciona cada indicador macroeconòmic amb el que mesura:"
+    izquierda: ["PIB", "IPC", "Taxa d'atur", "Balança per compte corrent"]
+    derecha: ["El preu d'una cistella de béns representativa", "El valor del que s'ha produït dins del país en un període", "Els cobraments i pagaments amb l'exterior per béns, servicis i rendes", "La part de la població activa que busca faena i no en troba"]
+    correctas: [1, 0, 3, 2]
+    explicacion: "Cadascun mesura una cosa distinta i cap resumix l'economia tot sol: el PIB mesura producció, l'IPC preus, la taxa d'atur el mercat de treball i la balança la relació amb l'exterior."
 ---
 
 Test d'autoavaluació de la Unitat 7 del llibre d'Eco 1BACH. Nou preguntes que cobrixen els quatre agents econòmics, la identitat del flux circular ampliat, el càlcul del PIB pels mètodes de la despesa i de la producció, la conversió entre PIB nominal i real mitjançant el deflactor, la diferència entre IPC i deflactor del PIB, el paper de l'IPCH en la zona euro, la definició d'atur segons l'EPA i l'estructura del superàvit per compte corrent espanyol.

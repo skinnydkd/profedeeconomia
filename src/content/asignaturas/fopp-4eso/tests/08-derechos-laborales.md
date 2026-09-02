@@ -93,6 +93,12 @@ preguntas:
     derecha: ["20 días por año, tope 12 mensualidades", "Readmisión obligatoria más salarios de tramitación", "33 días por año, tope 24 mensualidades"]
     correctas: [2, 0, 1]
     explicacion: "El despido improcedente (sin causa justificada) indemniza con 33 días por año, tope 24 mensualidades; el procedente por causas objetivas, con 20 días por año, tope 12; el nulo, por vulnerar derechos fundamentales, obliga a readmitir y pagar salarios de tramitación."
+  - tipo: numerico
+    enunciado: "Tu convenio fija una jornada anual de 1.750 horas ordinarias y ya llevas 1.600 trabajadas este año. ¿Cuántas horas ordinarias te quedan?"
+    respuesta: 150
+    tolerancia: 1
+    unidad: "horas"
+    explicacion: "1.750 − 1.600 = 150 horas. A partir de ahí, lo que se trabaje son horas extraordinarias, con su propio límite legal de 80 al año y su compensación en dinero o en descanso. El Estatuto fija un máximo de 40 horas semanales de media anual; el convenio puede bajarlo, nunca subirlo."
 ---
 
 Test de autoevaluación de la Unidad 8 del libro de FOPP 4ESO. Nueve preguntas sobre los derechos laborales básicos en España: SMI 2026, jornada máxima, vacaciones, pagas extras, indemnización por despido, Ley 31/1995 de PRL, accidente in itinere, jerarquía convenio-ET y la ruta administrativa y judicial para reclamar.

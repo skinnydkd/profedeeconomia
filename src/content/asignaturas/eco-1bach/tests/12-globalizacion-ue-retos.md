@@ -95,6 +95,12 @@ preguntas:
     derecha: ["1992", "2002", "1951", "1957"]
     correctas: [2, 3, 0, 1]
     explicacion: "CECA en 1951, Tratados de Roma en 1957, Maastricht en 1992 (crea la UE y sienta las bases de la unión monetaria) y la entrada en circulación del euro físico en 2002."
+  - tipo: numerico
+    enunciado: "Con sus recursos, España puede producir 100 unidades de vino o 200 de tela. ¿Cuál es el coste de oportunidad de una unidad de vino, en unidades de tela?"
+    respuesta: 2
+    tolerancia: 0.01
+    unidad: "unidades de tela"
+    explicacion: "Renunciar a las 200 de tela permite obtener 100 de vino, así que cada unidad de vino cuesta 200 / 100 = 2 de tela. Comparando este coste con el del otro país se ve quién tiene la ventaja comparativa en cada bien."
 ---
 
 Test de autoevaluación de la Unidad 12 del libro de Eco 1BACH. Diez preguntas que cubren ventaja absoluta y comparativa (con cálculo de coste de oportunidad), proteccionismo vs. libre comercio, OMC, hitos de la construcción europea, las cuatro libertades del mercado único, NextGenerationEU, beneficios y costes de la globalización, revolución digital (Frey-Osborne y polarización del mercado laboral), economía circular vs. decrecimiento y ODS de la Agenda 2030.

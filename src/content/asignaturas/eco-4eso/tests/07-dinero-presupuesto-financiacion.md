@@ -91,6 +91,12 @@ preguntas:
     derecha: ["Inversor particular que aporta capital y experiencia a cambio de participación", "Cuota reducida de 80 €/mes el primer año de alta en el RETA", "Dinero prestado por familiares y amigos para arrancar", "Los aportantes reciben el producto cuando el proyecto se materializa"]
     correctas: [3, 2, 0, 1]
     explicacion: "Crowdfunding de recompensa: los aportantes reciben el producto (típico en cómics o juegos, vía Verkami). FFF: préstamo de familiares y amigos. Business angel: inversor particular con capital y experiencia. Tarifa plana: cuota reducida de 80 €/mes el primer año como autónomo."
+  - tipo: numerico
+    enunciado: "Aplicas la regla 50-30-20 a unos ingresos de 1.400 € al mes. ¿Cuántos euros deberían ir al ahorro?"
+    respuesta: 280
+    tolerancia: 1
+    unidad: "€"
+    explicacion: "La regla reparte 50 % a necesidades, 30 % a caprichos y 20 % a ahorro y deudas. El 20 % de 1.400 € son 280 €. Es una referencia, no una ley: con alquileres altos el bloque del 50 % se come el resto, y entonces lo honesto es ajustar el 30 %, no el 20 %."
 ---
 
 Test de autoevaluación de la Unidad 7 del libro de Eco 4ESO.
