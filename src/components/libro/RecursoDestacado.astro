@@ -1,13 +1,22 @@
 ---
 // Inline highlight card for a single transversal resource embedded inside a unit body.
+import { getLocale, switchLocalePath } from '@/i18n/locale';
+
 interface Props { href: string; kicker: string; title: string; descripcion: string; colorVar?: string; }
 const { href, kicker, title, descripcion, colorVar = '--color-terra' } = Astro.props;
+
+// Unit bodies write locale-less paths ("/debates/..."), so a Catalan unit would
+// otherwise send the reader to the Spanish page. External URLs pass through.
+const locale = getLocale(Astro.currentLocale);
+const isInternal = href.startsWith('/');
+const resolvedHref = isInternal ? switchLocalePath(href, locale) : href;
+const cta = locale === 'ca' ? 'Obrir el recurs →' : 'Abrir el recurso →';
 ---
-<a class="destacado" href={href} style={`--card: var(${colorVar});`}>
+<a class="destacado" href={resolvedHref} style={`--card: var(${colorVar});`}>
   <span class="destacado__kicker">{kicker}</span>
   <strong class="destacado__title">{title}</strong>
   <span class="destacado__desc">{descripcion}</span>
-  <span class="destacado__cta">Abrir el recurso →</span>
+  <span class="destacado__cta">{cta}</span>
 </a>
 <style>
   .destacado { display: block; margin: 2rem 0; padding: 1.2rem 1.4rem; border: 1px solid var(--color-line); border-radius: 8px; background: var(--color-paper); color: var(--color-ink); text-decoration: none; transition: box-shadow .2s, transform .2s; }
