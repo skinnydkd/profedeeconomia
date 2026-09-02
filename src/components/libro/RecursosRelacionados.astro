@@ -1,24 +1,29 @@
 ---
 import type { RecursosDeUnidad, TipoRecurso, RecursoRef } from '@/lib/recursos-relacionados';
 import { tieneRecursos } from '@/lib/recursos-relacionados';
+import { getLocale } from '@/i18n/locale';
+import { t } from '@/i18n/ui';
+const locale = getLocale(Astro.currentLocale);
 
 interface Props { recursos: RecursosDeUnidad; asignaturaLabel: string; unidad: number; }
 const { recursos, asignaturaLabel, unidad } = Astro.props;
 
 const GRUPOS: { tipo: TipoRecurso; label: string }[] = [
-  { tipo: 'dinamica', label: 'Dinámicas de aula' },
-  { tipo: 'debate', label: 'Debates' },
-  { tipo: 'herramienta', label: 'Herramientas' },
-  { tipo: 'proyecto', label: 'Proyectos interdisciplinares' },
-  { tipo: 'juego', label: 'Juegos' },
-  { tipo: 'emprendimiento', label: 'Proyecto de emprendimiento' },
+  { tipo: 'dinamica', label: t('libro.grupoDinamicas', locale) },
+  { tipo: 'debate', label: t('libro.grupoDebates', locale) },
+  { tipo: 'herramienta', label: t('libro.grupoHerramientas', locale) },
+  { tipo: 'proyecto', label: t('libro.grupoProyectos', locale) },
+  { tipo: 'juego', label: t('libro.grupoJuegos', locale) },
+  { tipo: 'emprendimiento', label: t('libro.grupoEmprendimiento', locale) },
 ];
 const visibles = GRUPOS.filter((g) => recursos[g.tipo].length > 0);
-const cajutNota = `El profe elige ${asignaturaLabel} · Unidad ${unidad} y los alumnos responden desde el móvil.`;
+const cajutNota = locale === 'ca'
+  ? `El profe tria ${asignaturaLabel} · Unitat ${unidad} i l'alumnat respon des del mòbil.`
+  : `El profe elige ${asignaturaLabel} · Unidad ${unidad} y los alumnos responden desde el móvil.`;
 ---
 
 <section class="recursos" aria-labelledby="recursos-title">
-  <h2 id="recursos-title" class="recursos__title">Para el aula</h2>
+  <h2 id="recursos-title" class="recursos__title">{t('libro.paraElAula', locale)}</h2>
 
   {tieneRecursos(recursos) ? (
     <div class="recursos__grupos">
@@ -37,12 +42,12 @@ const cajutNota = `El profe elige ${asignaturaLabel} · Unidad ${unidad} y los a
       ))}
     </div>
   ) : (
-    <p class="recursos__vacio">Aún no hay recursos transversales ligados a esta unidad. Puedes repasarla con Cajút.</p>
+    <p class="recursos__vacio">{t('libro.sinRecursos', locale)}</p>
   )}
 
   <a class="recursos__cajut" href="/juegos/cajut/host/">
-    <span class="recursos__cajut-kicker">Repaso en clase</span>
-    <strong>Repasa esta unidad con Cajút</strong>
+    <span class="recursos__cajut-kicker">{t('libro.repasoEnClase', locale)}</span>
+    <strong>{t('libro.repasaConCajut', locale)}</strong>
     <span class="recursos__cajut-nota">{cajutNota}</span>
   </a>
 </section>

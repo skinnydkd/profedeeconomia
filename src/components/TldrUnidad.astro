@@ -1,15 +1,18 @@
 ---
+import { getLocale } from '@/i18n/locale';
+import { t } from '@/i18n/ui';
+const locale = getLocale(Astro.currentLocale);
 type Props = {
-  /** Etiqueta opcional ("90 segundos" per defecte). */
+  /** Etiqueta opcional; per defecte, «90 segundos» / «90 segons» segons la llengua. */
   duracion?: string;
 };
-const { duracion = '90 segundos' } = Astro.props;
+const { duracion } = Astro.props;
 ---
 
 <aside class="tldr">
   <header class="tldr__head">
     <span class="tldr__kicker">TL;DR</span>
-    <span class="tldr__dur">{duracion}</span>
+    <span class="tldr__dur">{duracion ?? t('libro.tldrDuracion', locale)}</span>
   </header>
   <div class="tldr__body"><slot /></div>
 </aside>

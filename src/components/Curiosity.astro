@@ -1,16 +1,19 @@
 ---
+import { getLocale } from '@/i18n/locale';
+import { t } from '@/i18n/ui';
+const locale = getLocale(Astro.currentLocale);
 type Props = {
   /** Short title that appears as the WONK serif italic line */
   title: string;
-  /** Optional eyebrow override; defaults to "Sabíais que…" */
+  /** Optional eyebrow override; defaults to the localized «¿Sabíais que…?». */
   label?: string;
 };
 
-const { title, label = '¿Sabíais que…?' } = Astro.props;
+const { title, label } = Astro.props;
 ---
 
 <aside class="curiosity">
-  <span class="curiosity__label">{label}</span>
+  <span class="curiosity__label">{label ?? t('libro.curiosity', locale)}</span>
   <h4 class="curiosity__title">{title}</h4>
   <div class="curiosity__body">
     <slot />
