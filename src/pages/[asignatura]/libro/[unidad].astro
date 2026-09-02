@@ -58,7 +58,7 @@ const idToSlug = (id: string) => id.split('/').pop()?.replace(/\.mdx?$/, '').rep
 const unitKey = `${a.slug}-u${unit.data.unidad}`;
 
 // Related transversal resources for this unit (inverse index, built once per build).
-const recursos = recursosDeUnidad(await getIndiceRecursos(), unit.data.asignatura, unit.data.unidad);
+const recursos = recursosDeUnidad(await getIndiceRecursos(locale), unit.data.asignatura, unit.data.unidad);
 
 // Localized view of the unit (CA sibling under /ca, ES otherwise).
 const d = view.data;
