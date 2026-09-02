@@ -18,7 +18,19 @@ export type Slide =
   | { tipo: 'list'; eyebrow?: string; title?: string; items: string[]; ordered?: boolean }
   | { tipo: 'figure'; src: string; alt: string; title?: string; caption?: string; credit?: string; meta?: unknown }
   | { tipo: 'quiz'; eyebrow?: string; pregunta: string; opciones: string[]; correcta: number; explicacion?: string }
+  // Second authored wave: the deck was 26 % plain prose because these shapes
+  // had nowhere to go. Each one takes a job that `concept` was doing badly.
+  | { tipo: 'formula'; eyebrow?: string; title?: string; formula: string; terminos?: FormulaTerm[]; ejemplo?: string }
+  | { tipo: 'timeline'; eyebrow?: string; title?: string; hitos: Hito[] }
+  | { tipo: 'caso'; eyebrow?: string; title: string; contexto: string; datos?: string[]; pregunta: string }
+  | { tipo: 'recap'; eyebrow?: string; title?: string; items: string[] }
+  | { tipo: 'curriculum'; eyebrow?: string; title?: string; saberes: string[]; competencias: string[]; criterios?: string[] }
   | { tipo: 'close'; title: string; nota?: string };
+
+/** One symbol of a formula and what it stands for. */
+export interface FormulaTerm { s: string; d: string }
+/** One dated milestone on a timeline. */
+export interface Hito { fecha: string; hito: string; detalle?: string }
 
 export interface SplitCol { h?: string; items: string[] }
 

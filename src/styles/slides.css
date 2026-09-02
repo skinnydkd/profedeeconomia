@@ -84,7 +84,8 @@
 .s-exercise ol li::marker { color: var(--accent); font-family: var(--font-mono); }
 
 /* Shared heading for the authored dense archetypes */
-.s-terms h2, .s-table h2, .s-split h2, .s-list h2, .s-quiz h2 {
+.s-terms h2, .s-table h2, .s-split h2, .s-list h2, .s-quiz h2,
+.s-formula h2, .s-timeline h2, .s-caso h2, .s-recap h2, .s-curriculum h2 {
   font-family: var(--font-serif); font-weight: 500; font-size: 5cqh; line-height: 1.08;
   margin: 1.2cqh 0 2.6cqh; max-width: 30ch;
   display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden;
@@ -160,3 +161,73 @@
   .slide { width: 1280px; height: 720px; aspect-ratio: auto; border-radius: 0; box-shadow: none; break-after: page; page-break-after: always; }
   @page { size: 1280px 720px; margin: 0; }
 }
+
+/* ── Second authored wave ──────────────────────────────────────────────────
+   Five archetypes that took jobs `concept` was doing as prose. Same 16:9 box,
+   same container-query sizing, same symmetric 1px borders as the rest. */
+
+/* FORMULA — the expression, its symbol legend, one worked substitution */
+.s-formula .f {
+  font-family: var(--font-mono); font-size: 6cqh; line-height: 1.25; color: var(--accent-ink);
+  background: var(--accent-soft); border: 1px solid var(--color-line); border-radius: 8px;
+  padding: 2.6cqh 3cqw; margin: 0 0 2.4cqh; text-align: center;
+}
+.s-formula .lbl {
+  font-family: var(--font-mono); font-size: 2.1cqh; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--color-ink-mute); margin-right: 1.2cqw;
+}
+.s-formula .legend { display: grid; grid-template-columns: auto 1fr; gap: .9cqh 1.6cqw; margin: 1cqh 0 0; }
+.s-formula .legend dt { font-family: var(--font-mono); font-size: 2.9cqh; color: var(--accent-ink); font-weight: 600; }
+.s-formula .legend dd { font-family: var(--font-sans); font-size: 2.7cqh; line-height: 1.4; color: var(--color-ink-soft); margin: 0; }
+.s-formula .ex {
+  font-family: var(--font-sans); font-size: 2.7cqh; line-height: 1.45; color: var(--color-ink);
+  margin: 2.4cqh 0 0; padding-top: 1.8cqh; border-top: 1px dashed var(--color-line);
+}
+
+/* TIMELINE — 3-6 dated milestones on a single rail */
+.s-timeline .rail { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.6cqh; flex: 1 1 0; min-height: 0; align-content: start; }
+.s-timeline .rail li {
+  display: grid; grid-template-columns: auto 9cqw 1fr; align-items: baseline; column-gap: 1.6cqw;
+  padding-bottom: 1.6cqh; border-bottom: 1px solid var(--color-line-soft);
+}
+.s-timeline .rail li:last-child { border-bottom: none; }
+.s-timeline .dot { width: 1.4cqh; height: 1.4cqh; border-radius: 50%; background: var(--accent); align-self: center; }
+.s-timeline .date { font-family: var(--font-mono); font-size: 2.6cqh; color: var(--accent-ink); font-weight: 600; }
+.s-timeline .what { font-family: var(--font-serif); font-size: 3.2cqh; font-weight: 600; color: var(--color-ink); }
+.s-timeline .det { grid-column: 3; font-family: var(--font-sans); font-size: 2.5cqh; line-height: 1.4; color: var(--color-ink-soft); }
+.s-timeline .rail[data-n="5"] .what, .s-timeline .rail[data-n="6"] .what { font-size: 2.9cqh; }
+.s-timeline .rail[data-n="6"] { gap: 1.1cqh; }
+
+/* CASO — situation, figures, and the question it forces */
+.s-caso .ctx { font-family: var(--font-sans); font-size: 3cqh; line-height: 1.5; color: var(--color-ink); margin: 0 0 2cqh; max-width: 62ch; }
+.s-caso .datos { list-style: none; margin: 0 0 2.2cqh; padding: 0; display: flex; flex-wrap: wrap; gap: 1cqh 1.4cqw; }
+.s-caso .datos li {
+  font-family: var(--font-mono); font-size: 2.5cqh; color: var(--accent-ink);
+  background: var(--accent-soft); border: 1px solid var(--color-line); border-radius: 6px; padding: .9cqh 1.4cqw;
+}
+.s-caso .q {
+  font-family: var(--font-serif); font-size: 3.4cqh; line-height: 1.35; color: var(--color-ink); margin: auto 0 0;
+  padding-top: 2cqh; border-top: 1px solid var(--color-line);
+}
+.s-caso .q .lbl, .s-formula .ex .lbl {
+  display: block; font-family: var(--font-mono); font-size: 2.1cqh; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--color-ink-mute); margin-bottom: .8cqh;
+}
+
+/* RECAP — retrieval checklist for revision */
+.s-recap .checks { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.8cqh; flex: 1 1 0; min-height: 0; align-content: start; }
+.s-recap .checks li { display: grid; grid-template-columns: auto 1fr; column-gap: 1.6cqw; align-items: start; }
+.s-recap .box { width: 2.6cqh; height: 2.6cqh; border: 1.5px solid var(--accent); border-radius: 4px; margin-top: .5cqh; }
+.s-recap .checks li span:last-child { font-family: var(--font-sans); font-size: 3cqh; line-height: 1.42; color: var(--color-ink); }
+
+/* CURRICULUM — what the unit answers to, in the official wording */
+.s-curriculum .cols { display: grid; gap: 2cqh 2.4cqw; grid-template-columns: 1fr 1fr; flex: 1 1 0; min-height: 0; align-content: start; }
+.s-curriculum .cols[data-n="3"] { grid-template-columns: repeat(3, 1fr); }
+.s-curriculum .col { background: var(--color-paper); border: 1px solid var(--color-line); border-radius: 8px; padding: 2.2cqh 1.8cqw; overflow: hidden; }
+.s-curriculum .col__h {
+  font-family: var(--font-mono); font-size: 2.1cqh; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--accent-ink); margin-bottom: 1.4cqh;
+}
+.s-curriculum .col ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.1cqh; }
+.s-curriculum .col li { font-family: var(--font-sans); font-size: 2.5cqh; line-height: 1.38; color: var(--color-ink-soft); padding-left: 1.6cqw; text-indent: -1.6cqw; }
+.s-curriculum .col li::before { content: '·'; color: var(--color-mustard); font-weight: 700; margin-right: .8cqw; }
