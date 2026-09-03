@@ -8,6 +8,14 @@ type HerramientaCA = Partial<Pick<Herramienta, 'title' | 'descripcion'>>;
 // source of truth. Acronyms (VAN, TIR, DCF, IRPF, DAFO, BCG, RIASEC, Europass)
 // and «Business Model Canvas» are kept as-is: they are the terms used in class.
 export const HERRAMIENTAS_CA: Partial<Record<string, HerramientaCA>> = {
+  'afirmacion-sostenible': {
+    title: "Analitzador d'afirmacions de sostenibilitat",
+    descripcion: 'Set preguntes per a saber si una afirmació verda es pot comprovar. No diu si és certa: diu si és verificable.',
+  },
+  'roles-de-equipo': {
+    title: "Cobertura de papers de l'equip",
+    descripcion: "Quins papers cobrix un equip i quins no cobrix ningú, a partir de l'autovaloració dels seus membres.",
+  },
   'huella-digital': {
     title: "Auditoria d'empremta digital",
     descripcion: 'Llista d\'accions concretes sobre accés, privacitat, reputació i drets, ordenada pel que més lleva de damunt.',
