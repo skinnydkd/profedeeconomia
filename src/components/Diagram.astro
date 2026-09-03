@@ -16,7 +16,11 @@ type Props = {
   id?: string;
 };
 
+import { getLocale } from '@/i18n/locale';
+import { t } from '@/i18n/ui';
+
 const { caption, source, variant = 'default', id } = Astro.props;
+const locale = getLocale(Astro.currentLocale);
 ---
 
 <figure
@@ -28,7 +32,7 @@ const { caption, source, variant = 'default', id } = Astro.props;
   </div>
   <figcaption class="diagram__caption">
     <span class="diagram__caption-text">{caption}</span>
-    {source && <span class="diagram__caption-source">Fuente: {source}</span>}
+    {source && <span class="diagram__caption-source">{t('libro.fuente', locale)} {source}</span>}
   </figcaption>
 </figure>
 

@@ -9,10 +9,74 @@
  *
  * Used in Eco 1BACH · Unit 4 (oferta, demanda y mercado).
  */
+import { getLocale } from '@/i18n/locale';
+const locale = getLocale(Astro.currentLocale);
+
+const COPY = {
+  es: {
+    comparacionDeEstructurasDe: 'Comparación de estructuras de mercado',
+    comparacionDeCuatroEstructur: 'Comparación de cuatro estructuras de mercado (competencia perfecta, competencia monopolística, oligopolio y monopolio), ordenadas de mayor a menor competencia, según el número de empresas y su poder para fijar el precio.',
+    competenciaPerfecta: 'Competencia perfecta',
+    dPrecioDeMercado: 'D = precio de mercado',
+    muchisimasEmpresas: 'muchísimas empresas',
+    productoHomogeneoPrecioDado: 'producto homogéneo, precio dado',
+    muchisimasEmpresasProducto: 'muchísimas empresas, producto',
+    homogeneoPrecioDado: 'homogéneo, precio dado',
+    competenciaMonopolistica: 'Competencia monopolística',
+    dDeLaVariante: 'D de la variante',
+    muchasEmpresasDistintas: 'muchas empresas distintas',
+    productoDiferenciadoLibreEnt: 'producto diferenciado, libre entrada',
+    muchasEmpresasProducto: 'muchas empresas, producto',
+    diferenciadoLibreEntrada: 'diferenciado, libre entrada',
+    oligopolio: 'Oligopolio',
+    dDelGrupo: 'D del grupo',
+    pocasEmpresasGrandes: 'pocas empresas grandes',
+    pocasEmpresasInterdependenci: 'pocas empresas, interdependencia',
+    pocasEmpresasQueVigilan: 'pocas empresas que vigilan',
+    aLasDemasInterdependencia: 'a las demás: interdependencia',
+    monopolio: 'Monopolio',
+    dDelMercado: 'D del mercado',
+    unaSolaEmpresa: 'una sola empresa',
+    unaEmpresaFijaEl: 'una empresa, fija el precio',
+    unaEmpresaSinRivales: 'una empresa sin rivales que',
+    controlaElPrecioDel: 'controla el precio del mercado',
+    masCompetenciaMasPoder: 'más competencia  ·  más poder de mercado',
+  },
+  ca: {
+    comparacionDeEstructurasDe: "Comparació d'estructures de mercat",
+    comparacionDeCuatroEstructur: "Comparació de quatre estructures de mercat (competència perfecta, competència monopolística, oligopoli i monopoli), ordenades de major a menor competència, segons el nombre d'empreses i el seu poder per a fixar el preu.",
+    competenciaPerfecta: 'Competència perfecta',
+    dPrecioDeMercado: 'D = preu de mercat',
+    muchisimasEmpresas: 'moltíssimes empreses',
+    productoHomogeneoPrecioDado: 'producte homogeni, preu donat',
+    muchisimasEmpresasProducto: 'moltíssimes empreses, producte',
+    homogeneoPrecioDado: 'homogeni, preu donat',
+    competenciaMonopolistica: 'Competència monopolística',
+    dDeLaVariante: 'D de la variant',
+    muchasEmpresasDistintas: 'moltes empreses diferents',
+    productoDiferenciadoLibreEnt: 'producte diferenciat, lliure entrada',
+    muchasEmpresasProducto: 'moltes empreses, producte',
+    diferenciadoLibreEntrada: 'diferenciat, lliure entrada',
+    oligopolio: 'Oligopoli',
+    dDelGrupo: 'D del grup',
+    pocasEmpresasGrandes: 'poques empreses grans',
+    pocasEmpresasInterdependenci: 'poques empreses, interdependència',
+    pocasEmpresasQueVigilan: 'poques empreses que vigilen',
+    aLasDemasInterdependencia: 'les altres: interdependència',
+    monopolio: 'Monopoli',
+    dDelMercado: 'D del mercat',
+    unaSolaEmpresa: 'una sola empresa',
+    unaEmpresaFijaEl: 'una empresa, fixa el preu',
+    unaEmpresaSinRivales: 'una empresa sense rivals que',
+    controlaElPrecioDel: 'controla el preu del mercat',
+    masCompetenciaMasPoder: 'més competència  ·  més poder de mercat',
+  },
+} as const;
+const t = COPY[locale];
 ---
 <svg viewBox="0 0 1040 460" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="em-title em-desc">
-  <title id="em-title">Comparación de estructuras de mercado</title>
-  <desc id="em-desc">Comparación de cuatro estructuras de mercado (competencia perfecta, competencia monopolística, oligopolio y monopolio), ordenadas de mayor a menor competencia, según el número de empresas y su poder para fijar el precio.</desc>
+  <title id="em-title">{t.comparacionDeEstructurasDe}</title>
+  <desc id="em-desc">{t.comparacionDeCuatroEstructur}</desc>
   <defs>
     <style>
       .bg { fill: #FBF6EC; }
@@ -39,7 +103,7 @@
 
   <!-- ===================== Panel 1: Competencia perfecta ===================== -->
   <g transform="translate(20,0)">
-    <text class="panel-title" x="120" y="48" text-anchor="middle">Competencia perfecta</text>
+    <text class="panel-title" x="120" y="48" text-anchor="middle">{t.competenciaPerfecta}</text>
 
     <!-- framed plot area -->
     <rect class="frame" x="20" y="70" width="200" height="200" rx="4"/>
@@ -51,7 +115,7 @@
 
     <!-- price-taker: horizontal demand at the market price -->
     <line class="price-line" x1="50" y1="150" x2="205" y2="150"/>
-    <text class="curve-label" x="160" y="142">D = precio de mercado</text>
+    <text class="curve-label" x="160" y="142">{t.dPrecioDeMercado}</text>
     <!-- P* tick on the y-axis -->
     <line class="guide" x1="46" y1="150" x2="50" y2="150"/>
     <text class="axis-letter" x="42" y="155" text-anchor="end" fill="#C44E2C">P</text>
@@ -70,16 +134,16 @@
       <rect class="firm" x="134" y="310" width="14" height="14" rx="2"/>
       <rect class="firm" x="154" y="310" width="14" height="14" rx="2"/>
     </g>
-    <text class="firm-label" x="120" y="342">muchísimas empresas</text>
+    <text class="firm-label" x="120" y="342">{t.muchisimasEmpresas}</text>
 
-    <text class="note" x="120" y="370">producto homogéneo, precio dado</text>
-    <text class="caption" x="120" y="394">muchísimas empresas, producto</text>
-    <text class="caption" x="120" y="410">homogéneo, precio dado</text>
+    <text class="note" x="120" y="370">{t.productoHomogeneoPrecioDado}</text>
+    <text class="caption" x="120" y="394">{t.muchisimasEmpresasProducto}</text>
+    <text class="caption" x="120" y="410">{t.homogeneoPrecioDado}</text>
   </g>
 
   <!-- ===================== Panel 2: Competencia monopolística ===================== -->
   <g transform="translate(270,0)">
-    <text class="panel-title" x="120" y="48" text-anchor="middle">Competencia monopolística</text>
+    <text class="panel-title" x="120" y="48" text-anchor="middle">{t.competenciaMonopolistica}</text>
 
     <rect class="frame" x="20" y="70" width="200" height="200" rx="4"/>
     <line class="axis" x1="50" y1="250" x2="210" y2="250" marker-end="url(#em-arrow)"/>
@@ -89,7 +153,7 @@
 
     <!-- slightly downward demand: each firm a mini-monopoly over its variant -->
     <line class="demand" x1="56" y1="128" x2="202" y2="208"/>
-    <text class="curve-label" x="198" y="194" text-anchor="end">D de la variante</text>
+    <text class="curve-label" x="198" y="194" text-anchor="end">{t.dDeLaVariante}</text>
 
     <!-- many firms, each differentiated -->
     <g>
@@ -101,16 +165,16 @@
       <rect class="firm" x="105" y="314" width="18" height="18" rx="2"/>
       <rect class="firm" x="131" y="314" width="18" height="18" rx="2"/>
     </g>
-    <text class="firm-label" x="120" y="348">muchas empresas distintas</text>
+    <text class="firm-label" x="120" y="348">{t.muchasEmpresasDistintas}</text>
 
-    <text class="note" x="120" y="370">producto diferenciado, libre entrada</text>
-    <text class="caption" x="120" y="394">muchas empresas, producto</text>
-    <text class="caption" x="120" y="410">diferenciado, libre entrada</text>
+    <text class="note" x="120" y="370">{t.productoDiferenciadoLibreEnt}</text>
+    <text class="caption" x="120" y="394">{t.muchasEmpresasProducto}</text>
+    <text class="caption" x="120" y="410">{t.diferenciadoLibreEntrada}</text>
   </g>
 
   <!-- ===================== Panel 3: Oligopolio ===================== -->
   <g transform="translate(520,0)">
-    <text class="panel-title" x="120" y="48" text-anchor="middle">Oligopolio</text>
+    <text class="panel-title" x="120" y="48" text-anchor="middle">{t.oligopolio}</text>
 
     <rect class="frame" x="20" y="70" width="200" height="200" rx="4"/>
     <line class="axis" x1="50" y1="250" x2="210" y2="250" marker-end="url(#em-arrow)"/>
@@ -120,7 +184,7 @@
 
     <!-- downward-sloping demand the group faces -->
     <line class="demand" x1="58" y1="100" x2="200" y2="238"/>
-    <text class="curve-label" x="196" y="222" text-anchor="end">D del grupo</text>
+    <text class="curve-label" x="196" y="222" text-anchor="end">{t.dDelGrupo}</text>
 
     <!-- a few firm blocks sharing the market -->
     <g>
@@ -128,16 +192,16 @@
       <rect class="firm-big" x="106" y="292" width="34" height="34" rx="3"/>
       <rect class="firm-big" x="146" y="292" width="34" height="34" rx="3"/>
     </g>
-    <text class="firm-label" x="120" y="344">pocas empresas grandes</text>
+    <text class="firm-label" x="120" y="344">{t.pocasEmpresasGrandes}</text>
 
-    <text class="note" x="120" y="370">pocas empresas, interdependencia</text>
-    <text class="caption" x="120" y="394">pocas empresas que vigilan</text>
-    <text class="caption" x="120" y="410">a las demás: interdependencia</text>
+    <text class="note" x="120" y="370">{t.pocasEmpresasInterdependenci}</text>
+    <text class="caption" x="120" y="394">{t.pocasEmpresasQueVigilan}</text>
+    <text class="caption" x="120" y="410">{t.aLasDemasInterdependencia}</text>
   </g>
 
   <!-- ===================== Panel 4: Monopolio ===================== -->
   <g transform="translate(770,0)">
-    <text class="panel-title" x="120" y="48" text-anchor="middle">Monopolio</text>
+    <text class="panel-title" x="120" y="48" text-anchor="middle">{t.monopolio}</text>
 
     <rect class="frame" x="20" y="70" width="200" height="200" rx="4"/>
     <line class="axis" x1="50" y1="250" x2="210" y2="250" marker-end="url(#em-arrow)"/>
@@ -147,20 +211,20 @@
 
     <!-- downward market demand the single firm controls -->
     <line class="demand" x1="58" y1="100" x2="200" y2="238"/>
-    <text class="curve-label" x="196" y="222" text-anchor="end">D del mercado</text>
+    <text class="curve-label" x="196" y="222" text-anchor="end">{t.dDelMercado}</text>
 
     <!-- one firm block spanning the whole market -->
     <rect class="firm-big" x="66" y="292" width="108" height="34" rx="3"/>
-    <text class="firm-label" x="120" y="344">una sola empresa</text>
+    <text class="firm-label" x="120" y="344">{t.unaSolaEmpresa}</text>
 
-    <text class="note" x="120" y="370">una empresa, fija el precio</text>
-    <text class="caption" x="120" y="394">una empresa sin rivales que</text>
-    <text class="caption" x="120" y="410">controla el precio del mercado</text>
+    <text class="note" x="120" y="370">{t.unaEmpresaFijaEl}</text>
+    <text class="caption" x="120" y="394">{t.unaEmpresaSinRivales}</text>
+    <text class="caption" x="120" y="410">{t.controlaElPrecioDel}</text>
   </g>
 
   <!-- ===================== Bottom legend axis ===================== -->
   <line class="axis" x1="80" y1="436" x2="960" y2="436"/>
   <polygon points="72 436, 84 431, 84 441" fill="#5C4A3D"/>
   <polygon points="968 436, 956 431, 956 441" fill="#5C4A3D"/>
-  <text class="legend" x="520" y="431">más competencia&#160;&#160;·&#160;&#160;más poder de mercado</text>
+  <text class="legend" x="520" y="431">{t.masCompetenciaMasPoder}</text>
 </svg>

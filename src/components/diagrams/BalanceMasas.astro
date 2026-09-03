@@ -7,10 +7,90 @@
  *
  * Used in EDMN 2BACH · Unit 10 (información contable).
  */
+import { getLocale } from '@/i18n/locale';
+const locale = getLocale(Astro.currentLocale);
+
+const COPY = {
+  es: {
+    balancePorMasasPatrimoniales: 'Balance por masas patrimoniales',
+    elActivoDeLa: 'El activo de la empresa, dividido en no corriente y corriente, equilibra exactamente con la suma del patrimonio neto y el pasivo no corriente y corriente. Es la igualdad fundamental Activo igual a Patrimonio Neto más Pasivo.',
+    activo: 'ACTIVO',
+    patrimonioNetoPasivo: 'PATRIMONIO NETO + PASIVO',
+    esLaEstructuraDe: 'Es la estructura de inversión a largo plazo: el dinero queda «atado» en estos bienes y se recupera poco a poco vía amortización. Cuanto más industrial es la empresa, mayor suele ser esta masa.',
+    activoNoCorriente: 'Activo no corriente',
+    loQuePermaneceMas: 'Lo que permanece más de un año:',
+    inmovilizadoMaterialNavesMaq: '· Inmovilizado material (naves, maquinaria)',
+    inmovilizadoIntangiblePatent: '· Inmovilizado intangible (patentes, software)',
+    inversionesFinancierasALargo: '· Inversiones financieras a largo plazo',
+    esElActivoMas: 'Es el activo más líquido: se convierte en dinero dentro del año. Comparado con el pasivo corriente determina si la empresa puede pagar sus deudas a corto plazo (liquidez).',
+    activoCorriente: 'Activo corriente',
+    loQueCirculaEn: 'Lo que circula en menos de un año:',
+    existenciasMercaderias: '· Existencias (mercaderías)',
+    realizableClientesDeudores: '· Realizable (clientes, deudores)',
+    disponibleCajaYBancos: '· Disponible (caja y bancos)',
+    esLaFinanciacionPropia: 'Es la financiación propia: no hay que devolverla ni paga intereses. Actúa como colchón frente a las pérdidas, por eso un patrimonio neto alto indica una empresa más solvente.',
+    patrimonioNeto: 'Patrimonio neto',
+    recursosPropiosNoExigibles: 'Recursos propios (no exigibles):',
+    capitalSocialReservas: '· Capital social · Reservas',
+    resultadoDelEjercicio: '· Resultado del ejercicio',
+    esDeudaExigiblePero: 'Es deuda exigible, pero con margen: se devuelve en más de un año. Suele financiar el activo no corriente, siguiendo la regla de que las inversiones largas se pagan con recursos largos.',
+    pasivoNoCorriente: 'Pasivo no corriente',
+    deudasExigiblesALargo: 'Deudas exigibles a largo plazo:',
+    prestamosBancarios1Ano: '· Préstamos bancarios > 1 año',
+    emprestitosObligaciones: '· Empréstitos (obligaciones)',
+    esLaDeudaMas: 'Es la deuda más urgente: vence en menos de un año. Si supera al activo corriente, el fondo de maniobra es negativo y la empresa puede tener problemas para pagar a tiempo.',
+    pasivoCorriente: 'Pasivo corriente',
+    deudasExigiblesACorto: 'Deudas exigibles a corto plazo:',
+    proveedores: '· Proveedores',
+    acreedoresYDeudasA: '· Acreedores y deudas a < 1 año',
+    haciendaYSeguridadSocial: '· Hacienda y Seguridad Social',
+    totalActivo200000: 'TOTAL ACTIVO = 200.000 €',
+    totalPnPasivo200: 'TOTAL PN + PASIVO = 200.000 €',
+    activoPnPasivo: 'ACTIVO = PN + PASIVO',
+  },
+  ca: {
+    balancePorMasasPatrimoniales: 'Balanç per masses patrimonials',
+    elActivoDeLa: "L'actiu de l'empresa, dividit en no corrent i corrent, equilibra exactament amb la suma del patrimoni net i el passiu no corrent i corrent. És la igualtat fonamental Actiu igual a Patrimoni Net més Passiu.",
+    activo: 'ACTIU',
+    patrimonioNetoPasivo: 'PATRIMONI NET + PASSIU',
+    esLaEstructuraDe: "És l'estructura d'inversió a llarg termini: els diners queden «lligats» en estos béns i es recuperen a poc a poc via amortització. Com més industrial és l'empresa, major sol ser esta massa.",
+    activoNoCorriente: 'Actiu no corrent',
+    loQuePermaneceMas: "El que roman més d'un any:",
+    inmovilizadoMaterialNavesMaq: '· Immobilitzat material (naus, maquinària)',
+    inmovilizadoIntangiblePatent: '· Immobilitzat intangible (patents, programari)',
+    inversionesFinancierasALargo: '· Inversions financeres a llarg termini',
+    esElActivoMas: "És l'actiu més líquid: es convertix en diners dins de l'any. Comparat amb el passiu corrent determina si l'empresa pot pagar els seus deutes a curt termini (liquiditat).",
+    activoCorriente: 'Actiu corrent',
+    loQueCirculaEn: "El que circula en menys d'un any:",
+    existenciasMercaderias: '· Existències (mercaderies)',
+    realizableClientesDeudores: '· Realitzable (clients, deutors)',
+    disponibleCajaYBancos: '· Disponible (caixa i bancs)',
+    esLaFinanciacionPropia: 'És el finançament propi: no cal tornar-lo ni paga interessos. Actua com a matalàs davant de les pèrdues, per això un patrimoni net alt indica una empresa més solvent.',
+    patrimonioNeto: 'Patrimoni net',
+    recursosPropiosNoExigibles: 'Recursos propis (no exigibles):',
+    capitalSocialReservas: '· Capital social · Reserves',
+    resultadoDelEjercicio: "· Resultat de l'exercici",
+    esDeudaExigiblePero: "És deute exigible, però amb marge: es torna en més d'un any. Sol finançar l'actiu no corrent, seguint la regla que les inversions llargues es paguen amb recursos llargs.",
+    pasivoNoCorriente: 'Passiu no corrent',
+    deudasExigiblesALargo: 'Deutes exigibles a llarg termini:',
+    prestamosBancarios1Ano: '· Préstecs bancaris > 1 any',
+    emprestitosObligaciones: '· Emprèstits (obligacions)',
+    esLaDeudaMas: "És el deute més urgent: venç en menys d'un any. Si supera l'actiu corrent, el fons de maniobra és negatiu i l'empresa pot tindre problemes per a pagar a temps.",
+    pasivoCorriente: 'Passiu corrent',
+    deudasExigiblesACorto: 'Deutes exigibles a curt termini:',
+    proveedores: '· Proveïdors',
+    acreedoresYDeudasA: '· Creditors i deutes a < 1 any',
+    haciendaYSeguridadSocial: '· Hisenda i Seguretat Social',
+    totalActivo200000: 'TOTAL ACTIU = 200.000 €',
+    totalPnPasivo200: 'TOTAL PN + PASSIU = 200.000 €',
+    activoPnPasivo: 'ACTIU = PN + PASSIU',
+  },
+} as const;
+const t = COPY[locale];
 ---
 <svg viewBox="0 0 800 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="balmasas-title balmasas-desc">
-  <title id="balmasas-title">Balance por masas patrimoniales</title>
-  <desc id="balmasas-desc">El activo de la empresa, dividido en no corriente y corriente, equilibra exactamente con la suma del patrimonio neto y el pasivo no corriente y corriente. Es la igualdad fundamental Activo igual a Patrimonio Neto más Pasivo.</desc>
+  <title id="balmasas-title">{t.balancePorMasasPatrimoniales}</title>
+  <desc id="balmasas-desc">{t.elActivoDeLa}</desc>
   <defs>
     <style>
       .bg { fill: #FBF6EC; }
@@ -32,65 +112,65 @@
   <rect class="bg" x="0" y="0" width="800" height="520"/>
 
   <!-- Column headers -->
-  <text class="col-head" x="200" y="48">ACTIVO</text>
-  <text class="col-head" x="600" y="48">PATRIMONIO NETO + PASIVO</text>
+  <text class="col-head" x="200" y="48">{t.activo}</text>
+  <text class="col-head" x="600" y="48">{t.patrimonioNetoPasivo}</text>
   <line x1="60" y1="58" x2="340" y2="58" stroke="#E5D4BD" stroke-width="1.5"/>
   <line x1="460" y1="58" x2="740" y2="58" stroke="#E5D4BD" stroke-width="1.5"/>
 
   <!-- LEFT COLUMN: Activo (total height 380, from y=80 to y=460) -->
   <!-- Activo no corriente (arriba, 60%) -->
   <g class="has-tip">
-    <title>Es la estructura de inversión a largo plazo: el dinero queda «atado» en estos bienes y se recupera poco a poco vía amortización. Cuanto más industrial es la empresa, mayor suele ser esta masa.</title>
+    <title>{t.esLaEstructuraDe}</title>
     <rect class="masa-anc" x="60" y="80" width="280" height="220" rx="6"/>
-    <text class="masa-title" x="80" y="110">Activo no corriente</text>
-    <text class="masa-sub" x="80" y="132">Lo que permanece más de un año:</text>
-    <text class="masa-sub" x="80" y="150">· Inmovilizado material (naves, maquinaria)</text>
-    <text class="masa-sub" x="80" y="168">· Inmovilizado intangible (patentes, software)</text>
-    <text class="masa-sub" x="80" y="186">· Inversiones financieras a largo plazo</text>
+    <text class="masa-title" x="80" y="110">{t.activoNoCorriente}</text>
+    <text class="masa-sub" x="80" y="132">{t.loQuePermaneceMas}</text>
+    <text class="masa-sub" x="80" y="150">{t.inmovilizadoMaterialNavesMaq}</text>
+    <text class="masa-sub" x="80" y="168">{t.inmovilizadoIntangiblePatent}</text>
+    <text class="masa-sub" x="80" y="186">{t.inversionesFinancierasALargo}</text>
     <text class="masa-num" x="320" y="290" text-anchor="end">120.000 €</text>
   </g>
   <!-- Activo corriente (abajo, 40%) -->
   <g class="has-tip">
-    <title>Es el activo más líquido: se convierte en dinero dentro del año. Comparado con el pasivo corriente determina si la empresa puede pagar sus deudas a corto plazo (liquidez).</title>
+    <title>{t.esElActivoMas}</title>
     <rect class="masa-ac" x="60" y="300" width="280" height="160" rx="6"/>
-    <text class="masa-title" x="80" y="330">Activo corriente</text>
-    <text class="masa-sub" x="80" y="352">Lo que circula en menos de un año:</text>
-    <text class="masa-sub" x="80" y="370">· Existencias (mercaderías)</text>
-    <text class="masa-sub" x="80" y="388">· Realizable (clientes, deudores)</text>
-    <text class="masa-sub" x="80" y="406">· Disponible (caja y bancos)</text>
+    <text class="masa-title" x="80" y="330">{t.activoCorriente}</text>
+    <text class="masa-sub" x="80" y="352">{t.loQueCirculaEn}</text>
+    <text class="masa-sub" x="80" y="370">{t.existenciasMercaderias}</text>
+    <text class="masa-sub" x="80" y="388">{t.realizableClientesDeudores}</text>
+    <text class="masa-sub" x="80" y="406">{t.disponibleCajaYBancos}</text>
     <text class="masa-num" x="320" y="450" text-anchor="end">80.000 €</text>
   </g>
 
   <!-- RIGHT COLUMN: PN + Pasivo (same total height) -->
   <!-- Patrimonio neto (arriba) -->
   <g class="has-tip">
-    <title>Es la financiación propia: no hay que devolverla ni paga intereses. Actúa como colchón frente a las pérdidas, por eso un patrimonio neto alto indica una empresa más solvente.</title>
+    <title>{t.esLaFinanciacionPropia}</title>
     <rect class="masa-pn" x="460" y="80" width="280" height="120" rx="6"/>
-    <text class="masa-title" x="480" y="110">Patrimonio neto</text>
-    <text class="masa-sub" x="480" y="132">Recursos propios (no exigibles):</text>
-    <text class="masa-sub" x="480" y="150">· Capital social · Reservas</text>
-    <text class="masa-sub" x="480" y="168">· Resultado del ejercicio</text>
+    <text class="masa-title" x="480" y="110">{t.patrimonioNeto}</text>
+    <text class="masa-sub" x="480" y="132">{t.recursosPropiosNoExigibles}</text>
+    <text class="masa-sub" x="480" y="150">{t.capitalSocialReservas}</text>
+    <text class="masa-sub" x="480" y="168">{t.resultadoDelEjercicio}</text>
     <text class="masa-num" x="720" y="190" text-anchor="end">90.000 €</text>
   </g>
   <!-- Pasivo no corriente -->
   <g class="has-tip">
-    <title>Es deuda exigible, pero con margen: se devuelve en más de un año. Suele financiar el activo no corriente, siguiendo la regla de que las inversiones largas se pagan con recursos largos.</title>
+    <title>{t.esDeudaExigiblePero}</title>
     <rect class="masa-pnc" x="460" y="200" width="280" height="120" rx="6"/>
-    <text class="masa-title" x="480" y="230">Pasivo no corriente</text>
-    <text class="masa-sub" x="480" y="252">Deudas exigibles a largo plazo:</text>
-    <text class="masa-sub" x="480" y="270">· Préstamos bancarios &gt; 1 año</text>
-    <text class="masa-sub" x="480" y="288">· Empréstitos (obligaciones)</text>
+    <text class="masa-title" x="480" y="230">{t.pasivoNoCorriente}</text>
+    <text class="masa-sub" x="480" y="252">{t.deudasExigiblesALargo}</text>
+    <text class="masa-sub" x="480" y="270">{t.prestamosBancarios1Ano}</text>
+    <text class="masa-sub" x="480" y="288">{t.emprestitosObligaciones}</text>
     <text class="masa-num" x="720" y="310" text-anchor="end">70.000 €</text>
   </g>
   <!-- Pasivo corriente -->
   <g class="has-tip">
-    <title>Es la deuda más urgente: vence en menos de un año. Si supera al activo corriente, el fondo de maniobra es negativo y la empresa puede tener problemas para pagar a tiempo.</title>
+    <title>{t.esLaDeudaMas}</title>
     <rect class="masa-pc" x="460" y="320" width="280" height="140" rx="6"/>
-    <text class="masa-title" x="480" y="350">Pasivo corriente</text>
-    <text class="masa-sub" x="480" y="372">Deudas exigibles a corto plazo:</text>
-    <text class="masa-sub" x="480" y="390">· Proveedores</text>
-    <text class="masa-sub" x="480" y="408">· Acreedores y deudas a &lt; 1 año</text>
-    <text class="masa-sub" x="480" y="426">· Hacienda y Seguridad Social</text>
+    <text class="masa-title" x="480" y="350">{t.pasivoCorriente}</text>
+    <text class="masa-sub" x="480" y="372">{t.deudasExigiblesACorto}</text>
+    <text class="masa-sub" x="480" y="390">{t.proveedores}</text>
+    <text class="masa-sub" x="480" y="408">{t.acreedoresYDeudasA}</text>
+    <text class="masa-sub" x="480" y="426">{t.haciendaYSeguridadSocial}</text>
     <text class="masa-num" x="720" y="450" text-anchor="end">40.000 €</text>
   </g>
 
@@ -100,9 +180,9 @@
   <!-- Totals row -->
   <line x1="60" y1="475" x2="340" y2="475" stroke="#2A1F18" stroke-width="1.2"/>
   <line x1="460" y1="475" x2="740" y2="475" stroke="#2A1F18" stroke-width="1.2"/>
-  <text class="total" x="200" y="498">TOTAL ACTIVO = 200.000 €</text>
-  <text class="total" x="600" y="498">TOTAL PN + PASIVO = 200.000 €</text>
+  <text class="total" x="200" y="498">{t.totalActivo200000}</text>
+  <text class="total" x="600" y="498">{t.totalPnPasivo200}</text>
 
   <!-- Formula footer -->
-  <text class="formula" x="400" y="498">ACTIVO = PN + PASIVO</text>
+  <text class="formula" x="400" y="498">{t.activoPnPasivo}</text>
 </svg>

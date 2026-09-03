@@ -4,10 +4,28 @@
  * Demand curve slopes down (terra), supply slopes up (mustard),
  * intersection E* gives equilibrium price P* and quantity Q*.
  */
+import { getLocale } from '@/i18n/locale';
+const locale = getLocale(Astro.currentLocale);
+
+const COPY = {
+  es: {
+    title: 'Equilibrio en un mercado competitivo',
+    desc: 'Cruce de la curva de demanda descendente y la curva de oferta ascendente. El punto de equilibrio E* determina el precio P* y la cantidad Q*.',
+    cantidad: 'CANTIDAD',
+    precio: 'PRECIO',
+  },
+  ca: {
+    title: 'Equilibri en un mercat competitiu',
+    desc: "Encreuament de la corba de demanda descendent i la corba d'oferta ascendent. El punt d'equilibri E* determina el preu P* i la quantitat Q*.",
+    cantidad: 'QUANTITAT',
+    precio: 'PREU',
+  },
+} as const;
+const t = COPY[locale];
 ---
 <svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="od-title od-desc">
-  <title id="od-title">Equilibrio en un mercado competitivo</title>
-  <desc id="od-desc">Cruce de la curva de demanda descendente y la curva de oferta ascendente. El punto de equilibrio E* determina el precio P* y la cantidad Q*.</desc>
+  <title id="od-title">{t.title}</title>
+  <desc id="od-desc">{t.desc}</desc>
   <defs>
     <style>
       .bg { fill: #FBF6EC; }
@@ -37,8 +55,8 @@
   <!-- Axis titles -->
   <text class="axis-label" x="755" y="425">Q</text>
   <text class="axis-label" x="80" y="35" text-anchor="end">P</text>
-  <text class="axis-label" x="415" y="475" text-anchor="middle">CANTIDAD</text>
-  <text class="axis-label" x="30" y="235" text-anchor="middle" transform="rotate(-90 30 235)">PRECIO</text>
+  <text class="axis-label" x="415" y="475" text-anchor="middle">{t.cantidad}</text>
+  <text class="axis-label" x="30" y="235" text-anchor="middle" transform="rotate(-90 30 235)">{t.precio}</text>
 
   <!-- Demand curve: descending from top-left to bottom-right -->
   <!-- Start (120, 80), end (700, 400). Linear for clarity. -->

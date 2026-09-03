@@ -9,10 +9,30 @@
  *
  * Used in Eco 1BACH · Unit 9 (mercado de trabajo y desempleo).
  */
+import { getLocale } from '@/i18n/locale';
+const locale = getLocale(Astro.currentLocale);
+
+const COPY = {
+  es: {
+    mercadoDeTrabajoY: 'Mercado de trabajo y salario mínimo',
+    elSalarioDeEquilibrio: 'El salario de equilibrio surge del cruce entre la oferta y la demanda de trabajo. Un salario mínimo fijado por encima del equilibrio genera desempleo, porque más personas quieren trabajar de las que las empresas contratan.',
+    cantidadDeTrabajoL: 'CANTIDAD DE TRABAJO (L)',
+    salarioW: 'SALARIO (W)',
+    desempleo: 'desempleo',
+  },
+  ca: {
+    mercadoDeTrabajoY: 'Mercat de treball i salari mínim',
+    elSalarioDeEquilibrio: "El salari d'equilibri sorgix de l'encreuament entre l'oferta i la demanda de treball. Un salari mínim fixat per damunt de l'equilibri genera desocupació, perquè volen treballar més persones de les que contracten les empreses.",
+    cantidadDeTrabajoL: 'QUANTITAT DE TREBALL (L)',
+    salarioW: 'SALARI (W)',
+    desempleo: 'desocupació',
+  },
+} as const;
+const t = COPY[locale];
 ---
 <svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="mt-title mt-desc">
-  <title id="mt-title">Mercado de trabajo y salario mínimo</title>
-  <desc id="mt-desc">El salario de equilibrio surge del cruce entre la oferta y la demanda de trabajo. Un salario mínimo fijado por encima del equilibrio genera desempleo, porque más personas quieren trabajar de las que las empresas contratan.</desc>
+  <title id="mt-title">{t.mercadoDeTrabajoY}</title>
+  <desc id="mt-desc">{t.elSalarioDeEquilibrio}</desc>
   <defs>
     <style>
       .bg { fill: #FBF6EC; }
@@ -54,8 +74,8 @@
   <!-- Axis titles -->
   <text class="axis-letter" x="748" y="425">L</text>
   <text class="axis-letter" x="82" y="48" text-anchor="end">W</text>
-  <text class="axis-label" x="415" y="478" text-anchor="middle">CANTIDAD DE TRABAJO (L)</text>
-  <text class="axis-label" x="32" y="235" text-anchor="middle" transform="rotate(-90 32 235)">SALARIO (W)</text>
+  <text class="axis-label" x="415" y="478" text-anchor="middle">{t.cantidadDeTrabajoL}</text>
+  <text class="axis-label" x="32" y="235" text-anchor="middle" transform="rotate(-90 32 235)">{t.salarioW}</text>
 
   <!-- Labour demand curve (terracota, downward) -->
   <line class="demand" x1="120" y1="80" x2="700" y2="400"/>
@@ -79,7 +99,7 @@
 
   <!-- Unemployment brace on x-axis between L_d and L_o -->
   <path class="brace" d="M 283 432 q 0 8 8 8 L 406 440 q 8 0 8 8 q 0 -8 8 -8 L 529 440 q 8 0 8 -8"/>
-  <text class="paro-label" x="410" y="468">desempleo</text>
+  <text class="paro-label" x="410" y="468">{t.desempleo}</text>
 
   <!-- Curve labels -->
   <text class="curve-label" x="708" y="402" fill="#C44E2C">D</text>

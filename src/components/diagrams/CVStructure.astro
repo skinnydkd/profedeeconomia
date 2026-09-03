@@ -3,10 +3,138 @@
  * Anatomy of a junior CV: vertical layout with labeled sections
  * and side annotations with practical advice for first-CV writers.
  */
+import { getLocale } from '@/i18n/locale';
+const locale = getLocale(Astro.currentLocale);
+
+const COPY = {
+  es: {
+    anatomiaDeUnCurriculum: 'Anatomía de un currículum vitae junior',
+    estructuraRecomendadaDeUn: 'Estructura recomendada de un CV junior',
+    representacionVisualDeUn: 'Representación visual de un CV bien estructurado para un perfil junior, con secciones etiquetadas y anotaciones laterales de consejos prácticos.',
+    paginaA4UnaSola: 'Página A4 · Una sola hoja',
+    k1Header: '1 · HEADER',
+    nombreApellidos: 'Nombre Apellidos',
+    emailTelefonoLinkedinCiudad: 'email · teléfono · LinkedIn · ciudad',
+    foto: 'FOTO',
+    opcional: '(opcional)',
+    k2Resumen: '2 · RESUMEN',
+    k34LineasQuien: '3-4 líneas · quién eres · qué buscas ·',
+    queAportas: 'qué aportas',
+    k3Experiencia: '3 · EXPERIENCIA',
+    puestoEmpresaFechas: 'Puesto · empresa · fechas',
+    logro1ConResultado: '– Logro 1 (con resultado medible)',
+    logro2ConResultado: '– Logro 2 (con resultado medible)',
+    logro3ConResultado: '– Logro 3 (con resultado medible)',
+    verbosResultados: 'verbos + resultados',
+    k4Formacion: '4 · FORMACIÓN',
+    tituloCentroFechas: 'Título · centro · fechas',
+    enOrdenCronologicoInverso: '(en orden cronológico inverso)',
+    k5Idiomas: '5 · IDIOMAS',
+    castellanoC2: 'Castellano: C2',
+    inglesB2Cambridge: 'Inglés: B2 (Cambridge)',
+    k6Digital: '6 · DIGITAL',
+    excelCanvaCapcut: 'Excel · Canva · CapCut',
+    pythonBasicoIa: 'Python básico · IA',
+    k7VoluntariadoExtras: '7 · VOLUNTARIADO / EXTRAS',
+    voluntariadoProyectosPersona: 'Voluntariado, proyectos personales,',
+    aficionesQueAportenContexto: 'aficiones que aporten contexto,',
+    premiosOReconocimientos: 'premios o reconocimientos.',
+    consejo1: 'Consejo 1',
+    sinFotoSiDudas: 'Sin foto si dudas:',
+    evitaSesgosDel: 'evita sesgos del',
+    reclutador: 'reclutador.',
+    consejo2: 'Consejo 2',
+    elResumenEsEl: 'El resumen es el',
+    trailerDelCv: '"trailer" del CV:',
+    decisivoEn6Seg: 'decisivo en 6 seg.',
+    consejo3: 'Consejo 3',
+    coordineEquipo: '"Coordiné equipo',
+    de4YSubimos: 'de 4 y subimos',
+    ventasUn20: 'ventas un 20 %",',
+    noResponsable: 'no "responsable',
+    deVentas: 'de ventas".',
+    consejo4: 'Consejo 4',
+    personalizarElCv: 'Personalizar el CV',
+    porOfertaCada: 'por oferta: cada',
+    envioAdaptaEl: 'envío adapta el',
+    resumenYOrden: 'resumen y orden.',
+    consejo5: 'Consejo 5',
+    idiomasConNivel: 'Idiomas con nivel',
+    mcerA1C2: 'MCER (A1-C2),',
+    noFluidoO: 'no "fluido" o',
+    medioAlto: '"medio-alto".',
+    consejo6: 'Consejo 6',
+    k1PaginaMax: '1 página máx.',
+    paraPerfilJunior: 'para perfil junior.',
+    masAllaSeDiluye: 'Más allá, se diluye.',
+  },
+  ca: {
+    anatomiaDeUnCurriculum: "Anatomia d'un currículum vitae júnior",
+    estructuraRecomendadaDeUn: "Estructura recomanada d'un CV júnior",
+    representacionVisualDeUn: "Representació visual d'un CV ben estructurat per a un perfil júnior, amb seccions etiquetades i anotacions laterals de consells pràctics.",
+    paginaA4UnaSola: 'Pàgina A4 · Un sol full',
+    k1Header: '1 · CAPÇALERA',
+    nombreApellidos: 'Nom Cognoms',
+    emailTelefonoLinkedinCiudad: 'correu · telèfon · LinkedIn · ciutat',
+    foto: 'FOTO',
+    opcional: '(opcional)',
+    k2Resumen: '2 · RESUM',
+    k34LineasQuien: '3-4 línies · qui eres · què busques ·',
+    queAportas: 'què aportes',
+    k3Experiencia: '3 · EXPERIÈNCIA',
+    puestoEmpresaFechas: 'Lloc · empresa · dates',
+    logro1ConResultado: '– Fita 1 (amb resultat mesurable)',
+    logro2ConResultado: '– Fita 2 (amb resultat mesurable)',
+    logro3ConResultado: '– Fita 3 (amb resultat mesurable)',
+    verbosResultados: 'verbs + resultats',
+    k4Formacion: '4 · FORMACIÓ',
+    tituloCentroFechas: 'Títol · centre · dates',
+    enOrdenCronologicoInverso: '(en ordre cronològic invers)',
+    k5Idiomas: '5 · IDIOMES',
+    castellanoC2: 'Castellà: C2',
+    inglesB2Cambridge: 'Anglés: B2 (Cambridge)',
+    k6Digital: '6 · DIGITAL',
+    excelCanvaCapcut: 'Excel · Canva · CapCut',
+    pythonBasicoIa: 'Python bàsic · IA',
+    k7VoluntariadoExtras: '7 · VOLUNTARIAT / EXTRES',
+    voluntariadoProyectosPersona: 'Voluntariat, projectes personals,',
+    aficionesQueAportenContexto: 'aficions que aporten context,',
+    premiosOReconocimientos: 'premis o reconeixements.',
+    consejo1: 'Consell 1',
+    sinFotoSiDudas: 'Sense foto si dubtes:',
+    evitaSesgosDel: 'evita biaixos del',
+    reclutador: 'reclutador.',
+    consejo2: 'Consell 2',
+    elResumenEsEl: 'El resum és el',
+    trailerDelCv: '"tràiler" del CV:',
+    decisivoEn6Seg: 'decisiu en 6 seg.',
+    consejo3: 'Consell 3',
+    coordineEquipo: '"Vaig coordinar un equip',
+    de4YSubimos: 'de 4 i vam pujar les',
+    ventasUn20: 'vendes un 20 %",',
+    noResponsable: 'no "responsable',
+    deVentas: 'de vendes".',
+    consejo4: 'Consell 4',
+    personalizarElCv: 'Personalitzar el CV',
+    porOfertaCada: 'per oferta: cada',
+    envioAdaptaEl: 'enviament adapta el',
+    resumenYOrden: "resum i l'ordre.",
+    consejo5: 'Consell 5',
+    idiomasConNivel: 'Idiomes amb nivell',
+    mcerA1C2: 'MECR (A1-C2),',
+    noFluidoO: 'no "fluid" o',
+    medioAlto: '"mitjà-alt".',
+    consejo6: 'Consell 6',
+    k1PaginaMax: '1 pàgina màx.',
+    paraPerfilJunior: 'per a perfil júnior.',
+    masAllaSeDiluye: 'Més enllà, es dilueix.',
+  },
+} as const;
+const t = COPY[locale];
 ---
-<svg viewBox="0 0 880 620" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Anatomía de un currículum vitae junior">
-  <title>Estructura recomendada de un CV junior</title>
-  <desc>Representación visual de un CV bien estructurado para un perfil junior, con secciones etiquetadas y anotaciones laterales de consejos prácticos.</desc>
+<svg viewBox="0 0 880 620" xmlns="http://www.w3.org/2000/svg" role="img" aria-label={t.anatomiaDeUnCurriculum}>
+  <title>{t.estructuraRecomendadaDeUn}</title>
+  <desc>{t.representacionVisualDeUn}</desc>
   <defs>
     <style>
       .bg { fill: #FBF6EC; }
@@ -35,7 +163,7 @@
   <rect class="bg" x="0" y="0" width="880" height="620"/>
 
   <!-- Top title -->
-  <text class="title-top" x="290" y="30" text-anchor="middle">Página A4 · Una sola hoja</text>
+  <text class="title-top" x="290" y="30" text-anchor="middle">{t.paginaA4UnaSola}</text>
 
   <!-- "Page" outer rectangle -->
   <rect class="page" x="220" y="45" width="380" height="540" rx="3"/>
@@ -43,120 +171,120 @@
   <!-- 1. Header (datos + foto opcional) -->
   <g>
     <rect class="section sec-header" x="235" y="60" width="350" height="80" rx="4"/>
-    <text class="sec-label" x="250" y="82">1 · HEADER</text>
-    <text class="sec-name" x="250" y="105">Nombre Apellidos</text>
-    <text class="sec-meta" x="250" y="122">email · teléfono · LinkedIn · ciudad</text>
+    <text class="sec-label" x="250" y="82">{t.k1Header}</text>
+    <text class="sec-name" x="250" y="105">{t.nombreApellidos}</text>
+    <text class="sec-meta" x="250" y="122">{t.emailTelefonoLinkedinCiudad}</text>
     <!-- Foto -->
     <rect class="photo" x="510" y="72" width="60" height="60" rx="3"/>
-    <text class="photo-label" x="540" y="100">FOTO</text>
-    <text class="photo-label" x="540" y="115">(opcional)</text>
+    <text class="photo-label" x="540" y="100">{t.foto}</text>
+    <text class="photo-label" x="540" y="115">{t.opcional}</text>
   </g>
 
   <!-- 2. Resumen -->
   <g>
     <rect class="section sec-resumen" x="235" y="150" width="350" height="60" rx="4"/>
-    <text class="sec-label" x="250" y="172">2 · RESUMEN</text>
-    <text class="sec-meta" x="250" y="190">3-4 líneas · quién eres · qué buscas ·</text>
-    <text class="sec-meta" x="250" y="203">qué aportas</text>
+    <text class="sec-label" x="250" y="172">{t.k2Resumen}</text>
+    <text class="sec-meta" x="250" y="190">{t.k34LineasQuien}</text>
+    <text class="sec-meta" x="250" y="203">{t.queAportas}</text>
   </g>
 
   <!-- 3. Experiencia (con tag) -->
   <g>
     <rect class="section sec-experiencia" x="235" y="220" width="350" height="100" rx="4"/>
-    <text class="sec-label" x="250" y="242">3 · EXPERIENCIA</text>
-    <text class="sec-meta" x="250" y="262">Puesto · empresa · fechas</text>
-    <text class="sec-meta" x="250" y="278">– Logro 1 (con resultado medible)</text>
-    <text class="sec-meta" x="250" y="294">– Logro 2 (con resultado medible)</text>
-    <text class="sec-meta" x="250" y="310">– Logro 3 (con resultado medible)</text>
+    <text class="sec-label" x="250" y="242">{t.k3Experiencia}</text>
+    <text class="sec-meta" x="250" y="262">{t.puestoEmpresaFechas}</text>
+    <text class="sec-meta" x="250" y="278">{t.logro1ConResultado}</text>
+    <text class="sec-meta" x="250" y="294">{t.logro2ConResultado}</text>
+    <text class="sec-meta" x="250" y="310">{t.logro3ConResultado}</text>
     <!-- Tag -->
     <rect class="tag" x="450" y="232" width="130" height="18" rx="9"/>
-    <text class="tag-text" x="515" y="245">verbos + resultados</text>
+    <text class="tag-text" x="515" y="245">{t.verbosResultados}</text>
   </g>
 
   <!-- 4. Formación -->
   <g>
     <rect class="section sec-formacion" x="235" y="330" width="350" height="70" rx="4"/>
-    <text class="sec-label" x="250" y="352">4 · FORMACIÓN</text>
-    <text class="sec-meta" x="250" y="372">Título · centro · fechas</text>
-    <text class="sec-meta" x="250" y="388">(en orden cronológico inverso)</text>
+    <text class="sec-label" x="250" y="352">{t.k4Formacion}</text>
+    <text class="sec-meta" x="250" y="372">{t.tituloCentroFechas}</text>
+    <text class="sec-meta" x="250" y="388">{t.enOrdenCronologicoInverso}</text>
   </g>
 
   <!-- 5. Idiomas -->
   <g>
     <rect class="section sec-idiomas" x="235" y="410" width="170" height="65" rx="4"/>
-    <text class="sec-label" x="250" y="432">5 · IDIOMAS</text>
-    <text class="sec-meta" x="250" y="452">Castellano: C2</text>
-    <text class="sec-meta" x="250" y="467">Inglés: B2 (Cambridge)</text>
+    <text class="sec-label" x="250" y="432">{t.k5Idiomas}</text>
+    <text class="sec-meta" x="250" y="452">{t.castellanoC2}</text>
+    <text class="sec-meta" x="250" y="467">{t.inglesB2Cambridge}</text>
   </g>
 
   <!-- 6. Habilidades digitales -->
   <g>
     <rect class="section sec-digital" x="415" y="410" width="170" height="65" rx="4"/>
-    <text class="sec-label" x="430" y="432">6 · DIGITAL</text>
-    <text class="sec-meta" x="430" y="452">Excel · Canva · CapCut</text>
-    <text class="sec-meta" x="430" y="467">Python básico · IA</text>
+    <text class="sec-label" x="430" y="432">{t.k6Digital}</text>
+    <text class="sec-meta" x="430" y="452">{t.excelCanvaCapcut}</text>
+    <text class="sec-meta" x="430" y="467">{t.pythonBasicoIa}</text>
   </g>
 
   <!-- 7. Extras -->
   <g>
     <rect class="section sec-extras" x="235" y="485" width="350" height="85" rx="4"/>
-    <text class="sec-label" x="250" y="507">7 · VOLUNTARIADO / EXTRAS</text>
-    <text class="sec-meta" x="250" y="527">Voluntariado, proyectos personales,</text>
-    <text class="sec-meta" x="250" y="543">aficiones que aporten contexto,</text>
-    <text class="sec-meta" x="250" y="559">premios o reconocimientos.</text>
+    <text class="sec-label" x="250" y="507">{t.k7VoluntariadoExtras}</text>
+    <text class="sec-meta" x="250" y="527">{t.voluntariadoProyectosPersona}</text>
+    <text class="sec-meta" x="250" y="543">{t.aficionesQueAportenContexto}</text>
+    <text class="sec-meta" x="250" y="559">{t.premiosOReconocimientos}</text>
   </g>
 
   <!-- LEFT ANNOTATIONS -->
   <g>
-    <text class="note-emph" x="20" y="100">Consejo 1</text>
-    <text class="note-text" x="20" y="118">Sin foto si dudas:</text>
-    <text class="note-text" x="20" y="132">evita sesgos del</text>
-    <text class="note-text" x="20" y="146">reclutador.</text>
+    <text class="note-emph" x="20" y="100">{t.consejo1}</text>
+    <text class="note-text" x="20" y="118">{t.sinFotoSiDudas}</text>
+    <text class="note-text" x="20" y="132">{t.evitaSesgosDel}</text>
+    <text class="note-text" x="20" y="146">{t.reclutador}</text>
     <line class="note-line" x1="140" y1="100" x2="510" y2="100"/>
   </g>
 
   <g>
-    <text class="note-emph" x="20" y="190">Consejo 2</text>
-    <text class="note-text" x="20" y="208">El resumen es el</text>
-    <text class="note-text" x="20" y="222">"trailer" del CV:</text>
-    <text class="note-text" x="20" y="236">decisivo en 6 seg.</text>
+    <text class="note-emph" x="20" y="190">{t.consejo2}</text>
+    <text class="note-text" x="20" y="208">{t.elResumenEsEl}</text>
+    <text class="note-text" x="20" y="222">{t.trailerDelCv}</text>
+    <text class="note-text" x="20" y="236">{t.decisivoEn6Seg}</text>
     <line class="note-line" x1="140" y1="180" x2="235" y2="180"/>
   </g>
 
   <g>
-    <text class="note-emph" x="20" y="290">Consejo 3</text>
-    <text class="note-text" x="20" y="308">"Coordiné equipo</text>
-    <text class="note-text" x="20" y="322">de 4 y subimos</text>
-    <text class="note-text" x="20" y="336">ventas un 20 %",</text>
-    <text class="note-text" x="20" y="350">no "responsable</text>
-    <text class="note-text" x="20" y="364">de ventas".</text>
+    <text class="note-emph" x="20" y="290">{t.consejo3}</text>
+    <text class="note-text" x="20" y="308">{t.coordineEquipo}</text>
+    <text class="note-text" x="20" y="322">{t.de4YSubimos}</text>
+    <text class="note-text" x="20" y="336">{t.ventasUn20}</text>
+    <text class="note-text" x="20" y="350">{t.noResponsable}</text>
+    <text class="note-text" x="20" y="364">{t.deVentas}</text>
     <line class="note-line" x1="140" y1="290" x2="235" y2="290"/>
   </g>
 
   <!-- RIGHT ANNOTATIONS -->
   <g>
-    <text class="note-emph" x="620" y="180">Consejo 4</text>
-    <text class="note-text" x="620" y="198">Personalizar el CV</text>
-    <text class="note-text" x="620" y="212">por oferta: cada</text>
-    <text class="note-text" x="620" y="226">envío adapta el</text>
-    <text class="note-text" x="620" y="240">resumen y orden.</text>
+    <text class="note-emph" x="620" y="180">{t.consejo4}</text>
+    <text class="note-text" x="620" y="198">{t.personalizarElCv}</text>
+    <text class="note-text" x="620" y="212">{t.porOfertaCada}</text>
+    <text class="note-text" x="620" y="226">{t.envioAdaptaEl}</text>
+    <text class="note-text" x="620" y="240">{t.resumenYOrden}</text>
     <line class="note-line" x1="600" y1="180" x2="615" y2="180"/>
   </g>
 
   <g>
-    <text class="note-emph" x="620" y="440">Consejo 5</text>
-    <text class="note-text" x="620" y="458">Idiomas con nivel</text>
-    <text class="note-text" x="620" y="472">MCER (A1-C2),</text>
-    <text class="note-text" x="620" y="486">no "fluido" o</text>
-    <text class="note-text" x="620" y="500">"medio-alto".</text>
+    <text class="note-emph" x="620" y="440">{t.consejo5}</text>
+    <text class="note-text" x="620" y="458">{t.idiomasConNivel}</text>
+    <text class="note-text" x="620" y="472">{t.mcerA1C2}</text>
+    <text class="note-text" x="620" y="486">{t.noFluidoO}</text>
+    <text class="note-text" x="620" y="500">{t.medioAlto}</text>
     <line class="note-line" x1="585" y1="442" x2="615" y2="442"/>
   </g>
 
   <g>
-    <text class="note-emph" x="620" y="530">Consejo 6</text>
-    <text class="note-text" x="620" y="548">1 página máx.</text>
-    <text class="note-text" x="620" y="562">para perfil junior.</text>
-    <text class="note-text" x="620" y="576">Más allá, se diluye.</text>
+    <text class="note-emph" x="620" y="530">{t.consejo6}</text>
+    <text class="note-text" x="620" y="548">{t.k1PaginaMax}</text>
+    <text class="note-text" x="620" y="562">{t.paraPerfilJunior}</text>
+    <text class="note-text" x="620" y="576">{t.masAllaSeDiluye}</text>
     <line class="note-line" x1="585" y1="530" x2="615" y2="530"/>
   </g>
 </svg>

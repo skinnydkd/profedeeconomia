@@ -7,10 +7,80 @@
  *
  * Used in EDMN 2BACH · Unit 7 (función productiva).
  */
+import { getLocale } from '@/i18n/locale';
+const locale = getLocale(Astro.currentLocale);
+
+const COPY = {
+  es: {
+    tiposDeProcesoProductivo: 'Tipos de proceso productivo',
+    losCuatroTiposDe: 'Los cuatro tipos de proceso productivo —por proyecto, por lotes, en masa y continuo— se ordenan en una diagonal: a poco volumen y mucha variedad corresponde la producción por proyecto; a mucho volumen y poca variedad, la producción continua.',
+    volumenDeProduccion: 'VOLUMEN DE PRODUCCIÓN  →',
+    variedadDelProducto: 'VARIEDAD DEL PRODUCTO  →',
+    bajoVolumen: 'bajo volumen',
+    altoVolumen: 'alto volumen',
+    costeUnitarioMuyAlto: 'Coste unitario muy alto y mano de obra muy cualificada. Cada encargo es distinto, así que es difícil aprovechar economías de escala.',
+    porProyecto: 'Por proyecto',
+    unaUnidadUnica: 'Una unidad única,',
+    aMedidaDelCliente: 'a medida del cliente',
+    unPuenteUnBarco: 'un puente, un barco,',
+    unaBoda: 'una boda',
+    equilibrioEntreVariedadY: 'Equilibrio entre variedad y volumen. Permite cambiar de modelo entre tandas, pero cada cambio de lote tiene un coste de preparación de la maquinaria.',
+    porLotesBatch: 'Por lotes (batch)',
+    tandasDeProducto: 'Tandas de producto',
+    queSeRepiten: 'que se repiten',
+    panaderiaRopaPor: 'panadería, ropa por',
+    coleccionesMuebles: 'colecciones, muebles',
+    aprovechaAlMaximoLas: 'Aprovecha al máximo las economías de escala: el coste por unidad cae mucho. A cambio, es muy rígido ante cambios en el producto. Es la cadena de montaje de Ford.',
+    enMasaCadena: 'En masa (cadena)',
+    granVolumenDeUn: 'Gran volumen de un',
+    productoEstandar: 'producto estándar',
+    automoviles: 'automóviles,',
+    electrodomesticos: 'electrodomésticos',
+    noParaNuncaPorque: 'No para nunca porque arrancar y detener la planta es carísimo o técnicamente imposible. Produce un único producto homogéneo de forma ininterrumpida.',
+    continuo: 'Continuo',
+    flujoIninterrumpido: 'Flujo ininterrumpido',
+    k24HorasSinParadas: '24 horas, sin paradas',
+    refineriaCentral: 'refinería, central',
+    electricaCementera: 'eléctrica, cementera',
+  },
+  ca: {
+    tiposDeProcesoProductivo: 'Tipus de procés productiu',
+    losCuatroTiposDe: "Els quatre tipus de procés productiu —per projecte, per lots, en massa i continu— s'ordenen en una diagonal: a poc volum i molta varietat correspon la producció per projecte; a molt volum i poca varietat, la producció contínua.",
+    volumenDeProduccion: 'VOLUM DE PRODUCCIÓ  →',
+    variedadDelProducto: 'VARIETAT DEL PRODUCTE  →',
+    bajoVolumen: 'poc volum',
+    altoVolumen: 'molt volum',
+    costeUnitarioMuyAlto: "Cost unitari molt alt i mà d'obra molt qualificada. Cada encàrrec és diferent, així que és difícil aprofitar economies d'escala.",
+    porProyecto: 'Per projecte',
+    unaUnidadUnica: 'Una unitat única,',
+    aMedidaDelCliente: 'a mida del client',
+    unPuenteUnBarco: 'un pont, un vaixell,',
+    unaBoda: 'una boda',
+    equilibrioEntreVariedadY: 'Equilibri entre varietat i volum. Permet canviar de model entre tandes, però cada canvi de lot té un cost de preparació de la maquinària.',
+    porLotesBatch: 'Per lots (batch)',
+    tandasDeProducto: 'Tandes de producte',
+    queSeRepiten: 'que es repetixen',
+    panaderiaRopaPor: 'forn, roba per',
+    coleccionesMuebles: 'col·leccions, mobles',
+    aprovechaAlMaximoLas: "Aprofita al màxim les economies d'escala: el cost per unitat cau molt. A canvi, és molt rígid davant de canvis en el producte. És la cadena de muntatge de Ford.",
+    enMasaCadena: 'En massa (cadena)',
+    granVolumenDeUn: "Gran volum d'un",
+    productoEstandar: 'producte estàndard',
+    automoviles: 'automòbils,',
+    electrodomesticos: 'electrodomèstics',
+    noParaNuncaPorque: 'No para mai perquè arrancar i detindre la planta és caríssim o tècnicament impossible. Produïx un únic producte homogeni de manera ininterrompuda.',
+    continuo: 'Continu',
+    flujoIninterrumpido: 'Flux ininterromput',
+    k24HorasSinParadas: '24 hores, sense parades',
+    refineriaCentral: 'refineria, central',
+    electricaCementera: 'elèctrica, cimentera',
+  },
+} as const;
+const t = COPY[locale];
 ---
 <svg viewBox="0 0 880 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="procprod-title procprod-desc">
-  <title id="procprod-title">Tipos de proceso productivo</title>
-  <desc id="procprod-desc">Los cuatro tipos de proceso productivo —por proyecto, por lotes, en masa y continuo— se ordenan en una diagonal: a poco volumen y mucha variedad corresponde la producción por proyecto; a mucho volumen y poca variedad, la producción continua.</desc>
+  <title id="procprod-title">{t.tiposDeProcesoProductivo}</title>
+  <desc id="procprod-desc">{t.losCuatroTiposDe}</desc>
   <defs>
     <style>
       .bg { fill: #FBF6EC; }
@@ -38,43 +108,43 @@
   <line class="axis" x1="90" y1="50" x2="90" y2="430"/>
 
   <!-- Axis titles -->
-  <text class="axis-label" x="455" y="465" text-anchor="middle">VOLUMEN DE PRODUCCIÓN  →</text>
-  <text class="axis-label" x="40" y="245" text-anchor="middle" transform="rotate(-90 40 245)">VARIEDAD DEL PRODUCTO  →</text>
-  <text class="axis-label" x="120" y="80" fill="#8A7868">bajo volumen</text>
-  <text class="axis-label" x="790" y="80" fill="#8A7868" text-anchor="end">alto volumen</text>
+  <text class="axis-label" x="455" y="465" text-anchor="middle">{t.volumenDeProduccion}</text>
+  <text class="axis-label" x="40" y="245" text-anchor="middle" transform="rotate(-90 40 245)">{t.variedadDelProducto}</text>
+  <text class="axis-label" x="120" y="80" fill="#8A7868">{t.bajoVolumen}</text>
+  <text class="axis-label" x="790" y="80" fill="#8A7868" text-anchor="end">{t.altoVolumen}</text>
 
   <!-- Diagonal trend (top-left high variety/low volume → bottom-right low variety/high volume) -->
   <line class="diag" x1="150" y1="90" x2="760" y2="400"/>
 
   <!-- Card 1: Por proyecto (top-left: mucha variedad, poco volumen) -->
-  <rect class="card card-1 has-tip" x="100" y="75" width="190" height="120" rx="8"><title>Coste unitario muy alto y mano de obra muy cualificada. Cada encargo es distinto, así que es difícil aprovechar economías de escala.</title></rect>
-  <text class="card-name" x="195" y="102">Por proyecto</text>
-  <text class="card-sub" x="195" y="122">Una unidad única,</text>
-  <text class="card-sub" x="195" y="137">a medida del cliente</text>
-  <text class="card-ex" x="195" y="165">un puente, un barco,</text>
-  <text class="card-ex" x="195" y="180">una boda</text>
+  <rect class="card card-1 has-tip" x="100" y="75" width="190" height="120" rx="8"><title>{t.costeUnitarioMuyAlto}</title></rect>
+  <text class="card-name" x="195" y="102">{t.porProyecto}</text>
+  <text class="card-sub" x="195" y="122">{t.unaUnidadUnica}</text>
+  <text class="card-sub" x="195" y="137">{t.aMedidaDelCliente}</text>
+  <text class="card-ex" x="195" y="165">{t.unPuenteUnBarco}</text>
+  <text class="card-ex" x="195" y="180">{t.unaBoda}</text>
 
   <!-- Card 2: Por lotes (center-upper) -->
-  <rect class="card card-2 has-tip" x="290" y="165" width="190" height="120" rx="8"><title>Equilibrio entre variedad y volumen. Permite cambiar de modelo entre tandas, pero cada cambio de lote tiene un coste de preparación de la maquinaria.</title></rect>
-  <text class="card-name" x="385" y="192">Por lotes (batch)</text>
-  <text class="card-sub" x="385" y="212">Tandas de producto</text>
-  <text class="card-sub" x="385" y="227">que se repiten</text>
-  <text class="card-ex" x="385" y="255">panadería, ropa por</text>
-  <text class="card-ex" x="385" y="270">colecciones, muebles</text>
+  <rect class="card card-2 has-tip" x="290" y="165" width="190" height="120" rx="8"><title>{t.equilibrioEntreVariedadY}</title></rect>
+  <text class="card-name" x="385" y="192">{t.porLotesBatch}</text>
+  <text class="card-sub" x="385" y="212">{t.tandasDeProducto}</text>
+  <text class="card-sub" x="385" y="227">{t.queSeRepiten}</text>
+  <text class="card-ex" x="385" y="255">{t.panaderiaRopaPor}</text>
+  <text class="card-ex" x="385" y="270">{t.coleccionesMuebles}</text>
 
   <!-- Card 3: En masa / cadena (center-lower) -->
-  <rect class="card card-3 has-tip" x="430" y="245" width="190" height="120" rx="8"><title>Aprovecha al máximo las economías de escala: el coste por unidad cae mucho. A cambio, es muy rígido ante cambios en el producto. Es la cadena de montaje de Ford.</title></rect>
-  <text class="card-name" x="525" y="272">En masa (cadena)</text>
-  <text class="card-sub" x="525" y="292">Gran volumen de un</text>
-  <text class="card-sub" x="525" y="307">producto estándar</text>
-  <text class="card-ex" x="525" y="335">automóviles,</text>
-  <text class="card-ex" x="525" y="350">electrodomésticos</text>
+  <rect class="card card-3 has-tip" x="430" y="245" width="190" height="120" rx="8"><title>{t.aprovechaAlMaximoLas}</title></rect>
+  <text class="card-name" x="525" y="272">{t.enMasaCadena}</text>
+  <text class="card-sub" x="525" y="292">{t.granVolumenDeUn}</text>
+  <text class="card-sub" x="525" y="307">{t.productoEstandar}</text>
+  <text class="card-ex" x="525" y="335">{t.automoviles}</text>
+  <text class="card-ex" x="525" y="350">{t.electrodomesticos}</text>
 
   <!-- Card 4: Continuo (bottom-right: poca variedad, mucho volumen) -->
-  <rect class="card card-4 has-tip" x="620" y="305" width="190" height="120" rx="8"><title>No para nunca porque arrancar y detener la planta es carísimo o técnicamente imposible. Produce un único producto homogéneo de forma ininterrumpida.</title></rect>
-  <text class="card-name" x="715" y="332">Continuo</text>
-  <text class="card-sub" x="715" y="352">Flujo ininterrumpido</text>
-  <text class="card-sub" x="715" y="367">24 horas, sin paradas</text>
-  <text class="card-ex" x="715" y="395">refinería, central</text>
-  <text class="card-ex" x="715" y="410">eléctrica, cementera</text>
+  <rect class="card card-4 has-tip" x="620" y="305" width="190" height="120" rx="8"><title>{t.noParaNuncaPorque}</title></rect>
+  <text class="card-name" x="715" y="332">{t.continuo}</text>
+  <text class="card-sub" x="715" y="352">{t.flujoIninterrumpido}</text>
+  <text class="card-sub" x="715" y="367">{t.k24HorasSinParadas}</text>
+  <text class="card-ex" x="715" y="395">{t.refineriaCentral}</text>
+  <text class="card-ex" x="715" y="410">{t.electricaCementera}</text>
 </svg>

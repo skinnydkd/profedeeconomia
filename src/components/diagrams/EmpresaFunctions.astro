@@ -4,8 +4,54 @@
  * Used in Unit 1 to visualize how production, commercial, financial
  * and social functions interact through the firm's coordination.
  */
+import { getLocale } from '@/i18n/locale';
+const locale = getLocale(Astro.currentLocale);
+
+const COPY = {
+  es: {
+    lasCuatroFuncionesDe: 'Las cuatro funciones de la empresa',
+    empresa: 'EMPRESA',
+    funcionProductiva: 'FUNCIÓN PRODUCTIVA',
+    transformar: 'Transformar',
+    deMateriasPrimasTrabajo: 'De materias primas, trabajo y',
+    capitalAlProductoFinal: 'capital al producto final.',
+    funcionComercial: 'FUNCIÓN COMERCIAL',
+    conectarOfertaYDemanda: 'Conectar oferta y demanda',
+    quienCompraAQue: 'Quién compra, a qué precio,',
+    porQueCanal: 'por qué canal.',
+    funcionFinanciera: 'FUNCIÓN FINANCIERA',
+    captarYGestionarCapital: 'Captar y gestionar capital',
+    prestamosAmpliaciones: 'Préstamos, ampliaciones,',
+    reinversionTesoreria: 'reinversión, tesorería.',
+    funcionSocial: 'FUNCIÓN SOCIAL',
+    impactoEnElEntorno: 'Impacto en el entorno',
+    empleoImpuestosRsc: 'Empleo, impuestos, RSC,',
+    externalidades: 'externalidades.',
+  },
+  ca: {
+    lasCuatroFuncionesDe: "Les quatre funcions de l'empresa",
+    empresa: 'EMPRESA',
+    funcionProductiva: 'FUNCIÓ PRODUCTIVA',
+    transformar: 'Transformar',
+    deMateriasPrimasTrabajo: 'De matèries primeres, treball i',
+    capitalAlProductoFinal: 'capital al producte final.',
+    funcionComercial: 'FUNCIÓ COMERCIAL',
+    conectarOfertaYDemanda: 'Enllaçar oferta i demanda',
+    quienCompraAQue: 'Qui compra, a quin preu,',
+    porQueCanal: 'per quin canal.',
+    funcionFinanciera: 'FUNCIÓ FINANCERA',
+    captarYGestionarCapital: 'Captar i gestionar capital',
+    prestamosAmpliaciones: 'Préstecs, ampliacions,',
+    reinversionTesoreria: 'reinversió, tresoreria.',
+    funcionSocial: 'FUNCIÓ SOCIAL',
+    impactoEnElEntorno: "Impacte en l'entorn",
+    empleoImpuestosRsc: 'Ocupació, impostos, RSC,',
+    externalidades: 'externalitats.',
+  },
+} as const;
+const t = COPY[locale];
 ---
-<svg viewBox="0 0 720 480" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Las cuatro funciones de la empresa">
+<svg viewBox="0 0 720 480" xmlns="http://www.w3.org/2000/svg" role="img" aria-label={t.lasCuatroFuncionesDe}>
   <defs>
     <style>
       .bg { fill: #FBF6EC; }
@@ -36,41 +82,41 @@
   <circle class="center-stroke" cx="360" cy="240" r="74"/>
   <circle class="center" cx="360" cy="240" r="68"/>
   <text class="center-eyebrow" x="360" y="232" text-anchor="middle">LA</text>
-  <text class="center-label" x="360" y="258" text-anchor="middle">EMPRESA</text>
+  <text class="center-label" x="360" y="258" text-anchor="middle">{t.empresa}</text>
 
   <!-- Top-left: Productiva -->
   <g>
     <rect class="node node-prod" x="60" y="60" width="240" height="110" rx="6"/>
-    <text class="label-eyebrow" x="80" y="88" fill="#9C3A1C">FUNCIÓN PRODUCTIVA</text>
-    <text class="label-title" x="80" y="115" fill="#2A1F18">Transformar</text>
-    <text class="label-body" x="80" y="138">De materias primas, trabajo y</text>
-    <text class="label-body" x="80" y="153">capital al producto final.</text>
+    <text class="label-eyebrow" x="80" y="88" fill="#9C3A1C">{t.funcionProductiva}</text>
+    <text class="label-title" x="80" y="115" fill="#2A1F18">{t.transformar}</text>
+    <text class="label-body" x="80" y="138">{t.deMateriasPrimasTrabajo}</text>
+    <text class="label-body" x="80" y="153">{t.capitalAlProductoFinal}</text>
   </g>
 
   <!-- Top-right: Comercial -->
   <g>
     <rect class="node node-com" x="420" y="60" width="240" height="110" rx="6"/>
-    <text class="label-eyebrow" x="440" y="88" fill="#A87A2A">FUNCIÓN COMERCIAL</text>
-    <text class="label-title" x="440" y="115" fill="#2A1F18">Conectar oferta y demanda</text>
-    <text class="label-body" x="440" y="138">Quién compra, a qué precio,</text>
-    <text class="label-body" x="440" y="153">por qué canal.</text>
+    <text class="label-eyebrow" x="440" y="88" fill="#A87A2A">{t.funcionComercial}</text>
+    <text class="label-title" x="440" y="115" fill="#2A1F18">{t.conectarOfertaYDemanda}</text>
+    <text class="label-body" x="440" y="138">{t.quienCompraAQue}</text>
+    <text class="label-body" x="440" y="153">{t.porQueCanal}</text>
   </g>
 
   <!-- Bottom-left: Financiera -->
   <g>
     <rect class="node node-fin" x="60" y="310" width="240" height="110" rx="6"/>
-    <text class="label-eyebrow" x="80" y="338" fill="#1F6E6E">FUNCIÓN FINANCIERA</text>
-    <text class="label-title" x="80" y="365" fill="#2A1F18">Captar y gestionar capital</text>
-    <text class="label-body" x="80" y="388">Préstamos, ampliaciones,</text>
-    <text class="label-body" x="80" y="403">reinversión, tesorería.</text>
+    <text class="label-eyebrow" x="80" y="338" fill="#1F6E6E">{t.funcionFinanciera}</text>
+    <text class="label-title" x="80" y="365" fill="#2A1F18">{t.captarYGestionarCapital}</text>
+    <text class="label-body" x="80" y="388">{t.prestamosAmpliaciones}</text>
+    <text class="label-body" x="80" y="403">{t.reinversionTesoreria}</text>
   </g>
 
   <!-- Bottom-right: Social -->
   <g>
     <rect class="node node-soc" x="420" y="310" width="240" height="110" rx="6"/>
-    <text class="label-eyebrow" x="440" y="338" fill="#5B3A4E">FUNCIÓN SOCIAL</text>
-    <text class="label-title" x="440" y="365" fill="#2A1F18">Impacto en el entorno</text>
-    <text class="label-body" x="440" y="388">Empleo, impuestos, RSC,</text>
-    <text class="label-body" x="440" y="403">externalidades.</text>
+    <text class="label-eyebrow" x="440" y="338" fill="#5B3A4E">{t.funcionSocial}</text>
+    <text class="label-title" x="440" y="365" fill="#2A1F18">{t.impactoEnElEntorno}</text>
+    <text class="label-body" x="440" y="388">{t.empleoImpuestosRsc}</text>
+    <text class="label-body" x="440" y="403">{t.externalidades}</text>
   </g>
 </svg>

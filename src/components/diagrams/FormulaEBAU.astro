@@ -6,10 +6,78 @@
  *
  * Used in FOPP 4ESO · Unit 6 (FP, Universidad y becas).
  */
+import { getLocale } from '@/i18n/locale';
+const locale = getLocale(Astro.currentLocale);
+
+const COPY = {
+  es: {
+    comoSeCalculaLa: 'Cómo se calcula la nota de acceso a la universidad',
+    laNotaDeAcceso: 'La nota de acceso suma el 60 por ciento de la media del Bachillerato y el 40 por ciento de la fase obligatoria de la EBAU, con un máximo de 10. La fase voluntaria añade hasta 4 puntos por ponderaciones, hasta una nota de admisión máxima de 14.',
+    esLaMediaDe: 'Es la media de las notas de 1º y 2º de Bachillerato. Pesa más que la EBAU (60 %), así que el esfuerzo de dos cursos cuenta más que un solo examen.',
+    k60Ponderacion: '60 % · ponderación',
+    notaMediaDel: 'Nota media del',
+    bachillerato: 'Bachillerato',
+    sonLosExamenesComunes: 'Son los exámenes comunes (Lengua, Historia, idioma y la materia de modalidad). Hay que sacar al menos un 4 aquí para que la nota pueda hacer media con el Bachillerato.',
+    k40Ponderacion: '40 % · ponderación',
+    faseObligatoria: 'Fase obligatoria',
+    deLaEbau: 'de la EBAU',
+    esLaNotaMinima: 'Es la nota mínima que abre la puerta a la universidad. Para grados con poca demanda, basta con un 5; los grados con nota de corte alta exigen además la fase voluntaria.',
+    notaDeAcceso: 'Nota de acceso',
+    sobre: 'sobre',
+    k10Puntos: '10 puntos',
+    suficienteParaMuchosGrados: 'suficiente para muchos grados',
+    seLeSuma: 'se le suma…',
+    notaDeAcceso2: 'Nota de acceso',
+    laDelPaso: '(la del paso',
+    anterior: 'anterior)',
+    max10: 'máx. 10',
+    teExaminasDeMaterias: 'Te examinas de materias extra. Cada una pondera 0,1 o 0,2 según el grado que quieras: por eso conviene elegir asignaturas que ponderen alto justo en tu carrera objetivo.',
+    faseVoluntaria: 'Fase voluntaria',
+    ponderaciones: 'Ponderaciones',
+    k2MejoresMaterias: '(2 mejores materias)',
+    k01O0: '× 0,1 ó 0,2',
+    esLaNotaCon: 'Es la nota con la que compites por una plaza. Es distinta para cada grado, porque depende de cómo ponderen tus materias en esa carrera concreta.',
+    notaDeAdmision: 'Nota de admisión',
+    hasta4Puntos: 'hasta +4 puntos',
+    maximo14: 'máximo 14',
+  },
+  ca: {
+    comoSeCalculaLa: "Com es calcula la nota d'accés a la universitat",
+    laNotaDeAcceso: "La nota d'accés suma el 60 per cent de la mitjana del Batxillerat i el 40 per cent de la fase obligatòria de l'EBAU, amb un màxim de 10. La fase voluntària afig fins a 4 punts per ponderacions, fins a una nota d'admissió màxima de 14.",
+    esLaMediaDe: "És la mitjana de les notes de 1r i 2n de Batxillerat. Pesa més que l'EBAU (60 %), així que l'esforç de dos cursos compta més que un sol examen.",
+    k60Ponderacion: '60 % · ponderació',
+    notaMediaDel: 'Nota mitjana del',
+    bachillerato: 'Batxillerat',
+    sonLosExamenesComunes: 'Són els exàmens comuns (Llengua, Història, idioma i la matèria de modalitat). Cal traure almenys un 4 ací perquè la nota puga fer mitjana amb el Batxillerat.',
+    k40Ponderacion: '40 % · ponderació',
+    faseObligatoria: 'Fase obligatòria',
+    deLaEbau: "de l'EBAU",
+    esLaNotaMinima: 'És la nota mínima que obri la porta a la universitat. Per a graus amb poca demanda, en tens prou amb un 5; els graus amb nota de tall alta exigixen a més la fase voluntària.',
+    notaDeAcceso: "Nota d'accés",
+    sobre: 'sobre',
+    k10Puntos: '10 punts',
+    suficienteParaMuchosGrados: 'suficient per a molts graus',
+    seLeSuma: "s'hi suma…",
+    notaDeAcceso2: "Nota d'accés",
+    laDelPaso: '(la del pas',
+    anterior: 'anterior)',
+    max10: 'màx. 10',
+    teExaminasDeMaterias: "T'examines de matèries extres. Cada una pondera 0,1 o 0,2 segons el grau que vulgues: per això convé triar assignatures que ponderen alt just en la teua carrera objectiu.",
+    faseVoluntaria: 'Fase voluntària',
+    ponderaciones: 'Ponderacions',
+    k2MejoresMaterias: '(2 millors matèries)',
+    k01O0: '× 0,1 o 0,2',
+    esLaNotaCon: 'És la nota amb què competixes per una plaça. És diferent per a cada grau, perquè depén de com ponderen les teues matèries en eixa carrera concreta.',
+    notaDeAdmision: "Nota d'admissió",
+    hasta4Puntos: 'fins a +4 punts',
+    maximo14: 'màxim 14',
+  },
+} as const;
+const t = COPY[locale];
 ---
 <svg viewBox="0 0 880 540" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="ebau-title ebau-desc">
-  <title id="ebau-title">Cómo se calcula la nota de acceso a la universidad</title>
-  <desc id="ebau-desc">La nota de acceso suma el 60 por ciento de la media del Bachillerato y el 40 por ciento de la fase obligatoria de la EBAU, con un máximo de 10. La fase voluntaria añade hasta 4 puntos por ponderaciones, hasta una nota de admisión máxima de 14.</desc>
+  <title id="ebau-title">{t.comoSeCalculaLa}</title>
+  <desc id="ebau-desc">{t.laNotaDeAcceso}</desc>
   <defs>
     <style>
       .bg { fill: #FBF6EC; }
@@ -36,62 +104,62 @@
 
   <!-- ROW 1: nota de acceso = 0,6 Bach + 0,4 EBAU -->
   <!-- Bachillerato box -->
-  <rect class="box box-bach has-tip" x="40" y="60" width="210" height="120" rx="8"><title>Es la media de las notas de 1º y 2º de Bachillerato. Pesa más que la EBAU (60 %), así que el esfuerzo de dos cursos cuenta más que un solo examen.</title></rect>
-  <text class="box-tag" x="145" y="88" fill="#A87A2A">60 % · ponderación</text>
-  <text class="box-title" x="145" y="116">Nota media del</text>
-  <text class="box-title" x="145" y="135">Bachillerato</text>
+  <rect class="box box-bach has-tip" x="40" y="60" width="210" height="120" rx="8"><title>{t.esLaMediaDe}</title></rect>
+  <text class="box-tag" x="145" y="88" fill="#A87A2A">{t.k60Ponderacion}</text>
+  <text class="box-title" x="145" y="116">{t.notaMediaDel}</text>
+  <text class="box-title" x="145" y="135">{t.bachillerato}</text>
   <text class="box-pct" x="145" y="168">× 0,6</text>
 
   <!-- plus -->
   <text class="op" x="290" y="132">+</text>
 
   <!-- EBAU obligatoria box -->
-  <rect class="box box-ebau has-tip" x="330" y="60" width="210" height="120" rx="8"><title>Son los exámenes comunes (Lengua, Historia, idioma y la materia de modalidad). Hay que sacar al menos un 4 aquí para que la nota pueda hacer media con el Bachillerato.</title></rect>
-  <text class="box-tag" x="435" y="88" fill="#9C3A1C">40 % · ponderación</text>
-  <text class="box-title" x="435" y="116">Fase obligatoria</text>
-  <text class="box-title" x="435" y="135">de la EBAU</text>
+  <rect class="box box-ebau has-tip" x="330" y="60" width="210" height="120" rx="8"><title>{t.sonLosExamenesComunes}</title></rect>
+  <text class="box-tag" x="435" y="88" fill="#9C3A1C">{t.k40Ponderacion}</text>
+  <text class="box-title" x="435" y="116">{t.faseObligatoria}</text>
+  <text class="box-title" x="435" y="135">{t.deLaEbau}</text>
   <text class="box-pct" x="435" y="168">× 0,4</text>
 
   <!-- equals -->
   <text class="op" x="580" y="132">=</text>
 
   <!-- Nota de acceso box -->
-  <rect class="box box-acceso has-tip" x="620" y="55" width="220" height="130" rx="8"><title>Es la nota mínima que abre la puerta a la universidad. Para grados con poca demanda, basta con un 5; los grados con nota de corte alta exigen además la fase voluntaria.</title></rect>
-  <text class="acceso-tag" x="730" y="86">Nota de acceso</text>
-  <text class="box-title" x="730" y="116">sobre</text>
-  <text class="acceso-max" x="730" y="150">10 puntos</text>
-  <text class="box-max" x="730" y="172">suficiente para muchos grados</text>
+  <rect class="box box-acceso has-tip" x="620" y="55" width="220" height="130" rx="8"><title>{t.esLaNotaMinima}</title></rect>
+  <text class="acceso-tag" x="730" y="86">{t.notaDeAcceso}</text>
+  <text class="box-title" x="730" y="116">{t.sobre}</text>
+  <text class="acceso-max" x="730" y="150">{t.k10Puntos}</text>
+  <text class="box-max" x="730" y="172">{t.suficienteParaMuchosGrados}</text>
 
   <!-- Connector arrow down from nota de acceso -->
   <path d="M 730 185 L 730 250" fill="none" stroke="#5C4A3D" stroke-width="2" marker-end="url(#ebau-arrow)"/>
-  <text class="box-max" x="730" y="225" text-anchor="middle">se le suma…</text>
+  <text class="box-max" x="730" y="225" text-anchor="middle">{t.seLeSuma}</text>
 
   <!-- ROW 2: + fase voluntaria (ponderaciones) = nota de admisión -->
   <!-- Nota de acceso (carried) -->
   <rect class="box box-acceso" x="40" y="320" width="200" height="120" rx="8"/>
-  <text class="acceso-tag" x="140" y="350">Nota de acceso</text>
-  <text class="box-title" x="140" y="382">(la del paso</text>
-  <text class="box-title" x="140" y="401">anterior)</text>
-  <text class="acceso-max" x="140" y="430">máx. 10</text>
+  <text class="acceso-tag" x="140" y="350">{t.notaDeAcceso2}</text>
+  <text class="box-title" x="140" y="382">{t.laDelPaso}</text>
+  <text class="box-title" x="140" y="401">{t.anterior}</text>
+  <text class="acceso-max" x="140" y="430">{t.max10}</text>
 
   <!-- plus -->
   <text class="op" x="280" y="392">+</text>
 
   <!-- Fase voluntaria box -->
-  <rect class="box box-pond has-tip" x="320" y="320" width="240" height="120" rx="8"><title>Te examinas de materias extra. Cada una pondera 0,1 o 0,2 según el grado que quieras: por eso conviene elegir asignaturas que ponderen alto justo en tu carrera objetivo.</title></rect>
-  <text class="box-tag" x="440" y="348" fill="#1F6E6E">Fase voluntaria</text>
-  <text class="box-title" x="440" y="376">Ponderaciones</text>
-  <text class="box-title" x="440" y="395">(2 mejores materias)</text>
-  <text class="box-pct" x="440" y="428" font-size="20">× 0,1 ó 0,2</text>
+  <rect class="box box-pond has-tip" x="320" y="320" width="240" height="120" rx="8"><title>{t.teExaminasDeMaterias}</title></rect>
+  <text class="box-tag" x="440" y="348" fill="#1F6E6E">{t.faseVoluntaria}</text>
+  <text class="box-title" x="440" y="376">{t.ponderaciones}</text>
+  <text class="box-title" x="440" y="395">{t.k2MejoresMaterias}</text>
+  <text class="box-pct" x="440" y="428" font-size="20">{t.k01O0}</text>
 
   <!-- equals -->
   <text class="op" x="600" y="392">=</text>
 
   <!-- Nota de admisión box -->
-  <rect class="box box-admision has-tip" x="640" y="315" width="200" height="130" rx="8"><title>Es la nota con la que compites por una plaza. Es distinta para cada grado, porque depende de cómo ponderen tus materias en esa carrera concreta.</title></rect>
-  <text class="res-tag" x="740" y="346">Nota de admisión</text>
-  <text class="res-title" x="740" y="378">hasta +4 puntos</text>
-  <text class="res-max" x="740" y="412">máximo 14</text>
+  <rect class="box box-admision has-tip" x="640" y="315" width="200" height="130" rx="8"><title>{t.esLaNotaCon}</title></rect>
+  <text class="res-tag" x="740" y="346">{t.notaDeAdmision}</text>
+  <text class="res-title" x="740" y="378">{t.hasta4Puntos}</text>
+  <text class="res-max" x="740" y="412">{t.maximo14}</text>
 
   <defs>
     <marker id="ebau-arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">

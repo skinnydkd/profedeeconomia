@@ -5,8 +5,66 @@
  * space). Used in Unit 5 to make explicit the rhythm of design
  * thinking.
  */
+import { getLocale } from '@/i18n/locale';
+const locale = getLocale(Astro.currentLocale);
+
+const COPY = {
+  es: {
+    elDobleDiamanteDivergencia: 'El doble diamante: divergencia y convergencia, dos veces',
+    problema: 'PROBLEMA',
+    solucion: 'SOLUCIÓN',
+    divergir: 'DIVERGIR',
+    descubrir: 'Descubrir',
+    convergir: 'CONVERGIR',
+    definir: 'Definir',
+    divergir2: 'DIVERGIR',
+    desarrollar: 'Desarrollar',
+    convergir2: 'CONVERGIR',
+    entregar: 'Entregar',
+    entrevistas: 'Entrevistas,',
+    observacion: 'observación,',
+    mapaDeEmpatia: 'mapa de empatía.',
+    sintesisDel: 'Síntesis del',
+    problemaReal: 'problema real,',
+    hipotesisCriticas: 'hipótesis críticas.',
+    ideacionDivergente: 'Ideación divergente,',
+    brainwritingScamper: 'brainwriting, SCAMPER,',
+    prototiposBaratos: 'prototipos baratos.',
+    seleccion: 'Selección,',
+    validacionCon: 'validación con',
+    clienteRefinado: 'cliente, refinado.',
+    flujoTemporal46: 'FLUJO TEMPORAL: 4-6 SEMANAS PARA UN CICLO COMPLETO',
+  },
+  ca: {
+    elDobleDiamanteDivergencia: 'El doble diamant: divergència i convergència, dues vegades',
+    problema: 'PROBLEMA',
+    solucion: 'SOLUCIÓ',
+    divergir: 'DIVERGIR',
+    descubrir: 'Descobrir',
+    convergir: 'CONVERGIR',
+    definir: 'Definir',
+    divergir2: 'DIVERGIR',
+    desarrollar: 'Desenvolupar',
+    convergir2: 'CONVERGIR',
+    entregar: 'Entregar',
+    entrevistas: 'Entrevistes,',
+    observacion: 'observació,',
+    mapaDeEmpatia: "mapa d'empatia.",
+    sintesisDel: 'Síntesi del',
+    problemaReal: 'problema real,',
+    hipotesisCriticas: 'hipòtesis crítiques.',
+    ideacionDivergente: 'Ideació divergent,',
+    brainwritingScamper: 'brainwriting, SCAMPER,',
+    prototiposBaratos: 'prototips barats.',
+    seleccion: 'Selecció,',
+    validacionCon: 'validació amb',
+    clienteRefinado: 'client, refinament.',
+    flujoTemporal46: 'FLUX TEMPORAL: 4-6 SETMANES PER A UN CICLE COMPLET',
+  },
+} as const;
+const t = COPY[locale];
 ---
-<svg viewBox="0 0 760 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="El doble diamante: divergencia y convergencia, dos veces">
+<svg viewBox="0 0 760 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-label={t.elDobleDiamanteDivergencia}>
   <defs>
     <style>
       .bg { fill: #FBF6EC; }
@@ -26,8 +84,8 @@
   <rect class="bg" x="0" y="0" width="760" height="380"/>
 
   <!-- Stage labels at top -->
-  <text class="stage-label" x="200" y="40" fill="#C44E2C">PROBLEMA</text>
-  <text class="stage-label" x="560" y="40" fill="#D4A24C">SOLUCIÓN</text>
+  <text class="stage-label" x="200" y="40" fill="#C44E2C">{t.problema}</text>
+  <text class="stage-label" x="560" y="40" fill="#D4A24C">{t.solucion}</text>
 
   <!-- First diamond (problem space): D1 (divergence) + D2 (convergence) -->
   <polygon class="diamond-div" points="60,180 200,90 200,270"/>
@@ -38,36 +96,36 @@
   <polygon class="diamond-conv" points="700,90 700,270 560,180"/>
 
   <!-- Phase labels for the four wedges -->
-  <text class="phase-label" x="135" y="170" fill="#9C3A1C">DIVERGIR</text>
-  <text class="phase-name" x="135" y="195">Descubrir</text>
+  <text class="phase-label" x="135" y="170" fill="#9C3A1C">{t.divergir}</text>
+  <text class="phase-name" x="135" y="195">{t.descubrir}</text>
 
-  <text class="phase-label" x="265" y="170" fill="#A87A2A">CONVERGIR</text>
-  <text class="phase-name" x="265" y="195">Definir</text>
+  <text class="phase-label" x="265" y="170" fill="#A87A2A">{t.convergir}</text>
+  <text class="phase-name" x="265" y="195">{t.definir}</text>
 
-  <text class="phase-label" x="495" y="170" fill="#9C3A1C">DIVERGIR</text>
-  <text class="phase-name" x="495" y="195">Desarrollar</text>
+  <text class="phase-label" x="495" y="170" fill="#9C3A1C">{t.divergir2}</text>
+  <text class="phase-name" x="495" y="195">{t.desarrollar}</text>
 
-  <text class="phase-label" x="625" y="170" fill="#A87A2A">CONVERGIR</text>
-  <text class="phase-name" x="625" y="195">Entregar</text>
+  <text class="phase-label" x="625" y="170" fill="#A87A2A">{t.convergir2}</text>
+  <text class="phase-name" x="625" y="195">{t.entregar}</text>
 
   <!-- Descriptions below -->
-  <text class="phase-desc" x="135" y="295">Entrevistas,</text>
-  <text class="phase-desc" x="135" y="310">observación,</text>
-  <text class="phase-desc" x="135" y="325">mapa de empatía.</text>
+  <text class="phase-desc" x="135" y="295">{t.entrevistas}</text>
+  <text class="phase-desc" x="135" y="310">{t.observacion}</text>
+  <text class="phase-desc" x="135" y="325">{t.mapaDeEmpatia}</text>
 
-  <text class="phase-desc" x="265" y="295">Síntesis del</text>
-  <text class="phase-desc" x="265" y="310">problema real,</text>
-  <text class="phase-desc" x="265" y="325">hipótesis críticas.</text>
+  <text class="phase-desc" x="265" y="295">{t.sintesisDel}</text>
+  <text class="phase-desc" x="265" y="310">{t.problemaReal}</text>
+  <text class="phase-desc" x="265" y="325">{t.hipotesisCriticas}</text>
 
-  <text class="phase-desc" x="495" y="295">Ideación divergente,</text>
-  <text class="phase-desc" x="495" y="310">brainwriting, SCAMPER,</text>
-  <text class="phase-desc" x="495" y="325">prototipos baratos.</text>
+  <text class="phase-desc" x="495" y="295">{t.ideacionDivergente}</text>
+  <text class="phase-desc" x="495" y="310">{t.brainwritingScamper}</text>
+  <text class="phase-desc" x="495" y="325">{t.prototiposBaratos}</text>
 
-  <text class="phase-desc" x="625" y="295">Selección,</text>
-  <text class="phase-desc" x="625" y="310">validación con</text>
-  <text class="phase-desc" x="625" y="325">cliente, refinado.</text>
+  <text class="phase-desc" x="625" y="295">{t.seleccion}</text>
+  <text class="phase-desc" x="625" y="310">{t.validacionCon}</text>
+  <text class="phase-desc" x="625" y="325">{t.clienteRefinado}</text>
 
   <!-- Bottom direction arrows -->
   <line class="arrow" x1="40" y1="355" x2="720" y2="355"/>
-  <text class="vertical-label" x="380" y="370" text-anchor="middle">FLUJO TEMPORAL: 4-6 SEMANAS PARA UN CICLO COMPLETO</text>
+  <text class="vertical-label" x="380" y="370" text-anchor="middle">{t.flujoTemporal46}</text>
 </svg>

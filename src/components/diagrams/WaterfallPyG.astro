@@ -8,10 +8,62 @@
  *
  * Used in EDMN 2BACH · Unit 10 (información contable).
  */
+import { getLocale } from '@/i18n/locale';
+const locale = getLocale(Astro.currentLocale);
+
+const COPY = {
+  es: {
+    cascadaDeLaCuenta: 'Cascada de la cuenta de Pérdidas y Ganancias',
+    desdeLosIngresosPor: 'Desde los ingresos por ventas se restan sucesivamente el coste de las ventas, los gastos de explotación, las amortizaciones, los intereses y los impuestos, obteniendo en cada escalón un resultado intermedio: margen bruto, EBITDA, EBIT, beneficio antes de impuestos y beneficio neto.',
+    esLaCifraDe: 'Es la cifra de negocio: ventas de productos y servicios sin IVA. Es el punto de partida de toda la cascada; todos los gastos se restan de aquí.',
+    ingresos: 'Ingresos',
+    costeVentas: 'Coste ventas',
+    ingresosMenosCosteDirecto: 'Ingresos menos coste directo de lo vendido. Mide cuánto deja el producto antes de los gastos de la estructura. Si es bajo, el negocio en sí apenas es rentable.',
+    margenBruto: 'Margen bruto',
+    gastosExpl: 'Gastos expl.',
+    beneficioAntesDeIntereses: 'Beneficio antes de intereses, impuestos y amortizaciones. Aproxima la caja que genera la actividad pura, sin contar cómo se financia ni el desgaste contable de los activos.',
+    ebitda: 'EBITDA',
+    amortiz: 'Amortiz.',
+    resultadoDeExplotacionBenefi: 'Resultado de explotación: beneficio antes de intereses e impuestos. Mide si el negocio gana dinero con su actividad, al margen de la deuda y de Hacienda.',
+    ebit: 'EBIT',
+    intereses: 'Intereses',
+    beneficioAntesDeImpuestos: 'Beneficio antes de impuestos: el EBIT menos los intereses de la deuda. Sobre esta cifra se calcula el impuesto de sociedades.',
+    impuestos: 'Impuestos',
+    loQueDeVerdad: 'Lo que de verdad gana la empresa tras pagar todo. De aquí salen los dividendos para los socios y las reservas que se quedan en la empresa para crecer.',
+    boNeto: 'Bº neto',
+    resultadoIntermedio: 'Resultado intermedio',
+    gastoQueSeResta: 'Gasto que se resta',
+    ingresosPuntoDePartida: 'Ingresos (punto de partida)',
+  },
+  ca: {
+    cascadaDeLaCuenta: 'Cascada del compte de Pèrdues i Guanys',
+    desdeLosIngresosPor: "Des dels ingressos per vendes es resten successivament el cost de les vendes, les despeses d'explotació, les amortitzacions, els interessos i els impostos, obtenint en cada escaló un resultat intermedi: marge brut, EBITDA, EBIT, benefici abans d'impostos i benefici net.",
+    esLaCifraDe: "És la xifra de negoci: vendes de productes i serveis sense IVA. És el punt de partida de tota la cascada; totes les despeses es resten d'ací.",
+    ingresos: 'Ingressos',
+    costeVentas: 'Cost vendes',
+    ingresosMenosCosteDirecto: "Ingressos menys cost directe del que s'ha venut. Mesura quant deixa el producte abans de les despeses de l'estructura. Si és baix, el negoci en si a penes és rendible.",
+    margenBruto: 'Marge brut',
+    gastosExpl: 'Despeses expl.',
+    beneficioAntesDeIntereses: "Benefici abans d'interessos, impostos i amortitzacions. Aproxima la caixa que genera l'activitat pura, sense comptar com es finança ni el desgast comptable dels actius.",
+    ebitda: 'EBITDA',
+    amortiz: 'Amortitz.',
+    resultadoDeExplotacionBenefi: "Resultat d'explotació: benefici abans d'interessos i impostos. Mesura si el negoci guanya diners amb la seua activitat, al marge del deute i d'Hisenda.",
+    ebit: 'EBIT',
+    intereses: 'Interessos',
+    beneficioAntesDeImpuestos: "Benefici abans d'impostos: l'EBIT menys els interessos del deute. Sobre esta xifra es calcula l'impost de societats.",
+    impuestos: 'Impostos',
+    loQueDeVerdad: "El que de veritat guanya l'empresa després de pagar-ho tot. D'ací ixen els dividends per als socis i les reserves que es queden en l'empresa per a créixer.",
+    boNeto: 'Bº net',
+    resultadoIntermedio: 'Resultat intermedi',
+    gastoQueSeResta: 'Despesa que es resta',
+    ingresosPuntoDePartida: 'Ingressos (punt de partida)',
+  },
+} as const;
+const t = COPY[locale];
 ---
 <svg viewBox="0 0 900 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="waterfall-title waterfall-desc">
-  <title id="waterfall-title">Cascada de la cuenta de Pérdidas y Ganancias</title>
-  <desc id="waterfall-desc">Desde los ingresos por ventas se restan sucesivamente el coste de las ventas, los gastos de explotación, las amortizaciones, los intereses y los impuestos, obteniendo en cada escalón un resultado intermedio: margen bruto, EBITDA, EBIT, beneficio antes de impuestos y beneficio neto.</desc>
+  <title id="waterfall-title">{t.cascadaDeLaCuenta}</title>
+  <desc id="waterfall-desc">{t.desdeLosIngresosPor}</desc>
   <defs>
     <style>
       .bg { fill: #FBF6EC; }
@@ -57,59 +109,59 @@
   <!-- px per 1000€ = 3.6 -->
 
   <!-- 1. Ingresos: 0→100k → top 60, h360 -->
-  <rect class="bar-base has-tip" x="80" y="60" width="64" height="360"><title>Es la cifra de negocio: ventas de productos y servicios sin IVA. Es el punto de partida de toda la cascada; todos los gastos se restan de aquí.</title></rect>
+  <rect class="bar-base has-tip" x="80" y="60" width="64" height="360"><title>{t.esLaCifraDe}</title></rect>
   <text class="bar-num" x="112" y="52">100k</text>
-  <text class="bar-label" x="112" y="438">Ingresos</text>
+  <text class="bar-label" x="112" y="438">{t.ingresos}</text>
 
   <!-- 2. Coste ventas: -40k from 100k → 60k. top 60, h144 -->
   <rect class="bar-minus" x="155" y="60" width="64" height="144"/>
   <text class="bar-num" x="187" y="52">−40k</text>
-  <text class="bar-label" x="187" y="438">Coste ventas</text>
+  <text class="bar-label" x="187" y="438">{t.costeVentas}</text>
 
   <!-- 3. Margen bruto: 0→60k. top 204, h216 -->
-  <rect class="bar-result has-tip" x="230" y="204" width="64" height="216"><title>Ingresos menos coste directo de lo vendido. Mide cuánto deja el producto antes de los gastos de la estructura. Si es bajo, el negocio en sí apenas es rentable.</title></rect>
+  <rect class="bar-result has-tip" x="230" y="204" width="64" height="216"><title>{t.ingresosMenosCosteDirecto}</title></rect>
   <text class="bar-num" x="262" y="196">60k</text>
-  <text class="bar-label" x="262" y="438">Margen bruto</text>
+  <text class="bar-label" x="262" y="438">{t.margenBruto}</text>
 
   <!-- 4. Gastos explotación: -20k from 60k→40k. top 204, h72 -->
   <rect class="bar-minus" x="305" y="204" width="64" height="72"/>
   <text class="bar-num" x="337" y="196">−20k</text>
-  <text class="bar-label" x="337" y="438">Gastos expl.</text>
+  <text class="bar-label" x="337" y="438">{t.gastosExpl}</text>
 
   <!-- 5. EBITDA: 0→40k. top 276, h144 -->
-  <rect class="bar-result has-tip" x="380" y="276" width="64" height="144"><title>Beneficio antes de intereses, impuestos y amortizaciones. Aproxima la caja que genera la actividad pura, sin contar cómo se financia ni el desgaste contable de los activos.</title></rect>
+  <rect class="bar-result has-tip" x="380" y="276" width="64" height="144"><title>{t.beneficioAntesDeIntereses}</title></rect>
   <text class="bar-num" x="412" y="268">40k</text>
-  <text class="bar-label" x="412" y="438">EBITDA</text>
+  <text class="bar-label" x="412" y="438">{t.ebitda}</text>
 
   <!-- 6. Amortizaciones: -8k from 40k→32k. top 276, h29 -->
   <rect class="bar-minus" x="455" y="276" width="64" height="29"/>
   <text class="bar-num" x="487" y="268">−8k</text>
-  <text class="bar-label" x="487" y="438">Amortiz.</text>
+  <text class="bar-label" x="487" y="438">{t.amortiz}</text>
 
   <!-- 7. EBIT: 0→32k. top 305, h115 -->
-  <rect class="bar-result has-tip" x="530" y="305" width="64" height="115"><title>Resultado de explotación: beneficio antes de intereses e impuestos. Mide si el negocio gana dinero con su actividad, al margen de la deuda y de Hacienda.</title></rect>
+  <rect class="bar-result has-tip" x="530" y="305" width="64" height="115"><title>{t.resultadoDeExplotacionBenefi}</title></rect>
   <text class="bar-num" x="562" y="297">32k</text>
-  <text class="bar-label" x="562" y="438">EBIT</text>
+  <text class="bar-label" x="562" y="438">{t.ebit}</text>
 
   <!-- 8. Intereses: -4k from 32k→28k. top 305, h14 -->
   <rect class="bar-minus" x="605" y="305" width="64" height="14"/>
   <text class="bar-num" x="637" y="297">−4k</text>
-  <text class="bar-label" x="637" y="438">Intereses</text>
+  <text class="bar-label" x="637" y="438">{t.intereses}</text>
 
   <!-- 9. BAI: 0→28k. top 319, h101 -->
-  <rect class="bar-result has-tip" x="680" y="319" width="64" height="101"><title>Beneficio antes de impuestos: el EBIT menos los intereses de la deuda. Sobre esta cifra se calcula el impuesto de sociedades.</title></rect>
+  <rect class="bar-result has-tip" x="680" y="319" width="64" height="101"><title>{t.beneficioAntesDeImpuestos}</title></rect>
   <text class="bar-num" x="712" y="311">28k</text>
   <text class="bar-label" x="712" y="438">BAI</text>
 
   <!-- 10. Impuestos: -7k from 28k→21k. top 319, h25 -->
   <rect class="bar-minus" x="755" y="319" width="64" height="25"/>
   <text class="bar-num" x="787" y="311">−7k</text>
-  <text class="bar-label" x="787" y="438">Impuestos</text>
+  <text class="bar-label" x="787" y="438">{t.impuestos}</text>
 
   <!-- 11. Beneficio neto: 0→21k. top 344, h76 -->
-  <rect class="bar-result has-tip" x="830" y="344" width="50" height="76"><title>Lo que de verdad gana la empresa tras pagar todo. De aquí salen los dividendos para los socios y las reservas que se quedan en la empresa para crecer.</title></rect>
+  <rect class="bar-result has-tip" x="830" y="344" width="50" height="76"><title>{t.loQueDeVerdad}</title></rect>
   <text class="bar-num" x="855" y="336">21k</text>
-  <text class="bar-label" x="855" y="438">Bº neto</text>
+  <text class="bar-label" x="855" y="438">{t.boNeto}</text>
 
   <!-- Connector lines between steps (top of result → top of following minus) -->
   <line class="connector" x1="144" y1="60"  x2="155" y2="60"/>
@@ -125,9 +177,9 @@
 
   <!-- Legend -->
   <rect class="bar-result" x="120" y="478" width="14" height="14" rx="2"/>
-  <text class="legend-text" x="140" y="490">Resultado intermedio</text>
+  <text class="legend-text" x="140" y="490">{t.resultadoIntermedio}</text>
   <rect class="bar-minus" x="340" y="478" width="14" height="14" rx="2"/>
-  <text class="legend-text" x="360" y="490">Gasto que se resta</text>
+  <text class="legend-text" x="360" y="490">{t.gastoQueSeResta}</text>
   <rect class="bar-base" x="540" y="478" width="14" height="14" rx="2"/>
-  <text class="legend-text" x="560" y="490">Ingresos (punto de partida)</text>
+  <text class="legend-text" x="560" y="490">{t.ingresosPuntoDePartida}</text>
 </svg>

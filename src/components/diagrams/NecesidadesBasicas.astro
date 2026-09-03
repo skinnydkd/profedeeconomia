@@ -7,10 +7,56 @@
  *
  * Used in FOPP 4ESO / 3º ESO economics (las necesidades humanas).
  */
+import { getLocale } from '@/i18n/locale';
+const locale = getLocale(Astro.currentLocale);
+
+const COPY = {
+  es: {
+    necesidadesPrimariasYSecunda: 'Necesidades primarias y secundarias',
+    lasNecesidadesPrimariasSon: 'Las necesidades primarias son imprescindibles para vivir (comer, dormir, salud, vivienda); las secundarias mejoran el bienestar pero no son imprescindibles. Distinguirlas ayuda a decidir en qué gastar.',
+    necesidadesPrimarias: 'Necesidades primarias',
+    imprescindiblesParaVivir: 'Imprescindibles para vivir',
+    comer: 'Comer',
+    beber: 'Beber',
+    dormir: 'Dormir',
+    abrigoYRopa: 'Abrigo y ropa',
+    salud: 'Salud',
+    vivienda: 'Vivienda',
+    necesidadesSecundarias: 'Necesidades secundarias',
+    mejoranTuBienestarPero: 'Mejoran tu bienestar, pero podrías vivir sin ellas',
+    movilDeUltimaGeneracion: 'Móvil de última generación',
+    videojuegos: 'Videojuegos',
+    ropaDeMarca: 'Ropa de marca',
+    viajes: 'Viajes',
+    ocio: 'Ocio',
+    distinguirUnasDeOtras: 'Distinguir unas de otras es el primer paso para decidir bien en qué gastas.',
+  },
+  ca: {
+    necesidadesPrimariasYSecunda: 'Necessitats primàries i secundàries',
+    lasNecesidadesPrimariasSon: 'Les necessitats primàries són imprescindibles per a viure (menjar, dormir, salut, habitatge); les secundàries milloren el benestar però no són imprescindibles. Distingir-les ajuda a decidir en què gastar.',
+    necesidadesPrimarias: 'Necessitats primàries',
+    imprescindiblesParaVivir: 'Imprescindibles per a viure',
+    comer: 'Menjar',
+    beber: 'Beure',
+    dormir: 'Dormir',
+    abrigoYRopa: 'Abric i roba',
+    salud: 'Salut',
+    vivienda: 'Habitatge',
+    necesidadesSecundarias: 'Necessitats secundàries',
+    mejoranTuBienestarPero: 'Milloren el teu benestar, però podries viure sense elles',
+    movilDeUltimaGeneracion: "Mòbil d'última generació",
+    videojuegos: 'Videojocs',
+    ropaDeMarca: 'Roba de marca',
+    viajes: 'Viatges',
+    ocio: 'Oci',
+    distinguirUnasDeOtras: 'Distingir unes de les altres és el primer pas per a decidir bé en què gastes.',
+  },
+} as const;
+const t = COPY[locale];
 ---
 <svg viewBox="0 0 840 440" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="necesidades-title necesidades-desc">
-  <title id="necesidades-title">Necesidades primarias y secundarias</title>
-  <desc id="necesidades-desc">Las necesidades primarias son imprescindibles para vivir (comer, dormir, salud, vivienda); las secundarias mejoran el bienestar pero no son imprescindibles. Distinguirlas ayuda a decidir en qué gastar.</desc>
+  <title id="necesidades-title">{t.necesidadesPrimariasYSecunda}</title>
+  <desc id="necesidades-desc">{t.lasNecesidadesPrimariasSon}</desc>
   <defs>
     <style>
       .bg { fill: #FBF6EC; }
@@ -34,40 +80,40 @@
   <!-- LEFT PANEL: necesidades primarias -->
   <rect class="panel-prim" x="40" y="36" width="360" height="296" rx="12"/>
   <rect class="panel-bar-prim" x="40" y="36" width="360" height="8" rx="4"/>
-  <text class="h-title h-prim" x="64" y="82">Necesidades primarias</text>
-  <text class="h-sub" x="64" y="108">Imprescindibles para vivir</text>
+  <text class="h-title h-prim" x="64" y="82">{t.necesidadesPrimarias}</text>
+  <text class="h-sub" x="64" y="108">{t.imprescindiblesParaVivir}</text>
 
   <text class="mark-prim" x="64" y="152">·</text>
-  <text class="item" x="80" y="152">Comer</text>
+  <text class="item" x="80" y="152">{t.comer}</text>
   <text class="mark-prim" x="64" y="186">·</text>
-  <text class="item" x="80" y="186">Beber</text>
+  <text class="item" x="80" y="186">{t.beber}</text>
   <text class="mark-prim" x="64" y="220">·</text>
-  <text class="item" x="80" y="220">Dormir</text>
+  <text class="item" x="80" y="220">{t.dormir}</text>
   <text class="mark-prim" x="64" y="254">·</text>
-  <text class="item" x="80" y="254">Abrigo y ropa</text>
+  <text class="item" x="80" y="254">{t.abrigoYRopa}</text>
   <text class="mark-prim" x="64" y="288">·</text>
-  <text class="item" x="80" y="288">Salud</text>
+  <text class="item" x="80" y="288">{t.salud}</text>
   <text class="mark-prim" x="64" y="322">·</text>
-  <text class="item" x="80" y="322">Vivienda</text>
+  <text class="item" x="80" y="322">{t.vivienda}</text>
 
   <!-- RIGHT PANEL: necesidades secundarias -->
   <rect class="panel-sec" x="440" y="36" width="360" height="296" rx="12"/>
   <rect class="panel-bar-sec" x="440" y="36" width="360" height="8" rx="4"/>
-  <text class="h-title h-sec" x="464" y="82">Necesidades secundarias</text>
-  <text class="h-sub" x="464" y="108">Mejoran tu bienestar, pero podrías vivir sin ellas</text>
+  <text class="h-title h-sec" x="464" y="82">{t.necesidadesSecundarias}</text>
+  <text class="h-sub" x="464" y="108">{t.mejoranTuBienestarPero}</text>
 
   <text class="mark-sec" x="464" y="152">→</text>
-  <text class="item" x="486" y="152">Móvil de última generación</text>
+  <text class="item" x="486" y="152">{t.movilDeUltimaGeneracion}</text>
   <text class="mark-sec" x="464" y="186">→</text>
-  <text class="item" x="486" y="186">Videojuegos</text>
+  <text class="item" x="486" y="186">{t.videojuegos}</text>
   <text class="mark-sec" x="464" y="220">→</text>
-  <text class="item" x="486" y="220">Ropa de marca</text>
+  <text class="item" x="486" y="220">{t.ropaDeMarca}</text>
   <text class="mark-sec" x="464" y="254">→</text>
-  <text class="item" x="486" y="254">Viajes</text>
+  <text class="item" x="486" y="254">{t.viajes}</text>
   <text class="mark-sec" x="464" y="288">→</text>
-  <text class="item" x="486" y="288">Ocio</text>
+  <text class="item" x="486" y="288">{t.ocio}</text>
 
   <!-- BOTTOM STRIP: takeaway -->
   <rect class="strip" x="40" y="360" width="760" height="52" rx="10"/>
-  <text class="take" x="420" y="392">Distinguir unas de otras es el primer paso para decidir bien en qué gastas.</text>
+  <text class="take" x="420" y="392">{t.distinguirUnasDeOtras}</text>
 </svg>

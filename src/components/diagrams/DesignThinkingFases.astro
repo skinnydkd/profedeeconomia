@@ -5,10 +5,66 @@
  * terracota arrows, plus a curved iteration arrow back to the start.
  * Used in FP to show that the process is iterative, not linear.
  */
+import { getLocale } from '@/i18n/locale';
+const locale = getLocale(Astro.currentLocale);
+
+const COPY = {
+  es: {
+    lasCincoFasesDel: 'Las cinco fases del design thinking',
+    elDesignThinkingEs: 'El design thinking es un proceso iterativo de cinco fases: empatizar, definir, idear, prototipar y testar. Tras testar se vuelve a empezar, repitiendo el ciclo hasta dar con la solución.',
+    fase1: 'Fase 1',
+    empatizar: 'Empatizar',
+    entenderDeVerdadA: 'Entender de verdad a la',
+    personaYSuProblema: 'persona y su problema.',
+    fase2: 'Fase 2',
+    definir: 'Definir',
+    concretarElProblema: 'Concretar el problema',
+    realQueVasA: 'real que vas a resolver.',
+    fase3: 'Fase 3',
+    idear: 'Idear',
+    generarMuchasIdeas: 'Generar muchas ideas',
+    sinCensura: 'sin censura.',
+    fase4: 'Fase 4',
+    prototipar: 'Prototipar',
+    construirUnaVersion: 'Construir una versión',
+    rapidaYBarata: 'rápida y barata.',
+    fase5: 'Fase 5',
+    testar: 'Testar',
+    probarlaConPersonas: 'Probarla con personas',
+    realesYAprender: 'reales y aprender.',
+    seRepiteHastaAcertar: 'se repite hasta acertar',
+  },
+  ca: {
+    lasCincoFasesDel: 'Les cinc fases del design thinking',
+    elDesignThinkingEs: 'El design thinking és un procés iteratiu de cinc fases: empatitzar, definir, idear, prototipar i testar. Després de testar es torna a començar, repetint el cicle fins a donar amb la solució.',
+    fase1: 'Fase 1',
+    empatizar: 'Empatitzar',
+    entenderDeVerdadA: 'Entendre de veritat la',
+    personaYSuProblema: 'persona i el seu problema.',
+    fase2: 'Fase 2',
+    definir: 'Definir',
+    concretarElProblema: 'Concretar el problema',
+    realQueVasA: 'real que vas a resoldre.',
+    fase3: 'Fase 3',
+    idear: 'Idear',
+    generarMuchasIdeas: 'Generar moltes idees',
+    sinCensura: 'sense censura.',
+    fase4: 'Fase 4',
+    prototipar: 'Prototipar',
+    construirUnaVersion: 'Construir una versió',
+    rapidaYBarata: 'ràpida i barata.',
+    fase5: 'Fase 5',
+    testar: 'Testar',
+    probarlaConPersonas: 'Provar-la amb persones',
+    realesYAprender: 'reals i aprendre.',
+    seRepiteHastaAcertar: 'es repetix fins a encertar-la',
+  },
+} as const;
+const t = COPY[locale];
 ---
 <svg viewBox="0 0 1000 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="dtf-title dtf-desc">
-  <title id="dtf-title">Las cinco fases del design thinking</title>
-  <desc id="dtf-desc">El design thinking es un proceso iterativo de cinco fases: empatizar, definir, idear, prototipar y testar. Tras testar se vuelve a empezar, repitiendo el ciclo hasta dar con la solución.</desc>
+  <title id="dtf-title">{t.lasCincoFasesDel}</title>
+  <desc id="dtf-desc">{t.elDesignThinkingEs}</desc>
   <defs>
     <style>
       .bg { fill: #FBF6EC; }
@@ -39,10 +95,10 @@
     <circle class="node" cx="100" cy="150" r="44"/>
     <circle class="num-disc" cx="100" cy="150" r="17"/>
     <text class="num" x="100" y="155" text-anchor="middle">01</text>
-    <text class="phase-eyebrow" x="100" y="218" text-anchor="middle">Fase 1</text>
-    <text class="phase-title" x="100" y="244" text-anchor="middle">Empatizar</text>
-    <text class="phase-body" x="100" y="270" text-anchor="middle">Entender de verdad a la</text>
-    <text class="phase-body" x="100" y="286" text-anchor="middle">persona y su problema.</text>
+    <text class="phase-eyebrow" x="100" y="218" text-anchor="middle">{t.fase1}</text>
+    <text class="phase-title" x="100" y="244" text-anchor="middle">{t.empatizar}</text>
+    <text class="phase-body" x="100" y="270" text-anchor="middle">{t.entenderDeVerdadA}</text>
+    <text class="phase-body" x="100" y="286" text-anchor="middle">{t.personaYSuProblema}</text>
   </g>
 
   <!-- Phase 2: Definir -->
@@ -50,10 +106,10 @@
     <circle class="node" cx="290" cy="150" r="44"/>
     <circle class="num-disc" cx="290" cy="150" r="17"/>
     <text class="num" x="290" y="155" text-anchor="middle">02</text>
-    <text class="phase-eyebrow" x="290" y="218" text-anchor="middle">Fase 2</text>
-    <text class="phase-title" x="290" y="244" text-anchor="middle">Definir</text>
-    <text class="phase-body" x="290" y="270" text-anchor="middle">Concretar el problema</text>
-    <text class="phase-body" x="290" y="286" text-anchor="middle">real que vas a resolver.</text>
+    <text class="phase-eyebrow" x="290" y="218" text-anchor="middle">{t.fase2}</text>
+    <text class="phase-title" x="290" y="244" text-anchor="middle">{t.definir}</text>
+    <text class="phase-body" x="290" y="270" text-anchor="middle">{t.concretarElProblema}</text>
+    <text class="phase-body" x="290" y="286" text-anchor="middle">{t.realQueVasA}</text>
   </g>
 
   <!-- Phase 3: Idear -->
@@ -61,10 +117,10 @@
     <circle class="node" cx="480" cy="150" r="44"/>
     <circle class="num-disc" cx="480" cy="150" r="17"/>
     <text class="num" x="480" y="155" text-anchor="middle">03</text>
-    <text class="phase-eyebrow" x="480" y="218" text-anchor="middle">Fase 3</text>
-    <text class="phase-title" x="480" y="244" text-anchor="middle">Idear</text>
-    <text class="phase-body" x="480" y="270" text-anchor="middle">Generar muchas ideas</text>
-    <text class="phase-body" x="480" y="286" text-anchor="middle">sin censura.</text>
+    <text class="phase-eyebrow" x="480" y="218" text-anchor="middle">{t.fase3}</text>
+    <text class="phase-title" x="480" y="244" text-anchor="middle">{t.idear}</text>
+    <text class="phase-body" x="480" y="270" text-anchor="middle">{t.generarMuchasIdeas}</text>
+    <text class="phase-body" x="480" y="286" text-anchor="middle">{t.sinCensura}</text>
   </g>
 
   <!-- Phase 4: Prototipar -->
@@ -72,10 +128,10 @@
     <circle class="node" cx="670" cy="150" r="44"/>
     <circle class="num-disc" cx="670" cy="150" r="17"/>
     <text class="num" x="670" y="155" text-anchor="middle">04</text>
-    <text class="phase-eyebrow" x="670" y="218" text-anchor="middle">Fase 4</text>
-    <text class="phase-title" x="670" y="244" text-anchor="middle">Prototipar</text>
-    <text class="phase-body" x="670" y="270" text-anchor="middle">Construir una versión</text>
-    <text class="phase-body" x="670" y="286" text-anchor="middle">rápida y barata.</text>
+    <text class="phase-eyebrow" x="670" y="218" text-anchor="middle">{t.fase4}</text>
+    <text class="phase-title" x="670" y="244" text-anchor="middle">{t.prototipar}</text>
+    <text class="phase-body" x="670" y="270" text-anchor="middle">{t.construirUnaVersion}</text>
+    <text class="phase-body" x="670" y="286" text-anchor="middle">{t.rapidaYBarata}</text>
   </g>
 
   <!-- Phase 5: Testar -->
@@ -83,13 +139,13 @@
     <circle class="node" cx="860" cy="150" r="44"/>
     <circle class="num-disc" cx="860" cy="150" r="17"/>
     <text class="num" x="860" y="155" text-anchor="middle">05</text>
-    <text class="phase-eyebrow" x="860" y="218" text-anchor="middle">Fase 5</text>
-    <text class="phase-title" x="860" y="244" text-anchor="middle">Testar</text>
-    <text class="phase-body" x="860" y="270" text-anchor="middle">Probarla con personas</text>
-    <text class="phase-body" x="860" y="286" text-anchor="middle">reales y aprender.</text>
+    <text class="phase-eyebrow" x="860" y="218" text-anchor="middle">{t.fase5}</text>
+    <text class="phase-title" x="860" y="244" text-anchor="middle">{t.testar}</text>
+    <text class="phase-body" x="860" y="270" text-anchor="middle">{t.probarlaConPersonas}</text>
+    <text class="phase-body" x="860" y="286" text-anchor="middle">{t.realesYAprender}</text>
   </g>
 
   <!-- Iteration arrow: from Testar back up and over to Empatizar -->
   <path class="iter" d="M 860 106 C 860 40, 100 40, 100 106" marker-end="url(#dtf-arrow)"/>
-  <text class="iter-label" x="480" y="44" text-anchor="middle">se repite hasta acertar</text>
+  <text class="iter-label" x="480" y="44" text-anchor="middle">{t.seRepiteHastaAcertar}</text>
 </svg>

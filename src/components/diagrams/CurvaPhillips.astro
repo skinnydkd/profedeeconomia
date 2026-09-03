@@ -6,10 +6,40 @@
  *
  * Used in Eco 1BACH · Unit 9 (inflation and unemployment).
  */
+import { getLocale } from '@/i18n/locale';
+const locale = getLocale(Astro.currentLocale);
+
+const COPY = {
+  es: {
+    curvaDePhillips: 'Curva de Phillips',
+    relacionInversaEntreInflacio: 'Relación inversa entre inflación y tasa de paro a corto plazo, con la NAIRU marcada como tasa natural de paro y la curva de Phillips vertical a largo plazo.',
+    tasaDeParo: 'TASA DE PARO',
+    inflacion: 'INFLACIÓN',
+    nairu: 'NAIRU',
+    tasaNaturalDeParo: 'tasa natural de paro',
+    altaBajoU: 'alta π · bajo u',
+    bajaAltoU: 'baja π · alto u',
+    curvaDePhillipsCp: 'Curva de Phillips (CP)',
+    cpALargoPlazo: 'CP a largo plazo',
+  },
+  ca: {
+    curvaDePhillips: 'Corba de Phillips',
+    relacionInversaEntreInflacio: "Relació inversa entre inflació i taxa d'atur a curt termini, amb la NAIRU marcada com a taxa natural d'atur i la corba de Phillips vertical a llarg termini.",
+    tasaDeParo: "TAXA D'ATUR",
+    inflacion: 'INFLACIÓ',
+    nairu: 'NAIRU',
+    tasaNaturalDeParo: "taxa natural d'atur",
+    altaBajoU: 'alta π · baix u',
+    bajaAltoU: 'baixa π · alt u',
+    curvaDePhillipsCp: 'Corba de Phillips (CP)',
+    cpALargoPlazo: 'CP a llarg termini',
+  },
+} as const;
+const t = COPY[locale];
 ---
 <svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="phillips-title phillips-desc">
-  <title id="phillips-title">Curva de Phillips</title>
-  <desc id="phillips-desc">Relación inversa entre inflación y tasa de paro a corto plazo, con la NAIRU marcada como tasa natural de paro y la curva de Phillips vertical a largo plazo.</desc>
+  <title id="phillips-title">{t.curvaDePhillips}</title>
+  <desc id="phillips-desc">{t.relacionInversaEntreInflacio}</desc>
   <defs>
     <style>
       .bg { fill: #FBF6EC; }
@@ -74,9 +104,9 @@
   <text class="tick-label" x="82" y="64" text-anchor="end">12</text>
 
   <!-- Axis titles -->
-  <text class="axis-label" x="400" y="465" text-anchor="middle">TASA DE PARO</text>
+  <text class="axis-label" x="400" y="465" text-anchor="middle">{t.tasaDeParo}</text>
   <text class="axis-letter" x="745" y="415">u</text>
-  <text class="axis-label" x="40" y="230" text-anchor="middle" transform="rotate(-90 40 230)">INFLACIÓN</text>
+  <text class="axis-label" x="40" y="230" text-anchor="middle" transform="rotate(-90 40 230)">{t.inflacion}</text>
   <text class="axis-letter" x="78" y="48" font-style="italic">π</text>
 
   <!-- Short-run Phillips curve (downward-sloping, convex).
@@ -92,24 +122,24 @@
   <!-- NAIRU marker on x-axis -->
   <line class="nairu-line" x1="353" y1="410" x2="353" y2="420"/>
   <circle cx="353" cy="410" r="3.5" fill="#A87A2A"/>
-  <text class="nairu-label" x="353" y="448" text-anchor="middle">NAIRU</text>
-  <text class="tick-label" x="353" y="462" text-anchor="middle" fill="#A87A2A">tasa natural de paro</text>
+  <text class="nairu-label" x="353" y="448" text-anchor="middle">{t.nairu}</text>
+  <text class="tick-label" x="353" y="462" text-anchor="middle" fill="#A87A2A">{t.tasaNaturalDeParo}</text>
 
   <!-- Point B: high inflation, low unemployment (top-left of curve) -->
   <!-- u ≈ 2.5%, π ≈ 8% → x = 90 + (2.5/12)*630 = 90 + 131.25 = 221; y = 410 - (8/12)*350 = 410 - 233.3 = 177 -->
   <circle class="point" cx="221" cy="177" r="6"/>
   <text class="point-label" x="234" y="172" fill="#9C3A1C">B</text>
-  <text class="tick-label" x="234" y="187" fill="#5C4A3D" font-family="Switzer, sans-serif" font-size="10.5">alta π · bajo u</text>
+  <text class="tick-label" x="234" y="187" fill="#5C4A3D" font-family="Switzer, sans-serif" font-size="10.5">{t.altaBajoU}</text>
 
   <!-- Point A: low inflation, high unemployment (bottom-right) -->
   <!-- u ≈ 9%, π ≈ 2% → x = 90 + (9/12)*630 = 90 + 472.5 = 563; y = 410 - (2/12)*350 = 410 - 58.3 = 352 -->
   <circle class="point" cx="563" cy="352" r="6"/>
   <text class="point-label" x="576" y="348" fill="#9C3A1C">A</text>
-  <text class="tick-label" x="576" y="363" fill="#5C4A3D" font-family="Switzer, sans-serif" font-size="10.5">baja π · alto u</text>
+  <text class="tick-label" x="576" y="363" fill="#5C4A3D" font-family="Switzer, sans-serif" font-size="10.5">{t.bajaAltoU}</text>
 
   <!-- Curve labels -->
-  <text class="curve-label" x="155" y="75">Curva de Phillips (CP)</text>
-  <text class="curve-label-long" x="365" y="85">CP a largo plazo</text>
+  <text class="curve-label" x="155" y="75">{t.curvaDePhillipsCp}</text>
+  <text class="curve-label-long" x="365" y="85">{t.cpALargoPlazo}</text>
 </svg>
 </content>
 </invoke>

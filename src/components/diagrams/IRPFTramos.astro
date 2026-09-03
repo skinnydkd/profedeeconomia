@@ -6,10 +6,46 @@
  *
  * Used in Eco 4ESO · Unit 8 (economía personal: nómina, IRPF y contratos).
  */
+import { getLocale } from '@/i18n/locale';
+const locale = getLocale(Astro.currentLocale);
+
+const COPY = {
+  es: {
+    elIrpfEsProgresivo: 'El IRPF es progresivo por tramos',
+    escaleraDeSeisTramos: 'Escalera de seis tramos de base liquidable con su tipo marginal: 19 %, 24 %, 30 %, 37 %, 45 % y 47 %. Cada tipo se aplica solo a la parte de renta que cae dentro de su tramo, no a toda la renta. Por eso el tipo medio efectivo siempre es menor que el marginal.',
+    tipoMarginalPorTramo: 'TIPO MARGINAL POR TRAMO DE RENTA (ESTATAL, 2026)',
+    primerTramoEstosPrimeros: 'Primer tramo: estos primeros 12.450 € tributan al 19 %, los gane quien los gane. En la práctica, una buena parte queda exenta gracias al mínimo personal y familiar.',
+    soloLosEurosQue: 'Solo los euros que caen entre 12.450 y 20.200 € pagan al 24 %. Lo de abajo siguió pagando al 19 %: subir de tramo nunca hace que cobres menos neto.',
+    tramoDondeSeSitua: 'Tramo donde se sitúa el salario medio en España. El 30 % es el tipo MARGINAL: lo que pagas por el último euro, no por toda tu renta.',
+    aquiElSaltoA: 'Aquí el salto a 37 % es notable. Es el tramo donde más se nota el ahorro fiscal de aportar a planes de pensiones, que rebajan la base liquidable.',
+    tramoDeRentasAltas: 'Tramo de rentas altas. Aun ganando aquí, el tipo MEDIO efectivo sigue siendo bastante menor que el 45 %, porque la mayor parte de la renta tributó a tipos más bajos.',
+    tramoMaximoEstatalPara: 'Tramo máximo estatal, para rentas superiores a 300.000 €. Solo paga el 47 % la parte que supera esa cifra; cada CCAA puede además fijar su propio tramo autonómico.',
+    masDe300000: 'más de 300.000',
+    tramosDeBaseLiquidable: 'TRAMOS DE BASE LIQUIDABLE',
+    cadaTipoSeAplica: 'Cada tipo se aplica SOLO a la parte de renta dentro de su tramo, no a toda la renta.',
+    porEsoTuTipo: 'Por eso tu tipo MEDIO efectivo siempre es menor que tu tipo MARGINAL (el del último euro).',
+  },
+  ca: {
+    elIrpfEsProgresivo: "L'IRPF és progressiu per trams",
+    escaleraDeSeisTramos: "Escala de sis trams de base liquidable amb el seu tipus marginal: 19 %, 24 %, 30 %, 37 %, 45 % i 47 %. Cada tipus s'aplica només a la part de renda que cau dins del seu tram, no a tota la renda. Per això el tipus mitjà efectiu sempre és menor que el marginal.",
+    tipoMarginalPorTramo: 'TIPUS MARGINAL PER TRAM DE RENDA (ESTATAL, 2026)',
+    primerTramoEstosPrimeros: 'Primer tram: estos primers 12.450 € tributen al 19 %, els guanye qui els guanye. En la pràctica, una bona part queda exempta gràcies al mínim personal i familiar.',
+    soloLosEurosQue: 'Només els euros que cauen entre 12.450 i 20.200 € paguen al 24 %. El de davall va seguir pagant al 19 %: pujar de tram mai fa que cobres menys net.',
+    tramoDondeSeSitua: "Tram on se situa el salari mitjà a Espanya. El 30 % és el tipus MARGINAL: el que pagues per l'últim euro, no per tota la teua renda.",
+    aquiElSaltoA: "Ací el salt a 37 % és notable. És el tram on més es nota l'estalvi fiscal d'aportar a plans de pensions, que rebaixen la base liquidable.",
+    tramoDeRentasAltas: 'Tram de rendes altes. Encara guanyant ací, el tipus MITJÀ efectiu continua sent bastant menor que el 45 %, perquè la major part de la renda va tributar a tipus més baixos.',
+    tramoMaximoEstatalPara: 'Tram màxim estatal, per a rendes superiors a 300.000 €. Només paga el 47 % la part que supera eixa xifra; cada CCAA pot a més fixar el seu propi tram autonòmic.',
+    masDe300000: 'més de 300.000',
+    tramosDeBaseLiquidable: 'TRAMS DE BASE LIQUIDABLE',
+    cadaTipoSeAplica: "Cada tipus s'aplica NOMÉS a la part de renda dins del seu tram, no a tota la renda.",
+    porEsoTuTipo: "Per això el teu tipus MITJÀ efectiu sempre és menor que el teu tipus MARGINAL (el de l'últim euro).",
+  },
+} as const;
+const t = COPY[locale];
 ---
 <svg viewBox="0 0 800 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="irpf-title irpf-desc">
-  <title id="irpf-title">El IRPF es progresivo por tramos</title>
-  <desc id="irpf-desc">Escalera de seis tramos de base liquidable con su tipo marginal: 19 %, 24 %, 30 %, 37 %, 45 % y 47 %. Cada tipo se aplica solo a la parte de renta que cae dentro de su tramo, no a toda la renta. Por eso el tipo medio efectivo siempre es menor que el marginal.</desc>
+  <title id="irpf-title">{t.elIrpfEsProgresivo}</title>
+  <desc id="irpf-desc">{t.escaleraDeSeisTramos}</desc>
   <defs>
     <style>
       .bg { fill: #FBF6EC; }
@@ -34,7 +70,7 @@
   </defs>
   <rect class="bg" x="0" y="0" width="800" height="520"/>
 
-  <text class="header" x="400" y="40">TIPO MARGINAL POR TRAMO DE RENTA (ESTATAL, 2026)</text>
+  <text class="header" x="400" y="40">{t.tipoMarginalPorTramo}</text>
 
   <!-- Plot: y 380 (0%) .. 70 (50%); scale = (380-70)/50 = 6.2 px/% -->
   <!-- Grid horizontal at 10/20/30/40/50 % -->
@@ -58,43 +94,43 @@
 
   <!-- Six bars, width 90, gap small. x start 120 -->
   <!-- 19% -> h=117.8 -> y=262.2 -->
-  <rect class="bar bar-1 has-tip" x="120" y="262.2" width="90" height="117.8"><title>Primer tramo: estos primeros 12.450 € tributan al 19 %, los gane quien los gane. En la práctica, una buena parte queda exenta gracias al mínimo personal y familiar.</title></rect>
+  <rect class="bar bar-1 has-tip" x="120" y="262.2" width="90" height="117.8"><title>{t.primerTramoEstosPrimeros}</title></rect>
   <text class="marg" x="165" y="252">19 %</text>
   <text class="tramo" x="165" y="398">0 – 12.450 €</text>
 
   <!-- 24% -> h=148.8 -> y=231.2 -->
-  <rect class="bar bar-2 has-tip" x="220" y="231.2" width="90" height="148.8"><title>Solo los euros que caen entre 12.450 y 20.200 € pagan al 24 %. Lo de abajo siguió pagando al 19 %: subir de tramo nunca hace que cobres menos neto.</title></rect>
+  <rect class="bar bar-2 has-tip" x="220" y="231.2" width="90" height="148.8"><title>{t.soloLosEurosQue}</title></rect>
   <text class="marg" x="265" y="221">24 %</text>
   <text class="tramo" x="265" y="398">12.450 – 20.200</text>
 
   <!-- 30% -> h=186 -> y=194 -->
-  <rect class="bar bar-3 has-tip" x="320" y="194" width="90" height="186"><title>Tramo donde se sitúa el salario medio en España. El 30 % es el tipo MARGINAL: lo que pagas por el último euro, no por toda tu renta.</title></rect>
+  <rect class="bar bar-3 has-tip" x="320" y="194" width="90" height="186"><title>{t.tramoDondeSeSitua}</title></rect>
   <text class="marg" x="365" y="184">30 %</text>
   <text class="tramo" x="365" y="398">20.200 – 35.200</text>
 
   <!-- 37% -> h=229.4 -> y=150.6 -->
-  <rect class="bar bar-4 has-tip" x="420" y="150.6" width="90" height="229.4"><title>Aquí el salto a 37 % es notable. Es el tramo donde más se nota el ahorro fiscal de aportar a planes de pensiones, que rebajan la base liquidable.</title></rect>
+  <rect class="bar bar-4 has-tip" x="420" y="150.6" width="90" height="229.4"><title>{t.aquiElSaltoA}</title></rect>
   <text class="marg" x="465" y="140">37 %</text>
   <text class="tramo" x="465" y="398">35.200 – 60.000</text>
 
   <!-- 45% -> h=279 -> y=101 -->
-  <rect class="bar bar-5 has-tip" x="520" y="101" width="90" height="279"><title>Tramo de rentas altas. Aun ganando aquí, el tipo MEDIO efectivo sigue siendo bastante menor que el 45 %, porque la mayor parte de la renta tributó a tipos más bajos.</title></rect>
+  <rect class="bar bar-5 has-tip" x="520" y="101" width="90" height="279"><title>{t.tramoDeRentasAltas}</title></rect>
   <text class="marg" x="565" y="91" fill="#FFFFFF">45 %</text>
   <text class="tramo" x="565" y="398">60.000 – 300.000</text>
 
   <!-- 47% -> h=291.4 -> y=88.6 -->
-  <rect class="bar bar-6 has-tip" x="620" y="88.6" width="90" height="291.4"><title>Tramo máximo estatal, para rentas superiores a 300.000 €. Solo paga el 47 % la parte que supera esa cifra; cada CCAA puede además fijar su propio tramo autonómico.</title></rect>
+  <rect class="bar bar-6 has-tip" x="620" y="88.6" width="90" height="291.4"><title>{t.tramoMaximoEstatalPara}</title></rect>
   <text class="marg" x="665" y="78" fill="#FFFFFF">47 %</text>
-  <text class="tramo" x="665" y="398">más de 300.000</text>
+  <text class="tramo" x="665" y="398">{t.masDe300000}</text>
 
   <!-- Staircase line connecting bar tops -->
   <polyline class="step-line"
     points="120,262.2 210,262.2 220,231.2 310,231.2 320,194 410,194 420,150.6 510,150.6 520,101 610,101 620,88.6 710,88.6"/>
 
   <!-- Axis titles -->
-  <text class="axis-label" x="415" y="425" text-anchor="middle">TRAMOS DE BASE LIQUIDABLE</text>
+  <text class="axis-label" x="415" y="425" text-anchor="middle">{t.tramosDeBaseLiquidable}</text>
 
   <!-- Footer notes -->
-  <text class="footer" x="400" y="475">Cada tipo se aplica SOLO a la parte de renta dentro de su tramo, no a toda la renta.</text>
-  <text class="footer" x="400" y="497">Por eso tu tipo MEDIO efectivo siempre es menor que tu tipo MARGINAL (el del último euro).</text>
+  <text class="footer" x="400" y="475">{t.cadaTipoSeAplica}</text>
+  <text class="footer" x="400" y="497">{t.porEsoTuTipo}</text>
 </svg>
