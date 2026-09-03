@@ -1,0 +1,93 @@
+---
+/**
+ * The investor's trilemma: return, liquidity and safety. Any product can be
+ * strong in two of the three at most, so its position inside the triangle is
+ * the trade-off it has accepted.
+ *
+ * The unit names the three as «rentabilidad, riesgo y liquidez». Safety is
+ * drawn instead of risk — it is its inverse — so that all three vertices are
+ * things a saver wants, which is what makes the trade-off readable.
+ *
+ * Used in Eco 1BACH · Unit 3 (personal financial planning).
+ */
+import { getLocale } from '@/i18n/locale';
+const locale = getLocale(Astro.currentLocale);
+
+const COPY = {
+  es: {
+    title: 'El triángulo del ahorro: rentabilidad, liquidez y seguridad',
+    desc: 'Triángulo con rentabilidad en el vértice superior, liquidez en el inferior izquierdo y seguridad en el inferior derecho. Cuatro productos financieros aparecen situados dentro según la combinación que ofrecen: cuenta corriente cerca de liquidez y seguridad, depósito a plazo cerca de seguridad, fondo indexado hacia rentabilidad y acciones de una sola empresa en la zona de más rentabilidad y menos seguridad.',
+    rent: 'Rentabilidad', liq: 'Liquidez', seg: 'Seguridad',
+    segNota: '(riesgo bajo)',
+    cuenta: 'Cuenta corriente', deposito: 'Depósito a plazo',
+    fondo: 'Fondo indexado', acciones: 'Acciones de una empresa',
+    regla: 'Ningún producto llega a los tres vértices a la vez',
+  },
+  ca: {
+    title: "El triangle de l'estalvi: rendibilitat, liquiditat i seguretat",
+    desc: "Triangle amb rendibilitat al vèrtex superior, liquiditat a l'inferior esquerre i seguretat a l'inferior dret. Quatre productes financers apareixen situats dins segons la combinació que oferixen: compte corrent prop de liquiditat i seguretat, depòsit a termini prop de seguretat, fons indexat cap a rendibilitat i accions d'una sola empresa a la zona de més rendibilitat i menys seguretat.",
+    rent: 'Rendibilitat', liq: 'Liquiditat', seg: 'Seguretat',
+    segNota: '(risc baix)',
+    cuenta: 'Compte corrent', deposito: 'Depòsit a termini',
+    fondo: 'Fons indexat', acciones: "Accions d'una empresa",
+    regla: 'Cap producte arriba als tres vèrtexs alhora',
+  },
+} as const;
+const t = COPY[locale];
+---
+<svg viewBox="0 0 800 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="ti-title ti-desc">
+  <title id="ti-title">{t.title}</title>
+  <desc id="ti-desc">{t.desc}</desc>
+  <defs>
+    <style>
+      .bg { fill: #FBF6EC; }
+      .tri { fill: #F5EDD9; stroke: #C44E2C; stroke-width: 2.4; stroke-linejoin: round; }
+      .grid { stroke: #E5D4BD; stroke-width: 1; }
+      .vertex { font-family: 'Switzer', sans-serif; font-size: 15px; font-weight: 700; letter-spacing: 0.6px; fill: #2A1F18; }
+      .vertex-note { font-family: 'Switzer', sans-serif; font-size: 11px; font-weight: 500; fill: #8A7868; }
+      .dot { fill: #1F6E6E; stroke: #FBF6EC; stroke-width: 2; }
+      .dot-label { font-family: 'Switzer', sans-serif; font-size: 12.5px; font-weight: 600; fill: #2A1F18; }
+      .rule { font-family: 'Fraunces', serif; font-style: italic; font-size: 15px; fill: #9C3A1C; text-anchor: middle; }
+      .leader { stroke: #8A7868; stroke-width: 1.2; }
+      .corner { fill: #D4A24C; }
+    </style>
+  </defs>
+  <rect class="bg" x="0" y="0" width="800" height="520"/>
+
+  <!-- Triangle: apex (400,80) = return, bottom-left (150,420) = liquidity,
+       bottom-right (650,420) = safety. A product sits closer to the vertices
+       it favours. -->
+  <polygon class="tri" points="400,80 150,420 650,420"/>
+
+  <!-- Medians, to help read a position as a mix rather than a point. -->
+  <line class="grid" x1="400" y1="80" x2="400" y2="420"/>
+  <line class="grid" x1="150" y1="420" x2="525" y2="250"/>
+  <line class="grid" x1="650" y1="420" x2="275" y2="250"/>
+
+  <circle class="corner" cx="400" cy="80" r="7"/>
+  <circle class="corner" cx="150" cy="420" r="7"/>
+  <circle class="corner" cx="650" cy="420" r="7"/>
+
+  <text class="vertex" x="400" y="56" text-anchor="middle">{t.rent}</text>
+  <text class="vertex" x="150" y="452" text-anchor="middle">{t.liq}</text>
+  <text class="vertex" x="650" y="452" text-anchor="middle">{t.seg}</text>
+  <text class="vertex-note" x="650" y="470" text-anchor="middle">{t.segNota}</text>
+
+  <!-- Products. The nearer a vertex, the more of that attribute. -->
+  <circle class="dot" cx="300" cy="398" r="8"/>
+  <text class="dot-label" x="300" y="382" text-anchor="middle">{t.cuenta}</text>
+
+  <circle class="dot" cx="556" cy="392" r="8"/>
+  <text class="dot-label" x="556" y="376" text-anchor="middle">{t.deposito}</text>
+
+  <circle class="dot" cx="424" cy="232" r="8"/>
+  <text class="dot-label" x="424" y="216" text-anchor="middle">{t.fondo}</text>
+
+  <!-- This high up the triangle is narrower than the label, so this one sits
+       outside on a leader instead of crossing the edge. -->
+  <circle class="dot" cx="352" cy="168" r="8"/>
+  <line class="leader" x1="322" y1="168" x2="342" y2="168"/>
+  <text class="dot-label" x="316" y="172" text-anchor="end">{t.acciones}</text>
+
+  <text class="rule" x="400" y="500">{t.regla}</text>
+</svg>

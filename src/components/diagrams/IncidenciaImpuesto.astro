@@ -1,0 +1,130 @@
+---
+/**
+ * Who really pays a per-unit tax. The same wedge is applied to two markets
+ * that differ only in the slope of demand, and the split between buyer and
+ * seller comes out reversed: the side that reacts less to price bears more.
+ *
+ * The two wedges are drawn the same height on purpose, so the comparison is
+ * about how the wedge is shared and not about how big it is.
+ *
+ * Used in Eco 1BACH · Unit 5 (elasticity and its applications).
+ */
+import { getLocale } from '@/i18n/locale';
+const locale = getLocale(Astro.currentLocale);
+
+const COPY = {
+  es: {
+    title: 'Quién paga de verdad un impuesto, según la elasticidad de la demanda',
+    desc: 'Dos mercados con el mismo impuesto por unidad. En el de la izquierda la demanda es inelástica y casi toda la subida recae en quien compra; en el de la derecha la demanda es elástica y casi toda la bajada recae en quien vende. La cuña fiscal es igual de alta en los dos.',
+    izq: 'Demanda inelástica', izqSub: 'tabaco, gasolina, medicinas',
+    der: 'Demanda elástica', derSub: 'una marca con muchos sustitutos',
+    oferta: 'O', ofertaTax: 'O + impuesto', demanda: 'D',
+    pc: 'Pc', pp: 'Pp', pe: 'P*',
+    compra: 'Paga quien compra', vende: 'Paga quien vende',
+    regla: 'El lado que menos reacciona al precio soporta la mayor parte',
+    q: 'Q', p: 'P',
+  },
+  ca: {
+    title: "Qui paga de veritat un impost, segons l'elasticitat de la demanda",
+    desc: "Dos mercats amb el mateix impost per unitat. En el de l'esquerra la demanda és inelàstica i quasi tota la pujada recau en qui compra; en el de la dreta la demanda és elàstica i quasi tota la baixada recau en qui ven. La falca fiscal és igual d'alta en els dos.",
+    izq: 'Demanda inelàstica', izqSub: 'tabac, gasolina, medicines',
+    der: 'Demanda elàstica', derSub: 'una marca amb molts substituts',
+    oferta: 'O', ofertaTax: 'O + impost', demanda: 'D',
+    pc: 'Pc', pp: 'Pp', pe: 'P*',
+    compra: 'Paga qui compra', vende: 'Paga qui ven',
+    regla: 'El costat que menys reacciona al preu suporta la major part',
+    q: 'Q', p: 'P',
+  },
+} as const;
+const t = COPY[locale];
+---
+<svg viewBox="0 0 800 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="ii-title ii-desc">
+  <title id="ii-title">{t.title}</title>
+  <desc id="ii-desc">{t.desc}</desc>
+  <defs>
+    <style>
+      .bg { fill: #FBF6EC; }
+      .axis { stroke: #5C4A3D; stroke-width: 1.5; fill: none; }
+      .supply { stroke: #D4A24C; stroke-width: 2.4; fill: none; }
+      .supply-tax { stroke: #9C3A1C; stroke-width: 2.4; stroke-dasharray: 6 4; fill: none; }
+      .demand { stroke: #C44E2C; stroke-width: 2.4; fill: none; }
+      .guide { stroke: #8A7868; stroke-width: 1; stroke-dasharray: 3 3; fill: none; }
+      .share-buyer { fill: #1F6E6E; }
+      .share-seller { fill: #D4A24C; }
+      .panel-title { font-family: 'Switzer', sans-serif; font-size: 14px; font-weight: 700; fill: #2A1F18; text-anchor: middle; }
+      .panel-sub { font-family: 'Switzer', sans-serif; font-size: 11px; font-weight: 500; fill: #8A7868; text-anchor: middle; }
+      .curve { font-family: 'Fraunces', serif; font-style: italic; font-size: 15px; font-weight: 500; }
+      .price { font-family: 'Fraunces', serif; font-style: italic; font-size: 12px; fill: #2A1F18; }
+      .axis-letter { font-family: 'Fraunces', serif; font-style: italic; font-size: 14px; fill: #5C4A3D; }
+      .legend { font-family: 'Switzer', sans-serif; font-size: 11.5px; font-weight: 600; fill: #2A1F18; }
+      .rule { font-family: 'Fraunces', serif; font-style: italic; font-size: 15px; fill: #9C3A1C; text-anchor: middle; }
+    </style>
+  </defs>
+  <rect class="bg" x="0" y="0" width="800" height="520"/>
+
+  <text class="panel-title" x="230" y="42">{t.izq}</text>
+  <text class="panel-sub" x="230" y="60">{t.izqSub}</text>
+  <text class="panel-title" x="592" y="42">{t.der}</text>
+  <text class="panel-sub" x="592" y="60">{t.derSub}</text>
+
+  <!-- ── Left: steep (inelastic) demand ─────────────────────────────────
+       Supply  y = 480 − x, supply+tax y = 420 − x, demand y = 4,5x − 790.
+       Equilibrium (231, 249); with the tax, quantity 220, buyer price 200,
+       seller price 260: the buyer absorbs 49 of the 60 of the wedge. -->
+  <line class="axis" x1="90" y1="100" x2="90" y2="390"/>
+  <line class="axis" x1="90" y1="390" x2="370" y2="390"/>
+  <text class="axis-letter" x="76" y="104">{t.p}</text>
+  <text class="axis-letter" x="376" y="394">{t.q}</text>
+
+  <line class="supply" x1="110" y1="370" x2="350" y2="130"/>
+  <line class="supply-tax" x1="110" y1="310" x2="350" y2="70"/>
+  <line class="demand" x1="200" y1="110" x2="262" y2="389"/>
+
+  <line class="guide" x1="90" y1="200" x2="220" y2="200"/>
+  <line class="guide" x1="90" y1="260" x2="220" y2="260"/>
+  <line class="guide" x1="220" y1="200" x2="220" y2="390"/>
+
+  <rect class="share-buyer" x="213" y="200" width="14" height="49"/>
+  <rect class="share-seller" x="213" y="249" width="14" height="11"/>
+
+  <text class="price" x="70" y="204">{t.pc}</text>
+  <text class="price" x="70" y="250">{t.pe}</text>
+  <text class="price" x="70" y="266">{t.pp}</text>
+  <text class="curve" x="356" y="126" fill="#D4A24C">{t.oferta}</text>
+  <text class="curve" x="206" y="106" fill="#C44E2C">{t.demanda}</text>
+
+  <!-- ── Right: flat (elastic) demand ───────────────────────────────────
+       Supply y = 840 − x, supply+tax y = 780 − x, demand y = 0,25x + 100.
+       Equilibrium (592, 248); with the tax, quantity 544, buyer price 236,
+       seller price 296: now the seller absorbs 48 of the same 60. -->
+  <line class="axis" x1="450" y1="100" x2="450" y2="390"/>
+  <line class="axis" x1="450" y1="390" x2="730" y2="390"/>
+  <text class="axis-letter" x="436" y="104">{t.p}</text>
+  <text class="axis-letter" x="736" y="394">{t.q}</text>
+
+  <line class="supply" x1="470" y1="370" x2="710" y2="130"/>
+  <line class="supply-tax" x1="470" y1="310" x2="710" y2="70"/>
+  <line class="demand" x1="480" y1="220" x2="720" y2="280"/>
+
+  <line class="guide" x1="450" y1="236" x2="544" y2="236"/>
+  <line class="guide" x1="450" y1="296" x2="544" y2="296"/>
+  <line class="guide" x1="544" y1="236" x2="544" y2="390"/>
+
+  <rect class="share-buyer" x="537" y="236" width="14" height="12"/>
+  <rect class="share-seller" x="537" y="248" width="14" height="48"/>
+
+  <text class="price" x="430" y="234">{t.pc}</text>
+  <text class="price" x="430" y="250">{t.pe}</text>
+  <text class="price" x="430" y="300">{t.pp}</text>
+  <text class="curve" x="716" y="126" fill="#D4A24C">{t.oferta}</text>
+  <text class="curve" x="726" y="284" fill="#C44E2C">{t.demanda}</text>
+
+  <!-- Legend and the rule the two panels are there to make visible. -->
+  <rect class="share-buyer" x="150" y="440" width="13" height="13"/>
+  <text class="legend" x="170" y="451">{t.compra}</text>
+  <rect class="share-seller" x="330" y="440" width="13" height="13"/>
+  <text class="legend" x="350" y="451">{t.vende}</text>
+  <line class="supply-tax" x1="500" y1="446" x2="530" y2="446"/>
+  <text class="legend" x="538" y="451">{t.ofertaTax}</text>
+  <text class="rule" x="400" y="492">{t.regla}</text>
+</svg>
