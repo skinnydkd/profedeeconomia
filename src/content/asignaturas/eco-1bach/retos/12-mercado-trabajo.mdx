@@ -1,0 +1,209 @@
+---
+asignatura: eco-1bach
+competencia: "CE3"
+unidad_relacionada: 9
+title: "La EPA de Vilanova: tasas, tipos de paro y salario mínimo"
+descripcion: "Con los datos de una encuesta de población activa municipal calcularás las tres tasas, clasificarás el desempleo por tipos y valorarás el efecto de una subida del salario mínimo."
+duracion: "20-25 min"
+competencias_clave: [CCL, STEM, CD, CPSAA]
+estado: publicado
+---
+
+Resuelve este reto interpretando los datos laborales de una ciudad y las decisiones que se toman a partir de ellos.
+
+```json
+{
+  "intro": {
+    "kicker": "Reto competencial · CE3",
+    "titulo": "La EPA de Vilanova",
+    "contexto": "<p>El servicio de estadística de Vilanova publica su encuesta de población activa. De <strong>40.000</strong> personas de 16 años o más, <strong>25.000</strong> son activas; de ellas, <strong>22.000</strong> están ocupadas. Las <strong>15.000</strong> restantes son inactivas: estudiantes, personas jubiladas y quienes se dedican a cuidados no remunerados.</p><p>En cinco pasos calcularás las <strong>tres tasas</strong> de la EPA, verás por qué la de paro no cuadra con las otras dos, clasificarás el desempleo por <strong>tipos</strong>, analizarás qué pasa cuando sube el <strong>salario mínimo</strong> y discutirás la relación entre paro e inflación. Fíjate bien en qué denominador lleva cada tasa: ahí está casi todo el examen.</p>"
+  },
+  "pasos": [
+    {
+      "titulo": "1. Las tres tasas",
+      "escenario": "<p>Población de 16 años o más: <strong>40.000</strong>. Activos: <strong>25.000</strong>. Ocupados: <strong>22.000</strong>.</p>",
+      "items": [
+        {
+          "tipo": "numerico",
+          "enunciado": "Calcula la tasa de actividad en porcentaje: activos ÷ población de 16 años o más.",
+          "respuesta": 62.5,
+          "tolerancia": 0.1,
+          "unidad": "%",
+          "explicacion": "25.000 ÷ 40.000 = 0,625 = 62,5 %. La tasa de actividad mide qué parte de la población en edad de trabajar está en el mercado laboral, trabajando o buscando."
+        },
+        {
+          "tipo": "numerico",
+          "enunciado": "Calcula la tasa de empleo: ocupados ÷ población de 16 años o más.",
+          "respuesta": 55,
+          "tolerancia": 0.1,
+          "unidad": "%",
+          "explicacion": "22.000 ÷ 40.000 = 0,55 = 55 %. La tasa de empleo comparte denominador con la de actividad: la población total en edad de trabajar."
+        },
+        {
+          "tipo": "numerico",
+          "enunciado": "Calcula la tasa de paro: parados ÷ activos. Da el resultado con un decimal.",
+          "respuesta": 12,
+          "tolerancia": 0.2,
+          "unidad": "%",
+          "explicacion": "Parados = 25.000 − 22.000 = 3.000. Tasa de paro = 3.000 ÷ 25.000 = 0,12 = 12 %. Ojo al denominador: son los ACTIVOS, no la población total."
+        },
+        {
+          "tipo": "opcion-multiple",
+          "enunciado": "¿Por qué la tasa de paro se calcula sobre los activos y no sobre la población total?",
+          "opciones": [
+            "Por una convención arbitraria de los institutos de estadística",
+            "Porque solo tiene sentido llamar «parado» a quien quiere trabajar y busca activamente empleo",
+            "Porque así el número sale más bajo",
+            "Porque los inactivos no existen estadísticamente"
+          ],
+          "correcta": 1,
+          "explicacion": "Estar parado no es no trabajar: es querer trabajar, estar disponible y buscar activamente. Quien no busca no es parado sino inactivo, así que no puede estar en el numerador ni en el denominador."
+        }
+      ]
+    },
+    {
+      "titulo": "2. Cuando salir de las listas no es buena noticia",
+      "escenario": "<p>Al trimestre siguiente, <strong>500</strong> personas paradas se cansan de buscar y dejan de hacerlo. Nadie encuentra empleo: los ocupados siguen siendo <strong>22.000</strong>.</p>",
+      "items": [
+        {
+          "tipo": "numerico",
+          "enunciado": "¿Cuál es ahora la tasa de paro? Da el resultado con un decimal.",
+          "respuesta": 10.2,
+          "tolerancia": 0.2,
+          "unidad": "%",
+          "explicacion": "Los 500 pasan a inactivos: activos = 24.500, parados = 2.500. Tasa = 2.500 ÷ 24.500 = 10,2 %. Ha bajado del 12 % al 10,2 % sin que nadie haya encontrado trabajo."
+        },
+        {
+          "tipo": "opcion-multiple",
+          "enunciado": "¿Qué nombre recibe este fenómeno y qué enseña?",
+          "opciones": [
+            "Paro friccional: es un ajuste normal del mercado",
+            "Efecto desánimo: la tasa de paro mejora sin que mejore el empleo, así que conviene mirar también la tasa de empleo",
+            "Paro estacional: se repite todos los años",
+            "Pleno empleo: la economía se ha ajustado"
+          ],
+          "correcta": 1,
+          "explicacion": "Es el efecto desánimo o trabajador desanimado. Es la razón por la que ningún analista se queda solo con la tasa de paro: la tasa de empleo (que aquí no ha cambiado: sigue en 55 %) revela que en realidad no ha pasado nada bueno."
+        },
+        {
+          "tipo": "verdadero-falso",
+          "enunciado": "La tasa de empleo también ha bajado con este movimiento.",
+          "correcta": false,
+          "explicacion": "Falso. La tasa de empleo es 22.000 ÷ 40.000 = 55 %, exactamente igual que antes: ni los ocupados ni la población total han cambiado. Por eso es un indicador más difícil de maquillar."
+        }
+      ]
+    },
+    {
+      "titulo": "3. No todo el paro es igual",
+      "escenario": "<p>El servicio de empleo analiza a las 3.000 personas paradas para decidir qué políticas aplicar a cada grupo.</p>",
+      "items": [
+        {
+          "tipo": "relacionar",
+          "enunciado": "Relaciona cada situación con el tipo de paro que le corresponde.",
+          "izquierda": [
+            "Una ingeniera que dejó su empleo y lleva seis semanas buscando otro mejor",
+            "Un operario de una fábrica textil cerrada cuyas competencias ya no demanda el mercado",
+            "Camareros de la zona de playa que no encuentran trabajo en noviembre",
+            "Personal despedido en toda la ciudad porque la economía está en recesión"
+          ],
+          "derecha": [
+            "Paro estructural",
+            "Paro friccional",
+            "Paro cíclico",
+            "Paro estacional"
+          ],
+          "correctas": [1, 0, 3, 2],
+          "explicacion": "El friccional es el tiempo de búsqueda entre dos empleos y es inevitable e incluso sano. El estructural viene de un desajuste entre competencias y demanda. El estacional se repite con el calendario. El cíclico depende de la fase del ciclo económico."
+        },
+        {
+          "tipo": "opcion-multiple",
+          "enunciado": "¿Qué política es más adecuada para el paro estructural?",
+          "opciones": [
+            "Estimular la demanda agregada con gasto público",
+            "Formación y recualificación profesional, y políticas activas de empleo",
+            "Bajar los tipos de interés",
+            "Esperar a que pase la temporada baja"
+          ],
+          "correcta": 1,
+          "explicacion": "El paro estructural no se cura con demanda: los puestos existen, pero las competencias no encajan. Necesita formación, orientación y a veces movilidad. La política de demanda sí funciona con el paro cíclico."
+        },
+        {
+          "tipo": "opcion-multiple",
+          "enunciado": "La tasa natural de paro (NAIRU) es…",
+          "opciones": [
+            "Cero, porque en una economía sana todos trabajan",
+            "La suma del paro friccional y del estructural: el que queda cuando no hay paro cíclico",
+            "El paro que hay en una recesión",
+            "Un objetivo político que fija cada gobierno"
+          ],
+          "correcta": 1,
+          "explicacion": "La tasa natural incluye el friccional y el estructural. No es cero ni es deseable que lo sea: algo de rotación indica un mercado vivo. Lo que se puede combatir con política de demanda es el componente cíclico."
+        }
+      ]
+    },
+    {
+      "titulo": "4. Sube el salario mínimo",
+      "escenario": "<p>En el mercado de trabajo poco cualificado de Vilanova el salario de equilibrio es de <strong>1.100 €</strong>, con <strong>4.000</strong> personas contratadas. El gobierno fija un SMI de <strong>1.300 €</strong>. A ese salario, las empresas quieren contratar <strong>3.700</strong> personas y quieren trabajar <strong>4.400</strong>.</p>",
+      "items": [
+        {
+          "tipo": "numerico",
+          "enunciado": "¿Cuántas personas de desempleo genera este exceso de oferta de trabajo?",
+          "respuesta": 700,
+          "tolerancia": 0,
+          "unidad": "personas",
+          "explicacion": "4.400 − 3.700 = 700 personas. En el modelo de oferta y demanda, un salario mínimo por encima del equilibrio genera un exceso de oferta de trabajo, es decir, desempleo."
+        },
+        {
+          "tipo": "numerico",
+          "enunciado": "¿Cuánto gana al mes cada una de las 3.700 personas que conservan el empleo, respecto a antes?",
+          "respuesta": 200,
+          "tolerancia": 0,
+          "unidad": "€",
+          "explicacion": "1.300 − 1.100 = 200 € más al mes. Aquí está el reparto: 3.700 personas ganan 200 € más y 300 que antes trabajaban dejan de hacerlo. Toda medida tiene ganadores y perdedores."
+        },
+        {
+          "tipo": "opcion-multiple",
+          "enunciado": "Estudios empíricos recientes encuentran efectos sobre el empleo mucho menores que los del modelo simple. ¿Cuál de estas explicaciones lo justifica mejor?",
+          "opciones": [
+            "Que los estudios están mal hechos",
+            "Que si el empleador tiene poder de mercado (monopsonio), pagaba por debajo de la productividad y puede absorber la subida sin despedir",
+            "Que el salario mínimo no afecta a nadie en la práctica",
+            "Que las empresas siempre pueden subir precios sin perder clientes"
+          ],
+          "correcta": 1,
+          "explicacion": "El modelo simple supone competencia perfecta. Si el mercado laboral local está concentrado, la empresa fija el salario por debajo de la productividad marginal, y una subida moderada del mínimo puede acercar el salario a esa productividad sin destruir empleo. La magnitud del efecto es una cuestión empírica, no de principio."
+        }
+      ]
+    },
+    {
+      "titulo": "5. Paro e inflación",
+      "escenario": "<p>El economista municipal presenta la curva de Phillips: en los datos históricos de Vilanova, cuando bajaba el paro subía la inflación, y al revés.</p>",
+      "items": [
+        {
+          "tipo": "opcion-multiple",
+          "enunciado": "¿Qué dice la curva de Phillips a corto plazo?",
+          "opciones": [
+            "Que paro e inflación siempre suben juntos",
+            "Que existe una relación inversa entre paro e inflación: se puede reducir uno a costa del otro",
+            "Que la inflación no depende de nada real",
+            "Que el paro determina el tipo de interés"
+          ],
+          "correcta": 1,
+          "explicacion": "A corto plazo aparece un intercambio: estimular la economía reduce el paro pero presiona los precios al alza. Ese dilema es el que orienta buena parte de la política macroeconómica."
+        },
+        {
+          "tipo": "verdadero-falso",
+          "enunciado": "A largo plazo la curva de Phillips es vertical en la tasa natural de paro: no se puede comprar empleo permanente a cambio de inflación permanente.",
+          "correcta": true,
+          "explicacion": "Cierto. Cuando las expectativas se ajustan, el intercambio desaparece: queda la misma tasa natural de paro pero con más inflación. Fue exactamente lo que ocurrió con la estanflación de los setenta."
+        },
+        {
+          "tipo": "abierta",
+          "enunciado": "El ayuntamiento tiene 3.000 personas paradas y un presupuesto limitado. Con los datos y conceptos de este reto, propón en 6-8 líneas un plan de empleo y explica a qué tipo de paro se dirige cada medida.",
+          "modelo": "<p>No hay una única respuesta correcta, pero un buen plan debe empezar por diagnosticar la composición del paro en vez de tratarlo como un bloque. Al paro friccional le sirven medidas baratas de intermediación: mejorar la información sobre vacantes, la orientación y el emparejamiento entre oferta y demanda, porque el problema es de búsqueda y no de falta de puestos. Al paro estructural, que es el más caro de resolver, le corresponden formación y recualificación orientadas a las competencias que la ciudad sí demanda, con prácticas en empresa y acompañamiento; los resultados tardan, y conviene decirlo. Al estacional se le pueden dirigir medidas de diversificación de la actividad fuera de temporada. El cíclico, en cambio, apenas depende del ayuntamiento: es competencia de la política fiscal y monetaria estatal o europea. Una buena respuesta cerrará reconociendo que la tasa de paro no basta para evaluar el plan: hay que vigilar también la tasa de empleo, porque si la gente se desanima y sale de la población activa la tasa de paro mejorará sin que nadie esté mejor.</p>"
+        }
+      ]
+    }
+  ]
+}
+```
