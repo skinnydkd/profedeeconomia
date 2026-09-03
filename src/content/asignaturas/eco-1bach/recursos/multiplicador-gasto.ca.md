@@ -1,9 +1,9 @@
 ---
 asignatura: eco-1bach
-unidad_relacionada: 8
-title: "Calculadora del multiplicador de la despesa"
-descripcion: "Ajusta la propensió marginal al consum i un augment de la despesa per veure el multiplicador keynesià, l'efecte total sobre la renda i la cascada de rondes de despesa."
-tipo: simulador
+unidad_relacionada: 11
+title: "El multiplicador de la despesa pública"
+descripcion: "Mou la propensió marginal a consumir i comprova quant acaba variant la renda quan l'Estat gasta un euro més. Inclou l'efecte dels impostos i de les importacions."
+tipo: calculadora
 componente: MultiplicadorGasto
 estado: publicado
 lang: ca
@@ -12,12 +12,17 @@ slug: "asignaturas/eco-1bach/recursos/multiplicador-gasto.ca"
 
 ## Quan usar-la
 
-- En estudiar la política fiscal i el model AD-AS en la Unitat 8.
-- Per entendre per què un augment de la despesa pública genera un increment major de la renda.
-- Per visualitzar com la despesa inicial es propaga en rondes successives que convergixen.
+- A la Unitat 11, en passar de «la política fiscal expansiva augmenta la renda» a quant l'augmenta i per què.
+- Per a explicar per què la mateixa despesa té efectes molt diferents en economies diferents.
+- En comentar un pla d'inversió pública real i la xifra d'impacte que anuncia.
 
 ## Què cal tindre en compte
 
-- El multiplicador simple és *k = 1/(1−PMC)*: com major és la propensió marginal al consum, major és l'efecte.
-- Les **filtracions** (estalvi, impostos, importacions) reduïxen el multiplicador: per això el model amb impostos i sector exterior dona una *k* menor.
-- És un model simplificat: suposa capacitat ociosa i preus fixos a curt termini.
+- **La clau és la propensió marginal a consumir.** Com major siga la part de cada euro extra que es gasta en compte d'estalviar-se, més voltes fan els diners i major és el multiplicador.
+- **Els impostos i les importacions el frenen.** Són filtracions: cada euro que ix cap a Hisenda o cap a l'exterior no torna a la ronda següent. Per això una economia molt oberta té un multiplicador menor.
+- El multiplicador **no és una màquina de crear riquesa**: descriu l'efecte sobre la renda d'una variació de la despesa en una economia amb recursos ociosos. Amb l'economia a plena capacitat, l'efecte es trasllada més a preus que a producció, i convé dir-ho.
+- La xifra que ix és un **orde de magnitud**, no una predicció. Els multiplicadors estimats empíricament varien molt segons el moment del cicle i el tipus de despesa.
+
+## Per a portar-la a classe
+
+Fes primer la ronda a mà a la pissarra amb tres o quatre passos —100 € de despesa, 80 € de consum, 64 €…— fins que es veja la sèrie. Només llavors ensenya la calculadora: així el número deixa de ser una fórmula màgica i passa a ser la suma d'una cosa que ja han vist. Després puja el tipus impositiu i que expliquen per què el resultat s'encongix.

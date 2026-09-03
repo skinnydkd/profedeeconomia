@@ -6,8 +6,11 @@ import {
 } from './herramientas.ts';
 
 describe('HERRAMIENTAS registry', () => {
-  it('has 36 tools, all with a valid componente and an existing familia', () => {
-    expect(HERRAMIENTAS).toHaveLength(36);
+  // The count is derived from COMPONENTE_KEYS rather than hard-coded: the
+  // invariant worth guarding is that the registry covers every key exactly
+  // once, not that there happen to be N tools today.
+  it('registers one tool per componente key, each with an existing familia', () => {
+    expect(HERRAMIENTAS).toHaveLength(COMPONENTE_KEYS.length);
     const fams = new Set(FAMILIAS_HERRAMIENTA.map((f) => f.slug));
     for (const h of HERRAMIENTAS) {
       expect(COMPONENTE_KEYS).toContain(h.componente);
@@ -16,9 +19,10 @@ describe('HERRAMIENTAS registry', () => {
   });
   it('every componente is used exactly once and slugs are unique', () => {
     const comps = HERRAMIENTAS.map((h) => h.componente);
-    expect(new Set(comps).size).toBe(36);
+    expect(new Set(comps).size).toBe(COMPONENTE_KEYS.length);
+    expect(new Set(comps)).toEqual(new Set(COMPONENTE_KEYS));
     const slugs = HERRAMIENTAS.map((h) => `${h.familia}/${h.slug}`);
-    expect(new Set(slugs).size).toBe(36);
+    expect(new Set(slugs).size).toBe(COMPONENTE_KEYS.length);
   });
 });
 

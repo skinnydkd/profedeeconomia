@@ -8,6 +8,26 @@ type HerramientaCA = Partial<Pick<Herramienta, 'title' | 'descripcion'>>;
 // source of truth. Acronyms (VAN, TIR, DCF, IRPF, DAFO, BCG, RIASEC, Europass)
 // and «Business Model Canvas» are kept as-is: they are the terms used in class.
 export const HERRAMIENTAS_CA: Partial<Record<string, HerramientaCA>> = {
+  'huella-digital': {
+    title: "Auditoria d'empremta digital",
+    descripcion: 'Llista d\'accions concretes sobre accés, privacitat, reputació i drets, ordenada pel que més lleva de damunt.',
+  },
+  'objetivos-smart': {
+    title: "Comprovador d'objectius SMART",
+    descripcion: 'Revisa si un objectiu complix les cinc lletres i calcula el ritme setmanal que exigix.',
+  },
+  'clasificar-empresa': {
+    title: "Classificador d'empreses",
+    descripcion: "Situa una empresa per grandària (llindars europeus), sector, propietat i àmbit, i explica què la deixa fora de PIME.",
+  },
+  'forma-juridica': {
+    title: 'Comparador de formes jurídiques',
+    descripcion: "Responsabilitat, capital i tributació d'autònom, S.L. i cooperativa, amb el punt de tall entre escala progressiva i tipus fix.",
+  },
+  'pib-real-deflactor': {
+    title: 'PIB nominal, PIB real i deflactor',
+    descripcion: 'Separa quant del creixement del PIB és més producció i quant són preus.',
+  },
   'punto-muerto': {
     title: 'Punt mort (llindar de rendibilitat)',
     descripcion: "Calcula el punt mort i el llindar de rendibilitat d'un producte.",
