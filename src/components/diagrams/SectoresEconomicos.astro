@@ -6,10 +6,80 @@
  *
  * Used in FOPP 4ESO · Unit 7 (el mundo del trabajo: mercado laboral en España).
  */
+import { getLocale } from '@/i18n/locale';
+const locale = getLocale(Astro.currentLocale);
+
+const COPY = {
+  es: {
+    losSectoresEconomicosEn: 'Los sectores económicos en España por empleo',
+    repartoAproximadoDelEmpleo: 'Reparto aproximado del empleo en España en 2025: sector primario en torno al 4 por ciento, sector secundario en torno al 20 por ciento y sector terciario en torno al 76 por ciento, con ejemplos de ocupaciones de cada sector.',
+    delEmpleoEnEspana: '% del empleo en España · datos aprox. 2025',
+    ocupaAPocasPersonas: 'Ocupa a pocas personas porque la maquinaria ha sustituido mano de obra, pero sigue siendo estratégico: produce los alimentos y materias primas que necesitan los otros sectores.',
+    transformaLasMateriasPrimas: 'Transforma las materias primas en productos. Su peso ha bajado en España por la deslocalización de fábricas, aunque genera empleos de mayor cualificación y mejor pagados.',
+    esElMasGrande: 'Es el más grande de las economías desarrolladas: turismo, comercio, sanidad, educación, tecnología. En España pesa especialmente por el turismo y la hostelería.',
+    sectorPrimario4: 'Sector primario · ~4%',
+    deLaNaturaleza: 'De la naturaleza',
+    extraerRecursosDelMedio: 'Extraer recursos del medio.',
+    agricultorA: '· Agricultor/a',
+    ganaderoA: '· Ganadero/a',
+    pescadorA: '· Pescador/a',
+    mineroA: '· Minero/a',
+    trabajadorAForestal: '· Trabajador/a forestal',
+    sectorSecundario20: 'Sector secundario · ~20%',
+    transformar: 'Transformar',
+    industriaYConstruccion: 'Industria y construcción.',
+    operarioADeFabrica: '· Operario/a de fábrica',
+    electricista: '· Electricista',
+    soldadorA: '· Soldador/a',
+    albanil: '· Albañil',
+    mecanicoA: '· Mecánico/a',
+    sectorTerciario76: 'Sector terciario · ~76%',
+    servicios: 'Servicios',
+    prestarUtilidadNoUn: 'Prestar utilidad, no un bien.',
+    profesorA: '· Profesor/a',
+    enfermeroA: '· Enfermero/a',
+    camareroA: '· Camarero/a',
+    comercial: '· Comercial',
+    programadorA: '· Programador/a',
+  },
+  ca: {
+    losSectoresEconomicosEn: 'Els sectors econòmics a Espanya per ocupació',
+    repartoAproximadoDelEmpleo: "Repartiment aproximat de l'ocupació a Espanya el 2025: sector primari al voltant del 4 per cent, sector secundari al voltant del 20 per cent i sector terciari al voltant del 76 per cent, amb exemples d'ocupacions de cada sector.",
+    delEmpleoEnEspana: "% de l'ocupació a Espanya · dades aprox. 2025",
+    ocupaAPocasPersonas: "Ocupa poques persones perquè la maquinària ha substituït mà d'obra, però continua sent estratègic: produïx els aliments i matèries primeres que necessiten els altres sectors.",
+    transformaLasMateriasPrimas: 'Transforma les matèries primeres en productes. El seu pes ha baixat a Espanya per la deslocalització de fàbriques, encara que genera faenes de major qualificació i millor pagades.',
+    esElMasGrande: "És el més gran de les economies desenvolupades: turisme, comerç, sanitat, educació, tecnologia. A Espanya pesa especialment pel turisme i l'hostaleria.",
+    sectorPrimario4: 'Sector primari · ~4%',
+    deLaNaturaleza: 'De la natura',
+    extraerRecursosDelMedio: 'Extraure recursos del medi.',
+    agricultorA: '· Agricultor/a',
+    ganaderoA: '· Ramader/a',
+    pescadorA: '· Pescador/a',
+    mineroA: '· Miner/a',
+    trabajadorAForestal: '· Treballador/a forestal',
+    sectorSecundario20: 'Sector secundari · ~20%',
+    transformar: 'Transformar',
+    industriaYConstruccion: 'Indústria i construcció.',
+    operarioADeFabrica: '· Operari/ària de fàbrica',
+    electricista: '· Electricista',
+    soldadorA: '· Soldador/a',
+    albanil: '· Obrer/a',
+    mecanicoA: '· Mecànic/a',
+    sectorTerciario76: 'Sector terciari · ~76%',
+    servicios: 'Serveis',
+    prestarUtilidadNoUn: 'Prestar utilitat, no un bé.',
+    profesorA: '· Professor/a',
+    enfermeroA: '· Infermer/a',
+    camareroA: '· Cambrer/a',
+    comercial: '· Comercial',
+    programadorA: '· Programador/a',
+  },
+} as const;
+const t = COPY[locale];
 ---
 <svg viewBox="0 0 860 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="sectores-title sectores-desc">
-  <title id="sectores-title">Los sectores económicos en España por empleo</title>
-  <desc id="sectores-desc">Reparto aproximado del empleo en España en 2025: sector primario en torno al 4 por ciento, sector secundario en torno al 20 por ciento y sector terciario en torno al 76 por ciento, con ejemplos de ocupaciones de cada sector.</desc>
+  <title id="sectores-title">{t.losSectoresEconomicosEn}</title>
+  <desc id="sectores-desc">{t.repartoAproximadoDelEmpleo}</desc>
   <defs>
     <style>
       .bg { fill: #FBF6EC; }
@@ -31,13 +101,13 @@
   </defs>
   <rect class="bg" x="0" y="0" width="860" height="520"/>
 
-  <text class="heading" x="40" y="48">% del empleo en España · datos aprox. 2025</text>
+  <text class="heading" x="40" y="48">{t.delEmpleoEnEspana}</text>
 
   <!-- Stacked bar: x from 40 to 820 (width 780). primary 4%, secondary 20%, tertiary 76% -->
   <!-- primary: 40 -> 71.2 (31.2) ; secondary: 71.2 -> 227.2 (156) ; tertiary: 227.2 -> 820 (592.8) -->
-  <rect class="seg-primario seg-stroke has-tip" x="40" y="68" width="31.2" height="80"><title>Ocupa a pocas personas porque la maquinaria ha sustituido mano de obra, pero sigue siendo estratégico: produce los alimentos y materias primas que necesitan los otros sectores.</title></rect>
-  <rect class="seg-secundario seg-stroke has-tip" x="71.2" y="68" width="156" height="80"><title>Transforma las materias primas en productos. Su peso ha bajado en España por la deslocalización de fábricas, aunque genera empleos de mayor cualificación y mejor pagados.</title></rect>
-  <rect class="seg-terciario seg-stroke has-tip" x="227.2" y="68" width="592.8" height="80"><title>Es el más grande de las economías desarrolladas: turismo, comercio, sanidad, educación, tecnología. En España pesa especialmente por el turismo y la hostelería.</title></rect>
+  <rect class="seg-primario seg-stroke has-tip" x="40" y="68" width="31.2" height="80"><title>{t.ocupaAPocasPersonas}</title></rect>
+  <rect class="seg-secundario seg-stroke has-tip" x="71.2" y="68" width="156" height="80"><title>{t.transformaLasMateriasPrimas}</title></rect>
+  <rect class="seg-terciario seg-stroke has-tip" x="227.2" y="68" width="592.8" height="80"><title>{t.esElMasGrande}</title></rect>
 
   <!-- percentages on segments -->
   <text class="bar-pct" x="55" y="116" font-size="13">4%</text>
@@ -48,36 +118,36 @@
   <!-- Primary card -->
   <rect class="card card-prim" x="40" y="190" width="240" height="290" rx="8"/>
   <rect x="40" y="190" width="240" height="8" rx="4" fill="#D4A24C"/>
-  <text class="card-tag" x="62" y="226" fill="#A87A2A">Sector primario · ~4%</text>
-  <text class="card-title" x="62" y="252">De la naturaleza</text>
-  <text class="card-line" x="62" y="290">Extraer recursos del medio.</text>
-  <text class="card-line" x="62" y="326">· Agricultor/a</text>
-  <text class="card-line" x="62" y="350">· Ganadero/a</text>
-  <text class="card-line" x="62" y="374">· Pescador/a</text>
-  <text class="card-line" x="62" y="398">· Minero/a</text>
-  <text class="card-line" x="62" y="422">· Trabajador/a forestal</text>
+  <text class="card-tag" x="62" y="226" fill="#A87A2A">{t.sectorPrimario4}</text>
+  <text class="card-title" x="62" y="252">{t.deLaNaturaleza}</text>
+  <text class="card-line" x="62" y="290">{t.extraerRecursosDelMedio}</text>
+  <text class="card-line" x="62" y="326">{t.agricultorA}</text>
+  <text class="card-line" x="62" y="350">{t.ganaderoA}</text>
+  <text class="card-line" x="62" y="374">{t.pescadorA}</text>
+  <text class="card-line" x="62" y="398">{t.mineroA}</text>
+  <text class="card-line" x="62" y="422">{t.trabajadorAForestal}</text>
 
   <!-- Secondary card -->
   <rect class="card card-sec" x="305" y="190" width="240" height="290" rx="8"/>
   <rect x="305" y="190" width="240" height="8" rx="4" fill="#C44E2C"/>
-  <text class="card-tag" x="327" y="226" fill="#9C3A1C">Sector secundario · ~20%</text>
-  <text class="card-title" x="327" y="252">Transformar</text>
-  <text class="card-line" x="327" y="290">Industria y construcción.</text>
-  <text class="card-line" x="327" y="326">· Operario/a de fábrica</text>
-  <text class="card-line" x="327" y="350">· Electricista</text>
-  <text class="card-line" x="327" y="374">· Soldador/a</text>
-  <text class="card-line" x="327" y="398">· Albañil</text>
-  <text class="card-line" x="327" y="422">· Mecánico/a</text>
+  <text class="card-tag" x="327" y="226" fill="#9C3A1C">{t.sectorSecundario20}</text>
+  <text class="card-title" x="327" y="252">{t.transformar}</text>
+  <text class="card-line" x="327" y="290">{t.industriaYConstruccion}</text>
+  <text class="card-line" x="327" y="326">{t.operarioADeFabrica}</text>
+  <text class="card-line" x="327" y="350">{t.electricista}</text>
+  <text class="card-line" x="327" y="374">{t.soldadorA}</text>
+  <text class="card-line" x="327" y="398">{t.albanil}</text>
+  <text class="card-line" x="327" y="422">{t.mecanicoA}</text>
 
   <!-- Tertiary card -->
   <rect class="card card-ter" x="570" y="190" width="250" height="290" rx="8"/>
   <rect x="570" y="190" width="250" height="8" rx="4" fill="#5B3A4E"/>
-  <text class="card-tag" x="592" y="226" fill="#5B3A4E">Sector terciario · ~76%</text>
-  <text class="card-title" x="592" y="252">Servicios</text>
-  <text class="card-line" x="592" y="290">Prestar utilidad, no un bien.</text>
-  <text class="card-line" x="592" y="326">· Profesor/a</text>
-  <text class="card-line" x="592" y="350">· Enfermero/a</text>
-  <text class="card-line" x="592" y="374">· Camarero/a</text>
-  <text class="card-line" x="592" y="398">· Comercial</text>
-  <text class="card-line" x="592" y="422">· Programador/a</text>
+  <text class="card-tag" x="592" y="226" fill="#5B3A4E">{t.sectorTerciario76}</text>
+  <text class="card-title" x="592" y="252">{t.servicios}</text>
+  <text class="card-line" x="592" y="290">{t.prestarUtilidadNoUn}</text>
+  <text class="card-line" x="592" y="326">{t.profesorA}</text>
+  <text class="card-line" x="592" y="350">{t.enfermeroA}</text>
+  <text class="card-line" x="592" y="374">{t.camareroA}</text>
+  <text class="card-line" x="592" y="398">{t.comercial}</text>
+  <text class="card-line" x="592" y="422">{t.programadorA}</text>
 </svg>

@@ -3,8 +3,80 @@
  * Empathy Map with six quadrants arranged around a central persona
  * silhouette. Layout based on XPLANE's canonical version.
  */
+import { getLocale } from '@/i18n/locale';
+const locale = getLocale(Astro.currentLocale);
+
+const COPY = {
+  es: {
+    mapaDeEmpatiaSeis: 'Mapa de empatía: seis cuadrantes alrededor del cliente',
+    quePiensaYSiente: '¿Qué piensa y siente?',
+    susMotivacionesProfundasPreo: 'Sus motivaciones profundas, preocupaciones,',
+    aspiracionesMiedosNoExpresad: 'aspiraciones, miedos no expresados.',
+    queOye: '¿Qué oye?',
+    loQueLeDicen: 'Lo que le dicen amigos,',
+    familiaJefesRedes: 'familia, jefes, redes',
+    socialesInfluencers: 'sociales, influencers.',
+    queMediosConsume: 'Qué medios consume.',
+    queAutoridadesRespeta: 'Qué autoridades respeta.',
+    queVe: '¿Qué ve?',
+    suEntornoFisico: 'Su entorno físico,',
+    laOfertaDelMercado: 'la oferta del mercado,',
+    susReferentesVisuales: 'sus referentes visuales.',
+    queCompitePorSu: 'Qué compite por su',
+    atencionYSuTiempo: 'atención y su tiempo.',
+    clienteObjetivo: 'CLIENTE OBJETIVO',
+    personaConcreta: 'Persona concreta',
+    noUnSegmentoAbstracto: '— no un segmento abstracto —',
+    queDiceYQue: '¿Qué dice y qué hace?',
+    suDiscursoPublicoVs: 'Su discurso público vs. su comportamiento.',
+    queLeDuele: '¿Qué le duele?',
+    frustracionesMiedos: 'Frustraciones, miedos,',
+    obstaculosFriccion: 'obstáculos, fricción.',
+    loQueQuerriaEvitar: 'Lo que querría evitar',
+    siPudiera: 'si pudiera.',
+    queGana: '¿Qué gana?',
+    necesidadesReales: 'Necesidades reales,',
+    deseosMetricasPropias: 'deseos, métricas propias',
+    deExitoLoQue: 'de éxito. Lo que de',
+    verdadLeImporta: 'verdad le importa.',
+  },
+  ca: {
+    mapaDeEmpatiaSeis: "Mapa d'empatia: sis quadrants al voltant del client",
+    quePiensaYSiente: 'Què pensa i sent?',
+    susMotivacionesProfundasPreo: 'Les seues motivacions profundes, preocupacions,',
+    aspiracionesMiedosNoExpresad: 'aspiracions, pors no expressades.',
+    queOye: 'Què escolta?',
+    loQueLeDicen: 'El que li diuen amics,',
+    familiaJefesRedes: 'família, caps, xarxes',
+    socialesInfluencers: 'socials, influencers.',
+    queMediosConsume: 'Quins mitjans consumix.',
+    queAutoridadesRespeta: 'Quines autoritats respecta.',
+    queVe: 'Què veu?',
+    suEntornoFisico: 'El seu entorn físic,',
+    laOfertaDelMercado: "l'oferta del mercat,",
+    susReferentesVisuales: 'els seus referents visuals.',
+    queCompitePorSu: 'Què competix per la seua',
+    atencionYSuTiempo: 'atenció i el seu temps.',
+    clienteObjetivo: 'CLIENT OBJECTIU',
+    personaConcreta: 'Persona concreta',
+    noUnSegmentoAbstracto: '— no un segment abstracte —',
+    queDiceYQue: 'Què diu i què fa?',
+    suDiscursoPublicoVs: 'El seu discurs públic vs. el seu comportament.',
+    queLeDuele: 'Què li fa mal?',
+    frustracionesMiedos: 'Frustracions, pors,',
+    obstaculosFriccion: 'obstacles, fricció.',
+    loQueQuerriaEvitar: 'El que voldria evitar',
+    siPudiera: 'si poguera.',
+    queGana: 'Què hi guanya?',
+    necesidadesReales: 'Necessitats reals,',
+    deseosMetricasPropias: 'desitjos, mètriques pròpies',
+    deExitoLoQue: "d'èxit. El que de",
+    verdadLeImporta: 'veritat li importa.',
+  },
+} as const;
+const t = COPY[locale];
 ---
-<svg viewBox="0 0 760 540" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Mapa de empatía: seis cuadrantes alrededor del cliente">
+<svg viewBox="0 0 760 540" xmlns="http://www.w3.org/2000/svg" role="img" aria-label={t.mapaDeEmpatiaSeis}>
   <defs>
     <style>
       .bg { fill: #FBF6EC; }
@@ -28,68 +100,68 @@
   <g>
     <rect class="quad quad-top" x="180" y="40" width="400" height="100" rx="6"/>
     <text class="num" x="200" y="62">01</text>
-    <text class="title" x="200" y="84">¿Qué piensa y siente?</text>
-    <text class="question" x="200" y="106">Sus motivaciones profundas, preocupaciones,</text>
-    <text class="question" x="200" y="120">aspiraciones, miedos no expresados.</text>
+    <text class="title" x="200" y="84">{t.quePiensaYSiente}</text>
+    <text class="question" x="200" y="106">{t.susMotivacionesProfundasPreo}</text>
+    <text class="question" x="200" y="120">{t.aspiracionesMiedosNoExpresad}</text>
   </g>
 
   <!-- Left: Oye -->
   <g>
     <rect class="quad quad-side-l" x="40" y="160" width="190" height="220" rx="6"/>
     <text class="num" x="55" y="182">02</text>
-    <text class="title" x="55" y="204">¿Qué oye?</text>
-    <text class="question" x="55" y="226">Lo que le dicen amigos,</text>
-    <text class="question" x="55" y="240">familia, jefes, redes</text>
-    <text class="question" x="55" y="254">sociales, influencers.</text>
-    <text class="question" x="55" y="278">Qué medios consume.</text>
-    <text class="question" x="55" y="292">Qué autoridades respeta.</text>
+    <text class="title" x="55" y="204">{t.queOye}</text>
+    <text class="question" x="55" y="226">{t.loQueLeDicen}</text>
+    <text class="question" x="55" y="240">{t.familiaJefesRedes}</text>
+    <text class="question" x="55" y="254">{t.socialesInfluencers}</text>
+    <text class="question" x="55" y="278">{t.queMediosConsume}</text>
+    <text class="question" x="55" y="292">{t.queAutoridadesRespeta}</text>
   </g>
 
   <!-- Right: Ve -->
   <g>
     <rect class="quad quad-side-r" x="530" y="160" width="190" height="220" rx="6"/>
     <text class="num" x="545" y="182">03</text>
-    <text class="title" x="545" y="204">¿Qué ve?</text>
-    <text class="question" x="545" y="226">Su entorno físico,</text>
-    <text class="question" x="545" y="240">la oferta del mercado,</text>
-    <text class="question" x="545" y="254">sus referentes visuales.</text>
-    <text class="question" x="545" y="278">Qué compite por su</text>
-    <text class="question" x="545" y="292">atención y su tiempo.</text>
+    <text class="title" x="545" y="204">{t.queVe}</text>
+    <text class="question" x="545" y="226">{t.suEntornoFisico}</text>
+    <text class="question" x="545" y="240">{t.laOfertaDelMercado}</text>
+    <text class="question" x="545" y="254">{t.susReferentesVisuales}</text>
+    <text class="question" x="545" y="278">{t.queCompitePorSu}</text>
+    <text class="question" x="545" y="292">{t.atencionYSuTiempo}</text>
   </g>
 
   <!-- Center: Persona -->
   <ellipse class="persona-circle" cx="380" cy="270" rx="130" ry="90"/>
-  <text class="persona-label" x="380" y="248">CLIENTE OBJETIVO</text>
-  <text class="persona-name" x="380" y="274">Persona concreta</text>
-  <text class="question" x="380" y="298" text-anchor="middle">— no un segmento abstracto —</text>
+  <text class="persona-label" x="380" y="248">{t.clienteObjetivo}</text>
+  <text class="persona-name" x="380" y="274">{t.personaConcreta}</text>
+  <text class="question" x="380" y="298" text-anchor="middle">{t.noUnSegmentoAbstracto}</text>
 
   <!-- Bottom-center: Dice y hace -->
   <g>
     <rect class="quad" x="240" y="400" width="280" height="80" rx="6"/>
     <text class="num" x="260" y="422">04</text>
-    <text class="title" x="260" y="444">¿Qué dice y qué hace?</text>
-    <text class="question" x="260" y="466">Su discurso público vs. su comportamiento.</text>
+    <text class="title" x="260" y="444">{t.queDiceYQue}</text>
+    <text class="question" x="260" y="466">{t.suDiscursoPublicoVs}</text>
   </g>
 
   <!-- Bottom-left: Le duele -->
   <g>
     <rect class="quad quad-bottom-pain" x="40" y="400" width="190" height="120" rx="6"/>
     <text class="num" x="55" y="422" fill="#702020">05</text>
-    <text class="title" x="55" y="444" fill="#702020">¿Qué le duele?</text>
-    <text class="question" x="55" y="466">Frustraciones, miedos,</text>
-    <text class="question" x="55" y="480">obstáculos, fricción.</text>
-    <text class="question" x="55" y="500">Lo que querría evitar</text>
-    <text class="question" x="55" y="514">si pudiera.</text>
+    <text class="title" x="55" y="444" fill="#702020">{t.queLeDuele}</text>
+    <text class="question" x="55" y="466">{t.frustracionesMiedos}</text>
+    <text class="question" x="55" y="480">{t.obstaculosFriccion}</text>
+    <text class="question" x="55" y="500">{t.loQueQuerriaEvitar}</text>
+    <text class="question" x="55" y="514">{t.siPudiera}</text>
   </g>
 
   <!-- Bottom-right: Qué gana -->
   <g>
     <rect class="quad quad-bottom-gain" x="530" y="400" width="190" height="120" rx="6"/>
     <text class="num" x="545" y="422" fill="#2A5A1F">06</text>
-    <text class="title" x="545" y="444" fill="#2A5A1F">¿Qué gana?</text>
-    <text class="question" x="545" y="466">Necesidades reales,</text>
-    <text class="question" x="545" y="480">deseos, métricas propias</text>
-    <text class="question" x="545" y="500">de éxito. Lo que de</text>
-    <text class="question" x="545" y="514">verdad le importa.</text>
+    <text class="title" x="545" y="444" fill="#2A5A1F">{t.queGana}</text>
+    <text class="question" x="545" y="466">{t.necesidadesReales}</text>
+    <text class="question" x="545" y="480">{t.deseosMetricasPropias}</text>
+    <text class="question" x="545" y="500">{t.deExitoLoQue}</text>
+    <text class="question" x="545" y="514">{t.verdadLeImporta}</text>
   </g>
 </svg>

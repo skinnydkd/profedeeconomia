@@ -5,10 +5,44 @@
  * investment and consumption, raises aggregate demand and, finally,
  * pushes up output (PIB) and inflation. Used in Eco 1BACH u11.
  */
+import { getLocale } from '@/i18n/locale';
+const locale = getLocale(Astro.currentLocale);
+
+const COPY = {
+  es: {
+    mecanismoDeTransmisionDe: 'Mecanismo de transmisión de la política monetaria',
+    laPoliticaMonetariaLlega: 'La política monetaria llega a la economía por una cadena: del tipo de interés del banco central al crédito, la inversión y el consumo, la demanda agregada y, finalmente, el PIB y la inflación.',
+    politicaMonetariaExpansiva: 'Política monetaria expansiva',
+    elBancoCentralBaja: 'El banco central baja',
+    elTipoDeInteres: 'el tipo de interés',
+    elCreditoSeAbarata: 'El crédito se abarata',
+    subenLaInversion: 'Suben la inversión',
+    yElConsumo: 'y el consumo',
+    aumentaLaDemanda: 'Aumenta la demanda',
+    agregada: 'agregada',
+    pibYInflacion: '↑ PIB y ↑ inflación',
+    siElBancoCentral: '(Si el banco central sube el tipo, el efecto es el contrario: enfría la economía.)',
+  },
+  ca: {
+    mecanismoDeTransmisionDe: 'Mecanisme de transmissió de la política monetària',
+    laPoliticaMonetariaLlega: "La política monetària arriba a l'economia per una cadena: del tipus d'interés del banc central al crèdit, la inversió i el consum, la demanda agregada i, finalment, el PIB i la inflació.",
+    politicaMonetariaExpansiva: 'Política monetària expansiva',
+    elBancoCentralBaja: 'El banc central baixa',
+    elTipoDeInteres: "el tipus d'interés",
+    elCreditoSeAbarata: "El crèdit s'abarateix",
+    subenLaInversion: 'Pugen la inversió',
+    yElConsumo: 'i el consum',
+    aumentaLaDemanda: 'Augmenta la demanda',
+    agregada: 'agregada',
+    pibYInflacion: '↑ PIB i ↑ inflació',
+    siElBancoCentral: "(Si el banc central puja el tipus, l'efecte és el contrari: refreda l'economia.)",
+  },
+} as const;
+const t = COPY[locale];
 ---
 <svg viewBox="0 0 880 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="tm-title tm-desc">
-  <title id="tm-title">Mecanismo de transmisión de la política monetaria</title>
-  <desc id="tm-desc">La política monetaria llega a la economía por una cadena: del tipo de interés del banco central al crédito, la inversión y el consumo, la demanda agregada y, finalmente, el PIB y la inflación.</desc>
+  <title id="tm-title">{t.mecanismoDeTransmisionDe}</title>
+  <desc id="tm-desc">{t.laPoliticaMonetariaLlega}</desc>
   <defs>
     <style>
       .bg { fill: #FBF6EC; }
@@ -28,28 +62,28 @@
   <rect class="bg" x="0" y="0" width="880" height="360"/>
 
   <!-- Eyebrow -->
-  <text class="eyebrow" x="40" y="40">Política monetaria expansiva</text>
+  <text class="eyebrow" x="40" y="40">{t.politicaMonetariaExpansiva}</text>
 
   <!-- Row 1: boxes 1, 2, 3 -->
   <!-- Box 1 -->
   <rect class="box box-start" x="40" y="60" width="240" height="74" rx="10"/>
-  <text class="step-label" x="160" y="92" text-anchor="middle">El banco central baja</text>
-  <text class="step-label" x="160" y="112" text-anchor="middle">el tipo de interés</text>
+  <text class="step-label" x="160" y="92" text-anchor="middle">{t.elBancoCentralBaja}</text>
+  <text class="step-label" x="160" y="112" text-anchor="middle">{t.elTipoDeInteres}</text>
 
   <!-- Arrow 1 → 2 -->
   <line class="flow" x1="284" y1="97" x2="316" y2="97" marker-end="url(#tm-arrow)"/>
 
   <!-- Box 2 -->
   <rect class="box" x="320" y="60" width="240" height="74" rx="10"/>
-  <text class="step-label" x="440" y="102" text-anchor="middle">El crédito se abarata</text>
+  <text class="step-label" x="440" y="102" text-anchor="middle">{t.elCreditoSeAbarata}</text>
 
   <!-- Arrow 2 → 3 -->
   <line class="flow" x1="564" y1="97" x2="596" y2="97" marker-end="url(#tm-arrow)"/>
 
   <!-- Box 3 -->
   <rect class="box" x="600" y="60" width="240" height="74" rx="10"/>
-  <text class="step-label" x="720" y="92" text-anchor="middle">Suben la inversión</text>
-  <text class="step-label" x="720" y="112" text-anchor="middle">y el consumo</text>
+  <text class="step-label" x="720" y="92" text-anchor="middle">{t.subenLaInversion}</text>
+  <text class="step-label" x="720" y="112" text-anchor="middle">{t.yElConsumo}</text>
 
   <!-- Elbow connector: box 3 down and back left to box 4 -->
   <path class="flow" d="M 720 138 L 720 186 L 440 186 L 440 222" marker-end="url(#tm-arrow)"/>
@@ -57,16 +91,16 @@
   <!-- Row 2: boxes 4, 5 -->
   <!-- Box 4 -->
   <rect class="box" x="320" y="226" width="240" height="74" rx="10"/>
-  <text class="step-label" x="440" y="258" text-anchor="middle">Aumenta la demanda</text>
-  <text class="step-label" x="440" y="278" text-anchor="middle">agregada</text>
+  <text class="step-label" x="440" y="258" text-anchor="middle">{t.aumentaLaDemanda}</text>
+  <text class="step-label" x="440" y="278" text-anchor="middle">{t.agregada}</text>
 
   <!-- Arrow 4 → 5 -->
   <line class="flow" x1="564" y1="263" x2="596" y2="263" marker-end="url(#tm-arrow)"/>
 
   <!-- Box 5 (outcome) -->
   <rect class="box box-end" x="600" y="226" width="240" height="74" rx="10"/>
-  <text class="step-label-end" x="720" y="268" text-anchor="middle">↑ PIB y ↑ inflación</text>
+  <text class="step-label-end" x="720" y="268" text-anchor="middle">{t.pibYInflacion}</text>
 
   <!-- Muted note -->
-  <text class="note" x="40" y="338">(Si el banco central sube el tipo, el efecto es el contrario: enfría la economía.)</text>
+  <text class="note" x="40" y="338">{t.siElBancoCentral}</text>
 </svg>

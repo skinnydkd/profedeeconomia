@@ -6,10 +6,78 @@
  *
  * Used in FOPP 4ESO · Unit 9 (buscar empleo: CV, marca personal y entrevista).
  */
+import { getLocale } from '@/i18n/locale';
+const locale = getLocale(Astro.currentLocale);
+
+const COPY = {
+  es: {
+    elMetodoStarPara: 'El método STAR para entrevistas',
+    cuatroPasosParaResponder: 'Cuatro pasos para responder a preguntas conductuales en una entrevista: Situación, Tarea, Acción y Resultado, con una pregunta tipo de ejemplo.',
+    preguntaTipoDelEntrevistador: 'Pregunta tipo del entrevistador',
+    describeUnaSituacionEn: '«Describe una situación en la que tuviste que resolver un conflicto en equipo.»',
+    seBreveDosFrases: 'Sé breve: dos frases para situar al entrevistador. No te enrolles aquí; lo importante viene en la Acción y el Resultado.',
+    situacion: 'Situación',
+    contextoBreve: 'Contexto breve:',
+    cuandoYDonde: 'cuándo y dónde.',
+    enUnTrabajo: '«En un trabajo',
+    deGrupoDe4: 'de grupo de 4.º…»',
+    aclaraCualEraTu: 'Aclara cuál era TU objetivo o reto, no el del grupo entero. Así el entrevistador entiende qué se esperaba de ti en concreto.',
+    tarea: 'Tarea',
+    tuResponsabilidad: 'Tu responsabilidad',
+    concreta: 'concreta.',
+    yoCoordinaba: '«Yo coordinaba',
+    laEntrega: 'la entrega…»',
+    esLaParteMas: 'Es la parte más importante: usa «yo», no «nosotros». El entrevistador quiere saber qué aportaste tú, no qué hizo el equipo.',
+    accion: 'Acción',
+    queHicisteTu: 'Qué hiciste TÚ,',
+    noElEquipo: 'no el equipo.',
+    propuseRepartir: '«Propuse repartir',
+    tareasPorEscrito: 'tareas por escrito…»',
+    cierraConUnDato: 'Cierra con un dato concreto siempre que puedas (una nota, un porcentaje, un plazo cumplido). Lo medible convence mucho más que «salió bien».',
+    resultado: 'Resultado',
+    elDesenlaceCon: 'El desenlace, con',
+    datosSiSePuede: 'datos si se puede.',
+    entregamosA: '«Entregamos a',
+    tiempoYSacamos9: 'tiempo y sacamos 9.»',
+    unaRespuestaStarCompleta: 'Una respuesta STAR completa dura entre 90 segundos y 2 minutos',
+  },
+  ca: {
+    elMetodoStarPara: 'El mètode STAR per a entrevistes',
+    cuatroPasosParaResponder: "Quatre passos per a respondre preguntes conductuals en una entrevista: Situació, Tasca, Acció i Resultat, amb una pregunta tipus d'exemple.",
+    preguntaTipoDelEntrevistador: "Pregunta tipus de l'entrevistador",
+    describeUnaSituacionEn: '«Descriu una situació en què vas haver de resoldre un conflicte en equip.»',
+    seBreveDosFrases: "Sigues breu: dues frases per a situar l'entrevistador. No t'allargues ací; l'important ve en l'Acció i el Resultat.",
+    situacion: 'Situació',
+    contextoBreve: 'Context breu:',
+    cuandoYDonde: 'quan i on.',
+    enUnTrabajo: '«En un treball',
+    deGrupoDe4: 'de grup de 4t…»',
+    aclaraCualEraTu: "Aclarix quin era el TEU objectiu o repte, no el del grup sencer. Així l'entrevistador entén què s'esperava de tu en concret.",
+    tarea: 'Tasca',
+    tuResponsabilidad: 'La teua responsabilitat',
+    concreta: 'concreta.',
+    yoCoordinaba: '«Jo coordinava',
+    laEntrega: "l'entrega…»",
+    esLaParteMas: "És la part més important: usa «jo», no «nosaltres». L'entrevistador vol saber què hi vas aportar tu, no què va fer l'equip.",
+    accion: 'Acció',
+    queHicisteTu: 'Què vas fer TU,',
+    noElEquipo: "no l'equip.",
+    propuseRepartir: '«Vaig proposar repartir',
+    tareasPorEscrito: 'tasques per escrit…»',
+    cierraConUnDato: 'Tanca amb una dada concreta sempre que pugues (una nota, un percentatge, un termini complit). El que és mesurable convenç molt més que «va eixir bé».',
+    resultado: 'Resultat',
+    elDesenlaceCon: 'El desenllaç, amb',
+    datosSiSePuede: 'dades si es pot.',
+    entregamosA: '«Vam entregar a',
+    tiempoYSacamos9: 'temps i vam traure un 9.»',
+    unaRespuestaStarCompleta: 'Una resposta STAR completa dura entre 90 segons i 2 minuts',
+  },
+} as const;
+const t = COPY[locale];
 ---
 <svg viewBox="0 0 880 480" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="star-title star-desc">
-  <title id="star-title">El método STAR para entrevistas</title>
-  <desc id="star-desc">Cuatro pasos para responder a preguntas conductuales en una entrevista: Situación, Tarea, Acción y Resultado, con una pregunta tipo de ejemplo.</desc>
+  <title id="star-title">{t.elMetodoStarPara}</title>
+  <desc id="star-desc">{t.cuatroPasosParaResponder}</desc>
   <defs>
     <style>
       .bg { fill: #FBF6EC; }
@@ -36,45 +104,45 @@
 
   <!-- Sample question banner -->
   <rect class="q-box" x="40" y="40" width="800" height="68" rx="8"/>
-  <text class="q-tag" x="64" y="68">Pregunta tipo del entrevistador</text>
-  <text class="q-text" x="64" y="93">«Describe una situación en la que tuviste que resolver un conflicto en equipo.»</text>
+  <text class="q-tag" x="64" y="68">{t.preguntaTipoDelEntrevistador}</text>
+  <text class="q-text" x="64" y="93">{t.describeUnaSituacionEn}</text>
 
   <!-- Four steps, width 180, gap, y=170 height=210 -->
   <!-- S -->
-  <rect class="step step-s has-tip" x="40" y="170" width="180" height="200" rx="8"><title>Sé breve: dos frases para situar al entrevistador. No te enrolles aquí; lo importante viene en la Acción y el Resultado.</title></rect>
+  <rect class="step step-s has-tip" x="40" y="170" width="180" height="200" rx="8"><title>{t.seBreveDosFrases}</title></rect>
   <text class="step-letter" x="130" y="232" fill="#C44E2C">S</text>
-  <text class="step-name" x="130" y="262">Situación</text>
-  <text class="step-def" x="130" y="292">Contexto breve:</text>
-  <text class="step-def" x="130" y="310">cuándo y dónde.</text>
-  <text class="step-def" x="130" y="342" font-style="italic" font-family="Fraunces, serif" fill="#9C3A1C">«En un trabajo</text>
-  <text class="step-def" x="130" y="358" font-style="italic" font-family="Fraunces, serif" fill="#9C3A1C">de grupo de 4.º…»</text>
+  <text class="step-name" x="130" y="262">{t.situacion}</text>
+  <text class="step-def" x="130" y="292">{t.contextoBreve}</text>
+  <text class="step-def" x="130" y="310">{t.cuandoYDonde}</text>
+  <text class="step-def" x="130" y="342" font-style="italic" font-family="Fraunces, serif" fill="#9C3A1C">{t.enUnTrabajo}</text>
+  <text class="step-def" x="130" y="358" font-style="italic" font-family="Fraunces, serif" fill="#9C3A1C">{t.deGrupoDe4}</text>
 
   <!-- T -->
-  <rect class="step step-t has-tip" x="240" y="170" width="180" height="200" rx="8"><title>Aclara cuál era TU objetivo o reto, no el del grupo entero. Así el entrevistador entiende qué se esperaba de ti en concreto.</title></rect>
+  <rect class="step step-t has-tip" x="240" y="170" width="180" height="200" rx="8"><title>{t.aclaraCualEraTu}</title></rect>
   <text class="step-letter" x="330" y="232" fill="#A87A2A">T</text>
-  <text class="step-name" x="330" y="262">Tarea</text>
-  <text class="step-def" x="330" y="292">Tu responsabilidad</text>
-  <text class="step-def" x="330" y="310">concreta.</text>
-  <text class="step-def" x="330" y="342" font-style="italic" font-family="Fraunces, serif" fill="#A87A2A">«Yo coordinaba</text>
-  <text class="step-def" x="330" y="358" font-style="italic" font-family="Fraunces, serif" fill="#A87A2A">la entrega…»</text>
+  <text class="step-name" x="330" y="262">{t.tarea}</text>
+  <text class="step-def" x="330" y="292">{t.tuResponsabilidad}</text>
+  <text class="step-def" x="330" y="310">{t.concreta}</text>
+  <text class="step-def" x="330" y="342" font-style="italic" font-family="Fraunces, serif" fill="#A87A2A">{t.yoCoordinaba}</text>
+  <text class="step-def" x="330" y="358" font-style="italic" font-family="Fraunces, serif" fill="#A87A2A">{t.laEntrega}</text>
 
   <!-- A -->
-  <rect class="step step-a has-tip" x="440" y="170" width="180" height="200" rx="8"><title>Es la parte más importante: usa «yo», no «nosotros». El entrevistador quiere saber qué aportaste tú, no qué hizo el equipo.</title></rect>
+  <rect class="step step-a has-tip" x="440" y="170" width="180" height="200" rx="8"><title>{t.esLaParteMas}</title></rect>
   <text class="step-letter" x="530" y="232" fill="#5B3A4E">A</text>
-  <text class="step-name" x="530" y="262">Acción</text>
-  <text class="step-def" x="530" y="292">Qué hiciste TÚ,</text>
-  <text class="step-def" x="530" y="310">no el equipo.</text>
-  <text class="step-def" x="530" y="342" font-style="italic" font-family="Fraunces, serif" fill="#5B3A4E">«Propuse repartir</text>
-  <text class="step-def" x="530" y="358" font-style="italic" font-family="Fraunces, serif" fill="#5B3A4E">tareas por escrito…»</text>
+  <text class="step-name" x="530" y="262">{t.accion}</text>
+  <text class="step-def" x="530" y="292">{t.queHicisteTu}</text>
+  <text class="step-def" x="530" y="310">{t.noElEquipo}</text>
+  <text class="step-def" x="530" y="342" font-style="italic" font-family="Fraunces, serif" fill="#5B3A4E">{t.propuseRepartir}</text>
+  <text class="step-def" x="530" y="358" font-style="italic" font-family="Fraunces, serif" fill="#5B3A4E">{t.tareasPorEscrito}</text>
 
   <!-- R -->
-  <rect class="step step-r has-tip" x="640" y="170" width="180" height="200" rx="8"><title>Cierra con un dato concreto siempre que puedas (una nota, un porcentaje, un plazo cumplido). Lo medible convence mucho más que «salió bien».</title></rect>
+  <rect class="step step-r has-tip" x="640" y="170" width="180" height="200" rx="8"><title>{t.cierraConUnDato}</title></rect>
   <text class="step-letter" x="730" y="232" fill="#1F6E6E">R</text>
-  <text class="step-name" x="730" y="262">Resultado</text>
-  <text class="step-def" x="730" y="292">El desenlace, con</text>
-  <text class="step-def" x="730" y="310">datos si se puede.</text>
-  <text class="step-def" x="730" y="342" font-style="italic" font-family="Fraunces, serif" fill="#1F6E6E">«Entregamos a</text>
-  <text class="step-def" x="730" y="358" font-style="italic" font-family="Fraunces, serif" fill="#1F6E6E">tiempo y sacamos 9.»</text>
+  <text class="step-name" x="730" y="262">{t.resultado}</text>
+  <text class="step-def" x="730" y="292">{t.elDesenlaceCon}</text>
+  <text class="step-def" x="730" y="310">{t.datosSiSePuede}</text>
+  <text class="step-def" x="730" y="342" font-style="italic" font-family="Fraunces, serif" fill="#1F6E6E">{t.entregamosA}</text>
+  <text class="step-def" x="730" y="358" font-style="italic" font-family="Fraunces, serif" fill="#1F6E6E">{t.tiempoYSacamos9}</text>
 
   <!-- arrows between steps -->
   <path class="arrow" d="M 222 270 L 238 270"/>
@@ -82,5 +150,5 @@
   <path class="arrow" d="M 622 270 L 638 270"/>
 
   <!-- footer -->
-  <text class="note" x="440" y="412">Una respuesta STAR completa dura entre 90 segundos y 2 minutos</text>
+  <text class="note" x="440" y="412">{t.unaRespuestaStarCompleta}</text>
 </svg>

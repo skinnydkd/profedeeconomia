@@ -7,10 +7,66 @@
  *
  * Used in EEAE 1BACH · Unit 7 (proteger la idea, el producto y la marca).
  */
+import { getLocale } from '@/i18n/locale';
+const locale = getLocale(Astro.currentLocale);
+
+const COPY = {
+  es: {
+    propiedadIndustrialYPropieda: 'Propiedad industrial y propiedad intelectual',
+    dosColumnasComparadasLa: 'Dos columnas comparadas. La propiedad industrial protege creaciones con aplicación industrial o comercial (marcas y nombres comerciales, patentes, modelos de utilidad y diseños industriales), normalmente requiere registro y la gestiona la Oficina Española de Patentes y Marcas. La propiedad intelectual protege creaciones artísticas, literarias y científicas (obras literarias, música y obras artísticas, fotografía y audiovisual, software) y nace con la propia creación según la Ley de Propiedad Intelectual. Para un proyecto, lo primero suele ser la marca y la patente solo si hay una invención técnica nueva.',
+    comoProtegerLoQue: 'Cómo proteger lo que crea tu proyecto',
+    protegeCreacionesConAplicaci: 'Protege creaciones con aplicación industrial o comercial. Normalmente hay que registrarla en la OEPM para tener el derecho en exclusiva.',
+    propiedadIndustrial: 'PROPIEDAD INDUSTRIAL',
+    creacionesConUsoIndustrial: 'Creaciones con uso industrial o comercial',
+    requiereRegistroOepm: 'Requiere registro · OEPM',
+    marcasYNombresComerciales: 'Marcas y nombres comerciales',
+    patentesInvencionesTecnicas: 'Patentes (invenciones técnicas)',
+    modelosDeUtilidad: 'Modelos de utilidad',
+    disenosIndustriales: 'Diseños industriales',
+    loPrimeroParaUn: 'Lo primero para un proyecto: la marca',
+    protegeCreacionesArtisticasL: 'Protege creaciones artísticas, literarias y científicas. El derecho nace con la propia creación: no hace falta registrarla, aunque el registro ayuda a probar la autoría.',
+    propiedadIntelectual: 'PROPIEDAD INTELECTUAL',
+    creacionesArtisticasLiterari: 'Creaciones artísticas, literarias y científicas',
+    naceConLaCreacion: 'Nace con la creación · LPI',
+    obrasLiterariasYCientificas: 'Obras literarias y científicas',
+    musicaYObrasArtisticas: 'Música y obras artísticas',
+    fotografiaYAudiovisual: 'Fotografía y audiovisual',
+    softwareElCodigoDel: 'Software (el código del programa)',
+    elRegistroEsOpcional: 'El registro es opcional, pero prueba la autoría',
+    laPatenteSoloSi: 'La patente solo si hay una invención técnica nueva; para casi todos los proyectos,',
+    loMasValiosoQue: 'lo más valioso que proteger es la marca: el nombre y la imagen que reconocen los clientes.',
+  },
+  ca: {
+    propiedadIndustrialYPropieda: 'Propietat industrial i propietat intel·lectual',
+    dosColumnasComparadasLa: "Dues columnes comparades. La propietat industrial protegix creacions amb aplicació industrial o comercial (marques i noms comercials, patents, models d'utilitat i dissenys industrials), normalment requerix registre i la gestiona l'Oficina Espanyola de Patents i Marques. La propietat intel·lectual protegix creacions artístiques, literàries i científiques (obres literàries, música i obres artístiques, fotografia i audiovisual, programari) i naix amb la creació mateixa segons la Llei de Propietat Intel·lectual. Per a un projecte, el primer sol ser la marca i la patent només si hi ha una invenció tècnica nova.",
+    comoProtegerLoQue: 'Com protegir el que crea el teu projecte',
+    protegeCreacionesConAplicaci: "Protegix creacions amb aplicació industrial o comercial. Normalment cal registrar-la a l'OEPM per a tindre el dret en exclusiva.",
+    propiedadIndustrial: 'PROPIETAT INDUSTRIAL',
+    creacionesConUsoIndustrial: 'Creacions amb ús industrial o comercial',
+    requiereRegistroOepm: 'Requerix registre · OEPM',
+    marcasYNombresComerciales: 'Marques i noms comercials',
+    patentesInvencionesTecnicas: 'Patents (invencions tècniques)',
+    modelosDeUtilidad: "Models d'utilitat",
+    disenosIndustriales: 'Dissenys industrials',
+    loPrimeroParaUn: 'El primer per a un projecte: la marca',
+    protegeCreacionesArtisticasL: "Protegix creacions artístiques, literàries i científiques. El dret naix amb la creació mateixa: no cal registrar-la, encara que el registre ajuda a provar l'autoria.",
+    propiedadIntelectual: 'PROPIETAT INTEL·LECTUAL',
+    creacionesArtisticasLiterari: 'Creacions artístiques, literàries i científiques',
+    naceConLaCreacion: 'Naix amb la creació · LPI',
+    obrasLiterariasYCientificas: 'Obres literàries i científiques',
+    musicaYObrasArtisticas: 'Música i obres artístiques',
+    fotografiaYAudiovisual: 'Fotografia i audiovisual',
+    softwareElCodigoDel: 'Programari (el codi del programa)',
+    elRegistroEsOpcional: "El registre és opcional, però prova l'autoria",
+    laPatenteSoloSi: 'La patent només si hi ha una invenció tècnica nova; per a quasi tots els projectes,',
+    loMasValiosoQue: 'el més valuós a protegir és la marca: el nom i la imatge que reconeixen els clients.',
+  },
+} as const;
+const t = COPY[locale];
 ---
 <svg viewBox="0 0 800 470" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="pii-title pii-desc">
-  <title id="pii-title">Propiedad industrial y propiedad intelectual</title>
-  <desc id="pii-desc">Dos columnas comparadas. La propiedad industrial protege creaciones con aplicación industrial o comercial (marcas y nombres comerciales, patentes, modelos de utilidad y diseños industriales), normalmente requiere registro y la gestiona la Oficina Española de Patentes y Marcas. La propiedad intelectual protege creaciones artísticas, literarias y científicas (obras literarias, música y obras artísticas, fotografía y audiovisual, software) y nace con la propia creación según la Ley de Propiedad Intelectual. Para un proyecto, lo primero suele ser la marca y la patente solo si hay una invención técnica nueva.</desc>
+  <title id="pii-title">{t.propiedadIndustrialYPropieda}</title>
+  <desc id="pii-desc">{t.dosColumnasComparadasLa}</desc>
   <defs>
     <style>
       .bg { fill: #FBF6EC; }
@@ -30,35 +86,35 @@
   </defs>
   <rect class="bg" x="0" y="0" width="800" height="470"/>
 
-  <text class="header" x="400" y="38">Cómo proteger lo que crea tu proyecto</text>
+  <text class="header" x="400" y="38">{t.comoProtegerLoQue}</text>
 
   <!-- Columna izquierda: propiedad industrial -->
   <rect class="card card-ind" x="60" y="62" width="320" height="338" rx="10"/>
-  <path class="band-ind has-tip" d="M60 72 a10 10 0 0 1 10 -10 h300 a10 10 0 0 1 10 10 v36 h-320 z"><title>Protege creaciones con aplicación industrial o comercial. Normalmente hay que registrarla en la OEPM para tener el derecho en exclusiva.</title></path>
-  <text class="col-title" x="220" y="86">PROPIEDAD INDUSTRIAL</text>
-  <text class="col-sub" x="220" y="130" fill="#9C3A1C">Creaciones con uso industrial o comercial</text>
-  <text class="col-tag" x="220" y="152" fill="#9C3A1C">Requiere registro · OEPM</text>
+  <path class="band-ind has-tip" d="M60 72 a10 10 0 0 1 10 -10 h300 a10 10 0 0 1 10 10 v36 h-320 z"><title>{t.protegeCreacionesConAplicaci}</title></path>
+  <text class="col-title" x="220" y="86">{t.propiedadIndustrial}</text>
+  <text class="col-sub" x="220" y="130" fill="#9C3A1C">{t.creacionesConUsoIndustrial}</text>
+  <text class="col-tag" x="220" y="152" fill="#9C3A1C">{t.requiereRegistroOepm}</text>
   <line x1="84" y1="170" x2="356" y2="170" stroke="#C44E2C" stroke-width="1"/>
-  <text class="item" x="92" y="206"><tspan fill="#C44E2C" font-weight="700">—</tspan>  Marcas y nombres comerciales</text>
-  <text class="item" x="92" y="246"><tspan fill="#C44E2C" font-weight="700">—</tspan>  Patentes (invenciones técnicas)</text>
-  <text class="item" x="92" y="286"><tspan fill="#C44E2C" font-weight="700">—</tspan>  Modelos de utilidad</text>
-  <text class="item" x="92" y="326"><tspan fill="#C44E2C" font-weight="700">—</tspan>  Diseños industriales</text>
-  <text class="col-sub" x="220" y="372" fill="#5C4A3D">Lo primero para un proyecto: la marca</text>
+  <text class="item" x="92" y="206"><tspan fill="#C44E2C" font-weight="700">—</tspan>  {t.marcasYNombresComerciales}</text>
+  <text class="item" x="92" y="246"><tspan fill="#C44E2C" font-weight="700">—</tspan>  {t.patentesInvencionesTecnicas}</text>
+  <text class="item" x="92" y="286"><tspan fill="#C44E2C" font-weight="700">—</tspan>  {t.modelosDeUtilidad}</text>
+  <text class="item" x="92" y="326"><tspan fill="#C44E2C" font-weight="700">—</tspan>  {t.disenosIndustriales}</text>
+  <text class="col-sub" x="220" y="372" fill="#5C4A3D">{t.loPrimeroParaUn}</text>
 
   <!-- Columna derecha: propiedad intelectual -->
   <rect class="card card-int" x="420" y="62" width="320" height="338" rx="10"/>
-  <path class="band-int has-tip" d="M420 72 a10 10 0 0 1 10 -10 h300 a10 10 0 0 1 10 10 v36 h-320 z"><title>Protege creaciones artísticas, literarias y científicas. El derecho nace con la propia creación: no hace falta registrarla, aunque el registro ayuda a probar la autoría.</title></path>
-  <text class="col-title" x="580" y="86">PROPIEDAD INTELECTUAL</text>
-  <text class="col-sub" x="580" y="130" fill="#A87A2A">Creaciones artísticas, literarias y científicas</text>
-  <text class="col-tag" x="580" y="152" fill="#A87A2A">Nace con la creación · LPI</text>
+  <path class="band-int has-tip" d="M420 72 a10 10 0 0 1 10 -10 h300 a10 10 0 0 1 10 10 v36 h-320 z"><title>{t.protegeCreacionesArtisticasL}</title></path>
+  <text class="col-title" x="580" y="86">{t.propiedadIntelectual}</text>
+  <text class="col-sub" x="580" y="130" fill="#A87A2A">{t.creacionesArtisticasLiterari}</text>
+  <text class="col-tag" x="580" y="152" fill="#A87A2A">{t.naceConLaCreacion}</text>
   <line x1="444" y1="170" x2="716" y2="170" stroke="#D4A24C" stroke-width="1"/>
-  <text class="item" x="452" y="206"><tspan fill="#A87A2A" font-weight="700">—</tspan>  Obras literarias y científicas</text>
-  <text class="item" x="452" y="246"><tspan fill="#A87A2A" font-weight="700">—</tspan>  Música y obras artísticas</text>
-  <text class="item" x="452" y="286"><tspan fill="#A87A2A" font-weight="700">—</tspan>  Fotografía y audiovisual</text>
-  <text class="item" x="452" y="326"><tspan fill="#A87A2A" font-weight="700">—</tspan>  Software (el código del programa)</text>
-  <text class="col-sub" x="580" y="372" fill="#5C4A3D">El registro es opcional, pero prueba la autoría</text>
+  <text class="item" x="452" y="206"><tspan fill="#A87A2A" font-weight="700">—</tspan>  {t.obrasLiterariasYCientificas}</text>
+  <text class="item" x="452" y="246"><tspan fill="#A87A2A" font-weight="700">—</tspan>  {t.musicaYObrasArtisticas}</text>
+  <text class="item" x="452" y="286"><tspan fill="#A87A2A" font-weight="700">—</tspan>  {t.fotografiaYAudiovisual}</text>
+  <text class="item" x="452" y="326"><tspan fill="#A87A2A" font-weight="700">—</tspan>  {t.softwareElCodigoDel}</text>
+  <text class="col-sub" x="580" y="372" fill="#5C4A3D">{t.elRegistroEsOpcional}</text>
 
   <!-- Footer -->
-  <text class="footer" x="400" y="438">La patente solo si hay una invención técnica nueva; para casi todos los proyectos,</text>
-  <text class="footer" x="400" y="458">lo más valioso que proteger es la marca: el nombre y la imagen que reconocen los clientes.</text>
+  <text class="footer" x="400" y="438">{t.laPatenteSoloSi}</text>
+  <text class="footer" x="400" y="458">{t.loMasValiosoQue}</text>
 </svg>

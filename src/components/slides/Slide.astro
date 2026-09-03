@@ -10,10 +10,12 @@ const brand = 'profedeeconomia.es';
 const L = locale === 'ca'
   ? { ejercicio: 'Exercici', comprueba: 'Comprova el que saps', solucion: 'Solució', fuente: 'Font',
       donde: 'On', ejemplo: 'Exemple', elCaso: 'El cas', datos: 'Dades', pregunta: 'La pregunta',
-      repasa: 'Repassa abans de l\u2019examen', saberes: 'Sabers bàsics', competencias: 'Competències específiques', criterios: 'Criteris d\u2019avaluació' }
+      repasa: 'Repassa abans de l\u2019examen', saberes: 'Sabers bàsics', competencias: 'Competències específiques', criterios: 'Criteris d\u2019avaluació',
+      elGrafico: 'El gràfic' }
   : { ejercicio: 'Ejercicio', comprueba: 'Comprueba lo que sabes', solucion: 'Solución', fuente: 'Fuente',
       donde: 'Donde', ejemplo: 'Ejemplo', elCaso: 'El caso', datos: 'Datos', pregunta: 'La pregunta',
-      repasa: 'Repasa antes del examen', saberes: 'Saberes básicos', competencias: 'Competencias específicas', criterios: 'Criterios de evaluación' };
+      repasa: 'Repasa antes del examen', saberes: 'Saberes básicos', competencias: 'Competencias específicas', criterios: 'Criterios de evaluación',
+      elGrafico: 'El gráfico' };
 const letters = ['A', 'B', 'C', 'D'];
 ---
 {slide.tipo === 'cover' && (
@@ -46,7 +48,7 @@ const letters = ['A', 'B', 'C', 'D'];
   <section class="slide s-diagram">
     <svg class="slide__corner" viewBox="0 0 22 14" style="z-index:2"><path d="M1 13 C7 13 11 3 21 1" fill="none" stroke="var(--color-mustard)" stroke-width="1.3"/></svg>
     <div class="slide__pad">
-      <div class="slide__eyebrow">El gráfico</div>
+      <div class="slide__eyebrow">{L.elGrafico}</div>
       {s.caption && <h2>{s.caption}</h2>}
       <div class="viz"><SlideDiagramMount diagrama={s.diagrama} /></div>
     </div>

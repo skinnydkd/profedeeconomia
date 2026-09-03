@@ -7,10 +7,56 @@
  *
  * Used in EDMN 2BACH · Unit 12 (comunicación, prototipado y plan de empresa).
  */
+import { getLocale } from '@/i18n/locale';
+const locale = getLocale(Astro.currentLocale);
+
+const COPY = {
+  es: {
+    tamSamYSom: 'TAM, SAM y SOM',
+    tresCirculosConcentricosEl: 'Tres círculos concéntricos: el TAM es el mercado total disponible, el SAM es la parte de ese mercado a la que la empresa puede servir con su modelo y geografía, y el SOM es la cuota realista que espera captar a corto y medio plazo.',
+    seCalculaDeArriba: 'Se calcula de arriba abajo: número total de clientes potenciales × gasto medio anual. Es una cifra grande y teórica que sirve para saber si el mercado es lo bastante interesante.',
+    acotaElTamA: 'Acota el TAM a quien de verdad puedes atender: tu zona geográfica, tu idioma, tu canal de venta y la regulación que te aplica. Es el mercado que tu modelo puede alcanzar.',
+    esLaCifraQue: 'Es la cifra que debe ir en el plan de empresa: la cuota realista de los primeros 1-3 años, descontando la competencia ya instalada y tus recursos limitados de arranque.',
+    tamTotalAddressableMarket: 'TAM · Total Addressable Market',
+    mercadoTotalDisponible: 'Mercado total disponible',
+    demandaGlobalDelProducto: 'Demanda global del producto si lo comprara',
+    todoElMundoPosible: 'todo el mundo posible. El techo teórico.',
+    samServiceableAvailableMarke: 'SAM · Serviceable Available Market',
+    mercadoServible: 'Mercado servible',
+    laParteDelTam: 'La parte del TAM a la que llegamos por modelo,',
+    geografiaIdiomaORegulacion: 'geografía, idioma o regulación.',
+    somServiceableObtainableMark: 'SOM · Serviceable Obtainable Market',
+    mercadoObtenible: 'Mercado obtenible',
+    laCuotaRealistaQue: 'La cuota realista que esperamos captar a corto',
+    yMedioPlazoDada: 'y medio plazo, dada la competencia y recursos.',
+    tamSamSomCada: 'TAM ⊃ SAM ⊃ SOM · cada nivel acota el anterior con un criterio más realista.',
+  },
+  ca: {
+    tamSamYSom: 'TAM, SAM i SOM',
+    tresCirculosConcentricosEl: "Tres cercles concèntrics: el TAM és el mercat total disponible, el SAM és la part d'eixe mercat a la qual l'empresa pot servir amb el seu model i geografia, i el SOM és la quota realista que espera captar a curt i mitjà termini.",
+    seCalculaDeArriba: 'Es calcula de dalt a baix: nombre total de clients potencials × despesa mitjana anual. És una xifra gran i teòrica que servix per a saber si el mercat és prou interessant.',
+    acotaElTamA: "Acota el TAM a qui de veritat pots atendre: la teua zona geogràfica, el teu idioma, el teu canal de venda i la regulació que se t'aplica. És el mercat que el teu model pot abastar.",
+    esLaCifraQue: "És la xifra que ha d'anar al pla d'empresa: la quota realista dels primers 1-3 anys, descomptant la competència ja instal·lada i els teus recursos limitats d'arrancada.",
+    tamTotalAddressableMarket: 'TAM · Total Addressable Market',
+    mercadoTotalDisponible: 'Mercat total disponible',
+    demandaGlobalDelProducto: 'Demanda global del producte si el comprara',
+    todoElMundoPosible: 'tot el món possible. El sostre teòric.',
+    samServiceableAvailableMarke: 'SAM · Serviceable Available Market',
+    mercadoServible: 'Mercat servible',
+    laParteDelTam: 'La part del TAM a la qual arribem per model,',
+    geografiaIdiomaORegulacion: 'geografia, idioma o regulació.',
+    somServiceableObtainableMark: 'SOM · Serviceable Obtainable Market',
+    mercadoObtenible: 'Mercat obtenible',
+    laCuotaRealistaQue: 'La quota realista que esperem captar a curt',
+    yMedioPlazoDada: 'i mitjà termini, donada la competència i els recursos.',
+    tamSamSomCada: "TAM ⊃ SAM ⊃ SOM · cada nivell acota l'anterior amb un criteri més realista.",
+  },
+} as const;
+const t = COPY[locale];
 ---
 <svg viewBox="0 0 880 480" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="tamsamsom-title tamsamsom-desc">
-  <title id="tamsamsom-title">TAM, SAM y SOM</title>
-  <desc id="tamsamsom-desc">Tres círculos concéntricos: el TAM es el mercado total disponible, el SAM es la parte de ese mercado a la que la empresa puede servir con su modelo y geografía, y el SOM es la cuota realista que espera captar a corto y medio plazo.</desc>
+  <title id="tamsamsom-title">{t.tamSamYSom}</title>
+  <desc id="tamsamsom-desc">{t.tresCirculosConcentricosEl}</desc>
   <defs>
     <style>
       .bg { fill: #FBF6EC; }
@@ -32,9 +78,9 @@
   <rect class="bg" x="0" y="0" width="880" height="480"/>
 
   <!-- Concentric circles centered at (230, 240) -->
-  <circle class="tam has-tip" cx="230" cy="240" r="180"><title>Se calcula de arriba abajo: número total de clientes potenciales × gasto medio anual. Es una cifra grande y teórica que sirve para saber si el mercado es lo bastante interesante.</title></circle>
-  <circle class="sam has-tip" cx="230" cy="295" r="110"><title>Acota el TAM a quien de verdad puedes atender: tu zona geográfica, tu idioma, tu canal de venta y la regulación que te aplica. Es el mercado que tu modelo puede alcanzar.</title></circle>
-  <circle class="som has-tip" cx="230" cy="330" r="55"><title>Es la cifra que debe ir en el plan de empresa: la cuota realista de los primeros 1-3 años, descontando la competencia ya instalada y tus recursos limitados de arranque.</title></circle>
+  <circle class="tam has-tip" cx="230" cy="240" r="180"><title>{t.seCalculaDeArriba}</title></circle>
+  <circle class="sam has-tip" cx="230" cy="295" r="110"><title>{t.acotaElTamA}</title></circle>
+  <circle class="som has-tip" cx="230" cy="330" r="55"><title>{t.esLaCifraQue}</title></circle>
 
   <!-- Ring labels -->
   <text class="ring-label ring-tam" x="230" y="100" text-anchor="middle">TAM</text>
@@ -49,30 +95,30 @@
   <!-- CARD TAM -->
   <g>
     <rect x="510" y="60" width="330" height="100" rx="8" fill="#FFFFFF" stroke="#D4A24C" stroke-width="1.6"/>
-    <text class="card-tag" x="528" y="84" fill="#A87A2A">TAM · Total Addressable Market</text>
-    <text class="card-title" x="528" y="106">Mercado total disponible</text>
-    <text class="card-sub" x="528" y="126">Demanda global del producto si lo comprara</text>
-    <text class="card-sub" x="528" y="142">todo el mundo posible. El techo teórico.</text>
+    <text class="card-tag" x="528" y="84" fill="#A87A2A">{t.tamTotalAddressableMarket}</text>
+    <text class="card-title" x="528" y="106">{t.mercadoTotalDisponible}</text>
+    <text class="card-sub" x="528" y="126">{t.demandaGlobalDelProducto}</text>
+    <text class="card-sub" x="528" y="142">{t.todoElMundoPosible}</text>
   </g>
 
   <!-- CARD SAM -->
   <g>
     <rect x="510" y="195" width="330" height="100" rx="8" fill="#FFFFFF" stroke="#C44E2C" stroke-width="1.6"/>
-    <text class="card-tag" x="528" y="219" fill="#9C3A1C">SAM · Serviceable Available Market</text>
-    <text class="card-title" x="528" y="241">Mercado servible</text>
-    <text class="card-sub" x="528" y="261">La parte del TAM a la que llegamos por modelo,</text>
-    <text class="card-sub" x="528" y="277">geografía, idioma o regulación.</text>
+    <text class="card-tag" x="528" y="219" fill="#9C3A1C">{t.samServiceableAvailableMarke}</text>
+    <text class="card-title" x="528" y="241">{t.mercadoServible}</text>
+    <text class="card-sub" x="528" y="261">{t.laParteDelTam}</text>
+    <text class="card-sub" x="528" y="277">{t.geografiaIdiomaORegulacion}</text>
   </g>
 
   <!-- CARD SOM -->
   <g>
     <rect x="510" y="330" width="330" height="100" rx="8" fill="#FFFFFF" stroke="#9C3A1C" stroke-width="1.8"/>
-    <text class="card-tag" x="528" y="354" fill="#9C3A1C">SOM · Serviceable Obtainable Market</text>
-    <text class="card-title" x="528" y="376">Mercado obtenible</text>
-    <text class="card-sub" x="528" y="396">La cuota realista que esperamos captar a corto</text>
-    <text class="card-sub" x="528" y="412">y medio plazo, dada la competencia y recursos.</text>
+    <text class="card-tag" x="528" y="354" fill="#9C3A1C">{t.somServiceableObtainableMark}</text>
+    <text class="card-title" x="528" y="376">{t.mercadoObtenible}</text>
+    <text class="card-sub" x="528" y="396">{t.laCuotaRealistaQue}</text>
+    <text class="card-sub" x="528" y="412">{t.yMedioPlazoDada}</text>
   </g>
 
   <!-- Footnote -->
-  <text class="footnote" x="40" y="455">TAM ⊃ SAM ⊃ SOM · cada nivel acota el anterior con un criterio más realista.</text>
+  <text class="footnote" x="40" y="455">{t.tamSamSomCada}</text>
 </svg>

@@ -7,10 +7,46 @@
  *
  * Used in Eco 4ESO · money & finance unit.
  */
+import { getLocale } from '@/i18n/locale';
+const locale = getLocale(Astro.currentLocale);
+
+const COPY = {
+  es: {
+    lasTresFuncionesDel: 'Las tres funciones del dinero',
+    elDineroCumpleTres: 'El dinero cumple tres funciones: medio de pago (comprar y vender), unidad de cuenta (poner precio y comparar) y depósito de valor (guardar riqueza para después).',
+    paraQueSirveEl: 'Para qué sirve el dinero',
+    medioDePago: 'Medio de pago',
+    sirveParaComprarY: 'Sirve para comprar y vender',
+    sinTrueque: 'sin trueque.',
+    unidadDeCuenta: 'Unidad de cuenta',
+    sirveParaPonerPrecio: 'Sirve para poner precio',
+    yComparar: 'y comparar.',
+    depositoDeValor: 'Depósito de valor',
+    sirveParaGuardarRiqueza: 'Sirve para guardar riqueza',
+    paraMasTarde: 'para más tarde.',
+    sinLasTresFunciones: 'Sin las tres funciones, el dinero no serviría.',
+  },
+  ca: {
+    lasTresFuncionesDel: 'Les tres funcions dels diners',
+    elDineroCumpleTres: 'Els diners complixen tres funcions: mitjà de pagament (comprar i vendre), unitat de compte (posar preu i comparar) i depòsit de valor (guardar riquesa per a després).',
+    paraQueSirveEl: 'Per a què servixen els diners',
+    medioDePago: 'Mitjà de pagament',
+    sirveParaComprarY: 'Servix per a comprar i vendre',
+    sinTrueque: 'sense bescanvi.',
+    unidadDeCuenta: 'Unitat de compte',
+    sirveParaPonerPrecio: 'Servix per a posar preu',
+    yComparar: 'i comparar.',
+    depositoDeValor: 'Depòsit de valor',
+    sirveParaGuardarRiqueza: 'Servix per a guardar riquesa',
+    paraMasTarde: 'per a més tard.',
+    sinLasTresFunciones: 'Sense les tres funcions, els diners no servirien.',
+  },
+} as const;
+const t = COPY[locale];
 ---
 <svg viewBox="0 0 920 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="funcdinero-title funcdinero-desc">
-  <title id="funcdinero-title">Las tres funciones del dinero</title>
-  <desc id="funcdinero-desc">El dinero cumple tres funciones: medio de pago (comprar y vender), unidad de cuenta (poner precio y comparar) y depósito de valor (guardar riqueza para después).</desc>
+  <title id="funcdinero-title">{t.lasTresFuncionesDel}</title>
+  <desc id="funcdinero-desc">{t.elDineroCumpleTres}</desc>
   <defs>
     <style>
       .bg { fill: #FBF6EC; }
@@ -33,13 +69,13 @@
   </defs>
   <rect class="bg" x="0" y="0" width="920" height="400"/>
 
-  <text class="heading" x="460" y="34">Para qué sirve el dinero</text>
+  <text class="heading" x="460" y="34">{t.paraQueSirveEl}</text>
 
   <!-- ============ Panel 1: Medio de pago (terracota) ============ -->
   <g>
     <rect class="panel-pago panel-stroke-pago" x="30" y="56" width="270" height="260" rx="12"/>
     <rect class="top-pago" x="30" y="56" width="270" height="8" rx="4"/>
-    <text class="p-title" x="165" y="98">Medio de pago</text>
+    <text class="p-title" x="165" y="98">{t.medioDePago}</text>
 
     <!-- icon: buyer ↔ seller with a coin passing between them -->
     <!-- left person -->
@@ -57,15 +93,15 @@
     <path d="M 190 168 H 212" fill="none" stroke="#C44E2C" stroke-width="2.5"/>
     <path d="M 206 163 L 213 168 L 206 173" fill="none" stroke="#C44E2C" stroke-width="2.5"/>
 
-    <text class="p-line" x="165" y="250">Sirve para comprar y vender</text>
-    <text class="p-line" x="165" y="272">sin trueque.</text>
+    <text class="p-line" x="165" y="250">{t.sirveParaComprarY}</text>
+    <text class="p-line" x="165" y="272">{t.sinTrueque}</text>
   </g>
 
   <!-- ============ Panel 2: Unidad de cuenta (mustard) ============ -->
   <g>
     <rect class="panel-cuenta panel-stroke-cuenta" x="325" y="56" width="270" height="260" rx="12"/>
     <rect class="top-cuenta" x="325" y="56" width="270" height="8" rx="4"/>
-    <text class="p-title" x="460" y="98">Unidad de cuenta</text>
+    <text class="p-title" x="460" y="98">{t.unidadDeCuenta}</text>
 
     <!-- icon: three price tags 1 €, 20 €, 500 € -->
     <!-- tag 1 -->
@@ -81,15 +117,15 @@
     <circle cx="434" cy="187" r="3" fill="#A87A2A"/>
     <text class="tag-text" x="477" y="192" fill="#A87A2A">500 €</text>
 
-    <text class="p-line" x="460" y="250">Sirve para poner precio</text>
-    <text class="p-line" x="460" y="272">y comparar.</text>
+    <text class="p-line" x="460" y="250">{t.sirveParaPonerPrecio}</text>
+    <text class="p-line" x="460" y="272">{t.yComparar}</text>
   </g>
 
   <!-- ============ Panel 3: Depósito de valor (teal) ============ -->
   <g>
     <rect class="panel-valor panel-stroke-valor" x="620" y="56" width="270" height="260" rx="12"/>
     <rect class="top-valor" x="620" y="56" width="270" height="8" rx="4"/>
-    <text class="p-title" x="755" y="98">Depósito de valor</text>
+    <text class="p-title" x="755" y="98">{t.depositoDeValor}</text>
 
     <!-- icon: a piggy bank with a coin going in -->
     <!-- coin dropping in -->
@@ -111,11 +147,11 @@
     <rect x="722" y="214" width="8" height="14" rx="3" fill="#1F6E6E"/>
     <rect x="780" y="214" width="8" height="14" rx="3" fill="#1F6E6E"/>
 
-    <text class="p-line" x="755" y="252">Sirve para guardar riqueza</text>
-    <text class="p-line" x="755" y="274">para más tarde.</text>
+    <text class="p-line" x="755" y="252">{t.sirveParaGuardarRiqueza}</text>
+    <text class="p-line" x="755" y="274">{t.paraMasTarde}</text>
   </g>
 
   <!-- ============ Bottom strip ============ -->
   <rect class="strip-bg" x="30" y="344" width="860" height="40" rx="8"/>
-  <text class="strip-text" x="460" y="370">Sin las tres funciones, el dinero no serviría.</text>
+  <text class="strip-text" x="460" y="370">{t.sinLasTresFunciones}</text>
 </svg>

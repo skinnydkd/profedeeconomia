@@ -7,10 +7,66 @@
  *
  * Used in Eco 4ESO · Unit 3 (ética y emprendimiento social).
  */
+import { getLocale } from '@/i18n/locale';
+const locale = getLocale(Astro.currentLocale);
+
+const COPY = {
+  es: {
+    economiaLinealFrenteA: 'Economía lineal frente a economía circular',
+    aLaIzquierdaEl: 'A la izquierda, el modelo lineal es una flecha recta de extraer, fabricar, usar y tirar que termina en residuo. A la derecha, el modelo circular cierra el ciclo: tras usar el producto se repara, se reutiliza y se recicla para devolver los materiales a la fabricación, reduciendo el residuo al mínimo.',
+    dosFormasDeProducir: 'DOS FORMAS DE PRODUCIR Y CONSUMIR',
+    modeloLineal: 'Modelo lineal',
+    extraerFabricarUsarTirar: 'extraer · fabricar · usar · tirar',
+    extraer: 'Extraer',
+    fabricar: 'Fabricar',
+    usar: 'Usar',
+    enElModeloLineal: 'En el modelo lineal todo acaba en el vertedero o la incineradora. Es insostenible: agota recursos finitos y genera contaminación que no se reaprovecha.',
+    tirarResiduo: 'Tirar (residuo)',
+    modeloCircular: 'Modelo circular',
+    losMaterialesVuelvenAl: 'los materiales vuelven al ciclo',
+    fabricar2: 'Fabricar',
+    usar2: 'Usar',
+    alargarLaVidaDel: 'Alargar la vida del producto en lugar de comprar uno nuevo. Por eso existe el «derecho a reparar», que obliga a los fabricantes a facilitar piezas y arreglos.',
+    reparar: 'Reparar',
+    darUnaSegundaVida: 'Dar una segunda vida al producto tal cual, sin transformarlo: venta de segunda mano, donaciones, envases retornables. Es preferible a reciclar porque no gasta energía nueva.',
+    reutilizar: 'Reutilizar',
+    recuperarLosMaterialesPara: 'Recuperar los materiales para fabricar productos nuevos. Es la última opción de la jerarquía: mejor reducir, reutilizar y reparar antes, porque reciclar también consume energía.',
+    reciclar: 'Reciclar',
+    reducir: 'Reducir',
+    menosResiduo: 'menos residuo',
+    reciclarEsSoloUna: 'Reciclar es solo una parte: la economía circular también repara, reutiliza y diseña para durar.',
+  },
+  ca: {
+    economiaLinealFrenteA: "Economia lineal enfront d'economia circular",
+    aLaIzquierdaEl: "A l'esquerra, el model lineal és una fletxa recta d'extraure, fabricar, usar i tirar que acaba en residu. A la dreta, el model circular tanca el cicle: després d'usar el producte es repara, es reutilitza i es recicla per a tornar els materials a la fabricació, reduint el residu al mínim.",
+    dosFormasDeProducir: 'DUES FORMES DE PRODUIR I CONSUMIR',
+    modeloLineal: 'Model lineal',
+    extraerFabricarUsarTirar: 'extraure · fabricar · usar · tirar',
+    extraer: 'Extraure',
+    fabricar: 'Fabricar',
+    usar: 'Usar',
+    enElModeloLineal: "En el model lineal tot acaba a l'abocador o la incineradora. És insostenible: esgota recursos finits i genera contaminació que no es reaprofita.",
+    tirarResiduo: 'Tirar (residu)',
+    modeloCircular: 'Model circular',
+    losMaterialesVuelvenAl: 'els materials tornen al cicle',
+    fabricar2: 'Fabricar',
+    usar2: 'Usar',
+    alargarLaVidaDel: 'Allargar la vida del producte en compte de comprar-ne un de nou. Per això existix el «dret a reparar», que obliga els fabricants a facilitar peces i arreglaments.',
+    reparar: 'Reparar',
+    darUnaSegundaVida: 'Donar una segona vida al producte tal com està, sense transformar-lo: venda de segona mà, donacions, envasos retornables. És preferible a reciclar perquè no gasta energia nova.',
+    reutilizar: 'Reutilitzar',
+    recuperarLosMaterialesPara: "Recuperar els materials per a fabricar productes nous. És l'última opció de la jerarquia: millor reduir, reutilitzar i reparar abans, perquè reciclar també consumix energia.",
+    reciclar: 'Reciclar',
+    reducir: 'Reduir',
+    menosResiduo: 'menys residu',
+    reciclarEsSoloUna: "Reciclar només és una part: l'economia circular també repara, reutilitza i dissenya per a durar.",
+  },
+} as const;
+const t = COPY[locale];
 ---
 <svg viewBox="0 0 800 470" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="circular-title circular-desc">
-  <title id="circular-title">Economía lineal frente a economía circular</title>
-  <desc id="circular-desc">A la izquierda, el modelo lineal es una flecha recta de extraer, fabricar, usar y tirar que termina en residuo. A la derecha, el modelo circular cierra el ciclo: tras usar el producto se repara, se reutiliza y se recicla para devolver los materiales a la fabricación, reduciendo el residuo al mínimo.</desc>
+  <title id="circular-title">{t.economiaLinealFrenteA}</title>
+  <desc id="circular-desc">{t.aLaIzquierdaEl}</desc>
   <defs>
     <style>
       .bg { fill: #FBF6EC; }
@@ -38,27 +94,27 @@
   </defs>
   <rect class="bg" x="0" y="0" width="800" height="470"/>
 
-  <text class="header" x="400" y="36">DOS FORMAS DE PRODUCIR Y CONSUMIR</text>
+  <text class="header" x="400" y="36">{t.dosFormasDeProducir}</text>
 
   <!-- Divider -->
   <line class="divider" x1="290" y1="70" x2="290" y2="410"/>
 
   <!-- ===== LEFT: linear model ===== -->
-  <text class="panel-title" x="150" y="90" fill="#5C4A3D">Modelo lineal</text>
-  <text class="panel-sub" x="150" y="110">extraer · fabricar · usar · tirar</text>
+  <text class="panel-title" x="150" y="90" fill="#5C4A3D">{t.modeloLineal}</text>
+  <text class="panel-sub" x="150" y="110">{t.extraerFabricarUsarTirar}</text>
 
   <!-- Four stacked nodes -->
   <rect class="node node-linear" x="70" y="135" width="160" height="42" rx="5"/>
-  <text class="node-text" x="150" y="161" fill="#5C4A3D">Extraer</text>
+  <text class="node-text" x="150" y="161" fill="#5C4A3D">{t.extraer}</text>
 
   <rect class="node node-linear" x="70" y="205" width="160" height="42" rx="5"/>
-  <text class="node-text" x="150" y="231" fill="#5C4A3D">Fabricar</text>
+  <text class="node-text" x="150" y="231" fill="#5C4A3D">{t.fabricar}</text>
 
   <rect class="node node-linear" x="70" y="275" width="160" height="42" rx="5"/>
-  <text class="node-text" x="150" y="301" fill="#5C4A3D">Usar</text>
+  <text class="node-text" x="150" y="301" fill="#5C4A3D">{t.usar}</text>
 
-  <rect class="waste has-tip" x="70" y="345" width="160" height="42" rx="5"><title>En el modelo lineal todo acaba en el vertedero o la incineradora. Es insostenible: agota recursos finitos y genera contaminación que no se reaprovecha.</title></rect>
-  <text class="node-text" x="150" y="371" fill="#9C3A1C">Tirar (residuo)</text>
+  <rect class="waste has-tip" x="70" y="345" width="160" height="42" rx="5"><title>{t.enElModeloLineal}</title></rect>
+  <text class="node-text" x="150" y="371" fill="#9C3A1C">{t.tirarResiduo}</text>
 
   <!-- Vertical arrows -->
   <line class="flow-linear" x1="150" y1="177" x2="150" y2="200"/>
@@ -66,29 +122,29 @@
   <line class="flow-linear" x1="150" y1="317" x2="150" y2="340"/>
 
   <!-- ===== RIGHT: circular model ===== -->
-  <text class="panel-title" x="545" y="90" fill="#A87A2A">Modelo circular</text>
-  <text class="panel-sub" x="545" y="110">los materiales vuelven al ciclo</text>
+  <text class="panel-title" x="545" y="90" fill="#A87A2A">{t.modeloCircular}</text>
+  <text class="panel-sub" x="545" y="110">{t.losMaterialesVuelvenAl}</text>
 
   <!-- Circle layout, center (545, 265), radius ~120. Five nodes around it. -->
   <!-- Top: Fabricar (545,150) -->
   <rect class="node node-circ-strong" x="475" y="135" width="140" height="40" rx="5"/>
-  <text class="node-text" x="545" y="160" fill="#A87A2A">Fabricar</text>
+  <text class="node-text" x="545" y="160" fill="#A87A2A">{t.fabricar2}</text>
 
   <!-- Right: Usar (660,235) -->
   <rect class="node node-circ" x="600" y="215" width="130" height="40" rx="5"/>
-  <text class="node-text" x="665" y="240" fill="#A87A2A">Usar</text>
+  <text class="node-text" x="665" y="240" fill="#A87A2A">{t.usar2}</text>
 
   <!-- Bottom-right: Reparar (640,330) -->
-  <rect class="node node-circ has-tip" x="585" y="312" width="130" height="40" rx="5"><title>Alargar la vida del producto en lugar de comprar uno nuevo. Por eso existe el «derecho a reparar», que obliga a los fabricantes a facilitar piezas y arreglos.</title></rect>
-  <text class="node-text" x="650" y="337" fill="#A87A2A">Reparar</text>
+  <rect class="node node-circ has-tip" x="585" y="312" width="130" height="40" rx="5"><title>{t.alargarLaVidaDel}</title></rect>
+  <text class="node-text" x="650" y="337" fill="#A87A2A">{t.reparar}</text>
 
   <!-- Bottom-left: Reutilizar (445,330) -->
-  <rect class="node node-circ has-tip" x="375" y="312" width="140" height="40" rx="5"><title>Dar una segunda vida al producto tal cual, sin transformarlo: venta de segunda mano, donaciones, envases retornables. Es preferible a reciclar porque no gasta energía nueva.</title></rect>
-  <text class="node-text" x="445" y="337" fill="#A87A2A">Reutilizar</text>
+  <rect class="node node-circ has-tip" x="375" y="312" width="140" height="40" rx="5"><title>{t.darUnaSegundaVida}</title></rect>
+  <text class="node-text" x="445" y="337" fill="#A87A2A">{t.reutilizar}</text>
 
   <!-- Left: Reciclar (425,235) -->
-  <rect class="node node-circ-strong has-tip" x="360" y="215" width="130" height="40" rx="5"><title>Recuperar los materiales para fabricar productos nuevos. Es la última opción de la jerarquía: mejor reducir, reutilizar y reparar antes, porque reciclar también consume energía.</title></rect>
-  <text class="node-text" x="425" y="240" fill="#A87A2A">Reciclar</text>
+  <rect class="node node-circ-strong has-tip" x="360" y="215" width="130" height="40" rx="5"><title>{t.recuperarLosMaterialesPara}</title></rect>
+  <text class="node-text" x="425" y="240" fill="#A87A2A">{t.reciclar}</text>
 
   <!-- Curved arrows forming the loop (clockwise) -->
   <!-- Fabricar -> Usar -->
@@ -103,9 +159,9 @@
   <path class="flow-circ" d="M 440 215 Q 460 175 473 162"/>
 
   <!-- Center label -->
-  <text x="545" y="262" font-family="Fraunces, serif" font-style="italic" font-size="14" font-weight="500" fill="#A87A2A" text-anchor="middle">Reducir</text>
-  <text x="545" y="280" font-family="Switzer, sans-serif" font-size="10" fill="#8A7868" text-anchor="middle">menos residuo</text>
+  <text x="545" y="262" font-family="Fraunces, serif" font-style="italic" font-size="14" font-weight="500" fill="#A87A2A" text-anchor="middle">{t.reducir}</text>
+  <text x="545" y="280" font-family="Switzer, sans-serif" font-size="10" fill="#8A7868" text-anchor="middle">{t.menosResiduo}</text>
 
   <!-- Footer -->
-  <text class="footer" x="400" y="438">Reciclar es solo una parte: la economía circular también repara, reutiliza y diseña para durar.</text>
+  <text class="footer" x="400" y="438">{t.reciclarEsSoloUna}</text>
 </svg>

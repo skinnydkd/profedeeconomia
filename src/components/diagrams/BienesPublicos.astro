@@ -7,10 +7,76 @@
  *
  * Used in Eco 1BACH · Unit 6 (market failures and public goods).
  */
+import { getLocale } from '@/i18n/locale';
+const locale = getLocale(Astro.currentLocale);
+
+const COPY = {
+  es: {
+    matrizDeBienesRivalidad: 'Matriz de bienes: rivalidad y exclusión',
+    matrizDosPorDos: 'Matriz dos por dos que clasifica los bienes según sean rivales o no en el consumo y excluibles o no. Combina cuatro tipos: bienes privados (rival y excluible), bienes de club (no rival y excluible), recursos comunes (rival y no excluible) y bienes públicos puros (no rival y no excluible), con un ejemplo en cada cuadrante.',
+    excluible: 'Excluible',
+    noExcluible: 'No excluible',
+    exclusion: 'EXCLUSIÓN',
+    rival: 'Rival',
+    noRival: 'No rival',
+    rivalidad: 'RIVALIDAD',
+    rivalYExcluibleLo: 'Rival y excluible: lo que consume una persona ya no lo consume otra, y se puede cobrar un precio. Es el caso normal de mercado, donde el precio reparte los bienes.',
+    bienPrivado: 'Bien privado',
+    rivalExcluible: 'Rival · Excluible',
+    ejUnaManzana: 'Ej.: una manzana,',
+    unCorteDePelo: 'un corte de pelo',
+    rivalPeroNoExcluible: 'Rival pero no excluible: nadie puede impedir su uso, pero cada uso resta a los demás. Lleva a la «tragedia de los comunes» (sobrepesca, sobrepastoreo) si no se regula su acceso.',
+    recursoComun: 'Recurso común',
+    rivalNoExcluible: 'Rival · No excluible',
+    ejCaladeroDePesca: 'Ej.: caladero de pesca,',
+    pastizalComunal: 'pastizal comunal',
+    noRivalPeroExcluible: 'No rival pero excluible: muchos pueden disfrutarlo a la vez sin estorbarse, pero hace falta pagar o tener acceso (suscripción, peaje). El mercado sí puede proveerlo.',
+    bienDeClub: 'Bien de club',
+    noRivalExcluible: 'No rival · Excluible',
+    ejNetflix: 'Ej.: Netflix,',
+    autopistaDePeaje: 'autopista de peaje',
+    noRivalYNo: 'No rival y no excluible: una persona más no reduce el bien y no se puede impedir su uso. Por eso aparece el problema del polizón y el mercado no los provee: los financia el Estado.',
+    bienPublicoPuro: 'Bien público puro',
+    noRivalNoExcluible: 'No rival · No excluible',
+    ejDefensaNacional: 'Ej.: defensa nacional,',
+    unFaroElAlumbrado: 'un faro, el alumbrado',
+  },
+  ca: {
+    matrizDeBienesRivalidad: 'Matriu de béns: rivalitat i exclusió',
+    matrizDosPorDos: 'Matriu dos per dos que classifica els béns segons siguen rivals o no en el consum i excloïbles o no. Combina quatre tipus: béns privats (rival i excloïble), béns de club (no rival i excloïble), recursos comuns (rival i no excloïble) i béns públics purs (no rival i no excloïble), amb un exemple a cada quadrant.',
+    excluible: 'Excloïble',
+    noExcluible: 'No excloïble',
+    exclusion: 'EXCLUSIÓ',
+    rival: 'Rival',
+    noRival: 'No rival',
+    rivalidad: 'RIVALITAT',
+    rivalYExcluibleLo: 'Rival i excloïble: el que consumix una persona ja no ho consumix una altra, i es pot cobrar un preu. És el cas normal de mercat, on el preu repartix els béns.',
+    bienPrivado: 'Bé privat',
+    rivalExcluible: 'Rival · Excloïble',
+    ejUnaManzana: 'Ex.: una poma,',
+    unCorteDePelo: 'un tall de cabell',
+    rivalPeroNoExcluible: "Rival però no excloïble: ningú pot impedir-ne l'ús, però cada ús resta als altres. Porta a la «tragèdia dels comuns» (sobrepesca, sobrepasturatge) si no se'n regula l'accés.",
+    recursoComun: 'Recurs comú',
+    rivalNoExcluible: 'Rival · No excloïble',
+    ejCaladeroDePesca: 'Ex.: caladero de pesca,',
+    pastizalComunal: 'pastura comunal',
+    noRivalPeroExcluible: 'No rival però excloïble: molts poden gaudir-ne alhora sense destorbar-se, però cal pagar o tindre accés (subscripció, peatge). El mercat sí que pot proveir-lo.',
+    bienDeClub: 'Bé de club',
+    noRivalExcluible: 'No rival · Excloïble',
+    ejNetflix: 'Ex.: Netflix,',
+    autopistaDePeaje: 'autopista de peatge',
+    noRivalYNo: "No rival i no excloïble: una persona més no reduïx el bé i no se'n pot impedir l'ús. Per això apareix el problema del polissó i el mercat no els proveïx: els finança l'Estat.",
+    bienPublicoPuro: 'Bé públic pur',
+    noRivalNoExcluible: 'No rival · No excloïble',
+    ejDefensaNacional: 'Ex.: defensa nacional,',
+    unFaroElAlumbrado: "un far, l'enllumenat",
+  },
+} as const;
+const t = COPY[locale];
 ---
 <svg viewBox="0 0 800 560" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="bp-title bp-desc">
-  <title id="bp-title">Matriz de bienes: rivalidad y exclusión</title>
-  <desc id="bp-desc">Matriz dos por dos que clasifica los bienes según sean rivales o no en el consumo y excluibles o no. Combina cuatro tipos: bienes privados (rival y excluible), bienes de club (no rival y excluible), recursos comunes (rival y no excluible) y bienes públicos puros (no rival y no excluible), con un ejemplo en cada cuadrante.</desc>
+  <title id="bp-title">{t.matrizDeBienesRivalidad}</title>
+  <desc id="bp-desc">{t.matrizDosPorDos}</desc>
   <defs>
     <style>
       .bg { fill: #FBF6EC; }
@@ -36,43 +102,43 @@
   <!-- Column headers (Excludability) -->
   <rect class="head-bar" x="200" y="80" width="260" height="38" rx="4"/>
   <rect class="head-bar" x="470" y="80" width="260" height="38" rx="4"/>
-  <text class="head-text" x="330" y="104">Excluible</text>
-  <text class="head-text" x="600" y="104">No excluible</text>
-  <text class="axis-title" x="465" y="52">EXCLUSIÓN</text>
+  <text class="head-text" x="330" y="104">{t.excluible}</text>
+  <text class="head-text" x="600" y="104">{t.noExcluible}</text>
+  <text class="axis-title" x="465" y="52">{t.exclusion}</text>
 
   <!-- Row headers (Rivalry) -->
   <rect class="head-bar" x="40" y="130" width="150" height="180" rx="4"/>
   <rect class="head-bar" x="40" y="320" width="150" height="180" rx="4"/>
-  <text class="head-text" x="115" y="225">Rival</text>
-  <text class="head-text" x="115" y="415">No rival</text>
-  <text class="axis-title" x="22" y="318" transform="rotate(-90 22 318)">RIVALIDAD</text>
+  <text class="head-text" x="115" y="225">{t.rival}</text>
+  <text class="head-text" x="115" y="415">{t.noRival}</text>
+  <text class="axis-title" x="22" y="318" transform="rotate(-90 22 318)">{t.rivalidad}</text>
 
   <!-- Cells -->
   <!-- Top-left: Rival + Excluible = Bien privado -->
-  <rect class="cell cell-private has-tip" x="200" y="130" width="260" height="180" rx="4"><title>Rival y excluible: lo que consume una persona ya no lo consume otra, y se puede cobrar un precio. Es el caso normal de mercado, donde el precio reparte los bienes.</title></rect>
-  <text class="cell-title" x="330" y="195">Bien privado</text>
-  <text class="cell-tag" x="330" y="220">Rival · Excluible</text>
-  <text class="cell-ex" x="330" y="258">Ej.: una manzana,</text>
-  <text class="cell-ex" x="330" y="277">un corte de pelo</text>
+  <rect class="cell cell-private has-tip" x="200" y="130" width="260" height="180" rx="4"><title>{t.rivalYExcluibleLo}</title></rect>
+  <text class="cell-title" x="330" y="195">{t.bienPrivado}</text>
+  <text class="cell-tag" x="330" y="220">{t.rivalExcluible}</text>
+  <text class="cell-ex" x="330" y="258">{t.ejUnaManzana}</text>
+  <text class="cell-ex" x="330" y="277">{t.unCorteDePelo}</text>
 
   <!-- Top-right: Rival + No excluible = Recurso común -->
-  <rect class="cell cell-common has-tip" x="470" y="130" width="260" height="180" rx="4"><title>Rival pero no excluible: nadie puede impedir su uso, pero cada uso resta a los demás. Lleva a la «tragedia de los comunes» (sobrepesca, sobrepastoreo) si no se regula su acceso.</title></rect>
-  <text class="cell-title cell-title-com" x="600" y="195">Recurso común</text>
-  <text class="cell-tag" x="600" y="220">Rival · No excluible</text>
-  <text class="cell-ex" x="600" y="258">Ej.: caladero de pesca,</text>
-  <text class="cell-ex" x="600" y="277">pastizal comunal</text>
+  <rect class="cell cell-common has-tip" x="470" y="130" width="260" height="180" rx="4"><title>{t.rivalPeroNoExcluible}</title></rect>
+  <text class="cell-title cell-title-com" x="600" y="195">{t.recursoComun}</text>
+  <text class="cell-tag" x="600" y="220">{t.rivalNoExcluible}</text>
+  <text class="cell-ex" x="600" y="258">{t.ejCaladeroDePesca}</text>
+  <text class="cell-ex" x="600" y="277">{t.pastizalComunal}</text>
 
   <!-- Bottom-left: No rival + Excluible = Bien de club -->
-  <rect class="cell cell-club has-tip" x="200" y="320" width="260" height="180" rx="4"><title>No rival pero excluible: muchos pueden disfrutarlo a la vez sin estorbarse, pero hace falta pagar o tener acceso (suscripción, peaje). El mercado sí puede proveerlo.</title></rect>
-  <text class="cell-title" x="330" y="385">Bien de club</text>
-  <text class="cell-tag" x="330" y="410">No rival · Excluible</text>
-  <text class="cell-ex" x="330" y="448">Ej.: Netflix,</text>
-  <text class="cell-ex" x="330" y="467">autopista de peaje</text>
+  <rect class="cell cell-club has-tip" x="200" y="320" width="260" height="180" rx="4"><title>{t.noRivalPeroExcluible}</title></rect>
+  <text class="cell-title" x="330" y="385">{t.bienDeClub}</text>
+  <text class="cell-tag" x="330" y="410">{t.noRivalExcluible}</text>
+  <text class="cell-ex" x="330" y="448">{t.ejNetflix}</text>
+  <text class="cell-ex" x="330" y="467">{t.autopistaDePeaje}</text>
 
   <!-- Bottom-right: No rival + No excluible = Bien público puro -->
-  <rect class="cell cell-public has-tip" x="470" y="320" width="260" height="180" rx="4"><title>No rival y no excluible: una persona más no reduce el bien y no se puede impedir su uso. Por eso aparece el problema del polizón y el mercado no los provee: los financia el Estado.</title></rect>
-  <text class="cell-title cell-title-pub" x="600" y="385">Bien público puro</text>
-  <text class="cell-tag" x="600" y="410">No rival · No excluible</text>
-  <text class="cell-ex" x="600" y="448">Ej.: defensa nacional,</text>
-  <text class="cell-ex" x="600" y="467">un faro, el alumbrado</text>
+  <rect class="cell cell-public has-tip" x="470" y="320" width="260" height="180" rx="4"><title>{t.noRivalYNo}</title></rect>
+  <text class="cell-title cell-title-pub" x="600" y="385">{t.bienPublicoPuro}</text>
+  <text class="cell-tag" x="600" y="410">{t.noRivalNoExcluible}</text>
+  <text class="cell-ex" x="600" y="448">{t.ejDefensaNacional}</text>
+  <text class="cell-ex" x="600" y="467">{t.unFaroElAlumbrado}</text>
 </svg>

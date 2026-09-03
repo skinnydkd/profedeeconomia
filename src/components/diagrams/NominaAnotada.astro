@@ -5,10 +5,68 @@
  * vertical sections — devengos, deducciones, líquido — with arrows
  * explaining each deduction.
  */
+import { getLocale } from '@/i18n/locale';
+const locale = getLocale(Astro.currentLocale);
+
+const COPY = {
+  es: {
+    anatomiaDeUnaNomina: 'Anatomía de una nómina española',
+    esquemaDeUnaNomina: 'Esquema de una nómina dividida en devengos (lo que ganas), deducciones (IRPF y Seguridad Social) y líquido (lo que cobras), con un ejemplo numérico de 1.500€ brutos.',
+    ejemploAuxiliarAdministrativ: 'EJEMPLO · AUXILIAR ADMINISTRATIVO · 1.500 € BRUTOS/MES',
+    k1LoQueGanas: '1 · LO QUE GANAS',
+    devengos: 'Devengos',
+    salarioBase: 'Salario base',
+    complementos: 'Complementos',
+    prorrateoPagasExtras: 'Prorrateo pagas extras',
+    totalBruto: 'Total bruto',
+    k2LoQueTe: '2 · LO QUE TE QUITAN',
+    deducciones: 'Deducciones',
+    irpf10: 'IRPF (≈ 10 %)',
+    ssTrabajador635: 'SS trabajador (6,35 %)',
+    aCuentaDeHacienda: 'A cuenta de Hacienda',
+    yDeTuJubilacion: 'y de tu jubilación',
+    totalDeducciones: 'Total deducciones',
+    k3LoQueCobras: '3 · LO QUE COBRAS',
+    liquidoAPercibir: 'LÍQUIDO A PERCIBIR',
+    elIrpfEsUn: 'El IRPF es un anticipo. En la declaración de la renta',
+    deJunioSeAjusta: 'de junio se ajusta y puede salir a devolver o a pagar.',
+    laSsNoTe: 'La SS no te la devuelven. Va al fondo común que',
+    pagaPensionesParoY: 'paga pensiones, paro y baja por enfermedad.',
+    laDiferenciaEntreBruto: 'La diferencia entre bruto y líquido suele ser del 15-25 %.',
+    cuandoUnAnuncioDice: 'Cuando un anuncio dice "1.500 €/mes" casi siempre se refiere al bruto. Lo que ingresas es menos.',
+  },
+  ca: {
+    anatomiaDeUnaNomina: "Anatomia d'una nòmina espanyola",
+    esquemaDeUnaNomina: "Esquema d'una nòmina dividida en meritacions (el que guanyes), deduccions (IRPF i Seguretat Social) i líquid (el que cobres), amb un exemple numèric de 1.500 € bruts.",
+    ejemploAuxiliarAdministrativ: 'EXEMPLE · AUXILIAR ADMINISTRATIU · 1.500 € BRUTS/MES',
+    k1LoQueGanas: '1 · EL QUE GUANYES',
+    devengos: 'Meritacions',
+    salarioBase: 'Salari base',
+    complementos: 'Complements',
+    prorrateoPagasExtras: 'Prorrateig pagues extres',
+    totalBruto: 'Total brut',
+    k2LoQueTe: '2 · EL QUE ET LLEVEN',
+    deducciones: 'Deduccions',
+    irpf10: 'IRPF (≈ 10 %)',
+    ssTrabajador635: 'SS treballador (6,35 %)',
+    aCuentaDeHacienda: "A compte d'Hisenda",
+    yDeTuJubilacion: 'i de la teua jubilació',
+    totalDeducciones: 'Total deduccions',
+    k3LoQueCobras: '3 · EL QUE COBRES',
+    liquidoAPercibir: 'LÍQUID A PERCEBRE',
+    elIrpfEsUn: "L'IRPF és una bestreta. En la declaració de la renda",
+    deJunioSeAjusta: "de juny s'ajusta i pot eixir a tornar o a pagar.",
+    laSsNoTe: 'La SS no te la tornen. Va al fons comú que',
+    pagaPensionesParoY: 'paga pensions, atur i baixa per malaltia.',
+    laDiferenciaEntreBruto: 'La diferència entre brut i líquid sol ser del 15-25 %.',
+    cuandoUnAnuncioDice: 'Quan un anunci diu "1.500 €/mes" quasi sempre es referix al brut. El que ingresses és menys.',
+  },
+} as const;
+const t = COPY[locale];
 ---
 <svg viewBox="0 0 800 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="nomina-title nomina-desc">
-  <title id="nomina-title">Anatomía de una nómina española</title>
-  <desc id="nomina-desc">Esquema de una nómina dividida en devengos (lo que ganas), deducciones (IRPF y Seguridad Social) y líquido (lo que cobras), con un ejemplo numérico de 1.500€ brutos.</desc>
+  <title id="nomina-title">{t.anatomiaDeUnaNomina}</title>
+  <desc id="nomina-desc">{t.esquemaDeUnaNomina}</desc>
   <defs>
     <style>
       .bg { fill: #FBF6EC; }
@@ -37,47 +95,47 @@
   <rect class="bg" x="0" y="0" width="800" height="520"/>
 
   <!-- Header -->
-  <text class="header" x="40" y="35">EJEMPLO · AUXILIAR ADMINISTRATIVO · 1.500 € BRUTOS/MES</text>
+  <text class="header" x="40" y="35">{t.ejemploAuxiliarAdministrativ}</text>
 
   <!-- Section 1: DEVENGOS (top-left) -->
   <g>
     <rect class="section-devengos" x="40" y="55" width="340" height="170" rx="6"/>
-    <text class="eyebrow" x="210" y="80" fill="#9C3A1C">1 · LO QUE GANAS</text>
-    <text class="section-title" x="210" y="102" fill="#9C3A1C">Devengos</text>
+    <text class="eyebrow" x="210" y="80" fill="#9C3A1C">{t.k1LoQueGanas}</text>
+    <text class="section-title" x="210" y="102" fill="#9C3A1C">{t.devengos}</text>
 
     <line class="row-line" x1="55" y1="118" x2="365" y2="118"/>
-    <text class="item-name" x="55" y="138">Salario base</text>
+    <text class="item-name" x="55" y="138">{t.salarioBase}</text>
     <text class="item-amount" x="365" y="138">1.200,00 €</text>
 
-    <text class="item-name" x="55" y="158">Complementos</text>
+    <text class="item-name" x="55" y="158">{t.complementos}</text>
     <text class="item-amount" x="365" y="158">175,00 €</text>
 
-    <text class="item-name" x="55" y="178">Prorrateo pagas extras</text>
+    <text class="item-name" x="55" y="178">{t.prorrateoPagasExtras}</text>
     <text class="item-amount" x="365" y="178">125,00 €</text>
 
     <line class="row-line" x1="55" y1="190" x2="365" y2="190"/>
-    <text class="total-name" x="55" y="212">Total bruto</text>
+    <text class="total-name" x="55" y="212">{t.totalBruto}</text>
     <text class="total-amount" x="365" y="212">1.500,00 €</text>
   </g>
 
   <!-- Section 2: DEDUCCIONES (top-right) -->
   <g>
     <rect class="section-deducciones" x="420" y="55" width="340" height="170" rx="6"/>
-    <text class="eyebrow" x="590" y="80" fill="#A87A2A">2 · LO QUE TE QUITAN</text>
-    <text class="section-title" x="590" y="102" fill="#A87A2A">Deducciones</text>
+    <text class="eyebrow" x="590" y="80" fill="#A87A2A">{t.k2LoQueTe}</text>
+    <text class="section-title" x="590" y="102" fill="#A87A2A">{t.deducciones}</text>
 
     <line class="row-line" x1="435" y1="118" x2="745" y2="118"/>
-    <text class="item-name" x="435" y="138">IRPF (≈ 10 %)</text>
+    <text class="item-name" x="435" y="138">{t.irpf10}</text>
     <text class="item-amount item-amount-neg" x="745" y="138">− 150,00 €</text>
 
-    <text class="item-name" x="435" y="158">SS trabajador (6,35 %)</text>
+    <text class="item-name" x="435" y="158">{t.ssTrabajador635}</text>
     <text class="item-amount item-amount-neg" x="745" y="158">− 95,25 €</text>
 
-    <text class="note" x="435" y="178">A cuenta de Hacienda</text>
-    <text class="note" x="435" y="194">y de tu jubilación</text>
+    <text class="note" x="435" y="178">{t.aCuentaDeHacienda}</text>
+    <text class="note" x="435" y="194">{t.yDeTuJubilacion}</text>
 
     <line class="row-line" x1="435" y1="200" x2="745" y2="200"/>
-    <text class="total-name" x="435" y="218">Total deducciones</text>
+    <text class="total-name" x="435" y="218">{t.totalDeducciones}</text>
     <text class="total-amount" x="745" y="218">− 245,25 €</text>
   </g>
 
@@ -88,19 +146,19 @@
   <!-- Section 3: LIQUIDO (bottom center) -->
   <g>
     <rect class="section-liquido" x="200" y="310" width="400" height="130" rx="6"/>
-    <text class="liquido-label" x="400" y="340">3 · LO QUE COBRAS</text>
-    <text class="liquido-label" x="400" y="358" fill="#F5E5BC">LÍQUIDO A PERCIBIR</text>
+    <text class="liquido-label" x="400" y="340">{t.k3LoQueCobras}</text>
+    <text class="liquido-label" x="400" y="358" fill="#F5E5BC">{t.liquidoAPercibir}</text>
     <text class="liquido-amount" x="400" y="410">1.254,75 €</text>
   </g>
 
   <!-- Side annotations -->
-  <text class="note" x="40" y="260">El IRPF es un anticipo. En la declaración de la renta</text>
-  <text class="note" x="40" y="275">de junio se ajusta y puede salir a devolver o a pagar.</text>
+  <text class="note" x="40" y="260">{t.elIrpfEsUn}</text>
+  <text class="note" x="40" y="275">{t.deJunioSeAjusta}</text>
 
-  <text class="note" x="760" y="260" text-anchor="end">La SS no te la devuelven. Va al fondo común que</text>
-  <text class="note" x="760" y="275" text-anchor="end">paga pensiones, paro y baja por enfermedad.</text>
+  <text class="note" x="760" y="260" text-anchor="end">{t.laSsNoTe}</text>
+  <text class="note" x="760" y="275" text-anchor="end">{t.pagaPensionesParoY}</text>
 
   <!-- Footer -->
-  <text class="footer" x="400" y="475">La diferencia entre bruto y líquido suele ser del 15-25 %.</text>
-  <text class="footer" x="400" y="495">Cuando un anuncio dice "1.500 €/mes" casi siempre se refiere al bruto. Lo que ingresas es menos.</text>
+  <text class="footer" x="400" y="475">{t.laDiferenciaEntreBruto}</text>
+  <text class="footer" x="400" y="495">{t.cuandoUnAnuncioDice}</text>
 </svg>

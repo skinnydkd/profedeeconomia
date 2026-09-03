@@ -6,10 +6,44 @@
  *
  * Used in Eco 1BACH · Unit 8 (macroeconomic indicators and the cycle).
  */
+import { getLocale } from '@/i18n/locale';
+const locale = getLocale(Astro.currentLocale);
+
+const COPY = {
+  es: {
+    cicloEconomico: 'Ciclo económico',
+    elPibRealOscila: 'El PIB real oscila en torno a la línea de tendencia o PIB potencial, atravesando las fases de expansión, pico, recesión, valle y recuperación.',
+    tiempo: 'TIEMPO',
+    pibReal: 'PIB REAL',
+    pibPotencialTendencia: 'PIB potencial · tendencia',
+    expansion: 'Expansión',
+    recesion: 'Recesión',
+    recuperacion: 'Recuperación',
+    recesion2: 'Recesión',
+    picoAuge: 'Pico · auge',
+    valleFondo: 'Valle · fondo',
+    pico: 'Pico',
+  },
+  ca: {
+    cicloEconomico: 'Cicle econòmic',
+    elPibRealOscila: "El PIB real oscil·la al voltant de la línia de tendència o PIB potencial, travessant les fases d'expansió, pic, recessió, vall i recuperació.",
+    tiempo: 'TEMPS',
+    pibReal: 'PIB REAL',
+    pibPotencialTendencia: 'PIB potencial · tendència',
+    expansion: 'Expansió',
+    recesion: 'Recessió',
+    recuperacion: 'Recuperació',
+    recesion2: 'Recessió',
+    picoAuge: 'Pic · auge',
+    valleFondo: 'Vall · fons',
+    pico: 'Pic',
+  },
+} as const;
+const t = COPY[locale];
 ---
 <svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="ciclo-title ciclo-desc">
-  <title id="ciclo-title">Ciclo económico</title>
-  <desc id="ciclo-desc">El PIB real oscila en torno a la línea de tendencia o PIB potencial, atravesando las fases de expansión, pico, recesión, valle y recuperación.</desc>
+  <title id="ciclo-title">{t.cicloEconomico}</title>
+  <desc id="ciclo-desc">{t.elPibRealOscila}</desc>
   <defs>
     <style>
       .bg { fill: #FBF6EC; }
@@ -43,13 +77,13 @@
   <polygon points="80,60 76,70 84,70" fill="#5C4A3D"/>
 
   <!-- Axis titles -->
-  <text class="axis-label" x="420" y="430" text-anchor="middle">TIEMPO</text>
-  <text class="axis-label" x="35" y="225" text-anchor="middle" transform="rotate(-90 35 225)">PIB REAL</text>
+  <text class="axis-label" x="420" y="430" text-anchor="middle">{t.tiempo}</text>
+  <text class="axis-label" x="35" y="225" text-anchor="middle" transform="rotate(-90 35 225)">{t.pibReal}</text>
 
   <!-- Trend line / potential GDP: gently upward sloping
        From (80, 290) to (760, 175) -->
   <line class="trend" x1="80" y1="290" x2="760" y2="175"/>
-  <text class="trend-label" x="635" y="160">PIB potencial · tendencia</text>
+  <text class="trend-label" x="635" y="160">{t.pibPotencialTendencia}</text>
 
   <!-- Business cycle: sinusoidal around the trend.
        Two full cycles. Key x positions:
@@ -78,25 +112,25 @@
   <line class="phase-line" x1="580" y1="60" x2="580" y2="380"/>
 
   <!-- Phase labels along the top of the chart -->
-  <text class="phase-label" x="160" y="80">Expansión</text>
-  <text class="phase-label-soft" x="310" y="80">Recesión</text>
-  <text class="phase-label" x="490" y="80">Recuperación</text>
-  <text class="phase-label-soft" x="670" y="80">Recesión</text>
+  <text class="phase-label" x="160" y="80">{t.expansion}</text>
+  <text class="phase-label-soft" x="310" y="80">{t.recesion}</text>
+  <text class="phase-label" x="490" y="80">{t.recuperacion}</text>
+  <text class="phase-label-soft" x="670" y="80">{t.recesion2}</text>
 
   <!-- Key points along the curve -->
   <!-- Peak 1 (~220,175) -->
   <circle class="point" cx="220" cy="175" r="6"/>
-  <text class="point-label" x="220" y="120" text-anchor="middle" fill="#9C3A1C">Pico · auge</text>
+  <text class="point-label" x="220" y="120" text-anchor="middle" fill="#9C3A1C">{t.picoAuge}</text>
   <line class="phase-line" x1="220" y1="135" x2="220" y2="167"/>
 
   <!-- Trough 1 (~400,320) -->
   <circle class="point" cx="400" cy="320" r="6"/>
-  <text class="point-label" x="400" y="350" text-anchor="middle" fill="#9C3A1C">Valle · fondo</text>
+  <text class="point-label" x="400" y="350" text-anchor="middle" fill="#9C3A1C">{t.valleFondo}</text>
   <line class="phase-line" x1="400" y1="328" x2="400" y2="340"/>
 
   <!-- Peak 2 (~580,128) -->
   <circle class="point" cx="580" cy="128" r="6"/>
-  <text class="point-label" x="580" y="115" text-anchor="middle" fill="#9C3A1C">Pico</text>
+  <text class="point-label" x="580" y="115" text-anchor="middle" fill="#9C3A1C">{t.pico}</text>
 
   <!-- Trough 2 placeholder near end (~750,260) -->
   <circle class="point" cx="750" cy="260" r="5"/>
