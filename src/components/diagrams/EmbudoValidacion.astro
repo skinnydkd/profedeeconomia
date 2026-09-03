@@ -1,0 +1,104 @@
+---
+/**
+ * The validation funnel of a class project, with the conversion of each step
+ * written beside it and the weakest one marked. The figures are the ones the
+ * unit works with elsewhere — its own activity, its worked exercise and the
+ * calculator — so the three agree.
+ *
+ * The point of marking the bottleneck is that it is the second step, not the
+ * last: the class always looks at the price and the product, which are at the
+ * bottom, and the people are lost at the top.
+ *
+ * Used in Eco 4ESO · Unit 10 (validation and pitch).
+ */
+import { getLocale } from '@/i18n/locale';
+const locale = getLocale(Astro.currentLocale);
+
+const COPY = {
+  es: {
+    title: 'El embudo de validación: dónde se pierde la gente',
+    desc: 'Embudo de cuatro pasos con 1.200 personas que ven la publicación, 180 que entran al perfil, 51 que escriben preguntando y 12 que compran. La conversión de cada salto aparece al lado y el paso más débil, el primero con un 15 %, está marcado.',
+    pasos: [
+      ['Ven la publicación', '1.200', ''],
+      ['Entran al perfil', '180', '15 %'],
+      ['Escriben preguntando', '51', '28,3 %'],
+      ['Compran', '12', '23,5 %'],
+    ],
+    cuello: ['Aquí se pierden', '1.020 personas'],
+    global: 'Conversión total 1 %',
+    globalNota: '12 ventas de 1.200 personas · 5 € de coste por venta',
+    vanidad: 'El número de arriba sube fácil y no decide nada',
+  },
+  ca: {
+    title: "L'embut de validació: on es perd la gent",
+    desc: "Embut de quatre passos amb 1.200 persones que veuen la publicació, 180 que entren al perfil, 51 que escriuen preguntant i 12 que compren. La conversió de cada salt apareix al costat i el pas més dèbil, el primer amb un 15 %, està marcat.",
+    pasos: [
+      ['Veuen la publicació', '1.200', ''],
+      ['Entren al perfil', '180', '15 %'],
+      ['Escriuen preguntant', '51', '28,3 %'],
+      ['Compren', '12', '23,5 %'],
+    ],
+    cuello: ['Ací es perden', '1.020 persones'],
+    global: 'Conversió total 1 %',
+    globalNota: '12 vendes de 1.200 persones · 5 € de cost per venda',
+    vanidad: 'El número de dalt puja fàcil i no decidix res',
+  },
+} as const;
+const t = COPY[locale];
+
+// Trapezoid widths shrink step by step. They are not proportional to the
+// counts — 12 against 1.200 would be invisible — so the numbers carry the
+// magnitude and the shape carries the direction.
+const ANCHOS = [520, 400, 280, 160];
+const CX = 330, TOP = 90, ALTO = 74;
+---
+<svg viewBox="0 0 800 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="ev-title ev-desc">
+  <title id="ev-title">{t.title}</title>
+  <desc id="ev-desc">{t.desc}</desc>
+  <defs>
+    <style>
+      .bg { fill: #FBF6EC; }
+      .step { stroke: #FBF6EC; stroke-width: 2; }
+      .s0 { fill: #EFE2CB; } .s1 { fill: #F5E5BC; } .s2 { fill: #F8E8D0; } .s3 { fill: #FBE3D6; }
+      .step-name { font-family: 'Switzer', sans-serif; font-size: 13px; font-weight: 600; fill: #2A1F18; text-anchor: middle; }
+      .step-n { font-family: 'Fraunces', serif; font-size: 20px; font-weight: 600; fill: #2A1F18; text-anchor: middle; }
+      .conv { font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 500; fill: #5C4A3D; }
+      .conv-bad { font-family: 'JetBrains Mono', monospace; font-size: 14px; font-weight: 700; fill: #9C3A1C; }
+      .mark-rule { stroke: #9C3A1C; stroke-width: 2; }
+      .mark-text { font-family: 'Switzer', sans-serif; font-size: 12px; font-weight: 700; fill: #9C3A1C; }
+      .total { font-family: 'Fraunces', serif; font-size: 17px; font-weight: 600; fill: #2A1F18; }
+      .total-note { font-family: 'Switzer', sans-serif; font-size: 11.5px; fill: #8A7868; }
+      .pie { font-family: 'Fraunces', serif; font-style: italic; font-size: 14px; fill: #5C4A3D; }
+    </style>
+  </defs>
+  <rect class="bg" x="0" y="0" width="800" height="520"/>
+
+  {t.pasos.map((p, i) => {
+    const wTop = ANCHOS[i];
+    const wBot = i < 3 ? ANCHOS[i + 1] : ANCHOS[3] - 40;
+    const y = TOP + i * ALTO;
+    const pts = `${CX - wTop / 2},${y} ${CX + wTop / 2},${y} ${CX + wBot / 2},${y + ALTO - 8} ${CX - wBot / 2},${y + ALTO - 8}`;
+    return (
+      <g>
+        <polygon class={`step s${i}`} points={pts}/>
+        <text class="step-name" x={CX} y={y + 26}>{p[0]}</text>
+        <text class="step-n" x={CX} y={y + 52}>{p[1]}</text>
+        {p[2] && (
+          <text class={i === 1 ? 'conv-bad' : 'conv'} x={CX + wTop / 2 + 18} y={y + 6}>↓ {p[2]}</text>
+        )}
+      </g>
+    );
+  })}
+
+  <!-- The weakest step is the jump from «ven» to «entran». It is marked in the
+       right-hand column, beside its own conversion, rather than with a box
+       across the funnel: a box there lands on top of two figures. -->
+  <line class="mark-rule" x1={CX + ANCHOS[1] / 2 + 18} y1={TOP + ALTO - 20} x2={CX + ANCHOS[1] / 2 + 48} y2={TOP + ALTO - 20}/>
+  {t.cuello.map((linea, i) => (
+    <text class="mark-text" x={CX + ANCHOS[1] / 2 + 18} y={TOP + ALTO + 26 + i * 16}>{linea}</text>
+  ))}
+
+  <text class="total" x="24" y="450">{t.global}</text>
+  <text class="total-note" x="24" y="470">{t.globalNota}</text>
+  <text class="pie" x="24" y="500">{t.vanidad}</text>
+</svg>
