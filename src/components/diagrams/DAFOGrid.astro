@@ -59,21 +59,21 @@ const COPY = {
 } as const;
 const t = COPY[locale];
 ---
-<svg viewBox="0 0 720 540" xmlns="http://www.w3.org/2000/svg" role="img" aria-label={t.matrizDafoConCruces}>
+<svg class="d-dafo-grid" viewBox="0 0 720 540" xmlns="http://www.w3.org/2000/svg" role="img" aria-label={t.matrizDafoConCruces}>
   <defs>
     <style>
-      .bg { fill: #FBF6EC; }
-      .axis-label { font-family: 'Switzer', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; fill: #5C4A3D; }
-      .cell-f { fill: #E5F1DD; stroke: #4F8C3F; stroke-width: 1.5; }
-      .cell-d { fill: #F5DDDD; stroke: #B83A3A; stroke-width: 1.5; }
-      .cell-o { fill: #DBEDED; stroke: #1F6E6E; stroke-width: 1.5; }
-      .cell-a { fill: #FBE3D6; stroke: #C44E2C; stroke-width: 1.5; }
-      .cell-label { font-family: 'Fraunces', serif; font-size: 36px; font-style: italic; font-weight: 500; text-anchor: middle; }
-      .cell-name { font-family: 'Switzer', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; text-anchor: middle; }
-      .cell-desc { font-family: 'Switzer', sans-serif; font-size: 11px; fill: #5C4A3D; text-anchor: middle; }
-      .cross-label { font-family: 'Fraunces', serif; font-size: 11.5px; font-style: italic; fill: #2A1F18; }
-      .cross-strat { font-family: 'Switzer', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; fill: #C44E2C; }
-      .legend-label { font-family: 'Switzer', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase; }
+      .d-dafo-grid .bg { fill: #FBF6EC; }
+      .d-dafo-grid .axis-label { font-family: 'Switzer', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; fill: #5C4A3D; }
+      .d-dafo-grid .cell-f { fill: #E5F1DD; stroke: #4F8C3F; stroke-width: 1.5; }
+      .d-dafo-grid .cell-d { fill: #F5DDDD; stroke: #B83A3A; stroke-width: 1.5; }
+      .d-dafo-grid .cell-o { fill: #DBEDED; stroke: #1F6E6E; stroke-width: 1.5; }
+      .d-dafo-grid .cell-a { fill: #FBE3D6; stroke: #C44E2C; stroke-width: 1.5; }
+      .d-dafo-grid .cell-label { font-family: 'Fraunces', serif; font-size: 36px; font-style: italic; font-weight: 500; text-anchor: middle; }
+      .d-dafo-grid .cell-name { font-family: 'Switzer', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; text-anchor: middle; }
+      .d-dafo-grid .cell-desc { font-family: 'Switzer', sans-serif; font-size: 11px; fill: #5C4A3D; text-anchor: middle; }
+      .d-dafo-grid .cross-label { font-family: 'Fraunces', serif; font-size: 11.5px; font-style: italic; fill: #2A1F18; }
+      .d-dafo-grid .cross-strat { font-family: 'Switzer', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; fill: #C44E2C; }
+      .d-dafo-grid .legend-label { font-family: 'Switzer', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase; }
     </style>
   </defs>
   <rect class="bg" x="0" y="0" width="720" height="540"/>
@@ -124,20 +124,23 @@ const t = COPY[locale];
   <line x1="100" y1="430" x2="680" y2="430" stroke="#E5D4BD" stroke-width="1" stroke-dasharray="4 3"/>
   <text class="legend-label" x="100" y="455" fill="#5C4A3D">{t.crucesEstrategicos}</text>
 
+  <!-- One column, not two: each of these lines is a whole sentence, so a
+       second column starting at x=480 ran the first one's text underneath it
+       and pushed its own past the right edge. -->
   <g>
-    <text class="cross-strat" x="120" y="490" text-anchor="middle">FO</text>
-    <text class="cross-label" x="170" y="490" text-anchor="start">{t.ofensivasAprovecharFortaleza}</text>
+    <text class="cross-strat" x="120" y="478" text-anchor="middle">FO</text>
+    <text class="cross-label" x="170" y="478" text-anchor="start">{t.ofensivasAprovecharFortaleza}</text>
   </g>
   <g>
-    <text class="cross-strat" x="120" y="510" text-anchor="middle">DO</text>
-    <text class="cross-label" x="170" y="510" text-anchor="start">{t.reorientacionCorregirDebilid}</text>
+    <text class="cross-strat" x="120" y="496" text-anchor="middle">DO</text>
+    <text class="cross-label" x="170" y="496" text-anchor="start">{t.reorientacionCorregirDebilid}</text>
   </g>
   <g>
-    <text class="cross-strat" x="430" y="490" text-anchor="middle">FA</text>
-    <text class="cross-label" x="480" y="490" text-anchor="start">{t.defensivasProtegerFortalezas}</text>
+    <text class="cross-strat" x="120" y="514" text-anchor="middle">FA</text>
+    <text class="cross-label" x="170" y="514" text-anchor="start">{t.defensivasProtegerFortalezas}</text>
   </g>
   <g>
-    <text class="cross-strat" x="430" y="510" text-anchor="middle">DA</text>
-    <text class="cross-label" x="480" y="510" text-anchor="start">{t.supervivenciaMinimizarRiesgo}</text>
+    <text class="cross-strat" x="120" y="532" text-anchor="middle">DA</text>
+    <text class="cross-label" x="170" y="532" text-anchor="start">{t.supervivenciaMinimizarRiesgo}</text>
   </g>
 </svg>
