@@ -11,6 +11,8 @@
 - **Marc normatiu**: **Decret 108/2022** (Comunitat Valenciana), annex de matèries optatives. **Sense base estatal al RD 243/2022.** El **Decret 103/2026**, de 26 de juny (DOGV 10396, 02.07.2026), modifica el 108/2022 però **només substitueix l'annex II** (matèries comunes i de modalitat): el currículum d'aquesta optativa **no canvia**. Sí que canvia l'ordenació d'optatives (art. 16), aplicable des del curs 2026-2027.
 - **Slug intern**: `cjd-bach`
 
+> **Procedència d'aquestes tres dades**: el curs (1r o 2n), el caràcter optatiu (no d'oferta obligada, art. 16.5) i la manca de vinculació a una modalitat **no apareixen al PDF curricular de CJD**. Provenen de l'article 16 del Decret 108/2022 (modificat pel Decret 103/2026), tal com es va verificar a `docs/nuevas-asignaturas-bach-emprendimiento-2026.md`. Eixa font documenta els tres fets per a GPE; aplicar-los a CJD és una inferència a partir del mateix annex d'optatives, el mateix decret i que totes dues són optatives de la mateixa classe.
+
 ## 2. Finalitat de la matèria
 
 La matèria Cultura Jurídica i Democràtica engloba sabers relacionats amb el Dret, inspirat en els valors de llibertat, justícia i igualtat que estableixen l'ordre necessari de la convivència humana. Connecta amb aprenentatges ja treballats a l'ESO, concretament amb les competències de Geografia i Història i Valors Ètics i Cívics, i busca una anàlisi i reflexió de nivell superior, pròpia de l'estat madurador de l'alumnat de Batxillerat.
@@ -116,9 +118,26 @@ L'enfocament és competencial, basat en **metodologies actives i interactives** 
 - Judici i procés judicial. Justícia gratuïta i assistència a la ciutadania. Demanda, sentència i recursos.
 - Solució extrajudicial de conflictes: mediació, arbitratge i conciliació.
 
-## 5. Criteris d'avaluació
+## 5. Correspondència unitat del llibre — bloc oficial
 
-> Numerats per competència, tal com apareixen al §5 del PDF oficial.
+> Referència durable per a l'autoria del llibre (Fase B). Copiat de `docs/superpowers/specs/2026-09-04-cjd-bach-design.md` §4 "Contingut — estructura del llibre".
+
+`src/content/asignaturas/cjd-bach/libro/`, ES + germà `.ca.mdx` per a cadascuna:
+
+| # | Fitxer | Bloc oficial |
+|---|---|---|
+| 01 | `01-sociedad-y-derecho` | 1 |
+| 02 | `02-ciudadania-global-y-union-europea` | 2 |
+| 03 | `03-constitucion-y-poderes-del-estado` | 3 |
+| 04 | `04-derecho-civil-persona-familia-propiedad` | 4 |
+| 05 | `05-derecho-laboral-y-seguridad-social` | 5 |
+| 06 | `06-derecho-tributario-y-sistema-fiscal` | 6 |
+| 07 | `07-derecho-penal-administrativo-y-digital` | 7 |
+| 08 | `08-tutela-judicial-y-resolucion-de-conflictos` | 8 |
+
+## 6. Criteris d'avaluació
+
+> Agrupats per competència, en l'ordre en què apareixen al §5 del PDF oficial (allà numerats 1.1, 1.2…; ací renumerats de manera correlativa dins de cada competència).
 
 **Competència específica 1** (1.1–1.4)
 1. Identificar i explicar els valors que sustenten l'ordenament jurídic i el seu abast en la consecució d'una cultura democràtica.
@@ -156,7 +175,7 @@ L'enfocament és competencial, basat en **metodologies actives i interactives** 
 3. Argumentar la influència i potencialitat de les TIC en l'àmbit jurídic i la seua relació amb altres àmbits de la societat actual, i assenyalar-ne els riscos i les conseqüències en la construcció de la ciutadania digital, especialment en l'àmbit jurídic.
 4. Fer un ús sostenible de les TIC tant en l'àmbit acadèmic com en el personal.
 
-## 6. Anti-solapament amb FOPP 4ESO i IPE I/II
+## 7. Anti-solapament amb FOPP 4ESO i IPE I/II
 
 Els blocs 5 (Persona y relaciones laborales) i 6 (Persona e impuestos) cobreixen sabers que el web ja tracta a FOPP 4ESO i a IPE I/II. Regla:
 
@@ -164,7 +183,7 @@ Els blocs 5 (Persona y relaciones laborales) i 6 (Persona e impuestos) cobreixen
 - **Nivell**: Batxillerat. FOPP és 4t d'ESO i IPE és FP; el tractament a CJD és més abstracte i normatiu.
 - **Reutilització, no duplicació**: el càlcul de nòmina, quitança i IRPF **no es reescriu**. S'enllaça amb el material existent via `recursos-relacionados` (`src/lib/recursos-relacionados-sources.ts`). Regla d'or de CLAUDE.md: una sola font per peça de contingut.
 
-## 7. Fonts
+## 8. Fonts
 
 - [Currículum oficial de la matèria, CEICE (PDF, castellà — versió extreta i verificada per a aquest document)](https://ceice.gva.es/documents/162640733/364026431/Cultura+jur%C3%ADdica+y+democr%C3%A1tica.pdf/de0eece7-43d4-92e6-5d11-4cd15ad85db7?t=1663312633685)
 - [Currículum oficial de la matèria, CEICE (PDF, valencià)](https://ceice.gva.es/documents/162640733/364026431/Cultura+jur%C3%ADdica+i+democr%C3%A0tica.pdf/cbc53849-011a-c513-797b-f5cd8b504c67?t=1663315191874)
