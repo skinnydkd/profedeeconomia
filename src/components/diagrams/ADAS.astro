@@ -5,23 +5,47 @@
  * LRAS vertical at potential output Y* (dashed ink).
  * All three intersect at equilibrium E with price level P*.
  */
+import { getLocale } from '@/i18n/locale';
+const locale = getLocale(Astro.currentLocale);
+
+const COPY = {
+  es: {
+    modeloAdAsEquilibrio: 'Modelo AD-AS: equilibrio macroeconómico',
+    cruceDeDemandaAgregada: 'Cruce de demanda agregada descendente, oferta agregada de corto plazo ascendente y oferta agregada de largo plazo vertical en la producción potencial Y*. Determina el nivel de precios de equilibrio P* y la producción real Y*.',
+    produccionReal: 'PRODUCCIÓN REAL',
+    nivelDePrecios: 'NIVEL DE PRECIOS',
+    sras: 'SRAS',
+    lras: 'LRAS',
+    produccionPotencial: 'producción potencial',
+  },
+  ca: {
+    modeloAdAsEquilibrio: 'Model AD-AS: equilibri macroeconòmic',
+    cruceDeDemandaAgregada: "Encreuament de demanda agregada descendent, oferta agregada de curt termini ascendent i oferta agregada de llarg termini vertical en la producció potencial Y*. Determina el nivell de preus d'equilibri P* i la producció real Y*.",
+    produccionReal: 'PRODUCCIÓ REAL',
+    nivelDePrecios: 'NIVELL DE PREUS',
+    sras: 'SRAS',
+    lras: 'LRAS',
+    produccionPotencial: 'producció potencial',
+  },
+} as const;
+const t = COPY[locale];
 ---
-<svg viewBox="0 0 800 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="adas-title adas-desc">
-  <title id="adas-title">Modelo AD-AS: equilibrio macroeconómico</title>
-  <desc id="adas-desc">Cruce de demanda agregada descendente, oferta agregada de corto plazo ascendente y oferta agregada de largo plazo vertical en la producción potencial Y*. Determina el nivel de precios de equilibrio P* y la producción real Y*.</desc>
+<svg class="d-adas" viewBox="0 0 800 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="adas-title adas-desc">
+  <title id="adas-title">{t.modeloAdAsEquilibrio}</title>
+  <desc id="adas-desc">{t.cruceDeDemandaAgregada}</desc>
   <defs>
     <style>
-      .bg { fill: #FBF6EC; }
-      .axis { stroke: #5C4A3D; stroke-width: 1.5; fill: none; }
-      .ad { stroke: #C44E2C; stroke-width: 2.5; fill: none; }
-      .sras { stroke: #D4A24C; stroke-width: 2.5; fill: none; }
-      .lras { stroke: #2A1F18; stroke-width: 2; stroke-dasharray: 6 5; fill: none; }
-      .guide { stroke: #8A7868; stroke-width: 1; stroke-dasharray: 4 4; fill: none; }
-      .axis-label { font-family: 'Switzer', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; fill: #5C4A3D; }
-      .curve-label { font-family: 'Fraunces', serif; font-size: 18px; font-weight: 500; font-style: italic; }
-      .point-label { font-family: 'Fraunces', serif; font-size: 16px; font-weight: 500; font-style: italic; fill: #2A1F18; }
-      .small-note { font-family: 'Switzer', sans-serif; font-size: 10.5px; fill: #5C4A3D; font-style: italic; }
-      .tick { font-family: 'JetBrains Mono', monospace; font-size: 11px; fill: #5C4A3D; }
+      .d-adas .bg { fill: #FBF6EC; }
+      .d-adas .axis { stroke: #5C4A3D; stroke-width: 1.5; fill: none; }
+      .d-adas .ad { stroke: #C44E2C; stroke-width: 2.5; fill: none; }
+      .d-adas .sras { stroke: #D4A24C; stroke-width: 2.5; fill: none; }
+      .d-adas .lras { stroke: #2A1F18; stroke-width: 2; stroke-dasharray: 6 5; fill: none; }
+      .d-adas .guide { stroke: #8A7868; stroke-width: 1; stroke-dasharray: 4 4; fill: none; }
+      .d-adas .axis-label { font-family: 'Switzer', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; fill: #5C4A3D; }
+      .d-adas .curve-label { font-family: 'Fraunces', serif; font-size: 18px; font-weight: 500; font-style: italic; }
+      .d-adas .point-label { font-family: 'Fraunces', serif; font-size: 16px; font-weight: 500; font-style: italic; fill: #2A1F18; }
+      .d-adas .small-note { font-family: 'Switzer', sans-serif; font-size: 10.5px; fill: #5C4A3D; font-style: italic; }
+      .d-adas .tick { font-family: 'JetBrains Mono', monospace; font-size: 11px; fill: #5C4A3D; }
     </style>
     <marker id="adas-arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
       <polygon points="0 0, 10 3, 0 6" fill="#5C4A3D"/>
@@ -39,8 +63,8 @@
   <!-- Axis titles -->
   <text class="axis-label" x="755" y="435">Y</text>
   <text class="axis-label" x="80" y="35" text-anchor="end">P</text>
-  <text class="axis-label" x="415" y="490" text-anchor="middle">PRODUCCIÓN REAL</text>
-  <text class="axis-label" x="30" y="240" text-anchor="middle" transform="rotate(-90 30 240)">NIVEL DE PRECIOS</text>
+  <text class="axis-label" x="415" y="490" text-anchor="middle">{t.produccionReal}</text>
+  <text class="axis-label" x="30" y="240" text-anchor="middle" transform="rotate(-90 30 240)">{t.nivelDePrecios}</text>
 
   <!-- LRAS: vertical line at Y* (x = 415) -->
   <line class="lras" x1="415" y1="60" x2="415" y2="430"/>
@@ -59,8 +83,8 @@
 
   <!-- Curve labels -->
   <text class="curve-label" x="710" y="408" fill="#C44E2C">AD</text>
-  <text class="curve-label" x="710" y="88" fill="#A87A2A">SRAS</text>
-  <text class="curve-label" x="425" y="58" fill="#2A1F18">LRAS</text>
+  <text class="curve-label" x="710" y="88" fill="#A87A2A">{t.sras}</text>
+  <text class="curve-label" x="425" y="58" fill="#2A1F18">{t.lras}</text>
 
   <!-- Equilibrium labels -->
   <text class="point-label" x="430" y="232">E</text>
@@ -68,5 +92,5 @@
   <text class="point-label" x="415" y="450" text-anchor="middle">Y*</text>
 
   <!-- Small note under Y* -->
-  <text class="small-note" x="415" y="467" text-anchor="middle">producción potencial</text>
+  <text class="small-note" x="415" y="467" text-anchor="middle">{t.produccionPotencial}</text>
 </svg>

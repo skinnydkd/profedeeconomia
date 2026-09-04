@@ -1,0 +1,122 @@
+---
+/**
+ * The accounting cycle, from the transaction that starts it to the annual
+ * accounts that close it. Drawn as a loop because it starts again on 1 January
+ * with the opening entry that the closing entry made possible.
+ *
+ * Used in EDMN 2BACH · Unit 10 (accounting information).
+ */
+import { getLocale } from '@/i18n/locale';
+const locale = getLocale(Astro.currentLocale);
+
+const COPY = {
+  es: {
+    title: 'El ciclo contable, del hecho contable a las cuentas anuales',
+    desc: 'Seis pasos en círculo: hecho contable, asiento en el libro diario, traslado al libro mayor, balance de comprobación, ajustes de fin de ejercicio y cuentas anuales, que dan paso al asiento de apertura del ejercicio siguiente.',
+    pasos: [
+      ['1', 'Hecho contable', 'una compra, una venta, una nómina'],
+      ['2', 'Libro diario', 'el asiento, por fecha'],
+      ['3', 'Libro mayor', 'lo mismo, por cuenta'],
+      ['4', 'Balance de comprobación', 'sumas y saldos: ¿cuadra?'],
+      ['5', 'Ajustes de cierre', 'amortizaciones, existencias, periodificación'],
+      ['6', 'Cuentas anuales', 'balance, PyG, memoria'],
+    ],
+    centro: 'Un ejercicio',
+    centroSub: 'normalmente el año natural',
+    reapertura: 'El cierre de un ejercicio es la apertura del siguiente',
+  },
+  ca: {
+    title: 'El cicle comptable, del fet comptable als comptes anuals',
+    desc: "Sis passos en cercle: fet comptable, assentament al llibre diari, trasllat al llibre major, balanç de comprovació, ajustos de fi d'exercici i comptes anuals, que donen pas a l'assentament d'obertura de l'exercici següent.",
+    pasos: [
+      ['1', 'Fet comptable', 'una compra, una venda, una nòmina'],
+      ['2', 'Llibre diari', "l'assentament, per data"],
+      ['3', 'Llibre major', 'el mateix, per compte'],
+      ['4', 'Balanç de comprovació', 'sumes i saldos: quadra?'],
+      ['5', 'Ajustos de tancament', 'amortitzacions, existències, periodificació'],
+      ['6', 'Comptes anuals', 'balanç, PiG, memòria'],
+    ],
+    centro: 'Un exercici',
+    centroSub: "normalment l'any natural",
+    reapertura: "El tancament d'un exercici és l'obertura del següent",
+  },
+} as const;
+const t = COPY[locale];
+
+// Six nodes on a circle of radius 168 around (400, 248), starting at the top.
+// The box is 200x66 so the longest note fits on two lines and the vertical gap
+// between the top node and the ones beside it stays at 18px.
+const CX = 400, CY = 248, R = 168;
+const ANCHO = 200, ALTO = 66;
+
+// Notes are wrapped on word boundaries: the longest one runs past 200px on a
+// single line, and it is not the same one in each language. The box has room
+// for two lines, so a note has to fit in two lines of 34 characters.
+function wrap(texto: string, max: number): string[] {
+  const lineas: string[] = [];
+  let actual = '';
+  for (const palabra of texto.split(' ')) {
+    const tentativa = actual ? `${actual} ${palabra}` : palabra;
+    if (tentativa.length > max && actual) { lineas.push(actual); actual = palabra; }
+    else { actual = tentativa; }
+  }
+  if (actual) lineas.push(actual);
+  return lineas.slice(0, 2);
+}
+
+const nodos = t.pasos.map((p, i) => {
+  const ang = (-90 + i * 60) * (Math.PI / 180);
+  return {
+    n: p[0],
+    titulo: p[1],
+    notas: wrap(p[2], 34),
+    x: CX + R * Math.cos(ang),
+    y: CY + R * Math.sin(ang),
+  };
+});
+---
+<svg class="d-ciclo-contable" viewBox="0 0 800 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="cc-title cc-desc">
+  <title id="cc-title">{t.title}</title>
+  <desc id="cc-desc">{t.desc}</desc>
+  <defs>
+    <style>
+      .d-ciclo-contable .bg { fill: #FBF6EC; }
+      .d-ciclo-contable .ring { fill: none; stroke: #E5D4BD; stroke-width: 2; stroke-dasharray: 7 6; }
+      .d-ciclo-contable .node { fill: #FFFFFF; stroke: #C44E2C; stroke-width: 1.8; }
+      .d-ciclo-contable .num { font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 700; fill: #C44E2C; text-anchor: middle; }
+      .d-ciclo-contable .node-title { font-family: 'Switzer', sans-serif; font-size: 12.5px; font-weight: 700; fill: #2A1F18; text-anchor: middle; }
+      .d-ciclo-contable .node-note { font-family: 'Switzer', sans-serif; font-size: 10.5px; font-weight: 500; fill: #8A7868; text-anchor: middle; }
+      .d-ciclo-contable .center { font-family: 'Fraunces', serif; font-size: 20px; font-weight: 600; fill: #2A1F18; text-anchor: middle; }
+      .d-ciclo-contable .center-sub { font-family: 'Switzer', sans-serif; font-size: 11.5px; fill: #8A7868; text-anchor: middle; }
+      .d-ciclo-contable .pie { font-family: 'Fraunces', serif; font-style: italic; font-size: 14px; fill: #9C3A1C; text-anchor: middle; }
+    </style>
+    <!-- userSpaceOnUse: the default scales the marker by the 2px stroke, and at
+         double size the arrowhead no longer fits the gap it has to land in. -->
+    <marker id="cc-arrow" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+      <polygon points="0 0, 10 4, 0 8" fill="#D4A24C"/>
+    </marker>
+  </defs>
+  <rect class="bg" x="0" y="0" width="800" height="520"/>
+
+  <!-- An arc rather than a circle: a marker only renders on a path or a line,
+       and the arrowhead is what says the cycle has a direction. It stops in the
+       gap between step 6 and step 1, pointing at step 1: the boxes are drawn
+       after the ring, so an arrowhead anywhere else ends up behind one. -->
+  <path class="ring" d="M 429.2 82.6 A 168 168 0 1 1 292 119.3" marker-end="url(#cc-arrow)"/>
+
+  <text class="center" x={CX} y={CY - 2}>{t.centro}</text>
+  <text class="center-sub" x={CX} y={CY + 18}>{t.centroSub}</text>
+
+  {nodos.map((nd) => (
+    <g>
+      <rect class="node" x={nd.x - ANCHO / 2} y={nd.y - ALTO / 2} width={ANCHO} height={ALTO} rx="6"/>
+      <text class="num" x={nd.x} y={nd.y - 16}>{nd.n}</text>
+      <text class="node-title" x={nd.x} y={nd.y + 1}>{nd.titulo}</text>
+      {nd.notas.map((linea, i) => (
+        <text class="node-note" x={nd.x} y={nd.y + (nd.notas.length === 1 ? 19 : 15 + i * 12)}>{linea}</text>
+      ))}
+    </g>
+  ))}
+
+  <text class="pie" x={CX} y="502">{t.reapertura}</text>
+</svg>

@@ -1,4 +1,7 @@
 ---
+import { getLocale } from '@/i18n/locale';
+import { t } from '@/i18n/ui';
+const locale = getLocale(Astro.currentLocale);
 type Props = {
   /** Tipus de pista — afecta el kicker. */
   tipo: 'teorica' | 'practica';
@@ -8,7 +11,7 @@ type Props = {
   apendice?: string;
 };
 const { tipo, concepto, apendice } = Astro.props;
-const kicker = tipo === 'teorica' ? 'Pista EBAU · Teoría' : 'Pista EBAU · Práctica';
+const kicker = t(tipo === 'teorica' ? 'libro.pistaEbauTeorica' : 'libro.pistaEbauPractica', locale);
 ---
 
 <aside class="pista-ebau" data-tipo={tipo}>

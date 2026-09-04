@@ -2,6 +2,7 @@
 asignatura: eco-1bach
 unidad_relacionada: 3
 title: "Calculadora de interés compuesto"
+seoTitle: "Calculadora de interés compuesto: simula tu ahorro año a año"
 descripcion: "Introduce capital inicial, aportación mensual, tipo de interés anual y plazo. Visualiza cómo crecen los intereses respecto a las aportaciones a lo largo del tiempo."
 tipo: calculadora
 componente: InteresCompuesto

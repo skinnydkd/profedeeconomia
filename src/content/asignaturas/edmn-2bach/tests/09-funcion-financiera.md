@@ -93,6 +93,12 @@ preguntas:
     derecha: ["Financiación propia interna (autofinanciación)", "Financiación ajena de muchos pequeños prestamistas", "Financiación propia externa (nuevos fondos de socios)", "Financiación ajena con devolución e intereses"]
     correctas: [3, 0, 1, 2]
     explicacion: "Préstamo bancario → ajena con intereses; beneficios reinvertidos → propia interna; crowdlending → ajena de muchos prestamistas; ampliación de capital → propia externa."
+  - tipo: numerico
+    enunciado: "Una inversión de 10.000 € genera flujos netos de 4.000 € al año. ¿En cuántos años se recupera el desembolso inicial (plazo de recuperación, con 2 decimales)?"
+    respuesta: 2.5
+    tolerancia: 0.05
+    unidad: "años"
+    explicacion: "PayBack = desembolso / flujo anual = 10.000 / 4.000 = 2,5 años. El criterio es sencillo pero incompleto: no descuenta el valor del dinero en el tiempo ni mira lo que ocurre después de recuperar la inversión. Por eso se usa junto al VAN, no en su lugar."
 ---
 
 Test de autoevaluación de la Unidad 9 del libro de EDMN 2BACH.

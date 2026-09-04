@@ -1,0 +1,141 @@
+---
+/**
+ * A food label with every legally required element called out, so the reader
+ * can find on a real package the things the unit names: net quantity, price
+ * per unit of measure, the allergens highlighted inside the ingredient list,
+ * and the difference between «consumir preferentemente antes de» and «fecha
+ * de caducidad».
+ *
+ * Used in Eco 4ESO · Unit 5 (informed consumption and consumer rights).
+ */
+import { getLocale } from '@/i18n/locale';
+const locale = getLocale(Astro.currentLocale);
+
+const COPY = {
+  es: {
+    title: 'Una etiqueta, elemento a elemento',
+    desc: 'Etiqueta de un producto alimentario con llamadas a la denominación, la cantidad neta, el precio por kilo, la lista de ingredientes con los alérgenos destacados, la fecha de consumo preferente, el lote y el origen.',
+    producto: 'Galletas de avena con chocolate',
+    denominacion: 'Denominación del producto',
+    denomNota: 'qué es, no cómo se llama la marca',
+    cantidad: 'Cantidad neta',
+    cantidadValor: '375 g',
+    precio: 'Precio por unidad de medida',
+    precioValor: '6,40 €/kg',
+    precioNota: 'el único número que permite comparar formatos',
+    ingredientes: 'Ingredientes',
+    listaIngredientes: 'Harina de TRIGO (42 %), chocolate (24 %), copos de avena, azúcar, aceite de girasol, LECHE en polvo, sal, gasificantes.',
+    alergenos: 'Alérgenos, siempre destacados',
+    fecha: 'Consumo preferente',
+    fechaValor: 'antes del 30/11/2027',
+    fechaNota: 'después pierde calidad, no seguridad',
+    caducidad: 'Distinto de «fecha de caducidad»',
+    caducidadNota: 'esa sí marca el límite de seguridad',
+    lote: 'Lote',
+    loteValor: 'L-2604A',
+    loteNota: 'sirve para reclamar y para una retirada',
+  },
+  ca: {
+    title: 'Una etiqueta, element a element',
+    desc: "Etiqueta d'un producte alimentari amb crides a la denominació, la quantitat neta, el preu per quilo, la llista d'ingredients amb els al·lèrgens destacats, la data de consum preferent, el lot i l'origen.",
+    producto: 'Galetes de civada amb xocolate',
+    denominacion: 'Denominació del producte',
+    denomNota: 'què és, no com es diu la marca',
+    cantidad: 'Quantitat neta',
+    cantidadValor: '375 g',
+    precio: 'Preu per unitat de mesura',
+    precioValor: '6,40 €/kg',
+    precioNota: "l'únic número que permet comparar formats",
+    ingredientes: 'Ingredients',
+    listaIngredientes: 'Farina de BLAT (42 %), xocolate (24 %), flocs de civada, sucre, oli de gira-sol, LLET en pols, sal, gasificants.',
+    alergenos: 'Al·lèrgens, sempre destacats',
+    fecha: 'Consum preferent',
+    fechaValor: 'abans del 30/11/2027',
+    fechaNota: 'després perd qualitat, no seguretat',
+    caducidad: 'Distint de «data de caducitat»',
+    caducidadNota: 'eixa sí que marca el límit de seguretat',
+    lote: 'Lot',
+    loteValor: 'L-2604A',
+    loteNota: 'servix per a reclamar i per a una retirada',
+  },
+} as const;
+const t = COPY[locale];
+
+/** Wrap on word boundaries: the two languages do not break at the same column. */
+function wrap(texto: string, max: number): string[] {
+  const lineas: string[] = [];
+  let actual = '';
+  for (const palabra of texto.split(' ')) {
+    if ((actual + ' ' + palabra).trim().length > max) { lineas.push(actual.trim()); actual = palabra; }
+    else actual += ' ' + palabra;
+  }
+  if (actual.trim()) lineas.push(actual.trim());
+  return lineas;
+}
+const ingredientes = wrap(t.listaIngredientes, 34);
+---
+<svg class="d-etiqueta-anotada" viewBox="0 0 800 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="ea-title ea-desc">
+  <title id="ea-title">{t.title}</title>
+  <desc id="ea-desc">{t.desc}</desc>
+  <defs>
+    <style>
+      .d-etiqueta-anotada .bg { fill: #FBF6EC; }
+      .d-etiqueta-anotada .pack { fill: #FFFFFF; stroke: #2A1F18; stroke-width: 2; }
+      .d-etiqueta-anotada .pack-band { fill: #F5EDD9; }
+      .d-etiqueta-anotada .prod { font-family: 'Fraunces', serif; font-size: 17px; font-weight: 600; fill: #2A1F18; }
+      .d-etiqueta-anotada .field { font-family: 'Switzer', sans-serif; font-size: 12px; font-weight: 600; fill: #2A1F18; }
+      .d-etiqueta-anotada .field-sm { font-family: 'Switzer', sans-serif; font-size: 10.5px; fill: #5C4A3D; }
+      .d-etiqueta-anotada .alerg { font-family: 'Switzer', sans-serif; font-size: 10.5px; font-weight: 700; fill: #9C3A1C; }
+      .d-etiqueta-anotada .lead { stroke: #C44E2C; stroke-width: 1.2; fill: none; }
+      .d-etiqueta-anotada .lead-dot { fill: #C44E2C; }
+      .d-etiqueta-anotada .call { font-family: 'Switzer', sans-serif; font-size: 12px; font-weight: 700; fill: #C44E2C; }
+      .d-etiqueta-anotada .call-note { font-family: 'Switzer', sans-serif; font-size: 10.5px; font-weight: 500; fill: #8A7868; }
+      .d-etiqueta-anotada .mono { font-family: 'JetBrains Mono', monospace; font-size: 12px; fill: #2A1F18; }
+    </style>
+  </defs>
+  <rect class="bg" x="0" y="0" width="800" height="520"/>
+
+  <!-- The package, centred; every call-out points into it from left or right. -->
+  <rect class="pack" x="286" y="60" width="228" height="320" rx="5"/>
+  <rect class="pack-band" x="287" y="61" width="226" height="72"/>
+  <text class="prod" x="300" y="90">{t.producto.split(' ').slice(0, 2).join(' ')}</text>
+  <text class="prod" x="300" y="112">{t.producto.split(' ').slice(2).join(' ')}</text>
+
+  <text class="field" x="300" y="162">{t.cantidadValor}</text>
+  <text class="field" x="410" y="162">{t.precioValor}</text>
+
+  <text class="field-sm" x="300" y="200">{t.ingredientes}</text>
+  {ingredientes.map((linea, i) => (
+    <text class="field-sm" x="300" y={218 + i * 16}>{linea}</text>
+  ))}
+
+  <text class="mono" x="300" y="320">{t.fechaValor}</text>
+  <text class="mono" x="300" y="352">{t.loteValor}</text>
+
+  <!-- Call-outs on the left -->
+  <path class="lead" d="M 286 96 H 210"/><circle class="lead-dot" cx="286" cy="96" r="3"/>
+  <text class="call" x="16" y="92">{t.denominacion}</text>
+  <text class="call-note" x="16" y="108">{t.denomNota}</text>
+
+  <path class="lead" d="M 286 162 H 210"/><circle class="lead-dot" cx="286" cy="162" r="3"/>
+  <text class="call" x="16" y="158">{t.cantidad}</text>
+
+  <path class="lead" d="M 286 244 H 210"/><circle class="lead-dot" cx="286" cy="244" r="3"/>
+  <text class="call" x="16" y="240">{t.ingredientes}</text>
+  <text class="alerg" x="16" y="256">{t.alergenos}</text>
+
+  <path class="lead" d="M 286 348 H 210"/><circle class="lead-dot" cx="286" cy="348" r="3"/>
+  <text class="call" x="16" y="344">{t.lote}</text>
+  <text class="call-note" x="16" y="360">{t.loteNota}</text>
+
+  <!-- Call-outs on the right -->
+  <path class="lead" d="M 470 168 V 140 H 560"/><circle class="lead-dot" cx="470" cy="162" r="3"/>
+  <text class="call" x="560" y="126">{t.precio}</text>
+  <text class="call-note" x="560" y="142">{t.precioNota}</text>
+
+  <path class="lead" d="M 514 316 H 560"/><circle class="lead-dot" cx="514" cy="316" r="3"/>
+  <text class="call" x="560" y="304">{t.fecha}</text>
+  <text class="call-note" x="560" y="320">{t.fechaNota}</text>
+  <text class="alerg" x="560" y="344">{t.caducidad}</text>
+  <text class="call-note" x="560" y="360">{t.caducidadNota}</text>
+</svg>

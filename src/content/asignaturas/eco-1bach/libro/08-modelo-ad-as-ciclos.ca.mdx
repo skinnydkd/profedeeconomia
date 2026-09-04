@@ -62,12 +62,14 @@ import TldrUnidad from '@components/TldrUnidad.astro';
 import CasoDilema from '@components/CasoDilema.astro';
 import VuelveAlCaso from '@components/VuelveAlCaso.astro';
 import MirarFora from '@components/MirarFora.astro';
+import VocesDesacuerdo from '@components/VocesDesacuerdo.astro';
 
 import HerramientaIsland from '@components/calculadoras/HerramientaIsland.astro';
 import pozoPetroleo from '@assets/libro/eco-1bach/08/pozo-petroleo.jpg';
 import robertSolow from '@assets/libro/eco-1bach/08/robert-solow.jpg';
 import madridPreciadosCovid from '@assets/libro/eco-1bach/08/madrid-preciados-covid.jpg';
 import amartyaSen from '@assets/libro/eco-1bach/08/amartya-sen.jpg';
+import RecursoDestacado from '@components/libro/RecursoDestacado.astro';
 
 > **Temps estimat de lectura**: 45-50 min · **Sabers LOMLOE**: C.1, C.2 · **Prerequisits**: Unitat 7 (PIB, IPC, EPA i els indicadors macro).
 >
@@ -234,6 +236,8 @@ Després de la invasió russa d'Ucraïna (febrer 2022), el preu del gas natural 
 4. **Conclusió.** L'episodi 2022-2024 espanyol encaixa amb el patró canònic de xoc negatiu d'oferta en el model AD-AS, i la resposta de política monetària —antipàtica però coherent— il·lustra el dilema clàssic del banc central davant d'este tipus de xoc.
 
 </SolvedExercise>
+
+<RecursoDestacado href="/eco-1bach/recursos/simulador-ad-as/" kicker="Simulador" title="Simulador del model AD-AS" descripcion="Manipula xocs de demanda, d'oferta a curt termini i de producció potencial, i mira què li passa al nivell de preus i al PIB en cada termini." colorVar="--color-eco1" />
 
 ## 4. El cicle econòmic
 
@@ -466,6 +470,20 @@ El model no va fallar: simplement, els xocs d'eixa magnitud requerixen intervenc
 - **Creixement ≠ desenvolupament**: l'**IDH** (PNUD, Mahbub ul Haq i Amartya Sen) combina renda, salut i educació. Espanya ocupa el lloc ~27. La **corba de Lorenz** i l'**índex de Gini** mesuren la desigualtat: Espanya té Gini ≈ 0,33, entre Suècia (0,28) i els Estats Units (0,41).
 </KeyTakeaways>
 
+<VocesDesacuerdo
+  tema="Cal créixer sempre?"
+  postura_a={{
+    etiqueta: 'Sense creixement no hi ha marge',
+    tesis: "El creixement és el que ha tret milers de milions de persones de la pobresa i el que paga pensions, sanitat i transició energètica. Parar l'economia no repartix millor: repartix menys.",
+  }}
+  postura_b={{
+    etiqueta: 'Créixer així té un sostre físic',
+    tesis: 'El PIB creix sobre una base material finita. Si el consum de recursos no es desacobla del creixement prou de pressa, continuar creixent consistix a traslladar el cost a qui ve després.',
+  }}
+>
+El punt on el debat es torna concret té nom: **desacoblament**, és a dir, si és possible créixer consumint menys recursos i emetent menys. Hi ha desacoblament relatiu ben documentat —cada euro de PIB emet menys que fa trenta anys— i la discussió seriosa està en si l'absolut arriba a la velocitat necessària. **Fixa't que les dues postures compartixen l'objectiu i discrepen sobre el mitjà**, així que la pregunta útil a classe no és «créixer sí o no», sinó **què hauria de passar perquè el creixement i les emissions se separen de veritat, i a quin ritme**.
+</VocesDesacuerdo>
+
 ## Glossari
 
 - **Demanda agregada (AD)**: quantitat total de béns i servicis que tots els agents desitgen comprar a cada nivell de preus; AD = C + I + G + (X − M).
@@ -549,3 +567,238 @@ Estes preguntes no tenen una resposta única. Servixen per discutir a classe o p
     Simulació: cada grup rep un xoc distint en una targeta i ha d'explicar a la resta quina corba desplaça, cap a on, què passa amb P i Y a curt i llarg termini, i quina política aplicaria per suavitzar-lo. Durada: 45 min.
   </Fragment>
 </MirarFora>
+
+```deck
+- tipo: curriculum
+  eyebrow: "A què respon esta unitat"
+  title: "El marc de la unitat"
+  saberes:
+    - "Bloc C: el model AD-AS."
+    - "Bloc C: cicles econòmics, expansió i recessió."
+  competencias:
+    - "Interpretar la realitat macroeconòmica a partir del model AD-AS."
+- tipo: caso
+  eyebrow: "El cas"
+  title: "Un quart del PIB desaparegut en sis mesos"
+  contexto: "El primer semestre del 2020 l'economia espanyola es va parar de colp. Cap cicle econòmic clàssic explicava una caiguda i un rebot tan abruptes."
+  datos:
+    - "El PIB va caure un 22 % acumulat en sis mesos."
+    - "L'atur va botar per damunt del 16 %."
+    - "Milers d'empreses van tancar i les llars van perdre ingressos de colp."
+    - "A finals del 2021 quasi s'havia recuperat el nivell previ."
+  pregunta: "Si el model AD-AS no explica del tot la COVID, és perquè el model és roín o perquè el xoc va ser excepcional?"
+- tipo: section
+  title: La demanda agregada
+  subtitle: "El mateix dibuix de la Unitat 4, però amb altres eixos: el nivell general de preus i la producció real de tota l'economia."
+- tipo: concept
+  eyebrow: AD = C + I + G + (X − M)
+  title: Per què l'AD baixa quan pugen els preus
+  body: "La demanda agregada és tot el que famílies, empreses, sector públic i resta del món volen comprar a cada nivell de preus. La seua composició és la del PIB pel mètode de la despesa. Però el seu pendent negatiu no s'explica com el d'una demanda micro: en l'agregat tots els preus es mouen alhora, així que no hi ha béns substitutius on fugir."
+  pull: Calen tres mecanismes distints, i cap dels tres dona per si sol la inclinació completa de la corba.
+- tipo: list
+  eyebrow: Els tres canals
+  title: Què fa baixar la demanda quan P puja
+  ordered: true
+  items:
+    - "Efecte riquesa (Pigou): els diners i els bons a tipus fix perden poder de compra i les famílies retallen consum."
+    - "Efecte tipus d'interés (Keynes): cal més efectiu per a les mateixes compres, puja el tipus i cauen inversió i crèdit."
+    - "Efecte tipus de canvi (Mundell-Fleming): els nostres productes s'encarixen front als de fora, cauen X i pugen M."
+    - En una economia tan oberta com l'espanyola, amb comerç exterior per damunt del 70 % del PIB, el tercer canal pesa molt.
+- tipo: list
+  eyebrow: Moviment front a desplaçament
+  title: Què mou la corba AD sencera
+  items:
+    - "C: renda disponible, expectatives, riquesa immobiliària, tipus reals, impostos directes."
+    - "I: expectatives empresarials, cost de finançament, incentius fiscals a la inversió."
+    - "G: decisions discrecionals del govern, política fiscal expansiva o contractiva."
+    - "X − M: com van els nostres socis comercials, tipus de canvi i competitivitat."
+    - Si canvia P, ens movem sobre la corba. Si canvia qualsevol d'estos, la corba sencera es desplaça.
+- tipo: section
+  title: L'oferta agregada
+  subtitle: Hi ha dos corbes d'oferta, i només separant-les s'entén per què un shock de hui pot no deixar rastre en el PIB d'ací a cinc anys.
+- tipo: terms
+  eyebrow: Dos horitzons, dos corbes
+  title: SRAS i LRAS
+  terms:
+    - t: SRAS, curt termini
+      d: Pendent positiu. Salaris de conveni, lloguers i subministraments estan fixats, així que si pugen els preus de venda el marge creix i compensa produir més.
+    - t: LRAS, llarg termini
+      d: Vertical en la producció potencial. Quan tots els costos s'ajusten, el que es produïx només depén del capital, del treball i de la tecnologia disponibles.
+- tipo: diagram
+  diagrama: ADAS
+  caption: Les tres corbes en el pla P-Y. A la dreta de la potencial hi ha bretxa inflacionista; a l'esquerra, bretxa recessiva.
+- tipo: list
+  eyebrow: Tot passa pels costos
+  title: Què desplaça la SRAS
+  items:
+    - Salaris que pugen per damunt de la productivitat, per conveni o per SMI.
+    - Energia i matèries primeres, el canal més ràpid i més visible en la factura.
+    - Impostos sobre la producció i cotitzacions empresarials.
+    - Una depreciació de l'euro, que encarix tot el que importem.
+    - Expectatives d'inflació, que porten a fixar preus més alts hui pel que s'espera demà.
+- tipo: section
+  title: Equilibri i shocks
+  subtitle: Un shock és un canvi inesperat que desplaça una corba. Creuant demanda o oferta amb positiu o negatiu ixen quatre casos.
+- tipo: table
+  eyebrow: El quadre que cal saber de memòria
+  title: Els quatre shocks i el seu efecte a curt termini
+  head:
+    - Shock
+    - P
+    - Y
+    - Exemple
+  rows:
+    - - Demanda positiu
+      - Puja
+      - Puja
+      - Pla d'inversió pública, baixada de tipus
+    - - Demanda negatiu
+      - Baixa
+      - Baixa
+      - Enfonsament de la confiança, ajust pressupostari
+    - - Oferta positiu
+      - Baixa
+      - Puja
+      - Petroli barat, salt tecnològic
+    - - Oferta negatiu
+      - Puja
+      - Baixa
+      - Crisi energètica, ruptura de subministraments
+  caption: "A llarg termini els shocks de demanda només deixen empremta en els preus: l'economia torna a la seua producció potencial."
+- tipo: concept
+  eyebrow: El cas més temut
+  title: Estanflació, o quan les dos variables van en direccions oposades
+  body: "Un shock negatiu d'oferta puja els preus i enfonsa la producció alhora. És el malson del banc central, perquè els dos remeis es destorben: si puja tipus per a frenar la inflació, aprofundix la recessió; si els baixa per a reactivar, alimenta la inflació. Va ser el tret dels anys setanta i va tornar el 2022 amb la invasió russa d'Ucraïna."
+  pull: No hi ha resposta bona davant d'un shock d'oferta. Només hi ha una elecció sobre quina variable se sacrifica i durant quant de temps.
+- tipo: figure
+  src: eco-1bach/08/pozo-petroleo.jpg
+  alt: Cavallet de bombament extraient petroli al costat del flanc d'un anticlinal, retallat sobre un cel blau intens.
+  title: El desplaçament que es veu en la factura
+  caption: Quan el Brent va passar de 75 a 120 dòlars entre març i agost del 2022, la SRAS europea es va desplaçar sencera cap a l'esquerra.
+  credit: "Foto: Michael C. Rygel, CC BY-SA 3.0 via Wikimedia Commons"
+- tipo: exercise
+  title: Llegir el shock energètic del 2022 amb el model
+  enunciado: "Després del febrer del 2022 el gas TTF es va multiplicar per sis i el Brent va passar de 75 a 120 dòlars. L'IPC espanyol va pujar del 5,8 % al 10,8 % interanual en cinc mesos. El BCE va portar el tipus de refinançament del 0 % al 4,5 % entre juliol del 2022 i setembre del 2023. Analitza l'episodi amb l'AD-AS."
+  pasos:
+    - Classifica el shock i digues cap a quin costat es desplaça quina corba.
+    - Deduïx del gràfic què hauria de passar amb P i amb Y, i contrasta-ho amb les dades.
+    - Traduïx la pujada de tipus del BCE a un desplaçament de corba.
+    - Explica quina variable està sacrificant el BCE i a canvi de què.
+    - Valora si la resposta va ser coherent amb el mandat del banc central.
+- tipo: quiz
+  eyebrow: Comprova que ho has pillat
+  pregunta: El Govern aprova una rebaixa de l'IVA de l'electricitat que reduïx el cost energètic de les empreses. Què prediu el model AD-AS a curt termini?
+  opciones:
+    - Puja P i puja Y, perquè és un shock positiu de demanda
+    - Baixa P i puja Y, perquè la SRAS es desplaça cap a la dreta
+    - Puja P i baixa Y, perquè encarix la producció
+    - No canvia res, perquè els impostos no entren en el model
+  correcta: "1"
+  explicacion: "Abaratir un cost desplaça l'oferta de curt termini a la dreta. És l'únic cas en què preus i producció es mouen alhora en la direcció desitjada: per això se'n diu el somni macroeconòmic."
+- tipo: section
+  title: El cicle econòmic
+  subtitle: Les economies reals no es queden quietes. Combinen una tendència creixent amb oscil·lacions recurrents al seu voltant.
+- tipo: diagram
+  diagrama: CicloEconomico
+  caption: Les quatre fases al voltant del PIB potencial. La datació oficial la fan el NBER als EUA i el CEPR a Europa.
+- tipo: list
+  eyebrow: Un cicle complet
+  title: Les quatre fases i com es reconeixen
+  ordered: true
+  items:
+    - "Expansió: el PIB real creix diversos trimestres, l'atur baixa i la inflació repunta moderadament."
+    - "Recessió: el PIB cau almenys dos trimestres seguits, regla pràctica i no definició oficial, i l'atur puja."
+    - "Depressió: recessió llarga i profunda. El segle XX només va deixar dos casos clars: 1929-1933 i el Japó dels noranta."
+    - "Recuperació: el PIB torna a créixer i les expectatives es reancoren fins a tancar la bretxa de producció."
+- tipo: figure
+  src: eco-1bach/08/madrid-preciados-covid.jpg
+  alt: El carrer Preciados de Madrid completament desert el 22 de març del 2020, amb tots els aparadors tancats durant el confinament.
+  title: Preciados, 22 de març del 2020
+  caption: "El shock atípic que va ser de demanda i d'oferta alhora: consum i turisme parats, i cadenes de subministrament trencades."
+  credit: "Foto: Nemo, CC BY-SA 4.0 via Wikimedia Commons"
+- tipo: list
+  eyebrow: Espanya 2008-2026
+  title: Un cicle de manual en díhuit anys
+  items:
+    - "2008-2009: esclata la bambolla immobiliària, el PIB cau un 3,8 % i l'atur es duplica del 8 % al 18 %."
+    - "2012-2013: crisi de deute sobirà, prima de risc en 638 punts, rescat bancari i atur del 26,9 %."
+    - "2014-2019: sis anys d'expansió amb reforma laboral, petroli barat i compres de deute del BCE."
+    - "2020: la COVID enfonsa el PIB un 10,8 %, la caiguda més gran en temps de pau."
+    - "2021-2026: fons europeus i rècord turístic. El nivell pre-COVID es recupera el segon trimestre del 2024."
+- tipo: section
+  title: Creixement a llarg termini
+  subtitle: "Fins ací, fluctuacions al voltant de la potencial. La pregunta de fons és una altra: què determina el nivell d'eixa potencial."
+- tipo: figure
+  src: eco-1bach/08/robert-solow.jpg
+  alt: Retrat fotogràfic de l'economista estatunidenc Robert Solow, del MIT, en un acte acadèmic.
+  title: Robert Solow (1924-2023)
+  caption: El seu model del 1956 va demostrar que el motor últim del creixement per capita no és acumular capital, sinó el canvi tècnic.
+  credit: "Foto: Olaf Storbeck, CC BY-SA 2.0 via Wikimedia Commons"
+- tipo: concept
+  eyebrow: "Y = A · F(K, L)"
+  title: Tres motors, i només un aguanta a llarg termini
+  body: "La producció depén del capital físic, del treball i d'un paràmetre que arreplega la productivitat total dels factors: tecnologia, organització, institucions, capital humà. Capital i treball tenen rendiments decreixents, així que a la llarga només la productivitat sosté el creixement per capita. I no es mesura directament: s'obté com a residu."
+  pull: Solow va trobar que als EUA entre 1909 i 1949 prop del 80 % del creixement per treballador venia d'eixe residu.
+- tipo: diagram
+  diagrama: DescomposicionSolow
+  caption: La comptabilitat del creixement repartix l'augment del PIB entre capital, treball i la productivitat que queda com a residu.
+- tipo: list
+  eyebrow: El diagnòstic incòmode
+  title: Per què Espanya creix a l'ample i no a l'alt
+  items:
+    - "La PTF espanyola va créixer menys del 0,5 % anual entre 2000 i 2024, front a l'1 % de la zona euro."
+    - "Teixit de microempreses: les de menys de deu empleats són prop del 95 % del total."
+    - Especialització en hostaleria, comerç minorista i construcció, sectors de baixa productivitat per hora.
+    - "Inversió en R+D de l'1,49 % del PIB, front al 2,2 % de mitjana a la UE i el 3,5 % d'Alemanya."
+    - Barreres d'entrada en sectors regulats que reduïxen la pressió competitiva i l'incentiu a innovar.
+- tipo: section
+  title: Desenvolupament i distribució
+  subtitle: Dos economies amb el mateix PIB per capita poden viure molt distint segons com es repartisca eixa renda i en què es traduïsca.
+- tipo: figure
+  src: eco-1bach/08/amartya-sen.jpg
+  alt: Retrat fotogràfic de l'economista Amartya Sen durant una conferència del cicle Fronteiras do Pensamento a São Paulo.
+  title: Amartya Sen, Nobel 1998
+  caption: La seua teoria de les capacitats reals per a portar la vida que un valora va donar el marc filosòfic a l'IDH del PNUD.
+  credit: "Foto: Fronteiras do Pensamento, CC BY-SA 2.0 via Wikimedia Commons"
+- tipo: concept
+  eyebrow: PNUD, des del 1990
+  title: L'IDH obliga a destacar en les tres coses alhora
+  body: L'Índex de Desenvolupament Humà combina salut (esperança de vida), educació (anys d'escolarització mitjans i esperats) i renda (RNB per capita en paritat de poder adquisitiu, en escala logarítmica). Com que és una mitjana geomètrica, no es compensa una renda enorme amb una sanitat col·lapsada. Espanya ronda el lloc 27 amb un IDH de 0,911.
+  pull: Va nàixer d'una crítica explícita al PIB. El primer informe, de Mahbub ul Haq i Amartya Sen, obria dient que la riquesa real d'una nació és la seua gent.
+- tipo: diagram
+  diagrama: CurvaLorenz
+  caption: Ordenem la població de menor a major renda. Com més s'enfonsa la corba davall la diagonal, major és la desigualtat.
+- tipo: table
+  eyebrow: Índex de Gini, cap al 2022
+  title: On està Espanya en el repartiment
+  head:
+    - País
+    - Gini
+    - Lectura
+  rows:
+    - - Suècia i Països Baixos
+      - "0,28"
+      - Dels més igualitaris de l'OCDE
+    - - Alemanya i França
+      - "0,29-0,30"
+      - Nucli continental europeu
+    - - Espanya i Itàlia
+      - "0,33"
+      - Zona mitjana-alta de la UE
+    - - Estats Units
+      - "0,41"
+      - La més desigual de les avançades
+    - - Brasil i Sud-àfrica
+      - "0,52-0,63"
+      - De les majors desigualtats del món
+  caption: Fonts d'Eurostat, INE, OCDE i Banc Mundial. A Espanya el Gini va pujar de 0,32 a 0,35 durant la doble recessió.
+- tipo: recap
+  eyebrow: "Repassa"
+  title: "Abans de tancar la unitat"
+  items:
+    - "Sabries dibuixar el model AD-AS amb les seues tres corbes i justificar el pendent de cadascuna."
+    - "Sabries analitzar els quatre xocs sobre preus i producció a curt i a llarg termini."
+    - "Sabries nomenar les quatre fases del cicle i aplicar-les a Espanya entre 2008 i 2024."
+    - "Sabries separar creixement (PIB per capita) de desenvolupament (IDH) i citar els factors de Solow."
+    - "Sabries llegir una corba de Lorenz i calcular l'índex de Gini amb dades senzilles."
+```

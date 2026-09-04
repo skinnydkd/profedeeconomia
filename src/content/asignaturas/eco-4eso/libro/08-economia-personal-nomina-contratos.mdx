@@ -2,6 +2,7 @@
 asignatura: eco-4eso
 unidad: 8
 title: Economía personal — nómina, IRPF y contratos
+seoTitle: "Nómina y contratos: bruto, neto e IRPF con ejemplos"
 lema: >-
   Salir del instituto sabiendo leer una nómina, distinguir un contrato
   indefinido de uno de prácticas y entender por qué te quitan dinero
@@ -52,6 +53,7 @@ import TldrUnidad from '@components/TldrUnidad.astro';
 import CasoDilema from '@components/CasoDilema.astro';
 import VuelveAlCaso from '@components/VuelveAlCaso.astro';
 import MirarFora from '@components/MirarFora.astro';
+import VocesDesacuerdo from '@components/VocesDesacuerdo.astro';
 import NominaAnotada from '@components/diagrams/NominaAnotada.astro';
 import IRPFTramos from '@components/diagrams/IRPFTramos.astro';
 import TiposContrato from '@components/diagrams/TiposContrato.astro';
@@ -60,6 +62,7 @@ import HerramientaIsland from '@components/calculadoras/HerramientaIsland.astro'
 import aeatSevilla from '@assets/libro/eco-4eso/08/aeat-sevilla.jpg';
 import glovoRiderValencia from '@assets/libro/eco-4eso/08/glovo-rider-valencia.jpg';
 import yolandaDiazOficial from '@assets/libro/eco-4eso/08/yolanda-diaz-oficial.jpg';
+import RecursoDestacado from '@components/libro/RecursoDestacado.astro';
 
 > **Tiempo estimado de lectura**: 18-20 min · **Saberes LOMLOE**: C.3, C.6 · **Antes de empezar**: la Unidad 7 (presupuesto personal) te dará el contexto de ingresos y gastos sobre el que se entiende la nómina.
 >
@@ -114,14 +117,14 @@ La suma de ambos bloques se llama **total devengado**. Es el llamado **salario b
 
 Sobre los devengos salariales, la empresa aplica dos grandes descuentos por imperativo legal:
 
-- **Cotizaciones del trabajador a la Seguridad Social**, aproximadamente un **6,35 %** sobre la base de cotización. Se desglosan en contingencias comunes (4,7 %), desempleo (1,55 % en contratos indefinidos), formación profesional (0,1 %) y, desde 2023, el **Mecanismo de Equidad Intergeneracional** (MEI), que en 2026 sube al **0,90 % total** repartido entre empresa (0,75 %) y trabajador (0,15 %). El MEI aumenta cada año una décima hasta el 1,2 % en 2029. La empresa, además, paga su propia cuota, mucho más alta (≈ 30 % sobre la base), pero esa no aparece en tu nómina como descuento porque la paga ella.
+- **Cotizaciones del trabajador a la Seguridad Social**, aproximadamente un **6,5 %** sobre la base de cotización. Se desglosan en contingencias comunes (4,7 %), desempleo (1,55 % en contratos indefinidos), formación profesional (0,1 %) y, desde 2023, el **Mecanismo de Equidad Intergeneracional** (MEI), que en 2026 sube al **0,90 % total** repartido entre empresa (0,75 %) y trabajador (0,15 %). El MEI aumenta cada año una décima hasta el 1,2 % en 2029. La empresa, además, paga su propia cuota, mucho más alta (≈ 30 % sobre la base), pero esa no aparece en tu nómina como descuento porque la paga ella.
 - **Retención a cuenta del IRPF**, un porcentaje variable que depende de tu salario anual previsto, situación familiar y otras circunstancias. La empresa te lo retiene y lo ingresa cada mes en Hacienda en tu nombre.
 
 Restando estas deducciones al total devengado, obtenemos el **líquido a percibir**, también llamado **salario neto**: lo que efectivamente se ingresa en tu cuenta.
 
 <Callout label="Concepto clave" title="Salario bruto vs. salario neto">
 
-El **salario bruto** es lo que la empresa reconoce pagarte antes de descuentos legales: es la cifra que aparece en los contratos y en las ofertas de empleo serias. El **salario neto** es lo que entra realmente en tu cuenta cada mes, después de restar la cotización a la Seguridad Social (≈ 6,35 %) y la retención de IRPF (variable según tu renta anual). La diferencia entre bruto y neto puede ser del 15-25 % en sueldos modestos y superar el 35 % en sueldos altos. Cuando negocies un sueldo, asegúrate siempre de hablar en bruto y de saber qué neto te queda, porque si no comparas peras con manzanas.
+El **salario bruto** es lo que la empresa reconoce pagarte antes de descuentos legales: es la cifra que aparece en los contratos y en las ofertas de empleo serias. El **salario neto** es lo que entra realmente en tu cuenta cada mes, después de restar la cotización a la Seguridad Social (≈ 6,5 % en 2026, incluido el MEI) y la retención de IRPF (variable según tu renta anual). La diferencia entre bruto y neto puede ser del 15-25 % en sueldos modestos y superar el 35 % en sueldos altos. Cuando negocies un sueldo, asegúrate siempre de hablar en bruto y de saber qué neto te queda, porque si no comparas peras con manzanas.
 
 </Callout>
 
@@ -142,7 +145,7 @@ Aunque cada nómina tenga sus particularidades, hay siete conceptos que se encue
 3. **Pagas extras** — en España son **mínimo dos al año** (junio y Navidad). Pueden cobrarse íntegras en esos meses o prorratearse mensualmente.
 4. **Base de cotización** — la cantidad sobre la que se calcula lo que cotizas a la Seguridad Social. Coincide casi siempre con el bruto salarial mensual (incluyendo el prorrateo de las pagas extras).
 5. **IRPF retenido** — el porcentaje que la empresa adelanta a Hacienda en tu nombre. Aparece como porcentaje y como euros.
-6. **Cotización a la Seguridad Social del trabajador** — alrededor del 6,35 % de la base de cotización.
+6. **Cotización a la Seguridad Social del trabajador** — alrededor del 6,5 % de la base de cotización.
 7. **Líquido a percibir** — lo que cobras realmente. Es la línea que mira todo el mundo y casi nadie sabe cómo se ha calculado.
 
 ### Una nómina ejemplo: auxiliar administrativo
@@ -155,9 +158,9 @@ Veamos cómo se ven estos siete conceptos en una nómina real. Tomamos un caso t
 | Complemento de puesto | 150,00 € |
 | **Total devengado (bruto mensual)** | **1.500,00 €** |
 | Base de cotización (con prorrateo extras) | 1.750,00 € |
-| Cotización SS trabajador (6,35 % s/ base) | −111,13 € |
+| Cotización SS trabajador (6,50 % s/ base, MEI incluido) | −113,75 € |
 | Retención IRPF (≈ 9 % s/ bruto) | −135,00 € |
-| **Líquido a percibir (neto mensual)** | **≈ 1.253,87 €** |
+| **Líquido a percibir (neto mensual)** | **≈ 1.251,25 €** |
 
 En 12 nóminas mensuales y 2 pagas extras de 1.500 € (también con sus descuentos), el trabajador percibe aproximadamente **17.500 € netos anuales** sobre los 21.000 € brutos pactados. La diferencia —**3.500 €**— ha ido a la Seguridad Social y a Hacienda. No es dinero perdido: a cambio se financia la sanidad pública, las pensiones, el desempleo y el resto del Estado de bienestar, y se acumulan derechos personales (días cotizados, futura jubilación, posible paro).
 
@@ -167,13 +170,15 @@ En 12 nóminas mensuales y 2 pagas extras de 1.500 € (también con sus descuen
   <li>**Identifica el salario base** y compáralo con el mínimo que tu convenio colectivo fija para tu categoría (los convenios son públicos y se buscan en el BOE).</li>
   <li>**Suma los complementos y las pagas extras prorrateadas** (si las cobras a plazos) para obtener tu **total devengado**, el bruto mensual.</li>
   <li>**Verifica la base de cotización**: debe ser muy similar a tu bruto mensual incluyendo el prorrateo de extras. Si es claramente inferior, te están cotizando de menos y perderás derechos.</li>
-  <li>**Comprueba las dos deducciones**: la cotización de la Seguridad Social (≈ 6,35 % de la base) y la retención de IRPF (porcentaje variable según tu sueldo anual). Que aparezcan los dos.</li>
+  <li>**Comprueba las dos deducciones**: la cotización de la Seguridad Social (≈ 6,5 % de la base) y la retención de IRPF (porcentaje variable según tu sueldo anual). Que aparezcan los dos.</li>
   <li>**Mira el líquido a percibir** y contrástalo con el ingreso real en tu cuenta. Si no cuadra, exige aclaración por escrito antes de firmar la nómina.</li>
 </Steps>
 
 <Curiosity title="La paga extra de Navidad es un invento español de la posguerra">
 Las dos pagas extraordinarias obligatorias en España —junio y Navidad— no son una regla universal: en la mayoría de países de la Unión Europea, la *paga extra* o bien no existe o bien es una práctica voluntaria del empleador, y el salario anual se reparte simplemente en 12 mensualidades iguales. En España son obligatorias por el artículo 31 del Estatuto de los Trabajadores y nacieron en 1944 mediante un decreto de Franco que estableció la paga de Navidad como complemento del aguinaldo, a la que se sumó después la de 18 de julio (más tarde *paga de verano*). Hoy se mantienen como una de las peculiaridades que más sorprenden a un trabajador europeo que llega a una empresa española —en positivo: cobrar el doble en junio y diciembre es psicológicamente muy útil, aunque matemáticamente sea exactamente la misma cantidad que cobrar 14 veces 1.500 € o 12 veces 1.750 €.
 </Curiosity>
+
+<RecursoDestacado href="/eco-4eso/recursos/calculadora-nomina/" kicker="Herramienta" title="Calculadora de nómina española" descripcion="Introduce tu bruto mensual y ve la nómina paso a paso: IRPF estimado, cotización a la Seguridad Social y salario neto." colorVar="--color-eco4" />
 
 ## El IRPF, ese gran desconocido
 
@@ -231,7 +236,7 @@ La regla práctica: si en un año has tenido dos pagadores y el segundo te ha pa
 Marina acaba de firmar su primer contrato indefinido a jornada completa como auxiliar de farmacia. La empresa le ofrece un **salario bruto anual de 18.000 €** repartido en **14 pagas** (12 mensualidades + paga de junio + paga de Navidad). Calcula:
 
 a) Su **salario bruto mensual**.
-b) La **cotización a la Seguridad Social** mensual que se le descontará (6,35 % aproximado).
+b) La **cotización a la Seguridad Social** mensual que se le descontará (6,5 % aproximado).
 c) La **retención de IRPF** mensual aproximada, sabiendo que su tipo medio efectivo estimado es del 9 %.
 d) Su **salario neto mensual** estimado.
 e) El **total neto anual** que ingresará en su cuenta.
@@ -240,16 +245,16 @@ e) El **total neto anual** que ingresará en su cuenta.
 
 1. **Salario bruto mensual**:
    - 18.000 € / 14 pagas = **1.285,71 € brutos al mes** (igual en las 12 mensualidades y en las dos extras).
-2. **Cotización a la Seguridad Social (6,35 %)**:
-   - 1.285,71 € × 0,0635 = **81,64 € al mes**.
-   - (Para mayor precisión real habría que usar la base de cotización con prorrateo de extras —≈ 1.500 € mensuales—, lo que daría unos 95,25 € al mes. Usamos el cálculo simplificado para 4.º ESO.)
+2. **Cotización a la Seguridad Social (6,5 %)**:
+   - 1.285,71 € × 0,065 = **83,57 € al mes**.
+   - (Para mayor precisión real habría que usar la base de cotización con prorrateo de extras —≈ 1.500 € mensuales—, lo que daría unos 97,50 € al mes. Usamos el cálculo simplificado para 4.º ESO.)
 3. **Retención de IRPF (9 % sobre el bruto mensual)**:
    - 1.285,71 € × 0,09 = **115,71 € al mes**.
 4. **Salario neto mensual**:
-   - 1.285,71 € − 81,64 € − 115,71 € = **≈ 1.088,36 €** netos al mes.
+   - 1.285,71 € − 83,57 € − 115,71 € = **≈ 1.086,43 €** netos al mes.
 5. **Total neto anual**:
-   - 1.088,36 € × 14 pagas = **≈ 15.240 € netos al año**.
-6. **Resumen**: de los **18.000 € brutos anuales** pactados, Marina ingresa **unos 15.240 € netos**. La diferencia (≈ 2.760 €) se reparte entre Seguridad Social (≈ 1.140 €/año) y Hacienda (≈ 1.620 €/año en concepto de IRPF). A cambio acumula días cotizados para futuras prestaciones (paro, baja, jubilación) y financia los servicios públicos.
+   - 1.086,43 € × 14 pagas = **≈ 15.210 € netos al año**.
+6. **Resumen**: de los **18.000 € brutos anuales** pactados, Marina ingresa **unos 15.210 € netos**. La diferencia (≈ 2.790 €) se reparte entre Seguridad Social (≈ 1.170 €/año) y Hacienda (≈ 1.620 €/año en concepto de IRPF). A cambio acumula días cotizados para futuras prestaciones (paro, baja, jubilación) y financia los servicios públicos.
 
 </SolvedExercise>
 
@@ -325,6 +330,22 @@ Hay una figura intermedia muy común en plataformas digitales que está dando mu
 En septiembre de 2020, la Sala de lo Social del **Tribunal Supremo** dictó por unanimidad la **STS 805/2020** declarando que los **riders** de **Glovo** —los repartidores en bicicleta o moto que llevan pedidos a domicilio— no son autónomos sino **trabajadores por cuenta ajena**, pese a que la empresa los contrataba como autónomos. El argumento de la sentencia es preciso: aunque Glovo intentaba presentar la relación como un *contrato mercantil entre iguales*, en la práctica era la empresa la que fijaba los precios, asignaba pedidos mediante un algoritmo, valoraba el desempeño con un sistema de puntuación que penalizaba rechazos, y proporcionaba la herramienta de trabajo (la app). Concurrían, por tanto, las notas de **dependencia** y **ajenidad** que el Estatuto de los Trabajadores exige para considerar laboral una relación. La sentencia desencadenó la **Ley Rider** (Real Decreto-ley 9/2021), que estableció una presunción legal de laboralidad para los repartidores de plataformas digitales. Hoy Glovo opera en España con repartidores asalariados, igual que Uber Eats. Es uno de los ejemplos más claros de cómo el derecho laboral puede adaptarse a nuevas realidades tecnológicas sin necesidad de inventar figuras intermedias.
 </RealExample>
 
+<RecursoDestacado href="/eco-4eso/recursos/simulador-declaracion-renta/" kicker="Simulador" title="Simulador de la declaración de la renta" descripcion="Introduce tus ingresos del trabajo y las retenciones del año para ver si la declaración sale a pagar o a devolver, y por qué." colorVar="--color-eco4" />
+
+<VocesDesacuerdo
+  tema="¿Cobrar más ahora o cotizar más ahora?"
+  postura_a={{
+    etiqueta: 'Prefiero el neto alto',
+    tesis: 'El dinero de hoy es seguro y el de dentro de cuarenta años no. Con lo que se descuenta cada mes, cualquiera puede ahorrar e invertir por su cuenta y decidir él en qué.',
+  }}
+  postura_b={{
+    etiqueta: 'Prefiero la protección',
+    tesis: 'Las cotizaciones no son un impuesto perdido: compran baja médica, desempleo, jubilación y sanidad. Ahorrar por tu cuenta funciona hasta el día que enfermas, y ese día no lo eliges tú.',
+  }}
+>
+La discusión suele plantearse mal, porque **lo que se descuenta no desaparece: compra cosas concretas**, y la comparación honesta es entre el neto que ves y lo que costaría contratar por separado esas mismas coberturas. Ahora bien, la segunda postura tiene un límite real: la protección funciona **si has cotizado lo suficiente**, y ahí las carreras interrumpidas y el trabajo a tiempo parcial dejan a mucha gente fuera. Vuelve a la nómina que acabas de leer y mira otra vez las líneas de descuento sabiendo qué compra cada una.
+</VocesDesacuerdo>
+
 ## Tres formas jurídicas para emprender
 
 Si después del instituto, o más tarde, decides montar tu propio proyecto, vas a tener que elegir una **forma jurídica**: el traje legal con el que tu actividad se presenta ante Hacienda, ante la Seguridad Social y ante terceros. Hay decenas de formas jurídicas reconocidas en España, pero el 95 % de los emprendedores que arrancan elige una de estas tres: **autónomo**, **sociedad limitada** o **cooperativa de trabajo asociado**. Esta sección es un panorama; la elección concreta, con asesoramiento profesional, vendrá en el momento en que el proyecto exista de verdad.
@@ -378,7 +399,7 @@ Lo que dice la ley desde 2024: cualquier prácticas formativa, retribuida o no, 
 
 <KeyTakeaways title="Lo esencial de la economía personal del trabajo">
 - La **nómina** española sigue un modelo regulado (Orden ESS/2098/2014) con encabezado, devengos, deducciones y líquido. Aprende a identificar los siete conceptos clave.
-- **Salario bruto** es lo pactado antes de descuentos; **salario neto** es lo que entra en tu cuenta tras restar Seguridad Social (≈ 6,35 %) e IRPF (variable).
+- **Salario bruto** es lo pactado antes de descuentos; **salario neto** es lo que entra en tu cuenta tras restar Seguridad Social (≈ 6,5 %) e IRPF (variable).
 - El **IRPF** es progresivo por tramos: el tipo alto se aplica solo a la parte de renta dentro del tramo, no a toda la renta. Distingue tipo marginal y tipo medio efectivo.
 - Tras la **Reforma Laboral de 2021**, el contrato por defecto es el **indefinido**. Los temporales requieren causa tasada; los formativos son **alternancia** (sin título) y **en prácticas** (con título).
 - Las tres formas jurídicas básicas para emprender son **autónomo** (sencillo, responsabilidad ilimitada, IRPF), **SL** (responsabilidad limitada, Impuesto de Sociedades 25 %) y **cooperativa** (un socio un voto, fiscalidad reducida 20 %).
@@ -462,3 +483,252 @@ Para vuestro proyecto emprendedor del bloque D, esta unidad aporta tres entregab
     Cada estudiante presenta **la estructura de su nómina** (sin importes detallados, solo conceptos). Se comparan estructuras: ¿qué cobran los profesores?, ¿cómo es la nómina de un autónomo?, ¿qué cambia en una nómina de funcionario? Variante: el profesor proyecta una nómina anonimizada y la clase la descifra en directo. Duración: 45 min. Materiales: proyector.
   </Fragment>
 </MirarFora>
+
+```deck
+- tipo: curriculum
+  eyebrow: "A qué responde esta unidad"
+  title: "El marco de la unidad"
+  saberes:
+    - "Bloque C: nómina e IRPF."
+    - "Bloque C: contratos laborales y vida laboral."
+  competencias:
+    - "Gestionar la economía personal: nómina, IRPF y contratos laborales."
+- tipo: concept
+  eyebrow: Caso de partida
+  title: Un verano entero cobrando sin contrato
+  body: "Cada verano miles de jóvenes aceptan «prácticas» en cafeterías, talleres u oficinas familiares: 400-600 € al mes en negro, sin contrato y sin que la empresa cotice nada por ellos. Desde 2024 es ilegal —el Real Decreto-ley 2/2023 obliga a cotizar por toda práctica formativa, retribuida o no—, pero la Inspección de Trabajo no patrulla bares: actúa a petición del afectado, de un sindicato o de un compañero."
+  pull: "Cada mes sin cotizar es un mes menos de derecho a paro y a pensión futura."
+- tipo: section
+  title: Leer una nómina española paso a paso
+  subtitle: "Cerca del 30 % de los trabajadores en España no sabe leer su propia nómina (OCU, 2023). Empezamos por ahí."
+- tipo: terms
+  title: El vocabulario mínimo de una nómina
+  terms:
+    - t: Nómina
+      d: "Documento que la empresa entrega cada mes con el desglose de lo cobrado y lo descontado. Su nombre técnico es recibo justificativo del pago de salarios."
+    - t: Devengos
+      d: "Suma de todo lo que la empresa reconoce deberte por el mes trabajado, antes de descuentos: salario base, complementos y pagas. Es el salario bruto."
+    - t: Base de cotización
+      d: "Cantidad sobre la que se calcula lo que cotizas a la Seguridad Social. Coincide casi siempre con el bruto mensual, incluido el prorrateo de las extras."
+    - t: Líquido a percibir
+      d: "Lo que cobras de verdad, restadas las dos deducciones. Es la línea que mira todo el mundo y que casi nadie sabe cómo se ha calculado."
+- tipo: split
+  title: "Devengos: dos bloques que no tributan igual"
+  left:
+    h: "Salariales: cotizan y tributan"
+    items:
+      - "Salario base, el mínimo que fija tu convenio para tu categoría"
+      - "Complementos: antigüedad, productividad, idiomas, turnicidad"
+      - Horas extraordinarias
+      - "Pagas extras prorrateadas, si se cobran mes a mes"
+  right:
+    h: "No salariales (dentro de límites)"
+    items:
+      - Dietas y kilometraje por desplazamientos
+      - Plus de transporte
+      - "Indemnizaciones por despido, traslado o fin de contrato"
+- tipo: concept
+  title: Bruto y neto no son lo mismo
+  body: "El salario bruto es lo que la empresa reconoce pagarte antes de descuentos legales: la cifra del contrato y de las ofertas de empleo serias. El neto es lo que entra en tu cuenta después de restar la cotización a la Seguridad Social (≈ 6,5 % en 2026, MEI incluido) y la retención de IRPF. La diferencia va del 15-25 % en sueldos modestos a más del 35 % en sueldos altos."
+  pull: "Negocia siempre en bruto y calcula el neto: si no, comparas peras con manzanas."
+- tipo: diagram
+  diagrama: NominaAnotada
+  caption: "Anatomía de una nómina española: del total devengado al líquido a percibir"
+- tipo: split
+  title: Los siete conceptos que aparecen siempre
+  left:
+    h: Cuatro que suman
+    items:
+      - "Salario base, según convenio y categoría profesional"
+      - "Complementos: antigüedad, productividad, puesto, idiomas"
+      - "Pagas extras: mínimo dos al año, en junio y en Navidad"
+      - "Base de cotización: casi el bruto, con las extras prorrateadas"
+  right:
+    h: Dos que restan y el que queda
+    items:
+      - "Cotización del trabajador a la Seguridad Social, ≈ 6,5 %"
+      - "Retención de IRPF, expresada en porcentaje y en euros"
+      - "Líquido a percibir, el ingreso real en tu cuenta"
+- tipo: table
+  title: Una nómina de auxiliar administrativo
+  head:
+    - Concepto
+    - Importe
+  rows:
+    - ["Total devengado (bruto mensual)", "1.500,00 €"]
+    - ["Base de cotización (extras prorrateadas)", "1.750,00 €"]
+    - ["Cotización a la Seguridad Social (6,50 %)", "−113,75 €"]
+    - ["Retención de IRPF (≈ 9 %)", "−135,00 €"]
+    - ["Líquido a percibir", "≈ 1.251,25 €"]
+  caption: "Con 21.000 € brutos anuales en 14 pagas se ingresan unos 17.500 € netos: 3.500 € van a la Seguridad Social y a Hacienda."
+- tipo: list
+  title: Cómo leer tu primera nómina
+  ordered: true
+  items:
+    - "Comprueba el encabezado y el periodo: tus datos, categoría, antigüedad y que cobras el mes que toca."
+    - "Compara el salario base con el mínimo que fija tu convenio colectivo; los convenios son públicos y están en el BOE."
+    - "Suma complementos y pagas prorrateadas: eso es el total devengado, tu bruto mensual."
+    - "Verifica la base de cotización. Si es claramente inferior al bruto, te están cotizando de menos y perderás derechos."
+    - "Comprueba que aparecen las dos deducciones: Seguridad Social (≈ 6,5 %) y retención de IRPF."
+    - "Contrasta el líquido con el ingreso real. Si no cuadra, pide aclaración por escrito antes de firmar."
+- tipo: quiz
+  pregunta: "Tu bruto mensual es de 1.500 €, pero en la nómina la base de cotización aparece como 900 €. ¿Qué significa?"
+  opciones:
+    - Que la empresa te cotiza de menos y perderás derechos futuros
+    - Que la base solo recoge el salario base, sin los complementos
+    - Que tu retención de IRPF será más alta
+    - Que la base siempre es menor que el salario bruto
+  correcta: "0"
+  explicacion: "La base debe parecerse mucho al bruto mensual, con el prorrateo de extras incluido. Si queda muy por debajo, se cotiza de menos y eso resta días y cuantía para el paro y la jubilación."
+- tipo: section
+  title: El IRPF, ese gran desconocido
+  subtitle: "El principal impuesto directo del sistema español (Ley 35/2006). Aporta cerca del 40 % de la recaudación tributaria del Estado."
+- tipo: figure
+  src: eco-4eso/08/aeat-sevilla.jpg
+  alt: Edificio de la Delegación Especial de la Agencia Tributaria (AEAT) en Sevilla.
+  title: Donde se ajustan las cuentas cada abril
+  caption: Millones de contribuyentes ajustan aquí, o en la sede telemática, lo que la empresa les retuvo a cuenta del IRPF mes a mes.
+  credit: "Foto: Anual, CC BY-SA 4.0 vía Wikimedia Commons"
+- tipo: terms
+  title: Cuatro palabras para entender el IRPF
+  terms:
+    - t: IRPF
+      d: "Impuesto sobre la Renta de las Personas Físicas. Grava las rentas de quien reside en España y es progresivo por tramos: cuanto más ganas, mayor porcentaje pagas."
+    - t: Retención
+      d: "Porcentaje que la empresa adelanta a Hacienda en tu nombre cada mes. Es un anticipo estimado, no el impuesto definitivo."
+    - t: Tipo marginal
+      d: "El porcentaje que pagas por el último euro ganado, es decir, el del tramo más alto al que llegas."
+    - t: Tipo medio efectivo
+      d: "El porcentaje real sobre el total de tu renta. Quien gana 18.000 € tiene un marginal del 24 % y un tipo medio de alrededor del 12 %."
+- tipo: table
+  title: Los tramos estatales del IRPF en 2026
+  head:
+    - Base liquidable
+    - Tipo marginal
+  rows:
+    - ["Hasta 12.450 €", "19 %"]
+    - ["De 12.450 € a 20.200 €", "24 %"]
+    - ["De 20.200 € a 35.200 €", "30 %"]
+    - ["De 35.200 € a 60.000 €", "37 %"]
+    - ["Más de 60.000 €", "45 %, y 47 % desde 300.000 €"]
+  caption: "Sin la parte autonómica. Antes se descuenta el mínimo personal exento, unos 5.550 € para un soltero sin hijos."
+- tipo: diagram
+  diagrama: IRPFTramos
+  caption: Cada tipo se aplica solo a la franja de renta de su tramo, nunca a toda la renta
+- tipo: concept
+  title: La retención mensual no es el impuesto definitivo
+  body: "Cada mes la empresa retiene una estimación calculada sobre tu sueldo anual previsto. El ajuste de verdad llega con la declaración de la renta, entre abril y junio del año siguiente: si te retuvieron de más, Hacienda devuelve la diferencia; si de menos, la pagas. Pasa a menudo con dos pagadores en el mismo año, porque cada empresa retuvo como si fuera la única."
+  pull: "Con dos pagadores, y más de 1.500 € del segundo, casi seguro que hay que declarar."
+- tipo: exercise
+  title: "Ejercicio 8.1 — La nómina de Marina"
+  enunciado: "Marina firma su primer contrato indefinido a jornada completa como auxiliar de farmacia por 18.000 € brutos anuales en 14 pagas. Calcula su bruto mensual, la cotización a la Seguridad Social (6,5 %), la retención de IRPF (tipo medio estimado del 9 %), su neto mensual y el total neto anual."
+  pasos:
+    - "Bruto mensual: 18.000 € entre 14 pagas = 1.285,71 €, igual en las doce mensualidades y en las dos extras."
+    - "Seguridad Social: 1.285,71 € × 0,065 = 83,57 € al mes."
+    - "Retención de IRPF: 1.285,71 € × 0,09 = 115,71 € al mes."
+    - "Neto mensual: 1.285,71 − 83,57 − 115,71 ≈ 1.086,43 € al mes."
+    - "Neto anual: 1.086,43 € × 14 pagas ≈ 15.210 € netos."
+    - "De los 18.000 € brutos, unos 2.790 € van a la Seguridad Social (≈ 1.170 €) y a Hacienda (≈ 1.620 €)."
+- tipo: quiz
+  pregunta: "Ganabas 20.000 € y te suben a 21.000 €, con lo que entras en el tramo del 30 %. ¿Qué parte de tu renta tributa a ese 30 %?"
+  opciones:
+    - Solo los 800 € que superan los 20.200 €
+    - Los 21.000 € completos
+    - "Ninguna: el 30 % no se aplica hasta llegar a 35.200 €"
+    - Los 1.000 € de la subida
+  correcta: "0"
+  explicacion: "El IRPF es progresivo por tramos: cada tipo se aplica solo a la franja de renta que cae dentro de su tramo. Por eso el tipo medio efectivo queda siempre por debajo del marginal."
+- tipo: section
+  title: Los contratos tras la Reforma de 2021
+  subtitle: "El Real Decreto-ley 32/2021 hizo del indefinido la regla. La temporalidad cayó del 25 % al 17 % en tres años, según el INE."
+- tipo: figure
+  src: eco-4eso/08/yolanda-diaz-oficial.jpg
+  alt: Retrato oficial de Yolanda Díaz Pérez, vicepresidenta segunda del Gobierno y ministra de Trabajo y Economía Social.
+  title: Quien impulsó la Reforma Laboral de 2021
+  caption: Convirtió el contrato indefinido en la regla por defecto y redujo la temporalidad española del 25 % al 17 % en tres años.
+  credit: © Unión Europea, 2026. CC BY 4.0 vía Wikimedia Commons
+- tipo: diagram
+  diagrama: TiposContrato
+  caption: "Cuatro modalidades: indefinido por defecto, temporal solo con causa y dos contratos formativos"
+- tipo: split
+  title: Indefinido y temporal
+  left:
+    h: "Indefinido: la norma"
+    items:
+      - Sin fecha de fin pactada; dura hasta que una parte lo extinga
+      - "Despido improcedente: 33 días por año, máximo 24 mensualidades"
+      - "Paro con 360 días cotizados en los últimos seis años"
+      - "Prueba de hasta 6 meses para titulados y 2 meses para el resto"
+  right:
+    h: "Temporal: solo con causa"
+    items:
+      - Sustitución de alguien con derecho a reserva del puesto
+      - "Circunstancias de la producción: 6 meses, 12 por convenio"
+      - "Circunstancias previsibles: 90 días al año, no consecutivos"
+      - "Sin causa real es fraude de ley: pasa a ser indefinido"
+- tipo: split
+  title: Los dos contratos formativos
+  left:
+    h: Formación en alternancia
+    items:
+      - De 16 a 30 años, sin titulación relacionada con el puesto
+      - Entre 3 meses y 2 años, combinando trabajo y estudios
+      - Trabajo máximo del 65 % el primer año y del 85 % el segundo
+      - "Salario proporcional al tiempo trabajado, nunca bajo el SMI"
+  right:
+    h: En prácticas
+    items:
+      - Exige título universitario o de FP de los últimos 3 años
+      - Duración de entre 6 meses y 1 año
+      - "Salario íntegro de convenio, sin rebaja por ser prácticas"
+      - Solo uno por título obtenido y por empresa
+- tipo: concept
+  eyebrow: Fraude frecuente
+  title: Los falsos autónomos
+  body: "Figuran como autónomos —emiten factura y pagan su cuota de RETA— pero trabajan con horario impuesto, herramienta de la empresa, exclusividad y un único cliente. Concurren entonces la dependencia y la ajenidad que el Estatuto de los Trabajadores exige para considerar laboral una relación, así que la ley lo trata como fraude: debería ser un contrato ordinario."
+  pull: "Aunque el papel diga «autónomo», con horario impuesto y un solo cliente la relación es laboral."
+- tipo: figure
+  src: eco-4eso/08/glovo-rider-valencia.jpg
+  alt: Repartidor de Glovo en bicicleta por una calle de Valencia con la mochila amarilla de la plataforma a la espalda.
+  title: El caso Glovo
+  caption: "La STS 805/2020 declaró laborales a los riders; la Ley Rider de 2021 presume laboralidad en el reparto por plataforma."
+  credit: "Foto: Pacopac, CC BY-SA 4.0 vía Wikimedia Commons"
+- tipo: quiz
+  pregunta: "Una plataforma contrata a un repartidor como autónomo, le fija el horario, le da la app y le asigna los pedidos con un algoritmo. ¿Qué relación hay?"
+  opciones:
+    - "Un falso autónomo: la relación es laboral"
+    - Una relación mercantil entre iguales, como sostenía la plataforma
+    - Un autónomo legítimo, porque emite facturas
+    - Un temporal por circunstancias de la producción
+  correcta: "0"
+  explicacion: "Hay dependencia y ajenidad, las dos notas que exige el Estatuto de los Trabajadores. Es lo que resolvió el Tribunal Supremo en la STS 805/2020 sobre los riders de Glovo."
+- tipo: section
+  title: Tres formas jurídicas para emprender
+  subtitle: "El traje legal de tu actividad ante Hacienda, la Seguridad Social y terceros. El 95 % de quien emprende elige una de estas tres."
+- tipo: table
+  title: Autónomo, sociedad limitada y cooperativa
+  head:
+    - ""
+    - Autónomo
+    - Sociedad limitada
+    - Cooperativa
+  rows:
+    - ["Responsabilidad", "Ilimitada, con tu patrimonio", "Limitada al capital aportado", "Limitada a las aportaciones"]
+    - ["Capital mínimo", "No se exige", "1 € con la Ley Crea y Crece (antes 3.000 €)", "Según la ley autonómica"]
+    - ["Fiscalidad", "IRPF sobre el beneficio", "Sociedades al 25 % (15 % los dos primeros años)", "Sociedades al 20 % si es fiscalmente protegida"]
+    - ["Socios y voto", "Una sola persona", "Desde uno, sin máximo", "Mínimo tres; un socio, un voto"]
+    - ["Puesta en marcha", "Hacienda y RETA en una semana", "Notaría y registro: 600-1.200 € y 2-4 semanas", "Notaría y Registro de Cooperativas"]
+  caption: "La cuota de autónomos va de unos 80 € a 590 € al mes según rendimientos, con tarifa plana de 80 € los primeros 12 meses."
+- tipo: concept
+  title: Cuándo conviene cada una
+  body: "Autónomo si empiezas en solitario, con poco capital y asumiendo que respondes con tu patrimonio personal. Sociedad limitada si hay socios, capital ajeno o intención de crecer: es la opción estándar de un proyecto que aspira a escalar. Cooperativa si el proyecto es colectivo de verdad y queréis decidir en igualdad, un socio un voto, con la empresa en manos de quien trabaja en ella."
+  pull: "Ninguna es mejor en abstracto: cada una optimiza valores y costes distintos, y todas se pueden cambiar después."
+- tipo: recap
+  eyebrow: "Repasa"
+  title: "Antes de cerrar la unidad"
+  items:
+    - "Sabrías leer una nómina española y localizar los siete conceptos que aparecen siempre."
+    - "Sabrías calcular el salario neto desde el bruto con la cotización y la retención de IRPF."
+    - "Sabrías distinguir los cuatro contratos vigentes tras la reforma de 2021 y sus implicaciones."
+    - "Sabrías elegir entre autónomo, sociedad limitada y cooperativa según el caso."
+```

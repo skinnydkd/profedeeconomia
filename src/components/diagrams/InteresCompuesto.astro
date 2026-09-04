@@ -6,29 +6,59 @@
  *
  * Used in Eco 4ESO · Unit 7 (dinero, presupuesto y financiación).
  */
+import { getLocale } from '@/i18n/locale';
+const locale = getLocale(Astro.currentLocale);
+
+const COPY = {
+  es: {
+    interesSimpleFrenteA: 'Interés simple frente a interés compuesto',
+    crecimientoDe100Euros: 'Crecimiento de 100 euros al 10 % anual durante 30 años. La línea del interés simple crece de forma recta hasta 400 euros; la del interés compuesto se curva hacia arriba y supera los 1.700 euros, mostrando que el plazo es la variable más poderosa del ahorro.',
+    k100Al10Anual: '100 € AL 10 % ANUAL · CRECIMIENTO A 30 AÑOS',
+    anosTranscurridos: 'AÑOS TRANSCURRIDOS',
+    capitalAcumulado: 'CAPITAL ACUMULADO',
+    losInteresesSeCalculan: 'Los intereses se calculan siempre sobre el capital inicial (100 €), así que cada año se suma la misma cantidad fija. Por eso crece en línea recta.',
+    cadaAnoLosIntereses: 'Cada año los intereses se suman al capital y el año siguiente también generan intereses («interés sobre interés»). Por eso la curva se dispara: es la fuerza que hace crecer el ahorro a largo plazo, y también la deuda de las tarjetas.',
+    interesSimple: 'Interés simple',
+    interesCompuesto: 'Interés compuesto',
+    mismoDineroMismoInteres: 'Mismo dinero, mismo interés: a 30 años el compuesto multiplica por más de 4 lo que da el simple.',
+  },
+  ca: {
+    interesSimpleFrenteA: "Interés simple enfront d'interés compost",
+    crecimientoDe100Euros: "Creixement de 100 euros al 10 % anual durant 30 anys. La línia de l'interés simple creix de manera recta fins a 400 euros; la de l'interés compost es corba cap amunt i supera els 1.700 euros, mostrant que el termini és la variable més poderosa de l'estalvi.",
+    k100Al10Anual: '100 € AL 10 % ANUAL · CREIXEMENT A 30 ANYS',
+    anosTranscurridos: 'ANYS TRANSCORREGUTS',
+    capitalAcumulado: 'CAPITAL ACUMULAT',
+    losInteresesSeCalculan: 'Els interessos es calculen sempre sobre el capital inicial (100 €), així que cada any se suma la mateixa quantitat fixa. Per això creix en línia recta.',
+    cadaAnoLosIntereses: "Cada any els interessos se sumen al capital i l'any següent també generen interessos («interés sobre interés»). Per això la corba es dispara: és la força que fa créixer l'estalvi a llarg termini, i també el deute de les targetes.",
+    interesSimple: 'Interés simple',
+    interesCompuesto: 'Interés compost',
+    mismoDineroMismoInteres: 'Mateixos diners, mateix interés: a 30 anys el compost multiplica per més de 4 el que dona el simple.',
+  },
+} as const;
+const t = COPY[locale];
 ---
-<svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="interes-title interes-desc">
-  <title id="interes-title">Interés simple frente a interés compuesto</title>
-  <desc id="interes-desc">Crecimiento de 100 euros al 10 % anual durante 30 años. La línea del interés simple crece de forma recta hasta 400 euros; la del interés compuesto se curva hacia arriba y supera los 1.700 euros, mostrando que el plazo es la variable más poderosa del ahorro.</desc>
+<svg class="d-interes-compuesto" viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="interes-title interes-desc">
+  <title id="interes-title">{t.interesSimpleFrenteA}</title>
+  <desc id="interes-desc">{t.crecimientoDe100Euros}</desc>
   <defs>
     <style>
-      .bg { fill: #FBF6EC; }
-      .axis { stroke: #5C4A3D; stroke-width: 1.5; fill: none; }
-      .grid { stroke: #E5D4BD; stroke-width: 1; stroke-dasharray: 2 4; fill: none; }
-      .line-simple { fill: none; stroke: #8A7868; stroke-width: 2.5; stroke-dasharray: 7 5; }
-      .line-comp { fill: none; stroke: #C44E2C; stroke-width: 3; }
-      .axis-label { font-family: 'Switzer', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; fill: #5C4A3D; }
-      .tick-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; fill: #5C4A3D; }
-      .curve-label { font-family: 'Switzer', sans-serif; font-size: 13px; font-weight: 700; }
-      .end-val { font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 500; }
-      .header { font-family: 'Switzer', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 1.6px; text-transform: uppercase; fill: #8A7868; text-anchor: middle; }
-      .footer { font-family: 'Fraunces', serif; font-style: italic; font-size: 13px; fill: #5C4A3D; text-anchor: middle; }
-      .has-tip { cursor: help; }
+      .d-interes-compuesto .bg { fill: #FBF6EC; }
+      .d-interes-compuesto .axis { stroke: #5C4A3D; stroke-width: 1.5; fill: none; }
+      .d-interes-compuesto .grid { stroke: #E5D4BD; stroke-width: 1; stroke-dasharray: 2 4; fill: none; }
+      .d-interes-compuesto .line-simple { fill: none; stroke: #8A7868; stroke-width: 2.5; stroke-dasharray: 7 5; }
+      .d-interes-compuesto .line-comp { fill: none; stroke: #C44E2C; stroke-width: 3; }
+      .d-interes-compuesto .axis-label { font-family: 'Switzer', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; fill: #5C4A3D; }
+      .d-interes-compuesto .tick-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; fill: #5C4A3D; }
+      .d-interes-compuesto .curve-label { font-family: 'Switzer', sans-serif; font-size: 13px; font-weight: 700; }
+      .d-interes-compuesto .end-val { font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 500; }
+      .d-interes-compuesto .header { font-family: 'Switzer', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 1.6px; text-transform: uppercase; fill: #8A7868; text-anchor: middle; }
+      .d-interes-compuesto .footer { font-family: 'Fraunces', serif; font-style: italic; font-size: 13px; fill: #5C4A3D; text-anchor: middle; }
+      .d-interes-compuesto .has-tip { cursor: help; }
     </style>
   </defs>
   <rect class="bg" x="0" y="0" width="800" height="500"/>
 
-  <text class="header" x="400" y="40">100 € AL 10 % ANUAL · CRECIMIENTO A 30 AÑOS</text>
+  <text class="header" x="400" y="40">{t.k100Al10Anual}</text>
 
   <!-- Plot area: x 90..720 (0..30 años), y 410..70 (0..1800 €) -->
   <!-- Grid horizontal at 400, 800, 1200, 1600 € -->
@@ -65,32 +95,32 @@
   <text class="tick-label" x="82" y="111" text-anchor="end">1.600 €</text>
 
   <!-- Axis titles -->
-  <text class="axis-label" x="405" y="465" text-anchor="middle">AÑOS TRANSCURRIDOS</text>
-  <text class="axis-label" x="38" y="235" text-anchor="middle" transform="rotate(-90 38 235)">CAPITAL ACUMULADO</text>
+  <text class="axis-label" x="405" y="465" text-anchor="middle">{t.anosTranscurridos}</text>
+  <text class="axis-label" x="38" y="235" text-anchor="middle" transform="rotate(-90 38 235)">{t.capitalAcumulado}</text>
 
   <!-- Interés simple: 100 + 100·0,10·t (linear). y per € = (410-70)/1800 = 0.18889 px/€.
        100€ -> 410-(100·0.18889)=391; 150€(5a)->410-28.3=381.7; 200(10a)->372.2;
        250(15a)->362.8; 300(20a)->353.3; 350(25a)->343.9; 400(30a)->334.4 -->
   <polyline class="line-simple has-tip"
-    points="90,391.1 195,381.7 300,372.2 405,362.8 510,353.3 615,343.9 720,334.4"><title>Los intereses se calculan siempre sobre el capital inicial (100 €), así que cada año se suma la misma cantidad fija. Por eso crece en línea recta.</title></polyline>
+    points="90,391.1 195,381.7 300,372.2 405,362.8 510,353.3 615,343.9 720,334.4"><title>{t.losInteresesSeCalculan}</title></polyline>
 
   <!-- Interés compuesto: 100·(1,1)^t.
        0->100 (391.1); 5->161 (379.6); 10->259 (361.1); 15->418 (331.0);
        20->673 (282.9); 25->1083 (205.4); 30->1745 (79.7) -->
   <polyline class="line-comp has-tip"
-    points="90,391.1 195,379.6 300,361.1 405,331.0 510,282.9 615,205.4 720,79.7"><title>Cada año los intereses se suman al capital y el año siguiente también generan intereses («interés sobre interés»). Por eso la curva se dispara: es la fuerza que hace crecer el ahorro a largo plazo, y también la deuda de las tarjetas.</title></polyline>
+    points="90,391.1 195,379.6 300,361.1 405,331.0 510,282.9 615,205.4 720,79.7"><title>{t.cadaAnoLosIntereses}</title></polyline>
 
   <!-- End markers -->
   <circle cx="720" cy="334.4" r="4" fill="#8A7868"/>
   <circle cx="720" cy="79.7" r="4.5" fill="#C44E2C"/>
 
   <!-- Curve labels -->
-  <text class="curve-label" x="430" y="350" fill="#8A7868">Interés simple</text>
+  <text class="curve-label" x="430" y="350" fill="#8A7868">{t.interesSimple}</text>
   <text class="end-val" x="660" y="356" fill="#8A7868" text-anchor="end">400 €</text>
 
-  <text class="curve-label" x="430" y="175" fill="#9C3A1C">Interés compuesto</text>
+  <text class="curve-label" x="430" y="175" fill="#9C3A1C">{t.interesCompuesto}</text>
   <text class="end-val" x="710" y="72" fill="#9C3A1C" text-anchor="end">1.745 €</text>
 
   <!-- Footer note -->
-  <text class="footer" x="400" y="492">Mismo dinero, mismo interés: a 30 años el compuesto multiplica por más de 4 lo que da el simple.</text>
+  <text class="footer" x="400" y="492">{t.mismoDineroMismoInteres}</text>
 </svg>

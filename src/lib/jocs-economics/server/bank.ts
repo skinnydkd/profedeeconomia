@@ -8,6 +8,8 @@ export interface Question {
   id: string;
   categoria: 'economia' | 'finances' | 'empresa';
   dificultat: number;
+  /** Enunciat que veu el jugador — el cos del .md de la pregunta. */
+  enunciado?: string;
   opciones: string[];
   correcta: number;
   explicacion?: string;

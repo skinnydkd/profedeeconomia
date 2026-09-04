@@ -39,16 +39,25 @@ async function listMdFiles(dir) {
 
 async function parseQuestion(file) {
   const raw = await fs.readFile(file, 'utf8');
-  const { data } = matter(raw);
+  const { data, content } = matter(raw);
   if (data.estado !== 'publicado') return null;
   if (!data.id || !data.categoria || typeof data.dificultat !== 'number' || !Array.isArray(data.opciones)) {
     console.warn(`[jocs-bank] saltant pregunta mal formada: ${file}`);
+    return null;
+  }
+  // El cos del .md és l'enunciat que veu el jugador. El client ja el pinta
+  // (Playing/Result fan `enunciado || id`) i les APIs ja el propaguen; sense
+  // ell, el joc mostrava l'id cru de la pregunta.
+  const enunciado = content.replace(/\s+/g, ' ').trim();
+  if (!enunciado) {
+    console.warn(`[jocs-bank] saltant pregunta sense enunciat: ${file}`);
     return null;
   }
   return {
     id: String(data.id),
     categoria: String(data.categoria),
     dificultat: Number(data.dificultat),
+    enunciado,
     opciones: data.opciones.map(String),
     correcta: Number(data.correcta),
     ...(data.explicacion ? { explicacion: String(data.explicacion) } : {}),

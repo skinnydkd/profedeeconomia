@@ -59,7 +59,7 @@ const breadcrumb = breadcrumbLd([
 ]);
 ---
 
-<BaseLayout title={`${actividad.data.title} — ${a.shortLabel}`} description={actividad.data.descripcion} ogType="article" jsonLd={breadcrumb} contentLang={locale}>
+<BaseLayout title={actividad.data.seoTitle ?? `${actividad.data.title} — ${a.seoName}`} brandSuffix={false} description={actividad.data.descripcion} ogType="article" jsonLd={breadcrumb} contentLang={locale}>
   <div class="container">
     <nav class="breadcrumb">
       <a href="/">{copy.inicio}</a> <span class="sep">›</span>
@@ -177,7 +177,7 @@ const breadcrumb = breadcrumbLd([
 
   .meta-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(180px, 100%), 1fr));
     gap: 1rem 2rem;
     padding: 1.4rem 1.7rem;
     background: var(--color-paper);

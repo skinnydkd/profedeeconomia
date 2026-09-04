@@ -91,6 +91,12 @@ preguntas:
     derecha: ["El precio del medicamento de un único laboratorio con patente", "El humo de una fábrica que perjudica al vecindario", "El vendedor de un coche usado sabe sus averías y el comprador no", "El alumbrado público de una ciudad"]
     correctas: [1, 3, 2, 0]
     explicacion: "Externalidad negativa: el humo daña a terceros sin pagar por ello. Bien público: el alumbrado es no rival y no excluible. Información asimétrica: el vendedor sabe más que el comprador. Poder de mercado: el monopolista con patente fija precio por encima del coste marginal."
+  - tipo: numerico
+    enunciado: "Producir una tonelada de cemento cuesta a la empresa 60 € y genera un daño ambiental valorado en 25 €. ¿Cuál es el coste social de esa tonelada, en euros?"
+    respuesta: 85
+    tolerancia: 1
+    unidad: "€"
+    explicacion: "Coste social = coste privado + coste externo = 60 + 25 = 85 €. La empresa solo tiene en cuenta los 60 €, así que produce más de lo socialmente eficiente. Un impuesto pigouviano de 25 € por tonelada internalizaría la diferencia."
 ---
 
 Test de autoevaluación de la Unidad 6 del libro de Eco 1BACH. Nueve preguntas que cubren la definición de fallo de mercado, las externalidades positivas y negativas, el impuesto pigouviano, la matriz de bienes públicos y comunes de Ostrom, el problema del polizón, la información asimétrica (selección adversa y riesgo moral), el poder de mercado y los fallos de gobierno.

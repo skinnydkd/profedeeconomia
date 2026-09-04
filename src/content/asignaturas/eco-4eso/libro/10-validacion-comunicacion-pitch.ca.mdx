@@ -41,6 +41,7 @@ publicado_en: 2026-05-16
 import Callout from '@components/Callout.astro';
 import Curiosity from '@components/Curiosity.astro';
 import RealExample from '@components/RealExample.astro';
+import SolvedExercise from '@components/SolvedExercise.astro';
 import Steps from '@components/Steps.astro';
 import KeyTakeaways from '@components/KeyTakeaways.astro';
 import Bibliography from '@components/Bibliography.astro';
@@ -50,13 +51,15 @@ import TldrUnidad from '@components/TldrUnidad.astro';
 import CasoDilema from '@components/CasoDilema.astro';
 import VuelveAlCaso from '@components/VuelveAlCaso.astro';
 import MirarFora from '@components/MirarFora.astro';
+import VocesDesacuerdo from '@components/VocesDesacuerdo.astro';
 import PitchDeck10Slides from '@components/diagrams/PitchDeck10Slides.astro';
+import EmbudoValidacion from '@components/diagrams/EmbudoValidacion.astro';
 
 import tedStage from '@assets/libro/eco-4eso/10/ted-stage-julie-freeman.jpg';
 import demoDayPitch from '@assets/libro/eco-4eso/10/demo-day-pitch-startup.png';
 import fyfnBarcelona from '@assets/libro/eco-4eso/10/4yfn-mwc-barcelona-mentoring.jpg';
 
-> **Temps estimat de lectura**: 18-20 min · **Sabers LOMLOE**: D.4, D.5, D.6 · **Abans de començar**: Unit 9 (disseny del projecte). Esta és la part 2 del capstone i el tancament del curs.
+> **Temps estimat de lectura**: 18-20 min · **Sabers LOMLOE**: D.4, D.5, D.6 · **Abans de començar**: Unitat 9 (disseny del projecte). Esta és la part 2 del capstone i el tancament del curs.
 >
 > **En acabar esta unitat sabràs**:
 > - Formular **hipòtesis verificables** sobre la teua idea i dissenyar un test senzill per a validar-ne una amb usuaris reals.
@@ -101,6 +104,20 @@ Una hipòtesi és **verificable** quan es pot formular com una frase tancada que
 
 </Callout>
 
+<VocesDesacuerdo
+  tema="Escoltar el client o avançar-s'hi?"
+  postura_a={{
+    etiqueta: 'Preguntar i mesurar',
+    tesis: 'Les hipòtesis es comproven amb gent real. Qui no pregunta acaba construint el que li agrada a ell i anomenant-ho visió quan no ho compra ningú.',
+  }}
+  postura_b={{
+    etiqueta: 'Proposar alguna cosa que ningú ha demanat',
+    tesis: 'Ningú demana el que no ha vist. Preguntar només servix per a millorar el que ja existix; els productes que canvien una categoria es proposen abans que existisca la demanda.',
+  }}
+>
+La segona postura es defén quasi sempre amb una frase atribuïda a Henry Ford sobre cavalls més ràpids, **de la qual no hi ha cap font documentada**: és un bon moment per a desconfiar de les cites que encaixen massa bé. El matís que fa útils les dues: **es pregunta pel problema, no per la solució**. «Compraries això?» no val quasi res; «conta'm l'última vegada que et va passar» val molt. Amb eixa distinció, escoltar el client i proposar-li alguna cosa que no ha demanat deixen de ser incompatibles.
+</VocesDesacuerdo>
+
 ## Mètriques: vanitat enfront d'acció
 
 Una vegada la idea està en contacte amb el món, comencen a aparéixer números. No tots els números valen el mateix. La distinció crítica, popularitzada per Eric Ries en *The Lean Startup*, separa les **mètriques vanitat** de les **mètriques accionables**.
@@ -132,6 +149,31 @@ Quan arriben les dades de l'experiment, hi ha dues respostes possibles. Si la hi
 <RealExample title="Slack era un videojoc: el pivot més famós del segle XXI" source="Entrevista de Stewart Butterfield a First Round Review (2014) i Forbes (2015)">
 En 2009, **Stewart Butterfield** —que ja havia cofundat Flickr una dècada abans— va arreplegar capital per a crear **Glitch**, un videojoc multijugador en línia ambiciós, col·laboratiu i sense combat. Va arribar a tindre milers d'usuaris, però mai va generar ingressos suficients per a sostindre l'equip, i en 2012 Butterfield va reconéixer davant els seus inversors que el joc no anava a ser viable. La decisió raonable hauria sigut tancar i tornar els diners. En lloc d'això, l'equip va identificar una observació inesperada: per a coordinar-se a distància mentre desenvolupaven Glitch, havien construït internament una ferramenta de missatgeria organitzada per canals que funcionava millor que qualsevol alternativa del mercat. Van pivotar: van tancar el joc, van conservar l'equip i van llançar eixa ferramenta interna com a producte comercial. La van anomenar **Slack** (*Searchable Log of All Conversation and Knowledge*). A l'agost de 2013 tenien 8.000 empreses en llista d'espera el primer dia. En 2021, Salesforce va comprar Slack per **27.700 milions de dòlars**. El pivot va funcionar perquè van mantindre l'única cosa que tenien validada —un equip amb criteri i una ferramenta que ells mateixos usaven a diari— i van descartar el que la realitat havia desmentit.
 </RealExample>
+
+<SolvedExercise number="10.1" title="On es perd la gent al teu embut">
+
+**Enunciat**
+
+Un projecte d'aula publica el seu producte a xarxes durant un mes. **1.200 persones** veuen la publicació, **180** entren al perfil, **51** escriuen preguntant i **12** acaben comprant. S'han gastat **60 €** en promoció i cada venda deixa **18 €** de marge.
+
+a) Calcula la conversió de cada pas i la conversió total.
+b) Quin és el pas més dèbil?
+c) Quant costa cada venda i quin és el resultat del mes?
+
+**Solució**
+
+1. **Conversió pas a pas.** De vore a entrar: 180/1.200 = **15 %**. D'entrar a preguntar: 51/180 = **28,3 %**. De preguntar a comprar: 12/51 = **23,5 %**.
+2. **Conversió total**: 12/1.200 = **1 %**. Comprova que és el producte de les tres: 0,15 × 0,283 × 0,235 ≈ 0,01. No és una coincidència: les conversions es multipliquen.
+3. **El pas més dèbil és el primer**, amb un 15 %: de cada cent persones que veuen la publicació, huitanta-cinc no arriben ni a mirar el perfil. Ahí es perden 1.020 persones, més que als altres dos passos junts.
+4. **Cost per venda**: 60/12 = **5 €**. Ingressos per marge: 12 × 18 = **216 €**. Resultat del mes: 216 − 60 = **+156 €**.
+5. *On treballar ara.* La temptació és tocar el preu o el producte, que són els passos de baix. Però mira els números: pujar l'últim pas del 23,5 % al 30 % donaria unes 15 vendes; pujar el primer del 15 % al 20 % en donaria 16 sense tocar res més. **Arreglar el pitjor pas mou el resultat sencer; millorar-ne un que ja funciona a penes es nota.**
+6. I una advertència sobre el 1.200 de dalt: és el número més fàcil de pujar i el que menys decidix. **Que ho veja més gent sense arreglar el 15 % només fa l'embut més ample per dalt i igual d'estret per baix.**
+
+</SolvedExercise>
+
+<Diagram caption="L'embut d'un projecte real: 1.200 persones veuen la publicació i 12 compren. El pas més dèbil no és l'últim sinó el primer, i ahí es perden més persones que als altres dos junts.">
+  <EmbudoValidacion />
+</Diagram>
 
 ## Pla de comunicació i màrqueting bàsic
 
@@ -278,31 +320,31 @@ El que feu amb tot això a partir de demà és vostre.
 
 Abans de la llista final, convé veure el curs sencer com un mapa. Economia i Emprenedoria s'ha organitzat en **quatre blocs** del currículum LOMLOE, i cada un us ha donat una peça distinta:
 
-- **Bloc A — La persona emprenedora (Units 1-2)**: què és emprendre, els mites, les habilitats que es poden entrenar. Ací vau aprendre a *mirar* amb ulls d'emprenedor.
-- **Bloc B — L'entorn i el consum (Units 3-5)**: ètica i emprenedoria social, detecció d'oportunitats en l'entorn i els vostres drets com a consumidors. Ací vau aprendre a *llegir el món* en el qual es mou un projecte.
-- **Bloc C — Els recursos (Units 6-8)**: equips, diners i finançament, i la vostra economia personal (nòmina, contractes, formes jurídiques). Ací vau aprendre a *manejar les ferramentes* (persones, diners, papers) que mouen qualsevol projecte.
-- **Bloc D — El projecte (Units 9-10)**: disseny amb BMC i Design Thinking (Unit 9) i validació, comunicació i pitch (Unit 10, esta). Ací *ho heu fet de veritat*, de la idea a la defensa pública.
+- **Bloc A — La persona emprenedora (Unitats 1-2)**: què és emprendre, els mites, les habilitats que es poden entrenar. Ací vau aprendre a *mirar* amb ulls d'emprenedor.
+- **Bloc B — L'entorn i el consum (Unitats 3-5)**: ètica i emprenedoria social, detecció d'oportunitats en l'entorn i els vostres drets com a consumidors. Ací vau aprendre a *llegir el món* en el qual es mou un projecte.
+- **Bloc C — Els recursos (Unitats 6-8)**: equips, diners i finançament, i la vostra economia personal (nòmina, contractes, formes jurídiques). Ací vau aprendre a *manejar les ferramentes* (persones, diners, papers) que mouen qualsevol projecte.
+- **Bloc D — El projecte (Unitats 9-10)**: disseny amb BMC i Design Thinking (Unitat 9) i validació, comunicació i pitch (Unitat 10, esta). Ací *ho heu fet de veritat*, de la idea a la defensa pública.
 
-Les Units 9 i 10 són el **projecte capstone**: l'exercici que junta tot l'anterior en un sol lliurable defensable. Un equip que arriba a la demo day ha hagut d'usar el perfil emprenedor (A), llegir l'entorn i els seus usuaris (B), muntar un equip i un pressupost (C) i dissenyar, prototipar i comunicar (D). Si una peça falla, es nota.
+Les Unitats 9 i 10 són el **projecte capstone**: l'exercici que junta tot l'anterior en un sol lliurable defensable. Un equip que arriba a la demo day ha hagut d'usar el perfil emprenedor (A), llegir l'entorn i els seus usuaris (B), muntar un equip i un pressupost (C) i dissenyar, prototipar i comunicar (D). Si una peça falla, es nota.
 
 ## Has acabat Economia i Emprenedoria si ja saps…
 
 Esta és la llista de comprovació final del curs. No es tracta d'haver memoritzat definicions, sinó de **saber fer**. Si pots marcar amb sinceritat estes caselles, has complit els objectius de l'assignatura:
 
-- [ ] **Explicar què és emprendre** sense caure en els mites (no cal ser jove, ni tindre una idea genial, ni arriscar-ho tot). *(Units 1-2)*
-- [ ] **Reconéixer que les habilitats emprenedores s'entrenen**: creativitat, mentalitat de creixement, treball en equip. *(Unit 2)*
-- [ ] **Distingir l'emprenedoria social i la RSC** i reconéixer el greenwashing quan el veges. *(Unit 3)*
-- [ ] **Detectar una oportunitat** analitzant el teu entorn amb una mirada PESTEL bàsica. *(Unit 4)*
-- [ ] **Defensar els teus drets com a consumidor**: garantia, dret de desistiment i reconéixer un dark pattern. *(Unit 5)*
-- [ ] **Treballar com a equip i no com a grup**, repartir rols i gestionar un conflicte sense trencar la relació. *(Unit 6)*
-- [ ] **Fer un pressupost personal** i entendre per què l'interés compost premia estalviar jove. *(Unit 7)*
-- [ ] **Comparar fonts de finançament** per a un projecte i triar l'adequada. *(Unit 7)*
-- [ ] **Llegir una nòmina** i calcular el teu salari net a partir del brut. *(Unit 8)*
-- [ ] **Distingir tipus de contracte** i triar una forma jurídica per a emprendre. *(Unit 8)*
-- [ ] **Dissenyar un projecte** amb Design Thinking i un Business Model Canvas de nou blocs. *(Unit 9)*
-- [ ] **Construir un prototip** de baixa fidelitat i entendre què és un MVP. *(Unit 9)*
-- [ ] **Validar una idea** amb hipòtesis verificables i mètriques accionables, no amb corazonades. *(Unit 10)*
-- [ ] **Contar el teu projecte** en un elevator pitch de 30 segons i defensar-lo en una demo day. *(Unit 10)*
+- [ ] **Explicar què és emprendre** sense caure en els mites (no cal ser jove, ni tindre una idea genial, ni arriscar-ho tot). *(Unitats 1-2)*
+- [ ] **Reconéixer que les habilitats emprenedores s'entrenen**: creativitat, mentalitat de creixement, treball en equip. *(Unitat 2)*
+- [ ] **Distingir l'emprenedoria social i la RSC** i reconéixer el greenwashing quan el veges. *(Unitat 3)*
+- [ ] **Detectar una oportunitat** analitzant el teu entorn amb una mirada PESTEL bàsica. *(Unitat 4)*
+- [ ] **Defensar els teus drets com a consumidor**: garantia, dret de desistiment i reconéixer un dark pattern. *(Unitat 5)*
+- [ ] **Treballar com a equip i no com a grup**, repartir rols i gestionar un conflicte sense trencar la relació. *(Unitat 6)*
+- [ ] **Fer un pressupost personal** i entendre per què l'interés compost premia estalviar jove. *(Unitat 7)*
+- [ ] **Comparar fonts de finançament** per a un projecte i triar l'adequada. *(Unitat 7)*
+- [ ] **Llegir una nòmina** i calcular el teu salari net a partir del brut. *(Unitat 8)*
+- [ ] **Distingir tipus de contracte** i triar una forma jurídica per a emprendre. *(Unitat 8)*
+- [ ] **Dissenyar un projecte** amb Design Thinking i un Business Model Canvas de nou blocs. *(Unitat 9)*
+- [ ] **Construir un prototip** de baixa fidelitat i entendre què és un MVP. *(Unitat 9)*
+- [ ] **Validar una idea** amb hipòtesis verificables i mètriques accionables, no amb corazonades. *(Unitat 10)*
+- [ ] **Contar el teu projecte** en un elevator pitch de 30 segons i defensar-lo en una demo day. *(Unitat 10)*
 
 <Figure
   src={fyfnBarcelona}
@@ -406,3 +448,220 @@ Estes preguntes no tenen una resposta única. Servixen per a tancar el curs pens
     **Simulacre de pitch amb tribunal rotatori**: cada equip presenta el seu pitch davant d'un tribunal compost per membres d'altres equips (rota cada 3 pitches). El tribunal puntua: s'ha entés el problema?, la solució és clara?, va quedar alguna pregunta sense respondre? Feedback constructiu després de cada pitch. Duració: 60-90 min. Materials: cronòmetre i plantilla d'avaluació.
   </Fragment>
 </MirarFora>
+
+```deck
+- tipo: curriculum
+  eyebrow: "A què respon esta unitat"
+  title: "El marc de la unitat"
+  saberes:
+    - "Bloc D: validació amb clients reals."
+    - "Bloc D: comunicació i pitch del projecte."
+  competencias:
+    - "Validar i comunicar un projecte emprenedor fins a la seua defensa pública."
+- tipo: section
+  title: "Validar la idea: hipòtesis, no conviccions"
+  subtitle: Una convicció és una cosa que l'equip creu i defén; una hipòtesi és una cosa que l'equip creu però accepta posar a prova.
+- tipo: list
+  title: Tres hipòtesis que tota idea ha de validar
+  ordered: true
+  items:
+    - "De problema. El problema existix de veritat per a algú i li fa prou mal com per a fer alguna cosa al respecte?"
+    - "De solució. La teua proposta concreta el resol millor que el que eixa gent ja usa hui?"
+    - "De viabilitat. Algú pagarà, se subscriurà o li dedicarà el seu temps? És la que més equips obliden."
+- tipo: concept
+  eyebrow: Concepte clau
+  title: Quan una hipòtesi és verificable
+  body: "«Els joves voldran la meua app» no és verificable: ni definix quins joves, ni què vol dir voler, ni com es mesura. «Almenys sis de cada deu estudiants de 4t d'ESO del meu institut premeran descarregar si els ensenye la pantalla d'inici» sí que ho és: hi ha un col·lectiu clar, una acció mesurable i un llindar concret."
+  pull: Caure prompte costa molt menys que caure tard.
+- tipo: section
+  title: "Mètriques: vanitat enfront d'acció"
+  subtitle: "No tots els números valen el mateix: uns queden bé en una diapositiva i altres informen una decisió de l'equip."
+- tipo: table
+  title: Cada mètrica vanitat té la seua equivalent accionable
+  head:
+    - Mètrica vanitat
+    - Mètrica accionable equivalent
+  rows:
+    - - Descàrregues totals de l'app
+      - Usuaris actius diaris (DAU)
+    - - Likes en una publicació
+      - Comentaris i comparticions
+    - - Visites a la web
+      - Conversió a registre o compra
+    - - Seguidors en xarxes
+      - Taxa de resposta a un missatge directe
+    - - Persones que van provar la demo
+      - Persones que van tornar una segona vegada
+  caption: "Cada equip en tria només dues: una de comportament (la usen?) i una altra de valor (tornen, paguen, recomanen?)."
+- tipo: diagram
+  diagrama: EmbudoValidacion
+  caption: "On es perd la gent, pas a pas"
+- tipo: concept
+  title: "A/B test: dues portes, el mateix nombre de persones"
+  body: L'experiment més senzill consistix a preparar dues versions del prototip —dos cartells, dos preus, dos noms—, ensenyar-les al mateix nombre de persones en condicions semblants i comptar quina funciona millor. La regla d'or és canviar una sola cosa entre les dues versions.
+  pull: Si canvies el cartell, el preu i el nom alhora, no sabràs quin ha sigut el responsable.
+- tipo: split
+  title: "Quan arriben les dades: perseverar o pivotar"
+  left:
+    h: Persevera
+    items:
+      - Les dades confirmen la hipòtesi
+      - Es continua amb el pla previst
+      - Es passa a validar la hipòtesi següent
+  right:
+    h: Pivota
+    items:
+      - Les dades diuen clarament que no
+      - Es canvia una cosa important sense tirar el projecte sencer
+      - "Es conserva el validat: client, problema, tecnologia o equip"
+- tipo: timeline
+  eyebrow: "Cas real"
+  title: "Slack era un videojoc"
+  hitos:
+    - fecha: "2009"
+      hito: "Butterfield alça capital per a Glitch"
+      detalle: "Un videojoc multijugador que mai va arribar a generar ingressos suficients."
+    - fecha: "2012"
+      hito: "Tanca Glitch i conserva equip i ferramenta"
+      detalle: "La missatgeria per canals que havien construït per a coordinar-se a distància."
+    - fecha: "Després"
+      hito: "La llancen com a producte: la criden Slack"
+      detalle: "Pivotar és mantindre el que la realitat ha validat i descartar el que ha desmentit."
+    - fecha: "2021"
+      hito: "Salesforce la compra"
+      detalle: "27.700 milions de dòlars."
+- tipo: section
+  title: Pla de comunicació i màrqueting bàsic
+  subtitle: "No necessita ser llarg: necessita quatre respostes clares abans d'eixir a contar res."
+- tipo: list
+  title: Les quatre peces del pla
+  ordered: true
+  items:
+    - "Target. El client concret, mai «tot el món»: un nínxol estret es comunica millor que un planeta sencer."
+    - "Missatge. La proposta de valor en una frase: ajudem [target] a [aconseguir resultat] sense [obstacle habitual]."
+    - "Canals. On viu eixe target: xarxes, WhatsApp, cartelleria a l'institut, premsa comarcal, correu si ja us ha deixat el contacte."
+    - Pressupost. Quasi sempre zero euros, però amb hores setmanals compromeses. Un pla sense compromís temporal és un desig.
+- tipo: section
+  title: "Storytelling: les persones recorden històries"
+  subtitle: "Tots els equips cometen el mateix error en presentar: comencen amb estadístiques i el públic mira al sostre."
+- tipo: figure
+  src: eco-4eso/10/ted-stage-julie-freeman.jpg
+  alt: Ponent en un escenari TED amb el cercle roig del logo il·luminat al fons.
+  title: El format TED
+  caption: Una xarrada curta i una sola idea defensada amb una història. És el referent global de com es conta en públic una cosa que importa.
+  credit: "Foto: Juliana Rotich (afromusing), CC BY 2.0"
+- tipo: list
+  title: L'estructura del relat, d'Aristòtil a Pixar
+  ordered: true
+  items:
+    - Situació inicial. Presentem algú concret en el seu món quotidià.
+    - Conflicte. Apareix un problema que trenca eixe món.
+    - Resolució. Mostrem com la solució canvia la vida d'eixe algú.
+- tipo: concept
+  title: Pepa abans que els huit milions
+  body: "En lloc d'obrir amb «a Espanya hi ha huit milions de persones majors de 65 anys que viuen soles», es comença així: «la meua àvia es diu Pepa, viu sola des de 2019 i només telefona quan té una emergència, perquè no vol molestar. La setmana passada va caure a la cuina i va tardar quatre hores a avisar». Els huit milions arriben després, quan el públic ja té un rostre."
+  pull: Si el teu pitch pot començar igual canviant el nom del projecte, és genèric i s'oblida.
+- tipo: section
+  title: El pitch en tres formats
+  subtitle: El mateix projecte es conta de forma molt distinta en trenta segons, en cinc minuts o en un quart d'hora.
+- tipo: table
+  title: Tres formats, tres propòsits
+  head:
+    - Format
+    - Duració
+    - Per a què servix
+  rows:
+    - - Elevator pitch
+      - 30 segons
+      - Que qui no et coneix demane que li contes més
+    - - Pitch deck
+      - 5 minuts, 10 slides
+      - Defensar-lo davant d'un jurat, un concurs o un inversor
+    - - Presentació llarga
+      - 15 minuts
+      - Defensa final amb torn de preguntes i demo detallada
+  caption: "Mai òmpligues els quinze minuts parlant: reserva'n almenys cinc per a preguntes."
+- tipo: concept
+  eyebrow: 30 segons
+  title: La fórmula de l'elevator pitch
+  body: "«Per a [target] que té el problema de [problema concret], hem creat [solució] que, a diferència de [alternativa actual], oferix [benefici únic]». Una frase llarga, sense dades i sense promeses exagerades. El seu èxit no es mesura en si véns, sinó en si l'interlocutor demana més."
+- tipo: figure
+  src: eco-4eso/10/4yfn-mwc-barcelona-mentoring.jpg
+  alt: Acte de lliurament de premis a l'espai 4YFN dins del Mobile World Congress de Barcelona, amb estands i públic.
+  title: On el pitch de passadís no és un exercici
+  caption: A 4YFN, centenars de startups joves competixen cada febrer per l'atenció d'inversors i premsa en passadissos plens d'estands.
+  credit: "Foto: Kippelboy, CC0 1.0 via Wikimedia Commons"
+- tipo: diagram
+  diagrama: PitchDeck10Slides
+  caption: "Estructura clàssica del pitch deck: la regla 10/20/30 de Guy Kawasaki, ajustada a cinc minuts"
+- tipo: data
+  numero: "11"
+  label: diapositives
+  title: El pitch deck amb què va començar Airbnb
+  detalle: "Amb eixe material, els tres fundadors van arreplegar 600.000 dòlars en 2009: una idea per slide, frases curtes i cap adorn gràfic. Si no ho podeu contar en deu o dotze idees, encara no està llest."
+- tipo: section
+  title: "La demo day: defensar el projecte davant de gent real"
+  subtitle: Presentar-ho al professor que us coneix és còmode; a un jurat que entra hui i se'n va en una hora, no. La incomoditat és l'exercici.
+- tipo: figure
+  src: eco-4eso/10/demo-day-pitch-startup.png
+  alt: Fundador d'una startup presentant el seu producte en un escenari de demo day, amb la diapositiva projectada darrere i el públic davant.
+  title: Cinc minuts, un jurat
+  caption: Diapositiva gran, una sola idea per pantalla i cap foli a la mà. Esta és la imatge mental amb la qual convé assajar.
+  credit: "Foto: MarkChristopherWebster, CC BY-SA 4.0"
+- tipo: list
+  title: Com preparar la demo day
+  items:
+    - Cronòmetre damunt de la taula. Cinc minuts són cinc minuts; si no acabeu, el jurat talla. En la vida real també.
+    - Assaig en veu alta, mínim tres passades completes. El pitch no s'assaja llegint-lo en silenci.
+    - "Repartir rols: en un equip de quatre parlen dos, màxim tres. Qui no parla, opera la demo."
+    - Les cinc preguntes més incòmodes, escrites i respostes abans. La que més espanta sol ser la primera que cau.
+    - Lleig però validat. Un prototip de cartó amb dades darrere guanya a un altre d'impecable sense usuaris; es nota als trenta segons.
+- tipo: concept
+  title: Escolta, no et defenses
+  body: Quan arribe el feedback —i arribarà, part favorable i part no—, la temptació és interrompre el jurat per a explicar per què la seua crítica està equivocada. És el pitjor error possible. Pren notes, dona les gràcies i discutiu després en l'equip si la crítica té fonament. Pivotar després d'un feedback honest és de projectes seriosos; ignorar-lo és de projectes que es moren.
+  pull: "La crítica del jurat és un regal: l'opinió sincera de qui no us deu res i ha vist centenars de projectes."
+- tipo: terms
+  title: El vocabulari que cal endur-se
+  terms:
+    - t: Hipòtesi verificable
+      d: "La que es formula de manera que un experiment puga confirmar-la o desmentir-la: col·lectiu clar, acció mesurable i llindar concret."
+    - t: Mètrica accionable
+      d: "Número que depén d'alguna cosa que fa l'equip i permet canviar de rumb: conversió, retenció, usuaris actius. La vanitat només queda bé."
+    - t: Pivot
+      d: Canvi important del projecte que conserva el que la realitat ha validat —client, problema, tecnologia, equip— i reformula la resta.
+    - t: Demo day
+      d: Jornada en la qual cada equip defén el seu projecte en cinc minuts davant d'un públic extern que no li deu res.
+- tipo: quiz
+  pregunta: "«El nostre vídeo ha tingut cinquanta mil reproduccions.» Quina classe de mètrica està usant l'equip?"
+  opciones:
+    - Accionable, perquè el número és gran i continua creixent
+    - Vanitat, perquè no informa cap decisió de l'equip
+    - Accionable, perquè mesura l'abast real de la campanya
+    - Vanitat, perquè les xarxes socials no servixen per a comunicar
+  correcta: "1"
+  explicacion: Les reproduccions pugen sempre i no diuen què canviar. La versió accionable seria quantes d'eixes persones es descarreguen l'app i tornen l'endemà.
+- tipo: quiz
+  pregunta: Un equip canvia alhora el cartell, el preu i el nom del producte. La versió B funciona millor. Què ha aprés?
+  opciones:
+    - Que el preu era el problema
+    - "Res útil: no pot saber quin dels tres canvis ho explica"
+    - Que li toca pivotar immediatament
+    - Que la hipòtesi de viabilitat ja està validada
+  correcta: "1"
+  explicacion: La regla d'or de l'A/B test és canviar una sola cosa entre les dues versions. Amb tres variables mogudes alhora, el resultat no assenyala cap causa.
+- tipo: concept
+  eyebrow: Tancament del curs
+  title: El que us endueu d'este curs
+  body: "La meta mai va ser que tot l'alumnat funde una empresa en acabar 4t d'ESO. Era eixir amb tres coses: una mentalitat capaç de detectar oportunitats en qualsevol àmbit, una caixa de ferramentes per a no perdre's davant d'una nòmina, un contracte o un dark pattern, i l'experiència real d'haver portat un projecte des d'una idea apegalosa fins a una defensa pública."
+  pull: El que feu amb tot això a partir de demà és vostre.
+- tipo: recap
+  eyebrow: "Repassa"
+  title: "Abans de tancar la unitat"
+  items:
+    - "Sabries formular tres o quatre hipòtesis verificables sobre la teua idea de projecte."
+    - "Sabries dissenyar un test senzill i validar una hipòtesi amb deu usuaris reals."
+    - "Sabries separar mètriques vanitat de mètriques accionables i triar-ne dues de clau."
+    - "Sabries muntar un pla de comunicació amb target, missatge, canals i pressupost."
+    - "Sabries preparar tres pitches: elevator de 30 s, deck de 5 min i presentació de 15 min."
+    - "Sabries defendre el projecte davant d'un jurat extern en una demo day."
+```

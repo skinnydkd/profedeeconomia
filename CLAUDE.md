@@ -142,7 +142,7 @@ Validada el 2026-05-10. Variant C va guanyar enfront de A (editorial pur, vermel
 - **Hosting**: Vercel
 - **Generació PDF llibres**: paged.js o Puppeteer (script Node)
 - **Generació diapositives**: motor natiu d'Astro (renderitzat propi a `src/`; substitueix Marp, ja deprecat)
-- **Analytics**: Plausible + Vercel Web Analytics
+- **Analytics**: Google Analytics 4 (`G-3ECWVDWNF2`) + Vercel Web Analytics. GA4 només es carrega amb consentiment explícit (banner AEPD); veure `src/lib/consent.ts`. Plausible descartat.
 - **Errors**: Sentry free tier
 
 ### Fase 2 (NO al MVP)
@@ -288,6 +288,7 @@ El repo `webpde` actual conté el contingut antic. La migració es fa per fases:
 
 ### Sobre dades d'usuaris (per a fase 2)
 - **GDPR-friendly des del primer dia**.
+- **Qualsevol tracker de tercers (GA4 inclòs) va darrere de consentiment previ i explícit**: res es carrega fins que la persona accepta, i rebutjar ha de ser tan fàcil com acceptar (AEPD). Si s'afig un servei nou, cal actualitzar `/legal/privacidad/` abans de desplegar.
 - **Cap email comercial sense consentiment explícit**.
 
 ## Out of scope explícit (no facis)

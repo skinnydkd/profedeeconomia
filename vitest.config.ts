@@ -19,7 +19,7 @@ export default defineConfig({
     include: [
       'src/**/*.{test,spec}.ts',
       'party/**/*.{test,spec}.ts',
-      'scripts/**/*.{test,spec}.mjs',
+      'scripts/**/*.{test,spec}.{ts,mjs}',
     ],
   },
 });

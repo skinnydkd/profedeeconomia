@@ -26,18 +26,47 @@ import EquilibrioCalc from '@components/calculadoras/EquilibrioCalc.tsx';
 import DAFOCanvas from '@components/calculadoras/DAFOCanvas.tsx';
 import BusinessModelCanvas from '@components/calculadoras/BusinessModelCanvas.tsx';
 import MatrizBCG from '@components/calculadoras/MatrizBCG.tsx';
+import TasasEPACalc from '@components/calculadoras/TasasEPACalc.tsx';
+import MatrizDecision from '@components/calculadoras/MatrizDecision.tsx';
+import FPPCalc from '@components/calculadoras/FPPCalc.tsx';
+import ExternalidadCalc from '@components/calculadoras/ExternalidadCalc.tsx';
+import MultiplicadorBancarioCalc from '@components/calculadoras/MultiplicadorBancarioCalc.tsx';
+import VentajaComparativaCalc from '@components/calculadoras/VentajaComparativaCalc.tsx';
+import CuentaResultadosCalc from '@components/calculadoras/CuentaResultadosCalc.tsx';
+import CosteContratacionCalc from '@components/calculadoras/CosteContratacionCalc.tsx';
+import MarketingClienteCalc from '@components/calculadoras/MarketingClienteCalc.tsx';
+import TesoreriaCalc from '@components/calculadoras/TesoreriaCalc.tsx';
+import TamanoMercadoCalc from '@components/calculadoras/TamanoMercadoCalc.tsx';
+import CompraInteligenteCalc from '@components/calculadoras/CompraInteligenteCalc.tsx';
+import EmbudoValidacionCalc from '@components/calculadoras/EmbudoValidacionCalc.tsx';
+import Semana168Calc from '@components/calculadoras/Semana168Calc.tsx';
+import PIBRealCalc from '@components/calculadoras/PIBRealCalc.tsx';
+import FormaJuridicaCalc from '@components/calculadoras/FormaJuridicaCalc.tsx';
+import ClasificaEmpresaCalc from '@components/calculadoras/ClasificaEmpresaCalc.tsx';
+import ObjetivosSMARTCalc from '@components/calculadoras/ObjetivosSMARTCalc.tsx';
+import HuellaDigitalCalc from '@components/calculadoras/HuellaDigitalCalc.tsx';
+import RolesEquipoCalc from '@components/calculadoras/RolesEquipoCalc.tsx';
+import AfirmacionSostenibleCalc from '@components/calculadoras/AfirmacionSostenibleCalc.tsx';
+import ScamperCalc from '@components/calculadoras/ScamperCalc.tsx';
+import EvaluacionRiesgosCalc from '@components/calculadoras/EvaluacionRiesgosCalc.tsx';
+import MapaEmpatiaCalc from '@components/calculadoras/MapaEmpatiaCalc.tsx';
+import ProgresividadCalc from '@components/calculadoras/ProgresividadCalc.tsx';
+import KarasekCalc from '@components/calculadoras/KarasekCalc.tsx';
+import MisionVisionCalc from '@components/calculadoras/MisionVisionCalc.tsx';
+import AutomatizacionCalc from '@components/calculadoras/AutomatizacionCalc.tsx';
 
-import { type Locale } from '@/i18n/locale';
+import { getLocale, type Locale } from '@/i18n/locale';
 import { t } from '@/i18n/ui';
 
 /**
- * `locale` is an explicit prop, never derived from `Astro.currentLocale`: the
- * same islands are embedded in the per-asignatura recurso pages and in the
- * slide decks, whose content is still ES under /ca. Only a caller that has
- * localized its own page passes a locale; everyone else gets the ES default.
+ * `locale` defaults to the locale of the page the island is on. Most call
+ * sites are `<HerramientaIsland componente="…" />` inside a unit body, which
+ * cannot reach `Astro.currentLocale` itself, so without this a Valencian unit
+ * rendered a Spanish tool. Pass the prop explicitly to override — the slide
+ * decks never mount this component, so nothing depends on the old ES default.
  */
 interface Props { componente?: string; locale?: Locale }
-const { componente, locale = 'es' } = Astro.props;
+const { componente, locale = getLocale(Astro.currentLocale) } = Astro.props;
 ---
 <div class="hi__web">
 {componente === 'PuntoMuerto' && <PuntoMuertoCalc client:load locale={locale} />}
@@ -62,6 +91,34 @@ const { componente, locale = 'es' } = Astro.props;
 {componente === 'DAFO' && <DAFOCanvas client:load locale={locale} />}
 {componente === 'CanvasBM' && <BusinessModelCanvas client:load locale={locale} />}
 {componente === 'BCG' && <MatrizBCG client:load locale={locale} />}
+{componente === 'TasasEPA' && <TasasEPACalc client:load locale={locale} />}
+{componente === 'MatrizDecision' && <MatrizDecision client:load locale={locale} />}
+{componente === 'FPP' && <FPPCalc client:load locale={locale} />}
+{componente === 'Externalidad' && <ExternalidadCalc client:load locale={locale} />}
+{componente === 'MultiplicadorBancario' && <MultiplicadorBancarioCalc client:load locale={locale} />}
+{componente === 'VentajaComparativa' && <VentajaComparativaCalc client:load locale={locale} />}
+{componente === 'CuentaResultados' && <CuentaResultadosCalc client:load locale={locale} />}
+{componente === 'CosteContratacion' && <CosteContratacionCalc client:load locale={locale} />}
+{componente === 'MarketingCliente' && <MarketingClienteCalc client:load locale={locale} />}
+{componente === 'Tesoreria' && <TesoreriaCalc client:load locale={locale} />}
+{componente === 'TamanoMercado' && <TamanoMercadoCalc client:load locale={locale} />}
+{componente === 'CompraInteligente' && <CompraInteligenteCalc client:load locale={locale} />}
+{componente === 'EmbudoValidacion' && <EmbudoValidacionCalc client:load locale={locale} />}
+{componente === 'Semana168' && <Semana168Calc client:load locale={locale} />}
+{componente === 'PIBReal' && <PIBRealCalc client:load locale={locale} />}
+{componente === 'FormaJuridica' && <FormaJuridicaCalc client:load locale={locale} />}
+{componente === 'ClasificaEmpresa' && <ClasificaEmpresaCalc client:load locale={locale} />}
+{componente === 'ObjetivosSMART' && <ObjetivosSMARTCalc client:load locale={locale} />}
+{componente === 'HuellaDigital' && <HuellaDigitalCalc client:load locale={locale} />}
+{componente === 'RolesEquipo' && <RolesEquipoCalc client:load locale={locale} />}
+{componente === 'AfirmacionSostenible' && <AfirmacionSostenibleCalc client:load locale={locale} />}
+{componente === 'Scamper' && <ScamperCalc client:load locale={locale} />}
+{componente === 'EvaluacionRiesgos' && <EvaluacionRiesgosCalc client:load locale={locale} />}
+{componente === 'MapaEmpatia' && <MapaEmpatiaCalc client:load locale={locale} />}
+{componente === 'Progresividad' && <ProgresividadCalc client:load locale={locale} />}
+{componente === 'Karasek' && <KarasekCalc client:load locale={locale} />}
+{componente === 'MisionVision' && <MisionVisionCalc client:load locale={locale} />}
+{componente === 'Automatizacion' && <AutomatizacionCalc client:load locale={locale} />}
 </div>
 <p class="hi__print">{t('island.print', locale)}</p>
 

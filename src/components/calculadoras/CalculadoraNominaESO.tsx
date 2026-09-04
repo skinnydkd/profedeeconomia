@@ -428,7 +428,7 @@ function Resultado({ n, locale }: { n: ReturnType<typeof calcularNomina>; locale
               </tr>
               <tr>
                 <td>MEI</td>
-                <td>0,13 %</td>
+                <td>0,15 %</td>
                 <td>−{formatEUR(c.mei)}</td>
               </tr>
               <tr>

@@ -95,6 +95,12 @@ preguntas:
     derecha: ["M2 més instruments negociables a curt termini (repos, participacions en fons del mercat monetari)", "Efectiu en circulació més reserves bancàries en el banc central", "M1 més depòsits d'estalvi a curt termini", "Efectiu en mans del públic més depòsits a la vista"]
     correctas: [1, 3, 2, 0]
     explicacion: "Cada agregat és més ampli que l'anterior: M0 són els diners emesos pel banc central; M1 afig els depòsits a la vista; M2 suma l'estalvi a curt termini; M3 incorpora instruments negociables a curt termini."
+  - tipo: numerico
+    enunciado: "Amb un coeficient de reserves del 10 %, un depòsit inicial de 5.000 € pot arribar a generar com a màxim quants euros de depòsits en el conjunt del sistema bancari?"
+    respuesta: 50000
+    tolerancia: 100
+    unidad: "€"
+    explicacion: "El multiplicador és 1 / 0,10 = 10, així que 5.000 € × 10 = 50.000 € de depòsits totals. D'estos, 45.000 € són diners bancaris creats pel sistema, no bitllets emesos pel banc central."
 ---
 
 Test d'autoavaluació de la Unitat 10 del llibre d'Eco 1BACH.

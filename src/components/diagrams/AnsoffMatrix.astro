@@ -3,65 +3,139 @@
  * 2x2 Ansoff growth matrix with risk gradient (left-to-right and
  * top-to-bottom) shown as the cells darken toward diversification.
  */
+import { getLocale } from '@/i18n/locale';
+const locale = getLocale(Astro.currentLocale);
+
+const COPY = {
+  es: {
+    matrizDeAnsoffEstrategias: 'Matriz de Ansoff: estrategias de crecimiento',
+    mercadoExistente: 'MERCADO EXISTENTE',
+    mercadoNuevo: 'MERCADO NUEVO',
+    productoExistente: 'PRODUCTO EXISTENTE',
+    productoNuevo: 'PRODUCTO NUEVO',
+    riesgoBajo: 'RIESGO BAJO',
+    penetracion: 'Penetración',
+    deMercado: 'de mercado',
+    masDelMismoProducto: 'Más del mismo producto',
+    alMismoCliente: 'al mismo cliente.',
+    cocaColaIntensificandoConsum: 'Coca-Cola intensificando consumo',
+    enMercadosMaduros: 'en mercados maduros.',
+    riesgoMedio: 'RIESGO MEDIO',
+    desarrollo: 'Desarrollo',
+    deMercado2: 'de mercado',
+    mismoProducto: 'Mismo producto,',
+    clientesNuevos: 'clientes nuevos.',
+    mercadonaExpandiendose: 'Mercadona expandiéndose',
+    aPortugalEn2019: 'a Portugal en 2019.',
+    riesgoMedio2: 'RIESGO MEDIO',
+    desarrollo2: 'Desarrollo',
+    deProducto: 'de producto',
+    productoNuevo2: 'Producto nuevo,',
+    clientesConocidos: 'clientes conocidos.',
+    appleDelIphone: 'Apple del iPhone',
+    alIpadYAl: 'al iPad y al Apple Watch.',
+    riesgoAlto: 'RIESGO ALTO',
+    diversificacion: 'Diversificación',
+    productoNuevo3: 'Producto nuevo,',
+    mercadoNuevo2: 'mercado nuevo.',
+    amazonLanzandoAwsDesde: 'Amazon lanzando AWS desde',
+    suOrigenComoLibreria: 'su origen como librería online.',
+  },
+  ca: {
+    matrizDeAnsoffEstrategias: "Matriu d'Ansoff: estratègies de creixement",
+    mercadoExistente: 'MERCAT EXISTENT',
+    mercadoNuevo: 'MERCAT NOU',
+    productoExistente: 'PRODUCTE EXISTENT',
+    productoNuevo: 'PRODUCTE NOU',
+    riesgoBajo: 'RISC BAIX',
+    penetracion: 'Penetració',
+    deMercado: 'de mercat',
+    masDelMismoProducto: 'Més del mateix producte',
+    alMismoCliente: 'al mateix client.',
+    cocaColaIntensificandoConsum: 'Coca-Cola intensificant el consum',
+    enMercadosMaduros: 'en mercats madurs.',
+    riesgoMedio: 'RISC MITJÀ',
+    desarrollo: 'Desenvolupament',
+    deMercado2: 'de mercat',
+    mismoProducto: 'Mateix producte,',
+    clientesNuevos: 'clients nous.',
+    mercadonaExpandiendose: 'Mercadona expandint-se',
+    aPortugalEn2019: 'a Portugal el 2019.',
+    riesgoMedio2: 'RISC MITJÀ',
+    desarrollo2: 'Desenvolupament',
+    deProducto: 'de producte',
+    productoNuevo2: 'Producte nou,',
+    clientesConocidos: 'clients coneguts.',
+    appleDelIphone: "Apple, de l'iPhone",
+    alIpadYAl: "a l'iPad i a l'Apple Watch.",
+    riesgoAlto: 'RISC ALT',
+    diversificacion: 'Diversificació',
+    productoNuevo3: 'Producte nou,',
+    mercadoNuevo2: 'mercat nou.',
+    amazonLanzandoAwsDesde: 'Amazon llançant AWS des del',
+    suOrigenComoLibreria: 'seu origen com a llibreria en línia.',
+  },
+} as const;
+const t = COPY[locale];
 ---
-<svg viewBox="0 0 720 480" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Matriz de Ansoff: estrategias de crecimiento">
+<svg class="d-ansoff-matrix" viewBox="0 0 720 480" xmlns="http://www.w3.org/2000/svg" role="img" aria-label={t.matrizDeAnsoffEstrategias}>
   <defs>
     <style>
-      .bg { fill: #FBF6EC; }
-      .axis-label { font-family: 'Switzer', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; fill: #5C4A3D; }
-      .sub-label { font-family: 'Switzer', sans-serif; font-size: 11px; fill: #8A7868; }
-      .c-1 { fill: #F5E5BC; stroke: #D4A24C; stroke-width: 1.5; }
-      .c-2 { fill: #FBE3D6; stroke: #C44E2C; stroke-width: 1.5; }
-      .c-3 { fill: #FBE3D6; stroke: #C44E2C; stroke-width: 1.5; }
-      .c-4 { fill: #ECDCE5; stroke: #5B3A4E; stroke-width: 2; }
-      .cell-name { font-family: 'Fraunces', serif; font-size: 19px; font-weight: 500; }
-      .cell-desc { font-family: 'Switzer', sans-serif; font-size: 11px; fill: #5C4A3D; }
-      .cell-ex { font-family: 'Switzer', sans-serif; font-size: 10.5px; font-style: italic; fill: #8A7868; }
-      .risk-label { font-family: 'Switzer', sans-serif; font-size: 9.5px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; }
+      .d-ansoff-matrix .bg { fill: #FBF6EC; }
+      .d-ansoff-matrix .axis-label { font-family: 'Switzer', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; fill: #5C4A3D; }
+      .d-ansoff-matrix .sub-label { font-family: 'Switzer', sans-serif; font-size: 11px; fill: #8A7868; }
+      .d-ansoff-matrix .c-1 { fill: #F5E5BC; stroke: #D4A24C; stroke-width: 1.5; }
+      .d-ansoff-matrix .c-2 { fill: #FBE3D6; stroke: #C44E2C; stroke-width: 1.5; }
+      .d-ansoff-matrix .c-3 { fill: #FBE3D6; stroke: #C44E2C; stroke-width: 1.5; }
+      .d-ansoff-matrix .c-4 { fill: #ECDCE5; stroke: #5B3A4E; stroke-width: 2; }
+      .d-ansoff-matrix .cell-name { font-family: 'Fraunces', serif; font-size: 19px; font-weight: 500; }
+      .d-ansoff-matrix .cell-desc { font-family: 'Switzer', sans-serif; font-size: 11px; fill: #5C4A3D; }
+      .d-ansoff-matrix .cell-ex { font-family: 'Switzer', sans-serif; font-size: 10.5px; font-style: italic; fill: #8A7868; }
+      .d-ansoff-matrix .risk-label { font-family: 'Switzer', sans-serif; font-size: 9.5px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; }
     </style>
   </defs>
   <rect class="bg" x="0" y="0" width="720" height="480"/>
 
   <!-- Axis labels -->
-  <text class="axis-label" x="245" y="45" text-anchor="middle">MERCADO EXISTENTE</text>
-  <text class="axis-label" x="545" y="45" text-anchor="middle">MERCADO NUEVO</text>
-  <text class="axis-label" x="55" y="195" transform="rotate(-90 55 195)" text-anchor="middle">PRODUCTO EXISTENTE</text>
-  <text class="axis-label" x="55" y="385" transform="rotate(-90 55 385)" text-anchor="middle">PRODUCTO NUEVO</text>
+  <text class="axis-label" x="245" y="45" text-anchor="middle">{t.mercadoExistente}</text>
+  <text class="axis-label" x="545" y="45" text-anchor="middle">{t.mercadoNuevo}</text>
+  <text class="axis-label" x="55" y="195" transform="rotate(-90 55 195)" text-anchor="middle">{t.productoExistente}</text>
+  <text class="axis-label" x="55" y="385" transform="rotate(-90 55 385)" text-anchor="middle">{t.productoNuevo}</text>
 
   <!-- Cell 1: Penetración (top-left, lowest risk) -->
   <g>
     <rect class="c-1" x="100" y="60" width="280" height="170" rx="6"/>
-    <text class="risk-label" x="120" y="86" fill="#A87A2A">RIESGO BAJO</text>
-    <text class="cell-name" x="120" y="115" fill="#2A1F18">Penetración</text>
-    <text class="cell-name" x="120" y="138" fill="#2A1F18">de mercado</text>
-    <text class="cell-desc" x="120" y="165">Más del mismo producto</text>
-    <text class="cell-desc" x="120" y="180">al mismo cliente.</text>
-    <text class="cell-ex" x="120" y="208">Coca-Cola intensificando consumo</text>
-    <text class="cell-ex" x="120" y="223">en mercados maduros.</text>
+    <text class="risk-label" x="120" y="86" fill="#A87A2A">{t.riesgoBajo}</text>
+    <text class="cell-name" x="120" y="115" fill="#2A1F18">{t.penetracion}</text>
+    <text class="cell-name" x="120" y="138" fill="#2A1F18">{t.deMercado}</text>
+    <text class="cell-desc" x="120" y="165">{t.masDelMismoProducto}</text>
+    <text class="cell-desc" x="120" y="180">{t.alMismoCliente}</text>
+    <text class="cell-ex" x="120" y="208">{t.cocaColaIntensificandoConsum}</text>
+    <text class="cell-ex" x="120" y="223">{t.enMercadosMaduros}</text>
   </g>
 
   <!-- Cell 2: Desarrollo de mercado (top-right, medium risk) -->
   <g>
     <rect class="c-2" x="400" y="60" width="280" height="170" rx="6"/>
-    <text class="risk-label" x="420" y="86" fill="#9C3A1C">RIESGO MEDIO</text>
-    <text class="cell-name" x="420" y="115" fill="#2A1F18">Desarrollo</text>
-    <text class="cell-name" x="420" y="138" fill="#2A1F18">de mercado</text>
-    <text class="cell-desc" x="420" y="165">Mismo producto,</text>
-    <text class="cell-desc" x="420" y="180">clientes nuevos.</text>
-    <text class="cell-ex" x="420" y="208">Mercadona expandiéndose</text>
-    <text class="cell-ex" x="420" y="223">a Portugal en 2019.</text>
+    <text class="risk-label" x="420" y="86" fill="#9C3A1C">{t.riesgoMedio}</text>
+    <text class="cell-name" x="420" y="115" fill="#2A1F18">{t.desarrollo}</text>
+    <text class="cell-name" x="420" y="138" fill="#2A1F18">{t.deMercado2}</text>
+    <text class="cell-desc" x="420" y="165">{t.mismoProducto}</text>
+    <text class="cell-desc" x="420" y="180">{t.clientesNuevos}</text>
+    <text class="cell-ex" x="420" y="208">{t.mercadonaExpandiendose}</text>
+    <text class="cell-ex" x="420" y="223">{t.aPortugalEn2019}</text>
   </g>
 
   <!-- Cell 3: Desarrollo de producto (bottom-left, medium risk) -->
   <g>
     <rect class="c-3" x="100" y="240" width="280" height="170" rx="6"/>
-    <text class="risk-label" x="120" y="266" fill="#9C3A1C">RIESGO MEDIO</text>
-    <text class="cell-name" x="120" y="295" fill="#2A1F18">Desarrollo</text>
-    <text class="cell-name" x="120" y="318" fill="#2A1F18">de producto</text>
-    <text class="cell-desc" x="120" y="345">Producto nuevo,</text>
-    <text class="cell-desc" x="120" y="360">clientes conocidos.</text>
-    <text class="cell-ex" x="120" y="388">Apple del iPhone</text>
-    <text class="cell-ex" x="120" y="403">al iPad y al Apple Watch.</text>
+    <text class="risk-label" x="120" y="266" fill="#9C3A1C">{t.riesgoMedio2}</text>
+    <text class="cell-name" x="120" y="295" fill="#2A1F18">{t.desarrollo2}</text>
+    <text class="cell-name" x="120" y="318" fill="#2A1F18">{t.deProducto}</text>
+    <text class="cell-desc" x="120" y="345">{t.productoNuevo2}</text>
+    <text class="cell-desc" x="120" y="360">{t.clientesConocidos}</text>
+    <text class="cell-ex" x="120" y="388">{t.appleDelIphone}</text>
+    <text class="cell-ex" x="120" y="403">{t.alIpadYAl}</text>
   </g>
 
   <!-- Cell 4: Diversificación (bottom-right, highest risk).
@@ -71,11 +145,11 @@
        align horizontally with cell 3. -->
   <g>
     <rect class="c-4" x="400" y="240" width="280" height="170" rx="6"/>
-    <text class="risk-label" x="420" y="266" fill="#5B3A4E">RIESGO ALTO</text>
-    <text class="cell-name" x="420" y="308" fill="#2A1F18">Diversificación</text>
-    <text class="cell-desc" x="420" y="345">Producto nuevo,</text>
-    <text class="cell-desc" x="420" y="360">mercado nuevo.</text>
-    <text class="cell-ex" x="420" y="388">Amazon lanzando AWS desde</text>
-    <text class="cell-ex" x="420" y="403">su origen como librería online.</text>
+    <text class="risk-label" x="420" y="266" fill="#5B3A4E">{t.riesgoAlto}</text>
+    <text class="cell-name" x="420" y="308" fill="#2A1F18">{t.diversificacion}</text>
+    <text class="cell-desc" x="420" y="345">{t.productoNuevo3}</text>
+    <text class="cell-desc" x="420" y="360">{t.mercadoNuevo2}</text>
+    <text class="cell-ex" x="420" y="388">{t.amazonLanzandoAwsDesde}</text>
+    <text class="cell-ex" x="420" y="403">{t.suOrigenComoLibreria}</text>
   </g>
 </svg>

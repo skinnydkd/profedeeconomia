@@ -87,6 +87,12 @@ preguntas:
     derecha: ["Operacions idèntiques que es repetixen sense pausa per unitats", "Sèries limitades de productes similars", "Cada output és únic, com un edifici", "Procés que no s'atura, com una refineria"]
     correctas: [2, 1, 0, 3]
     explicacion: "Per projecte → output únic; per lots → sèries limitades; en cadena → operacions idèntiques repetides; contínua → procés que no s'atura."
+  - tipo: numerico
+    enunciado: "Una empresa té 12.000 € de costos fixos al mes, ven el seu producte a 8 € i li costa 5 € de cost variable unitari. Quin és el seu punt mort, en unitats al mes?"
+    respuesta: 4000
+    tolerancia: 1
+    unidad: "unitats"
+    explicacion: "Q* = CF / (P − CVu) = 12.000 / (8 − 5) = 12.000 / 3 = 4.000 unitats. El denominador és el marge de contribució: cada unitat venuda aporta 3 € a cobrir els fixos. Des de la unitat 4.001, cada venda és benefici."
 ---
 
 Test d'autoavaluació de la Unitat 7 del llibre d'EDMN 2BACH.

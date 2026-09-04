@@ -3,28 +3,116 @@
  * Guy Kawasaki's 10/20/30 pitch deck structure visualised as a 2×5
  * grid of slide cards. Each card numbered and titled.
  */
+import { getLocale } from '@/i18n/locale';
+const locale = getLocale(Astro.currentLocale);
+
+const COPY = {
+  es: {
+    estructuraDePitchDeck: 'Estructura de pitch deck en 10 slides (Guy Kawasaki)',
+    cuadricula25Con: 'Cuadrícula 2×5 con las diez secciones del pitch deck clásico: problema, solución, modelo de negocio, tecnología, marketing, competencia, equipo, proyecciones financieras, estado actual y resumen.',
+    regla102030: 'REGLA 10 / 20 / 30 DE GUY KAWASAKI',
+    diapositivas: 'diapositivas ·',
+    minutosMaximoCuerpoDe: 'minutos máximo · cuerpo de letra mínimo',
+    pt: 'pt',
+    problema: 'Problema',
+    queDuele: '¿Qué duele?',
+    aQuien: '¿A quién?',
+    solucion: 'Solución',
+    vuestraPropuesta: 'Vuestra propuesta',
+    enUnaFrase: 'en una frase',
+    modeloDeNegocio: 'Modelo de negocio',
+    comoGanais: '¿Cómo ganáis',
+    dinero: 'dinero?',
+    tecnologia: 'Tecnología',
+    oProducto: 'o producto',
+    diferencial: 'diferencial',
+    marketing: 'Marketing',
+    yVentas: 'y ventas',
+    comoLlegais: '¿Cómo llegáis?',
+    competencia: 'Competencia',
+    queHacenOtros: '¿Qué hacen otros?',
+    porQueVosotros: '¿Por qué vosotros?',
+    equipo: 'Equipo',
+    quienesSois: '¿Quiénes sois?',
+    queAportaCadaUno: '¿Qué aporta cada uno?',
+    proyecciones: 'Proyecciones',
+    financieras: 'financieras',
+    costesIngresosBep: 'Costes, ingresos, BEP',
+    estadoActual: 'Estado actual',
+    eHitos: 'e hitos',
+    dondeEstaisHoy: 'Dónde estáis hoy',
+    resumenY: 'Resumen y',
+    llamadaAAccion: 'llamada a acción',
+    quePedis: '¿Qué pedís?',
+    elOrdenNoEs: 'El orden no es rígido, pero los',
+    bloquesDebenAparecer: 'bloques deben aparecer.',
+    siUnaIdeaNo: 'Si una idea no cabe en 10 slides, todavía no está madura para presentarla.',
+  },
+  ca: {
+    estructuraDePitchDeck: 'Estructura de pitch deck en 10 slides (Guy Kawasaki)',
+    cuadricula25Con: 'Quadrícula 2×5 amb les deu seccions del pitch deck clàssic: problema, solució, model de negoci, tecnologia, màrqueting, competència, equip, projeccions financeres, estat actual i resum.',
+    regla102030: 'REGLA 10 / 20 / 30 DE GUY KAWASAKI',
+    diapositivas: 'diapositives ·',
+    minutosMaximoCuerpoDe: 'minuts màxim · cos de lletra mínim',
+    pt: 'pt',
+    problema: 'Problema',
+    queDuele: 'Què fa mal?',
+    aQuien: 'A qui?',
+    solucion: 'Solució',
+    vuestraPropuesta: 'La vostra proposta',
+    enUnaFrase: 'en una frase',
+    modeloDeNegocio: 'Model de negoci',
+    comoGanais: 'Com guanyeu',
+    dinero: 'diners?',
+    tecnologia: 'Tecnologia',
+    oProducto: 'o producte',
+    diferencial: 'diferencial',
+    marketing: 'Màrqueting',
+    yVentas: 'i vendes',
+    comoLlegais: 'Com hi arribeu?',
+    competencia: 'Competència',
+    queHacenOtros: 'Què fan els altres?',
+    porQueVosotros: 'Per què vosaltres?',
+    equipo: 'Equip',
+    quienesSois: 'Qui sou?',
+    queAportaCadaUno: 'Què aporta cada un?',
+    proyecciones: 'Projeccions',
+    financieras: 'financeres',
+    costesIngresosBep: 'Costos, ingressos, BEP',
+    estadoActual: 'Estat actual',
+    eHitos: 'i fites',
+    dondeEstaisHoy: 'On sou hui',
+    resumenY: 'Resum i',
+    llamadaAAccion: 'crida a acció',
+    quePedis: 'Què demaneu?',
+    elOrdenNoEs: "L'ordre no és rígid, però els",
+    bloquesDebenAparecer: "blocs han d'aparéixer.",
+    siUnaIdeaNo: 'Si una idea no cap en 10 slides, encara no està madura per a presentar-la.',
+  },
+} as const;
+const t = COPY[locale];
 ---
-<svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="pitch-title pitch-desc">
-  <title id="pitch-title">Estructura de pitch deck en 10 slides (Guy Kawasaki)</title>
-  <desc id="pitch-desc">Cuadrícula 2×5 con las diez secciones del pitch deck clásico: problema, solución, modelo de negocio, tecnología, marketing, competencia, equipo, proyecciones financieras, estado actual y resumen.</desc>
+<svg class="d-pitch-deck10-slides" viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="pitch-title pitch-desc">
+  <title id="pitch-title">{t.estructuraDePitchDeck}</title>
+  <desc id="pitch-desc">{t.cuadricula25Con}</desc>
   <defs>
     <style>
-      .bg { fill: #FBF6EC; }
-      .slide { fill: #FFFFFF; stroke: #E5D4BD; stroke-width: 2; }
-      .num { font-family: 'Fraunces', serif; font-style: italic; font-size: 36px; font-weight: 500; fill: #C44E2C; text-anchor: middle; }
-      .num-bg { fill: #FBE3D6; }
-      .title { font-family: 'Fraunces', serif; font-size: 15px; font-weight: 500; fill: #2A1F18; text-anchor: middle; }
-      .subtitle { font-family: 'Switzer', sans-serif; font-size: 10.5px; fill: #A87A2A; text-anchor: middle; }
-      .header { font-family: 'Switzer', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 1.6px; text-transform: uppercase; fill: #8A7868; text-anchor: middle; }
-      .rule { font-family: 'Fraunces', serif; font-style: italic; font-size: 14px; fill: #5C4A3D; text-anchor: middle; }
-      .rule-num { font-family: 'Fraunces', serif; font-style: italic; font-size: 14px; font-weight: 700; fill: #9C3A1C; }
+      .d-pitch-deck10-slides .bg { fill: #FBF6EC; }
+      .d-pitch-deck10-slides .slide { fill: #FFFFFF; stroke: #E5D4BD; stroke-width: 2; }
+      .d-pitch-deck10-slides .num { font-family: 'Fraunces', serif; font-style: italic; font-size: 36px; font-weight: 500; fill: #C44E2C; text-anchor: middle; }
+      .d-pitch-deck10-slides .num-bg { fill: #FBE3D6; }
+      .d-pitch-deck10-slides .title { font-family: 'Fraunces', serif; font-size: 15px; font-weight: 500; fill: #2A1F18; text-anchor: middle; }
+      .d-pitch-deck10-slides .subtitle { font-family: 'Switzer', sans-serif; font-size: 10.5px; fill: #A87A2A; text-anchor: middle; }
+      .d-pitch-deck10-slides .header { font-family: 'Switzer', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 1.6px; text-transform: uppercase; fill: #8A7868; text-anchor: middle; }
+      .d-pitch-deck10-slides .rule { font-family: 'Fraunces', serif; font-style: italic; font-size: 14px; fill: #5C4A3D; text-anchor: middle; }
+      .d-pitch-deck10-slides .rule-num { font-family: 'Fraunces', serif; font-style: italic; font-size: 14px; font-weight: 700; fill: #9C3A1C; }
     </style>
   </defs>
   <rect class="bg" x="0" y="0" width="800" height="500"/>
 
   <!-- Header -->
-  <text class="header" x="400" y="35">REGLA 10 / 20 / 30 DE GUY KAWASAKI</text>
-  <text class="rule" x="400" y="58"><tspan class="rule-num">10</tspan> diapositivas · <tspan class="rule-num">20</tspan> minutos máximo · cuerpo de letra mínimo <tspan class="rule-num">30</tspan> pt</text>
+  <text class="header" x="400" y="35">{t.regla102030}</text>
+  <text class="rule" x="400" y="58"><tspan class="rule-num">10</tspan> {t.diapositivas} <tspan class="rule-num">20</tspan> {t.minutosMaximoCuerpoDe} <tspan class="rule-num">30</tspan> {t.pt}</text>
 
   <!-- Grid 5 columns × 2 rows. Card: 140w × 150h. x: 30,180,330,480,630. y: 90, 260 -->
 
@@ -33,45 +121,45 @@
     <rect class="slide" x="30" y="90" width="140" height="150" rx="6"/>
     <circle class="num-bg" cx="100" cy="125" r="22"/>
     <text class="num" x="100" y="137">1</text>
-    <text class="title" x="100" y="180">Problema</text>
-    <text class="subtitle" x="100" y="200">¿Qué duele?</text>
-    <text class="subtitle" x="100" y="215">¿A quién?</text>
+    <text class="title" x="100" y="180">{t.problema}</text>
+    <text class="subtitle" x="100" y="200">{t.queDuele}</text>
+    <text class="subtitle" x="100" y="215">{t.aQuien}</text>
   </g>
 
   <g>
     <rect class="slide" x="180" y="90" width="140" height="150" rx="6"/>
     <circle class="num-bg" cx="250" cy="125" r="22"/>
     <text class="num" x="250" y="137">2</text>
-    <text class="title" x="250" y="180">Solución</text>
-    <text class="subtitle" x="250" y="200">Vuestra propuesta</text>
-    <text class="subtitle" x="250" y="215">en una frase</text>
+    <text class="title" x="250" y="180">{t.solucion}</text>
+    <text class="subtitle" x="250" y="200">{t.vuestraPropuesta}</text>
+    <text class="subtitle" x="250" y="215">{t.enUnaFrase}</text>
   </g>
 
   <g>
     <rect class="slide" x="330" y="90" width="140" height="150" rx="6"/>
     <circle class="num-bg" cx="400" cy="125" r="22"/>
     <text class="num" x="400" y="137">3</text>
-    <text class="title" x="400" y="180">Modelo de negocio</text>
-    <text class="subtitle" x="400" y="200">¿Cómo ganáis</text>
-    <text class="subtitle" x="400" y="215">dinero?</text>
+    <text class="title" x="400" y="180">{t.modeloDeNegocio}</text>
+    <text class="subtitle" x="400" y="200">{t.comoGanais}</text>
+    <text class="subtitle" x="400" y="215">{t.dinero}</text>
   </g>
 
   <g>
     <rect class="slide" x="480" y="90" width="140" height="150" rx="6"/>
     <circle class="num-bg" cx="550" cy="125" r="22"/>
     <text class="num" x="550" y="137">4</text>
-    <text class="title" x="550" y="180">Tecnología</text>
-    <text class="subtitle" x="550" y="200">o producto</text>
-    <text class="subtitle" x="550" y="215">diferencial</text>
+    <text class="title" x="550" y="180">{t.tecnologia}</text>
+    <text class="subtitle" x="550" y="200">{t.oProducto}</text>
+    <text class="subtitle" x="550" y="215">{t.diferencial}</text>
   </g>
 
   <g>
     <rect class="slide" x="630" y="90" width="140" height="150" rx="6"/>
     <circle class="num-bg" cx="700" cy="125" r="22"/>
     <text class="num" x="700" y="137">5</text>
-    <text class="title" x="700" y="180">Marketing</text>
-    <text class="subtitle" x="700" y="200">y ventas</text>
-    <text class="subtitle" x="700" y="215">¿Cómo llegáis?</text>
+    <text class="title" x="700" y="180">{t.marketing}</text>
+    <text class="subtitle" x="700" y="200">{t.yVentas}</text>
+    <text class="subtitle" x="700" y="215">{t.comoLlegais}</text>
   </g>
 
   <!-- Row 2 -->
@@ -79,48 +167,48 @@
     <rect class="slide" x="30" y="260" width="140" height="150" rx="6"/>
     <circle class="num-bg" cx="100" cy="295" r="22"/>
     <text class="num" x="100" y="307">6</text>
-    <text class="title" x="100" y="350">Competencia</text>
-    <text class="subtitle" x="100" y="370">¿Qué hacen otros?</text>
-    <text class="subtitle" x="100" y="385">¿Por qué vosotros?</text>
+    <text class="title" x="100" y="350">{t.competencia}</text>
+    <text class="subtitle" x="100" y="370">{t.queHacenOtros}</text>
+    <text class="subtitle" x="100" y="385">{t.porQueVosotros}</text>
   </g>
 
   <g>
     <rect class="slide" x="180" y="260" width="140" height="150" rx="6"/>
     <circle class="num-bg" cx="250" cy="295" r="22"/>
     <text class="num" x="250" y="307">7</text>
-    <text class="title" x="250" y="350">Equipo</text>
-    <text class="subtitle" x="250" y="370">¿Quiénes sois?</text>
-    <text class="subtitle" x="250" y="385">¿Qué aporta cada uno?</text>
+    <text class="title" x="250" y="350">{t.equipo}</text>
+    <text class="subtitle" x="250" y="370">{t.quienesSois}</text>
+    <text class="subtitle" x="250" y="385">{t.queAportaCadaUno}</text>
   </g>
 
   <g>
     <rect class="slide" x="330" y="260" width="140" height="150" rx="6"/>
     <circle class="num-bg" cx="400" cy="295" r="22"/>
     <text class="num" x="400" y="307">8</text>
-    <text class="title" x="400" y="345">Proyecciones</text>
-    <text class="title" x="400" y="363">financieras</text>
-    <text class="subtitle" x="400" y="383">Costes, ingresos, BEP</text>
+    <text class="title" x="400" y="345">{t.proyecciones}</text>
+    <text class="title" x="400" y="363">{t.financieras}</text>
+    <text class="subtitle" x="400" y="383">{t.costesIngresosBep}</text>
   </g>
 
   <g>
     <rect class="slide" x="480" y="260" width="140" height="150" rx="6"/>
     <circle class="num-bg" cx="550" cy="295" r="22"/>
     <text class="num" x="550" y="307">9</text>
-    <text class="title" x="550" y="345">Estado actual</text>
-    <text class="title" x="550" y="363">e hitos</text>
-    <text class="subtitle" x="550" y="383">Dónde estáis hoy</text>
+    <text class="title" x="550" y="345">{t.estadoActual}</text>
+    <text class="title" x="550" y="363">{t.eHitos}</text>
+    <text class="subtitle" x="550" y="383">{t.dondeEstaisHoy}</text>
   </g>
 
   <g>
     <rect class="slide" x="630" y="260" width="140" height="150" rx="6"/>
     <circle class="num-bg" cx="700" cy="295" r="22"/>
     <text class="num" x="700" y="307">10</text>
-    <text class="title" x="700" y="345">Resumen y</text>
-    <text class="title" x="700" y="363">llamada a acción</text>
-    <text class="subtitle" x="700" y="383">¿Qué pedís?</text>
+    <text class="title" x="700" y="345">{t.resumenY}</text>
+    <text class="title" x="700" y="363">{t.llamadaAAccion}</text>
+    <text class="subtitle" x="700" y="383">{t.quePedis}</text>
   </g>
 
   <!-- Footer note -->
-  <text class="rule" x="400" y="450">El orden no es rígido, pero los <tspan class="rule-num">10</tspan> bloques deben aparecer.</text>
-  <text class="rule" x="400" y="473">Si una idea no cabe en 10 slides, todavía no está madura para presentarla.</text>
+  <text class="rule" x="400" y="450">{t.elOrdenNoEs} <tspan class="rule-num">10</tspan> {t.bloquesDebenAparecer}</text>
+  <text class="rule" x="400" y="473">{t.siUnaIdeaNo}</text>
 </svg>

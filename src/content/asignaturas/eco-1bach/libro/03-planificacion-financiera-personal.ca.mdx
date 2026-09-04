@@ -42,18 +42,21 @@ import Steps from '@components/Steps.astro';
 import KeyTakeaways from '@components/KeyTakeaways.astro';
 import Diagram from '@components/Diagram.astro';
 import InteresCompuesto from '@components/diagrams/InteresCompuesto.astro';
+import TrianguloInversion from '@components/diagrams/TrianguloInversion.astro';
 import Figure from '@components/Figure.astro';
 import Bibliography from '@components/Bibliography.astro';
 import TldrUnidad from '@components/TldrUnidad.astro';
 import CasoDilema from '@components/CasoDilema.astro';
 import VuelveAlCaso from '@components/VuelveAlCaso.astro';
 import MirarFora from '@components/MirarFora.astro';
+import VocesDesacuerdo from '@components/VocesDesacuerdo.astro';
 
 import HerramientaIsland from '@components/calculadoras/HerramientaIsland.astro';
 import einsteinRetrato from '@assets/libro/eco-1bach/03/einstein-retrato.jpg';
 import palacioBolsaMadrid from '@assets/libro/eco-1bach/03/palacio-bolsa-madrid.jpg';
 import bankiaSede from '@assets/libro/eco-1bach/03/bankia-sede.jpg';
 import bancoEspanaDetalle from '@assets/libro/eco-1bach/03/banco-espana-detalle.jpg';
+import RecursoDestacado from '@components/libro/RecursoDestacado.astro';
 
 > **Temps estimat de lectura**: ~25 min · **Sabers LOMLOE**: A.4 · **Pre-requisits**: Unitats 1-2 (escassetat i decisions econòmiques; cost d'oportunitat i interés).
 >
@@ -194,6 +197,8 @@ Qui tindrà més capital als 65 anys?
 
 </SolvedExercise>
 
+<RecursoDestacado href="/eco-1bach/recursos/calculadora-interes-compuesto/" kicker="Ferramenta" title="Calculadora d'interés compost" descripcion="Capital inicial, aportació mensual, tipus i termini. El gràfic separa el que has aportat del que han generat els interessos, que és on es veu l'efecte del temps." colorVar="--color-eco1" />
+
 ## Productes financers: rendibilitat, risc, liquiditat
 
 <Figure
@@ -262,6 +267,10 @@ El cas preferents és la lliçó més cara que l'educació financera espanyola h
   aspectHint="2/3"
   variant="tight"
 />
+
+<Diagram caption="Cap producte financer arriba alhora a rendibilitat, liquiditat i seguretat. El manual anomena risc el tercer vèrtex; ací es dibuixa el seu invers, la seguretat, perquè els tres siguen coses que un estalviador vol.">
+  <TrianguloInversion />
+</Diagram>
 
 ## Hipoteques i préstecs personals: TIN, TAE i Euríbor
 
@@ -394,6 +403,20 @@ Alguns recursos públics imprescindibles per a citar a classe:
 - **CNMV** (www.cnmv.es): publica les advertències sobre **xiringuitos financers** i les fitxes tècniques dels productes.
 - **Finanzas para Todos** (www.finanzasparatodos.es): web educativa amb calculadores, simuladors i guies per etapa vital.
 
+<VocesDesacuerdo
+  tema="Servix l'educació financera?"
+  postura_a={{
+    etiqueta: 'Sí, i en fa falta més',
+    tesis: 'Qui entén una TAE no signa un crèdit ràpid al 200 %. Ensenyar interés compost, pressupost i risc és el mínim abans de soltar algú en un mercat ple de productes complexos.',
+  }}
+  postura_b={{
+    etiqueta: 'Servix menys del que es diu',
+    tesis: "Els efectes mesurats són xicotets i s'esvaïxen en mesos. És còmode traslladar a la persona la responsabilitat d'un sistema que dissenya productes difícils d'entendre a propòsit.",
+  }}
+>
+Un metaanàlisi molt citat de 2014 va trobar que les intervencions d'educació financera explicaven **una part mínima de la variació en el comportament financer**, i que l'efecte queia amb el temps. La lectura raonable no és deixar d'ensenyar-ho, sinó **canviar quan s'ensenya**: l'evidència millora prou quan la formació arriba just abans de la decisió —en signar la primera hipoteca, en contractar el primer producte— en lloc d'anys abans a una aula. **I l'altra meitat de la resposta no està a l'aula: està a obligar que el producte siga comprensible.**
+</VocesDesacuerdo>
+
 ## Dades per a situar la realitat econòmica espanyola (maig de 2026)
 
 Abans de tancar la unitat, convé fixar alguns ordres de magnitud del context espanyol que l'alumnat hauria de poder citar amb soltesa:
@@ -516,3 +539,221 @@ Estes preguntes no tenen una resposta única. Servixen per a discutir a classe o
 <Callout label="Juga a classe" variant="example">
 Per a practicar la diversificació i l'horitzó d'inversió, proveu [**Stonks**](/juegos/stonks/): es repartix el patrimoni entre distints actius durant 25 anys. Acabareu amb més que la IA?
 </Callout>
+
+```deck
+- tipo: curriculum
+  eyebrow: "A què respon esta unitat"
+  title: "El marc de la unitat"
+  saberes:
+    - "Bloc A: planificació financera personal."
+    - "Bloc A: pressupost, estalvi, risc i horitzó temporal."
+  competencias:
+    - "Prendre decisions financeres raonades i planificar les finances personals."
+- tipo: caso
+  eyebrow: "El cas"
+  title: "Quinze anys de retard valen 258.000 €"
+  contexto: "Dues persones estalvien 100 € al mes amb la mateixa rendibilitat del 7 % anual. Una comença als 20 anys i l'altra als 35. Les dues paren als 65."
+  datos:
+    - "Qui va començar als 20 arriba amb uns 380.000 €."
+    - "Qui va començar als 35 arriba amb 122.000 €."
+    - "La diferència són 258.000 €, i no està en l'import estalviat."
+  pregunta: "Si els números són tan clars, per què la majoria de jóvens no estalvia una part fixa dels seus primers ingressos?"
+- tipo: section
+  title: El pressupost personal
+  subtitle: El bàsic abans de qualsevol altra cosa. Sense capacitat d'estalvi, cap producte financer arregla el problema de fons.
+- tipo: diagram
+  diagrama: Presupuesto503020
+  caption: "Una heurística, no una llei: la mitat a necessitats, el 30 % a desitjos i el 20 % a estalvi i inversió."
+- tipo: concept
+  eyebrow: Warren
+  title: La regla 50-30-20, i la seua lletra menuda
+  body: "El 50 % va a necessitats —habitatge, subministraments, alimentació, transport imprescindible—, el 30 % a desitjos —oci, roba, viatges, subscripcions evitables— i el 20 % a estalvi i inversió. En el context espanyol actual, amb lloguers alts a les grans ciutats, la distribució resulta optimista per a molta gent jove. Però servix com a vara de mesurar."
+  pull: "Si les necessitats superen el 70 % de l'ingrés, el problema és estructural: habitatge car o ingressos baixos."
+- tipo: concept
+  eyebrow: Concepte clau
+  title: Abans d'invertir, el fons d'emergència
+  body: "La capacitat d'estalvi és la part dels ingressos que no es consumix en el període. És la palanca financera més important de la vida adulta. I el primer destí d'eixe estalvi no és la borsa: és un fons d'emergència d'entre tres i sis mesos de gastos, que cobrisca una avaria, un mes sense faena o una reparació urgent sense recórrer a una targeta de crèdit."
+  pull: Eixe fons va en producte líquid, no invertit. La seua utilitat és estar disponible, no rendibilitzar.
+- tipo: section
+  title: L'interés compost
+  subtitle: La peça que explica per què començar als 20 val deu vegades més que començar als 40.
+- tipo: diagram
+  diagrama: InteresCompuesto
+  caption: L'interés simple creix en línia recta; el compost es dispara, i la bretxa entre els dos s'eixampla cada any.
+- tipo: formula
+  eyebrow: "Interés compost"
+  title: "Cent euros quiets durant trenta anys"
+  formula: "Cf = C0 · (1 + i)^n"
+  terminos:
+    - s: "C0"
+      d: "Capital inicial que s'invertix i no es toca."
+    - s: "i"
+      d: "Tipus d'interés anual, en tant per u."
+    - s: "n"
+      d: "Anys que el capital roman invertit."
+  ejemplo: "100 · (1,05)^30 = 432 €: 332 € d'interessos sense afegir un euro. A 40 anys, 704 €; a 50, 1.146 €. Al 8 % anual, els 100 € arriben a 1.006 € en 30 anys."
+- tipo: figure
+  src: eco-1bach/03/einstein-retrato.jpg
+  alt: Retrat fotogràfic en blanc i negre d'Albert Einstein, realitzat per Orren Jack Turner a Princeton cap a 1947.
+  title: Una cita que probablement no va dir
+  caption: "«La huitena meravella del món» s'atribuïx a Einstein sense prova documental: apareix en un anunci bancari de 1925."
+  credit: "Foto: Orren Jack Turner, Princeton, domini públic via Wikimedia Commons"
+- tipo: exercise
+  title: "Exercici 3.1 · Dos germans, mateix capital, distint resultat"
+  enunciado: "Anna i Bru estalvien 2.000 € a l'any amb una rendibilitat del 7 % anual. Anna aporta des dels 20 fins als 30 anys —deu aportacions— i després deixa el capital quiet fins als 65. Bru comença als 30 i aporta sense parar durant 35 anys. Qui arriba amb més als 65?"
+  pasos:
+    - "Aportat per Anna: 2.000 × 10 = 20.000 €. Aportat per Bru: 2.000 × 35 = 70.000 €."
+    - "Anna, després dels seus deu anys d'aportacions, acumula uns 27.633 €."
+    - "Eixos 27.633 € creixen 35 anys més: 27.633 · (1,07)^35 ≈ 295.000 €."
+    - "Bru, amb renda constant capitalitzada al 7 % durant 35 anys, arriba a uns 276.000 €."
+    - "Anna acaba amb més havent aportat tres vegades i mitja menys que Bru."
+    - "El decisiu no és quant aportes, sinó quant de temps deixes que el diner treballe."
+- tipo: section
+  title: Productes financers
+  subtitle: Tres eixos per a comparar qualsevol producte — rendibilitat esperada, risc i liquiditat.
+- tipo: figure
+  src: eco-1bach/03/palacio-bolsa-madrid.jpg
+  alt: Façana neoclàssica del Palau de la Borsa de Madrid, a la Plaça de la Lealtad, seu històrica de la Borsa de Madrid.
+  title: El Palau de la Borsa de Madrid
+  caption: On es negocien les accions del mercat espanyol. Comprar-ne una és adquirir una porció minúscula d'una empresa.
+  credit: "Foto: Luis García, CC BY-SA 3.0 via Wikimedia Commons"
+- tipo: table
+  eyebrow: Ordes de magnitud, maig de 2026
+  title: Cinc productes comparats
+  head:
+    - Producte
+    - Rendibilitat
+    - Risc
+    - Liquiditat
+  rows:
+    - - Compte remunerat
+      - 1,5-2 % TAE
+      - Molt baix, FGD
+      - Immediata
+    - - Depòsit a termini
+      - 2-4 %
+      - Molt baix, FGD
+      - Baixa, amb penalització
+    - - Bons de l'Estat
+      - 2-4 %
+      - Baix, risc país
+      - Mitjana
+    - - Fons indexat
+      - 6-8 % a llarg termini
+      - Mitjà, volatilitat
+      - Alta
+    - - Accions soltes
+      - Variable, pot ser negativa
+      - Alt
+      - Alta
+  caption: El FGD cobrix fins a 100.000 € per titular i entitat si el banc fa fallida. Les xifres canvien amb el cicle de tipus del BCE.
+- tipo: concept
+  eyebrow: Concepte clau
+  title: "La regla d'or: rendibilitat ⇄ risc"
+  body: "Tota rendibilitat esperada per damunt de la del bo de l'Estat a curt termini es paga amb més risc. No existixen els productes d'alts rendiments sense risc. Quan apareixen, hi ha tres possibilitats: estafa oberta, producte el risc del qual el client no comprén, o informació privilegiada il·legal. Cap de les tres és bona per a qui firma."
+  pull: "I el seu corol·lari pràctic: si no entens un producte financer en termes senzills, no el contractes."
+- tipo: diagram
+  diagrama: TrianguloInversion
+  caption: "Cada producte tria dos dels tres vèrtexs"
+- tipo: figure
+  src: eco-1bach/03/bankia-sede.jpg
+  alt: Vista exterior de les Torres Kio a la Plaça de Castilla de Madrid, seu corporativa que va albergar Bankia.
+  title: Les Torres Kio, seu de Bankia
+  caption: Entre 2009 i 2011 l'entitat va col·locar a particulars participacions preferents per més de 22.000 milions d'euros.
+  credit: "Foto: Marco Pagni, CC BY 2.0 via Wikimedia Commons"
+- tipo: concept
+  eyebrow: Cas real
+  title: Les preferents, o vendre deute perpetu com si fora un depòsit
+  body: "Les preferents pagaven un cupó atractiu del 5-7 %, però eren deute perpetu subordinat, recuperable només venent-lo en un mercat secundari molt poc líquid. Quan les caixes van entrar en crisi el 2012 es van enfonsar: cupons suspesos, bescanvis forçosos per accions amb pèrdues del 50-70 %. La majoria d'afectats eren jubilats que creien haver firmat un termini fix a la seua sucursal de sempre."
+  pull: Els tribunals van donar la raó a milers de demandants per comercialització inadequada. La lliçó més cara de l'última dècada.
+- tipo: section
+  title: Hipoteques i préstecs
+  subtitle: "El deute no és bo ni dolent en abstracte: depén de per a què s'usa i en quines condicions."
+- tipo: split
+  title: Dos formes d'endeutar-se molt distintes
+  left:
+    h: Préstec personal
+    items:
+      - Sense més garantia que el compromís del prestatari
+      - "El banc assumix més risc, així que cobra més: TIN del 6-12 %"
+      - Terminis curts, d'1 a 7 anys, i imports fins a uns 75.000 €
+      - Cotxes, reformes menudes, electrodomèstics, consolidar deutes
+  right:
+    h: Hipoteca
+    items:
+      - Garantia real sobre l'immoble; si no es paga, el banc l'executa
+      - "Risc baix per al banc, tipus baix: TIN del 2-3,5 % en fixes"
+      - Terminis llargs, de 20 a 30 anys, i imports alts
+      - "Deute productiu: finança una cosa que conserva valor a llarg termini"
+- tipo: terms
+  title: Tres sigles per a no perdre's comparant ofertes
+  terms:
+    - t: TIN
+      d: Tipus d'Interés Nominal. El percentatge anual que s'aplica al capital pendent. No inclou comissions, assegurances ni gastos, així que a soles no permet comparar.
+    - t: TAE
+      d: Taxa Anual Equivalent. Sí que inclou comissions, productes vinculats i l'efecte del període de liquidació. És l'indicador legalment obligatori per a comparar.
+    - t: Euríbor
+      d: Tipus a què es presten entre si els grans bancs de l'eurozona. És la referència de les hipoteques variables, revisada cada 6 o 12 mesos.
+- tipo: data
+  numero: "+430 €/mes"
+  label: en la mateixa hipoteca de 200.000 €
+  title: Quan l'Euríbor va passar de −0,5 % a +4 %
+  detalle: "Amb Euríbor + 0,9 %, eixa hipoteca a 25 anys pagava uns 750 €/mes el 2021. Després de la pujada de tipus més ràpida del BCE, va tancar 2023 en uns 1.180 €. El maig de 2026, amb l'Euríbor al 2,8 %, la quota està en uns 990 €."
+- tipo: exercise
+  title: "Exercici 3.2 · Quota d'una hipoteca i cost total"
+  enunciado: "Una parella compra un pis a València per 200.000 €, aporta el 20 % d'entrada i finança 160.000 € a 25 anys amb un tipus fix del 3,5 % TIN. Calcula la quota mensual, els interessos totals de l'operació i quant pujaria la quota amb un tipus del 5 %."
+  pasos:
+    - "n = 25 × 12 = 300 quotes; tipus mensual i = 3,5 % / 12 = 0,002917."
+    - "Quota = C · i / (1 − (1+i)^−n) = 466,67 / 0,5822 ≈ 801 €/mes."
+    - "Pagat al banc: 801 × 300 = 240.300 €. Interessos: 240.300 − 160.000 = 80.300 €."
+    - "És a dir, durant 25 anys es paga al banc un 50 % més del capital prestat."
+    - "Al 5 %, la quota puja a uns 935 € i els interessos a 120.500 €: 40.000 € més."
+    - "Cada punt de TIN són uns 80-100 € més al mes i 25.000-30.000 € més d'interessos."
+- tipo: section
+  title: Assegurances i educació financera
+  subtitle: Transferir un risc improbable però costós a canvi d'una prima certa i menuda.
+- tipo: concept
+  title: Assegurar el gran, autoassegurar el menut
+  body: "La pregunta que decidix si una assegurança val la pena és una: podria assumir econòmicament el sinistre si ocorreguera? Si la resposta és no —un incendi que destruïx la casa, una operació urgent fora, una indemnització per accident—, assegurar-se és racional. Si és sí sense greu perjuí —la garantia extra d'un electrodomèstic de 200 €—, la prima a llarg termini supera el cost esperat del sinistre."
+  pull: L'assegurança existix per a evitar la ruïna, no per a cobrir cada xicoteta incomoditat.
+- tipo: figure
+  src: eco-1bach/03/banco-espana-detalle.jpg
+  alt: Detall de la reixa de ferro forjat de l'edifici del Banc d'Espanya, amb les lletres «BE» entrellaçades en l'oval decoratiu.
+  title: El Banc d'Espanya i l'educació financera
+  caption: Amb la CNMV coordina des de 2008 el Pla d'Educació Financera, la cara pública del qual és finanzasparatodos.es.
+  credit: "Foto: GFreihalter, CC BY-SA 3.0 via Wikimedia Commons"
+- tipo: list
+  eyebrow: Maig de 2026
+  title: Ordes de magnitud del context espanyol
+  items:
+    - "Tipus del BCE: depòsit 2,00 %, MRO 2,15 %. Euríbor a 12 mesos al voltant del 2,8 %."
+    - "IPC: 3,2 % general i 2,8 % subjacent (INE, abril de 2026)."
+    - "SMI: 1.221 €/mes en 14 pagues, 17.094 € bruts anuals (RD 126/2026)."
+    - "Salari mitjà brut 27.558 €/any; el medià ronda els 24.000 €."
+    - "Habitatge: Madrid 4.491 €/m² i València 3.269 €/m², màxim històric."
+    - "Taxa d'estalvi de les llars: 9-11 % de la renda disponible, lluny del 20 % del model."
+- tipo: quiz
+  eyebrow: Nivell EBAU
+  pregunta: Una hipoteca s'anuncia amb TIN del 2,5 % i TAE del 3,8 %. Què explica eixa diferència d'1,3 punts i quina has de mirar?
+  opciones:
+    - Un error de l'entitat, perquè TIN i TAE haurien de coincidir
+    - "Comissions i productes vinculats: cal comparar per TAE, que és la que els inclou"
+    - La inflació prevista per als pròxims anys, i cal mirar el TIN
+    - El diferencial sobre l'Euríbor, i tant se val quina es mire
+  correcta: 1
+  explicacion: La TAE incorpora comissions, assegurances vinculades i l'efecte del període de liquidació. Per això és l'indicador legalment obligatori per a comparar ofertes, i el TIN a soles no servix.
+- tipo: concept
+  eyebrow: Torna al cas
+  title: Automatitza la decisió i deixa de prendre-la cada mes
+  body: "La majoria de jóvens no estalvia per tres raons que la unitat ja ha nomenat: el descompte temporal, perquè el «jo de hui» i el «jo dels 65» no se senten la mateixa persona; el biaix d'optimisme del «ja estalviaré quan guanye més», ignorant que després arriben habitatge i fills; i la invisibilitat de l'interés compost, la corba del qual és plana els primers anys."
+  pull: "La solució és un nudge de la Unitat 2: transferència automàtica el dia del cobrament. Elimines la decisió i la inèrcia juga a favor teu."
+- tipo: recap
+  eyebrow: "Repassa"
+  title: "Abans de tancar la unitat"
+  items:
+    - "Sabries elaborar un pressupost personal amb ingressos, despeses fixes i despeses variables."
+    - "Sabries aplicar la fórmula de l'interés compost i explicar l'efecte acumulatiu del temps."
+    - "Sabries comparar comptes, depòsits, fons, accions i bons per rendibilitat, risc i termini."
+    - "Sabries separar hipoteca de préstec personal i estimar una quota mensual amb TIN i TAE."
+    - "Sabries explicar l'assegurança com a transferència del risc i nomenar les seues modalitats."
+```

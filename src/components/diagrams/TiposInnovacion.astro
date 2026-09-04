@@ -7,36 +7,92 @@
  *
  * Used in FP / Bachillerato entrepreneurship units (two books).
  */
+import { getLocale } from '@/i18n/locale';
+const locale = getLocale(Astro.currentLocale);
+
+const COPY = {
+  es: {
+    losCuatroTiposDe: 'Los cuatro tipos de innovación',
+    laInnovacionPuedeSer: 'La innovación puede ser de producto, de proceso, de organización o de marketing. No hace falta inventar un producto nuevo para innovar.',
+    manualDeOslo: 'Manual de Oslo',
+    losCuatroTiposDe2: 'Los cuatro tipos de innovación',
+    noHaceFaltaInventar: 'No hace falta inventar un producto nuevo: se puede innovar en el proceso, la organización o el marketing.',
+    deProducto: 'De producto',
+    unBienOServicio: 'Un bien o servicio nuevo o mejorado.',
+    ejUnEnvaseDe: 'Ej.: un envase de zumo que se',
+    conservaSinFrio: 'conserva sin frío.',
+    deProceso: 'De proceso',
+    unaFormaNuevaDe: 'Una forma nueva de producir o distribuir.',
+    ejPedirPorApp: 'Ej.: pedir por app y recoger',
+    enTaquilla: 'en taquilla.',
+    deOrganizacion: 'De organización',
+    unaNuevaFormaDe: 'Una nueva forma de organizar el',
+    trabajoOLaEmpresa: 'trabajo o la empresa.',
+    ejEquiposAutonomosSin: 'Ej.: equipos autónomos sin',
+    jefesIntermedios: 'jefes intermedios.',
+    deMarketing: 'De marketing',
+    unNuevoDisenoEnvase: 'Un nuevo diseño, envase, canal o',
+    formaDeVender: 'forma de vender.',
+    ejVenderSoloOnline: 'Ej.: vender solo online con',
+    suscripcion: 'suscripción.',
+  },
+  ca: {
+    losCuatroTiposDe: "Els quatre tipus d'innovació",
+    laInnovacionPuedeSer: "La innovació pot ser de producte, de procés, d'organització o de màrqueting. No cal inventar un producte nou per a innovar.",
+    manualDeOslo: "Manual d'Oslo",
+    losCuatroTiposDe2: "Els quatre tipus d'innovació",
+    noHaceFaltaInventar: "No cal inventar un producte nou: es pot innovar en el procés, l'organització o el màrqueting.",
+    deProducto: 'De producte',
+    unBienOServicio: 'Un bé o servei nou o millorat.',
+    ejUnEnvaseDe: 'Ex.: un envàs de suc que es',
+    conservaSinFrio: 'conserva sense fred.',
+    deProceso: 'De procés',
+    unaFormaNuevaDe: 'Una forma nova de produir o distribuir.',
+    ejPedirPorApp: 'Ex.: demanar per app i arreplegar',
+    enTaquilla: 'en taquilla.',
+    deOrganizacion: "D'organització",
+    unaNuevaFormaDe: "Una nova forma d'organitzar el",
+    trabajoOLaEmpresa: "treball o l'empresa.",
+    ejEquiposAutonomosSin: 'Ex.: equips autònoms sense',
+    jefesIntermedios: 'caps intermedis.',
+    deMarketing: 'De màrqueting',
+    unNuevoDisenoEnvase: 'Un nou disseny, envàs, canal o',
+    formaDeVender: 'forma de vendre.',
+    ejVenderSoloOnline: 'Ex.: vendre només en línia amb',
+    suscripcion: 'subscripció.',
+  },
+} as const;
+const t = COPY[locale];
 ---
-<svg viewBox="0 0 840 540" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="ti-title ti-desc">
-  <title id="ti-title">Los cuatro tipos de innovación</title>
-  <desc id="ti-desc">La innovación puede ser de producto, de proceso, de organización o de marketing. No hace falta inventar un producto nuevo para innovar.</desc>
+<svg class="d-tipos-innovacion" viewBox="0 0 840 540" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="ti-title ti-desc">
+  <title id="ti-title">{t.losCuatroTiposDe}</title>
+  <desc id="ti-desc">{t.laInnovacionPuedeSer}</desc>
   <defs>
     <style>
-      .bg { fill: #FBF6EC; }
-      .eyebrow { font-family: 'Switzer', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 1.8px; text-transform: uppercase; fill: #C44E2C; text-anchor: middle; }
-      .heading { font-family: 'Fraunces', serif; font-size: 27px; font-weight: 500; fill: #2A1F18; text-anchor: middle; }
-      .note { font-family: 'Switzer', sans-serif; font-size: 13px; font-weight: 500; fill: #5C4A3D; text-anchor: middle; }
-      .cell { stroke: #E5D4BD; stroke-width: 1.5; }
-      .cell-terr { fill: #FBE3D6; fill-opacity: 0.55; }
-      .cell-must { fill: #F5E5BC; fill-opacity: 0.55; }
-      .cell-teal { fill: #DBEDED; fill-opacity: 0.6; }
-      .cell-ink  { fill: #F5EDD9; }
-      .bar-terr { fill: #C44E2C; }
-      .bar-must { fill: #D4A24C; }
-      .bar-teal { fill: #1F6E6E; }
-      .bar-ink  { fill: #5C4A3D; }
-      .cell-title { font-family: 'Fraunces', serif; font-size: 20px; font-weight: 500; fill: #2A1F18; }
-      .cell-def { font-family: 'Switzer', sans-serif; font-size: 13.5px; font-weight: 500; fill: #5C4A3D; }
-      .cell-ex { font-family: 'Fraunces', serif; font-style: italic; font-size: 13.5px; font-weight: 500; fill: #8A7868; }
+      .d-tipos-innovacion .bg { fill: #FBF6EC; }
+      .d-tipos-innovacion .eyebrow { font-family: 'Switzer', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 1.8px; text-transform: uppercase; fill: #C44E2C; text-anchor: middle; }
+      .d-tipos-innovacion .heading { font-family: 'Fraunces', serif; font-size: 27px; font-weight: 500; fill: #2A1F18; text-anchor: middle; }
+      .d-tipos-innovacion .note { font-family: 'Switzer', sans-serif; font-size: 13px; font-weight: 500; fill: #5C4A3D; text-anchor: middle; }
+      .d-tipos-innovacion .cell { stroke: #E5D4BD; stroke-width: 1.5; }
+      .d-tipos-innovacion .cell-terr { fill: #FBE3D6; fill-opacity: 0.55; }
+      .d-tipos-innovacion .cell-must { fill: #F5E5BC; fill-opacity: 0.55; }
+      .d-tipos-innovacion .cell-teal { fill: #DBEDED; fill-opacity: 0.6; }
+      .d-tipos-innovacion .cell-ink { fill: #F5EDD9; }
+      .d-tipos-innovacion .bar-terr { fill: #C44E2C; }
+      .d-tipos-innovacion .bar-must { fill: #D4A24C; }
+      .d-tipos-innovacion .bar-teal { fill: #1F6E6E; }
+      .d-tipos-innovacion .bar-ink { fill: #5C4A3D; }
+      .d-tipos-innovacion .cell-title { font-family: 'Fraunces', serif; font-size: 20px; font-weight: 500; fill: #2A1F18; }
+      .d-tipos-innovacion .cell-def { font-family: 'Switzer', sans-serif; font-size: 13.5px; font-weight: 500; fill: #5C4A3D; }
+      .d-tipos-innovacion .cell-ex { font-family: 'Fraunces', serif; font-style: italic; font-size: 13.5px; font-weight: 500; fill: #8A7868; }
     </style>
   </defs>
   <rect class="bg" x="0" y="0" width="840" height="540"/>
 
   <!-- Header -->
-  <text class="eyebrow" x="420" y="44">Manual de Oslo</text>
-  <text class="heading" x="420" y="78">Los cuatro tipos de innovación</text>
-  <text class="note" x="420" y="106">No hace falta inventar un producto nuevo: se puede innovar en el proceso, la organización o el marketing.</text>
+  <text class="eyebrow" x="420" y="44">{t.manualDeOslo}</text>
+  <text class="heading" x="420" y="78">{t.losCuatroTiposDe2}</text>
+  <text class="note" x="420" y="106">{t.noHaceFaltaInventar}</text>
 
   <!-- Grid: two columns at x=60 and x=432, two rows at y=140 and y=348.
        Cell 348 wide, 178 tall, gap 24. -->
@@ -44,34 +100,34 @@
   <!-- Top-left: De producto (terracota) -->
   <rect class="cell cell-terr" x="60" y="140" width="348" height="178" rx="6"/>
   <rect class="bar-terr" x="60" y="140" width="6" height="178" rx="3"/>
-  <text class="cell-title" x="84" y="176">De producto</text>
-  <text class="cell-def" x="84" y="206">Un bien o servicio nuevo o mejorado.</text>
-  <text class="cell-ex" x="84" y="246">Ej.: un envase de zumo que se</text>
-  <text class="cell-ex" x="84" y="266">conserva sin frío.</text>
+  <text class="cell-title" x="84" y="176">{t.deProducto}</text>
+  <text class="cell-def" x="84" y="206">{t.unBienOServicio}</text>
+  <text class="cell-ex" x="84" y="246">{t.ejUnEnvaseDe}</text>
+  <text class="cell-ex" x="84" y="266">{t.conservaSinFrio}</text>
 
   <!-- Top-right: De proceso (mustard) -->
   <rect class="cell cell-must" x="432" y="140" width="348" height="178" rx="6"/>
   <rect class="bar-must" x="432" y="140" width="6" height="178" rx="3"/>
-  <text class="cell-title" x="456" y="176">De proceso</text>
-  <text class="cell-def" x="456" y="206">Una forma nueva de producir o distribuir.</text>
-  <text class="cell-ex" x="456" y="246">Ej.: pedir por app y recoger</text>
-  <text class="cell-ex" x="456" y="266">en taquilla.</text>
+  <text class="cell-title" x="456" y="176">{t.deProceso}</text>
+  <text class="cell-def" x="456" y="206">{t.unaFormaNuevaDe}</text>
+  <text class="cell-ex" x="456" y="246">{t.ejPedirPorApp}</text>
+  <text class="cell-ex" x="456" y="266">{t.enTaquilla}</text>
 
   <!-- Bottom-left: De organización (teal) -->
   <rect class="cell cell-teal" x="60" y="348" width="348" height="178" rx="6"/>
   <rect class="bar-teal" x="60" y="348" width="6" height="178" rx="3"/>
-  <text class="cell-title" x="84" y="384">De organización</text>
-  <text class="cell-def" x="84" y="414">Una nueva forma de organizar el</text>
-  <text class="cell-def" x="84" y="434">trabajo o la empresa.</text>
-  <text class="cell-ex" x="84" y="474">Ej.: equipos autónomos sin</text>
-  <text class="cell-ex" x="84" y="494">jefes intermedios.</text>
+  <text class="cell-title" x="84" y="384">{t.deOrganizacion}</text>
+  <text class="cell-def" x="84" y="414">{t.unaNuevaFormaDe}</text>
+  <text class="cell-def" x="84" y="434">{t.trabajoOLaEmpresa}</text>
+  <text class="cell-ex" x="84" y="474">{t.ejEquiposAutonomosSin}</text>
+  <text class="cell-ex" x="84" y="494">{t.jefesIntermedios}</text>
 
   <!-- Bottom-right: De marketing (ink-soft) -->
   <rect class="cell cell-ink" x="432" y="348" width="348" height="178" rx="6"/>
   <rect class="bar-ink" x="432" y="348" width="6" height="178" rx="3"/>
-  <text class="cell-title" x="456" y="384">De marketing</text>
-  <text class="cell-def" x="456" y="414">Un nuevo diseño, envase, canal o</text>
-  <text class="cell-def" x="456" y="434">forma de vender.</text>
-  <text class="cell-ex" x="456" y="474">Ej.: vender solo online con</text>
-  <text class="cell-ex" x="456" y="494">suscripción.</text>
+  <text class="cell-title" x="456" y="384">{t.deMarketing}</text>
+  <text class="cell-def" x="456" y="414">{t.unNuevoDisenoEnvase}</text>
+  <text class="cell-def" x="456" y="434">{t.formaDeVender}</text>
+  <text class="cell-ex" x="456" y="474">{t.ejVenderSoloOnline}</text>
+  <text class="cell-ex" x="456" y="494">{t.suscripcion}</text>
 </svg>

@@ -1,4 +1,7 @@
 ---
+import { getLocale } from '@/i18n/locale';
+import { t } from '@/i18n/ui';
+const locale = getLocale(Astro.currentLocale);
 /**
  * Visual block to summarise key takeaways at the end of a long section
  * or before moving to the next concept. Encourages the reader to stop
@@ -16,14 +19,14 @@ type Props = {
   variant?: 'key' | 'warning' | 'checklist';
 };
 
-const { title = 'En resumen', variant = 'key' } = Astro.props;
+const { title, variant = 'key' } = Astro.props;
 ---
 
 <aside class:list={['takeaways', `takeaways--${variant}`]}>
   <span class="takeaways__icon" aria-hidden="true">
     {variant === 'warning' ? '!' : variant === 'checklist' ? '✓' : '✱'}
   </span>
-  <span class="takeaways__label">{title}</span>
+  <span class="takeaways__label">{title ?? t('libro.enResumen', locale)}</span>
   <div class="takeaways__body">
     <slot />
   </div>

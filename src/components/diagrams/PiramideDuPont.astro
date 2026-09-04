@@ -7,34 +7,92 @@
  *
  * Used in EDMN 2BACH · Unit 11 (análisis de estados financieros).
  */
+import { getLocale } from '@/i18n/locale';
+const locale = getLocale(Astro.currentLocale);
+
+const COPY = {
+  es: {
+    descomposicionDeDupontDel: 'Descomposición de DuPont del ROE',
+    laRentabilidadFinancieraO: 'La rentabilidad financiera o ROE se descompone en el producto de tres factores: el margen sobre ventas, la rotación del activo y el apalancamiento financiero. Cada factor muestra una palanca distinta para mejorar la rentabilidad de los recursos propios.',
+    roeBeneficioNetoPatrimonio: 'ROE = Beneficio neto / Patrimonio neto. La gracia de DuPont es que dos empresas con el mismo ROE pueden lograrlo de formas muy distintas: una con margen y otra con deuda.',
+    roeRentabilidadFinanciera: 'ROE · Rentabilidad financiera',
+    cuantoGanaElAccionista: '¿Cuánto gana el accionista por cada euro',
+    deRecursosPropiosInvertidos: 'de recursos propios invertidos?',
+    mideLaEficienciaComercial: 'Mide la eficiencia comercial. Lo suben las empresas que venden caro o controlan costes (lujo, marca). Ej.: por cada 100 € vendidos, ¿cuántos quedan de beneficio?',
+    margenSobreVentas: 'Margen sobre ventas',
+    beneficioNeto: 'Beneficio neto',
+    ventas: 'Ventas',
+    rentabilidadDeCadaEuro: 'Rentabilidad de cada euro vendido',
+    mideLaEficienciaOperativa: 'Mide la eficiencia operativa. La suben los negocios de mucha venta y poco margen (supermercados): venden poco caro pero hacen girar el activo muchas veces al año.',
+    rotacionDelActivo: 'Rotación del activo',
+    ventas2: 'Ventas',
+    activoTotal: 'Activo total',
+    ventasQueGeneraCada: 'Ventas que genera cada euro de activo',
+    mideCuantoActivoSe: 'Mide cuánto activo se mueve con cada euro propio. Más deuda eleva el ROE, pero también el riesgo: si las cosas van mal, los intereses se pagan igual y multiplican las pérdidas.',
+    apalancamiento: 'Apalancamiento',
+    activoTotal2: 'Activo total',
+    patrimonioNeto: 'Patrimonio neto',
+    pesoDeLaFinanciacion: 'Peso de la financiación ajena',
+    roeMargenRotacionApalancamie: 'ROE = Margen × Rotación × Apalancamiento',
+    tresPalancasDistintasPara: 'Tres palancas distintas para mejorar la rentabilidad de los recursos propios:',
+    venderConMasMargen: 'vender con más margen, rotar más el activo o financiarse con más deuda.',
+  },
+  ca: {
+    descomposicionDeDupontDel: 'Descomposició de DuPont del ROE',
+    laRentabilidadFinancieraO: "La rendibilitat financera o ROE es descompon en el producte de tres factors: el marge sobre vendes, la rotació de l'actiu i el palanquejament financer. Cada factor mostra una palanca diferent per a millorar la rendibilitat dels recursos propis.",
+    roeBeneficioNetoPatrimonio: 'ROE = Benefici net / Patrimoni net. La gràcia de DuPont és que dues empreses amb el mateix ROE poden aconseguir-lo de formes molt diferents: una amb marge i una altra amb deute.',
+    roeRentabilidadFinanciera: 'ROE · Rendibilitat financera',
+    cuantoGanaElAccionista: "Quant guanya l'accionista per cada euro",
+    deRecursosPropiosInvertidos: 'de recursos propis invertits?',
+    mideLaEficienciaComercial: "Mesura l'eficiència comercial. El pugen les empreses que venen car o controlen costos (luxe, marca). Ex.: per cada 100 € venuts, quants en queden de benefici?",
+    margenSobreVentas: 'Marge sobre vendes',
+    beneficioNeto: 'Benefici net',
+    ventas: 'Vendes',
+    rentabilidadDeCadaEuro: 'Rendibilitat de cada euro venut',
+    mideLaEficienciaOperativa: "Mesura l'eficiència operativa. La pugen els negocis de molta venda i poc marge (supermercats): venen poc car però fan girar l'actiu moltes vegades a l'any.",
+    rotacionDelActivo: "Rotació de l'actiu",
+    ventas2: 'Vendes',
+    activoTotal: 'Actiu total',
+    ventasQueGeneraCada: "Vendes que genera cada euro d'actiu",
+    mideCuantoActivoSe: 'Mesura quant actiu es mou amb cada euro propi. Més deute eleva el ROE, però també el risc: si les coses van malament, els interessos es paguen igual i multipliquen les pèrdues.',
+    apalancamiento: 'Palanquejament',
+    activoTotal2: 'Actiu total',
+    patrimonioNeto: 'Patrimoni net',
+    pesoDeLaFinanciacion: 'Pes del finançament aliè',
+    roeMargenRotacionApalancamie: 'ROE = Marge × Rotació × Palanquejament',
+    tresPalancasDistintasPara: 'Tres palanques diferents per a millorar la rendibilitat dels recursos propis:',
+    venderConMasMargen: "vendre amb més marge, rotar més l'actiu o finançar-se amb més deute.",
+  },
+} as const;
+const t = COPY[locale];
 ---
-<svg viewBox="0 0 880 480" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="dupont-title dupont-desc">
-  <title id="dupont-title">Descomposición de DuPont del ROE</title>
-  <desc id="dupont-desc">La rentabilidad financiera o ROE se descompone en el producto de tres factores: el margen sobre ventas, la rotación del activo y el apalancamiento financiero. Cada factor muestra una palanca distinta para mejorar la rentabilidad de los recursos propios.</desc>
+<svg class="d-piramide-du-pont" viewBox="0 0 880 480" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="dupont-title dupont-desc">
+  <title id="dupont-title">{t.descomposicionDeDupontDel}</title>
+  <desc id="dupont-desc">{t.laRentabilidadFinancieraO}</desc>
   <defs>
     <style>
-      .bg { fill: #FBF6EC; }
-      .root { fill: #C44E2C; stroke: #9C3A1C; stroke-width: 2; }
-      .node { fill: #FFFFFF; stroke: #D4A24C; stroke-width: 2; }
-      .link { stroke: #8A7868; stroke-width: 1.6; fill: none; }
-      .root-name { font-family: 'Switzer', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 1px; fill: #FFFFFF; text-anchor: middle; }
-      .root-sub { font-family: 'Switzer', sans-serif; font-size: 10px; font-weight: 600; fill: #FBE3D6; text-anchor: middle; }
-      .node-name { font-family: 'Switzer', sans-serif; font-size: 12.5px; font-weight: 700; fill: #2A1F18; text-anchor: middle; }
-      .node-frac-num { font-family: 'JetBrains Mono', monospace; font-size: 10px; fill: #5C4A3D; text-anchor: middle; }
-      .node-frac-line { stroke: #2A1F18; stroke-width: 1; }
-      .times { font-family: 'Fraunces', serif; font-style: italic; font-size: 26px; font-weight: 500; fill: #C44E2C; text-anchor: middle; }
-      .caption { font-family: 'Fraunces', serif; font-style: italic; font-size: 11.5px; fill: #5C4A3D; text-anchor: middle; }
-      .formula { font-family: 'JetBrains Mono', monospace; font-size: 12px; fill: #2A1F18; text-anchor: middle; }
-      .has-tip { cursor: help; }
+      .d-piramide-du-pont .bg { fill: #FBF6EC; }
+      .d-piramide-du-pont .root { fill: #C44E2C; stroke: #9C3A1C; stroke-width: 2; }
+      .d-piramide-du-pont .node { fill: #FFFFFF; stroke: #D4A24C; stroke-width: 2; }
+      .d-piramide-du-pont .link { stroke: #8A7868; stroke-width: 1.6; fill: none; }
+      .d-piramide-du-pont .root-name { font-family: 'Switzer', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 1px; fill: #FFFFFF; text-anchor: middle; }
+      .d-piramide-du-pont .root-sub { font-family: 'Switzer', sans-serif; font-size: 10px; font-weight: 600; fill: #FBE3D6; text-anchor: middle; }
+      .d-piramide-du-pont .node-name { font-family: 'Switzer', sans-serif; font-size: 12.5px; font-weight: 700; fill: #2A1F18; text-anchor: middle; }
+      .d-piramide-du-pont .node-frac-num { font-family: 'JetBrains Mono', monospace; font-size: 10px; fill: #5C4A3D; text-anchor: middle; }
+      .d-piramide-du-pont .node-frac-line { stroke: #2A1F18; stroke-width: 1; }
+      .d-piramide-du-pont .times { font-family: 'Fraunces', serif; font-style: italic; font-size: 26px; font-weight: 500; fill: #C44E2C; text-anchor: middle; }
+      .d-piramide-du-pont .caption { font-family: 'Fraunces', serif; font-style: italic; font-size: 11.5px; fill: #5C4A3D; text-anchor: middle; }
+      .d-piramide-du-pont .formula { font-family: 'JetBrains Mono', monospace; font-size: 12px; fill: #2A1F18; text-anchor: middle; }
+      .d-piramide-du-pont .has-tip { cursor: help; }
     </style>
   </defs>
   <rect class="bg" x="0" y="0" width="880" height="480"/>
 
   <!-- ROOT: ROE -->
-  <rect class="root has-tip" x="320" y="36" width="240" height="78" rx="8"><title>ROE = Beneficio neto / Patrimonio neto. La gracia de DuPont es que dos empresas con el mismo ROE pueden lograrlo de formas muy distintas: una con margen y otra con deuda.</title></rect>
-  <text class="root-name" x="440" y="68">ROE · Rentabilidad financiera</text>
-  <text class="root-sub" x="440" y="90">¿Cuánto gana el accionista por cada euro</text>
-  <text class="root-sub" x="440" y="103">de recursos propios invertidos?</text>
+  <rect class="root has-tip" x="320" y="36" width="240" height="78" rx="8"><title>{t.roeBeneficioNetoPatrimonio}</title></rect>
+  <text class="root-name" x="440" y="68">{t.roeRentabilidadFinanciera}</text>
+  <text class="root-sub" x="440" y="90">{t.cuantoGanaElAccionista}</text>
+  <text class="root-sub" x="440" y="103">{t.deRecursosPropiosInvertidos}</text>
 
   <!-- Links from root to three nodes (children at y=230) -->
   <path class="link" d="M 440 114 V 160 H 150 V 220"/>
@@ -46,32 +104,32 @@
   <text class="times" x="585" y="270">×</text>
 
   <!-- CHILD 1: Margen -->
-  <rect class="node has-tip" x="40" y="220" width="220" height="120" rx="8"><title>Mide la eficiencia comercial. Lo suben las empresas que venden caro o controlan costes (lujo, marca). Ej.: por cada 100 € vendidos, ¿cuántos quedan de beneficio?</title></rect>
-  <text class="node-name" x="150" y="250">Margen sobre ventas</text>
-  <text class="node-frac-num" x="150" y="282">Beneficio neto</text>
+  <rect class="node has-tip" x="40" y="220" width="220" height="120" rx="8"><title>{t.mideLaEficienciaComercial}</title></rect>
+  <text class="node-name" x="150" y="250">{t.margenSobreVentas}</text>
+  <text class="node-frac-num" x="150" y="282">{t.beneficioNeto}</text>
   <line class="node-frac-line" x1="95" y1="290" x2="205" y2="290"/>
-  <text class="node-frac-num" x="150" y="305">Ventas</text>
-  <text class="caption" x="150" y="330">Rentabilidad de cada euro vendido</text>
+  <text class="node-frac-num" x="150" y="305">{t.ventas}</text>
+  <text class="caption" x="150" y="330">{t.rentabilidadDeCadaEuro}</text>
 
   <!-- CHILD 2: Rotación -->
-  <rect class="node has-tip" x="330" y="220" width="220" height="120" rx="8"><title>Mide la eficiencia operativa. La suben los negocios de mucha venta y poco margen (supermercados): venden poco caro pero hacen girar el activo muchas veces al año.</title></rect>
-  <text class="node-name" x="440" y="250">Rotación del activo</text>
-  <text class="node-frac-num" x="440" y="282">Ventas</text>
+  <rect class="node has-tip" x="330" y="220" width="220" height="120" rx="8"><title>{t.mideLaEficienciaOperativa}</title></rect>
+  <text class="node-name" x="440" y="250">{t.rotacionDelActivo}</text>
+  <text class="node-frac-num" x="440" y="282">{t.ventas2}</text>
   <line class="node-frac-line" x1="385" y1="290" x2="495" y2="290"/>
-  <text class="node-frac-num" x="440" y="305">Activo total</text>
-  <text class="caption" x="440" y="330">Ventas que genera cada euro de activo</text>
+  <text class="node-frac-num" x="440" y="305">{t.activoTotal}</text>
+  <text class="caption" x="440" y="330">{t.ventasQueGeneraCada}</text>
 
   <!-- CHILD 3: Apalancamiento -->
-  <rect class="node has-tip" x="620" y="220" width="220" height="120" rx="8"><title>Mide cuánto activo se mueve con cada euro propio. Más deuda eleva el ROE, pero también el riesgo: si las cosas van mal, los intereses se pagan igual y multiplican las pérdidas.</title></rect>
-  <text class="node-name" x="730" y="250">Apalancamiento</text>
-  <text class="node-frac-num" x="730" y="282">Activo total</text>
+  <rect class="node has-tip" x="620" y="220" width="220" height="120" rx="8"><title>{t.mideCuantoActivoSe}</title></rect>
+  <text class="node-name" x="730" y="250">{t.apalancamiento}</text>
+  <text class="node-frac-num" x="730" y="282">{t.activoTotal2}</text>
   <line class="node-frac-line" x1="675" y1="290" x2="785" y2="290"/>
-  <text class="node-frac-num" x="730" y="305">Patrimonio neto</text>
-  <text class="caption" x="730" y="330">Peso de la financiación ajena</text>
+  <text class="node-frac-num" x="730" y="305">{t.patrimonioNeto}</text>
+  <text class="caption" x="730" y="330">{t.pesoDeLaFinanciacion}</text>
 
   <!-- Footer formula -->
   <line x1="120" y1="380" x2="760" y2="380" stroke="#E5D4BD" stroke-width="1.5"/>
-  <text class="formula" x="440" y="412">ROE = Margen × Rotación × Apalancamiento</text>
-  <text class="caption" x="440" y="438">Tres palancas distintas para mejorar la rentabilidad de los recursos propios:</text>
-  <text class="caption" x="440" y="456">vender con más margen, rotar más el activo o financiarse con más deuda.</text>
+  <text class="formula" x="440" y="412">{t.roeMargenRotacionApalancamie}</text>
+  <text class="caption" x="440" y="438">{t.tresPalancasDistintasPara}</text>
+  <text class="caption" x="440" y="456">{t.venderConMasMargen}</text>
 </svg>

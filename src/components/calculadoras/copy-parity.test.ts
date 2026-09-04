@@ -21,6 +21,34 @@ import { COPY as CocheVsAlternativa } from './CocheVsAlternativa';
 import { COPY as PresupuestoUni } from './PresupuestoUni';
 import { COPY as GeneradorCVEuropass } from './GeneradorCVEuropass';
 import { COPY as ADASSimulator } from './ADASSimulator';
+import { COPY as TasasEPA } from './TasasEPACalc';
+import { COPY as MatrizDecision } from './MatrizDecision';
+import { COPY as FPP } from './FPPCalc';
+import { COPY as Externalidad } from './ExternalidadCalc';
+import { COPY as MultiplicadorBancario } from './MultiplicadorBancarioCalc';
+import { COPY as VentajaComparativa } from './VentajaComparativaCalc';
+import { COPY as CuentaResultados } from './CuentaResultadosCalc';
+import { COPY as CosteContratacion } from './CosteContratacionCalc';
+import { COPY as MarketingCliente } from './MarketingClienteCalc';
+import { COPY as Tesoreria } from './TesoreriaCalc';
+import { COPY as TamanoMercado } from './TamanoMercadoCalc';
+import { COPY as CompraInteligente } from './CompraInteligenteCalc';
+import { COPY as EmbudoValidacion } from './EmbudoValidacionCalc';
+import { COPY as Semana168 } from './Semana168Calc';
+import { COPY as PIBReal } from './PIBRealCalc';
+import { COPY as FormaJuridica } from './FormaJuridicaCalc';
+import { COPY as ClasificaEmpresa } from './ClasificaEmpresaCalc';
+import { COPY as ObjetivosSMART } from './ObjetivosSMARTCalc';
+import { COPY as HuellaDigital } from './HuellaDigitalCalc';
+import { COPY as RolesEquipo } from './RolesEquipoCalc';
+import { COPY as AfirmacionSostenible } from './AfirmacionSostenibleCalc';
+import { COPY as Scamper } from './ScamperCalc';
+import { COPY as EvaluacionRiesgos } from './EvaluacionRiesgosCalc';
+import { COPY as MapaEmpatia } from './MapaEmpatiaCalc';
+import { COPY as Progresividad } from './ProgresividadCalc';
+import { COPY as Karasek } from './KarasekCalc';
+import { COPY as MisionVision } from './MisionVisionCalc';
+import { COPY as Automatizacion } from './AutomatizacionCalc';
 
 /**
  * Every localized island exports a `COPY = { es, ca }`. This guard fails when a
@@ -52,6 +80,34 @@ const ISLANDS: [string, { es: Record<string, unknown>; ca: Record<string, unknow
   ['PresupuestoUni', PresupuestoUni],
   ['GeneradorCVEuropass', GeneradorCVEuropass],
   ['ADASSimulator', ADASSimulator],
+  ['TasasEPACalc', TasasEPA],
+  ['MatrizDecision', MatrizDecision],
+  ['FPPCalc', FPP],
+  ['ExternalidadCalc', Externalidad],
+  ['MultiplicadorBancarioCalc', MultiplicadorBancario],
+  ['VentajaComparativaCalc', VentajaComparativa],
+  ['CuentaResultadosCalc', CuentaResultados],
+  ['CosteContratacionCalc', CosteContratacion],
+  ['MarketingClienteCalc', MarketingCliente],
+  ['TesoreriaCalc', Tesoreria],
+  ['TamanoMercadoCalc', TamanoMercado],
+  ['CompraInteligenteCalc', CompraInteligente],
+  ['EmbudoValidacionCalc', EmbudoValidacion],
+  ['Semana168Calc', Semana168],
+  ['PIBRealCalc', PIBReal],
+  ['FormaJuridicaCalc', FormaJuridica],
+  ['ClasificaEmpresaCalc', ClasificaEmpresa],
+  ['ObjetivosSMARTCalc', ObjetivosSMART],
+  ['HuellaDigitalCalc', HuellaDigital],
+  ['RolesEquipoCalc', RolesEquipo],
+  ['AfirmacionSostenibleCalc', AfirmacionSostenible],
+  ['ScamperCalc', Scamper],
+  ['EvaluacionRiesgosCalc', EvaluacionRiesgos],
+  ['MapaEmpatiaCalc', MapaEmpatia],
+  ['ProgresividadCalc', Progresividad],
+  ['KarasekCalc', Karasek],
+  ['MisionVisionCalc', MisionVision],
+  ['AutomatizacionCalc', Automatizacion],
 ];
 
 const isRecord = (v: unknown): v is Record<string, unknown> =>

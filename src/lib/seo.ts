@@ -35,6 +35,26 @@ const KNOWS_ABOUT = [
   'Formación Profesional',
 ] as const;
 
+/**
+ * Google renders roughly 600px of title text; 60 characters is the usual safe
+ * proxy for that in a Latin-script title.
+ */
+export const MAX_TITLE_CHARS = 60;
+
+const BRAND_SUFFIX = ` — ${SITE.name}`;
+
+/**
+ * Compose the `<title>`: append the brand only when it still fits inside the
+ * display budget. Past that point Google truncates from the right, so the
+ * suffix is invisible anyway and only displaces words that would have shown —
+ * and Google appends the site name itself from `og:site_name`.
+ * See docs/seo-estrategia-2026.md §5.7.
+ */
+export function pageTitle(title: string, brandSuffix = true): string {
+  if (!brandSuffix || title.endsWith(SITE.name)) return title;
+  return title.length + BRAND_SUFFIX.length <= MAX_TITLE_CHARS ? `${title}${BRAND_SUFFIX}` : title;
+}
+
 /** Resolve a site-relative path to an absolute URL on the canonical domain. */
 export const absUrl = (path: string): string => new URL(path, SITE.url).toString();
 
@@ -226,5 +246,114 @@ export function itemListLd(opts: { name: string; items: { name: string; path: st
       name: it.name,
       url: absUrlL(it.path, opts.locale),
     })),
+  };
+}
+
+/* ============================================================================
+   Quiz — Education Q&A structured data for the per-unit self-assessment tests.
+   The one live educational rich result left to us: Google retired FAQ snippets
+   for non-institutional sites in 2023 and deprecated practice problems in
+   January 2026, but Quiz/Education Q&A still feeds the Q&A carousel in Search,
+   Assistant and Lens. It also happens to be something a competitor delivering
+   PDFs on Blogger cannot emit at all. See docs/seo-estrategia-2026.md §5.5.
+
+   Google requires the marked-up questions to be the ones a visitor can
+   actually answer on the page — here they are, rendered by QuizPlayer from
+   the same frontmatter this builder reads.
+   ========================================================================= */
+
+/** Question shapes accepted from the `tests` collection frontmatter. */
+export type TestQuestion =
+  | { tipo: 'opcion-multiple'; enunciado: string; opciones: string[]; correcta: number; explicacion?: string }
+  | { tipo: 'verdadero-falso'; enunciado: string; correcta: boolean; explicacion?: string }
+  | { tipo: 'numerico'; enunciado: string; respuesta: number; unidad?: string; explicacion?: string }
+  | { tipo: 'relacionar'; enunciado: string; explicacion?: string };
+
+/** Strip Markdown emphasis so JSON-LD carries plain text, as the spec expects. */
+const plain = (text: string): string =>
+  text
+    .replace(/\*\*(.+?)\*\*/g, '$1')
+    .replace(/(^|\W)[*_](\S(?:.*?\S)?)[*_](\W|$)/g, '$1$2$3')
+    .replace(/`(.+?)`/g, '$1')
+    .trim();
+
+const answer = (text: string, explicacion?: string) => ({
+  '@type': 'Answer',
+  text: plain(text),
+  ...(explicacion
+    ? { answerExplanation: { '@type': 'Comment', text: plain(explicacion) } }
+    : {}),
+});
+
+const VF_LABELS = { es: ['Verdadero', 'Falso'], ca: ['Vertader', 'Fals'] } as const;
+
+/**
+ * One `Question` node per test question. `relacionar` (matching) questions are
+ * skipped: they have no single answer string, so forcing them into the Q&A
+ * shape would misrepresent the page.
+ */
+function questionLd(q: TestQuestion, locale: Locale) {
+  const base = { '@type': 'Question', text: plain(q.enunciado) };
+
+  if (q.tipo === 'opcion-multiple') {
+    const correct = q.opciones[q.correcta];
+    if (correct === undefined) return null;
+    return {
+      ...base,
+      eduQuestionType: 'Multiple choice',
+      acceptedAnswer: answer(correct, q.explicacion),
+      suggestedAnswer: q.opciones
+        .map((opt, i) => ({ opt, i }))
+        .filter(({ i }) => i !== q.correcta)
+        .map(({ opt, i }) => ({ '@type': 'Answer', text: plain(opt), position: i })),
+    };
+  }
+
+  if (q.tipo === 'verdadero-falso') {
+    const [yes, no] = VF_LABELS[locale === 'ca' ? 'ca' : 'es'];
+    return {
+      ...base,
+      eduQuestionType: 'Multiple choice',
+      acceptedAnswer: answer(q.correcta ? yes : no, q.explicacion),
+      suggestedAnswer: [{ '@type': 'Answer', text: q.correcta ? no : yes, position: 1 }],
+    };
+  }
+
+  if (q.tipo === 'numerico') {
+    return {
+      ...base,
+      eduQuestionType: 'Flashcard',
+      acceptedAnswer: answer(q.unidad ? `${q.respuesta} ${q.unidad}` : String(q.respuesta), q.explicacion),
+    };
+  }
+
+  return null;
+}
+
+/**
+ * schema.org Quiz for a unit self-assessment test. Returns `null` when no
+ * question survives mapping, so the page can skip emitting an empty Quiz.
+ */
+export function quizLd(opts: {
+  name: string;
+  about: string;
+  educationalLevel: string;
+  path: string;
+  questions: TestQuestion[];
+  locale?: Locale;
+}) {
+  const locale = opts.locale ?? 'es';
+  const hasPart = opts.questions.map((q) => questionLd(q, locale)).filter((q) => q !== null);
+  if (hasPart.length === 0) return null;
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Quiz',
+    name: opts.name,
+    url: absUrlL(opts.path, locale),
+    about: { '@type': 'Thing', name: opts.about },
+    educationalLevel: opts.educationalLevel,
+    inLanguage: inLang(locale),
+    publisher: orgRef(),
+    hasPart,
   };
 }

@@ -7,7 +7,7 @@
 import BaseLayout from '@layouts/BaseLayout.astro';
 import HerramientaIsland from '@components/calculadoras/HerramientaIsland.astro';
 import PuenteUnidades from '@components/emprendimiento/PuenteUnidades.astro';
-import { HERRAMIENTAS, herramientaPorSlug, unidadesPorComponente, FAMILIAS_HERRAMIENTA } from '@/lib/herramientas';
+import { HERRAMIENTAS, herramientaPorSlug, unidadesPorComponente, recursoCanonicoPorComponente, FAMILIAS_HERRAMIENTA } from '@/lib/herramientas';
 import { breadcrumbLd } from '@/lib/seo';
 import { getCollection } from 'astro:content';
 import type { GetStaticPaths } from 'astro';
@@ -35,7 +35,12 @@ const copy = {
 }[locale];
 
 const recursos = await getCollection('recursos');
-const derivadas = unidadesPorComponente(recursos.filter((r) => r.data.estado === 'publicado')).get(componente) ?? [];
+const publicados = recursos.filter((r) => r.data.estado === 'publicado' && r.data.lang === 'es');
+const derivadas = unidadesPorComponente(publicados).get(componente) ?? [];
+// Consolidate onto the subject twin when there is exactly one — see
+// recursoCanonicoPorComponente. The page stays browsable; it just stops
+// competing with its own duplicate in search.
+const canonicalPath = recursoCanonicoPorComponente(publicados).get(componente);
 const unidades = h.unidades_relacionadas ?? derivadas;
 const breadcrumb = breadcrumbLd([
   { name: copy.bcInicio, path: '/' },
@@ -44,7 +49,7 @@ const breadcrumb = breadcrumbLd([
 ]);
 ---
 
-<BaseLayout title={`${h.title} — ${copy.metaSuffix}`} description={h.descripcion} ogType="article" jsonLd={breadcrumb} contentLang={locale}>
+<BaseLayout title={`${h.title} — ${copy.metaSuffix}`} description={h.descripcion} ogType="article" jsonLd={breadcrumb} contentLang={locale} canonicalPath={canonicalPath}>
   <div class="container">
     <nav class="breadcrumb">
       <a href="/">{copy.bcInicio}</a> <span class="sep">›</span>

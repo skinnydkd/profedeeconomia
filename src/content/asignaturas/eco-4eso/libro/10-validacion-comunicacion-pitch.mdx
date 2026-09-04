@@ -40,6 +40,7 @@ publicado_en: 2026-05-16
 import Callout from '@components/Callout.astro';
 import Curiosity from '@components/Curiosity.astro';
 import RealExample from '@components/RealExample.astro';
+import SolvedExercise from '@components/SolvedExercise.astro';
 import Steps from '@components/Steps.astro';
 import KeyTakeaways from '@components/KeyTakeaways.astro';
 import Bibliography from '@components/Bibliography.astro';
@@ -49,13 +50,15 @@ import TldrUnidad from '@components/TldrUnidad.astro';
 import CasoDilema from '@components/CasoDilema.astro';
 import VuelveAlCaso from '@components/VuelveAlCaso.astro';
 import MirarFora from '@components/MirarFora.astro';
+import VocesDesacuerdo from '@components/VocesDesacuerdo.astro';
 import PitchDeck10Slides from '@components/diagrams/PitchDeck10Slides.astro';
+import EmbudoValidacion from '@components/diagrams/EmbudoValidacion.astro';
 
 import tedStage from '@assets/libro/eco-4eso/10/ted-stage-julie-freeman.jpg';
 import demoDayPitch from '@assets/libro/eco-4eso/10/demo-day-pitch-startup.png';
 import fyfnBarcelona from '@assets/libro/eco-4eso/10/4yfn-mwc-barcelona-mentoring.jpg';
 
-> **Tiempo estimado de lectura**: 18-20 min · **Saberes LOMLOE**: D.4, D.5, D.6 · **Antes de empezar**: Unit 9 (diseño del proyecto). Esta es la parte 2 del capstone y el cierre del curso.
+> **Tiempo estimado de lectura**: 18-20 min · **Saberes LOMLOE**: D.4, D.5, D.6 · **Antes de empezar**: Unidad 9 (diseño del proyecto). Esta es la parte 2 del capstone y el cierre del curso.
 >
 > **Al acabar esta unidad sabrás**:
 > - Formular **hipótesis verificables** sobre tu idea y diseñar un test sencillo para validar una con usuarios reales.
@@ -100,6 +103,20 @@ Una hipótesis es **verificable** cuando se puede formular como una frase cerrad
 
 </Callout>
 
+<VocesDesacuerdo
+  tema="¿Escuchar al cliente o adelantarse a él?"
+  postura_a={{
+    etiqueta: 'Preguntar y medir',
+    tesis: 'Las hipótesis se comprueban con gente real. Quien no pregunta acaba construyendo lo que le gusta a él y llamándolo visión cuando no lo compra nadie.',
+  }}
+  postura_b={{
+    etiqueta: 'Proponer algo que nadie ha pedido',
+    tesis: 'Nadie pide lo que no ha visto. Preguntar solo sirve para mejorar lo que ya existe; los productos que cambian una categoría se proponen antes de que exista la demanda.',
+  }}
+>
+La segunda postura se defiende casi siempre con una frase atribuida a Henry Ford sobre caballos más rápidos, **de la que no hay ninguna fuente documentada**: es un buen momento para desconfiar de las citas que encajan demasiado bien. El matiz que hace útiles a las dos: **se pregunta por el problema, no por la solución**. «¿Comprarías esto?» no vale casi nada; «cuéntame la última vez que te pasó» vale mucho. Con esa distinción, escuchar al cliente y proponerle algo que no ha pedido dejan de ser incompatibles.
+</VocesDesacuerdo>
+
 ## Métricas: vanidad frente a acción
 
 Una vez la idea está en contacto con el mundo, empiezan a aparecer números. No todos los números valen lo mismo. La distinción crítica, popularizada por Eric Ries en *The Lean Startup*, separa las **métricas vanidad** de las **métricas accionables**.
@@ -131,6 +148,31 @@ Cuando los datos del experimento llegan, hay dos respuestas posibles. Si la hip�
 <RealExample title="Slack era un videojuego: el pivot más famoso del siglo XXI" source="Entrevista de Stewart Butterfield en First Round Review (2014) y Forbes (2015)">
 En 2009, **Stewart Butterfield** —que ya había co-fundado Flickr una década antes— levantó capital para crear **Glitch**, un videojuego multijugador online ambicioso, colaborativo y sin combate. Llegó a tener miles de usuarios, pero nunca generó ingresos suficientes para sostener al equipo, y en 2012 Butterfield reconoció ante sus inversores que el juego no iba a ser viable. La decisión razonable habría sido cerrar y devolver el dinero. En lugar de eso, el equipo identificó una observación inesperada: para coordinarse a distancia mientras desarrollaban Glitch, habían construido internamente una herramienta de mensajería organizada por canales que funcionaba mejor que cualquier alternativa del mercado. Pivotaron: cerraron el juego, conservaron al equipo y lanzaron esa herramienta interna como producto comercial. La llamaron **Slack** (*Searchable Log of All Conversation and Knowledge*). En agosto de 2013 tenían 8.000 empresas en lista de espera el primer día. En 2021, Salesforce compró Slack por **27.700 millones de dólares**. El pivot funcionó porque mantuvieron lo único que tenían validado —un equipo con criterio y una herramienta que ellos mismos usaban a diario— y descartaron lo que la realidad había desmentido.
 </RealExample>
+
+<SolvedExercise number="10.1" title="Dónde se pierde la gente en tu embudo">
+
+**Enunciado**
+
+Un proyecto de aula publica su producto en redes durante un mes. **1.200 personas** ven la publicación, **180** entran al perfil, **51** escriben preguntando y **12** acaban comprando. Se han gastado **60 €** en promoción y cada venta deja **18 €** de margen.
+
+a) Calcula la conversión de cada paso y la conversión total.
+b) ¿Cuál es el paso más débil?
+c) ¿Cuánto cuesta cada venta y cuál es el resultado del mes?
+
+**Solución**
+
+1. **Conversión paso a paso.** De ver a entrar: 180/1.200 = **15 %**. De entrar a preguntar: 51/180 = **28,3 %**. De preguntar a comprar: 12/51 = **23,5 %**.
+2. **Conversión total**: 12/1.200 = **1 %**. Comprueba que es el producto de las tres: 0,15 × 0,283 × 0,235 ≈ 0,01. No es una coincidencia: las conversiones se multiplican.
+3. **El paso más débil es el primero**, con un 15 %: de cada cien personas que ven la publicación, ochenta y cinco no llegan ni a mirar el perfil. Ahí se pierden 1.020 personas, más que en los otros dos pasos juntos.
+4. **Coste por venta**: 60/12 = **5 €**. Ingresos por margen: 12 × 18 = **216 €**. Resultado del mes: 216 − 60 = **+156 €**.
+5. *Dónde trabajar ahora.* La tentación es tocar el precio o el producto, que son los pasos de abajo. Pero mira los números: subir el último paso del 23,5 % al 30 % daría unas 15 ventas; subir el primero del 15 % al 20 % daría 16 sin tocar nada más. **Arreglar el peor paso mueve el resultado entero; mejorar uno que ya funciona apenas se nota.**
+6. Y una advertencia sobre el 1.200 de arriba: es el número más fácil de subir y el que menos decide. **Que lo vea más gente sin arreglar el 15 % solo hace el embudo más ancho por arriba y igual de estrecho por abajo.**
+
+</SolvedExercise>
+
+<Diagram caption="El embudo de un proyecto real: 1.200 personas ven la publicación y 12 compran. El paso más débil no es el último sino el primero, y ahí se pierden más personas que en los otros dos juntos.">
+  <EmbudoValidacion />
+</Diagram>
 
 ## Plan de comunicación y marketing básico
 
@@ -277,31 +319,31 @@ Lo que hagáis con todo esto a partir de mañana es vuestro.
 
 Antes de la lista final, conviene ver el curso entero como un mapa. Economía y Emprendimiento se ha organizado en **cuatro bloques** del currículo LOMLOE, y cada uno os ha dado una pieza distinta:
 
-- **Bloque A — La persona emprendedora (Units 1-2)**: qué es emprender, los mitos, las habilidades que se pueden entrenar. Aquí aprendisteis a *mirar* con ojos de emprendedor.
-- **Bloque B — El entorno y el consumo (Units 3-5)**: ética y emprendimiento social, detección de oportunidades en el entorno y vuestros derechos como consumidores. Aquí aprendisteis a *leer el mundo* en el que se mueve un proyecto.
-- **Bloque C — Los recursos (Units 6-8)**: equipos, dinero y financiación, y vuestra economía personal (nómina, contratos, formas jurídicas). Aquí aprendisteis a *manejar las herramientas* (personas, dinero, papeles) que mueven cualquier proyecto.
-- **Bloque D — El proyecto (Units 9-10)**: diseño con BMC y Design Thinking (Unit 9) y validación, comunicación y pitch (Unit 10, esta). Aquí *lo habéis hecho de verdad*, de la idea a la defensa pública.
+- **Bloque A — La persona emprendedora (Unidades 1-2)**: qué es emprender, los mitos, las habilidades que se pueden entrenar. Aquí aprendisteis a *mirar* con ojos de emprendedor.
+- **Bloque B — El entorno y el consumo (Unidades 3-5)**: ética y emprendimiento social, detección de oportunidades en el entorno y vuestros derechos como consumidores. Aquí aprendisteis a *leer el mundo* en el que se mueve un proyecto.
+- **Bloque C — Los recursos (Unidades 6-8)**: equipos, dinero y financiación, y vuestra economía personal (nómina, contratos, formas jurídicas). Aquí aprendisteis a *manejar las herramientas* (personas, dinero, papeles) que mueven cualquier proyecto.
+- **Bloque D — El proyecto (Unidades 9-10)**: diseño con BMC y Design Thinking (Unidad 9) y validación, comunicación y pitch (Unidad 10, esta). Aquí *lo habéis hecho de verdad*, de la idea a la defensa pública.
 
-Las Units 9 y 10 son el **proyecto capstone**: el ejercicio que junta todo lo anterior en un solo entregable defendible. Un equipo que llega a la demo day ha tenido que usar el perfil emprendedor (A), leer el entorno y a sus usuarios (B), montar un equipo y un presupuesto (C) y diseñar, prototipar y comunicar (D). Si una pieza falla, se nota.
+Las Unidades 9 y 10 son el **proyecto capstone**: el ejercicio que junta todo lo anterior en un solo entregable defendible. Un equipo que llega a la demo day ha tenido que usar el perfil emprendedor (A), leer el entorno y a sus usuarios (B), montar un equipo y un presupuesto (C) y diseñar, prototipar y comunicar (D). Si una pieza falla, se nota.
 
 ## Has acabado Economía y Emprendimiento si ya sabes…
 
 Esta es la lista de comprobación final del curso. No se trata de haber memorizado definiciones, sino de **saber hacer**. Si puedes marcar con sinceridad estas casillas, has cumplido los objetivos de la asignatura:
 
-- [ ] **Explicar qué es emprender** sin caer en los mitos (no hace falta ser joven, ni tener una idea genial, ni arriesgarlo todo). *(Units 1-2)*
-- [ ] **Reconocer que las habilidades emprendedoras se entrenan**: creatividad, mentalidad de crecimiento, trabajo en equipo. *(Unit 2)*
-- [ ] **Distinguir el emprendimiento social y la RSC** y reconocer el greenwashing cuando lo veas. *(Unit 3)*
-- [ ] **Detectar una oportunidad** analizando tu entorno con una mirada PESTEL básica. *(Unit 4)*
-- [ ] **Defender tus derechos como consumidor**: garantía, derecho de desistimiento y reconocer un dark pattern. *(Unit 5)*
-- [ ] **Trabajar como equipo y no como grupo**, repartir roles y gestionar un conflicto sin romper la relación. *(Unit 6)*
-- [ ] **Hacer un presupuesto personal** y entender por qué el interés compuesto premia ahorrar joven. *(Unit 7)*
-- [ ] **Comparar fuentes de financiación** para un proyecto y elegir la adecuada. *(Unit 7)*
-- [ ] **Leer una nómina** y calcular tu salario neto a partir del bruto. *(Unit 8)*
-- [ ] **Distinguir tipos de contrato** y elegir una forma jurídica para emprender. *(Unit 8)*
-- [ ] **Diseñar un proyecto** con Design Thinking y un Business Model Canvas de nueve bloques. *(Unit 9)*
-- [ ] **Construir un prototipo** de baja fidelidad y entender qué es un MVP. *(Unit 9)*
-- [ ] **Validar una idea** con hipótesis verificables y métricas accionables, no con corazonadas. *(Unit 10)*
-- [ ] **Contar tu proyecto** en un elevator pitch de 30 segundos y defenderlo en una demo day. *(Unit 10)*
+- [ ] **Explicar qué es emprender** sin caer en los mitos (no hace falta ser joven, ni tener una idea genial, ni arriesgarlo todo). *(Unidades 1-2)*
+- [ ] **Reconocer que las habilidades emprendedoras se entrenan**: creatividad, mentalidad de crecimiento, trabajo en equipo. *(Unidad 2)*
+- [ ] **Distinguir el emprendimiento social y la RSC** y reconocer el greenwashing cuando lo veas. *(Unidad 3)*
+- [ ] **Detectar una oportunidad** analizando tu entorno con una mirada PESTEL básica. *(Unidad 4)*
+- [ ] **Defender tus derechos como consumidor**: garantía, derecho de desistimiento y reconocer un dark pattern. *(Unidad 5)*
+- [ ] **Trabajar como equipo y no como grupo**, repartir roles y gestionar un conflicto sin romper la relación. *(Unidad 6)*
+- [ ] **Hacer un presupuesto personal** y entender por qué el interés compuesto premia ahorrar joven. *(Unidad 7)*
+- [ ] **Comparar fuentes de financiación** para un proyecto y elegir la adecuada. *(Unidad 7)*
+- [ ] **Leer una nómina** y calcular tu salario neto a partir del bruto. *(Unidad 8)*
+- [ ] **Distinguir tipos de contrato** y elegir una forma jurídica para emprender. *(Unidad 8)*
+- [ ] **Diseñar un proyecto** con Design Thinking y un Business Model Canvas de nueve bloques. *(Unidad 9)*
+- [ ] **Construir un prototipo** de baja fidelidad y entender qué es un MVP. *(Unidad 9)*
+- [ ] **Validar una idea** con hipótesis verificables y métricas accionables, no con corazonadas. *(Unidad 10)*
+- [ ] **Contar tu proyecto** en un elevator pitch de 30 segundos y defenderlo en una demo day. *(Unidad 10)*
 
 <Figure
   src={fyfnBarcelona}
@@ -405,3 +447,220 @@ Estas preguntas no tienen una respuesta única. Sirven para cerrar el curso pens
     **Simulacro de pitch con tribunal rotatorio**: cada equipo presenta su pitch ante un tribunal compuesto por miembros de otros equipos (rota cada 3 pitches). El tribunal puntúa: ¿se ha entendido el problema?, ¿la solución es clara?, ¿quedó alguna pregunta sin responder? Feedback constructivo después de cada pitch. Duración: 60-90 min. Materiales: cronómetro y plantilla de evaluación.
   </Fragment>
 </MirarFora>
+
+```deck
+- tipo: curriculum
+  eyebrow: "A qué responde esta unidad"
+  title: "El marco de la unidad"
+  saberes:
+    - "Bloque D: validación con clientes reales."
+    - "Bloque D: comunicación y pitch del proyecto."
+  competencias:
+    - "Validar y comunicar un proyecto emprendedor hasta su defensa pública."
+- tipo: section
+  title: "Validar la idea: hipótesis, no convicciones"
+  subtitle: Una convicción es algo que el equipo cree y defiende; una hipótesis es algo que el equipo cree pero acepta poner a prueba.
+- tipo: list
+  title: Tres hipótesis que toda idea debe validar
+  ordered: true
+  items:
+    - "De problema. ¿El problema existe de verdad para alguien y le duele lo suficiente como para hacer algo al respecto?"
+    - "De solución. ¿Tu propuesta concreta lo resuelve mejor que lo que esa gente ya usa hoy?"
+    - "De viabilidad. ¿Alguien pagará, se suscribirá o le dedicará su tiempo? Es la que más equipos olvidan."
+- tipo: concept
+  eyebrow: Concepto clave
+  title: Cuándo una hipótesis es verificable
+  body: "«Los jóvenes querrán mi app» no es verificable: ni define qué jóvenes, ni qué significa querer, ni cómo se mide. «Al menos seis de cada diez estudiantes de 4º de ESO de mi instituto pulsarán descargar si les enseño la pantalla de inicio» sí lo es: hay un colectivo claro, una acción medible y un umbral concreto."
+  pull: Caerse pronto cuesta mucho menos que caerse tarde.
+- tipo: section
+  title: "Métricas: vanidad frente a acción"
+  subtitle: "No todos los números valen lo mismo: unos lucen en una diapositiva y otros informan una decisión del equipo."
+- tipo: table
+  title: Cada métrica vanidad tiene su equivalente accionable
+  head:
+    - Métrica vanidad
+    - Métrica accionable equivalente
+  rows:
+    - - Descargas totales de la app
+      - Usuarios activos diarios (DAU)
+    - - Likes en una publicación
+      - Comentarios y comparticiones
+    - - Visitas a la web
+      - Conversión a registro o compra
+    - - Seguidores en redes
+      - Tasa de respuesta a un mensaje directo
+    - - Personas que probaron la demo
+      - Personas que volvieron una segunda vez
+  caption: "Cada equipo elige solo dos: una de comportamiento (¿la usan?) y otra de valor (¿vuelven, pagan, recomiendan?)."
+- tipo: diagram
+  diagrama: EmbudoValidacion
+  caption: "Dónde se pierde la gente, paso a paso"
+- tipo: concept
+  title: "A/B test: dos puertas, el mismo número de personas"
+  body: El experimento más sencillo consiste en preparar dos versiones del prototipo —dos carteles, dos precios, dos nombres—, enseñarlas al mismo número de personas en condiciones parecidas y contar cuál funciona mejor. La regla de oro es cambiar una sola cosa entre las dos versiones.
+  pull: Si cambias el cartel, el precio y el nombre a la vez, no sabrás cuál ha sido el responsable.
+- tipo: split
+  title: "Cuando llegan los datos: perseverar o pivotar"
+  left:
+    h: Persevera
+    items:
+      - Los datos confirman la hipótesis
+      - Se sigue con el plan previsto
+      - Se pasa a validar la hipótesis siguiente
+  right:
+    h: Pivota
+    items:
+      - Los datos dicen claramente que no
+      - Se cambia algo importante sin tirar el proyecto entero
+      - "Se conserva lo validado: cliente, problema, tecnología o equipo"
+- tipo: timeline
+  eyebrow: "Caso real"
+  title: "Slack era un videojuego"
+  hitos:
+    - fecha: "2009"
+      hito: "Butterfield levanta capital para Glitch"
+      detalle: "Un videojuego multijugador que nunca llegó a generar ingresos suficientes."
+    - fecha: "2012"
+      hito: "Cierra Glitch y conserva equipo y herramienta"
+      detalle: "La mensajería por canales que habían construido para coordinarse a distancia."
+    - fecha: "Después"
+      hito: "La lanzan como producto: la llaman Slack"
+      detalle: "Pivotar es mantener lo que la realidad ha validado y descartar lo que ha desmentido."
+    - fecha: "2021"
+      hito: "Salesforce la compra"
+      detalle: "27.700 millones de dólares."
+- tipo: section
+  title: Plan de comunicación y marketing básico
+  subtitle: "No necesita ser largo: necesita cuatro respuestas claras antes de salir a contar nada."
+- tipo: list
+  title: Las cuatro piezas del plan
+  ordered: true
+  items:
+    - "Target. El cliente concreto, nunca «todo el mundo»: un nicho estrecho se comunica mejor que un planeta entero."
+    - "Mensaje. La propuesta de valor en una frase: ayudamos a [target] a [conseguir resultado] sin [obstáculo habitual]."
+    - "Canales. Donde vive ese target: redes, WhatsApp, cartelería en el instituto, prensa comarcal, email si ya os dejó el contacto."
+    - Presupuesto. Casi siempre cero euros, pero con horas semanales comprometidas. Un plan sin compromiso temporal es un deseo.
+- tipo: section
+  title: "Storytelling: las personas recuerdan historias"
+  subtitle: "Todos los equipos cometen el mismo error al presentar: empiezan con estadísticas y el público mira al techo."
+- tipo: figure
+  src: eco-4eso/10/ted-stage-julie-freeman.jpg
+  alt: Ponente en un escenario TED con el círculo rojo del logo iluminado al fondo.
+  title: El formato TED
+  caption: Una charla corta y una sola idea defendida con una historia. Es el referente global de cómo se cuenta en público algo que importa.
+  credit: "Foto: Juliana Rotich (afromusing), CC BY 2.0"
+- tipo: list
+  title: La estructura del relato, de Aristóteles a Pixar
+  ordered: true
+  items:
+    - Situación inicial. Presentamos a alguien concreto en su mundo cotidiano.
+    - Conflicto. Aparece un problema que rompe ese mundo.
+    - Resolución. Mostramos cómo la solución cambia la vida de ese alguien.
+- tipo: concept
+  title: Pepa antes que los ocho millones
+  body: "En lugar de abrir con «en España hay ocho millones de personas mayores de 65 años que viven solas», se empieza así: «mi abuela se llama Pepa, vive sola desde 2019 y solo llama cuando hay una emergencia porque no quiere molestar. La semana pasada se cayó en la cocina y tardó cuatro horas en avisar». Los ocho millones llegan después, cuando el público ya tiene un rostro."
+  pull: Si tu pitch puede empezar igual cambiando el nombre del proyecto, es genérico y se olvida.
+- tipo: section
+  title: El pitch en tres formatos
+  subtitle: El mismo proyecto se cuenta de forma muy distinta en treinta segundos, en cinco minutos o en un cuarto de hora.
+- tipo: table
+  title: Tres formatos, tres propósitos
+  head:
+    - Formato
+    - Duración
+    - Para qué sirve
+  rows:
+    - - Elevator pitch
+      - 30 segundos
+      - Que quien no te conoce pida que le cuentes más
+    - - Pitch deck
+      - 5 minutos, 10 slides
+      - Defenderlo ante un jurado, un concurso o un inversor
+    - - Presentación larga
+      - 15 minutos
+      - Defensa final con turno de preguntas y demo detallada
+  caption: "Nunca llenes los quince minutos hablando: reserva al menos cinco para preguntas."
+- tipo: concept
+  eyebrow: 30 segundos
+  title: La fórmula del elevator pitch
+  body: "«Para [target] que tiene el problema de [problema concreto], hemos creado [solución] que, a diferencia de [alternativa actual], ofrece [beneficio único]». Una frase larga, sin datos y sin promesas exageradas. Su éxito no se mide en si vendes, sino en si el interlocutor pide más."
+- tipo: figure
+  src: eco-4eso/10/4yfn-mwc-barcelona-mentoring.jpg
+  alt: Acto de entrega de premios en el espacio 4YFN dentro del Mobile World Congress de Barcelona, con stands y público.
+  title: Donde el pitch de pasillo no es un ejercicio
+  caption: En 4YFN, cientos de startups jóvenes compiten cada febrero por la atención de inversores y prensa en pasillos llenos de stands.
+  credit: "Foto: Kippelboy, CC0 1.0 vía Wikimedia Commons"
+- tipo: diagram
+  diagrama: PitchDeck10Slides
+  caption: "Estructura clásica del pitch deck: la regla 10/20/30 de Guy Kawasaki, ajustada a cinco minutos"
+- tipo: data
+  numero: "11"
+  label: diapositivas
+  title: El pitch deck con el que empezó Airbnb
+  detalle: "Con ese material, los tres fundadores levantaron 600.000 dólares en 2009: una idea por slide, frases cortas y ningún adorno gráfico. Si no podéis contarlo en diez o doce ideas, todavía no está listo."
+- tipo: section
+  title: "La demo day: defender el proyecto ante gente real"
+  subtitle: Presentar ante el profesor que os conoce es cómodo; ante un jurado que entra hoy y se va en una hora, no. La incomodidad es el ejercicio.
+- tipo: figure
+  src: eco-4eso/10/demo-day-pitch-startup.png
+  alt: Fundador de una startup presentando su producto en un escenario de demo day, con la diapositiva proyectada detrás y el público delante.
+  title: Cinco minutos, un jurado
+  caption: Diapositiva grande, una sola idea por pantalla y ningún folio en la mano. Esta es la imagen mental con la que conviene ensayar.
+  credit: "Foto: MarkChristopherWebster, CC BY-SA 4.0"
+- tipo: list
+  title: Cómo preparar la demo day
+  items:
+    - Cronómetro encima de la mesa. Cinco minutos son cinco minutos; si no acabáis, el jurado corta. En la vida real también.
+    - Ensayo en voz alta, mínimo tres pases completos. El pitch no se ensaya leyéndolo en silencio.
+    - "Repartir roles: en un equipo de cuatro hablan dos, máximo tres. Quien no habla opera la demo."
+    - Las cinco preguntas más incómodas, escritas y respondidas antes. La que más asusta suele ser la primera que cae.
+    - Feo pero validado. Un prototipo de cartón con datos detrás gana a uno impecable sin un solo usuario; se nota a los treinta segundos.
+- tipo: concept
+  title: Escucha, no te defiendas
+  body: Cuando llegue el feedback —y llegará, parte favorable y parte no—, la tentación es interrumpir al jurado para explicar por qué su crítica está equivocada. Es el peor error posible. Toma notas, da las gracias y discutid después en el equipo si la crítica tiene fundamento. Pivotar tras un feedback honesto es de proyectos serios; ignorarlo es de proyectos que se mueren.
+  pull: "La crítica del jurado es un regalo: la opinión sincera de quien no os debe nada y ha visto cientos de proyectos."
+- tipo: terms
+  title: El vocabulario que hay que llevarse
+  terms:
+    - t: Hipótesis verificable
+      d: "La que se formula de manera que un experimento pueda confirmarla o desmentirla: colectivo claro, acción medible y umbral concreto."
+    - t: Métrica accionable
+      d: "Número que depende de algo que hace el equipo y permite cambiar de rumbo: conversión, retención, usuarios activos. La vanidad solo luce."
+    - t: Pivot
+      d: Cambio importante del proyecto que conserva lo que la realidad ha validado —cliente, problema, tecnología, equipo— y reformula el resto.
+    - t: Demo day
+      d: Jornada en la que cada equipo defiende su proyecto en cinco minutos delante de un público externo que no le debe nada.
+- tipo: quiz
+  pregunta: "«Nuestro vídeo lleva cincuenta mil reproducciones.» ¿Qué clase de métrica está usando el equipo?"
+  opciones:
+    - Accionable, porque el número es grande y sigue creciendo
+    - Vanidad, porque no informa ninguna decisión del equipo
+    - Accionable, porque mide el alcance real de la campaña
+    - Vanidad, porque las redes sociales no sirven para comunicar
+  correcta: "1"
+  explicacion: Las reproducciones suben siempre y no dicen qué cambiar. La versión accionable sería cuántas de esas personas se descargan la app y vuelven al día siguiente.
+- tipo: quiz
+  pregunta: Un equipo cambia a la vez el cartel, el precio y el nombre del producto. La versión B funciona mejor. ¿Qué ha aprendido?
+  opciones:
+    - Que el precio era el problema
+    - "Nada útil: no puede saber cuál de los tres cambios lo explica"
+    - Que le toca pivotar de inmediato
+    - Que la hipótesis de viabilidad ya está validada
+  correcta: "1"
+  explicacion: La regla de oro del A/B test es cambiar una sola cosa entre las dos versiones. Con tres variables movidas a la vez, el resultado no señala ninguna causa.
+- tipo: concept
+  eyebrow: Cierre del curso
+  title: Lo que os lleváis de este curso
+  body: "La meta nunca fue que todo el mundo funde una empresa al acabar 4º de ESO. Era salir con tres cosas: una mentalidad capaz de detectar oportunidades en cualquier ámbito, una caja de herramientas para no perderse ante una nómina, un contrato o un dark pattern, y la experiencia real de llevar un proyecto desde una idea pegajosa hasta una defensa pública."
+  pull: Lo que hagáis con todo esto a partir de mañana es vuestro.
+- tipo: recap
+  eyebrow: "Repasa"
+  title: "Antes de cerrar la unidad"
+  items:
+    - "Sabrías formular tres o cuatro hipótesis verificables sobre tu idea de proyecto."
+    - "Sabrías diseñar un test sencillo y validar una hipótesis con diez usuarios reales."
+    - "Sabrías separar métricas vanidad de métricas accionables y elegir dos clave."
+    - "Sabrías montar un plan de comunicación con target, mensaje, canales y presupuesto."
+    - "Sabrías preparar tres pitches: elevator de 30 s, deck de 5 min y presentación de 15 min."
+    - "Sabrías defender el proyecto ante un jurado externo en una demo day."
+```

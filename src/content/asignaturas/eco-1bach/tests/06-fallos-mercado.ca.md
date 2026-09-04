@@ -93,6 +93,12 @@ preguntas:
     derecha: ["El preu del medicament d'un únic laboratori amb patent", "El fum d'una fàbrica que perjudica el veïnat", "El venedor d'un cotxe usat sap les seues avaries i el comprador no", "L'enllumenat públic d'una ciutat"]
     correctas: [1, 3, 2, 0]
     explicacion: "Externalitat negativa: el fum danya tercers sense pagar per això. Bé públic: l'enllumenat és no rival i no excloïble. Informació asimètrica: el venedor sap més que el comprador. Poder de mercat: el monopolista amb patent fixa preu per damunt del cost marginal."
+  - tipo: numerico
+    enunciado: "Produir una tona de ciment costa a l'empresa 60 € i genera un dany ambiental valorat en 25 €. Quin és el cost social d'eixa tona, en euros?"
+    respuesta: 85
+    tolerancia: 1
+    unidad: "€"
+    explicacion: "Cost social = cost privat + cost extern = 60 + 25 = 85 €. L'empresa només té en compte els 60 €, així que produïx més del socialment eficient. Un impost pigovià de 25 € per tona internalitzaria la diferència."
 ---
 
 Test d'autoavaluació de la Unitat 6 del llibre d'Eco 1BACH. Nou preguntes que cobrixen la definició de fallada de mercat, les externalitats positives i negatives, l'impost pigouvià, la matriu de béns públics i comuns d'Ostrom, el problema del polissó, la informació asimètrica (selecció adversa i risc moral), el poder de mercat i les fallades de govern.

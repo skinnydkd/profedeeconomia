@@ -1,0 +1,86 @@
+---
+/**
+ * Porter's value chain: the activities that add value, split into the five
+ * primary ones the product passes through and the four support ones that cut
+ * across all of them, with the margin as what is left when the value created
+ * exceeds what the activities cost.
+ *
+ * Used in EDMN 2BACH · Unit 7 (the production function).
+ */
+import { getLocale } from '@/i18n/locale';
+const locale = getLocale(Astro.currentLocale);
+
+const COPY = {
+  es: {
+    title: 'La cadena de valor: actividades primarias y de apoyo',
+    desc: 'Esquema con cuatro bandas horizontales de actividades de apoyo —infraestructura, recursos humanos, tecnología y aprovisionamiento— sobre cinco actividades primarias encadenadas: logística interna, operaciones, logística externa, marketing y ventas, y servicio posventa. A la derecha, el margen.',
+    apoyo: 'Actividades de apoyo', primarias: 'Actividades primarias',
+    infra: 'Infraestructura de la empresa', rrhh: 'Gestión de recursos humanos',
+    tec: 'Desarrollo de tecnología', aprov: 'Aprovisionamiento',
+    p1: 'Logística interna', p2: 'Operaciones', p3: 'Logística externa',
+    p4: 'Marketing y ventas', p5: 'Servicio posventa',
+    margen: 'Margen',
+    pie: 'El margen aparece cuando el valor creado supera lo que cuestan las actividades',
+  },
+  ca: {
+    title: 'La cadena de valor: activitats primàries i de suport',
+    desc: "Esquema amb quatre bandes horitzontals d'activitats de suport —infraestructura, recursos humans, tecnologia i aprovisionament— sobre cinc activitats primàries encadenades: logística interna, operacions, logística externa, màrqueting i vendes, i servici postvenda. A la dreta, el marge.",
+    apoyo: 'Activitats de suport', primarias: 'Activitats primàries',
+    infra: "Infraestructura de l'empresa", rrhh: 'Gestió de recursos humans',
+    tec: 'Desenvolupament de tecnologia', aprov: 'Aprovisionament',
+    p1: 'Logística interna', p2: 'Operacions', p3: 'Logística externa',
+    p4: 'Màrqueting i vendes', p5: 'Servici postvenda',
+    margen: 'Marge',
+    pie: 'El marge apareix quan el valor creat supera el que costen les activitats',
+  },
+} as const;
+const t = COPY[locale];
+const apoyo = [t.infra, t.rrhh, t.tec, t.aprov];
+const primarias = [t.p1, t.p2, t.p3, t.p4, t.p5];
+---
+<svg class="d-cadena-valor" viewBox="0 0 800 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="cv-title cv-desc">
+  <title id="cv-title">{t.title}</title>
+  <desc id="cv-desc">{t.desc}</desc>
+  <defs>
+    <style>
+      .d-cadena-valor .bg { fill: #FBF6EC; }
+      .d-cadena-valor .band { fill: #F5EDD9; stroke: #E5D4BD; stroke-width: 1.4; }
+      .d-cadena-valor .chev { fill: #FBE3D6; stroke: #C44E2C; stroke-width: 1.6; }
+      .d-cadena-valor .margin { fill: #F5E5BC; stroke: #D4A24C; stroke-width: 1.8; }
+      .d-cadena-valor .band-text { font-family: 'Switzer', sans-serif; font-size: 13px; font-weight: 600; fill: #2A1F18; }
+      .d-cadena-valor .chev-text { font-family: 'Switzer', sans-serif; font-size: 12px; font-weight: 600; fill: #2A1F18; text-anchor: middle; }
+      .d-cadena-valor .group { font-family: 'Switzer', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; fill: #8A7868; }
+      .d-cadena-valor .margin-text { font-family: 'Fraunces', serif; font-style: italic; font-size: 17px; font-weight: 600; fill: #A87A2A; text-anchor: middle; }
+      .d-cadena-valor .pie { font-family: 'Fraunces', serif; font-style: italic; font-size: 14px; fill: #5C4A3D; text-anchor: middle; }
+    </style>
+  </defs>
+  <rect class="bg" x="0" y="0" width="800" height="520"/>
+
+  <text class="group" x="90" y="52">{t.apoyo}</text>
+  {apoyo.map((label, i) => (
+    <g>
+      <rect class="band" x="90" y={66 + i * 44} width="550" height="40" rx="3"/>
+      <text class="band-text" x="106" y={92 + i * 44}>{label}</text>
+    </g>
+  ))}
+
+  <text class="group" x="90" y="272">{t.primarias}</text>
+  {primarias.map((label, i) => {
+    const x = 90 + i * 110;
+    // A chevron: notched on the left, pointed on the right, so the five read
+    // as one chain rather than five boxes.
+    const pts = `${x},286 ${x + 92},286 ${x + 110},346 ${x + 92},406 ${x},406 ${x + 18},346`;
+    return (
+      <g>
+        <polygon class="chev" points={pts}/>
+        <text class="chev-text" x={x + 56} y={341}>{label.split(' ')[0]}</text>
+        <text class="chev-text" x={x + 56} y={359}>{label.split(' ').slice(1).join(' ')}</text>
+      </g>
+    );
+  })}
+
+  <polygon class="margin" points="640,66 750,236 640,406"/>
+  <text class="margin-text" x="672" y="242">{t.margen}</text>
+
+  <text class="pie" x="400" y="462">{t.pie}</text>
+</svg>

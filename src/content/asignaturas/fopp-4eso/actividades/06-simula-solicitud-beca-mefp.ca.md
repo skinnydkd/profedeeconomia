@@ -2,6 +2,7 @@
 asignatura: fopp-4eso
 unidad_relacionada: 6
 title: "Simula la teua sol·licitud de beca MEFP: et correspon i per quant?"
+seoTitle: "Beca MEFP: simula la sol·licitud i calcula la renda familiar"
 descripcion: "Exercici individual de 50 minuts: a partir de tres perfils familiars ficticis (amb dades de renda, patrimoni, membres de la unitat familiar i distància al centre), l'alumnat calcula quines quanties de la beca MEFP li correspondrien i emplena una plantilla simplificada de sol·licitud."
 tipo: ejercicio
 duracion: "50 min · 1 sessió"

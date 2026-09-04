@@ -45,18 +45,21 @@ import KeyTakeaways from '@components/KeyTakeaways.astro';
 import Diagram from '@components/Diagram.astro';
 import ElasticidadCasos from '@components/diagrams/ElasticidadCasos.astro';
 import PesoMuerto from '@components/diagrams/PesoMuerto.astro';
+import IncidenciaImpuesto from '@components/diagrams/IncidenciaImpuesto.astro';
 import Figure from '@components/Figure.astro';
 import Bibliography from '@components/Bibliography.astro';
 import TldrUnidad from '@components/TldrUnidad.astro';
 import CasoDilema from '@components/CasoDilema.astro';
 import VuelveAlCaso from '@components/VuelveAlCaso.astro';
 import MirarFora from '@components/MirarFora.astro';
+import VocesDesacuerdo from '@components/VocesDesacuerdo.astro';
 
 import HerramientaIsland from '@components/calculadoras/HerramientaIsland.astro';
 import estancoCeuta from '@assets/libro/eco-1bach/05/estanco-ceuta.jpg';
 import refineriaCepsa from '@assets/libro/eco-1bach/05/refineria-cepsa-tenerife.jpg';
 import mietendeckelBerlin from '@assets/libro/eco-1bach/05/mietendeckel-berlin.jpg';
 import davidCard from '@assets/libro/eco-1bach/05/david-card.png';
+import RecursoDestacado from '@components/libro/RecursoDestacado.astro';
 
 > **Tiempo estimado de lectura**: 35-40 min · **Saberes LOMLOE**: B.2, B.3 · **Pre-requisitos**: Unidad 4 (oferta, demanda y equilibrio de mercado).
 >
@@ -157,6 +160,8 @@ La regla intuitiva: cuanto más necesario y menos sustituible, más cerca del 0;
   aspectHint="3/2"
   variant="tight"
 />
+
+<RecursoDestacado href="/eco-1bach/recursos/calculadora-elasticidad/" kicker="Herramienta" title="Calculadora de elasticidad-precio" descripcion="Dos puntos de la curva de demanda y el método del punto medio hecho: la clasifica y enseña qué le pasa al ingreso total." colorVar="--color-eco1" />
 
 ## Elasticidad e ingresos totales
 
@@ -450,6 +455,24 @@ La recaudación creció solo un 3 % porque **parte del consumo escapó del circu
 - Los **impuestos sobre bienes con externalidades negativas** (tabaco, azúcar, CO₂) tienen poco peso muerto y pueden mejorar el bienestar agregado: son **impuestos pigouvianos**.
 </KeyTakeaways>
 
+<VocesDesacuerdo
+  tema="¿Quién paga de verdad un impuesto?"
+  postura_a={{
+    etiqueta: 'Lo paga quien lo ingresa',
+    tesis: 'Si la ley obliga a la empresa a ingresar el impuesto, es la empresa quien lo paga. Por eso subir impuestos a las empresas y no a las familias es una decisión distributiva con efecto real.',
+  }}
+  postura_b={{
+    etiqueta: 'Lo paga quien menos puede escapar',
+    tesis: 'El reparto no lo decide la ley sino las elasticidades. El lado del mercado que menos reacciona al precio acaba soportando la mayor parte, sea quien sea el que rellena el formulario.',
+  }}
+>
+La incidencia legal y la incidencia económica son cosas distintas, y este es de los pocos resultados donde la teoría permite una predicción limpia: **cuanto más inelástica es la demanda, mayor parte del impuesto acaba en el precio final**. Por eso los impuestos sobre el tabaco se trasladan casi enteros al consumidor y los que gravan un bien con muchos sustitutos, mucho menos. **La conclusión incomoda a las dos posturas**: quien defiende un impuesto por su efecto redistributivo y quien lo ataca por lo mismo deberían empezar los dos mirando la elasticidad del mercado concreto.
+</VocesDesacuerdo>
+
+<Diagram caption="El mismo impuesto por unidad en dos mercados que solo se diferencian en la pendiente de la demanda. La cuña es igual de alta en los dos; lo que cambia es quién la soporta.">
+  <IncidenciaImpuesto />
+</Diagram>
+
 ## Conexión con las próximas unidades
 
 La elasticidad y los excedentes vuelven a aparecer en la Unidad 6 (fallos de mercado y externalidades, donde formalizaremos los impuestos pigouvianos), en la Unidad 9 (mercado de trabajo, donde el salario mínimo y la elasticidad de la demanda de trabajo determinan el paro estructural) y en la Unidad 11 (políticas económicas, donde la elasticidad guía el diseño de los impuestos especiales y de los aranceles). Conviene tener estas herramientas asentadas antes de seguir.
@@ -532,3 +555,244 @@ Estas preguntas no tienen una respuesta única. Sirven para discutir en clase o 
     Variante *subasta inversa*: el profesor anuncia que va a subir un 50 % el precio de un producto del bar de la escuela. Los alumnos votan a mano alzada quién dejaría de comprarlo. El porcentaje que sigue comprando es una **medida de la inelasticidad**. Se repite con varios productos y se ordenan. Duración: 45 min.
   </Fragment>
 </MirarFora>
+
+```deck
+- tipo: curriculum
+  eyebrow: "A qué responde esta unidad"
+  title: "El marco de la unidad"
+  saberes:
+    - "Bloque B: elasticidad y sus aplicaciones."
+    - "Bloque B: ingreso total, impuestos indirectos e incidencia."
+  competencias:
+    - "Analizar los mercados con los modelos de oferta y demanda y la elasticidad."
+- tipo: concept
+  eyebrow: El caso
+  title: Subieron el impuesto un 15 % y recaudaron un 3 % más
+  body: En 2021 el Gobierno subió el impuesto especial sobre el tabaco esperando recaudar más y, de paso, reducir el consumo. El consumo cayó moderadamente, pero menos de lo previsto. Y la recaudación, en lugar de crecer un 12-15 %, creció solo un 3 %. La diferencia entre la previsión y el resultado no se explica solo por la elasticidad del consumidor.
+  pull: Si subes el impuesto a un producto, ¿siempre recaudas más? ¿De qué depende?
+- tipo: section
+  title: La elasticidad-precio de la demanda
+  subtitle: Que la cantidad caiga cuando sube el precio es trivial. La pregunta interesante es cuánto cae en relación a cuánto ha subido.
+- tipo: formula
+  eyebrow: "Método del punto medio"
+  title: "El método del punto medio, y por qué se usa"
+  formula: "E = (ΔQ / Qm) / (ΔP / Pm)"
+  terminos:
+    - s: "ΔQ, ΔP"
+      d: "Variación absoluta de cantidad y de precio entre los dos puntos."
+    - s: "Qm, Pm"
+      d: "Media de los dos valores de cantidad y de precio, no el inicial."
+    - s: "|E|"
+      d: "Se compara con la unidad: por encima es elástica, por debajo inelástica."
+  ejemplo: "Dividir entre el valor inicial da resultados distintos al subir y al bajar el precio. Con la media, mover el precio de 10 a 12 da la misma elasticidad que de 12 a 10."
+- tipo: diagram
+  diagrama: ElasticidadCasos
+  caption: Los cuatro casos extremos de la elasticidad-precio de la demanda, de la vertical perfecta a la horizontal.
+- tipo: list
+  title: Cómo se clasifica una demanda
+  items:
+    - "Elástica (|E| > 1): la cantidad reacciona más que proporcionalmente. Lujos, restaurantes, viajes."
+    - "Inelástica (|E| < 1): reacciona menos que proporcionalmente. Pan, electricidad, agua, tabaco a corto plazo."
+    - "Unitaria (|E| = 1): la variación de la cantidad coincide con la del precio. Caso teórico de referencia."
+    - "Perfectamente inelástica (E = 0): curva vertical. Un medicamento vital en un horizonte muy corto."
+    - "Perfectamente elástica (E → ∞): curva horizontal. Trigo a granel en un mercado mundial."
+- tipo: figure
+  src: eco-1bach/05/refineria-cepsa-tenerife.jpg
+  alt: Instalaciones de la refinería de Cepsa en Santa Cruz de Tenerife, con torres de destilación y depósitos de almacenamiento.
+  title: El ejemplo de manual de demanda inelástica
+  caption: La gasolina sube y la gente sigue echando depósito. A corto plazo cuesta cambiar de coche, de trayecto o de hábitos.
+  credit: Foto de dominio público vía Wikimedia Commons
+- tipo: list
+  title: Cuatro factores explican casi toda la diferencia
+  ordered: true
+  items:
+    - "Sustitutos cercanos: una marca concreta de yogur es muy elástica; el yogur en general, mucho menos."
+    - "Peso en el presupuesto: un 10 % más de sal no se nota; un 10 % más de alquiler obliga a recortar."
+    - "Necesidad o lujo: comer es inelástico, ir a un restaurante de moda es elástico."
+    - "Horizonte temporal: a corto plazo cuesta adaptarse, así que casi toda elasticidad crece con el tiempo."
+- tipo: table
+  eyebrow: Estimaciones empíricas
+  title: Cinco elasticidades que conviene tener en la cabeza
+  head:
+    - Bien o servicio
+    - "|E| aprox."
+    - Clasificación
+  rows:
+    - - Pan y cereales
+      - "0,2"
+      - Muy inelástico
+    - - Electricidad doméstica
+      - "0,3"
+      - Inelástico
+    - - Tabaco a corto plazo
+      - "0,4"
+      - Inelástico
+    - - Restaurantes
+      - "1,5"
+      - Elástico
+    - - Marcas concretas de cereal
+      - "3,0"
+      - Muy elástico
+  caption: Cuanto más necesario y menos sustituible, más cerca del 0. Cuanto más prescindible o sustituible, más por encima del 1.
+- tipo: formula
+  eyebrow: "Regla práctica"
+  title: "Qué le pasa al ingreso total cuando mueves el precio"
+  formula: "IT = P · Q"
+  terminos:
+    - s: "IT"
+      d: "Ingreso total: lo que entra por las ventas."
+    - s: "P"
+      d: "Precio unitario, que sube cuando lo subes."
+    - s: "Q"
+      d: "Cantidad vendida, que cae cuando el precio sube."
+  ejemplo: "Con demanda inelástica manda el precio y el ingreso sube; con demanda elástica manda la cantidad y baja. Las rebajas funcionan porque la moda es elástica; el tabaco no lo es."
+- tipo: exercise
+  title: "Ejercicio 5.1 · Elasticidad por el método del punto medio"
+  enunciado: "Una panadería de Valencia vende su pan de masa madre a 3,00 €/barra y despacha 400 barras al día. Sube el precio a 3,60 € y las ventas caen a 360 barras. Calcula la elasticidad por el método del punto medio, clasifica la demanda y decide si acertó al subir el precio."
+  pasos:
+    - "ΔQ = −40 sobre una media de 380 barras: −10,53 %."
+    - "ΔP = +0,60 € sobre una media de 3,30 €: +18,18 %."
+    - "E = −10,53 / 18,18 = −0,58, es decir 0,58 en valor absoluto."
+    - "Como |E| < 1, la demanda es inelástica."
+    - "IT antes 3,00 × 400 = 1.200 €/día; después 3,60 × 360 = 1.296 €. Acertó."
+    - "Cautela: si siguiera subiendo, los clientes encontrarían sustitutos y la elasticidad crecería."
+- tipo: section
+  title: Las otras dos elasticidades de la demanda
+  subtitle: La misma idea aplicada a la renta del consumidor y al precio de otro bien.
+- tipo: terms
+  title: "Elasticidad-renta: qué pasa cuando el país se enriquece"
+  terms:
+    - t: Bien normal (Ey > 0)
+      d: Al subir la renta se demanda más. La mayoría de los bienes lo son, y dentro de ellos se distinguen dos casos.
+    - t: De primera necesidad (0 < Ey < 1)
+      d: La cantidad sube con la renta, pero menos que proporcionalmente. Pan, leche, electricidad básica.
+    - t: De lujo (Ey > 1)
+      d: Sube más que proporcionalmente. Restaurantes, viajes internacionales, automóviles de gama alta.
+    - t: Bien inferior (Ey < 0)
+      d: Al subir la renta se consume menos. Marcas blancas de bajo nivel, o las lentejas en países que se enriquecen.
+- tipo: terms
+  title: "Elasticidad cruzada: el signo lo dice todo"
+  terms:
+    - t: Sustitutos (Exy > 0)
+      d: Si sube el precio de Y, los consumidores se pasan a X y su demanda aumenta. Café e infusiones, mantequilla y margarina, taxi y VTC.
+    - t: Complementarios (Exy < 0)
+      d: Si sube el precio de Y se consume menos Y y también menos X, porque van juntos. Coches y gasolina, consolas y videojuegos.
+    - t: Independientes (Exy ≈ 0)
+      d: Los dos bienes no se afectan. Pan y zapatos. Las autoridades de competencia usan esta elasticidad para definir mercados relevantes.
+- tipo: concept
+  eyebrow: Curiosidad
+  title: Los bienes Giffen, la excepción que casi nunca se ve
+  body: Son bienes inferiores que ocupan una parte tan grande del presupuesto que, al encarecerse, el hogar ya no puede permitirse alternativas mejores y acaba comprando más del mismo bien que ha subido. Giffen los describió a finales del XIX con el pan en familias inglesas pobres, con evidencia dudosa. Las estimaciones modernas son las de Jensen en la China rural.
+  pull: La paradoja existe, pero exige condiciones extremas. En una economía como la española no se observa.
+- tipo: section
+  title: Excedentes y bienestar
+  subtitle: Para juzgar si una intervención mejora o empeora un mercado hace falta medir bienestar, no solo precios y cantidades.
+- tipo: split
+  title: Las dos mitades del excedente total
+  left:
+    h: Del consumidor
+    items:
+      - Cada uno tiene una disposición máxima a pagar antes de quedarse sin el bien
+      - La curva de demanda es la suma ordenada de esas disposiciones
+      - "Pero en el mercado todos pagan lo mismo: el precio de equilibrio"
+      - Es el área entre la curva de demanda y ese precio
+  right:
+    h: Del productor
+    items:
+      - Cada empresa tiene un coste marginal mínimo al que aceptaría vender
+      - La curva de oferta es la suma ordenada de esos costes
+      - Y todas venden también al mismo precio de equilibrio
+      - Es el área entre ese precio y la curva de oferta
+- tipo: concept
+  eyebrow: Concepto clave
+  title: El peso muerto no es una transferencia
+  body: El primer teorema del bienestar dice que, sin fallos de mercado, el equilibrio competitivo maximiza el excedente total. Cualquier desviación —un precio impuesto, un impuesto, un monopolio— lo reduce. La parte que se destruye y no capta nadie es el peso muerto. No es dinero que pase del consumidor al Estado, sino valor que no se crea porque no llegan a producirse intercambios beneficiosos.
+  pull: Ahí está la diferencia entre repartir la tarta de otra manera y hacer la tarta más pequeña.
+- tipo: diagram
+  diagrama: PesoMuerto
+  caption: El impuesto abre una cuña entre lo que paga el consumidor y lo que recibe el productor, y encoge la cantidad.
+- tipo: section
+  title: Aplicaciones al mundo real
+  subtitle: Precios máximos, precios mínimos e impuestos, los tres con la elasticidad decidiendo el resultado.
+- tipo: figure
+  src: eco-1bach/05/mietendeckel-berlin.jpg
+  alt: Manifestación en Berlín a favor del Mietendeckel, con pancartas reclamando el tope a los alquileres.
+  title: El Mietendeckel berlinés, anulado en 2021
+  caption: Berlín aprobó un techo a los alquileres en 2020 que el Constitucional alemán tumbó al año siguiente por competencias.
+  credit: Foto de dominio público vía Wikimedia Commons
+- tipo: list
+  title: Qué produce un precio máximo por debajo del equilibrio
+  items:
+    - La cantidad demandada aumenta y la ofrecida disminuye, así que aparece escasez.
+    - Quien consigue comprar al precio bajo gana excedente; quien no lo consigue lo pierde entero.
+    - El excedente del productor cae siempre, sin excepción.
+    - "Aparece peso muerto: hay intercambios beneficiosos para ambas partes que ya no se producen."
+    - "Y los efectos secundarios típicos: listas de espera, mercados negros y deterioro de la calidad."
+- tipo: figure
+  src: eco-1bach/05/david-card.png
+  alt: Retrato del economista David Card, premio Nobel de Economía en 2021.
+  title: David Card, Nobel 2021
+  caption: Su estudio con Krueger sobre Nueva Jersey (1994) encontró efectos muy pequeños del salario mínimo sobre el empleo.
+  credit: Foto de dominio público vía Wikimedia Commons
+- tipo: list
+  title: Y qué produce un precio mínimo, aplicado al salario
+  items:
+    - Las empresas demandan menos trabajo a ese salario y más personas quieren entrar al mercado.
+    - "Aparece excedente de oferta: paro entre quienes están alrededor del mínimo."
+    - Quienes mantienen el empleo ganan más; el excedente de las empresas cae.
+    - "Hay peso muerto si la demanda de trabajo es bastante elástica: ahí está todo el debate."
+    - "El SMI español pasó de 735,90 € en 2018 a 1.221 € en 2026: un 66 % en ocho años."
+- tipo: concept
+  eyebrow: Principio de incidencia
+  title: Quién paga el impuesto no lo decide la ley
+  body: El reparto de un impuesto entre consumidores y productores no depende de a quién se lo cobre la administración, sino de las elasticidades. Si la demanda es más inelástica que la oferta, el consumidor soporta la mayor parte, como en el tabaco. Si la oferta es la más inelástica, la carga recae sobre el productor. Y cuanto más inelástico sea el mercado, menor será el peso muerto, porque la cantidad apenas cae.
+  pull: Por eso los impuestos sobre el tabaco recaudan mucho destruyendo poca eficiencia.
+- tipo: diagram
+  diagrama: IncidenciaImpuesto
+  caption: "La ley dice quién ingresa el impuesto; la elasticidad, quién lo paga"
+- tipo: exercise
+  title: "Ejercicio 5.2 · Excedentes y peso muerto de un impuesto"
+  enunciado: "En un mercado de tabaco simplificado, la demanda es P = 12 − 0,02·Q y la oferta P = 2 + 0,03·Q, con Q en miles de cajetillas al día. El Gobierno introduce un impuesto de 1 €/cajetilla. Calcula el equilibrio antes y después, el reparto de la carga, la recaudación y el peso muerto."
+  pasos:
+    - "Equilibrio inicial: 12 − 0,02Q = 2 + 0,03Q, Q* = 200 mil y P* = 8 €."
+    - "EC = 200·(12−8)/2 = 400; EP = 200·(8−2)/2 = 600. Excedente total: 1 millón €/día."
+    - "Con el impuesto la oferta pasa a P = 3 + 0,03Q: Qt = 180 mil, Pc = 8,40 € y Pp = 7,40 €."
+    - "El consumidor paga 0,40 € más y el productor recibe 0,60 € menos: soporta el 60 %."
+    - "Recaudación = 1 × 180 = 180 mil €/día. Peso muerto = ½ · 1 · (200 − 180) = 10 mil €/día."
+    - "Comprobación: 324 + 486 + 180 + 10 = 1.000. Esos 10 mil € no los gana nadie."
+- tipo: data
+  numero: "−10 %"
+  label: de azúcar comprado en bebidas
+  title: La Sugar Tax británica de 2018
+  detalle: Con un tramo cero por debajo de 5 g/100 ml, más del 50 % de los refrescos se reformularon para esquivar el impuesto. Recaudó unos 340 M£ al año, menos de lo previsto, precisamente porque funcionó (The Lancet, 2023).
+- tipo: figure
+  src: eco-1bach/05/estanco-ceuta.jpg
+  alt: Escaparate de un estanco en Ceuta con cajetillas de tabaco expuestas y cartelería de precios.
+  title: Donde se ve el límite de la inelasticidad
+  caption: La diferencia de precio con la península hace del tabaco un caso de manual de desplazamiento al circuito paralelo.
+  credit: Foto de dominio público vía Wikimedia Commons
+- tipo: quiz
+  eyebrow: Nivel EBAU
+  pregunta: Un impuesto se cobra formalmente al fabricante de refrescos. ¿Quién acaba soportando la mayor parte de la carga?
+  opciones:
+    - Siempre el fabricante, porque es quien lo ingresa en Hacienda
+    - Siempre el consumidor, porque el precio de venta sube
+    - "Depende de las elasticidades: soporta más la parte cuya curva sea más inelástica"
+    - Se reparte al 50 % por imperativo legal
+  correcta: "2"
+  explicacion: La incidencia legal y la incidencia económica no coinciden. Quien puede reaccionar menos al cambio de precio —la parte más inelástica— acaba absorbiendo la mayor porción del impuesto, cobre quien lo cobre.
+- tipo: concept
+  eyebrow: Vuelve al caso
+  title: La inelasticidad también tiene un límite
+  body: "El tabaco tiene demanda inelástica, pero no infinitamente. La subida del 15 % produjo dos efectos a la vez: una caída leve del consumo legal, con parte del consumidor moderado reduciendo o abandonando, y un desplazamiento al mercado paralelo —contrabando desde Andorra, Portugal, Gibraltar y el norte de África—. La recaudación creció solo un 3 % porque parte del consumo escapó del circuito fiscal."
+  pull: Es la curva de Laffer aplicada a la fiscalidad indirecta. Y además se pierde el control sanitario del producto.
+- tipo: recap
+  eyebrow: "Repasa"
+  title: "Antes de cerrar la unidad"
+  items:
+    - "Sabrías calcular e interpretar las elasticidades precio, renta y cruzada de la demanda."
+    - "Sabrías relacionar la elasticidad-precio con lo que le pasa al ingreso total."
+    - "Sabrías calcular el excedente del consumidor y del productor en un mercado simple."
+    - "Sabrías analizar precios máximos, precios mínimos e impuestos e identificar el peso muerto."
+    - "Sabrías citar casos reales: alquiler con tope, salario mínimo, impuestos al tabaco y al azúcar."
+```

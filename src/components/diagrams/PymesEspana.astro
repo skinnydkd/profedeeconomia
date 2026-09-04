@@ -7,35 +7,91 @@
  *
  * Used in Eco 4ESO (el tejido empresarial: tipos de empresa por tamaño).
  */
+import { getLocale } from '@/i18n/locale';
+const locale = getLocale(Astro.currentLocale);
+
+const COPY = {
+  es: {
+    elTejidoEmpresarialEspanol: 'El tejido empresarial español',
+    casiTodasLasEmpresas: 'Casi todas las empresas españolas son pequeñas: el 99,8 % son pymes y el 94,2 % microempresas de menos de diez trabajadores. Las grandes empresas son una porción mínima.',
+    empresasEnEspanaPor: 'Empresas en España por tamaño',
+    el: 'El',
+    deLasEmpresasEspanolas: 'de las empresas españolas son pymes',
+    yEl: 'y el',
+    sonMicroempresas: 'son microempresas',
+    microempresasDe0A: 'Microempresas (de 0 a 9 trabajadores): son el 94,2 % de todas las empresas españolas. La mayoría son autónomos y negocios muy pequeños.',
+    microempresas: 'Microempresas',
+    de0A9: 'De 0 a 9 trabajadores',
+    pequenasEmpresasDe10: 'Pequeñas empresas (de 10 a 49 trabajadores): cerca del 4,8 % del total.',
+    medianasEmpresasDe50: 'Medianas empresas (de 50 a 249 trabajadores): en torno al 0,8 % del total.',
+    grandesEmpresas250Trabajador: 'Grandes empresas (250 trabajadores o más): apenas el 0,2 % del total. Una porción mínima.',
+    lasCuatroYSu: 'Las cuatro y su peso',
+    pequenas: 'Pequeñas',
+    k10A49Trabajadores: '10 a 49 trabajadores',
+    medianas: 'Medianas',
+    k50A249Trabajadores: '50 a 249 trabajadores',
+    grandes: 'Grandes',
+    k250TrabajadoresOMas: '250 trabajadores o más',
+    lasGrandesEmpresasSon: 'Las grandes empresas son una',
+    porcionMinimaDelTotal: 'porción mínima del total.',
+    fuenteDirceIne: 'Fuente: DIRCE, INE',
+  },
+  ca: {
+    elTejidoEmpresarialEspanol: 'El teixit empresarial espanyol',
+    casiTodasLasEmpresas: 'Quasi totes les empreses espanyoles són xicotetes: el 99,8 % són pimes i el 94,2 % microempreses de menys de deu treballadors. Les grans empreses són una porció mínima.',
+    empresasEnEspanaPor: 'Empreses a Espanya per grandària',
+    el: 'El',
+    deLasEmpresasEspanolas: 'de les empreses espanyoles són pimes',
+    yEl: 'i el',
+    sonMicroempresas: 'són microempreses',
+    microempresasDe0A: 'Microempreses (de 0 a 9 treballadors): són el 94,2 % de totes les empreses espanyoles. La majoria són autònoms i negocis molt xicotets.',
+    microempresas: 'Microempreses',
+    de0A9: 'De 0 a 9 treballadors',
+    pequenasEmpresasDe10: 'Xicotetes empreses (de 10 a 49 treballadors): prop del 4,8 % del total.',
+    medianasEmpresasDe50: 'Mitjanes empreses (de 50 a 249 treballadors): al voltant del 0,8 % del total.',
+    grandesEmpresas250Trabajador: 'Grans empreses (250 treballadors o més): a penes el 0,2 % del total. Una porció mínima.',
+    lasCuatroYSu: 'Les quatre i el seu pes',
+    pequenas: 'Xicotetes',
+    k10A49Trabajadores: '10 a 49 treballadors',
+    medianas: 'Mitjanes',
+    k50A249Trabajadores: '50 a 249 treballadors',
+    grandes: 'Grans',
+    k250TrabajadoresOMas: '250 treballadors o més',
+    lasGrandesEmpresasSon: 'Les grans empreses són una',
+    porcionMinimaDelTotal: 'porció mínima del total.',
+    fuenteDirceIne: 'Font: DIRCE, INE',
+  },
+} as const;
+const t = COPY[locale];
 ---
-<svg viewBox="0 0 820 460" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="pymes-title pymes-desc">
-  <title id="pymes-title">El tejido empresarial español</title>
-  <desc id="pymes-desc">Casi todas las empresas españolas son pequeñas: el 99,8 % son pymes y el 94,2 % microempresas de menos de diez trabajadores. Las grandes empresas son una porción mínima.</desc>
+<svg class="d-pymes-espana" viewBox="0 0 820 460" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="pymes-title pymes-desc">
+  <title id="pymes-title">{t.elTejidoEmpresarialEspanol}</title>
+  <desc id="pymes-desc">{t.casiTodasLasEmpresas}</desc>
   <defs>
     <style>
-      .bg { fill: #FBF6EC; }
-      .micro { fill: #FBE3D6; }
-      .pequena { fill: #F5E5BC; }
-      .mediana { fill: #DBEDED; }
-      .grande { fill: #2A1F18; }
-      .block-stroke { stroke: #FBF6EC; stroke-width: 3; }
-      .eyebrow { font-family: 'Switzer', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 1.8px; text-transform: uppercase; fill: #8A7868; }
-      .headline { font-family: 'Fraunces', serif; font-style: italic; font-size: 26px; font-weight: 500; fill: #2A1F18; }
-      .headline-em { fill: #C44E2C; }
-      .pct { font-family: 'JetBrains Mono', monospace; font-weight: 500; }
-      .label { font-family: 'Switzer', sans-serif; font-weight: 600; }
-      .label-mute { font-family: 'Switzer', sans-serif; font-size: 12px; font-weight: 500; fill: #5C4A3D; }
-      .lead { font-family: 'Switzer', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
-      .source { font-family: 'Switzer', sans-serif; font-size: 11px; font-weight: 500; fill: #8A7868; }
-      .has-tip { cursor: help; }
+      .d-pymes-espana .bg { fill: #FBF6EC; }
+      .d-pymes-espana .micro { fill: #FBE3D6; }
+      .d-pymes-espana .pequena { fill: #F5E5BC; }
+      .d-pymes-espana .mediana { fill: #DBEDED; }
+      .d-pymes-espana .grande { fill: #2A1F18; }
+      .d-pymes-espana .block-stroke { stroke: #FBF6EC; stroke-width: 3; }
+      .d-pymes-espana .eyebrow { font-family: 'Switzer', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 1.8px; text-transform: uppercase; fill: #8A7868; }
+      .d-pymes-espana .headline { font-family: 'Fraunces', serif; font-style: italic; font-size: 26px; font-weight: 500; fill: #2A1F18; }
+      .d-pymes-espana .headline-em { fill: #C44E2C; }
+      .d-pymes-espana .pct { font-family: 'JetBrains Mono', monospace; font-weight: 500; }
+      .d-pymes-espana .label { font-family: 'Switzer', sans-serif; font-weight: 600; }
+      .d-pymes-espana .label-mute { font-family: 'Switzer', sans-serif; font-size: 12px; font-weight: 500; fill: #5C4A3D; }
+      .d-pymes-espana .lead { font-family: 'Switzer', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+      .d-pymes-espana .source { font-family: 'Switzer', sans-serif; font-size: 11px; font-weight: 500; fill: #8A7868; }
+      .d-pymes-espana .has-tip { cursor: help; }
     </style>
   </defs>
   <rect class="bg" x="0" y="0" width="820" height="460"/>
 
   <!-- Eyebrow + headline -->
-  <text class="eyebrow" x="40" y="46">Empresas en España por tamaño</text>
-  <text class="headline" x="40" y="84">El <tspan class="headline-em">99,8 %</tspan> de las empresas españolas son pymes</text>
-  <text class="headline" x="40" y="116">y el <tspan class="headline-em">94,2 %</tspan> son microempresas</text>
+  <text class="eyebrow" x="40" y="46">{t.empresasEnEspanaPor}</text>
+  <text class="headline" x="40" y="84">{t.el} <tspan class="headline-em">99,8 %</tspan> {t.deLasEmpresasEspanolas}</text>
+  <text class="headline" x="40" y="116">{t.yEl} <tspan class="headline-em">94,2 %</tspan> {t.sonMicroempresas}</text>
 
   <!-- ============================================================= -->
   <!-- Proportional square: x 40..480 (w 440), y 150..400 (h 250).   -->
@@ -46,46 +102,46 @@
   <!-- ============================================================= -->
 
   <!-- Microempresas: the dominant block -->
-  <rect class="micro block-stroke has-tip" x="40" y="150" width="396" height="250"><title>Microempresas (de 0 a 9 trabajadores): son el 94,2 % de todas las empresas españolas. La mayoría son autónomos y negocios muy pequeños.</title></rect>
+  <rect class="micro block-stroke has-tip" x="40" y="150" width="396" height="250"><title>{t.microempresasDe0A}</title></rect>
   <text class="label headline-em" x="62" y="282" font-size="40">94,2 %</text>
-  <text class="label" x="62" y="318" font-size="20" fill="#9C3A1C">Microempresas</text>
-  <text class="label-mute" x="62" y="340">De 0 a 9 trabajadores</text>
+  <text class="label" x="62" y="318" font-size="20" fill="#9C3A1C">{t.microempresas}</text>
+  <text class="label-mute" x="62" y="340">{t.de0A9}</text>
 
   <!-- Right strip: pequeñas (top, biggest of the strip), medianas, grandes (sliver) -->
   <!-- strip x 436..480 (w 44). Heights scaled within the strip's 250px. -->
   <!-- pequeñas ~4,8% -> ~210px ; medianas ~0,8% -> ~30px ; grandes ~0,2% -> ~10px -->
-  <rect class="pequena block-stroke has-tip" x="436" y="150" width="44" height="210"><title>Pequeñas empresas (de 10 a 49 trabajadores): cerca del 4,8 % del total.</title></rect>
-  <rect class="mediana block-stroke has-tip" x="436" y="360" width="44" height="30"><title>Medianas empresas (de 50 a 249 trabajadores): en torno al 0,8 % del total.</title></rect>
-  <rect class="grande block-stroke has-tip" x="436" y="390" width="44" height="10"><title>Grandes empresas (250 trabajadores o más): apenas el 0,2 % del total. Una porción mínima.</title></rect>
+  <rect class="pequena block-stroke has-tip" x="436" y="150" width="44" height="210"><title>{t.pequenasEmpresasDe10}</title></rect>
+  <rect class="mediana block-stroke has-tip" x="436" y="360" width="44" height="30"><title>{t.medianasEmpresasDe50}</title></rect>
+  <rect class="grande block-stroke has-tip" x="436" y="390" width="44" height="10"><title>{t.grandesEmpresas250Trabajador}</title></rect>
 
   <!-- ============================================================= -->
   <!-- Legend on the right (x from 520). One row per size band.       -->
   <!-- ============================================================= -->
-  <text class="lead" x="520" y="172" fill="#8A7868">Las cuatro y su peso</text>
+  <text class="lead" x="520" y="172" fill="#8A7868">{t.lasCuatroYSu}</text>
 
   <!-- Pequeñas -->
   <rect class="pequena" x="520" y="192" width="20" height="20" rx="3"/>
-  <text class="label" x="552" y="203" font-size="15" fill="#A87A2A">Pequeñas</text>
-  <text class="label-mute" x="552" y="221">10 a 49 trabajadores</text>
+  <text class="label" x="552" y="203" font-size="15" fill="#A87A2A">{t.pequenas}</text>
+  <text class="label-mute" x="552" y="221">{t.k10A49Trabajadores}</text>
   <text class="pct" x="780" y="207" font-size="18" fill="#A87A2A" text-anchor="end">4,8 %</text>
 
   <!-- Medianas -->
   <rect class="mediana" x="520" y="248" width="20" height="20" rx="3"/>
-  <text class="label" x="552" y="259" font-size="15" fill="#1F6E6E">Medianas</text>
-  <text class="label-mute" x="552" y="277">50 a 249 trabajadores</text>
+  <text class="label" x="552" y="259" font-size="15" fill="#1F6E6E">{t.medianas}</text>
+  <text class="label-mute" x="552" y="277">{t.k50A249Trabajadores}</text>
   <text class="pct" x="780" y="263" font-size="18" fill="#1F6E6E" text-anchor="end">0,8 %</text>
 
   <!-- Grandes -->
   <rect class="grande" x="520" y="304" width="20" height="20" rx="3"/>
-  <text class="label" x="552" y="315" font-size="15" fill="#2A1F18">Grandes</text>
-  <text class="label-mute" x="552" y="333">250 trabajadores o más</text>
+  <text class="label" x="552" y="315" font-size="15" fill="#2A1F18">{t.grandes}</text>
+  <text class="label-mute" x="552" y="333">{t.k250TrabajadoresOMas}</text>
   <text class="pct" x="780" y="319" font-size="18" fill="#2A1F18" text-anchor="end">0,2 %</text>
 
   <!-- Closing note: the sliver -->
   <line x1="520" y1="358" x2="780" y2="358" stroke="#E5D4BD" stroke-width="1.5"/>
-  <text class="label-mute" x="520" y="384" font-size="13">Las grandes empresas son una</text>
-  <text class="label-mute" x="520" y="402" font-size="13" font-weight="700" fill="#5C4A3D">porción mínima del total.</text>
+  <text class="label-mute" x="520" y="384" font-size="13">{t.lasGrandesEmpresasSon}</text>
+  <text class="label-mute" x="520" y="402" font-size="13" font-weight="700" fill="#5C4A3D">{t.porcionMinimaDelTotal}</text>
 
   <!-- Source -->
-  <text class="source" x="40" y="436">Fuente: DIRCE, INE</text>
+  <text class="source" x="40" y="436">{t.fuenteDirceIne}</text>
 </svg>

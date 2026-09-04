@@ -91,6 +91,18 @@ preguntas:
     enunciado: "Cuanto más inelásticas son la oferta y la demanda, mayor es el peso muerto (pérdida de eficiencia) que provoca un impuesto."
     correcta: false
     explicacion: "Es al revés: cuanto más elásticas son oferta y demanda, más cae la cantidad intercambiada y mayor es el peso muerto. Por eso gravar bienes inelásticos (tabaco, alcohol) recauda mucho con poca pérdida de eficiencia."
+  - tipo: numerico
+    enunciado: "La demanda de un mercado es P = 60 − Q y el precio de equilibrio es 20 €. ¿Cuál es el excedente del consumidor, en euros?"
+    respuesta: 800
+    tolerancia: 5
+    unidad: "€"
+    explicacion: "A P = 20 la cantidad es Q = 40. El excedente es el triángulo entre la curva de demanda y el precio: ½ · (60 − 20) · 40 = ½ · 40 · 40 = 800 €."
+  - tipo: relacionar
+    enunciado: "Relaciona cada valor de la elasticidad-precio de la demanda con su interpretación:"
+    izquierda: ["|E| = 0", "|E| < 1", "|E| = 1", "|E| > 1"]
+    derecha: ["Elástica: la cantidad se mueve más que el precio", "Perfectamente inelástica: la cantidad no reacciona", "Unitaria: los dos se mueven en la misma proporción", "Inelástica: la cantidad se mueve menos que el precio"]
+    correctas: [1, 3, 2, 0]
+    explicacion: "La frontera está en la unidad. Por debajo, domina el efecto precio y subir el precio aumenta el ingreso total; por encima, domina el efecto cantidad y subirlo lo reduce."
 ---
 
 Test de autoevaluación de la Unidad 5 del libro de Eco 1BACH: elasticidad de la demanda y la oferta, excedentes del consumidor y del productor, y aplicaciones a precios máximos, mínimos e impuestos.

@@ -95,6 +95,12 @@ preguntas:
     derecha: ["Una sola empresa que fixa el preu", "Moltes empreses, producte homogeni i preu donat", "Poques empreses interdependents", "Moltes empreses amb producte diferenciat"]
     correctas: [1, 0, 2, 3]
     explicacion: "Competència perfecta: moltes empreses preu-acceptants amb producte homogeni. Monopoli: una empresa preu-fixadora. Oligopoli: poques empreses que es vigilen entre si. Competència monopolística: moltes empreses que diferencien el seu producte."
+  - tipo: numerico
+    enunciado: "Amb la mateixa demanda Qd = 100 − 2P i la mateixa oferta Qo = 20 + 2P, quina és la quantitat d'equilibri, en unitats?"
+    respuesta: 60
+    tolerancia: 1
+    unidad: "unitats"
+    explicacion: "En l'equilibri P = 20 €. Substituint en qualsevol de les dues funcions: Qd = 100 − 2(20) = 60, i Qo = 20 + 2(20) = 60. Que les dues donen el mateix és la comprovació que el preu és correcte."
 ---
 
 Test d'autoavaluació de la Unitat 4 del llibre d'Economia 1r de Batxillerat.
