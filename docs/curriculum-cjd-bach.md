@@ -1,6 +1,6 @@
 # Currículum oficial — CJD Bach (Cultura Jurídica i Democràtica, Batxillerat)
 
-> Currículum **autonòmic valencià** de la matèria CJD per al rebranding de profedeeconomia.es. Marc legal de referència: **Decret 108/2022, de 5 d'agost, del Consell**, pel qual s'establixen l'ordenació i el currículum de Batxillerat a la Comunitat Valenciana. **CJD NO té equivalent estatal** (no apareix al RD 243/2022): és una optativa pròpia de la CV, igual que GPE. La font primària i única és, doncs, l'annex curricular de la matèria publicat per la Conselleria (CEICE/DOGV), consultable només en castellà.
+> Currículum **autonòmic valencià** de la matèria CJD per al rebranding de profedeeconomia.es. Marc legal de referència: **Decret 108/2022, de 5 d'agost, del Consell**, pel qual s'establixen l'ordenació i el currículum de Batxillerat a la Comunitat Valenciana. **CJD NO té equivalent estatal** (no apareix al RD 243/2022): és una optativa pròpia de la CV, igual que GPE. La font primària i única és, doncs, l'annex curricular de la matèria publicat per la Conselleria (CEICE/DOGV). Aquest document s'ha extret i verificat contra la versió en castellà del PDF; també existeix versió en valencià (vegeu §7. Fonts).
 
 ## 1. Identificació de la matèria
 
@@ -8,7 +8,7 @@
 - **Curs**: **1r o 2n de Batxillerat** (el centre decideix en quin curs l'ofereix). L'alumnat només pot cursar-la en un dels dos cursos.
 - **Caràcter**: **Matèria optativa autonòmica**. El centre decideix si l'ofereix (art. 16.5 del Decret 108/2022, redacció del Decret 103/2026); **no és d'oferta obligada** — només ho són Segona Llengua Estrangera i Informàtica.
 - **Modalitat**: matèria optativa autonòmica, **no vinculada a una modalitat concreta**.
-- **Marc normatiu**: **Decret 108/2022** (Comunitat Valenciana), annex de matèries optatives. **Sense base estatal al RD 243/2022.** El **Decret 103/2026**, de 26 de juny (DOGV), modifica el 108/2022 però **només substitueix l'annex II** (matèries comunes i de modalitat): el currículum d'aquesta optativa **no canvia**. Sí que canvia l'ordenació d'optatives (art. 16), aplicable des del curs 2026-2027.
+- **Marc normatiu**: **Decret 108/2022** (Comunitat Valenciana), annex de matèries optatives. **Sense base estatal al RD 243/2022.** El **Decret 103/2026**, de 26 de juny (DOGV 10396, 02.07.2026), modifica el 108/2022 però **només substitueix l'annex II** (matèries comunes i de modalitat): el currículum d'aquesta optativa **no canvia**. Sí que canvia l'ordenació d'optatives (art. 16), aplicable des del curs 2026-2027.
 - **Slug intern**: `cjd-bach`
 
 ## 2. Finalitat de la matèria
@@ -166,6 +166,7 @@ Els blocs 5 (Persona y relaciones laborales) i 6 (Persona e impuestos) cobreixen
 
 ## 7. Fonts
 
-- [Currículum oficial de la matèria, CEICE (PDF, castellà)](https://ceice.gva.es/documents/162640733/364026431/Cultura+jur%C3%ADdica+y+democr%C3%A1tica.pdf/de0eece7-43d4-92e6-5d11-4cd15ad85db7?t=1663312633685)
+- [Currículum oficial de la matèria, CEICE (PDF, castellà — versió extreta i verificada per a aquest document)](https://ceice.gva.es/documents/162640733/364026431/Cultura+jur%C3%ADdica+y+democr%C3%A1tica.pdf/de0eece7-43d4-92e6-5d11-4cd15ad85db7?t=1663312633685)
+- [Currículum oficial de la matèria, CEICE (PDF, valencià)](https://ceice.gva.es/documents/162640733/364026431/Cultura+jur%C3%ADdica+i+democr%C3%A0tica.pdf/cbc53849-011a-c513-797b-f5cd8b504c67?t=1663315191874)
 - [Currículum de Batxillerat, CEICE](https://ceice.gva.es/va/web/ordenacion-academica/bachillerato/curriculo)
-- [Decret 103/2026, de 26 de juny (DOGV)](https://dogv.gva.es/va/eli/es-vc/d/2026/06/26/103/dof/vci/html)
+- [Decret 103/2026, de 26 de juny (DOGV 10396, 02.07.2026)](https://dogv.gva.es/va/eli/es-vc/d/2026/06/26/103/dof/vci/html)
