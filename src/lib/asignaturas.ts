@@ -186,7 +186,7 @@ export const ASIGNATURAS: Record<AsignaturaSlug, Asignatura> = {
     shortLabel: 'CJD',
     title: 'Cultura Jurídica y Democrática',
     tagline:
-      'Ocho bloques de Derecho —constitucional, civil, laboral, tributario, penal y procesal— para una optativa que suele caer sin material. Laboral y fiscal enlazan con lo que ya tenemos en FOPP e IPE.',
+      'Ocho bloques: fuentes del Derecho, internacional, constitucional, civil, laboral, tributario, penal y procesal. Para una optativa que suele caer sin material. Laboral y fiscal enlazan con lo que ya tenemos en FOPP e IPE.',
     num: '10',
     color: 'cjd',
     marcoNormativo: 'Decret 108/2022, mod. Decret 103/2026 (CV) — optativa',
