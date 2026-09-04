@@ -69,7 +69,7 @@ El detall complet (sabers literals, descripcions de competència i criteris d'av
     ```
   - `ASIGNATURAS_POR_ETAPA.bach.cursos.bach` la recull sola (filtre `curso === 'bach'`); cap canvi d'estructura.
 - `src/i18n/asignaturas-ca.ts`: overlay CA amb `level: 'Batxillerat (1r/2n)'`, `title: 'Cultura Jurídica i Democràtica'`, `modalidad: 'Optativa (1r o 2n)'`, tagline traduïda.
-- `src/content.config.ts`: `'cjd-bach'` a la llista de slugs de l'esquema.
+- `src/content.config.ts`: té una **còpia local** de `ASIGNATURA_SLUGS` (línies 8–18) que alimenta 9 `z.enum(ASIGNATURA_SLUGS)`. En compte d'afegir-hi `'cjd-bach'` a mà, s'importa del registre — `import { ASIGNATURA_SLUGS } from './lib/asignaturas';` — i s'esborra la còpia. El fitxer ja importa d'altres mòduls de `./lib/`, i `z.enum` accepta igual la tupla `as const` del registre.
 
 Taglines (to del web: plural, realitat d'aula, sense vendre):
 
@@ -88,7 +88,16 @@ Taglines (to del web: plural, realitat d'aula, sense vendre):
 
 `src/styles/slides.css`: `[data-asig="cjd-bach"] .slide { --accent: var(--color-cjd); --accent-ink: var(--color-cjd); }`.
 
-Mapes `c-{color}` → `var(--color-cjd)` als 12 fitxers que ja tenen el patró: `SiteHeader.astro`, `SubjectCard.astro`, `lib/debates.ts`, `lib/dinamicas.ts`, `lib/herramientas.ts`, `lib/olimpiada.ts`, `lib/proyectos.ts`, `pages/index.astro`, `[asignatura]/index.astro`, `[asignatura]/evaluacion/index.astro`, `[asignatura]/refuerzo/index.astro`, `[asignatura]/proyecto/index.astro`.
+Mapes `.c-{color}` → `var(--color-cjd)`. Auditat: viuen en **exactament 4 fitxers**, i els 4 estan **complets** avui (tenen els 9 colors):
+
+| Fitxer | Selector |
+|---|---|
+| `src/components/SubjectCard.astro:51` | `.subject-card.c-cjd` |
+| `src/pages/[asignatura]/index.astro:384` | `.section-card.c-cjd` |
+| `src/pages/[asignatura]/evaluacion/index.astro:171` | `.ce.c-cjd` |
+| `src/pages/[asignatura]/refuerzo/index.astro:173` | `.bloque.c-cjd` |
+
+**No van ací** (correcció d'una versió anterior d'aquest spec): `SiteHeader.astro`, `lib/debates.ts`, `lib/dinamicas.ts`, `lib/herramientas.ts`, `lib/olimpiada.ts`, `lib/proyectos.ts`, `pages/index.astro` i `[asignatura]/proyecto/index.astro` també citen `--color-gpe`, però **reutilitzen el token com a entrada de paleta genèrica** per a famílies de debats, dinàmiques, eines, blocs d'olimpíada, matèries de projecte, lletres de la home i un `<circle>` del logo. No són mapes per assignatura i no s'han de tocar. Tampoc existeix cap selector `.title.c-{color}`.
 
 ### 3. Refactor d'`ACCENTS` — bug existent, fix a l'arrel
 
@@ -151,7 +160,9 @@ Les unitats 05 i 06 cobreixen sabers que el web ja tracta. Regla:
 ## Verificació
 
 1. **Compilació**: el `Record<Asignatura['color'], …>` fa que oblidar-se d'un color siga error de build. Cobreix les 6 rutes d'impressió d'un colp.
-2. **Test nou** a `src/lib/asignaturas.test.ts`: llegir `src/styles/global.css` i assertar que cada `color` distint del registre té definits `--color-{c}` i `--color-{c}-soft`. El CSS no el comprova el compilador, i és l'altra meitat del mateix bug.
+2. **Test nou** a `src/lib/asignaturas.test.ts`: el CSS no el comprova el compilador, i és l'altra meitat del mateix bug. Dos asserts:
+   - cada `color` distint del registre té `--color-{c}` i `--color-{c}-soft` a `src/styles/global.css`;
+   - cada `color` (llevat de `'proximamente'`, que té selector propi) apareix com a `.c-{color}` als 4 fitxers de mapa (`SubjectCard.astro`, `[asignatura]/index.astro`, `[asignatura]/evaluacion/index.astro`, `[asignatura]/refuerzo/index.astro`).
 3. **Regressió del fix**: assertar que `ACCENTS.taller3`, `ACCENTS.ipe1` i `ACCENTS.ipe2` existeixen i no són iguals a `ACCENTS.edmn` — falla amb el codi d'avui, passa amb el refactor.
 4. **Manual**: `npm run build` i mirar un PDF de llibre d'IPE I (ha de ser blau pissarra, no terracota).
 
