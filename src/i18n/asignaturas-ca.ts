@@ -74,6 +74,14 @@ export const ASIGNATURAS_CA: Partial<Record<AsignaturaSlug, CAOverlay>> = {
     modalidad: 'Optativa (1r o 2n)',
     marcoNormativo: 'Decret 108/2022, mod. Decret 103/2026 (CV) — optativa',
   },
+  'cjd-bach': {
+    level: 'Batxillerat (1r/2n)',
+    title: 'Cultura Jurídica i Democràtica',
+    tagline:
+      'Huit blocs de Dret —constitucional, civil, laboral, tributari, penal i processal— per a una optativa que sol caure sense material. Laboral i fiscal enllacen amb el que ja tenim a FOPP i IPE.',
+    modalidad: 'Optativa (1r o 2n)',
+    marcoNormativo: 'Decret 108/2022, mod. Decret 103/2026 (CV) — optativa',
+  },
 };
 
 /** Overlay the Valencian strings onto an asignatura when locale is 'ca'. */

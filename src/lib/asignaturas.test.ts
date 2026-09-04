@@ -83,3 +83,43 @@ describe('ACCENTS — the print palette lives in one place', () => {
     }
   });
 });
+
+const COLOR_MAP_FILES = [
+  'src/components/SubjectCard.astro',
+  'src/pages/[asignatura]/index.astro',
+  'src/pages/[asignatura]/evaluacion/index.astro',
+  'src/pages/[asignatura]/refuerzo/index.astro',
+];
+
+describe('subject colours reach the CSS layer', () => {
+  const colors = [...new Set(ASIGNATURAS_LIST.map((a) => a.color))];
+
+  it('defines a token and a soft token for every colour in global.css', () => {
+    const css = read('src/styles/global.css');
+    const missing = colors.flatMap((c) => [
+      css.includes(`--color-${c}:`) ? [] : [`--color-${c}`],
+      css.includes(`--color-${c}-soft:`) ? [] : [`--color-${c}-soft`],
+    ].flat());
+    expect(missing).toEqual([]);
+  });
+
+  it('maps every colour to a .c-{color} rule in each colour-map file', () => {
+    const missing: string[] = [];
+    for (const file of COLOR_MAP_FILES) {
+      const src = read(file);
+      for (const c of colors) {
+        if (!src.includes(`.c-${c}`)) missing.push(`${file} → .c-${c}`);
+      }
+    }
+    expect(missing).toEqual([]);
+  });
+
+  it('gives every asignatura a slide accent rule', () => {
+    const css = read('src/styles/slides.css');
+    const missing = ASIGNATURAS_LIST
+      .filter((a) => a.color !== 'edmn') // EDMN uses the sheet's default accent
+      .filter((a) => !css.includes(`[data-asig="${a.slug}"]`))
+      .map((a) => a.slug);
+    expect(missing).toEqual([]);
+  });
+});

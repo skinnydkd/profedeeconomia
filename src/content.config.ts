@@ -1,21 +1,11 @@
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
+import { ASIGNATURA_SLUGS } from './lib/asignaturas';
 import { FAMILIA_SLUGS } from './lib/dinamicas';
 import { FAMILIA_DEBATE_SLUGS } from './lib/debates';
 import { MATERIA_SLUGS } from './lib/proyectos';
 import { BLOQUE_SLUGS } from './lib/olimpiada';
 
-const ASIGNATURA_SLUGS = [
-  'edmn-2bach',
-  'eco-1bach',
-  'eco-4eso',
-  'fopp-4eso',
-  'taller-eco-3eso',
-  'ipe1-fp',
-  'ipe2-fp',
-  'eeae-bach',
-  'gpe-bach',
-] as const;
 const LANGS = ['es', 'ca'] as const;
 const ESTADOS = ['borrador', 'revision', 'publicado'] as const;
 

@@ -1,10 +1,11 @@
 /**
  * Single source of truth for all asignaturas.
  *
- * Hi ha 9 asignaturas distribuïdes per etapa:
+ * Hi ha 10 asignaturas distribuïdes per etapa:
  * - **ESO** → Taller de Economía (3.º), Economía y Emprendimiento (4.º), FOPP (4.º)
- * - **Bachillerato** → Economía (1.º), EDMN (2.º), y dos optativas de emprendimiento
- *   ofertables en 1.º o 2.º (EEAE y GPE, currículo CV)
+ * - **Bachillerato** → Economía (1.º), EDMN (2.º), EEAE (1.º), y dos optativas
+ *   ofertables en 1.º o 2.º con currículo CV: GPE (emprendimiento) y CJD
+ *   (Cultura Jurídica y Democrática)
  * - **Formación Profesional** → IPE I, IPE II
  *
  * Cada una té un `estado` ('publicado' | 'proximamente'). Les que tenen
@@ -24,6 +25,7 @@ export const ASIGNATURA_SLUGS = [
   'ipe2-fp',
   'eeae-bach',
   'gpe-bach',
+  'cjd-bach',
 ] as const;
 export type AsignaturaSlug = (typeof ASIGNATURA_SLUGS)[number];
 
@@ -39,7 +41,7 @@ export type Asignatura = {
   title: string;
   tagline: string;
   num: string;
-  color: 'edmn' | 'eco1' | 'eco4' | 'fopp' | 'taller3' | 'ipe1' | 'ipe2' | 'eeae' | 'gpe' | 'proximamente';
+  color: 'edmn' | 'eco1' | 'eco4' | 'fopp' | 'taller3' | 'ipe1' | 'ipe2' | 'eeae' | 'gpe' | 'cjd' | 'proximamente';
   marcoNormativo: string;
   modalidad?: string;
   etapa: Etapa;
@@ -178,6 +180,21 @@ export const ASIGNATURAS: Record<AsignaturaSlug, Asignatura> = {
     curso: 'bach',
     estado: 'publicado',
   },
+  'cjd-bach': {
+    slug: 'cjd-bach',
+    level: 'Bachillerato (1.º/2.º)',
+    shortLabel: 'CJD',
+    title: 'Cultura Jurídica y Democrática',
+    tagline:
+      'Ocho bloques de Derecho —constitucional, civil, laboral, tributario, penal y procesal— para una optativa que suele caer sin material. Laboral y fiscal enlazan con lo que ya tenemos en FOPP e IPE.',
+    num: '10',
+    color: 'cjd',
+    marcoNormativo: 'Decret 108/2022, mod. Decret 103/2026 (CV) — optativa',
+    modalidad: 'Optativa (1.º o 2.º)',
+    etapa: 'bach',
+    curso: 'bach',
+    estado: 'proximamente',
+  },
 };
 
 /**
@@ -199,6 +216,7 @@ export const ACCENTS: Record<Asignatura['color'], { base: string; deep: string; 
   ipe2:    { base: '#2F4F7F', deep: '#22395C', soft: '#D5DEEB' },
   eeae:    { base: '#2E5E3A', deep: '#234A2D', soft: '#D9E6DC' },
   gpe:     { base: '#8C2F39', deep: '#6E2530', soft: '#F1DADD' },
+  cjd:     { base: '#4A3B8F', deep: '#382C6B', soft: '#E0DCF0' },
   proximamente: { base: '#6E5A47', deep: '#5C4A3D', soft: '#EFE2CB' },
 };
 
