@@ -8,6 +8,34 @@ type HerramientaCA = Partial<Pick<Herramienta, 'title' | 'descripcion'>>;
 // source of truth. Acronyms (VAN, TIR, DCF, IRPF, DAFO, BCG, RIASEC, Europass)
 // and «Business Model Canvas» are kept as-is: they are the terms used in class.
 export const HERRAMIENTAS_CA: Partial<Record<string, HerramientaCA>> = {
+  'mision-vision': {
+    title: 'El test de la frase buida',
+    descripcion: "Comprova si la vostra missió, visió i valors diuen alguna cosa o els signaria qualsevol empresa de qualsevol sector.",
+  },
+  'tareas-automatizables': {
+    title: "Quina part d'un lloc és rutina",
+    descripcion: "Repartix les hores d'un lloc entre tasques rutinàries i tasques que exigixen criteri, tracte o mans, i descriu en què es convertix.",
+  },
+  'progresividad-fiscal': {
+    title: 'Progressiu i regressiu, amb números',
+    descripcion: "Dues persones, la mateixa compra: quin percentatge dels seus diners s'emporta un impost sobre la renda i quin un sobre el consum.",
+  },
+  'demanda-control': {
+    title: 'Exigència, marge de decisió i suport',
+    descripcion: "Situa un lloc als quadrants del model de Karasek i diu què caldria per a traure'l de l'alta tensió.",
+  },
+  'mapa-empatia': {
+    title: "Mapa d'empatia",
+    descripcion: 'Sis zones sobre una persona concreta, i avís quan falten les dues de les quals ix la proposta de valor.',
+  },
+  'evaluacion-riesgos': {
+    title: "Avaluació de riscos laborals",
+    descripcion: 'Creua probabilitat i conseqüències, dona el nivell de risc i diu si es pot continuar treballant mentres es corregix.',
+  },
+  scamper: {
+    title: 'SCAMPER: obrir abans de tancar',
+    descripcion: "Genera idees des de set angles i no deixa puntuar-ne cap fins que hi ha d'on triar.",
+  },
   'afirmacion-sostenible': {
     title: "Analitzador d'afirmacions de sostenibilitat",
     descripcion: 'Set preguntes per a saber si una afirmació verda es pot comprovar. No diu si és certa: diu si és verificable.',
