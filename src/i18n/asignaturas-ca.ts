@@ -97,6 +97,8 @@ export const ASIGNATURAS_CA: Partial<Record<AsignaturaSlug, CAOverlay>> = {
   'cjd-bach': {
     level: 'Batxillerat (1r/2n)',
     title: 'Cultura Jurídica i Democràtica',
+    seoTitle: 'CJD Batxillerat: llibre de Cultura Jurídica gratis',
+    seoName: 'CJD Batxillerat',
     tagline:
       'Huit blocs: fonts del Dret, internacional, constitucional, civil, laboral, tributari, penal i processal. Per a una optativa que sol caure sense material. Laboral i fiscal enllacen amb el que ja tenim a FOPP i IPE.',
     modalidad: 'Optativa (1r o 2n)',

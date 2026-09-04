@@ -9,19 +9,86 @@
  *  - competence, not rank, for autonomous law, drawn as a parallel column
  * Subsidiary sources (custom, general principles) sit below as a base strip.
  */
+import { getLocale } from '@/i18n/locale';
+const locale = getLocale(Astro.currentLocale);
+
+const COPY = {
+  es: {
+    esquemaDeLaJerarquiaNormativ: 'Esquema de la jerarquía normativa española. En el vértice, la Constitución de 1978. Debajo, las leyes orgánicas y ordinarias y las normas con rango de ley; después, los reglamentos. El Derecho de la Unión Europea se aplica con primacía, por lo que aparece como banda lateral y no como escalón de la pirámide. El Estatuto de Autonomía y las leyes autonómicas se relacionan con las estatales por competencia, no por rango, y aparecen en columna paralela. En la base, la costumbre y los principios generales del derecho como fuentes subsidiarias.',
+    laPiramideNormativa: 'La pirámide normativa',
+    jerarquia: 'Jerarquía',
+    constitucion: 'Constitución',
+    k1978NormaSuprema: '1978 · norma suprema',
+    leyes: 'Leyes',
+    organicasYOrdinarias: 'orgánicas y ordinarias',
+    yNormasConRangoDeLey: 'y normas con rango de ley',
+    decretoLeyDecretoLegislativo: '(decreto-ley, decreto legislativo)',
+    reglamentos: 'Reglamentos',
+    realesDecretosOrdenes: 'reales decretos, órdenes',
+    nuncaPuedenContradecirUnaLey: 'nunca pueden contradecir una ley',
+    primacia: 'Primacía',
+    derechoDeLaUnionEuropea: 'Derecho de la Unión Europea',
+    reglamentosDirectivasYDecisi: 'Reglamentos, directivas y decisiones.',
+    seAplicaConPreferenciaSobreL: 'Se aplica con preferencia sobre la norma',
+    internaQueLoContradigaNoEsUn: 'interna que lo contradiga: no es un',
+    escalonMasDeLaPiramide: 'escalón más de la pirámide.',
+    desplaza: 'desplaza',
+    competencia: 'Competencia',
+    estatutDAutonomia: "Estatut d'Autonomia",
+    yLeyesDeLesCorts: 'y leyes de Les Corts',
+    noEstanPorDebajoDeLaLeyEstat: 'No están «por debajo» de la ley estatal:',
+    rigenEnLasMateriasQueElEstat: 'rigen en las materias que el Estatuto y',
+    laConstitucionAtribuyenALaCo: 'la Constitución atribuyen a la Comunitat.',
+    quienResuelveLosChoquesEsElT: 'Quien resuelve los choques es el TC.',
+    reparto: 'reparto',
+    costumbrePrincipiosGenerales: 'Costumbre · Principios generales del derecho',
+    fuentesSubsidiariasArt1Codig: 'Fuentes subsidiarias (art. 1 Código Civil): solo se aplican en defecto de ley,',
+    yLosPrincipiosGeneralesInfor: 'y los principios generales informan además todo el ordenamiento.',
+    laJurisprudenciaNoEsFuenteDe: 'La jurisprudencia no es fuente del derecho en sentido estricto:',
+    complementaElOrdenamientoCon: 'complementa el ordenamiento con la doctrina reiterada del Tribunal Supremo.',
+  },
+  ca: {
+    esquemaDeLaJerarquiaNormativ: "Esquema de la jerarquia normativa espanyola. Al vèrtex, la Constitució de 1978. A sota, les lleis orgàniques i ordinàries i les normes amb rang de llei; després, els reglaments. El Dret de la Unió Europea s'aplica amb primacia, per la qual cosa apareix com a banda lateral i no com a escaló de la piràmide. L'Estatut d'Autonomia i les lleis autonòmiques es relacionen amb les estatals per competència, no per rang, i apareixen en columna paral·lela. A la base, el costum i els principis generals del dret com a fonts subsidiàries.",
+    laPiramideNormativa: 'La piràmide normativa',
+    jerarquia: 'Jerarquia',
+    constitucion: 'Constitució',
+    k1978NormaSuprema: '1978 · norma suprema',
+    leyes: 'Lleis',
+    organicasYOrdinarias: 'orgàniques i ordinàries',
+    yNormasConRangoDeLey: 'i normes amb rang de llei',
+    decretoLeyDecretoLegislativo: '(decret llei, decret legislatiu)',
+    reglamentos: 'Reglaments',
+    realesDecretosOrdenes: 'reials decrets, ordres',
+    nuncaPuedenContradecirUnaLey: 'mai no poden contradir una llei',
+    primacia: 'Primacia',
+    derechoDeLaUnionEuropea: 'Dret de la Unió Europea',
+    reglamentosDirectivasYDecisi: 'Reglaments, directives i decisions.',
+    seAplicaConPreferenciaSobreL: "S'aplica amb preferència sobre la norma",
+    internaQueLoContradigaNoEsUn: 'interna que el contradiga: no és un',
+    escalonMasDeLaPiramide: 'escaló més de la piràmide.',
+    desplaza: 'desplaça',
+    competencia: 'Competència',
+    estatutDAutonomia: "Estatut d'Autonomia",
+    yLeyesDeLesCorts: 'i lleis de les Corts',
+    noEstanPorDebajoDeLaLeyEstat: 'No estan «per davall» de la llei estatal:',
+    rigenEnLasMateriasQueElEstat: "regixen en les matèries que l'Estatut i",
+    laConstitucionAtribuyenALaCo: 'la Constitució atribuïxen a la Comunitat.',
+    quienResuelveLosChoquesEsElT: 'Qui resol els xocs és el TC.',
+    reparto: 'repartiment',
+    costumbrePrincipiosGenerales: 'Costum · Principis generals del dret',
+    fuentesSubsidiariasArt1Codig: "Fonts subsidiàries (art. 1 Codi Civil): només s'apliquen en defecte de llei,",
+    yLosPrincipiosGeneralesInfor: "i els principis generals informen a més tot l'ordenament.",
+    laJurisprudenciaNoEsFuenteDe: 'La jurisprudència no és font del dret en sentit estricte:',
+    complementaElOrdenamientoCon: "complementa l'ordenament amb la doctrina reiterada del Tribunal Suprem.",
+  },
+} as const;
+
+const t = COPY[locale];
 ---
 
-<svg viewBox="0 0 820 580" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Jerarquía de las normas en el ordenamiento jurídico español">
-  <title>La pirámide normativa</title>
-  <desc>
-    Esquema de la jerarquía normativa española. En el vértice, la Constitución de 1978.
-    Debajo, las leyes orgánicas y ordinarias y las normas con rango de ley; después, los
-    reglamentos. El Derecho de la Unión Europea se aplica con primacía, por lo que aparece
-    como banda lateral y no como escalón de la pirámide. El Estatuto de Autonomía y las
-    leyes autonómicas se relacionan con las estatales por competencia, no por rango, y
-    aparecen en columna paralela. En la base, la costumbre y los principios generales del
-    derecho como fuentes subsidiarias.
-  </desc>
+<svg viewBox="0 0 820 580" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="piramidenormativa-t piramidenormativa-d">
+  <title id="piramidenormativa-t">{t.laPiramideNormativa}</title>
+  <desc id="piramidenormativa-d">{t.esquemaDeLaJerarquiaNormativ}</desc>
   <defs>
     <style>
       .bg { fill: #FBF6EC; }
@@ -53,54 +120,54 @@
   <rect class="bg" x="0" y="0" width="820" height="580" />
 
   <!-- Pyramid: strict hierarchy -->
-  <text class="eyebrow eyebrow-p" x="290" y="30" text-anchor="middle">Jerarquía</text>
+  <text class="eyebrow eyebrow-p" x="290" y="30" text-anchor="middle">{t.jerarquia}</text>
 
   <polygon class="tier tier-1" points="290,48 370,152 210,152" />
-  <text class="tier-name" x="290" y="108">Constitución</text>
-  <text class="tier-note" x="290" y="128">1978 · norma suprema</text>
+  <text class="tier-name" x="290" y="108">{t.constitucion}</text>
+  <text class="tier-note" x="290" y="128">{t.k1978NormaSuprema}</text>
 
   <polygon class="tier tier-2" points="205,160 375,160 415,272 165,272" />
-  <text class="tier-name" x="290" y="200">Leyes</text>
-  <text class="tier-note" x="290" y="222">orgánicas y ordinarias</text>
-  <text class="tier-note" x="290" y="242">y normas con rango de ley</text>
-  <text class="tier-note" x="290" y="260">(decreto-ley, decreto legislativo)</text>
+  <text class="tier-name" x="290" y="200">{t.leyes}</text>
+  <text class="tier-note" x="290" y="222">{t.organicasYOrdinarias}</text>
+  <text class="tier-note" x="290" y="242">{t.yNormasConRangoDeLey}</text>
+  <text class="tier-note" x="290" y="260">{t.decretoLeyDecretoLegislativo}</text>
 
   <polygon class="tier tier-3" points="160,280 420,280 460,392 120,392" />
-  <text class="tier-name" x="290" y="320">Reglamentos</text>
-  <text class="tier-note" x="290" y="342">reales decretos, órdenes</text>
-  <text class="tier-note" x="290" y="362">nunca pueden contradecir una ley</text>
+  <text class="tier-name" x="290" y="320">{t.reglamentos}</text>
+  <text class="tier-note" x="290" y="342">{t.realesDecretosOrdenes}</text>
+  <text class="tier-note" x="290" y="362">{t.nuncaPuedenContradecirUnaLey}</text>
 
   <!-- EU law: primacy, not a tier -->
   <rect class="side" x="530" y="60" width="250" height="112" rx="4" />
-  <text class="eyebrow eyebrow-e" x="530" y="46">Primacía</text>
-  <text class="side-name" x="548" y="88">Derecho de la Unión Europea</text>
-  <text class="side-note" x="548" y="110">Reglamentos, directivas y decisiones.</text>
-  <text class="side-note" x="548" y="128">Se aplica con preferencia sobre la norma</text>
-  <text class="side-note" x="548" y="146">interna que lo contradiga: no es un</text>
-  <text class="side-note" x="548" y="164">escalón más de la pirámide.</text>
+  <text class="eyebrow eyebrow-e" x="530" y="46">{t.primacia}</text>
+  <text class="side-name" x="548" y="88">{t.derechoDeLaUnionEuropea}</text>
+  <text class="side-note" x="548" y="110">{t.reglamentosDirectivasYDecisi}</text>
+  <text class="side-note" x="548" y="128">{t.seAplicaConPreferenciaSobreL}</text>
+  <text class="side-note" x="548" y="146">{t.internaQueLoContradigaNoEsUn}</text>
+  <text class="side-note" x="548" y="164">{t.escalonMasDeLaPiramide}</text>
 
   <path class="link-e" d="M 530 116 L 400 116" />
-  <text class="rel rel-e" x="465" y="106">desplaza</text>
+  <text class="rel rel-e" x="465" y="106">{t.desplaza}</text>
 
   <!-- Autonomous law: competence, not rank -->
   <rect class="auton" x="530" y="216" width="250" height="130" rx="4" />
-  <text class="eyebrow eyebrow-a" x="530" y="202">Competencia</text>
-  <text class="side-name" x="548" y="244">Estatut d'Autonomia</text>
-  <text class="side-name" x="548" y="266">y leyes de Les Corts</text>
-  <text class="side-note" x="548" y="290">No están «por debajo» de la ley estatal:</text>
-  <text class="side-note" x="548" y="308">rigen en las materias que el Estatuto y</text>
-  <text class="side-note" x="548" y="326">la Constitución atribuyen a la Comunitat.</text>
-  <text class="side-note" x="548" y="344">Quien resuelve los choques es el TC.</text>
+  <text class="eyebrow eyebrow-a" x="530" y="202">{t.competencia}</text>
+  <text class="side-name" x="548" y="244">{t.estatutDAutonomia}</text>
+  <text class="side-name" x="548" y="266">{t.yLeyesDeLesCorts}</text>
+  <text class="side-note" x="548" y="290">{t.noEstanPorDebajoDeLaLeyEstat}</text>
+  <text class="side-note" x="548" y="308">{t.rigenEnLasMateriasQueElEstat}</text>
+  <text class="side-note" x="548" y="326">{t.laConstitucionAtribuyenALaCo}</text>
+  <text class="side-note" x="548" y="344">{t.quienResuelveLosChoquesEsElT}</text>
 
   <path class="link-a" d="M 530 272 L 420 272" />
-  <text class="rel rel-a" x="475" y="262">reparto</text>
+  <text class="rel rel-a" x="475" y="262">{t.reparto}</text>
 
   <!-- Subsidiary sources -->
   <rect class="base" x="120" y="424" width="580" height="80" rx="4" />
-  <text class="base-name" x="410" y="452">Costumbre · Principios generales del derecho</text>
-  <text class="base-note" x="410" y="474">Fuentes subsidiarias (art. 1 Código Civil): solo se aplican en defecto de ley,</text>
-  <text class="base-note" x="410" y="492">y los principios generales informan además todo el ordenamiento.</text>
+  <text class="base-name" x="410" y="452">{t.costumbrePrincipiosGenerales}</text>
+  <text class="base-note" x="410" y="474">{t.fuentesSubsidiariasArt1Codig}</text>
+  <text class="base-note" x="410" y="492">{t.yLosPrincipiosGeneralesInfor}</text>
 
-  <text class="tier-note" x="410" y="534">La jurisprudencia no es fuente del derecho en sentido estricto:</text>
-  <text class="tier-note" x="410" y="552">complementa el ordenamiento con la doctrina reiterada del Tribunal Supremo.</text>
+  <text class="tier-note" x="410" y="534">{t.laJurisprudenciaNoEsFuenteDe}</text>
+  <text class="tier-note" x="410" y="552">{t.complementaElOrdenamientoCon}</text>
 </svg>

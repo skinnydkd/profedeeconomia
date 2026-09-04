@@ -12,19 +12,118 @@
  * because treating them as further appeal instances is the single most common
  * misunderstanding in this block.
  */
+import { getLocale } from '@/i18n/locale';
+const locale = getLocale(Astro.currentLocale);
+
+const COPY = {
+  es: {
+    laPiramideJudicialOrdinariaT: 'La pirámide judicial ordinaria tiene cinco niveles: el Tribunal de Instancia, donde empieza casi todo; la Audiencia Provincial, que resuelve apelaciones civiles y penales; el Tribunal Superior de Justicia de cada comunidad autónoma; la Audiencia Nacional, solo para materias tasadas; y el Tribunal Supremo, cúspide de todos los órdenes. Fuera de esa pirámide quedan el Tribunal Constitucional, el Tribunal de Justicia de la Unión Europea y el Tribunal Europeo de Derechos Humanos, que no son instancias superiores sino vías distintas.',
+    quienJuzgaQueYEnQueOrden: 'Quién juzga qué, y en qué orden',
+    laJurisdiccionOrdinaria: 'La jurisdicción ordinaria',
+    fueraDeLaPiramide: 'Fuera de la pirámide',
+    losRecursosSuben: 'los recursos suben',
+    tribunalSupremo: 'Tribunal Supremo',
+    cuspideDeTodosLosOrdenesEnCa: 'Cúspide de todos los órdenes. En casación no repite el juicio:',
+    fijaComoDebeInterpretarseLaL: 'fija cómo debe interpretarse la ley para todos los demás tribunales.',
+    civilPenalContenciosoAdminis: 'Civil · Penal · Contencioso-administrativo · Social · Militar',
+    audienciaNacional: 'Audiencia Nacional',
+    noEstaPorEncimaDeLosTsjTiene: 'No está por encima de los TSJ: tiene competencias tasadas en toda',
+    espanaComoTerrorismoODelitos: 'España, como terrorismo o delitos económicos de gran alcance.',
+    penalContenciosoAdministrati: 'Penal · Contencioso-administrativo · Social',
+    tribunalSuperiorDeJusticia: 'Tribunal Superior de Justicia',
+    unoPorComunidadAutonomaAquiE: 'Uno por comunidad autónoma; aquí, el de la Comunitat Valenciana.',
+    culminaLaOrganizacionJudicia: 'Culmina la organización judicial en su territorio.',
+    salaDeLoCivilYPenalContencio: 'Sala de lo Civil y Penal · Contencioso-administrativo · Social',
+    audienciaProvincial: 'Audiencia Provincial',
+    resuelveLasApelacionesCivile: 'Resuelve las apelaciones civiles y penales de su provincia y juzga',
+    enPrimeraInstanciaLosDelitos: 'en primera instancia los delitos más graves, con jurado si procede.',
+    civilPenal: 'Civil · Penal',
+    tribunalDeInstancia: 'Tribunal de Instancia',
+    dondeEmpiezaCasiTodoUnoPorPa: 'Donde empieza casi todo. Uno por partido judicial, dividido en',
+    seccionesPorMateriaAntesSeLl: 'secciones por materia. Antes se llamaban juzgados.',
+    civilInstruccionPenalContenc: 'Civil · Instrucción · Penal · Contencioso · Social · Menores · Violencia sobre la mujer',
+    juzgadosDePaz: 'Juzgados de Paz',
+    enMunicipiosSinPartidoJudici: 'en municipios sin partido judicial propio: asuntos civiles',
+    deEscasaCuantiaActosDeConcil: 'de escasa cuantía, actos de conciliación y funciones de registro civil.',
+    tribunal: 'Tribunal',
+    constitucional: 'Constitucional',
+    noEsUnaInstanciaMas: 'No es una instancia más.',
+    recursoDeAmparoSoloPor: 'Recurso de amparo, solo por',
+    derechosFundamentalesY: 'derechos fundamentales y',
+    agotadaLaViaJudicial: 'agotada la vía judicial.',
+    tribunalDeJusticia: 'Tribunal de Justicia',
+    deLaUnionEuropea: 'de la Unión Europea',
+    noLlegasTuLlegaTuCaso: 'No llegas tú: llega tu caso,',
+    siElJuezEspanolPlantea: 'si el juez español plantea',
+    unaCuestionPrejudicial: 'una cuestión prejudicial',
+    sobreUnaNormaEuropea: 'sobre una norma europea.',
+    tribunalEuropeoDe: 'Tribunal Europeo de',
+    derechosHumanos: 'Derechos Humanos',
+    demandaPropiaContraEl: 'Demanda propia contra el',
+    estadoAgotadaLaVia: 'Estado, agotada la vía',
+    internaEsDelConsejoDe: 'interna. Es del Consejo de',
+    europaNoDeLaUnion: 'Europa, no de la Unión.',
+    elErrorClasicoCreerQueEstosT: 'El error clásico: creer que estos tres son «el siguiente escalón» si pierdes en el Supremo.',
+    noLoSonNingunoVuelveAJuzgarT: 'No lo son. Ninguno vuelve a juzgar tu caso: revisan otra cosa, y cada uno se abre por una puerta distinta.',
+  },
+  ca: {
+    laPiramideJudicialOrdinariaT: "La piràmide judicial ordinària té cinc nivells: el Tribunal d'Instància, on comença quasi tot; l'Audiència Provincial, que resol apel·lacions civils i penals; el Tribunal Superior de Justícia de cada comunitat autònoma; l'Audiència Nacional, només per a matèries taxades; i el Tribunal Suprem, cim de tots els ordres. Fora d'eixa piràmide queden el Tribunal Constitucional, el Tribunal de Justícia de la Unió Europea i el Tribunal Europeu de Drets Humans, que no són instàncies superiors sinó vies distintes.",
+    quienJuzgaQueYEnQueOrden: 'Qui jutja què, i en quin ordre',
+    laJurisdiccionOrdinaria: 'La jurisdicció ordinària',
+    fueraDeLaPiramide: 'Fora de la piràmide',
+    losRecursosSuben: 'els recursos pugen',
+    tribunalSupremo: 'Tribunal Suprem',
+    cuspideDeTodosLosOrdenesEnCa: 'Cim de tots els ordres. En cassació no repetix el judici:',
+    fijaComoDebeInterpretarseLaL: "fixa com s'ha d'interpretar la llei per a tots els altres tribunals.",
+    civilPenalContenciosoAdminis: 'Civil · Penal · Contenciós administratiu · Social · Militar',
+    audienciaNacional: 'Audiència Nacional',
+    noEstaPorEncimaDeLosTsjTiene: 'No està per damunt dels TSJ: té competències taxades a tota',
+    espanaComoTerrorismoODelitos: 'Espanya, com ara terrorisme o delictes econòmics de gran abast.',
+    penalContenciosoAdministrati: 'Penal · Contenciós administratiu · Social',
+    tribunalSuperiorDeJusticia: 'Tribunal Superior de Justícia',
+    unoPorComunidadAutonomaAquiE: 'Un per comunitat autònoma; ací, el de la Comunitat Valenciana.',
+    culminaLaOrganizacionJudicia: "Culmina l'organització judicial al seu territori.",
+    salaDeLoCivilYPenalContencio: 'Sala Civil i Penal · Contenciós administratiu · Social',
+    audienciaProvincial: 'Audiència Provincial',
+    resuelveLasApelacionesCivile: 'Resol les apel·lacions civils i penals de la seua província i jutja',
+    enPrimeraInstanciaLosDelitos: 'en primera instància els delictes més greus, amb jurat si escau.',
+    civilPenal: 'Civil · Penal',
+    tribunalDeInstancia: "Tribunal d'Instància",
+    dondeEmpiezaCasiTodoUnoPorPa: 'On comença quasi tot. Un per partit judicial, dividit en',
+    seccionesPorMateriaAntesSeLl: 'seccions per matèria. Abans es deien jutjats.',
+    civilInstruccionPenalContenc: 'Civil · Instrucció · Penal · Contenciós · Social · Menors · Violència sobre la dona',
+    juzgadosDePaz: 'Jutjats de Pau',
+    enMunicipiosSinPartidoJudici: 'en municipis sense partit judicial propi: assumptes civils',
+    deEscasaCuantiaActosDeConcil: 'de poca quantia, actes de conciliació i funcions de registre civil.',
+    tribunal: 'Tribunal',
+    constitucional: 'Constitucional',
+    noEsUnaInstanciaMas: 'No és una instància més.',
+    recursoDeAmparoSoloPor: "Recurs d'empara, només per",
+    derechosFundamentalesY: 'drets fonamentals i',
+    agotadaLaViaJudicial: 'esgotada la via judicial.',
+    tribunalDeJusticia: 'Tribunal de Justícia',
+    deLaUnionEuropea: 'de la Unió Europea',
+    noLlegasTuLlegaTuCaso: 'No hi arribes tu: hi arriba el teu cas,',
+    siElJuezEspanolPlantea: 'si el jutge espanyol planteja',
+    unaCuestionPrejudicial: 'una qüestió prejudicial',
+    sobreUnaNormaEuropea: 'sobre una norma europea.',
+    tribunalEuropeoDe: 'Tribunal Europeu de',
+    derechosHumanos: 'Drets Humans',
+    demandaPropiaContraEl: 'Demanda pròpia contra',
+    estadoAgotadaLaVia: "l'Estat, esgotada la via",
+    internaEsDelConsejoDe: "interna. És del Consell",
+    europaNoDeLaUnion: "d'Europa, no de la Unió.",
+    elErrorClasicoCreerQueEstosT: "L'error clàssic: creure que estos tres són «l'escaló següent» si perds al Suprem.",
+    noLoSonNingunoVuelveAJuzgarT: "No ho són. Cap no torna a jutjar el teu cas: revisen una altra cosa, i cadascun s'obri per una porta distinta.",
+  },
+} as const;
+
+const t = COPY[locale];
 ---
 
-<svg viewBox="0 0 820 620" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Organización de los juzgados y tribunales españoles">
-  <title>Quién juzga qué, y en qué orden</title>
-  <desc>
-    La pirámide judicial ordinaria tiene cinco niveles: el Tribunal de Instancia, donde
-    empieza casi todo; la Audiencia Provincial, que resuelve apelaciones civiles y
-    penales; el Tribunal Superior de Justicia de cada comunidad autónoma; la Audiencia
-    Nacional, solo para materias tasadas; y el Tribunal Supremo, cúspide de todos los
-    órdenes. Fuera de esa pirámide quedan el Tribunal Constitucional, el Tribunal de
-    Justicia de la Unión Europea y el Tribunal Europeo de Derechos Humanos, que no son
-    instancias superiores sino vías distintas.
-  </desc>
+<svg viewBox="0 0 820 620" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="organizacionjudicial-t organizacionjudicial-d">
+  <title id="organizacionjudicial-t">{t.quienJuzgaQueYEnQueOrden}</title>
+  <desc id="organizacionjudicial-d">{t.laPiramideJudicialOrdinariaT}</desc>
   <defs>
     <style>
       .bg { fill: #FBF6EC; }
@@ -49,80 +148,80 @@
 
   <rect class="bg" x="0" y="0" width="820" height="620" />
 
-  <text class="band" x="66" y="30">La jurisdicción ordinaria</text>
-  <text class="band" x="584" y="30">Fuera de la pirámide</text>
+  <text class="band" x="66" y="30">{t.laJurisdiccionOrdinaria}</text>
+  <text class="band" x="584" y="30">{t.fueraDeLaPiramide}</text>
 
   <!-- Rising arrow -->
   <path class="rise" d="M 50 500 L 50 60" />
-  <text class="rise-t" x="46" y="300" transform="rotate(-90 46 300)" text-anchor="middle">los recursos suben</text>
+  <text class="rise-t" x="46" y="300" transform="rotate(-90 46 300)" text-anchor="middle">{t.losRecursosSuben}</text>
 
   <!-- Level 5: Supreme Court -->
   <rect class="lvl-top" x="66" y="46" width="494" height="80" rx="4" />
-  <text class="name" x="86" y="74">Tribunal Supremo</text>
-  <text class="txt" x="86" y="94">Cúspide de todos los órdenes. En casación no repite el juicio:</text>
-  <text class="txt" x="86" y="110">fija cómo debe interpretarse la ley para todos los demás tribunales.</text>
-  <text class="chips" x="86" y="122">Civil · Penal · Contencioso-administrativo · Social · Militar</text>
+  <text class="name" x="86" y="74">{t.tribunalSupremo}</text>
+  <text class="txt" x="86" y="94">{t.cuspideDeTodosLosOrdenesEnCa}</text>
+  <text class="txt" x="86" y="110">{t.fijaComoDebeInterpretarseLaL}</text>
+  <text class="chips" x="86" y="122">{t.civilPenalContenciosoAdminis}</text>
 
   <!-- Level 4: Audiencia Nacional -->
   <rect class="lvl" x="66" y="138" width="494" height="80" rx="4" />
-  <text class="name" x="86" y="166">Audiencia Nacional</text>
-  <text class="txt" x="86" y="186">No está por encima de los TSJ: tiene competencias tasadas en toda</text>
-  <text class="txt" x="86" y="202">España, como terrorismo o delitos económicos de gran alcance.</text>
-  <text class="chips" x="86" y="214">Penal · Contencioso-administrativo · Social</text>
+  <text class="name" x="86" y="166">{t.audienciaNacional}</text>
+  <text class="txt" x="86" y="186">{t.noEstaPorEncimaDeLosTsjTiene}</text>
+  <text class="txt" x="86" y="202">{t.espanaComoTerrorismoODelitos}</text>
+  <text class="chips" x="86" y="214">{t.penalContenciosoAdministrati}</text>
 
   <!-- Level 3: TSJ -->
   <rect class="lvl" x="66" y="230" width="494" height="80" rx="4" />
-  <text class="name" x="86" y="258">Tribunal Superior de Justicia</text>
-  <text class="txt" x="86" y="278">Uno por comunidad autónoma; aquí, el de la Comunitat Valenciana.</text>
-  <text class="txt" x="86" y="294">Culmina la organización judicial en su territorio.</text>
-  <text class="chips" x="86" y="306">Sala de lo Civil y Penal · Contencioso-administrativo · Social</text>
+  <text class="name" x="86" y="258">{t.tribunalSuperiorDeJusticia}</text>
+  <text class="txt" x="86" y="278">{t.unoPorComunidadAutonomaAquiE}</text>
+  <text class="txt" x="86" y="294">{t.culminaLaOrganizacionJudicia}</text>
+  <text class="chips" x="86" y="306">{t.salaDeLoCivilYPenalContencio}</text>
 
   <!-- Level 2: Audiencia Provincial -->
   <rect class="lvl" x="66" y="322" width="494" height="80" rx="4" />
-  <text class="name" x="86" y="350">Audiencia Provincial</text>
-  <text class="txt" x="86" y="370">Resuelve las apelaciones civiles y penales de su provincia y juzga</text>
-  <text class="txt" x="86" y="386">en primera instancia los delitos más graves, con jurado si procede.</text>
-  <text class="chips" x="86" y="398">Civil · Penal</text>
+  <text class="name" x="86" y="350">{t.audienciaProvincial}</text>
+  <text class="txt" x="86" y="370">{t.resuelveLasApelacionesCivile}</text>
+  <text class="txt" x="86" y="386">{t.enPrimeraInstanciaLosDelitos}</text>
+  <text class="chips" x="86" y="398">{t.civilPenal}</text>
 
   <!-- Level 1: Tribunal de Instancia -->
   <rect class="lvl" x="66" y="414" width="494" height="80" rx="4" />
-  <text class="name" x="86" y="442">Tribunal de Instancia</text>
-  <text class="txt" x="86" y="462">Donde empieza casi todo. Uno por partido judicial, dividido en</text>
-  <text class="txt" x="86" y="478">secciones por materia. Antes se llamaban juzgados.</text>
-  <text class="chips" x="86" y="490">Civil · Instrucción · Penal · Contencioso · Social · Menores · Violencia sobre la mujer</text>
+  <text class="name" x="86" y="442">{t.tribunalDeInstancia}</text>
+  <text class="txt" x="86" y="462">{t.dondeEmpiezaCasiTodoUnoPorPa}</text>
+  <text class="txt" x="86" y="478">{t.seccionesPorMateriaAntesSeLl}</text>
+  <text class="chips" x="86" y="490">{t.civilInstruccionPenalContenc}</text>
 
   <!-- Footnote strip -->
   <rect class="foot" x="66" y="506" width="494" height="46" rx="4" />
-  <text class="name-s" x="86" y="528">Juzgados de Paz</text>
-  <text class="txt" x="192" y="528">en municipios sin partido judicial propio: asuntos civiles</text>
-  <text class="txt" x="86" y="544">de escasa cuantía, actos de conciliación y funciones de registro civil.</text>
+  <text class="name-s" x="86" y="528">{t.juzgadosDePaz}</text>
+  <text class="txt" x="192" y="528">{t.enMunicipiosSinPartidoJudici}</text>
+  <text class="txt" x="86" y="544">{t.deEscasaCuantiaActosDeConcil}</text>
 
   <!-- Outside the pyramid -->
   <rect class="out" x="584" y="46" width="196" height="120" rx="4" />
-  <text class="name-s" x="602" y="72">Tribunal</text>
-  <text class="name-s" x="602" y="90">Constitucional</text>
-  <text class="txt" x="602" y="112">No es una instancia más.</text>
-  <text class="txt" x="602" y="128">Recurso de amparo, solo por</text>
-  <text class="txt" x="602" y="144">derechos fundamentales y</text>
-  <text class="txt" x="602" y="160">agotada la vía judicial.</text>
+  <text class="name-s" x="602" y="72">{t.tribunal}</text>
+  <text class="name-s" x="602" y="90">{t.constitucional}</text>
+  <text class="txt" x="602" y="112">{t.noEsUnaInstanciaMas}</text>
+  <text class="txt" x="602" y="128">{t.recursoDeAmparoSoloPor}</text>
+  <text class="txt" x="602" y="144">{t.derechosFundamentalesY}</text>
+  <text class="txt" x="602" y="160">{t.agotadaLaViaJudicial}</text>
 
   <rect class="out" x="584" y="178" width="196" height="120" rx="4" />
-  <text class="name-s" x="602" y="204">Tribunal de Justicia</text>
-  <text class="name-s" x="602" y="222">de la Unión Europea</text>
-  <text class="txt" x="602" y="244">No llegas tú: llega tu caso,</text>
-  <text class="txt" x="602" y="260">si el juez español plantea</text>
-  <text class="txt" x="602" y="276">una cuestión prejudicial</text>
-  <text class="txt" x="602" y="292">sobre una norma europea.</text>
+  <text class="name-s" x="602" y="204">{t.tribunalDeJusticia}</text>
+  <text class="name-s" x="602" y="222">{t.deLaUnionEuropea}</text>
+  <text class="txt" x="602" y="244">{t.noLlegasTuLlegaTuCaso}</text>
+  <text class="txt" x="602" y="260">{t.siElJuezEspanolPlantea}</text>
+  <text class="txt" x="602" y="276">{t.unaCuestionPrejudicial}</text>
+  <text class="txt" x="602" y="292">{t.sobreUnaNormaEuropea}</text>
 
   <rect class="out" x="584" y="310" width="196" height="120" rx="4" />
-  <text class="name-s" x="602" y="336">Tribunal Europeo de</text>
-  <text class="name-s" x="602" y="354">Derechos Humanos</text>
-  <text class="txt" x="602" y="376">Demanda propia contra el</text>
-  <text class="txt" x="602" y="392">Estado, agotada la vía</text>
-  <text class="txt" x="602" y="408">interna. Es del Consejo de</text>
-  <text class="txt" x="602" y="424">Europa, no de la Unión.</text>
+  <text class="name-s" x="602" y="336">{t.tribunalEuropeoDe}</text>
+  <text class="name-s" x="602" y="354">{t.derechosHumanos}</text>
+  <text class="txt" x="602" y="376">{t.demandaPropiaContraEl}</text>
+  <text class="txt" x="602" y="392">{t.estadoAgotadaLaVia}</text>
+  <text class="txt" x="602" y="408">{t.internaEsDelConsejoDe}</text>
+  <text class="txt" x="602" y="424">{t.europaNoDeLaUnion}</text>
 
   <!-- Bottom note -->
-  <text class="note-b" x="66" y="582">El error clásico: creer que estos tres son «el siguiente escalón» si pierdes en el Supremo.</text>
-  <text class="note-t" x="66" y="602">No lo son. Ninguno vuelve a juzgar tu caso: revisan otra cosa, y cada uno se abre por una puerta distinta.</text>
+  <text class="note-b" x="66" y="582">{t.elErrorClasicoCreerQueEstosT}</text>
+  <text class="note-t" x="66" y="602">{t.noLoSonNingunoVuelveAJuzgarT}</text>
 </svg>

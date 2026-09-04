@@ -9,18 +9,108 @@
  * Constitutional Court settles the overlaps. Valencian institutions are
  * named explicitly so the level closest to the student is not an abstraction.
  */
+import { getLocale } from '@/i18n/locale';
+const locale = getLocale(Astro.currentLocale);
+
+const COPY = {
+  es: {
+    cuatroNivelesDeGobiernoConLa: "Cuatro niveles de gobierno con la misma anchura, porque no forman una jerarquía: el Estado, regulado por la Constitución; la Comunitat Valenciana, por el Estatut d'Autonomia; la provincia, gobernada por la Diputación; y el municipio, por el Ayuntamiento. De cada uno se indica la norma que lo regula, quién lo gobierna y un ejemplo de decisión propia. Cuando dos niveles creen tener la misma competencia, resuelve el Tribunal Constitucional.",
+    quienDecideQueEnCadaNivelDel: 'Quién decide qué en cada nivel del territorio',
+    cuatroNivelesNingunoPorEncim: 'Cuatro niveles, ninguno por encima de otro',
+    nivel: 'Nivel',
+    normaQueLoRegula: 'Norma que lo regula',
+    quienLoGobierna: 'Quién lo gobierna',
+    ejemploDeDecisionPropia: 'Ejemplo de decisión propia',
+    estado: 'Estado',
+    todoElTerritorio: 'Todo el territorio',
+    constitucionDe1978: 'Constitución de 1978',
+    competenciasDelArt149: 'Competencias del art. 149',
+    cortesGenerales: 'Cortes Generales',
+    yGobiernoDeEspana: 'y Gobierno de España',
+    elCodigoPenal: 'El Código Penal.',
+    elSalarioMinimo: 'El salario mínimo.',
+    comunitatValenciana: 'Comunitat Valenciana',
+    unaDeLas17Comunidades: 'Una de las 17 comunidades',
+    estatutDAutonomia: "Estatut d'Autonomia",
+    lo51982ReformadoEn2006: 'LO 5/1982, reformado en 2006',
+    cortsValencianes: 'Corts Valencianes,',
+    consellYSuPresident: 'Consell y su president',
+    elCurriculoDeTuInstituto: 'El currículo de tu instituto.',
+    losHospitalesPublicos: 'Los hospitales públicos.',
+    provincia: 'Provincia',
+    alicanteCastellonValencia: 'Alicante, Castellón, Valencia',
+    ley71985DeBases: 'Ley 7/1985, de Bases',
+    delRegimenLocal: 'del Régimen Local',
+    laDiputacionElegida: 'La Diputación, elegida',
+    porLosConcejales: 'por los concejales',
+    carreterasEntrePueblos: 'Carreteras entre pueblos.',
+    apoyoAMunicipiosPequenos: 'Apoyo a municipios pequeños.',
+    municipio: 'Municipio',
+    elNivelMasCercanoATi: 'El nivel más cercano a ti',
+    laMismaLey71985: 'La misma Ley 7/1985',
+    yLasOrdenanzasMunicipales: 'y las ordenanzas municipales',
+    elAyuntamientoAlcalde: 'El Ayuntamiento: alcalde',
+    yConcejalesElegidosCada4Anos: 'y concejales, elegidos cada 4 años',
+    laLicenciaDeObras: 'La licencia de obras.',
+    laZonaAzulElHorarioDeFiestas: 'La zona azul. El horario de fiestas.',
+    lasCajasTienenLaMismaAnchura: 'Las cajas tienen la misma anchura a propósito.',
+    ningunoDeEstosNivelesMandaSo: 'Ninguno de estos niveles manda sobre los otros: cada uno decide las materias que la Constitución',
+    yElEstatutLeAtribuyenCuandoD: 'y el Estatut le atribuyen. Cuando dos creen tener la misma competencia, no gana el más grande:',
+    resuelveElTribunalConstituci: 'resuelve el Tribunal Constitucional, y a veces le da la razón a la comunidad autónoma.',
+  },
+  ca: {
+    cuatroNivelesDeGobiernoConLa: "Quatre nivells de govern amb la mateixa amplària, perquè no formen una jerarquia: l'Estat, regulat per la Constitució; la Comunitat Valenciana, per l'Estatut d'Autonomia; la província, governada per la Diputació; i el municipi, per l'Ajuntament. De cadascun s'indica la norma que el regula, qui el governa i un exemple de decisió pròpia. Quan dos nivells es pensen que tenen la mateixa competència, ho resol el Tribunal Constitucional.",
+    quienDecideQueEnCadaNivelDel: 'Qui decidix què en cada nivell del territori',
+    cuatroNivelesNingunoPorEncim: "Quatre nivells, cap per damunt d'un altre",
+    nivel: 'Nivell',
+    normaQueLoRegula: 'Norma que el regula',
+    quienLoGobierna: 'Qui el governa',
+    ejemploDeDecisionPropia: 'Exemple de decisió pròpia',
+    estado: 'Estat',
+    todoElTerritorio: 'Tot el territori',
+    constitucionDe1978: 'Constitució de 1978',
+    competenciasDelArt149: "Competències de l'art. 149",
+    cortesGenerales: 'Corts Generals',
+    yGobiernoDeEspana: "i Govern d'Espanya",
+    elCodigoPenal: 'El Codi Penal.',
+    elSalarioMinimo: 'El salari mínim.',
+    comunitatValenciana: 'Comunitat Valenciana',
+    unaDeLas17Comunidades: 'Una de les 17 comunitats',
+    estatutDAutonomia: "Estatut d'Autonomia",
+    lo51982ReformadoEn2006: 'LO 5/1982, reformat el 2006',
+    cortsValencianes: 'Corts Valencianes,',
+    consellYSuPresident: 'Consell i el seu president',
+    elCurriculoDeTuInstituto: 'El currículum del teu institut.',
+    losHospitalesPublicos: 'Els hospitals públics.',
+    provincia: 'Província',
+    alicanteCastellonValencia: 'Alacant, Castelló, València',
+    ley71985DeBases: 'Llei 7/1985, de Bases',
+    delRegimenLocal: 'del Règim Local',
+    laDiputacionElegida: 'La Diputació, elegida',
+    porLosConcejales: 'pels regidors',
+    carreterasEntrePueblos: 'Carreteres entre pobles.',
+    apoyoAMunicipiosPequenos: 'Suport a municipis xicotets.',
+    municipio: 'Municipi',
+    elNivelMasCercanoATi: 'El nivell més pròxim a tu',
+    laMismaLey71985: 'La mateixa Llei 7/1985',
+    yLasOrdenanzasMunicipales: 'i les ordenances municipals',
+    elAyuntamientoAlcalde: "L'Ajuntament: alcalde",
+    yConcejalesElegidosCada4Anos: 'i regidors, elegits cada 4 anys',
+    laLicenciaDeObras: "La llicència d'obres.",
+    laZonaAzulElHorarioDeFiestas: "La zona blava. L'horari de festes.",
+    lasCajasTienenLaMismaAnchura: 'Les caixes tenen la mateixa amplària a propòsit.',
+    ningunoDeEstosNivelesMandaSo: "Cap d'estos nivells no mana sobre els altres: cadascun decidix les matèries que la Constitució",
+    yElEstatutLeAtribuyenCuandoD: "i l'Estatut li atribuïxen. Quan dos es pensen que tenen la mateixa competència, no guanya el més gran:",
+    resuelveElTribunalConstituci: 'ho resol el Tribunal Constitucional, i de vegades dona la raó a la comunitat autònoma.',
+  },
+} as const;
+
+const t = COPY[locale];
 ---
 
-<svg viewBox="0 0 820 560" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Los cuatro niveles de la organización territorial del Estado">
-  <title>Quién decide qué en cada nivel del territorio</title>
-  <desc>
-    Cuatro niveles de gobierno con la misma anchura, porque no forman una jerarquía:
-    el Estado, regulado por la Constitución; la Comunitat Valenciana, por el Estatut
-    d'Autonomia; la provincia, gobernada por la Diputación; y el municipio, por el
-    Ayuntamiento. De cada uno se indica la norma que lo regula, quién lo gobierna y un
-    ejemplo de decisión propia. Cuando dos niveles creen tener la misma competencia,
-    resuelve el Tribunal Constitucional.
-  </desc>
+<svg viewBox="0 0 820 560" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="organizacionterritorial-t organizacionterritorial-d">
+  <title id="organizacionterritorial-t">{t.quienDecideQueEnCadaNivelDel}</title>
+  <desc id="organizacionterritorial-d">{t.cuatroNivelesDeGobiernoConLa}</desc>
   <defs>
     <style>
       .bg { fill: #FBF6EC; }
@@ -44,63 +134,63 @@
 
   <rect class="bg" x="0" y="0" width="820" height="560" />
 
-  <text class="band" x="40" y="30">Cuatro niveles, ninguno por encima de otro</text>
+  <text class="band" x="40" y="30">{t.cuatroNivelesNingunoPorEncim}</text>
 
   <!-- Column headers -->
-  <text class="head" x="40" y="62">Nivel</text>
-  <text class="head" x="256" y="62">Norma que lo regula</text>
-  <text class="head" x="440" y="62">Quién lo gobierna</text>
-  <text class="head" x="616" y="62">Ejemplo de decisión propia</text>
+  <text class="head" x="40" y="62">{t.nivel}</text>
+  <text class="head" x="256" y="62">{t.normaQueLoRegula}</text>
+  <text class="head" x="440" y="62">{t.quienLoGobierna}</text>
+  <text class="head" x="616" y="62">{t.ejemploDeDecisionPropia}</text>
   <line class="rule" x1="40" y1="70" x2="780" y2="70" />
 
   <!-- Estado -->
   <rect class="row r-est" x="40" y="80" width="740" height="76" rx="4" />
-  <text class="lvl" x="60" y="112">Estado</text>
-  <text class="lvl-sub" x="60" y="130">Todo el territorio</text>
-  <text class="cell-b" x="256" y="108">Constitución de 1978</text>
-  <text class="cell" x="256" y="126">Competencias del art. 149</text>
-  <text class="cell" x="440" y="108">Cortes Generales</text>
-  <text class="cell" x="440" y="126">y Gobierno de España</text>
-  <text class="cell" x="616" y="108">El Código Penal.</text>
-  <text class="cell" x="616" y="126">El salario mínimo.</text>
+  <text class="lvl" x="60" y="112">{t.estado}</text>
+  <text class="lvl-sub" x="60" y="130">{t.todoElTerritorio}</text>
+  <text class="cell-b" x="256" y="108">{t.constitucionDe1978}</text>
+  <text class="cell" x="256" y="126">{t.competenciasDelArt149}</text>
+  <text class="cell" x="440" y="108">{t.cortesGenerales}</text>
+  <text class="cell" x="440" y="126">{t.yGobiernoDeEspana}</text>
+  <text class="cell" x="616" y="108">{t.elCodigoPenal}</text>
+  <text class="cell" x="616" y="126">{t.elSalarioMinimo}</text>
 
   <!-- Comunitat Valenciana -->
   <rect class="row r-aut" x="40" y="168" width="740" height="76" rx="4" />
-  <text class="lvl" x="60" y="200">Comunitat Valenciana</text>
-  <text class="lvl-sub" x="60" y="218">Una de las 17 comunidades</text>
-  <text class="cell-b" x="256" y="196">Estatut d'Autonomia</text>
-  <text class="cell" x="256" y="214">LO 5/1982, reformado en 2006</text>
-  <text class="cell" x="440" y="196">Corts Valencianes,</text>
-  <text class="cell" x="440" y="214">Consell y su president</text>
-  <text class="cell" x="616" y="196">El currículo de tu instituto.</text>
-  <text class="cell" x="616" y="214">Los hospitales públicos.</text>
+  <text class="lvl" x="60" y="200">{t.comunitatValenciana}</text>
+  <text class="lvl-sub" x="60" y="218">{t.unaDeLas17Comunidades}</text>
+  <text class="cell-b" x="256" y="196">{t.estatutDAutonomia}</text>
+  <text class="cell" x="256" y="214">{t.lo51982ReformadoEn2006}</text>
+  <text class="cell" x="440" y="196">{t.cortsValencianes}</text>
+  <text class="cell" x="440" y="214">{t.consellYSuPresident}</text>
+  <text class="cell" x="616" y="196">{t.elCurriculoDeTuInstituto}</text>
+  <text class="cell" x="616" y="214">{t.losHospitalesPublicos}</text>
 
   <!-- Provincia -->
   <rect class="row r-pro" x="40" y="256" width="740" height="76" rx="4" />
-  <text class="lvl" x="60" y="288">Provincia</text>
-  <text class="lvl-sub" x="60" y="306">Alicante, Castellón, Valencia</text>
-  <text class="cell-b" x="256" y="284">Ley 7/1985, de Bases</text>
-  <text class="cell" x="256" y="302">del Régimen Local</text>
-  <text class="cell" x="440" y="284">La Diputación, elegida</text>
-  <text class="cell" x="440" y="302">por los concejales</text>
-  <text class="cell" x="616" y="284">Carreteras entre pueblos.</text>
-  <text class="cell" x="616" y="302">Apoyo a municipios pequeños.</text>
+  <text class="lvl" x="60" y="288">{t.provincia}</text>
+  <text class="lvl-sub" x="60" y="306">{t.alicanteCastellonValencia}</text>
+  <text class="cell-b" x="256" y="284">{t.ley71985DeBases}</text>
+  <text class="cell" x="256" y="302">{t.delRegimenLocal}</text>
+  <text class="cell" x="440" y="284">{t.laDiputacionElegida}</text>
+  <text class="cell" x="440" y="302">{t.porLosConcejales}</text>
+  <text class="cell" x="616" y="284">{t.carreterasEntrePueblos}</text>
+  <text class="cell" x="616" y="302">{t.apoyoAMunicipiosPequenos}</text>
 
   <!-- Municipio -->
   <rect class="row r-mun" x="40" y="344" width="740" height="76" rx="4" />
-  <text class="lvl" x="60" y="376">Municipio</text>
-  <text class="lvl-sub" x="60" y="394">El nivel más cercano a ti</text>
-  <text class="cell-b" x="256" y="372">La misma Ley 7/1985</text>
-  <text class="cell" x="256" y="390">y las ordenanzas municipales</text>
-  <text class="cell" x="440" y="372">El Ayuntamiento: alcalde</text>
-  <text class="cell" x="440" y="390">y concejales, elegidos cada 4 años</text>
-  <text class="cell" x="616" y="372">La licencia de obras.</text>
-  <text class="cell" x="616" y="390">La zona azul. El horario de fiestas.</text>
+  <text class="lvl" x="60" y="376">{t.municipio}</text>
+  <text class="lvl-sub" x="60" y="394">{t.elNivelMasCercanoATi}</text>
+  <text class="cell-b" x="256" y="372">{t.laMismaLey71985}</text>
+  <text class="cell" x="256" y="390">{t.yLasOrdenanzasMunicipales}</text>
+  <text class="cell" x="440" y="372">{t.elAyuntamientoAlcalde}</text>
+  <text class="cell" x="440" y="390">{t.yConcejalesElegidosCada4Anos}</text>
+  <text class="cell" x="616" y="372">{t.laLicenciaDeObras}</text>
+  <text class="cell" x="616" y="390">{t.laZonaAzulElHorarioDeFiestas}</text>
 
   <!-- Note -->
   <rect class="note" x="40" y="446" width="740" height="86" rx="4" />
-  <text class="note-b" x="60" y="472">Las cajas tienen la misma anchura a propósito.</text>
-  <text class="note-t" x="60" y="492">Ninguno de estos niveles manda sobre los otros: cada uno decide las materias que la Constitución</text>
-  <text class="note-t" x="60" y="508">y el Estatut le atribuyen. Cuando dos creen tener la misma competencia, no gana el más grande:</text>
-  <text class="note-t" x="60" y="524">resuelve el Tribunal Constitucional, y a veces le da la razón a la comunidad autónoma.</text>
+  <text class="note-b" x="60" y="472">{t.lasCajasTienenLaMismaAnchura}</text>
+  <text class="note-t" x="60" y="492">{t.ningunoDeEstosNivelesMandaSo}</text>
+  <text class="note-t" x="60" y="508">{t.yElEstatutLeAtribuyenCuandoD}</text>
+  <text class="note-t" x="60" y="524">{t.resuelveElTribunalConstituci}</text>
 </svg>
