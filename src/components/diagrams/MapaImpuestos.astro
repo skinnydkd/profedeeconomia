@@ -1,0 +1,138 @@
+---
+/**
+ * Map of the Spanish tax system by two questions at once (CJD Bach, unit 6):
+ * what each tax falls on (direct = what you have or earn, indirect = what you
+ * spend) and which administration collects it.
+ *
+ * The second question is the one textbooks usually drop, and it is the one
+ * that connects this block back to unit 3: a student who knows the IBI is
+ * municipal and the ITP autonomic can finally read a news item about taxes
+ * without assuming every euro goes to Madrid.
+ */
+---
+
+<svg viewBox="0 0 820 540" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Mapa de los principales impuestos del sistema fiscal español">
+  <title>Qué grava cada impuesto y quién lo cobra</title>
+  <desc>
+    Los impuestos directos gravan lo que se tiene o se gana: IRPF, compartido entre
+    Estado y comunidades autónomas; Impuesto sobre Sociedades, estatal; Impuesto sobre
+    Bienes Inmuebles, municipal; e Impuesto sobre Sucesiones y Donaciones, autonómico.
+    Los indirectos gravan lo que se consume: IVA, compartido; Impuesto sobre
+    Transmisiones Patrimoniales y Actos Jurídicos Documentados, autonómico; e impuestos
+    especiales sobre alcohol, tabaco, hidrocarburos y electricidad.
+  </desc>
+  <defs>
+    <style>
+      .bg { fill: #FBF6EC; }
+      .card { fill: #FFFFFF; stroke-width: 2; }
+      .c-est { stroke: #C44E2C; }
+      .c-aut { stroke: #1F6E6E; }
+      .c-mun { stroke: #A87A2A; }
+      .badge-est { fill: #FBE3D6; }
+      .badge-aut { fill: #DBEDED; }
+      .badge-mun { fill: #F5E5BC; }
+      .badge-t { font-family: 'Switzer', sans-serif; font-size: 8.5px; font-weight: 700; letter-spacing: 0.6px; text-transform: uppercase; fill: #2A1F18; text-anchor: middle; }
+      .tax { font-family: 'Fraunces', serif; font-size: 17px; font-weight: 500; fill: #2A1F18; text-anchor: middle; }
+      .full { font-family: 'Switzer', sans-serif; font-size: 9px; font-style: italic; fill: #8A7868; text-anchor: middle; }
+      .what { font-family: 'Switzer', sans-serif; font-size: 10px; fill: #5C4A3D; text-anchor: middle; }
+      .band { font-family: 'Fraunces', serif; font-size: 18px; font-weight: 500; fill: #2A1F18; }
+      .band-sub { font-family: 'Switzer', sans-serif; font-size: 10.5px; font-style: italic; fill: #8A7868; }
+      .rule { stroke: #C44E2C; stroke-width: 2; }
+      .rule-soft { stroke: #E5D4BD; stroke-width: 1; }
+      .note { fill: #FFFFFF; stroke: #8A7868; stroke-width: 1.6; stroke-dasharray: 5 3; }
+      .note-t { font-family: 'Switzer', sans-serif; font-size: 10.5px; fill: #5C4A3D; }
+      .note-b { font-family: 'Switzer', sans-serif; font-size: 10.5px; font-weight: 700; fill: #2A1F18; }
+    </style>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="820" height="540" />
+
+  <!-- DIRECT -->
+  <line class="rule" x1="40" y1="34" x2="140" y2="34" />
+  <text class="band" x="40" y="60">Impuestos directos</text>
+  <text class="band-sub" x="228" y="60">gravan lo que tienes o lo que ganas</text>
+
+  <g>
+    <rect class="card c-est" x="40" y="76" width="172" height="112" rx="4" />
+    <rect class="badge-est" x="56" y="90" width="140" height="18" rx="9" />
+    <text class="badge-t" x="126" y="103">Estado y CCAA</text>
+    <text class="tax" x="126" y="134">IRPF</text>
+    <text class="full" x="126" y="150">Impuesto sobre la Renta</text>
+    <text class="what" x="126" y="170">Tus ingresos del año.</text>
+    <text class="what" x="126" y="182">Progresivo por tramos.</text>
+  </g>
+
+  <g>
+    <rect class="card c-est" x="228" y="76" width="172" height="112" rx="4" />
+    <rect class="badge-est" x="244" y="90" width="140" height="18" rx="9" />
+    <text class="badge-t" x="314" y="103">Estado</text>
+    <text class="tax" x="314" y="134">Sociedades</text>
+    <text class="full" x="314" y="150">Impuesto sobre Sociedades</text>
+    <text class="what" x="314" y="170">El beneficio de las</text>
+    <text class="what" x="314" y="182">empresas. Tipo fijo.</text>
+  </g>
+
+  <g>
+    <rect class="card c-mun" x="416" y="76" width="172" height="112" rx="4" />
+    <rect class="badge-mun" x="432" y="90" width="140" height="18" rx="9" />
+    <text class="badge-t" x="502" y="103">Ayuntamiento</text>
+    <text class="tax" x="502" y="134">IBI</text>
+    <text class="full" x="502" y="150">Bienes Inmuebles</text>
+    <text class="what" x="502" y="170">Ser propietario de</text>
+    <text class="what" x="502" y="182">un piso o un terreno.</text>
+  </g>
+
+  <g>
+    <rect class="card c-aut" x="604" y="76" width="176" height="112" rx="4" />
+    <rect class="badge-aut" x="620" y="90" width="144" height="18" rx="9" />
+    <text class="badge-t" x="692" y="103">Comunidad autónoma</text>
+    <text class="tax" x="692" y="134">Sucesiones</text>
+    <text class="full" x="692" y="150">Sucesiones y Donaciones</text>
+    <text class="what" x="692" y="170">Heredar o recibir</text>
+    <text class="what" x="692" y="182">una donación.</text>
+  </g>
+
+  <line class="rule-soft" x1="40" y1="212" x2="780" y2="212" />
+
+  <!-- INDIRECT -->
+  <line class="rule" x1="40" y1="242" x2="140" y2="242" />
+  <text class="band" x="40" y="268">Impuestos indirectos</text>
+  <text class="band-sub" x="252" y="268">gravan lo que consumes, sin mirar quién eres</text>
+
+  <g>
+    <rect class="card c-est" x="40" y="284" width="172" height="112" rx="4" />
+    <rect class="badge-est" x="56" y="298" width="140" height="18" rx="9" />
+    <text class="badge-t" x="126" y="311">Estado y CCAA</text>
+    <text class="tax" x="126" y="342">IVA</text>
+    <text class="full" x="126" y="358">Impuesto sobre el Valor Añadido</text>
+    <text class="what" x="126" y="378">Casi todo lo que</text>
+    <text class="what" x="126" y="390">compras. Tres tipos.</text>
+  </g>
+
+  <g>
+    <rect class="card c-aut" x="228" y="284" width="172" height="112" rx="4" />
+    <rect class="badge-aut" x="244" y="298" width="140" height="18" rx="9" />
+    <text class="badge-t" x="314" y="311">Comunidad autónoma</text>
+    <text class="tax" x="314" y="342">ITP y AJD</text>
+    <text class="full" x="314" y="358">Transmisiones y Actos Jurídicos</text>
+    <text class="what" x="314" y="378">Comprar un coche o un</text>
+    <text class="what" x="314" y="390">piso de segunda mano.</text>
+  </g>
+
+  <g>
+    <rect class="card c-est" x="416" y="284" width="172" height="112" rx="4" />
+    <rect class="badge-est" x="432" y="298" width="140" height="18" rx="9" />
+    <text class="badge-t" x="502" y="311">Estado</text>
+    <text class="tax" x="502" y="342">Especiales</text>
+    <text class="full" x="502" y="358">Impuestos especiales</text>
+    <text class="what" x="502" y="378">Alcohol, tabaco, carburantes</text>
+    <text class="what" x="502" y="390">y electricidad.</text>
+  </g>
+
+  <!-- Note -->
+  <rect class="note" x="40" y="424" width="740" height="92" rx="4" />
+  <text class="note-b" x="60" y="450">El color de cada tarjeta dice quién se queda el dinero.</text>
+  <text class="note-t" x="60" y="470">No todos los impuestos van al mismo sitio, y por eso tu comunidad puede bajar Sucesiones sin permiso</text>
+  <text class="note-t" x="60" y="486">del Estado, y tu ayuntamiento puede subir el IBI sin que nadie más intervenga: es competencia suya.</text>
+  <text class="note-t" x="60" y="506">Faltan aquí las tasas —pagas por un servicio concreto, como el DNI— y el Impuesto sobre el Patrimonio, autonómico.</text>
+</svg>
