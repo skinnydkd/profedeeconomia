@@ -18,7 +18,7 @@ import type { GetStaticPaths } from 'astro';
  */
 
 export const getStaticPaths = (async () => {
-  return ASIGNATURA_SLUGS.map((slug) => ({
+  return ASIGNATURA_SLUGS.filter((slug) => ASIGNATURAS[slug].estado === 'publicado').map((slug) => ({
     params: { asignatura: slug },
     props: { asignatura: ASIGNATURAS[slug] },
   }));
