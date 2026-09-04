@@ -6,103 +6,203 @@
  * valor. Derecha: clientes, canales y relaciones. Abajo: costes
  * (interno) e ingresos (cliente).
  */
+import { getLocale } from '@/i18n/locale';
+const locale = getLocale(Astro.currentLocale);
+
+const COPY = {
+  es: {
+    businessModelCanvasLas: 'Business Model Canvas: las nueve áreas',
+    loQueLaEmpresa: 'LO QUE LA EMPRESA HACE',
+    elOfrecimiento: 'EL OFRECIMIENTO',
+    loQueElCliente: 'LO QUE EL CLIENTE EXPERIMENTA',
+    asociacionesClave: 'Asociaciones clave',
+    quienesSonLos: '¿Quiénes son los',
+    aliadosEstrategicos: 'aliados estratégicos',
+    sinLosQueEl: 'sin los que el modelo',
+    noFuncionaria: 'no funcionaría?',
+    actividadesClave: 'Actividades clave',
+    queHacemosCadaDia: '¿Qué hacemos cada día',
+    queNoPodemosDelegar: 'que no podemos delegar?',
+    recursosClave: 'Recursos clave',
+    queRecursosCriticos: '¿Qué recursos críticos',
+    necesitamos: 'necesitamos?',
+    propuestaDeValor: 'Propuesta de valor',
+    queProblema: '¿Qué problema',
+    resolvemosOQue: 'resolvemos o qué',
+    necesidadCubrimos: 'necesidad cubrimos?',
+    porQueSomos: '¿Por qué somos',
+    diferentesDeLas: 'diferentes de las',
+    alternativas: 'alternativas?',
+    relacionesConClientes: 'Relaciones con clientes',
+    queTipoDeRelacion: '¿Qué tipo de relación',
+    mantenemosConCadaUno: 'mantenemos con cada uno?',
+    canales: 'Canales',
+    porQueCanalesLlega: '¿Por qué canales llega',
+    nuestraPropuesta: 'nuestra propuesta?',
+    segmentosDeClientes: 'Segmentos de clientes',
+    paraQuienCreamos: '¿Para quién creamos',
+    valor: 'valor?',
+    quienesSonNuestros: '¿Quiénes son nuestros',
+    clientesMasImportantes: 'clientes más importantes?',
+    estructuraDeCostes: 'Estructura de costes',
+    enQueGastaLa: '¿En qué gasta la empresa?',
+    queCostesSonFijos: '¿Qué costes son fijos y cuáles variables?',
+    hayEconomiasDeEscala: '¿Hay economías de escala?',
+    fuentesDeIngresos: 'Fuentes de ingresos',
+    comoYPorQue: '¿Cómo y por qué nos pagan los clientes?',
+    esVentaUnitariaSuscripcion: '¿Es venta unitaria, suscripción, comisión, licencia?',
+    quePesoTieneCada: '¿Qué peso tiene cada fuente sobre el total?',
+    internoLoQueGastamos: 'INTERNO · LO QUE GASTAMOS',
+    clienteLoQueCobramos: 'CLIENTE · LO QUE COBRAMOS',
+    las9AreasSe: 'Las 9 áreas se distribuyen en una página: cinco áreas miran al cliente (derecha) y cuatro al interior (izquierda).',
+    laPropuestaDeValor: 'La propuesta de valor (centro) es lo que las conecta.',
+  },
+  ca: {
+    businessModelCanvasLas: 'Business Model Canvas: les nou àrees',
+    loQueLaEmpresa: "EL QUE FA L'EMPRESA",
+    elOfrecimiento: "L'OFERIMENT",
+    loQueElCliente: 'EL QUE EXPERIMENTA EL CLIENT',
+    asociacionesClave: 'Associacions clau',
+    quienesSonLos: 'Qui són els',
+    aliadosEstrategicos: 'aliats estratègics',
+    sinLosQueEl: 'sense els quals el model',
+    noFuncionaria: 'no funcionaria?',
+    actividadesClave: 'Activitats clau',
+    queHacemosCadaDia: 'Què fem cada dia',
+    queNoPodemosDelegar: 'que no podem delegar?',
+    recursosClave: 'Recursos clau',
+    queRecursosCriticos: 'Quins recursos crítics',
+    necesitamos: 'necessitem?',
+    propuestaDeValor: 'Proposta de valor',
+    queProblema: 'Quin problema',
+    resolvemosOQue: 'resolem o quina',
+    necesidadCubrimos: 'necessitat cobrim?',
+    porQueSomos: 'Per què som',
+    diferentesDeLas: 'diferents de les',
+    alternativas: 'alternatives?',
+    relacionesConClientes: 'Relacions amb clients',
+    queTipoDeRelacion: 'Quin tipus de relació',
+    mantenemosConCadaUno: 'mantenim amb cada un?',
+    canales: 'Canals',
+    porQueCanalesLlega: 'Per quins canals arriba',
+    nuestraPropuesta: 'la nostra proposta?',
+    segmentosDeClientes: 'Segments de clients',
+    paraQuienCreamos: 'Per a qui creem',
+    valor: 'valor?',
+    quienesSonNuestros: 'Qui són els nostres',
+    clientesMasImportantes: 'clients més importants?',
+    estructuraDeCostes: 'Estructura de costos',
+    enQueGastaLa: "En què gasta l'empresa?",
+    queCostesSonFijos: 'Quins costos són fixos i quins variables?',
+    hayEconomiasDeEscala: "Hi ha economies d'escala?",
+    fuentesDeIngresos: "Fonts d'ingressos",
+    comoYPorQue: 'Com i per què ens paguen els clients?',
+    esVentaUnitariaSuscripcion: 'És venda unitària, subscripció, comissió, llicència?',
+    quePesoTieneCada: 'Quin pes té cada font sobre el total?',
+    internoLoQueGastamos: 'INTERN · EL QUE GASTEM',
+    clienteLoQueCobramos: 'CLIENT · EL QUE COBREM',
+    las9AreasSe: "Les 9 àrees es distribuïxen en una pàgina: cinc àrees miren al client (dreta) i quatre a l'interior (esquerra).",
+    laPropuestaDeValor: 'La proposta de valor (centre) és el que les connecta.',
+  },
+} as const;
+const t = COPY[locale];
 ---
-<svg viewBox="0 0 900 480" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Business Model Canvas: las nueve áreas">
+<svg class="d-business-model-canvas" viewBox="0 0 900 480" xmlns="http://www.w3.org/2000/svg" role="img" aria-label={t.businessModelCanvasLas}>
   <defs>
     <style>
-      .bg { fill: #FBF6EC; }
-      .block { fill: #FFFFFF; stroke: #E5D4BD; stroke-width: 1.5; }
-      .block-vp { fill: #FBE3D6; stroke: #C44E2C; stroke-width: 2; }
-      .block-customer { fill: #DBEDED; stroke: #1F6E6E; stroke-width: 1.5; }
-      .block-internal { fill: #F5E5BC; stroke: #D4A24C; stroke-width: 1.5; }
-      .block-costs { fill: #FBE3D6; stroke: #C44E2C; stroke-width: 1.5; }
-      .block-rev { fill: #DBEDED; stroke: #1F6E6E; stroke-width: 1.5; }
-      .num { font-family: 'Fraunces', serif; font-style: italic; font-size: 13px; font-weight: 500; fill: #A87A2A; }
-      .num-vp { fill: #9C3A1C; }
-      .title { font-family: 'Switzer', sans-serif; font-size: 10.5px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; fill: #2A1F18; }
-      .title-vp { fill: #9C3A1C; }
-      .question { font-family: 'Fraunces', serif; font-style: italic; font-size: 11px; fill: #5C4A3D; }
-      .question-vp { fill: #9C3A1C; }
-      .strip-label { font-family: 'Switzer', sans-serif; font-size: 9.5px; font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase; fill: #8A7868; }
+      .d-business-model-canvas .bg { fill: #FBF6EC; }
+      .d-business-model-canvas .block { fill: #FFFFFF; stroke: #E5D4BD; stroke-width: 1.5; }
+      .d-business-model-canvas .block-vp { fill: #FBE3D6; stroke: #C44E2C; stroke-width: 2; }
+      .d-business-model-canvas .block-customer { fill: #DBEDED; stroke: #1F6E6E; stroke-width: 1.5; }
+      .d-business-model-canvas .block-internal { fill: #F5E5BC; stroke: #D4A24C; stroke-width: 1.5; }
+      .d-business-model-canvas .block-costs { fill: #FBE3D6; stroke: #C44E2C; stroke-width: 1.5; }
+      .d-business-model-canvas .block-rev { fill: #DBEDED; stroke: #1F6E6E; stroke-width: 1.5; }
+      .d-business-model-canvas .num { font-family: 'Fraunces', serif; font-style: italic; font-size: 13px; font-weight: 500; fill: #A87A2A; }
+      .d-business-model-canvas .num-vp { fill: #9C3A1C; }
+      .d-business-model-canvas .title { font-family: 'Switzer', sans-serif; font-size: 10.5px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; fill: #2A1F18; }
+      .d-business-model-canvas .title-vp { fill: #9C3A1C; }
+      .d-business-model-canvas .question { font-family: 'Fraunces', serif; font-style: italic; font-size: 11px; fill: #5C4A3D; }
+      .d-business-model-canvas .question-vp { fill: #9C3A1C; }
+      .d-business-model-canvas .strip-label { font-family: 'Switzer', sans-serif; font-size: 9.5px; font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase; fill: #8A7868; }
     </style>
   </defs>
   <rect class="bg" x="0" y="0" width="900" height="480"/>
 
   <!-- Top strip labels -->
-  <text class="strip-label" x="170" y="30">LO QUE LA EMPRESA HACE</text>
-  <text class="strip-label" x="460" y="30" text-anchor="middle">EL OFRECIMIENTO</text>
-  <text class="strip-label" x="730" y="30" text-anchor="end">LO QUE EL CLIENTE EXPERIMENTA</text>
+  <text class="strip-label" x="170" y="30">{t.loQueLaEmpresa}</text>
+  <text class="strip-label" x="460" y="30" text-anchor="middle">{t.elOfrecimiento}</text>
+  <text class="strip-label" x="730" y="30" text-anchor="end">{t.loQueElCliente}</text>
 
   <!-- Row 1 (top half): 7 internal blocks + propuesta de valor center + 3 cliente blocks -->
   <!-- 8. Asociaciones clave (top-left) -->
   <g>
     <rect class="block" x="40" y="50" width="160" height="170" rx="6"/>
     <text class="num" x="55" y="73">08</text>
-    <text class="title" x="55" y="96">Asociaciones clave</text>
-    <text class="question" x="55" y="125">¿Quiénes son los</text>
-    <text class="question" x="55" y="140">aliados estratégicos</text>
-    <text class="question" x="55" y="155">sin los que el modelo</text>
-    <text class="question" x="55" y="170">no funcionaría?</text>
+    <text class="title" x="55" y="96">{t.asociacionesClave}</text>
+    <text class="question" x="55" y="125">{t.quienesSonLos}</text>
+    <text class="question" x="55" y="140">{t.aliadosEstrategicos}</text>
+    <text class="question" x="55" y="155">{t.sinLosQueEl}</text>
+    <text class="question" x="55" y="170">{t.noFuncionaria}</text>
   </g>
 
   <!-- 7. Actividades clave (top center-left) -->
   <g>
     <rect class="block block-internal" x="210" y="50" width="160" height="85" rx="6"/>
     <text class="num" x="225" y="73">07</text>
-    <text class="title" x="225" y="96">Actividades clave</text>
-    <text class="question" x="225" y="115">¿Qué hacemos cada día</text>
-    <text class="question" x="225" y="128">que no podemos delegar?</text>
+    <text class="title" x="225" y="96">{t.actividadesClave}</text>
+    <text class="question" x="225" y="115">{t.queHacemosCadaDia}</text>
+    <text class="question" x="225" y="128">{t.queNoPodemosDelegar}</text>
   </g>
 
   <!-- 6. Recursos clave (middle center-left) -->
   <g>
     <rect class="block block-internal" x="210" y="140" width="160" height="80" rx="6"/>
     <text class="num" x="225" y="163">06</text>
-    <text class="title" x="225" y="186">Recursos clave</text>
-    <text class="question" x="225" y="205">¿Qué recursos críticos</text>
-    <text class="question" x="225" y="218">necesitamos?</text>
+    <text class="title" x="225" y="186">{t.recursosClave}</text>
+    <text class="question" x="225" y="205">{t.queRecursosCriticos}</text>
+    <text class="question" x="225" y="218">{t.necesitamos}</text>
   </g>
 
   <!-- 2. Propuesta de valor (center) -->
   <g>
     <rect class="block-vp" x="380" y="50" width="160" height="170" rx="6"/>
     <text class="num num-vp" x="395" y="73">02</text>
-    <text class="title title-vp" x="395" y="96">Propuesta de valor</text>
-    <text class="question question-vp" x="395" y="125">¿Qué problema</text>
-    <text class="question question-vp" x="395" y="140">resolvemos o qué</text>
-    <text class="question question-vp" x="395" y="155">necesidad cubrimos?</text>
-    <text class="question question-vp" x="395" y="180">¿Por qué somos</text>
-    <text class="question question-vp" x="395" y="195">diferentes de las</text>
-    <text class="question question-vp" x="395" y="210">alternativas?</text>
+    <text class="title title-vp" x="395" y="96">{t.propuestaDeValor}</text>
+    <text class="question question-vp" x="395" y="125">{t.queProblema}</text>
+    <text class="question question-vp" x="395" y="140">{t.resolvemosOQue}</text>
+    <text class="question question-vp" x="395" y="155">{t.necesidadCubrimos}</text>
+    <text class="question question-vp" x="395" y="180">{t.porQueSomos}</text>
+    <text class="question question-vp" x="395" y="195">{t.diferentesDeLas}</text>
+    <text class="question question-vp" x="395" y="210">{t.alternativas}</text>
   </g>
 
   <!-- 4. Relaciones con clientes (top center-right) -->
   <g>
     <rect class="block block-customer" x="550" y="50" width="160" height="85" rx="6"/>
     <text class="num" x="565" y="73">04</text>
-    <text class="title" x="565" y="96">Relaciones con clientes</text>
-    <text class="question" x="565" y="115">¿Qué tipo de relación</text>
-    <text class="question" x="565" y="128">mantenemos con cada uno?</text>
+    <text class="title" x="565" y="96">{t.relacionesConClientes}</text>
+    <text class="question" x="565" y="115">{t.queTipoDeRelacion}</text>
+    <text class="question" x="565" y="128">{t.mantenemosConCadaUno}</text>
   </g>
 
   <!-- 3. Canales (middle center-right) -->
   <g>
     <rect class="block block-customer" x="550" y="140" width="160" height="80" rx="6"/>
     <text class="num" x="565" y="163">03</text>
-    <text class="title" x="565" y="186">Canales</text>
-    <text class="question" x="565" y="205">¿Por qué canales llega</text>
-    <text class="question" x="565" y="218">nuestra propuesta?</text>
+    <text class="title" x="565" y="186">{t.canales}</text>
+    <text class="question" x="565" y="205">{t.porQueCanalesLlega}</text>
+    <text class="question" x="565" y="218">{t.nuestraPropuesta}</text>
   </g>
 
   <!-- 1. Segmentos de clientes (top-right) -->
   <g>
     <rect class="block block-customer" x="720" y="50" width="140" height="170" rx="6"/>
     <text class="num" x="735" y="73">01</text>
-    <text class="title" x="735" y="96">Segmentos de clientes</text>
-    <text class="question" x="735" y="125">¿Para quién creamos</text>
-    <text class="question" x="735" y="140">valor?</text>
-    <text class="question" x="735" y="165">¿Quiénes son nuestros</text>
-    <text class="question" x="735" y="180">clientes más importantes?</text>
+    <text class="title" x="735" y="96">{t.segmentosDeClientes}</text>
+    <text class="question" x="735" y="125">{t.paraQuienCreamos}</text>
+    <text class="question" x="735" y="140">{t.valor}</text>
+    <text class="question" x="735" y="165">{t.quienesSonNuestros}</text>
+    <text class="question" x="735" y="180">{t.clientesMasImportantes}</text>
   </g>
 
   <!-- Bottom row: costes (left) + ingresos (right) -->
@@ -110,26 +210,26 @@
   <g>
     <rect class="block block-costs" x="40" y="240" width="410" height="120" rx="6"/>
     <text class="num num-vp" x="55" y="263">09</text>
-    <text class="title title-vp" x="55" y="286">Estructura de costes</text>
-    <text class="question question-vp" x="55" y="310">¿En qué gasta la empresa?</text>
-    <text class="question question-vp" x="55" y="325">¿Qué costes son fijos y cuáles variables?</text>
-    <text class="question question-vp" x="55" y="345">¿Hay economías de escala?</text>
+    <text class="title title-vp" x="55" y="286">{t.estructuraDeCostes}</text>
+    <text class="question question-vp" x="55" y="310">{t.enQueGastaLa}</text>
+    <text class="question question-vp" x="55" y="325">{t.queCostesSonFijos}</text>
+    <text class="question question-vp" x="55" y="345">{t.hayEconomiasDeEscala}</text>
   </g>
 
   <!-- 5. Fuentes de ingresos -->
   <g>
     <rect class="block block-rev" x="460" y="240" width="400" height="120" rx="6"/>
     <text class="num" x="475" y="263">05</text>
-    <text class="title" x="475" y="286">Fuentes de ingresos</text>
-    <text class="question" x="475" y="310">¿Cómo y por qué nos pagan los clientes?</text>
-    <text class="question" x="475" y="325">¿Es venta unitaria, suscripción, comisión, licencia?</text>
-    <text class="question" x="475" y="345">¿Qué peso tiene cada fuente sobre el total?</text>
+    <text class="title" x="475" y="286">{t.fuentesDeIngresos}</text>
+    <text class="question" x="475" y="310">{t.comoYPorQue}</text>
+    <text class="question" x="475" y="325">{t.esVentaUnitariaSuscripcion}</text>
+    <text class="question" x="475" y="345">{t.quePesoTieneCada}</text>
   </g>
 
   <!-- Footer legend -->
-  <text class="strip-label" x="40" y="395" fill="#A87A2A">INTERNO · LO QUE GASTAMOS</text>
-  <text class="strip-label" x="860" y="395" fill="#0E4040" text-anchor="end">CLIENTE · LO QUE COBRAMOS</text>
+  <text class="strip-label" x="40" y="395" fill="#A87A2A">{t.internoLoQueGastamos}</text>
+  <text class="strip-label" x="860" y="395" fill="#0E4040" text-anchor="end">{t.clienteLoQueCobramos}</text>
 
-  <text x="450" y="445" font-family="Fraunces" font-style="italic" font-size="13" fill="#5C4A3D" text-anchor="middle">Las 9 áreas se distribuyen en una página: cinco áreas miran al cliente (derecha) y cuatro al interior (izquierda).</text>
-  <text x="450" y="463" font-family="Fraunces" font-style="italic" font-size="13" fill="#5C4A3D" text-anchor="middle">La propuesta de valor (centro) es lo que las conecta.</text>
+  <text x="450" y="445" font-family="Fraunces" font-style="italic" font-size="13" fill="#5C4A3D" text-anchor="middle">{t.las9AreasSe}</text>
+  <text x="450" y="463" font-family="Fraunces" font-style="italic" font-size="13" fill="#5C4A3D" text-anchor="middle">{t.laPropuestaDeValor}</text>
 </svg>

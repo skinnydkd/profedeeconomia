@@ -38,6 +38,7 @@ publicado_en: 2026-05-15
 import Callout from '@components/Callout.astro';
 import Curiosity from '@components/Curiosity.astro';
 import RealExample from '@components/RealExample.astro';
+import SolvedExercise from '@components/SolvedExercise.astro';
 import Steps from '@components/Steps.astro';
 import KeyTakeaways from '@components/KeyTakeaways.astro';
 import Diagram from '@components/Diagram.astro';
@@ -176,6 +177,29 @@ Per il·lustrar la seua tesi, Ronald Coase va recuperar un cas judicial anglés 
 <RealExample title="L'escàndol de les emissions de Volkswagen (2015)" source="EPA i comunicat oficial de Volkswagen AG, setembre 2015" sourceUrl="https://www.epa.gov/vw">
 Al setembre de 2015 l'Agència de Protecció Ambiental dels Estats Units va revelar que Volkswagen havia instal·lat en 11 milions de vehicles dièsel un *programari* trampa que detectava quan el cotxe estava sent sotmés a una prova d'emissions i activava un mode de funcionament net. Fora del laboratori, els mateixos cotxes emetien fins a 40 vegades el límit legal d'òxids de nitrogen (NOx). És un cas paradigmàtic d'externalitat negativa multiplicada per engany deliberat: cada propietari *creia* estar conduint un cotxe net, però estava imposant danys sanitaris sobre tots els habitants de les ciutats on circulava. El dany ambiental i sanitari està quantificat en milers de morts prematures per NOx a Europa. Volkswagen ha pagat més de 32.000 milions d'euros en multes, compensacions i recompres. El cas il·lustra tres idees: (1) les externalitats són reals i mesurables en termes sanitaris i econòmics; (2) la regulació funciona només si el regulador pot verificar el compliment; (3) quan la verificació falla, l'escàndol retroactiu és car però els danys ja estan fets.
 </RealExample>
+
+<SolvedExercise number="6.1" title="Externalitat negativa: quant es produïx de més i quin impost ho corregix">
+
+**Enunciat**
+
+Al mercat d'una matèria primera la demanda és **P = 100 − 0,5Q** i el cost marginal privat de les empreses és **CMg = 20 + 0,5Q**, amb P en euros i Q en tones. Cada tona produïda provoca un dany ambiental a tercers valorat en **20 € per tona**.
+
+a) Quantitat i preu d'equilibri de mercat.
+b) Quantitat i preu socialment òptims.
+c) Impost pigovià que corregix la fallada i recaptació que genera.
+d) Pèrdua d'eficiència del mercat sense corregir.
+
+**Solució**
+
+1. **Equilibri de mercat.** S'igualen demanda i cost marginal privat: 100 − 0,5Q = 20 + 0,5Q → 80 = Q → **Q = 80 tones**. El preu ix de la demanda: P = 100 − 0,5 × 80 = **60 €/t**.
+2. **Òptim social.** El cost marginal social afig el dany: CMgS = 20 + 0,5Q + 20 = 40 + 0,5Q. Igualem a la demanda: 100 − 0,5Q = 40 + 0,5Q → 60 = Q → **Q = 60 tones**, amb P = 100 − 0,5 × 60 = **70 €/t**.
+3. El mercat produïx **20 tones de més**, i ho fa perquè el preu no inclou un cost que existix però que no paga cap dels dos que negocien.
+4. **Impost pigovià.** És igual al dany per unitat: **20 €/t**. Amb ell, qui ven decidix mirant 40 + 0,5Q en lloc de 20 + 0,5Q, i el mercat arriba tot sol a les 60 tones. Recaptació = 20 × 60 = **1.200 €**.
+5. Comprovació útil: qui compra paga 70 €, l'Estat se n'emporta 20 € i el venedor es queda **50 €**, que és exactament el seu cost marginal privat en 60 tones: 20 + 0,5 × 60 = 50 €. Els números quadren.
+6. **Pèrdua d'eficiència.** És el triangle entre les dues quantitats, de base 80 − 60 = 20 tones i altura 20 €: ½ × 20 × 20 = **200 €**.
+7. *Compte amb la lectura.* Eixos 200 € no se'ls queda ningú: són valor que desapareix perquè es produïxen vint tones el cost de les quals per a la societat supera el que algú està disposat a pagar-hi. I fixa't que **la quantitat òptima no és zero**: l'objectiu no és tancar la fàbrica, és que produïsca el que compensa produir.
+
+</SolvedExercise>
 
 ## Béns públics i béns comuns
 
@@ -454,3 +478,234 @@ Estes preguntes no tenen una resposta única. Servixen per discutir a classe o p
 <Callout label="Juga a classe" variant="example">
 La informació asimètrica d'esta unitat és el motor d'[**Insider**](/juegos/insider/host/), un «Among Us econòmic» de deducció social: l'alumnat juga des del mòbil mentre el professor projecta. Qui sap què, i qui fingix saber-ho.
 </Callout>
+
+```deck
+- tipo: curriculum
+  eyebrow: "A què respon esta unitat"
+  title: "El marc de la unitat"
+  saberes:
+    - "Bloc B: externalitats i béns públics."
+    - "Bloc B: informació asimètrica i poder de mercat."
+  competencias:
+    - "Identificar les fallades de mercat i el paper del sector públic."
+- tipo: caso
+  eyebrow: "El cas"
+  title: "Volkswagen va falsejar les emissions d'11 milions de cotxes"
+  contexto: "El 2015 l'agència ambiental estatunidenca va descobrir que els motors dièsel de VW portaven un programari que detectava quan el cotxe estava sent testat i activava un mode net."
+  datos:
+    - "11 milions de cotxes amb el programari instal·lat."
+    - "Fins a 40 vegades el límit legal de NOx en carretera real."
+    - "Més de 30.000 M€ en multes, indemnitzacions i recompres."
+    - "Set anys sense que ningú ho detectara."
+  pregunta: "Si el mercat premia les empreses eficients, per què l'eficient va fer trampa i ningú la va agarrar?"
+- tipo: section
+  title: Què és una fallada de mercat
+  subtitle: No és un judici ideològic contra el mercat. És el diagnòstic tècnic dels supòsits sota els quals el model competitiu falla.
+- tipo: concept
+  eyebrow: Concepte clau
+  title: Quan la mà invisible deixa buits
+  body: "Una fallada de mercat és una situació en què l'assignació que resulta de la lliure interacció d'oferta i demanda no és eficient en el sentit de Pareto: hi ha millores que beneficiarien algú sense perjudicar ningú, i el mercat per si sol no les implementa. Identificar la fallada és condició necessària per a justificar una intervenció pública, però no suficient."
+  pull: Produïm més contaminació de la que voldríem i menys investigació bàsica de la que ens convindria.
+- tipo: list
+  title: Les quatre fallades canòniques
+  ordered: true
+  items:
+    - "Externalitats: l'activitat genera costos o beneficis sobre tercers que el preu no arreplega."
+    - "Béns públics: com que no són rivals ni excloïbles, la iniciativa privada els infraproduïx."
+    - "Informació asimètrica: una part sap alguna cosa rellevant que l'altra no sap, i això distorsiona l'equilibri."
+    - "Poder de mercat: uns pocs agents fixen el preu i trenquen el supòsit de competència."
+- tipo: section
+  title: Externalitats
+  subtitle: El cost que paga qui produïx no sempre coincidix amb el que suporta la societat. Quan divergixen, la quantitat es desvia de l'òptim.
+- tipo: concept
+  eyebrow: Pigou, 1920
+  title: Cost privat front a cost social
+  body: Arthur Cecil Pigou va distingir entre el que paga qui produïx (cost privat) i el que suporta la societat sencera incloent-hi els tercers afectats (cost social). Si el cost social supera el privat hi ha externalitat negativa i el mercat produïx de més; si el benefici social supera el privat hi ha externalitat positiva i el mercat produïx de menys.
+  pull: "La fàbrica que contamina el riu, el veí amb música a les dos, qui es vacuna: efectes reals que el preu no factura."
+- tipo: diagram
+  diagrama: Externalidad
+  caption: Amb externalitat negativa el cost social queda per damunt del privat i el mercat, pel seu compte, sobreproduïx.
+- tipo: split
+  title: Dos direccions de la mateixa fallada
+  left:
+    h: Negatives (sobreproducció)
+    items:
+      - Contaminació industrial, abocaments, soroll i residus
+      - "Congestió: cada cotxe imposa temps perdut als altres"
+      - Resistència als antibiòtics per ús indiscriminat
+  right:
+    h: Positives (infraproducció)
+    items:
+      - "Vacunació: protegix qui es vacuna i també els altres"
+      - "Educació: eleva la productivitat agregada del país"
+      - Investigació bàsica i conservació del patrimoni
+- tipo: list
+  eyebrow: Instruments correctors
+  title: Quatre formes d'internalitzar una externalitat
+  items:
+    - "Impost pigouvià: gravar el dany marginal (carboni, tabac, alcohol) fins que el preu el reflectisca."
+    - "Subvenció: pagar el benefici marginal que el mercat no retribuïx (transport públic, rehabilitació)."
+    - "Regulació directa: límits, prohibicions i estàndards. Fàcil de comunicar, però cega al cost de cada empresa."
+    - "Mercat de drets: fixar el sostre d'emissions i deixar que les empreses compren i venguen permisos."
+- tipo: data
+  numero: 65-75 €
+  label: per tona de CO₂ en l'EU ETS
+  title: El preu de contaminar a Europa
+  detalle: "Des del 2005 la UE fixa la quantitat total de drets i el mercat determina el preu. Després del pic de 90-100 € del 2023, el rang es va relaxar amb l'entrada del sector marítim. Un impost faria el contrari: fixar el preu."
+- tipo: concept
+  eyebrow: Coase, 1960
+  title: El metge, el confiter i els costos de transacció
+  body: "Ronald Coase va recuperar un plet anglés del XIX. Les vibracions de la maquinària del confiter impedien al metge auscultar els seus pacients. Coase va sostindre una cosa provocadora: si els costos de negociar són baixos, tant se val a qui done la raó el jutge, perquè les parts negociaran fins al mateix resultat eficient. El problema de fons no és l'externalitat, són els costos de transacció que impedixen l'acord."
+  pull: Drets de propietat ben definits i negociació barata poden resoldre l'externalitat sense que hi intervinga l'Estat.
+- tipo: figure
+  src: eco-1bach/06/vw-logo-wolfsburg.jpg
+  alt: Emblema gegant de Volkswagen sobre la central tèrmica de la fàbrica matriu de Wolfsburg, a Alemanya.
+  title: Una externalitat multiplicada per l'engany
+  caption: Cada propietari creia conduir un cotxe net mentre imposava dany sanitari a les ciutats per on circulava.
+  credit: "Foto: High Contrast, CC BY 3.0 DE via Wikimedia Commons"
+- tipo: quiz
+  eyebrow: Comprova que ho has pillat
+  pregunta: Un ajuntament subvenciona la instal·lació de plaques solars en comunitats de veïns. Quina fallada de mercat està corregint i en quina direcció?
+  opciones:
+    - Una externalitat negativa, reduint la quantitat produïda
+    - Una externalitat positiva, augmentant una quantitat que el mercat infraproduïx
+    - Un bé públic pur, finançant-lo amb impostos coercitius
+    - Informació asimètrica, obligant l'instal·lador a revelar el seu tipus
+  correcta: "1"
+  explicacion: "Qui instal·la plaques s'estalvia factura, però a més reduïx emissions per a tots: el benefici social supera el privat. Sense ajuda se n'instal·larien menys de les eficients, i la subvenció acosta la quantitat a l'òptim."
+- tipo: section
+  title: Béns públics i béns comuns
+  subtitle: "Alguns béns fallen per les seues propietats físiques. Samuelson les va reduir a dos preguntes: és rival?, és excloïble?"
+- tipo: terms
+  eyebrow: Els dos criteris de Samuelson
+  title: Rivalitat i exclusió
+  terms:
+    - t: Rivalitat
+      d: Un bé és rival si el consum d'una persona impedix o reduïx el d'una altra. Una poma ho és; una emissió de ràdio no, perquè que tu l'escoltes no em priva a mi de sentir-la.
+    - t: Exclusió
+      d: Un bé és excloïble si es pot impedir consumir-lo a qui no paga. El cine ho és mitjançant entrades; un castell de focs artificials sobre la ciutat, no.
+- tipo: diagram
+  diagrama: BienesPublicos
+  caption: Encreuant rivalitat i exclusió ixen quatre tipus de béns. El mercat assigna bé els privats i falla amb els altres tres.
+- tipo: table
+  eyebrow: La matriu de Samuelson i Ostrom
+  title: Les quatre caselles, amb exemple i problema
+  head:
+    - Tipus
+    - Rival / excloïble
+    - Exemple i problema
+  rows:
+    - - Bé privat
+      - Sí / Sí
+      - "Una poma. El mercat l'assigna bé."
+    - - Bé de club
+      - No / Sí
+      - "Netflix, autopista de peatge. Risc d'infraproducció."
+    - - Bé comú
+      - Sí / No
+      - "Caladero, aqüífer. Tendix a la sobreexplotació."
+    - - Bé públic pur
+      - No / No
+      - "Defensa, far, enllumenat. Apareix el polissó."
+  caption: Elinor Ostrom va convertir esta matriu en la ferramenta central de l'anàlisi institucional dels recursos compartits.
+- tipo: figure
+  src: eco-1bach/06/faro-chipiona.jpg
+  alt: Far de Chipiona, a Cadis, torre de 62 metres sobre la costa atlàntica andalusa reflectida en la plenamar.
+  title: El bé públic de manual
+  caption: La seua llum no es gasta perquè la mire un vaixell més i no es pot apagar per al buc que no va pagar taxes portuàries.
+  credit: "Foto: Diego Delso, CC BY-SA 4.0 via Wikimedia Commons"
+- tipo: concept
+  eyebrow: Free-rider
+  title: Per què la defensa nacional no es ven al mercat
+  body: "Si preguntem a cada ciutadà quant pagaria voluntàriament per la defensa, tots tenen incentiu a respondre zero i esperar que paguen els altres: el servici es prestarà igual i ells el gaudiran gratis. És el problema del polissó, i explica per què quasi tots els Estats financen els béns públics purs amb impostos obligatoris en lloc de fer-ho amb aportacions voluntàries."
+  pull: "Pagar impostos no és una donació: és la solució tècnica al problema del polissó."
+- tipo: concept
+  eyebrow: Hardin (1968) front a Ostrom (1990)
+  title: La tragèdia dels comuns no és inevitable
+  body: Hardin va sostindre que diversos pastors compartint una pastura sense regles l'esgotaran, perquè el benefici de posar-hi una vaca més és íntegre per a un i el cost es repartix entre tots. Concloïa que només hi ha dos eixides, privatitzar o estatalitzar. Ostrom va documentar durant quaranta anys pesqueries, regadius valencians i boscos comunals que s'autogovernen sense cap de les dos.
+  pull: "Regles clares, sancions graduades, vigilància mútua i resolució de conflictes: huit principis de disseny institucional, no un miracle."
+- tipo: figure
+  src: eco-1bach/06/elinor-ostrom.jpg
+  alt: Retrat de la politòloga estatunidenca Elinor Ostrom durant el dinar dels premiats amb el Nobel a Estocolm.
+  title: Elinor Ostrom (1933-2012)
+  caption: Primera dona a rebre el Nobel d'Economia, el 2009, per demostrar que les comunitats poden governar els seus comuns.
+  credit: "Foto: US Embassy Sweden (Flickr), CC BY 2.0 via Wikimedia Commons"
+- tipo: section
+  title: Informació asimètrica
+  subtitle: El venedor del cotxe usat sap que el motor falla. Qui contracta una assegurança de salut sap si fuma. Res d'això és en el preu.
+- tipo: figure
+  src: eco-1bach/06/george-akerlof.jpg
+  alt: Retrat de l'economista estatunidenc George Akerlof a la Universitat de Califòrnia a Berkeley.
+  title: George Akerlof, Nobel 2001
+  caption: "El seu article del 1970 va mostrar que l'asimetria no només distorsiona un mercat: el pot destruir sencer."
+  credit: "Foto: Yan Chi Vinci Chow (Flickr), CC BY 3.0 via Wikimedia Commons"
+- tipo: exercise
+  title: El mercat dels llimons, pas a pas
+  enunciado: "En un mercat de cotxes usats la meitat són bons (valen 10.000 €) i la meitat defectuosos (valen 4.000 €). El venedor sap quin té; el comprador no els pot distingir a simple vista. Calcula quin preu oferirà un comprador racional i raona què li passa al mercat a partir d'eixe punt."
+  pasos:
+    - Calcula el valor esperat d'un cotxe qualsevol si els dos tipus són igual de probables.
+    - Pregunta't què farà l'amo d'un cotxe bo quan li oferisquen eixe preu.
+    - Recalcula la composició del mercat una vegada retirats els cotxes bons.
+    - Repetix el raonament i descriu cap a on convergix el preu.
+    - Proposa un mecanisme que trenque el cercle sense prohibir la venda de cotxes usats.
+- tipo: terms
+  eyebrow: Dos problemes, dos moments
+  title: Abans del contracte i després del contracte
+  terms:
+    - t: Selecció adversa
+      d: Existix abans de firmar i decidix qui accepta el tracte. Si l'asseguradora puja primes perquè no distingix riscos, els sans se'n van i només li queden els malalts.
+    - t: Risc moral
+      d: Apareix després de firmar i canvia el comportament. Amb assegurança a tot risc es conduïx pitjor; el banc massa gran per a caure assumix riscos que sol no assumiria.
+- tipo: list
+  eyebrow: Com es combat
+  title: Els mercats fabriquen remeis, i eixe remei costa
+  items:
+    - "Senyalització (Spence): l'informat emet un senyal costós —títol, garantia, marca— que només compensa si el seu tipus és bo."
+    - "Cribratge: la part desinformada oferix un menú de contractes i deixa que l'altre es retrate en triar franquícia."
+    - "Franquícies i copagaments: l'assegurat paga els primers euros de cada sinistre i conserva l'incentiu a evitar-lo."
+    - "Supervisió i reputació: capital mínim bancari, auditories i relacions llargues que castiguen portar-se malament."
+    - "Que estos mecanismes consumisquen recursos és la prova de la fallada: amb informació perfecta no farien cap falta."
+- tipo: section
+  title: Poder de mercat i fallades de govern
+  subtitle: "La quarta fallada, i l'advertiment final: identificar una fallada de mercat no basta per a justificar automàticament la intervenció."
+- tipo: split
+  title: Poder de mercat
+  left:
+    h: Per què sorgix
+    items:
+      - "Barreres legals: patents, llicències administratives, concessions"
+      - "Monopoli natural: economies d'escala en xarxa elèctrica o ferrocarril"
+      - Efectes de xarxa i control d'un recurs essencial
+  right:
+    h: Com es controla
+    items:
+      - Regulació tarifària i d'accés en monopolis naturals
+      - "Control de fusions i persecució de càrtels: fins al 10 % de la facturació"
+      - "Digital Markets Act: obligacions per a les plataformes gatekeeper"
+- tipo: list
+  eyebrow: Public choice
+  title: El remei també pot fallar
+  items:
+    - "Informació limitada: fixar l'impost pigouvià exigix conéixer un dany marginal que només s'estima amb incertesa."
+    - "Captura del regulador: qui és regulat té incentiu i recursos per a influir sobre qui el regula."
+    - "Busca de rendes: es dediquen recursos a aconseguir llicències i proteccions en lloc de a produir valor."
+    - "Curtterminisme: decisions a quatre anys per a problemes amb horitzó de quaranta."
+    - "Cost administratiu: complir una norma complexa pesa proporcionalment més sobre la pime que sobre la gran empresa."
+- tipo: list
+  eyebrow: El criteri pràctic
+  title: Tres condicions simultànies per a intervindre
+  ordered: true
+  items:
+    - Hi ha una fallada identificada i quantificada. Que una cosa no ens agrade no la fa ineficient.
+    - Hi ha un instrument factible amb la capacitat administrativa real del país i amb cost menor que el dany de la fallada.
+    - El risc de fallada de govern és raonablement menor que la fallada de mercat que es pretén corregir.
+- tipo: recap
+  eyebrow: "Repassa"
+  title: "Abans de tancar la unitat"
+  items:
+    - "Sabries definir fallada de mercat i enumerar els quatre tipus principals."
+    - "Sabries posar exemples d'externalitats i proposar impostos, subvencions o drets."
+    - "Sabries separar béns públics, privats, comuns i de club per rivalitat i exclusió."
+    - "Sabries explicar selecció adversa i risc moral en assegurances, banca i mercat laboral."
+    - "Sabries argumentar quan intervé l'Estat i quan el remei és pitjor que la malaltia."
+```

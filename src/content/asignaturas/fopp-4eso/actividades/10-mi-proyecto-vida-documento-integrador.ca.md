@@ -7,7 +7,7 @@ tipo: proyecto
 duracion: "4 sessions · 2 setmanes (redacció + revisió creuada + presentacions + feedback)"
 agrupacion: "individual"
 materiales:
-  - "Carpeta personal de l'alumne amb el material acumulat durant el curs (DAFO personal Unit 1, mapa de gestió emocional Unit 2, mapa d'entorn Unit 3, arbre de decisions Unit 4, dossier d'itineraris Unit 5, mapa d'FP Unit 6, drets laborals Units 7-8, CV-esborrany Unit 9)"
+  - "Carpeta personal de l'alumne amb el material acumulat durant el curs (DAFO personal Unitat 1, mapa de gestió emocional Unitat 2, mapa d'entorn Unitat 3, arbre de decisions Unitat 4, dossier d'itineraris Unitat 5, mapa d'FP Unitat 6, drets laborals Unitats 7-8, CV-esborrany Unitat 9)"
   - "Plantilla del document integrador en format A4 (inclosa davall) en PDF imprimible i en document editable compartit"
   - "Accés a internet a l'aula per a verificar dades d'ocupabilitat i oferta formativa actualitzada"
   - "Rúbrica d'avaluació impresa per al professor i per a la coavaluació entre alumnes"
@@ -42,7 +42,7 @@ El producte final és un **document integrador de 4 a 6 pàgines** —no més, n
 
 ### Sessió 1 — Escriptura del document (60 min)
 
-1. **Recuperació del material acumulat (10 min).** Cada alumne trau la seua carpeta personal del curs. Ha de tindre, com a mínim: DAFO personal (Unit 1), mapa emocional (Unit 2), mapa d'entorn (Unit 3), arbre de decisions (Unit 4), dossier d'itineraris (Unit 5), notes sobre FP i beques (Unit 6), resum de drets laborals (Units 7-8) i el CV-esborrany (Unit 9). Si falta alguna peça, este és el moment de demanar-la al professor o de reconstruir-la ràpidament. **Sense material, no hi ha projecte**: hi ha opinions.
+1. **Recuperació del material acumulat (10 min).** Cada alumne trau la seua carpeta personal del curs. Ha de tindre, com a mínim: DAFO personal (Unitat 1), mapa emocional (Unitat 2), mapa d'entorn (Unitat 3), arbre de decisions (Unitat 4), dossier d'itineraris (Unitat 5), notes sobre FP i beques (Unitat 6), resum de drets laborals (Unitats 7-8) i el CV-esborrany (Unitat 9). Si falta alguna peça, este és el moment de demanar-la al professor o de reconstruir-la ràpidament. **Sense material, no hi ha projecte**: hi ha opinions.
 2. **Redacció individual silenciosa (45 min).** Amb la plantilla oberta, redactar les **seccions 1 a 6** del document (DAFO + ikigai + objectius SMART a tres horitzons + pla d'acció a 12 mesos + xarxa de suport + sistema de revisió). El professor circula responent dubtes puntuals però no corregix contingut en esta fase.
 3. **Marcador de revisió casa (5 min).** Cada alumne es compromet a acabar la redacció a casa durant els dies següents i portar el document imprés o en pantalla per a la sessió 2.
 
@@ -90,8 +90,8 @@ SECCIÓ 1 — QUI SOC HUI: DAFO PERSONAL
   Taula 2x2 amb:
   · Debilitats (3-5 punts honestos)
   · Amenaces (3-5 factors externs)
-  · Fortaleses (3-5 punts basats en Unit 1)
-  · Oportunitats (3-5 externes, basades en Unit 3)
+  · Fortaleses (3-5 punts basats en Unitat 1)
+  · Oportunitats (3-5 externes, basades en Unitat 3)
 
 SECCIÓ 2 — IKIGAI APLICAT
   (½ pàgina)
@@ -162,7 +162,7 @@ SECCIÓ 6 — SISTEMA DE REVISIÓ
 
 | Criteri | Descripció | Pes |
 | --- | --- | --- |
-| Integració del material del curs | El document cita i aprofita visiblement el DAFO (Unit 1), el mapa d'entorn (Unit 3), l'arbre de decisions (Unit 4), el dossier d'itineraris (Unit 5) i el CV (Unit 9). No sembla escrit des de zero. | 15 % |
+| Integració del material del curs | El document cita i aprofita visiblement el DAFO (Unitat 1), el mapa d'entorn (Unitat 3), l'arbre de decisions (Unitat 4), el dossier d'itineraris (Unitat 5) i el CV (Unitat 9). No sembla escrit des de zero. | 15 % |
 | Qualitat dels objectius SMART | Els 5-7 objectius del curt termini passen el filtre SMART complet. Específics, mesurables, assolibles, rellevants i amb termini concret. | 25 % |
 | Coherència entre dimensions i horitzons | Els objectius de les tres dimensions (personal, formativa, professional) es sostenen els uns als altres. Els escenaris de mitjà termini encaixen amb el curt. El llarg termini no contradiu els anteriors. | 15 % |
 | Realisme de la xarxa de suport | 3-5 persones concretes amb funció assignada i pròxim contacte previst. No és una llista decorativa. | 10 % |

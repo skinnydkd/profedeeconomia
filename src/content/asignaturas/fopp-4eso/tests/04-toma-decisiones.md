@@ -89,6 +89,12 @@ preguntas:
     derecha: ["Qué importa de verdad para elegir", "Qué tengo que decidir exactamente y con qué límites", "Paso a la acción y me responsabilizo", "Qué opciones distintas tengo, al menos tres"]
     correctas: [1, 3, 0, 2]
     explicacion: "Primero defines bien la pregunta y sus restricciones, luego generas al menos tres alternativas, después fijas los criterios y, por último, decides y te comprometes."
+  - tipo: numerico
+    enunciado: "En tu matriz de decisión pones tres criterios con pesos 5, 3 y 2, y una opción saca 4, 4 y 5 sobre 5. ¿Cuál es su puntuación total (2 decimales)?"
+    respuesta: 4.2
+    tolerancia: 0.05
+    unidad: "puntos"
+    explicacion: "Los pesos se normalizan: 5/10 = 0,5, 3/10 = 0,3 y 2/10 = 0,2. La puntuación es 4(0,5) + 4(0,3) + 5(0,2) = 2 + 1,2 + 1 = 4,20 sobre 5. Normalizar es lo que permite poner los pesos que quieras sin tener que hacer que sumen 10."
 ---
 
 Test de autoevaluación de la Unidad 4 del libro de FOPP 4ESO.

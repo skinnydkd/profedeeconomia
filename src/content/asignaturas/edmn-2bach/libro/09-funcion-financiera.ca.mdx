@@ -47,14 +47,16 @@ import VuelveAlCaso from '@components/VuelveAlCaso.astro';
 import PistaEbau from '@components/PistaEbau.astro';
 import RetoEtapa from '@components/RetoEtapa.astro';
 import MirarFora from '@components/MirarFora.astro';
+import VocesDesacuerdo from '@components/VocesDesacuerdo.astro';
 import HerramientaIsland from '@components/calculadoras/HerramientaIsland.astro';
 
 import bolsaMadridSala from '@assets/libro/edmn-2bach/09/bolsa-madrid-sala-principal.jpg';
 import nyseTradingFloor from '@assets/libro/edmn-2bach/09/nyse-trading-floor.jpg';
 import frankfurtStockExchange from '@assets/libro/edmn-2bach/09/frankfurt-stock-exchange.jpg';
 import bancoSanCarlos1782 from '@assets/libro/edmn-2bach/09/banco-san-carlos-1782.jpg';
+import RecursoDestacado from '@components/libro/RecursoDestacado.astro';
 
-> **Temps estimat de lectura**: ~25 min · **Sabers LOMLOE**: B.5 · **Prerequisits**: Unit 7 (funció productiva)
+> **Temps estimat de lectura**: ~25 min · **Sabers LOMLOE**: B.5 · **Prerequisits**: Unitat 7 (funció productiva)
 >
 > **En acabar esta unitat sabràs**:
 > - Distingir l'estructura econòmica (actiu) de l'estructura financera (passiu + patrimoni net) en qualsevol balanç.
@@ -300,6 +302,8 @@ Els tres criteris responen preguntes distintes: el **PayBack** mesura risc (quan
 
 <HerramientaIsland componente="VANTIR" />
 
+<RecursoDestacado href="/edmn-2bach/recursos/calculadora-van-tir/" kicker="Ferramenta" title="Calculadora de VAN, TIR i PayBack" descripcion="Inversió inicial, taxa de descompte i fluxos anuals fins a deu anys: els tres criteris estàndard calculats alhora, que és com es comparen." colorVar="--color-edmn" />
+
 ## Recursos financers: les quatre categories
 
 <Figure
@@ -391,6 +395,22 @@ Una *startup* madrilenya passa per una seqüència habitual: comença amb **esta
 <li><strong>Eixida — adquisició, IPO o continuïtat.</strong> O un comprador estratègic adquirix l'empresa, o ix a borsa, o continua sent privada i repartix dividends als seus socis.</li>
 
 </Steps>
+
+<RecursoDestacado href="/edmn-2bach/recursos/calculadora-dcf/" kicker="Ferramenta" title="Calculadora de descompte de fluxos (DCF)" descripcion="Projecta els fluxos de caixa lliures d'un negoci, descompta'ls a una taxa i obtín el valor d'empresa, valor residual inclòs." colorVar="--color-edmn" />
+
+<VocesDesacuerdo
+  tema="Deute o ampliació de capital?"
+  postura_a={{
+    etiqueta: 'Deute',
+    tesis: "Els interessos són un cost conegut i deduïble, i el control de l'empresa no canvia. Si el projecte rendix més del que costa el deute, endeutar-se multiplica la rendibilitat dels socis.",
+  }}
+  postura_b={{
+    etiqueta: 'Capital',
+    tesis: 'El capital no exigix quota: si un any va malament, no es paga dividend i no passa res. Amb deute, eixe mateix any la quota venç igual, i ahí és on moren les empreses rendibles.',
+  }}
+>
+La palanca funciona en els dos sentits, i eixa simetria és el que s'oblida: **si la rendibilitat econòmica supera el cost del deute, endeutar-se millora la rendibilitat financera; si queda per davall, l'empitjora exactament igual de ràpid**. Per això la pregunta no es resol en abstracte sinó amb dos números teus: quant rendix el projecte i quant costen els diners. I amb un tercer que no apareix en cap fórmula: **quanta variabilitat aguanta la teua caixa l'any que les vendes cauen un 20 %**.
+</VocesDesacuerdo>
 
 ## L'estructura òptima de capital
 
@@ -518,3 +538,229 @@ Cada equip tanca esta unitat amb tres entregables: una **estimació de la invers
     Variant en grups de 3 (45 min): cada grup rep **un projecte distint** (cafeteria, app, taller artesà, food truck). Mateixes dades bàsiques (inversió, fluxos, k). Cada grup calcula VAN/TIR/PayBack i presenta una **recomanació amb frase d'interpretació** a la resta. El professor arreplega en pissarra les **tres decisions** i debaten quina té més risc encara que tinga VAN semblant. La conversa porta a la idea que el VAN sense context no decidix res. Materials: calculadora, plantilla de fluxos.
   </Fragment>
 </MirarFora>
+
+```deck
+- tipo: curriculum
+  eyebrow: "A què respon esta unitat"
+  title: "El marc de la unitat"
+  saberes:
+    - "Bloc B: funció financera i inversió."
+    - "Bloc B: fonts de finançament i selecció d'inversions."
+  competencias:
+    - "Gestionar les àrees funcionals de l'empresa: la funció financera."
+- tipo: caso
+  eyebrow: "El cas"
+  title: "Comandes per 12.000 M€ i fallida per 750 M€"
+  contexto: "Abengoa va ser durant dos dècades líder mundial en plantes termosolars. Les comandes eren reals, però cobrar-les portava anys i l'expansió s'havia finançat amb deute curt. Beneficis en el balanç, caixa buida."
+  datos:
+    - "Present en 50 països, amb comandes per 12.000 M€."
+    - "El 2015 va intentar refinançar 750 M€ en bons."
+    - "Els creditors la van trobar sense flux de caixa suficient."
+  pregunta: "Com acaba en concurs una empresa rendible amb un llibre de comandes enorme?"
+- tipo: section
+  title: Estructura econòmica i estructura financera
+  subtitle: "Tota empresa es mira des de dos costats: en què està invertit el diner i d'on ve."
+- tipo: split
+  title: Les dos cares del balanç
+  left:
+    h: Estructura econòmica (actiu)
+    items:
+      - En què està invertit el diner de l'empresa
+      - Edificis, maquinària, vehicles, mobiliari
+      - Matèries primeres, diners en caixa, deutes de clients
+  right:
+    h: Estructura financera (passiu + PN)
+    items:
+      - D'on ve el diner i amb quines condicions es torna
+      - Aportacions dels socis i beneficis reinvertits
+      - Préstecs bancaris i crèdit de proveïdors
+- tipo: concept
+  title: La regla de l'equilibri financer
+  body: "Les inversions a llarg termini —un edifici, una màquina de deu anys— es financen amb recursos a llarg termini; les de curt termini —estoc, nòmines—, amb recursos a curt. D'ahí ix el fons de maniobra: actiu corrent menys passiu corrent. Positiu, hi ha coixí; negatiu, es paga inversió duradora amb deute immediat i qualsevol retard en els cobraments apreta."
+  pull: Llarg amb llarg i curt amb curt. Saltar-se-la és la recepta clàssica de l'asfíxia financera.
+- tipo: section
+  title: "La inversió: VAN, TIR i PayBack"
+  subtitle: Tres criteris estàndard per a decidir si un projecte mereix els diners que demana.
+- tipo: terms
+  title: Tres criteris, tres preguntes distintes
+  terms:
+    - t: PayBack (termini de recuperació)
+      d: "Anys que tarda la inversió a tornar el diner invertit. Mesura risc temporal: 10.000 € amb fluxos de 4.000 €/any es recuperen en 2,5 anys."
+    - t: VAN (valor actual net)
+      d: Suma dels fluxos futurs actualitzats a una taxa de descompte, menys la inversió inicial. Mesura creació de valor en euros de hui.
+    - t: TIR (taxa interna de rendibilitat)
+      d: Taxa de descompte que fa el VAN igual a zero. Mesura rendibilitat anual en percentatge, comparable amb un depòsit o un fons.
+- tipo: diagram
+  diagrama: VANTimeline
+  caption: "Cada flux futur es dividix per (1+k) elevat a l'any que li toca; la suma actualitzada menys la inversió inicial és el VAN."
+- tipo: formula
+  eyebrow: "Selecció d'inversions"
+  title: "El VAN traduïx el futur a euros de hui"
+  formula: "VAN = −A + Σ FCt / (1 + k)^t"
+  terminos:
+    - s: "A"
+      d: "Desemborsament inicial de la inversió."
+    - s: "FCt"
+      d: "Flux de caixa net de l'any t."
+    - s: "k"
+      d: "Taxa de descompte: la rendibilitat exigida al projecte."
+    - s: "t"
+      d: "Any en què es cobra o es paga cada flux."
+  ejemplo: "VAN > 0, el projecte genera més valor de l'exigit i s'accepta; VAN = 0, indiferent; VAN < 0, destruïx valor i es rebutja. Mil euros de hui no valen mil d'ací a cinc anys."
+- tipo: list
+  title: Com es tria la taxa de descompte (k)
+  items:
+    - "El cost del deute: si el banc prestara al 6 %, exigir menys al projecte propi és tirar diners."
+    - "El cost d'oportunitat: el que rendiria eixe mateix capital en borsa, en deute públic o en una altra alternativa raonable."
+    - "El risc del projecte: un negoci provat admet un 6-8 %; una startup tecnològica difícilment s'avalua per davall del 20 %."
+    - "En projectes de classe, una taxa del 8-10 %: conservadora sense arribar a descartar-ho tot d'entrada."
+- tipo: concept
+  title: "La TIR: la rendibilitat en percentatge"
+  body: "La TIR és la taxa de descompte que deixaria el VAN exactament en zero. Si supera la rendibilitat mínima exigida —la k del VAN—, el projecte s'accepta; si queda per davall, es rebutja. El seu avantatge és el format: un percentatge anual que es compara d'un colp d'ull amb un depòsit al 3 %, el deute públic al 3,5 % o un fons indexat al 7 %."
+  pull: "La TIR a soles no diu res: rendible és TIR > k."
+- tipo: exercise
+  title: Exercici 9.1 · VAN i PayBack d'una furgoneta de repartiment
+  enunciado: "Una empresa de repartiment a domicili valora una furgoneta de segona mà: 18.000 € d'inversió inicial, flux net de 6.500 €/any durant quatre anys i valor residual de 3.000 € al final del quart. La taxa de descompte exigida és del 8 %. Calcula el PayBack i el VAN, i decidix si convé invertir."
+  pasos:
+    - "PayBack: acumulats 6.500, 13.000 i 19.500 €. Durant l'any 3 calen 5.000 dels 6.500, és a dir 0,77 de l'any. PayBack ≈ 2,77 anys."
+    - "El flux de l'any 4 inclou el valor residual: 6.500 + 3.000 = 9.500 €."
+    - "Descompte al 8 %: 6.018,52 + 5.572,71 + 5.159,92 + 6.982,06 = 23.733,21 € actualitzats."
+    - VAN = 23.733,21 − 18.000 = +5.733,21 €.
+    - "Decisió: VAN positiu i PayBack per davall de la vida del projecte, s'accepta. La TIR rondaria el 19-20 %."
+- tipo: exercise
+  title: Exercici 9.3 · La TIR per interpolació lineal
+  enunciado: Un autònom de l'audiovisual estudia comprar un equip d'il·luminació per 10.000 € que li donarà fluxos de 3.500 €/any durant quatre anys, sense valor residual. Calcula el VAN al 10 % i al 20 %, estima la TIR per interpolació lineal i decidix si accepta el projecte amb una taxa mínima exigida del 12 %.
+  pasos:
+    - "VAN al 10 %: els quatre fluxos actualitzats sumen 11.094,53 €, així que el VAN és +1.094,53 €."
+    - "VAN al 20 %: sumen 9.060,58 €, així que el VAN és −939,42 €. Entre les dos taxes canvia de signe."
+    - "Interpolació: TIR ≈ 10 % + 10 % × 1.094,53 / (1.094,53 + 939,42) = 10 % + 5,38 % ≈ 15,4 %."
+    - "El càlcul exacte dona 14,96 %: la interpolació sobreestima una mica perquè la corba del VAN és convexa, no recta."
+    - "Decisió: 15 % supera el 12 % exigit, s'accepta. Rendix uns tres punts per damunt del cost d'oportunitat."
+- tipo: quiz
+  eyebrow: Exercici 9.2
+  pregunta: "Equip de 12.000 €. Banc: 285 €/mes durant 48 mesos. Proveïdor «0 % interés»: 250 €/mes durant 48 mesos, més 8 % d'obertura i 35 €/mes d'assegurança obligatòria. Quina ix més barata?"
+  opciones:
+    - "La del banc: 13.680 € enfront de 14.640 €"
+    - "La del proveïdor: no cobra interessos"
+    - "Costen el mateix: el preu de l'equip és idèntic"
+    - No es pot saber sense conéixer el termini d'amortització
+  correcta: "0"
+  explicacion: "Banc: 285 × 48 = 13.680 €. Proveïdor: 12.000 de quotes + 960 d'obertura + 1.680 d'assegurança = 14.640 €. El «0 % interés» ix 960 € més car; per això la llei obliga a publicitar la TAE."
+- tipo: figure
+  src: edmn-2bach/09/banco-san-carlos-1782.jpg
+  alt: Acció fundacional del Banco Nacional de San Carlos de 1782, primer banc emissor d'Espanya.
+  title: Una solució amb dos segles d'antiguitat
+  caption: Captar capital de molts socis mitjançant títols negociables ja responia el 1782 a la pregunta financera de sempre.
+  credit: "Imatge: EDHAC e.V., domini públic via Wikimedia Commons"
+- tipo: section
+  title: "Recursos financers: les quatre categories"
+  subtitle: "Dos eixos que s'encreuen: interna o externa, pròpia o aliena."
+- tipo: figure
+  src: edmn-2bach/09/bolsa-madrid-sala-principal.jpg
+  alt: Sala principal de contractació del Palau de la Borsa de Madrid, amb la pantalla central de cotitzacions davall de la volta decorada.
+  title: Quan el diner es capta de molts alhora
+  caption: Superada una certa dimensió, les borses i els mercats secundaris passen a ser una via habitual per a captar capital de molts inversors.
+  credit: "Foto: JnCrlsMG, CC BY-SA 4.0 via Wikimedia Commons"
+- tipo: table
+  title: Les quatre categories de finançament
+  head:
+    - ""
+    - Pròpia
+    - Aliena
+  rows:
+    - - Interna
+      - Beneficis reinvertits (autofinançament)
+      - No es dona habitualment
+    - - Externa
+      - Aportacions dels socis i ampliacions de capital
+      - Préstecs, bons i crèdit de proveïdors
+  caption: La pròpia no es torna, però dilueix el control; l'aliena el preserva i exigix interessos vaja bé o malament el negoci.
+- tipo: concept
+  eyebrow: En l'EBAU
+  title: Autofinançament no és el mateix que finançament propi
+  body: "L'autofinançament són els beneficis que l'empresa retén com a reserves i les amortitzacions que carreguen al resultat sense eixir de caixa: és finançament intern. El finançament propi inclou això i, a més, les aportacions dels socis, que vénen de fora. Confondre'ls costa entre 0,5 i 1 punt en les qüestions de teoria."
+  pull: Tot l'autofinançament és finançament propi, però no al revés.
+- tipo: section
+  title: Modalitats modernes de finançament
+  subtitle: Més enllà del préstec bancari i de l'ampliació de capital tradicional.
+- tipo: terms
+  title: "Crowdfunding: quatre variants per a les fases primerenques"
+  terms:
+    - t: De recompensa
+      d: "Kickstarter o Verkami: els aportants reben el producte quan es fabrique, així que la campanya valida la demanda abans de produir-lo."
+    - t: De donació
+      d: "GoFundMe: aportació sense contrapartida material; qui aporta no rep ni producte ni participació."
+    - t: De préstec (crowdlending)
+      d: "Els aportants presten diners esperant recuperar-los amb interessos: és finançament alié, no entren en el capital."
+    - t: D'inversió (equity)
+      d: "Els aportants reben participacions de l'empresa i entren com a socis: finançament propi captat fora."
+- tipo: terms
+  title: Inversors privats i diner públic
+  terms:
+    - t: Business angels
+      d: Inversors particulars amb capital i experiència que entren en fase llavor a canvi d'un percentatge. Solen posar entre 25.000 i 250.000 €, amb contactes i mentoria.
+    - t: Capital risc (venture capital)
+      d: Societats que invertixen de centenars de milers a diversos milions en empreses amb alt potencial. Entren després del business angel i demanen pes en la governança.
+    - t: Finançament públic
+      d: ENISA, CDTI, línies ICO, Kit Digital i ajudes autonòmiques. Solen tindre millors condicions que la banca privada, amb processos llargs i exigents.
+- tipo: figure
+  src: edmn-2bach/09/frankfurt-stock-exchange.jpg
+  alt: Parqué de la Borsa de Frankfurt, operada per Deutsche Börse, amb panells lluminosos de cotitzacions del DAX.
+  title: D'on ix el finançament aliè gran
+  caption: Frankfurt, París, Amsterdam i Madrid canalitzen bona part del deute i el capital de les grans empreses de la UE.
+  credit: "Foto: Ank Kumar, CC BY-SA 4.0 via Wikimedia Commons"
+- tipo: data
+  numero: 42 M€
+  label: finançats en més de 12.000 projectes
+  title: Verkami va créixer sense cap ronda de capital risc
+  detalle: La plataforma s'autofinança amb la comissió del 5 % que cobra de cada projecte que assolix el seu objectiu. Catorze anys després, els seus fundadors continuen tenint el 100 % de l'empresa.
+- tipo: diagram
+  diagrama: CascadaFinanciacion
+  caption: Cada salt exigix haver executat bé l'anterior; saltar-se passos quasi sempre acaba en rebutjos seguits.
+- tipo: list
+  title: La cascada de finançament, fase a fase
+  ordered: true
+  items:
+    - "Pre-llavor: estalvis, família i amics, microcrèdits. De 5 a 30 K€ per a validar el concepte."
+    - "Llavor: business angels o acceleradores. De 50 a 300 K€ amb producte mínim viable i primers usuaris."
+    - "Sèrie A: capital risc regional o nacional. D'1 a 5 M€ amb ingressos recurrents i pla de creixement."
+    - "Sèrie B/C: capital risc internacional. De 5 a 50 M€ per a accelerar un creixement ja provat."
+    - "Eixida: adquisició, eixida a borsa o continuïtat privada repartint dividends."
+- tipo: section
+  title: L'estructura òptima de capital
+  subtitle: "Quant de deute i quant de capital propi convé tindre?"
+- tipo: figure
+  src: edmn-2bach/09/nyse-trading-floor.jpg
+  alt: Sala d'operacions de la Borsa de Nova York, amb pantalles de cotitzacions i la barana circular del parqué.
+  title: Optimitzar el cost mitjà del capital
+  caption: Les empreses de major dimensió barregen capital propi amb emissions de deute i accions en mercats internacionals.
+  credit: "Foto: Eduard Hueber, CC BY-SA 3.0 via Wikimedia Commons"
+- tipo: concept
+  title: Ni només capital propi ni tot el deute possible
+  body: Sense deute no hi ha interessos ni risc d'impagament, però el capital propi costa més i l'empresa renuncia al palanquejament. Amb molt de deute s'aprofiten el seu menor cost i l'efecte fiscal —els interessos són deduïbles—, a canvi de més risc si cauen els ingressos. L'estructura òptima és la mescla que minimitza el cost mitjà ponderat del capital, el WACC, sense comprometre la solvència.
+  pull: "Regla pràctica per a pimes: el deute no hauria de passar del 60-65 % del balanç."
+- tipo: quiz
+  eyebrow: EBAU
+  pregunta: Un alumne suma els fluxos de caixa del projecte sense dividir-los per (1+k) elevat a l'any corresponent i conclou que el VAN és positiu. On està la falla?
+  opciones:
+    - Sense descomptar cada flux no està calculant un VAN
+    - "Res: amb fluxos constants es poden sumar directament"
+    - Hauria d'haver restat la TIR a la taxa de descompte
+    - Només és un error si la taxa de descompte supera el 10 %
+  correcta: "0"
+  explicacion: "Sense dividir cada flux per (1+k) elevat al seu any no es comparen euros de hui. I la resposta es tanca sempre amb la frase d'interpretació: rendible perquè VAN > 0 i TIR > k."
+- tipo: concept
+  eyebrow: Torna al cas
+  title: Rendible no és el mateix que líquid
+  body: "Abengoa donava beneficis comptables, però no tenia efectiu quan van véncer els bons: un actiu llarg, amb cobraments a anys vista, finançat amb deute que vencia prompte. És la regla de l'equilibri incomplida, i és la causa més freqüent de fallida empresarial. Abans de tancar un pla d'inversió, comprova que el que tarda a convertir-se en caixa està finançat a llarg termini."
+  pull: Les empreses no fan fallida quan perden diners, sinó quan es queden sense liquiditat.
+- tipo: recap
+  eyebrow: "Repassa"
+  title: "Abans de tancar la unitat"
+  items:
+    - "Sabries separar l'estructura econòmica (actiu) de la financera (passiu i patrimoni net)."
+    - "Sabries calcular el VAN i el termini de recuperació d'una inversió simple."
+    - "Sabries interpretar la TIR com a criteri d'acceptació d'un projecte."
+    - "Sabries classificar les fonts de finançament en internes i externes, pròpies i alienes."
+    - "Sabries explicar crowdfunding, business angels i capital risc."
+```

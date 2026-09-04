@@ -9,31 +9,89 @@
  *
  * Used in FOPP 4ESO · psychosocial risks at work.
  */
+import { getLocale } from '@/i18n/locale';
+const locale = getLocale(Astro.currentLocale);
+
+const COPY = {
+  es: {
+    elModeloDemandaControl: 'El modelo demanda-control de Karasek',
+    elEstresLaboralNo: 'El estrés laboral no depende solo de cuánto trabajas, sino de cuánto control tienes. La peor combinación es alta exigencia con bajo control (trabajo de alta tensión); el apoyo social amortigua la tensión.',
+    zonaDePeligro: 'Zona de peligro',
+    trabajoDeAltaTension: 'Trabajo de alta tensión',
+    muchaExigenciaPocoMargen: 'Mucha exigencia, poco margen:',
+    masEstresYRiesgo: 'más estrés y riesgo de enfermar.',
+    trabajoActivo: 'Trabajo activo',
+    exigentePeroSaludable: 'Exigente pero saludable:',
+    seAprendeYMotiva: 'se aprende y motiva.',
+    trabajoPasivo: 'Trabajo pasivo',
+    pocaExigenciaPocaAutonomia: 'Poca exigencia, poca autonomía:',
+    desmotiva: 'desmotiva.',
+    trabajoDeBajaTension: 'Trabajo de baja tensión',
+    relajadoPocaPresion: 'Relajado: poca presión',
+    yAutonomiaSuficiente: 'y autonomía suficiente.',
+    exigenciasDelTrabajo: 'Exigencias del trabajo',
+    altas: 'Altas',
+    bajas: 'Bajas',
+    controlAutonomia: 'Control / autonomía',
+    bajo: 'Bajo',
+    alto: 'Alto',
+    elApoyoSocial: 'El apoyo social',
+    deJefesYCompaneros: 'de jefes y compañeros',
+    amortiguaLaTensionEn: 'amortigua la tensión en todos los casos.',
+  },
+  ca: {
+    elModeloDemandaControl: 'El model demanda-control de Karasek',
+    elEstresLaboralNo: "L'estrés laboral no depén només de quant treballes, sinó de quant control tens. La pitjor combinació és alta exigència amb baix control (treball d'alta tensió); el suport social amortix la tensió.",
+    zonaDePeligro: 'Zona de perill',
+    trabajoDeAltaTension: "Treball d'alta tensió",
+    muchaExigenciaPocoMargen: 'Molta exigència, poc marge:',
+    masEstresYRiesgo: 'més estrés i risc de posar-se malalt.',
+    trabajoActivo: 'Treball actiu',
+    exigentePeroSaludable: 'Exigent però saludable:',
+    seAprendeYMotiva: "s'hi aprén i motiva.",
+    trabajoPasivo: 'Treball passiu',
+    pocaExigenciaPocaAutonomia: 'Poca exigència, poca autonomia:',
+    desmotiva: 'desmotiva.',
+    trabajoDeBajaTension: 'Treball de baixa tensió',
+    relajadoPocaPresion: 'Relaxat: poca pressió',
+    yAutonomiaSuficiente: 'i autonomia suficient.',
+    exigenciasDelTrabajo: 'Exigències del treball',
+    altas: 'Altes',
+    bajas: 'Baixes',
+    controlAutonomia: 'Control / autonomia',
+    bajo: 'Baix',
+    alto: 'Alt',
+    elApoyoSocial: 'El suport social',
+    deJefesYCompaneros: 'de caps i companys',
+    amortiguaLaTensionEn: 'amortix la tensió en tots els casos.',
+  },
+} as const;
+const t = COPY[locale];
 ---
-<svg viewBox="0 0 740 580" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="km-title km-desc">
-  <title id="km-title">El modelo demanda-control de Karasek</title>
-  <desc id="km-desc">El estrés laboral no depende solo de cuánto trabajas, sino de cuánto control tienes. La peor combinación es alta exigencia con bajo control (trabajo de alta tensión); el apoyo social amortigua la tensión.</desc>
+<svg class="d-modelo-karasek" viewBox="0 0 740 580" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="km-title km-desc">
+  <title id="km-title">{t.elModeloDemandaControl}</title>
+  <desc id="km-desc">{t.elEstresLaboralNo}</desc>
   <defs>
     <style>
-      .bg { fill: #FBF6EC; }
-      .cell { stroke: #E5D4BD; stroke-width: 1.5; }
-      .cell-strain { fill: #FBE3D6; fill-opacity: 0.85; }
-      .cell-active { fill: #DBEDED; fill-opacity: 0.7; }
-      .cell-passive { fill: #F5E5BC; fill-opacity: 0.55; }
-      .cell-low { fill: #DBEDED; fill-opacity: 0.35; }
-      .danger-frame { fill: none; stroke: #9C3A1C; stroke-width: 2.5; stroke-dasharray: 7 5; }
-      .axis-line { stroke: #2A1F18; stroke-width: 1.8; }
-      .axis-title { font-family: 'Switzer', sans-serif; font-size: 12.5px; font-weight: 700; letter-spacing: 1.6px; text-transform: uppercase; fill: #5C4A3D; text-anchor: middle; }
-      .axis-end { font-family: 'Switzer', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; fill: #8A7868; }
-      .cell-title { font-family: 'Fraunces', serif; font-size: 19px; font-weight: 500; fill: #2A1F18; text-anchor: middle; }
-      .cell-title-strain { fill: #9C3A1C; }
-      .cell-title-active { fill: #1F6E6E; }
-      .cell-title-passive { fill: #A87A2A; }
-      .cell-note { font-family: 'Switzer', sans-serif; font-size: 13px; font-weight: 500; fill: #5C4A3D; text-anchor: middle; }
-      .danger-tag { font-family: 'Switzer', sans-serif; font-size: 10.5px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; fill: #9C3A1C; text-anchor: middle; }
-      .support-bar { fill: #1F6E6E; }
-      .support-text { font-family: 'Switzer', sans-serif; font-size: 13px; font-weight: 500; fill: #FBF6EC; text-anchor: middle; }
-      .support-strong { font-weight: 700; }
+      .d-modelo-karasek .bg { fill: #FBF6EC; }
+      .d-modelo-karasek .cell { stroke: #E5D4BD; stroke-width: 1.5; }
+      .d-modelo-karasek .cell-strain { fill: #FBE3D6; fill-opacity: 0.85; }
+      .d-modelo-karasek .cell-active { fill: #DBEDED; fill-opacity: 0.7; }
+      .d-modelo-karasek .cell-passive { fill: #F5E5BC; fill-opacity: 0.55; }
+      .d-modelo-karasek .cell-low { fill: #DBEDED; fill-opacity: 0.35; }
+      .d-modelo-karasek .danger-frame { fill: none; stroke: #9C3A1C; stroke-width: 2.5; stroke-dasharray: 7 5; }
+      .d-modelo-karasek .axis-line { stroke: #2A1F18; stroke-width: 1.8; }
+      .d-modelo-karasek .axis-title { font-family: 'Switzer', sans-serif; font-size: 12.5px; font-weight: 700; letter-spacing: 1.6px; text-transform: uppercase; fill: #5C4A3D; text-anchor: middle; }
+      .d-modelo-karasek .axis-end { font-family: 'Switzer', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; fill: #8A7868; }
+      .d-modelo-karasek .cell-title { font-family: 'Fraunces', serif; font-size: 19px; font-weight: 500; fill: #2A1F18; text-anchor: middle; }
+      .d-modelo-karasek .cell-title-strain { fill: #9C3A1C; }
+      .d-modelo-karasek .cell-title-active { fill: #1F6E6E; }
+      .d-modelo-karasek .cell-title-passive { fill: #A87A2A; }
+      .d-modelo-karasek .cell-note { font-family: 'Switzer', sans-serif; font-size: 13px; font-weight: 500; fill: #5C4A3D; text-anchor: middle; }
+      .d-modelo-karasek .danger-tag { font-family: 'Switzer', sans-serif; font-size: 10.5px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; fill: #9C3A1C; text-anchor: middle; }
+      .d-modelo-karasek .support-bar { fill: #1F6E6E; }
+      .d-modelo-karasek .support-text { font-family: 'Switzer', sans-serif; font-size: 13px; font-weight: 500; fill: #FBF6EC; text-anchor: middle; }
+      .d-modelo-karasek .support-strong { font-weight: 700; }
     </style>
   </defs>
   <rect class="bg" x="0" y="0" width="740" height="580"/>
@@ -45,43 +103,43 @@
   <!-- Top-left: Altas exigencias + Bajo control = Alta tensión (peor) -->
   <rect class="cell cell-strain" x="120" y="80" width="290" height="175" rx="5"/>
   <rect class="danger-frame" x="126" y="86" width="278" height="163" rx="4"/>
-  <text class="danger-tag" x="265" y="108">Zona de peligro</text>
-  <text class="cell-title cell-title-strain" x="265" y="150">Trabajo de alta tensión</text>
-  <text class="cell-note" x="265" y="184">Mucha exigencia, poco margen:</text>
-  <text class="cell-note" x="265" y="203">más estrés y riesgo de enfermar.</text>
+  <text class="danger-tag" x="265" y="108">{t.zonaDePeligro}</text>
+  <text class="cell-title cell-title-strain" x="265" y="150">{t.trabajoDeAltaTension}</text>
+  <text class="cell-note" x="265" y="184">{t.muchaExigenciaPocoMargen}</text>
+  <text class="cell-note" x="265" y="203">{t.masEstresYRiesgo}</text>
 
   <!-- Top-right: Altas exigencias + Alto control = Trabajo activo -->
   <rect class="cell cell-active" x="410" y="80" width="290" height="175" rx="5"/>
-  <text class="cell-title cell-title-active" x="555" y="150">Trabajo activo</text>
-  <text class="cell-note" x="555" y="184">Exigente pero saludable:</text>
-  <text class="cell-note" x="555" y="203">se aprende y motiva.</text>
+  <text class="cell-title cell-title-active" x="555" y="150">{t.trabajoActivo}</text>
+  <text class="cell-note" x="555" y="184">{t.exigentePeroSaludable}</text>
+  <text class="cell-note" x="555" y="203">{t.seAprendeYMotiva}</text>
 
   <!-- Bottom-left: Bajas exigencias + Bajo control = Trabajo pasivo -->
   <rect class="cell cell-passive" x="120" y="255" width="290" height="175" rx="5"/>
-  <text class="cell-title cell-title-passive" x="265" y="325">Trabajo pasivo</text>
-  <text class="cell-note" x="265" y="359">Poca exigencia, poca autonomía:</text>
-  <text class="cell-note" x="265" y="378">desmotiva.</text>
+  <text class="cell-title cell-title-passive" x="265" y="325">{t.trabajoPasivo}</text>
+  <text class="cell-note" x="265" y="359">{t.pocaExigenciaPocaAutonomia}</text>
+  <text class="cell-note" x="265" y="378">{t.desmotiva}</text>
 
   <!-- Bottom-right: Bajas exigencias + Alto control = Baja tensión -->
   <rect class="cell cell-low" x="410" y="255" width="290" height="175" rx="5"/>
-  <text class="cell-title cell-title-active" x="555" y="325">Trabajo de baja tensión</text>
-  <text class="cell-note" x="555" y="359">Relajado: poca presión</text>
-  <text class="cell-note" x="555" y="378">y autonomía suficiente.</text>
+  <text class="cell-title cell-title-active" x="555" y="325">{t.trabajoDeBajaTension}</text>
+  <text class="cell-note" x="555" y="359">{t.relajadoPocaPresion}</text>
+  <text class="cell-note" x="555" y="378">{t.yAutonomiaSuficiente}</text>
 
   <!-- Y axis: Exigencias del trabajo (bottom = bajas, top = altas) -->
   <line class="axis-line" x1="120" y1="430" x2="120" y2="80"/>
-  <text class="axis-title" x="40" y="255" transform="rotate(-90 40 255)">Exigencias del trabajo</text>
-  <text class="axis-end" x="74" y="92">Altas</text>
-  <text class="axis-end" x="74" y="425">Bajas</text>
+  <text class="axis-title" x="40" y="255" transform="rotate(-90 40 255)">{t.exigenciasDelTrabajo}</text>
+  <text class="axis-end" x="74" y="92">{t.altas}</text>
+  <text class="axis-end" x="74" y="425">{t.bajas}</text>
 
   <!-- X axis: Control / autonomía (left = bajo, right = alto) -->
   <line class="axis-line" x1="120" y1="430" x2="700" y2="430"/>
-  <text class="axis-title" x="410" y="462">Control / autonomía</text>
-  <text class="axis-end" x="124" y="450">Bajo</text>
-  <text class="axis-end" x="666" y="450">Alto</text>
+  <text class="axis-title" x="410" y="462">{t.controlAutonomia}</text>
+  <text class="axis-end" x="124" y="450">{t.bajo}</text>
+  <text class="axis-end" x="666" y="450">{t.alto}</text>
 
   <!-- Social support note as a buffering band -->
   <rect class="support-bar" x="120" y="500" width="580" height="50" rx="6"/>
-  <text class="support-text" x="410" y="522"><tspan class="support-strong">El apoyo social</tspan> de jefes y compañeros</text>
-  <text class="support-text" x="410" y="540">amortigua la tensión en todos los casos.</text>
+  <text class="support-text" x="410" y="522"><tspan class="support-strong">{t.elApoyoSocial}</tspan> {t.deJefesYCompaneros}</text>
+  <text class="support-text" x="410" y="540">{t.amortiguaLaTensionEn}</text>
 </svg>

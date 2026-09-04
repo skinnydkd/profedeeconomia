@@ -2,6 +2,7 @@
 asignatura: eco-4eso
 unidad_relacionada: 8
 title: "Calculadora de nòmina espanyola"
+seoTitle: "Calculadora de nòmina: de brut a net amb IRPF i SS"
 descripcion: "Introduïx el teu salari brut mensual i descobrix la teua nòmina pas a pas: IRPF estimat, cotització a la Seguretat Social i salari net."
 tipo: calculadora
 componente: NominaESO

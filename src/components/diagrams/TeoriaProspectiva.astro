@@ -8,28 +8,68 @@
  *
  * Used in Eco 1BACH · Unit 2 (behavioural economics / decision-making).
  */
+import { getLocale } from '@/i18n/locale';
+const locale = getLocale(Astro.currentLocale);
+
+const COPY = {
+  es: {
+    funcionDeValorDe: 'Función de valor de la Teoría Prospectiva',
+    curvaDeValorEn: 'Curva de valor en forma de S asimétrica de Kahneman y Tversky, centrada en un punto de referencia. Es cóncava en las ganancias y convexa y más pronunciada en las pérdidas, lo que ilustra la aversión a la pérdida: perder duele más de lo que agrada ganar la misma cantidad.',
+    perdidas: 'PÉRDIDAS',
+    ganancias: 'GANANCIAS',
+    valorPercibido: 'VALOR PERCIBIDO',
+    concavaCadaEuroExtra: 'Cóncava: cada euro extra de ganancia aporta menos satisfacción que el anterior (utilidad marginal decreciente). Ante ganancias seguras, tendemos a ser cautos y aceptarlas.',
+    masPronunciadaQueLa: 'Más pronunciada que la de ganancias: una pérdida duele aproximadamente el doble de lo que agrada ganar lo mismo. Ante pérdidas, asumimos más riesgo con tal de no aceptarlas.',
+    noValoramosLaRiqueza: 'No valoramos la riqueza total, sino los cambios respecto a este punto (lo que ya tenemos). Por eso una misma cantidad se vive como ganancia o pérdida según la referencia de partida.',
+    puntoDeReferencia: 'Punto de referencia',
+    ganancias2: 'Ganancias',
+    concava: '(cóncava)',
+    perdidas2: 'Pérdidas',
+    convexaYMasPronunciada: '(convexa y más pronunciada)',
+    laPerdidaDeX: 'La pérdida de x duele más',
+    deLoQueAgrada: 'de lo que agrada ganar x',
+  },
+  ca: {
+    funcionDeValorDe: 'Funció de valor de la Teoria Prospectiva',
+    curvaDeValorEn: "Corba de valor en forma d'S asimètrica de Kahneman i Tversky, centrada en un punt de referència. És còncava en els guanys i convexa i més pronunciada en les pèrdues, la qual cosa il·lustra l'aversió a la pèrdua: perdre fa més mal del que agrada guanyar la mateixa quantitat.",
+    perdidas: 'PÈRDUES',
+    ganancias: 'GUANYS',
+    valorPercibido: 'VALOR PERCEBUT',
+    concavaCadaEuroExtra: "Còncava: cada euro extra de guany aporta menys satisfacció que l'anterior (utilitat marginal decreixent). Davant de guanys segurs, tendim a ser cauts i acceptar-los.",
+    masPronunciadaQueLa: 'Més pronunciada que la de guanys: una pèrdua fa mal aproximadament el doble del que agrada guanyar el mateix. Davant de pèrdues, assumim més risc amb tal de no acceptar-les.',
+    noValoramosLaRiqueza: 'No valorem la riquesa total, sinó els canvis respecte a este punt (el que ja tenim). Per això una mateixa quantitat es viu com a guany o pèrdua segons la referència de partida.',
+    puntoDeReferencia: 'Punt de referència',
+    ganancias2: 'Guanys',
+    concava: '(còncava)',
+    perdidas2: 'Pèrdues',
+    convexaYMasPronunciada: '(convexa i més pronunciada)',
+    laPerdidaDeX: 'La pèrdua de x fa més mal',
+    deLoQueAgrada: 'del que agrada guanyar x',
+  },
+} as const;
+const t = COPY[locale];
 ---
-<svg viewBox="0 0 800 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="prospect-title prospect-desc">
-  <title id="prospect-title">Función de valor de la Teoría Prospectiva</title>
-  <desc id="prospect-desc">Curva de valor en forma de S asimétrica de Kahneman y Tversky, centrada en un punto de referencia. Es cóncava en las ganancias y convexa y más pronunciada en las pérdidas, lo que ilustra la aversión a la pérdida: perder duele más de lo que agrada ganar la misma cantidad.</desc>
+<svg class="d-teoria-prospectiva" viewBox="0 0 800 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="prospect-title prospect-desc">
+  <title id="prospect-title">{t.funcionDeValorDe}</title>
+  <desc id="prospect-desc">{t.curvaDeValorEn}</desc>
   <defs>
     <style>
-      .bg { fill: #FBF6EC; }
-      .axis { stroke: #5C4A3D; stroke-width: 1.5; fill: none; }
-      .grid { stroke: #E5D4BD; stroke-width: 1; stroke-dasharray: 2 4; fill: none; }
-      .gains { fill: none; stroke: #1F6E6E; stroke-width: 3; }
-      .losses { fill: none; stroke: #C44E2C; stroke-width: 3; }
-      .mirror { fill: none; stroke: #8A7868; stroke-width: 1.4; stroke-dasharray: 5 4; }
-      .guide { stroke: #8A7868; stroke-width: 1; stroke-dasharray: 4 4; fill: none; }
-      .ref { fill: #FFFFFF; stroke: #2A1F18; stroke-width: 2.5; }
-      .axis-label { font-family: 'Switzer', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; fill: #5C4A3D; }
-      .axis-letter { font-family: 'Fraunces', serif; font-style: italic; font-size: 17px; font-weight: 500; fill: #2A1F18; }
-      .quad-label { font-family: 'Switzer', sans-serif; font-size: 11.5px; font-weight: 700; fill: #5C4A3D; }
-      .curve-label { font-family: 'Switzer', sans-serif; font-size: 12px; font-weight: 700; }
-      .ref-label { font-family: 'Switzer', sans-serif; font-size: 10.5px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; fill: #2A1F18; }
-      .note { font-family: 'Fraunces', serif; font-style: italic; font-size: 14px; font-weight: 500; fill: #2A1F18; }
-      .tick { font-family: 'JetBrains Mono', monospace; font-size: 10px; fill: #8A7868; }
-      .has-tip { cursor: help; }
+      .d-teoria-prospectiva .bg { fill: #FBF6EC; }
+      .d-teoria-prospectiva .axis { stroke: #5C4A3D; stroke-width: 1.5; fill: none; }
+      .d-teoria-prospectiva .grid { stroke: #E5D4BD; stroke-width: 1; stroke-dasharray: 2 4; fill: none; }
+      .d-teoria-prospectiva .gains { fill: none; stroke: #1F6E6E; stroke-width: 3; }
+      .d-teoria-prospectiva .losses { fill: none; stroke: #C44E2C; stroke-width: 3; }
+      .d-teoria-prospectiva .mirror { fill: none; stroke: #8A7868; stroke-width: 1.4; stroke-dasharray: 5 4; }
+      .d-teoria-prospectiva .guide { stroke: #8A7868; stroke-width: 1; stroke-dasharray: 4 4; fill: none; }
+      .d-teoria-prospectiva .ref { fill: #FFFFFF; stroke: #2A1F18; stroke-width: 2.5; }
+      .d-teoria-prospectiva .axis-label { font-family: 'Switzer', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; fill: #5C4A3D; }
+      .d-teoria-prospectiva .axis-letter { font-family: 'Fraunces', serif; font-style: italic; font-size: 17px; font-weight: 500; fill: #2A1F18; }
+      .d-teoria-prospectiva .quad-label { font-family: 'Switzer', sans-serif; font-size: 11.5px; font-weight: 700; fill: #5C4A3D; }
+      .d-teoria-prospectiva .curve-label { font-family: 'Switzer', sans-serif; font-size: 12px; font-weight: 700; }
+      .d-teoria-prospectiva .ref-label { font-family: 'Switzer', sans-serif; font-size: 10.5px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; fill: #2A1F18; }
+      .d-teoria-prospectiva .note { font-family: 'Fraunces', serif; font-style: italic; font-size: 14px; font-weight: 500; fill: #2A1F18; }
+      .d-teoria-prospectiva .tick { font-family: 'JetBrains Mono', monospace; font-size: 10px; fill: #8A7868; }
+      .d-teoria-prospectiva .has-tip { cursor: help; }
     </style>
     <marker id="prospect-arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
       <polygon points="0 0, 10 3, 0 6" fill="#5C4A3D"/>
@@ -51,24 +91,24 @@
 
   <!-- Axis titles -->
   <text class="axis-letter" x="735" y="255">x</text>
-  <text class="axis-label" x="240" y="478" text-anchor="middle">PÉRDIDAS</text>
-  <text class="axis-label" x="560" y="478" text-anchor="middle">GANANCIAS</text>
-  <text class="axis-label" x="412" y="60">VALOR PERCIBIDO</text>
+  <text class="axis-label" x="240" y="478" text-anchor="middle">{t.perdidas}</text>
+  <text class="axis-label" x="560" y="478" text-anchor="middle">{t.ganancias}</text>
+  <text class="axis-label" x="412" y="60">{t.valorPercibido}</text>
   <text class="axis-letter" x="384" y="60" text-anchor="end" font-style="italic">v</text>
 
   <!-- Gains branch: concave, less steep. From origin (400,250) up-right to (710,130) -->
-  <path class="gains has-tip" d="M 400 250 Q 500 175 710 130"><title>Cóncava: cada euro extra de ganancia aporta menos satisfacción que el anterior (utilidad marginal decreciente). Ante ganancias seguras, tendemos a ser cautos y aceptarlas.</title></path>
+  <path class="gains has-tip" d="M 400 250 Q 500 175 710 130"><title>{t.concavaCadaEuroExtra}</title></path>
 
   <!-- Losses branch: convex and STEEPER. From origin (400,250) down-left to (110,440) -->
-  <path class="losses has-tip" d="M 400 250 Q 300 320 110 440"><title>Más pronunciada que la de ganancias: una pérdida duele aproximadamente el doble de lo que agrada ganar lo mismo. Ante pérdidas, asumimos más riesgo con tal de no aceptarlas.</title></path>
+  <path class="losses has-tip" d="M 400 250 Q 300 320 110 440"><title>{t.masPronunciadaQueLa}</title></path>
 
   <!-- Symmetric reference: dashed mirror of the gains branch reflected into the
        loss quadrant, to show the asymmetry (losses curve falls below it). -->
   <path class="mirror" d="M 400 250 Q 300 325 90 370"/>
 
   <!-- Reference point at origin -->
-  <circle class="ref has-tip" cx="400" cy="250" r="6"><title>No valoramos la riqueza total, sino los cambios respecto a este punto (lo que ya tenemos). Por eso una misma cantidad se vive como ganancia o pérdida según la referencia de partida.</title></circle>
-  <text class="ref-label" x="412" y="278">Punto de referencia</text>
+  <circle class="ref has-tip" cx="400" cy="250" r="6"><title>{t.noValoramosLaRiqueza}</title></circle>
+  <text class="ref-label" x="412" y="278">{t.puntoDeReferencia}</text>
 
   <!-- Illustration of asymmetry: equal magnitude gain vs loss (x = ±155 px) -->
   <!-- Gain at x=+155 (px=555): v on curve ≈ y=160 -->
@@ -84,12 +124,12 @@
   <text class="tick" x="245" y="268" text-anchor="middle">−x</text>
 
   <!-- Curve labels -->
-  <text class="curve-label" x="640" y="120" fill="#1F6E6E" text-anchor="middle">Ganancias</text>
-  <text class="quad-label" x="640" y="138" text-anchor="middle">(cóncava)</text>
-  <text class="curve-label" x="160" y="412" fill="#9C3A1C">Pérdidas</text>
-  <text class="quad-label" x="160" y="430">(convexa y más pronunciada)</text>
+  <text class="curve-label" x="640" y="120" fill="#1F6E6E" text-anchor="middle">{t.ganancias2}</text>
+  <text class="quad-label" x="640" y="138" text-anchor="middle">{t.concava}</text>
+  <text class="curve-label" x="160" y="412" fill="#9C3A1C">{t.perdidas2}</text>
+  <text class="quad-label" x="160" y="430">{t.convexaYMasPronunciada}</text>
 
   <!-- Asymmetry note -->
-  <text class="note" x="600" y="320" text-anchor="middle">La pérdida de x duele más</text>
-  <text class="note" x="600" y="340" text-anchor="middle">de lo que agrada ganar x</text>
+  <text class="note" x="600" y="320" text-anchor="middle">{t.laPerdidaDeX}</text>
+  <text class="note" x="600" y="340" text-anchor="middle">{t.deLoQueAgrada}</text>
 </svg>

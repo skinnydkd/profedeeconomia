@@ -1,4 +1,7 @@
 ---
+import { getLocale } from '@/i18n/locale';
+import { t } from '@/i18n/ui';
+const locale = getLocale(Astro.currentLocale);
 type Props = {
   /** Short headline for the example */
   title: string;
@@ -13,14 +16,14 @@ const { title, source, sourceUrl } = Astro.props;
 
 <aside class="real-example">
   <div class="real-example__rule"></div>
-  <span class="real-example__label">Ejemplo real</span>
+  <span class="real-example__label">{t('libro.ejemploReal', locale)}</span>
   <div class="real-example__title">{title}</div>
   <div class="real-example__body">
     <slot />
   </div>
   {source && (
     <p class="real-example__source">
-      Fuente:
+      {t('libro.fuente', locale)}
       {sourceUrl ? <a href={sourceUrl} target="_blank" rel="noopener noreferrer">{source}</a> : <span>{source}</span>}
     </p>
   )}

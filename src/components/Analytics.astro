@@ -1,0 +1,46 @@
+---
+/**
+ * Google Analytics 4, gated behind explicit consent.
+ *
+ * Nothing is requested from googletagmanager.com until the visitor accepts:
+ * this bootstrap only declares Google Consent Mode v2 defaults (everything
+ * denied) and publishes a loader on `window`. The consent banner calls that
+ * loader, which injects gtag.js and flips `analytics_storage` to granted.
+ * A visitor who refuses — or never answers — makes zero requests to Google.
+ *
+ * Emitted only in production builds, and only when a measurement ID is set, so
+ * `astro dev` is always tracker-free. Set PUBLIC_GA_MEASUREMENT_ID to override
+ * the default property (or to "" in the Vercel Preview environment to keep
+ * preview deploys out of the production property).
+ *
+ * The script must run synchronously in <head> before any consent decision is
+ * applied, so it is inline and cannot import from @/lib/consent; the storage
+ * key is injected from that module's constant instead.
+ */
+import { CONSENT_STORAGE_KEY } from '@/lib/consent';
+import { resolveMeasurementId } from '@/lib/analytics';
+
+const measurementId = resolveMeasurementId(import.meta.env.PUBLIC_GA_MEASUREMENT_ID);
+const enabled = import.meta.env.PROD && measurementId !== '';
+
+const bootstrap = `(function(){
+var w=window;
+w.dataLayer=w.dataLayer||[];
+function gtag(){w.dataLayer.push(arguments);}
+w.gtag=gtag;
+gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied'});
+var id=${JSON.stringify(measurementId)},loaded=false;
+w.__pdeLoadAnalytics=function(){
+if(loaded)return;loaded=true;
+gtag('consent','update',{analytics_storage:'granted'});
+gtag('js',new Date());
+gtag('config',id);
+var s=document.createElement('script');
+s.async=true;
+s.src='https://www.googletagmanager.com/gtag/js?id='+encodeURIComponent(id);
+document.head.appendChild(s);
+};
+try{if(w.localStorage.getItem(${JSON.stringify(CONSENT_STORAGE_KEY)})==='granted')w.__pdeLoadAnalytics();}catch(e){}
+})();`;
+---
+{enabled && <script is:inline set:html={bootstrap} />}

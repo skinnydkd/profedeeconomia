@@ -2,6 +2,7 @@
 asignatura: eco-1bach
 unidad_relacionada: 3
 title: "Calculadora d'interés compost"
+seoTitle: "Calculadora d'interés compost: simula l'estalvi any a any"
 descripcion: "Introduïx capital inicial, aportació mensual, tipus d'interés anual i termini. Visualitza com creixen els interessos respecte a les aportacions al llarg del temps."
 tipo: calculadora
 componente: InteresCompuesto

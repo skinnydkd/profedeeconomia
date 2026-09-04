@@ -9,28 +9,66 @@
  * Used in FOPP 4ESO (convivencia y trabajo en equipo). Sensitive,
  * empowering framing — not graphic.
  */
+import { getLocale } from '@/i18n/locale';
+const locale = getLocale(Astro.currentLocale);
+
+const COPY = {
+  es: {
+    elTrianguloDelAcoso: 'El triángulo del acoso escolar',
+    elAcosoTieneTres: 'El acoso tiene tres papeles: quien acosa, quien lo sufre y quien observa. El observador es la clave: su silencio sostiene el acoso y su intervención puede frenarlo.',
+    elObservadorTieneLa: 'El observador tiene la llave',
+    elSilencioSostieneEl: 'El silencio sostiene el acoso;',
+    intervenirOAvisarLo: 'intervenir o avisar lo frena.',
+    quienAcosa: 'Quien acosa',
+    elAgresor: 'El agresor',
+    ejerceElDanoBusca: 'ejerce el daño, busca poder o aprobación del grupo',
+    quienLoSufre: 'Quien lo sufre',
+    laVictima: 'La víctima',
+    recibeElAcosoSe: 'recibe el acoso, se siente sola y atrapada',
+    quienObserva: 'Quien observa',
+    elTestigo: 'El testigo',
+    veLoQuePasa: 've lo que pasa — y su reacción lo cambia todo',
+  },
+  ca: {
+    elTrianguloDelAcoso: "El triangle de l'assetjament escolar",
+    elAcosoTieneTres: "L'assetjament té tres papers: qui assetja, qui el patix i qui l'observa. L'observador és la clau: el seu silenci sosté l'assetjament i la seua intervenció el pot frenar.",
+    elObservadorTieneLa: "L'observador té la clau",
+    elSilencioSostieneEl: "El silenci sosté l'assetjament;",
+    intervenirOAvisarLo: 'intervindre o avisar el frena.',
+    quienAcosa: 'Qui assetja',
+    elAgresor: "L'agressor",
+    ejerceElDanoBusca: 'exercix el dany, busca poder o aprovació del grup',
+    quienLoSufre: 'Qui el patix',
+    laVictima: 'La víctima',
+    recibeElAcosoSe: "rep l'assetjament, se sent sola i atrapada",
+    quienObserva: 'Qui observa',
+    elTestigo: 'El testimoni',
+    veLoQuePasa: 'veu el que passa — i la seua reacció ho canvia tot',
+  },
+} as const;
+const t = COPY[locale];
 ---
-<svg viewBox="0 0 820 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="tb-title tb-desc">
-  <title id="tb-title">El triángulo del acoso escolar</title>
-  <desc id="tb-desc">El acoso tiene tres papeles: quien acosa, quien lo sufre y quien observa. El observador es la clave: su silencio sostiene el acoso y su intervención puede frenarlo.</desc>
+<svg class="d-trianglo-bullying" viewBox="0 0 820 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="tb-title tb-desc">
+  <title id="tb-title">{t.elTrianguloDelAcoso}</title>
+  <desc id="tb-desc">{t.elAcosoTieneTres}</desc>
   <defs>
     <style>
-      .bg { fill: #FBF6EC; }
-      .tri { fill: none; stroke: #E5D4BD; stroke-width: 2; stroke-dasharray: 6 6; }
-      .node { stroke-width: 2; }
-      .node-agresor { fill: #FBE3D6; stroke: #9C3A1C; }
-      .node-victima { fill: #F5E5BC; stroke: #A87A2A; }
-      .node-observador { fill: #DBEDED; stroke: #1F6E6E; }
-      .role { font-family: 'Switzer', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 1.6px; text-transform: uppercase; text-anchor: middle; }
-      .role-agresor { fill: #9C3A1C; }
-      .role-victima { fill: #A87A2A; }
-      .role-observador { fill: #1F6E6E; }
-      .name { font-family: 'Fraunces', serif; font-style: italic; font-size: 24px; font-weight: 500; fill: #2A1F18; text-anchor: middle; }
-      .descr { font-family: 'Switzer', sans-serif; font-size: 13.5px; font-weight: 400; fill: #5C4A3D; text-anchor: middle; }
-      .key-box { fill: #FFFFFF; stroke: #1F6E6E; stroke-width: 2; }
-      .key-eyebrow { font-family: 'Switzer', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 1.8px; text-transform: uppercase; fill: #1F6E6E; text-anchor: middle; }
-      .key-text { font-family: 'Fraunces', serif; font-style: italic; font-size: 16px; font-weight: 500; fill: #2A1F18; text-anchor: middle; }
-      .key-arrow { fill: none; stroke: #1F6E6E; stroke-width: 2.5; }
+      .d-trianglo-bullying .bg { fill: #FBF6EC; }
+      .d-trianglo-bullying .tri { fill: none; stroke: #E5D4BD; stroke-width: 2; stroke-dasharray: 6 6; }
+      .d-trianglo-bullying .node { stroke-width: 2; }
+      .d-trianglo-bullying .node-agresor { fill: #FBE3D6; stroke: #9C3A1C; }
+      .d-trianglo-bullying .node-victima { fill: #F5E5BC; stroke: #A87A2A; }
+      .d-trianglo-bullying .node-observador { fill: #DBEDED; stroke: #1F6E6E; }
+      .d-trianglo-bullying .role { font-family: 'Switzer', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 1.6px; text-transform: uppercase; text-anchor: middle; }
+      .d-trianglo-bullying .role-agresor { fill: #9C3A1C; }
+      .d-trianglo-bullying .role-victima { fill: #A87A2A; }
+      .d-trianglo-bullying .role-observador { fill: #1F6E6E; }
+      .d-trianglo-bullying .name { font-family: 'Fraunces', serif; font-style: italic; font-size: 24px; font-weight: 500; fill: #2A1F18; text-anchor: middle; }
+      .d-trianglo-bullying .descr { font-family: 'Switzer', sans-serif; font-size: 13.5px; font-weight: 400; fill: #5C4A3D; text-anchor: middle; }
+      .d-trianglo-bullying .key-box { fill: #FFFFFF; stroke: #1F6E6E; stroke-width: 2; }
+      .d-trianglo-bullying .key-eyebrow { font-family: 'Switzer', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 1.8px; text-transform: uppercase; fill: #1F6E6E; text-anchor: middle; }
+      .d-trianglo-bullying .key-text { font-family: 'Fraunces', serif; font-style: italic; font-size: 16px; font-weight: 500; fill: #2A1F18; text-anchor: middle; }
+      .d-trianglo-bullying .key-arrow { fill: none; stroke: #1F6E6E; stroke-width: 2.5; }
     </style>
   </defs>
   <rect class="bg" x="0" y="0" width="820" height="600"/>
@@ -48,31 +86,31 @@
   </defs>
 
   <rect class="key-box" x="250" y="300" width="320" height="92" rx="10"/>
-  <text class="key-eyebrow" x="410" y="324">El observador tiene la llave</text>
-  <text class="key-text" x="410" y="350">El silencio sostiene el acoso;</text>
-  <text class="key-text" x="410" y="372">intervenir o avisar lo frena.</text>
+  <text class="key-eyebrow" x="410" y="324">{t.elObservadorTieneLa}</text>
+  <text class="key-text" x="410" y="350">{t.elSilencioSostieneEl}</text>
+  <text class="key-text" x="410" y="372">{t.intervenirOAvisarLo}</text>
 
   <!-- Top vertex: Quien acosa (agresor) -->
   <g>
     <rect class="node node-agresor" x="245" y="40" width="330" height="92" rx="12"/>
-    <text class="role role-agresor" x="410" y="64">Quien acosa</text>
-    <text class="name" x="410" y="94">El agresor</text>
-    <text class="descr" x="410" y="118">ejerce el daño, busca poder o aprobación del grupo</text>
+    <text class="role role-agresor" x="410" y="64">{t.quienAcosa}</text>
+    <text class="name" x="410" y="94">{t.elAgresor}</text>
+    <text class="descr" x="410" y="118">{t.ejerceElDanoBusca}</text>
   </g>
 
   <!-- Bottom-left vertex: Quien lo sufre (víctima) -->
   <g>
     <rect class="node node-victima" x="20" y="470" width="335" height="92" rx="12"/>
-    <text class="role role-victima" x="187" y="494">Quien lo sufre</text>
-    <text class="name" x="187" y="524">La víctima</text>
-    <text class="descr" x="187" y="548">recibe el acoso, se siente sola y atrapada</text>
+    <text class="role role-victima" x="187" y="494">{t.quienLoSufre}</text>
+    <text class="name" x="187" y="524">{t.laVictima}</text>
+    <text class="descr" x="187" y="548">{t.recibeElAcosoSe}</text>
   </g>
 
   <!-- Bottom-right vertex: Quien observa (observador) -->
   <g>
     <rect class="node node-observador" x="465" y="470" width="335" height="92" rx="12"/>
-    <text class="role role-observador" x="632" y="494">Quien observa</text>
-    <text class="name" x="632" y="524">El testigo</text>
-    <text class="descr" x="632" y="548">ve lo que pasa — y su reacción lo cambia todo</text>
+    <text class="role role-observador" x="632" y="494">{t.quienObserva}</text>
+    <text class="name" x="632" y="524">{t.elTestigo}</text>
+    <text class="descr" x="632" y="548">{t.veLoQuePasa}</text>
   </g>
 </svg>

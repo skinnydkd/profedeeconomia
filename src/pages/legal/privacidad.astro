@@ -1,77 +1,124 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
 import { getLocale } from '@/i18n/locale';
+import { resolveMeasurementId, gaCookieNames } from '@/lib/analytics';
 
 const locale = getLocale(Astro.currentLocale);
 
+// Cookie names are derived from the live measurement ID, so this page can never
+// claim a cookie the tag does not actually set.
+const [browserCookie, sessionCookie] = gaCookieNames(
+  resolveMeasurementId(import.meta.env.PUBLIC_GA_MEASUREMENT_ID) || undefined,
+);
+
+// Legal copy carries inline emphasis, so paragraphs are authored as HTML and
+// rendered with set:html. Every string below is author-controlled — no user
+// input reaches this page.
 const copy = {
   es: {
     pageTitle: 'Política de privacidad',
-    description: 'Política de privacidad de profedeeconomia.es: no recogemos datos personales, usamos analítica sin cookies y respetamos tus derechos del RGPD.',
+    description: 'Política de privacidad de profedeeconomia.es: qué datos tratamos, qué cookies usa la analítica y cómo aceptarla o rechazarla en cualquier momento.',
     h1: 'Política de privacidad',
     updatedLabel: 'Última actualización:',
-    updatedDate: '4 de junio de 2026',
-    ledePre: 'En resumen:',
-    ledeStrong: 'profedeeconomia.es no recoge datos personales',
-    ledePost: '. No hay registro, ni cuentas de usuario, ni formularios que almacenen tu información, ni publicidad, ni rastreadores comerciales.',
+    updatedDate: '25 de agosto de 2026',
+    lede: 'En resumen: <strong>no te pedimos registrarte, no hay publicidad y no vendemos nada</strong>. La única recogida de datos es una analítica de uso agregada, y solo se activa si tú la aceptas.',
+
     h2Datos: '1. Datos personales',
-    p1: 'El sitio es estático y no dispone de backend que recopile o almacene datos personales. No te pedimos registrarte ni rellenar formularios. Si nos escribes por correo, trataremos tu mensaje únicamente para responderte y no lo usaremos para ningún otro fin ni lo cederemos a terceros.',
+    pDatos: 'El sitio es estático y no dispone de backend que recoja o almacene datos personales. No te pedimos registrarte ni rellenar formularios. Si nos escribes por correo, trataremos tu mensaje únicamente para responderte y no lo usaremos para ningún otro fin ni lo cederemos a terceros.',
+
     h2Analitica: '2. Analítica web',
-    p2Pre: 'Para conocer de forma agregada qué materiales se usan más, empleamos',
-    p2Strong1: 'analítica respetuosa con la privacidad',
-    p2Mid: '(tipo Plausible):',
-    p2Strong2: 'no usa cookies',
-    p2Post: ', no recoge datos personales ni identificadores individuales, y no permite seguir a las personas entre sitios. Las métricas son anónimas y agregadas.',
-    h2Almacenamiento: '3. Almacenamiento en tu navegador',
-    p3Pre: 'Algunas funciones interactivas (la mejor nota de un test, las notas que escribes en una unidad, el progreso de un simulador) se guardan',
-    p3Strong1: 'localmente en tu propio navegador',
-    p3Mid: 'mediante',
-    p3Em: 'localStorage',
-    p3Mid2: '. Esa información',
-    p3Strong2: 'nunca sale de tu dispositivo',
-    p3Post: ': no se envía a ningún servidor y puedes borrarla en cualquier momento desde los ajustes de tu navegador o con los botones de «borrar progreso» que ofrecen esas funciones.',
-    h2Terceros: '4. Contenido de terceros',
-    p4: 'El sitio enlaza a recursos externos (fuentes oficiales, vídeos, lecturas) y puede incrustar algún contenido de terceros. Esos servicios se rigen por sus propias políticas de privacidad, que no controlamos.',
-    h2Derechos: '5. Tus derechos',
-    p5Pre: 'Conforme al Reglamento General de Protección de Datos (RGPD), tienes derecho de acceso, rectificación, supresión, oposición, limitación y portabilidad sobre tus datos personales. Como no almacenamos datos personales, en la práctica solo pueden ejercerse sobre la correspondencia por correo que nos hayas enviado. Para cualquier consulta, escríbenos a',
-    h2Cambios: '6. Cambios',
-    p6: 'Si el proyecto incorpora en el futuro funciones que traten datos personales (por ejemplo, un boletín o un área de usuario), actualizaremos esta política y lo indicaremos claramente antes de recoger ningún dato.',
+    pAnalitica1: 'Para saber de forma agregada qué materiales se usan más y cuáles conviene mejorar, usamos <strong>Google Analytics 4</strong>, un servicio de Google Ireland Limited. Recoge datos de navegación —páginas vistas, tipo de dispositivo, país aproximado, desde dónde has llegado— y para hacerlo instala cookies en tu navegador.',
+    pAnalitica2: '<strong>No se carga nada de Google hasta que lo aceptas.</strong> Si rechazas la analítica, o si simplemente no respondes al aviso, tu navegador no llega a hacer ninguna petición a los servidores de Google: ni cookies, ni identificadores, ni las llamadas «señales sin cookies». Tampoco usamos la analítica para publicidad: todas las funciones de anuncios y de perfiles publicitarios están desactivadas.',
+    pAnalitica3: 'Google actúa como encargado del tratamiento por nuestra cuenta y puede tratar los datos fuera del Espacio Económico Europeo; esas transferencias se amparan en las cláusulas contractuales tipo de la Comisión Europea. En Analytics 4 la dirección IP no se almacena: Google la usa para deducir el país y la descarta. Las métricas que nosotros vemos son siempre agregadas, nunca fichas individuales.',
+
+    h2Cookies: '3. Cookies',
+    pCookies1: 'Si aceptas la analítica, Google instala estas dos cookies y ninguna más:',
+    pCookies2: 'Si la rechazas, <strong>no se instala ninguna cookie</strong>. El sitio no usa cookies propias, ni de sesión, ni publicitarias, ni de terceros de ningún otro tipo.',
+    cookiePurposeBrowser: 'distingue navegadores para no contarte dos veces.',
+    cookiePurposeSession: 'mantiene el estado de la visita.',
+    cookieTtl: 'Caduca a los 2 años.',
+
+    h2Decision: '4. Tu decisión sobre la analítica',
+    pDecision: 'Puedes cambiar de opinión cuando quieras. Retirar el consentimiento es tan fácil como darlo:',
+    statusLabel: 'Ahora mismo:',
+    statusGranted: 'analítica aceptada.',
+    statusDenied: 'analítica rechazada.',
+    statusUnset: 'todavía no lo has decidido.',
+    btnAccept: 'Aceptar analítica',
+    btnReject: 'Rechazar analítica',
+    pDecision2: 'Tu decisión se guarda en tu propio navegador, no en ningún servidor. Si borras los datos del sitio, cambias de navegador o usas otro dispositivo, te lo volveremos a preguntar. Al rechazar, las cookies que Google hubiera puesto dejan de usarse; puedes borrarlas desde los ajustes de tu navegador.',
+    noJs: 'Estos botones necesitan JavaScript. Sin JavaScript la analítica no se carga en ningún caso.',
+
+    h2Almacenamiento: '5. Almacenamiento en tu navegador',
+    pAlmacenamiento: 'Algunas funciones interactivas (la mejor nota de un test, las notas que escribes en una unidad, el progreso de un simulador) se guardan <strong>localmente en tu propio navegador</strong> mediante <em>localStorage</em>, igual que tu decisión sobre la analítica. Esa información <strong>nunca sale de tu dispositivo</strong>: no se envía a ningún servidor y puedes borrarla en cualquier momento desde los ajustes de tu navegador o con los botones de «borrar progreso» que ofrecen esas funciones.',
+
+    h2Terceros: '6. Contenido de terceros',
+    pTerceros: 'El sitio enlaza a recursos externos (fuentes oficiales, vídeos, lecturas) y puede incrustar algún contenido de terceros. Esos servicios se rigen por sus propias políticas de privacidad, que no controlamos. Las tipografías del sitio están alojadas por nosotros, así que cargar una página no comunica tu IP a ningún proveedor externo.',
+
+    h2Derechos: '7. Tus derechos',
+    pDerechos1: 'La base legal del tratamiento analítico es tu <strong>consentimiento</strong> (art. 6.1.a del Reglamento General de Protección de Datos), que puedes retirar cuando quieras desde el apartado 4. Los datos de correspondencia por correo se tratan por interés legítimo en responderte.',
+    pDerechos2: 'Conforme al RGPD tienes derecho de acceso, rectificación, supresión, oposición, limitación y portabilidad. Como los datos analíticos son agregados y no permiten identificarte, en la práctica esos derechos se ejercen sobre la correspondencia que nos hayas enviado. Para cualquier consulta, escríbenos a',
+
+    h2Cambios: '8. Cambios',
+    pCambios: 'Si el proyecto incorpora en el futuro funciones que traten datos personales (por ejemplo, un boletín o un área de usuario), actualizaremos esta política y lo indicaremos claramente antes de recoger ningún dato.',
+
     linkAviso: 'Aviso legal',
   },
   ca: {
     pageTitle: 'Política de privacitat',
-    description: 'Política de privacitat de profedeeconomia.es: no recollim dades personals, usem analítica sense cookies i respectem els teus drets del RGPD.',
+    description: "Política de privacitat de profedeeconomia.es: quines dades tractem, quines cookies usa l'analítica i com acceptar-la o rebutjar-la en qualsevol moment.",
     h1: 'Política de privacitat',
     updatedLabel: 'Última actualització:',
-    updatedDate: '4 de juny de 2026',
-    ledePre: 'En resum:',
-    ledeStrong: 'profedeeconomia.es no recull dades personals',
-    ledePost: '. No hi ha registre, ni comptes d\'usuari, ni formularis que emmagatzemen la teua informació, ni publicitat, ni rastrejadors comercials.',
+    updatedDate: "25 d'agost de 2026",
+    lede: 'En resum: <strong>no et demanem registrar-te, no hi ha publicitat i no venem res</strong>. L\'única recollida de dades és una analítica d\'ús agregada, i només s\'activa si tu l\'acceptes.',
+
     h2Datos: '1. Dades personals',
-    p1: 'El lloc és estàtic i no disposa de backend que reculla o emmagatzeme dades personals. No et demanem registrar-te ni omplir formularis. Si ens escrius per correu, tractarem el teu missatge únicament per a respondre\'t i no l\'usarem per a cap altra finalitat ni el cedirem a tercers.',
+    pDatos: "El lloc és estàtic i no disposa de backend que reculla o emmagatzeme dades personals. No et demanem registrar-te ni omplir formularis. Si ens escrius per correu, tractarem el teu missatge únicament per a respondre't i no l'usarem per a cap altra finalitat ni el cedirem a tercers.",
+
     h2Analitica: '2. Analítica web',
-    p2Pre: 'Per a conéixer de manera agregada quins materials s\'usen més, emprem',
-    p2Strong1: 'analítica respectuosa amb la privacitat',
-    p2Mid: '(tipus Plausible):',
-    p2Strong2: 'no usa cookies',
-    p2Post: ', no recull dades personals ni identificadors individuals, i no permet seguir les persones entre llocs. Les mètriques són anònimes i agregades.',
-    h2Almacenamiento: '3. Emmagatzematge en el teu navegador',
-    p3Pre: 'Algunes funcions interactives (la millor nota d\'un test, les notes que escrius en una unitat, el progrés d\'un simulador) es guarden',
-    p3Strong1: 'localment en el teu propi navegador',
-    p3Mid: 'mitjançant',
-    p3Em: 'localStorage',
-    p3Mid2: '. Aquesta informació',
-    p3Strong2: 'mai no ix del teu dispositiu',
-    p3Post: ': no s\'envia a cap servidor i pots esborrar-la en qualsevol moment des dels ajustos del teu navegador o amb els botons de «esborrar progrés» que ofereixen aquestes funcions.',
-    h2Terceros: '4. Contingut de tercers',
-    p4: 'El lloc enllaça a recursos externs (fonts oficials, vídeos, lectures) i pot incrustar algun contingut de tercers. Aquests serveis es regeixen per les seues pròpies polítiques de privacitat, que no controlem.',
-    h2Derechos: '5. Els teus drets',
-    p5Pre: 'D\'acord amb el Reglament General de Protecció de Dades (RGPD), tens dret d\'accés, rectificació, supressió, oposició, limitació i portabilitat sobre les teues dades personals. Com que no emmagatzemem dades personals, en la pràctica només poden exercir-se sobre la correspondència per correu que ens hages enviat. Per a qualsevol consulta, escriu-nos a',
-    h2Cambios: '6. Canvis',
-    p6: 'Si el projecte incorpora en el futur funcions que tracten dades personals (per exemple, un butlletí o una àrea d\'usuari), actualitzarem aquesta política i ho indicarem clarament abans de recollir cap dada.',
+    pAnalitica1: "Per a saber de manera agregada quins materials s'usen més i quins convé millorar, usem <strong>Google Analytics 4</strong>, un servei de Google Ireland Limited. Recull dades de navegació —pàgines vistes, tipus de dispositiu, país aproximat, des d'on has arribat— i per a fer-ho instal·la cookies en el teu navegador.",
+    pAnalitica2: "<strong>No es carrega res de Google fins que ho acceptes.</strong> Si rebutges l'analítica, o si simplement no respons a l'avís, el teu navegador no arriba a fer cap petició als servidors de Google: ni cookies, ni identificadors, ni els anomenats «senyals sense cookies». Tampoc usem l'analítica per a publicitat: totes les funcions d'anuncis i de perfils publicitaris estan desactivades.",
+    pAnalitica3: "Google actua com a encarregat del tractament pel nostre compte i pot tractar les dades fora de l'Espai Econòmic Europeu; aquestes transferències s'emparen en les clàusules contractuals tipus de la Comissió Europea. En Analytics 4 l'adreça IP no s'emmagatzema: Google l'usa per a deduir el país i la descarta. Les mètriques que nosaltres veiem són sempre agregades, mai fitxes individuals.",
+
+    h2Cookies: '3. Cookies',
+    pCookies1: "Si acceptes l'analítica, Google instal·la aquestes dues cookies i cap més:",
+    pCookies2: 'Si la rebutges, <strong>no s\'instal·la cap cookie</strong>. El lloc no usa cookies pròpies, ni de sessió, ni publicitàries, ni de tercers de cap altre tipus.',
+    cookiePurposeBrowser: 'distingeix navegadors per a no comptar-te dues vegades.',
+    cookiePurposeSession: 'manté l\'estat de la visita.',
+    cookieTtl: 'Caduca als 2 anys.',
+
+    h2Decision: "4. La teua decisió sobre l'analítica",
+    pDecision: 'Pots canviar d\'opinió quan vulgues. Retirar el consentiment és tan fàcil com donar-lo:',
+    statusLabel: 'Ara mateix:',
+    statusGranted: 'analítica acceptada.',
+    statusDenied: 'analítica rebutjada.',
+    statusUnset: 'encara no ho has decidit.',
+    btnAccept: 'Acceptar analítica',
+    btnReject: 'Rebutjar analítica',
+    pDecision2: "La teua decisió es guarda en el teu propi navegador, no en cap servidor. Si esborres les dades del lloc, canvies de navegador o uses un altre dispositiu, t'ho tornarem a preguntar. En rebutjar, les cookies que Google haguera posat deixen d'usar-se; pots esborrar-les des dels ajustos del teu navegador.",
+    noJs: "Aquests botons necessiten JavaScript. Sense JavaScript l'analítica no es carrega en cap cas.",
+
+    h2Almacenamiento: '5. Emmagatzematge en el teu navegador',
+    pAlmacenamiento: "Algunes funcions interactives (la millor nota d'un test, les notes que escrius en una unitat, el progrés d'un simulador) es guarden <strong>localment en el teu propi navegador</strong> mitjançant <em>localStorage</em>, igual que la teua decisió sobre l'analítica. Aquesta informació <strong>mai no ix del teu dispositiu</strong>: no s'envia a cap servidor i pots esborrar-la en qualsevol moment des dels ajustos del teu navegador o amb els botons de «esborrar progrés» que ofereixen aquestes funcions.",
+
+    h2Terceros: '6. Contingut de tercers',
+    pTerceros: 'El lloc enllaça a recursos externs (fonts oficials, vídeos, lectures) i pot incrustar algun contingut de tercers. Aquests serveis es regeixen per les seues pròpies polítiques de privacitat, que no controlem. Les tipografies del lloc estan allotjades per nosaltres, així que carregar una pàgina no comunica la teua IP a cap proveïdor extern.',
+
+    h2Derechos: '7. Els teus drets',
+    pDerechos1: "La base legal del tractament analític és el teu <strong>consentiment</strong> (art. 6.1.a del Reglament General de Protecció de Dades), que pots retirar quan vulgues des de l'apartat 4. Les dades de correspondència per correu es tracten per interés legítim a respondre't.",
+    pDerechos2: "D'acord amb el RGPD tens dret d'accés, rectificació, supressió, oposició, limitació i portabilitat. Com que les dades analítiques són agregades i no permeten identificar-te, en la pràctica aquests drets s'exerceixen sobre la correspondència que ens hages enviat. Per a qualsevol consulta, escriu-nos a",
+
+    h2Cambios: '8. Canvis',
+    pCambios: 'Si el projecte incorpora en el futur funcions que tracten dades personals (per exemple, un butlletí o una àrea d\'usuari), actualitzarem aquesta política i ho indicarem clarament abans de recollir cap dada.',
+
     linkAviso: 'Avís legal',
   },
 }[locale];
+
+const cookies = [
+  { name: browserCookie, purpose: copy.cookiePurposeBrowser },
+  { name: sessionCookie, purpose: copy.cookiePurposeSession },
+];
 ---
 <BaseLayout
   title={copy.pageTitle}
@@ -82,47 +129,92 @@ const copy = {
     <h1>{copy.h1}</h1>
     <p class="updated">{copy.updatedLabel} {copy.updatedDate}</p>
 
-    <p class="lede">
-      {copy.ledePre} <strong>{copy.ledeStrong}</strong>{copy.ledePost}
-    </p>
+    <p class="lede" set:html={copy.lede} />
 
     <h2>{copy.h2Datos}</h2>
-    <p>
-      {copy.p1}
-    </p>
+    <p>{copy.pDatos}</p>
 
     <h2>{copy.h2Analitica}</h2>
-    <p>
-      {copy.p2Pre} <strong>{copy.p2Strong1}</strong>
-      {copy.p2Mid} <strong>{copy.p2Strong2}</strong>{copy.p2Post}
-    </p>
+    <p set:html={copy.pAnalitica1} />
+    <p set:html={copy.pAnalitica2} />
+    <p set:html={copy.pAnalitica3} />
+
+    <h2>{copy.h2Cookies}</h2>
+    <p>{copy.pCookies1}</p>
+    <ul class="cookies">
+      {cookies.map((cookie) => (
+        <li>
+          <code>{cookie.name}</code> — {cookie.purpose} {copy.cookieTtl}
+        </li>
+      ))}
+    </ul>
+    <p set:html={copy.pCookies2} />
+
+    <h2>{copy.h2Decision}</h2>
+    <p>{copy.pDecision}</p>
+    <div class="consent-control">
+      <p class="consent-status">
+        <span class="consent-status__label">{copy.statusLabel}</span>
+        <strong id="consent-state" data-granted={copy.statusGranted} data-denied={copy.statusDenied}
+          >{copy.statusUnset}</strong
+        >
+      </p>
+      <div class="consent-buttons">
+        <button type="button" data-consent="granted">{copy.btnAccept}</button>
+        <button type="button" data-consent="denied">{copy.btnReject}</button>
+      </div>
+      <noscript><p class="consent-nojs">{copy.noJs}</p></noscript>
+    </div>
+    <p>{copy.pDecision2}</p>
 
     <h2>{copy.h2Almacenamiento}</h2>
-    <p>
-      {copy.p3Pre} <strong>{copy.p3Strong1}</strong>
-      {copy.p3Mid} <em>{copy.p3Em}</em>{copy.p3Mid2}
-      <strong>{copy.p3Strong2}</strong>{copy.p3Post}
-    </p>
+    <p set:html={copy.pAlmacenamiento} />
 
     <h2>{copy.h2Terceros}</h2>
-    <p>
-      {copy.p4}
-    </p>
+    <p>{copy.pTerceros}</p>
 
     <h2>{copy.h2Derechos}</h2>
+    <p set:html={copy.pDerechos1} />
     <p>
-      {copy.p5Pre}
+      {copy.pDerechos2}
       <a class="editorial-link" href="mailto:hola@profedeeconomia.es">hola@profedeeconomia.es</a>.
     </p>
 
     <h2>{copy.h2Cambios}</h2>
-    <p>
-      {copy.p6}
-    </p>
+    <p>{copy.pCambios}</p>
 
     <p class="links"><a class="editorial-link" href="/legal/aviso-legal/">{copy.linkAviso}</a></p>
   </main>
 </BaseLayout>
+
+<script>
+  import { readConsent, decideConsent } from '@/lib/consent';
+
+  const state = document.getElementById('consent-state');
+  const control = state?.closest('.consent-control');
+
+  /** Reflect the stored decision; the unanswered wording is the server default. */
+  function render(): void {
+    if (!state) return;
+    const current = readConsent();
+    if (current === 'granted') state.textContent = state.dataset.granted ?? '';
+    else if (current === 'denied') state.textContent = state.dataset.denied ?? '';
+  }
+
+  if (state && control) {
+    render();
+    control.addEventListener('click', (event) => {
+      const target = event.target as HTMLElement | null;
+      const choice = target?.closest<HTMLElement>('[data-consent]')?.dataset.consent;
+      if (choice !== 'granted' && choice !== 'denied') return;
+      decideConsent(choice);
+      render();
+      // The banner is only shown to undecided visitors, but hide it in case the
+      // decision was made here while it was still on screen.
+      document.getElementById('consent-banner')?.setAttribute('hidden', '');
+    });
+  }
+</script>
 
 <style>
   .prose { max-width: 64ch; margin: 0 auto; padding: 3rem clamp(1.5rem, 4vw, 3rem) 5rem; }
@@ -135,4 +227,37 @@ const copy = {
   p { font-size: 1.08rem; line-height: 1.7; color: var(--color-ink-soft); margin: 0 0 1rem; }
   p strong { color: var(--color-ink); }
   .links { margin-top: 2.5rem; }
+
+  .cookies { margin: 0 0 1rem; padding-left: 1.2rem; }
+  .cookies li { font-size: 1.02rem; line-height: 1.7; color: var(--color-ink-soft); margin-bottom: 0.35rem; }
+  .cookies code { font-family: var(--font-mono); font-size: 0.92em; color: var(--color-ink); }
+
+  /* Symmetric 1px frame — no single-side accent rule (see docs/design-system.md). */
+  .consent-control {
+    border: 1px solid var(--color-line);
+    border-radius: 8px;
+    background: var(--color-bg-cream);
+    padding: 1.15rem 1.25rem;
+    margin: 0 0 1.4rem;
+  }
+  .consent-status { font-size: 1rem; margin: 0 0 0.85rem; }
+  .consent-status__label { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-ink-mute); margin-right: 0.5rem; }
+  .consent-status strong { color: var(--color-ink); }
+
+  /* Both buttons identical: refusing must be as easy as accepting (AEPD). */
+  .consent-buttons { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+  .consent-buttons button {
+    font-family: var(--font-sans);
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--color-ink);
+    background: transparent;
+    border: 1px solid var(--color-ink);
+    border-radius: 6px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: background-color 0.15s var(--ease-soft), color 0.15s var(--ease-soft);
+  }
+  .consent-buttons button:hover { background: var(--color-ink); color: var(--color-bg); }
+  .consent-nojs { font-size: 0.95rem; margin: 0.85rem 0 0; }
 </style>

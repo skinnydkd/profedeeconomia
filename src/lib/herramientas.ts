@@ -14,6 +14,10 @@ export const COMPONENTE_KEYS = [
   'Presupuesto503020', 'BuscadorItinerarios', 'GeneradorCVEuropass', 'DCF', 'RatiosBenchmark',
   'Elasticidad', 'MultiplicadorGasto', 'IRPFDeclaracion', 'CocheVsAlternativa', 'RIASEC',
   'PresupuestoUni', 'Productividad', 'EquilibrioMercado', 'DAFO', 'CanvasBM', 'BCG',
+  'TasasEPA', 'MatrizDecision', 'FPP', 'Externalidad', 'MultiplicadorBancario',
+  'VentajaComparativa', 'CuentaResultados', 'CosteContratacion', 'MarketingCliente',
+  'Tesoreria', 'TamanoMercado', 'CompraInteligente', 'EmbudoValidacion', 'Semana168',
+  'PIBReal', 'FormaJuridica', 'ClasificaEmpresa', 'ObjetivosSMART', 'HuellaDigital', 'RolesEquipo', 'AfirmacionSostenible', 'Scamper', 'EvaluacionRiesgos', 'MapaEmpatia', 'Progresividad', 'Karasek', 'MisionVision', 'Automatizacion',
 ] as const;
 export type ComponenteKey = typeof COMPONENTE_KEYS[number];
 
@@ -34,11 +38,11 @@ export interface Herramienta {
 
 export const FAMILIAS_HERRAMIENTA: Familia[] = [
   { slug: 'costes-resultados',   label: 'Costes y resultados',     intro: 'Umbral de rentabilidad y análisis de cuentas.',        colorVar: '--color-edmn' },
-  { slug: 'mercados-macro',      label: 'Mercados y macroeconomía',intro: 'Elasticidad, oferta y demanda agregada, multiplicador.', colorVar: '--color-eco1' },
+  { slug: 'mercados-macro',      label: 'Mercados y macroeconomía',intro: 'Escasez, mercados, fallos, macroeconomía y comercio.',   colorVar: '--color-eco1' },
   { slug: 'inversion-finanzas',  label: 'Inversión y finanzas',    intro: 'Valorar inversiones: VAN, TIR, descuento e interés.',   colorVar: '--color-mustard' },
-  { slug: 'finanzas-personales', label: 'Finanzas personales',     intro: 'Nómina, IRPF, presupuesto y decisiones de gasto.',      colorVar: '--color-fopp' },
-  { slug: 'orientacion-fp',         label: 'Orientación y FP',          intro: 'Intereses, itinerarios y currículum.',                  colorVar: '--color-ipe2' },
-  { slug: 'estrategia-planificacion', label: 'Estrategia y planificación', intro: 'Diagnóstico y diseño: DAFO, modelo de negocio y cartera.', colorVar: '--color-gpe' },
+  { slug: 'finanzas-personales', label: 'Finanzas personales',     intro: 'Nómina, IRPF, presupuesto, compras y crédito.',          colorVar: '--color-fopp' },
+  { slug: 'orientacion-fp',         label: 'Orientación y FP',          intro: 'Intereses, itinerarios, currículum y organización del tiempo.', colorVar: '--color-ipe2' },
+  { slug: 'estrategia-planificacion', label: 'Estrategia y planificación', intro: 'Diagnóstico, diseño y plan: modelo de negocio, cartera, clientes y tesorería.', colorVar: '--color-gpe' },
 ];
 
 export const HERRAMIENTAS: Herramienta[] = [
@@ -48,6 +52,7 @@ export const HERRAMIENTAS: Herramienta[] = [
   { componente: 'Elasticidad',        slug: 'elasticidad',         title: 'Elasticidad de la demanda',             familia: 'mercados-macro',      orden: 1, tipo: 'calculadora', descripcion: 'Elasticidad precio de la demanda y su efecto sobre el ingreso.', competencias_clave: ['STEM', 'CD'], competencias_especificas: [] },
   { componente: 'ADASSimulator',      slug: 'oferta-demanda-agregada', title: 'Simulador oferta y demanda agregada', familia: 'mercados-macro',  orden: 2, tipo: 'simulador',   descripcion: 'Mueve la AD y la AS y observa el efecto sobre producción y precios.', competencias_clave: ['STEM', 'CD'], competencias_especificas: [] },
   { componente: 'MultiplicadorGasto', slug: 'multiplicador-gasto', title: 'Multiplicador del gasto',               familia: 'mercados-macro',      orden: 3, tipo: 'calculadora', descripcion: 'Efecto multiplicador de una variación del gasto sobre la renta.', competencias_clave: ['STEM', 'CD'], competencias_especificas: [] },
+  { componente: 'PIBReal',            slug: 'pib-real-deflactor', title: 'PIB nominal, PIB real y deflactor', familia: 'mercados-macro', orden: 4, tipo: 'calculadora', descripcion: 'Separa cuánto del crecimiento del PIB es más producción y cuánto son precios.', competencias_clave: ['STEM', 'CD'], competencias_especificas: [] },
   { componente: 'VANTIR',             slug: 'van-tir',             title: 'VAN y TIR',                             familia: 'inversion-finanzas',  orden: 1, tipo: 'calculadora', descripcion: 'Valor actual neto y tasa interna de retorno de una inversión.', competencias_clave: ['STEM', 'CD', 'CE'], competencias_especificas: [] },
   { componente: 'DCF',                slug: 'descuento-flujos',    title: 'Descuento de flujos (DCF)',             familia: 'inversion-finanzas',  orden: 2, tipo: 'calculadora', descripcion: 'Valora un proyecto descontando sus flujos de caja futuros.', competencias_clave: ['STEM', 'CD', 'CE'], competencias_especificas: [] },
   { componente: 'InteresCompuesto',   slug: 'interes-compuesto',   title: 'Interés compuesto',                     familia: 'inversion-finanzas',  orden: 3, tipo: 'calculadora', descripcion: 'Crecimiento de un capital con interés compuesto y aportaciones.', competencias_clave: ['STEM', 'CD', 'CE'], competencias_especificas: [] },
@@ -56,14 +61,41 @@ export const HERRAMIENTAS: Herramienta[] = [
   { componente: 'PresupuestoUni',     slug: 'presupuesto-universidad', title: 'Presupuesto para la universidad',   familia: 'finanzas-personales', orden: 3, tipo: 'calculadora', descripcion: 'Estima el coste de estudiar fuera y cómo financiarlo.', competencias_clave: ['STEM', 'CPSAA', 'CD'], competencias_especificas: [] },
   { componente: 'Presupuesto503020',  slug: 'presupuesto-50-30-20',title: 'Presupuesto 50/30/20',                  familia: 'finanzas-personales', orden: 4, tipo: 'calculadora', descripcion: 'Reparte unos ingresos entre necesidades, deseos y ahorro.', competencias_clave: ['STEM', 'CPSAA', 'CD'], competencias_especificas: [] },
   { componente: 'CocheVsAlternativa', slug: 'coche-vs-alternativa',title: '¿Coche propio o alternativas?',         familia: 'finanzas-personales', orden: 5, tipo: 'calculadora', descripcion: 'Compara el coste real del coche frente a otras opciones de movilidad.', competencias_clave: ['STEM', 'CPSAA', 'CD'], competencias_especificas: [] },
+  { componente: 'EvaluacionRiesgos',  slug: 'evaluacion-riesgos',  title: 'Evaluación de riesgos laborales',       familia: 'orientacion-fp',      orden: 9, tipo: 'calculadora', descripcion: 'Cruza probabilidad y consecuencias, da el nivel de riesgo y dice si se puede seguir trabajando mientras se corrige.', competencias_clave: ['STEM', 'CPSAA', 'CC'], competencias_especificas: [] },
+  { componente: 'MisionVision',       slug: 'mision-vision',       title: 'El test de la frase hueca',             familia: 'estrategia-planificacion', orden: 13, tipo: 'plantilla', descripcion: 'Comprueba si vuestra misión, visión y valores dicen algo o los firmaría cualquier empresa de cualquier sector.', competencias_clave: ['CCL', 'CE', 'CPSAA'], competencias_especificas: [] },
+  { componente: 'Automatizacion',     slug: 'tareas-automatizables', title: 'Qué parte de un puesto es rutina',    familia: 'orientacion-fp',      orden: 11, tipo: 'calculadora', descripcion: 'Reparte las horas de un puesto entre tareas rutinarias y tareas que exigen criterio, trato o manos, y describe en qué se convierte.', competencias_clave: ['CD', 'CPSAA', 'STEM'], competencias_especificas: [] },
+  { componente: 'Progresividad',      slug: 'progresividad-fiscal',title: 'Progresivo y regresivo, con números',   familia: 'finanzas-personales', orden: 5, tipo: 'calculadora', descripcion: 'Dos personas, la misma compra: qué porcentaje de su dinero se lleva un impuesto sobre la renta y cuál uno sobre el consumo.', competencias_clave: ['STEM', 'CC', 'CD'], competencias_especificas: [] },
+  { componente: 'Karasek',            slug: 'demanda-control',     title: 'Exigencia, margen de decisión y apoyo',  familia: 'orientacion-fp',      orden: 10, tipo: 'calculadora', descripcion: 'Sitúa un puesto en los cuadrantes del modelo de Karasek y dice qué haría falta para sacarlo de la alta tensión.', competencias_clave: ['CPSAA', 'CC', 'STEM'], competencias_especificas: [] },
+  { componente: 'MapaEmpatia',        slug: 'mapa-empatia',        title: 'Mapa de empatía',                       familia: 'estrategia-planificacion', orden: 12, tipo: 'plantilla', descripcion: 'Seis zonas sobre una persona concreta, y aviso cuando faltan las dos de las que sale la propuesta de valor.', competencias_clave: ['CPSAA', 'CE', 'CCL'], competencias_especificas: [] },
+  { componente: 'Scamper',            slug: 'scamper',             title: 'SCAMPER: abrir antes de cerrar',        familia: 'estrategia-planificacion', orden: 11, tipo: 'plantilla', descripcion: 'Genera ideas desde siete ángulos y no deja puntuar ninguna hasta que hay de dónde elegir.', competencias_clave: ['CE', 'CCEC', 'CPSAA'], competencias_especificas: [] },
+  { componente: 'AfirmacionSostenible', slug: 'afirmacion-sostenible', title: 'Analizador de afirmaciones de sostenibilidad', familia: 'estrategia-planificacion', orden: 10, tipo: 'plantilla', descripcion: 'Siete preguntas para saber si una afirmación verde se puede comprobar. No dice si es cierta: dice si es verificable.', competencias_clave: ['CC', 'CD', 'CE'], competencias_especificas: [] },
+  { componente: 'RolesEquipo',        slug: 'roles-de-equipo',     title: 'Cobertura de papeles del equipo',       familia: 'orientacion-fp',      orden: 8, tipo: 'plantilla',   descripcion: 'Qué papeles cubre un equipo y cuáles no cubre nadie, a partir de la autovaloración de sus miembros.', competencias_clave: ['CPSAA', 'CCL', 'CE'], competencias_especificas: [] },
+  { componente: 'HuellaDigital',      slug: 'huella-digital',      title: 'Auditoría de huella digital',           familia: 'orientacion-fp',      orden: 7, tipo: 'plantilla',   descripcion: 'Lista de acciones concretas sobre acceso, privacidad, reputación y derechos, ordenada por lo que más quita de en medio.', competencias_clave: ['CD', 'CPSAA', 'CC'], competencias_especificas: [] },
+  { componente: 'ObjetivosSMART',     slug: 'objetivos-smart',     title: 'Comprobador de objetivos SMART',        familia: 'orientacion-fp',      orden: 6, tipo: 'plantilla',   descripcion: 'Revisa si un objetivo cumple las cinco letras y calcula el ritmo semanal que exige.', competencias_clave: ['CPSAA', 'STEM', 'CCL'], competencias_especificas: [] },
   { componente: 'RIASEC',             slug: 'test-riasec',         title: 'Test de intereses RIASEC',              familia: 'orientacion-fp',      orden: 1, tipo: 'test',        descripcion: 'Identifica perfiles de interés profesional (modelo RIASEC).', competencias_clave: ['CPSAA', 'CE'], competencias_especificas: [] },
   { componente: 'GeneradorCVEuropass',slug: 'cv-europass',         title: 'Generador de CV Europass',              familia: 'orientacion-fp',      orden: 2, tipo: 'generador',   descripcion: 'Rellena y descarga un currículum en formato Europass.', competencias_clave: ['CPSAA', 'CE'], competencias_especificas: [] },
   { componente: 'BuscadorItinerarios',slug: 'itinerarios',         title: 'Buscador de itinerarios formativos',    familia: 'orientacion-fp',      orden: 3, tipo: 'buscador',    descripcion: 'Explora qué estudiar después según tus intereses y nivel.', competencias_clave: ['CPSAA', 'CE'], competencias_especificas: [] },
   { componente: 'Productividad', slug: 'productividad', title: 'Productividad', familia: 'costes-resultados', orden: 4, tipo: 'calculadora', descripcion: 'Productividad del trabajo y del capital, global y su variación entre periodos.', competencias_clave: ['STEM', 'CD', 'CE'], competencias_especificas: [], unidades_relacionadas: [{ asignatura: 'edmn-2bach', unidad: 7 }, { asignatura: 'gpe-bach', unidad: 4 }] },
   { componente: 'EquilibrioMercado', slug: 'equilibrio-mercado', title: 'Equilibrio de mercado', familia: 'mercados-macro', orden: 4, tipo: 'calculadora', descripcion: 'Oferta y demanda lineales: precio y cantidad de equilibrio, topes y excesos.', competencias_clave: ['STEM', 'CD'], competencias_especificas: [], unidades_relacionadas: [{ asignatura: 'eco-1bach', unidad: 4 }, { asignatura: 'eco-1bach', unidad: 5 }] },
+  { componente: 'ClasificaEmpresa',   slug: 'clasificar-empresa',  title: 'Clasificador de empresas',              familia: 'estrategia-planificacion', orden: 8, tipo: 'calculadora', descripcion: 'Sitúa una empresa por tamaño (umbrales europeos), sector, propiedad y ámbito, y explica qué la deja fuera de PYME.', competencias_clave: ['STEM', 'CE', 'CD'], competencias_especificas: [] },
+  { componente: 'FormaJuridica',      slug: 'forma-juridica',      title: 'Comparador de formas jurídicas',        familia: 'estrategia-planificacion', orden: 9, tipo: 'calculadora', descripcion: 'Responsabilidad, capital y tributación de autónomo, S.L. y cooperativa, con el punto de corte entre escala progresiva y tipo fijo.', competencias_clave: ['STEM', 'CE', 'CC'], competencias_especificas: [] },
   { componente: 'DAFO', slug: 'dafo', title: 'DAFO', familia: 'estrategia-planificacion', orden: 1, tipo: 'plantilla', descripcion: 'Lienzo de Debilidades, Amenazas, Fortalezas y Oportunidades para rellenar.', competencias_clave: ['CPSAA', 'CE'], competencias_especificas: [], unidades_relacionadas: [{ asignatura: 'edmn-2bach', unidad: 3 }, { asignatura: 'ipe1-fp', unidad: 3 }, { asignatura: 'eeae-bach', unidad: 9 }] },
   { componente: 'CanvasBM', slug: 'business-model-canvas', title: 'Business Model Canvas', familia: 'estrategia-planificacion', orden: 2, tipo: 'plantilla', descripcion: 'Los 9 bloques del modelo de negocio para diseñar y pivotar.', competencias_clave: ['CPSAA', 'CE'], competencias_especificas: [], unidades_relacionadas: [{ asignatura: 'edmn-2bach', unidad: 4 }, { asignatura: 'eco-4eso', unidad: 9 }, { asignatura: 'ipe2-fp', unidad: 6 }] },
   { componente: 'BCG', slug: 'matriz-bcg', title: 'Matriz BCG', familia: 'estrategia-planificacion', orden: 3, tipo: 'plantilla', descripcion: 'Cartera de productos por crecimiento y cuota: estrella, interrogante, vaca y perro.', competencias_clave: ['CPSAA', 'CE'], competencias_especificas: [], unidades_relacionadas: [{ asignatura: 'edmn-2bach', unidad: 3 }, { asignatura: 'eeae-bach', unidad: 9 }] },
+  { componente: 'TasasEPA', slug: 'tasas-epa', title: 'Las tres tasas de la EPA', familia: 'orientacion-fp', orden: 4, tipo: 'calculadora', descripcion: 'Tasa de actividad, de empleo y de paro a partir de tres cifras de población.', competencias_clave: ['STEM', 'CD', 'CC'], competencias_especificas: [], unidades_relacionadas: [{ asignatura: 'fopp-4eso', unidad: 7 }] },
+  { componente: 'MatrizDecision', slug: 'matriz-decision', title: 'Matriz de decisión ponderada', familia: 'orientacion-fp', orden: 5, tipo: 'plantilla', descripcion: 'Compara opciones con criterios explícitos y con el mismo rasero.', competencias_clave: ['CPSAA', 'CE', 'STEM'], competencias_especificas: [], unidades_relacionadas: [{ asignatura: 'fopp-4eso', unidad: 4 }] },
+  { componente: 'FPP', slug: 'frontera-posibilidades', title: 'Frontera de posibilidades de producción', familia: 'mercados-macro', orden: 5, tipo: 'simulador', descripcion: 'Escasez y coste de oportunidad: puntos eficientes, ineficientes e inalcanzables, y el desplazamiento por crecimiento.', competencias_clave: ['STEM', 'CD'], competencias_especificas: [], unidades_relacionadas: [{ asignatura: 'eco-1bach', unidad: 1 }] },
+  { componente: 'Externalidad', slug: 'externalidad-impuesto', title: 'Externalidades e impuesto pigouviano', familia: 'mercados-macro', orden: 6, tipo: 'calculadora', descripcion: 'Equilibrio de mercado frente a óptimo social, impuesto o subvención correctora y pérdida de eficiencia.', competencias_clave: ['STEM', 'CD', 'CC'], competencias_especificas: [], unidades_relacionadas: [{ asignatura: 'eco-1bach', unidad: 6 }] },
+  { componente: 'MultiplicadorBancario', slug: 'multiplicador-bancario', title: 'Creación de dinero bancario', familia: 'mercados-macro', orden: 7, tipo: 'calculadora', descripcion: 'Cuánto dinero crea el sistema bancario a partir de un depósito, ronda a ronda.', competencias_clave: ['STEM', 'CD'], competencias_especificas: [], unidades_relacionadas: [{ asignatura: 'eco-1bach', unidad: 10 }] },
+  { componente: 'VentajaComparativa', slug: 'ventaja-comparativa', title: 'Ventaja comparativa y comercio', familia: 'mercados-macro', orden: 8, tipo: 'calculadora', descripcion: 'Costes de oportunidad de dos países, quién se especializa en qué y el rango de la relación de intercambio.', competencias_clave: ['STEM', 'CD', 'CC'], competencias_especificas: [], unidades_relacionadas: [{ asignatura: 'eco-1bach', unidad: 12 }] },
+  { componente: 'CuentaResultados', slug: 'cuenta-resultados', title: 'Cuenta de resultados escalonada', familia: 'costes-resultados', orden: 5, tipo: 'calculadora', descripcion: 'De la cifra de negocios al resultado del ejercicio, parando en margen bruto, EBITDA, BAII y BAI.', competencias_clave: ['STEM', 'CD', 'CE'], competencias_especificas: [], unidades_relacionadas: [{ asignatura: 'edmn-2bach', unidad: 10 }] },
+  { componente: 'CosteContratacion', slug: 'coste-contratacion', title: 'Coste real de una contratación', familia: 'costes-resultados', orden: 6, tipo: 'calculadora', descripcion: 'Lo que cuesta un empleado a la empresa, lo que cobra la persona y la distancia entre las dos cifras.', competencias_clave: ['STEM', 'CD', 'CC'], competencias_especificas: [], unidades_relacionadas: [{ asignatura: 'edmn-2bach', unidad: 8 }] },
+  { componente: 'MarketingCliente', slug: 'cac-ltv', title: 'Coste de captación y valor del cliente', familia: 'estrategia-planificacion', orden: 4, tipo: 'calculadora', descripcion: 'CAC, LTV, ratio entre los dos y meses que se tarda en recuperar lo invertido en captar.', competencias_clave: ['STEM', 'CD', 'CE'], competencias_especificas: [], unidades_relacionadas: [{ asignatura: 'edmn-2bach', unidad: 6 }] },
+  { componente: 'Tesoreria', slug: 'prevision-tesoreria', title: 'Previsión de tesorería a 12 meses', familia: 'estrategia-planificacion', orden: 5, tipo: 'simulador', descripcion: 'Cobros y pagos mes a mes, el peor momento de caja y por qué el beneficio no es el dinero disponible.', competencias_clave: ['STEM', 'CD', 'CE'], competencias_especificas: [], unidades_relacionadas: [{ asignatura: 'edmn-2bach', unidad: 12 }] },
+  { componente: 'TamanoMercado', slug: 'tamano-mercado', title: 'Tamaño de mercado (TAM, SAM y SOM)', familia: 'estrategia-planificacion', orden: 6, tipo: 'calculadora', descripcion: 'De toda la población a los clientes que un proyecto puede conseguir de verdad, y cuántos hacen falta para su objetivo.', competencias_clave: ['STEM', 'CD', 'CE'], competencias_especificas: [], unidades_relacionadas: [{ asignatura: 'eco-4eso', unidad: 4 }] },
+  { componente: 'EmbudoValidacion', slug: 'embudo-validacion', title: 'Embudo de validación', familia: 'estrategia-planificacion', orden: 7, tipo: 'calculadora', descripcion: 'Conversión paso a paso de un proyecto, el paso que más gente pierde y el coste de cada venta.', competencias_clave: ['STEM', 'CD', 'CE'], competencias_especificas: [], unidades_relacionadas: [{ asignatura: 'eco-4eso', unidad: 10 }] },
+  { componente: 'CompraInteligente', slug: 'compra-inteligente', title: 'Precio por unidad y coste de pagar a plazos', familia: 'finanzas-personales', orden: 6, tipo: 'calculadora', descripcion: 'Compara formatos con el mismo rasero y averigua qué TAE esconde una cuota mensual que parece pequeña.', competencias_clave: ['STEM', 'CD', 'CPSAA'], competencias_especificas: [], unidades_relacionadas: [{ asignatura: 'eco-4eso', unidad: 5 }] },
+  { componente: 'Semana168', slug: 'semana-168-horas', title: 'El presupuesto de las 168 horas', familia: 'orientacion-fp', orden: 6, tipo: 'calculadora', descripcion: 'Reparte las horas de una semana entre sueño, clases, estudio, deporte y pantallas, y mira qué sale.', competencias_clave: ['CPSAA', 'STEM'], competencias_especificas: [], unidades_relacionadas: [{ asignatura: 'fopp-4eso', unidad: 2 }] },
 ];
 
 const BY_SLUG = new Map(HERRAMIENTAS.map((h) => [`${h.familia}/${h.slug}`, h]));
@@ -83,6 +115,38 @@ export function gruposHerramientas() {
 }
 
 /** Derive, per componente, the {asignatura, unidad} pairs from the recursos that embed it. */
+/**
+ * Path of the subject resource page that duplicates this tool, when there is
+ * exactly one. The two render the same island over 81-87% identical text and
+ * they compete: measured on the August 2026 build, the toolbox copy sat at
+ * position 37-41 while its subject twin sat at 6-18, on the same six inbound
+ * links each. Where the twin is unique, the toolbox page canonicalises to it
+ * and the signals consolidate. Where several subjects embed the same tool
+ * (nómina, punto muerto, VAN/TIR…) there is no single target, so the toolbox
+ * page stays self-canonical and the duplication is left for a content
+ * decision. See docs/seo-estrategia-2026.md §5.6.
+ */
+export function recursoCanonicoPorComponente(
+  recursos: { id: string; data: { componente?: string; asignatura: string } }[]
+): Map<string, string> {
+  const byComponente = new Map<string, string[]>();
+  for (const r of recursos) {
+    const { componente, asignatura } = r.data;
+    if (!componente) continue;
+    const slug = r.id.split('/').pop()?.replace(/\.mdx?$/, '') ?? '';
+    if (!slug) continue;
+    const paths = byComponente.get(componente) ?? [];
+    const path = `/${asignatura}/recursos/${slug}/`;
+    if (!paths.includes(path)) paths.push(path);
+    byComponente.set(componente, paths);
+  }
+  const unique = new Map<string, string>();
+  for (const [componente, paths] of byComponente) {
+    if (paths.length === 1) unique.set(componente, paths[0]);
+  }
+  return unique;
+}
+
 export function unidadesPorComponente(
   recursos: { data: { componente?: string; asignatura: string; unidad_relacionada?: number } }[]
 ): Map<string, { asignatura: string; unidad: number }[]> {

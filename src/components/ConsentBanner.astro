@@ -1,0 +1,116 @@
+---
+/**
+ * Analytics consent notice (RGPD / AEPD).
+ *
+ * Google Analytics only loads once the visitor accepts here — see
+ * @/lib/consent and Analytics.astro. Accept and reject carry identical visual
+ * weight, which the AEPD requires: refusing must be exactly as easy as
+ * accepting. The decision can be changed later from the privacy page.
+ *
+ * Rendered hidden and revealed by the client script, so visitors who already
+ * answered never see it and the markup stays cacheable/static.
+ */
+import { getLocale } from '@/i18n/locale';
+import { t } from '@/i18n/ui';
+
+const locale = getLocale(Astro.currentLocale);
+---
+
+<aside id="consent-banner" class="consent" aria-label={t('consent.aria', locale)} hidden>
+  <p class="consent__eyebrow">{t('consent.title', locale)}</p>
+  <p class="consent__body">
+    {t('consent.body', locale)}{' '}
+    <a class="consent__link" href="/legal/privacidad/">{t('consent.more', locale)}</a>
+  </p>
+  <div class="consent__actions">
+    <button type="button" data-consent="denied">{t('consent.reject', locale)}</button>
+    <button type="button" data-consent="granted">{t('consent.accept', locale)}</button>
+  </div>
+</aside>
+
+<script>
+  import { readConsent, decideConsent } from '@/lib/consent';
+
+  const banner = document.getElementById('consent-banner');
+
+  // Already answered (or storage unreadable and we default to not tracking):
+  // stay out of the way. Nothing loaded from Google either way.
+  if (banner && readConsent() === null) {
+    banner.hidden = false;
+    banner.addEventListener('click', (event) => {
+      const target = event.target as HTMLElement | null;
+      const choice = target?.closest<HTMLElement>('[data-consent]')?.dataset.consent;
+      if (choice !== 'granted' && choice !== 'denied') return;
+      decideConsent(choice);
+      banner.hidden = true;
+    });
+  }
+</script>
+
+<style>
+  .consent {
+    position: fixed;
+    left: clamp(0.75rem, 3vw, 1.75rem);
+    right: clamp(0.75rem, 3vw, 1.75rem);
+    bottom: calc(clamp(0.75rem, 3vw, 1.75rem) + env(safe-area-inset-bottom, 0px));
+    z-index: 900;
+    max-width: 34rem;
+    background: var(--color-paper);
+    border: 1px solid var(--color-line);
+    border-radius: 8px;
+    box-shadow: 0 12px 32px rgba(42, 31, 24, 0.14);
+    padding: 1.25rem 1.35rem 1.15rem;
+  }
+  /* The UA `[hidden] { display: none }` rule loses to the class, so restate it. */
+  .consent[hidden] { display: none; }
+
+  .consent__eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-terra-ink);
+    margin: 0 0 0.45rem;
+  }
+  .consent__body {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--color-ink-soft);
+    margin: 0 0 1.05rem;
+  }
+  .consent__link {
+    color: var(--color-terra-ink);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .consent__link:hover { color: var(--color-terra-deep); }
+
+  /* Both buttons are deliberately identical: rejecting must be as easy and as
+     prominent as accepting (AEPD). Only the labels differ. */
+  .consent__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+  .consent__actions button {
+    flex: 1 1 8rem;
+    font-family: var(--font-sans);
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--color-ink);
+    background: transparent;
+    border: 1px solid var(--color-ink);
+    border-radius: 6px;
+    padding: 0.55rem 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.15s var(--ease-soft), color 0.15s var(--ease-soft);
+  }
+  .consent__actions button:hover {
+    background: var(--color-ink);
+    color: var(--color-bg);
+  }
+
+  @media print {
+    .consent { display: none; }
+  }
+</style>

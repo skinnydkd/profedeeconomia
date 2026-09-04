@@ -2,6 +2,7 @@
 asignatura: taller-eco-3eso
 unidad_relacionada: 5
 title: "Calculadora d'estalvi i interés compost"
+seoTitle: "Calculadora d'estalvi: quant pots estalviar cada mes"
 descripcion: "Descobrix quant pot créixer el teu estalvi amb el temps i la força de l'interés compost: xicotetes quantitats constants es convertixen en molt."
 tipo: calculadora
 componente: InteresCompuesto

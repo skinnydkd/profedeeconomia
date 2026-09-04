@@ -4,6 +4,8 @@
  * by family (FAMILIAS_HERRAMIENTA order), each card linking to its detail page.
  */
 import BaseLayout from '@layouts/BaseLayout.astro';
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 import { gruposHerramientas, FAMILIAS_HERRAMIENTA } from '@/lib/herramientas';
 import { getLocale } from '@/i18n/locale';
 import { t } from '@/i18n/ui';
@@ -11,6 +13,16 @@ import { localizeHerramienta } from '@/i18n/herramientas-ca';
 import { localizeFamilias, FAMILIAS_HERRAMIENTA_CA } from '@/i18n/familias-ca';
 
 const locale = getLocale(Astro.currentLocale);
+
+// Real captures of each tool's UI (scripts/build-screenshots.mjs), keyed by the
+// ES familia/slug — the CA overlay never renames routes, so both locales share
+// the same preview.
+const THUMBS = import.meta.glob<{ default: ImageMetadata }>(
+  '/src/assets/screenshots/herramientas/**/*.webp',
+  { eager: true },
+);
+const thumbDe = (familia: string, slug: string): ImageMetadata | undefined =>
+  THUMBS[`/src/assets/screenshots/herramientas/${familia}/${slug}.webp`]?.default;
 
 const groups = gruposHerramientas();
 const activeFamilias = new Set(groups.map((g) => g.familia.slug));
@@ -93,8 +105,10 @@ const copy = {
           <div class="card-grid">
             {g.items.map(({ h: raw }) => {
               const h = localizeHerramienta(raw, locale);
+              const th = thumbDe(raw.familia, raw.slug);
               return (
                 <a class="card" href={`/herramientas/${h.familia}/${h.slug}/`} style={`--fam-color: var(${familia.colorVar}); --fam-ink: var(${familia.colorVar}-ink)`}>
+                  {th && <Image class="card__thumb" src={th} alt="" widths={[320, 640]} sizes="(min-width: 720px) 320px, 90vw" />}
                   <span class="card__eyebrow">{TIPO_LABEL[h.tipo] ?? h.tipo}</span>
                   <h3 class="card__title serif">{h.title}</h3>
                   <p class="card__desc">{h.descripcion}</p>
@@ -138,9 +152,10 @@ const copy = {
   .familia__head { border-left: 4px solid var(--fam-color); padding-left: 1rem; margin-bottom: 1.5rem; }
   .familia__head h2 { font-family: var(--font-serif); font-size: 1.7rem; font-weight: 500; margin: 0; }
   .familia__head p { color: var(--color-ink-soft); margin: 0.3rem 0 0; }
-  .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 1.2rem; }
+  .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(290px, 100%), 1fr)); gap: 1.2rem; }
   .card { display: flex; flex-direction: column; gap: 0.5rem; padding: 1.4rem; background: var(--color-paper); border: 1px solid var(--color-line); border-top: 4px solid var(--fam-color); border-radius: 10px; text-decoration: none; transition: transform .15s ease, box-shadow .15s ease; }
   .card:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(42, 31, 24, 0.1); }
+  .card__thumb { display: block; width: calc(100% + 2.8rem); height: auto; margin: -1.4rem -1.4rem 0.35rem; border-radius: 6px 6px 0 0; border-bottom: 1px solid var(--color-line); }
   .card__eyebrow { font-family: var(--font-sans); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--fam-ink); }
   .card__title { font-size: 1.3rem; color: var(--color-ink); margin: 0; }
   .card__desc { color: var(--color-ink-soft); font-size: 0.95rem; line-height: 1.5; margin: 0; flex: 1; }

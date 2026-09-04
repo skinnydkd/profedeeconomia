@@ -9,7 +9,7 @@ describe('COTIZACIONES_TRABAJADOR_2026', () => {
   it('matches the official 2026 worker rates', () => {
     expect(COTIZACIONES_TRABAJADOR_2026.contingenciasComunes).toBeCloseTo(0.047, 5);
     expect(COTIZACIONES_TRABAJADOR_2026.formacionProfesional).toBeCloseTo(0.001, 5);
-    expect(COTIZACIONES_TRABAJADOR_2026.mei).toBeCloseTo(0.0013, 5);
+    expect(COTIZACIONES_TRABAJADOR_2026.mei).toBeCloseTo(0.0015, 5);
   });
 });
 
@@ -24,8 +24,8 @@ describe('calcularNomina', () => {
   it('computes SS contributions as the correct percentage of gross (permanent)', () => {
     const bruto = 24000;
     const r = calcularNomina(bruto, { contrato: 'indefinido' });
-    // 4,70 + 1,55 + 0,10 + 0,13 = 6,48 %
-    const tasaTotal = 0.047 + 0.0155 + 0.001 + 0.0013;
+    // 4,70 + 1,55 + 0,10 + 0,15 = 6,50 %
+    const tasaTotal = 0.047 + 0.0155 + 0.001 + 0.0015;
     expect(r.cotizaciones.total).toBeCloseTo(bruto * tasaTotal, 4);
     expect(r.cotizaciones.contingenciasComunes).toBeCloseTo(bruto * 0.047, 4);
     expect(r.cotizaciones.desempleo).toBeCloseTo(bruto * 0.0155, 4);

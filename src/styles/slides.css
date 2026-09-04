@@ -84,6 +84,70 @@
 .s-exercise ol { margin: 0; padding-left: 4cqw; font-family: var(--font-sans); font-size: 3cqh; line-height: 1.4; color: var(--color-ink); display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 6; overflow: hidden; }
 .s-exercise ol li::marker { color: var(--accent); font-family: var(--font-mono); }
 
+/* Shared heading for the authored dense archetypes */
+.s-terms h2, .s-table h2, .s-split h2, .s-list h2, .s-quiz h2,
+.s-formula h2, .s-timeline h2, .s-caso h2, .s-recap h2, .s-curriculum h2 {
+  font-family: var(--font-serif); font-weight: 500; font-size: 5cqh; line-height: 1.08;
+  margin: 1.2cqh 0 2.6cqh; max-width: 30ch;
+  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden;
+}
+
+/* TERMS — definition cards, 2-4 per slide */
+.s-terms .grid { display: grid; gap: 2cqh 2cqw; grid-template-columns: 1fr 1fr; flex: 1 1 0; min-height: 0; align-content: start; }
+.s-terms .grid[data-n="2"] { grid-template-columns: 1fr 1fr; }
+.s-terms .grid[data-n="3"] { grid-template-columns: repeat(3, 1fr); }
+.s-terms .term { background: var(--color-paper); border: 1px solid var(--color-line); border-radius: 8px; padding: 2.4cqh 2cqw; overflow: hidden; }
+.s-terms .term__t { font-family: var(--font-serif); font-weight: 600; font-size: 3.4cqh; color: var(--accent-ink); margin-bottom: 1cqh; }
+.s-terms .term__d { font-family: var(--font-sans); font-size: 2.7cqh; line-height: 1.42; color: var(--color-ink-soft); display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 5; overflow: hidden; }
+
+/* TABLE — editorial comparison table */
+.s-table table { width: 100%; border-collapse: collapse; font-family: var(--font-sans); table-layout: fixed; }
+.s-table thead th { font-family: var(--font-mono); font-size: 2.2cqh; letter-spacing: .1em; text-transform: uppercase; color: var(--accent-ink); text-align: left; padding: 0 1cqw 1.2cqh 0; border-bottom: .45cqh solid var(--accent); }
+.s-table tbody th { font-family: var(--font-serif); font-weight: 600; font-size: 2.9cqh; text-align: left; padding: 1.6cqh 1cqw 1.6cqh 0; color: var(--color-ink); vertical-align: top; }
+.s-table tbody td { font-size: 2.8cqh; line-height: 1.35; padding: 1.6cqh 1cqw 1.6cqh 0; color: var(--color-ink-soft); vertical-align: top; }
+.s-table tbody tr + tr th, .s-table tbody tr + tr td { border-top: 1px solid var(--color-line-soft); }
+.s-table .cap { font-family: var(--font-serif); font-style: italic; font-size: 2.5cqh; color: var(--color-ink-mute); margin-top: auto; }
+
+/* SPLIT — two labelled columns with a soft central rail */
+.s-split .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 0 5cqw; flex: 1 1 0; min-height: 0; position: relative; }
+.s-split .cols::before { content: ''; position: absolute; top: 0; bottom: 2cqh; left: 50%; width: 1px; background: var(--color-line); }
+.s-split .col__h { font-family: var(--font-mono); font-size: 2.4cqh; letter-spacing: .12em; text-transform: uppercase; color: var(--accent-ink); margin-bottom: 1.6cqh; }
+.s-split ul { margin: 0; padding: 0; list-style: none; }
+.s-split li { font-family: var(--font-sans); font-size: 2.9cqh; line-height: 1.4; color: var(--color-ink-soft); padding-left: 2.2cqw; position: relative; margin-bottom: 1.5cqh; }
+.s-split li::before { content: '·'; position: absolute; left: 0; color: var(--color-mustard); font-weight: 700; }
+
+/* LIST — big process/checklist */
+.s-list .items { margin: 0; padding: 0; flex: 1 1 0; min-height: 0; }
+.s-list ul.items { list-style: none; }
+.s-list ul.items li { padding-left: 2.4cqw; position: relative; }
+.s-list ul.items li::before { content: '·'; position: absolute; left: 0; color: var(--color-mustard); font-weight: 700; }
+.s-list ol.items { list-style: none; counter-reset: deck-item; }
+.s-list ol.items li { padding-left: 5cqw; position: relative; counter-increment: deck-item; }
+.s-list ol.items li::before { content: counter(deck-item, decimal-leading-zero); position: absolute; left: 0; font-family: var(--font-mono); font-size: 2.6cqh; color: var(--accent-ink); top: .5cqh; }
+.s-list .items li { font-family: var(--font-sans); font-size: 3.3cqh; line-height: 1.4; color: var(--color-ink); margin-bottom: 2.2cqh; max-width: 58ch; }
+
+/* FIGURE — image as protagonist, editorial strip below */
+.s-figure { background: var(--color-ink); display: grid; grid-template-rows: 1fr auto; }
+/* min-width/height 0: a grid track otherwise grows to the image's intrinsic
+   size (4000px+ originals) and blows the 16:9 box sideways. */
+.s-figure .img { min-height: 0; min-width: 0; overflow: hidden; }
+.s-figure .img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.s-figure .img .missing { color: var(--color-bg); font-family: var(--font-mono); font-size: 2.6cqh; display: flex; align-items: center; justify-content: center; height: 100%; }
+.s-figure .strip { background: var(--color-bg); display: flex; align-items: baseline; justify-content: space-between; gap: 3cqw; padding: 2.6cqh 7cqw 5.4cqh; }
+.s-figure .strip__title { font-family: var(--font-serif); font-weight: 600; font-size: 3.4cqh; color: var(--color-ink); }
+.s-figure .strip__cap { font-family: var(--font-serif); font-style: italic; font-size: 2.9cqh; line-height: 1.3; color: var(--color-ink-soft); max-width: 60ch; }
+.s-figure .strip__credit { font-family: var(--font-mono); font-size: 1.9cqh; color: var(--color-ink-mute); white-space: nowrap; }
+.s-figure .slide__foot--figure { color: var(--color-ink-mute); }
+
+/* QUIZ — self-check question; correct option marked with a full accent border */
+.s-quiz .opts { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 1.6cqh 2cqw; }
+.s-quiz .opt { display: flex; gap: 1.6cqw; align-items: flex-start; border: .3cqh solid var(--color-line); border-radius: 8px; padding: 1.8cqh 1.8cqw; background: var(--color-paper); }
+.s-quiz .opt--ok { border-color: var(--accent); }
+.s-quiz .opt__key { font-family: var(--font-mono); font-size: 2.6cqh; color: var(--accent-ink); }
+.s-quiz .opt__text { font-family: var(--font-sans); font-size: 2.7cqh; line-height: 1.35; color: var(--color-ink); display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden; }
+.s-quiz .expl { font-family: var(--font-sans); font-size: 2.6cqh; line-height: 1.4; color: var(--color-ink-soft); margin: 2.2cqh 0 0; max-width: 70ch; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden; }
+.s-quiz .expl strong { color: var(--accent-ink); }
+
 /* CLOSE */
 .s-close { background: var(--color-ink); color: var(--color-bg); }
 .s-close .slide__pad { justify-content: center; align-items: flex-start; }
@@ -98,3 +162,73 @@
   .slide { width: 1280px; height: 720px; aspect-ratio: auto; border-radius: 0; box-shadow: none; break-after: page; page-break-after: always; }
   @page { size: 1280px 720px; margin: 0; }
 }
+
+/* ── Second authored wave ──────────────────────────────────────────────────
+   Five archetypes that took jobs `concept` was doing as prose. Same 16:9 box,
+   same container-query sizing, same symmetric 1px borders as the rest. */
+
+/* FORMULA — the expression, its symbol legend, one worked substitution */
+.s-formula .f {
+  font-family: var(--font-mono); font-size: 6cqh; line-height: 1.25; color: var(--accent-ink);
+  background: var(--accent-soft); border: 1px solid var(--color-line); border-radius: 8px;
+  padding: 2.6cqh 3cqw; margin: 0 0 2.4cqh; text-align: center;
+}
+.s-formula .lbl {
+  font-family: var(--font-mono); font-size: 2.1cqh; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--color-ink-mute); margin-right: 1.2cqw;
+}
+.s-formula .legend { display: grid; grid-template-columns: auto 1fr; gap: .9cqh 1.6cqw; margin: 1cqh 0 0; }
+.s-formula .legend dt { font-family: var(--font-mono); font-size: 2.9cqh; color: var(--accent-ink); font-weight: 600; }
+.s-formula .legend dd { font-family: var(--font-sans); font-size: 2.7cqh; line-height: 1.4; color: var(--color-ink-soft); margin: 0; }
+.s-formula .ex {
+  font-family: var(--font-sans); font-size: 2.7cqh; line-height: 1.45; color: var(--color-ink);
+  margin: 2.4cqh 0 0; padding-top: 1.8cqh; border-top: 1px dashed var(--color-line);
+}
+
+/* TIMELINE — 3-6 dated milestones on a single rail */
+.s-timeline .rail { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.6cqh; flex: 1 1 0; min-height: 0; align-content: start; }
+.s-timeline .rail li {
+  display: grid; grid-template-columns: auto 9cqw 1fr; align-items: baseline; column-gap: 1.6cqw;
+  padding-bottom: 1.6cqh; border-bottom: 1px solid var(--color-line-soft);
+}
+.s-timeline .rail li:last-child { border-bottom: none; }
+.s-timeline .dot { width: 1.4cqh; height: 1.4cqh; border-radius: 50%; background: var(--accent); align-self: center; }
+.s-timeline .date { font-family: var(--font-mono); font-size: 2.6cqh; color: var(--accent-ink); font-weight: 600; }
+.s-timeline .what { font-family: var(--font-serif); font-size: 3.2cqh; font-weight: 600; color: var(--color-ink); }
+.s-timeline .det { grid-column: 3; font-family: var(--font-sans); font-size: 2.5cqh; line-height: 1.4; color: var(--color-ink-soft); }
+.s-timeline .rail[data-n="5"] .what, .s-timeline .rail[data-n="6"] .what { font-size: 2.9cqh; }
+.s-timeline .rail[data-n="6"] { gap: 1.1cqh; }
+
+/* CASO — situation, figures, and the question it forces */
+.s-caso .ctx { font-family: var(--font-sans); font-size: 3cqh; line-height: 1.5; color: var(--color-ink); margin: 0 0 2cqh; max-width: 62ch; }
+.s-caso .datos { list-style: none; margin: 0 0 2.2cqh; padding: 0; display: flex; flex-wrap: wrap; gap: 1cqh 1.4cqw; }
+.s-caso .datos li {
+  font-family: var(--font-mono); font-size: 2.5cqh; color: var(--accent-ink);
+  background: var(--accent-soft); border: 1px solid var(--color-line); border-radius: 6px; padding: .9cqh 1.4cqw;
+}
+.s-caso .q {
+  font-family: var(--font-serif); font-size: 3.4cqh; line-height: 1.35; color: var(--color-ink); margin: auto 0 0;
+  padding-top: 2cqh; border-top: 1px solid var(--color-line);
+}
+.s-caso .q .lbl, .s-formula .ex .lbl {
+  display: block; font-family: var(--font-mono); font-size: 2.1cqh; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--color-ink-mute); margin-bottom: .8cqh;
+}
+
+/* RECAP — retrieval checklist for revision */
+.s-recap .checks { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.8cqh; flex: 1 1 0; min-height: 0; align-content: start; }
+.s-recap .checks li { display: grid; grid-template-columns: auto 1fr; column-gap: 1.6cqw; align-items: start; }
+.s-recap .box { width: 2.6cqh; height: 2.6cqh; border: 1.5px solid var(--accent); border-radius: 4px; margin-top: .5cqh; }
+.s-recap .checks li span:last-child { font-family: var(--font-sans); font-size: 3cqh; line-height: 1.42; color: var(--color-ink); }
+
+/* CURRICULUM — what the unit answers to, in the official wording */
+.s-curriculum .cols { display: grid; gap: 2cqh 2.4cqw; grid-template-columns: 1fr 1fr; flex: 1 1 0; min-height: 0; align-content: start; }
+.s-curriculum .cols[data-n="3"] { grid-template-columns: repeat(3, 1fr); }
+.s-curriculum .col { background: var(--color-paper); border: 1px solid var(--color-line); border-radius: 8px; padding: 2.2cqh 1.8cqw; overflow: hidden; }
+.s-curriculum .col__h {
+  font-family: var(--font-mono); font-size: 2.1cqh; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--accent-ink); margin-bottom: 1.4cqh;
+}
+.s-curriculum .col ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.1cqh; }
+.s-curriculum .col li { font-family: var(--font-sans); font-size: 2.5cqh; line-height: 1.38; color: var(--color-ink-soft); padding-left: 1.6cqw; text-indent: -1.6cqw; }
+.s-curriculum .col li::before { content: '·'; color: var(--color-mustard); font-weight: 700; margin-right: .8cqw; }

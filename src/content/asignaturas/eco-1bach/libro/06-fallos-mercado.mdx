@@ -37,6 +37,7 @@ publicado_en: 2026-05-15
 import Callout from '@components/Callout.astro';
 import Curiosity from '@components/Curiosity.astro';
 import RealExample from '@components/RealExample.astro';
+import SolvedExercise from '@components/SolvedExercise.astro';
 import Steps from '@components/Steps.astro';
 import KeyTakeaways from '@components/KeyTakeaways.astro';
 import Diagram from '@components/Diagram.astro';
@@ -175,6 +176,29 @@ Para ilustrar su tesis, Ronald Coase recuperó un caso judicial inglés del sigl
 <RealExample title="El escándalo de las emisiones de Volkswagen (2015)" source="EPA y comunicado oficial de Volkswagen AG, septiembre 2015" sourceUrl="https://www.epa.gov/vw">
 En septiembre de 2015 la Agencia de Protección Ambiental de Estados Unidos reveló que Volkswagen había instalado en 11 millones de vehículos diésel un *software* trampa que detectaba cuándo el coche estaba siendo sometido a una prueba de emisiones y activaba un modo de funcionamiento limpio. Fuera del laboratorio, los mismos coches emitían hasta 40 veces el límite legal de óxidos de nitrógeno (NOx). Es un caso paradigmático de externalidad negativa multiplicada por engaño deliberado: cada propietario *creía* estar conduciendo un coche limpio, pero estaba imponiendo daños sanitarios sobre todos los habitantes de las ciudades donde circulaba. El daño ambiental y sanitario está cuantificado en miles de muertes prematuras por NOx en Europa. Volkswagen ha pagado más de 32.000 millones de euros en multas, compensaciones y recompras. El caso ilustra tres ideas: (1) las externalidades son reales y medibles en términos sanitarios y económicos; (2) la regulación funciona solo si el regulador puede verificar el cumplimiento; (3) cuando la verificación falla, el escándalo retroactivo es caro pero los daños ya están hechos.
 </RealExample>
+
+<SolvedExercise number="6.1" title="Externalidad negativa: cuánto se produce de más y qué impuesto lo corrige">
+
+**Enunciado**
+
+En el mercado de una materia prima la demanda es **P = 100 − 0,5Q** y el coste marginal privado de las empresas es **CMg = 20 + 0,5Q**, con P en euros y Q en toneladas. Cada tonelada producida provoca un daño ambiental a terceros valorado en **20 € por tonelada**.
+
+a) Cantidad y precio de equilibrio de mercado.
+b) Cantidad y precio socialmente óptimos.
+c) Impuesto pigouviano que corrige el fallo y recaudación que genera.
+d) Pérdida de eficiencia del mercado sin corregir.
+
+**Solución**
+
+1. **Equilibrio de mercado.** Se igualan demanda y coste marginal privado: 100 − 0,5Q = 20 + 0,5Q → 80 = Q → **Q = 80 toneladas**. El precio sale de la demanda: P = 100 − 0,5 × 80 = **60 €/t**.
+2. **Óptimo social.** El coste marginal social añade el daño: CMgS = 20 + 0,5Q + 20 = 40 + 0,5Q. Igualamos a la demanda: 100 − 0,5Q = 40 + 0,5Q → 60 = Q → **Q = 60 toneladas**, con P = 100 − 0,5 × 60 = **70 €/t**.
+3. El mercado produce **20 toneladas de más**, y lo hace porque el precio no incluye un coste que existe pero que no paga nadie de los dos que negocian.
+4. **Impuesto pigouviano.** Es igual al daño por unidad: **20 €/t**. Con él, quien vende decide mirando 40 + 0,5Q en lugar de 20 + 0,5Q, y el mercado llega solo a las 60 toneladas. Recaudación = 20 × 60 = **1.200 €**.
+5. Comprobación útil: quien compra paga 70 €, el Estado se lleva 20 € y el vendedor se queda **50 €**, que es exactamente su coste marginal privado en 60 toneladas: 20 + 0,5 × 60 = 50 €. Los números cuadran.
+6. **Pérdida de eficiencia.** Es el triángulo entre las dos cantidades, de base 80 − 60 = 20 toneladas y altura 20 €: ½ × 20 × 20 = **200 €**.
+7. *Ojo con la lectura.* Esos 200 € no se los queda nadie: son valor que desaparece porque se producen veinte toneladas cuyo coste para la sociedad supera lo que alguien está dispuesto a pagar por ellas. Y fíjate en que **la cantidad óptima no es cero**: el objetivo no es cerrar la fábrica, es que produzca lo que compensa producir.
+
+</SolvedExercise>
 
 ## Bienes públicos y bienes comunes
 
@@ -453,3 +477,234 @@ Estas preguntas no tienen una respuesta única. Sirven para discutir en clase o 
 <Callout label="Juega en clase" variant="example">
 La información asimétrica de esta unidad es el motor de [**Insider**](/juegos/insider/host/), un «Among Us económico» de deducción social: el alumnado juega desde el móvil mientras el profesor proyecta. Quién sabe qué, y quién finge saberlo.
 </Callout>
+
+```deck
+- tipo: curriculum
+  eyebrow: "A qué responde esta unidad"
+  title: "El marco de la unidad"
+  saberes:
+    - "Bloque B: externalidades y bienes públicos."
+    - "Bloque B: información asimétrica y poder de mercado."
+  competencias:
+    - "Identificar los fallos de mercado y el papel del sector público."
+- tipo: caso
+  eyebrow: "El caso"
+  title: "Volkswagen falseó las emisiones de 11 millones de coches"
+  contexto: "En 2015 la agencia ambiental estadounidense descubrió que los motores diésel de VW llevaban un software que detectaba cuándo el coche estaba siendo testado y activaba un modo limpio."
+  datos:
+    - "11 millones de coches con el software instalado."
+    - "Hasta 40 veces el límite legal de NOx en carretera real."
+    - "Más de 30.000 M€ en multas, indemnizaciones y recompras."
+    - "Siete años sin que nadie lo detectara."
+  pregunta: "Si el mercado premia a las empresas eficientes, ¿por qué la eficiente hizo trampa y nadie la pilló?"
+- tipo: section
+  title: Qué es un fallo de mercado
+  subtitle: No es un juicio ideológico contra el mercado. Es el diagnóstico técnico de los supuestos bajo los que el modelo competitivo falla.
+- tipo: concept
+  eyebrow: Concepto clave
+  title: Cuando la mano invisible deja huecos
+  body: "Un fallo de mercado es una situación en la que la asignación que resulta de la libre interacción de oferta y demanda no es eficiente en el sentido de Pareto: existen mejoras que beneficiarían a alguien sin perjudicar a nadie, y el mercado por sí solo no las implementa. Identificar el fallo es condición necesaria para justificar una intervención pública, pero no suficiente."
+  pull: Producimos más contaminación de la que querríamos y menos investigación básica de la que nos convendría.
+- tipo: list
+  title: Los cuatro fallos canónicos
+  ordered: true
+  items:
+    - "Externalidades: la actividad genera costes o beneficios sobre terceros que el precio no recoge."
+    - "Bienes públicos: al no ser rivales ni excluibles, la iniciativa privada los infraproduce."
+    - "Información asimétrica: una parte sabe algo relevante que la otra no sabe, y eso distorsiona el equilibrio."
+    - "Poder de mercado: unos pocos agentes fijan el precio y rompen el supuesto de competencia."
+- tipo: section
+  title: Externalidades
+  subtitle: El coste que paga quien produce no siempre coincide con el que soporta la sociedad. Cuando divergen, la cantidad se desvía del óptimo.
+- tipo: concept
+  eyebrow: Pigou, 1920
+  title: Coste privado frente a coste social
+  body: Arthur Cecil Pigou distinguió entre lo que paga quien produce (coste privado) y lo que soporta la sociedad entera incluyendo a los terceros afectados (coste social). Si el coste social supera al privado hay externalidad negativa y el mercado produce de más; si el beneficio social supera al privado hay externalidad positiva y el mercado produce de menos.
+  pull: "La fábrica que contamina el río, el vecino con música a las dos, quien se vacuna: efectos reales que el precio no factura."
+- tipo: diagram
+  diagrama: Externalidad
+  caption: Con externalidad negativa el coste social queda por encima del privado y el mercado, por su cuenta, sobreproduce.
+- tipo: split
+  title: Dos direcciones del mismo fallo
+  left:
+    h: Negativas (sobreproducción)
+    items:
+      - Contaminación industrial, vertidos, ruido y residuos
+      - "Congestión: cada coche impone tiempo perdido a los demás"
+      - Resistencia a antibióticos por uso indiscriminado
+  right:
+    h: Positivas (infraproducción)
+    items:
+      - "Vacunación: protege a quien se vacuna y a los demás"
+      - "Educación: eleva la productividad agregada del país"
+      - Investigación básica y conservación del patrimonio
+- tipo: list
+  eyebrow: Instrumentos correctores
+  title: Cuatro formas de internalizar una externalidad
+  items:
+    - "Impuesto pigouviano: gravar el daño marginal (carbono, tabaco, alcohol) hasta que el precio lo refleje."
+    - "Subvención: pagar el beneficio marginal que el mercado no retribuye (transporte público, rehabilitación)."
+    - "Regulación directa: límites, prohibiciones y estándares. Fácil de comunicar, pero ciega al coste de cada empresa."
+    - "Mercado de derechos: fijar el techo de emisiones y dejar que las empresas compren y vendan permisos."
+- tipo: data
+  numero: 65-75 €
+  label: por tonelada de CO₂ en el EU ETS
+  title: El precio de contaminar en Europa
+  detalle: "Desde 2005 la UE fija la cantidad total de derechos y el mercado determina el precio. Tras el pico de 90-100 € de 2023, el rango se relajó con la entrada del sector marítimo. Un impuesto haría lo contrario: fijar el precio."
+- tipo: concept
+  eyebrow: Coase, 1960
+  title: El médico, el confitero y los costes de transacción
+  body: "Ronald Coase recuperó un pleito inglés del XIX. Las vibraciones de la maquinaria del confitero impedían al médico auscultar a sus pacientes. Coase sostuvo algo provocador: si los costes de negociar son bajos, da igual a quién dé la razón el juez, porque las partes negociarán hasta el mismo resultado eficiente. El problema de fondo no es la externalidad, son los costes de transacción que impiden el acuerdo."
+  pull: Derechos de propiedad bien definidos y negociación barata pueden resolver la externalidad sin que intervenga el Estado.
+- tipo: figure
+  src: eco-1bach/06/vw-logo-wolfsburg.jpg
+  alt: Emblema gigante de Volkswagen sobre la central térmica de la fábrica matriz de Wolfsburg, en Alemania.
+  title: Una externalidad multiplicada por el engaño
+  caption: Cada propietario creía conducir un coche limpio mientras imponía daño sanitario a las ciudades por las que circulaba.
+  credit: "Foto: High Contrast, CC BY 3.0 DE vía Wikimedia Commons"
+- tipo: quiz
+  eyebrow: Comprueba que lo has pillado
+  pregunta: Un ayuntamiento subvenciona la instalación de placas solares en comunidades de vecinos. ¿Qué fallo de mercado está corrigiendo y en qué dirección?
+  opciones:
+    - Una externalidad negativa, reduciendo la cantidad producida
+    - Una externalidad positiva, aumentando una cantidad que el mercado infraproduce
+    - Un bien público puro, financiándolo con impuestos coercitivos
+    - Información asimétrica, obligando al instalador a revelar su tipo
+  correcta: "1"
+  explicacion: "Quien instala placas se ahorra factura, pero además reduce emisiones para todos: el beneficio social supera al privado. Sin ayuda se instalarían menos de las eficientes, y la subvención acerca la cantidad al óptimo."
+- tipo: section
+  title: Bienes públicos y bienes comunes
+  subtitle: "Algunos bienes fallan por sus propias propiedades físicas. Samuelson las redujo a dos preguntas: ¿es rival?, ¿es excluible?"
+- tipo: terms
+  eyebrow: Los dos criterios de Samuelson
+  title: Rivalidad y exclusión
+  terms:
+    - t: Rivalidad
+      d: Un bien es rival si el consumo de una persona impide o reduce el de otra. Una manzana lo es; una emisión de radio no, porque que tú la escuches no me priva a mí de oírla.
+    - t: Exclusión
+      d: Un bien es excluible si se puede impedir consumirlo a quien no paga. El cine lo es mediante entradas; un castillo de fuegos artificiales sobre la ciudad, no.
+- tipo: diagram
+  diagrama: BienesPublicos
+  caption: Cruzando rivalidad y exclusión salen cuatro tipos de bienes. El mercado asigna bien los privados y falla con los otros tres.
+- tipo: table
+  eyebrow: La matriz de Samuelson y Ostrom
+  title: Las cuatro casillas, con ejemplo y problema
+  head:
+    - Tipo
+    - Rival / excluible
+    - Ejemplo y problema
+  rows:
+    - - Bien privado
+      - Sí / Sí
+      - "Una manzana. El mercado lo asigna bien."
+    - - Bien de club
+      - No / Sí
+      - "Netflix, autopista de peaje. Riesgo de infraproducción."
+    - - Bien común
+      - Sí / No
+      - "Caladero, acuífero. Tiende a la sobreexplotación."
+    - - Bien público puro
+      - No / No
+      - "Defensa, faro, alumbrado. Aparece el polizón."
+  caption: Elinor Ostrom convirtió esta matriz en la herramienta central del análisis institucional de los recursos compartidos.
+- tipo: figure
+  src: eco-1bach/06/faro-chipiona.jpg
+  alt: Faro de Chipiona, en Cádiz, torre de 62 metros sobre la costa atlántica andaluza reflejada en la pleamar.
+  title: El bien público de manual
+  caption: Su luz no se gasta porque la mire un barco más y no se puede apagar para el buque que no pagó tasas portuarias.
+  credit: "Foto: Diego Delso, CC BY-SA 4.0 vía Wikimedia Commons"
+- tipo: concept
+  eyebrow: Free-rider
+  title: Por qué la defensa nacional no se vende en el mercado
+  body: "Si preguntamos a cada ciudadano cuánto pagaría voluntariamente por la defensa, todos tienen incentivo a responder cero y esperar a que paguen los demás: el servicio se prestará igual y ellos lo disfrutarán gratis. Es el problema del polizón, y explica por qué casi todos los Estados financian los bienes públicos puros con impuestos obligatorios en lugar de con aportaciones voluntarias."
+  pull: "Pagar impuestos no es una donación: es la solución técnica al problema del polizón."
+- tipo: concept
+  eyebrow: Hardin (1968) frente a Ostrom (1990)
+  title: La tragedia de los comunes no es inevitable
+  body: Hardin sostuvo que varios pastores compartiendo un pastizal sin reglas lo agotarán, porque el beneficio de meter una vaca más es íntegro para uno y el coste se reparte entre todos. Concluía que solo caben dos salidas, privatizar o estatalizar. Ostrom documentó durante cuarenta años pesquerías, regadíos valencianos y bosques comunales que se autogobiernan sin ninguna de las dos.
+  pull: "Reglas claras, sanciones graduadas, vigilancia mutua y resolución de conflictos: ocho principios de diseño institucional, no un milagro."
+- tipo: figure
+  src: eco-1bach/06/elinor-ostrom.jpg
+  alt: Retrato de la politóloga estadounidense Elinor Ostrom durante el almuerzo de los premiados con el Nobel en Estocolmo.
+  title: Elinor Ostrom (1933-2012)
+  caption: Primera mujer en recibir el Nobel de Economía, en 2009, por demostrar que las comunidades pueden gobernar sus comunes.
+  credit: "Foto: US Embassy Sweden (Flickr), CC BY 2.0 vía Wikimedia Commons"
+- tipo: section
+  title: Información asimétrica
+  subtitle: El vendedor del coche usado sabe que el motor falla. Quien contrata un seguro de salud sabe si fuma. Nada de eso está en el precio.
+- tipo: figure
+  src: eco-1bach/06/george-akerlof.jpg
+  alt: Retrato del economista estadounidense George Akerlof en la Universidad de California en Berkeley.
+  title: George Akerlof, Nobel 2001
+  caption: "Su artículo de 1970 mostró que la asimetría no solo distorsiona un mercado: puede destruirlo entero."
+  credit: "Foto: Yan Chi Vinci Chow (Flickr), CC BY 3.0 vía Wikimedia Commons"
+- tipo: exercise
+  title: El mercado de los limones, paso a paso
+  enunciado: "En un mercado de coches usados la mitad son buenos (valen 10.000 €) y la mitad defectuosos (valen 4.000 €). El vendedor sabe cuál tiene; el comprador no puede distinguirlos a simple vista. Calcula qué precio ofrecerá un comprador racional y razona qué le pasa al mercado a partir de ahí."
+  pasos:
+    - Calcula el valor esperado de un coche cualquiera si ambos tipos son igual de probables.
+    - Pregúntate qué hará el dueño de un coche bueno cuando le ofrezcan ese precio.
+    - Recalcula la composición del mercado una vez retirados los coches buenos.
+    - Repite el razonamiento y describe hacia dónde converge el precio.
+    - Propón un mecanismo que rompa el círculo sin prohibir la venta de coches usados.
+- tipo: terms
+  eyebrow: Dos problemas, dos momentos
+  title: Antes del contrato y después del contrato
+  terms:
+    - t: Selección adversa
+      d: Existe antes de firmar y decide quién acepta el trato. Si la aseguradora sube primas porque no distingue riesgos, los sanos se van y solo le quedan los enfermos.
+    - t: Riesgo moral
+      d: Aparece después de firmar y cambia el comportamiento. Con seguro a todo riesgo se conduce peor; el banco demasiado grande para caer asume riesgos que solo no asumiría.
+- tipo: list
+  eyebrow: Cómo se combate
+  title: Los mercados fabrican remedios, y ese remedio cuesta
+  items:
+    - "Señalización (Spence): el informado emite una señal costosa —título, garantía, marca— que solo compensa si su tipo es bueno."
+    - "Cribado: la parte desinformada ofrece un menú de contratos y deja que el otro se retrate al elegir franquicia."
+    - "Franquicias y copagos: el asegurado paga los primeros euros de cada siniestro y conserva el incentivo a evitarlo."
+    - "Supervisión y reputación: capital mínimo bancario, auditorías y relaciones largas que castigan portarse mal."
+    - "Que estos mecanismos consuman recursos es la prueba del fallo: con información perfecta no harían ninguna falta."
+- tipo: section
+  title: Poder de mercado y fallos de gobierno
+  subtitle: "El cuarto fallo, y la advertencia final: identificar un fallo de mercado no basta para justificar automáticamente la intervención."
+- tipo: split
+  title: Poder de mercado
+  left:
+    h: Por qué surge
+    items:
+      - "Barreras legales: patentes, licencias administrativas, concesiones"
+      - "Monopolio natural: economías de escala en red eléctrica o ferrocarril"
+      - "Efectos de red y control de un recurso esencial"
+  right:
+    h: Cómo se controla
+    items:
+      - Regulación tarifaria y de acceso en monopolios naturales
+      - "Control de fusiones y persecución de cárteles: hasta el 10 % de la facturación"
+      - "Digital Markets Act: obligaciones para las plataformas gatekeeper"
+- tipo: list
+  eyebrow: Public choice
+  title: El remedio también puede fallar
+  items:
+    - "Información limitada: fijar el impuesto pigouviano exige conocer un daño marginal que solo se estima con incertidumbre."
+    - "Captura del regulador: quien es regulado tiene incentivo y recursos para influir sobre quien lo regula."
+    - "Búsqueda de rentas: se dedican recursos a conseguir licencias y protecciones en lugar de a producir valor."
+    - "Cortoplacismo: decisiones a cuatro años para problemas con horizonte de cuarenta."
+    - "Coste administrativo: cumplir una norma compleja pesa proporcionalmente más sobre la pyme que sobre la gran empresa."
+- tipo: list
+  eyebrow: El criterio práctico
+  title: Tres condiciones simultáneas para intervenir
+  ordered: true
+  items:
+    - Hay un fallo identificado y cuantificado. Que algo no nos guste no lo convierte en ineficiente.
+    - Existe un instrumento factible con la capacidad administrativa real del país y con coste menor que el daño del fallo.
+    - El riesgo de fallo de gobierno es razonablemente menor que el fallo de mercado que se pretende corregir.
+- tipo: recap
+  eyebrow: "Repasa"
+  title: "Antes de cerrar la unidad"
+  items:
+    - "Sabrías definir fallo de mercado y enumerar los cuatro tipos principales."
+    - "Sabrías poner ejemplos de externalidades y proponer impuestos, subvenciones o derechos."
+    - "Sabrías separar bienes públicos, privados, comunes y de club por rivalidad y exclusión."
+    - "Sabrías explicar selección adversa y riesgo moral en seguros, banca y mercado laboral."
+    - "Sabrías argumentar cuándo interviene el Estado y cuándo el remedio es peor que la enfermedad."
+```

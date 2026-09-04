@@ -6,6 +6,7 @@ import { getLocale } from '@/i18n/locale';
 import { pickLocalizedEntry } from '@/i18n/content-locale';
 import { localizeAsignatura } from '@/i18n/asignaturas-ca';
 import QuizPlayer from '@components/QuizPlayer.tsx';
+import { quizLd, type TestQuestion } from '@/lib/seo';
 import type { GetStaticPaths } from 'astro';
 
 export const getStaticPaths = (async () => {
@@ -44,9 +45,25 @@ const copy = {
   es: { inicio: 'Inicio', tests: 'Tests', unidad: 'Unidad', test: 'Test', preguntas: 'preguntas', volver: 'Volver a la unidad del libro', descripcion: `Test de autoevaluación de la unidad ${test.data.unidad_relacionada} de ${a.title}.` },
   ca: { inicio: 'Inici', tests: 'Tests', unidad: 'Unitat', test: 'Test', preguntas: 'preguntes', volver: 'Tornar a la unitat del llibre', descripcion: `Test d'autoavaluació de la unitat ${test.data.unidad_relacionada} de ${a.title}.` },
 }[locale];
+
+// Education Q&A structured data for the very questions QuizPlayer renders below.
+const quiz = quizLd({
+  name: test.data.title,
+  about: unit?.data.title ?? a.title,
+  educationalLevel: a.level,
+  path: `/${a.slug}/tests/${Astro.params.slug}/`,
+  questions: test.data.preguntas as TestQuestion[],
+  locale,
+});
 ---
 
-<BaseLayout title={`${test.data.title} — ${a.shortLabel}`} description={copy.descripcion} contentLang={locale}>
+<BaseLayout
+  title={`${test.data.title} — ${a.seoName}`}
+  brandSuffix={false}
+  description={copy.descripcion}
+  jsonLd={quiz ?? undefined}
+  contentLang={locale}
+>
   <div class="container">
     <nav class="breadcrumb">
       <a href="/">{copy.inicio}</a> <span class="sep">›</span>

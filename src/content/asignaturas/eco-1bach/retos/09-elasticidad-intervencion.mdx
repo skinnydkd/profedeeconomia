@@ -1,0 +1,209 @@
+---
+asignatura: eco-1bach
+competencia: "CE2"
+unidad_relacionada: 5
+title: "El ayuntamiento interviene: elasticidad, topes de precio e impuestos"
+descripcion: "Un ayuntamiento quiere abaratar el alquiler, gravar las bebidas azucaradas y ayudar a los agricultores. Pon a prueba la elasticidad, los excedentes, los precios máximos y mínimos y el peso muerto."
+duracion: "20-25 min"
+competencias_clave: [CCL, STEM, CD, CE]
+estado: publicado
+---
+
+Resuelve este reto asesorando a un ayuntamiento que quiere intervenir en tres mercados a la vez.
+
+```json
+{
+  "intro": {
+    "kicker": "Reto competencial · CE2",
+    "titulo": "El ayuntamiento interviene",
+    "contexto": "<p>El ayuntamiento de Vilanova quiere hacer tres cosas: <strong>abaratar el alquiler</strong> con un tope de precio, <strong>gravar las bebidas azucaradas</strong> para reducir su consumo y <strong>garantizar un precio mínimo</strong> a los agricultores locales. Te ha contratado como asesor económico.</p><p>En cinco pasos calcularás <strong>elasticidades</strong>, predecirás qué le pasa a los <strong>ingresos totales</strong> cuando cambia el precio, medirás los <strong>excedentes</strong>, analizarás los efectos de un <strong>precio máximo</strong> y de un <strong>precio mínimo</strong>, y verás quién soporta de verdad un impuesto y cuánto bienestar se pierde por el camino. Ninguna de las tres medidas es gratis: tu trabajo es explicar el precio de cada una.</p>"
+  },
+  "pasos": [
+    {
+      "titulo": "1. Medir cuánto reacciona la gente",
+      "escenario": "<p>El equipo del ayuntamiento tiene datos de tres mercados de la ciudad. Cuando el precio del transporte urbano subió de <strong>1,00 € a 1,20 €</strong>, los viajes diarios cayeron de <strong>50.000 a 47.000</strong>.</p>",
+      "items": [
+        {
+          "tipo": "numerico",
+          "enunciado": "Calcula la elasticidad precio de la demanda del transporte urbano por el método del punto medio. Da el valor en términos absolutos, con dos decimales.",
+          "respuesta": 0.32,
+          "tolerancia": 0.03,
+          "unidad": "",
+          "explicacion": "Variación de Q: (47.000 − 50.000) ÷ 48.500 = −0,0619. Variación de P: (1,20 − 1,00) ÷ 1,10 = 0,1818. Elasticidad = 0,0619 ÷ 0,1818 = 0,34 aproximadamente. En valor absoluto está claramente por debajo de 1."
+        },
+        {
+          "tipo": "opcion-multiple",
+          "enunciado": "¿Cómo se clasifica esa demanda y qué implica para los ingresos del ayuntamiento?",
+          "opciones": [
+            "Elástica: al subir el precio, los ingresos bajan",
+            "Inelástica: al subir el precio, los ingresos suben",
+            "De elasticidad unitaria: los ingresos no cambian",
+            "Perfectamente elástica: nadie viajaría al subir el precio"
+          ],
+          "correcta": 1,
+          "explicacion": "Con elasticidad menor que 1 la demanda es inelástica: la cantidad cae proporcionalmente menos que lo que sube el precio, así que el ingreso total aumenta. Por eso subir tarifas recauda, aunque tenga otros costes sociales."
+        },
+        {
+          "tipo": "numerico",
+          "enunciado": "Comprueba el ingreso total tras la subida: 47.000 viajes a 1,20 €. ¿Cuántos euros son?",
+          "respuesta": 56400,
+          "tolerancia": 0,
+          "unidad": "€",
+          "explicacion": "47.000 × 1,20 = 56.400 €, frente a los 50.000 × 1,00 = 50.000 € de antes. El ingreso sube 6.400 €, como predice la demanda inelástica."
+        }
+      ]
+    },
+    {
+      "titulo": "2. Las otras elasticidades",
+      "escenario": "<p>El equipo maneja también otros datos: cuando la renta media de la ciudad subió un <strong>5 %</strong>, el consumo de marca blanca cayó un <strong>3 %</strong>. Y cuando subió el precio del café, aumentó la venta de té.</p>",
+      "items": [
+        {
+          "tipo": "numerico",
+          "enunciado": "¿Cuál es la elasticidad renta de la demanda de marca blanca? Indica el signo.",
+          "respuesta": -0.6,
+          "tolerancia": 0.05,
+          "unidad": "",
+          "explicacion": "−3 % ÷ 5 % = −0,6. Es negativa, así que la marca blanca es un bien inferior: cuando la gente gana más, consume menos."
+        },
+        {
+          "tipo": "relacionar",
+          "enunciado": "Relaciona cada resultado con lo que significa.",
+          "izquierda": [
+            "Elasticidad renta negativa",
+            "Elasticidad renta mayor que 1",
+            "Elasticidad cruzada positiva",
+            "Elasticidad cruzada negativa"
+          ],
+          "derecha": [
+            "Bienes complementarios (coches y gasolina)",
+            "Bien inferior (marca blanca, transporte público)",
+            "Bienes sustitutivos (café y té)",
+            "Bien de lujo (viajes, restaurantes)"
+          ],
+          "correctas": [1, 3, 2, 0],
+          "explicacion": "La elasticidad renta distingue bienes inferiores (negativa), normales (entre 0 y 1) y de lujo (mayor que 1). La cruzada distingue sustitutivos (positiva: sube el precio de uno y crece la demanda del otro) de complementarios (negativa)."
+        },
+        {
+          "tipo": "verdadero-falso",
+          "enunciado": "Cuanto más tiempo pasa desde un cambio de precio, más elástica tiende a ser la demanda.",
+          "correcta": true,
+          "explicacion": "Cierto, y es uno de los determinantes clave. A corto plazo cuesta cambiar de hábito o encontrar sustitutos; con el tiempo la gente se adapta, así que la misma subida de precio acaba provocando una caída de cantidad mayor."
+        }
+      ]
+    },
+    {
+      "titulo": "3. El tope al alquiler",
+      "escenario": "<p>En el mercado del alquiler de Vilanova, el equilibrio está en <strong>800 €</strong> con <strong>2.000</strong> viviendas alquiladas. El ayuntamiento fija un precio máximo de <strong>600 €</strong>. A ese precio, los propietarios solo ofrecen <strong>1.600</strong> viviendas y los inquilinos demandan <strong>2.600</strong>.</p>",
+      "items": [
+        {
+          "tipo": "numerico",
+          "enunciado": "¿Cuántas viviendas de escasez genera el tope? (demanda menos oferta al precio máximo)",
+          "respuesta": 1000,
+          "tolerancia": 0,
+          "unidad": "viviendas",
+          "explicacion": "2.600 − 1.600 = 1.000 viviendas de exceso de demanda. Un precio máximo eficaz, por debajo del equilibrio, siempre genera escasez."
+        },
+        {
+          "tipo": "opcion-multiple",
+          "enunciado": "¿Cuál de estos efectos NO cabe esperar de un precio máximo por debajo del equilibrio?",
+          "opciones": [
+            "Colas de espera y criterios de reparto distintos del precio",
+            "Aparición de mercados informales o pagos en negro",
+            "Un aumento de la cantidad total de viviendas alquiladas",
+            "Menor incentivo a mantener y reformar los inmuebles"
+          ],
+          "correcta": 2,
+          "explicacion": "La cantidad intercambiada NO aumenta: cae de 2.000 a 1.600, porque la oferta se retira. Un tope de precio reparte de otra manera lo que hay, pero no crea vivienda; los que consiguen contrato ganan y los que se quedan fuera pierden."
+        },
+        {
+          "tipo": "verdadero-falso",
+          "enunciado": "Cuanto más inelástica sea la oferta de vivienda a corto plazo, menor será la escasez que provoque el tope.",
+          "correcta": true,
+          "explicacion": "Cierto. Si la oferta apenas reacciona al precio (el parque de viviendas no cambia de un día para otro), el tope reduce poco la cantidad ofrecida. El problema es que a largo plazo la oferta sí reacciona, y ahí la escasez se agrava."
+        }
+      ]
+    },
+    {
+      "titulo": "4. El precio mínimo a los agricultores",
+      "escenario": "<p>En el mercado del tomate local el equilibrio está en <strong>1,20 €/kg</strong> con <strong>40.000 kg</strong>. El ayuntamiento garantiza un precio mínimo de <strong>1,50 €/kg</strong>. A ese precio los agricultores ofrecen <strong>52.000 kg</strong> y los consumidores compran <strong>34.000 kg</strong>.</p>",
+      "items": [
+        {
+          "tipo": "numerico",
+          "enunciado": "¿Cuántos kilos de excedente no vendido genera el precio mínimo?",
+          "respuesta": 18000,
+          "tolerancia": 0,
+          "unidad": "kg",
+          "explicacion": "52.000 − 34.000 = 18.000 kg de exceso de oferta. Un precio mínimo eficaz, por encima del equilibrio, siempre genera excedente."
+        },
+        {
+          "tipo": "numerico",
+          "enunciado": "Si el ayuntamiento se compromete a comprar todo ese excedente a 1,50 €/kg, ¿cuánto le costará?",
+          "respuesta": 27000,
+          "tolerancia": 0,
+          "unidad": "€",
+          "explicacion": "18.000 × 1,50 = 27.000 €. Ese es el coste presupuestario de sostener el precio, sin contar el almacenamiento o la destrucción del excedente."
+        },
+        {
+          "tipo": "opcion-multiple",
+          "enunciado": "Un concejal propone: «Mejor que el precio mínimo, demos una ayuda directa por hectárea y dejemos el precio libre». ¿Qué ventaja económica tiene esa alternativa?",
+          "opciones": [
+            "Ninguna: es exactamente lo mismo con otro nombre",
+            "Ayuda a los agricultores sin distorsionar el precio ni generar excedentes invendibles",
+            "Garantiza que el tomate se venda más caro",
+            "Elimina la necesidad de presupuesto público"
+          ],
+          "correcta": 1,
+          "explicacion": "Una transferencia directa traslada renta al agricultor dejando que el precio siga cumpliendo su función de señal. El precio mínimo, en cambio, distorsiona la señal y genera un excedente que hay que comprar, almacenar o tirar."
+        }
+      ]
+    },
+    {
+      "titulo": "5. El impuesto a las bebidas azucaradas",
+      "escenario": "<p>El ayuntamiento aplica un impuesto de <strong>0,20 €</strong> por litro de bebida azucarada. Antes del impuesto se vendían <strong>100.000</strong> litros a <strong>1,00 €</strong>. Después se venden <strong>90.000</strong> litros: los consumidores pagan <strong>1,15 €</strong> y los vendedores reciben <strong>0,95 €</strong>.</p>",
+      "items": [
+        {
+          "tipo": "numerico",
+          "enunciado": "¿Cuántos céntimos del impuesto soporta el consumidor?",
+          "respuesta": 15,
+          "tolerancia": 0,
+          "unidad": "céntimos",
+          "explicacion": "El precio que paga sube de 1,00 a 1,15 €: soporta 15 de los 20 céntimos. El vendedor soporta los otros 5 (pasa de recibir 1,00 a 0,95 €)."
+        },
+        {
+          "tipo": "opcion-multiple",
+          "enunciado": "¿Qué nos dice ese reparto sobre las elasticidades de este mercado?",
+          "opciones": [
+            "La demanda es más inelástica que la oferta, por eso el consumidor soporta más",
+            "La oferta es más inelástica que la demanda",
+            "Ambas tienen la misma elasticidad",
+            "El reparto no tiene relación con las elasticidades, lo decide la ley"
+          ],
+          "correcta": 0,
+          "explicacion": "El lado que menos reacciona al precio soporta la mayor parte del impuesto. Que el consumidor cargue con 15 de 20 céntimos indica que su demanda es más inelástica que la oferta. Quién paga el impuesto por ley no determina quién lo soporta de hecho."
+        },
+        {
+          "tipo": "numerico",
+          "enunciado": "¿Cuánto recauda el ayuntamiento con este impuesto?",
+          "respuesta": 18000,
+          "tolerancia": 0,
+          "unidad": "€",
+          "explicacion": "0,20 € × 90.000 litros = 18.000 €. Ojo: se recauda sobre la cantidad que se sigue vendiendo, no sobre los 100.000 litros iniciales."
+        },
+        {
+          "tipo": "numerico",
+          "enunciado": "El peso muerto es el área del triángulo de las 10.000 unidades que dejan de intercambiarse, con una altura igual al impuesto (0,20 €). Calcúlalo.",
+          "respuesta": 1000,
+          "tolerancia": 0,
+          "unidad": "€",
+          "explicacion": "(10.000 × 0,20) ÷ 2 = 1.000 €. Es bienestar que desaparece sin que lo gane nadie: ni consumidores, ni vendedores, ni el ayuntamiento. Son intercambios que habrían beneficiado a ambas partes y que el impuesto impide."
+        },
+        {
+          "tipo": "abierta",
+          "enunciado": "El alcalde te pide una recomendación final sobre las tres medidas. Escribe 6-8 líneas valorando cuál te parece más defendible y por qué, usando elasticidad, excedentes y peso muerto.",
+          "modelo": "<p>No hay una única respuesta correcta, pero una buena valoración debería reconocer que las tres medidas tienen coste y compararlas por criterios económicos, no por intenciones. El impuesto a las bebidas azucaradas es el más defendible si el objetivo es reducir consumo y hay un coste externo asociado (salud pública): genera un peso muerto pequeño (1.000 € frente a 18.000 € recaudados) y precisamente ese peso muerto es la caída de consumo que se buscaba. El precio mínimo agrícola es el más caro: 27.000 € de presupuesto más el excedente físico, y una transferencia directa lograría el mismo objetivo distributivo sin distorsionar la señal del precio. El tope al alquiler es el más delicado: reparte de otra forma un parque de vivienda que no crece, beneficia a quien consigue contrato y perjudica a quien se queda fuera, y a largo plazo, cuando la oferta sí reacciona, agrava la escasez. Una recomendación honesta diría que ninguna medida crea recursos: todas redistribuyen, y conviene decir en voz alta quién gana y quién pierde con cada una.</p>"
+        }
+      ]
+    }
+  ]
+}
+```

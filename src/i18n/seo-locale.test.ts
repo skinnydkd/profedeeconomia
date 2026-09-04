@@ -33,3 +33,29 @@ describe('resolveSeo', () => {
     expect(r.alternates).toContainEqual({ hreflang: 'x-default', href: 'https://www.profedeeconomia.es/edmn-2bach/libro/1/' });
   });
 });
+
+describe('resolveSeo — canonicalPath (§5.6)', () => {
+  const site = 'https://www.profedeeconomia.es';
+  const opts = { pathname: '/herramientas/mercados-macro/elasticidad/', contentLang: 'es' as const, site };
+
+  it('points the canonical at the duplicate target instead of self', () => {
+    const seo = resolveSeo({ ...opts, locale: 'es', canonicalPath: '/eco-1bach/recursos/calculadora-elasticidad/' });
+    expect(seo.canonical).toBe(`${site}/eco-1bach/recursos/calculadora-elasticidad/`);
+  });
+
+  it('localizes the target on a ca page', () => {
+    const seo = resolveSeo({ ...opts, locale: 'ca', contentLang: 'ca', canonicalPath: '/eco-1bach/recursos/calculadora-elasticidad/' });
+    expect(seo.canonical).toBe(`${site}/ca/eco-1bach/recursos/calculadora-elasticidad/`);
+  });
+
+  it('drops hreflang, which only self-canonical pages may declare', () => {
+    const seo = resolveSeo({ ...opts, locale: 'es', canonicalPath: '/eco-1bach/recursos/calculadora-elasticidad/' });
+    expect(seo.alternates).toEqual([]);
+  });
+
+  it('leaves canonical and hreflang untouched when no override is given', () => {
+    const seo = resolveSeo({ ...opts, locale: 'es' });
+    expect(seo.canonical).toBe(`${site}/herramientas/mercados-macro/elasticidad/`);
+    expect(seo.alternates).toHaveLength(3);
+  });
+});

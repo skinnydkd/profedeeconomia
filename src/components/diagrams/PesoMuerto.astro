@@ -8,29 +8,61 @@
  *
  * Used in Eco 1BACH · Unit 5 (elasticity, surplus and welfare).
  */
+import { getLocale } from '@/i18n/locale';
+const locale = getLocale(Astro.currentLocale);
+
+const COPY = {
+  es: {
+    perdidaDeEficienciaPeso: 'Pérdida de eficiencia (peso muerto) de un impuesto',
+    mercadoConOfertaY: 'Mercado con oferta y demanda en el que un impuesto introduce una cuña fiscal que reduce la cantidad intercambiada. Se sombrean el excedente del consumidor, el excedente del productor y la recaudación, y se resalta el triángulo del peso muerto, el bienestar que deja de generarse.',
+    excedenteDelConsumidorLa: 'Excedente del consumidor: la diferencia entre lo que los compradores estaban dispuestos a pagar y lo que pagan de verdad. Con el impuesto, esta zona se reduce.',
+    excedenteDelProductorLa: 'Excedente del productor: la diferencia entre el precio que reciben los vendedores y el mínimo al que estarían dispuestos a vender. El impuesto también lo recorta.',
+    loQueRecaudaEl: 'Lo que recauda el Estado: el impuesto por unidad multiplicado por las unidades que se siguen vendiendo (Qt). Es una transferencia, no una pérdida: ese dinero financia el gasto público.',
+    elPesoMuertoBienestar: 'El peso muerto: bienestar que desaparece sin que lo gane nadie. Son los intercambios que habrían beneficiado a comprador y vendedor pero que el impuesto impide que ocurran.',
+    cantidad: 'CANTIDAD',
+    precio: 'PRECIO',
+    recaudacion: 'Recaudación',
+    pesoMuerto: 'Peso muerto',
+    perdidaDeEficiencia: '(pérdida de eficiencia)',
+  },
+  ca: {
+    perdidaDeEficienciaPeso: "Pèrdua d'eficiència (pes mort) d'un impost",
+    mercadoConOfertaY: "Mercat amb oferta i demanda en què un impost introduïx una falca fiscal que reduïx la quantitat intercanviada. S'ombregen l'excedent del consumidor, l'excedent del productor i la recaptació, i es ressalta el triangle del pes mort, el benestar que es deixa de generar.",
+    excedenteDelConsumidorLa: "Excedent del consumidor: la diferència entre el que els compradors estaven disposats a pagar i el que paguen de veritat. Amb l'impost, esta zona es reduïx.",
+    excedenteDelProductorLa: "Excedent del productor: la diferència entre el preu que reben els venedors i el mínim al qual estarien disposats a vendre. L'impost també el retalla.",
+    loQueRecaudaEl: "El que recapta l'Estat: l'impost per unitat multiplicat per les unitats que es continuen venent (Qt). És una transferència, no una pèrdua: eixos diners financen la despesa pública.",
+    elPesoMuertoBienestar: "El pes mort: benestar que desapareix sense que el guanye ningú. Són els intercanvis que hagueren beneficiat comprador i venedor però que l'impost impedix que ocórreguen.",
+    cantidad: 'QUANTITAT',
+    precio: 'PREU',
+    recaudacion: 'Recaptació',
+    pesoMuerto: 'Pes mort',
+    perdidaDeEficiencia: "(pèrdua d'eficiència)",
+  },
+} as const;
+const t = COPY[locale];
 ---
-<svg viewBox="0 0 800 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="pm-title pm-desc">
-  <title id="pm-title">Pérdida de eficiencia (peso muerto) de un impuesto</title>
-  <desc id="pm-desc">Mercado con oferta y demanda en el que un impuesto introduce una cuña fiscal que reduce la cantidad intercambiada. Se sombrean el excedente del consumidor, el excedente del productor y la recaudación, y se resalta el triángulo del peso muerto, el bienestar que deja de generarse.</desc>
+<svg class="d-peso-muerto" viewBox="0 0 800 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="pm-title pm-desc">
+  <title id="pm-title">{t.perdidaDeEficienciaPeso}</title>
+  <desc id="pm-desc">{t.mercadoConOfertaY}</desc>
   <defs>
     <style>
-      .bg { fill: #FBF6EC; }
-      .axis { stroke: #5C4A3D; stroke-width: 1.5; fill: none; }
-      .demand { stroke: #C44E2C; stroke-width: 2.6; fill: none; }
-      .supply { stroke: #D4A24C; stroke-width: 2.6; fill: none; }
-      .guide { stroke: #8A7868; stroke-width: 1; stroke-dasharray: 4 4; fill: none; }
-      .cs { fill: #DBEDED; fill-opacity: 0.85; }
-      .ps { fill: #F5E5BC; fill-opacity: 0.7; }
-      .rev { fill: #FBE3D6; fill-opacity: 0.9; }
-      .dwl { fill: #9C3A1C; fill-opacity: 0.28; stroke: #9C3A1C; stroke-width: 1.4; }
-      .axis-label { font-family: 'Switzer', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; fill: #5C4A3D; }
-      .axis-letter { font-family: 'Fraunces', serif; font-style: italic; font-size: 17px; font-weight: 500; fill: #2A1F18; }
-      .area-label { font-family: 'Switzer', sans-serif; font-size: 11px; font-weight: 700; fill: #2A1F18; text-anchor: middle; }
-      .curve-label { font-family: 'Fraunces', serif; font-size: 18px; font-weight: 500; font-style: italic; }
-      .point-label { font-family: 'Fraunces', serif; font-size: 14px; font-weight: 500; font-style: italic; fill: #2A1F18; }
-      .dwl-label { font-family: 'Switzer', sans-serif; font-size: 12px; font-weight: 700; fill: #9C3A1C; }
-      .tick { font-family: 'JetBrains Mono', monospace; font-size: 10px; fill: #5C4A3D; }
-      .has-tip { cursor: help; }
+      .d-peso-muerto .bg { fill: #FBF6EC; }
+      .d-peso-muerto .axis { stroke: #5C4A3D; stroke-width: 1.5; fill: none; }
+      .d-peso-muerto .demand { stroke: #C44E2C; stroke-width: 2.6; fill: none; }
+      .d-peso-muerto .supply { stroke: #D4A24C; stroke-width: 2.6; fill: none; }
+      .d-peso-muerto .guide { stroke: #8A7868; stroke-width: 1; stroke-dasharray: 4 4; fill: none; }
+      .d-peso-muerto .cs { fill: #DBEDED; fill-opacity: 0.85; }
+      .d-peso-muerto .ps { fill: #F5E5BC; fill-opacity: 0.7; }
+      .d-peso-muerto .rev { fill: #FBE3D6; fill-opacity: 0.9; }
+      .d-peso-muerto .dwl { fill: #9C3A1C; fill-opacity: 0.28; stroke: #9C3A1C; stroke-width: 1.4; }
+      .d-peso-muerto .axis-label { font-family: 'Switzer', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; fill: #5C4A3D; }
+      .d-peso-muerto .axis-letter { font-family: 'Fraunces', serif; font-style: italic; font-size: 17px; font-weight: 500; fill: #2A1F18; }
+      .d-peso-muerto .area-label { font-family: 'Switzer', sans-serif; font-size: 11px; font-weight: 700; fill: #2A1F18; text-anchor: middle; }
+      .d-peso-muerto .curve-label { font-family: 'Fraunces', serif; font-size: 18px; font-weight: 500; font-style: italic; }
+      .d-peso-muerto .point-label { font-family: 'Fraunces', serif; font-size: 14px; font-weight: 500; font-style: italic; fill: #2A1F18; }
+      .d-peso-muerto .dwl-label { font-family: 'Switzer', sans-serif; font-size: 12px; font-weight: 700; fill: #9C3A1C; }
+      .d-peso-muerto .tick { font-family: 'JetBrains Mono', monospace; font-size: 10px; fill: #5C4A3D; }
+      .d-peso-muerto .has-tip { cursor: help; }
     </style>
     <marker id="pm-arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
       <polygon points="0 0, 10 3, 0 6" fill="#5C4A3D"/>
@@ -47,13 +79,13 @@
        Supply at x=300: y = 400 - (300-130)/530*310 = 400 - 99.4 = 301 -->
 
   <!-- Consumer surplus: triangle above P*, under demand, left of E* -->
-  <path class="cs has-tip" d="M 130 90 L 395 245 L 130 245 Z"><title>Excedente del consumidor: la diferencia entre lo que los compradores estaban dispuestos a pagar y lo que pagan de verdad. Con el impuesto, esta zona se reduce.</title></path>
+  <path class="cs has-tip" d="M 130 90 L 395 245 L 130 245 Z"><title>{t.excedenteDelConsumidorLa}</title></path>
   <!-- Producer surplus: triangle below P*, above supply, left of E* -->
-  <path class="ps has-tip" d="M 130 400 L 395 245 L 130 245 Z"><title>Excedente del productor: la diferencia entre el precio que reciben los vendedores y el mínimo al que estarían dispuestos a vender. El impuesto también lo recorta.</title></path>
+  <path class="ps has-tip" d="M 130 400 L 395 245 L 130 245 Z"><title>{t.excedenteDelProductorLa}</title></path>
   <!-- Tax revenue: rectangle between Pc (189) and Pp (301) up to Qt (x=300) -->
-  <rect class="rev has-tip" x="130" y="189" width="170" height="112"><title>Lo que recauda el Estado: el impuesto por unidad multiplicado por las unidades que se siguen vendiendo (Qt). Es una transferencia, no una pérdida: ese dinero financia el gasto público.</title></rect>
+  <rect class="rev has-tip" x="130" y="189" width="170" height="112"><title>{t.loQueRecaudaEl}</title></rect>
   <!-- Deadweight loss triangle: between Qt and Q*, bounded by D and S -->
-  <path class="dwl has-tip" d="M 300 189 L 395 245 L 300 301 Z"><title>El peso muerto: bienestar que desaparece sin que lo gane nadie. Son los intercambios que habrían beneficiado a comprador y vendedor pero que el impuesto impide que ocurran.</title></path>
+  <path class="dwl has-tip" d="M 300 189 L 395 245 L 300 301 Z"><title>{t.elPesoMuertoBienestar}</title></path>
 
   <!-- Axes -->
   <line class="axis" x1="100" y1="420" x2="725" y2="420" marker-end="url(#pm-arrow)"/>
@@ -63,8 +95,8 @@
   <!-- Axis titles -->
   <text class="axis-letter" x="735" y="425">Q</text>
   <text class="axis-letter" x="92" y="48" text-anchor="end">P</text>
-  <text class="axis-label" x="412" y="475" text-anchor="middle">CANTIDAD</text>
-  <text class="axis-label" x="40" y="240" text-anchor="middle" transform="rotate(-90 40 240)">PRECIO</text>
+  <text class="axis-label" x="412" y="475" text-anchor="middle">{t.cantidad}</text>
+  <text class="axis-label" x="40" y="240" text-anchor="middle" transform="rotate(-90 40 240)">{t.precio}</text>
 
   <!-- Curves -->
   <line class="demand" x1="130" y1="90" x2="660" y2="400"/>
@@ -95,10 +127,10 @@
   <!-- Area labels -->
   <text class="area-label" x="225" y="190" fill="#1F6E6E">EC</text>
   <text class="area-label" x="225" y="335" fill="#A87A2A">EP</text>
-  <text class="area-label" x="215" y="250">Recaudación</text>
+  <text class="area-label" x="215" y="250">{t.recaudacion}</text>
 
   <!-- DWL callout -->
   <line class="guide" x1="335" y1="245" x2="470" y2="180" stroke="#9C3A1C"/>
-  <text class="dwl-label" x="478" y="170">Peso muerto</text>
-  <text class="dwl-label" x="478" y="186" font-size="10.5" font-weight="500">(pérdida de eficiencia)</text>
+  <text class="dwl-label" x="478" y="170">{t.pesoMuerto}</text>
+  <text class="dwl-label" x="478" y="186" font-size="10.5" font-weight="500">{t.perdidaDeEficiencia}</text>
 </svg>

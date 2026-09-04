@@ -2,11 +2,15 @@ import { describe, it, expect } from 'vitest';
 import {
   COMPONENTE_KEYS, FAMILIAS_HERRAMIENTA, HERRAMIENTAS,
   herramientaPorSlug, gruposHerramientas, unidadesPorComponente,
+  recursoCanonicoPorComponente,
 } from './herramientas.ts';
 
 describe('HERRAMIENTAS registry', () => {
-  it('has 22 tools, all with a valid componente and an existing familia', () => {
-    expect(HERRAMIENTAS).toHaveLength(22);
+  // The count is derived from COMPONENTE_KEYS rather than hard-coded: the
+  // invariant worth guarding is that the registry covers every key exactly
+  // once, not that there happen to be N tools today.
+  it('registers one tool per componente key, each with an existing familia', () => {
+    expect(HERRAMIENTAS).toHaveLength(COMPONENTE_KEYS.length);
     const fams = new Set(FAMILIAS_HERRAMIENTA.map((f) => f.slug));
     for (const h of HERRAMIENTAS) {
       expect(COMPONENTE_KEYS).toContain(h.componente);
@@ -15,9 +19,10 @@ describe('HERRAMIENTAS registry', () => {
   });
   it('every componente is used exactly once and slugs are unique', () => {
     const comps = HERRAMIENTAS.map((h) => h.componente);
-    expect(new Set(comps).size).toBe(22);
+    expect(new Set(comps).size).toBe(COMPONENTE_KEYS.length);
+    expect(new Set(comps)).toEqual(new Set(COMPONENTE_KEYS));
     const slugs = HERRAMIENTAS.map((h) => `${h.familia}/${h.slug}`);
-    expect(new Set(slugs).size).toBe(22);
+    expect(new Set(slugs).size).toBe(COMPONENTE_KEYS.length);
   });
 });
 
@@ -77,5 +82,42 @@ describe('herramientas nuevas (plantillas + calc)', () => {
       expect(h.tipo).toBe('calculadora');
       expect((h.unidades_relacionadas ?? []).length).toBeGreaterThan(0);
     }
+  });
+});
+
+describe('recursoCanonicoPorComponente (§5.6)', () => {
+  const r = (id: string, componente: string, asignatura: string) => ({
+    id,
+    data: { componente, asignatura },
+  });
+
+  it('maps a componente with exactly one subject resource to that path', () => {
+    const m = recursoCanonicoPorComponente([
+      r('asignaturas/eco-1bach/recursos/calculadora-elasticidad.md', 'Elasticidad', 'eco-1bach'),
+    ]);
+    expect(m.get('Elasticidad')).toBe('/eco-1bach/recursos/calculadora-elasticidad/');
+  });
+
+  it('refuses to pick a target when several subjects embed the same tool', () => {
+    const m = recursoCanonicoPorComponente([
+      r('asignaturas/eco-4eso/recursos/calculadora-nomina.md', 'NominaESO', 'eco-4eso'),
+      r('asignaturas/ipe1-fp/recursos/calculadora-nomina.md', 'NominaESO', 'ipe1-fp'),
+    ]);
+    expect(m.has('NominaESO')).toBe(false);
+  });
+
+  it('counts a repeated path once, so a duplicate entry still consolidates', () => {
+    const m = recursoCanonicoPorComponente([
+      r('asignaturas/eco-1bach/recursos/x.md', 'Elasticidad', 'eco-1bach'),
+      r('asignaturas/eco-1bach/recursos/x.md', 'Elasticidad', 'eco-1bach'),
+    ]);
+    expect(m.get('Elasticidad')).toBe('/eco-1bach/recursos/x/');
+  });
+
+  it('ignores resources that embed no componente', () => {
+    const m = recursoCanonicoPorComponente([
+      { id: 'asignaturas/eco-1bach/recursos/ficha.md', data: { asignatura: 'eco-1bach' } },
+    ]);
+    expect(m.size).toBe(0);
   });
 });

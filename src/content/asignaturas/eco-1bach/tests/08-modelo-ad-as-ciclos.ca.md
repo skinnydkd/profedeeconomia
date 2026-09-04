@@ -93,6 +93,18 @@ preguntas:
     enunciado: "Segons el model de Solow, la mera acumulació de capital físic permet augmentar indefinidament el PIB per treballador a llarg termini."
     correcta: false
     explicacion: "El capital físic té rendiments decreixents: acumular més màquines eleva el PIB total però el PIB per treballador es topa amb un límit. Només la productivitat total dels factors (tecnologia, institucions, capital humà) sosté el creixement per capita a llarg termini."
+  - tipo: numerico
+    enunciado: "Un país té un PIB de 600.000 mil. € i 20 milions d'habitants. Quin és el seu PIB per capita, en euros?"
+    respuesta: 30000
+    tolerancia: 100
+    unidad: "€"
+    explicacion: "PIB per capita = PIB / població = 600.000.000.000 € / 20.000.000 = 30.000 € per habitant. És una mitjana: no diu res sobre com està repartida eixa renda, i per això es complementa amb la corba de Lorenz i l'índex de Gini."
+  - tipo: relacionar
+    enunciado: "Relaciona cada fase del cicle econòmic amb el seu tret:"
+    izquierda: ["Expansió", "Recessió", "Depressió", "Recuperació"]
+    derecha: ["El PIB toca fons i l'atur arriba al seu màxim", "El PIB creix, cau l'atur i puja la inversió", "El PIB torna a créixer després del mínim", "El PIB cau durant almenys dos trimestres seguits"]
+    correctas: [1, 3, 0, 2]
+    explicacion: "La definició tècnica de recessió són dos trimestres consecutius de caiguda del PIB. La depressió és el punt més baix del cicle, no una recessió llarga."
 ---
 
 Test d'autoavaluació de la Unitat 8 del llibre d'Eco 1BACH. Nou preguntes que cobrixen els components de la demanda agregada, el pendent negatiu de la AD, la distinció entre SRAS i LRAS, els quatre tipus canònics de xocs (demanda i oferta, positius i negatius), les fases del cicle econòmic, el model de creixement de Solow, l'IDH del PNUD i el càlcul de l'índex de Gini a partir d'una corba de Lorenz.

@@ -1,0 +1,111 @@
+---
+/**
+ * How the EPA splits the population, and where each of the three rates takes
+ * its numerator and its denominator. The tree is the diagram; the formulas
+ * underneath name which box divides which.
+ *
+ * The figures are round on purpose: they are there to make the arithmetic
+ * checkable at a glance, not to report a quarter.
+ *
+ * Used in FOPP 4ESO · Unit 7 (the labour market).
+ */
+import { getLocale } from '@/i18n/locale';
+const locale = getLocale(Astro.currentLocale);
+
+const COPY = {
+  es: {
+    title: 'Las tres tasas de la EPA: de la población a los parados',
+    desc: 'Árbol que parte de la población de 16 años o más y la divide en activos e inactivos; los activos se dividen a su vez en ocupados y parados. Debajo, las tres tasas: actividad, empleo y paro, cada una con su numerador y su denominador.',
+    total: 'Población de 16 años o más', totalN: '1.000',
+    activos: 'Activos', activosN: '600', activosNota: 'trabajan o buscan trabajo',
+    inactivos: 'Inactivos', inactivosN: '400', inactivosNota: 'estudian, cuidan, jubilados',
+    ocupados: 'Ocupados', ocupadosN: '510', ocupadosNota: 'tienen empleo',
+    parados: 'Parados', paradosN: '90', paradosNota: 'buscan y no encuentran',
+    tActividad: 'Tasa de actividad', fActividad: '600 / 1.000 = 60 %',
+    tEmpleo: 'Tasa de empleo', fEmpleo: '510 / 1.000 = 51 %',
+    tParo: 'Tasa de paro', fParo: '90 / 600 = 15 %',
+    aviso: 'La tasa de paro se divide entre activos, no entre población: por eso no cuadra con las otras dos',
+  },
+  ca: {
+    title: "Les tres taxes de l'EPA: de la població als aturats",
+    desc: "Arbre que parteix de la població de 16 anys o més i la dividix en actius i inactius; els actius es dividixen al seu torn en ocupats i aturats. A sota, les tres taxes: activitat, ocupació i atur, cada una amb el seu numerador i el seu denominador.",
+    total: 'Població de 16 anys o més', totalN: '1.000',
+    activos: 'Actius', activosN: '600', activosNota: 'treballen o busquen faena',
+    inactivos: 'Inactius', inactivosN: '400', inactivosNota: 'estudien, cuiden, jubilats',
+    ocupados: 'Ocupats', ocupadosN: '510', ocupadosNota: 'tenen ocupació',
+    parados: 'Aturats', paradosN: '90', paradosNota: 'busquen i no troben',
+    tActividad: "Taxa d'activitat", fActividad: '600 / 1.000 = 60 %',
+    tEmpleo: "Taxa d'ocupació", fEmpleo: '510 / 1.000 = 51 %',
+    tParo: "Taxa d'atur", fParo: '90 / 600 = 15 %',
+    aviso: "La taxa d'atur es dividix entre actius, no entre població: per això no quadra amb les altres dues",
+  },
+} as const;
+const t = COPY[locale];
+---
+<svg class="d-tasas-epa" viewBox="0 0 800 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="te-title te-desc">
+  <title id="te-title">{t.title}</title>
+  <desc id="te-desc">{t.desc}</desc>
+  <defs>
+    <style>
+      .d-tasas-epa .bg { fill: #FBF6EC; }
+      .d-tasas-epa .box { stroke-width: 1.8; rx: 5; }
+      .d-tasas-epa .b-total { fill: #F5EDD9; stroke: #8A7868; }
+      .d-tasas-epa .b-act { fill: #DBEDED; stroke: #1F6E6E; }
+      .d-tasas-epa .b-inact { fill: #EFE2CB; stroke: #8A7868; }
+      .d-tasas-epa .b-ocup { fill: #F5E5BC; stroke: #A87A2A; }
+      .d-tasas-epa .b-paro { fill: #FBE3D6; stroke: #C44E2C; }
+      .d-tasas-epa .link { stroke: #8A7868; stroke-width: 1.6; fill: none; }
+      .d-tasas-epa .name { font-family: 'Switzer', sans-serif; font-size: 13px; font-weight: 700; fill: #2A1F18; text-anchor: middle; }
+      .d-tasas-epa .num { font-family: 'Fraunces', serif; font-size: 19px; font-weight: 600; fill: #2A1F18; text-anchor: middle; }
+      .d-tasas-epa .note { font-family: 'Switzer', sans-serif; font-size: 10.5px; fill: #8A7868; text-anchor: middle; }
+      .d-tasas-epa .rate { font-family: 'Switzer', sans-serif; font-size: 12px; font-weight: 700; fill: #2A1F18; }
+      .d-tasas-epa .formula { font-family: 'JetBrains Mono', monospace; font-size: 13px; fill: #5C4A3D; }
+      .d-tasas-epa .warn { font-family: 'Fraunces', serif; font-style: italic; font-size: 13.5px; fill: #9C3A1C; text-anchor: middle; }
+    </style>
+  </defs>
+  <rect class="bg" x="0" y="0" width="800" height="520"/>
+
+  <!-- Level 1 -->
+  <rect class="box b-total" x="290" y="40" width="220" height="58"/>
+  <text class="name" x="400" y="62">{t.total}</text>
+  <text class="num" x="400" y="86">{t.totalN}</text>
+
+  <path class="link" d="M 400 98 V 122 H 210 V 146"/>
+  <path class="link" d="M 400 98 V 122 H 590 V 146"/>
+
+  <!-- Level 2 -->
+  <rect class="box b-act" x="110" y="146" width="200" height="66"/>
+  <text class="name" x="210" y="168">{t.activos}</text>
+  <text class="num" x="210" y="192">{t.activosN}</text>
+  <text class="note" x="210" y="206">{t.activosNota}</text>
+
+  <rect class="box b-inact" x="490" y="146" width="200" height="66"/>
+  <text class="name" x="590" y="168">{t.inactivos}</text>
+  <text class="num" x="590" y="192">{t.inactivosN}</text>
+  <text class="note" x="590" y="206">{t.inactivosNota}</text>
+
+  <path class="link" d="M 210 212 V 234 H 115 V 258"/>
+  <path class="link" d="M 210 212 V 234 H 305 V 258"/>
+
+  <!-- Level 3. Both boxes carry a note so their three lines sit at the same
+       height, and there is a gap between them: sharing an edge read as one box. -->
+  <rect class="box b-ocup" x="30" y="258" width="170" height="66"/>
+  <text class="name" x="115" y="280">{t.ocupados}</text>
+  <text class="num" x="115" y="304">{t.ocupadosN}</text>
+  <text class="note" x="115" y="318">{t.ocupadosNota}</text>
+
+  <rect class="box b-paro" x="220" y="258" width="170" height="66"/>
+  <text class="name" x="305" y="280">{t.parados}</text>
+  <text class="num" x="305" y="304">{t.paradosN}</text>
+  <text class="note" x="305" y="318">{t.paradosNota}</text>
+
+  <!-- The three rates -->
+  <text class="rate" x="440" y="286">{t.tActividad}</text>
+  <text class="formula" x="440" y="306">{t.fActividad}</text>
+  <text class="rate" x="440" y="342">{t.tEmpleo}</text>
+  <text class="formula" x="440" y="362">{t.fEmpleo}</text>
+  <text class="rate" x="440" y="398">{t.tParo}</text>
+  <text class="formula" x="440" y="418">{t.fParo}</text>
+
+  <text class="warn" x="400" y="474">{t.aviso}</text>
+</svg>

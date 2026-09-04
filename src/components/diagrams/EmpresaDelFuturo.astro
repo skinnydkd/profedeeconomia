@@ -8,32 +8,98 @@
  *
  * Used in EEAE 1BACH · Unit 10 (la empresa del futuro: atando los hilos).
  */
+import { getLocale } from '@/i18n/locale';
+const locale = getLocale(Astro.currentLocale);
+
+const COPY = {
+  es: {
+    laEmpresaDelFuturo: 'La empresa del futuro',
+    unCentroLaEmpresa: 'Un centro, la empresa del futuro, conectado con cuatro fuerzas estudiadas a lo largo del curso: más tecnológica (decide con datos y automatiza lo repetitivo, Unidades 8 y 10), más flexible (formas híbridas y estructuras más planas, saber C.4), más sostenible (por estrategia y supervivencia, Unidad 3 y saber C.5) y con perfil emprendedor (ver oportunidades, probar, aprender y colaborar, Bloque B). La paradoja final del curso: cuanto más avanza la tecnología, más valiosas se vuelven las cualidades humanas.',
+    atandoLosHilosDel: 'Atando los hilos del curso',
+    laEmpresa: 'La empresa',
+    delFuturo: 'del futuro',
+    automatizaLoRepetitivoY: 'Automatiza lo repetitivo y decide apoyándose en datos, pero descubre que su mayor valor está en lo que la máquina no hace: el criterio, la creatividad y el trato humano.',
+    masTecnologica: 'Más tecnológica',
+    decideConDatosY: 'Decide con datos y automatiza',
+    loRepetitivoPeroSu: 'lo repetitivo… pero su valor está',
+    enLoQueLa: 'en lo que la máquina no hace',
+    elLugarDeTrabajo: 'El lugar de trabajo cambia: formas híbridas de teletrabajo y estructuras más planas y flexibles.',
+    masFlexible: 'Más flexible',
+    formasHibridasDeTrabajo: 'Formas híbridas de trabajo',
+    yEstructurasMasPlanas: 'y estructuras más planas',
+    saberC4: 'Saber C.4',
+    laSostenibilidadHaDejado: 'La sostenibilidad ha dejado de ser un adorno para ser estrategia de futuro: la exigen los consumidores, la obliga la ley y a menudo ahorra costes.',
+    masSostenible: 'Más sostenible',
+    porEstrategiaYSupervivencia: 'Por estrategia y supervivencia,',
+    noPorModa: 'no por moda',
+    unidad3SaberC: 'Unidad 3 · Saber C.5',
+    necesitaraMasQueNunca: 'Necesitará más que nunca personas con perfil emprendedor: capaces de ver oportunidades, de probar y equivocarse, de aprender de forma continua y de trabajar con otras.',
+    conPerfilEmprendedor: 'Con perfil emprendedor',
+    verOportunidadesProbar: 'Ver oportunidades, probar,',
+    aprenderYColaborar: 'aprender y colaborar',
+    bloqueB: 'Bloque B',
+    unidades8Y10: 'Unidades 8 y 10',
+    laParadojaFinalCuanto: 'La paradoja final: cuanto más avanza la tecnología,',
+    masValiosasSeVuelven: 'más valiosas se vuelven las cualidades más humanas.',
+  },
+  ca: {
+    laEmpresaDelFuturo: "L'empresa del futur",
+    unCentroLaEmpresa: "Un centre, l'empresa del futur, connectat amb quatre forces estudiades al llarg del curs: més tecnològica (decidix amb dades i automatitza el repetitiu, Unitats 8 i 10), més flexible (formes híbrides i estructures més planes, saber C.4), més sostenible (per estratègia i supervivència, Unitat 3 i saber C.5) i amb perfil emprenedor (vore oportunitats, provar, aprendre i col·laborar, Bloc B). La paradoxa final del curs: com més avança la tecnologia, més valuoses es tornen les qualitats humanes.",
+    atandoLosHilosDel: 'Lligant els fils del curs',
+    laEmpresa: "L'empresa",
+    delFuturo: 'del futur',
+    automatizaLoRepetitivoY: 'Automatitza el repetitiu i decidix recolzant-se en dades, però descobrix que el seu major valor està en el que la màquina no fa: el criteri, la creativitat i el tracte humà.',
+    masTecnologica: 'Més tecnològica',
+    decideConDatosY: 'Decidix amb dades i automatitza',
+    loRepetitivoPeroSu: 'el repetitiu… però el seu valor està',
+    enLoQueLa: 'en el que la màquina no fa',
+    elLugarDeTrabajo: 'El lloc de treball canvia: formes híbrides de teletreball i estructures més planes i flexibles.',
+    masFlexible: 'Més flexible',
+    formasHibridasDeTrabajo: 'Formes híbrides de treball',
+    yEstructurasMasPlanas: 'i estructures més planes',
+    saberC4: 'Saber C.4',
+    laSostenibilidadHaDejado: 'La sostenibilitat ha deixat de ser un adorn per a ser estratègia de futur: la exigixen els consumidors, la obliga la llei i sovint estalvia costos.',
+    masSostenible: 'Més sostenible',
+    porEstrategiaYSupervivencia: 'Per estratègia i supervivència,',
+    noPorModa: 'no per moda',
+    unidad3SaberC: 'Unitat 3 · Saber C.5',
+    necesitaraMasQueNunca: "Necessitarà més que mai persones amb perfil emprenedor: capaces de vore oportunitats, de provar i equivocar-se, d'aprendre de manera contínua i de treballar amb altres.",
+    conPerfilEmprendedor: 'Amb perfil emprenedor',
+    verOportunidadesProbar: 'Vore oportunitats, provar,',
+    aprenderYColaborar: 'aprendre i col·laborar',
+    bloqueB: 'Bloc B',
+    unidades8Y10: 'Unitats 8 i 10',
+    laParadojaFinalCuanto: 'La paradoxa final: com més avança la tecnologia,',
+    masValiosasSeVuelven: 'més valuoses es tornen les qualitats més humanes.',
+  },
+} as const;
+const t = COPY[locale];
 ---
-<svg viewBox="0 0 800 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="edf-title edf-desc">
-  <title id="edf-title">La empresa del futuro</title>
-  <desc id="edf-desc">Un centro, la empresa del futuro, conectado con cuatro fuerzas estudiadas a lo largo del curso: más tecnológica (decide con datos y automatiza lo repetitivo, Unidades 8 y 10), más flexible (formas híbridas y estructuras más planas, saber C.4), más sostenible (por estrategia y supervivencia, Unidad 3 y saber C.5) y con perfil emprendedor (ver oportunidades, probar, aprender y colaborar, Bloque B). La paradoja final del curso: cuanto más avanza la tecnología, más valiosas se vuelven las cualidades humanas.</desc>
+<svg class="d-empresa-del-futuro" viewBox="0 0 800 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="edf-title edf-desc">
+  <title id="edf-title">{t.laEmpresaDelFuturo}</title>
+  <desc id="edf-desc">{t.unCentroLaEmpresa}</desc>
   <defs>
     <style>
-      .bg { fill: #FBF6EC; }
-      .node { stroke: #2A1F18; stroke-width: 1.4; }
-      .node-1 { fill: #F5E5BC; }
-      .node-2 { fill: #DBEDED; }
-      .node-3 { fill: #FBE3D6; }
-      .node-4 { fill: #ECDCE5; }
-      .link { stroke: #C44E2C; stroke-width: 1.6; stroke-dasharray: 4 4; }
-      .hub { fill: #C44E2C; stroke: #2A1F18; stroke-width: 1.6; }
-      .hub-text { font-family: 'Fraunces', serif; font-size: 17px; font-weight: 600; fill: #FFFFFF; text-anchor: middle; }
-      .n-title { font-family: 'Fraunces', serif; font-size: 16px; font-weight: 600; fill: #2A1F18; text-anchor: middle; }
-      .n-desc { font-family: 'Switzer', sans-serif; font-size: 11.5px; fill: #5C4A3D; text-anchor: middle; }
-      .n-tag { font-family: 'Switzer', sans-serif; font-size: 9.5px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; fill: #8A7868; text-anchor: middle; }
-      .header { font-family: 'Switzer', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 1.6px; text-transform: uppercase; fill: #8A7868; text-anchor: middle; }
-      .footer { font-family: 'Fraunces', serif; font-style: italic; font-size: 13.5px; fill: #9C3A1C; text-anchor: middle; }
-      .has-tip { cursor: help; }
+      .d-empresa-del-futuro .bg { fill: #FBF6EC; }
+      .d-empresa-del-futuro .node { stroke: #2A1F18; stroke-width: 1.4; }
+      .d-empresa-del-futuro .node-1 { fill: #F5E5BC; }
+      .d-empresa-del-futuro .node-2 { fill: #DBEDED; }
+      .d-empresa-del-futuro .node-3 { fill: #FBE3D6; }
+      .d-empresa-del-futuro .node-4 { fill: #ECDCE5; }
+      .d-empresa-del-futuro .link { stroke: #C44E2C; stroke-width: 1.6; stroke-dasharray: 4 4; }
+      .d-empresa-del-futuro .hub { fill: #C44E2C; stroke: #2A1F18; stroke-width: 1.6; }
+      .d-empresa-del-futuro .hub-text { font-family: 'Fraunces', serif; font-size: 17px; font-weight: 600; fill: #FFFFFF; text-anchor: middle; }
+      .d-empresa-del-futuro .n-title { font-family: 'Fraunces', serif; font-size: 16px; font-weight: 600; fill: #2A1F18; text-anchor: middle; }
+      .d-empresa-del-futuro .n-desc { font-family: 'Switzer', sans-serif; font-size: 11.5px; fill: #5C4A3D; text-anchor: middle; }
+      .d-empresa-del-futuro .n-tag { font-family: 'Switzer', sans-serif; font-size: 9.5px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; fill: #8A7868; text-anchor: middle; }
+      .d-empresa-del-futuro .header { font-family: 'Switzer', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 1.6px; text-transform: uppercase; fill: #8A7868; text-anchor: middle; }
+      .d-empresa-del-futuro .footer { font-family: 'Fraunces', serif; font-style: italic; font-size: 13.5px; fill: #9C3A1C; text-anchor: middle; }
+      .d-empresa-del-futuro .has-tip { cursor: help; }
     </style>
   </defs>
   <rect class="bg" x="0" y="0" width="800" height="520"/>
 
-  <text class="header" x="400" y="36">Atando los hilos del curso</text>
+  <text class="header" x="400" y="36">{t.atandoLosHilosDel}</text>
 
   <!-- Enlaces centro → satélites (debajo de los nodos) -->
   <line class="link" x1="400" y1="270" x2="215" y2="148"/>
@@ -43,41 +109,41 @@
 
   <!-- Centro -->
   <circle class="hub" cx="400" cy="270" r="74"/>
-  <text class="hub-text" x="400" y="264">La empresa</text>
-  <text class="hub-text" x="400" y="286">del futuro</text>
+  <text class="hub-text" x="400" y="264">{t.laEmpresa}</text>
+  <text class="hub-text" x="400" y="286">{t.delFuturo}</text>
 
   <!-- Satélite 1: tecnológica (arriba izq) -->
-  <rect class="node node-1 has-tip" x="80" y="96" width="270" height="98" rx="10"><title>Automatiza lo repetitivo y decide apoyándose en datos, pero descubre que su mayor valor está en lo que la máquina no hace: el criterio, la creatividad y el trato humano.</title></rect>
-  <text class="n-title" x="215" y="128">Más tecnológica</text>
-  <text class="n-desc" x="215" y="150">Decide con datos y automatiza</text>
-  <text class="n-desc" x="215" y="166">lo repetitivo… pero su valor está</text>
-  <text class="n-desc" x="215" y="182">en lo que la máquina no hace</text>
+  <rect class="node node-1 has-tip" x="80" y="96" width="270" height="98" rx="10"><title>{t.automatizaLoRepetitivoY}</title></rect>
+  <text class="n-title" x="215" y="128">{t.masTecnologica}</text>
+  <text class="n-desc" x="215" y="150">{t.decideConDatosY}</text>
+  <text class="n-desc" x="215" y="166">{t.loRepetitivoPeroSu}</text>
+  <text class="n-desc" x="215" y="182">{t.enLoQueLa}</text>
 
   <!-- Satélite 2: flexible (arriba der) -->
-  <rect class="node node-2 has-tip" x="450" y="96" width="270" height="98" rx="10"><title>El lugar de trabajo cambia: formas híbridas de teletrabajo y estructuras más planas y flexibles.</title></rect>
-  <text class="n-title" x="585" y="128">Más flexible</text>
-  <text class="n-desc" x="585" y="150">Formas híbridas de trabajo</text>
-  <text class="n-desc" x="585" y="166">y estructuras más planas</text>
-  <text class="n-tag" x="585" y="184">Saber C.4</text>
+  <rect class="node node-2 has-tip" x="450" y="96" width="270" height="98" rx="10"><title>{t.elLugarDeTrabajo}</title></rect>
+  <text class="n-title" x="585" y="128">{t.masFlexible}</text>
+  <text class="n-desc" x="585" y="150">{t.formasHibridasDeTrabajo}</text>
+  <text class="n-desc" x="585" y="166">{t.yEstructurasMasPlanas}</text>
+  <text class="n-tag" x="585" y="184">{t.saberC4}</text>
 
   <!-- Satélite 3: sostenible (abajo izq) -->
-  <rect class="node node-3 has-tip" x="80" y="346" width="270" height="98" rx="10"><title>La sostenibilidad ha dejado de ser un adorno para ser estrategia de futuro: la exigen los consumidores, la obliga la ley y a menudo ahorra costes.</title></rect>
-  <text class="n-title" x="215" y="378">Más sostenible</text>
-  <text class="n-desc" x="215" y="400">Por estrategia y supervivencia,</text>
-  <text class="n-desc" x="215" y="416">no por moda</text>
-  <text class="n-tag" x="215" y="434">Unidad 3 · Saber C.5</text>
+  <rect class="node node-3 has-tip" x="80" y="346" width="270" height="98" rx="10"><title>{t.laSostenibilidadHaDejado}</title></rect>
+  <text class="n-title" x="215" y="378">{t.masSostenible}</text>
+  <text class="n-desc" x="215" y="400">{t.porEstrategiaYSupervivencia}</text>
+  <text class="n-desc" x="215" y="416">{t.noPorModa}</text>
+  <text class="n-tag" x="215" y="434">{t.unidad3SaberC}</text>
 
   <!-- Satélite 4: emprendedor (abajo der) -->
-  <rect class="node node-4 has-tip" x="450" y="346" width="270" height="98" rx="10"><title>Necesitará más que nunca personas con perfil emprendedor: capaces de ver oportunidades, de probar y equivocarse, de aprender de forma continua y de trabajar con otras.</title></rect>
-  <text class="n-title" x="585" y="378">Con perfil emprendedor</text>
-  <text class="n-desc" x="585" y="400">Ver oportunidades, probar,</text>
-  <text class="n-desc" x="585" y="416">aprender y colaborar</text>
-  <text class="n-tag" x="585" y="434">Bloque B</text>
+  <rect class="node node-4 has-tip" x="450" y="346" width="270" height="98" rx="10"><title>{t.necesitaraMasQueNunca}</title></rect>
+  <text class="n-title" x="585" y="378">{t.conPerfilEmprendedor}</text>
+  <text class="n-desc" x="585" y="400">{t.verOportunidadesProbar}</text>
+  <text class="n-desc" x="585" y="416">{t.aprenderYColaborar}</text>
+  <text class="n-tag" x="585" y="434">{t.bloqueB}</text>
 
   <!-- Etiqueta de unidades del nodo tecnológico (debajo, para no chocar con 3 líneas) -->
-  <text class="n-tag" x="215" y="92">Unidades 8 y 10</text>
+  <text class="n-tag" x="215" y="92">{t.unidades8Y10}</text>
 
   <!-- Footer / paradoja -->
-  <text class="footer" x="400" y="486">La paradoja final: cuanto más avanza la tecnología,</text>
-  <text class="footer" x="400" y="506">más valiosas se vuelven las cualidades más humanas.</text>
+  <text class="footer" x="400" y="486">{t.laParadojaFinalCuanto}</text>
+  <text class="footer" x="400" y="506">{t.masValiosasSeVuelven}</text>
 </svg>

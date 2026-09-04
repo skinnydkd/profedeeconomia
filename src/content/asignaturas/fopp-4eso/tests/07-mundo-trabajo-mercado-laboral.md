@@ -85,6 +85,12 @@ preguntas:
     derecha: ["No trabaja ni busca empleo activamente", "Trabaja para sí mismo dado de alta como autónomo", "Tiene un empleo remunerado", "No tiene empleo pero lo busca activamente"]
     correctas: [2, 3, 0, 1]
     explicacion: "Ocupado tiene empleo; parado no lo tiene pero lo busca; inactivo ni trabaja ni busca; el autoempleo es trabajar para uno mismo bajo el régimen de autónomos (RETA)."
+  - tipo: numerico
+    enunciado: "Un municipio tiene 15.000 personas de 16 o más años, de las cuales 7.200 están ocupadas. ¿Cuál es la tasa de empleo, en % (sin decimales)?"
+    respuesta: 48
+    tolerancia: 1
+    unidad: "%"
+    explicacion: "Tasa de empleo = ocupados / población de 16+ × 100 = 7.200 / 15.000 × 100 = 48 %. Comparte denominador con la tasa de actividad, no con la de paro: la de paro es la única de las tres que se divide entre la población activa."
 ---
 
 Test de autoevaluación de la Unidad 7 del libro de FOPP 4ESO. Ocho preguntas sobre el mercado laboral español: definiciones EPA y tres tasas básicas, cuatro sectores económicos, profesiones de futuro y en retroceso, salarios por nivel formativo, tres formas de trabajar y causas estructurales del paro juvenil.

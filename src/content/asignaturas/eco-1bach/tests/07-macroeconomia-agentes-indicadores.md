@@ -91,6 +91,18 @@ preguntas:
     enunciado: "Una persona que no trabaja, está disponible para trabajar pero ha dejado de buscar empleo, se contabiliza como parada en la EPA."
     correcta: false
     explicacion: "La EPA exige tres requisitos simultáneos: no trabajar, estar disponible y buscar activamente. Si no busca, es inactiva (trabajador desanimado), no parada, aunque conserve la voluntad de trabajar."
+  - tipo: numerico
+    enunciado: "Una economía registra en un año: consumo 700.000, inversión 200.000, gasto público 250.000, exportaciones 350.000 e importaciones 300.000 (mill. €). ¿Cuál es el PIB por el método del gasto, en mill. €?"
+    respuesta: 1200000
+    tolerancia: 1000
+    unidad: "mill. €"
+    explicacion: "PIB = C + I + G + (X − M) = 700.000 + 200.000 + 250.000 + (350.000 − 300.000) = 1.200.000 mill. €. Las importaciones restan porque no se han producido dentro del país."
+  - tipo: relacionar
+    enunciado: "Relaciona cada indicador macroeconómico con lo que mide:"
+    izquierda: ["PIB", "IPC", "Tasa de paro", "Balanza por cuenta corriente"]
+    derecha: ["El precio de una cesta de bienes representativa", "El valor de lo producido dentro del país en un período", "Los cobros y pagos con el exterior por bienes, servicios y rentas", "La parte de la población activa que busca empleo y no lo encuentra"]
+    correctas: [1, 0, 3, 2]
+    explicacion: "Cada uno mide una cosa distinta y ninguno resume la economía por sí solo: el PIB mide producción, el IPC precios, la tasa de paro el mercado de trabajo y la balanza la relación con el exterior."
 ---
 
 Test de autoevaluación de la Unidad 7 del libro de Eco 1BACH. Nueve preguntas que cubren los cuatro agentes económicos, la identidad del flujo circular ampliado, el cálculo del PIB por los métodos del gasto y de la producción, la conversión entre PIB nominal y real mediante el deflactor, la diferencia entre IPC y deflactor del PIB, el papel del IPCA en la zona euro, la definición de paro según la EPA y la estructura del superávit por cuenta corriente español.

@@ -53,11 +53,15 @@ import KeyTakeaways from '@components/KeyTakeaways.astro';
 import Bibliography from '@components/Bibliography.astro';
 import Diagram from '@components/Diagram.astro';
 import SectoresEconomicos from '@components/diagrams/SectoresEconomicos.astro';
+import TasasEPA from '@components/diagrams/TasasEPA.astro';
 import Figure from '@components/Figure.astro';
 import TldrUnidad from '@components/TldrUnidad.astro';
 import CasoDilema from '@components/CasoDilema.astro';
 import VuelveAlCaso from '@components/VuelveAlCaso.astro';
 import MirarFora from '@components/MirarFora.astro';
+import VocesDesacuerdo from '@components/VocesDesacuerdo.astro';
+import RecursoDestacado from '@components/libro/RecursoDestacado.astro';
+import HerramientaIsland from '@components/calculadoras/HerramientaIsland.astro';
 
 import olivarMontoro from '@assets/libro/fopp-4eso/07/olivar-montoro.jpg';
 import coworkingMadrid from '@assets/libro/fopp-4eso/07/coworking-madrid.jpg';
@@ -153,6 +157,16 @@ Calcula la **taxa d'activitat**, la **taxa d'atur** i la **taxa d'ocupació**, i
 
 </SolvedExercise>
 
+**Prova-ho tu mateix:** repetix el càlcul de Vilanova del Camp amb la calculadora i comprova que ixen les mateixes tres taxes. Després busca a l'INE les dades de la teua comunitat autònoma i introduïx-les: veuràs d'un colp d'ull si el teu territori s'assembla o no a la mitjana espanyola, i per què.
+
+<HerramientaIsland componente="TasasEPA" />
+
+<RecursoDestacado href="/fopp-4eso/recursos/tasas-epa/" kicker="Ferramenta" title="Les tres taxes de l'EPA" descripcion="Introduïx la població de 16 anys o més, els ocupats i els aturats d'un territori i obtín les tres taxes, cadascuna amb la seua divisió a la vista per a no confondre denominadors." colorVar="--color-fopp" />
+
+<Diagram caption="Com dividix l'EPA la població i d'on trau cada taxa el seu numerador i el seu denominador. La d'atur es dividix entre actius i no entre població: per això no encaixa amb les altres dues.">
+  <TasasEPA />
+</Diagram>
+
 ## Els quatre sectors econòmics
 
 Tota l'economia es repartix en sectors segons el tipus d'activitat. Tradicionalment es parlava de tres; hui és habitual afegir un quart que arreplega l'activitat més basada en coneixement i investigació.
@@ -230,6 +244,8 @@ Encara que hi ha enormes variacions segons sector, empresa, ciutat i experiènci
 
 Estes dades són **brutes anuals** (abans de retencions) i són **mitjanes**, no garanties. Hi ha graduats universitaris cobrant 18.000 € i tècnics de FP Superior cobrant 40.000 €. Però la **tendència general** és clara: a major nivell formatiu, major salari mitjà. I entre FP Superior i grau universitari la diferència és menor del que l'imaginari social suggerix.
 
+<RecursoDestacado href="/debates/dinero-tecnologia-futuro/02-ia-y-empleo/" kicker="Debat a classe" title="Destruirà la IA més ocupació de la que crea?" descripcion="Debat parlamentari sobre l'impacte net de la intel·ligència artificial en el mercat de treball." colorVar="--color-fopp" />
+
 ## Tres formes de tindre un treball
 
 <Figure
@@ -245,7 +261,7 @@ Quan es parla de "trobar ocupació" es pensa per defecte en una empresa que cont
 
 ### Treball per compte d'altri (~81 % dels ocupats)
 
-És la forma dominant: **una empresa o administració pública contracta** i paga un salari a canvi del teu treball, amb drets i obligacions regulats per l'**Estatut dels Treballadors** (ho veurem en detall en la Unit 8). La immensa majoria dels ocupats espanyols (al voltant del **81 %**) treballa en esta modalitat. Avantatges: estabilitat (més o menys segons el contracte), drets laborals clars, vacances pagades, baixa per malaltia. Inconvenients: menor autonomia sobre el què i el com del treball.
+És la forma dominant: **una empresa o administració pública contracta** i paga un salari a canvi del teu treball, amb drets i obligacions regulats per l'**Estatut dels Treballadors** (ho veurem en detall en la Unitat 8). La immensa majoria dels ocupats espanyols (al voltant del **81 %**) treballa en esta modalitat. Avantatges: estabilitat (més o menys segons el contracte), drets laborals clars, vacances pagades, baixa per malaltia. Inconvenients: menor autonomia sobre el què i el com del treball.
 
 ### Autoocupació o treball per compte propi (~15 % dels ocupats)
 
@@ -271,7 +287,7 @@ Lucía va acabar 4t d'ESO en un institut d'Albacete sense tindre clara la seua v
   aspectHint="3/2"
 />
 
-Hi ha una xifra que convé memoritzar i entendre: en el primer trimestre de 2026, la **taxa d'atur juvenil** (16-24 anys) a Espanya era del **24,54 %** (440.400 menors de 25 anys sense ocupació), segons l'EPA de l'INE. La mitjana de la Unió Europea ronda el **14-15 %** (Eurostat). Espanya duplica la mitjana europea **i ho fa de forma sostinguda des de 2008**. És una anomalia estructural, no una dada puntual.
+Hi ha una xifra que convé memoritzar i entendre: en el segon trimestre de 2026, la **taxa d'atur juvenil** (16-24 anys) a Espanya era del **23,77 %** (entorn de 460.000 menors de 25 anys sense ocupació), segons l'EPA de l'INE. La mitjana de la Unió Europea ronda el **14-15 %** (Eurostat). Espanya duplica la mitjana europea **i ho fa de forma sostinguda des de 2008**. És una anomalia estructural, no una dada puntual.
 
 ### Per què Espanya té tant atur juvenil
 
@@ -284,9 +300,23 @@ Els informes del **Banc d'Espanya**, l'**AIReF (Autoritat Independent de Respons
 
 <Curiosity title="Espanya ostenta l'atur juvenil més alt de la UE de forma ininterrompuda des de 2008">
 
-Segons les dades d'**Eurostat Labour Force Survey**, des de la crisi de 2008 Espanya ha estat **tots els anys** entre els països de la Unió Europea amb major taxa d'atur juvenil. Només Grècia se li acosta de manera persistent. En el pitjor moment de la crisi, en 2013, la taxa d'atur juvenil espanyola va superar el **56 %**. Més de la meitat dels jóvens actius no trobava ocupació. Encara que la xifra actual del 27 % és molt millor, continua sent la pitjor de la UE i, segons els informes del Banc d'Espanya i de l'OCDE, una de les **causes principals d'emigració juvenil qualificada** —l'anomenada *fuga de cervells*— cap a Alemanya, Països Baixos i Regne Unit durant tota l'última dècada.
+Segons les dades d'**Eurostat Labour Force Survey**, des de la crisi de 2008 Espanya ha estat **tots els anys** entre els països de la Unió Europea amb major taxa d'atur juvenil. Només Grècia se li acosta de manera persistent. En el pitjor moment de la crisi, en 2013, la taxa d'atur juvenil espanyola va superar el **56 %**. Més de la meitat dels jóvens actius no trobava ocupació. Encara que la xifra actual, entorn del 24 %, és molt millor, continua sent la pitjor de la UE i, segons els informes del Banc d'Espanya i de l'OCDE, una de les **causes principals d'emigració juvenil qualificada** —l'anomenada *fuga de cervells*— cap a Alemanya, Països Baixos i Regne Unit durant tota l'última dècada.
 
 </Curiosity>
+
+<VocesDesacuerdo
+  tema="L'atur juvenil, és un problema de formació o de llocs?"
+  postura_a={{
+    etiqueta: 'Falta encaix entre formació i ocupació',
+    tesis: "Hi ha milers de vacants sense cobrir mentres sobra gent buscant faena. Si els perfils que es formen no són els que es demanden, el desajust s'arregla orientant i formant distint.",
+  }}
+  postura_b={{
+    etiqueta: 'Falten llocs, no formació',
+    tesis: "Encara que tothom es formara en el més demandat, no hi hauria llocs per a tots. Un mercat amb molt de contracte temporal i salaris d'entrada baixos expulsa els jóvens primer.",
+  }}
+>
+Les dues coses passen alhora, i separar-les importa perquè **cada una s'arregla amb una política distinta**: formació i orientació per al desajust, demanda agregada i condicions d'entrada per a l'escassetat de llocs. Una manera de saber quina pesa més a la teua comarca: mira si les vacants sense cobrir són moltes o poques comparades amb la gent aturada. **Si sobren vacants, hi ha desajust; si no n'hi ha, cap formació addicional crearà els llocs que falten.** La dada de vacants es publica trimestralment i no exigix més que buscar-la.
+</VocesDesacuerdo>
 
 ## Com consultar les professions més demandades en la teua comunitat
 
@@ -296,7 +326,7 @@ Les dades generals són útils, però les decisions es prenen amb dades **concre
   <li>**Entra en el portal del SEPE** ([sepe.es](https://www.sepe.es)) i busca la secció **Observatori de les Ocupacions**. Allí publiquen informes anuals per comunitat autònoma amb les ocupacions més contractades i les que més han crescut l'últim any.</li>
   <li>**Busca l'informe específic de la teua CCAA**: cada autonomia té un servici públic d'ocupació propi (Labora a la Comunitat Valenciana, SEPECAM a Castella-la Manxa, SOC a Catalunya, Lanbide al País Basc, etc.) i publica dades de detall municipal o provincial que el SEPE estatal no oferix.</li>
   <li>**Consulta el portal TodoFP del Ministeri** ([todofp.es](https://www.todofp.es)) i filtra per família professional i per comunitat: mostra centres que oferixen cada cicle i sol incloure indicadors d'inserció laboral per cicle.</li>
-  <li>**Creua les dades amb el teu mapa d'interessos** (recupera la Unit 1 i la Unit 4): que una professió estiga demandada no significa que siga per a tu. Que estiga en retrocés no significa que hages de descartar-la si la teua vocació és clara i la combines amb habilitats complementàries.</li>
+  <li>**Creua les dades amb el teu mapa d'interessos** (recupera la Unitat 1 i la Unitat 4): que una professió estiga demandada no significa que siga per a tu. Que estiga en retrocés no significa que hages de descartar-la si la teua vocació és clara i la combines amb habilitats complementàries.</li>
   <li>**Parla amb algú que ja treballe** en una de les professions que estàs considerant. Deu minuts de conversa real aporten més que cinquanta pàgines d'informes oficials. Si no coneixes ningú, les fires d'orientació de febrer-març i les jornades d'antics alumnes dels centres de FP són l'oportunitat natural.</li>
 </Steps>
 
@@ -314,7 +344,7 @@ Què et diu això a tu? Dos coses. **No has d'adaptar-te a una vacant que no enc
 - Les professions amb **demanda en retrocés** són les basades en tasques repetitives o estandarditzades: caixers, traducció literal, manufactura repetitiva, agents de viatge tradicionals.
 - A major **nivell formatiu**, major salari mitjà. La diferència entre FP Superior i grau universitari és menor del que suggerix l'imaginari social.
 - Existixen **tres formes de treballar**: per compte d'altri (~81 %), autoocupació (~15 %) i intraemprenedoria (~5 %, en creixement).
-- L'**atur juvenil espanyol** (24,54 % en T1 2026) duplica la mitjana de la UE (~14-15 %) de forma sostinguda des de 2008. Les seues causes són estructurals: dualitat contractual, mismatch educatiu, SMI relativament alt enfront de productivitat juvenil, model turístic estacional.
+- L'**atur juvenil espanyol** (23,77 % en T2 2026) duplica la mitjana de la UE (~14-15 %) de forma sostinguda des de 2008. Les seues causes són estructurals: dualitat contractual, mismatch educatiu, SMI relativament alt enfront de productivitat juvenil, model turístic estacional.
 </KeyTakeaways>
 
 ## Glossari
@@ -350,10 +380,10 @@ Si vols llegir el mercat laboral amb dades reals i actualitzades, estes fonts of
 Estes preguntes no tenen una resposta única. Servixen per a discutir a classe o per a pensar individualment en tancar la unitat:
 
 1. Espanya duplica l'atur juvenil de la mitjana europea de forma sostinguda des de 2008. De les quatre causes estructurals (dualitat, SMI enfront de productivitat, mismatch educatiu, model turístic), quina creus que pesa més? Quina seria més fàcil de corregir?
-2. Les "professions de futur" combinen habilitat tècnica difícil d'automatitzar amb tracte humà no estandarditzat. Mirant el teu propi mapa d'interessos (Unit 1 i Unit 4), quines professions encaixen ací per a tu? Et condiciona la llista de demanda o decidixes al marge d'ella?
+2. Les "professions de futur" combinen habilitat tècnica difícil d'automatitzar amb tracte humà no estandarditzat. Mirant el teu propi mapa d'interessos (Unitat 1 i Unitat 4), quines professions encaixen ací per a tu? Et condiciona la llista de demanda o decidixes al marge d'ella?
 3. El turisme aporta més del 12 % del PIB espanyol, però també explica bona part de l'atur juvenil estacional. És una fortalesa o una debilitat per a un jove que entra ara al mercat laboral? Com afecta la teua comarca en concret?
 
-## Cap a la Unit 8
+## Cap a la Unitat 8
 
 Esta unitat ha presentat el **mapa** del mercat laboral. La següent entra en el detall del que passa una vegada t'incorpores a ell: els teus **drets i deures** com a treballador, què diu l'**Estatut dels Treballadors**, com funcionen la jornada, els descansos, les vacances, el SMI i la prevenció de riscos laborals. Si esta unitat ha sigut el mapa, la següent és el manual d'instruccions per al teu primer contracte.
 
@@ -402,3 +432,227 @@ Esta unitat ha presentat el **mapa** del mercat laboral. La següent entra en el
     Comparativa entre províncies en gran grup (o entre estudiants amb origen en zones distintes si la classe és heterogènia): quins sectors són comuns? quins són específics d'un territori? Debat breu sobre **mobilitat geogràfica**: estaries disposat a moure't per treball? en quines condicions? Durada: 45 min.
   </Fragment>
 </MirarFora>
+
+```deck
+- tipo: curriculum
+  eyebrow: A què respon esta unitat
+  title: El marc de la unitat
+  saberes:
+    - "Bloc E: el mercat laboral a Espanya i les seues taxes."
+    - "Bloc E: sectors econòmics i pes de cadascun."
+    - "Bloc E: atur juvenil i les seues causes estructurals."
+  competencias:
+    - Comprendre el món del treball i el mercat laboral.
+    - Analitzar l'entorn i la seua influència en les pròpies decisions.
+- tipo: section
+  title: Com es mesura el mercat laboral
+  subtitle: Població activa, població inactiva i les tres taxes de l'EPA
+- tipo: terms
+  title: Actius, inactius i la frontera entre els dos
+  terms:
+    - t: EPA
+      d: "Enquesta de Població Activa. L'INE pregunta cada trimestre a unes 65.000 llars què fa cada membre; d'ací ixen les xifres dels telenotícies."
+    - t: Població activa
+      d: Persones de 16 o més anys que treballen (ocupats) o busquen treball activament (aturats). Treballar unes poques hores ja compta com a ocupat.
+    - t: Població inactiva
+      d: "Persones de 16 o més anys que ni treballen ni busquen treball: estudiants a temps complet, jubilats, dedicats a la llar o amb incapacitat permanent."
+    - t: Aturat
+      d: "Qui no té ocupació però la busca activament. Està dins de la població activa: vol treballar. Qui no busca és inactiu, no aturat."
+- tipo: table
+  title: Les tres taxes de l'EPA
+  eyebrow: Espanya, primer trimestre de 2026
+  head:
+    - Taxa
+    - Com es calcula
+    - Dada a Espanya
+  rows:
+    - ["Activitat", "actius / població de 16+ × 100", "≈ 59 %"]
+    - ["Atur", "aturats / població activa × 100", "10,83 %"]
+    - ["Ocupació", "ocupats / població de 16+ × 100", "≈ 52,5 %"]
+  caption: La d'atur és l'única que es dividix entre la població activa. La d'ocupació és la millor per a comparar països.
+- tipo: diagram
+  diagrama: TasasEPA
+  caption: "De la població als aturats, i les tres taxes"
+- tipo: formula
+  eyebrow: La que més es cita
+  title: Taxa d'atur
+  formula: (aturats / població activa) × 100
+  terminos:
+    - s: aturats
+      d: Sense ocupació, disponibles i buscant activament.
+    - s: població activa
+      d: Ocupats més aturats. No inclou els inactius.
+  ejemplo: A Vilanova, 1.400 / 11.000 = 12,7 %. Dividir entre els 20.000 de 16+ donaria un 7 % enganyós.
+- tipo: concept
+  title: "«Atur» significa almenys tres coses distintes"
+  body: "Pot ser la xifra total d'aturats de l'EPA, l'atur registrat del SEPE (inscrits a les oficines d'ocupació) o la taxa d'atur en percentatge. EPA i SEPE quasi mai coincidixen: es pot buscar treball sense estar inscrit, o estar inscrit, fer alguna hora solta i figurar com a ocupat."
+  pull: "Davant d'una notícia sobre atur, mira la font: EPA o SEPE, xifra absoluta o taxa."
+- tipo: exercise
+  title: Exercici 7.1 · Les tres taxes de Vilanova del Camp
+  enunciado: "El municipi fictici de Vilanova del Camp té 20.000 persones de 16 anys o més: 9.600 d'ocupades i 1.400 d'aturades. La resta són inactives. Calcula la taxa d'activitat, la d'atur i la d'ocupació, i interpreta cada resultat."
+  pasos:
+    - "Població activa = ocupats + aturats = 9.600 + 1.400 = 11.000 persones."
+    - "Activitat = (11.000 / 20.000) × 100 = 55 %. Participa en el mercat laboral una mica més de la mitat de la població en edat de treballar."
+    - "Atur = (1.400 / 11.000) × 100 = 12,7 %. Ull al denominador: és la població activa, no les 20.000."
+    - "Ocupació = (9.600 / 20.000) × 100 = 48 %. És la taxa més útil per a comparar països."
+    - "Trampa habitual: dividir els aturats entre les 20.000 donaria un 7 % enganyosament baix."
+- tipo: quiz
+  pregunta: Marta té 19 anys, estudia un Grau Superior a temps complet i no busca treball. Com la classifica l'EPA?
+  opciones:
+    - Aturada, perquè no té ocupació
+    - Ocupada, perquè estudiar és la seua ocupació principal
+    - Inactiva, perquè ni treballa ni busca treball
+    - Activa, perquè té més de 16 anys
+  correcta: "2"
+  explicacion: La població activa exigix treballar o buscar treball activament. Qui estudia a temps complet sense buscar ocupació és inactiva, igual que qui està jubilat. Només qui busca ocupació compta com a aturat.
+- tipo: section
+  title: Els quatre sectors econòmics
+  subtitle: Què produïx Espanya i on està realment l'ocupació
+- tipo: diagram
+  diagrama: SectoresEconomicos
+  caption: Repartiment de l'ocupació a Espanya per sectors (INE, 2025). El quaternari encara es comptabilitza dins del terciari.
+- tipo: table
+  title: Els quatre sectors en xifres
+  head:
+    - Sector
+    - Què inclou
+    - "% del PIB"
+  rows:
+    - ["Primari", "Agricultura, ramaderia, pesca, silvicultura i mineria", "~3 %"]
+    - ["Secundari", "Indústria i construcció", "~22 %"]
+    - ["Terciari", "Comerç, hostaleria, turisme, sanitat, banca, educació", "~67 %"]
+    - ["Quaternari", "I+D, tecnologia, biotecnologia, consultoria avançada", "~8 %"]
+  caption: El terciari ocupa prop del 76 % dels ocupats. Fa cent anys més de la mitat estaven en el primari.
+- tipo: figure
+  src: fopp-4eso/07/olivar-montoro.jpg
+  alt: Paisatge d'olivar des de Montoro, Còrdova, amb fileres d'oliveres cobrint els tossals fins a l'horitzó.
+  title: Pesar poc en PIB no és ser irrellevant
+  caption: Espanya exporta oli per més de 4.000 milions d'euros a l'any, i l'olivar manté viva l'economia de comarques senceres.
+  credit: "Foto: Jesús García Campos (IAPH), CC BY 4.0"
+- tipo: data
+  numero: "96,8 M"
+  label: turistes internacionals en 2025
+  title: El país europeu més dependent del turisme
+  detalle: Rècord històric, amb 134.712 milions d'euros de despesa. El turisme aporta més del 12 % del PIB i prop de 2,7 milions d'ocupacions directes, però també explica bona part de l'atur juvenil estacional.
+- tipo: section
+  title: Professions de futur i en retrocés
+  subtitle: La transició digital i l'ecològica redibuixen el mapa professional
+- tipo: split
+  title: El mapa professional 2024-2030
+  left:
+    h: Alta demanda prevista
+    items:
+      - Infermeria i tècnics sociosanitaris — la silver economy d'un país que envellix
+      - Programació i desenvolupament de programari — més vacants que titulats a l'any
+      - Energies renovables — instal·ladors i tècnics, impuls del PNIEC fins a 2030
+      - Cura de persones majors i dependents — creixement sostingut dos dècades
+      - Oficis tècnics qualificats — electricistes, lampistes, soldadors
+  right:
+    h: Demanda en retrocés
+    items:
+      - Caixers de supermercat i de banca — autocaixa i banca digital
+      - Conductors de camió a 10-20 anys vista — conducció autònoma
+      - Manufactura repetitiva — s'automatitza l'estandarditzat, no el qualificat
+      - Traducció literal — sobreviu l'especialitzada, no la bàsica
+      - Agents de viatge tradicionals — reduïts al nínxol premium
+- tipo: concept
+  title: Cap professió és immune ni segura del tot
+  body: Les llistes de professions de futur no garantixen ocupació, i les de retrocés no signifiquen desaparició immediata. El raonablement segur és que les professions que combinen una habilitat tècnica difícil d'automatitzar amb tracte humà no estandarditzat —sanitat, cures, educació, oficis qualificats— tenen millor perspectiva que les que es reduïxen a executar instruccions repetibles.
+  pull: Convé retindre la idea, no la llista concreta.
+- tipo: table
+  title: Salari mitjà brut anual per formació
+  eyebrow: INE, Estructura Salarial 2024
+  head:
+    - Nivell formatiu
+    - Salari mitjà brut anual
+  rows:
+    - ["ESO sense més formació", "~17.500 €"]
+    - ["FP de Grau Mitjà", "~23.000 €"]
+    - ["FP de Grau Superior", "~26.500 €"]
+    - ["Grau universitari", "~30.000 €"]
+    - ["Màster universitari", "~34.500 €"]
+  caption: Són mitjanes brutes anuals, no garanties. La distància entre FP Superior i grau universitari és menor del que sembla.
+- tipo: quiz
+  pregunta: En quin sector econòmic es classifica la construcció d'edificis i obra civil?
+  opciones:
+    - Primari, perquè parteix de matèries primeres naturals
+    - Secundari, junt amb la indústria
+    - Terciari, perquè presta un servici
+    - Quaternari, pel seu component tècnic
+  correcta: "1"
+  explicacion: La construcció es comptabilitza dins del secundari junt amb la indústria. Entre els dos suposen al voltant del 22 % del PIB i el 20 % dels ocupats.
+- tipo: section
+  title: Tres formes de tindre un treball
+  subtitle: Compte d'altri, autoocupació i intraemprenedoria
+- tipo: figure
+  src: fopp-4eso/07/coworking-madrid.jpg
+  alt: Interior d'un espai de coworking a Madrid amb diverses taules compartides i professionals treballant.
+  title: Canvia l'estètica, no les tres modalitats
+  caption: Oficines compartides, freelance, teletreball híbrid. Per davall continuen sent compte d'altri, compte propi i ocupació pública.
+  credit: "Foto: Zarateman, CC0 / domini públic via Wikimedia Commons"
+- tipo: terms
+  title: Les tres modalitats, amb la seua lletra menuda
+  terms:
+    - t: Compte d'altri (~81 %)
+      d: Una empresa o administració contracta i paga un salari, amb drets regulats per l'Estatut dels Treballadors. Estabilitat a canvi de menys autonomia.
+    - t: Autoocupació (~15 %)
+      d: Treballar per a un mateix, normalment sota el règim d'autònoms (RETA). Autonomia total i més ingressos possibles, però quota a la Seguretat Social i risc propi.
+    - t: Intraemprenedoria (~5 %)
+      d: "Liderar projectes amb autonomia d'empresari intern sense eixir de la nòmina. No és un altre contracte: és una altra manera d'exercir el treball per compte d'altri."
+- tipo: concept
+  eyebrow: Cas real
+  title: "Lucía: de Grau Mitjà a programadora"
+  body: "Va acabar 4t d'ESO a Albacete sense vocació clara i es va matricular en el Grau Mitjà de Sistemes Microinformàtics i Xarxes. Allí va descobrir la programació, va aprendre Python i JavaScript pel seu compte i va entrar en un bootcamp subvencionat. Als dos anys del seu primer contracte a València cobrava uns 32.000 € bruts anuals: el camí formatiu no sempre és lineal."
+- tipo: quiz
+  pregunta: Una tècnica de manteniment lidera un projecte nou dins de la seua empresa, amb autonomia i sense posar diners propis. Quina modalitat és?
+  opciones:
+    - Autoocupació, perquè assumix el risc financer
+    - Treball per compte d'altri sense cap matís
+    - Règim especial d'autònoms (RETA)
+    - Intraemprenedoria, perquè emprén dins de la nòmina
+  correcta: "3"
+  explicacion: "La intraemprenedoria no és un contracte distint: és una manera d'exercir el treball per compte d'altri assumint risc professional, però no el financer. Ronda el 5 % i creix en tecnologia i consultoria."
+- tipo: section
+  title: L'atur juvenil espanyol
+  subtitle: Una anomalia europea sostinguda des de 2008
+- tipo: data
+  numero: "23,77 %"
+  label: atur juvenil (16-24 anys)
+  title: El doble que la mitjana europea
+  detalle: Uns 460.000 menors de 25 anys sense ocupació en el segon trimestre de 2026, segons l'EPA. La mitjana de la Unió Europea ronda el 14-15 %, i Espanya encapçala la llista des de 2008.
+- tipo: figure
+  src: fopp-4eso/07/oficina-empleo-madrid.jpg
+  alt: Façana d'una Oficina d'Ocupació conjunta de la Comunitat de Madrid i el SEPE al barri de la Concepción.
+  title: No és conjuntura, és estructura
+  caption: Oficina d'Ocupació de la Comunitat de Madrid i el SEPE. En 2013, en el pitjor moment de la crisi, la taxa juvenil va superar el 56 %.
+  credit: "Foto: Lojwe, CC0 via Wikimedia Commons"
+- tipo: list
+  title: Quatre causes estructurals, no una mala ratxa
+  eyebrow: Banc d'Espanya, AIReF i OCDE
+  items:
+    - "Dualitat contractual: al jove se'l contracta amb temporal i se'l despatxa primer al menor senyal de crisi."
+    - "SMI alt i productivitat juvenil baixa: amb 1.221 € en 2026 algunes pimes no contracten. Hipòtesi discutida, però documentada."
+    - "Mismatch educatiu: molts universitaris i molt abandó primerenc alhora. Falten graus intermedis."
+    - "Model turístic estacional: molts contractes a l'estiu i molt pocs a l'hivern, amb la taxa oscil·lant cada trimestre."
+- tipo: list
+  title: Cinc passos per a mirar les dades de la teua zona
+  ordered: true
+  items:
+    - "Entra en sepe.es i busca l'Observatori de les Ocupacions: publica informes anuals per comunitat autònoma."
+    - "Busca el servici d'ocupació de la teua CCAA (Labora, SOC, Lanbide, SEPECAM): donen detall provincial o municipal."
+    - "Consulta todofp.es i filtra per família professional i comunitat: indica centres i inserció laboral per cicle."
+    - "Creua eixes dades amb el teu mapa d'interessos de les unitats 1 i 4: que estiga demandada no significa que siga per a tu."
+    - Parla amb algú que ja treballe en eixa professió. Deu minuts reals valen més que cinquanta pàgines d'informes.
+- tipo: concept
+  title: Vacants sense cobrir i atur juvenil alhora
+  body: "En 2024 convivien unes 150.000 vacants sense cobrir i un atur juvenil per damunt del 26 %. El desajust és triple. De condicions: hostaleria estacional, construcció, transport, agricultura temporal, salaris baixos i contractes breus. De qualificació: soldadors o tècnics de manteniment exigixen formació específica. I geogràfic: vacants i aturats no sempre estan en la mateixa província; mudar-se costa diners."
+  pull: Decidir vocació sense mirar el mercat és decidir amb un sol ull obert.
+- tipo: recap
+  title: Abans de tancar la unitat
+  items:
+    - Sabries calcular les tres taxes de l'EPA sense confondre el denominador.
+    - Sabries dir en quin sector entra una faena qualsevol i quant pesa eixe sector.
+    - Sabries nomenar tres professions a l'alça i tres a la baixa, amb el motiu.
+    - Sabries distingir compte d'altri, autoocupació i intraemprenedoria.
+    - Sabries explicar per què l'atur juvenil espanyol dobla la mitjana europea.
+```

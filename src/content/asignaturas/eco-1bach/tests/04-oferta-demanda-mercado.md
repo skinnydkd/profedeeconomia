@@ -93,6 +93,12 @@ preguntas:
     derecha: ["Una sola empresa que fija el precio", "Muchas empresas, producto homogéneo y precio dado", "Pocas empresas interdependientes", "Muchas empresas con producto diferenciado"]
     correctas: [1, 0, 2, 3]
     explicacion: "Competencia perfecta: muchas empresas precio-aceptantes con producto homogéneo. Monopolio: una empresa precio-fijadora. Oligopolio: pocas empresas que se vigilan entre sí. Competencia monopolística: muchas empresas que diferencian su producto."
+  - tipo: numerico
+    enunciado: "Con la misma demanda Qd = 100 − 2P y la misma oferta Qo = 20 + 2P, ¿cuál es la cantidad de equilibrio, en unidades?"
+    respuesta: 60
+    tolerancia: 1
+    unidad: "unidades"
+    explicacion: "En el equilibrio P = 20 €. Sustituyendo en cualquiera de las dos funciones: Qd = 100 − 2(20) = 60, y Qo = 20 + 2(20) = 60. Que las dos den lo mismo es la comprobación de que el precio es correcto."
 ---
 
 Test de autoevaluación de la Unidad 4 del libro de Economía 1.º de Bachillerato.

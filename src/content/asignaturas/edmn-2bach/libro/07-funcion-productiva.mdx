@@ -38,6 +38,7 @@ import Diagram from '@components/Diagram.astro';
 import Figure from '@components/Figure.astro';
 import BreakEvenChart from '@components/diagrams/BreakEvenChart.astro';
 import ProcesosProductivos from '@components/diagrams/ProcesosProductivos.astro';
+import CadenaValor from '@components/diagrams/CadenaValor.astro';
 import Bibliography from '@components/Bibliography.astro';
 import TldrUnidad from '@components/TldrUnidad.astro';
 import CasoDilema from '@components/CasoDilema.astro';
@@ -45,14 +46,16 @@ import VuelveAlCaso from '@components/VuelveAlCaso.astro';
 import PistaEbau from '@components/PistaEbau.astro';
 import RetoEtapa from '@components/RetoEtapa.astro';
 import MirarFora from '@components/MirarFora.astro';
+import VocesDesacuerdo from '@components/VocesDesacuerdo.astro';
 import HerramientaIsland from '@components/calculadoras/HerramientaIsland.astro';
 
 import opelGliwice from '@assets/libro/edmn-2bach/07/opel-gliwice-cadena.jpg';
 import almacenPalletRack from '@assets/libro/edmn-2bach/07/almacen-pallet-rack.jpg';
 import fordHighlandPark from '@assets/libro/edmn-2bach/07/ford-highland-park-1913.jpg';
 import kukaRobots from '@assets/libro/edmn-2bach/07/kuka-robots-industriales.jpg';
+import RecursoDestacado from '@components/libro/RecursoDestacado.astro';
 
-> **Tiempo estimado de lectura**: ~12 min · **Sabers LOMLOE**: B.3 · **Pre-requisitos**: Unit 4 (modelos de negocio) y matemáticas básicas de costes
+> **Tiempo estimado de lectura**: ~12 min · **Sabers LOMLOE**: B.3 · **Pre-requisitos**: Unidad 4 (modelos de negocio) y matemáticas básicas de costes
 >
 > **Al acabar esta unidad sabrás**:
 > - Describir el proceso productivo de una empresa identificando entradas, transformación y salidas, y clasificar el tipo de proceso (proyecto, lotes, cadena, continua).
@@ -113,6 +116,10 @@ Cada tipo exige un diseño organizativo distinto. Una panadería que decida fabr
 ### Localización productiva
 
 Aunque la cubrimos en la Unidad 2, recordar aquí los factores **específicamente productivos**: cercanía a las materias primas (industrias agroalimentarias y mineras), disponibilidad de mano de obra cualificada (industria avanzada), disponibilidad de infraestructura energética (industria intensiva en energía) y conexión logística (puertos, autopistas, ferrocarril). En la era digital, todos estos factores siguen pesando para producción física; en producción de servicios digitales pesan menos.
+
+<Diagram caption="Las cinco actividades primarias por las que pasa el producto y las cuatro de apoyo que las atraviesan. El margen no es una actividad más: es lo que queda cuando el valor creado supera lo que cuestan todas ellas.">
+  <CadenaValor />
+</Diagram>
 
 ## Eficacia, eficiencia, productividad
 
@@ -311,6 +318,8 @@ b) ¿A partir de qué volumen mensual conviene cambiar del plan A al plan B?
 
 </SolvedExercise>
 
+<RecursoDestacado href="/edmn-2bach/recursos/calculadora-punto-muerto/" kicker="Herramienta" title="Calculadora de punto muerto" descripcion="Costes fijos, precio y coste variable unitario, y a la salida el umbral de rentabilidad, el margen de seguridad y el beneficio previsto." colorVar="--color-edmn" />
+
 ## Sistemas Lean de producción
 
 El sistema **Lean Manufacturing** —desarrollado por Toyota a partir de los años cincuenta y popularizado en occidente con el libro *The Machine That Changed the World* (1990)— ha redefinido la función productiva moderna. Su idea central es que la verdadera fuente de productividad no es producir más rápido, sino **eliminar desperdicio** (en japonés, *muda*) en cada paso del proceso.
@@ -380,6 +389,20 @@ La sede central de **Inditex** en Arteixo (A Coruña) es la mayor implementació
 
 La consecuencia: Zara mantiene **niveles de stock no vendido muy inferiores** a los del sector y la rotación de prendas es la más alta entre los grandes operadores globales de moda. El *muda* —desperdicio— en stock no vendido es el principal coste invisible de la moda; reducirlo es lo que ha permitido a Inditex sostener márgenes operativos imposibles para sus competidores.
 </RealExample>
+
+<VocesDesacuerdo
+  tema="Justo a tiempo o colchón de existencias"
+  postura_a={{
+    etiqueta: 'Producir justo a tiempo',
+    tesis: 'El stock es dinero parado que además esconde los problemas: si hay piezas de sobra, nadie arregla la avería que las consume. Reducir inventario obliga a que el proceso funcione de verdad.',
+  }}
+  postura_b={{
+    etiqueta: 'Mantener un colchón',
+    tesis: 'Una cadena sin holgura se rompe entera cuando falla un eslabón. El stock cuesta dinero, sí, pero es un seguro: el ahorro de años se pierde en una sola semana de parada.',
+  }}
+>
+Durante treinta años ganó la primera postura sin discusión. Las interrupciones de suministro de la década de 2020 —pandemia, el bloqueo del canal de Suez, la escasez de semiconductores— devolvieron la segunda al debate, y muchas empresas han pasado del *just in time* puro al *just in case* para las piezas críticas. **La síntesis que se está imponiendo no es volver al almacén lleno, sino distinguir**: inventario mínimo en lo que se repone rápido y hay varios proveedores, colchón deliberado en lo que tiene un único origen o un plazo largo.
+</VocesDesacuerdo>
 
 ## Calidad y mejora continua
 
@@ -505,3 +528,256 @@ Cada equipo cierra esta unidad con tres entregables: el **diagrama de proceso pr
     Variante en grupos de 3 (45 min): cada grupo elige **un proceso del aula o del centro** (entrar/salir de clase, comer en cafetería, pedir un libro en biblioteca) y lo observa durante un día. Al día siguiente, presenta los muda detectados y **una propuesta de mejora medible**. La propuesta no tiene que aplicarse —se evalúa la mirada operativa, no el resultado—. Materiales: cronómetro, hoja de observación.
   </Fragment>
 </MirarFora>
+
+```deck
+- tipo: curriculum
+  eyebrow: "A qué responde esta unidad"
+  title: "El marco de la unidad"
+  saberes:
+    - "Bloque B: función productiva y costes."
+    - "Bloque B: productividad, umbral de rentabilidad y calidad."
+  competencias:
+    - "Gestionar las áreas funcionales de la empresa: la función productiva."
+- tipo: quote
+  texto: Toyota produce coches con menos defectos que Ford con la mitad de horas de mano de obra. El secreto se llama Lean.
+  fuente: Womack, Jones y Roos · The Machine That Changed the World
+- tipo: concept
+  eyebrow: El caso
+  title: Las mismas fábricas, la mitad de esfuerzo
+  body: "A finales de los setenta, los fabricantes estadounidenses descubrieron que Toyota producía coches con menos del 50 % del esfuerzo humano, un tercio del espacio, una sexta parte del inventario y la mitad de defectos. Las fábricas eran las mismas, los obreros igual de capacitados y la tecnología similar. La diferencia estaba en cómo se organizaba el trabajo: el TPS, que Occidente bautizó como Lean en 1990."
+  pull: "¿Por qué una empresa puede producir mejor sin invertir más, solo cambiando cómo organiza el trabajo?"
+- tipo: section
+  title: El proceso productivo
+  subtitle: "Entradas, transformación y salidas: la estructura es la misma en una fábrica, en un hospital y en un estudio de software."
+- tipo: concept
+  title: Qué entra, qué pasa dentro y qué sale
+  body: "Entradas: materias primas, energía, mano de obra, información, capital. Transformación: cocinar, ensamblar, programar, atender, transportar. Salidas: los productos o servicios que recibe el cliente. Porter (1985) abrió esa caja con la cadena de valor —logística, operaciones, marketing, ventas y servicio, más las actividades de apoyo—: la rentabilidad es el valor que suma cada eslabón menos su coste."
+  pull: La función comercial decide qué se vende; la productiva decide cómo se hace.
+- tipo: diagram
+  diagrama: ProcesosProductivos
+  caption: "Los cuatro tipos en diagonal: a poco volumen y mucha variedad, por proyecto; a mucho volumen y poca variedad, continua."
+- tipo: terms
+  title: Cuatro tipos de proceso productivo
+  terms:
+    - t: Por proyecto
+      d: "Cada salida es única: un edificio, un software a medida, un festival. Intensivo en planificación; la curva de aprendizaje no se aprovecha entre proyectos."
+    - t: Por lotes
+      d: "Series limitadas de productos similares: panadería, taller artesanal, ediciones de un libro. Combina flexibilidad con economías de escala parciales."
+    - t: En cadena
+      d: "Secuencia continua de operaciones idénticas: automoción, refinería, embotelladora. Máxima eficiencia y mínima flexibilidad."
+    - t: Continua
+      d: "El proceso no se detiene: centrales eléctricas, suministro de agua, altos hornos. Parar cuesta más que seguir produciendo con poca demanda."
+- tipo: figure
+  src: edmn-2bach/07/opel-gliwice-cadena.jpg
+  alt: "Cadena de montaje de la fábrica Opel en Gliwice: carrocerías del Astra J avanzan por una línea continua con operarios."
+  title: Producción en cadena, en Gliwice
+  caption: Repartir el coste fijo entre miles de unidades idénticas sale muy barato, pero se pierde casi toda la flexibilidad.
+  credit: "Foto: Marek Ślusarczyk (Tupungato), CC BY 3.0 vía Wikimedia Commons"
+- tipo: diagram
+  diagrama: CadenaValor
+  caption: "Dónde se añade valor, actividad por actividad"
+- tipo: section
+  title: Eficacia, eficiencia y productividad
+  subtitle: Tres palabras que se usan como sinónimos y no lo son. Maximizar una sin atender a las demás produce empresas perversas.
+- tipo: terms
+  title: Tres conceptos y un desequilibrio
+  terms:
+    - t: Eficacia
+      d: "Hacer lo correcto: alcanzar el objetivo. Se mide en absoluto, se alcanza o no. Una panadería eficaz vende todo el pan que hornea."
+    - t: Eficiencia
+      d: "Alcanzar el objetivo con el mínimo coste, tiempo o desperdicio. Se mide como ratio output/input: vender todo el pan sin merma ni horas extras."
+    - t: Productividad
+      d: Relación entre lo producido y los recursos consumidos. 200 panes con 4 trabajadores son 50 por persona; con 2 trabajadores, 100.
+    - t: El desequilibrio
+      d: Eficaz sin ser eficiente quema recursos; eficiente sin ser eficaz optimiza algo que nadie quiere; productiva sin ser eficaz llena el almacén y vacía la caja.
+- tipo: data
+  numero: "91,7 %"
+  label: de la media UE-27 por hora
+  title: La brecha de productividad española
+  detalle: "Eurostat 2025 (UE-27 = 100). España produce por hora un 8 % menos de valor que la media europea; Alemania marca 108 y Países Bajos, 118. Detrás pesan las microempresas y un I+D del 1,49 % del PIB frente al 2,24 % de la UE."
+- tipo: section
+  title: Estructura de costes
+  subtitle: Antes de saber si un negocio aguanta hay que saber qué cuesta producir y qué parte de ese coste depende del volumen.
+- tipo: split
+  title: Costes fijos y costes variables
+  left:
+    h: "Fijos (CF): no dependen del volumen"
+    items:
+      - Alquiler del local y sueldos del personal estructural
+      - Amortización de la maquinaria, seguros y mantenimiento
+      - Cánones de franquicia y licencias de software
+      - Cambian por escalones —otro local, otra persona—, no con las fluctuaciones del mes
+  right:
+    h: "Variables (CV): crecen con la producción"
+    items:
+      - Materias primas y energía consumida en la producción
+      - Comisiones por venta y embalajes
+      - "Mano de obra variable: horas extras y eventuales"
+      - "Coste variable unitario: CVu = CV / Q, lo que aporta cada unidad al coste"
+- tipo: table
+  eyebrow: La relación CF/CV
+  title: "Apalancamiento operativo: el peso de los costes fijos"
+  head:
+    - ""
+    - Alto apalancamiento
+    - Bajo apalancamiento
+  rows:
+    - - Estructura
+      - Mucho CF y poco CV
+      - Poco CF y mucho CV
+    - - Si las ventas suben
+      - Multiplica el beneficio
+      - Crece despacio
+    - - Si las ventas caen
+      - Hunde el resultado
+      - Aguanta mejor
+    - - Casos típicos
+      - Aerolíneas, cines, software B2B
+      - Comercios pequeños, consultorías
+  caption: "CT = CF + CVu · Q y CMe = CT / Q. Al repartir los fijos entre más unidades el coste medio baja: son las economías de escala."
+- tipo: section
+  title: El punto muerto o umbral de rentabilidad
+  subtitle: El nivel de ventas en el que los ingresos igualan a los costes. Por debajo se pierde dinero; por encima empieza el beneficio.
+- tipo: formula
+  eyebrow: "Umbral de rentabilidad"
+  title: "El punto muerto de un producto"
+  formula: "Q* = CF / (P − CVu)"
+  terminos:
+    - s: "CF"
+      d: "Costes fijos del período, que no dependen de lo que se produzca."
+    - s: "P"
+      d: "Precio de venta unitario."
+    - s: "CVu"
+      d: "Coste variable unitario."
+    - s: "P − CVu"
+      d: "Margen de contribución: lo que cada unidad aporta a cubrir los fijos."
+    - s: "MS"
+      d: "Margen de seguridad: (Demanda − Q*) / Demanda × 100. Vulnerable por debajo del 10 %."
+  ejemplo: "Una panadería con 3.000 €/mes de fijos, barra a 1,50 € y CVu de 0,50 € tiene margen de 1 € y punto muerto de 3.000 barras. Desde la 3.001, cada venta es beneficio."
+- tipo: diagram
+  diagrama: BreakEvenChart
+  caption: "El punto muerto es el cruce del ingreso total con el coste total: a su izquierda, pérdida; a su derecha, beneficio."
+- tipo: list
+  eyebrow: Pista EBAU
+  title: Los cinco pasos que cuestan puntos si te los saltas
+  ordered: true
+  items:
+    - Identifica CF, CVu y P en el enunciado antes de tocar la calculadora.
+    - "Aplica Q* = CF / (P − CVu) y deja escrita la fórmula, no solo el resultado."
+    - "Redondea hacia arriba: no se venden 1.234,34 sillas."
+    - "Dibuja el gráfico: ejes Q y €, rectas IT y CT, y Q* marcado en el cruce."
+    - "Interpreta con una frase: «hay que vender 1.235 uds para no perder; a partir de ahí, beneficio»."
+- tipo: exercise
+  title: Punto muerto de una franquicia de café para llevar
+  enunciado: "Un local con 1.800 €/mes de alquiler, una persona empleada por 2.200 €, un canon de franquicia de 600 € y otros 400 € de costes fijos. Cada café se vende a 2,80 € y cuesta 0,90 € entre grano, leche, vaso y comisión. ¿Cuántos cafés hay que vender al mes y al día, con 26 días laborables? ¿Es viable prever 220 cafés/día?"
+  pasos:
+    - CF = 1.800 + 2.200 + 600 + 400 = 5.000 €/mes.
+    - "Margen de contribución: MC = 2,80 − 0,90 = 1,90 € por café."
+    - "Q* = 5.000 / 1,90 ≈ 2.632 cafés/mes; 2.632 / 26 ≈ 101 cafés/día."
+    - "Con 220 cafés/día son 5.720 al mes: 3.088 por encima del punto muerto."
+    - "Beneficio esperado: 3.088 × 1,90 ≈ 5.867 €/mes. Viable si la previsión se cumple."
+    - "Señal de alarma: bajar de 100 cafés/día sostenidos. Ahí toca revisar precio, ubicación o estructura de costes."
+- tipo: exercise
+  title: "Apalancamiento operativo: dos planes de mascarillas"
+  enunciado: "Una empresa textil compara dos planes industriales para fabricar mascarillas que vende a 0,50 € a las farmacias. Plan A, máquinas semiautomáticas: CF = 12.000 €/mes y CVu = 0,30 €. Plan B, totalmente automáticas: CF = 28.000 €/mes y CVu = 0,10 €. ¿Cuál es el punto muerto de cada plan y desde qué volumen conviene el B?"
+  pasos:
+    - "MC_A = 0,50 − 0,30 = 0,20 €; MC_B = 0,50 − 0,10 = 0,40 €."
+    - "Q*_A = 12.000 / 0,20 = 60.000 uds/mes; Q*_B = 28.000 / 0,40 = 70.000 uds/mes."
+    - "Punto de indiferencia: 0,20·Q − 12.000 = 0,40·Q − 28.000, de donde Q = 80.000 uds/mes."
+    - "Por debajo de 80.000 gana el plan A: sus fijos menores compensan el margen más bajo."
+    - "Por encima gana el B: el margen unitario doble absorbe los 28.000 € de costes fijos."
+    - Más apalancamiento es más beneficio cuando el volumen crece y más riesgo cuando cae.
+- tipo: section
+  title: Lean, muda y calidad
+  subtitle: La productividad no viene de correr más, sino de eliminar el desperdicio que se acumula en cada paso del proceso.
+- tipo: split
+  title: Los siete muda del Toyota Production System
+  left:
+    h: En el flujo
+    items:
+      - "Sobreproducción: producir más de lo que se venderá. El peor, porque consume todos los demás recursos."
+      - "Esperas: material o personas paradas por cuellos de botella o mala sincronización."
+      - "Transporte: mover materiales más de lo necesario, síntoma de un layout mal diseñado."
+      - "Procesos innecesarios: inspecciones dobles, informes que nadie lee, controles redundantes."
+  right:
+    h: En el almacén y en el puesto
+    items:
+      - "Inventario excesivo: stock que ocupa espacio y capital y esconde los problemas del proceso."
+      - "Movimientos innecesarios: buscar herramientas, doblarse, alcanzar lejos."
+      - "Defectos: producto que hay que rehacer o desechar, más el tiempo de detectarlo y reprocesarlo."
+- tipo: figure
+  src: edmn-2bach/07/almacen-pallet-rack.jpg
+  alt: Interior de un almacén moderno con estanterías metálicas de varios pisos llenas de palés europeos.
+  title: El inventario es un muda, no un colchón
+  caption: "A la vez un seguro frente a la demanda y un coste oculto: ocupa capital, ocupa espacio y esconde los fallos del proceso."
+  credit: "Foto: Axisadman, CC BY-SA 3.0 vía Wikimedia Commons"
+- tipo: list
+  title: Las técnicas Lean, dentro y fuera de la fábrica
+  items:
+    - "Just in Time: producir solo lo necesario, cuando se necesita. Exige proveedores fiables y procesos sin defectos."
+    - "Kanban: señalización visual del flujo —pendiente, en preparación, listo—. El cuello de botella se ve sin informes."
+    - "Kaizen: mejora continua a base de pequeños cambios propuestos por los propios trabajadores."
+    - "Poka-yoke: diseño a prueba de errores, como el enchufe que solo entra en un sentido."
+    - "5S: clasificar, ordenar, limpiar, estandarizar y sostener el puesto de trabajo."
+    - "Fuera de la fábrica: hospitales, cocinas, escuelas y startups. El Virginia Mason redujo un 50 % los errores médicos con Lean."
+- tipo: figure
+  src: edmn-2bach/07/ford-highland-park-1913.jpg
+  alt: Cadena de montaje del Ford Model T en Highland Park en 1913, con chasis en distintas fases sobre la cinta y operarios a lo largo de la línea.
+  title: Ford no inventó la cadena de montaje
+  caption: "La vio en los mataderos de Chicago, que despiezaban en línea desde la década de 1870. Ford invirtió la lógica: en vez de despiezar, ensamblar."
+  credit: "Foto: Library of Congress, dominio público vía Wikimedia Commons"
+- tipo: data
+  numero: "18,5 %"
+  label: de margen operativo (EBIT)
+  title: "Lean aplicado a la moda: Inditex en 2025"
+  detalle: "41.420 M€ de ventas y 7.643 M€ de EBIT; en el sector textil se considera bueno un margen del 5-8 %. De la idea al colgador pasan 2-3 semanas en las colecciones más reactivas, frente a los 6-9 meses del modelo tradicional."
+- tipo: figure
+  src: edmn-2bach/07/kuka-robots-industriales.jpg
+  alt: Hilera de brazos robóticos industriales naranjas de la marca KUKA sobre una plataforma de exposición.
+  title: Automatizar no es lo mismo que mejorar
+  caption: Un robot hace el proceso repetible, y eso ya es mucho. Pero la mejora continua sigue dependiendo de la cultura de la empresa.
+  credit: "Foto: Mixabest, CC BY-SA 3.0 vía Wikimedia Commons"
+- tipo: terms
+  eyebrow: Calidad y mejora continua
+  title: Dos corrientes clásicas y una decisión de pyme
+  terms:
+    - t: Total Quality Management (TQM)
+      d: "Filosofía de los años ochenta: la calidad es responsabilidad de toda la empresa, no del departamento de control. Se mide y se mejora de forma continua."
+    - t: Six Sigma
+      d: Metodología de Motorola (1986) que aspira a no más de 3,4 defectos por millón de unidades. Usa estadística avanzada con el ciclo DMAIC.
+    - t: Qué hace una pyme
+      d: "Implantar Six Sigma completo raramente compensa. Lo razonable es adoptar los principios —medir, mejorar, repartir la responsabilidad— sin la sobrecarga."
+- tipo: quiz
+  eyebrow: EBAU
+  pregunta: "Tu cálculo del umbral de rentabilidad da Q* = 1.234,34 sillas. ¿Qué haces antes de escribir la respuesta?"
+  opciones:
+    - "Redondear a 1.235: no se pueden vender 1.234,34 sillas"
+    - Redondear a 1.234, que es la parte entera del resultado
+    - Dejar el decimal, porque es el resultado exacto de la fórmula
+    - Redondear al múltiplo de cien más cercano, 1.200 sillas
+  correcta: "0"
+  explicacion: "El umbral se redondea siempre hacia arriba: con 1.234 sillas todavía se pierde dinero. Y falta el gráfico y la frase de interpretación, que también puntúan."
+- tipo: quiz
+  pregunta: "«El proceso es impecable y produce mucho, pero el almacén está lleno y no se vende.» ¿Qué le pasa a esta empresa?"
+  opciones:
+    - Es productiva pero no eficaz, y su muda dominante es la sobreproducción
+    - "Es eficaz pero no eficiente: alcanza el objetivo quemando recursos"
+    - Tiene un apalancamiento operativo demasiado bajo
+    - Le falta margen de contribución unitario
+  correcta: "0"
+  explicacion: Produce mucho —es productiva— de algo que no se vende, así que no es eficaz. En Lean eso es sobreproducción, el peor muda porque consume todos los demás recursos.
+- tipo: concept
+  eyebrow: Vuelve al caso
+  title: El TPS no fue una técnica, fue una cultura
+  body: "Toyota tardó tres décadas (1948-1980) y una cadena de ingenieros —Toyoda, Ohno, Shingo— que observaban el flujo del trabajo y eliminaban un desperdicio cada vez. Lo que en otras fábricas eran incidentes a olvidar, allí eran datos a investigar. El sistema no se compra: se construye parándose a preguntar por qué algo va lento, y la empresa que se ahoga en complejidad operativa empieza a hacerlo desde su fundación."
+  pull: "Etapa 7: diagrama del proceso, tabla de CF y CVu, cálculo de Q* con gráfico y los dos muda que más amenazan tu proyecto."
+- tipo: recap
+  eyebrow: "Repasa"
+  title: "Antes de cerrar la unidad"
+  items:
+    - "Sabrías describir un proceso productivo con sus entradas, transformación y salidas."
+    - "Sabrías separar eficacia, eficiencia y productividad y aplicarlas a un caso real."
+    - "Sabrías calcular costes fijos, costes variables y coste total."
+    - "Sabrías calcular el punto muerto o umbral de rentabilidad de un producto."
+    - "Sabrías nombrar los principios básicos de los sistemas Lean de producción."
+```

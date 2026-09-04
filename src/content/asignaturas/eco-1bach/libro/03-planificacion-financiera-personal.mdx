@@ -41,18 +41,21 @@ import Steps from '@components/Steps.astro';
 import KeyTakeaways from '@components/KeyTakeaways.astro';
 import Diagram from '@components/Diagram.astro';
 import InteresCompuesto from '@components/diagrams/InteresCompuesto.astro';
+import TrianguloInversion from '@components/diagrams/TrianguloInversion.astro';
 import Figure from '@components/Figure.astro';
 import Bibliography from '@components/Bibliography.astro';
 import TldrUnidad from '@components/TldrUnidad.astro';
 import CasoDilema from '@components/CasoDilema.astro';
 import VuelveAlCaso from '@components/VuelveAlCaso.astro';
 import MirarFora from '@components/MirarFora.astro';
+import VocesDesacuerdo from '@components/VocesDesacuerdo.astro';
 
 import HerramientaIsland from '@components/calculadoras/HerramientaIsland.astro';
 import einsteinRetrato from '@assets/libro/eco-1bach/03/einstein-retrato.jpg';
 import palacioBolsaMadrid from '@assets/libro/eco-1bach/03/palacio-bolsa-madrid.jpg';
 import bankiaSede from '@assets/libro/eco-1bach/03/bankia-sede.jpg';
 import bancoEspanaDetalle from '@assets/libro/eco-1bach/03/banco-espana-detalle.jpg';
+import RecursoDestacado from '@components/libro/RecursoDestacado.astro';
 
 > **Tiempo estimado de lectura**: ~25 min · **Saberes LOMLOE**: A.4 · **Pre-requisitos**: Unidades 1-2 (escasez y decisiones económicas; coste de oportunidad e interés).
 >
@@ -193,6 +196,8 @@ Dos hermanos, Ana y Bruno, deciden ahorrar para su jubilación. Ambos aportan **
 
 </SolvedExercise>
 
+<RecursoDestacado href="/eco-1bach/recursos/calculadora-interes-compuesto/" kicker="Herramienta" title="Calculadora de interés compuesto" descripcion="Capital inicial, aportación mensual, tipo y plazo. El gráfico separa lo aportado de lo que han generado los intereses, que es donde se ve el efecto del tiempo." colorVar="--color-eco1" />
+
 ## Productos financieros: rentabilidad, riesgo, liquidez
 
 <Figure
@@ -261,6 +266,10 @@ El caso preferentes es la lección más cara que la educación financiera españ
   aspectHint="2/3"
   variant="tight"
 />
+
+<Diagram caption="Ningún producto financiero llega a la vez a rentabilidad, liquidez y seguridad. El manual llama riesgo al tercer vértice; aquí se dibuja su inverso, la seguridad, para que los tres sean cosas que un ahorrador quiere.">
+  <TrianguloInversion />
+</Diagram>
 
 ## Hipotecas y préstamos personales: TIN, TAE y Euribor
 
@@ -393,6 +402,20 @@ Algunos recursos públicos imprescindibles para citar en clase:
 - **CNMV** (www.cnmv.es): publica las advertencias sobre **chiringuitos financieros** y las fichas técnicas de los productos.
 - **Finanzas para Todos** (www.finanzasparatodos.es): web educativa con calculadoras, simuladores y guías por etapa vital.
 
+<VocesDesacuerdo
+  tema="¿Sirve la educación financiera?"
+  postura_a={{
+    etiqueta: 'Sí, y hace falta más',
+    tesis: 'Quien entiende una TAE no firma un crédito rápido al 200 %. Enseñar interés compuesto, presupuesto y riesgo es lo mínimo antes de soltar a alguien en un mercado lleno de productos complejos.',
+  }}
+  postura_b={{
+    etiqueta: 'Sirve menos de lo que se dice',
+    tesis: 'Los efectos medidos son pequeños y se desvanecen en meses. Es cómodo trasladar a la persona la responsabilidad de un sistema que diseña productos difíciles de entender a propósito.',
+  }}
+>
+Un metaanálisis muy citado de 2014 encontró que las intervenciones de educación financiera explicaban **una parte mínima de la variación en el comportamiento financiero**, y que el efecto caía con el tiempo. La lectura razonable no es dejar de enseñarlo, sino **cambiar cuándo se enseña**: la evidencia mejora bastante cuando la formación llega justo antes de la decisión —al firmar la primera hipoteca, al contratar el primer producto— en lugar de años antes en un aula. **Y la otra mitad de la respuesta no está en el aula: está en obligar a que el producto sea comprensible.**
+</VocesDesacuerdo>
+
 ## Datos para situar la realidad económica española (mayo de 2026)
 
 Antes de cerrar la unidad, conviene fijar algunos órdenes de magnitud del contexto español que el alumnado debería poder citar con soltura:
@@ -515,3 +538,221 @@ Estas preguntas no tienen una respuesta única. Sirven para discutir en clase o 
 <Callout label="Juega en clase" variant="example">
 Para practicar la diversificación y el horizonte de inversión, probad [**Stonks**](/juegos/stonks/): se reparte el patrimonio entre distintos activos durante 25 años. ¿Acabaréis con más que la IA?
 </Callout>
+
+```deck
+- tipo: curriculum
+  eyebrow: "A qué responde esta unidad"
+  title: "El marco de la unidad"
+  saberes:
+    - "Bloque A: planificación financiera personal."
+    - "Bloque A: presupuesto, ahorro, riesgo y horizonte temporal."
+  competencias:
+    - "Tomar decisiones financieras razonadas y planificar las finanzas personales."
+- tipo: caso
+  eyebrow: "El caso"
+  title: "Quince años de retraso valen 258.000 €"
+  contexto: "Dos personas ahorran 100 € al mes con la misma rentabilidad del 7 % anual. Una empieza a los 20 años y la otra a los 35. Las dos paran a los 65."
+  datos:
+    - "Quien empezó a los 20 llega con unos 380.000 €."
+    - "Quien empezó a los 35 llega con 122.000 €."
+    - "La diferencia son 258.000 €, y no está en el importe ahorrado."
+  pregunta: "Si los números son tan claros, ¿por qué la mayoría de jóvenes no ahorra una parte fija de sus primeros ingresos?"
+- tipo: section
+  title: El presupuesto personal
+  subtitle: Lo básico antes de cualquier otra cosa. Sin capacidad de ahorro, ningún producto financiero arregla el problema de fondo.
+- tipo: diagram
+  diagrama: Presupuesto503020
+  caption: "Una heurística, no una ley: la mitad a necesidades, el 30 % a deseos y el 20 % a ahorro e inversión."
+- tipo: concept
+  eyebrow: Warren
+  title: La regla 50-30-20, y su letra pequeña
+  body: "El 50 % va a necesidades —vivienda, suministros, alimentación, transporte imprescindible—, el 30 % a deseos —ocio, ropa, viajes, suscripciones evitables— y el 20 % a ahorro e inversión. En el contexto español actual, con alquileres altos en las grandes ciudades, la distribución resulta optimista para mucha gente joven. Pero sirve como vara de medir."
+  pull: "Si las necesidades superan el 70 % del ingreso, el problema es estructural: vivienda cara o ingresos bajos."
+- tipo: concept
+  eyebrow: Concepto clave
+  title: Antes de invertir, el fondo de emergencia
+  body: "La capacidad de ahorro es la parte de los ingresos que no se consume en el periodo. Es la palanca financiera más importante de la vida adulta. Y el primer destino de ese ahorro no es la bolsa: es un fondo de emergencia de entre tres y seis meses de gastos, que cubra una avería, un mes sin trabajo o una reparación urgente sin recurrir a una tarjeta de crédito."
+  pull: Ese fondo va en producto líquido, no invertido. Su utilidad es estar disponible, no rentabilizar.
+- tipo: section
+  title: El interés compuesto
+  subtitle: La pieza que explica por qué empezar a los 20 vale diez veces más que empezar a los 40.
+- tipo: diagram
+  diagrama: InteresCompuesto
+  caption: El interés simple crece en línea recta; el compuesto se dispara, y la brecha entre los dos se ensancha cada año.
+- tipo: formula
+  eyebrow: "Interés compuesto"
+  title: "Cien euros quietos durante treinta años"
+  formula: "Cf = C0 · (1 + i)^n"
+  terminos:
+    - s: "C0"
+      d: "Capital inicial que se invierte y no se toca."
+    - s: "i"
+      d: "Tipo de interés anual, en tanto por uno."
+    - s: "n"
+      d: "Años que el capital permanece invertido."
+  ejemplo: "100 · (1,05)^30 = 432 €: 332 € de intereses sin añadir un euro. A 40 años, 704 €; a 50, 1.146 €. Al 8 % anual, los 100 € llegan a 1.006 € en 30 años."
+- tipo: figure
+  src: eco-1bach/03/einstein-retrato.jpg
+  alt: Retrato fotográfico en blanco y negro de Albert Einstein, realizado por Orren Jack Turner en Princeton hacia 1947.
+  title: Una cita que probablemente no dijo
+  caption: "«La octava maravilla del mundo» se atribuye a Einstein sin prueba documental: aparece en un anuncio bancario de 1925."
+  credit: "Foto: Orren Jack Turner, Princeton, dominio público vía Wikimedia Commons"
+- tipo: exercise
+  title: "Ejercicio 3.1 · Dos hermanos, mismo capital, distinto resultado"
+  enunciado: "Ana y Bruno ahorran 2.000 € al año con una rentabilidad del 7 % anual. Ana aporta desde los 20 hasta los 30 años —diez aportaciones— y después deja el capital quieto hasta los 65. Bruno empieza a los 30 y aporta sin parar durante 35 años. ¿Quién llega con más a los 65?"
+  pasos:
+    - "Aportado por Ana: 2.000 × 10 = 20.000 €. Aportado por Bruno: 2.000 × 35 = 70.000 €."
+    - "Ana, tras sus diez años de aportaciones, acumula unos 27.633 €."
+    - "Esos 27.633 € crecen 35 años más: 27.633 · (1,07)^35 ≈ 295.000 €."
+    - "Bruno, con renta constante capitalizada al 7 % durante 35 años, llega a unos 276.000 €."
+    - "Ana acaba con más habiendo aportado tres veces y media menos que Bruno."
+    - "Lo decisivo no es cuánto aportas, sino cuánto tiempo dejas que el dinero trabaje."
+- tipo: section
+  title: Productos financieros
+  subtitle: Tres ejes para comparar cualquier producto — rentabilidad esperada, riesgo y liquidez.
+- tipo: figure
+  src: eco-1bach/03/palacio-bolsa-madrid.jpg
+  alt: Fachada neoclásica del Palacio de la Bolsa de Madrid, en la Plaza de la Lealtad, sede histórica de la Bolsa de Madrid.
+  title: El Palacio de la Bolsa de Madrid
+  caption: Donde se negocian las acciones del mercado español. Comprar una es adquirir una porción minúscula de una empresa.
+  credit: "Foto: Luis García, CC BY-SA 3.0 vía Wikimedia Commons"
+- tipo: table
+  eyebrow: Órdenes de magnitud, mayo de 2026
+  title: Cinco productos comparados
+  head:
+    - Producto
+    - Rentabilidad
+    - Riesgo
+    - Liquidez
+  rows:
+    - - Cuenta remunerada
+      - 1,5-2 % TAE
+      - Muy bajo, FGD
+      - Inmediata
+    - - Depósito a plazo
+      - 2-4 %
+      - Muy bajo, FGD
+      - Baja, con penalización
+    - - Bonos del Estado
+      - 2-4 %
+      - Bajo, riesgo país
+      - Media
+    - - Fondo indexado
+      - 6-8 % a largo plazo
+      - Medio, volatilidad
+      - Alta
+    - - Acciones sueltas
+      - Variable, puede ser negativa
+      - Alto
+      - Alta
+  caption: El FGD cubre hasta 100.000 € por titular y entidad si el banco quiebra. Las cifras cambian con el ciclo de tipos del BCE.
+- tipo: concept
+  eyebrow: Concepto clave
+  title: "La regla de oro: rentabilidad ⇄ riesgo"
+  body: "Toda rentabilidad esperada por encima de la del bono del Estado a corto plazo se paga con más riesgo. No existen los productos de altos rendimientos sin riesgo. Cuando aparecen, hay tres posibilidades: estafa abierta, producto cuyo riesgo el cliente no comprende, o información privilegiada ilegal. Ninguna de las tres es buena para quien firma."
+  pull: "Y su corolario práctico: si no entiendes un producto financiero en términos sencillos, no lo contrates."
+- tipo: diagram
+  diagrama: TrianguloInversion
+  caption: "Cada producto elige dos de los tres vértices"
+- tipo: figure
+  src: eco-1bach/03/bankia-sede.jpg
+  alt: Vista exterior de las Torres Kio en la Plaza de Castilla de Madrid, sede corporativa que albergó a Bankia.
+  title: Las Torres Kio, sede de Bankia
+  caption: Entre 2009 y 2011 la entidad colocó a particulares participaciones preferentes por más de 22.000 millones de euros.
+  credit: "Foto: Marco Pagni, CC BY 2.0 vía Wikimedia Commons"
+- tipo: concept
+  eyebrow: Caso real
+  title: Las preferentes, o vender deuda perpetua como si fuera un depósito
+  body: "Las preferentes pagaban un cupón atractivo del 5-7 %, pero eran deuda perpetua subordinada, recuperable solo vendiéndola en un mercado secundario muy poco líquido. Cuando las cajas entraron en crisis en 2012 se hundieron: cupones suspendidos, canjes forzosos por acciones con pérdidas del 50-70 %. La mayoría de afectados eran jubilados que creían haber firmado un plazo fijo en su sucursal de siempre."
+  pull: Los tribunales dieron la razón a miles de demandantes por comercialización inadecuada. La lección más cara de la última década.
+- tipo: section
+  title: Hipotecas y préstamos
+  subtitle: "La deuda no es buena ni mala en abstracto: depende de para qué se usa y en qué condiciones."
+- tipo: split
+  title: Dos formas de endeudarse muy distintas
+  left:
+    h: Préstamo personal
+    items:
+      - Sin más garantía que el compromiso del prestatario
+      - "El banco asume más riesgo, así que cobra más: TIN del 6-12 %"
+      - Plazos cortos, de 1 a 7 años, e importes hasta unos 75.000 €
+      - Coches, reformas pequeñas, electrodomésticos, consolidar deudas
+  right:
+    h: Hipoteca
+    items:
+      - Garantía real sobre el inmueble; si no se paga, el banco lo ejecuta
+      - "Riesgo bajo para el banco, tipo bajo: TIN del 2-3,5 % en fijas"
+      - Plazos largos, de 20 a 30 años, e importes altos
+      - "Deuda productiva: financia algo que conserva valor a largo plazo"
+- tipo: terms
+  title: Tres siglas para no perderse comparando ofertas
+  terms:
+    - t: TIN
+      d: Tipo de Interés Nominal. El porcentaje anual que se aplica al capital pendiente. No incluye comisiones, seguros ni gastos, así que por sí solo no permite comparar.
+    - t: TAE
+      d: Tasa Anual Equivalente. Sí incluye comisiones, productos vinculados y el efecto del periodo de liquidación. Es el indicador legalmente obligatorio para comparar.
+    - t: Euríbor
+      d: Tipo al que se prestan entre sí los grandes bancos de la eurozona. Es la referencia de las hipotecas variables, revisada cada 6 o 12 meses.
+- tipo: data
+  numero: "+430 €/mes"
+  label: en la misma hipoteca de 200.000 €
+  title: Cuando el Euríbor pasó de −0,5 % a +4 %
+  detalle: "Con Euríbor + 0,9 %, esa hipoteca a 25 años pagaba unos 750 €/mes en 2021. Tras la subida de tipos más rápida del BCE, cerró 2023 en unos 1.180 €. En mayo de 2026, con el Euríbor al 2,8 %, la cuota está en unos 990 €."
+- tipo: exercise
+  title: "Ejercicio 3.2 · Cuota de una hipoteca y coste total"
+  enunciado: "Una pareja compra un piso en Valencia por 200.000 €, aporta el 20 % de entrada y financia 160.000 € a 25 años con un tipo fijo del 3,5 % TIN. Calcula la cuota mensual, los intereses totales de la operación y cuánto subiría la cuota con un tipo del 5 %."
+  pasos:
+    - "n = 25 × 12 = 300 cuotas; tipo mensual i = 3,5 % / 12 = 0,002917."
+    - "Cuota = C · i / (1 − (1+i)^−n) = 466,67 / 0,5822 ≈ 801 €/mes."
+    - "Pagado al banco: 801 × 300 = 240.300 €. Intereses: 240.300 − 160.000 = 80.300 €."
+    - "Es decir, durante 25 años se paga al banco un 50 % más del capital prestado."
+    - "Al 5 %, la cuota sube a unos 935 € y los intereses a 120.500 €: 40.000 € más."
+    - "Cada punto de TIN son unos 80-100 € más al mes y 25.000-30.000 € más de intereses."
+- tipo: section
+  title: Seguros y educación financiera
+  subtitle: Transferir un riesgo improbable pero costoso a cambio de una prima cierta y pequeña.
+- tipo: concept
+  title: Asegurar lo grande, autoasegurar lo pequeño
+  body: "La pregunta que decide si un seguro merece la pena es una: ¿podría asumir económicamente el siniestro si ocurriera? Si la respuesta es no —un incendio que destruye la casa, una operación urgente fuera, una indemnización por accidente—, asegurarse es racional. Si es sí sin grave perjuicio —la garantía extra de un electrodoméstico de 200 €—, la prima a largo plazo supera el coste esperado del siniestro."
+  pull: El seguro existe para evitar la ruina, no para cubrir cada pequeña incomodidad.
+- tipo: figure
+  src: eco-1bach/03/banco-espana-detalle.jpg
+  alt: Detalle de la verja de hierro forjado del edificio del Banco de España, con las letras «BE» entrelazadas en el óvalo decorativo.
+  title: El Banco de España y la educación financiera
+  caption: Con la CNMV coordina desde 2008 el Plan de Educación Financiera, cuya cara pública es finanzasparatodos.es.
+  credit: "Foto: GFreihalter, CC BY-SA 3.0 vía Wikimedia Commons"
+- tipo: list
+  eyebrow: Mayo de 2026
+  title: Órdenes de magnitud del contexto español
+  items:
+    - "Tipos del BCE: depósito 2,00 %, MRO 2,15 %. Euríbor a 12 meses en torno al 2,8 %."
+    - "IPC: 3,2 % general y 2,8 % subyacente (INE, abril de 2026)."
+    - "SMI: 1.221 €/mes en 14 pagas, 17.094 € brutos anuales (RD 126/2026)."
+    - "Salario medio bruto 27.558 €/año; el mediano ronda los 24.000 €."
+    - "Vivienda: Madrid 4.491 €/m² y Valencia 3.269 €/m², máximo histórico."
+    - "Tasa de ahorro de los hogares: 9-11 % de la renta disponible, lejos del 20 % del modelo."
+- tipo: quiz
+  eyebrow: Nivel EBAU
+  pregunta: Una hipoteca se anuncia con TIN del 2,5 % y TAE del 3,8 %. ¿Qué explica esa diferencia de 1,3 puntos y cuál debes mirar?
+  opciones:
+    - Un error de la entidad, porque TIN y TAE deberían coincidir
+    - "Comisiones y productos vinculados: hay que comparar por TAE, que es la que los incluye"
+    - La inflación prevista para los próximos años, y hay que mirar el TIN
+    - El diferencial sobre el Euríbor, y da igual cuál se mire
+  correcta: 1
+  explicacion: La TAE incorpora comisiones, seguros vinculados y el efecto del periodo de liquidación. Por eso es el indicador legalmente obligatorio para comparar ofertas, y el TIN por sí solo no sirve.
+- tipo: concept
+  eyebrow: Vuelve al caso
+  title: Automatiza la decisión y deja de tomarla cada mes
+  body: "La mayoría de jóvenes no ahorra por tres razones que la unidad ya ha nombrado: el descuento temporal, porque el «yo de hoy» y el «yo de los 65» no se sienten la misma persona; el sesgo de optimismo del «ya ahorraré cuando gane más», ignorando que después llegan vivienda e hijos; y la invisibilidad del interés compuesto, cuya curva es plana los primeros años y solo se dispara pasados los veinte."
+  pull: "La solución es un nudge de la Unidad 2: transferencia automática el día del cobro. Eliminas la decisión y la inercia juega a tu favor."
+- tipo: recap
+  eyebrow: "Repasa"
+  title: "Antes de cerrar la unidad"
+  items:
+    - "Sabrías elaborar un presupuesto personal con ingresos, gastos fijos y gastos variables."
+    - "Sabrías aplicar la fórmula del interés compuesto y explicar el efecto acumulativo del tiempo."
+    - "Sabrías comparar cuentas, depósitos, fondos, acciones y bonos por rentabilidad, riesgo y plazo."
+    - "Sabrías separar hipoteca de préstamo personal y estimar una cuota mensual con TIN y TAE."
+    - "Sabrías explicar el seguro como transferencia del riesgo y nombrar sus modalidades."
+```

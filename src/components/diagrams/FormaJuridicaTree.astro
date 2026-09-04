@@ -15,26 +15,84 @@
  *
  * Three rows, balanced layout, all terminals at the same y.
  */
+import { getLocale } from '@/i18n/locale';
+const locale = getLocale(Astro.currentLocale);
+
+const COPY = {
+  es: {
+    arbolDeDecisionPara: 'Árbol de decisión para elegir forma jurídica',
+    pregunta1: 'PREGUNTA 1',
+    vasSolo: '¿Vas solo?',
+    si: 'SÍ',
+    no: 'NO',
+    pregunta2: 'PREGUNTA 2',
+    capital3000: '¿Capital < 3.000 €?',
+    pregunta3: 'PREGUNTA 3',
+    vocacionCooperativa: '¿Vocación cooperativa?',
+    si2: 'SÍ',
+    no2: 'NO',
+    si3: 'SÍ',
+    no3: 'NO',
+    autonomo: 'Autónomo',
+    oErlSiQuieres: 'o ERL si quieres proteger',
+    laViviendaHabitual: 'la vivienda habitual',
+    responsabilidadLimitada: 'Responsabilidad limitada',
+    yFiscalidadDeSociedades: 'y fiscalidad de Sociedades',
+    cooperativa: 'Cooperativa',
+    unSocioUnVoto: 'Un socio, un voto',
+    tipoIsReducidoAl: 'Tipo IS reducido al 20 %',
+    siCaptaisCapitalDespues: 'Si captáis capital después,',
+    transformacionASa: 'transformación a SA',
+    elArbolCubreEl: 'El árbol cubre el 95 % de los casos. El 5 % restante requiere asesoría profesional.',
+  },
+  ca: {
+    arbolDeDecisionPara: 'Arbre de decisió per a triar forma jurídica',
+    pregunta1: 'PREGUNTA 1',
+    vasSolo: 'Vas sol?',
+    si: 'SÍ',
+    no: 'NO',
+    pregunta2: 'PREGUNTA 2',
+    capital3000: 'Capital < 3.000 €?',
+    pregunta3: 'PREGUNTA 3',
+    vocacionCooperativa: 'Vocació cooperativa?',
+    si2: 'SÍ',
+    no2: 'NO',
+    si3: 'SÍ',
+    no3: 'NO',
+    autonomo: 'Autònom',
+    oErlSiQuieres: 'o ERL si vols protegir',
+    laViviendaHabitual: "l'habitatge habitual",
+    responsabilidadLimitada: 'Responsabilitat limitada',
+    yFiscalidadDeSociedades: 'i fiscalitat de Societats',
+    cooperativa: 'Cooperativa',
+    unSocioUnVoto: 'Un soci, un vot',
+    tipoIsReducidoAl: 'Tipus IS reduït al 20 %',
+    siCaptaisCapitalDespues: 'Si capteu capital després,',
+    transformacionASa: 'transformació a SA',
+    elArbolCubreEl: "L'arbre cobrix el 95 % dels casos. El 5 % restant requerix assessoria professional.",
+  },
+} as const;
+const t = COPY[locale];
 ---
-<svg viewBox="0 0 780 480" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Árbol de decisión para elegir forma jurídica">
+<svg class="d-forma-juridica-tree" viewBox="0 0 780 480" xmlns="http://www.w3.org/2000/svg" role="img" aria-label={t.arbolDeDecisionPara}>
   <defs>
     <style>
-      .bg { fill: #FBF6EC; }
-      .question { fill: #FFFFFF; stroke: #C44E2C; stroke-width: 2; }
-      .answer-yes { stroke: #4F8C3F; stroke-width: 1.6; fill: none; marker-end: url(#arrow-green); }
-      .answer-no { stroke: #B83A3A; stroke-width: 1.6; fill: none; marker-end: url(#arrow-red); }
-      .terminal { stroke-width: 2; }
-      .term-1 { fill: #FBE3D6; stroke: #C44E2C; }
-      .term-2 { fill: #F5E5BC; stroke: #D4A24C; }
-      .term-3 { fill: #DBEDED; stroke: #1F6E6E; }
-      .term-4 { fill: #ECDCE5; stroke: #5B3A4E; }
-      .term-5 { fill: #E5F1DD; stroke: #4F8C3F; }
-      .q-label { font-family: 'Switzer', sans-serif; font-size: 10.5px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; text-anchor: middle; fill: #C44E2C; }
-      .q-text { font-family: 'Fraunces', serif; font-size: 14px; font-weight: 500; text-anchor: middle; fill: #2A1F18; }
-      .edge-label { font-family: 'Switzer', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.5px; text-anchor: middle; }
-      .term-name { font-family: 'Fraunces', serif; font-size: 17px; font-weight: 500; text-anchor: middle; }
-      .term-note { font-family: 'Switzer', sans-serif; font-size: 10px; fill: #5C4A3D; text-anchor: middle; }
-      .footer { font-family: 'Fraunces', serif; font-style: italic; font-size: 13px; fill: #5C4A3D; text-anchor: middle; }
+      .d-forma-juridica-tree .bg { fill: #FBF6EC; }
+      .d-forma-juridica-tree .question { fill: #FFFFFF; stroke: #C44E2C; stroke-width: 2; }
+      .d-forma-juridica-tree .answer-yes { stroke: #4F8C3F; stroke-width: 1.6; fill: none; marker-end: url(#arrow-green); }
+      .d-forma-juridica-tree .answer-no { stroke: #B83A3A; stroke-width: 1.6; fill: none; marker-end: url(#arrow-red); }
+      .d-forma-juridica-tree .terminal { stroke-width: 2; }
+      .d-forma-juridica-tree .term-1 { fill: #FBE3D6; stroke: #C44E2C; }
+      .d-forma-juridica-tree .term-2 { fill: #F5E5BC; stroke: #D4A24C; }
+      .d-forma-juridica-tree .term-3 { fill: #DBEDED; stroke: #1F6E6E; }
+      .d-forma-juridica-tree .term-4 { fill: #ECDCE5; stroke: #5B3A4E; }
+      .d-forma-juridica-tree .term-5 { fill: #E5F1DD; stroke: #4F8C3F; }
+      .d-forma-juridica-tree .q-label { font-family: 'Switzer', sans-serif; font-size: 10.5px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; text-anchor: middle; fill: #C44E2C; }
+      .d-forma-juridica-tree .q-text { font-family: 'Fraunces', serif; font-size: 14px; font-weight: 500; text-anchor: middle; fill: #2A1F18; }
+      .d-forma-juridica-tree .edge-label { font-family: 'Switzer', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.5px; text-anchor: middle; }
+      .d-forma-juridica-tree .term-name { font-family: 'Fraunces', serif; font-size: 17px; font-weight: 500; text-anchor: middle; }
+      .d-forma-juridica-tree .term-note { font-family: 'Switzer', sans-serif; font-size: 10px; fill: #5C4A3D; text-anchor: middle; }
+      .d-forma-juridica-tree .footer { font-family: 'Fraunces', serif; font-style: italic; font-size: 13px; fill: #5C4A3D; text-anchor: middle; }
     </style>
     <marker id="arrow-green" markerWidth="9" markerHeight="9" refX="8" refY="3" orient="auto">
       <polygon points="0 0, 9 3, 0 6" fill="#4F8C3F"/>
@@ -48,73 +106,73 @@
   <!-- Row 1: Q1 -->
   <g>
     <rect class="question" x="300" y="30" width="180" height="65" rx="6"/>
-    <text class="q-label" x="390" y="52">PREGUNTA 1</text>
-    <text class="q-text" x="390" y="76">¿Vas solo?</text>
+    <text class="q-label" x="390" y="52">{t.pregunta1}</text>
+    <text class="q-text" x="390" y="76">{t.vasSolo}</text>
   </g>
 
   <!-- Edges Q1 → Q2 (left, SÍ) and Q3 (right, NO) -->
   <line class="answer-yes" x1="350" y1="95" x2="200" y2="165"/>
-  <text class="edge-label" x="240" y="125" fill="#4F8C3F">SÍ</text>
+  <text class="edge-label" x="240" y="125" fill="#4F8C3F">{t.si}</text>
 
   <line class="answer-no" x1="430" y1="95" x2="580" y2="165"/>
-  <text class="edge-label" x="540" y="125" fill="#B83A3A">NO</text>
+  <text class="edge-label" x="540" y="125" fill="#B83A3A">{t.no}</text>
 
   <!-- Row 2: Q2 (left), Q3 (right) -->
   <g>
     <rect class="question" x="100" y="170" width="200" height="65" rx="6"/>
-    <text class="q-label" x="200" y="192">PREGUNTA 2</text>
-    <text class="q-text" x="200" y="216">¿Capital &lt; 3.000 €?</text>
+    <text class="q-label" x="200" y="192">{t.pregunta2}</text>
+    <text class="q-text" x="200" y="216">{t.capital3000}</text>
   </g>
 
   <g>
     <rect class="question" x="480" y="170" width="220" height="65" rx="6"/>
-    <text class="q-label" x="590" y="192">PREGUNTA 3</text>
-    <text class="q-text" x="590" y="216">¿Vocación cooperativa?</text>
+    <text class="q-label" x="590" y="192">{t.pregunta3}</text>
+    <text class="q-text" x="590" y="216">{t.vocacionCooperativa}</text>
   </g>
 
   <!-- Edges Q2 → Autónomo (SÍ) and SLU (NO) -->
   <line class="answer-yes" x1="155" y1="235" x2="115" y2="320"/>
-  <text class="edge-label" x="115" y="280" fill="#4F8C3F">SÍ</text>
+  <text class="edge-label" x="115" y="280" fill="#4F8C3F">{t.si2}</text>
 
   <line class="answer-no" x1="245" y1="235" x2="285" y2="320"/>
-  <text class="edge-label" x="285" y="280" fill="#B83A3A">NO</text>
+  <text class="edge-label" x="285" y="280" fill="#B83A3A">{t.no2}</text>
 
   <!-- Edges Q3 → Cooperativa (SÍ) and SL (NO) -->
   <line class="answer-yes" x1="545" y1="235" x2="505" y2="320"/>
-  <text class="edge-label" x="505" y="280" fill="#4F8C3F">SÍ</text>
+  <text class="edge-label" x="505" y="280" fill="#4F8C3F">{t.si3}</text>
 
   <line class="answer-no" x1="635" y1="235" x2="675" y2="320"/>
-  <text class="edge-label" x="675" y="280" fill="#B83A3A">NO</text>
+  <text class="edge-label" x="675" y="280" fill="#B83A3A">{t.no3}</text>
 
   <!-- Row 3: Four terminals -->
   <g>
     <rect class="terminal term-2" x="35" y="325" width="160" height="70" rx="6"/>
-    <text class="term-name" x="115" y="358" fill="#A87A2A">Autónomo</text>
-    <text class="term-note" x="115" y="378">o LERL si quieres proteger</text>
-    <text class="term-note" x="115" y="390">la vivienda habitual</text>
+    <text class="term-name" x="115" y="358" fill="#A87A2A">{t.autonomo}</text>
+    <text class="term-note" x="115" y="378">{t.oErlSiQuieres}</text>
+    <text class="term-note" x="115" y="390">{t.laViviendaHabitual}</text>
   </g>
 
   <g>
     <rect class="terminal term-1" x="205" y="325" width="160" height="70" rx="6"/>
     <text class="term-name" x="285" y="358" fill="#9C3A1C">SLU</text>
-    <text class="term-note" x="285" y="378">Responsabilidad limitada</text>
-    <text class="term-note" x="285" y="390">y fiscalidad de Sociedades</text>
+    <text class="term-note" x="285" y="378">{t.responsabilidadLimitada}</text>
+    <text class="term-note" x="285" y="390">{t.yFiscalidadDeSociedades}</text>
   </g>
 
   <g>
     <rect class="terminal term-3" x="425" y="325" width="160" height="70" rx="6"/>
-    <text class="term-name" x="505" y="358" fill="#0E4040">Cooperativa</text>
-    <text class="term-note" x="505" y="378">Un socio, un voto</text>
-    <text class="term-note" x="505" y="390">Tipo IS reducido al 20 %</text>
+    <text class="term-name" x="505" y="358" fill="#0E4040">{t.cooperativa}</text>
+    <text class="term-note" x="505" y="378">{t.unSocioUnVoto}</text>
+    <text class="term-note" x="505" y="390">{t.tipoIsReducidoAl}</text>
   </g>
 
   <g>
     <rect class="terminal term-5" x="595" y="325" width="160" height="70" rx="6"/>
     <text class="term-name" x="675" y="358" fill="#2A5A1F">SL</text>
-    <text class="term-note" x="675" y="378">Si captáis capital después,</text>
-    <text class="term-note" x="675" y="390">transformación a SA</text>
+    <text class="term-note" x="675" y="378">{t.siCaptaisCapitalDespues}</text>
+    <text class="term-note" x="675" y="390">{t.transformacionASa}</text>
   </g>
 
   <!-- Footer note -->
-  <text class="footer" x="390" y="445">El árbol cubre el 95 % de los casos. El 5 % restante requiere asesoría profesional.</text>
+  <text class="footer" x="390" y="445">{t.elArbolCubreEl}</text>
 </svg>

@@ -39,6 +39,7 @@ import Diagram from '@components/Diagram.astro';
 import Figure from '@components/Figure.astro';
 import BreakEvenChart from '@components/diagrams/BreakEvenChart.astro';
 import ProcesosProductivos from '@components/diagrams/ProcesosProductivos.astro';
+import CadenaValor from '@components/diagrams/CadenaValor.astro';
 import Bibliography from '@components/Bibliography.astro';
 import TldrUnidad from '@components/TldrUnidad.astro';
 import CasoDilema from '@components/CasoDilema.astro';
@@ -46,14 +47,16 @@ import VuelveAlCaso from '@components/VuelveAlCaso.astro';
 import PistaEbau from '@components/PistaEbau.astro';
 import RetoEtapa from '@components/RetoEtapa.astro';
 import MirarFora from '@components/MirarFora.astro';
+import VocesDesacuerdo from '@components/VocesDesacuerdo.astro';
 import HerramientaIsland from '@components/calculadoras/HerramientaIsland.astro';
 
 import opelGliwice from '@assets/libro/edmn-2bach/07/opel-gliwice-cadena.jpg';
 import almacenPalletRack from '@assets/libro/edmn-2bach/07/almacen-pallet-rack.jpg';
 import fordHighlandPark from '@assets/libro/edmn-2bach/07/ford-highland-park-1913.jpg';
 import kukaRobots from '@assets/libro/edmn-2bach/07/kuka-robots-industriales.jpg';
+import RecursoDestacado from '@components/libro/RecursoDestacado.astro';
 
-> **Temps estimat de lectura**: ~12 min · **Sabers LOMLOE**: B.3 · **Prerequisits**: Unit 4 (models de negoci) i matemàtiques bàsiques de costos
+> **Temps estimat de lectura**: ~12 min · **Sabers LOMLOE**: B.3 · **Prerequisits**: Unitat 4 (models de negoci) i matemàtiques bàsiques de costos
 >
 > **En acabar esta unitat sabràs**:
 > - Descriure el procés productiu d'una empresa identificant entrades, transformació i eixides, i classificar el tipus de procés (projecte, lots, cadena, contínua).
@@ -114,6 +117,10 @@ Cada tipus exigix un disseny organitzatiu distint. Una fleca que decidisca fabri
 ### Localització productiva
 
 Encara que la cobrim en la Unitat 2, recordar ací els factors **específicament productius**: proximitat a les matèries primeres (indústries agroalimentàries i mineres), disponibilitat de mà d'obra qualificada (indústria avançada), disponibilitat d'infraestructura energètica (indústria intensiva en energia) i connexió logística (ports, autopistes, ferrocarril). En l'era digital, tots estos factors continuen pesant per a producció física; en producció de servicis digitals pesen menys.
+
+<Diagram caption="Les cinc activitats primàries per les quals passa el producte i les quatre de suport que les travessen. El marge no és una activitat més: és el que queda quan el valor creat supera el que costen totes.">
+  <CadenaValor />
+</Diagram>
 
 ## Eficàcia, eficiència, productivitat
 
@@ -312,6 +319,8 @@ b) A partir de quin volum mensual convé canviar del pla A al pla B?
 
 </SolvedExercise>
 
+<RecursoDestacado href="/edmn-2bach/recursos/calculadora-punto-muerto/" kicker="Ferramenta" title="Calculadora de punt mort" descripcion="Costos fixos, preu i cost variable unitari, i a l'eixida el llindar de rendibilitat, el marge de seguretat i el benefici previst." colorVar="--color-edmn" />
+
 ## Sistemes Lean de producció
 
 El sistema **Lean Manufacturing** —desenvolupat per Toyota a partir dels anys cinquanta i popularitzat a occident amb el llibre *The Machine That Changed the World* (1990)— ha redefinit la funció productiva moderna. La seua idea central és que la vertadera font de productivitat no és produir més ràpid, sinó **eliminar malbaratament** (en japonés, *muda*) en cada pas del procés.
@@ -381,6 +390,20 @@ Com se sostenen eixos marges? Els dissenyadors treballen en plantes obertes al c
 
 La conseqüència: Zara manté **nivells d'estoc no venut molt inferiors** als del sector i la rotació de peces és la més alta entre els grans operadors globals de moda. El *muda* —malbaratament— en estoc no venut és el principal cost invisible de la moda; reduir-lo és el que ha permés a Inditex sostindre marges operatius impossibles per als seus competidors.
 </RealExample>
+
+<VocesDesacuerdo
+  tema="Just a temps o coixí d'existències"
+  postura_a={{
+    etiqueta: 'Produir just a temps',
+    tesis: "L'estoc són diners parats que a més amaguen els problemes: si hi ha peces de sobra, ningú arregla l'avaria que les consumix. Reduir inventari obliga que el procés funcione de veritat.",
+  }}
+  postura_b={{
+    etiqueta: 'Mantindre un coixí',
+    tesis: "Una cadena sense folgança es trenca sencera quan falla una baula. L'estoc costa diners, sí, però és una assegurança: l'estalvi d'anys es perd en una sola setmana de parada.",
+  }}
+>
+Durant trenta anys va guanyar la primera postura sense discussió. Les interrupcions de subministrament de la dècada de 2020 —pandèmia, el bloqueig del canal de Suez, l'escassetat de semiconductors— van tornar la segona al debat, i moltes empreses han passat del *just in time* pur al *just in case* per a les peces crítiques. **La síntesi que s'està imposant no és tornar al magatzem ple, sinó distingir**: inventari mínim en el que es reposa ràpid i té diversos proveïdors, coixí deliberat en el que té un únic origen o un termini llarg.
+</VocesDesacuerdo>
 
 ## Qualitat i millora contínua
 
@@ -506,3 +529,256 @@ Cada equip tanca esta unitat amb tres entregables: el **diagrama de procés prod
     Variant en grups de 3 (45 min): cada grup tria **un procés de l'aula o del centre** (entrar/eixir de classe, menjar a la cafeteria, demanar un llibre a la biblioteca) i l'observa durant un dia. L'endemà, presenta els muda detectats i **una proposta de millora mesurable**. La proposta no cal que s'aplique —s'avalua la mirada operativa, no el resultat—. Materials: cronòmetre, full d'observació.
   </Fragment>
 </MirarFora>
+
+```deck
+- tipo: curriculum
+  eyebrow: "A què respon esta unitat"
+  title: "El marc de la unitat"
+  saberes:
+    - "Bloc B: funció productiva i costos."
+    - "Bloc B: productivitat, llindar de rendibilitat i qualitat."
+  competencias:
+    - "Gestionar les àrees funcionals de l'empresa: la funció productiva."
+- tipo: quote
+  texto: Toyota produïx cotxes amb menys defectes que Ford amb la mitat d'hores de mà d'obra. El secret es diu Lean.
+  fuente: Womack, Jones i Roos · The Machine That Changed the World
+- tipo: concept
+  eyebrow: El cas
+  title: Les mateixes fàbriques, la mitat d'esforç
+  body: "A finals dels setanta, els fabricants estatunidencs van descobrir que Toyota produïa cotxes amb menys del 50 % de l'esforç humà, un terç de l'espai, una sexta part de l'inventari i la mitat de defectes. Les fàbriques eren les mateixes, els obrers igual de capacitats i la tecnologia semblant. La diferència estava en com s'organitzava el treball: el TPS, que Occident va batejar com a Lean el 1990."
+  pull: "Per què una empresa pot produir millor sense invertir més, només canviant com organitza el treball?"
+- tipo: section
+  title: El procés productiu
+  subtitle: "Entrades, transformació i eixides: l'estructura és la mateixa en una fàbrica, en un hospital i en un estudi de programari."
+- tipo: concept
+  title: Què entra, què passa dins i què ix
+  body: "Entrades: matèries primeres, energia, mà d'obra, informació, capital. Transformació: cuinar, assemblar, programar, atendre, transportar. Eixides: els productes o servicis que rep el client. Porter (1985) va obrir eixa caixa amb la cadena de valor —logística, operacions, màrqueting, vendes i servici, més les activitats de suport—: la rendibilitat és el valor que suma cada baula menys el seu cost."
+  pull: La funció comercial decidix què es ven; la productiva decidix com es fa.
+- tipo: diagram
+  diagrama: ProcesosProductivos
+  caption: "Els quatre tipus en diagonal: a poc volum i molta varietat, per projecte; a molt volum i poca varietat, contínua."
+- tipo: terms
+  title: Quatre tipus de procés productiu
+  terms:
+    - t: Per projecte
+      d: "Cada eixida és única: un edifici, un programari a mida, un festival. Intensiu en planificació; la corba d'aprenentatge no s'aprofita entre projectes."
+    - t: Per lots
+      d: "Sèries limitades de productes semblants: fleca, taller artesanal, edicions d'un llibre. Combina flexibilitat amb economies d'escala parcials."
+    - t: En cadena
+      d: "Seqüència contínua d'operacions idèntiques: automoció, refineria, embotelladora. Màxima eficiència i mínima flexibilitat."
+    - t: Contínua
+      d: "El procés no es deté: centrals elèctriques, subministrament d'aigua, alts forns. Parar costa més que continuar produint amb poca demanda."
+- tipo: figure
+  src: edmn-2bach/07/opel-gliwice-cadena.jpg
+  alt: "Cadena de muntatge de la fàbrica Opel a Gliwice: carrosseries de l'Astra J avancen per una línia contínua amb operaris."
+  title: Producció en cadena, a Gliwice
+  caption: Repartir el cost fix entre milers d'unitats idèntiques ix molt barat, però es perd quasi tota la flexibilitat.
+  credit: "Foto: Marek Ślusarczyk (Tupungato), CC BY 3.0 via Wikimedia Commons"
+- tipo: diagram
+  diagrama: CadenaValor
+  caption: "On s'afig valor, activitat per activitat"
+- tipo: section
+  title: Eficàcia, eficiència i productivitat
+  subtitle: Tres paraules que s'usen com a sinònims i no ho són. Maximitzar-ne una sense atendre les altres produïx empreses perverses.
+- tipo: terms
+  title: Tres conceptes i un desequilibri
+  terms:
+    - t: Eficàcia
+      d: "Fer el correcte: assolir l'objectiu. Es mesura en absolut, s'assolix o no. Una fleca eficaç ven tot el pa que forneja."
+    - t: Eficiència
+      d: "Assolir l'objectiu amb el mínim cost, temps o malbaratament. Es mesura com a ràtio output/input: vendre tot el pa sense minva ni hores extres."
+    - t: Productivitat
+      d: Relació entre el que es produïx i els recursos consumits. 200 pans amb 4 treballadors són 50 per persona; amb 2 treballadors, 100.
+    - t: El desequilibri
+      d: Eficaç sense ser eficient crema recursos; eficient sense ser eficaç optimitza una cosa que ningú vol; productiva sense ser eficaç ompli el magatzem i buida la caixa.
+- tipo: data
+  numero: "91,7 %"
+  label: de la mitjana UE-27 per hora
+  title: La bretxa de productivitat espanyola
+  detalle: "Eurostat 2025 (UE-27 = 100). Espanya produïx per hora un 8 % menys de valor que la mitjana europea; Alemanya marca 108 i els Països Baixos, 118. Darrere pesen les microempreses i un R+D de l'1,49 % del PIB front al 2,24 % europeu."
+- tipo: section
+  title: Estructura de costos
+  subtitle: Abans de saber si un negoci aguanta cal saber què costa produir i quina part d'eixe cost depén del volum.
+- tipo: split
+  title: Costos fixos i costos variables
+  left:
+    h: "Fixos (CF): no depenen del volum"
+    items:
+      - Lloguer del local i sous del personal estructural
+      - Amortització de la maquinària, assegurances i manteniment
+      - Cànons de franquícia i llicències de programari
+      - Canvien per escalons —un altre local, una altra persona—, no amb les fluctuacions del mes
+  right:
+    h: "Variables (CV): creixen amb la producció"
+    items:
+      - Matèries primeres i energia consumida en la producció
+      - Comissions per venda i embalatges
+      - "Mà d'obra variable: hores extres i eventuals"
+      - "Cost variable unitari: CVu = CV / Q, el que aporta cada unitat al cost"
+- tipo: table
+  eyebrow: La relació CF/CV
+  title: "Palanquejament operatiu: el pes dels costos fixos"
+  head:
+    - ""
+    - Alt palanquejament
+    - Baix palanquejament
+  rows:
+    - - Estructura
+      - Molt CF i poc CV
+      - Poc CF i molt CV
+    - - Si les vendes pugen
+      - Multiplica el benefici
+      - Creix a poc a poc
+    - - Si les vendes cauen
+      - Enfonsa el resultat
+      - Aguanta millor
+    - - Casos típics
+      - Aerolínies, cines, programari B2B
+      - Comerços xicotets, consultories
+  caption: "CT = CF + CVu · Q i CMe = CT / Q. En repartir els fixos entre més unitats el cost mitjà baixa: són les economies d'escala."
+- tipo: section
+  title: El punt mort o llindar de rendibilitat
+  subtitle: El nivell de vendes en què els ingressos igualen els costos. Per davall es perden diners; per damunt comença el benefici.
+- tipo: formula
+  eyebrow: "Llindar de rendibilitat"
+  title: "El punt mort d'un producte"
+  formula: "Q* = CF / (P − CVu)"
+  terminos:
+    - s: "CF"
+      d: "Costos fixos del període, que no depenen del que es produïsca."
+    - s: "P"
+      d: "Preu de venda unitari."
+    - s: "CVu"
+      d: "Cost variable unitari."
+    - s: "P − CVu"
+      d: "Marge de contribució: el que cada unitat aporta a cobrir els fixos."
+    - s: "MS"
+      d: "Marge de seguretat: (Demanda − Q*) / Demanda × 100. Vulnerable per davall del 10 %."
+  ejemplo: "Un forn amb 3.000 €/mes de fixos, barra a 1,50 € i CVu de 0,50 € té marge d'1 € i punt mort de 3.000 barres. Des de la 3.001, cada venda és benefici."
+- tipo: diagram
+  diagrama: BreakEvenChart
+  caption: "El punt mort és l'encreuament de l'ingrés total amb el cost total: a la seua esquerra, pèrdua; a la dreta, benefici."
+- tipo: list
+  eyebrow: Pista EBAU
+  title: Els cinc passos que costen punts si te'ls saltes
+  ordered: true
+  items:
+    - Identifica CF, CVu i P en l'enunciat abans de tocar la calculadora.
+    - "Aplica Q* = CF / (P − CVu) i deixa escrita la fórmula, no només el resultat."
+    - "Arredonix cap amunt: no es venen 1.234,34 cadires."
+    - "Dibuixa el gràfic: eixos Q i €, rectes IT i CT, i Q* marcat en l'encreuament."
+    - "Interpreta amb una frase: «cal vendre 1.235 uds per a no perdre; a partir d'ahí, benefici»."
+- tipo: exercise
+  title: Punt mort d'una franquícia de café per a emportar
+  enunciado: "Un local amb 1.800 €/mes de lloguer, una persona empleada per 2.200 €, un cànon de franquícia de 600 € i altres 400 € de costos fixos. Cada café es ven a 2,80 € i costa 0,90 € entre gra, llet, got i comissió. Quants cafés cal vendre al mes i al dia, amb 26 dies laborables? És viable preveure 220 cafés/dia?"
+  pasos:
+    - CF = 1.800 + 2.200 + 600 + 400 = 5.000 €/mes.
+    - "Marge de contribució: MC = 2,80 − 0,90 = 1,90 € per café."
+    - "Q* = 5.000 / 1,90 ≈ 2.632 cafés/mes; 2.632 / 26 ≈ 101 cafés/dia."
+    - "Amb 220 cafés/dia són 5.720 al mes: 3.088 per damunt del punt mort."
+    - "Benefici esperat: 3.088 × 1,90 ≈ 5.867 €/mes. Viable si la previsió es complix."
+    - "Senyal d'alarma: baixar de 100 cafés/dia sostinguts. Ahí toca revisar preu, ubicació o estructura de costos."
+- tipo: exercise
+  title: "Palanquejament operatiu: dos plans de mascaretes"
+  enunciado: "Una empresa tèxtil compara dos plans industrials per a fabricar mascaretes que ven a 0,50 € a les farmàcies. Pla A, màquines semiautomàtiques: CF = 12.000 €/mes i CVu = 0,30 €. Pla B, totalment automàtiques: CF = 28.000 €/mes i CVu = 0,10 €. Quin és el punt mort de cada pla i des de quin volum convé el B?"
+  pasos:
+    - "MC_A = 0,50 − 0,30 = 0,20 €; MC_B = 0,50 − 0,10 = 0,40 €."
+    - "Q*_A = 12.000 / 0,20 = 60.000 uds/mes; Q*_B = 28.000 / 0,40 = 70.000 uds/mes."
+    - "Punt d'indiferència: 0,20·Q − 12.000 = 0,40·Q − 28.000, d'on Q = 80.000 uds/mes."
+    - "Per davall de 80.000 guanya el pla A: els seus fixos menors compensen el marge més baix."
+    - "Per damunt guanya el B: el marge unitari doble absorbix els 28.000 € de costos fixos."
+    - Més palanquejament és més benefici quan el volum creix i més risc quan cau.
+- tipo: section
+  title: Lean, muda i qualitat
+  subtitle: La productivitat no ve de córrer més, sinó d'eliminar el malbaratament que s'acumula en cada pas del procés.
+- tipo: split
+  title: Els set muda del Toyota Production System
+  left:
+    h: En el flux
+    items:
+      - "Sobreproducció: produir més del que es vendrà. El pitjor, perquè consumix tots els altres recursos."
+      - "Esperes: material o persones parades per colls de botella o mala sincronització."
+      - "Transport: moure materials més del necessari, símptoma d'un layout mal dissenyat."
+      - "Processos innecessaris: inspeccions dobles, informes que ningú llig, controls redundants."
+  right:
+    h: En el magatzem i en el lloc
+    items:
+      - "Inventari excessiu: estoc que ocupa espai i capital i amaga els problemes del procés."
+      - "Moviments innecessaris: buscar ferramentes, doblegar-se, abastar lluny."
+      - "Defectes: producte que cal refer o rebutjar, més el temps de detectar-lo i reprocessar-lo."
+- tipo: figure
+  src: edmn-2bach/07/almacen-pallet-rack.jpg
+  alt: Interior d'un magatzem modern amb prestatgeries metàl·liques de diversos pisos plenes de palets europeus.
+  title: L'inventari és un muda, no un coixí
+  caption: "Alhora una assegurança enfront de la demanda i un cost ocult: ocupa capital, ocupa espai i amaga les fallades del procés."
+  credit: "Foto: Axisadman, CC BY-SA 3.0 via Wikimedia Commons"
+- tipo: list
+  title: Les tècniques Lean, dins i fora de la fàbrica
+  items:
+    - "Just in Time: produir només el necessari, quan es necessita. Exigix proveïdors fiables i processos sense defectes."
+    - "Kanban: senyalització visual del flux —pendent, en preparació, llest—. El coll de botella es veu sense informes."
+    - "Kaizen: millora contínua a base de xicotets canvis proposats pels mateixos treballadors."
+    - "Poka-yoke: disseny a prova d'errors, com l'endoll que només entra en un sentit."
+    - "5S: classificar, ordenar, netejar, estandarditzar i sostindre el lloc de treball."
+    - "Fora de la fàbrica: hospitals, cuines, escoles i startups. El Virginia Mason va reduir un 50 % els errors mèdics amb Lean."
+- tipo: figure
+  src: edmn-2bach/07/ford-highland-park-1913.jpg
+  alt: Cadena de muntatge del Ford Model T a Highland Park el 1913, amb xassís en distintes fases sobre la cinta i operaris al llarg de la línia.
+  title: Ford no va inventar la cadena de muntatge
+  caption: "La va vore als escorxadors de Chicago, que especejaven en línia des de la dècada de 1870. Ford va invertir la lògica: no especejar, sinó assemblar."
+  credit: "Foto: Library of Congress, domini públic via Wikimedia Commons"
+- tipo: data
+  numero: "18,5 %"
+  label: de marge operatiu (EBIT)
+  title: "Lean aplicat a la moda: Inditex el 2025"
+  detalle: "41.420 M€ de vendes i 7.643 M€ d'EBIT; en el sector tèxtil es considera bo un marge del 5-8 %. De la idea al penjador passen 2-3 setmanes en les col·leccions més reactives, enfront dels 6-9 mesos del model tradicional."
+- tipo: figure
+  src: edmn-2bach/07/kuka-robots-industriales.jpg
+  alt: Filera de braços robòtics industrials taronges de la marca KUKA sobre una plataforma d'exposició.
+  title: Automatitzar no és el mateix que millorar
+  caption: Un robot fa el procés repetible, i això ja és molt. Però la millora contínua continua depenent de la cultura de l'empresa.
+  credit: "Foto: Mixabest, CC BY-SA 3.0 via Wikimedia Commons"
+- tipo: terms
+  eyebrow: Qualitat i millora contínua
+  title: Dos corrents clàssics i una decisió de pime
+  terms:
+    - t: Total Quality Management (TQM)
+      d: "Filosofia dels anys huitanta: la qualitat és responsabilitat de tota l'empresa, no del departament de control. Es mesura i es millora de manera contínua."
+    - t: Six Sigma
+      d: Metodologia de Motorola (1986) que aspira a no més de 3,4 defectes per milió d'unitats. Usa estadística avançada amb el cicle DMAIC.
+    - t: Què fa una pime
+      d: "Implantar Six Sigma complet rarament compensa. El raonable és adoptar-ne els principis —mesurar, millorar, repartir la responsabilitat— sense la sobrecàrrega."
+- tipo: quiz
+  eyebrow: EBAU
+  pregunta: "El teu càlcul del llindar de rendibilitat dona Q* = 1.234,34 cadires. Què fas abans d'escriure la resposta?"
+  opciones:
+    - "Arredonir a 1.235: no es poden vendre 1.234,34 cadires"
+    - Arredonir a 1.234, que és la part sencera del resultat
+    - Deixar el decimal, perquè és el resultat exacte de la fórmula
+    - Arredonir al múltiple de cent més pròxim, 1.200 cadires
+  correcta: "0"
+  explicacion: "El llindar s'arredonix sempre cap amunt: amb 1.234 cadires encara es perden diners. I falta el gràfic i la frase d'interpretació, que també puntuen."
+- tipo: quiz
+  pregunta: "«El procés és impecable i produïx molt, però el magatzem està ple i no es ven.» Què li passa a esta empresa?"
+  opciones:
+    - És productiva però no eficaç, i el seu muda dominant és la sobreproducció
+    - "És eficaç però no eficient: assolix l'objectiu cremant recursos"
+    - Té un palanquejament operatiu massa baix
+    - Li falta marge de contribució unitari
+  correcta: "0"
+  explicacion: Produïx molt —és productiva— d'una cosa que no es ven, així que no és eficaç. En Lean això és sobreproducció, el pitjor muda perquè consumix tots els altres recursos.
+- tipo: concept
+  eyebrow: Torna al cas
+  title: El TPS no va ser una tècnica, va ser una cultura
+  body: "Toyota va tardar tres dècades (1948-1980) i una cadena d'enginyers —Toyoda, Ohno, Shingo— que observaven el flux del treball i eliminaven un malbaratament cada vegada. El que en altres fàbriques eren incidents a oblidar, allí eren dades a investigar. El sistema no es compra: es construïx parant-se a preguntar per què una cosa va lenta, i convé fer-ho des de la fundació."
+  pull: "Etapa 7: diagrama del procés, taula de CF i CVu, càlcul de Q* amb gràfic i els dos muda que més amenacen el teu projecte."
+- tipo: recap
+  eyebrow: "Repassa"
+  title: "Abans de tancar la unitat"
+  items:
+    - "Sabries descriure un procés productiu amb les seues entrades, transformació i eixides."
+    - "Sabries separar eficàcia, eficiència i productivitat i aplicar-les a un cas real."
+    - "Sabries calcular costos fixos, costos variables i cost total."
+    - "Sabries calcular el punt mort o llindar de rendibilitat d'un producte."
+    - "Sabries nomenar els principis bàsics dels sistemes Lean de producció."
+```

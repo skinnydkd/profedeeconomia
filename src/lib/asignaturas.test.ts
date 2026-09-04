@@ -1,7 +1,8 @@
 import { describe, it, expect } from 'vitest';
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
-import { SECCIONES_TRANSVERSALES, ASIGNATURAS_LIST, ACCENTS } from './asignaturas.ts';
+import { ASIGNATURAS, ASIGNATURAS_LIST, SECCIONES_TRANSVERSALES, ACCENTS } from './asignaturas.ts';
+
 
 describe('SECCIONES_TRANSVERSALES', () => {
   it('lista las secciones de «Otros» en el orden acordado', () => {
@@ -84,6 +85,49 @@ describe('ACCENTS — the print palette lives in one place', () => {
   });
 });
 
+/**
+ * The hub `<title>` is the site's single biggest CTR lever: teachers search the
+ * acronym (`fopp`, `eeae`, `edmn`, `ipe`, `gpe`), so it has to be in the title
+ * and inside Google's display budget. See docs/seo-estrategia-2026.md §5.1.
+ */
+describe('ASIGNATURAS — seoTitle', () => {
+  // Google renders ~600px of title; 60 characters is the usual safe proxy.
+  const MAX_TITLE_CHARS = 60;
+
+  it('every asignatura has a non-empty seoTitle', () => {
+    for (const a of Object.values(ASIGNATURAS)) {
+      expect(a.seoTitle.trim().length).toBeGreaterThan(0);
+    }
+  });
+
+  it('keeps every seoTitle inside the display budget', () => {
+    for (const a of Object.values(ASIGNATURAS)) {
+      expect(a.seoTitle.length).toBeLessThanOrEqual(MAX_TITLE_CHARS);
+    }
+  });
+
+  it('front-loads the acronym or short name teachers actually type', () => {
+    // shortLabel is e.g. "FOPP 4ESO" / "Eco 1BACH"; the first token is the
+    // acronym or name the query starts with, and it must open the title.
+    for (const a of Object.values(ASIGNATURAS)) {
+      const head = a.shortLabel.split(' ')[0];
+      expect(a.seoTitle.startsWith(head)).toBe(true);
+    }
+  });
+
+  it('names the material on offer, not just the subject', () => {
+    for (const a of Object.values(ASIGNATURAS)) {
+      expect(a.seoTitle.toLowerCase()).toMatch(/libro|actividades|diapositivas|proyecto|tests|recursos/);
+    }
+  });
+
+  it('does not carry the brand suffix — the hub renders with brandSuffix={false}', () => {
+    for (const a of Object.values(ASIGNATURAS)) {
+      expect(a.seoTitle).not.toContain('profedeeconomia');
+    }
+  });
+});
+
 const COLOR_MAP_FILES = [
   'src/components/SubjectCard.astro',
   'src/pages/[asignatura]/index.astro',
@@ -122,5 +166,30 @@ describe('subject colours reach the CSS layer', () => {
       .filter((a) => !css.includes(`[data-asig="${a.slug}"]`))
       .map((a) => a.slug);
     expect(missing).toEqual([]);
+  });
+});
+
+/**
+ * `seoName` is the head of `seoTitle`, reused by every child page (book index,
+ * units, activities, resources) so the acronym reaches those titles too.
+ */
+describe('ASIGNATURAS — seoName', () => {
+  it('every seoTitle starts with its seoName', () => {
+    for (const a of Object.values(ASIGNATURAS)) {
+      expect(a.seoTitle.startsWith(a.seoName)).toBe(true);
+    }
+  });
+
+  it('leaves room for the child-page prefix it gets composed into', () => {
+    // Worst composition is the book index: `Libro de ${seoName} en PDF gratis`.
+    for (const a of Object.values(ASIGNATURAS)) {
+      expect(`Libro de ${a.seoName} en PDF gratis`.length).toBeLessThanOrEqual(60);
+    }
+  });
+
+  it('carries the level, so a child-page title is unambiguous on its own', () => {
+    for (const a of Object.values(ASIGNATURAS)) {
+      expect(a.seoName).toMatch(/ESO|Bachillerato|FP/);
+    }
   });
 });

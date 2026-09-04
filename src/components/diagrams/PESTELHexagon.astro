@@ -3,19 +3,59 @@
  * Six PESTEL dimensions arranged as a hexagon around a central
  * "macroentorno" node. Each cell color-coded for visual distinction.
  */
+import { getLocale } from '@/i18n/locale';
+const locale = getLocale(Astro.currentLocale);
+
+const COPY = {
+  es: {
+    lasSeisDimensionesDel: 'Las seis dimensiones del análisis PESTEL',
+    macro: 'MACRO',
+    entorno: 'entorno',
+    politico: 'POLÍTICO',
+    gobiernosArancelesSubvencion: 'Gobiernos · aranceles · subvenciones',
+    economico: 'ECONÓMICO',
+    cicloInflacionTiposParo: 'Ciclo · inflación · tipos · paro',
+    social: 'SOCIAL',
+    demografiaValoresHabitos: 'Demografía · valores · hábitos',
+    tecnologico: 'TECNOLÓGICO',
+    iaAutomatizacionDigitalizaci: 'IA · automatización · digitalización',
+    ecologico: 'ECOLÓGICO',
+    climaSostenibilidadRecursos: 'Clima · sostenibilidad · recursos',
+    legal: 'LEGAL',
+    normativaFiscalidadProteccio: 'Normativa · fiscalidad · protección',
+  },
+  ca: {
+    lasSeisDimensionesDel: "Les sis dimensions de l'anàlisi PESTEL",
+    macro: 'MACRO',
+    entorno: 'entorn',
+    politico: 'POLÍTIC',
+    gobiernosArancelesSubvencion: 'Governs · aranzels · subvencions',
+    economico: 'ECONÒMIC',
+    cicloInflacionTiposParo: 'Cicle · inflació · tipus · atur',
+    social: 'SOCIAL',
+    demografiaValoresHabitos: 'Demografia · valors · hàbits',
+    tecnologico: 'TECNOLÒGIC',
+    iaAutomatizacionDigitalizaci: 'IA · automatització · digitalització',
+    ecologico: 'ECOLÒGIC',
+    climaSostenibilidadRecursos: 'Clima · sostenibilitat · recursos',
+    legal: 'LEGAL',
+    normativaFiscalidadProteccio: 'Normativa · fiscalitat · protecció',
+  },
+} as const;
+const t = COPY[locale];
 ---
-<svg viewBox="0 0 720 580" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Las seis dimensiones del análisis PESTEL">
+<svg class="d-pestel-hexagon" viewBox="0 0 720 580" xmlns="http://www.w3.org/2000/svg" role="img" aria-label={t.lasSeisDimensionesDel}>
   <defs>
     <style>
-      .bg { fill: #FBF6EC; }
-      .center { fill: #5C4A3D; }
-      .center-stroke { fill: none; stroke: #2A1F18; stroke-width: 1.5; }
-      .center-label-1 { font-family: 'Switzer', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase; fill: #FBE3D6; text-anchor: middle; }
-      .center-label-2 { font-family: 'Fraunces', serif; font-style: italic; font-size: 22px; font-weight: 500; fill: #FFFFFF; text-anchor: middle; }
-      .arm { stroke: #8A7868; stroke-width: 1.2; stroke-dasharray: 3 3; }
-      .letter { font-family: 'Fraunces', serif; font-style: italic; font-size: 30px; font-weight: 500; text-anchor: middle; }
-      .dim-name { font-family: 'Switzer', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; text-anchor: middle; }
-      .dim-desc { font-family: 'Switzer', sans-serif; font-size: 10.5px; fill: #5C4A3D; text-anchor: middle; }
+      .d-pestel-hexagon .bg { fill: #FBF6EC; }
+      .d-pestel-hexagon .center { fill: #5C4A3D; }
+      .d-pestel-hexagon .center-stroke { fill: none; stroke: #2A1F18; stroke-width: 1.5; }
+      .d-pestel-hexagon .center-label-1 { font-family: 'Switzer', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase; fill: #FBE3D6; text-anchor: middle; }
+      .d-pestel-hexagon .center-label-2 { font-family: 'Fraunces', serif; font-style: italic; font-size: 22px; font-weight: 500; fill: #FFFFFF; text-anchor: middle; }
+      .d-pestel-hexagon .arm { stroke: #8A7868; stroke-width: 1.2; stroke-dasharray: 3 3; }
+      .d-pestel-hexagon .letter { font-family: 'Fraunces', serif; font-style: italic; font-size: 30px; font-weight: 500; text-anchor: middle; }
+      .d-pestel-hexagon .dim-name { font-family: 'Switzer', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; text-anchor: middle; }
+      .d-pestel-hexagon .dim-desc { font-family: 'Switzer', sans-serif; font-size: 10.5px; fill: #5C4A3D; text-anchor: middle; }
     </style>
   </defs>
   <rect class="bg" x="0" y="0" width="720" height="580"/>
@@ -31,54 +71,54 @@
   <!-- Center -->
   <circle class="center-stroke" cx="360" cy="270" r="68"/>
   <circle class="center" cx="360" cy="270" r="62"/>
-  <text class="center-label-1" x="360" y="262">MACRO</text>
-  <text class="center-label-2" x="360" y="285">entorno</text>
+  <text class="center-label-1" x="360" y="262">{t.macro}</text>
+  <text class="center-label-2" x="360" y="285">{t.entorno}</text>
 
   <!-- P (top) -->
   <g>
     <circle cx="360" cy="80" r="45" fill="#FBE3D6" stroke="#C44E2C" stroke-width="2"/>
     <text class="letter" x="360" y="92" fill="#9C3A1C">P</text>
-    <text class="dim-name" x="360" y="155" fill="#9C3A1C">POLÍTICO</text>
-    <text class="dim-desc" x="360" y="172">Gobiernos · aranceles · subvenciones</text>
+    <text class="dim-name" x="360" y="155" fill="#9C3A1C">{t.politico}</text>
+    <text class="dim-desc" x="360" y="172">{t.gobiernosArancelesSubvencion}</text>
   </g>
 
   <!-- E económico (top-right) -->
   <g>
     <circle cx="600" cy="160" r="45" fill="#F5E5BC" stroke="#D4A24C" stroke-width="2"/>
     <text class="letter" x="600" y="172" fill="#A87A2A">E</text>
-    <text class="dim-name" x="600" y="235" fill="#A87A2A">ECONÓMICO</text>
-    <text class="dim-desc" x="600" y="252">Ciclo · inflación · tipos · paro</text>
+    <text class="dim-name" x="600" y="235" fill="#A87A2A">{t.economico}</text>
+    <text class="dim-desc" x="600" y="252">{t.cicloInflacionTiposParo}</text>
   </g>
 
   <!-- S (bottom-right) -->
   <g>
     <circle cx="600" cy="380" r="45" fill="#DBEDED" stroke="#1F6E6E" stroke-width="2"/>
     <text class="letter" x="600" y="392" fill="#0E4040">S</text>
-    <text class="dim-name" x="600" y="455" fill="#0E4040">SOCIAL</text>
-    <text class="dim-desc" x="600" y="472">Demografía · valores · hábitos</text>
+    <text class="dim-name" x="600" y="455" fill="#0E4040">{t.social}</text>
+    <text class="dim-desc" x="600" y="472">{t.demografiaValoresHabitos}</text>
   </g>
 
   <!-- T (bottom) -->
   <g>
     <circle cx="360" cy="460" r="45" fill="#ECDCE5" stroke="#5B3A4E" stroke-width="2"/>
     <text class="letter" x="360" y="472" fill="#3D2434">T</text>
-    <text class="dim-name" x="360" y="535" fill="#3D2434">TECNOLÓGICO</text>
-    <text class="dim-desc" x="360" y="552">IA · automatización · digitalización</text>
+    <text class="dim-name" x="360" y="535" fill="#3D2434">{t.tecnologico}</text>
+    <text class="dim-desc" x="360" y="552">{t.iaAutomatizacionDigitalizaci}</text>
   </g>
 
   <!-- E ecológico (bottom-left) -->
   <g>
     <circle cx="120" cy="380" r="45" fill="#E5F1DD" stroke="#4F8C3F" stroke-width="2"/>
     <text class="letter" x="120" y="392" fill="#2A5A1F">E</text>
-    <text class="dim-name" x="120" y="455" fill="#2A5A1F">ECOLÓGICO</text>
-    <text class="dim-desc" x="120" y="472">Clima · sostenibilidad · recursos</text>
+    <text class="dim-name" x="120" y="455" fill="#2A5A1F">{t.ecologico}</text>
+    <text class="dim-desc" x="120" y="472">{t.climaSostenibilidadRecursos}</text>
   </g>
 
   <!-- L (top-left) -->
   <g>
     <circle cx="120" cy="160" r="45" fill="#F5DDDD" stroke="#B83A3A" stroke-width="2"/>
     <text class="letter" x="120" y="172" fill="#702020">L</text>
-    <text class="dim-name" x="120" y="235" fill="#702020">LEGAL</text>
-    <text class="dim-desc" x="120" y="252">Normativa · fiscalidad · protección</text>
+    <text class="dim-name" x="120" y="235" fill="#702020">{t.legal}</text>
+    <text class="dim-desc" x="120" y="252">{t.normativaFiscalidadProteccio}</text>
   </g>
 </svg>

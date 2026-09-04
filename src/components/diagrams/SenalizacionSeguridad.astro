@@ -13,29 +13,85 @@
  *
  * Used in FP · Unit on Prevención de Riesgos Laborales.
  */
+import { getLocale } from '@/i18n/locale';
+const locale = getLocale(Astro.currentLocale);
+
+const COPY = {
+  es: {
+    elCodigoDeLa: 'El código de la señalización de seguridad',
+    laSenalizacionDeSeguridad: 'La señalización de seguridad usa color y forma: prohibición (círculo rojo), advertencia (triángulo amarillo), obligación (círculo azul), socorro (cuadrado verde) y lucha contra incendios (cuadrado rojo).',
+    elCodigoDeLa2: 'El código de la señalización de seguridad',
+    prohibicion: 'Prohibición',
+    loQueNoDebes: 'Lo que no debes',
+    hacerNoFumar: 'hacer (no fumar,',
+    noPasar: 'no pasar).',
+    advertencia: 'Advertencia',
+    atencionAUnRiesgo: 'Atención a un riesgo',
+    altaTensionSuelo: '(alta tensión, suelo',
+    resbaladizo: 'resbaladizo).',
+    obligacion: 'Obligación',
+    loQueDebesHacer: 'Lo que debes hacer',
+    usarCascoGuantes: '(usar casco, guantes,',
+    gafas: 'gafas).',
+    socorro: 'Socorro',
+    salidasViasDe: 'Salidas, vías de',
+    evacuacionPrimeros: 'evacuación, primeros',
+    auxilios: 'auxilios.',
+    contraIncendios: 'Contra incendios',
+    equiposDeLucha: 'Equipos de lucha',
+    contraElFuego: 'contra el fuego',
+    extintorManguera: '(extintor, manguera).',
+  },
+  ca: {
+    elCodigoDeLa: 'El codi de la senyalització de seguretat',
+    laSenalizacionDeSeguridad: 'La senyalització de seguretat usa color i forma: prohibició (cercle roig), advertència (triangle groc), obligació (cercle blau), socors (quadrat verd) i lluita contra incendis (quadrat roig).',
+    elCodigoDeLa2: 'El codi de la senyalització de seguretat',
+    prohibicion: 'Prohibició',
+    loQueNoDebes: 'El que no has de',
+    hacerNoFumar: 'fer (no fumar,',
+    noPasar: 'no passar).',
+    advertencia: 'Advertència',
+    atencionAUnRiesgo: 'Atenció a un risc',
+    altaTensionSuelo: '(alta tensió, sòl',
+    resbaladizo: 'lliscant).',
+    obligacion: 'Obligació',
+    loQueDebesHacer: 'El que has de fer',
+    usarCascoGuantes: '(usar casc, guants,',
+    gafas: 'ulleres).',
+    socorro: 'Socors',
+    salidasViasDe: 'Eixides, vies de',
+    evacuacionPrimeros: 'evacuació, primers',
+    auxilios: 'auxilis.',
+    contraIncendios: 'Contra incendis',
+    equiposDeLucha: 'Equips de lluita',
+    contraElFuego: 'contra el foc',
+    extintorManguera: '(extintor, mànega).',
+  },
+} as const;
+const t = COPY[locale];
 ---
-<svg viewBox="0 0 920 440" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="senal-title senal-desc">
-  <title id="senal-title">El código de la señalización de seguridad</title>
-  <desc id="senal-desc">La señalización de seguridad usa color y forma: prohibición (círculo rojo), advertencia (triángulo amarillo), obligación (círculo azul), socorro (cuadrado verde) y lucha contra incendios (cuadrado rojo).</desc>
+<svg class="d-senalizacion-seguridad" viewBox="0 0 920 440" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="senal-title senal-desc">
+  <title id="senal-title">{t.elCodigoDeLa}</title>
+  <desc id="senal-desc">{t.laSenalizacionDeSeguridad}</desc>
   <defs>
     <style>
-      .bg { fill: #FBF6EC; }
-      .header { font-family: 'Fraunces', serif; font-style: italic; font-size: 25px; font-weight: 500; fill: #2A1F18; }
-      .col-card { fill: #FFFFFF; stroke: #E5D4BD; stroke-width: 1.5; }
-      .label { font-family: 'Switzer', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 0.6px; text-transform: uppercase; fill: #2A1F18; text-anchor: middle; }
-      .meaning { font-family: 'Switzer', sans-serif; font-size: 12px; font-weight: 400; fill: #5C4A3D; text-anchor: middle; }
+      .d-senalizacion-seguridad .bg { fill: #FBF6EC; }
+      .d-senalizacion-seguridad .header { font-family: 'Fraunces', serif; font-style: italic; font-size: 25px; font-weight: 500; fill: #2A1F18; }
+      .d-senalizacion-seguridad .col-card { fill: #FFFFFF; stroke: #E5D4BD; stroke-width: 1.5; }
+      .d-senalizacion-seguridad .label { font-family: 'Switzer', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 0.6px; text-transform: uppercase; fill: #2A1F18; text-anchor: middle; }
+      .d-senalizacion-seguridad .meaning { font-family: 'Switzer', sans-serif; font-size: 12px; font-weight: 400; fill: #5C4A3D; text-anchor: middle; }
       /* legal signage colours — normative content, deliberate exception */
-      .sig-red { fill: #D40000; }
-      .sig-yellow { fill: #F2C200; }
-      .sig-blue { fill: #1F6FB2; }
-      .sig-green { fill: #2E8B57; }
-      .sign-white { fill: #FFFFFF; }
+      .d-senalizacion-seguridad .sig-red { fill: #D40000; }
+      .d-senalizacion-seguridad .sig-yellow { fill: #F2C200; }
+      .d-senalizacion-seguridad .sig-blue { fill: #1F6FB2; }
+      .d-senalizacion-seguridad .sig-green { fill: #2E8B57; }
+      .d-senalizacion-seguridad .sign-white { fill: #FFFFFF; }
     </style>
   </defs>
   <rect class="bg" x="0" y="0" width="920" height="440"/>
 
   <!-- Header -->
-  <text class="header" x="460" y="48" text-anchor="middle">El código de la señalización de seguridad</text>
+  <text class="header" x="460" y="48" text-anchor="middle">{t.elCodigoDeLa2}</text>
 
   <!-- Five columns. Each card: x = 24 + i*180, width 164, y 78, height 326. centre xc = x + 82 -->
 
@@ -44,10 +100,10 @@
   <!-- sign: red ring, white fill, red diagonal bar. centre (106,160) r 50 -->
   <circle cx="106" cy="160" r="50" class="sign-white" stroke="#D40000" stroke-width="14"/>
   <line x1="71" y1="195" x2="141" y2="125" stroke="#D40000" stroke-width="14" stroke-linecap="butt"/>
-  <text class="label" x="106" y="262">Prohibición</text>
-  <text class="meaning" x="106" y="296">Lo que no debes</text>
-  <text class="meaning" x="106" y="314">hacer (no fumar,</text>
-  <text class="meaning" x="106" y="332">no pasar).</text>
+  <text class="label" x="106" y="262">{t.prohibicion}</text>
+  <text class="meaning" x="106" y="296">{t.loQueNoDebes}</text>
+  <text class="meaning" x="106" y="314">{t.hacerNoFumar}</text>
+  <text class="meaning" x="106" y="332">{t.noPasar}</text>
 
   <!-- ================= 2. ADVERTENCIA / PELIGRO — yellow triangle, black border ================= -->
   <rect class="col-card" x="204" y="78" width="164" height="326" rx="10"/>
@@ -56,10 +112,10 @@
   <!-- exclamation mark -->
   <rect x="283" y="150" width="6" height="26" fill="#2A1F18"/>
   <rect x="283" y="183" width="6" height="6" fill="#2A1F18"/>
-  <text class="label" x="286" y="262">Advertencia</text>
-  <text class="meaning" x="286" y="296">Atención a un riesgo</text>
-  <text class="meaning" x="286" y="314">(alta tensión, suelo</text>
-  <text class="meaning" x="286" y="332">resbaladizo).</text>
+  <text class="label" x="286" y="262">{t.advertencia}</text>
+  <text class="meaning" x="286" y="296">{t.atencionAUnRiesgo}</text>
+  <text class="meaning" x="286" y="314">{t.altaTensionSuelo}</text>
+  <text class="meaning" x="286" y="332">{t.resbaladizo}</text>
 
   <!-- ================= 3. OBLIGACIÓN — blue solid circle ================= -->
   <rect class="col-card" x="384" y="78" width="164" height="326" rx="10"/>
@@ -67,10 +123,10 @@
   <!-- simple white pictogram hint: a person/helmet stroke -->
   <circle cx="466" cy="146" r="12" class="sign-white"/>
   <path d="M448 184 q18 -20 36 0 Z" class="sign-white"/>
-  <text class="label" x="466" y="262">Obligación</text>
-  <text class="meaning" x="466" y="296">Lo que debes hacer</text>
-  <text class="meaning" x="466" y="314">(usar casco, guantes,</text>
-  <text class="meaning" x="466" y="332">gafas).</text>
+  <text class="label" x="466" y="262">{t.obligacion}</text>
+  <text class="meaning" x="466" y="296">{t.loQueDebesHacer}</text>
+  <text class="meaning" x="466" y="314">{t.usarCascoGuantes}</text>
+  <text class="meaning" x="466" y="332">{t.gafas}</text>
 
   <!-- ================= 4. SOCORRO / SALVAMENTO — green square ================= -->
   <rect class="col-card" x="564" y="78" width="164" height="326" rx="10"/>
@@ -78,18 +134,18 @@
   <!-- white cross (first aid) -->
   <rect x="638" y="128" width="16" height="64" class="sign-white"/>
   <rect x="614" y="152" width="64" height="16" class="sign-white"/>
-  <text class="label" x="646" y="262">Socorro</text>
-  <text class="meaning" x="646" y="296">Salidas, vías de</text>
-  <text class="meaning" x="646" y="314">evacuación, primeros</text>
-  <text class="meaning" x="646" y="332">auxilios.</text>
+  <text class="label" x="646" y="262">{t.socorro}</text>
+  <text class="meaning" x="646" y="296">{t.salidasViasDe}</text>
+  <text class="meaning" x="646" y="314">{t.evacuacionPrimeros}</text>
+  <text class="meaning" x="646" y="332">{t.auxilios}</text>
 
   <!-- ================= 5. CONTRA INCENDIOS — red square ================= -->
   <rect class="col-card" x="744" y="78" width="164" height="326" rx="10"/>
   <rect x="776" y="110" width="100" height="100" rx="6" class="sig-red"/>
   <!-- white flame pictogram -->
   <path d="M826 130 q22 24 8 44 q-2 -12 -12 -16 q6 16 -6 24 q-22 -10 -14 -34 q4 12 14 12 q-10 -16 0 -34 q4 18 18 22 q-8 -14 -2 -24 Z" class="sign-white"/>
-  <text class="label" x="826" y="262">Contra incendios</text>
-  <text class="meaning" x="826" y="296">Equipos de lucha</text>
-  <text class="meaning" x="826" y="314">contra el fuego</text>
-  <text class="meaning" x="826" y="332">(extintor, manguera).</text>
+  <text class="label" x="826" y="262">{t.contraIncendios}</text>
+  <text class="meaning" x="826" y="296">{t.equiposDeLucha}</text>
+  <text class="meaning" x="826" y="314">{t.contraElFuego}</text>
+  <text class="meaning" x="826" y="332">{t.extintorManguera}</text>
 </svg>

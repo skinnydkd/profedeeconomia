@@ -1,0 +1,92 @@
+---
+/**
+ * Reversible and irreversible decisions, and why they deserve opposite
+ * treatment: a door you can walk back through should be opened fast, and one
+ * that closes behind you should be studied first.
+ *
+ * Used in FOPP 4ESO · Unit 4 (making decisions).
+ */
+import { getLocale } from '@/i18n/locale';
+const locale = getLocale(Astro.currentLocale);
+
+const COPY = {
+  es: {
+    title: 'Puertas de ida y vuelta, puertas de un solo sentido',
+    desc: 'Dos puertas comparadas. La de la izquierda es reversible: se puede volver, así que conviene decidir rápido y probar. La de la derecha es irreversible: no se vuelve, así que conviene pensar despacio, consultar y, en caso de duda, esperar.',
+    revTitulo: 'Puerta de ida y vuelta', revSub: 'la decisión se puede deshacer',
+    irrTitulo: 'Puerta de un solo sentido', irrSub: 'no se vuelve, o volver cuesta mucho',
+    revRegla: 'Decide rápido y prueba',
+    irrRegla: 'Piensa despacio y, si dudas, espera',
+    revEj: ['Apuntarse a una actividad', 'Probar un método de estudio', 'Cambiar de optativa a tiempo'],
+    irrEj: ['Dejar los estudios', 'Firmar un contrato largo', 'Publicar algo que queda'],
+    error: 'El error caro es tratar las dos igual',
+    errorNota: 'pensar demasiado la primera cansa; decidir rápido la segunda se paga años',
+  },
+  ca: {
+    title: "Portes d'anada i tornada, portes d'un sol sentit",
+    desc: "Dues portes comparades. La de l'esquerra és reversible: es pot tornar, així que convé decidir ràpid i provar. La de la dreta és irreversible: no es torna, així que convé pensar a poc a poc, consultar i, en cas de dubte, esperar.",
+    revTitulo: "Porta d'anada i tornada", revSub: 'la decisió es pot desfer',
+    irrTitulo: "Porta d'un sol sentit", irrSub: 'no es torna, o tornar costa molt',
+    revRegla: 'Decidix ràpid i prova',
+    irrRegla: 'Pensa a poc a poc i, si dubtes, espera',
+    revEj: ['Apuntar-se a una activitat', "Provar un mètode d'estudi", "Canviar d'optativa a temps"],
+    irrEj: ['Deixar els estudis', 'Signar un contracte llarg', 'Publicar alguna cosa que queda'],
+    error: "L'error car és tractar les dues igual",
+    errorNota: 'pensar massa la primera cansa; decidir ràpid la segona es paga anys',
+  },
+} as const;
+const t = COPY[locale];
+---
+<svg class="d-puertas-decision" viewBox="0 0 800 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="pd-title pd-desc">
+  <title id="pd-title">{t.title}</title>
+  <desc id="pd-desc">{t.desc}</desc>
+  <defs>
+    <style>
+      .d-puertas-decision .bg { fill: #FBF6EC; }
+      .d-puertas-decision .frame { fill: #FFFFFF; stroke: #E5D4BD; stroke-width: 1.6; }
+      .d-puertas-decision .door-rev { fill: #DBEDED; stroke: #1F6E6E; stroke-width: 2.2; }
+      .d-puertas-decision .door-irr { fill: #ECDCE5; stroke: #5B3A4E; stroke-width: 2.2; }
+      .d-puertas-decision .knob-rev { fill: #1F6E6E; } .d-puertas-decision .knob-irr { fill: #5B3A4E; }
+      .d-puertas-decision .arrow-rev { stroke: #1F6E6E; stroke-width: 2.2; fill: none; }
+      .d-puertas-decision .arrow-irr { stroke: #5B3A4E; stroke-width: 2.2; fill: none; }
+      .d-puertas-decision .h { font-family: 'Switzer', sans-serif; font-size: 14px; font-weight: 700; fill: #2A1F18; text-anchor: middle; }
+      .d-puertas-decision .sub { font-family: 'Switzer', sans-serif; font-size: 11.5px; fill: #8A7868; text-anchor: middle; }
+      .d-puertas-decision .rule-rev { font-family: 'Fraunces', serif; font-size: 15px; font-weight: 600; fill: #1F6E6E; text-anchor: middle; }
+      .d-puertas-decision .rule-irr { font-family: 'Fraunces', serif; font-size: 15px; font-weight: 600; fill: #5B3A4E; text-anchor: middle; }
+      .d-puertas-decision .ej { font-family: 'Switzer', sans-serif; font-size: 11.5px; fill: #5C4A3D; }
+      .d-puertas-decision .warn { font-family: 'Fraunces', serif; font-style: italic; font-size: 15px; fill: #9C3A1C; text-anchor: middle; }
+      .d-puertas-decision .warn-note { font-family: 'Switzer', sans-serif; font-size: 11.5px; fill: #8A7868; text-anchor: middle; }
+    </style>
+    <marker id="pd-a1" markerWidth="9" markerHeight="9" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 9 3, 0 6" fill="#1F6E6E"/>
+    </marker>
+    <marker id="pd-a2" markerWidth="9" markerHeight="9" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 9 3, 0 6" fill="#5B3A4E"/>
+    </marker>
+  </defs>
+  <rect class="bg" x="0" y="0" width="800" height="520"/>
+
+  <!-- Reversible -->
+  <rect class="frame" x="40" y="40" width="340" height="392" rx="8"/>
+  <text class="h" x="210" y="70">{t.revTitulo}</text>
+  <text class="sub" x="210" y="89">{t.revSub}</text>
+  <rect class="door-rev" x="150" y="112" width="120" height="150" rx="4"/>
+  <circle class="knob-rev" cx="256" cy="192" r="5"/>
+  <path class="arrow-rev" d="M 120 300 H 300" marker-end="url(#pd-a1)"/>
+  <path class="arrow-rev" d="M 300 322 H 120" marker-end="url(#pd-a1)"/>
+  <text class="rule-rev" x="210" y="358">{t.revRegla}</text>
+  {t.revEj.map((e, i) => <text class="ej" x="66" y={386 + i * 17}>· {e}</text>)}
+
+  <!-- Irreversible -->
+  <rect class="frame" x="420" y="40" width="340" height="392" rx="8"/>
+  <text class="h" x="590" y="70">{t.irrTitulo}</text>
+  <text class="sub" x="590" y="89">{t.irrSub}</text>
+  <rect class="door-irr" x="530" y="112" width="120" height="150" rx="4"/>
+  <circle class="knob-irr" cx="636" cy="192" r="5"/>
+  <path class="arrow-irr" d="M 500 311 H 680" marker-end="url(#pd-a2)"/>
+  <text class="rule-irr" x="590" y="358">{t.irrRegla}</text>
+  {t.irrEj.map((e, i) => <text class="ej" x="446" y={386 + i * 17}>· {e}</text>)}
+
+  <text class="warn" x="400" y="472">{t.error}</text>
+  <text class="warn-note" x="400" y="492">{t.errorNota}</text>
+</svg>

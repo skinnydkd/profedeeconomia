@@ -93,6 +93,18 @@ preguntas:
     derecha: ["BAII / Activo total", "Activo total / Pasivo total", "Activo corriente − Pasivo corriente", "Beneficio neto / Patrimonio neto"]
     correctas: [2, 0, 3, 1]
     explicacion: "Fondo de maniobra → AC − PC; ROA → BAII / Activo total; ROE → beneficio neto / patrimonio neto; solvencia → Activo total / Pasivo total."
+  - tipo: numerico
+    enunciado: "Con el mismo activo corriente de 180.000 € y el mismo pasivo corriente de 120.000 €, ¿cuál es el fondo de maniobra, en euros?"
+    respuesta: 60000
+    tolerancia: 100
+    unidad: "€"
+    explicacion: "Fondo de maniobra = activo corriente − pasivo corriente = 180.000 − 120.000 = 60.000 €. Positivo significa que parte del activo corriente está financiado con recursos permanentes: la empresa no depende de cobrar mañana para pagar mañana."
+  - tipo: numerico
+    enunciado: "Una empresa cierra con un beneficio neto de 24.000 € y un patrimonio neto de 200.000 €. ¿Cuál es su rentabilidad financiera (ROE), en % (sin decimales)?"
+    respuesta: 12
+    tolerancia: 0.5
+    unidad: "%"
+    explicacion: "ROE = beneficio neto / patrimonio neto × 100 = 24.000 / 200.000 × 100 = 12 %. Mide lo que gana el propietario por cada 100 € puestos. Se compara con el ROA para ver si el endeudamiento está sumando o restando rentabilidad al socio."
 ---
 
 Test de autoevaluación de la Unidad 11 del libro de EDMN 2BACH.

@@ -4,12 +4,24 @@
  * plus native teacher tools (rubric, grading, templates) grouped by purpose.
  */
 import BaseLayout from '@layouts/BaseLayout.astro';
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 import { GENERADORES_EXTERNOS, gruposNativos } from '@/lib/generadores';
 import { getLocale } from '@/i18n/locale';
 import { t } from '@/i18n/ui';
 import { localizeGeneradorNativo, localizeGeneradorExterno } from '@/i18n/generadores-ca';
 
 const locale = getLocale(Astro.currentLocale);
+
+// Real captures of each native tool (scripts/build-screenshots.mjs), keyed by
+// the ES slug. The external LOMLOE generators have no local page to capture,
+// so their cards stay text-only.
+const THUMBS = import.meta.glob<{ default: ImageMetadata }>(
+  '/src/assets/screenshots/generadores/*.webp',
+  { eager: true },
+);
+const thumbDe = (slug: string): ImageMetadata | undefined =>
+  THUMBS[`/src/assets/screenshots/generadores/${slug}.webp`]?.default;
 
 const grupos = gruposNativos();
 const TIPO_LABEL: Record<string, string> = {
@@ -91,8 +103,10 @@ const copy = {
           <div class="tool-grid">
             {grupo.items.map((raw) => {
               const g = localizeGeneradorNativo(raw, locale);
+              const th = thumbDe(raw.slug);
               return (
                 <a class="tool-card" href={`/generadores/${g.slug}/`}>
+                  {th && <Image class="tc-thumb" src={th} alt="" widths={[320, 640]} sizes="(min-width: 720px) 320px, 90vw" />}
                   <span class="tc-eyebrow">{TIPO_LABEL[g.tipo] ?? g.tipo}</span>
                   <h3 class="tc-title serif">{g.title}</h3>
                   <p class="tc-desc">{g.descripcion}</p>
@@ -126,9 +140,10 @@ const copy = {
   .lede { font-family: var(--font-serif); font-style: italic; font-size: 1.3rem; color: var(--color-ink-soft); max-width: 58ch; margin: 1.2rem 0; line-height: 1.5; font-variation-settings: "SOFT" 80; }
   .tools { padding: 0 0 clamp(3rem, 7vw, 6rem); }
   .group-title { font-family: var(--font-serif); font-size: 1.5rem; font-weight: 500; margin: 1.5rem 0 1rem; }
-  .tool-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-bottom: 1.5rem; }
+  .tool-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 1.5rem; margin-bottom: 1.5rem; }
   .tool-card { display: block; background: #fff; border: 1px solid var(--color-line); padding: 1.6rem 1.75rem 1.4rem; text-decoration: none; color: inherit; transition: box-shadow 0.18s ease, border-color 0.18s ease, transform 0.18s ease; }
-  .tool-card:hover { box-shadow: 0 4px 18px rgba(42, 31, 24, 0.08); border-top-color: var(--color-terra); transform: translateY(-2px); }
+  .tool-card:hover { box-shadow: 0 4px 18px rgba(42, 31, 24, 0.08); border-color: var(--color-terra); transform: translateY(-2px); }
+  .tc-thumb { display: block; width: calc(100% + 3.5rem); height: auto; margin: -1.6rem -1.75rem 0.8rem; border-bottom: 1px solid var(--color-line); }
   .tc-eyebrow { font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-eco1, #1F6E6E); font-weight: 600; }
   .tc-title { font-size: 1.5rem; line-height: 1.1; margin: 0.5rem 0 0.75rem; font-variation-settings: "SOFT" 80; }
   .tc-desc { color: var(--color-ink-soft); font-size: 1rem; line-height: 1.6; margin: 0 0 1rem; }

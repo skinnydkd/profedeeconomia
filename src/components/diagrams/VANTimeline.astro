@@ -3,40 +3,70 @@
  * Cash flow timeline showing initial investment and yearly net flows
  * discounted to present value. Used to illustrate NPV calculation.
  */
+import { getLocale } from '@/i18n/locale';
+const locale = getLocale(Astro.currentLocale);
+
+const COPY = {
+  es: {
+    cronologiaDeFlujosDescontado: 'Cronología de flujos descontados (VAN)',
+    flujosDeCajaInversion: 'FLUJOS DE CAJA · INVERSIÓN A 4 AÑOS · k = 8 %',
+    ano0: 'Año 0',
+    ano1: 'Año 1',
+    ano2: 'Año 2',
+    ano3: 'Año 3',
+    ano4: 'Año 4',
+    inversion: 'INVERSIÓN',
+    k5734ProyectoRentable: '+5.734 € · proyecto rentable',
+    elVanEsLa: 'El VAN es la suma de flujos actualizados menos la inversión inicial.',
+  },
+  ca: {
+    cronologiaDeFlujosDescontado: 'Cronologia de fluxos descomptats (VAN)',
+    flujosDeCajaInversion: 'FLUXOS DE CAIXA · INVERSIÓ A 4 ANYS · k = 8 %',
+    ano0: 'Any 0',
+    ano1: 'Any 1',
+    ano2: 'Any 2',
+    ano3: 'Any 3',
+    ano4: 'Any 4',
+    inversion: 'INVERSIÓ',
+    k5734ProyectoRentable: '+5.734 € · projecte rendible',
+    elVanEsLa: 'El VAN és la suma de fluxos actualitzats menys la inversió inicial.',
+  },
+} as const;
+const t = COPY[locale];
 ---
-<svg viewBox="0 0 720 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Cronología de flujos descontados (VAN)">
+<svg class="d-van-timeline" viewBox="0 0 720 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label={t.cronologiaDeFlujosDescontado}>
   <defs>
     <style>
-      .bg { fill: #FBF6EC; }
-      .axis { stroke: #5C4A3D; stroke-width: 1.5; }
-      .bar-neg { fill: #FBE3D6; stroke: #C44E2C; stroke-width: 1.5; }
-      .bar-pos { fill: #E5F1DD; stroke: #4F8C3F; stroke-width: 1.5; }
-      .bar-actual { fill: #F5E5BC; stroke: #D4A24C; stroke-width: 1.5; }
-      .year-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; fill: #5C4A3D; text-anchor: middle; }
-      .value { font-family: 'Fraunces', serif; font-style: italic; font-size: 12px; font-weight: 500; text-anchor: middle; }
-      .legend-label { font-family: 'Switzer', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; }
-      .formula { font-family: 'JetBrains Mono', monospace; font-size: 11px; fill: #5C4A3D; }
+      .d-van-timeline .bg { fill: #FBF6EC; }
+      .d-van-timeline .axis { stroke: #5C4A3D; stroke-width: 1.5; }
+      .d-van-timeline .bar-neg { fill: #FBE3D6; stroke: #C44E2C; stroke-width: 1.5; }
+      .d-van-timeline .bar-pos { fill: #E5F1DD; stroke: #4F8C3F; stroke-width: 1.5; }
+      .d-van-timeline .bar-actual { fill: #F5E5BC; stroke: #D4A24C; stroke-width: 1.5; }
+      .d-van-timeline .year-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; fill: #5C4A3D; text-anchor: middle; }
+      .d-van-timeline .value { font-family: 'Fraunces', serif; font-style: italic; font-size: 12px; font-weight: 500; text-anchor: middle; }
+      .d-van-timeline .legend-label { font-family: 'Switzer', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; }
+      .d-van-timeline .formula { font-family: 'JetBrains Mono', monospace; font-size: 11px; fill: #5C4A3D; }
     </style>
   </defs>
   <rect class="bg" x="0" y="0" width="720" height="360"/>
 
   <!-- Title -->
-  <text class="legend-label" x="360" y="32" text-anchor="middle" fill="#5C4A3D">FLUJOS DE CAJA · INVERSIÓN A 4 AÑOS · k = 8 %</text>
+  <text class="legend-label" x="360" y="32" text-anchor="middle" fill="#5C4A3D">{t.flujosDeCajaInversion}</text>
 
   <!-- Horizontal axis -->
   <line class="axis" x1="60" y1="190" x2="680" y2="190"/>
 
   <!-- Year markers -->
-  <text class="year-label" x="100" y="215">Año 0</text>
-  <text class="year-label" x="220" y="215">Año 1</text>
-  <text class="year-label" x="340" y="215">Año 2</text>
-  <text class="year-label" x="460" y="215">Año 3</text>
-  <text class="year-label" x="580" y="215">Año 4</text>
+  <text class="year-label" x="100" y="215">{t.ano0}</text>
+  <text class="year-label" x="220" y="215">{t.ano1}</text>
+  <text class="year-label" x="340" y="215">{t.ano2}</text>
+  <text class="year-label" x="460" y="215">{t.ano3}</text>
+  <text class="year-label" x="580" y="215">{t.ano4}</text>
 
   <!-- Year 0: Investment (negative bar going down) -->
   <rect class="bar-neg" x="75" y="190" width="50" height="90" rx="3"/>
   <text class="value" x="100" y="305" fill="#9C3A1C">−18.000 €</text>
-  <text class="legend-label" x="100" y="170" text-anchor="middle" fill="#9C3A1C">INVERSIÓN</text>
+  <text class="legend-label" x="100" y="170" text-anchor="middle" fill="#9C3A1C">{t.inversion}</text>
 
   <!-- Years 1-3: Net cash flow (6500) - going up -->
   <rect class="bar-actual" x="195" y="110" width="50" height="80" rx="3"/>
@@ -64,7 +94,7 @@
   <rect x="60" y="260" width="620" height="60" rx="6" fill="#FFFFFF" stroke="#C44E2C" stroke-width="2"/>
   <text class="legend-label" x="80" y="285" fill="#9C3A1C">VAN</text>
   <text class="formula" x="80" y="305" fill="#2A1F18">−18.000 + 6.019 + 5.573 + 5.160 + 6.982 = </text>
-  <text class="value" x="500" y="305" fill="#2A5A1F" font-size="16">+5.734 € · proyecto rentable</text>
+  <text class="value" x="500" y="305" fill="#2A5A1F" font-size="16">{t.k5734ProyectoRentable}</text>
 
-  <text class="value" x="360" y="340" fill="#5C4A3D">El VAN es la suma de flujos actualizados menos la inversión inicial.</text>
+  <text class="value" x="360" y="340" fill="#5C4A3D">{t.elVanEsLa}</text>
 </svg>

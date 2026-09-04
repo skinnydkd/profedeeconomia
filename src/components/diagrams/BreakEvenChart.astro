@@ -5,23 +5,51 @@
  *
  * Numbers correspond to the panadería example (CF=3000, P=1.5, CVu=0.5).
  */
+import { getLocale } from '@/i18n/locale';
+const locale = getLocale(Astro.currentLocale);
+
+const COPY = {
+  es: {
+    puntoMuertoOUmbral: 'Punto muerto o umbral de rentabilidad',
+    unidadesVendidasQ: 'UNIDADES VENDIDAS · Q',
+    euros: 'EUROS · €',
+    costeTotal: 'Coste total',
+    ingresoTotal: 'Ingreso total',
+    q3000Unidades: 'Q* = 3.000 unidades',
+    k4500PuntoMuerto: '€ 4.500 = punto muerto',
+    perdida: 'PÉRDIDA',
+    beneficio: 'BENEFICIO',
+  },
+  ca: {
+    puntoMuertoOUmbral: 'Punt mort o llindar de rendibilitat',
+    unidadesVendidasQ: 'UNITATS VENUDES · Q',
+    euros: 'EUROS · €',
+    costeTotal: 'Cost total',
+    ingresoTotal: 'Ingrés total',
+    q3000Unidades: 'Q* = 3.000 unitats',
+    k4500PuntoMuerto: '€ 4.500 = punt mort',
+    perdida: 'PÈRDUA',
+    beneficio: 'BENEFICI',
+  },
+} as const;
+const t = COPY[locale];
 ---
-<svg viewBox="0 0 780 480" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Punto muerto o umbral de rentabilidad">
+<svg class="d-break-even-chart" viewBox="0 0 780 480" xmlns="http://www.w3.org/2000/svg" role="img" aria-label={t.puntoMuertoOUmbral}>
   <defs>
     <style>
-      .bg { fill: #FBF6EC; }
-      .axis { stroke: #5C4A3D; stroke-width: 1.5; fill: none; }
-      .grid { stroke: #E5D4BD; stroke-width: 1; stroke-dasharray: 2 4; fill: none; }
-      .cf-line { stroke: #8A7868; stroke-width: 2; fill: none; }
-      .ct-line { stroke: #C44E2C; stroke-width: 2.5; fill: none; }
-      .it-line { stroke: #4F8C3F; stroke-width: 2.5; fill: none; }
-      .perdida { fill: #F5DDDD; fill-opacity: 0.5; }
-      .beneficio { fill: #E5F1DD; fill-opacity: 0.5; }
-      .axis-label { font-family: 'Switzer', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; fill: #5C4A3D; }
-      .tick-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; fill: #5C4A3D; }
-      .line-label { font-family: 'Switzer', sans-serif; font-size: 11px; font-weight: 700; }
-      .point-label { font-family: 'Fraunces', serif; font-style: italic; font-size: 13px; font-weight: 500; }
-      .zone-label { font-family: 'Fraunces', serif; font-style: italic; font-size: 14px; font-weight: 500; }
+      .d-break-even-chart .bg { fill: #FBF6EC; }
+      .d-break-even-chart .axis { stroke: #5C4A3D; stroke-width: 1.5; fill: none; }
+      .d-break-even-chart .grid { stroke: #E5D4BD; stroke-width: 1; stroke-dasharray: 2 4; fill: none; }
+      .d-break-even-chart .cf-line { stroke: #8A7868; stroke-width: 2; fill: none; }
+      .d-break-even-chart .ct-line { stroke: #C44E2C; stroke-width: 2.5; fill: none; }
+      .d-break-even-chart .it-line { stroke: #4F8C3F; stroke-width: 2.5; fill: none; }
+      .d-break-even-chart .perdida { fill: #F5DDDD; fill-opacity: 0.5; }
+      .d-break-even-chart .beneficio { fill: #E5F1DD; fill-opacity: 0.5; }
+      .d-break-even-chart .axis-label { font-family: 'Switzer', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; fill: #5C4A3D; }
+      .d-break-even-chart .tick-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; fill: #5C4A3D; }
+      .d-break-even-chart .line-label { font-family: 'Switzer', sans-serif; font-size: 11px; font-weight: 700; }
+      .d-break-even-chart .point-label { font-family: 'Fraunces', serif; font-style: italic; font-size: 13px; font-weight: 500; }
+      .d-break-even-chart .zone-label { font-family: 'Fraunces', serif; font-style: italic; font-size: 14px; font-weight: 500; }
     </style>
   </defs>
   <rect class="bg" x="0" y="0" width="780" height="480"/>
@@ -70,8 +98,8 @@
   <text class="tick-label" x="72" y="103" text-anchor="end">8.000</text>
 
   <!-- Axis titles -->
-  <text class="axis-label" x="370" y="455" text-anchor="middle">UNIDADES VENDIDAS · Q</text>
-  <text class="axis-label" x="25" y="230" text-anchor="middle" transform="rotate(-90 25 230)">EUROS · €</text>
+  <text class="axis-label" x="370" y="455" text-anchor="middle">{t.unidadesVendidasQ}</text>
+  <text class="axis-label" x="25" y="230" text-anchor="middle" transform="rotate(-90 25 230)">{t.euros}</text>
 
   <!-- CF line: horizontal at € 3000 (y = 400 - 3000/8000 * 340 = 400 - 127.5 = 272) -->
   <line class="cf-line" x1="80" y1="272" x2="660" y2="272"/>
@@ -79,19 +107,19 @@
 
   <!-- CT line: CT = CF + CVu·Q = 3000 + 0.5·Q. At Q=0: €3000 (y=272). At Q=5000: €5500 (y=400 - 5500/8000 * 340 = 400 - 233.75 = 166.25 ≈ 166) -->
   <line class="ct-line" x1="80" y1="272" x2="660" y2="166"/>
-  <text class="line-label" x="668" y="170" fill="#C44E2C">Coste total</text>
+  <text class="line-label" x="668" y="170" fill="#C44E2C">{t.costeTotal}</text>
 
   <!-- IT line: IT = P·Q = 1.5·Q. At Q=0: €0 (y=400). At Q=5000: €7500 (y=400 - 7500/8000 * 340 = 400 - 318.75 = 81.25 ≈ 81) -->
   <line class="it-line" x1="80" y1="400" x2="660" y2="81"/>
-  <text class="line-label" x="668" y="85" fill="#4F8C3F">Ingreso total</text>
+  <text class="line-label" x="668" y="85" fill="#4F8C3F">{t.ingresoTotal}</text>
 
   <!-- Intersection point at Q* = 3000 (x=428). At that Q, both CT and IT = €4500 (y=400 - 4500/8000 * 340 = 400 - 191.25 = 208.75 ≈ 209) -->
   <line class="grid" x1="428" y1="209" x2="428" y2="400" stroke="#C44E2C" stroke-dasharray="3 3"/>
   <circle cx="428" cy="209" r="6" fill="#FFFFFF" stroke="#C44E2C" stroke-width="2.5"/>
-  <text class="point-label" x="438" y="200" fill="#C44E2C">Q* = 3.000 unidades</text>
-  <text class="point-label" x="438" y="216" fill="#C44E2C">€ 4.500 = punto muerto</text>
+  <text class="point-label" x="438" y="200" fill="#C44E2C">{t.q3000Unidades}</text>
+  <text class="point-label" x="438" y="216" fill="#C44E2C">{t.k4500PuntoMuerto}</text>
 
   <!-- Zone labels -->
-  <text class="zone-label" x="200" y="350" fill="#B83A3A">PÉRDIDA</text>
-  <text class="zone-label" x="560" y="160" fill="#2A5A1F">BENEFICIO</text>
+  <text class="zone-label" x="200" y="350" fill="#B83A3A">{t.perdida}</text>
+  <text class="zone-label" x="560" y="160" fill="#2A5A1F">{t.beneficio}</text>
 </svg>

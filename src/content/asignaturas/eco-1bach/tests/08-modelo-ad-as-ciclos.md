@@ -91,6 +91,18 @@ preguntas:
     enunciado: "Según el modelo de Solow, la mera acumulación de capital físico permite aumentar indefinidamente el PIB por trabajador a largo plazo."
     correcta: false
     explicacion: "El capital físico tiene rendimientos decrecientes: acumular más máquinas eleva el PIB total pero el PIB por trabajador se topa con un límite. Solo la productividad total de los factores (tecnología, instituciones, capital humano) sostiene el crecimiento per cápita a largo plazo."
+  - tipo: numerico
+    enunciado: "Un país tiene un PIB de 600.000 mill. € y 20 millones de habitantes. ¿Cuál es su PIB per cápita, en euros?"
+    respuesta: 30000
+    tolerancia: 100
+    unidad: "€"
+    explicacion: "PIB per cápita = PIB / población = 600.000.000.000 € / 20.000.000 = 30.000 € por habitante. Es una media: no dice nada sobre cómo está repartida esa renta, y por eso se complementa con la curva de Lorenz y el índice de Gini."
+  - tipo: relacionar
+    enunciado: "Relaciona cada fase del ciclo económico con su rasgo:"
+    izquierda: ["Expansión", "Recesión", "Depresión", "Recuperación"]
+    derecha: ["El PIB toca fondo y el paro llega a su máximo", "El PIB crece, cae el paro y sube la inversión", "El PIB vuelve a crecer tras el mínimo", "El PIB cae durante al menos dos trimestres seguidos"]
+    correctas: [1, 3, 0, 2]
+    explicacion: "La definición técnica de recesión son dos trimestres consecutivos de caída del PIB. La depresión es el punto más bajo del ciclo, no una recesión larga."
 ---
 
 Test de autoevaluación de la Unidad 8 del libro de Eco 1BACH. Nueve preguntas que cubren los componentes de la demanda agregada, la pendiente negativa de la AD, la distinción entre SRAS y LRAS, los cuatro tipos canónicos de shocks (demanda y oferta, positivos y negativos), las fases del ciclo económico, el modelo de crecimiento de Solow, el IDH del PNUD y el cálculo del índice de Gini a partir de una curva de Lorenz.

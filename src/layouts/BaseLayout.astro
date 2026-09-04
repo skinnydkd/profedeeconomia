@@ -1,8 +1,10 @@
 ---
 import SiteHeader from '@components/SiteHeader.astro';
 import SiteFooter from '@components/SiteFooter.astro';
+import Analytics from '@components/Analytics.astro';
+import ConsentBanner from '@components/ConsentBanner.astro';
 import { ASIGNATURA_SLUGS } from '@/lib/asignaturas';
-import { jsonLdToString } from '@/lib/seo';
+import { jsonLdToString, pageTitle } from '@/lib/seo';
 import { getLocale, type Locale } from '@/i18n/locale';
 import { resolveSeo } from '@/i18n/seo-locale';
 import { t } from '@/i18n/ui';
@@ -22,12 +24,31 @@ type Props = {
   noindex?: boolean;
   /** Language of the page body when it differs from the UI locale (fallback ES under /ca). */
   contentLang?: Locale;
+  /**
+   * Allow the brand suffix on this title. Default true. `pageTitle` still
+   * drops it when the title has no room left; set this false to suppress it
+   * outright on pages whose copy is deliberately tuned to fill the budget.
+   */
+  brandSuffix?: boolean;
+  /**
+   * Locale-less path of the page this one duplicates. Sets rel=canonical there
+   * and suppresses hreflang. Only for genuine near-duplicates.
+   */
+  canonicalPath?: string;
 };
 
-const { title, description, ogImage, ogType = 'website', jsonLd, noindex = false, contentLang = 'es' } = Astro.props;
-const fullTitle = title.endsWith('profedeeconomia')
-  ? title
-  : `${title} — profedeeconomia`;
+const {
+  title,
+  description,
+  ogImage,
+  ogType = 'website',
+  jsonLd,
+  noindex = false,
+  contentLang = 'es',
+  brandSuffix = true,
+  canonicalPath,
+} = Astro.props;
+const fullTitle = pageTitle(title, brandSuffix);
 
 const locale = getLocale(Astro.currentLocale);
 const seo = resolveSeo({
@@ -35,6 +56,7 @@ const seo = resolveSeo({
   locale,
   contentLang,
   site: Astro.site!.toString(),
+  canonicalPath,
 });
 const canonical = seo.canonical;
 const ldItems = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
@@ -106,6 +128,10 @@ const resolvedOgImage = new URL(ogImage ?? autoOgImage, Astro.site).toString();
     {ldItems.map((item) => (
       <script type="application/ld+json" set:html={jsonLdToString(item)} />
     ))}
+
+    <!-- Google Analytics 4. Nothing is requested from Google until the visitor
+         accepts in <ConsentBanner /> (see src/lib/consent.ts). -->
+    <Analytics />
   </head>
   <body class="bg-bg text-ink font-sans">
     <a href="#main" class="skip-link">{t('skip.main', locale)}</a>
@@ -114,6 +140,7 @@ const resolvedOgImage = new URL(ogImage ?? autoOgImage, Astro.site).toString();
       <slot />
     </main>
     <SiteFooter />
+    <ConsentBanner />
     <script>
       // Keep the VAL locale sticky across navigation (progressive enhancement).
       import { applyStickyLocale } from '@/i18n/sticky-locale';

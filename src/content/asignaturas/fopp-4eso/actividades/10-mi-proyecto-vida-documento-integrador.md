@@ -7,7 +7,7 @@ tipo: proyecto
 duracion: "4 sesiones · 2 semanas (redacción + revisión cruzada + presentaciones + feedback)"
 agrupacion: "individual"
 materiales:
-  - "Carpeta personal del alumno con el material acumulado durante el curso (DAFO personal Unit 1, mapa de gestión emocional Unit 2, mapa de entorno Unit 3, árbol de decisiones Unit 4, dossier de itinerarios Unit 5, mapa de FP Unit 6, derechos laborales Units 7-8, CV-borrador Unit 9)"
+  - "Carpeta personal del alumno con el material acumulado durante el curso (DAFO personal Unidad 1, mapa de gestión emocional Unidad 2, mapa de entorno Unidad 3, árbol de decisiones Unidad 4, dossier de itinerarios Unidad 5, mapa de FP Unidad 6, derechos laborales Unidades 7-8, CV-borrador Unidad 9)"
   - "Plantilla del documento integrador en formato A4 (incluida abajo) en PDF imprimible y en documento editable compartido"
   - "Acceso a internet en aula para verificar datos de empleabilidad y oferta formativa actualizada"
   - "Rúbrica de evaluación impresa para el profesor y para la coevaluación entre alumnos"
@@ -40,7 +40,7 @@ El producto final es un **documento integrador de 4 a 6 páginas** —no más, n
 
 ### Sesión 1 — Escritura del documento (60 min)
 
-1. **Recuperación del material acumulado (10 min).** Cada alumno saca su carpeta personal del curso. Debe tener, como mínimo: DAFO personal (Unit 1), mapa emocional (Unit 2), mapa de entorno (Unit 3), árbol de decisiones (Unit 4), dossier de itinerarios (Unit 5), notas sobre FP y becas (Unit 6), resumen de derechos laborales (Units 7-8) y el CV-borrador (Unit 9). Si falta alguna pieza, este es el momento de pedirla al profesor o de reconstruirla rápidamente. **Sin material, no hay proyecto**: hay opiniones.
+1. **Recuperación del material acumulado (10 min).** Cada alumno saca su carpeta personal del curso. Debe tener, como mínimo: DAFO personal (Unidad 1), mapa emocional (Unidad 2), mapa de entorno (Unidad 3), árbol de decisiones (Unidad 4), dossier de itinerarios (Unidad 5), notas sobre FP y becas (Unidad 6), resumen de derechos laborales (Unidades 7-8) y el CV-borrador (Unidad 9). Si falta alguna pieza, este es el momento de pedirla al profesor o de reconstruirla rápidamente. **Sin material, no hay proyecto**: hay opiniones.
 2. **Redacción individual silenciosa (45 min).** Con la plantilla abierta, redactar las **secciones 1 a 6** del documento (DAFO + ikigai + objetivos SMART a tres horizontes + plan de acción a 12 meses + red de apoyo + sistema de revisión). El profesor circula respondiendo dudas puntuales pero no corrige contenido en esta fase.
 3. **Marcador de revisión casa (5 min).** Cada alumno se compromete a terminar la redacción en casa durante los días siguientes y traer el documento impreso o en pantalla para la sesión 2.
 
@@ -88,8 +88,8 @@ SECCIÓN 1 — QUIÉN SOY HOY: DAFO PERSONAL
   Tabla 2x2 con:
   · Debilidades (3-5 puntos honestos)
   · Amenazas (3-5 factores externos)
-  · Fortalezas (3-5 puntos basados en Unit 1)
-  · Oportunidades (3-5 externas, basadas en Unit 3)
+  · Fortalezas (3-5 puntos basados en Unidad 1)
+  · Oportunidades (3-5 externas, basadas en Unidad 3)
 
 SECCIÓN 2 — IKIGAI APLICADO
   (½ página)
@@ -160,7 +160,7 @@ SECCIÓN 6 — SISTEMA DE REVISIÓN
 
 | Criterio | Descripción | Peso |
 | --- | --- | --- |
-| Integración del material del curso | El documento cita y aprovecha visiblemente el DAFO (Unit 1), el mapa de entorno (Unit 3), el árbol de decisiones (Unit 4), el dossier de itinerarios (Unit 5) y el CV (Unit 9). No parece escrito desde cero. | 15 % |
+| Integración del material del curso | El documento cita y aprovecha visiblemente el DAFO (Unidad 1), el mapa de entorno (Unidad 3), el árbol de decisiones (Unidad 4), el dossier de itinerarios (Unidad 5) y el CV (Unidad 9). No parece escrito desde cero. | 15 % |
 | Calidad de los objetivos SMART | Los 5-7 objetivos del corto plazo pasan el filtro SMART completo. Específicos, medibles, alcanzables, relevantes y con plazo concreto. | 25 % |
 | Coherencia entre dimensiones y horizontes | Los objetivos de las tres dimensiones (personal, formativa, profesional) se sostienen unos a otros. Los escenarios de medio plazo encajan con el corto. El largo plazo no contradice los anteriores. | 15 % |
 | Realismo de la red de apoyo | 3-5 personas concretas con función asignada y próximo contacto previsto. No es una lista decorativa. | 10 % |

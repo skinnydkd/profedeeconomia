@@ -52,11 +52,15 @@ import KeyTakeaways from '@components/KeyTakeaways.astro';
 import Bibliography from '@components/Bibliography.astro';
 import Diagram from '@components/Diagram.astro';
 import SectoresEconomicos from '@components/diagrams/SectoresEconomicos.astro';
+import TasasEPA from '@components/diagrams/TasasEPA.astro';
 import Figure from '@components/Figure.astro';
 import TldrUnidad from '@components/TldrUnidad.astro';
 import CasoDilema from '@components/CasoDilema.astro';
 import VuelveAlCaso from '@components/VuelveAlCaso.astro';
 import MirarFora from '@components/MirarFora.astro';
+import VocesDesacuerdo from '@components/VocesDesacuerdo.astro';
+import RecursoDestacado from '@components/libro/RecursoDestacado.astro';
+import HerramientaIsland from '@components/calculadoras/HerramientaIsland.astro';
 
 import olivarMontoro from '@assets/libro/fopp-4eso/07/olivar-montoro.jpg';
 import coworkingMadrid from '@assets/libro/fopp-4eso/07/coworking-madrid.jpg';
@@ -152,6 +156,16 @@ Calcula la **tasa de actividad**, la **tasa de paro** y la **tasa de empleo**, e
 
 </SolvedExercise>
 
+**Pruébalo tú mismo:** repite el cálculo de Vilanova del Camp con la calculadora y comprueba que salen las mismas tres tasas. Después busca en el INE los datos de tu comunidad autónoma e introdúcelos: verás de un vistazo si tu territorio se parece o no a la media española, y por qué.
+
+<HerramientaIsland componente="TasasEPA" />
+
+<RecursoDestacado href="/fopp-4eso/recursos/tasas-epa/" kicker="Herramienta" title="Las tres tasas de la EPA" descripcion="Introduce la población de 16 o más años, los ocupados y los parados de un territorio y obtén las tres tasas, cada una con su división a la vista para no confundir denominadores." colorVar="--color-fopp" />
+
+<Diagram caption="Cómo divide la EPA a la población y de dónde saca cada tasa su numerador y su denominador. La de paro se divide entre activos y no entre población: por eso no encaja con las otras dos.">
+  <TasasEPA />
+</Diagram>
+
 ## Los cuatro sectores económicos
 
 Toda la economía se reparte en sectores según el tipo de actividad. Tradicionalmente se hablaba de tres; hoy es habitual añadir un cuarto que recoge la actividad más basada en conocimiento e investigación.
@@ -229,6 +243,8 @@ Aunque hay enormes variaciones según sector, empresa, ciudad y experiencia, los
 
 Estos datos son **brutos anuales** (antes de retenciones) y son **medias**, no garantías. Hay graduados universitarios cobrando 18.000 € y técnicos de FP Superior cobrando 40.000 €. Pero la **tendencia general** es clara: a mayor nivel formativo, mayor salario medio. Y entre FP Superior y grado universitario la diferencia es menor de lo que el imaginario social sugiere.
 
+<RecursoDestacado href="/debates/dinero-tecnologia-futuro/02-ia-y-empleo/" kicker="Debate en clase" title="¿Destruirá la IA más empleo del que crea?" descripcion="Debate parlamentario sobre el impacto neto de la inteligencia artificial en el mercado de trabajo." colorVar="--color-fopp" />
+
 ## Tres formas de tener un trabajo
 
 <Figure
@@ -244,7 +260,7 @@ Cuando se habla de "encontrar empleo" se piensa por defecto en una empresa que c
 
 ### Trabajo por cuenta ajena (~81 % de los ocupados)
 
-Es la forma dominante: **una empresa o administración pública contrata** y paga un salario a cambio de tu trabajo, con derechos y obligaciones regulados por el **Estatuto de los Trabajadores** (lo veremos en detalle en la Unit 8). La inmensa mayoría de los ocupados españoles (alrededor del **81 %**) trabaja en esta modalidad. Ventajas: estabilidad (más o menos según el contrato), derechos laborales claros, vacaciones pagadas, baja por enfermedad. Inconvenientes: menor autonomía sobre el qué y el cómo del trabajo.
+Es la forma dominante: **una empresa o administración pública contrata** y paga un salario a cambio de tu trabajo, con derechos y obligaciones regulados por el **Estatuto de los Trabajadores** (lo veremos en detalle en la Unidad 8). La inmensa mayoría de los ocupados españoles (alrededor del **81 %**) trabaja en esta modalidad. Ventajas: estabilidad (más o menos según el contrato), derechos laborales claros, vacaciones pagadas, baja por enfermedad. Inconvenientes: menor autonomía sobre el qué y el cómo del trabajo.
 
 ### Autoempleo o trabajo por cuenta propia (~15 % de los ocupados)
 
@@ -270,7 +286,7 @@ Lucía acabó 4.º ESO en un instituto de Albacete sin tener clara su vocación.
   aspectHint="3/2"
 />
 
-Hay una cifra que conviene memorizar y entender: en el primer trimestre de 2026, la **tasa de paro juvenil** (16-24 años) en España era del **24,54 %** (440.400 menores de 25 años sin empleo), según la EPA del INE. La media de la Unión Europea ronda el **14-15 %** (Eurostat). España duplica la media europea **y lo hace de forma sostenida desde 2008**. Es una anomalía estructural, no un dato puntual.
+Hay una cifra que conviene memorizar y entender: en el segundo trimestre de 2026, la **tasa de paro juvenil** (16-24 años) en España era del **23,77 %** (en torno a 460.000 menores de 25 años sin empleo), según la EPA del INE. La media de la Unión Europea ronda el **14-15 %** (Eurostat). España duplica la media europea **y lo hace de forma sostenida desde 2008**. Es una anomalía estructural, no un dato puntual.
 
 ### Por qué España tiene tanto paro juvenil
 
@@ -283,9 +299,23 @@ Los informes del **Banco de España**, la **AIReF (Autoridad Independiente de Re
 
 <Curiosity title="España ostenta el paro juvenil más alto de la UE de forma ininterrumpida desde 2008">
 
-Según los datos de **Eurostat Labour Force Survey**, desde la crisis de 2008 España ha estado **todos los años** entre los países de la Unión Europea con mayor tasa de paro juvenil. Solo Grecia se le acerca de manera persistente. En el peor momento de la crisis, en 2013, la tasa de paro juvenil española superó el **56 %**. Más de la mitad de los jóvenes activos no encontraba empleo. Aunque la cifra actual del 27 % es mucho mejor, sigue siendo la peor de la UE y, según los informes del Banco de España y de la OCDE, una de las **causas principales de emigración juvenil cualificada** —la llamada *fuga de cerebros*— hacia Alemania, Países Bajos y Reino Unido durante toda la última década.
+Según los datos de **Eurostat Labour Force Survey**, desde la crisis de 2008 España ha estado **todos los años** entre los países de la Unión Europea con mayor tasa de paro juvenil. Solo Grecia se le acerca de manera persistente. En el peor momento de la crisis, en 2013, la tasa de paro juvenil española superó el **56 %**. Más de la mitad de los jóvenes activos no encontraba empleo. Aunque la cifra actual, en el entorno del 24 %, es mucho mejor, sigue siendo la peor de la UE y, según los informes del Banco de España y de la OCDE, una de las **causas principales de emigración juvenil cualificada** —la llamada *fuga de cerebros*— hacia Alemania, Países Bajos y Reino Unido durante toda la última década.
 
 </Curiosity>
+
+<VocesDesacuerdo
+  tema="El paro juvenil, ¿es un problema de formación o de puestos?"
+  postura_a={{
+    etiqueta: 'Falta encaje entre formación y empleo',
+    tesis: 'Hay miles de vacantes sin cubrir mientras sobra gente buscando trabajo. Si los perfiles que se forman no son los que se demandan, el desajuste se arregla orientando y formando distinto.',
+  }}
+  postura_b={{
+    etiqueta: 'Faltan puestos, no formación',
+    tesis: 'Aunque todo el mundo se formase en lo más demandado, no habría puestos para todos. Un mercado con mucho contrato temporal y salarios de entrada bajos expulsa a los jóvenes primero.',
+  }}
+>
+Las dos cosas ocurren a la vez, y separarlas importa porque **cada una se arregla con una política distinta**: formación y orientación para el desajuste, demanda agregada y condiciones de entrada para la escasez de puestos. Una manera de saber cuál pesa más en tu comarca: mira si las vacantes sin cubrir son muchas o pocas comparadas con la gente parada. **Si sobran vacantes, hay desajuste; si no las hay, ninguna formación adicional creará los puestos que faltan.** El dato de vacantes se publica trimestralmente y no exige más que buscarlo.
+</VocesDesacuerdo>
 
 ## Cómo consultar las profesiones más demandadas en tu comunidad
 
@@ -295,7 +325,7 @@ Los datos generales son útiles, pero las decisiones se toman con datos **concre
   <li>**Entra en el portal del SEPE** ([sepe.es](https://www.sepe.es)) y busca la sección **Observatorio de las Ocupaciones**. Allí publican informes anuales por comunidad autónoma con las ocupaciones más contratadas y las que más han crecido el último año.</li>
   <li>**Busca el informe específico de tu CCAA**: cada autonomía tiene un servicio público de empleo propio (Labora en la Comunitat Valenciana, SEPECAM en Castilla-La Mancha, SOC en Cataluña, Lanbide en País Vasco, etc.) y publica datos de detalle municipal o provincial que el SEPE estatal no ofrece.</li>
   <li>**Consulta el portal TodoFP del Ministerio** ([todofp.es](https://www.todofp.es)) y filtra por familia profesional y por comunidad: muestra centros que ofertan cada ciclo y suele incluir indicadores de inserción laboral por ciclo.</li>
-  <li>**Cruza los datos con tu mapa de intereses** (recupera la Unit 1 y la Unit 4): que una profesión esté demandada no significa que sea para ti. Que esté en retroceso no significa que debas descartarla si tu vocación es clara y la combinas con habilidades complementarias.</li>
+  <li>**Cruza los datos con tu mapa de intereses** (recupera la Unidad 1 y la Unidad 4): que una profesión esté demandada no significa que sea para ti. Que esté en retroceso no significa que debas descartarla si tu vocación es clara y la combinas con habilidades complementarias.</li>
   <li>**Habla con alguien que ya trabaje** en una de las profesiones que estás considerando. Diez minutos de conversación real aportan más que cincuenta páginas de informes oficiales. Si no conoces a nadie, las ferias de orientación de febrero-marzo y las jornadas de antiguos alumnos de los centros de FP son la oportunidad natural.</li>
 </Steps>
 
@@ -313,7 +343,7 @@ La razón es un **desajuste de tres tipos** —ninguno se resuelve fácil—. Pr
 - Las profesiones con **demanda en retroceso** son las basadas en tareas repetitivas o estandarizadas: cajeros, traducción literal, manufactura repetitiva, agentes de viaje tradicionales.
 - A mayor **nivel formativo**, mayor salario medio. La diferencia entre FP Superior y grado universitario es menor de lo que sugiere el imaginario social.
 - Existen **tres formas de trabajar**: por cuenta ajena (~81 %), autoempleo (~15 %) e intraemprendimiento (~5 %, en crecimiento).
-- El **paro juvenil español** (24,54 % en T1 2026) duplica la media de la UE (~14-15 %) de forma sostenida desde 2008. Sus causas son estructurales: dualidad contractual, mismatch educativo, SMI relativamente alto frente a productividad juvenil, modelo turístico estacional.
+- El **paro juvenil español** (23,77 % en T2 2026) duplica la media de la UE (~14-15 %) de forma sostenida desde 2008. Sus causas son estructurales: dualidad contractual, mismatch educativo, SMI relativamente alto frente a productividad juvenil, modelo turístico estacional.
 </KeyTakeaways>
 
 ## Glosario
@@ -349,10 +379,10 @@ Si quieres leer el mercado laboral con datos reales y actualizados, estas fuente
 Estas preguntas no tienen una respuesta única. Sirven para discutir en clase o para pensar individualmente al cerrar la unidad:
 
 1. España duplica el paro juvenil de la media europea de forma sostenida desde 2008. De las cuatro causas estructurales (dualidad, SMI frente a productividad, mismatch educativo, modelo turístico), ¿cuál crees que pesa más? ¿Cuál sería más fácil de corregir?
-2. Las "profesiones de futuro" combinan habilidad técnica difícil de automatizar con trato humano no estandarizado. Mirando tu propio mapa de intereses (Unit 1 y Unit 4), ¿qué profesiones encajan ahí para ti? ¿Te condiciona la lista de demanda o decides al margen de ella?
+2. Las "profesiones de futuro" combinan habilidad técnica difícil de automatizar con trato humano no estandarizado. Mirando tu propio mapa de intereses (Unidad 1 y Unidad 4), ¿qué profesiones encajan ahí para ti? ¿Te condiciona la lista de demanda o decides al margen de ella?
 3. El turismo aporta más del 12 % del PIB español, pero también explica buena parte del paro juvenil estacional. ¿Es una fortaleza o una debilidad para un joven que entra ahora al mercado laboral? ¿Cómo afecta a tu comarca en concreto?
 
-## Hacia la Unit 8
+## Hacia la Unidad 8
 
 Esta unidad ha presentado el **mapa** del mercado laboral. La siguiente entra en el detalle de lo que pasa una vez te incorporas a él: tus **derechos y deberes** como trabajador, qué dice el **Estatuto de los Trabajadores**, cómo funcionan la jornada, los descansos, las vacaciones, el SMI y la prevención de riesgos laborales. Si esta unidad ha sido el mapa, la siguiente es el manual de instrucciones para tu primer contrato.
 
@@ -401,3 +431,227 @@ Esta unidad ha presentado el **mapa** del mercado laboral. La siguiente entra en
     Comparativa entre provincias en gran grupo (o entre estudiantes con origen en zonas distintas si la clase es heterogénea): ¿qué sectores son comunes? ¿cuáles son específicos de un territorio? Debate breve sobre **movilidad geográfica**: ¿estarías dispuesto a moverte por trabajo? ¿en qué condiciones? Duración: 45 min.
   </Fragment>
 </MirarFora>
+
+```deck
+- tipo: curriculum
+  eyebrow: A qué responde esta unidad
+  title: El marco de la unidad
+  saberes:
+    - "Bloque E: el mercado laboral en España y sus tasas."
+    - "Bloque E: sectores económicos y peso de cada uno."
+    - "Bloque E: paro juvenil y sus causas estructurales."
+  competencias:
+    - Comprender el mundo del trabajo y el mercado laboral.
+    - Analizar el entorno y su influencia en las propias decisiones.
+- tipo: section
+  title: Cómo se mide el mercado laboral
+  subtitle: Población activa, población inactiva y las tres tasas de la EPA
+- tipo: terms
+  title: Activos, inactivos y la frontera entre ambos
+  terms:
+    - t: EPA
+      d: "Encuesta de Población Activa. El INE pregunta cada trimestre a unos 65.000 hogares qué hace cada miembro; de ahí salen las cifras del telediario."
+    - t: Población activa
+      d: Personas de 16 o más años que trabajan (ocupados) o buscan trabajo activamente (parados). Trabajar unas pocas horas ya cuenta como ocupado.
+    - t: Población inactiva
+      d: "Personas de 16 o más años que ni trabajan ni buscan trabajo: estudiantes a tiempo completo, jubilados, dedicados al hogar o con incapacidad permanente."
+    - t: Parado
+      d: "Quien no tiene empleo pero lo busca activamente. Está dentro de la población activa: quiere trabajar. Quien no busca es inactivo, no parado."
+- tipo: table
+  title: Las tres tasas de la EPA
+  eyebrow: España, primer trimestre de 2026
+  head:
+    - Tasa
+    - Cómo se calcula
+    - Dato en España
+  rows:
+    - ["Actividad", "activos / población de 16+ × 100", "≈ 59 %"]
+    - ["Paro", "parados / población activa × 100", "10,83 %"]
+    - ["Empleo", "ocupados / población de 16+ × 100", "≈ 52,5 %"]
+  caption: La de paro es la única que se divide entre la población activa. La de empleo es la mejor para comparar países.
+- tipo: diagram
+  diagrama: TasasEPA
+  caption: "De la población a los parados, y las tres tasas"
+- tipo: formula
+  eyebrow: La que más se cita
+  title: Tasa de paro
+  formula: (parados / población activa) × 100
+  terminos:
+    - s: parados
+      d: Sin empleo, disponibles y buscando activamente.
+    - s: población activa
+      d: Ocupados más parados. No incluye a los inactivos.
+  ejemplo: En Vilanova, 1.400 / 11.000 = 12,7 %. Dividir entre los 20.000 de 16+ daría un 7 % engañoso.
+- tipo: concept
+  title: "«Paro» significa al menos tres cosas distintas"
+  body: "Puede ser la cifra total de parados de la EPA, el paro registrado del SEPE (inscritos en las oficinas de empleo) o la tasa de paro en porcentaje. EPA y SEPE casi nunca coinciden: se puede buscar trabajo sin estar inscrito, o estar inscrito, hacer alguna hora suelta y figurar como ocupado."
+  pull: "Ante una noticia sobre paro, mira la fuente: EPA o SEPE, cifra absoluta o tasa."
+- tipo: exercise
+  title: Ejercicio 7.1 · Las tres tasas de Vilanova del Camp
+  enunciado: "El municipio ficticio de Vilanova del Camp tiene 20.000 personas de 16 años o más: 9.600 ocupadas y 1.400 paradas. El resto son inactivas. Calcula la tasa de actividad, la de paro y la de empleo, e interpreta cada resultado."
+  pasos:
+    - "Población activa = ocupados + parados = 9.600 + 1.400 = 11.000 personas."
+    - "Actividad = (11.000 / 20.000) × 100 = 55 %. Participa en el mercado laboral algo más de la mitad de la población en edad de trabajar."
+    - "Paro = (1.400 / 11.000) × 100 = 12,7 %. Ojo al denominador: es la población activa, no las 20.000."
+    - "Empleo = (9.600 / 20.000) × 100 = 48 %. Es la tasa más útil para comparar países."
+    - "Trampa habitual: dividir los parados entre las 20.000 daría un 7 % engañosamente bajo."
+- tipo: quiz
+  pregunta: Marta tiene 19 años, estudia un Grado Superior a tiempo completo y no busca trabajo. ¿Cómo la clasifica la EPA?
+  opciones:
+    - Parada, porque no tiene empleo
+    - Ocupada, porque estudiar es su ocupación principal
+    - Inactiva, porque ni trabaja ni busca trabajo
+    - Activa, porque tiene más de 16 años
+  correcta: "2"
+  explicacion: La población activa exige trabajar o buscar trabajo activamente. Quien estudia a tiempo completo sin buscar empleo es inactiva, igual que quien está jubilado. Solo quien busca empleo cuenta como parado.
+- tipo: section
+  title: Los cuatro sectores económicos
+  subtitle: Qué produce España y dónde está realmente el empleo
+- tipo: diagram
+  diagrama: SectoresEconomicos
+  caption: Reparto del empleo en España por sectores (INE, 2025). El cuaternario aún se contabiliza dentro del terciario.
+- tipo: table
+  title: Los cuatro sectores en cifras
+  head:
+    - Sector
+    - Qué incluye
+    - "% del PIB"
+  rows:
+    - ["Primario", "Agricultura, ganadería, pesca, silvicultura y minería", "~3 %"]
+    - ["Secundario", "Industria y construcción", "~22 %"]
+    - ["Terciario", "Comercio, hostelería, turismo, sanidad, banca, educación", "~67 %"]
+    - ["Cuaternario", "I+D, tecnología, biotecnología, consultoría avanzada", "~8 %"]
+  caption: El terciario emplea a cerca del 76 % de los ocupados. Hace cien años más de la mitad estaban en el primario.
+- tipo: figure
+  src: fopp-4eso/07/olivar-montoro.jpg
+  alt: Paisaje de olivar desde Montoro, Córdoba, con hileras de olivos cubriendo las colinas hasta el horizonte.
+  title: Pesar poco en PIB no es ser irrelevante
+  caption: España exporta aceite por más de 4.000 millones de euros al año, y el olivar mantiene viva la economía de comarcas enteras.
+  credit: "Foto: Jesús García Campos (IAPH), CC BY 4.0"
+- tipo: data
+  numero: "96,8 M"
+  label: turistas internacionales en 2025
+  title: El país europeo más dependiente del turismo
+  detalle: Récord histórico, con 134.712 millones de euros de gasto. El turismo aporta más del 12 % del PIB y cerca de 2,7 millones de empleos directos, pero también explica buena parte del paro juvenil estacional.
+- tipo: section
+  title: Profesiones de futuro y en retroceso
+  subtitle: La transición digital y la ecológica redibujan el mapa profesional
+- tipo: split
+  title: El mapa profesional 2024-2030
+  left:
+    h: Alta demanda prevista
+    items:
+      - Enfermería y técnicos sociosanitarios — la silver economy de un país que envejece
+      - Programación y desarrollo de software — más vacantes que titulados al año
+      - Energías renovables — instaladores y técnicos, impulso del PNIEC hasta 2030
+      - Cuidado de mayores y dependientes — crecimiento sostenido dos décadas
+      - Oficios técnicos cualificados — electricistas, fontaneros, soldadores
+  right:
+    h: Demanda en retroceso
+    items:
+      - Cajeros de supermercado y de banca — autocaja y banca digital
+      - Conductores de camión a 10-20 años vista — conducción autónoma
+      - Manufactura repetitiva — se automatiza lo estandarizado, no lo cualificado
+      - Traducción literal — sobrevive la especializada, no la básica
+      - Agentes de viaje tradicionales — reducidos al nicho premium
+- tipo: concept
+  title: Ninguna profesión es inmune ni segura del todo
+  body: Las listas de profesiones de futuro no garantizan empleo, y las de retroceso no significan desaparición inmediata. Lo razonablemente seguro es que las profesiones que combinan una habilidad técnica difícil de automatizar con trato humano no estandarizado —sanidad, cuidados, educación, oficios cualificados— tienen mejor perspectiva que las que se reducen a ejecutar instrucciones repetibles.
+  pull: Retén la idea, no la lista concreta.
+- tipo: table
+  title: Salario medio bruto anual por formación
+  eyebrow: INE, Estructura Salarial 2024
+  head:
+    - Nivel formativo
+    - Salario medio bruto anual
+  rows:
+    - ["ESO sin más formación", "~17.500 €"]
+    - ["FP de Grado Medio", "~23.000 €"]
+    - ["FP de Grado Superior", "~26.500 €"]
+    - ["Grado universitario", "~30.000 €"]
+    - ["Máster universitario", "~34.500 €"]
+  caption: Son medias brutas anuales, no garantías. La distancia entre FP Superior y grado universitario es menor de lo que parece.
+- tipo: quiz
+  pregunta: ¿En qué sector económico se clasifica la construcción de edificios y obra civil?
+  opciones:
+    - Primario, porque parte de materias primas naturales
+    - Secundario, junto con la industria
+    - Terciario, porque presta un servicio
+    - Cuaternario, por su componente técnico
+  correcta: "1"
+  explicacion: La construcción se contabiliza dentro del secundario junto a la industria. Entre los dos suponen alrededor del 22 % del PIB y el 20 % de los ocupados.
+- tipo: section
+  title: Tres formas de tener un trabajo
+  subtitle: Cuenta ajena, autoempleo e intraemprendimiento
+- tipo: figure
+  src: fopp-4eso/07/coworking-madrid.jpg
+  alt: Interior de un espacio de coworking en Madrid con varias mesas compartidas y profesionales trabajando.
+  title: Cambia la estética, no las tres modalidades
+  caption: Oficinas compartidas, freelance, teletrabajo híbrido. Por debajo siguen siendo cuenta ajena, cuenta propia y empleo público.
+  credit: "Foto: Zarateman, CC0 / dominio público vía Wikimedia Commons"
+- tipo: terms
+  title: Las tres modalidades, con su letra pequeña
+  terms:
+    - t: Cuenta ajena (~81 %)
+      d: Una empresa o administración contrata y paga un salario, con derechos regulados por el Estatuto de los Trabajadores. Estabilidad a cambio de menos autonomía.
+    - t: Autoempleo (~15 %)
+      d: Trabajar para uno mismo, normalmente bajo el régimen de autónomos (RETA). Autonomía total y más ingresos posibles, pero cuota a la Seguridad Social y riesgo propio.
+    - t: Intraemprendimiento (~5 %)
+      d: "Liderar proyectos con autonomía de empresario interno sin salir de la nómina. No es otro contrato: es otra forma de ejercer el trabajo por cuenta ajena."
+- tipo: concept
+  eyebrow: Caso real
+  title: "Lucía: de Grado Medio a programadora"
+  body: "Acabó 4.º ESO en Albacete sin vocación clara y se matriculó en el Grado Medio de Sistemas Microinformáticos y Redes. Allí descubrió la programación, aprendió Python y JavaScript por su cuenta y entró en un bootcamp subvencionado. A los dos años de su primer contrato en Valencia cobraba unos 32.000 € brutos anuales: el camino formativo no siempre es lineal."
+- tipo: quiz
+  pregunta: Una técnica de mantenimiento lidera un proyecto nuevo dentro de su empresa, con autonomía y sin poner dinero propio. ¿Qué modalidad es?
+  opciones:
+    - Autoempleo, porque asume el riesgo financiero
+    - Trabajo por cuenta ajena sin ningún matiz
+    - Régimen especial de autónomos (RETA)
+    - Intraemprendimiento, porque emprende dentro de la nómina
+  correcta: "3"
+  explicacion: "El intraemprendimiento no es un contrato distinto: es una forma de ejercer el trabajo por cuenta ajena asumiendo riesgo profesional, pero no el financiero. Ronda el 5 % y crece en tecnología y consultoría."
+- tipo: section
+  title: El paro juvenil español
+  subtitle: Una anomalía europea sostenida desde 2008
+- tipo: data
+  numero: "23,77 %"
+  label: paro juvenil (16-24 años)
+  title: El doble que la media europea
+  detalle: Unos 460.000 menores de 25 años sin empleo en el segundo trimestre de 2026, según la EPA. La media de la Unión Europea ronda el 14-15 %, y España encabeza la lista desde 2008.
+- tipo: figure
+  src: fopp-4eso/07/oficina-empleo-madrid.jpg
+  alt: Fachada de una Oficina de Empleo conjunta de la Comunidad de Madrid y el SEPE en el barrio de la Concepción.
+  title: No es coyuntura, es estructura
+  caption: Oficina de Empleo de la Comunidad de Madrid y el SEPE. En 2013, en el peor momento de la crisis, la tasa juvenil superó el 56 %.
+  credit: "Foto: Lojwe, CC0 vía Wikimedia Commons"
+- tipo: list
+  title: Cuatro causas estructurales, no una mala racha
+  eyebrow: Banco de España, AIReF y OCDE
+  items:
+    - "Dualidad contractual: al joven se le contrata con temporal y se le despide primero al menor signo de crisis."
+    - "SMI alto frente a productividad juvenil baja: con 1.221 € en 2026 algunas pymes no contratan. Hipótesis discutida, pero documentada."
+    - "Mismatch educativo: muchos universitarios y mucho abandono temprano a la vez. Faltan grados intermedios."
+    - "Modelo turístico estacional: muchos contratos en verano y muy pocos en invierno, con la tasa oscilando cada trimestre."
+- tipo: list
+  title: Cinco pasos para mirar los datos de tu zona
+  ordered: true
+  items:
+    - "Entra en sepe.es y busca el Observatorio de las Ocupaciones: publica informes anuales por comunidad autónoma."
+    - "Busca el servicio de empleo de tu CCAA (Labora, SOC, Lanbide, SEPECAM): dan detalle provincial o municipal."
+    - "Consulta todofp.es y filtra por familia profesional y comunidad: indica centros e inserción laboral por ciclo."
+    - "Cruza esos datos con tu mapa de intereses de las unidades 1 y 4: que algo esté demandado no significa que sea para ti."
+    - Habla con alguien que ya trabaje en esa profesión. Diez minutos reales valen más que cincuenta páginas de informes.
+- tipo: concept
+  title: Vacantes sin cubrir y paro juvenil a la vez
+  body: "En 2024 convivían unas 150.000 vacantes sin cubrir y un paro juvenil por encima del 26 %. El desajuste es triple. De condiciones: hostelería estacional, construcción, transporte, agricultura temporal, salarios bajos y contratos breves. De cualificación: soldadores o técnicos de mantenimiento exigen formación específica. Y geográfico: vacantes y parados no siempre están en la misma provincia; mudarse cuesta dinero."
+  pull: Decidir vocación sin mirar el mercado es decidir con un solo ojo abierto.
+- tipo: recap
+  title: Antes de cerrar la unidad
+  items:
+    - Sabrías calcular las tres tasas de la EPA sin confundir el denominador.
+    - Sabrías decir en qué sector entra un trabajo cualquiera y cuánto pesa ese sector.
+    - Sabrías nombrar tres profesiones al alza y tres a la baja, con el motivo.
+    - Sabrías distinguir cuenta ajena, autoempleo e intraemprendimiento.
+    - Sabrías explicar por qué el paro juvenil español dobla la media europea.
+```

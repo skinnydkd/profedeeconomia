@@ -7,35 +7,99 @@
  *
  * Used in FOPP 4ESO (personal development and self-esteem).
  */
+import { getLocale } from '@/i18n/locale';
+const locale = getLocale(Astro.currentLocale);
+
+const COPY = {
+  es: {
+    elEspectroDeLa: 'El espectro de la autoestima',
+    laAutoestimaSanaEsta: 'La autoestima sana está en el centro: ni hundirse con cada crítica (débil) ni creerse por encima de todo (inflada). Reconocer el propio valor y los límites sin pisar a nadie.',
+    extremo: 'Extremo',
+    extremo2: 'Extremo',
+    autoestimaDebil: 'Autoestima débil',
+    porDefecto: 'Por defecto',
+    meHundoCon: 'Me hundo con',
+    cualquierCritica: 'cualquier crítica',
+    creoQueNoValgo: 'Creo que no valgo',
+    dejoQueDecidan: 'Dejo que decidan',
+    porMi: 'por mí',
+    autoestimaSana: 'Autoestima sana',
+    equilibrio: 'Equilibrio',
+    reconozcoLoQueValgo: 'Reconozco lo que valgo',
+    yLoQueMe: 'y lo que me falta',
+    encajoLasCriticas: 'Encajo las críticas',
+    sinHundirme: 'sin hundirme',
+    pongoLimitesSin: 'Pongo límites sin',
+    pisarANadie: 'pisar a nadie',
+    autoestimaInflada: 'Autoestima inflada',
+    porExceso: 'Por exceso',
+    nuncaEsCulpaMia: 'Nunca es culpa mía',
+    necesitoTener: 'Necesito tener',
+    razonSiempre: 'razón siempre',
+    pisoAOtrosPara: 'Piso a otros para',
+    sentirmeArriba: 'sentirme arriba',
+    loSanoEstaEn: 'Lo sano está en el centro, no en los extremos',
+  },
+  ca: {
+    elEspectroDeLa: "L'espectre de l'autoestima",
+    laAutoestimaSanaEsta: "L'autoestima sana està al centre: ni enfonsar-se amb cada crítica (dèbil) ni creure's per damunt de tot (inflada). Reconéixer el valor propi i els límits sense trepitjar ningú.",
+    extremo: 'Extrem',
+    extremo2: 'Extrem',
+    autoestimaDebil: 'Autoestima dèbil',
+    porDefecto: 'Per defecte',
+    meHundoCon: "M'enfonse amb",
+    cualquierCritica: 'qualsevol crítica',
+    creoQueNoValgo: 'Crec que no valc',
+    dejoQueDecidan: 'Deixe que decidisquen',
+    porMi: 'per mi',
+    autoestimaSana: 'Autoestima sana',
+    equilibrio: 'Equilibri',
+    reconozcoLoQueValgo: 'Reconec el que valc',
+    yLoQueMe: 'i el que em falta',
+    encajoLasCriticas: 'Encaixe les crítiques',
+    sinHundirme: 'sense enfonsar-me',
+    pongoLimitesSin: 'Pose límits sense',
+    pisarANadie: 'trepitjar ningú',
+    autoestimaInflada: 'Autoestima inflada',
+    porExceso: 'Per excés',
+    nuncaEsCulpaMia: 'Mai és culpa meua',
+    necesitoTener: 'Necessite tindre',
+    razonSiempre: 'raó sempre',
+    pisoAOtrosPara: 'Trepitge els altres per a',
+    sentirmeArriba: 'sentir-me per damunt',
+    loSanoEstaEn: 'El sa està al centre, no als extrems',
+  },
+} as const;
+const t = COPY[locale];
 ---
-<svg viewBox="0 0 920 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="ae-title ae-desc">
-  <title id="ae-title">El espectro de la autoestima</title>
-  <desc id="ae-desc">La autoestima sana está en el centro: ni hundirse con cada crítica (débil) ni creerse por encima de todo (inflada). Reconocer el propio valor y los límites sin pisar a nadie.</desc>
+<svg class="d-autoestima-espectro" viewBox="0 0 920 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="ae-title ae-desc">
+  <title id="ae-title">{t.elEspectroDeLa}</title>
+  <desc id="ae-desc">{t.laAutoestimaSanaEsta}</desc>
   <defs>
     <style>
-      .bg { fill: #FBF6EC; }
-      .zone { stroke: #E5D4BD; stroke-width: 1.5; }
-      .zone-weak { fill: #F5E5BC; }
-      .zone-healthy { fill: #DBEDED; stroke: #1F6E6E; stroke-width: 2.5; }
-      .zone-inflated { fill: #FBE3D6; }
-      .header { font-family: 'Fraunces', serif; font-style: italic; font-size: 23px; font-weight: 600; fill: #2A1F18; text-anchor: middle; }
-      .header-healthy { fill: #1F6E6E; }
-      .header-inflated { fill: #9C3A1C; }
-      .tag { font-family: 'Switzer', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase; fill: #8A7868; text-anchor: middle; }
-      .bullet { font-family: 'Switzer', sans-serif; font-size: 14px; font-weight: 500; fill: #5C4A3D; text-anchor: middle; }
-      .bullet-healthy { fill: #2A1F18; }
-      .axis-line { stroke: #E5D4BD; stroke-width: 2; }
-      .axis-end { font-family: 'Switzer', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; fill: #8A7868; }
-      .note { font-family: 'Fraunces', serif; font-style: italic; font-size: 16px; font-weight: 500; fill: #C44E2C; text-anchor: middle; }
-      .note-arrow { stroke: #C44E2C; stroke-width: 2; fill: none; }
+      .d-autoestima-espectro .bg { fill: #FBF6EC; }
+      .d-autoestima-espectro .zone { stroke: #E5D4BD; stroke-width: 1.5; }
+      .d-autoestima-espectro .zone-weak { fill: #F5E5BC; }
+      .d-autoestima-espectro .zone-healthy { fill: #DBEDED; stroke: #1F6E6E; stroke-width: 2.5; }
+      .d-autoestima-espectro .zone-inflated { fill: #FBE3D6; }
+      .d-autoestima-espectro .header { font-family: 'Fraunces', serif; font-style: italic; font-size: 23px; font-weight: 600; fill: #2A1F18; text-anchor: middle; }
+      .d-autoestima-espectro .header-healthy { fill: #1F6E6E; }
+      .d-autoestima-espectro .header-inflated { fill: #9C3A1C; }
+      .d-autoestima-espectro .tag { font-family: 'Switzer', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase; fill: #8A7868; text-anchor: middle; }
+      .d-autoestima-espectro .bullet { font-family: 'Switzer', sans-serif; font-size: 14px; font-weight: 500; fill: #5C4A3D; text-anchor: middle; }
+      .d-autoestima-espectro .bullet-healthy { fill: #2A1F18; }
+      .d-autoestima-espectro .axis-line { stroke: #E5D4BD; stroke-width: 2; }
+      .d-autoestima-espectro .axis-end { font-family: 'Switzer', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; fill: #8A7868; }
+      .d-autoestima-espectro .note { font-family: 'Fraunces', serif; font-style: italic; font-size: 16px; font-weight: 500; fill: #C44E2C; text-anchor: middle; }
+      .d-autoestima-espectro .note-arrow { stroke: #C44E2C; stroke-width: 2; fill: none; }
     </style>
   </defs>
   <rect class="bg" x="0" y="0" width="920" height="420"/>
 
   <!-- Spectrum axis under the zones -->
   <line class="axis-line" x1="40" y1="100" x2="880" y2="100"/>
-  <text class="axis-end" x="40" y="86" text-anchor="start">Extremo</text>
-  <text class="axis-end" x="880" y="86" text-anchor="end">Extremo</text>
+  <text class="axis-end" x="40" y="86" text-anchor="start">{t.extremo}</text>
+  <text class="axis-end" x="880" y="86" text-anchor="end">{t.extremo2}</text>
 
   <!-- Three zones: weak (left), healthy (centre), inflated (right) -->
   <rect class="zone zone-weak" x="40" y="120" width="270" height="210" rx="6"/>
@@ -43,35 +107,35 @@
   <rect class="zone zone-inflated" x="610" y="120" width="270" height="210" rx="6"/>
 
   <!-- Weak self-esteem -->
-  <text class="header" x="175" y="160">Autoestima débil</text>
-  <text class="tag" x="175" y="184">Por defecto</text>
-  <text class="bullet" x="175" y="222">Me hundo con</text>
-  <text class="bullet" x="175" y="241">cualquier crítica</text>
-  <text class="bullet" x="175" y="271">Creo que no valgo</text>
-  <text class="bullet" x="175" y="301">Dejo que decidan</text>
-  <text class="bullet" x="175" y="320">por mí</text>
+  <text class="header" x="175" y="160">{t.autoestimaDebil}</text>
+  <text class="tag" x="175" y="184">{t.porDefecto}</text>
+  <text class="bullet" x="175" y="222">{t.meHundoCon}</text>
+  <text class="bullet" x="175" y="241">{t.cualquierCritica}</text>
+  <text class="bullet" x="175" y="271">{t.creoQueNoValgo}</text>
+  <text class="bullet" x="175" y="301">{t.dejoQueDecidan}</text>
+  <text class="bullet" x="175" y="320">{t.porMi}</text>
 
   <!-- Healthy self-esteem (centre, highlighted) -->
-  <text class="header header-healthy" x="460" y="160">Autoestima sana</text>
-  <text class="tag" x="460" y="184">Equilibrio</text>
-  <text class="bullet bullet-healthy" x="460" y="218">Reconozco lo que valgo</text>
-  <text class="bullet bullet-healthy" x="460" y="237">y lo que me falta</text>
-  <text class="bullet bullet-healthy" x="460" y="267">Encajo las críticas</text>
-  <text class="bullet bullet-healthy" x="460" y="286">sin hundirme</text>
-  <text class="bullet bullet-healthy" x="460" y="316">Pongo límites sin</text>
-  <text class="bullet bullet-healthy" x="460" y="335">pisar a nadie</text>
+  <text class="header header-healthy" x="460" y="160">{t.autoestimaSana}</text>
+  <text class="tag" x="460" y="184">{t.equilibrio}</text>
+  <text class="bullet bullet-healthy" x="460" y="218">{t.reconozcoLoQueValgo}</text>
+  <text class="bullet bullet-healthy" x="460" y="237">{t.yLoQueMe}</text>
+  <text class="bullet bullet-healthy" x="460" y="267">{t.encajoLasCriticas}</text>
+  <text class="bullet bullet-healthy" x="460" y="286">{t.sinHundirme}</text>
+  <text class="bullet bullet-healthy" x="460" y="316">{t.pongoLimitesSin}</text>
+  <text class="bullet bullet-healthy" x="460" y="335">{t.pisarANadie}</text>
 
   <!-- Inflated self-esteem -->
-  <text class="header header-inflated" x="745" y="160">Autoestima inflada</text>
-  <text class="tag" x="745" y="184">Por exceso</text>
-  <text class="bullet" x="745" y="222">Nunca es culpa mía</text>
-  <text class="bullet" x="745" y="252">Necesito tener</text>
-  <text class="bullet" x="745" y="271">razón siempre</text>
-  <text class="bullet" x="745" y="301">Piso a otros para</text>
-  <text class="bullet" x="745" y="320">sentirme arriba</text>
+  <text class="header header-inflated" x="745" y="160">{t.autoestimaInflada}</text>
+  <text class="tag" x="745" y="184">{t.porExceso}</text>
+  <text class="bullet" x="745" y="222">{t.nuncaEsCulpaMia}</text>
+  <text class="bullet" x="745" y="252">{t.necesitoTener}</text>
+  <text class="bullet" x="745" y="271">{t.razonSiempre}</text>
+  <text class="bullet" x="745" y="301">{t.pisoAOtrosPara}</text>
+  <text class="bullet" x="745" y="320">{t.sentirmeArriba}</text>
 
   <!-- Note: the healthy place is the centre, not the extremes -->
   <path class="note-arrow" d="M 460 348 L 460 372"/>
   <path class="note-arrow" d="M 452 364 L 460 372 L 468 364"/>
-  <text class="note" x="460" y="396">Lo sano está en el centro, no en los extremos</text>
+  <text class="note" x="460" y="396">{t.loSanoEstaEn}</text>
 </svg>

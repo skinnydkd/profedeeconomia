@@ -95,6 +95,18 @@ preguntas:
     derecha: ["BAII / Actiu total", "Actiu total / Passiu total", "Actiu corrent − Passiu corrent", "Benefici net / Patrimoni net"]
     correctas: [2, 0, 3, 1]
     explicacion: "Fons de maniobra → AC − PC; ROA → BAII / Actiu total; ROE → benefici net / patrimoni net; solvència → Actiu total / Passiu total."
+  - tipo: numerico
+    enunciado: "Amb el mateix actiu corrent de 180.000 € i el mateix passiu corrent de 120.000 €, quin és el fons de maniobra, en euros?"
+    respuesta: 60000
+    tolerancia: 100
+    unidad: "€"
+    explicacion: "Fons de maniobra = actiu corrent − passiu corrent = 180.000 − 120.000 = 60.000 €. Positiu significa que part de l'actiu corrent està finançat amb recursos permanents: l'empresa no depén de cobrar demà per a pagar demà."
+  - tipo: numerico
+    enunciado: "Una empresa tanca amb un benefici net de 24.000 € i un patrimoni net de 200.000 €. Quina és la seua rendibilitat financera (ROE), en % (sense decimals)?"
+    respuesta: 12
+    tolerancia: 0.5
+    unidad: "%"
+    explicacion: "ROE = benefici net / patrimoni net × 100 = 24.000 / 200.000 × 100 = 12 %. Mesura el que guanya el propietari per cada 100 € posats. Es compara amb el ROA per a veure si l'endeutament està sumant o restant rendibilitat al soci."
 ---
 
 Test d'autoavaluació de la Unitat 11 del llibre d'EDMN 2BACH.

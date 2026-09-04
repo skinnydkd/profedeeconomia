@@ -61,12 +61,14 @@ import TldrUnidad from '@components/TldrUnidad.astro';
 import CasoDilema from '@components/CasoDilema.astro';
 import VuelveAlCaso from '@components/VuelveAlCaso.astro';
 import MirarFora from '@components/MirarFora.astro';
+import VocesDesacuerdo from '@components/VocesDesacuerdo.astro';
 
 import HerramientaIsland from '@components/calculadoras/HerramientaIsland.astro';
 import pozoPetroleo from '@assets/libro/eco-1bach/08/pozo-petroleo.jpg';
 import robertSolow from '@assets/libro/eco-1bach/08/robert-solow.jpg';
 import madridPreciadosCovid from '@assets/libro/eco-1bach/08/madrid-preciados-covid.jpg';
 import amartyaSen from '@assets/libro/eco-1bach/08/amartya-sen.jpg';
+import RecursoDestacado from '@components/libro/RecursoDestacado.astro';
 
 > **Tiempo estimado de lectura**: 45-50 min · **Saberes LOMLOE**: C.1, C.2 · **Pre-requisitos**: Unidad 7 (PIB, IPC, EPA y los indicadores macro).
 >
@@ -233,6 +235,8 @@ Tras la invasión rusa de Ucrania (febrero 2022), el precio del gas natural TTF 
 4. **Conclusión.** El episodio 2022-2024 español encaja con el patrón canónico de shock negativo de oferta en el modelo AD-AS, y la respuesta de política monetaria —antipática pero coherente— ilustra el dilema clásico del banco central ante este tipo de shock.
 
 </SolvedExercise>
+
+<RecursoDestacado href="/eco-1bach/recursos/simulador-ad-as/" kicker="Simulador" title="Simulador del modelo AD-AS" descripcion="Manipula shocks de demanda, de oferta a corto plazo y de producción potencial, y mira qué le pasa al nivel de precios y al PIB en cada plazo." colorVar="--color-eco1" />
 
 ## 4. El ciclo económico
 
@@ -465,6 +469,20 @@ El modelo no falló: simplemente, los shocks de esa magnitud requieren intervenc
 - **Crecimiento ≠ desarrollo**: el **IDH** (PNUD, Mahbub ul Haq y Amartya Sen) combina renta, salud y educación. España ocupa el puesto ~27. La **curva de Lorenz** y el **índice de Gini** miden la desigualdad: España tiene Gini ≈ 0,33, entre Suecia (0,28) y Estados Unidos (0,41).
 </KeyTakeaways>
 
+<VocesDesacuerdo
+  tema="¿Hay que crecer siempre?"
+  postura_a={{
+    etiqueta: 'Sin crecimiento no hay margen',
+    tesis: 'El crecimiento es lo que ha sacado a miles de millones de personas de la pobreza y lo que paga pensiones, sanidad y transición energética. Parar la economía no reparte mejor: reparte menos.',
+  }}
+  postura_b={{
+    etiqueta: 'Crecer así tiene un techo físico',
+    tesis: 'El PIB crece sobre una base material finita. Si el consumo de recursos no se desacopla del crecimiento lo bastante rápido, seguir creciendo consiste en trasladar el coste a quien viene después.',
+  }}
+>
+El punto donde el debate se vuelve concreto tiene nombre: **desacoplamiento**, es decir, si es posible crecer consumiendo menos recursos y emitiendo menos. Hay desacoplamiento relativo bien documentado —cada euro de PIB emite menos que hace treinta años— y la discusión seria está en si el absoluto llega a la velocidad necesaria. **Fíjate en que las dos posturas comparten el objetivo y discrepan sobre el medio**, así que la pregunta útil en clase no es «crecer sí o no», sino **qué tendría que ocurrir para que el crecimiento y las emisiones se separen de verdad, y a qué ritmo**.
+</VocesDesacuerdo>
+
 ## Glosario
 
 - **Demanda agregada (AD)**: cantidad total de bienes y servicios que todos los agentes desean comprar a cada nivel de precios; AD = C + I + G + (X − M).
@@ -548,3 +566,238 @@ Estas preguntas no tienen una respuesta única. Sirven para discutir en clase o 
     Simulación: cada grupo recibe un shock distinto en una tarjeta y debe explicar al resto qué curva desplaza, hacia dónde, qué pasa con P e Y a corto y largo plazo, y qué política aplicaría para suavizarlo. Duración: 45 min.
   </Fragment>
 </MirarFora>
+
+```deck
+- tipo: curriculum
+  eyebrow: "A qué responde esta unidad"
+  title: "El marco de la unidad"
+  saberes:
+    - "Bloque C: el modelo AD-AS."
+    - "Bloque C: ciclos económicos, expansión y recesión."
+  competencias:
+    - "Interpretar la realidad macroeconómica a partir del modelo AD-AS."
+- tipo: caso
+  eyebrow: "El caso"
+  title: "Un cuarto del PIB desaparecido en seis meses"
+  contexto: "En el primer semestre de 2020 la economía española se paró de golpe. Ningún ciclo económico clásico explicaba una caída y un rebote tan abruptos."
+  datos:
+    - "El PIB cayó un 22 % acumulado en seis meses."
+    - "El paro saltó por encima del 16 %."
+    - "Miles de empresas cerraron y los hogares perdieron ingresos de golpe."
+    - "A finales de 2021 casi se había recuperado el nivel previo."
+  pregunta: "Si el modelo AD-AS no explica del todo la COVID, ¿es porque el modelo es malo o porque el shock fue excepcional?"
+- tipo: section
+  title: La demanda agregada
+  subtitle: "El mismo dibujo de la Unidad 4, pero con otros ejes: el nivel general de precios y la producción real de toda la economía."
+- tipo: concept
+  eyebrow: AD = C + I + G + (X − M)
+  title: Por qué la AD baja cuando suben los precios
+  body: "La demanda agregada es todo lo que familias, empresas, sector público y resto del mundo quieren comprar a cada nivel de precios. Su composición es la del PIB por el método del gasto. Pero su pendiente negativa no se explica como la de una demanda micro: en el agregado todos los precios se mueven a la vez, así que no hay bienes sustitutivos a los que huir."
+  pull: Hacen falta tres mecanismos distintos, y ninguno de los tres da por sí solo la inclinación completa de la curva.
+- tipo: list
+  eyebrow: Los tres canales
+  title: Qué hace bajar la demanda cuando P sube
+  ordered: true
+  items:
+    - "Efecto riqueza (Pigou): el dinero y los bonos a tipo fijo pierden poder de compra y las familias recortan consumo."
+    - "Efecto tipo de interés (Keynes): hace falta más efectivo para las mismas compras, sube el tipo y caen inversión y crédito."
+    - "Efecto tipo de cambio (Mundell-Fleming): nuestros productos se encarecen frente a los de fuera, caen X y suben M."
+    - En una economía tan abierta como la española, con comercio exterior por encima del 70 % del PIB, el tercer canal pesa mucho.
+- tipo: list
+  eyebrow: Movimiento frente a desplazamiento
+  title: Qué mueve la curva AD entera
+  items:
+    - "C: renta disponible, expectativas, riqueza inmobiliaria, tipos reales, impuestos directos."
+    - "I: expectativas empresariales, coste de financiación, incentivos fiscales a la inversión."
+    - "G: decisiones discrecionales del gobierno, política fiscal expansiva o contractiva."
+    - "X − M: cómo van nuestros socios comerciales, tipo de cambio y competitividad."
+    - Si cambia P, nos movemos sobre la curva. Si cambia cualquiera de estos, la curva entera se desplaza.
+- tipo: section
+  title: La oferta agregada
+  subtitle: "Hay dos curvas de oferta, y solo separándolas se entiende por qué un shock de hoy puede no dejar rastro en el PIB dentro de cinco años."
+- tipo: terms
+  eyebrow: Dos horizontes, dos curvas
+  title: SRAS y LRAS
+  terms:
+    - t: SRAS, corto plazo
+      d: Pendiente positiva. Salarios de convenio, alquileres y suministros están fijados, así que si suben los precios de venta el margen crece y compensa producir más.
+    - t: LRAS, largo plazo
+      d: Vertical en la producción potencial. Cuando todos los costes se ajustan, lo que se produce solo depende del capital, del trabajo y de la tecnología disponibles.
+- tipo: diagram
+  diagrama: ADAS
+  caption: Las tres curvas en el plano P-Y. A la derecha de la potencial hay brecha inflacionista; a la izquierda, brecha recesiva.
+- tipo: list
+  eyebrow: Todo pasa por los costes
+  title: Qué desplaza la SRAS
+  items:
+    - Salarios que suben por encima de la productividad, por convenio o por SMI.
+    - Energía y materias primas, el canal más rápido y más visible en la factura.
+    - Impuestos sobre la producción y cotizaciones empresariales.
+    - Una depreciación del euro, que encarece todo lo que importamos.
+    - Expectativas de inflación, que llevan a fijar precios más altos hoy por lo que se espera mañana.
+- tipo: section
+  title: Equilibrio y shocks
+  subtitle: Un shock es un cambio inesperado que desplaza una curva. Cruzando demanda u oferta con positivo o negativo salen cuatro casos.
+- tipo: table
+  eyebrow: El cuadro que hay que saber de memoria
+  title: Los cuatro shocks y su efecto a corto plazo
+  head:
+    - Shock
+    - P
+    - Y
+    - Ejemplo
+  rows:
+    - - Demanda positivo
+      - Sube
+      - Sube
+      - Plan de inversión pública, bajada de tipos
+    - - Demanda negativo
+      - Baja
+      - Baja
+      - Derrumbe de la confianza, ajuste presupuestario
+    - - Oferta positivo
+      - Baja
+      - Sube
+      - Petróleo barato, salto tecnológico
+    - - Oferta negativo
+      - Sube
+      - Baja
+      - Crisis energética, rotura de suministros
+  caption: "A largo plazo los shocks de demanda solo dejan huella en los precios: la economía vuelve a su producción potencial."
+- tipo: concept
+  eyebrow: El caso más temido
+  title: Estanflación, o cuando las dos variables van en direcciones opuestas
+  body: "Un shock negativo de oferta sube los precios y hunde la producción a la vez. Es la pesadilla del banco central, porque los dos remedios se estorban: si sube tipos para frenar la inflación, profundiza la recesión; si los baja para reactivar, alimenta la inflación. Fue el rasgo de los años setenta tras los dos shocks del petróleo y volvió en 2022 con la invasión rusa de Ucrania."
+  pull: No hay respuesta buena ante un shock de oferta. Solo hay una elección sobre qué variable se sacrifica y durante cuánto tiempo.
+- tipo: figure
+  src: eco-1bach/08/pozo-petroleo.jpg
+  alt: Caballito de bombeo extrayendo petróleo junto al flanco de un anticlinal, recortado sobre un cielo azul intenso.
+  title: El desplazamiento que se ve en la factura
+  caption: Cuando el Brent pasó de 75 a 120 dólares entre marzo y agosto de 2022, la SRAS europea se desplazó entera hacia la izquierda.
+  credit: "Foto: Michael C. Rygel, CC BY-SA 3.0 vía Wikimedia Commons"
+- tipo: exercise
+  title: Leer el shock energético de 2022 con el modelo
+  enunciado: "Tras febrero de 2022 el gas TTF se multiplicó por seis y el Brent pasó de 75 a 120 dólares. El IPC español subió del 5,8 % al 10,8 % interanual en cinco meses. El BCE llevó el tipo de refinanciación del 0 % al 4,5 % entre julio de 2022 y septiembre de 2023. Analiza el episodio con el AD-AS."
+  pasos:
+    - Clasifica el shock y di hacia qué lado se desplaza qué curva.
+    - Deduce del gráfico qué debería pasar con P y con Y, y contrástalo con los datos.
+    - Traduce la subida de tipos del BCE a un desplazamiento de curva.
+    - Explica qué variable está sacrificando el BCE y a cambio de qué.
+    - Valora si la respuesta fue coherente con el mandato del banco central.
+- tipo: quiz
+  eyebrow: Comprueba que lo has pillado
+  pregunta: El Gobierno aprueba una rebaja del IVA de la electricidad que reduce el coste energético de las empresas. ¿Qué predice el modelo AD-AS a corto plazo?
+  opciones:
+    - Sube P y sube Y, porque es un shock positivo de demanda
+    - Baja P y sube Y, porque la SRAS se desplaza hacia la derecha
+    - Sube P y baja Y, porque encarece la producción
+    - No cambia nada, porque los impuestos no entran en el modelo
+  correcta: "1"
+  explicacion: "Abaratar un coste desplaza la oferta de corto plazo a la derecha. Es el único caso en que precios y producción se mueven a la vez en la dirección deseada: por eso se le llama el sueño macroeconómico."
+- tipo: section
+  title: El ciclo económico
+  subtitle: Las economías reales no se quedan quietas. Combinan una tendencia creciente con oscilaciones recurrentes a su alrededor.
+- tipo: diagram
+  diagrama: CicloEconomico
+  caption: Las cuatro fases alrededor del PIB potencial. La datación oficial la hacen el NBER en EE. UU. y el CEPR en Europa.
+- tipo: list
+  eyebrow: Un ciclo completo
+  title: Las cuatro fases y cómo se reconocen
+  ordered: true
+  items:
+    - "Expansión: el PIB real crece varios trimestres, el paro baja y la inflación repunta moderadamente."
+    - "Recesión: el PIB cae al menos dos trimestres seguidos, regla práctica y no definición oficial, y el paro sube."
+    - "Depresión: recesión larga y profunda. El siglo XX solo dejó dos casos claros: 1929-1933 y el Japón de los noventa."
+    - "Recuperación: el PIB vuelve a crecer y las expectativas se reanclan hasta cerrar la brecha de producción."
+- tipo: figure
+  src: eco-1bach/08/madrid-preciados-covid.jpg
+  alt: La calle Preciados de Madrid completamente desierta el 22 de marzo de 2020, con todos los escaparates cerrados durante el confinamiento.
+  title: Preciados, 22 de marzo de 2020
+  caption: "El shock atípico que fue de demanda y de oferta a la vez: consumo y turismo parados, y cadenas de suministro rotas."
+  credit: "Foto: Nemo, CC BY-SA 4.0 vía Wikimedia Commons"
+- tipo: list
+  eyebrow: España 2008-2026
+  title: Un ciclo de manual en dieciocho años
+  items:
+    - "2008-2009: estalla la burbuja inmobiliaria, el PIB cae un 3,8 % y el paro se duplica del 8 % al 18 %."
+    - "2012-2013: crisis de deuda soberana, prima de riesgo en 638 puntos, rescate bancario y paro del 26,9 %."
+    - "2014-2019: seis años de expansión con reforma laboral, petróleo barato y compras de deuda del BCE."
+    - "2020: la COVID hunde el PIB un 10,8 %, la mayor caída en tiempos de paz."
+    - "2021-2026: fondos europeos y récord turístico. El nivel pre-COVID se recupera en el segundo trimestre de 2024."
+- tipo: section
+  title: Crecimiento a largo plazo
+  subtitle: "Hasta aquí, fluctuaciones alrededor de la potencial. La pregunta de fondo es otra: qué determina el nivel de esa potencial."
+- tipo: figure
+  src: eco-1bach/08/robert-solow.jpg
+  alt: Retrato fotográfico del economista estadounidense Robert Solow, del MIT, en un acto académico.
+  title: Robert Solow (1924-2023)
+  caption: Su modelo de 1956 demostró que el motor último del crecimiento per cápita no es acumular capital, sino el cambio técnico.
+  credit: "Foto: Olaf Storbeck, CC BY-SA 2.0 vía Wikimedia Commons"
+- tipo: concept
+  eyebrow: "Y = A · F(K, L)"
+  title: Tres motores, y solo uno aguanta a largo plazo
+  body: "La producción depende del capital físico, del trabajo y de un parámetro que recoge la productividad total de los factores: tecnología, organización, instituciones, capital humano. Capital y trabajo tienen rendimientos decrecientes, así que a la larga solo la productividad sostiene el crecimiento per cápita. Y no se mide directamente: se obtiene como residuo."
+  pull: Solow encontró que en EE. UU. entre 1909 y 1949 cerca del 80 % del crecimiento por trabajador venía de ese residuo.
+- tipo: diagram
+  diagrama: DescomposicionSolow
+  caption: La contabilidad del crecimiento reparte el aumento del PIB entre capital, trabajo y la productividad que queda como residuo.
+- tipo: list
+  eyebrow: El diagnóstico incómodo
+  title: Por qué España crece a lo ancho y no a lo alto
+  items:
+    - "La PTF española creció menos del 0,5 % anual entre 2000 y 2024, frente al 1 % de la zona euro."
+    - "Tejido de microempresas: las de menos de diez empleados son cerca del 95 % del total."
+    - Especialización en hostelería, comercio minorista y construcción, sectores de baja productividad por hora.
+    - "Inversión en I+D del 1,49 % del PIB, frente al 2,2 % de media en la UE y el 3,5 % de Alemania."
+    - Barreras de entrada en sectores regulados que reducen la presión competitiva y el incentivo a innovar.
+- tipo: section
+  title: Desarrollo y distribución
+  subtitle: Dos economías con el mismo PIB per cápita pueden vivir muy distinto según cómo se reparta esa renta y en qué se traduzca.
+- tipo: figure
+  src: eco-1bach/08/amartya-sen.jpg
+  alt: Retrato fotográfico del economista Amartya Sen durante una conferencia del ciclo Fronteiras do Pensamento en São Paulo.
+  title: Amartya Sen, Nobel 1998
+  caption: Su teoría de las capacidades reales para llevar la vida que uno valora dio el marco filosófico al IDH del PNUD.
+  credit: "Foto: Fronteiras do Pensamento, CC BY-SA 2.0 vía Wikimedia Commons"
+- tipo: concept
+  eyebrow: PNUD, desde 1990
+  title: El IDH obliga a destacar en las tres cosas a la vez
+  body: El Índice de Desarrollo Humano combina salud (esperanza de vida), educación (años de escolarización medios y esperados) y renta (RNB per cápita en paridad de poder adquisitivo, en escala logarítmica). Como es una media geométrica, no se compensa una renta enorme con una sanidad colapsada. España ronda el puesto 27 con un IDH de 0,911.
+  pull: Nació de una crítica explícita al PIB. El primer informe, de Mahbub ul Haq y Amartya Sen, abría diciendo que la riqueza real de una nación es su gente.
+- tipo: diagram
+  diagrama: CurvaLorenz
+  caption: Ordenamos la población de menor a mayor renta. Cuanto más se hunde la curva bajo la diagonal, mayor es la desigualdad.
+- tipo: table
+  eyebrow: Índice de Gini, en torno a 2022
+  title: Dónde está España en el reparto
+  head:
+    - País
+    - Gini
+    - Lectura
+  rows:
+    - - Suecia y Países Bajos
+      - "0,28"
+      - De los más igualitarios de la OCDE
+    - - Alemania y Francia
+      - "0,29-0,30"
+      - Núcleo continental europeo
+    - - España e Italia
+      - "0,33"
+      - Zona media-alta de la UE
+    - - Estados Unidos
+      - "0,41"
+      - La más desigual de las avanzadas
+    - - Brasil y Sudáfrica
+      - "0,52-0,63"
+      - De las mayores desigualdades del mundo
+  caption: Fuentes de Eurostat, INE, OCDE y Banco Mundial. En España el Gini subió de 0,32 a 0,35 durante la doble recesión.
+- tipo: recap
+  eyebrow: "Repasa"
+  title: "Antes de cerrar la unidad"
+  items:
+    - "Sabrías dibujar el modelo AD-AS con sus tres curvas y justificar la pendiente de cada una."
+    - "Sabrías analizar los cuatro shocks sobre precios y producción a corto y a largo plazo."
+    - "Sabrías nombrar las cuatro fases del ciclo y aplicarlas a España entre 2008 y 2024."
+    - "Sabrías separar crecimiento (PIB per cápita) de desarrollo (IDH) y citar los factores de Solow."
+    - "Sabrías leer una curva de Lorenz y calcular el índice de Gini con datos sencillos."
+```
