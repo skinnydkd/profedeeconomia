@@ -99,6 +99,7 @@ describe('subject colours reach the CSS layer', () => {
     const missing = colors.flatMap((c) => [
       css.includes(`--color-${c}:`) ? [] : [`--color-${c}`],
       css.includes(`--color-${c}-soft:`) ? [] : [`--color-${c}-soft`],
+      css.includes(`--color-${c}-ink:`) ? [] : [`--color-${c}-ink`],
     ].flat());
     expect(missing).toEqual([]);
   });
