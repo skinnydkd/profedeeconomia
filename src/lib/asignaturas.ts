@@ -193,7 +193,7 @@ export const ASIGNATURAS: Record<AsignaturaSlug, Asignatura> = {
     modalidad: 'Optativa (1.º o 2.º)',
     etapa: 'bach',
     curso: 'bach',
-    estado: 'proximamente',
+    estado: 'publicado',
   },
 };
 
