@@ -180,6 +180,28 @@ export const ASIGNATURAS: Record<AsignaturaSlug, Asignatura> = {
   },
 };
 
+/**
+ * Print-only accent hexes. The PDF routes render through paged.js inside their
+ * own <style>, where the `var(--color-*)` tokens from global.css are out of
+ * scope, so the palette has to be repeated here as literals.
+ *
+ * Typed as a *total* Record over the colour union on purpose: adding a colour
+ * to `Asignatura['color']` without adding it here is a compile error, rather
+ * than a PDF that silently prints in EDMN terracotta.
+ */
+export const ACCENTS: Record<Asignatura['color'], { base: string; deep: string; soft: string }> = {
+  edmn:    { base: '#C44E2C', deep: '#9C3A1C', soft: '#FBE3D6' },
+  eco1:    { base: '#1F6E6E', deep: '#164F4F', soft: '#DBEDED' },
+  eco4:    { base: '#D4A24C', deep: '#A87A2A', soft: '#F5E5BC' },
+  fopp:    { base: '#5B3A4E', deep: '#46293A', soft: '#ECDCE5' },
+  taller3: { base: '#6B8E23', deep: '#4F6B18', soft: '#E4ECD2' },
+  ipe1:    { base: '#4A6FA5', deep: '#36527D', soft: '#DCE5F0' },
+  ipe2:    { base: '#2F4F7F', deep: '#22395C', soft: '#D5DEEB' },
+  eeae:    { base: '#2E5E3A', deep: '#234A2D', soft: '#D9E6DC' },
+  gpe:     { base: '#8C2F39', deep: '#6E2530', soft: '#F1DADD' },
+  proximamente: { base: '#6E5A47', deep: '#5C4A3D', soft: '#EFE2CB' },
+};
+
 export const ASIGNATURAS_LIST: Asignatura[] = ASIGNATURA_SLUGS.map((s) => ASIGNATURAS[s]);
 
 /** Solament les asignatures publicades, per a navegació pública i grids. */

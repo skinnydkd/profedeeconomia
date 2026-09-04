@@ -3,7 +3,7 @@
  * Print-ready EBAU/PAU preparation workbook (pagedjs-cli → PDF).
  * Several ordered sections per subject; reuses the editorial print system.
  */
-import { ASIGNATURAS, type AsignaturaSlug } from '@/lib/asignaturas';
+import { ACCENTS, ASIGNATURAS, type AsignaturaSlug } from '@/lib/asignaturas';
 import { getCollection, render } from 'astro:content';
 import { getLocale } from '@/i18n/locale';
 import { pickLocalizedEntry } from '@/i18n/content-locale';
@@ -40,15 +40,7 @@ const copy = {
   ca: { header: 'Preparació EBAU', coverTitlePre: 'Preparació', editorial: 'Editorial', prueba: 'Prova', generado: 'Generat' },
 }[locale];
 
-const ACCENTS: Record<string, { base: string; deep: string; soft: string }> = {
-  edmn: { base: '#C44E2C', deep: '#9C3A1C', soft: '#FBE3D6' },
-  eco1: { base: '#1F6E6E', deep: '#164F4F', soft: '#DBEDED' },
-  eco4: { base: '#D4A24C', deep: '#A87A2A', soft: '#F5E5BC' },
-  fopp: { base: '#5B3A4E', deep: '#46293A', soft: '#ECDCE5' },
-  eeae: { base: '#2E5E3A', deep: '#234A2D', soft: '#D9E6DC' },
-  gpe:  { base: '#8C2F39', deep: '#6E2530', soft: '#F1DADD' },
-};
-const accent = ACCENTS[a.color] ?? ACCENTS.edmn;
+const accent = ACCENTS[a.color];
 ---
 
 <!doctype html>
