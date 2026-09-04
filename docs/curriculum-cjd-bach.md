@@ -1,6 +1,6 @@
 # Currículum oficial — CJD Bach (Cultura Jurídica i Democràtica, Batxillerat)
 
-> Currículum **autonòmic valencià** de la matèria CJD per al rebranding de profedeeconomia.es. Marc legal de referència: **Decret 108/2022, de 5 d'agost, del Consell**, pel qual s'establixen l'ordenació i el currículum de Batxillerat a la Comunitat Valenciana. **CJD NO té equivalent estatal** (no apareix al RD 243/2022): és una optativa pròpia de la CV, igual que GPE. La font primària i única és, doncs, l'annex curricular de la matèria publicat per la Conselleria (CEICE/DOGV). Aquest document s'ha extret i verificat contra la versió en castellà del PDF; també existeix versió en valencià (vegeu §7. Fonts).
+> Currículum **autonòmic valencià** de la matèria CJD per al rebranding de profedeeconomia.es. Marc legal de referència: **Decret 108/2022, de 5 d'agost, del Consell**, pel qual s'establixen l'ordenació i el currículum de Batxillerat a la Comunitat Valenciana. **CJD NO té equivalent estatal** (no apareix al RD 243/2022): és una optativa pròpia de la CV, igual que GPE. La font primària i única és, doncs, l'annex curricular de la matèria publicat per la Conselleria (CEICE/DOGV). Aquest document s'ha extret i verificat contra la versió en castellà del PDF; també existeix versió en valencià (vegeu §8. Fonts).
 
 ## 1. Identificació de la matèria
 
