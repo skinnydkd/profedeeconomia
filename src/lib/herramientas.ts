@@ -17,7 +17,7 @@ export const COMPONENTE_KEYS = [
   'TasasEPA', 'MatrizDecision', 'FPP', 'Externalidad', 'MultiplicadorBancario',
   'VentajaComparativa', 'CuentaResultados', 'CosteContratacion', 'MarketingCliente',
   'Tesoreria', 'TamanoMercado', 'CompraInteligente', 'EmbudoValidacion', 'Semana168',
-  'PIBReal', 'FormaJuridica', 'ClasificaEmpresa', 'ObjetivosSMART', 'HuellaDigital',
+  'PIBReal', 'FormaJuridica', 'ClasificaEmpresa', 'ObjetivosSMART', 'HuellaDigital', 'RolesEquipo', 'AfirmacionSostenible',
 ] as const;
 export type ComponenteKey = typeof COMPONENTE_KEYS[number];
 
@@ -61,6 +61,8 @@ export const HERRAMIENTAS: Herramienta[] = [
   { componente: 'PresupuestoUni',     slug: 'presupuesto-universidad', title: 'Presupuesto para la universidad',   familia: 'finanzas-personales', orden: 3, tipo: 'calculadora', descripcion: 'Estima el coste de estudiar fuera y cómo financiarlo.', competencias_clave: ['STEM', 'CPSAA', 'CD'], competencias_especificas: [] },
   { componente: 'Presupuesto503020',  slug: 'presupuesto-50-30-20',title: 'Presupuesto 50/30/20',                  familia: 'finanzas-personales', orden: 4, tipo: 'calculadora', descripcion: 'Reparte unos ingresos entre necesidades, deseos y ahorro.', competencias_clave: ['STEM', 'CPSAA', 'CD'], competencias_especificas: [] },
   { componente: 'CocheVsAlternativa', slug: 'coche-vs-alternativa',title: '¿Coche propio o alternativas?',         familia: 'finanzas-personales', orden: 5, tipo: 'calculadora', descripcion: 'Compara el coste real del coche frente a otras opciones de movilidad.', competencias_clave: ['STEM', 'CPSAA', 'CD'], competencias_especificas: [] },
+  { componente: 'AfirmacionSostenible', slug: 'afirmacion-sostenible', title: 'Analizador de afirmaciones de sostenibilidad', familia: 'estrategia-planificacion', orden: 10, tipo: 'plantilla', descripcion: 'Siete preguntas para saber si una afirmación verde se puede comprobar. No dice si es cierta: dice si es verificable.', competencias_clave: ['CC', 'CD', 'CE'], competencias_especificas: [] },
+  { componente: 'RolesEquipo',        slug: 'roles-de-equipo',     title: 'Cobertura de papeles del equipo',       familia: 'orientacion-fp',      orden: 8, tipo: 'plantilla',   descripcion: 'Qué papeles cubre un equipo y cuáles no cubre nadie, a partir de la autovaloración de sus miembros.', competencias_clave: ['CPSAA', 'CCL', 'CE'], competencias_especificas: [] },
   { componente: 'HuellaDigital',      slug: 'huella-digital',      title: 'Auditoría de huella digital',           familia: 'orientacion-fp',      orden: 7, tipo: 'plantilla',   descripcion: 'Lista de acciones concretas sobre acceso, privacidad, reputación y derechos, ordenada por lo que más quita de en medio.', competencias_clave: ['CD', 'CPSAA', 'CC'], competencias_especificas: [] },
   { componente: 'ObjetivosSMART',     slug: 'objetivos-smart',     title: 'Comprobador de objetivos SMART',        familia: 'orientacion-fp',      orden: 6, tipo: 'plantilla',   descripcion: 'Revisa si un objetivo cumple las cinco letras y calcula el ritmo semanal que exige.', competencias_clave: ['CPSAA', 'STEM', 'CCL'], competencias_especificas: [] },
   { componente: 'RIASEC',             slug: 'test-riasec',         title: 'Test de intereses RIASEC',              familia: 'orientacion-fp',      orden: 1, tipo: 'test',        descripcion: 'Identifica perfiles de interés profesional (modelo RIASEC).', competencias_clave: ['CPSAA', 'CE'], competencias_especificas: [] },

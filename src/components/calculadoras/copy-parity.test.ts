@@ -40,6 +40,8 @@ import { COPY as FormaJuridica } from './FormaJuridicaCalc';
 import { COPY as ClasificaEmpresa } from './ClasificaEmpresaCalc';
 import { COPY as ObjetivosSMART } from './ObjetivosSMARTCalc';
 import { COPY as HuellaDigital } from './HuellaDigitalCalc';
+import { COPY as RolesEquipo } from './RolesEquipoCalc';
+import { COPY as AfirmacionSostenible } from './AfirmacionSostenibleCalc';
 
 /**
  * Every localized island exports a `COPY = { es, ca }`. This guard fails when a
@@ -90,6 +92,8 @@ const ISLANDS: [string, { es: Record<string, unknown>; ca: Record<string, unknow
   ['ClasificaEmpresaCalc', ClasificaEmpresa],
   ['ObjetivosSMARTCalc', ObjetivosSMART],
   ['HuellaDigitalCalc', HuellaDigital],
+  ['RolesEquipoCalc', RolesEquipo],
+  ['AfirmacionSostenibleCalc', AfirmacionSostenible],
 ];
 
 const isRecord = (v: unknown): v is Record<string, unknown> =>
