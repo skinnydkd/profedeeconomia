@@ -62,9 +62,11 @@ export function buildLessons(s: GameState): string[] {
   // 4. A company on the board disappeared.
   if (s.deaths.length > 0) {
     const names = s.deaths.map((id) => assetMeta[id].realName).join(' y ');
+    const many = s.deaths.length > 1;
     out.push(
-      `${names} desapareció durante tu partida. No quebró por sorpresa: quebró después de ` +
-      'años de señales que casi nadie quiso leer a tiempo.',
+      `${names} ${many ? 'desaparecieron' : 'desapareció'} durante tu partida. ` +
+      `No ${many ? 'quebraron' : 'quebró'} por sorpresa: ${many ? 'quebraron' : 'quebró'} ` +
+      'después de años de señales que casi nadie quiso leer a tiempo.',
     );
   }
 

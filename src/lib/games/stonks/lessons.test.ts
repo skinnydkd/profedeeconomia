@@ -86,3 +86,19 @@ describe('buildLessons', () => {
     expect(l.length).toBeGreaterThanOrEqual(3);
   });
 });
+
+describe('the sentence about companies that disappeared', () => {
+  it('agrees in the singular for one company', () => {
+    const l = buildLessons(finished({ deaths: ['e_enron'] })).join(' ');
+    expect(l).toContain('Enron desapareció durante tu partida');
+    expect(l).toContain('No quebró por sorpresa');
+  });
+
+  it('agrees in the plural for two — a run can kill more than one', () => {
+    const l = buildLessons(finished({ deaths: ['e_enron', 'e_terra'] })).join(' ');
+    expect(l).toContain('Enron y Terra desaparecieron durante tu partida');
+    expect(l).toContain('No quebraron por sorpresa');
+    expect(l).not.toContain('desapareció');
+    expect(l).not.toContain('No quebró');
+  });
+});

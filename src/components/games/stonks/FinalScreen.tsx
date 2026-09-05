@@ -12,9 +12,9 @@ export const COPY = {
   es: {
     eyebrow: (from: number, to: number) => `${from} — ${to} · ${WINDOW_YEARS} años`,
     verdictPre: 'Has',
-    won: 'ganado al',
+    won: 'ganado a',
     lost: 'perdido contra',
-    verdictPost: 'Mercado',
+    verdictPost: '«El Mercat»',
     patrimonio: 'Tu patrimonio',
     ai: '«El Mercat»',
     settle: 'Cifras después de liquidar y pagar los impuestos sobre las plusvalías.',
@@ -30,9 +30,9 @@ export const COPY = {
   ca: {
     eyebrow: (from: number, to: number) => `${from} — ${to} · ${WINDOW_YEARS} anys`,
     verdictPre: 'Has',
-    won: 'guanyat al',
+    won: 'guanyat a',
     lost: 'perdut contra',
-    verdictPost: 'Mercat',
+    verdictPost: '«El Mercat»',
     patrimonio: 'El teu patrimoni',
     ai: '«El Mercat»',
     settle: 'Xifres després de liquidar i pagar els impostos sobre les plusvàlues.',
