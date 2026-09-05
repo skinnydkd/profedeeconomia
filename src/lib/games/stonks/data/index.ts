@@ -17,3 +17,5 @@ export const ALLOCATION_MAX = 100;
 
 /** What «El Mercat» buys: the world, not one country's stock market. */
 export const INDEX_ASSET = 'mundial' as const;
+
+export * from './news';
