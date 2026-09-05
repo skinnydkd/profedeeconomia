@@ -14,6 +14,11 @@ export const LIFE_EVENTS: LifeEvent[] = [
   { id: 'reforma',    text: 'Reparación en casa.',                 amount: -2500 },
   { id: 'dental',     text: 'Gasto dental imprevisto.',            amount: -1000 },
   { id: 'viaje',      text: 'Viaje inesperado.',                   amount: -1800 },
+  // Bigger than a semester's income on purpose: without an expense that income
+  // cannot absorb, nothing ever forces a sale and the game can never show what
+  // happens to someone with no cash cushion.
+  { id: 'paro',       text: 'Te quedas sin trabajo varios meses.',  amount: -6000 },
+  { id: 'derrama',    text: 'Derrama extraordinaria del edificio.', amount: -4500 },
   { id: 'paga',       text: 'Paga extra de Navidad.',              amount:  2000 },
   { id: 'herencia',   text: 'Herencia familiar.',                  amount:  8000 },
   { id: 'loteria',    text: '¡Premio de lotería!',                 amount:  5000 },
