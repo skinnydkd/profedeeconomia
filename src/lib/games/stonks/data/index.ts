@@ -19,3 +19,4 @@ export const ALLOCATION_MAX = 100;
 export const INDEX_ASSET = 'mundial' as const;
 
 export * from './news';
+export * from './cards';
