@@ -40,9 +40,11 @@ export const ASSETS: AssetMeta[] = [
     risk: 'extrema', group: 'empresa', fromYear: 1994, fromHalf: 0 },
 
   // Terra was absorbed by its parent in 2005 at a price that bore no relation
-  // to its 2000 peak: a near-total loss, but not a zero like the other two.
+  // to its 2000 peak. The -95 % collapse is already spread across the 2000-2004
+  // annual series, so the final semester only carries the last leg and the
+  // buy-out discount — charging the whole crash again here would double-count it.
   { id: 'e_terra',   label: 'Portal de internet',     profile: 'España · sale a bolsa en 1999',  realName: 'Terra',
-    risk: 'extrema', group: 'empresa', fromYear: 1999, fromHalf: 1, untilYear: 2005, untilHalf: 1, finalReturn: -0.92 },
+    risk: 'extrema', group: 'empresa', fromYear: 1999, fromHalf: 1, untilYear: 2005, untilHalf: 1, finalReturn: -0.35 },
   { id: 'e_enron',   label: 'Energía',                profile: 'EE. UU. · cotiza desde 1986',    realName: 'Enron',
     risk: 'extrema', group: 'empresa', fromYear: 1986, fromHalf: 0, untilYear: 2001, untilHalf: 1, finalReturn: -1 },
   { id: 'e_popular', label: 'Banca',                  profile: 'España · cotiza desde 1971',     realName: 'Banco Popular',

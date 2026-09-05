@@ -43,10 +43,13 @@ describe('asset catalogue', () => {
   });
 
   it('wipes out Enron and Banco Popular but not Terra, which was absorbed', () => {
+    // Enron's and Banco Popular's shares really were cancelled at zero.
     expect(assetMeta.e_enron.finalReturn).toBe(-1);
     expect(assetMeta.e_popular.finalReturn).toBe(-1);
+    // Terra was bought out. Its collapse lives in the annual series from 2000
+    // onwards, so the final semester must NOT repeat it.
     expect(assetMeta.e_terra.finalReturn).toBeGreaterThan(-1);
-    expect(assetMeta.e_terra.finalReturn).toBeLessThan(-0.8);
+    expect(assetMeta.e_terra.finalReturn).toBeLessThan(-0.2);
   });
 
   it('keeps stars and doomed companies disjoint', () => {
