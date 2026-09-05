@@ -1,106 +1,152 @@
 // src/lib/games/stonks/engine.test.ts
 import { describe, it, expect } from 'vitest';
 import {
-  createInitialState, unlockedAssets, allocationSum, isAllocationValid,
-  netWorth, advanceYear, isFinished, currentYear,
+  drawWindow, drawStocks, createInitialState, currentYear, currentHalf, availableAssets,
+  FIRST_START_YEAR, LAST_START_YEAR, WINDOW_YEARS, TOTAL_ROUNDS,
 } from './engine';
-import { INITIAL_CASH, INCOME_PER_ROUND, YEARS, TOTAL_ROUNDS } from './data';
+import { STAR_STOCKS, assetMeta } from './data/assets';
+import type { GameState, StockId } from './types';
 
-const noEvents = () => 1; // rng returning 1 => no life event (>= LIFE_EVENT_CHANCE)
+/** Deterministic RNG: replays the sequence, then repeats its last value. */
+const seq = (values: number[]) => {
+  let i = 0;
+  return () => values[Math.min(i, values.length - 1)] ?? 0;
+};
 
-describe('engine', () => {
-  it('starts at round 0, year 2000, all cash, no holdings', () => {
-    const s = createInitialState();
-    expect(s.round).toBe(0);
-    expect(currentYear(s)).toBe(YEARS[0]);
-    expect(s.cash).toBe(INITIAL_CASH);
-    expect(netWorth(s)).toBe(INITIAL_CASH);
-    expect(s.phase).toBe('start');
-  });
-
-  it('unlocks only round-appropriate assets', () => {
-    expect(unlockedAssets(0).map((a) => a.id)).toEqual(['ahorro', 'deposito']);
-    expect(unlockedAssets(3).map((a) => a.id)).toContain('ibex');
-    expect(unlockedAssets(8).map((a) => a.id)).toContain('bitcoin');
-  });
-
-  it('validates the allocation sums to 100 over unlocked assets', () => {
-    const s = createInitialState();
-    s.allocation = { ...s.allocation, ahorro: 50, deposito: 50 };
-    expect(allocationSum(s)).toBe(100);
-    expect(isAllocationValid(s)).toBe(true);
-    s.allocation = { ...s.allocation, ahorro: 40 };
-    expect(isAllocationValid(s)).toBe(false);
-  });
-
-  it('advanceYear invests net worth by allocation then applies that year return', () => {
-    const s = createInitialState();
-    s.phase = 'allocate';
-    s.allocation = { ...s.allocation, ahorro: 0, deposito: 100 };
-    const before = netWorth(s); // 5000
-    const next = advanceYear(s, noEvents);
-    // year-2000 deposito return (+4%): 5000*1.04 = 5200, plus INCOME_PER_ROUND (3000) = 8200 net worth
-    expect(next.round).toBe(1);
-    expect(next.cash + Object.values(next.holdings).reduce((a, b) => a + b, 0)).toBeGreaterThan(before);
-    expect(next.lastEvent).toBeNull();
-    expect(netWorth(next)).toBeCloseTo(8200, 2);
-  });
-
-  it('adds income each advanced year', () => {
-    const s = createInitialState();
-    s.phase = 'allocate';
-    s.allocation = { ...s.allocation, ahorro: 100, deposito: 0 };
-    const next = advanceYear(s, noEvents);
-    // ahorro ~0 return; net worth should be ~ initial*(1+ahorro2000) + income
-    expect(netWorth(next)).toBeGreaterThanOrEqual(INITIAL_CASH + INCOME_PER_ROUND - 1);
-  });
-
-  it('applies a life event when rng triggers it', () => {
-    const s = createInitialState();
-    s.phase = 'allocate';
-    s.allocation = { ...s.allocation, ahorro: 100, deposito: 0 };
-    const next = advanceYear(s, () => 0); // 0 < chance => event fires
-    expect(next.lastEvent).not.toBeNull();
-  });
-
-  it('asset with null return that year keeps its value unchanged', () => {
-    const s = createInitialState();
-    s.round = 8;            // year 2008, bitcoin unlocked but MARKET_DATA[2008].bitcoin === null
-    s.phase = 'allocate';
-    s.cash = 0;
-    s.holdings = { ...s.holdings, bitcoin: 1000 };
-    s.allocation = { ...s.allocation };
-    for (const a of unlockedAssets(8)) s.allocation[a.id] = 0;
-    s.allocation.bitcoin = 100;
-    const next = advanceYear(s, () => 1); // no event
-    expect(next.holdings.bitcoin).toBeCloseTo(1000, 2); // net worth 1000 → 100% bitcoin → null return → unchanged
-  });
-
-  it('life event cannot push cash below zero', () => {
-    const s = createInitialState();
-    s.phase = 'allocate';
-    s.allocation = { ...s.allocation, ahorro: 100, deposito: 0 };
-    // Force the medico event (amount: -3000) which exceeds INCOME_PER_ROUND (3000).
-    // rng call 1: triggers the event (0 < LIFE_EVENT_CHANCE = 0.3).
-    // rng call 2: selects medico (index 1 in LIFE_EVENTS, length 14) → floor(1/14 * 14) = 1.
-    const rng = (() => {
-      let call = 0;
-      return () => { call++; return call === 1 ? 0 : 1 / 14; };
-    })();
-    const next = advanceYear(s, rng);
-    expect(next.lastEvent).not.toBeNull();
-    expect(next.cash).toBeGreaterThanOrEqual(0);
-  });
-
-  it('records history and finishes after TOTAL_ROUNDS', () => {
-    let s = createInitialState();
-    s.phase = 'allocate';
-    for (let i = 0; i < TOTAL_ROUNDS; i++) {
-      s.allocation = { ...s.allocation, ...Object.fromEntries(unlockedAssets(s.round).map((a, idx, arr) => [a.id, idx === 0 ? 100 - (arr.length - 1) * Math.floor(100 / arr.length) : Math.floor(100 / arr.length)])) };
-      s = advanceYear(s, noEvents);
+describe('drawWindow', () => {
+  it('always yields a 25-year window ending in 2025 or earlier', () => {
+    for (let i = 0; i < 500; i++) {
+      const y = drawWindow(Math.random);
+      expect(y).toBeGreaterThanOrEqual(FIRST_START_YEAR);
+      expect(y).toBeLessThanOrEqual(LAST_START_YEAR);
+      expect(y + WINDOW_YEARS - 1).toBeLessThanOrEqual(2025);
     }
-    expect(isFinished(s)).toBe(true);
-    expect(s.phase).toBe('finished');
-    expect(s.history.length).toBe(TOTAL_ROUNDS);
+  });
+
+  it('reaches both ends of the range', () => {
+    expect(drawWindow(seq([0]))).toBe(FIRST_START_YEAR);
+    expect(drawWindow(seq([0.999999]))).toBe(LAST_START_YEAR);
+  });
+});
+
+describe('drawStocks', () => {
+  it('draws five companies without repeats', () => {
+    for (let i = 0; i < 200; i++) {
+      const picked = drawStocks(2001, Math.random);
+      expect(picked).toHaveLength(5);
+      expect(new Set(picked).size).toBe(5);
+    }
+  });
+
+  it('only draws companies that trade inside the window', () => {
+    for (let i = 0; i < 200; i++) {
+      const start = drawWindow(Math.random);
+      for (const id of drawStocks(start, Math.random)) {
+        expect(assetMeta[id].fromYear, `${id} in ${start}`).toBeLessThanOrEqual(start + WINDOW_YEARS - 1);
+      }
+    }
+  });
+
+  it('always includes a star when one is reachable', () => {
+    for (let i = 0; i < 200; i++) {
+      const picked = drawStocks(1990, Math.random);
+      expect(picked.some((s) => STAR_STOCKS.includes(s)), picked.join()).toBe(true);
+    }
+  });
+
+  it('includes a company that actually dies inside the window when one exists', () => {
+    // 1995-2019 contains the deaths of Terra (2005) and Banco Popular (2017).
+    for (let i = 0; i < 200; i++) {
+      const picked = drawStocks(1995, Math.random);
+      const dies = picked.some((s) => {
+        const u = assetMeta[s].untilYear;
+        return u !== undefined && u >= 1995 && u <= 2019;
+      });
+      expect(dies, picked.join()).toBe(true);
+    }
+  });
+
+  it('does not force a death when none can happen in the window', () => {
+    // 1971-1995: every doomed company outlives the window. The guarantee must
+    // decay rather than loop or throw.
+    for (let i = 0; i < 50; i++) {
+      const picked = drawStocks(1971, Math.random);
+      expect(picked.length).toBeGreaterThan(0);
+      expect(picked.length).toBeLessThanOrEqual(5);
+    }
+  });
+
+  it('returns every candidate when exactly five are reachable', () => {
+    // 1971-1995 reaches Banco Popular, Apple, Microsoft, Enron and Nokia.
+    expect(drawStocks(1971, Math.random).sort()).toEqual(
+      (['e_apple', 'e_enron', 'e_msft', 'e_nokia', 'e_popular'] as StockId[]).sort(),
+    );
+  });
+});
+
+describe('createInitialState', () => {
+  it('starts at round 0 with the whole initial capital in cash', () => {
+    const s = createInitialState(Math.random);
+    expect(s.round).toBe(0);
+    expect(s.phase).toBe('start');
+    expect(s.holdings.efectivo.value).toBeGreaterThan(0);
+    expect(s.holdings.efectivo.cost).toBe(s.holdings.efectivo.value);
+    expect(s.history).toEqual([]);
+    expect(s.pendingGain).toBe(0);
+    expect(s.totalCosts).toBe(0);
+    expect(s.deaths).toEqual([]);
+  });
+
+  it('gives every asset a zeroed position, not an undefined one', () => {
+    const s = createInitialState(Math.random);
+    for (const a of Object.values(assetMeta)) {
+      expect(s.holdings[a.id], a.id).toEqual(
+        a.id === 'efectivo' ? s.holdings.efectivo : { value: 0, cost: 0 },
+      );
+    }
+  });
+
+  it('maps rounds onto years and halves', () => {
+    const base = createInitialState(Math.random);
+    const s: GameState = { ...base, startYear: 1980 };
+    expect(currentYear({ ...s, round: 0 })).toBe(1980);
+    expect(currentHalf({ ...s, round: 0 })).toBe(0);
+    expect(currentHalf({ ...s, round: 1 })).toBe(1);
+    expect(currentYear({ ...s, round: 2 })).toBe(1981);
+    expect(currentYear({ ...s, round: TOTAL_ROUNDS - 1 })).toBe(2004);
+  });
+
+  it('clamps a finished game to the last playable semester', () => {
+    const s: GameState = { ...createInitialState(Math.random), startYear: 1980, round: TOTAL_ROUNDS };
+    expect(currentYear(s)).toBe(2004);
+  });
+});
+
+describe('availableAssets', () => {
+  it('never offers a company that was not drawn for this game', () => {
+    const s: GameState = { ...createInitialState(Math.random), startYear: 2001, round: 40 };
+    for (const a of availableAssets(s)) {
+      if (a.group === 'empresa') expect(s.stocks).toContain(a.id as StockId);
+    }
+  });
+
+  it('drops a company from the board after it dies', () => {
+    const base = createInitialState(Math.random);
+    const s: GameState = { ...base, startYear: 2000, stocks: ['e_enron'], round: 4 }; // 2002 H1
+    expect(availableAssets(s).map((a) => a.id)).not.toContain('e_enron');
+  });
+
+  it('still offers a company in the very semester it collapses', () => {
+    const base = createInitialState(Math.random);
+    const s: GameState = { ...base, startYear: 2000, stocks: ['e_enron'], round: 3 }; // 2001 H2
+    expect(availableAssets(s).map((a) => a.id)).toContain('e_enron');
+  });
+
+  it('offers the eight core assets in 1971 and no crypto', () => {
+    const base = createInitialState(Math.random);
+    const s: GameState = { ...base, startYear: 1971, stocks: [], round: 0 };
+    const ids = availableAssets(s).map((a) => a.id);
+    expect(ids).toHaveLength(8);
+    expect(ids).not.toContain('bitcoin');
   });
 });

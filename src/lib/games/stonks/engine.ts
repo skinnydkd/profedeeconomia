@@ -1,90 +1,102 @@
 // src/lib/games/stonks/engine.ts
-import type { AssetId, AssetMeta, GameState } from './types';
-import {
-  ASSETS, ASSET_IDS, MARKET_DATA, YEARS, TOTAL_ROUNDS,
-  INITIAL_CASH, INCOME_PER_ROUND, LIFE_EVENTS, LIFE_EVENT_CHANCE,
-} from './data';
-import { aiAdvance } from './ai';
+import type { AssetId, AssetMeta, GameState, Position, StockId } from './types';
+import { ASSETS, ASSET_IDS, assetMeta, isAvailable, STAR_STOCKS, INITIAL_CASH } from './data';
 
-const zeroAllAssets = (): Record<AssetId, number> =>
+export const WINDOW_YEARS = 25;
+export const TOTAL_ROUNDS = WINDOW_YEARS * 2;
+export const FIRST_START_YEAR = 1971;
+export const LAST_START_YEAR = 2025 - WINDOW_YEARS + 1;   // 2001
+export const STOCKS_PER_GAME = 5;
+
+/** Clamped so a finished game still reports its last playable semester. */
+export const currentYear = (s: GameState): number =>
+  s.startYear + Math.floor(Math.min(s.round, TOTAL_ROUNDS - 1) / 2);
+
+export const currentHalf = (s: GameState): 0 | 1 =>
+  (Math.min(s.round, TOTAL_ROUNDS - 1) % 2) as 0 | 1;
+
+const pick = <T>(xs: T[], rng: () => number): T => xs[Math.min(Math.floor(rng() * xs.length), xs.length - 1)];
+
+export function drawWindow(rng: () => number): number {
+  const span = LAST_START_YEAR - FIRST_START_YEAR + 1;
+  return FIRST_START_YEAR + Math.min(Math.floor(rng() * span), span - 1);
+}
+
+/**
+ * Five companies drawn from those that trade inside the window.
+ *
+ * Guarantees, in priority order:
+ *   1. one that actually DIES inside the window — a wipe-out that happens
+ *      after the final semester teaches nothing;
+ *   2. one star.
+ *
+ * Both decay silently when the window makes them impossible (1971-1995 has no
+ * deaths at all), rather than looping or throwing.
+ */
+export function drawStocks(startYear: number, rng: () => number): StockId[] {
+  const endYear = startYear + WINDOW_YEARS - 1;
+  const candidates = ASSETS
+    .filter((a) => a.group === 'empresa' && a.fromYear <= endYear)
+    .map((a) => a.id as StockId);
+  if (candidates.length <= STOCKS_PER_GAME) return candidates;
+
+  const diesInside = (id: StockId): boolean => {
+    const u = assetMeta[id].untilYear;
+    return u !== undefined && u >= startYear && u <= endYear;
+  };
+
+  const chosen: StockId[] = [];
+  const takeOne = (pool: StockId[]) => {
+    const free = pool.filter((id) => !chosen.includes(id));
+    if (free.length) chosen.push(pick(free, rng));
+  };
+
+  takeOne(candidates.filter(diesInside));
+  takeOne(candidates.filter((id) => STAR_STOCKS.includes(id)));
+  while (chosen.length < STOCKS_PER_GAME) takeOne(candidates);
+  return chosen;
+}
+
+const zeroPosition = (): Position => ({ value: 0, cost: 0 });
+
+export const emptyHoldings = (): Record<AssetId, Position> =>
+  Object.fromEntries(ASSET_IDS.map((id) => [id, zeroPosition()])) as Record<AssetId, Position>;
+
+export const zeroAllocation = (): Record<AssetId, number> =>
   Object.fromEntries(ASSET_IDS.map((id) => [id, 0])) as Record<AssetId, number>;
 
-export function createInitialState(): GameState {
+export function createInitialState(rng: () => number = Math.random): GameState {
+  const startYear = drawWindow(rng);
+  const holdings = emptyHoldings();
+  // Initial capital is defined in start-year euros, so every window opens the same.
+  holdings.efectivo = { value: INITIAL_CASH, cost: INITIAL_CASH };
   return {
+    startYear,
     round: 0,
-    cash: INITIAL_CASH,
-    holdings: zeroAllAssets(),
-    allocation: zeroAllAssets(),
-    ai: { netWorth: INITIAL_CASH },
+    stocks: drawStocks(startYear, rng),
+    seenCards: [],
+    holdings,
+    allocation: zeroAllocation(),
+    pendingGain: 0,
+    totalCosts: 0,
+    peakStockShare: 0,
+    ai: { value: INITIAL_CASH, cost: INITIAL_CASH },
     lastEvent: null,
     lastReturns: null,
+    lastCosts: null,
+    lastDeath: null,
+    deaths: [],
     history: [],
     phase: 'start',
   };
 }
 
-export const currentYear = (s: GameState): number =>
-  YEARS[Math.min(s.round, YEARS.length - 1)];
-
-export const unlockedAssets = (round: number): AssetMeta[] =>
-  ASSETS.filter((a) => a.unlockRound <= round);
-
-export const netWorth = (s: GameState): number =>
-  s.cash + ASSET_IDS.reduce((sum, id) => sum + s.holdings[id], 0);
-
-export const allocationSum = (s: GameState): number =>
-  unlockedAssets(s.round).reduce((sum, a) => sum + (s.allocation[a.id] || 0), 0);
-
-export const isAllocationValid = (s: GameState): boolean => allocationSum(s) === 100;
-
-export const isFinished = (s: GameState): boolean => s.round >= TOTAL_ROUNDS;
-
-/** Advance one year: invest by allocation, apply returns, income, and a possible life event. */
-export function advanceYear(s: GameState, rng: () => number = Math.random): GameState {
+/** What the board shows this semester: base assets plus only the drawn companies. */
+export function availableAssets(s: GameState): AssetMeta[] {
   const year = currentYear(s);
-  const returns = MARKET_DATA[year];
-  const total = netWorth(s);
-
-  // 1. Re-invest the whole net worth according to the allocation.
-  const holdings = zeroAllAssets();
-  for (const a of unlockedAssets(s.round)) {
-    holdings[a.id] = (total * (s.allocation[a.id] || 0)) / 100;
-  }
-
-  // 2. Apply this year's return to each holding (null => unchanged).
-  for (const id of ASSET_IDS) {
-    const r = returns[id];
-    if (r != null) holdings[id] = holdings[id] * (1 + r);
-  }
-
-  // 3. New cash starts at 0 (everything was allocated); add income for the next year.
-  let cash = INCOME_PER_ROUND;
-
-  // 4. Possible life event.
-  let lastEvent: GameState['lastEvent'] = null;
-  if (rng() < LIFE_EVENT_CHANCE) {
-    const ev = LIFE_EVENTS[Math.floor(rng() * LIFE_EVENTS.length) % LIFE_EVENTS.length];
-    lastEvent = ev;
-    cash = Math.max(0, cash + ev.amount);
-  }
-
-  // 5. Advance the AI benchmark.
-  const ai = { netWorth: aiAdvance(s.ai.netWorth, year) };
-
-  const nextRound = s.round + 1;
-  const playerNet = cash + ASSET_IDS.reduce((sum, id) => sum + holdings[id], 0);
-  const history = [...s.history, { year, playerNet, aiNet: ai.netWorth }];
-
-  return {
-    ...s,
-    round: nextRound,
-    cash,
-    holdings,
-    allocation: zeroAllAssets(),
-    ai,
-    lastEvent,
-    lastReturns: returns,
-    history,
-    phase: nextRound >= TOTAL_ROUNDS ? 'finished' : 'results',
-  };
+  const half = currentHalf(s);
+  return ASSETS.filter((a) => {
+    if (a.group === 'empresa' && !s.stocks.includes(a.id as StockId)) return false;
+    return isAvailable(a, year, half);
+  });
 }
