@@ -9,7 +9,9 @@ import { localizeAsignatura } from '@/i18n/asignaturas-ca';
 import type { GetStaticPaths } from 'astro';
 
 export const getStaticPaths = (async () => {
-  return Object.values(ASIGNATURAS).map((a) => ({ params: { asignatura: a.slug } }));
+  return Object.values(ASIGNATURAS)
+    .filter((a) => a.estado === 'publicado')
+    .map((a) => ({ params: { asignatura: a.slug } }));
 }) satisfies GetStaticPaths;
 
 const { asignatura } = Astro.params;

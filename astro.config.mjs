@@ -149,6 +149,7 @@ export default defineConfig({
     '/ipe2-fp/tests':        '/ipe2-fp/actividades-dinamicas/',
     '/eeae-bach/tests':      '/eeae-bach/actividades-dinamicas/',
     '/gpe-bach/tests':       '/gpe-bach/actividades-dinamicas/',
+    '/cjd-bach/tests':       '/cjd-bach/actividades-dinamicas/',
   },
 
   vite: {

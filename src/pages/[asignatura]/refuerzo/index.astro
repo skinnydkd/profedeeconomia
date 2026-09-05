@@ -17,7 +17,7 @@ import { localizeAsignatura } from '@/i18n/asignaturas-ca';
 import type { GetStaticPaths } from 'astro';
 
 export const getStaticPaths = (async () => {
-  return ASIGNATURA_SLUGS.map((slug) => ({
+  return ASIGNATURA_SLUGS.filter((slug) => ASIGNATURAS[slug].estado === 'publicado').map((slug) => ({
     params: { asignatura: slug },
     props: { asignatura: ASIGNATURAS[slug] },
   }));
@@ -171,6 +171,7 @@ const breadcrumb = breadcrumbLd([
   .bloque.c-ipe2 { --card-color: var(--color-ipe2); }
   .bloque.c-eeae { --card-color: var(--color-eeae); }
   .bloque.c-gpe { --card-color: var(--color-gpe); }
+  .bloque.c-cjd { --card-color: var(--color-cjd); }
   .bloque--ampliacion.bloque { --card-color: var(--color-mustard); }
 
   .bloque__tag {
