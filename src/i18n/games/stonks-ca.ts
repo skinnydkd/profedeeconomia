@@ -1,106 +1,97 @@
-// Valencian (AVL) content overlay for the Stonks game.
-//
-// The game data in src/lib/games/stonks/data.ts stays in Spanish (the engine
-// reads only its numeric/structural fields). Here we translate the *display*
-// text — asset labels/blurbs, year news, life events — keyed by the stable id,
-// and expose resolvers the components call with the current locale. Under 'es'
-// the resolvers return the raw ES data untouched.
+// src/i18n/games/stonks-ca.ts
+import type { AssetCard, AssetId, AssetMeta, Half, LifeEvent } from '@/lib/games/stonks/types';
 import type { Locale } from '@/i18n/locale';
-import type { AssetId, AssetMeta, LifeEvent } from '@/lib/games/stonks/types';
-import { ASSETS, YEAR_NEWS, LIFE_EVENTS } from '@/lib/games/stonks/data';
 
-// --- Assets: label + blurb per id ------------------------------------------
-export const ASSETS_CA: Record<AssetId, { label: string; blurb: string }> = {
-  ahorro: {
-    label: 'Estalvi',
-    blurb: 'Diners disponibles a l\'instant; quasi no dona rendiment i perd poder amb la inflació.',
-  },
-  deposito: {
-    label: 'Depòsit',
-    blurb: 'Immobilitzes els diners un temps a canvi d\'un interés fix menut.',
-  },
-  bonos: {
-    label: 'Bons',
-    blurb: 'Prestes diners a un Estat o empresa que te\'ls torna amb interessos.',
-  },
-  oro: {
-    label: 'Or',
-    blurb: 'Actiu refugi: sol pujar quan hi ha por, però no genera rendes.',
-  },
-  ibex: {
-    label: 'IBEX 35',
-    blurb: 'Índex de les 35 majors empreses espanyoles; puja i baixa amb l\'economia.',
-  },
-  sp500: {
-    label: 'S&P 500',
-    blurb: 'Índex de les 500 majors empreses dels EUA; el més seguit del món.',
-  },
-  bitcoin: {
-    label: 'Bitcoin',
-    blurb: 'Criptomoneda molt volàtil: pot multiplicar-se o esfondrar-se en un any.',
-  },
-  inmobiliario: {
-    label: 'Immobiliari',
-    blurb: 'Comprar habitatge o locals per a llogar; poc líquid, puja a poc a poc.',
-  },
+/**
+ * Valencian overlay for Stonks.
+ *
+ * WHAT IS TRANSLATED AND WHAT IS NOT — read before adding anything here.
+ *
+ * Translated: asset labels, company profiles, life events. These are short,
+ * appear on every screen, and carry the terminology that has to be right.
+ *
+ * NOT translated yet: the 110 semester headlines and the bodies of the 28 deep
+ * cards, roughly 7.000 words of economic history. They fall back to Spanish,
+ * and the fallback is deliberate and tested rather than accidental.
+ *
+ * Why: CLAUDE.md publishes only Castilian at the MVP, and requires that every
+ * published word of Valencian has passed Pau's own review. Generating 7.000
+ * unreviewed words would not make the Valencian build shippable — it would
+ * just make the reviewing harder, because a plausible wrong translation is
+ * more expensive to catch than an obvious gap.
+ *
+ * To finish it: fill NEWS_CA and CARD_BODIES_CA. The parity test in
+ * content-parity.test.ts will start requiring completeness the moment either
+ * map stops being empty, so a half-done pass fails loudly.
+ */
+
+export const ASSETS_CA: Record<AssetId, { label: string; profile?: string }> = {
+  efectivo: { label: 'Efectiu' },
+  deposito: { label: 'Depòsit a termini' },
+  deuda: { label: 'Deute públic espanyol' },
+  oro: { label: 'Or' },
+  vivienda: { label: 'Habitatge a Espanya' },
+  bolsa_es: { label: 'Borsa espanyola' },
+  sp500: { label: 'Borsa dels EUA' },
+  mundial: { label: 'Borsa mundial' },
+  bitcoin: { label: 'Criptomoneda' },
+
+  e_apple: { label: 'Electrònica de consum', profile: 'EUA · ix a borsa el 1980' },
+  e_msft: { label: 'Programari', profile: 'EUA · ix a borsa el 1986' },
+  e_amzn: { label: 'Comerç electrònic', profile: 'EUA · ix a borsa el 1997' },
+  e_nvda: { label: 'Semiconductors', profile: 'EUA · ix a borsa el 1999' },
+  e_itx: { label: 'Tèxtil', profile: 'Espanya · ix a borsa el 2001' },
+  e_nokia: { label: 'Telefonia mòbil', profile: 'Finlàndia · cotitza des del 1994' },
+  e_terra: { label: 'Portal d’internet', profile: 'Espanya · ix a borsa el 1999' },
+  e_enron: { label: 'Energia', profile: 'EUA · cotitza des del 1986' },
+  e_popular: { label: 'Banca', profile: 'Espanya · cotitza des del 1971' },
 };
 
-// --- Year news: one line per year ------------------------------------------
-export const YEAR_NEWS_CA: Record<number, string> = {
-  2000: 'Esclata la bombolla de les puntcom: les borses tecnològiques s\'enfonsen.',
-  2001: 'Els atemptats de l\'11-S i la recessió sacsegen els mercats mundials.',
-  2002: 'Escàndols comptables d\'Enron i WorldCom enfonsen la confiança inversora.',
-  2003: 'Recuperació després de la bombolla: els mercats reboten amb força.',
-  2004: 'Creixement global sòlid; el preu del petroli puja amb força.',
-  2005: 'El boom immobiliari espanyol accelera: Espanya construïx més que França i Alemanya juntes.',
-  2006: 'Economia global en màxims; els mercats borsaris encadenen anys de guanys.',
-  2007: 'Primeres senyals de crisi en les hipoteques subprime dels EUA.',
-  2008: 'Crisi financera global: cau Lehman Brothers i els mercats s\'enfonsen un 40 %.',
-  2009: 'Els bancs centrals imprimixen diners per a salvar l\'economia; els mercats es recuperen.',
-  2010: 'Crisi del deute sobirà europeu: Grècia, Portugal i Irlanda necessiten rescats.',
-  2011: 'La crisi de deute s\'estén a Itàlia i Espanya; l\'IBEX marca mínims.',
-  2012: 'Espanya rep un rescat bancari de 100.000 M€; el BCE promet «el que faça falta».',
-  2013: 'Bitcoin supera els 1.000 $ per primera vegada; les borses recuperen nivells precrisi.',
-  2014: 'Deflació a Europa, caiguda del petroli i primeres baixades de tipus del BCE.',
-  2015: 'La Xina desaccelera i les seues borses s\'enfonsen; volatilitat global.',
-  2016: 'El Brexit i l\'elecció de Trump sorprenen els mercats, que acaben a l\'alça.',
-  2017: 'Febre del Bitcoin: supera els 20.000 $; les borses globals en màxims històrics.',
-  2018: 'Crypto winter: el Bitcoin cau un 72 %; tensions comercials EUA-Xina.',
-  2019: 'Guerra comercial EUA-Xina; els bancs centrals abaixen tipus; borses a l\'alça.',
-  2020: 'La COVID-19 paralitza l\'economia mundial; caiguda històrica i recuperació en V.',
-  2021: 'Boom post-COVID: accions, immobles i criptomonedes pugen a màxims.',
-  2022: 'Inflació disparada i guerra a Ucraïna; els bancs centrals pugen tipus amb força.',
-  2023: 'Revolució de la IA (ChatGPT): les borses tecnològiques es disparen.',
-  2024: 'L\'S&P 500 encadena rècords històrics impulsat per la IA i la tecnologia.',
-};
-
-// --- Life events: text per id ----------------------------------------------
 export const LIFE_EVENTS_CA: Record<string, string> = {
   coche: 'Avaria del cotxe.',
   medico: 'Despesa mèdica inesperada.',
   multa: 'Multa de trànsit.',
-  electrodom: 'Avaria d\'electrodomèstics.',
+  electrodom: 'Avaria d’electrodomèstics.',
   reforma: 'Reparació a casa.',
   dental: 'Despesa dental imprevista.',
   viaje: 'Viatge inesperat.',
+  paro: 'Et quedes sense faena uns quants mesos.',
+  derrama: 'Derrama extraordinària de l’edifici.',
   paga: 'Paga extra de Nadal.',
   herencia: 'Herència familiar.',
   loteria: 'Premi de loteria!',
-  devolucion: 'Devolució d\'Hisenda.',
-  premio: 'Premi per objectius a la faena.',
-  cumple: 'Regal d\'aniversari.',
+  devolucion: 'Devolució d’Hisenda.',
+  premio: 'Premi per objectius en la faena.',
+  cumple: 'Regal d’aniversari.',
   ropausada: 'Venda de roba usada.',
 };
 
-// --- Resolvers -------------------------------------------------------------
-export function localizeAssets(locale: Locale): AssetMeta[] {
-  return locale === 'ca' ? ASSETS.map((a) => ({ ...a, ...ASSETS_CA[a.id] })) : ASSETS;
+/** Keyed `${year}-${half}`. Empty until the translation pass; see the file header. */
+export const NEWS_CA: Record<string, string> = {};
+
+/** Keyed by card id. Empty until the translation pass; see the file header. */
+export const CARD_BODIES_CA: Record<string, { title: string; body: string[] }> = {};
+
+// ── Accessors used by the components ──────────────────────────────────────
+
+/** Overlays the Valencian label and profile; everything else stays as-is. */
+export function localizeAsset(a: AssetMeta, locale: Locale): AssetMeta {
+  if (locale !== 'ca') return a;
+  const ca = ASSETS_CA[a.id];
+  if (!ca) return a;
+  return { ...a, label: ca.label, profile: ca.profile ?? a.profile };
 }
 
-export function localizeYearNews(year: number, locale: Locale): string {
-  return (locale === 'ca' ? YEAR_NEWS_CA[year] : undefined) ?? YEAR_NEWS[year];
+export function localizeLifeEvent(e: LifeEvent, locale: Locale): string {
+  return locale === 'ca' ? LIFE_EVENTS_CA[e.id] ?? e.text : e.text;
 }
 
-export function localizeLifeEvent(event: LifeEvent, locale: Locale): string {
-  return (locale === 'ca' ? LIFE_EVENTS_CA[event.id] : undefined) ?? event.text;
+export function localizeNews(year: number, half: Half, fallback: string, locale: Locale): string {
+  return locale === 'ca' ? NEWS_CA[`${year}-${half}`] ?? fallback : fallback;
+}
+
+export function localizeCard(card: AssetCard | undefined, locale: Locale): AssetCard | undefined {
+  if (!card || locale !== 'ca') return card;
+  const ca = CARD_BODIES_CA[card.id];
+  return ca ? { ...card, title: ca.title, body: ca.body } : card;
 }
