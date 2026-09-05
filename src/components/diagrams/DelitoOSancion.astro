@@ -1,0 +1,183 @@
+---
+/**
+ * Criminal offence versus administrative infringement (CJD Bach, unit 7).
+ *
+ * Students use "me han multado" and "me han denunciado" interchangeably and
+ * assume both end before a judge. The comparison is laid out row by row
+ * because the difference is not the seriousness of the act but who decides,
+ * what can be imposed, and which guarantees apply. The note carries the rule
+ * that ties the two columns together: ne bis in idem, and the administrative
+ * file halting when a crime appears.
+ */
+import { getLocale } from '@/i18n/locale';
+const locale = getLocale(Astro.currentLocale);
+
+const COPY = {
+  es: {
+    comparacionEntreLaViaPenalYL: 'Comparación entre la vía penal y la vía administrativa. En la penal decide un juez aplicando el Código Penal, puede imponerse prisión y quedan antecedentes penales. En la administrativa decide la propia Administración aplicando una ley sectorial, nunca puede imponerse prisión y se recurre primero ante la propia Administración y después ante los tribunales contencioso-administrativos. Nadie puede ser castigado dos veces por el mismo hecho con el mismo fundamento.',
+    elMismoHechoDosPuertasDistin: 'El mismo hecho, dos puertas distintas',
+    dosRegimenesSancionadoresNoU: 'Dos regímenes sancionadores, no uno',
+    viaPenal: 'Vía penal',
+    delitosCodigoPenal: 'delitos · Código Penal',
+    viaAdministrativa: 'Vía administrativa',
+    infraccionesLeyesSectoriales: 'infracciones · leyes sectoriales',
+    quienDecide: '¿Quién decide?',
+    unJuezOTribunal: 'Un juez o tribunal',
+    independienteYAjenoAlConflic: 'Independiente y ajeno al conflicto',
+    laPropiaAdministracion: 'La propia Administración',
+    queAdemasEsParteInteresada: 'Que además es parte interesada',
+    queTePuedePasar: '¿Qué te puede pasar?',
+    prisionMultaPenal: 'Prisión, multa penal,',
+    trabajosComunitariosInhabili: 'trabajos comunitarios, inhabilitación',
+    multaPuntosCierreLicencia: 'Multa, puntos, cierre, licencia',
+    nuncaPrisionLoProhibeLaConst: 'Nunca prisión: lo prohíbe la Constitución',
+    queGarantiasTienes: '¿Qué garantías tienes?',
+    abogadoObligatorioJuicioPubl: 'Abogado obligatorio, juicio público',
+    presuncionDeInocenciaDudaAFa: 'Presunción de inocencia · duda a favor',
+    expedienteConAudienciaPrevia: 'Expediente con audiencia previa',
+    presuncionDeInocenciaYMotiva: 'Presunción de inocencia y motivación',
+    comoSeRecurre: '¿Cómo se recurre?',
+    recursoAnteUnTribunalSuperio: 'Recurso ante un tribunal superior',
+    dentroDelPropioOrdenPenal: 'Dentro del propio orden penal',
+    primeroAnteLaAdministracion: 'Primero ante la Administración',
+    despuesViaContenciosoAdminis: 'Después, vía contencioso-administrativa',
+    dejaRastro: '¿Deja rastro?',
+    antecedentesPenales: 'Antecedentes penales',
+    cancelablesPasadoUnPlazo: 'Cancelables pasado un plazo',
+    registroAdministrativo: 'Registro administrativo',
+    noSonAntecedentesPenales: 'No son antecedentes penales',
+    laReglaQueConectaLasDosColum: 'La regla que conecta las dos columnas: nadie puede ser castigado dos veces por lo mismo.',
+    siUnMismoHechoPodriaSerDelit: 'Si un mismo hecho podría ser delito e infracción con idéntico fundamento, el expediente administrativo',
+    seParalizaYSePasaElTantoDeCu: 'se paraliza y se pasa el tanto de culpa al juez penal. Solo si este archiva, la Administración continúa.',
+    elOrdenPenalTienePreferencia: 'El orden penal tiene preferencia, y sus hechos probados vinculan después a la Administración.',
+  },
+  ca: {
+    comparacionEntreLaViaPenalYL: "Comparació entre la via penal i la via administrativa. En la penal decidix un jutge aplicant el Codi Penal, s'hi pot imposar presó i queden antecedents penals. En l'administrativa decidix la mateixa Administració aplicant una llei sectorial, mai no s'hi pot imposar presó i es recorre primer davant de la mateixa Administració i després davant dels tribunals contenciosos administratius. Ningú no pot ser castigat dues vegades pel mateix fet amb el mateix fonament.",
+    elMismoHechoDosPuertasDistin: 'El mateix fet, dues portes distintes',
+    dosRegimenesSancionadoresNoU: 'Dos règims sancionadors, no un',
+    viaPenal: 'Via penal',
+    delitosCodigoPenal: 'delictes · Codi Penal',
+    viaAdministrativa: 'Via administrativa',
+    infraccionesLeyesSectoriales: 'infraccions · lleis sectorials',
+    quienDecide: 'Qui decidix?',
+    unJuezOTribunal: 'Un jutge o tribunal',
+    independienteYAjenoAlConflic: 'Independent i alié al conflicte',
+    laPropiaAdministracion: 'La mateixa Administració',
+    queAdemasEsParteInteresada: 'Que a més és part interessada',
+    queTePuedePasar: 'Què et pot passar?',
+    prisionMultaPenal: 'Presó, multa penal,',
+    trabajosComunitariosInhabili: 'treballs comunitaris, inhabilitació',
+    multaPuntosCierreLicencia: 'Multa, punts, tancament, llicència',
+    nuncaPrisionLoProhibeLaConst: 'Mai presó: ho prohibix la Constitució',
+    queGarantiasTienes: 'Quines garanties tens?',
+    abogadoObligatorioJuicioPubl: 'Advocat obligatori, judici públic',
+    presuncionDeInocenciaDudaAFa: "Presumpció d'innocència · dubte a favor",
+    expedienteConAudienciaPrevia: 'Expedient amb audiència prèvia',
+    presuncionDeInocenciaYMotiva: "Presumpció d'innocència i motivació",
+    comoSeRecurre: 'Com es recorre?',
+    recursoAnteUnTribunalSuperio: "Recurs davant d'un tribunal superior",
+    dentroDelPropioOrdenPenal: 'Dins del mateix ordre penal',
+    primeroAnteLaAdministracion: "Primer davant de l'Administració",
+    despuesViaContenciosoAdminis: 'Després, via contenciosa administrativa',
+    dejaRastro: 'Deixa rastre?',
+    antecedentesPenales: 'Antecedents penals',
+    cancelablesPasadoUnPlazo: 'Cancel·lables passat un termini',
+    registroAdministrativo: 'Registre administratiu',
+    noSonAntecedentesPenales: 'No són antecedents penals',
+    laReglaQueConectaLasDosColum: 'La regla que connecta les dues columnes: ningú no pot ser castigat dues vegades pel mateix.',
+    siUnMismoHechoPodriaSerDelit: "Si un mateix fet podria ser delicte i infracció amb idèntic fonament, l'expedient administratiu",
+    seParalizaYSePasaElTantoDeCu: "es paralitza i es passa el tant de culpa al jutge penal. Només si este l'arxiva, l'Administració continua.",
+    elOrdenPenalTienePreferencia: "L'ordre penal té preferència, i els seus fets provats vinculen després l'Administració.",
+  },
+} as const;
+
+const t = COPY[locale];
+---
+
+<svg viewBox="0 0 820 560" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="delitoosancion-t delitoosancion-d">
+  <title id="delitoosancion-t">{t.elMismoHechoDosPuertasDistin}</title>
+  <desc id="delitoosancion-d">{t.comparacionEntreLaViaPenalYL}</desc>
+  <defs>
+    <style>
+      .bg { fill: #FBF6EC; }
+      .head-pen { fill: #F1DADD; stroke: #8C2F39; stroke-width: 2; }
+      .head-adm { fill: #DBEDED; stroke: #1F6E6E; stroke-width: 2; }
+      .cell-pen { fill: #FFFFFF; stroke: #8C2F39; stroke-width: 1.4; }
+      .cell-adm { fill: #FFFFFF; stroke: #1F6E6E; stroke-width: 1.4; }
+      .head-t { font-family: 'Fraunces', serif; font-size: 18px; font-weight: 500; fill: #2A1F18; text-anchor: middle; }
+      .head-s { font-family: 'Switzer', sans-serif; font-size: 9.5px; font-style: italic; fill: #5C4A3D; text-anchor: middle; }
+      .q { font-family: 'Fraunces', serif; font-style: italic; font-size: 14px; fill: #2A1F18; }
+      .txt { font-family: 'Switzer', sans-serif; font-size: 10.5px; fill: #5C4A3D; }
+      .txt-b { font-family: 'Switzer', sans-serif; font-size: 10.5px; font-weight: 700; fill: #2A1F18; }
+      .note { fill: #FFFFFF; stroke: #8A7868; stroke-width: 1.6; stroke-dasharray: 5 3; }
+      .note-b { font-family: 'Switzer', sans-serif; font-size: 10.5px; font-weight: 700; fill: #2A1F18; }
+      .note-t { font-family: 'Switzer', sans-serif; font-size: 10.5px; fill: #5C4A3D; }
+      .band { font-family: 'Switzer', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 1.3px; text-transform: uppercase; fill: #8A7868; }
+    </style>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="820" height="560" />
+
+  <text class="band" x="40" y="30">{t.dosRegimenesSancionadoresNoU}</text>
+
+  <!-- Headers -->
+  <rect class="head-pen" x="216" y="46" width="276" height="52" rx="4" />
+  <text class="head-t" x="354" y="72">{t.viaPenal}</text>
+  <text class="head-s" x="354" y="88">{t.delitosCodigoPenal}</text>
+
+  <rect class="head-adm" x="504" y="46" width="276" height="52" rx="4" />
+  <text class="head-t" x="642" y="72">{t.viaAdministrativa}</text>
+  <text class="head-s" x="642" y="88">{t.infraccionesLeyesSectoriales}</text>
+
+  <!-- Row 1: who decides -->
+  <text class="q" x="40" y="138">{t.quienDecide}</text>
+  <rect class="cell-pen" x="216" y="112" width="276" height="52" rx="4" />
+  <text class="txt-b" x="234" y="134">{t.unJuezOTribunal}</text>
+  <text class="txt" x="234" y="152">{t.independienteYAjenoAlConflic}</text>
+  <rect class="cell-adm" x="504" y="112" width="276" height="52" rx="4" />
+  <text class="txt-b" x="522" y="134">{t.laPropiaAdministracion}</text>
+  <text class="txt" x="522" y="152">{t.queAdemasEsParteInteresada}</text>
+
+  <!-- Row 2: what can happen -->
+  <text class="q" x="40" y="206">{t.queTePuedePasar}</text>
+  <rect class="cell-pen" x="216" y="180" width="276" height="52" rx="4" />
+  <text class="txt-b" x="234" y="202">{t.prisionMultaPenal}</text>
+  <text class="txt" x="234" y="220">{t.trabajosComunitariosInhabili}</text>
+  <rect class="cell-adm" x="504" y="180" width="276" height="52" rx="4" />
+  <text class="txt-b" x="522" y="202">{t.multaPuntosCierreLicencia}</text>
+  <text class="txt" x="522" y="220">{t.nuncaPrisionLoProhibeLaConst}</text>
+
+  <!-- Row 3: guarantees -->
+  <text class="q" x="40" y="274">{t.queGarantiasTienes}</text>
+  <rect class="cell-pen" x="216" y="248" width="276" height="52" rx="4" />
+  <text class="txt-b" x="234" y="270">{t.abogadoObligatorioJuicioPubl}</text>
+  <text class="txt" x="234" y="288">{t.presuncionDeInocenciaDudaAFa}</text>
+  <rect class="cell-adm" x="504" y="248" width="276" height="52" rx="4" />
+  <text class="txt-b" x="522" y="270">{t.expedienteConAudienciaPrevia}</text>
+  <text class="txt" x="522" y="288">{t.presuncionDeInocenciaYMotiva}</text>
+
+  <!-- Row 4: how to appeal -->
+  <text class="q" x="40" y="342">{t.comoSeRecurre}</text>
+  <rect class="cell-pen" x="216" y="316" width="276" height="52" rx="4" />
+  <text class="txt-b" x="234" y="338">{t.recursoAnteUnTribunalSuperio}</text>
+  <text class="txt" x="234" y="356">{t.dentroDelPropioOrdenPenal}</text>
+  <rect class="cell-adm" x="504" y="316" width="276" height="52" rx="4" />
+  <text class="txt-b" x="522" y="338">{t.primeroAnteLaAdministracion}</text>
+  <text class="txt" x="522" y="356">{t.despuesViaContenciosoAdminis}</text>
+
+  <!-- Row 5: trace -->
+  <text class="q" x="40" y="410">{t.dejaRastro}</text>
+  <rect class="cell-pen" x="216" y="384" width="276" height="52" rx="4" />
+  <text class="txt-b" x="234" y="406">{t.antecedentesPenales}</text>
+  <text class="txt" x="234" y="424">{t.cancelablesPasadoUnPlazo}</text>
+  <rect class="cell-adm" x="504" y="384" width="276" height="52" rx="4" />
+  <text class="txt-b" x="522" y="406">{t.registroAdministrativo}</text>
+  <text class="txt" x="522" y="424">{t.noSonAntecedentesPenales}</text>
+
+  <!-- Note -->
+  <rect class="note" x="40" y="456" width="740" height="86" rx="4" />
+  <text class="note-b" x="60" y="482">{t.laReglaQueConectaLasDosColum}</text>
+  <text class="note-t" x="60" y="502">{t.siUnMismoHechoPodriaSerDelit}</text>
+  <text class="note-t" x="60" y="518">{t.seParalizaYSePasaElTantoDeCu}</text>
+  <text class="note-t" x="60" y="534">{t.elOrdenPenalTienePreferencia}</text>
+</svg>

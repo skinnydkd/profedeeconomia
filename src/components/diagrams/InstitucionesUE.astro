@@ -1,0 +1,201 @@
+---
+/**
+ * EU institutions and the ordinary legislative procedure (CJD Bach, unit 2).
+ *
+ * Two readings in one figure: the institutional triangle at the top (who
+ * proposes, who co-decides, who interprets) and the procedure as a strip
+ * below it, so the role-play in this unit's learning situation can be
+ * followed on the diagram while it happens.
+ */
+import { getLocale } from '@/i18n/locale';
+const locale = getLocale(Astro.currentLocale);
+
+const COPY = {
+  es: {
+    arribaElTrianguloInstitucion: 'Arriba, el triángulo institucional: la Comisión Europea propone, y el Parlamento Europeo y el Consejo de la Unión Europea codeciden. El Consejo Europeo marca la orientación política y el Tribunal de Justicia interpreta. Abajo, el procedimiento legislativo ordinario en cuatro pasos: propuesta de la Comisión, primera lectura del Parlamento, posición del Consejo y adopción o segunda lectura.',
+    quienDecideEnLaUnionEuropea: 'Quién decide en la Unión Europea',
+    elTrianguloInstitucional: 'El triángulo institucional',
+    comisionEuropea: 'Comisión Europea',
+    proponeLaNorma: 'Propone la norma',
+    unComisarioPorEstadoDefiende: 'Un comisario por Estado · defiende el interés común',
+    parlamentoEuropeo: 'Parlamento Europeo',
+    codecideYControla: 'Codecide y controla',
+    elegidoCada5Anos: 'Elegido cada 5 años',
+    porLaCiudadania: 'por la ciudadanía',
+    consejoDeLaUe: 'Consejo de la UE',
+    codecide: 'Codecide',
+    losMinistrosDeCada: 'Los ministros de cada',
+    estadoPorMaterias: 'Estado, por materias',
+    propone: 'propone',
+    codecision: 'codecisión',
+    consejoEuropeo: 'Consejo Europeo',
+    jefesDeEstadoODeGobierno: 'Jefes de Estado o de Gobierno.',
+    marcaLaOrientacionNoLegisla: 'Marca la orientación, no legisla.',
+    tribunalDeJusticia: 'Tribunal de Justicia',
+    interpretaElDerechoDeLaUnion: 'Interpreta el Derecho de la Unión',
+    yGarantizaQueSeApliqueIgual: 'y garantiza que se aplique igual.',
+    procedimientoLegislativoOrdi: 'Procedimiento legislativo ordinario',
+    propuesta: 'Propuesta',
+    laComisionRedacta: 'La Comisión redacta',
+    yPresentaElTexto: 'y presenta el texto',
+    primeraLectura: 'Primera lectura',
+    elParlamentoEnmienda: 'El Parlamento enmienda',
+    yFijaSuPosicion: 'y fija su posición',
+    posicionDelConsejo: 'Posición del Consejo',
+    losMinistrosAprueban: 'Los ministros aprueban',
+    oDevuelvenElTexto: 'o devuelven el texto',
+    adopcion: 'Adopción',
+    siCoincidenSeAdopta: 'Si coinciden, se adopta;',
+    siNoSegundaLectura: 'si no, segunda lectura',
+  },
+  ca: {
+    arribaElTrianguloInstitucion: "Dalt, el triangle institucional: la Comissió Europea proposa, i el Parlament Europeu i el Consell de la Unió Europea codecidixen. El Consell Europeu marca l'orientació política i el Tribunal de Justícia interpreta. Baix, el procediment legislatiu ordinari en quatre passos: proposta de la Comissió, primera lectura del Parlament, posició del Consell i adopció o segona lectura.",
+    quienDecideEnLaUnionEuropea: 'Qui decidix a la Unió Europea',
+    elTrianguloInstitucional: 'El triangle institucional',
+    comisionEuropea: 'Comissió Europea',
+    proponeLaNorma: 'Proposa la norma',
+    unComisarioPorEstadoDefiende: "Un comissari per Estat · defén l'interés comú",
+    parlamentoEuropeo: 'Parlament Europeu',
+    codecideYControla: 'Codecidix i controla',
+    elegidoCada5Anos: 'Elegit cada 5 anys',
+    porLaCiudadania: 'per la ciutadania',
+    consejoDeLaUe: 'Consell de la UE',
+    codecide: 'Codecidix',
+    losMinistrosDeCada: 'Els ministres de cada',
+    estadoPorMaterias: 'Estat, per matèries',
+    propone: 'proposa',
+    codecision: 'codecisió',
+    consejoEuropeo: 'Consell Europeu',
+    jefesDeEstadoODeGobierno: "Caps d'Estat o de Govern.",
+    marcaLaOrientacionNoLegisla: "Marca l'orientació, no legisla.",
+    tribunalDeJusticia: 'Tribunal de Justícia',
+    interpretaElDerechoDeLaUnion: 'Interpreta el Dret de la Unió',
+    yGarantizaQueSeApliqueIgual: "i garantix que s'aplique igual.",
+    procedimientoLegislativoOrdi: 'Procediment legislatiu ordinari',
+    propuesta: 'Proposta',
+    laComisionRedacta: 'La Comissió redacta',
+    yPresentaElTexto: 'i presenta el text',
+    primeraLectura: 'Primera lectura',
+    elParlamentoEnmienda: 'El Parlament esmena',
+    yFijaSuPosicion: 'i fixa la seua posició',
+    posicionDelConsejo: 'Posició del Consell',
+    losMinistrosAprueban: 'Els ministres aproven',
+    oDevuelvenElTexto: 'o tornen el text',
+    adopcion: 'Adopció',
+    siCoincidenSeAdopta: "Si coincidixen, s'adopta;",
+    siNoSegundaLectura: 'si no, segona lectura',
+  },
+} as const;
+
+const t = COPY[locale];
+---
+
+<svg viewBox="0 0 820 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="institucionesue-t institucionesue-d">
+  <title id="institucionesue-t">{t.quienDecideEnLaUnionEuropea}</title>
+  <desc id="institucionesue-d">{t.arribaElTrianguloInstitucion}</desc>
+  <defs>
+    <style>
+      .bg { fill: #FBF6EC; }
+      .inst { stroke-width: 2; }
+      .i-com { fill: #E0DCF0; stroke: #4A3B8F; }
+      .i-par { fill: #DBEDED; stroke: #1F6E6E; }
+      .i-con { fill: #FBE3D6; stroke: #C44E2C; }
+      .i-sec { fill: #F5EDD9; stroke: #8A7868; stroke-dasharray: 5 3; }
+      .name { font-family: 'Fraunces', serif; font-size: 15px; font-weight: 500; fill: #2A1F18; text-anchor: middle; }
+      .role { font-family: 'Switzer', sans-serif; font-size: 10.5px; fill: #5C4A3D; text-anchor: middle; }
+      .who { font-family: 'Switzer', sans-serif; font-size: 10px; font-style: italic; fill: #8A7868; text-anchor: middle; }
+      .verb { font-family: 'Fraunces', serif; font-style: italic; font-size: 13px; fill: #C44E2C; text-anchor: middle; }
+      .arrow { fill: none; stroke: #C44E2C; stroke-width: 1.8; marker-end: url(#ue-arrow); }
+      .arrow-soft { fill: none; stroke: #8A7868; stroke-width: 1.4; stroke-dasharray: 4 3; marker-end: url(#ue-arrow-soft); }
+      .step { fill: #FFFFFF; stroke: #4A3B8F; stroke-width: 1.6; }
+      .step-n { font-family: 'Fraunces', serif; font-style: italic; font-size: 18px; fill: #4A3B8F; text-anchor: middle; }
+      .step-t { font-family: 'Switzer', sans-serif; font-size: 10.5px; font-weight: 700; fill: #2A1F18; text-anchor: middle; }
+      .step-d { font-family: 'Switzer', sans-serif; font-size: 9.5px; fill: #5C4A3D; text-anchor: middle; }
+      .band { font-family: 'Switzer', sans-serif; font-size: 9.5px; font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase; fill: #8A7868; }
+    </style>
+    <marker id="ue-arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#C44E2C" />
+    </marker>
+    <marker id="ue-arrow-soft" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#8A7868" />
+    </marker>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="820" height="520" />
+
+  <text class="band" x="40" y="30">{t.elTrianguloInstitucional}</text>
+
+  <!-- Commission -->
+  <rect class="inst i-com" x="310" y="48" width="200" height="76" rx="4" />
+  <text class="name" x="410" y="76">{t.comisionEuropea}</text>
+  <text class="role" x="410" y="96">{t.proponeLaNorma}</text>
+  <text class="who" x="410" y="114">{t.unComisarioPorEstadoDefiende}</text>
+
+  <!-- Parliament -->
+  <rect class="inst i-par" x="60" y="188" width="220" height="88" rx="4" />
+  <text class="name" x="170" y="216">{t.parlamentoEuropeo}</text>
+  <text class="role" x="170" y="236">{t.codecideYControla}</text>
+  <text class="who" x="170" y="254">{t.elegidoCada5Anos}</text>
+  <text class="who" x="170" y="270">{t.porLaCiudadania}</text>
+
+  <!-- Council of the EU -->
+  <rect class="inst i-con" x="540" y="188" width="220" height="88" rx="4" />
+  <text class="name" x="650" y="216">{t.consejoDeLaUe}</text>
+  <text class="role" x="650" y="236">{t.codecide}</text>
+  <text class="who" x="650" y="254">{t.losMinistrosDeCada}</text>
+  <text class="who" x="650" y="270">{t.estadoPorMaterias}</text>
+
+  <path class="arrow" d="M 330 128 L 200 184" />
+  <path class="arrow" d="M 490 128 L 620 184" />
+  <text class="verb" x="250" y="150">{t.propone}</text>
+  <text class="verb" x="572" y="150">{t.propone}</text>
+
+  <path class="arrow" d="M 288 226 L 532 226" />
+  <path class="arrow" d="M 532 244 L 288 244" />
+  <text class="verb" x="410" y="218">{t.codecision}</text>
+
+  <!-- Secondary institutions -->
+  <rect class="inst i-sec" x="60" y="316" width="220" height="64" rx="4" />
+  <text class="name" x="170" y="342">{t.consejoEuropeo}</text>
+  <text class="role" x="170" y="362">{t.jefesDeEstadoODeGobierno}</text>
+  <text class="role" x="170" y="376">{t.marcaLaOrientacionNoLegisla}</text>
+
+  <rect class="inst i-sec" x="540" y="316" width="220" height="64" rx="4" />
+  <text class="name" x="650" y="342">{t.tribunalDeJusticia}</text>
+  <text class="role" x="650" y="362">{t.interpretaElDerechoDeLaUnion}</text>
+  <text class="role" x="650" y="376">{t.yGarantizaQueSeApliqueIgual}</text>
+
+  <path class="arrow-soft" d="M 170 310 L 170 282" />
+  <path class="arrow-soft" d="M 650 310 L 650 282" />
+
+  <!-- Ordinary legislative procedure -->
+  <text class="band" x="40" y="418">{t.procedimientoLegislativoOrdi}</text>
+
+  <rect class="step" x="40" y="432" width="168" height="62" rx="4" />
+  <text class="step-n" x="64" y="462">1</text>
+  <text class="step-t" x="132" y="456">{t.propuesta}</text>
+  <text class="step-d" x="132" y="472">{t.laComisionRedacta}</text>
+  <text class="step-d" x="132" y="486">{t.yPresentaElTexto}</text>
+
+  <rect class="step" x="228" y="432" width="168" height="62" rx="4" />
+  <text class="step-n" x="252" y="462">2</text>
+  <text class="step-t" x="320" y="456">{t.primeraLectura}</text>
+  <text class="step-d" x="320" y="472">{t.elParlamentoEnmienda}</text>
+  <text class="step-d" x="320" y="486">{t.yFijaSuPosicion}</text>
+
+  <rect class="step" x="416" y="432" width="168" height="62" rx="4" />
+  <text class="step-n" x="440" y="462">3</text>
+  <text class="step-t" x="508" y="456">{t.posicionDelConsejo}</text>
+  <text class="step-d" x="508" y="472">{t.losMinistrosAprueban}</text>
+  <text class="step-d" x="508" y="486">{t.oDevuelvenElTexto}</text>
+
+  <rect class="step" x="604" y="432" width="176" height="62" rx="4" />
+  <text class="step-n" x="628" y="462">4</text>
+  <text class="step-t" x="700" y="456">{t.adopcion}</text>
+  <text class="step-d" x="700" y="472">{t.siCoincidenSeAdopta}</text>
+  <text class="step-d" x="700" y="486">{t.siNoSegundaLectura}</text>
+
+  <path class="arrow" d="M 210 463 L 224 463" />
+  <path class="arrow" d="M 398 463 L 412 463" />
+  <path class="arrow" d="M 586 463 L 600 463" />
+</svg>
