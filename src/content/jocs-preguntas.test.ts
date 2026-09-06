@@ -31,7 +31,7 @@ const preguntas: Pregunta[] = readdirSync(DIR)
   .filter((f) => f.endsWith('.md'))
   .map((file) => {
     const text = readFileSync(join(DIR, file), 'utf8');
-    const m = /^---\n([\s\S]*?)\n---\n([\s\S]*)$/.exec(text);
+    const m = /^---\r?\n([\s\S]*?)\r?\n---\r?\n([\s\S]*)$/.exec(text);
     if (!m) throw new Error(`${file}: no frontmatter`);
     const fm = parseYaml(m[1]) as { id: string; opciones: string[]; correcta: number };
     return { file, id: fm.id, opciones: fm.opciones, correcta: fm.correcta, enunciado: m[2].trim() };
