@@ -45,6 +45,10 @@ export const FAMILIAS_DEBATE_CA: FamiliaOverlay = {
     label: 'Diners, tecnologia i futur',
     intro: 'Cripto, automatització, IA i renda bàsica.',
   },
+  'derecho-democracia': {
+    label: 'Dret i democràcia',
+    intro: 'Quan obliga una norma, qui decidix i fins on arriben els teus drets.',
+  },
 };
 
 export const FAMILIAS_DINAMICAS_CA: FamiliaOverlay = {
