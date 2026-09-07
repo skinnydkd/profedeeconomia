@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
 import { getLocale } from '@/i18n/locale';
+import { SITE } from '@/lib/seo';
 
 const locale = getLocale(Astro.currentLocale);
 
@@ -201,7 +202,7 @@ const copy = {
     <h2>{copy.h2Entrega}</h2>
     <p>
       {copy.pEntregaPre}
-      <a class="editorial-link" href="mailto:hola@profedeeconomia.es">hola@profedeeconomia.es</a>{copy.pEntregaPost}
+      <a class="editorial-link" href={`mailto:${SITE.email}`}>{SITE.email}</a>{copy.pEntregaPost}
     </p>
     <p class="note">
       {copy.note}

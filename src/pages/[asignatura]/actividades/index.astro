@@ -3,7 +3,7 @@ import { existsSync } from 'node:fs';
 import { resolve } from 'node:path';
 import BaseLayout from '@layouts/BaseLayout.astro';
 import { ASIGNATURA_SLUGS, ASIGNATURAS } from '@/lib/asignaturas';
-import { breadcrumbLd } from '@/lib/seo';
+import { breadcrumbLd, SITE } from '@/lib/seo';
 import { getCollection } from 'astro:content';
 import { getLocale } from '@/i18n/locale';
 import { pickLocalizedEntry } from '@/i18n/content-locale';
@@ -155,7 +155,7 @@ const breadcrumb = breadcrumbLd([
     <div class="container">
       <p class="note-text">
         {copy.nota}
-        <a class="editorial-link" href="mailto:hola@profedeeconomia.es">hola@profedeeconomia.es</a>.
+        <a class="editorial-link" href={`mailto:${SITE.email}`}>{SITE.email}</a>.
       </p>
     </div>
   </section>
