@@ -23,6 +23,7 @@ import { basename, dirname, extname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import puppeteer from 'puppeteer';
 import { parse as parseYaml } from 'yaml';
+import { allSubjects } from './ci-changed-decks.mjs';
 
 function findChromeExecutable() {
   if (process.env.PUPPETEER_EXECUTABLE_PATH && existsSync(process.env.PUPPETEER_EXECUTABLE_PATH)) {
@@ -46,9 +47,18 @@ function findChromeExecutable() {
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = resolve(__dirname, '..');
-const ALL = ['edmn-2bach', 'eco-1bach', 'eco-4eso', 'fopp-4eso', 'taller-eco-3eso', 'ipe1-fp', 'ipe2-fp', 'eeae-bach', 'gpe-bach'];
+// Read off the content tree, never hardcoded: a hardcoded list silently
+// dropped cjd-bach when the subject was added, so `… build-deck-pdf.mjs
+// cjd-bach` fell through to "all subjects" and its decks were never printed
+// nor checked for overflow. This is the same source CI's ci-changed-decks
+// uses to decide what to check.
+const ALL = allSubjects(resolve(root, 'src/content/asignaturas'));
 const args = process.argv.slice(2).filter((a) => !a.startsWith('--'));
-const asigFilter = args[0] && ALL.includes(args[0]) ? [args[0]] : ALL;
+if (args[0] && !ALL.includes(args[0])) {
+  console.error(`✖ Unknown asignatura "${args[0]}". Known: ${ALL.join(', ')}`);
+  process.exit(1);
+}
+const asigFilter = args[0] ? [args[0]] : ALL;
 const unitFilter = args[1] || null;
 
 function parseFm(src) {
