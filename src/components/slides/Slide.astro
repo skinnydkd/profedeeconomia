@@ -166,8 +166,16 @@ const letters = ['A', 'B', 'C', 'D'];
 {slide.tipo === 'figure' && (
   <section class="slide s-figure">
     <div class="img">
+      {/* Sized for the PDF pipeline, which is the demanding consumer: a slide
+          is printed 1280px wide, so one 1280px JPEG is exactly what the page
+          needs. `widths` without `sizes` left the full-resolution original as
+          the `src`, and Chrome re-encodes what it prints losslessly — one 4 MB
+          photo became ~2 MB of Flate per slide. Eager because lazy images
+          below the fold were never loaded at all when printing, so the decks
+          shipped with no photographs (same fix as Figure.astro's print
+          route). */}
       {s.meta
-        ? <Image src={s.meta} alt={s.alt} widths={[1280]} />
+        ? <Image src={s.meta} alt={s.alt} width={1280} format="jpg" quality={82} loading="eager" />
         : <div class="missing">{s.src}</div>}
     </div>
     <div class="strip">
