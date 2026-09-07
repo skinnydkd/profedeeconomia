@@ -1,0 +1,117 @@
+---
+asignatura: cjd-bach
+unidad_relacionada: 1
+title: "¿Qué norma manda aquí?"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "15-20 min"
+descripcion: "La peña quiere montar la barraca de las fiestas. Tres reglas distintas dicen cosas distintas y solo una gana."
+competencias_clave: [CC, CCL, CPSAA]
+competencias_especificas: []
+estado: publicado
+publicado_en: 2026-09-07
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Caso · Jerarquía normativa",
+    "titulo": "¿Qué norma manda aquí?",
+    "contexto": "Eres la tesorera de una peña juvenil de 30 socios. Este año os toca montar la barraca de las fiestas del pueblo: música hasta las 3, barra con bebidas y una carpa en la plaza. Tres textos os dicen cosas distintas. El reglamento interno de la peña, aprobado en asamblea, dice que la música puede sonar hasta que el último socio se vaya. La ordenanza municipal de convivencia fija el corte de música a la 1:30. Y una ley autonómica de espectáculos exige autorización previa para cualquier instalación con aforo superior a 100 personas. Nadie de la peña ha leído ninguna de las tres.",
+    "kpi_inicial": { "seguridad_juridica": 2, "riesgo_de_sancion": 8, "credibilidad_ante_el_ayuntamiento": 5 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisión 1 — ¿Qué texto abrís primero?",
+      "situacion": "En la reunión de la peña alguien dice «nuestro reglamento es lo nuestro, lo que vale es lo que votamos en asamblea». Otro socio propone mirar la web del Ayuntamiento. Un tercero dice que ya preguntará a su primo, que estudia Derecho.",
+      "opciones": [
+        {
+          "label": "Aplicamos nuestro reglamento interno: lo aprobamos entre todos",
+          "kpi_delta": { "seguridad_juridica": -1, "riesgo_de_sancion": 2, "credibilidad_ante_el_ayuntamiento": -1 },
+          "feedback": "Un reglamento interno es una norma privada: obliga a los socios entre sí, pero no puede contradecir una ordenanza ni una ley. Que lo votéis por unanimidad no lo sube ni un escalón en la pirámide. Lección: la validez de una norma no viene de que guste a quien la cumple, sino de que la haya dictado quien tenía competencia para dictarla y de que respete la norma superior.",
+          "next": "n2"
+        },
+        {
+          "label": "Buscamos la ordenanza municipal en la sede electrónica del Ayuntamiento",
+          "kpi_delta": { "seguridad_juridica": 3, "riesgo_de_sancion": -2, "credibilidad_ante_el_ayuntamiento": 2 },
+          "feedback": "Correcto, y además es gratis. Las ordenanzas municipales se publican en el boletín de la provincia y suelen estar en la sede electrónica del propio Ayuntamiento. Consultar la fuente antes de decidir cuesta diez minutos y ahorra una sanción. Lección: el Derecho es público y buscable; el desconocimiento de la norma no excusa de cumplirla.",
+          "next": "n2"
+        },
+        {
+          "label": "Preguntamos por WhatsApp al primo que estudia Derecho",
+          "kpi_delta": { "seguridad_juridica": 0, "riesgo_de_sancion": 1, "credibilidad_ante_el_ayuntamiento": 0 },
+          "feedback": "Preguntar no está mal, pero un mensaje de memoria no es una fuente. Las ordenanzas cambian, y la de tu pueblo puede no parecerse a la del suyo. Lección: la costumbre y la opinión ajena no sustituyen al texto; una norma se comprueba donde está publicada.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisión 2 — La ordenanza dice la 1:30 y vuestro reglamento dice «hasta que acabe»",
+      "situacion": "Ya tenéis los dos textos delante y se contradicen abiertamente. La asamblea de la peña se reúne para decidir qué hacer con la barraca de este año.",
+      "opciones": [
+        {
+          "label": "Modificamos el reglamento interno para adaptarlo a la ordenanza",
+          "kpi_delta": { "seguridad_juridica": 3, "riesgo_de_sancion": -3, "credibilidad_ante_el_ayuntamiento": 2 },
+          "feedback": "Has aplicado el principio de jerarquía normativa: la norma inferior que contradice a la superior es nula en lo que la contradice. Adaptar vuestro reglamento no es rendirse, es hacerlo válido. Lección: la pirámide no es un adorno de examen; determina qué texto se aplica cuando dos dicen cosas distintas.",
+          "next": "n3"
+        },
+        {
+          "label": "Votamos en asamblea que este año se hace una excepción",
+          "kpi_delta": { "seguridad_juridica": -2, "riesgo_de_sancion": 3, "credibilidad_ante_el_ayuntamiento": -2 },
+          "feedback": "Una asamblea privada no puede dispensar del cumplimiento de una norma pública, por mucha mayoría que reúna. Si el Ayuntamiento levanta acta a las 2:00, el acta de vuestra votación no es una defensa: es una prueba de que sabíais lo que hacíais. Lección: la voluntad de los obligados no deroga la norma que los obliga.",
+          "next": "n3"
+        },
+        {
+          "label": "Pedimos al Ayuntamiento una autorización especial de horario",
+          "kpi_delta": { "seguridad_juridica": 2, "riesgo_de_sancion": -2, "credibilidad_ante_el_ayuntamiento": 3 },
+          "feedback": "Vía correcta: muchas ordenanzas prevén ampliaciones de horario en fiestas patronales mediante autorización motivada. No estás saltándote la norma, estás usando la puerta que la propia norma abre. Lección: cuando una regla molesta, la salida jurídica es el procedimiento previsto, no el incumplimiento.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisión 3 — Aparece la ley autonómica",
+      "situacion": "Al pedir el permiso, el técnico municipal os avisa: la carpa que habéis alquilado tiene aforo para 150 personas, y la ley autonómica de espectáculos exige autorización previa y un seguro de responsabilidad civil por encima de 100. Falta una semana para las fiestas.",
+      "opciones": [
+        {
+          "label": "Reducimos el aforo por debajo de 100 y lo dejamos por escrito",
+          "kpi_delta": { "seguridad_juridica": 3, "riesgo_de_sancion": -3, "credibilidad_ante_el_ayuntamiento": 2 },
+          "feedback": "Solución limpia: ajustas la actividad al supuesto de hecho que la norma no somete a autorización previa. Es lo mismo que hace una empresa cuando elige la forma jurídica que le encaja. Lección: leer con precisión el supuesto de hecho de una norma cambia qué se te aplica; el Derecho se lee entero, no por titulares.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Tramitamos la autorización y contratamos el seguro aunque llegue justo",
+          "kpi_delta": { "seguridad_juridica": 4, "riesgo_de_sancion": -4, "credibilidad_ante_el_ayuntamiento": 3 },
+          "feedback": "La opción más costosa en tiempo y la más sólida. El seguro no protege solo a la peña: protege a los 150 asistentes si alguien se cae. Lección: las normas de aforo y seguro no son burocracia decorativa; son el reverso del derecho de terceros a que alguien responda si algo sale mal.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Montamos la carpa igual: es una fiesta popular, nadie va a mirar el aforo",
+          "kpi_delta": { "seguridad_juridica": -3, "riesgo_de_sancion": 4, "credibilidad_ante_el_ayuntamiento": -3 },
+          "feedback": "El riesgo no es solo la multa administrativa. Sin seguro, si alguien resulta herido responde patrimonialmente la peña y, según cómo esté constituida, sus responsables. Lección: incumplir sale barato hasta el día en que sale carísimo, y ese día ya no se puede volver atrás.",
+          "next": "final:fracaso_parcial"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "La barraca abre con todo en regla",
+      "resumen": "Habéis localizado las tres normas, las habéis ordenado por jerarquía y habéis usado los procedimientos que las propias normas ofrecen. La música para a la hora acordada y nadie se lleva un susto.",
+      "lecciones_clave": [
+        "Cuando dos reglas se contradicen, gana la superior: reglamento privado < ordenanza municipal < ley autonómica < Constitución.",
+        "Las normas son públicas y gratuitas: BOE para lo estatal, DOGV para lo valenciano, boletín provincial y sede electrónica para lo municipal.",
+        "Casi toda norma restrictiva prevé un procedimiento para pedir la excepción; usarlo es más barato que incumplir."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "Acta a las 2:10 y una carpa sin seguro",
+      "resumen": "La barraca funcionó dos horas hasta que la policía local levantó acta. La sanción es asumible, pero durante esas dos horas 150 personas estuvieron bajo una carpa sin cobertura de responsabilidad civil.",
+      "lecciones_clave": [
+        "Ignorar una norma no la desactiva: solo traslada su coste al momento en que aparece el problema.",
+        "El acta de una asamblea que decide incumplir es una prueba en contra, no una defensa."
+      ]
+    }
+  }
+}
+```

@@ -1,0 +1,117 @@
+---
+asignatura: cjd-bach
+unidad_relacionada: 5
+title: "El verano en la heladería"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "15-20 min"
+descripcion: "Tu primer contrato. Sin papeles, con horas de más y un finiquito que no cuadra."
+competencias_clave: [CC, CE, CPSAA]
+competencias_especificas: []
+estado: publicado
+publicado_en: 2026-09-07
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Caso · Derecho laboral",
+    "titulo": "El verano en la heladería",
+    "contexto": "Tienes 17 años y te contratan para el verano en una heladería del paseo marítimo. El acuerdo es de palabra: 40 horas semanales, 1.100 € al mes «limpios», de junio a septiembre. El primer día te dicen que el contrato «lo firmamos más adelante, que ahora hay mucho lío». Es tu primer trabajo y no quieres empezar poniendo problemas.",
+    "kpi_inicial": { "dinero_cobrado": 0, "derechos_acreditados": 2, "relacion_con_la_empresa": 7 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisión 1 — La primera semana sin contrato",
+      "situacion": "Llevas seis días trabajando. No has firmado nada, no sabes si estás dado de alta y no has visto ninguna nómina. Un compañero te dice que aquí «siempre se hace así».",
+      "opciones": [
+        {
+          "label": "Espero: ya lo arreglarán, no quiero empezar mal",
+          "kpi_delta": { "dinero_cobrado": 0, "derechos_acreditados": -1, "relacion_con_la_empresa": 1 },
+          "feedback": "Cada día sin alta en la Seguridad Social es un día que no cotiza, que no cuenta para el paro ni para una futura prestación, y en el que un accidente te deja en una situación mucho peor. El contrato puede ser verbal y aun así ser válido, pero el alta no es opcional para la empresa. Lección: lo que no consta es lo primero que desaparece cuando hay un conflicto.",
+          "next": "n2"
+        },
+        {
+          "label": "Compruebo mi vida laboral en la sede electrónica de la Seguridad Social",
+          "kpi_delta": { "dinero_cobrado": 0, "derechos_acreditados": 4, "relacion_con_la_empresa": 0 },
+          "feedback": "Movimiento silencioso y decisivo: el informe de vida laboral es gratuito, se descarga con certificado o Cl@ve y dice exactamente desde qué día estás de alta y en qué régimen. Si no apareces, lo sabes en cinco minutos en lugar de en septiembre. Lección: verificar cuesta poco y cambia por completo tu posición negociadora.",
+          "next": "n2"
+        },
+        {
+          "label": "Pido el contrato por escrito por mensaje, para que quede constancia",
+          "kpi_delta": { "dinero_cobrado": 0, "derechos_acreditados": 3, "relacion_con_la_empresa": -1 },
+          "feedback": "Un mensaje educado pidiendo el contrato deja fecha y contenido. No es una amenaza: es la prueba de que lo pediste. Los contratos deben formalizarse por escrito en la mayoría de modalidades y, además, siendo menor de edad hay reglas específicas sobre jornada y horario nocturno. Lección: pedir por escrito lo que te corresponde es una precaución normal, no una hostilidad.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisión 2 — Las horas que no aparecen",
+      "situacion": "En agosto trabajas 50 horas algunas semanas. En la nómina, que ya te llega, siempre figuran 40 y el mismo importe. El encargado dice que «las extras se compensan con días libres en septiembre».",
+      "opciones": [
+        {
+          "label": "Acepto la compensación en días: total, en septiembre ya no estaré",
+          "kpi_delta": { "dinero_cobrado": 0, "derechos_acreditados": -2, "relacion_con_la_empresa": 1 },
+          "feedback": "Compensar horas extra con descanso es posible, pero tiene que hacerse dentro de un plazo y quedar registrado. Si tu contrato termina antes, la compensación no llega nunca y las horas se pierden. Además, tratándose de un trabajador menor de edad, las horas extraordinarias están prohibidas. Lección: un acuerdo que se cumple después de que te vayas no es un acuerdo.",
+          "next": "n3"
+        },
+        {
+          "label": "Apunto cada día mis horas y guardo el registro horario que me firman",
+          "kpi_delta": { "dinero_cobrado": 0, "derechos_acreditados": 4, "relacion_con_la_empresa": 0 },
+          "feedback": "El registro diario de jornada es obligatorio para la empresa y tú tienes derecho a acceder a él. Llevar además tu propia anotación, con fotos de los turnos y mensajes del grupo de trabajo, convierte una palabra contra otra en una prueba. Lección: quien documenta no necesita convencer; solo necesita enseñar.",
+          "next": "n3"
+        },
+        {
+          "label": "Me niego a hacer más horas de las pactadas",
+          "kpi_delta": { "dinero_cobrado": -150, "derechos_acreditados": 2, "relacion_con_la_empresa": -3 },
+          "feedback": "Estás en tu derecho, y siendo menor la jornada máxima es más estricta. Pero negarte sin haber documentado nada te expone a un despido en período de prueba sin que quede rastro del motivo. Lección: ejercer un derecho es más seguro cuando antes has dejado constancia de por qué lo ejerces.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisión 3 — El finiquito",
+      "situacion": "Último día. Te dan un papel para firmar con 780 € y la frase «saldo y finiquito, nada más que reclamar». Tú calculas que faltan las vacaciones no disfrutadas y la parte proporcional de las pagas extra.",
+      "opciones": [
+        {
+          "label": "Firmo: si no firmo, no cobro",
+          "kpi_delta": { "dinero_cobrado": 780, "derechos_acreditados": -3, "relacion_con_la_empresa": 1 },
+          "feedback": "Firmar un finiquito con la cláusula de «nada más que reclamar» dificulta reclamar después, aunque no lo impide siempre. Y no es cierto que no cobres si no firmas: la empresa te debe lo devengado firmes o no. Lección: la firma no es la condición del pago, es la renuncia a discutirlo.",
+          "next": "final:fracaso_parcial"
+        },
+        {
+          "label": "Firmo añadiendo a mano «no conforme» y me llevo copia",
+          "kpi_delta": { "dinero_cobrado": 780, "derechos_acreditados": 4, "relacion_con_la_empresa": -1 },
+          "feedback": "Es la maniobra clásica y funciona: cobras lo que te dan y dejas constancia de que no aceptas el importe como liquidación total. Con tu registro de horas y las nóminas puedes reclamar después la diferencia. Lección: aceptar un pago a cuenta y discutir el resto son cosas compatibles si lo dices por escrito.",
+          "next": "final:exito"
+        },
+        {
+          "label": "No firmo y presento papeleta de conciliación",
+          "kpi_delta": { "dinero_cobrado": 0, "derechos_acreditados": 4, "relacion_con_la_empresa": -4 },
+          "feedback": "La conciliación previa ante el organismo autonómico es gratuita y es el paso obligado antes de demandar por cantidad. Es una vía sólida, pero retrasa el cobro de lo que ya te reconocían. Lección: el plazo para reclamar cantidades es corto —un año— y el reloj corre desde que la deuda es exigible.",
+          "next": "final:exito"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "Cobras lo tuyo, con un mes de retraso",
+      "resumen": "Verificaste el alta, registraste tus horas y firmaste sin renunciar. La empresa paga la diferencia en conciliación antes de llegar al juzgado, que es donde termina la mayoría de estos casos.",
+      "lecciones_clave": [
+        "El contrato puede ser verbal, pero el alta en la Seguridad Social no es opcional y se comprueba gratis en tu vida laboral.",
+        "El registro de jornada es obligatorio y accesible: es la prueba que convierte una discusión en una reclamación.",
+        "Firmar «no conforme» permite cobrar lo reconocido sin renunciar a reclamar la diferencia."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "780 € y una firma que cierra la puerta",
+      "resumen": "Cobraste menos de lo devengado y firmaste una liquidación total. Reclamar sigue siendo posible, pero ahora hay que empezar por desmontar tu propia firma.",
+      "lecciones_clave": [
+        "«Si no firmas no cobras» es falso: lo devengado se debe con firma o sin ella.",
+        "Sin registro de horas, la reclamación depende de la palabra de quien tiene el papel."
+      ]
+    }
+  }
+}
+```

@@ -137,6 +137,54 @@ export const DEBATES_CA: FichaOverlay = {
       "Un dilema ètic sobre si heretar riquesa hauria de tributar per a garantir la igualtat d'oportunitats o si fer-ho suposa una doble imposició que penalitza l'estalvi i el negoci familiar.",
     agrupacion: 'Dos equips + moderació',
   },
+  'derecho-democracia/01-obedecer-ley-injusta': {
+    title: "Cal obeir sempre una llei que consideres injusta?",
+    descripcion:
+      "Un dilema ètic sobre la frontera entre la validesa d'una norma i la seua justícia, i sobre què legitima —si és que ho fa alguna cosa— desobeir-la.",
+    agrupacion: 'Grups de 4-5 + posada en comú',
+  },
+  'derecho-democracia/02-primacia-derecho-europeo': {
+    title: "Fins on ha d'arribar la primacia del Dret europeu?",
+    descripcion:
+      "Una taula redona sobre què passa quan una norma europea xoca amb una decisió d'un parlament estatal i qui hauria de tindre l'última paraula.",
+    agrupacion: 'Tres rols + públic amb torn de preguntes',
+  },
+  'derecho-democracia/03-suprimir-el-senado': {
+    title: 'Hauria de suprimir-se el Senat?',
+    descripcion:
+      "Un debat parlamentari sobre si una segona cambra de representació territorial millora la qualitat de la llei o només en duplica el cost.",
+    agrupacion: 'Dos equips de 4 + presidència + jurat',
+  },
+  'derecho-democracia/04-libertad-de-testar': {
+    title: 'Hauries de poder deixar la teua herència a qui vulgues?',
+    descripcion:
+      "Un dilema ètic sobre la legítima: protecció de la família o límit injustificat a la llibertat de disposar del que és teu.",
+    agrupacion: 'Grups de 4-5 + posada en comú',
+  },
+  'derecho-democracia/05-repartidor-autonomo': {
+    title: 'Repartidor autònom o treballador per compte alié?',
+    descripcion:
+      "Un juí simulat sobre els indicis que convertixen una relació «autònoma» en laboral, amb prova, al·legacions i sentència raonada.",
+    agrupacion: 'Rols processals + jurat',
+  },
+  'derecho-democracia/06-elusion-fiscal-agresiva': {
+    title: 'On acaba pagar poc i comença defraudar?',
+    descripcion:
+      "Un debat parlamentari sobre la franja grisa entre elusió i evasió, i sobre si complir la lletra de la llei mentres se'n buida la finalitat hauria de tractar-se com a frau.",
+    agrupacion: 'Dos equips de 4 + presidència + jurat',
+  },
+  'derecho-democracia/07-reconocimiento-facial': {
+    title: 'Càmeres amb reconeixement facial al carrer?',
+    descripcion:
+      "Un fishbowl sobre on es posa el límit entre seguretat i vigilància quan un sistema identifica automàticament tothom qui passa.",
+    agrupacion: 'Cercle interior de 5 rotant + cercle exterior',
+  },
+  'derecho-democracia/08-mediacion-obligatoria': {
+    title: "Ha de ser obligatori intentar un acord abans de demandar?",
+    descripcion:
+      "Una taula redona sobre si el requisit previ d'acord descarrega els jutjats o posa un peatge davant del dret que t'escolten.",
+    agrupacion: 'Quatre rols + públic amb torn de preguntes',
+  },
 };
 
 export const DINAMICAS_CA: FichaOverlay = {
