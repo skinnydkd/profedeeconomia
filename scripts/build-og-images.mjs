@@ -39,7 +39,7 @@ mkdirSync(outDir, { recursive: true });
 // Accent hex per asignatura colour token (mirrors global.css design tokens).
 const ACCENT = {
   edmn: '#C44E2C', eco1: '#1F6E6E', eco4: '#D4A24C', fopp: '#5B3A4E',
-  taller3: '#6B8E23', ipe1: '#4A6FA5', ipe2: '#2F4F7F', eeae: '#2E5E3A', gpe: '#8C2F39',
+  taller3: '#6B8E23', ipe1: '#4A6FA5', ipe2: '#2F4F7F', eeae: '#2E5E3A', gpe: '#8C2F39', cjd: '#4A3B8F',
 };
 
 // Minimal asignatura data (kept in sync with src/lib/asignaturas.ts).
@@ -53,6 +53,7 @@ const ASIGNATURAS = [
   { slug: 'ipe2-fp',        level: 'Formación Profesional',     color: 'ipe2',    title: 'Itinerario Personal para la Empleabilidad II' },
   { slug: 'eeae-bach',      level: 'Bachillerato',              color: 'eeae',    title: 'Economía, Emprendimiento y Actividad Empresarial' },
   { slug: 'gpe-bach',       level: 'Bachillerato',              color: 'gpe',     title: 'Gestión de Proyectos de Emprendimiento' },
+  { slug: 'cjd-bach',       level: 'Bachillerato (1.º/2.º)',    color: 'cjd',     title: 'Cultura Jurídica y Democrática' },
 ];
 
 const SECTIONS = 'Libro · Diapositivas · Actividades · Tests · Recursos';
