@@ -183,6 +183,10 @@ Els blocs 5 (Persona y relaciones laborales) i 6 (Persona e impuestos) cobreixen
 - **Nivell**: Batxillerat. FOPP és 4t d'ESO i IPE és FP; el tractament a CJD és més abstracte i normatiu.
 - **Reutilització, no duplicació**: el càlcul de nòmina, quitança i IRPF **no es reescriu**. S'enllaça amb el material existent via `recursos-relacionados` (`src/lib/recursos-relacionados-sources.ts`). Regla d'or de CLAUDE.md: una sola font per peça de contingut.
 
+### Pont amb Eco 1BACH i EDMN 2BACH
+
+La mateixa regla val per als blocs 2, 4 i 7, que toquen matèria d'**Economia 1BACH** (organismes internacionals, mercat, fallades de mercat, mercat de treball) i d'**EDMN 2BACH** (formes jurídiques d'empresa, funció financera, funció comercial). Ací el pont no és un risc de solapament sinó un actiu: l'angle jurídic aporta el que la mirada econòmica no dona —quina norma s'aplica, qui la va dictar i què pots fer— i el material econòmic s'enllaça en lloc de reescriure's. Les cinc situacions d'aprenentatge pont estan a [docs/situaciones-aprendizaje-cjd-bach.md](situaciones-aprendizaje-cjd-bach.md) §Ampliació.
+
 ## 8. Fonts
 
 - [Currículum oficial de la matèria, CEICE (PDF, castellà — versió extreta i verificada per a aquest document)](https://ceice.gva.es/documents/162640733/364026431/Cultura+jur%C3%ADdica+y+democr%C3%A1tica.pdf/de0eece7-43d4-92e6-5d11-4cd15ad85db7?t=1663312633685)
