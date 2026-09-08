@@ -6,7 +6,7 @@ import vercel from '@astrojs/vercel';
 import tailwindcss from '@tailwindcss/vite';
 import { readdirSync, readFileSync, existsSync, writeFileSync } from 'node:fs';
 import matter from 'gray-matter';
-import { mirrorSitemapLocale } from './scripts/sitemap-i18n.mjs';
+import { mirrorSitemapLocale, isIndexableHtml } from './scripts/sitemap-i18n.mjs';
 import stripDeckBlocks from './src/lib/remark/strip-deck-blocks.mjs';
 
 /** Canonical origin. Kept in sync with SITE.url in src/lib/seo.ts. */
@@ -38,10 +38,37 @@ const LIBRO_LASTMOD = buildLibroLastmod();
 
 // https://astro.build/config
 
-// Adds the /ca/ half of the sitemap and the hreflang alternates. The mirroring
-// itself lives in scripts/sitemap-i18n.mjs so it can be unit-tested; this hook
-// only supplies the real filesystem check and writes the result back.
-// See docs/seo-estrategia-2026.md §5.8.
+// Decides whether the sitemap may offer a built page: only one that is
+// self-canonical and does not carry robots noindex. A page that points its
+// canonical elsewhere (the consolidated toolbox duplicates of §5.6) or that
+// asks not to be indexed is one Google will never index, so submitting it just
+// parks it in Search Console's non-indexed count. Read from the page's own
+// <head> rather than from a list kept in step with it by hand. Fails safe: a
+// page we cannot read counts as indexable, so a surprise here can never
+// silently shrink the sitemap. See docs/seo-estrategia-2026.md §5.9.
+function pageIsIndexable(dir, site) {
+  const cache = new Map();
+  return (path) => {
+    const cached = cache.get(path);
+    if (cached !== undefined) return cached;
+    let verdict = true;
+    try {
+      const html = readFileSync(new URL(`.${path}index.html`, dir), 'utf8');
+      verdict = isIndexableHtml(html, new URL(path, site).toString());
+    } catch {
+      // Unreadable page: leave the entry in and let the integration's own
+      // filter be the judge.
+    }
+    cache.set(path, verdict);
+    return verdict;
+  };
+}
+
+// Adds the /ca/ half of the sitemap and the hreflang alternates, and removes
+// the entries no sitemap should carry. The logic lives in
+// scripts/sitemap-i18n.mjs so it can be unit-tested; this hook only supplies
+// the real filesystem checks and writes the result back.
+// See docs/seo-estrategia-2026.md §5.8 and §5.9.
 function sitemapI18nAlternates({ site, localePrefix = 'ca' }) {
   return {
     name: 'sitemap-i18n-alternates',
@@ -53,15 +80,20 @@ function sitemapI18nAlternates({ site, localePrefix = 'ca' }) {
           return;
         }
         const exists = (p) => existsSync(new URL(`.${p}index.html`, dir));
+        const indexable = pageIsIndexable(dir, site);
         for (const file of files) {
           const target = new URL(file, dir);
-          const { xml, mirrored } = mirrorSitemapLocale(readFileSync(target, 'utf8'), {
+          const { xml, mirrored, dropped } = mirrorSitemapLocale(readFileSync(target, 'utf8'), {
             site,
             localePrefix,
             exists,
+            indexable,
           });
           writeFileSync(target, xml);
-          logger.info(`${file}: mirrored ${mirrored} URLs into /${localePrefix}/ with hreflang alternates`);
+          logger.info(
+            `${file}: mirrored ${mirrored} URLs into /${localePrefix}/ with hreflang alternates, ` +
+              `dropped ${dropped} that canonicalise elsewhere or are noindex`
+          );
         }
       },
     },

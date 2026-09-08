@@ -46,6 +46,9 @@ qualsevol build posterior ja els agafa.
 
 ## Com detectar-ho una altra vegada
 
-La línia `[sitemap-i18n-alternates] sitemap-0.xml: mirrored N URLs` del registre
-de build diu quantes URLs en castellà s'han generat. Si eixe número no coincidix
-amb el del build de GitHub Actions del mateix commit, falta contingut.
+La línia `[sitemap-i18n-alternates] sitemap-0.xml: mirrored N URLs ... dropped M`
+del registre de build diu quantes URLs en castellà s'han emparellat amb la seua
+bessona valenciana. Si eixe número no coincidix amb el del build de GitHub
+Actions del mateix commit, falta contingut. Compara també `M`: des del §5.9 de
+`docs/seo-estrategia-2026.md`, `N` no conta les pàgines que canonicalitzen a una
+altra URL o són `noindex`, que és el que `M` compta.
