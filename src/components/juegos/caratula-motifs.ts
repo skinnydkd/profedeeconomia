@@ -45,6 +45,11 @@ export const MOTIFS: Record<string, string> = {
     <line x1="160" y1="20" x2="160" y2="44" stroke-width="2.5"/>
     <g fill="${CREAM}" stroke="none"><circle cx="120" cy="84" r="5"/><circle cx="160" cy="80" r="5"/><circle cx="200" cy="84" r="5"/></g>
     <g fill="${CREAM}" stroke="none" opacity="0.4"><circle cx="60" cy="104" r="5"/><circle cx="270" cy="104" r="5"/></g>`,
+  // 2x2 payoff matrix with the mutual-defection cell filled in.
+  'teoria-juegos': `
+    <g stroke-width="2"><rect x="96" y="26" width="128" height="80"/><line x1="160" y1="26" x2="160" y2="106"/><line x1="96" y1="66" x2="224" y2="66"/></g>
+    <rect x="161" y="67" width="62" height="38" fill="${CREAM}" opacity="0.9" stroke="none"/>
+    <g fill="${CREAM}" stroke="none" opacity="0.5"><circle cx="128" cy="46" r="4"/><circle cx="192" cy="46" r="4"/><circle cx="128" cy="86" r="4"/></g>`,
   // Regular dot grid with one singled out.
   insider: insiderGrid(),
 };

@@ -306,13 +306,30 @@ export const ASIGNATURAS_POR_ETAPA = {
   },
 } as const;
 
+/**
+ * Column groups for the «Otros» nav dropdown. Eight sections stacked in one
+ * column overflowed short viewports, so the menu renders as two labelled
+ * columns in this order. `grupo` below assigns each section to one of them;
+ * SECCIONES_TRANSVERSALES itself keeps its agreed order (it also feeds
+ * /llms-full.txt), so the menu derives the columns rather than reordering it.
+ */
+export const SECCION_GRUPOS = ['aula', 'recursos'] as const;
+export type SeccionGrupo = (typeof SECCION_GRUPOS)[number];
+
 export const SECCIONES_TRANSVERSALES = [
-  { slug: 'dinamicas',      label: 'Dinámicas',      description: 'Role-plays y simulaciones para hacer en clase.' },
-  { slug: 'herramientas',   label: 'Herramientas',   description: 'Calculadoras y simuladores para usar en clase.' },
-  { slug: 'emprendimiento', label: 'Emprendimiento', description: '«De cero a empresa»: un proyecto para montar un negocio paso a paso.' },
-  { slug: 'proyectos',      label: 'Proyectos interdisciplinares', description: 'Proyectos que cruzan la economía con otra materia.' },
-  { slug: 'debates',        label: 'Debates',        description: 'Controversias económicas para argumentar en clase.' },
-  { slug: 'juegos',         label: 'Juegos',         description: 'Material para una clase activa.' },
-  { slug: 'jocs-economics', label: 'Juegos Económicos', description: 'Concurso competitivo de economía con ranking por alumno e instituto.' },
-  { slug: 'generadores',    label: 'Herramientas Docentes', description: 'Generadores LOMLOE y herramientas de evaluación y aula.' },
+  { slug: 'dinamicas',      grupo: 'aula',     label: 'Dinámicas',      description: 'Role-plays y simulaciones para hacer en clase.' },
+  { slug: 'herramientas',   grupo: 'recursos', label: 'Herramientas',   description: 'Calculadoras y simuladores para usar en clase.' },
+  { slug: 'emprendimiento', grupo: 'recursos', label: 'Emprendimiento', description: '«De cero a empresa»: un proyecto para montar un negocio paso a paso.' },
+  { slug: 'proyectos',      grupo: 'recursos', label: 'Proyectos interdisciplinares', description: 'Proyectos que cruzan la economía con otra materia.' },
+  { slug: 'debates',        grupo: 'aula',     label: 'Debates',        description: 'Controversias económicas para argumentar en clase.' },
+  { slug: 'juegos',         grupo: 'aula',     label: 'Juegos',         description: 'Material para una clase activa.' },
+  { slug: 'jocs-economics', grupo: 'aula',     label: 'Juegos Económicos', description: 'Concurso competitivo de economía con ranking por alumno e instituto.' },
+  { slug: 'generadores',    grupo: 'recursos', label: 'Herramientas Docentes', description: 'Generadores LOMLOE y herramientas de evaluación y aula.' },
 ] as const;
+
+/** Sections of one dropdown column, in the order declared above. */
+export function seccionesDelGrupo(
+  grupo: SeccionGrupo,
+): readonly (typeof SECCIONES_TRANSVERSALES)[number][] {
+  return SECCIONES_TRANSVERSALES.filter((s) => s.grupo === grupo);
+}
