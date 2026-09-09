@@ -50,14 +50,25 @@ Opositors a Secundària Economia que ja coneixen oposicioneseconomia.es. Quan su
 /eco-4eso/                     (mateixa estructura)
 /fopp-4eso/                    (mateixa estructura)
 
-/juegos/                       Jocs i concursos
-/juegos/stonks/                Simulador de borsa
-/juegos/insider/               Among Us econòmic
-/juegos/communist-party/       Sistemes econòmics
-/juegos/econopoly/             Monopoly d'economia
-/juegos/econrisk/              Risk d'economia
-/juegos/playground/            10 jocs 2-jugadors
-/juegos/concurso/              Quiz competitiu
+/juegos/                       Hub de jocs d'aula
+/juegos/stonks/                Simulador de borsa i carteres
+/juegos/econrisk/              Risk de les escoles del pensament econòmic
+/juegos/econopoly/             Monopoly econòmic hot-seat
+/juegos/seguros/               Assegurats: risc, primes i cobertura
+/juegos/teoria-juegos/         Sis clàssics de teoria de jocs
+/juegos/cajut/                 Quiz d'aula multijugador (pantalla de l'alumnat)
+/juegos/cajut/host/            Cajút al projector (el que obri el professorat)
+/juegos/insider/               Deducció social multijugador (pantalla de l'alumnat)
+/juegos/insider/host/          Insider al projector
+/juegos/business-game/         Simulador d'empresa de curs complet (prototip)
+/juegos/[joc]/imprimir/        Versió per a imprimir (econopoly, econrisk, insider, cajut)
+/juegos/playground/            10 jocs 2-jugadors (pendent)
+/juegos/communist-party/       Sistemes econòmics (pendent)
+
+/jocs-economics/               Concurs competitiu (successor de concurs.html)
+/jocs-economics/leaderboard/   Rànquing per alumne i institut
+
+/olimpiada/                    Preparació de l'Olimpíada d'Economia
 
 /herramientas/                 Eines docents
 /herramientas/sa-creator/      Creador Situacions Aprenentatge LOMLOE
@@ -124,11 +135,37 @@ Els 8 índexs antics del webpde (economia, empresa, finances, vida pràctica, fe
 - Materials de drets i deures
 
 **Contingut transversal que NO encaixa a assignatura**:
-- Jocs específics (stonks, insider, communist, econopoly, econrisk) → `/juegos/`
-- Playground → `/juegos/playground/`
-- Concurs → `/juegos/concurso/`
+- Jocs específics (stonks, insider, econopoly, econrisk) → `/juegos/`, ja refets
+- Playground i Communist Party → `/juegos/playground/` i `/juegos/communist-party/`, pendents
+- Concurs → `/jocs-economics/` (secció pròpia, no sota `/juegos/`)
 - Generadors (SA LOMLOE, Test) → `/herramientas/`
 - Material genèric d'emprenedoria → `/emprendimiento/`
+
+### 3.4 Inventari de jocs
+
+Font de veritat al codi: `src/lib/juegos.ts` (registre `JUEGOS`, que alimenta el hub, les
+caràtules i la fitxa curricular de cada joc). Aquesta taula l'ha de seguir.
+
+| Joc | Ruta | Tipus | Mode | Estat |
+|---|---|---|---|---|
+| Stonks | `/juegos/stonks/` | simulador | 1 jugador | Publicat |
+| Econrisk | `/juegos/econrisk/` | estratègia | 1 jugador vs IA | Publicat · imprimible |
+| Econopoly | `/juegos/econopoly/` | tauler | 1-6 hot-seat | Publicat · imprimible |
+| Assegurats | `/juegos/seguros/` | tauler | classe per equips · projector | Publicat |
+| Teoria de jocs | `/juegos/teoria-juegos/` | estratègia | 1 jugador o classe sencera · projector | Publicat |
+| Cajút | `/juegos/cajut/host/` | party | multijugador (mòbil + projector) | Publicat · imprimible |
+| Insider | `/juegos/insider/host/` | party | multijugador (mòbil + projector) | Publicat · imprimible |
+| Business Game | `/juegos/business-game/` | simulador | equips · una lliga per curs | Prototip (fase 1a, sense backend) |
+| Playground | `/juegos/playground/` | — | 2 jugadors | Pendent de refer |
+| Communist Party | `/juegos/communist-party/` | — | — | Pendent de refer |
+
+«Teoria de jocs» és un hub amb sis experiments dins —dilema del presoner, caça del cérvol,
+concurs de bellesa, ultimàtum i dictador, bé públic i les quatre subhastes—, cadascun jugable
+en solitari contra estratègies programades o projectat amb la classe votant a mà alçada.
+Cada experiment enllaça amb la dinàmica en paper equivalent de `/dinamicas/`.
+
+El concurs competitiu **no** viu sota `/juegos/`: té secció pròpia a `/jocs-economics/`, amb
+rànquing per alumne i institut. La preparació de l'Olimpíada va a `/olimpiada/`.
 
 ## 4. Cobertura curricular
 
@@ -199,12 +236,14 @@ La decisió de format depèn de la magnitud de la demanda i la disponibilitat re
 ### 5.4 Versió 0.4 — Gener-Febrer 2027
 
 - **Llibre 4 (FOPP 4ESO) publicat**
-- **Primer joc refet (stonks)** publicat a /juegos/
+- ~~**Primer joc refet (stonks)** publicat a /juegos/~~ → fet abans d'hora: vegeu §3.4
 - Possible activació de premium professor
 
 ### 5.5 Versió 0.5+ — Abril 2027 endavant
 
-- Resta de jocs refets (insider, communist party, econopoly, econrisk)
+- ~~Resta de jocs refets (insider, econopoly, econrisk)~~ → fet abans d'hora, i amb quatre
+  jocs nous que no venien del webpde: Assegurats, Cajút, Teoria de jocs i el prototip de
+  Business Game. Queden Playground i Communist Party (§3.4)
 - Migració completa del Playground
 - Eines docents migrades (SA Creator, Test Creator)
 - Material d'emprenedoria
@@ -342,13 +381,13 @@ Un modelo de negocio describe cómo una empresa crea, entrega y captura valor.
 | `vidapractica.html` | Distribuit entre FOPP 4ESO (gran part) i Eco 4ESO (bàsics) | Llibres 3 i 4 |
 | `ferramentes.html` | Tot a Eco 1BACH (teoria de la decisió, biaixos) | Llibre 2 (setembre 2026) |
 | `recerca.html` | Tot a Eco 1BACH (apartat de mètode científic) | Llibre 2 |
-| `playground.html` | A `/juegos/playground/` | Fase 0.5 (abril 2027+) |
-| `concurs.html` | A `/juegos/concurso/` | Fase 0.5 |
-| `econopoly.html` | A `/juegos/econopoly/` (refet) | Fase 0.5 |
-| `econrisk.html` | A `/juegos/econrisk/` (refet) | Fase 0.5 |
-| `stonks.html` | A `/juegos/stonks/` (refet, primer joc en arribar) | Fase 0.4 (gener 2027) |
-| `insider.html` | A `/juegos/insider/` (refet) | Fase 0.5 |
-| `communist.html` | A `/juegos/communist-party/` (refet) | Fase 0.5 |
+| `playground.html` | A `/juegos/playground/` | Pendent |
+| `concurs.html` | A `/jocs-economics/` (secció pròpia, amb rànquing) | Fet |
+| `econopoly.html` | A `/juegos/econopoly/` (refet) | Fet |
+| `econrisk.html` | A `/juegos/econrisk/` (refet) | Fet |
+| `stonks.html` | A `/juegos/stonks/` (refet, primer joc en arribar) | Fet |
+| `insider.html` | A `/juegos/insider/` (refet, amb `/host/` al projector) | Fet |
+| `communist.html` | A `/juegos/communist-party/` (refet) | Pendent |
 | `professorat.html` | A `/herramientas/` (SA Creator + Test Creator) | Fase 0.5 |
 | `economia-1bach.html` | Esquelet inicial del Llibre 2 (Eco 1BACH) | Setembre 2026 |
 | `economia-4eso.html` | Esquelet inicial del Llibre 3 (Eco 4ESO) | Octubre-Desembre 2026 |
@@ -391,7 +430,7 @@ Idees del roadmap antic que s'integren al nou plantejament:
 - Calculadora pensió jubilació estimada
 - Drets laborals bàsics
 
-**A `/juegos/concurso/`**:
+**A `/jocs-economics/`** (abans previst com a `/juegos/concurso/`):
 - Banc de preguntes ampliat (mín. 200)
 - Categories seleccionables
 - Mode estudi
@@ -452,4 +491,8 @@ Idees del roadmap antic que s'integren al nou plantejament:
 - **v1.0** — abril 2026 — primera versió post-decisions estratègiques globals.
 - **v2.0** — abril 2026 — reestructuració completa: organització per assignatures (4 + seccions específiques), estètica editorial sòbria amb to proper, estratègia de migració selectiva del webpde.
 - **v2.1** — abril 2026 — afegit cobertura curricular (basada en currículum estatal LOMLOE, amb nota explicativa per a la concreció autonòmica). Oposicions: redirect 301 directe sense pàgina intermèdia. Risc 12.5 afegit.
+- **v2.3** — 2026-09-09 — inventari de jocs posat al dia (§3.4 nova): els set jocs publicats,
+  el prototip de Business Game i els dos que queden pendents. Sitemap, distribució del contingut
+  antic, full de ruta i taula de migració corregits — els jocs van arribar molt abans del que
+  preveia el pla, i el concurs viu a `/jocs-economics/`, no sota `/juegos/`.
 - **v2.2** — 2026-05-10 — direcció estètica validada (Variant C "editorial amb energia"): paleta cream + terracota + mostassa, color-coding per assignatura, Fraunces + Switzer + JetBrains Mono. Apartat 6.5 (pendents per a la fase de producció) afegit. Mockups vius a `mockups/variant-{a,b,c}/`.
