@@ -1,7 +1,10 @@
 import { describe, it, expect } from 'vitest';
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
-import { ASIGNATURAS, ASIGNATURAS_LIST, SECCIONES_TRANSVERSALES, ACCENTS } from './asignaturas.ts';
+import {
+  ASIGNATURAS, ASIGNATURAS_LIST, SECCIONES_TRANSVERSALES, ACCENTS,
+  SECCION_GRUPOS, seccionesDelGrupo,
+} from './asignaturas.ts';
 
 
 describe('SECCIONES_TRANSVERSALES', () => {
@@ -19,6 +22,24 @@ describe('SECCIONES_TRANSVERSALES', () => {
     const s = SECCIONES_TRANSVERSALES.find((x) => x.slug === 'dinamicas');
     expect(s?.label).toBe('Dinámicas');
     expect(s?.description.length).toBeGreaterThan(0);
+  });
+});
+
+describe('seccionesDelGrupo', () => {
+  it('reparte las ocho secciones entre las dos columnas de «Otros»', () => {
+    const cols = SECCION_GRUPOS.flatMap((g) => seccionesDelGrupo(g).map((s) => s.slug));
+    expect(cols.sort()).toEqual(SECCIONES_TRANSVERSALES.map((s) => s.slug).sort());
+  });
+  it('mantiene las columnas equilibradas (ninguna se come el menú)', () => {
+    for (const g of SECCION_GRUPOS) {
+      expect(seccionesDelGrupo(g).length).toBeLessThanOrEqual(5);
+      expect(seccionesDelGrupo(g).length).toBeGreaterThan(0);
+    }
+  });
+  it('agrupa lo que se hace con el alumnado en la columna de aula', () => {
+    expect(seccionesDelGrupo('aula').map((s) => s.slug)).toEqual([
+      'dinamicas', 'debates', 'juegos', 'jocs-economics',
+    ]);
   });
 });
 
