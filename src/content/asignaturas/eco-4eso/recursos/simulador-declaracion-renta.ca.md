@@ -1,6 +1,6 @@
 ---
 asignatura: eco-4eso
-unidad_relacionada: 8
+unidad_relacionada: 6
 title: "Simulador de la declaració de la renda (IRPF)"
 descripcion: "Introduïx els teus ingressos del treball i les retencions que t'han practicat durant l'any per a vore si la declaració ix a pagar o a tornar."
 tipo: simulador

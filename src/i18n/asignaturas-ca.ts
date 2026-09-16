@@ -35,7 +35,7 @@ export const ASIGNATURAS_CA: Partial<Record<AsignaturaSlug, CAOverlay>> = {
     seoTitle: 'Economia i Emprenedoria 4t ESO: llibre i activitats',
     seoName: 'Economia i Emprenedoria 4t ESO',
     tagline:
-      'Economia bàsica amb la mirada posada en el que l\'alumnat es trobarà fora: nòmina, IRPF, contractes, decisions de consum.',
+      'Nou unitats d\'economia i tres d\'empresa: de l\'escassetat i els mercats a la nòmina, els impostos i el projecte emprenedor.',
     marcoNormativo: 'Reial Decret 217/2022',
   },
   'fopp-4eso': {

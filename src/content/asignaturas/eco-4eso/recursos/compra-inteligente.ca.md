@@ -1,6 +1,6 @@
 ---
 asignatura: eco-4eso
-unidad_relacionada: 5
+unidad_relacionada: 7
 title: "Preu per unitat i cost real de pagar a terminis"
 descripcion: "Dues comparacions que la botiga no fa per tu: quin de tres formats ix més barat per gram o per unitat, i quina TAE amaga una quota mensual que sembla xicoteta."
 tipo: calculadora

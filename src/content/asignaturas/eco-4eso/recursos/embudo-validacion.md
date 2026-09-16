@@ -1,6 +1,6 @@
 ---
 asignatura: eco-4eso
-unidad_relacionada: 10
+unidad_relacionada: 12
 title: "Embudo de validación"
 descripcion: "Cuenta cuánta gente llega a cada paso de tu proyecto, calcula la conversión de cada uno y encuentra el paso que pierde a más gente, que casi nunca es el último."
 tipo: calculadora

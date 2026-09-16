@@ -1,6 +1,6 @@
 ---
 asignatura: eco-4eso
-unidad_relacionada: 6
+unidad_relacionada: 10
 title: "Cobertura de papers de l'equip"
 descripcion: "Cada membre s'autovalora en sis papers i ix d'un colp d'ull què cobrix l'equip i què no cobrix ningú. L'interessant no és la teua columna: són els buits."
 tipo: plantilla

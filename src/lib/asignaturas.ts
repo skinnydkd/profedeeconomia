@@ -108,7 +108,7 @@ export const ASIGNATURAS: Record<AsignaturaSlug, Asignatura> = {
     seoTitle: 'Economía y Emprendimiento 4.º ESO: libro y actividades',
     seoName: 'Economía y Emprendimiento 4.º ESO',
     tagline:
-      'Economía básica con la mirada puesta en lo que el alumnado se va a encontrar fuera: nómina, IRPF, contratos, decisiones de consumo.',
+      'Nueve unidades de economía y tres de empresa: de la escasez y los mercados a la nómina, los impuestos y el proyecto emprendedor.',
     num: '03',
     color: 'eco4',
     marcoNormativo: 'Real Decreto 217/2022',

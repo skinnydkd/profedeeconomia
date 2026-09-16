@@ -1,6 +1,6 @@
 ---
 asignatura: eco-4eso
-unidad_relacionada: 8
+unidad_relacionada: 6
 title: "Simulador de la declaración de la renta (IRPF)"
 descripcion: "Introduce tus ingresos del trabajo y las retenciones que te han practicado durante el año para ver si la declaración sale a pagar o a devolver."
 tipo: simulador

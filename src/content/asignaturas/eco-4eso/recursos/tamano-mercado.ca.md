@@ -1,6 +1,6 @@
 ---
 asignatura: eco-4eso
-unidad_relacionada: 4
+unidad_relacionada: 12
 title: "Grandària de mercat: TAM, SAM i SOM"
 descripcion: "Passa de la població de la teua zona als clients que el teu projecte pot aconseguir de veritat, filtrant en tres passos, i comprova quants en farien falta per a arribar al teu objectiu d'ingressos."
 tipo: calculadora

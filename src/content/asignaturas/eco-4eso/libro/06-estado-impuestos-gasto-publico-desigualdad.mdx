@@ -1,0 +1,814 @@
+---
+asignatura: eco-4eso
+unidad: 6
+title: "El Estado: impuestos, gasto público y desigualdad"
+lema: >-
+  Del bocadillo del recreo se van 27 céntimos a Hacienda, y de cada
+  nómina, bastante más. Ese dinero vuelve como un instituto, una noche
+  de hospital o la pensión de tus abuelos. Esta unidad sigue el viaje de
+  los impuestos: de dónde salen, quién decide en qué se gastan y por qué,
+  aun así, España sigue siendo un país desigual.
+lang: es
+estado: publicado
+duracion: 8 sesiones · 3 semanas
+bloque: Bloque I · Economía
+sabers:
+  - Por qué interviene el Estado, bienes públicos y fallos de mercado
+  - Ingresos públicos, impuestos directos e indirectos, tasas y cotizaciones
+  - IRPF e IVA, progresividad, tipo marginal y tipo medio
+  - Gasto público y Presupuestos Generales del Estado
+  - Déficit, deuda pública y reglas fiscales
+  - Estado del bienestar, desigualdad y fraude fiscal
+conceptos_clave:
+  - bien público
+  - fallo de mercado
+  - impuesto directo
+  - impuesto indirecto
+  - IRPF
+  - IVA
+  - tipo marginal
+  - progresividad
+  - gasto público
+  - déficit público
+  - deuda pública
+  - índice de Gini
+objetivos:
+  - Explicar por qué el mercado no provee bienes públicos y qué otros fallos justifican la intervención del Estado, con ejemplos españoles.
+  - Clasificar los ingresos públicos (impuestos directos e indirectos, tasas y cotizaciones) e identificar qué administración cobra cada uno.
+  - Calcular el IRPF de una renta sencilla por tramos, distinguir tipo marginal y tipo medio, y calcular el IVA de un ticket con varios tipos.
+  - Interpretar las grandes partidas del gasto público y las cifras de déficit y deuda de España con datos oficiales.
+  - Leer un índice de Gini y una curva de Lorenz y valorar cómo impuestos y transferencias redistribuyen la renta.
+publicado_en: 2026-09-15
+---
+
+import Callout from '@components/Callout.astro';
+import Diagram from '@components/Diagram.astro';
+import BienesPublicos from '@components/diagrams/BienesPublicos.astro';
+import MapaImpuestos from '@components/diagrams/MapaImpuestos.astro';
+import IRPFTramos from '@components/diagrams/IRPFTramos.astro';
+import CurvaLorenz from '@components/diagrams/CurvaLorenz.astro';
+import Curiosity from '@components/Curiosity.astro';
+import RealExample from '@components/RealExample.astro';
+import SolvedExercise from '@components/SolvedExercise.astro';
+import Steps from '@components/Steps.astro';
+import KeyTakeaways from '@components/KeyTakeaways.astro';
+import Figure from '@components/Figure.astro';
+import Bibliography from '@components/Bibliography.astro';
+import TldrUnidad from '@components/TldrUnidad.astro';
+import CasoDilema from '@components/CasoDilema.astro';
+import VuelveAlCaso from '@components/VuelveAlCaso.astro';
+import MirarFora from '@components/MirarFora.astro';
+import VocesDesacuerdo from '@components/VocesDesacuerdo.astro';
+import RecursoDestacado from '@components/libro/RecursoDestacado.astro';
+import HerramientaIsland from '@components/calculadoras/HerramientaIsland.astro';
+
+import faroChipiona from '@assets/libro/eco-1bach/06/faro-chipiona.jpg';
+import congresoDiputados from '@assets/libro/eco-1bach/11/congreso-diputados-madrid.jpg';
+import hospitalPublico from '@assets/libro/taller-eco-3eso/08/hospital-publico.jpg';
+import agenciaTributaria from '@assets/libro/taller-eco-3eso/08/agencia-tributaria.jpg';
+import amartyaSen from '@assets/libro/eco-1bach/08/amartya-sen.jpg';
+
+> **Tiempo de lectura**: ~25 min · **Saberes**: bienes públicos y fallos de mercado, ingresos públicos, IRPF e IVA, gasto público y presupuestos, déficit y deuda, Estado del bienestar y desigualdad · **Antes de empezar**: Unidades 1, 3 y 5 (los agentes económicos y el flujo circular; cómo funcionan los mercados; la nómina y las cotizaciones).
+>
+> **Al acabar esta unidad sabrás**:
+> - Explicar por qué hay cosas que paga el Estado y no el mercado, y quién hace qué entre el Estado, las comunidades y los ayuntamientos.
+> - Distinguir un impuesto directo de uno indirecto y una tasa de una cotización, y calcular el IRPF y el IVA de casos sencillos.
+> - Leer los Presupuestos Generales del Estado: en qué se gasta, qué es el déficit y por qué importa la deuda.
+> - Medir la desigualdad con el índice de Gini y explicar cómo la reducen los impuestos y las transferencias.
+
+<TldrUnidad>
+El Estado interviene porque hay cosas que el mercado no hace bien: no construye faros ni farolas, contamina si nadie se lo impide y deja fuera a quien no puede pagar. Para hacerlo cobra impuestos (el IRPF sobre lo que ganas, el IVA sobre lo que compras), tasas y cotizaciones, y los gasta sobre todo en pensiones, sanidad y educación: alrededor del 45 % de todo lo que produce España pasa cada año por manos públicas. Cuando gasta más de lo que ingresa hay déficit, y los déficits acumulados forman la deuda, que ronda el 100 % del PIB. Los impuestos y las transferencias reducen la desigualdad, pero España sigue entre los países más desiguales de la Unión Europea.
+</TldrUnidad>
+
+<CasoDilema
+  titular="Los 27 céntimos de IVA de tu bocadillo y los 2.000 € de una noche en la UCI"
+  fuente="AEAT, Informe Anual de Recaudación Tributaria 2024 · Ley 22/2009 de financiación autonómica · Tarifas de precios públicos sanitarios de las comunidades autónomas"
+  pregunta="¿Adónde va el dinero de los impuestos, quién decide en qué se gasta y qué recibes tú a cambio?"
+>
+Un bocadillo en la cafetería del instituto o en el bar de al lado cuesta unos 3 €. De ese precio, **27 céntimos son IVA**: la hostelería tributa al tipo reducido del 10 %, así que el bar se queda 2,73 € y los otros 27 céntimos los ingresa en Hacienda en tu nombre. No parece nada. Pero en 2024 la Agencia Tributaria recaudó por IVA alrededor de **93.000 millones de euros**, sumando los céntimos de todos los bocadillos, las camisetas, las gasolinas y las facturas de la luz del país (AEAT, Informe Anual de Recaudación Tributaria 2024). Y la mitad de ese IVA no se queda en Madrid: desde la Ley 22/2009, el **50 % del IVA** se cede a la comunidad autónoma donde vives, que es quien paga tu instituto y tu centro de salud.
+
+¿Qué compra ese dinero? Las comunidades publican tarifas de lo que cuestan sus servicios sanitarios, para facturarlos cuando corresponde a una aseguradora o a otro país: un día en una planta de hospital ronda los **600-800 €** y un día en una **unidad de cuidados intensivos, entre 1.500 y 2.500 €**, según la comunidad (órdenes de precios públicos sanitarios de las comunidades autónomas, 2023-2025). Una plaza en un instituto público cuesta alrededor de **7.000 € al año** por alumno (Ministerio de Educación, Sistema Estatal de Indicadores de la Educación 2024, datos de 2022). Nadie te pasa esa factura. La has pagado con el bocadillo, la pagan tus padres con su nómina y la pagarás tú con la tuya.
+</CasoDilema>
+
+Piensa en un martes cualquiera. Te despiertas en una casa a la que llega agua potable por una red que pagó el ayuntamiento. Vas al instituto por una acera con farolas, cruzas con un semáforo y entras en un edificio donde veinte profesores cobran a final de mes sin que tú pagues matrícula. Si te tuerces el tobillo en Educación Física, te atienden en el centro de salud sin pasar por caja. Tus abuelos cobran una pensión el día 25. Nada de eso lo ha puesto una empresa esperando beneficio: lo ha puesto el **Estado**, y lo ha pagado con dinero de todos.
+
+En la Unidad 1 vimos que el sector público es uno de los tres agentes del flujo circular de la renta, y en la Unidad 5 os encontrasteis con él en la nómina: la Seguridad Social y el IRPF se llevan una parte del sueldo antes de que llegue a la cuenta. Esta unidad explica ese lado de la economía que no se ve en las tiendas. Primero, por qué el Estado interviene y qué no le sale bien al mercado. Después, de dónde saca el dinero (impuestos, tasas, cotizaciones) y en qué lo gasta. Luego, qué pasa cuando gasta más de lo que ingresa, que es lo habitual. Y al final, la pregunta de fondo: si todo ese dinero sirve para que la sociedad sea menos desigual, y qué ocurre cuando alguien decide no pagar su parte.
+
+No es un tema de opiniones, aunque genere muchas. Hay cifras oficiales para casi todo, y vamos a usarlas. Cuando alguien diga en una cena que «los impuestos son un robo» o que «el Estado lo tiene que pagar todo», al acabar esta unidad sabréis qué preguntar antes de dar la razón a nadie.
+
+## ¿Por qué interviene el Estado en la economía?
+
+En la Unidad 3 aprendisteis que los mercados, cuando funcionan, hacen algo asombroso: coordinan a millones de personas a través de los precios sin que nadie lo planifique. Si el mercado lo hiciera todo bien, el Estado sobraría. Pero hay situaciones en las que el mercado, dejado a su aire, produce resultados malos para casi todos. Los economistas las llaman **fallos de mercado**, y son la primera razón para que exista un sector público.
+
+### Bienes públicos: el faro y la farola
+
+Imagina que quisieras montar una empresa de faros. Construyes uno en un cabo peligroso y cobras a cada barco que pase por usar su luz. El problema es evidente: la luz del faro la ve cualquier barco, haya pagado o no, y que la vea un barco más no la gasta para los demás. Nadie pagaría voluntariamente por algo que va a recibir igual. El resultado es que ninguna empresa construiría faros, y sin embargo los faros son útiles para todos. Lo mismo pasa con el alumbrado de tu calle, con la defensa nacional o con la investigación básica sobre una vacuna.
+
+<Figure
+  src={faroChipiona}
+  alt="Faro de Chipiona (Cádiz), torre de 62 metros sobre la costa atlántica andaluza, reflejado en la pleamar."
+  caption="El faro de Chipiona, en Cádiz, es el más alto de España y guía la entrada al Guadalquivir desde 1869. Ningún barco paga por su luz y ninguno se queda sin ella porque la use otro: por eso lo construyó y lo mantiene el Estado, y no una empresa."
+  credit="Foto: Diego Delso, CC BY-SA 4.0 vía Wikimedia Commons"
+  aspectHint="3/2"
+  variant="wide"
+/>
+
+Los economistas clasifican los bienes con dos preguntas. ¿Es **rival**, es decir, si lo consume una persona ya no puede consumirlo otra? Un bocadillo sí; la luz del faro no. ¿Es **excluible**, es decir, se puede impedir su uso a quien no paga? La entrada del cine sí; la farola no. Cruzando las dos preguntas salen cuatro tipos de bienes, y los que fallan las dos, los **no rivales y no excluibles**, son los **bienes públicos puros**.
+
+<Callout label="Concepto clave" title="Bien público y problema del polizón">
+
+Un **bien público** es un bien que muchas personas pueden usar a la vez sin que se agote (no rival) y del que no se puede excluir a quien no paga (no excluible): un faro, el alumbrado, la defensa, la protección civil. Como cualquiera puede aprovecharlo sin pagar, cada uno tiene la tentación de ser un **polizón** (*free rider*): esperar a que lo paguen los demás. Si todos razonan así, el bien no existe. La solución que han encontrado todas las sociedades es la misma: **obligar a todos a contribuir** a través de los impuestos y que el Estado lo provea.
+
+</Callout>
+
+<Diagram caption="Los bienes según sean rivales o no y excluibles o no. El mercado provee bien los privados y los de club; los bienes públicos puros los tiene que financiar el Estado, y los recursos comunes hay que regularlos para que no se agoten.">
+  <BienesPublicos />
+</Diagram>
+
+Fíjate en los otros dos cuadrantes, porque explican muchas noticias. Un **bien de club** (Netflix, una autopista de peaje) no es rival pero sí excluible: el mercado sí puede ofrecerlo, cobrando una suscripción o un peaje. Un **recurso común** (un caladero de pesca, el agua de un acuífero) es rival pero no excluible: cada uno tiene incentivos a coger cuanto más mejor, y si nadie lo regula se agota. Es lo que vimos con la sequía de 2024 en la Unidad 1, y por eso el Estado fija cuotas de pesca o restricciones de riego.
+
+### Otros fallos de mercado, en versión corta
+
+Los bienes públicos no son el único caso. Hay tres más que conviene reconocer:
+
+- **Externalidades.** Una fábrica que vierte residuos a un río ahorra dinero, pero el coste lo pagan quienes viven río abajo: la contaminación es un coste que el mercado no incluye en el precio. Lo mismo, en positivo, pasa con la educación: cuando tú estudias, se beneficia también la sociedad que tendrá una trabajadora más productiva. El Estado corrige estas situaciones con **impuestos** a lo que perjudica (los impuestos especiales sobre el tabaco o los carburantes), **subvenciones** a lo que beneficia (becas, enseñanza gratuita) y **normas** (límites de emisiones, zonas de bajas emisiones en las ciudades).
+- **Monopolios.** Cuando una sola empresa controla un mercado (Unidad 3), puede subir los precios sin miedo a que el cliente se vaya. El Estado vigila la competencia a través de la **Comisión Nacional de los Mercados y la Competencia (CNMC)**, que multa a las empresas que pactan precios, y regula los precios de servicios que son monopolios naturales, como la red eléctrica o el agua.
+- **Información asimétrica.** Quien vende sabe más que quien compra: el taller sabe si el arreglo era necesario, el banco entiende el contrato que tú firmas sin leer. Por eso hay leyes de consumidores (Real Decreto Legislativo 1/2007), garantía obligatoria de tres años (Real Decreto-ley 7/2021), etiquetado obligatorio de alimentos y la obligación de publicar la TAE de un préstamo (lo veréis en la Unidad 8).
+
+### Redistribuir y estabilizar
+
+Hay dos motivos más para que el Estado intervenga que no tienen que ver con que el mercado funcione mal, sino con lo que produce aunque funcione bien.
+
+El primero es la **redistribución**. Un mercado perfecto reparte la renta según lo que cada uno pueda vender: su trabajo, su capital, su tierra. Quien nace en una familia sin recursos, quien enferma o quien pierde el empleo a los 58 años se queda con muy poco, y no por haber decidido mal. Las sociedades europeas han decidido corregir ese resultado cobrando más a quien más tiene y entregando **transferencias** (pensiones, prestaciones por desempleo, becas, ingreso mínimo vital) a quien menos tiene. Cuánto corregir es una decisión política; que se corrige, lo dice la Constitución española en su artículo 31: todos contribuirán «de acuerdo con su capacidad económica mediante un sistema tributario justo inspirado en los principios de igualdad y progresividad».
+
+El segundo es la **estabilización**. La economía tiene ciclos (Unidad 2): años de crecimiento y años de crisis. En una crisis, el Estado gasta más de forma automática (hay más parados cobrando prestación) e ingresa menos (menos IRPF, menos IVA), y con eso amortigua la caída. A veces actúa además a propósito: en la primavera de 2020 los ERTE de la pandemia pagaron parte del salario de más de tres millones de personas para que las empresas no las despidieran. A este uso de los impuestos y el gasto para suavizar el ciclo se le llama **política fiscal**.
+
+### Tres administraciones: quién paga qué
+
+Cuando decimos «el Estado» en realidad hablamos de tres niveles de administración que se reparten las tareas y el dinero. Conviene saber quién hace qué, porque explica a quién hay que reclamar y por qué tu comunidad puede bajar un impuesto que la de al lado sube.
+
+| Administración | De qué se encarga (principalmente) | Impuestos que gestiona o recibe |
+|---|---|---|
+| **Estado** (Administración central y Seguridad Social) | Pensiones, prestaciones por desempleo, defensa, justicia, policía nacional, carreteras y trenes estatales, relaciones con la UE | Impuesto sobre Sociedades, la mitad del IRPF y del IVA, parte de los especiales, cotizaciones sociales |
+| **Comunidades autónomas** | **Sanidad**, **educación** (tu instituto), servicios sociales y dependencia, vivienda, políticas de empleo | La otra mitad del IRPF y del IVA, Sucesiones y Donaciones, Patrimonio, Transmisiones Patrimoniales |
+| **Ayuntamientos** | Recogida de basuras, alumbrado, limpieza, parques, transporte urbano, policía local, licencias de obras | IBI (por tener un piso o un local), impuesto de circulación, tasas de basuras y de terrazas |
+
+Sorprende a mucha gente descubrir que la sanidad y la educación, las dos cosas por las que más se pregunta «adónde van mis impuestos», **no las paga el Gobierno central sino tu comunidad autónoma**, que gestiona alrededor de un tercio de todo el gasto público español (IGAE, Cuentas de las Administraciones Públicas, 2023). El Estado recauda la mayor parte de los grandes impuestos y luego reparte una parte a las comunidades según la Ley 22/2009, que cede el 50 % del IRPF, el 50 % del IVA y el 58 % de los impuestos especiales. Por eso el debate sobre la **financiación autonómica** (cuánto recibe cada comunidad y con qué criterios) es uno de los más largos de la política española.
+
+## Los ingresos públicos: impuestos, tasas y cotizaciones
+
+Todo lo que el Estado gasta sale de algún sitio. Casi siempre, de los **tributos**, que la ley divide en tres familias, y de las **cotizaciones sociales**, que técnicamente no son un impuesto pero funcionan de forma parecida. Conviene distinguirlas, porque no son lo mismo pagar el IVA de una camiseta que pagar la tasa del DNI.
+
+<Callout label="Concepto clave" title="Impuesto, tasa y cotización">
+
+Un **impuesto** es un pago obligatorio al Estado **sin contraprestación directa**: pagas IRPF y no recibes nada concreto a cambio en ese momento, sino que financias el conjunto de los servicios. Una **tasa** se paga **por un servicio concreto** que solo el Estado presta: la expedición del DNI (12 €), la recogida de basuras, las tasas de examen del carné de conducir. Una **cotización social** es lo que trabajadores y empresas pagan a la Seguridad Social a cambio de **derechos futuros**: pensión, prestación por desempleo, baja por enfermedad. Los tres son obligatorios; lo que cambia es qué recibes a cambio y cuándo.
+
+</Callout>
+
+### Impuestos directos: sobre lo que ganas o tienes
+
+Los **impuestos directos** gravan la renta o la riqueza de cada persona o empresa, y por eso pueden tener en cuenta quién eres: cuánto ganas, si tienes hijos, si tienes una discapacidad. Los principales en España son:
+
+- **IRPF** (Impuesto sobre la Renta de las Personas Físicas, Ley 35/2006). Grava lo que ganan las personas en un año: sueldos, pensiones, intereses de cuentas, alquileres que cobras, beneficios de un negocio como autónomo. Es el impuesto más importante del sistema y el único que casi todo el mundo acaba conociendo por su nombre. Lo vemos con números en la sección siguiente.
+- **Impuesto sobre Sociedades**. Grava el **beneficio de las empresas**, al tipo general del 25 % (15 % para las de nueva creación en sus dos primeros años con beneficio). Es estatal.
+- **Impuesto sobre el Patrimonio**. Grava la riqueza acumulada (pisos, acciones, cuentas) de quien supera un mínimo, normalmente 700.000 € más la vivienda habitual hasta 300.000 €. Lo gestionan las comunidades, y algunas lo bonifican al 100 %, por lo que en la práctica no se paga; volveremos sobre esto al hablar de desigualdad.
+- **Impuesto sobre Sucesiones y Donaciones**. Se paga al heredar o al recibir una donación. También lo gestionan las comunidades, y las diferencias entre unas y otras son enormes.
+- **IBI** (Impuesto sobre Bienes Inmuebles). Lo cobran los ayuntamientos a quien es propietario de un piso, una casa o un local. Es el principal ingreso municipal.
+
+### Impuestos indirectos: sobre lo que consumes
+
+Los **impuestos indirectos** no miran quién eres, sino qué compras. Van dentro del precio y los ingresa en Hacienda el comercio, no tú, aunque los pagues tú. Por eso son los impuestos más invisibles y, al mismo tiempo, los que pagas todos los días.
+
+- **IVA** (Impuesto sobre el Valor Añadido, Ley 37/1992). Se aplica a casi todo lo que se compra, con tres tipos: el **general del 21 %** (ropa, electrónica, gasolina, refrescos, peluquería), el **reducido del 10 %** (la mayoría de los alimentos, hostelería, transporte de viajeros, entradas de cine, gafas) y el **superreducido del 4 %** (pan, leche, huevos, quesos, frutas, verduras, legumbres, aceite de oliva desde 2025, medicamentos, libros y periódicos). Entre 2023 y 2024 el Gobierno bajó temporalmente al 0 % los alimentos básicos para frenar la inflación que vimos en la Unidad 4; desde enero de 2025 volvieron al 4 %.
+- **Impuestos especiales**. Gravan productos concretos, además del IVA: **alcohol**, **tabaco**, **hidrocarburos** (gasolina y gasóleo) y **electricidad**. Tienen dos objetivos a la vez: recaudar y desincentivar un consumo que perjudica a terceros (la externalidad de la sección anterior). En un paquete de tabaco, alrededor de cuatro de cada cinco euros son impuestos (Comisionado para el Mercado de Tabacos); en un litro de gasolina, cerca de la mitad del precio son el impuesto de hidrocarburos y el IVA.
+- **ITP y AJD** (Transmisiones Patrimoniales y Actos Jurídicos Documentados). Se paga al comprar un piso o un coche de segunda mano, y lo cobra la comunidad autónoma.
+
+<Diagram caption="Qué grava cada impuesto y quién se queda el dinero. Los directos miran lo que ganas o tienes; los indirectos, lo que consumes. El color de cada tarjeta indica si lo cobra el Estado, tu comunidad o tu ayuntamiento.">
+  <MapaImpuestos />
+</Diagram>
+
+### Qué pesa más en la recaudación
+
+Con tantos impuestos, ¿de cuáles vive de verdad el Estado? La Agencia Tributaria publica cada año cuánto ha recaudado. En 2024 los ingresos tributarios del Estado sumaron alrededor de **295.000 millones de euros**, la cifra más alta de la historia (AEAT, Informe Anual de Recaudación Tributaria 2024, cifras redondeadas):
+
+| Impuesto | Recaudación 2024 (aprox.) | Peso |
+|---|---|---|
+| IRPF | 129.000 millones € | 44 % |
+| IVA | 93.000 millones € | 31 % |
+| Impuesto sobre Sociedades | 39.000 millones € | 13 % |
+| Impuestos especiales | 22.000 millones € | 8 % |
+| Resto (Patrimonio, tasas, otros) | 12.000 millones € | 4 % |
+
+Dos lecturas. La primera: **tres de cada cuatro euros** vienen del IRPF y del IVA, es decir, de lo que ganan y de lo que gastan las familias. Las empresas, a través de Sociedades, aportan bastante menos de lo que mucha gente cree. La segunda: a esa cifra hay que sumarle las **cotizaciones sociales**, que no cobra la Agencia Tributaria sino la Seguridad Social y que en 2024 superaron los **180.000 millones de euros** (Seguridad Social, ejecución presupuestaria 2024). Si contáis todo, la nómina de la Unidad 5 (IRPF más cotizaciones del trabajador y de la empresa) es, con diferencia, la mayor fuente de dinero público de España.
+
+<RecursoDestacado href="/taller-eco-3eso/recursos/progresividad-fiscal/" kicker="Herramienta" title="Progresivo y regresivo, con números" descripcion="Dos personas con rentas muy distintas hacen la misma compra: mira qué porcentaje de su dinero se lleva el impuesto sobre lo que ganan y cuál el impuesto sobre lo que compran." colorVar="--color-eco4" />
+
+## IRPF e IVA con números
+
+Los dos impuestos que sostienen el sistema merecen que los calculemos. El IRPF, porque dentro de pocos años haréis vuestra primera declaración de la renta y conviene saber qué estáis firmando. El IVA, porque lo pagáis cada día y casi nadie sabe cuánto.
+
+### El IRPF: un impuesto progresivo por tramos
+
+El IRPF es **progresivo**: cuanto más ganas, mayor es el porcentaje que pagas. Pero funciona por **tramos**, y aquí está el error que comete casi todo el mundo, incluidos muchos adultos. Cada tipo se aplica **solo a la parte de renta que cae dentro de su tramo**, no a toda la renta. Subir de tramo nunca hace que cobres menos.
+
+La escala que usaremos suma la parte estatal y una parte autonómica media, y es una aproximación: cada comunidad ajusta ligeramente su mitad de la tarifa.
+
+| Tramo de base liquidable | Tipo marginal (escala orientativa) |
+|---|---|
+| Hasta 12.450 € | 19 % |
+| De 12.450 € a 20.200 € | 24 % |
+| De 20.200 € a 35.200 € | 30 % |
+| De 35.200 € a 60.000 € | 37 % |
+| De 60.000 € a 300.000 € | 45 % |
+| Más de 300.000 € | 47 % |
+
+Antes de aplicar la escala, la ley reconoce un **mínimo personal** de **5.550 €** al año (más si tienes hijos a cargo, más de 65 años o una discapacidad): una cantidad que se considera necesaria para vivir y que, en la práctica, queda libre de impuesto. Por eso quien gana poco paga muy poco IRPF, y por eso los sueldos por debajo de unos 15.876 € al año (el salario mínimo de 2025, 1.134 € en 14 pagas, según el Real Decreto 87/2025) apenas soportan retención.
+
+<Diagram caption="La escalera del IRPF: cada tipo se aplica solo a la franja de renta que cae dentro de su tramo, nunca a toda la renta. Por eso el tipo medio que paga una persona es siempre menor que el tipo del tramo más alto al que llega.">
+  <IRPFTramos />
+</Diagram>
+
+<Callout label="Concepto clave" title="Tipo marginal y tipo medio">
+
+El **tipo marginal** es el porcentaje que pagas por **el último euro** que ganas: el del tramo más alto al que llegas. El **tipo medio** (o efectivo) es el porcentaje que pagas sobre **toda tu renta**: la cuota total dividida entre lo que ganas. Como los primeros euros tributan a tipos bajos y una parte ni siquiera tributa, el tipo medio siempre queda por debajo del marginal. Cuando alguien dice «me quitan el 30 %», casi siempre está confundiendo su tipo marginal con lo que paga de verdad.
+
+</Callout>
+
+<SolvedExercise number="6.1" title="El IRPF de una renta de 20.000 € por tramos">
+
+**Enunciado**
+
+Lucía tiene 24 años, vive sola y en su primer año con contrato indefinido ha cobrado **20.000 € brutos**. Su empresa le ha retenido cada mes a cuenta del IRPF un total de **3.400 €**. Con la escala orientativa de la tabla y un mínimo personal de 5.550 €, calcula: (a) la cuota del IRPF por tramos, (b) su tipo marginal y su tipo medio, y (c) si la declaración de la renta le saldrá a pagar o a devolver. (Es una aproximación: la declaración real descuenta antes los gastos deducibles y una reducción por rendimientos del trabajo, que bajan la cuota.)
+
+**Solución**
+
+1. **Primer tramo** (hasta 12.450 €, al 19 %): 12.450 × 0,19 = **2.365,50 €**.
+2. **Segundo tramo** (de 12.450 a 20.000 €, al 24 %): la parte de renta que cae aquí es 20.000 − 12.450 = 7.550 €. Su cuota: 7.550 × 0,24 = **1.812,00 €**. Lucía no llega al tercer tramo, así que el 30 % no se aplica a ningún euro suyo.
+3. **Cuota antes del mínimo**: 2.365,50 + 1.812,00 = **4.177,50 €**.
+4. **Mínimo personal**: los 5.550 € exentos se restan aplicándoles el tipo del primer tramo: 5.550 × 0,19 = **1.054,50 €** menos.
+5. **Cuota del IRPF**: 4.177,50 − 1.054,50 = **3.123,00 €**.
+6. **Tipo marginal**: 24 %, el del tramo más alto al que llega. **Tipo medio**: 3.123 / 20.000 = **15,6 %**. Fíjate en la distancia: su último euro paga el 24 %, pero su renta completa paga el 15,6 %.
+7. **Resultado de la declaración**: le han retenido 3.400 € y debía 3.123 €, así que Hacienda le **devuelve 277 €**. La retención mensual era solo un adelanto; la declaración ajusta las cuentas.
+8. **Lectura**: en una declaración real, con los 2.000 € de gastos deducibles y la reducción por rendimientos del trabajo que fija la Ley 35/2006, la cuota de una renta de 20.000 € queda por debajo, alrededor de 2.200 €, un tipo medio cercano al 11 %. El mecanismo es el mismo; lo que cambia es la base sobre la que se aplica.
+
+</SolvedExercise>
+
+### La declaración de la renta
+
+Lo que Lucía hace en el punto 7 lo hacen cada primavera millones de personas. Durante el año, la empresa (o la Seguridad Social, si cobras una pensión) **retiene** un porcentaje de cada nómina y lo ingresa en Hacienda a cuenta. Entre abril y junio del año siguiente, la **declaración de la renta** compara el impuesto que de verdad correspondía con lo ya retenido: si retuvieron de más, sale **a devolver**; si retuvieron de menos (por ejemplo, porque tuviste dos pagadores y cada uno retuvo como si fuera el único), sale **a pagar**. En la campaña de la renta de 2025 (sobre los ingresos de 2024), la Agencia Tributaria preveía alrededor de **24,8 millones de declaraciones**, y en las campañas recientes cerca de dos de cada tres han salido a devolver, con devoluciones que en conjunto rondan los 12.000 millones de euros (AEAT, notas de prensa de inicio de campaña, 2024 y 2025). Que la mayoría salga a devolver no es un regalo: es que las retenciones se calculan con margen.
+
+**Pruébalo tú mismo:** introduce un salario bruto anual y lo que te han retenido, y el simulador te dice qué tramos te afectan, cuánto te corresponde pagar y si la declaración sale a pagar o a devolver.
+
+<HerramientaIsland componente="IRPFDeclaracion" />
+
+### El IVA: tres tipos en un mismo ticket
+
+El IVA es más sencillo de calcular y más difícil de ver. Cada producto lleva su tipo, y el precio que pagas ya lo incluye. En un ticket de supermercado conviven el 4, el 10 y el 21 %.
+
+<SolvedExercise number="6.2" title="El IVA de un ticket con productos al 4, al 10 y al 21 %">
+
+**Enunciado**
+
+En la compra del sábado, los productos costaban, **antes de IVA**:
+
+- Pan, leche, huevos y fruta (tipo superreducido del 4 %): 12,50 €
+- Pollo, yogures y una lata de atún (tipo reducido del 10 %): 9,00 €
+- Champú, pilas y un refresco (tipo general del 21 %): 8,00 €
+
+(a) Calcula el IVA de cada grupo, el IVA total y lo que marca el ticket. (b) ¿Qué porcentaje de la compra son impuestos? (c) Una familia que ingresa 1.200 € al mes lo gasta todo en consumo; otra que ingresa 6.000 € gasta 3.000 y ahorra el resto. Si los dos gastos soportan ese mismo porcentaje medio de IVA, ¿qué parte de los ingresos de cada familia se va en IVA?
+
+**Solución**
+
+1. **IVA al 4 %**: 12,50 × 0,04 = **0,50 €**.
+2. **IVA al 10 %**: 9,00 × 0,10 = **0,90 €**.
+3. **IVA al 21 %**: 8,00 × 0,21 = **1,68 €**.
+4. **IVA total**: 0,50 + 0,90 + 1,68 = **3,08 €**. **Total del ticket**: 29,50 + 3,08 = **32,58 €**.
+5. **Peso de los impuestos**: 3,08 / 29,50 = **10,4 %** sobre el precio sin IVA. Los alimentos básicos apenas pesan; los tres artículos al 21 % aportan más de la mitad del impuesto aunque son la parte más pequeña de la compra.
+6. **Familia con 1.200 € de ingresos**: gasta 1.200 €, y un 10,4 % de IVA sobre ese gasto son unos **125 €**: el **10,4 % de sus ingresos**.
+7. **Familia con 6.000 € de ingresos**: gasta 3.000 €, y el IVA son unos **312 €**: el **5,2 % de sus ingresos**.
+8. **Lectura**: la segunda familia paga más euros de IVA, pero un porcentaje de su renta **la mitad de grande**, porque lo que ahorra no paga IVA. El IVA es proporcional al gasto y **regresivo respecto a la renta**. Por eso existen los tipos reducidos: bajar el IVA del pan y la leche es la forma de que el impuesto pese menos sobre quien gasta casi todo lo que gana en comer.
+
+</SolvedExercise>
+
+### Progresivo, proporcional y regresivo
+
+El ejercicio deja a la vista las tres formas que puede tener un impuesto:
+
+- **Progresivo**: quien más gana paga un **porcentaje mayor** de su renta. El IRPF.
+- **Proporcional**: todos pagan el **mismo porcentaje**, así que quien gana el doble paga el doble de euros. El Impuesto sobre Sociedades, con su 25 % fijo, o el IRPF de algunos países con «tipo único».
+- **Regresivo**: quien menos gana paga un **porcentaje mayor** de su renta. Ningún impuesto se diseña para ser regresivo, pero el IVA lo es en la práctica, porque las familias con menos ingresos consumen casi todo lo que ganan y las que más ingresan ahorran una parte que no tributa.
+
+Aquí conviene una cautela que a esta edad se salta fácil: regresivo no significa injusto ni que haya que eliminarlo. El IVA recauda 93.000 millones al año, es muy difícil de evadir y lo pagan también los turistas y quien vive de rentas no declaradas. Lo que dice el cálculo es **a quién pesa más**, que es información para decidir, no una sentencia. Un sistema fiscal se juzga en conjunto: la progresividad del IRPF y las transferencias pueden compensar de sobra la regresividad del IVA, y de hecho eso es lo que ocurre en España, como veremos con el índice de Gini.
+
+## El gasto público: en qué se gasta
+
+Una vez recaudado, el dinero se gasta. Y aquí viene otra sorpresa: el reparto no es el que la mayoría imagina. Cuando se pregunta en clase en qué gasta más el Estado, suelen salir «los políticos», «la defensa» o «las carreteras». Los datos dicen otra cosa.
+
+### Las grandes partidas
+
+Eurostat clasifica el gasto de todas las administraciones por funciones. En España, de cada 100 € de gasto público, aproximadamente (Eurostat, clasificación COFOG, datos de 2023, cifras redondeadas):
+
+- **41 € a protección social**: pensiones de jubilación y viudedad, prestaciones por desempleo, dependencia, ingreso mínimo vital. Las **pensiones** son, con mucha diferencia, la partida mayor de todo el gasto público: en 2025 la Seguridad Social paga cada mes más de 13.500 millones de euros a unos 10,3 millones de pensiones, y la pensión media de jubilación supera los 1.500 € (Seguridad Social, estadísticas mensuales de pensiones, 2025).
+- **15 € a sanidad**: hospitales, centros de salud, medicamentos con receta, el sueldo del personal sanitario. El gasto sanitario público superó los **92.000 millones de euros** en 2022, alrededor de 1.900 € por persona y año (Ministerio de Sanidad, Estadística de Gasto Sanitario Público 2022).
+- **10 € a educación**: desde infantil hasta la universidad pública, incluido tu instituto.
+- **12 € a asuntos económicos**: carreteras, trenes, ayudas a la agricultura, transición energética.
+- **12 € a servicios generales**, que incluyen el funcionamiento de las administraciones y, sobre todo, los **intereses de la deuda**: más de 30.000 millones de euros al año (Presupuestos Generales del Estado 2023).
+- El resto (unos 10 €) se reparte entre orden público y seguridad, defensa, vivienda, medio ambiente y cultura.
+
+Todo junto, el gasto público español fue en 2024 de alrededor del **45 % del PIB** (Eurostat, estadísticas de finanzas públicas 2024), frente a una media cercana al 49 % en la Unión Europea. Casi la mitad de todo lo que produce el país en un año pasa por decisiones públicas, y más de la mitad de ese gasto va a tres cosas: pensiones, sanidad y educación.
+
+<RealExample title="Lo que cuesta un curso en un instituto público y una noche de hospital" source="Ministerio de Educación, FP y Deportes, Sistema Estatal de Indicadores de la Educación 2024 · Ministerio de Sanidad, Estadística de Gasto Sanitario Público 2022" sourceUrl="https://www.educacionfpydeportes.gob.es/servicios-al-ciudadano/estadisticas/indicadores/sistema-estatal-indicadores.html">
+Como nadie paga en la puerta del instituto ni en la del hospital, es fácil pensar que son gratis. No lo son: son **gratuitos en el momento de uso** y se pagan antes con impuestos. El Ministerio de Educación calcula el **gasto público por alumno** dividiendo lo que gastan las administraciones entre el alumnado de los centros públicos: en las enseñanzas no universitarias ronda los **7.000 € por alumno y curso** (datos de 2022, publicados en el Sistema Estatal de Indicadores de la Educación 2024). Cuatro cursos de ESO cuestan, por tanto, alrededor de 28.000 € por estudiante, que salen de la comunidad autónoma. En sanidad, el Ministerio publica que el gasto público por habitante supera los **1.900 € al año** (Estadística de Gasto Sanitario Público 2022), y las comunidades fijan tarifas para cuando un tratamiento se cobra a un tercero (una aseguradora tras un accidente de tráfico, por ejemplo): una noche en planta se factura entre 600 y 800 €, una noche en la UCI entre 1.500 y 2.500 €, y una intervención quirúrgica compleja puede superar los 10.000 €. Son las cifras que nunca aparecen en tu vida porque las paga el conjunto de la sociedad. Cuando alguien exige «que bajen los impuestos» conviene preguntar de cuál de estas facturas quiere dejar de pagar su parte.
+</RealExample>
+
+### Los Presupuestos Generales del Estado
+
+Cada año el Gobierno debe presentar al Congreso los **Presupuestos Generales del Estado (PGE)**: la ley que fija cuánto va a ingresar y cuánto va a gastar el Estado en el año siguiente, partida por partida. Es la ley más importante que aprueba un parlamento, porque cualquier otra política (más médicos, más becas, más policías) solo existe si hay una línea en los presupuestos que la pague. La Constitución (artículo 134) obliga al Gobierno a presentarlos al menos tres meses antes de que acabe el año, y prevé qué pasa si el Congreso no los aprueba: **se prorrogan automáticamente los del año anterior**.
+
+<Figure
+  src={congresoDiputados}
+  alt="Fachada principal del Congreso de los Diputados en Madrid, con su columnata neoclásica y los dos leones de bronce que custodian la escalinata."
+  caption="El Congreso de los Diputados, en Madrid. Aquí se votan cada otoño los Presupuestos Generales del Estado, cuando el Gobierno consigue apoyos para aprobarlos. Los de 2023 se votaron aquí y siguieron en vigor, prorrogados, durante 2024 y 2025."
+  credit="Foto: Javier Perez Montes, CC BY-SA 4.0 vía Wikimedia Commons"
+  aspectHint="3/2"
+  variant="wide"
+/>
+
+Y eso es exactamente lo que ha pasado en España en los últimos años. Los últimos presupuestos aprobados fueron los de **2023** (Ley 31/2022), con un gasto consolidado cercano a los 480.000 millones de euros, de los que unos 190.000 millones eran pensiones. Al no reunirse una mayoría en el Congreso para aprobar unos nuevos, esos presupuestos quedaron **prorrogados durante 2024 y 2025** (Ministerio de Hacienda, Presupuestos Generales del Estado prorrogados). Prorrogar no significa congelar: las pensiones siguieron subiendo con el IPC porque lo manda otra ley (Ley 21/2021), y los sueldos públicos se actualizaron por decreto. Pero sí significa que muchas partidas nuevas no pudieron arrancar y que el Estado funcionó con un plan diseñado para otro momento.
+
+<Steps label="Procedimiento" title="El viaje de los Presupuestos: de la propuesta al BOE" variant="arabic">
+  <li>**El Gobierno los elabora** durante el verano. Cada ministerio pide, el Ministerio de Hacienda recorta y cuadra, y antes hay que fijar el techo de gasto y el objetivo de déficit, que también vota el Congreso.</li>
+  <li>**Se presentan en el Congreso** antes del 1 de octubre (artículo 134 de la Constitución) en forma de proyecto de ley, con miles de páginas y una memoria económica.</li>
+  <li>**Debate de totalidad.** Los grupos pueden presentar enmiendas a la totalidad para devolverlos al Gobierno. Si una prospera, los presupuestos caen y se prorrogan los anteriores; es lo que ocurrió con los de 2019.</li>
+  <li>**Comisión y enmiendas parciales.** Si superan la totalidad, se negocian partida por partida: aquí es donde los grupos pequeños consiguen un hospital, un tren o una carretera a cambio de su voto.</li>
+  <li>**Votación final, Senado y BOE.** El Congreso aprueba, el Senado puede vetar o enmendar, el Congreso decide en última instancia y la ley se publica en el BOE. Si todo va bien, entra en vigor el 1 de enero. Si no, el país arranca el año con los presupuestos viejos.</li>
+</Steps>
+
+<RecursoDestacado href="/dinamicas/distribucion-produccion/04-reparto-fiscal/" kicker="Dinámica de aula" title="El reparto de la tarta fiscal" descripcion="La clase es un municipio con un presupuesto limitado: en asamblea, los grupos defienden sus prioridades y deciden juntos cómo repartir el gasto y de dónde sacar los impuestos." colorVar="--color-eco4" />
+
+## Déficit, superávit y deuda pública
+
+Los presupuestos rara vez cuadran. Cuando el Estado gasta más de lo que ingresa, la diferencia hay que cubrirla, y solo hay una forma: pedir prestado. Este es el vocabulario que hace falta para entender la mitad de las noticias económicas.
+
+<Callout label="Concepto clave" title="Déficit, superávit y deuda">
+
+El **déficit público** es la diferencia entre lo que el Estado gasta y lo que ingresa en **un año**, cuando gasta más. Si ingresa más de lo que gasta hay **superávit**, algo que España no ha tenido desde 2007. La **deuda pública** es la suma de todos los déficits acumulados a lo largo de los años que todavía no se han devuelto: es el **saldo** que el Estado debe a quienes le han prestado. Déficit es un flujo, como el agua que entra en la bañera cada año; deuda es el nivel al que ha llegado el agua.
+
+</Callout>
+
+Las dos cifras se expresan como porcentaje del PIB, para poder compararlas entre países y entre años. En 2024 el déficit de las administraciones públicas españolas fue del **3,2 % del PIB**, después de un 3,5 % en 2023 y de un 10,1 % en 2020, el año de la pandemia (IGAE y Eurostat, datos de 2025). La deuda pública cerró 2024 en unos **1,62 billones de euros**, alrededor del **102 % del PIB**, y en 2025 se ha mantenido entre el 100 y el 104 % (Banco de España, deuda de las Administraciones Públicas según el Protocolo de Déficit Excesivo). Para hacerse una idea: cada persona que vive en España, desde un recién nacido hasta tus abuelos, debe unos 33.000 € por la parte que le toca de esa deuda.
+
+### Quién presta al Estado
+
+El Estado no va al banco de la esquina. Se financia emitiendo **títulos de deuda pública** a través del Tesoro Público: **letras** (a 3, 6, 9 y 12 meses), **bonos** (a 3 y 5 años) y **obligaciones** (a 10, 15, 30 y hasta 50 años). Quien compra una letra de 1.000 € le está prestando ese dinero al Estado, que se compromete a devolvérselo en la fecha pactada más un interés. Cada semana el Tesoro subasta miles de millones, y los compradores son bancos, fondos de inversión, aseguradoras, fondos de pensiones, bancos centrales extranjeros y, desde 2023, muchas familias. Alrededor del **40 % de la deuda española está en manos de inversores de fuera de España**, y cerca de un 30 % la tiene el Banco de España por las compras del BCE de los últimos años (Tesoro Público y Banco de España, datos de 2024-2025).
+
+<Curiosity title="Febrero de 2023: colas en Cibeles para prestarle dinero al Estado">
+Durante años las letras del Tesoro no daban nada, incluso menos que nada: a finales de 2021 el Estado emitía letras a doce meses a tipos negativos, es decir, quien le prestaba recibía menos de lo que había puesto. Cuando el BCE empezó a subir los tipos en 2022 (Unidad 4), las letras pasaron a pagar alrededor de un 3 % en pocos meses, mucho más que cualquier cuenta bancaria. El resultado fue una imagen que nadie esperaba: en febrero de 2023 se formaron **colas de personas mayores en la puerta del Banco de España**, en la plaza de Cibeles de Madrid, para comprar letras en ventanilla, porque muchas no querían hacerlo por internet. Los hogares españoles, que apenas tenían deuda pública, compraron más de **20.000 millones de euros en letras** durante 2023 (Banco de España, Cuentas Financieras). Es la mejor prueba de que la deuda pública no es una abstracción: son ahorros de familias concretas, y el interés que el Estado paga por ella sale de los impuestos de todos.
+</Curiosity>
+
+### Por qué importa el tipo de interés
+
+Aquí se cruza esta unidad con la anterior. La deuda hay que devolverla y, mientras tanto, pagar intereses. Con 1,6 billones de deuda, **cada punto de tipo de interés son 16.000 millones de euros al año**, aunque el efecto llega despacio porque solo se paga el tipo nuevo por la deuda que se renueva. Entre 2016 y 2021, con los tipos del BCE en el 0 % y las compras masivas de deuda del banco central, España se financiaba casi gratis y la factura de intereses bajó a pesar de que la deuda subía. Desde 2022, con los tipos oficiales de vuelta y la obligación a diez años pagando alrededor del 3,2 % en 2025 (Tesoro Público, resultados de subastas), esa factura vuelve a crecer: más de 30.000 millones al año, más de lo que el Estado destina a educación y becas juntas en sus propios presupuestos. Ese dinero no compra ni un profesor ni una cama de hospital: paga el pasado.
+
+¿Es la deuda mala en sí misma? No necesariamente. Endeudarse para construir un hospital o una línea de tren que se usará durante cincuenta años es razonable: quienes lo disfrutarán son también quienes lo pagarán. Endeudarse para pagar los gastos corrientes de cada año, o sostener un déficit permanente en años buenos, es más discutible, porque traslada la factura a quien todavía no vota. Lo que ningún economista discute es que una deuda del 100 % del PIB deja poco margen para la próxima crisis, porque el Estado empieza la partida ya endeudado.
+
+### Las reglas fiscales de la Unión Europea
+
+Como España comparte el euro con otros diecinueve países, lo que hace con su deuda afecta a los demás. Por eso, desde el Tratado de Maastricht (1992) y el Pacto de Estabilidad y Crecimiento (1997), la Unión Europea fija dos límites conocidos como **reglas fiscales**: el déficit no debe superar el **3 % del PIB** y la deuda no debe superar el **60 % del PIB**, o al menos debe reducirse hacia esa cifra. Durante la pandemia las reglas se suspendieron (la llamada «cláusula de escape», de 2020 a 2023) para que los Estados pudieran gastar sin límite en salvar empleos. En 2024 volvieron, reformadas: ahora cada país acuerda con la Comisión Europea una senda de gasto a cuatro o siete años (Reglamento (UE) 2024/1263). España, con una deuda por encima del 100 %, tiene que reducirla poco a poco durante muchos años, y eso condiciona todos los presupuestos que se discutirán mientras estéis en el instituto y en la universidad.
+
+## El Estado del bienestar y la desigualdad
+
+Volvamos a la pregunta de fondo. Recaudar casi 300.000 millones en impuestos y otros 180.000 en cotizaciones, y gastar el 45 % del PIB, ¿para qué sirve? La respuesta que dan las sociedades europeas desde mediados del siglo XX se llama **Estado del bienestar**: un pacto por el que el sector público garantiza a toda la población unos servicios y unas rentas básicas con independencia de lo que cada uno pueda pagar.
+
+### Los cinco pilares
+
+En España ese pacto se apoya en cinco pilares, y conviene saber qué ley los sostiene:
+
+- **Sanidad universal** (Ley 14/1986, General de Sanidad): atención gratuita en el momento de uso para toda la población, financiada con impuestos y gestionada por las comunidades.
+- **Educación gratuita** y obligatoria de los 6 a los 16 años, y financiada en gran parte hasta la universidad. Es la razón de que estés leyendo esto sin haber pagado matrícula.
+- **Pensiones** públicas de jubilación, incapacidad, viudedad y orfandad, financiadas con las cotizaciones de quienes trabajan hoy. Es un **pacto entre generaciones**: los trabajadores de hoy pagan a los jubilados de hoy, con la promesa de que los trabajadores de mañana harán lo mismo con ellos.
+- **Protección por desempleo**: la prestación contributiva (hasta dos años, según lo cotizado) y los subsidios para quien la agota, gestionados por el SEPE (Unidad 5).
+- **Dependencia** (Ley 39/2006): ayudas y servicios para personas que no pueden valerse por sí mismas, desde una residencia hasta una cuidadora a domicilio.
+
+<Figure
+  src={hospitalPublico}
+  alt="Entrada de un hospital público en Granada, uno de los servicios del Estado del bienestar."
+  caption="La entrada de un hospital público en Granada. La sanidad universal es el pilar más valorado del Estado del bienestar español y la mayor partida de gasto de las comunidades autónomas: más de 92.000 millones de euros en 2022, según el Ministerio de Sanidad."
+  credit="Foto: Jebulon, CC0 vía Wikimedia Commons"
+  aspectHint="2/3"
+  variant="left"
+/>
+
+A esos cinco pilares se han ido sumando otras piezas: el **ingreso mínimo vital** (Ley 19/2021), una renta para hogares sin ingresos suficientes; las becas; la vivienda protegida. Lo que tienen en común es que no funcionan como un seguro privado, donde cada uno paga según su riesgo, sino como un **seguro colectivo**: todos contribuyen según su renta y reciben según su necesidad. Que un tratamiento de cáncer cueste 100.000 € y no arruine a la familia que lo necesita es, probablemente, la razón más concreta por la que existe todo lo que hemos visto en esta unidad.
+
+### Cómo se mide la desigualdad
+
+¿Consigue ese pacto que la sociedad sea menos desigual? Para responder hace falta medir. La herramienta más usada es el **índice de Gini**, que resume en un solo número cómo se reparte la renta: vale **0** si todas las personas tienen exactamente la misma renta y **100** (o 1) si una sola persona lo tiene todo. Cuanto más alto, más desigual. Se calcula a partir de la **curva de Lorenz**, que ordena a la población de más pobre a más rica y dibuja qué parte de la renta total acumula cada porcentaje de la población.
+
+<Diagram caption="La curva de Lorenz ordena a la población de menor a mayor renta y muestra qué porcentaje de la renta total acumula cada porcentaje de personas. Cuanto más se separa de la diagonal de igualdad perfecta, mayor es la desigualdad; el índice de Gini mide justamente esa separación.">
+  <CurvaLorenz />
+</Diagram>
+
+Si en un país el 20 % más pobre tuviera el 20 % de la renta, el 50 % más pobre el 50 % y así sucesivamente, la curva sería la diagonal: igualdad perfecta, Gini 0. En la realidad la curva se comba hacia abajo: en España el 20 % más pobre de la población recibe alrededor del **6 % de la renta**, y el 20 % más rico, cerca del **40 %**, es decir, 5,5 veces más (INE, Encuesta de Condiciones de Vida 2024, ratio S80/S20). El índice de Gini de la renta disponible en España está en **31-32** (INE, ECV 2024), frente a una media de la Unión Europea alrededor de 30 (Eurostat, 2023). No es Latinoamérica, donde varios países superan 45, pero sí uno de los niveles más altos de Europa occidental, por detrás de Bulgaria, Lituania o Letonia y por encima de Francia, Alemania o los países nórdicos.
+
+El Gini mira el reparto; otros indicadores miran el suelo. La **tasa AROPE** (población en riesgo de pobreza o exclusión social) cuenta a quien vive con menos del 60 % de la renta mediana (unos 11.000 € al año para una persona sola), a quien sufre carencias materiales graves (no puede calentar la casa, no puede afrontar un gasto imprevisto de unos 1.000 €) o a quien vive en un hogar con muy poco empleo. En 2024 estaba en el **25,8 %** de la población española, algo más de uno de cada cuatro (INE, ECV 2024), y es más alta entre los menores de 18 años que entre los mayores de 65, en parte porque las pensiones protegen mejor a los mayores que las becas y las ayudas a los niños.
+
+### Cómo redistribuyen los impuestos y las transferencias
+
+La forma de saber si el Estado del bienestar funciona es comparar la desigualdad **antes y después** de que el Estado intervenga. Eurostat calcula el Gini de la renta que las familias reciben del mercado (sueldos, alquileres, intereses, sin pensiones ni ayudas) y el de la renta que les queda después de impuestos y transferencias. En España, el primero ronda **49-50**; el segundo, **31-32** (Eurostat, indicadores de la ECV, 2023-2024). Es decir: **los impuestos y, sobre todo, las pensiones y las prestaciones recortan la desigualdad en más de un tercio**. La mayor parte del efecto lo hacen las transferencias (las pensiones son la principal), y el resto la progresividad del IRPF. Sin ese mecanismo, España tendría una desigualdad parecida a la de Brasil.
+
+<Figure
+  src={amartyaSen}
+  alt="Retrato fotográfico de Amartya Sen en una conferencia del ciclo Fronteiras do Pensamento (São Paulo, 2012)."
+  caption="Amartya Sen, Premio Nobel de Economía en 1998. Defendió que la pobreza no es solo falta de renta sino falta de capacidades reales (salud, educación, libertad de elegir), y su trabajo está detrás del Índice de Desarrollo Humano que la ONU publica desde 1990."
+  credit="Foto: Fronteiras do Pensamento, CC BY-SA 2.0 vía Wikimedia Commons"
+  aspectHint="2/3"
+  variant="inline-small"
+/>
+
+Hay una tercera manera de mirar la desigualdad que no aparece en el Gini. El economista indio **Amartya Sen** sostuvo que lo importante no es cuánta renta tiene una persona, sino qué puede hacer con su vida: si puede curarse cuando enferma, si sabe leer, si puede elegir. Con esa idea, la sanidad y la educación gratuitas no son solo «gasto»: son la forma en que una sociedad iguala las **capacidades** de las personas, aunque sus rentas sigan siendo distintas. Un adolescente de una familia con 1.200 € al mes y otro de una con 6.000 € reciben en el instituto público el mismo curso de 7.000 €. Esa es una redistribución que ningún índice de renta recoge del todo.
+
+<RealExample title="El Impuesto de Solidaridad de las Grandes Fortunas: 12.000 contribuyentes, 623 millones" source="Ley 38/2022, de 27 de diciembre (BOE) · AEAT, estadísticas del Impuesto Temporal de Solidaridad de las Grandes Fortunas, 2023 · Tribunal Constitucional, STC 149/2023" sourceUrl="https://www.boe.es/eli/es/l/2022/12/27/38">
+En diciembre de 2022 el Congreso aprobó un impuesto nuevo y temporal, el **Impuesto de Solidaridad de las Grandes Fortunas**, que grava los patrimonios netos superiores a **3 millones de euros** con tipos del 1,7 % al 3,5 %. Se creó en parte para evitar que el Impuesto sobre el Patrimonio, que gestionan las comunidades, quedara sin efecto en las que lo bonifican al 100 % (Madrid desde 2008, Andalucía desde 2022): lo que un contribuyente paga por Patrimonio en su comunidad se descuenta del nuevo impuesto, de modo que quien ya paga Patrimonio apenas nota el cambio y quien no lo paga sí. En su primer año, 2023, lo presentaron alrededor de **12.000 contribuyentes** y recaudó unos **623 millones de euros**, más de la mitad en la Comunidad de Madrid (AEAT, 2023). La Comunidad de Madrid lo recurrió al Tribunal Constitucional, que lo avaló en noviembre de 2023 (STC 149/2023). Comparado con los 295.000 millones de recaudación total es una cifra pequeña, apenas un 0,2 %; comparado con lo que pagan esos 12.000 patrimonios en otros impuestos, no lo es tanto. Es un buen caso para el debate que sigue, porque las dos partes tienen números que enseñar.
+</RealExample>
+
+<VocesDesacuerdo
+  tema="¿Más Estado o más mercado? El impuesto a las grandes fortunas"
+  postura_a={{
+    etiqueta: 'Más redistribución (Piketty, Saez, Zucman)',
+    tesis: 'La riqueza se concentra más deprisa que la renta y se hereda; sin impuestos al patrimonio, la desigualdad crece sola generación tras generación. Un impuesto a las grandes fortunas recauda, reduce la concentración y financia el Estado del bienestar sin tocar a las clases medias.',
+  }}
+  postura_b={{
+    etiqueta: 'Más mercado (OCDE 2018, Instituto de Estudios Económicos)',
+    tesis: 'Los impuestos al patrimonio recaudan poco, cuestan mucho de gestionar y empujan a los grandes patrimonios a cambiar de residencia; de doce países de la OCDE que lo tenían en 1990 solo quedaban cuatro en 2017. Es mejor gravar la renta y las herencias y dejar que el capital invierta.',
+  }}
+>
+Las dos posturas parten de un mismo dato: en España el 10 % más rico posee más de la mitad de la riqueza neta y el 50 % más pobre, menos del 10 % (Banco de España, Encuesta Financiera de las Familias 2022). La discusión es qué hacer con eso. Los partidarios de gravar el patrimonio citan el trabajo de **Thomas Piketty** (*El capital en el siglo XXI*, 2013) y las propuestas de **Emmanuel Saez y Gabriel Zucman** de impuestos anuales a las grandes fortunas; sus críticos citan el informe de la **OCDE** de 2018 sobre impuestos al patrimonio neto, que documenta por qué la mayoría de los países lo abandonaron, y el ejemplo de Madrid, que atrae contribuyentes bonificándolo. Cuando os toque opinar, separad las dos preguntas que se mezclan: **cuánta desigualdad es aceptable** (una pregunta normativa, de valores) y **qué impuesto la reduce más recaudando más y perdiendo menos** (una pregunta positiva, con datos). La primera la decidís vosotros; la segunda se puede comprobar.
+</VocesDesacuerdo>
+
+<RecursoDestacado href="/debates/trabajo-desigualdad/02-impuesto-grandes-fortunas/" kicker="Debate en clase" title="¿Deben subir los impuestos a las grandes fortunas?" descripcion="Un debate parlamentario con dos equipos y moderación para poner a prueba, con datos de la unidad, si gravar más el patrimonio reduce la desigualdad o ahuyenta la inversión." colorVar="--color-eco4" />
+
+## Fraude fiscal y economía sumergida
+
+Todo lo anterior descansa en una condición: que cada uno pague lo que la ley le asigna. Cuando no ocurre, el sistema no se rompe de golpe, pero se desequilibra: o los demás pagan más, o hay menos servicios, o crece la deuda. A esta unidad le falta, por tanto, la última pieza.
+
+<Figure
+  src={agenciaTributaria}
+  alt="Edificio de la Agencia Estatal de Administración Tributaria en Bilbao."
+  caption="Una delegación de la Agencia Tributaria en Bilbao. La AEAT recauda los grandes impuestos del Estado, gestiona la campaña de la renta y persigue el fraude: en 2023 sus actuaciones de control aflararon más de 16.000 millones de euros, según su propia memoria anual."
+  credit="Foto: Zarateman, CC0 vía Wikimedia Commons"
+  aspectHint="2/3"
+  variant="right"
+/>
+
+### Qué es el fraude y qué no lo es
+
+El **fraude fiscal** consiste en ocultar a Hacienda ingresos, ventas o patrimonio para pagar menos de lo que corresponde: cobrar «en negro» sin declararlo, vender sin factura, esconder dinero en una cuenta que Hacienda no ve, deducir gastos inventados. Es **ilegal**, y a partir de 120.000 € defraudados en un año es **delito** con penas de cárcel (artículo 305 del Código Penal). Distinto es la **elusión fiscal**: aprovechar los huecos de la ley para pagar menos sin incumplirla, como las multinacionales que declaran sus beneficios en el país donde el impuesto es más bajo. Es legal, aunque muchos la consideren injusta, y la forma de combatirla es cambiar la ley, no perseguir a quien la cumple. Y distinto también es la **planificación fiscal** normal: aportar a un plan de pensiones o elegir la deducción que te corresponde no es fraude, es usar la ley.
+
+La **economía sumergida** es la parte de la actividad que no aparece en ningún registro: el trabajo sin contrato que vimos en la Unidad 5, las reformas «sin IVA», las clases particulares cobradas en efectivo y nunca declaradas. No toda es fraude fiscal en sentido estricto (parte es trabajo no declarado a la Seguridad Social), pero toda escapa a los impuestos.
+
+### Cuánto hay: cifras con cautela
+
+Aquí conviene ser muy honestos con los números, porque lo que se oculta no se puede medir directamente. Todas las cifras son **estimaciones** hechas con métodos indirectos (comparar el consumo de electricidad con el PIB declarado, el efectivo en circulación con las transacciones, etc.), y varían mucho según quién las haga:
+
+- **Gestha**, el sindicato de técnicos del Ministerio de Hacienda, sitúa la economía sumergida española en torno al **20-25 % del PIB** y estima el fraude fiscal en decenas de miles de millones al año. Son las cifras más citadas en prensa, y también las más altas.
+- Estudios académicos y de **FUNCAS** (Fundación de las Cajas de Ahorros) con métodos monetarios la sitúan más cerca del **15-20 % del PIB**, y la Comisión Europea, en sus informes sobre la brecha del IVA (*VAT gap*), calcula que España deja de recaudar cada año alrededor del **5-6 % del IVA** que debería, una de las brechas más bajas de la UE.
+- La **Agencia Tributaria** no estima cuánto fraude hay, sino cuánto recupera: en 2023 sus actuaciones de control aflararon unos **16.700 millones de euros** (AEAT, Resultados de la prevención y lucha contra el fraude 2023).
+
+Sea el 15 o el 25 %, la conclusión es la misma: en España se escapa entre una sexta y una cuarta parte de la actividad económica, más que en Alemania o los países nórdicos y menos que en Italia o Grecia. Y esa brecha equivale a decenas de miles de millones de impuestos que pagan de más quienes sí declaran.
+
+<Callout label="Recomendación de aula" title="Por qué pedir el ticket importa" variant="example">
+
+Cuando el fontanero pregunta «¿con factura o sin factura?», la diferencia no es solo el 21 % de IVA. Sin factura, el fontanero tampoco declara ese ingreso en su IRPF, no cotiza por él, y si el arreglo sale mal no tienes forma de reclamar (Unidad 3: sin ticket no hay garantía). Y ese IVA que «os ahorráis» no lo pierde una entidad abstracta: lo pierde el presupuesto de la comunidad que paga vuestro instituto. Desde la Ley 11/2021 contra el fraude, los pagos en efectivo entre empresas y profesionales están limitados a **1.000 €**, los programas de facturación que permiten llevar doble contabilidad están prohibidos y las facturas deberán enviarse a Hacienda con el sistema **Verifactu**. Pedir el ticket es lo mínimo; en una economía con un 20 % sumergido, también es lo más eficaz que puede hacer cada uno.
+
+</Callout>
+
+<Curiosity title="Portugal sortea coches entre quienes piden factura">
+En 2014 el Gobierno portugués tuvo una idea sencilla para reducir la economía sumergida: convertir cada factura en un boleto de lotería. Con la **Fatura da Sorte** («factura de la suerte»), cualquier consumidor que pidiera que su número de identificación fiscal figurase en el ticket de una compra entraba en un sorteo semanal cuyo premio era un coche de gama alta (más tarde, certificados del Tesoro). La idea venía de otros países (Taiwán la aplica desde los años cincuenta) y funcionó en lo que buscaba: millones de facturas con NIF que antes no existían, comercios que ya no podían vender sin declarar y una recaudación de IVA que subió. Portugal combinó el sorteo con deducciones en el IRS (su IRPF) por los gastos con factura de restaurantes, peluquerías o talleres. Es un ejemplo de manual de cómo los incentivos cambian conductas: no hizo falta más inspección, bastó con que a cada cliente le interesara pedir el ticket.
+</Curiosity>
+
+Y una nota histórica española que enseña lo mismo desde el otro lado. En 2012, en plena crisis, el Gobierno aprobó una **amnistía fiscal** (Real Decreto-ley 12/2012): quien tuviera dinero oculto podía regularizarlo pagando solo un 10 %, sin sanciones. Afloraron unos 40.000 millones de euros, se recaudaron alrededor de 1.200 millones y, cinco años después, el Tribunal Constitucional la declaró **inconstitucional** (STC 73/2017) por vulnerar el deber de contribuir del artículo 31 de la Constitución: no se puede premiar a quien defraudó con condiciones mejores que las de quien cumplió. La sentencia fijó un principio que conviene recordar cuando se discute sobre impuestos: el sistema solo se sostiene si pagar es siempre mejor negocio que no pagar.
+
+## Qué viene después en este curso
+
+Con esta unidad tenéis el mapa completo de los cuatro agentes de la economía: las familias, las empresas, el sector exterior y, ahora, el Estado. Las dos unidades siguientes bajan a vuestra propia economía. En la **Unidad 7, Economía personal I: presupuesto, ahorro y consumo responsable**, el IRPF y el IVA de aquí reaparecen como líneas de vuestro presupuesto, y aprenderéis a apartar dinero antes de gastarlo. En la **Unidad 8, Economía personal II: bancos, crédito, inversión y seguros**, entenderéis por qué las letras del Tesoro que compraban las familias en 2023 eran una alternativa al depósito bancario, y qué es un seguro comparado con la protección colectiva del Estado del bienestar.
+
+La **Unidad 9, Economía internacional: comercio, globalización y Unión Europea**, retomará las reglas fiscales y explicará qué significa compartir una moneda y un presupuesto con otros veintiséis países. Y en el Bloque II, cuando montéis vuestra idea de empresa (Unidades 10 a 12), el Impuesto sobre Sociedades, el IVA que hay que repercutir en cada factura y las cotizaciones de cada empleado dejarán de ser conceptos para convertirse en casillas que hay que rellenar.
+
+<VuelveAlCaso referencia="Los 27 céntimos del bocadillo y los 2.000 € de la UCI">
+Los 27 céntimos del bocadillo entran en la caja del bar, el bar los ingresa en la Agencia Tributaria cada trimestre y, desde ahí, la mitad se queda en el Estado y la otra mitad se transfiere a tu comunidad autónoma, según el sistema de financiación de la Ley 22/2009. Con el IRPF pasa lo mismo. Ese dinero, unido a las cotizaciones que van a la Seguridad Social, financia un gasto público que ronda el 45 % del PIB y que se va, sobre todo, a pensiones, sanidad y educación: tu instituto, que cuesta unos 7.000 € por alumno y curso, y ese hospital donde una noche en la UCI se factura a 2.000 € sin que nadie te pase la cuenta.
+
+Quién decide en qué se gasta es la parte que se olvida: el Congreso, cada otoño, al aprobar (o no) los Presupuestos Generales del Estado, y los parlamentos autonómicos y los plenos municipales con los suyos. Cuando no hay acuerdo, como en 2024 y 2025, se prorrogan los del año anterior y el país gasta según un plan viejo. Y lo que recibes tú a cambio no es solo un servicio: es un seguro colectivo que reparte el coste de enfermar, de estudiar o de envejecer entre todos, y que recorta la desigualdad de la renta en más de un tercio. Si os parece mucho o poco, si preferiríais pagar menos y recibir menos, o al revés, es la pregunta normativa que os toca responder como votantes dentro de dos o tres años. Lo que ya no podéis decir es que no sabéis adónde va.
+</VuelveAlCaso>
+
+<KeyTakeaways title="Lo esencial de la unidad">
+- El Estado interviene porque el mercado tiene **fallos**: no provee **bienes públicos** (no rivales y no excluibles, como un faro), genera **externalidades** (contaminación), tolera **monopolios** y deja al comprador con menos **información**. Además **redistribuye** la renta y **estabiliza** el ciclo. Tres administraciones se reparten la tarea: el Estado paga pensiones y desempleo; las comunidades, sanidad y educación; los ayuntamientos, los servicios de proximidad.
+- Los ingresos públicos son **impuestos** (sin contraprestación directa), **tasas** (por un servicio concreto) y **cotizaciones** (a cambio de derechos futuros). Los impuestos **directos** gravan lo que ganas o tienes (IRPF, Sociedades, Patrimonio, Sucesiones, IBI); los **indirectos**, lo que consumes (IVA al 21, 10 y 4 %, especiales). IRPF e IVA aportan tres de cada cuatro euros de los 295.000 millones recaudados en 2024 (AEAT).
+- El **IRPF** es **progresivo por tramos**: cada tipo se aplica solo a la franja de renta de su tramo, tras un mínimo personal de 5.550 €. El **tipo marginal** es el del último euro; el **tipo medio**, el de toda la renta, siempre menor. El **IVA** es proporcional al gasto y **regresivo** respecto a la renta, por eso hay tipos reducidos para lo básico.
+- El **gasto público** ronda el **45 % del PIB** (Eurostat, 2024) y se va sobre todo a **pensiones**, **sanidad** y **educación**. Lo fijan cada año los **Presupuestos Generales del Estado**; si no se aprueban, se prorrogan, como los de 2023 en 2024 y 2025.
+- Gastar más de lo ingresado es **déficit** (3,2 % del PIB en 2024); los déficits acumulados son la **deuda pública**, alrededor del **100 % del PIB** en 2024-2025 (Banco de España). Se financia con letras y bonos que compran bancos, fondos, inversores extranjeros y familias, y cada punto de tipo de interés cuesta 16.000 millones al año. La UE fija como referencia el 3 % de déficit y el 60 % de deuda.
+- El **Estado del bienestar** (sanidad, educación, pensiones, desempleo, dependencia) reduce la desigualdad: el **índice de Gini** pasa de 49-50 antes de impuestos y transferencias a 31-32 después (INE, ECV 2024), aunque España sigue entre los países más desiguales de la UE y uno de cada cuatro habitantes está en riesgo de pobreza (AROPE 25,8 %). El **fraude fiscal** y una economía sumergida estimada entre el 15 y el 25 % del PIB lo debilitan; pedir el ticket es la parte que le toca a cada uno.
+</KeyTakeaways>
+
+## Glosario
+
+- **Bien público**: bien no rival y no excluible (faro, alumbrado, defensa) que el mercado no provee porque nadie pagaría voluntariamente por él; lo financia el Estado con impuestos.
+- **Fallo de mercado**: situación en la que el mercado, por sí solo, produce un resultado ineficiente: bienes públicos, externalidades, monopolios e información asimétrica.
+- **Externalidad**: efecto de una actividad sobre terceros que no se refleja en el precio, negativo (contaminación) o positivo (educación).
+- **Impuesto**: pago obligatorio al Estado sin contraprestación directa. **Tasa**: pago por un servicio público concreto. **Cotización social**: pago a la Seguridad Social a cambio de derechos futuros.
+- **Impuesto directo**: grava la renta o la riqueza de la persona o empresa (IRPF, Sociedades, Patrimonio). **Impuesto indirecto**: grava el consumo (IVA, especiales).
+- **IRPF**: Impuesto sobre la Renta de las Personas Físicas; grava lo que ganas en un año y es progresivo por tramos (Ley 35/2006).
+- **IVA**: Impuesto sobre el Valor Añadido; va dentro del precio de casi todo lo que compras, con tipos del 21, 10 y 4 % (Ley 37/1992).
+- **Tipo marginal**: porcentaje que se paga por el último euro ganado. **Tipo medio**: porcentaje que se paga sobre toda la renta.
+- **Progresivo, proporcional y regresivo**: un impuesto es progresivo si quien más gana paga un porcentaje mayor; proporcional si todos pagan el mismo porcentaje; regresivo si quien menos gana paga un porcentaje mayor de su renta.
+- **Presupuestos Generales del Estado**: ley anual que fija los ingresos y los gastos del Estado; si no se aprueba, se prorroga la del año anterior.
+- **Déficit público**: exceso del gasto sobre los ingresos en un año. **Deuda pública**: suma de los déficits acumulados pendientes de devolver, financiada con letras, bonos y obligaciones.
+- **Índice de Gini**: medida de la desigualdad de la renta entre 0 (igualdad total) y 100 (una persona lo tiene todo), calculada a partir de la curva de Lorenz.
+- **Tasa AROPE**: porcentaje de población en riesgo de pobreza o exclusión social, por baja renta, carencia material grave o baja intensidad de empleo.
+- **Fraude fiscal**: ocultar ingresos, ventas o patrimonio para pagar menos impuestos de los que corresponden; es ilegal y, a partir de 120.000 €, delito.
+
+## Para profundizar
+
+Si la unidad os ha dejado con ganas de comprobar cifras, estos recursos son gratuitos y fiables:
+
+- **«¿Dónde van mis impuestos?»**, de la Fundación Civio (dondevanmisimpuestos.es). Por qué encaja: visualiza los Presupuestos Generales del Estado y los de muchas comunidades y ayuntamientos euro a euro, y permite ver en qué se gasta cada 100 € de tu ciudad.
+- **Portal de Educación Cívico-Tributaria** de la Agencia Tributaria (agenciatributaria.es). Por qué encaja: explica con ejemplos para estudiantes qué es cada impuesto y en qué se convierte, e incluye el simulador oficial de la renta con el que podéis probar el ejercicio 6.1 con datos reales.
+- **Encuesta de Condiciones de Vida** del INE (ine.es). Por qué encaja: es la fuente del Gini, de la tasa AROPE y de la renta media por hogar; en sus notas de prensa de dos páginas está todo lo que necesitáis para discutir sobre desigualdad con datos.
+- **Tesoro Público** (tesoro.es). Por qué encaja: publica cada subasta de letras y bonos, el calendario y el tipo de interés que paga el Estado; ver cómo cambia semana a semana es la mejor forma de entender el precio de la deuda.
+
+## Preguntas para reflexionar
+
+Estas preguntas no tienen una respuesta única. Sirven para debatir en clase o pensar a solas al cerrar la unidad:
+
+1. La sanidad y la educación las paga tu comunidad autónoma con la mitad del IRPF y del IVA que recauda el Estado. ¿Debería cada comunidad recaudar y gastar lo suyo, aunque las ricas tuvieran mejores hospitales, o repartir entre todas para que los servicios sean iguales en todo el país? ¿Qué se gana y qué se pierde con cada opción?
+2. El IVA pesa más sobre las familias con menos renta y el IRPF sobre las que más tienen. Si tuvieras que recaudar 10.000 millones más, ¿subirías el IVA, el IRPF, Sociedades o crearías un impuesto nuevo? Justifica la elección con lo que sabes de progresividad, recaudación y fraude.
+3. La deuda pública ronda el 100 % del PIB y la pagaréis en parte vosotros. ¿Es justo que una generación gaste hoy lo que otra devolverá mañana? ¿Cambia la respuesta si el dinero se gastó en un hospital, en pensiones o en salvar empleos durante una pandemia?
+
+<Bibliography>
+
+1. España. **Real Decreto 217/2022**, de 29 de marzo, por el que se establecen la ordenación y las enseñanzas mínimas de la Educación Secundaria Obligatoria. BOE núm. 76. (Competencia específica 6: comprender aspectos básicos de la economía y las finanzas y los principios de interacción social desde el punto de vista económico.)
+2. **Constitución Española** (1978), artículos 31 (deber de contribuir según la capacidad económica, con un sistema tributario justo, igualitario y progresivo), 128 y 134 (Presupuestos Generales del Estado y su prórroga). BOE núm. 311.
+3. **Ley 35/2006**, de 28 de noviembre, del Impuesto sobre la Renta de las Personas Físicas, y **Ley 37/1992**, de 28 de diciembre, del Impuesto sobre el Valor Añadido. BOE. Con la **Ley 22/2009**, de 18 de diciembre, por la que se regula el sistema de financiación de las Comunidades Autónomas de régimen común.
+4. Agencia Estatal de Administración Tributaria. **Informe Anual de Recaudación Tributaria 2024** y **Resultados de la prevención y lucha contra el fraude 2023**. https://sede.agenciatributaria.gob.es/Sede/estadisticas.html
+5. Instituto Nacional de Estadística. **Encuesta de Condiciones de Vida (ECV) 2024**: renta media, índice de Gini, ratio S80/S20 y tasa AROPE. https://www.ine.es/dyngs/INEbase/es/operacion.htm?c=Estadistica_C&cid=1254736176807&menu=ultiDatos&idp=1254735976608
+6. Banco de España. **Deuda de las Administraciones Públicas según el Protocolo de Déficit Excesivo** (series trimestrales 2024-2025) y **Encuesta Financiera de las Familias 2022**. https://www.bde.es/webbe/es/estadisticas/temas/deuda-publica.html
+7. Eurostat. **Government finance statistics** (gasto público en porcentaje del PIB, 2024) y **Government expenditure by function (COFOG)**, 2023. Con Ministerio de Sanidad, **Estadística de Gasto Sanitario Público 2022**, y Ministerio de Educación, FP y Deportes, **Sistema Estatal de Indicadores de la Educación 2024**.
+
+</Bibliography>
+
+<MirarFora
+  unidad={6}
+  libro={{
+    titulo: '23 cosas que no te cuentan sobre el capitalismo',
+    meta: 'Ha-Joon Chang · Debate, 2012',
+    porque: 'Veintitrés capítulos cortos e irreverentes que desmontan tópicos económicos con datos. Los dedicados al Estado del bienestar y a por qué los países con más impuestos no son los que menos crecen son perfectos para discutir esta unidad sin haber decidido antes la respuesta.',
+    paginas: 'Cosas 12, 13 y 21',
+  }}
+  video={{
+    titulo: 'Cómo funciona el IRPF por tramos, explicado con una escalera',
+    meta: 'Vídeos divulgativos en castellano · YouTube',
+    duracion: '~8 min',
+    porque: 'La confusión entre tipo marginal y tipo medio es la más extendida sobre impuestos. Ver la escalera de tramos dibujada mientras alguien la explica con un sueldo real fija la idea mejor que cualquier tabla.',
+    url: 'https://www.youtube.com/results?search_query=irpf+por+tramos+tipo+marginal+tipo+medio+explicado',
+  }}
+  cuenta={{
+    titulo: '@civio',
+    meta: 'X / Twitter e Instagram · Fundación Civio',
+    porque: 'Periodismo de datos sobre presupuestos, contratos públicos y adónde va el dinero de los impuestos, con las fuentes siempre enlazadas. Es la manera más rápida de leer unos presupuestos sin ser economista.',
+  }}
+  actividad_titulo="¿En qué gasta tu ayuntamiento?"
+  actividad_duracion="30 min · necesitas conexión"
+>
+  <Fragment slot="actividad">
+    Busca el **presupuesto de tu ayuntamiento** del año en curso (en la web municipal, en el portal de transparencia o en dondevanmisimpuestos.es). Anota el gasto total, las **tres partidas más grandes** y cuánto ingresa por **IBI**, la tasa de basuras y las transferencias que recibe del Estado. Divide el gasto total entre el número de habitantes: ese es el gasto público municipal por persona, tú incluido. Trae los cinco números.
+  </Fragment>
+  <Fragment slot="para-clase">
+    **La clase aprueba unos presupuestos.** Se proyectan los números de dos o tres municipios distintos y se comparan: ¿por qué uno gasta más en turismo y otro en servicios sociales? Después, cada grupo recibe 100 € imaginarios de gasto municipal y diez minutos para repartirlos entre seis partidas (basuras, alumbrado, deportes, cultura, servicios sociales, policía local); un portavoz defiende el reparto y la clase vota el presupuesto ganador. Cierre: comparar el reparto elegido con el real del municipio. Duración: 45 min.
+  </Fragment>
+</MirarFora>
+
+```deck
+- tipo: curriculum
+  eyebrow: "A qué responde esta unidad"
+  title: "El marco de la unidad"
+  saberes:
+    - "Por qué interviene el Estado: bienes públicos, fallos de mercado y redistribución."
+    - "Ingresos públicos: impuestos directos e indirectos, tasas y cotizaciones; IRPF e IVA."
+    - "Gasto público, Presupuestos Generales del Estado, déficit, deuda y reglas fiscales de la UE."
+    - "Estado del bienestar, medida de la desigualdad (Gini, AROPE) y fraude fiscal."
+  competencias:
+    - "Comprender aspectos básicos de la economía y las finanzas: el papel del Estado y los impuestos."
+    - "Valorar críticamente los principios de interacción social desde el punto de vista económico."
+- tipo: caso
+  eyebrow: "Caso de partida"
+  title: "Los 27 céntimos de IVA de tu bocadillo y los 2.000 € de una noche en la UCI"
+  contexto: "Un bocadillo de 3 € lleva 27 céntimos de IVA (hostelería, 10 %). Sumados a los de todo el país, el IVA recaudó unos 93.000 millones en 2024, y la mitad va a tu comunidad autónoma, que paga tu instituto y tu centro de salud."
+  datos:
+    - "IVA recaudado en 2024: alrededor de 93.000 millones de euros (AEAT)."
+    - "El 50 % del IVA y del IRPF se cede a las comunidades (Ley 22/2009)."
+    - "Un día en la UCI se factura entre 1.500 y 2.500 € (tarifas autonómicas)."
+    - "Una plaza en un instituto público: unos 7.000 € por alumno y curso."
+  pregunta: "¿Adónde va el dinero de los impuestos, quién decide en qué se gasta y qué recibes tú a cambio?"
+- tipo: section
+  title: "¿Por qué interviene el Estado en la economía?"
+  subtitle: "Si el mercado lo hiciera todo bien, el Estado sobraría. Pero hay cosas que, dejado a su aire, hace mal o no hace."
+- tipo: diagram
+  diagrama: BienesPublicos
+  caption: "Rival o no, excluible o no. El bien público puro falla las dos: nadie pagaría por un faro, así que lo pone el Estado."
+- tipo: list
+  eyebrow: "Fallos de mercado"
+  title: "Cuatro razones para que exista un sector público"
+  items:
+    - "Bienes públicos: no rivales y no excluibles (faro, alumbrado, defensa). El polizón espera que paguen otros."
+    - "Externalidades: la contaminación es un coste que el precio no incluye; la educación, un beneficio que tampoco."
+    - "Monopolios: una sola empresa sube precios sin miedo. La CNMC vigila y multa."
+    - "Información asimétrica: el taller y el banco saben más que tú. Leyes de consumidores, garantía de 3 años, TAE."
+    - "Además, redistribuir (transferencias a quien menos tiene) y estabilizar el ciclo (ERTE en 2020)."
+- tipo: split
+  eyebrow: "Tres administraciones"
+  title: "Quién paga qué"
+  left:
+    h: "Estado y Seguridad Social"
+    items:
+      - "Pensiones, desempleo, defensa, justicia, policía nacional, trenes y carreteras estatales."
+      - "Cobra Sociedades, la mitad del IRPF y del IVA, parte de los especiales y las cotizaciones."
+  right:
+    h: "Comunidades y ayuntamientos"
+    items:
+      - "Comunidades: sanidad, educación (tu instituto), dependencia y servicios sociales."
+      - "Reciben la otra mitad del IRPF y del IVA y gestionan Sucesiones, Patrimonio e ITP."
+      - "Ayuntamientos: basuras, alumbrado, parques, bus urbano. Cobran el IBI y tasas."
+- tipo: section
+  title: "Los ingresos públicos"
+  subtitle: "Impuestos, tasas y cotizaciones. No es lo mismo pagar el IVA de una camiseta que la tasa del DNI."
+- tipo: terms
+  eyebrow: "Tres pagos obligatorios"
+  title: "Impuesto, tasa y cotización"
+  terms:
+    - t: "Impuesto"
+      d: "Pago obligatorio sin contraprestación directa: financia el conjunto de los servicios. Directo si grava lo que ganas o tienes; indirecto si grava lo que consumes."
+    - t: "Tasa"
+      d: "Pago por un servicio concreto que solo presta el Estado: el DNI (12 €), la recogida de basuras, el examen del carné de conducir."
+    - t: "Cotización social"
+      d: "Lo que trabajadores y empresas pagan a la Seguridad Social a cambio de derechos futuros: pensión, paro, baja por enfermedad."
+- tipo: table
+  eyebrow: "AEAT, 2024, cifras redondeadas"
+  title: "De qué vive el Estado: 295.000 millones"
+  head:
+    - "Impuesto"
+    - "Recaudación 2024"
+    - "Peso"
+  rows:
+    - ["IRPF (directo)", "129.000 millones €", "44 %"]
+    - ["IVA (indirecto, 21 / 10 / 4 %)", "93.000 millones €", "31 %"]
+    - ["Sociedades (directo, 25 %)", "39.000 millones €", "13 %"]
+    - ["Especiales (alcohol, tabaco, carburantes)", "22.000 millones €", "8 %"]
+    - ["Resto (Patrimonio, tasas, otros)", "12.000 millones €", "4 %"]
+  caption: "Tres de cada cuatro euros vienen del IRPF y del IVA. Aparte, las cotizaciones sociales superaron los 180.000 millones."
+- tipo: quiz
+  eyebrow: "Comprueba que lo pillas"
+  pregunta: "Pagas 12 € por renovar el DNI. ¿Qué tipo de tributo es?"
+  opciones:
+    - "Un impuesto directo, porque lo pagas tú a Hacienda."
+    - "Una tasa: pagas por un servicio concreto que solo presta el Estado."
+    - "Una cotización social, porque da derecho a un documento."
+    - "Un impuesto indirecto, porque va incluido en el precio."
+  correcta: 1
+  explicacion: "La tasa se paga a cambio de un servicio concreto e individualizado. El impuesto no tiene contraprestación directa y la cotización compra derechos futuros como la pensión o el paro."
+- tipo: section
+  title: "IRPF e IVA con números"
+  subtitle: "El impuesto que os tocará declarar dentro de pocos años y el que pagáis cada día sin verlo."
+- tipo: diagram
+  diagrama: IRPFTramos
+  caption: "Cada tipo se aplica solo a la franja de renta de su tramo. Por eso el tipo medio siempre queda por debajo del marginal."
+- tipo: exercise
+  title: "Ejercicio 6.1 — El IRPF de Lucía: 20.000 € por tramos"
+  enunciado: "Lucía ha cobrado 20.000 € brutos y le han retenido 3.400 €. Con la escala orientativa (19 % hasta 12.450 €, 24 % hasta 20.200 €) y un mínimo personal de 5.550 €, calcula su cuota, su tipo marginal y medio, y si la declaración sale a pagar o a devolver."
+  pasos:
+    - "Primer tramo: 12.450 × 0,19 = 2.365,50 €."
+    - "Segundo tramo: (20.000 − 12.450) = 7.550 × 0,24 = 1.812,00 €. Cuota antes del mínimo: 4.177,50 €."
+    - "Mínimo personal: 5.550 × 0,19 = 1.054,50 € menos. Cuota: 3.123,00 €."
+    - "Tipo marginal 24 % (su último euro); tipo medio 3.123 / 20.000 = 15,6 % (toda su renta)."
+    - "Retuvieron 3.400 € y debía 3.123 €: la declaración sale a devolver 277 €."
+    - "En la declaración real, con gastos deducibles y reducción por trabajo, la cuota baja a unos 2.200 €."
+- tipo: exercise
+  title: "Ejercicio 6.2 — El IVA de un ticket al 4, al 10 y al 21 %"
+  enunciado: "Antes de IVA: pan, leche, huevos y fruta 12,50 € (4 %); pollo, yogures y atún 9,00 € (10 %); champú, pilas y refresco 8,00 € (21 %). Calcula el IVA total, el ticket y qué parte de sus ingresos paga en IVA una familia de 1.200 € que gasta todo y otra de 6.000 € que gasta 3.000."
+  pasos:
+    - "IVA: 12,50 × 0,04 = 0,50 €; 9,00 × 0,10 = 0,90 €; 8,00 × 0,21 = 1,68 €. Total 3,08 €."
+    - "Ticket: 29,50 + 3,08 = 32,58 €. Los impuestos son el 10,4 % del precio sin IVA."
+    - "Familia de 1.200 €: gasta 1.200 €, paga unos 125 € de IVA, el 10,4 % de sus ingresos."
+    - "Familia de 6.000 €: gasta 3.000 €, paga unos 312 €, el 5,2 % de sus ingresos."
+    - "Más euros, pero la mitad de porcentaje: el IVA es regresivo respecto a la renta. Por eso hay tipos reducidos."
+- tipo: quiz
+  eyebrow: "Comprueba que lo pillas"
+  pregunta: "Ganabas 20.000 € y te suben a 21.000 €, con lo que llegas al tramo del 30 %. ¿Qué parte de tu renta tributa a ese 30 %?"
+  opciones:
+    - "Los 21.000 € completos: has cambiado de tramo."
+    - "Solo los 800 € que superan los 20.200 €."
+    - "Los 1.000 € de la subida."
+    - "Ninguna, porque el mínimo personal lo compensa."
+  correcta: 1
+  explicacion: "El IRPF es progresivo por tramos: cada tipo se aplica solo a la franja de renta dentro de su tramo. Subir de tramo nunca hace que cobres menos; solo el último euro paga el tipo nuevo."
+- tipo: section
+  title: "El gasto público: en qué se gasta"
+  subtitle: "No es la defensa ni «los políticos». De cada 100 € públicos, más de la mitad van a pensiones, sanidad y educación."
+- tipo: figure
+  src: "eco-1bach/11/congreso-diputados-madrid.jpg"
+  alt: "Fachada principal del Congreso de los Diputados en Madrid, con su columnata neoclásica y los dos leones de bronce."
+  title: "Donde se votan los Presupuestos Generales del Estado"
+  caption: "Cada otoño el Gobierno presenta aquí los PGE. Los de 2023 fueron los últimos aprobados y siguieron prorrogados en 2024 y 2025."
+  credit: "Foto: Javier Perez Montes, CC BY-SA 4.0 vía Wikimedia Commons"
+- tipo: table
+  eyebrow: "Eurostat, COFOG 2023, aprox."
+  title: "De cada 100 € de gasto público en España"
+  head:
+    - "Función"
+    - "Euros de cada 100"
+    - "Qué incluye"
+  rows:
+    - ["Protección social", "41 €", "Pensiones (la mayor partida), desempleo, dependencia, IMV"]
+    - ["Sanidad", "15 €", "Hospitales, centros de salud, recetas; 92.000 millones en 2022"]
+    - ["Asuntos económicos", "12 €", "Carreteras, trenes, agricultura, energía"]
+    - ["Servicios generales", "12 €", "Administración e intereses de la deuda: más de 30.000 millones"]
+    - ["Educación", "10 €", "De infantil a universidad; unos 7.000 € por alumno y curso"]
+  caption: "El gasto público total ronda el 45 % del PIB (Eurostat, 2024), frente al 49 % de media en la Unión Europea."
+- tipo: section
+  title: "Déficit, superávit y deuda pública"
+  subtitle: "Cuando el Estado gasta más de lo que ingresa solo hay una salida: pedir prestado. Y lo prestado se devuelve con intereses."
+- tipo: data
+  numero: "1,62 billones"
+  label: "de euros de deuda pública"
+  title: "Alrededor del 102 % del PIB al cerrar 2024"
+  detalle: "El déficit es lo que falta cada año (3,2 % del PIB en 2024); la deuda, la suma de los déficits pendientes. La factura de intereses ya supera los 30.000 millones (Banco de España, IGAE)."
+- tipo: list
+  eyebrow: "Quién presta y con qué reglas"
+  title: "Letras, bonos y el límite del 3 %"
+  items:
+    - "El Tesoro emite letras (hasta 12 meses), bonos (3 y 5 años) y obligaciones (hasta 50 años)."
+    - "Compran bancos, fondos, aseguradoras, inversores extranjeros (≈ 40 %) y el Banco de España (≈ 30 %)."
+    - "En 2023, con las letras al 3 %, las familias compraron más de 20.000 millones; hubo colas en Cibeles."
+    - "Con tipos al 0 % (2016-2021) la deuda salía casi gratis; desde 2022 la factura vuelve a crecer."
+    - "Reglas fiscales de la UE: déficit por debajo del 3 % del PIB y deuda hacia el 60 %, reformadas en 2024."
+- tipo: section
+  title: "El Estado del bienestar y la desigualdad"
+  subtitle: "Un seguro colectivo: todos contribuyen según su renta y reciben según su necesidad. ¿Reduce de verdad la desigualdad?"
+- tipo: figure
+  src: "taller-eco-3eso/08/hospital-publico.jpg"
+  alt: "Entrada de un hospital público en Granada, uno de los servicios del Estado del bienestar."
+  title: "Gratuito en el momento de uso, pagado antes con impuestos"
+  caption: "Sanidad, educación, pensiones, desempleo y dependencia: los cinco pilares. Que un cáncer no arruine a una familia es la razón concreta."
+  credit: "Foto: Jebulon, CC0 vía Wikimedia Commons"
+- tipo: diagram
+  diagrama: CurvaLorenz
+  caption: "Cuanto más se separa la curva de la diagonal, más desigualdad. El Gini mide esa distancia: 0 es igualdad total y 100, el extremo."
+- tipo: split
+  eyebrow: "INE, ECV 2024 · Eurostat"
+  title: "La desigualdad en España, antes y después del Estado"
+  left:
+    h: "Lo que dicen los datos"
+    items:
+      - "Gini de la renta disponible: 31-32, entre los más altos de Europa occidental (media UE ≈ 30)."
+      - "El 20 % más rico recibe 5,5 veces más que el 20 % más pobre (ratio S80/S20)."
+      - "Tasa AROPE: 25,8 % de la población en riesgo de pobreza o exclusión."
+  right:
+    h: "Lo que hace el Estado"
+    items:
+      - "Antes de impuestos y transferencias, el Gini ronda 49-50; después, 31-32."
+      - "Las pensiones y las prestaciones hacen la mayor parte del recorte; el IRPF, el resto."
+      - "Sanidad y educación gratuitas igualan capacidades (Amartya Sen), no solo rentas."
+- tipo: quiz
+  eyebrow: "Comprueba que lo pillas"
+  pregunta: "En un país el Gini de la renta de mercado es 50 y el de la renta disponible es 32. ¿Qué significa?"
+  opciones:
+    - "Que la desigualdad ha crecido durante el año."
+    - "Que impuestos y transferencias han reducido la desigualdad en más de un tercio."
+    - "Que el 32 % de la población es pobre."
+    - "Que el país tiene dos monedas distintas."
+  correcta: 1
+  explicacion: "El primer Gini mide el reparto que hace el mercado; el segundo, el que queda tras pagar impuestos y recibir pensiones y prestaciones. La diferencia es el efecto redistributivo del Estado del bienestar."
+- tipo: section
+  title: "Fraude fiscal y economía sumergida"
+  subtitle: "Todo el sistema descansa en que cada uno pague lo que la ley le asigna. Cuando no ocurre, pagan de más los que sí cumplen."
+- tipo: figure
+  src: "taller-eco-3eso/08/agencia-tributaria.jpg"
+  alt: "Edificio de la Agencia Estatal de Administración Tributaria en Bilbao."
+  title: "La Agencia Tributaria: recaudar y perseguir el fraude"
+  caption: "En 2023 sus actuaciones de control aflararon más de 16.000 millones de euros. Lo que no se declara no se mide: solo se estima."
+  credit: "Foto: Zarateman, CC0 vía Wikimedia Commons"
+- tipo: concept
+  eyebrow: "Cifras con cautela"
+  title: "Entre el 15 y el 25 % del PIB se escapa"
+  body: "Gestha, los técnicos de Hacienda, estiman la economía sumergida en un 20-25 % del PIB; FUNCAS y los estudios académicos, más cerca del 15-20 %; la Comisión Europea calcula que España pierde un 5-6 % del IVA que debería recaudar. Ninguna cifra es oficial, porque lo oculto no se mide. En 2012 una amnistía fiscal al 10 % afloró 40.000 millones y el Constitucional la anuló en 2017 (STC 73/2017)."
+  pull: "El sistema solo se sostiene si pagar es siempre mejor negocio que no pagar."
+- tipo: recap
+  eyebrow: "Repasa"
+  title: "Antes de cerrar la unidad"
+  items:
+    - "Sabrías explicar por qué un faro lo paga el Estado y no una empresa, y qué otros fallos tiene el mercado."
+    - "Sabrías distinguir impuesto, tasa y cotización, y decir quién cobra el IRPF, el IVA, Sucesiones y el IBI."
+    - "Sabrías calcular el IRPF de una renta por tramos, separar tipo marginal y medio, y el IVA de un ticket."
+    - "Sabrías decir en qué se gasta el dinero público, qué son los PGE y qué pasa cuando se prorrogan."
+    - "Sabrías explicar la diferencia entre déficit y deuda, quién presta al Estado y qué exige la UE."
+    - "Sabrías leer un índice de Gini y una curva de Lorenz y valorar cuánto redistribuye el Estado."
+```

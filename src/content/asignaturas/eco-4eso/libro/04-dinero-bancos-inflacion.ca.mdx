@@ -1,0 +1,783 @@
+---
+asignatura: eco-4eso
+unidad: 4
+title: El diner, els bancs i la inflació
+seoTitle: "Inflació, IPC i tipus d'interés explicats (4t ESO)"
+lema: >-
+  Un bitllet de 20 € és un tros de paper que tots acceptem perquè
+  confiem que els altres també l'acceptaran. Eixa confiança la
+  guarden els bancs, la mesura l'IPC i la vigila el Banc Central
+  Europeu. Quan falla, com a l'estiu de 2022, ho notes en el
+  preu de l'entrepà.
+lang: ca
+estado: publicado
+slug: "asignaturas/eco-4eso/libro/04-dinero-bancos-inflacion.ca"
+duracion: 8 sessions · 3 setmanes
+bloque: Bloc I · Economia
+sabers:
+  - El diner i les seues funcions
+  - Tipus de diner, de l'efectiu a les criptomonedes
+  - Els bancs i la creació de diner
+  - El tipus d'interés i l'euríbor
+  - La inflació i l'IPC
+  - El Banc Central Europeu i l'estabilitat de preus
+conceptos_clave:
+  - diner
+  - bescanvi
+  - mitjà de pagament
+  - diner fiduciari
+  - diner bancari
+  - coeficient de caixa
+  - tipus d'interés
+  - euríbor
+  - IPC
+  - inflació
+  - poder adquisitiu
+  - Banc Central Europeu
+objetivos:
+  - Explicar per què el bescanvi no funciona i quines tres funcions complix el diner, amb exemples quotidians.
+  - Distingir el diner mercaderia, el fiduciari, el bancari i l'electrònic, i raonar si una criptomoneda és diner.
+  - Descriure què fa un banc i calcular el seu marge i una ronda senzilla de creació de diner bancari.
+  - Interpretar el tipus d'interés com el preu del diner i explicar com una decisió del BCE arriba a una hipoteca o a un préstec.
+  - Calcular la inflació d'una cistella de productes i valorar qui guanya i qui perd quan pugen els preus.
+publicado_en: 2026-09-15
+---
+
+import Callout from '@components/Callout.astro';
+import Diagram from '@components/Diagram.astro';
+import TresFuncionesDinero from '@components/diagrams/TresFuncionesDinero.astro';
+import CreacionDinero from '@components/diagrams/CreacionDinero.astro';
+import TransmisionMonetaria from '@components/diagrams/TransmisionMonetaria.astro';
+import Curiosity from '@components/Curiosity.astro';
+import RealExample from '@components/RealExample.astro';
+import SolvedExercise from '@components/SolvedExercise.astro';
+import Steps from '@components/Steps.astro';
+import KeyTakeaways from '@components/KeyTakeaways.astro';
+import Figure from '@components/Figure.astro';
+import Bibliography from '@components/Bibliography.astro';
+import TldrUnidad from '@components/TldrUnidad.astro';
+import CasoDilema from '@components/CasoDilema.astro';
+import VuelveAlCaso from '@components/VuelveAlCaso.astro';
+import MirarFora from '@components/MirarFora.astro';
+import VocesDesacuerdo from '@components/VocesDesacuerdo.astro';
+import RecursoDestacado from '@components/libro/RecursoDestacado.astro';
+import HerramientaIsland from '@components/calculadoras/HerramientaIsland.astro';
+
+import eurosBilletesMonedas from '@assets/libro/eco-4eso/07/euros-billetes-monedas.jpg';
+import bitcoinToken from '@assets/libro/eco-1bach/10/bitcoin-token.jpg';
+import bancoEspanaFachada from '@assets/libro/eco-4eso/07/banco-espana-fachada.jpg';
+import bceFrankfurtSkytower from '@assets/libro/eco-1bach/10/bce-frankfurt-skytower.jpg';
+import christineLagarde from '@assets/libro/eco-1bach/11/christine-lagarde.jpg';
+
+> **Temps de lectura**: ~25 min · **Sabers**: el diner i les seues funcions, tipus de diner, els bancs, el tipus d'interés, la inflació i l'IPC, el BCE · **Abans de començar**: Unitats 1 i 3 (escassetat i cost d'oportunitat; com es formen els preus en un mercat).
+>
+> **En acabar esta unitat sabràs**:
+> - Explicar què és el diner, per què va substituir el bescanvi i per a quines tres coses servix.
+> - Distingir l'efectiu del diner que viu al teu compte i raonar si el bitcoin és diner.
+> - Contar com un banc guanya diners i com, en prestar, crea diner nou.
+> - Calcular la inflació d'una cistella de productes i explicar per què el BCE puja els tipus quan els preus es disparen.
+
+<TldrUnidad>
+El diner és un acord de confiança: servix per a pagar, per a posar preu i per a guardar valor. Quasi tot el diner que existix no són bitllets, sinó apunts en comptes bancaris que els bancs creen en prestar. El preu d'eixe diner és el tipus d'interés, que fixa el Banc Central Europeu, i el seu enemic és la inflació, que l'INE mesura amb l'IPC. El 2022 els preus van pujar a Espanya un 8,4 % de mitjana, i el BCE va respondre pujant els tipus com no ho havia fet mai. Esta unitat explica per què.
+</TldrUnidad>
+
+<CasoDilema
+  titular="Estiu de 2022: l'IPC toca el 10,8 % i la cistella de la compra es dispara"
+  fuente="INE, IPC de juliol de 2022 · BCE, decisions de política monetària 2022-2023"
+  pregunta="Per què de sobte el diner valia menys i qui va decidir pujar els tipus d'interés?"
+>
+El juliol de 2022 l'Instituto Nacional de Estadística va publicar una dada que no es veia a Espanya des de 1984: els preus havien pujat un **10,8 %** en un any. Els aliments sense elaborar costaven un 13,4 % més que l'estiu anterior i els productes energètics, un 41,4 % més (INE, IPC juliol 2022). L'oli d'oliva, que ja havia pujat un 35,2 % el 2022, pujaria un altre 54,6 % el 2023, el major augment de la seua sèrie històrica (INE, desembre 2023). Les famílies notaven que amb el mateix bitllet de 50 € omplien menys el carro, i qui tenia estalvis a casa veia com perdien valor sense que ningú els tocara.
+
+Dos setmanes abans, el 21 de juliol de 2022, el **Banc Central Europeu** havia pujat els tipus d'interés per primera vegada en onze anys. Va continuar pujant-los en cada reunió fins al setembre de 2023, quan el tipus de les seues operacions principals va arribar al **4,5 %**, partint del 0 % (BCE, notes de premsa 2022-2023). Les hipoteques variables es van encarir centenars d'euros al mes i demanar un préstec es va tornar molt més car. Ningú va votar eixa decisió: la van prendre vint-i-sis persones reunides a Frankfurt.
+</CasoDilema>
+
+Portes un bitllet de 20 € a la butxaca. Pensa-ho un moment: és un tros de paper de cotó, imprés amb una tinta especial, que no servix per a menjar ni per a vestir-se. I tanmateix amb ell aconseguixes un entrepà, una entrada de cine o una recàrrega del mòbil, i ningú te'l rebutja. Encara més: la teua paga probablement ni tan sols arriba en bitllets, sinó com un número que apareix en una aplicació del banc després d'un Bizum. Eixe número tampoc no és res físic. Per què funciona tot això?
+
+I la segona pregunta, que va enganxada a la primera: per què l'entrepà que fa tres anys costava 2,50 € hui costa 3 €? No és que el pa siga millor. És que el diner **val menys**. A això ho anomenem inflació, i el 2022 Espanya va viure la més alta en quatre dècades. Hi va haver qui ho va notar en la compra, qui ho va notar en el lloguer i qui ho va notar en la quota de la hipoteca dels seus pares, que va pujar de colp quan el Banc Central Europeu va decidir actuar.
+
+Esta unitat recorre eixe camí complet: què és el diner i per què va substituir el bescanvi, quines formes té hui (de la moneda al bitcoin), què fan els bancs amb ell i com el multipliquen, què és el tipus d'interés i qui el fixa, com es mesura la inflació i a qui perjudica, i per què existix un banc central l'única obsessió del qual és que els preus no es desboquen. Són idees que fareu servir a les notícies, en el vostre primer sou i, més prompte que tard, en el vostre primer compte bancari.
+
+## Del bescanvi al diner
+
+Imagina que a l'institut no existira el diner i volgueres aconseguir un entrepà. Hauries de trobar algú que tinguera un entrepà de sobra **i** que a més volguera just el que tu pots oferir: uns cromos, mitja hora d'ajuda amb matemàtiques, un carregador. Si té entrepà però no vol els teus cromos, no hi ha tracte. Si vol els teus cromos però no té entrepà, tampoc.
+
+Eixe és el problema del **bescanvi**, l'intercanvi directe d'una cosa per una altra sense diners pel mig: exigix el que els economistes anomenen **doble coincidència de necessitats**. Cada un ha de voler exactament el que oferix l'altre, en el mateix moment i en quantitats que encaixen. Quant val una vaca en gallines? I si només necessite mitja vaca? Amb poques persones i pocs productes el bescanvi funciona a males penes; amb milers de productes i milions de persones, és impossible. Per això totes les societats que han crescut han acabat inventant el mateix: un objecte que tothom accepta a canvi de qualsevol cosa.
+
+<Callout label="Concepte clau" title="Diner">
+
+El **diner** és qualsevol cosa que una comunitat accepta de forma general com a pagament per béns i servicis i per a saldar deutes. L'essencial no és de què està fet (petxines, sal, metall, paper o un apunt en una pantalla), sinó que **tots confien** que els altres l'acceptaran. El diner és, abans que res, un acord social: val perquè creiem que val.
+
+</Callout>
+
+### Les tres funcions del diner
+
+Perquè una cosa funcione com a diner ha de complir tres tasques alhora. Si falla en una, deixa de servir.
+
+- **Mitjà de pagament (o de canvi).** Servix per a comprar i vendre sense bescanvi. El forner accepta els teus euros perquè sap que amb ells pagarà la farina i la llum. Es trenca la doble coincidència: ja no necessites que el forner vulga els teus cromos.
+- **Unitat de compte.** Servix per a **posar preu** i comparar coses molt distintes en una mateixa escala. Un entrepà, 3 €; una entrada, 8 €; un mòbil, 300 €. Sense una unitat comuna no sabries si un mòbil val 100 entrepans o 40 entrades.
+- **Depòsit de valor.** Servix per a **guardar poder de compra** i usar-lo més avant: la paga que no gastes hui continua valent (quasi) el mateix el mes que ve. Perquè esta funció es complisca, el valor del diner ha de ser estable. Tornarem a això quan parlem d'inflació: quan els preus es disparen, el diner deixa de servir per a guardar valor.
+
+<Diagram caption="Les tres funcions del diner: pagar sense bescanvi, posar preu a coses distintes i guardar valor per a més tard. Si en falla una, el diner deixa de servir.">
+  <TresFuncionesDinero />
+</Diagram>
+
+Fixa't que les tres funcions es recolzen unes en les altres. Si el diner perd valor cada dia (falla com a depòsit), la gent deixa d'acceptar-lo (falla com a mitjà de pagament) i els preus canvien tan de pressa que ja no servixen per a comparar (falla com a unitat de compte). És el que va passar a Alemanya el 1923, com veurem.
+
+<Curiosity title="Cigarrets com a diner en un camp de presoners (1945)">
+L'economista britànic **R. A. Radford** va passar part de la Segona Guerra Mundial en camps de presoners alemanys. En eixir va escriure un article que hui és un clàssic: *The Economic Organisation of a P.O.W. Camp* (revista *Economica*, novembre de 1945). Contava que, sense diner oficial, els presoners havien convertit els **cigarrets** dels paquets de la Creu Roja en moneda: amb ells es comprava xocolate, carn en llanda, sabó o roba, i cada producte tenia el seu preu en cigarrets. Complien les tres funcions: s'hi pagava, servien d'unitat de compte i es guardaven per a més avant. Radford va observar fins i tot fenòmens que estudien els bancs centrals: quan arribava un enviament gran de la Creu Roja hi havia més cigarrets en circulació i **els preus pujaven** (inflació); quan els enviaments s'interrompien, baixaven. I els cigarrets liats a mà, més fins, circulaven com a moneda mentre que els bons, de màquina, es fumaven: la gent es quedava amb el «diner bo» i pagava amb el «roín». El diner no necessita que ningú el decrete: apareix sol així que hi ha gent que vol intercanviar.
+</Curiosity>
+
+<RecursoDestacado href="/proyectos/historia/02-del-trueque-a-las-criptomonedas/" kicker="Projecte interdisciplinari" title="Del bescanvi a les criptomonedes: una història del diner" descripcion="Un recorregut amb Història per les formes que ha pres el diner, des de les petxines fins a l'euro digital, per a entendre què és de veres i per què funciona." colorVar="--color-eco4" />
+
+## Tipus de diner
+
+El diner ha canviat de forma moltes vegades. Hui conviuen a la teua butxaca, al teu compte i al teu mòbil diverses formes distintes, i convé saber distingir-les perquè no totes són iguals ni les avala el mateix.
+
+### Diner mercaderia
+
+El primer diner va ser un bé que **valia per si mateix** i que a més servia per a pagar: sal, bestiar, cacau, petxines, i sobretot **or i plata**. Tenia un avantatge clar (ningú el rebutjava perquè tenia valor propi) i diversos inconvenients: era pesat, difícil de dividir, i la seua quantitat depenia del que es trobara a les mines. La paraula *salari* ve de la sal amb què es pagava als soldats romans, i *pecuniari* (relatiu al diner) ve de *pecus*, «bestiar». El llenguatge guarda la memòria del diner mercaderia.
+
+### Diner fiduciari: els bitllets i les monedes
+
+Els bitllets i monedes que usem hui són **diner fiduciari** (de *fides*, «confiança» en llatí): no valen pel seu material, sinó perquè una autoritat els declara **de curs legal** i tots hi confiem. Un bitllet de 50 € costa uns cèntims fabricar-lo; val 50 € perquè el **Banc Central Europeu (BCE)** l'avala i perquè la llei obliga a acceptar-lo per a saldar deutes.
+
+<Figure
+  src={eurosBilletesMonedas}
+  alt="Bitllets i monedes d'euro estesos sobre una superfície, mostrant diverses denominacions de la moneda única europea."
+  caption="Bitllets i monedes d'euro. És l'únic diner de curs legal a Espanya des de 2002, però representa menys d'un de cada deu euros que existixen: la resta són apunts en comptes bancaris."
+  credit="Foto: Avij, dominio público vía Wikimedia Commons"
+  aspectHint="3/2"
+/>
+
+Qui fabrica l'euro? El sistema té dos nivells. El **BCE**, amb seu a Frankfurt, decidix quants bitllets s'emeten i amb quin disseny per als vint països que el 2025 compartixen la moneda. Els bancs centrals de cada país (a Espanya, el **Banco de España**) els posen en circulació: els distribuïxen als bancs comercials, retiren els deteriorats i persseguixen les falsificacions. Les monedes les encunya cada Estat (a Espanya, la Fábrica Nacional de Moneda y Timbre), encara que el BCE n'aprova la quantitat. Hi ha set bitllets (de 5 a 500 €) i huit monedes (d'1 cèntim a 2 €).
+
+<Curiosity title="El bitllet de 500 € existix, però ja no es fabrica">
+Des del gener de 2019 l'Eurosistema **va deixar d'emetre bitllets de 500 €**. La raó oficial: s'usaven molt poc en compres normals i molt en activitats il·legals, fins al punt que la premsa l'apodava «el Bin Laden», perquè tothom sabia que existia però quasi ningú l'havia vist. Els que ja circulen continuen sent de curs legal i es poden canviar al Banco de España sense límit de temps. És un bon recordatori que el diner fiduciari és una decisió d'una autoritat: el mateix tros de paper pot deixar de fabricar-se d'un dia per a un altre sense que perda el seu valor.
+</Curiosity>
+
+### Diner bancari: la major part del diner
+
+Ací ve la idea que sorprén quasi tothom. Quan dius «tinc 300 € al banc» no hi ha 300 € en bitllets guardats en una caixa amb el teu nom. El que hi ha és una **anotació**: el banc reconeix que et deu 300 € i es compromet a donar-te'ls en efectiu si els demanes o a transferir-los a qui tu digues. Eixe apunt és **diner bancari**, i és la forma de diner més abundant amb diferència. A la zona euro, l'efectiu en circulació ronda 1,5 bilions d'euros, mentre que el diner total (efectiu més depòsits i altres saldos en comptes) supera els 16 bilions (BCE, dades de 2025). És a dir, **més de nou de cada deu euros no existixen com a bitllets**: són números als ordinadors dels bancs.
+
+### Diner electrònic: targetes, Bizum i mòbil
+
+La targeta, el Bizum, Apple Pay o Google Pay no són un diner distint: són **formes de moure el diner bancari** sense tocar bitllets. Quan acostes el mòbil al datàfon, el teu banc resta 3 € del teu apunt i el banc del bar suma 3 € al seu. Res físic no ha canviat de mans. El que ha canviat és la comoditat: pagar és cada vegada més ràpid, més invisible i, per això mateix, més fàcil de perdre de vista. A la Unitat 7 veurem com controlar eixa despesa; ací ens quedem amb la idea de fons: quan veus un saldo a la pantalla estàs veient diner bancari, i darrere hi ha una cadena de confiança que arriba fins al banc central.
+
+<RecursoDestacado href="/debates/dinero-tecnologia-futuro/03-sociedad-sin-efectivo/" kicker="Debat a classe" title="Cap a una societat sense diner en efectiu?" descripcion="Taula redona sobre la desaparició progressiva dels bitllets: més transparència i comoditat, o risc d'exclusió i pèrdua de privacitat?" colorVar="--color-eco4" />
+
+### Són diner les criptomonedes?
+
+El **bitcoin** va nàixer el 2009, creat per algú que firmava com a Satoshi Nakamoto i la identitat del qual continua sense conéixer-se. És un diner digital que no emet cap banc central ni gestiona cap banc: les operacions es registren en una cadena de blocs (*blockchain*) repartida entre milers d'ordinadors, i la quantitat total està limitada per disseny a 21 milions d'unitats. Els seus defensors el veuen com un diner lliure de governs i impossible d'imprimir sense control. La pregunta econòmica és més senzilla: complix les tres funcions?
+
+<Figure
+  src={bitcoinToken}
+  alt="Representació física d'una moneda de bitcoin amb el símbol BTC, fotografiada al costat de bitllets d'euro i dòlar per a il·lustrar la comparació entre diner fiduciari i criptomoneda."
+  caption="Una «moneda» de bitcoin al costat de bitllets d'euro i dòlar. El bitcoin real no és un objecte: és un apunt en una cadena de blocs. La foto servix per a comparar-lo amb el que sí que és diner de curs legal."
+  credit="Foto: Jernej Furman, CC BY 2.0 vía Wikimedia Commons"
+  aspectHint="3/2"
+  variant="right"
+/>
+
+- Com a **mitjà de pagament**, molt pocs comerços l'accepten i cada operació tarda minuts i costa comissions. A Espanya **no és moneda de curs legal**: ningú està obligat a acceptar-lo, i l'única moneda amb curs legal és l'euro (Ley 46/1998).
+- Com a **unitat de compte**, ningú posa preus en bitcoins, ni tan sols els qui l'accepten: convertixen des d'euros o dòlars.
+- Com a **depòsit de valor**, el seu preu és extremadament volàtil. Va passar d'uns 69.000 dòlars el novembre de 2021 a menys de 16.000 el novembre de 2022, després de la fallida de la plataforma FTX, i va superar per primera vegada els 100.000 dòlars el desembre de 2024. Ningú guarda el diner del lloguer en una cosa que pot perdre la meitat del seu valor en un any.
+
+La majoria d'economistes i bancs centrals conclouen que el bitcoin és hui un **actiu especulatiu** (una cosa que es compra esperant que puge) més que un diner. El Salvador el va declarar moneda de curs legal el 2021 i va fer marxa arrere el gener de 2025. A la Unió Europea, des del desembre de 2024, el Reglament MiCA (Reglament (UE) 2023/1114) regula qui pot oferir criptoactius i amb quins avisos, i la CNMV obliga que la seua publicitat advertisca del risc de perdre tota la inversió.
+
+<VocesDesacuerdo
+  tema="És el bitcoin diner o una juguesca?"
+  postura_a={{
+    etiqueta: 'Defensors del bitcoin',
+    tesis: "És diner escàs per disseny, que cap govern pot imprimir ni confiscar, i que permet pagar en qualsevol lloc del món sense demanar permís a un banc. La volatilitat és el preu de ser jove; l'or també va tardar segles.",
+  }}
+  postura_b={{
+    etiqueta: "Bancs centrals i la majoria d'economistes",
+    tesis: 'Un diner que pot perdre la meitat del seu valor en mesos no servix per a guardar valor ni per a posar preus, i quasi ningú l\'usa per a pagar. És un actiu especulatiu amb el qual es guanya o es perd, no una moneda.',
+  }}
+>
+Les dos postures coincidixen en un punt que convé no perdre de vista: **l'escassetat per si sola no convertix res en diner**. Els cromos rars també són escassos i ningú paga amb ells. El que convertix una cosa en diner és que una comunitat àmplia l'accepte de forma estable per a pagar, comparar i estalviar. Jutgeu el bitcoin amb eixa vara, no amb la de quant ha pujat o baixat esta setmana. I si algun dia invertiu en criptoactius, feu-ho sabent que és una juguesca: només amb diners que us pugueu permetre perdre.
+</VocesDesacuerdo>
+
+<RecursoDestacado href="/debates/dinero-tecnologia-futuro/01-criptomonedas/" kicker="Debat a classe" title="Les criptomonedes són el futur del diner o una bambolla?" descripcion="Taula redona de 50 minuts per a posar a prova, funció per funció, si el bitcoin pot ser diner o si és abans que res un actiu especulatiu." colorVar="--color-eco4" />
+
+## Els bancs
+
+Si més de nou de cada deu euros són apunts en comptes, qui gestiona eixos apunts té un paper central. Els bancs són empreses privades que guanyen diners, però que a més fan una cosa que cap altra empresa fa: **creen diner**.
+
+### Què fa un banc
+
+Un banc viu d'una idea simple. D'una banda **guarda el diner** de famílies i empreses (els **depòsits**: comptes corrents, comptes d'estalvi, depòsits a termini) i els paga per això un interés, normalment xicotet. De l'altra **presta** eixe diner a qui el necessita (una hipoteca, un préstec per a un cotxe, crèdit a una empresa per a comprar maquinària) i cobra per això un interés major. La diferència entre el que cobra per prestar i el que paga per guardar és el seu **marge d'intermediació**, la font principal dels seus beneficis. A això suma les comissions (per manteniment de compte, per transferències, per targetes) i altres servicis.
+
+En fer-ho, el banc complix una funció útil per a tota l'economia: **connecta l'estalvi d'uns amb la inversió d'altres**. La teua família estalvia 5.000 € que no usarà fins d'ací a dos anys; una fleca del barri necessita 5.000 € per a un forn nou. Sense banc, els dos haurien de trobar-se. Amb banc, l'estalvi es convertix en forn sense que ningú es conega.
+
+<Callout label="Concepte clau" title="Coeficient de caixa">
+
+Un banc no guarda a la caixa forta tot el diner que li depositen: seria absurd tindre'l parat. En guarda només una part com a **reserves** (per a atendre qui vulga retirar efectiu) i presta la resta. El percentatge mínim que està obligat a reservar és el **coeficient de caixa** o de reserves. A la zona euro el fixa el BCE i des de 2012 és de l'**1 %**: de cada 100 € depositats, el banc ha de mantindre almenys 1 € al banc central. Per a explicar-ho a classe usem un 10 %, que fa els números redons.
+
+</Callout>
+
+### Com els bancs creen diner
+
+Ací està la part que pareix màgia i no ho és. Ana ingressa **1.000 €** en bitllets al seu compte del Banc 1. Ana continua tenint 1.000 € (els veu a la seua aplicació). El banc reserva el 10 % (100 €) i presta els 900 € restants a Luis per a comprar una bicicleta. Ara Ana té 1.000 € de diner bancari **i** Luis té 900 €. De l'ingrés inicial de 1.000 € n'han eixit **1.900 €** de diner. No s'ha imprés cap bitllet: s'ha creat diner bancari en concedir un préstec.
+
+I la cadena continua. Luis paga la bicicleta i la botiga ingressa els 900 € al Banc 2, que en reserva 90 i en presta 810. Qui rep els 810 els diposita al Banc 3, que en reserva 81 i en presta 729. Cada ronda és un 10 % més xicoteta, però suma. Si el procés arriba fins al final, el depòsit inicial de 1.000 € acaba convertit en **10.000 €** de diner bancari. El número pel qual es multiplica és el **multiplicador del diner**: 1 dividit entre el coeficient de caixa (1 / 0,10 = 10).
+
+<Diagram caption="La cascada de creació de diner bancari amb un coeficient de reserves del 10 %: cada préstec es convertix en un nou depòsit, un poc menor que l'anterior, fins a multiplicar per deu l'ingrés inicial.">
+  <CreacionDinero />
+</Diagram>
+
+A la realitat el multiplicador és prou menor que el teòric, perquè no tothom diposita el que rep (part es queda en efectiu), els bancs guarden més reserves de les obligatòries i no sempre troben a qui prestar. Però la lliçó de fons es manté: **la major part del diner el creen els bancs comercials en prestar**, no la impremta del banc central. Per això el BCE, per a controlar quant diner hi ha, no compta bitllets: mou el tipus d'interés, que és el que anima o frena els préstecs. Ho veurem a la secció següent.
+
+<SolvedExercise number="4.1" title="El marge d'un banc i una ronda de creació de diner">
+
+**Enunciat**
+
+El Banc del Barri (cas inventat però versemblant) té depòsits dels seus clients per valor de **10 milions d'euros**, pels quals paga un interés de l'**1 %** anual. Amb eixos diners concedix préstecs per **8 milions d'euros** al **5 %** anual i guarda la resta com a reserves.
+
+a) Quant paga a l'any als seus depositants i quant cobra a qui li deu diners? Quin és el seu marge d'intermediació?
+
+b) Ana ingressa 1.000 € en efectiu al banc. Amb un coeficient de caixa del 10 %, quant pot prestar el banc? Quants diners hi ha ara en total entre Ana i la persona que rep el préstec? Quant diner bancari podria arribar a crear-se si la cadena continua fins al final?
+
+**Solució**
+
+1. **Interés pagat als depositants**: 10.000.000 × 0,01 = **100.000 €** a l'any.
+2. **Interés cobrat pels préstecs**: 8.000.000 × 0,05 = **400.000 €** a l'any.
+3. **Marge d'intermediació**: 400.000 − 100.000 = **300.000 €**. D'ahí el banc paga sous, oficines, informàtica i impostos, i el que queda és benefici. Fixa't en l'asimetria: paga un 1 % i cobra un 5 %. Eixa distància és el seu negoci, i per això et convé comparar bancs tant quan estalvies com quan demanes prestat (Unitat 8).
+4. **Ronda de creació de diner**: dels 1.000 € d'Ana, el banc en reserva el 10 % (100 €) i pot prestar **900 €**, per exemple a Luis.
+5. **Diner total després de la primera ronda**: Ana continua veient 1.000 € al seu compte i Luis té 900 € nous. Total: 1.000 + 900 = **1.900 €**. S'han creat 900 € que abans no existien.
+6. **Si la cadena continua**: el multiplicador és 1 / 0,10 = 10, així que els 1.000 € inicials poden convertir-se en fins a **10.000 €** de diner bancari (1.000 + 900 + 810 + 729 + 656 + …). Amb el coeficient real de la zona euro (1 %) el multiplicador teòric seria 100, però a la pràctica queda molt per davall perquè part del diner es guarda en efectiu i els bancs mantenen reserves extra.
+
+</SolvedExercise>
+
+**Prova-ho tu mateix:** canvia el depòsit inicial i el coeficient de caixa i observa, ronda a ronda, quant diner acaba creant el sistema bancari i què passa quan part del préstec es queda en efectiu.
+
+<HerramientaIsland componente="MultiplicadorBancario" />
+
+### La confiança i el Fondo de Garantía de Depósitos
+
+Si el banc només guarda una xicoteta part dels depòsits, què passa si tots els clients van alhora a retirar els seus diners? Que no n'hi ha per a tots. A això se l'anomena **pànic bancari**, i ha enfonsat bancs que en realitat estaven sans: bastava que la gent creguera que farien fallida perquè la feren. Com que tot el sistema descansa en la confiança, els Estats han construït xarxes de seguretat per a protegir-la.
+
+<Figure
+  src={bancoEspanaFachada}
+  alt="Façana de l'edifici seu del Banco de España a la Plaza de Cibeles de Madrid, amb la seua característica cantonada en xamfrà i cúpula."
+  caption="Seu del Banco de España a la Plaza de Cibeles (Madrid). Posa en circulació els bitllets d'euro, supervisa els bancs espanyols i vigila que funcionen les xarxes de seguretat, com el Fondo de Garantía de Depósitos."
+  credit="Foto: Luis García, CC BY-SA 2.5 vía Wikimedia Commons"
+  aspectHint="3/2"
+  variant="wide"
+/>
+
+La més important per a tu és el **Fondo de Garantía de Depósitos (FGD)**: si un banc fa fallida, el FGD torna a cada client fins a **100.000 € per persona i entitat** (Real Decreto-ley 16/2011, que aplica la norma comuna de tota la Unió Europea). El financen els mateixos bancs amb aportacions anuals. Cobrix els comptes i els depòsits, no les accions ni els fons d'inversió. Per això, per a quasi totes les famílies, el diner al banc està protegit passe el que passe amb el banc. A més, el **Banco de España** i el **BCE** supervisen els bancs, els exigixen tindre capital suficient i poden intervindre abans que la situació es descontrole.
+
+<RealExample title="Banco Popular, 7 de juny de 2017: el banc va desaparéixer, els depòsits no" source="Junta Única de Resolución (JUR) y FROB, decisión de resolución de Banco Popular, junio de 2017" sourceUrl="https://www.srb.europa.eu/en/content/banco-popular">
+A la primavera de 2017, el Banco Popular, llavors el sisé banc d'Espanya, arrossegava pèrdues per crèdits immobiliaris de la crisi anterior. Quan es va saber que estava en dificultats, els clients van començar a retirar diners a un ritme de milers de milions per setmana: un pànic bancari modern, fet de transferències en compte de cues a la porta. La matinada del 7 de juny de 2017 les autoritats europees de resolució (la JUR, amb el FROB espanyol) van decidir que el banc no podia continuar i el **van vendre al Banco Santander per 1 euro**. Els accionistes i els qui tenien bons subordinats ho van perdre tot: al voltant de 300.000 persones. Però **cap client amb un compte o un depòsit va perdre ni un sol euro**, i les oficines van obrir eixe mateix matí amb normalitat. És l'exemple més clar a Espanya de per a què servixen les xarxes de seguretat: el banc pot caure; el diner de les famílies, no. La lliçó per al teu futur compte és doble: els depòsits estan protegits fins a 100.000 €, i les accions o els bons d'un banc no són un depòsit, per molt que te'ls venga el mateix empleat.
+</RealExample>
+
+## El tipus d'interés: el preu del diner
+
+Si et deixe 100 € hui i em tornes 100 € d'ací a un any, t'he fet un favor: durant un any no he pogut usar els meus diners, he corregut el risc que no em pagues i, damunt, amb la inflació eixos 100 € valdran menys. Per això, en qualsevol préstec, qui presta cobra alguna cosa a canvi. Eixa cosa és l'**interés**, i el percentatge anual sobre la quantitat prestada és el **tipus d'interés**.
+
+<Callout label="Concepte clau" title="Tipus d'interés">
+
+El **tipus d'interés** és el **preu del diner**: el que costa usar durant un temps diners que no són teus, expressat com a percentatge anual. Si demanes 1.000 € al 5 %, al cap d'un any en tornes 1.050 €. Quan el tipus és baix, demanar prestat és barat i estalviar renda poc; quan és alt, demanar prestat és car i estalviar renda més. Igual que qualsevol preu, el tipus d'interés mou les decisions de famílies i empreses.
+
+</Callout>
+
+### Qui fixa el tipus d'interés
+
+Cada banc fixa els seus propis tipus, però no parteix de zero. La referència la posa el **Banc Central Europeu** amb els seus **tipus oficials**: el tipus al qual presta diners als bancs i el tipus que els paga pel diner que estos li deixen depositat (l'anomenada *facilitat de depòsit*). Si el BCE puja eixos tipus, als bancs els ix més car aconseguir diners i més rendible deixar-los aparcats al banc central, així que pugen el que cobren per hipoteques i préstecs i, amb retard i de mala gana, el que paguen pels depòsits. Si el BCE abaixa els tipus, ocorre el contrari.
+
+Els últims anys han sigut un cas de manual. Entre 2016 i 2022 el BCE va mantindre el tipus de les seues operacions principals en el **0 %** i cobrava als bancs per guardar diners (facilitat de depòsit en negatiu). Amb la inflació disparada, el 21 de juliol de 2022 va començar a pujar, i en catorze mesos va portar el tipus principal al **4,5 %** (setembre de 2023), la pujada més ràpida de la història de l'euro. A partir del juny de 2024, amb els preus ja calmant-se, va començar a abaixar-los, fins a deixar la facilitat de depòsit en el **2 %** el juny de 2025 (BCE, decisions de política monetària 2022-2025).
+
+| Data | Què va fer el BCE | Tipus principal |
+|---|---|---|
+| 2016-juliol 2022 | Tipus en mínims històrics | 0 % |
+| 21 de juliol de 2022 | Primera pujada en onze anys | 0,5 % |
+| 14 de setembre de 2023 | Desena i última pujada | 4,5 % |
+| 6 de juny de 2024 | Primera baixada | 4,25 % |
+| Juny de 2025 | Huitena baixada; facilitat de depòsit en el 2 % | 2,15 % |
+
+### L'euríbor i les hipoteques
+
+La majoria de famílies espanyoles noten els tipus oficials a través d'una paraula que ix cada mes a les notícies: l'**euríbor**. És el tipus d'interés mitjà al qual els grans bancs europeus es presten diners entre si, i seguix de prop el que decidix el BCE. Les **hipoteques variables** (el préstec amb què es compra un habitatge) es calculen com a «euríbor més un diferencial», per exemple euríbor + 1 %, i es revisen cada sis o dotze mesos. Així que quan l'euríbor puja, la quota mensual puja.
+
+I va pujar molt. L'euríbor a dotze mesos estava en **−0,50 %** a finals de 2021 (sí, negatiu), va tocar el **4,16 %** l'octubre de 2023 i a l'agost de 2025 rondava el **2,1 %** (Banco de España, sèries de l'euríbor). Per a una hipoteca de 150.000 € a 25 anys amb euríbor + 1 %, la quota va passar d'uns **530 €** al mes el 2021 a uns **890 €** el 2023, i va tornar a uns **720 €** el 2025 (càlcul propi amb la fórmula de quota constant). Tres-cents seixanta euros més cada mes per la mateixa casa: això és el que significa, per a una família, que vint-i-sis persones a Frankfurt pugen els tipus. A la Unitat 8 aprendràs a calcular una quota i a comparar hipoteques.
+
+### Com arriba el tipus d'interés a tota l'economia
+
+El BCE no fixa el preu del pa ni el de la llum. El que fa és moure una sola palanca, el tipus d'interés, i deixar que l'efecte es transmeta en cadena:
+
+- **A les famílies**: amb tipus alts, les hipoteques i els préstecs costen més, així que es compren menys cases, cotxes i electrodomèstics a terminis, i estalviar resulta més atractiu. Amb tipus baixos, a l'inrevés.
+- **A les empreses**: amb tipus alts, finançar una nau, una màquina o una ampliació ix més car, i moltes inversions s'ajornen. Es crea menys ocupació. Amb tipus baixos, invertir i contractar resulta més barat.
+- **Als preus**: si famílies i empreses gasten menys, hi ha menys demanda, i amb menys demanda els preus deixen de pujar tan de pressa (Unitat 3). Eixe és exactament l'objectiu quan hi ha inflació.
+
+<Diagram caption="La cadena de transmissió de la política monetària. Quan el banc central abaixa el tipus d'interés, el crèdit s'abarateix, pugen la inversió i el consum i augmenta la demanda; quan el puja, la cadena funciona a l'inrevés i refreda l'economia.">
+  <TransmisionMonetaria />
+</Diagram>
+
+## La inflació
+
+Hem dit que el diner servix per a guardar valor només si el seu valor és estable. La **inflació** és el que trenca eixa estabilitat: els preus pugen, i amb els mateixos euros compres menys.
+
+<Callout label="Concepte clau" title="Inflació">
+
+La **inflació** és la **pujada general i sostinguda dels preus** d'una economia durant un període, normalment un any. No és que puge un producte (l'oli per una mala collita), sinó que puja la majoria alhora. Es mesura amb la variació de l'**IPC**. El seu efecte directe és la pèrdua de **poder adquisitiu**: amb la mateixa quantitat de diners es compren menys coses. Una inflació del 8 % significa que el que costava 100 € fa un any costa ara 108 €.
+
+</Callout>
+
+### Com es mesura: l'IPC i la cistella de la compra
+
+Per a saber quant pugen «els preus» en general cal un mètode, perquè no tot puja igual. A Espanya l'aplica l'**Instituto Nacional de Estadística (INE)** amb l'**Índex de Preus de Consum (IPC)**, que es publica cada mes i funciona així:
+
+1. L'INE definix una **cistella de la compra**: al voltant de 490 productes i servicis representatius del que consumixen les llars, agrupats en dotze grans grups (aliments i begudes, vestit i calçat, habitatge, transport, comunicacions, oci i cultura, ensenyament, restaurants i hotels, etc.).
+2. Cada producte té un **pes** (ponderació) segons el que les famílies hi gasten realment, segons l'Encuesta de Presupuestos Familiares. L'habitatge i l'alimentació pesen molt; les corbates, quasi res.
+3. Cada mes, l'INE arreplega **centenars de milers de preus** en comerços de tota Espanya, i cada vegada més directament d'internet i de les dades dels supermercats.
+4. Compara el cost de la cistella amb el del mateix mes de l'any anterior. Eixa variació en percentatge és la **taxa d'inflació interanual**, la xifra que ix a les notícies.
+
+<Curiosity title="La cistella de l'INE canvia amb la vida: entren els alvocats, ixen les corbates">
+La cistella de la compra no és la mateixa de fa vint anys, perquè nosaltres tampoc no comprem el mateix. A l'última gran revisió de la cistella (base 2025), l'INE va incorporar productes que hui són habituals als carros i no ho eren abans: **alvocats i nabius**, refrescos de te, cervesa amb llima, la radiografia entre els servicis mèdics, el lloguer de vehicles sense conductor o els mobles de jardí. I va donar de baixa articles en què ja quasi ningú gasta, com **la corbata i el mocador de tela**. La novetat més comentada va ser l'entrada dels **jocs d'atzar en línia**, els preus dels quals l'INE pren directament de les webs d'apostes. Cada canvi provoca discussió, perquè l'IPC no és només una estadística: amb ell s'actualitzen les pensions, molts lloguers i molts salaris. Si un producte entra o ix de la cistella, canvia el que cobren milions de persones.
+</Curiosity>
+
+### 2022: la inflació més alta en quatre dècades
+
+La taula resumix el que va passar a Espanya els últims anys, amb la inflació mitjana anual que publica l'INE:
+
+| Any | Inflació mitjana anual (IPC) | Què passava |
+|---|---|---|
+| 2021 | 3,1 % | Reobertura després de la pandèmia, l'energia comença a pujar |
+| 2022 | **8,4 %** | Guerra d'Ucraïna, gas i electricitat disparats; pic del 10,8 % al juliol |
+| 2023 | 3,5 % | Pujades de tipus del BCE, energia més barata; l'oli puja un 54,6 % |
+| 2024 | 2,8 % | Els preus es calmen; el BCE comença a abaixar tipus |
+| 2025 | 2,7 % | Inflació prop de l'objectiu del BCE |
+
+Un 8,4 % pot paréixer un número abstracte. Traduït: una família que gastava 1.000 € al mes el 2021 necessitava 1.084 € el 2022 per a comprar exactament el mateix. Si els seus ingressos no van pujar en la mateixa proporció (i la majoria no ho van fer), va viure pitjor amb els mateixos diners.
+
+### Per què pugen els preus
+
+Els economistes distingixen tres causes, que el 2022 es van ajuntar totes:
+
+- **Inflació de demanda.** Quan la gent vol comprar més del que l'economia pot produir, els venedors pugen preus (Unitat 3: si la demanda augmenta i l'oferta no, el preu puja). El 2021-2022, després dels confinaments, les famílies tenien estalvi acumulat i ganes de gastar, i les fàbriques i els transports no donaven a l'abast.
+- **Inflació de costos.** Quan a les empreses els costa més produir (energia, matèries primeres, salaris), traslladen part d'eixe cost al preu final. La invasió russa d'Ucraïna el febrer de 2022 va disparar el preu del gas, i amb ell l'electricitat, els fertilitzants i el transport. Un forner que paga el doble pel forn elèctric acaba pujant el pa.
+- **Expectatives.** Si tothom espera que els preus pugen, actua en conseqüència: els treballadors demanen pujades de sou, les empreses pugen preus per avançat, i la profecia es complix. A això se l'anomena **espiral de preus i salaris**, i és el que els bancs centrals més temen, perquè una vegada arranca és difícil parar-la.
+
+### Qui guanya i qui perd amb la inflació
+
+La inflació no repartix el dany per igual. Hi ha perdedors clars i algun guanyador inesperat:
+
+- **Perden els estalviadors**, sobretot qui guarda els diners a casa o en un compte que no paga interés: cada any eixos euros compren menys. És la forma més silenciosa de perdre diners, perquè el número de la guardiola no canvia.
+- **Perden els qui tenen ingressos fixos** que no s'actualitzen: pensions no revaloritzades, salaris congelats, beques. A Espanya les pensions s'actualitzen cada any amb l'IPC mitjà des de la Ley 21/2021, precisament per a evitar-ho; i el salari mínim interprofessional va pujar a 1.184 € al mes en 14 pagues el 2025 (RD 87/2025), en part per a compensar la pujada de preus.
+- **Guanyen els deutors**, encara que sone rar. Qui deu 100.000 € d'hipoteca a tipus fix torna la mateixa quantitat, però eixos euros valen cada vegada menys: el deute «s'encongix» en termes reals. El major deutor de quasi tots els països és el mateix Estat, i per això als governs la inflació moderada no els desagrada del tot.
+- **Perden els més pobres** en proporció, perquè gasten quasi tots els seus diners en el que més va pujar el 2022: aliments i energia. Una família amb ingressos alts pot retallar en oci; una amb ingressos baixos no pot retallar en menjar.
+
+### Deflació i hiperinflació: els dos extrems
+
+Si la inflació és dolenta, seria bona la **deflació**, una baixada general dels preus? Pareix que sí i no ho és. Quan la gent espera que tot siga més barat demà, **ajorna les compres**; les empreses venen menys, abaixen preus, retallen ocupació, i l'economia es paralitza. El Japó va viure dècades de preus estancats des dels anys noranta, i Espanya va tindre una inflació lleugerament negativa entre 2014 i 2016 (INE). Per això l'objectiu dels bancs centrals no és inflació zero, sinó una inflació baixa i estable.
+
+L'altre extrem és la **hiperinflació**: una pujada de preus tan ràpida (per convenció, més del 50 % mensual) que el diner deixa de complir les seues funcions. Sol ocórrer quan un Estat paga les seues despeses imprimint bitllets sense límit. Les últimes dècades l'han patida Zimbàbue (2008), Veneçuela (2017-2019) i, en menor grau, l'Argentina, la inflació de la qual va superar el 200 % anual el 2023. El cas més estudiat continua sent el d'Alemanya fa un segle.
+
+<RealExample title="Alemanya, 1923: quan el pa es pagava per milers de milions" source="Deutsche Bundesbank y Deutsches Historisches Museum; Smithsonian Magazine, «How Hyperinflation Heralded the Fall of German Democracy» (2023)" sourceUrl="https://www.smithsonianmag.com/history/how-hyperinflation-heralded-the-fall-of-german-democracy-180982204/">
+Després de perdre la Primera Guerra Mundial, Alemanya havia de pagar enormes reparacions als vencedors i tenia un Estat sense recursos. La solució del govern va ser **imprimir bitllets**. A principis de 1923 un dòlar es canviava per uns 18.000 marcs; al novembre d'eixe any, per **4,2 bilions** (4.200.000.000.000) de marcs. Els preus es doblaven cada pocs dies. Un quilo de pa, que al gener costava uns 250 marcs, es pagava al novembre al voltant de 200.000 milions. Els treballadors cobraven dos vegades al dia i corrien a gastar el sou abans que perdera valor; hi havia qui portava els bitllets en carretons i qui els usava per a encendre l'estufa, perquè escalfaven més que el carbó que podien comprar amb ells. El marc va deixar de complir les tres funcions: ningú volia acceptar-lo, els preus canviaven abans de poder comparar-los i guardar-lo era tirar-lo. La hiperinflació va acabar el novembre de 1923 amb una moneda nova, el *Rentenmark*, i una promesa creïble de deixar d'imprimir. Però el trauma va quedar: l'obsessió alemanya per l'estabilitat de preus que hui es reflectix en el disseny del BCE naix en gran part d'aquells mesos.
+</RealExample>
+
+<SolvedExercise number="4.2" title="La inflació de la teua cistella i el que perd un estalvi guardat a casa">
+
+**Enunciat**
+
+Un grup de 4t d'ESO elabora la seua pròpia cistella de la compra amb cinc coses que paguen cada mes i anota els preus d'un any i del següent (preus inventats a manera d'exemple):
+
+| Producte | Any 1 | Any 2 |
+|---|---|---|
+| Entrepà del pati | 3,00 € | 3,30 € |
+| Entrada de cine | 8,00 € | 8,50 € |
+| Recàrrega del mòbil | 10,00 € | 10,00 € |
+| Samarreta | 15,00 € | 16,20 € |
+| Bo de transport jove | 20,00 € | 20,00 € |
+
+a) Calcula la inflació d'eixa cistella entre l'any 1 i l'any 2.
+
+b) Una àvia va guardar 1.000 € en un sobre a casa l'1 de gener de 2022. Amb la inflació real d'eixe any (8,4 % de mitjana, INE), quant poder adquisitiu tenia eixe sobre a final d'any? Quant va perdre sense que ningú el tocara?
+
+**Solució**
+
+1. **Cost de la cistella l'any 1**: 3,00 + 8,00 + 10,00 + 15,00 + 20,00 = **56,00 €**.
+2. **Cost de la cistella l'any 2**: 3,30 + 8,50 + 10,00 + 16,20 + 20,00 = **58,00 €**.
+3. **Inflació de la cistella**: (58,00 − 56,00) / 56,00 × 100 = 2,00 / 56,00 × 100 = **3,57 %**.
+4. **Lectura**: l'entrepà va pujar un 10 % i la samarreta un 8 %, però la recàrrega i el bo no van pujar gens, i el bo és el que més pesa a la cistella. Per això l'índex general (3,57 %) és molt més baix que la pujada del producte més cridaner. Així funciona l'IPC: els productes que més pesen en la despesa «estiren» l'índex cap a la seua pujada, i els que no pugen el frenen.
+5. **El sobre de l'àvia**: els 1.000 € continuen sent 1.000 € en bitllets, però el que costava 1.000 € al gener costa 1.084 € al desembre. El seu poder adquisitiu és 1.000 / 1,084 = **922,51 €**.
+6. **Pèrdua**: 1.000 − 922,51 = **77,49 €** en un sol any, sense que ningú obrira el sobre. Per a conservar el poder de compra hauria necessitat que el sobre «creixera» fins a 1.084 €. Ni tan sols un compte remunerat al 2 % (1.020 € a final d'any) ho hauria evitat del tot, però hauria reduït la pèrdua a la meitat. Amb inflació, guardar diners parats és perdre diners a poc a poc.
+
+</SolvedExercise>
+
+<Steps label="Mètode" title="Com calcular la inflació de la teua pròpia cistella" variant="arabic">
+  <li>**Tria entre cinc i deu coses que pagues de veres cada mes** (entrepà, transport, mòbil, roba, oci). Com més en pose, més s'assemblarà el teu índex a l'IPC.</li>
+  <li>**Anota el preu actual de cada una** i busca el preu que tenia fa un any: tiquets antics, l'historial de l'aplicació del banc, el web del comerç o la memòria de la família.</li>
+  <li>**Suma el cost total de la cistella** en cada un dels dos moments. Si d'alguna cosa en compres diverses unitats al mes, multiplica abans de sumar: així cada producte pesa el que de veres pesa en la teua despesa.</li>
+  <li>**Calcula la variació**: (cost actual − cost antic) / cost antic × 100. Eixe percentatge és la teua inflació personal.</li>
+  <li>**Compara-la amb l'IPC oficial de l'INE** per al mateix període. Si la teua és major, és perquè gastes més en el que més ha pujat; si és menor, a l'inrevés. Cap de les dos és «falsa»: mesuren cistelles distintes.</li>
+</Steps>
+
+## El BCE i l'estabilitat de preus
+
+Ja tenim totes les peces. El diner només funciona si el seu valor és estable; la inflació destruïx eixa estabilitat; i el tipus d'interés és la palanca que frena o accelera la despesa. Falta vore qui maneja la palanca i amb quines regles.
+
+El **Banc Central Europeu** es va crear el 1998 a Frankfurt per a gestionar l'euro, que va arribar a les butxaques el 2002. Junt amb els bancs centrals nacionals forma l'**Eurosistema**. La seua missió principal està escrita als Tractats de la Unió Europea i cap en tres paraules: **estabilitat de preus**. Des de 2021 el BCE la concreta en un objectiu d'inflació del **2 % anual a mitjà termini**, ni més ni menys: un poc d'inflació engreixa l'economia i allunya el risc de deflació; molta, com hem vist, la trenca.
+
+<Figure
+  src={bceFrankfurtSkytower}
+  alt="Vista frontal de la seu del Banc Central Europeu a Frankfurt am Main, amb la torre Skytower de doble cos dissenyada per Coop Himmelb(l)au."
+  caption="Seu del Banc Central Europeu a Frankfurt. Cada sis setmanes el seu Consell de Govern decidix els tipus d'interés dels vint països de l'euro. La decisió de juliol de 2022 de començar a pujar-los va acabar arribant a la quota de cada hipoteca variable d'Espanya."
+  credit="Foto: Warburg1866, CC BY-SA 4.0 vía Wikimedia Commons"
+  aspectHint="3/2"
+  variant="wide"
+/>
+
+### Què fa el BCE quan la inflació es dispara
+
+Quan el 2022 els preus pujaven al 8, al 9, al 10 %, el BCE va fer l'única cosa que pot fer un banc central: **pujar el tipus d'interés**. La cadena que hem vist a la secció anterior es va posar en marxa a l'inrevés: préstecs més cars, menys compres a terminis, menys inversió, menys demanda, i amb menys demanda les empreses deixen de pujar preus. Funciona, però **funciona fent mal**: durant un temps hi ha famílies que paguen més hipoteca, empreses que ajornen projectes i alguns llocs de treball que no es creen. És un tractament amb efectes secundaris, i la discussió entre economistes mai no és si aplicar-lo, sinó quant i durant quant de temps.
+
+Eixa discussió va estar damunt la taula el 2022-2023. Uns (els anomenats «falcons») demanaven pujar ràpid i fort, per a tallar les expectatives abans que arrancara l'espiral de preus i salaris. Altres (els «coloms») recordaven que la inflació venia sobretot del gas i de l'energia, una cosa que els tipus d'interés no arreglen, i temien provocar una recessió innecessària. El BCE va pujar deu vegades seguides i la inflació va baixar del 10,8 % del juliol de 2022 a l'entorn del 3 % a finals de 2023 a Espanya; quant d'eixa baixada va ser mèrit dels tipus i quant del fet que l'energia s'abaratira sola és una cosa que els economistes continuen discutint. El que ningú discutix és que, sense la pujada, la inflació hauria tardat més a tornar al 2 %.
+
+<Figure
+  src={christineLagarde}
+  alt="Retrat oficial de Christine Lagarde, presidenta del Banc Central Europeu des del novembre de 2019, sobre fons neutre."
+  caption="Christine Lagarde, presidenta del BCE des del novembre de 2019. A ella li va tocar anunciar les deu pujades de tipus de 2022-2023 i, des del juny de 2024, les baixades. El seu mandat dura huit anys i no es pot renovar."
+  credit="Foto: Lemrich / European Central Bank, © European Union 2019, attribution license"
+  aspectHint="2/3"
+  variant="inline-small"
+/>
+
+### Per què el banc central és independent
+
+Qui decidix pujar els tipus no és un govern ni un parlament. És el **Consell de Govern** del BCE: els sis membres del seu Comité Executiu, presidit per **Christine Lagarde**, més els governadors dels vint bancs centrals nacionals (el d'Espanya entre ells). Es reunix cada sis setmanes i pren decisions que afecten 350 milions de persones sense passar per cap votació popular. No és antidemocràtic?
+
+La resposta dels qui van dissenyar l'euro va ser clara: precisament per això. Pujar els tipus és impopular, i a un govern que es presenta a eleccions l'any que ve li costa molt fer alguna cosa impopular hui per a evitar un dany demà. La història (Alemanya el 1923 és l'exemple extrem) mostra que els governs que controlen la impremta acaben usant-la. Per això els Tractats europeus (article 130 del Tractat de Funcionament de la UE) prohibixen que el BCE reba instruccions de cap govern, i blinden els seus dirigents amb mandats llargs (huit anys, no renovables) perquè ningú puga pressionar-los amb la renovació. La independència no vol dir que ningú els controle: el BCE ret comptes davant del Parlament Europeu i explica cada decisió en públic. Vol dir que l'objectiu (el 2 %) el fixen els Tractats, i la forma d'aconseguir-lo, els tècnics.
+
+<Callout label="Recomanació d'aula" title="Llegir una notícia sobre el BCE en cinc preguntes" variant="example">
+
+Cada sis setmanes ix la mateixa notícia: «El BCE puja (o abaixa, o manté) els tipus». Per a entendre-la basta respondre cinc preguntes. **Quina és la inflació ara?** (si està lluny del 2 %, hi ha motiu per a actuar). **Puja, baixa o manté?** **A quant queda el tipus?** **Què diu la presidenta sobre les pròximes reunions?** (els mercats es mouen més amb eixa frase que amb la decisió). I la que importa a casa: **té la vostra família una hipoteca variable, un depòsit o un préstec?** Si la resposta és sí, eixa notícia parla dels vostres diners.
+
+</Callout>
+
+## Què ve després en este curs
+
+Amb esta unitat tanqueu la primera avaluació i el bloc més «macro» de la part d'economia. A les **Unitats 1 a 4** heu vist per què cal triar, com es produïx, com es formen els preus en un mercat i què és el diner amb què es paga tot això. Les unitats següents baixen a la vostra vida: la **Unitat 5** explica el mercat de treball, els contractes i la nòmina que cobrareu en la vostra primera faena, i ahí entendreu per què els sindicats negocien pujades «amb l'IPC». La **Unitat 6** mira l'Estat, els impostos i la despesa pública, l'altre gran actor que apareixia al flux de l'economia.
+
+Tot el que heu aprés ací sobre tipus d'interés i bancs torna amb força a la **Unitat 7** (pressupost, estalvi i consum responsable) i sobretot a la **Unitat 8** (bancs, crèdit, inversió i assegurances), on calculareu quotes de préstecs, compareu hipoteques amb l'euríbor i veureu com protegir un estalvi de la inflació. I la **Unitat 9** portarà el diner més enllà de les fronteres: l'euro, els tipus de canvi i la Unió Europea.
+
+<VuelveAlCaso referencia="L'estiu de 2022: el 10,8 % de l'IPC i la pujada de tipus del BCE">
+El diner «valia menys» perquè els preus de quasi tot, començant per l'energia i els aliments, van pujar molt més ràpid que els ingressos de la gent. La causa va ser una combinació de les tres que hem vist: **demanda** embassada després de la pandèmia, **costos** disparats pel gas i l'electricitat després de la invasió d'Ucraïna, i **expectatives** que amenaçaven de convertir-se en una espiral de preus i salaris. Cada euro comprava menys perquè hi havia més euros perseguint menys coses, i els productes més bàsics (l'oli, la llum, el pa) van ser els que més es van encarir, la qual cosa va colpejar amb més força les famílies amb menys ingressos.
+
+Qui va decidir pujar els tipus va ser el **Consell de Govern del BCE**, vint-i-sis persones que no es presenten a eleccions i a les quals els Tractats protegixen de la pressió dels governs precisament perquè puguen prendre decisions impopulars. Pujar el preu del diner va encarir les hipoteques i va frenar la despesa, i això va ajudar que la inflació tornara del 10,8 % a l'entorn del 2 % en tres anys. El cost el van pagar, sobretot, les famílies amb hipoteca variable i les empreses que necessitaven crèdit. Si us pareix just o no eixe repartiment és una pregunta legítima; que el remei funciona, encara que faça mal, és el que ensenya la història del diner des de 1923.
+</VuelveAlCaso>
+
+<KeyTakeaways title="L'essencial de la unitat">
+- El **diner** és un acord de confiança que resol el problema del bescanvi (la doble coincidència). Complix tres funcions: **mitjà de pagament**, **unitat de compte** i **depòsit de valor**; si en perd una, deixa de servir.
+- Hi ha **diner mercaderia** (or, sal), **fiduciari** (bitllets i monedes de curs legal, avalats pel BCE) i **bancari** (apunts en comptes, més de nou de cada deu euros). La targeta i el Bizum mouen diner bancari; el **bitcoin** és hui un actiu especulatiu, no un diner.
+- Els **bancs** guarden depòsits, presten i viuen del marge entre el que cobren i el que paguen. En prestar **creen diner**: amb un coeficient de caixa del 10 %, 1.000 € poden convertir-se en 10.000 €. El **Fondo de Garantía de Depósitos** protegix fins a 100.000 € per persona i banc.
+- El **tipus d'interés** és el preu del diner. El fixa el **BCE** amb els seus tipus oficials, del 0 % al 4,5 % entre el juliol de 2022 i el setembre de 2023, i en baixada des del juny de 2024. L'**euríbor** el trasllada a les hipoteques variables.
+- La **inflació** és la pujada general de preus, mesurada per l'**IPC** de l'INE amb una cistella d'uns 490 productes. El 2022 va ser del 8,4 % de mitjana a Espanya, amb un pic del 10,8 % al juliol. Perjudica els estalviadors i els qui tenen ingressos fixos, i afavorix els deutors.
+- El BCE perseguix una inflació del **2 %** i és **independent** dels governs per a poder pujar els tipus quan cal, encara que faça mal. La deflació i la hiperinflació són els dos extrems que un banc central intenta evitar.
+</KeyTakeaways>
+
+## Glossari
+
+- **Bescanvi**: intercanvi directe d'un bé o servici per un altre sense usar diners. Exigix que cada part vulga just el que oferix l'altra (doble coincidència de necessitats).
+- **Diner**: qualsevol cosa acceptada de forma general per una comunitat com a pagament de béns i servicis i per a saldar deutes.
+- **Mitjà de pagament, unitat de compte i depòsit de valor**: les tres funcions del diner: servix per a pagar, per a posar preu i comparar, i per a guardar poder de compra en el temps.
+- **Diner fiduciari**: bitllets i monedes que no valen pel seu material, sinó per la confiança en l'autoritat que els emet i per la seua condició de curs legal.
+- **Curs legal**: condició que dóna la llei a l'euro a Espanya: ningú pot rebutjar-lo com a pagament d'un deute.
+- **Diner bancari**: saldos anotats en els comptes dels bancs. És la forma més abundant de diner i es crea quan els bancs concedixen préstecs.
+- **Coeficient de caixa (o de reserves)**: percentatge dels depòsits que un banc està obligat a mantindre com a reserves en compte de prestar-lo. A la zona euro, l'1 %.
+- **Multiplicador del diner**: número pel qual un depòsit inicial pot arribar a multiplicar-se a través de la cadena de préstecs i depòsits. Val 1 dividit entre el coeficient de caixa.
+- **Fondo de Garantía de Depósitos (FGD)**: fons finançat pels bancs que torna a cada client fins a 100.000 € per persona i entitat si el seu banc fa fallida.
+- **Tipus d'interés**: preu del diner, expressat com a percentatge anual de la quantitat prestada o depositada.
+- **Euríbor**: tipus d'interés mitjà al qual es presten diners els grans bancs europeus. És la referència de les hipoteques variables a Espanya.
+- **IPC (Índex de Preus de Consum)**: indicador de l'INE que mesura cada mes la variació del preu d'una cistella representativa del que consumixen les llars.
+- **Inflació**: pujada general i sostinguda dels preus. La deflació és la baixada general; la hiperinflació, una pujada descontrolada que destruïx el diner.
+- **Poder adquisitiu**: quantitat de béns i servicis que es poden comprar amb una quantitat de diners. La inflació el reduïx.
+- **Banc Central Europeu (BCE)**: institució independent que emet l'euro i fixa els tipus d'interés oficials amb l'objectiu d'una inflació del 2 %.
+
+## Per a aprofundir
+
+Si la unitat us ha deixat amb ganes de més, estos recursos són gratuïts i fiables:
+
+- **Finanzas para todos** (finanzasparatodos.es), del Banco de España i la CNMV. Per què encaixa: explica amb exemples senzills què és el diner, com funcionen els bancs i què fa la inflació amb els teus estalvis, sense intentar vendre't res.
+- **«Actualización de rentas con el IPC»**, la calculadora de l'INE (ine.es/calcula). Per què encaixa: permet vore quant valdrien hui 100 € de qualsevol any des de 1961; en dos minuts entens el que la inflació ha fet als diners dels teus avis.
+- **«El BCE explica»**, vídeos curts del canal oficial del Banc Central Europeu (ecb.europa.eu, amb subtítols en espanyol). Per què encaixa: el mateix BCE conta en tres minuts què és la inflació, per què el seu objectiu és el 2 % i com decidix els tipus.
+- **Portal del Cliente Bancario** del Banco de España (clientebancario.bde.es). Per què encaixa: explica en llenguatge planer què protegix el Fondo de Garantía de Depósitos, com es calcula l'euríbor i quins drets tens davant del teu banc.
+
+## Preguntes per a reflexionar
+
+Estes preguntes no tenen una resposta única. Servixen per a debatre a classe o pensar a soles en tancar la unitat:
+
+1. Si el diner és un acord de confiança, què hauria de passar perquè deixares d'acceptar euros? Acceptaries cobrar el teu primer sou en bitcoins? I en cigarrets, com els presoners de Radford?
+2. Els bancs creen diner en prestar i guanyen amb el marge entre el que cobren i el que paguen. Et pareix que eixa capacitat hauria d'estar només en mans d'empreses privades, o hauria de prestar directament l'Estat? Quins riscos té cada opció?
+3. Pujar els tipus d'interés el 2022-2023 va encarir les hipoteques de milions de famílies per a frenar la inflació que patien totes. Creus que el repartiment del cost va ser just? Qui hauria de decidir una cosa així: vint-i-sis tècnics a Frankfurt o els governs elegits?
+
+<Bibliography>
+
+1. España. **Real Decreto 217/2022**, de 29 de marzo, por el que se establecen la ordenación y las enseñanzas mínimas de la Educación Secundaria Obligatoria. BOE núm. 76. (Competència específica 6: comprendre aspectes bàsics de l'economia i les finances.)
+2. Instituto Nacional de Estadística. **Índice de Precios de Consumo**, notes de premsa mensuals (juliol de 2022; desembre de 2022, 2023, 2024 i 2025) i metodologia de la base 2025. https://www.ine.es/dyngs/INEbase/es/operacion.htm?c=Estadistica_C&cid=1254736176802&menu=ultiDatos&idp=1254735976607
+3. Banco Central Europeo. **Decisiones de política monetaria**, notes de premsa del 21 de juliol de 2022, 14 de setembre de 2023, 6 de juny de 2024 i 5 de juny de 2025. https://www.ecb.europa.eu/press/pr/
+4. España. **Real Decreto-ley 16/2011**, de 14 de octubre, por el que se crea el Fondo de Garantía de Depósitos de Entidades de Crédito. BOE núm. 249. Informació per a clients en https://www.fgd.es
+5. Radford, R. A. (1945). *The Economic Organisation of a P.O.W. Camp*. Economica, 12(48), 189-201.
+6. Junta Única de Resolución. **Decisión de resolución de Banco Popular Español, S.A.** (7 de juny de 2017). https://www.srb.europa.eu/en/content/banco-popular
+7. Mankiw, N. G. *Principios de economía* (capítols «El sistema monetario» i «El crecimiento del dinero y la inflación»). Cengage. (Manual de referència per a les funcions del diner, la creació de diner bancari i els costos de la inflació.)
+
+</Bibliography>
+
+<MirarFora
+  unidad={4}
+  libro={{
+    titulo: 'Sapiens: de animales a dioses',
+    meta: 'Yuval Noah Harari · Debate, 2014',
+    porque: "El capítol «L'olor dels diners» conta en vint pàgines com el diner és la ficció compartida més exitosa de la humanitat: l'única en què creuen alhora un musulmà, un cristià i un ateu. És la millor explicació curta de per què un paper val 50 €.",
+    paginas: 'Capítol 10, «El olor del dinero»',
+  }}
+  video={{
+    titulo: 'Cómo funciona la máquina económica',
+    meta: 'Ray Dalio · YouTube (versió en espanyol)',
+    duracion: '~30 min',
+    porque: "Una animació que explica, amb dibuixos senzills, com el crèdit crea diner, per què hi ha cicles i què fa un banc central quan la inflació puja. Cobrix quasi tota la unitat en mitja hora.",
+    url: 'https://www.youtube.com/results?search_query=como+funciona+la+maquina+economica+ray+dalio',
+  }}
+  cuenta={{
+    titulo: '@BancoDeEspana',
+    meta: 'X / Twitter i Instagram',
+    porque: "El compte oficial publica cada mes l'euríbor, explica en fils què significa una decisió del BCE i desmunta bulos sobre bitllets i estafes. És la font, no un intermediari.",
+  }}
+  actividad_titulo="El teu IPC personal"
+  actividad_duracion="30 min · porta tiquets o l'historial del banc"
+>
+  <Fragment slot="actividad">
+    Tria **cinc coses que pagues cada mes** (entrepà, bo de transport, recàrrega, oci, roba) i esbrina quant costaven fa un any i quant costen ara. Calcula el cost de la teua cistella en els dos moments i la teua **inflació personal** amb la fórmula de la unitat. Compara-la amb l'IPC interanual de l'INE del mateix mes. Porta els dos números i una frase: per què creus que difereixen?
+  </Fragment>
+  <Fragment slot="para-clase">
+    **El Consell de Govern a l'aula.** La classe es dividix en tres grups: «falcons» (pujar tipus ja), «coloms» (esperar, la inflació és de costos) i «famílies amb hipoteca» (que patiran la decisió). Se'ls dóna la dada real del juliol de 2022 (IPC 10,8 %, tipus del BCE 0 %) i deu minuts per a preparar arguments. Cada grup exposa tres minuts; després la classe vota com si fóra el Consell. Tancament: comparar la decisió de l'aula amb la que va prendre el BCE. Durada: 40 min.
+  </Fragment>
+</MirarFora>
+
+```deck
+- tipo: curriculum
+  eyebrow: "A què respon esta unitat"
+  title: "El marc de la unitat"
+  saberes:
+    - "El diner i les seues funcions; tipus de diner, de l'efectiu a les criptomonedes."
+    - "Els bancs i la creació de diner bancari; el Fondo de Garantía de Depósitos."
+    - "El tipus d'interés, l'euríbor i la transmissió de la política monetària."
+    - "La inflació i l'IPC; el Banc Central Europeu i l'estabilitat de preus."
+  competencias:
+    - "Comprendre aspectes bàsics d'economia i finances: el diner, els bancs i la inflació."
+    - "Valorar com la pujada de preus obliga a triar i afecta de forma desigual."
+- tipo: caso
+  eyebrow: "Cas de partida"
+  title: "Estiu de 2022: l'IPC toca el 10,8 % i la cistella es dispara"
+  contexto: "El juliol de 2022 l'INE va publicar una inflació del 10,8 %, la major des de 1984. Dos setmanes abans, el BCE havia pujat els tipus per primera vegada en onze anys i no va parar fins al 4,5 % el setembre de 2023."
+  datos:
+    - "Aliments sense elaborar: +13,4 % interanual (INE, juliol 2022)."
+    - "Productes energètics: +41,4 % interanual (INE, juliol 2022)."
+    - "Oli d'oliva: +35,2 % el 2022 i +54,6 % el 2023 (INE)."
+    - "Tipus principal del BCE: del 0 % al 4,5 % en catorze mesos."
+  pregunta: "Per què de sobte el diner valia menys i qui va decidir pujar els tipus d'interés?"
+- tipo: section
+  title: "Del bescanvi al diner"
+  subtitle: "Sense diners, per a aconseguir un entrepà hauries de trobar algú amb entrepà que volguera just el que tu oferixes."
+- tipo: concept
+  eyebrow: "El problema del bescanvi"
+  title: "La doble coincidència de necessitats"
+  body: "Cada un ha de voler exactament el que oferix l'altre, en el mateix moment i en quantitats que encaixen. Quant val una vaca en gallines? I si només en necessite mitja? Amb milions de persones i milers de productes, el bescanvi és impossible. Per això totes les societats inventen el mateix: una cosa que tothom accepta a canvi de qualsevol altra."
+  pull: "El diner és un acord social: val perquè creiem que val."
+- tipo: diagram
+  diagrama: TresFuncionesDinero
+  caption: "Mitjà de pagament, unitat de compte i depòsit de valor. Si falla una funció, el diner deixa de servir."
+- tipo: section
+  title: "Tipus de diner"
+  subtitle: "Mercaderia, fiduciari, bancari i electrònic conviuen a la teua butxaca, al teu compte i al teu mòbil."
+- tipo: terms
+  eyebrow: "Quatre formes de diner"
+  title: "No tot el diner és igual"
+  terms:
+    - t: "Diner mercaderia"
+      d: "Un bé que val per si mateix i servix per a pagar: sal, bestiar, or. Pesat, difícil de dividir i limitat pel que es trobe a les mines."
+    - t: "Diner fiduciari"
+      d: "Bitllets i monedes que valen per confiança i per llei (curs legal). A la zona euro els avala el BCE i els posa en circulació el Banco de España."
+    - t: "Diner bancari"
+      d: "Apunts als comptes: el banc reconeix que et deu eixe saldo. Més de nou de cada deu euros de la zona euro són així (BCE, 2025)."
+    - t: "Diner electrònic"
+      d: "Targeta, Bizum o mòbil no són un diner distint: són formes de moure el diner bancari sense tocar bitllets."
+- tipo: figure
+  src: "eco-4eso/07/euros-billetes-monedas.jpg"
+  alt: "Bitllets i monedes d'euro estesos sobre una superfície, mostrant diverses denominacions de la moneda única europea."
+  title: "L'únic diner de curs legal a Espanya"
+  caption: "Des del 2002. Però representa menys d'un de cada deu euros que existixen: la resta són apunts en comptes bancaris."
+  credit: "Foto: Avij, dominio público vía Wikimedia Commons"
+- tipo: concept
+  eyebrow: "Són diner les criptomonedes?"
+  title: "El bitcoin, funció per funció"
+  body: "Quasi ningú l'accepta per a pagar i a Espanya no és de curs legal. Ningú posa preus en bitcoins. I com a depòsit de valor és extremadament volàtil: de 69.000 dòlars el novembre de 2021 a menys de 16.000 un any després, i per damunt de 100.000 el desembre de 2024. El Salvador el va fer moneda legal el 2021 i va fer marxa arrere el 2025."
+  pull: "L'escassetat sola no convertix res en diner: els cromos rars també són escassos."
+- tipo: quiz
+  eyebrow: "Comprova que ho pilles"
+  pregunta: "Quan dius «tinc 300 € al banc», què hi ha exactament al banc?"
+  opciones:
+    - "300 € en bitllets guardats en una caixa amb el teu nom."
+    - "Un apunt: el banc reconeix que et deu 300 € i els presta en part."
+    - "300 € en or equivalent, per llei."
+    - "Res, perquè el diner electrònic no existix de veres."
+  correcta: 1
+  explicacion: "És diner bancari: una anotació comptable. El banc guarda només una xicoteta reserva i presta la resta; per això més de nou de cada deu euros no existixen com a bitllets."
+- tipo: section
+  title: "Els bancs"
+  subtitle: "Guarden depòsits, presten, viuen del marge entre el que cobren i el que paguen i, en prestar, creen diner."
+- tipo: split
+  eyebrow: "El negoci d'un banc"
+  title: "Dos costats i un marge enmig"
+  left:
+    h: "Costat dels depòsits"
+    items:
+      - "Guarda el diner de famílies i empreses en comptes i depòsits."
+      - "Paga per això un interés, normalment xicotet (1 % a l'exemple)."
+      - "Només en reserva una part: el coeficient de caixa, 1 % a la zona euro."
+  right:
+    h: "Costat dels préstecs"
+    items:
+      - "Presta per a hipoteques, cotxes, empreses: cobra un interés major (5 %)."
+      - "La diferència és el marge d'intermediació, el seu principal benefici."
+      - "Connecta l'estalvi d'uns amb la inversió d'altres sense que es coneguen."
+- tipo: diagram
+  diagrama: CreacionDinero
+  caption: "Amb un coeficient de reserves del 10 %, cada préstec es convertix en un nou depòsit: 1.000 € poden acabar en 10.000 €."
+- tipo: exercise
+  title: "Exercici 4.1 — El marge del Banc del Barri"
+  enunciado: "Cas inventat: el banc té 10 milions en depòsits a l'1 % i presta 8 milions al 5 %. Ana ingressa 1.000 € amb un coeficient de caixa del 10 %. Quin és el marge del banc? Quants diners hi ha després de la primera ronda i quants se'n podrien crear?"
+  pasos:
+    - "Paga als depositants 10.000.000 × 0,01 = 100.000 € a l'any."
+    - "Cobra pels préstecs 8.000.000 × 0,05 = 400.000 € a l'any."
+    - "Marge d'intermediació: 400.000 − 100.000 = 300.000 €."
+    - "Dels 1.000 € d'Ana en reserva 100 i presta 900 a Luis: ara hi ha 1.000 + 900 = 1.900 €."
+    - "Si la cadena continua, multiplicador 1 / 0,10 = 10: fins a 10.000 € de diner bancari."
+- tipo: data
+  numero: "100.000 €"
+  label: "per persona i banc"
+  title: "El que cobrix el Fondo de Garantía de Depósitos"
+  detalle: "Si un banc fa fallida, el FGD torna fins a eixa quantitat per client (RDL 16/2011). Cobrix depòsits, no accions: quan Banco Popular es va vendre per 1 € el 2017, els accionistes ho van perdre tot i els depositants, res."
+- tipo: section
+  title: "El tipus d'interés: el preu del diner"
+  subtitle: "El que costa usar durant un temps diners que no són teus, en percentatge anual. El fixa el BCE i el trasllada l'euríbor."
+- tipo: timeline
+  eyebrow: "El cicle 2022-2025"
+  title: "Del 0 % al 4,5 % i tornada al 2 %"
+  hitos:
+    - fecha: "2016-2022"
+      hito: "Tipus en mínims històrics"
+      detalle: "Tipus principal del BCE al 0 %; l'euríbor a dotze mesos va ser negatiu (−0,50 %)."
+    - fecha: "21 jul 2022"
+      hito: "Primera pujada en onze anys"
+      detalle: "Amb la inflació al 10 %, el BCE puja mig punt i anuncia que continuarà."
+    - fecha: "14 set 2023"
+      hito: "Desena i última pujada: 4,5 %"
+      detalle: "L'euríbor toca el 4,16 % a l'octubre; una hipoteca de 150.000 € paga uns 360 € més al mes."
+    - fecha: "6 juny 2024"
+      hito: "Comencen les baixades"
+      detalle: "Amb la inflació prop del 2 %, el BCE inicia el cicle de retallades."
+    - fecha: "juny 2025"
+      hito: "Facilitat de depòsit al 2 %"
+      detalle: "Huitena baixada; l'euríbor ronda el 2,1 % a l'agost de 2025."
+- tipo: diagram
+  diagrama: TransmisionMonetaria
+  caption: "Abaixar el tipus abarateix el crèdit, puja la inversió i el consum i empeny la demanda; pujar-lo refreda l'economia."
+- tipo: quiz
+  eyebrow: "Comprova que ho pilles"
+  pregunta: "El BCE puja els tipus d'interés. Què li passa a una família amb hipoteca variable (euríbor + 1 %) en la següent revisió?"
+  opciones:
+    - "Res, perquè la hipoteca ja està firmada."
+    - "La seua quota mensual puja, perquè l'euríbor seguix el BCE."
+    - "La seua quota baixa, perquè el banc guanya més amb altres clients."
+    - "Només canvia si el Govern ho aprova."
+  correcta: 1
+  explicacion: "Les hipoteques variables es calculen com a euríbor més un diferencial i es revisen cada sis o dotze mesos. Entre 2021 i 2023 la quota d'una hipoteca de 150.000 € a 25 anys va passar d'uns 530 € a uns 890 €."
+- tipo: section
+  title: "La inflació"
+  subtitle: "Pujada general i sostinguda dels preus. Amb els mateixos euros compres menys: perds poder adquisitiu."
+- tipo: concept
+  eyebrow: "Com es mesura"
+  title: "L'IPC i la cistella de la compra de l'INE"
+  body: "L'INE definix una cistella d'uns 490 productes i servicis en dotze grups, dóna a cada un un pes segons el que les famílies gasten de veres, arreplega centenars de milers de preus cada mes i compara el cost de la cistella amb el del mateix mes de l'any anterior. A la base 2025 van entrar alvocats, nabius o els jocs d'atzar en línia, i van eixir la corbata i el mocador."
+  pull: "Amb l'IPC s'actualitzen pensions, lloguers i salaris: no és només una estadística."
+- tipo: table
+  eyebrow: "Espanya, segons l'INE"
+  title: "La inflació mitjana anual, 2021-2025"
+  head:
+    - "Any"
+    - "IPC mitjà anual"
+    - "Què passava"
+  rows:
+    - ["2021", "3,1 %", "Reobertura després de la pandèmia; l'energia comença a pujar"]
+    - ["2022", "8,4 %", "Guerra d'Ucraïna, gas i llum disparats; pic de 10,8 % al juliol"]
+    - ["2023", "3,5 %", "Pujades de tipus del BCE; l'oli d'oliva puja un 54,6 %"]
+    - ["2024", "2,8 %", "Els preus es calmen; el BCE comença a abaixar tipus"]
+    - ["2025", "2,7 %", "Inflació prop de l'objectiu del 2 %"]
+  caption: "Una família que gastava 1.000 € al mes el 2021 necessitava 1.084 € el 2022 per a comprar el mateix."
+- tipo: split
+  eyebrow: "Causes i conseqüències"
+  title: "Per què pugen els preus i a qui fa mal"
+  left:
+    h: "Tres causes"
+    items:
+      - "Demanda: la gent vol comprar més del que es pot produir (estalvi de la pandèmia)."
+      - "Costos: produir ix més car (gas i electricitat després de la invasió d'Ucraïna)."
+      - "Expectatives: tots esperen pujades i actuen abans; espiral de preus i salaris."
+  right:
+    h: "Qui guanya i qui perd"
+    items:
+      - "Perden els estalviadors amb el diner parat i els qui tenen ingressos fixos."
+      - "Perden més les llars pobres: gasten quasi tot en menjar i energia."
+      - "Guanyen els deutors a tipus fix: el deute val cada vegada menys. L'Estat inclòs."
+- tipo: exercise
+  title: "Exercici 4.2 — La teua cistella i el sobre de l'àvia"
+  enunciado: "Una cistella de cinc coses (entrepà, cine, recàrrega, samarreta, bo) costa 56,00 € un any i 58,00 € el següent. Calcula'n la inflació. I amb la inflació real de 2022 (8,4 %, INE), quin poder adquisitiu li va quedar a un sobre amb 1.000 € guardat a casa tot l'any?"
+  pasos:
+    - "Inflació de la cistella: (58,00 − 56,00) / 56,00 × 100 = 3,57 %."
+    - "L'entrepà va pujar un 10 %, però el bo i la recàrrega no: els que més pesen frenen l'índex."
+    - "Poder adquisitiu del sobre: 1.000 / 1,084 = 922,51 €."
+    - "Pèrdua: 77,49 € en un any sense que ningú obrira el sobre."
+    - "Un compte al 2 % hauria deixat 1.020 €: no evita la pèrdua, però la reduïx a la meitat."
+- tipo: data
+  numero: "4,2 bilions"
+  label: "de marcs per un dòlar"
+  title: "Alemanya, novembre de 1923"
+  detalle: "Per a pagar els seus deutes l'Estat va imprimir bitllets sense límit. A principis de 1923 un dòlar valia 18.000 marcs; al novembre, 4,2 bilions. Els preus es doblaven cada pocs dies i el marc va deixar de ser diner."
+- tipo: section
+  title: "El BCE i l'estabilitat de preus"
+  subtitle: "La seua missió cap en tres paraules i en un número: inflació del 2 % a mitjà termini."
+- tipo: figure
+  src: "eco-1bach/10/bce-frankfurt-skytower.jpg"
+  alt: "Vista frontal de la seu del Banc Central Europeu a Frankfurt am Main, amb la torre Skytower de doble cos."
+  title: "Vint-i-sis persones i una palanca"
+  caption: "Cada sis setmanes el Consell de Govern decidix els tipus dels vint països de l'euro. La decisió del juliol de 2022 va arribar a les hipoteques."
+  credit: "Foto: Warburg1866, CC BY-SA 4.0 vía Wikimedia Commons"
+- tipo: concept
+  eyebrow: "Per què és independent"
+  title: "Pujar els tipus fa mal, i per això no ho decidix un govern"
+  body: "Amb la inflació al 10 %, el BCE va fer l'única cosa que pot: pujar el preu del diner, deu vegades seguides. Préstecs més cars, menys compres a terminis, menys demanda i preus que deixen de pujar. Funciona fent mal. Els Tractats (art. 130 TFUE) prohibixen que reba instruccions dels governs i donen als seus dirigents mandats de huit anys no renovables. Ret comptes davant del Parlament Europeu."
+  pull: "L'objectiu, el 2 %, el fixen els Tractats; la forma d'aconseguir-ho, els tècnics."
+- tipo: quiz
+  eyebrow: "Comprova que ho pilles"
+  pregunta: "La inflació està al 8 % i el BCE vol tornar-la al 2 %. Què fa i per què?"
+  opciones:
+    - "Abaixa els tipus perquè la gent gaste més i l'economia cresca."
+    - "Puja els tipus: el crèdit s'encarix, es gasta menys i els preus es frenen."
+    - "Imprimix més bitllets perquè a la gent li arribe el diner."
+    - "Fixa per llei el preu del pa i de la llum."
+  correcta: 1
+  explicacion: "Pujar el tipus d'interés refreda la demanda a través del crèdit. Té efectes secundaris (hipoteques més cares, menys inversió), però és la palanca del banc central: imprimir més diner faria el contrari."
+- tipo: recap
+  eyebrow: "Repassa"
+  title: "Abans de tancar la unitat"
+  items:
+    - "Sabries explicar per què el bescanvi no funciona i quines tres funcions complix el diner."
+    - "Sabries distingir diner mercaderia, fiduciari, bancari i electrònic, i dir si el bitcoin és diner."
+    - "Sabries calcular el marge d'un banc i una ronda de creació de diner amb el coeficient de caixa."
+    - "Sabries explicar què és el tipus d'interés, qui el fixa i com arriba a una hipoteca per l'euríbor."
+    - "Sabries calcular la inflació d'una cistella i dir qui guanya i qui perd quan pugen els preus."
+    - "Sabries raonar per què el BCE perseguix el 2 % i per què és independent dels governs."
+```

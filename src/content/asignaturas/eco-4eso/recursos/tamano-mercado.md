@@ -1,6 +1,6 @@
 ---
 asignatura: eco-4eso
-unidad_relacionada: 4
+unidad_relacionada: 12
 title: "Tamaño de mercado: TAM, SAM y SOM"
 descripcion: "Pasa de la población de tu zona a los clientes que tu proyecto puede conseguir de verdad, filtrando en tres pasos, y comprueba cuántos harían falta para llegar a tu objetivo de ingresos."
 tipo: calculadora

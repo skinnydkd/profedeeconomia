@@ -1,6 +1,6 @@
 ---
 asignatura: eco-4eso
-unidad_relacionada: 10
+unidad_relacionada: 12
 title: "Embut de validació"
 descripcion: "Compta quanta gent arriba a cada pas del teu projecte, calcula la conversió de cada un i troba el pas que perd més gent, que quasi mai és l'últim."
 tipo: calculadora
