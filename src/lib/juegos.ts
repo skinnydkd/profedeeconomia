@@ -165,8 +165,8 @@ export const JUEGOS: Juego[] = [
       },
       {
         asignatura: 'eco-4eso',
-        unidad: 7,
-        nota: 'Dinero, presupuesto y financiación: protección ante imprevistos.',
+        unidad: 8,
+        nota: 'Economía personal II: seguros y protección ante imprevistos.',
       },
     ],
     competencias_clave: ['STEM', 'CD', 'CPSAA', 'CE'],

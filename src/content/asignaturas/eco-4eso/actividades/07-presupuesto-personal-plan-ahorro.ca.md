@@ -7,7 +7,7 @@ tipo: ejercicio
 duracion: "1 sessió (50 min)"
 agrupacion: "individual (amb posada en comú en parelles al final)"
 competencias_clave: [STEM, CPSAA, CD]
-competencias_especificas: [CE5]
+competencias_especificas: [CE3]
 materiales:
   - "Plantilla de pressupost mensual (3 blocs: ingressos, despeses fixes, despeses variables)"
   - "Plantilla de pla d'estalvi a 6 mesos (objectiu, cost, estalvi mensual, data de meta)"

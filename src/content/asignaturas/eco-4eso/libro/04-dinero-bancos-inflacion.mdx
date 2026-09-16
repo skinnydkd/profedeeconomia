@@ -1,0 +1,782 @@
+---
+asignatura: eco-4eso
+unidad: 4
+title: El dinero, los bancos y la inflación
+seoTitle: "Inflación, IPC y tipos de interés explicados (4.º ESO)"
+lema: >-
+  Un billete de 20 € es un trozo de papel que todos aceptamos porque
+  confiamos en que los demás también lo aceptarán. Esa confianza la
+  guardan los bancos, la mide el IPC y la vigila el Banco Central
+  Europeo. Cuando falla, como en el verano de 2022, lo notas en el
+  precio del bocadillo.
+lang: es
+estado: publicado
+duracion: 8 sesiones · 3 semanas
+bloque: Bloque I · Economía
+sabers:
+  - El dinero y sus funciones
+  - Tipos de dinero, del efectivo a las criptomonedas
+  - Los bancos y la creación de dinero
+  - El tipo de interés y el euríbor
+  - La inflación y el IPC
+  - El Banco Central Europeo y la estabilidad de precios
+conceptos_clave:
+  - dinero
+  - trueque
+  - medio de pago
+  - dinero fiduciario
+  - dinero bancario
+  - coeficiente de caja
+  - tipo de interés
+  - euríbor
+  - IPC
+  - inflación
+  - poder adquisitivo
+  - Banco Central Europeo
+objetivos:
+  - Explicar por qué el trueque no funciona y qué tres funciones cumple el dinero, con ejemplos cotidianos.
+  - Distinguir el dinero mercancía, el fiduciario, el bancario y el electrónico, y razonar si una criptomoneda es dinero.
+  - Describir qué hace un banco y calcular su margen y una ronda sencilla de creación de dinero bancario.
+  - Interpretar el tipo de interés como el precio del dinero y explicar cómo una decisión del BCE llega a una hipoteca o a un préstamo.
+  - Calcular la inflación de una cesta de productos y valorar quién gana y quién pierde cuando suben los precios.
+publicado_en: 2026-09-15
+---
+
+import Callout from '@components/Callout.astro';
+import Diagram from '@components/Diagram.astro';
+import TresFuncionesDinero from '@components/diagrams/TresFuncionesDinero.astro';
+import CreacionDinero from '@components/diagrams/CreacionDinero.astro';
+import TransmisionMonetaria from '@components/diagrams/TransmisionMonetaria.astro';
+import Curiosity from '@components/Curiosity.astro';
+import RealExample from '@components/RealExample.astro';
+import SolvedExercise from '@components/SolvedExercise.astro';
+import Steps from '@components/Steps.astro';
+import KeyTakeaways from '@components/KeyTakeaways.astro';
+import Figure from '@components/Figure.astro';
+import Bibliography from '@components/Bibliography.astro';
+import TldrUnidad from '@components/TldrUnidad.astro';
+import CasoDilema from '@components/CasoDilema.astro';
+import VuelveAlCaso from '@components/VuelveAlCaso.astro';
+import MirarFora from '@components/MirarFora.astro';
+import VocesDesacuerdo from '@components/VocesDesacuerdo.astro';
+import RecursoDestacado from '@components/libro/RecursoDestacado.astro';
+import HerramientaIsland from '@components/calculadoras/HerramientaIsland.astro';
+
+import eurosBilletesMonedas from '@assets/libro/eco-4eso/07/euros-billetes-monedas.jpg';
+import bitcoinToken from '@assets/libro/eco-1bach/10/bitcoin-token.jpg';
+import bancoEspanaFachada from '@assets/libro/eco-4eso/07/banco-espana-fachada.jpg';
+import bceFrankfurtSkytower from '@assets/libro/eco-1bach/10/bce-frankfurt-skytower.jpg';
+import christineLagarde from '@assets/libro/eco-1bach/11/christine-lagarde.jpg';
+
+> **Tiempo de lectura**: ~25 min · **Saberes**: el dinero y sus funciones, tipos de dinero, los bancos, el tipo de interés, la inflación y el IPC, el BCE · **Antes de empezar**: Unidades 1 y 3 (escasez y coste de oportunidad; cómo se forman los precios en un mercado).
+>
+> **Al acabar esta unidad sabrás**:
+> - Explicar qué es el dinero, por qué sustituyó al trueque y para qué tres cosas sirve.
+> - Distinguir el efectivo del dinero que vive en tu cuenta y razonar si el bitcoin es dinero.
+> - Contar cómo un banco gana dinero y cómo, al prestar, crea dinero nuevo.
+> - Calcular la inflación de una cesta de productos y explicar por qué el BCE sube los tipos cuando los precios se disparan.
+
+<TldrUnidad>
+El dinero es un acuerdo de confianza: sirve para pagar, para poner precio y para guardar valor. Casi todo el dinero que existe no son billetes, sino apuntes en cuentas bancarias que los bancos crean al prestar. El precio de ese dinero es el tipo de interés, que fija el Banco Central Europeo, y su enemigo es la inflación, que el INE mide con el IPC. En 2022 los precios subieron en España un 8,4 % de media, y el BCE respondió subiendo los tipos como no lo había hecho nunca. Esta unidad explica por qué.
+</TldrUnidad>
+
+<CasoDilema
+  titular="Verano de 2022: el IPC toca el 10,8 % y la cesta de la compra se dispara"
+  fuente="INE, IPC de julio de 2022 · BCE, decisiones de política monetaria 2022-2023"
+  pregunta="¿Por qué de repente el dinero valía menos y quién decidió subir los tipos de interés?"
+>
+En julio de 2022 el Instituto Nacional de Estadística publicó un dato que no se veía en España desde 1984: los precios habían subido un **10,8 %** en un año. Los alimentos sin elaborar costaban un 13,4 % más que el verano anterior y los productos energéticos, un 41,4 % más (INE, IPC julio 2022). El aceite de oliva, que ya había subido un 35,2 % en 2022, subiría otro 54,6 % en 2023, el mayor aumento de su serie histórica (INE, diciembre 2023). Las familias notaban que con el mismo billete de 50 € llenaban menos el carro, y quien tenía ahorros en casa veía cómo perdían valor sin que nadie los tocara.
+
+Dos semanas antes, el 21 de julio de 2022, el **Banco Central Europeo** había subido los tipos de interés por primera vez en once años. Siguió subiéndolos en cada reunión hasta septiembre de 2023, cuando el tipo de sus operaciones principales llegó al **4,5 %**, partiendo del 0 % (BCE, notas de prensa 2022-2023). Las hipotecas variables se encarecieron cientos de euros al mes y pedir un préstamo se volvió mucho más caro. Nadie votó esa decisión: la tomaron veintiséis personas reunidas en Fráncfort.
+</CasoDilema>
+
+Llevas un billete de 20 € en el bolsillo. Piénsalo un momento: es un trozo de papel de algodón, impreso con una tinta especial, que no sirve para comer ni para vestirse. Y sin embargo con él consigues un bocadillo, una entrada de cine o una recarga del móvil, y nadie te lo rechaza. Es más: tu paga probablemente ni siquiera llega en billetes, sino como un número que aparece en una aplicación del banco después de un Bizum. Ese número tampoco es nada físico. ¿Por qué funciona todo esto?
+
+Y la segunda pregunta, que va pegada a la primera: ¿por qué el bocadillo que hace tres años costaba 2,50 € hoy cuesta 3 €? No es que el pan sea mejor. Es que el dinero **vale menos**. A eso lo llamamos inflación, y en 2022 España vivió la más alta en cuatro décadas. Hubo quien lo notó en la compra, quien lo notó en el alquiler y quien lo notó en la cuota de la hipoteca de sus padres, que subió de golpe cuando el Banco Central Europeo decidió actuar.
+
+Esta unidad recorre ese camino completo: qué es el dinero y por qué sustituyó al trueque, qué formas tiene hoy (de la moneda al bitcoin), qué hacen los bancos con él y cómo lo multiplican, qué es el tipo de interés y quién lo fija, cómo se mide la inflación y a quién perjudica, y por qué existe un banco central cuya única obsesión es que los precios no se desboquen. Son ideas que vais a usar en las noticias, en vuestro primer sueldo y, más pronto que tarde, en vuestra primera cuenta bancaria.
+
+## Del trueque al dinero
+
+Imagina que en el instituto no existiera el dinero y quisieras conseguir un bocadillo. Tendrías que encontrar a alguien que tuviera un bocadillo de sobra **y** que además quisiera justo lo que tú puedes ofrecer: unos cromos, media hora de ayuda con matemáticas, un cargador. Si tiene bocadillo pero no quiere tus cromos, no hay trato. Si quiere tus cromos pero no tiene bocadillo, tampoco.
+
+Ese es el problema del **trueque**, el intercambio directo de una cosa por otra sin dinero de por medio: exige lo que los economistas llaman **doble coincidencia de necesidades**. Cada uno tiene que querer exactamente lo que ofrece el otro, en el mismo momento y en cantidades que encajen. ¿Cuánto vale una vaca en gallinas? ¿Y si solo necesito media vaca? Con pocas personas y pocos productos el trueque funciona a duras penas; con miles de productos y millones de personas, es imposible. Por eso todas las sociedades que han crecido han acabado inventando lo mismo: un objeto que todo el mundo acepta a cambio de cualquier cosa.
+
+<Callout label="Concepto clave" title="Dinero">
+
+El **dinero** es cualquier cosa que una comunidad acepta de forma general como pago por bienes y servicios y para saldar deudas. Lo esencial no es de qué está hecho (conchas, sal, metal, papel o un apunte en una pantalla), sino que **todos confían** en que los demás lo aceptarán. El dinero es, ante todo, un acuerdo social: vale porque creemos que vale.
+
+</Callout>
+
+### Las tres funciones del dinero
+
+Para que algo funcione como dinero tiene que cumplir tres tareas a la vez. Si falla en una, deja de servir.
+
+- **Medio de pago (o de cambio).** Sirve para comprar y vender sin trueque. El panadero acepta tus euros porque sabe que con ellos pagará la harina y la luz. Se rompe la doble coincidencia: ya no necesitas que el panadero quiera tus cromos.
+- **Unidad de cuenta.** Sirve para **poner precio** y comparar cosas muy distintas en una misma escala. Un bocadillo, 3 €; una entrada, 8 €; un móvil, 300 €. Sin una unidad común no sabrías si un móvil vale 100 bocadillos o 40 entradas.
+- **Depósito de valor.** Sirve para **guardar poder de compra** y usarlo más adelante: la paga que no gastas hoy sigue valiendo (casi) lo mismo el mes que viene. Para que esta función se cumpla, el valor del dinero tiene que ser estable. Volveremos a esto cuando hablemos de inflación: cuando los precios se disparan, el dinero deja de servir para guardar valor.
+
+<Diagram caption="Las tres funciones del dinero: pagar sin trueque, poner precio a cosas distintas y guardar valor para más tarde. Si falla una, el dinero deja de servir.">
+  <TresFuncionesDinero />
+</Diagram>
+
+Fíjate en que las tres funciones se apoyan unas en otras. Si el dinero pierde valor cada día (falla como depósito), la gente deja de aceptarlo (falla como medio de pago) y los precios cambian tan rápido que ya no sirven para comparar (falla como unidad de cuenta). Es lo que pasó en Alemania en 1923, como veremos.
+
+<Curiosity title="Cigarrillos como dinero en un campo de prisioneros (1945)">
+El economista británico **R. A. Radford** pasó parte de la Segunda Guerra Mundial en campos de prisioneros alemanes. Al salir escribió un artículo que hoy es un clásico: *The Economic Organisation of a P.O.W. Camp* (revista *Economica*, noviembre de 1945). Contaba que, sin dinero oficial, los prisioneros habían convertido los **cigarrillos** de los paquetes de la Cruz Roja en moneda: con ellos se compraba chocolate, carne en lata, jabón o ropa, y cada producto tenía su precio en cigarrillos. Cumplían las tres funciones: se pagaba con ellos, servían de unidad de cuenta y se guardaban para más adelante. Radford observó incluso fenómenos que estudian los bancos centrales: cuando llegaba un envío grande de la Cruz Roja había más cigarrillos en circulación y **los precios subían** (inflación); cuando los envíos se interrumpían, bajaban. Y los cigarrillos liados a mano, más finos, circulaban como moneda mientras los buenos, de máquina, se fumaban: la gente se quedaba con el «dinero bueno» y pagaba con el «malo». El dinero no necesita que nadie lo decrete: aparece solo en cuanto hay gente que quiere intercambiar.
+</Curiosity>
+
+<RecursoDestacado href="/proyectos/historia/02-del-trueque-a-las-criptomonedas/" kicker="Proyecto interdisciplinar" title="Del trueque a las criptomonedas: una historia del dinero" descripcion="Un recorrido con Historia por las formas que ha tomado el dinero, desde las conchas hasta el euro digital, para entender qué es de verdad y por qué funciona." colorVar="--color-eco4" />
+
+## Tipos de dinero
+
+El dinero ha cambiado de forma muchas veces. Hoy conviven en tu bolsillo, en tu cuenta y en tu móvil varias formas distintas, y conviene saber distinguirlas porque no todas son iguales ni las respalda lo mismo.
+
+### Dinero mercancía
+
+El primer dinero fue un bien que **valía por sí mismo** y que además servía para pagar: sal, ganado, cacao, conchas, y sobre todo **oro y plata**. Tenía una ventaja clara (nadie lo rechazaba porque tenía valor propio) y varios inconvenientes: era pesado, difícil de dividir, y su cantidad dependía de lo que se encontrara en las minas. La palabra *salario* viene de la sal con la que se pagaba a los soldados romanos, y *pecuniario* (relativo al dinero) viene de *pecus*, «ganado». El lenguaje guarda la memoria del dinero mercancía.
+
+### Dinero fiduciario: los billetes y las monedas
+
+Los billetes y monedas que usamos hoy son **dinero fiduciario** (de *fides*, «confianza» en latín): no valen por su material, sino porque una autoridad los declara **de curso legal** y todos confiamos en ella. Un billete de 50 € cuesta unos céntimos fabricarlo; vale 50 € porque el **Banco Central Europeo (BCE)** lo respalda y porque la ley obliga a aceptarlo para saldar deudas.
+
+<Figure
+  src={eurosBilletesMonedas}
+  alt="Billetes y monedas de euro extendidos sobre una superficie, mostrando varias denominaciones de la moneda única europea."
+  caption="Billetes y monedas de euro. Es el único dinero de curso legal en España desde 2002, pero representa menos de uno de cada diez euros que existen: el resto son apuntes en cuentas bancarias."
+  credit="Foto: Avij, dominio público vía Wikimedia Commons"
+  aspectHint="3/2"
+/>
+
+¿Quién fabrica el euro? El sistema tiene dos niveles. El **BCE**, con sede en Fráncfort, decide cuántos billetes se emiten y con qué diseño para los veinte países que en 2025 comparten la moneda. Los bancos centrales de cada país (en España, el **Banco de España**) los ponen en circulación: los distribuyen a los bancos comerciales, retiran los deteriorados y persiguen las falsificaciones. Las monedas las acuña cada Estado (en España, la Fábrica Nacional de Moneda y Timbre), aunque el BCE aprueba la cantidad. Hay siete billetes (de 5 a 500 €) y ocho monedas (de 1 céntimo a 2 €).
+
+<Curiosity title="El billete de 500 € existe, pero ya no se fabrica">
+Desde enero de 2019 el Eurosistema **dejó de emitir billetes de 500 €**. La razón oficial: se usaban muy poco en compras normales y mucho en actividades ilegales, hasta el punto de que la prensa lo apodaba «el Bin Laden», porque todo el mundo sabía que existía pero casi nadie lo había visto. Los que ya circulan siguen siendo de curso legal y se pueden cambiar en el Banco de España sin límite de tiempo. Es un buen recordatorio de que el dinero fiduciario es una decisión de una autoridad: el mismo trozo de papel puede dejar de fabricarse de un día para otro sin que pierda su valor.
+</Curiosity>
+
+### Dinero bancario: la mayor parte del dinero
+
+Aquí viene la idea que sorprende a casi todo el mundo. Cuando dices «tengo 300 € en el banco» no hay 300 € en billetes guardados en una caja con tu nombre. Lo que hay es una **anotación**: el banco reconoce que te debe 300 € y se compromete a dártelos en efectivo si los pides o a transferirlos a quien tú digas. Ese apunte es **dinero bancario**, y es la forma de dinero más abundante con diferencia. En la zona euro, el efectivo en circulación ronda 1,5 billones de euros, mientras que el dinero total (efectivo más depósitos y otros saldos en cuentas) supera los 16 billones (BCE, datos de 2025). Es decir, **más de nueve de cada diez euros no existen como billetes**: son números en los ordenadores de los bancos.
+
+### Dinero electrónico: tarjetas, Bizum y móvil
+
+La tarjeta, el Bizum, Apple Pay o Google Pay no son un dinero distinto: son **formas de mover el dinero bancario** sin tocar billetes. Cuando acercas el móvil al datáfono, tu banco resta 3 € de tu apunte y el banco del bar suma 3 € al suyo. Nada físico ha cambiado de manos. Lo que ha cambiado es la comodidad: pagar es cada vez más rápido, más invisible y, por eso mismo, más fácil de perder de vista. En la Unidad 7 veremos cómo controlar ese gasto; aquí nos quedamos con la idea de fondo: cuando ves un saldo en la pantalla estás viendo dinero bancario, y detrás de él hay una cadena de confianza que llega hasta el banco central.
+
+<RecursoDestacado href="/debates/dinero-tecnologia-futuro/03-sociedad-sin-efectivo/" kicker="Debate en clase" title="¿Hacia una sociedad sin dinero en efectivo?" descripcion="Mesa redonda sobre la desaparición progresiva de los billetes: ¿más transparencia y comodidad, o riesgo de exclusión y pérdida de privacidad?" colorVar="--color-eco4" />
+
+### ¿Son dinero las criptomonedas?
+
+El **bitcoin** nació en 2009, creado por alguien que firmaba como Satoshi Nakamoto y cuya identidad sigue sin conocerse. Es un dinero digital que no emite ningún banco central ni gestiona ningún banco: las operaciones se registran en una cadena de bloques (*blockchain*) repartida entre miles de ordenadores, y la cantidad total está limitada por diseño a 21 millones de unidades. Sus defensores lo ven como un dinero libre de gobiernos e imposible de imprimir sin control. La pregunta económica es más sencilla: ¿cumple las tres funciones?
+
+<Figure
+  src={bitcoinToken}
+  alt="Representación física de una moneda de bitcoin con el símbolo BTC, fotografiada junto a billetes de euro y dólar para ilustrar la comparación entre dinero fiduciario y criptomoneda."
+  caption="Una «moneda» de bitcoin junto a billetes de euro y dólar. El bitcoin real no es un objeto: es un apunte en una cadena de bloques. La foto sirve para compararlo con lo que sí es dinero de curso legal."
+  credit="Foto: Jernej Furman, CC BY 2.0 vía Wikimedia Commons"
+  aspectHint="3/2"
+  variant="right"
+/>
+
+- Como **medio de pago**, muy pocos comercios lo aceptan y cada operación tarda minutos y cuesta comisiones. En España **no es moneda de curso legal**: nadie está obligado a aceptarlo, y la única moneda con curso legal es el euro (Ley 46/1998).
+- Como **unidad de cuenta**, nadie pone precios en bitcoins, ni siquiera quienes los aceptan: convierten desde euros o dólares.
+- Como **depósito de valor**, su precio es extremadamente volátil. Pasó de unos 69.000 dólares en noviembre de 2021 a menos de 16.000 en noviembre de 2022, tras la quiebra de la plataforma FTX, y superó por primera vez los 100.000 dólares en diciembre de 2024. Nadie guarda el dinero del alquiler en algo que puede perder la mitad de su valor en un año.
+
+La mayoría de economistas y bancos centrales concluyen que el bitcoin es hoy un **activo especulativo** (algo que se compra esperando que suba) más que un dinero. El Salvador lo declaró moneda de curso legal en 2021 y dio marcha atrás en enero de 2025. En la Unión Europea, desde diciembre de 2024, el Reglamento MiCA (Reglamento (UE) 2023/1114) regula quién puede ofrecer criptoactivos y con qué avisos, y la CNMV obliga a que su publicidad advierta del riesgo de perder toda la inversión.
+
+<VocesDesacuerdo
+  tema="¿Es el bitcoin dinero o una apuesta?"
+  postura_a={{
+    etiqueta: 'Defensores del bitcoin',
+    tesis: 'Es dinero escaso por diseño, que ningún gobierno puede imprimir ni confiscar, y que permite pagar en cualquier lugar del mundo sin pedir permiso a un banco. La volatilidad es el precio de ser joven; el oro también tardó siglos.',
+  }}
+  postura_b={{
+    etiqueta: 'Bancos centrales y la mayoría de economistas',
+    tesis: 'Un dinero que puede perder la mitad de su valor en meses no sirve para guardar valor ni para poner precios, y casi nadie lo usa para pagar. Es un activo especulativo con el que se gana o se pierde, no una moneda.',
+  }}
+>
+Las dos posturas coinciden en un punto que conviene no perder de vista: **la escasez por sí sola no convierte algo en dinero**. Los cromos raros también son escasos y nadie paga con ellos. Lo que convierte algo en dinero es que una comunidad amplia lo acepte de forma estable para pagar, comparar y ahorrar. Juzgad el bitcoin con esa vara, no con la de cuánto ha subido o bajado esta semana. Y si algún día invertís en criptoactivos, hacedlo sabiendo que es una apuesta: solo con dinero que os podáis permitir perder.
+</VocesDesacuerdo>
+
+<RecursoDestacado href="/debates/dinero-tecnologia-futuro/01-criptomonedas/" kicker="Debate en clase" title="¿Las criptomonedas son el futuro del dinero o una burbuja?" descripcion="Mesa redonda de 50 minutos para poner a prueba, función por función, si el bitcoin puede ser dinero o si es ante todo un activo especulativo." colorVar="--color-eco4" />
+
+## Los bancos
+
+Si más de nueve de cada diez euros son apuntes en cuentas, quien gestiona esos apuntes tiene un papel central. Los bancos son empresas privadas que ganan dinero, pero que además hacen algo que ninguna otra empresa hace: **crean dinero**.
+
+### Qué hace un banco
+
+Un banco vive de una idea simple. Por un lado **guarda el dinero** de familias y empresas (los **depósitos**: cuentas corrientes, cuentas de ahorro, depósitos a plazo) y les paga por ello un interés, normalmente pequeño. Por otro lado **presta** ese dinero a quien lo necesita (una hipoteca, un préstamo para un coche, crédito a una empresa para comprar maquinaria) y cobra por ello un interés mayor. La diferencia entre lo que cobra por prestar y lo que paga por guardar es su **margen de intermediación**, la fuente principal de sus beneficios. A eso suma las comisiones (por mantenimiento de cuenta, por transferencias, por tarjetas) y otros servicios.
+
+Al hacerlo, el banco cumple una función útil para toda la economía: **conecta el ahorro de unos con la inversión de otros**. Tu familia ahorra 5.000 € que no va a usar hasta dentro de dos años; una panadería del barrio necesita 5.000 € para un horno nuevo. Sin banco, los dos tendrían que encontrarse. Con banco, el ahorro se convierte en horno sin que nadie se conozca.
+
+<Callout label="Concepto clave" title="Coeficiente de caja">
+
+Un banco no guarda en la caja fuerte todo el dinero que le depositan: sería absurdo tenerlo parado. Guarda solo una parte como **reservas** (para atender a quien quiera retirar efectivo) y presta el resto. El porcentaje mínimo que está obligado a reservar es el **coeficiente de caja** o de reservas. En la zona euro lo fija el BCE y desde 2012 es del **1 %**: de cada 100 € depositados, el banco debe mantener al menos 1 € en el banco central. Para explicarlo en clase usamos un 10 %, que hace los números redondos.
+
+</Callout>
+
+### Cómo los bancos crean dinero
+
+Aquí está la parte que parece magia y no lo es. Ana ingresa **1.000 €** en billetes en su cuenta del Banco 1. Ana sigue teniendo 1.000 € (los ve en su aplicación). El banco reserva el 10 % (100 €) y presta los 900 € restantes a Luis para comprar una bicicleta. Ahora Ana tiene 1.000 € de dinero bancario **y** Luis tiene 900 €. Del ingreso inicial de 1.000 € han salido **1.900 €** de dinero. No se ha impreso ningún billete: se ha creado dinero bancario al conceder un préstamo.
+
+Y la cadena sigue. Luis paga la bicicleta y la tienda ingresa los 900 € en el Banco 2, que reserva 90 y presta 810. Quien recibe los 810 los deposita en el Banco 3, que reserva 81 y presta 729. Cada ronda es un 10 % más pequeña, pero suma. Si el proceso llega hasta el final, el depósito inicial de 1.000 € acaba convertido en **10.000 €** de dinero bancario. El número por el que se multiplica es el **multiplicador del dinero**: 1 dividido entre el coeficiente de caja (1 / 0,10 = 10).
+
+<Diagram caption="La cascada de creación de dinero bancario con un coeficiente de reservas del 10 %: cada préstamo se convierte en un nuevo depósito, un poco menor que el anterior, hasta multiplicar por diez el ingreso inicial.">
+  <CreacionDinero />
+</Diagram>
+
+En la realidad el multiplicador es bastante menor que el teórico, porque no todo el mundo deposita lo que recibe (parte se queda en efectivo), los bancos guardan más reservas de las obligatorias y no siempre encuentran a quién prestar. Pero la lección de fondo se mantiene: **la mayor parte del dinero lo crean los bancos comerciales al prestar**, no la imprenta del banco central. Por eso el BCE, para controlar cuánto dinero hay, no cuenta billetes: mueve el tipo de interés, que es lo que anima o frena los préstamos. Lo veremos en la sección siguiente.
+
+<SolvedExercise number="4.1" title="El margen de un banco y una ronda de creación de dinero">
+
+**Enunciado**
+
+El Banco del Barrio (caso inventado pero verosímil) tiene depósitos de sus clientes por valor de **10 millones de euros**, por los que paga un interés del **1 %** anual. Con ese dinero concede préstamos por **8 millones de euros** al **5 %** anual y guarda el resto como reservas.
+
+a) ¿Cuánto paga al año a sus depositantes y cuánto cobra a quienes le deben dinero? ¿Cuál es su margen de intermediación?
+
+b) Ana ingresa 1.000 € en efectivo en el banco. Con un coeficiente de caja del 10 %, ¿cuánto puede prestar el banco? ¿Cuánto dinero hay ahora en total entre Ana y la persona que recibe el préstamo? ¿Cuánto dinero bancario podría llegar a crearse si la cadena continúa hasta el final?
+
+**Solución**
+
+1. **Interés pagado a los depositantes**: 10.000.000 × 0,01 = **100.000 €** al año.
+2. **Interés cobrado por los préstamos**: 8.000.000 × 0,05 = **400.000 €** al año.
+3. **Margen de intermediación**: 400.000 − 100.000 = **300.000 €**. De ahí el banco paga sueldos, oficinas, informática e impuestos, y lo que queda es beneficio. Fíjate en la asimetría: paga un 1 % y cobra un 5 %. Esa distancia es su negocio, y por eso te conviene comparar bancos tanto cuando ahorras como cuando pides prestado (Unidad 8).
+4. **Ronda de creación de dinero**: de los 1.000 € de Ana, el banco reserva el 10 % (100 €) y puede prestar **900 €**, por ejemplo a Luis.
+5. **Dinero total tras la primera ronda**: Ana sigue viendo 1.000 € en su cuenta y Luis tiene 900 € nuevos. Total: 1.000 + 900 = **1.900 €**. Se han creado 900 € que antes no existían.
+6. **Si la cadena continúa**: el multiplicador es 1 / 0,10 = 10, así que los 1.000 € iniciales pueden convertirse en hasta **10.000 €** de dinero bancario (1.000 + 900 + 810 + 729 + 656 + …). Con el coeficiente real de la zona euro (1 %) el multiplicador teórico sería 100, pero en la práctica queda muy por debajo porque parte del dinero se guarda en efectivo y los bancos mantienen reservas extra.
+
+</SolvedExercise>
+
+**Pruébalo tú mismo:** cambia el depósito inicial y el coeficiente de caja y observa, ronda a ronda, cuánto dinero acaba creando el sistema bancario y qué pasa cuando parte del préstamo se queda en efectivo.
+
+<HerramientaIsland componente="MultiplicadorBancario" />
+
+### La confianza y el Fondo de Garantía de Depósitos
+
+Si el banco solo guarda una pequeña parte de los depósitos, ¿qué pasa si todos los clientes van a la vez a retirar su dinero? Que no hay para todos. A eso se le llama **pánico bancario**, y ha hundido bancos que en realidad estaban sanos: bastaba con que la gente creyera que iban a quebrar para que quebraran. Como todo el sistema descansa en la confianza, los Estados han construido redes de seguridad para protegerla.
+
+<Figure
+  src={bancoEspanaFachada}
+  alt="Fachada del edificio sede del Banco de España en la Plaza de Cibeles de Madrid, con su característica esquina chaflán y cúpula."
+  caption="Sede del Banco de España en la Plaza de Cibeles (Madrid). Pone en circulación los billetes de euro, supervisa a los bancos españoles y vigila que funcionen las redes de seguridad, como el Fondo de Garantía de Depósitos."
+  credit="Foto: Luis García, CC BY-SA 2.5 vía Wikimedia Commons"
+  aspectHint="3/2"
+  variant="wide"
+/>
+
+La más importante para ti es el **Fondo de Garantía de Depósitos (FGD)**: si un banco quiebra, el FGD devuelve a cada cliente hasta **100.000 € por persona y entidad** (Real Decreto-ley 16/2011, que aplica la norma común de toda la Unión Europea). Lo financian los propios bancos con aportaciones anuales. Cubre las cuentas y los depósitos, no las acciones ni los fondos de inversión. Por eso, para casi todas las familias, el dinero en el banco está protegido pase lo que pase con el banco. Además, el **Banco de España** y el **BCE** supervisan a los bancos, les exigen tener capital suficiente y pueden intervenir antes de que la situación se descontrole.
+
+<RealExample title="Banco Popular, 7 de junio de 2017: el banco desapareció, los depósitos no" source="Junta Única de Resolución (JUR) y FROB, decisión de resolución de Banco Popular, junio de 2017" sourceUrl="https://www.srb.europa.eu/en/content/banco-popular">
+En la primavera de 2017, el Banco Popular, entonces el sexto banco de España, arrastraba pérdidas por créditos inmobiliarios de la crisis anterior. Cuando se supo que estaba en dificultades, los clientes empezaron a retirar dinero a un ritmo de miles de millones por semana: un pánico bancario moderno, hecho de transferencias en vez de colas en la puerta. La madrugada del 7 de junio de 2017 las autoridades europeas de resolución (la JUR, con el FROB español) decidieron que el banco no podía seguir y lo **vendieron al Banco Santander por 1 euro**. Los accionistas y quienes tenían bonos subordinados lo perdieron todo: alrededor de 300.000 personas. Pero **ningún cliente con una cuenta o un depósito perdió un solo euro**, y las oficinas abrieron esa misma mañana con normalidad. Es el ejemplo más claro en España de para qué sirven las redes de seguridad: el banco puede caer; el dinero de las familias, no. La lección para tu futura cuenta es doble: los depósitos están protegidos hasta 100.000 €, y las acciones o los bonos de un banco no son un depósito, por mucho que te los venda el mismo empleado.
+</RealExample>
+
+## El tipo de interés: el precio del dinero
+
+Si te dejo 100 € hoy y me devuelves 100 € dentro de un año, te he hecho un favor: durante un año no he podido usar mi dinero, he corrido el riesgo de que no me pagues y, encima, con la inflación esos 100 € valdrán menos. Por eso, en cualquier préstamo, quien presta cobra algo a cambio. Ese algo es el **interés**, y el porcentaje anual sobre la cantidad prestada es el **tipo de interés**.
+
+<Callout label="Concepto clave" title="Tipo de interés">
+
+El **tipo de interés** es el **precio del dinero**: lo que cuesta usar durante un tiempo dinero que no es tuyo, expresado como porcentaje anual. Si pides 1.000 € al 5 %, al cabo de un año devuelves 1.050 €. Cuando el tipo es bajo, pedir prestado es barato y ahorrar renta poco; cuando es alto, pedir prestado es caro y ahorrar renta más. Igual que cualquier precio, el tipo de interés mueve las decisiones de familias y empresas.
+
+</Callout>
+
+### Quién fija el tipo de interés
+
+Cada banco fija sus propios tipos, pero no parte de cero. La referencia la pone el **Banco Central Europeo** con sus **tipos oficiales**: el tipo al que presta dinero a los bancos y el tipo que les paga por el dinero que estos le dejan depositado (la llamada *facilidad de depósito*). Si el BCE sube esos tipos, a los bancos les sale más caro conseguir dinero y más rentable dejarlo aparcado en el banco central, así que suben lo que cobran por hipotecas y préstamos y, con retraso y a regañadientes, lo que pagan por los depósitos. Si el BCE baja los tipos, ocurre lo contrario.
+
+Los últimos años han sido un caso de manual. Entre 2016 y 2022 el BCE mantuvo el tipo de sus operaciones principales en el **0 %** y cobraba a los bancos por guardar dinero (facilidad de depósito en negativo). Con la inflación disparada, el 21 de julio de 2022 empezó a subir, y en catorce meses llevó el tipo principal al **4,5 %** (septiembre de 2023), la subida más rápida de la historia del euro. A partir de junio de 2024, con los precios ya calmándose, comenzó a bajarlos, hasta dejar la facilidad de depósito en el **2 %** en junio de 2025 (BCE, decisiones de política monetaria 2022-2025).
+
+| Fecha | Qué hizo el BCE | Tipo principal |
+|---|---|---|
+| 2016-julio 2022 | Tipos en mínimos históricos | 0 % |
+| 21 de julio de 2022 | Primera subida en once años | 0,5 % |
+| 14 de septiembre de 2023 | Décima y última subida | 4,5 % |
+| 6 de junio de 2024 | Primera bajada | 4,25 % |
+| Junio de 2025 | Octava bajada; facilidad de depósito en el 2 % | 2,15 % |
+
+### El euríbor y las hipotecas
+
+La mayoría de familias españolas notan los tipos oficiales a través de una palabra que sale cada mes en las noticias: el **euríbor**. Es el tipo de interés medio al que los grandes bancos europeos se prestan dinero entre sí, y sigue de cerca lo que decide el BCE. Las **hipotecas variables** (el préstamo con el que se compra una vivienda) se calculan como «euríbor más un diferencial», por ejemplo euríbor + 1 %, y se revisan cada seis o doce meses. Así que cuando el euríbor sube, la cuota mensual sube.
+
+Y subió mucho. El euríbor a doce meses estaba en **−0,50 %** a finales de 2021 (sí, negativo), tocó el **4,16 %** en octubre de 2023 y en agosto de 2025 rondaba el **2,1 %** (Banco de España, series del euríbor). Para una hipoteca de 150.000 € a 25 años con euríbor + 1 %, la cuota pasó de unos **530 €** al mes en 2021 a unos **890 €** en 2023, y volvió a unos **720 €** en 2025 (cálculo propio con la fórmula de cuota constante). Trescientos sesenta euros más cada mes por la misma casa: eso es lo que significa, para una familia, que veintiséis personas en Fráncfort suban los tipos. En la Unidad 8 aprenderás a calcular una cuota y a comparar hipotecas.
+
+### Cómo llega el tipo de interés a toda la economía
+
+El BCE no fija el precio del pan ni el de la luz. Lo que hace es mover una sola palanca, el tipo de interés, y dejar que el efecto se transmita en cadena:
+
+- **A las familias**: con tipos altos, las hipotecas y los préstamos cuestan más, así que se compran menos casas, coches y electrodomésticos a plazos, y ahorrar resulta más atractivo. Con tipos bajos, al revés.
+- **A las empresas**: con tipos altos, financiar una nave, una máquina o una ampliación sale más caro, y muchas inversiones se aplazan. Se crea menos empleo. Con tipos bajos, invertir y contratar resulta más barato.
+- **A los precios**: si familias y empresas gastan menos, hay menos demanda, y con menos demanda los precios dejan de subir tan deprisa (Unidad 3). Ese es exactamente el objetivo cuando hay inflación.
+
+<Diagram caption="La cadena de transmisión de la política monetaria. Cuando el banco central baja el tipo de interés, el crédito se abarata, suben la inversión y el consumo y aumenta la demanda; cuando lo sube, la cadena funciona al revés y enfría la economía.">
+  <TransmisionMonetaria />
+</Diagram>
+
+## La inflación
+
+Hemos dicho que el dinero sirve para guardar valor solo si su valor es estable. La **inflación** es lo que rompe esa estabilidad: los precios suben, y con los mismos euros compras menos.
+
+<Callout label="Concepto clave" title="Inflación">
+
+La **inflación** es la **subida general y sostenida de los precios** de una economía durante un periodo, normalmente un año. No es que suba un producto (el aceite por una mala cosecha), sino que sube la mayoría a la vez. Se mide con la variación del **IPC**. Su efecto directo es la pérdida de **poder adquisitivo**: con la misma cantidad de dinero se compran menos cosas. Una inflación del 8 % significa que lo que costaba 100 € hace un año cuesta ahora 108 €.
+
+</Callout>
+
+### Cómo se mide: el IPC y la cesta de la compra
+
+Para saber cuánto suben «los precios» en general hace falta un método, porque no todo sube igual. En España lo aplica el **Instituto Nacional de Estadística (INE)** con el **Índice de Precios de Consumo (IPC)**, que se publica cada mes y funciona así:
+
+1. El INE define una **cesta de la compra**: alrededor de 490 productos y servicios representativos de lo que consumen los hogares, agrupados en doce grandes grupos (alimentos y bebidas, vestido y calzado, vivienda, transporte, comunicaciones, ocio y cultura, enseñanza, restaurantes y hoteles, etc.).
+2. Cada producto tiene un **peso** (ponderación) según lo que las familias gastan realmente en él, según la Encuesta de Presupuestos Familiares. La vivienda y la alimentación pesan mucho; las corbatas, casi nada.
+3. Cada mes, el INE recoge **cientos de miles de precios** en comercios de toda España, y cada vez más directamente de internet y de los datos de los supermercados.
+4. Compara el coste de la cesta con el del mismo mes del año anterior. Esa variación en porcentaje es la **tasa de inflación interanual**, la cifra que sale en las noticias.
+
+<Curiosity title="La cesta del INE cambia con la vida: entran los aguacates, salen las corbatas">
+La cesta de la compra no es la misma de hace veinte años, porque nosotros tampoco compramos lo mismo. En la última gran revisión de la cesta (base 2025), el INE incorporó productos que hoy son habituales en los carros y no lo eran antes: **aguacates y arándanos**, refrescos de té, cerveza con limón, la radiografía entre los servicios médicos, el alquiler de vehículos sin conductor o los muebles de jardín. Y dio de baja artículos en los que ya casi nadie gasta, como **la corbata y el pañuelo de tela**. La novedad más comentada fue la entrada de los **juegos de azar en línea**, cuyos precios el INE toma directamente de las webs de apuestas. Cada cambio provoca discusión, porque el IPC no es solo una estadística: con él se actualizan las pensiones, muchos alquileres y muchos salarios. Si un producto entra o sale de la cesta, cambia lo que cobran millones de personas.
+</Curiosity>
+
+### 2022: la inflación más alta en cuatro décadas
+
+La tabla resume lo que pasó en España en los últimos años, con la inflación media anual que publica el INE:
+
+| Año | Inflación media anual (IPC) | Qué pasaba |
+|---|---|---|
+| 2021 | 3,1 % | Reapertura tras la pandemia, la energía empieza a subir |
+| 2022 | **8,4 %** | Guerra de Ucrania, gas y electricidad disparados; pico del 10,8 % en julio |
+| 2023 | 3,5 % | Subidas de tipos del BCE, energía más barata; el aceite sube un 54,6 % |
+| 2024 | 2,8 % | Los precios se calman; el BCE empieza a bajar tipos |
+| 2025 | 2,7 % | Inflación cerca del objetivo del BCE |
+
+Un 8,4 % puede parecer un número abstracto. Traducido: una familia que gastaba 1.000 € al mes en 2021 necesitaba 1.084 € en 2022 para comprar exactamente lo mismo. Si sus ingresos no subieron en la misma proporción (y la mayoría no lo hicieron), vivió peor con el mismo dinero.
+
+### Por qué suben los precios
+
+Los economistas distinguen tres causas, que en 2022 se juntaron todas:
+
+- **Inflación de demanda.** Cuando la gente quiere comprar más de lo que la economía puede producir, los vendedores suben precios (Unidad 3: si la demanda aumenta y la oferta no, el precio sube). En 2021-2022, tras los confinamientos, las familias tenían ahorro acumulado y ganas de gastar, y las fábricas y los transportes no daban abasto.
+- **Inflación de costes.** Cuando a las empresas les cuesta más producir (energía, materias primas, salarios), trasladan parte de ese coste al precio final. La invasión rusa de Ucrania en febrero de 2022 disparó el precio del gas, y con él la electricidad, los fertilizantes y el transporte. Un panadero que paga el doble por el horno eléctrico acaba subiendo el pan.
+- **Expectativas.** Si todo el mundo espera que los precios suban, actúa en consecuencia: los trabajadores piden subidas de sueldo, las empresas suben precios por adelantado, y la profecía se cumple. A esto se le llama **espiral de precios y salarios**, y es lo que los bancos centrales más temen, porque una vez arranca es difícil pararla.
+
+### Quién gana y quién pierde con la inflación
+
+La inflación no reparte el daño por igual. Hay perdedores claros y algún ganador inesperado:
+
+- **Pierden los ahorradores**, sobre todo quien guarda el dinero en casa o en una cuenta que no paga interés: cada año esos euros compran menos. Es la forma más silenciosa de perder dinero, porque el número en la hucha no cambia.
+- **Pierden quienes tienen ingresos fijos** que no se actualizan: pensiones no revalorizadas, salarios congelados, becas. En España las pensiones se actualizan cada año con el IPC medio desde la Ley 21/2021, precisamente para evitarlo; y el Salario Mínimo Interprofesional subió a 1.184 € al mes en 14 pagas en 2025 (RD 87/2025), en parte para compensar la subida de precios.
+- **Ganan los deudores**, aunque suene raro. Quien debe 100.000 € de hipoteca a tipo fijo devuelve la misma cantidad, pero esos euros valen cada vez menos: la deuda «se encoge» en términos reales. El mayor deudor de casi todos los países es el propio Estado, y por eso a los gobiernos la inflación moderada no les disgusta del todo.
+- **Pierden los más pobres** en proporción, porque gastan casi todo su dinero en lo que más subió en 2022: alimentos y energía. Una familia con ingresos altos puede recortar en ocio; una con ingresos bajos no puede recortar en comer.
+
+### Deflación e hiperinflación: los dos extremos
+
+Si la inflación es mala, ¿sería buena la **deflación**, una bajada general de los precios? Parece que sí y no lo es. Cuando la gente espera que todo sea más barato mañana, **aplaza las compras**; las empresas venden menos, bajan precios, recortan empleo, y la economía se paraliza. Japón vivió décadas de precios estancados desde los años noventa, y España tuvo una inflación ligeramente negativa entre 2014 y 2016 (INE). Por eso el objetivo de los bancos centrales no es inflación cero, sino una inflación baja y estable.
+
+El otro extremo es la **hiperinflación**: una subida de precios tan rápida (por convención, más del 50 % mensual) que el dinero deja de cumplir sus funciones. Suele ocurrir cuando un Estado paga sus gastos imprimiendo billetes sin límite. En las últimas décadas la han sufrido Zimbabue (2008), Venezuela (2017-2019) y, en menor grado, Argentina, cuya inflación superó el 200 % anual en 2023. El caso más estudiado sigue siendo el de Alemania hace un siglo.
+
+<RealExample title="Alemania, 1923: cuando el pan se pagaba por miles de millones" source="Deutsche Bundesbank y Deutsches Historisches Museum; Smithsonian Magazine, «How Hyperinflation Heralded the Fall of German Democracy» (2023)" sourceUrl="https://www.smithsonianmag.com/history/how-hyperinflation-heralded-the-fall-of-german-democracy-180982204/">
+Tras perder la Primera Guerra Mundial, Alemania tenía que pagar enormes reparaciones a los vencedores y un Estado sin recursos. La solución del gobierno fue **imprimir billetes**. A principios de 1923 un dólar se cambiaba por unos 18.000 marcos; en noviembre de ese año, por **4,2 billones** (4.200.000.000.000) de marcos. Los precios se doblaban cada pocos días. Un kilo de pan, que en enero costaba unos 250 marcos, se pagaba en noviembre alrededor de 200.000 millones. Los trabajadores cobraban dos veces al día y corrían a gastar el sueldo antes de que perdiera valor; había quien llevaba los billetes en carretillas y quien los usaba para encender la estufa, porque calentaban más que el carbón que podían comprar con ellos. El marco dejó de cumplir las tres funciones: nadie quería aceptarlo, los precios cambiaban antes de poder compararlos y guardarlo era tirarlo. La hiperinflación acabó en noviembre de 1923 con una moneda nueva, el *Rentenmark*, y una promesa creíble de dejar de imprimir. Pero el trauma quedó: la obsesión alemana por la estabilidad de precios que hoy se refleja en el diseño del BCE nace en gran parte de aquellos meses.
+</RealExample>
+
+<SolvedExercise number="4.2" title="La inflación de tu cesta y lo que pierde un ahorro guardado en casa">
+
+**Enunciado**
+
+Un grupo de 4.º de ESO elabora su propia cesta de la compra con cinco cosas que pagan cada mes y anota los precios de un año y del siguiente (precios inventados a modo de ejemplo):
+
+| Producto | Año 1 | Año 2 |
+|---|---|---|
+| Bocadillo del recreo | 3,00 € | 3,30 € |
+| Entrada de cine | 8,00 € | 8,50 € |
+| Recarga del móvil | 10,00 € | 10,00 € |
+| Camiseta | 15,00 € | 16,20 € |
+| Bono de transporte joven | 20,00 € | 20,00 € |
+
+a) Calcula la inflación de esa cesta entre el año 1 y el año 2.
+
+b) Una abuela guardó 1.000 € en un sobre en casa el 1 de enero de 2022. Con la inflación real de ese año (8,4 % de media, INE), ¿cuánto poder adquisitivo tenía ese sobre a final de año? ¿Cuánto perdió sin que nadie lo tocara?
+
+**Solución**
+
+1. **Coste de la cesta en el año 1**: 3,00 + 8,00 + 10,00 + 15,00 + 20,00 = **56,00 €**.
+2. **Coste de la cesta en el año 2**: 3,30 + 8,50 + 10,00 + 16,20 + 20,00 = **58,00 €**.
+3. **Inflación de la cesta**: (58,00 − 56,00) / 56,00 × 100 = 2,00 / 56,00 × 100 = **3,57 %**.
+4. **Lectura**: el bocadillo subió un 10 % y la camiseta un 8 %, pero la recarga y el bono no subieron nada, y el bono es lo que más pesa en la cesta. Por eso el índice general (3,57 %) es mucho más bajo que la subida del producto más llamativo. Así funciona el IPC: los productos que más pesan en el gasto «tiran» del índice hacia su subida, y los que no suben lo frenan.
+5. **El sobre de la abuela**: los 1.000 € siguen siendo 1.000 € en billetes, pero lo que costaba 1.000 € en enero cuesta 1.084 € en diciembre. Su poder adquisitivo es 1.000 / 1,084 = **922,51 €**.
+6. **Pérdida**: 1.000 − 922,51 = **77,49 €** en un solo año, sin que nadie abriera el sobre. Para conservar el poder de compra habría necesitado que el sobre «creciera» hasta 1.084 €. Ni siquiera una cuenta remunerada al 2 % (1.020 € a final de año) lo habría evitado del todo, pero habría reducido la pérdida a la mitad. Con inflación, guardar dinero parado es perder dinero despacio.
+
+</SolvedExercise>
+
+<Steps label="Método" title="Cómo calcular la inflación de tu propia cesta" variant="arabic">
+  <li>**Elige entre cinco y diez cosas que pagues de verdad cada mes** (bocadillo, transporte, móvil, ropa, ocio). Cuantas más, más se parecerá tu índice al IPC.</li>
+  <li>**Anota el precio actual de cada una** y busca el precio que tenía hace un año: tickets antiguos, el historial de la aplicación del banco, la web del comercio o la memoria de la familia.</li>
+  <li>**Suma el coste total de la cesta** en cada uno de los dos momentos. Si de algo compras varias unidades al mes, multiplica antes de sumar: así cada producto pesa lo que de verdad pesa en tu gasto.</li>
+  <li>**Calcula la variación**: (coste actual − coste antiguo) / coste antiguo × 100. Ese porcentaje es tu inflación personal.</li>
+  <li>**Compárala con el IPC oficial del INE** para el mismo periodo. Si la tuya es mayor, es porque gastas más en lo que más ha subido; si es menor, al revés. Ninguna de las dos es «falsa»: miden cestas distintas.</li>
+</Steps>
+
+## El BCE y la estabilidad de precios
+
+Ya tenemos todas las piezas. El dinero solo funciona si su valor es estable; la inflación destruye esa estabilidad; y el tipo de interés es la palanca que frena o acelera el gasto. Falta ver quién maneja la palanca y con qué reglas.
+
+El **Banco Central Europeo** se creó en 1998 en Fráncfort para gestionar el euro, que llegó a los bolsillos en 2002. Junto con los bancos centrales nacionales forma el **Eurosistema**. Su misión principal está escrita en los Tratados de la Unión Europea y cabe en tres palabras: **estabilidad de precios**. Desde 2021 el BCE la concreta en un objetivo de inflación del **2 % anual a medio plazo**, ni más ni menos: un poco de inflación engrasa la economía y aleja el riesgo de deflación; mucha, como hemos visto, la rompe.
+
+<Figure
+  src={bceFrankfurtSkytower}
+  alt="Vista frontal de la sede del Banco Central Europeo en Frankfurt am Main, con la torre Skytower de doble cuerpo diseñada por Coop Himmelb(l)au."
+  caption="Sede del Banco Central Europeo en Fráncfort. Cada seis semanas su Consejo de Gobierno decide los tipos de interés de los veinte países del euro. La decisión de julio de 2022 de empezar a subirlos acabó llegando a la cuota de cada hipoteca variable de España."
+  credit="Foto: Warburg1866, CC BY-SA 4.0 vía Wikimedia Commons"
+  aspectHint="3/2"
+  variant="wide"
+/>
+
+### Qué hace el BCE cuando la inflación se dispara
+
+Cuando en 2022 los precios subían al 8, al 9, al 10 %, el BCE hizo lo único que puede hacer un banco central: **subir el tipo de interés**. La cadena que vimos en la sección anterior se puso en marcha al revés: préstamos más caros, menos compras a plazos, menos inversión, menos demanda, y con menos demanda las empresas dejan de subir precios. Funciona, pero **funciona doliendo**: durante un tiempo hay familias que pagan más hipoteca, empresas que aplazan proyectos y algunos empleos que no se crean. Es un tratamiento con efectos secundarios, y la discusión entre economistas nunca es si aplicarlo, sino cuánto y durante cuánto tiempo.
+
+Esa discusión estuvo sobre la mesa en 2022-2023. Unos (los llamados «halcones») pedían subir rápido y fuerte, para cortar las expectativas antes de que arrancara la espiral de precios y salarios. Otros (las «palomas») recordaban que la inflación venía sobre todo del gas y de la energía, algo que los tipos de interés no arreglan, y temían provocar una recesión innecesaria. El BCE subió diez veces seguidas y la inflación bajó del 10,8 % de julio de 2022 al entorno del 3 % a finales de 2023 en España; cuánto de esa bajada fue mérito de los tipos y cuánto de que la energía se abarató sola es algo que los economistas siguen discutiendo. Lo que nadie discute es que, sin la subida, la inflación habría tardado más en volver al 2 %.
+
+<Figure
+  src={christineLagarde}
+  alt="Retrato oficial de Christine Lagarde, presidenta del Banco Central Europeo desde noviembre de 2019, sobre fondo neutro."
+  caption="Christine Lagarde, presidenta del BCE desde noviembre de 2019. A ella le tocó anunciar las diez subidas de tipos de 2022-2023 y, desde junio de 2024, las bajadas. Su mandato dura ocho años y no se puede renovar."
+  credit="Foto: Lemrich / European Central Bank, © European Union 2019, attribution license"
+  aspectHint="2/3"
+  variant="inline-small"
+/>
+
+### Por qué el banco central es independiente
+
+Quien decide subir los tipos no es un gobierno ni un parlamento. Es el **Consejo de Gobierno** del BCE: los seis miembros de su Comité Ejecutivo, presidido por **Christine Lagarde**, más los gobernadores de los veinte bancos centrales nacionales (el de España entre ellos). Se reúne cada seis semanas y toma decisiones que afectan a 350 millones de personas sin pasar por ninguna votación popular. ¿No es antidemocrático?
+
+La respuesta de quienes diseñaron el euro fue clara: precisamente por eso. Subir los tipos es impopular, y a un gobierno que se presenta a elecciones el año que viene le cuesta mucho hacer algo impopular hoy para evitar un daño mañana. La historia (Alemania en 1923 es el ejemplo extremo) muestra que los gobiernos que controlan la imprenta acaban usándola. Por eso los Tratados europeos (artículo 130 del Tratado de Funcionamiento de la UE) prohíben que el BCE reciba instrucciones de ningún gobierno, y blindan a sus dirigentes con mandatos largos (ocho años, no renovables) para que nadie pueda presionarlos con la renovación. La independencia no quiere decir que nadie los controle: el BCE rinde cuentas ante el Parlamento Europeo y explica cada decisión en público. Quiere decir que el objetivo (el 2 %) lo fijan los Tratados, y la forma de conseguirlo, los técnicos.
+
+<Callout label="Recomendación de aula" title="Leer una noticia sobre el BCE en cinco preguntas" variant="example">
+
+Cada seis semanas sale la misma noticia: «El BCE sube (o baja, o mantiene) los tipos». Para entenderla basta con responder cinco preguntas. **¿Cuál es la inflación ahora?** (si está lejos del 2 %, hay motivo para actuar). **¿Sube, baja o mantiene?** **¿A cuánto queda el tipo?** **¿Qué dice la presidenta sobre las próximas reuniones?** (los mercados se mueven más con esa frase que con la decisión). Y la que importa en casa: **¿tiene vuestra familia una hipoteca variable, un depósito o un préstamo?** Si la respuesta es sí, esa noticia habla de vuestro dinero.
+
+</Callout>
+
+## Qué viene después en este curso
+
+Con esta unidad cerráis la primera evaluación y el bloque más «macro» de la parte de economía. En las **Unidades 1 a 4** habéis visto por qué hay que elegir, cómo se produce, cómo se forman los precios en un mercado y qué es el dinero con el que se paga todo eso. Las siguientes unidades bajan a vuestra vida: la **Unidad 5** explica el mercado de trabajo, los contratos y la nómina que cobraréis en vuestro primer empleo, y ahí entenderéis por qué los sindicatos negocian subidas «con el IPC». La **Unidad 6** mira al Estado, los impuestos y el gasto público, el otro gran actor que aparecía en el flujo de la economía.
+
+Todo lo aprendido aquí sobre tipos de interés y bancos vuelve con fuerza en la **Unidad 7** (presupuesto, ahorro y consumo responsable) y sobre todo en la **Unidad 8** (bancos, crédito, inversión y seguros), donde calcularéis cuotas de préstamos, compararéis hipotecas con el euríbor y veréis cómo proteger un ahorro de la inflación. Y la **Unidad 9** llevará el dinero más allá de las fronteras: el euro, los tipos de cambio y la Unión Europea.
+
+<VuelveAlCaso referencia="El verano de 2022: el 10,8 % del IPC y la subida de tipos del BCE">
+El dinero «valía menos» porque los precios de casi todo, empezando por la energía y los alimentos, subieron mucho más rápido que los ingresos de la gente. La causa fue una combinación de las tres que hemos visto: **demanda** embalsada tras la pandemia, **costes** disparados por el gas y la electricidad tras la invasión de Ucrania, y **expectativas** que amenazaban con convertirse en una espiral de precios y salarios. Cada euro compraba menos porque había más euros persiguiendo menos cosas, y los productos más básicos (el aceite, la luz, el pan) fueron los que más se encarecieron, lo que golpeó con más fuerza a las familias con menos ingresos.
+
+Quien decidió subir los tipos fue el **Consejo de Gobierno del BCE**, veintiséis personas que no se presentan a elecciones y a las que los Tratados protegen de la presión de los gobiernos precisamente para que puedan tomar decisiones impopulares. Subir el precio del dinero encareció las hipotecas y frenó el gasto, y eso ayudó a que la inflación volviera del 10,8 % al entorno del 2 % en tres años. El coste lo pagaron, sobre todo, las familias con hipoteca variable y las empresas que necesitaban crédito. Si os parece justo o no ese reparto es una pregunta legítima; que el remedio funciona, aunque duela, es lo que enseña la historia del dinero desde 1923.
+</VuelveAlCaso>
+
+<KeyTakeaways title="Lo esencial de la unidad">
+- El **dinero** es un acuerdo de confianza que resuelve el problema del trueque (la doble coincidencia). Cumple tres funciones: **medio de pago**, **unidad de cuenta** y **depósito de valor**; si pierde una, deja de servir.
+- Hay **dinero mercancía** (oro, sal), **fiduciario** (billetes y monedas de curso legal, respaldados por el BCE) y **bancario** (apuntes en cuentas, más de nueve de cada diez euros). La tarjeta y el Bizum mueven dinero bancario; el **bitcoin** es hoy un activo especulativo, no un dinero.
+- Los **bancos** guardan depósitos, prestan y viven del margen entre lo que cobran y lo que pagan. Al prestar **crean dinero**: con un coeficiente de caja del 10 %, 1.000 € pueden convertirse en 10.000 €. El **Fondo de Garantía de Depósitos** protege hasta 100.000 € por persona y banco.
+- El **tipo de interés** es el precio del dinero. Lo fija el **BCE** con sus tipos oficiales, del 0 % al 4,5 % entre julio de 2022 y septiembre de 2023, y en bajada desde junio de 2024. El **euríbor** lo traslada a las hipotecas variables.
+- La **inflación** es la subida general de precios, medida por el **IPC** del INE con una cesta de unos 490 productos. En 2022 fue del 8,4 % de media en España, con un pico del 10,8 % en julio. Perjudica a ahorradores y a quien tiene ingresos fijos, y favorece a los deudores.
+- El BCE persigue una inflación del **2 %** y es **independiente** de los gobiernos para poder subir los tipos cuando hace falta, aunque duela. La deflación y la hiperinflación son los dos extremos que un banco central intenta evitar.
+</KeyTakeaways>
+
+## Glosario
+
+- **Trueque**: intercambio directo de un bien o servicio por otro sin usar dinero. Exige que cada parte quiera justo lo que ofrece la otra (doble coincidencia de necesidades).
+- **Dinero**: cualquier cosa aceptada de forma general por una comunidad como pago de bienes y servicios y para saldar deudas.
+- **Medio de pago, unidad de cuenta y depósito de valor**: las tres funciones del dinero: sirve para pagar, para poner precio y comparar, y para guardar poder de compra en el tiempo.
+- **Dinero fiduciario**: billetes y monedas que no valen por su material, sino por la confianza en la autoridad que los emite y por su condición de curso legal.
+- **Curso legal**: condición que da la ley al euro en España: nadie puede rechazarlo como pago de una deuda.
+- **Dinero bancario**: saldos anotados en las cuentas de los bancos. Es la forma más abundante de dinero y se crea cuando los bancos conceden préstamos.
+- **Coeficiente de caja (o de reservas)**: porcentaje de los depósitos que un banco está obligado a mantener como reservas en lugar de prestarlo. En la zona euro, el 1 %.
+- **Multiplicador del dinero**: número por el que un depósito inicial puede llegar a multiplicarse a través de la cadena de préstamos y depósitos. Vale 1 dividido entre el coeficiente de caja.
+- **Fondo de Garantía de Depósitos (FGD)**: fondo financiado por los bancos que devuelve a cada cliente hasta 100.000 € por persona y entidad si su banco quiebra.
+- **Tipo de interés**: precio del dinero, expresado como porcentaje anual de la cantidad prestada o depositada.
+- **Euríbor**: tipo de interés medio al que se prestan dinero los grandes bancos europeos. Es la referencia de las hipotecas variables en España.
+- **IPC (Índice de Precios de Consumo)**: indicador del INE que mide cada mes la variación del precio de una cesta representativa de lo que consumen los hogares.
+- **Inflación**: subida general y sostenida de los precios. La deflación es la bajada general; la hiperinflación, una subida descontrolada que destruye el dinero.
+- **Poder adquisitivo**: cantidad de bienes y servicios que se pueden comprar con una cantidad de dinero. La inflación lo reduce.
+- **Banco Central Europeo (BCE)**: institución independiente que emite el euro y fija los tipos de interés oficiales con el objetivo de una inflación del 2 %.
+
+## Para profundizar
+
+Si la unidad os ha dejado con ganas de más, estos recursos son gratuitos y fiables:
+
+- **Finanzas para todos** (finanzasparatodos.es), del Banco de España y la CNMV. Por qué encaja: explica con ejemplos sencillos qué es el dinero, cómo funcionan los bancos y qué hace la inflación con tus ahorros, sin intentar venderte nada.
+- **«Actualización de rentas con el IPC»**, la calculadora del INE (ine.es/calcula). Por qué encaja: permite ver cuánto valdrían hoy 100 € de cualquier año desde 1961; en dos minutos entiendes lo que la inflación le ha hecho al dinero de tus abuelos.
+- **«El BCE explica»**, vídeos cortos del canal oficial del Banco Central Europeo (ecb.europa.eu, con subtítulos en español). Por qué encaja: el propio BCE cuenta en tres minutos qué es la inflación, por qué su objetivo es el 2 % y cómo decide los tipos.
+- **Portal del Cliente Bancario** del Banco de España (clientebancario.bde.es). Por qué encaja: explica en lenguaje llano qué protege el Fondo de Garantía de Depósitos, cómo se calcula el euríbor y qué derechos tienes ante tu banco.
+
+## Preguntas para reflexionar
+
+Estas preguntas no tienen una respuesta única. Sirven para debatir en clase o pensar a solas al cerrar la unidad:
+
+1. Si el dinero es un acuerdo de confianza, ¿qué tendría que pasar para que dejaras de aceptar euros? ¿Aceptarías cobrar tu primer sueldo en bitcoins? ¿Y en cigarrillos, como los prisioneros de Radford?
+2. Los bancos crean dinero al prestar y ganan con el margen entre lo que cobran y lo que pagan. ¿Te parece que esa capacidad debería estar solo en manos de empresas privadas, o debería el Estado prestar directamente? ¿Qué riesgos tiene cada opción?
+3. Subir los tipos de interés en 2022-2023 encareció las hipotecas de millones de familias para frenar la inflación que sufrían todas. ¿Crees que el reparto del coste fue justo? ¿Quién debería decidir algo así: veintiséis técnicos en Fráncfort o los gobiernos elegidos?
+
+<Bibliography>
+
+1. España. **Real Decreto 217/2022**, de 29 de marzo, por el que se establecen la ordenación y las enseñanzas mínimas de la Educación Secundaria Obligatoria. BOE núm. 76. (Competencia específica 6: comprender aspectos básicos de la economía y las finanzas.)
+2. Instituto Nacional de Estadística. **Índice de Precios de Consumo**, notas de prensa mensuales (julio de 2022; diciembre de 2022, 2023, 2024 y 2025) y metodología de la base 2025. https://www.ine.es/dyngs/INEbase/es/operacion.htm?c=Estadistica_C&cid=1254736176802&menu=ultiDatos&idp=1254735976607
+3. Banco Central Europeo. **Decisiones de política monetaria**, notas de prensa del 21 de julio de 2022, 14 de septiembre de 2023, 6 de junio de 2024 y 5 de junio de 2025. https://www.ecb.europa.eu/press/pr/
+4. España. **Real Decreto-ley 16/2011**, de 14 de octubre, por el que se crea el Fondo de Garantía de Depósitos de Entidades de Crédito. BOE núm. 249. Información para clientes en https://www.fgd.es
+5. Radford, R. A. (1945). *The Economic Organisation of a P.O.W. Camp*. Economica, 12(48), 189-201.
+6. Junta Única de Resolución. **Decisión de resolución de Banco Popular Español, S.A.** (7 de junio de 2017). https://www.srb.europa.eu/en/content/banco-popular
+7. Mankiw, N. G. *Principios de economía* (capítulos «El sistema monetario» y «El crecimiento del dinero y la inflación»). Cengage. (Manual de referencia para las funciones del dinero, la creación de dinero bancario y los costes de la inflación.)
+
+</Bibliography>
+
+<MirarFora
+  unidad={4}
+  libro={{
+    titulo: 'Sapiens: de animales a dioses',
+    meta: 'Yuval Noah Harari · Debate, 2014',
+    porque: 'El capítulo «El olor del dinero» cuenta en veinte páginas cómo el dinero es la ficción compartida más exitosa de la humanidad: la única en la que creen a la vez un musulmán, un cristiano y un ateo. Es la mejor explicación corta de por qué un papel vale 50 €.',
+    paginas: 'Capítulo 10, «El olor del dinero»',
+  }}
+  video={{
+    titulo: 'Cómo funciona la máquina económica',
+    meta: 'Ray Dalio · YouTube (versión en español)',
+    duracion: '~30 min',
+    porque: 'Una animación que explica, con dibujos sencillos, cómo el crédito crea dinero, por qué hay ciclos y qué hace un banco central cuando la inflación sube. Cubre casi toda la unidad en media hora.',
+    url: 'https://www.youtube.com/results?search_query=como+funciona+la+maquina+economica+ray+dalio',
+  }}
+  cuenta={{
+    titulo: '@BancoDeEspana',
+    meta: 'X / Twitter e Instagram',
+    porque: 'La cuenta oficial publica cada mes el euríbor, explica en hilos qué significa una decisión del BCE y desmonta bulos sobre billetes y estafas. Es la fuente, no un intermediario.',
+  }}
+  actividad_titulo="Tu IPC personal"
+  actividad_duracion="30 min · trae tickets o el historial del banco"
+>
+  <Fragment slot="actividad">
+    Elige **cinco cosas que pagues cada mes** (bocadillo, bono de transporte, recarga, ocio, ropa) y averigua cuánto costaban hace un año y cuánto cuestan ahora. Calcula el coste de tu cesta en los dos momentos y tu **inflación personal** con la fórmula de la unidad. Compárala con el IPC interanual del INE del mismo mes. Trae los dos números y una frase: ¿por qué crees que difieren?
+  </Fragment>
+  <Fragment slot="para-clase">
+    **El Consejo de Gobierno en el aula.** La clase se divide en tres grupos: «halcones» (subir tipos ya), «palomas» (esperar, la inflación es de costes) y «familias con hipoteca» (que sufrirán la decisión). Se les da el dato real de julio de 2022 (IPC 10,8 %, tipo del BCE 0 %) y diez minutos para preparar argumentos. Cada grupo expone tres minutos; después la clase vota como si fuera el Consejo. Cierre: comparar la decisión del aula con la que tomó el BCE. Duración: 40 min.
+  </Fragment>
+</MirarFora>
+
+```deck
+- tipo: curriculum
+  eyebrow: "A qué responde esta unidad"
+  title: "El marco de la unidad"
+  saberes:
+    - "El dinero y sus funciones; tipos de dinero, del efectivo a las criptomonedas."
+    - "Los bancos y la creación de dinero bancario; el Fondo de Garantía de Depósitos."
+    - "El tipo de interés, el euríbor y la transmisión de la política monetaria."
+    - "La inflación y el IPC; el Banco Central Europeo y la estabilidad de precios."
+  competencias:
+    - "Comprender aspectos básicos de economía y finanzas: el dinero, los bancos y la inflación."
+    - "Valorar cómo la subida de precios obliga a elegir y afecta de forma desigual."
+- tipo: caso
+  eyebrow: "Caso de partida"
+  title: "Verano de 2022: el IPC toca el 10,8 % y la cesta se dispara"
+  contexto: "En julio de 2022 el INE publicó una inflación del 10,8 %, la mayor desde 1984. Dos semanas antes, el BCE había subido los tipos por primera vez en once años y no paró hasta el 4,5 % en septiembre de 2023."
+  datos:
+    - "Alimentos sin elaborar: +13,4 % interanual (INE, julio 2022)."
+    - "Productos energéticos: +41,4 % interanual (INE, julio 2022)."
+    - "Aceite de oliva: +35,2 % en 2022 y +54,6 % en 2023 (INE)."
+    - "Tipo principal del BCE: del 0 % al 4,5 % en catorce meses."
+  pregunta: "¿Por qué de repente el dinero valía menos y quién decidió subir los tipos de interés?"
+- tipo: section
+  title: "Del trueque al dinero"
+  subtitle: "Sin dinero, para conseguir un bocadillo tendrías que encontrar a alguien con bocadillo que quisiera justo lo que tú ofreces."
+- tipo: concept
+  eyebrow: "El problema del trueque"
+  title: "La doble coincidencia de necesidades"
+  body: "Cada uno tiene que querer exactamente lo que ofrece el otro, en el mismo momento y en cantidades que encajen. ¿Cuánto vale una vaca en gallinas? ¿Y si solo necesito media? Con millones de personas y miles de productos, el trueque es imposible. Por eso todas las sociedades inventan lo mismo: algo que todo el mundo acepta a cambio de cualquier cosa."
+  pull: "El dinero es un acuerdo social: vale porque creemos que vale."
+- tipo: diagram
+  diagrama: TresFuncionesDinero
+  caption: "Medio de pago, unidad de cuenta y depósito de valor. Si falla una función, el dinero deja de servir."
+- tipo: section
+  title: "Tipos de dinero"
+  subtitle: "Mercancía, fiduciario, bancario y electrónico conviven en tu bolsillo, en tu cuenta y en tu móvil."
+- tipo: terms
+  eyebrow: "Cuatro formas de dinero"
+  title: "No todo el dinero es igual"
+  terms:
+    - t: "Dinero mercancía"
+      d: "Un bien que vale por sí mismo y sirve para pagar: sal, ganado, oro. Pesado, difícil de dividir y limitado por las minas."
+    - t: "Dinero fiduciario"
+      d: "Billetes y monedas que valen por confianza y por ley (curso legal). En la zona euro los respalda el BCE y los pone en circulación el Banco de España."
+    - t: "Dinero bancario"
+      d: "Apuntes en las cuentas: el banco reconoce que te debe ese saldo. Más de nueve de cada diez euros de la zona euro son así (BCE, 2025)."
+    - t: "Dinero electrónico"
+      d: "Tarjeta, Bizum o móvil no son un dinero distinto: son formas de mover el dinero bancario sin tocar billetes."
+- tipo: figure
+  src: "eco-4eso/07/euros-billetes-monedas.jpg"
+  alt: "Billetes y monedas de euro extendidos sobre una superficie, mostrando varias denominaciones de la moneda única europea."
+  title: "El único dinero de curso legal en España"
+  caption: "Desde 2002. Pero representa menos de uno de cada diez euros que existen: el resto son apuntes en cuentas bancarias."
+  credit: "Foto: Avij, dominio público vía Wikimedia Commons"
+- tipo: concept
+  eyebrow: "¿Son dinero las criptomonedas?"
+  title: "El bitcoin, función por función"
+  body: "Casi nadie lo acepta para pagar y en España no es de curso legal. Nadie pone precios en bitcoins. Y como depósito de valor es extremadamente volátil: de 69.000 dólares en noviembre de 2021 a menos de 16.000 un año después, y por encima de 100.000 en diciembre de 2024. El Salvador lo hizo moneda legal en 2021 y dio marcha atrás en 2025."
+  pull: "La escasez sola no convierte algo en dinero: los cromos raros también son escasos."
+- tipo: quiz
+  eyebrow: "Comprueba que lo pillas"
+  pregunta: "Cuando dices «tengo 300 € en el banco», ¿qué hay exactamente en el banco?"
+  opciones:
+    - "300 € en billetes guardados en una caja con tu nombre."
+    - "Un apunte: el banco reconoce que te debe 300 € y los presta en parte."
+    - "300 € en oro equivalente, por ley."
+    - "Nada, porque el dinero electrónico no existe de verdad."
+  correcta: 1
+  explicacion: "Es dinero bancario: una anotación contable. El banco guarda solo una pequeña reserva y presta el resto; por eso más de nueve de cada diez euros no existen como billetes."
+- tipo: section
+  title: "Los bancos"
+  subtitle: "Guardan depósitos, prestan, viven del margen entre lo que cobran y lo que pagan y, al prestar, crean dinero."
+- tipo: split
+  eyebrow: "El negocio de un banco"
+  title: "Dos lados y un margen en medio"
+  left:
+    h: "Lado de los depósitos"
+    items:
+      - "Guarda el dinero de familias y empresas en cuentas y depósitos."
+      - "Paga por ello un interés, normalmente pequeño (1 % en el ejemplo)."
+      - "Reserva solo una parte: el coeficiente de caja, 1 % en la zona euro."
+  right:
+    h: "Lado de los préstamos"
+    items:
+      - "Presta a hipotecas, coches, empresas: cobra un interés mayor (5 % en el ejemplo)."
+      - "La diferencia es el margen de intermediación, su principal beneficio."
+      - "Conecta el ahorro de unos con la inversión de otros sin que se conozcan."
+- tipo: diagram
+  diagrama: CreacionDinero
+  caption: "Con un coeficiente de reservas del 10 %, cada préstamo se convierte en un nuevo depósito: 1.000 € pueden acabar en 10.000 €."
+- tipo: exercise
+  title: "Ejercicio 4.1 — El margen del Banco del Barrio"
+  enunciado: "Caso inventado: el banco tiene 10 millones en depósitos al 1 % y presta 8 millones al 5 %. Ana ingresa 1.000 € con un coeficiente de caja del 10 %. ¿Cuál es el margen del banco? ¿Cuánto dinero hay tras la primera ronda y cuánto podría crearse?"
+  pasos:
+    - "Paga a los depositantes 10.000.000 × 0,01 = 100.000 € al año."
+    - "Cobra por los préstamos 8.000.000 × 0,05 = 400.000 € al año."
+    - "Margen de intermediación: 400.000 − 100.000 = 300.000 €."
+    - "De los 1.000 € de Ana reserva 100 y presta 900 a Luis: ahora hay 1.000 + 900 = 1.900 €."
+    - "Si la cadena sigue, multiplicador 1 / 0,10 = 10: hasta 10.000 € de dinero bancario."
+- tipo: data
+  numero: "100.000 €"
+  label: "por persona y banco"
+  title: "Lo que cubre el Fondo de Garantía de Depósitos"
+  detalle: "Si un banco quiebra, el FGD devuelve hasta esa cantidad por cliente (RDL 16/2011). Cubre depósitos, no acciones: cuando Banco Popular se vendió por 1 € en 2017, los accionistas lo perdieron todo y los depositantes, nada."
+- tipo: section
+  title: "El tipo de interés: el precio del dinero"
+  subtitle: "Lo que cuesta usar durante un tiempo dinero que no es tuyo, en porcentaje anual. Lo fija el BCE y lo traslada el euríbor."
+- tipo: timeline
+  eyebrow: "El ciclo 2022-2025"
+  title: "Del 0 % al 4,5 % y vuelta al 2 %"
+  hitos:
+    - fecha: "2016-2022"
+      hito: "Tipos en mínimos históricos"
+      detalle: "Tipo principal del BCE al 0 %; el euríbor a doce meses llegó a ser negativo (−0,50 %)."
+    - fecha: "21 jul 2022"
+      hito: "Primera subida en once años"
+      detalle: "Con la inflación en el 10 %, el BCE sube medio punto y anuncia que seguirá."
+    - fecha: "14 sep 2023"
+      hito: "Décima y última subida: 4,5 %"
+      detalle: "El euríbor toca el 4,16 % en octubre; una hipoteca de 150.000 € paga unos 360 € más al mes."
+    - fecha: "6 jun 2024"
+      hito: "Empiezan las bajadas"
+      detalle: "Con la inflación cerca del 2 %, el BCE inicia el ciclo de recortes."
+    - fecha: "jun 2025"
+      hito: "Facilidad de depósito en el 2 %"
+      detalle: "Octava bajada; el euríbor ronda el 2,1 % en agosto de 2025."
+- tipo: diagram
+  diagrama: TransmisionMonetaria
+  caption: "Bajar el tipo abarata el crédito, sube inversión y consumo y empuja la demanda; subirlo enfría la economía."
+- tipo: quiz
+  eyebrow: "Comprueba que lo pillas"
+  pregunta: "El BCE sube los tipos de interés. ¿Qué le pasa a una familia con hipoteca variable (euríbor + 1 %) en la siguiente revisión?"
+  opciones:
+    - "Nada, porque la hipoteca ya está firmada."
+    - "Su cuota mensual sube, porque el euríbor sigue al BCE."
+    - "Su cuota baja, porque el banco gana más con otros clientes."
+    - "Solo cambia si el Gobierno lo aprueba."
+  correcta: 1
+  explicacion: "Las hipotecas variables se calculan como euríbor más un diferencial y se revisan cada seis o doce meses. Entre 2021 y 2023 la cuota de una hipoteca de 150.000 € a 25 años pasó de unos 530 € a unos 890 €."
+- tipo: section
+  title: "La inflación"
+  subtitle: "Subida general y sostenida de los precios. Con los mismos euros compras menos: pierdes poder adquisitivo."
+- tipo: concept
+  eyebrow: "Cómo se mide"
+  title: "El IPC y la cesta de la compra del INE"
+  body: "El INE define una cesta de unos 490 productos y servicios en doce grupos, da a cada uno un peso según lo que las familias gastan de verdad, recoge cientos de miles de precios cada mes y compara el coste de la cesta con el del mismo mes del año anterior. En la base 2025 entraron aguacates, arándanos o los juegos de azar en línea, y salieron la corbata y el pañuelo."
+  pull: "Con el IPC se actualizan pensiones, alquileres y salarios: no es solo una estadística."
+- tipo: table
+  eyebrow: "España, según el INE"
+  title: "La inflación media anual, 2021-2025"
+  head:
+    - "Año"
+    - "IPC medio anual"
+    - "Qué pasaba"
+  rows:
+    - ["2021", "3,1 %", "Reapertura tras la pandemia; la energía empieza a subir"]
+    - ["2022", "8,4 %", "Guerra de Ucrania, gas y luz disparados; pico de 10,8 % en julio"]
+    - ["2023", "3,5 %", "Subidas de tipos del BCE; el aceite de oliva sube un 54,6 %"]
+    - ["2024", "2,8 %", "Los precios se calman; el BCE empieza a bajar tipos"]
+    - ["2025", "2,7 %", "Inflación cerca del objetivo del 2 %"]
+  caption: "Una familia que gastaba 1.000 € al mes en 2021 necesitaba 1.084 € en 2022 para comprar lo mismo."
+- tipo: split
+  eyebrow: "Causas y consecuencias"
+  title: "Por qué suben los precios y a quién duele"
+  left:
+    h: "Tres causas"
+    items:
+      - "Demanda: la gente quiere comprar más de lo que se puede producir (ahorro de la pandemia)."
+      - "Costes: producir sale más caro (gas y electricidad tras la invasión de Ucrania)."
+      - "Expectativas: todos esperan subidas y actúan antes; espiral de precios y salarios."
+  right:
+    h: "Quién gana y quién pierde"
+    items:
+      - "Pierden los ahorradores con el dinero parado y quienes tienen ingresos fijos."
+      - "Pierden más los hogares pobres: gastan casi todo en comida y energía."
+      - "Ganan los deudores a tipo fijo: la deuda vale cada vez menos. El Estado incluido."
+- tipo: exercise
+  title: "Ejercicio 4.2 — Tu cesta y el sobre de la abuela"
+  enunciado: "Una cesta de cinco cosas (bocadillo, cine, recarga, camiseta, bono) cuesta 56,00 € un año y 58,00 € el siguiente. Calcula su inflación. Y con la inflación real de 2022 (8,4 %, INE), ¿qué poder adquisitivo le quedó a un sobre con 1.000 € guardado en casa todo el año?"
+  pasos:
+    - "Inflación de la cesta: (58,00 − 56,00) / 56,00 × 100 = 3,57 %."
+    - "El bocadillo subió un 10 %, pero el bono y la recarga no: los que más pesan frenan el índice."
+    - "Poder adquisitivo del sobre: 1.000 / 1,084 = 922,51 €."
+    - "Pérdida: 77,49 € en un año sin que nadie abriera el sobre."
+    - "Una cuenta al 2 % habría dejado 1.020 €: no evita la pérdida, pero la reduce a la mitad."
+- tipo: data
+  numero: "4,2 billones"
+  label: "de marcos por un dólar"
+  title: "Alemania, noviembre de 1923"
+  detalle: "Para pagar sus deudas el Estado imprimió billetes sin límite. A principios de 1923 un dólar valía 18.000 marcos; en noviembre, 4,2 billones. Los precios se doblaban cada pocos días y el marco dejó de ser dinero."
+- tipo: section
+  title: "El BCE y la estabilidad de precios"
+  subtitle: "Su misión cabe en tres palabras y en un número: inflación del 2 % a medio plazo."
+- tipo: figure
+  src: "eco-1bach/10/bce-frankfurt-skytower.jpg"
+  alt: "Vista frontal de la sede del Banco Central Europeo en Frankfurt am Main, con la torre Skytower de doble cuerpo."
+  title: "Veintiséis personas y una palanca"
+  caption: "Cada seis semanas el Consejo de Gobierno decide los tipos de los veinte países del euro. La decisión de julio de 2022 llegó a cada hipoteca variable."
+  credit: "Foto: Warburg1866, CC BY-SA 4.0 vía Wikimedia Commons"
+- tipo: concept
+  eyebrow: "Por qué es independiente"
+  title: "Subir los tipos duele, y por eso no lo decide un gobierno"
+  body: "Con la inflación al 10 %, el BCE hizo lo único que puede: subir el precio del dinero, diez veces seguidas. Préstamos más caros, menos compras a plazos, menos demanda y precios que dejan de subir. Funciona doliendo. Los Tratados (art. 130 TFUE) prohíben que reciba instrucciones de los gobiernos y dan a sus dirigentes mandatos de ocho años no renovables. Rinde cuentas ante el Parlamento Europeo."
+  pull: "El objetivo, el 2 %, lo fijan los Tratados; la forma de conseguirlo, los técnicos."
+- tipo: quiz
+  eyebrow: "Comprueba que lo pillas"
+  pregunta: "La inflación está en el 8 % y el BCE quiere devolverla al 2 %. ¿Qué hace y por qué?"
+  opciones:
+    - "Baja los tipos para que la gente gaste más y la economía crezca."
+    - "Sube los tipos: el crédito se encarece, se gasta menos y los precios se frenan."
+    - "Imprime más billetes para que a la gente le llegue el dinero."
+    - "Fija por ley el precio del pan y de la luz."
+  correcta: 1
+  explicacion: "Subir el tipo de interés enfría la demanda a través del crédito. Tiene efectos secundarios (hipotecas más caras, menos inversión), pero es la palanca del banco central: imprimir más dinero haría lo contrario."
+- tipo: recap
+  eyebrow: "Repasa"
+  title: "Antes de cerrar la unidad"
+  items:
+    - "Sabrías explicar por qué el trueque no funciona y qué tres funciones cumple el dinero."
+    - "Sabrías distinguir dinero mercancía, fiduciario, bancario y electrónico, y decir si el bitcoin es dinero."
+    - "Sabrías calcular el margen de un banco y una ronda de creación de dinero con el coeficiente de caja."
+    - "Sabrías explicar qué es el tipo de interés, quién lo fija y cómo llega a una hipoteca por el euríbor."
+    - "Sabrías calcular la inflación de una cesta y decir quién gana y quién pierde cuando suben los precios."
+    - "Sabrías razonar por qué el BCE persigue el 2 % y por qué es independiente de los gobiernos."
+```

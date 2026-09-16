@@ -145,11 +145,11 @@ Obligacions comptables. Comptes anuals: balanç i compte de pèrdues i guanys. I
 *(D.3, D.4, D.5, D.6)*
 Anàlisi del balanç. Fons de maniobra. Ratis: liquiditat, solvència, endeutament. Anàlisi del compte de resultats. Rendibilitats: econòmica (ROA) i financera (ROE). Períodes mitjans de maduració.
 
-### Part V — Capstone (Bloc C + D)
+### Part V — Comunicació i pla d'empresa (Bloc C + D)
 
 **Unitat 12. Comunicació, prototipat i pla d'empresa**
 *(C.5, C.6, C.7, D.1, D.2, D.7)*
-Prototipat del model de negoci. Storytelling i elevator pitch. Escenaris i models de negoci futurs. Forces competitives de Porter. Estudi de mercat. Pla d'empresa: estructura completa i redacció final. **Treball de capstone**: cada alumne presenta el seu pla d'empresa.
+Prototipat del model de negoci. Storytelling i elevator pitch. Escenaris i models de negoci futurs. Forces competitives de Porter. Estudi de mercat. Pla d'empresa: estructura completa i redacció final. **Pla d'empresa com a saber del Bloc D**: s'estudia l'estructura i la redacció; opcionalment, es pot treballar com a projecte d'aula amb el quadern «De zero a empresa».
 
 ## 6. Cobertura curricular completa — Verificació
 
@@ -173,14 +173,14 @@ Cada unitat seguirà aquest format consistent:
 3. **Caixes destacades**:
    - "Concepte clau" (definicions importants)
    - "Exemple pràctic" (casos reals)
-   - "A la pràctica" (aplicació al projecte capstone)
+   - "A la pràctica" (aplicació a casos reals i problemes tipus PAU)
 4. **Activitats**: 5-10 exercicis per unitat, gradades en dificultat
 5. **Test d'autoavaluació**: 8-12 preguntes
 6. **Connexions**: enllaços a recursos interactius (BMC interactiu, calculadora VAN/TIR, etc.) i a activitats d'aula
 
 ### Aproximació metodològica
 
-El llibre planteja la matèria des d'una **perspectiva teòric-pràctica**: cada concepte teòric es vincula amb el **projecte capstone** (Unitat 12), on l'alumne dissenya el seu propi pla d'empresa. Aquesta aproximació transversal és la que destaca el RD 243/2022.
+El llibre planteja la matèria des d'una **perspectiva teòric-pràctica orientada a la PAU**: cada concepte teòric va acompanyat de pistes EBAU, problemes resolts i casos reals. El **pla d'empresa** (Unitat 12) es treballa com a saber del Bloc D i, opcionalment, com a projecte d'aula amb el quadern «De zero a empresa».
 
 ### Recursos previstos a `/edmn-2bach/recursos/`
 
@@ -206,4 +206,5 @@ A la pàgina inicial del llibre apareixerà aquesta nota:
 
 ## 9. Versions
 
-- **v1.0** — abril 2026 — primera versió del currículum sintetitzat amb proposta d'estructura de 12 unitats. Pendent de revisió per Pau (especialment l'ordre de les unitats i si la proposta capstone Unitat 12 és viable).
+- **v1.0** — abril 2026 — primera versió del currículum sintetitzat amb proposta d'estructura de 12 unitats. Pendent de revisió per Pau (especialment l'ordre de les unitats).
+- **v1.1** — setembre 2026 — Actualització 2026-09: el llibre ja no porta un projecte capstone transversal; el pla d'empresa es treballa a la U12 com a saber del Bloc D i el quadern de projecte («De zero a empresa») és opcional. El curs s'orienta a la PAU/EBAU.

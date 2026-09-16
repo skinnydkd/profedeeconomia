@@ -1,0 +1,750 @@
+---
+asignatura: eco-4eso
+unidad: 5
+title: "El mercat de treball: contractes, nòmina i atur"
+lema: >-
+  El teu primer contracte arribarà abans del que penses, i amb ell una
+  nòmina en què no cobres tot el que guanyes, un període de prova i
+  un conveni que no has llegit. El treball també és un mercat, amb el
+  seu preu, el seu sòl legal i les seues regles. Conéixer-les és la
+  diferència entre firmar i saber què firmes.
+lang: ca
+estado: publicado
+slug: "asignaturas/eco-4eso/libro/05-mercado-trabajo-contratos-nomina-desempleo.ca"
+duracion: 9 sessions · 3 setmanes
+bloque: Bloc I · Economia
+sabers:
+  - El mercat de treball i el salari mínim
+  - "Població activa, ocupats i aturats: l'EPA"
+  - Tipus i causes de l'atur; polítiques d'ocupació
+  - Els contractes després de la reforma laboral de 2021
+  - "La nòmina: del salari brut al net"
+  - Drets i deures bàsics en el treball
+conceptos_clave:
+  - mercat de treball
+  - salari mínim interprofessional
+  - població activa
+  - taxa d'atur
+  - EPA
+  - atur estructural
+  - contracte indefinit
+  - fals autònom
+  - salari brut
+  - salari net
+  - cotització a la Seguretat Social
+  - conveni col·lectiu
+objetivos:
+  - Explicar el mercat de treball com la trobada entre qui oferix treball i les empreses que el demanden, i raonar els efectes d'un salari mínim.
+  - Calcular les taxes d'activitat, ocupació i atur d'una població a partir de dades tipus EPA i interpretar les xifres espanyoles.
+  - Distingir l'atur friccional, estacional, estructural i cíclic, i descriure les polítiques actives i passives d'ocupació.
+  - Identificar els contractes vigents després de la reforma laboral de 2021 i reconéixer un fals autònom.
+  - Llegir una nòmina i calcular el salari net a partir del brut aplicant la cotització a la Seguretat Social i la retenció d'IRPF.
+publicado_en: 2026-09-15
+---
+
+import Callout from '@components/Callout.astro';
+import Diagram from '@components/Diagram.astro';
+import MercadoTrabajo from '@components/diagrams/MercadoTrabajo.astro';
+import TasasEPA from '@components/diagrams/TasasEPA.astro';
+import TiposContrato from '@components/diagrams/TiposContrato.astro';
+import NominaAnotada from '@components/diagrams/NominaAnotada.astro';
+import CosteEmpresa from '@components/diagrams/CosteEmpresa.astro';
+import Curiosity from '@components/Curiosity.astro';
+import RealExample from '@components/RealExample.astro';
+import SolvedExercise from '@components/SolvedExercise.astro';
+import Steps from '@components/Steps.astro';
+import KeyTakeaways from '@components/KeyTakeaways.astro';
+import Figure from '@components/Figure.astro';
+import Bibliography from '@components/Bibliography.astro';
+import TldrUnidad from '@components/TldrUnidad.astro';
+import CasoDilema from '@components/CasoDilema.astro';
+import VuelveAlCaso from '@components/VuelveAlCaso.astro';
+import MirarFora from '@components/MirarFora.astro';
+import VocesDesacuerdo from '@components/VocesDesacuerdo.astro';
+import RecursoDestacado from '@components/libro/RecursoDestacado.astro';
+import HerramientaIsland from '@components/calculadoras/HerramientaIsland.astro';
+
+import trabajadoresOficina from '@assets/libro/taller-eco-3eso/07/trabajadores-oficina.jpg';
+import oficinaEmpleoMadrid from '@assets/libro/eco-1bach/09/oficina-empleo-madrid.jpg';
+import yolandaDiazOficial from '@assets/libro/eco-4eso/08/yolanda-diaz-oficial.jpg';
+import glovoRiderValencia from '@assets/libro/eco-4eso/08/glovo-rider-valencia.jpg';
+import manifestacion1Mayo from '@assets/libro/eco-1bach/09/manifestacion-1mayo-madrid.jpg';
+
+> **Temps de lectura**: ~28 min · **Sabers**: mercat de treball i salari mínim, població activa i EPA, tipus d'atur, contractes, nòmina, drets laborals · **Abans de començar**: Unitats 3 i 4 (com es formen els preus en un mercat; els diners, els tipus d'interés i la inflació).
+>
+> **En acabar esta unitat sabràs**:
+> - Explicar per què el treball és un mercat, què és el salari mínim i per què es discutix tant.
+> - Calcular les taxes d'activitat, ocupació i atur i llegir les dades de l'EPA.
+> - Distingir els contractes vigents des de la reforma de 2021 i reconéixer un fals autònom.
+> - Llegir la teua primera nòmina, passar del brut al net i saber quins drets tens des del primer dia.
+
+<TldrUnidad>
+El treball es compra i es ven com quasi tot: les persones l'oferixen, les empreses el demanden i el salari és el seu preu. Però és un mercat amb regles pròpies: un sòl legal anomenat salari mínim, contractes que cal posar per escrit, una nòmina en què no cobres tot el que guanyes i una assegurança col·lectiva per a quan falta el treball. A Espanya, a mitjan 2025, al voltant d'una de cada deu persones que volien treballar no trobava faena, i entre els menors de 25 anys, una de cada quatre (INE, EPA). Esta unitat explica com funciona eixe mercat, com es mesura, què firmes quan firmes un contracte i quins drets tens des del primer dia.
+</TldrUnidad>
+
+<CasoDilema
+  titular="Els riders de Glovo: autònoms amb bici pròpia o treballadors de l'empresa?"
+  fuente="Tribunal Supremo, STS 805/2020, de 25 de septiembre · Real Decreto-ley 9/2021 (Ley Rider) · Ministerio de Trabajo, 2024"
+  pregunta="Quan una persona que posa la seua bici, tria les seues hores i factura a una app és en realitat una treballadora de l'empresa, i per què importa tant la diferència?"
+>
+Glovo va nàixer a Barcelona el 2015 i en pocs anys va omplir les ciutats espanyoles de repartidors amb una motxilla groga a l'esquena. L'empresa no els contractava: cada **rider** es donava d'alta com a autònom, posava la seua bicicleta i el seu mòbil, triava en l'app les franges horàries en què volia treballar i cobrava per cada comanda entregada. Glovo ho presentava com un acord entre iguals: la plataforma només «connectava» restaurants, clients i repartidors independents. Però era l'app la que fixava el preu de cada repartiment, la que assignava les comandes mitjançant un algoritme i la que puntuava cada repartidor, donant millors franges a qui més acceptava i pitjors a qui rebutjava encàrrecs. Un d'eixos repartidors, de Madrid, va portar el seu cas fins al Tribunal Supremo.
+
+El 25 de setembre de 2020 el Ple de la Sala Social del **Tribunal Supremo** va decidir per unanimitat (STS 805/2020) que aquell rider no era un autònom sinó un **treballador per compte d'altri**: Glovo no era una simple intermediària, sinó una empresa de repartiment que fixava les condicions del servici, i el mitjà de producció essencial no era la bici, sinó la plataforma. El maig de 2021 el Govern va aprovar la **Ley Rider** (Reial Decret llei 9/2021), que presumix que els repartidors de plataformes digitals són treballadors assalariats. Glovo va mantindre durant anys el model d'autònoms; la Inspección de Trabajo li va reclamar més de 200 milions d'euros entre multes i cotitzacions no pagades (Ministerio de Trabajo, 2024), i el desembre de 2024 l'empresa va anunciar que contractaria els seus repartidors a Espanya com a assalariats al llarg de 2025.
+</CasoDilema>
+
+Potser este estiu, o el que ve, firmes el teu primer contracte: unes setmanes en un xiringuito, en la botiga d'un familiar, en un campament o repartint publicitat. Llavors et trobaràs amb paraules que fins ara eren cosa d'adults: brut i net, alta en la Seguretat Social, període de prova, conveni, retenció. I amb una sorpresa quasi universal: la quantitat que t'ingressen no és la que et van dir. Amb 16 anys ja es pot treballar a Espanya, amb permís dels teus pares o tutors, i per això convé arribar a eixe primer contracte sabent què es firma.
+
+Fins ara hem parlat de mercats de coses: entrepans, entrades, mòbils, lloguers (Unitat 3). En esta unitat el «producte» que s'intercanvia és el temps i l'esforç de les persones. És un mercat peculiar: qui ven no se separa del que ven, el preu es diu salari i la llei posa regles que no existixen en el mercat del pa. També és el mercat del qual més es parla en les notícies, perquè quan falla no sobren coses en un prestatge: sobren persones sense treball.
+
+El recorrerem en sis passos: com funciona el mercat de treball i què és el salari mínim; com es compten els aturats i què diuen les dades d'Espanya; per què existix l'atur i què es fa contra ell; quins contractes existixen des de la reforma de 2021; com es llig una nòmina; i quins drets i deures tens des del primer dia.
+
+## El treball també és un mercat
+
+En la Unitat 3 vam vore que un mercat és la trobada entre qui vol comprar alguna cosa i qui la vol vendre, i que d'eixa trobada ix un preu. En el **mercat de treball** passa el mateix, però amb els papers al revés del que un esperaria: qui **oferix** treball són les persones (tu, quan busques una faena d'estiu, estàs oferint el teu temps) i qui el **demana** són les empreses i les administracions que necessiten gent per a produir. El preu al qual es creuen l'oferta i la demanda és el **salari**.
+
+Com en qualsevol mercat, eixe preu es mou. Si moltes empreses busquen programadores i n'hi ha poques, els salaris de les programadores pugen; si hi ha milers de persones disposades a servir taules a l'estiu i menys places que candidats, els salaris de l'hostaleria no pugen. Darrere de cada sou hi ha una qüestió d'escassetat: com més difícil siga trobar algú que faça una faena, més caldrà pagar-li. Per això la formació importa tant: no perquè un títol valga per si mateix, sinó perquè reduïx el nombre de persones capaces de fer el mateix que tu.
+
+<Callout label="Concepte clau" title="Mercat de treball">
+
+El **mercat de treball** és el conjunt de relacions entre les persones que oferixen el seu treball (l'**oferta de treball**: qui té faena o en busca) i les empreses i administracions que el demanden (la **demanda de treball**: els llocs que volen cobrir). El preu que iguala les dues parts és el **salari**. A diferència del mercat del pa, ací el que es ven és el temps de les persones, i per això la llei fixa un preu mínim, obliga a escriure l'acord en un contracte i protegix la part més dèbil, que quasi sempre és qui treballa.
+
+</Callout>
+
+<Diagram caption="Oferta i demanda de treball. Del creuament ix el salari d'equilibri. Si el salari mínim es fixa per damunt, hi ha més persones disposades a treballar (oferta) que llocs oferits (demanda), i la diferència és atur. Quant d'atur, i si de veres n'hi ha, és el que discutixen els economistes.">
+  <MercadoTrabajo />
+</Diagram>
+
+### Què determina el teu salari
+
+Quasi ningú negocia el seu sou des de zero. A Espanya la majoria dels salaris els fixa un **conveni col·lectiu**, un acord entre sindicats i empreses que establix, per a cada sector o empresa i per a cada categoria, un salari mínim propi per damunt del legal. Sobre eixe sòl, el salari de cada persona depén de la seua formació, de la seua experiència, del sector (la banca paga més que l'hostaleria), de la grandària de l'empresa i del lloc. I d'un factor que ningú controla: quanta gent pot fer el mateix.
+
+Per a situar-te: el salari mitjà a Espanya va ser d'uns 28.050 € bruts a l'any el 2023, però la mediana, el sou que deixa la meitat dels treballadors per davall, rondava els 23.300 € (INE, Encuesta de Estructura Salarial 2023, publicada el 2025). La diferència entre les dues xifres et diu una cosa important: uns pocs sous molt alts estiren la mitjana cap amunt, i la majoria de la gent cobra menys del que suggerix el «salari mitjà» que ix en les notícies.
+
+<Figure
+  src={trabajadoresOficina}
+  alt="Diverses persones treballant amb ordinadors en una oficina compartida de tipus coworking."
+  caption="Huit de cada deu persones ocupades a Espanya treballen per compte d'altri: a canvi d'un salari, posen el seu temps a disposició d'una empresa que decidix què es fa, com i quan. Eixa dependència és el que convertix la relació en laboral, encara que la faena siga des d'una oficina compartida o des de casa."
+  credit="Foto: Asa Wilson, CC BY-SA 2.0 vía Wikimedia Commons"
+  aspectHint="3/2"
+  variant="right"
+/>
+
+### El salari mínim interprofessional
+
+En el mercat del treball hi ha un preu per davall del qual no es pot vendre: el **salari mínim interprofessional (SMI)**. El fixa cada any el Govern, després de consultar sindicats i patronal, i s'aplica a qualsevol faena a jornada completa, siga quin siga el sector i encara que no hi haja conveni. El 2025 el SMI és de **1.184 € bruts al mes en 14 pagues**, és a dir, 16.576 € a l'any (Reial Decret 87/2025). Si treballes mitja jornada, et correspon la meitat; si un conveni en fixa més, mana el conveni.
+
+El SMI ha pujat molt en poc de temps: el 2018 era de 735,90 € al mes, així que en set anys ha augmentat al voltant d'un 61 %. La raó declarada és acostar-lo al 60 % del salari mitjà, que és el que recomana la Carta Social Europea perquè un sou a temps complet permeta viure sense ajudes. I ací comença un dels debats més llargs de l'economia: un salari mínim més alt ajuda els treballadors pitjor pagats o els deixa sense faena?
+
+<VocesDesacuerdo
+  tema="Pujar el salari mínim destruïx ocupació?"
+  postura_a={{
+    etiqueta: 'La visió clàssica: el preu mana',
+    tesis: 'Si el salari mínim queda per damunt del que val el treball d\'una persona per a una empresa, eixa persona no serà contractada. El Banco de España va estimar el 2021 que la pujada del 22 % de 2019 va frenar la creació d\'ocupació entre els treballadors afectats, amb una pèrdua d\'entre 94.000 i 180.000 llocs respecte al que hauria passat sense ella.',
+  }}
+  postura_b={{
+    etiqueta: 'La visió del poder de negociació',
+    tesis: 'Moltes empreses paguen menys del que val el treball perquè qui busca faena té poc de marge per a negociar. Un salari mínim corregix eixe desequilibri sense destruir ocupació: és el que van trobar David Card i Alan Krueger el 1994 en la restauració de Nova Jersey (Card va rebre el Nobel el 2021), i a Espanya l\'afiliació va passar d\'uns 19 milions el 2018 a quasi 22 milions el 2025 mentres el SMI pujava un 61 %.',
+  }}
+>
+Les dues postures tenen dades i les dues tenen raó en part: els estudis més acurats troben que les pujades moderades del salari mínim amb prou faenes afecten l'ocupació total, però que sí que poden reduir les hores o frenar la contractació en els sectors i les regions on molts sous estan prop del mínim, i sobretot entre jóvens sense experiència. La pregunta útil no és «SMI sí o no?», sinó **quant, a quin ritme i en quina economia**. Quan llegiu un titular sobre el SMI, busqueu tres coses: quant puja en percentatge, quina proporció de treballadors el cobra i què li passa a l'ocupació d'eixos treballadors, no a l'ocupació total.
+</VocesDesacuerdo>
+
+<RecursoDestacado href="/debates/mercado-estado/01-salario-minimo/" kicker="Debat a classe" title="Ha de pujar més el salari mínim?" descripcion="Taula redona amb els arguments documentats de les dues postures: ocupació enfront de poder adquisitiu, amb les dades del Banco de España, l'AIReF i el Ministerio de Trabajo sobre les pujades de 2019 a 2025." colorVar="--color-eco4" />
+
+## Població activa, ocupats i aturats: l'EPA
+
+Cada tres mesos ix en les notícies una xifra que mou governs: la **taxa d'atur**. La calcula l'Instituto Nacional de Estadística amb l'**Enquesta de Població Activa (EPA)**, una enquesta trimestral a unes 65.000 vivendes de tota Espanya en què es pregunta a cada persona de 16 anys o més què va fer la setmana anterior. Amb eixes respostes, l'INE repartix la població en quatre caixes que convé tindre clares, perquè quasi tots els errors en parlar de l'atur vénen de barrejar-les.
+
+<Callout label="Concepte clau" title="Inactius, actius, ocupats i aturats">
+
+La **població en edat de treballar** és tota la que té 16 anys o més. Dins d'ella, els **inactius** ni treballen ni busquen faena: estudiants que només estudien, persones jubilades, qui cuida de la casa o de familiars, qui no pot treballar. Els **actius** són qui forma part del mercat de treball, i es dividixen en **ocupats**, que tenen una faena (per compte d'altri o propi), i **aturats**, que no en tenen, la busquen activament i estan disponibles per a començar. Un aturat és, per tant, algú que **vol treballar i no pot**; qui no busca no és aturat, sinó inactiu.
+
+</Callout>
+
+<Diagram caption="De la població de 16 anys o més als aturats. Les tres taxes es calculen sobre bases distintes: la d'activitat i la d'ocupació, sobre tota la població en edat de treballar; la d'atur, només sobre els actius. Per això no quadren entre si a simple vista.">
+  <TasasEPA />
+</Diagram>
+
+### Les tres taxes
+
+Amb eixes quatre caixes es construïxen les tres taxes que resumixen un mercat de treball:
+
+- La **taxa d'activitat** mesura quina part de la població en edat de treballar participa en el mercat: actius dividit entre població de 16 anys o més, per 100. A Espanya ronda el 59 % (INE, EPA, segon trimestre de 2025).
+- La **taxa d'ocupació** mesura quina part d'eixa mateixa població té faena: ocupats entre població de 16 anys o més, per 100.
+- La **taxa d'atur** mesura quina part dels qui volen treballar no ho aconseguix: aturats entre **actius**, per 100. Fixa't en el denominador: no és tota la població, sinó només els actius. Per això un país pot tindre una taxa d'atur alta i alhora molta gent ocupada, i per això la taxa d'atur pot baixar sense que ningú trobe faena, com vorem en l'exercici.
+
+<Curiosity title="Una hora de treball a la setmana et convertix en ocupat">
+L'EPA seguix les definicions de l'Organització Internacional del Treball, i una d'elles sorprén tothom: compta com a **ocupada** qualsevol persona que haja treballat **almenys una hora** a canvi de diners durant la setmana en què se li pregunta. Algú que va fer una classe particular el dimarts i no té res més és, estadísticament, un ocupat. La regla pareix absurda, però té la seua lògica: permet comparar països molt distints amb el mateix criteri i evita que cada govern decidisca què és «ocupació de veres». El preu és que la taxa d'atur no capta qui treballa molt poques hores i en voldria més (la **subocupació**) ni qui s'ha cansat de buscar i ha passat a inactiu (el **desànim**). Per això els economistes mai miren una sola xifra: la taxa d'atur es llig junt amb la d'activitat, la d'ocupació i les hores treballades.
+</Curiosity>
+
+<SolvedExercise number="5.1" title="Les tres taxes de Villaseca i l'efecte desànim">
+
+**Enunciat**
+
+A Villaseca (cas inventat però versemblant) viuen **20.000 persones de 16 anys o més**. D'elles, 8.000 ni treballen ni busquen faena (estudien, estan jubilades o cuiden de la família), 10.800 tenen faena i 1.200 en busquen sense trobar-ne.
+
+a) Calcula la població activa i les taxes d'activitat, d'ocupació i d'atur.
+
+b) Passa un any dolent: ningú troba faena, però 300 dels aturats es cansen de buscar i deixen de fer-ho. Recalcula la taxa d'atur. Ha millorat el mercat de treball de Villaseca?
+
+**Solució**
+
+1. **Població activa**: ocupats + aturats = 10.800 + 1.200 = **12.000 persones**. Comprovació: 12.000 actius + 8.000 inactius = 20.000, tota la població de 16 anys o més.
+2. **Taxa d'activitat**: 12.000 / 20.000 × 100 = **60 %**. Sis de cada deu persones en edat de treballar participen en el mercat de treball.
+3. **Taxa d'ocupació**: 10.800 / 20.000 × 100 = **54 %**.
+4. **Taxa d'atur**: 1.200 / 12.000 × 100 = **10 %**. Compte amb el denominador: es dividix entre els actius, no entre els 20.000. Si dividires entre tota la població eixiria un 6 %, i seria un error.
+5. **Efecte desànim**: els 300 que deixen de buscar passen d'aturats a inactius. Ara hi ha 900 aturats i 11.700 actius (10.800 + 900). Taxa d'atur: 900 / 11.700 × 100 = **7,7 %**.
+6. **Lectura**: la taxa d'atur ha baixat més de dos punts sense que s'haja creat ni una sola faena. El mercat de treball no ha millorat: ha empitjorat, perquè 300 persones han perdut l'esperança. La pista està en la taxa d'activitat, que cau del 60 % al 58,5 %. Quan veges baixar l'atur, mira sempre si també baixa l'activitat.
+
+</SolvedExercise>
+
+**Prova-ho tu mateix:** canvia el nombre d'inactius, ocupats i aturats i observa com es mouen les tres taxes; prova a passar aturats a inactius i voràs baixar l'atur sense crear ocupació.
+
+<HerramientaIsland componente="TasasEPA" />
+
+### Les dades d'Espanya
+
+A mitjan 2025 Espanya tenia uns 22,3 milions de persones ocupades, la xifra més alta de la seua història, i al voltant de 2,4 milions d'aturats, amb una **taxa d'atur del 10,3 %** (INE, EPA, segon trimestre de 2025). És una bona notícia comparada amb el passat recent, i una mala notícia comparada amb els veïns: la mitjana de la Unió Europea rondava el 6 % (Eurostat, 2025), i Espanya continuava sent el país amb la taxa d'atur més alta de la Unió. Pitjor encara entre els jóvens: la taxa d'atur de les persones de 16 a 24 anys se situava al voltant del 25 %, quasi el doble que en el conjunt de la Unió. Una de cada quatre persones de la teua edat que busca faena no en troba.
+
+Hi ha una segona xifra de l'atur que ix cada mes, no cada trimestre: l'**atur registrat**, que publica el Servicio Público de Empleo Estatal (SEPE) comptant les persones inscrites com a demandants a les oficines d'ocupació. El juliol de 2025 rondava els 2,4 milions. No coincidix amb l'EPA perquè mesuren coses distintes: l'EPA pregunta a la gent si busca faena; el SEPE compta qui s'ha apuntat en una oficina. Hi ha aturats que no s'apunten i persones apuntades que no busquen de veres. Les dues xifres són útils; només cal saber quina s'està llegint.
+
+<Figure
+  src={oficinaEmpleoMadrid}
+  alt="Façana d'una Oficina d'Ocupació al barri de la Concepción (Madrid), amb els logotips del SEPE i de la Comunitat de Madrid damunt de l'entrada de vidre."
+  caption="Oficina d'ocupació del SEPE i del servici autonòmic a Madrid. Ací es compta l'atur registrat, es tramita la prestació per desocupació i s'oferixen cursos i orientació: les polítiques passives i actives d'ocupació passen per la mateixa porta."
+  credit="Foto: Lojwe, CC0 1.0 vía Wikimedia Commons"
+  aspectHint="3/2"
+  variant="wide"
+/>
+
+<RecursoDestacado href="/fopp-4eso/recursos/tasas-epa/" kicker="Ferramenta" title="Calculadora de taxes de l'EPA" descripcion="Introduïx població, actius, ocupats i aturats i obtín les tres taxes a l'instant. Servix per a comprovar l'exercici 5.1 i per a jugar amb les dades reals de l'INE de cada trimestre." colorVar="--color-eco4" />
+
+## L'atur: tipus, causes i conseqüències
+
+Que hi haja aturats no sempre significa el mateix. Un cuiner que deixa el seu restaurant per a buscar-ne un de millor, un socorrista sense faena al gener, una persona de 50 anys la fàbrica de la qual va tancar per sempre i un jove que no troba res perquè el país sencer està en recessió són quatre aturats molt distints, amb causes distintes i remeis distints. Els economistes distingixen quatre tipus d'atur.
+
+- **Friccional.** El temps que es tarda a passar d'una faena a una altra, o dels estudis al primer treball. Existix sempre, fins i tot en les economies més sanes, perquè buscar i trobar porta temps. És el menys preocupant: dura setmanes o pocs mesos.
+- **Estacional.** El que apareix quan acaba la temporada d'una activitat. A Espanya l'exemple és el **turisme**, que aporta més del 12 % del PIB (INE, Cuenta Satélite del Turismo, 2023) i contracta centenars de milers de persones de maig a setembre per a deixar-les sense faena a la tardor. Cada any l'atur baixa a l'estiu i puja al gener per este motiu, i per això l'INE també publica les dades «desestacionalitzades».
+- **Estructural.** El que es produïx quan el que saben fer les persones no encaixa amb el que les empreses necessiten, o quan les persones estan en un lloc i les faenes en un altre. És el més difícil de curar, perquè no l'arregla el creixement econòmic: fa falta formació, mobilitat o les dues coses. Bona part de l'atur de llarga duració espanyol és d'este tipus.
+- **Cíclic.** El que provoca una crisi: quan l'economia es frena, les empreses venen menys, produïxen menys i acomiaden. Desapareix quan l'economia es recupera, però mentres dura és el més dolorós, perquè colpeja molta gent alhora.
+
+### Dues crisis, dos aturs
+
+Espanya va viure l'atur cíclic en la seua forma més brutal entre 2008 i 2013. La taxa d'atur va passar d'al voltant del 8 % el 2007 al **26,9 % en el primer trimestre de 2013**, amb més de sis milions d'aturats; entre els menors de 25 anys va superar el 55 % (INE, EPA). Va ser una crisi financera i immobiliària: van deixar de construir-se cases, van tancar milers d'empreses i l'atur va tardar més d'una dècada a tornar als nivells anteriors. La segona gran sacsada va arribar el 2020 amb la pandèmia, i la resposta va ser molt distinta.
+
+<RealExample title="2020: els ERTO eviten que la pandèmia es convertisca en acomiadaments" source="Ministerio de Inclusión, Seguridad Social y Migraciones, datos de afiliación y ERTE, abril de 2020 · INE, EPA 2020 · Comisión Europea, instrumento SURE" sourceUrl="https://www.seg-social.es">
+El març de 2020 el confinament va tancar de colp bars, hotels, botigues i fàbriques. Amb la crisi de 2008 com a referència, l'esperable era una allau d'acomiadaments. En el seu lloc, el Govern va facilitar els **ERTO** (expedients de regulació temporal d'ocupació): l'empresa suspenia el contracte o reduïa la jornada, la persona treballadora cobrava del SEPE una prestació del 70 % de la seua base reguladora i l'Estat assumia bona part de les cotitzacions. A finals d'abril de 2020 hi havia **prop de 3,4 milions de persones en ERTO**, una cosa mai vista. El resultat va ser que la taxa d'atur va pujar del 13,8 % a finals de 2019 al 16,3 % en el tercer trimestre de 2020 (INE, EPA), molt lluny del 27 % de 2013, i que quan l'activitat va tornar, la majoria d'eixes persones va tornar al seu lloc sense passar per l'atur. La Unió Europea va finançar part del cost amb el fons SURE, que va prestar a Espanya al voltant de 21.000 milions d'euros. La lliçó de política econòmica és clara: davant d'una crisi temporal, mantindre el vincle entre l'empresa i els seus treballadors és més barat i menys dolorós que trencar-lo i reconstruir-lo després.
+</RealExample>
+
+### Què li fa l'atur a les persones i al país
+
+Per a qui el patix, l'atur és, primer, una pèrdua d'ingressos: la prestació no cobrix tot el sou i s'esgota. Però els estudis sobre atur de llarga duració mostren danys que van més enllà dels diners: pèrdua d'habilitats i de contactes, que fa cada vegada més difícil tornar a trobar faena; problemes de salut, sobretot mental; i una sensació d'inutilitat que l'Organització Mundial de la Salut reconeix com a factor de risc. Per a un jove, a més, començar la vida laboral en l'atur deixa una «cicatriu»: qui entra al mercat en una crisi cobra menys durant anys que qui hi entra en una època bona.
+
+Per al conjunt del país, l'atur és producció que es perd per sempre (les hores que no es van treballar el 2012 no es recuperen), ingressos públics que deixen d'arribar (menys cotitzacions, menys IRPF, menys IVA) i despesa pública que augmenta (prestacions, subsidis). I és, amb la inflació que vam vore en la Unitat 4, la principal causa de desigualtat i de pobresa en una economia com l'espanyola.
+
+### Què es fa contra l'atur
+
+Les polítiques d'ocupació es dividixen en dues famílies, i les dues passen pel **SEPE** i pels servicis d'ocupació de cada comunitat autònoma (LABORA a la Comunitat Valenciana, el SAE a Andalusia, Lanbide al País Basc, el SOC a Catalunya).
+
+Les **polítiques passives** substituïxen els ingressos perduts. La principal és la **prestació per desocupació**: per a cobrar-la cal haver treballat i cotitzat **almenys 360 dies en els sis anys anteriors**, i dura entre quatre mesos i dos anys segons el que s'ha cotitzat. Es cobra el 70 % de la base reguladora (una mitjana del que es cotitzava) durant els primers sis mesos i el 60 % després. Cada mes del teu primer contracte, per curt que siga, suma per a eixe dret: és una de les raons per les quals treballar sense contracte et perjudica a tu abans que a ningú. Qui esgota la prestació i no té rendes pot accedir a un **subsidi** d'uns 570 € al mes el 2025, i com a últim recurs existix l'Ingreso Mínimo Vital.
+
+Les **polítiques actives** intenten que la persona torne a treballar: cursos de formació i requalificació, orientació i ajuda per a buscar faena, bonificacions a les empreses que contracten col·lectius amb més dificultats i programes específics com la **Garantia Juvenil**, que oferix als menors de 30 anys inscrits una oferta de faena, formació o pràctiques. Les passives alleugen; les actives curen, quan funcionen. I el debat a Europa és quasi sempre el mateix: en quina proporció gastar en unes i en altres.
+
+## Els contractes de treball
+
+Quan treballes per a algú a canvi d'un salari, la llei entén que hi ha un **contracte de treball**, hi haja o no un paper firmat. Però el paper importa, perquè és el que et permet demostrar el que es va acordar. L'Estatut dels Treballadors (Reial Decret Legislatiu 2/2015, la llei bàsica del treball a Espanya) el definix amb quatre notes que convé recordar, perquè són les que el Tribunal Supremo va aplicar als riders: el treball és **voluntari**, **retribuït**, **per compte d'altri** (el fruit del teu treball és de l'empresa, que assumix el risc) i **dependent** (el fas sota l'organització i la direcció d'un altre).
+
+<Callout label="Concepte clau" title="Contracte de treball">
+
+El **contracte de treball** és l'acord pel qual una persona es compromet a prestar els seus servicis de manera voluntària, retribuïda, per compte d'altri i sota la direcció d'una empresa, i esta a pagar-li un salari i a complir la llei i el conveni. A la pràctica el firmes per escrit, l'empresa et dona d'**alta en la Seguretat Social abans que comences** i comunica el contracte al SEPE en deu dies. Tens dret a una còpia. Si et diuen «ja et farem el contracte més avant», el primer dia ja s'està incomplint la llei.
+
+</Callout>
+
+### Treballar amb 16 anys
+
+L'Estatut prohibix treballar als menors de 16 anys (article 6), llevat dels espectacles públics amb autorització expressa. Entre els 16 i els 18 pots firmar un contracte, però amb el consentiment dels teus pares o tutors, tret que visques de manera independent (article 7). I amb regles especials de protecció: no pots fer treball nocturn (entre les deu de la nit i les sis del matí), ni hores extraordinàries, ni faenes declarades perilloses o insalubres. Un xiringuito que tanca a les dues de la matinada no pot tindre't servint copes a eixa hora, encara que tu vulgues.
+
+### La reforma de 2021 i els quatre contractes
+
+Fins al 2021 Espanya era el país europeu amb més contractes temporals: un de cada quatre assalariats tenia data de caducitat, i molts encadenaven contractes de setmanes durant anys. La **reforma laboral** aprovada pel Reial Decret llei 32/2021, pactada entre el Govern, els sindicats CCOO i UGT i la patronal CEOE, va simplificar el sistema amb una idea central: **el contracte normal és l'indefinit**, i el temporal només s'admet si hi ha una causa concreta que el justifique.
+
+<Figure
+  src={yolandaDiazOficial}
+  alt="Retrat oficial de Yolanda Díaz Pérez, vicepresidenta segona del Govern i ministra de Treball i Economia Social d'Espanya."
+  caption="Yolanda Díaz, ministra de Treball des de 2020, va negociar amb sindicats i patronal la reforma laboral de 2021. Que les tres parts la firmaren va ser tan nou com el seu contingut: les reformes anteriors s'havien aprovat sense acord."
+  credit="© Unión Europea, 2026. CC BY 4.0 vía Wikimedia Commons"
+  aspectHint="2/3"
+  variant="inline-small"
+/>
+
+Des de llavors existixen quatre contractes principals:
+
+- **Indefinit.** El contracte per defecte: sense data de fi, dura mentres cap de les parts no el trenque per les vies legals. Si l'empresa acomiada sense causa justificada (acomiadament improcedent), ha d'indemnitzar amb 33 dies de salari per any treballat, fins a un màxim de 24 mensualitats. Dona dret ple a l'atur i és el que demanen els bancs per a una hipoteca i els propietaris per a un lloguer. Una variant és el **fix discontinu**, indefinit però per a activitats que es repetixen per temporades, com les del turisme.
+- **Temporal, només amb causa.** Dues causes admeses: **substituir** algú amb dret a tornar al seu lloc (una baixa, un permís de maternitat) o atendre **circumstàncies de la producció** imprevistes, com un pic de comandes, durant un màxim de sis mesos (dotze si el conveni ho permet), o previsibles, com la campanya de Nadal, fins a 90 dies l'any. En acabar, la persona cobra una indemnització de 12 dies per any treballat. Sense causa real, el contracte és frau i es convertix en indefinit.
+- **Formació en alternança.** Per a persones de 16 a 30 anys sense títol relacionat amb el lloc, que combinen treball i estudis (és la base de l'FP dual). Dura entre tres mesos i dos anys, amb una part de la jornada dedicada a formar-se, i el salari no pot baixar del SMI en proporció a les hores treballades.
+- **Per a la pràctica professional.** Per a qui ja té un títol universitari o d'FP obtingut en els tres últims anys i necessita experiència. Entre sis mesos i un any, amb el salari de conveni de la seua categoria. No s'ha de confondre amb les pràctiques curriculars d'un cicle o un grau, que no són un contracte de treball encara que des de 2024 també cotitzen.
+
+<Diagram caption="Els quatre contractes vigents després de la reforma de 2021. L'indefinit és la regla; el temporal exigix una causa taxada; els dos formatius combinen treball amb estudis (alternança) o amb la primera experiència després del títol (pràctica professional).">
+  <TiposContrato />
+</Diagram>
+
+<Curiosity title="D'un de cada quatre a un de cada set: la temporalitat després de la reforma">
+Abans de la reforma, el 2021, més del 25 % dels assalariats espanyols tenia un contracte temporal, el percentatge més alt de la Unió Europea. Dos anys després, a finals de 2023, la taxa de temporalitat havia caigut a l'entorn del 17 %, i el 2025 rondava el 15 %, ja prop de la mitjana europea (INE, EPA). És un dels canvis més ràpids que ha registrat mai l'estadística laboral espanyola. Els crítics assenyalen que una part de la millora és comptable, perquè molts temporals van passar a fixos discontinus, que compten com a indefinits encara que tinguen mesos sense treballar; l'Autoridad Independiente de Responsabilidad Fiscal (AIReF) va estimar el 2024 que entre el 60 % i el 75 % de la caiguda és real. Siga quina siga la xifra exacta, per a una persona que comença a treballar el canvi és concret: el normal ja no és encadenar contractes de tres mesos.
+</Curiosity>
+
+### Període de prova, jornada i vacances
+
+Quasi tots els contractes inclouen un **període de prova**: uns mesos al principi en què qualsevol de les dues parts pot trencar la relació sense indemnització ni explicacions. L'Estatut el limita (article 14) a sis mesos per als tècnics titulats i dos mesos per a la resta (tres en empreses de menys de 25 treballadors, i un mes en contractes temporals de menys de sis mesos). Durant la prova tens exactament els mateixos drets que després: cobres, cotitzes i et compten les vacances. L'única cosa distinta és que et poden dir adeu sense causa. En el contracte han de figurar també la **jornada** (quantes hores a la setmana i com es distribuïxen), el **salari** (sempre en brut) i el **conveni** que s'aplica, que és on estan quasi totes les regles concretes del teu lloc: categories, complements, calendari, horaris. Tens dret a conéixer-lo i es pot consultar de franc en el butlletí oficial corresponent.
+
+### El fals autònom i els riders
+
+Hi ha una manera de treballar que no és un contracte de treball: ser **autònom**, és a dir, treballar per compte propi, amb els teus propis mitjans, per als clients que tu tries i assumint tu el risc. Un fontaner que va per les cases, una dissenyadora que factura a diverses empreses o l'amo d'un bar són autònoms. Cotitzen en un règim propi de la Seguretat Social (el RETA), no tenen vacances pagades ni atur en les mateixes condicions i no els protegix l'Estatut dels Treballadors. A canvi, ningú no els diu quan ni com han de treballar.
+
+<Figure
+  src={glovoRiderValencia}
+  alt="Repartidor de Glovo en bicicleta circulant per un carrer de València amb la motxilla groga de la plataforma a l'esquena."
+  caption="Un rider de Glovo a València. La bici i el mòbil eren seus, però el preu de cada comanda, el repartiment d'encàrrecs i la puntuació els decidia l'app. Per al Tribunal Supremo, això és dependència i alienitat: una relació laboral."
+  credit="Foto: Pacopac, CC BY-SA 4.0 vía Wikimedia Commons"
+  aspectHint="3/2"
+/>
+
+El problema apareix quan una empresa usa la figura de l'autònom per a algú que en realitat treballa com un assalariat: amb horari imposat, ferramentes de l'empresa, un sol client i ordres que complir. És el **fals autònom**. Per a l'empresa l'avantatge és enorme: s'estalvia les cotitzacions (al voltant del 30 % del salari, com vorem), les vacances, les indemnitzacions i el conveni. Per a la persona, el desavantatge és la mateixa quantitat, més el risc de quedar-se sense res si l'empresa deixa de telefonar. Per això l'Estatut presumix que, si hi ha dependència i alienitat, la relació és laboral diguen el que diguen els papers, i per això el cas dels riders va acabar com va acabar.
+
+<RealExample title="De la sentència a la Ley Rider: com canvia una regla del mercat de treball" source="STS 805/2020, de 25 de septiembre · Real Decreto-ley 9/2021, de 11 de mayo · Ministerio de Trabajo y Economía Social, 2024" sourceUrl="https://www.boe.es/buscar/act.php?id=BOE-A-2021-7840">
+La sentència del Supremo de setembre de 2020 resolia el cas d'un sol repartidor, però fixava doctrina: si la plataforma posa el preu, assigna el treball amb un algoritme i avalua la persona, hi ha relació laboral encara que la bici siga seua i l'horari, en aparença, lliure. Huit mesos després, el Reial Decret llei 9/2021, conegut com a **Ley Rider**, va convertir eixa doctrina en llei per a tot el sector: els repartidors de plataformes digitals es presumixen treballadors per compte d'altri, i les empreses han d'informar els representants dels treballadors de com funcionen els algoritmes que repartixen el treball i avaluen les persones. Va ser la primera norma de la Unió Europea sobre gestió algorítmica del treball. Algunes plataformes van contractar els seus repartidors des del primer dia; Glovo va mantindre el model d'autònoms, va acumular sancions i reclamacions de cotitzacions per més de 200 milions d'euros i, el desembre de 2024, va anunciar que passaria a contractar com a assalariats els seus riders a Espanya al llarg de 2025. El cost per a l'empresa és real: un assalariat costa al voltant d'un 30 % més que el seu salari brut. Per al repartidor, eixe 30 % és el seu atur, la seua baixa per malaltia i la seua pensió.
+</RealExample>
+
+<Steps label="Abans de firmar" title="Sis comprovacions per al teu primer contracte" variant="arabic">
+  <li>**Demana el contracte per escrit i llig-lo sencer abans de començar.** Ha de dir quin tipus de contracte és, la jornada, el salari brut, la duració si és temporal (i la seua causa), el període de prova i el conveni que s'aplica.</li>
+  <li>**Comprova l'alta en la Seguretat Social.** L'empresa t'ha de donar d'alta abans del primer dia. Pots vore-ho tu mateix demanant l'informe de **vida laboral** en el web o en l'app de la Seguretat Social; és gratuït i immediat.</li>
+  <li>**Compara el salari amb el conveni.** Busca el conveni del teu sector i de la teua categoria en el BOE o en el butlletí de la teua comunitat: el sou que t'oferixen no pot ser menor que el que fixa per al teu grup, ni mai menor que el SMI.</li>
+  <li>**Pregunta com es cobra i quan.** Per transferència, abans que acabe el mes següent i amb nòmina. «En mà i sense papers» és el senyal d'alarma més clar.</li>
+  <li>**Anota el teu horari real des del primer dia.** L'empresa està obligada a registrar la teua jornada; si et demanen més hores de les pactades, són hores extraordinàries i es paguen o es compensen amb descans.</li>
+  <li>**Guarda-ho tot**: el contracte, les nòmines, els missatges amb horaris i qualsevol canvi. Si un dia hi ha un problema, la prova seràs tu.</li>
+</Steps>
+
+## La nòmina: del brut al net
+
+Al final del teu primer mes de treball rebràs una **nòmina**: el document, amb un format fixat per llei (Orden ESS/2098/2014), en què l'empresa detalla el que has guanyat, el que t'ha descomptat i el que t'ingressa. És el paper més important de la teua vida laboral i un dels menys llegits: amb ell demostres el que cobres, amb ell et donen una hipoteca i amb ell sabràs si et cotitzen el que et correspon. Aprendre a llegir-la porta deu minuts.
+
+<Diagram caption="Anatomia d'una nòmina: el que guanyes (meritacions), el que et descompten (cotització a la Seguretat Social i retenció d'IRPF) i el que cobres (líquid). L'exemple usa un 6,35 % de cotització; el 2025, amb el Mecanismo de Equidad Intergeneracional, el percentatge real d'un contracte indefinit és del 6,48 %.">
+  <NominaAnotada />
+</Diagram>
+
+### El que guanyes: les meritacions
+
+La part de dalt de la nòmina suma tot el que l'empresa reconeix deure't pel mes: són les **meritacions**, i el seu total és el teu **salari brut** mensual. Ahí apareixen el **salari base** que fixa el conveni per a la teua categoria, els **complements** (antiguitat, nocturnitat, idiomes, productivitat, un plus pel lloc), les **hores extraordinàries** si n'has fet i, si la teua empresa repartix les pagues extra mes a mes, la part **prorratejada** d'eixes pagues. A Espanya l'Estatut garantix **dues pagues extraordinàries** a l'any (article 31), una per Nadal i una altra en el mes que fixe el conveni, normalment juny o juliol; per això es parla de sous «en 14 pagues». És una peculiaritat espanyola que va nàixer en la postguerra (la paga de Nadal es va establir el 1944) i que no existix en la majoria de països europeus: cobrar 14 vegades 1.300 € és exactament el mateix que cobrar 12 vegades 1.516,67 €, però psicològicament no ho pareix. També poden aparéixer quantitats que no són salari, com les dietes o el plus de transport, que no cotitzen ni tributen dins de certs límits.
+
+### El que et descompten: Seguretat Social i IRPF
+
+D'eixe brut, l'empresa retira dues coses per obligació legal, i no es queda cap de les dues.
+
+La primera és la teua **cotització a la Seguretat Social**. El 2025, en un contracte indefinit, és el **6,48 % de la base de cotització** (una xifra molt pareguda al teu brut mensual amb les pagues extra prorratejades): 4,70 % per a contingències comunes, 1,55 % per a desocupació, 0,10 % per a formació professional i 0,13 % per al Mecanismo de Equidad Intergeneracional, que reforça les pensions. Arredonint, **al voltant del 6,5 %**. No és un impost: és una quota que et compra drets concrets, i cada mes cotitzat suma per a ells. Amb ella es paguen les pensions de qui hui està jubilat (i les teues les pagaran els qui treballen llavors), la prestació per desocupació, la baixa quan estàs malalt, els permisos de maternitat i paternitat i l'atenció quan tens un accident de treball.
+
+La segona és la **retenció a compte de l'IRPF**. L'Impost sobre la Renda es paga sobre el que guanyes en tot l'any, i la declaració es fa la primavera següent; per a no haver de pagar-lo de colp, l'empresa avança cada mes a Hisenda un percentatge del teu sou en nom teu. Eixe percentatge depén de quant guanyaràs en l'any i de la teua situació familiar, i en una primera faena amb un sou modest sol estar entre el 2 % i el 10 %. És un **avançament**, no l'impost definitiu: si t'han retingut de més, Hisenda et torna la diferència; si de menys, la pagues. Com funciona l'impost en si, amb els seus trams, ho vorem en la Unitat 6.
+
+<Callout label="Concepte clau" title="Salari brut i salari net">
+
+El **salari brut** és el que l'empresa reconeix pagar-te abans de descomptes: és la xifra que apareix en el contracte, en el conveni i en qualsevol oferta de faena seriosa. El **salari net** o **líquid a percebre** és el que entra en el teu compte després de restar la teua cotització a la Seguretat Social (al voltant del 6,5 %) i la retenció d'IRPF (variable, entre el 2 % i el 10 % en sous baixos, molt més en sous alts). En una primera faena la diferència sol estar entre el 10 % i el 20 %. Quan t'oferisquen un sou, pregunta sempre si és brut o net i en quantes pagues: és la primera pregunta que fa qui sap llegir una nòmina.
+
+</Callout>
+
+<SolvedExercise number="5.2" title="La primera nòmina de Marina: del brut anual al líquid de cada mes">
+
+**Enunciat**
+
+Marina té 19 anys i acaba de firmar el seu primer contracte indefinit a jornada completa com a auxiliar de farmàcia (cas inventat però versemblant). El seu conveni li assigna un **salari brut anual de 18.200 € en 14 pagues**: dotze mensualitats i dues pagues extra, al juny i al desembre, de la mateixa quantia. La seua empresa aplica una cotització a la Seguretat Social del 6,5 % sobre la base de cotització mensual (el brut anual dividit entre dotze, perquè les pagues extra es prorrategen per a cotitzar) i una retenció d'IRPF del 9 % sobre cada paga. Calcula:
+
+a) El brut de cada paga i la base de cotització mensual.
+b) La cotització a la Seguretat Social i la retenció d'IRPF d'un mes normal.
+c) El líquid d'un mes normal i el d'un mes amb paga extra.
+d) El net anual i quant ha anat a la Seguretat Social i a Hisenda.
+
+**Solució**
+
+1. **Brut de cada paga**: 18.200 € / 14 = **1.300 €**, igual en les dotze mensualitats i en les dues extres. **Base de cotització mensual**: 18.200 € / 12 = **1.516,67 €**. Fixa't que és major que el brut del mes perquè inclou la part proporcional de les pagues extra: es cotitza per tot el salari, però repartit en dotze mesos.
+2. **Cotització a la Seguretat Social**: 1.516,67 € × 0,065 = **98,58 € al mes**. **Retenció d'IRPF**: 1.300 € × 0,09 = **117 € per paga**.
+3. **Líquid d'un mes normal**: 1.300 − 98,58 − 117 = **1.084,42 €**. **Líquid de la paga extra**: com que la cotització ja s'ha repartit entre els dotze mesos, en l'extra només es reté IRPF: 1.300 − 117 = **1.183 €**. Al juny i al desembre Marina ingressarà 1.084,42 + 1.183 = 2.267,42 €.
+4. **Net anual**: 12 × 1.084,42 + 2 × 1.183 = 13.013,04 + 2.366 = **15.379,04 €**. **A la Seguretat Social**: 12 × 98,58 = 1.182,96 € (el 6,5 % de 18.200 €). **A Hisenda**: 14 × 117 = 1.638 € (el 9 % de 18.200 €). Comprovació: 15.379,04 + 1.182,96 + 1.638 = 18.200 €.
+5. **Lectura**: dels 18.200 € pactats, Marina ingressa uns 15.380 €, el 84,5 %. Els 1.183 € de la Seguretat Social li compren un any cotitzat: compta per a l'atur (ja porta 365 dels 360 dies que necessita), per a una baixa i per a la seua futura pensió. Els 1.638 € d'IRPF són un avançament: en la declaració de la renda de la primavera següent s'ajustarà, i amb un sou com el seu és probable que li'n tornen una part.
+
+</SolvedExercise>
+
+**Prova-ho tu mateix:** introduïx un salari brut anual, el nombre de pagues i el tipus de retenció, i la calculadora et desglossa la nòmina mes a mes: cotització, IRPF i líquid.
+
+<HerramientaIsland componente="NominaESO" />
+
+<RecursoDestacado href="/eco-4eso/recursos/calculadora-nomina/" kicker="Ferramenta" title="Calculadora de nòmina" descripcion="Del brut anual al líquid de cada mes: cotització a la Seguretat Social, retenció d'IRPF estimada i pagues extra. Fes-la servir per a comprovar l'exercici 5.2 i per a traduir qualsevol oferta de faena al que cobraries de veres." colorVar="--color-eco4" />
+
+### El que li costa a l'empresa
+
+La teua nòmina no conta tota la història. A més de la teua cotització, l'empresa paga la seua, la **quota patronal**, que no apareix en la teua nòmina perquè no ix del teu sou: al voltant del **30 % del salari brut** (23,60 % per a contingències comunes, 5,50 % per a desocupació, més formació professional, el Fondo de Garantía Salarial, el Mecanismo de Equidad i l'assegurança d'accidents). És a dir, contractar Marina amb 18.200 € bruts li costa a la farmàcia al voltant de 23.700 € a l'any, i d'eixa quantitat Marina veu en el seu compte uns 15.400 €. El **cost empresa** és aproximadament 1,3 vegades el salari brut, i és la xifra que les empreses tenen al cap quan decidixen si contracten. Entendre eixa diferència explica moltes coses: per què a una empresa li ix a compte un fals autònom, per què les pujades del SMI pesen més del que pareix i per què la Seguretat Social recapta tant sense que quasi ningú ho note.
+
+<Diagram caption="Del que cobra la persona al que paga l'empresa: líquid, salari brut i cost empresa. Les quotes patronals, al voltant del 30 % del brut, no apareixen en la nòmina.">
+  <CosteEmpresa />
+</Diagram>
+
+## Drets i deures bàsics en el treball
+
+Tot l'anterior descansa sobre una llei que convé conéixer pel seu nom: l'**Estatut dels Treballadors** (Reial Decret Legislatiu 2/2015), hereu del primer Estatut de 1980. Fixa els mínims que cap contracte ni conveni no pot rebaixar, i que qualsevol persona que treballe per compte d'altri a Espanya té des del primer dia, siga quina siga la seua edat, el seu contracte o la seua nacionalitat.
+
+- **Jornada màxima de 40 hores setmanals** de treball efectiu, en mitjana anual (article 34), amb almenys 12 hores de descans entre una jornada i la següent i un dia i mig seguit de descans a la setmana (article 37). Des de 2019 l'empresa està obligada a **registrar** cada dia la teua hora d'entrada i d'eixida.
+- **Hores extraordinàries voluntàries** i limitades a 80 a l'any (article 35); es paguen almenys com una hora normal o es compensen amb descans.
+- **Vacances d'almenys 30 dies naturals** a l'any, retribuïdes i que no es poden substituir per diners (article 38). Si treballes sis mesos, te'n corresponen quinze.
+- **Salari puntual**: com a màxim cada mes, i documentat en la nòmina (article 29). El retard genera interessos del 10 % anual.
+- **Seguretat i salut**: l'empresa ha d'avaluar els riscos del teu lloc, formar-te i donar-te els equips de protecció necessaris (Llei 31/1995, de Prevenció de Riscos Laborals). Pots negar-te a treballar davant d'un risc greu i imminent.
+- **No-discriminació** per sexe, edat, origen, ideologia, orientació sexual o afiliació sindical, i respecte a la teua intimitat i dignitat (article 4).
+
+Els deures van en la mateixa llei (article 5) i són igual de concrets: complir amb el treball pactat de bona fe i amb la diligència que exigix el lloc, seguir les instruccions raonables de l'empresa, respectar les normes de seguretat, no fer la competència a la teua empresa mentres hi treballes i contribuir a la productivitat. Un contracte obliga les dues parts.
+
+<Curiosity title="1919: la jornada de huit hores naix d'una vaga a Barcelona">
+La jornada de 40 hores té un avantpassat amb data i lloc. El febrer de 1919 els treballadors de la companyia elèctrica Barcelona Traction, coneguda com **La Canadenca**, van anar a la vaga després de l'acomiadament de diversos companys. En poques setmanes la vaga es va estendre i va deixar la ciutat sense llum, sense tramvies i sense periòdics durant 44 dies. Per a desbloquejar-la, el Govern va aprovar el Reial Decret de 3 d'abril de 1919, que fixava la **jornada màxima de huit hores** diàries per a tots els oficis. Espanya es va convertir així en un dels primers països del món a establir per llei la jornada de huit hores, que els sindicats reclamaven des de les vagues de Chicago de 1886 que van donar origen a l'1 de Maig. Més d'un segle després la discussió continua: el setembre de 2025 el Congrés va rebutjar el projecte de llei que reduïa la jornada legal de 40 a 37,5 hores setmanals, i el debat continua obert.
+</Curiosity>
+
+### El conveni col·lectiu i els sindicats
+
+Una persona a soles negocia poc davant d'una empresa: si no acceptes les condicions, hi ha un altre candidat. Per això la Constitució reconeix el dret a **sindicar-se** (article 28) i a la **negociació col·lectiva** (article 37): els treballadors s'agrupen per a negociar junts, i el resultat és el **conveni col·lectiu**. A Espanya els sindicats majoritaris són **CCOO** i **UGT**, que juntament amb la patronal (CEOE i CEPYME) negocien els convenis sectorials i participen en acords com la reforma laboral de 2021 o les pujades del SMI.
+
+<Callout label="Concepte clau" title="Conveni col·lectiu">
+
+El **conveni col·lectiu** és l'acord escrit entre els representants dels treballadors (sindicats o comité d'empresa) i les empreses d'un sector, un territori o una sola empresa, que fixa les condicions de treball per damunt dels mínims de l'Estatut: taules salarials per categoria, jornada i calendari, complements, permisos, classificació professional. És obligatori per a totes les empreses i persones del seu àmbit, estiguen o no afiliades a qui el va firmar. Quan comences a treballar, el conveni del teu sector és el document que diu quant has de cobrar com a mínim.
+
+</Callout>
+
+<Figure
+  src={manifestacion1Mayo}
+  alt="Manifestació de l'1 de maig de 2024 recorrent la Gran Vía de Madrid, amb una densa marea de manifestants, banderes i pancartes sindicals ocupant tota l'amplària del carrer."
+  caption="Manifestació de l'1 de maig de 2024 a la Gran Vía de Madrid. El Dia Internacional dels Treballadors recorda des de 1890 les vagues de Chicago per la jornada de huit hores. A Espanya el convoquen CCOO i UGT, i les seues reivindicacions dels últims anys han sigut les d'esta unitat: el salari mínim, la jornada i l'estabilitat dels contractes."
+  credit="Foto: Consuelo Fernandez, CC BY-SA 4.0 vía Wikimedia Commons"
+  aspectHint="3/2"
+  variant="wide"
+/>
+
+La ferramenta de pressió més coneguda dels sindicats és la **vaga**, un dret fonamental protegit per la Constitució (article 28.2): deixar de treballar de manera col·lectiva per a defendre els interessos dels treballadors. Durant la vaga no es cobra, però l'empresa no pot acomiadar ni sancionar per participar-hi ni substituir els vaguistes. A l'altre extrem, les empreses poden recórrer al **tancament patronal** en casos molt limitats. La majoria dels conflictes, en realitat, no arriben tan lluny: es resolen en la negociació del conveni.
+
+### A qui acudir si alguna cosa falla
+
+Si en la teua faena no es complix el que s'ha pactat (et paguen tard, et fan més hores de les que consten, no et donen d'alta, no et paguen les extres), tens diversos llocs on acudir, de menys a més formal. Primer, els **representants dels treballadors** de la teua empresa, si n'hi ha (delegats de personal a partir de sis treballadors, comité d'empresa a partir de cinquanta). Segon, un **sindicat**, que assessora de franc els seus afiliats i, en molts casos, qualsevol que pregunte. Tercer, la **Inspecció de Treball i Seguretat Social** (Llei 23/2015), el cos de funcionaris que vigila el compliment de la llei laboral: pots presentar una denúncia, fins i tot de manera anònima a través de la seua bústia contra el frau, i la Inspecció pot visitar l'empresa, sancionar-la i obligar-la a regularitzar la teua situació. I si el conflicte és amb el teu propi contracte (un acomiadament, un salari que no arriba), el camí és la **conciliació** davant del servici de mediació de la teua comunitat i, si no hi ha acord, el **Jutjat Social**. Un avís important: per a impugnar un acomiadament hi ha només **20 dies hàbils**. Qui no coneix els seus drets sol descobrir-los quan ja és tard.
+
+<Callout label="Recomanació d'aula" title="La teua vida laboral en dos minuts" variant="example">
+
+La Seguretat Social oferix de franc l'informe de **vida laboral**: la llista de totes les empreses en què has estat donat d'alta, amb les dates, el tipus de contracte i el percentatge de jornada. Es descarrega a l'instant des de l'app o la seu electrònica de la Seguretat Social, identificant-se amb el DNI. Convé demanar-lo després del primer mes en qualsevol faena i, en general, una vegada a l'any: si una empresa no t'ha donat d'alta, o t'ha donat d'alta a mitja jornada quan treballes la completa, ahí es veu. És la manera més ràpida de saber si et cotitzen el que et correspon.
+
+</Callout>
+
+## Què ve després en este curs
+
+Amb esta unitat comença la segona avaluació, la més enganxada a la vostra vida. Heu vist el mercat on es vendrà el vostre temps, com es mesura, quin contracte firmareu i quina nòmina cobrareu. En la **Unitat 6** apareix l'altre gran actor d'eixa nòmina: l'Estat, que amb el que reté del vostre sou (l'IRPF, amb els seus trams i la seua declaració) i amb l'IVA del que compreu paga la sanitat, l'educació, les pensions i la prestació per desocupació que hem vist ací; i allí discutirem quant ha de corregir la desigualtat.
+
+Les **Unitats 7 i 8** agafen eixe salari net i el porten a la vostra economia personal: com fer un pressupost amb ell, com estalviar, com funciona el crèdit i quines assegurances convé tindre. I en la **Unitat 10**, quan mirem l'empresa des de dins, tornareu a trobar el cost empresa i els contractes, però des de l'altre costat de la taula: el de qui contracta.
+
+<VuelveAlCaso referencia="Els riders de Glovo: autònoms o treballadors?">
+Un repartidor és autònom de veres quan treballa amb els seus propis mitjans, per als clients que tria, fixant ell els seus preus i assumint ell el risc. És un treballador de l'empresa quan concorren les dues notes que hem vist en l'Estatut: **dependència** (un altre organitza el seu treball: l'app fixa el preu, assigna les comandes i puntua) i **alienitat** (el negoci, la marca i els clients són de l'empresa; el repartidor només posa l'esforç). La bici pròpia i la llibertat per a triar franges no canvien això, perquè el mitjà de producció essencial no era la bici, sinó la plataforma. És el que va dir el Supremo en la STS 805/2020 i el que la Ley Rider va convertir en presumpció legal.
+
+I la diferència importa perquè val, com a mínim, un 30 % del salari. Com a assalariat, el rider cotitza i acumula dret a l'atur, a la baixa per malaltia i a la pensió; té 30 dies de vacances, un salari que no pot baixar del SMI ni del conveni, i una empresa obligada a protegir-lo dels riscos de la seua faena. Com a fals autònom no tenia res d'això, i l'estalvi se'l quedava la plataforma. Per això l'Estat no deixa que les parts «trien» lliurement: quan una relació és laboral, ho és encara que el contracte diga una altra cosa, perquè les regles del mercat de treball existixen precisament per a protegir qui té menys poder per a negociar.
+</VuelveAlCaso>
+
+<KeyTakeaways title="L'essencial de la unitat">
+- El **mercat de treball** creua l'oferta (les persones) amb la demanda (les empreses); el seu preu és el **salari**. El **SMI** és el sòl legal: 1.184 € al mes en 14 pagues el 2025 (RD 87/2025). Si pujar-lo destruïx ocupació o corregix el poder de les empreses és un debat obert entre economistes.
+- L'**EPA** de l'INE dividix la població de 16 anys o més en inactius i actius, i els actius en ocupats i aturats. La **taxa d'atur** es calcula sobre els actius, no sobre la població: per això pot baixar per desànim sense crear ocupació. El 2025 Espanya tenia un atur del 10,3 % i un atur juvenil pròxim al 25 %.
+- Hi ha atur **friccional**, **estacional**, **estructural** i **cíclic**. El 2013 el cíclic va portar la taxa al 26,9 %; el 2020 els **ERTO** van evitar que la pandèmia acabara en acomiadaments. Les **polítiques passives** (prestació: 360 dies cotitzats) substituïxen ingressos; les **actives** busquen que la persona torne a treballar.
+- Des de la **reforma de 2021** (RDL 32/2021) el contracte normal és l'**indefinit**; el temporal exigix causa; els formatius són l'**alternança** i la **pràctica professional**. Un **fals autònom** treballa amb dependència i alienitat sota un paper d'autònom: és frau, com va resoldre el Supremo amb els riders (STS 805/2020).
+- La **nòmina** va del **brut** (meritacions) al **net** restant la **cotització a la Seguretat Social** (al voltant del 6,5 %, que compra atur, baixa i pensió) i la **retenció d'IRPF** (un avançament de l'impost). A l'empresa li costa a més un 30 % més en quotes patronals.
+- L'**Estatut dels Treballadors** garantix 40 hores, 30 dies de vacances, salari mensual i seguretat. El **conveni col·lectiu** fixa la resta; els **sindicats** el negocien; la **Inspecció de Treball** vigila que es complisca.
+</KeyTakeaways>
+
+## Glossari
+
+- **Mercat de treball**: trobada entre l'oferta de treball (persones que tenen faena o en busquen) i la demanda de treball (llocs que empreses i administracions volen cobrir). El seu preu és el salari.
+- **Salari mínim interprofessional (SMI)**: quantitat mínima que la llei obliga a pagar per una jornada completa, siga quin siga el sector. El 2025, 1.184 € al mes en 14 pagues.
+- **Població activa**: persones de 16 anys o més que tenen faena o en busquen. És la suma d'ocupats i aturats.
+- **Inactiu**: persona de 16 anys o més que ni treballa ni busca faena (estudiants, jubilats, els qui cuiden de la casa).
+- **Taxa d'atur**: percentatge d'aturats sobre la població activa. Es publica cada trimestre amb l'EPA.
+- **EPA (Enquesta de Població Activa)**: enquesta trimestral de l'INE a unes 65.000 vivendes amb què es calculen les taxes d'activitat, d'ocupació i d'atur.
+- **Atur estructural**: el que es produïx quan el que saben fer les persones no encaixa amb el que les empreses necessiten. No el cura el creixement; fa falta formació.
+- **ERTO**: expedient de regulació temporal d'ocupació. Suspensió o reducció temporal de contractes amb prestació del SEPE, sense acomiadament.
+- **Contracte indefinit**: contracte sense data de fi; des de la reforma de 2021 és la regla general a Espanya.
+- **Fals autònom**: persona donada d'alta com a autònoma que en realitat treballa amb dependència i alienitat, com un assalariat. La llei ho considera frau.
+- **Salari brut i salari net**: el brut és el que s'ha pactat abans de descomptes; el net o líquid, el que s'ingressa després de restar la cotització a la Seguretat Social i la retenció d'IRPF.
+- **Conveni col·lectiu**: acord entre sindicats i empreses que fixa les condicions de treball d'un sector o empresa per damunt dels mínims de l'Estatut dels Treballadors.
+
+## Per a aprofundir
+
+Si la unitat us ha deixat amb ganes de més, estos recursos són fiables i gratuïts:
+
+- **INE, «EPA en un vistazo»** (ine.es, secció Mercado laboral). Per què encaixa: la nota de premsa trimestral de l'EPA porta les tres taxes, l'atur juvenil i la temporalitat en dues pàgines; llegir la de l'últim trimestre és la millor manera de comprovar les dades d'esta unitat.
+- **SEPE, «Guía de contratos»** (sepe.es). Per què encaixa: el document oficial, actualitzat cada any, amb tots els contractes vigents, els seus requisits i les seues bonificacions. És el que consulta qualsevol empresa abans de contractar; convé que qui serà contractat també el conega.
+- **Portal de la Seguridad Social, «Vida laboral» i Import@ss** (seg-social.es). Per què encaixa: permet descarregar l'informe de vida laboral i vore les bases de cotització; és la manera directa de comprovar que l'empresa cotitza per tu el que diu la teua nòmina.
+- **Estatut dels Treballadors al BOE** (boe.es, text consolidat del Real Decreto Legislativo 2/2015). Per què encaixa: els articles 4, 5, 6, 7, 14, 29, 34 i 38 són curts i s'entenen sense ser jurista; llegir el 38 abans del teu primer estiu treballant val més que molts consells.
+
+## Preguntes per a reflexionar
+
+Estes preguntes no tenen una resposta única. Servixen per a debatre a classe o pensar a soles en tancar la unitat:
+
+1. El SMI ha pujat un 61 % des de 2018 i l'ocupació total ha crescut, però alguns estudis troben menys contractació entre els jóvens amb poca experiència. Si haguéreu de fixar el SMI de 2026, quina dada miraríeu primer i per què? Canviaria la vostra resposta si fóreu qui busca la seua primera faena?
+2. Una persona de la vostra edat que treballa dues hores els dissabtes és «ocupada» per a l'EPA, i una altra que ha deixat de buscar per desànim és «inactiva». Us pareix que la taxa d'atur mesura bé el que volem saber? Quina altra xifra demanaríeu que es publicara al seu costat?
+3. Un fals autònom cobra alguna cosa més en mà a canvi de no cotitzar. Per què creeu que molta gent accepta el tracte encara que el perjudique a llarg termini? Hauria de deixar la llei que cada persona trie, o té raó en presumir que la relació és laboral encara que les dues parts diguen el contrari?
+
+<Bibliography>
+
+1. España. **Real Decreto 217/2022**, de 29 de marzo, por el que se establecen la ordenación y las enseñanzas mínimas de la Educación Secundaria Obligatoria. BOE núm. 76. (Competència específica 6: comprendre aspectes bàsics de l'economia i les finances.)
+2. España. **Real Decreto Legislativo 2/2015**, de 23 de octubre, por el que se aprueba el texto refundido de la Ley del Estatuto de los Trabajadores. BOE núm. 255. Text consolidat en https://www.boe.es/buscar/act.php?id=BOE-A-2015-11430
+3. España. **Real Decreto-ley 32/2021**, de 28 de diciembre, de medidas urgentes para la reforma laboral, la garantía de la estabilidad en el empleo y la transformación del mercado de trabajo. BOE núm. 313. I **Real Decreto-ley 9/2021**, de 11 de mayo, sobre los derechos laborales de las personas dedicadas al reparto en el ámbito de plataformas digitales (Ley Rider). BOE núm. 113.
+4. España. **Real Decreto 87/2025**, de 11 de febrero, por el que se fija el salario mínimo interprofesional para 2025. BOE núm. 37.
+5. Tribunal Supremo, Sala de lo Social (Pleno). **Sentencia 805/2020**, de 25 de septiembre de 2020 (recurs 4746/2019), sobre la laboralitat dels repartidors de Glovo. https://www.poderjudicial.es
+6. Instituto Nacional de Estadística. **Encuesta de Población Activa**, notes de premsa trimestrals (primer trimestre de 2013; tercer trimestre de 2020; segon trimestre de 2025) i **Encuesta de Estructura Salarial 2023**. https://www.ine.es
+7. Banco de España. Barceló, C., Izquierdo, M., Lacuesta, A., Puente, S., Regil, A. i Villanueva, E. (2021). *Los efectos del salario mínimo interprofesional en el empleo: nueva evidencia para España*. Documento Ocasional n.º 2113. https://www.bde.es
+8. Servicio Público de Empleo Estatal. **Guía de contratos** i **Prestaciones por desempleo: requisitos y cuantías** (2025). https://www.sepe.es
+
+</Bibliography>
+
+<MirarFora
+  unidad={5}
+  libro={{
+    titulo: 'Por cuatro duros: cómo (no) apañárselas en Estados Unidos',
+    meta: 'Barbara Ehrenreich · Capitán Swing, 2014',
+    porque: 'Una periodista es passa un any treballant de cambrera, netejadora i dependenta cobrant el salari mínim, i conta el que dona de si i el que no. És la millor manera d\'entendre què significa de veres un salari baix, un contracte precari i una jornada que no es registra.',
+    paginas: 'Introducció i capítol 1, «Sirviendo en Florida»',
+  }}
+  video={{
+    titulo: 'Sorry We Missed You',
+    meta: 'Ken Loach · 2019 · pel·lícula',
+    duracion: '~100 min',
+    porque: 'Un pare de família a Newcastle es fa «autònom» per a repartir paquets amb la seua pròpia furgoneta: tria les seues hores, diuen, però l\'escàner li marca el ritme i cada dia que falta li costa una multa. És el cas dels riders contat des de dins d\'una casa.',
+    url: 'https://www.youtube.com/results?search_query=sorry+we+missed+you+trailer+espa%C3%B1ol',
+  }}
+  cuenta={{
+    titulo: '@empleo_SEPE',
+    meta: 'X / Twitter · compte oficial del SEPE',
+    porque: 'Publica cada mes l\'atur registrat, explica en fils quins requisits té la prestació per desocupació i avisa dels terminis de la Garantia Juvenil. És la font, no un intermediari, i respon preguntes concretes.',
+  }}
+  actividad_titulo="Traduïx una oferta de faena"
+  actividad_duracion="20-30 min"
+>
+  <Fragment slot="actividad">
+    Busca en un portal de faena (Infojobs, LinkedIn, el web del SEPE) **una oferta real** per a un lloc que podries ocupar d'ací a uns anys. Anota: tipus de contracte, jornada, salari (brut o net?, en quantes pagues?), conveni si el cita i període de prova. Amb la calculadora de nòmina, traduïx el salari al que ingressaries cada mes. Porta l'oferta i el teu càlcul.
+  </Fragment>
+  <Fragment slot="para-clase">
+    **L'entrevista i la negociació.** Per parelles, un fa d'empresa i l'altre de candidat amb l'oferta que va portar. L'empresa oferix el mínim del conveni i un contracte temporal «per si de cas»; el candidat ha de detectar si la causa és vàlida, preguntar pel brut i les pagues, i negociar. Després s'intercanvien els papers. Tancament en grup: quines preguntes no va fer quasi ningú i s'haurien de fer sempre? Duració: 40 min.
+  </Fragment>
+</MirarFora>
+
+```deck
+- tipo: curriculum
+  eyebrow: "A què respon esta unitat"
+  title: "El marc de la unitat"
+  saberes:
+    - "El mercat de treball i el salari mínim interprofessional."
+    - "Població activa, ocupats i aturats: les taxes de l'EPA."
+    - "Tipus i causes de l'atur; polítiques actives i passives d'ocupació."
+    - "Els contractes després de la reforma de 2021; la nòmina, del brut al net."
+    - "Drets i deures bàsics en el treball; conveni, sindicats i Inspecció."
+  competencias:
+    - "Comprendre aspectes bàsics de l'economia: com funciona i es mesura el mercat de treball."
+    - "Valorar críticament el salari mínim i l'atur com a problemes d'escassetat i d'elecció."
+    - "Interpretar un contracte i una nòmina per a decidir amb informació en la primera faena."
+- tipo: caso
+  eyebrow: "Cas de partida"
+  title: "Els riders de Glovo: autònoms amb bici pròpia o treballadors de l'empresa?"
+  contexto: "Glovo, nascuda a Barcelona el 2015, donava d'alta els seus repartidors com a autònoms. Però l'app fixava el preu, assignava les comandes i puntuava cada rider. Un d'ells va portar el cas al Tribunal Supremo."
+  datos:
+    - "STS 805/2020, de 25 de setembre: relació laboral, per unanimitat."
+    - "Ley Rider (RDL 9/2021): presumpció de laboralitat en el repartiment."
+    - "Més de 200 milions reclamats per la Inspecció (Trabajo, 2024)."
+    - "Desembre de 2024: Glovo anuncia que contractarà els seus riders."
+  pregunta: "Quan algú que posa la seua bici i tria les seues hores és en realitat un treballador de l'empresa, i per què importa?"
+- tipo: section
+  title: "El treball també és un mercat"
+  subtitle: "Les persones oferixen el seu temps, les empreses el demanden i el preu es diu salari. Amb un sòl legal: el SMI."
+- tipo: concept
+  eyebrow: "Concepte clau"
+  title: "Oferta, demanda i salari"
+  body: "Qui oferix treball són les persones: tu, quan busques una faena d'estiu. Qui el demanda són les empreses i administracions que necessiten gent per a produir. Del creuament ix el salari, i com en qualsevol mercat es mou amb l'escassetat: com més difícil siga trobar algú que faça una faena, més caldrà pagar-li. La llei hi afig un contracte, un preu mínim i protecció per a la part més dèbil."
+  pull: "La formació importa perquè reduïx el nombre de persones capaces de fer el mateix que tu."
+- tipo: data
+  numero: "1.184 €"
+  label: "al mes en 14 pagues (2025)"
+  title: "El salari mínim interprofessional"
+  detalle: "El fixa el Govern cada any després de consultar sindicats i patronal (RD 87/2025). Són 16.576 € bruts a l'any a jornada completa. El 2018 era de 735,90 €: ha pujat al voltant d'un 61 % en set anys."
+- tipo: split
+  eyebrow: "Veus en desacord"
+  title: "Pujar el salari mínim destruïx ocupació?"
+  left:
+    h: "El preu mana"
+    items:
+      - "Si el mínim supera el que val el treball per a l'empresa, eixa persona no serà contractada."
+      - "Banco de España (2021): la pujada de 2019 va costar entre 94.000 i 180.000 llocs respecte al previsible."
+      - "L'efecte es concentra en jóvens sense experiència i en sectors amb sous prop del mínim."
+  right:
+    h: "El poder de negociació"
+    items:
+      - "Qui busca faena negocia poc; el mínim corregix eixe desequilibri."
+      - "Card i Krueger (1994) no van trobar pèrdua d'ocupació a Nova Jersey; Card, Nobel el 2021."
+      - "A Espanya l'afiliació va passar de 19 a quasi 22 milions (2018-2025) amb el SMI un 61 % més alt."
+- tipo: section
+  title: "Població activa, ocupats i aturats"
+  subtitle: "L'Enquesta de Població Activa de l'INE repartix la població en quatre caixes i calcula tres taxes."
+- tipo: terms
+  eyebrow: "Les quatre caixes de l'EPA"
+  title: "Qui és qui en el mercat de treball"
+  terms:
+    - t: "Inactius"
+      d: "Persones de 16 anys o més que ni treballen ni busquen faena: estudiants, jubilats, els qui cuiden de la casa o de familiars."
+    - t: "Actius"
+      d: "Els qui participen en el mercat de treball: tenen faena o en busquen. Són la suma d'ocupats i aturats."
+    - t: "Ocupats"
+      d: "Els qui tenen una faena, per compte d'altri o propi. Basta una hora de treball pagat en la setmana de l'enquesta."
+    - t: "Aturats"
+      d: "Els qui no tenen faena, la busquen activament i estan disponibles. Qui no busca no és aturat: és inactiu."
+- tipo: diagram
+  diagrama: TasasEPA
+  caption: "Activitat i ocupació es dividixen entre la població de 16 anys o més; l'atur, només entre els actius."
+- tipo: exercise
+  title: "Exercici 5.1 — Les tres taxes de Villaseca"
+  enunciado: "Cas inventat: 20.000 persones de 16 anys o més; 8.000 inactives, 10.800 ocupades i 1.200 aturades. Calcula les taxes d'activitat, d'ocupació i d'atur. Després, 300 aturats deixen de buscar sense que ningú trobe faena: recalcula la taxa d'atur."
+  pasos:
+    - "Actius: 10.800 + 1.200 = 12.000. Taxa d'activitat: 12.000 / 20.000 × 100 = 60 %."
+    - "Taxa d'ocupació: 10.800 / 20.000 × 100 = 54 %."
+    - "Taxa d'atur: 1.200 / 12.000 × 100 = 10 %. Es dividix entre actius, no entre població."
+    - "Desànim: 900 aturats i 11.700 actius. Taxa d'atur: 900 / 11.700 × 100 = 7,7 %."
+    - "L'atur baixa més de dos punts sense crear ni una faena. La pista: l'activitat cau al 58,5 %."
+- tipo: figure
+  src: "eco-1bach/09/oficina-empleo-madrid.jpg"
+  alt: "Façana d'una Oficina d'Ocupació a Madrid amb els logotips del SEPE i de la Comunitat de Madrid damunt de l'entrada."
+  title: "Dues xifres de l'atur per la mateixa porta"
+  caption: "El SEPE compta cada mes els inscrits (atur registrat, uns 2,4 milions al juliol de 2025); l'EPA pregunta cada trimestre qui busca faena."
+  credit: "Foto: Lojwe, CC0 1.0 vía Wikimedia Commons"
+- tipo: quiz
+  eyebrow: "Comprova que ho has pillat"
+  pregunta: "En un any dolent ningú troba faena, però molts aturats es cansen i deixen de buscar. Què li passa a la taxa d'atur?"
+  opciones:
+    - "Puja, perquè hi ha més gent sense faena."
+    - "Baixa, perquè els desanimats passen a inactius i ixen del càlcul."
+    - "No canvia, perquè no s'ha creat ni destruït ocupació."
+    - "Puja només si també puja la taxa d'activitat."
+  correcta: 1
+  explicacion: "La taxa d'atur es calcula sobre els actius. Qui deixa de buscar deixa de ser aturat i d'estar actiu, així que la taxa baixa encara que el mercat haja empitjorat. Per això es llig junt amb la taxa d'activitat."
+- tipo: section
+  title: "L'atur: tipus, causes i conseqüències"
+  subtitle: "Un socorrista al gener, una fàbrica que tanca i un país en recessió són aturats distints, amb remeis distints."
+- tipo: table
+  eyebrow: "Quatre tipus d'atur"
+  title: "No tots els aturats ho són pel mateix"
+  head:
+    - "Tipus"
+    - "Causa"
+    - "Exemple espanyol"
+  rows:
+    - ["Friccional", "El temps de passar d'una faena a una altra", "Un cuiner que busca un restaurant millor"]
+    - ["Estacional", "S'acaba la temporada d'una activitat", "Turisme: baixa a l'estiu, puja al gener"]
+    - ["Estructural", "El que la gent sap no encaixa amb el que es demana", "Atur de llarga duració després de tancar una fàbrica"]
+    - ["Cíclic", "Una crisi frena l'economia i les empreses acomiaden", "2008-2013: del 8 % al 26,9 % d'atur"]
+  caption: "El turisme aporta més del 12 % del PIB (INE, 2023); l'atur juvenil va superar el 55 % el 2013 (INE, EPA)."
+- tipo: concept
+  eyebrow: "Cas real"
+  title: "2020: els ERTO eviten que la pandèmia acabe en acomiadaments"
+  body: "El març de 2020 el confinament va tancar bars, hotels, botigues i fàbriques. En compte d'acomiadar, les empreses van suspendre contractes amb ERTO: la persona cobrava del SEPE el 70 % de la seua base i tornava en reobrir. A finals d'abril hi havia prop de 3,4 milions en ERTO. L'atur va pujar del 13,8 % al 16,3 % (INE, EPA), lluny del 27 % de 2013."
+  pull: "Davant d'una crisi temporal, mantindre el vincle entre empresa i treballador és més barat que trencar-lo i reconstruir-lo."
+- tipo: split
+  eyebrow: "Què es fa contra l'atur"
+  title: "Polítiques passives i polítiques actives"
+  left:
+    h: "Passives: substituir ingressos"
+    items:
+      - "Prestació per desocupació: exigix 360 dies cotitzats en els sis anys anteriors."
+      - "Dura de quatre mesos a dos anys; 70 % de la base sis mesos i 60 % després."
+      - "Subsidi d'uns 570 € al mes (2025) per a qui l'esgota i no té rendes."
+  right:
+    h: "Actives: tornar a treballar"
+    items:
+      - "Formació i requalificació en el SEPE i els servicis autonòmics (LABORA, SAE, Lanbide, SOC)."
+      - "Orientació i bonificacions a les empreses que contracten col·lectius amb dificultats."
+      - "Garantia Juvenil: oferta de faena, formació o pràctiques per a menors de 30 anys inscrits."
+- tipo: section
+  title: "Els contractes de treball"
+  subtitle: "Treball voluntari, retribuït, per compte d'altri i sota la direcció d'un altre. Des de 2021, el contracte normal és l'indefinit."
+- tipo: diagram
+  diagrama: TiposContrato
+  caption: "Indefinit per defecte; temporal només amb causa; formació en alternança i pràctica professional per a començar."
+- tipo: concept
+  eyebrow: "Frau freqüent"
+  title: "El fals autònom"
+  body: "Un autònom de veres treballa amb els seus mitjans, per als clients que tria i assumint el risc. Un fals autònom figura com a tal però té horari imposat, ferramentes de l'empresa i un sol client. L'empresa s'estalvia cotitzacions i la persona perd atur, baixa i pensió. Si hi ha dependència i alienitat, la relació és laboral."
+  pull: "La Ley Rider (RDL 9/2021) va fer de la sentència del Supremo una presumpció legal per a tot el repartiment per plataformes."
+- tipo: figure
+  src: "eco-4eso/08/glovo-rider-valencia.jpg"
+  alt: "Repartidor de Glovo en bicicleta per un carrer de València amb la motxilla groga de la plataforma a l'esquena."
+  title: "La bici era seua; el negoci, de l'app"
+  caption: "El preu de cada comanda, el repartiment d'encàrrecs i la puntuació els decidia la plataforma. Per al Supremo, això és dependència i alienitat."
+  credit: "Foto: Pacopac, CC BY-SA 4.0 vía Wikimedia Commons"
+- tipo: quiz
+  eyebrow: "Comprova que ho has pillat"
+  pregunta: "Tens 17 anys i t'oferixen un contracte en un xiringuito que tanca a les dues de la matinada, amb torn fins al tancament. És legal?"
+  opciones:
+    - "Sí, si els teus pares firmen l'autorització."
+    - "No: els menors de 18 no poden fer treball nocturn, entre les deu i les sis."
+    - "Sí, sempre que les hores de nit es paguen com a extraordinàries."
+    - "Només si el contracte és de formació en alternança."
+  correcta: 1
+  explicacion: "Amb 16 o 17 anys pots treballar amb permís dels teus pares o tutors (ET, art. 7), però l'article 6 prohibix als menors de 18 el treball nocturn, les hores extraordinàries i les faenes perilloses."
+- tipo: section
+  title: "La nòmina: del brut al net"
+  subtitle: "El que guanyes, el que et descompten i el que cobres. Cap dels dos descomptes no se'l queda l'empresa."
+- tipo: diagram
+  diagrama: NominaAnotada
+  caption: "Meritacions, deduccions i líquid. La cotització compra atur, baixa i pensió; l'IRPF retingut és un avançament de l'impost."
+- tipo: exercise
+  title: "Exercici 5.2 — La primera nòmina de Marina"
+  enunciado: "Marina firma un contracte indefinit a jornada completa per 18.200 € bruts anuals en 14 pagues. Cotització del 6,5 % sobre la base mensual (brut anual entre dotze) i retenció d'IRPF del 9 % sobre cada paga. Calcula el seu líquid mensual, el de la paga extra i el net anual."
+  pasos:
+    - "Brut per paga: 18.200 / 14 = 1.300 €. Base de cotització mensual: 18.200 / 12 = 1.516,67 €."
+    - "Seguretat Social: 1.516,67 × 0,065 = 98,58 € al mes. IRPF: 1.300 × 0,09 = 117 € per paga."
+    - "Líquid d'un mes normal: 1.300 − 98,58 − 117 = 1.084,42 €."
+    - "Paga extra: només IRPF, perquè la cotització ja està repartida: 1.300 − 117 = 1.183 €."
+    - "Net anual: 12 × 1.084,42 + 2 × 1.183 = 15.379,04 €, el 84,5 % del brut."
+    - "1.183 € a la Seguretat Social (un any cotitzat) i 1.638 € a Hisenda com a avançament de l'IRPF."
+- tipo: data
+  numero: "× 1,3"
+  label: "el salari brut"
+  title: "El que de veres costa un treballador a la seua empresa"
+  detalle: "L'empresa paga a més la quota patronal: prop del 30 % del brut en contingències comunes, desocupació, formació, FOGASA i accidents. No ix en la teua nòmina. Marina costa uns 23.700 € a l'any i cobra uns 15.400 €."
+- tipo: section
+  title: "Drets i deures bàsics en el treball"
+  subtitle: "L'Estatut dels Treballadors fixa mínims que cap contracte ni conveni pot rebaixar. El conveni posa la resta."
+- tipo: list
+  eyebrow: "Estatut dels Treballadors"
+  title: "El que tens des del primer dia"
+  items:
+    - "Jornada màxima de 40 hores setmanals en mitjana anual, 12 hores de descans entre jornades i registre diari d'horari."
+    - "Hores extraordinàries voluntàries, fins a 80 a l'any, pagades o compensades amb descans."
+    - "Almenys 30 dies naturals de vacances a l'any, que no es poden canviar per diners."
+    - "Salari puntual, com a màxim cada mes i documentat en la nòmina; el retard genera un 10 % d'interés."
+    - "Seguretat i salut: avaluació de riscos, formació i equips de protecció (Llei 31/1995)."
+    - "I deures: treballar de bona fe, seguir instruccions raonables, respectar les normes de seguretat."
+- tipo: figure
+  src: "eco-1bach/09/manifestacion-1mayo-madrid.jpg"
+  alt: "Manifestació de l'1 de maig de 2024 recorrent la Gran Vía de Madrid, amb banderes i pancartes sindicals ocupant tot el carrer."
+  title: "Negociar junts"
+  caption: "L'1 de Maig recorda les vagues de Chicago de 1886 per les huit hores. CCOO i UGT negocien hui els convenis, el SMI i la jornada."
+  credit: "Foto: Consuelo Fernandez, CC BY-SA 4.0 vía Wikimedia Commons"
+- tipo: quiz
+  eyebrow: "Comprova que ho has pillat"
+  pregunta: "Portes sis mesos en la teua primera faena i l'empresa et diu que, com que és temporal, no tens vacances, però et pagarà alguna cosa a canvi. Què diu la llei?"
+  opciones:
+    - "És correcte: en contractes temporals les vacances es paguen en diners."
+    - "Et corresponen 15 dies de vacances i no es poden substituir per diners."
+    - "Només tens vacances a partir del primer any treballat."
+    - "Depén del que diga el conveni col·lectiu."
+  correcta: 1
+  explicacion: "L'article 38 de l'Estatut garantix 30 dies naturals a l'any, en proporció al temps treballat, i prohibix pagar-los en diners llevat que s'acabe el contracte. Sis mesos són quinze dies."
+- tipo: recap
+  eyebrow: "Repassa"
+  title: "Abans de tancar la unitat"
+  items:
+    - "Sabries explicar per què el treball és un mercat, què és el SMI i què en discutixen els economistes."
+    - "Sabries calcular les taxes d'activitat, d'ocupació i d'atur i explicar l'efecte desànim."
+    - "Sabries distingir els quatre tipus d'atur i descriure la prestació per desocupació i les actives."
+    - "Sabries identificar els quatre contractes vigents des de 2021 i reconéixer un fals autònom."
+    - "Sabries llegir una nòmina i passar del brut al net amb la cotització i la retenció d'IRPF."
+    - "Sabries anomenar cinc drets de l'Estatut dels Treballadors i a qui acudir si no es complixen."
+```

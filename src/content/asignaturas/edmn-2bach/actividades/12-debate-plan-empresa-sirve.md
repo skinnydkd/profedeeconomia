@@ -61,4 +61,4 @@ Hoy debatimos, justo al cerrar la asignatura:
 ## Variantes y extensiones
 
 - **Variante de síntesis:** la clase acuerda qué documento mínimo necesita un emprendedor en cada fase.
-- **Conexión con el proyecto final:** aplicar la conclusión del debate a la presentación del proyecto capstone de la asignatura.
+- **Conexión con la PAU:** la cuestión teórica sobre la utilidad y estructura del plan de empresa; cada alumno redacta la respuesta con los argumentos del debate.

@@ -1,11 +1,11 @@
 ---
 asignatura: edmn-2bach
 unidad_relacionada: 12
-title: "Elevator pitch del projecte capstone amb feedback d'iguals"
+title: "Elevator pitch d'un pla d'empresa amb feedback d'iguals"
 descripcion: "Cada equip presenta el seu projecte en 60 segons a un jurat rotatiu de companys i rep feedback estructurat en quatre dimensions."
 tipo: proyecto
 duracion: "100 min · 2 sessions (40 min preparació + 50 min pitches + 10 min tancament)"
-agrupacion: "equips del projecte capstone (3-5 persones cada u)"
+agrupacion: "equips de 3-5 persones que hagen preparat un pla d'empresa (pot ser el de la Unitat 12 o el del quadern De zero a empresa)"
 materiales:
   - "Cronòmetre visible que compte els 60 segons per pitch"
   - "Plantilla de feedback impresa (un full per pitch presenciat)"
@@ -19,7 +19,7 @@ slug: "asignaturas/edmn-2bach/actividades/12-elevator-pitch-feedback.ca"
 
 ## Plantejament
 
-És l'activitat de tancament de la Unitat 12 i, en molts sentits, del curs sencer. Cada equip del projecte capstone presentarà el seu projecte en **60 segons exactes** —el format estàndard de l'*elevator pitch*— a un jurat rotatiu de companys. L'objectiu no és guanyar un concurs: és practicar la comunicació comprimida i aprendre a rebre i donar feedback estructurat.
+És l'activitat de tancament de la Unitat 12 i, en molts sentits, del curs sencer. Cada equip presentarà el seu pla d'empresa —el de la Unitat 12 o el del quadern «De zero a empresa»— en **60 segons exactes** —el format estàndard de l'*elevator pitch*— a un jurat rotatiu de companys. L'objectiu no és guanyar un concurs: és practicar la comunicació comprimida i aprendre a rebre i donar feedback estructurat.
 
 ## Objectius didàctics
 
@@ -53,7 +53,7 @@ slug: "asignaturas/edmn-2bach/actividades/12-elevator-pitch-feedback.ca"
 ### Tancament (10 min)
 
 - En grup gran: quina dimensió us ha resultat més difícil i per què?
-- Cada equip es compromet a UN canvi concret en el seu pitch per a la defensa final del pla d'empresa.
+- Cada equip es compromet a UN canvi concret per a la versió definitiva del seu pitch.
 
 ## Plantilla de feedback (per a fotocopiar)
 
@@ -95,6 +95,6 @@ slug: "asignaturas/edmn-2bach/actividades/12-elevator-pitch-feedback.ca"
 
 ## Variants i extensions
 
-- **Variant amb públic extern:** convidar un familiar empresari, un orientador del centre o un altre professor perquè actuen com a *inversors* i formulen preguntes. Útil per a preparar la defensa final.
+- **Variant amb públic extern:** convidar un familiar empresari, un orientador del centre o un altre professor perquè actuen com a *inversors* i formulen preguntes. Útil perquè el pitch s'enfronte a preguntes de veritat.
 - **Variant de comparació:** gravar tots els pitches en vídeo i revisar-los en una sessió posterior. Vore's un mateix és l'eina de millora més eficaç —i la més incòmoda— de tota l'assignatura.
-- **Connexió amb la defensa final:** l'equip escriu el seu pitch definitiu (versió 2) incorporant 1-2 canvis concrets del feedback rebut. Eixa versió 2 és el que obrirà la defensa pública del pla d'empresa.
+- **Versió 2:** l'equip escriu el seu pitch definitiu incorporant 1-2 canvis concrets del feedback rebut. Si el pla d'empresa es presenta a classe o es completa en el quadern «De zero a empresa», eixa versió 2 és la que l'obri.

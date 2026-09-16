@@ -1,11 +1,11 @@
 ---
 asignatura: edmn-2bach
 unidad_relacionada: 12
-title: "Elevator pitch del proyecto capstone con feedback de pares"
+title: "Elevator pitch de un plan de empresa con feedback de pares"
 descripcion: "Cada equipo presenta su proyecto en 60 segundos a un jurado rotativo de compañeros y recibe feedback estructurado en cuatro dimensiones."
 tipo: proyecto
 duracion: "100 min · 2 sesiones (40 min preparación + 50 min pitches + 10 min cierre)"
-agrupacion: "equipos del proyecto capstone (3-5 personas cada uno)"
+agrupacion: "equipos de 3-5 personas que hayan preparado un plan de empresa (puede ser el de la Unidad 12 o el del cuaderno De cero a empresa)"
 materiales:
   - "Cronómetro visible que cuente los 60 segundos por pitch"
   - "Plantilla de feedback impresa (una hoja por pitch presenciado)"
@@ -17,7 +17,7 @@ estado: publicado
 
 ## Planteamiento
 
-Es la actividad de cierre de la Unidad 12 y, en muchos sentidos, del curso entero. Cada equipo del proyecto capstone presentará su proyecto en **60 segundos exactos** —el formato estándar del *elevator pitch*— a un jurado rotativo de compañeros. El objetivo no es ganar un concurso: es practicar la comunicación comprimida y aprender a recibir y dar feedback estructurado.
+Es la actividad de cierre de la Unidad 12 y, en muchos sentidos, del curso entero. Cada equipo presentará su plan de empresa —el de la Unidad 12 o el del cuaderno «De cero a empresa»— en **60 segundos exactos** —el formato estándar del *elevator pitch*— a un jurado rotativo de compañeros. El objetivo no es ganar un concurso: es practicar la comunicación comprimida y aprender a recibir y dar feedback estructurado.
 
 ## Objetivos didácticos
 
@@ -51,7 +51,7 @@ Es la actividad de cierre de la Unidad 12 y, en muchos sentidos, del curso enter
 ### Cierre (10 min)
 
 - En grupo grande: ¿qué dimensión os ha resultado más difícil y por qué?
-- Cada equipo se compromete a UN cambio concreto en su pitch para la defensa final del plan de empresa.
+- Cada equipo se compromete a UN cambio concreto para la versión definitiva de su pitch.
 
 ## Plantilla de feedback (para fotocopiar)
 
@@ -93,6 +93,6 @@ Es la actividad de cierre de la Unidad 12 y, en muchos sentidos, del curso enter
 
 ## Variantes y extensiones
 
-- **Variante con público externo:** invitar a un familiar empresario, a un orientador del centro o a otro profesor para que actúen como *inversores* y formulen preguntas. Útil para preparar la defensa final.
+- **Variante con público externo:** invitar a un familiar empresario, a un orientador del centro o a otro profesor para que actúen como *inversores* y formulen preguntas. Útil para que el pitch se enfrente a preguntas de verdad.
 - **Variante de comparación:** grabar todos los pitches en vídeo y revisarlos en una sesión posterior. Verse uno mismo es la herramienta de mejora más eficaz —y la más incómoda— de toda la asignatura.
-- **Conexión con la defensa final:** el equipo escribe su pitch definitivo (versión 2) incorporando 1-2 cambios concretos del feedback recibido. Esa versión 2 es lo que abrirá la defensa pública del plan de empresa.
+- **Versión 2:** el equipo escribe su pitch definitivo incorporando 1-2 cambios concretos del feedback recibido. Si el plan de empresa se presenta en clase o se completa en el cuaderno «De cero a empresa», esa versión 2 es la que lo abre.

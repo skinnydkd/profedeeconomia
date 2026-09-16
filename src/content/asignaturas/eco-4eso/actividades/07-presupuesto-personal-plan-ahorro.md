@@ -7,7 +7,7 @@ tipo: ejercicio
 duracion: "1 sesión (50 min)"
 agrupacion: "individual (con puesta en común en parejas al final)"
 competencias_clave: [STEM, CPSAA, CD]
-competencias_especificas: [CE5]
+competencias_especificas: [CE3]
 materiales:
   - "Plantilla de presupuesto mensual (3 bloques: ingresos, gastos fijos, gastos variables)"
   - "Plantilla de plan de ahorro a 6 meses (objetivo, coste, ahorro mensual, fecha de meta)"
