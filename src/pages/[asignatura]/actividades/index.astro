@@ -139,7 +139,8 @@ const breadcrumb = breadcrumbLd([
       <div class="container">
         <ul class="card-grid">
           {items.map((it) => {
-            const slug = it.id.split('/').pop()?.replace(/\.mdx?$/, '').replace(/\.ca$/, '');
+            const slug = it.id.split('/').pop()?.replace(/\.mdx?$/, '').replace(/\.ca$/, '') ?? it.id;
+            const pdf = pdfHref(slug);
             return (
               <li class={`card card--${it.data.tipo}`}>
                 <div class="card__head">
@@ -154,7 +155,7 @@ const breadcrumb = breadcrumbLd([
                 </div>
                 <div class="card__actions">
                   <a class="cta" href={`/${a.slug}/actividades/${slug}/`}>{copy.abrir}</a>
-                  {pdfHref(slug) && <a class="card__pdf" href={pdfHref(slug)} download>↓ {copy.pdf}</a>}
+                  {pdf && <a class="card__pdf" href={pdf} download>↓ {copy.pdf}</a>}
                 </div>
               </li>
             );
