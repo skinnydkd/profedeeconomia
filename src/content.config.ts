@@ -1,6 +1,7 @@
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { ASIGNATURA_SLUGS } from './lib/asignaturas';
+import { ACTIVIDAD_TIPOS } from './lib/actividades';
 import { FAMILIA_SLUGS } from './lib/dinamicas';
 import { FAMILIA_DEBATE_SLUGS } from './lib/debates';
 import { MATERIA_SLUGS } from './lib/proyectos';
@@ -61,7 +62,11 @@ const actividades = defineCollection({
     unidad_relacionada: z.number().int().min(1),
     title: z.string(),
     seoTitle: z.string().optional(),
-    tipo: z.enum(['caso', 'ejercicio', 'debate', 'dinamica', 'proyecto']),
+    /** Activity family. The first five are the classic ones; the rest were
+     *  added so a unit can mix formats: data research (INE, BdE…), a press
+     *  piece to analyse, a chart or table to read, a short classroom game and
+     *  a creative deliverable (infographic, podcast, concept map…). */
+    tipo: z.enum(ACTIVIDAD_TIPOS),
     /** Short summary shown on the card grid. */
     descripcion: z.string(),
     duracion: z.string().optional(),
