@@ -74,7 +74,7 @@ export const ASIGNATURAS: Record<AsignaturaSlug, Asignatura> = {
     seoTitle: 'EDMN 2.º Bachillerato: libro, diapositivas y EBAU',
     seoName: 'EDMN 2.º Bachillerato',
     tagline:
-      'Doce unidades alrededor del Business Model Canvas, las áreas funcionales y un proyecto capstone de plan de empresa que recorre todo el curso.',
+      'Doce unidades alrededor del Business Model Canvas, las áreas funcionales y la preparación de la PAU: pistas EBAU en cada unidad, problemas resueltos y simulacros.',
     num: '01',
     color: 'edmn',
     marcoNormativo: 'Real Decreto 243/2022',

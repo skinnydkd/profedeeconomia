@@ -14,7 +14,7 @@ slug: "asignaturas/edmn-2bach/recursos/calculadora-ratios.ca"
 
 - Per a la Unitat 11, mentre s'aprén a interpretar els comptes anuals.
 - Per resoldre l'activitat 11 (radiografia d'Inditex) introduint les dades del balanç de l'informe oficial.
-- Per avaluar el pla financer del projecte capstone i comprovar si els ràtios projectats són raonables.
+- Per avaluar el pla financer d'un pla d'empresa o un projecte d'aula (Unitat 12) i comprovar si els ràtios projectats són raonables.
 
 ## Què cal tindre en compte
 

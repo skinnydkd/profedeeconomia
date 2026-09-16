@@ -13,7 +13,7 @@ slug: "asignaturas/edmn-2bach/recursos/calculadora-dcf.ca"
 ## Quan usar-la
 
 - En introduir la valoració de projectes i inversions en la Unitat 9, com a extensió del VAN.
-- Per estimar quant val un negoci en el pla economicofinancer del projecte capstone.
+- Per estimar quant val un negoci en el pla economicofinancer d'un pla d'empresa o un projecte d'aula (Unitat 12).
 - Per comparar l'efecte de distintes taxes de descompte sobre el valor.
 
 ## Què cal tindre en compte

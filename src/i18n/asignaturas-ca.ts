@@ -15,7 +15,7 @@ export const ASIGNATURAS_CA: Partial<Record<AsignaturaSlug, CAOverlay>> = {
     seoTitle: 'EDMN 2n Batxillerat: llibre, diapositives i EBAU',
     seoName: 'EDMN 2n Batxillerat',
     tagline:
-      'Dotze unitats al voltant del Business Model Canvas, les àrees funcionals i un projecte capstone de pla d\'empresa que recorre tot el curs.',
+      'Dotze unitats al voltant del Business Model Canvas, les àrees funcionals i la preparació de la PAU: pistes EBAU en cada unitat, problemes resolts i simulacres.',
     modalidad: 'Modalitat Humanitats i CC. Socials',
     marcoNormativo: 'Reial Decret 243/2022',
   },

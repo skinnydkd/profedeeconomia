@@ -63,4 +63,4 @@ Hui debatem, just en tancar l'assignatura:
 ## Variants i extensions
 
 - **Variant de síntesi:** la classe acorda quin document mínim necessita un emprenedor en cada fase.
-- **Connexió amb el projecte final:** aplicar la conclusió del debat a la presentació del projecte capstone de l'assignatura.
+- **Connexió amb la PAU:** la qüestió teòrica sobre la utilitat i l'estructura del pla d'empresa; cada alumne redacta la resposta amb els arguments del debat.
