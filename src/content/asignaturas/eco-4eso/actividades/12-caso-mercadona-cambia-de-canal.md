@@ -58,7 +58,7 @@ Cambiar un bloque del Canvas nunca cambia solo ese bloque. Encontrar qué arrast
 3. **Superponer el nuevo (10 min).** Pregunta 2. Al acabar, el A3 muestra de un vistazo qué se movió.
 4. **El análisis (13 min).** Preguntas 3 a 5, por escrito.
 5. **Las dos preguntas difíciles (7 min).** Preguntas 6 y 7, en gran grupo. La 6 introduce la idea de que un modelo no es copiable si no tienes los recursos clave.
-6. **Cierre (3 min).** Cada grupo dice en una frase qué bloque cambiaría de su propio proyecto capstone después de este caso.
+6. **Cierre (3 min).** Cada grupo dice en una frase qué bloque cambiaría de su propio proyecto emprendedor después de este caso.
 
 ## Criterios de evaluación
 
@@ -73,5 +73,5 @@ Cambiar un bloque del Canvas nunca cambia solo ese bloque. Encontrar qué arrast
 
 - **Variante corta (25 min):** dar el Canvas del modelo antiguo ya rellenado y trabajar solo las preguntas 2 a 5.
 - **Variante con otra empresa:** el mismo esquema funciona con cualquier negocio del barrio que haya empezado a repartir a domicilio. La ficha la construye la clase preguntando en la tienda.
-- **Extensión hacia el capstone (15 min).** Cada grupo coge su propio Canvas y cambia un bloque a propósito. Después rastrea qué otros dos bloques se mueven. Es la mejor forma de comprobar si el Canvas está bien hecho: si no arrastra nada, es que estaba vacío.
+- **Extensión hacia el proyecto (15 min).** Cada grupo coge su propio Canvas y cambia un bloque a propósito. Después rastrea qué otros dos bloques se mueven. Es la mejor forma de comprobar si el Canvas está bien hecho: si no arrastra nada, es que estaba vacío.
 - **Conexión con el ejercicio del BMC relámpago** de la misma unidad: allí se disecciona un modelo estático; aquí se ve moverse.

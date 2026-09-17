@@ -61,5 +61,5 @@ En esta fira cada equip té una idea amb un cost d'arrancada i ha de reunir eixa
 ## Variants i extensions
 
 - **Variant crisi:** a meitat de la dinàmica, el professor anuncia que el banc endurix condicions i la subvenció s'esgota; els equips han de refer el seu pla amb el que queda.
-- **Connexió amb l'activitat de pressupost (Unitat 7) i el capstone (Unitat 9-10):** la combinació de fonts triada ací es reutilitza per a finançar el projecte del curs.
+- **Connexió amb l'activitat de pressupost (Unitat 7) i el projecte emprenedor (Unitat 12):** la combinació de fonts triada ací es reutilitza per a finançar el projecte del curs.
 - **Extensió real:** investigar una campanya de crowdfunding real (Verkami, Kickstarter) i analitzar quines recompenses va oferir i si va assolir l'objectiu.

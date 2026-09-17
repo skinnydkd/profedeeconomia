@@ -73,5 +73,5 @@ El ejercicio separa deliberadamente las dos fases que la unidad distingue. En la
 
 - **Variante corta (25 min):** usar solo cuatro letras (S, C, E, R) con cuatro minutos cada una.
 - **Variante con otro objeto:** funciona igual de bien con el patio del instituto, una máquina de vending o la propia página web del centro. Cuanto más cotidiano es el objeto, más cuesta al principio y mejores ideas salen al final.
-- **Extensión hacia el capstone (15 min).** Aplicar las siete letras a la idea de proyecto que cada grupo lleva para la Unidad 9. SCAMPER es más útil sobre una idea que ya existe que sobre una hoja en blanco.
+- **Extensión hacia el proyecto emprendedor (15 min).** Aplicar las siete letras a la idea de proyecto que cada grupo lleva para la Unidad 12. SCAMPER es más útil sobre una idea que ya existe que sobre una hoja en blanco.
 - **Conexión con el caso de la unidad** sobre el negocio que cerró por falta de una habilidad: preguntar qué letra habría ayudado a aquel equipo.

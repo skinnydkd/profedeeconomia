@@ -34,7 +34,7 @@ La unitat distingix mètriques de vanitat de mètriques accionables. La definici
 
 ## El panell del projecte
 
-Un grup de 4t ESO ha llançat el seu projecte capstone: una funda de mòbil feta amb material reciclat, a **12 € la unitat**. Porten un mes i este és el panell:
+Un grup de 4t ESO ha llançat el seu projecte emprenedor: una funda de mòbil feta amb material reciclat, a **12 € la unitat**. Porten un mes i este és el panell:
 
 | Mètrica | Valor |
 | --- | ---: |
@@ -85,5 +85,5 @@ Un grup de 4t ESO ha llançat el seu projecte capstone: una funda de mòbil feta
 
 - **Variant curta (20 min):** preguntes 1 a 5 i classificació oral.
 - **Variant amb el panell invertit:** donar un panell amb conversió de visita a formulari del 2 % i de formulari a venda del 60 %. Ara el coll de botella està al principi i la resposta correcta a la pregunta 7 s'invertix. És la millor comprovació que s'ha entés l'embut i no memoritzat la resposta.
-- **Extensió amb el projecte propi (tot el curs).** Muntar este mateix panell per al capstone del grup i revisar-lo cada dues setmanes. Les mètriques només ensenyen alguna cosa quan es miren repetides vegades.
+- **Extensió amb el projecte propi (tot el curs).** Muntar este mateix panell per al projecte del grup i revisar-lo cada dues setmanes. Les mètriques només ensenyen alguna cosa quan es miren repetides vegades.
 - **Connexió amb el pitch de la unitat:** un pitch que ensenya seguidors en lloc de conversió sol ser un pitch sense dades. Usar este exercici com a filtre abans del Demo Day.

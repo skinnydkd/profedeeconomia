@@ -62,5 +62,5 @@ Las tres se parecen desde fuera —alguien no cumple— y son problemas distinto
 
 - **Variante corta (25 min):** debatir solo las situaciones A y C, que son las que más se contraponen.
 - **Variante con roles de Belbin:** antes del debate, cada alumno identifica su rol natural. Preguntar después si el «compañero que no aparece» podría estar en el rol equivocado en vez de no querer trabajar.
-- **Extensión con la norma en uso (todo el curso).** Si la norma sale votada, aplicarla de verdad en el proyecto capstone de la Unidad 9 y revisarla al terminar. Una norma que se revisa vale mucho más que una que se cuelga en la pared.
+- **Extensión con la norma en uso (todo el curso).** Si la norma sale votada, aplicarla de verdad en el proyecto emprendedor de la Unidad 12 y revisarla al terminar. Una norma que se revisa vale mucho más que una que se cuelga en la pared.
 - **Conexión con el caso de la unidad** sobre el compañero que no aparece: allí se analiza desde fuera; aquí se legisla.

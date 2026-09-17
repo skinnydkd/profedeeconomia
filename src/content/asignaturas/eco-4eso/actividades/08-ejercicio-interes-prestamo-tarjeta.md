@@ -70,5 +70,5 @@ Vais a comprar un mismo producto —un portátil de 800 €— de tres formas di
 ## Variantes y extensiones
 
 - **Variante TAE:** quienes acaben pronto calculan la TAE aproximada de cada opción y comprueban que ordena igual que el coste total.
-- **Conexión con la actividad de financiación (Unidad 7) y el presupuesto (Unidad 7):** el coste del crédito se incorpora como un gasto fijo que reduce el ahorro mensual.
+- **Conexión con la dinámica de financiación (Unidad 12) y el presupuesto (Unidad 7):** el coste del crédito se incorpora como un gasto fijo que reduce el ahorro mensual.
 - **Extensión real:** buscar un anuncio real de financiación de una tienda o de una tarjeta revolving y calcular su coste verdadero con la misma plantilla.

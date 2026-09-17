@@ -50,5 +50,5 @@ Este ejercicio separa las dos cosas. Antes de aplicar el BMC a vuestro proyecto,
 ## Variantes y extensiones
 
 - **Variante "modelos imposibles":** asignar empresas con modelos contraintuitivos (un periódico gratuito, una app sin anuncios ni cuota visible) para forzar la pregunta de los ingresos.
-- **Conexión directa con el capstone (Unidad 9):** inmediatamente después, cada equipo aplica el BMC a su propia idea, ya con la herramienta entrenada.
+- **Conexión directa con el proyecto de esta unidad:** inmediatamente después, cada equipo aplica el BMC a su propia idea, ya con la herramienta entrenada.
 - **Extensión comparativa:** comparar el Canvas de un gigante con el de un negocio local del mismo sector (Mercadona vs. tienda de barrio) y discutir qué bloques cambian.

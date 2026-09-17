@@ -42,7 +42,7 @@ Esta dinàmica entrena exactament això, i ho fa per repetició: cada estudiant 
 
 ## Passos
 
-1. **Construcció del pitch (10 min).** Cada estudiant escriu el seu pitch de 30 segons seguint la plantilla, sobre la seua idea del projecte capstone (o una idea pròpia si encara no té equip). Avís: el ganxo és l'últim que ix bé i el que més importa.
+1. **Construcció del pitch (10 min).** Cada estudiant escriu el seu pitch de 30 segons seguint la plantilla, sobre la seua idea del projecte emprenedor (o una idea pròpia si encara no té equip). Avís: el ganxo és l'últim que ix bé i el que més importa.
 2. **Ronda zero — cronometratge en solitari (3 min).** Cadascú el llig en veu baixa amb el cronòmetre per a vore si cap en 30 segons. Quasi ningú cap a la primera: cal retallar.
 3. **Rondes en parelles rotatòries (20 min · ~6 rondes).** La classe s'organitza en dos files enfrontades. En cada ronda:
    - A dispara el seu pitch a B en 30 segons (campana).
@@ -64,5 +64,5 @@ Esta dinàmica entrena exactament això, i ho fa per repetició: cada estudiant 
 ## Variants i extensions
 
 - **Variant "l'inversor difícil":** en l'última ronda, el company interromp als 10 segons amb «no m'interessa, per què hauria de seguir escoltant?» per a entrenar la reacció davall pressió.
-- **Connexió directa amb el demo day (Unitat 10):** este pitch de 30 segons es convertix en la diapositiva 2 (problema) i en l'arrancada del pitch de 5 minuts.
+- **Connexió directa amb el Demo Day (Unitat 12):** este pitch de 30 segons es convertix en la diapositiva 2 (problema) i en l'arrancada del pitch de 5 minuts.
 - **Extensió gravada:** cada estudiant es grava el pitch final amb el mòbil i s'autoavalua veient el vídeo (postura, ritme, crosses).

@@ -50,6 +50,6 @@ Este debat enfronta les dues visions amb casos reals. L'objectiu no és decidir 
 
 ## Variants i extensions
 
-- **Connexió amb l'activitat de greenwashing (Unitat 3):** usar com a munició de l'equip crític els anuncis analitzats en l'activitat de detecció de greenwashing.
+- **Connexió amb l'activitat de greenwashing (Unitat 2):** usar com a munició de l'equip crític els anuncis analitzats en l'activitat de detecció de greenwashing.
 - **Variant "dissenya la teua empresa amb propòsit":** després del debat, cada equip esbossa en cinc minuts una empresa que ells consideren capaç de sostindre les dues coses i explica com evitaria caure en el sacrifici de la causa.
 - **Extensió:** investigar el model cooperatiu de l'entorn (cooperatives agrícoles, de consum o de treball pròximes) i portar un exemple real a la sessió següent.

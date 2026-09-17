@@ -2,7 +2,7 @@
 asignatura: eco-4eso
 unidad_relacionada: 10
 title: "Equip d'aula amb rols Belbin: simulació de 3 sprints amb retrospectiva"
-descripcion: "Dinàmica de tres sessions per a viure en primera persona un sprint àgil aplicat a un mini-repte d'aula: assignació de rols Belbin, kickoff, dos dailys de 15 minuts i retrospectiva final que produïx les decisions que es portaran al projecte capstone."
+descripcion: "Dinàmica de tres sessions per a viure en primera persona un sprint àgil aplicat a un mini-repte d'aula: assignació de rols Belbin, kickoff, dos dailys de 15 minuts i retrospectiva final que produïx les decisions que es portaran al projecte emprenedor."
 tipo: dinamica
 duracion: "80 min · 3 sessions (kickoff 50 min + 2 dailys de 15 min)"
 agrupacion: "equips xicotets (4 persones)"
@@ -24,7 +24,7 @@ slug: "asignaturas/eco-4eso/actividades/10-equipo-aula-roles-belbin-sprint.ca"
 
 Ja sabeu, en teoria, què és un equip, quins rols necessita, com es gestionen els conflictes i com s'organitza un sprint àgil. Esta activitat canvia el verb: passem de *saber* a *fer*. Cada equip de quatre persones assumix un mini-repte d'aula que ha d'entregar al cap de dues setmanes, organitzant-se amb l'estructura del sprint i amb els rols Belbin repartits des del primer dia. La hipòtesi didàctica és senzilla: **un equip que repartix rols i fa daily entrega millor que un que no, encara que el contingut del repte siga el mateix**. Ho veureu comparant els vostres equips en la retrospectiva final.
 
-Este sprint pilot produïx, a més, els **tres documents** (fitxa de rols, carta d'equip i pla de sprint) que es reutilitzen tal qual en el projecte capstone de les Unitats 9 i 10.
+Este sprint pilot produïx, a més, els **tres documents** (fitxa de rols, carta d'equip i pla de sprint) que es reutilitzen tal qual en el projecte emprenedor de la Unitat 12.
 
 ## Objectius didàctics
 
@@ -114,7 +114,7 @@ Esta és la peça més important de l'activitat. Cada equip respon per escrit a 
 >
 > **Què no ha funcionat?**
 >
-> **Què anem a canviar en el pròxim sprint (capstone)?**
+> **Què anem a canviar en el pròxim sprint (projecte emprenedor)?**
 
 Regles de la retrospectiva:
 
@@ -137,10 +137,10 @@ Regles de la retrospectiva:
 Dues idees que volem que es queden a l'aula després d'esta activitat:
 
 1. **Repartir rols des del dia 1 canvia la dinàmica de l'equip més que qualsevol discurs sobre el treball en grup.** Saber quin rol natural tens t'ajuda a aportar el que millor saps fer i a demanar el que no.
-2. **La retrospectiva és la palanca de millora real.** Sense retrospectiva els errors es repetixen sprint rere sprint; amb retrospectiva, l'equip millora cada dues setmanes. Els tres documents que produïx esta activitat —fitxa de rols, carta d'equip i pla de sprint— es reutilitzen tal qual en el projecte capstone de les Unitats 9 i 10.
+2. **La retrospectiva és la palanca de millora real.** Sense retrospectiva els errors es repetixen sprint rere sprint; amb retrospectiva, l'equip millora cada dues setmanes. Els tres documents que produïx esta activitat —fitxa de rols, carta d'equip i pla de sprint— es reutilitzen tal qual en el projecte emprenedor de la Unitat 12.
 
 ## Variants i extensions
 
 - **Variant exprés (50 min en una sola sessió):** suprimir els reptes A/C i treballar tots els equips sobre el repte B (prototip en paper). Kickoff 25 min + execució 15 min + entrega i retrospectiva 10 min. Menys profunditat però permet viure el cicle complet en una sola sessió.
 - **Variant avançada:** al final del daily 2, cada equip es reunix amb un altre equip per a fer una **retrospectiva creuada**: conten a l'equip veí què canvien per al següent sprint i reben una pregunta crítica. Excel·lent per a evitar que la retrospectiva quede en autojustificació.
-- **Variant de seguiment longitudinal:** repetir l'estructura completa a les Unitats 9 i 10 sobre el projecte capstone real, comparant les retrospectives per a evidenciar la millora de l'equip entre sprints.
+- **Variant de seguiment longitudinal:** repetir l'estructura completa a la Unitat 12 sobre el projecte emprenedor real, comparant les retrospectives per a evidenciar la millora de l'equip entre sprints.

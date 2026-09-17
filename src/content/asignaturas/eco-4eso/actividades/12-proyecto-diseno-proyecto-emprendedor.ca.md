@@ -1,8 +1,8 @@
 ---
 asignatura: eco-4eso
 unidad_relacionada: 12
-title: "Capstone · Part 1: Dissenya el teu projecte emprenedor d'aula (Design Thinking + BMC + prototip)"
-descripcion: "Projecte llarg de quatre sessions en què cada equip aplica les tres metodologies de la unitat —Design Thinking, Business Model Canvas i prototipatge de baixa fidelitat— a un problema real de l'entorn, fins a arribar a un prototip provat i un BMC iterat. És la primera meitat del projecte capstone del curs; la Unitat 10 tancarà amb validació i pitch."
+title: "Projecte d'aula · Part 1: Dissenya el teu projecte emprenedor d'aula (Design Thinking + BMC + prototip)"
+descripcion: "Projecte llarg de quatre sessions en què cada equip aplica les tres metodologies de la unitat —Design Thinking, Business Model Canvas i prototipatge de baixa fidelitat— a un problema real de l'entorn, fins a arribar a un prototip provat i un BMC iterat. És la primera meitat del projecte emprenedor del curs; el Demo Day d'esta mateixa unitat tanca amb validació i pitch."
 tipo: proyecto
 duracion: "4 sessions de 55 min · ~4 setmanes (1 sessió per setmana + treball entre sessions)"
 agrupacion: "grups xicotets (3-5)"
@@ -25,9 +25,9 @@ slug: "asignaturas/eco-4eso/actividades/12-proyecto-diseno-proyecto-emprendedor.
 
 Arriba el projecte més llarg del curs. Durant les pròximes quatre sessions cada equip va a dissenyar un **projecte emprenedor real**: detectar un problema de l'entorn, entendre qui el patix, modelar-lo en un full, prototipar-lo en cartó i provar-lo. No anem a fabricar res definitiu —no estem en una incubadora— però sí que anem a arribar a l'**únic entregable que importa en esta fase**: un prototip de baixa fidelitat que tres persones reals han vist i comentat, i dos Business Model Canvas (abans i després de parlar amb elles) que demostren el que l'equip ha aprés.
 
-Esta activitat és la **part 1 del capstone** del curs. La Unitat 10 reprendrà el projecte per a treballar la validació amb dades, el pla de comunicació i el pitch final. Les dues unitats juntes són el tancament del Bloc D.
+Esta activitat és la **part 1 del projecte emprenedor** del curs. El Demo Day, l'activitat que tanca esta mateixa unitat, reprendrà el projecte per a treballar la validació amb dades, el pla de comunicació i el pitch final. Les dues parts juntes són el tancament del curs.
 
-> **Regla d'or del capstone**: si al final de les quatre sessions el BMC de l'equip és idèntic al del primer dia, no s'ha fet la faena. La diferència entre el BMC 1 i el BMC 2 és la prova que l'equip ha parlat amb persones reals.
+> **Regla d'or del projecte**: si al final de les quatre sessions el BMC de l'equip és idèntic al del primer dia, no s'ha fet la faena. La diferència entre el BMC 1 i el BMC 2 és la prova que l'equip ha parlat amb persones reals.
 
 ## Objectius didàctics
 
@@ -104,7 +104,7 @@ Cada equip assigna —i rota cada sessió si vol— estos quatre rols. En equips
 
 ### Sessió 4 — Iterar i construir el BMC versió 2 (55 min)
 
-**Objectiu**: convertir el feedback de la prova en canvis concrets del model i tancar la part 1 del capstone.
+**Objectiu**: convertir el feedback de la prova en canvis concrets del model i tancar la part 1 del projecte.
 
 | Bloc | Temps | Què passa |
 | --- | --- | --- |
@@ -112,7 +112,7 @@ Cada equip assigna —i rota cada sessió si vol— estos quatre rols. En equips
 | Decisió: iteració o pivot? | 5 min | L'equip decidix explícitament. <ul><li>**Iteració**: ajustos dins del mateix model (canviar el preu, el canal, el nom, simplificar una pantalla).</li><li>**Pivot**: canvi gran (un altre segment, una altra proposta de valor, una altra font d'ingressos).</li></ul> Pivotar **no és fracassar**: Instagram, YouTube i Slack van pivotar. |
 | Construcció del **BMC versió 2** | 20 min | Es fa un BMC nou en un altre A3 (no s'esborra el primer: el contrast és l'aprenentatge). Es mouen, lleven i afigen post-its segons el feedback arreplegat. |
 | Quadern de bitàcola: redacció de l'**informe d'aprenentatge** | 10 min | Document d'1 pàgina amb: problema inicial, què vam descobrir a les entrevistes, idea triada, què va passar a la prova, canvis entre BMC v1 i BMC v2, decisió d'iteració o pivot. |
-| Tancament i connexió amb la Unitat 10 | 5 min | El professor arreplega: BMC v1 + BMC v2 + prototip + quadern de bitàcola. Anuncia que la Unitat 10 reprendrà el projecte amb la validació final i el pitch. |
+| Tancament i connexió amb el Demo Day | 5 min | El professor arreplega: BMC v1 + BMC v2 + prototip + quadern de bitàcola. Anuncia que el Demo Day reprendrà el projecte amb la validació final i el pitch. |
 
 ## Entregables del projecte
 
@@ -141,22 +141,22 @@ Al final de les quatre sessions cada equip entrega un paquet amb quatre peces. *
 
 - **Grups xicotets (classe < 18)**: equips de 3 persones amb doble rol. Es pot ampliar el nombre d'entrevistes exigides a 7 per equip.
 - **Temps limitat (3 sessions en lloc de 4)**: fusionar les sessions 3 i 4 en una sola sessió de prototipatge + iteració ràpida. Es perd profunditat en la prova però es manté la lògica.
-- **Equips avançats**: demanar un tercer entregable opcional, un *pitch* d'1 minut gravat en vídeo. Servix d'escalfament per a la Unitat 10.
+- **Equips avançats**: demanar un tercer entregable opcional, un *pitch* d'1 minut gravat en vídeo. Servix d'escalfament per al Demo Day.
 - **Projecte amb impacte real**: si algun equip treballa un problema del mateix institut (residus, patis, espais), convidar l'equip directiu a la sessió 4 com a públic de la prova. Eleva moltíssim la motivació.
 
-## Connexió amb la Unitat 10
+## Connexió amb el Demo Day
 
-El capstone no acaba ací. La **Unitat 10 — Validació, comunicació i pitch** reprendrà el mateix projecte de cada equip i treballarà:
+El projecte no acaba ací. El **Demo Day de l'aula**, que tanca esta mateixa unitat, reprendrà el mateix projecte de cada equip i treballarà:
 
 - **Validació amb dades**: com mesurar si la proposta funciona (enquestes, *landing pages*, mètriques d'ús del prototip).
 - **Pla de comunicació**: marca, canals, missatge, materials gràfics.
 - **Pitch final**: presentació de 3-5 minuts davant de la resta de la classe i, si és possible, d'un jurat extern (famílies, professors d'altres departaments, exalumnes emprenedors).
 
-El projecte entregat en esta unitat **és el material de partida** de la Unitat 10. Conserveu els BMC, els mapes d'empatia, el prototip i el quadern de bitàcola: no es tornen a fer.
+El projecte entregat en esta activitat **és el material de partida** del Demo Day. Conserveu els BMC, els mapes d'empatia, el prototip i el quadern de bitàcola: no es tornen a fer.
 
 ## Per a emportar-se a casa
 
-Tres idees que l'aula ha d'assumir abans de la pròxima unitat:
+Tres idees que l'aula ha d'assumir abans del Demo Day:
 
 1. **El projecte no és la idea inicial**: és el que queda després de parlar amb cinc persones i de provar un prototip de cartó. Quasi sempre és molt distint del que s'imaginava el primer dia.
 2. **El BMC no és un examen**: és una eina de treball. S'òmpli amb post-its precisament per a poder moure'ls, llevar-los i afegir quan el model canvia.

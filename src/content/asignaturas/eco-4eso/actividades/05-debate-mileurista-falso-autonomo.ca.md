@@ -56,6 +56,6 @@ La unitat ha explicat els tipus de contracte, la nòmina, la cotització i l'IRP
 
 ## Variants i extensions
 
-- **Connexió amb l'activitat de nòmines (Unitat 8):** comparar la nòmina real de l'oferta A amb la factura que emetria el fals autònom de la C per a veure quant costa de veritat cada figura.
+- **Connexió amb l'activitat de nòmines d'esta unitat:** comparar la nòmina real de l'oferta A amb la factura que emetria el fals autònom de la C per a veure quant costa de veritat cada figura.
 - **Variant negociació:** qui va triar una oferta intenta «negociar» una millora amb el professor (pujar el sou, passar de pràctiques a contracte) i descobrix el marge real.
 - **Extensió:** buscar una oferta de treball real per a menors d'edat o primera faena en un portal d'ocupació i analitzar-la amb la mateixa plantilla.

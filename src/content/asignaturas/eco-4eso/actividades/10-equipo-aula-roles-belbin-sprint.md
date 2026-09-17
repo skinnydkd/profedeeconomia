@@ -2,7 +2,7 @@
 asignatura: eco-4eso
 unidad_relacionada: 10
 title: "Equipo de aula con roles Belbin: simulación de 3 sprints con retrospectiva"
-descripcion: "Dinámica de tres sesiones para vivir en primera persona un sprint ágil aplicado a un mini-reto de aula: asignación de roles Belbin, kickoff, dos dailys de 15 minutos y retrospectiva final que produce las decisiones que se llevarán al proyecto capstone."
+descripcion: "Dinámica de tres sesiones para vivir en primera persona un sprint ágil aplicado a un mini-reto de aula: asignación de roles Belbin, kickoff, dos dailys de 15 minutos y retrospectiva final que produce las decisiones que se llevarán al proyecto emprendedor."
 tipo: dinamica
 duracion: "80 min · 3 sesiones (kickoff 50 min + 2 dailys de 15 min)"
 agrupacion: "equipos pequeños (4 personas)"
@@ -22,7 +22,7 @@ estado: publicado
 
 Sabéis ya, en teoría, qué es un equipo, qué roles necesita, cómo se gestionan los conflictos y cómo se organiza un sprint ágil. Esta actividad cambia el verbo: pasamos de *saber* a *hacer*. Cada equipo de cuatro personas asume un mini-reto de aula que tiene que entregar al cabo de dos semanas, organizándose con la estructura del sprint y con los roles Belbin repartidos desde el primer día. La hipótesis didáctica es sencilla: **un equipo que reparte roles y hace daily entrega mejor que uno que no, aunque el contenido del reto sea el mismo**. Lo veréis comparando vuestros equipos en la retrospectiva final.
 
-Este sprint piloto produce, además, los **tres documentos** (ficha de roles, carta de equipo y plan de sprint) que se reutilizan tal cual en el proyecto capstone de las Unidades 9 y 10.
+Este sprint piloto produce, además, los **tres documentos** (ficha de roles, carta de equipo y plan de sprint) que se reutilizan tal cual en el proyecto emprendedor de la Unidad 12.
 
 ## Objetivos didácticos
 
@@ -112,7 +112,7 @@ Esta es la pieza más importante de la actividad. Cada equipo responde por escri
 >
 > **¿Qué no ha funcionado?**
 >
-> **¿Qué vamos a cambiar en el próximo sprint (capstone)?**
+> **¿Qué vamos a cambiar en el próximo sprint (proyecto emprendedor)?**
 
 Reglas de la retrospectiva:
 
@@ -135,10 +135,10 @@ Reglas de la retrospectiva:
 Dos ideas que queremos que se queden en el aula tras esta actividad:
 
 1. **Repartir roles desde el día 1 cambia la dinámica del equipo más que cualquier discurso sobre el trabajo en grupo.** Saber qué rol natural tienes te ayuda a aportar lo que mejor sabes hacer y a pedir lo que no.
-2. **La retrospectiva es la palanca de mejora real.** Sin retrospectiva los errores se repiten sprint tras sprint; con retrospectiva, el equipo mejora cada dos semanas. Los tres documentos que produce esta actividad —ficha de roles, carta de equipo y plan de sprint— se reutilizan tal cual en el proyecto capstone de las Unidades 9 y 10.
+2. **La retrospectiva es la palanca de mejora real.** Sin retrospectiva los errores se repiten sprint tras sprint; con retrospectiva, el equipo mejora cada dos semanas. Los tres documentos que produce esta actividad —ficha de roles, carta de equipo y plan de sprint— se reutilizan tal cual en el proyecto emprendedor de la Unidad 12.
 
 ## Variantes y extensiones
 
 - **Variante exprés (50 min en una sola sesión):** suprimir los retos A/C y trabajar todos los equipos sobre el reto B (prototipo en papel). Kickoff 25 min + ejecución 15 min + entrega y retrospectiva 10 min. Menos profundidad pero permite vivir el ciclo completo en una sola sesión.
 - **Variante avanzada:** al final del daily 2, cada equipo se reúne con otro equipo para hacer una **retrospectiva cruzada**: cuentan al equipo vecino qué cambian para el siguiente sprint y reciben una pregunta crítica. Excelente para evitar que la retrospectiva quede en autojustificación.
-- **Variante de seguimiento longitudinal:** repetir la estructura completa en las Unidades 9 y 10 sobre el proyecto capstone real, comparando las retrospectivas para evidenciar la mejora del equipo entre sprints.
+- **Variante de seguimiento longitudinal:** repetir la estructura completa en la Unidad 12 sobre el proyecto emprendedor real, comparando las retrospectivas para evidenciar la mejora del equipo entre sprints.

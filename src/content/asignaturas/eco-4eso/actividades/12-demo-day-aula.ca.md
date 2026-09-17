@@ -1,15 +1,15 @@
 ---
 asignatura: eco-4eso
 unidad_relacionada: 12
-title: "Demo Day de l'aula: pitch de 5 minuts davant de jurat extern (capstone part 2)"
+title: "Demo Day de l'aula: pitch de 5 minuts davant de jurat extern (projecte d'aula, part 2)"
 descripcion: "Tancament del curs en tres sessions: cada equip prepara, assaja i defén el seu projecte en format pitch de 5 minuts davant d'un jurat extern simulat (altres professors, pares, alumnat d'altres classes), amb feedback estructurat i entrega d'un dossier de validació."
 tipo: proyecto
 duracion: "3 sessions de 55 min · sessió 1 preparació + sessió 2 assaig general + sessió 3 demo day"
-agrupacion: "grups xicotets (3-5) — els mateixos equips del capstone de la Unitat 9"
+agrupacion: "grups xicotets (3-5) — els mateixos equips del projecte d'esta unitat"
 competencias_clave: [CE, CCL, CD, CPSAA]
 competencias_especificas: [CE6]
 materiales:
-  - "Business Model Canvas i prototip de la Unitat 9 (capstone part 1) actualitzat després de la validació"
+  - "Business Model Canvas i prototip de la part 1 del projecte (activitat anterior d'esta unitat) actualitzat després de la validació"
   - "Plantilla de pitch deck de 10 slides (Google Slides, Canva o PowerPoint)"
   - "Cronòmetre visible (projectat o físic damunt de la taula)"
   - "Plantilla del dossier de validació (3 hipòtesis · mètode · resultat · decisió pivot/persevera)"
@@ -23,7 +23,7 @@ slug: "asignaturas/eco-4eso/actividades/12-demo-day-aula.ca"
 
 ## Plantejament
 
-Esta és l'activitat de tancament del curs. En la Unitat 9 cada equip va acabar la **part 1 del capstone** amb un Business Model Canvas i un prototip —físic, digital o de servici— damunt de la taula. La **part 2**, que ara tanquem, fa dues coses alhora: posa eixos projectes a prova al món real (validació amb usuaris) i els obliga a eixir de l'aula per a defendre'ls davant de gent que no vos coneix.
+Esta és l'activitat de tancament del curs. En l'activitat anterior d'esta unitat cada equip va acabar la **part 1 del projecte** amb un Business Model Canvas i un prototip —físic, digital o de servici— damunt de la taula. La **part 2**, que ara tanquem, fa dues coses alhora: posa eixos projectes a prova al món real (validació amb usuaris) i els obliga a eixir de l'aula per a defendre'ls davant de gent que no vos coneix.
 
 La metàfora útil no és l'examen final. És el **4YFN** del Mobile World Congress: cada equip té cinc minuts, un públic que no vos deu res i una sola oportunitat que algú diga «conta'm més». El que s'avalua no és el prototip —que serà clarament tosc, està bé que ho siga— sinó tres coses: si les hipòtesis s'han contrastat amb persones reals, si l'equip sap contar-ho en cinc minuts sense desbordar-se i si rep el feedback com un regal i no com una agressió.
 

@@ -1,15 +1,15 @@
 ---
 asignatura: eco-4eso
 unidad_relacionada: 12
-title: "Demo Day del aula: pitch de 5 minutos ante jurado externo (capstone parte 2)"
+title: "Demo Day del aula: pitch de 5 minutos ante jurado externo (proyecto de aula, parte 2)"
 descripcion: "Cierre del curso en tres sesiones: cada equipo prepara, ensaya y defiende su proyecto en formato pitch de 5 minutos ante un jurado externo simulado (otros profesores, padres, alumnado de otras clases), con feedback estructurado y entrega de un dossier de validación."
 tipo: proyecto
 duracion: "3 sesiones de 55 min · sesión 1 preparación + sesión 2 ensayo general + sesión 3 demo day"
-agrupacion: "grupos pequeños (3-5) — los mismos equipos del capstone de la Unidad 9"
+agrupacion: "grupos pequeños (3-5) — los mismos equipos del proyecto de esta unidad"
 competencias_clave: [CE, CCL, CD, CPSAA]
 competencias_especificas: [CE6]
 materiales:
-  - "Business Model Canvas y prototipo de la Unidad 9 (capstone parte 1) actualizado tras la validación"
+  - "Business Model Canvas y prototipo de la parte 1 del proyecto (actividad anterior de esta unidad) actualizado tras la validación"
   - "Plantilla de pitch deck de 10 slides (Google Slides, Canva o PowerPoint)"
   - "Cronómetro visible (proyectado o físico encima de la mesa)"
   - "Plantilla del dossier de validación (3 hipótesis · método · resultado · decisión pivot/persevera)"
@@ -21,7 +21,7 @@ estado: publicado
 
 ## Planteamiento
 
-Esta es la actividad de cierre del curso. En la Unidad 9 cada equipo terminó la **parte 1 del capstone** con un Business Model Canvas y un prototipo —físico, digital o de servicio— sobre la mesa. La **parte 2**, que ahora cerramos, hace dos cosas a la vez: pone esos proyectos a prueba en el mundo real (validación con usuarios) y los obliga a salir del aula para defenderlos delante de gente que no os conoce.
+Esta es la actividad de cierre del curso. En la actividad anterior de esta unidad cada equipo terminó la **parte 1 del proyecto** con un Business Model Canvas y un prototipo —físico, digital o de servicio— sobre la mesa. La **parte 2**, que ahora cerramos, hace dos cosas a la vez: pone esos proyectos a prueba en el mundo real (validación con usuarios) y los obliga a salir del aula para defenderlos delante de gente que no os conoce.
 
 La metáfora útil no es el examen final. Es el **4YFN** del Mobile World Congress: cada equipo tiene cinco minutos, un público que no os debe nada y una sola oportunidad de que alguien diga «cuéntame más». Lo que se evalúa no es el prototipo —que será claramente tosco, está bien que lo sea— sino tres cosas: si las hipótesis se han contrastado con personas reales, si el equipo sabe contarlo en cinco minutos sin desbordarse y si recibe el feedback como un regalo y no como una agresión.
 

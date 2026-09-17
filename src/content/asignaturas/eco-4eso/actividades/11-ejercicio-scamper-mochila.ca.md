@@ -75,5 +75,5 @@ L'exercici separa deliberadament les dues fases que la unitat distingix. En la p
 
 - **Variant curta (25 min):** usar només quatre lletres (S, C, E, R) amb quatre minuts cadascuna.
 - **Variant amb un altre objecte:** funciona igual de bé amb el pati de l'institut, una màquina de vending o la mateixa pàgina web del centre. Com més quotidià és l'objecte, més costa al principi i millors idees n'ixen al final.
-- **Extensió cap al capstone (15 min).** Aplicar les set lletres a la idea de projecte que cada grup porta per a la Unitat 9. SCAMPER és més útil sobre una idea que ja existix que sobre un full en blanc.
+- **Extensió cap al projecte emprenedor (15 min).** Aplicar les set lletres a la idea de projecte que cada grup porta per a la Unitat 12. SCAMPER és més útil sobre una idea que ja existix que sobre un full en blanc.
 - **Connexió amb el cas de la unitat** sobre el negoci que va tancar per falta d'una habilitat: preguntar quina lletra hauria ajudat aquell equip.
