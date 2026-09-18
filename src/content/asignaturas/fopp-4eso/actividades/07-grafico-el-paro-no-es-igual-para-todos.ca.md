@@ -14,9 +14,9 @@ materiales:
   - "Calculadora"
 solucion:
   - "<strong>Forma de les dues corbes.</strong> Les dues baixen amb força fins als 30 anys i s'aplanen després. El primer tram, de 16 a 19, està molt per damunt de tots els altres a les dues sèries."
-  - "<strong>Quantes vegades pitjor.</strong> Taxa d'atur: 40 / 9 = <strong>4,4 vegades</strong> la del tram de 45-54. Temporalitat: 55 / 11 = <strong>5 vegades</strong>. Entrar al mercat laboral és, mesurat així, entre quatre i cinc vegades més difícil que estar-hi ja dins."
-  - "<strong>On està l'escaló.</strong> Entre 20-24 i 25-29 la taxa d'atur baixa 9 punts, el major descens de tota la sèrie. Coincidix amb el final dels estudis i amb els primers contractes que deixen de ser d'estiu."
-  - "<strong>La dada del tram 55+.</strong> La taxa d'atur torna a pujar lleugerament. No és el mateix fenomen: en els jóvens és dificultat per a entrar; en este tram, dificultat per a tornar després de perdre l'ocupació."
+  - "<strong>Quantes vegades pitjor.</strong> Taxa d'atur: 42 / 8 = <strong>5,25 vegades</strong> la del tram de 45-54. Temporalitat: 60 / 12 = <strong>5 vegades</strong>. Entrar al mercat laboral és, mesurat així, unes cinc vegades més difícil que estar-hi ja dins."
+  - "<strong>On està l'escaló.</strong> Entre 16-19 i 20-24 la taxa d'atur cau 21 punts, amb diferència el major descens de la sèrie; l'escaló següent, de 20-24 a 25-29, ja és de només 7 punts. El primer coincidix amb eixir del sistema educatiu obligatori i el segon amb acabar els estudis i firmar contractes que deixen de ser d'estiu."
+  - "<strong>La dada del tram 55+.</strong> La taxa d'atur torna a pujar lleugerament (del 8 % al 9 %). No és el mateix fenomen: en els jóvens és dificultat per a entrar; en este tram, dificultat per a tornar després de perdre l'ocupació."
   - "<strong>El que les corbes no expliquen.</strong> Per què ocorre. Que una taxa siga alta no diu si és per falta d'experiència, pel tipus de contracte que s'oferix a qui entra o per l'estructura de sectors. Això cal buscar-ho a banda."
 lang: ca
 estado: publicado
@@ -35,15 +35,15 @@ Taxa d'atur i taxa de temporalitat per tram d'edat, a Espanya:
 
 | Tram d'edat | Taxa d'atur | Temporalitat |
 | --- | --- | --- |
-| 16 a 19 anys | 40 % | 55 % |
-| 20 a 24 anys | 24 % | 35 % |
-| 25 a 29 anys | 15 % | 22 % |
-| 30 a 44 anys | 10 % | 13 % |
-| 45 a 54 anys | 9 % | 11 % |
-| 55 anys o més | 10 % | 10 % |
-| **Total** | **11 %** | **14 %** |
+| 16 a 19 anys | 42 % | 60 % |
+| 20 a 24 anys | 21 % | 40 % |
+| 25 a 29 anys | 14 % | 28 % |
+| 30 a 44 anys | 9 % | 16 % |
+| 45 a 54 anys | 8 % | 12 % |
+| 55 anys o més | 9 % | 10 % |
+| **Total** | **10,4 %** | **15,4 %** |
 
-*Taula elaborada per a esta fitxa amb els ordres de magnitud de l'Enquesta de Població Activa (INE). Les dades de l'últim trimestre publicat estan a ine.es.*
+*Els totals i el tram jove són dades publicades de l'Enquesta de Població Activa (INE, 2n trimestre de 2025): temporalitat total del 15,4 %, taxa d'atur de 16 a 24 anys al voltant del 24,5 % i temporalitat d'eixe mateix tram del 43,4 %. **El desglossament per trams és una reconstrucció per a l'aula**, ajustada per a ser coherent amb eixos agregats publicats. Abans d'usar la fitxa convé substituir-lo per la sèrie vigent: INE, taula 4247 per a l'atur per grups d'edat i taula 4241 i següents per a la temporalitat.*
 
 **Taxa d'atur**: percentatge de persones que busquen ocupació activament i no en troben, sobre el total d'actius d'eixe tram.
 **Temporalitat**: percentatge d'assalariats amb contracte temporal sobre el total d'assalariats d'eixe tram.

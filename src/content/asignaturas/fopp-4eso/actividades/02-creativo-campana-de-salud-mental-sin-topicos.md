@@ -23,6 +23,9 @@ Las campañas de salud mental para adolescentes suelen fallar por el mismo motiv
 
 Vuestro encargo es una campaña de tres piezas para vuestro instituto que no use ninguna de esas frases y que sí incluya, en las tres, **un recurso concreto** al que se pueda acudir.
 
+> **Requisito de la actividad: validación con el departamento de orientación.**
+> Ninguna pieza de esta campaña se cuelga, se publica ni se difunde sin que el **departamento de orientación del centro** la haya revisado antes. No es un trámite: orientación es quien conoce los protocolos del centro, quién es el referente de bienestar emocional y qué recursos de la zona están operativos este curso. Una pieza sobre salud mental con un dato desactualizado o un mensaje mal calibrado hace daño, y el filtro que lo evita es ese.
+
 ## Las frases prohibidas
 
 Ninguna de estas puede aparecer, ni ninguna variante suya:
@@ -60,7 +63,18 @@ La pieza 3 es la más útil y la que casi ninguna campaña hace. La mayoría de 
 
 1. **Producción (35 min).** Las tres piezas.
 2. **Control de tópicos (10 min).** Intercambio entre grupos: cada uno caza los tópicos que el otro haya dejado pasar. Es asombroso cuántos se cuelan sin querer.
-3. **Selección (10 min).** La clase elige las piezas que se propondrán al equipo directivo para colgar de verdad.
+3. **Selección (10 min).** La clase elige las piezas candidatas a colgarse de verdad.
+
+### Validación con orientación (obligatoria, antes de publicar)
+
+Las piezas seleccionadas pasan por el departamento de orientación **antes** de colgarse. Se le pide que compruebe cuatro cosas:
+
+1. Que las **señales de alerta** están bien formuladas: ni alarmistas ni banales.
+2. Que los **recursos, teléfonos y horarios** son los vigentes este curso y los que el centro recomienda.
+3. Que la **ruta de derivación** que propone la pieza 2 coincide con el protocolo real del centro.
+4. Que el **tono** no culpabiliza ni presenta el malestar como un fallo personal.
+
+Si orientación pide cambios, se hacen y se vuelve a pasar. Solo entonces se cuelga.
 
 ## Preguntas de análisis
 
@@ -74,14 +88,15 @@ La pieza 3 es la más útil y la que casi ninguna campaña hace. La mayoría de 
 
 | Criterio | Descripción | Peso |
 | --- | --- | --- |
-| Rigor | Señales precisas y recursos verificados con datos vigentes | 35 % |
+| Rigor | Señales precisas y recursos verificados con datos vigentes | 30 % |
 | Sin tópicos | Ninguna frase prohibida ni equivalente | 20 % |
 | Utilidad | Las tres piezas dicen qué hacer, no solo cómo sentirse | 25 % |
-| Comunicación | Legibles, adecuadas al público y con buen criterio visual | 20 % |
+| Comunicación | Legibles, adecuadas al público y con buen criterio visual | 15 % |
+| Validación | Pasa por orientación e incorpora los cambios que pida | 10 % |
 
 ## Variantes y extensiones
 
 - **Con apoyo:** dos piezas, con la lista de recursos ya facilitada por el departamento de orientación.
-- **Con orientación:** trabajar la campaña junto al departamento de orientación del centro, que puede validar las señales y los recursos. Es muy recomendable y mejora mucho el resultado.
+- **Con orientación desde el principio:** además de la validación final, que es obligatoria, invitar a orientación a la sesión 1 para que expliquen el protocolo del centro. El nivel de las piezas sube mucho cuando se parte de ahí.
 - **Para quien va sobrado:** añadir una versión en formato vertical para el tablón digital o las redes del centro.
-- **Nota para el aula:** esta actividad puede remover cosas. Conviene recordar al principio dónde está el departamento de orientación y que la puerta está abierta sin cita.
+- **Nota para el aula:** esta actividad puede remover cosas. Conviene recordar al principio dónde está el departamento de orientación y que la puerta está abierta sin cita. Si alguien prefiere no participar en esta actividad concreta, se le ofrece una alternativa sin preguntar por qué.
