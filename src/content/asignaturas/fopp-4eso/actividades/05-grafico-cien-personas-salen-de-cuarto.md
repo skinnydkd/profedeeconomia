@@ -14,11 +14,11 @@ materiales:
   - "Ficha impresa con los porcentajes"
   - "Calculadora"
 solucion:
-  - "<strong>Primer reparto de los 100.</strong> Titulan 85. De esos 85: 58 van a Bachillerato (68 %), 23 a FP de Grado Medio (27 %) y 4 no continúan (5 %). De los 15 que no titulan, 9 pasan a FP Básica y 6 salen del sistema, al menos de momento."
-  - "<strong>FP de Grado Medio.</strong> De los 23, unos 16 titulan. De esos 16, alrededor de 7 siguen a Grado Superior y 9 se incorporan al trabajo. La vía de la FP no es un callejón sin salida: casi la mitad continúa estudiando."
-  - "<strong>Bachillerato.</strong> De los 58, unos 46 titulan en los dos años previstos y otros 6 lo hacen repitiendo. De los que titulan, en torno a 29 van a la universidad, 17 a FP de Grado Superior y el resto a otras vías."
-  - "<strong>El dato que sorprende.</strong> Sumando los que llegan a Grado Superior desde las dos vías —7 desde Grado Medio y 17 desde Bachillerato— resulta que a Grado Superior se llega por los dos caminos y en proporciones parecidas. Es el punto donde los itinerarios vuelven a juntarse."
-  - "<strong>Las reincorporaciones.</strong> De los 6 que salieron sin título, 2 vuelven en los cuatro años siguientes por la vía de las pruebas libres o de la FP Básica. Pocas, pero existen: la puerta no se cierra del todo."
+  - "<strong>Primer reparto de los 100.</strong> Titulan 82. De esos 82: 56 van a Bachillerato (68 %), 22 a FP de Grado Medio (27 %) y 4 no continúan (5 %). De los 18 que no titulan, 11 pasan a FP Básica y 7 salen del sistema, al menos de momento."
+  - "<strong>FP de Grado Medio.</strong> De los 22, unos 15 titulan. De esos 15, alrededor de 7 siguen a Grado Superior y 8 se incorporan al trabajo. La vía de la FP no es un callejón sin salida: casi la mitad continúa estudiando."
+  - "<strong>Bachillerato.</strong> De los 56, unos 50 titulan contando quienes repiten un curso. De los que titulan, en torno a 28 van a la universidad, 16 a FP de Grado Superior y el resto a otras vías."
+  - "<strong>El dato que sorprende.</strong> Sumando los que llegan a Grado Superior desde las dos vías —7 desde Grado Medio y 16 desde Bachillerato— resulta que a Grado Superior se llega por los dos caminos y en proporciones parecidas. Es el punto donde los itinerarios vuelven a juntarse."
+  - "<strong>Las reincorporaciones.</strong> De los 7 que salieron sin título, 2 o 3 vuelven en los años siguientes por la vía de las pruebas libres o de la FP Básica. Pocas, pero existen: la puerta no se cierra del todo."
 estado: publicado
 ---
 
@@ -34,7 +34,7 @@ Trabajar con cien personas en lugar de con porcentajes tiene una ventaja: los n�
 
 | Transición | Porcentaje |
 | --- | --- |
-| Obtienen el título de ESO | 85 % de los que cursan 4.º |
+| Obtienen el título de ESO | 82 % de los que cursan 4.º |
 | De quienes titulan: van a Bachillerato | 68 % |
 | De quienes titulan: van a FP de Grado Medio | 27 % |
 | De quienes titulan: no continúan estudios | 5 % |
@@ -45,7 +45,7 @@ Trabajar con cien personas en lugar de con porcentajes tiene una ventaja: los n�
 | De quienes titulan en Bachillerato: van a la universidad | 55 % |
 | De quienes titulan en Bachillerato: van a FP de Grado Superior | 33 % |
 
-*Porcentajes elaborados para esta ficha con los órdenes de magnitud de las estadísticas del Ministerio de Educación. Los datos oficiales, por curso y comunidad, están en el portal de estadísticas del Ministerio.*
+*La tasa de titulación es el dato publicado por el Ministerio de Educación, Formación Profesional y Deportes para el curso 2023-2024: **una tasa bruta de titulación en ESO del 82,1 %** (86,3 % en las alumnas y 78,1 % en los alumnos). **El resto de transiciones es una reconstrucción para el aula**, con órdenes de magnitud realistas pero no tomados de una tabla concreta. Antes de usar la ficha conviene sustituirlas por los datos de vuestro curso y comunidad, en el portal de estadísticas del Ministerio; ojo a no mezclar tasas brutas (sobre la población de la edad teórica) con tasas de transición (sobre quienes titulan), que es el error más común al manejar estas cifras.*
 
 ## Objetivos didácticos
 

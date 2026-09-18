@@ -32,14 +32,14 @@ Porcentaje de menores que usan internet y que disponen de móvil propio, por eda
 
 | Edad | Usan internet | Tienen móvil propio |
 | --- | --- | --- |
-| 10 años | 91 % | 25 % |
-| 11 años | 93 % | 40 % |
-| 12 años | 95 % | 62 % |
-| 13 años | 97 % | 78 % |
-| 14 años | 98 % | 88 % |
-| 15 años | 99 % | 94 % |
+| 10 años | 92 % | 26 % |
+| 11 años | 94 % | 44 % |
+| 12 años | 96 % | 66 % |
+| 13 años | 97 % | 82 % |
+| 14 años | 98 % | 91 % |
+| 15 años | 99 % | 96 % |
 
-*Tabla elaborada para esta ficha con la forma característica de la encuesta del INE sobre equipamiento y uso de tecnologías de la información en los hogares. Los datos vigentes de cada año están en ine.es y conviene comprobarlos.*
+*Los datos del conjunto de 10 a 15 años son los publicados por el INE en la Encuesta sobre Equipamiento y Uso de TIC en los Hogares de 2025: **un 67,9 % dispone de móvil** (1,7 puntos menos que en 2024) y **un 96 % lo tiene ya a los 15 años**. **El desglose edad por edad es una reconstrucción para el aula**, ajustada para promediar ese 67,9 %. Antes de usar la ficha conviene sustituirlo por la tabla vigente: INE, «Uso de los niños de 10 a 15 años de ordenador e internet y disposición de teléfono móvil».*
 
 ## Objetivos didácticos
 

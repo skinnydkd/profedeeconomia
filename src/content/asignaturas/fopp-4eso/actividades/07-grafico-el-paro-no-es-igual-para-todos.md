@@ -14,9 +14,9 @@ materiales:
   - "Calculadora"
 solucion:
   - "<strong>Forma de las dos curvas.</strong> Las dos bajan con fuerza hasta los 30 años y se aplanan después. El primer tramo, de 16 a 19, está muy por encima de todos los demás en las dos series."
-  - "<strong>Cuántas veces peor.</strong> Tasa de paro: 40 / 9 = <strong>4,4 veces</strong> la del tramo de 45-54. Temporalidad: 55 / 11 = <strong>5 veces</strong>. Entrar al mercado laboral es, medido así, entre cuatro y cinco veces más difícil que estar ya dentro."
-  - "<strong>Dónde está el escalón.</strong> Entre 20-24 y 25-29 la tasa de paro baja 9 puntos, el mayor descenso de toda la serie. Coincide con el final de los estudios y con los primeros contratos que dejan de ser de verano."
-  - "<strong>El dato del tramo 55+.</strong> La tasa de paro vuelve a subir ligeramente. No es el mismo fenómeno: en los jóvenes es dificultad para entrar; en este tramo, dificultad para volver tras perder el empleo."
+  - "<strong>Cuántas veces peor.</strong> Tasa de paro: 42 / 8 = <strong>5,25 veces</strong> la del tramo de 45-54. Temporalidad: 60 / 12 = <strong>5 veces</strong>. Entrar al mercado laboral es, medido así, unas cinco veces más difícil que estar ya dentro."
+  - "<strong>Dónde está el escalón.</strong> Entre 16-19 y 20-24 la tasa de paro cae 21 puntos, con diferencia el mayor descenso de la serie; el siguiente escalón, de 20-24 a 25-29, ya es de solo 7 puntos. El primero coincide con salir del sistema educativo obligatorio y el segundo con terminar los estudios y firmar contratos que dejan de ser de verano."
+  - "<strong>El dato del tramo 55+.</strong> La tasa de paro vuelve a subir ligeramente (del 8 % al 9 %). No es el mismo fenómeno: en los jóvenes es dificultad para entrar; en este tramo, dificultad para volver tras perder el empleo."
   - "<strong>Lo que las curvas no explican.</strong> Por qué ocurre. Que una tasa sea alta no dice si es por falta de experiencia, por el tipo de contrato que se ofrece a quien entra o por la estructura de sectores. Eso hay que buscarlo aparte."
 estado: publicado
 ---
@@ -33,15 +33,15 @@ Tasa de paro y tasa de temporalidad por tramo de edad, en España:
 
 | Tramo de edad | Tasa de paro | Temporalidad |
 | --- | --- | --- |
-| 16 a 19 años | 40 % | 55 % |
-| 20 a 24 años | 24 % | 35 % |
-| 25 a 29 años | 15 % | 22 % |
-| 30 a 44 años | 10 % | 13 % |
-| 45 a 54 años | 9 % | 11 % |
-| 55 años o más | 10 % | 10 % |
-| **Total** | **11 %** | **14 %** |
+| 16 a 19 años | 42 % | 60 % |
+| 20 a 24 años | 21 % | 40 % |
+| 25 a 29 años | 14 % | 28 % |
+| 30 a 44 años | 9 % | 16 % |
+| 45 a 54 años | 8 % | 12 % |
+| 55 años o más | 9 % | 10 % |
+| **Total** | **10,4 %** | **15,4 %** |
 
-*Tabla elaborada para esta ficha con los órdenes de magnitud de la Encuesta de Población Activa (INE). Los datos del último trimestre publicado están en ine.es.*
+*Los totales y el tramo joven son datos publicados de la Encuesta de Población Activa (INE, 2.º trimestre de 2025): temporalidad total del 15,4 %, tasa de paro de 16 a 24 años en torno al 24,5 % y temporalidad de ese mismo tramo del 43,4 %. **El desglose por tramos es una reconstrucción para el aula**, ajustada para ser coherente con esos agregados publicados. Antes de usar la ficha conviene sustituirlo por la serie vigente: INE, tabla 4247 para el paro por grupos de edad y tabla 4241 y siguientes para la temporalidad.*
 
 **Tasa de paro**: porcentaje de personas que buscan empleo activamente y no lo encuentran, sobre el total de activos de ese tramo.
 **Temporalidad**: porcentaje de asalariados con contrato temporal sobre el total de asalariados de ese tramo.

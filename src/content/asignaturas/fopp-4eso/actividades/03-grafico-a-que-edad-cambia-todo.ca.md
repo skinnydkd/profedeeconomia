@@ -34,14 +34,14 @@ Percentatge de menors que usen internet i que disposen de mòbil propi, per edat
 
 | Edat | Usen internet | Tenen mòbil propi |
 | --- | --- | --- |
-| 10 anys | 91 % | 25 % |
-| 11 anys | 93 % | 40 % |
-| 12 anys | 95 % | 62 % |
-| 13 anys | 97 % | 78 % |
-| 14 anys | 98 % | 88 % |
-| 15 anys | 99 % | 94 % |
+| 10 anys | 92 % | 26 % |
+| 11 anys | 94 % | 44 % |
+| 12 anys | 96 % | 66 % |
+| 13 anys | 97 % | 82 % |
+| 14 anys | 98 % | 91 % |
+| 15 anys | 99 % | 96 % |
 
-*Taula elaborada per a esta fitxa amb la forma característica de l'enquesta de l'INE sobre equipament i ús de tecnologies de la informació a les llars. Les dades vigents de cada any estan a ine.es i convé comprovar-les.*
+*Les dades del conjunt de 10 a 15 anys són les publicades per l'INE a l'Enquesta sobre Equipament i Ús de TIC a les Llars de 2025: **un 67,9 % disposa de mòbil** (1,7 punts menys que el 2024) i **un 96 % ja en té als 15 anys**. **El desglossament edat per edat és una reconstrucció per a l'aula**, ajustada per a fer mitjana d'eixe 67,9 %. Abans d'usar la fitxa convé substituir-lo per la taula vigent: INE, «Ús dels xiquets de 10 a 15 anys d'ordinador i internet i disposició de telèfon mòbil».*
 
 ## Objectius didàctics
 

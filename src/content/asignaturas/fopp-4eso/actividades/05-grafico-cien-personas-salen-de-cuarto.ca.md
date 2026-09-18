@@ -14,11 +14,11 @@ materiales:
   - "Fitxa impresa amb els percentatges"
   - "Calculadora"
 solucion:
-  - "<strong>Primer repartiment dels 100.</strong> En titulen 85. D'eixos 85: 58 van a Batxillerat (68 %), 23 a FP de Grau Mitjà (27 %) i 4 no continuen (5 %). Dels 15 que no titulen, 9 passen a FP Bàsica i 6 ixen del sistema, almenys de moment."
-  - "<strong>FP de Grau Mitjà.</strong> Dels 23, uns 16 titulen. D'eixos 16, al voltant de 7 continuen a Grau Superior i 9 s'incorporen a la faena. La via de la FP no és un carreró sense eixida: quasi la meitat continua estudiant."
-  - "<strong>Batxillerat.</strong> Dels 58, uns 46 titulen en els dos anys previstos i altres 6 ho fan repetint. Dels que titulen, al voltant de 29 van a la universitat, 17 a FP de Grau Superior i la resta a altres vies."
-  - "<strong>La dada que sorprén.</strong> Sumant els que arriben a Grau Superior des de les dues vies —7 des de Grau Mitjà i 17 des de Batxillerat— resulta que a Grau Superior s'hi arriba pels dos camins i en proporcions pareguades. És el punt on els itineraris tornen a ajuntar-se."
-  - "<strong>Les reincorporacions.</strong> Dels 6 que van eixir sense títol, 2 tornen en els quatre anys següents per la via de les proves lliures o de la FP Bàsica. Poques, però existixen: la porta no es tanca del tot."
+  - "<strong>Primer repartiment dels 100.</strong> En titulen 82. D'eixos 82: 56 van a Batxillerat (68 %), 22 a FP de Grau Mitjà (27 %) i 4 no continuen (5 %). Dels 18 que no titulen, 11 passen a FP Bàsica i 7 ixen del sistema, almenys de moment."
+  - "<strong>FP de Grau Mitjà.</strong> Dels 22, uns 15 titulen. D'eixos 15, al voltant de 7 continuen a Grau Superior i 8 s'incorporen a la faena. La via de la FP no és un carreró sense eixida: quasi la meitat continua estudiant."
+  - "<strong>Batxillerat.</strong> Dels 56, uns 50 titulen comptant els qui repetixen un curs. Dels que titulen, al voltant de 28 van a la universitat, 16 a FP de Grau Superior i la resta a altres vies."
+  - "<strong>La dada que sorprén.</strong> Sumant els que arriben a Grau Superior des de les dues vies —7 des de Grau Mitjà i 16 des de Batxillerat— resulta que a Grau Superior s'hi arriba pels dos camins i en proporcions pareguades. És el punt on els itineraris tornen a ajuntar-se."
+  - "<strong>Les reincorporacions.</strong> Dels 7 que van eixir sense títol, 2 o 3 tornen en els anys següents per la via de les proves lliures o de la FP Bàsica. Poques, però existixen: la porta no es tanca del tot."
 lang: ca
 estado: publicado
 slug: "asignaturas/fopp-4eso/actividades/05-grafico-cien-personas-salen-de-cuarto.ca"
@@ -36,7 +36,7 @@ Treballar amb cent persones en compte de amb percentatges té un avantatge: els 
 
 | Transició | Percentatge |
 | --- | --- |
-| Obtenen el títol d'ESO | 85 % dels que cursen 4t |
+| Obtenen el títol d'ESO | 82 % dels que cursen 4t |
 | De qui titula: va a Batxillerat | 68 % |
 | De qui titula: va a FP de Grau Mitjà | 27 % |
 | De qui titula: no continua estudis | 5 % |
@@ -47,7 +47,7 @@ Treballar amb cent persones en compte de amb percentatges té un avantatge: els 
 | De qui titula en Batxillerat: va a la universitat | 55 % |
 | De qui titula en Batxillerat: va a FP de Grau Superior | 33 % |
 
-*Percentatges elaborats per a esta fitxa amb els ordres de magnitud de les estadístiques del Ministeri d'Educació. Les dades oficials, per curs i comunitat, estan al portal d'estadístiques del Ministeri.*
+*La taxa de titulació és la dada publicada pel Ministeri d'Educació, Formació Professional i Esports per al curs 2023-2024: **una taxa bruta de titulació en ESO del 82,1 %** (86,3 % en les alumnes i 78,1 % en els alumnes). **La resta de transicions és una reconstrucció per a l'aula**, amb ordres de magnitud realistes però no presos d'una taula concreta. Abans d'usar la fitxa convé substituir-les per les dades del vostre curs i comunitat, al portal d'estadístiques del Ministeri; compte a no mesclar taxes brutes (sobre la població de l'edat teòrica) amb taxes de transició (sobre qui titula), que és l'error més comú en manejar estes xifres.*
 
 ## Objectius didàctics
 
