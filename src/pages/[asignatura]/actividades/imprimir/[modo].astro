@@ -15,6 +15,7 @@ import { ACCENTS, ASIGNATURA_SLUGS, ASIGNATURAS } from '@/lib/asignaturas';
 import { getCollection, render } from 'astro:content';
 import { sabersDeActividad } from '@/lib/cuaderno/sabers';
 import { ACTIVIDAD_TIPO_LABEL } from '@/lib/actividades';
+import { SITE } from '@/lib/seo';
 import { getLocale } from '@/i18n/locale';
 import { pickLocalizedEntry } from '@/i18n/content-locale';
 import { localizeAsignatura } from '@/i18n/asignaturas-ca';
@@ -581,12 +582,12 @@ const letra = (i: number) => String.fromCharCode(97 + i); // 0 -> 'a'
       {locale === 'ca' ? (
         <p class="note">
           Material obert de profedeeconomia.es · Llicència Creative Commons
-          BY-NC-SA · Errates i propostes: hola@profedeeconomia.es
+          BY-NC-SA · Errates i propostes: {SITE.email}
         </p>
       ) : (
         <p class="note">
           Material abierto de profedeeconomia.es · Licencia Creative Commons
-          BY-NC-SA · Erratas y propuestas: hola@profedeeconomia.es
+          BY-NC-SA · Erratas y propuestas: {SITE.email}
         </p>
       )}
     </section>

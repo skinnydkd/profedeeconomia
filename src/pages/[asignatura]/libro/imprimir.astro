@@ -9,6 +9,7 @@
  * Generates one path per asignatura that has at least one published unit.
  */
 import { ACCENTS, ASIGNATURA_SLUGS, ASIGNATURAS } from '@/lib/asignaturas';
+import { SITE } from '@/lib/seo';
 import { getCollection, render } from 'astro:content';
 import { getLocale } from '@/i18n/locale';
 import { pickLocalizedEntry } from '@/i18n/content-locale';
@@ -1013,7 +1014,7 @@ const accent = ACCENTS[a.color];
       </p>
       <p class="colophon-note">
         {copy.colofon}
-        <a href="mailto:hola@profedeeconomia.es">hola@profedeeconomia.es</a>.
+        <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
       </p>
     </section>
 

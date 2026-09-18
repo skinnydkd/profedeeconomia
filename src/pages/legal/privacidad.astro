@@ -2,6 +2,7 @@
 import BaseLayout from '@layouts/BaseLayout.astro';
 import { getLocale } from '@/i18n/locale';
 import { resolveMeasurementId, gaCookieNames } from '@/lib/analytics';
+import { SITE } from '@/lib/seo';
 
 const locale = getLocale(Astro.currentLocale);
 
@@ -177,7 +178,7 @@ const cookies = [
     <p set:html={copy.pDerechos1} />
     <p>
       {copy.pDerechos2}
-      <a class="editorial-link" href="mailto:hola@profedeeconomia.es">hola@profedeeconomia.es</a>.
+      <a class="editorial-link" href={`mailto:${SITE.email}`}>{SITE.email}</a>.
     </p>
 
     <h2>{copy.h2Cambios}</h2>

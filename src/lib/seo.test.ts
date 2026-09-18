@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import { jsonLdToString, organizationLd, articleLd, courseLd, itemListLd, faqLd, SAME_AS, pageTitle, MAX_TITLE_CHARS, quizLd } from './seo';
+import { readFileSync } from 'node:fs';
+import { jsonLdToString, organizationLd, articleLd, courseLd, itemListLd, faqLd, SAME_AS, SITE, pageTitle, MAX_TITLE_CHARS, quizLd } from './seo';
 
 describe('jsonLdToString', () => {
   it('escapes < to avoid </script> injection', () => {
@@ -179,5 +180,15 @@ describe('quizLd — Education Q&A (§5.5)', () => {
   it('points at the Valencian URL on a ca page', () => {
     const ld = quizLd({ ...base, locale: 'ca', questions: [{ tipo: 'numerico', enunciado: 'X', respuesta: 1 }] })!;
     expect(ld.url).toContain('/ca/fopp-4eso/tests/03/');
+  });
+});
+
+describe('SITE.email', () => {
+  // Every mailto: on the site is built from SITE.email, but public/llms.txt is a
+  // static file outside the build, so it holds a hand-written copy. If the
+  // contact address ever changes, this fails until llms.txt is updated too.
+  it('matches the address published in public/llms.txt', () => {
+    const llms = readFileSync('public/llms.txt', 'utf8');
+    expect(llms).toContain(`- Email: ${SITE.email}`);
   });
 });

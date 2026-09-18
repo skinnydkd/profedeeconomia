@@ -12,6 +12,10 @@ export const SITE = {
   name: 'profedeeconomia',
   url: 'https://www.profedeeconomia.es',
   locale: 'es-ES',
+  /** Public contact address — the single source for every `mailto:` on the
+   * site. `public/llms.txt` is a static file and carries its own copy; a test
+   * in seo.test.ts keeps the two from drifting apart. */
+  email: 'hola@profedeeconomia.es',
   description:
     'Material editorial para profesores de instituto de economía, empresa y finanzas: libros, diapositivas, actividades, tests y recursos por asignatura.',
 } as const;
