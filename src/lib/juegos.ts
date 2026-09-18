@@ -165,8 +165,38 @@ export const JUEGOS: Juego[] = [
       },
       {
         asignatura: 'eco-4eso',
-        unidad: 7,
-        nota: 'Dinero, presupuesto y financiación: protección ante imprevistos.',
+        unidad: 8,
+        nota: 'Economía personal II: seguros y protección ante imprevistos.',
+      },
+    ],
+    competencias_clave: ['STEM', 'CD', 'CPSAA', 'CE'],
+  },
+  {
+    slug: 'teoria-juegos',
+    title: 'Teoría de juegos',
+    descripcion:
+      'Seis clásicos jugables: dilema del prisionero, caza del ciervo, concurso de belleza, ultimátum, bien público y las cuatro subastas.',
+    tipo: 'estrategia',
+    nivel: ['bach', 'fp'],
+    modo: '1 jugador o clase entera · proyector',
+    estado: 'disponible',
+    imprimible: false,
+    href: '/juegos/teoria-juegos/',
+    color: '#4A3B8F',
+    nota_aula:
+      'Cada experimento tiene dos modos: en solitario contra estrategias programadas, o proyectado, con la clase votando a mano alzada y el profesor escribiendo los números.',
+    unidades_relacionadas: [
+      {
+        asignatura: 'eco-1bach',
+        unidad: 2,
+        nota: 'La toma de decisiones e interacción estratégica.',
+        competencias_especificas: ['CE1', 'CE2'],
+      },
+      {
+        asignatura: 'eco-1bach',
+        unidad: 6,
+        nota: 'Fallos de mercado: oligopolio, bienes públicos y colusión.',
+        competencias_especificas: ['CE3'],
       },
     ],
     competencias_clave: ['STEM', 'CD', 'CPSAA', 'CE'],

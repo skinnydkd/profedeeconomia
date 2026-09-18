@@ -1,6 +1,6 @@
 ---
 asignatura: eco-4eso
-unidad_relacionada: 6
+unidad_relacionada: 10
 title: "Cobertura de papeles del equipo"
 descripcion: "Cada miembro se autovalora en seis papeles y sale de un vistazo qué cubre el equipo y qué no cubre nadie. Lo interesante no es tu columna: son los huecos."
 tipo: plantilla

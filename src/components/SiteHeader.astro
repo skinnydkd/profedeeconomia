@@ -1,5 +1,5 @@
 ---
-import { ASIGNATURAS_POR_ETAPA, SECCIONES_TRANSVERSALES } from '@/lib/asignaturas';
+import { ASIGNATURAS_POR_ETAPA, SECCION_GRUPOS, seccionesDelGrupo } from '@/lib/asignaturas';
 import { getLocale } from '@/i18n/locale';
 import { t, type UIKey } from '@/i18n/ui';
 import { localizeAsignatura } from '@/i18n/asignaturas-ca';
@@ -117,25 +117,30 @@ const locale = getLocale(Astro.currentLocale);
           {t('nav.otros', locale)}
           <span class="caret" aria-hidden="true">▾</span>
         </button>
-        <div class="nav-dropdown nav-dropdown--single" role="menu">
-          {SECCIONES_TRANSVERSALES.map((s) => (
-            <a href={`/${s.slug}/`} role="menuitem" class={s.slug === 'jocs-economics' ? 'is-olimpico' : ''}>
-              <span class="opt-title">
-                {s.slug === 'jocs-economics' && (
-                  <span class="opt-rings" aria-hidden="true">
-                    <svg viewBox="0 0 30 16" width="22" height="12" fill="none" stroke-width="1.7">
-                      <circle cx="6" cy="6" r="4.2" stroke="var(--color-eco1)" />
-                      <circle cx="15" cy="6" r="4.2" stroke="var(--color-ink)" />
-                      <circle cx="24" cy="6" r="4.2" stroke="var(--color-terra)" />
-                      <circle cx="10.5" cy="10" r="4.2" stroke="var(--color-mustard)" />
-                      <circle cx="19.5" cy="10" r="4.2" stroke="var(--color-gpe)" />
-                    </svg>
+        <div class="nav-dropdown nav-dropdown--cols" role="menu">
+          {SECCION_GRUPOS.map((grupo) => (
+            <div class="dropdown-section">
+              <span class="dropdown-label">{t(`nav.otros.${grupo}` as UIKey, locale)}</span>
+              {seccionesDelGrupo(grupo).map((s) => (
+                <a href={`/${s.slug}/`} role="menuitem" class={s.slug === 'jocs-economics' ? 'is-olimpico' : ''}>
+                  <span class="opt-title">
+                    {s.slug === 'jocs-economics' && (
+                      <span class="opt-rings" aria-hidden="true">
+                        <svg viewBox="0 0 30 16" width="22" height="12" fill="none" stroke-width="1.7">
+                          <circle cx="6" cy="6" r="4.2" stroke="var(--color-eco1)" />
+                          <circle cx="15" cy="6" r="4.2" stroke="var(--color-ink)" />
+                          <circle cx="24" cy="6" r="4.2" stroke="var(--color-terra)" />
+                          <circle cx="10.5" cy="10" r="4.2" stroke="var(--color-mustard)" />
+                          <circle cx="19.5" cy="10" r="4.2" stroke="var(--color-gpe)" />
+                        </svg>
+                      </span>
+                    )}
+                    {t(`sec.${s.slug}.label` as UIKey, locale)}
                   </span>
-                )}
-                {t(`sec.${s.slug}.label` as UIKey, locale)}
-              </span>
-              <span class="opt-desc">{t(`sec.${s.slug}.desc` as UIKey, locale)}</span>
-            </a>
+                  <span class="opt-desc">{t(`sec.${s.slug}.desc` as UIKey, locale)}</span>
+                </a>
+              ))}
+            </div>
           ))}
         </div>
       </div>
@@ -335,6 +340,30 @@ const locale = getLocale(Astro.currentLocale);
     min-width: 240px;
     gap: 0.1rem;
   }
+  /* «Otros» carries eight sections: one column ran past the bottom of short
+     viewports, so it lays out as two labelled columns. Right-aligned because
+     540px centred on a trigger this close to the edge would overflow. */
+  .nav-dropdown--cols {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+    gap: 0 1.4rem;
+    min-width: 540px;
+    left: auto;
+    right: 0;
+    transform: translateY(-4px);
+  }
+  .nav-group:hover .nav-dropdown--cols,
+  .nav-group:focus-within .nav-dropdown--cols,
+  .nav-group.is-open .nav-dropdown--cols {
+    transform: translateY(0);
+  }
+  /* Columns sit side by side, so the stacked-section divider does not apply. */
+  .nav-dropdown--cols .dropdown-section + .dropdown-section {
+    border-top: 0;
+    padding-top: 0;
+    margin-top: 0;
+  }
   /* Pont invisible sobre el buit de 6px trigger↔dropdown: evita que el :hover
      caiga quan el cursor baixa cap a una assignatura i tanque el menú. */
   .nav-dropdown::before {
@@ -437,7 +466,8 @@ const locale = getLocale(Astro.currentLocale);
     display: block;
     flex-basis: 100%;
   }
-  .nav-dropdown--single a {
+  .nav-dropdown--single a,
+  .nav-dropdown--cols a {
     flex-direction: column;
     align-items: flex-start;
     padding: 0.55rem 0.55rem 0.65rem;
@@ -514,6 +544,12 @@ const locale = getLocale(Astro.currentLocale);
       right: 0;
       transform: translateY(-4px);
     }
+    /* Narrower than the 540px base so the right-anchored panel keeps its left
+       edge inside the viewport at this breakpoint. */
+    .nav-dropdown--cols {
+      min-width: 420px;
+      gap: 0 1rem;
+    }
     .nav-group:hover .nav-dropdown,
     .nav-group:focus-within .nav-dropdown,
     .nav-group.is-open .nav-dropdown {
@@ -576,6 +612,17 @@ const locale = getLocale(Astro.currentLocale);
       pointer-events: auto;
     }
     .nav-dropdown::before { content: none; }
+    /* The panel already scrolls; two columns would only cramp them. */
+    .nav-dropdown--cols {
+      grid-template-columns: 1fr;
+      width: auto;
+      max-width: none;
+      gap: 0.9rem;
+    }
+    .nav-dropdown--cols .dropdown-section + .dropdown-section {
+      border-top: 1px dashed var(--color-line);
+      padding-top: 0.7rem;
+    }
 
     /* Touch devices latch :hover, so only an explicit tap opens a group. These
        must out-specify the base hover/focus rules, which carry the

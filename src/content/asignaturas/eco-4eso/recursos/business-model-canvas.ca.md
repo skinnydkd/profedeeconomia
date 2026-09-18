@@ -1,6 +1,6 @@
 ---
 asignatura: eco-4eso
-unidad_relacionada: 9
+unidad_relacionada: 12
 title: "Business Model Canvas"
 descripcion: "Un llenç amb els nou blocs de qualsevol model de negoci (segments de clients, proposta de valor, canals, fonts d'ingressos, estructura de costos…) per a dissenyar una idea sobre un sol full i pivotar allò que no encaixe."
 tipo: plantilla

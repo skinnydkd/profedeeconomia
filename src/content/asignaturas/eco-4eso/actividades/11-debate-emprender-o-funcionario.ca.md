@@ -1,13 +1,13 @@
 ---
 asignatura: eco-4eso
-unidad_relacionada: 1
+unidad_relacionada: 11
 title: "Debat: muntar un negoci o buscar un treball estable?"
 descripcion: "Debat estructurat per equips en què la classe confronta dos camins vitals —emprendre pel seu compte enfront de buscar una faena estable per compte d'altri— amb arguments basats en dades reals, no en eslògans, per a entendre que la decisió depén del context de cada persona."
 tipo: debate
 duracion: "55 min · 1 sessió"
 agrupacion: "dos equips grans + jurat rotatori"
 competencias_clave: [CCL, CC, CPSAA]
-competencias_especificas: [CE1]
+competencias_especificas: [CE5]
 materiales:
   - "Pissarra dividida en dues columnes (PRO emprendre / PRO faena per compte d'altri)"
   - "Una fitxa de preparació d'arguments per equip (afirmació · dada · exemple)"

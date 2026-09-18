@@ -1,0 +1,763 @@
+---
+asignatura: eco-4eso
+unidad: 3
+title: "Els mercats: oferta, demanda i competència"
+seoTitle: "Oferta i demanda: l'equilibri de mercat, pas a pas"
+lema: >-
+  Ningú decidix quant costa un bitllet de tren, un pis de lloguer o una
+  sudadera: el preu ix de la trobada entre qui vol comprar i qui vol vendre.
+  Esta unitat ensenya a llegir eixa trobada, a predir cap a on es mourà un
+  preu i a distingir un mercat on competixen molts d'un altre on manen tres.
+lang: ca
+estado: publicado
+slug: "asignaturas/eco-4eso/libro/03-mercados-oferta-demanda-competencia.ca"
+duracion: 8 sessions · 3 setmanes
+bloque: Bloc I · Economia
+sabers:
+  - Mercat, demanda i oferta
+  - Equilibri de mercat i desplaçaments
+  - Preus màxims i mínims
+  - Estructures de mercat i competència
+  - La CNMC i la defensa de la competència
+conceptos_clave:
+  - mercat
+  - demanda
+  - oferta
+  - llei de la demanda
+  - llei de l'oferta
+  - preu d'equilibri
+  - excés d'oferta i excés de demanda
+  - preu màxim i preu mínim
+  - competència perfecta
+  - competència monopolística
+  - oligopoli
+  - monopoli
+objetivos:
+  - Explicar què és un mercat i per què el preu funciona com una senyal que coordina compradors i venedors.
+  - Enunciar les lleis de la demanda i de l'oferta i identificar els factors que desplacen cada corba amb exemples actuals.
+  - Calcular el preu i la quantitat d'equilibri a partir d'una taula i l'excés d'oferta o de demanda a qualsevol altre preu.
+  - Analitzar els efectes d'un preu màxim o mínim fixat per l'Estat sobre la quantitat intercanviada, amb casos reals.
+  - Classificar mercats espanyols segons el seu grau de competència i explicar per què la CNMC sanciona els càrtels.
+publicado_en: 2026-09-15
+---
+
+import Callout from '@components/Callout.astro';
+import Diagram from '@components/Diagram.astro';
+import OfertaDemanda from '@components/diagrams/OfertaDemanda.astro';
+import EstructurasMercado from '@components/diagrams/EstructurasMercado.astro';
+import Curiosity from '@components/Curiosity.astro';
+import RealExample from '@components/RealExample.astro';
+import SolvedExercise from '@components/SolvedExercise.astro';
+import Steps from '@components/Steps.astro';
+import KeyTakeaways from '@components/KeyTakeaways.astro';
+import Bibliography from '@components/Bibliography.astro';
+import Figure from '@components/Figure.astro';
+import TldrUnidad from '@components/TldrUnidad.astro';
+import CasoDilema from '@components/CasoDilema.astro';
+import VuelveAlCaso from '@components/VuelveAlCaso.astro';
+import MirarFora from '@components/MirarFora.astro';
+import VocesDesacuerdo from '@components/VocesDesacuerdo.astro';
+import RecursoDestacado from '@components/libro/RecursoDestacado.astro';
+import HerramientaIsland from '@components/calculadoras/HerramientaIsland.astro';
+
+import aveRenfe from '@assets/libro/eco-1bach/04/ave-renfe.jpg';
+import olivarJaen from '@assets/libro/eco-1bach/04/olivar-jaen.jpg';
+import mietendeckelBerlin from '@assets/libro/eco-1bach/05/mietendeckel-berlin.jpg';
+import mercamadridPuesto from '@assets/libro/eco-1bach/04/mercamadrid-puesto.jpg';
+import estancoCeuta from '@assets/libro/eco-1bach/05/estanco-ceuta.jpg';
+
+> **Temps de lectura**: ~28 min · **Sabers**: mercat, demanda, oferta, equilibri, preus màxims i mínims, tipus de mercat, competència · **Abans de començar**: Unitats 1 i 2 (escassetat, cost d'oportunitat, factors de producció i sectors).
+>
+> **En acabar esta unitat sabràs**:
+> - Explicar per què el preu de quasi tot ix d'una trobada entre compradors i venedors, i quina informació porta dins.
+> - Predir si un preu pujarà o baixarà quan canvia alguna cosa: una sequera, una moda, un impost o l'arribada d'un competidor.
+> - Calcular el preu d'equilibri d'un mercat senzill i el que ocorre quan l'Estat fixa un preu màxim o mínim.
+> - Reconéixer si en un mercat competixen molts, uns pocs o un de sol, i què fa la CNMC quan les empreses es posen d'acord per a no competir.
+
+<TldrUnidad>
+Un mercat és qualsevol lloc, físic o digital, on qui vol comprar es troba amb qui vol vendre. El preu naix d'eixa trobada: baixa quan sobra producte i puja quan en falta, fins a arribar a un **equilibri** en el qual la quantitat que es vol comprar coincidix amb la que es vol vendre. Quan l'Estat fixa un preu per llei, o quan en un mercat hi ha molt poques empreses, eixe mecanisme s'altera: apareixen escassetat, excedents o preus més alts dels que hi hauria amb competència. Esta unitat us dóna les ferramentes per a llegir tot això a les notícies i al tiquet de la compra.
+</TldrUnidad>
+
+<CasoDilema
+  titular="Tres trens a la mateixa via: els bitllets d'alta velocitat van baixar un 40 % i els viatgers es van duplicar"
+  fuente="CNMC, Informe anual del sector ferroviario 2023 (juliol de 2024) i butlletins trimestrals del transport de viatgers 2024-2025"
+  pregunta="Si cap llei va obligar Renfe a abaixar els preus, per què van baixar? I per què el 2025 van començar a pujar de nou?"
+>
+Fins a la primavera de 2021, creuar Espanya en alta velocitat tenia un sol venedor. Qui volia anar de Madrid a Barcelona en tren ràpid comprava un AVE de **Renfe**, al preu que Renfe fixava, i no hi havia amb qui comparar. El 10 de maig de 2021 va arribar **Ouigo**, la marca de baix cost dels ferrocarrils francesos, amb bitllets de llançament des de 9 €; Renfe va respondre un mes després amb la seua pròpia marca barata, **Avlo**; i el 25 de novembre de 2022 va entrar el tercer operador, **Iryo**, participat pels ferrocarrils italians, Air Nostrum i Globalvia. Per primera vegada en la història de l'AVE, tres empreses competien pel mateix viatger a la mateixa via.
+
+Els resultats els va mesurar la CNMC, l'organisme públic que vigila la competència. El 2023 l'alta velocitat comercial va transportar a Espanya **32,4 milions de viatgers**, un 37 % més que l'any anterior, i el corredor Madrid-Barcelona va batre el seu rècord amb **14 milions**. Descomptada la inflació, els preus mitjans dels bitllets eren al voltant d'un **40 % més baixos que el 2019**, i al corredor Madrid-València la caiguda arribava al 50 % (CNMC, 2024). Ningú va aprovar cap llei que ordenara abaixar preus; simplement, van aparéixer competidors. I tanmateix, al llarg de 2025 la mateixa CNMC va detectar que al corredor Madrid-Barcelona els preus tornaven a pujar amb força, al voltant d'un 25 % interanual al tercer trimestre, a mesura que es refredava la guerra de preus entre els tres operadors.
+</CasoDilema>
+
+Penseu en l'última vegada que vau vendre alguna cosa a Wallapop o que vau comprar una entrada per internet. En cap moment va aparéixer un funcionari, una llei o un cap que diguera «això costa tant». El preu va eixir d'una altra cosa: del que vosaltres demanàveu, del que altres estaven disposats a pagar i de quants n'hi havia a cada costat. Si pugeu massa el preu de la bici que veneu, ningú us escriu; si el baixeu massa, en una hora teniu quinze missatges i la sensació d'haver regalat alguna cosa. Eixe estira-i-arronsa, repetit milions de vegades al dia en botigues, apps, llotges i borses, és el que els economistes anomenen **mercat**.
+
+A la Unitat 1 vam veure que l'escassetat obliga a triar, i a la Unitat 2, com les empreses produïxen els béns i servicis. Faltava una peça: com es decidix **a quin preu** es venen i **qui se'ls emporta**. A la majoria de les economies, inclosa l'espanyola, eixa decisió no la pren ningú en concret: la prenen, sense posar-se d'acord, tots els compradors i venedors alhora. Esta unitat explica com és possible, quan funciona bé i quan falla, siga perquè l'Estat decidix intervindre o perquè en un mercat queden tan poques empreses que deixen de competir.
+
+## Què és un mercat?
+
+Quan sentiu «mercat» potser penseu en el mercat ambulant del dissabte o en el mercat municipal amb les seues parades de fruita i peix. Per a l'economia, un mercat és alguna cosa més àmplia: **qualsevol trobada entre compradors i venedors d'un bé o servici**, tinga o no un lloc físic. Wallapop, nascuda a Barcelona el 2013, és un mercat de segona mà; Vinted, un mercat de roba usada; la Bolsa de Madrid, un mercat d'accions d'empreses; Idealista, un mercat d'habitatges. També ho són la cafeteria de l'institut, la parada de bunyols de les festes i l'app on demaneu sopar a domicili. No cal que compradors i venedors es vegen la cara ni que estiguen al mateix país.
+
+En tot mercat hi ha quatre elements. Els **demandants** (qui vol comprar), els **oferents** (qui vol vendre), el **bé o servici** que s'intercanvia i el **preu** al qual es tanca el tracte. I hi ha tants mercats com béns: el mercat de l'oli d'oliva, el del lloguer a la vostra ciutat, el dels bitllets de tren, el de les sudaderes. A la Unitat 5 veureu que fins i tot el treball s'intercanvia en un mercat, on les famílies oferixen hores i les empreses les demanen a canvi d'un salari.
+
+### El preu com a informació
+
+El més important d'un mercat no és el lloc, sinó el que produïx: **un preu**. I un preu és molt més que un número en una etiqueta. És un resum, comprimit en una sola xifra, de quant valoren eixe bé els qui el volen i de quant costa produir-lo als qui el fan. L'economista austríac Friedrich Hayek ho va explicar el 1945: ningú coneix tota la informació d'una economia, però els preus la repartixen. Un agricultor de Jaén no sap quantes famílies d'Alemanya volen oli enguany; li basta amb veure que el preu puja per a entendre que convé produir-ne més.
+
+Torneu a l'exemple de la bici a Wallapop. Si la poseu a 300 € i en dos setmanes ningú us escriu, el mercat us està dient alguna cosa: a eixe preu, sobra bici. Si la poseu a 80 € i rebeu quinze missatges en una hora, el mercat us diu el contrari: a eixe preu, falten bicis. En el primer cas abaixareu el preu; en el segon, algú us la comprarà i altres catorze es quedaran sense. **El preu puja quan falta i baixa quan sobra.** Tota la unitat cap en eixa frase; el que seguix és aprendre a usar-la amb precisió.
+
+<Callout label="Concepte clau" title="Mercat i preu">
+
+Un **mercat** és el conjunt de compradors (demandants) i venedors (oferents) d'un bé o servici, i el mecanisme pel qual es posen d'acord en un **preu**. No necessita un lloc físic: una app, una web o una telefonada també són mercats. El preu és la senyal que coordina tothom: informa els compradors de com d'escàs és el bé i els venedors de quant el desitgen els altres. Quan el preu és lliure, puja si hi ha més gent volent comprar que vendre, i baixa si ocorre el contrari.
+
+</Callout>
+
+<Figure
+  src={aveRenfe}
+  alt="Tren d'alta velocitat Renfe AVE sèrie 103 estacionat en una andana de l'estació de Girona."
+  caption="Un AVE de Renfe a l'estació de Girona. Fins al 2021, al mercat de l'alta velocitat espanyola només hi havia un venedor i el viatger no tenia amb qui comparar. L'arribada d'Ouigo i Iryo va convertir eixe mercat en una cosa molt més pareguda al que estudia esta unitat: diversos oferents disputant-se els mateixos demandants."
+  credit="Foto: Robot8A, CC BY-SA 4.0 vía Wikimedia Commons"
+  aspectHint="3/2"
+  variant="wide"
+/>
+
+## La demanda: el que els compradors volen
+
+Comencem pel costat de qui compra. La **demanda** d'un bé és la quantitat que els compradors estan **disposats a comprar i poden pagar** a cada preu possible, durant un període de temps. Les dos condicions importen. Voler un cotxe esportiu no és demanar-lo: cal, a més, poder pagar-lo. I la demanda no és un número, sinó una llista: quant es compraria a 10 €, quant a 20 €, quant a 30 €.
+
+### La llei de la demanda
+
+Imagineu-vos que un grup que us agrada anuncia concert a la vostra ciutat. Si l'entrada costa 25 €, mig institut vol anar-hi. A 60 €, molts s'ho pensen i algun decidix vore'l per streaming. A 150 €, només els fans més incondicionals (o els qui tenen pares generosos) continuen disposats. Res no ha canviat en el concert; ha canviat el preu, i amb ell la quantitat de gent disposada a pagar. Això és la **llei de la demanda**: quan el preu d'un bé puja, la quantitat demandada baixa, i quan el preu baixa, la quantitat demandada puja, sempre que tota la resta continue igual.
+
+Hi ha dos raons darrere. La primera és l'**efecte substitució**: quan alguna cosa s'encarix, busquem alternatives (un altre concert, l'streaming, un sopar amb amics). La segona és l'**efecte renda**: amb els mateixos diners, a un preu més alt podem comprar menys unitats, i algunes persones queden directament fora. Si representem la demanda en un gràfic amb el preu a l'eix vertical i la quantitat a l'horitzontal, ix una **corba descendent**: com més amunt el preu, més a l'esquerra la quantitat.
+
+| Preu de l'entrada | Quantitat demandada (alumnat de l'institut) |
+|---|---|
+| 25 € | 300 |
+| 60 € | 150 |
+| 100 € | 60 |
+| 150 € | 20 |
+
+(Xifres inventades per a l'exemple.) Fixeu-vos en una cosa que confon molta gent: quan canvia el preu, no canvia «la demanda», sinó la **quantitat demandada**. Ens movem al llarg de la mateixa corba, d'una fila de la taula a una altra. La demanda, entesa com la taula sencera, només canvia quan canvia alguna cosa distinta del preu.
+
+### El que desplaça la demanda
+
+I què pot canviar la taula sencera, és a dir, fer que a **cada** preu es vulga comprar més (o menys) que abans? Cinc coses, sobretot:
+
+- **La renda dels compradors.** Amb més diners, la majoria dels béns es demanen més a qualsevol preu: són els **béns normals** (roba nova, viatges, eixir a sopar). Però hi ha **béns inferiors** que es demanen *menys* quan la renda puja, perquè se substituïxen per uns altres de millors: el transport en autobús interurbà quan un pot pagar-se l'AVE, o les marques blanques quan el pressupost dóna per a la marca coneguda. Durant la pujada de preus de 2022 i 2023 moltes famílies espanyoles van fer el camí contrari, i les marques de distribuïdor van guanyar quota als supermercats (Ministerio de Agricultura, Informe del consumo alimentario 2023).
+- **Els gustos i les modes.** Un vídeo viral, una sèrie o un influencer poden desplaçar la demanda d'un producte en qüestió de dies: de sobte tothom vol la mateixa botella d'aigua, les mateixes sabatilles o el mateix ninot. I el contrari també ocorre: quan una moda passa, la demanda torna a l'esquerra sense que el preu haja canviat.
+- **El preu d'altres béns.** Si dos béns servixen per al mateix són **substitutius**: si el bitllet d'avió Madrid-Barcelona s'abarateix, baixa la demanda del tren, i a l'inrevés; el mateix amb Netflix i HBO, o amb la mantega i la margarina. Si dos béns s'usen junts són **complementaris**: consola i videojocs, cotxe i gasolina, mòbil i funda. Quan puja el preu d'un, cau la demanda de l'altre.
+- **Les expectatives.** Si espereu que alguna cosa abaixe de preu (el Black Friday és d'ací a dos setmanes), ajorneu la compra i la demanda de hui cau. Si espereu que puge (s'anuncia un impost nou o una pujada del lloguer), avanceu la compra i la demanda de hui puja.
+- **El nombre de compradors.** Més gent volent el bé, més demanda a cada preu. Els 93,8 milions de turistes internacionals que van visitar Espanya el 2024 (INE, Frontur) són compradors afegits al mercat de l'allotjament, la restauració i el lloguer de les ciutats on van, i per això el lloguer a les zones turístiques puja a l'estiu encara que els habitatges siguen els mateixos.
+
+## L'oferta: el que els venedors volen
+
+Ara l'altre costat. L'**oferta** d'un bé és la quantitat que els venedors estan disposats a produir i vendre a cada preu possible, durant un període. Igual que la demanda, és una taula, no un número.
+
+### La llei de l'oferta
+
+La **llei de l'oferta** diu que quan el preu puja, la quantitat oferida puja, i quan el preu baixa, la quantitat oferida baixa. La lògica és la contrària a la dels compradors: a un venedor un preu alt li pareix una oportunitat. Si les sudaderes de l'institut es pagaren a 40 €, el club d'alumnat que les produïx faria hores extra i potser un altre grup s'animaria a fabricar-ne; a 8 €, a penes cobririen el cost de la tela i deixarien de fer-ne. Per això la corba d'oferta és **ascendent**: com més alt el preu, més a la dreta la quantitat.
+
+Darrere hi ha dos motius. El primer: produir més unitats sol costar més (cal pagar hores extra, comprar matèria primera més cara, llogar més espai), i només compensa fer-ho si el preu ho cobrix. El segon: un preu alt atrau **nous venedors**. Quan el preu de l'oli d'oliva es va multiplicar per tres entre 2022 i 2023, agricultors que mai no havien plantat oliveres van començar a fer-ho, i l'olivar en regadiu va créixer a Espanya i Portugal (MAPA, Encuesta sobre superficies y rendimientos de cultivos, 2024).
+
+### El que desplaça l'oferta
+
+Com amb la demanda, un canvi en el preu del mateix bé ens mou **al llarg** de la corba. El que desplaça la corba sencera, fent que a cada preu se n'oferisca més o menys que abans, és una altra cosa:
+
+- **Els costos de producció.** Si puja el preu de l'energia, de les matèries primeres o dels salaris, produir cada unitat costa més i l'oferta es desplaça a l'esquerra: els venedors n'oferixen menys a cada preu. El 2022, amb l'electricitat i el gas disparats després de la invasió d'Ucraïna, moltes fleques, ceràmiques i fàbriques de vidre espanyoles van reduir torns o van parar forns (Banco de España, Informe Anual 2022). Si els costos baixen, ocorre el contrari.
+- **La tecnologia.** Una màquina nova, un programari o un procés millor permeten produir més amb el mateix. És la raó principal que un telèfon amb prestacions equivalents coste hui la meitat que fa deu anys: l'oferta s'ha desplaçat a la dreta (Unitat 2, productivitat).
+- **El nombre d'empreses.** Cada venedor que entra en un mercat afig la seua oferta a la dels altres. L'arribada d'Ouigo i Iryo va desplaçar a la dreta l'oferta de bitllets d'alta velocitat: més trens, més places a cada preu. Quan una empresa tanca o se'n va, l'oferta es desplaça a l'esquerra.
+- **Les expectatives.** Si els venedors esperen que el preu puge, poden guardar producte i oferir-ne menys hui; si esperen que baixe, s'afanyen a vendre. Amb l'oli d'oliva de 2023 hi va haver cooperatives que van retardar vendes esperant preus millors.
+- **Els impostos i les subvencions.** Un impost sobre un bé és, per a qui el ven, un cost més: reduïx l'oferta. Una subvenció és el contrari. L'impost sobre els envasos de plàstic no reutilitzables que va entrar en vigor el 2023 (Ley 7/2022) va encarir produir cada botella; les ajudes del Plan MOVES al cotxe elèctric van abaratir vendre'ls.
+- **La naturalesa i el clima.** En agricultura, pesca o turisme, una sequera, una gelada o una DANA desplacen l'oferta de colp, com vam vore amb la riuada de València a la Unitat 2.
+
+<Callout label="Per a fixar la idea" title="Moviment al llarg de la corba o desplaçament de la corba">
+
+Si el que canvia és **el preu del mateix bé**, ens movem per la corba i parlem de canvis en la *quantitat* demandada o oferida. Si el que canvia és **qualsevol altra cosa** (renda, gustos, altres preus, expectatives, nombre de compradors; costos, tecnologia, nombre d'empreses, impostos, clima), la corba sencera es mou i parlem de canvis en *la demanda* o *l'oferta*. La distinció pareix un detall de vocabulari, però és la clau per a no equivocar-se en predir què passarà amb un preu.
+
+</Callout>
+
+## L'equilibri de mercat: on es troben
+
+Ja tenim els dos costats. Posem-los junts amb l'exemple de les sudaderes de l'institut. El club d'alumnat que les fabrica ha preguntat als companys i companyes quantes en comprarien a cada preu, i ha calculat quantes estaria disposat a produir-ne a cada preu. Les xifres són inventades però versemblants:
+
+| Preu | Quantitat demandada | Quantitat oferida | Situació |
+|---|---|---|---|
+| 10 € | 130 | 10 | En falten 120 |
+| 15 € | 110 | 30 | En falten 80 |
+| 20 € | 90 | 50 | En falten 40 |
+| 25 € | 70 | 70 | **Equilibri** |
+| 30 € | 50 | 90 | En sobren 40 |
+| 35 € | 30 | 110 | En sobren 80 |
+
+Provem amb 35 €. A eixe preu el club voldria fabricar 110 sudaderes, però només 30 persones les comprarien. En sobren 80: hi ha un **excés d'oferta** (o excedent). Què fa un venedor amb 80 sudaderes sense vendre? Abaixar el preu. Provem ara amb 15 €. A eixe preu 110 persones voldrien una sudadera, però al club només li compensa fer-ne 30. En falten 80: hi ha un **excés de demanda** (o escassetat). Les 30 sudaderes volen, hi ha cua i gent disposada a pagar més només per aconseguir-ne una. Què fa el club? Pujar el preu.
+
+Només hi ha un preu en el qual ningú té motiu per a moure's: **25 €**. A eixe preu es volen comprar exactament les 70 sudaderes que es volen vendre. És el **preu d'equilibri**, i 70 és la **quantitat d'equilibri**. Ningú l'ha decidit; el mercat hi ha arribat a base de sobrants i faltants, igual que la bici de Wallapop.
+
+<Diagram caption="La corba de demanda (descendent) i la d'oferta (ascendent) es creuen al punt d'equilibri, que fixa el preu i la quantitat d'equilibri. Per damunt d'eixe preu sobra producte i el preu tendix a baixar; per davall en falta i el preu tendix a pujar.">
+  <OfertaDemanda />
+</Diagram>
+
+<Callout label="Concepte clau" title="Equilibri de mercat">
+
+El **preu d'equilibri** és aquell al qual la quantitat que els compradors volen comprar coincidix amb la que els venedors volen vendre. A qualsevol preu superior hi ha **excés d'oferta** (sobra producte i el preu baixa); a qualsevol preu inferior hi ha **excés de demanda** (falta producte i el preu puja). Per això, si ningú ho impedix, els preus tendixen cap a l'equilibri. No és un preu «just» ni «correcte»: és simplement el preu al qual el mercat es buida.
+
+</Callout>
+
+<SolvedExercise number="3.1" title="Les sudaderes de l'institut: equilibri i excessos">
+
+**Enunciat**
+
+Amb la taula d'oferta i demanda de sudaderes de l'institut (a dalt):
+
+a) Quins són el preu i la quantitat d'equilibri?
+
+b) El club decidix vendre a 30 €. Què ocorre i quant?
+
+c) Un grup de famílies demana que es venguen a 20 € «perquè arriben a tothom». Què ocorreria?
+
+d) Quants diners ingressaria el club en cada un dels tres casos?
+
+**Solució**
+
+1. **Equilibri.** Busquem la fila en què la quantitat demandada coincidix amb l'oferida: **25 € i 70 sudaderes**. A eixe preu no en sobra ni en falta cap.
+2. **A 30 €.** Quantitat demandada 50, quantitat oferida 90. Hi ha un **excés d'oferta de 40 sudaderes** (90 − 50). El club es quedaria amb 40 sense vendre i, si vol donar-los eixida, haurà d'abaixar el preu cap als 25 €.
+3. **A 20 €.** Quantitat demandada 90, quantitat oferida 50. Hi ha un **excés de demanda de 40 sudaderes** (90 − 50). Es vendrien les 50 que el club està disposat a fabricar i 40 persones es quedarien sense. Qui s'emporta les 50? Qui arribe abans, qui tinga un amic al club o qui estiga disposat a pagar alguna cosa més «per davall de la taula». Vendre a 20 € no fa que arriben a tothom: fa que arriben a menys gent (50 en compte de 70) i que es repartisquen per criteris distints del preu.
+4. **Ingressos.** Els ingressos són preu × quantitat **venuda** (no l'oferida ni la demandada, sinó la menor de les dos). En equilibri: 25 × 70 = **1.750 €**. A 30 €: només se'n venen 50, per tant 30 × 50 = **1.500 €**. A 20 €: només se'n produïxen 50, per tant 20 × 50 = **1.000 €**. L'equilibri és, en este cas, també el preu que més ingressos genera, perquè és l'únic en què es ven tot el que es produïx.
+
+</SolvedExercise>
+
+**Proveu-ho vosaltres:** la ferramenta de baix dibuixa les corbes a partir de dos equacions senzilles, calcula l'equilibri i permet fixar un preu màxim o mínim per a vore l'excés que apareix. Canvieu la demanda o l'oferta i comproveu cap a on es mou el punt de creuament.
+
+<HerramientaIsland componente="EquilibrioMercado" />
+
+### Quan alguna cosa canvia: els desplaçaments
+
+L'equilibri no és un punt fix per sempre. Cada vegada que un dels factors dels apartats anteriors canvia, una corba es desplaça i el mercat busca un equilibri nou. Hi ha només quatre casos bàsics, i convé sabre-se'ls de memòria:
+
+- **Puja la demanda** (corba de demanda a la dreta): el preu puja i la quantitat puja. Exemple: una onada de calor dispara la demanda de ventiladors.
+- **Baixa la demanda** (corba a l'esquerra): el preu baixa i la quantitat baixa. Exemple: passa la moda d'una joguina.
+- **Puja l'oferta** (corba d'oferta a la dreta): el preu baixa i la quantitat puja. Exemple: entren Ouigo i Iryo a l'AVE.
+- **Baixa l'oferta** (corba a l'esquerra): el preu puja i la quantitat baixa. Exemple: una sequera arruïna la collita.
+
+Quan es mouen les dos corbes alhora, una de les dos variables (preu o quantitat) queda clara i l'altra depén de quina es moga més. Amb això n'hi ha prou per a entendre el 90 % de les notícies econòmiques sobre preus.
+
+<Steps label="Mètode" title="Com llegir una notícia de preus amb el model d'oferta i demanda">
+  <li>**Identifica el mercat**: de quin bé o servici parla la notícia i qui són els seus compradors i venedors? («El preu del lloguer a València»: demanen famílies i estudiants, oferixen propietaris.)</li>
+  <li>**Localitza què ha canviat** i pregunta't si afecta qui compra (renda, gustos, altres preus, expectatives, nombre de compradors) o qui ven (costos, tecnologia, nombre d'empreses, impostos, clima).</li>
+  <li>**Decidix quina corba es mou i cap a on**: més demanda o oferta, a la dreta; menys, a l'esquerra. Si et costa, pregunta't: «a cada preu, se'n vol comprar (o vendre) més o menys que abans?».</li>
+  <li>**Prediu el nou equilibri** amb els quatre casos bàsics: què passa amb el preu i què passa amb la quantitat.</li>
+  <li>**Comprova-ho amb les dades** de la notícia: si el preu i la quantitat s'han mogut com prediu el model, has entés el mercat. Si no, probablement s'han mogut les dos corbes, o hi ha un preu fixat per llei, o el mercat no és competitiu (apartats següents).</li>
+</Steps>
+
+<RealExample title="L'oli d'oliva 2022-2024: una sequera va moure la corba d'oferta i el preu es va triplicar" source="Ministerio de Agricultura, Pesca y Alimentación (MAPA), balances de campaña del aceite de oliva 2021/22-2024/25; INE, Índice de Precios de Consumo" sourceUrl="https://www.mapa.gob.es/es/agricultura/temas/producciones-agricolas/aceite-oliva-y-aceituna-mesa/">
+Espanya produïx al voltant de la meitat de l'oli d'oliva del món i Andalusia, més del 80 % de l'espanyol. Una campanya normal ronda els **1,4 milions de tones**. La sequera de 2022 i 2023 va reduir la collita 2022/2023 a unes **666.000 tones**, menys de la meitat (MAPA). En el llenguatge d'esta unitat: la corba d'oferta es va desplaçar bruscament a l'esquerra mentre la demanda a penes es movia, perquè les famílies espanyoles i els importadors de tot el món continuaven volent oli. El resultat va ser exactament el que prediu el model: menys quantitat i un preu molt més alt. El preu en origen del verge extra va passar d'uns **3,30 €/kg** a la campanya 2021/22 a superar els **9 €/kg** el 2023, i al supermercat l'oli d'oliva va arribar a costar més del doble que dos anys abans; l'índex de l'oli a l'IPC va assolir el seu màxim a la primavera de 2024 (INE). Ningú va canviar els seus gustos, ningú es va posar d'acord per a pujar preus, cap llei va intervindre. Després van arribar les pluges: la campanya 2024/25 va recuperar al voltant d'1,4 milions de tones, l'oferta va tornar a la dreta i el preu en origen va baixar fins a nivells d'uns 4 €/kg al llarg de 2025 (MAPA). Un cicle complet d'anada i tornada explicat per un sol desplaçament.
+</RealExample>
+
+<Figure
+  src={olivarJaen}
+  alt="Vista d'un olivar a la província de Jaén, amb fileres d'oliveres estenent-se fins a l'horitzó sota un cel serè."
+  caption="Olivar a la província de Jaén. Quan ací no plou, la collita s'enfonsa, la corba d'oferta es desplaça a l'esquerra i el preu de l'oli puja als supermercats de mitja Europa en qüestió de mesos. Quan torna a ploure, el camí es desfà."
+  credit="Foto: Veinticuatro de Jahén, CC BY-SA 4.0 vía Wikimedia Commons"
+  aspectHint="3/2"
+  variant="right"
+/>
+
+El mercat de l'habitatge és l'altre gran exemple, i us afectarà d'ací a pocs anys. Entre 2020 i 2025 el lloguer mitjà a Madrid va passar d'uns 15 € per metre quadrat al mes a més de 22 € (Idealista, 2025). Pel costat de la demanda tot empeny cap amunt: creix la població (Espanya va superar els 49 milions d'habitants el 2025, INE), arriben més estudiants i treballadors a les grans ciutats, i qui espera que els preus continuen pujant intenta tancar contracte com més prompte millor. Pel costat de l'oferta, es construïx poc (el Banco de España va calcular el 2024 que entre 2022 i 2025 faltaven uns 600.000 habitatges nous per a cobrir les llars creades) i una part del parc se n'ha anat al lloguer turístic o de temporada. Demanda a la dreta i oferta quieta o a l'esquerra: el model prediu preus més alts, i això és el que ha passat. La pregunta de què pot fer l'Estat al respecte és la de l'apartat següent.
+
+<Curiosity title="Les corbes que Adam Smith mai no va dibuixar">
+Adam Smith va publicar *La riquesa de les nacions* el 1776 i va parlar llargament de mercats, preus i de la «mà invisible», però **mai no va dibuixar cap corba d'oferta ni de demanda**. El gràfic amb les dos corbes creuant-se, que hui apareix a tots els manuals del món, no es va formalitzar fins al 1890, quan l'economista anglés **Alfred Marshall** va publicar els seus *Principis d'economia*. Marshall també va fixar la convenció que continua despistant generacions d'estudiants: va posar el preu a l'eix vertical i la quantitat a l'horitzontal, a l'inrevés del que dictarien les matemàtiques. Van passar 114 anys entre la intuïció de Smith i el dibuix que hui us pareix tan natural com un mapa.
+</Curiosity>
+
+<RecursoDestacado href="/dinamicas/mercats-preus/01-doble-subasta/" kicker="Dinàmica d'aula" title="La doble subhasta: l'equilibri apareix sol" descripcion="Mitja classe compra i mitja ven amb valors secrets. En tres rondes el preu convergix a l'equilibri sense que ningú l'haja fixat. La forma més convincent de vore esta unitat funcionant en directe." colorVar="--color-eco4" />
+
+## Quan l'Estat fixa preus
+
+Fins ací, el preu el posava el mercat. Però de vegades el resultat del mercat pareix inacceptable a molta gent, i els governs decidixen intervindre fixant un preu per llei. Ho fan per dos motius oposats: per a **protegir els compradors** quan el preu d'equilibri els pareix massa alt (el lloguer, les mascaretes el 2020) o per a **protegir els venedors** quan els pareix massa baix (el salari de qui ven el seu treball, els preus agrícoles). En el primer cas fixen un **preu màxim**; en el segon, un **preu mínim**. El model d'oferta i demanda permet predir què passa en cada un, i la predicció no sempre és la que els seus defensors esperen.
+
+### Preus màxims: el topall
+
+Un **preu màxim** és un preu legal per damunt del qual està prohibit vendre. Només té efecte si es fixa **per davall de l'equilibri**: si el topall està per damunt, el mercat ja es buida a un preu inferior i la llei no canvia res. Quan està per davall, passa el que vam vore amb les sudaderes a 15 €: a eixe preu se'n vol comprar més del que se'n vol vendre, i apareix un **excés de demanda** que el preu ja no pot corregir perquè té prohibit pujar. L'escassetat es repartix llavors per altres criteris: cues, llistes d'espera, contactes, sort o pagaments ocults.
+
+L'exemple més nítid dels últims anys va ser el de les **mascaretes**. L'abril de 2020, en plena pandèmia, el Govern va fixar per orde ministerial un preu màxim de 0,96 € per mascareta quirúrgica (Orden SND/354/2020). Durant unes setmanes, les farmàcies les venien al topall i s'esgotaven, mentre apareixien venedors informals a preus molt superiors. A mesura que les fàbriques van augmentar la producció i l'oferta es va desplaçar a la dreta, l'equilibri va baixar per davall del topall, i el novembre de 2020 el Govern el va reduir a 0,62 €.
+
+El cas més discutit és el **lloguer**. La Ley 12/2023 por el derecho a la vivienda permet a les comunitats autònomes declarar «zones de mercat residencial tensionat» i limitar-hi el preu dels nous contractes. Catalunya va ser la primera a aplicar-ho, en 140 municipis, des del març de 2024. Abans, Berlín havia aprovat el 2020 un sostre als lloguers (*Mietendeckel*) que el Tribunal Constitucional alemany va anul·lar el 2021, i la mateixa Catalunya havia tingut una llei de topalls el 2020 que el Tribunal Constitucional espanyol va tombar el 2022 per envair competències estatals.
+
+<Figure
+  src={mietendeckelBerlin}
+  alt="Manifestació multitudinària a Berlín el 15 d'abril de 2021 reclamant un sostre nacional al lloguer després de l'anul·lació del Mietendeckel, amb pancartes i cartells reivindicatius."
+  caption="Berlín, 15 d'abril de 2021: manifestació després de l'anul·lació del Mietendeckel pel Tribunal Constitucional alemany. El debat sobre els topalls al lloguer és el mateix a Berlín, Barcelona o Nova York: ajuden qui ja té contracte, però què passa amb qui busca pis?"
+  credit="Foto: Leonhard Lenz, CC0 (dominio público) vía Wikimedia Commons"
+  aspectHint="3/2"
+  variant="wide"
+/>
+
+<RealExample title="Un any de topalls al lloguer a Catalunya: preus un 3,7 % més baixos, molts menys contractes" source="Ministerio de Vivienda y Agenda Urbana, nota de prensa de 14 de marzo de 2025; Generalitat de Catalunya e Incasòl, datos de fianzas depositadas, 2024-2025" sourceUrl="https://www.mivau.gob.es/el-ministerio/sala-de-prensa/noticias/vie-14032025-1535">
+En complir-se el primer any de la regulació, el març de 2025, el Ministerio de Vivienda va presentar el balanç: als 140 municipis catalans declarats tensionats el lloguer mitjà dels nous contractes havia baixat un **3,7 %** (de 911 a 878 € al mes), i a la ciutat de Barcelona, un **6,4 %**. La ministra Isabel Rodríguez ho va resumir en quatre paraules: «la Ley de Vivienda funciona». Les mateixes dades, però, contaven una segona història: el nombre de contractes de lloguer nous depositats a l'Incasòl va caure amb força al llarg de 2024 respecte a l'any anterior, i va créixer el **lloguer de temporada** (contractes de menys d'un any, que quedaven fora del topall), fins al punt que la Generalitat el va acabar regulant també el 2025. Les associacions de propietaris i les immobiliàries van parlar de «pèrdua d'oferta»; el Sindicat de Llogateres, d'èxit i de necessitat d'ampliar la regulació. Els dos bàndols miren xifres reals, però distintes: uns, el preu de qui ha aconseguit contracte; altres, la quantitat de contractes que se signen. És exactament la tensió que prediu el model: un preu màxim per davall de l'equilibri abaixa el preu i reduïx la quantitat intercanviada.
+</RealExample>
+
+<VocesDesacuerdo
+  tema="Servixen els topalls al lloguer perquè l'habitatge siga més assequible?"
+  postura_a={{
+    etiqueta: 'Banco de España · Informe Anual 2023',
+    tesis: "Els controls de rendes abaixen el preu a curt termini per a qui ja té contracte, però l'evidència internacional documenta reduccions del nombre i la qualitat dels habitatges oferits, transvasament a segments no regulats (temporada, turístic) i pujades de preu en ells. La solució és augmentar l'oferta: més habitatge públic i més construcció.",
+  }}
+  postura_b={{
+    etiqueta: 'Sindicat de Llogateres i Ministerio de Vivienda',
+    tesis: "L'habitatge no és un bé qualsevol: mudar-se és car, el sòl no es fabrica i qui no troba pis no pot esperar deu anys que es construïsca. Els topalls han abaixat els preus a Barcelona i Catalunya, i la caiguda de contractes es deu en gran part al frau del lloguer de temporada, que cal tancar, no al fet que la regulació siga dolenta.",
+  }}
+>
+Les dos postures accepten el mateix diagnòstic (falta habitatge assequible i la demanda creix més de pressa que l'oferta) i discrepen en la ferramenta. El Banco de España, al capítol 4 del seu Informe Anual 2023, va advertir que les mesures de control de rendes «podrien generar efectes indesitjats a mitjà termini» i va estimar que entre 2022 i 2025 es crearien uns 600.000 llars més que habitatges. El Ministerio de Vivienda i el Sindicat de Llogateres responen amb les dades de Catalunya: preus a la baixa a les zones tensionades i, segons ells, sense destruir oferta residencial una vegada descomptat el frau dels contractes de temporada. Amb el model d'esta unitat podeu vore per què tots dos tenen part de raó: un topall per davall de l'equilibri **abaixa el preu** dels contractes que se signen **i reduïx el nombre** de contractes. Què pesa més, i per a qui, és una pregunta de valors tant com d'economia. Si voleu discutir-la de veres, teniu el debat preparat més avall.
+</VocesDesacuerdo>
+
+<SolvedExercise number="3.2" title="Un preu màxim per a les sudaderes">
+
+**Enunciat**
+
+La direcció de l'institut, preocupada perquè les sudaderes «siguen accessibles», fixa per norma un preu màxim de **15 €**. Usa la taula de l'apartat anterior per a respondre:
+
+a) Quantes sudaderes es vendran i quantes persones es quedaran sense?
+
+b) Què ocorreria si el preu màxim es fixara en 30 € en compte de 15 €?
+
+c) Quins efectes secundaris pots preveure?
+
+**Solució**
+
+1. **Amb un topall de 15 €.** A eixe preu la quantitat demandada és 110 i l'oferida, 30. Se'n vendran **30 sudaderes** (ningú pot obligar el club a fabricar-ne més a pèrdua) i **80 persones** (110 − 30) es quedaran sense. Abans del topall, en equilibri, se'n venien 70: la norma ha reduït el nombre de sudaderes que arriben a l'alumnat de 70 a 30.
+2. **Amb un topall de 30 €.** Està **per damunt** del preu d'equilibri (25 €), així que no té cap efecte: el mercat continuarà buidant-se a 25 € amb 70 sudaderes. Un preu màxim només actua quan es fixa per davall de l'equilibri.
+3. **Efectes secundaris previsibles.** Amb 80 persones volent una sudadera que no existix: cues el primer dia, repartiment per orde d'arribada o per amistat, gent que compra a 15 € i revén a 25 € o 30 € (un mercat paral·lel), i potser el club retalla qualitat (tela més fina, un sol color) perquè fabricar a 15 € li compense. Són els mateixos efectes que es documenten amb els topalls al lloguer, a escala d'institut.
+
+</SolvedExercise>
+
+### Preus mínims: el sòl
+
+Un **preu mínim** és un preu legal per davall del qual està prohibit vendre. És la imatge especular del topall: només té efecte si es fixa **per damunt de l'equilibri**, i llavors provoca un **excés d'oferta**: a eixe preu se'n vol vendre més del que se'n vol comprar, i el preu no pot baixar per a corregir-ho.
+
+El preu mínim més important de la vostra vida serà el **salari mínim interprofessional (SMI)**, que és un preu mínim al mercat de treball: el preu més baix al qual es pot comprar una hora de treball. El 2025 està fixat en **1.184 € al mes en 14 pagues** (Real Decreto 87/2025). Si l'SMI queda per damunt del que algunes empreses estarien disposades a pagar per certs llocs, la teoria prediu que eixos llocs no es crearan o desapareixeran: un excés d'oferta de treball que s'anomena atur. La realitat és més matisada, perquè el mercat de treball no és un mercat de sudaderes: el Banco de España va estimar que la gran pujada de l'SMI de 2019 (un 22 %) va tindre efectes moderats sobre l'ocupació dels treballadors afectats (Documento Ocasional 2210, 2022), i altres estudis troben efectes encara menors. Ho veureu amb calma a la Unitat 5. Altres preus mínims coneguts són els preus de garantia als agricultors a la Política Agrària Comuna de les dècades de 1970 i 1980, que van generar els famosos «llacs de llet» i «muntanyes de mantega» europeus: excedents que ningú comprava al preu fixat.
+
+<Callout label="Per a fixar la idea" title="Màxim per davall, mínim per damunt">
+
+Un **preu màxim** només actua si està **per davall** de l'equilibri, i llavors genera **escassetat** (excés de demanda). Un **preu mínim** només actua si està **per damunt** de l'equilibri, i llavors genera **excedent** (excés d'oferta). Si es fixen al costat «inofensiu», no canvien res. I en els dos casos el preu deixa de fer la seua faena d'informació: l'escassetat o l'excedent ja no es corregixen sols, i cal repartir-los amb cues, llistes, subvencions o mercats paral·lels.
+
+</Callout>
+
+<RecursoDestacado href="/debates/mercado-estado/02-tope-alquileres/" kicker="Debat" title="S'han de limitar per llei els preus del lloguer?" descripcion="Dos equips, una moció i les dades de Catalunya, Berlín i San Francisco damunt la taula. Inclou argumentari per a cada postura i un tancament que separa el que diu l'evidència del que diuen els valors." colorVar="--color-eco4" />
+
+## Tipus de mercat segons la competència
+
+Tot l'anterior suposa que al mercat hi ha molts compradors i molts venedors, i que cap d'ells, per si sol, no pot moure el preu. És una bona descripció de les sudaderes o de l'oli d'oliva, però no de tots els mercats. Quan la vostra família contracta la llum o el mòbil, tria entre unes poques empreses grans; quan compra tabac, només hi ha un canal de venda; quan demanava un bitllet d'AVE el 2019, hi havia una sola companyia. Els economistes classifiquen els mercats segons **quants venedors hi ha**, si el producte és **igual o diferent** entre ells i si és **fàcil o difícil entrar** a competir. D'això depén qui mana sobre el preu.
+
+<Diagram caption="Quatre estructures de mercat ordenades de major a menor competència. A mesura que baixa el nombre d'empreses, d'esquerra a dreta, creix el poder de cada una per a fixar el preu: d'acceptar el preu del mercat a decidir-lo en solitari.">
+  <EstructurasMercado />
+</Diagram>
+
+### Competència perfecta: molts venent el mateix
+
+És el mercat que hem estudiat en tota la unitat: **moltíssims venedors**, un producte **homogeni** (el tomaca d'un és igual que el d'un altre), informació transparent i entrada lliure. Cap venedor pot pujar el seu preu per damunt del de mercat, perquè perdria totes les vendes: són **preu-acceptants**. En estat pur quasi no existix, però els mercats agrícoles majoristes s'hi assemblen molt.
+
+<Figure
+  src={mercamadridPuesto}
+  alt="Parada de venda de fruita i verdura en una nau majorista de Mercamadrid, amb caixes apilades i preus visibles."
+  caption="Parada majorista a Mercamadrid, un dels majors mercats de fruita i hortalisses del món. Centenars de venedors oferixen un producte quasi idèntic a compradors que poden comparar preus en segons: el més paregut a la competència perfecta que es pot visitar a Espanya."
+  credit="Foto: Esferadeoro, CC BY-SA 4.0 vía Wikimedia Commons"
+  aspectHint="3/2"
+/>
+
+### Competència monopolística: molts venent alguna cosa pareguda
+
+És el mercat on compreu la majoria de les coses que compreu: **moltes empreses**, entrada fàcil, però cada una ven un producte **un poc distint** dels altres, per la seua marca, la seua qualitat, el seu disseny o la seua ubicació. Restaurants, perruqueries, gimnasos, botigues de roba, cafeteries, fleques. Com que el producte no és idèntic, cada empresa té un xicotet poder sobre el seu preu: la pizzeria del vostre barri pot cobrar 2 € més que la del carrer del costat si els seus clients la preferixen, però no 20 €, perquè la del costat existix. Per això estes empreses gasten tant a **diferenciar-se**: publicitat, decoració, xarxes socials, un nom que es recorde.
+
+### Oligopoli: uns pocs grans
+
+Quan el mercat està en mans de **poques empreses grans**, parlem d'oligopoli. És l'estructura més freqüent als sectors «pesants» de l'economia espanyola. A l'electricitat, **Iberdrola, Endesa i Naturgy** concentraven el 2024 més del 80 % dels punts de subministrament de les llars (CNMC, Informe de supervisión de los mercados minoristas). A la telefonia mòbil, després de la fusió d'Orange i MásMóvil el 2024, quatre operadors amb xarxa pròpia (Movistar, MasOrange, Vodafone i Digi) es repartixen pràcticament tot el mercat. Als carburants, tres marques (Repsol, Moeve, abans Cepsa, i BP) dominen la xarxa de gasolineres. A la banca, tres entitats (CaixaBank, Santander i BBVA) manegen la majoria dels comptes. I a l'alta velocitat, des de 2022, tres operadors: Renfe, Ouigo i Iryo.
+
+El que distingix l'oligopoli és la **interdependència**: cada empresa sap que el que faça afectarà les altres i que les altres reaccionaran. Si una gasolinera de l'autopista abaixa 5 cèntims, la de davant ho farà demà; si una teleco llança una tarifa nova, les altres la copien en setmanes. Eixa vigilància mútua pot portar a **guerres de preus** que beneficien el consumidor (els bitllets de 9 € d'Ouigo el 2021) o, al contrari, que les empreses aprenguen a no molestar-se: a pujar els preus alhora sense necessitat de parlar entre elles. I de vegades, il·legalment, sí que parlen: es posen d'acord per a fixar preus o repartir-se els clients. A això se l'anomena **càrtel**, i a la Unió Europea està prohibit.
+
+### Monopoli: un de sol
+
+Al **monopoli** hi ha un únic venedor i no existixen substitutius pròxims. Com que no té competència, el monopolista **fixa el preu** que més li convé, que és sempre més alt, i ven una quantitat menor, que en un mercat competitiu. Els monopolis purs són rars, i molts dels que existixen són públics o estan regulats precisament per això. **Adif** és l'únic gestor de les vies del tren; **Aena**, de quasi tots els aeroports comercials; a cada ciutat hi ha una sola xarxa d'aigua potable i una sola xarxa elèctrica de distribució. Són **monopolis naturals**: construir dos xarxes de canonades sota el mateix carrer seria absurd, així que es permet una de sola i se li regulen les tarifes.
+
+El monopoli que teniu més a prop és el del **tabac**. A Espanya, la venda al detall de tabac és un monopoli de l'Estat des de fa segles (hui regulat per la Ley 13/1998), que l'exercix a través dels **estancs**: 12.795 al tancament de 2024, cada un amb una concessió administrativa per a la seua zona (Comisionado para el Mercado de Tabacos, Informe anual 2024). Cap altra botiga pot vendre cigarrets, llevat de les màquines autoritzades que es proveïxen d'un estanc. I fins al 2021, a l'alta velocitat, el monopolista era Renfe.
+
+<Curiosity title="El preu del tabac el publica el BOE">
+Com que el tabac es ven en règim de monopoli, el seu preu no el fixa cada estanc: les tabaqueres comuniquen el preu de cada marca al Comisionado para el Mercado de Tabacos i este el publica al **Boletín Oficial del Estado**. Per això una capsa costa exactament el mateix en un estanc de Cadis que en un de Girona (Canàries té un règim a banda). D'eixe preu, al voltant d'un 80 % són impostos: l'impost especial sobre les labors del tabac més l'IVA (Agencia Tributaria, 2024). És l'exemple perfecte d'un mercat on el preu no ix de la trobada entre compradors i venedors, sinó d'una llista oficial.
+</Curiosity>
+
+<Figure
+  src={estancoCeuta}
+  alt="Façana d'un estanc espanyol amb el rètol groc i roig característic de Tabacalera i la paraula «Tabacos»."
+  caption="Un estanc a Ceuta. El rètol roig i groc és el mateix a tota Espanya perquè el negoci també ho és: una concessió de l'Estat per a vendre, en exclusiva a la seua zona, un producte el preu del qual es publica al BOE."
+  credit="Foto: CarlosVdeHabsburgo, CC BY-SA 4.0 vía Wikimedia Commons"
+  aspectHint="3/2"
+  variant="left"
+/>
+
+| Estructura | Nombre de venedors | Producte | Entrada de noves empreses | Qui fixa el preu? | Exemples a Espanya |
+|---|---|---|---|---|---|
+| Competència perfecta | Moltíssims | Idèntic | Lliure | El mercat | Mercats agrícoles majoristes, borsa |
+| Competència monopolística | Molts | Diferenciat | Fàcil | Cada empresa, un poc | Restaurants, roba, perruqueries |
+| Oligopoli | Pocs | Igual o diferenciat | Difícil | Poques empreses, vigilant-se | Electricitat, telecos, gasolineres, AVE |
+| Monopoli | Un | Únic, sense substitutius | Bloquejada | L'empresa (o el regulador) | Adif, Aena, estancs, aigua |
+
+### La CNMC: l'àrbitre de la competència
+
+Si la competència és el que manté els preus baixos i obliga les empreses a millorar, algú ha de vigilar que existisca. A Espanya eixe algú és la **Comisión Nacional de los Mercados y la Competencia (CNMC)**, un organisme públic independent creat per la Ley 3/2013. La CNMC fa tres coses: **investiga i sanciona** les empreses que pacten preus o es repartixen mercats (càrtels) o que abusen d'una posició dominant; **revisa les fusions** entre grans empreses per a evitar que un mercat es quede amb massa pocs competidors; i **supervisa** sectors regulats com l'electricitat, les telecomunicacions o el ferrocarril, d'on ixen les dades del cas d'obertura.
+
+La llei que aplica és la Ley 15/2007 de Defensa de la Competencia, que permet multes de fins al 10 % de la facturació anual de l'empresa infractora. Per què tanta duresa amb els càrtels? Perquè un càrtel és, a la pràctica, un monopoli disfressat: diverses empreses que acorden comportar-se com una de sola per a cobrar preus de monopoli. Qui paga la diferència és el consumidor, o el mateix Estat quan és ell qui compra. Per a destapar-los, la CNMC compta amb un **programa de clemència**: la primera empresa del càrtel que ho confesse i aporte proves queda exempta de la multa. És un parany dissenyat amb la lògica d'esta unitat: cada membre del càrtel té un incentiu enorme a trair els altres abans que ho facen ells.
+
+<RealExample title="El càrtel dels bolquers: díhuit anys pactant preus que pagava la Seguretat Social" source="CNMC, Resolución del expediente S/DC/0504/14 AIO (absorbentes de incontinencia de orina), nota de prensa de 26 de mayo de 2016; Tribunal Supremo, sentencias de 2020-2021 que confirman las multas" sourceUrl="https://www.cnmc.es/la-cnmc-multa-con-1288-millones-de-euros-ocho-fabricantes-de-panales-para-adultos-su-asociacion-y">
+El maig de 2016 la CNMC va imposar una de les majors multes de la seua història: **128,8 milions d'euros** a huit fabricants de bolquers per a adults (entre ells Arbora & Ausonia, Laboratorios Indas, SCA, Hartmann i Ontex), a la seua associació empresarial FENIN i a diversos directius. La investigació va acreditar que, **des d'almenys 1996 i fins al 2014**, les empreses s'havien reunit periòdicament per a fixar els preus dels absorbents d'incontinència que es venen a les farmàcies amb recepta i que paga el Sistema Nacional de Salud. Juntes controlaven al voltant del **95 %** del mercat. Durant díhuit anys no hi va haver competència real: els preus eren els que el càrtel acordava, i qui els pagava era la sanitat pública, és a dir, els impostos de tots. Les multes van ser confirmades per l'Audiencia Nacional i el Tribunal Supremo, i diverses comunitats autònomes (Castella-la Manxa, Galícia) van anunciar demandes per a recuperar el sobrepreu pagat. No és un cas aïllat: el 2015 la CNMC va multar amb **171 milions** 21 marques de cotxes per intercanviar informació comercial sensible entre 2006 i 2013 (expedient S/0482/13), i el 2016 la Comissió Europea va imposar **2.930 milions** als grans fabricants de camions per catorze anys de preus coordinats. En els tres casos, la regla és la mateixa: quan les empreses deixen de competir, el preu deixa de dir la veritat.
+</RealExample>
+
+<Callout label="Recomanació d'aula" title="Busqueu el càrtel a la CNMC">
+
+La CNMC publica totes les seues resolucions sancionadores al seu web, amb el nom de les empreses, la conducta i l'import de la multa. Una busca ràpida per «càrtel» als últims anys torna casos de bolquers, cotxes, camions, assegurances, mudances, obres públiques o llet. Trieu-ne un, llegiu el resum de la nota de premsa i identifiqueu tres coses: quin mercat era, quantes empreses hi participaven i qui pagava el sobrepreu. És el millor exercici per a entendre que la competència no apareix sola: cal defensar-la.
+
+</Callout>
+
+<RecursoDestacado href="/dinamicas/mercats-preus/02-monopolista/" kicker="Dinàmica d'aula" title="El monopolista: un sol venedor decidix el preu" descripcion="Amb les mateixes targetes de la doble subhasta, ara ven un de sol. L'alumnat descobrix en una sessió per què el monopoli puja el preu, abaixa la quantitat i deixa intercanvis sense fer." colorVar="--color-eco4" />
+
+## El consumidor no sempre és racional
+
+El model d'esta unitat suposa que els compradors coneixen els preus, comparen i trien el que més els convé. És una simplificació útil, però la majoria de les empreses saben que no és del tot certa, i construïxen les seues estratègies sobre eixa diferència. La **publicitat** no es limita a informar: crea desitjos i associa productes a emocions, i a Espanya les empreses hi van invertir més de 13.000 milions d'euros el 2024 (InfoAdex, 2025). Les **modes** desplacen la demanda sense que canvie ni el producte ni el preu. I els **preus psicològics** aprofiten com llegim els números: una samarreta a 19,99 € no costa 20 €, però el cervell registra primer el «19»; els investigadors Manoj Thomas i Vicki Morwitz van demostrar el 2005 que eixe «efecte del dígit de l'esquerra» fa que percebem 19,99 com a clarament més barat que 20,00, encara que la diferència siga d'un cèntim. Les gasolineres porten la mateixa idea als mil·lèsims (1,599 €/litre).
+
+Hi ha més trucs amb nom propi. L'**ancoratge**: un preu «abans 89 €, ara 59 €» fa que 59 € parega una ganga, encara que el producte mai no s'haja venut a 89 €; per això la llei espanyola exigix des de 2022 que el preu anterior que es mostra en una rebaixa siga el més baix dels trenta dies previs (Ley 7/1996 de comercio minorista, reformada pel Real Decreto-ley 24/2021). L'**escassetat artificial** («només queden 2 habitacions», «oferta vàlida fins a mitjanit») empeny a decidir sense comparar. I les **subscripcions** que es renoven soles compten amb que no ens en recordem de cancel·lar-les. Res d'això no invalida el model d'oferta i demanda: els preus continuen pujant quan falta producte i baixant quan en sobra. Però recorda que la demanda, la corba que hem dibuixat tan neta, la formen persones amb pressa, emocions i biaixos, i que una part de la faena de les empreses consistix a moure-la a favor seu. A la Unitat 7 aprendreu a defensar-vos.
+
+## Què ve després en este curs
+
+Amb esta unitat es tanca la primera mirada al mercat. Ja sabeu d'on ixen els preus i per què es mouen. A la **Unitat 4, El diner, els bancs i la inflació**, fareu el salt d'un preu a tots els preus: què passa quan pugen quasi tots alhora, com es mesura i qui intenta frenar-ho. A la **Unitat 5, El mercat de treball**, aplicareu oferta i demanda al bé que vosaltres mateixos vendreu prompte, les vostres hores, i reprendreu l'SMI com a preu mínim amb tots els seus matisos.
+
+Més avant, la **Unitat 6** explicarà quan el mercat falla per si sol (contaminació, monopolis, béns que ningú produiria sense l'Estat) i què fan els impostos amb els preus; la **Unitat 7** us entrenarà contra els trucs de l'apartat anterior; i la **Unitat 9** portarà el model als mercats internacionals. Quan a les **Unitats 10 a 12** dissenyeu la vostra pròpia idea d'empresa, la primera pregunta que us fareu serà d'esta unitat: en quin tipus de mercat entrareu i quant de poder tindreu per a posar el vostre preu.
+
+<VuelveAlCaso referencia="Tres trens a la mateixa via: la liberalització de l'AVE">
+La pregunta era per què van baixar els preus si cap llei no va obligar a abaixar-los. La resposta està a l'apartat de l'oferta: l'entrada d'Ouigo i Iryo **va desplaçar la corba d'oferta a la dreta**. A cada preu hi havia moltes més places disponibles que el 2019, i el model prediu exactament el que va mesurar la CNMC: preu més baix (al voltant d'un 40 % menys en termes reals) i quantitat molt major (14 milions de viatgers al corredor el 2023, rècord històric). Renfe no va abaixar els preus per generositat, sinó perquè als preus de 2019 s'hauria quedat amb els trens mig buits davant de competidors més barats. I viatgers que abans anaven en cotxe o en avió, o no viatjaven, van aparéixer al mercat.
+
+La segona pregunta, per què el 2025 els preus tornaven a pujar, es respon amb l'apartat dels tipus de mercat. L'AVE va passar de **monopoli** a **oligopoli**, no a competència perfecta. Amb tres empreses que es vigilen mútuament, la guerra de preus dels primers anys era una situació inestable: així que cada una sap quant viatja la gent i a quin preu, totes tenen incentius a deixar de perdre diners amb bitllets de 9 € i a pujar tarifes, sense necessitat de pactar res. Els preus continuen sent més baixos que amb un sol operador, però la lliçó és doble: la competència és el que abaixa els preus, i la competència entre pocs cal vigilar-la. Per això la CNMC continua publicant cada trimestre el que costa anar de Madrid a Barcelona.
+</VuelveAlCaso>
+
+<KeyTakeaways title="L'essencial de la unitat">
+- Un **mercat** és qualsevol trobada entre compradors i venedors; el seu producte és el **preu**, que resumix en un número el que uns desitgen i el que a altres els costa produir. El preu puja quan falta i baixa quan sobra.
+- La **demanda** baixa quan el preu puja (corba descendent) i es desplaça per la renda, els gustos, el preu de substitutius i complementaris, les expectatives i el nombre de compradors. L'**oferta** puja quan el preu puja (corba ascendent) i es desplaça pels costos, la tecnologia, el nombre d'empreses, les expectatives, els impostos i el clima.
+- L'**equilibri** és el preu al qual la quantitat demandada coincidix amb l'oferida. Per damunt hi ha excés d'oferta i el preu baixa; per davall, excés de demanda i el preu puja. Un desplaçament d'una corba porta a un equilibri nou, com el de l'oli d'oliva el 2023.
+- Un **preu màxim** per davall de l'equilibri genera escassetat (mascaretes el 2020, topalls al lloguer); un **preu mínim** per damunt genera excedent (SMI, preus agrícoles). Al costat equivocat de l'equilibri, no tenen efecte.
+- Segons el nombre de venedors i el tipus de producte, els mercats van de la **competència perfecta** (molts, producte idèntic) a la **competència monopolística** (molts, diferenciat), l'**oligopoli** (pocs, interdependents: llum, telecos, AVE) i el **monopoli** (un: estancs, Adif).
+- La **CNMC** vigila la competència i sanciona els **càrtels**, que són monopolis disfressats (bolquers, 128,8 milions de multa el 2016). I el consumidor real no és del tot racional: publicitat, modes i preus psicològics mouen la demanda.
+</KeyTakeaways>
+
+## Glossari
+
+- **Mercat**: conjunt de compradors i venedors d'un bé o servici i el mecanisme pel qual acorden un preu. No necessita lloc físic.
+- **Demanda**: quantitat d'un bé que els compradors estan disposats a comprar, i poden pagar, a cada preu possible durant un període.
+- **Llei de la demanda**: quan el preu d'un bé puja, la quantitat demandada baixa, i viceversa, si tota la resta continua igual.
+- **Bé normal / bé inferior**: bé la demanda del qual puja quan augmenta la renda (normal) o baixa quan augmenta la renda (inferior).
+- **Béns substitutius / complementaris**: béns que servixen per al mateix (tren i avió) o que s'usen junts (consola i videojocs).
+- **Oferta**: quantitat d'un bé que els venedors estan disposats a produir i vendre a cada preu possible durant un període.
+- **Llei de l'oferta**: quan el preu d'un bé puja, la quantitat oferida puja, i viceversa, si tota la resta continua igual.
+- **Preu d'equilibri**: preu al qual la quantitat demandada coincidix amb la quantitat oferida i el mercat es buida.
+- **Excés d'oferta / excés de demanda**: situació en què, a un preu donat, se'n vol vendre més del que se'n vol comprar (sobra producte) o a l'inrevés (falta producte).
+- **Preu màxim**: preu legal per damunt del qual no es pot vendre; si està per davall de l'equilibri, provoca escassetat.
+- **Preu mínim**: preu legal per davall del qual no es pot vendre; si està per damunt de l'equilibri, provoca excedent.
+- **Competència perfecta**: mercat amb moltíssims venedors d'un producte idèntic, en el qual cap no pot influir en el preu.
+- **Oligopoli**: mercat dominat per poques empreses grans que es vigilen mútuament i poden coordinar-se.
+- **Monopoli**: mercat amb un únic venedor sense substitutius pròxims, que fixa el preu.
+- **Càrtel**: acord il·legal entre empreses competidores per a fixar preus, limitar la producció o repartir-se els clients.
+- **CNMC**: Comisión Nacional de los Mercados y la Competencia, organisme públic independent que vigila la competència i sanciona els càrtels a Espanya.
+
+## Per a aprofundir
+
+Si esta unitat us ha picat la curiositat, ací teniu recursos accessibles i gratuïts:
+
+- **Blog de la CNMC** (blog.cnmc.es). Per què encaixa: explica en llenguatge planer els casos reals de càrtels, fusions i sectors regulats que apareixen en esta unitat, amb les xifres de cada expedient; és la font directa de l'apartat de competència.
+- **Geoportal de gasolineras** del Ministerio para la Transición Ecológica (geoportalgasolineras.es). Per què encaixa: mostra el preu de cada gasolinera d'Espanya actualitzat diàriament; compareu el preu en una autopista, en un poble amb una sola estació i en una ciutat amb deu, i veureu l'oligopoli en un mapa.
+- **El economista camuflado**, de Tim Harford (Temas de Hoy, 2007). Per què encaixa: el primer capítol explica per què un café costa el que costa segons on estiga la cafeteria, i els següents recorren competència, monopolis i trucs de preus amb humor i sense fórmules.
+- **Informes mensuales del mercado del aceite de oliva** del MAPA (mapa.gob.es). Per què encaixa: permeten seguir cada mes com la collita i les existències mouen el preu en origen; l'exemple de la unitat continua en temps real.
+
+## Preguntes per a reflexionar
+
+Estes preguntes no tenen una resposta única. Servixen per a debatre a classe o pensar a soles en tancar la unitat:
+
+1. El preu de l'oli es va triplicar per una sequera sense que ningú fera res dolent. Us pareix just que un aliment bàsic s'encarisca així? Si l'Estat haguera fixat un preu màxim el 2023, què hauria passat amb l'oli als supermercats, segons el model?
+2. Els topalls al lloguer a Catalunya van abaixar el preu dels contractes que es van signar i van reduir el nombre de contractes. Qui guanya i qui perd amb eixa combinació? Canviaria la vostra resposta si fóreu un llogater amb contracte, algú que busca pis o un propietari?
+3. La liberalització de l'AVE va abaixar els preus un 40 %, i quatre anys després els tres operadors tornaven a pujar-los sense posar-se d'acord. Hauria d'intervindre la CNMC encara que no hi haja càrtel? Quina diferència hi ha entre competir poc i pactar?
+
+<Bibliography>
+
+1. España. **Real Decreto 217/2022**, de 29 de marzo, por el que se establecen la ordenación y las enseñanzas mínimas de la Educación Secundaria Obligatoria. BOE núm. 76. (Competència específica 6 d'Economia i Emprenedoria: principis d'interacció social des del punt de vista econòmic.)
+2. Comisión Nacional de los Mercados y la Competencia (CNMC). *Informe anual del sector ferroviario 2023* (INF/DTSP/033/24, juliol de 2024) i *Boletines trimestrales de transporte de viajeros*, 2024-2025. https://www.cnmc.es
+3. Ministerio de Agricultura, Pesca y Alimentación (MAPA). *Balances de campaña y precios en origen del aceite de oliva*, campanyes 2021/22 a 2024/25. https://www.mapa.gob.es
+4. Banco de España (2024). *Informe Anual 2023*, capítol 4: «El mercado de la vivienda en España: evolución reciente, riesgos y problemas de accesibilidad». https://www.bde.es
+5. Ministerio de Vivienda y Agenda Urbana (2025). *Primer año de aplicación de las zonas de mercado residencial tensionado en Cataluña*, nota de premsa de 14 de març de 2025; i España, **Ley 12/2023**, de 24 de mayo, por el derecho a la vivienda. BOE núm. 124.
+6. CNMC (2016). *Resolución del expediente S/DC/0504/14 AIO*, nota de premsa de 26 de maig de 2016; i España, **Ley 15/2007**, de 3 de julio, de Defensa de la Competencia. BOE núm. 159.
+7. Marshall, A. (1890). *Principles of Economics*. Macmillan. I Mankiw, N. G. *Principios de economía* (capítols 4 i 6: «Las fuerzas del mercado de la oferta y la demanda» i «La oferta, la demanda y las políticas del gobierno»). Cengage.
+
+</Bibliography>
+
+<MirarFora
+  unidad={3}
+  libro={{
+    titulo: 'El economista camuflado',
+    meta: 'Tim Harford · Temas de Hoy, 2007',
+    porque: "Un economista explica el preu del café, el trànsit i els supermercats amb el model d'esta unitat, i dedica capítols sencers a per què les empreses amb poder de mercat cobren més i com intenten esbrinar quant estàs disposat a pagar. Es llig com una novel·la.",
+    paginas: 'Capítols 1, 2 i 3',
+  }}
+  video={{
+    titulo: 'Supply and Demand: Crash Course Economics #4',
+    meta: 'Crash Course (YouTube) · subtítols en espanyol',
+    duracion: '~10 min',
+    porque: "Les dos corbes, els desplaçaments i l'equilibri explicats en deu minuts amb animacions i exemples quotidians. Ideal per a repassar abans de l'examen.",
+    url: 'https://www.youtube.com/results?search_query=crash+course+economics+supply+and+demand',
+  }}
+  cuenta={{
+    titulo: '@CNMC_ES',
+    meta: 'X / Twitter',
+    porque: "El compte oficial de la CNMC anuncia cada multa a un càrtel, cada informe sobre preus de l'AVE, la llum o la gasolina i cada fusió que revisa. Seguir-lo és vore l'apartat de competència d'esta unitat en directe, setmana a setmana.",
+  }}
+  actividad_titulo="Caçadors de preus"
+  actividad_duracion="30 min · a casa, amb el mòbil"
+>
+  <Fragment slot="actividad">
+    Tria un producte concret (unes sabatilles, un videojoc, un litre d'oli, un bitllet de tren per a un cap de setmana) i anota'n el preu en **tres venedors distints**. Després respon: són preus molt pareguts o molt distints? En quin tipus de mercat diries que es ven (molts venedors, pocs, un)? Quin factor d'esta unitat explicaria que el preu canvie el mes que ve? Porta la taula a classe.
+  </Fragment>
+  <Fragment slot="para-clase">
+    Mercat de sudaderes en directe: repartiu targetes amb un valor màxim (compradors) o un cost mínim (venedors) i deixeu tres rondes de tres minuts per a negociar lliurement per l'aula, anotant cada tracte a la pissarra. Al final, dibuixeu el núvol de preus: es veurà com convergix. Quarta ronda amb un preu màxim imposat per «la direcció»: conteu quants tractes es tanquen i quants compradors es queden sense sudadera. Durada: 30 min. Materials: targetes, pissarra.
+  </Fragment>
+</MirarFora>
+
+```deck
+- tipo: curriculum
+  eyebrow: "A què respon esta unitat"
+  title: "El marc de la unitat"
+  saberes:
+    - "Mercat, demanda i oferta: lleis i factors que les desplacen."
+    - "Equilibri de mercat, excessos d'oferta i demanda i desplaçaments."
+    - "Preus màxims i mínims fixats per l'Estat: lloguer, mascaretes, SMI."
+    - "Estructures de mercat: competència perfecta, monopolística, oligopoli i monopoli."
+    - "La CNMC i la defensa de la competència: què és un càrtel i per què se sanciona."
+  competencias:
+    - "Comprendre aspectes bàsics de l'economia: com es formen els preus en un mercat."
+    - "Valorar críticament els principis d'interacció social des del punt de vista econòmic."
+- tipo: caso
+  eyebrow: "Cas de partida"
+  title: "Tres trens a la mateixa via: l'AVE va deixar de tindre un sol venedor"
+  contexto: "Fins al maig de 2021 només Renfe venia alta velocitat. Llavors va arribar Ouigo amb bitllets des de 9 €, Renfe va respondre amb Avlo i el novembre de 2022 va entrar Iryo. Tres empreses competien pel mateix viatger."
+  datos:
+    - "32,4 milions de viatgers en alta velocitat el 2023, un 37 % més (CNMC)."
+    - "14 milions al corredor Madrid-Barcelona, rècord històric."
+    - "Preus reals un 40 % més baixos que el 2019; un 50 % a Madrid-València."
+    - "El 2025 els preus del corredor tornaven a pujar amb força."
+  pregunta: "Si cap llei no va obligar a abaixar els preus, per què van baixar? I per què després van pujar?"
+- tipo: section
+  title: Què és un mercat?
+  subtitle: Qualsevol trobada entre compradors i venedors, tinga o no un lloc físic. El seu producte és el preu
+- tipo: concept
+  eyebrow: La idea central
+  title: El preu és informació
+  body: "Un preu resumix en una xifra quant valoren el bé els qui el volen i quant costa produir-lo. Si poses la bici a 300 € a Wallapop i ningú escriu, sobra bici; si la poses a 80 € i arriben quinze missatges, falten bicis. El preu puja quan falta i baixa quan sobra."
+  pull: Tota la unitat cap en eixa frase. El que seguix és aprendre a usar-la amb precisió.
+- tipo: figure
+  src: eco-1bach/04/ave-renfe.jpg
+  alt: Tren d'alta velocitat Renfe AVE sèrie 103 estacionat en una andana de l'estació de Girona.
+  title: Un mercat amb un sol venedor
+  caption: Fins al 2021 el viatger d'alta velocitat no tenia amb qui comparar. Des de llavors, tres oferents es disputen el mateix demandant.
+  credit: "Foto: Robot8A, CC BY-SA 4.0 vía Wikimedia Commons"
+- tipo: section
+  title: La demanda
+  subtitle: El que els compradors estan disposats a comprar, i poden pagar, a cada preu
+- tipo: concept
+  eyebrow: Llei de la demanda
+  title: Quan el preu puja, la quantitat demandada baixa
+  body: "A 25 € l'entrada, mig institut va al concert; a 60 €, molts s'ho pensen; a 150 €, només els fans incondicionals. Dos raons: busquem substituts (efecte substitució) i amb els mateixos diners comprem menys (efecte renda). La corba és descendent."
+  pull: "Si canvia el preu, ens movem per la corba. Si canvia una altra cosa, la corba sencera es desplaça."
+- tipo: list
+  eyebrow: Cinc coses que desplacen la demanda
+  title: A cada preu es vol comprar més (o menys) que abans
+  items:
+    - "La renda: els béns normals es demanen més en guanyar més; els inferiors, menys (marques blanques)."
+    - "Els gustos i les modes: un vídeo viral mou la corba en dies, i quan passa la moda torna."
+    - "El preu d'altres béns: substitutius (avió i tren) i complementaris (consola i videojocs)."
+    - "Les expectatives: si esperes rebaixes, ajornes; si esperes pujades, avances la compra."
+    - "El nombre de compradors: 93,8 milions de turistes el 2024 (INE) demanen allotjament i lloguer."
+- tipo: section
+  title: L'oferta
+  subtitle: El que els venedors estan disposats a produir i vendre a cada preu
+- tipo: split
+  eyebrow: Llei de l'oferta
+  title: Quan el preu puja, la quantitat oferida puja
+  left:
+    h: Per què la corba és ascendent
+    items:
+      - "Produir més unitats sol costar més, i només compensa si el preu ho cobrix."
+      - "Un preu alt atrau nous venedors: després del 2023 es van plantar més oliveres."
+      - "A 40 € el club faria sudaderes sense parar; a 8 € deixaria de fer-ne."
+  right:
+    h: Què desplaça l'oferta
+    items:
+      - "Costos de producció: energia, matèries primeres, salaris."
+      - "Tecnologia: produir més amb el mateix (els mòbils costen la meitat)."
+      - "Nombre d'empreses: Ouigo i Iryo van afegir places a cada preu."
+      - "Impostos i subvencions, expectatives, i el clima al camp."
+- tipo: section
+  title: L'equilibri de mercat
+  subtitle: L'únic preu al qual ningú té motius per a moure's
+- tipo: diagram
+  diagrama: OfertaDemanda
+  caption: "Per damunt de l'equilibri sobra producte i el preu baixa; per davall en falta i el preu puja."
+- tipo: table
+  eyebrow: Les sudaderes de l'institut
+  title: Sobrants, faltants i un sol punt de trobada
+  head:
+    - Preu
+    - Demandada
+    - Oferida
+    - Situació
+  rows:
+    - ["15 €", "110", "30", "En falten 80"]
+    - ["20 €", "90", "50", "En falten 40"]
+    - ["25 €", "70", "70", "Equilibri"]
+    - ["30 €", "50", "90", "En sobren 40"]
+    - ["35 €", "30", "110", "En sobren 80"]
+  caption: "Xifres inventades. A 35 € el club es queda amb 80 sense vendre i abaixa el preu; a 15 € hi ha cua i el puja."
+- tipo: exercise
+  title: "Exercici 3.1 — Equilibri i excessos de les sudaderes"
+  enunciado: "Amb la taula anterior: quin és l'equilibri? Què passa si el club ven a 30 €? I si les famílies aconseguixen que es venguen a 20 €? Quant ingressa el club en cada cas?"
+  pasos:
+    - "Equilibri: 25 € i 70 sudaderes, l'única fila en què demandada i oferida coincidixen."
+    - "A 30 €: demandada 50, oferida 90. Excés d'oferta de 40; el club es queda amb 40 sense vendre."
+    - "A 20 €: demandada 90, oferida 50. Excés de demanda de 40; 40 persones es queden sense sudadera."
+    - "Ingressos = preu × quantitat venuda (la menor): 1.750 € en equilibri, 1.500 € a 30 €, 1.000 € a 20 €."
+    - "Vendre barat no fa que arriben a més gent: arriben a 50 en compte de 70, i per altres criteris."
+- tipo: list
+  eyebrow: Els quatre casos bàsics
+  title: Quan una corba es mou, l'equilibri canvia
+  items:
+    - "Puja la demanda (a la dreta): puja el preu i puja la quantitat. Una onada de calor i els ventiladors."
+    - "Baixa la demanda (a l'esquerra): baixa el preu i baixa la quantitat. Passa la moda d'una joguina."
+    - "Puja l'oferta (a la dreta): baixa el preu i puja la quantitat. Entren Ouigo i Iryo a l'AVE."
+    - "Baixa l'oferta (a l'esquerra): puja el preu i baixa la quantitat. Una sequera arruïna la collita."
+- tipo: figure
+  src: eco-1bach/04/olivar-jaen.jpg
+  alt: Vista d'un olivar a la província de Jaén, amb fileres d'oliveres estenent-se fins a l'horitzó sota un cel serè.
+  title: "Oli d'oliva 2022-2024: l'oferta es va moure sola"
+  caption: "La sequera va deixar la collita 2022/23 en 666.000 tones, menys de la meitat; el preu en origen va passar de 3,30 a més de 9 €/kg (MAPA)."
+  credit: "Foto: Veinticuatro de Jahén, CC BY-SA 4.0 vía Wikimedia Commons"
+- tipo: quiz
+  eyebrow: Comprova que ho pilles
+  pregunta: "Una sequera reduïx a la meitat la collita d'oli d'oliva i els gustos de la gent no canvien. Què prediu el model?"
+  opciones:
+    - "Baixa la demanda: el preu baixa i se'n ven menys."
+    - "Baixa l'oferta: el preu puja i se'n ven menys."
+    - "Puja l'oferta: el preu baixa i se'n ven més."
+    - "No canvia res, perquè la demanda és la mateixa."
+  correcta: 1
+  explicacion: "Els productors n'oferixen menys a cada preu: la corba d'oferta es desplaça a l'esquerra. El nou equilibri té un preu més alt i una quantitat menor, exactament el que va passar el 2023."
+- tipo: section
+  title: Quan l'Estat fixa preus
+  subtitle: Preus màxims per a protegir qui compra, preus mínims per a protegir qui ven
+- tipo: split
+  eyebrow: Dos intervencions oposades
+  title: El topall i el sòl
+  left:
+    h: Preu màxim
+    items:
+      - "Prohibit vendre per damunt. Només actua si està per davall de l'equilibri."
+      - "Provoca excés de demanda: escassetat, cues, mercat paral·lel, menys qualitat."
+      - "Mascaretes a 0,96 € l'abril de 2020; topalls al lloguer en zones tensionades."
+  right:
+    h: Preu mínim
+    items:
+      - "Prohibit vendre per davall. Només actua si està per damunt de l'equilibri."
+      - "Provoca excés d'oferta: excedent que ningú compra a eixe preu."
+      - "SMI 2025: 1.184 € al mes en 14 pagues (RD 87/2025). Ho veureu a la Unitat 5."
+- tipo: figure
+  src: eco-1bach/05/mietendeckel-berlin.jpg
+  alt: Manifestació multitudinària a Berlín el 15 d'abril de 2021 reclamant un sostre al lloguer després de l'anul·lació del Mietendeckel.
+  title: El mateix debat a Berlín i a Barcelona
+  caption: "Catalunya, primer any de topalls (2024-25): lloguers un 3,7 % més barats en zones tensionades, però molts menys contractes nous."
+  credit: "Foto: Leonhard Lenz, CC0 (dominio público) vía Wikimedia Commons"
+- tipo: exercise
+  title: "Exercici 3.2 — Un preu màxim per a les sudaderes"
+  enunciado: "La direcció fixa un preu màxim de 15 € perquè les sudaderes «siguen accessibles». Amb la taula: quantes se'n venen i quantes persones es queden sense? I si el topall fóra de 30 €?"
+  pasos:
+    - "A 15 €: demandada 110, oferida 30. Se'n venen 30 i 80 persones es queden sense sudadera."
+    - "Abans del topall se'n venien 70: la norma reduïx de 70 a 30 les que arriben a l'alumnat."
+    - "Amb un topall de 30 €, per damunt de l'equilibri de 25 €, no passa res: el mercat continua en 25 € i 70."
+    - "Efectes previsibles: cues, repartiment per amistat, revenda a 25 o 30 € i retall de qualitat."
+- tipo: quiz
+  eyebrow: Comprova que ho pilles
+  pregunta: "El preu d'equilibri d'un bé és 25 €. El Govern fixa un preu màxim de 30 €. Què ocorre?"
+  opciones:
+    - "Apareix escassetat, perquè hi ha un preu màxim."
+    - "Apareix excedent, perquè el preu és més alt."
+    - "Res: el topall està per damunt de l'equilibri."
+    - "El preu puja fins a 30 €, que és el permés."
+  correcta: 2
+  explicacion: "Un preu màxim només té efecte si es fixa per davall de l'equilibri. A 30 € el mercat ja es buidava a 25 €, així que la norma no canvia ni el preu ni la quantitat."
+- tipo: section
+  title: Tipus de mercat segons la competència
+  subtitle: Quants venen, si venen el mateix i si és fàcil entrar. D'això depén qui mana sobre el preu
+- tipo: diagram
+  diagrama: EstructurasMercado
+  caption: "D'esquerra a dreta baixa el nombre d'empreses i creix el poder de cada una per a fixar el preu."
+- tipo: table
+  eyebrow: Quatre estructures
+  title: Qui fixa el preu en cada mercat
+  head:
+    - Estructura
+    - Venedors
+    - Producte
+    - Exemples a Espanya
+  rows:
+    - ["Competència perfecta", "Moltíssims", "Idèntic", "Mercamadrid, borsa"]
+    - ["Comp. monopolística", "Molts", "Diferenciat", "Restaurants, roba, perruqueries"]
+    - ["Oligopoli", "Pocs", "Igual o distint", "Llum, telecos, gasolineres, AVE"]
+    - ["Monopoli", "Un", "Sense substitutius", "Adif, Aena, estancs, aigua"]
+  caption: "Iberdrola, Endesa i Naturgy: més del 80 % de les llars el 2024 (CNMC). Estancs: 12.795 al tancament de 2024."
+- tipo: figure
+  src: eco-1bach/04/mercamadrid-puesto.jpg
+  alt: Parada de venda de fruita i verdura en una nau majorista de Mercamadrid, amb caixes apilades i preus visibles.
+  title: El més paregut a la competència perfecta
+  caption: Centenars de venedors, producte quasi idèntic i compradors que comparen preus en segons. Ningú pot cobrar més que el del costat.
+  credit: "Foto: Esferadeoro, CC BY-SA 4.0 vía Wikimedia Commons"
+- tipo: caso
+  eyebrow: "Cas real"
+  title: "El càrtel dels bolquers: 18 anys pactant preus que pagava la sanitat pública"
+  contexto: "El maig de 2016 la CNMC va multar huit fabricants de bolquers per a adults i la seua associació FENIN. Des d'almenys 1996 i fins al 2014 es reunien per a fixar els preus dels absorbents que les farmàcies venen amb recepta."
+  datos:
+    - "128,8 milions d'euros de multa (expedient S/DC/0504/14 AIO)."
+    - "Quota conjunta de les empreses: al voltant del 95 % del mercat."
+    - "Multes confirmades per l'Audiencia Nacional i el Tribunal Supremo."
+    - "Cotxes (171 M€, 2015) i camions (2.930 M€, 2016): la mateixa lògica."
+  pregunta: "Un càrtel és un monopoli disfressat. Qui va pagar el sobrepreu durant díhuit anys?"
+- tipo: concept
+  eyebrow: La CNMC
+  title: L'àrbitre de la competència
+  body: "Organisme públic independent (Ley 3/2013). Sanciona càrtels i abusos amb multes de fins al 10 % de la facturació (Ley 15/2007), revisa fusions i supervisa la llum, les telecos i el tren. El seu programa de clemència eximix de multa el primer membre del càrtel que confesse."
+  pull: "Cada membre del càrtel té un incentiu enorme a trair els altres abans que ho facen ells."
+- tipo: section
+  title: El consumidor no sempre és racional
+  subtitle: Publicitat, modes i preus psicològics mouen la demanda a favor de qui ven
+- tipo: concept
+  eyebrow: "19,99 no és 20"
+  title: L'efecte del dígit de l'esquerra
+  body: "Thomas i Morwitz van demostrar el 2005 que percebem 19,99 com a clarament més barat que 20,00 encara que la diferència siga un cèntim: el cervell llig primer el 19. Les gasolineres ho porten als mil·lèsims. L'ancoratge («abans 89 €») i l'escassetat artificial («només en queden 2») fan la resta."
+  pull: "Des del 2022 el preu «anterior» d'una rebaixa ha de ser el més baix dels 30 dies previs (Ley 7/1996)."
+- tipo: quiz
+  eyebrow: Comprova que ho pilles
+  pregunta: "A la telefonia mòbil espanyola quatre operadors amb xarxa pròpia es repartixen quasi tot el mercat. Quina estructura és i què la caracteritza?"
+  opciones:
+    - "Competència perfecta: hi ha diversos venedors."
+    - "Monopoli: al final tots cobren paregut."
+    - "Oligopoli: poques empreses que es vigilen entre si."
+    - "Competència monopolística: cada tarifa és distinta."
+  correcta: 2
+  explicacion: "Poques empreses grans, entrada molt difícil i interdependència: cada una reacciona al que fan les altres. Poden competir en preus o aprendre a no molestar-se; per això la CNMC vigila."
+- tipo: recap
+  eyebrow: "Repassa"
+  title: "Abans de tancar la unitat"
+  items:
+    - "Sabries explicar què és un mercat i per què el preu puja quan falta i baixa quan sobra."
+    - "Sabries enunciar les lleis de la demanda i l'oferta i nomenar cinc factors que desplacen cada corba."
+    - "Sabries trobar l'equilibri en una taula i calcular l'excés d'oferta o demanda a un altre preu."
+    - "Sabries predir l'efecte d'un preu màxim o mínim i dir quan no té efecte."
+    - "Sabries classificar la llum, els estancs o Mercamadrid per la seua estructura de mercat."
+    - "Sabries explicar què és un càrtel, per què la CNMC el sanciona i qui paga el sobrepreu."
+```

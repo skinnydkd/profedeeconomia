@@ -12,7 +12,7 @@ estado: publicado
 
 - Para la Unidad 11, mientras se aprende a interpretar las cuentas anuales.
 - Para resolver la actividad 11 (radiografía de Inditex) introduciendo los datos del balance del informe oficial.
-- Para evaluar el plan financiero del proyecto capstone y comprobar si los ratios proyectados son razonables.
+- Para evaluar el plan financiero de un plan de empresa o un proyecto de aula (Unidad 12) y comprobar si los ratios proyectados son razonables.
 
 ## Qué tener en cuenta
 

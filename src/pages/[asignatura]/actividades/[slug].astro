@@ -1,6 +1,9 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
 import { ASIGNATURAS } from '@/lib/asignaturas';
+import { ACTIVIDAD_TIPO_LABEL, actividadPdfName } from '@/lib/actividades';
+import { existsSync } from 'node:fs';
+import { resolve } from 'node:path';
 import { breadcrumbLd } from '@/lib/seo';
 import { getCollection, render } from 'astro:content';
 import { getLocale } from '@/i18n/locale';
@@ -40,17 +43,23 @@ const unitEs = allLibro.find(
 const unit = unitEs ? pickLocalizedEntry(unitEs, libroCaById, locale) : undefined;
 const unitSlug = unitEs?.id.split('/').pop()?.replace(/\.mdx?$/, '');
 
-const TIPO_LABEL: Record<'es' | 'ca', Record<string, string>> = {
-  es: { caso: 'Caso', ejercicio: 'Ejercicio', debate: 'Debate', dinamica: 'Dinámica', proyecto: 'Proyecto' },
-  ca: { caso: 'Cas', ejercicio: 'Exercici', debate: 'Debat', dinamica: 'Dinàmica', proyecto: 'Projecte' },
-};
+const TIPO_LABEL = ACTIVIDAD_TIPO_LABEL;
 
 const copy = {
-  es: { inicio: 'Inicio', actividades: 'Actividades', unidad: 'Unidad', actividad: 'Actividad', ebau: 'Tipo EBAU', duracion: 'Duración', agrupacion: 'Agrupación', materiales: 'Materiales', conexion: 'Conexión con el libro' },
-  ca: { inicio: 'Inici', actividades: 'Activitats', unidad: 'Unitat', actividad: 'Activitat', ebau: 'Tipus EBAU', duracion: 'Durada', agrupacion: 'Agrupament', materiales: 'Materials', conexion: 'Connexió amb el llibre' },
+  es: { inicio: 'Inicio', actividades: 'Actividades', unidad: 'Unidad', actividad: 'Actividad', ebau: 'Tipo EBAU', duracion: 'Duración', agrupacion: 'Agrupación', materiales: 'Materiales', conexion: 'Conexión con el libro', descargar: 'Descargar la ficha en PDF', descargarSub: 'Enunciado, pasos y rúbrica, listos para imprimir', imprimir: 'Versión para imprimir' },
+  ca: { inicio: 'Inici', actividades: 'Activitats', unidad: 'Unitat', actividad: 'Activitat', ebau: 'Tipus EBAU', duracion: 'Durada', agrupacion: 'Agrupament', materiales: 'Materials', conexion: 'Connexió amb el llibre', descargar: 'Descarregar la fitxa en PDF', descargarSub: 'Enunciat, passos i rúbrica, llestos per a imprimir', imprimir: 'Versió per a imprimir' },
 }[locale];
 
 const actividadSlug = actividadEs.id.split('/').pop()?.replace(/\.mdx?$/, '') ?? actividadEs.id;
+// Pre-generated sheet (scripts/build-actividades-pdf.mjs). Linked only when
+// the file exists; under /ca, the Spanish file is the fallback. The print
+// route is always offered as a second way to get a PDF from the browser.
+const pdfCandidates = locale === 'ca'
+  ? [actividadPdfName(a.slug, actividadSlug, 'ca'), actividadPdfName(a.slug, actividadSlug)]
+  : [actividadPdfName(a.slug, actividadSlug)];
+const pdfFile = pdfCandidates.find((f) => existsSync(resolve('public/downloads', f)));
+const pdfHref = pdfFile ? `/downloads/${pdfFile}` : null;
+const printHref = `${locale === 'ca' ? '/ca' : ''}/${a.slug}/actividades/${actividadSlug}/imprimir/`;
 const breadcrumb = breadcrumbLd([
   { name: copy.inicio, path: '/' },
   { name: a.shortLabel, path: `/${a.slug}/` },
@@ -113,6 +122,19 @@ const breadcrumb = breadcrumbLd([
           </div>
         )}
       </dl>
+
+      <div class="downloads">
+        {pdfHref && (
+          <a class="download-cta" href={pdfHref} download>
+            <span class="download-cta__icon" aria-hidden="true">↓</span>
+            <span class="download-cta__text">
+              <strong>{copy.descargar}</strong>
+              <span class="muted">{copy.descargarSub}</span>
+            </span>
+          </a>
+        )}
+        <a class="download-secondary" href={printHref} target="_blank" rel="noopener">{copy.imprimir}</a>
+      </div>
     </div>
   </section>
 
@@ -161,7 +183,54 @@ const breadcrumb = breadcrumbLd([
   .badge--debate   { background: #DBEDED;                   color: #1F6E6E; }
   .badge--dinamica { background: var(--color-fopp-soft);    color: var(--color-fopp); }
   .badge--proyecto { background: var(--color-bg-soft);      color: var(--color-ink); }
+  .badge--investigacion { background: #DBEDED;              color: #164F4F; }
+  .badge--noticia  { background: var(--color-terra-soft);   color: var(--color-terra-deep); }
+  .badge--grafico  { background: #E4ECD2;                   color: #4F6B18; }
+  .badge--juego    { background: var(--color-mustard-soft); color: var(--color-mustard-deep); }
+  .badge--creativo { background: var(--color-fopp-soft);    color: var(--color-fopp); }
   .badge--ebau     { background: var(--color-ink);          color: #fff; }
+
+  .downloads {
+    margin-top: 1.4rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.2rem;
+  }
+  .download-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.8rem 1.3rem 0.8rem 1rem;
+    background: var(--color-terra);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: background .2s var(--ease-soft), transform .2s var(--ease-soft);
+  }
+  .download-cta:hover { background: var(--color-terra-deep); transform: translateY(-1px); }
+  .download-cta__icon {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.6rem;
+    line-height: 1;
+    color: var(--color-mustard-soft);
+    font-variation-settings: "SOFT" 100, "WONK" 1;
+  }
+  .download-cta__text { display: flex; flex-direction: column; gap: 0.15rem; }
+  .download-cta__text strong { font-family: var(--font-sans); font-size: 0.95rem; font-weight: 600; }
+  .download-cta__text .muted { font-family: var(--font-sans); font-size: 0.78rem; opacity: 0.75; letter-spacing: 0.04em; }
+  .download-secondary {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--color-ink-soft);
+    text-decoration: none;
+    border-bottom: 1px dashed var(--color-line);
+    padding-bottom: 1px;
+    font-variation-settings: "SOFT" 80;
+  }
+  .download-secondary:hover { color: var(--color-terra); border-bottom-color: var(--color-terra); }
 
   h1 { max-width: 22ch; margin: 1rem 0 0.6rem; }
   .lede {

@@ -14,6 +14,7 @@
 import { ACCENTS, ASIGNATURA_SLUGS, ASIGNATURAS } from '@/lib/asignaturas';
 import { getCollection, render } from 'astro:content';
 import { sabersDeActividad } from '@/lib/cuaderno/sabers';
+import { ACTIVIDAD_TIPO_LABEL } from '@/lib/actividades';
 import { SITE } from '@/lib/seo';
 import { getLocale } from '@/i18n/locale';
 import { pickLocalizedEntry } from '@/i18n/content-locale';
@@ -82,9 +83,7 @@ const porUnidad = unidades.map((u) => ({
   test: tests.find((t) => t.data.unidad_relacionada === u) ?? null,
 }));
 
-const tipoLabel: Record<string, string> = locale === 'ca'
-  ? { caso: 'Cas', ejercicio: 'Exercici', debate: 'Debat', dinamica: 'Dinàmica', proyecto: 'Projecte' }
-  : { caso: 'Caso', ejercicio: 'Ejercicio', debate: 'Debate', dinamica: 'Dinámica', proyecto: 'Proyecto' };
+const tipoLabel: Record<string, string> = ACTIVIDAD_TIPO_LABEL[locale];
 
 const copy = {
   es: {
@@ -539,15 +538,15 @@ const letra = (i: number) => String.fromCharCode(97 + i); // 0 -> 'a'
       )}
       {locale === 'ca' ? (
         <p>
-          Cada activitat indica el seu tipus (cas, exercici, debat, dinàmica o
-          projecte), la duració orientativa, l'agrupament suggerit i els
+          Cada activitat indica el seu tipus (cas, exercici, debat, dinàmica,
+          projecte, investigació, notícia, gràfic, joc o creatiu), la duració orientativa, l'agrupament suggerit i els
           materials necessaris. Tot està pensat per fer-se servir tal qual o adaptar-se
           al vostre grup.
         </p>
       ) : (
         <p>
-          Cada actividad indica su tipo (caso, ejercicio, debate, dinámica o
-          proyecto), la duración orientativa, el agrupamiento sugerido y los
+          Cada actividad indica su tipo (caso, ejercicio, debate, dinámica,
+          proyecto, investigación, noticia, gráfico, juego o creativo), la duración orientativa, el agrupamiento sugerido y los
           materiales necesarios. Todo está pensado para usarse tal cual o adaptarse
           a vuestro grupo.
         </p>

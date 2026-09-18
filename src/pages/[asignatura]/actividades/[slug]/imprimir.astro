@@ -1,0 +1,269 @@
+---
+/**
+ * Print-ready sheet for ONE activity. Consumed by pagedjs-cli
+ * (scripts/build-actividades-pdf.mjs) to produce
+ * actividad-{asignatura}-{slug}.pdf, and offered on the activity page as
+ * «Versión para imprimir» so a browser can save it as PDF too.
+ *
+ * Mirrors the editorial system of actividades/imprimir/[modo].astro (fonts,
+ * per-subject accent, A4 typography) but for a single sheet: header with the
+ * curricular frame, the MDX body, and — when the activity carries a worked
+ * solution — a closing «Solución orientativa» block for the teacher. noindex.
+ */
+import { ACCENTS, ASIGNATURAS } from '@/lib/asignaturas';
+import { ACTIVIDAD_TIPO_LABEL } from '@/lib/actividades';
+import { sabersDeActividad } from '@/lib/cuaderno/sabers';
+import { getCollection, render } from 'astro:content';
+import { getLocale } from '@/i18n/locale';
+import { pickLocalizedEntry } from '@/i18n/content-locale';
+import { localizeAsignatura } from '@/i18n/asignaturas-ca';
+import type { GetStaticPaths } from 'astro';
+
+export const getStaticPaths = (async () => {
+  const all = await getCollection('actividades');
+  return all
+    .filter((x) => x.data.estado === 'publicado' && x.data.lang === 'es')
+    .map((x) => {
+      const slug = x.id.split('/').pop()?.replace(/\.mdx?$/, '') ?? x.id;
+      return { params: { asignatura: x.data.asignatura, slug }, props: { actividad: x } };
+    });
+}) satisfies GetStaticPaths;
+
+const locale = getLocale(Astro.currentLocale);
+const actividadEs = Astro.props.actividad;
+const a = localizeAsignatura(ASIGNATURAS[actividadEs.data.asignatura], locale);
+const actCaById = new Map(
+  (await getCollection('actividades'))
+    .filter((x) => x.data.estado === 'publicado' && x.data.lang === 'ca')
+    .map((x) => [x.id, x]),
+);
+const actividad = pickLocalizedEntry(actividadEs, actCaById, locale);
+const { Content } = await render(actividad);
+
+const allLibro = await getCollection('libro');
+const libroCaById = new Map(allLibro.filter((u) => u.data.lang === 'ca').map((u) => [u.id, u]));
+const unitEs = allLibro.find(
+  (u) => u.data.asignatura === a.slug && u.data.unidad === actividad.data.unidad_relacionada && u.data.lang === 'es',
+);
+const unit = unitEs ? pickLocalizedEntry(unitEs, libroCaById, locale) : undefined;
+const sabers = sabersDeActividad(actividad.data, new Map([[`${a.slug}#${actividad.data.unidad_relacionada}`, unitEs?.data.sabers ?? []]]));
+
+const copy = {
+  es: {
+    ficha: 'Ficha de actividad', unidad: 'Unidad', duracion: 'Duración', agrupacion: 'Agrupación', materiales: 'Materiales',
+    encaje: 'Encaje curricular', saberes: 'Saberes', compEsp: 'Comp. específicas', compClave: 'Comp. clave', ebau: 'Tipo EBAU',
+    solucion: 'Solución orientativa', solucionSub: 'Para el profesorado: pasos de la resolución del ejercicio.',
+    licencia: 'Material abierto de profedeeconomia.es · Licencia Creative Commons BY-NC-SA · Currículo LOMLOE',
+  },
+  ca: {
+    ficha: "Fitxa d'activitat", unidad: 'Unitat', duracion: 'Durada', agrupacion: 'Agrupament', materiales: 'Materials',
+    encaje: 'Encaix curricular', saberes: 'Sabers', compEsp: 'Comp. específiques', compClave: 'Comp. clau', ebau: 'Tipus EBAU',
+    solucion: 'Solució orientativa', solucionSub: "Per al professorat: passos de la resolució de l'exercici.",
+    licencia: 'Material obert de profedeeconomia.es · Llicència Creative Commons BY-NC-SA · Currículum LOMLOE',
+  },
+}[locale];
+
+const d = actividad.data;
+const accent = ACCENTS[a.color];
+const tipoLabel = ACTIVIDAD_TIPO_LABEL[locale][d.tipo] ?? d.tipo;
+---
+
+<!doctype html>
+<html lang={locale}>
+  <head>
+    <meta charset="utf-8" />
+    <title>{d.title} — {a.shortLabel} · {copy.ficha}</title>
+    <meta name="robots" content="noindex,nofollow" />
+
+    <style is:inline>
+      @font-face { font-family: 'Fraunces'; src: url('/fonts/fraunces-latin-normal.woff2') format('woff2'); font-weight: 300 700; font-style: normal; font-display: swap; }
+      @font-face { font-family: 'Fraunces'; src: url('/fonts/fraunces-latin-italic.woff2') format('woff2'); font-weight: 300 700; font-style: italic; font-display: swap; }
+      @font-face { font-family: 'Switzer'; src: url('/fonts/switzer/switzer-400.woff2') format('woff2'); font-weight: 400; font-display: swap; font-style: normal; }
+      @font-face { font-family: 'Switzer'; src: url('/fonts/switzer/switzer-500.woff2') format('woff2'); font-weight: 500; font-display: swap; font-style: normal; }
+      @font-face { font-family: 'Switzer'; src: url('/fonts/switzer/switzer-600.woff2') format('woff2'); font-weight: 600; font-display: swap; font-style: normal; }
+      @font-face { font-family: 'Switzer'; src: url('/fonts/switzer/switzer-700.woff2') format('woff2'); font-weight: 700; font-display: swap; font-style: normal; }
+      @font-face { font-family: 'JetBrains Mono'; src: url('/fonts/jetbrains-mono-latin.woff2') format('woff2'); font-weight: 400 500; font-style: normal; font-display: swap; }
+    </style>
+
+    <style is:global>
+      :root {
+        --color-bg: #FBF6EC; --color-paper: #FFFFFF; --color-bg-cream: #F5EDD9;
+        --color-ink: #2A1F18; --color-ink-soft: #5C4A3D; --color-ink-mute: #8A7868;
+        --color-line: #E5D4BD; --color-line-soft: #EFE2CB;
+        --color-terra: #C44E2C; --color-terra-deep: #9C3A1C;
+        --color-mustard: #D4A24C; --color-mustard-deep: #A87A2A; --color-mustard-soft: #F5E5BC;
+        --font-serif: "Fraunces", Georgia, serif;
+        --font-sans: "Switzer", -apple-system, "Segoe UI", sans-serif;
+        --font-mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+      }
+      @page {
+        size: A4;
+        margin: 16mm 16mm 18mm 16mm;
+        @top-left {
+          content: string(doc-header);
+          font-family: var(--font-sans); font-size: 8pt; letter-spacing: 0.08em; text-transform: uppercase;
+          color: var(--color-ink-mute);
+        }
+        @bottom-left {
+          content: "profedeeconomia.es";
+          font-family: var(--font-serif); font-style: italic; font-size: 9pt; color: var(--color-ink-mute);
+        }
+        @bottom-right {
+          content: counter(page) " / " counter(pages);
+          font-family: var(--font-serif); font-size: 9.5pt; color: var(--book-accent);
+        }
+      }
+      @page :first { @top-left { content: none; } }
+
+      * { box-sizing: border-box; }
+      html { font-size: 10.5pt; }
+      body {
+        margin: 0; background: #fff; color: var(--color-ink);
+        font-family: var(--font-serif); font-size: 10.5pt; line-height: 1.42;
+        font-feature-settings: "kern", "liga", "ss01";
+        font-variation-settings: "SOFT" 50, "WONK" 0;
+      }
+      h1, h2, h3, h4 { font-family: var(--font-serif); font-weight: 500; color: var(--color-ink); line-height: 1.16; }
+      p { margin: 0 0 0.55em; orphans: 2; widows: 2; -webkit-hyphens: auto; hyphens: auto; }
+      strong { color: var(--color-ink); }
+      ul, ol { padding-left: 1.3em; margin: 0 0 0.6em; }
+      li { margin-bottom: 0.2em; }
+      ul li::marker { color: var(--color-mustard); }
+      ol li::marker { color: var(--book-accent); font-style: italic; }
+      table { width: 100%; border-collapse: separate; border-spacing: 0; margin: 0.9em 0; font-size: 9.2pt; }
+      th, td { text-align: left; padding: 0.36em 0.6em; border-bottom: 1px solid var(--color-line-soft); vertical-align: top; }
+      th {
+        font-family: var(--font-sans); font-size: 8pt; text-transform: uppercase; letter-spacing: 0.08em;
+        color: var(--book-accent-deep); background: var(--book-accent-soft); font-weight: 700;
+      }
+      blockquote { margin: 0.6em 0 0.9em; padding: 0.5em 0.9em; border: 1px solid var(--color-line); border-radius: 4px; background: var(--color-bg-cream); }
+      blockquote p:last-child { margin-bottom: 0; }
+      hr { border: 0; border-top: 1px dashed var(--color-line); margin: 1.2em 0; }
+      a { color: var(--book-accent-deep); text-decoration: none; }
+
+      /* ---- Header ---- */
+      .head { position: relative; padding-top: 3mm; margin-bottom: 5mm; }
+      .head::before { content: ""; position: absolute; top: 0; left: 0; width: 26mm; height: 4pt; background: var(--book-accent); border-radius: 999px; }
+      .head__row { display: flex; flex-wrap: wrap; align-items: center; gap: 2mm 3mm; margin: 4mm 0 2mm; }
+      .head__kicker {
+        font-family: var(--font-sans); font-size: 8.5pt; letter-spacing: 0.14em; text-transform: uppercase;
+        color: var(--book-accent); font-weight: 700;
+      }
+      .tag {
+        font-family: var(--font-sans); font-size: 7.5pt; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+        color: var(--book-accent-deep); background: var(--book-accent-soft); padding: 1mm 2.5mm; border-radius: 3px;
+      }
+      .tag--ebau { color: #fff; background: var(--color-ink); }
+      .head__title {
+        font-family: var(--font-serif); font-size: 22pt; line-height: 1.08; margin: 0 0 2.5mm;
+        font-weight: 400; letter-spacing: -0.015em; font-variation-settings: "SOFT" 80, "WONK" 0; max-width: 30ch;
+      }
+      .head__lede {
+        font-family: var(--font-serif); font-style: italic; font-size: 11.5pt; line-height: 1.4;
+        color: var(--color-ink-soft); margin: 0 0 4mm; max-width: 60ch; font-variation-settings: "SOFT" 80;
+      }
+      .meta {
+        display: grid; grid-template-columns: 1fr 1fr; gap: 2mm 6mm;
+        padding: 3mm 4mm; border: 1px solid var(--color-line); border-radius: 4px; background: var(--color-paper);
+        font-family: var(--font-sans); font-size: 8.8pt; color: var(--color-ink);
+      }
+      .meta__k { display: block; font-size: 7pt; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-ink-mute); font-weight: 600; margin-bottom: 0.6mm; }
+      .meta__full { grid-column: 1 / -1; }
+      .meta ul { margin: 0; padding-left: 1.1em; }
+      .meta li { margin-bottom: 0.3mm; }
+      .curricular {
+        font-family: var(--font-mono); font-size: 7.4pt; line-height: 1.45; color: var(--color-ink-mute);
+        margin: 2.5mm 0 0;
+      }
+      .curricular strong { color: var(--color-ink-soft); font-weight: 600; }
+      .curricular__k { text-transform: uppercase; letter-spacing: 0.08em; color: var(--book-accent-deep); font-weight: 600; }
+
+      /* ---- Body ---- */
+      .body { font-size: 10.5pt; }
+      .body h2 {
+        font-size: 12.5pt; margin: 5mm 0 1.6mm; color: var(--book-accent-deep);
+        break-after: avoid;
+      }
+      .body h3 { font-size: 11pt; margin: 3.5mm 0 1.2mm; break-after: avoid; }
+      .body h2 + p, .body h3 + p { break-before: avoid; }
+      .body table { font-size: 9pt; }
+      /* Fenced code blocks are fillable forms here: wrap + let them flow. */
+      .body pre {
+        font-family: var(--font-mono); font-size: 8.4pt; line-height: 1.3; white-space: pre-wrap; word-break: break-word;
+        background: var(--color-bg-cream); border-radius: 4px; padding: 2.5mm 3mm; margin: 2mm 0; break-inside: auto;
+      }
+      .body pre code { font-family: inherit; font-size: inherit; background: none; padding: 0; }
+      .body code { font-family: var(--font-mono); font-size: 0.9em; background: var(--color-bg-cream); padding: 0 0.3em; border-radius: 3px; }
+      .body img { max-width: 100%; height: auto; }
+
+      /* ---- Solution ---- */
+      .solucion { break-before: page; }
+      .solucion__h {
+        font-family: var(--font-sans); text-transform: uppercase; letter-spacing: 0.12em; font-size: 8.5pt; font-weight: 700;
+        color: var(--book-accent); margin: 0 0 1mm;
+      }
+      .solucion__title { font-size: 18pt; margin: 0 0 1.5mm; font-weight: 400; font-variation-settings: "SOFT" 80; }
+      .solucion__sub { font-family: var(--font-sans); font-size: 9pt; color: var(--color-ink-mute); margin-bottom: 4mm; }
+      .solucion ol { padding-left: 5mm; font-size: 10pt; }
+      .solucion li { margin-bottom: 1.2mm; }
+
+      .foot {
+        margin-top: 8mm; padding-top: 2.5mm; border-top: 1px dashed var(--color-line);
+        font-family: var(--font-sans); font-size: 7.8pt; color: var(--color-ink-mute); letter-spacing: 0.02em;
+      }
+    </style>
+  </head>
+  <style is:inline set:html={`.doc-header-string { string-set: doc-header "${a.shortLabel} · ${copy.ficha} · ${copy.unidad} ${d.unidad_relacionada}"; } body { --book-accent: ${accent.base}; --book-accent-deep: ${accent.deep}; --book-accent-soft: ${accent.soft}; }`}></style>
+  <body class="doc-header-string">
+    <header class="head">
+      <div class="head__row">
+        <span class="head__kicker">{a.shortLabel} · {copy.ficha} · {copy.unidad} {d.unidad_relacionada}</span>
+        <span class="tag">{tipoLabel}</span>
+        {d.ebau && <span class="tag tag--ebau">{copy.ebau}</span>}
+      </div>
+      <h1 class="head__title">{d.title}</h1>
+      <p class="head__lede">{d.descripcion}</p>
+
+      <div class="meta">
+        {d.duracion && (
+          <div><span class="meta__k">{copy.duracion}</span>{d.duracion}</div>
+        )}
+        {d.agrupacion && (
+          <div><span class="meta__k">{copy.agrupacion}</span>{d.agrupacion}</div>
+        )}
+        {unit && (
+          <div class="meta__full"><span class="meta__k">{copy.unidad} {unit.data.unidad}</span>{unit.data.title}</div>
+        )}
+        {d.materiales.length > 0 && (
+          <div class="meta__full">
+            <span class="meta__k">{copy.materiales}</span>
+            <ul>{d.materiales.map((m) => <li>{m}</li>)}</ul>
+          </div>
+        )}
+      </div>
+      {(sabers.length > 0 || d.competencias_especificas.length > 0 || d.competencias_clave.length > 0) && (
+        <p class="curricular">
+          <span class="curricular__k">{copy.encaje}</span>
+          {sabers.length > 0 && <> · <strong>{copy.saberes}</strong> {sabers.join(', ')}</>}
+          {d.competencias_especificas.length > 0 && <> · <strong>{copy.compEsp}</strong> {d.competencias_especificas.join(', ')}</>}
+          {d.competencias_clave.length > 0 && <> · <strong>{copy.compClave}</strong> {d.competencias_clave.join(', ')}</>}
+        </p>
+      )}
+    </header>
+
+    <main class="body">
+      <Content />
+    </main>
+
+    {d.solucion.length > 0 && (
+      <section class="solucion">
+        <div class="solucion__h">{copy.ficha}</div>
+        <h2 class="solucion__title">{copy.solucion}</h2>
+        <p class="solucion__sub">{copy.solucionSub}</p>
+        <ol>{d.solucion.map((p) => <li set:html={p} />)}</ol>
+      </section>
+    )}
+
+    <footer class="foot">{copy.licencia}</footer>
+  </body>
+</html>

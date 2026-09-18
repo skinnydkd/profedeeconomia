@@ -1,6 +1,6 @@
 ---
 asignatura: eco-4eso
-unidad_relacionada: 5
+unidad_relacionada: 7
 title: "Precio por unidad y coste real de pagar a plazos"
 descripcion: "Dos comparaciones que la tienda no hace por ti: cuál de tres formatos sale más barato por gramo o por unidad, y qué TAE esconde una cuota mensual que parece pequeña."
 tipo: calculadora

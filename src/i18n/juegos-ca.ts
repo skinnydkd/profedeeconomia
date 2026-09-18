@@ -43,6 +43,14 @@ export const JUEGOS_CA: Partial<Record<string, JuegoCA>> = {
     nota_aula:
       'El professor projecta la pantalla i porta el marcador; cada equip decideix la seua cobertura ronda a ronda.',
   },
+  'teoria-juegos': {
+    title: 'Teoria de jocs',
+    descripcion:
+      "Sis clàssics jugables: dilema del presoner, caça del cérvol, concurs de bellesa, ultimàtum, bé públic i les quatre subhastes.",
+    modo: '1 jugador o classe sencera · projector',
+    nota_aula:
+      "Cada experiment té dos modes: en solitari contra estratègies programades, o projectat, amb la classe votant a mà alçada i el professor escrivint els números.",
+  },
   insider: {
     title: 'Insider',
     descripcion:

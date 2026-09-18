@@ -1,6 +1,6 @@
 ---
 asignatura: eco-4eso
-unidad_relacionada: 9
+unidad_relacionada: 12
 title: "Business Model Canvas"
 descripcion: "Un lienzo con los nueve bloques de cualquier modelo de negocio (segmentos de clientes, propuesta de valor, canales, fuentes de ingresos, estructura de costes…) para diseñar una idea sobre una sola hoja y pivotar lo que no encaje."
 tipo: plantilla

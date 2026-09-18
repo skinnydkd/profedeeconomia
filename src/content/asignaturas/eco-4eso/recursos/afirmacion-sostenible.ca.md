@@ -1,6 +1,6 @@
 ---
 asignatura: eco-4eso
-unidad_relacionada: 3
+unidad_relacionada: 2
 title: "Analitzador d'afirmacions de sostenibilitat"
 descripcion: "Set preguntes per a saber si una afirmació verda es pot comprovar. No diu si és certa: diu si algú la podria verificar, que és una pregunta diferent i més útil."
 tipo: plantilla

@@ -1,6 +1,6 @@
 ---
 asignatura: eco-4eso
-unidad_relacionada: 3
+unidad_relacionada: 2
 title: "Analizador de afirmaciones de sostenibilidad"
 descripcion: "Siete preguntas para saber si una afirmación verde se puede comprobar. No dice si es cierta: dice si alguien podría verificarla, que es una pregunta distinta y más útil."
 tipo: plantilla

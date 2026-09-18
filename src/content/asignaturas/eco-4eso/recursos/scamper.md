@@ -1,6 +1,6 @@
 ---
 asignatura: eco-4eso
-unidad_relacionada: 2
+unidad_relacionada: 11
 title: "SCAMPER: abrir antes de cerrar"
 descripcion: "Genera ideas desde siete ángulos distintos. No deja puntuar ninguna hasta que hay suficientes de donde elegir, que es exactamente la disciplina que falla en toda lluvia de ideas."
 tipo: plantilla

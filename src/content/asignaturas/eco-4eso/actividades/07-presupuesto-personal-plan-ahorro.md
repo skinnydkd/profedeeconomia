@@ -7,7 +7,7 @@ tipo: ejercicio
 duracion: "1 sesión (50 min)"
 agrupacion: "individual (con puesta en común en parejas al final)"
 competencias_clave: [STEM, CPSAA, CD]
-competencias_especificas: [CE5]
+competencias_especificas: [CE3]
 materiales:
   - "Plantilla de presupuesto mensual (3 bloques: ingresos, gastos fijos, gastos variables)"
   - "Plantilla de plan de ahorro a 6 meses (objetivo, coste, ahorro mensual, fecha de meta)"
@@ -106,4 +106,4 @@ Lo importante no es que el resultado sea bonito: es que sean **tus números real
 - **Variante interés compuesto:** quienes acaben pronto pueden calcular cuánto tendrían si en lugar de comprar el objetivo a los 6 meses dejasen el dinero ahorrado 10 años más en una cuenta al 4 % anual con interés compuesto.
 - **Variante en pareja:** dos estudiantes con el mismo objetivo (por ejemplo, el viaje de fin de curso) hacen un plan conjunto sumando los dos ahorros mensuales y reparten el coste.
 - **Extensión seguimiento:** repetir la plantilla mensualmente durante los 6 meses siguientes y comprobar en abril si el plan se ha cumplido (puede valorarse como nota extra de actitud al final del curso).
-- **Conexión con Unidad 9-10 (proyecto capstone):** la misma lógica de presupuesto + fuentes de financiación se aplicará al proyecto emprendedor. Esta sesión es el entrenamiento a escala personal de lo que haréis a escala de proyecto.
+- **Conexión con la Unidad 12 (proyecto emprendedor):** la misma lógica de presupuesto + fuentes de financiación se aplicará al proyecto emprendedor. Esta sesión es el entrenamiento a escala personal de lo que haréis a escala de proyecto.

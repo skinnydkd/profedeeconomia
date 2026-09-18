@@ -1,0 +1,738 @@
+---
+asignatura: eco-4eso
+unidad: 12
+title: 'El proyecto emprendedor: modelo de negocio, prototipo, financiación y pitch'
+lema: >-
+  Tener una idea es lo fácil. Convertirla en algo que alguien quiera usar, que
+  se sostenga con números y que se pueda contar en un minuto es lo que separa
+  un proyecto de una ocurrencia. Esta unidad cierra el curso recorriendo ese
+  camino entero: del problema al modelo de negocio, de la maqueta a la
+  validación, del presupuesto al pitch.
+lang: es
+estado: publicado
+duracion: 10 sesiones · 4 semanas
+bloque: Bloque II · Empresa y emprendimiento
+sabers:
+  - Design Thinking y modelo de negocio (Business Model Canvas)
+  - Prototipado, producto mínimo viable y validación con personas reales
+  - Presupuesto, precio, punto muerto y tamaño de mercado del proyecto
+  - Fuentes de financiación de un proyecto
+  - Marketing básico, elevator pitch, pitch deck y demo day
+conceptos_clave:
+  - design thinking
+  - propuesta de valor
+  - business model canvas
+  - prototipo
+  - producto mínimo viable
+  - métricas accionables
+  - pivotar
+  - punto muerto
+  - crowdfunding
+  - préstamo participativo
+  - elevator pitch
+  - pitch deck
+objetivos:
+  - Aplicar las cinco fases del Design Thinking a un problema real del entorno y formularlo como una pregunta «¿cómo podríamos…?».
+  - Rellenar un Business Model Canvas de nueve bloques para una idea de proyecto, empezando por el segmento de clientes y la propuesta de valor.
+  - Construir un prototipo de baja fidelidad, validarlo con personas reales y distinguir métricas de vanidad de métricas accionables.
+  - Elaborar el presupuesto de un proyecto de aula, fijar un precio, calcular su punto muerto y comparar dos fuentes de financiación con números.
+  - Preparar y defender un elevator pitch y un pitch deck de diez diapositivas ante un público, y evaluar el de otros equipos con una rúbrica.
+publicado_en: 2026-09-15
+---
+
+import Callout from '@components/Callout.astro';
+import Diagram from '@components/Diagram.astro';
+import DesignThinkingFases from '@components/diagrams/DesignThinkingFases.astro';
+import BusinessModelCanvas from '@components/diagrams/BusinessModelCanvas.astro';
+import EmbudoValidacion from '@components/diagrams/EmbudoValidacion.astro';
+import TamSamSom from '@components/diagrams/TamSamSom.astro';
+import CascadaFinanciacion from '@components/diagrams/CascadaFinanciacion.astro';
+import PitchDeck10Slides from '@components/diagrams/PitchDeck10Slides.astro';
+import Curiosity from '@components/Curiosity.astro';
+import RealExample from '@components/RealExample.astro';
+import SolvedExercise from '@components/SolvedExercise.astro';
+import Steps from '@components/Steps.astro';
+import KeyTakeaways from '@components/KeyTakeaways.astro';
+import Figure from '@components/Figure.astro';
+import Bibliography from '@components/Bibliography.astro';
+import TldrUnidad from '@components/TldrUnidad.astro';
+import CasoDilema from '@components/CasoDilema.astro';
+import VuelveAlCaso from '@components/VuelveAlCaso.astro';
+import MirarFora from '@components/MirarFora.astro';
+import VocesDesacuerdo from '@components/VocesDesacuerdo.astro';
+import RecursoDestacado from '@components/libro/RecursoDestacado.astro';
+import HerramientaIsland from '@components/calculadoras/HerramientaIsland.astro';
+
+import postitsBrainstorming from '@assets/libro/eco-4eso/09/postits-brainstorming.jpg';
+import bmcWorkshop from '@assets/libro/eco-4eso/09/bmc-workshop-nalerigu.jpg';
+import paperPrototype from '@assets/libro/eco-4eso/09/paper-prototype-wireframe.jpg';
+import demoDayPitch from '@assets/libro/eco-4eso/10/demo-day-pitch-startup.png';
+import fyfnBarcelona from '@assets/libro/eco-4eso/10/4yfn-mwc-barcelona-mentoring.jpg';
+
+> **Tiempo de lectura**: ~26 min · **Saberes**: Design Thinking y modelo de negocio, prototipo y validación, presupuesto y financiación, marketing y pitch · **Antes de empezar**: Unidades 10 (la empresa: tipos, formas jurídicas y organización) y 11 (emprender: persona emprendedora, habilidades e ideas).
+>
+> **Al acabar esta unidad sabrás**:
+> - Pasar de un problema a una solución con las cinco fases del Design Thinking y dibujar el modelo de negocio en un lienzo de nueve bloques.
+> - Construir un prototipo barato, probarlo con personas reales y leer los resultados con métricas que sirvan para decidir.
+> - Poner números al proyecto (presupuesto, precio, punto muerto y tamaño de mercado) y elegir con criterio cómo financiarlo.
+> - Contar el proyecto en un elevator pitch y en un pitch deck de diez diapositivas, y defenderlo en una demo day de aula.
+
+<TldrUnidad>
+Una idea no vale nada hasta que alguien la usa. Esta unidad recorre el camino completo de un proyecto emprendedor a escala de aula: entender el problema y a quien lo sufre, dibujar el modelo de negocio en una hoja, construir una maqueta barata y probarla con personas reales, poner números (presupuesto, precio, punto muerto, financiación) y contarlo en un minuto delante de gente. Es la última unidad del curso y junta casi todo lo anterior.
+</TldrUnidad>
+
+<CasoDilema
+  titular="Once diapositivas y 600.000 dólares: el pitch con el que arrancó Airbnb"
+  fuente="Pitch deck de la ronda semilla de Airbnb y ronda liderada por Sequoia Capital · abril de 2009"
+  pregunta="¿Qué tenían esas once diapositivas que no tiene una idea contada de cualquier manera, y qué habían hecho los fundadores antes de enseñarlas?"
+>
+En octubre de 2007, dos diseñadores recién instalados en San Francisco, **Brian Chesky** y **Joe Gebbia**, no llegaban al alquiler del piso que compartían. Esa semana la ciudad acogía el congreso anual de la sociedad estadounidense de diseño industrial y no quedaba una habitación de hotel libre. Compraron tres colchones hinchables, montaron una web de una sola página llamada *AirBed & Breakfast* y ofrecieron cama y desayuno por 80 dólares. Tuvieron tres huéspedes y reunieron alrededor de 1.000 dólares: lo justo para el alquiler. No era una empresa. Era la prueba, hecha a mano y en un fin de semana, de que alguien pagaba por dormir en casa de un desconocido.
+
+Año y medio después, con un tercer socio, **Nathan Blecharczyk**, y el programa de aceleración Y Combinator recién terminado, se sentaron delante de inversores con una presentación de **once diapositivas** y una sola idea por pantalla: el problema, la solución, la primera validación, el tamaño del mercado, el producto, cómo se ganaba dinero, cómo iban a crecer, quién era la competencia y qué los hacía distintos. Ni una animación ni una promesa grandilocuente. En **abril de 2009** cerraron una ronda semilla de **600.000 dólares** liderada por Sequoia Capital. Aquel archivo circula desde entonces por internet y es hoy una de las presentaciones más estudiadas del mundo.
+</CasoDilema>
+
+Pensad en la última vez que alguien de vuestra clase dijo «deberíamos montar algo». Una cuenta de Instagram que venda pulseras, un torneo de fútbol sala con entrada, un servicio para llevar apuntes a quien falta a clase. Casi siempre la conversación muere ahí, porque nadie sabe qué se hace **después** de la idea. Esta unidad enseña exactamente eso.
+
+En la Unidad 11 vimos quién emprende y de dónde salen las ideas: el diario de molestias, el mapa de empatía, la sesión de SCAMPER. En la Unidad 10 abrimos la empresa por dentro: costes, formas jurídicas, equipos. Aquí juntamos las dos cosas y seguimos el camino de un proyecto desde el problema hasta el día en que se cuenta en público, con las herramientas que usan las empresas reales pero a escala de instituto: un lienzo de una hoja, un prototipo de cartón, un presupuesto de una página y un pitch de un minuto.
+
+Para no hablar en abstracto, os acompañará un proyecto de aula **inventado pero verosímil**: **Trazo**, bolsas de tela ilustradas por alumnado de Artes que un equipo de cuatro personas de 4.º de ESO quiere vender en el mercadillo de fin de curso. Sus números son sencillos a propósito; los vuestros pueden ser otros.
+
+## Del problema a la solución: Design Thinking
+
+El **Design Thinking** («pensamiento de diseño») es una forma de resolver problemas que pone a la persona en el centro. La formalizaron la escuela de diseño de la Universidad de Stanford (la *d.school*) y la consultora IDEO en los años 2000, y hoy se usa en hospitales, ayuntamientos y empresas de cualquier tamaño. Su idea de fondo es sencilla y va contra el instinto: **antes de pensar en la solución, hay que entender muy bien el problema y a quien lo sufre**. El Design Council británico lo resume desde 2005 en un dibujo, el **doble diamante**: dos veces abrir (explorar muchos problemas, después muchas soluciones) y dos veces cerrar (elegir un problema, después una solución).
+
+<Diagram caption="Las cinco fases del Design Thinking. Se aprenden en este orden, pero en la práctica se vuelve atrás constantemente: al testar se descubren cosas que obligan a redefinir el problema, y el ciclo se repite hasta acertar.">
+  <DesignThinkingFases />
+</Diagram>
+
+### Las cinco fases, aplicadas a Trazo
+
+**Empatizar** es salir a hablar con las personas a las que queréis servir. El equipo de Trazo empezó con otra idea, camisetas con el escudo del instituto, y antes de encargar nada hizo diez entrevistas cortas en el patio. Descubrió que casi nadie quería otra camiseta con el escudo, pero que muchas personas decían lo mismo con distintas palabras: «algo útil», «que se pueda regalar», «que se note que lo ha hecho gente de aquí». Las entrevistas no confirmaron la idea: la cambiaron.
+
+**Definir** es reformular el problema en una sola frase con el formato *«¿Cómo podríamos…?»*: concreta, centrada en una persona y sin la solución dentro. Bien: «¿Cómo podríamos ofrecer al alumnado y a las familias del instituto un objeto útil y regalable que lleve el trabajo de nuestros compañeros de Artes?». Mal: «¿Cómo hacemos camisetas?», porque da por hecha la respuesta antes de conocer la pregunta.
+
+**Idear** es generar muchas soluciones sin filtrarlas todavía, con las reglas del brainstorming que vimos en la Unidad 11: cantidad antes que calidad, ninguna crítica durante la sesión, construir sobre las ideas de los demás. Trazo sacó treinta ideas en quince minutos (cuadernos, pegatinas, fundas de portátil, tazas, bolsas de tela, láminas) y después las cribó con dos criterios: cuánto valor tienen para la persona entrevistada y si el equipo puede fabricarlas con el tiempo y el dinero que tiene. Ganó la bolsa de tela.
+
+<Figure
+  src={postitsBrainstorming}
+  alt="Pared cubierta de post-its de colores agrupados en columnas tras una sesión de brainstorming colectivo."
+  caption="Una idea por post-it. La pared es el sitio donde el equipo agrupa, descarta y elige: primero se abre el abanico sin juzgar y solo después se cierra con dos criterios, valor para la persona y viabilidad."
+  credit="Foto: Victor Costa de Paula, CC BY-SA 4.0 vía Wikimedia Commons"
+  aspectHint="3/2"
+  variant="wide"
+/>
+
+**Prototipar** es construir una versión rápida y barata de la idea para poder enseñarla. Trazo pintó a mano una sola bolsa con una ilustración de una compañera y preparó un cartel con el precio. Horas de trabajo, no semanas. Y **testar** es poner ese prototipo delante de personas del segmento y observar qué hacen, no qué dicen que harían. Quince personas vieron la bolsa: doce preguntaron si había más diseños, tres dijeron que 15 € era demasiado y una pidió comprarla en ese momento. Cada reacción es información gratis.
+
+### Empatizar con entrevistas: la regla del pasado
+
+Las entrevistas fallan casi siempre por la misma razón: preguntamos por el futuro. «¿Comprarías una bolsa ilustrada?» obtiene un «sí» amable que no vale nada, porque decir que sí es gratis. El consultor Rob Fitzpatrick lo resumió en *The Mom Test* (2013) con una regla útil: **pregunta por hechos del pasado, no por opiniones sobre el futuro**. «¿Cuándo fue la última vez que compraste algo hecho por alguien del instituto? ¿Qué era? ¿Cuánto pagaste?». Cinco o diez entrevistas así, con preguntas abiertas y sin defender vuestra idea, enseñan más que una encuesta a cien personas con casillas.
+
+## El modelo de negocio en una página: el Business Model Canvas
+
+Un **modelo de negocio** es la explicación de cómo un proyecto crea valor para alguien, se lo hace llegar y consigue a cambio ingresos suficientes para sostenerse. El suizo **Alexander Osterwalder** lo convirtió en una plantilla de una sola hoja con nueve recuadros, el **Business Model Canvas** (BMC), en el libro *Business Model Generation* (2010, con Yves Pigneur). La gracia es la síntesis: en lugar de un documento de cincuenta páginas, todo el modelo cabe en un A3, y ver los nueve bloques juntos hace que las incoherencias salten a la vista.
+
+<Diagram caption="Los nueve bloques del Business Model Canvas, agrupados en tres zonas: lo que la empresa hace (izquierda), lo que ofrece (centro) y lo que el cliente experimenta (derecha). Abajo, la estructura de costes y las fuentes de ingresos que resultan de todo lo anterior.">
+  <BusinessModelCanvas />
+</Diagram>
+
+### Los nueve bloques, con Trazo y con un caso real
+
+Para ver los bloques en acción los rellenamos dos veces: con Trazo y con **Hawkers**, la marca de gafas de sol nacida en Elche en 2013. Sus cuatro fundadores empezaron revendiendo 27 gafas de la marca californiana Knockaround compradas con 300 €, y tres años después, vendiendo solo por internet a 20-40 € el par, la empresa había colocado 1,6 millones de gafas en más de cincuenta países y anunciaba que esperaba cerrar 2016 en torno a 70 millones de euros de facturación (*elEconomista*, abril de 2016). Su canvas, tal como se puede reconstruir a partir de lo que la propia empresa ha contado, es un ejemplo limpio de modelo pensado desde el canal.
+
+| Bloque (la pregunta) | Trazo (aula) | Hawkers (real) |
+|---|---|---|
+| **Segmentos de clientes** · ¿Para quién? | Alumnado y familias del instituto | Jóvenes de 18 a 30 años que no pagarían 150 € por unas gafas |
+| **Propuesta de valor** · ¿Qué ofrecemos y por qué nos elegirían? | Bolsa útil y barata con una ilustración exclusiva hecha por gente de aquí | Gafas de diseño a precio de capricho, no de inversión |
+| **Canales** · ¿Cómo les llegamos? | Mercadillo de fin de curso, Instagram, tienda del AMPA | Solo online: web propia y anuncios en redes sociales |
+| **Relación con clientes** · ¿Qué trato? | Cercano: quien ilustra vende y firma | Comunidad y «embajadores» universitarios que recomiendan la marca |
+| **Fuentes de ingresos** · ¿Quién paga y cuánto? | 12 € por bolsa | Venta directa, muchas unidades con poco margen cada una |
+| **Recursos clave** · ¿Qué necesitamos tener? | Ilustraciones, plancha de transfer, tiempo del equipo | Marca, datos de clientes y equipo de marketing digital |
+| **Actividades clave** · ¿Qué hacemos cada día? | Diseñar, estampar, publicar, vender | Diseñar colecciones y comprar publicidad |
+| **Socios clave** · ¿Quién nos ayuda? | Departamento de Artes, AMPA, taller de tecnología | Fabricantes externos y empresas de logística |
+| **Estructura de costes** · ¿En qué gastamos? | Bolsas en blanco, vinilo, puesto del mercadillo | Publicidad (la partida mayor), producto y envíos |
+
+Los dos bloques que importan de verdad son los de la derecha: **segmento** y **propuesta de valor**. Si no están claros, los otros siete se llenan de palabras vacías. Por eso el canvas se rellena de derecha a izquierda, empezando por la persona.
+
+<Callout label="Concepto clave" title="Propuesta de valor">
+
+La **propuesta de valor** es la razón por la que alguien elegiría vuestro proyecto en lugar de lo que ya usa hoy. No es el producto (una bolsa) sino lo que la persona consigue con él (un regalo con significado por lo que cuesta un menú). Una buena propuesta de valor cabe en una frase con esta forma: *«Ayudamos a [segmento] a [conseguir algo] sin [el obstáculo habitual], a diferencia de [la alternativa actual]»*. Trazo: «Ayudamos a las familias del instituto a hacer un regalo útil y con historia por 12 €, a diferencia de las bolsas anónimas de las tiendas».
+
+</Callout>
+
+<Curiosity title="Un libro escrito por 470 personas de 45 países">
+El Business Model Canvas nació como tesis doctoral de Osterwalder en la Universidad de Lausana (2004), pero el libro que lo hizo famoso se escribió de una forma poco habitual: los autores abrieron una plataforma en la que **470 profesionales de 45 países** pagaron por participar, comentaron cada capítulo y aparecen como coautores en las primeras páginas. El propio libro se validó con su comunidad antes de imprimirse, que es exactamente lo que la herramienta recomienda hacer con cualquier proyecto. Hoy la plantilla se descarga gratis con licencia Creative Commons desde la web de su empresa, Strategyzer.
+</Curiosity>
+
+<Figure
+  src={bmcWorkshop}
+  alt="Sesión formativa en la que una persona explica el Business Model Canvas a un grupo sentado alrededor de una mesa con la plantilla impresa en grande."
+  caption="Taller de Business Model Canvas en Nalerigu (Ghana). La plantilla en gran formato y los post-its son la manera estándar de rellenarlo en grupo: cada bloque se discute en voz alta antes de fijarlo, y cualquier post-it se puede mover o quitar sin rehacer la hoja."
+  credit="Foto: Christian Yakubu, CC BY-SA 4.0 vía Wikimedia Commons"
+  aspectHint="3/2"
+/>
+
+### Cómo se rellena en el aula
+
+Una hoja A3 o un papel continuo en la pared, los nueve recuadros dibujados con rotulador y **post-its de colores, una idea por post-it**. Empezad por el segmento y la propuesta de valor; el resto deriva de ahí. Guardad una foto del primer canvas: al final de la unidad lo compararéis con el último, y la diferencia entre los dos es la mejor prueba de que habéis hablado con personas reales. Si no ha cambiado nada en cuatro semanas, no habéis salido del aula.
+
+<HerramientaIsland componente="CanvasBM" />
+
+## Prototipar y validar
+
+Un **prototipo** es una maqueta incompleta, barata y rápida de lo que queréis construir. No sirve para vender: sirve para que alguien reaccione delante de ella y os enseñe lo que no sabíais. Hay varios tipos, y cada uno responde a una pregunta distinta.
+
+| Tipo de prototipo | Qué es | Qué pregunta responde | Coste |
+|---|---|---|---|
+| **De papel** | Dibujos, pantallas recortadas, un cartel | ¿Se entiende la idea? | Minutos |
+| **Maqueta** | Cartón, plastilina, una bolsa pintada a mano | ¿Gusta el objeto? ¿Se usa bien? | Horas |
+| **Landing** | Una página web de una sola pantalla con un botón «avísame cuando salga» | ¿Cuánta gente deja su contacto? | Una tarde y 0 € |
+| **Concierge** | Hacer el servicio a mano para los primeros clientes, sin tecnología | ¿Pagarían por esto de verdad? | Vuestro tiempo |
+
+El prototipo *concierge* («conserje») merece explicación porque es el más potente y el menos usado: en lugar de programar la app o montar la tienda, hacéis el servicio con vuestras manos para cinco personas. Si la idea es «apuntes a domicilio para quien falta a clase», el prototipo concierge es llevarlos vosotros mismos una semana y ver si alguien paga.
+
+<Callout label="Concepto clave" title="Producto mínimo viable (MVP)">
+
+Un **producto mínimo viable** (*minimum viable product*) es la versión más simple de un producto que ya sirve para poner a prueba la hipótesis más arriesgada del proyecto. A diferencia del prototipo, el MVP **está en el mercado**: alguien lo usa o lo compra de verdad, aunque solo tenga una función. No es un producto a medias ni un producto malo; es la prueba más barata que responde a la pregunta «¿lo querría alguien?». Para Trazo, el MVP son diez bolsas estampadas a mano y puestas a la venta un viernes en el patio.
+
+</Callout>
+
+<Figure
+  src={paperPrototype}
+  alt="Prototipo de papel con las pantallas de una aplicación web dibujadas a mano, recortadas y dispuestas sobre una mesa de madera."
+  caption="Prototipo de papel del sistema de cursos de Wiki Education (2015): cada hoja recortada es una pantalla y al moverlas se simula la navegación. Si alguien no entiende la idea con estos dibujos, tampoco la entenderá con la app terminada, y descubrirlo aquí cuesta una tarde."
+  credit="Foto: Sage Ross (Ragesoss), CC BY-SA 4.0 vía Wikimedia Commons"
+  aspectHint="3/2"
+  variant="right"
+/>
+
+<RealExample title="Dos MVP clásicos: Zappos fotografió zapatos de otros y Dropbox grabó un vídeo" source="Ries, E. (2011), The Lean Startup; charla de Drew Houston en Startup Lessons Learned (2010)" sourceUrl="https://theleanstartup.com">
+En 1999, **Nick Swinmurn** quería saber si la gente compraría zapatos por internet sin probárselos. En lugar de construir un almacén, fue a las zapaterías de su barrio en California, fotografió los modelos y los publicó en una web sencilla. Cuando alguien pedía un par, iba a la tienda, lo compraba a precio de venta y lo enviaba. Perdía dinero en cada pedido, pero cada pedido respondía a la única pregunta que importaba. Esa web se convirtió en **Zappos**, que Amazon compró en 2009 por unos 1.200 millones de dólares en acciones. En 2007, **Drew Houston** tenía casi lista una aplicación para sincronizar carpetas entre ordenadores, **Dropbox**, y una duda: ¿la instalaría alguien? Grabó un vídeo de tres minutos mostrando cómo funcionaba y lo publicó en un foro de programadores. En una noche, la lista de espera pasó de 5.000 a 75.000 personas. Ninguno de los dos MVP servía para escalar; los dos sirvieron para decidir.
+</RealExample>
+
+### Validar con números: el embudo
+
+Cuando el prototipo sale al mundo empiezan a aparecer cifras, y no todas valen lo mismo. Eric Ries distingue en *The Lean Startup* (2011) las **métricas de vanidad**, que quedan bien en una diapositiva pero no informan ninguna decisión (seguidores, reproducciones, visitas), de las **métricas accionables**, que cambian según lo que hace el equipo y permiten corregir el rumbo (personas que escriben preguntando, ventas por cada cien visitas, clientes que repiten). La forma más útil de organizarlas es un **embudo**: los pasos que da una persona desde que os descubre hasta que compra, y cuántas se quedan por el camino en cada uno.
+
+Un ejemplo con cifras de un proyecto de aula: en un mes, **1.200 personas** ven la publicación, **180** entran al perfil, **51** escriben preguntando y **12** compran. De ver a entrar pasa el 15 %; de entrar a preguntar, el 28,3 %; de preguntar a comprar, el 23,5 %. La conversión total es del 1 %, y no por casualidad: las conversiones se multiplican (0,15 × 0,283 × 0,235 ≈ 0,01). El paso más débil es el primero, y ahí se pierden 1.020 personas, más que en los otros dos juntos. Con 60 € gastados en promoción, cada venta ha costado 5 €; con 18 € de margen por venta, el mes cierra con 216 − 60 = **+156 €**.
+
+<Diagram caption="El embudo de validación de ese proyecto: 1.200 personas ven la publicación y 12 compran. La tentación es tocar el precio, que está abajo, pero el paso más débil es el primero. Y el número de arriba, las visualizaciones, es el que más fácil sube y el que menos decide.">
+  <EmbudoValidacion />
+</Diagram>
+
+La lección práctica: **arreglar el peor paso mueve el embudo entero**; mejorar uno que ya funciona apenas se nota. Subir el primer paso del 15 % al 20 % daría 16 ventas sin tocar nada más. Conseguir el doble de visualizaciones sin arreglar ese 15 % solo hace el embudo más ancho por arriba e igual de estrecho por abajo.
+
+<RecursoDestacado href="/eco-4eso/recursos/embudo-validacion/" kicker="Herramienta" title="Embudo de validación" descripcion="Introduce cuántas personas ven, entran, preguntan y compran, y la herramienta calcula la conversión de cada paso, señala el más débil y simula qué pasa si lo mejoras." colorVar="--color-eco4" />
+
+### Pivotar no es fracasar
+
+Con los datos delante hay dos salidas. Si confirman la hipótesis, se **persevera** y se pasa a validar la siguiente. Si la desmienten con claridad, se **pivota**: se cambia algo grande del proyecto (el segmento, la propuesta de valor, el canal o la forma de cobrar) conservando lo que sí ha funcionado. Un pequeño ajuste (bajar el precio de 15 a 12 €, cambiar el texto de la publicación) no es un pivote, es una **iteración**. Trazo lo vivió a pequeña escala: si en el test del patio nadie hubiera querido bolsas pero todo el mundo hubiera preguntado por las ilustraciones sueltas, el pivote habría sido vender láminas. Se mantiene lo validado (las ilustraciones gustan) y se descarta lo que no (el soporte).
+
+## Los números del proyecto
+
+Hasta aquí todo se ha hecho casi sin dinero. Para dar el paso siguiente, fabricar una tirada y ponerla a la venta, hacen falta cuatro números: cuánto cuesta arrancar, a qué precio se vende, cuántas unidades cubren los costes y cuánta gente podría comprar.
+
+### El presupuesto de un proyecto de aula
+
+Un presupuesto de proyecto separa lo que vimos en la Unidad 10: **costes fijos**, que se pagan aunque no se venda nada, y **costes variables**, que crecen con cada unidad. Trazo, para el trimestre:
+
+| Costes fijos | € | Coste variable por bolsa | € |
+|---|---|---|---|
+| Alquiler de plancha térmica de transfer (dos semanas) | 90 | Bolsa de algodón en blanco (compra de 50) | 3,00 |
+| Impresión de pruebas y licencia de diseño | 30 | Vinilo o papel transfer | 1,50 |
+| Puesto en el mercadillo de fin de curso | 40 | Etiqueta y embalaje | 0,50 |
+| Cartelería y muestras | 50 | | |
+| Tienda online sencilla (tres meses) | 30 | | |
+| **Total fijos** | **240** | **Total por bolsa** | **5,00** |
+
+### Fijar el precio
+
+Hay tres maneras de mirar el precio y conviene usar las tres. **Coste más margen**: la bolsa cuesta 5 € en materiales, así que cualquier precio por encima deja algo para pagar los fijos; con 12 €, cada bolsa aporta 7 €. **Precio de la competencia**: las bolsas de tela con diseño de las tiendas de la ciudad cuestan entre 10 y 15 €, y una bolsa promocional con logo se regala; Trazo no puede ponerse a 25 € ni a 4 €. **Valor percibido**: la ilustración exclusiva y la historia («la ha hecho una compañera de 4.º B») permiten cobrar algo más que una bolsa anónima. El equipo fijó 12 €, y el test del patio (tres personas dijeron que 15 € era demasiado, ninguna se quejó de 12) lo confirmó.
+
+<SolvedExercise number="12.1" title="¿Cuántas bolsas hay que vender para no perder dinero?">
+
+**Enunciado**
+
+Trazo tiene 240 € de costes fijos para el trimestre. Cada bolsa cuesta 5 € de materiales y se vende a 12 €. a) ¿Cuántas bolsas hay que vender para cubrir los costes fijos (punto muerto)? b) ¿Y si el equipo quiere cerrar el trimestre con 300 € de beneficio para el viaje de fin de curso? c) ¿Qué pasaría con el punto muerto si bajaran el precio a 10 €?
+
+**Solución**
+
+1. **Margen por unidad.** Cada bolsa vendida ingresa 12 € y cuesta 5 € de materiales, así que aporta 12 − 5 = **7 €** para pagar los costes fijos. A ese 7 € se le llama *margen de contribución*.
+2. **Punto muerto.** Hay que reunir 240 € a 7 € por bolsa: 240 / 7 = 34,3. Como no se venden medias bolsas, el punto muerto es **35 bolsas**.
+3. **Comprobación.** Con 35 bolsas: ingresos 35 × 12 = 420 €; costes 240 + 35 × 5 = 415 €. Beneficio: 5 €. A partir de la bolsa 36, cada una deja 7 € limpios.
+4. **Con 300 € de beneficio.** Ahora hay que cubrir 240 + 300 = 540 €: 540 / 7 = 77,1, es decir, **78 bolsas**. Más del doble que el punto muerto, y con un solo mercadillo es difícil; el equipo necesita vender también por Instagram y en la tienda del AMPA.
+5. **Con precio de 10 €.** El margen baja a 5 € y el punto muerto sube a 240 / 5 = **48 bolsas**. Bajar el precio un 17 % obliga a vender un 37 % más solo para no perder. Por eso el precio se decide con el test, no con la intuición.
+
+</SolvedExercise>
+
+<HerramientaIsland componente="PuntoMuerto" />
+
+<RecursoDestacado href="/proyectos/tecnologia/02-disena-prototipa-pon-precio/" kicker="Proyecto" title="Diseña, prototipa y pon precio" descripcion="Guía paso a paso para construir un prototipo físico en el taller, calcular su coste real y fijar un precio con coste más margen y comparación con la competencia." colorVar="--color-eco4" />
+
+### ¿Cuánta gente podría comprar? TAM, SAM y SOM
+
+El punto muerto dice cuántas unidades hacen falta; el **tamaño de mercado** dice si esas unidades existen. Las empresas lo miden en tres círculos que van de lo teórico a lo realista. El **TAM** (*total addressable market*) es todo el mundo que podría comprar el producto: para Trazo, digamos los 4.800 estudiantes de secundaria de los seis institutos de la ciudad y sus familias. El **SAM** (*serviceable available market*) es la parte del TAM a la que de verdad llegan vuestros canales: el equipo solo vende en su instituto, así que son sus 900 estudiantes y familias. El **SOM** (*serviceable obtainable market*) es la cuota realista que podéis captar con vuestros recursos y vuestra competencia en un plazo concreto: si en un trimestre compra el 8-10 % del SAM, son **70-90 bolsas**. Comparadlo con el ejercicio anterior: por encima del punto muerto (35), cerca del objetivo de 300 € (78). El proyecto es viable, pero sin margen para dormirse.
+
+<Diagram caption="TAM, SAM y SOM: tres círculos, cada uno dentro del anterior. El TAM es el techo teórico, el SAM lo que vuestros canales alcanzan y el SOM lo que podéis captar de verdad. El número que se compara con el punto muerto es el SOM.">
+  <TamSamSom />
+</Diagram>
+
+<RecursoDestacado href="/eco-4eso/recursos/tamano-mercado/" kicker="Herramienta" title="Tamaño de mercado" descripcion="Estima el TAM, el SAM y el SOM de tu proyecto a partir de la población, el alcance de tus canales y la cuota que crees poder captar, y compara el resultado con tu punto muerto." colorVar="--color-eco4" />
+
+### De dónde sale el dinero: las fuentes de financiación
+
+Trazo necesita unos 500 € para arrancar (240 € de fijos y 250 € para las primeras 50 bolsas). Casi ningún proyecto tiene todo el dinero que necesita el primer día, y en España hay seis fuentes principales a las que acudir, cada una con su precio y su riesgo.
+
+**Ahorro propio.** Es la fuente más barata (sin intereses ni devoluciones) y la que conserva todo el control. Cuatro personas con 60 € cada una reúnen 240 €. La limitación es obvia: a los 16 años el ahorro es pequeño, y conviene no arriesgar nunca lo que no se puede perder.
+
+**Familia y amigos.** En inglés, *friends, family and fools*. Es dinero rápido, flexible y a menudo sin intereses, pero pone en juego una relación. Regla práctica: aunque sea un favor, **ponedlo por escrito** (importe, plazo, qué pasa si el proyecto no vende). Convertir el favor en acuerdo protege a las dos partes.
+
+**Banco y microcréditos.** El banco presta a cambio de intereses y comisiones (el coste real se mide con la TAE, que vimos en la Unidad 8) y suele pedir garantías. Para importes pequeños existen los **microcréditos**, préstamos de hasta unos 25.000 € con menos requisitos, que en España conceden entidades como MicroBank o líneas con apoyo del Instituto de Crédito Oficial (ICO). Hay una condición previa que a vuestra edad pesa más que el interés: para firmar un préstamo hace falta ser mayor de edad, así que un equipo de 4.º de ESO necesita que una persona adulta lo pida en su nombre.
+
+**Crowdfunding.** Muchas personas aportan cantidades pequeñas a través de una plataforma. En la modalidad de **recompensa**, la más útil para un proyecto como Trazo, quien aporta recibe el producto cuando se fabrica: es una **preventa**. **Verkami** cobra una comisión del 5 % (más IVA) solo si la campaña alcanza el objetivo, y funciona con la regla del **todo o nada**: si no se llega, se devuelve el dinero a todo el mundo. **Kickstarter**, fundada en Nueva York en 2009, es la referencia mundial: más de 8.000 millones de dólares comprometidos y más de 250.000 proyectos financiados con éxito (estadísticas públicas de Kickstarter, 2024). Existen también el crowdfunding de **donación** (sin contrapartida, para causas sociales), el de **préstamo** y el de **inversión** (quien aporta recibe participaciones), pero a escala de aula la recompensa es la que encaja.
+
+<RealExample title="Verkami: una plataforma nacida en Mataró que ha pasado del millón de mecenas" source="Verkami, blog corporativo (2020): «Verkami: ¡10 años y más de 1.000.000 de mecenas después!»" sourceUrl="https://www.verkami.com">
+En 2010, los hermanos **Joan, Adrià y Jonàs Sala** montaron en **Mataró (Barcelona)** una plataforma para financiar proyectos culturales pequeños. Una campaña allí dura como mucho **40 días** y se cuenta en una página con tres cosas: un vídeo corto, la cantidad que se pide y una lista de recompensas por tramos (5 € el agradecimiento, 25 € el libro firmado, 60 € el libro más una lámina, 200 € aparecer en los créditos). Al cumplir diez años, en 2020, la plataforma anunció que había superado el **millón de mecenas**.
+
+Lo interesante para vosotros es qué funciona allí. No son las ideas más originales: son los **juegos de mesa y los cómics**, categorías con comunidades pequeñas pero muy fieles que llevan tiempo esperando una edición concreta. Las campañas que fracasan suelen tener el mismo perfil: alguien con un buen proyecto y sin nadie detrás que llega a la plataforma el día que la lanza. El orden que enseñan estas campañas es el mismo de toda la unidad, solo que con dinero de por medio: **primero la comunidad, después el producto**.
+</RealExample>
+
+<Curiosity title="Pebble pidió 100.000 dólares en Kickstarter y consiguió diez millones">
+En abril de 2012, una pequeña empresa de California llamada Pebble llevó a Kickstarter un reloj inteligente que ningún inversor había querido financiar. El objetivo eran 100.000 dólares. En dos horas ya lo habían superado, y al cerrar la campaña, 37 días después, **68.929 personas** habían aportado **10.266.845 dólares**, la campaña más grande de la plataforma hasta entonces. Cada aportación era una preventa del reloj: antes de fabricar la primera unidad, Pebble sabía cuántas tenía que fabricar y tenía el dinero para hacerlo. La misma lógica de las campañas de Verkami, a otra escala.
+</Curiosity>
+
+**Ayudas públicas.** No hay ayudas para proyectos de 4.º de ESO, pero conviene saber lo que existirá cuando tengáis 18. **ENISA**, la empresa pública de innovación, tiene una línea de *Jóvenes Emprendedores* para menores de 40 años con préstamos participativos de 25.000 a 75.000 € sin avales personales. La **cuota reducida de autónomos** permite pagar 80 € al mes de Seguridad Social durante el primer año (RDL 13/2022; vigente en 2025), frente a los más de 200 € de una cuota normal. Y cada comunidad autónoma tiene sus propias líneas de ayuda al primer empleo y al autoempleo juvenil. Todas tienen algo en común: papeleo abundante y plazos largos.
+
+**Business angels.** Inversores particulares con experiencia que ponen dinero propio (entre 25.000 y 250.000 € es lo habitual) a cambio de un porcentaje de la empresa, y que aportan además contactos y consejo. Solo entran en proyectos que puedan multiplicarse por diez; no financian una papelería de barrio ni un mercadillo de instituto. En España se agrupan en la red AEBAN.
+
+<Diagram caption="La escalera de financiación de una startup, del bootstrapping con ahorros y familia (menos de 50.000 €) a los business angels, el capital semilla, las rondas de capital riesgo y la salida a bolsa o venta. Un proyecto de aula vive en el primer peldaño, y la inmensa mayoría de las empresas españolas nunca sube al segundo: no lo necesitan.">
+  <CascadaFinanciacion />
+</Diagram>
+
+<SolvedExercise number="12.2" title="1.500 € para una tirada grande: préstamo o crowdfunding">
+
+**Enunciado**
+
+Trazo ha vendido las primeras 40 bolsas y quiere fabricar una tirada de 200 para el curso siguiente. Necesita **1.500 €**. Dos opciones: **A)** la madre de una integrante pide un préstamo personal de 1.500 € al 8 % TIN a 12 meses, con una comisión de apertura del 1 %. **B)** Campaña en Verkami con objetivo de 1.500 € y una recompensa de 25 € (bolsa más lámina firmada), es decir, 60 mecenas; la plataforma cobra un 5 % más IVA (en torno al 6 %) y la pasarela de pago un 1,5 %; cada recompensa cuesta 5 € de producir y se entrega en mano en el instituto. ¿Qué cuesta cada opción y qué riesgos tiene?
+
+**Solución**
+
+1. **Opción A, coste.** El banco calcula los intereses cada mes sobre lo que queda por devolver, así que no se pagan 120 € (el 8 % de 1.500) sino menos: la cuota es de unos **130,50 € al mes** y en total se devuelven **1.566 €**, unos 66 € de intereses. Sumando 15 € de comisión de apertura, el préstamo cuesta **81 €** (una TAE cercana al 10 %).
+2. **Opción A, riesgo.** Los 1.500 € llegan ya, sin depender de nadie más. Pero la cuota se paga **venda Trazo o no venda**, durante doce meses, y la firma una persona adulta que responde con su patrimonio. Si las 200 bolsas se quedan en una caja, la deuda sigue ahí.
+3. **Opción B, coste.** Comisión de la plataforma: 6 % de 1.500 = 91 €. Pasarela de pago: 1,5 % de 1.500 ≈ 22 €. Producir las 60 recompensas: 60 × 5 = 300 €. Dinero neto disponible para la tirada: 1.500 − 91 − 22 − 300 = **1.087 €**. Menos que en la opción A, pero **no hay que devolver nada**.
+4. **Opción B, lo que compra además del dinero.** Sesenta personas han pagado 25 € por una bolsa que no existe: la campaña ha **validado la demanda** antes de fabricar y ha dejado 60 clientes con nombre. Esas 60 recompensas son ventas que cuentan para el punto muerto.
+5. **Opción B, riesgo.** Es todo o nada: si la campaña se queda en 1.200 €, se devuelve el dinero y no hay tirada. Y mover a 60 personas exige semanas de comunicación (vídeo, publicaciones, mensajes uno a uno) que la opción A no pide.
+6. **Lectura.** Para Trazo encaja la campaña: no endeuda a nadie, prueba el mercado y crea comunidad, y el equipo tiene a quién pedírselo (familias, profesorado, antiguo alumnado). El préstamo tiene sentido cuando no se puede prevender (un servicio, una tienda) o cuando hace falta el dinero en una semana.
+
+</SolvedExercise>
+
+## Contar el proyecto: marketing básico y pitch
+
+Un buen proyecto que nadie conoce es un proyecto que no existe. Lo que sigue es la parte de la unidad que más vais a usar en la vida, emprendáis o no: cómo se cuenta algo para que la otra persona lo entienda, le importe y haga algo.
+
+### Las cuatro P, versión instituto
+
+El marketing clásico ordena las decisiones de comunicación y venta en cuatro palabras que en inglés empiezan por P. **Producto**: qué es y qué lo hace distinto; en Trazo, lo distinto no es la bolsa sino la ilustración exclusiva y el nombre. **Precio**: lo hemos visto, coste más margen mirando a la competencia y al valor percibido; un detalle que funciona es el precio psicológico (11,90 € se lee como «once y pico»). **Punto de venta** (distribución): dónde se compra; el mercadillo, Instagram con pago por Bizum, la tienda del AMPA. **Promoción**: cómo se entera la gente; carteles en los pasillos, el boca a boca del alumnado de Artes y, sobre todo, redes sociales.
+
+Sobre las redes, dos consejos probados en clase. Primero, **enseñad el proceso**, no solo el producto: el vídeo de la plancha estampando la bolsa interesa más que la foto de la bolsa terminada. Segundo, **usadlas para validar**: publicar dos ilustraciones y pedir a la gente que vote cuál se estampa es promoción y test a la vez. Y recordad el embudo: mil seguidores son vanidad; las veinte personas que escriben preguntando el precio son las que importan.
+
+### El elevator pitch: 30 y 60 segundos
+
+El **elevator pitch** («discurso de ascensor») es la explicación del proyecto en el tiempo que dura un trayecto en ascensor. Sirve para que alguien que no os conoce diga «cuéntame más». La versión de 60 segundos tiene cinco piezas: **problema** (qué duele y a quién), **solución** (qué hacéis), **para quién** (el segmento), **cómo** (qué lo hace distinto o cómo funciona) y **qué pedís** (que os compre, que os presente a alguien, que vote por vosotros). La de 30 segundos quita el «cómo» y deja problema, solución y petición.
+
+Trazo en 60 segundos: «Cada junio, las familias del instituto buscan un regalo para el profesorado o para sus hijos y acaban comprando algo anónimo en una tienda de la ciudad. Trazo son bolsas de tela con ilustraciones hechas por alumnado de Artes de este mismo instituto: cada bolsa lleva una obra original y el nombre de quien la ha dibujado. Cuestan 12 €, se estampan en el taller de tecnología y se venden en el mercadillo, en Instagram y en la tienda del AMPA. Hemos vendido 40 en tres semanas y el 60 % de quienes compran preguntan por más diseños. Queremos hacer una tirada de 200 para el curso que viene: os pedimos que compréis una y que sigáis la cuenta para votar la próxima ilustración». Sin cifras de más, sin promesas. Y una prueba: si vuestro pitch sirve igual cambiando el nombre del proyecto, es genérico y se olvida.
+
+### El pitch deck: diez diapositivas
+
+Para un jurado, un concurso o una demo day, el formato estándar es el **pitch deck**, una presentación corta. Guy Kawasaki, antiguo directivo de Apple, fijó en 2005 la **regla 10/20/30**: diez diapositivas, veinte minutos como máximo y letra de treinta puntos como mínimo, para que no quepa más de una idea por pantalla. En el aula, cinco minutos bastan.
+
+<Diagram caption="Las diez diapositivas del pitch deck según Kawasaki: problema, solución, modelo de negocio, producto, marketing y ventas, competencia, equipo, proyecciones, estado actual y llamada a la acción. El orden no es rígido, pero los diez bloques tienen que aparecer.">
+  <PitchDeck10Slides />
+</Diagram>
+
+Casi todo lo que piden esas diez diapositivas ya lo tenéis: el problema y la persona (entrevistas), la solución y la propuesta de valor (canvas), el modelo de negocio y las proyecciones (presupuesto, punto muerto, SOM), el estado actual (el test del patio, las 40 bolsas vendidas). La diapositiva de **competencia** obliga a mirar qué hacen otros y por qué vosotros; la de **equipo**, a decir quién hace qué. Y la última, la **llamada a la acción**, es la que más equipos olvidan: hay que pedir algo concreto.
+
+Las once diapositivas de Airbnb con las que abríamos la unidad son este mismo esqueleto, y por eso se estudian tanto: no tenían nada especial en el diseño, pero cada pantalla respondía una pregunta y las preguntas iban en el orden en que se las hace quien escucha.
+
+<Steps label="Procedimiento" title="Cómo preparar el pitch en una semana" variant="arabic">
+  <li>**Escribid la frase.** Antes de abrir ninguna presentación, la propuesta de valor en una línea. Si no cabe, el problema no es el pitch: es que la idea no está clara todavía.</li>
+  <li>**Empezad por una persona, no por un dato.** La primera diapositiva presenta a alguien concreto con el problema («Marta, 42 años, busca regalo para la tutora de su hija»). Los datos llegan después, cuando el público ya tiene un rostro.</li>
+  <li>**Una idea por diapositiva.** Diez pantallas, letra grande, una imagen del prototipo. Si una diapositiva no responde a una pregunta concreta del público, sobra.</li>
+  <li>**Ensayad en voz alta con cronómetro, tres pases completos.** El pitch no se ensaya leyéndolo en silencio. Si os pasáis de cinco minutos, recortad hasta que entre.</li>
+  <li>**Escribid las cinco preguntas más incómodas** que os podrían hacer (¿y si nadie compra?, ¿por qué no lo hace el AMPA directamente?) y preparad la respuesta. La que más asusta suele ser la primera que cae.</li>
+  <li>**Repartid los papeles.** En un equipo de cuatro hablan dos, máximo tres; quien no habla enseña el prototipo y responde las preguntas técnicas.</li>
+</Steps>
+
+### La demo day del aula y cómo evaluarla
+
+La unidad puede cerrarse con una **demo day**: una sesión en la que cada equipo defiende su proyecto en cinco minutos delante de un público que no lo conoce: profesorado de otros departamentos, alumnado de otro curso, familias, si es posible alguien que haya montado un negocio en el barrio. Lo de «no lo conoce» es la clave. Presentar al profesor que os ve desde septiembre es cómodo; presentar a alguien que entra hoy y se va en una hora no lo es, y esa incomodidad es el ejercicio.
+
+<Figure
+  src={demoDayPitch}
+  alt="Fundador de una startup presentando su producto en un escenario de demo day, con la diapositiva proyectada detrás y el público en primer plano."
+  caption="Demo day real: cinco minutos, una diapositiva grande con una sola idea y ningún folio en la mano. La del aula es más pequeña, pero la imagen mental con la que conviene ensayar es exactamente esta."
+  credit="Foto: MarkChristopherWebster, CC BY-SA 4.0 vía Wikimedia Commons"
+  aspectHint="16/9"
+  variant="wide"
+/>
+
+Para que el jurado y los demás equipos evalúen con el mismo criterio, os proponemos una rúbrica de cuatro apartados, cada uno de 1 a 4 puntos:
+
+| Criterio | 1 punto | 4 puntos |
+|---|---|---|
+| **Problema y persona** | Un problema genérico («la gente quiere regalos») sin nadie concreto detrás | Una persona identificable, entrevistas reales y una pregunta «¿cómo podríamos…?» clara |
+| **Solución y validación** | Una idea contada sin haberla probado con nadie | Un prototipo enseñado a personas reales, con lo que se aprendió y lo que se cambió |
+| **Números** | No hay presupuesto o el precio se ha puesto «a ojo» | Costes fijos y variables, precio razonado, punto muerto y una estimación de mercado |
+| **Comunicación** | Se lee, se pasa de tiempo, no queda claro qué se pide | Una idea por diapositiva, cinco minutos justos, una historia y una petición concreta |
+
+<Callout label="Recomendación de aula" title="Escucha, no te defiendas">
+
+Cuando llegue el feedback del jurado, y llegará en parte favorable y en parte no, la única regla útil es escuchar sin interrumpir. La tentación de explicar por qué la crítica está equivocada es el peor error posible: la opinión sincera de alguien que no os debe nada es información gratuita. Tomad notas, dad las gracias y discutid después en el equipo, con vuestros datos delante, si la crítica tiene fundamento. Un prototipo feo pero probado con quince personas siempre gana a uno perfecto sin un solo usuario, y el jurado lo nota a los treinta segundos.
+
+</Callout>
+
+<VocesDesacuerdo
+  tema="¿Plan de empresa detallado o lanzar rápido y aprender?"
+  postura_a={{
+    etiqueta: 'Planificar primero',
+    tesis: 'Escribir el plan obliga a pensar el modelo entero antes de gastar. Un estudio con más de mil personas emprendedoras (Greene y Hopp, 2017) encontró que quienes redactaron un plan de empresa tenían un 16 % más de probabilidades de llegar a un negocio viable.',
+  }}
+  postura_b={{
+    etiqueta: 'Lean Startup',
+    tesis: 'Ningún plan de empresa sobrevive al primer contacto con los clientes (Steve Blank). Un proyecto en sus primeras fases es un experimento, no una empresa: se gestiona con el ciclo construir, medir y aprender, y cada semana de planificación sin usuarios es una semana de suposiciones.',
+  }}
+>
+Las dos posturas tienen datos a favor y las dos caricaturizan a la otra. Quienes defienden el plan no piden cincuenta páginas de proyecciones inventadas, y quienes defienden Lean Startup no dicen que se salga sin pensar: Eric Ries pide formular hipótesis por escrito antes de cada experimento, que es una forma de plan. La síntesis práctica para el aula: **planificad en una hoja** (el canvas, el presupuesto, el punto muerto) y **probad en una semana** (el prototipo, las entrevistas). El plan de empresa largo tiene sentido cuando alguien os va a prestar dinero y necesita leerlo, y el propio Blank reconoce que para eso sigue siendo útil.
+</VocesDesacuerdo>
+
+## Y después del proyecto
+
+### Qué se aprende aunque no salga
+
+La mayoría de los proyectos de aula no se convierten en empresas, y está bien que sea así. Lo que queda es otra cosa: haber hablado con desconocidos con un guion, haber cambiado de idea delante de datos que no gustaban, haber puesto un precio y defendido por qué, haber repartido tareas y sobrevivido a un conflicto, haber hablado cinco minutos delante de gente que no os debía nada. Cada una de esas cosas vale en una entrevista de trabajo, en un trabajo de grupo de Bachillerato o en la asociación del barrio. La palabra «fracaso» solo tiene sentido si no se ha aprendido nada, y un equipo que ha pivotado dos veces ha aprendido más que uno al que todo le salió a la primera.
+
+### Emprender a los 18
+
+Si dentro de dos o tres años alguien de la clase quiere seguir, estos son los pasos reales en España. Para trabajar por cuenta propia hay que ser **mayor de edad** (o tener 16 y estar emancipado), darse de alta en Hacienda (modelo 036 o 037) y en la Seguridad Social como **autónomo**. El primer año se puede pedir la **cuota reducida** de 80 € al mes, ampliable a un segundo año si los ingresos netos no superan el salario mínimo (RDL 13/2022; vigente en 2025). Si el proyecto es de varias personas o conviene separar el patrimonio personal, la Ley 18/2022 «Crea y Crece» permite constituir una **sociedad limitada con 1 € de capital**, como vimos en la Unidad 10, y los **Puntos de Atención al Emprendedor (PAE)** tramitan el alta por internet con un único documento electrónico, a menudo en menos de 48 horas.
+
+Los recursos gratuitos que existen y casi nadie usa: las **Cámaras de Comercio** ofrecen asesoramiento gratuito a quien empieza (programa *España Emprende*); el **Injuve**, el Instituto de la Juventud, publica convocatorias y ayudas para menores de 30; el **Sistema de Garantía Juvenil** da acceso a formación y apoyo al autoempleo a quienes no estudian ni trabajan; y en muchas ciudades hay viveros de empresas municipales con despachos baratos y mentores. Y luego están los escaparates: en Barcelona, el **4YFN** reúne cada febrero, dentro del Mobile World Congress, a más de 800 startups jóvenes que presentan sus proyectos a inversores en pasillos llenos de estands (Mobile World Capital, 2024).
+
+<Figure
+  src={fyfnBarcelona}
+  alt="Acto de entrega de premios de mentoring en el espacio 4YFN dentro del Mobile World Congress de Barcelona, con stands y público de fondo."
+  caption="4YFN, dentro del Mobile World Congress de Barcelona. Muchos de los equipos que exponen aquí tienen menos de 25 años y un pitch de treinta segundos preparado para cuando alguien se detiene delante del estand. La misma habilidad que se entrena en la demo day del aula."
+  credit="Foto: Kippelboy, CC0 1.0 vía Wikimedia Commons"
+  aspectHint="4/3"
+/>
+
+## Qué viene después en este curso
+
+Esta es la última unidad del libro, así que lo que viene después no es otra unidad sino lo que podéis estudiar a partir de aquí. Si os ha interesado la primera parte del curso, la economía, en **1.º de Bachillerato** existe la materia **Economía** (Real Decreto 243/2022), que retoma con más profundidad los mercados, el dinero, el Estado y la economía internacional de las Unidades 1 a 9, y en muchas comunidades la optativa **Economía, Emprendimiento y Actividad Empresarial**; en 2.º, **Empresa y Diseño de Modelos de Negocio** vuelve al canvas y a los números de esta unidad con casos reales. Si os ha interesado más la parte práctica, la **Formación Profesional** de grado medio (Gestión Administrativa, Actividades Comerciales, Marketing) incluye módulos de empresa y todos los ciclos llevan un módulo de empleabilidad y emprendimiento.
+
+Mirando atrás, el curso ha recorrido dos territorios: **la economía** (escasez, producción, mercados, dinero, trabajo, Estado, economía personal, economía internacional) y **la empresa y el emprendimiento** (Unidades 10 a 12). No hacía falta que nadie fundara nada: hacía falta salir del aula entendiendo cómo funciona el mundo económico en el que ya vivís y con las herramientas para tomar decisiones en él, desde leer una nómina hasta defender una idea. Lo que hagáis con todo esto a partir de mañana es vuestro.
+
+<VuelveAlCaso referencia="Las once diapositivas de Airbnb">
+Aquellas once diapositivas funcionaron por dos razones, y ninguna tiene que ver con el diseño. La primera: **cada pantalla respondía a una pregunta que quien escucha se está haciendo**, y en el orden en que se la hace. Qué problema hay y a quién le duele, qué habéis hecho, cómo sabéis que a alguien le importa, cuánta gente podría querer esto, cómo entra el dinero, por qué vosotros y no otros. Es el guion del pitch deck que acabamos de ver, y es el mismo material que un equipo va acumulando sin darse cuenta: entrevistas, canvas, prototipo, embudo, presupuesto, punto muerto.
+
+La segunda: **detrás de cada afirmación había un hecho, no una intención**. Cuando decían que la gente pagaría por dormir en casa de un desconocido no lo suponían; lo habían hecho con tres colchones hinchables y tres huéspedes de carne y hueso. Esos colchones fueron un prototipo *concierge* de manual: hecho a mano, sin tecnología y perdiendo tiempo a propósito. Por eso la respuesta a «qué habían hecho antes de enseñar las diapositivas» es la única lección seria de la unidad: **habían validado**. Un pitch no convence por cómo se cuenta, sino por lo que se ha hecho antes de contarlo; lo que se cuenta solo tiene que no estorbar.
+</VuelveAlCaso>
+
+<KeyTakeaways title="Lo esencial de la unidad">
+- El **Design Thinking** son cinco fases (empatizar, definir, idear, prototipar, testar) que empiezan por la persona, no por la idea, y se repiten hasta acertar. En las entrevistas se pregunta por el pasado, no por opiniones sobre el futuro.
+- El **Business Model Canvas** pone el modelo de negocio entero en nueve bloques de una hoja. Los dos que mandan son el **segmento de clientes** y la **propuesta de valor**; los otros siete derivan de ellos.
+- Un **prototipo** (papel, maqueta, landing, concierge) sirve para aprender antes de gastar; el **MVP** ya está en el mercado y prueba la hipótesis más arriesgada. Las **métricas accionables** deciden; las de vanidad solo lucen. Si los datos desmienten la hipótesis, se **pivota** conservando lo validado.
+- Los números del proyecto son cuatro: **presupuesto** (fijos y variables), **precio** (coste más margen, competencia y valor percibido), **punto muerto** (costes fijos entre margen unitario) y **tamaño de mercado** (TAM, SAM, SOM).
+- Las **fuentes de financiación** son ahorro, familia y amigos, banco y microcrédito, crowdfunding, ayudas públicas y business angels. Cada una cambia el riesgo: el préstamo se devuelve venda o no; la campaña de recompensa no endeuda y valida, pero es todo o nada.
+- Un proyecto se cuenta con un **elevator pitch** (problema, solución, para quién, cómo, qué pedimos) y un **pitch deck** de diez diapositivas con una idea por pantalla. En la demo day, feo pero validado gana a perfecto sin usuarios, y el feedback se escucha sin defenderse.
+</KeyTakeaways>
+
+## Glosario
+
+- **Design Thinking**: método para resolver problemas que pone a la persona en el centro y sigue cinco fases: empatizar, definir, idear, prototipar y testar.
+- **Modelo de negocio**: explicación de cómo un proyecto crea valor para alguien, se lo hace llegar y consigue ingresos suficientes para sostenerse.
+- **Business Model Canvas**: plantilla de una hoja con nueve bloques (segmentos, propuesta de valor, canales, relación, ingresos, recursos, actividades, socios y costes) para describir un modelo de negocio.
+- **Propuesta de valor**: razón por la que alguien elegiría vuestro proyecto en lugar de lo que ya usa; qué problema resuelve y qué lo hace distinto.
+- **Prototipo**: maqueta incompleta, barata y rápida de la idea, hecha para enseñarla y aprender de las reacciones antes de invertir.
+- **Producto mínimo viable (MVP)**: versión más simple de un producto que ya está en el mercado y sirve para probar la hipótesis principal.
+- **Métrica accionable**: número que depende de lo que hace el equipo y permite decidir (conversión, clientes que repiten). Lo contrario es la métrica de vanidad (seguidores, visitas).
+- **Embudo**: secuencia de pasos desde que una persona descubre el proyecto hasta que compra, con la proporción que pasa de cada paso al siguiente.
+- **Pivotar**: cambiar algo grande del proyecto (segmento, propuesta, canal o ingresos) cuando los datos desmienten la hipótesis, conservando lo que sí funciona.
+- **Punto muerto**: número de unidades que hay que vender para cubrir los costes fijos; costes fijos divididos entre el margen de cada unidad.
+- **TAM, SAM y SOM**: tres estimaciones del tamaño de mercado: todo el mercado posible, la parte que alcanzan vuestros canales y la cuota realista que podéis captar.
+- **Crowdfunding de recompensa**: financiación en la que muchas personas aportan pequeñas cantidades a cambio de recibir el producto cuando se fabrica; funciona como una preventa.
+- **Préstamo participativo**: préstamo público (por ejemplo, de ENISA) sin avales personales cuyo interés depende en parte de los resultados de la empresa.
+- **Elevator pitch**: explicación del proyecto en 30 o 60 segundos (problema, solución, para quién, cómo, qué pedimos) para que la otra persona quiera saber más.
+- **Pitch deck**: presentación corta, de unas diez diapositivas, para defender el proyecto ante un jurado o un inversor.
+
+## Para profundizar
+
+- **Plantilla oficial del Business Model Canvas**, en strategyzer.com (descarga gratuita en A3, licencia Creative Commons). Por qué encaja: es el lienzo original de Osterwalder; imprimirlo grande y rellenarlo con post-its es la manera de trabajar esta unidad.
+- **Proyectos financiados en Verkami** (verkami.com/discover). Por qué encaja: leer diez campañas reales, sus objetivos, recompensas y vídeos, enseña más sobre cómo se cuenta y se prevende un proyecto que cualquier teoría; fijaos en las que no llegaron al objetivo.
+- **«How to Pitch Your Startup»**, Kevin Hale, Y Combinator (YouTube, ~40 min, subtítulos en español). Por qué encaja: un inversor explica qué mira en un pitch y por qué la claridad importa más que el diseño, con ejemplos de decks reales.
+- **Guía de trámites del Punto de Atención al Emprendedor** (paeelectronico.es, Ministerio de Industria, Comercio y Turismo). Por qué encaja: la fuente oficial para saber qué hace falta de verdad para darse de alta como autónomo o crear una SL cuando tengáis 18.
+
+## Preguntas para reflexionar
+
+Estas preguntas no tienen una respuesta única. Sirven para debatir en clase o pensar a solas al cerrar la unidad y el curso:
+
+1. El Design Thinking pide hablar con las personas antes de diseñar nada, y casi todo el mundo se lo salta. ¿Por qué creéis que da tanto reparo enseñar una idea a medias a un desconocido? ¿Qué se pierde por no hacerlo?
+2. En el ejercicio 12.2 la campaña de crowdfunding deja menos dinero que el préstamo y aun así la elegimos. ¿En qué tipo de proyecto elegiríais el préstamo? ¿Qué tendría que pasar para que la campaña fuera una mala idea?
+3. Mirando atrás todo el curso, desde la escasez de la Unidad 1 hasta el pitch de esta: ¿qué idea os ha cambiado la forma de mirar algo cotidiano? ¿Creéis que emprenderéis algún día, o las herramientas os servirán igual trabajando para otros?
+
+<Bibliography>
+
+1. España. **Real Decreto 217/2022**, de 29 de marzo, por el que se establecen la ordenación y las enseñanzas mínimas de la Educación Secundaria Obligatoria. BOE núm. 76. (Competencias específicas de Economía y Emprendimiento: ideas, recursos, prototipos y comunicación del proyecto.)
+2. Osterwalder, A. y Pigneur, Y. (2010). *Business Model Generation*. Wiley. Edición en castellano: *Generación de modelos de negocio*. Deusto, 2011.
+3. Ries, E. (2011). *The Lean Startup*. Crown Business. Edición en castellano: *El método Lean Startup*. Deusto, 2012.
+4. Fitzpatrick, R. (2013). *The Mom Test: How to Talk to Customers and Learn If Your Business Is a Good Idea When Everyone Is Lying to You*. CreateSpace.
+5. Greene, F. J. y Hopp, C. (2017). *Research: Writing a Business Plan Makes Your Startup More Likely to Succeed*. Harvard Business Review, 14 de julio. Y Blank, S. (2013). *Why the Lean Start-Up Changes Everything*. Harvard Business Review, mayo.
+6. España. **Real Decreto-ley 13/2022**, de 26 de julio (cuota reducida de autónomos). **Ley 18/2022**, de 28 de septiembre, de creación y crecimiento de empresas. ENISA, *Línea Jóvenes Emprendedores*. https://www.enisa.es
+7. Fuentes de las cifras citadas en la unidad: Airbnb, *pitch deck* de la ronda semilla de 600.000 $ liderada por Sequoia Capital (abril de 2009), difundido públicamente desde 2011 · *elEconomista* (4 de abril de 2016), sobre los primeros años de Hawkers · Verkami, blog corporativo (2020). https://www.verkami.com · Kickstarter, *Stats* (2024). https://www.kickstarter.com/help/stats · Mobile World Capital Barcelona, *4YFN 2024*.
+
+</Bibliography>
+
+<MirarFora
+  unidad={12}
+  libro={{
+    titulo: 'El método Lean Startup',
+    meta: 'Eric Ries · Deusto, 2012',
+    porque: 'El libro que convirtió «construir, medir, aprender» en el vocabulario de cualquier proyecto nuevo. Los capítulos sobre el MVP y las métricas de vanidad son los que sostienen la sección de validación de esta unidad; se leen en una tarde.',
+    paginas: 'Capítulos 3, 6 y 7',
+  }}
+  video={{
+    titulo: 'How to Pitch Your Startup',
+    meta: 'Kevin Hale · Y Combinator (YouTube, subtítulos en español)',
+    duracion: '~40 min',
+    porque: 'Un inversor explica qué mira en un pitch, por qué la claridad gana al diseño y cómo se responde a las preguntas incómodas. Ver diez minutos antes de la demo day cambia la presentación.',
+    url: 'https://www.youtube.com/results?search_query=how+to+pitch+your+startup+kevin+hale+y+combinator',
+  }}
+  cuenta={{
+    titulo: '@verkami',
+    meta: 'Instagram',
+    porque: 'Cada semana muestra campañas reales en marcha: cómo se cuentan, qué recompensas ofrecen y cuáles llegan al objetivo. Es el mejor escaparate en castellano de proyectos pequeños que se financian prevendiendo.',
+  }}
+  actividad_titulo="Tu proyecto en un minuto"
+  actividad_duracion="30 min · cronómetro obligatorio"
+>
+  <Fragment slot="actividad">
+    Escribe el **elevator pitch de 60 segundos** de tu proyecto (o de una idea del diario de molestias de la Unidad 11) con las cinco piezas: problema, solución, para quién, cómo y qué pides. Cronométralo en casa tres veces en voz alta; si te pasas, recorta. Después escribe la versión de 30 segundos quitando el «cómo». Trae las dos.
+  </Fragment>
+  <Fragment slot="para-clase">
+    **Pitch en pasillo**: la clase se coloca en dos filas enfrentadas; cada persona cuenta su pitch de 30 segundos a quien tiene delante, que solo puede responder «cuéntame más» o «no lo he entendido». Se rota tres veces. Después, puesta en común: ¿qué frase ha conseguido más «cuéntame más»? Duración: 30 min. Materiales: cronómetro.
+  </Fragment>
+</MirarFora>
+
+<Callout label="Proyecto del curso" title="De cero a empresa">
+Si queréis llevar esta unidad a la práctica de principio a fin, [**«De cero a empresa»**](/emprendimiento/proyecto/) es una propuesta de aula modular y opcional: los equipos parten de una molestia real detectada con las herramientas de la Unidad 11 y recorren las fases de esta unidad (canvas, prototipo, validación, presupuesto y financiación, pitch) con plantillas, sesiones sugeridas y una rúbrica para la demo day. Se puede hacer entera o solo alguna fase.
+</Callout>
+
+```deck
+- tipo: curriculum
+  eyebrow: "A qué responde esta unidad"
+  title: "El marco de la unidad"
+  saberes:
+    - "Design Thinking y modelo de negocio: el Business Model Canvas."
+    - "Prototipado, producto mínimo viable y validación con personas reales."
+    - "Presupuesto, precio, punto muerto y tamaño de mercado del proyecto."
+    - "Fuentes de financiación: ahorro, entorno, banco, crowdfunding y ayudas."
+    - "Marketing básico, elevator pitch, pitch deck y demo day."
+  competencias:
+    - "Crear ideas y soluciones sostenibles y elegir la más adecuada con criterio."
+    - "Analizar y gestionar los recursos necesarios para llevar una idea a la práctica."
+    - "Elaborar un prototipo y validarlo con personas reales antes de invertir."
+    - "Comunicar un proyecto de forma clara y persuasiva a distintos públicos."
+- tipo: caso
+  eyebrow: "Caso de apertura"
+  title: "Once diapositivas y 600.000 dólares: el pitch de Airbnb"
+  contexto: "En 2007, dos diseñadores sin dinero para el alquiler ofrecieron tres colchones hinchables y desayuno en su piso de San Francisco durante un congreso de diseño. Año y medio después contaron esa idea a inversores en once diapositivas."
+  datos:
+    - "Tres huéspedes a 80 dólares: unos 1.000 dólares y una idea validada."
+    - "Once diapositivas, una idea por pantalla, sin animaciones ni promesas."
+    - "Ronda semilla de 600.000 dólares con Sequoia Capital (abril de 2009)."
+  pregunta: "¿Qué tenían esas once diapositivas, y qué habían hecho los fundadores antes de enseñarlas?"
+- tipo: section
+  title: "Del problema a la solución: Design Thinking"
+  subtitle: "Antes de pensar en la solución, entender el problema y a quien lo sufre. Cinco fases que se repiten hasta acertar."
+- tipo: diagram
+  diagrama: DesignThinkingFases
+  caption: "Empatizar, definir, idear, prototipar y testar. Se vuelve atrás cada vez que el test enseña algo nuevo."
+- tipo: list
+  eyebrow: "El proyecto de aula"
+  title: "Las cinco fases con Trazo, bolsas ilustradas por alumnado de Artes"
+  ordered: true
+  items:
+    - "Empatizar: diez entrevistas en el patio. Nadie quiere otra camiseta con el escudo; sí algo útil, regalable y hecho aquí."
+    - "Definir: «¿Cómo podríamos ofrecer un objeto útil y regalable que lleve el trabajo de nuestros compañeros de Artes?»."
+    - "Idear: treinta ideas en quince minutos sin filtrar; después, dos criterios: valor para la persona y viabilidad."
+    - "Prototipar: una sola bolsa pintada a mano con la ilustración y un cartel con el precio."
+    - "Testar: enseñarla a quince personas y anotar qué hacen, no qué dicen que harían."
+- tipo: figure
+  src: eco-4eso/09/postits-brainstorming.jpg
+  alt: "Pared cubierta de post-its de colores agrupados en columnas tras una sesión de brainstorming colectivo."
+  title: "Idear: cantidad antes que calidad"
+  caption: "Una idea por post-it. La pared es donde el equipo agrupa, descarta y elige con dos criterios: valor para la persona y viabilidad."
+  credit: "Foto: Victor Costa de Paula, CC BY-SA 4.0 vía Wikimedia Commons"
+- tipo: section
+  title: "El modelo de negocio en una página"
+  subtitle: "El Business Model Canvas de Osterwalder: nueve bloques en una hoja para ver si el proyecto encaja."
+- tipo: diagram
+  diagrama: BusinessModelCanvas
+  caption: "Nueve bloques en tres zonas: lo que la empresa hace, lo que ofrece y lo que el cliente experimenta. Abajo, costes e ingresos."
+- tipo: terms
+  eyebrow: "Los bloques que mandan"
+  title: "Por dónde se empieza a rellenar el canvas"
+  terms:
+    - t: "Segmento de clientes"
+      d: "Las personas concretas a las que sirve el proyecto. Cuanto más concreto, mejor: no «jóvenes», sino «alumnado y familias de nuestro instituto»."
+    - t: "Propuesta de valor"
+      d: "Qué problema resolvemos y por qué nos elegirían frente a las alternativas. Cabe en una frase: «bolsa útil, barata e ilustrada por gente de aquí»."
+    - t: "Fuentes de ingresos"
+      d: "Quién paga, cuánto y por qué. Trazo vende cada bolsa a 12 €; Hawkers vendía gafas a 20-40 € solo por internet."
+- tipo: figure
+  src: eco-4eso/09/bmc-workshop-nalerigu.jpg
+  alt: "Sesión formativa en la que una persona explica el Business Model Canvas a un grupo sentado alrededor de una mesa con la plantilla impresa en grande."
+  title: "Cómo se rellena en el aula"
+  caption: "Plantilla en A3 y post-its de colores, una idea por post-it. Se empieza por el segmento y la propuesta de valor; el resto deriva de ahí."
+  credit: "Foto: Christian Yakubu, CC BY-SA 4.0 vía Wikimedia Commons"
+- tipo: section
+  title: "Prototipar y validar"
+  subtitle: "Enseñar una maqueta fea a personas reales antes de gastar un euro, y leer lo que pasa con números que sirvan para decidir."
+- tipo: table
+  title: "Cuatro tipos de prototipo"
+  head:
+    - "Tipo"
+    - "Qué es"
+    - "Qué responde"
+  rows:
+    - ["Papel", "Dibujos o pantallas recortadas", "¿Se entiende la idea?"]
+    - ["Maqueta", "Cartón, plastilina, una bolsa pintada a mano", "¿Gusta el objeto? ¿Se usa bien?"]
+    - ["Landing", "Una página web con un botón de «avísame»", "¿Cuántos dejan su contacto?"]
+    - ["Concierge", "Hacer el servicio a mano para los primeros clientes", "¿Pagarían por esto de verdad?"]
+  caption: "Cuanto más barato el prototipo, antes se descubre lo que no funciona."
+- tipo: concept
+  eyebrow: "Dos MVP clásicos"
+  title: "Zappos fotografió zapatos de otros; Dropbox grabó un vídeo"
+  body: "En 1999 Nick Swinmurn fotografió zapatos en tiendas de su barrio, los publicó en una web y, cuando alguien compraba, iba a la tienda a comprarlos. Así comprobó que la gente compraría zapatos por internet. En 2007 Drew Houston enseñó Dropbox en un vídeo de tres minutos antes de terminarlo: la lista de espera pasó de 5.000 a 75.000 personas en una noche."
+  pull: "El MVP no es un producto a medias: es la prueba más barata que responde a la pregunta más arriesgada."
+- tipo: split
+  title: "Métricas: vanidad frente a acción"
+  left:
+    h: "Vanidad"
+    items:
+      - "Seguidores en Instagram."
+      - "Reproducciones de un vídeo."
+      - "Visitas a la web."
+      - "Suben siempre y no dicen qué cambiar."
+  right:
+    h: "Accionables"
+    items:
+      - "Personas que escriben por mensaje directo."
+      - "Ventas por cada cien visitas."
+      - "Clientes que repiten o recomiendan."
+      - "Cambian según lo que hace el equipo."
+- tipo: quiz
+  eyebrow: "Comprueba que lo pillas"
+  pregunta: "Un equipo publica su bolsa en redes. 1.200 personas ven la publicación, 180 entran al perfil, 51 preguntan y 12 compran. ¿Dónde conviene trabajar primero?"
+  opciones:
+    - "En el último paso: bajar el precio para que compren más de los que preguntan."
+    - "En el primero: solo el 15 % pasa de ver a mirar el perfil; ahí se pierden 1.020 personas."
+    - "En conseguir más visualizaciones: cuanta más gente lo vea, mejor."
+    - "En ninguno: un 1 % de conversión total es normal y suficiente."
+  correcta: 1
+  explicacion: "Las conversiones se multiplican: arreglar el paso más débil mueve todo el embudo. Subir el primero del 15 % al 20 % daría 16 ventas sin tocar nada más; más visualizaciones solo lo ensanchan por arriba."
+- tipo: section
+  title: "Los números del proyecto"
+  subtitle: "Presupuesto, precio, punto muerto, tamaño de mercado y de dónde sale el dinero para arrancar."
+- tipo: exercise
+  title: "Ejercicio 12.1 — ¿Cuántas bolsas hay que vender para no perder?"
+  enunciado: "Trazo tiene 240 € de costes fijos (plancha de transfer, puesto en el mercadillo, carteles, tienda online). Cada bolsa cuesta 5 € de materiales y se vende a 12 €. ¿Cuántas bolsas cubren los costes fijos? ¿Y si además quieren ganar 300 €?"
+  pasos:
+    - "Margen por bolsa: 12 − 5 = 7 €. Cada bolsa vendida aporta 7 € para pagar los costes fijos."
+    - "Punto muerto: 240 / 7 = 34,3. Como no se venden medias bolsas, hacen falta 35."
+    - "Comprobación: 35 × 12 = 420 € de ingresos; 240 + 35 × 5 = 415 € de costes. Beneficio: 5 €."
+    - "Con 300 € de beneficio: (240 + 300) / 7 = 77,1, es decir, 78 bolsas."
+    - "Si bajaran el precio a 10 €, el margen sería 5 € y el punto muerto subiría a 48 bolsas."
+- tipo: diagram
+  diagrama: CascadaFinanciacion
+  caption: "La escalera de financiación de una startup. Un proyecto de aula vive en el primer peldaño; casi ninguna empresa sube al segundo."
+- tipo: exercise
+  title: "Ejercicio 12.2 — 1.500 €: préstamo o crowdfunding"
+  enunciado: "Trazo necesita 1.500 € para una tirada grande. Opción A: préstamo personal al 8 % TIN a 12 meses con 1 % de comisión de apertura. Opción B: campaña en Verkami con 60 recompensas de 25 € (bolsa más lámina), comisión del 6 % con IVA y 1,5 % de pasarela de pago. ¿Qué cuesta cada una?"
+  pasos:
+    - "A: cuota de unos 130,50 € al mes; total devuelto 1.566 €. Intereses 66 € + 15 € de comisión = 81 €."
+    - "A: se devuelve venda o no venda, y solo puede firmarlo una persona mayor de edad."
+    - "B: comisiones 91 + 22 = 113 €. Producir 60 bolsas cuesta 300 €. Quedan 1.087 € netos para el proyecto."
+    - "B: no hay deuda, y 60 personas ya han comprado: la campaña valida la demanda antes de fabricar."
+    - "B: es todo o nada. Si no se llega a 1.500 €, se devuelve el dinero y hay que empezar de cero."
+- tipo: quiz
+  eyebrow: "Comprueba que lo pillas"
+  pregunta: "Una vecina ofrece prestar 400 € al equipo de Trazo «sin prisa y sin intereses». ¿Qué conviene hacer?"
+  opciones:
+    - "Aceptar y no escribir nada: entre conocidos sobra el papeleo."
+    - "Aceptar, pero poner por escrito importe, plazo y qué pasa si el proyecto no vende."
+    - "Rechazar: el dinero de amigos y familia nunca es una fuente de financiación seria."
+    - "Pedirle que compre participaciones y se convierta en socia del proyecto."
+  correcta: 1
+  explicacion: "El dinero de familia y amigos es rápido y barato, pero pone en juego una relación. Convertir el favor en un acuerdo escrito protege a las dos partes si algo sale mal."
+- tipo: section
+  title: "Contar el proyecto: marketing y pitch"
+  subtitle: "Las cuatro P, el elevator pitch de un minuto, el pitch deck de diez diapositivas y la demo day del aula."
+- tipo: list
+  eyebrow: "Marketing básico"
+  title: "Las cuatro P, versión instituto"
+  items:
+    - "Producto: qué es y qué lo hace distinto. En Trazo, la ilustración exclusiva y el nombre, no la bolsa."
+    - "Precio: coste más margen, mirando lo que cobra la competencia y lo que la persona percibe."
+    - "Punto de venta: dónde se compra. Mercadillo de fin de curso, Instagram con Bizum, tienda del AMPA."
+    - "Promoción: cómo se enteran. Instagram con el proceso, carteles, boca a boca del alumnado de Artes."
+- tipo: concept
+  eyebrow: "Elevator pitch"
+  title: "Un minuto, cinco piezas"
+  body: "Problema (qué duele y a quién), solución (qué hacemos), para quién (el segmento), cómo funciona o qué lo hace distinto, y qué pedimos. Sin datos de más y sin promesas. La versión de treinta segundos quita el «cómo» y deja problema, solución y petición. El éxito no se mide en si vendes, sino en si la otra persona dice «cuéntame más»."
+  pull: "Si tu pitch sirve igual cambiando el nombre del proyecto, es genérico y se olvida."
+- tipo: figure
+  src: eco-4eso/10/demo-day-pitch-startup.png
+  alt: "Fundador de una startup presentando su producto en un escenario de demo day, con la diapositiva proyectada detrás y el público en primer plano."
+  title: "Cinco minutos delante de gente real"
+  caption: "Una idea por diapositiva, ningún folio en la mano y un cronómetro encima de la mesa. La demo day del aula ensaya exactamente esto."
+  credit: "Foto: MarkChristopherWebster, CC BY-SA 4.0 vía Wikimedia Commons"
+- tipo: list
+  eyebrow: "Regla 10/20/30 de Kawasaki"
+  title: "Pitch deck: diez diapositivas, una idea por pantalla"
+  ordered: true
+  items:
+    - "1-2. Problema (qué duele y a quién) y solución (vuestra propuesta en una frase)."
+    - "3-4. Modelo de negocio (cómo ganáis dinero) y producto o demo (qué lo hace diferente)."
+    - "5-6. Marketing y ventas (cómo llegáis) y competencia (qué hacen otros y por qué vosotros)."
+    - "7-8. Equipo (quiénes sois) y proyecciones (costes, ingresos, punto muerto)."
+    - "9-10. Estado actual (qué habéis validado) y resumen con llamada a la acción (qué pedís)."
+    - "Diez diapositivas, veinte minutos como máximo y letra de treinta puntos. En el aula, cinco minutos."
+- tipo: quiz
+  eyebrow: "Comprueba que lo pillas"
+  pregunta: "En la demo day, el jurado dice que 12 € es un precio demasiado alto para el patio. ¿Cuál es la mejor reacción del equipo?"
+  opciones:
+    - "Interrumpir para explicar que el coste de materiales justifica los 12 €."
+    - "Anotarlo, dar las gracias y discutirlo después en el equipo con los datos de las ventas."
+    - "Bajar el precio en ese mismo momento para contentar al jurado."
+    - "Ignorarlo: el jurado no conoce el proyecto tan bien como el equipo."
+  correcta: 1
+  explicacion: "La crítica de alguien que no os debe nada es información gratuita. Se escucha sin defenderse y se contrasta después con los datos: si las ventas confirman el precio, se mantiene; si no, se ajusta."
+- tipo: section
+  title: "Y después del proyecto"
+  subtitle: "Lo que se aprende aunque no salga, cómo se emprende a los 18 y qué se puede estudiar después de 4.º de ESO."
+- tipo: data
+  numero: "80 €"
+  label: "al mes de cuota de autónomo"
+  title: "La cuota reducida para empezar (2025)"
+  detalle: "Quien se da de alta como autónomo por primera vez paga 80 € al mes durante doce meses, ampliables a otros doce si sus ingresos no superan el SMI (RDL 13/2022). Solo a partir de los 18 años, o desde los 16 con emancipación."
+- tipo: recap
+  eyebrow: "Repasa"
+  title: "Antes de cerrar la unidad"
+  items:
+    - "Sabrías aplicar las cinco fases del Design Thinking a un problema de tu entorno."
+    - "Sabrías rellenar los nueve bloques del Business Model Canvas para una idea de proyecto."
+    - "Sabrías montar un prototipo barato, probarlo con personas y separar vanidad de acción."
+    - "Sabrías calcular el punto muerto de un proyecto y comparar dos formas de financiarlo."
+    - "Sabrías contar tu proyecto en un elevator pitch y en un pitch deck de diez diapositivas."
+    - "Sabrías explicar qué pasos da alguien que quiere emprender a los 18 en España."
+```

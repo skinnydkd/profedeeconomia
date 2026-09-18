@@ -13,7 +13,7 @@ slug: "asignaturas/edmn-2bach/recursos/calculadora-punto-muerto.ca"
 ## Quan usar-la
 
 - A classe, mentre introduïu el concepte de punt mort en la Unitat 7.
-- Perquè cada equip del projecte capstone calcule el seu amb les seues pròpies xifres.
+- Perquè cada equip amb un pla d'empresa o un projecte d'aula calcule el seu amb les seues pròpies xifres.
 - Com a suport a les activitats 6 (pastisseria sense gluten) i 7 (dos plans de cuina).
 
 ## Què cal tindre en compte

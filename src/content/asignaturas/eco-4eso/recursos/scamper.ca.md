@@ -1,6 +1,6 @@
 ---
 asignatura: eco-4eso
-unidad_relacionada: 2
+unidad_relacionada: 11
 title: "SCAMPER: obrir abans de tancar"
 descripcion: "Genera idees des de set angles diferents. No deixa puntuar-ne cap fins que n'hi ha prou d'on triar, que és exactament la disciplina que falla en tota pluja d'idees."
 tipo: plantilla

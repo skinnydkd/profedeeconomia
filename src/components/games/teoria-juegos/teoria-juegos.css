@@ -1,0 +1,139 @@
+/* src/components/games/teoria-juegos/teoria-juegos.css
+   Editorial, one accent colour per experiment (set as --tj-color on the shell).
+   Boxes carry a symmetric 1px border: no one-sided accent rules. */
+
+.tj { max-width: 900px; margin: 0 auto; font-family: var(--font-sans); color: var(--color-ink); }
+.tj h1, .tj h2, .tj h3 { font-family: var(--font-serif); font-weight: 500; }
+.tj h1 { font-size: clamp(1.8rem, 4vw, 2.5rem); margin: 0.4rem 0 0.6rem; line-height: 1.15; }
+.tj h2 { font-size: 1.35rem; margin: 2rem 0 0.6rem; }
+.tj h3 { font-size: 1.05rem; margin: 1.2rem 0 0.4rem; }
+.tj p { line-height: 1.65; }
+.tj__kicker {
+  font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--color-terra);
+}
+.tj__lede { font-size: 1.08rem; color: var(--color-ink-soft); max-width: 62ch; }
+
+/* ── buttons ─────────────────────────────────────────────── */
+.tj-btn {
+  font-family: var(--font-sans); font-size: 0.95rem; font-weight: 600;
+  border-radius: 6px; padding: 0.6rem 1.15rem; cursor: pointer;
+  border: 1px solid var(--tj-color, var(--color-terra));
+  background: var(--tj-color, var(--color-terra)); color: #fff;
+  transition: filter .15s ease;
+}
+.tj-btn:hover { filter: brightness(0.92); }
+.tj-btn:disabled { opacity: 0.45; cursor: not-allowed; filter: none; }
+.tj-btn--ghost { background: transparent; color: var(--color-ink-soft); border-color: var(--color-line); }
+.tj-btn--ghost:hover { color: var(--tj-color, var(--color-terra)); border-color: var(--tj-color, var(--color-terra)); filter: none; }
+.tj-btn--big { font-size: 1.05rem; padding: 0.85rem 1.5rem; }
+.tj-acciones { display: flex; flex-wrap: wrap; gap: 0.6rem; margin: 1.2rem 0; }
+
+.tj-link {
+  background: none; border: 0; padding: 0; cursor: pointer;
+  font-family: var(--font-sans); font-size: 0.92rem; color: var(--color-ink-mute);
+}
+.tj-link:hover { color: var(--color-terra); }
+
+/* ── hub ─────────────────────────────────────────────────── */
+.tj-hub { display: grid; grid-template-columns: repeat(auto-fill, minmax(258px, 1fr)); gap: 1rem; margin: 1.8rem 0; }
+.tj-card {
+  display: flex; flex-direction: column; gap: 0.4rem; text-align: left;
+  background: var(--color-paper); border: 1px solid var(--color-line);
+  border-radius: 8px; padding: 1.1rem 1.2rem 1.2rem; cursor: pointer;
+  font-family: var(--font-sans); color: inherit;
+  transition: border-color .15s ease, transform .15s ease;
+}
+.tj-card:hover { border-color: var(--tj-card-color, var(--color-terra)); transform: translateY(-2px); }
+.tj-card__n { font-family: var(--font-mono); font-size: 0.74rem; color: var(--tj-card-color, var(--color-terra)); letter-spacing: 0.06em; }
+.tj-card__t { font-family: var(--font-serif); font-size: 1.22rem; line-height: 1.2; }
+.tj-card__d { font-size: 0.88rem; color: var(--color-ink-soft); line-height: 1.5; margin: 0; }
+.tj-card__cta { font-size: 0.85rem; font-weight: 600; color: var(--tj-card-color, var(--color-terra)); margin-top: 0.3rem; }
+
+/* ── mode switch ─────────────────────────────────────────── */
+.tj-modos { display: inline-flex; border: 1px solid var(--color-line); border-radius: 999px; padding: 3px; background: var(--color-paper); }
+.tj-modo {
+  font-family: var(--font-sans); font-size: 0.85rem; font-weight: 600;
+  border: 0; background: transparent; color: var(--color-ink-mute);
+  padding: 0.38rem 0.95rem; border-radius: 999px; cursor: pointer;
+}
+.tj-modo[aria-pressed='true'] { background: var(--tj-color, var(--color-terra)); color: #fff; }
+.tj-modo-pie { font-size: 0.85rem; color: var(--color-ink-mute); margin: 0.5rem 0 0; max-width: 60ch; }
+
+/* ── shell ───────────────────────────────────────────────── */
+.tj-cabecera { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 0.8rem 1.2rem; justify-content: space-between; margin-bottom: 0.4rem; }
+.tj-cabecera .tj-link { padding-top: 0.45rem; }
+.tj-papel { font-size: 0.85rem; color: var(--color-ink-mute); margin: 0.9rem 0 0; }
+.tj-papel a { color: var(--tj-color, var(--color-terra)); font-weight: 600; }
+
+/* ── boxes ───────────────────────────────────────────────── */
+.tj-caja { background: var(--color-paper); border: 1px solid var(--color-line); border-radius: 8px; padding: 1.1rem 1.25rem; margin: 1.2rem 0; }
+.tj-caja--nota { background: var(--color-bg-cream); }
+.tj-caja h3:first-child, .tj-caja h2:first-child { margin-top: 0; }
+.tj-dato { font-family: var(--font-mono); font-size: 1.5rem; color: var(--tj-color, var(--color-terra)); }
+.tj-datos { display: flex; flex-wrap: wrap; gap: 1.4rem 2.2rem; margin: 0.6rem 0; }
+.tj-datos > div { min-width: 7rem; }
+.tj-datos dt { font-size: 0.76rem; text-transform: uppercase; letter-spacing: 0.07em; color: var(--color-ink-mute); font-weight: 600; }
+.tj-datos dd { margin: 0.15rem 0 0; font-family: var(--font-mono); font-size: 1.3rem; color: var(--color-ink); }
+
+/* ── payoff matrix ───────────────────────────────────────── */
+.tj-matriz { border-collapse: collapse; margin: 1rem 0; font-size: 0.92rem; }
+.tj-matriz th, .tj-matriz td { border: 1px solid var(--color-line); padding: 0.6rem 0.9rem; text-align: center; }
+.tj-matriz thead th, .tj-matriz tbody th { background: var(--color-bg-cream); font-weight: 600; font-size: 0.82rem; }
+.tj-matriz td { font-family: var(--font-mono); }
+.tj-matriz .yo { color: var(--tj-color, var(--color-terra)); font-weight: 700; }
+.tj-matriz .esq { background: var(--color-bg-cream); }
+
+/* ── generic table ───────────────────────────────────────── */
+.tj-tabla { width: 100%; border-collapse: collapse; font-size: 0.9rem; margin: 0.8rem 0; }
+.tj-tabla th, .tj-tabla td { padding: 0.45rem 0.6rem; border-bottom: 1px solid var(--color-line-soft); text-align: right; }
+.tj-tabla th:first-child, .tj-tabla td:first-child { text-align: left; }
+.tj-tabla thead th { font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-ink-mute); }
+.tj-tabla td { font-family: var(--font-mono); }
+.tj-tabla td:first-child { font-family: var(--font-sans); }
+.tj-tabla tr.gana td { color: var(--tj-color, var(--color-terra)); font-weight: 700; }
+.tj-scroll { overflow-x: auto; }
+
+/* ── bars ────────────────────────────────────────────────── */
+.tj-barras { list-style: none; padding: 0; margin: 0.8rem 0; display: flex; flex-direction: column; gap: 0.35rem; }
+.tj-barra { display: grid; grid-template-columns: minmax(5rem, 11.5rem) 1fr auto; align-items: center; gap: 0.7rem; font-size: 0.86rem; }
+.tj-barra__pista { display: block; background: var(--color-bg-cream); border-radius: 3px; height: 0.85rem; overflow: hidden; }
+/* display:block matters: these are spans, and an inline box ignores width/height. */
+.tj-barra__valor { display: block; background: var(--tj-color, var(--color-terra)); height: 100%; border-radius: 3px; }
+.tj-barra__n { font-family: var(--font-mono); color: var(--color-ink-mute); font-size: 0.8rem; }
+.tj-barra--tenue .tj-barra__valor { background: var(--color-mustard); }
+
+/* ── form fields ─────────────────────────────────────────── */
+.tj-campo { display: flex; flex-direction: column; gap: 0.3rem; margin: 0 0 1rem; max-width: 26rem; }
+.tj-campo label { font-size: 0.85rem; font-weight: 600; color: var(--color-ink-mute); }
+.tj-campo input[type='number'], .tj-campo select, .tj-campo textarea {
+  font-family: var(--font-sans); font-size: 1rem; padding: 0.5rem 0.7rem;
+  border: 1px solid var(--color-line); border-radius: 6px; background: var(--color-paper); color: var(--color-ink);
+}
+.tj-campo textarea { min-height: 6rem; font-family: var(--font-mono); font-size: 0.92rem; line-height: 1.6; resize: vertical; }
+.tj-campo input[type='range'] { accent-color: var(--tj-color, var(--color-terra)); }
+.tj-campo--ancho { max-width: none; }
+.tj-pista { font-size: 0.82rem; color: var(--color-ink-mute); margin: 0.1rem 0 0; }
+
+/* ── option pills ────────────────────────────────────────── */
+.tj-ops { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0.4rem 0 1.2rem; }
+.tj-op {
+  font-family: var(--font-sans); font-size: 0.88rem; font-weight: 600; cursor: pointer;
+  background: var(--color-paper); border: 1px solid var(--color-line); border-radius: 6px;
+  padding: 0.5rem 0.85rem; color: var(--color-ink-soft); text-align: left;
+}
+.tj-op[aria-pressed='true'] { border-color: var(--tj-color, var(--color-terra)); color: var(--tj-color, var(--color-terra)); }
+.tj-op small { display: block; font-weight: 400; font-size: 0.78rem; color: var(--color-ink-mute); margin-top: 0.15rem; }
+
+/* ── round log ───────────────────────────────────────────── */
+.tj-log { list-style: none; padding: 0; margin: 0.8rem 0 0; font-size: 0.86rem; }
+.tj-log li { display: flex; gap: 0.8rem; padding: 0.35rem 0; border-bottom: 1px solid var(--color-line-soft); }
+.tj-log .n { font-family: var(--font-mono); color: var(--color-ink-mute); width: 2rem; flex: none; }
+.tj-log .txt { flex: 1; }
+.tj-log .pts { font-family: var(--font-mono); font-weight: 600; }
+
+@media (max-width: 560px) {
+  .tj-barra { grid-template-columns: minmax(3.5rem, 6rem) 1fr auto; gap: 0.5rem; font-size: 0.8rem; }
+  .tj-datos { gap: 1rem 1.4rem; }
+  .tj-datos dd { font-size: 1.1rem; }
+}

@@ -278,7 +278,7 @@ Resultat al build: **22 pàgines consolidades** (11 eines × 2 idiomes), 22 que 
 
 **El que queda obert i és decisió de Pau.** Les altres 11 eines tenen entre 2 i 5 bessons, així que no hi ha un destí únic i s'han deixat com estaven. El cas extrem és la calculadora de nòmina: **sis URL per a la mateixa eina** (`/herramientas/finanzas-personales/nomina/` i els recursos d'eco-4eso, taller-eco-3eso, gpe-bach, ipe1-fp i fopp-4eso), competint totes entre elles — eco-4eso a la posició 8,25 amb 260 impressions i taller-eco-3eso a la 13,8 amb 71. Consolidar-les vol dir triar qui ha de guanyar la consulta `calculadora de nómina`, i això és una decisió de producte, no de codi.
 
-**Una inconsistència menor coneguda:** les 22 URL consolidades continuen al `sitemap.xml`. Google segueix el `canonical` i les consolida igual, i filtrar-les exigiria duplicar la derivació dins d'`astro.config.mjs` (que no pot importar el `lib` de TypeScript). El senyal que compta ja és correcte; no compensa la fragilitat.
+**Una inconsistència menor coneguda** — ✅ **resolta al §5.9.** Les URL consolidades continuaven al `sitemap.xml`. Ací es va descartar filtrar-les perquè exigia duplicar la derivació dins d'`astro.config.mjs` (que no pot importar el `lib` de TypeScript). Eixe obstacle era real però evitable: no cal derivar res, n'hi ha prou amb llegir la `canonical` que la pàgina ja ha escrit al disc.
 
 ### 5.7 Sufix de marca sensible a la longitud — ✅ **fet**
 
@@ -307,6 +307,23 @@ Resultat: **de 839 a 1.678 entrades, del 50% al 100% de cobertura**, 0 duplicats
 **El que queda de veritat.** Els *hubs* CA posicionen bé (`/ca/eco-4eso/` a la 6,45 amb un 18,37% de CTR; `/ca/taller-eco-3eso/` a la 5,29 amb un 42,86%). Les unitats de llibre CA que van mal ho fan sobre termes generals en català (`autoconeixement` 68 impr pos 43,7; `emprenedoria` 62 impr pos 33,9), on la competència és de llocs catalans consolidats. Això és autoritat i temps, no un defecte tècnic.
 
 **Un candidat per a més avant:** els *slugs* de les URL `/ca/` són en castellà (`/ca/fopp-4eso/libro/01-autoconocimiento-identidad/` per a la consulta `autoconeixement`). Traduir-los és un canvi estructural amb redireccions i no s'ha tocat.
+
+### 5.9 El sitemap demanava pàgines que Google no indexarà mai — ✅ **fet**
+
+**El símptoma.** A Search Console, les pàgines no indexades passen d'unes 180 a **1.167** entre el 27 i el 28 d'agost, amb les indexades planes a 860. El gros del salt és **esperat i sa**: el §5.8 va entregar ~840 URL `/ca/` de colp i Google les descobrix totes alhora, però indexar-les va a un altre ritme. No es va desindexar res — el que va créixer és el denominador.
+
+**El defecte que sí que hi havia.** Un `sitemap.xml` és la llista de pàgines que li demanes a Google que indexe, així que una pàgina que apunta la seua `canonical` a una altra URL no hi pinta res: Search Console la fitxa com a *«Página alternativa con etiqueta canónica adecuada»* mentre se li continue entregant, i allí es queda. N'hi havia de dos tipus:
+
+- Les **23 fitxes de `/herramientas/`** consolidades pel §5.6, que apunten al seu bessó d'assignatura, i les seues **23 bessones `/ca/`**, que el mirall del §5.8 afegia darrere.
+- **5 pàgines `/ca/`** que canonicalitzen al castellà perquè el seu cos és castellà a propòsit (`/ca/olimpiada/banco/`, `/ca/olimpiada/lecturas/`, `/ca/olimpiada/simulacros/`, `/ca/jocs-economics/leaderboard/`, `/ca/edmn-2bach/ebau/examenes/`). El mirall replicava tota pàgina que existira al disc, i sota el *fallback rewrite* d'Astro una pàgina sense traduir també s'escriu a `/ca/`. Emparellar-les li donava a la `canonical` i a l'`hreflang` versions contràries dels fets.
+
+**Implementat així.** El *hook* d'`astro:build:done` llig ara la `canonical` i el `<meta name="robots">` del `<head>` que cada pàgina **ja ha escrit al disc**, i trau del sitemap tot el que no siga *self-canonical* o siga `noindex`. No es deriva res ni es manté cap llista: una pàgina que comence o deixe de canonicalitzar a una altra banda es corregix sola al build següent. La lògica de *parsing* viu a `isIndexableHtml()`, funció pura sobre la cadena HTML, per poder provar-la sense un build. **Falla cap al costat segur**: una pàgina que no es puga llegir compta com a indexable, o siga que una sorpresa ací no pot encongir el sitemap en silenci.
+
+Les pàgines no desapareixen del web ni deixen de navegar-se: només deixem de demanar-li a Google que indexe una URL que ell mateix ja consolida.
+
+**Resultat al build:** de **2.030 a 1.979 entrades** (51 fora: 23 + 23 + 5), **0 entrades no *self-canonical***, i les **1.979 alternates `hreflang` apunten totes** a una pàgina que existix, és *self-canonical* i està al sitemap. Cap pàgina `noindex` estava al sitemap (el filtre de la integració ja les para): eixa meitat de la comprovació és xarxa de seguretat per al que vinga.
+
+**El que això no arregla.** Les ~840 URL `/ca/` legítimes continuen a la cua d'indexació i açò no les accelera. Si a la revisió d'octubre continuen a *«Descubierta: actualmente sin indexar»*, el problema ja no serà tècnic sinó d'autoritat, i toca mirar el §5.8.
 
 ---
 

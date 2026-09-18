@@ -1,0 +1,739 @@
+---
+asignatura: eco-4eso
+unidad: 12
+title: 'El projecte emprenedor: model de negoci, prototip, finançament i pitch'
+lema: >-
+  Tindre una idea és el fàcil. Convertir-la en alguna cosa que algú vulga usar,
+  que se sostinga amb números i que es puga contar en un minut és el que
+  separa un projecte d'una ocurrència. Esta unitat tanca el curs recorrent
+  eixe camí sencer: del problema al model de negoci, de la maqueta a la
+  validació, del pressupost al pitch.
+lang: ca
+estado: publicado
+slug: "asignaturas/eco-4eso/libro/12-proyecto-emprendedor-modelo-negocio-prototipo-pitch.ca"
+duracion: 10 sessions · 4 setmanes
+bloque: Bloc II · Empresa i emprenedoria
+sabers:
+  - Design Thinking i model de negoci (Business Model Canvas)
+  - Prototipatge, producte mínim viable i validació amb persones reals
+  - Pressupost, preu, punt mort i grandària de mercat del projecte
+  - Fonts de finançament d'un projecte
+  - Màrqueting bàsic, elevator pitch, pitch deck i demo day
+conceptos_clave:
+  - design thinking
+  - proposta de valor
+  - business model canvas
+  - prototip
+  - producte mínim viable
+  - mètriques accionables
+  - pivotar
+  - punt mort
+  - crowdfunding
+  - préstec participatiu
+  - elevator pitch
+  - pitch deck
+objetivos:
+  - Aplicar les cinc fases del Design Thinking a un problema real de l'entorn i formular-lo com una pregunta «com podríem…?».
+  - Omplir un Business Model Canvas de nou blocs per a una idea de projecte, començant pel segment de clients i la proposta de valor.
+  - Construir un prototip de baixa fidelitat, validar-lo amb persones reals i distingir mètriques de vanitat de mètriques accionables.
+  - Elaborar el pressupost d'un projecte d'aula, fixar un preu, calcular-ne el punt mort i comparar dues fonts de finançament amb números.
+  - Preparar i defensar un elevator pitch i un pitch deck de deu diapositives davant d'un públic, i avaluar el d'altres equips amb una rúbrica.
+publicado_en: 2026-09-15
+---
+
+import Callout from '@components/Callout.astro';
+import Diagram from '@components/Diagram.astro';
+import DesignThinkingFases from '@components/diagrams/DesignThinkingFases.astro';
+import BusinessModelCanvas from '@components/diagrams/BusinessModelCanvas.astro';
+import EmbudoValidacion from '@components/diagrams/EmbudoValidacion.astro';
+import TamSamSom from '@components/diagrams/TamSamSom.astro';
+import CascadaFinanciacion from '@components/diagrams/CascadaFinanciacion.astro';
+import PitchDeck10Slides from '@components/diagrams/PitchDeck10Slides.astro';
+import Curiosity from '@components/Curiosity.astro';
+import RealExample from '@components/RealExample.astro';
+import SolvedExercise from '@components/SolvedExercise.astro';
+import Steps from '@components/Steps.astro';
+import KeyTakeaways from '@components/KeyTakeaways.astro';
+import Figure from '@components/Figure.astro';
+import Bibliography from '@components/Bibliography.astro';
+import TldrUnidad from '@components/TldrUnidad.astro';
+import CasoDilema from '@components/CasoDilema.astro';
+import VuelveAlCaso from '@components/VuelveAlCaso.astro';
+import MirarFora from '@components/MirarFora.astro';
+import VocesDesacuerdo from '@components/VocesDesacuerdo.astro';
+import RecursoDestacado from '@components/libro/RecursoDestacado.astro';
+import HerramientaIsland from '@components/calculadoras/HerramientaIsland.astro';
+
+import postitsBrainstorming from '@assets/libro/eco-4eso/09/postits-brainstorming.jpg';
+import bmcWorkshop from '@assets/libro/eco-4eso/09/bmc-workshop-nalerigu.jpg';
+import paperPrototype from '@assets/libro/eco-4eso/09/paper-prototype-wireframe.jpg';
+import demoDayPitch from '@assets/libro/eco-4eso/10/demo-day-pitch-startup.png';
+import fyfnBarcelona from '@assets/libro/eco-4eso/10/4yfn-mwc-barcelona-mentoring.jpg';
+
+> **Temps de lectura**: ~26 min · **Sabers**: Design Thinking i model de negoci, prototip i validació, pressupost i finançament, màrqueting i pitch · **Abans de començar**: Unitats 10 (l'empresa: tipus, formes jurídiques i organització) i 11 (emprendre: persona emprenedora, habilitats i idees).
+>
+> **En acabar esta unitat sabràs**:
+> - Passar d'un problema a una solució amb les cinc fases del Design Thinking i dibuixar el model de negoci en un llenç de nou blocs.
+> - Construir un prototip barat, provar-lo amb persones reals i llegir els resultats amb mètriques que servisquen per a decidir.
+> - Posar números al projecte (pressupost, preu, punt mort i grandària de mercat) i triar amb criteri com finançar-lo.
+> - Contar el projecte en un elevator pitch i en un pitch deck de deu diapositives, i defensar-lo en una demo day d'aula.
+
+<TldrUnidad>
+Una idea no val res fins que algú la usa. Esta unitat recorre el camí complet d'un projecte emprenedor a escala d'aula: entendre el problema i qui el patix, dibuixar el model de negoci en un full, construir una maqueta barata i provar-la amb persones reals, posar números (pressupost, preu, punt mort, finançament) i contar-ho en un minut davant de gent. És l'última unitat del curs i ajunta quasi tot l'anterior.
+</TldrUnidad>
+
+<CasoDilema
+  titular="Onze diapositives i 600.000 dòlars: el pitch amb què va arrancar Airbnb"
+  fuente="Pitch deck de la ronda llavor d'Airbnb i ronda liderada per Sequoia Capital · abril de 2009"
+  pregunta="Què tenien eixes onze diapositives que no té una idea contada de qualsevol manera, i què havien fet els fundadors abans d'ensenyar-les?"
+>
+A l'octubre de 2007, dos dissenyadors acabats d'instal·lar a San Francisco, **Brian Chesky** i **Joe Gebbia**, no arribaven al lloguer del pis que compartien. Eixa setmana la ciutat acollia el congrés anual de la societat estatunidenca de disseny industrial i no quedava una habitació d'hotel lliure. Van comprar tres matalafs inflables, van muntar una web d'una sola pàgina anomenada *AirBed & Breakfast* i van oferir llit i desdejuni per 80 dòlars. Van tindre tres hostes i van reunir al voltant de 1.000 dòlars: el just per al lloguer. No era una empresa. Era la prova, feta a mà i en un cap de setmana, que algú pagava per dormir a casa d'un desconegut.
+
+Any i mig després, amb un tercer soci, **Nathan Blecharczyk**, i el programa d'acceleració Y Combinator acabat de terminar, es van asseure davant d'inversors amb una presentació d'**onze diapositives** i una sola idea per pantalla: el problema, la solució, la primera validació, la grandària del mercat, el producte, com es guanyaven diners, com anaven a créixer, qui era la competència i què els feia distints. Ni una animació ni una promesa grandiloqüent. A l'**abril de 2009** van tancar una ronda llavor de **600.000 dòlars** liderada per Sequoia Capital. Aquell arxiu circula des de llavors per internet i és hui una de les presentacions més estudiades del món.
+</CasoDilema>
+
+Penseu en l'última vegada que algú de la vostra classe va dir «hauríem de muntar alguna cosa». Un compte d'Instagram que venga polseres, un torneig de futbol sala amb entrada, un servici per a portar apunts a qui falta a classe. Quasi sempre la conversa mor ahí, perquè ningú no sap què es fa **després** de la idea. Esta unitat ensenya exactament això.
+
+A la Unitat 11 vam vore qui emprén i d'on ixen les idees: el diari de molèsties, el mapa d'empatia, la sessió de SCAMPER. A la Unitat 10 vam obrir l'empresa per dins: costos, formes jurídiques, equips. Ací ajuntem les dues coses i seguim el camí d'un projecte des del problema fins al dia en què es conta en públic, amb les ferramentes que usen les empreses reals però a escala d'institut: un llenç d'un full, un prototip de cartó, un pressupost d'una pàgina i un pitch d'un minut.
+
+Per a no parlar en abstracte, us acompanyarà un projecte d'aula **inventat però versemblant**: **Trazo**, bosses de tela il·lustrades per alumnat d'Arts que un equip de quatre persones de 4t d'ESO vol vendre al mercadet de fi de curs. Els seus números són senzills a propòsit; els vostres poden ser uns altres.
+
+## Del problema a la solució: Design Thinking
+
+El **Design Thinking** («pensament de disseny») és una manera de resoldre problemes que posa la persona al centre. La van formalitzar l'escola de disseny de la Universitat de Stanford (la *d.school*) i la consultora IDEO als anys 2000, i hui s'usa en hospitals, ajuntaments i empreses de qualsevol grandària. La seua idea de fons és senzilla i va contra l'instint: **abans de pensar en la solució, cal entendre molt bé el problema i qui el patix**. El Design Council britànic ho resumix des de 2005 en un dibuix, el **doble diamant**: dues vegades obrir (explorar molts problemes, després moltes solucions) i dues vegades tancar (triar un problema, després una solució).
+
+<Diagram caption="Les cinc fases del Design Thinking. S'aprenen en este ordre, però en la pràctica es torna arrere constantment: en testar es descobrixen coses que obliguen a redefinir el problema, i el cicle es repetix fins a encertar.">
+  <DesignThinkingFases />
+</Diagram>
+
+### Les cinc fases, aplicades a Trazo
+
+**Empatitzar** és eixir a parlar amb les persones a qui voleu servir. L'equip de Trazo va començar amb una altra idea, samarretes amb l'escut de l'institut, i abans d'encarregar res va fer deu entrevistes curtes al pati. Va descobrir que quasi ningú volia una altra samarreta amb l'escut, però que moltes persones deien el mateix amb paraules distintes: «alguna cosa útil», «que es puga regalar», «que es note que ho ha fet gent d'ací». Les entrevistes no van confirmar la idea: la van canviar.
+
+**Definir** és reformular el problema en una sola frase amb el format *«Com podríem…?»*: concreta, centrada en una persona i sense la solució dins. Bé: «Com podríem oferir a l'alumnat i a les famílies de l'institut un objecte útil i regalable que porte el treball dels nostres companys d'Arts?». Malament: «Com fem samarretes?», perquè dona per feta la resposta abans de conéixer la pregunta.
+
+**Idear** és generar moltes solucions sense filtrar-les encara, amb les regles del brainstorming que vam vore a la Unitat 11: quantitat abans que qualitat, cap crítica durant la sessió, construir sobre les idees dels altres. Trazo va traure trenta idees en quinze minuts (quaderns, adhesius, fundes de portàtil, tasses, bosses de tela, làmines) i després les va garbellar amb dos criteris: quant valor tenen per a la persona entrevistada i si l'equip pot fabricar-les amb el temps i els diners que té. Va guanyar la bossa de tela.
+
+<Figure
+  src={postitsBrainstorming}
+  alt="Paret coberta de post-its de colors agrupats en columnes després d'una sessió de brainstorming col·lectiu."
+  caption="Una idea per post-it. La paret és el lloc on l'equip agrupa, descarta i tria: primer s'obri el ventall sense jutjar i només després es tanca amb dos criteris, valor per a la persona i viabilitat."
+  credit="Foto: Victor Costa de Paula, CC BY-SA 4.0 vía Wikimedia Commons"
+  aspectHint="3/2"
+  variant="wide"
+/>
+
+**Prototipar** és construir una versió ràpida i barata de la idea per a poder ensenyar-la. Trazo va pintar a mà una sola bossa amb una il·lustració d'una companya i va preparar un cartell amb el preu. Hores de treball, no setmanes. I **testar** és posar eixe prototip davant de persones del segment i observar què fan, no què diuen que farien. Quinze persones van vore la bossa: dotze van preguntar si hi havia més dissenys, tres van dir que 15 € era massa i una va demanar comprar-la en eixe moment. Cada reacció és informació gratis.
+
+### Empatitzar amb entrevistes: la regla del passat
+
+Les entrevistes fallen quasi sempre per la mateixa raó: preguntem pel futur. «Compraries una bossa il·lustrada?» obté un «sí» amable que no val res, perquè dir que sí és gratis. El consultor Rob Fitzpatrick ho va resumir a *The Mom Test* (2013) amb una regla útil: **pregunta per fets del passat, no per opinions sobre el futur**. «Quan va ser l'última vegada que vas comprar alguna cosa feta per algú de l'institut? Què era? Quant vas pagar?». Cinc o deu entrevistes així, amb preguntes obertes i sense defensar la vostra idea, ensenyen més que una enquesta a cent persones amb caselles.
+
+## El model de negoci en una pàgina: el Business Model Canvas
+
+Un **model de negoci** és l'explicació de com un projecte crea valor per a algú, l'hi fa arribar i aconseguix a canvi ingressos suficients per a sostindre's. El suís **Alexander Osterwalder** el va convertir en una plantilla d'un sol full amb nou requadres, el **Business Model Canvas** (BMC), al llibre *Business Model Generation* (2010, amb Yves Pigneur). La gràcia és la síntesi: en compte d'un document de cinquanta pàgines, tot el model cap en un A3, i vore els nou blocs junts fa que les incoherències salten a la vista.
+
+<Diagram caption="Els nou blocs del Business Model Canvas, agrupats en tres zones: el que l'empresa fa (esquerra), el que oferix (centre) i el que el client experimenta (dreta). Baix, l'estructura de costos i les fonts d'ingressos que resulten de tot l'anterior.">
+  <BusinessModelCanvas />
+</Diagram>
+
+### Els nou blocs, amb Trazo i amb un cas real
+
+Per a vore els blocs en acció els omplim dues vegades: amb Trazo i amb **Hawkers**, la marca d'ulleres de sol nascuda a Elx el 2013. Els seus quatre fundadors van començar revenent 27 ulleres de la marca californiana Knockaround comprades amb 300 €, i tres anys després, venent només per internet a 20-40 € el parell, l'empresa havia col·locat 1,6 milions d'ulleres en més de cinquanta països i anunciava que esperava tancar 2016 al voltant de 70 milions d'euros de facturació (*elEconomista*, abril de 2016). El seu canvas, tal com es pot reconstruir a partir del que la mateixa empresa ha contat, és un exemple net de model pensat des del canal.
+
+| Bloc (la pregunta) | Trazo (aula) | Hawkers (real) |
+|---|---|---|
+| **Segments de clients** · Per a qui? | Alumnat i famílies de l'institut | Jóvens de 18 a 30 anys que no pagarien 150 € per unes ulleres |
+| **Proposta de valor** · Què oferim i per què ens triarien? | Bossa útil i barata amb una il·lustració exclusiva feta per gent d'ací | Ulleres de disseny a preu de capritx, no d'inversió |
+| **Canals** · Com els arribem? | Mercadet de fi de curs, Instagram, botiga de l'AMPA | Només en línia: web pròpia i anuncis en xarxes socials |
+| **Relació amb clients** · Quin tracte? | Pròxim: qui il·lustra ven i signa | Comunitat i «ambaixadors» universitaris que recomanen la marca |
+| **Fonts d'ingressos** · Qui paga i quant? | 12 € per bossa | Venda directa, moltes unitats amb poc marge cada una |
+| **Recursos clau** · Què necessitem tindre? | Il·lustracions, planxa de transfer, temps de l'equip | Marca, dades de clients i equip de màrqueting digital |
+| **Activitats clau** · Què fem cada dia? | Dissenyar, estampar, publicar, vendre | Dissenyar col·leccions i comprar publicitat |
+| **Socis clau** · Qui ens ajuda? | Departament d'Arts, AMPA, taller de tecnologia | Fabricants externs i empreses de logística |
+| **Estructura de costos** · En què gastem? | Bosses en blanc, vinil, parada del mercadet | Publicitat (la partida major), producte i enviaments |
+
+Els dos blocs que importen de veritat són els de la dreta: **segment** i **proposta de valor**. Si no estan clars, els altres set s'omplin de paraules buides. Per això el canvas s'ompli de dreta a esquerra, començant per la persona.
+
+<Callout label="Concepte clau" title="Proposta de valor">
+
+La **proposta de valor** és la raó per la qual algú triaria el vostre projecte en compte del que ja usa hui. No és el producte (una bossa) sinó el que la persona aconseguix amb ell (un regal amb significat pel que costa un menú). Una bona proposta de valor cap en una frase amb esta forma: *«Ajudem [segment] a [aconseguir alguna cosa] sense [l'obstacle habitual], a diferència de [l'alternativa actual]»*. Trazo: «Ajudem les famílies de l'institut a fer un regal útil i amb història per 12 €, a diferència de les bosses anònimes de les botigues».
+
+</Callout>
+
+<Curiosity title="Un llibre escrit per 470 persones de 45 països">
+El Business Model Canvas va nàixer com a tesi doctoral d'Osterwalder a la Universitat de Lausana (2004), però el llibre que el va fer famós es va escriure d'una manera poc habitual: els autors van obrir una plataforma en què **470 professionals de 45 països** van pagar per participar, van comentar cada capítol i apareixen com a coautors a les primeres pàgines. El mateix llibre es va validar amb la seua comunitat abans d'imprimir-se, que és exactament el que la ferramenta recomana fer amb qualsevol projecte. Hui la plantilla es descarrega gratis amb llicència Creative Commons des de la web de la seua empresa, Strategyzer.
+</Curiosity>
+
+<Figure
+  src={bmcWorkshop}
+  alt="Sessió formativa en què una persona explica el Business Model Canvas a un grup assegut al voltant d'una taula amb la plantilla impresa en gran."
+  caption="Taller de Business Model Canvas a Nalerigu (Ghana). La plantilla en gran format i els post-its són la manera estàndard d'omplir-lo en grup: cada bloc es discutix en veu alta abans de fixar-lo, i qualsevol post-it es pot moure o llevar sense refer el full."
+  credit="Foto: Christian Yakubu, CC BY-SA 4.0 vía Wikimedia Commons"
+  aspectHint="3/2"
+/>
+
+### Com s'ompli a l'aula
+
+Un full A3 o un paper continu a la paret, els nou requadres dibuixats amb retolador i **post-its de colors, una idea per post-it**. Comenceu pel segment i la proposta de valor; la resta deriva d'ahí. Guardeu una foto del primer canvas: al final de la unitat el compararàs amb l'últim, i la diferència entre els dos és la millor prova que heu parlat amb persones reals. Si no ha canviat res en quatre setmanes, no heu eixit de l'aula.
+
+<HerramientaIsland componente="CanvasBM" />
+
+## Prototipar i validar
+
+Un **prototip** és una maqueta incompleta, barata i ràpida del que voleu construir. No servix per a vendre: servix perquè algú reaccione davant d'ella i us ensenye el que no sabíeu. N'hi ha de diversos tipus, i cada un respon a una pregunta distinta.
+
+| Tipus de prototip | Què és | Quina pregunta respon | Cost |
+|---|---|---|---|
+| **De paper** | Dibuixos, pantalles retallades, un cartell | S'entén la idea? | Minuts |
+| **Maqueta** | Cartó, plastilina, una bossa pintada a mà | Agrada l'objecte? Es fa servir bé? | Hores |
+| **Landing** | Una pàgina web d'una sola pantalla amb un botó «avisa'm quan isca» | Quanta gent deixa el seu contacte? | Una vesprada i 0 € |
+| **Concierge** | Fer el servici a mà per als primers clients, sense tecnologia | Pagarien per això de veritat? | El vostre temps |
+
+El prototip *concierge* («conserge») mereix explicació perquè és el més potent i el menys usat: en compte de programar l'app o muntar la botiga, feu el servici amb les vostres mans per a cinc persones. Si la idea és «apunts a domicili per a qui falta a classe», el prototip concierge és portar-los vosaltres mateixos una setmana i vore si algú paga.
+
+<Callout label="Concepte clau" title="Producte mínim viable (MVP)">
+
+Un **producte mínim viable** (*minimum viable product*) és la versió més simple d'un producte que ja servix per a posar a prova la hipòtesi més arriscada del projecte. A diferència del prototip, l'MVP **està al mercat**: algú l'usa o el compra de veritat, encara que només tinga una funció. No és un producte a mitges ni un producte roín; és la prova més barata que respon a la pregunta «el voldria algú?». Per a Trazo, l'MVP són deu bosses estampades a mà i posades a la venda un divendres al pati.
+
+</Callout>
+
+<Figure
+  src={paperPrototype}
+  alt="Prototip de paper amb les pantalles d'una aplicació web dibuixades a mà, retallades i disposades damunt d'una taula de fusta."
+  caption="Prototip de paper del sistema de cursos de Wiki Education (2015): cada full retallat és una pantalla i en moure-les se simula la navegació. Si algú no entén la idea amb estos dibuixos, tampoc l'entendrà amb l'app acabada, i descobrir-ho ací costa una vesprada."
+  credit="Foto: Sage Ross (Ragesoss), CC BY-SA 4.0 vía Wikimedia Commons"
+  aspectHint="3/2"
+  variant="right"
+/>
+
+<RealExample title="Dos MVP clàssics: Zappos va fotografiar sabates d'altres i Dropbox va gravar un vídeo" source="Ries, E. (2011), The Lean Startup; charla de Drew Houston en Startup Lessons Learned (2010)" sourceUrl="https://theleanstartup.com">
+El 1999, **Nick Swinmurn** volia saber si la gent compraria sabates per internet sense provar-se-les. En compte de construir un magatzem, va anar a les sabateries del seu barri a Califòrnia, va fotografiar els models i els va publicar en una web senzilla. Quan algú demanava un parell, anava a la botiga, el comprava a preu de venda i l'enviava. Perdia diners en cada comanda, però cada comanda responia a l'única pregunta que importava. Eixa web es va convertir en **Zappos**, que Amazon va comprar el 2009 per uns 1.200 milions de dòlars en accions. El 2007, **Drew Houston** tenia quasi llesta una aplicació per a sincronitzar carpetes entre ordinadors, **Dropbox**, i un dubte: la instal·laria algú? Va gravar un vídeo de tres minuts mostrant com funcionava i el va publicar en un fòrum de programadors. En una nit, la llista d'espera va passar de 5.000 a 75.000 persones. Cap dels dos MVP servia per a escalar; els dos van servir per a decidir.
+</RealExample>
+
+### Validar amb números: l'embut
+
+Quan el prototip ix al món comencen a aparéixer xifres, i no totes valen el mateix. Eric Ries distingix a *The Lean Startup* (2011) les **mètriques de vanitat**, que queden bé en una diapositiva però no informen cap decisió (seguidors, reproduccions, visites), de les **mètriques accionables**, que canvien segons el que fa l'equip i permeten corregir el rumb (persones que escriuen preguntant, vendes per cada cent visites, clients que repetixen). La manera més útil d'organitzar-les és un **embut**: els passos que fa una persona des que us descobrix fins que compra, i quantes es queden pel camí en cada un.
+
+Un exemple amb xifres d'un projecte d'aula: en un mes, **1.200 persones** veuen la publicació, **180** entren al perfil, **51** escriuen preguntant i **12** compren. De vore a entrar passa el 15 %; d'entrar a preguntar, el 28,3 %; de preguntar a comprar, el 23,5 %. La conversió total és de l'1 %, i no per casualitat: les conversions es multipliquen (0,15 × 0,283 × 0,235 ≈ 0,01). El pas més dèbil és el primer, i ahí es perden 1.020 persones, més que en els altres dos junts. Amb 60 € gastats en promoció, cada venda ha costat 5 €; amb 18 € de marge per venda, el mes tanca amb 216 − 60 = **+156 €**.
+
+<Diagram caption="L'embut de validació d'eixe projecte: 1.200 persones veuen la publicació i 12 compren. La temptació és tocar el preu, que està baix, però el pas més dèbil és el primer. I el número de dalt, les visualitzacions, és el que puja més fàcil i el que menys decidix.">
+  <EmbudoValidacion />
+</Diagram>
+
+La lliçó pràctica: **arreglar el pitjor pas mou l'embut sencer**; millorar-ne un que ja funciona a penes es nota. Pujar el primer pas del 15 % al 20 % donaria 16 vendes sense tocar res més. Aconseguir el doble de visualitzacions sense arreglar eixe 15 % només fa l'embut més ample per dalt i igual d'estret per baix.
+
+<RecursoDestacado href="/eco-4eso/recursos/embudo-validacion/" kicker="Ferramenta" title="Embut de validació" descripcion="Introduïx quantes persones veuen, entren, pregunten i compren, i la ferramenta calcula la conversió de cada pas, assenyala el més dèbil i simula què passa si el millores." colorVar="--color-eco4" />
+
+### Pivotar no és fracassar
+
+Amb les dades davant hi ha dues eixides. Si confirmen la hipòtesi, es **persevera** i es passa a validar la següent. Si la desmenten amb claredat, es **pivota**: es canvia alguna cosa gran del projecte (el segment, la proposta de valor, el canal o la manera de cobrar) conservant el que sí que ha funcionat. Un xicotet ajust (baixar el preu de 15 a 12 €, canviar el text de la publicació) no és un pivot, és una **iteració**. Trazo ho va viure a xicoteta escala: si en el test del pati ningú haguera volgut bosses però tothom haguera preguntat per les il·lustracions soltes, el pivot hauria sigut vendre làmines. Es manté el que està validat (les il·lustracions agraden) i es descarta el que no (el suport).
+
+## Els números del projecte
+
+Fins ací tot s'ha fet quasi sense diners. Per a fer el pas següent, fabricar una tirada i posar-la a la venda, fan falta quatre números: quant costa arrancar, a quin preu es ven, quantes unitats cobrixen els costos i quanta gent podria comprar.
+
+### El pressupost d'un projecte d'aula
+
+Un pressupost de projecte separa el que vam vore a la Unitat 10: **costos fixos**, que es paguen encara que no es venga res, i **costos variables**, que creixen amb cada unitat. Trazo, per al trimestre:
+
+| Costos fixos | € | Cost variable per bossa | € |
+|---|---|---|---|
+| Lloguer de planxa tèrmica de transfer (dues setmanes) | 90 | Bossa de cotó en blanc (compra de 50) | 3,00 |
+| Impressió de proves i llicència de disseny | 30 | Vinil o paper transfer | 1,50 |
+| Parada al mercadet de fi de curs | 40 | Etiqueta i embalatge | 0,50 |
+| Cartelleria i mostres | 50 | | |
+| Botiga en línia senzilla (tres mesos) | 30 | | |
+| **Total fixos** | **240** | **Total per bossa** | **5,00** |
+
+### Fixar el preu
+
+Hi ha tres maneres de mirar el preu i convé usar-les totes tres. **Cost més marge**: la bossa costa 5 € en materials, així que qualsevol preu per damunt deixa alguna cosa per a pagar els fixos; amb 12 €, cada bossa aporta 7 €. **Preu de la competència**: les bosses de tela amb disseny de les botigues de la ciutat costen entre 10 i 15 €, i una bossa promocional amb logo es regala; Trazo no es pot posar a 25 € ni a 4 €. **Valor percebut**: la il·lustració exclusiva i la història («l'ha feta una companya de 4t B») permeten cobrar una mica més que una bossa anònima. L'equip va fixar 12 €, i el test del pati (tres persones van dir que 15 € era massa, cap no es va queixar de 12) ho va confirmar.
+
+<SolvedExercise number="12.1" title="Quantes bosses cal vendre per a no perdre diners?">
+
+**Enunciat**
+
+Trazo té 240 € de costos fixos per al trimestre. Cada bossa costa 5 € de materials i es ven a 12 €. a) Quantes bosses cal vendre per a cobrir els costos fixos (punt mort)? b) I si l'equip vol tancar el trimestre amb 300 € de benefici per al viatge de fi de curs? c) Què passaria amb el punt mort si baixaren el preu a 10 €?
+
+**Solució**
+
+1. **Marge per unitat.** Cada bossa venuda ingressa 12 € i costa 5 € de materials, així que aporta 12 − 5 = **7 €** per a pagar els costos fixos. A eixos 7 € se'ls diu *marge de contribució*.
+2. **Punt mort.** Cal reunir 240 € a 7 € per bossa: 240 / 7 = 34,3. Com que no es venen mitges bosses, el punt mort és de **35 bosses**.
+3. **Comprovació.** Amb 35 bosses: ingressos 35 × 12 = 420 €; costos 240 + 35 × 5 = 415 €. Benefici: 5 €. A partir de la bossa 36, cada una deixa 7 € nets.
+4. **Amb 300 € de benefici.** Ara cal cobrir 240 + 300 = 540 €: 540 / 7 = 77,1, és a dir, **78 bosses**. Més del doble que el punt mort, i amb un sol mercadet és difícil; l'equip necessita vendre també per Instagram i a la botiga de l'AMPA.
+5. **Amb preu de 10 €.** El marge baixa a 5 € i el punt mort puja a 240 / 5 = **48 bosses**. Baixar el preu un 17 % obliga a vendre un 37 % més només per a no perdre. Per això el preu es decidix amb el test, no amb la intuïció.
+
+</SolvedExercise>
+
+<HerramientaIsland componente="PuntoMuerto" />
+
+<RecursoDestacado href="/proyectos/tecnologia/02-disena-prototipa-pon-precio/" kicker="Projecte" title="Dissenya, prototipa i posa preu" descripcion="Guia pas a pas per a construir un prototip físic al taller, calcular-ne el cost real i fixar un preu amb cost més marge i comparació amb la competència." colorVar="--color-eco4" />
+
+### Quanta gent podria comprar? TAM, SAM i SOM
+
+El punt mort diu quantes unitats fan falta; la **grandària de mercat** diu si eixes unitats existixen. Les empreses la mesuren en tres cercles que van del teòric al realista. El **TAM** (*total addressable market*) és tothom que podria comprar el producte: per a Trazo, diguem els 4.800 estudiants de secundària dels sis instituts de la ciutat i les seues famílies. El **SAM** (*serviceable available market*) és la part del TAM a què de veritat arriben els vostres canals: l'equip només ven al seu institut, així que són els seus 900 estudiants i famílies. El **SOM** (*serviceable obtainable market*) és la quota realista que podeu captar amb els vostres recursos i la vostra competència en un termini concret: si en un trimestre compra el 8-10 % del SAM, són **70-90 bosses**. Compareu-ho amb l'exercici anterior: per damunt del punt mort (35), prop de l'objectiu de 300 € (78). El projecte és viable, però sense marge per a adormir-se.
+
+<Diagram caption="TAM, SAM i SOM: tres cercles, cada un dins de l'anterior. El TAM és el sostre teòric, el SAM el que els vostres canals abasten i el SOM el que podeu captar de veritat. El número que es compara amb el punt mort és el SOM.">
+  <TamSamSom />
+</Diagram>
+
+<RecursoDestacado href="/eco-4eso/recursos/tamano-mercado/" kicker="Ferramenta" title="Grandària de mercat" descripcion="Estima el TAM, el SAM i el SOM del teu projecte a partir de la població, l'abast dels teus canals i la quota que creus poder captar, i compara el resultat amb el teu punt mort." colorVar="--color-eco4" />
+
+### D'on ixen els diners: les fonts de finançament
+
+Trazo necessita uns 500 € per a arrancar (240 € de fixos i 250 € per a les primeres 50 bosses). Quasi cap projecte té tots els diners que necessita el primer dia, i a Espanya hi ha sis fonts principals a les quals acudir, cada una amb el seu preu i el seu risc.
+
+**Estalvi propi.** És la font més barata (sense interessos ni devolucions) i la que conserva tot el control. Quatre persones amb 60 € cada una reunixen 240 €. La limitació és òbvia: als 16 anys l'estalvi és menut, i convé no arriscar mai el que no es pot perdre.
+
+**Família i amics.** En anglés, *friends, family and fools*. Són diners ràpids, flexibles i sovint sense interessos, però posen en joc una relació. Regla pràctica: encara que siga un favor, **poseu-ho per escrit** (import, termini, què passa si el projecte no ven). Convertir el favor en acord protegix les dues parts.
+
+**Banc i microcrèdits.** El banc presta a canvi d'interessos i comissions (el cost real es mesura amb la TAE, que vam vore a la Unitat 8) i sol demanar garanties. Per a imports menuts existixen els **microcrèdits**, préstecs de fins a uns 25.000 € amb menys requisits, que a Espanya concedixen entitats com MicroBank o línies amb suport de l'Instituto de Crédito Oficial (ICO). Hi ha una condició prèvia que a la vostra edat pesa més que l'interés: per a firmar un préstec cal ser major d'edat, així que un equip de 4t d'ESO necessita que una persona adulta el demane en nom seu.
+
+**Crowdfunding.** Moltes persones aporten quantitats menudes a través d'una plataforma. En la modalitat de **recompensa**, la més útil per a un projecte com Trazo, qui aporta rep el producte quan es fabrica: és una **prevenda**. **Verkami** cobra una comissió del 5 % (més IVA) només si la campanya assolix l'objectiu, i funciona amb la regla del **tot o res**: si no s'hi arriba, es tornen els diners a tothom. **Kickstarter**, fundada a Nova York el 2009, és la referència mundial: més de 8.000 milions de dòlars compromesos i més de 250.000 projectes finançats amb èxit (estadístiques públiques de Kickstarter, 2024). Existixen també el crowdfunding de **donació** (sense contrapartida, per a causes socials), el de **préstec** i el d'**inversió** (qui aporta rep participacions), però a escala d'aula la recompensa és la que encaixa.
+
+<RealExample title="Verkami: una plataforma nascuda a Mataró que ha passat del milió de mecenes" source="Verkami, blog corporativo (2020): «Verkami: ¡10 años y más de 1.000.000 de mecenas después!»" sourceUrl="https://www.verkami.com">
+El 2010, els germans **Joan, Adrià i Jonàs Sala** van muntar a **Mataró (Barcelona)** una plataforma per a finançar projectes culturals menuts. Una campanya allí dura com a màxim **40 dies** i es conta en una pàgina amb tres coses: un vídeo curt, la quantitat que es demana i una llista de recompenses per trams (5 € l'agraïment, 25 € el llibre firmat, 60 € el llibre més una làmina, 200 € aparéixer als crèdits). En complir deu anys, el 2020, la plataforma va anunciar que havia superat el **milió de mecenes**.
+
+El que és interessant per a vosaltres és què funciona allí. No són les idees més originals: són els **jocs de taula i els còmics**, categories amb comunitats menudes però molt fidels que fa temps que esperen una edició concreta. Les campanyes que fracassen solen tindre el mateix perfil: algú amb un bon projecte i sense ningú darrere que arriba a la plataforma el dia que la llança. L'ordre que ensenyen estes campanyes és el mateix de tota la unitat, només que amb diners pel mig: **primer la comunitat, després el producte**.
+</RealExample>
+
+<Curiosity title="Pebble va demanar 100.000 dòlars a Kickstarter i en va aconseguir deu milions">
+A l'abril de 2012, una xicoteta empresa de Califòrnia anomenada Pebble va portar a Kickstarter un rellotge intel·ligent que cap inversor no havia volgut finançar. L'objectiu eren 100.000 dòlars. En dues hores ja l'havien superat, i en tancar la campanya, 37 dies després, **68.929 persones** havien aportat **10.266.845 dòlars**, la campanya més gran de la plataforma fins llavors. Cada aportació era una prevenda del rellotge: abans de fabricar la primera unitat, Pebble sabia quantes n'havia de fabricar i tenia els diners per a fer-ho. La mateixa lògica de les campanyes de Verkami, a una altra escala.
+</Curiosity>
+
+**Ajudes públiques.** No hi ha ajudes per a projectes de 4t d'ESO, però convé saber el que existirà quan tingueu 18 anys. **ENISA**, l'empresa pública d'innovació, té una línia de *Jóvenes Emprendedores* per a menors de 40 anys amb préstecs participatius de 25.000 a 75.000 € sense avals personals. La **quota reduïda d'autònoms** permet pagar 80 € al mes de Seguretat Social durant el primer any (RDL 13/2022; vigent el 2025), enfront dels més de 200 € d'una quota normal. I cada comunitat autònoma té les seues pròpies línies d'ajuda a la primera ocupació i a l'autoocupació juvenil. Totes tenen alguna cosa en comú: paperassa abundant i terminis llargs.
+
+**Business angels.** Inversors particulars amb experiència que hi posen diners propis (entre 25.000 i 250.000 € és l'habitual) a canvi d'un percentatge de l'empresa, i que aporten a més contactes i consell. Només entren en projectes que es puguen multiplicar per deu; no financen una papereria de barri ni un mercadet d'institut. A Espanya s'agrupen en la xarxa AEBAN.
+
+<Diagram caption="L'escala de finançament d'una startup, del bootstrapping amb estalvis i família (menys de 50.000 €) als business angels, el capital llavor, les rondes de capital risc i l'eixida a borsa o venda. Un projecte d'aula viu al primer graó, i la immensa majoria de les empreses espanyoles no puja mai al segon: no el necessiten.">
+  <CascadaFinanciacion />
+</Diagram>
+
+<SolvedExercise number="12.2" title="1.500 € per a una tirada gran: préstec o crowdfunding">
+
+**Enunciat**
+
+Trazo ha venut les primeres 40 bosses i vol fabricar una tirada de 200 per al curs següent. Necessita **1.500 €**. Dues opcions: **A)** la mare d'una integrant demana un préstec personal de 1.500 € al 8 % TIN a 12 mesos, amb una comissió d'obertura de l'1 %. **B)** Campanya a Verkami amb objectiu de 1.500 € i una recompensa de 25 € (bossa més làmina firmada), és a dir, 60 mecenes; la plataforma cobra un 5 % més IVA (al voltant del 6 %) i la passarel·la de pagament un 1,5 %; cada recompensa costa 5 € de produir i s'entrega en mà a l'institut. Què costa cada opció i quins riscos té?
+
+**Solució**
+
+1. **Opció A, cost.** El banc calcula els interessos cada mes sobre el que queda per tornar, així que no es paguen 120 € (el 8 % de 1.500) sinó menys: la quota és d'uns **130,50 € al mes** i en total es tornen **1.566 €**, uns 66 € d'interessos. Sumant 15 € de comissió d'obertura, el préstec costa **81 €** (una TAE pròxima al 10 %).
+2. **Opció A, risc.** Els 1.500 € arriben ja, sense dependre de ningú més. Però la quota es paga **venga Trazo o no venga**, durant dotze mesos, i la firma una persona adulta que respon amb el seu patrimoni. Si les 200 bosses es queden en una caixa, el deute continua ahí.
+3. **Opció B, cost.** Comissió de la plataforma: 6 % de 1.500 = 91 €. Passarel·la de pagament: 1,5 % de 1.500 ≈ 22 €. Produir les 60 recompenses: 60 × 5 = 300 €. Diners nets disponibles per a la tirada: 1.500 − 91 − 22 − 300 = **1.087 €**. Menys que en l'opció A, però **no cal tornar res**.
+4. **Opció B, el que compra a més dels diners.** Seixanta persones han pagat 25 € per una bossa que no existix: la campanya ha **validat la demanda** abans de fabricar i ha deixat 60 clients amb nom. Eixes 60 recompenses són vendes que compten per al punt mort.
+5. **Opció B, risc.** És tot o res: si la campanya es queda en 1.200 €, es tornen els diners i no hi ha tirada. I moure 60 persones exigix setmanes de comunicació (vídeo, publicacions, missatges un a un) que l'opció A no demana.
+6. **Lectura.** Per a Trazo encaixa la campanya: no endeuta ningú, prova el mercat i crea comunitat, i l'equip té a qui demanar-ho (famílies, professorat, antic alumnat). El préstec té sentit quan no es pot prevendre (un servici, una botiga) o quan calen els diners en una setmana.
+
+</SolvedExercise>
+
+## Contar el projecte: màrqueting bàsic i pitch
+
+Un bon projecte que ningú no coneix és un projecte que no existix. El que seguix és la part de la unitat que més usareu en la vida, emprengueu o no: com es conta alguna cosa perquè l'altra persona ho entenga, li importe i faça alguna cosa.
+
+### Les quatre P, versió institut
+
+El màrqueting clàssic ordena les decisions de comunicació i venda en quatre paraules que en anglés comencen per P. **Producte**: què és i què el fa distint; en Trazo, el que és distint no és la bossa sinó la il·lustració exclusiva i el nom. **Preu**: ho hem vist, cost més marge mirant la competència i el valor percebut; un detall que funciona és el preu psicològic (11,90 € es llig com «onze i pico»). **Punt de venda** (distribució): on es compra; el mercadet, Instagram amb pagament per Bizum, la botiga de l'AMPA. **Promoció**: com se n'assabenta la gent; cartells als passadissos, el boca a boca de l'alumnat d'Arts i, sobretot, xarxes socials.
+
+Sobre les xarxes, dos consells provats a classe. Primer, **ensenyeu el procés**, no només el producte: el vídeo de la planxa estampant la bossa interessa més que la foto de la bossa acabada. Segon, **useu-les per a validar**: publicar dues il·lustracions i demanar a la gent que vote quina s'estampa és promoció i test alhora. I recordeu l'embut: mil seguidors són vanitat; les vint persones que escriuen preguntant el preu són les que importen.
+
+### L'elevator pitch: 30 i 60 segons
+
+L'**elevator pitch** («discurs d'ascensor») és l'explicació del projecte en el temps que dura un trajecte en ascensor. Servix perquè algú que no us coneix diga «conta'm més». La versió de 60 segons té cinc peces: **problema** (què fa mal i a qui), **solució** (què feu), **per a qui** (el segment), **com** (què el fa distint o com funciona) i **què demaneu** (que us compre, que us presente algú, que vote per vosaltres). La de 30 segons lleva el «com» i deixa problema, solució i petició.
+
+Trazo en 60 segons: «Cada juny, les famílies de l'institut busquen un regal per al professorat o per als seus fills i acaben comprant alguna cosa anònima en una botiga de la ciutat. Trazo són bosses de tela amb il·lustracions fetes per alumnat d'Arts d'este mateix institut: cada bossa porta una obra original i el nom de qui l'ha dibuixada. Costen 12 €, s'estampen al taller de tecnologia i es venen al mercadet, a Instagram i a la botiga de l'AMPA. N'hem venudes 40 en tres setmanes i el 60 % dels qui compren pregunten per més dissenys. Volem fer una tirada de 200 per al curs que ve: us demanem que en compreu una i que seguiu el compte per a votar la pròxima il·lustració». Sense xifres de més, sense promeses. I una prova: si el vostre pitch val igual canviant el nom del projecte, és genèric i s'oblida.
+
+### El pitch deck: deu diapositives
+
+Per a un jurat, un concurs o una demo day, el format estàndard és el **pitch deck**, una presentació curta. Guy Kawasaki, antic directiu d'Apple, va fixar el 2005 la **regla 10/20/30**: deu diapositives, vint minuts com a màxim i lletra de trenta punts com a mínim, perquè no càpia més d'una idea per pantalla. A l'aula, cinc minuts basten.
+
+<Diagram caption="Les deu diapositives del pitch deck segons Kawasaki: problema, solució, model de negoci, producte, màrqueting i vendes, competència, equip, projeccions, estat actual i crida a l'acció. L'ordre no és rígid, però els deu blocs han d'aparéixer.">
+  <PitchDeck10Slides />
+</Diagram>
+
+Quasi tot el que demanen eixes deu diapositives ja ho teniu: el problema i la persona (entrevistes), la solució i la proposta de valor (canvas), el model de negoci i les projeccions (pressupost, punt mort, SOM), l'estat actual (el test del pati, les 40 bosses venudes). La diapositiva de **competència** obliga a mirar què fan altres i per què vosaltres; la d'**equip**, a dir qui fa què. I l'última, la **crida a l'acció**, és la que més equips obliden: cal demanar alguna cosa concreta.
+
+Les onze diapositives d'Airbnb amb què obríem la unitat són este mateix esquelet, i per això s'estudien tant: no tenien res d'especial en el disseny, però cada pantalla responia una pregunta i les preguntes anaven en l'ordre en què se les fa qui escolta.
+
+<Steps label="Procediment" title="Com preparar el pitch en una setmana" variant="arabic">
+  <li>**Escriviu la frase.** Abans d'obrir cap presentació, la proposta de valor en una línia. Si no hi cap, el problema no és el pitch: és que la idea no està clara encara.</li>
+  <li>**Comenceu per una persona, no per una dada.** La primera diapositiva presenta algú concret amb el problema («Marta, 42 anys, busca regal per a la tutora de la seua filla»). Les dades arriben després, quan el públic ja té un rostre.</li>
+  <li>**Una idea per diapositiva.** Deu pantalles, lletra gran, una imatge del prototip. Si una diapositiva no respon a una pregunta concreta del públic, sobra.</li>
+  <li>**Assageu en veu alta amb cronòmetre, tres passades completes.** El pitch no s'assaja llegint-lo en silenci. Si passeu de cinc minuts, retalleu fins que hi entre.</li>
+  <li>**Escriviu les cinc preguntes més incòmodes** que us podrien fer (i si ningú no compra?, per què no ho fa l'AMPA directament?) i prepareu la resposta. La que més fa por sol ser la primera que cau.</li>
+  <li>**Repartiu els papers.** En un equip de quatre parlen dos, màxim tres; qui no parla ensenya el prototip i respon les preguntes tècniques.</li>
+</Steps>
+
+### La demo day de l'aula i com avaluar-la
+
+La unitat es pot tancar amb una **demo day**: una sessió en què cada equip defensa el seu projecte en cinc minuts davant d'un públic que no el coneix: professorat d'altres departaments, alumnat d'un altre curs, famílies, si és possible algú que haja muntat un negoci al barri. Això de «no el coneix» és la clau. Presentar al professor que us veu des de setembre és còmode; presentar a algú que entra hui i se'n va en una hora no ho és, i eixa incomoditat és l'exercici.
+
+<Figure
+  src={demoDayPitch}
+  alt="Fundador d'una startup presentant el seu producte en un escenari de demo day, amb la diapositiva projectada darrere i el públic en primer pla."
+  caption="Demo day real: cinc minuts, una diapositiva gran amb una sola idea i cap full a la mà. La de l'aula és més menuda, però la imatge mental amb què convé assajar és exactament esta."
+  credit="Foto: MarkChristopherWebster, CC BY-SA 4.0 vía Wikimedia Commons"
+  aspectHint="16/9"
+  variant="wide"
+/>
+
+Perquè el jurat i els altres equips avaluen amb el mateix criteri, us proposem una rúbrica de quatre apartats, cada un d'1 a 4 punts:
+
+| Criteri | 1 punt | 4 punts |
+|---|---|---|
+| **Problema i persona** | Un problema genèric («la gent vol regals») sense ningú concret darrere | Una persona identificable, entrevistes reals i una pregunta «com podríem…?» clara |
+| **Solució i validació** | Una idea contada sense haver-la provada amb ningú | Un prototip ensenyat a persones reals, amb el que se'n va aprendre i el que es va canviar |
+| **Números** | No hi ha pressupost o el preu s'ha posat «a ull» | Costos fixos i variables, preu raonat, punt mort i una estimació de mercat |
+| **Comunicació** | Es llig, es passa de temps, no queda clar què es demana | Una idea per diapositiva, cinc minuts justos, una història i una petició concreta |
+
+<Callout label="Recomanació d'aula" title="Escolta, no et defenses">
+
+Quan arribe el feedback del jurat, i arribarà en part favorable i en part no, l'única regla útil és escoltar sense interrompre. La temptació d'explicar per què la crítica està equivocada és el pitjor error possible: l'opinió sincera d'algú que no us deu res és informació gratuïta. Preneu notes, doneu les gràcies i discutiu després en l'equip, amb les vostres dades davant, si la crítica té fonament. Un prototip lleig però provat amb quinze persones sempre guanya un de perfecte sense cap usuari, i el jurat ho nota als trenta segons.
+
+</Callout>
+
+<VocesDesacuerdo
+  tema="Pla d'empresa detallat o llançar ràpid i aprendre?"
+  postura_a={{
+    etiqueta: 'Planificar primer',
+    tesis: "Escriure el pla obliga a pensar el model sencer abans de gastar. Un estudi amb més de mil persones emprenedores (Greene i Hopp, 2017) va trobar que els qui van redactar un pla d'empresa tenien un 16 % més de probabilitats d'arribar a un negoci viable.",
+  }}
+  postura_b={{
+    etiqueta: 'Lean Startup',
+    tesis: "Cap pla d'empresa sobreviu al primer contacte amb els clients (Steve Blank). Un projecte en les seues primeres fases és un experiment, no una empresa: es gestiona amb el cicle construir, mesurar i aprendre, i cada setmana de planificació sense usuaris és una setmana de suposicions.",
+  }}
+>
+Les dues postures tenen dades a favor i les dues caricaturitzen l'altra. Els qui defensen el pla no demanen cinquanta pàgines de projeccions inventades, i els qui defensen Lean Startup no diuen que s'ixca sense pensar: Eric Ries demana formular hipòtesis per escrit abans de cada experiment, que és una forma de pla. La síntesi pràctica per a l'aula: **planifiqueu en un full** (el canvas, el pressupost, el punt mort) i **proveu en una setmana** (el prototip, les entrevistes). El pla d'empresa llarg té sentit quan algú us deixarà diners i necessita llegir-lo, i el mateix Blank reconeix que per a això continua sent útil.
+</VocesDesacuerdo>
+
+## I després del projecte
+
+### Què s'aprén encara que no isca
+
+La majoria dels projectes d'aula no es convertixen en empreses, i està bé que siga així. El que queda és una altra cosa: haver parlat amb desconeguts amb un guió, haver canviat d'idea davant de dades que no agradaven, haver posat un preu i defensat per què, haver repartit tasques i sobreviscut a un conflicte, haver parlat cinc minuts davant de gent que no us devia res. Cada una d'eixes coses val en una entrevista de treball, en un treball de grup de Batxillerat o en l'associació del barri. La paraula «fracàs» només té sentit si no s'ha aprés res, i un equip que ha pivotat dues vegades ha aprés més que un a qui tot li va eixir a la primera.
+
+### Emprendre als 18
+
+Si d'ací a dos o tres anys algú de la classe vol continuar, estos són els passos reals a Espanya. Per a treballar per compte propi cal ser **major d'edat** (o tindre'n 16 i estar emancipat), donar-se d'alta a Hisenda (model 036 o 037) i a la Seguretat Social com a **autònom**. El primer any es pot demanar la **quota reduïda** de 80 € al mes, ampliable a un segon any si els ingressos nets no superen el salari mínim (RDL 13/2022; vigent el 2025). Si el projecte és de diverses persones o convé separar el patrimoni personal, la Ley 18/2022 «Crea y Crece» permet constituir una **societat limitada amb 1 € de capital**, com vam vore a la Unitat 10, i els **Puntos de Atención al Emprendedor (PAE)** tramiten l'alta per internet amb un únic document electrònic, sovint en menys de 48 hores.
+
+Els recursos gratuïts que existixen i quasi ningú no usa: les **Cámaras de Comercio** oferixen assessorament gratuït a qui comença (programa *España Emprende*); l'**Injuve**, l'Instituto de la Juventud, publica convocatòries i ajudes per a menors de 30 anys; el **Sistema de Garantía Juvenil** dona accés a formació i suport a l'autoocupació als qui no estudien ni treballen; i en moltes ciutats hi ha vivers d'empreses municipals amb despatxos barats i mentors. I després estan els aparadors: a Barcelona, el **4YFN** reunix cada febrer, dins del Mobile World Congress, més de 800 startups jóvens que presenten els seus projectes a inversors en passadissos plens d'estands (Mobile World Capital, 2024).
+
+<Figure
+  src={fyfnBarcelona}
+  alt="Acte d'entrega de premis de mentoring a l'espai 4YFN dins del Mobile World Congress de Barcelona, amb estands i públic al fons."
+  caption="4YFN, dins del Mobile World Congress de Barcelona. Molts dels equips que hi exposen tenen menys de 25 anys i un pitch de trenta segons preparat per a quan algú s'atura davant de l'estand. La mateixa habilitat que s'entrena en la demo day de l'aula."
+  credit="Foto: Kippelboy, CC0 1.0 vía Wikimedia Commons"
+  aspectHint="4/3"
+/>
+
+## Què ve després en este curs
+
+Esta és l'última unitat del llibre, així que el que ve després no és una altra unitat sinó el que podeu estudiar a partir d'ací. Si us ha interessat la primera part del curs, l'economia, a **1r de Batxillerat** existix la matèria **Economia** (Real Decreto 243/2022), que reprén amb més profunditat els mercats, els diners, l'Estat i l'economia internacional de les Unitats 1 a 9, i en moltes comunitats l'optativa **Economia, Emprenedoria i Activitat Empresarial**; a 2n, **Empresa i Disseny de Models de Negoci** torna al canvas i als números d'esta unitat amb casos reals. Si us ha interessat més la part pràctica, la **Formació Professional** de grau mitjà (Gestió Administrativa, Activitats Comercials, Màrqueting) inclou mòduls d'empresa i tots els cicles porten un mòdul d'ocupabilitat i emprenedoria.
+
+Mirant arrere, el curs ha recorregut dos territoris: **l'economia** (escassetat, producció, mercats, diners, treball, Estat, economia personal, economia internacional) i **l'empresa i l'emprenedoria** (Unitats 10 a 12). No calia que ningú fundara res: calia eixir de l'aula entenent com funciona el món econòmic en què ja viviu i amb les ferramentes per a prendre decisions en ell, des de llegir una nòmina fins a defensar una idea. El que feu amb tot això a partir de demà és vostre.
+
+<VuelveAlCaso referencia="Les onze diapositives d'Airbnb">
+Aquelles onze diapositives van funcionar per dues raons, i cap no té a vore amb el disseny. La primera: **cada pantalla responia a una pregunta que qui escolta s'està fent**, i en l'ordre en què se la fa. Quin problema hi ha i a qui li fa mal, què heu fet, com sabeu que a algú li importa, quanta gent podria voler això, com entren els diners, per què vosaltres i no altres. És el guió del pitch deck que acabem de vore, i és el mateix material que un equip va acumulant sense adonar-se'n: entrevistes, canvas, prototip, embut, pressupost, punt mort.
+
+La segona: **darrere de cada afirmació hi havia un fet, no una intenció**. Quan deien que la gent pagaria per dormir a casa d'un desconegut no ho suposaven; ho havien fet amb tres matalafs inflables i tres hostes de carn i os. Eixos matalafs van ser un prototip *concierge* de manual: fet a mà, sense tecnologia i perdent temps a propòsit. Per això la resposta a «què havien fet abans d'ensenyar les diapositives» és l'única lliçó seriosa de la unitat: **havien validat**. Un pitch no convenç per com es conta, sinó pel que s'ha fet abans de contar-ho; el que es conta només ha de no estorbar.
+</VuelveAlCaso>
+
+<KeyTakeaways title="L'essencial de la unitat">
+- El **Design Thinking** són cinc fases (empatitzar, definir, idear, prototipar, testar) que comencen per la persona, no per la idea, i es repetixen fins a encertar. A les entrevistes es pregunta pel passat, no per opinions sobre el futur.
+- El **Business Model Canvas** posa el model de negoci sencer en nou blocs d'un full. Els dos que manen són el **segment de clients** i la **proposta de valor**; els altres set en deriven.
+- Un **prototip** (paper, maqueta, landing, concierge) servix per a aprendre abans de gastar; l'**MVP** ja està al mercat i prova la hipòtesi més arriscada. Les **mètriques accionables** decidixen; les de vanitat només lluïxen. Si les dades desmenten la hipòtesi, es **pivota** conservant el que està validat.
+- Els números del projecte són quatre: **pressupost** (fixos i variables), **preu** (cost més marge, competència i valor percebut), **punt mort** (costos fixos entre marge unitari) i **grandària de mercat** (TAM, SAM, SOM).
+- Les **fonts de finançament** són estalvi, família i amics, banc i microcrèdit, crowdfunding, ajudes públiques i business angels. Cada una canvia el risc: el préstec es torna venga o no; la campanya de recompensa no endeuta i valida, però és tot o res.
+- Un projecte es conta amb un **elevator pitch** (problema, solució, per a qui, com, què demanem) i un **pitch deck** de deu diapositives amb una idea per pantalla. En la demo day, lleig però validat guanya perfecte sense usuaris, i el feedback s'escolta sense defensar-se.
+</KeyTakeaways>
+
+## Glossari
+
+- **Design Thinking**: mètode per a resoldre problemes que posa la persona al centre i seguix cinc fases: empatitzar, definir, idear, prototipar i testar.
+- **Model de negoci**: explicació de com un projecte crea valor per a algú, l'hi fa arribar i aconseguix ingressos suficients per a sostindre's.
+- **Business Model Canvas**: plantilla d'un full amb nou blocs (segments, proposta de valor, canals, relació, ingressos, recursos, activitats, socis i costos) per a descriure un model de negoci.
+- **Proposta de valor**: raó per la qual algú triaria el vostre projecte en compte del que ja usa; quin problema resol i què el fa distint.
+- **Prototip**: maqueta incompleta, barata i ràpida de la idea, feta per a ensenyar-la i aprendre de les reaccions abans d'invertir.
+- **Producte mínim viable (MVP)**: versió més simple d'un producte que ja està al mercat i servix per a provar la hipòtesi principal.
+- **Mètrica accionable**: número que depén del que fa l'equip i permet decidir (conversió, clients que repetixen). El contrari és la mètrica de vanitat (seguidors, visites).
+- **Embut**: seqüència de passos des que una persona descobrix el projecte fins que compra, amb la proporció que passa de cada pas al següent.
+- **Pivotar**: canviar alguna cosa gran del projecte (segment, proposta, canal o ingressos) quan les dades desmenten la hipòtesi, conservant el que sí que funciona.
+- **Punt mort**: nombre d'unitats que cal vendre per a cobrir els costos fixos; costos fixos dividits entre el marge de cada unitat.
+- **TAM, SAM i SOM**: tres estimacions de la grandària de mercat: tot el mercat possible, la part que abasten els vostres canals i la quota realista que podeu captar.
+- **Crowdfunding de recompensa**: finançament en què moltes persones aporten quantitats menudes a canvi de rebre el producte quan es fabrica; funciona com una prevenda.
+- **Préstec participatiu**: préstec públic (per exemple, d'ENISA) sense avals personals l'interés del qual depén en part dels resultats de l'empresa.
+- **Elevator pitch**: explicació del projecte en 30 o 60 segons (problema, solució, per a qui, com, què demanem) perquè l'altra persona vulga saber-ne més.
+- **Pitch deck**: presentació curta, d'unes deu diapositives, per a defensar el projecte davant d'un jurat o un inversor.
+
+## Per a aprofundir
+
+- **Plantilla oficial del Business Model Canvas**, a strategyzer.com (descàrrega gratuïta en A3, llicència Creative Commons). Per què encaixa: és el llenç original d'Osterwalder; imprimir-lo gran i omplir-lo amb post-its és la manera de treballar esta unitat.
+- **Projectes finançats a Verkami** (verkami.com/discover). Per què encaixa: llegir deu campanyes reals, els seus objectius, recompenses i vídeos, ensenya més sobre com es conta i es prevén un projecte que qualsevol teoria; fixeu-vos en les que no van arribar a l'objectiu.
+- **«How to Pitch Your Startup»**, Kevin Hale, Y Combinator (YouTube, ~40 min, subtítols en castellà). Per què encaixa: un inversor explica què mira en un pitch i per què la claredat importa més que el disseny, amb exemples de decks reals.
+- **Guia de tràmits del Punto de Atención al Emprendedor** (paeelectronico.es, Ministerio de Industria, Comercio y Turismo). Per què encaixa: la font oficial per a saber què fa falta de veritat per a donar-se d'alta com a autònom o crear una SL quan tingueu 18 anys.
+
+## Preguntes per a reflexionar
+
+Estes preguntes no tenen una resposta única. Servixen per a debatre a classe o pensar a soles en tancar la unitat i el curs:
+
+1. El Design Thinking demana parlar amb les persones abans de dissenyar res, i quasi tothom se'l salta. Per què creeu que fa tant de respecte ensenyar una idea a mitges a un desconegut? Què es perd per no fer-ho?
+2. A l'exercici 12.2 la campanya de crowdfunding deixa menys diners que el préstec i tot i així la triem. En quin tipus de projecte triaríeu el préstec? Què hauria de passar perquè la campanya fora una mala idea?
+3. Mirant arrere tot el curs, des de l'escassetat de la Unitat 1 fins al pitch d'esta: quina idea us ha canviat la manera de mirar alguna cosa quotidiana? Creeu que emprendreu algun dia, o les ferramentes us serviran igual treballant per a altres?
+
+<Bibliography>
+
+1. España. **Real Decreto 217/2022**, de 29 de marzo, por el que se establecen la ordenación y las enseñanzas mínimas de la Educación Secundaria Obligatoria. BOE núm. 76. (Competències específiques d'Economia i Emprenedoria: idees, recursos, prototips i comunicació del projecte.)
+2. Osterwalder, A. i Pigneur, Y. (2010). *Business Model Generation*. Wiley. Edició en castellà: *Generación de modelos de negocio*. Deusto, 2011.
+3. Ries, E. (2011). *The Lean Startup*. Crown Business. Edició en castellà: *El método Lean Startup*. Deusto, 2012.
+4. Fitzpatrick, R. (2013). *The Mom Test: How to Talk to Customers and Learn If Your Business Is a Good Idea When Everyone Is Lying to You*. CreateSpace.
+5. Greene, F. J. i Hopp, C. (2017). *Research: Writing a Business Plan Makes Your Startup More Likely to Succeed*. Harvard Business Review, 14 de juliol. I Blank, S. (2013). *Why the Lean Start-Up Changes Everything*. Harvard Business Review, maig.
+6. España. **Real Decreto-ley 13/2022**, de 26 de julio (quota reduïda d'autònoms). **Ley 18/2022**, de 28 de septiembre, de creación y crecimiento de empresas. ENISA, *Línea Jóvenes Emprendedores*. https://www.enisa.es
+7. Fonts de les xifres citades a la unitat: Airbnb, *pitch deck* de la ronda llavor de 600.000 $ liderada per Sequoia Capital (abril de 2009), difós públicament des de 2011 · *elEconomista* (4 d'abril de 2016), sobre els primers anys de Hawkers · Verkami, blog corporatiu (2020). https://www.verkami.com · Kickstarter, *Stats* (2024). https://www.kickstarter.com/help/stats · Mobile World Capital Barcelona, *4YFN 2024*.
+
+</Bibliography>
+
+<MirarFora
+  unidad={12}
+  libro={{
+    titulo: 'El método Lean Startup',
+    meta: 'Eric Ries · Deusto, 2012',
+    porque: "El llibre que va convertir «construir, mesurar, aprendre» en el vocabulari de qualsevol projecte nou. Els capítols sobre l'MVP i les mètriques de vanitat són els que sostenen la secció de validació d'esta unitat; es lligen en una vesprada.",
+    paginas: 'Capítols 3, 6 i 7',
+  }}
+  video={{
+    titulo: 'How to Pitch Your Startup',
+    meta: 'Kevin Hale · Y Combinator (YouTube, subtítols en castellà)',
+    duracion: '~40 min',
+    porque: 'Un inversor explica què mira en un pitch, per què la claredat guanya el disseny i com es responen les preguntes incòmodes. Vore deu minuts abans de la demo day canvia la presentació.',
+    url: 'https://www.youtube.com/results?search_query=how+to+pitch+your+startup+kevin+hale+y+combinator',
+  }}
+  cuenta={{
+    titulo: '@verkami',
+    meta: 'Instagram',
+    porque: 'Cada setmana mostra campanyes reals en marxa: com es conten, quines recompenses oferixen i quines arriben a l\'objectiu. És el millor aparador en castellà de projectes menuts que es financen prevenent.',
+  }}
+  actividad_titulo="El teu projecte en un minut"
+  actividad_duracion="30 min · cronòmetre obligatori"
+>
+  <Fragment slot="actividad">
+    Escriu l'**elevator pitch de 60 segons** del teu projecte (o d'una idea del diari de molèsties de la Unitat 11) amb les cinc peces: problema, solució, per a qui, com i què demanes. Cronometra'l a casa tres vegades en veu alta; si et passes, retalla. Després escriu la versió de 30 segons llevant el «com». Porta les dues.
+  </Fragment>
+  <Fragment slot="para-clase">
+    **Pitch en passadís**: la classe es col·loca en dues files enfrontades; cada persona conta el seu pitch de 30 segons a qui té davant, que només pot respondre «conta'm més» o «no ho he entés». Es rota tres vegades. Després, posada en comú: quina frase ha aconseguit més «conta'm més»? Duració: 30 min. Materials: cronòmetre.
+  </Fragment>
+</MirarFora>
+
+<Callout label="Projecte del curs" title="De zero a empresa">
+Si voleu portar esta unitat a la pràctica de principi a fi, [**«De zero a empresa»**](/emprendimiento/proyecto/) és una proposta d'aula modular i opcional: els equips parteixen d'una molèstia real detectada amb les ferramentes de la Unitat 11 i recorren les fases d'esta unitat (canvas, prototip, validació, pressupost i finançament, pitch) amb plantilles, sessions suggerides i una rúbrica per a la demo day. Es pot fer sencera o només alguna fase.
+</Callout>
+
+```deck
+- tipo: curriculum
+  eyebrow: "A què respon esta unitat"
+  title: "El marc de la unitat"
+  saberes:
+    - "Design Thinking i model de negoci: el Business Model Canvas."
+    - "Prototipatge, producte mínim viable i validació amb persones reals."
+    - "Pressupost, preu, punt mort i grandària de mercat del projecte."
+    - "Fonts de finançament: estalvi, entorn, banc, crowdfunding i ajudes."
+    - "Màrqueting bàsic, elevator pitch, pitch deck i demo day."
+  competencias:
+    - "Crear idees i solucions sostenibles i triar la més adequada amb criteri."
+    - "Analitzar i gestionar els recursos necessaris per a portar una idea a la pràctica."
+    - "Elaborar un prototip i validar-lo amb persones reals abans d'invertir."
+    - "Comunicar un projecte de manera clara i persuasiva a públics distints."
+- tipo: caso
+  eyebrow: "Cas d'obertura"
+  title: "Onze diapositives i 600.000 dòlars: el pitch d'Airbnb"
+  contexto: "El 2007, dos dissenyadors sense diners per al lloguer van oferir tres matalafs inflables i desdejuni al seu pis de San Francisco durant un congrés de disseny. Any i mig després van contar eixa idea a inversors en onze diapositives."
+  datos:
+    - "Tres hostes a 80 dòlars: uns 1.000 dòlars i una idea validada."
+    - "Onze diapositives, una idea per pantalla, sense animacions ni promeses."
+    - "Ronda llavor de 600.000 dòlars amb Sequoia Capital (abril de 2009)."
+  pregunta: "Què tenien eixes onze diapositives, i què havien fet els fundadors abans d'ensenyar-les?"
+- tipo: section
+  title: "Del problema a la solució: Design Thinking"
+  subtitle: "Abans de pensar en la solució, entendre el problema i qui el patix. Cinc fases que es repetixen fins a encertar."
+- tipo: diagram
+  diagrama: DesignThinkingFases
+  caption: "Empatitzar, definir, idear, prototipar i testar. Es torna arrere cada vegada que el test ensenya alguna cosa nova."
+- tipo: list
+  eyebrow: "El projecte d'aula"
+  title: "Les cinc fases amb Trazo, bosses il·lustrades per alumnat d'Arts"
+  ordered: true
+  items:
+    - "Empatitzar: deu entrevistes al pati. Ningú vol una altra samarreta amb l'escut; sí alguna cosa útil i regalable."
+    - "Definir: «Com podríem oferir un objecte útil i regalable que porte el treball dels companys d'Arts?»."
+    - "Idear: trenta idees en quinze minuts sense filtrar; després, dos criteris: valor per a la persona i viabilitat."
+    - "Prototipar: una sola bossa pintada a mà amb la il·lustració i un cartell amb el preu."
+    - "Testar: ensenyar-la a quinze persones i anotar què fan, no què diuen que farien."
+- tipo: figure
+  src: eco-4eso/09/postits-brainstorming.jpg
+  alt: "Paret coberta de post-its de colors agrupats en columnes després d'una sessió de brainstorming col·lectiu."
+  title: "Idear: quantitat abans que qualitat"
+  caption: "Una idea per post-it. La paret és on l'equip agrupa, descarta i tria amb dos criteris: valor per a la persona i viabilitat."
+  credit: "Foto: Victor Costa de Paula, CC BY-SA 4.0 vía Wikimedia Commons"
+- tipo: section
+  title: "El model de negoci en una pàgina"
+  subtitle: "El Business Model Canvas d'Osterwalder: nou blocs en un full per a vore si el projecte encaixa."
+- tipo: diagram
+  diagrama: BusinessModelCanvas
+  caption: "Nou blocs en tres zones: el que l'empresa fa, el que oferix i el que el client experimenta. Baix, costos i ingressos."
+- tipo: terms
+  eyebrow: "Els blocs que manen"
+  title: "Per on es comença a omplir el canvas"
+  terms:
+    - t: "Segment de clients"
+      d: "Les persones concretes a qui servix el projecte. Com més concret, millor: no «jóvens», sinó «alumnat i famílies del nostre institut»."
+    - t: "Proposta de valor"
+      d: "Quin problema resolem i per què ens triarien enfront de les alternatives. Cap en una frase: «bossa útil, barata i il·lustrada per gent d'ací»."
+    - t: "Fonts d'ingressos"
+      d: "Qui paga, quant i per què. Trazo ven cada bossa a 12 €; Hawkers venia ulleres a 20-40 € només per internet."
+- tipo: figure
+  src: eco-4eso/09/bmc-workshop-nalerigu.jpg
+  alt: "Sessió formativa en què una persona explica el Business Model Canvas a un grup assegut al voltant d'una taula amb la plantilla impresa en gran."
+  title: "Com s'ompli a l'aula"
+  caption: "Plantilla en A3 i post-its de colors, una idea per post-it. Es comença pel segment i la proposta de valor; la resta deriva d'ahí."
+  credit: "Foto: Christian Yakubu, CC BY-SA 4.0 vía Wikimedia Commons"
+- tipo: section
+  title: "Prototipar i validar"
+  subtitle: "Ensenyar una maqueta lletja a persones reals abans de gastar un euro, i llegir el que passa amb números que servisquen per a decidir."
+- tipo: table
+  title: "Quatre tipus de prototip"
+  head:
+    - "Tipus"
+    - "Què és"
+    - "Què respon"
+  rows:
+    - ["Paper", "Dibuixos o pantalles retallades", "S'entén la idea?"]
+    - ["Maqueta", "Cartó, plastilina, una bossa pintada a mà", "Agrada l'objecte? Es fa servir bé?"]
+    - ["Landing", "Una pàgina web amb un botó d'«avisa'm»", "Quants deixen el seu contacte?"]
+    - ["Concierge", "Fer el servici a mà per als primers clients", "Pagarien per això de veritat?"]
+  caption: "Com més barat el prototip, abans es descobrix el que no funciona."
+- tipo: concept
+  eyebrow: "Dos MVP clàssics"
+  title: "Zappos va fotografiar sabates d'altres; Dropbox va gravar un vídeo"
+  body: "El 1999 Nick Swinmurn va fotografiar sabates en botigues del seu barri, les va publicar en una web i, quan algú en comprava, anava a la botiga a comprar-les. Així va comprovar que la gent compraria sabates per internet. El 2007 Drew Houston va ensenyar Dropbox en un vídeo de tres minuts abans d'acabar-lo: la llista d'espera va passar de 5.000 a 75.000 persones en una nit."
+  pull: "L'MVP no és un producte a mitges: és la prova més barata que respon a la pregunta més arriscada."
+- tipo: split
+  title: "Mètriques: vanitat enfront d'acció"
+  left:
+    h: "Vanitat"
+    items:
+      - "Seguidors a Instagram."
+      - "Reproduccions d'un vídeo."
+      - "Visites a la web."
+      - "Pugen sempre i no diuen què canviar."
+  right:
+    h: "Accionables"
+    items:
+      - "Persones que escriuen per missatge directe."
+      - "Vendes per cada cent visites."
+      - "Clients que repetixen o recomanen."
+      - "Canvien segons el que fa l'equip."
+- tipo: quiz
+  eyebrow: "Comprova que ho pilles"
+  pregunta: "Un equip publica la seua bossa en xarxes. 1.200 persones veuen la publicació, 180 entren al perfil, 51 pregunten i 12 compren. On convé treballar primer?"
+  opciones:
+    - "En l'últim pas: baixar el preu perquè compren més dels qui pregunten."
+    - "En el primer: només el 15 % passa de vore a mirar el perfil; ahí es perden 1.020 persones."
+    - "A aconseguir més visualitzacions: com més gent ho veja, millor."
+    - "En cap: un 1 % de conversió total és normal i suficient."
+  correcta: 1
+  explicacion: "Les conversions es multipliquen: arreglar el pas més dèbil mou tot l'embut. Pujar el primer del 15 % al 20 % donaria 16 vendes sense tocar res més; més visualitzacions només l'eixamplen per dalt."
+- tipo: section
+  title: "Els números del projecte"
+  subtitle: "Pressupost, preu, punt mort, grandària de mercat i d'on ixen els diners per a arrancar."
+- tipo: exercise
+  title: "Exercici 12.1 — Quantes bosses cal vendre per a no perdre?"
+  enunciado: "Trazo té 240 € de costos fixos (planxa de transfer, parada al mercadet, cartells, botiga en línia). Cada bossa costa 5 € de materials i es ven a 12 €. Quantes bosses cobrixen els costos fixos? I si a més volen guanyar 300 €?"
+  pasos:
+    - "Marge per bossa: 12 − 5 = 7 €. Cada bossa venuda aporta 7 € per a pagar els costos fixos."
+    - "Punt mort: 240 / 7 = 34,3. Com que no es venen mitges bosses, en fan falta 35."
+    - "Comprovació: 35 × 12 = 420 € d'ingressos; 240 + 35 × 5 = 415 € de costos. Benefici: 5 €."
+    - "Amb 300 € de benefici: (240 + 300) / 7 = 77,1, és a dir, 78 bosses."
+    - "Si baixaren el preu a 10 €, el marge seria de 5 € i el punt mort pujaria a 48 bosses."
+- tipo: diagram
+  diagrama: CascadaFinanciacion
+  caption: "L'escala de finançament d'una startup. Un projecte d'aula viu al primer graó; quasi cap empresa puja al segon."
+- tipo: exercise
+  title: "Exercici 12.2 — 1.500 €: préstec o crowdfunding"
+  enunciado: "Trazo necessita 1.500 € per a una tirada gran. Opció A: préstec personal al 8 % TIN a 12 mesos amb 1 % de comissió d'obertura. Opció B: campanya a Verkami amb 60 recompenses de 25 € (bossa més làmina), comissió del 6 % amb IVA i 1,5 % de passarel·la de pagament. Què costa cada una?"
+  pasos:
+    - "A: quota d'uns 130,50 € al mes; total tornat 1.566 €. Interessos 66 € + 15 € de comissió = 81 €."
+    - "A: es torna venga o no venga, i només pot firmar-ho una persona major d'edat."
+    - "B: comissions 91 + 22 = 113 €. Produir 60 bosses costa 300 €. Queden 1.087 € nets per al projecte."
+    - "B: no hi ha deute, i 60 persones ja han comprat: la campanya valida la demanda abans de fabricar."
+    - "B: és tot o res. Si no s'arriba a 1.500 €, es tornen els diners i cal començar de zero."
+- tipo: quiz
+  eyebrow: "Comprova que ho pilles"
+  pregunta: "Una veïna oferix prestar 400 € a l'equip de Trazo «sense pressa i sense interessos». Què convé fer?"
+  opciones:
+    - "Acceptar i no escriure res: entre coneguts sobra la paperassa."
+    - "Acceptar, però posar per escrit import, termini i què passa si el projecte no ven."
+    - "Rebutjar: els diners d'amics i família mai no són una font de finançament seriosa."
+    - "Demanar-li que compre participacions i es convertisca en sòcia del projecte."
+  correcta: 1
+  explicacion: "Els diners de família i amics són ràpids i barats, però posen en joc una relació. Convertir el favor en un acord escrit protegix les dues parts si alguna cosa ix malament."
+- tipo: section
+  title: "Contar el projecte: màrqueting i pitch"
+  subtitle: "Les quatre P, l'elevator pitch d'un minut, el pitch deck de deu diapositives i la demo day de l'aula."
+- tipo: list
+  eyebrow: "Màrqueting bàsic"
+  title: "Les quatre P, versió institut"
+  items:
+    - "Producte: què és i què el fa distint. En Trazo, la il·lustració exclusiva i el nom, no la bossa."
+    - "Preu: cost més marge, mirant el que cobra la competència i el que la persona percep."
+    - "Punt de venda: on es compra. Mercadet de fi de curs, Instagram amb Bizum, botiga de l'AMPA."
+    - "Promoció: com se n'assabenten. Instagram amb el procés, cartells, boca a boca de l'alumnat d'Arts."
+- tipo: concept
+  eyebrow: "Elevator pitch"
+  title: "Un minut, cinc peces"
+  body: "Problema (què fa mal i a qui), solució (què fem), per a qui (el segment), com funciona o què el fa distint, i què demanem. Sense dades de més i sense promeses. La versió de trenta segons lleva el «com» i deixa problema, solució i petició. L'èxit no es mesura en si véns, sinó en si l'altra persona diu «conta'm més»."
+  pull: "Si el teu pitch val igual canviant el nom del projecte, és genèric i s'oblida."
+- tipo: figure
+  src: eco-4eso/10/demo-day-pitch-startup.png
+  alt: "Fundador d'una startup presentant el seu producte en un escenari de demo day, amb la diapositiva projectada darrere i el públic en primer pla."
+  title: "Cinc minuts davant de gent real"
+  caption: "Una idea per diapositiva, cap full a la mà i un cronòmetre damunt de la taula. La demo day de l'aula assaja exactament això."
+  credit: "Foto: MarkChristopherWebster, CC BY-SA 4.0 vía Wikimedia Commons"
+- tipo: list
+  eyebrow: "Regla 10/20/30 de Kawasaki"
+  title: "Pitch deck: deu diapositives, una idea per pantalla"
+  ordered: true
+  items:
+    - "1-2. Problema (què fa mal i a qui) i solució (la vostra proposta en una frase)."
+    - "3-4. Model de negoci (com guanyeu diners) i producte o demo (què el fa diferent)."
+    - "5-6. Màrqueting i vendes (com hi arribeu) i competència (què fan altres i per què vosaltres)."
+    - "7-8. Equip (qui sou) i projeccions (costos, ingressos, punt mort)."
+    - "9-10. Estat actual (què heu validat) i resum amb crida a l'acció (què demaneu)."
+    - "Deu diapositives, vint minuts com a màxim i lletra de trenta punts. A l'aula, cinc minuts."
+- tipo: quiz
+  eyebrow: "Comprova que ho pilles"
+  pregunta: "En la demo day, el jurat diu que 12 € és un preu massa alt per al pati. Quina és la millor reacció de l'equip?"
+  opciones:
+    - "Interrompre per a explicar que el cost de materials justifica els 12 €."
+    - "Anotar-ho, donar les gràcies i discutir-ho després en l'equip amb les dades de les vendes."
+    - "Baixar el preu en eixe mateix moment per a contentar el jurat."
+    - "Ignorar-ho: el jurat no coneix el projecte tan bé com l'equip."
+  correcta: 1
+  explicacion: "La crítica d'algú que no us deu res és informació gratuïta. S'escolta sense defensar-se i es contrasta després amb les dades: si les vendes confirmen el preu, es manté; si no, s'ajusta."
+- tipo: section
+  title: "I després del projecte"
+  subtitle: "El que s'aprén encara que no isca, com s'emprén als 18 i què es pot estudiar després de 4t d'ESO."
+- tipo: data
+  numero: "80 €"
+  label: "al mes de quota d'autònom"
+  title: "La quota reduïda per a començar (2025)"
+  detalle: "Qui es dona d'alta com a autònom per primera vegada paga 80 € al mes durant dotze mesos, ampliables a altres dotze si els seus ingressos no superen el SMI (RDL 13/2022). Només a partir dels 18 anys, o des dels 16 amb emancipació."
+- tipo: recap
+  eyebrow: "Repassa"
+  title: "Abans de tancar la unitat"
+  items:
+    - "Sabries aplicar les cinc fases del Design Thinking a un problema del teu entorn."
+    - "Sabries omplir els nou blocs del Business Model Canvas per a una idea de projecte."
+    - "Sabries muntar un prototip barat, provar-lo amb persones i separar vanitat d'acció."
+    - "Sabries calcular el punt mort d'un projecte i comparar dues formes de finançar-lo."
+    - "Sabries contar el teu projecte en un elevator pitch i en un pitch deck de deu diapositives."
+    - "Sabries explicar quins passos fa algú que vol emprendre als 18 anys a Espanya."
+```
