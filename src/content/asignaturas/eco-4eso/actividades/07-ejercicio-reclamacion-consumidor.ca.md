@@ -66,5 +66,5 @@ La unitat ha explicat els teus drets com a consumidor. Esta activitat els conver
 ## Variants i extensions
 
 - **Variant cas propi:** qui haja viscut una situació real de consum la redacta com a reclamació de veritat i, si escau, la presenta.
-- **Connexió amb l'activitat de dark patterns (Unitat 5):** la subscripció zombi de la situació 2 és un *forced continuity*; es pot enllaçar amb l'auditoria d'apps.
+- **Connexió amb l'activitat de dark patterns d'esta unitat:** la subscripció zombi de la situació 2 és un *forced continuity*; es pot enllaçar amb l'auditoria d'apps.
 - **Extensió digital:** localitzar el formulari oficial de full de reclamacions de la comunitat autònoma i omplir-ne un de prova.

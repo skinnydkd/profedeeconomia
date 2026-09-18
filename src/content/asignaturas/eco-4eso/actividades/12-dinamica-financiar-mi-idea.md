@@ -60,5 +60,5 @@ En esta feria cada equipo tiene una idea con un coste de arranque y debe reunir 
 ## Variantes y extensiones
 
 - **Variante crisis:** a mitad de la dinámica, el profesor anuncia que el banco endurece condiciones y la subvención se agota; los equipos deben rehacer su plan con lo que queda.
-- **Conexión con la actividad de presupuesto (Unidad 7) y el capstone (Unidad 9-10):** la combinación de fuentes elegida aquí se reutiliza para financiar el proyecto del curso.
+- **Conexión con la actividad de presupuesto (Unidad 7) y el proyecto emprendedor (Unidad 12):** la combinación de fuentes elegida aquí se reutiliza para financiar el proyecto del curso.
 - **Extensión real:** investigar una campaña de crowdfunding real (Verkami, Kickstarter) y analizar qué recompensas ofreció y si alcanzó el objetivo.

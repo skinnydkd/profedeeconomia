@@ -108,4 +108,4 @@ L'important no és que el resultat siga bonic: és que siguen **els teus número
 - **Variant interés compost:** els qui acaben prompte poden calcular quant tindrien si en lloc de comprar l'objectiu als 6 mesos deixaren el diner estalviat 10 anys més en un compte al 4 % anual amb interés compost.
 - **Variant en parella:** dos estudiants amb el mateix objectiu (per exemple, el viatge de fi de curs) fan un pla conjunt sumant els dos estalvis mensuals i repartixen el cost.
 - **Extensió seguiment:** repetir la plantilla mensualment durant els 6 mesos següents i comprovar a l'abril si el pla s'ha complit (pot valorar-se com a nota extra d'actitud al final del curs).
-- **Connexió amb Unitat 9-10 (projecte capstone):** la mateixa lògica de pressupost + fonts de finançament s'aplicarà al projecte emprenedor. Esta sessió és l'entrenament a escala personal del que fareu a escala de projecte.
+- **Connexió amb la Unitat 12 (projecte emprenedor):** la mateixa lògica de pressupost + fonts de finançament s'aplicarà al projecte emprenedor. Esta sessió és l'entrenament a escala personal del que fareu a escala de projecte.

@@ -54,5 +54,5 @@ En esta actividad vais a analizar el caso de "La Birra Artesana", una cervecerí
 ## Variantes y extensiones
 
 - **Variante "el caso de verdad":** sustituir el caso inventado por un negocio real cerrado del barrio (con respeto y sin nombres) que el alumnado conozca, manteniendo la misma plantilla de análisis.
-- **Conexión con la Unidad 9-10:** guardar el diagnóstico. Cuando el equipo diseñe su proyecto capstone, revisará esta lista de errores para no repetirlos.
+- **Conexión con la Unidad 12:** guardar el diagnóstico. Cuando el equipo diseñe su proyecto emprendedor, revisará esta lista de errores para no repetirlos.
 - **Extensión escrita:** redactar la carta que Marc escribiría a sí mismo el día de la apertura sabiendo lo que sabe hoy (medio folio).

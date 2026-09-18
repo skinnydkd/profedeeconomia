@@ -64,5 +64,5 @@ Les tres s'assemblen des de fora —algú no complix— i són problemes distint
 
 - **Variant curta (25 min):** debatre només les situacions A i C, que són les que més es contraposen.
 - **Variant amb rols de Belbin:** abans del debat, cada alumne identifica el seu rol natural. Preguntar després si el «company que no apareix» podria estar en el rol equivocat en lloc de no voler treballar.
-- **Extensió amb la norma en ús (tot el curs).** Si la norma ix votada, aplicar-la de veres al projecte capstone de la Unitat 9 i revisar-la en acabar. Una norma que es revisa val molt més que una que es penja a la paret.
+- **Extensió amb la norma en ús (tot el curs).** Si la norma ix votada, aplicar-la de veres al projecte emprenedor de la Unitat 12 i revisar-la en acabar. Una norma que es revisa val molt més que una que es penja a la paret.
 - **Connexió amb el cas de la unitat** sobre el company que no apareix: allí s'analitza des de fora; ací es legisla.

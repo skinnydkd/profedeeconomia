@@ -32,7 +32,7 @@ La unidad distingue métricas de vanidad de métricas accionables. La definició
 
 ## El panel del proyecto
 
-Un grupo de 4.º ESO ha lanzado su proyecto capstone: una funda de móvil hecha con material reciclado, a **12 € la unidad**. Llevan un mes y este es el panel:
+Un grupo de 4.º ESO ha lanzado su proyecto emprendedor: una funda de móvil hecha con material reciclado, a **12 € la unidad**. Llevan un mes y este es el panel:
 
 | Métrica | Valor |
 | --- | ---: |
@@ -83,5 +83,5 @@ Un grupo de 4.º ESO ha lanzado su proyecto capstone: una funda de móvil hecha 
 
 - **Variante corta (20 min):** preguntas 1 a 5 y clasificación oral.
 - **Variante con el panel invertido:** dar un panel con conversión de visita a formulario del 2 % y de formulario a venta del 60 %. Ahora el cuello de botella está al principio y la respuesta correcta a la pregunta 7 se invierte. Es la mejor comprobación de que se ha entendido el embudo y no memorizado la respuesta.
-- **Extensión con el proyecto propio (todo el curso).** Montar este mismo panel para el capstone del grupo y revisarlo cada dos semanas. Las métricas solo enseñan algo cuando se miran repetidas veces.
+- **Extensión con el proyecto propio (todo el curso).** Montar este mismo panel para el proyecto del grupo y revisarlo cada dos semanas. Las métricas solo enseñan algo cuando se miran repetidas veces.
 - **Conexión con el pitch de la unidad:** un pitch que enseña seguidores en lugar de conversión suele ser un pitch sin datos. Usar este ejercicio como filtro antes del Demo Day.

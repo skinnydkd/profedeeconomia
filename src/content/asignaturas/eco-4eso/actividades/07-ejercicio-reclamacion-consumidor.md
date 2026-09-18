@@ -65,5 +65,5 @@ La unidad ha explicado tus derechos como consumidor. Esta actividad los conviert
 ## Variantes y extensiones
 
 - **Variante caso propio:** quien haya vivido una situación real de consumo la redacta como reclamación de verdad y, si procede, la presenta.
-- **Conexión con la actividad de dark patterns (Unidad 5):** la suscripción zombi de la situación 2 es un *forced continuity*; se puede enlazar con la auditoría de apps.
+- **Conexión con la actividad de dark patterns de esta unidad:** la suscripción zombi de la situación 2 es un *forced continuity*; se puede enlazar con la auditoría de apps.
 - **Extensión digital:** localizar el formulario oficial de hoja de reclamaciones de la comunidad autónoma y rellenar uno de prueba.

@@ -2,7 +2,7 @@
 asignatura: eco-4eso
 unidad_relacionada: 10
 title: "Caso: el compañero que no aparece — gestionar conflictos de equipo"
-descripcion: "Análisis de un caso real de conflicto dentro de un equipo de trabajo (un miembro que no cumple, otro que acapara, una decisión bloqueada) para que el alumnado practique técnicas de resolución antes de vivirlo en su propio proyecto capstone."
+descripcion: "Análisis de un caso real de conflicto dentro de un equipo de trabajo (un miembro que no cumple, otro que acapara, una decisión bloqueada) para que el alumnado practique técnicas de resolución antes de vivirlo en su propio proyecto emprendedor."
 tipo: caso
 duracion: "50 min · 1 sesión"
 agrupacion: "grupos pequeños (3-4)"
@@ -54,5 +54,5 @@ La unidad ha explicado los roles de equipo y las normas de convivencia de un gru
 ## Variantes y extensiones
 
 - **Variante role-play:** en lugar de analizar por escrito, cuatro voluntarios interpretan a los personajes y el resto del grupo les ayuda a desbloquear el conflicto en directo.
-- **Conexión con la dinámica Belbin (Unidad 6) y el capstone (Unidad 9):** las normas extraídas se incorporan a la "carta de equipo" del proyecto del curso.
-- **Extensión preventiva:** cada equipo real de la clase redacta su propia carta de equipo antes de empezar el capstone, con las normas que sacaron de este caso.
+- **Conexión con la dinámica Belbin (Unidad 10) y el proyecto emprendedor (Unidad 12):** las normas extraídas se incorporan a la "carta de equipo" del proyecto del curso.
+- **Extensión preventiva:** cada equipo real de la clase redacta su propia carta de equipo antes de empezar el proyecto emprendedor, con las normas que sacaron de este caso.

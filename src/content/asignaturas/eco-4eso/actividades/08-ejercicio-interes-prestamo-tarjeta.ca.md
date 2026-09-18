@@ -71,5 +71,5 @@ Comprareu un mateix producte —un portàtil de 800 €— de tres formes distin
 ## Variants i extensions
 
 - **Variant TAE:** els qui acaben prompte calculen la TAE aproximada de cada opció i comproven que ordena igual que el cost total.
-- **Connexió amb l'activitat de finançament (Unitat 7) i el pressupost (Unitat 7):** el cost del crèdit s'incorpora com una despesa fixa que reduïx l'estalvi mensual.
+- **Connexió amb la dinàmica de finançament (Unitat 12) i el pressupost (Unitat 7):** el cost del crèdit s'incorpora com una despesa fixa que reduïx l'estalvi mensual.
 - **Extensió real:** buscar un anunci real de finançament d'una botiga o d'una targeta revolving i calcular el seu cost verdader amb la mateixa plantilla.

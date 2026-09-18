@@ -60,7 +60,7 @@ Canviar un bloc del Canvas mai canvia només eixe bloc. Trobar què va arrossega
 3. **Superposar el nou (10 min).** Pregunta 2. En acabar, l'A3 mostra d'un colp d'ull què s'ha mogut.
 4. **L'anàlisi (13 min).** Preguntes 3 a 5, per escrit.
 5. **Les dues preguntes difícils (7 min).** Preguntes 6 i 7, en gran grup. La 6 introduïx la idea que un model no és copiable si no tens els recursos clau.
-6. **Tancament (3 min).** Cada grup diu en una frase quin bloc canviaria del seu propi projecte capstone després d'este cas.
+6. **Tancament (3 min).** Cada grup diu en una frase quin bloc canviaria del seu propi projecte emprenedor després d'este cas.
 
 ## Criteris d'avaluació
 
@@ -75,5 +75,5 @@ Canviar un bloc del Canvas mai canvia només eixe bloc. Trobar què va arrossega
 
 - **Variant curta (25 min):** donar el Canvas del model antic ja emplenat i treballar només les preguntes 2 a 5.
 - **Variant amb una altra empresa:** el mateix esquema funciona amb qualsevol negoci del barri que haja començat a repartir a domicili. La fitxa la construïx la classe preguntant a la botiga.
-- **Extensió cap al capstone (15 min).** Cada grup agafa el seu propi Canvas i canvia un bloc a propòsit. Després rastreja quins altres dos blocs es mouen. És la millor manera de comprovar si el Canvas està ben fet: si no arrossega res, és que estava buit.
+- **Extensió cap al projecte (15 min).** Cada grup agafa el seu propi Canvas i canvia un bloc a propòsit. Després rastreja quins altres dos blocs es mouen. És la millor manera de comprovar si el Canvas està ben fet: si no arrossega res, és que estava buit.
 - **Connexió amb l'exercici del BMC llampec** de la mateixa unitat: allí es dissecciona un model estàtic; ací es veu moure's.

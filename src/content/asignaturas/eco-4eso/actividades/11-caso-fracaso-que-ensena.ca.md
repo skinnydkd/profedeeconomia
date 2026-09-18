@@ -55,5 +55,5 @@ En esta activitat aneu a analitzar el cas de "La Birra Artesana", una cerveseria
 ## Variants i extensions
 
 - **Variant "el cas de veritat":** substituir el cas inventat per un negoci real tancat del barri (amb respecte i sense noms) que l'alumnat conega, mantenint la mateixa plantilla d'anàlisi.
-- **Connexió amb la Unitat 9-10:** guardar el diagnòstic. Quan l'equip dissenye el seu projecte capstone, revisarà esta llista d'errors per a no repetir-los.
+- **Connexió amb la Unitat 12:** guardar el diagnòstic. Quan l'equip dissenye el seu projecte emprenedor, revisarà esta llista d'errors per a no repetir-los.
 - **Extensió escrita:** redactar la carta que Marc s'escriuria a si mateix el dia de l'obertura sabent el que sap hui (mig foli).

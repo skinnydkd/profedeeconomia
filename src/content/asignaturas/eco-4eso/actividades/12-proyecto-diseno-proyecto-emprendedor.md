@@ -1,8 +1,8 @@
 ---
 asignatura: eco-4eso
 unidad_relacionada: 12
-title: "Capstone · Parte 1: Diseña tu proyecto emprendedor de aula (Design Thinking + BMC + prototipo)"
-descripcion: "Proyecto largo de cuatro sesiones en el que cada equipo aplica las tres metodologías de la unidad —Design Thinking, Business Model Canvas y prototipado de baja fidelidad— a un problema real del entorno, hasta llegar a un prototipo testado y un BMC iterado. Es la primera mitad del proyecto capstone del curso; la Unidad 10 cerrará con validación y pitch."
+title: "Proyecto de aula · Parte 1: Diseña tu proyecto emprendedor de aula (Design Thinking + BMC + prototipo)"
+descripcion: "Proyecto largo de cuatro sesiones en el que cada equipo aplica las tres metodologías de la unidad —Design Thinking, Business Model Canvas y prototipado de baja fidelidad— a un problema real del entorno, hasta llegar a un prototipo testado y un BMC iterado. Es la primera mitad del proyecto emprendedor del curso; el Demo Day de esta misma unidad cierra con validación y pitch."
 tipo: proyecto
 duracion: "4 sesiones de 55 min · ~4 semanas (1 sesión por semana + trabajo entre sesiones)"
 agrupacion: "grupos pequeños (3-5)"
@@ -23,9 +23,9 @@ estado: publicado
 
 Llega el proyecto más largo del curso. Durante las próximas cuatro sesiones cada equipo va a diseñar un **proyecto emprendedor real**: detectar un problema del entorno, entender a quien lo sufre, modelarlo en una hoja, prototiparlo en cartón y testearlo. No vamos a fabricar nada definitivo —no estamos en una incubadora— pero sí vamos a llegar al **único entregable que importa en esta fase**: un prototipo de baja fidelidad que tres personas reales han visto y comentado, y dos Business Model Canvas (antes y después de hablar con ellas) que demuestran lo que el equipo ha aprendido.
 
-Esta actividad es la **parte 1 del capstone** del curso. La Unidad 10 retomará el proyecto para trabajar la validación con datos, el plan de comunicación y el pitch final. Las dos unidades juntas son el cierre del Bloque D.
+Esta actividad es la **parte 1 del proyecto emprendedor** del curso. El Demo Day, la actividad que cierra esta misma unidad, retomará el proyecto para trabajar la validación con datos, el plan de comunicación y el pitch final. Las dos partes juntas son el cierre del curso.
 
-> **Regla de oro del capstone**: si al final de las cuatro sesiones el BMC del equipo es idéntico al del primer día, no se ha hecho el trabajo. La diferencia entre el BMC 1 y el BMC 2 es la prueba de que el equipo ha hablado con personas reales.
+> **Regla de oro del proyecto**: si al final de las cuatro sesiones el BMC del equipo es idéntico al del primer día, no se ha hecho el trabajo. La diferencia entre el BMC 1 y el BMC 2 es la prueba de que el equipo ha hablado con personas reales.
 
 ## Objetivos didácticos
 
@@ -102,7 +102,7 @@ Cada equipo asigna —y rota cada sesión si quiere— estos cuatro roles. En eq
 
 ### Sesión 4 — Iterar y construir el BMC versión 2 (55 min)
 
-**Objetivo**: convertir el feedback del testeo en cambios concretos del modelo y cerrar la parte 1 del capstone.
+**Objetivo**: convertir el feedback del testeo en cambios concretos del modelo y cerrar la parte 1 del proyecto.
 
 | Bloque | Tiempo | Qué pasa |
 | --- | --- | --- |
@@ -110,7 +110,7 @@ Cada equipo asigna —y rota cada sesión si quiere— estos cuatro roles. En eq
 | Decisión: ¿iteración o pivot? | 5 min | El equipo decide explícitamente. <ul><li>**Iteración**: ajustes dentro del mismo modelo (cambiar el precio, el canal, el nombre, simplificar una pantalla).</li><li>**Pivot**: cambio grande (otro segmento, otra propuesta de valor, otra fuente de ingresos).</li></ul> Pivotar **no es fracasar**: Instagram, YouTube y Slack pivotaron. |
 | Construcción del **BMC versión 2** | 20 min | Se hace un BMC nuevo en otra A3 (no se borra el primero: el contraste es el aprendizaje). Se mueven, quitan y añaden post-its según el feedback recogido. |
 | Cuaderno de bitácora: redacción del **informe de aprendizaje** | 10 min | Documento de 1 página con: problema inicial, qué descubrimos en las entrevistas, idea elegida, qué pasó en el testeo, cambios entre BMC v1 y BMC v2, decisión de iteración o pivot. |
-| Cierre y conexión con la Unidad 10 | 5 min | El profesor recoge: BMC v1 + BMC v2 + prototipo + cuaderno de bitácora. Anuncia que la Unidad 10 retomará el proyecto con la validación final y el pitch. |
+| Cierre y conexión con el Demo Day | 5 min | El profesor recoge: BMC v1 + BMC v2 + prototipo + cuaderno de bitácora. Anuncia que el Demo Day retomará el proyecto con la validación final y el pitch. |
 
 ## Entregables del proyecto
 
@@ -139,22 +139,22 @@ Al final de las cuatro sesiones cada equipo entrega un paquete con cuatro piezas
 
 - **Grupos pequeños (clase < 18)**: equipos de 3 personas con doble rol. Se puede ampliar el número de entrevistas exigidas a 7 por equipo.
 - **Tiempo limitado (3 sesiones en lugar de 4)**: fusionar las sesiones 3 y 4 en una sola sesión de prototipado + iteración rápida. Se pierde profundidad en el testeo pero se mantiene la lógica.
-- **Equipos avanzados**: pedir un tercer entregable opcional, un *pitch* de 1 minuto grabado en vídeo. Sirve de calentamiento para la Unidad 10.
+- **Equipos avanzados**: pedir un tercer entregable opcional, un *pitch* de 1 minuto grabado en vídeo. Sirve de calentamiento para el Demo Day.
 - **Proyecto con impacto real**: si algún equipo trabaja un problema del propio instituto (residuos, recreos, espacios), invitar al equipo directivo a la sesión 4 como público del testeo. Eleva muchísimo la motivación.
 
-## Conexión con la Unidad 10
+## Conexión con el Demo Day
 
-El capstone no termina aquí. La **Unidad 10 — Validación, comunicación y pitch** retomará el mismo proyecto de cada equipo y trabajará:
+El proyecto no termina aquí. El **Demo Day del aula**, que cierra esta misma unidad, retomará el mismo proyecto de cada equipo y trabajará:
 
 - **Validación con datos**: cómo medir si la propuesta funciona (encuestas, *landing pages*, métricas de uso del prototipo).
 - **Plan de comunicación**: marca, canales, mensaje, materiales gráficos.
 - **Pitch final**: presentación de 3-5 minutos delante del resto de la clase y, si es posible, de un jurado externo (familias, profesores de otros departamentos, exalumnos emprendedores).
 
-El proyecto entregado en esta unidad **es el material de partida** de la Unidad 10. Conservad los BMC, los mapas de empatía, el prototipo y el cuaderno de bitácora: no se vuelven a hacer.
+El proyecto entregado en esta actividad **es el material de partida** del Demo Day. Conservad los BMC, los mapas de empatía, el prototipo y el cuaderno de bitácora: no se vuelven a hacer.
 
 ## Para llevarse a casa
 
-Tres ideas que el aula tiene que asumir antes de la próxima unidad:
+Tres ideas que el aula tiene que asumir antes del Demo Day:
 
 1. **El proyecto no es la idea inicial**: es lo que queda después de hablar con cinco personas y de testear un prototipo de cartón. Casi siempre es muy distinto de lo que se imaginaba el primer día.
 2. **El BMC no es un examen**: es una herramienta de trabajo. Se rellena con post-its precisamente para poder moverlos, quitarlos y añadir cuando el modelo cambia.

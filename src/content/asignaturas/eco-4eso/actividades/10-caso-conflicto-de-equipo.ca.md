@@ -2,7 +2,7 @@
 asignatura: eco-4eso
 unidad_relacionada: 10
 title: "Cas: el company que no apareix — gestionar conflictes d'equip"
-descripcion: "Anàlisi d'un cas real de conflicte dins d'un equip de treball (un membre que no complix, un altre que acapara, una decisió bloquejada) perquè l'alumnat practique tècniques de resolució abans de viure-ho en el seu propi projecte capstone."
+descripcion: "Anàlisi d'un cas real de conflicte dins d'un equip de treball (un membre que no complix, un altre que acapara, una decisió bloquejada) perquè l'alumnat practique tècniques de resolució abans de viure-ho en el seu propi projecte emprenedor."
 tipo: caso
 duracion: "50 min · 1 sessió"
 agrupacion: "grups xicotets (3-4)"
@@ -55,5 +55,5 @@ La unitat ha explicat els rols d'equip i les normes de convivència d'un grup de
 ## Variants i extensions
 
 - **Variant role-play:** en lloc d'analitzar per escrit, quatre voluntaris interpreten els personatges i la resta del grup els ajuda a desbloquejar el conflicte en directe.
-- **Connexió amb la dinàmica Belbin (Unitat 6) i el capstone (Unitat 9):** les normes extretes s'incorporen a la "carta d'equip" del projecte del curs.
-- **Extensió preventiva:** cada equip real de la classe redacta la seua pròpia carta d'equip abans de començar el capstone, amb les normes que van traure d'este cas.
+- **Connexió amb la dinàmica Belbin (Unitat 10) i el projecte emprenedor (Unitat 12):** les normes extretes s'incorporen a la "carta d'equip" del projecte del curs.
+- **Extensió preventiva:** cada equip real de la classe redacta la seua pròpia carta d'equip abans de començar el projecte emprenedor, amb les normes que van traure d'este cas.

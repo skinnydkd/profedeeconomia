@@ -55,6 +55,6 @@ La unidad ha explicado los tipos de contrato, la nómina, la cotización y el IR
 
 ## Variantes y extensiones
 
-- **Conexión con la actividad de nóminas (Unidad 8):** comparar la nómina real de la oferta A con la factura que emitiría el falso autónomo de la C para ver cuánto cuesta de verdad cada figura.
+- **Conexión con la actividad de nóminas de esta unidad:** comparar la nómina real de la oferta A con la factura que emitiría el falso autónomo de la C para ver cuánto cuesta de verdad cada figura.
 - **Variante negociación:** quien eligió una oferta intenta «negociar» una mejora con el profesor (subir el sueldo, pasar de prácticas a contrato) y descubre el margen real.
 - **Extensión:** buscar una oferta de trabajo real para menores de edad o primer empleo en un portal de empleo y analizarla con la misma plantilla.

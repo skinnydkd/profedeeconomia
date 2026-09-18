@@ -49,6 +49,6 @@ Este debate enfrenta las dos visiones con casos reales. El objetivo no es decidi
 
 ## Variantes y extensiones
 
-- **Conexión con la actividad de greenwashing (Unidad 3):** usar como munición del equipo crítico los anuncios analizados en la actividad de detección de greenwashing.
+- **Conexión con la actividad de greenwashing (Unidad 2):** usar como munición del equipo crítico los anuncios analizados en la actividad de detección de greenwashing.
 - **Variante "diseña tu empresa con propósito":** tras el debate, cada equipo esboza en cinco minutos una empresa que ellos consideren capaz de sostener las dos cosas y explica cómo evitaría caer en el sacrificio de la causa.
 - **Extensión:** investigar el modelo cooperativo del entorno (cooperativas agrícolas, de consumo o de trabajo cercanas) y traer un ejemplo real a la siguiente sesión.

@@ -51,5 +51,5 @@ Este exercici separa les dos coses. Abans d'aplicar el BMC al vostre projecte, l
 ## Variants i extensions
 
 - **Variant "models impossibles":** assignar empreses amb models contraintuïtius (un periòdic gratuït, una app sense anuncis ni quota visible) per a forçar la pregunta dels ingressos.
-- **Connexió directa amb el capstone (Unitat 9):** immediatament després, cada equip aplica el BMC a la seua pròpia idea, ja amb la ferramenta entrenada.
+- **Connexió directa amb el projecte d'esta unitat:** immediatament després, cada equip aplica el BMC a la seua pròpia idea, ja amb la ferramenta entrenada.
 - **Extensió comparativa:** comparar el Canvas d'un gegant amb el d'un negoci local del mateix sector (Mercadona vs. botiga de barri) i discutir quins blocs canvien.

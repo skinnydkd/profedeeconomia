@@ -41,7 +41,7 @@ Esta dinámica entrena exactamente eso, y lo hace por repetición: cada estudian
 
 ## Pasos
 
-1. **Construcción del pitch (10 min).** Cada estudiante escribe su pitch de 30 segundos siguiendo la plantilla, sobre su idea del proyecto capstone (o una idea propia si aún no tiene equipo). Aviso: el gancho es lo último que sale bien y lo que más importa.
+1. **Construcción del pitch (10 min).** Cada estudiante escribe su pitch de 30 segundos siguiendo la plantilla, sobre su idea del proyecto emprendedor (o una idea propia si aún no tiene equipo). Aviso: el gancho es lo último que sale bien y lo que más importa.
 2. **Ronda cero — cronometraje en solitario (3 min).** Cada uno lo lee en voz baja con el cronómetro para ver si cabe en 30 segundos. Casi nadie cabe a la primera: hay que recortar.
 3. **Rondas en parejas rotatorias (20 min · ~6 rondas).** La clase se organiza en dos filas enfrentadas. En cada ronda:
    - A dispara su pitch a B en 30 segundos (campana).
@@ -63,5 +63,5 @@ Esta dinámica entrena exactamente eso, y lo hace por repetición: cada estudian
 ## Variantes y extensiones
 
 - **Variante "el inversor difícil":** en la última ronda, el compañero interrumpe a los 10 segundos con «no me interesa, ¿por qué debería seguir escuchando?» para entrenar la reacción bajo presión.
-- **Conexión directa con la demo day (Unidad 10):** este pitch de 30 segundos se convierte en la slide 2 (problema) y en el arranque del pitch de 5 minutos.
+- **Conexión directa con el Demo Day (Unidad 12):** este pitch de 30 segundos se convierte en la slide 2 (problema) y en el arranque del pitch de 5 minutos.
 - **Extensión grabada:** cada estudiante se graba el pitch final con el móvil y se autoevalúa viendo el vídeo (postura, ritmo, muletillas).
