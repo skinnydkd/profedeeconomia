@@ -7,6 +7,7 @@ import tailwindcss from '@tailwindcss/vite';
 import { readdirSync, readFileSync, existsSync, writeFileSync } from 'node:fs';
 import matter from 'gray-matter';
 import { mirrorSitemapLocale, isIndexableHtml } from './scripts/sitemap-i18n.mjs';
+import { localizeHtmlLinks } from './scripts/localize-links.mjs';
 import stripDeckBlocks from './src/lib/remark/strip-deck-blocks.mjs';
 
 /** Canonical origin. Kept in sync with SITE.url in src/lib/seo.ts. */
@@ -100,6 +101,43 @@ function sitemapI18nAlternates({ site, localePrefix = 'ca' }) {
   };
 }
 
+// Gives the /ca/ half of the site its own internal links. Astro's fallback
+// rewrite re-renders each page under /ca/*, but an href written as
+// `/eco-1bach/` is a literal and resolves to the Spanish page from both
+// halves, so every link dropped the reader out of Valencian on the first
+// click. Rewriting the emitted HTML covers the page templates and the MDX book
+// prose at once, and keeps holding for pages added later. The decisions about
+// which hrefs to touch live in scripts/localize-links.mjs so they can be
+// unit-tested without a build; this hook only walks the files.
+function localizeCaLinks({ localePrefix = 'ca' } = {}) {
+  return {
+    name: 'localize-ca-links',
+    hooks: {
+      'astro:build:done': ({ dir, logger }) => {
+        const root = new URL(`${localePrefix}/`, dir);
+        if (!existsSync(root)) {
+          logger.warn(`no /${localePrefix}/ pages found — nothing to localize`);
+          return;
+        }
+        let pages = 0;
+        let links = 0;
+        for (const name of readdirSync(root, { recursive: true })) {
+          if (!name.endsWith('.html')) continue;
+          const file = new URL(name, root);
+          const { html, changed } = localizeHtmlLinks(readFileSync(file, 'utf8'), {
+            prefix: localePrefix,
+          });
+          if (changed === 0) continue;
+          writeFileSync(file, html);
+          pages += 1;
+          links += changed;
+        }
+        logger.info(`prefixed ${links} internal links across ${pages} /${localePrefix}/ pages`);
+      },
+    },
+  };
+}
+
 export default defineConfig({
   site: SITE_URL,
 
@@ -130,6 +168,9 @@ export default defineConfig({
   integrations: [
     preact({ compat: false }),
     mdx(),
+    // Runs before the sitemap integrations so they inspect the pages as
+    // shipped: `astro:build:done` hooks fire in the order listed here.
+    localizeCaLinks(),
     // Keep noindex routes (print editions, individual slide decks, and the
     // deprecated /tests/ index hubs) out of the sitemap so they aren't submitted
     // for indexing. The /diapositivas/ index and individual /tests/[slug]/ stay.
