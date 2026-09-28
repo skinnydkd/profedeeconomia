@@ -51,7 +51,7 @@ Pueden y deben consultar el convenio aplicable en el REGCON, calcular el precio/
 
 ### 3. Propuesta de ruta de reclamación (10 min)
 
-Con las vulneraciones detectadas, cada pareja redacta **un párrafo de no más de 8 líneas** simulando que asesora al trabajador del caso: qué documentos debe guardar, a quién debe acudir primero (encargado, comité, sindicato), si procede denunciar en la **Inspección de Trabajo** (gratuita y anónima), y si finalmente debe ir al **SMAC + Juzgado de lo Social** (con plazo de 20 días hábiles).
+Con las vulneraciones detectadas, cada pareja redacta **un párrafo de no más de 8 líneas** simulando que asesora al trabajador del caso: qué documentos debe guardar, a quién debe acudir primero (encargado, comité, sindicato), si procede denunciar en la **Inspección de Trabajo** (gratuita y confidencial: no revela quién denuncia), y si finalmente debe ir al **SMAC + Juzgado de lo Social** (un año de plazo para reclamar salarios u horas no pagadas; 20 días hábiles si hay un despido).
 
 ### 4. Puesta en común (10 min)
 

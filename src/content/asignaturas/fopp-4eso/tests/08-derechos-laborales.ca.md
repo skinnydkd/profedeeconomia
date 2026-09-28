@@ -74,11 +74,11 @@ preguntas:
   - enunciado: "Si et vulneren un dret laboral i l'empresa no respon a la teua reclamació interna, quina és la ruta correcta per a reclamar?"
     opciones:
       - "Acudir directament al Jutjat del Social presentant demanda."
-      - "Comité o sindicat → Inspecció de Treball (denúncia gratuïta i anònima) → SMAC (conciliació prèvia obligatòria) → Jutjat del Social si no hi ha acord."
+      - "Comité o sindicat → Inspecció de Treball (denúncia gratuïta i confidencial) → SMAC (conciliació prèvia obligatòria) → Jutjat del Social si no hi ha acord."
       - "Telefonar a la policia i presentar una denúncia penal."
       - "Esperar que s'acumulen diverses vulneracions i reclamar-les totes juntes al cap de l'any."
     correcta: 1
-    explicacion: "La ruta correcta és esglaonada: primer **comité o sindicat** (assessoria gratuïta), després **Inspecció de Treball** (denúncia en línia, gratuïta i pot ser anònima), i si no es resol, **conciliació prèvia davant del SMAC** (gratuïta i obligatòria) abans de presentar demanda en el **Jutjat del Social**. Els terminis són curts: 20 dies hàbils des de l'acomiadament o l'última nòmina impagada."
+    explicacion: "La ruta correcta és esglaonada: primer **comité o sindicat** (assessoria gratuïta), després **Inspecció de Treball** (denúncia en línia, gratuïta i confidencial: no revela qui denuncia), i si no es resol, **conciliació prèvia davant del SMAC** (gratuïta i obligatòria) abans de presentar demanda en el **Jutjat del Social**. Compte amb els terminis: 20 dies hàbils per a impugnar un acomiadament i un any per a reclamar salaris impagats."
   - tipo: verdadero-falso
     enunciado: "Si el teu conveni col·lectiu fixa per a la teua categoria un salari superior al SMI, l'empresa pot pagar-te només el SMI perquè este sempre preval sobre el conveni."
     correcta: false
