@@ -9,6 +9,7 @@ import { recursosDeUnidad } from '@/lib/recursos-relacionados';
 import { articleLd, breadcrumbLd } from '@/lib/seo';
 import { getLocale } from '@/i18n/locale';
 import { pickLocalizedEntry } from '@/i18n/content-locale';
+import { localizeAsignatura } from '@/i18n/asignaturas-ca';
 import type { GetStaticPaths } from 'astro';
 
 export const getStaticPaths = (async () => {
@@ -25,8 +26,9 @@ export const getStaticPaths = (async () => {
 }) satisfies GetStaticPaths;
 
 const { unit } = Astro.props;
-const a = ASIGNATURAS[unit.data.asignatura];
 const locale = getLocale(Astro.currentLocale);
+// Localized so the <title> suffix and educationalLevel are not Castilian under /ca.
+const a = localizeAsignatura(ASIGNATURAS[unit.data.asignatura], locale);
 
 // Valencian siblings (published), keyed by "<esId>.ca". Swap the ES unit for
 // its CA sibling under /ca (ES fallback when the translation is missing).

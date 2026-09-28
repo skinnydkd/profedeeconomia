@@ -8,6 +8,7 @@ import { getCollection } from 'astro:content';
 import type { GetStaticPaths } from 'astro';
 import { getLocale } from '@/i18n/locale';
 import { localizeAsignatura } from '@/i18n/asignaturas-ca';
+import { pickLocalizedEntry } from '@/i18n/content-locale';
 
 export const getStaticPaths = (() => {
   return ASIGNATURA_SLUGS.map((slug) => ({
@@ -158,10 +159,13 @@ const breadcrumb = breadcrumbLd([
 // Course JSON-LD (only for published subjects): `teaches` derived from the
 // published book unit titles, aligned to the LOMLOE Real Decreto.
 const libroAll = await getCollection('libro');
+const libroCaById = new Map(
+  libroAll.filter((u) => u.data.lang === 'ca' && u.data.estado === 'publicado').map((u) => [u.id, u]),
+);
 const unitTitles = libroAll
   .filter((u) => u.data.asignatura === a.slug && u.data.estado === 'publicado' && u.data.lang === 'es')
   .sort((x, y) => x.data.unidad - y.data.unidad)
-  .map((u) => u.data.title);
+  .map((u) => pickLocalizedEntry(u, libroCaById, locale).data.title);
 // The FAQ is ES prose (visible block + FAQPage JSON-LD); it is built from the
 // ES asignatura so its sentences don't end up half-translated. Content phase.
 const faqs = subjectFaqs(a, locale);
