@@ -60,7 +60,7 @@ preguntas:
       - "Auditar cuentas todos los meses."
       - "No invertir en activos arriesgados."
     correcta: 0
-    explicacion: "Prudencia = asimetría: beneficio solo si es realizado, pérdidas en cuanto son probables. Es uno de los nueve principios que dan validez a las cuentas anuales."
+    explicacion: "Prudencia = asimetría: beneficio solo si es realizado, pérdidas en cuanto son probables. Es uno de los seis principios que dan validez a las cuentas anuales."
   - enunciado: "El sistema de partida doble que usan todas las contabilidades modernas se atribuye a…"
     opciones:
       - "John Maynard Keynes."
