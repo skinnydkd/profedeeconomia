@@ -354,6 +354,22 @@ export function upgradeRd(state: GameState, cellId: number): GameState {
 
 // ─── applyTax ─────────────────────────────────────────────────────────────────
 
+/**
+ * Wealth tax on a net worth, by marginal brackets: 5 % of the first 500 €,
+ * 10 % from 500 to 1.000 € and 15 % of the rest. 1.000 € pays 25 + 50 = 75 €,
+ * not 15 % of everything, so net worth after tax always grows with net worth.
+ */
+export function impuestoPatrimonio(nw: number): number {
+  let tax = 0;
+  let desde = 0;
+  for (const bracket of TAX_BRACKETS) {
+    if (nw <= desde) break;
+    tax += (Math.min(nw, bracket.threshold) - desde) * bracket.rate;
+    desde = bracket.threshold;
+  }
+  return Math.floor(tax);
+}
+
 export function applyTax(state: GameState): GameState {
   const s = structuredClone(state) as GameState;
   const pid = s.current;
@@ -367,21 +383,14 @@ export function applyTax(state: GameState): GameState {
   }
 
   const nw = netWorth(s, pid);
-
-  // Find applicable bracket (TAX_BRACKETS has Infinity as last threshold, always matches)
-  let rate = TAX_BRACKETS[TAX_BRACKETS.length - 1].rate;
-  for (const bracket of TAX_BRACKETS) {
-    if (nw < bracket.threshold) {
-      rate = bracket.rate;
-      break;
-    }
-  }
-
-  const tax = Math.floor(nw * rate);
+  const tax = impuestoPatrimonio(nw);
   const actualTax = Math.min(tax, player.cash); // can't pay more than cash
   player.cash -= actualTax;
   s.publicFund += actualTax;
-  s.log.push(`${player.name} paga ${actualTax} € de impuestos (${(rate * 100).toFixed(0)}% sobre ${nw} €).`);
+  s.log.push(
+    `${player.name} paga ${actualTax} € de impuesto sobre el patrimonio ` +
+      `(${nw} €: 5 % de los primeros 500, 10 % hasta 1.000 y 15 % del resto).`,
+  );
   return s;
 }
 

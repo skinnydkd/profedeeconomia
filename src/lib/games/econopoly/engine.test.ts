@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import {
   createInitialState, rollDice, move, computeRent, resolveCell, buyProperty,
-  startAuction, auctionBid, auctionPass, upgradeRd, applyTax, advancePhase,
+  startAuction, auctionBid, auctionPass, upgradeRd, applyTax, impuestoPatrimonio, advancePhase,
   endTurn, netWorth, giniIndex, checkVictory, applyNewsCard,
 } from './engine';
 import { CELLS, sectorCellIds } from './board';
@@ -192,7 +192,7 @@ describe('econopoly engine', () => {
     expect(next.players[0].cash).toBe(cashBefore);
   });
 
-  it('applyTax: progressive 5/10/15% on net worth, added to publicFund', () => {
+  it('applyTax: 5 % of the first 500 €, added to publicFund', () => {
     const s = createInitialState(PLAYERS);
     s.players[0].cash = 400; // <500 → 5%
     const before = s.publicFund;
@@ -201,20 +201,31 @@ describe('econopoly engine', () => {
     expect(next.players[0].cash).toBe(400 - 20);
   });
 
-  it('applyTax: 500-1000 range → 10%', () => {
+  it('applyTax: 10 % only on the slice from 500 to 1.000 €', () => {
     const s = createInitialState(PLAYERS);
-    s.players[0].cash = 800; // 500-1000 → 10%
+    s.players[0].cash = 800;
     const next = applyTax({ ...s, current: 0 });
-    expect(next.publicFund).toBe(80);  // 800 * 10%
-    expect(next.players[0].cash).toBe(800 - 80);
+    expect(next.publicFund).toBe(55);  // 500 × 5 % + 300 × 10 %
+    expect(next.players[0].cash).toBe(800 - 55);
   });
 
-  it('applyTax: >1000 → 15%', () => {
+  it('applyTax: 15 % only above 1.000 €', () => {
     const s = createInitialState(PLAYERS);
     s.players[0].cash = 1500;
     const next = applyTax({ ...s, current: 0 });
-    expect(next.publicFund).toBe(225);  // 1500 * 15%
-    expect(next.players[0].cash).toBe(1500 - 225);
+    expect(next.publicFund).toBe(150);  // 25 + 50 + 500 × 15 %
+    expect(next.players[0].cash).toBe(1500 - 150);
+  });
+
+  it('moving up a bracket never leaves a player poorer (no «salto de tramo»)', () => {
+    expect(impuestoPatrimonio(999)).toBe(74);
+    expect(impuestoPatrimonio(1000)).toBe(75);
+    let previo = -Infinity;
+    for (let nw = 0; nw <= 3000; nw++) {
+      const neto = nw - impuestoPatrimonio(nw);
+      expect(neto).toBeGreaterThanOrEqual(previo);
+      previo = neto;
+    }
   });
 
   it('giniIndex is 0 when all players have equal net worth', () => {
