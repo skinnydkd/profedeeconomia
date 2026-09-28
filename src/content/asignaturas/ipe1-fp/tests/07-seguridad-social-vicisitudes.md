@@ -25,11 +25,11 @@ preguntas:
   - enunciado: "En la cotización del Régimen General, ¿cómo se reparte la carga entre empresa y trabajador?"
     opciones:
       - "El trabajador paga el triple que la empresa."
-      - "La empresa paga aproximadamente el triple que el trabajador; el coste total para la empresa supera el salario bruto en torno a un 30-32 %."
+      - "La empresa paga casi cinco veces lo que el trabajador; el coste total para la empresa supera el salario bruto en torno a un 30-32 %."
       - "Solo cotiza el trabajador."
       - "Empresa y trabajador pagan exactamente lo mismo."
     correcta: 1
-    explicacion: "La **empresa paga aproximadamente el triple** que el trabajador. En la nómina solo aparece la parte a tu cargo (≈ 6,35 %), pero la empresa aporta mucho más (alrededor de un 30-32 % de tu bruto): por eso el 'coste de empresa' es bastante superior a tu salario bruto."
+    explicacion: "La **empresa paga casi cinco veces** lo que el trabajador. En la nómina solo aparece la parte a tu cargo (≈ 6,50 %), pero la empresa aporta mucho más (alrededor de un 30-32 % de tu bruto): por eso el 'coste de empresa' es bastante superior a tu salario bruto."
   - enunciado: "Para cobrar la prestación contributiva por desempleo, ¿cuál es el requisito mínimo de cotización?"
     opciones:
       - "Haber cotizado al menos 360 días (12 meses) en los 6 años anteriores, estar en situación legal de desempleo e inscrito como demandante."

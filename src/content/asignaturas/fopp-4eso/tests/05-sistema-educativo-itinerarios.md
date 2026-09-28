@@ -11,8 +11,8 @@ preguntas:
       - "Cuatro: Ciencias y Tecnología, Humanidades y Ciencias Sociales, Artes y General."
       - "Cinco: Ciencias y Tecnología, Humanidades y Ciencias Sociales, Artes Plásticas, Música y Artes Escénicas, y General."
       - "Seis: las cinco anteriores más el Bachillerato Internacional."
-    correcta: 2
-    explicacion: "La LOMLOE reconoce cinco modalidades porque Artes se divide en dos vías independientes (Plásticas, Imagen y Diseño; Música y Artes Escénicas) y añade la novedad de la modalidad General, pensada para quien aún no ha decidido especialización."
+    correcta: 1
+    explicacion: "El Real Decreto 243/2022 establece cuatro modalidades: Ciencias y Tecnología, Humanidades y Ciencias Sociales, Artes y General. Artes tiene dos vías (Artes Plásticas, Imagen y Diseño; Música y Artes Escénicas), pero es una sola modalidad. La General es la novedad de la LOMLOE, pensada para quien aún no ha decidido especialización."
   - enunciado: "La fórmula oficial de la nota de acceso a la universidad en la EBAU es…"
     opciones:
       - "0,5 × nota media de Bachillerato + 0,5 × nota de la fase obligatoria."

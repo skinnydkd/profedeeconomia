@@ -109,9 +109,9 @@ Cada alumno escribe en su cuaderno **una conclusión personal** en una frase, em
   - **Total devengado: 1.383,00 €**
 - **Deducciones**:
   - Base de cotización: 1.613,50 € (incluye prorrateo de pagas)
-  - Cotización SS trabajador (6,35 %): −102,46 €
+  - Cotización SS trabajador (6,50 %): −104,88 €
   - Retención IRPF (3 %): −41,49 €
-- **Líquido a percibir: 1.239,05 €**
+- **Líquido a percibir: 1.236,63 €**
 - **Pagas anuales**: 14 (12 mensualidades + extra junio + extra Navidad).
 
 ### Nómina 2 — Laia, 31 años, dependienta indefinida en una tienda de barrio
@@ -124,10 +124,10 @@ Cada alumno escribe en su cuaderno **una conclusión personal** en una frase, em
   - Plus de transporte (no salarial): 60,00 €
   - **Total devengado: 1.415,00 €**
 - **Deducciones**:
-  - Base de cotización: 1.581,67 € (sin incluir plus transporte; con prorrateo extras)
-  - Cotización SS trabajador (6,35 %): −100,44 €
-  - Retención IRPF (7 %): −98,05 €
-- **Líquido a percibir: 1.216,51 €**
+  - Base de cotización: 1.640,83 € (con prorrateo de extras y el plus de transporte, que cotiza desde 2014)
+  - Cotización SS trabajador (6,50 %): −106,65 €
+  - Retención IRPF (7 %): −99,05 €
+- **Líquido a percibir: 1.209,30 €**
 - **Pagas anuales**: 14. Antigüedad de 5 años, derecho consolidado a paro.
 
 ### Nómina 3 — Marc, 26 años, programador junior indefinido en una empresa tecnológica
@@ -141,9 +141,9 @@ Cada alumno escribe en su cuaderno **una conclusión personal** en una frase, em
   - **Total devengado: 2.650,00 €**
 - **Deducciones**:
   - Base de cotización: 3.091,67 € (con prorrateo de extras)
-  - Cotización SS trabajador (6,35 %): −196,32 €
+  - Cotización SS trabajador (6,50 %): −200,96 €
   - Retención IRPF (17 %): −450,50 €
-- **Líquido a percibir: 2.003,18 €**
+- **Líquido a percibir: 1.998,54 €**
 - **Pagas anuales**: 14. Antigüedad de 16 meses, derecho consolidado a paro.
 
 ## Solución orientativa para el profesor
@@ -153,9 +153,9 @@ Cada alumno escribe en su cuaderno **una conclusión personal** en una frase, em
 | | Adrián | Laia | Marc |
 | --- | --- | --- | --- |
 | Bruto mensual | 1.383,00 € | 1.415,00 € | 2.650,00 € |
-| SS trabajador (6,35 % base) | 102,46 € | 100,44 € | 196,32 € |
-| IRPF retenido | 41,49 € (3 %) | 98,05 € (7 %) | 450,50 € (17 %) |
-| Neto mensual | 1.239,05 € | 1.216,51 € | 2.003,18 € |
+| SS trabajador (6,50 % base) | 104,88 € | 106,65 € | 200,96 € |
+| IRPF retenido | 41,49 € (3 %) | 99,05 € (7 %) | 450,50 € (17 %) |
+| Neto mensual | 1.236,63 € | 1.209,30 € | 1.998,54 € |
 
 > Observación esperada: **Adrián cobra más neto que Laia pese a cobrar menos bruto**, porque su retención de IRPF es menor (es su primer año trabajando, sin renta acumulada). Esta es una de las paradojas que el ejercicio quiere que aparezca.
 
@@ -164,15 +164,15 @@ Cada alumno escribe en su cuaderno **una conclusión personal** en una frase, em
 | | Adrián | Laia | Marc |
 | --- | --- | --- | --- |
 | Bruto anual (× 14) | 19.362 € | 19.810 € | 37.100 € |
-| Neto anual (× 14) | 17.347 € | 17.031 € | 28.045 € |
-| % descuento | 10,4 % | 14,0 % | 24,4 % |
+| Neto anual (× 14) | 17.313 € | 16.930 € | 27.980 € |
+| % descuento | 10,6 % | 14,5 % | 24,6 % |
 | ¿Paro mañana? | Sí, si ha cotizado ≥ 360 días | Sí, 5 años cotizados | Sí, 16 meses cotizados |
-| Indemnización despido improcedente | No aplica (contrato formativo) | 33 días/año × 5 = 165 días | 33 días/año × 1,33 = 44 días |
+| Indemnización despido improcedente | 33 días/año si le despiden sin causa; al acabar el contrato, ninguna | 33 días/año × 5 = 165 días | 33 días/año × 1,33 = 44 días |
 
 ### Tabla D — ranking razonado de estabilidad (propuesta)
 
 1. **Laia** — la más estable. Contrato indefinido, 5 años de antigüedad, indemnización de unos 5,5 meses de sueldo si la despiden, derecho consolidado a paro de larga duración. Sueldo modesto pero predecible.
-2. **Marc** — segundo. Indefinido, pero solo 16 meses de antigüedad: la indemnización por despido improcedente sería de mes y medio aproximadamente. Sueldo alto, pero el sector TIC tiene rotación; el descuento del 24,4 % le sorprende al ver la nómina.
+2. **Marc** — segundo. Indefinido, pero solo 16 meses de antigüedad: la indemnización por despido improcedente sería de mes y medio aproximadamente. Sueldo alto, pero el sector TIC tiene rotación; el descuento del 24,6 % le sorprende al ver la nómina.
 3. **Adrián** — el menos estable. Contrato formativo con fecha de fin (10 meses), sin indemnización por fin de contrato más allá de la que corresponda por días trabajados, sin derecho consolidado al desempleo si no completa cotización suficiente. Su neto es engañosamente alto porque la retención de IRPF es muy baja al ser primer año.
 
 > El mensaje pedagógico clave: **el bruto no decide la estabilidad**. Marc cobra el doble que Laia pero está más expuesto a despido barato. Adrián parece cobrar bien pero su contrato tiene fecha de caducidad. Saber leer estas tres nóminas en paralelo es lo que evita aceptar el primer contrato sin entender qué se firma.

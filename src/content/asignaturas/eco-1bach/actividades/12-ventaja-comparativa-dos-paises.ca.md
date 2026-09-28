@@ -82,6 +82,6 @@ Se suposa que cada país pot repartir els seus recursos entre els dos béns de m
 ## Variants i extensions
 
 - **Variant curta (25 min):** resoldre només les preguntes 1 a 4 i deixar el rang d'intercanvi per a la sessió següent.
-- **Variant amb la calculadora de l'aula:** repetir l'exercici canviant la producció màxima de tela de Portugal a 300 i comprovar que l'avantatge comparatiu canvia de mans. És la manera més ràpida de vore que no depén de la grandària del país.
+- **Variant amb la calculadora de l'aula:** repetir l'exercici amb altres produccions màximes de tela per a Portugal. Amb 300 no canvia res (1 oli = 5 tela, més que els 2 d'Espanya); amb 90, l'avantatge comparatiu en oli passa a Portugal (1 oli = 1,5 tela). És la manera més ràpida de vore que el que decidix és el cost d'oportunitat, no la grandària del país.
 - **Extensió crítica (15 min).** El model suposa que els recursos es reassignen sense cost d'un sector a l'altre. Discutir en gran grup què li passa, en el món real, a qui treballava al sector que desapareix. Enllaça amb la corba de l'elefant de Milanović, que la unitat tracta més avant.
 - **Connexió amb el test de la unitat:** la pregunta numèrica sobre el cost d'oportunitat del vi usa exactament este mètode amb altres xifres.

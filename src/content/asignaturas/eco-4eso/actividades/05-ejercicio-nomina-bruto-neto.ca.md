@@ -9,12 +9,12 @@ agrupacion: "individual"
 competencias_clave: [STEM, CPSAA, CD]
 competencias_especificas: [CE4]
 solucion:
-  - "Pas 1 — Cotització SS del treballador (6,35 %): 1.500 × 0,0635 = **95,25 €**."
+  - "Pas 1 — Cotització SS del treballador (6,50 %): 1.500 × 0,065 = **97,50 €**."
   - "Pas 2 — Retenció IRPF (12 %): 1.500 × 0,12 = **180,00 €**."
-  - "Pas 3 — Salari net (líquid a percebre): 1.500 − 95,25 − 180,00 = **1.224,75 €**."
-  - "Pas 4 — Percentatge de descompte total: (95,25 + 180,00) / 1.500 × 100 = 275,25 / 1.500 × 100 = **18,35 %**."
-  - "Pas 5 — Cotitzacions de l'empresa: contingències comunes (23,60 %) = 1.500 × 0,236 = 354,00 €; desocupació (5,50 %) = 1.500 × 0,055 = 82,50 €; FOGASA (0,20 %) = 1.500 × 0,002 = 3,00 €; formació professional (0,60 %) = 1.500 × 0,006 = 9,00 €. Total cotitzacions empresa = 354,00 + 82,50 + 3,00 + 9,00 = **448,50 €**."
-  - "Pas 6 — Cost total per a l'empresa: 1.500 + 448,50 = **1.948,50 €**."
+  - "Pas 3 — Salari net (líquid a percebre): 1.500 − 97,50 − 180,00 = **1.222,50 €**."
+  - "Pas 4 — Percentatge de descompte total: (97,50 + 180,00) / 1.500 × 100 = 277,50 / 1.500 × 100 = **18,50 %**."
+  - "Pas 5 — Cotitzacions de l'empresa: contingències comunes (23,60 %) = 1.500 × 0,236 = 354,00 €; desocupació (5,50 %) = 1.500 × 0,055 = 82,50 €; FOGASA (0,20 %) = 1.500 × 0,002 = 3,00 €; formació professional (0,60 %) = 1.500 × 0,006 = 9,00 €; MEI (0,75 %) = 1.500 × 0,0075 = 11,25 €. Total cotitzacions empresa = 354,00 + 82,50 + 3,00 + 9,00 + 11,25 = **459,75 €**."
+  - "Pas 6 — Cost total per a l'empresa: 1.500 + 459,75 = **1.959,75 €**."
 estado: publicado
 lang: ca
 slug: "asignaturas/eco-4eso/actividades/05-ejercicio-nomina-bruto-neto.ca"
@@ -26,7 +26,7 @@ Carlos acaba de firmar el seu primer contracte indefinit a jornada completa. El 
 
 L'empresa li aplica els següents descomptes sobre la nòmina de maig de 2026:
 
-- Cotització a la Seguretat Social a càrrec del treballador: **6,35 %** sobre el salari brut.
+- Cotització a la Seguretat Social a càrrec del treballador: **6,50 %** sobre el salari brut (4,70 % contingències comunes, 1,55 % desocupació, 0,10 % formació professional i 0,15 % MEI).
 - Retenció de l'IRPF: **12 %** sobre el salari brut (tipus fix de retenció aplicat per a simplificar).
 
 D'altra banda, l'empresa també ha de pagar les seues pròpies cotitzacions a la Seguretat Social per este treballador. Els percentatges vigents a càrrec de l'empresa són:
@@ -37,8 +37,9 @@ D'altra banda, l'empresa també ha de pagar les seues pròpies cotitzacions a la
 | Desocupació (contracte indefinit) | 5,50 % |
 | FOGASA | 0,20 % |
 | Formació professional | 0,60 % |
+| Mecanisme d'equitat intergeneracional (MEI) | 0,75 % |
 
-Tots els percentatges anteriors s'apliquen sobre el salari brut de 1.500 €.
+Tots els percentatges anteriors s'apliquen sobre el salari brut de 1.500 €. És una simplificació: en una nòmina real, amb 14 pagues, la base de cotització inclou el prorrateig de les extres i seria de 1.750 € (1.500 × 14 / 12).
 
 ## Es demana
 

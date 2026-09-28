@@ -26,11 +26,11 @@ preguntas:
   - enunciado: "En la cotització del Règim General, com es repartix la càrrega entre empresa i treballador?"
     opciones:
       - "El treballador paga el triple que l'empresa."
-      - "L'empresa paga aproximadament el triple que el treballador; el cost total per a l'empresa supera el salari brut al voltant d'un 30-32 %."
+      - "L'empresa paga gairebé cinc vegades el que paga el treballador; el cost total per a l'empresa supera el salari brut al voltant d'un 30-32 %."
       - "Només cotitza el treballador."
       - "Empresa i treballador paguen exactament el mateix."
     correcta: 1
-    explicacion: "L'**empresa paga aproximadament el triple** que el treballador. En la nòmina només apareix la part al teu càrrec (≈ 6,35 %), però l'empresa aporta molt més (al voltant d'un 30-32 % del teu brut): per això el «cost d'empresa» és bastant superior al teu salari brut."
+    explicacion: "L'**empresa paga gairebé cinc vegades** el que paga el treballador. En la nòmina només apareix la part al teu càrrec (≈ 6,50 %), però l'empresa aporta molt més (al voltant d'un 30-32 % del teu brut): per això el «cost d'empresa» és bastant superior al teu salari brut."
   - enunciado: "Per a cobrar la prestació contributiva per desocupació, quin és el requisit mínim de cotització?"
     opciones:
       - "Haver cotitzat almenys 360 dies (12 mesos) en els 6 anys anteriors, estar en situació legal de desocupació i inscrit com a demandant."
