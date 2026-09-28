@@ -19,7 +19,7 @@ slug: "asignaturas/eco-4eso/recursos/calculadora-nomina.ca"
 
 ## Què cal tindre en compte
 
-El càlcul de l'IRPF utilitza l'**escala estatal 2024** simplificada. La quota real depén de la concreció autonòmica (cada CCAA aplica la seua pròpia escala sobre la mitat de la base) i de les **deduccions personals i familiars** (mínim personal, fills a càrrec, discapacitat, etc.).
+El càlcul de l'IRPF utilitza l'**escala general de 2026**: l'estatal més una autonòmica tipus. La quota real depén de l'escala de cada comunitat, que s'aplica a tota la base, i de les **deduccions personals i familiars** (mínim personal, fills a càrrec, discapacitat, etc.).
 
 La cotització a la Seguretat Social del treballador es fixa al **6,35 %** (4,7 % contingències comunes + 1,55 % desocupació + 0,1 % formació). Per a contractes temporals el percentatge de desocupació puja lleugerament.
 
