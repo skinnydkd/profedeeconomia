@@ -34,7 +34,7 @@ preguntas:
     correcta: false
     explicacion: "Fals, i és l'error més estés. Cada tipus s'aplica només a la part de renda que cau dins del seu tram. Per això el tipus mitjà que pagues sempre és menor que el marginal, i guanyar un euro més mai et deixa amb menys diners."
   - tipo: numerico
-    enunciado: "Amb l'escala estatal simplificada (19 % fins a 12.450 € i 24 % de 12.450 a 20.200 €), quants euros de quota corresponen a una renda de 20.000 €, abans d'aplicar el mínim personal?"
+    enunciado: "Amb l'escala general simplificada (19 % fins a 12.450 € i 24 % de 12.450 a 20.200 €), quants euros de quota corresponen a una renda de 20.000 €, abans d'aplicar el mínim personal?"
     respuesta: 4177.5
     tolerancia: 2
     unidad: "€"

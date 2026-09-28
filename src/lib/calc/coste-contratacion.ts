@@ -17,11 +17,19 @@
  *    tariff, so it is an input rather than a constant. 1,50 % is a common
  *    office-work figure; construction and agriculture are far higher.
  *
- * Same simplification as nomina.ts: the contribution base equals the gross
- * salary, with no minimum or maximum base capping. Rates change every year —
- * check them against the TGSS before teaching the exact figure.
+ * Same base as nomina.ts: the gross with prorated extras, capped at the 2026
+ * maximum base, plus the employer's share of the solidarity contribution
+ * above it; no minimum base. Rates change every year — check them against the
+ * TGSS before teaching the exact figure.
  */
-import { calcularNomina, tasaDesempleo, type Contrato, type OpcionesNomina } from './nomina';
+import {
+  baseCotizacion,
+  calcularNomina,
+  PARTE_TRABAJADOR_SOLIDARIDAD,
+  tasaDesempleo,
+  type Contrato,
+  type OpcionesNomina,
+} from './nomina';
 
 export const COTIZACIONES_EMPRESA_2026 = {
   contingenciasComunes: 0.236,
@@ -51,6 +59,8 @@ export interface DesgloseEmpresa {
   fogasa: number;
   formacionProfesional: number;
   mei: number;
+  /** Employer's share of the solidarity contribution (0 below the maximum base). */
+  solidaridad: number;
   total: number;
 }
 
@@ -95,7 +105,7 @@ export function calcularCoste(brutoAnual: number, opciones: OpcionesCoste = {}):
     contrato,
     cotizacionesEmpresa: {
       contingenciasComunes: NaN, desempleo: NaN, atEp: NaN,
-      fogasa: NaN, formacionProfesional: NaN, mei: NaN, total: NaN,
+      fogasa: NaN, formacionProfesional: NaN, mei: NaN, solidaridad: NaN, total: NaN,
     },
     costeTotalAnual: NaN, costeTotalMensual: NaN, sobrecosteSobreBruto: NaN,
     horasEfectivas: NaN, costePorHora: NaN, liquidoAnual: NaN,
@@ -106,19 +116,22 @@ export function calcularCoste(brutoAnual: number, opciones: OpcionesCoste = {}):
   if (horasSemana <= 0 || semanasTrabajadas <= 0) return vacio;
 
   const r = COTIZACIONES_EMPRESA_2026;
+  const { baseAnual, solidaridadTotal } = baseCotizacion(brutoAnual);
   const cotizacionesEmpresa: DesgloseEmpresa = {
-    contingenciasComunes: brutoAnual * r.contingenciasComunes,
-    desempleo: brutoAnual * tasaDesempleoEmpresa(contrato),
-    atEp: brutoAnual * tasaAtEp,
-    fogasa: brutoAnual * r.fogasa,
-    formacionProfesional: brutoAnual * r.formacionProfesional,
-    mei: brutoAnual * r.mei,
+    contingenciasComunes: baseAnual * r.contingenciasComunes,
+    desempleo: baseAnual * tasaDesempleoEmpresa(contrato),
+    atEp: baseAnual * tasaAtEp,
+    fogasa: baseAnual * r.fogasa,
+    formacionProfesional: baseAnual * r.formacionProfesional,
+    mei: baseAnual * r.mei,
+    solidaridad: solidaridadTotal * (1 - PARTE_TRABAJADOR_SOLIDARIDAD),
     total: 0,
   };
   cotizacionesEmpresa.total =
     cotizacionesEmpresa.contingenciasComunes + cotizacionesEmpresa.desempleo +
     cotizacionesEmpresa.atEp + cotizacionesEmpresa.fogasa +
-    cotizacionesEmpresa.formacionProfesional + cotizacionesEmpresa.mei;
+    cotizacionesEmpresa.formacionProfesional + cotizacionesEmpresa.mei +
+    cotizacionesEmpresa.solidaridad;
 
   const costeTotalAnual = brutoAnual + cotizacionesEmpresa.total;
   const horasEfectivas = horasSemana * semanasTrabajadas;

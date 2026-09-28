@@ -17,7 +17,7 @@ estado: publicado
 
 ## Qué tener en cuenta
 
-El cálculo del IRPF utiliza la **escala estatal 2024** simplificada. La cuota real depende de la concreción autonómica (cada CCAA aplica su propia escala sobre la mitad de la base) y de las **deducciones personales y familiares** (mínimo personal, hijos a cargo, discapacidad, etc.).
+El cálculo del IRPF utiliza la **escala general de 2026**: la estatal más una autonómica tipo. La cuota real depende de la escala de cada comunidad, que se aplica a toda la base, y de las **deducciones personales y familiares** (mínimo personal, hijos a cargo, discapacidad, etc.).
 
 La cotización a la Seguridad Social del trabajador es del **6,50 %** en 2026 (4,70 % contingencias comunes + 1,55 % desempleo + 0,10 % formación + 0,15 % MEI). En los contratos temporales el desempleo sube al 1,60 %.
 

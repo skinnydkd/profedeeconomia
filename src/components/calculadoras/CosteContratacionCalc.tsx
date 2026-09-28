@@ -41,13 +41,14 @@ export const COPY = {
     fogasa: 'FOGASA',
     fp: 'Formación profesional',
     mei: 'MEI',
+    solidaridad: 'Cotización de solidaridad',
     totalFila: 'Total',
     cunaTitulo: 'La distancia entre las dos cifras',
     cunaLabel: 'Diferencia entre coste y líquido',
     cunaPorcentaje: 'Sobre el coste total',
     cunaTexto: 'Entre lo que paga la empresa y lo que llega a la cuenta de la persona hay cotizaciones —de la empresa y de la persona— e IRPF. Ni la empresa se lo queda ni la persona lo recibe: financia pensiones, desempleo, sanidad y el resto del gasto público. Conviene enseñar las tres cifras juntas, porque en clase casi siempre se conoce solo la del medio.',
     avisoTitulo: 'Antes de usarlo en un plan de empresa',
-    aviso: 'Los tipos de cotización cambian cada año y aquí están los de 2026. La base de cotización se toma igual al salario bruto, sin aplicar bases mínimas ni máximas, y la retención de IRPF se calcula con la escala estatal. Para una nómina real hay que ir a la Tesorería General de la Seguridad Social y a la AEAT.',
+    aviso: 'Los tipos de cotización cambian cada año y aquí están los de 2026. La base de cotización es el salario bruto, con las pagas extra prorrateadas y el tope de la base máxima (5.101,20 € al mes); lo que la supera paga la cotización de solidaridad. No aplicamos bases mínimas, y la retención de IRPF se calcula con la escala general: la estatal más una autonómica tipo. Para una nómina real hay que ir a la Tesorería General de la Seguridad Social y a la AEAT.',
     presets: 'Ejemplos',
     presetPrimerEmpleo: 'Primer empleo (18.000 €)',
     presetTecnico: 'Técnico (28.000 €)',
@@ -91,13 +92,14 @@ export const COPY = {
     fogasa: 'FOGASA',
     fp: 'Formació professional',
     mei: 'MEI',
+    solidaridad: 'Cotització de solidaritat',
     totalFila: 'Total',
     cunaTitulo: 'La distància entre les dues xifres',
     cunaLabel: 'Diferència entre cost i líquid',
     cunaPorcentaje: 'Sobre el cost total',
     cunaTexto: "Entre el que paga l'empresa i el que arriba al compte de la persona hi ha cotitzacions —de l'empresa i de la persona— i IRPF. Ni l'empresa s'ho queda ni la persona ho rep: finança pensions, atur, sanitat i la resta de la despesa pública. Convé ensenyar les tres xifres juntes, perquè a classe quasi sempre es coneix només la del mig.",
     avisoTitulo: "Abans d'usar-ho en un pla d'empresa",
-    aviso: "Els tipus de cotització canvien cada any i ací hi ha els de 2026. La base de cotització es pren igual al salari brut, sense aplicar bases mínimes ni màximes, i la retenció d'IRPF es calcula amb l'escala estatal. Per a una nòmina real cal anar a la Tresoreria General de la Seguretat Social i a l'AEAT.",
+    aviso: "Els tipus de cotització canvien cada any i ací hi ha els de 2026. La base de cotització és el salari brut, amb les pagues extra prorratejades i el topall de la base màxima (5.101,20 € al mes); el que la supera paga la cotització de solidaritat. No apliquem bases mínimes, i la retenció d'IRPF es calcula amb l'escala general: l'estatal més una autonòmica tipus. Per a una nòmina real cal anar a la Tresoreria General de la Seguretat Social i a l'AEAT.",
     presets: 'Exemples',
     presetPrimerEmpleo: 'Primera faena (18.000 €)',
     presetTecnico: 'Tècnic (28.000 €)',
@@ -146,6 +148,10 @@ export default function CosteContratacionCalc({ locale = 'es' }: Props) {
         { label: t.fogasa, tipo: 0.002, importe: r.cotizacionesEmpresa.fogasa },
         { label: t.fp, tipo: 0.006, importe: r.cotizacionesEmpresa.formacionProfesional },
         { label: t.mei, tipo: 0.0075, importe: r.cotizacionesEmpresa.mei },
+        // Only above the maximum base; it has no single rate on the gross.
+        ...(r.cotizacionesEmpresa.solidaridad > 0
+          ? [{ label: t.solidaridad, tipo: null, importe: r.cotizacionesEmpresa.solidaridad }]
+          : []),
       ]
     : [];
 
@@ -254,7 +260,7 @@ export default function CosteContratacionCalc({ locale = 'es' }: Props) {
                     {filas.map((f) => (
                       <tr key={f.label}>
                         <td>{f.label}</td>
-                        <td>{formatPercent(f.tipo, 2)}</td>
+                        <td>{f.tipo === null ? '—' : formatPercent(f.tipo, 2)}</td>
                         <td>{formatEUR(f.importe, 0)}</td>
                       </tr>
                     ))}

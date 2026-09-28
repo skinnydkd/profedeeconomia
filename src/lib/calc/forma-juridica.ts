@@ -11,11 +11,11 @@
  *
  * The IS rate is an INPUT, not a constant: rates and reduced regimes for small
  * entities change, and this module must not assert one. The caller supplies it
- * and the UI says where to check it. For the IRPF side we reuse the state scale
- * already vetted in irpf.ts, with the same caveat it carries: the autonomous
- * community half of the scale is not modelled.
+ * and the UI says where to check it. For the IRPF side we reuse the general
+ * scale in irpf.ts: the state half plus the model regional half, so the
+ * crossover already accounts for both.
  */
-import { ESCALA_IRPF_2026, type TramoEscala } from './irpf';
+import { ESCALA_COMBINADA_2026, type TramoEscala } from './irpf';
 
 export type FormaId = 'autonomo' | 'sl' | 'cooperativa' | 'comunidad-bienes';
 
@@ -58,7 +58,7 @@ export const FORMAS: Record<FormaId, Forma> = {
 };
 
 /** Tax due on a taxable base under a bracket scale. */
-export function cuotaEscala(base: number, escala: TramoEscala[] = ESCALA_IRPF_2026): number {
+export function cuotaEscala(base: number, escala: TramoEscala[] = ESCALA_COMBINADA_2026): number {
   if (!Number.isFinite(base) || base <= 0) return 0;
   return escala.reduce((acc, tr) => {
     const enTramo = Math.min(base, tr.hasta) - tr.desde;
@@ -90,7 +90,7 @@ export interface Comparacion {
  * (cuotaIRPF − cuotaIS), which is monotonic because the IRPF average rate
  * rises with the base while the flat rate does not.
  */
-export function puntoDeCorte(tipoIS: number, escala: TramoEscala[] = ESCALA_IRPF_2026, max = 1_000_000): number {
+export function puntoDeCorte(tipoIS: number, escala: TramoEscala[] = ESCALA_COMBINADA_2026, max = 1_000_000): number {
   if (!Number.isFinite(tipoIS) || tipoIS < 0 || tipoIS > 1) return NaN;
   const dif = (b: number) => cuotaEscala(b, escala) - b * tipoIS;
   if (dif(max) <= 0) return NaN;
@@ -105,7 +105,7 @@ export function puntoDeCorte(tipoIS: number, escala: TramoEscala[] = ESCALA_IRPF
 export function comparar(
   beneficio: number,
   tipoIS: number,
-  escala: TramoEscala[] = ESCALA_IRPF_2026,
+  escala: TramoEscala[] = ESCALA_COMBINADA_2026,
 ): Comparacion {
   const vacio: Comparacion = {
     valido: false, beneficio: NaN, cuotaIRPF: NaN, cuotaIS: NaN,

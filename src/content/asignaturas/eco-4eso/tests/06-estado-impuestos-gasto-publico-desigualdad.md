@@ -32,7 +32,7 @@ preguntas:
     correcta: false
     explicacion: "Falso, y es el error más extendido. Cada tipo se aplica solo a la parte de renta que cae dentro de su tramo. Por eso el tipo medio que pagas siempre es menor que el marginal, y ganar un euro más nunca te deja con menos dinero."
   - tipo: numerico
-    enunciado: "Con la escala estatal simplificada (19 % hasta 12.450 € y 24 % de 12.450 a 20.200 €), ¿cuántos euros de cuota corresponden a una renta de 20.000 €, antes de aplicar el mínimo personal?"
+    enunciado: "Con la escala general simplificada (19 % hasta 12.450 € y 24 % de 12.450 a 20.200 €), ¿cuántos euros de cuota corresponden a una renta de 20.000 €, antes de aplicar el mínimo personal?"
     respuesta: 4177.5
     tolerancia: 2
     unidad: "€"

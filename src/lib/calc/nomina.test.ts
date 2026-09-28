@@ -1,5 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import {
+  BASE_MAXIMA_MENSUAL_2026,
+  baseCotizacion,
   calcularNomina,
   COTIZACIONES_TRABAJADOR_2026,
   tasaDesempleo,
@@ -86,6 +88,24 @@ describe('calcularNomina', () => {
     expect(r.cotizaciones.total).toBe(0);
     expect(r.irpf.cuota).toBe(0);
     expect(r.liquidoAnual).toBe(0);
+  });
+
+  it('caps the contribution base and adds the solidarity contribution above it', () => {
+    // 6.000 € × 14: the base stops at 12 × 5.101,20 €, and the worker pays about
+    // 1/6 of 1,15 % and 1,25 % on the part above it.
+    const r = calcularNomina(84000, {});
+    expect(r.topeBase).toBe(true);
+    expect(r.baseCotizacion).toBeCloseTo(12 * BASE_MAXIMA_MENSUAL_2026, 6);
+    expect(r.cotizaciones.solidaridad).toBeCloseTo(46.28, 1);
+    expect(r.cotizaciones.total).toBeCloseTo(4025.22, 1);
+  });
+
+  it('leaves ordinary salaries untouched by the cap', () => {
+    const r = calcularNomina(24000, {});
+    expect(r.topeBase).toBe(false);
+    expect(r.cotizaciones.solidaridad).toBe(0);
+    expect(r.cotizaciones.total).toBeCloseTo(24000 * 0.065, 6);
+    expect(baseCotizacion(24000).solidaridadTotal).toBe(0);
   });
 
   it('handles a very high salary (high effective tax, net still positive)', () => {

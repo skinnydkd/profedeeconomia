@@ -64,6 +64,14 @@ describe('calcularCoste', () => {
   it('uses the office default when no accident rate is given', () => {
     expect(r.cotizacionesEmpresa.atEp).toBeCloseTo(24000 * TASA_AT_EP_POR_DEFECTO, 8);
   });
+  it('stops the employer contributions at the maximum base, plus its solidarity share', () => {
+    // 6.000 € × 14 with the office accident rate: about 19.913 € instead of the
+    // 27.006 € the uncapped base gave.
+    const r = calcularCoste(84000, {});
+    expect(r.cotizacionesEmpresa.solidaridad).toBeGreaterThan(0);
+    expect(r.cotizacionesEmpresa.total).toBeCloseTo(19912.8, 0);
+  });
+
   it('rejects impossible inputs', () => {
     expect(calcularCoste(0).valido).toBe(false);
     expect(calcularCoste(-1000).valido).toBe(false);

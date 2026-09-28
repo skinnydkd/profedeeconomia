@@ -18,7 +18,7 @@ estado: publicado
 
 - **La responsabilidad decide más que la fiscalidad.** Si el proyecto puede generar una deuda o un daño mayor que lo aportado —local abierto al público, manipulación de alimentos, personal contratado—, limitar la responsabilidad pesa más que cualquier diferencia de tipo. Merece la pena insistir, porque la pregunta que sale sola en clase es siempre la de los impuestos.
 - **El tipo del Impuesto de Sociedades se introduce, no viene dado.** El tipo general y los regímenes reducidos para entidades pequeñas cambian de un ejercicio a otro, y la herramienta no los da por sabidos: hay que consultarlos en la Agencia Tributaria.
-- La comparación usa la **escala estatal del IRPF** y nada más: no incluye la mitad autonómica, ni la cuota de autónomos, ni el sueldo que un socio puede cobrarse de su sociedad, ni el coste de constituirla y mantenerla. El corte real se mueve con todo eso.
+- La comparación usa la **escala general del IRPF** (la estatal más una autonómica tipo; cada comunidad fija la suya) y nada más: no incluye el mínimo personal, ni la cuota de autónomos, ni el sueldo que un socio puede cobrarse de su sociedad, ni el coste de constituirla y mantenerla. El corte real se mueve con todo eso.
 - La **cooperativa** encaja cuando quienes trabajan son también quienes deciden y reparten, con un socio un voto. Tiene ventajas fiscales en ciertos casos, no exención, y exige contabilidad como cualquier sociedad.
 - El capital mínimo de una S.L. es de **1 €** desde la Ley 18/2022, pero por debajo de 3.000 € hay obligación de reserva y responsabilidad añadida de los socios.
 

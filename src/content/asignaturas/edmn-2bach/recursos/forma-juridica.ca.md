@@ -19,7 +19,7 @@ slug: "asignaturas/edmn-2bach/recursos/forma-juridica.ca"
 ## Què cal tindre en compte
 
 - **El tipus de l'Impost de Societats és una dada que s'introduïx, no una constant de la ferramenta.** El tipus general i els règims reduïts per a entitats de reduïda dimensió canvien d'un exercici a un altre, i la calculadora no els dona per sabuts: cal consultar-los a l'Agència Tributària abans de fer servir el número fora de classe.
-- La comparació fiscal fa servir l'**escala estatal de l'IRPF** i només això: no inclou la meitat autonòmica, ni la quota d'autònoms, ni el sou que un soci es pot cobrar de la seua pròpia societat, ni el cost de constituir i mantindre la societat. Amb tot això el punt de tall real es mou.
+- La comparació fiscal fa servir l'**escala general de l'IRPF** (l'estatal més una autonòmica tipus; cada comunitat fixa la seua) i només això: no inclou el mínim personal, ni la quota d'autònoms, ni el sou que un soci es pot cobrar de la seua pròpia societat, ni el cost de constituir i mantindre la societat. Amb tot això el punt de tall real es mou.
 - **La responsabilitat decidix més que la fiscalitat.** Convé insistir-hi: si l'activitat pot generar un deute o un dany major que el que s'ha aportat —local obert al públic, manipulació d'aliments, personal contractat—, limitar la responsabilitat pesa més que qualsevol diferència de tipus.
 - El capital mínim d'una S.L. és d'**1 €** des de la Llei 18/2022, però per davall de 3.000 € hi ha obligació de dotar reserva i una responsabilitat afegida dels socis. Un «1 €» sense més es queda curt en un examen.
 - La corba ensenya una cosa que s'explica malament amb paraules: **el tipus mitjà de l'IRPF puja amb el benefici i el tipus fix no**. Ahí està tot el mecanisme.
