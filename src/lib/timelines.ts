@@ -67,7 +67,7 @@ export const itinerariosPostESOTimeline: TimelineEvent[] = [
     year: 'Elección',
     title: 'Bachillerato o Formación Profesional',
     description:
-      'El primer gran cruce. El Bachillerato (2 años) tiene cinco modalidades —Ciencias y Tecnología, Humanidades y Ciencias Sociales, Artes Plásticas, Música y Artes Escénicas, y la nueva modalidad General de la LOMLOE— y orienta principalmente a la universidad. La FP de Grado Medio (2 años) titula como técnico y da acceso al empleo o al Grado Superior.',
+      'El primer gran cruce. El Bachillerato (2 años) tiene cuatro modalidades —Ciencias y Tecnología, Humanidades y Ciencias Sociales, Artes (con dos vías: Plásticas, Imagen y Diseño; Música y Artes Escénicas) y la nueva modalidad General de la LOMLOE— y orienta principalmente a la universidad. La FP de Grado Medio (2 años) titula como técnico y da acceso al empleo o al Grado Superior.',
   },
   {
     year: '2 años',
