@@ -46,7 +46,7 @@ Tres reglas: nadie enseña su tarjeta, no se negocia punto por punto sino por **
 | 4 | Plus por domingo trabajado | 0 € · 25 € · 50 € |
 | 5 | Formación y flexibilidad | nada · 20 h de formación en jornada · 20 h + media hora de flexibilidad |
 
-**Datos que las dos delegaciones conocen:** el IPC subió alrededor del **2,7 %** en 2025 (INE); el **SMI** es de **1.184 € al mes en 14 pagas** (RD 87/2025); la jornada legal máxima son **40 horas semanales** de promedio anual y las vacaciones, **30 días naturales** (artículos 34 y 38 del Estatuto de los Trabajadores). Nada de eso se negocia a la baja.
+**Datos que las dos delegaciones conocen:** el IPC subió alrededor del **2,7 %** en 2025 (INE); el **SMI** es de **1.221 € al mes en 14 pagas** (RD 126/2026); la jornada legal máxima son **40 horas semanales** de promedio anual y las vacaciones, **30 días naturales** (artículos 34 y 38 del Estatuto de los Trabajadores). Nada de eso se negocia a la baja.
 
 ## Tarjeta A · Delegación de la dirección (secreta)
 

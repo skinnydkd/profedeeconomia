@@ -19,10 +19,10 @@ preguntas:
     opciones:
       - "El salari mitjà dels treballadors espanyols, uns 28.050 € bruts a l'any."
       - "El salari net més baix que pot ingressar-se en un compte."
-      - "El salari més baix que la llei permet pagar per una jornada completa: 1.184 € bruts al mes en 14 pagues el 2025."
+      - "El salari més baix que la llei permet pagar per una jornada completa: 1.221 € bruts al mes en 14 pagues el 2026."
       - "El salari que cada conveni col·lectiu fixa per al seu sector."
     correcta: 2
-    explicacion: "L'SMI és un preu mínim al mercat de treball: el fixa el Govern cada any (RD 87/2025) i s'aplica a qualsevol sector, amb conveni o sense. Si el conveni en fixa més, mana el conveni; a mitja jornada en correspon la meitat."
+    explicacion: "L'SMI és un preu mínim al mercat de treball: el fixa el Govern cada any (RD 126/2026) i s'aplica a qualsevol sector, amb conveni o sense. Si el conveni en fixa més, mana el conveni; a mitja jornada en correspon la meitat."
   - tipo: verdadero-falso
     enunciado: "Una persona de 30 anys que no té faena i que no en busca cap compta com a aturada a l'EPA."
     correcta: false
