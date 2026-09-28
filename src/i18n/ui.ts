@@ -118,6 +118,13 @@ export const ui = {
     'libro.sinRecursos': 'Aún no hay recursos transversales ligados a esta unidad. Puedes repasarla con Cajút.',
     'libro.repasoEnClase': 'Repaso en clase',
     'libro.repasaConCajut': 'Repasa esta unidad con Cajút',
+    'puente.titulo': 'Esto se trabaja en…',
+    'puente.unidad': 'Unidad',
+    'puente.competencias': 'Competencias específicas:',
+    'rolecard.tag': 'Tarjeta de rol',
+    'rolecard.corte': '✂ recorta por aquí',
+    'ficha.tag': 'Ficha del alumno',
+    'mapa.lead': 'El proyecto es la espina dorsal; cada fase se apoya en unidades concretas de las asignaturas. Así se cruza el temario en lugar de ir suelto.',
   },
   ca: {
     'skip.main': 'Salta al contingut principal',
@@ -235,6 +242,13 @@ export const ui = {
     'libro.sinRecursos': 'Encara no hi ha recursos transversals lligats a esta unitat. Pots repassar-la amb Cajút.',
     'libro.repasoEnClase': 'Repàs a classe',
     'libro.repasaConCajut': 'Repassa esta unitat amb Cajút',
+    'puente.titulo': 'Açò es treballa en…',
+    'puente.unidad': 'Unitat',
+    'puente.competencias': 'Competències específiques:',
+    'rolecard.tag': 'Targeta de rol',
+    'rolecard.corte': '✂ retalla per ací',
+    'ficha.tag': "Fitxa de l'alumne",
+    'mapa.lead': "El projecte és l'espina dorsal; cada fase es recolza en unitats concretes de les assignatures. Així es creua el temari en lloc d'anar solt.",
   },
 } as const;
 
