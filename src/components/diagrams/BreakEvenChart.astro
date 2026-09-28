@@ -63,15 +63,16 @@ const t = COPY[locale];
   <!-- We approximate with polygons -->
 
   <!-- Pérdida (between CT and IT to the left of intersection) -->
-  <polygon class="perdida" points="80,272 80,400 428,272"/>
+  <polygon class="perdida" points="80,272 80,400 428,209"/>
   <!-- Beneficio (between IT and CT to the right) -->
-  <polygon class="beneficio" points="428,272 660,103 660,230"/>
+  <polygon class="beneficio" points="428,209 660,81 660,166"/>
 
   <!-- Grid lines -->
-  <line class="grid" x1="80" y1="350" x2="660" y2="350"/>
-  <line class="grid" x1="80" y1="272" x2="660" y2="272"/>
-  <line class="grid" x1="80" y1="187" x2="660" y2="187"/>
-  <line class="grid" x1="80" y1="103" x2="660" y2="103"/>
+  <!-- € gridlines at 2.000 / 4.000 / 6.000 / 8.000: y = 400 − v/8000 × 340 -->
+  <line class="grid" x1="80" y1="315" x2="660" y2="315"/>
+  <line class="grid" x1="80" y1="230" x2="660" y2="230"/>
+  <line class="grid" x1="80" y1="145" x2="660" y2="145"/>
+  <line class="grid" x1="80" y1="60" x2="660" y2="60"/>
 
   <line class="grid" x1="196" y1="60" x2="196" y2="400"/>
   <line class="grid" x1="312" y1="60" x2="312" y2="400"/>
@@ -92,10 +93,10 @@ const t = COPY[locale];
 
   <!-- Y axis labels (€: 0, 2000, 4000, 6000, 8000) -->
   <text class="tick-label" x="72" y="404" text-anchor="end">0</text>
-  <text class="tick-label" x="72" y="354" text-anchor="end">2.000</text>
-  <text class="tick-label" x="72" y="272" text-anchor="end">4.000</text>
-  <text class="tick-label" x="72" y="187" text-anchor="end">6.000</text>
-  <text class="tick-label" x="72" y="103" text-anchor="end">8.000</text>
+  <text class="tick-label" x="72" y="319" text-anchor="end">2.000</text>
+  <text class="tick-label" x="72" y="234" text-anchor="end">4.000</text>
+  <text class="tick-label" x="72" y="149" text-anchor="end">6.000</text>
+  <text class="tick-label" x="72" y="64" text-anchor="end">8.000</text>
 
   <!-- Axis titles -->
   <text class="axis-label" x="370" y="455" text-anchor="middle">{t.unidadesVendidasQ}</text>
@@ -103,7 +104,7 @@ const t = COPY[locale];
 
   <!-- CF line: horizontal at € 3000 (y = 400 - 3000/8000 * 340 = 400 - 127.5 = 272) -->
   <line class="cf-line" x1="80" y1="272" x2="660" y2="272"/>
-  <text class="line-label" x="668" y="276" fill="#8A7868">CF = 3.000 €</text>
+  <text class="line-label" x="668" y="276" fill="#6E5A47">CF = 3.000 €</text>
 
   <!-- CT line: CT = CF + CVu·Q = 3000 + 0.5·Q. At Q=0: €3000 (y=272). At Q=5000: €5500 (y=400 - 5500/8000 * 340 = 400 - 233.75 = 166.25 ≈ 166) -->
   <line class="ct-line" x1="80" y1="272" x2="660" y2="166"/>
@@ -116,8 +117,9 @@ const t = COPY[locale];
   <!-- Intersection point at Q* = 3000 (x=428). At that Q, both CT and IT = €4500 (y=400 - 4500/8000 * 340 = 400 - 191.25 = 208.75 ≈ 209) -->
   <line class="grid" x1="428" y1="209" x2="428" y2="400" stroke="#C44E2C" stroke-dasharray="3 3"/>
   <circle cx="428" cy="209" r="6" fill="#FFFFFF" stroke="#C44E2C" stroke-width="2.5"/>
-  <text class="point-label" x="438" y="200" fill="#C44E2C">{t.q3000Unidades}</text>
-  <text class="point-label" x="438" y="216" fill="#C44E2C">{t.k4500PuntoMuerto}</text>
+  <!-- Labels sit above CT, left of the point: to its right both lines cross them -->
+  <text class="point-label" x="418" y="186" text-anchor="end" fill="#C44E2C">{t.q3000Unidades}</text>
+  <text class="point-label" x="418" y="202" text-anchor="end" fill="#C44E2C">{t.k4500PuntoMuerto}</text>
 
   <!-- Zone labels -->
   <text class="zone-label" x="200" y="350" fill="#B83A3A">{t.perdida}</text>
