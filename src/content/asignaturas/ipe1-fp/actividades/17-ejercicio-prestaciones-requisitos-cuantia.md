@@ -13,6 +13,11 @@ materiales:
   - "Tabla resumen de requisitos, duración del paro e indemnizaciones (incluida abajo)"
   - "Calculadora o móvil"
   - "Proyector para la corrección común"
+solucion:
+  - "<strong>S1 · Sara.</strong> No tiene derecho a la prestación contributiva: necesita 360 días cotizados en los últimos 6 años y tiene 300. Puede preguntar en el SEPE por el subsidio por cotización insuficiente, que exige no superar un límite de rentas."
+  - "<strong>S2 · Iván.</strong> Con 600 días cotizados le corresponden <strong>180 días</strong> de paro. Los primeros 180 días cobra el 70 % de la base reguladora: 0,70 × 40 = <strong>28 € al día</strong> (unos 840 € al mes), dentro de los topes."
+  - "<strong>S3 · Noa.</strong> Sí tiene derecho a la IT: en enfermedad común se piden 180 días cotizados en los últimos 5 años y tiene 400. Los días 4 a 20 cobra el <strong>60 % de la base reguladora</strong> (del 4 al 15, a cargo de la empresa)."
+  - "<strong>S4 · Leo.</strong> Despido improcedente: 33 × 4 = 132 días × 50 € = <strong>6.600 €</strong>; el tope de 24 mensualidades (36.000 €) no se alcanza. La empresa puede elegir entre readmitirlo o pagarle esa indemnización."
 estado: publicado
 ---
 
@@ -60,9 +65,11 @@ INCAPACIDAD TEMPORAL (contingencia común)
   Días 1-3: sin prestación; 4-20: 60 % BR; 21+: 75 % BR.
 
 INDEMNIZACIÓN POR EXTINCIÓN (días por año trabajado)
-  Despido procedente .................... 0 días
+  Despido disciplinario procedente ...... 0 días
+  Despido objetivo procedente ........... 20 días/año
+    (máximo 12 mensualidades)
   Despido improcedente .................. 33 días/año
-  Despido objetivo (causas) ............. 20 días/año
+    (máximo 24 mensualidades)
   Fin de contrato temporal .............. 12 días/año
 ```
 

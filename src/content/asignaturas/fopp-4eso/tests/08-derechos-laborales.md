@@ -72,11 +72,11 @@ preguntas:
   - enunciado: "Si te vulneran un derecho laboral y la empresa no responde a tu reclamación interna, ¿cuál es la ruta correcta para reclamar?"
     opciones:
       - "Acudir directamente al Juzgado de lo Social presentando demanda."
-      - "Comité o sindicato → Inspección de Trabajo (denuncia gratuita y anónima) → SMAC (conciliación previa obligatoria) → Juzgado de lo Social si no hay acuerdo."
+      - "Comité o sindicato → Inspección de Trabajo (denuncia gratuita y confidencial) → SMAC (conciliación previa obligatoria) → Juzgado de lo Social si no hay acuerdo."
       - "Llamar a la policía y presentar una denuncia penal."
       - "Esperar a que se acumulen varias vulneraciones y reclamar todas juntas al cabo del año."
     correcta: 1
-    explicacion: "La ruta correcta es escalonada: primero **comité o sindicato** (asesoría gratuita), después **Inspección de Trabajo** (denuncia online, gratuita y puede ser anónima), y si no se resuelve, **conciliación previa ante el SMAC** (gratuita y obligatoria) antes de presentar demanda en el **Juzgado de lo Social**. Los plazos son cortos: 20 días hábiles desde el despido o la última nómina impagada."
+    explicacion: "La ruta correcta es escalonada: primero **comité o sindicato** (asesoría gratuita), después **Inspección de Trabajo** (denuncia online, gratuita y confidencial: no revela quién denuncia), y si no se resuelve, **conciliación previa ante el SMAC** (gratuita y obligatoria) antes de presentar demanda en el **Juzgado de lo Social**. Ojo a los plazos: 20 días hábiles para impugnar un despido y un año para reclamar salarios impagados."
   - tipo: verdadero-falso
     enunciado: "Si tu convenio colectivo fija para tu categoría un salario superior al SMI, la empresa puede pagarte solo el SMI porque este siempre prevalece sobre el convenio."
     correcta: false

@@ -13,6 +13,11 @@ materiales:
   - "Taula resum de requisits, duració de l'atur i indemnitzacions (inclosa davall)"
   - "Calculadora o mòbil"
   - "Projector per a la correcció comuna"
+solucion:
+  - "<strong>S1 · Sara.</strong> No té dret a la prestació contributiva: necessita 360 dies cotitzats en els últims 6 anys i en té 300. Pot preguntar al SEPE pel subsidi per cotització insuficient, que exigix no superar un límit de rendes."
+  - "<strong>S2 · Iván.</strong> Amb 600 dies cotitzats li corresponen <strong>180 dies</strong> d'atur. Els primers 180 dies cobra el 70 % de la base reguladora: 0,70 × 40 = <strong>28 € al dia</strong> (uns 840 € al mes), dins dels topalls."
+  - "<strong>S3 · Noa.</strong> Sí que té dret a la IT: en malaltia comuna es demanen 180 dies cotitzats en els últims 5 anys i en té 400. Els dies 4 a 20 cobra el <strong>60 % de la base reguladora</strong> (del 4 al 15, a càrrec de l'empresa)."
+  - "<strong>S4 · Leo.</strong> Acomiadament improcedent: 33 × 4 = 132 dies × 50 € = <strong>6.600 €</strong>; el topall de 24 mensualitats (36.000 €) no s'assoleix. L'empresa pot triar entre readmetre'l o pagar-li eixa indemnització."
 lang: ca
 estado: publicado
 slug: "asignaturas/ipe1-fp/actividades/17-ejercicio-prestaciones-requisitos-cuantia.ca"
@@ -62,9 +67,11 @@ INCAPACITAT TEMPORAL (contingència comuna)
   Dies 1-3: sense prestació; 4-20: 60 % BR; 21+: 75 % BR.
 
 INDEMNITZACIÓ PER EXTINCIÓ (dies per any treballat)
-  Acomiadament procedent ................ 0 dies
+  Acomiadament disciplinari procedent ... 0 dies
+  Acomiadament objectiu procedent ....... 20 dies/any
+    (màxim 12 mensualitats)
   Acomiadament improcedent .............. 33 dies/any
-  Acomiadament objectiu (causes) ........ 20 dies/any
+    (màxim 24 mensualitats)
   Fi de contracte temporal .............. 12 dies/any
 ```
 

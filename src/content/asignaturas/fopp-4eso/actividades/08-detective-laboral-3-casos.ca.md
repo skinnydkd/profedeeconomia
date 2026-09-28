@@ -53,7 +53,7 @@ Poden i han de consultar el conveni aplicable al REGCON, calcular el preu/hora d
 
 ### 3. Proposta de ruta de reclamació (10 min)
 
-Amb les vulneracions detectades, cada parella redacta **un paràgraf de no més de 8 línies** simulant que assessora el treballador del cas: quins documents ha de guardar, a qui ha d'acudir primer (encarregat, comité, sindicat), si procedix denunciar a la **Inspecció de Treball** (gratuïta i anònima), i si finalment ha d'anar al **SMAC + Jutjat social** (amb termini de 20 dies hàbils).
+Amb les vulneracions detectades, cada parella redacta **un paràgraf de no més de 8 línies** simulant que assessora el treballador del cas: quins documents ha de guardar, a qui ha d'acudir primer (encarregat, comité, sindicat), si procedix denunciar a la **Inspecció de Treball** (gratuïta i confidencial: no revela qui denuncia), i si finalment ha d'anar al **SMAC + Jutjat social** (un any de termini per a reclamar salaris o hores no pagades; 20 dies hàbils si hi ha un acomiadament).
 
 ### 4. Posada en comú (10 min)
 
