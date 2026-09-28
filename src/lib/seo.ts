@@ -111,7 +111,9 @@ export function websiteLd(locale: Locale = 'es') {
 }
 
 /** schema.org BreadcrumbList from an ordered list of `{ name, path }`. */
-export function breadcrumbLd(items: { name: string; path: string }[], locale: Locale = 'es') {
+// `locale` has no default on purpose: a /ca/ page that forgot it emitted
+// Castilian URLs next to a Valencian canonical (742 pages until 2026-09).
+export function breadcrumbLd(items: { name: string; path: string }[], locale: Locale) {
   return {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',

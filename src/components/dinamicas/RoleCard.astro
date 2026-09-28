@@ -4,17 +4,20 @@
  * block on the page and isolated to its own A4 page in print mode via
  * `data-print` + `.print-block` (see [slug].astro print CSS).
  */
+import { getLocale } from '@/i18n/locale';
+import { t } from '@/i18n/ui';
 interface Props { rol: string; reparto?: string; }
 const { rol, reparto } = Astro.props;
+const locale = getLocale(Astro.currentLocale);
 ---
 <div class="role-card print-block" data-print>
   <div class="role-card__head">
-    <span class="role-card__tag">Tarjeta de rol</span>
+    <span class="role-card__tag">{t('rolecard.tag', locale)}</span>
     <h4 class="role-card__rol">{rol}</h4>
     {reparto && <span class="role-card__reparto">{reparto}</span>}
   </div>
   <div class="role-card__body"><slot /></div>
-  <span class="role-card__cut" aria-hidden="true">✂ recorta por aquí</span>
+  <span class="role-card__cut" aria-hidden="true">{t('rolecard.corte', locale)}</span>
 </div>
 <style>
   .role-card { border: 1.5px dashed var(--color-line); border-radius: 8px; padding: 1.1rem 1.3rem; margin: 1rem 0; background: var(--color-paper); }

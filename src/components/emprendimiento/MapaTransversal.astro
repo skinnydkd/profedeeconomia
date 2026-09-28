@@ -5,18 +5,19 @@
  * editorial grid — spine of phases with the asignaturas each one touches.
  */
 import { ASIGNATURAS } from '@/lib/asignaturas';
+import { getLocale } from '@/i18n/locale';
+import { t } from '@/i18n/ui';
+import { localizeAsignatura } from '@/i18n/asignaturas-ca';
 
 interface Bridge { asignatura: string; unidad: number; }
 interface Fase { fase: number; fase_label: string; nucleo: boolean; unidades: Bridge[]; }
 interface Props { fases: Fase[]; }
 const { fases } = Astro.props;
+const locale = getLocale(Astro.currentLocale);
 ---
 
 <div class="mapa">
-  <p class="mapa__lead">
-    El proyecto es la espina dorsal; cada fase se apoya en unidades concretas de
-    las asignaturas. Así se cruza el temario en lugar de ir suelto.
-  </p>
+  <p class="mapa__lead">{t('mapa.lead', locale)}</p>
   <ol class="mapa__spine">
     {fases.map((f) => (
       <li class={`mapa__node ${f.nucleo ? 'is-nucleo' : 'is-profundo'}`}>
@@ -24,7 +25,8 @@ const { fases } = Astro.props;
         {f.unidades.length > 0 && (
           <span class="mapa__links">
             {f.unidades.map((u) => {
-              const a = ASIGNATURAS[u.asignatura as keyof typeof ASIGNATURAS];
+              const es = ASIGNATURAS[u.asignatura as keyof typeof ASIGNATURAS];
+              const a = es && localizeAsignatura(es, locale);
               return <span class="mapa__chip">{a ? a.shortLabel : u.asignatura} · U{u.unidad}</span>;
             })}
           </span>
