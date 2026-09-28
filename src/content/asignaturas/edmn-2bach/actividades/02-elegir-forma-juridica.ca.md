@@ -49,7 +49,7 @@ La forma jurídica d'una empresa és una decisió tècnica amb conseqüències d
 
 | Cas | Forma jurídica | Raó principal |
 | --- | --- | --- |
-| 1. Marina (acadèmia) | **Autònoma** | Capital insuficient per a SL, risc baix, sola |
+| 1. Marina (acadèmia) | **Autònoma** | Risc baix i treballa sola: una SLU seria possible (n'hi ha prou amb 1 € de capital), però encara no en compensa el cost |
 | 2. Iván i Pere (restaurant) | **SL** | Necessiten limitar responsabilitat i capital just al llindar |
 | 3. NeoPay (10 enginyers) | **SL a l'inici, conversió a SA en captar inversió** | Optimitza el cost inicial i permet escalar |
 | 4. Cooperativa Hortelana | **Cooperativa** | Decisió col·lectiva, regla un soci un vot, fiscalitat del 20 % |
