@@ -78,17 +78,24 @@ describe('simularDeclaracion', () => {
     expect(conRetenciones.aDevolver).toBe(true);
   });
 
-  it('cuotaIRPF is coherent with calcularIRPF on the same taxable base', () => {
+  it('cuotaIRPF is coherent with calcularIRPF on the same net income', () => {
     const r = simularDeclaracion({ rendimientosTrabajo: 24000, retencionesPracticadas: 0 });
-    // The simulator exposes the taxable base it built; calcularIRPF on it must match.
-    const directo = calcularIRPF(r.baseImponible, { rendimientoNetoTrabajo: r.baseImponible });
+    // The simulator exposes the net work income it built; calcularIRPF on it must match.
+    const directo = calcularIRPF(r.rendimientoNetoTrabajo, { rendimientoNetoTrabajo: r.rendimientoNetoTrabajo });
     expect(r.cuotaIRPF).toBeCloseTo(directo.cuota, 6);
   });
 
-  it('the taxable base is the gross work income minus Social Security contributions', () => {
+  it('the taxable base is the net work income minus the 2.000 € and the reduction', () => {
     const r = simularDeclaracion({ rendimientosTrabajo: 24000, retencionesPracticadas: 0 });
     expect(r.cotizaciones).toBeGreaterThan(0);
-    expect(r.baseImponible).toBeCloseTo(24000 - r.cotizaciones, 6);
+    expect(r.rendimientoNetoTrabajo).toBeCloseTo(24000 - r.cotizaciones, 6);
+    expect(r.otrosGastos).toBe(2000);
+    expect(r.baseImponible).toBeCloseTo(r.rendimientoNetoTrabajo - 2000 - r.reduccion, 6);
+  });
+
+  it('matches the reference quota for 24.000 € (art. 19.2.f and art. 20 LIRPF)', () => {
+    const r = simularDeclaracion({ rendimientosTrabajo: 24000, retencionesPracticadas: 0 });
+    expect(r.cuotaIRPF).toBeCloseTo(3243, 2);
   });
 
   it('basic savings income (capital mobiliario) raises the quota', () => {

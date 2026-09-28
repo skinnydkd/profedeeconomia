@@ -58,13 +58,15 @@ export const COPY = {
     thImporte: 'Importe anual',
     interesesRow: 'Intereses y dividendos',
     cotizacionesRow: 'Cotizaciones a la Seguridad Social',
+    otrosGastosRow: 'Otros gastos deducibles del trabajo',
+    reduccionRow: 'Reducción por rendimientos del trabajo',
     baseImponibleRow: 'Base imponible',
     minimoRow: 'Mínimo personal y familiar (no paga IRPF)',
     cuotaAnioRow: 'Cuota de IRPF del año',
     resultadoRow: 'Resultado de la declaración',
     parenPagar: '(a pagar)',
     parenDevolver: '(a devolver)',
-    nota: 'Datos 2026. Usamos la escala estatal del IRPF; el resultado real también depende de tu comunidad autónoma y de otras circunstancias, así que esta cifra es orientativa.',
+    nota: 'Datos 2026. Usamos la escala general del IRPF: la estatal más una autonómica tipo, porque cada comunidad fija la suya. El resultado real también depende de otras circunstancias, así que esta cifra es orientativa.',
     queEs: '¿Qué es hacer la declaración de la renta?',
     tip1a: 'Durante el año',
     tip1b: ' tu empresa te adelanta el IRPF: te quita un poco de cada nómina (las ',
@@ -118,13 +120,15 @@ export const COPY = {
     thImporte: 'Import anual',
     interesesRow: 'Interessos i dividends',
     cotizacionesRow: 'Cotitzacions a la Seguretat Social',
+    otrosGastosRow: 'Altres despeses deduïbles del treball',
+    reduccionRow: 'Reducció per rendiments del treball',
     baseImponibleRow: 'Base imposable',
     minimoRow: 'Mínim personal i familiar (no paga IRPF)',
     cuotaAnioRow: "Quota d'IRPF de l'any",
     resultadoRow: 'Resultat de la declaració',
     parenPagar: '(a pagar)',
     parenDevolver: '(a tornar)',
-    nota: "Dades 2026. Usem l'escala estatal de l'IRPF; el resultat real també depèn de la teua comunitat autònoma i d'altres circumstàncies, així que esta xifra és orientativa.",
+    nota: "Dades 2026. Usem l'escala general de l'IRPF: l'estatal més una autonòmica tipus, perquè cada comunitat fixa la seua. El resultat real també depèn d'altres circumstàncies, així que esta xifra és orientativa.",
     queEs: 'Què és fer la declaració de la renda?',
     tip1a: "Durant l'any",
     tip1b: " la teua empresa t'avança l'IRPF: et lleva un poc de cada nòmina (les ",
@@ -146,21 +150,25 @@ export const COPY = {
 
 interface Props { locale?: Locale }
 
-type Preset = {
+export type Preset = {
   id: string;
   rendimientosTrabajo: number;
   retencionesPracticadas: number;
   hijos: number;
 };
 
-const PRESETS: Preset[] = [
-  // Slightly over-withheld worker => típico "a devolver".
-  { id: 'sueldo-medio', rendimientosTrabajo: 24000, retencionesPracticadas: 3000, hijos: 0 },
+/**
+ * Each preset must land on the side its label promises; irpf-presets.test.ts
+ * checks it, so retune the retentions whenever the tax figures change.
+ */
+export const PRESETS: Preset[] = [
+  // Over-withheld (quota ≈ 3.243 €) => "a devolver".
+  { id: 'sueldo-medio', rendimientosTrabajo: 24000, retencionesPracticadas: 3600, hijos: 0 },
   // Under-withheld => "a pagar".
   { id: 'dos-pagadores', rendimientosTrabajo: 28000, retencionesPracticadas: 2200, hijos: 0 },
-  // With children, lower quota => more refund.
+  // With children, lower quota => refund.
   { id: 'familia-2-hijos', rendimientosTrabajo: 30000, retencionesPracticadas: 4500, hijos: 2 },
-  // First job, low income => casi todo a devolver.
+  // First job, low income => no quota, everything back.
   { id: 'primer-empleo', rendimientosTrabajo: 11000, retencionesPracticadas: 300, hijos: 0 },
 ];
 
@@ -395,6 +403,16 @@ function Resultado({ d, locale }: { d: ReturnType<typeof simularDeclaracion>; lo
                 <td>{c.cotizacionesRow}</td>
                 <td>−{formatEUR(d.cotizaciones)}</td>
               </tr>
+              <tr>
+                <td>{c.otrosGastosRow}</td>
+                <td>−{formatEUR(d.otrosGastos)}</td>
+              </tr>
+              {d.reduccion > 0 && (
+                <tr>
+                  <td>{c.reduccionRow}</td>
+                  <td>−{formatEUR(d.reduccion)}</td>
+                </tr>
+              )}
               <tr>
                 <td><strong>{c.baseImponibleRow}</strong></td>
                 <td><strong>{formatEUR(d.baseImponible)}</strong></td>

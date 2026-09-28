@@ -4,17 +4,17 @@ import {
   minimoPersonalYFamiliar,
   reduccionRendimientosTrabajo,
   MINIMO_PERSONAL,
-  ESCALA_IRPF_2026,
+  ESCALA_COMBINADA_2026,
 } from './irpf';
 
-describe('ESCALA_IRPF_2026', () => {
+describe('ESCALA_COMBINADA_2026', () => {
   it('starts at 0 and the brackets are continuous and increasing', () => {
-    expect(ESCALA_IRPF_2026[0].desde).toBe(0);
-    for (let i = 1; i < ESCALA_IRPF_2026.length; i++) {
-      expect(ESCALA_IRPF_2026[i].desde).toBe(ESCALA_IRPF_2026[i - 1].hasta);
-      expect(ESCALA_IRPF_2026[i].tipo).toBeGreaterThan(ESCALA_IRPF_2026[i - 1].tipo);
+    expect(ESCALA_COMBINADA_2026[0].desde).toBe(0);
+    for (let i = 1; i < ESCALA_COMBINADA_2026.length; i++) {
+      expect(ESCALA_COMBINADA_2026[i].desde).toBe(ESCALA_COMBINADA_2026[i - 1].hasta);
+      expect(ESCALA_COMBINADA_2026[i].tipo).toBeGreaterThan(ESCALA_COMBINADA_2026[i - 1].tipo);
     }
-    expect(ESCALA_IRPF_2026[ESCALA_IRPF_2026.length - 1].hasta).toBe(Infinity);
+    expect(ESCALA_COMBINADA_2026[ESCALA_COMBINADA_2026.length - 1].hasta).toBe(Infinity);
   });
 });
 
@@ -30,6 +30,39 @@ describe('reduccionRendimientosTrabajo', () => {
   });
   it('is zero above the upper threshold', () => {
     expect(reduccionRendimientosTrabajo(25000)).toBe(0);
+  });
+  it('follows the two slopes of art. 20 (RDL 4/2024)', () => {
+    expect(reduccionRendimientosTrabajo(17000)).toBeCloseTo(7302 - 1.75 * (17000 - 14852), 6);
+    expect(reduccionRendimientosTrabajo(17673.52)).toBeCloseTo(2364.34, 2);
+    expect(reduccionRendimientosTrabajo(18500)).toBeCloseTo(1422.15, 2);
+    expect(reduccionRendimientosTrabajo(19500)).toBeCloseTo(282.15, 2);
+    expect(reduccionRendimientosTrabajo(19747.5)).toBeCloseTo(0, 1);
+  });
+});
+
+describe('work income deductions', () => {
+  it('takes the 2.000 € of other expenses (art. 19.2.f) before the scale', () => {
+    const r = calcularIRPF(22440, { rendimientoNetoTrabajo: 22440 });
+    expect(r.otrosGastos).toBe(2000);
+    expect(r.reduccion).toBe(0);
+    expect(r.baseLiquidable).toBe(20440);
+    // 24.000 € gross minus 6,50 % SS: the quota the audit recomputed by hand.
+    expect(r.cuota).toBeCloseTo(3243, 2);
+  });
+
+  it('matches the reference quotas for the SMI and the payroll presets', () => {
+    const cuota = (neto: number) => calcularIRPF(neto, { rendimientoNetoTrabajo: neto }).cuota;
+    expect(cuota(17094 * 0.935)).toBeCloseTo(590.89, 1); // SMI 2026, 1.221 × 14
+    expect(cuota(21000 * 0.935)).toBeCloseTo(2524.62, 1); // 1.500 € × 14
+    expect(cuota(30000 * 0.935)).toBeCloseTo(4926, 1); // 2.500 € × 12
+    expect(cuota(40000 * 0.935)).toBeCloseTo(7745, 1);
+  });
+
+  it('never takes the work income below zero', () => {
+    const r = calcularIRPF(5000, { rendimientoNetoTrabajo: 5000 });
+    expect(r.otrosGastos + r.reduccion).toBeLessThanOrEqual(5000);
+    expect(r.baseLiquidable).toBe(0);
+    expect(r.cuota).toBe(0);
   });
 });
 
@@ -101,7 +134,7 @@ describe('calcularIRPF', () => {
   it('handles a very high income (top marginal rate applies)', () => {
     const r = calcularIRPF(500000, {});
     expect(r.cuota).toBeGreaterThan(0);
-    // top combined estatal marginal is high; average rate well above the lower brackets
+    // top marginal (state + model regional) is 47 %; the average rate stays well above the lower brackets
     expect(r.tipoMedio).toBeGreaterThan(35);
     expect(r.tipoMedio).toBeLessThan(47);
   });
