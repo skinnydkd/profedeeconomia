@@ -1,6 +1,9 @@
 /** @jsxImportSource preact */
-import { useEffect, useMemo, useState } from 'preact/hooks';
+import { useEffect, useMemo, useRef, useState } from 'preact/hooks';
 import { loadJSON, removeKey, saveJSON } from '../lib/storage';
+import { lecturasNumero, numeroCorrecto, ordenesOpciones, ordenValido, rngDesde, textoPlano } from './quiz-utils';
+import Marca from './QuizMarca';
+import TextoInline from './TextoInline';
 import './QuizPlayer.css';
 
 export type Pregunta =
@@ -9,8 +12,12 @@ export type Pregunta =
   | { tipo: 'numerico'; enunciado: string; respuesta: number; tolerancia?: number; unidad?: string; explicacion?: string }
   | { tipo: 'relacionar'; enunciado: string; izquierda: string[]; derecha: string[]; correctas: number[]; explicacion?: string };
 
-/** MC/numeric → number, V/F → boolean, relacionar → number[] (chosen right index per left, -1 unset). */
-export type Respuesta = number | boolean | number[] | null;
+/**
+ * MC → original option index, V/F → boolean, numeric → the text as typed (read
+ * as a number only when grading, so "12," or "-" survive while typing),
+ * relacionar → number[] (chosen right index per left, -1 unset).
+ */
+export type Respuesta = number | boolean | string | number[] | null;
 
 type Props = {
   preguntas: Pregunta[];
@@ -30,6 +37,9 @@ const COPY = {
     preguntaN: 'Pregunta', tuRespuestaLbl: 'Tu respuesta', elige: '— elige —',
     correcto: '¡Correcto!', incorrecto: 'Incorrecto.', respuestaCorrecta: 'Respuesta correcta:',
     anterior: '← Anterior', confirmar: 'Confirmar respuesta', verResultado: 'Ver resultado', siguiente: 'Siguiente →',
+    marcaCorrecta: 'Correcta', marcaTuya: 'Tu respuesta', filaBien: 'correcta', filaMal: 'incorrecta',
+    progreso: 'Progreso', correctaS: 'correcta', correctaP: 'correctas', incorrectaS: 'incorrecta', incorrectaP: 'incorrectas',
+    pendienteS: 'pendiente', pendienteP: 'pendientes',
   },
   ca: {
     sinResponder: '— sense respondre —', verdadero: 'Vertader', falso: 'Fals',
@@ -39,6 +49,9 @@ const COPY = {
     preguntaN: 'Pregunta', tuRespuestaLbl: 'La teua resposta', elige: '— tria —',
     correcto: 'Correcte!', incorrecto: 'Incorrecte.', respuestaCorrecta: 'Resposta correcta:',
     anterior: '← Anterior', confirmar: 'Confirmar resposta', verResultado: 'Veure resultat', siguiente: 'Següent →',
+    marcaCorrecta: 'Correcta', marcaTuya: 'La teua resposta', filaBien: 'correcta', filaMal: 'incorrecta',
+    progreso: 'Progrés', correctaS: 'correcta', correctaP: 'correctes', incorrectaS: 'incorrecta', incorrectaP: 'incorrectes',
+    pendienteS: 'pendent', pendienteP: 'pendents',
   },
 } as const;
 type Copy = (typeof COPY)[keyof typeof COPY];
@@ -48,14 +61,23 @@ type Estado = {
   respuestas: Respuesta[];
   confirmadas: boolean[];
   finalizado: boolean;
+  /** Display order of the options per question (see ordenesOpciones). */
+  ordenes: number[][];
 };
 
-function emptyState(n: number): Estado {
+/**
+ * A fresh attempt. The first one is shuffled with a generator seeded by the
+ * quiz, so the server render and the hydrated island agree; retries reshuffle
+ * at random so the position of the key cannot be memorised.
+ */
+function emptyState(preguntas: Pregunta[], rng: () => number): Estado {
+  const n = preguntas.length;
   return {
     idx: 0,
     respuestas: new Array(n).fill(null),
     confirmadas: new Array(n).fill(false),
     finalizado: false,
+    ordenes: ordenesOpciones(preguntas, rng),
   };
 }
 
@@ -66,7 +88,7 @@ function respondida(p: Pregunta, r: Respuesta): boolean {
     case 'verdadero-falso':
       return r !== null;
     case 'numerico':
-      return typeof r === 'number' && !Number.isNaN(r);
+      return typeof r === 'string' && lecturasNumero(r).length > 0;
     case 'relacionar':
       return Array.isArray(r) && r.length === p.izquierda.length && r.every((x) => x >= 0);
   }
@@ -79,7 +101,7 @@ function esCorrecta(p: Pregunta, r: Respuesta): boolean {
     case 'verdadero-falso':
       return r === p.correcta;
     case 'numerico':
-      return typeof r === 'number' && Math.abs(r - p.respuesta) <= (p.tolerancia ?? 0);
+      return typeof r === 'string' && numeroCorrecto(r, p.respuesta, p.tolerancia);
     case 'relacionar':
       return Array.isArray(r) && p.correctas.every((c, i) => r[i] === c);
   }
@@ -96,7 +118,7 @@ function formatResp(p: Pregunta, r: Respuesta, t: Copy): string {
     case 'verdadero-falso':
       return r ? t.verdadero : t.falso;
     case 'numerico':
-      return typeof r === 'number' ? numComma(r) + (p.unidad ? ' ' + p.unidad : '') : '—';
+      return typeof r === 'string' ? r.trim() + (p.unidad ? ' ' + p.unidad : '') : '—';
     case 'relacionar':
       return Array.isArray(r)
         ? r.map((d, i) => `${i + 1}→${d >= 0 ? String.fromCharCode(97 + d) : '·'}`).join('  ')
@@ -126,13 +148,24 @@ function bestKey(storageKey: string): string {
 export default function QuizPlayer({ preguntas, storageKey, locale = 'es' }: Props) {
   const t = COPY[locale];
   const total = preguntas.length;
-  const [estado, setEstado] = useState<Estado>(() => emptyState(total));
+  const [estado, setEstado] = useState<Estado>(() => emptyState(preguntas, rngDesde(storageKey)));
 
   const [bestNota, setBestNota] = useState<number | null>(null);
   useEffect(() => {
     const stored = loadJSON<number | null>(bestKey(storageKey), null);
     if (typeof stored === 'number') setBestNota(stored);
   }, [storageKey]);
+
+  // Keyboard and screen-reader users land on the new question (or the result)
+  // after moving, instead of on <body>. Not on first paint: no focus stealing.
+  const enunciadoRef = useRef<HTMLHeadingElement>(null);
+  const resultadoRef = useRef<HTMLHeadingElement>(null);
+  const moverFoco = useRef(false);
+  useEffect(() => {
+    if (!moverFoco.current) return;
+    moverFoco.current = false;
+    (estado.finalizado ? resultadoRef.current : enunciadoRef.current)?.focus();
+  }, [estado.idx, estado.finalizado]);
 
   const aciertos = useMemo(
     () =>
@@ -182,6 +215,7 @@ export default function QuizPlayer({ preguntas, storageKey, locale = 'es' }: Pro
   }
 
   function siguiente() {
+    moverFoco.current = true;
     setEstado((s) => {
       if (s.idx + 1 >= total) {
         setBestNota((prev) => {
@@ -196,10 +230,12 @@ export default function QuizPlayer({ preguntas, storageKey, locale = 'es' }: Pro
   }
 
   function anterior() {
+    moverFoco.current = true;
     setEstado((s) => ({ ...s, idx: Math.max(0, s.idx - 1) }));
   }
   function reiniciar() {
-    setEstado(emptyState(total));
+    moverFoco.current = true;
+    setEstado(emptyState(preguntas, Math.random));
   }
   function borrarProgreso() {
     removeKey(bestKey(storageKey));
@@ -216,7 +252,7 @@ export default function QuizPlayer({ preguntas, storageKey, locale = 'es' }: Pro
       <div class="qp">
         <div class="qp__final">
           <div class="qp__eyebrow">{t.resultado}</div>
-          <h2 class="qp__nota">
+          <h2 class="qp__nota" ref={resultadoRef} tabIndex={-1}>
             <span class="qp__nota-num">{formatNota(nota10)}</span>
             <span class="qp__nota-sobre">/ 10</span>
           </h2>
@@ -234,15 +270,18 @@ export default function QuizPlayer({ preguntas, storageKey, locale = 'es' }: Pro
               const ok = esCorrecta(p, r);
               return (
                 <li class={ok ? 'ok' : 'fail'}>
-                  <span class="qp__review-num">{String(i + 1).padStart(2, '0')}</span>
+                  <span class="qp__review-num">
+                    {String(i + 1).padStart(2, '0')}
+                    <span class="qp__sr"> · {ok ? t.filaBien : t.filaMal}</span>
+                  </span>
                   <span class="qp__review-text">
-                    <strong>{p.enunciado}</strong>
+                    <strong><TextoInline texto={p.enunciado} /></strong>
                     <br />
-                    {t.tuRespuesta} <em>{formatResp(p, r, t)}</em>
+                    {t.tuRespuesta} <em><TextoInline texto={formatResp(p, r, t)} /></em>
                     {!ok && (
                       <>
                         <br />
-                        {t.correcta} <em>{formatCorr(p, t)}</em>
+                        {t.correcta} <em><TextoInline texto={formatCorr(p, t)} /></em>
                       </>
                     )}
                   </span>
@@ -268,12 +307,19 @@ export default function QuizPlayer({ preguntas, storageKey, locale = 'es' }: Pro
 
   // ─── Question screen ─────────────────────────────────
   const acerto = confirmada && esCorrecta(pregunta, respuestaActual);
+  const orden = pregunta.tipo === 'opcion-multiple' ? ordenValido(estado.ordenes[estado.idx], pregunta.opciones.length) : [];
+
+  // Progress in words for assistive tech: the dots themselves are only colour and shape.
+  const hechas = estado.confirmadas.filter(Boolean).length;
+  const bien = preguntas.filter((p, i) => estado.confirmadas[i] && esCorrecta(p, estado.respuestas[i])).length;
+  const cuenta = (n: number, uno: string, varios: string) => `${n} ${n === 1 ? uno : varios}`;
+  const progresoLabel = `${t.progreso}: ${cuenta(bien, t.correctaS, t.correctaP)}, ${cuenta(hechas - bien, t.incorrectaS, t.incorrectaP)}, ${cuenta(total - hechas, t.pendienteS, t.pendienteP)}`;
 
   return (
     <div class="qp">
       <div class="qp__header">
         <span class="qp__eyebrow">{t.preguntaN} {estado.idx + 1} {t.de} {total}</span>
-        <div class="qp__progress">
+        <div class="qp__progress" role="img" aria-label={progresoLabel}>
           {preguntas.map((_, i) => {
             const done = estado.confirmadas[i];
             const ok = done && esCorrecta(preguntas[i], estado.respuestas[i]);
@@ -296,20 +342,23 @@ export default function QuizPlayer({ preguntas, storageKey, locale = 'es' }: Pro
         <p class="qp__best">{t.mejorNota} {formatNota(bestNota)} / 10</p>
       )}
 
-      <h3 class="qp__enunciado">{pregunta.enunciado}</h3>
+      <h3 class="qp__enunciado" ref={enunciadoRef} tabIndex={-1}>
+        <TextoInline texto={pregunta.enunciado} />
+      </h3>
 
-      {/* Opción múltiple */}
+      {/* Opción múltiple: painted in the shuffled order, answers keep the file index */}
       {pregunta.tipo === 'opcion-multiple' && (
         <ol class="qp__opciones">
-          {pregunta.opciones.map((opt, i) => {
+          {orden.map((i, pos) => {
             const sel = respuestaActual === i;
             const corr = i === pregunta.correcta;
             const sc = confirmada ? (corr ? 'is-correct' : sel ? 'is-incorrect' : '') : sel ? 'is-selected' : '';
             return (
-              <li>
+              <li key={i}>
                 <button type="button" class={['qp__opt', sc].join(' ').trim()} onClick={() => setRespuesta(i)} disabled={confirmada} aria-pressed={sel}>
-                  <span class="qp__opt-letra">{String.fromCharCode(65 + i)}</span>
-                  <span class="qp__opt-texto">{opt}</span>
+                  <span class="qp__opt-letra">{String.fromCharCode(65 + pos)}</span>
+                  <span class="qp__opt-texto"><TextoInline texto={pregunta.opciones[i]} /></span>
+                  {confirmada && (corr || sel) && <Marca ok={corr} texto={corr ? t.marcaCorrecta : t.marcaTuya} />}
                 </button>
               </li>
             );
@@ -327,13 +376,14 @@ export default function QuizPlayer({ preguntas, storageKey, locale = 'es' }: Pro
             return (
               <button type="button" class={['qp__opt', sc].join(' ').trim()} onClick={() => setRespuesta(v)} disabled={confirmada} aria-pressed={sel}>
                 <span class="qp__opt-texto">{v ? t.verdadero : t.falso}</span>
+                {confirmada && (corr || sel) && <Marca ok={corr} texto={corr ? t.marcaCorrecta : t.marcaTuya} />}
               </button>
             );
           })}
         </div>
       )}
 
-      {/* Numérico */}
+      {/* Numérico: the field keeps exactly what is typed ("12,", "-", "0,0") */}
       {pregunta.tipo === 'numerico' && (
         <div class={['qp__num', confirmada ? (acerto ? 'is-correct' : 'is-incorrect') : ''].join(' ').trim()}>
           <label class="qp__num-label">
@@ -341,14 +391,12 @@ export default function QuizPlayer({ preguntas, storageKey, locale = 'es' }: Pro
             <span class="qp__num-field">
               <input
                 type="text"
-                inputmode="decimal"
+                inputMode="decimal"
+                autoComplete="off"
                 class="qp__num-input"
                 disabled={confirmada}
-                value={typeof respuestaActual === 'number' && !Number.isNaN(respuestaActual) ? numComma(respuestaActual) : ''}
-                onInput={(e) => {
-                  const raw = (e.currentTarget.value || '').replace(',', '.').trim();
-                  setRespuesta(raw === '' ? null : Number(raw));
-                }}
+                value={typeof respuestaActual === 'string' ? respuestaActual : ''}
+                onInput={(e) => setRespuesta(e.currentTarget.value)}
               />
               {pregunta.unidad && <span class="qp__num-unidad">{pregunta.unidad}</span>}
             </span>
@@ -367,12 +415,20 @@ export default function QuizPlayer({ preguntas, storageKey, locale = 'es' }: Pro
               return (
                 <tr class={confirmada ? (okRow ? 'is-ok' : 'is-fail') : ''}>
                   <td class="qp__rel-num">{li + 1}</td>
-                  <td class="qp__rel-izq">{izq}</td>
+                  <td class="qp__rel-izq">
+                    <TextoInline texto={izq} />
+                    {confirmada && <Marca ok={okRow} texto={okRow ? t.filaBien : t.filaMal} soloLector />}
+                  </td>
                   <td class="qp__rel-der">
-                    <select disabled={confirmada} value={String(chosen)} onChange={(e) => elegirRel(li, Number(e.currentTarget.value))}>
+                    <select
+                      aria-label={`${li + 1}. ${textoPlano(izq)}`}
+                      disabled={confirmada}
+                      value={String(chosen)}
+                      onChange={(e) => elegirRel(li, Number(e.currentTarget.value))}
+                    >
                       <option value="-1">{t.elige}</option>
                       {pregunta.derecha.map((der, di) => (
-                        <option value={String(di)}>{String.fromCharCode(97 + di)}) {der}</option>
+                        <option value={String(di)}>{String.fromCharCode(97 + di)}) {textoPlano(der)}</option>
                       ))}
                     </select>
                   </td>
@@ -383,15 +439,24 @@ export default function QuizPlayer({ preguntas, storageKey, locale = 'es' }: Pro
         </table>
       )}
 
-      {confirmada && (
-        <div class={['qp__feedback', acerto ? 'is-ok' : 'is-fail'].join(' ')}>
-          <strong>{acerto ? t.correcto : t.incorrecto}</strong>
-          {!acerto && pregunta.tipo !== 'opcion-multiple' && (
-            <p class="qp__feedback-corr">{t.respuestaCorrecta} <em>{formatCorr(pregunta, t)}</em></p>
-          )}
-          {pregunta.explicacion && <p>{pregunta.explicacion}</p>}
-        </div>
-      )}
+      {/* Live region: present before the answer is confirmed so it is announced */}
+      <div class="qp__live" role="status">
+        {confirmada && (
+          <div class={['qp__feedback', acerto ? 'is-ok' : 'is-fail'].join(' ')}>
+            <strong>{acerto ? t.correcto : t.incorrecto}</strong>
+            {!acerto && (
+              <p class="qp__feedback-corr">
+                {t.respuestaCorrecta}{' '}
+                <em>
+                  {pregunta.tipo === 'opcion-multiple' && `${String.fromCharCode(65 + orden.indexOf(pregunta.correcta))}) `}
+                  <TextoInline texto={formatCorr(pregunta, t)} />
+                </em>
+              </p>
+            )}
+            {pregunta.explicacion && <p><TextoInline texto={pregunta.explicacion} /></p>}
+          </div>
+        )}
+      </div>
 
       <div class="qp__actions">
         <button class="qp__btn qp__btn--ghost" type="button" onClick={anterior} disabled={estado.idx === 0}>

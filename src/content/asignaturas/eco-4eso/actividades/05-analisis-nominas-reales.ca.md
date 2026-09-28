@@ -111,9 +111,9 @@ Cada alumne escriu al seu quadern **una conclusió personal** en una frase, come
   - **Total meritat: 1.383,00 €**
 - **Deduccions**:
   - Base de cotització: 1.613,50 € (inclou prorrateig de pagues)
-  - Cotització SS treballador (6,35 %): −102,46 €
+  - Cotització SS treballador (6,50 %): −104,88 €
   - Retenció IRPF (3 %): −41,49 €
-- **Líquid a percebre: 1.239,05 €**
+- **Líquid a percebre: 1.236,63 €**
 - **Pagues anuals**: 14 (12 mensualitats + extra juny + extra Nadal).
 
 ### Nòmina 2 — Laia, 31 anys, dependenta indefinida en una botiga de barri
@@ -126,10 +126,10 @@ Cada alumne escriu al seu quadern **una conclusió personal** en una frase, come
   - Plus de transport (no salarial): 60,00 €
   - **Total meritat: 1.415,00 €**
 - **Deduccions**:
-  - Base de cotització: 1.581,67 € (sense incloure plus transport; amb prorrateig extres)
-  - Cotització SS treballador (6,35 %): −100,44 €
-  - Retenció IRPF (7 %): −98,05 €
-- **Líquid a percebre: 1.216,51 €**
+  - Base de cotització: 1.640,83 € (amb prorrateig d'extres i el plus de transport, que cotitza des de 2014)
+  - Cotització SS treballador (6,50 %): −106,65 €
+  - Retenció IRPF (7 %): −99,05 €
+- **Líquid a percebre: 1.209,30 €**
 - **Pagues anuals**: 14. Antiguitat de 5 anys, dret consolidat a atur.
 
 ### Nòmina 3 — Marc, 26 anys, programador júnior indefinit en una empresa tecnològica
@@ -143,9 +143,9 @@ Cada alumne escriu al seu quadern **una conclusió personal** en una frase, come
   - **Total meritat: 2.650,00 €**
 - **Deduccions**:
   - Base de cotització: 3.091,67 € (amb prorrateig d'extres)
-  - Cotització SS treballador (6,35 %): −196,32 €
+  - Cotització SS treballador (6,50 %): −200,96 €
   - Retenció IRPF (17 %): −450,50 €
-- **Líquid a percebre: 2.003,18 €**
+- **Líquid a percebre: 1.998,54 €**
 - **Pagues anuals**: 14. Antiguitat de 16 mesos, dret consolidat a atur.
 
 ## Solució orientativa per al professor
@@ -155,9 +155,9 @@ Cada alumne escriu al seu quadern **una conclusió personal** en una frase, come
 | | Adrián | Laia | Marc |
 | --- | --- | --- | --- |
 | Brut mensual | 1.383,00 € | 1.415,00 € | 2.650,00 € |
-| SS treballador (6,35 % base) | 102,46 € | 100,44 € | 196,32 € |
-| IRPF retingut | 41,49 € (3 %) | 98,05 € (7 %) | 450,50 € (17 %) |
-| Net mensual | 1.239,05 € | 1.216,51 € | 2.003,18 € |
+| SS treballador (6,50 % base) | 104,88 € | 106,65 € | 200,96 € |
+| IRPF retingut | 41,49 € (3 %) | 99,05 € (7 %) | 450,50 € (17 %) |
+| Net mensual | 1.236,63 € | 1.209,30 € | 1.998,54 € |
 
 > Observació esperada: **Adrián cobra més net que Laia tot i cobrar menys brut**, perquè la seua retenció d'IRPF és menor (és el seu primer any treballant, sense renda acumulada). Esta és una de les paradoxes que l'exercici vol que aparega.
 
@@ -166,15 +166,15 @@ Cada alumne escriu al seu quadern **una conclusió personal** en una frase, come
 | | Adrián | Laia | Marc |
 | --- | --- | --- | --- |
 | Brut anual (× 14) | 19.362 € | 19.810 € | 37.100 € |
-| Net anual (× 14) | 17.347 € | 17.031 € | 28.045 € |
-| % descompte | 10,4 % | 14,0 % | 24,4 % |
+| Net anual (× 14) | 17.313 € | 16.930 € | 27.980 € |
+| % descompte | 10,6 % | 14,5 % | 24,6 % |
 | Atur demà? | Sí, si ha cotitzat ≥ 360 dies | Sí, 5 anys cotitzats | Sí, 16 mesos cotitzats |
-| Indemnització acomiadament improcedent | No aplica (contracte formatiu) | 33 dies/any × 5 = 165 dies | 33 dies/any × 1,33 = 44 dies |
+| Indemnització acomiadament improcedent | 33 dies/any si l'acomiaden sense causa; en acabar el contracte, cap | 33 dies/any × 5 = 165 dies | 33 dies/any × 1,33 = 44 dies |
 
 ### Taula D — rànquing raonat d'estabilitat (proposta)
 
 1. **Laia** — la més estable. Contracte indefinit, 5 anys d'antiguitat, indemnització d'uns 5,5 mesos de sou si la despatxen, dret consolidat a atur de llarga duració. Sou modest però predictible.
-2. **Marc** — segon. Indefinit, però només 16 mesos d'antiguitat: la indemnització per acomiadament improcedent seria de mes i mig aproximadament. Sou alt, però el sector TIC té rotació; el descompte del 24,4 % el sorprén en veure la nòmina.
+2. **Marc** — segon. Indefinit, però només 16 mesos d'antiguitat: la indemnització per acomiadament improcedent seria de mes i mig aproximadament. Sou alt, però el sector TIC té rotació; el descompte del 24,6 % el sorprén en veure la nòmina.
 3. **Adrián** — el menys estable. Contracte formatiu amb data de fi (10 mesos), sense indemnització per fi de contracte més enllà de la que corresponga per dies treballats, sense dret consolidat a l'atur si no completa cotització suficient. El seu net és enganyosament alt perquè la retenció d'IRPF és molt baixa en ser primer any.
 
 > El missatge pedagògic clau: **el brut no decidix l'estabilitat**. Marc cobra el doble que Laia però està més exposat a acomiadament barat. Adrián sembla cobrar bé però el seu contracte té data de caducitat. Saber llegir estes tres nòmines en paral·lel és el que evita acceptar el primer contracte sense entendre què es firma.

@@ -19,7 +19,7 @@ estado: publicado
 
 ## Planteamiento
 
-Hemos visto en clase el mapa completo del sistema educativo español post-ESO: cinco modalidades de Bachillerato, 26 familias profesionales con tres grados de FP, vías alternativas (artísticas, deportivas, EOI, certificados de profesionalidad). El mapa está dibujado. Ahora toca lo difícil: **bajar del mapa al terreno**.
+Hemos visto en clase el mapa completo del sistema educativo español post-ESO: cuatro modalidades de Bachillerato, 26 familias profesionales con tres grados de FP, vías alternativas (artísticas, deportivas, EOI, certificados de profesionalidad). El mapa está dibujado. Ahora toca lo difícil: **bajar del mapa al terreno**.
 
 Este proyecto te pide que dejes de hablar del sistema en abstracto y elijas **tres opciones reales y concretas** que podrías tomar el año que viene. Tienes que investigarlas con datos verificables —no con suposiciones ni con lo que diga tu primo mayor— y plasmar el resultado en un **dossier** que sirva tanto para defenderlo ante tu familia como para ti mismo dentro de seis meses, cuando ya no recuerdes lo que estabas pensando hoy.
 

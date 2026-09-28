@@ -21,7 +21,7 @@ slug: "asignaturas/fopp-4eso/actividades/05-dossier-itinerario-post-eso.ca"
 
 ## Plantejament
 
-Hem vist a classe el mapa complet del sistema educatiu espanyol post-ESO: cinc modalitats de Batxillerat, 26 famílies professionals amb tres graus d'FP, vies alternatives (artístiques, esportives, EOI, certificats de professionalitat). El mapa està dibuixat. Ara toca allò difícil: **baixar del mapa al terreny**.
+Hem vist a classe el mapa complet del sistema educatiu espanyol post-ESO: quatre modalitats de Batxillerat, 26 famílies professionals amb tres graus d'FP, vies alternatives (artístiques, esportives, EOI, certificats de professionalitat). El mapa està dibuixat. Ara toca allò difícil: **baixar del mapa al terreny**.
 
 Este projecte et demana que deixes de parlar del sistema en abstracte i tries **tres opcions reals i concretes** que podries prendre l'any que ve. Has d'investigar-les amb dades verificables —no amb suposicions ni amb allò que diga el teu cosí major— i plasmar el resultat en un **dossier** que servisca tant per a defensar-lo davant de la teua família com per a tu mateix d'ací a sis mesos, quan ja no recordes allò que estaves pensant hui.
 

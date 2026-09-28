@@ -62,7 +62,7 @@ preguntas:
       - "Auditar comptes tots els mesos."
       - "No invertir en actius arriscats."
     correcta: 0
-    explicacion: "Prudència = asimetria: benefici només si és realitzat, pèrdues així que són probables. És un dels nou principis que donen validesa als comptes anuals."
+    explicacion: "Prudència = asimetria: benefici només si és realitzat, pèrdues així que són probables. És un dels sis principis que donen validesa als comptes anuals."
   - enunciado: "El sistema de partida doble que usen totes les comptabilitats modernes s'atribuïx a…"
     opciones:
       - "John Maynard Keynes."

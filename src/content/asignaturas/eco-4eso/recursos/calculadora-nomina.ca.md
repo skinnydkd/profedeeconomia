@@ -21,6 +21,6 @@ slug: "asignaturas/eco-4eso/recursos/calculadora-nomina.ca"
 
 El càlcul de l'IRPF utilitza l'**escala estatal 2024** simplificada. La quota real depén de la concreció autonòmica (cada CCAA aplica la seua pròpia escala sobre la mitat de la base) i de les **deduccions personals i familiars** (mínim personal, fills a càrrec, discapacitat, etc.).
 
-La cotització a la Seguretat Social del treballador es fixa al **6,35 %** (4,7 % contingències comunes + 1,55 % desocupació + 0,1 % formació). Per a contractes temporals el percentatge de desocupació puja lleugerament.
+La cotització a la Seguretat Social del treballador és del **6,50 %** el 2026 (4,70 % contingències comunes + 1,55 % desocupació + 0,10 % formació + 0,15 % MEI). En els contractes temporals la desocupació puja a l'1,60 %.
 
 La calculadora **no aplica retencions reals** que faria l'empresa (l'AEAT publica un programa específic, PADRE/Renda Web), sinó una estimació útil per a entendre la mecànica. Insistix a l'alumnat: l'important ací és vore **què paguem i per què**, no clavar el cèntim.

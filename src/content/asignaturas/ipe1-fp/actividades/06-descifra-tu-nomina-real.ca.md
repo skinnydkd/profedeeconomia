@@ -13,6 +13,10 @@ materiales:
   - "Extracte d'un contracte i d'un conveni sectorial de referència (inclòs davall)"
   - "Calculadora o mòbil"
   - "Taula de tipus de cotització del treballador i SMI 2026 projectada"
+solucion:
+  - "<strong>Nòmina A.</strong> Amb 14 pagues, la base de cotització mensual inclou el prorrateig de les extres: 1.300 + 2 × 1.300 / 12 = 1.516,67 €. Seguretat Social: 71,28 + 23,51 + 1,52 + 2,28 = 98,59 € (el 6,50 % de la base). IRPF: 6 % de 1.300 = 78,00 €. Líquid: 1.300 − 176,59 = <strong>1.123,41 €</strong>."
+  - "<strong>Nòmina B, errors.</strong> Falta la paga extra d'estiu (1.300 €) i la desocupació s'ha calculat al 6,55 % en compte de l'1,55 %."
+  - "<strong>Nòmina B corregida.</strong> Meritat: 2.600 €. Seguretat Social: 98,59 € (la base no canvia, perquè l'extra ja estava prorratejada). IRPF: 6 % de 2.600 = 156,00 €. Líquid: 2.600 − 254,59 = <strong>2.345,41 €</strong>."
 lang: ca
 estado: publicado
 slug: "asignaturas/ipe1-fp/actividades/06-descifra-tu-nomina-real.ca"
@@ -36,10 +40,10 @@ La nòmina és el document que més gent firma sense entendre. En esta activitat
 
 ## Passos
 
-1. **Enquadrament (5 min).** El professor recorda l'estructura de la nòmina (encapçalament, meritacions, deduccions, líquid a percebre), el SMI 2026 i els tipus de cotització del treballador (contingències comunes, desocupació, formació professional).
+1. **Enquadrament (5 min).** El professor recorda l'estructura de la nòmina (encapçalament, meritacions, deduccions, líquid a percebre), el SMI 2026 i els tipus de cotització del treballador (contingències comunes, desocupació, formació professional i MEI).
 2. **Identificació de la relació i el contracte (10 min).** Cada parella llig l'extracte de contracte i determina: és relació laboral per compte d'altri o amaga un fals autònom? Quina modalitat de contracte és? El període de prova és legal? El salari respecta el conveni?
 3. **Dissecció de meritacions (10 min).** A la nòmina A, separar i sumar les **meritacions**: salari base, complements salarials (antiguitat, lloc), prorrateig o no de pagues extres. Anotar el total meritat (salari brut).
-4. **Dissecció de deduccions (15 min).** Identificar i calcular cada **deducció**: cotitzacions del treballador a la Seguretat Social (contingències comunes, desocupació, formació) i retenció d'IRPF. Comprovar que els percentatges aplicats sobre la base coincidixen amb els tipus vigents. Sumar el total de deduccions.
+4. **Dissecció de deduccions (15 min).** Identificar i calcular cada **deducció**: cotitzacions del treballador a la Seguretat Social (contingències comunes, desocupació, formació i MEI, sobre una base que inclou el prorrateig de les pagues extra) i retenció d'IRPF. Comprovar que els percentatges aplicats sobre la base coincidixen amb els tipus vigents. Sumar el total de deduccions.
 5. **Del brut al net (10 min).** Calcular el **líquid a percebre** (brut − deduccions) i comparar-lo amb el "líquid" que figura a la nòmina. A la **nòmina B**, detectar un error introduït a propòsit (un tipus mal aplicat o una paga extra absent) i explicar-lo.
 6. **Tancament (5 min).** Cada parella escriu la conclusió: coincidix el sou promés amb el net? Està tot correcte a la nòmina B? Quina capa de la jerarquia normativa protegix el treballador del cas?
 
@@ -60,14 +64,15 @@ MERITACIONS
   Complement de lloc .................. 150,00 €
   TOTAL MERITAT (brut) ............... 1.300,00 €
 
-DEDUCCIONS (base de cotització 1.300,00 €)
-  Contingències comunes (4,70 %) ...... 61,10 €
-  Desocupació (1,55 %) ................ 20,15 €
-  Formació professional (0,10 %) ...... 1,30 €
+DEDUCCIONS (base de cotització 1.516,67 €)
+  Contingències comunes (4,70 %) ...... 71,28 €
+  Desocupació (1,55 %) ................ 23,51 €
+  Formació professional (0,10 %) ...... 1,52 €
+  MEI (0,15 %) ........................ 2,28 €
   Retenció IRPF (estimada, 6,00 %) .... 78,00 €
-  TOTAL DEDUCCIONS .................. 160,55 €
+  TOTAL DEDUCCIONS .................. 176,59 €
 
-LÍQUID A PERCEBRE ................... 1.139,45 €
+LÍQUID A PERCEBRE ................... 1.123,41 €
 ```
 
 ### Nòmina B (amb un error a detectar, mes de juny amb paga extra)
@@ -79,17 +84,18 @@ MERITACIONS
   Paga extra d'estiu .................. (no apareix)
   TOTAL MERITAT (brut) ............... 1.300,00 €
 
-DEDUCCIONS (base de cotització 1.300,00 €)
-  Contingències comunes (4,70 %) ...... 61,10 €
-  Desocupació (6,55 %) ............... 85,15 €   ← revisar
-  Formació professional (0,10 %) ...... 1,30 €
+DEDUCCIONS (base de cotització 1.516,67 €)
+  Contingències comunes (4,70 %) ...... 71,28 €
+  Desocupació (6,55 %) ............... 99,34 €   ← revisar
+  Formació professional (0,10 %) ...... 1,52 €
+  MEI (0,15 %) ........................ 2,28 €
   Retenció IRPF (6,00 %) ............. 78,00 €
-  TOTAL DEDUCCIONS .................. 225,55 €
+  TOTAL DEDUCCIONS .................. 252,42 €
 
-LÍQUID A PERCEBRE ................... 1.074,45 €
+LÍQUID A PERCEBRE ................... 1.047,58 €
 ```
 
-**Pistes per a detectar-lo:** el contracte és de 14 pagues, així que al juny ha de constar la paga extra (o estar prorratejada tot l'any, però no les dues coses). A més, el tipus de desocupació del treballador és de l'1,55 %, no del 6,55 %: revisa el càlcul d'eixa línia.
+**Pistes per a detectar-lo:** el contracte és de 14 pagues, així que al juny ha de constar la paga extra (o estar prorratejada tot l'any, però no les dues coses). La base de cotització, en canvi, és la mateixa tots els mesos (1.300 + 2 × 1.300 / 12 = 1.516,67 €): la paga extra ja hi està prorratejada i no torna a cotitzar el mes en què es cobra. A més, el tipus de desocupació del treballador és de l'1,55 %, no del 6,55 %: revisa el càlcul d'eixa línia.
 
 ## Criteris d'avaluació
 

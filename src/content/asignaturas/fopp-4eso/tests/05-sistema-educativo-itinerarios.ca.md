@@ -13,8 +13,8 @@ preguntas:
       - "Quatre: Ciències i Tecnologia, Humanitats i Ciències Socials, Arts i General."
       - "Cinc: Ciències i Tecnologia, Humanitats i Ciències Socials, Arts Plàstiques, Música i Arts Escèniques, i General."
       - "Sis: les cinc anteriors més el Batxillerat Internacional."
-    correcta: 2
-    explicacion: "La LOMLOE reconeix cinc modalitats perquè Arts es dividix en dos vies independents (Plàstiques, Imatge i Disseny; Música i Arts Escèniques) i afig la novetat de la modalitat General, pensada per a qui encara no ha decidit especialització."
+    correcta: 1
+    explicacion: "El Reial Decret 243/2022 establix quatre modalitats: Ciències i Tecnologia, Humanitats i Ciències Socials, Arts i General. Arts té dues vies (Arts Plàstiques, Imatge i Disseny; Música i Arts Escèniques), però és una sola modalitat. La General és la novetat de la LOMLOE, pensada per a qui encara no ha decidit especialització."
   - enunciado: "La fórmula oficial de la nota d'accés a la universitat en la EBAU és…"
     opciones:
       - "0,5 × nota mitjana de Batxillerat + 0,5 × nota de la fase obligatòria."

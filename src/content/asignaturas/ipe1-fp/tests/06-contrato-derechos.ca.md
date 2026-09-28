@@ -74,19 +74,19 @@ preguntas:
   - enunciado: "Quins dos grans conceptes es resten del salari brut en la nòmina del treballador?"
     opciones:
       - "L'IVA i les dietes."
-      - "La cotització a la Seguretat Social a càrrec del treballador (al voltant del 6,35 %) i la retenció d'IRPF (bestreta de l'impost sobre la renda)."
+      - "La cotització a la Seguretat Social a càrrec del treballador (al voltant del 6,50 %) i la retenció d'IRPF (bestreta de l'impost sobre la renda)."
       - "Les pagues extres i les vacances."
       - "El salari base i els complements."
     correcta: 1
-    explicacion: "Del brut es resten dues deduccions: la **cotització a la Seguretat Social** del treballador (≈ 6,35 %, que finança jubilació, desocupació, baixes) i la **retenció d'IRPF** (bestreta de l'impost sobre la renda, que s'ajusta en la declaració anual). El resultat és el líquid a percebre (net)."
-  - enunciado: "Aitana cobra 1.800 € bruts, amb un 6,35 % de Seguretat Social i un 9 % d'IRPF. Quin és el seu salari net mensual?"
+    explicacion: "Del brut es resten dues deduccions: la **cotització a la Seguretat Social** del treballador (≈ 6,50 %, que finança jubilació, desocupació, baixes) i la **retenció d'IRPF** (bestreta de l'impost sobre la renda, que s'ajusta en la declaració anual). El resultat és el líquid a percebre (net)."
+  - enunciado: "Aitana cobra 1.800 € bruts, amb un 6,50 % de Seguretat Social i un 9 % d'IRPF. Quin és el seu salari net mensual?"
     opciones:
       - "1.800 € exactes."
-      - "1.523,70 € (1.800 − 114,30 € de Seguretat Social − 162,00 € d'IRPF)."
+      - "1.521,00 € (1.800 − 117,00 € de Seguretat Social − 162,00 € d'IRPF)."
       - "1.400 €."
       - "1.638 €."
     correcta: 1
-    explicacion: "Seguretat Social: 1.800 × 0,0635 = 114,30 €. IRPF: 1.800 × 0,09 = 162,00 €. Total deduccions: 276,30 €. Salari net = 1.800 − 276,30 = **1.523,70 €**. La bretxa brut-net és del 15,4 %, dins del rang habitual (15-25 %). El brut no és el que cobres."
+    explicacion: "Seguretat Social: 1.800 × 0,065 = 117,00 €. IRPF: 1.800 × 0,09 = 162,00 €. Total deduccions: 279,00 €. Salari net = 1.800 − 279,00 = **1.521,00 €**. La bretxa brut-net és del 15,5 %, dins del rang habitual (15-25 %). El brut no és el que cobres."
   - tipo: verdadero-falso
     enunciado: "Durant el període de prova el treballador no cobra salari ni cotitza a la Seguretat Social."
     correcta: false
