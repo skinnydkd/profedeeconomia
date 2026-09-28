@@ -4,6 +4,7 @@
 import type { APIRoute } from 'astro';
 import { getSupabase } from '../../../lib/jocs-economics/server/supabase';
 import { nextQuestion } from '../../../lib/jocs-economics/server/bank';
+import { publicQuestion } from '../../../lib/jocs-economics/server/shuffle';
 import { signGameToken } from '../../../lib/jocs-economics/server/tokens';
 import { normalizeInstitute } from '../../../lib/jocs-economics/server/institutes';
 
@@ -15,11 +16,6 @@ interface StartRequest {
   institute: string;
 }
 
-interface PublicQuestion {
-  id: string;
-  enunciado?: string;
-  opciones: string[];
-}
 
 function jsonError(reason: string, status = 400): Response {
   return new Response(JSON.stringify({ error: reason }), {
@@ -48,14 +44,6 @@ function rng(seed: string): () => number {
   };
 }
 
-function toPublicQuestion(q: { id: string; opciones: string[]; enunciado?: string }): PublicQuestion {
-  // CRITICAL anti-cheat: NEVER include correcta or explicacion
-  return {
-    id: q.id,
-    ...(q.enunciado ? { enunciado: q.enunciado } : {}),
-    opciones: q.opciones,
-  };
-}
 
 export const POST: APIRoute = async ({ request }) => {
   let body: Partial<StartRequest>;
@@ -129,7 +117,7 @@ export const POST: APIRoute = async ({ request }) => {
   return jsonOk({
     gameId,
     token,
-    question: toPublicQuestion(firstQ),
+    question: publicQuestion(firstQ, gameId),
     lives: 3,
     score: 0,
   });

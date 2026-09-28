@@ -28,6 +28,7 @@ process.env.SUPABASE_SERVICE_ROLE_KEY = 'test-key';
 process.env.JOCS_TOKEN_SECRET = 'test-secret-at-least-32-chars-aaaaa';
 
 import { POST } from '../../../pages/api/jocs/start';
+import { publicQuestion } from '../../../lib/jocs-economics/server/shuffle';
 
 function makeRequest(body: unknown): { request: Request; clientAddress: string } {
   return {
@@ -75,10 +76,12 @@ describe('POST /api/jocs/start', () => {
     const body = await res.json();
     expect(body.gameId).toBeTruthy();
     expect(body.token).toBeTruthy();
-    expect(body.question).toMatchObject({
-      id: 'eco-001-test',
-      opciones: ['A', 'B', 'C', 'D'],
-    });
+    expect(body.question.id).toBe('eco-001-test');
+    // Shown in this game's order: same options, per-game permutation.
+    expect([...body.question.opciones].sort()).toEqual(['A', 'B', 'C', 'D']);
+    expect(body.question.opciones).toEqual(
+      publicQuestion({ id: 'eco-001-test', opciones: ['A', 'B', 'C', 'D'] }, body.gameId).opciones,
+    );
     // CRITICAL anti-cheat: question must NEVER include correcta or explicacion
     expect(body.question).not.toHaveProperty('correcta');
     expect(body.question).not.toHaveProperty('explicacion');
