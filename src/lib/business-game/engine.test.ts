@@ -3,6 +3,8 @@ import {
   simularRonda,
   ranking,
   nivelCalidad,
+  atractivo,
+  repartirDemanda,
   costeVariableUnitario,
   ESTADO_INICIAL,
   DEFAULT_PARAMS,
@@ -10,6 +12,7 @@ import {
   type TeamInput,
   type TeamDecision,
 } from './engine.ts';
+import { decisionPorDefecto } from './ui';
 
 const SIMPLE: MarketParams = {
   demandaBase: 1000,
@@ -213,5 +216,38 @@ describe('rondas y ranking', () => {
     ] as any;
     const ord = ranking(res);
     expect(ord.map((r: any) => r.estado.beneficioAcumulado)).toEqual([500, 300, 100]);
+  });
+});
+
+describe('un equipo que no produce no se lleva la demanda (CODE-INT-07)', () => {
+  const tresEquipos = [1, 2, 3].map((i) => ({
+    id: `e${i}`, nombre: `E${i}`, estado: ESTADO_INICIAL, decision: decisionPorDefecto(),
+  }));
+  const trol = {
+    id: 't', nombre: 'Trol', estado: ESTADO_INICIAL,
+    decision: { precio: 0.5, marketing: 0, produccion: 0, calidad: 0, rrhh: 0, prestamo: 0 },
+  };
+
+  it('los clientes que no puede atender compran a los demás', () => {
+    const sin = simularRonda(DEFAULT_PARAMS, tresEquipos, 1);
+    const con = simularRonda(DEFAULT_PARAMS, [...tresEquipos, trol], 1);
+    for (const e of tresEquipos) {
+      expect(con.find((r) => r.id === e.id)!.ventas).toBe(sin.find((r) => r.id === e.id)!.ventas);
+    }
+    expect(con.find((r) => r.id === 't')!.ventas).toBe(0);
+  });
+
+  it('bajar el precio por debajo de la mitad de la referencia ya no suma atractivo', () => {
+    const calidad = nivelCalidad(0, 0);
+    const mitad = atractivo(DEFAULT_PARAMS, { ...trol.decision, precio: DEFAULT_PARAMS.precioReferencia / 2 }, calidad);
+    const regalo = atractivo(DEFAULT_PARAMS, trol.decision, calidad);
+    expect(regalo).toBeCloseTo(mitad, 10);
+  });
+
+  it('la demanda que nadie puede atender sigue siendo del equipo que la captó', () => {
+    const d = repartirDemanda([800, 200], [100, 250], [1, 1]);
+    expect(d[1]).toBeCloseTo(250, 6); // se llena hasta su producción
+    expect(d[0]).toBeCloseTo(750, 6); // el resto no se pierde
+    expect(d[0] + d[1]).toBeCloseTo(1000, 6);
   });
 });
