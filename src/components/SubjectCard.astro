@@ -40,17 +40,17 @@ const locale = getLocale(Astro.currentLocale);
       box-shadow .25s var(--ease-soft),
       border-color .25s var(--ease-soft);
   }
-  .subject-card.c-edmn    { --card-color: var(--color-edmn);    --card-color-soft: var(--color-edmn-soft); }
-  .subject-card.c-eco1    { --card-color: var(--color-eco1);    --card-color-soft: var(--color-eco1-soft); }
-  .subject-card.c-eco4    { --card-color: var(--color-eco4);    --card-color-soft: var(--color-eco4-soft); }
-  .subject-card.c-fopp    { --card-color: var(--color-fopp);    --card-color-soft: var(--color-fopp-soft); }
-  .subject-card.c-taller3 { --card-color: var(--color-taller3); --card-color-soft: var(--color-taller3-soft); }
-  .subject-card.c-ipe1    { --card-color: var(--color-ipe1);    --card-color-soft: var(--color-ipe1-soft); }
-  .subject-card.c-ipe2    { --card-color: var(--color-ipe2);    --card-color-soft: var(--color-ipe2-soft); }
-  .subject-card.c-eeae    { --card-color: var(--color-eeae);    --card-color-soft: var(--color-eeae-soft); }
-  .subject-card.c-gpe     { --card-color: var(--color-gpe);     --card-color-soft: var(--color-gpe-soft); }
-  .subject-card.c-cjd     { --card-color: var(--color-cjd);     --card-color-soft: var(--color-cjd-soft); }
-  .subject-card.c-proximamente { --card-color: var(--color-ink-mute); --card-color-soft: var(--color-line); }
+  .subject-card.c-edmn    { --card-color: var(--color-edmn);    --card-color-soft: var(--color-edmn-soft); --card-ink: var(--color-edmn-ink); }
+  .subject-card.c-eco1    { --card-color: var(--color-eco1);    --card-color-soft: var(--color-eco1-soft); --card-ink: var(--color-eco1-ink); }
+  .subject-card.c-eco4    { --card-color: var(--color-eco4);    --card-color-soft: var(--color-eco4-soft); --card-ink: var(--color-eco4-ink); }
+  .subject-card.c-fopp    { --card-color: var(--color-fopp);    --card-color-soft: var(--color-fopp-soft); --card-ink: var(--color-fopp-ink); }
+  .subject-card.c-taller3 { --card-color: var(--color-taller3); --card-color-soft: var(--color-taller3-soft); --card-ink: var(--color-taller3-ink); }
+  .subject-card.c-ipe1    { --card-color: var(--color-ipe1);    --card-color-soft: var(--color-ipe1-soft); --card-ink: var(--color-ipe1-ink); }
+  .subject-card.c-ipe2    { --card-color: var(--color-ipe2);    --card-color-soft: var(--color-ipe2-soft); --card-ink: var(--color-ipe2-ink); }
+  .subject-card.c-eeae    { --card-color: var(--color-eeae);    --card-color-soft: var(--color-eeae-soft); --card-ink: var(--color-eeae-ink); }
+  .subject-card.c-gpe     { --card-color: var(--color-gpe);     --card-color-soft: var(--color-gpe-soft); --card-ink: var(--color-gpe-ink); }
+  .subject-card.c-cjd     { --card-color: var(--color-cjd);     --card-color-soft: var(--color-cjd-soft); --card-ink: var(--color-cjd-ink); }
+  .subject-card.c-proximamente { --card-color: var(--color-ink-mute); --card-color-soft: var(--color-line); --card-ink: var(--color-ink-soft); }
 
   .subject-card:hover {
     transform: translateY(-4px);
@@ -92,7 +92,8 @@ const locale = getLocale(Astro.currentLocale);
     font-family: var(--font-serif);
     font-weight: 400;
     font-style: italic;
-    color: var(--card-color);
+    /* The -ink variant: mustard and olive as text fall below AA on white. */
+    color: var(--card-ink);
     font-size: 1.6rem;
     font-variation-settings: "SOFT" 100, "WONK" 1;
   }
@@ -110,7 +111,7 @@ const locale = getLocale(Astro.currentLocale);
     line-height: 1.55;
   }
   .arrow {
-    color: var(--card-color);
+    color: var(--card-ink);
     font-size: 0.95rem;
     font-weight: 600;
   }
