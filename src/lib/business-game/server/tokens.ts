@@ -4,7 +4,9 @@
 
 import jwt from 'jsonwebtoken';
 
-const DEFAULT_EXPIRY_SECONDS = 60 * 60 * 24 * 30; // 30 dies: una partida dura mesos
+// Un any: una lliga dura un curs sencer, i el token només s'emet en crear-la o en
+// unir-s'hi. Amb 30 dies el profe perdia el control de la lliga a mig curs.
+const DEFAULT_EXPIRY_SECONDS = 60 * 60 * 24 * 365;
 
 export type Rol = 'profe' | 'equipo';
 
