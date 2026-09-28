@@ -72,7 +72,11 @@ export default function JocsApp() {
       });
       setPhase('playing');
     } catch (err: any) {
-      alert(`Error: ${err?.message || 'no se puede iniciar la partida'}`);
+      alert(
+        err?.message === 'rate-limited'
+          ? 'Se han empezado muchas partidas desde esta red en el último minuto. Espera un momento y vuelve a intentarlo.'
+          : `Error: ${err?.message || 'no se puede iniciar la partida'}`,
+      );
     }
   }
 
