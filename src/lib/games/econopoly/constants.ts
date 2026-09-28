@@ -5,6 +5,11 @@ export const TOTAL_ROUNDS = 20;
 export const RD_MULTIPLIERS = [1.0, 1.5, 2.0, 3.0] as const;
 export const RD_UPGRADE_COST_PCT = 0.5;             // 50% of base price per level
 export const MONOPOLY_BONUS = 2;                    // x2 rent if owns both in sector
+/**
+ * Wealth-tax brackets. Marginal, like the IRPF: each rate applies only to the
+ * slice of net worth inside its bracket, so moving up a bracket never leaves a
+ * player poorer (see impuestoPatrimonio in engine.ts).
+ */
 export const TAX_BRACKETS = [
   { threshold: 500,  rate: 0.05 },
   { threshold: 1000, rate: 0.10 },

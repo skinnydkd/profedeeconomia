@@ -37,13 +37,13 @@ export function Playing({ session, onAnswer, onEnd }: Props) {
   const fillPct = (remainingMs / TIMER_MS) * 100;
   const urgent = remainingMs < 10000;
 
-  // Auto-fail when timer reaches 0 without an answer.
-  // Send optionIdx=0 (valid value); the server detects serverElapsedMs > 50s
-  // and forces isCorrect=false (timeout) regardless of the value sent.
+  // Out of time: send -1, which the server always grades as a wrong answer.
+  // (Sending 0 used to reach the server before its own 50 s limit and was
+  // graded as option A, the key of 43 % of the bank.)
   useEffect(() => {
     if (remainingMs === 0 && selected === null) {
-      setSelected(0);
-      onAnswer(0);
+      setSelected(-1);
+      onAnswer(-1);
     }
   }, [remainingMs, selected]);
 

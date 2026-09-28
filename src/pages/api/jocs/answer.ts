@@ -7,6 +7,7 @@ import { nextQuestion, BankExhaustedError } from '../../../lib/jocs-economics/se
 import { verifyGameToken } from '../../../lib/jocs-economics/server/tokens';
 import { nextDifficulty } from '../../../lib/jocs-economics/server/difficulty';
 import { recordedElapsedMs } from '../../../lib/jocs-economics/server/elapsed';
+import { indiceBanco, indiceMostrado, publicQuestion } from '../../../lib/jocs-economics/server/shuffle';
 
 // SSR-only: no pre-render at build time (Supabase env vars not available)
 export const prerender = false;
@@ -17,11 +18,16 @@ const TIMER_QUESTION_MS = 45 * 1000;
 const TIMER_GRACE_MS = 5 * 1000;
 const MAX_ELAPSED_MS = TIMER_QUESTION_MS + TIMER_GRACE_MS; // 50 s
 const CLIENT_TOLERANCE_MS = 2000;
+/** The client shows the result for 3 s before the next question appears. */
+const RESULT_SCREEN_MS = 3000;
+/** What the client sends when its timer runs out without an answer. */
+const TIMEOUT_OPTION = -1;
 
 interface AnswerRequest {
   gameId: string;
   token: string;
   questionId: string;
+  /** Position tapped on screen, or -1 when the time ran out. */
   optionIdx: number;
   clientElapsedMs: number;
 }
@@ -50,14 +56,6 @@ function lookupQuestion(id: string): any {
   return (bankData as any).preguntas.find((q: any) => q.id === id) ?? null;
 }
 
-function toPublicQuestion(q: any) {
-  // CRITICAL anti-cheat: NEVER include correcta or explicacion
-  return {
-    id: q.id,
-    ...(q.enunciado ? { enunciado: q.enunciado } : {}),
-    opciones: q.opciones,
-  };
-}
 
 export const POST: APIRoute = async ({ request }) => {
   let body: Partial<AnswerRequest>;
@@ -105,7 +103,8 @@ export const POST: APIRoute = async ({ request }) => {
   const currentQ = lookupQuestion(questionId);
   if (!currentQ) return jsonError('invalid-question-id', 400);
 
-  if (optionIdx < 0 || optionIdx >= currentQ.opciones.length) {
+  const nOpciones = currentQ.opciones.length;
+  if (optionIdx !== TIMEOUT_OPTION && (optionIdx < 0 || optionIdx >= nOpciones)) {
     return jsonError('invalid-option', 400);
   }
 
@@ -117,14 +116,20 @@ export const POST: APIRoute = async ({ request }) => {
   let isCorrect: boolean;
   let elapsedMsRecorded: number;
 
-  if (serverElapsedMs > MAX_ELAPSED_MS) {
-    // Timeout: forced incorrect; record full timer time
+  // Out of time, whichever side noticed: the client says so (-1, or an older
+  // client that still sends 0 once its own 45 s have gone), or the server's
+  // clock is past the grace period. Never graded as an answer.
+  const timeout =
+    optionIdx === TIMEOUT_OPTION || clientElapsedMs >= TIMER_QUESTION_MS || serverElapsedMs > MAX_ELAPSED_MS;
+  if (timeout) {
     isCorrect = false;
     elapsedMsRecorded = TIMER_QUESTION_MS;
   } else {
-    isCorrect = optionIdx === currentQ.correcta;
+    // The player tapped a position in this game's order; grade the bank option behind it.
+    isCorrect = indiceBanco(gameId, questionId, nOpciones, optionIdx) === currentQ.correcta;
     elapsedMsRecorded = recordedElapsedMs(serverElapsedMs, clientElapsedMs, CLIENT_TOLERANCE_MS);
   }
+  const correctIdx = indiceMostrado(gameId, questionId, nOpciones, currentQ.correcta);
 
   const scoreGain = isCorrect ? scoreFor(game.current_difficulty) : 0;
   const newScore = game.score + scoreGain;
@@ -197,7 +202,7 @@ export const POST: APIRoute = async ({ request }) => {
       JSON.stringify({
         result: {
           isCorrect,
-          correctIdx: currentQ.correcta,
+          correctIdx,
           scoreGain,
           livesLeft: 0,
           elapsedMsRecorded,
@@ -239,7 +244,7 @@ export const POST: APIRoute = async ({ request }) => {
         JSON.stringify({
           result: {
             isCorrect,
-            correctIdx: currentQ.correcta,
+            correctIdx,
             scoreGain,
             livesLeft: newLives,
             elapsedMsRecorded,
@@ -272,7 +277,8 @@ export const POST: APIRoute = async ({ request }) => {
       time_total_ms: newTimeTotal,
       seen_question_ids: newSeen,
       current_question_id: nextQ.id,
-      current_question_started_at: new Date().toISOString(),
+      // The next question appears after the result screen; start its clock then.
+      current_question_started_at: new Date(Date.now() + RESULT_SCREEN_MS).toISOString(),
       last_action_at: new Date().toISOString(),
     })
     .eq('game_id', gameId);
@@ -281,13 +287,13 @@ export const POST: APIRoute = async ({ request }) => {
     JSON.stringify({
       result: {
         isCorrect,
-        correctIdx: currentQ.correcta,
+        correctIdx,
         scoreGain,
         livesLeft: newLives,
         elapsedMsRecorded,
         ...(currentQ.explicacion ? { explicacion: currentQ.explicacion } : {}),
       },
-      nextQuestion: toPublicQuestion(nextQ),
+      nextQuestion: publicQuestion(nextQ, gameId),
       totals: {
         score: newScore,
         questionsAnswered: newQuestionsAnswered,
