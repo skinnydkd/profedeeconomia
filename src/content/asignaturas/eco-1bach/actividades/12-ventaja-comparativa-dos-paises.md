@@ -80,6 +80,6 @@ Se supone que cada país puede repartir sus recursos entre los dos bienes de for
 ## Variantes y extensiones
 
 - **Variante corta (25 min):** resolver solo las preguntas 1 a 4 y dejar el rango de intercambio para la sesión siguiente.
-- **Variante con la calculadora del aula:** repetir el ejercicio cambiando la producción máxima de tela de Portugal a 300 y comprobar que la ventaja comparativa cambia de manos. Es la forma más rápida de ver que no depende del tamaño del país.
+- **Variante con la calculadora del aula:** repetir el ejercicio con otras producciones máximas de tela para Portugal. Con 300 no cambia nada (1 aceite = 5 tela, más que los 2 de España); con 90, la ventaja comparativa en aceite pasa a Portugal (1 aceite = 1,5 tela). Es la forma más rápida de ver que lo que decide es el coste de oportunidad, no el tamaño del país.
 - **Extensión crítica (15 min).** El modelo supone que los recursos se reasignan sin coste de un sector al otro. Discutir en gran grupo qué le pasa, en el mundo real, a quien trabajaba en el sector que desaparece. Enlaza con la curva del elefante de Milanović, que la unidad trata más adelante.
 - **Conexión con el test de la unidad:** la pregunta numérica sobre el coste de oportunidad del vino usa exactamente este método con otras cifras.
