@@ -73,19 +73,19 @@ preguntas:
   - enunciado: "¿Qué dos grandes conceptos se restan del salario bruto en la nómina del trabajador?"
     opciones:
       - "El IVA y las dietas."
-      - "La cotización a la Seguridad Social a cargo del trabajador (en torno al 6,35 %) y la retención de IRPF (anticipo del impuesto sobre la renta)."
+      - "La cotización a la Seguridad Social a cargo del trabajador (en torno al 6,50 %) y la retención de IRPF (anticipo del impuesto sobre la renta)."
       - "Las pagas extras y las vacaciones."
       - "El salario base y los complementos."
     correcta: 1
-    explicacion: "Del bruto se restan dos deducciones: la **cotización a la Seguridad Social** del trabajador (≈ 6,35 %, que financia jubilación, desempleo, bajas) y la **retención de IRPF** (anticipo del impuesto sobre la renta, que se ajusta en la declaración anual). El resultado es el líquido a percibir (neto)."
-  - enunciado: "Aitana cobra 1.800 € brutos, con un 6,35 % de Seguridad Social y un 9 % de IRPF. ¿Cuál es su salario neto mensual?"
+    explicacion: "Del bruto se restan dos deducciones: la **cotización a la Seguridad Social** del trabajador (≈ 6,50 %, que financia jubilación, desempleo, bajas) y la **retención de IRPF** (anticipo del impuesto sobre la renta, que se ajusta en la declaración anual). El resultado es el líquido a percibir (neto)."
+  - enunciado: "Aitana cobra 1.800 € brutos, con un 6,50 % de Seguridad Social y un 9 % de IRPF. ¿Cuál es su salario neto mensual?"
     opciones:
       - "1.800 € exactos."
-      - "1.523,70 € (1.800 − 114,30 € de Seguridad Social − 162,00 € de IRPF)."
+      - "1.521,00 € (1.800 − 117,00 € de Seguridad Social − 162,00 € de IRPF)."
       - "1.400 €."
       - "1.638 €."
     correcta: 1
-    explicacion: "Seguridad Social: 1.800 × 0,0635 = 114,30 €. IRPF: 1.800 × 0,09 = 162,00 €. Total deducciones: 276,30 €. Salario neto = 1.800 − 276,30 = **1.523,70 €**. La brecha bruto-neto es del 15,4 %, dentro del rango habitual (15-25 %). El bruto no es lo que cobras."
+    explicacion: "Seguridad Social: 1.800 × 0,065 = 117,00 €. IRPF: 1.800 × 0,09 = 162,00 €. Total deducciones: 279,00 €. Salario neto = 1.800 − 279,00 = **1.521,00 €**. La brecha bruto-neto es del 15,5 %, dentro del rango habitual (15-25 %). El bruto no es lo que cobras."
   - tipo: verdadero-falso
     enunciado: "Durante el periodo de prueba el trabajador no cobra salario ni cotiza a la Seguridad Social."
     correcta: false
