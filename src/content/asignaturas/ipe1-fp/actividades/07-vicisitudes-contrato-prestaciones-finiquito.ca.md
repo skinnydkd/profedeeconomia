@@ -13,6 +13,12 @@ materiales:
   - "Calculadora o mòbil"
   - "Esquema de l'acció protectora de la Seguretat Social i taula d'indemnitzacions projectats"
   - "Accés al portal de la Seguretat Social i del SEPE per a consultar requisits de prestacions"
+solucion:
+  - "<strong>Cas A · Laura.</strong> És una <strong>suspensió</strong> del contracte per incapacitat temporal, no una extinció: conserva el seu lloc i s'hi reincorpora amb l'alta. Té dret a la prestació d'IT per contingències comunes i, com que és un <em>accident</em> (encara que no siga laboral), no se li exigix cotització prèvia: els 180 dies només es demanen en la malaltia comuna, i amb 14 mesos cotitzats també els compliria. Els dies 1 a 3 no cobra res, llevat que el conveni ho millore; del 4 al 20 cobra el 60 % de la base reguladora (del 4 al 15, a càrrec de l'empresa) i des del dia 21, el 75 %. L'empresa li ho abona en la nòmina (pagament delegat): «no cobra res» és fals."
+  - "<strong>Cas B · Yusuf.</strong> És una <strong>extinció</strong> per acomiadament objectiu per causes econòmiques (art. 52.c ET). Salari diari = 1.500 × 14 / 365 ≈ 57,53 €. Indemnització = 20 dies × 3,5 anys = 70 dies × 57,53 € = <strong>4.027,10 €</strong>; el topall de 12 mensualitats (21.000 €) no s'assoleix. El preavís de 15 dies és el legal: si l'empresa no el respecta, li ha de pagar eixos dies de salari."
+  - "<strong>Cas B · desocupació i quitança.</strong> Amb 42 mesos cotitzats (uns 1.260 dies) li corresponen <strong>420 dies</strong> de prestació contributiva (14 mesos): el 70 % de la base reguladora els primers 180 dies i el 60 % després. S'ha d'inscriure com a demandant d'ocupació i sol·licitar-la en els 15 dies hàbils següents. La quitança inclou el salari dels dies treballats de l'últim mes, la part proporcional de les pagues extra pendents i les vacances no gaudides; la indemnització va a banda."
+  - "<strong>Cas C · Marta.</strong> És una <strong>extinció</strong> per fi de contracte temporal. Salari diari = 1.250 × 14 / 365 ≈ 47,95 €. Indemnització = 12 dies per any × 0,5 anys = 6 dies × 47,95 € = <strong>287,70 €</strong>. A la quitança li falten la part proporcional de les pagues extra no cobrades (si no n'ha cobrat cap, 1.250 × 2 × 6 / 12 = 1.250 €), els 5 dies de vacances (5 × 1.250 / 30 ≈ 208 €) i la indemnització."
+  - "<strong>Cas C · desocupació.</strong> Amb 6 mesos (uns 180 dies) no arriba als 360 dies de la prestació contributiva. Pot demanar el <strong>subsidi per cotització insuficient</strong> si complix el requisit de rendes; el SEPE li confirma la quantia i la duració."
 lang: ca
 estado: publicado
 slug: "asignaturas/ipe1-fp/actividades/07-vicisitudes-contrato-prestaciones-finiquito.ca"
@@ -53,7 +59,7 @@ Laura, 26 anys, contracte indefinit a temps complet, porta 14 mesos cotitzant. P
 
 ### Cas B — Yusuf, acomiadament objectiu per causes econòmiques
 
-Yusuf, 29 anys, contracte indefinit, tres anys i mig d'antiguitat. L'empresa travessa pèrdues acreditades i li comunica un acomiadament objectiu per causes econòmiques amb preavís de 15 dies. Salari brut: 1.500 €/mes en 14 pagues (salari diari ≈ 49,32 €).
+Yusuf, 29 anys, contracte indefinit, tres anys i mig d'antiguitat. L'empresa travessa pèrdues acreditades i li comunica un acomiadament objectiu per causes econòmiques amb preavís de 15 dies. Salari brut: 1.500 €/mes en 14 pagues (salari diari ≈ 57,53 €: 21.000 € anuals / 365).
 
 - **A resoldre:** quin tipus d'extinció és? Quina indemnització li correspon (20 dies per any, amb topall)? Calcula-la. Té dret a la prestació per desocupació i quants mesos, amb 42 mesos cotitzats? Què ha d'incloure la quitança?
 

@@ -13,6 +13,12 @@ materiales:
   - "Calculadora o móvil"
   - "Esquema de la acción protectora de la Seguridad Social y tabla de indemnizaciones proyectados"
   - "Acceso al portal de la Seguridad Social y del SEPE para consultar requisitos de prestaciones"
+solucion:
+  - "<strong>Caso A · Laura.</strong> Es una <strong>suspensión</strong> del contrato por incapacidad temporal, no una extinción: conserva su puesto y se reincorpora con el alta. Tiene derecho a la prestación de IT por contingencias comunes y, al ser un <em>accidente</em> (aunque no sea laboral), no se le exige cotización previa: los 180 días solo se piden en la enfermedad común, y con 14 meses cotizados también los cumpliría. Los días 1 a 3 no cobra nada, salvo que el convenio lo mejore; del 4 al 20 cobra el 60 % de la base reguladora (del 4 al 15, a cargo de la empresa) y desde el día 21, el 75 %. La empresa se lo abona en la nómina (pago delegado): «no cobra nada» es falso."
+  - "<strong>Caso B · Yusuf.</strong> Es una <strong>extinción</strong> por despido objetivo por causas económicas (art. 52.c ET). Salario diario = 1.500 × 14 / 365 ≈ 57,53 €. Indemnización = 20 días × 3,5 años = 70 días × 57,53 € = <strong>4.027,10 €</strong>; el tope de 12 mensualidades (21.000 €) no se alcanza. El preaviso de 15 días es el legal: si la empresa no lo respeta, debe pagarle esos días de salario."
+  - "<strong>Caso B · desempleo y finiquito.</strong> Con 42 meses cotizados (unos 1.260 días) le corresponden <strong>420 días</strong> de prestación contributiva (14 meses): el 70 % de la base reguladora los primeros 180 días y el 60 % después. Debe inscribirse como demandante de empleo y pedirla en los 15 días hábiles siguientes. El finiquito incluye el salario de los días trabajados del último mes, la parte proporcional de las pagas extra pendientes y las vacaciones no disfrutadas; la indemnización va aparte."
+  - "<strong>Caso C · Marta.</strong> Es una <strong>extinción</strong> por fin de contrato temporal. Salario diario = 1.250 × 14 / 365 ≈ 47,95 €. Indemnización = 12 días por año × 0,5 años = 6 días × 47,95 € = <strong>287,70 €</strong>. Al finiquito le faltan la parte proporcional de las pagas extra no cobradas (si no ha cobrado ninguna, 1.250 × 2 × 6 / 12 = 1.250 €), los 5 días de vacaciones (5 × 1.250 / 30 ≈ 208 €) y la indemnización."
+  - "<strong>Caso C · desempleo.</strong> Con 6 meses (unos 180 días) no llega a los 360 días de la prestación contributiva. Puede pedir el <strong>subsidio por cotización insuficiente</strong> si cumple el requisito de rentas; el SEPE le confirma la cuantía y la duración."
 estado: publicado
 ---
 
@@ -51,7 +57,7 @@ Laura, 26 años, contrato indefinido a tiempo completo, lleva 14 meses cotizando
 
 ### Caso B — Yusuf, despido objetivo por causas económicas
 
-Yusuf, 29 años, contrato indefinido, tres años y medio de antigüedad. La empresa atraviesa pérdidas acreditadas y le comunica un despido objetivo por causas económicas con preaviso de 15 días. Salario bruto: 1.500 €/mes en 14 pagas (salario diario ≈ 49,32 €).
+Yusuf, 29 años, contrato indefinido, tres años y medio de antigüedad. La empresa atraviesa pérdidas acreditadas y le comunica un despido objetivo por causas económicas con preaviso de 15 días. Salario bruto: 1.500 €/mes en 14 pagas (salario diario ≈ 57,53 €: 21.000 € anuales / 365).
 
 - **A resolver:** ¿qué tipo de extinción es? ¿Qué indemnización le corresponde (20 días por año, con tope)? Calcúlala. ¿Tiene derecho a la prestación por desempleo y cuántos meses, con 42 meses cotizados? ¿Qué debe incluir el finiquito?
 
