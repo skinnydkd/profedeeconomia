@@ -2,6 +2,7 @@
 import type { APIRoute } from 'astro';
 import { json, bad, getSupabase, auth } from '@/lib/business-game/server/api';
 import { validarDecision } from '@/lib/business-game/decision-validacion';
+import { DEFAULT_PARAMS } from '@/lib/business-game/engine';
 
 export const prerender = false;
 
@@ -13,19 +14,21 @@ export const POST: APIRoute = async ({ request }) => {
   try { body = await request.json(); } catch { return bad('JSON inválido'); }
   const d = body?.decision ?? body;
 
-  const r = validarDecision(d);
-  if (!r.ok) return bad(r.error);
-  const decision = r.decision;
-
   const supabase = getSupabase();
 
   const { data: liga, error: ligaErr } = await supabase
     .from('bg_ligas')
-    .select('ronda, fase')
+    .select('ronda, fase, params')
     .eq('id', payload.ligaId)
     .single();
   if (ligaErr || !liga) return bad('Liga no encontrada', 404);
   if (liga.fase !== 'decisiones') return bad('La ronda no está abierta a decisiones ahora mismo', 409);
+
+  // Half the league's base variable cost: selling below that is not a price.
+  const costeBase = Number(liga.params?.costeVariableBase ?? DEFAULT_PARAMS.costeVariableBase);
+  const r = validarDecision(d, { precioMinimo: Number.isFinite(costeBase) ? costeBase / 2 : undefined });
+  if (!r.ok) return bad(r.error);
+  const decision = r.decision;
 
   const { error } = await supabase
     .from('bg_decisiones')
