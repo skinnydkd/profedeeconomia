@@ -70,7 +70,7 @@ preguntas:
       - "Els diners no influïxen en absolut en la felicitat."
       - "La felicitat només depén del consum material."
     correcta: 1
-    explicacion: "La paradoxa d'Easterlin (1974) mostra que la renda importa per a la felicitat —sobretot quan falta el bàsic— però no de forma il·limitada: a partir de cert llindar, més riquesa no es traduïx mecànicament en més benestar subjectiu. Per això maximitzar el consum no equival a maximitzar la felicitat."
+    explicacion: "La paradoxa d'Easterlin (1974) sosté que la renda importa per a la felicitat —sobretot quan falta el bàsic— però no de forma il·limitada: a partir de cert llindar, més riquesa no es traduïx mecànicament en més benestar subjectiu. És una tesi discutida: amb dades de més països, altres estudis troben que la satisfacció continua pujant amb la renda, encara que cada vegada menys. Per això maximitzar el consum no equival a maximitzar la felicitat."
   - enunciado: "Una situació econòmica pot ser «eficient en el sentit de Pareto» i, alhora, profundament injusta. Quina conclusió s'extrau?"
     opciones:
       - "L'eficiència i l'equitat són exactament el mateix."

@@ -47,14 +47,14 @@ preguntas:
       - "Dir sempre que sí per a evitar conflictes."
     correcta: 2
     explicacion: "L'assertivitat és el punt mitjà entre la passivitat (callar per a evitar el conflicte) i l'agressivitat (imposar-se). Consistix a defendre les pròpies idees amb respecte i escoltar l'altra part."
-  - enunciado: "Els experiments de Hawthorne, analitzats per Elton Mayo, van demostrar sobretot que…"
+  - enunciado: "Els experiments de Hawthorne, analitzats per Elton Mayo, es van interpretar sobretot com a prova que…"
     opciones:
       - "Els treballadors rendixen més només si se'ls paga més."
       - "La il·luminació és el factor que més afecta la productivitat."
       - "El reconeixement i el sentit de pertinença influïxen en el rendiment tant o més que el salari."
       - "Les persones treballen igual de bé estiguen o no observades."
     correcta: 2
-    explicacion: "Mayo va descobrir que la productivitat pujava quan els treballadors se sentien observats, escoltats i part d'una cosa. D'ahí va nàixer la teoria de les relacions humanes: la motivació no és només econòmica."
+    explicacion: "Mayo va interpretar que la productivitat pujava perquè els treballadors se sentien observats, escoltats i part d'una cosa. D'ahí va nàixer la teoria de les relacions humanes: la motivació no és només econòmica. Els estudis originals es van discutir molt després, però la idea va quallar."
   - enunciado: "Segons el mètode de negociació de Harvard, què convé fer davant un desacord?"
     opciones:
       - "Imposar-se per la força per a no paréixer dèbil."
