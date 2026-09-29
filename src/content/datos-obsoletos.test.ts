@@ -61,6 +61,11 @@ const OBSOLETOS: Obsoleto[] = [
     ejemplo: '«¿vas solo? → sí; ¿capital < 3.000 €? → sí»',
   },
   {
+    patron: /\b95 % d(?:e los|els) casos/,
+    motivo: 'Cobertura sin fuente del árbol de forma jurídica. El árbol es una orientación',
+    ejemplo: 'Este árbol cubre el 95 % de los casos.',
+  },
+  {
     patron: /(?:no aparecen?|no apareix(?:en)?) (?:en|a) (?:la )?n[óò]mina/i,
     motivo: 'Las cuotas patronales sí figuran en la nómina (aportación de la empresa); lo que no hacen es descontarse del sueldo',
     ejemplo: 'Las cuotas patronales NO aparecen en la nómina.',

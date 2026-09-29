@@ -12,7 +12,7 @@ materiales:
   - "Papeleta de pujas, una por estudiante (tres casillas)"
   - "Pizarra o proyector para agregar las pujas"
   - "Hoja de cálculo (opcional, acelera mucho el paso 4)"
-  - "Un premio simbólico real para la subasta final: la elección del orden de exposición, un punto de participación, elegir el tema de un trabajo"
+  - "El bien B, que se adjudica de verdad: la elección del orden de exposición del próximo trabajo (ningún premio que cuente para la nota)"
 estado: publicado
 ---
 
@@ -22,7 +22,7 @@ La elasticidad se entiende mucho mejor cuando la curva de demanda no la dibuja e
 
 La moneda son **fichas**. Cada estudiante recibe **20 fichas** y no puede pujar por encima de eso en ningún bien.
 
-Para que las pujas sean sinceras y no un juego de farolear, el último bien **se subasta de verdad**: quien puje más se lo lleva.
+Para que las pujas sean sinceras y no un juego de farolear, el bien B **se subasta de verdad**, con una regla especial: quien puje más se lo lleva, pero **paga la segunda puja más alta**. Con esta regla, pujar por debajo de lo que de verdad pagaríais no os ahorra nada y puede haceros perder el bien; pujar por encima puede haceros pagar más de lo que vale para vosotros. Lo que más conviene es escribir vuestra valoración real. A y C no se subastan: ahí solo cuenta vuestra palabra.
 
 ## Los tres bienes
 
@@ -48,7 +48,7 @@ No digáis vuestras pujas en voz alta y no las cambiéis después de entregarlas
 3. **Recuento (12 min).** Para cada bien y para cada precio de la tabla, se cuenta **cuántas personas pujaron esa cantidad o más**: esa es la cantidad demandada a ese precio. Se vuelca en la pizarra.
 4. **Tres curvas (15 min).** Cada estudiante dibuja las tres curvas en unos mismos ejes, con los datos de la pizarra.
 5. **Elasticidad (10 min).** Calculad, para cada bien, la elasticidad entre **5 y 10 fichas** por el método del arco. Clasificad las tres.
-6. **Subasta real y cierre (5 min).** Se adjudica el bien B a la puja más alta y se discuten los resultados.
+6. **Subasta real y cierre (5 min).** Se adjudica el bien B a la puja más alta, que paga la segunda puja más alta, y se discuten los resultados.
 
 ## Tabla de recuento (pizarra)
 
@@ -71,7 +71,7 @@ Elasticidad entre 5 y 10 fichas (arco):
 - El bien B no tiene sustituto posible. ¿Por qué eso empuja las pujas hacia arriba y aplana menos la curva?
 - Si cada persona hubiera recibido **100 fichas** en lugar de 20, ¿cómo habrían cambiado las tres curvas? ¿Todas igual?
 - Vuestra curva la ha construido una clase de treinta personas. ¿En qué se parece y en qué no se parece a una curva de demanda de mercado de verdad?
-- ¿Alguien pujó por debajo de lo que realmente habría pagado, para intentar que le saliera barato? ¿Qué le hace eso a la calidad de los datos?
+- Con la regla del segundo precio, ¿tenía sentido pujar por B menos de lo que de verdad pagaríais? ¿Y en A y C, que no se subastaban? ¿Qué le hace eso a la calidad de los datos?
 
 ## Criterios de evaluación
 

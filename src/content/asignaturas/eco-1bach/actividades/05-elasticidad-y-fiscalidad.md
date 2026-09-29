@@ -2,7 +2,7 @@
 asignatura: eco-1bach
 unidad_relacionada: 5
 title: "Tres bienes, tres elasticidades, tres impuestos"
-descripcion: "Calcular la elasticidad-precio de la demanda de tabaco, gasolina y refrescos azucarados con datos reales y discutir el diseño de la fiscalidad sobre cada uno."
+descripcion: "Calcular la elasticidad-precio de la demanda de tabaco, gasolina y refrescos azucarados con datos hipotéticos pero realistas y discutir el diseño de la fiscalidad sobre cada uno."
 tipo: ejercicio
 duracion: "90 min · 2 sesiones de 45 min"
 agrupacion: "parejas o grupos pequeños (3)"
@@ -18,7 +18,7 @@ estado: publicado
 
 ## Planteamiento
 
-La elasticidad-precio de la demanda no es una abstracción de manual: es la variable que decide si un impuesto especial recauda mucho con poco daño, si una subida del IVA se traslada al consumidor o si una sugar tax cambia la composición de la cesta de la compra. En esta actividad los alumnos calculan, sobre datos próximos a la realidad española, la elasticidad-precio de tres bienes muy distintos —tabaco, gasolina y refrescos azucarados— y diseñan, a partir del resultado, una recomendación de política impositiva razonada.
+La elasticidad-precio de la demanda no es una abstracción de manual: es la variable que decide si un impuesto especial recauda mucho con poco daño, si una subida del IVA se traslada al consumidor o si una sugar tax cambia la composición de la cesta de la compra. En esta actividad los alumnos calculan, sobre datos hipotéticos próximos a la realidad española, la elasticidad-precio de tres bienes muy distintos —tabaco, gasolina y refrescos azucarados— y diseñan, a partir del resultado, una recomendación de política impositiva razonada.
 
 Los tres bienes han sido elegidos por contraste:
 
@@ -35,28 +35,30 @@ Los tres bienes han sido elegidos por contraste:
 
 ## Datasets para el cálculo
 
-Los datos siguientes son simplificaciones realistas inspiradas en informes públicos (Comisionado del Mercado del Tabaco, CORES, Ministerio de Sanidad, INE). No son la cifra exacta de un año concreto: están construidos para que el cálculo dé valores próximos a los publicados en la literatura.
+Los datos siguientes son **hipotéticos**, con órdenes de magnitud inspirados en informes públicos (Comisionado para el Mercado de Tabacos, CORES, Ministerio de Sanidad, INE) y construidos para que el cálculo dé valores próximos a los publicados en la literatura. Cada tabla compara dos momentos, antes y después de una subida del precio, y **supone que no cambia nada más**: ni la renta, ni los demás precios, ni los gustos (*ceteris paribus*). Solo así la variación de la cantidad se debe al precio y el cálculo mide la elasticidad.
+
+Con datos reales de dos años distintos no pasa. Entre 2018 y 2024 los precios en general subieron cerca de un 20 %: una cajetilla que pasara de 4,90 a 5,50 € se habría abaratado en términos reales, y el consumo se habría movido también por otras razones. La actividad de investigación de esta unidad trabaja con datos reales y enseña a tenerlo en cuenta.
 
 ### Bien A — Tabaco (cajetilla de 20 cigarrillos, mercado español)
 
-| Año | Precio medio (€/cajetilla) | Cantidad vendida (millones/año) |
+| Momento | Precio medio (€/cajetilla) | Cantidad vendida (millones/año) |
 |---|---|---|
-| 2018 | 4,90 | 2.150 |
-| 2024 | 5,50 | 2.020 |
+| Antes de la subida | 4,90 | 2.150 |
+| Después de la subida | 5,50 | 2.020 |
 
 ### Bien B — Gasolina (litro de 95 octanos, mercado español)
 
-| Año | Precio medio (€/litro) | Cantidad vendida (miles de millones de litros/año) |
+| Momento | Precio medio (€/litro) | Cantidad vendida (miles de millones de litros/año) |
 |---|---|---|
-| 2021 | 1,40 | 19,8 |
-| 2023 | 1,70 | 18,5 |
+| Antes de la subida | 1,40 | 19,8 |
+| Después de la subida | 1,70 | 18,5 |
 
 ### Bien C — Refresco azucarado (litro, mercado español)
 
-| Año | Precio medio (€/litro) | Cantidad vendida (millones de litros/año) |
+| Momento | Precio medio (€/litro) | Cantidad vendida (millones de litros/año) |
 |---|---|---|
-| 2018 | 1,10 | 1.820 |
-| 2024 | 1,32 | 1.520 |
+| Antes de la subida | 1,10 | 1.820 |
+| Después de la subida | 1,32 | 1.520 |
 
 ## Pasos
 
@@ -74,7 +76,7 @@ Los datos siguientes son simplificaciones realistas inspiradas en informes públ
    | ¿Hay externalidad negativa que justifique un impuesto pigouviano? | … | … | … |
    | Recomendación de política fiscal en una frase | … | … | … |
 
-5. **Discusión guiada (10 min).** Cada grupo presenta una columna. El profesor introduce el contraste con la *Soft Drinks Industry Levy* británica (caso del libro): impuesto bien diseñado que recaudó poco precisamente porque reformuló los productos.
+5. **Discusión guiada (10 min).** Cada grupo presenta una columna. El profesor introduce el contraste con la *Soft Drinks Industry Levy* británica (caso del libro): impuesto bien diseñado que recaudó poco precisamente porque la industria reformuló los productos.
 
 ## Criterios de evaluación
 
