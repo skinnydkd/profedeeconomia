@@ -23,7 +23,7 @@ Elegir la forma jurídica es una de las decisiones de arranque que más condicio
 ## Los tres casos
 
 **Caso A — Marta, repostería casera.**
-Marta cocina muy bien y quiere vender tartas por encargo desde la cocina de su casa. Empieza ella sola, con pocos clientes (familiares, vecinos, redes), una inversión mínima y sin local. Quiere arrancar ya y gastar lo menos posible en trámites. El riesgo económico es bajo.
+Marta cocina muy bien y quiere vender tartas por encargo desde la cocina de su casa. Empieza ella sola, con pocos clientes (familiares, vecinos, redes), una inversión mínima y sin local. Quiere arrancar ya y gastar lo menos posible en trámites. El riesgo económico es bajo. (Ojo: vender comida elaborada exige cumplir la normativa sanitaria —registro o comunicación previa y formación en manipulación de alimentos—, y en general una cocina particular no sirve como obrador. Es un trámite que no se puede saltar.)
 
 **Caso B — Tres amigos, app de reparto local.**
 Aitor, Nerea y Hugo quieren desarrollar una app que conecte comercios del barrio con repartidores en bici. Necesitan invertir en desarrollo informático, marketing y, quizá, contratar a alguien. Hay dinero en juego y riesgo de deudas si la cosa no arranca. Quieren proteger su patrimonio personal y que la empresa tenga una imagen seria ante inversores.

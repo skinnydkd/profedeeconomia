@@ -61,7 +61,7 @@ const OBSOLETOS: Obsoleto[] = [
     ejemplo: '«¿vas solo? → sí; ¿capital < 3.000 €? → sí»',
   },
   {
-    patron: /(?:no aparecen|no apareixen) en la n[óò]mina/i,
+    patron: /(?:no aparecen?|no apareix(?:en)?) (?:en|a) (?:la )?n[óò]mina/i,
     motivo: 'Las cuotas patronales sí figuran en la nómina (aportación de la empresa); lo que no hacen es descontarse del sueldo',
     ejemplo: 'Las cuotas patronales NO aparecen en la nómina.',
   },

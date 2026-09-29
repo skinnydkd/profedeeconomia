@@ -20,7 +20,7 @@ slug: "asignaturas/gpe-bach/recursos/calculadora-nomina.ca"
 
 La nòmina depén del **tipus de contracte**, del **grup de cotització** i de la **situació personal** (fills, altres rendes), que modulen la retenció d'IRPF. La calculadora usa un cas estàndard perquè s'entenga la mecànica; un cas real pot variar i convé comentar-lo a classe.
 
-Recorda la distinció clau: la **cotització del treballador** (6,50 %) es descompta del brut, però l'empresa paga **a més** una cotització patronal molt major (≈ 30 % del brut) que no apareix a la nòmina del treballador. Eixe cost és el que el projecte ha de poder pagar.
+Recorda la distinció clau: la **cotització del treballador** (6,50 %) es descompta del brut, però l'empresa paga **a més** una cotització patronal molt major (≈ 30 % del brut). També figura en la nòmina, com a aportació de l'empresa, però no es descompta del sou. Eixe cost és el que el projecte ha de poder pagar.
 
 ## Per a anar més enllà
 
