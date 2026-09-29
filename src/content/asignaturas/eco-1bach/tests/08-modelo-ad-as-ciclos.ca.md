@@ -47,14 +47,14 @@ preguntas:
       - "Xoc positiu d'oferta: baixa P i puja Y."
     correcta: 2
     explicacion: "L'encariment de l'energia eleva els costos de producció i desplaça la SRAS a l'esquerra. El model prediu pujada del nivell de preus i caiguda de la producció simultàniament —estanflació—. És el cas més temut pels bancs centrals perquè P i Y es mouen en sentits oposats."
-  - enunciado: "Les quatre fases canòniques del cicle econòmic, segons la datació del NBER i el CEPR, són…"
+  - enunciado: "Les quatre fases de l'esquema clàssic del cicle econòmic són…"
     opciones:
       - "Auge, bambolla, crac i depressió."
       - "Expansió, recessió, depressió i recuperació."
       - "Creixement, estancament, inflació i deflació."
       - "Bull market, bear market, correcció i rebot."
     correcta: 1
-    explicacion: "L'esquema clàssic dels cicles econòmics identifica quatre fases: expansió (creixement sostingut per damunt de Y*), recessió (caiguda del PIB durant almenys dos trimestres), depressió (recessió prolongada i profunda) i recuperació (eixida de la recessió fins a tancar la bretxa de producció)."
+    explicacion: "L'esquema clàssic dels cicles econòmics identifica quatre fases: expansió (creixement sostingut per damunt de Y*), recessió (caiguda del PIB durant almenys dos trimestres), depressió (el fons del cicle: la producció toca el seu mínim i l'atur, el seu màxim) i recuperació (eixida de la recessió fins a tancar la bretxa de producció). El NBER i el CEPR no usen este esquema: daten pics i valls."
   - enunciado: "En el model de Solow simplificat, quin motor del creixement és l'únic que sosté augments del PIB per capita a llarg termini?"
     opciones:
       - "L'acumulació de capital físic (K)."
@@ -104,7 +104,7 @@ preguntas:
     izquierda: ["Expansió", "Recessió", "Depressió", "Recuperació"]
     derecha: ["El PIB toca fons i l'atur arriba al seu màxim", "El PIB creix, cau l'atur i puja la inversió", "El PIB torna a créixer després del mínim", "El PIB cau durant almenys dos trimestres seguits"]
     correctas: [1, 3, 0, 2]
-    explicacion: "La definició tècnica de recessió són dos trimestres consecutius de caiguda del PIB. La depressió és el punt més baix del cicle, no una recessió llarga."
+    explicacion: "Dos trimestres seguits de caiguda del PIB és la regla pràctica per a parlar de recessió, no una definició oficial. La depressió és el fons del cicle; quan és molt profunda i dura anys, com en 1929, es parla d'una gran depressió."
 ---
 
 Test d'autoavaluació de la Unitat 8 del llibre d'Eco 1BACH. Nou preguntes que cobrixen els components de la demanda agregada, el pendent negatiu de la AD, la distinció entre SRAS i LRAS, els quatre tipus canònics de xocs (demanda i oferta, positius i negatius), les fases del cicle econòmic, el model de creixement de Solow, l'IDH del PNUD i el càlcul de l'índex de Gini a partir d'una corba de Lorenz.
