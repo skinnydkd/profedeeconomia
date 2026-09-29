@@ -5,14 +5,14 @@ title: "Test · Unidad 2 — Tipos de empresas y organización"
 duracion_estimada: "10-15 min"
 estado: publicado
 preguntas:
-  - enunciado: "¿Cuál de estos NO es uno de los seis factores principales de localización empresarial?"
+  - enunciado: "Según la clasificación de la unidad, ¿cuál de estos es un factor de COSTE de localización?"
     opciones:
       - "Cercanía al cliente."
-      - "Disponibilidad de mano de obra cualificada."
+      - "Coste del transporte de la mercancía."
       - "Marco fiscal y administrativo."
-      - "Climatología media de la zona."
-    correcta: 3
-    explicacion: "La climatología puede importar en sectores muy específicos pero no aparece entre los seis factores genéricos: cliente, proveedores/recursos, suelo, mano de obra, infraestructura y marco fiscal."
+      - "Calidad de vida de la zona."
+    correcta: 1
+    explicacion: "El transporte, como el suelo y la mano de obra, es un factor de coste. La cercanía al cliente es un factor de mercado, y el marco fiscal y la calidad de vida (clima, oferta cultural, vivienda) son factores externos."
   - enunciado: "Según la Recomendación 2003/361/CE, una mediana empresa cumple…"
     opciones:
       - "< 50 personas y ≤ 10 M € de facturación."
@@ -73,7 +73,7 @@ preguntas:
     opciones:
       - "Por cada euro de salario bruto, la empresa paga aproximadamente 0,30-0,35 € adicionales en cotizaciones sociales."
       - "El coste empresa es lo que el trabajador realmente cobra cada mes."
-      - "Las cuotas patronales no aparecen en la nómina."
+      - "Las cuotas patronales las paga la empresa y no se descuentan del sueldo del trabajador."
       - "Confundir salario bruto y coste empresa es un error habitual en planes financieros."
     correcta: 1
     explicacion: "El coste empresa NO es lo que cobra el trabajador (eso es el líquido). Es el bruto más las cuotas patronales: lo que la empresa desembolsa por cada persona empleada."

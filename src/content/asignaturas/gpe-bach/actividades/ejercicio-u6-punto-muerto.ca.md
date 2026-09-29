@@ -24,7 +24,7 @@ slug: "asignaturas/gpe-bach/actividades/ejercicio-u6-punto-muerto.ca"
 
 **Sabores de Casa** és un projecte de càtering de menús casolans per a empreses que un equip de batxillerat vol posar en marxa. Després d'analitzar la seua àrea de producció i la seua estructura de costos, disposa de les següents dades mensuals:
 
-- **Costos fixos mensuals:** 2 640 € (lloguer de cuina compartida 800 €, assegurança 120 €, web i màrqueting 140 €, amortització d'equips 380 €, quota d'autònom 1 200 €)
+- **Costos fixos mensuals:** 2 640 € (lloguer de cuina compartida 800 €, assegurança 120 €, web i màrqueting 140 €, amortització d'equips 380 €, quotes d'autònom dels tres socis, ja sense tarifa plana, i gestoria 1 200 €)
 - **Cost variable per menú:** 7 € (ingredients i envàs)
 - **Preu de venda per menú:** 18 €
 - **Previsió de vendes en el primer mes:** 200 menús

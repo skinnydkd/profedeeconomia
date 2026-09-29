@@ -3,7 +3,7 @@ import { readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 
 /**
- * Guard for reference figures that have been replaced.
+ * Guard for reference figures and rules that have been replaced.
  *
  * When a figure changes, the book unit gets updated but the pieces derived
  * from it (tests, activities, dynamics, refuerzo, diagrams, calculators) keep
@@ -47,6 +47,23 @@ const OBSOLETOS: Obsoleto[] = [
     patron: /\b6,35\s?%|\b0[.,]0635\b|\b6,48\s?%/,
     motivo: 'Cotización del trabajador sin el MEI o incompleta. En 2026 es un 6,50 % (4,70 + 1,55 + 0,10 + 0,15)',
     ejemplo: 'El trabajador cotiza un 6,35 % de la base.',
+  },
+  {
+    // Present tense only: «exigía», «hacía falta» and «calia» tell the history.
+    patron:
+      /\b(?:exige|requiere|pide|hace falta|exigix|exigeix|requerix|requereix|demana|cal)\b[^.\n]{0,30}capital (?:social )?m[ií]nim[oa]? de 3\.000/i,
+    motivo: 'La SL se constituye con 1 € desde la Ley 18/2022; 3.000 € solo marca el fin de la reserva legal reforzada',
+    ejemplo: 'SL: exige un capital mínimo de 3.000 €.',
+  },
+  {
+    patron: /capital < 3\.000 €\?/,
+    motivo: 'Pregunta antigua del árbol de forma jurídica. Ahora es «¿Poco riesgo de deudas?»',
+    ejemplo: '«¿vas solo? → sí; ¿capital < 3.000 €? → sí»',
+  },
+  {
+    patron: /(?:no aparecen|no apareixen) en la n[óò]mina/i,
+    motivo: 'Las cuotas patronales sí figuran en la nómina (aportación de la empresa); lo que no hacen es descontarse del sueldo',
+    ejemplo: 'Las cuotas patronales NO aparecen en la nómina.',
   },
 ];
 
