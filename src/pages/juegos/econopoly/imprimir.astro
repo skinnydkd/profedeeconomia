@@ -11,6 +11,7 @@ import { getLocale } from '@/i18n/locale';
 import { SECTOR_COLOR } from '@/lib/games/econopoly/board';
 import { NEWS_CARDS } from '@/lib/games/econopoly/events';
 import { localizeCells, localizeSectorLabel, localizeNewsCard } from '@/i18n/games/econopoly-ca';
+import { t } from '@/i18n/ui';
 
 // 28 cells laid out clockwise around the perimeter of an 8×8 grid.
 function gridPos(i: number): { row: number; col: number } {
@@ -79,7 +80,7 @@ const copy = {
 
 <BaseLayout title={copy.metaTitle} description={copy.metaDesc} contentLang={locale} noindex>
   <div class="container">
-    <nav class="breadcrumb no-print">
+    <nav class="breadcrumb no-print" aria-label={t('nav.breadcrumb', locale)}>
       <a href="/">{copy.bcInicio}</a> <span class="sep">›</span>
       <a href="/juegos/">{copy.bcJuegos}</a> <span class="sep">›</span>
       <a href="/juegos/econopoly/">Econopoly</a> <span class="sep">›</span>

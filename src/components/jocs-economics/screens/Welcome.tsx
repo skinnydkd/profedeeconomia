@@ -38,9 +38,9 @@ export function Welcome({ initialIdentity, onStart }: Props) {
 
   return (
     <>
-      <h1 class="jocs-title" style={{ fontSize: 36, fontStyle: 'italic', margin: '20px 0 4px' }}>
+      <h2 class="jocs-title" style={{ fontSize: 36, fontStyle: 'italic', margin: '20px 0 4px' }}>
         Jocs Econòmics
-      </h1>
+      </h2>
       <p class="jocs-mute" style={{ marginBottom: 24 }}>
         Retos de economía, finanzas y empresa.
         <br />

@@ -211,7 +211,7 @@ export default function CompraInteligenteCalc({ locale = 'es' }: Props) {
       </div>
       <button type="button" class="calc__btn" onClick={anadir}>{t.anadir}</button>
       {valoradas.length === 0 ? (
-        <div class="calc__warning">{t.sinOpciones}</div>
+        <div class="calc__warning" role="alert">{t.sinOpciones}</div>
       ) : (
         <p class="ci__note">{t.lecturaUnitario}</p>
       )}
@@ -244,7 +244,7 @@ export default function CompraInteligenteCalc({ locale = 'es' }: Props) {
         </label>
       </div>
 
-      <div class="calc__results">
+      <div class="calc__results" aria-live="polite">
         {!credito.valido ? (
           <div class="calc__warning">{t.sinAplazado}</div>
         ) : (

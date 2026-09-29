@@ -201,7 +201,7 @@ export default function Semana168Calc({ locale = 'es' }: Props) {
         </table>
       </div>
 
-      <div class="calc__results">
+      <div class="calc__results" aria-live="polite">
         {!r.valido ? (
           <div class="calc__warning">{t.sinDatos}</div>
         ) : (

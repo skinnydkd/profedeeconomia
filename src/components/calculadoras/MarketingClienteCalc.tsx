@@ -187,7 +187,7 @@ export default function MarketingClienteCalc({ locale = 'es' }: Props) {
       </div>
       <p class="mc__note">{t.retencionAyuda}</p>
 
-      <div class="calc__results">
+      <div class="calc__results" aria-live="polite">
         {!r.valido ? (
           <div class="calc__warning">{t.sinDatos}</div>
         ) : (

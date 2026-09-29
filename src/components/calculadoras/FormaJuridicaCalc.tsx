@@ -177,7 +177,7 @@ export default function FormaJuridicaCalc({ locale = 'es' }: Props) {
       </div>
       <div class="calc__tip calc__tip--warn">{t.tipoAyuda}</div>
 
-      <div class="calc__results">
+      <div class="calc__results" aria-live="polite">
         {!r.valido ? (
           <div class="calc__warning">{t.sinDatos}</div>
         ) : (

@@ -165,7 +165,7 @@ export default function ProgresividadCalc({ locale = 'es' }: Props) {
         </label>
       </div>
 
-      <div class="calc__results">
+      <div class="calc__results" aria-live="polite">
         {!r.valido ? (
           <div class="calc__warning">{t.sinDatos}</div>
         ) : (

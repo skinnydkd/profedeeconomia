@@ -189,7 +189,7 @@ export default function TamanoMercadoCalc({ locale = 'es' }: Props) {
       </div>
       <p class="tm__note">{t.cuotaAyuda}</p>
 
-      <div class="calc__results">
+      <div class="calc__results" aria-live="polite">
         {!r.valido ? (
           <div class="calc__warning">{t.sinDatos}</div>
         ) : (

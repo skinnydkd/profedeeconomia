@@ -156,7 +156,7 @@ export default function AfirmacionSostenibleCalc({ locale = 'es' }: Props) {
         ))}
       </ul>
 
-      <div class="calc__results">
+      <div class="calc__results" aria-live="polite">
         <div class="as__label">{t.resultadoTitulo}</div>
         <div class="calc__metric calc__metric--primary">
           <span class="calc__metric-label">{t.puntuacion}</span>

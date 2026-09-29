@@ -355,7 +355,7 @@ export default function ADASSimulator({ locale = 'es' }: Props) {
         )}
       </div>
 
-      <div class="calc__results">
+      <div class="calc__results" aria-live="polite">
         <ADASChart state={state} result={result} locale={locale} />
 
         <div class="calc__metric calc__metric--primary">

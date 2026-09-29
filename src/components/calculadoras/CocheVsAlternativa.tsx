@@ -464,7 +464,7 @@ export default function CocheVsAlternativa({ locale = 'es' }: Props) {
         </div>
       </div>
 
-      <div class="calc__results">
+      <div class="calc__results" aria-live="polite">
         {/* Highlighted verdict. */}
         <div
           class={`calc__metric calc__metric--primary ${

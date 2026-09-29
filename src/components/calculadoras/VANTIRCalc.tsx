@@ -159,7 +159,7 @@ export default function VANTIRCalc({ locale = 'es' }: Props) {
         </div>
       </div>
 
-      <div class="calc__results">
+      <div class="calc__results" aria-live="polite">
         {!result.valido ? (
           <div class="calc__warning">{result.mensaje}</div>
         ) : (

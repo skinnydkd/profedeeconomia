@@ -184,7 +184,7 @@ export default function ObjetivosSMARTCalc({ locale = 'es' }: Props) {
       </div>
       <p class="sm__note">{t.ritmoAyuda}</p>
 
-      <div class="calc__results">
+      <div class="calc__results" aria-live="polite">
         <div class="sm__label">{t.resultadoTitulo}</div>
         <ul class="sm__letras">
           {ORDEN.map((l) => {

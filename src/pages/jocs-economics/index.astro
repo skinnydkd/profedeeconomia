@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import JocsApp from '../../components/jocs-economics/JocsApp';
 import { getLocale } from '@/i18n/locale';
+import { t } from '@/i18n/ui';
 
 const locale = getLocale(Astro.currentLocale);
 
@@ -50,9 +51,9 @@ const copy = {
 ---
 
 <BaseLayout title={copy.pageTitle} description={copy.description} contentLang={locale}>
-  <main class="olimpiadas">
+  <div class="olimpiadas">
     <div class="container">
-      <nav class="breadcrumb"><a href="/">{copy.bcInicio}</a> <span class="sep">›</span> <span>{copy.bcCurrent}</span></nav>
+      <nav class="breadcrumb" aria-label={t('nav.breadcrumb', locale)}><a href="/">{copy.bcInicio}</a> <span class="sep">›</span> <span>{copy.bcCurrent}</span></nav>
       <h1>{copy.heroLead} <span class="serif-italic-wonk accent">{copy.heroAccent}</span>.</h1>
       <p class="lede">
         {copy.ledePre} <strong>{copy.ledeStrong1}</strong> {copy.ledeMid}
@@ -66,7 +67,7 @@ const copy = {
       <a class="ver-ranking" href="/jocs-economics/leaderboard/">{copy.verRanking} →</a>
     </div>
     <div class="game-mount"><JocsApp client:only="preact" /></div>
-  </main>
+  </div>
 </BaseLayout>
 
 <style is:global> body { margin: 0; } </style>

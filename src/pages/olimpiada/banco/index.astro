@@ -11,6 +11,7 @@ import type { Pregunta } from '@components/QuizPlayer.tsx';
 import type { PreguntaBanco } from '@/lib/olimpiada/banco';
 import { getLocale } from '@/i18n/locale';
 import { localizeFamilias, BLOQUES_OLIMPIADA_CA } from '@/i18n/familias-ca';
+import { t } from '@/i18n/ui';
 
 // Build the porBloque record — each block maps its questions to QuizPlayer's Pregunta shape.
 const porBloque: Record<string, Pregunta[]> = {};
@@ -56,7 +57,7 @@ const copy = {
   contentLang="es"
 >
   <div class="container">
-    <nav class="breadcrumb">
+    <nav class="breadcrumb" aria-label={t('nav.breadcrumb', locale)}>
       <a href="/">{copy.bcInicio}</a> <span class="sep">›</span>
       <a href="/olimpiada/">{copy.bcOlimpiada}</a> <span class="sep">›</span>
       <span>{copy.bcCurrent}</span>

@@ -245,7 +245,7 @@ export default function RatiosCalc({ locale = 'es' }: Props) {
         <NumberField label={c.fieldBeneficioNeto} value={beneficioNeto} setValue={setBeneficioNeto} unit="mil €" />
       </div>
 
-      <div class="calc__results">
+      <div class="calc__results" aria-live="polite">
         <div class={`calc__warning ${r.cuadra ? 'is-ok' : ''}`}>
           {r.cuadra
             ? c.balanceCuadra(r.activoTotal)

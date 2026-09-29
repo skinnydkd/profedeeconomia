@@ -11,6 +11,10 @@ import { getCollection } from 'astro:content';
 import { existsSync } from 'node:fs';
 import { resolve } from 'node:path';
 import type { GetStaticPaths } from 'astro';
+import { getLocale } from '@/i18n/locale';
+import { t } from '@/i18n/ui';
+
+const locale = getLocale(Astro.currentLocale);
 
 export const getStaticPaths = (async () => {
   const all = await getCollection('ebau');
@@ -54,7 +58,7 @@ const totalDisponibles = grupos.reduce((n, g) => n + g.disponibles, 0);
   description={`Exámenes oficiales de EBAU/PAU de Economía de la Empresa de años anteriores, por comunidad autónoma, con su resolución en PDF.`}
 >
   <div class="container">
-    <nav class="breadcrumb">
+    <nav class="breadcrumb" aria-label={t('nav.breadcrumb', locale)}>
       <a href="/">Inicio</a> <span class="sep">›</span>
       <a href={`/${a.slug}/`}>{a.shortLabel}</a> <span class="sep">›</span>
       <a href={`/${a.slug}/ebau/`}>Preparación EBAU</a> <span class="sep">›</span>

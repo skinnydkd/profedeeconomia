@@ -228,7 +228,7 @@ export default function VentajaComparativaCalc({ locale = 'es' }: Props) {
         </label>
       </div>
 
-      <div class="calc__results">
+      <div class="calc__results" aria-live="polite">
         {!an.valido ? (
           <div class="calc__warning">{t.sinDatos}</div>
         ) : (

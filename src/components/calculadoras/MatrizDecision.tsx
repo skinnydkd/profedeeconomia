@@ -245,8 +245,8 @@ export default function MatrizDecision({ locale = 'es' }: Props) {
         <button type="button" class="md__add" onClick={reset}>{c.reset}</button>
       </div>
 
-      {r.pesoTotal <= 0 && <p class="calc__warning">{c.sinPeso}</p>}
-      {opciones.length < 2 && <p class="calc__warning">{c.sinOpciones}</p>}
+      {r.pesoTotal <= 0 && <p class="calc__warning" role="alert">{c.sinPeso}</p>}
+      {opciones.length < 2 && <p class="calc__warning" role="alert">{c.sinOpciones}</p>}
 
       {ganadora && ganadora.total !== null && (
         <>
@@ -271,7 +271,7 @@ export default function MatrizDecision({ locale = 'es' }: Props) {
             )}
           </div>
 
-          {r.esEmpateTecnico && <p class="calc__warning">{c.empate}</p>}
+          {r.esEmpateTecnico && <p class="calc__warning" role="alert">{c.empate}</p>}
         </>
       )}
 

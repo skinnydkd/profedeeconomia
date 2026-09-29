@@ -9,6 +9,10 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 import PrintButton from '@components/dinamicas/PrintButton.astro';
 import { WORD_BANK, CATEGORY_LABEL } from '@/lib/games-multi/insider/words';
 import type { WordCategory } from '@/lib/games-multi/insider/words';
+import { getLocale } from '@/i18n/locale';
+import { t } from '@/i18n/ui';
+
+const locale = getLocale(Astro.currentLocale);
 
 // Stable category order for the word-card sheet.
 const CATEGORY_ORDER: WordCategory[] = ['macro', 'micro', 'finances', 'empresa', 'fiscal'];
@@ -24,7 +28,7 @@ const citizens = Array.from({ length: CITIZEN_COUNT }, (_, i) => i);
   noindex
 >
   <div class="container">
-    <nav class="breadcrumb no-print">
+    <nav class="breadcrumb no-print" aria-label={t('nav.breadcrumb', locale)}>
       <a href="/">Inicio</a> <span class="sep">›</span>
       <a href="/juegos/">Juegos</a> <span class="sep">›</span>
       <a href="/juegos/insider/">Insider</a> <span class="sep">›</span>

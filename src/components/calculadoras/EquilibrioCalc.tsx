@@ -192,7 +192,7 @@ export default function EquilibrioCalc({ locale = 'es' }: Props) {
       </div>
 
       {/* ── Equilibrium result ── */}
-      <div class="calc__results">
+      <div class="calc__results" aria-live="polite">
         {!eq.valido ? (
           <div class="calc__warning">
             {t.sinEquilibrio}
