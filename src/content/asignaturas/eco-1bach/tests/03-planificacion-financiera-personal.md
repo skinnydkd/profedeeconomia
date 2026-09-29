@@ -21,14 +21,14 @@ preguntas:
       - "10.000 €, aproximadamente."
     correcta: 1
     explicacion: "Aplicando Cf = Ci · (1 + i)^n: Cf = 1.000 · (1,06)^25 = 1.000 · 4,29 ≈ 4.290 €. El crecimiento exponencial del interés compuesto explica que el capital se cuadriplique con un tipo moderado y un plazo largo."
-  - enunciado: "Dos hermanas con el mismo capital y el mismo tipo de interés. Ana invierte 2.000 €/año durante 10 años (entre los 20 y 30) y luego deja el capital quieto hasta los 65. Berta invierte 2.000 €/año entre los 30 y los 65. ¿Quién acaba con más dinero?"
+  - enunciado: "Dos hermanas invierten con la misma rentabilidad, un 7 % anual. Ana invierte 2.000 €/año durante 10 años (entre los 20 y 30) y luego deja el capital quieto hasta los 65. Berta invierte 2.000 €/año entre los 30 y los 65. ¿Quién acaba con más dinero?"
     opciones:
       - "Berta, porque aporta tres veces y media más capital."
       - "Empatan exactamente, porque el tipo de interés es el mismo."
       - "Ana, porque su capital tiene mucho más tiempo para componerse."
       - "Depende exclusivamente del tipo de interés aplicado."
     correcta: 2
-    explicacion: "El factor decisivo del interés compuesto es el tiempo, no el capital aportado. Ana acaba con más capital pese a aportar tres veces y media menos, porque sus 20.000 € tienen 45 años para componerse, mientras que las últimas aportaciones de Berta apenas tienen tiempo de crecer."
+    explicacion: "Al 7 %, Ana llega a unos 295.000 € y Berta, a unos 276.500 €. Ana acaba con más pese a aportar tres veces y media menos, porque sus 20.000 € tienen hasta 45 años para componerse, mientras que las últimas aportaciones de Berta apenas tienen tiempo de crecer. Ojo: con rentabilidades más bajas gana Berta (al 5 %, unos 180.600 € frente a 138.800 €). El punto de corte está en torno al 6,6 %."
   - enunciado: "¿Cuál de estas afirmaciones describe correctamente la relación entre rentabilidad, riesgo y liquidez de los productos financieros?"
     opciones:
       - "Los productos más rentables suelen ser los más líquidos y seguros."
