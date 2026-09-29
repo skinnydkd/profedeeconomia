@@ -61,7 +61,7 @@ export const YEAR_NEWS_CA: Record<number, string> = {
   2011: 'La crisi de deute s\'estén a Itàlia i Espanya; l\'IBEX marca mínims.',
   2012: 'Espanya rep un rescat bancari de 100.000 M€; el BCE promet «el que faça falta».',
   2013: 'Bitcoin supera els 1.000 $ per primera vegada; les borses recuperen nivells precrisi.',
-  2014: 'Deflació a Europa, caiguda del petroli i primeres baixades de tipus del BCE.',
+  2014: 'Risc de deflació a Europa i caiguda del petroli; el BCE posa per primera vegada un tipus d\'interés en negatiu.',
   2015: 'La Xina desaccelera i les seues borses s\'enfonsen; volatilitat global.',
   2016: 'El Brexit i l\'elecció de Trump sorprenen els mercats, que acaben a l\'alça.',
   2017: 'Febre del Bitcoin: supera els 20.000 $; les borses globals en màxims històrics.',

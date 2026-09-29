@@ -19,12 +19,14 @@ export const COPY = {
     legendYou: 'Tú',
     lessonsTitle: 'Lo que has aprendido',
     restart: 'Jugar otra vez',
+    dataNote:
+      'Sobre los datos: rentabilidades anuales históricas y aproximadas, de 2000 a 2024. El IBEX 35 no incluye dividendos y el S&P 500 sí, y va en dólares, así que la comparación favorece al S&P. Los bonos rinden el interés de cada año, sin las pérdidas de precio que tuvieron en 2022.',
     lessons: [
       'Diversificar reduce el riesgo: no lo pongas todo en un solo activo.',
       'Tiempo en el mercado supera a acertar el momento: invertir pronto y mantener.',
-      'El interés compuesto es la fuerza más poderosa de las finanzas.',
-      'La volatilidad no es tu enemiga si tienes paciencia.',
-      'El 80% de los fondos activos no baten al índice a largo plazo.',
+      'El interés compuesto hace que lo ganado también gane: cuanto antes empiezas, más trabaja el tiempo.',
+      'Ojo con el retrovisor: la IA invierte en el índice que mejor fue, y eso solo se sabe después. Rentabilidades pasadas no garantizan las futuras.',
+      'La mayoría de los fondos de gestión activa no bate a su índice a largo plazo (informes SPIVA).',
       'DCA: invertir lo mismo cada periodo, pase lo que pase.',
     ],
   },
@@ -40,12 +42,14 @@ export const COPY = {
     legendYou: 'Tu',
     lessonsTitle: 'El que has aprés',
     restart: 'Torna a jugar',
+    dataNote:
+      'Sobre les dades: rendibilitats anuals històriques i aproximades, de 2000 a 2024. L\'IBEX 35 no inclou dividends i l\'S&P 500 sí, i va en dòlars, així que la comparació afavorix l\'S&P. Els bons rendixen l\'interés de cada any, sense les pèrdues de preu que van tindre el 2022.',
     lessons: [
       'Diversificar reduïx el risc: no ho poses tot en un sol actiu.',
       'El temps en el mercat supera encertar el moment: invertir prompte i mantindre.',
-      'L\'interés compost és la força més poderosa de les finances.',
-      'La volatilitat no és la teua enemiga si tens paciència.',
-      'El 80 % dels fons actius no superen l\'índex a llarg termini.',
+      'L\'interés compost fa que el que has guanyat també guanye: com més prompte comences, més treballa el temps.',
+      'Compte amb el retrovisor: la IA invertix en l\'índex que millor va anar, i això només se sap després. Les rendibilitats passades no garantixen les futures.',
+      'La majoria dels fons de gestió activa no superen el seu índex a llarg termini (informes SPIVA).',
       'DCA: invertir el mateix cada període, passe el que passe.',
     ],
   },
@@ -104,6 +108,7 @@ export function FinalScreen({ state, onRestart }: Props) {
             <li key={l}>{l}</li>
           ))}
         </ul>
+        <p class="kf-note">{c.dataNote}</p>
       </div>
 
       <div class="kf-cta">
