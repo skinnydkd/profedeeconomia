@@ -39,14 +39,14 @@ preguntas:
       - "Benefici net / Vendes × 100."
     correcta: 1
     explicacion: "ROA = BAII / Actiu total. Mesura l'eficiència operativa de l'actiu, independentment de com s'haja finançat. ROE (rendibilitat financera) = benefici net / patrimoni net."
-  - enunciado: "Una empresa té ROA = 12 % i cost mitjà del deute = 5 %. Quin efecte té el palanquejament sobre el ROE?"
+  - enunciado: "Una empresa té ROA = 12 % i cost mitjà del deute = 5 %. Quin efecte té el palanquejament sobre la rendibilitat dels socis?"
     opciones:
-      - "Negatiu: el ROE caurà per davall del ROA."
-      - "Positiu: el ROE serà superior al ROA perquè l'empresa rendibilitza el deute barat."
-      - "Nul: ROE = ROA sempre."
+      - "Negatiu: el deute costa més del que rendix l'actiu."
+      - "Positiu: cada euro prestat rendix un 12 % i costa un 5 %, així que la RF abans d'impostos supera el ROA."
+      - "Nul: la RF és sempre igual al ROA."
       - "Indefinit: depén del sector."
     correcta: 1
-    explicacion: "Quan ROA > cost del deute, cada euro endeutat aporta valor a l'accionista. ROE > ROA. Si la situació s'invertix (ROA < cost deute), el palanquejament juga en contra i ROE < ROA."
+    explicacion: "Quan ROA > cost del deute, cada euro endeutat aporta valor a l'accionista i la RF abans d'impostos (BAI / PN) supera el ROA. Compte: el ROE, després d'impostos, pot quedar per davall del ROA encara que el deute siga favorable. Si la situació s'invertix (ROA < cost del deute), el palanquejament juga en contra."
   - enunciado: "Calcula el ROE d'una empresa amb benefici net = 33.750 € i patrimoni net = 200.000 €."
     opciones:
       - "12,0 %."
@@ -80,9 +80,9 @@ preguntas:
     correcta: 1
     explicacion: "El cash flow estructural negatiu és un actiu: el diners del client entra immediatament i finança gratis les factures pendents. Les regles estàndard d'equilibri depenen del sector."
   - tipo: verdadero-falso
-    enunciado: "Quan la rendibilitat econòmica (ROA) és superior al cost mitjà del deute, l'endeutament eleva la rendibilitat financera (ROE) per damunt del ROA."
+    enunciado: "Quan la rendibilitat econòmica (ROA) és superior al cost mitjà del deute, l'endeutament eleva la rendibilitat financera abans d'impostos per damunt del ROA."
     correcta: true
-    explicacion: "Verdader. Si ROA > cost del deute, cada euro endeutat aporta valor a l'accionista i el palanquejament juga a favor: ROE > ROA. Si s'invertix la relació, el palanquejament perjudica."
+    explicacion: "Verdader. Si ROA > cost del deute, cada euro endeutat aporta valor a l'accionista i la RF abans d'impostos (BAI / PN) supera el ROA. Després d'impostos el ROE pot quedar per davall, perquè l'impost el rebaixa encara que el deute siga favorable. Si s'invertix la relació, el palanquejament perjudica."
   - tipo: numerico
     enunciado: "Una empresa té un actiu corrent de 180.000 € i un passiu corrent de 120.000 €. Quin és el seu ratio de liquiditat general (2 decimals)?"
     respuesta: 1.5

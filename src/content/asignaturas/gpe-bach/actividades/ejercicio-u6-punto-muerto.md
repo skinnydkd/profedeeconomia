@@ -22,7 +22,7 @@ estado: publicado
 
 **Sabores de Casa** es un proyecto de catering de menús caseros para empresas que un equipo de bachillerato quiere poner en marcha. Tras analizar su área de producción y su estructura de costes, dispone de los siguientes datos mensuales:
 
-- **Costes fijos mensuales:** 2 640 € (alquiler de cocina compartida 800 €, seguro 120 €, web y marketing 140 €, amortización de equipos 380 €, cuota de autónomo 1 200 €)
+- **Costes fijos mensuales:** 2 640 € (alquiler de cocina compartida 800 €, seguro 120 €, web y marketing 140 €, amortización de equipos 380 €, cuotas de autónomo de los tres socios, ya sin tarifa plana, y gestoría 1 200 €)
 - **Coste variable por menú:** 7 € (ingredientes y envase)
 - **Precio de venta por menú:** 18 €
 - **Previsión de ventas en el primer mes:** 200 menús

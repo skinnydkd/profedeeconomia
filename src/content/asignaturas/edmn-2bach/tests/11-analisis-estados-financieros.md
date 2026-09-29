@@ -37,14 +37,14 @@ preguntas:
       - "Beneficio neto / Ventas × 100."
     correcta: 1
     explicacion: "ROA = BAII / Activo total. Mide la eficiencia operativa del activo, independientemente de cómo se haya financiado. ROE (rentabilidad financiera) = beneficio neto / patrimonio neto."
-  - enunciado: "Una empresa tiene ROA = 12 % y coste medio de la deuda = 5 %. ¿Qué efecto tiene el apalancamiento sobre el ROE?"
+  - enunciado: "Una empresa tiene ROA = 12 % y coste medio de la deuda = 5 %. ¿Qué efecto tiene el apalancamiento sobre la rentabilidad de los socios?"
     opciones:
-      - "Negativo: el ROE caerá por debajo del ROA."
-      - "Positivo: el ROE será superior al ROA porque la empresa rentabiliza la deuda barata."
-      - "Nulo: ROE = ROA siempre."
+      - "Negativo: la deuda cuesta más de lo que rinde el activo."
+      - "Positivo: cada euro prestado rinde un 12 % y cuesta un 5 %, así que la RF antes de impuestos supera al ROA."
+      - "Nulo: la RF es siempre igual al ROA."
       - "Indefinido: depende del sector."
     correcta: 1
-    explicacion: "Cuando ROA > coste de deuda, cada euro endeudado aporta valor al accionista. ROE > ROA. Si la situación se invierte (ROA < coste deuda), el apalancamiento juega en contra y ROE < ROA."
+    explicacion: "Cuando ROA > coste de la deuda, cada euro endeudado aporta valor al accionista y la RF antes de impuestos (BAI / PN) supera al ROA. Ojo: el ROE, después de impuestos, puede quedar por debajo del ROA aunque la deuda sea favorable. Si la situación se invierte (ROA < coste de la deuda), el apalancamiento juega en contra."
   - enunciado: "Calcula el ROE de una empresa con beneficio neto = 33.750 € y patrimonio neto = 200.000 €."
     opciones:
       - "12,0 %."
@@ -78,9 +78,9 @@ preguntas:
     correcta: 1
     explicacion: "El cash flow estructural negativo es activo: el dinero del cliente entra inmediatamente y financia gratis las facturas pendientes. Las reglas estándar de equilibrio dependen del sector."
   - tipo: verdadero-falso
-    enunciado: "Cuando la rentabilidad económica (ROA) es superior al coste medio de la deuda, el endeudamiento eleva la rentabilidad financiera (ROE) por encima del ROA."
+    enunciado: "Cuando la rentabilidad económica (ROA) es superior al coste medio de la deuda, el endeudamiento eleva la rentabilidad financiera antes de impuestos por encima del ROA."
     correcta: true
-    explicacion: "Verdadero. Si ROA > coste de la deuda, cada euro endeudado aporta valor al accionista y el apalancamiento juega a favor: ROE > ROA. Si se invierte la relación, el apalancamiento perjudica."
+    explicacion: "Verdadero. Si ROA > coste de la deuda, cada euro endeudado aporta valor al accionista y la RF antes de impuestos (BAI / PN) supera al ROA. Después de impuestos el ROE puede quedar por debajo, porque el impuesto lo rebaja aunque la deuda sea favorable. Si se invierte la relación, el apalancamiento perjudica."
   - tipo: numerico
     enunciado: "Una empresa tiene un activo corriente de 180.000 € y un pasivo corriente de 120.000 €. ¿Cuál es su ratio de liquidez general (2 decimales)?"
     respuesta: 1.5

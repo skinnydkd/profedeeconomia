@@ -7,14 +7,14 @@ title: "Test · Unitat 2 — Tipus d'empreses i organització"
 duracion_estimada: "10-15 min"
 estado: publicado
 preguntas:
-  - enunciado: "Quin d'estos NO és un dels sis factors principals de localització empresarial?"
+  - enunciado: "Segons la classificació de la unitat, quin d'estos és un factor de COST de localització?"
     opciones:
       - "Proximitat al client."
-      - "Disponibilitat de mà d'obra qualificada."
+      - "Cost del transport de la mercaderia."
       - "Marc fiscal i administratiu."
-      - "Climatologia mitjana de la zona."
-    correcta: 3
-    explicacion: "La climatologia pot importar en sectors molt específics però no apareix entre els sis factors genèrics: client, proveïdors/recursos, sòl, mà d'obra, infraestructura i marc fiscal."
+      - "Qualitat de vida de la zona."
+    correcta: 1
+    explicacion: "El transport, com el sòl i la mà d'obra, és un factor de cost. La proximitat al client és un factor de mercat, i el marc fiscal i la qualitat de vida (clima, oferta cultural, habitatge) són factors externs."
   - enunciado: "Segons la Recomanació 2003/361/CE, una mitjana empresa complix…"
     opciones:
       - "< 50 persones i ≤ 10 M € de facturació."
@@ -75,7 +75,7 @@ preguntas:
     opciones:
       - "Per cada euro de salari brut, l'empresa paga aproximadament 0,30-0,35 € addicionals en cotitzacions socials."
       - "El cost empresa és el que el treballador realment cobra cada mes."
-      - "Les quotes patronals no apareixen en la nòmina."
+      - "Les quotes patronals les paga l'empresa i no es descompten del sou del treballador."
       - "Confondre salari brut i cost empresa és un error habitual en plans financers."
     correcta: 1
     explicacion: "El cost empresa NO és el que cobra el treballador (això és el líquid). És el brut més les quotes patronals: el que l'empresa desembossa per cada persona ocupada."

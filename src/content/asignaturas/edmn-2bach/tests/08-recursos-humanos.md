@@ -49,7 +49,7 @@ preguntas:
     opciones:
       - "0,10 € adicionales en cotizaciones patronales."
       - "0,20 € adicionales."
-      - "0,30-0,35 € adicionales en cotizaciones patronales (que NO aparecen en la nómina)."
+      - "0,30-0,35 € adicionales en cotizaciones patronales, que no se descuentan del sueldo."
       - "0,50 € adicionales."
     correcta: 2
     explicacion: "Las cuotas patronales suponen un 30-35 % adicional sobre el bruto. Por eso 1.500 € brutos en nómina significan ~ 1.950-2.025 € de coste empresa real."
