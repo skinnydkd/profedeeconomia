@@ -48,11 +48,11 @@ preguntas:
   - enunciado: "¿Qué financian, entre otras cosas, las cotizaciones a la Seguridad Social que se deducen de la nómina?"
     opciones:
       - "La publicidad de las empresas privadas."
-      - "Las pensiones, la sanidad y las prestaciones por desempleo."
+      - "Las pensiones, las prestaciones por desempleo y las bajas por enfermedad."
       - "El precio de venta de los productos."
       - "El alquiler del local de la empresa."
     correcta: 1
-    explicacion: "La parte que la persona aporta a la Seguridad Social financia el sistema común: pensiones, sanidad y desempleo, entre otras. Por eso cotizar y pagar impuestos se entiende en GPE como una contribución al sostenimiento de lo común."
+    explicacion: "La parte que la persona aporta a la Seguridad Social financia prestaciones como las pensiones, el paro o las bajas por enfermedad. La sanidad pública, en cambio, se paga con impuestos. Las dos cosas son contribuciones: por eso cotizar y pagar impuestos se entiende en GPE como una contribución al sostenimiento de lo común."
   - enunciado: "¿Qué relación hay entre el currículo y el videocurrículo?"
     opciones:
       - "El videocurrículo sustituye por completo al currículo en papel."
