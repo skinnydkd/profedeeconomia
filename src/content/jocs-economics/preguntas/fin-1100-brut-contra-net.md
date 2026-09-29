@@ -10,7 +10,7 @@ opciones:
 correcta: 2
 explicacion: "El net és el líquid a percebre: el brut menys la cotització del treballador a la Seguretat Social (≈ 6,5 % en 2026, MEI inclòs) i la retenció d'IRPF."
 estado: publicado
-font: "eco-4eso U8 — Nòmina, IRPF i contractes"
+font: "eco-4eso U5 — Mercat de treball, contractes i nòmina"
 ---
 
 Quan una oferta de treball seriosa parla de sou, la xifra que dona és el salari brut. I el salari net, què és exactament?

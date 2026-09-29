@@ -9,7 +9,7 @@ export const ITINERARIOS_CA: Partial<Record<string, ItinerarioCA>> = {
   'sprint-eso': {
     label: 'Sprint ESO',
     descripcion:
-      'Cinc fases lean, sense planificació pesada. Un mes aproximadament. Pensat per a 3r i 4t d\'ESO.',
+      "Sis fases lean, sense planificació pesada: del problema al pitch, passant pels números. Unes cinc o sis setmanes. El màrqueting (fase 5) s'afig si hi ha temps. Pensat per a 3r i 4t d'ESO.",
   },
   'bach-fp': {
     label: 'Projecte Batx/FP',

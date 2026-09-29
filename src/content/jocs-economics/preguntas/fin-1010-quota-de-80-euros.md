@@ -10,7 +10,7 @@ opciones:
 correcta: 1
 explicacion: "La Tarifa Plana reduïx la quota d'autònoms a uns 80 € mensuals durant 12 mesos, ampliables a 24 si els ingressos no superen l'SMI, enfront dels més de 300 € de la quota completa."
 estado: publicado
-font: "eco-4eso U7 — Diners, pressupost i finançament"
+font: "eco-4eso U12 — Projecte emprenedor: model, prototip i pitch"
 ---
 
 Carla, de 23 anys, es dona d'alta com a autònoma per a arrancar el seu projecte i s'acull a la Tarifa Plana. Quina quota mensual pagarà a la Seguretat Social durant el primer any?

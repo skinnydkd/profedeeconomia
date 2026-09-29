@@ -10,7 +10,7 @@ opciones:
 correcta: 3
 explicacion: "La base de cotització ha de ser molt semblant al brut mensual amb el prorrateig d'extres; si és clarament inferior, cotitzes de menys i perds drets de prestacions futures."
 estado: publicado
-font: "eco-4eso U8 — Nòmina, IRPF i contractes"
+font: "eco-4eso U5 — Mercat de treball, contractes i nòmina"
 ---
 
 Carme cobra 1.600 € bruts al mes, però en la seua nòmina la base de cotització apareix per 1.100 €. Com hauria de reaccionar?
