@@ -240,7 +240,7 @@ export const DINAMICAS_CA: FichaOverlay = {
   'distribucion-produccion/04-reparto-fiscal': {
     title: 'El repartiment del pastís fiscal',
     descripcion:
-      "La classe és un municipi amb un pressupost limitat i moltes necessitats. En assemblea, els grups defenen les seues prioritats i han de decidir junts com repartir la despesa i d'on traure els impostos.",
+      "La classe governa un xicotet país imaginari amb un pressupost limitat i moltes necessitats. En assemblea, els grups defenen les seues prioritats i han de decidir junts com repartir la despesa i d'on traure els impostos.",
     duracion: '1-2 sessions',
     agrupacion: "grups d'interés + assemblea",
   },
