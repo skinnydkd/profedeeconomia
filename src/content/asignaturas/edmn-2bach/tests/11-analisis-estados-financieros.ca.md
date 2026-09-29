@@ -74,7 +74,7 @@ preguntas:
   - enunciado: "Per què Mercadona pot operar amb fons de maniobra NEGATIU sense problema de liquiditat:"
     opciones:
       - "Perquè té molt deute a llarg termini."
-      - "Perquè cobra al comptat els seus clients i paga els seus proveïdors a 30, 60 o 90 dies."
+      - "Perquè cobra al comptat els seus clients i paga els seus proveïdors a 30 o 60 dies."
       - "Perquè el seu patrimoni net és elevadíssim."
       - "Perquè opera sota règim fiscal especial."
     correcta: 1
