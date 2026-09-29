@@ -10,7 +10,7 @@ estado: publicado
 
 ## Cuándo usarla
 
-- Al estudiar la economía personal y la nómina en la Unidad 8.
+- Al estudiar el IRPF en la Unidad 6 y la nómina en la Unidad 5.
 - Para entender qué significa "hacer la declaración" y por qué a veces sale a devolver.
 - Para ver el efecto de tener hijos o una discapacidad reconocida sobre el resultado.
 

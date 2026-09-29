@@ -52,5 +52,5 @@ Este debat no busca un guanyador absolut. Busca que cada estudiant isca de l'aul
 ## Variants i extensions
 
 - **Variant "canvi de bàndol" (llampec):** a meitat de la rèplica, el professor obliga els equips a intercanviar postures. Qui va preparar bé les dues cares ho fa sense despentinar-se.
-- **Connexió amb la Unitat 8:** qui va defendre la faena estable pot portar a la sessió següent una nòmina real i un alta d'autònom per a comparar el que cobra i el que cotitza cada figura.
+- **Connexió amb la Unitat 5:** qui va defendre la faena estable pot portar a la sessió següent una nòmina real i un alta d'autònom per a comparar el que cobra i el que cotitza cada figura.
 - **Extensió amb convidat:** tancar amb una breu entrevista (presencial o per videotrucada) a una persona que haja passat d'assalariada a autònoma o a l'inrevés, contrastant els arguments del debat amb la seua experiència.

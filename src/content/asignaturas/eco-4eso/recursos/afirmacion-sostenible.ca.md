@@ -12,7 +12,7 @@ slug: "asignaturas/eco-4eso/recursos/afirmacion-sostenible.ca"
 
 ## Quan usar-la
 
-- A la Unitat 3, en arribar al greenwashing: és la part del tema que s'aprén amb exemples reals i no amb la definició.
+- A la Unitat 2, en arribar al greenwashing: és la part del tema que s'aprén amb exemples reals i no amb la definició.
 - En analitzar la comunicació d'una empresa concreta, junt amb els ODS i el segell B Corp.
 - En qualsevol moment del curs en què algú porte un envàs o un anunci a classe, que sol passar tan bon punt s'explica el concepte.
 

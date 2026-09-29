@@ -78,5 +78,5 @@ Una página por cada una de las 3 oportunidades elegidas:
 
 - **Variante en pareja:** dos estudiantes intercambian sus diarios el viernes y filtran las molestias del otro. A menudo las mejores oportunidades de una persona las ve mejor otra.
 - **Extensión PESTEL:** para cada una de las 3 oportunidades, hacer un PESTEL simplificado rápido y comprobar si alguna luz roja la descarta.
-- **Conexión con Unidad 5:** las 3 oportunidades resultantes son la materia prima de la próxima unidad sobre generación de ideas y modelo de negocio.
+- **Conexión con la Unidad 12:** las 3 oportunidades resultantes son la materia prima del proyecto emprendedor y de su modelo de negocio.
 - **Variante mapa de empatía:** sustituir el filtrado por la construcción de un mapa de empatía completo (qué ve, qué oye, qué dice y hace, qué piensa y siente) del primer cliente identificado en cada ficha.

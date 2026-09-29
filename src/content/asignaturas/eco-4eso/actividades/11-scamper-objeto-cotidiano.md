@@ -20,7 +20,7 @@ estado: publicado
 
 ## Planteamiento
 
-La Unidad 2 explica que la creatividad **no es esperar a la inspiración**, sino una habilidad entrenable basada en combinar lo conocido de un modo nuevo. Esta sesión pone a prueba esa idea: en 60 minutos, cada equipo cogerá un objeto que tiene delante todos los días y, aplicando las siete preguntas de **SCAMPER** (Eberle, años 70), generará al menos **15 variaciones nuevas** del objeto. Después, todo el grupo elegirá la propuesta más prometedora y la defenderá en 60 segundos delante de la clase.
+La Unidad 11 explica que la creatividad **no es esperar a la inspiración**, sino una habilidad entrenable basada en combinar lo conocido de un modo nuevo. Esta sesión pone a prueba esa idea: en 60 minutos, cada equipo cogerá un objeto que tiene delante todos los días y, aplicando las siete preguntas de **SCAMPER** (Eberle, años 70), generará al menos **15 variaciones nuevas** del objeto. Después, todo el grupo elegirá la propuesta más prometedora y la defenderá en 60 segundos delante de la clase.
 
 El objetivo no es inventar un producto millonario; es **demostrarse a uno mismo** que la creatividad se entrena. Quien empieza la sesión convencido de que *«no soy creativo»* termina con cinco ideas suyas escritas en la cartulina. Eso ya cambia la conversación.
 

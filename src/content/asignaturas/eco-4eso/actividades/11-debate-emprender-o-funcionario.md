@@ -51,5 +51,5 @@ Este debate no busca un ganador absoluto. Busca que cada estudiante salga del au
 ## Variantes y extensiones
 
 - **Variante "cambio de bando" (relámpago):** a mitad de la réplica, el profesor obliga a los equipos a intercambiar posturas. Quien preparó bien las dos caras lo hace sin despeinarse.
-- **Conexión con la Unidad 8:** quien defendió el empleo estable puede traer a la siguiente sesión una nómina real y un alta de autónomo para comparar lo que cobra y lo que cotiza cada figura.
+- **Conexión con la Unidad 5:** quien defendió el empleo estable puede traer a la siguiente sesión una nómina real y un alta de autónomo para comparar lo que cobra y lo que cotiza cada figura.
 - **Extensión con invitado:** cerrar con una breve entrevista (presencial o por videollamada) a una persona que haya pasado de asalariada a autónoma o al revés, contrastando los argumentos del debate con su experiencia.

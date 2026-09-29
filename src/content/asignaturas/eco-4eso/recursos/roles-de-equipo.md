@@ -10,7 +10,7 @@ estado: publicado
 
 ## Cuándo usarla
 
-- En la Unidad 6, al formar los equipos del proyecto: cinco minutos aquí ahorran tres semanas de reproches después.
+- En la Unidad 10, al formar los equipos del proyecto: cinco minutos aquí ahorran tres semanas de reproches después.
 - Cuando un grupo lleve tiempo atascado y nadie sepa por qué: casi siempre hay un papel que no está ocupando nadie.
 - Antes de repartir tareas, para que el reparto salga de algo y no de quién habla primero.
 
