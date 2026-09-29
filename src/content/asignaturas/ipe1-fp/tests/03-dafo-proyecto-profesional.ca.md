@@ -62,7 +62,7 @@ preguntas:
       - "Família, amics i oci."
       - "Constitució, conveni i contracte."
     correcta: 1
-    explicacion: "El **full de ruta d'inserció** ordena en el temps les tres palanques de l'ocupabilitat: **formació** (què et falta acreditar i quan), **experiència** (com sumaràs hores reals: FCT, primera ocupació) i **cerca i xarxa** (com i on buscaràs i com cuidaràs els contactes). Ha de ser realista, escrit i amb dates."
+    explicacion: "El **full de ruta d'inserció** ordena en el temps les tres palanques de l'ocupabilitat: **formació** (què et falta acreditar i quan), **experiència** (com sumaràs hores reals: formació en empresa, primera ocupació) i **cerca i xarxa** (com i on buscaràs i com cuidaràs els contactes). Ha de ser realista, escrit i amb dates."
   - enunciado: "En quins tres horitzons temporals convé ordenar els objectius professionals?"
     opciones:
       - "Diari, setmanal i mensual."

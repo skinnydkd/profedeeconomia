@@ -31,7 +31,7 @@ En esta actividad recibís, por parejas, tres casos anónimos basados en denunci
 - Manejar las cifras clave del derecho laboral 2026: SMI, jornada, vacaciones, descansos, pagas extras.
 - Aprender a localizar y consultar un **convenio colectivo** vigente en el REGCON.
 - Practicar la **lectura crítica de un contrato y una nómina**, distinguiendo lo legal de lo abusivo.
-- Conocer en la práctica la **ruta de reclamación**: del email a la empresa a la Inspección de Trabajo y al Juzgado de lo Social.
+- Conocer en la práctica la **ruta de reclamación**: del email a la empresa a la Inspección de Trabajo y a la sección de lo Social del Tribunal de Instancia.
 
 ## Estructura de la sesión (60 min)
 
@@ -51,7 +51,7 @@ Pueden y deben consultar el convenio aplicable en el REGCON, calcular el precio/
 
 ### 3. Propuesta de ruta de reclamación (10 min)
 
-Con las vulneraciones detectadas, cada pareja redacta **un párrafo de no más de 8 líneas** simulando que asesora al trabajador del caso: qué documentos debe guardar, a quién debe acudir primero (encargado, comité, sindicato), si procede denunciar en la **Inspección de Trabajo** (gratuita y confidencial: no revela quién denuncia), y si finalmente debe ir al **SMAC + Juzgado de lo Social** (un año de plazo para reclamar salarios u horas no pagadas; 20 días hábiles si hay un despido).
+Con las vulneraciones detectadas, cada pareja redacta **un párrafo de no más de 8 líneas** simulando que asesora al trabajador del caso: qué documentos debe guardar, a quién debe acudir primero (encargado, comité, sindicato), si procede denunciar en la **Inspección de Trabajo** (gratuita y confidencial: no revela quién denuncia), y si finalmente debe ir al **SMAC + Tribunal de Instancia** (un año de plazo para reclamar salarios u horas no pagadas; 20 días hábiles si hay un despido).
 
 ### 4. Puesta en común (10 min)
 

@@ -24,7 +24,7 @@ Una cosa és saber que existix el PAE i una altra entendre quins papers calen i 
 ## Tràmits a ordenar (llista desordenada)
 
 - Inscripció en el Registre Mercantil
-- Alta en el cens d'empresaris (declaració censal, model 036/037)
+- Alta en el cens d'empresaris (declaració censal, model 036)
 - Escriptura de constitució i estatuts davant de notari
 - Certificació negativa de denominació (Registre Mercantil Central)
 - Alta en la Seguretat Social (RETA / règim general)
@@ -43,7 +43,7 @@ Una cosa és saber que existix el PAE i una altra entendre quins papers calen i 
 
 1. **Escalfament (5 min).** En parella, llegiu la llista de tràmits i marqueu quins creieu que NO necessita un autònom (pista: els relacionats amb "societat").
 2. **Ordenar la SL (15 min).** Col·loqueu els huit tràmits en l'orde lògic per constituir una **societat limitada**, des de la certificació del nom fins a l'alta en la Seguretat Social i les llicències. Al costat de cada pas, escriviu l'**organisme** responsable.
-3. **La versió autònom (10 min).** Construïu el full de ruta de l'**autònom**: ratlleu de la llista allò que no necessita i deixeu només els dos passos essencials (alta censal en Hisenda amb el 036/037 i alta en el RETA de la Seguretat Social). Anoteu per què és molt més curt.
+3. **La versió autònom (10 min).** Construïu el full de ruta de l'**autònom**: ratlleu de la llista allò que no necessita i deixeu només els dos passos essencials (alta censal en Hisenda amb el 036 i alta en el RETA de la Seguretat Social). Anoteu per què és molt més curt.
 4. **CIRCE i PAE (10 min).** Entreu en la web de CIRCE (paeelectronico.es). Expliqueu en dos frases què fa el **DUE** i localitzeu el **PAE més pròxim** al vostre centre o municipi. Anoteu el seu nom i a quina entitat pertany (cambra, ajuntament, etc.).
 5. **Posada en comú (10 min).** Una parella exposa el full de ruta de la SL i una altra la de l'autònom. El professor confirma l'orde i subratlla que el DUE permet disparar diversos d'estos tràmits d'una sola vegada.
 

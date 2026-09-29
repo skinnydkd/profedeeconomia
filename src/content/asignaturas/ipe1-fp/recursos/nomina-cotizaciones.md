@@ -1,17 +1,17 @@
 ---
 asignatura: ipe1-fp
 unidad_relacionada: 7
-title: "Calculadora de nómina"
-descripcion: "Del salario bruto al líquido: qué se descuenta por cotización a la Seguridad Social, qué por retención de IRPF y cuánto le cuesta realmente el puesto a la empresa."
+title: "Cotizaciones y coste de empresa"
+descripcion: "Qué cotiza la empresa por cada concepto, cuánto le cuesta de verdad el puesto y cuánto llega a la persona: las tres cifras de un mismo sueldo."
 tipo: calculadora
-componente: NominaESO
+componente: CosteContratacion
 estado: publicado
 ---
 
 ## Cuándo usarla
 
 - En la Unidad 7, al explicar la cotización: la nómina es donde la teoría de bases y tipos se convierte en una cifra que alguien cobra.
-- Cuando aparezca la pregunta de por qué el sueldo acordado y el que llega a la cuenta no coinciden, que es la primera duda de cualquier primer empleo.
+- Cuando aparezca la pregunta de por qué el sueldo acordado y el que llega a la cuenta no coinciden, que es la primera duda de cualquier primer empleo. Para el detalle de lo que se descuenta en la nómina está la otra calculadora de la Unidad 6, la de bruto a neto.
 - Antes de hablar de prestaciones: sin entender que se cotiza no se entiende de dónde salen el paro, la baja y la pensión.
 
 ## Qué tener en cuenta

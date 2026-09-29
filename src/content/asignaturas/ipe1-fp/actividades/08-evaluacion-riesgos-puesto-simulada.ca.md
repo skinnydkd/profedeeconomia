@@ -98,6 +98,6 @@ Tasques: treball amb pantalla de visualització de dades 7-8 hores al dia, atenc
 
 ## Variants i extensions
 
-- **Variant lloc propi.** Cada grup avalua el lloc real de la seua FCT o d'un familiar, la qual cosa augmenta el realisme i connecta amb la prevenció de la seua pròpia futura ocupació.
+- **Variant lloc propi.** Cada grup avalua el lloc real de la seua formació en empresa o d'un familiar, la qual cosa augmenta el realisme i connecta amb la prevenció de la seua pròpia futura ocupació.
 - **Variant inspecció.** Un grup actua com a servici de prevenció i un altre com a empresa que defén les seues pràctiques; es debat la viabilitat de cada mesura proposada.
 - **Connexió amb la Unitat 9.** El risc psicosocial detectat al lloc C (pressió, càrrega mental) és la porta d'entrada a la Unitat 9 sobre salut psicosocial.

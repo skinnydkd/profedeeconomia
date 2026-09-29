@@ -61,7 +61,7 @@ preguntas:
       - "Familia, amigos y ocio."
       - "Constitución, convenio y contrato."
     correcta: 1
-    explicacion: "La **hoja de ruta de inserción** ordena en el tiempo las tres palancas de la empleabilidad: **formación** (qué te falta acreditar y cuándo), **experiencia** (cómo sumarás horas reales: FCT, primer empleo) y **búsqueda y red** (cómo y dónde buscarás y cómo cuidarás los contactos). Debe ser realista, escrita y con fechas."
+    explicacion: "La **hoja de ruta de inserción** ordena en el tiempo las tres palancas de la empleabilidad: **formación** (qué te falta acreditar y cuándo), **experiencia** (cómo sumarás horas reales: formación en empresa, primer empleo) y **búsqueda y red** (cómo y dónde buscarás y cómo cuidarás los contactos). Debe ser realista, escrita y con fechas."
   - enunciado: "¿En qué tres horizontes temporales conviene ordenar los objetivos profesionales?"
     opciones:
       - "Diario, semanal y mensual."

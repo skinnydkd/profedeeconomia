@@ -1,7 +1,7 @@
 ---
 asignatura: fopp-4eso
 unidad_relacionada: 8
-title: "El juí laboral: representem un acomiadament improcedent davant el Jutjat social"
+title: "El juí laboral: representem un acomiadament improcedent davant la secció social del Tribunal d'Instància"
 descripcion: "Dinàmica de rol-play tipus juí. La classe escenifica un cas d'acomiadament sobre el qual es debat si va ser procedent o improcedent, repartint papers (treballador, empresa, advocats, jutgessa, testimonis). Aplica els drets laborals de la unitat en un format viu que fixa conceptes com a causa, indemnització i càrrega de la prova."
 tipo: dinamica
 duracion: "2 sessions · 110 min (1 de preparació + 1 de juí)"
@@ -20,7 +20,7 @@ slug: "asignaturas/fopp-4eso/actividades/26-dinamica-juicio-laboral.ca"
 
 ## Plantejament
 
-Els drets laborals s'entenen molt millor quan es veuen en acció. Esta dinàmica convertix l'aula en una sala del Jutjat social i posa la classe a representar un cas d'acomiadament: va ser procedent o improcedent? Cada paper obliga a manejar els conceptes de la unitat —causa de l'acomiadament, indemnització, càrrega de la prova, paper del jutge— des de dins.
+Els drets laborals s'entenen molt millor quan es veuen en acció. Esta dinàmica convertix l'aula en una sala de la secció social del Tribunal d'Instància i posa la classe a representar un cas d'acomiadament: va ser procedent o improcedent? Cada paper obliga a manejar els conceptes de la unitat —causa de l'acomiadament, indemnització, càrrega de la prova, paper del jutge— des de dins.
 
 No és teatre per entretindre: és una manera de fixar els drets de l'Estatut dels Treballadors aplicant-los a un conflicte concret. En defendre una postura davant un «tribunal», l'alumnat descobrix que conéixer la llei amb precisió és el que dóna la raó.
 
@@ -29,7 +29,7 @@ No és teatre per entretindre: és una manera de fixar els drets de l'Estatut de
 - Aplicar els conceptes d'acomiadament procedent i improcedent de l'Estatut dels Treballadors.
 - Comprendre el paper de la indemnització, la càrrega de la prova i la via judicial.
 - Argumentar a favor d'una postura amb base legal.
-- Conéixer com funciona, a grans trets, un procés davant el Jutjat social.
+- Conéixer com funciona, a grans trets, un procés davant la secció social del Tribunal d'Instància.
 
 ## El cas (guió)
 
