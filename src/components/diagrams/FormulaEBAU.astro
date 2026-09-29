@@ -1,7 +1,7 @@
 ---
 /**
  * How the university access mark is built: 60% Bachillerato average + 40%
- * compulsory EBAU phase = nota de acceso (out of 10); plus the weighted
+ * compulsory PAU phase = nota de acceso (out of 10); plus the weighted
  * optional phase (up to +4) = nota de admisión (out of 14).
  *
  * Used in FOPP 4ESO · Unit 6 (FP, Universidad y becas).
@@ -12,15 +12,15 @@ const locale = getLocale(Astro.currentLocale);
 const COPY = {
   es: {
     comoSeCalculaLa: 'Cómo se calcula la nota de acceso a la universidad',
-    laNotaDeAcceso: 'La nota de acceso suma el 60 por ciento de la media del Bachillerato y el 40 por ciento de la fase obligatoria de la EBAU, con un máximo de 10. La fase voluntaria añade hasta 4 puntos por ponderaciones, hasta una nota de admisión máxima de 14.',
-    esLaMediaDe: 'Es la media de las notas de 1º y 2º de Bachillerato. Pesa más que la EBAU (60 %), así que el esfuerzo de dos cursos cuenta más que un solo examen.',
+    laNotaDeAcceso: 'La nota de acceso suma el 60 por ciento de la media del Bachillerato y el 40 por ciento de la fase obligatoria de la PAU, con un máximo de 10. La fase voluntaria añade hasta 4 puntos por ponderaciones, hasta una nota de admisión máxima de 14.',
+    esLaMediaDe: 'Es la media de las notas de 1º y 2º de Bachillerato. Pesa más que la PAU (60 %), así que el esfuerzo de dos cursos cuenta más que un solo examen.',
     k60Ponderacion: '60 % · ponderación',
     notaMediaDel: 'Nota media del',
     bachillerato: 'Bachillerato',
     sonLosExamenesComunes: 'Son los exámenes comunes (Lengua, Historia, idioma y la materia de modalidad). Hay que sacar al menos un 4 aquí para que la nota pueda hacer media con el Bachillerato.',
     k40Ponderacion: '40 % · ponderación',
     faseObligatoria: 'Fase obligatoria',
-    deLaEbau: 'de la EBAU',
+    deLaEbau: 'de la PAU',
     esLaNotaMinima: 'Es la nota mínima que abre la puerta a la universidad. Para grados con poca demanda, basta con un 5; los grados con nota de corte alta exigen además la fase voluntaria.',
     notaDeAcceso: 'Nota de acceso',
     sobre: 'sobre',
@@ -43,15 +43,15 @@ const COPY = {
   },
   ca: {
     comoSeCalculaLa: "Com es calcula la nota d'accés a la universitat",
-    laNotaDeAcceso: "La nota d'accés suma el 60 per cent de la mitjana del Batxillerat i el 40 per cent de la fase obligatòria de l'EBAU, amb un màxim de 10. La fase voluntària afig fins a 4 punts per ponderacions, fins a una nota d'admissió màxima de 14.",
-    esLaMediaDe: "És la mitjana de les notes de 1r i 2n de Batxillerat. Pesa més que l'EBAU (60 %), així que l'esforç de dos cursos compta més que un sol examen.",
+    laNotaDeAcceso: "La nota d'accés suma el 60 per cent de la mitjana del Batxillerat i el 40 per cent de la fase obligatòria de la PAU, amb un màxim de 10. La fase voluntària afig fins a 4 punts per ponderacions, fins a una nota d'admissió màxima de 14.",
+    esLaMediaDe: "És la mitjana de les notes de 1r i 2n de Batxillerat. Pesa més que la PAU (60 %), així que l'esforç de dos cursos compta més que un sol examen.",
     k60Ponderacion: '60 % · ponderació',
     notaMediaDel: 'Nota mitjana del',
     bachillerato: 'Batxillerat',
     sonLosExamenesComunes: 'Són els exàmens comuns (Llengua, Història, idioma i la matèria de modalitat). Cal traure almenys un 4 ací perquè la nota puga fer mitjana amb el Batxillerat.',
     k40Ponderacion: '40 % · ponderació',
     faseObligatoria: 'Fase obligatòria',
-    deLaEbau: "de l'EBAU",
+    deLaEbau: "de la PAU",
     esLaNotaMinima: 'És la nota mínima que obri la porta a la universitat. Per a graus amb poca demanda, en tens prou amb un 5; els graus amb nota de tall alta exigixen a més la fase voluntària.',
     notaDeAcceso: "Nota d'accés",
     sobre: 'sobre',
@@ -102,7 +102,7 @@ const t = COPY[locale];
   </defs>
   <rect class="bg" x="0" y="0" width="880" height="540"/>
 
-  <!-- ROW 1: nota de acceso = 0,6 Bach + 0,4 EBAU -->
+  <!-- ROW 1: nota de acceso = 0,6 Bach + 0,4 PAU -->
   <!-- Bachillerato box -->
   <rect class="box box-bach has-tip" x="40" y="60" width="210" height="120" rx="8"><title>{t.esLaMediaDe}</title></rect>
   <text class="box-tag" x="145" y="88" fill="#A87A2A">{t.k60Ponderacion}</text>
@@ -113,7 +113,7 @@ const t = COPY[locale];
   <!-- plus -->
   <text class="op" x="290" y="132">+</text>
 
-  <!-- EBAU obligatoria box -->
+  <!-- PAU obligatoria box -->
   <rect class="box box-ebau has-tip" x="330" y="60" width="210" height="120" rx="8"><title>{t.sonLosExamenesComunes}</title></rect>
   <text class="box-tag" x="435" y="88" fill="#9C3A1C">{t.k40Ponderacion}</text>
   <text class="box-title" x="435" y="116">{t.faseObligatoria}</text>

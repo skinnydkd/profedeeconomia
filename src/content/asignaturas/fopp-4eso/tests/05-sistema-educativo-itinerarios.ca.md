@@ -15,14 +15,14 @@ preguntas:
       - "Sis: les cinc anteriors més el Batxillerat Internacional."
     correcta: 1
     explicacion: "El Reial Decret 243/2022 establix quatre modalitats: Ciències i Tecnologia, Humanitats i Ciències Socials, Arts i General. Arts té dues vies (Arts Plàstiques, Imatge i Disseny; Música i Arts Escèniques), però és una sola modalitat. La General és la novetat de la LOMLOE, pensada per a qui encara no ha decidit especialització."
-  - enunciado: "La fórmula oficial de la nota d'accés a la universitat en la EBAU és…"
+  - enunciado: "La fórmula oficial de la nota d'accés a la universitat en la PAU és…"
     opciones:
       - "0,5 × nota mitjana de Batxillerat + 0,5 × nota de la fase obligatòria."
       - "0,6 × nota mitjana de Batxillerat + 0,4 × nota de la fase obligatòria."
       - "0,4 × nota mitjana de Batxillerat + 0,6 × nota de la fase obligatòria."
       - "0,7 × nota mitjana de Batxillerat + 0,3 × nota de la fase voluntària."
     correcta: 1
-    explicacion: "La nota d'accés pondera 60 % la mitjana del Batxillerat i 40 % la fase obligatòria de la EBAU. Sobre eixa nota (màxim 10) es poden sumar fins a 4 punts per ponderacions de la fase voluntària, fins a arribar al **màxim de 14**."
+    explicacion: "La nota d'accés pondera 60 % la mitjana del Batxillerat i 40 % la fase obligatòria de la PAU. Sobre eixa nota (màxim 10) es poden sumar fins a 4 punts per ponderacions de la fase voluntària, fins a arribar al **màxim de 14**."
   - enunciado: "La Formació Professional espanyola s'organitza, segons la LOFP de 2023, en…"
     opciones:
       - "12 famílies professionals i dos graus (Mitjà i Superior)."
@@ -51,10 +51,10 @@ preguntas:
     opciones:
       - "No, necessita repetir Batxillerat abans."
       - "No, la FP Superior només dóna accés al mercat laboral."
-      - "Sí, sense EBAU obligatòria en molts casos; la fase voluntària servix per a pujar nota."
+      - "Sí, sense PAU obligatòria en molts casos; la fase voluntària servix per a pujar nota."
       - "Sí, però només a graus de la mateixa família professional."
     correcta: 2
-    explicacion: "El títol de Tècnic Superior dóna **accés directe a la universitat** sense necessitat de superar la fase obligatòria de la EBAU. Si es vol pujar nota o ponderar per a graus molt demandats, es pot fer la fase voluntària. És una de les passarel·les més importants del sistema."
+    explicacion: "El títol de Tècnic Superior dóna **accés directe a la universitat** sense necessitat de superar la fase obligatòria de la PAU. Si es vol pujar nota o ponderar per a graus molt demandats, es pot fer la fase voluntària. És una de les passarel·les més importants del sistema."
   - enunciado: "Les Escoles Oficials d'Idiomes (EOI)…"
     opciones:
       - "Són una alternativa al Batxillerat que titula com a tècnic lingüista."
@@ -84,7 +84,7 @@ preguntas:
     correcta: false
     explicacion: "No existix eixa drecera. Des de Grau Mitjà cal passar primer per Grau Superior (o per Batxillerat) per a arribar a la universitat. El Tècnic Superior sí que dóna accés directe."
   - tipo: numerico
-    enunciado: "Una alumna té una mitjana de Batxillerat de 7,5 i trau un 6,5 en la fase obligatòria de la EBAU. Aplicant la fórmula oficial (0,6 × mitjana de Batxillerat + 0,4 × fase obligatòria), quina és la seua nota d'accés sobre 10 (2 decimals)?"
+    enunciado: "Una alumna té una mitjana de Batxillerat de 7,5 i trau un 6,5 en la fase obligatòria de la PAU. Aplicant la fórmula oficial (0,6 × mitjana de Batxillerat + 0,4 × fase obligatòria), quina és la seua nota d'accés sobre 10 (2 decimals)?"
     respuesta: 7.1
     tolerancia: 0.05
     unidad: "punts"
@@ -97,4 +97,4 @@ preguntas:
     explicacion: "El Grau Bàsic és una passarel·la per a alumnat sense títol d'ESO; el Grau Mitjà titula com a Tècnic; el Grau Superior dóna accés directe a la universitat; l'EOI impartix idiomes reglats segons el MCER."
 ---
 
-Test d'autoavaluació de la Unitat 5 del llibre de FOPP 4ESO. Nou preguntes sobre el mapa complet del sistema educatiu post-ESO: modalitats de Batxillerat, fórmula EBAU, famílies i graus d'FP, vies alternatives i passarel·les oficials.
+Test d'autoavaluació de la Unitat 5 del llibre de FOPP 4ESO. Nou preguntes sobre el mapa complet del sistema educatiu post-ESO: modalitats de Batxillerat, fórmula PAU, famílies i graus d'FP, vies alternatives i passarel·les oficials.

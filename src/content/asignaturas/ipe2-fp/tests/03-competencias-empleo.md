@@ -37,7 +37,7 @@ preguntas:
       - "El más numeroso posible."
       - "El que tiene un único líder que decide todo."
     correcta: 1
-    explicacion: "Belbin demostró que los equipos formados solo por \"cerebros\" rinden peor que los **equilibrados**. Un equipo eficaz combina **roles complementarios**: cerebro (ideas), coordinador (organiza), implementador (ejecuta), evaluador (analiza riesgos) y cohesionador (cuida el clima). El equilibrio es lo que rinde, no reunir a los más brillantes."
+    explicacion: "Belbin observó que los equipos formados solo por \"cerebros\" rinden peor que los **equilibrados**. Un equipo eficaz combina **roles complementarios**: cerebro (ideas), coordinador (organiza), implementador (ejecuta), evaluador (analiza riesgos) y cohesionador (cuida el clima). El equilibrio es lo que rinde, no reunir a los más brillantes."
   - enunciado: "¿Qué es la comunicación asertiva?"
     opciones:
       - "Imponer tu opinión interrumpiendo y descalificando."
@@ -62,14 +62,14 @@ preguntas:
       - "Autoconciencia, empatía y habilidades sociales."
     correcta: 1
     explicacion: "Los cinco componentes de Goleman son: tres **personales** —**autoconciencia** (reconocer las propias emociones), **autorregulación** (gestionar los impulsos) y **motivación** (mover la conducta hacia objetivos)— y dos **sociales**: empatía y habilidades sociales. La buena noticia es que la inteligencia emocional se entrena a cualquier edad."
-  - enunciado: "Según la unidad, ¿qué afirma Goleman sobre la relación entre inteligencia emocional y desempeño profesional?"
+  - enunciado: "Según la unidad, ¿qué dice la investigación sobre la inteligencia emocional y el desempeño profesional?"
     opciones:
-      - "El cociente intelectual predice el desempeño mejor que la inteligencia emocional."
-      - "La inteligencia emocional predice el desempeño profesional mejor que el cociente intelectual, sobre todo en puestos de relación y liderazgo."
+      - "Solo importa el cociente intelectual: la inteligencia emocional no aporta nada."
+      - "La inteligencia emocional suma al cociente intelectual, sobre todo en puestos de relación y liderazgo, aunque menos de lo que dijo Goleman."
       - "Ambas son irrelevantes para el éxito laboral."
       - "Solo importa la inteligencia emocional en trabajos creativos."
     correcta: 1
-    explicacion: "La tesis de Goleman, demostrada en numerosos estudios, es que la **inteligencia emocional predice el desempeño profesional mejor que el cociente intelectual**, especialmente en puestos de relación y liderazgo. La investigación desmintió la creencia de que el éxito dependía sobre todo del CI."
+    explicacion: "Goleman popularizó la idea de que la inteligencia emocional importa tanto como el cociente intelectual, o más. La investigación posterior confirma que **suma**: la capacidad cognitiva sigue siendo uno de los mejores predictores del desempeño, y la inteligencia emocional aporta algo más, sobre todo en puestos de relación y liderazgo."
   - enunciado: "En la matriz de Eisenhower, ¿qué cuadrante es \"el más rentable y el más descuidado\"?"
     opciones:
       - "Urgente e importante (hazlo ya)."

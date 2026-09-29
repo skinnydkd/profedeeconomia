@@ -15,7 +15,7 @@ materiales:
   - "Pizarra para la votación final sobre la negligencia grave"
 solucion:
   - "<strong>Pregunta 3 (importe):</strong> 1.500 + 900 + 600 = <strong>3.000 €</strong> en operaciones no autorizadas."
-  - "<strong>Pregunta 3 (plazo):</strong> el plazo para reclamar es de <strong>13 meses desde el cargo</strong>. Con el cargo del <strong>14 de marzo</strong>, Nuria puede reclamar hasta el <strong>14 de abril del año siguiente</strong>. El plazo del banco para responder a su reclamación es de <strong>dos meses</strong>; pasados esos dos meses sin respuesta satisfactoria, puede acudir al Banco de España."
+  - "<strong>Pregunta 3 (plazo):</strong> el plazo para reclamar es de <strong>13 meses desde el cargo</strong>. Con el cargo del <strong>14 de marzo</strong>, Nuria puede reclamar hasta el <strong>14 de abril del año siguiente</strong>. El banco tiene <strong>15 días hábiles</strong> para responder a su reclamación (hasta un mes en casos excepcionales); si no responde o no le da la razón, puede acudir al Banco de España."
   - "<strong>Pregunta 4 (quién devuelve):</strong> según el <strong>Real Decreto-ley 19/2018, de servicios de pago</strong>, ante una operación que el cliente no ha autorizado el banco debe devolver el importe <strong>de inmediato</strong>, y a más tardar al final del día hábil siguiente, salvo que <strong>demuestre</strong> fraude o negligencia grave del usuario. <strong>La carga de la prueba es del banco</strong>, no de la víctima."
   - "<strong>Los tres puntos de corte:</strong> <strong>1)</strong> el SMS: ningún banco manda enlaces para «verificar la identidad», y la prisa («24 horas») es la señal; bastaba con entrar por la app propia. <strong>2)</strong> la web: la dirección no era la del banco, aunque el diseño sí; bastaba con mirar la URL. <strong>3)</strong> la llamada: <strong>ningún banco pide nunca el código del SMS</strong>, y el número que aparece en la pantalla se falsifica con facilidad; bastaba con colgar y llamar al número del reverso de la tarjeta."
 estado: publicado
@@ -56,7 +56,7 @@ Al final redactaréis el escrito de reclamación al banco. Es la parte que casi 
 | --- | --- |
 | **Real Decreto-ley 19/2018**, de servicios de pago | Ante una operación de pago no autorizada, el banco devuelve el importe **de inmediato**, a más tardar el día hábil siguiente, salvo que **demuestre** fraude o negligencia grave del usuario. **La carga de la prueba es del banco** |
 | Mismo texto | El usuario dispone de **13 meses** desde el cargo para comunicar la operación no autorizada |
-| Normativa de transparencia bancaria | El banco tiene **dos meses** para resolver la reclamación; después se puede acudir al **Servicio de Reclamaciones del Banco de España** |
+| Mismo texto (art. 69) | El banco tiene **15 días hábiles** para responder a la reclamación (hasta **un mes** en casos excepcionales); después se puede acudir al **Servicio de Reclamaciones del Banco de España** |
 | INCIBE | Línea gratuita **017** de ayuda en ciberseguridad, todos los días del año |
 
 ## Pasos (sesión de 50 min)

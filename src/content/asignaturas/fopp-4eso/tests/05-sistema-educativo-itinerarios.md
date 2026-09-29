@@ -13,14 +13,14 @@ preguntas:
       - "Seis: las cinco anteriores más el Bachillerato Internacional."
     correcta: 1
     explicacion: "El Real Decreto 243/2022 establece cuatro modalidades: Ciencias y Tecnología, Humanidades y Ciencias Sociales, Artes y General. Artes tiene dos vías (Artes Plásticas, Imagen y Diseño; Música y Artes Escénicas), pero es una sola modalidad. La General es la novedad de la LOMLOE, pensada para quien aún no ha decidido especialización."
-  - enunciado: "La fórmula oficial de la nota de acceso a la universidad en la EBAU es…"
+  - enunciado: "La fórmula oficial de la nota de acceso a la universidad en la PAU es…"
     opciones:
       - "0,5 × nota media de Bachillerato + 0,5 × nota de la fase obligatoria."
       - "0,6 × nota media de Bachillerato + 0,4 × nota de la fase obligatoria."
       - "0,4 × nota media de Bachillerato + 0,6 × nota de la fase obligatoria."
       - "0,7 × nota media de Bachillerato + 0,3 × nota de la fase voluntaria."
     correcta: 1
-    explicacion: "La nota de acceso pondera 60 % la media del Bachillerato y 40 % la fase obligatoria de la EBAU. Sobre esa nota (máximo 10) se pueden sumar hasta 4 puntos por ponderaciones de la fase voluntaria, hasta llegar al **máximo de 14**."
+    explicacion: "La nota de acceso pondera 60 % la media del Bachillerato y 40 % la fase obligatoria de la PAU. Sobre esa nota (máximo 10) se pueden sumar hasta 4 puntos por ponderaciones de la fase voluntaria, hasta llegar al **máximo de 14**."
   - enunciado: "La Formación Profesional española se organiza, según la LOFP de 2023, en…"
     opciones:
       - "12 familias profesionales y dos grados (Medio y Superior)."
@@ -49,10 +49,10 @@ preguntas:
     opciones:
       - "No, necesita repetir Bachillerato antes."
       - "No, la FP Superior solo da acceso al mercado laboral."
-      - "Sí, sin EBAU obligatoria en muchos casos; la fase voluntaria sirve para subir nota."
+      - "Sí, sin PAU obligatoria en muchos casos; la fase voluntaria sirve para subir nota."
       - "Sí, pero solo a grados de la misma familia profesional."
     correcta: 2
-    explicacion: "El título de Técnico Superior da **acceso directo a la universidad** sin necesidad de superar la fase obligatoria de la EBAU. Si se quiere subir nota o ponderar para grados muy demandados, se puede hacer la fase voluntaria. Es una de las pasarelas más importantes del sistema."
+    explicacion: "El título de Técnico Superior da **acceso directo a la universidad** sin necesidad de superar la fase obligatoria de la PAU. Si se quiere subir nota o ponderar para grados muy demandados, se puede hacer la fase voluntaria. Es una de las pasarelas más importantes del sistema."
   - enunciado: "Las Escuelas Oficiales de Idiomas (EOI)…"
     opciones:
       - "Son una alternativa al Bachillerato que titula como técnico lingüista."
@@ -82,7 +82,7 @@ preguntas:
     correcta: false
     explicacion: "No existe ese atajo. Desde Grado Medio hay que pasar primero por Grado Superior (o por Bachillerato) para llegar a la universidad. El Técnico Superior sí da acceso directo."
   - tipo: numerico
-    enunciado: "Una alumna tiene una media de Bachillerato de 7,5 y saca un 6,5 en la fase obligatoria de la EBAU. Aplicando la fórmula oficial (0,6 × media de Bachillerato + 0,4 × fase obligatoria), ¿cuál es su nota de acceso sobre 10 (2 decimales)?"
+    enunciado: "Una alumna tiene una media de Bachillerato de 7,5 y saca un 6,5 en la fase obligatoria de la PAU. Aplicando la fórmula oficial (0,6 × media de Bachillerato + 0,4 × fase obligatoria), ¿cuál es su nota de acceso sobre 10 (2 decimales)?"
     respuesta: 7.1
     tolerancia: 0.05
     unidad: "puntos"
@@ -95,4 +95,4 @@ preguntas:
     explicacion: "El Grado Básico es una pasarela para alumnado sin título de ESO; el Grado Medio titula como Técnico; el Grado Superior da acceso directo a la universidad; la EOI imparte idiomas reglados según el MCER."
 ---
 
-Test de autoevaluación de la Unidad 5 del libro de FOPP 4ESO. Nueve preguntas sobre el mapa completo del sistema educativo post-ESO: modalidades de Bachillerato, fórmula EBAU, familias y grados de FP, vías alternativas y pasarelas oficiales.
+Test de autoevaluación de la Unidad 5 del libro de FOPP 4ESO. Nueve preguntas sobre el mapa completo del sistema educativo post-ESO: modalidades de Bachillerato, fórmula PAU, familias y grados de FP, vías alternativas y pasarelas oficiales.

@@ -2,7 +2,7 @@
 asignatura: fopp-4eso
 unidad_relacionada: 5
 title: "Descifra el laberinto de titulaciones: une cada nivel con lo que abre"
-descripcion: "Ejercicio guiado para dominar el mapa de titulaciones del sistema educativo español tras 4.º ESO. El alumnado completa un esquema de niveles (ESO, Bachillerato, FP Básica, Grado Medio, Grado Superior, EBAU, Universidad) y resuelve seis casos prácticos de a qué da acceso cada titulación, eliminando los errores típicos."
+descripcion: "Ejercicio guiado para dominar el mapa de titulaciones del sistema educativo español tras 4.º ESO. El alumnado completa un esquema de niveles (ESO, Bachillerato, FP Básica, Grado Medio, Grado Superior, PAU, Universidad) y resuelve seis casos prácticos de a qué da acceso cada titulación, eliminando los errores típicos."
 tipo: ejercicio
 duracion: "55 min · 1 sesión"
 agrupacion: "individual + corrección en parejas"
@@ -37,7 +37,7 @@ Este ejercicio no pide opinar: pide **dominar el mapa**. Primero se completa el 
                    /            \
           BACHILLERATO        FP GRADO MEDIO
               |                    |
-            EBAU              FP GRADO SUPERIOR
+             PAU              FP GRADO SUPERIOR
               |                    |
         UNIVERSIDAD  ←──────────── (acceso directo)
                                    |
@@ -48,13 +48,13 @@ Este ejercicio no pide opinar: pide **dominar el mapa**. Primero se completa el 
 
 ## Seis casos prácticos (resolver con SÍ/NO + por qué)
 
-> **Caso 1.** Hugo ha terminado un Grado Superior de Administración. Quiere estudiar el grado universitario de ADE. ¿Puede acceder a la universidad sin hacer la EBAU completa?
+> **Caso 1.** Hugo ha terminado un Grado Superior de Administración. Quiere estudiar el grado universitario de ADE. ¿Puede acceder a la universidad sin hacer la PAU completa?
 >
 > **Caso 2.** Sara ha hecho un Grado Medio de Cocina. Quiere seguir formándose en hostelería a un nivel más alto. ¿Puede pasar directamente a un Grado Superior?
 >
 > **Caso 3.** Bilal no ha obtenido el título de la ESO. ¿Puede matricularse directamente en Bachillerato?
 >
-> **Caso 4.** Carla ha aprobado Bachillerato pero no se presenta a la EBAU. ¿Puede entrar a un Grado Superior de FP?
+> **Caso 4.** Carla ha aprobado Bachillerato pero no se presenta a la PAU. ¿Puede entrar a un Grado Superior de FP?
 >
 > **Caso 5.** Mateo está en FP Básica. ¿Obtendrá el título de la ESO si la supera?
 >
@@ -64,7 +64,7 @@ Este ejercicio no pide opinar: pide **dominar el mapa**. Primero se completa el 
 
 1. **Encuadre (5 min).** El profesor recuerda los niveles del sistema y avisa de que el ejercicio se corrige por las pasarelas exactas, no por intuiciones.
 2. **Completar el esquema (12 min).** Cada alumno completa la plantilla dibujando y etiquetando las flechas de acceso entre niveles, consultando la web del Ministerio (todoFP) o los folletos.
-3. **Resolver los seis casos (20 min).** Individualmente, responde cada caso con SÍ/NO y una frase de justificación basada en el esquema. Soluciones de referencia: 1 SÍ (el GS da acceso a la universidad, con nota de admisión; puede subir nota con la fase voluntaria de la EBAU). 2 SÍ (GM da acceso a GS). 3 NO (Bachillerato exige título de ESO). 4 SÍ (Bachillerato da acceso a GS sin EBAU). 5 SÍ (la FP Básica superada da el título de ESO). 6 NO (desde FP también se llega a la universidad).
+3. **Resolver los seis casos (20 min).** Individualmente, responde cada caso con SÍ/NO y una frase de justificación basada en el esquema. Soluciones de referencia: 1 SÍ (el GS da acceso a la universidad, con nota de admisión; puede subir nota con la fase voluntaria de la PAU). 2 SÍ (GM da acceso a GS). 3 NO (Bachillerato exige título de ESO). 4 SÍ (Bachillerato da acceso a GS sin PAU). 5 SÍ (la FP Básica superada da el título de ESO). 6 NO (desde FP también se llega a la universidad).
 4. **Corrección en parejas (12 min).** Cada pareja contrasta respuestas, discute las que no coincidan y consulta la fuente para dirimir. Marcan en otro color las que tenían mal.
 5. **Cierre y mito-buster (6 min).** Puesta en común de los errores más frecuentes de la clase. El profesor desmonta el mito principal: la FP **no** cierra la puerta a la universidad, y elegir FP no es elegir «menos».
 
