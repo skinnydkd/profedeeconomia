@@ -2,10 +2,12 @@
 /**
  * Printable scoring sheet: the debate's rubric turned into a 4-level grid
  * (1 Inicio / 2 En proceso / 3 Bien / 4 Excelente). One A4 page, to photocopy
- * per group or student. Levels are generic (the rubric schema stores no
- * per-level descriptors).
+ * per group or student. Criteria shared by most debates carry a descriptor
+ * per level (src/lib/debates-niveles.ts), so each box says what it means;
+ * a debate's own criteria keep the plain box.
  */
 import type { Locale } from '@/i18n/locale';
+import { nivelesDe } from '@/lib/debates-niveles';
 interface Criterio { criterio: string; descripcion: string; competencia?: string; }
 interface Props { rubrica: Criterio[]; title: string; locale?: Locale; }
 const { rubrica, title, locale = 'es' } = Astro.props;
@@ -14,6 +16,8 @@ const copy = {
   ca: { tag: 'Full d\'avaluació', grupo: 'Grup / alumne:', fecha: 'Data:', criterio: 'Criteri', observaciones: 'Observacions:', niveles: ['1 Inici', '2 En procés', '3 Bé', '4 Excel·lent'] },
 }[locale];
 const niveles = copy.niveles;
+const filas = rubrica.map((r) => ({ ...r, desc: nivelesDe(r.criterio, locale) }));
+const analitica = filas.some((f) => f.desc);
 ---
 <section class="hoja print-block">
   <header class="hoja__head">
@@ -25,7 +29,7 @@ const niveles = copy.niveles;
     </div>
   </header>
 
-  <table class="hoja__table">
+  <table class:list={['hoja__table', analitica && 'hoja__table--analitica']}>
     <thead>
       <tr>
         <th class="c-crit">{copy.criterio}</th>
@@ -33,14 +37,19 @@ const niveles = copy.niveles;
       </tr>
     </thead>
     <tbody>
-      {rubrica.map((r) => (
+      {filas.map((r) => (
         <tr>
           <td class="c-crit">
             <strong>{r.criterio}</strong>
             <span class="desc">{r.descripcion}</span>
             {r.competencia && <span class="comp">{r.competencia}</span>}
           </td>
-          {niveles.map(() => <td class="c-niv"><span class="box" aria-hidden="true"></span></td>)}
+          {niveles.map((_, k) => (
+            <td class="c-niv">
+              <span class="box" aria-hidden="true"></span>
+              {r.desc && <span class="niv-desc">{r.desc[k]}</span>}
+            </td>
+          ))}
         </tr>
       ))}
     </tbody>
@@ -62,6 +71,11 @@ const niveles = copy.niveles;
   .hoja__table th, .hoja__table td { border: 1px solid var(--color-line); padding: 0.5em 0.6em; vertical-align: top; }
   .hoja__table th { font-family: var(--font-sans); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--color-ink-mute); background: var(--color-mustard-soft); }
   .c-niv { width: 4.5rem; text-align: center; }
+  /* With descriptors each level cell holds a sentence: the four levels share
+     the width left by the criterion column. */
+  .hoja__table--analitica .c-crit { width: 24%; }
+  .hoja__table--analitica .c-niv { width: 19%; text-align: left; }
+  .niv-desc { display: block; margin-top: 0.3rem; font-size: 0.76rem; line-height: 1.35; color: var(--color-ink-soft); }
   .desc { display: block; color: var(--color-ink-soft); font-weight: 400; margin-top: 0.2rem; }
   .comp { display: inline-block; margin-top: 0.3rem; font-family: var(--font-mono); font-size: 0.72rem; color: var(--color-terra-deep); }
   .box { display: inline-block; width: 1rem; height: 1rem; border: 1.5px solid var(--color-ink-mute); border-radius: 3px; }
