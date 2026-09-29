@@ -38,7 +38,7 @@ preguntas:
       - "Els diners que l'Estat recapta en impostos."
       - "La quantitat de diners que hi ha en circulació."
     correcta: 0
-    explicacion: "La demanda agregada suma tot el que el conjunt de l'economia vol comprar: consum, inversió, despesa pública i exportacions. L'oferta agregada, en canvi, és el que es pot produir."
+    explicacion: "La demanda agregada suma tot el que el conjunt de l'economia vol comprar: consum, inversió, despesa pública i exportacions netes. L'oferta agregada, en canvi, és el que les empreses estan disposades a produir, amb la capacitat productiva com a sostre."
   - enunciado: "Si tots els agents volgueren comprar molt més del que l'economia pot produir, el més probable és que…"
     opciones:
       - "Baixaren els preus."

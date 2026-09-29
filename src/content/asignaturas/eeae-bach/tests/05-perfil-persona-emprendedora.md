@@ -45,14 +45,14 @@ preguntas:
       - "Decir siempre que sí para evitar conflictos."
     correcta: 2
     explicacion: "La asertividad es el punto medio entre la pasividad (callar para evitar el conflicto) y la agresividad (imponerse). Consiste en defender las propias ideas con respeto y escuchar a la otra parte."
-  - enunciado: "Los experimentos de Hawthorne, analizados por Elton Mayo, demostraron sobre todo que…"
+  - enunciado: "Los experimentos de Hawthorne, analizados por Elton Mayo, se interpretaron sobre todo como prueba de que…"
     opciones:
       - "Los trabajadores rinden más solo si se les paga más."
       - "La iluminación es el factor que más afecta a la productividad."
       - "El reconocimiento y el sentido de pertenencia influyen en el rendimiento tanto o más que el salario."
       - "Las personas trabajan igual de bien estén o no observadas."
     correcta: 2
-    explicacion: "Mayo descubrió que la productividad subía cuando los trabajadores se sentían observados, escuchados y parte de algo. De ahí nació la teoría de las relaciones humanas: la motivación no es solo económica."
+    explicacion: "Mayo interpretó que la productividad subía porque los trabajadores se sentían observados, escuchados y parte de algo. De ahí nació la teoría de las relaciones humanas: la motivación no es solo económica. Los estudios originales se discutieron mucho después, pero la idea caló."
   - enunciado: "Según el método de negociación de Harvard, ¿qué conviene hacer ante un desacuerdo?"
     opciones:
       - "Imponerse por la fuerza para no parecer débil."

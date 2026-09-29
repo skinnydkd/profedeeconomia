@@ -78,7 +78,7 @@ preguntas:
       - "Les pèrdues i els guanys es valoren simètricament al voltant de zero."
       - "Les persones sempre preferixen el risc a la seguretat."
     correcta: 1
-    explicacion: "La troballa central de la Teoria Prospectiva: valorem asimètricament guanys i pèrdues, i les pèrdues pesen aproximadament el doble. Per això paguem assegurances que estadísticament ens costen diners, mantenim subscripcions per inèrcia i els nudges tipus opt-out funcionen tan bé: canviar l'estat actual es percep com una pèrdua."
+    explicacion: "La troballa central de la Teoria Prospectiva: valorem asimètricament guanys i pèrdues, i les pèrdues pesen aproximadament el doble. Per això molta gent rebutja apostar a cara o creu si pot guanyar 120 € o perdre 100 €, mantenim subscripcions per inèrcia i els nudges tipus opt-out funcionen tan bé: canviar l'estat actual es percep com una pèrdua."
   - tipo: verdadero-falso
     enunciado: "Per a decidir racionalment si continuar amb un projecte, cal tindre en compte els diners ja gastats, perquè si no es malbaraten."
     correcta: false
@@ -90,7 +90,7 @@ preguntas:
   - tipo: relacionar
     enunciado: "Relaciona cada biaix o concepte amb l'exemple que millor l'il·lustra:"
     izquierda: ["Biaix d'ancoratge", "Aversió a la pèrdua", "Efecte framing", "Fal·làcia del cost enfonsat"]
-    derecha: ["No venc unes accions en pèrdues perquè «ja he aguantat tant, seria tirar el que he invertit»", "Compre perquè el preu ratllat de 200 € fa que 150 € parega barat", "Accepte més una operació amb «90 % de supervivència» que amb «10 % de mortalitat»", "Pague una assegurança cara perquè perdre em fa més mal que guanyar el mateix"]
+    derecha: ["Continue veient una pel·lícula avorrida perquè «ja he pagat l'entrada»", "Compre perquè el preu ratllat de 200 € fa que 150 € parega barat", "Accepte més una operació amb «90 % de supervivència» que amb «10 % de mortalitat»", "Rebutge apostar a cara o creu encara que puga guanyar 120 € i només perdre 100 €"]
     correctas: [1, 3, 2, 0]
     explicacion: "Ancoratge: el primer número condiciona la percepció. Aversió a la pèrdua: pesa més perdre que guanyar. Framing: la manera de presentar canvia la decisió. Cost enfonsat: continuar pel que ja s'ha invertit."
   - tipo: numerico
