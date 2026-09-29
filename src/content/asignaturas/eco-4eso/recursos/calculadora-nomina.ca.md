@@ -23,4 +23,4 @@ El càlcul de l'IRPF utilitza l'**escala general de 2026**: l'estatal més una a
 
 La cotització a la Seguretat Social del treballador és del **6,50 %** el 2026 (4,70 % contingències comunes + 1,55 % desocupació + 0,10 % formació + 0,15 % MEI). En els contractes temporals la desocupació puja a l'1,60 %.
 
-La calculadora **no aplica retencions reals** que faria l'empresa (l'AEAT publica un programa específic, PADRE/Renda Web), sinó una estimació útil per a entendre la mecànica. Insistix a l'alumnat: l'important ací és vore **què paguem i per què**, no clavar el cèntim.
+La calculadora **no aplica retencions reals** que faria l'empresa (per a això l'AEAT té el seu propi servei de càlcul de retencions; PADRE i Renda Web servixen per a la declaració de la renda), sinó una estimació útil per a entendre la mecànica. Insistix a l'alumnat: l'important ací és vore **què paguem i per què**, no clavar el cèntim.
