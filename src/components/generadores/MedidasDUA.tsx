@@ -337,14 +337,15 @@ export default function MedidasDUA({ locale = 'es' }: Props) {
           flex-direction: column;
           gap: 0.5rem;
         }
+        /* Categorical colour on the whole border, never a single side. */
         .dua-principle--rep {
-          border-top: 3px solid var(--color-terra, #C44E2C);
+          border-color: var(--color-terra, #C44E2C);
         }
         .dua-principle--acc {
-          border-top: 3px solid var(--color-mostassa, #D4A24C);
+          border-color: var(--color-mustard, #D4A24C);
         }
         .dua-principle--imp {
-          border-top: 3px solid var(--color-ink-soft, #5C4A3D);
+          border-color: var(--color-ink-soft, #5C4A3D);
         }
         .dua-principle-header {
           display: flex;

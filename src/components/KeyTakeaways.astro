@@ -23,9 +23,10 @@ const { title, variant = 'key' } = Astro.props;
 ---
 
 <aside class:list={['takeaways', `takeaways--${variant}`]}>
-  <span class="takeaways__icon" aria-hidden="true">
-    {variant === 'warning' ? '!' : variant === 'checklist' ? '✓' : '✱'}
-  </span>
+  {/* Only functional signs: the decorative ✱ of the key variant is gone (de-slop rule 4). */}
+  {variant !== 'key' && (
+    <span class="takeaways__icon" aria-hidden="true">{variant === 'warning' ? '!' : '✓'}</span>
+  )}
   <span class="takeaways__label">{title ?? t('libro.enResumen', locale)}</span>
   <div class="takeaways__body">
     <slot />
@@ -42,6 +43,7 @@ const { title, variant = 'key' } = Astro.props;
     border-top: 1px solid var(--color-line);
     border-bottom: 1px solid var(--color-line);
   }
+  .takeaways--key { padding-left: 1.7rem; }
   .takeaways--warning { background: var(--color-terra-soft); }
   .takeaways--checklist { background: #E5F1DD; }
 
@@ -71,7 +73,7 @@ const { title, variant = 'key' } = Astro.props;
     font-size: 0.78rem;
     text-transform: uppercase;
     letter-spacing: 0.14em;
-    color: var(--color-mustard-deep);
+    color: var(--color-mustard-ink);
     font-weight: 700;
     display: block;
     margin-bottom: 0.5rem;

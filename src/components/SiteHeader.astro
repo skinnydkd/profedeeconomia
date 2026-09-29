@@ -329,8 +329,11 @@ const locale = getLocale(Astro.currentLocale);
     min-width: 280px;
     opacity: 0;
     visibility: hidden;
-    pointer-events: none;
-    transition: opacity .15s ease, transform .15s ease, visibility .15s;
+    /* Closing waits a moment: a diagonal path from the trigger to a link
+       leaves the hover area for an instant, and until the delay ends the
+       panel is still visible and so still catches the pointer. A hidden
+       panel takes no pointer events, so no pointer-events rule is needed. */
+    transition: opacity .15s ease .15s, transform .15s ease .15s, visibility 0s linear .3s;
     display: flex;
     flex-direction: column;
     gap: 1rem;
@@ -353,9 +356,12 @@ const locale = getLocale(Astro.currentLocale);
     right: 0;
     transform: translateY(-4px);
   }
-  .nav-group:hover .nav-dropdown--cols,
-  .nav-group:focus-within .nav-dropdown--cols,
-  .nav-group.is-open .nav-dropdown--cols {
+  /* Doubled class on purpose: the generic open rule further down centres the
+     panel with translateX(-50%) and, at equal specificity, would win and push
+     this right-aligned panel 270px left of its trigger. */
+  .nav-group:hover .nav-dropdown.nav-dropdown--cols,
+  .nav-group:focus-within .nav-dropdown.nav-dropdown--cols,
+  .nav-group.is-open .nav-dropdown.nav-dropdown--cols {
     transform: translateY(0);
   }
   /* Columns sit side by side, so the stacked-section divider does not apply. */
@@ -380,8 +386,8 @@ const locale = getLocale(Astro.currentLocale);
   .nav-group.is-open .nav-dropdown {
     opacity: 1;
     visibility: visible;
-    pointer-events: auto;
     transform: translateX(-50%) translateY(0);
+    transition-delay: 0s;
   }
 
   /* ──────────── seccions del dropdown ──────────── */
