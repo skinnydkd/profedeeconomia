@@ -23,14 +23,14 @@ preguntas:
       - "10.000 €, aproximadament."
     correcta: 1
     explicacion: "Aplicant Cf = Ci · (1 + i)^n: Cf = 1.000 · (1,06)^25 = 1.000 · 4,29 ≈ 4.290 €. El creixement exponencial de l'interés compost explica que el capital es quadruplique amb un tipus moderat i un termini llarg."
-  - enunciado: "Dues germanes amb el mateix capital i el mateix tipus d'interés. Ana invertix 2.000 €/any durant 10 anys (entre els 20 i els 30) i després deixa el capital quiet fins als 65. Berta invertix 2.000 €/any entre els 30 i els 65. Qui acaba amb més diners?"
+  - enunciado: "Dues germanes invertixen amb la mateixa rendibilitat, un 7 % anual. Ana invertix 2.000 €/any durant 10 anys (entre els 20 i els 30) i després deixa el capital quiet fins als 65. Berta invertix 2.000 €/any entre els 30 i els 65. Qui acaba amb més diners?"
     opciones:
       - "Berta, perquè aporta tres vegades i mitja més capital."
       - "Empaten exactament, perquè el tipus d'interés és el mateix."
       - "Ana, perquè el seu capital té molt més temps per a compondre's."
       - "Depén exclusivament del tipus d'interés aplicat."
     correcta: 2
-    explicacion: "El factor decisiu de l'interés compost és el temps, no el capital aportat. Ana acaba amb més capital tot i aportar tres vegades i mitja menys, perquè els seus 20.000 € tenen 45 anys per a compondre's, mentres que les últimes aportacions de Berta a penes tenen temps de créixer."
+    explicacion: "Al 7 %, Ana arriba a uns 295.000 € i Berta, a uns 276.500 €. Ana acaba amb més tot i aportar tres vegades i mitja menys, perquè els seus 20.000 € tenen fins a 45 anys per a compondre's, mentres que les últimes aportacions de Berta a penes tenen temps de créixer. Compte: amb rendibilitats més baixes guanya Berta (al 5 %, uns 180.600 € enfront de 138.800 €). El punt de tall està al voltant del 6,6 %."
   - enunciado: "Quina d'estes afirmacions descriu correctament la relació entre rendibilitat, risc i liquiditat dels productes financers?"
     opciones:
       - "Els productes més rendibles solen ser els més líquids i segurs."
