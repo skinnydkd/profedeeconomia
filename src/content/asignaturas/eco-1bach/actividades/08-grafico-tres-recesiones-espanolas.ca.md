@@ -1,7 +1,7 @@
 ---
 asignatura: eco-1bach
 unidad_relacionada: 8
-title: "Tres recessions en una mateixa línia: trenta-quatre anys de cicle espanyol"
+title: "Tres recessions en una mateixa línia: trenta-sis anys de cicle espanyol"
 descripcion: "Representació de la sèrie de creixement real del PIB espanyol des de 1990: datar les recessions, mesurar-ne la profunditat i la duració, i comprovar que les tres van tindre una forma distinta perquè el xoc que les va provocar també ho era."
 tipo: grafico
 duracion: "55 min · 1 sessió"
@@ -13,10 +13,10 @@ materiales:
   - "Fitxa impresa amb la sèrie"
   - "Regle i dos colors"
 solucion:
-  - "<strong>Les tres recessions.</strong> 1993 (un any, −1,0 %); 2009-2013, amb un rebot intermedi el 2010 que no va arribar a consolidar-se (doble recessió, mínim el 2009 amb −3,8 %); i 2020 (un any, −11,2 %)."
+  - "<strong>Les tres recessions.</strong> 1993 (un any, −1,0 %); 2009-2013, amb un rebot intermedi el 2010 que no va arribar a consolidar-se (doble recessió, mínim el 2009 amb −3,8 %); i 2020 (un any, −10,9 %)."
   - "<strong>La més profunda i la més llarga no són la mateixa.</strong> La més profunda amb diferència és 2020; la més llarga i danyosa en ocupació és la de 2008-2013, que encadena cinc anys de creixement negatiu o quasi nul."
   - "<strong>Formes distintes.</strong> 2020 dibuixa una V molt estreta i molt fonda: el xoc va ser extern i administratiu, i tan bon punt es va alçar la restricció l'economia va rebotar. 2008-2013 dibuixa una W ampla: el problema era financer i immobiliari i va tardar anys a purgar-se."
-  - "<strong>Recuperar el nivell.</strong> Caure un 11,2 % i créixer després un 6,4 % no torna al punt de partida: els percentatges s'apliquen sobre bases distintes. Amb base 100 el 2019, 2020 queda en 88,8 i 2021 en 94,5, encara per davall. El nivell de 2019 no es recupera fins al <strong>2022</strong>, que tanca just al voltant de 100. Tres anys perduts que la taxa de creixement, tota sola, no deixa vore."
+  - "<strong>Recuperar el nivell.</strong> Caure un 10,9 % i créixer després un 6,7 % no torna al punt de partida: els percentatges s'apliquen sobre bases distintes. Amb base 100 el 2019, 2020 queda en 89,1 i 2021 en 95,1, encara per davall. El nivell de 2019 no es recupera fins al <strong>2022</strong>, que tanca al voltant de 101. Tres anys perduts que la taxa de creixement, tota sola, no deixa vore."
 lang: ca
 estado: publicado
 slug: "asignaturas/eco-1bach/actividades/08-grafico-tres-recesiones-espanolas.ca"
@@ -24,7 +24,7 @@ slug: "asignaturas/eco-1bach/actividades/08-grafico-tres-recesiones-espanolas.ca
 
 ## Plantejament
 
-Una sèrie de creixement del PIB és la radiografia d'un país. En trenta-quatre anys hi caben tres recessions espanyoles, i cada una té una silueta tan característica que es reconeixen a simple vista una vegada saps mirar-les.
+Una sèrie de creixement del PIB és la radiografia d'un país. En trenta-sis anys hi caben tres recessions espanyoles, i cada una té una silueta tan característica que es reconeixen a simple vista una vegada saps mirar-les.
 
 Hui dibuixareu eixa línia i fareu amb ella el que fa un analista: **datar** els episodis, **mesurar-ne** la profunditat i la duració, i després preguntar-vos per què no s'assemblen entre si.
 
@@ -40,14 +40,14 @@ Creixement anual del PIB real d'Espanya, en %:
 | 1993 | −1,0 | 2005 | 3,7 | 2017 | 3,0 |
 | 1994 | 2,4 | 2006 | 4,2 | 2018 | 2,3 |
 | 1995 | 2,8 | 2007 | 3,6 | 2019 | 2,0 |
-| 1996 | 2,7 | 2008 | 0,9 | 2020 | −11,2 |
-| 1997 | 3,7 | 2009 | −3,8 | 2021 | 6,4 |
-| 1998 | 4,3 | 2010 | 0,2 | 2022 | 5,8 |
-| 1999 | 4,5 | 2011 | −0,8 | 2023 | 2,7 |
-| 2000 | 5,3 | 2012 | −3,0 | | |
-| 2001 | 4,0 | 2013 | −1,4 | | |
+| 1996 | 2,7 | 2008 | 0,9 | 2020 | −10,9 |
+| 1997 | 3,7 | 2009 | −3,8 | 2021 | 6,7 |
+| 1998 | 4,3 | 2010 | 0,2 | 2022 | 6,2 |
+| 1999 | 4,5 | 2011 | −0,8 | 2023 | 2,4 |
+| 2000 | 5,3 | 2012 | −3,0 | 2024 | 3,7 |
+| 2001 | 4,0 | 2013 | −1,4 | 2025 | 2,6 |
 
-*Sèrie elaborada per a esta fitxa a partir de la Comptabilitat Nacional d'Espanya (INE), arredonida a una dècima. Les dades vigents, subjectes a revisió, estan a ine.es.*
+*Sèrie elaborada per a esta fitxa a partir de la Comptabilitat Nacional d'Espanya (INE), arredonida a una dècima. Els anys 2020-2025 seguixen la revisió de l'INE de setembre de 2026. Les dades vigents, subjectes a revisió, estan a ine.es.*
 
 ## Objectius didàctics
 
@@ -69,7 +69,7 @@ Creixement anual del PIB real d'Espanya, en %:
 - Quina és la recessió **més profunda**? I la **més llarga**? Per què no és la mateixa, i quina creeu que va deixar més empremta en la vida de la gent?
 - L'any 2010 apareix en positiu entre dos anys negatius. Comptaríeu 2008-2013 com una recessió o com dues? El vostre criteri ha de ser explícit.
 - Compareu la forma de 2020 amb la de 2008-2013. Quina diferència en la **naturalesa del xoc** explica eixes dues siluetes?
-- Caure un 11,2 % i créixer l'any següent un 6,4 %, deixa el país on estava? Demostreu-ho amb el càlcul del pas 5.
+- Caure un 10,9 % i créixer l'any següent un 6,7 %, deixa el país on estava? Demostreu-ho amb el càlcul del pas 5.
 - Els anys 1997-2007 són deu anys seguits de creixement fort. Es pot saber, **mirant només esta gràfica**, que hi havia una bambolla darrere? Quina altra dada demanaríeu?
 
 ## Criteris d'avaluació

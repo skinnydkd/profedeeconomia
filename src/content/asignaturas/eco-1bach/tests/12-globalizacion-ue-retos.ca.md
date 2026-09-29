@@ -26,11 +26,11 @@ preguntas:
   - enunciado: "L'Organització Mundial del Comerç (OMC)…"
     opciones:
       - "Va ser creada en 1947 amb el nom de GATT i des d'aleshores no ha canviat."
-      - "Va succeir el GATT en 1995, té 164 països membres i descansa sobre els principis de nació més afavorida, tracte nacional i reducció progressiva d'aranzels."
+      - "Va succeir el GATT en 1995, té 166 països membres i descansa sobre els principis de nació més afavorida, tracte nacional i reducció progressiva d'aranzels."
       - "És un organisme dependent del Banc Mundial i s'ocupa de la cooperació al desenvolupament."
       - "Té poder per a imposar sancions unilaterals als països que no liberalitzen el seu comerç."
     correcta: 1
-    explicacion: "L'OMC va substituir el GATT en 1995 i compta amb 164 membres. Els seus principis bàsics són la nació més afavorida (qualsevol avantatge a un soci s'estén a tots), el tracte nacional (no discriminar productes importats una vegada en el mercat intern) i la reducció progressiva d'aranzels mitjançant rondes. La Ronda de Doha porta sense tancar-se des de 2001 i l'òrgan d'apel·lació està bloquejat des de 2019."
+    explicacion: "L'OMC va substituir el GATT en 1995 i compta amb 166 membres. Els seus principis bàsics són la nació més afavorida (qualsevol avantatge a un soci s'estén a tots), el tracte nacional (no discriminar productes importats una vegada en el mercat intern) i la reducció progressiva d'aranzels mitjançant rondes. La Ronda de Doha porta sense tancar-se des de 2001 i l'òrgan d'apel·lació està bloquejat des de 2019."
   - enunciado: "Quin ordre cronològic de fites de la construcció europea és correcte?"
     opciones:
       - "Maastricht → CECA → euro físic → Brexit → NextGenerationEU."

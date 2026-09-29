@@ -71,7 +71,7 @@ preguntas:
       - "Estar cobrant la prestació contributiva per desocupació."
     correcta: 2
     explicacion: "L'EPA exigix els tres requisits simultàniament. Una persona que no treballa i està disponible però ha deixat de buscar ocupació (*treballador desanimat*) és inactiva, no aturada. L'EPA és una enquesta estadística trimestral amb metodologia OIT/Eurostat, distinta de l'atur registrat del SEPE."
-  - enunciado: "Espanya presenta superàvit per compte corrent des de 2012 (≈ +2,6 % del PIB en 2023). Quins dos motors expliquen principalment eixe saldo positiu?"
+  - enunciado: "Espanya presenta superàvit per compte corrent des de 2012 (≈ +3 % del PIB en 2024). Quins dos motors expliquen principalment eixe saldo positiu?"
     opciones:
       - "El superàvit comercial en béns industrials i el descens de les remeses."
       - "Les transferències corrents rebudes de la UE i la inversió estrangera directa."

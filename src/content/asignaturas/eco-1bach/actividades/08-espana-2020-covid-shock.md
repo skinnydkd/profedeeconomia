@@ -1,7 +1,7 @@
 ---
 asignatura: eco-1bach
 unidad_relacionada: 8
-title: "España 2020: ¿shock de demanda, de oferta o ambos? Anatomía del −10,8 % del PIB"
+title: "España 2020: ¿shock de demanda, de oferta o ambos? Anatomía del −10,9 % del PIB"
 descripcion: "Diagnosticar con el modelo AD-AS el shock COVID sobre la economía española, contrastar la respuesta de política económica con la del 2008 y argumentar qué tipo de shock se vivió."
 tipo: caso
 duracion: "60 min · 1 sesión"
@@ -18,7 +18,7 @@ estado: publicado
 
 ## Planteamiento
 
-En el primer semestre de 2020 la economía española vivió la caída más brusca de su historia en tiempos de paz: **−10,8 % del PIB real en un solo año**, casi tres veces la contracción de 2009 (−3,8 %) y muy por encima de la media de la Eurozona (−6,2 %). Pero el shock no encaja con limpieza en ninguno de los cuatro casos canónicos que enseña el modelo AD-AS: hubo confinamiento que paró el consumo y el turismo (caída de C, de G en parte y, sobre todo, de X), pero también paralización de fábricas, ruptura de cadenas de suministro globales y restricciones de movilidad que impedían producir incluso bienes para los que había demanda.
+En el primer semestre de 2020 la economía española vivió la caída más brusca de su historia en tiempos de paz: **−10,9 % del PIB real en un solo año**, casi tres veces la contracción de 2009 (−3,8 %) y muy por encima de la media de la Eurozona (−6,2 %). Pero el shock no encaja con limpieza en ninguno de los cuatro casos canónicos que enseña el modelo AD-AS: hubo confinamiento que paró el consumo y el turismo (caída de C, de G en parte y, sobre todo, de X), pero también paralización de fábricas, ruptura de cadenas de suministro globales y restricciones de movilidad que impedían producir incluso bienes para los que había demanda.
 
 ¿Fue 2020 un shock negativo de demanda, un shock negativo de oferta o ambos a la vez? La respuesta no es trivial, y la elección que hagan los alumnos condiciona qué política económica habría tocado: si fue de demanda, expansión fiscal y monetaria; si fue de oferta, política de rentas y reapertura selectiva; si fue ambos, una combinación calibrada de las dos. La respuesta también explica por qué la salida fue tan distinta de la doble recesión 2008-2014.
 

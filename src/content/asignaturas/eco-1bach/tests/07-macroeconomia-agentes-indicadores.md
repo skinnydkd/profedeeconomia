@@ -69,7 +69,7 @@ preguntas:
       - "Tener cobrando la prestación contributiva por desempleo."
     correcta: 2
     explicacion: "La EPA exige los tres requisitos simultáneamente. Una persona que no trabaja y está disponible pero ha dejado de buscar empleo (*trabajador desanimado*) es inactiva, no parada. La EPA es una encuesta estadística trimestral con metodología OIT/Eurostat, distinta del paro registrado del SEPE."
-  - enunciado: "España presenta superávit por cuenta corriente desde 2012 (≈ +2,6 % del PIB en 2023). ¿Qué dos motores explican principalmente ese saldo positivo?"
+  - enunciado: "España presenta superávit por cuenta corriente desde 2012 (≈ +3 % del PIB en 2024). ¿Qué dos motores explican principalmente ese saldo positivo?"
     opciones:
       - "El superávit comercial en bienes industriales y el descenso de las remesas."
       - "Las transferencias corrientes recibidas de la UE y la inversión extranjera directa."

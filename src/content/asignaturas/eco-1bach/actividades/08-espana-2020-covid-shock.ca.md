@@ -1,7 +1,7 @@
 ---
 asignatura: eco-1bach
 unidad_relacionada: 8
-title: "Espanya 2020: shock de demanda, d'oferta o ambdós? Anatomia del −10,8 % del PIB"
+title: "Espanya 2020: shock de demanda, d'oferta o ambdós? Anatomia del −10,9 % del PIB"
 descripcion: "Diagnosticar amb el model AD-AS el shock COVID sobre l'economia espanyola, contrastar la resposta de política econòmica amb la del 2008 i argumentar quin tipus de shock es va viure."
 tipo: caso
 duracion: "60 min · 1 sessió"
@@ -20,7 +20,7 @@ slug: "asignaturas/eco-1bach/actividades/08-espana-2020-covid-shock.ca"
 
 ## Plantejament
 
-En el primer semestre de 2020 l'economia espanyola va viure la caiguda més brusca de la seua història en temps de pau: **−10,8 % del PIB real en un sol any**, quasi tres vegades la contracció de 2009 (−3,8 %) i molt per damunt de la mitjana de l'Eurozona (−6,2 %). Però el shock no encaixa amb netedat en cap dels quatre casos canònics que ensenya el model AD-AS: va haver-hi confinament que va parar el consum i el turisme (caiguda de C, de G en part i, sobretot, de X), però també paralització de fàbriques, ruptura de cadenes de subministrament globals i restriccions de mobilitat que impedien produir fins i tot béns per als quals hi havia demanda.
+En el primer semestre de 2020 l'economia espanyola va viure la caiguda més brusca de la seua història en temps de pau: **−10,9 % del PIB real en un sol any**, quasi tres vegades la contracció de 2009 (−3,8 %) i molt per damunt de la mitjana de l'Eurozona (−6,2 %). Però el shock no encaixa amb netedat en cap dels quatre casos canònics que ensenya el model AD-AS: va haver-hi confinament que va parar el consum i el turisme (caiguda de C, de G en part i, sobretot, de X), però també paralització de fàbriques, ruptura de cadenes de subministrament globals i restriccions de mobilitat que impedien produir fins i tot béns per als quals hi havia demanda.
 
 Va ser 2020 un shock negatiu de demanda, un shock negatiu d'oferta o ambdós alhora? La resposta no és trivial, i l'elecció que facen els alumnes condiciona quina política econòmica hauria tocat: si va ser de demanda, expansió fiscal i monetària; si va ser d'oferta, política de rendes i reobertura selectiva; si va ser ambdós, una combinació calibrada de les dues. La resposta també explica per què l'eixida va ser tan distinta de la doble recessió 2008-2014.
 
