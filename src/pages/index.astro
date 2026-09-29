@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
 import SubjectCard from '@components/SubjectCard.astro';
-import { ASIGNATURAS_PUBLICADAS } from '@/lib/asignaturas';
+import { ASIGNATURAS_PUBLICADAS, ASIGNATURAS_POR_ETAPA } from '@/lib/asignaturas';
 import { organizationLd, websiteLd } from '@/lib/seo';
 import { getLocale } from '@/i18n/locale';
 import { localizeAsignatura } from '@/i18n/asignaturas-ca';
@@ -17,6 +17,35 @@ const NUM_WORDS = {
 const numAsignaturas = ASIGNATURAS_PUBLICADAS.length;
 const numAsignaturasPalabra = NUM_WORDS[locale][numAsignaturas] ?? String(numAsignaturas);
 const NumPalabraCap = numAsignaturasPalabra.charAt(0).toUpperCase() + numAsignaturasPalabra.slice(1);
+
+// Subjects grouped by stage in the menu's order (ESO, Bachillerato, FP), so
+// a teacher finds theirs where the header already taught them to look. The
+// card number follows this visible order; the catalogue's `num` is the
+// order in which subjects were added, which the reader cannot see.
+const ETAPA_TITULO = {
+  es: { eso: 'ESO', bach: 'Bachillerato', fp: 'FP' },
+  ca: { eso: 'ESO', bach: 'Batxillerat', fp: 'FP' },
+}[locale];
+let posicion = 0;
+const gruposEtapa = (Object.keys(ASIGNATURAS_POR_ETAPA) as (keyof typeof ASIGNATURAS_POR_ETAPA)[])
+  .map((etapa) => ({
+    etapa,
+    titulo: ETAPA_TITULO[etapa],
+    asignaturas: Object.values(ASIGNATURAS_POR_ETAPA[etapa].cursos)
+      .flatMap((c) => c.asignaturas)
+      .filter((a) => ASIGNATURAS_PUBLICADAS.includes(a))
+      .map((a) => {
+        const loc = localizeAsignatura(a, locale);
+        posicion += 1;
+        return {
+          asignatura: loc,
+          num: String(posicion).padStart(2, '0'),
+          // The group title already says «FP».
+          level: etapa === 'fp' ? loc.level.replace(/^FP\s*[—-]\s*/, '') : loc.level,
+        };
+      }),
+  }))
+  .filter((g) => g.asignaturas.length > 0);
 
 // «Material transversal» strip metadata — locale-independent (slug, letter,
 // color), in the same order as the «Otros» menu. Titles/CTAs/descriptions
@@ -143,9 +172,14 @@ const copy = {
         </span>
       </div>
 
-      <div class="subjects-grid">
-        {ASIGNATURAS_PUBLICADAS.map((a) => <SubjectCard asignatura={localizeAsignatura(a, locale)} />)}
-      </div>
+      {gruposEtapa.map((g) => (
+        <section class="stage-group" aria-labelledby={`etapa-${g.etapa}`}>
+          <h3 class="stage-title" id={`etapa-${g.etapa}`}>{g.titulo}</h3>
+          <div class="subjects-grid">
+            {g.asignaturas.map((s) => <SubjectCard asignatura={s.asignatura} num={s.num} level={s.level} />)}
+          </div>
+        </section>
+      ))}
     </div>
   </section>
 
@@ -274,9 +308,21 @@ const copy = {
     font-variation-settings: "SOFT" 80;
   }
 
+  .stage-group + .stage-group { margin-top: 2.8rem; }
+  .stage-title {
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-ink-soft);
+    margin: 0 0 1rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid var(--color-line);
+  }
   .subjects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
     gap: 1.5rem;
   }
 
