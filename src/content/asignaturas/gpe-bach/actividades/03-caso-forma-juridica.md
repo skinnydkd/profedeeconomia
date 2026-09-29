@@ -8,7 +8,7 @@ duracion: "55 min · 1 sesión"
 agrupacion: "equipos de 3-4"
 materiales:
   - "Las tres fichas de caso (una por equipo o las tres para todos)"
-  - "Tabla comparativa de formas jurídicas de la Unidad 3 (autónomo, SL, SLNE, cooperativa)"
+  - "Tabla comparativa de formas jurídicas de la Unidad 3 (autónomo, SL y cooperativa)"
   - "Plantilla de decisión: criterio · opción elegida · justificación"
 competencias_clave: [CPSAA, CC, CE]
 competencias_especificas: [CE2]
