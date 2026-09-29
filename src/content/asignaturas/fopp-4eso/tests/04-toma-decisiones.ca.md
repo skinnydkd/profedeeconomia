@@ -62,7 +62,7 @@ preguntas:
       - "Reversibles: decidir ràpid i experimentar. Irreversibles: pensar a poc a poc, consultar i, en cas de dubte, esperar."
       - "Les reversibles són sempre trivials i no mereixen anàlisi."
     correcta: 2
-    explicacion: "Bezos ho va formular en la seua carta a accionistes de 1997. L'error més comú és tractar el reversible com a irreversible (paralitzar-se amb trivialitats) i l'irreversible com a reversible (decidir en cinc minuts un préstec d'anys). Identificar el tipus és el 50 % del treball."
+    explicacion: "Bezos ho va formular en la seua carta als accionistes de 2015. L'error més comú és tractar el reversible com a irreversible (paralitzar-se amb trivialitats) i l'irreversible com a reversible (decidir en cinc minuts un préstec d'anys). Identificar el tipus és el 50 % del treball."
   - enunciado: "Sobre la tolerància al risc personal, quina d'estes afirmacions és CORRECTA segons la unitat?"
     opciones:
       - "Una persona amb tolerància alta al risc ho és en tots els àmbits per igual."
