@@ -6,14 +6,14 @@ duracion_estimada: "12-15 min"
 lang: es
 estado: publicado
 preguntas:
-  - enunciado: "Según la frase atribuida a Jeff Bezos que abre la unidad, ¿qué es la marca personal?"
+  - enunciado: "Según la definición que abre la unidad, ¿qué es la marca personal?"
     opciones:
       - "Lo que tú dices de ti mismo en una entrevista."
       - "Lo que dicen de ti cuando sales de la sala."
       - "El logotipo y los colores que usas en tus redes."
       - "La empresa para la que trabajas."
     correcta: 1
-    explicacion: "La frase del fundador de Amazon define la marca personal como **\"lo que dicen de ti cuando sales de la sala\"**: la huella que dejas y la percepción que los demás tienen de ti como profesional, no lo que tú afirmas de ti mismo."
+    explicacion: "La unidad define la marca personal como **\"lo que dicen de ti cuando sales de la sala\"**: la huella que dejas y la percepción que los demás tienen de ti como profesional, no lo que tú afirmas de ti mismo."
   - enunciado: "La unidad afirma que tu marca personal..."
     opciones:
       - "Solo existe si decides crearla conscientemente."

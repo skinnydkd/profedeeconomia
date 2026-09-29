@@ -14,7 +14,7 @@ materiales:
   - "Plantilla de costos fixos i variables del projecte"
   - "Full de càlcul del punt mort (o calculadora)"
   - "Plantilla d'inversió inicial (què fa falta per a arrancar i quant costa)"
-  - "Cas guiat resolt pas a pas com a exemple"
+  - "Cas guiat resolt pas a pas: l'exercici de ReUña de la Unitat 9"
   - "Fitxa de xifres clau per a bolcar el resultat"
 estado: publicado
 ---
@@ -36,15 +36,15 @@ El punt mort sol donar un bany de realitat: molts equips descobrixen que haurien
 
 ### Sessió 1 — Costos i preu (50 min)
 
-1. **Cas guiat (15 min).** El professor resol pas a pas un cas d'exemple: costos fixos, variables, preu i punt mort, per a fixar el mètode.
+1. **Cas guiat (15 min).** El professor resol pas a pas el cas de ReUña de la Unitat 9: costos fixos, variables, preu, punt mort i coixí de tresoreria, per a fixar el mètode.
 2. **Costos del projecte (25 min).** Cada equip llista els seus costos fixos mensuals i el seu cost variable per unitat, sense oblidar partides que se solen passar per alt (comissions, embalatge, transport).
 3. **Preu de venda (10 min).** L'equip fixa un preu realista per al seu producte o servei i comprova que cobrix el cost variable.
 
 ### Sessió 2 — Punt mort i inversió (50 min)
 
 1. **Càlcul del punt mort (20 min).** Amb la fórmula —costos fixos dividits entre el marge unitari—, l'equip troba quantes unitats ha de vendre al mes per a no perdre. Ho interpreta: és assolible amb el seu mercat?
-2. **Inversió inicial (15 min).** Estima què necessita per a arrancar (equips, primer estoc, llicències, fiança) i quant suma.
-3. **Prova del primer mes (10 min).** Comprova si amb una previsió prudent de vendes el projecte cobrix costos el primer mes i quant tardaria a recuperar la inversió.
+2. **Inversió inicial (15 min).** Estima què necessita per a arrancar (equips, primer estoc, llicències, fiança i un coixí de tresoreria de diversos mesos de despeses fixes) i quant suma.
+3. **Prova del primer mes (10 min).** Comprova si amb una previsió prudent de vendes el projecte cobrix costos el primer mes i quant tardaria a recuperar la inversió. Anota també quant queda per a qui emprén: en un negoci d'autònom, eixe resultat és el seu sou.
 4. **Fitxa de xifres (5 min).** Bolca els resultats clau en la fitxa que entrarà en el pla d'empresa.
 
 ## Criteris d'avaluació
