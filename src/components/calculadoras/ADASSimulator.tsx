@@ -41,7 +41,8 @@ export const COPY = {
     brechaProduccion: 'Brecha de producción',
     nivelPrecios: 'Nivel de precios P*',
     sobreIndiceBase: ' sobre el índice base 100',
-    produccionY: 'Producción Y*',
+    // Y* is potential output, as in the book; the short-run equilibrium is Y₁.
+    produccionY: 'Producción de equilibrio Y₁',
     delPotencial: ' del potencial',
     potencialLras: 'Potencial (LRAS)',
     plenoEmpleo: 'Pleno empleo de los recursos',
@@ -120,7 +121,7 @@ export const COPY = {
     brechaProduccion: 'Bretxa de producció',
     nivelPrecios: 'Nivell de preus P*',
     sobreIndiceBase: " sobre l'índex base 100",
-    produccionY: 'Producció Y*',
+    produccionY: "Producció d'equilibri Y₁",
     delPotencial: ' del potencial',
     potencialLras: 'Potencial (LRAS)',
     plenoEmpleo: 'Plena ocupació dels recursos',
@@ -394,12 +395,12 @@ export default function ADASSimulator({ locale = 'es' }: Props) {
               <strong>SRAS:</strong> P = {BASE_P} + (Y − {BASE_Y} − {fmtSigned(state.srasShift)})
             </p>
             <p>
-              <strong>{c.equilibrioCortoPlazo}</strong> (AD = SRAS): Y* ={' '}
-              <strong>{formatNumber(result.shortRun.Y, 1)}</strong>, P* ={' '}
+              <strong>{c.equilibrioCortoPlazo}</strong> (AD = SRAS): Y₁ ={' '}
+              <strong>{formatNumber(result.shortRun.Y, 1)}</strong>, P₁ ={' '}
               <strong>{formatNumber(result.shortRun.P, 1)}</strong>.
             </p>
             <p>
-              <strong>{c.largoPlazo}</strong> (AD = LRAS): {c.largoPlazoDesc1} Y** ={' '}
+              <strong>{c.largoPlazo}</strong> (AD = LRAS): {c.largoPlazoDesc1} Y* ={' '}
               <strong>{formatNumber(result.potentialY, 1)}</strong> {c.largoPlazoDesc2}
             </p>
           </div>

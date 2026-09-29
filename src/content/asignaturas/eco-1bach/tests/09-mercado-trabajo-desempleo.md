@@ -61,14 +61,14 @@ preguntas:
       - "Se acentúa: la inflación reduce el paro de forma cada vez más eficaz."
     correcta: 2
     explicacion: "Friedman (1968) y Phelps (1967) anticiparon que los trabajadores ajustan sus expectativas de inflación: si esperan precios más altos, exigen salarios más altos, las empresas suben precios y el paro vuelve a la NAIRU. A largo plazo, la curva de Phillips es vertical en la NAIRU y solo hay intercambio paro-inflación a corto plazo, mientras las expectativas se ajustan."
-  - enunciado: "La brecha salarial ajustada en España (en torno al 9 % según Eurostat) se diferencia de la brecha sin ajustar en que…"
+  - enunciado: "La brecha salarial ajustada se diferencia de la brecha sin ajustar en que…"
     opciones:
       - "La brecha ajustada compara hombres y mujeres con el mismo perfil (edad, educación, sector, jornada) y refleja la parte de la diferencia que no se explica por características observables."
       - "La brecha ajustada incluye solo a las mujeres con hijos, mientras que la sin ajustar incluye a todas."
       - "La brecha ajustada es una estimación oficial del INE y la sin ajustar es una estimación de los sindicatos."
       - "La brecha ajustada se calcula sobre salario bruto y la sin ajustar sobre salario neto."
     correcta: 0
-    explicacion: "La brecha sin ajustar (15-18 % en España) compara salarios medios directamente e incluye efectos como la segregación ocupacional o la parcialidad. La brecha ajustada (≈ 9 %) controla por características observables y refleja la parte residual atribuible a discriminación o factores menos visibles, como la penalización por maternidad (child penalty) documentada por Kleven et al. (2019)."
+    explicacion: "La brecha sin ajustar compara salarios medios directamente (en España, en torno al 9 % por hora según Eurostat y el 15,7 % en ganancia anual según el INE) e incluye efectos como la segregación ocupacional o la parcialidad. La brecha ajustada controla por características observables y refleja la parte residual atribuible a discriminación o factores menos visibles, como la penalización por maternidad (child penalty) documentada por Kleven et al. (2019)."
   - enunciado: "El rasgo histórico que diferencia el mercado laboral español del modelo nórdico de flexiguridad es…"
     opciones:
       - "España tiene salario mínimo y los países nórdicos no lo tienen."

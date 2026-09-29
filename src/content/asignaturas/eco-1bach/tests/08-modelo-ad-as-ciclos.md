@@ -45,14 +45,14 @@ preguntas:
       - "Shock positivo de oferta: baja P y sube Y."
     correcta: 2
     explicacion: "El encarecimiento de la energía eleva los costes de producción y desplaza la SRAS a la izquierda. El modelo predice subida del nivel de precios y caída de la producción simultáneamente —estanflación—. Es el caso más temido por los bancos centrales porque P e Y se mueven en sentidos opuestos."
-  - enunciado: "Las cuatro fases canónicas del ciclo económico, según la datación del NBER y el CEPR, son…"
+  - enunciado: "Las cuatro fases del esquema clásico del ciclo económico son…"
     opciones:
       - "Auge, burbuja, crash y depresión."
       - "Expansión, recesión, depresión y recuperación."
       - "Crecimiento, estancamiento, inflación y deflación."
       - "Bull market, bear market, corrección y rebote."
     correcta: 1
-    explicacion: "El esquema clásico de los ciclos económicos identifica cuatro fases: expansión (crecimiento sostenido por encima de Y*), recesión (caída del PIB durante al menos dos trimestres), depresión (recesión prolongada y profunda) y recuperación (salida de la recesión hasta cerrar la brecha de producción)."
+    explicacion: "El esquema clásico de los ciclos económicos identifica cuatro fases: expansión (crecimiento sostenido por encima de Y*), recesión (caída del PIB durante al menos dos trimestres), depresión (el fondo del ciclo: la producción toca su mínimo y el paro, su máximo) y recuperación (salida de la recesión hasta cerrar la brecha de producción). El NBER y el CEPR no usan este esquema: fechan picos y valles."
   - enunciado: "En el modelo de Solow simplificado, ¿qué motor del crecimiento es el único que sostiene aumentos del PIB per cápita a largo plazo?"
     opciones:
       - "La acumulación de capital físico (K)."
@@ -102,7 +102,7 @@ preguntas:
     izquierda: ["Expansión", "Recesión", "Depresión", "Recuperación"]
     derecha: ["El PIB toca fondo y el paro llega a su máximo", "El PIB crece, cae el paro y sube la inversión", "El PIB vuelve a crecer tras el mínimo", "El PIB cae durante al menos dos trimestres seguidos"]
     correctas: [1, 3, 0, 2]
-    explicacion: "La definición técnica de recesión son dos trimestres consecutivos de caída del PIB. La depresión es el punto más bajo del ciclo, no una recesión larga."
+    explicacion: "Dos trimestres seguidos de caída del PIB es la regla práctica para hablar de recesión, no una definición oficial. La depresión es el fondo del ciclo; cuando es muy profunda y dura años, como en 1929, se habla de una gran depresión."
 ---
 
 Test de autoevaluación de la Unidad 8 del libro de Eco 1BACH. Nueve preguntas que cubren los componentes de la demanda agregada, la pendiente negativa de la AD, la distinción entre SRAS y LRAS, los cuatro tipos canónicos de shocks (demanda y oferta, positivos y negativos), las fases del ciclo económico, el modelo de crecimiento de Solow, el IDH del PNUD y el cálculo del índice de Gini a partir de una curva de Lorenz.
