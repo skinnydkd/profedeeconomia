@@ -20,12 +20,12 @@ export const ITINERARIOS: Itinerario[] = [
     id: 'sprint-eso',
     label: 'Sprint ESO',
     descripcion:
-      'Cinco fases lean, sin planificación pesada. Un mes aproximadamente. Pensado para 3.º y 4.º de ESO.',
-    fases: [1, 2, 3, 4, 11],
+      'Seis fases lean, sin planificación pesada: del problema al pitch, pasando por los números. Unas cinco o seis semanas. El marketing (fase 5) se añade si hay tiempo. Pensado para 3.º y 4.º de ESO.',
+    fases: [1, 2, 3, 4, 9, 11],
   },
   {
     id: 'bach-fp',
-    label: 'Proyecto Batx/FP',
+    label: 'Proyecto Bach/FP',
     descripcion:
       'Las once fases, con la profundización de empresa (operaciones, personas, financiación). El proyecto completo.',
     fases: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
