@@ -1,15 +1,15 @@
 ---
 asignatura: eco-4eso
 unidad_relacionada: 5
-title: "Anàlisi de tres nòmines reals: del brut al net, contracte a contracte"
-descripcion: "Exercici guiat en parelles sobre tres nòmines anonimitzades (un becari en pràctiques, una dependenta indefinida i un programador júnior) per a identificar conceptes, calcular el net, comparar situacions reals i decidir quin és el contracte més estable."
+title: "Anàlisi de tres nòmines: del brut al net, contracte a contracte"
+descripcion: "Exercici guiat en parelles sobre tres nòmines fictícies però versemblants (un treballador en pràctiques, una dependenta indefinida i un programador júnior) per a identificar conceptes, calcular el net, comparar situacions distintes i decidir quin és el contracte més estable."
 tipo: ejercicio
 duracion: "55 min · 1 sessió (5 min plantejament + 30 min treball en parelles + 15 min posada en comú + 5 min tancament)"
 agrupacion: "parelles → grup classe"
 competencias_clave: [STEM, CPSAA, CCL]
 competencias_especificas: [CE4]
 materiales:
-  - "Tres fitxes impreses amb les nòmines anonimitzades (una per parella, incloses al final d'esta activitat)"
+  - "Tres fitxes impreses amb les nòmines (una per parella, incloses al final d'esta activitat)"
   - "Calculadora simple (o app del mòbil)"
   - "Fitxa de respostes amb les quatre taules a omplir"
   - "Pissarra per a la posada en comú i el rànquing final d'estabilitat"
@@ -20,15 +20,15 @@ slug: "asignaturas/eco-4eso/actividades/05-analisis-nominas-reales.ca"
 
 ## Plantejament
 
-Heu vist al manual com s'estructura una nòmina espanyola i com es passa del brut al net. Fins ací, teoria. En esta sessió vos pose davant **tres nòmines reals anonimitzades** que corresponen a tres situacions laborals molt distintes que vos trobareu en eixir de l'institut: un becari en pràctiques, una dependenta amb contracte indefinit i un programador júnior amb contracte indefinit en una empresa tecnològica. L'objectiu no és fer càlculs mecànics: és **llegir les tres nòmines en paral·lel** i entendre per què qui guanya més brut no sempre té la millor situació.
+Heu vist al manual com s'estructura una nòmina espanyola i com es passa del brut al net. Fins ací, teoria. En esta sessió vos pose davant **tres nòmines fictícies però versemblants** que corresponen a tres situacions laborals molt distintes que vos trobareu en eixir de l'institut: un treballador en pràctiques (amb contracte laboral: no és una beca), una dependenta amb contracte indefinit i un programador júnior amb contracte indefinit en una empresa tecnològica. L'objectiu no és fer càlculs mecànics: és **llegir les tres nòmines en paral·lel** i entendre per què qui guanya més brut no sempre té la millor situació.
 
 > *Si dins de tres anys firmeu el vostre primer contracte sense haver vist abans una nòmina de veritat, aneu a acceptar el primer que vos diguen. Esta activitat és l'assaig previ.*
 
 ## Objectius didàctics
 
-- Identificar en una nòmina real els set conceptes bàsics vistos a la unitat (salari base, complements, pagues extres, base de cotització, IRPF retingut, cotització SS treballador, líquid a percebre).
+- Identificar en una nòmina els set conceptes bàsics vistos a la unitat (salari base, complements, pagues extres, base de cotització, IRPF retingut, cotització SS treballador, líquid a percebre).
 - Calcular el salari net a partir del brut aplicant els percentatges correctes de Seguretat Social i IRPF.
-- Comparar tres situacions laborals reals i raonar quina és la **més estable**, distingint estabilitat de salari alt.
+- Comparar tres situacions laborals distintes i raonar quina és la **més estable**, distingint estabilitat de salari alt.
 - Reconéixer les implicacions pràctiques de cada tipus de contracte (indefinit, en pràctiques) sobre drets a atur, indemnització, període de prova i futures cotitzacions.
 
 ## Estructura de la sessió
@@ -68,7 +68,7 @@ Si no quadra (pot passar per arredoniments), indiqueu la diferència i la vostra
 
 | Magnitud anual | Adrián | Laia | Marc |
 | --- | --- | --- | --- |
-| Brut anual estimat (mensual × núm. pagues) | | | |
+| Brut anual estimat (fixeu-vos en quins conceptes es cobren en 14 pagues i quins en 12) | | | |
 | Net anual estimat | | | |
 | % de descompte total (brut − net) / brut | | | |
 | Té dret a atur si el despatxen demà? | | | |
@@ -99,11 +99,12 @@ Cada alumne escriu al seu quadern **una conclusió personal** en una frase, come
 
 ## Les tres nòmines (dades per a imprimir)
 
-> Les xifres són **realistes però anonimitzades**. Corresponen a un mes natural de maig de 2026 en empreses xicotetes/mitjanes espanyoles. Els percentatges de cotització seguixen la taula vigent; les retencions d'IRPF són les que aplicaria el simulador de l'AEAT per a les dades personals declarades.
+> Les nòmines són **fictícies però versemblants**. Corresponen a un mes natural de maig de 2026 en empreses xicotetes i mitjanes espanyoles. Els percentatges de cotització seguixen la taula vigent. Les retencions d'IRPF són aproximades: depenen del que cada persona cobrarà dins de l'any, de la duració del contracte i de la seua situació familiar.
 
-### Nòmina 1 — Adrián, 23 anys, becari en pràctiques en una agència de màrqueting
+### Nòmina 1 — Adrián, 23 anys, treballador en pràctiques en una agència de màrqueting
 
-- **Contracte**: per a la pràctica professional (modalitat formativa), grau en Publicitat obtingut en 2025, duració 10 mesos, jornada completa.
+- **Contracte**: formatiu per a l'obtenció de pràctica professional (és un contracte laboral, no una beca), grau en Publicitat obtingut en 2025, de l'1 de març al 31 de desembre de 2026 (10 mesos), jornada completa.
+- **Situació familiar**: sense fills.
 - **Període liquidat**: de l'1 al 31 de maig de 2026.
 - **Meritacions**:
   - Salari base: 1.323,00 €
@@ -112,29 +113,31 @@ Cada alumne escriu al seu quadern **una conclusió personal** en una frase, come
 - **Deduccions**:
   - Base de cotització: 1.613,50 € (inclou prorrateig de pagues)
   - Cotització SS treballador (6,50 %): −104,88 €
-  - Retenció IRPF (3 %): −41,49 €
-- **Líquid a percebre: 1.236,63 €**
+  - Retenció IRPF (2 %, el mínim en contractes de menys d'un any): −27,66 €
+- **Líquid a percebre: 1.250,46 €**
 - **Pagues anuals**: 14 (12 mensualitats + extra juny + extra Nadal).
 
 ### Nòmina 2 — Laia, 31 anys, dependenta indefinida en una botiga de barri
 
 - **Contracte**: indefinit a jornada completa, antiguitat 5 anys, conveni de comerç.
+- **Situació familiar**: un fill al seu càrrec.
 - **Període liquidat**: de l'1 al 31 de maig de 2026.
 - **Meritacions**:
   - Salari base: 1.260,00 €
   - Complement d'antiguitat: 95,00 €
-  - Plus de transport (no salarial): 60,00 €
+  - Plus de transport (no salarial, en 12 mensualitats): 60,00 €
   - **Total meritat: 1.415,00 €**
 - **Deduccions**:
   - Base de cotització: 1.640,83 € (amb prorrateig d'extres i el plus de transport, que cotitza des de 2014)
   - Cotització SS treballador (6,50 %): −106,65 €
   - Retenció IRPF (7 %): −99,05 €
 - **Líquid a percebre: 1.209,30 €**
-- **Pagues anuals**: 14. Antiguitat de 5 anys, dret consolidat a atur.
+- **Pagues anuals**: 14 (les extres, de 1.355 €, no porten plus de transport). Antiguitat de 5 anys, dret consolidat a atur.
 
 ### Nòmina 3 — Marc, 26 anys, programador júnior indefinit en una empresa tecnològica
 
 - **Contracte**: indefinit a jornada completa, antiguitat 1 any i 4 mesos, conveni TIC.
+- **Situació familiar**: sense fills.
 - **Període liquidat**: de l'1 al 31 de maig de 2026.
 - **Meritacions**:
   - Salari base: 2.100,00 €
@@ -156,26 +159,28 @@ Cada alumne escriu al seu quadern **una conclusió personal** en una frase, come
 | --- | --- | --- | --- |
 | Brut mensual | 1.383,00 € | 1.415,00 € | 2.650,00 € |
 | SS treballador (6,50 % base) | 104,88 € | 106,65 € | 200,96 € |
-| IRPF retingut | 41,49 € (3 %) | 99,05 € (7 %) | 450,50 € (17 %) |
-| Net mensual | 1.236,63 € | 1.209,30 € | 1.998,54 € |
+| IRPF retingut | 27,66 € (2 %) | 99,05 € (7 %) | 450,50 € (17 %) |
+| Net mensual | 1.250,46 € | 1.209,30 € | 1.998,54 € |
 
-> Observació esperada: **Adrián cobra més net que Laia tot i cobrar menys brut**, perquè la seua retenció d'IRPF és menor (és el seu primer any treballant, sense renda acumulada). Esta és una de les paradoxes que l'exercici vol que aparega.
+> Observació esperada: **Adrián cobra més net que Laia tot i cobrar menys brut**, perquè li retenen menys IRPF. No és per ser la seua primera faena ni per cap «renda acumulada»: la retenció es calcula amb el que cada persona cobrarà dins de l'any i amb la seua situació familiar. El contracte d'Adrián va començar al març i dura menys d'un any, així que el 2026 cobrarà menys que un any complet i se li aplica el 2 %, el mínim en eixos contractes. Laia cobra l'any sencer; tindre un fill al seu càrrec li rebaixa la retenció, però no tant. Esta és una de les paradoxes que l'exercici vol que aparega.
 
 ### Taula C — comparativa anual aproximada
 
 | | Adrián | Laia | Marc |
 | --- | --- | --- | --- |
-| Brut anual (× 14) | 19.362 € | 19.810 € | 37.100 € |
-| Net anual (× 14) | 17.313 € | 16.930 € | 27.980 € |
-| % descompte | 10,6 % | 14,5 % | 24,6 % |
+| Brut anual | 19.362 € | 19.690 € | 37.100 € |
+| Net anual | 17.716 € | 17.032 € | 28.381 € |
+| % descompte | 8,5 % | 13,5 % | 23,5 % |
 | Atur demà? | Sí, si ha cotitzat ≥ 360 dies | Sí, 5 anys cotitzats | Sí, 16 mesos cotitzats |
 | Indemnització acomiadament improcedent | 33 dies/any si l'acomiaden sense causa; en acabar el contracte, cap | 33 dies/any × 5 = 165 dies | 33 dies/any × 1,33 = 44 dies |
+
+El net anual és el brut anual menys **dotze** cotitzacions (en les pagues extra no es descompta Seguretat Social, perquè ja està prorratejada en la base de cada mes) i menys les **catorze** retencions d'IRPF. En Laia, el plus de transport es cobra en dotze mesos. En Adrián és una xifra anualitzada, perquè el seu contracte dura deu mesos.
 
 ### Taula D — rànquing raonat d'estabilitat (proposta)
 
 1. **Laia** — la més estable. Contracte indefinit, 5 anys d'antiguitat, indemnització d'uns 5,5 mesos de sou si la despatxen, dret consolidat a atur de llarga duració. Sou modest però predictible.
-2. **Marc** — segon. Indefinit, però només 16 mesos d'antiguitat: la indemnització per acomiadament improcedent seria de mes i mig aproximadament. Sou alt, però el sector TIC té rotació; el descompte del 24,6 % el sorprén en veure la nòmina.
-3. **Adrián** — el menys estable. Contracte formatiu amb data de fi (10 mesos), sense indemnització per fi de contracte més enllà de la que corresponga per dies treballats, sense dret consolidat a l'atur si no completa cotització suficient. El seu net és enganyosament alt perquè la retenció d'IRPF és molt baixa en ser primer any.
+2. **Marc** — segon. Indefinit, però només 16 mesos d'antiguitat: la indemnització per acomiadament improcedent seria de mes i mig aproximadament. Sou alt, però el sector TIC té rotació; el descompte del 23,5 % el sorprén en veure la nòmina.
+3. **Adrián** — el menys estable. Contracte formatiu amb data de fi (10 mesos) i sense indemnització quan acaba: els contractes formatius no en tenen, només el finiquit. Tampoc té dret consolidat a l'atur si no completa cotització suficient. El seu net és enganyosament alt: amb un contracte d'un any complet li retindrien bastant més que el 2 %.
 
 > El missatge pedagògic clau: **el brut no decidix l'estabilitat**. Marc cobra el doble que Laia però està més exposat a acomiadament barat. Adrián sembla cobrar bé però el seu contracte té data de caducitat. Saber llegir estes tres nòmines en paral·lel és el que evita acceptar el primer contracte sense entendre què es firma.
 

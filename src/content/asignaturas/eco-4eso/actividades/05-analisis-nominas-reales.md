@@ -1,15 +1,15 @@
 ---
 asignatura: eco-4eso
 unidad_relacionada: 5
-title: "Análisis de tres nóminas reales: del bruto al neto, contrato a contrato"
-descripcion: "Ejercicio guiado en parejas sobre tres nóminas anonimizadas (un becario en prácticas, una dependienta indefinida y un programador junior) para identificar conceptos, calcular el neto, comparar situaciones reales y decidir cuál es el contrato más estable."
+title: "Análisis de tres nóminas: del bruto al neto, contrato a contrato"
+descripcion: "Ejercicio guiado en parejas sobre tres nóminas ficticias pero verosímiles (un trabajador en prácticas, una dependienta indefinida y un programador junior) para identificar conceptos, calcular el neto, comparar situaciones distintas y decidir cuál es el contrato más estable."
 tipo: ejercicio
 duracion: "55 min · 1 sesión (5 min planteamiento + 30 min trabajo en parejas + 15 min puesta en común + 5 min cierre)"
 agrupacion: "parejas → grupo clase"
 competencias_clave: [STEM, CPSAA, CCL]
 competencias_especificas: [CE4]
 materiales:
-  - "Tres fichas impresas con las nóminas anonimizadas (una por pareja, incluidas al final de esta actividad)"
+  - "Tres fichas impresas con las nóminas (una por pareja, incluidas al final de esta actividad)"
   - "Calculadora simple (o app del móvil)"
   - "Ficha de respuestas con las cuatro tablas a rellenar"
   - "Pizarra para la puesta en común y el ranking final de estabilidad"
@@ -18,15 +18,15 @@ estado: publicado
 
 ## Planteamiento
 
-Habéis visto en el manual cómo se estructura una nómina española y cómo se pasa del bruto al neto. Hasta aquí, teoría. En esta sesión os pongo delante **tres nóminas reales anonimizadas** que corresponden a tres situaciones laborales muy distintas que os vais a encontrar al salir del instituto: un becario en prácticas, una dependienta con contrato indefinido y un programador junior con contrato indefinido en una empresa tecnológica. El objetivo no es hacer cálculos mecánicos: es **leer las tres nóminas en paralelo** y entender por qué quien gana más bruto no siempre tiene la mejor situación.
+Habéis visto en el manual cómo se estructura una nómina española y cómo se pasa del bruto al neto. Hasta aquí, teoría. En esta sesión os pongo delante **tres nóminas ficticias pero verosímiles** que corresponden a tres situaciones laborales muy distintas que os vais a encontrar al salir del instituto: un trabajador en prácticas (con contrato laboral: no es una beca), una dependienta con contrato indefinido y un programador junior con contrato indefinido en una empresa tecnológica. El objetivo no es hacer cálculos mecánicos: es **leer las tres nóminas en paralelo** y entender por qué quien gana más bruto no siempre tiene la mejor situación.
 
 > *Si dentro de tres años firmáis vuestro primer contrato sin haber visto antes una nómina de verdad, vais a aceptar lo primero que os digan. Esta actividad es el ensayo previo.*
 
 ## Objetivos didácticos
 
-- Identificar en una nómina real los siete conceptos básicos vistos en la unidad (salario base, complementos, pagas extras, base de cotización, IRPF retenido, cotización SS trabajador, líquido a percibir).
+- Identificar en una nómina los siete conceptos básicos vistos en la unidad (salario base, complementos, pagas extras, base de cotización, IRPF retenido, cotización SS trabajador, líquido a percibir).
 - Calcular el salario neto a partir del bruto aplicando los porcentajes correctos de Seguridad Social e IRPF.
-- Comparar tres situaciones laborales reales y razonar cuál es la **más estable**, distinguiendo estabilidad de salario alto.
+- Comparar tres situaciones laborales distintas y razonar cuál es la **más estable**, distinguiendo estabilidad de salario alto.
 - Reconocer las implicaciones prácticas de cada tipo de contrato (indefinido, en prácticas) sobre derechos a paro, indemnización, periodo de prueba y futuras cotizaciones.
 
 ## Estructura de la sesión
@@ -66,7 +66,7 @@ Si no cuadra (puede pasar por redondeos), indicad la diferencia y vuestra hipót
 
 | Magnitud anual | Adrián | Laia | Marc |
 | --- | --- | --- | --- |
-| Bruto anual estimado (mensual × nº pagas) | | | |
+| Bruto anual estimado (fijaos en qué conceptos se cobran en 14 pagas y cuáles en 12) | | | |
 | Neto anual estimado | | | |
 | % de descuento total (bruto − neto) / bruto | | | |
 | ¿Tiene derecho a paro si lo despiden mañana? | | | |
@@ -97,11 +97,12 @@ Cada alumno escribe en su cuaderno **una conclusión personal** en una frase, em
 
 ## Las tres nóminas (datos para imprimir)
 
-> Las cifras son **realistas pero anonimizadas**. Corresponden a un mes natural de mayo de 2026 en empresas pequeñas/medianas españolas. Los porcentajes de cotización siguen la tabla vigente; las retenciones de IRPF son las que aplicaría el simulador de la AEAT para los datos personales declarados.
+> Las nóminas son **ficticias pero verosímiles**. Corresponden a un mes natural de mayo de 2026 en empresas pequeñas y medianas españolas. Los porcentajes de cotización siguen la tabla vigente. Las retenciones de IRPF son aproximadas: dependen de lo que cada persona va a cobrar dentro del año, de la duración del contrato y de su situación familiar.
 
-### Nómina 1 — Adrián, 23 años, becario en prácticas en una agencia de marketing
+### Nómina 1 — Adrián, 23 años, trabajador en prácticas en una agencia de marketing
 
-- **Contrato**: para la práctica profesional (modalidad formativa), grado en Publicidad obtenido en 2025, duración 10 meses, jornada completa.
+- **Contrato**: formativo para la obtención de práctica profesional (es un contrato laboral, no una beca), grado en Publicidad obtenido en 2025, del 1 de marzo al 31 de diciembre de 2026 (10 meses), jornada completa.
+- **Situación familiar**: sin hijos.
 - **Periodo liquidado**: del 1 al 31 de mayo de 2026.
 - **Devengos**:
   - Salario base: 1.323,00 €
@@ -110,29 +111,31 @@ Cada alumno escribe en su cuaderno **una conclusión personal** en una frase, em
 - **Deducciones**:
   - Base de cotización: 1.613,50 € (incluye prorrateo de pagas)
   - Cotización SS trabajador (6,50 %): −104,88 €
-  - Retención IRPF (3 %): −41,49 €
-- **Líquido a percibir: 1.236,63 €**
+  - Retención IRPF (2 %, el mínimo en contratos de menos de un año): −27,66 €
+- **Líquido a percibir: 1.250,46 €**
 - **Pagas anuales**: 14 (12 mensualidades + extra junio + extra Navidad).
 
 ### Nómina 2 — Laia, 31 años, dependienta indefinida en una tienda de barrio
 
 - **Contrato**: indefinido a jornada completa, antigüedad 5 años, convenio de comercio.
+- **Situación familiar**: un hijo a su cargo.
 - **Periodo liquidado**: del 1 al 31 de mayo de 2026.
 - **Devengos**:
   - Salario base: 1.260,00 €
   - Complemento de antigüedad: 95,00 €
-  - Plus de transporte (no salarial): 60,00 €
+  - Plus de transporte (no salarial, en 12 mensualidades): 60,00 €
   - **Total devengado: 1.415,00 €**
 - **Deducciones**:
   - Base de cotización: 1.640,83 € (con prorrateo de extras y el plus de transporte, que cotiza desde 2014)
   - Cotización SS trabajador (6,50 %): −106,65 €
   - Retención IRPF (7 %): −99,05 €
 - **Líquido a percibir: 1.209,30 €**
-- **Pagas anuales**: 14. Antigüedad de 5 años, derecho consolidado a paro.
+- **Pagas anuales**: 14 (las extras, de 1.355 €, no llevan plus de transporte). Antigüedad de 5 años, derecho consolidado a paro.
 
 ### Nómina 3 — Marc, 26 años, programador junior indefinido en una empresa tecnológica
 
 - **Contrato**: indefinido a jornada completa, antigüedad 1 año y 4 meses, convenio TIC.
+- **Situación familiar**: sin hijos.
 - **Periodo liquidado**: del 1 al 31 de mayo de 2026.
 - **Devengos**:
   - Salario base: 2.100,00 €
@@ -154,26 +157,28 @@ Cada alumno escribe en su cuaderno **una conclusión personal** en una frase, em
 | --- | --- | --- | --- |
 | Bruto mensual | 1.383,00 € | 1.415,00 € | 2.650,00 € |
 | SS trabajador (6,50 % base) | 104,88 € | 106,65 € | 200,96 € |
-| IRPF retenido | 41,49 € (3 %) | 99,05 € (7 %) | 450,50 € (17 %) |
-| Neto mensual | 1.236,63 € | 1.209,30 € | 1.998,54 € |
+| IRPF retenido | 27,66 € (2 %) | 99,05 € (7 %) | 450,50 € (17 %) |
+| Neto mensual | 1.250,46 € | 1.209,30 € | 1.998,54 € |
 
-> Observación esperada: **Adrián cobra más neto que Laia pese a cobrar menos bruto**, porque su retención de IRPF es menor (es su primer año trabajando, sin renta acumulada). Esta es una de las paradojas que el ejercicio quiere que aparezca.
+> Observación esperada: **Adrián cobra más neto que Laia pese a cobrar menos bruto**, porque le retienen menos IRPF. No es por ser su primer empleo ni por ninguna «renta acumulada»: la retención se calcula con lo que cada persona va a cobrar dentro del año y con su situación familiar. El contrato de Adrián empezó en marzo y dura menos de un año, así que en 2026 cobrará menos que un año completo y se le aplica el 2 %, el mínimo en esos contratos. Laia cobra el año entero; tener un hijo a su cargo le rebaja la retención, pero no tanto. Esta es una de las paradojas que el ejercicio quiere que aparezca.
 
 ### Tabla C — comparativa anual aproximada
 
 | | Adrián | Laia | Marc |
 | --- | --- | --- | --- |
-| Bruto anual (× 14) | 19.362 € | 19.810 € | 37.100 € |
-| Neto anual (× 14) | 17.313 € | 16.930 € | 27.980 € |
-| % descuento | 10,6 % | 14,5 % | 24,6 % |
+| Bruto anual | 19.362 € | 19.690 € | 37.100 € |
+| Neto anual | 17.716 € | 17.032 € | 28.381 € |
+| % descuento | 8,5 % | 13,5 % | 23,5 % |
 | ¿Paro mañana? | Sí, si ha cotizado ≥ 360 días | Sí, 5 años cotizados | Sí, 16 meses cotizados |
 | Indemnización despido improcedente | 33 días/año si le despiden sin causa; al acabar el contrato, ninguna | 33 días/año × 5 = 165 días | 33 días/año × 1,33 = 44 días |
+
+El neto anual es el bruto anual menos **doce** cotizaciones (en las pagas extra no se descuenta Seguridad Social, porque ya está prorrateada en la base de cada mes) y menos las **catorce** retenciones de IRPF. En Laia, el plus de transporte se cobra en doce meses. En Adrián es una cifra anualizada, porque su contrato dura diez meses.
 
 ### Tabla D — ranking razonado de estabilidad (propuesta)
 
 1. **Laia** — la más estable. Contrato indefinido, 5 años de antigüedad, indemnización de unos 5,5 meses de sueldo si la despiden, derecho consolidado a paro de larga duración. Sueldo modesto pero predecible.
-2. **Marc** — segundo. Indefinido, pero solo 16 meses de antigüedad: la indemnización por despido improcedente sería de mes y medio aproximadamente. Sueldo alto, pero el sector TIC tiene rotación; el descuento del 24,6 % le sorprende al ver la nómina.
-3. **Adrián** — el menos estable. Contrato formativo con fecha de fin (10 meses), sin indemnización por fin de contrato más allá de la que corresponda por días trabajados, sin derecho consolidado al desempleo si no completa cotización suficiente. Su neto es engañosamente alto porque la retención de IRPF es muy baja al ser primer año.
+2. **Marc** — segundo. Indefinido, pero solo 16 meses de antigüedad: la indemnización por despido improcedente sería de mes y medio aproximadamente. Sueldo alto, pero el sector TIC tiene rotación; el descuento del 23,5 % le sorprende al ver la nómina.
+3. **Adrián** — el menos estable. Contrato formativo con fecha de fin (10 meses) y sin indemnización cuando termina: los contratos formativos no la tienen, solo el finiquito. Tampoco tiene derecho consolidado al desempleo si no completa cotización suficiente. Su neto es engañosamente alto: con un contrato de un año completo le retendrían bastante más que el 2 %.
 
 > El mensaje pedagógico clave: **el bruto no decide la estabilidad**. Marc cobra el doble que Laia pero está más expuesto a despido barato. Adrián parece cobrar bien pero su contrato tiene fecha de caducidad. Saber leer estas tres nóminas en paralelo es lo que evita aceptar el primer contrato sin entender qué se firma.
 

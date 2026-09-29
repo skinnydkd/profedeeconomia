@@ -16,7 +16,7 @@ estado: publicado
 
 ## Qué tener en cuenta
 
-El **salario bruto** es lo que figura en el contrato; el **salario neto** es lo que llega a la cuenta. La diferencia son dos descuentos: las **cotizaciones a la Seguridad Social** (que dan derecho a sanidad, paro y, en el futuro, pensión) y la **retención de IRPF** (un adelanto del impuesto que pagamos todos según lo que ganamos).
+El **salario bruto** es lo que figura en el contrato; el **salario neto** es lo que llega a la cuenta. La diferencia son dos descuentos: las **cotizaciones a la Seguridad Social** (que dan derecho a paro, a bajas por enfermedad y, en el futuro, a una pensión) y la **retención de IRPF** (un adelanto del impuesto que pagamos todos según lo que ganamos, y que financia servicios como la sanidad o la educación).
 
 Esto es una versión simplificada para entender la idea, no una nómina exacta de verdad. Los porcentajes reales cambian según el sueldo y la situación de cada persona. Lo importante a esta edad no es calcular al céntimo, sino ver **de dónde sale cada descuento** y que ese dinero no desaparece: vuelve en forma de servicios públicos.
 

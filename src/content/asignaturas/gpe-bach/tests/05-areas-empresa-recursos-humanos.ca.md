@@ -50,11 +50,11 @@ preguntas:
   - enunciado: "Què financen, entre altres coses, les cotitzacions a la Seguretat Social que es deduïxen de la nòmina?"
     opciones:
       - "La publicitat de les empreses privades."
-      - "Les pensions, la sanitat i les prestacions per desocupació."
+      - "Les pensions, les prestacions per desocupació i les baixes per malaltia."
       - "El preu de venda dels productes."
       - "El lloguer del local de l'empresa."
     correcta: 1
-    explicacion: "La part que la persona aporta a la Seguretat Social finança el sistema comú: pensions, sanitat i desocupació, entre altres. Per això cotitzar i pagar impostos s'entén en GPE com una contribució al sosteniment d'allò comú."
+    explicacion: "La part que la persona aporta a la Seguretat Social finança prestacions com les pensions, l'atur o les baixes per malaltia. La sanitat pública, en canvi, es paga amb impostos. Les dues coses són contribucions: per això cotitzar i pagar impostos s'entén en GPE com una contribució al sosteniment d'allò comú."
   - enunciado: "Quina relació hi ha entre el currículum i el videocurrículum?"
     opciones:
       - "El videocurrículum substituïx per complet el currículum en paper."

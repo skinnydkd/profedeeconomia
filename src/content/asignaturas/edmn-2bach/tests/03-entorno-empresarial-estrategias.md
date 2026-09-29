@@ -61,14 +61,14 @@ preguntas:
       - "Cliente, empleado y proveedor."
     correcta: 0
     explicacion: "Los tres pilares clásicos de la RSC son económico, social y ambiental, alineados con la *triple bottom line*."
-  - enunciado: "Las empresas con plantilla superior a ¿cuántas personas? deben tener un plan de igualdad registrado en España?"
+  - enunciado: "¿A partir de cuántas personas en plantilla deben tener las empresas un plan de igualdad registrado en España?"
     opciones:
       - "10 personas."
       - "25 personas."
       - "50 personas."
       - "100 personas."
     correcta: 2
-    explicacion: "Desde el RD-Ley 6/2019, las empresas con más de 50 personas deben tener un plan de igualdad registrado, con diagnóstico, objetivos cuantitativos y medidas de seguimiento."
+    explicacion: "Desde el RD-Ley 6/2019, las empresas con 50 personas o más deben tener un plan de igualdad registrado, con diagnóstico, objetivos cuantitativos y medidas de seguimiento."
   - enunciado: "El cruce DAFO *Debilidades + Oportunidades (DO)* genera estrategias de…"
     opciones:
       - "Defensa."

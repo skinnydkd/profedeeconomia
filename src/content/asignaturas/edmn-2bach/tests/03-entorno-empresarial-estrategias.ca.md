@@ -63,14 +63,14 @@ preguntas:
       - "Client, empleat i proveïdor."
     correcta: 0
     explicacion: "Els tres pilars clàssics de la RSC són econòmic, social i ambiental, alineats amb la *triple bottom line*."
-  - enunciado: "Les empreses amb plantilla superior a quantes persones han de tindre un pla d'igualtat registrat a Espanya?"
+  - enunciado: "A partir de quantes persones en plantilla han de tindre les empreses un pla d'igualtat registrat a Espanya?"
     opciones:
       - "10 persones."
       - "25 persones."
       - "50 persones."
       - "100 persones."
     correcta: 2
-    explicacion: "Des del RD-Llei 6/2019, les empreses amb més de 50 persones han de tindre un pla d'igualtat registrat, amb diagnòstic, objectius quantitatius i mesures de seguiment."
+    explicacion: "Des del RD-Llei 6/2019, les empreses amb 50 persones o més han de tindre un pla d'igualtat registrat, amb diagnòstic, objectius quantitatius i mesures de seguiment."
   - enunciado: "El creuament DAFO *Debilitats + Oportunitats (DO)* genera estratègies de…"
     opciones:
       - "Defensa."
