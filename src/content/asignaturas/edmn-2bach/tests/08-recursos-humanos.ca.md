@@ -62,7 +62,7 @@ preguntas:
       - "50 persones."
       - "100 persones."
     correcta: 2
-    explicacion: "Des del RD-Llei 6/2019, > 50 persones: pla d'igualtat registrat obligatori. Totes les empreses, sense llindar: registre retributiu desglossat per sexe i categoria."
+    explicacion: "Des del RD-Llei 6/2019, amb 50 persones o més: pla d'igualtat registrat obligatori. Totes les empreses, sense llindar: registre retributiu desglossat per sexe i categoria."
   - enunciado: "El cost empresa NO inclou…"
     opciones:
       - "El salari brut."

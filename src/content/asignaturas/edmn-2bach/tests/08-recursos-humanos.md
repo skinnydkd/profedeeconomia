@@ -60,7 +60,7 @@ preguntas:
       - "50 personas."
       - "100 personas."
     correcta: 2
-    explicacion: "Desde el RD-Ley 6/2019, > 50 personas: plan de igualdad registrado obligatorio. Todas las empresas, sin umbral: registro retributivo desglosado por sexo y categoría."
+    explicacion: "Desde el RD-Ley 6/2019, con 50 personas o más: plan de igualdad registrado obligatorio. Todas las empresas, sin umbral: registro retributivo desglosado por sexo y categoría."
   - enunciado: "El coste empresa NO incluye…"
     opciones:
       - "El salario bruto."

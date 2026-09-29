@@ -29,11 +29,11 @@ El detall que ho fa possible: la forma jurídica de quasi qualsevol empresa és 
 
 | Font | Què dona |
 | --- | --- |
-| Tiquet o factura | Denominació social completa i CIF: ahí està la forma jurídica |
-| Avís legal del web | Denominació, domicili social i CIF, obligatoris per llei |
+| Tiquet o factura | Denominació social completa i NIF (molts tiquets encara diuen «CIF», el nom antic): ahí està la forma jurídica |
+| Avís legal del web | Denominació, domicili social i NIF, obligatoris per llei |
 | BORME (Butlletí Oficial del Registre Mercantil) | Constitució, canvis d'administradors, ampliacions de capital |
 | Portal de transparència municipal | Empreses adjudicatàries de contractes públics de l'ajuntament |
-| La lletra inicial del CIF | A = anònima · B = limitada · F = cooperativa · J = societat civil · E = comunitat de béns |
+| La lletra inicial del NIF | A = anònima · B = limitada · F = cooperativa · J = societat civil · E = comunitat de béns |
 | Un NIF amb lletra final (un DNI) | No hi ha societat: és una persona física, és a dir, un autònom |
 
 ## Objectius didàctics
@@ -46,7 +46,7 @@ El detall que ho fa possible: la forma jurídica de quasi qualsevol empresa és 
 ## Passos (sessió de 55 min)
 
 1. **Preparació prèvia (fora de l'aula).** Cada parella fotografia el rètol, el tiquet o la factura de **tres negocis distints** del seu entorn: procureu que siguen de grandàries diferents (un bar, una botiga, una empresa amb nau o amb diverses seus).
-2. **Identificació (15 min).** Localitzeu per a cada una la denominació social completa i el CIF. Deduïu la forma jurídica de la lletra inicial i confirmeu-la a l'avís legal del seu web si en té.
+2. **Identificació (15 min).** Localitzeu per a cada una la denominació social completa i el NIF. Deduïu la forma jurídica de la lletra inicial i confirmeu-la a l'avís legal del seu web si en té.
 3. **Fitxa de cada empresa (15 min).** Completeu sector, forma jurídica, nombre aproximat d'empleats i, si el trobeu, any de constitució.
 4. **El perquè (15 min).** Per a cada una, escriviu dues raons plausibles de per què va triar eixa forma i no una altra. Useu els criteris de la unitat: responsabilitat, capital mínim, nombre de socis, fiscalitat, accés a finançament.
 5. **Posada en comú (10 min).** Es bolquen a la pissarra les formes jurídiques trobades per tota la classe i es compta quantes n'hi ha de cada una. El recompte sol assemblar-se molt a l'estadística nacional.
@@ -59,7 +59,7 @@ Parella: ______________________
 EMPRESA 1
   Nom comercial: ________________________________
   Denominació social: ___________________________
-  CIF (primera lletra): ____   Forma jurídica: ___________
+  NIF (primera lletra): ____   Forma jurídica: ___________
   Sector: ______________   Empleats (aprox.): ______
   Dues raons per a eixa forma: ___________________________
 
@@ -81,7 +81,7 @@ Recompte de la classe:
 
 | Criteri | Descripció | Pes |
 | --- | --- | --- |
-| Identificació | Les tres empreses amb denominació, CIF i forma jurídica correctes | 30 % |
+| Identificació | Les tres empreses amb denominació, NIF i forma jurídica correctes | 30 % |
 | Ús de fonts | Fonts públiques citades, no suposicions | 20 % |
 | Raonament | Motius plausibles i recolzats en els criteris de la unitat | 30 % |
 | Transferència | Relaciona el recompte de classe amb l'estructura del teixit espanyol | 20 % |

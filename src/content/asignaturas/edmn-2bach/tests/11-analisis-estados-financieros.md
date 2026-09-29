@@ -72,7 +72,7 @@ preguntas:
   - enunciado: "Por qué Mercadona puede operar con fondo de maniobra NEGATIVO sin problema de liquidez:"
     opciones:
       - "Porque tiene mucha deuda a largo plazo."
-      - "Porque cobra al contado a sus clientes y paga a sus proveedores a 30, 60 o 90 días."
+      - "Porque cobra al contado a sus clientes y paga a sus proveedores a 30 o 60 días."
       - "Porque su patrimonio neto es elevadísimo."
       - "Porque opera bajo régimen fiscal especial."
     correcta: 1
