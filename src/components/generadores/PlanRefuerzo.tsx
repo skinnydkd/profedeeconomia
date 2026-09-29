@@ -13,7 +13,7 @@ import { type Locale } from '@/i18n/locale';
 export const COPY = {
   es: {
     intro:
-      'Documenta el plan de refuerzo o recuperación de un alumno: áreas a reforzar, medidas adoptadas, actividades propuestas y seguimiento.',
+      'Documenta el plan de refuerzo o recuperación de un alumno: áreas a reforzar, medidas adoptadas, actividades propuestas y seguimiento. Los datos se guardan solo en este navegador: usa iniciales o un código, no nombres completos ni diagnósticos, y pulsa «Vaciar» al terminar si el ordenador es compartido.',
     heading: 'Plan de refuerzo / recuperación',
     alumnoLabel: 'Alumno/a',
     grupoLabel: 'Grupo',
@@ -24,7 +24,7 @@ export const COPY = {
     actividadesLabel: 'Actividades propuestas',
     temporizacionLabel: 'Temporización',
     seguimientoLabel: 'Seguimiento / observaciones',
-    alumnoPlaceholder: 'Nombre y apellidos',
+    alumnoPlaceholder: 'Iniciales o código',
     grupoPlaceholder: 'Ej. 2.º A',
     cursoPlaceholder: 'Ej. 2024-2025',
     fechaPlaceholder: 'dd/mm/aaaa',
@@ -47,7 +47,7 @@ export const COPY = {
   },
   ca: {
     intro:
-      "Documenta el pla de reforç o recuperació d'un alumne: àrees a reforçar, mesures adoptades, activitats proposades i seguiment.",
+      "Documenta el pla de reforç o recuperació d'un alumne: àrees a reforçar, mesures adoptades, activitats proposades i seguiment. Les dades es guarden només en este navegador: usa inicials o un codi, no noms complets ni diagnòstics, i prem «Buidar» en acabar si l'ordinador és compartit.",
     heading: 'Pla de reforç / recuperació',
     alumnoLabel: 'Alumne/a',
     grupoLabel: 'Grup',
@@ -58,7 +58,7 @@ export const COPY = {
     actividadesLabel: 'Activitats proposades',
     temporizacionLabel: 'Temporització',
     seguimientoLabel: 'Seguiment / observacions',
-    alumnoPlaceholder: 'Nom i cognoms',
+    alumnoPlaceholder: 'Inicials o codi',
     grupoPlaceholder: 'Ex. 2n A',
     cursoPlaceholder: 'Ex. 2024-2025',
     fechaPlaceholder: 'dd/mm/aaaa',

@@ -13,7 +13,7 @@ import { type Locale } from '@/i18n/locale';
 export const COPY = {
   es: {
     intro:
-      'Registra la asistencia, actitud y entrega de tareas de cada alumno por sesión. Añade o elimina filas según el número de alumnos del grupo.',
+      'Registra la asistencia, actitud y entrega de tareas de cada alumno por sesión. Añade o elimina filas según el número de alumnos del grupo. Los datos se guardan solo en este navegador: usa iniciales o un código, no nombres completos ni diagnósticos, y pulsa «Vaciar» al terminar si el ordenador es compartido.',
     heading: 'Registro de aula',
     fechaLabel: 'Fecha',
     fechaPlaceholder: 'dd/mm/aaaa',
@@ -25,7 +25,7 @@ export const COPY = {
     thEntregas: 'Entregas',
     thObservaciones: 'Observaciones',
     eliminarFilaAria: 'Eliminar fila',
-    nombrePlaceholder: 'Nombre',
+    nombrePlaceholder: 'Iniciales o código',
     asistenciaPlaceholder: 'P / A / R',
     actitudPlaceholder: '1–5',
     entregasPlaceholder: 'Sí / No',
@@ -41,7 +41,7 @@ export const COPY = {
   },
   ca: {
     intro:
-      "Registra l'assistència, l'actitud i l'entrega de tasques de cada alumne per sessió. Afig o elimina files segons el nombre d'alumnes del grup.",
+      "Registra l'assistència, l'actitud i l'entrega de tasques de cada alumne per sessió. Afig o elimina files segons el nombre d'alumnes del grup. Les dades es guarden només en este navegador: usa inicials o un codi, no noms complets ni diagnòstics, i prem «Buidar» en acabar si l'ordinador és compartit.",
     heading: "Registre d'aula",
     fechaLabel: 'Data',
     fechaPlaceholder: 'dd/mm/aaaa',
@@ -53,7 +53,7 @@ export const COPY = {
     thEntregas: 'Entregues',
     thObservaciones: 'Observacions',
     eliminarFilaAria: 'Eliminar fila',
-    nombrePlaceholder: 'Nom',
+    nombrePlaceholder: 'Inicials o codi',
     asistenciaPlaceholder: 'P / A / R',
     actitudPlaceholder: '1–5',
     entregasPlaceholder: 'Sí / No',
