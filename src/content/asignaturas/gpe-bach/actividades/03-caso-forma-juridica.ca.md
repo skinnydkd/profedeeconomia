@@ -25,7 +25,7 @@ Triar la forma jurídica és una de les decisions d'arrancada que més condicion
 ## Els tres casos
 
 **Cas A — Marta, rebosteria casolana.**
-Marta cuina molt bé i vol vendre coques per encàrrec des de la cuina de sa casa. Comença ella sola, amb pocs clients (familiars, veïns, xarxes), una inversió mínima i sense local. Vol arrancar ja i gastar el menys possible en tràmits. El risc econòmic és baix.
+Marta cuina molt bé i vol vendre coques per encàrrec des de la cuina de sa casa. Comença ella sola, amb pocs clients (familiars, veïns, xarxes), una inversió mínima i sense local. Vol arrancar ja i gastar el menys possible en tràmits. El risc econòmic és baix. (Compte: vendre menjar elaborat exigix complir la normativa sanitària —registre o comunicació prèvia i formació en manipulació d'aliments—, i en general una cuina particular no servix com a obrador. És un tràmit que no es pot saltar.)
 
 **Cas B — Tres amics, app de repartiment local.**
 Aitor, Nerea i Hugo volen desenvolupar una app que connecte comerços del barri amb repartidors en bici. Necessiten invertir en desenvolupament informàtic, màrqueting i, potser, contractar algú. Hi ha diners en joc i risc de deutes si la cosa no arranca. Volen protegir el seu patrimoni personal i que l'empresa tinga una imatge seriosa davant d'inversors.

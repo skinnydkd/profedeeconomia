@@ -18,7 +18,7 @@ estado: publicado
 
 La nómina depende del **tipo de contrato**, del **grupo de cotización** y de la **situación personal** (hijos, otras rentas), que modulan la retención de IRPF. La calculadora usa un caso estándar para que se entienda la mecánica; un caso real puede variar y conviene comentarlo en clase.
 
-Recuerda la distinción clave: la **cotización del trabajador** (6,50 %) se descuenta del bruto, pero la empresa paga **además** una cotización patronal mucho mayor (≈ 30 % del bruto) que no aparece en la nómina del trabajador. Ese coste es el que el proyecto tiene que poder pagar.
+Recuerda la distinción clave: la **cotización del trabajador** (6,50 %) se descuenta del bruto, pero la empresa paga **además** una cotización patronal mucho mayor (≈ 30 % del bruto). También figura en la nómina, como aportación de la empresa, pero no se descuenta del sueldo. Ese coste es el que el proyecto tiene que poder pagar.
 
 ## Para ir más allá
 

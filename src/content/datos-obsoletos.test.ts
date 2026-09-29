@@ -66,7 +66,7 @@ const OBSOLETOS: Obsoleto[] = [
     ejemplo: 'Este árbol cubre el 95 % de los casos.',
   },
   {
-    patron: /(?:no aparecen|no apareixen) en la n[óò]mina/i,
+    patron: /(?:no aparecen?|no apareix(?:en)?) (?:en|a) (?:la )?n[óò]mina/i,
     motivo: 'Las cuotas patronales sí figuran en la nómina (aportación de la empresa); lo que no hacen es descontarse del sueldo',
     ejemplo: 'Las cuotas patronales NO aparecen en la nómina.',
   },
