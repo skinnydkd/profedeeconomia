@@ -80,12 +80,8 @@ export function Welcome({ initialIdentity, onStart }: Props) {
         Empezar
       </button>
 
-      <p class="jocs-mute" style={{ marginTop: 20, fontSize: 11, lineHeight: 1.4 }}>
+      <p style={{ marginTop: 20, fontSize: 14, lineHeight: 1.5, color: 'var(--jocs-ink-soft)' }}>
         El alias y el instituto aparecerán públicamente en el ranking. No escribas tu nombre completo.
-      </p>
-
-      <p style={{ textAlign: 'center', marginTop: 32 }}>
-        <a class="jocs-link" href="/jocs-economics/leaderboard/">Ver ranking →</a>
       </p>
     </>
   );

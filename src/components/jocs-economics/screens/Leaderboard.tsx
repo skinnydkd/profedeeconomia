@@ -35,7 +35,7 @@ export default function Leaderboard() {
             background: 'none', border: 'none', padding: '8px 0',
             fontFamily: 'inherit', fontSize: 14, cursor: 'pointer',
             color: tab === 'individual' ? 'var(--jocs-ink)' : 'var(--jocs-ink-mute)',
-            borderBottom: tab === 'individual' ? '2px solid var(--jocs-blue-deep)' : '2px solid transparent',
+            borderBottom: tab === 'individual' ? '2px solid var(--jocs-terracota)' : '2px solid transparent',
             fontWeight: tab === 'individual' ? 600 : 400,
           }}
         >
@@ -47,7 +47,7 @@ export default function Leaderboard() {
             background: 'none', border: 'none', padding: '8px 0',
             fontFamily: 'inherit', fontSize: 14, cursor: 'pointer',
             color: tab === 'institute' ? 'var(--jocs-ink)' : 'var(--jocs-ink-mute)',
-            borderBottom: tab === 'institute' ? '2px solid var(--jocs-blue-deep)' : '2px solid transparent',
+            borderBottom: tab === 'institute' ? '2px solid var(--jocs-terracota)' : '2px solid transparent',
             fontWeight: tab === 'institute' ? 600 : 400,
           }}
         >
