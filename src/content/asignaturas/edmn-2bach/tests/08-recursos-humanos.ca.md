@@ -51,7 +51,7 @@ preguntas:
     opciones:
       - "0,10 € addicionals en cotitzacions patronals."
       - "0,20 € addicionals."
-      - "0,30-0,35 € addicionals en cotitzacions patronals (que NO apareixen en la nòmina)."
+      - "0,30-0,35 € addicionals en cotitzacions patronals, que no es descompten del sou."
       - "0,50 € addicionals."
     correcta: 2
     explicacion: "Les quotes patronals suposen un 30-35 % addicional sobre el brut. Per això 1.500 € bruts en nòmina signifiquen ~ 1.950-2.025 € de cost empresa real."

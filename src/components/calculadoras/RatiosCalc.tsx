@@ -24,6 +24,7 @@ export const COPY = {
     fieldPnc: 'Pasivo no corriente',
     fieldPc: 'Pasivo corriente',
     fieldBaii: 'BAII (Resultado de explotación)',
+    fieldIntereses: 'Gastos financieros (intereses)',
     fieldBeneficioNeto: 'Beneficio neto',
 
     balanceCuadra: (total: number) => `✓ El balance cuadra: ${total} mil € en ambos lados.`,
@@ -38,7 +39,7 @@ export const COPY = {
     metricEndeudamiento: 'Endeudamiento',
     metricRoa: 'ROA (rentabilidad económica)',
     metricRoe: 'ROE (rentabilidad financiera)',
-    metricApalancamiento: 'Apalancamiento (ROE − ROA)',
+    metricApalancamiento: 'Apalancamiento (ROA − coste de la deuda)',
 
     comLiquidez: 'Sano: 1,5 – 2',
     comTesoreria: 'Sano: ≈ 1',
@@ -47,7 +48,9 @@ export const COPY = {
     comEndeudamiento: 'Sano: 40 – 60 %',
     comRoa: 'Eficiencia operativa del activo',
     comRoe: 'Rendimiento del capital aportado por los socios',
-    comApalancamiento: 'Positivo: la deuda aporta valor a los socios',
+    comApalancamiento: (costeDeuda: string, rfAntes: string) =>
+      `Deuda al ${costeDeuda}; rentabilidad de los socios antes de impuestos: ${rfAntes}`,
+    comSinDeuda: 'Sin deuda, no hay apalancamiento',
 
     fmSano: 'Equilibrio sano',
     fmFragil: 'Frágil',
@@ -79,7 +82,7 @@ export const COPY = {
     fRoeNote: 'Mide el rendimiento que obtienen los accionistas.',
     fApalName: 'Apalancamiento financiero',
     fApalBody:
-      ': si ROA > coste de la deuda, el ROE supera al ROA y la empresa rentabiliza la deuda; si ROA < coste de la deuda, ocurre lo contrario.',
+      ': si el ROA supera el coste de la deuda (intereses / pasivo), cada euro prestado rinde más de lo que cuesta y la rentabilidad de los socios antes de impuestos (BAI / PN) supera al ROA; si no llega, ocurre lo contrario. El ROE, después de impuestos, puede quedar por debajo del ROA aunque la deuda sea favorable.',
   },
   ca: {
     subActivo: 'Actiu',
@@ -97,6 +100,7 @@ export const COPY = {
     fieldPnc: 'Passiu no corrent',
     fieldPc: 'Passiu corrent',
     fieldBaii: "BAII (Resultat d'explotació)",
+    fieldIntereses: 'Despeses financeres (interessos)',
     fieldBeneficioNeto: 'Benefici net',
 
     balanceCuadra: (total: number) => `✓ El balanç quadra: ${total} mil € als dos costats.`,
@@ -111,7 +115,7 @@ export const COPY = {
     metricEndeudamiento: 'Endeutament',
     metricRoa: 'ROA (rendibilitat econòmica)',
     metricRoe: 'ROE (rendibilitat financera)',
-    metricApalancamiento: 'Palanquejament (ROE − ROA)',
+    metricApalancamiento: 'Palanquejament (ROA − cost del deute)',
 
     comLiquidez: 'Saludable: 1,5 – 2',
     comTesoreria: 'Saludable: ≈ 1',
@@ -120,7 +124,9 @@ export const COPY = {
     comEndeudamiento: 'Saludable: 40 – 60 %',
     comRoa: "Eficiència operativa de l'actiu",
     comRoe: 'Rendiment del capital aportat pels socis',
-    comApalancamiento: 'Positiu: el deute aporta valor als socis',
+    comApalancamiento: (costeDeuda: string, rfAntes: string) =>
+      `Deute al ${costeDeuda}; rendibilitat dels socis abans d'impostos: ${rfAntes}`,
+    comSinDeuda: 'Sense deute, no hi ha palanquejament',
 
     fmSano: 'Equilibri sa',
     fmFragil: 'Fràgil',
@@ -152,7 +158,7 @@ export const COPY = {
     fRoeNote: 'Mesura el rendiment que obtenen els accionistes.',
     fApalName: 'Palanquejament financer',
     fApalBody:
-      ": si ROA > cost del deute, el ROE supera el ROA i l'empresa rendibilitza el deute; si ROA < cost del deute, ocorre el contrari.",
+      ": si el ROA supera el cost del deute (interessos / passiu), cada euro prestat rendix més del que costa i la rendibilitat dels socis abans d'impostos (BAI / PN) supera el ROA; si no hi arriba, ocorre el contrari. El ROE, després d'impostos, pot quedar per davall del ROA encara que el deute siga favorable.",
   },
 } as const;
 
@@ -174,7 +180,8 @@ interface Props { locale?: Locale }
 export default function RatiosCalc({ locale = 'es' }: Props) {
   const c = COPY[locale];
   // Activo
-  const [anc, setAnc] = useState<number>(108);
+  // Defaults balance: 220 + 60 + 50 + 10 = 80 + 120 + 140 = 340.
+  const [anc, setAnc] = useState<number>(220);
   const [existencias, setExistencias] = useState<number>(60);
   const [realizable, setRealizable] = useState<number>(50);
   const [disponible, setDisponible] = useState<number>(10);
@@ -184,7 +191,9 @@ export default function RatiosCalc({ locale = 'es' }: Props) {
   const [pc, setPc] = useState<number>(140);
   // P&G
   const [baii, setBaii] = useState<number>(36);
-  const [beneficioNeto, setBeneficioNeto] = useState<number>(20);
+  // 12 of interest on 260 of liabilities (4,6 %); BAI 24 taxed at 25 % leaves 18.
+  const [intereses, setIntereses] = useState<number>(12);
+  const [beneficioNeto, setBeneficioNeto] = useState<number>(18);
 
   const r = useMemo(() => {
     const ac = existencias + realizable + disponible;
@@ -201,13 +210,16 @@ export default function RatiosCalc({ locale = 'es' }: Props) {
     const endeudamiento = pnPasivoTotal > 0 ? pasivoTotal / pnPasivoTotal : null;
     const roa = activoTotal > 0 ? (baii / activoTotal) * 100 : null;
     const roe = pn > 0 ? (beneficioNeto / pn) * 100 : null;
+    // Leverage compares ROA with the cost of debt, not with the after-tax ROE.
+    const costeDeuda = pasivoTotal > 0 ? (intereses / pasivoTotal) * 100 : null;
+    const rfAntes = pn > 0 ? ((baii - intereses) / pn) * 100 : null;
 
     return {
       ac, activoTotal, pasivoTotal, pnPasivoTotal, cuadra,
       fondoManiobra, liquidezGeneral, acidTest, disponibilidad,
-      solvencia, endeudamiento, roa, roe,
+      solvencia, endeudamiento, roa, roe, costeDeuda, rfAntes,
     };
-  }, [anc, existencias, realizable, disponible, pn, pnc, pc, baii, beneficioNeto]);
+  }, [anc, existencias, realizable, disponible, pn, pnc, pc, baii, intereses, beneficioNeto]);
 
   return (
     <div class="calc">
@@ -229,6 +241,7 @@ export default function RatiosCalc({ locale = 'es' }: Props) {
       <div class="calc__sub">{c.subResultados}</div>
       <div class="calc__form">
         <NumberField label={c.fieldBaii} value={baii} setValue={setBaii} unit="mil €" />
+        <NumberField label={c.fieldIntereses} value={intereses} setValue={setIntereses} unit="mil €" />
         <NumberField label={c.fieldBeneficioNeto} value={beneficioNeto} setValue={setBeneficioNeto} unit="mil €" />
       </div>
 
@@ -257,7 +270,12 @@ export default function RatiosCalc({ locale = 'es' }: Props) {
         <div class="calc__metric-grid calc__metric-grid--three">
           <Metric label={c.metricRoa} value={r.roa === null ? '—' : `${r.roa.toFixed(2).replace('.', ',')} %`} ok={r.roa !== null && r.roa > 5} comentario={c.comRoa} />
           <Metric label={c.metricRoe} value={r.roe === null ? '—' : `${r.roe.toFixed(2).replace('.', ',')} %`} ok={r.roe !== null && r.roe > 8} comentario={c.comRoe} />
-          <Metric label={c.metricApalancamiento} value={r.roe !== null && r.roa !== null ? `${(r.roe - r.roa).toFixed(2).replace('.', ',')} pp` : '—'} ok={r.roe !== null && r.roa !== null && r.roe > r.roa} comentario={c.comApalancamiento} />
+          <Metric
+            label={c.metricApalancamiento}
+            value={r.roa !== null && r.costeDeuda !== null ? `${(r.roa - r.costeDeuda).toFixed(2).replace('.', ',')} pp` : '—'}
+            ok={r.roa !== null && r.costeDeuda !== null && r.roa > r.costeDeuda}
+            comentario={r.costeDeuda === null ? c.comSinDeuda : c.comApalancamiento(fmtPctNum(r.costeDeuda), fmtPctNum(r.rfAntes))}
+          />
         </div>
 
         <details class="calc__details">
@@ -311,6 +329,10 @@ function fmtRatio(n: number | null): string {
 }
 function fmtPct(n: number | null): string {
   return n === null ? '—' : `${(n * 100).toFixed(1).replace('.', ',')} %`;
+}
+/** A value already in percent (12.5 → "12,5 %"). */
+function fmtPctNum(n: number | null): string {
+  return n === null ? '—' : `${n.toFixed(1).replace('.', ',')} %`;
 }
 function diagRatio(n: number | null, [lo, hi]: [number, number]): boolean {
   return n !== null && n >= lo && n <= hi * 1.2;
