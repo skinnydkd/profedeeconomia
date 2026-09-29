@@ -18,11 +18,11 @@ preguntas:
   - enunciado: "Un forn puja el preu del pa de 2,00 € a 2,20 € per barra. Les vendes cauen de 500 a 460 barres diàries. Aplicant el mètode del punt mitjà, l'elasticitat-preu (valor absolut) és aproximadament…"
     opciones:
       - "0,17 — demanda molt inelàstica."
-      - "0,91 — demanda quasi unitària."
+      - "0,88 — demanda inelàstica, pròxima a la unitat."
       - "1,10 — demanda lleugerament elàstica."
       - "2,00 — demanda molt elàstica."
     correcta: 1
-    explicacion: "ΔQ = −40; mitjana de Q = 480 → −8,33 %. ΔP = +0,20 €; mitjana de P = 2,10 € → +9,52 %. E = 8,33 / 9,52 ≈ 0,87-0,91. A prop de la unitat, lleugerament inelàstica."
+    explicacion: "ΔQ = −40; mitjana de Q = 480 → −8,33 %. ΔP = +0,20 €; mitjana de P = 2,10 € → +9,52 %. E = 8,33 / 9,52 ≈ 0,88. Una mica menor que 1: demanda inelàstica, encara que pròxima a la unitat."
   - enunciado: "Un bé té demanda inelàstica. Si l'empresa puja el preu un 10 %, els ingressos totals…"
     opciones:
       - "Cauen, perquè la quantitat cau més que proporcionalment."
