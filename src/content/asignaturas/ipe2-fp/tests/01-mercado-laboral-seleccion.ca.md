@@ -15,14 +15,14 @@ preguntas:
       - "Passar de buscar treball a muntar la teua pròpia empresa."
     correcta: 1
     explicacion: "IPE I mirava cap a dins (qui eres, què se't dona bé, quins drets tens). IPE II gira la càmera cap a fora: el canvi de perspectiva és passar d'**alumne** a **candidat**, i la pregunta deixa de ser «qui soc?» per a ser «com em veu qui ha de contractar-me i com aconseguisc que m'elegisca a mi?»."
-  - enunciado: "Quin percentatge dels llocs de treball se situen en l'anomenat mercat ocult, segons els estudis d'ocupabilitat citats en la unitat?"
+  - enunciado: "Segons els estudis d'ocupabilitat citats en la unitat, quina part dels llocs de treball es cobrix en l'anomenat mercat ocult?"
     opciones:
-      - "Al voltant del 10-20 %."
-      - "Al voltant del 30-40 %."
-      - "Al voltant del 60-70 %."
-      - "Més del 90 %."
+      - "Una part mínima, perquè hui quasi tot es publica en portals."
+      - "Al voltant d'una quarta part."
+      - "La majoria, encara que les xifres varien d'un estudi a un altre."
+      - "Tots: les ofertes publicades són només un tràmit."
     correcta: 2
-    explicacion: "El **mercat ocult** —vacants que mai es publiquen i es cobrixen per recomanació, contactes o candidatura espontània— se situa al voltant del **60-70 %** dels llocs. Per això, qui només busca en portals competix pel 30-40 % restant, en el circuit més saturat."
+    explicacion: "El **mercat ocult** —vacants que mai es publiquen i es cobrixen per recomanació, contactes o candidatura espontània— és, segons diferents estudis, la via per la qual es cobrix la majoria dels llocs, encara que les xifres varien. Per això, qui només busca en portals competix per una part menor de les vacants, en el circuit més saturat."
   - enunciado: "Després de la reforma laboral de 2021 (RDL 32/2021), quina és la regla general de contractació?"
     opciones:
       - "El contracte temporal d'obra i servei."
@@ -90,7 +90,7 @@ preguntas:
   - tipo: verdadero-falso
     enunciado: "Buscar ocupació només en portals web és l'estratègia més eficient, perquè ací hi ha la immensa majoria de les vacants."
     correcta: false
-    explicacion: "És fals. Els portals publiquen només el 30-40 % dels llocs, que a més és el circuit més saturat. El 60-70 % restant està en el mercat ocult i s'hi accedix per contactes, recomanació i candidatura espontània. Limitar-se als portals deixa fora la major part de les oportunitats."
+    explicacion: "És fals. Segons diferents estudis, la majoria dels llocs no arriba a publicar-se, i els portals són a més el circuit més saturat. Les vacants del mercat ocult es cobrixen per contactes, recomanació i candidatura espontània. Limitar-se als portals deixa fora bona part de les oportunitats."
   - tipo: numerico
     enunciado: "Si el mercat ocult concentra el 65 % dels llocs, quin percentatge de les vacants queda en el mercat visible (portals i ofertes publicades), en %?"
     respuesta: 35

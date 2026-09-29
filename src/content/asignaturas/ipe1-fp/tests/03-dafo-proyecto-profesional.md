@@ -73,11 +73,11 @@ preguntas:
   - enunciado: "Según la unidad, ¿por qué conviene poner el proyecto profesional por escrito y revisarlo periódicamente?"
     opciones:
       - "Porque la ley obliga a registrarlo."
-      - "Porque las metas escritas se cumplen más: escribir obliga a concretar, compartir añade compromiso y revisar el progreso mantiene el rumbo (estudio de Gail Matthews)."
+      - "Porque concretar por escrito cuándo, dónde y cómo vas a actuar ayuda a cumplir las metas, y revisar el progreso mantiene el rumbo."
       - "Porque un plan escrito ya no necesita cambiarse nunca."
       - "Porque así lo puede ver la empresa antes de contratarte."
     correcta: 1
-    explicacion: "El estudio de Gail Matthews observó que quienes escriben sus metas, las comparten y revisan su progreso las cumplen mucho más. Escribir obliga a concretar (un objetivo vago no se escribe bien), compartir añade compromiso y revisar mantiene el rumbo. Por eso la hoja de ruta se pone por escrito y se revisa, no se imagina."
+    explicacion: "Los estudios sobre intenciones de implementación (Gollwitzer y Sheeran, 2006) muestran que decidir de antemano cuándo, dónde y cómo vas a actuar mejora el cumplimiento de los objetivos. Escribir obliga a concretar (un objetivo vago no se escribe bien), compartir añade compromiso y revisar mantiene el rumbo. Por eso la hoja de ruta se pone por escrito y se revisa, no se imagina."
   - enunciado: "¿Qué papel tiene el 'seguimiento y ajuste' en el proyecto profesional?"
     opciones:
       - "Es señal de que el plan estaba mal hecho desde el principio."

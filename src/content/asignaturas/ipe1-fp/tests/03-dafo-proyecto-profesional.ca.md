@@ -74,11 +74,11 @@ preguntas:
   - enunciado: "Segons la unitat, per què convé posar el projecte professional per escrit i revisar-lo periòdicament?"
     opciones:
       - "Perquè la llei obliga a registrar-lo."
-      - "Perquè les metes escrites es complixen més: escriure obliga a concretar, compartir afig compromís i revisar el progrés manté el rumb (estudi de Gail Matthews)."
+      - "Perquè concretar per escrit quan, on i com actuaràs ajuda a complir les metes, i revisar el progrés manté el rumb."
       - "Perquè un pla escrit ja no cal canviar-lo mai."
       - "Perquè així el pot veure l'empresa abans de contractar-te."
     correcta: 1
-    explicacion: "L'estudi de Gail Matthews va observar que els qui escriuen les seues metes, les compartixen i revisen el seu progrés les complixen molt més. Escriure obliga a concretar (un objectiu vague no s'escriu bé), compartir afig compromís i revisar manté el rumb. Per això el full de ruta es posa per escrit i es revisa, no s'imagina."
+    explicacion: "Els estudis sobre intencions d'implementació (Gollwitzer i Sheeran, 2006) mostren que decidir per endavant quan, on i com actuaràs millora el compliment dels objectius. Escriure obliga a concretar (un objectiu vague no s'escriu bé), compartir afig compromís i revisar manté el rumb. Per això el full de ruta es posa per escrit i es revisa, no s'imagina."
   - enunciado: "Quin paper té el «seguiment i ajust» en el projecte professional?"
     opciones:
       - "És senyal que el pla estava mal fet des del principi."
