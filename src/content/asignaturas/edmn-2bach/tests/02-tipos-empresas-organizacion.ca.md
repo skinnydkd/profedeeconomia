@@ -62,7 +62,7 @@ preguntas:
       - "Està exempta els dos primers anys."
       - "El 30 %, igual que les grans empreses."
     correcta: 1
-    explicacion: "Les empreses de nova creació tributen a tipus reduïts durant els dos primers exercicis amb beneficis. El tipus general és 25 %, amb un reduït del 23 % per a pimes."
+    explicacion: "Les empreses de nova creació tributen al 15 % el primer exercici amb beneficis i el següent. El tipus general és el 25 %; el 2026, les empreses de reduïda dimensió tributen al 23 % i les microempreses, al 19-21 %."
   - enunciado: "Una persona vol constituir sola una SL per a protegir el seu patrimoni personal. La forma jurídica adequada és…"
     opciones:
       - "Societat Anònima Unipersonal (SAU)."
