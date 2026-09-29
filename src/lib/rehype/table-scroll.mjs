@@ -6,6 +6,9 @@
  * and since a scrolling box must be reachable with the keyboard, it is a
  * focusable region named after the table's first column headers.
  *
+ * Inside the table, a figure and its unit (25.000 €, 15 %) are joined with a
+ * no-break space, so a narrow column cannot leave the € alone on a line.
+ *
  * Registered in astro.config.mjs → markdown.rehypePlugins, which Astro applies
  * to .md and .mdx alike. Plain tree walk on purpose: no unist-util-visit dep.
  */
@@ -24,6 +27,7 @@ function wrapTables(node, noun) {
   if (isWrapper(node)) return;
   node.children = node.children.map((child) => {
     if (child.type === 'element' && child.tagName === 'table') {
+      keepUnitsTogether(child);
       return {
         type: 'element',
         tagName: 'div',
@@ -57,4 +61,12 @@ function headerCells(table) {
 function textOf(node) {
   if (node.type === 'text') return node.value ?? '';
   return (node.children ?? []).map(textOf).join('');
+}
+
+function keepUnitsTogether(node) {
+  if (node.type === 'text' && typeof node.value === 'string') {
+    node.value = node.value.replace(/(\d) (€|%)/g, '$1\u00a0$2');
+    return;
+  }
+  (node.children ?? []).forEach(keepUnitsTogether);
 }

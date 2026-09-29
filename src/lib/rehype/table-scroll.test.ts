@@ -44,6 +44,12 @@ describe('rehypeTableScroll', () => {
     expect(tree.children![0].children![1].properties!.className).toEqual(['tabla-scroll']);
   });
 
+  it('keeps a figure and its € or % on the same line', () => {
+    const cell = el('td', [text('25.000 € y un 15 %')]);
+    run([el('table', [el('tbody', [el('tr', [cell])])])]);
+    expect(cell.children![0].value).toBe('25.000\u00a0€ y un 15\u00a0%');
+  });
+
   it('does not wrap a table twice', () => {
     const tree = run([table(['X'])]);
     rehypeTableScroll()(tree, { path: 'a.mdx' });
