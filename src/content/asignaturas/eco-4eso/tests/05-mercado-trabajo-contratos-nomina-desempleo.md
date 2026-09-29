@@ -17,10 +17,10 @@ preguntas:
     opciones:
       - "El salario medio de los trabajadores españoles, unos 28.050 € brutos al año."
       - "El salario neto más bajo que puede ingresarse en una cuenta."
-      - "El salario más bajo que la ley permite pagar por una jornada completa: 1.184 € brutos al mes en 14 pagas en 2025."
+      - "El salario más bajo que la ley permite pagar por una jornada completa: 1.221 € brutos al mes en 14 pagas en 2026."
       - "El salario que cada convenio colectivo fija para su sector."
     correcta: 2
-    explicacion: "El SMI es un precio mínimo en el mercado de trabajo: lo fija el Gobierno cada año (RD 87/2025) y se aplica a cualquier sector, con convenio o sin él. Si el convenio fija más, manda el convenio; a media jornada corresponde la mitad."
+    explicacion: "El SMI es un precio mínimo en el mercado de trabajo: lo fija el Gobierno cada año (RD 126/2026) y se aplica a cualquier sector, con convenio o sin él. Si el convenio fija más, manda el convenio; a media jornada corresponde la mitad."
   - tipo: verdadero-falso
     enunciado: "Una persona de 30 años que no tiene empleo y que no busca ninguno cuenta como parada en la EPA."
     correcta: false

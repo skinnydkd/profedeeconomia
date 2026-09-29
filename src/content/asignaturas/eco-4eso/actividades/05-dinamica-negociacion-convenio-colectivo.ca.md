@@ -48,7 +48,7 @@ Tres regles: ningú no ensenya la seua targeta, no es negocia punt per punt sin�
 | 4 | Plus per diumenge treballat | 0 € · 25 € · 50 € |
 | 5 | Formació i flexibilitat | res · 20 h de formació en jornada · 20 h + mitja hora de flexibilitat |
 
-**Dades que les dos delegacions coneixen:** l'IPC va pujar al voltant del **2,7 %** el 2025 (INE); el **SMI** és de **1.184 € al mes en 14 pagues** (RD 87/2025); la jornada legal màxima són **40 hores setmanals** de mitjana anual i les vacacions, **30 dies naturals** (articles 34 i 38 de l'Estatuto de los Trabajadores). Res d'això no es negocia a la baixa.
+**Dades que les dos delegacions coneixen:** l'IPC va pujar al voltant del **2,7 %** el 2025 (INE); el **SMI** és de **1.221 € al mes en 14 pagues** (RD 126/2026); la jornada legal màxima són **40 hores setmanals** de mitjana anual i les vacacions, **30 dies naturals** (articles 34 i 38 de l'Estatuto de los Trabajadores). Res d'això no es negocia a la baixa.
 
 ## Targeta A · Delegació de la direcció (secreta)
 
