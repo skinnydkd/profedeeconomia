@@ -17,7 +17,7 @@ estado: publicado
 
 ## Planteamiento
 
-Marta montó hace tres años *Mardecor*, un taller de decoración y reformas, dándose de alta como autónoma. Empezó sola; hoy factura **180.000 € al año**, tiene dos empleados, ha pedido un préstamo de 40.000 € para comprar maquinaria y acaba de firmar un contrato grande con un hotel que le obliga a comprar material por adelantado. Su gestor le ha dicho una frase que la inquieta: *como autónoma, respondes con todo tu patrimonio personal*.
+Marta montó hace tres años *Mardecor*, un taller de decoración y reformas, dándose de alta como autónoma. Empezó sola; hoy factura **180.000 € al año** y gana unos **55.000 €** de beneficio, tiene dos empleados, ha pedido un préstamo de 40.000 € para comprar maquinaria y acaba de firmar un contrato grande con un hotel que le obliga a comprar material por adelantado. Su gestor le ha dicho una frase que la inquieta: *como autónoma, respondes con todo tu patrimonio personal*.
 
 Marta duda entre seguir como autónoma o constituir una **Sociedad Limitada**. Vuestro grupo es su asesoría: tenéis que recomendar una opción y justificarla.
 
@@ -37,8 +37,8 @@ Marta duda entre seguir como autónoma o constituir una **Sociedad Limitada**. V
 ## Pistas para la corrección
 
 - Como autónoma, Marta responde con su patrimonio **personal y empresarial** sin separación; con una SL, su responsabilidad se limita en principio al capital aportado (mínimo 1 € desde la Ley Crea y Crece, aunque con reservas obligatorias).
-- En IRPF el beneficio tributa por tramos progresivos que pueden superar el 40 % en rentas altas; el Impuesto de Sociedades aplica un tipo general del 25 % (reducido los primeros años en sociedades nuevas).
-- A 180.000 € de beneficio, la SL suele ser fiscalmente más eficiente y limita el riesgo del préstamo y del contrato del hotel. La recomendación razonable es **transformarse en SL**.
+- En IRPF el beneficio tributa por tramos progresivos que pueden superar el 40 % en rentas altas; el Impuesto de Sociedades tiene un tipo general del 25 %, pero una empresa con menos de 1 millón de euros de facturación, como Mardecor, tributa en 2026 al 19 % los primeros 50.000 € de base y al 21 % el resto. El 15 % de las sociedades nuevas no se aplicaría, porque Marta ya ejercía la actividad como autónoma.
+- Con unos 55.000 € de beneficio, por encima del umbral de 40.000-50.000 € que suelen citar las asesorías, la SL suele ser fiscalmente más eficiente y limita el riesgo del préstamo y del contrato del hotel. La recomendación razonable es **transformarse en SL**.
 
 ## Criterios de evaluación
 

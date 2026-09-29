@@ -60,7 +60,7 @@ preguntas:
       - "Está exenta los dos primeros años."
       - "El 30 %, igual que las grandes empresas."
     correcta: 1
-    explicacion: "Las empresas de nueva creación tributan a tipos reducidos durante los dos primeros ejercicios con beneficios. El tipo general es 25 %, con un reducido del 23 % para pymes."
+    explicacion: "Las empresas de nueva creación tributan al 15 % el primer ejercicio con beneficios y el siguiente. El tipo general es el 25 %; en 2026, las empresas de reducida dimensión tributan al 23 % y las microempresas, al 19-21 %."
   - enunciado: "Una persona quiere constituir sola una SL para proteger su patrimonio personal. La forma jurídica adecuada es…"
     opciones:
       - "Sociedad Anónima Unipersonal (SAU)."
