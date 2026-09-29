@@ -4,6 +4,7 @@ import { ASIGNATURA_SLUGS, ASIGNATURAS } from '@/lib/asignaturas';
 import { breadcrumbLd, courseLd, faqLd } from '@/lib/seo';
 import { subjectFaqs } from '@/lib/faq';
 import FaqHub from '@components/FaqHub.astro';
+import { getMaterialPorUnidad } from '@/lib/material-unidad-sources';
 import { getCollection } from 'astro:content';
 import type { GetStaticPaths } from 'astro';
 import { getLocale } from '@/i18n/locale';
@@ -151,6 +152,24 @@ const grupos = [
   { ...copy.grupos.profe, sections: profe },
 ] as { label: string; desc: string; sections: (keyof typeof copy.secciones)[] }[];
 
+// Unit by unit (VIS-NAV-05): a teacher prepares «unit 7» — chapter, slides,
+// test, activities — and used to rebuild it by jumping across five indexes.
+const porUnidad = isPublicado ? await getMaterialPorUnidad(a.slug, locale) : [];
+const uCopy = {
+  es: {
+    titulo: 'Unidad a unidad',
+    intro: 'Todo el material de cada unidad en una línea: el capítulo del libro, sus diapositivas, su test y sus actividades.',
+    diapositivas: 'Diapositivas', test: 'Test', reto: 'Reto',
+    actividades: (n: number) => (n === 1 ? '1 actividad' : `${n} actividades`),
+  },
+  ca: {
+    titulo: 'Unitat a unitat',
+    intro: 'Tot el material de cada unitat en una línia: el capítol del llibre, les diapositives, el test i les activitats.',
+    diapositivas: 'Diapositives', test: 'Test', reto: 'Repte',
+    actividades: (n: number) => (n === 1 ? '1 activitat' : `${n} activitats`),
+  },
+}[locale];
+
 const breadcrumb = breadcrumbLd([
   { name: copy.bcInicio, path: '/' },
   { name: a.shortLabel, path: `/${a.slug}/` },
@@ -264,6 +283,33 @@ const jsonLd = isPublicado
             <span class="ol-cta">{copy.olimpiadaCta}</span>
           </a>
         )}
+      </div>
+    </section>
+  )}
+
+  {porUnidad.length > 0 && (
+    <section class="hub-unidades" aria-labelledby="hub-unidades-h">
+      <div class="container">
+        <h2 id="hub-unidades-h">{uCopy.titulo}</h2>
+        <p class="hub-intro">{uCopy.intro}</p>
+        <ol class="unidades">
+          {porUnidad.map((u) => (
+            <li class="unidad">
+              <span class="unidad__num" aria-hidden="true">{String(u.unidad).padStart(2, '0')}</span>
+              <div class="unidad__body">
+                <a class="unidad__title" href={u.libro}>{u.title}</a>
+                <p class="unidad__links">
+                  <a href={u.diapositivas}>{uCopy.diapositivas}</a>
+                  {u.test && <><span class="sep" aria-hidden="true">·</span><a href={u.test}>{uCopy.test}</a></>}
+                  {u.actividadesHref && <><span class="sep" aria-hidden="true">·</span><a href={u.actividadesHref}>{uCopy.actividades(u.actividades)}</a></>}
+                  {u.retos.map((r, i) => (
+                    <><span class="sep" aria-hidden="true">·</span><a href={r}>{u.retos.length > 1 ? `${uCopy.reto} ${i + 1}` : uCopy.reto}</a></>
+                  ))}
+                </p>
+              </div>
+            </li>
+          ))}
+        </ol>
       </div>
     </section>
   )}
@@ -396,7 +442,7 @@ const jsonLd = isPublicado
   }
 
   /* Titles in sentence case (their source casing) — override the global h4 uppercase. */
-  .section-card h4 { font-size: 1.3rem; margin: 0; font-weight: 500; font-family: var(--font-serif); text-transform: none; }
+  .section-card h4 { font-size: 1.3rem; margin: 0; font-weight: 500; font-family: var(--font-serif); text-transform: none; letter-spacing: -0.01em; }
   .section-card .count {
     font-family: var(--font-mono);
     font-size: 0.78rem;
@@ -413,4 +459,17 @@ const jsonLd = isPublicado
     max-width: none;
     margin-top: 0;
   }
+
+  /* Unit by unit: one line per unit, links as text with mustard separators. */
+  .hub-unidades { padding: 0 0 clamp(3rem, 7vw, 6rem); }
+  .hub-unidades h2 { margin-top: 0; }
+  .unidades { list-style: none; margin: 1.5rem 0 0; padding: 0; border-top: 1px solid var(--color-line); max-width: 58rem; }
+  .unidad { display: grid; grid-template-columns: 3rem minmax(0, 1fr); gap: 0 1rem; padding: 0.9rem 0; border-bottom: 1px solid var(--color-line); }
+  .unidad__num { font-family: var(--font-mono); font-size: 0.85rem; color: var(--color-mustard-deep); padding-top: 0.3rem; }
+  .unidad__title { font-family: var(--font-serif); font-size: 1.2rem; font-weight: 500; line-height: 1.3; color: var(--color-ink); text-decoration: none; }
+  .unidad__title:hover { color: var(--color-terra); }
+  .unidad__links { margin: 0.35rem 0 0; font-size: 0.95rem; color: var(--color-ink-soft); }
+  .unidad__links a { color: var(--color-terra-ink); text-decoration: none; }
+  .unidad__links a:hover { text-decoration: underline; }
+  .unidad__links .sep { margin: 0 0.45em; color: var(--color-mustard); }
 </style>

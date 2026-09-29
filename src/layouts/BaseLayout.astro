@@ -97,11 +97,27 @@ const resolvedOgImage = new URL(ogImage ?? autoOgImage, Astro.site).toString();
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
     <!-- Variant C type stack, self-hosted (@font-face in global.css). No
-         third-party font CDN → no visitor-IP leak (GDPR). Preload only the
-         LCP font (Fraunces, used by the H1); the rest load via @font-face. -->
+         third-party font CDN → no visitor-IP leak (GDPR). Preload the three
+         faces of the first screen: Fraunces for the H1, its italic for the
+         ledes and Switzer for the body. With only the first one preloaded, the
+         other two arrived late and moved the layout (CLS 0.15-0.19 on phones). -->
     <link
       rel="preload"
       href="/fonts/fraunces-latin-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/fraunces-latin-italic.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/switzer/switzer-400.woff2"
       as="font"
       type="font/woff2"
       crossorigin

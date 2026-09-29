@@ -6,6 +6,7 @@ import { ASIGNATURA_SLUGS, ASIGNATURAS } from '@/lib/asignaturas';
 import { ACTIVIDAD_TIPO_LABEL, actividadPdfName } from '@/lib/actividades';
 import { breadcrumbLd, SITE } from '@/lib/seo';
 import { getCollection } from 'astro:content';
+import { anclaActividades } from '@/lib/material-unidad';
 import { getLocale } from '@/i18n/locale';
 import { pickLocalizedEntry } from '@/i18n/content-locale';
 import { localizeAsignatura } from '@/i18n/asignaturas-ca';
@@ -138,11 +139,13 @@ const breadcrumb = breadcrumbLd([
     <section class="grid">
       <div class="container">
         <ul class="card-grid">
-          {items.map((it) => {
+          {items.map((it, i) => {
             const slug = it.id.split('/').pop()?.replace(/\.mdx?$/, '').replace(/\.ca$/, '') ?? it.id;
             const pdf = pdfHref(slug);
+            // The first card of each unit is the target of the hub's «N actividades» link.
+            const primeraDeUnidad = i === 0 || items[i - 1].data.unidad_relacionada !== it.data.unidad_relacionada;
             return (
-              <li class={`card card--${it.data.tipo}`}>
+              <li class={`card card--${it.data.tipo}`} id={primeraDeUnidad ? anclaActividades(it.data.unidad_relacionada) : undefined}>
                 <div class="card__head">
                   <span class="card__num">{String(it.data.unidad_relacionada).padStart(2, '0')}</span>
                   <span class={`card__badge badge--${it.data.tipo}`}>{TIPO_LABEL[locale][it.data.tipo]}</span>
