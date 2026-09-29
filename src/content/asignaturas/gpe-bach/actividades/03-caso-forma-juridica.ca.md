@@ -8,7 +8,7 @@ duracion: "55 min · 1 sessió"
 agrupacion: "equips de 3-4"
 materiales:
   - "Les tres fitxes de cas (una per equip o les tres per a tots)"
-  - "Taula comparativa de formes jurídiques de la Unitat 3 (autònom, SL, SLNE, cooperativa)"
+  - "Taula comparativa de formes jurídiques de la Unitat 3 (autònom, SL i cooperativa)"
   - "Plantilla de decisió: criteri · opció triada · justificació"
 competencias_clave: [CPSAA, CC, CE]
 competencias_especificas: [CE2]

@@ -39,14 +39,14 @@ preguntas:
       - "És exactament el mateix que l'autoconfiança tècnica."
     correcta: 1
     explicacion: "L'autoestima inflada o narcisista pareix forta però és fràgil. Atribuïx èxits a un mateix i fracassos a altres, i reacciona malament a qualsevol crítica. L'autoestima sana, en canvi, integra la crítica sense enfonsar-se."
-  - enunciado: "Segons l'estudi de Twenge et al. (*Lancet Public Health*, 2023), la correlació entre ús de xarxes socials i símptomes depressius en adolescents és…"
+  - enunciado: "Segons la reanàlisi de Twenge i col·laboradors (*Acta Psychologica*, 2022), la relació entre les hores d'ús de xarxes socials i els símptomes depressius en adolescents…"
     opciones:
-      - "Inexistent: les xarxes no influïxen en la salut mental."
-      - "Més forta quan l'ús és actiu (missatges a coneguts) i més dèbil quan és passiu (*scroll* infinit)."
-      - "Més forta quan l'ús és passiu (*scroll* infinit), especialment en xiques de 13 a 17 anys."
+      - "No existix: les xarxes no influïxen en la salut mental."
+      - "És més forta en els xics que en les xiques."
+      - "Apareix amb claredat, sobretot en les xiques."
       - "Només afecta persones que ja tenien un trastorn previ."
     correcta: 2
-    explicacion: "L'estudi longitudinal sobre més d'un milió d'adolescents mostra que la correlació és més forta com més passiu és l'ús (*scroll* infinit) i especialment en xiques adolescents. L'ús actiu i dirigit (missatges a persones conegudes) mostra correlació més dèbil."
+    explicacion: "Reanalitzant grans enquestes dels EUA i el Regne Unit, van trobar que més hores de xarxes s'associen amb més símptomes depressius, sobretot en les xiques. És una correlació: el debat sobre quant es deu a les xarxes i quant a altres factors continua obert."
   - enunciado: "La «dismòrfia digital» es referix a…"
     opciones:
       - "Una malaltia ocular causada per mirar pantalles."
@@ -54,7 +54,7 @@ preguntas:
       - "L'addicció al mòbil en general."
       - "Una nova moda estètica inventada per TikTok."
     correcta: 1
-    explicacion: "Segons l'enquesta de l'OCU (2024), el 80 % de les adolescents espanyoles entre 13 i 18 anys ha retocat almenys una vegada una foto seua abans de publicar-la. La dismòrfia digital és la distorsió clínica entre el jo real i el jo digital, ja documentada per cirurgians plàstics."
+    explicacion: "Retocar les fotos abans de publicar-les és molt habitual entre adolescents. La dismòrfia digital és la distorsió entre el jo real i el jo digital, i ja l'han descrita cirurgians plàstics que atenen pacients que volen assemblar-se a les seues fotos filtrades."
   - enunciado: "La fórmula assertiva de Marshall Rosenberg per a abordar un conflicte personal és…"
     opciones:
       - "«Tu sempre... mai... eres un...»"
