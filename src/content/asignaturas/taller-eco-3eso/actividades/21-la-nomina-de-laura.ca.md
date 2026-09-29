@@ -19,7 +19,7 @@ slug: "asignaturas/taller-eco-3eso/actividades/21-la-nomina-de-laura.ca"
 
 ## Plantejament
 
-Laura té 18 anys i acaba de començar el seu primer treball d'estiu. En el seu contracte posa que cobrarà 1.000 € al mes, però quan li arriba el primer ingrés al banc, són 880 €. L'han enganyada? No: és el normal, i entendre-ho és una de les coses més útils que et pot ensenyar esta unitat abans que et passe a tu.
+Laura té 18 anys i acaba de començar el seu primer treball d'estiu, a mitja jornada (20 hores a la setmana). En el seu contracte posa que cobrarà 1.000 € al mes, però quan li arriba el primer ingrés al banc, són 935 €. L'han enganyada? No: és el normal, i entendre-ho és una de les coses més útils que et pot ensenyar esta unitat abans que et passe a tu.
 
 Entre el que posa el contracte (el salari **brut**) i el que arriba al banc (el salari **net**) hi ha uns descomptes: les **cotitzacions a la Seguretat Social** i la **retenció d'IRPF**. No són diners que es perden: les cotitzacions et donen dret a atur, a baixes per malaltia i a una pensió el dia de demà, i l'IRPF és l'impost que paguem tots segons el que guanyem, i que finança servicis com la sanitat. En este cas vas a llegir la nòmina de Laura com es llig de veritat i a descobrir on va cada euro.
 
@@ -38,8 +38,8 @@ La nòmina (simplificada) de Laura:
 | --- | --- |
 | Salari brut | 1.000 € |
 | Cotització a la Seguretat Social (treballador) | −65 € |
-| Retenció d'IRPF | −55 € |
-| **Salari net (el que cobra)** | **880 €** |
+| Retenció d'IRPF | 0 € |
+| **Salari net (el que cobra)** | **935 €** |
 
 ## Passos
 
@@ -49,7 +49,7 @@ La nòmina (simplificada) de Laura:
    - Quant li descompten en total? Quin percentatge del brut suposa?
    - D'eixe descompte, quant va a la Seguretat Social i quant a Hisenda?
 3. **(10 min) On van els meus diners?** Per cada partida descomptada, escriuen què reben a canvi: les cotitzacions (prestació per desocupació, baixes per malaltia, futura pensió) i l'IRPF (servicis públics com sanitat, educació, carreteres, bombers). Connecta amb la unitat 8.
-4. **(10 min) Canvia el sou.** El professor planteja: *si Laura cobrara 1.500 € de brut, li descomptarien més o menys?* Raonen que com més es guanya, més es cotitza i més IRPF es reté (el que més guanya aporta més). No fa falta calcular-ho exacte, sols entendre la lògica.
+4. **(10 min) Canvia el sou.** El professor planteja: *si Laura cobrara 1.500 € de brut, li descomptarien més o menys?* Raonen que com més es guanya, més es cotitza i, a partir de cert sou a l'any, més IRPF es reté (el que més guanya aporta més). Per això a Laura, amb un sou baix i només a l'estiu, Hisenda no li reté res. No fa falta calcular-ho exacte, sols entendre la lògica.
 5. **(5 min) Tancament.** Cada estudiant escriu en una frase què li dirà a un amic que es queixe que "li lleven part del sou". Posada en comú breu.
 
 ## Per al professorat
