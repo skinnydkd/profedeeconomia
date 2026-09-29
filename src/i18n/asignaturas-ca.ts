@@ -44,7 +44,7 @@ export const ASIGNATURAS_CA: Partial<Record<AsignaturaSlug, CAOverlay>> = {
     seoTitle: 'FOPP 4t ESO: llibre, diapositives i activitats gratis',
     seoName: 'FOPP 4t ESO',
     tagline:
-      'Itineraris, drets laborals i orientació. L\'assignatura nova de la LOMLOE, sense material decent disponible. Fins ara.',
+      'Itineraris, drets laborals i orientació per a la matèria nova de la LOMLOE: llibre, activitats i un projecte de vida que es construïx durant el curs.',
     marcoNormativo: 'Reial Decret 217/2022',
   },
   'taller-eco-3eso': {

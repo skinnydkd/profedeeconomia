@@ -124,7 +124,7 @@ export const ASIGNATURAS: Record<AsignaturaSlug, Asignatura> = {
     seoTitle: 'FOPP 4.º ESO: libro, diapositivas y actividades gratis',
     seoName: 'FOPP 4.º ESO',
     tagline:
-      'Itinerarios, derechos laborales y orientación. La asignatura nueva de la LOMLOE, sin material decente disponible. Hasta ahora.',
+      'Itinerarios, derechos laborales y orientación para la materia nueva de la LOMLOE: libro, actividades y un proyecto de vida que se construye durante el curso.',
     num: '04',
     color: 'fopp',
     marcoNormativo: 'Real Decreto 217/2022',
