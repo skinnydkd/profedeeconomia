@@ -14,14 +14,14 @@ preguntas:
       - "Pasar de buscar trabajo a montar tu propia empresa."
     correcta: 1
     explicacion: "IPE I miraba hacia dentro (quién eres, qué se te da bien, qué derechos tienes). IPE II gira la cámara hacia fuera: el cambio de perspectiva es pasar de **alumno** a **candidato**, y la pregunta deja de ser \"¿quién soy?\" para ser \"¿cómo me ve quien tiene que contratarme y cómo consigo que me elija a mí?\"."
-  - enunciado: "¿Qué porcentaje de los puestos de trabajo se sitúan en el llamado mercado oculto, según los estudios de empleabilidad citados en la unidad?"
+  - enunciado: "Según los estudios de empleabilidad citados en la unidad, ¿qué parte de los puestos de trabajo se cubre en el llamado mercado oculto?"
     opciones:
-      - "En torno al 10-20 %."
-      - "En torno al 30-40 %."
-      - "En torno al 60-70 %."
-      - "Más del 90 %."
+      - "Una parte mínima, porque hoy casi todo se publica en portales."
+      - "Alrededor de una cuarta parte."
+      - "La mayoría, aunque las cifras varían de un estudio a otro."
+      - "Todos: las ofertas publicadas son solo un trámite."
     correcta: 2
-    explicacion: "El **mercado oculto** —vacantes que nunca se publican y se cubren por recomendación, contactos o candidatura espontánea— se sitúa en torno al **60-70 %** de los puestos. Por eso, quien solo busca en portales compite por el 30-40 % restante, en el circuito más saturado."
+    explicacion: "El **mercado oculto** —vacantes que nunca se publican y se cubren por recomendación, contactos o candidatura espontánea— es, según distintos estudios, la vía por la que se cubre la mayoría de los puestos, aunque las cifras varían. Por eso, quien solo busca en portales compite por una parte menor de las vacantes, en el circuito más saturado."
   - enunciado: "Tras la reforma laboral de 2021 (RDL 32/2021), ¿cuál es la regla general de contratación?"
     opciones:
       - "El contrato temporal de obra y servicio."
@@ -89,7 +89,7 @@ preguntas:
   - tipo: verdadero-falso
     enunciado: "Buscar empleo solo en portales web es la estrategia más eficiente, porque ahí está la inmensa mayoría de las vacantes."
     correcta: false
-    explicacion: "Es falso. Los portales publican solo el 30-40 % de los puestos, que además es el circuito más saturado. El 60-70 % restante está en el mercado oculto y se accede por contactos, recomendación y candidatura espontánea. Limitarse a los portales deja fuera la mayor parte de las oportunidades."
+    explicacion: "Es falso. Según distintos estudios, la mayoría de los puestos no llega a publicarse, y los portales son además el circuito más saturado. Las vacantes del mercado oculto se cubren por contactos, recomendación y candidatura espontánea. Limitarse a los portales deja fuera buena parte de las oportunidades."
   - tipo: numerico
     enunciado: "Si el mercado oculto concentra el 65 % de los puestos, ¿qué porcentaje de las vacantes queda en el mercado visible (portales y ofertas publicadas), en %?"
     respuesta: 35
