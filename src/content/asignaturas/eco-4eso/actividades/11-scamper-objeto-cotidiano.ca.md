@@ -22,7 +22,7 @@ slug: "asignaturas/eco-4eso/actividades/11-scamper-objeto-cotidiano.ca"
 
 ## Plantejament
 
-La Unitat 2 explica que la creativitat **no és esperar a la inspiració**, sinó una habilitat entrenable basada a combinar el conegut d'una manera nova. Esta sessió posa a prova eixa idea: en 60 minuts, cada equip agafarà un objecte que té davant tots els dies i, aplicant les set preguntes de **SCAMPER** (Eberle, anys 70), generarà almenys **15 variacions noves** de l'objecte. Després, tot el grup triarà la proposta més prometedora i la defendrà en 60 segons davant de la classe.
+La Unitat 11 explica que la creativitat **no és esperar a la inspiració**, sinó una habilitat entrenable basada a combinar el conegut d'una manera nova. Esta sessió posa a prova eixa idea: en 60 minuts, cada equip agafarà un objecte que té davant tots els dies i, aplicant les set preguntes de **SCAMPER** (Eberle, anys 70), generarà almenys **15 variacions noves** de l'objecte. Després, tot el grup triarà la proposta més prometedora i la defendrà en 60 segons davant de la classe.
 
 L'objectiu no és inventar un producte milionari; és **demostrar-se a un mateix** que la creativitat s'entrena. Qui comença la sessió convençut que *«no soc creatiu»* acaba amb cinc idees seues escrites a la cartolina. Això ja canvia la conversa.
 

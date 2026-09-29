@@ -13,7 +13,7 @@ slug: "asignaturas/eco-4eso/recursos/calculadora-nomina.ca"
 
 ## Quan usar-la
 
-- En introduir la Unitat 8 (treball, salaris i cotitzacions), quan l'alumnat descobrix per primera vegada la diferència entre **brut** i **net**.
+- En introduir la Unitat 5 (treball, salaris i cotitzacions), quan l'alumnat descobrix per primera vegada la diferència entre **brut** i **net**.
 - Com a suport a l'activitat «interpreta la teua primera nòmina»: l'alumnat porta una nòmina real (seua o d'un familiar) i la compara amb el resultat de la calculadora.
 - En tutoria, quan ixen dubtes sobre per què un contracte firmat per 18.000 € a l'any no es traduïx en 1.500 € al mes al compte.
 

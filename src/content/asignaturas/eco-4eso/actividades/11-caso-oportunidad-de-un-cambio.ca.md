@@ -57,5 +57,5 @@ En esta activitat cada grup analitza un canvi real de l'entorn i rastreja qui va
 ## Variants i extensions
 
 - **Variant actualitat:** substituir un dels casos per un canvi de l'últim any que estiga a les notícies (una nova llei, una tecnologia emergent) i analitzar-lo amb la mateixa plantilla.
-- **Connexió amb la Unitat 4 (diari de molèsties):** les molèsties detectades en aquella activitat quasi sempre naixen d'un canvi de l'entorn mal resolt; es poden reinterpretar a la llum d'este cas.
+- **Connexió amb el diari de molèsties (activitat d'esta mateixa unitat):** les molèsties detectades en aquella activitat quasi sempre naixen d'un canvi de l'entorn mal resolt; es poden reinterpretar a la llum d'este cas.
 - **Extensió local:** entrevistar un comerç del barri que haja hagut de reinventar-se per un canvi de l'entorn i portar el seu testimoni a classe.

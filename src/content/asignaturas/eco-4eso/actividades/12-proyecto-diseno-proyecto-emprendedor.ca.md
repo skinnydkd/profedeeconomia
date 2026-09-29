@@ -68,7 +68,7 @@ Cada equip assigna —i rota cada sessió si vol— estos quatre rols. En equips
 | Bloc | Temps | Què passa |
 | --- | --- | --- |
 | Briefing del projecte i formació d'equips | 10 min | El professor explica les quatre sessions, els entregables i la rúbrica. Es formen equips. |
-| Elecció de l'àmbit i *brainwriting* de problemes | 15 min | Cada equip escriu en silenci 10 problemes de l'àmbit triat (tècnica de la Unitat 2). Després els agrupen. |
+| Elecció de l'àmbit i *brainwriting* de problemes | 15 min | Cada equip escriu en silenci 10 problemes de l'àmbit triat (tècnica de la Unitat 11). Després els agrupen. |
 | Selecció d'**un** problema concret i d'un segment de persones afectades | 10 min | Criteri: que siga **observable i entrevistable** en les pròximes dues setmanes. Si no podem parlar amb eixes persones, no servix. |
 | Disseny del pla d'entrevistes | 15 min | L'equip identifica almenys **5 persones reals** del segment a qui entrevistar abans de la sessió 2. Repartiment: qui entrevista a qui? On? Quan? Preparació de **6-8 preguntes obertes** (què fa, què li molesta, com ho resol hui, què va provar abans…). |
 | Tancament i deures | 5 min | Tasca entre sessions: cada membre de l'equip fa **almenys 1 entrevista** i òmpli un mapa d'empatia. L'equip sencer arriba a la sessió 2 amb 5 mapes. |

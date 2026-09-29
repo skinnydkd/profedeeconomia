@@ -54,5 +54,5 @@ Funciona como **estaciones rotativas**: cada grupo pasa por las cuatro y deja su
 
 - **Variante corta (30 min):** trabajar solo dos mitos (héroe solitario y joven prodigio) sin rotación, en debate frontal con el profesor moderando.
 - **Variante larga (90 min · 2 sesiones):** segunda sesión dedicada a entrevistar (por videollamada o presencialmente) a una persona emprendedora del barrio o del entorno familiar, contrastando los cuatro mitos con su experiencia real. Se cierra con una presentación de 3 minutos por grupo.
-- **Conexión con la Unidad 2:** continuar la reflexión analizando cuáles de los cinco rasgos del perfil emprendedor (creatividad, resiliencia, iniciativa, comunicación, aprender de los errores) aparecieron en la persona entrevistada y cuáles no.
+- **Conexión con la teoría de la unidad:** continuar la reflexión analizando cuáles de los cinco rasgos del perfil emprendedor (creatividad, resiliencia, iniciativa, comunicación, aprender de los errores) aparecieron en la persona entrevistada y cuáles no.
 - **Refuerzo para grupos con menos hábito de búsqueda online:** preparar un dossier breve (1 página por mito) con dos o tres fuentes ya seleccionadas para que la estación se centre en leer e interpretar, no en buscar desde cero.

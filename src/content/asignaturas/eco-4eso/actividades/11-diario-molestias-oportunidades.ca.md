@@ -80,5 +80,5 @@ Una pàgina per cadascuna de les 3 oportunitats triades:
 
 - **Variant en parella:** dos estudiants intercanvien els seus diaris el divendres i filtren les molèsties de l'altre. Sovint les millors oportunitats d'una persona les veu millor una altra.
 - **Extensió PESTEL:** per a cadascuna de les 3 oportunitats, fer un PESTEL simplificat ràpid i comprovar si alguna llum roja la descarta.
-- **Connexió amb Unitat 5:** les 3 oportunitats resultants són la matèria primera de la pròxima unitat sobre generació d'idees i model de negoci.
+- **Connexió amb la Unitat 12:** les 3 oportunitats resultants són la matèria primera del projecte emprenedor i del seu model de negoci.
 - **Variant mapa d'empatia:** substituir el filtratge per la construcció d'un mapa d'empatia complet (què veu, què sent, què diu i fa, què pensa i sent) del primer client identificat en cada fitxa.

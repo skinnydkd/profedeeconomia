@@ -10,7 +10,7 @@ estado: publicado
 
 ## Cuándo usarla
 
-- En la Unidad 3, al llegar al greenwashing: es la parte del tema que se aprende con ejemplos reales y no con la definición.
+- En la Unidad 2, al llegar al greenwashing: es la parte del tema que se aprende con ejemplos reales y no con la definición.
 - Al analizar la comunicación de una empresa concreta, junto con los ODS y el sello B Corp.
 - En cualquier momento del curso en que alguien traiga un envase o un anuncio a clase, que suele pasar en cuanto se explica el concepto.
 

@@ -66,7 +66,7 @@ Cada equipo asigna —y rota cada sesión si quiere— estos cuatro roles. En eq
 | Bloque | Tiempo | Qué pasa |
 | --- | --- | --- |
 | Briefing del proyecto y formación de equipos | 10 min |  El profesor explica las cuatro sesiones, los entregables y la rúbrica. Se forman equipos. |
-| Elección del ámbito y *brainwriting* de problemas | 15 min | Cada equipo escribe en silencio 10 problemas del ámbito elegido (técnica de la Unidad 2). Después los agrupan. |
+| Elección del ámbito y *brainwriting* de problemas | 15 min | Cada equipo escribe en silencio 10 problemas del ámbito elegido (técnica de la Unidad 11). Después los agrupan. |
 | Selección de **un** problema concreto y de un segmento de personas afectadas | 10 min | Criterio: que sea **observable y entrevistable** en las próximas dos semanas. Si no podemos hablar con esas personas, no sirve. |
 | Diseño del plan de entrevistas | 15 min | El equipo identifica al menos **5 personas reales** del segmento a las que entrevistar antes de la sesión 2. Reparto: ¿quién entrevista a quién? ¿dónde? ¿cuándo? Preparación de **6-8 preguntas abiertas** (qué hace, qué le molesta, cómo lo resuelve hoy, qué intentó antes…). |
 | Cierre y deberes | 5 min | Tarea entre sesiones: cada miembro del equipo hace **al menos 1 entrevista** y rellena un mapa de empatía. El equipo entero llega a la sesión 2 con 5 mapas. |

@@ -56,5 +56,5 @@ En esta actividad cada grupo analiza un cambio real del entorno y rastrea quién
 ## Variantes y extensiones
 
 - **Variante actualidad:** sustituir uno de los casos por un cambio del último año que esté en las noticias (una nueva ley, una tecnología emergente) y analizarlo con la misma plantilla.
-- **Conexión con la Unidad 4 (diario de molestias):** las molestias detectadas en aquella actividad casi siempre nacen de un cambio del entorno mal resuelto; se pueden reinterpretar a la luz de este caso.
+- **Conexión con el diario de molestias (actividad de esta misma unidad):** las molestias detectadas en aquella actividad casi siempre nacen de un cambio del entorno mal resuelto; se pueden reinterpretar a la luz de este caso.
 - **Extensión local:** entrevistar a un comercio del barrio que haya tenido que reinventarse por un cambio del entorno y traer su testimonio a clase.

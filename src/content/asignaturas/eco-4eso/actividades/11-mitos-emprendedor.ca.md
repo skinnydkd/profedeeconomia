@@ -56,5 +56,5 @@ Funciona com a **estacions rotatives**: cada grup passa per les quatre i deixa l
 
 - **Variant curta (30 min):** treballar només dos mites (heroi solitari i jove prodigi) sense rotació, en debat frontal amb el professor moderant.
 - **Variant llarga (90 min · 2 sessions):** segona sessió dedicada a entrevistar (per videotrucada o presencialment) a una persona emprenedora del barri o de l'entorn familiar, contrastant els quatre mites amb la seua experiència real. Es tanca amb una presentació de 3 minuts per grup.
-- **Connexió amb la Unitat 2:** continuar la reflexió analitzant quins dels cinc trets del perfil emprenedor (creativitat, resiliència, iniciativa, comunicació, aprendre dels errors) van aparéixer en la persona entrevistada i quins no.
+- **Connexió amb la teoria de la unitat:** continuar la reflexió analitzant quins dels cinc trets del perfil emprenedor (creativitat, resiliència, iniciativa, comunicació, aprendre dels errors) van aparéixer en la persona entrevistada i quins no.
 - **Reforç per a grups amb menys hàbit de busca en línia:** preparar un dossier breu (1 pàgina per mite) amb dues o tres fonts ja seleccionades perquè l'estació es centre a llegir i interpretar, no a buscar des de zero.

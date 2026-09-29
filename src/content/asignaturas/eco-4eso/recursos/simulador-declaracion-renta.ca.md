@@ -12,7 +12,7 @@ slug: "asignaturas/eco-4eso/recursos/simulador-declaracion-renta.ca"
 
 ## Quan usar-la
 
-- En estudiar l'economia personal i la nòmina a la Unitat 8.
+- En estudiar l'IRPF a la Unitat 6 i la nòmina a la Unitat 5.
 - Per a entendre què significa «fer la declaració» i per què de vegades ix a tornar.
 - Per a vore l'efecte de tindre fills o una discapacitat reconeguda sobre el resultat.
 
