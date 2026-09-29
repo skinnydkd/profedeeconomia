@@ -86,8 +86,9 @@ const locale = getLocale(Astro.currentLocale);
 
   /* On a phone the 780–880-unit viewBoxes shrink their labels to 3–4 px. The
      drawing keeps a readable width and scrolls sideways inside its card (the
-     inner box already scrolls); centring would hide its left edge. */
-  @media (max-width: 600px) {
+     inner box already scrolls); centring would hide its left edge. Screen only:
+     the A5 book PDF is narrower than 600 px and must keep the whole drawing. */
+  @media screen and (max-width: 600px) {
     .diagram { padding: 0.75rem 0.75rem 0.9rem; }
     .diagram__inner { justify-content: flex-start; }
     .diagram__inner :global(svg) { min-width: 560px; max-width: none; }
