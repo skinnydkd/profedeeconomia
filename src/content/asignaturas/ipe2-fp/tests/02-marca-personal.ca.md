@@ -7,14 +7,14 @@ lang: ca
 estado: publicado
 slug: "asignaturas/ipe2-fp/tests/02-marca-personal.ca"
 preguntas:
-  - enunciado: "Segons la frase atribuïda a Jeff Bezos que obri la unitat, què és la marca personal?"
+  - enunciado: "Segons la definició que obri la unitat, què és la marca personal?"
     opciones:
       - "El que tu dius de tu mateix en una entrevista."
       - "El que diuen de tu quan ixes de la sala."
       - "El logotip i els colors que uses en les teues xarxes."
       - "L'empresa per a la qual treballes."
     correcta: 1
-    explicacion: "La frase del fundador d'Amazon definix la marca personal com **«el que diuen de tu quan ixes de la sala»**: l'empremta que deixes i la percepció que els altres tenen de tu com a professional, no el que tu afirmes de tu mateix."
+    explicacion: "La unitat definix la marca personal com **«el que diuen de tu quan ixes de la sala»**: l'empremta que deixes i la percepció que els altres tenen de tu com a professional, no el que tu afirmes de tu mateix."
   - enunciado: "La unitat afirma que la teua marca personal..."
     opciones:
       - "Només existix si decidixes crear-la conscientment."
