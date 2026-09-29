@@ -12,7 +12,7 @@ materiales:
   - "Papereta de pujes, una per estudiant (tres caselles)"
   - "Pissarra o projector per a agregar les pujes"
   - "Full de càlcul (opcional, accelera molt el pas 4)"
-  - "Un premi simbòlic real per a la subhasta final: l'elecció de l'ordre d'exposició, un punt de participació, triar el tema d'un treball"
+  - "El bé B, que s'adjudica de veres: l'elecció de l'ordre d'exposició del pròxim treball (cap premi que compte per a la nota)"
 lang: ca
 estado: publicado
 slug: "asignaturas/eco-1bach/actividades/05-juego-subasta-tres-bienes-elasticidad.ca"
@@ -24,7 +24,7 @@ L'elasticitat s'entén molt millor quan la corba de demanda no la dibuixa el lli
 
 La moneda són **fitxes**. Cada estudiant rep **20 fitxes** i no pot pujar per damunt d'això en cap bé.
 
-Perquè les pujes siguen sinceres i no un joc de fanfarronejar, l'últim bé **se subhasta de veres**: qui puge més se l'emporta.
+Perquè les pujes siguen sinceres i no un joc de fanfarronejar, el bé B **se subhasta de veres**, amb una regla especial: qui puge més se l'emporta, però **paga la segona puja més alta**. Amb esta regla, pujar per davall del que de veres pagaríeu no us estalvia res i pot fer-vos perdre el bé; pujar per damunt pot fer-vos pagar més del que val per a vosaltres. El que més convé és escriure la vostra valoració real. A i C no se subhasten: ací només compta la vostra paraula.
 
 ## Els tres béns
 
@@ -50,7 +50,7 @@ No digueu les vostres pujes en veu alta i no les canvieu després d'entregar-les
 3. **Recompte (12 min).** Per a cada bé i per a cada preu de la taula, es compta **quantes persones van pujar eixa quantitat o més**: eixa és la quantitat demandada a eixe preu. Es bolca a la pissarra.
 4. **Tres corbes (15 min).** Cada estudiant dibuixa les tres corbes en uns mateixos eixos, amb les dades de la pissarra.
 5. **Elasticitat (10 min).** Calculeu, per a cada bé, l'elasticitat entre **5 i 10 fitxes** pel mètode de l'arc. Classifiqueu-ne les tres.
-6. **Subhasta real i tancament (5 min).** S'adjudica el bé B a la puja més alta i es discutixen els resultats.
+6. **Subhasta real i tancament (5 min).** S'adjudica el bé B a la puja més alta, que paga la segona puja més alta, i es discutixen els resultats.
 
 ## Taula de recompte (pissarra)
 
@@ -73,7 +73,7 @@ Elasticitat entre 5 i 10 fitxes (arc):
 - El bé B no té substitut possible. Per què això espenta les pujes cap amunt i aplana menys la corba?
 - Si cada persona haguera rebut **100 fitxes** en compte de 20, com haurien canviat les tres corbes? Totes igual?
 - La vostra corba l'ha construïda una classe de trenta persones. En què s'assembla i en què no s'assembla a una corba de demanda de mercat de veres?
-- Va pujar algú per davall del que realment hauria pagat, per a intentar que li isquera barat? Què li fa això a la qualitat de les dades?
+- Amb la regla del segon preu, tenia sentit pujar per B menys del que de veres pagaríeu? I en A i C, que no se subhastaven? Què li fa això a la qualitat de les dades?
 
 ## Criteris d'avaluació
 

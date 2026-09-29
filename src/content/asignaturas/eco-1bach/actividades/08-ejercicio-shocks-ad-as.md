@@ -22,10 +22,10 @@ El modelo AD-AS es la herramienta central de la macroeconomía de Bachillerato, 
 
 ## Los cuatro shocks (ficha)
 
-1. **Shock de oferta negativo.** Subida brusca del precio de la energía (2022). La AS se desplaza a la izquierda.
+1. **Shock de oferta negativo.** Subida brusca del precio de la energía (2022). La SRAS se desplaza a la izquierda.
 2. **Shock de demanda positivo.** Plan de estímulo y ahorro embalsado tras la pandemia (2021). La AD se desplaza a la derecha.
 3. **Shock de demanda negativo.** Caída del consumo y la inversión en una recesión (tipo 2009). La AD se desplaza a la izquierda.
-4. **Política expansiva combinada.** Bajada de tipos del banco central + aumento del gasto público. La AD se desplaza a la derecha (matiz: efecto sobre precios según el tramo de la AS).
+4. **Política expansiva combinada.** Bajada de tipos del banco central + aumento del gasto público. La AD se desplaza a la derecha (matiz: el efecto depende de si la economía parte de una brecha recesiva o de su producción potencial).
 
 ## Objetivos didácticos
 
@@ -37,13 +37,13 @@ El modelo AD-AS es la herramienta central de la macroeconomía de Bachillerato, 
 ## Pasos
 
 1. **Lectura individual (5 min).** Cada alumno lee los cuatro shocks y anticipa, sin dibujar todavía, qué curva cree que se mueve en cada uno.
-2. **Shocks de oferta y demanda básicos (20 min).** En parejas, resuelven los shocks 1, 2 y 3 en sus plantillas: dibujan el equilibrio inicial (AD, AS), desplazan la curva correcta y marcan el nuevo equilibrio. Rellenan la tabla resumen con el sentido del cambio (sube/baja) de PIB, empleo y precios.
-3. **Política expansiva y tramos de la AS (15 min).** Resuelven el shock 4 discutiendo el matiz: si la economía está en el tramo horizontal de la AS (recursos ociosos), sube el PIB casi sin inflación; si está cerca del pleno empleo (tramo vertical), sube sobre todo el nivel de precios. Dibujan los dos casos.
+2. **Shocks de oferta y demanda básicos (20 min).** En parejas, resuelven los shocks 1, 2 y 3 en sus plantillas: dibujan el equilibrio inicial (AD, SRAS y LRAS), desplazan la curva correcta y marcan el nuevo equilibrio. Rellenan la tabla resumen con el sentido del cambio (sube/baja) de PIB, empleo y precios.
+3. **Política expansiva y brechas de producción (15 min).** Resuelven el shock 4 discutiendo el matiz: si la economía parte de una **brecha recesiva** (produce por debajo de su potencial, con recursos ociosos), la expansión acerca el PIB a Y\* y los precios suben poco; si ya está en su producción potencial, a corto plazo abre una **brecha inflacionista** y, a largo plazo, sube sobre todo el nivel de precios, porque la LRAS es vertical. Dibujan los dos casos con AD, SRAS y LRAS.
 4. **Puesta en común (15 min).** Se corrige el shock 1 (estanflación) en la pizarra, que es el que más confunde, y se cierra con el dilema de política que plantea: estimular agrava la inflación, contener agrava el paro.
 
 ## Entrega
 
-Cada pareja entrega las cuatro plantillas con los gráficos etiquetados (ejes, AD, AS, equilibrios inicial y final) y la tabla resumen completa con el efecto de cada shock sobre PIB, empleo y nivel de precios.
+Cada pareja entrega las cuatro plantillas con los gráficos etiquetados (ejes, AD, SRAS, LRAS, equilibrios inicial y final) y la tabla resumen completa con el efecto de cada shock sobre PIB, empleo y nivel de precios.
 
 ## Criterios de evaluación
 
@@ -52,7 +52,7 @@ Cada pareja entrega las cuatro plantillas con los gráficos etiquetados (ejes, A
 | Curva correcta y sentido | Mueve la curva adecuada en la dirección correcta en los cuatro shocks | 35 % |
 | Etiquetado de los gráficos | Ejes, curvas y equilibrios bien identificados | 20 % |
 | Tabla de resultados | Predice bien PIB, empleo y precios, incluida la estanflación | 30 % |
-| Tramos de la AS | Distingue el efecto de la política según recursos ociosos o pleno empleo | 15 % |
+| Brechas de producción | Distingue el efecto de la política según la economía parta de una brecha recesiva o de su producción potencial | 15 % |
 
 ## Variantes y extensiones
 
