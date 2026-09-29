@@ -18,7 +18,7 @@ slug: "asignaturas/fopp-4eso/recursos/nomina.ca"
 
 ## Què cal tindre en compte
 
-El pas del brut al net s'explica per dos descomptes: la **cotització a la Seguretat Social** (que dóna dret a sanitat, atur i pensió) i la **retenció d'IRPF** (una bestreta de l'impost sobre la renda). L'IRPF retingut no és un cost perdut: es regularitza després en la declaració, on pot eixir a tornar o a pagar.
+El pas del brut al net s'explica per dos descomptes: la **cotització a la Seguretat Social** (que dona dret a prestacions com l'atur, la baixa per malaltia o la pensió; la sanitat pública és universal i es paga amb impostos) i la **retenció d'IRPF** (una bestreta de l'impost sobre la renda). L'IRPF retingut no és un cost perdut: es regularitza després en la declaració, on pot eixir a tornar o a pagar.
 
 Convé insistir que el **cost per a l'empresa** és major que el salari brut, perquè l'empresa també cotitza per cada persona contractada. Eixe sou «complet» ajuda a entendre per què contractar té un preu molt superior al que veu qui cobra.
 

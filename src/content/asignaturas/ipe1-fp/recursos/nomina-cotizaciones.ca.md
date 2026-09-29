@@ -18,7 +18,7 @@ slug: "asignaturas/ipe1-fp/recursos/nomina-cotizaciones.ca"
 
 ## Què cal tindre en compte
 
-- **Hi ha tres xifres diferents i convé no barrejar-les**: el brut és el que es pacta, el líquid és el que arriba al compte, i el cost d'empresa és bastant major que el brut perquè inclou la quota patronal. A la nòmina només es veu l'aportació del treballador.
+- **Hi ha tres xifres diferents i convé no barrejar-les**: el brut és el que es pacta, el líquid és el que arriba al compte, i el cost d'empresa és bastant major que el brut perquè inclou la quota patronal. A la nòmina, la quota patronal figura al peu com a aportació de l'empresa, però no es descompta del sou.
 - **La cotització no és un impost perdut: és el que dona dret a les prestacions.** Eixa frase és la que fa que el descompte deixe de semblar un robatori i comence a semblar una assegurança. És el punt clau de la unitat.
 - **Retenció d'IRPF i cotització són coses diferents** i es descompten per motius diferents. La retenció és una bestreta de l'impost que es regularitza a la declaració; la cotització finança el sistema de Seguretat Social.
 - Treballar **sense alta vol dir no cotitzar**: ni atur, ni baixa, ni antiguitat per a la jubilació, i sense cap prova del que s'ha pactat. La calculadora és la millor forma d'ensenyar què es perd exactament.
