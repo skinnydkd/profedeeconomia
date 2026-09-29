@@ -25,7 +25,7 @@ preguntas:
     explicacion: "**S**pecific, **M**easurable, **A**chievable, **R**elevant, **T**ime-bound. La traducció valenciana habitual és específic, mesurable, assolible, rellevant i amb termini concret. És la diferència entre tindre metes accionables i tindre desitjos vagues."
   - enunciado: "Quin dels següents NO és un objectiu SMART correctament formulat?"
     opciones:
-      - "Estudiar matemàtiques dos hores, quatre dies per setmana, durant sis mesos, per a traure com a mínim un 7 en la EBAU del pròxim juny."
+      - "Estudiar matemàtiques dos hores, quatre dies per setmana, durant sis mesos, per a traure com a mínim un 7 en la PAU del pròxim juny."
       - "Entrenar tres dies per setmana, una hora per sessió, durant tres mesos, per a córrer 5 km en menys de 28 minuts abans del 30 de setembre."
       - "Estudiar anglés 30 minuts diaris per a aprovar el B2 First en la convocatòria de maig de 2027."
       - "Vull tindre un bon treball i ser feliç d'ací a uns anys."

@@ -39,14 +39,14 @@ preguntas:
       - "Treballar com a autònom des de casa."
     correcta: 1
     explicacion: "L'**intraemprenedoria** és aplicar la mentalitat emprenedora **dins d'una empresa que no és teua**: l'intraemprenedor proposa millores, llança projectes interns i resol ineficiències, sense assumir el risc financer de muntar res. Per a la majoria de l'alumnat d'FP és la via més realista i immediata, ja en l'FCT, l'FP Dual o la primera ocupació."
-  - enunciado: "El Manual d'Oslo (OCDE) distingix quatre tipus d'innovació. Quins?"
+  - enunciado: "La 3a edició del Manual d'Oslo (OCDE, 2005) distingia quatre tipus d'innovació. Quins?"
     opciones:
       - "Radical, incremental, social i digital."
       - "Producte, procés, organització i màrqueting."
       - "Interna, externa, oberta i tancada."
       - "Tècnica, comercial, financera i legal."
     correcta: 1
-    explicacion: "Els quatre tipus del Manual d'Oslo són innovació de **producte** (bé o servei nou o millorat), de **procés** (nova forma de produir o entregar), d'**organització** (nova manera d'organitzar el treball) i de **màrqueting/comercialització** (nova forma de presentar, vendre o cobrar). La majoria de millores reals en una pime són de procés i d'organització."
+    explicacion: "Els quatre tipus de la 3a edició del Manual d'Oslo són innovació de **producte** (bé o servei nou o millorat), de **procés** (nova forma de produir o entregar), d'**organització** (nova manera d'organitzar el treball) i de **màrqueting/comercialització** (nova forma de presentar, vendre o cobrar). L'edició de 2018 els agrupa en dos: producte i procés de negoci, que inclou l'organització i el màrqueting. La majoria de millores reals en una pime són de procés i d'organització."
   - enunciado: "Quina diferència hi ha entre innovació radical i incremental?"
     opciones:
       - "La radical és barata i la incremental cara."
@@ -96,7 +96,7 @@ preguntas:
     correcta: false
     explicacion: "És fals. La innovació radical és escassa i arriscada. La més freqüent i a l'abast de qualsevol és la incremental: millorar a poc a poc el que ja existix. Sumar cent millores xicotetes transforma més una empresa que esperar una única gran idea."
   - tipo: relacionar
-    enunciado: "Emparella cada tipus d'innovació del Manual d'Oslo amb el seu exemple:"
+    enunciado: "Emparella cadascun dels quatre tipus d'innovació del Manual d'Oslo (3a ed.) amb el seu exemple:"
     izquierda: ["Producte", "Procés", "Organització", "Màrqueting"]
     derecha: ["Reorganitzar els torns per a reduir temps morts", "Llançar una beguda amb una nova fórmula millorada", "Vendre per subscripció en lloc de pagament únic", "Automatitzar una fase de la cadena de muntatge"]
     correctas: [1, 3, 0, 2]

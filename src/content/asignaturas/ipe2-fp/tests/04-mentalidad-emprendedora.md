@@ -38,14 +38,14 @@ preguntas:
       - "Trabajar como autónomo desde casa."
     correcta: 1
     explicacion: "El **intraemprendimiento** es aplicar la mentalidad emprendedora **dentro de una empresa que no es tuya**: el intraemprendedor propone mejoras, lanza proyectos internos y resuelve ineficiencias, sin asumir el riesgo financiero de montar nada. Para la mayoría del alumnado de FP es la vía más realista e inmediata, ya en la FCT, la FP Dual o el primer empleo."
-  - enunciado: "El Manual de Oslo (OCDE) distingue cuatro tipos de innovación. ¿Cuáles?"
+  - enunciado: "La 3.ª edición del Manual de Oslo (OCDE, 2005) distinguía cuatro tipos de innovación. ¿Cuáles?"
     opciones:
       - "Radical, incremental, social y digital."
       - "Producto, proceso, organización y marketing."
       - "Interna, externa, abierta y cerrada."
       - "Técnica, comercial, financiera y legal."
     correcta: 1
-    explicacion: "Los cuatro tipos del Manual de Oslo son innovación de **producto** (bien o servicio nuevo o mejorado), de **proceso** (nueva forma de producir o entregar), de **organización** (nueva manera de organizar el trabajo) y de **marketing/comercialización** (nueva forma de presentar, vender o cobrar). La mayoría de mejoras reales en una pyme son de proceso y de organización."
+    explicacion: "Los cuatro tipos de la 3.ª edición del Manual de Oslo son innovación de **producto** (bien o servicio nuevo o mejorado), de **proceso** (nueva forma de producir o entregar), de **organización** (nueva manera de organizar el trabajo) y de **marketing/comercialización** (nueva forma de presentar, vender o cobrar). La edición de 2018 los agrupa en dos: producto y proceso de negocio, que incluye la organización y el marketing. La mayoría de mejoras reales en una pyme son de proceso y de organización."
   - enunciado: "¿Qué diferencia hay entre innovación radical e incremental?"
     opciones:
       - "La radical es barata y la incremental cara."
@@ -95,7 +95,7 @@ preguntas:
     correcta: false
     explicacion: "Es falso. La innovación radical es escasa y arriesgada. La más frecuente y al alcance de cualquiera es la incremental: mejorar poco a poco lo que ya existe. Sumar cien mejoras pequeñas transforma más una empresa que esperar una única gran idea."
   - tipo: relacionar
-    enunciado: "Empareja cada tipo de innovación del Manual de Oslo con su ejemplo:"
+    enunciado: "Empareja cada uno de los cuatro tipos de innovación del Manual de Oslo (3.ª ed.) con su ejemplo:"
     izquierda: ["Producto", "Proceso", "Organización", "Marketing"]
     derecha: ["Reorganizar los turnos para reducir tiempos muertos", "Lanzar una bebida con una nueva fórmula mejorada", "Vender por suscripción en lugar de pago único", "Automatizar una fase de la cadena de montaje"]
     correctas: [1, 3, 0, 2]

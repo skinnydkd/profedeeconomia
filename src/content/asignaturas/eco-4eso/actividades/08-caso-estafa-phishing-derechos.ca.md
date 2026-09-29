@@ -15,7 +15,7 @@ materiales:
   - "Pissarra per a la votació final sobre la negligència greu"
 solucion:
   - "<strong>Pregunta 3 (import):</strong> 1.500 + 900 + 600 = <strong>3.000 €</strong> en operacions no autoritzades."
-  - "<strong>Pregunta 3 (termini):</strong> el termini per a reclamar és de <strong>13 mesos des del càrrec</strong>. Amb el càrrec del <strong>14 de març</strong>, Núria pot reclamar fins al <strong>14 d'abril de l'any següent</strong>. El termini del banc per a respondre la seua reclamació és de <strong>dos mesos</strong>; passats eixos dos mesos sense resposta satisfactòria, pot acudir al Banco de España."
+  - "<strong>Pregunta 3 (termini):</strong> el termini per a reclamar és de <strong>13 mesos des del càrrec</strong>. Amb el càrrec del <strong>14 de març</strong>, Núria pot reclamar fins al <strong>14 d'abril de l'any següent</strong>. El banc té <strong>15 dies hàbils</strong> per a respondre la seua reclamació (fins a un mes en casos excepcionals); si no respon o no li dona la raó, pot acudir al Banco de España."
   - "<strong>Pregunta 4 (qui torna els diners):</strong> segons el <strong>Real Decreto-ley 19/2018, de servicis de pagament</strong>, davant d'una operació que el client no ha autoritzat el banc ha de tornar l'import <strong>immediatament</strong>, i com a molt tard al final del dia hàbil següent, llevat que <strong>demostre</strong> frau o negligència greu de la persona usuària. <strong>La càrrega de la prova és del banc</strong>, no de la víctima."
   - "<strong>Els tres punts de tall:</strong> <strong>1)</strong> l'SMS: cap banc no envia enllaços per a «verificar la identitat», i la pressa («24 hores») és el senyal; n'hi havia prou amb entrar per l'app pròpia. <strong>2)</strong> el web: l'adreça no era la del banc, encara que el disseny sí; n'hi havia prou amb mirar l'URL. <strong>3)</strong> la telefonada: <strong>cap banc no demana mai el codi de l'SMS</strong>, i el número que apareix en la pantalla es falsifica amb facilitat; n'hi havia prou amb penjar i telefonar al número del revers de la targeta."
 estado: publicado
@@ -58,7 +58,7 @@ Al final redactareu l'escrit de reclamació al banc. És la part que quasi ning�
 | --- | --- |
 | **Real Decreto-ley 19/2018**, de servicis de pagament | Davant d'una operació de pagament no autoritzada, el banc torna l'import **immediatament**, com a molt tard el dia hàbil següent, llevat que **demostre** frau o negligència greu de la persona usuària. **La càrrega de la prova és del banc** |
 | Mateix text | La persona usuària disposa de **13 mesos** des del càrrec per a comunicar l'operació no autoritzada |
-| Normativa de transparència bancària | El banc té **dos mesos** per a resoldre la reclamació; després es pot acudir al **Servicio de Reclamaciones del Banco de España** |
+| Mateix text (art. 69) | El banc té **15 dies hàbils** per a respondre la reclamació (fins a **un mes** en casos excepcionals); després es pot acudir al **Servicio de Reclamaciones del Banco de España** |
 | INCIBE | Línia gratuïta **017** d'ajuda en ciberseguretat, tots els dies de l'any |
 
 ## Passos (sessió de 50 min)

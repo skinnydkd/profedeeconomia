@@ -38,7 +38,7 @@ preguntas:
       - "El més nombrós possible."
       - "El que té un únic líder que decidix tot."
     correcta: 1
-    explicacion: "Belbin va demostrar que els equips formats només per «cervells» rendixen pitjor que els **equilibrats**. Un equip eficaç combina **rols complementaris**: cervell (idees), coordinador (organitza), implementador (executa), avaluador (analitza riscos) i cohesionador (cuida el clima). L'equilibri és el que rendix, no reunir els més brillants."
+    explicacion: "Belbin va observar que els equips formats només per «cervells» rendixen pitjor que els **equilibrats**. Un equip eficaç combina **rols complementaris**: cervell (idees), coordinador (organitza), implementador (executa), avaluador (analitza riscos) i cohesionador (cuida el clima). L'equilibri és el que rendix, no reunir els més brillants."
   - enunciado: "Què és la comunicació assertiva?"
     opciones:
       - "Imposar la teua opinió interrompent i desqualificant."
@@ -63,14 +63,14 @@ preguntas:
       - "Autoconsciència, empatia i habilitats socials."
     correcta: 1
     explicacion: "Els cinc components de Goleman són: tres **personals** —**autoconsciència** (reconéixer les pròpies emocions), **autoregulació** (gestionar els impulsos) i **motivació** (moure la conducta cap a objectius)— i dos **socials**: empatia i habilitats socials. La bona notícia és que la intel·ligència emocional s'entrena a qualsevol edat."
-  - enunciado: "Segons la unitat, què afirma Goleman sobre la relació entre intel·ligència emocional i exercici professional?"
+  - enunciado: "Segons la unitat, què diu la investigació sobre la intel·ligència emocional i l'exercici professional?"
     opciones:
-      - "El quocient intel·lectual prediu l'exercici millor que la intel·ligència emocional."
-      - "La intel·ligència emocional prediu l'exercici professional millor que el quocient intel·lectual, sobretot en llocs de relació i lideratge."
+      - "Només importa el quocient intel·lectual: la intel·ligència emocional no aporta res."
+      - "La intel·ligència emocional suma al quocient intel·lectual, sobretot en llocs de relació i lideratge, encara que menys del que va dir Goleman."
       - "Ambdues són irrellevants per a l'èxit laboral."
       - "Només importa la intel·ligència emocional en treballs creatius."
     correcta: 1
-    explicacion: "La tesi de Goleman, demostrada en nombrosos estudis, és que la **intel·ligència emocional prediu l'exercici professional millor que el quocient intel·lectual**, especialment en llocs de relació i lideratge. La investigació va desmentir la creença que l'èxit depenia sobretot del CI."
+    explicacion: "Goleman va popularitzar la idea que la intel·ligència emocional importa tant com el quocient intel·lectual, o més. La investigació posterior confirma que **suma**: la capacitat cognitiva continua sent un dels millors predictors de l'exercici professional, i la intel·ligència emocional hi aporta alguna cosa més, sobretot en llocs de relació i lideratge."
   - enunciado: "En la matriu d'Eisenhower, quin quadrant és «el més rendible i el més descuidat»?"
     opciones:
       - "Urgent i important (fes-ho ja)."
