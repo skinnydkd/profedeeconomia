@@ -29,7 +29,7 @@ preguntas:
       - "1,8"
     correcta: 1
     explicacion: "k = 1 / (1 − c) = 1 / (1 − 0,8) = 1 / 0,2 = 5. Un euro de gasto público adicional acaba arrastrando 5 euros de PIB en el modelo simple sin impuestos ni sector exterior. En economías abiertas el multiplicador realista es bastante menor."
-  - enunciado: "España cerró 2024 con un déficit en torno al 3,0 % del PIB y una deuda pública cercana al 107 % del PIB. La nueva regla fiscal europea aprobada en 2024…"
+  - enunciado: "España cerró 2024 con un déficit del 3,2 % del PIB y una deuda pública del 101,7 % del PIB. La nueva regla fiscal europea aprobada en 2024…"
     opciones:
       - "Suprime los topes del 3 % de déficit y 60 % de deuda."
       - "Mantiene esos topes como referencia última, pero sustituye los plazos uniformes por sendas plurianuales pactadas país a país."

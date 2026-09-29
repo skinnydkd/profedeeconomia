@@ -24,11 +24,11 @@ preguntas:
   - enunciado: "La Organización Mundial del Comercio (OMC)…"
     opciones:
       - "Fue creada en 1947 con el nombre de GATT y desde entonces no ha cambiado."
-      - "Sucedió al GATT en 1995, tiene 164 países miembros y descansa sobre los principios de nación más favorecida, trato nacional y reducción progresiva de aranceles."
+      - "Sucedió al GATT en 1995, tiene 166 países miembros y descansa sobre los principios de nación más favorecida, trato nacional y reducción progresiva de aranceles."
       - "Es un organismo dependiente del Banco Mundial y se ocupa de la cooperación al desarrollo."
       - "Tiene poder para imponer sanciones unilaterales a los países que no liberalicen su comercio."
     correcta: 1
-    explicacion: "La OMC sustituyó al GATT en 1995 y cuenta con 164 miembros. Sus principios básicos son la nación más favorecida (cualquier ventaja a un socio se extiende a todos), el trato nacional (no discriminar productos importados una vez en el mercado interno) y la reducción progresiva de aranceles mediante rondas. La Ronda de Doha lleva sin cerrarse desde 2001 y el órgano de apelación está bloqueado desde 2019."
+    explicacion: "La OMC sustituyó al GATT en 1995 y cuenta con 166 miembros. Sus principios básicos son la nación más favorecida (cualquier ventaja a un socio se extiende a todos), el trato nacional (no discriminar productos importados una vez en el mercado interno) y la reducción progresiva de aranceles mediante rondas. La Ronda de Doha lleva sin cerrarse desde 2001 y el órgano de apelación está bloqueado desde 2019."
   - enunciado: "¿Qué orden cronológico de hitos de la construcción europea es correcto?"
     opciones:
       - "Maastricht → CECA → euro físico → Brexit → NextGenerationEU."
