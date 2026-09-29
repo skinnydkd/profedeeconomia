@@ -13,7 +13,7 @@ import { type Locale } from '@/i18n/locale';
 export const COPY = {
   es: {
     intro:
-      'Planifica los ajustes de diseño universal para el aprendizaje (DUA): cómo presentar la información, qué formas de expresión se ofrecen y cómo se mantiene la motivación del alumno.',
+      'Planifica los ajustes de diseño universal para el aprendizaje (DUA): cómo presentar la información, qué formas de expresión se ofrecen y cómo se mantiene la motivación del alumno. Los datos se guardan solo en este navegador: usa iniciales o un código, no nombres completos ni diagnósticos, y pulsa «Vaciar» al terminar si el ordenador es compartido.',
     heading: 'Medidas DUA / adaptación',
     contextoLabel: 'Contexto / alumno',
     contextoPlaceholder:
@@ -48,7 +48,7 @@ export const COPY = {
   },
   ca: {
     intro:
-      "Planifica els ajustos de disseny universal per a l'aprenentatge (DUA): com presentar la informació, quines formes d'expressió s'oferixen i com es manté la motivació de l'alumne.",
+      "Planifica els ajustos de disseny universal per a l'aprenentatge (DUA): com presentar la informació, quines formes d'expressió s'oferixen i com es manté la motivació de l'alumne. Les dades es guarden només en este navegador: usa inicials o un codi, no noms complets ni diagnòstics, i prem «Buidar» en acabar si l'ordinador és compartit.",
     heading: 'Mesures DUA / adaptació',
     contextoLabel: 'Context / alumne',
     contextoPlaceholder:

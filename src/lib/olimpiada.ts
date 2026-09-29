@@ -104,6 +104,19 @@ export function simulacrosPorAmbito(): { ambito: Ambito; examenes: Simulacro[] }
 
 export interface Lectura { categoria: string; titulo: string; autor: string; comentario: string; }
 export const LECTURAS: Lectura[] = [
+  // Manuales: the technical base the exam asks for
+  {
+    categoria: 'Manuales',
+    titulo: 'Libros de Economía (1.º de Bachillerato) y de Empresa y Diseño de Modelos de Negocio (2.º)',
+    autor: 'profedeeconomia.es',
+    comentario: 'Los libros de este mismo web cubren el temario de la Olimpiada. Son la primera lectura; las fichas de repaso de esta sección resumen lo que más se pregunta.',
+  },
+  {
+    categoria: 'Manuales',
+    titulo: 'Principios de economía',
+    autor: 'N. Gregory Mankiw',
+    comentario: 'El manual de introducción más usado, con micro, macro y ejercicios resueltos. Es la mejor base para la parte técnica de Economía: elasticidad, costes, mercados y PIB.',
+  },
   // Economía general
   {
     categoria: 'Economía general',
@@ -178,7 +191,7 @@ export const LECTURAS: Lectura[] = [
     categoria: 'Clásicos del pensamiento',
     titulo: 'Teoría general del empleo, el interés y el dinero',
     autor: 'John Maynard Keynes',
-    comentario: 'Obra que revolucionó la macroeconomía; la introducción y los capítulos sobre demanda agregada son asequibles para un buen alumno de Bachillerato.',
+    comentario: 'Obra que revolucionó la macroeconomía, pero de lectura difícil incluso en la universidad. Para la Olimpiada basta con dominar sus ideas centrales (demanda agregada, multiplicador, desempleo involuntario) a través de un manual.',
   },
   {
     categoria: 'Clásicos del pensamiento',
@@ -202,7 +215,7 @@ export const LECTURAS: Lectura[] = [
     categoria: 'Clásicos del pensamiento',
     titulo: 'El precio de la desigualdad',
     autor: 'Joseph E. Stiglitz',
-    comentario: 'Critica los fallos de mercado y la captura regulatoria con datos recientes; amplía la perspectiva sobre política económica y bienestar.',
+    comentario: 'Critica los fallos de mercado y la captura regulatoria con datos de Estados Unidos (el libro es de 2012); amplía la perspectiva sobre política económica y bienestar.',
   },
   // Finanzas e inversión
   {
@@ -215,7 +228,7 @@ export const LECTURAS: Lectura[] = [
     categoria: 'Finanzas e inversión',
     titulo: 'Principios',
     autor: 'Ray Dalio',
-    comentario: 'Ofrece una visión de la máquina económica desde dentro de un fondo global; complementa la teoría con una perspectiva profesional.',
+    comentario: 'Las reglas de vida y de trabajo del fundador de Bridgewater, uno de los mayores fondos de inversión del mundo. Es más un libro de gestión y de toma de decisiones que de economía.',
   },
   // Marketing y empresa
   {
@@ -245,9 +258,9 @@ export const LECTURAS: Lectura[] = [
   },
   {
     categoria: 'Webs y recursos',
-    titulo: 'Destripando la Economía (YouTube)',
+    titulo: 'economipedia.com',
     autor: '',
-    comentario: 'Canal de divulgación económica en castellano que explica conceptos macroeconómicos y de actualidad con rigor y claridad.',
+    comentario: 'Diccionario y artículos breves de economía y empresa en castellano; útil para repasar definiciones antes del test.',
   },
 ];
 
