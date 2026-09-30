@@ -10,7 +10,7 @@ estado: publicado
 
 ## Cuándo usarla
 
-- En la Unidad 2, al llegar al pensamiento divergente y al brainstorming: es la herramienta que hace visible la diferencia entre abrir y cerrar.
+- En la Unidad 11, al llegar al pensamiento divergente y al brainstorming: es la herramienta que hace visible la diferencia entre abrir y cerrar.
 - Cuando un grupo se quede atascado con una sola idea que no acaba de funcionar. Casi siempre no es que la idea sea mala: es que no hay ninguna otra con la que compararla.
 - Antes de cualquier proyecto del curso, para que la idea elegida sea la mejor de doce y no la primera que se dijo.
 

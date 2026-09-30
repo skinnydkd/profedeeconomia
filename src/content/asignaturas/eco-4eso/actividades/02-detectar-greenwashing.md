@@ -24,7 +24,7 @@ En esta actividad, cada equipo recibe **3 o 4 anuncios reales** de marcas conoci
 
 ## Objetivos didácticos
 
-- Aplicar los criterios de la Unidad 3 (métricas verificables, certificaciones reconocidas, coherencia y transparencia) sobre material publicitario real.
+- Aplicar los criterios de esta unidad (métricas verificables, certificaciones reconocidas, coherencia y transparencia) sobre material publicitario real.
 - Diferenciar entre RSC seria y comunicación de marca con barniz verde.
 - Buscar y contrastar fuentes secundarias (memorias de sostenibilidad, certificaciones, noticias de prensa especializada).
 - Argumentar un veredicto en grupo sin caer ni en el cinismo total ni en la credulidad publicitaria.

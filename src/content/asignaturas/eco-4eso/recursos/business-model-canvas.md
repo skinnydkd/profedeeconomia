@@ -10,7 +10,7 @@ estado: publicado
 
 ## Cuándo usarla
 
-- En la **Unidad 9** (diseño del proyecto), cuando cada equipo da forma a su idea de negocio y necesita verla entera de un vistazo en lugar de tenerla suelta en la cabeza.
+- En la **Unidad 12** (diseño del proyecto), cuando cada equipo da forma a su idea de negocio y necesita verla entera de un vistazo en lugar de tenerla suelta en la cabeza.
 - Justo después del **Design Thinking**: una vez que el equipo entiende a su cliente y tiene una propuesta, el lienzo ordena todas las piezas y enseña si encajan entre sí.
 - Para detectar pronto los huecos del proyecto: si un bloque queda en blanco (por ejemplo, no se sabe cómo se va a ganar dinero o cómo llegará el producto al cliente), ahí está el problema a resolver.
 

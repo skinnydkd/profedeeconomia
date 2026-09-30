@@ -12,10 +12,10 @@ slug: "asignaturas/eco-4eso/recursos/tamano-mercado.ca"
 
 ## Quan usar-la
 
-- En detectar oportunitats en la Unitat 4, en el moment en què un grup diu «això ho compraria tothom».
+- En detectar oportunitats en la Unitat 11, en el moment en què un grup diu «això ho compraria tothom».
 - Per a posar un número al mercat del projecte abans de dissenyar res, i no després d'haver-lo dissenyat sencer.
 - Per a revisar un objectiu de vendes: si necessita més clients dels que existixen, el pla no hi cap i cal canviar-lo.
-- Abans del Business Model Canvas de la Unitat 9, perquè el segment de clients deixa de ser una etiqueta quan té una grandària.
+- Abans del Business Model Canvas de la Unitat 12, perquè el segment de clients deixa de ser una etiqueta quan té una grandària.
 
 ## Què cal tindre en compte
 

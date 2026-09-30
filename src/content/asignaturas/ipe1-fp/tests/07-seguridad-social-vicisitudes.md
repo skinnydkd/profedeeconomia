@@ -97,11 +97,11 @@ preguntas:
     unidad: "€"
     explicacion: "Despido objetivo procedente: 20 días de salario por año trabajado. Días = 20 × 4 = 80 días. Indemnización = 80 × 50 €/día = 4.000 €. No se alcanza el tope de 12 mensualidades, así que la cifra es válida."
   - tipo: numerico
-    enunciado: "Una persona ha cotizado 1.080 días en los últimos 6 años y pierde su empleo de forma involuntaria. Si por cada 360 días cotizados se generan 120 días de prestación, con un máximo de 720, ¿cuántos días de paro contributivo le corresponden?"
+    enunciado: "Una persona ha cotizado 1.080 días en los últimos 6 años y pierde su empleo de forma involuntaria. Si con 360 días cotizados se cobran 120 días de paro y cada 180 días más cotizados suman 60, con un máximo de 720, ¿cuántos días de paro contributivo le corresponden?"
     respuesta: 360
     tolerancia: 0
     unidad: "días"
-    explicacion: "Paso 1, cuántos bloques de 360 días ha cotizado: 1.080 / 360 = 3. Paso 2, días de prestación: 3 × 120 = **360 días**, es decir, 12 meses. Paso 3, comprobación del máximo: 360 días está por debajo de los 720 (24 meses), así que no se recorta. Cumple además el mínimo de 360 días cotizados en 6 años, y al perder el empleo de forma involuntaria está en situación legal de desempleo."
+    explicacion: "Paso 1, cuántos tramos de 180 días ha cotizado por encima de los 360: (1.080 − 360) / 180 = 4. Paso 2, días de prestación: 120 + 4 × 60 = **360 días**, es decir, 12 meses. Paso 3, comprobación del máximo: 360 días está por debajo de los 720 (24 meses), así que no se recorta. Cumple además el mínimo de 360 días cotizados en 6 años, y al perder el empleo de forma involuntaria está en situación legal de desempleo."
   - tipo: numerico
     enunciado: "Una trabajadora cobra 18.250 € brutos al año (50 € al día) y lleva 20 años exactos en la empresa cuando la despiden por causas objetivas de forma procedente. ¿Cuál es su indemnización en euros, teniendo en cuenta el tope legal?"
     respuesta: 18250

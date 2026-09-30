@@ -80,7 +80,7 @@ El objetivo no es inventar un producto millonario; es **demostrarse a uno mismo*
 
 - **Variante intensa (90 min):** después de los pitches, la clase entera vota con voto puntuado (3 pegatinas por persona, repartibles como se quiera) y los tres grupos más votados prototipan en cartón o papel su idea durante 20 minutos extra.
 - **Variante con objeto sorpresa:** el profesor lleva una bolsa opaca con objetos curiosos (un colador, un imperdible, un mando de TV antiguo) y cada grupo saca uno al azar. Sube el grado de dificultad y de diversión.
-- **Variante curricular cruzada:** en lugar de un objeto físico, aplicar SCAMPER a un servicio del centro (la biblioteca, el sistema de tutorías, la cafetería). Permite enlazar con la idea de *cliente* y *necesidad* que aparecerá en la Unidad 4.
+- **Variante curricular cruzada:** en lugar de un objeto físico, aplicar SCAMPER a un servicio del centro (la biblioteca, el sistema de tutorías, la cafetería). Permite enlazar con la idea de *cliente* y *necesidad* que aparecerá en la Unidad 12.
 
 ## Pistas para el profesor
 

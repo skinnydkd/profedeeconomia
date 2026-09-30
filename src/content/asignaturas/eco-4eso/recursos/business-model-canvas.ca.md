@@ -12,7 +12,7 @@ slug: "asignaturas/eco-4eso/recursos/business-model-canvas.ca"
 
 ## Quan usar-lo
 
-- A la **Unitat 9** (disseny del projecte), quan cada equip dóna forma a la seua idea de negoci i necessita vore-la sencera d'una ullada en lloc de tindre-la solta al cap.
+- A la **Unitat 12** (disseny del projecte), quan cada equip dóna forma a la seua idea de negoci i necessita vore-la sencera d'una ullada en lloc de tindre-la solta al cap.
 - Just després del **Design Thinking**: una vegada que l'equip entén el seu client i té una proposta, el llenç ordena totes les peces i mostra si encaixen entre elles.
 - Per a detectar prompte els buits del projecte: si un bloc queda en blanc (per exemple, no se sap com es guanyarà diners o com arribarà el producte al client), ací està el problema a resoldre.
 

@@ -10,7 +10,7 @@ estado: publicado
 
 ## Cuándo usarla
 
-- En la Unidad 1, en la parte de autoconocimiento: antes de hablar de perfil emprendedor conviene tener algún dato propio sobre la mesa.
+- En la Unidad 11, en la parte de autoconocimiento: antes de hablar de perfil emprendedor conviene tener algún dato propio sobre la mesa.
 - Como arranque de curso, para que cada uno tenga un punto de partida al que volver cuando se hable de itinerarios.
 - Junto con el inventario de competencias: los intereses dicen qué te atrae y las competencias qué sabes hacer, y no son lo mismo.
 

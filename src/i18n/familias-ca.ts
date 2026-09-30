@@ -195,7 +195,7 @@ export const AMBITOS_OLIMPIADA_CA: FamiliaOverlay = {
   cv: {
     label: 'Comunitat Valenciana',
     intro:
-      'Fase local de la Comunitat Valenciana (UA/UV/UPV/UJI/UMH). És el format que descriu la guia: test + exercici + comentari, 2 hores.',
+      'Fase local de la Comunitat Valenciana (UA/UV/UPV/UJI/UMH). És el format que descriu la guia: test + exercici + comentari, 2 hores i mitja.',
   },
   nacional: {
     label: 'Fase nacional',
