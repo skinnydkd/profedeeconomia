@@ -64,7 +64,7 @@ import RecursoDestacado from '@components/libro/RecursoDestacado.astro';
 > - Calcular el **fons de maniobra** per les dues formulacions equivalents i diagnosticar l'equilibri patrimonial.
 > - Interpretar els **ratios principals** de liquiditat, solvència i endeutament dins del seu rang sectorial.
 > - Calcular les **rendibilitats** econòmica (ROA) i financera (ROE) d'una empresa qualsevol.
-> - Reconéixer l'efecte de l'**palanquejament financer** sobre la rendibilitat dels accionistes, en els seus dos sentits.
+> - Reconéixer l'efecte del **palanquejament financer** sobre la rendibilitat dels accionistes, en els seus dos sentits.
 > - Calcular el **període mitjà de maduració** i entendre el seu impacte en la pressió de tresoreria.
 
 <TldrUnidad>
@@ -139,8 +139,8 @@ Per davall d'1, l'empresa està tècnicament en fallida: els seus actius no cobr
 
 Mesuren quant del finançament prové de tercers:
 
-- **Ratio d'endeutament total** = Passiu total / (Patrimoni net + Passiu total). Valor sa: entre 0,4 i 0,6 (és a dir, deute entre el 40% i el 60% del balanç).
-- **Ratio d'autonomia financera** = Patrimoni net / Passiu total. Mesura l'invers: quant patrimoni propi avala cada euro de deute.
+- **Ratio d'endeutament total** = Passiu total / (Patrimoni net + Passiu total). Valor sa: entre 0,4 i 0,6 (és a dir, deute entre el 40% i el 60% del balanç). Alguns manuals el calculen com a Passiu total / Patrimoni net; amb eixa fórmula, el rang equivalent va de 0,67 a 1,5.
+- **Ratio d'autonomia financera** = Patrimoni net / Passiu total. És la inversa del ratio Passiu total / Patrimoni net: quant patrimoni propi avala cada euro de deute.
 
 Els rangs "sans" són orientatius i depenen molt del sector: una empresa del sector elèctric viu amb endeutaments del 70% sense problema, una *startup* tecnològica sol estar per davall del 30%.
 
@@ -204,7 +204,7 @@ Els ratios financers tenen dos usos principals: **comparar** l'empresa amb altre
 
 <HerramientaIsland componente="Ratios" />
 
-<RecursoDestacado href="/edmn-2bach/recursos/calculadora-ratios/" kicker="Ferramenta" title="Calculadora de ràtios financers" descripcion="Les masses del balanç i dues xifres del compte de resultats basten per a obtindre fons de maniobra, liquiditat, solvència, ROA, ROE i l'efecte del palanquejament." colorVar="--color-edmn" />
+<RecursoDestacado href="/edmn-2bach/recursos/calculadora-ratios/" kicker="Ferramenta" title="Calculadora de ràtios financers" descripcion="Les masses del balanç i tres xifres del compte de resultats (BAII, despeses financeres i benefici net) basten per a obtindre fons de maniobra, liquiditat, solvència, ROA, ROE i l'efecte del palanquejament." colorVar="--color-edmn" />
 
 ## Anàlisi del compte de resultats: rendibilitats
 
@@ -232,7 +232,7 @@ Una ROE del 15% significa que cada 100 € que els socis tenen aportats o reinve
 
 ### Palanquejament financer
 
-La diferència entre ROE i ROA mesura l'efecte del **palanquejament financer**: quan una empresa demana deute barat per a invertir en actius que renden més que el cost del deute, la rendibilitat per a l'accionista augmenta. És el que en finances s'anomena "treballar amb diners aliens" per a multiplicar el rendiment del propi.
+El **palanquejament financer** és l'efecte del deute sobre la rendibilitat dels socis: quan una empresa demana deute barat per a invertir en actius que renden més que el cost del deute, la rendibilitat per a l'accionista augmenta. És el que en finances s'anomena "treballar amb diners aliens" per a multiplicar el rendiment del propi.
 
 El palanquejament és palanca i, com tota palanca, **funciona en els dos sentits**: si els actius renden menys que el cost del deute, la rendibilitat financera cau per davall de la rendibilitat econòmica i, en casos extrems, pot ser negativa encara que l'empresa continue generant benefici operatiu. Les grans fallides d'empreses tècnicament rendibles solen tindre darrere un palanquejament mal calculat.
 
@@ -335,6 +335,56 @@ PMM financiero = PMM económico − Período medio de pago a proveedores
 
 Un PMM financer curt (l'empresa cobra ràpid i paga lent) reduïx les necessitats de finançament i millora la liquiditat. Un PMM financer llarg —típic de les pimes espanyoles enfront de les grans administracions, que pagaven tradicionalment amb molts mesos de retard— és una de les causes estructurals de la mortalitat empresarial a Espanya.
 
+Cada un d'eixos temps s'obté a partir d'una **rotació**: quantes vegades a l'any es renova el saldo mitjà d'eixa fase. La rotació és el flux anual dividit entre el saldo mitjà, i el període mitjà en dies és 365 entre la rotació:
+
+```
+Rotació = Flux anual / Saldo mitjà
+Dies    = 365 / Rotació
+```
+
+| Fase | Flux anual (numerador) | Saldo mitjà (denominador) |
+| --- | --- | --- |
+| Magatzem de matèries primeres | Consum de matèries primeres | Existències mitjanes de matèries primeres |
+| Fabricació | Cost de la producció | Existències mitjanes de productes en curs |
+| Venda (magatzem de producte acabat) | Cost de les vendes | Existències mitjanes de productes acabats |
+| Cobrament a clients | Vendes | Saldo mitjà de clients |
+| Pagament a proveïdors | Compres | Saldo mitjà de proveïdors |
+
+<SolvedExercise number="11.3" title="Període mitjà de maduració a partir de les rotacions">
+
+**Enunciat**
+
+Una fàbrica de mobles de cuina presenta estes dades de l'últim exercici (imports en €; les existències i els saldos són mitjanes de l'any):
+
+| Concepte | Import |
+| --- | --- |
+| Consum anual de matèries primeres | 146.000 |
+| Existències mitjanes de matèries primeres | 10.000 |
+| Cost anual de la producció | 365.000 |
+| Existències mitjanes de productes en curs | 10.000 |
+| Cost de les vendes | 365.000 |
+| Existències mitjanes de productes acabats | 25.000 |
+| Vendes anuals | 511.000 |
+| Saldo mitjà de clients | 70.000 |
+| Compres anuals de matèries primeres | 146.000 |
+| Saldo mitjà de proveïdors | 20.000 |
+
+a) Calcula la rotació i el període mitjà, en dies, de cada fase: magatzem de matèries primeres, fabricació, venda, cobrament i pagament.
+b) Calcula el PMM econòmic i el PMM financer.
+c) Interpreta el resultat. Quanta tresoreria alliberaria l'empresa si cobrara els seus clients en 25 dies?
+
+**Solució**
+
+1. **Magatzem de matèries primeres**: rotació = 146.000 / 10.000 = **14,6** vegades a l'any → 365 / 14,6 = **25 dies**.
+2. **Fabricació**: rotació = 365.000 / 10.000 = **36,5** → 365 / 36,5 = **10 dies**.
+3. **Venda**: rotació = 365.000 / 25.000 = **14,6** → 365 / 14,6 = **25 dies**.
+4. **Cobrament a clients**: rotació = 511.000 / 70.000 = **7,3** → 365 / 7,3 = **50 dies**.
+5. **Pagament a proveïdors**: rotació = 146.000 / 20.000 = **7,3** → 365 / 7,3 = **50 dies**.
+6. **PMM econòmic** = 25 + 10 + 25 + 50 = **110 dies**. **PMM financer** = 110 − 50 = **60 dies**.
+7. **Interpretació**: des que la matèria primera entra al magatzem fins que es cobra el moble passen 110 dies. Els proveïdors en financen 50; els altres **60 dies** els ha de finançar l'empresa amb recursos propis o amb deute. Si cobrara en 25 dies, la rotació de clients pujaria a 365 / 25 = 14,6 i el saldo mitjà de clients baixaria a 511.000 / 14,6 = 35.000 €: el PMM econòmic quedaria en 85 dies, el financer en **35 dies**, i l'empresa alliberaria **35.000 € de tresoreria** (25 dies × 1.400 € de vendes diàries).
+
+</SolvedExercise>
+
 <Callout label="Exemple pràctic" title="Per què la gran distribució viu amb fons de maniobra negatiu" variant="example">
 
 Una cadena com Mercadona cobra al comptat als seus clients (el client paga en caixa abans d'eixir) i paga als seus proveïdors a 30 o 60 dies, el màxim legal (30 per als aliments frescos i 60 per a la resta). El resultat és que l'empresa té en el seu compte corrent, tots els dies, els diners de les vendes de les últimes setmanes sense haver-los pagat encara a qui li servix. Això li permet operar amb fons de maniobra negatiu —el seu passiu corrent és enorme perquè inclou totes eixes factures pendents— sense cap problema de liquiditat. De fet, li permet finançar gratis el seu creixement. És un cas extrem de PMM financer negatiu i demostra que les regles d'equilibri financer, com quasi tot en finances, depenen del sector.
@@ -366,7 +416,7 @@ Reunir les eines anteriors en un procés ordenat dóna el següent flux:
 
 <li><strong>Calcular ratios de solvència i endeutament</strong>. Comparar amb rangs sectorials habituals (no amb la regla genèrica).</li>
 
-<li><strong>Calcular ROA i ROE</strong>. Comparar la diferència per a avaluar l'efecte del palanquejament.</li>
+<li><strong>Calcular ROA, ROE i cost del deute</strong>. El palanquejament es jutja comparant la RE amb el cost del deute.</li>
 
 <li><strong>Calcular el període mitjà de maduració</strong>. Creuar amb la liquiditat per a entendre si la tresoreria és estructuralment còmoda o estructuralment tensa.</li>
 
@@ -379,7 +429,7 @@ La paradoxa de DIA és la **gran lliçó** de l'anàlisi financera: els ratios *
 
 1. **Asimetria d'incentius**: molts analistes treballen per a bancs que també fan negoci amb les empreses que analitzen; criticar amb duresa els seus comptes pot eixir car.
 2. **Biaix de confirmació**: una empresa amb marca històrica i dividends estables resulta «creïble» encara que els ratios diguen el contrari. La marca actua com a amortidor cognitiu.
-3. **Comptabilitat agressiva i irregularitats**: hi ha decisions que la norma permet i que milloren les xifres (allargar la vida útil dels actius, capitalitzar despeses, retardar el reconeixement de pèrdues). En DIA, a més, hi va haver irregularitats: l'octubre de 2018 va haver de reexpressar els comptes de 2017 i va portar el cas a la Fiscalia.
+3. **Comptabilitat agressiva i irregularitats**: hi ha decisions que la norma permet i que milloren les xifres (allargar la vida útil dels actius, capitalitzar despeses, retardar el reconeixement de pèrdues). En DIA, a més, hi va haver irregularitats: l'octubre de 2018 va haver de reexpressar els comptes de 2017 i el febrer de 2019 va portar el cas a la Fiscalia.
 
 La conclusió operativa: **els ratios són fiables només si es lligen amb sentit crític** —comparant-los amb el sector, mirant la seua evolució temporal i desconfiant quan una empresa amb xifres dubtoses presenta una narrativa massa neta—. Saber llegir un balanç no garantix veure el problema; però **no saber-ho ho garantix**.
 </VuelveAlCaso>
@@ -387,7 +437,7 @@ La conclusió operativa: **els ratios són fiables només si es lligen amb senti
 <KeyTakeaways title="L'essencial de l'anàlisi financera">
 - El **fons de maniobra** mesura l'equilibri a curt termini. Positiu = saludable; negatiu = alarma (excepte en gran distribució).
 - Els **ratios de liquiditat, solvència i endeutament** permeten comparar empreses i vigilar tendències. Els rangs sans varien entre sectors.
-- **ROA** mesura eficiència operativa de l'actiu; **ROE** mesura rendibilitat del capital aportat pels socis. La diferència és l'efecte del palanquejament financer.
+- **ROA** mesura eficiència operativa de l'actiu; **ROE** mesura rendibilitat del capital aportat pels socis. El palanquejament financer és positiu quan el ROA supera el cost del deute.
 - El **període mitjà de maduració** financer és el que l'empresa ha de finançar de la seua butxaca o del deute. Com més curt, menor pressió de tresoreria.
 - Un ratio aïllat diu poc. La **comparació amb el sector** i la **tendència temporal** són el que de veritat informa.
 </KeyTakeaways>
@@ -401,7 +451,7 @@ La conclusió operativa: **els ratios són fiables només si es lligen amb senti
 - **Acid test** (ratio de tresoreria): (actiu corrent − existències) / passiu corrent. Rang sa: al voltant d'1.
 - **Ratio de solvència**: actiu total / passiu total. Per davall d'1, fallida tècnica.
 - **Ratio d'endeutament**: passiu / (PN + passiu). Rang sa genèric: 0,4-0,6, varia per sector.
-- **Ratio d'autonomia financera**: patrimoni net / passiu. Invers de l'endeutament.
+- **Ratio d'autonomia financera**: patrimoni net / passiu. És la inversa del ratio passiu / patrimoni net.
 - **ROA** (*Return on Assets*): BAII / actiu total. Rendibilitat econòmica. Mesura eficiència de l'actiu.
 - **ROE** (*Return on Equity*): benefici net / patrimoni net. Rendibilitat financera. Mesura rendiment per a l'accionista.
 - **BAII / EBIT**: benefici abans d'interessos i impostos.
@@ -409,6 +459,7 @@ La conclusió operativa: **els ratios són fiables només si es lligen amb senti
 - **Descomposició DuPont**: ROE = marge × rotació × palanquejament. Permet veure d'on ve la rendibilitat financera.
 - **PMM econòmic**: dies que transcorren des que es compra matèria primera fins que es cobra al client.
 - **PMM financer**: PMM econòmic menys període mitjà de pagament a proveïdors. El que l'empresa finança de la seua butxaca.
+- **Rotació**: flux anual d'una fase dividit entre el seu saldo mitjà (per exemple, vendes / saldo mitjà de clients). 365 / rotació dona els dies d'eixa fase.
 
 ## Per a aprofundir
 
@@ -524,7 +575,7 @@ La conclusió operativa: **els ratios són fiables només si es lligen amb senti
     - t: Endeutament total
       d: "Passiu / (patrimoni net + passiu). Quina part del balanç és deute alié. Rang genèric sa: 0,4-0,6, molt dependent del sector."
     - t: Autonomia financera
-      d: "Patrimoni net / passiu. L'invers de l'anterior: quant de patrimoni propi avala cada euro de deute."
+      d: "Patrimoni net / passiu. És la inversa de passiu / patrimoni net: quant de patrimoni propi avala cada euro de deute."
 - tipo: table
   title: Dos fusteries del mateix sector, dos diagnòstics
   head:
@@ -612,6 +663,16 @@ La conclusió operativa: **els ratios són fiables només si es lligen amb senti
       - És el que l'empresa finança amb diner propi o amb deute
       - "Curt (cobrar prompte, pagar tard): menys necessitat de finançament"
       - "Llarg: pressió de tresoreria, causa estructural de mortalitat en les pimes"
+- tipo: exercise
+  title: Exercici 11.3 · El PMM a partir de les rotacions
+  enunciado: "Una fàbrica de mobles consumix 146.000 € de matèries primeres (existències mitjanes, 10.000 €), produïx i ven a un cost de 365.000 € (en curs, 10.000 €; acabats, 25.000 €), ven per 511.000 € (clients, 70.000 €) i compra 146.000 € (proveïdors, 20.000 €). Calcula el PMM econòmic i el financer."
+  pasos:
+    - "Rotació = flux anual / saldo mitjà; dies = 365 / rotació."
+    - "Matèries primeres: 146.000 / 10.000 = 14,6 → 25 dies. Fabricació: 365.000 / 10.000 = 36,5 → 10 dies."
+    - "Venda: 365.000 / 25.000 = 14,6 → 25 dies. Cobrament: 511.000 / 70.000 = 7,3 → 50 dies."
+    - "Pagament: 146.000 / 20.000 = 7,3 → 50 dies."
+    - "PMM econòmic = 25 + 10 + 25 + 50 = 110 dies. PMM financer = 110 − 50 = 60 dies."
+    - "Cobrar en 25 dies deixaria el PMM financer en 35 dies i alliberaria 35.000 € de caixa: 25 dies × 1.400 € de vendes diàries."
 - tipo: concept
   eyebrow: Exemple pràctic
   title: Per què la gran distribució viu amb fons de maniobra negatiu
@@ -634,7 +695,7 @@ La conclusió operativa: **els ratios són fiables només si es lligen amb senti
     - "Llegir el balanç en cinc grans masses: actiu fix o circulant?, passiu endeutat o capitalitzat?"
     - "Calcular el fons de maniobra i les tres ràtios de liquiditat: general, acid test i disponibilitat."
     - Calcular solvència i endeutament i comparar-los amb el rang del sector, no amb la regla genèrica.
-    - Calcular ROA i ROE; la diferència entre els dos mesura l'efecte del palanquejament.
+    - Calcular ROA, ROE i cost del deute: el palanquejament es jutja comparant la RE amb el cost del deute.
     - Calcular el PMM, encreuar-lo amb la liquiditat i comparar l'evolució de tres exercicis seguits.
 - tipo: figure
   src: edmn-2bach/11/cnmv-edison.jpg
