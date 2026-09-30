@@ -41,21 +41,49 @@ function makeRequest(body: unknown): { request: Request; clientAddress: string }
   };
 }
 
+// Minimal model of what start.ts writes, to check what reaches the tables.
+interface InstituteRow { institute_display: string; last_seen_at: string }
+const institutesTable = new Map<string, InstituteRow>();
+const insertedGames: Record<string, unknown>[] = [];
+
 beforeEach(() => {
   mockFrom.mockReset();
+  institutesTable.clear();
+  insertedGames.length = 0;
   // Default mock chain:
-  //   institutes.upsert → ok
+  //   institutes.upsert → insert (or overwrite unless ignoreDuplicates)
+  //   institutes.update.eq.select.single → the stored row
   //   active_games.insert.select.single → { game_id: 'test-game-id' }
   //   active_games.update.eq → ok
   mockFrom.mockImplementation((table: string) => {
     if (table === 'institutes') {
       return {
-        upsert: vi.fn(() => ({ error: null })),
+        upsert: vi.fn((row: InstituteRow & { institute_norm: string }, opts?: { ignoreDuplicates?: boolean }) => {
+          if (!institutesTable.has(row.institute_norm) || !opts?.ignoreDuplicates) {
+            institutesTable.set(row.institute_norm, {
+              institute_display: row.institute_display,
+              last_seen_at: row.last_seen_at,
+            });
+          }
+          return { error: null };
+        }),
+        update: vi.fn((patch: Partial<InstituteRow>) => ({
+          eq: vi.fn((_col: string, norm: string) => ({
+            select: vi.fn(() => ({
+              single: vi.fn(() => {
+                const row = institutesTable.get(norm);
+                if (!row) return { data: null, error: { message: 'no rows' } };
+                Object.assign(row, patch);
+                return { data: { ...row }, error: null };
+              }),
+            })),
+          })),
+        })),
       };
     }
     if (table === 'active_games') {
       return {
-        insert: vi.fn(() => ({
+        insert: vi.fn((row: Record<string, unknown>) => (insertedGames.push(row), {
           select: vi.fn(() => ({
             single: vi.fn(() => ({ data: { game_id: 'test-game-id' }, error: null })),
           })),
@@ -126,5 +154,40 @@ describe('POST /api/jocs/start', () => {
     // Whitespace-only names (post-trim empty) should fail
     const res2 = await POST(makeRequest({ playerName: '    ', institute: 'IES Test' }) as any);
     expect(res2.status).toBe(400);
+  });
+
+  it('keeps the first spelling of an institute: a later variant of the same key cannot rename it', async () => {
+    await POST(makeRequest({ playerName: 'Ana', institute: 'IES Lluís Vives' }) as any);
+    const res = await POST(makeRequest({ playerName: 'Troll', institute: 'IES Lluís Vives — ¡¡¡ПОЗОР!!!' }) as any);
+    expect(res.status).toBe(200);
+    // Same key, so the ranking and the autocomplete keep showing the first name…
+    expect(institutesTable.get('iesluisvives')?.institute_display).toBe('IES Lluís Vives');
+    // …and the new game is filed under it too.
+    expect(insertedGames[1]).toMatchObject({ institute_norm: 'iesluisvives', institute_display: 'IES Lluís Vives' });
+  });
+
+  it('still records when an institute was last seen, for the autocomplete order', async () => {
+    institutesTable.set('iesluisvives', { institute_display: 'IES Lluís Vives', last_seen_at: '2026-01-01T00:00:00.000Z' });
+    await POST(makeRequest({ playerName: 'Ana', institute: 'ies lluis vives' }) as any);
+    expect(institutesTable.get('iesluisvives')?.last_seen_at).not.toBe('2026-01-01T00:00:00.000Z');
+  });
+
+  it('rejects institutes whose key would be empty or too short to tell centres apart', async () => {
+    for (const institute of ['学校', '!!', 'I.E.', 'Ω Ψ']) {
+      const res = await POST(makeRequest({ playerName: 'Alice', institute }) as any);
+      expect(res.status, institute).toBe(400);
+      expect((await res.json()).error).toBe('invalid-institute');
+    }
+    expect(institutesTable.size).toBe(0);
+  });
+
+  it('strips control and bidi characters from the names that go public', async () => {
+    const res = await POST(makeRequest({ playerName: 'Pa\u202Eu\u200B', institute: 'IES\u2066 Vives\n' }) as any);
+    expect(res.status).toBe(200);
+    expect(insertedGames[0]).toMatchObject({ player_name: 'Pau', institute_display: 'IES Vives' });
+    // Only invisible characters: nothing left of the name.
+    const res2 = await POST(makeRequest({ playerName: '\u200B\u202E', institute: 'IES Vives' }) as any);
+    expect(res2.status).toBe(400);
+    expect((await res2.json()).error).toBe('invalid-name');
   });
 });
