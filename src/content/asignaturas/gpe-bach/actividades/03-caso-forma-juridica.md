@@ -18,7 +18,7 @@ estado: publicado
 
 ## Planteamiento
 
-Elegir la forma jurídica es una de las decisiones de arranque que más condicionan un proyecto, y casi nunca hay una respuesta única "correcta": depende del perfil del equipo y del riesgo de la actividad. Esta actividad pone tres casos reales sobre la mesa para que el alumnado practique el razonamiento antes de aplicarlo a su propio proyecto en la Fase 2 del cuaderno. El objetivo no es memorizar las formas jurídicas, sino **decidir con criterio**: saber por qué a un caso le conviene autónomo y a otro una cooperativa.
+Elegir la forma jurídica es una de las decisiones de arranque que más condicionan un proyecto, y casi nunca hay una respuesta única "correcta": depende del perfil del equipo y del riesgo de la actividad. Esta actividad pone tres casos sobre la mesa para que el alumnado practique el razonamiento antes de aplicarlo a su propio proyecto en la Fase 2 del cuaderno. El objetivo no es memorizar las formas jurídicas, sino **decidir con criterio**: saber por qué a un caso le conviene autónomo y a otro una cooperativa.
 
 ## Los tres casos
 
