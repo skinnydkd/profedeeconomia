@@ -73,6 +73,6 @@ Desde 1979, el trasvase lleva agua de los embalses de cabecera del Tajo (Entrepe
 
 ### Caso C · Jaén, 2022-2023: cuando no llueve en el olivar
 
-España produce alrededor de la mitad del aceite de oliva del mundo, y Andalucía, más del 80 % del español. Una campaña normal ronda los 1,4 millones de toneladas, pero la sequía de 2022 y 2023 dejó la cosecha 2022/2023 en unas 666.000 toneladas, menos de la mitad. El precio en origen del virgen extra pasó de unos 3,30 €/kg en la campaña 2021/22 a superar los 9 €/kg en 2023. Cuando volvió a llover, la campaña 2024/25 recuperó en torno a 1,4 millones de toneladas y el precio en origen bajó hasta unos 4 €/kg a lo largo de 2025. El mismo olivar y el mismo trabajo, con distinta agua, dieron resultados opuestos.
+España produce alrededor de la mitad del aceite de oliva del mundo, y Andalucía, más del 80 % del español. Una campaña normal ronda los 1,4 millones de toneladas, pero la sequía de 2022 y 2023 dejó la cosecha 2022/2023 en unas 666.000 toneladas, menos de la mitad. El precio en origen del virgen extra pasó de unos 3,30 €/kg en la campaña 2021/22 a rondar los 9 €/kg entre finales de 2023 y comienzos de 2024. Cuando volvió a llover, la campaña 2024/25 recuperó en torno a 1,4 millones de toneladas y el precio en origen bajó hasta unos 4 €/kg a lo largo de 2025. El mismo olivar y el mismo trabajo, con distinta agua, dieron resultados opuestos.
 
 *Fuente: Ministerio de Agricultura, Pesca y Alimentación (MAPA), balances de campaña del aceite de oliva 2021/22-2024/25. Caso recogido en Eco 4ESO, Unidad 3.*

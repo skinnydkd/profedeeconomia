@@ -62,9 +62,9 @@ Tres empresas que ya aparecen en el material, cada una con una forma distinta de
 
 ### Caso A · MUD Jeans: vaqueros de alquiler
 
-La industria textil es un ejemplo claro del modelo lineal: prendas baratas que se usan poco y se tiran, con un consumo altísimo de agua y de algodón. La empresa neerlandesa MUD Jeans experimentó durante años con un modelo circular: en lugar de vender los vaqueros, los alquilaba con una cuota mensual; cuando el cliente ya no los quería, los devolvía, y la empresa los reparaba para revenderlos de segunda mano o los deshilachaba para fabricar tejido nuevo, mezclando algodón reciclado con fibra virgen. En 2024 anunció que abandonaba el alquiler, porque concluyó que no era escalable a gran volumen, y se reorientó hacia la reparación, la reventa y el reciclaje.
+La industria textil es un ejemplo claro del modelo lineal: prendas baratas que se usan poco y se tiran, con un consumo altísimo de agua y de algodón. La empresa neerlandesa MUD Jeans experimentó durante años con un modelo circular: en lugar de vender los vaqueros, los alquilaba con una cuota mensual; cuando el cliente ya no los quería, los devolvía, y la empresa los reparaba para revenderlos de segunda mano o los deshilachaba para fabricar tejido nuevo, mezclando algodón reciclado con fibra virgen. En mayo de 2026 abandonó el alquiler, porque concluyó que no era escalable a gran volumen, y se reorientó hacia la reparación, la reventa y el reciclaje. En agosto de 2026 se declaró en quiebra por el peso de sus deudas; en septiembre la marca volvió a vender con nuevos propietarios.
 
-*Fuentes: MUD Jeans, memorias de sostenibilidad y notas de prensa 2024; Fundación Ellen MacArthur, casos de economía circular. Caso recogido en la Unidad 3 de este libro.*
+*Fuentes: MUD Jeans, memorias de sostenibilidad y notas de prensa; RetailDetail (mayo de 2026); NL Times (7 de agosto de 2026); Sourcing Journal (septiembre de 2026); Fundación Ellen MacArthur, casos de economía circular. Caso recogido en la Unidad 3 de este libro.*
 
 ### Caso B · Zuvamesa (Sagunt): el zumo y lo que sobra de la naranja
 

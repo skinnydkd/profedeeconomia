@@ -64,9 +64,9 @@ Tres empreses que ja apareixen en el material, cadascuna amb una manera distinta
 
 ### Cas A · MUD Jeans: vaquers de lloguer
 
-La indústria tèxtil és un exemple clar del model lineal: peces barates que s'usen poc i es tiren, amb un consum altíssim d'aigua i de cotó. L'empresa neerlandesa MUD Jeans va experimentar durant anys amb un model circular: en compte de vendre els vaquers, els llogava amb una quota mensual; quan el client ja no els volia, els tornava, i l'empresa els reparava per a revendre'ls de segona mà o els esfilagarsava per a fabricar teixit nou, barrejant cotó reciclat amb fibra verge. El 2024 va anunciar que abandonava el lloguer, perquè va concloure que no era escalable a gran volum, i es va reorientar cap a la reparació, la revenda i el reciclatge.
+La indústria tèxtil és un exemple clar del model lineal: peces barates que s'usen poc i es tiren, amb un consum altíssim d'aigua i de cotó. L'empresa neerlandesa MUD Jeans va experimentar durant anys amb un model circular: en compte de vendre els vaquers, els llogava amb una quota mensual; quan el client ja no els volia, els tornava, i l'empresa els reparava per a revendre'ls de segona mà o els esfilagarsava per a fabricar teixit nou, barrejant cotó reciclat amb fibra verge. El maig de 2026 va abandonar el lloguer, perquè va concloure que no era escalable a gran volum, i es va reorientar cap a la reparació, la revenda i el reciclatge. L'agost de 2026 es va declarar en fallida pel pes dels seus deutes; al setembre la marca va tornar a vendre amb nous propietaris.
 
-*Fonts: MUD Jeans, memòries de sostenibilitat i notes de premsa 2024; Fundació Ellen MacArthur, casos d'economia circular. Cas recollit en la Unitat 3 d'este llibre.*
+*Fonts: MUD Jeans, memòries de sostenibilitat i notes de premsa; RetailDetail (maig de 2026); NL Times (7 d'agost de 2026); Sourcing Journal (setembre de 2026); Fundació Ellen MacArthur, casos d'economia circular. Cas recollit en la Unitat 3 d'este llibre.*
 
 ### Cas B · Zuvamesa (Sagunt): el suc i el que sobra de la taronja
 

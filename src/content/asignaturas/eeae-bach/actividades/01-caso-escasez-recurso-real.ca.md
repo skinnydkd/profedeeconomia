@@ -75,6 +75,6 @@ Des de 1979, el transvasament porta aigua dels embassaments de capçalera del Ta
 
 ### Cas C · Jaén, 2022-2023: quan no plou a l'olivar
 
-Espanya produïx al voltant de la meitat de l'oli d'oliva del món, i Andalusia, més del 80 % de l'espanyol. Una campanya normal ronda els 1,4 milions de tones, però la sequera de 2022 i 2023 va deixar la collita 2022/2023 en unes 666.000 tones, menys de la meitat. El preu en origen del verge extra va passar d'uns 3,30 €/kg a la campanya 2021/22 a superar els 9 €/kg el 2023. Quan va tornar a ploure, la campanya 2024/25 va recuperar al voltant d'1,4 milions de tones i el preu en origen va baixar fins a uns 4 €/kg al llarg de 2025. El mateix olivar i el mateix treball, amb una aigua distinta, van donar resultats oposats.
+Espanya produïx al voltant de la meitat de l'oli d'oliva del món, i Andalusia, més del 80 % de l'espanyol. Una campanya normal ronda els 1,4 milions de tones, però la sequera de 2022 i 2023 va deixar la collita 2022/2023 en unes 666.000 tones, menys de la meitat. El preu en origen del verge extra va passar d'uns 3,30 €/kg a la campanya 2021/22 a rondar els 9 €/kg entre finals de 2023 i principis de 2024. Quan va tornar a ploure, la campanya 2024/25 va recuperar al voltant d'1,4 milions de tones i el preu en origen va baixar fins a uns 4 €/kg al llarg de 2025. El mateix olivar i el mateix treball, amb una aigua distinta, van donar resultats oposats.
 
 *Font: Ministeri d'Agricultura, Pesca i Alimentació (MAPA), balanços de campanya de l'oli d'oliva 2021/22-2024/25. Cas recollit en Eco 4ESO, Unitat 3.*
