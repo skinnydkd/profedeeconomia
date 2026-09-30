@@ -389,6 +389,12 @@ const locale = getLocale(Astro.currentLocale);
     transform: translateX(-50%) translateY(0);
     transition-delay: 0s;
   }
+  /* The panel being opened sits above one still fading out. Moving fast from
+     «Otros» to «FP», the closing 540px panel (same z-index, later in the DOM)
+     covered FP's and took the pointer back, reopening «Otros». */
+  .nav-group:hover .nav-dropdown,
+  .nav-group:focus-within .nav-dropdown,
+  .nav-group.is-open .nav-dropdown { z-index: 61; }
 
   /* ──────────── seccions del dropdown ──────────── */
   .dropdown-section {
