@@ -35,7 +35,7 @@ preguntas:
     opciones:
       - "Publicitat que fa servir un famós per a anunciar un producte."
       - "Publicitat pagada que es presenta com una opinió sincera."
-      - "Qualsevol anunci a les xarxes socials, encara que diga que és publicitat."
+      - "Qualsevol anunci que aparega a les xarxes socials."
       - "Un anunci amb lletra menuda que amaga les condicions."
     correcta: 1
     explicacion: "La publicitat encoberta és publicitat pagada que es presenta com si fóra una opinió sincera, sense avisar. És il·legal a Espanya: cal marcar-la amb etiquetes com «publicitat» o «#ad». Que hi isca un famós no la fa encoberta si s'avisa que és un anunci."
@@ -50,9 +50,9 @@ preguntas:
   - enunciado: "Et compres uns auriculars nous i deixen de funcionar als huit mesos sense que tu els hages trencat. Què diu la garantia legal?"
     opciones:
       - "Que has de comprar-ne uns altres, perquè ja els has fet servir."
-      - "Que la botiga t'ho ha d'arreglar o canviar de manera gratuïta."
-      - "Que has de reclamar al fabricant, no a la botiga on els vas comprar."
-      - "Que la garantia només cobrix els sis primers mesos."
+      - "Que la botiga te'ls ha d'arreglar o canviar de manera gratuïta."
+      - "Que has de reclamar al fabricant, no a la botiga."
+      - "Que la garantia dura sis mesos i ja ha caducat."
     correcta: 1
     explicacion: "La garantia legal obliga el venedor a reparar, canviar o tornar els diners si un producte nou falla sense que tu l'hages trencat, i dura tres anys. No cal anar al fabricant: respon la botiga. Convé guardar el tiquet com a prova de compra."
   - enunciado: "Si una botiga no et fa cas quan reclames, quin és el següent pas recomanat en la unitat?"
@@ -102,7 +102,7 @@ preguntas:
       - "Comprar-les i, si després se'n penedix, tornar-les sense problema."
       - "Comprar-les, perquè si s'esgoten no les tornarà a veure a eixe preu."
     correcta: 1
-    explicacion: "El «només en queden 2» i el compte arrere són tècniques per a crear urgència i que compres sense pensar. Un consumidor intel·ligent es fa les quatre preguntes: poder pagar-ho no n'hi ha prou si no ho necessita ni ha comparat. Esperar 24 hores desactiva la pressa: si demà encara les vol, serà una compra pensada."
+    explicacion: "El «només en queden 2» i el compte arrere són tècniques per a crear urgència i que compres sense pensar. Un consumidor intel·ligent es fa les quatre preguntes: no n'hi ha prou de poder pagar-ho si no ho necessita ni ha comparat. Esperar 24 hores desactiva la pressa: si demà encara les vol, serà una compra pensada."
   - tipo: numerico
     enunciado: "A casa teua es compra una botella de dos litres de cola cada setmana. Quants euros de més es paguen en un any (52 setmanes) per triar Coca-Cola (1,30 €) en compte de la cola Hacendado (0,40 €)?"
     respuesta: 46.8

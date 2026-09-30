@@ -30,10 +30,10 @@ preguntas:
       - "Vendre el màxim possible, encara que perda diners amb cada venda."
       - "Pagar sous: la seua finalitat és donar treball a les famílies."
     correcta: 1
-    explicacion: "L'objectiu habitual d'una empresa privada és obtindre benefici: que el que ingressa per vendre supere el que gasta a produir. Vendre molt no n'hi ha prou: si cada venda costa més del que es cobra, l'empresa perd diners."
+    explicacion: "L'objectiu habitual d'una empresa privada és obtindre benefici: que el que ingressa per vendre supere el que gasta a produir. No n'hi ha prou amb vendre molt: si cada venda costa més del que es cobra, l'empresa perd diners."
   - enunciado: "Quina d'estes funcions correspon a l'Estat (sector públic)?"
     opciones:
-      - "Consumir béns i serveis i aportar treball a canvi d'un salari."
+      - "Consumir i aportar treball a canvi d'un salari."
       - "Cobrar impostos, donar serveis públics i posar les regles."
       - "Produir béns i vendre'ls buscant benefici privat."
       - "Prestar diners a les empreses a canvi d'interessos."
@@ -41,9 +41,9 @@ preguntas:
     explicacion: "L'Estat cobra impostos a famílies i empreses, oferix serveis públics a tots i fixa les regles del joc econòmic. Prestar diners a canvi d'interessos és el que fan els bancs, que són empreses."
   - enunciado: "Segons la unitat, què és un mercat?"
     opciones:
-      - "Un lloc físic amb parades, com la plaça del poble els dissabtes."
+      - "Un lloc físic amb parades; una web de compravenda no hi compta."
       - "Qualsevol lloc, físic o digital, on es compra i es ven."
-      - "Una botiga o centre comercial amb llicència de l'ajuntament."
+      - "El lloc on les empreses fabriquen el que després venen."
       - "Un lloc on l'Estat fixa el preu de cada producte."
     correcta: 1
     explicacion: "Un mercat és qualsevol lloc o sistema on compradors i venedors es posen en contacte per a intercanviar a canvi d'un preu. No cal que siga físic: una web de compravenda com Wallapop o el mercat de treball també ho són."
@@ -99,7 +99,7 @@ preguntas:
     explicacion: "Les famílies consumixen i aporten treball; les empreses produïxen buscant benefici; l'Estat cobra impostos i oferix serveis públics."
   - enunciado: "Al mercat del poble del cas hi ha famílies amb la cistella i paradistes que han vingut en furgoneta. On és l'Estat en eixa plaça?"
     opciones:
-      - "No hi és: el mercat és cosa dels qui compren i venen, sense ningú més."
+      - "No hi és: el mercat és cosa dels qui compren i venen."
       - "A l'ajuntament: dona les llicències i cobra una taxa per la plaça."
       - "En els paradistes, perquè venen amb permís i paguen impostos."
       - "En les famílies, perquè amb les seues compres paguen l'IVA de tot."

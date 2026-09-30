@@ -34,7 +34,7 @@ preguntas:
     opciones:
       - "Publicidad que usa a un famoso para anunciar un producto."
       - "Publicidad pagada que se presenta como una opinión sincera."
-      - "Cualquier anuncio en redes sociales, aunque diga que es publicidad."
+      - "Cualquier anuncio que aparezca en redes sociales."
       - "Un anuncio con letra pequeña que esconde las condiciones."
     correcta: 1
     explicacion: "La publicidad encubierta es publicidad pagada que se presenta como si fuera una opinión sincera, sin avisar. Es ilegal en España: hay que marcarla con etiquetas como «publicidad» o «#ad». Que salga un famoso no la convierte en encubierta si se avisa de que es un anuncio."
@@ -50,8 +50,8 @@ preguntas:
     opciones:
       - "Que debes comprar otros, porque ya los has usado."
       - "Que la tienda tiene que arreglártelos o cambiártelos gratis."
-      - "Que tienes que reclamar al fabricante, no a la tienda donde los compraste."
-      - "Que la garantía solo cubre los seis primeros meses."
+      - "Que tienes que reclamar al fabricante, no a la tienda."
+      - "Que la garantía dura seis meses y ya ha caducado."
     correcta: 1
     explicacion: "La garantía legal obliga al vendedor a reparar, cambiar o devolver el dinero si un producto nuevo falla sin que tú lo hayas roto, y dura tres años. No hace falta ir al fabricante: responde la tienda. Conviene guardar el ticket como prueba de compra."
   - enunciado: "Si una tienda no te hace caso al reclamar, ¿cuál es el siguiente paso recomendado en la unidad?"

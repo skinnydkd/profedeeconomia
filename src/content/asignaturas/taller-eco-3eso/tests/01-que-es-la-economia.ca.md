@@ -35,7 +35,7 @@ preguntas:
     opciones:
       - "Béns, perquè cobrixen una necessitat i cal pagar-los."
       - "Serveis: algú els fa per tu i no es poden tocar."
-      - "Recursos, perquè s'hi fa servir el treball d'una persona."
+      - "Recursos, perquè fan servir el treball d'una persona."
       - "Béns econòmics, perquè són escassos i tenen preu."
     correcta: 1
     explicacion: "Un servei és una cosa que algú fa per tu i que no es pot tocar, com un tall de cabell o una classe. És veritat que costa diners i cobrix una necessitat, però això no el convertix en un bé: els béns són coses materials, com una samarreta o un baló."
@@ -49,9 +49,9 @@ preguntas:
     explicacion: "Un bé lliure és tan abundant que està disponible per a tots sense cost i sense haver de produir-lo, com l'aire o la llum del sol."
   - enunciado: "En economia, què s'entén per «capital» com a recurs o factor de producció?"
     opciones:
-      - "Els diners que una empresa té guardats al banc per a poder invertir."
+      - "Els diners que una empresa té guardats al banc."
       - "Les màquines i ferramentes fabricades per a produir altres coses."
-      - "Els recursos naturals que s'extrauen, com l'aigua o el petroli."
+      - "Els recursos naturals, com l'aigua o el petroli."
       - "L'esforç físic i mental dels qui treballen en l'empresa."
     correcta: 1
     explicacion: "En economia, capital són els béns fabricats per les persones que servixen per a produir altres coses: màquines, ferramentes, ordinadors, fàbriques. Una fleca fa servir com a capital el forn i la pastadora. No són només diners, que és la confusió més habitual."
@@ -94,7 +94,7 @@ preguntas:
       - "Els diners que costa arreglar el parc."
       - "La reforma del col·legi, la millor alternativa a què renuncia."
       - "El col·legi i les festes, perquè renuncia als dos projectes."
-      - "Cap: són diners públics i no ixen de la butxaca de la gent del poble."
+      - "Cap: els diners públics no ixen de la butxaca de ningú."
     correcta: 1
     explicacion: "El cost d'oportunitat és la millor alternativa a què es renuncia, no totes les alternatives juntes ni els diners gastats. Si el col·legi era el que més li dolia deixar, eixe és el cost d'arreglar el parc. I els diners públics també tenen cost d'oportunitat: el que es gasta en una cosa no es gasta en una altra."
   - tipo: numerico

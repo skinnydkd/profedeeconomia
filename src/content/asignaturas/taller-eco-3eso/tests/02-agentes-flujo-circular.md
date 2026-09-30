@@ -32,7 +32,7 @@ preguntas:
     explicacion: "El objetivo habitual de una empresa privada es obtener beneficio: que lo que ingresa por vender supere lo que gasta en producir. Vender mucho no basta: si cada venta cuesta más de lo que se cobra, la empresa pierde dinero."
   - enunciado: "¿Cuál de estas funciones corresponde al Estado (sector público)?"
     opciones:
-      - "Consumir bienes y servicios y aportar trabajo a cambio de un salario."
+      - "Consumir y aportar trabajo a cambio de un salario."
       - "Cobrar impuestos, dar servicios públicos y poner las reglas."
       - "Producir bienes y venderlos buscando beneficio privado."
       - "Prestar dinero a las empresas a cambio de intereses."
@@ -40,9 +40,9 @@ preguntas:
     explicacion: "El Estado cobra impuestos a familias y empresas, ofrece servicios públicos a todos y fija las reglas del juego económico. Prestar dinero a cambio de intereses es lo que hacen los bancos, que son empresas."
   - enunciado: "Según la unidad, ¿qué es un mercado?"
     opciones:
-      - "Un sitio físico con puestos, como la plaza del pueblo los sábados."
+      - "Un sitio físico con puestos; una web de compraventa no cuenta."
       - "Cualquier lugar, físico o digital, donde se compra y se vende."
-      - "Una tienda o centro comercial con licencia del ayuntamiento."
+      - "El lugar donde las empresas fabrican lo que luego venden."
       - "Un lugar donde el Estado fija el precio de cada producto."
     correcta: 1
     explicacion: "Un mercado es cualquier lugar o sistema donde compradores y vendedores se ponen en contacto para intercambiar a cambio de un precio. No tiene por qué ser físico: una web de compraventa como Wallapop o el mercado de trabajo también lo son."
@@ -98,7 +98,7 @@ preguntas:
     explicacion: "Las familias consumen y aportan trabajo; las empresas producen buscando beneficio; el Estado cobra impuestos y ofrece servicios públicos."
   - enunciado: "En el mercado del pueblo del caso hay familias con la cesta y paradistas que han venido en furgoneta. ¿Dónde está el Estado en esa plaza?"
     opciones:
-      - "No está: el mercado es cosa de quienes compran y venden, sin nadie más."
+      - "No está: el mercado es cosa de quienes compran y venden."
       - "En el ayuntamiento: da las licencias y cobra una tasa por la plaza."
       - "En los paradistas, porque venden con permiso y pagan impuestos."
       - "En las familias, porque con sus compras pagan el IVA de todo."

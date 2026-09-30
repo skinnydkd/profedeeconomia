@@ -34,7 +34,7 @@ preguntas:
     opciones:
       - "Bienes, porque cubren una necesidad y hay que pagarlos."
       - "Servicios: alguien los hace por ti y no se pueden tocar."
-      - "Recursos, porque en ellos se usa el trabajo de una persona."
+      - "Recursos, porque usan el trabajo de una persona."
       - "Bienes económicos, porque son escasos y tienen precio."
     correcta: 1
     explicacion: "Un servicio es algo que alguien hace por ti y que no se puede tocar, como un corte de pelo o una clase. Es verdad que cuesta dinero y cubre una necesidad, pero eso no lo convierte en un bien: los bienes son cosas materiales, como una camiseta o un balón."
@@ -48,9 +48,9 @@ preguntas:
     explicacion: "Un bien libre es tan abundante que está disponible para todos sin coste y sin tener que producirlo, como el aire o la luz del sol."
   - enunciado: "En economía, ¿qué se entiende por 'capital' como recurso o factor de producción?"
     opciones:
-      - "El dinero que una empresa tiene guardado en el banco para invertir."
+      - "El dinero que una empresa tiene guardado en el banco."
       - "Las máquinas y herramientas fabricadas para producir otras cosas."
-      - "Los recursos naturales que se extraen, como el agua o el petróleo."
+      - "Los recursos naturales, como el agua o el petróleo."
       - "El esfuerzo físico y mental de quienes trabajan en la empresa."
     correcta: 1
     explicacion: "En economía, capital son los bienes fabricados por las personas que sirven para producir otras cosas: máquinas, herramientas, ordenadores, fábricas. Una panadería usa como capital el horno y la amasadora. No es solo dinero, que es la confusión más habitual."
@@ -93,7 +93,7 @@ preguntas:
       - "El dinero que cuesta arreglar el parque."
       - "La reforma del colegio, la mejor alternativa a la que renuncia."
       - "El colegio y las fiestas, porque renuncia a los dos proyectos."
-      - "Ninguno: es dinero público y no sale del bolsillo de los vecinos."
+      - "Ninguno: el dinero público no sale del bolsillo de nadie."
     correcta: 1
     explicacion: "El coste de oportunidad es la mejor alternativa a la que se renuncia, no todas las alternativas juntas ni el dinero gastado. Si el colegio era lo que más le dolía dejar, ese es el coste de arreglar el parque. Y el dinero público también tiene coste de oportunidad: lo que se gasta en una cosa no se gasta en otra."
   - tipo: numerico
