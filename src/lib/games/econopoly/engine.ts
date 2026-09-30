@@ -267,6 +267,13 @@ export function auctionBid(state: GameState, amount: number): GameState {
   auction.highestBidder = bidderIdx;
   s.log.push(`${bidder.name} puja ${amount} €.`);
 
+  // Everyone else has already passed: nobody can outbid this, so the lot is sold
+  // now instead of handing the turn back to the same bidder.
+  if (auctionIsOver(s)) {
+    resolveAuction(s);
+    return s;
+  }
+
   // Advance to next non-passed alive bidder
   auction.currentBidder = nextAuctionBidder(s, auction.currentBidder, auction.passed);
   return s;
@@ -286,28 +293,40 @@ export function auctionPass(state: GameState): GameState {
   }
   s.log.push(`${bidder.name} pasa en la subasta.`);
 
-  // Count alive players not yet passed (excluding highest bidder — they can't be forced out)
-  const alivePlayers = s.players.filter((p) => p.alive).map((p) => p.id);
-  const activePlayers = alivePlayers.filter((id) => !auction.passed.includes(id));
-
-  // Auction ends when only the highest bidder is left (or everyone passed)
-  if (activePlayers.length === 0 || (activePlayers.length === 1 && activePlayers[0] === auction.highestBidder)) {
-    // Resolve auction
-    if (auction.highestBidder !== null) {
-      const winner = s.players[auction.highestBidder];
-      winner.cash -= auction.highestBid;
-      s.properties[auction.cellId] = { cellId: auction.cellId, owner: auction.highestBidder, rdLevel: 0 };
-      s.log.push(`${winner.name} gana la subasta de ${CELLS[auction.cellId].label} por ${auction.highestBid} €.`);
-    } else {
-      s.log.push(`Subasta de ${CELLS[auction.cellId].label} sin pujadores. Propiedad libre.`);
-    }
-    s.activeAuction = null;
+  if (auctionIsOver(s)) {
+    resolveAuction(s);
     return s;
   }
 
   // Advance to next non-passed player
   auction.currentBidder = nextAuctionBidder(s, bidderIdx, auction.passed);
   return s;
+}
+
+/**
+ * The auction ends when only the highest bidder is left (they can't be forced
+ * out) or everyone has passed.
+ */
+function auctionIsOver(s: GameState): boolean {
+  const auction = s.activeAuction!;
+  const activePlayers = s.players
+    .filter((p) => p.alive && !auction.passed.includes(p.id))
+    .map((p) => p.id);
+  return activePlayers.length === 0 || (activePlayers.length === 1 && activePlayers[0] === auction.highestBidder);
+}
+
+/** Awards the lot to the highest bidder (or leaves it free) and closes the auction. Mutates `s`. */
+function resolveAuction(s: GameState): void {
+  const auction = s.activeAuction!;
+  if (auction.highestBidder !== null) {
+    const winner = s.players[auction.highestBidder];
+    winner.cash -= auction.highestBid;
+    s.properties[auction.cellId] = { cellId: auction.cellId, owner: auction.highestBidder, rdLevel: 0 };
+    s.log.push(`${winner.name} gana la subasta de ${CELLS[auction.cellId].label} por ${auction.highestBid} €.`);
+  } else {
+    s.log.push(`Subasta de ${CELLS[auction.cellId].label} sin pujadores. Propiedad libre.`);
+  }
+  s.activeAuction = null;
 }
 
 /** Returns the next alive non-passed player id after `fromId`. */
