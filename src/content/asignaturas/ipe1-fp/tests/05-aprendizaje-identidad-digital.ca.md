@@ -10,9 +10,9 @@ preguntas:
   - enunciado: "Com es distingixen l'aprenentatge formal, el no formal i l'informal?"
     opciones:
       - "El formal és el reglat i titulat; el no formal, cursos organitzats fora del sistema reglat; l'informal, sense programa ni títol."
-      - "El formal és el reglat i titulat; el no formal, el que fas pel teu compte amb tutorials; l'informal, el de les pràctiques en empresa."
+      - "El formal és el reglat i titulat; el no formal, el que fas pel teu compte amb tutorials; l'informal, el de les pràctiques."
       - "El formal és el presencial; el no formal, el que es fa en línia; l'informal, el que s'aprén amb la família i els amics."
-      - "El formal és el del cicle; el no formal, el de l'empresa on treballes; l'informal, el que t'arriba per les xarxes socials."
+      - "El formal és el del cicle; el no formal, el de l'empresa on treballes; l'informal, el de les xarxes socials."
     correcta: 0
     explicacion: "El **formal** és el del sistema reglat, que acredita amb títol (el teu cicle d'FP). El **no formal** són cursos o certificacions organitzats però fora del sistema reglat (un curs del SEPE, una certificació d'un fabricant, un certificat de professionalitat). L'**informal** ocorre sense programa ni títol: un tutorial, un company que t'ensenya, la pràctica. Per això un tutorial és aprenentatge informal, no «no formal». Els dos últims sostenen l'ocupabilitat quan ja treballes."
   - enunciado: "El marc europeu DigComp organitza la competència digital en cinc àrees. Quines són?"
@@ -43,8 +43,8 @@ preguntas:
     opciones:
       - "La identitat és el rastre que deixes; la petjada, el que projectes; la marca, els teus perfils en xarxes professionals."
       - "La identitat és el que projectes; la petjada, el rastre que deixes, també per altres; la marca, la seua gestió professional."
-      - "La identitat és el que projectes; la petjada, només el que tu publiques, i es pot esborrar; la marca, el teu logotip personal."
-      - "Les tres són el mateix vist des de xarxes distintes: la identitat a LinkedIn, la petjada a Instagram i la marca en la teua web."
+      - "La identitat és el que projectes; la petjada, només el que tu publiques; la marca, el teu logotip personal."
+      - "Les tres són el mateix vist des de xarxes distintes: identitat a LinkedIn, petjada a Instagram, marca en la teua web."
     correcta: 1
     explicacion: "La **identitat digital** és el que projectes (els teus perfils, el que publiques); la **petjada digital** és el rastre que deixes, inclòs el que altres publiquen sobre tu, i sol ser permanent; la **marca personal** és gestionar la identitat digital de manera estratègica i voluntària amb fi professional. La petjada no es limita al que tu publiques ni s'esborra a voluntat."
   - enunciado: "Quina normativa permet, en certs casos, sol·licitar la retirada d'informació sobre un mateix a internet (dret a l'oblit)?"
@@ -71,12 +71,12 @@ preguntas:
       - "No tindre cap presència a internet, perquè el que no publiques no et pot perjudicar."
     correcta: 1
     explicacion: "El més rendible és un **perfil professional a LinkedIn** (foto sòbria, titular clar, formació, pràctiques i projectes, coherent amb el CV) i, on la família professional ho permeta, un **portfolio** que demostre el que saps fer. Demostrar val més que declarar. No estar a la xarxa no et protegix: et deixa fora de la cerca de moltes persones responsables de selecció, i la teua petjada la poden escriure altres igualment."
-  - enunciado: "Segons la curiositat de la unitat, què fa una part important de les empreses abans de decidir sobre un candidat?"
+  - enunciado: "Segons la curiositat de la unitat, què fan moltes empreses abans de decidir sobre un candidat?"
     opciones:
       - "Li fan un test de personalitat en línia abans de convocar-lo a l'entrevista."
       - "Consulten els seus perfils digitals, i una part ha descartat algú pel que va trobar."
       - "Contrasten el currículum telefonant als seus antics professors i tutors de pràctiques."
-      - "Revisen els seus perfils només si el lloc és de màrqueting o de comunicació digital."
+      - "Revisen els seus perfils si el lloc és de màrqueting o comunicació digital; en els tècnics no els interessen."
     correcta: 1
     explicacion: "Distints estudis (Adecco, Infojobs) coincidixen que **una part important** de les empreses consulta els perfils digitals dels candidats, i una part significativa ha descartat algú per comentaris ofensius, contradiccions amb el CV o una imatge incompatible amb el lloc. No és una cosa exclusiva dels llocs digitals. Un perfil ben construït suma; una petjada descuidada pot descartar-te abans de l'entrevista."
   - enunciado: "Per què la unitat recomana «auditar el teu nom» periòdicament buscant-te en mode incògnit?"
@@ -84,7 +84,7 @@ preguntas:
       - "Per a comprovar quantes persones han visitat el teu perfil i augmentar el nombre de seguidors."
       - "Per a veure què troben els altres i, si no et convé, ajustar la privacitat o despublicar."
       - "Per a detectar qui t'ha buscat últimament i bloquejar eixes persones en les teues xarxes socials."
-      - "Perquè el cercador oblide les teues cerques anteriors i et mostre només continguts nous."
+      - "Perquè el cercador oblide les teues cerques anteriors i et mostre continguts més recents."
     correcta: 1
     explicacion: "Auditar el teu nom en un navegador en mode incògnit et mostra què veuen els altres de tu en els primers resultats, sense que hi influïsca el teu propi historial. Si no coincidix amb el que vols projectar com a professional, pots ajustar la privacitat, despublicar contingut o crear presència professional que empenya cap avall el que no et convé. És la part defensiva de la gestió de la identitat digital."
   - tipo: verdadero-falso

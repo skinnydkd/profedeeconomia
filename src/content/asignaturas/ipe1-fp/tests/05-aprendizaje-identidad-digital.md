@@ -9,9 +9,9 @@ preguntas:
   - enunciado: "¿Cómo se distinguen el aprendizaje formal, el no formal y el informal?"
     opciones:
       - "El formal es el reglado y titulado; el no formal, cursos organizados fuera del sistema reglado; el informal, sin programa ni título."
-      - "El formal es el reglado y titulado; el no formal, el que haces por tu cuenta con tutoriales; el informal, el de las prácticas en empresa."
+      - "El formal es el reglado y titulado; el no formal, el que haces por tu cuenta con tutoriales; el informal, el de las prácticas."
       - "El formal es el presencial; el no formal, el que se hace en línea; el informal, el que se aprende con la familia y los amigos."
-      - "El formal es el del ciclo; el no formal, el de la empresa en la que trabajas; el informal, el que te llega por las redes sociales."
+      - "El formal es el del ciclo; el no formal, el de la empresa en la que trabajas; el informal, el de las redes sociales."
     correcta: 0
     explicacion: "El **formal** es el del sistema reglado, que acredita con título (tu ciclo de FP). El **no formal** son cursos o certificaciones organizados pero fuera del sistema reglado (un curso del SEPE, una certificación de un fabricante, un certificado de profesionalidad). El **informal** ocurre sin programa ni título: un tutorial, un compañero que te enseña, la práctica. Por eso un tutorial es aprendizaje informal, no 'no formal'. Los dos últimos sostienen la empleabilidad cuando ya trabajas."
   - enunciado: "El marco europeo DigComp organiza la competencia digital en cinco áreas. ¿Cuáles son?"
@@ -42,8 +42,8 @@ preguntas:
     opciones:
       - "La identidad es el rastro que dejas; la huella, lo que proyectas; la marca, tus perfiles en redes profesionales."
       - "La identidad es lo que proyectas; la huella, el rastro que dejas, también por otros; la marca, su gestión profesional."
-      - "La identidad es lo que proyectas; la huella, solo lo que tú publicas, y se puede borrar; la marca, tu logotipo personal."
-      - "Las tres son lo mismo visto desde distintas redes: la identidad en LinkedIn, la huella en Instagram y la marca en tu web."
+      - "La identidad es lo que proyectas; la huella, solo lo que tú publicas; la marca, tu logotipo personal."
+      - "Las tres son lo mismo visto desde distintas redes: identidad en LinkedIn, huella en Instagram, marca en tu web."
     correcta: 1
     explicacion: "La **identidad digital** es lo que proyectas (tus perfiles, lo que publicas); la **huella digital** es el rastro que dejas, incluido lo que otros publican sobre ti, y suele ser permanente; la **marca personal** es gestionar la identidad digital de forma estratégica y voluntaria con fin profesional. La huella no se limita a lo que tú publicas ni se borra a voluntad."
   - enunciado: "¿Qué normativa permite, en ciertos casos, solicitar la retirada de información sobre uno mismo en internet (derecho al olvido)?"
@@ -70,12 +70,12 @@ preguntas:
       - "No tener ninguna presencia en internet, porque lo que no publicas no puede perjudicarte."
     correcta: 1
     explicacion: "Lo más rentable es un **perfil profesional en LinkedIn** (foto sobria, titular claro, formación, prácticas y proyectos, coherente con el CV) y, donde la familia profesional lo permita, un **portfolio** que demuestre lo que sabes hacer. Demostrar vale más que declarar. No estar en la red no te protege: te deja fuera de la búsqueda de muchas personas responsables de selección, y tu huella la pueden escribir otros igualmente."
-  - enunciado: "Según la curiosidad de la unidad, ¿qué hace una parte importante de las empresas antes de decidir sobre un candidato?"
+  - enunciado: "Según la curiosidad de la unidad, ¿qué hacen muchas empresas antes de decidir sobre un candidato?"
     opciones:
       - "Le hacen un test de personalidad en línea antes de convocarle a la entrevista."
       - "Consultan sus perfiles digitales, y una parte ha descartado a alguien por lo que encontró."
       - "Contrastan el currículum llamando por teléfono a sus antiguos profesores y tutores de prácticas."
-      - "Revisan sus perfiles solo si el puesto es de marketing o de comunicación digital."
+      - "Revisan sus perfiles si el puesto es de marketing o comunicación digital; en los técnicos no les interesan."
     correcta: 1
     explicacion: "Distintos estudios (Adecco, Infojobs) coinciden en que **una parte importante** de las empresas consulta los perfiles digitales de los candidatos, y una parte significativa ha descartado a alguien por comentarios ofensivos, contradicciones con el CV o una imagen incompatible con el puesto. No es algo exclusivo de los puestos digitales. Un perfil bien construido suma; una huella descuidada puede descartarte antes de la entrevista."
   - enunciado: "¿Por qué la unidad recomienda 'auditar tu nombre' periódicamente buscándote en modo incógnito?"
@@ -83,7 +83,7 @@ preguntas:
       - "Para comprobar cuántas personas han visitado tu perfil y aumentar tu número de seguidores."
       - "Para ver qué encuentran los demás y, si no te conviene, ajustar privacidad o despublicar."
       - "Para detectar quién te ha buscado últimamente y bloquear a esas personas en tus redes sociales."
-      - "Para que el buscador olvide tus búsquedas anteriores y te muestre solo contenidos nuevos."
+      - "Para que el buscador olvide tus búsquedas anteriores y te muestre contenidos más recientes."
     correcta: 1
     explicacion: "Auditar tu nombre en un navegador en modo incógnito te muestra qué ven los demás de ti en los primeros resultados, sin que influya tu propio historial. Si no coincide con lo que quieres proyectar como profesional, puedes ajustar la privacidad, despublicar contenido o crear presencia profesional que empuje hacia abajo lo que no te conviene. Es la parte defensiva de la gestión de la identidad digital."
   - tipo: verdadero-falso

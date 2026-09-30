@@ -9,10 +9,10 @@ slug: "asignaturas/ipe1-fp/tests/03-dafo-proyecto-profesional.ca"
 preguntas:
   - enunciado: "Què signifiquen les sigles DAFO i quins dos eixos creua la matriu?"
     opciones:
-      - "Debilitats, Amenaces, Fortaleses i Oportunitats; creua el que ja has aconseguit amb el que et falta per aconseguir."
+      - "Debilitats, Amenaces, Fortaleses i Oportunitats; creua el que ja has aconseguit amb el que et falta."
       - "Debilitats, Amenaces, Fortaleses i Oportunitats; creua origen (intern/extern) i caràcter (positiu/negatiu)."
       - "Decisions, Anàlisi, Formació i Ofertes; creua la teua situació individual amb la del teu grup de classe."
-      - "Debilitats, Aptituds, Fortaleses i Objectius; creua el teu perfil de hui amb el que vols tindre en el futur."
+      - "Debilitats, Aptituds, Fortaleses i Objectius; creua el teu perfil de hui amb el que vols tindre."
     correcta: 1
     explicacion: "El **DAFO** són **D**ebilitats, **A**menaces, **F**ortaleses i **O**portunitats. La matriu creua dos eixos: l'**origen** (intern, depén de tu / extern, de l'entorn) i el **caràcter** (positiu, ajuda / negatiu, perjudica). No compara l'abans i el després: compara el que tu eres amb el que el mercat oferix i exigix."
   - enunciado: "En un DAFO personal, a quina casella correspon «no tinc carnet de conduir»?"
@@ -20,7 +20,7 @@ preguntas:
       - "Amenaça, perquè és un obstacle que et tanca ofertes d'ocupació."
       - "Oportunitat, perquè traure't el carnet este curs t'obrirà vacants."
       - "Debilitat, perquè és interna, negativa i depén de tu corregir-la."
-      - "Cap: és una circumstància personal i el DAFO només arreplega competències."
+      - "Cap: és una circumstància personal, i el DAFO arreplega competències, no circumstàncies."
     correcta: 2
     explicacion: "No tindre carnet és un factor **intern i negatiu**: una **Debilitat**, perquè depén de tu corregir-la. Que et tanque ofertes no la convertix en Amenaça: les Amenaces són externes i negatives i venen de l'entorn (per exemple, molta competència amb el teu mateix títol). Traure't el carnet seria l'acció que corregix la debilitat, no una oportunitat."
   - enunciado: "D'on han d'eixir les caselles externes (Oportunitats i Amenaces) d'un bon DAFO?"
@@ -82,9 +82,9 @@ preguntas:
   - enunciado: "Quin paper té el «seguiment i ajust» en el projecte professional?"
     opciones:
       - "És un senyal d'alarma: si cal ajustar el pla, és que es va fer malament des del principi."
-      - "Revisar cada mes o trimestre els avanços i corregir el rumb, perquè el projecte està viu."
+      - "Revisar cada mes o trimestre els avanços i corregir el rumb, perquè el projecte és un document viu."
       - "Una revisió única en acabar el cicle, per a comprovar si es van complir tots els objectius."
-      - "Consistix a canviar d'objectiu cada vegada que alguna cosa no ix a la primera, per a no frustrar-se."
+      - "Consistix a canviar d'objectiu quan alguna cosa no ix a la primera, per a no frustrar-se."
     correcta: 1
     explicacion: "El projecte professional no es guarda en un calaix: el mercat i tu canvieu. El **seguiment i ajust** és una revisió periòdica (mensual o trimestral) on comproves si has complit els objectius de curt termini, si cal reajustar el DAFO i si el full de ruta continua apuntant bé. Revisar no és fracassar ni abandonar a la primera: és senyal que el pla està viu."
   - tipo: verdadero-falso

@@ -8,10 +8,10 @@ estado: publicado
 preguntas:
   - enunciado: "¿Qué significan las siglas DAFO y qué dos ejes cruza la matriz?"
     opciones:
-      - "Debilidades, Amenazas, Fortalezas y Oportunidades; cruza lo que ya has conseguido con lo que te falta por conseguir."
+      - "Debilidades, Amenazas, Fortalezas y Oportunidades; cruza lo que ya has conseguido con lo que te falta."
       - "Debilidades, Amenazas, Fortalezas y Oportunidades; cruza origen (interno/externo) y carácter (positivo/negativo)."
       - "Decisiones, Análisis, Formación y Ofertas; cruza tu situación individual con la de tu grupo de clase."
-      - "Debilidades, Aptitudes, Fortalezas y Objetivos; cruza tu perfil de hoy con el que quieres tener en el futuro."
+      - "Debilidades, Aptitudes, Fortalezas y Objetivos; cruza tu perfil de hoy con el que quieres tener."
     correcta: 1
     explicacion: "El **DAFO** son **D**ebilidades, **A**menazas, **F**ortalezas y **O**portunidades. La matriz cruza dos ejes: el **origen** (interno, depende de ti / externo, del entorno) y el **carácter** (positivo, ayuda / negativo, perjudica). No compara el antes y el después: compara lo que tú eres con lo que el mercado ofrece y exige."
   - enunciado: "En un DAFO personal, ¿a qué casilla corresponde 'no tengo carné de conducir'?"
@@ -19,7 +19,7 @@ preguntas:
       - "Amenaza, porque es un obstáculo que te cierra ofertas de empleo."
       - "Oportunidad, porque sacarte el carné este curso te abrirá vacantes."
       - "Debilidad, porque es interna, negativa y depende de ti corregirla."
-      - "Ninguna: es una circunstancia personal y el DAFO solo recoge competencias."
+      - "Ninguna: es una circunstancia personal, y el DAFO recoge competencias, no circunstancias."
     correcta: 2
     explicacion: "No tener carné es un factor **interno y negativo**: una **Debilidad**, porque depende de ti corregirla. Que te cierre ofertas no la convierte en Amenaza: las Amenazas son externas y negativas y vienen del entorno (por ejemplo, mucha competencia con tu mismo título). Sacarte el carné sería la acción que corrige la debilidad, no una oportunidad."
   - enunciado: "¿De dónde deben salir las casillas externas (Oportunidades y Amenazas) de un buen DAFO?"
@@ -81,9 +81,9 @@ preguntas:
   - enunciado: "¿Qué papel tiene el 'seguimiento y ajuste' en el proyecto profesional?"
     opciones:
       - "Es una señal de alarma: si hay que ajustar el plan, es que se hizo mal desde el principio."
-      - "Revisar cada mes o trimestre los avances y corregir el rumbo, porque el proyecto está vivo."
+      - "Revisar cada mes o trimestre los avances y corregir el rumbo, porque el proyecto es un documento vivo."
       - "Una revisión única al terminar el ciclo, para comprobar si se cumplieron todos los objetivos."
-      - "Consiste en cambiar de objetivo cada vez que algo no sale a la primera, para no frustrarse."
+      - "Consiste en cambiar de objetivo cuando algo no sale a la primera, para no frustrarse."
     correcta: 1
     explicacion: "El proyecto profesional no se guarda en un cajón: el mercado y tú cambiáis. El **seguimiento y ajuste** es una revisión periódica (mensual o trimestral) donde compruebas si has cumplido los objetivos de corto plazo, si hay que reajustar el DAFO y si la hoja de ruta sigue apuntando bien. Revisar no es fracasar ni abandonar a la primera: es señal de que el plan está vivo."
   - tipo: verdadero-falso

@@ -11,7 +11,7 @@ preguntas:
     opciones:
       - "La qualificació és el lloc que ocupes, l'ocupació és el teu títol i l'ocupabilitat són les ofertes que hi ha a la teua zona."
       - "La qualificació és el que tens acreditat, l'ocupació és el lloc de hui i l'ocupabilitat, la teua capacitat de tindre treball amb el temps."
-      - "La qualificació és el títol, l'ocupació és el lloc de hui i l'ocupabilitat són els anys que portes contractat en la mateixa empresa."
+      - "La qualificació és el títol, l'ocupació és el lloc de hui i l'ocupabilitat són els anys que portes en la mateixa empresa."
       - "Són tres noms per al mateix: tindre un títol oficial que et dona accés a un lloc de treball."
     correcta: 1
     explicacion: "La **qualificació** és el que saps fer formalment (el títol, els certificats); l'**ocupació** és el lloc concret que ocupes en un moment donat; i l'**ocupabilitat** és la teua capacitat sostinguda d'aconseguir, mantindre i millorar una ocupació al llarg de la vida, fins i tot quan el teu lloc actual desapareix. No és l'antiguitat: portar molts anys en la mateixa empresa no garantix que una altra et contracte si eixa tanca."
@@ -41,7 +41,7 @@ preguntas:
     explicacion: "El model del segle XX (estudiar una vegada i treballar en el mateix fins a jubilar-se) s'ha trencat. Una vida laboral ronda els 45 anys, es canvia d'empresa diverses vegades i de vegades de professió, i moltes competències tècniques es desfasen en pocs anys. Per això la formació inicial és la base, no el sostre. Que la UE considere l'aprenentatge permanent una de les seues competències clau no significa que impose hores obligatòries: és una necessitat del mercat, no una obligació legal."
   - enunciado: "Quin factor d'ocupabilitat resumix la frase «es contracta per aptituds i s'acomiada per actituds»?"
     opciones:
-      - "L'experiència: els anys treballats pesen més que qualsevol altra cosa a l'hora de renovar un contracte."
+      - "L'experiència: els anys treballats són el que més pesa a l'hora de renovar un contracte."
       - "L'actitud: puntualitat, fiabilitat, ganes d'aprendre i saber acceptar una crítica."
       - "La qualificació tècnica: el títol t'obri la porta i és també el que et manté en el lloc de treball."
       - "La xarxa de contactes: et contracten per qui et recomana i t'acomiaden quan perds eixe suport."
@@ -65,9 +65,9 @@ preguntas:
     explicacion: "L'estructura de l'ocupació espanyola està dominada pel **sector terciari** (serveis), que concentra al voltant de tres de cada quatre ocupacions. No significa que la indústria o el camp no oferisquen ocupació, sinó que la major part de les noves ocupacions apareixen en serveis, moltes amb perfils d'FP."
   - enunciado: "Què descriu millor l'actitud activa enfront del canvi del mercat laboral?"
     opciones:
-      - "Acabar el cicle i buscar formació quan l'empresa la demane o quan el lloc comence a perillar."
+      - "Acabar el cicle i formar-se quan l'empresa ho demane o quan el lloc comence a perillar."
       - "Anticipar-se amb hàbits xicotets: seguir el sector, formar-se abans de necessitar-ho i cuidar la xarxa."
-      - "Canviar d'empresa cada pocs mesos per a acumular experiències distintes, encara que no hi haja un pla darrere."
+      - "Canviar d'empresa cada pocs mesos per a acumular experiències, encara que no hi haja un pla."
       - "Fer de colp una gran formació cada pocs anys, quan el mercat ja ha canviat del tot."
     correcta: 1
     explicacion: "L'**actitud activa** no fa res heroic: dedica unes hores al mes a formar-se, llig sobre el seu sector i manté el contacte amb companys i professors. Eixos hàbits xicotets i sostinguts separen una carrera estancada d'una que progressa. Formar-se només quan l'empresa ho demana o quan el lloc ja perilla és reaccionar tard, que és el propi de l'actitud passiva. La diferència és d'hàbit, no de sort ni d'intel·ligència."

@@ -33,7 +33,7 @@ preguntas:
     explicacion: "Ningú és un sol tipus. Holland proposa un **codi de tres lletres** ordenades per intensitat (per exemple, RIC). Una sola lletra es queda curta, perquè les professions reals combinen diversos tipus, i les sis alhora no permeten distingir res. Després eixe trio es compara amb el codi de les ocupacions objectiu per a veure l'encaix."
   - enunciado: "Quantes intel·ligències múltiples descriu la teoria de Howard Gardner que es fa servir en la unitat per a explorar les aptituds?"
     opciones:
-      - "Una sola capacitat general, mesurable amb el quocient intel·lectual i estable al llarg de la vida."
+      - "Una sola capacitat general, mesurable amb el quocient intel·lectual."
       - "Sis, una per cada tipus de Holland, i cada persona destaca en una d'elles."
       - "Huit, entre les quals l'espacial i la interpersonal, que cada persona té en distint grau."
       - "Dotze, agrupades en tres blocs: intel·lectuals, artístiques i socials."
@@ -51,7 +51,7 @@ preguntas:
     opciones:
       - "La intrínseca naix de la satisfacció de la mateixa activitat; l'extrínseca, d'una recompensa externa a ella."
       - "La intrínseca apareix al principi de la carrera; l'extrínseca la substituïx quan arriba un bon sou."
-      - "La intrínseca és pròpia del voluntariat i de les aficions; l'extrínseca, de qualsevol treball remunerat."
+      - "La intrínseca és pròpia del voluntariat i de les aficions; l'extrínseca, del treball remunerat."
       - "Són el mateix amb un nom distint: totes dues depenen del que et paguen i de com et tracten a l'empresa."
     correcta: 0
     explicacion: "La **motivació intrínseca** sorgix perquè l'activitat en si satisfà (interessa, repta); l'**extrínseca**, per una recompensa que està fora de l'activitat (sou, reconeixement, evitar un càstig). Totes dues conviuen en qualsevol treball, també en el pagat: tots treballem per diners i tots rendim millor quan alguna cosa ens enganxa. Una carrera sostinguda només sobre motivació extrínseca acaba desgastant; la teoria de l'autodeterminació (Deci i Ryan) afig autonomia, competència i relació com a ingredients intrínsecs del treball sostenible."
@@ -67,7 +67,7 @@ preguntas:
     opciones:
       - "La primera ocupació d'una persona, que marca el sector en què tendirà a quedar-se."
       - "El valor professional a què no renunciaries encara que hagueres de renunciar a la resta."
-      - "El sou mínim per davall del qual no acceptaries una oferta, siga del sector que siga."
+      - "El sou mínim per davall del qual no acceptaries cap oferta."
       - "L'empresa o el lloc on portes més anys i que et dona estabilitat."
     correcta: 1
     explicacion: "L'**àncora de carrera** de Schein és el valor professional innegociable: per a una persona pot ser la seguretat; per a una altra, l'autonomia; per a una altra, el servei. És un valor, no una xifra ni un lloc: el sou mínim que acceptaries o l'empresa on portes més anys no ho són. Conéixer-lo evita l'error car d'acceptar un canvi que paga més però xoca amb el que de veritat es necessita per a estar bé."

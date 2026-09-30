@@ -9,10 +9,10 @@ slug: "asignaturas/ipe1-fp/tests/04-sector-productivo-perfil.ca"
 preguntas:
   - enunciado: "Què definix un títol d'FP respecte a les ocupacions a què dona accés?"
     opciones:
-      - "Habilita per a qualsevol lloc de la seua família professional, siga del nivell que siga, sense més requisits."
+      - "Habilita per a qualsevol lloc de la seua família professional, sense més requisits."
       - "Dona accés a un conjunt taxat d'ocupacions, definit per les qualificacions del CNCP de l'Incual."
-      - "Dona accés a les ocupacions que decidisca cada empresa en el seu procés de selecció, sense catàleg oficial."
-      - "Dona accés a les ocupacions que fixa la CNO-11 de l'INE, que és qui decidix què acredita cada títol."
+      - "Dona accés a les ocupacions que decidisca cada empresa, sense catàleg oficial."
+      - "Dona accés a les ocupacions que fixa la CNO-11 de l'INE, que decidix què acredita cada títol."
     correcta: 1
     explicacion: "Cada cicle d'FP està vinculat a una o diverses **qualificacions professionals** del **Catàleg Nacional de Qualificacions Professionals (CNCP)**, gestionat per l'Incual, que definixen les competències reconegudes i, per tant, les ocupacions per a les quals estàs legalment preparat. El teu títol no habilita per a «tot»: és una clau concreta cap a ocupacions taxades. La CNO-11 de l'INE només codifica les ocupacions per a l'estadística; no decidix què acredita un títol."
   - enunciado: "Què és la CNO-11 i per a què servix?"
@@ -52,15 +52,15 @@ preguntas:
       - "Grau Mitjà al subgrup C2 i Grau Superior al subgrup C1."
       - "Grau Mitjà al subgrup C1 i Grau Superior al subgrup B."
       - "Grau Mitjà al subgrup B i Grau Superior al subgrup A2."
-      - "L'FP no dona accés a cap cos de funcionaris, només a borses."
+      - "L'FP dona accés a les borses de treball, però no als cossos de funcionaris."
     correcta: 1
     explicacion: "Segons l'EBEP, els títols d'FP de **Grau Mitjà** donen accés al subgrup **C1** i els de **Grau Superior** al subgrup **B** (a més de nombroses categories de personal laboral i estatutari). La implantació del subgrup B avança de manera gradual, així que convé comprovar cada convocatòria. L'FP és una credencial vàlida per a opositar i per a inscriure's en borses."
   - enunciado: "Què és un jaciment d'ocupació?"
     opciones:
       - "Una zona amb moltes empreses del mateix sector, on es concentra l'oferta d'ocupació."
       - "Un àmbit d'activitat emergent amb capacitat de generar ocupacions noves a mitjà termini."
-      - "Una borsa de treball pública de la qual l'Administració crida per a contractes temporals."
-      - "Un sector tradicional que concentra hui el nombre més gran de contractes de la província."
+      - "Una borsa de treball pública per a cobrir contractes temporals en l'Administració."
+      - "Un sector tradicional que concentra hui la majoria dels contractes de la província."
     correcta: 1
     explicacion: "Un **jaciment d'ocupació** és un àmbit emergent que pot crear llocs nous a mitjà termini. La clau és que siga emergent, no que hui siga gran: els grans motors transversals són la **transició digital**, la **transició ecològica** i l'**economia de les cures**, i revaloren el teu títol si combines la teua base amb una competència emergent."
   - enunciado: "L'«skills mismatch» o desajust de qualificacions explica que a Espanya..."
@@ -68,13 +68,13 @@ preguntas:
       - "Hi haja més atur entre titulats d'FP que entre els qui no tenen cap titulació."
       - "Oficis tècnics com la soldadura tinguen vacants malgrat l'atur, perquè pocs s'hi formen."
       - "Sobren tècnics qualificats en la indústria i falten sobretot titulats universitaris."
-      - "Les empreses no troben candidats perquè els sous dels oficis tècnics són massa baixos."
+      - "Les empreses no troben candidats perquè els sous que oferixen els oficis tècnics són massa baixos."
     correcta: 1
     explicacion: "El **desajust de qualificacions (skills mismatch)** és el desfasament entre la formació de la població i el que el mercat demana. Documentat per la Cambra de Comerç i el SEPE, fa que oficis tècnics (soldadors, instal·ladors de plaques solars, electromecànics) acumulen vacants malgrat l'atur alt, perquè poques persones s'hi formen pel seu menor prestigi social, no pels sous, que són competitius. Per a un titulat d'FP és just el contrari d'un problema: alta ocupabilitat i poder de negociació on menys competència hi ha."
   - enunciado: "En confrontar el teu perfil amb les exigències del sector, què és la «bretxa»?"
     opciones:
       - "El que el sector demana i tu ja tens, que convé destacar en el currículum."
-      - "El que el sector demana i encara et falta, que es convertix en el teu pla de millora."
+      - "El que el sector demana i et falta, que es convertix en el teu pla de millora."
       - "La diferència entre el salari que demanes i el que oferixen les empreses del teu sector."
       - "El que tu saps fer i el sector ja no demana, que convé deixar de banda."
     correcta: 1
@@ -82,7 +82,7 @@ preguntas:
   - enunciado: "Espanya és una economia fortament terciaritzada. Segons la unitat, quina conseqüència té això per al mercat de les famílies del sector secundari (Fabricació Mecànica, Electricitat, Manteniment)?"
     opciones:
       - "Quasi no oferixen ocupació, perquè la terciarització ha traslladat quasi tots els llocs als serveis."
-      - "Tenen menys volum, però escassetat crònica de professionals, la qual cosa millora salaris i estabilitat."
+      - "Tenen menys volum, però escassetat crònica de professionals, cosa que millora salaris i estabilitat."
       - "Tenen tant volum com els serveis, encara que amb més rotació i estacionalitat."
       - "Tenen més volum que els serveis, però amb salaris més baixos per la competència exterior."
     correcta: 1

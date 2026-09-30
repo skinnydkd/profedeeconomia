@@ -8,10 +8,10 @@ estado: publicado
 preguntas:
   - enunciado: "¿Qué define un título de FP respecto a las ocupaciones a las que da acceso?"
     opciones:
-      - "Habilita para cualquier puesto de su familia profesional, sea del nivel que sea, sin más requisitos."
+      - "Habilita para cualquier puesto de su familia profesional, sin más requisitos."
       - "Da acceso a un conjunto tasado de ocupaciones, definido por las cualificaciones del CNCP del Incual."
-      - "Da acceso a las ocupaciones que decida cada empresa en su proceso de selección, sin catálogo oficial."
-      - "Da acceso a las ocupaciones que fija la CNO-11 del INE, que es quien decide qué acredita cada título."
+      - "Da acceso a las ocupaciones que decida cada empresa, sin catálogo oficial."
+      - "Da acceso a las ocupaciones que fija la CNO-11 del INE, que decide qué acredita cada título."
     correcta: 1
     explicacion: "Cada ciclo de FP está vinculado a una o varias **cualificaciones profesionales** del **Catálogo Nacional de Cualificaciones Profesionales (CNCP)**, gestionado por el Incual, que definen las competencias reconocidas y, por tanto, las ocupaciones para las que estás legalmente preparado. Tu título no habilita para 'todo': es una llave concreta hacia ocupaciones tasadas. La CNO-11 del INE solo codifica las ocupaciones para la estadística; no decide qué acredita un título."
   - enunciado: "¿Qué es la CNO-11 y para qué sirve?"
@@ -51,15 +51,15 @@ preguntas:
       - "Grado Medio al subgrupo C2 y Grado Superior al subgrupo C1."
       - "Grado Medio al subgrupo C1 y Grado Superior al subgrupo B."
       - "Grado Medio al subgrupo B y Grado Superior al subgrupo A2."
-      - "La FP no da acceso a ningún cuerpo de funcionarios, solo a bolsas."
+      - "La FP da acceso a las bolsas de trabajo, pero no a los cuerpos de funcionarios."
     correcta: 1
     explicacion: "Según el EBEP, los títulos de FP de **Grado Medio** dan acceso al subgrupo **C1** y los de **Grado Superior** al subgrupo **B** (además de numerosas categorías de personal laboral y estatutario). La implantación del subgrupo B avanza de forma gradual, así que conviene comprobar cada convocatoria. La FP es una credencial válida para opositar y para inscribirse en bolsas."
   - enunciado: "¿Qué es un yacimiento de empleo?"
     opciones:
       - "Una zona con muchas empresas del mismo sector, donde se concentra la oferta de empleo."
       - "Un ámbito de actividad emergente con capacidad de generar empleos nuevos a medio plazo."
-      - "Una bolsa de trabajo pública de la que la Administración llama para contratos temporales."
-      - "Un sector tradicional que concentra hoy el mayor número de contratos de la provincia."
+      - "Una bolsa de trabajo pública para cubrir contratos temporales en la Administración."
+      - "Un sector tradicional que concentra hoy la mayoría de los contratos de la provincia."
     correcta: 1
     explicacion: "Un **yacimiento de empleo** es un ámbito emergente que puede crear puestos nuevos a medio plazo. La clave es que sea emergente, no que hoy sea grande: los grandes motores transversales son la **transición digital**, la **transición ecológica** y la **economía de los cuidados**, y revalorizan tu título si combinas tu base con una competencia emergente."
   - enunciado: "El 'skills mismatch' o desajuste de cualificaciones explica que en España..."

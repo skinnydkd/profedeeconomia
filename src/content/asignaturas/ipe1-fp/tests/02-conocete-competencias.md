@@ -32,7 +32,7 @@ preguntas:
     explicacion: "Nadie es un solo tipo. Holland propone un **código de tres letras** ordenadas por intensidad (por ejemplo, RIC). Una sola letra se queda corta, porque las profesiones reales combinan varios tipos, y las seis a la vez no permiten distinguir nada. Luego ese trío se compara con el código de las ocupaciones objetivo para ver el encaje."
   - enunciado: "¿Cuántas inteligencias múltiples describe la teoría de Howard Gardner que se usa en la unidad para explorar las aptitudes?"
     opciones:
-      - "Una sola capacidad general, medible con el cociente intelectual y estable a lo largo de la vida."
+      - "Una sola capacidad general, medible con el cociente intelectual."
       - "Seis, una por cada tipo de Holland, y cada persona destaca en una de ellas."
       - "Ocho, entre ellas la espacial y la interpersonal, que cada persona tiene en distinto grado."
       - "Doce, agrupadas en tres bloques: intelectuales, artísticas y sociales."
@@ -50,7 +50,7 @@ preguntas:
     opciones:
       - "La intrínseca nace de la satisfacción de la propia actividad; la extrínseca, de una recompensa externa a ella."
       - "La intrínseca aparece al principio de la carrera; la extrínseca la sustituye cuando llega un buen sueldo."
-      - "La intrínseca es propia del voluntariado y de las aficiones; la extrínseca, de cualquier trabajo remunerado."
+      - "La intrínseca es propia del voluntariado y de las aficiones; la extrínseca, del trabajo remunerado."
       - "Son lo mismo con distinto nombre: las dos dependen de lo que te paguen y de cómo te traten en la empresa."
     correcta: 0
     explicacion: "La **motivación intrínseca** surge porque la actividad en sí satisface (interesa, reta); la **extrínseca**, por una recompensa que está fuera de la actividad (sueldo, reconocimiento, evitar un castigo). Las dos conviven en cualquier trabajo, también en el pagado: todos trabajamos por dinero y todos rendimos mejor cuando algo nos engancha. Una carrera sostenida solo sobre motivación extrínseca acaba desgastando; la teoría de la autodeterminación (Deci y Ryan) añade autonomía, competencia y relación como ingredientes intrínsecos del trabajo sostenible."
@@ -66,7 +66,7 @@ preguntas:
     opciones:
       - "El primer empleo de una persona, que marca el sector en el que tenderá a quedarse."
       - "El valor profesional al que no renunciarías aunque tuvieras que renunciar a lo demás."
-      - "El sueldo mínimo por debajo del cual no aceptarías una oferta, sea del sector que sea."
+      - "El sueldo mínimo por debajo del cual no aceptarías ninguna oferta."
       - "La empresa o el puesto en el que llevas más años y que te da estabilidad."
     correcta: 1
     explicacion: "El **ancla de carrera** de Schein es el valor profesional innegociable: para una persona puede ser la seguridad; para otra, la autonomía; para otra, el servicio. Es un valor, no una cifra ni un lugar: el sueldo mínimo que aceptarías o la empresa donde llevas más años no lo son. Conocerlo evita el error caro de aceptar un cambio que paga más pero choca con lo que de verdad se necesita para estar bien."

@@ -10,7 +10,7 @@ preguntas:
     opciones:
       - "La cualificación es el puesto que ocupas, el empleo es tu título y la empleabilidad son las ofertas que hay en tu zona."
       - "La cualificación es lo acreditado, el empleo es el puesto de hoy y la empleabilidad, tu capacidad de tener trabajo con el tiempo."
-      - "La cualificación es el título, el empleo es el puesto de hoy y la empleabilidad son los años que llevas contratado en la misma empresa."
+      - "La cualificación es el título, el empleo es el puesto de hoy y la empleabilidad son los años que llevas en la misma empresa."
       - "Son tres nombres para lo mismo: tener un título oficial que te da acceso a un puesto."
     correcta: 1
     explicacion: "La **cualificación** es lo que sabes hacer formalmente (el título, los certificados); el **empleo** es el puesto concreto que ocupas en un momento dado; y la **empleabilidad** es tu capacidad sostenida de conseguir, mantener y mejorar un empleo a lo largo de la vida, incluso cuando tu puesto actual desaparece. No es la antigüedad: llevar muchos años en la misma empresa no garantiza que otra te contrate si esa cierra."
@@ -40,7 +40,7 @@ preguntas:
     explicacion: "El modelo del siglo XX (estudiar una vez y trabajar en lo mismo hasta jubilarse) se ha roto. Una vida laboral ronda los 45 años, se cambia de empresa varias veces y a veces de profesión, y muchas competencias técnicas se desfasan en pocos años. Por eso la formación inicial es la base, no el techo. Que la UE considere el aprendizaje permanente una de sus competencias clave no significa que imponga horas obligatorias: es una necesidad del mercado, no una obligación legal."
   - enunciado: "¿Qué factor de empleabilidad resume la frase 'se contrata por aptitudes y se despide por actitudes'?"
     opciones:
-      - "La experiencia: los años trabajados pesan más que cualquier otra cosa a la hora de renovar un contrato."
+      - "La experiencia: los años trabajados son lo que más pesa a la hora de renovar un contrato."
       - "La actitud: puntualidad, fiabilidad, ganas de aprender y saber aceptar una crítica."
       - "La cualificación técnica: el título te abre la puerta y es también lo que te mantiene en el puesto."
       - "La red de contactos: te contratan por quién te recomienda y te despiden cuando pierdes ese apoyo."
@@ -64,9 +64,9 @@ preguntas:
     explicacion: "La estructura del empleo español está dominada por el **sector terciario** (servicios), que concentra alrededor de tres de cada cuatro empleos. No significa que la industria o el campo no ofrezcan empleo, sino que la mayor parte de las nuevas ocupaciones aparecen en servicios, muchas con perfiles de FP."
   - enunciado: "¿Qué describe mejor la actitud activa frente al cambio del mercado laboral?"
     opciones:
-      - "Terminar el ciclo y buscar formación cuando la empresa la pida o cuando el puesto empiece a peligrar."
+      - "Terminar el ciclo y formarse cuando la empresa lo pida o cuando el puesto empiece a peligrar."
       - "Anticiparse con hábitos pequeños: seguir el sector, formarse antes de necesitarlo y cuidar la red."
-      - "Cambiar de empresa cada pocos meses para acumular experiencias distintas, aunque no haya un plan detrás."
+      - "Cambiar de empresa cada pocos meses para acumular experiencias, aunque no haya un plan."
       - "Hacer de golpe una gran formación cada pocos años, cuando el mercado ya ha cambiado del todo."
     correcta: 1
     explicacion: "La **actitud activa** no hace nada heroico: dedica unas horas al mes a formarse, lee sobre su sector y mantiene el contacto con compañeros y profesores. Esos hábitos pequeños y sostenidos separan una carrera estancada de una que progresa. Formarse solo cuando la empresa lo pide o cuando el puesto ya peligra es reaccionar tarde, que es lo propio de la actitud pasiva. La diferencia es de hábito, no de suerte ni de inteligencia."
