@@ -6,7 +6,7 @@
 
 import { useEffect, useState } from 'preact/hooks';
 import { createCajutClient, type CajutClient } from '../../../lib/games-multi/cajut/client';
-import type { PublicState, PrivateState } from '../../../lib/games-multi/cajut/types';
+import type { PublicState, PrivateState, ServerMsg } from '../../../lib/games-multi/cajut/types';
 import { HostLanding } from './screens/HostLanding';
 import { HostLobby } from './screens/HostLobby';
 import { HostQuestion } from './screens/HostQuestion';
@@ -14,7 +14,7 @@ import { HostReveal } from './screens/HostReveal';
 import { HostLeaderboardMini } from './screens/HostLeaderboardMini';
 import { HostFinal } from './screens/HostFinal';
 import './cajut.css';
-import { GameLocaleContext } from '../locale-context';
+import { GameLocaleContext, useGameLocale } from '../locale-context';
 import { DEFAULT_LOCALE, type Locale } from '@/i18n/locale';
 import { loadString, saveString } from '@/lib/storage';
 
@@ -24,6 +24,8 @@ interface Props {
 }
 
 const HOST_ID_KEY = 'pde:cajut:hostId';
+
+type ServerError = Extract<ServerMsg, { type: 'error' }>['reason'];
 
 // Storage may be blocked by the browser: then the id lasts for this page load.
 function getOrCreateHostId(): string | null {
@@ -52,11 +54,15 @@ export default function HostApp({ partykitHost, locale = DEFAULT_LOCALE }: Props
 }
 
 function HostAppInner({ partykitHost }: { partykitHost: string }) {
+  const locale = useGameLocale();
   const [hostId, setHostId] = useState<string | null>(null);
   const [roomCode, setRoomCode] = useState<string | null>(null);
   const [client, setClient] = useState<CajutClient | null>(null);
   const [publicState, setPublicState] = useState<PublicState | null>(null);
   const [_privateState, setPrivateState] = useState<PrivateState | null>(null);
+  // Bank the PartyKit server was deployed with, to compare with the manifest's.
+  const [serverBankVersion, setServerBankVersion] = useState<string | null>(null);
+  const [startError, setStartError] = useState<ServerError | null>(null);
 
   // SSR-safe: only read sessionStorage in useEffect
   useEffect(() => {
@@ -82,6 +88,8 @@ function HostAppInner({ partykitHost }: { partykitHost: string }) {
     });
     c.on('public', (m) => setPublicState(m.state));
     c.on('private', (m) => setPrivateState(m.state));
+    c.on('hello', (m) => setServerBankVersion(m.bankVersion));
+    c.on('error', (m) => setStartError(m.reason));
     setClient(c);
     return () => c.close();
   }, [hostId, roomCode, partykitHost]);
@@ -96,9 +104,14 @@ function HostAppInner({ partykitHost }: { partykitHost: string }) {
     return (
       <HostLobby
         publicState={publicState}
-        onStart={(asignaturaSlug, unidades, totalQuestions) =>
-          client?.send({ type: 'startMatch', asignaturaSlug, unidades, totalQuestions })
-        }
+        serverBankVersion={serverBankVersion}
+        startError={startError}
+        onClearError={() => setStartError(null)}
+        onStart={(asignaturaSlug, unidades, totalQuestions) => {
+          setStartError(null);
+          // The locale picks the question bank: Valencian under /ca/.
+          client?.send({ type: 'startMatch', asignaturaSlug, unidades, totalQuestions, locale });
+        }}
         onKick={(playerId) => client?.send({ type: 'kickPlayer', playerId })}
       />
     );

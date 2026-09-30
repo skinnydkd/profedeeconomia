@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { getPool, samplePool, shuffleOptions, type Question } from './questions';
+import { BANK_VERSION, bankLang, getPool, samplePool, shuffleOptions, type Question } from './questions';
 
 function rng(seed: number): () => number {
   let t = seed;
@@ -46,6 +46,30 @@ describe('getPool', () => {
   it('ignores unknown unidad silently within known asignatura', () => {
     const pool = getPool('edmn-2bach', [9999]);
     expect(pool).toEqual([]);
+  });
+
+  it('serves the Valencian bank when asked for ca, and the Spanish one by default', () => {
+    // Every published unit has a Valencian test; before, the bank kept only one language.
+    const es = getPool('eco-4eso', [1]);
+    const ca = getPool('eco-4eso', [1], 'ca');
+    expect(ca.length).toBeGreaterThan(0);
+    expect(getPool('eco-4eso', [1], 'es')).toEqual(es);
+    expect(ca.map((q) => q.enunciado)).not.toEqual(es.map((q) => q.enunciado));
+  });
+});
+
+describe('bankLang', () => {
+  it('maps the host locale to a bank, Spanish for anything else', () => {
+    expect(bankLang('ca')).toBe('ca');
+    expect(bankLang('es')).toBe('es');
+    expect(bankLang(undefined)).toBe('es');
+    expect(bankLang('fr')).toBe('es');
+  });
+});
+
+describe('BANK_VERSION', () => {
+  it('is the hash the manifest script stamps on the bank', () => {
+    expect(BANK_VERSION).toMatch(/^[0-9a-f]{12}$/);
   });
 });
 

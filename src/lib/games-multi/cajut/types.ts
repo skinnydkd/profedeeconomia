@@ -32,6 +32,8 @@ export type StartMatchMsg = {
   asignaturaSlug: string;
   unidades: number[];
   totalQuestions: number | 'all';
+  /** Host's UI language: picks the question bank (Spanish when missing). */
+  locale?: 'es' | 'ca';
 };
 
 export type SubmitAnswerMsg = {
@@ -65,9 +67,21 @@ export type PrivateBroadcast = {
   state: import('../../../../party/cajut/state').PrivateState;
 };
 
+/** Sent on connect: the question bank this server was deployed with. */
+export type HelloBroadcast = {
+  type: 'hello';
+  bankVersion: string;
+};
+
+/** Sent to a player the host has kicked out: the client must stop reconnecting. */
+export type KickedBroadcast = {
+  type: 'kicked';
+};
+
 export type ErrorBroadcast = {
   type: 'error';
   reason:
+    | 'empty-pool'
     | 'invalid-nick'
     | 'nick-taken'
     | 'already-joined'
@@ -81,4 +95,9 @@ export type ErrorBroadcast = {
     | 'not-a-player';
 };
 
-export type ServerMsg = PublicBroadcast | PrivateBroadcast | ErrorBroadcast;
+export type ServerMsg =
+  | PublicBroadcast
+  | PrivateBroadcast
+  | HelloBroadcast
+  | KickedBroadcast
+  | ErrorBroadcast;

@@ -35,6 +35,7 @@ export const COPY = {
   es: {
     backToJoin: 'Volver a entrar',
     connecting: 'Conectando…',
+    kicked: 'El profe te ha expulsado de la sala.',
     errorGeneric: 'Ha ocurrido un error.',
     errors: {
       'invalid-nick': 'El nick no es válido.',
@@ -48,6 +49,7 @@ export const COPY = {
   ca: {
     backToJoin: 'Torna a entrar',
     connecting: 'Connectant…',
+    kicked: "El profe t'ha expulsat de la sala.",
     errorGeneric: "S'ha produït un error.",
     errors: {
       'invalid-nick': 'El nick no és vàlid.',
@@ -76,6 +78,7 @@ function PlayerAppInner({ partykitHost }: { partykitHost: string }) {
   const [publicState, setPublicState] = useState<PublicState | null>(null);
   const [privateState, setPrivateState] = useState<PrivateState | null>(null);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
+  const [kicked, setKicked] = useState(false);
   const copy = COPY[useGameLocale()];
 
   // SSR-safe: all storage/URL reads deferred to useEffect
@@ -100,6 +103,8 @@ function PlayerAppInner({ partykitHost }: { partykitHost: string }) {
     c.on('public', (m) => setPublicState(m.state));
     c.on('private', (m) => setPrivateState(m.state));
     c.on('error', (m) => setErrorMsg(reasonToMessage(m.reason, copy)));
+    // The client stops reconnecting by itself; rejoining with this id is refused.
+    c.on('kicked', () => setKicked(true));
     setClient(c);
     return () => c.close();
   }, [playerId, roomCode, nick, partykitHost, copy]);
@@ -127,6 +132,14 @@ function PlayerAppInner({ partykitHost }: { partykitHost: string }) {
           setNick(n);
         }}
       />
+    );
+  }
+
+  if (kicked) {
+    return (
+      <div class="cajut-player" style={{ justifyContent: 'center', textAlign: 'center' }}>
+        <p style={{ color: 'var(--cajut-terracota)', fontSize: 16 }}>{copy.kicked}</p>
+      </div>
     );
   }
 

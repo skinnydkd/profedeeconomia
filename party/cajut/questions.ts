@@ -14,14 +14,27 @@ export interface Question {
 interface QuestionsManifest {
   version: number;
   generatedAt: string;
+  /** Hash of the bank; the public manifests carry the one they were built with. */
+  bankVersion: string;
+  /** Keyed `${lang}:${asignatura}/${unidad}`; ca falls back to es per unit at build time. */
   preguntas: Record<string, Question[]>;
 }
 
 const manifest = data as QuestionsManifest;
 
+/** Bank this server was deployed with: the host compares it with its manifest's. */
+export const BANK_VERSION: string = manifest.bankVersion;
+
+export type BankLang = 'es' | 'ca';
+
+/** The bank for the host's locale; anything unknown (or an older host) plays in Spanish. */
+export function bankLang(locale: unknown): BankLang {
+  return locale === 'ca' ? 'ca' : 'es';
+}
+
 /** Concatena preguntes de totes les unitats donades, ignorant les que no existeixen. */
-export function getPool(asignaturaSlug: string, unidades: number[]): Question[] {
-  return unidades.flatMap((n) => manifest.preguntas[`${asignaturaSlug}/${n}`] ?? []);
+export function getPool(asignaturaSlug: string, unidades: number[], lang: BankLang = 'es'): Question[] {
+  return unidades.flatMap((n) => manifest.preguntas[`${lang}:${asignaturaSlug}/${n}`] ?? []);
 }
 
 /**

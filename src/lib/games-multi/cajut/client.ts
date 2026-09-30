@@ -45,13 +45,18 @@ export function createCajutClient(opts: CajutClientOptions & ExtraOptions): Caju
   const handlers = new Map<string, Set<(msg: any) => void>>();
 
   const onMessage = (ev: MessageEvent) => {
+    let type: ServerMsg['type'] | null = null;
     try {
       const parsed = JSON.parse(typeof ev.data === 'string' ? ev.data : '') as ServerMsg;
+      type = parsed.type;
       const set = handlers.get(parsed.type);
       if (set) for (const fn of set) fn(parsed);
     } catch {
       // ignore non-JSON
     }
+    // Kicked by the host: closing from this side is what stops PartySocket from
+    // reconnecting (and re-joining with the same nick) on its own.
+    if (type === 'kicked') socket.close();
   };
   socket.addEventListener('message', onMessage);
 
