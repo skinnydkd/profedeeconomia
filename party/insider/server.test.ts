@@ -43,7 +43,7 @@ async function connect(playerId: string, name: string, asHost = false): Promise<
   const q = new URLSearchParams({ playerId, name, asHost: asHost ? '1' : '0' });
   await server.onConnect(
     conn as unknown as Party.Connection,
-    { request: new Request(`https://pde-games.example/parties/insider/K7P2?${q}`) } as Party.ConnectionContext,
+    { request: new Request(`https://pde-games.example/parties/insider/K7P2?${q}`) } as unknown as Party.ConnectionContext,
   );
   await send(conn, { type: 'join', name, playerId, asHost });
   return conn;

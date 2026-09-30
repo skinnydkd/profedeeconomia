@@ -36,7 +36,7 @@ let server: CajutServer;
 function connect(playerId: string, opts: { nick?: string; asHost?: boolean } = {}): FakeConn {
   const conn = room.open();
   const url = `https://pde-games.example/parties/cajut/A7K2?id=${playerId}${opts.asHost ? '&asHost=1' : ''}`;
-  server.onConnect(conn as unknown as Party.Connection, { request: new Request(url) } as Party.ConnectionContext);
+  server.onConnect(conn as unknown as Party.Connection, { request: new Request(url) } as unknown as Party.ConnectionContext);
   if (room.conns.has(conn.id)) {
     send(conn, { type: 'join', nick: opts.asHost ? '__host__' : (opts.nick ?? playerId) });
   }
