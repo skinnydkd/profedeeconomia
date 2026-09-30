@@ -6,6 +6,7 @@ import {
   ordenValido,
   permutacion,
   rngDesde,
+  textoNoNumerico,
   textoPlano,
   trozosInline,
 } from './quiz-utils';
@@ -50,6 +51,20 @@ describe('lecturasNumero', () => {
   it('ignores a unit sign typed after the number', () => {
     expect(lecturasNumero('15 %')).toEqual([15]);
     expect(lecturasNumero('1.200 €')).toEqual([1.2, 1200]);
+  });
+});
+
+describe('the raised comma of Valencian schools (R6 A4)', () => {
+  it('reads «12\'5» and «0’6» as decimals', () => {
+    expect(lecturasNumero("12'5")).toEqual([12.5]);
+    expect(lecturasNumero('0’6')).toEqual([0.6]);
+    expect(lecturasNumero("-0'6")).toEqual([-0.6]);
+    expect(numeroCorrecto("12'5", 12.5)).toBe(true);
+  });
+
+  it('flags text that can never become a number, not one still being typed', () => {
+    for (const s of ['doce', '12 euros', '1,2,3', '12,5,', 'a1']) expect(textoNoNumerico(s), s).toBe(true);
+    for (const s of ['', '  ', '-', '12', '12,', "12'", '12,5', '1.500', '−0,6', '12 %']) expect(textoNoNumerico(s), s).toBe(false);
   });
 });
 
@@ -130,6 +145,16 @@ describe('trozosInline', () => {
       { tipo: 'texto', texto: ', es…' },
     ]);
     expect(trozosInline('(*free-rider*)')[1]).toEqual({ tipo: 'em', texto: 'free-rider' });
+  });
+
+  it('closes a bold run inside a word, as CommonMark does for asterisks (R6 A3)', () => {
+    expect(trozosInline('**E**specífico')).toEqual([
+      { tipo: 'strong', texto: 'E' },
+      { tipo: 'texto', texto: 'specífico' },
+    ]);
+    expect(textoPlano('Un objetivo **SMART** es **E**specífico, **M**edible y **A**lcanzable')).toBe(
+      'Un objetivo SMART es Específico, Medible y Alcanzable',
+    );
   });
 
   it('leaves economics notation alone', () => {
