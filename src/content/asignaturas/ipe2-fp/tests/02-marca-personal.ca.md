@@ -17,12 +17,12 @@ preguntas:
     explicacion: "La unitat definix la marca personal com **«el que diuen de tu quan ixes de la sala»**: l'empremta que deixes i la percepció que els altres tenen de tu com a professional, no el que tu afirmes de tu mateix."
   - enunciado: "La unitat afirma que la teua marca personal..."
     opciones:
-      - "Només existix si decidixes crear-la conscientment."
-      - "Existix la treballes o no; la decisió real és gestionar-la a propòsit o deixar-la a l'atzar."
-      - "És el mateix que el teu currículum."
-      - "Només importa per a perfils directius."
+      - "Existix a partir del moment en què decidixes crear-la i cuidar-la."
+      - "Existix la treballes o no: l'única decisió és si la gestiones a propòsit."
+      - "És el mateix que el teu currículum, però en format digital."
+      - "Només importa en perfils creatius o amb molts seguidors en xarxes."
     correcta: 1
-    explicacion: "La teua marca personal **existix la treballes o no**: si un reclutador busca el teu nom a Google, el que trobe forma part de la teua candidatura. La pregunta no és «vull tindre marca personal?», sinó «vull gestionar la que ja tinc o deixar-la a l'atzar?»."
+    explicacion: "La teua marca personal **existix la treballes o no**: si un reclutador busca el teu nom a Google, el que trobe forma part de la teua candidatura. La pregunta no és «vull tindre marca personal?», sinó «vull gestionar la que ja tinc o deixar-la a l'atzar?». Tampoc és cosa només de perfils creatius o amb molta audiència: el reclutador del teu sector busca algú fiable, no qui té més seguidors."
   - enunciado: "La proposta de valor professional respon a tres preguntes encadenades. Quines?"
     opciones:
       - "Quant cobres? Quan comences? On vius?"
@@ -33,64 +33,64 @@ preguntas:
     explicacion: "El fonament de la marca personal és la **proposta de valor**: què aportes? (les teues competències més fortes), a qui? (el tipus d'empresa o problema al qual servixes) i què et diferencia? (el que combines i la majoria de perfils iguals no tenen). Es condensa en una sola frase concreta."
   - enunciado: "Quina és la «regla d'or» de la marca personal segons la unitat?"
     opciones:
-      - "Tindre el màxim nombre de seguidors possible."
-      - "La coherència: CV, portafolis, LinkedIn i entrevista han de contar la mateixa història."
-      - "Publicar contingut cada dia."
-      - "Usar sempre un to molt formal i corporatiu."
+      - "Tindre com més seguidors i contactes millor, encara que no siguen del sector."
+      - "La coherència: que tots els teus canals conten la mateixa història."
+      - "Publicar contingut cada dia perquè l'algoritme no t'oblide."
+      - "Usar un to molt formal i corporatiu, sense opinions pròpies."
     correcta: 1
-    explicacion: "La regla d'or és la **coherència**: el professional que descriu el teu CV, el del teu LinkedIn, el que es presenta en l'entrevista i el del portafolis han de ser la mateixa persona amb el mateix missatge, la mateixa proposta de valor, el mateix to i les mateixes dades. La incoherència és el que més ràpid destruïx una marca personal."
+    explicacion: "La regla d'or és la **coherència**: el professional que descriu el teu CV, el del teu LinkedIn, el que es presenta en l'entrevista i el del portafolis han de ser la mateixa persona amb el mateix missatge, la mateixa proposta de valor, el mateix to i les mateixes dades. La incoherència és el que més ràpid destruïx una marca personal, i no s'arregla sumant seguidors: si el teu CV diu una cosa i el teu LinkedIn una altra, perds credibilitat."
   - enunciado: "El CV de hui té dos lectors. Quins?"
     opciones:
-      - "El reclutador i el cap del departament."
-      - "Un programari (l'ATS) i una persona."
-      - "Tu mateix i la teua família."
-      - "El SEPE i l'empresa."
+      - "El reclutador de RRHH i el cap del departament."
+      - "Un programari de filtratge (l'ATS) i una persona."
+      - "El departament de RRHH i la gestoria laboral de l'empresa."
+      - "El servici públic d'ocupació i l'empresa."
     correcta: 1
-    explicacion: "El CV té hui **dos lectors**: un programari (l'**ATS**, que filtra per paraules clau i format llegible per màquina) i una **persona** (a la qual cal convéncer en segons amb un resum potent i èxits quantificats). Ha de convéncer els dos."
+    explicacion: "El CV té hui **dos lectors**: un programari (l'**ATS**, que filtra per paraules clau i format llegible per màquina) i una **persona** (a la qual cal convéncer en segons amb un resum potent i èxits quantificats). Ha de convéncer els dos. El reclutador i el cap del departament són persones tots dos: en molts processos, el primer lector és una màquina."
   - enunciado: "Quin d'estos és un error que descarta un CV d'FP a la primera?"
     opciones:
-      - "Incloure l'FCT i els projectes del cicle."
-      - "Inflar el nivell d'idiomes (cau en trenta segons d'entrevista)."
-      - "Usar verbs d'acció amb resultats quantificats."
-      - "Cabre en una sola pàgina."
+      - "Incloure l'FCT i els projectes del cicle com si foren experiència."
+      - "Posar en el CV un nivell d'idiomes més alt del que tens."
+      - "Usar verbs d'acció i donar resultats quantificats en cada lloc."
+      - "Limitar-lo a una sola pàgina amb un resum professional dalt."
     correcta: 1
-    explicacion: "**Inflar el nivell d'idiomes** descarta candidatures perquè es detecta de seguida en l'entrevista. Altres errors típics: faltes d'ortografia, CV genèric sense adaptar, format que l'ATS no llig, funcions en lloc d'èxits i oblidar l'FCT. Incloure l'FCT i quantificar èxits, en canvi, són encerts."
+    explicacion: "**Inflar el nivell d'idiomes** descarta candidatures perquè cau en trenta segons d'entrevista. Altres errors típics: faltes d'ortografia, CV genèric sense adaptar, format que l'ATS no llig, funcions en lloc d'èxits i oblidar l'FCT. Incloure l'FCT i els projectes del cicle, en canvi, és un encert: per a un perfil júnior són experiència vàlida i diferenciadora. També ho són quantificar èxits i cabre en una pàgina."
   - enunciado: "Per a un titulat d'FP, quina funció complix el portafolis?"
     opciones:
-      - "Substituir per complet el currículum."
-      - "Demostrar amb projectes reals el que el CV només afirma amb paraules."
-      - "Mostrar les teues aficions i vida personal."
-      - "Llistar tots els cursos que has fet."
+      - "Substituir el currículum en els processos de perfils tècnics."
+      - "Demostrar amb projectes reals el que el CV només pot afirmar."
+      - "Reunir les teues aficions i la teua faceta personal fora de la faena."
+      - "Llistar tots els cursos i treballs que has fet, com més millor."
     correcta: 1
-    explicacion: "El **portafolis** és la col·lecció organitzada dels teus treballs que **evidencia** les teues competències amb proves, no amb paraules: en moltes famílies professionals (informàtica, disseny, audiovisuals, màrqueting) dir que saps fer una cosa val menys que ensenyar-la. Les claus: qualitat abans que quantitat, cada projecte contextualitzat i un accés fàcil."
+    explicacion: "El **portafolis** és la col·lecció organitzada dels teus treballs que **evidencia** les teues competències amb proves, no amb paraules: en moltes famílies professionals (informàtica, disseny, audiovisuals, màrqueting) dir que saps fer una cosa val menys que ensenyar-la. Les claus: qualitat abans que quantitat, cada projecte contextualitzat i un accés fàcil. No substituïx el CV: el reforça, i s'enllaça des del CV i des de LinkedIn."
   - enunciado: "Quin d'estos titulars de LinkedIn és el més adequat per a un estudiant d'FP que busca pràctiques?"
     opciones:
-      - "«Estudiant»."
-      - "«Jove proactiu, dinàmic i amb moltes ganes d'aprendre»."
+      - "«Estudiant d'FP · Apassionat per la tecnologia i la innovació · Obert a noves oportunitats»."
+      - "«Jove proactiu, dinàmic i resolutiu, amb moltíssimes ganes d'aprendre i créixer professionalment»."
       - "«Tècnic Superior en DAW · Front-end accessible · Buscant primera ocupació en desenvolupament web»."
-      - "«Hola, soc Pablo i busque treball»."
+      - "«Hola, soc Pablo: busque la meua primera oportunitat laboral en qualsevol sector»."
     correcta: 2
-    explicacion: "El titular ha de ser **descriptiu**: estudis + què busques + un matís concret. «Estudiant» a seques és invisible i els adjectius buits («proactiu», «dinàmic») no signifiquen res perquè tots els usen. Un titular específic convertix la teua proposta de valor en text i et fa aparéixer en les cerques de reclutadors."
+    explicacion: "El titular ha de ser **descriptiu**: estudis + què busques + un matís concret. «Estudiant d'FP» sense més detall és invisible, i les etiquetes buides («apassionat», «proactiu», «dinàmic», «obert a noves oportunitats») no signifiquen res perquè les usa tot el món. Buscar «en qualsevol sector» tampoc ajuda: no diu què aportes. Un titular específic convertix la teua proposta de valor en text i et fa aparéixer en les cerques de reclutadors."
   - enunciado: "Distingix els tres conceptes. Quina és la definició correcta d'empremta digital?"
     opciones:
       - "La valoració positiva o negativa que els altres fan de la teua identitat a internet."
-      - "El conjunt de dades que et representa a internet."
-      - "El rastre acumulat i persistent que deixes: publicacions, fotos, comentaris, «m'agrada», comptes actius i abandonats."
-      - "El logotip personal que uses en els teus perfils."
+      - "El conjunt de dades i informació que et representa a internet."
+      - "El rastre acumulat que deixes: publicacions, fotos, comentaris, comptes."
+      - "La imatge professional que projectes amb la teua foto i el teu titular de LinkedIn."
     correcta: 2
-    explicacion: "L'**empremta digital** és el rastre acumulat i persistent que deixes (publicacions, fotos, comentaris, comptes). La **identitat digital** és el conjunt de dades que et representa, i la **reputació digital** és la valoració que els altres fan d'eixa identitat. L'empremta és persistent: el que vas publicar als 15 pot aparéixer quan un reclutador et busque als 22."
+    explicacion: "L'**empremta digital** és el rastre acumulat i persistent que deixes (publicacions, fotos, comentaris, «m'agrada», comptes actius i abandonats). La **identitat digital** és el conjunt de dades que et representa, i la **reputació digital** és la valoració que els altres fan d'eixa identitat. L'empremta és persistent: el que vas publicar als 15 pot aparéixer quan un reclutador et busque als 22."
   - enunciado: "Si trobes contingut perjudicial i irrellevant sobre tu a internet, quin dret pots exercir i sota quina normativa?"
     opciones:
-      - "El dret de rèplica, regulat per la Llei de Premsa."
-      - "El dret a l'oblit, regulat per l'article 17 del RGPD, davant el responsable del lloc o l'AEPD."
-      - "El dret a la imatge, regulat pel Codi Penal."
+      - "El dret de rèplica, regulat per la Llei de Premsa, davant el mitjà que ho va publicar."
+      - "El dret a l'oblit (art. 17 del RGPD), davant el lloc web o l'AEPD."
+      - "El dret a la pròpia imatge, per mitjà d'una denúncia penal davant la policia."
       - "El dret de propietat intel·lectual, davant el Registre de la Propietat."
     correcta: 1
-    explicacion: "El **dret a l'oblit** està regulat per l'**article 17 del RGPD** (Reglament General de Protecció de Dades). Permet sol·licitar la supressió de dades personals que ja no són pertinents, primer davant el responsable del lloc web i, si no respon, davant l'**Agència Espanyola de Protecció de Dades (AEPD)**. És clau per a auditar l'empremta abans de buscar ocupació."
+    explicacion: "El **dret a l'oblit** està regulat per l'**article 17 del RGPD** (Reglament General de Protecció de Dades). Permet sol·licitar la supressió de dades personals que ja no són pertinents, primer davant el responsable del lloc web i, si no respon, davant l'**Agència Espanyola de Protecció de Dades (AEPD)**. És clau per a auditar l'empremta abans de buscar ocupació. El dret de rèplica servix per a donar la teua versió, no perquè s'esborre el contingut."
   - tipo: verdadero-falso
-    enunciado: "La teua marca personal només existix si decidixes crear-la conscientment; si no la treballes, no en tens cap."
-    correcta: false
-    explicacion: "És fals. La teua marca personal existix la treballes o no: si un reclutador busca el teu nom, el que trobe forma part de la teua candidatura. La decisió real no és tindre-la o no, sinó gestionar-la a propòsit o deixar-la a l'atzar."
+    enunciado: "Molts reclutadors afirmen haver contractat algú precisament pel que van trobar sobre eixa persona a internet."
+    correcta: true
+    explicacion: "És vertader. Les enquestes del sector de selecció (CareerBuilder i The Harris Poll, entre altres) mostren les dues cares: molts reclutadors han descartat algú pel que van trobar en línia, però molts també han contractat algú per un bon perfil de LinkedIn, un portafolis sòlid o una imatge professional coherent. Per això la conclusió no és desaparéixer d'internet, sinó ocupar el teu espai digital amb contingut que et beneficie."
   - tipo: verdadero-falso
     enunciado: "Un titular de LinkedIn com «jove proactiu, dinàmic i amb moltes ganes d'aprendre» és eficaç perquè transmet bona actitud."
     correcta: false

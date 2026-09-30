@@ -9,20 +9,20 @@ estado: publicado
 preguntas:
   - enunciado: "Segons la classificació de la unitat, quin d'estos és un factor de COST de localització?"
     opciones:
-      - "Proximitat al client."
-      - "Cost del transport de la mercaderia."
-      - "Marc fiscal i administratiu."
-      - "Qualitat de vida de la zona."
+      - "La proximitat als clients potencials del barri."
+      - "Els salaris mitjans del sector a la zona."
+      - "La mà d'obra qualificada disponible."
+      - "La qualitat de vida per a atraure talent."
     correcta: 1
-    explicacion: "El transport, com el sòl i la mà d'obra, és un factor de cost. La proximitat al client és un factor de mercat, i el marc fiscal i la qualitat de vida (clima, oferta cultural, habitatge) són factors externs."
+    explicacion: "Els salaris de la zona (cost de la mà d'obra), com el sòl i el transport, són un factor de cost. Compte amb el parany: que hi haja mà d'obra qualificada disponible és un factor extern, igual que la qualitat de vida; la proximitat al client és un factor de mercat."
   - enunciado: "Segons la Recomanació 2003/361/CE, una mitjana empresa complix…"
     opciones:
-      - "< 50 persones i ≤ 10 M € de facturació."
+      - "< 50 persones i ≤ 10 M € de facturació o ≤ 10 M € de balanç."
       - "< 250 persones i ≤ 50 M € de facturació o ≤ 43 M € de balanç."
-      - "< 500 persones sense més criteris."
-      - "< 100 persones i ≤ 25 M € de facturació."
+      - "≥ 250 persones i > 50 M € de facturació o > 43 M € de balanç."
+      - "< 250 persones, siga quina siga la seua facturació o el seu balanç."
     correcta: 1
-    explicacion: "Mitjana: plantilla < 250 persones i, a més, facturació ≤ 50 M € o balanç ≤ 43 M €."
+    explicacion: "Mitjana: plantilla < 250 persones i, a més, facturació ≤ 50 M € o balanç ≤ 43 M €. La plantilla sola no és suficient: cal complir també un dels dos criteris financers. Amb 250 persones o més ja és gran, i els límits de 10 M € són els de la xicoteta."
   - enunciado: "A Espanya, quin percentatge del teixit empresarial són pimes?"
     opciones:
       - "Aproximadament el 70 %."
@@ -33,12 +33,12 @@ preguntas:
     explicacion: "El 99,8 % de les empreses espanyoles són pimes (micro, xicotetes o mitjanes). Les grans corporacions que dominen l'imaginari públic són estadísticament atípiques."
   - enunciado: "Quin és el principal desavantatge de constituir-se com a autònom en lloc de com a SL?"
     opciones:
-      - "El cost de constitució és més alt."
-      - "La responsabilitat és il·limitada: els deutes responen amb tot el patrimoni personal."
-      - "Cal aportar 3.000 € de capital mínim."
-      - "No es pot facturar a empreses, només a particulars."
+      - "Els tràmits d'alta són més cars i lents que els d'una SL."
+      - "Respon dels deutes del negoci amb tot el seu patrimoni personal."
+      - "Ha d'aportar un capital mínim de 3.000 € abans de donar-se d'alta."
+      - "Té prohibit facturar a altres empreses i a l'Administració."
     correcta: 1
-    explicacion: "L'autònom respon amb tot el seu patrimoni present i futur. La SL limita la responsabilitat al capital aportat, la qual cosa protegix el patrimoni personal."
+    explicacion: "L'autònom respon amb tot el seu patrimoni present i futur; la SL limita la responsabilitat al capital aportat, la qual cosa protegix el patrimoni personal. Donar-se d'alta com a autònom és, de fet, més ràpid i barat (2-5 dies i 0 € de cost directe) i no exigix capital mínim."
   - enunciado: "Quin és el capital mínim per a constituir una Societat Anònima a Espanya?"
     opciones:
       - "3.000 €."
@@ -55,40 +55,40 @@ preguntas:
       - "Les decisions les pren un consell d'administració elegit per majoria."
     correcta: 1
     explicacion: "La regla *un soci, un vot* reflectix que la cooperativa busca satisfer les necessitats dels socis, no remunerar el capital. Per això tributa al 20 % en lloc del 25 % general."
-  - enunciado: "Quin tipus impositiu paga una pime en l'Impost de Societats en els seus dos primers exercicis amb benefici?"
+  - enunciado: "Quin tipus de l'Impost de Societats paga una empresa de nova creació en el seu primer exercici amb benefici i en el següent?"
     opciones:
-      - "El tipus general del 25 %."
-      - "Tipus reduïts específics per a empreses de nova creació."
-      - "Està exempta els dos primers anys."
-      - "El 30 %, igual que les grans empreses."
+      - "El 25 %, el tipus general de les societats."
+      - "El 15 %, un tipus reduït durant l'arrancada."
+      - "El 0 %: està exempta en eixos dos exercicis."
+      - "El 20 %, el tipus de les cooperatives."
     correcta: 1
-    explicacion: "Les empreses de nova creació tributen al 15 % el primer exercici amb beneficis i el següent. El tipus general és el 25 %; el 2026, les empreses de reduïda dimensió tributen al 23 % i les microempreses, al 19-21 %."
-  - enunciado: "Una persona vol constituir sola una SL per a protegir el seu patrimoni personal. La forma jurídica adequada és…"
+    explicacion: "Les empreses de nova creació tributen al 15 % el primer exercici amb beneficis i el següent (art. 29.1 de la Llei de l'Impost sobre Societats); no estan exemptes. El tipus reduït depén de ser nova, no de ser pime: el tipus general és el 25 % i, el 2026, les empreses de reduïda dimensió tributen al 23 % i les microempreses, al 19-21 % (Llei 7/2024); el 20 % és el tipus de les cooperatives. No compta com a nova la societat que continua l'activitat que el seu soci majoritari ja exercia com a autònom."
+  - enunciado: "Una persona emprendrà sola i vol limitar la seua responsabilitat al capital aportat, sense buscar socis ni reunir 60.000 €. La forma jurídica adequada és…"
     opciones:
       - "Societat Anònima Unipersonal (SAU)."
       - "Societat Limitada Unipersonal (SLU)."
-      - "Empresari individual."
-      - "Comunitat de béns."
+      - "Empresari individual donat d'alta en el RETA."
+      - "Societat civil, que no exigix capital mínim."
     correcta: 1
-    explicacion: "La SLU permet constituir una SL amb un únic soci sense perdre els avantatges de responsabilitat limitada i fiscalitat de Societats."
-  - enunciado: "Quina d'estes afirmacions sobre el cost empresarial és FALSA?"
+    explicacion: "La SLU permet constituir una SL amb un únic soci (des d'1 € de capital) sense perdre la responsabilitat limitada ni la fiscalitat de Societats. La SAU també limita la responsabilitat, però exigix 60.000 €; l'autònom i la societat civil responen amb el patrimoni personal, i la societat civil necessita a més almenys dues persones."
+  - enunciado: "La figura de l'Emprenedor de Responsabilitat Limitada (ERL) permet a un autònom…"
     opciones:
-      - "Per cada euro de salari brut, l'empresa paga aproximadament 0,30-0,35 € addicionals en cotitzacions socials."
-      - "El cost empresa és el que el treballador realment cobra cada mes."
-      - "Les quotes patronals les paga l'empresa i no es descompten del sou del treballador."
-      - "Confondre salari brut i cost empresa és un error habitual en plans financers."
+      - "Limitar la seua responsabilitat al capital aportat, igual que el soci d'una SL."
+      - "Protegir el seu habitatge habitual dels deutes professionals, fins a cert valor."
+      - "Constituir una societat unipersonal sense capital mínim ni notari."
+      - "Deduir en l'IRPF les despeses de l'habitatge habitual com a despesa del negoci."
     correcta: 1
-    explicacion: "El cost empresa NO és el que cobra el treballador (això és el líquid). És el brut més les quotes patronals: el que l'empresa desembossa per cada persona ocupada."
+    explicacion: "L'ERL (Llei 14/2013) protegix l'habitatge habitual dels deutes professionals fins a 300.000 € (450.000 € en poblacions de més d'un milió d'habitants). És una protecció davant dels creditors, no un avantatge fiscal, i és parcial: la resta del patrimoni continua exposat, així que no equival a la responsabilitat limitada d'una SL."
   - tipo: verdadero-falso
-    enunciado: "En una Societat Limitada, els socis responen dels deutes socials amb tot el seu patrimoni personal, igual que un autònom."
-    correcta: false
-    explicacion: "Fals. En la SL la responsabilitat està limitada al capital aportat: el patrimoni personal dels socis queda protegit. És l'autònom qui respon amb tot el seu patrimoni."
+    enunciado: "Una SL es pot constituir amb 1 € de capital, però si es liquida sense patrimoni suficient per a pagar els seus deutes, els socis responen solidàriament de la diferència fins a 3.000 €."
+    correcta: true
+    explicacion: "Verdader. Des de la Llei 18/2022 n'hi ha prou amb 1 € de capital, però mentre el capital no arriba a 3.000 € hi ha regles de protecció dels creditors: destinar almenys el 20 % del benefici a reserva legal i, si la societat es liquida sense patrimoni per a pagar els seus deutes, els socis responen solidàriament del que falte fins a 3.000 € (art. 4 LSC). Més enllà d'eixe límit, el seu patrimoni personal queda protegit, a diferència de l'autònom."
   - tipo: numerico
-    enunciado: "Una empresa paga a un treballador 1.800 € de salari brut mensual. Si les cotitzacions patronals suposen un 32 % addicional sobre el brut, quin és el cost empresa mensual en euros (sense decimals)?"
-    respuesta: 2376
+    enunciado: "El 2026, una microempresa (xifra de negocis inferior a 1 M €) que no és de nova creació obté una base imposable de 70.000 €. Si tributa al 19 % pels primers 50.000 € i al 21 % per la resta, quant paga d'Impost de Societats, en euros (sense decimals)?"
+    respuesta: 13700
     tolerancia: 1
     unidad: "€"
-    explicacion: "Cost empresa = brut + quotes patronals = 1.800 × (1 + 0,32) = 1.800 × 1,32 = 2.376 €."
+    explicacion: "S'aplica cada tipus al seu tram: 50.000 × 0,19 = 9.500 €; (70.000 − 50.000) × 0,21 = 20.000 × 0,21 = 4.200 €. Quota = 9.500 + 4.200 = 13.700 €. Aplicar un únic tipus a tota la base (13.300 € al 19 % o 14.700 € al 21 %) és l'error típic. Si fora de nova creació, tributaria al 15 %."
   - tipo: relacionar
     enunciado: "Associa cada forma jurídica amb el seu tret característic:"
     izquierda: ["Societat Anònima", "Cooperativa", "Autònom", "Societat Limitada Unipersonal"]
