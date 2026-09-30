@@ -17,7 +17,7 @@ solucion:
   - "<strong>S1 · Sara.</strong> No té dret a la prestació contributiva: necessita 360 dies cotitzats en els últims 6 anys i en té 300. Pot preguntar al SEPE pel subsidi per cotització insuficient, que exigix no superar un límit de rendes."
   - "<strong>S2 · Iván.</strong> Amb 600 dies cotitzats li corresponen <strong>180 dies</strong> d'atur. Els primers 180 dies cobra el 70 % de la base reguladora: 0,70 × 40 = <strong>28 € al dia</strong> (uns 840 € al mes), dins dels topalls."
   - "<strong>S3 · Noa.</strong> Sí que té dret a la IT: en malaltia comuna es demanen 180 dies cotitzats en els últims 5 anys i en té 400. Els dies 4 a 20 cobra el <strong>60 % de la base reguladora</strong> (del 4 al 15, a càrrec de l'empresa)."
-  - "<strong>S4 · Leo.</strong> Acomiadament improcedent: 33 × 4 = 132 dies × 50 € = <strong>6.600 €</strong>; el topall de 24 mensualitats (36.000 €) no s'assoleix. L'empresa pot triar entre readmetre'l o pagar-li eixa indemnització."
+  - "<strong>S4 · Leo.</strong> Acomiadament improcedent: 33 × 4 = 132 dies × 50 € = <strong>6.600 €</strong>; el topall de 24 mensualitats (720 dies de salari, 36.000 €) no s'assoleix. L'empresa pot triar entre readmetre'l o pagar-li eixa indemnització."
 lang: ca
 estado: publicado
 slug: "asignaturas/ipe1-fp/actividades/17-ejercicio-prestaciones-requisitos-cuantia.ca"
@@ -91,8 +91,8 @@ SUPÒSIT 3 — Noa, amb 400 dies cotitzats en 3 anys,
   Té dret a la incapacitat temporal? Què cobra
   els dies 4 a 20?
 
-SUPÒSIT 4 — Leo porta 4 anys a l'empresa amb
-  salari de 1.500 €/mes (50 €/dia). L'acomiaden i un
+SUPÒSIT 4 — Leo porta 4 anys a l'empresa amb un
+  salari diari de 50 € (pagues extra incloses). L'acomiaden i un
   jutge declara l'acomiadament improcedent.
   Quina indemnització li correspon?
 ```

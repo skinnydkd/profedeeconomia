@@ -12,6 +12,7 @@ materiales:
   - "Esquema-resum dels conceptes clau: lideratge, autoritat formal, estils de lideratge, lideratge situacional, gestió del talent"
   - "Targetes de rol per als dos equips"
   - "Rúbrica de debat per a la coavaluació"
+competencias_especificas: [CE5]
 estado: publicado
 slug: "asignaturas/eeae-bach/actividades/08-debate-liderazgo-talento.ca"
 ---

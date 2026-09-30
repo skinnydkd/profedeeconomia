@@ -127,3 +127,34 @@ describe('simularDeclaracion', () => {
     expect(r.importe).toBeCloseTo(probe.cuotaIRPF * 0.1, 4);
   });
 });
+
+describe('earned-income deduction (DA 61.ª LIRPF, RDL 5/2026)', () => {
+  it('a minimum-wage earner (17.094 €) owes 0 and gets the 524 € withheld back', () => {
+    const r = simularDeclaracion({ rendimientosTrabajo: 17094, retencionesPracticadas: 524 });
+    expect(r.deduccionTrabajo).toBeCloseTo(590.89, 1);
+    expect(r.cuotaIRPF).toBeCloseTo(0, 1);
+    expect(r.aDevolver).toBe(true);
+    expect(r.importe).toBeCloseTo(524, 0);
+  });
+
+  it('matches the reference quotas above the SMI', () => {
+    expect(simularDeclaracion({ rendimientosTrabajo: 18000, retencionesPracticadas: 0 }).cuotaIRPF).toBeCloseTo(623.82, 1);
+    expect(simularDeclaracion({ rendimientosTrabajo: 19000, retencionesPracticadas: 0 }).cuotaIRPF).toBeCloseTo(1354.5, 1);
+  });
+
+  it('does not apply from 20.048,45 € of gross earned income', () => {
+    const r = simularDeclaracion({ rendimientosTrabajo: 21000, retencionesPracticadas: 0 });
+    expect(r.deduccionTrabajo).toBe(0);
+  });
+
+  it('never takes the quota below zero', () => {
+    const r = simularDeclaracion({ rendimientosTrabajo: 15000, retencionesPracticadas: 0 });
+    expect(r.cuotaIRPF).toBeGreaterThanOrEqual(0);
+    expect(r.deduccionTrabajo).toBeLessThanOrEqual(590.89);
+  });
+
+  it('does not apply when the other income goes over 6.500 €', () => {
+    const r = simularDeclaracion({ rendimientosTrabajo: 17094, retencionesPracticadas: 0, rendimientosCapital: 7000 });
+    expect(r.deduccionTrabajo).toBe(0);
+  });
+});

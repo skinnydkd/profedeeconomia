@@ -4,6 +4,7 @@ import './BusinessGame.css';
 import BusinessGame from './BusinessGame';
 import { CAMPOS, AREAS, decisionPorDefecto, eur, num } from '@/lib/business-game/ui';
 import type { TeamDecision } from '@/lib/business-game/engine';
+import NumberInput from '../NumberInput';
 import { estadoMasReciente, intervaloPolling } from '@/lib/business-game/polling';
 
 /**
@@ -138,7 +139,7 @@ function CrearLiga({ onCreada, onCancel }: { onCreada: (s: Sesion) => void; onCa
       <p class="bg__lead">Crea la partida y comparte el código con la clase para que los equipos se unan.</p>
       <label class="bg__field"><span class="bg__field-label">Nombre de la liga</span><input class="bg__input bg__input--name" value={nombre} onInput={(e) => setNombre((e.target as HTMLInputElement).value)} placeholder="Ej. 2.º BACH Empresa" /></label>
       <label class="bg__field"><span class="bg__field-label">Instituto o centro</span><input class="bg__input bg__input--name" value={instituto} onInput={(e) => setInstituto((e.target as HTMLInputElement).value)} placeholder="Tu instituto" /></label>
-      <label class="bg__field"><span class="bg__field-label">Número de rondas (años)</span><input class="bg__input" type="number" min={1} max={20} value={numRondas} onInput={(e) => setNumRondas(parseInt((e.target as HTMLInputElement).value) || 8)} /></label>
+      <label class="bg__field"><span class="bg__field-label">Número de rondas (años)</span><NumberInput class="bg__input" min={1} max={20} value={numRondas} onValue={(v) => setNumRondas(Math.trunc(v) || 8)} /></label>
       {error && <p class="bg__error">{error}</p>}
       <div class="bg__actions">
         <button class="bg__btn bg__btn--primary" onClick={crear} disabled={enviando || nombre.length < 2 || instituto.length < 2}>{enviando ? 'Creando…' : 'Crear liga →'}</button>
@@ -248,7 +249,7 @@ function ConsolaEquipo({ sesion, estado, onRefrescar, onSalir }: { sesion: Sesio
               {CAMPOS.filter((c) => c.area === area).map((c) => (
                 <label class="bg__field bg__field--row" key={c.key}>
                   <span class="bg__field-label">{c.label}</span>
-                  <span class="bg__field-input"><input class="bg__input" type="number" min={0} step={c.step} value={dec[c.key]} onInput={(e) => setCampo(c.key, parseFloat((e.target as HTMLInputElement).value) || 0)} /><span class="bg__unit">{c.unidad}</span></span>
+                  <span class="bg__field-input"><NumberInput class="bg__input" min={0} step={c.step} value={dec[c.key]} onValue={(v) => setCampo(c.key, v)} /><span class="bg__unit">{c.unidad}</span></span>
                 </label>
               ))}
             </div>

@@ -7,7 +7,7 @@ tipo: caso
 duracion: "60 min · 1 sesión"
 agrupacion: "grupos pequeños (3-4)"
 materiales:
-  - "Dosier con la información de una empresa social real, curado por el profesor a partir de fuentes públicas (web corporativa y memoria de la empresa, casos de la economía social española vía CEPES, prensa económica, B Lab para empresas con sello B Corp)"
+  - "Dosier incluido al final de esta ficha, con tres organizaciones (La Fageda, Patagonia y Grameen Bank), o uno equivalente de una empresa social cercana preparado por el profesor a partir de fuentes públicas (web corporativa y memoria de la empresa, casos de la economía social española vía CEPES, prensa económica, B Lab para empresas con sello B Corp)"
   - "Acceso a internet o móviles para consultar la web de la empresa y el listado de los ODS"
   - "Ficha de trabajo con tres columnas: empresa convencional / empresa social / ONG, para situar el caso"
   - "El listado visual de los 17 ODS (rueda de colores oficial de la ONU)"
@@ -56,3 +56,25 @@ El profesor presenta una empresa social documentada. Puede usar el caso de La Fa
 - **Variante por figuras:** repartir a distintos grupos una empresa convencional, una empresa social y una ONG del mismo ámbito (por ejemplo, alimentación) y comparar en la puesta en común sus fines y sus modelos.
 - **Conexión con la Unidad 3:** retomar la distinción entre compromiso real y greenwashing aplicándola ahora a una empresa que dice tener fin social.
 - **Conexión con el proyecto de la unidad:** usar el caso como modelo para que los grupos valoren si su propio proyecto (actividad anterior) podría tener una dimensión social.
+
+## Dosier
+
+Tres organizaciones que aparecen en la Unidad 7 y que caen en lugares distintos de la ficha de tres columnas. Ninguna encaja del todo en una sola casilla: justo ahí está la discusión.
+
+### Caso A · La Fageda (Garrotxa): yogures que dan trabajo
+
+La cooperativa La Fageda fabrica yogures y helados que se venden en supermercados como cualquier otra marca. Nació en 1982 en la comarca de la Garrotxa con la misión de dar trabajo digno a personas con discapacidad intelectual y trastornos mentales graves, a quienes el mercado laboral ordinario dejaba fuera. Su fundador, el psicólogo Cristóbal Colón, decidió tratarlas como trabajadores con un empleo real y productivo, no como pacientes a los que cuidar. Hoy emplea a cientos de personas, una parte importante de ellas con algún tipo de discapacidad, vende sus productos en el mercado, no vive de subvenciones y compite en calidad con las grandes marcas lácteas.
+
+*Fuente: Fundació La Fageda, memorias e información corporativa (fageda.com); prensa económica española. Caso recogido en la Unidad 7 de este libro.*
+
+### Caso B · Patagonia: la Tierra como única accionista
+
+Patagonia, una marca estadounidense de ropa de montaña, reescribió su misión en 2018: «Estamos en el negocio para salvar nuestro planeta». Dona un porcentaje fijo de sus ventas a causas ambientales y anima a reparar la ropa en lugar de comprar nueva, como en su campaña «No compres esta chaqueta». En septiembre de 2022 su fundador, Yvon Chouinard, en lugar de vender la empresa o sacarla a bolsa, transfirió la propiedad a una fundación y a un fideicomiso cuyos beneficios se destinan íntegramente a luchar contra la crisis climática. El comunicado lo resumió así: «la Tierra es ahora nuestra única accionista».
+
+*Fuentes: Patagonia Inc., declaración de misión y comunicado «Earth is now our only shareholder» (septiembre de 2022, patagonia.com/ownership); The New York Times y Reuters. Caso recogido en la Unidad 7 de este libro.*
+
+### Caso C · Grameen Bank: prestar a quien ningún banco prestaba
+
+En los años setenta, el economista bangladesí Muhammad Yunus vio que las personas más pobres no podían salir de la pobreza porque ningún banco les prestaba dinero: no tenían avales ni garantías. Fundó el Grameen Bank, que prestaba cantidades muy pequeñas —a veces el equivalente a unos pocos euros— a mujeres pobres del campo para que montaran su propio negocio, sin pedir aval. Esas personas, «insolventes» para la banca tradicional, devolvían los préstamos en porcentajes altísimos. El microcrédito se extendió por todo el mundo, y Yunus y el Grameen Bank recibieron juntos el Premio Nobel de la Paz de 2006.
+
+*Fuente: Fundación Nobel, Premio Nobel de la Paz 2006 (nobelprize.org). Caso recogido en la Unidad 7 de este libro.*

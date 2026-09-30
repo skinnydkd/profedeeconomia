@@ -37,7 +37,7 @@ Este sprint piloto produce, además, los **tres documentos** (ficha de roles, ca
 Cada equipo elige uno de estos tres retos —todos tienen el mismo tamaño y se entregan en la sesión de daily 2 (final del sprint):
 
 - **Reto A — Encuesta exprés.** Diseñar, pasar a 30 personas y presentar en 5 diapositivas los resultados de una mini-encuesta sobre un hábito de consumo del alumnado del centro (tiempo de pantalla, gasto semanal, app más usada…).
-- **Reto B — Prototipo en papel.** Diseñar en papel el prototipo de una app que resuelva una molestia identificada por el equipo (de la Unidad 4) y presentarla con 3 pantallas dibujadas a mano y una breve narración.
+- **Reto B — Prototipo en papel.** Diseñar en papel el prototipo de una app que resuelva una molestia identificada por el equipo (de la Unidad 11) y presentarla con 3 pantallas dibujadas a mano y una breve narración.
 - **Reto C — Producto físico de bajo coste.** Diseñar y montar un prototipo físico de un producto de menos de 5 € (ej.: marcapáginas con QR, llavero de fieltro, organizador de cables) y presentarlo con foto, ficha de coste y propuesta de precio.
 
 ## Estructura temporal

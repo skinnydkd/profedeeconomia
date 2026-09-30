@@ -88,7 +88,7 @@ preguntas:
     respuesta: 1000
     tolerancia: 0
     unidad: "unitats"
-    explicacion: "El marge de contribució per unitat és preu − cost variable = 20 − 12 = 8 €. El punt mort s'assolix quan eixe marge cobrix els costos fixos: 8.000 € ÷ 8 € = 1.000 unitats. A partir d'ahí comença el benefici."
+    explicacion: "El marge de contribució per unitat és preu − cost variable = 20 − 12 = 8 €. El punt mort s'assolix quan eixe marge cobrix els costos fixos: 8.000 € ÷ 8 € = 1.000 unitats. A partir d'ahí comença el benefici. És el mateix compte de l'exemple resolt de la Unitat 8."
   - tipo: relacionar
     enunciado: "Emparella cada model o estratègia amb la seua descripció:"
     izquierda: ["Lideratge en costos", "Diferenciació", "Model de plataforma", "Model de subscripció"]

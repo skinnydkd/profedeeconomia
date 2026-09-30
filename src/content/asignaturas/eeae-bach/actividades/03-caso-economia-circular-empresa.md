@@ -7,7 +7,7 @@ tipo: caso
 duracion: "60 min · 1 sesión"
 agrupacion: "grupos pequeños (3-4)"
 materiales:
-  - "Dosier con la información de una empresa real de economía circular, curado por el profesor a partir de fuentes públicas (web corporativa y memoria de sostenibilidad de la empresa, casos de la Fundación Ellen MacArthur, prensa económica)"
+  - "Dosier incluido al final de esta ficha, con tres empresas de economía circular (MUD Jeans, Zuvamesa y Too Good To Go), o uno equivalente de una empresa cercana preparado por el profesor a partir de fuentes públicas (web corporativa y memoria de sostenibilidad, casos de la Fundación Ellen MacArthur, prensa económica)"
   - "Acceso a internet o móviles para consultar la web de la empresa y datos de los ODS"
   - "Ficha de trabajo con un esquema lineal frente a circular y una tabla para vincular la actividad con los ODS"
   - "El listado visual de los 17 ODS (rueda de colores oficial de la ONU)"
@@ -55,3 +55,25 @@ El profesor presenta una empresa documentada de economía circular. Puede usar e
 - **Variante por sectores:** repartir empresas circulares de sectores distintos (textil, electrónica, alimentación, construcción) a cada grupo y comparar en la puesta en común qué principios aplica cada sector.
 - **Conexión con el bloque de empresa:** plantear qué oportunidades de negocio circular existen en la comarca del centro, anticipando los bloques de emprendimiento y actividad empresarial de la materia.
 - **Conexión con la Unidad 1:** retomar la idea de que toda escasez es también una oportunidad emprendedora, ahora aplicada a la escasez de materias primas que la economía circular ayuda a aliviar.
+
+## Dosier
+
+Tres empresas que ya aparecen en el material, cada una con una forma distinta de cerrar el círculo: alquilar y reparar, aprovechar residuos, vender lo que se iba a tirar. Las cifras y afirmaciones son las de su fuente; antes del test del greenwashing, conviene contrastarlas en la web o en la memoria de cada empresa.
+
+### Caso A · MUD Jeans: vaqueros de alquiler
+
+La industria textil es un ejemplo claro del modelo lineal: prendas baratas que se usan poco y se tiran, con un consumo altísimo de agua y de algodón. La empresa neerlandesa MUD Jeans experimentó durante años con un modelo circular: en lugar de vender los vaqueros, los alquilaba con una cuota mensual; cuando el cliente ya no los quería, los devolvía, y la empresa los reparaba para revenderlos de segunda mano o los deshilachaba para fabricar tejido nuevo, mezclando algodón reciclado con fibra virgen. En mayo de 2026 abandonó el alquiler, porque concluyó que no era escalable a gran volumen, y se reorientó hacia la reparación, la reventa y el reciclaje. En agosto de 2026 se declaró en quiebra por el peso de sus deudas; en septiembre la marca volvió a vender con nuevos propietarios.
+
+*Fuentes: MUD Jeans, memorias de sostenibilidad y notas de prensa; RetailDetail (mayo de 2026); NL Times (7 de agosto de 2026); Sourcing Journal (septiembre de 2026); Fundación Ellen MacArthur, casos de economía circular. Caso recogido en la Unidad 3 de este libro.*
+
+### Caso B · Zuvamesa (Sagunt): el zumo y lo que sobra de la naranja
+
+Zuvamesa elabora en Sagunt zumo de naranja y mandarina exprimido (no procedente de concentrado) con cítricos de la propia Comunitat Valenciana. Lo interesante es lo que hace con lo que sobra: aprovecha más del 90 % de sus residuos en lugar de enviarlos al vertedero y los convierte en productos nuevos —pellets a partir de las cortezas, aceites esenciales prensados de la piel y biogás en una planta propia—. Tiene instalaciones fotovoltaicas que cubren parte de su demanda de energía y la certificación «Residuo Cero» de AENOR. Además, compra la materia prima a la citricultura valenciana, de modo que el valor del cultivo se queda en la zona.
+
+*Fuentes: Zuvamesa, área de sostenibilidad; certificación «Residuo Cero» de AENOR; Conselleria de Agricultura de la Generalitat Valenciana. Caso recogido en GPE, Unidad 7.*
+
+### Caso C · Too Good To Go: vender lo que se iba a tirar
+
+Too Good To Go es una aplicación danesa, muy implantada en España, que conecta comercios de comida (panaderías, supermercados, restaurantes) con personas dispuestas a comprar a precio reducido los excedentes que, al cerrar, acabarían en la basura. Al comercio le evita tirar y le da ingresos extra; al cliente le da comida buena y barata. La empresa gana dinero con una pequeña comisión por cada «pack sorpresa» vendido, y su impacto, que ella misma cifra en millones de comidas rescatadas, es su razón de ser.
+
+*Fuente: Too Good To Go, datos públicos de la compañía. Caso recogido en IPE II, Unidad 6.*

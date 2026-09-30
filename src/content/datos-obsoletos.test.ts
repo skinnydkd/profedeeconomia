@@ -77,6 +77,12 @@ const OBSOLETOS: Obsoleto[] = [
   },
   {
     patron:
+      /(?:solo|només) (?:aparece|apareix) (?:la (?:cotización|cotització|parte|part) (?:a tu cargo|al teu càrrec)|tu cotización|la teua cotització)|que no (?:ves|veus) (?:en|a) (?:la |tu |la teua )?n[óò]mina/i,
+    motivo: 'La cuota de la empresa figura al pie de la nómina como aportación de la empresa; solo la del trabajador se descuenta del sueldo',
+    ejemplo: 'En la nómina solo aparece la cotización a tu cargo.',
+  },
+  {
+    patron:
       /(?:cotiz|cotitz)[^.\n]{0,140}(?:derecho|dret) a (?:la )?(?:sanidad|sanitat)|para (?:tener|tindre) (?:derecho|dret) a (?:la )?(?:sanidad|sanitat)|seguro colectivo: sanidad|col·lectiva: sanitat/i,
     motivo: 'Cotizar da derecho a prestaciones (paro, incapacidad temporal, jubilación), no a la sanidad: la sanidad pública es universal y se paga con impuestos (Ley 16/2003, RDL 7/2018)',
     ejemplo: 'La cotización a la Seguridad Social (que da derecho a sanidad, paro y pensión).',

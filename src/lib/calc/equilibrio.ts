@@ -14,9 +14,15 @@ export function equilibrio(a: number, b: number, c: number, d: number):
   return { valido: true, P, Q };
 }
 
+/**
+ * Quantities demanded and supplied at a price. A quantity cannot be negative:
+ * with the textbook supply Qs = −20 + 3·P nobody offers anything below
+ * 6,67 €, and nobody buys above a / b. Clamping here also keeps the traded
+ * quantity of a price ceiling or floor at 0 instead of below it.
+ */
 export function evaluarPrecio(coef: Coef, P: number): { qd: number; qs: number; exceso: number } {
-  const qd = coef.a - coef.b * P;
-  const qs = coef.c + coef.d * P;
+  const qd = Math.max(0, coef.a - coef.b * P);
+  const qs = Math.max(0, coef.c + coef.d * P);
   return { qd, qs, exceso: qs - qd };
 }
 

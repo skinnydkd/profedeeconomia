@@ -12,7 +12,7 @@ slug: "asignaturas/eco-4eso/recursos/embudo-validacion.ca"
 
 ## Quan usar-la
 
-- En validar el projecte en la Unitat 10, quan ja hi ha dades reals per poques que siguen.
+- En validar el projecte en la Unitat 12, quan ja hi ha dades reals per poques que siguen.
 - Per a separar les mètriques que pugen fàcil —seguidors, visites, «m'agrada»— de les que decidixen.
 - Després d'una fira, un mercadet o una campanya a xarxes, amb els números de veritat davant.
 - Al costat de l'activitat de mètriques de la unitat, que treballa este mateix embut sobre el paper.
