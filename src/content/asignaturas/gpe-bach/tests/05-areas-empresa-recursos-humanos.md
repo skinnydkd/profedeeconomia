@@ -93,6 +93,14 @@ preguntas:
     derecha: ["Tercer paso", "Primer paso", "Cuarto paso", "Segundo paso"]
     correctas: [1, 3, 0, 2]
     explicacion: "El proceso empieza por definir el perfil (primer paso); luego se publica la oferta y se reciben candidaturas (segundo); después se entrevista (tercero) y, por último, se firma el contrato (cuarto). Sin un perfil claro al inicio, el resto falla."
+  - enunciado: "Una empresa de 60 personas quiere tratar con justicia a mujeres y hombres. ¿Qué le exige la ley?"
+    opciones:
+      - "Solo pagar a todo el mundo el mismo salario, sea cual sea el puesto."
+      - "Un plan de igualdad y un registro de sus salarios medios por sexo."
+      - "Nada: esas obligaciones solo afectan a las empresas de más de 250 personas."
+      - "Contratar siempre el mismo número de mujeres que de hombres en cada puesto."
+    correcta: 1
+    explicacion: "Con 50 o más personas en plantilla, la empresa debe negociar y registrar un plan de igualdad (Ley Orgánica 3/2007 y Real Decreto 901/2020). Y cualquier empresa, sea del tamaño que sea, debe llevar un registro retributivo con los salarios medios separados por sexo (Real Decreto 902/2020). La ley no obliga a pagar a todo el mundo lo mismo ni a igualar el número de mujeres y hombres en cada puesto: exige pagar igual por un trabajo de igual valor (Estatuto de los Trabajadores, art. 28), no discriminar y hacer visibles las diferencias para corregirlas."
 ---
 
 Test de autoevaluación de la Unidad 5 del libro teórico de Gestión de Proyectos de Emprendimiento (Bachillerato, Comunitat Valenciana).
