@@ -2,15 +2,19 @@
 asignatura: eeae-bach
 unidad_relacionada: 1
 title: "Calculadora de equilibrio de mercado"
-descripcion: "Introduce las funciones lineales de oferta y demanda para obtener el precio y la cantidad de equilibrio. Permite además fijar topes de precio y ver el exceso de oferta o de demanda que generan."
+descripcion: "Ampliación opcional de la Unidad 1: introduce las funciones lineales de oferta y demanda para obtener el precio y la cantidad de equilibrio, y permite fijar topes de precio y ver el exceso de oferta o de demanda que generan. El análisis formal del mercado se estudia en Economía de 1.º de Bachillerato."
 tipo: calculadora
 componente: EquilibrioMercado
 estado: publicado
 ---
 
+## Una ampliación opcional
+
+En esta materia el mercado se presenta de forma panorámica: la Unidad 1 explica cómo los precios coordinan a quienes compran y a quienes venden, sin dibujar curvas ni hacer cálculos. Esta calculadora es una **ampliación opcional** para quien quiera ver ya cómo se cruzan la oferta y la demanda. El análisis formal del mercado —curvas, equilibrio e intervención de precios— se estudia en la materia Economía de 1.º de Bachillerato ([Eco 1BACH, Unidad 4](/eco-1bach/libro/04-oferta-demanda-mercado/)).
+
 ## Cuándo usarla
 
-- En la **Unidad 1** (escasez y los mecanismos de mercado), al explicar cómo el precio coordina las decisiones de quienes ofrecen y quienes demandan sin que nadie lo dirija.
+- En la **Unidad 1** (escasez y los mecanismos de mercado), si el grupo quiere ir más allá de la idea panorámica, al explicar cómo el precio coordina las decisiones de quienes ofrecen y quienes demandan sin que nadie lo dirija.
 - Para ver de un vistazo el punto donde oferta y demanda se cruzan, en lugar de calcularlo a mano cada vez: cambiar una pendiente o un corte y observar cómo se desplaza el equilibrio.
 - Al introducir la **intervención de precios**: fijar un precio máximo o mínimo y comprobar que aparece un exceso de demanda (escasez) o un exceso de oferta (excedente).
 
