@@ -7,6 +7,7 @@ import {
   intervencion,
   type Coef,
 } from '../../lib/calc/equilibrio';
+import NumberInput from '../NumberInput';
 
 /**
  * UI strings, Valencian (AVL) alongside the ES source. Economic notation
@@ -160,15 +161,15 @@ export default function EquilibrioCalc({ locale = 'es' }: Props) {
         <label class="calc__field">
           <span class="calc__label">{t.interceptoDemanda}</span>
           <div class="calc__input-wrap">
-            <input type="number" min={1} step={10} value={a}
-              onInput={(e) => setA(parseFloat((e.target as HTMLInputElement).value) || 0)} />
+            <NumberInput min={1} step={10} value={a}
+              onValue={setA} />
           </div>
         </label>
         <label class="calc__field">
           <span class="calc__label">{t.pendienteDemanda}</span>
           <div class="calc__input-wrap">
-            <input type="number" min={0.1} step={1} value={b}
-              onInput={(e) => setB(parseFloat((e.target as HTMLInputElement).value) || 0)} />
+            <NumberInput min={0.1} step={1} value={b}
+              onValue={setB} />
           </div>
         </label>
       </div>
@@ -178,15 +179,15 @@ export default function EquilibrioCalc({ locale = 'es' }: Props) {
         <label class="calc__field">
           <span class="calc__label">{t.interceptoOferta}</span>
           <div class="calc__input-wrap">
-            <input type="number" step={10} value={c}
-              onInput={(e) => setC(parseFloat((e.target as HTMLInputElement).value) || 0)} />
+            <NumberInput step={10} value={c}
+              onValue={setC} />
           </div>
         </label>
         <label class="calc__field">
           <span class="calc__label">{t.pendienteOferta}</span>
           <div class="calc__input-wrap">
-            <input type="number" min={0.1} step={1} value={d}
-              onInput={(e) => setD(parseFloat((e.target as HTMLInputElement).value) || 0)} />
+            <NumberInput min={0.1} step={1} value={d}
+              onValue={setD} />
           </div>
         </label>
       </div>
@@ -229,8 +230,8 @@ export default function EquilibrioCalc({ locale = 'es' }: Props) {
             <label class="calc__field">
               <span class="calc__label">{t.precioInspeccionar}</span>
               <div class="calc__input-wrap">
-                <input type="number" step={0.5} value={precioInsp}
-                  onInput={(e) => setPrecioInsp(parseFloat((e.target as HTMLInputElement).value) || 0)} />
+                <NumberInput step={0.5} value={precioInsp}
+                  onValue={setPrecioInsp} />
               </div>
             </label>
           </div>
@@ -296,8 +297,8 @@ export default function EquilibrioCalc({ locale = 'es' }: Props) {
                 <label class="calc__field">
                   <span class="calc__label">{t.precioFijado}</span>
                   <div class="calc__input-wrap">
-                    <input type="number" min={0} step={0.5} value={topePrecio}
-                      onInput={(e) => setTopePrecio(parseFloat((e.target as HTMLInputElement).value) || 0)} />
+                    <NumberInput min={0} step={0.5} value={topePrecio}
+                      onValue={setTopePrecio} />
                   </div>
                 </label>
               </div>

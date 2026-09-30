@@ -4,6 +4,7 @@ import { calcularNomina, type Contrato } from '../../lib/calc/nomina';
 import type { Discapacidad } from '../../lib/calc/irpf';
 import { formatEUR, formatPercent } from '../../lib/calc/format';
 import { type Locale } from '@/i18n/locale';
+import NumberInput from '../NumberInput';
 
 /**
  * Calculadora de nómina española para Eco 4ESO.
@@ -253,12 +254,11 @@ export default function CalculadoraNominaESO({ locale = 'es' }: Props) {
         <label class="calc__field">
           <span class="calc__label">{c.salarioBrutoMensual}</span>
           <div class="calc__input-wrap">
-            <input
-              type="number"
+            <NumberInput
               min={0}
               step={50}
               value={brutoMensual}
-              onInput={(e) => setBrutoMensual(parseFloat((e.target as HTMLInputElement).value) || 0)}
+              onValue={setBrutoMensual}
             />
             <span class="calc__unit">{c.unitEuroMes}</span>
           </div>
@@ -305,15 +305,12 @@ export default function CalculadoraNominaESO({ locale = 'es' }: Props) {
         <label class="calc__field">
           <span class="calc__label">{c.hijosACargo}</span>
           <div class="calc__input-wrap">
-            <input
-              type="number"
+            <NumberInput
               min={0}
               max={10}
               step={1}
               value={hijos}
-              onInput={(e) =>
-                setHijos(Math.max(0, Math.floor(parseFloat((e.target as HTMLInputElement).value) || 0)))
-              }
+              onValue={(v) => setHijos(Math.max(0, Math.floor(v)))}
             />
             <span class="calc__unit">{c.unitHijos}</span>
           </div>
@@ -337,12 +334,11 @@ export default function CalculadoraNominaESO({ locale = 'es' }: Props) {
         <label class="calc__field">
           <span class="calc__label">{c.otrasDeducciones}</span>
           <div class="calc__input-wrap">
-            <input
-              type="number"
+            <NumberInput
               min={0}
               step={50}
               value={deducciones}
-              onInput={(e) => setDeducciones(Math.max(0, parseFloat((e.target as HTMLInputElement).value) || 0))}
+              onValue={(v) => setDeducciones(Math.max(0, v))}
             />
             <span class="calc__unit">{c.unitEuroAnio}</span>
           </div>

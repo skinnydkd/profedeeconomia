@@ -1,6 +1,7 @@
 /** @jsxImportSource preact */
 import { useMemo, useState } from 'preact/hooks';
 import { type Locale } from '@/i18n/locale';
+import NumberInput from '../NumberInput';
 
 /**
  * UI strings, Valencian (AVL) alongside the ES source. Economic notation
@@ -109,12 +110,11 @@ export default function VANTIRCalc({ locale = 'es' }: Props) {
         <label class="calc__field">
           <span class="calc__label">{c.inversionLabel}</span>
           <div class="calc__input-wrap">
-            <input
-              type="number"
+            <NumberInput
               min={0}
               step={1000}
               value={inversion}
-              onInput={(e) => setInversion(parseFloat((e.target as HTMLInputElement).value) || 0)}
+              onValue={setInversion}
             />
             <span class="calc__unit">€</span>
           </div>
@@ -123,12 +123,11 @@ export default function VANTIRCalc({ locale = 'es' }: Props) {
         <label class="calc__field">
           <span class="calc__label">{c.tasaLabel}</span>
           <div class="calc__input-wrap">
-            <input
-              type="number"
+            <NumberInput
               min={-100}
               step={0.5}
               value={k}
-              onInput={(e) => setK(parseFloat((e.target as HTMLInputElement).value) || 0)}
+              onValue={setK}
             />
             <span class="calc__unit">{c.tasaUnit}</span>
           </div>
@@ -141,11 +140,10 @@ export default function VANTIRCalc({ locale = 'es' }: Props) {
               <label class="calc__flujo">
                 <span class="calc__flujo-label">{c.anioLabel(i + 1)}</span>
                 <div class="calc__input-wrap">
-                  <input
-                    type="number"
+                  <NumberInput
                     step={500}
                     value={f}
-                    onInput={(e) => setFlujo(i, parseFloat((e.target as HTMLInputElement).value) || 0)}
+                    onValue={(v) => setFlujo(i, v)}
                   />
                   <span class="calc__unit">€</span>
                 </div>

@@ -4,6 +4,7 @@ import { simularDeclaracion } from '../../lib/calc/declaracion-irpf';
 import type { Discapacidad } from '../../lib/calc/irpf';
 import { formatEUR, formatPercent } from '../../lib/calc/format';
 import { type Locale } from '@/i18n/locale';
+import NumberInput from '../NumberInput';
 
 /**
  * Simulador de la declaración de la renta (IRPF) para Eco 4ESO, Unidad 8.
@@ -245,14 +246,11 @@ export default function IRPFDeclaracion({ locale = 'es' }: Props) {
         <label class="calc__field">
           <span class="calc__label">{c.ingresosTrabajoLabel}</span>
           <div class="calc__input-wrap">
-            <input
-              type="number"
+            <NumberInput
               min={0}
               step={500}
               value={rendimientosTrabajo}
-              onInput={(e) =>
-                setRendimientosTrabajo(Math.max(0, parseFloat((e.target as HTMLInputElement).value) || 0))
-              }
+              onValue={(v) => setRendimientosTrabajo(Math.max(0, v))}
             />
             <span class="calc__unit">{c.eurAnio}</span>
           </div>
@@ -261,14 +259,11 @@ export default function IRPFDeclaracion({ locale = 'es' }: Props) {
         <label class="calc__field">
           <span class="calc__label">{c.retencionesLabel}</span>
           <div class="calc__input-wrap">
-            <input
-              type="number"
+            <NumberInput
               min={0}
               step={100}
               value={retencionesPracticadas}
-              onInput={(e) =>
-                setRetencionesPracticadas(Math.max(0, parseFloat((e.target as HTMLInputElement).value) || 0))
-              }
+              onValue={(v) => setRetencionesPracticadas(Math.max(0, v))}
             />
             <span class="calc__unit">{c.eurAnio}</span>
           </div>
@@ -277,14 +272,11 @@ export default function IRPFDeclaracion({ locale = 'es' }: Props) {
         <label class="calc__field">
           <span class="calc__label">{c.interesesLabel}</span>
           <div class="calc__input-wrap">
-            <input
-              type="number"
+            <NumberInput
               min={0}
               step={100}
               value={rendimientosCapital}
-              onInput={(e) =>
-                setRendimientosCapital(Math.max(0, parseFloat((e.target as HTMLInputElement).value) || 0))
-              }
+              onValue={(v) => setRendimientosCapital(Math.max(0, v))}
             />
             <span class="calc__unit">{c.eurAnio}</span>
           </div>
@@ -293,15 +285,12 @@ export default function IRPFDeclaracion({ locale = 'es' }: Props) {
         <label class="calc__field">
           <span class="calc__label">{c.hijosLabel}</span>
           <div class="calc__input-wrap">
-            <input
-              type="number"
+            <NumberInput
               min={0}
               max={10}
               step={1}
               value={hijos}
-              onInput={(e) =>
-                setHijos(Math.max(0, Math.floor(parseFloat((e.target as HTMLInputElement).value) || 0)))
-              }
+              onValue={(v) => setHijos(Math.max(0, Math.floor(v)))}
             />
             <span class="calc__unit">{c.hijosUnit}</span>
           </div>

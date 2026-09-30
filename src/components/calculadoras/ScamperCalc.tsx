@@ -3,6 +3,7 @@ import { useMemo, useState } from 'preact/hooks';
 import { type Locale } from '@/i18n/locale';
 import { formatNumber } from '../../lib/calc/format';
 import { evaluar, PROMPTS, MINIMO_DIVERGENCIA, MINIMO_PROMPTS, type Idea, type Prompt } from '../../lib/calc/scamper';
+import NumberInput from '../NumberInput';
 
 /** UI strings, Valencian (AVL) alongside the ES source. SCAMPER stays SCAMPER. */
 export const COPY = {
@@ -101,7 +102,6 @@ export const COPY = {
 } as const;
 
 interface Props { locale?: Locale }
-const num = (e: Event) => Number((e.currentTarget as HTMLInputElement).value);
 const txt = (e: Event) => (e.currentTarget as HTMLInputElement).value;
 
 const EJEMPLO: Idea[] = [
@@ -219,8 +219,8 @@ export default function ScamperCalc({ locale = 'es' }: Props) {
                   <tr key={i}>
                     <th scope="row">{idea.texto}</th>
                     <td>{t.prompts[idea.prompt]}</td>
-                    <td><input type="number" min={1} max={5} step={1} value={idea.potencial ?? 0} onInput={(e) => puntuar(i, 'potencial', num(e))} /></td>
-                    <td><input type="number" min={1} max={5} step={1} value={idea.esfuerzo ?? 0} onInput={(e) => puntuar(i, 'esfuerzo', num(e))} /></td>
+                    <td><NumberInput min={1} max={5} step={1} value={idea.potencial ?? 0} onValue={(v) => puntuar(i, 'potencial', v)} /></td>
+                    <td><NumberInput min={1} max={5} step={1} value={idea.esfuerzo ?? 0} onValue={(v) => puntuar(i, 'esfuerzo', v)} /></td>
                   </tr>
                 ))}
               </tbody>

@@ -1,6 +1,7 @@
 /** @jsxImportSource preact */
 import { useMemo, useState } from 'preact/hooks';
 import { type Locale } from '@/i18n/locale';
+import NumberInput from '../NumberInput';
 
 /**
  * Calculadora del presupuesto 50-30-20 (regla de Elizabeth Warren) para Eco 4ESO.
@@ -230,12 +231,11 @@ export default function CalculadoraPresupuesto503020({ locale = 'es' }: Props) {
         <label class="calc__field">
           <span class="calc__label">{c.ingresosMensuales}</span>
           <div class="calc__input-wrap">
-            <input
-              type="number"
+            <NumberInput
               min={0}
               step={50}
               value={ingresos}
-              onInput={(e) => setIngresos(parseFloat((e.target as HTMLInputElement).value) || 0)}
+              onValue={setIngresos}
             />
             <span class="calc__unit">{c.euroMes}</span>
           </div>
@@ -244,12 +244,11 @@ export default function CalculadoraPresupuesto503020({ locale = 'es' }: Props) {
         <label class="calc__field">
           <span class="calc__label">{c.necesidadesLabel}</span>
           <div class="calc__input-wrap">
-            <input
-              type="number"
+            <NumberInput
               min={0}
               step={10}
               value={necesidades}
-              onInput={(e) => setNecesidades(parseFloat((e.target as HTMLInputElement).value) || 0)}
+              onValue={setNecesidades}
             />
             <span class="calc__unit">{c.euroMes}</span>
           </div>
@@ -258,12 +257,11 @@ export default function CalculadoraPresupuesto503020({ locale = 'es' }: Props) {
         <label class="calc__field">
           <span class="calc__label">{c.deseosLabel}</span>
           <div class="calc__input-wrap">
-            <input
-              type="number"
+            <NumberInput
               min={0}
               step={10}
               value={deseos}
-              onInput={(e) => setDeseos(parseFloat((e.target as HTMLInputElement).value) || 0)}
+              onValue={setDeseos}
             />
             <span class="calc__unit">{c.euroMes}</span>
           </div>
@@ -272,12 +270,11 @@ export default function CalculadoraPresupuesto503020({ locale = 'es' }: Props) {
         <label class="calc__field">
           <span class="calc__label">{c.ahorroLabel}</span>
           <div class="calc__input-wrap">
-            <input
-              type="number"
+            <NumberInput
               min={0}
               step={10}
               value={ahorro}
-              onInput={(e) => setAhorro(parseFloat((e.target as HTMLInputElement).value) || 0)}
+              onValue={setAhorro}
             />
             <span class="calc__unit">{c.euroMes}</span>
           </div>

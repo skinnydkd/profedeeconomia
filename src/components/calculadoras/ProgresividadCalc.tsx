@@ -3,6 +3,7 @@ import { useMemo, useState } from 'preact/hooks';
 import { type Locale } from '@/i18n/locale';
 import { formatEUR, formatPercent } from '../../lib/calc/format';
 import { comparar, type Persona, type Tramo } from '../../lib/calc/progresividad';
+import NumberInput from '../NumberInput';
 
 /** UI strings, Valencian (AVL) alongside the ES source. IRPF and IVA stay as-is. */
 export const COPY = {
@@ -79,7 +80,6 @@ export const COPY = {
 } as const;
 
 interface Props { locale?: Locale }
-const num = (e: Event) => Number((e.currentTarget as HTMLInputElement).value);
 const txt = (e: Event) => (e.currentTarget as HTMLInputElement).value;
 
 const TRAMOS_BASE: Tramo[] = [
@@ -126,7 +126,7 @@ export default function ProgresividadCalc({ locale = 'es' }: Props) {
             {personas.map((p, i) => (
               <tr key={i}>
                 <td><input type="text" value={p.nombre} onInput={(e) => setP(i, 'nombre', txt(e))} /></td>
-                <td><input type="number" min={1} step={1000} value={p.renta} onInput={(e) => setP(i, 'renta', num(e))} /></td>
+                <td><NumberInput min={1} step={1000} value={p.renta} onValue={(v) => setP(i, 'renta', v)} /></td>
               </tr>
             ))}
           </tbody>
@@ -142,10 +142,10 @@ export default function ProgresividadCalc({ locale = 'es' }: Props) {
               <tr key={i}>
                 <td>
                   {Number.isFinite(tr.hasta)
-                    ? <input type="number" min={1} step={1000} value={tr.hasta} onInput={(e) => setT(i, 'hasta', num(e))} />
+                    ? <NumberInput min={1} step={1000} value={tr.hasta} onValue={(v) => setT(i, 'hasta', v)} />
                     : <span class="pg__infinito">∞</span>}
                 </td>
-                <td><input type="number" min={0} max={100} step={1} value={Math.round(tr.tipo * 100)} onInput={(e) => setT(i, 'tipo', num(e) / 100)} /></td>
+                <td><NumberInput min={0} max={100} step={1} value={Math.round(tr.tipo * 100)} onValue={(v) => setT(i, 'tipo', v / 100)} /></td>
               </tr>
             ))}
           </tbody>
@@ -157,11 +157,11 @@ export default function ProgresividadCalc({ locale = 'es' }: Props) {
       <div class="calc__form pg__row">
         <label class="calc__field">
           <span class="calc__label">{t.compra}</span>
-          <div class="calc__input-wrap"><input type="number" min={0} step={10} value={compra} onInput={(e) => setCompra(num(e))} /></div>
+          <div class="calc__input-wrap"><NumberInput min={0} step={10} value={compra} onValue={setCompra} /></div>
         </label>
         <label class="calc__field">
           <span class="calc__label">{t.tipoConsumo}</span>
-          <div class="calc__input-wrap"><input type="number" min={0} max={100} step={1} value={tipoConsumo} onInput={(e) => setTipoConsumo(num(e))} /></div>
+          <div class="calc__input-wrap"><NumberInput min={0} max={100} step={1} value={tipoConsumo} onValue={setTipoConsumo} /></div>
         </label>
       </div>
 

@@ -3,6 +3,7 @@ import { useMemo, useState } from 'preact/hooks';
 import { mediaPonderada, rubricaANota, sumaPesos } from '@/lib/calc/calificaciones';
 import { formatNumber } from '@/lib/calc/format';
 import { type Locale } from '@/i18n/locale';
+import NumberInput from '../NumberInput';
 
 /**
  * Grading calculator island — two independent blocks:
@@ -106,15 +107,10 @@ export default function CalificacionesCalc({ locale = 'es' }: Props) {
   const totalPesos = useMemo(() => sumaPesos(rows), [rows]);
   const mediaFinal = useMemo(() => mediaPonderada(rows), [rows]);
 
-  function updateRow(i: number, field: keyof Row, raw: string) {
+  function updateRow<K extends keyof Row>(i: number, field: K, value: Row[K]) {
     setRows((prev) => {
       const next = [...prev];
-      if (field === 'nombre') {
-        next[i] = { ...next[i], nombre: raw };
-      } else {
-        const v = parseFloat(raw);
-        next[i] = { ...next[i], [field]: Number.isFinite(v) ? v : 0 };
-      }
+      next[i] = { ...next[i], [field]: value };
       return next;
     });
   }
@@ -175,30 +171,24 @@ export default function CalificacionesCalc({ locale = 'es' }: Props) {
                     />
                   </td>
                   <td class="cg-calc__td">
-                    <input
+                    <NumberInput
                       class="cg-calc__input"
-                      type="number"
                       min={0}
                       max={100}
                       step={5}
                       value={row.peso}
-                      onInput={(e) =>
-                        updateRow(i, 'peso', (e.target as HTMLInputElement).value)
-                      }
+                      onValue={(v) => updateRow(i, 'peso', v)}
                       aria-label={c.pesoAria(row.nombre)}
                     />
                   </td>
                   <td class="cg-calc__td">
-                    <input
+                    <NumberInput
                       class="cg-calc__input"
-                      type="number"
                       min={0}
                       max={10}
                       step={0.5}
                       value={row.nota}
-                      onInput={(e) =>
-                        updateRow(i, 'nota', (e.target as HTMLInputElement).value)
-                      }
+                      onValue={(v) => updateRow(i, 'nota', v)}
                       aria-label={c.notaAria(row.nombre)}
                     />
                   </td>
@@ -256,15 +246,12 @@ export default function CalificacionesCalc({ locale = 'es' }: Props) {
           <label class="cg-calc__field">
             <span class="cg-calc__label">{c.puntosObtenidos}</span>
             <div class="cg-calc__input-wrap">
-              <input
+              <NumberInput
                 class="cg-calc__input"
-                type="number"
                 min={0}
                 step={1}
                 value={obtenidos}
-                onInput={(e) =>
-                  setObtenidos(parseFloat((e.target as HTMLInputElement).value) || 0)
-                }
+                onValue={setObtenidos}
               />
             </div>
           </label>
@@ -272,15 +259,12 @@ export default function CalificacionesCalc({ locale = 'es' }: Props) {
           <label class="cg-calc__field">
             <span class="cg-calc__label">{c.puntosMaximos}</span>
             <div class="cg-calc__input-wrap">
-              <input
+              <NumberInput
                 class="cg-calc__input"
-                type="number"
                 min={1}
                 step={1}
                 value={maximos}
-                onInput={(e) =>
-                  setMaximos(parseFloat((e.target as HTMLInputElement).value) || 0)
-                }
+                onValue={setMaximos}
               />
             </div>
           </label>
@@ -288,15 +272,12 @@ export default function CalificacionesCalc({ locale = 'es' }: Props) {
           <label class="cg-calc__field">
             <span class="cg-calc__label">{c.escalaLabel}</span>
             <div class="cg-calc__input-wrap">
-              <input
+              <NumberInput
                 class="cg-calc__input"
-                type="number"
                 min={1}
                 step={1}
                 value={escala}
-                onInput={(e) =>
-                  setEscala(parseFloat((e.target as HTMLInputElement).value) || 10)
-                }
+                onValue={(v) => setEscala(v || 10)}
               />
             </div>
           </label>

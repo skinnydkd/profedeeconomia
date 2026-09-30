@@ -6,6 +6,7 @@ import {
   variacionPct,
 } from '../../lib/calc/productividad';
 import { type Locale } from '@/i18n/locale';
+import NumberInput from '../NumberInput';
 
 /**
  * UI strings, Valencian (AVL) alongside the ES source. Economic notation
@@ -245,52 +246,49 @@ export default function ProductividadCalc({ locale = 'es' }: Props) {
 
 function PeriodInputs({ period, onChange, locale }: { period: Period; onChange: (p: Period) => void; locale: Locale }) {
   const c = COPY[locale];
-  const set = (key: keyof Period) => (e: Event) => {
-    const val = parseFloat((e.target as HTMLInputElement).value) || 0;
-    onChange({ ...period, [key]: val });
-  };
+  const set = (key: keyof Period) => (val: number) => onChange({ ...period, [key]: val });
 
   return (
     <>
       <label class="calc__field">
         <span class="calc__label">{c.labelProduccion}</span>
         <div class="calc__input-wrap">
-          <input type="number" min={0} step={10} value={period.produccion} onInput={set('produccion')} />
+          <NumberInput min={0} step={10} value={period.produccion} onValue={set('produccion')} />
           <span class="calc__unit">uds</span>
         </div>
       </label>
       <label class="calc__field">
         <span class="calc__label">{c.labelTrabajadores}</span>
         <div class="calc__input-wrap">
-          <input type="number" min={1} step={1} value={period.trabajadores} onInput={set('trabajadores')} />
+          <NumberInput min={1} step={1} value={period.trabajadores} onValue={set('trabajadores')} />
           <span class="calc__unit">pers.</span>
         </div>
       </label>
       <label class="calc__field">
         <span class="calc__label">{c.labelHoras}</span>
         <div class="calc__input-wrap">
-          <input type="number" min={1} step={10} value={period.horas} onInput={set('horas')} />
+          <NumberInput min={1} step={10} value={period.horas} onValue={set('horas')} />
           <span class="calc__unit">h</span>
         </div>
       </label>
       <label class="calc__field">
         <span class="calc__label">{c.labelCapital}</span>
         <div class="calc__input-wrap">
-          <input type="number" min={1} step={1000} value={period.capital} onInput={set('capital')} />
+          <NumberInput min={1} step={1000} value={period.capital} onValue={set('capital')} />
           <span class="calc__unit">€</span>
         </div>
       </label>
       <label class="calc__field">
         <span class="calc__label">{c.labelValorProduccion}</span>
         <div class="calc__input-wrap">
-          <input type="number" min={0} step={500} value={period.valorProduccion} onInput={set('valorProduccion')} />
+          <NumberInput min={0} step={500} value={period.valorProduccion} onValue={set('valorProduccion')} />
           <span class="calc__unit">€</span>
         </div>
       </label>
       <label class="calc__field">
         <span class="calc__label">{c.labelValorFactores}</span>
         <div class="calc__input-wrap">
-          <input type="number" min={1} step={500} value={period.valorFactores} onInput={set('valorFactores')} />
+          <NumberInput min={1} step={500} value={period.valorFactores} onValue={set('valorFactores')} />
           <span class="calc__unit">€</span>
         </div>
       </label>

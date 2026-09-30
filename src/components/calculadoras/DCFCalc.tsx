@@ -3,6 +3,7 @@ import { useMemo, useState } from 'preact/hooks';
 import { valorarDCF } from '../../lib/calc/dcf';
 import { formatEUR, formatPercent, formatNumber } from '../../lib/calc/format';
 import { type Locale } from '@/i18n/locale';
+import NumberInput from '../NumberInput';
 
 /**
  * UI strings, Valencian (AVL) alongside the ES source. Economic notation
@@ -110,12 +111,11 @@ export default function DCFCalc({ locale = 'es' }: Props) {
         <label class="calc__field">
           <span class="calc__label">{c.waccLabel}</span>
           <div class="calc__input-wrap">
-            <input
-              type="number"
+            <NumberInput
               min={-99}
               step={0.5}
               value={wacc}
-              onInput={(e) => setWacc(parseFloat((e.target as HTMLInputElement).value) || 0)}
+              onValue={setWacc}
             />
             <span class="calc__unit">{c.porcentajeUnit}</span>
           </div>
@@ -124,12 +124,11 @@ export default function DCFCalc({ locale = 'es' }: Props) {
         <label class="calc__field">
           <span class="calc__label">{c.gLabel}</span>
           <div class="calc__input-wrap">
-            <input
-              type="number"
+            <NumberInput
               min={-50}
               step={0.5}
               value={g}
-              onInput={(e) => setG(parseFloat((e.target as HTMLInputElement).value) || 0)}
+              onValue={setG}
             />
             <span class="calc__unit">{c.porcentajeUnit}</span>
           </div>
@@ -142,11 +141,10 @@ export default function DCFCalc({ locale = 'es' }: Props) {
               <label class="calc__flujo">
                 <span class="calc__flujo-label">{c.anio(i + 1)}</span>
                 <div class="calc__input-wrap">
-                  <input
-                    type="number"
+                  <NumberInput
                     step={1000}
                     value={f}
-                    onInput={(e) => setFlujo(i, parseFloat((e.target as HTMLInputElement).value) || 0)}
+                    onValue={(v) => setFlujo(i, v)}
                   />
                   <span class="calc__unit">€</span>
                 </div>
