@@ -550,6 +550,21 @@ const proyectos = defineCollection({
     })).default([]),
     lang: z.enum(LANGS).default('es'),
     estado: z.enum(ESTADOS).default('borrador'),
+    /**
+     * What the project works from the partner subject's state curriculum
+     * (RD 217/2022 for ESO, RD 243/2022 for Bachillerato). One entry per
+     * subject and course, because a project open to ESO and Bachillerato
+     * meets a different subject in each stage (e.g. Matemáticas A in 4.º ESO,
+     * Matemáticas Aplicadas a las Ciencias Sociales I in 1.º Bachillerato).
+     * Competences start with their official number ("CE6. …") and saberes
+     * with their block ("A.6 Educación financiera: …").
+     */
+    materia_socia: z.array(z.object({
+      materia: z.string(),
+      curso: z.string(),
+      competencias_especificas: z.array(z.string()).min(1),
+      saberes: z.array(z.string()).min(1),
+    })).optional(),
   }),
 });
 
