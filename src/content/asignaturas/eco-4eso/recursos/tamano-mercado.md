@@ -10,10 +10,10 @@ estado: publicado
 
 ## Cuándo usarla
 
-- Al detectar oportunidades en la Unidad 4, en el momento en que un grupo dice «esto lo compraría todo el mundo».
+- Al detectar oportunidades en la Unidad 11, en el momento en que un grupo dice «esto lo compraría todo el mundo».
 - Para poner un número al mercado del proyecto antes de diseñar nada, y no después de haberlo diseñado entero.
 - Para revisar un objetivo de ventas: si necesita más clientes de los que existen, el plan no cabe y hay que cambiarlo.
-- Antes del Business Model Canvas de la Unidad 9, porque el segmento de clientes deja de ser una etiqueta cuando tiene un tamaño.
+- Antes del Business Model Canvas de la Unidad 12, porque el segmento de clientes deja de ser una etiqueta cuando tiene un tamaño.
 
 ## Qué tener en cuenta
 

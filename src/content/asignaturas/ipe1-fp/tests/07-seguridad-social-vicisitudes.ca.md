@@ -98,11 +98,11 @@ preguntas:
     unidad: "€"
     explicacion: "Acomiadament objectiu procedent: 20 dies de salari per any treballat. Dies = 20 × 4 = 80 dies. Indemnització = 80 × 50 €/dia = 4.000 €. No s'arriba al topall de 12 mensualitats, així que la xifra és vàlida."
   - tipo: numerico
-    enunciado: "Una persona ha cotitzat 1.080 dies en els últims 6 anys i perd l'ocupació de manera involuntària. Si per cada 360 dies cotitzats es generen 120 dies de prestació, amb un màxim de 720, quants dies d'atur contributiu li corresponen?"
+    enunciado: "Una persona ha cotitzat 1.080 dies en els últims 6 anys i perd l'ocupació de manera involuntària. Si amb 360 dies cotitzats es cobren 120 dies d'atur i cada 180 dies més cotitzats en sumen 60, amb un màxim de 720, quants dies d'atur contributiu li corresponen?"
     respuesta: 360
     tolerancia: 0
     unidad: "dies"
-    explicacion: "Pas 1, quants blocs de 360 dies ha cotitzat: 1.080 / 360 = 3. Pas 2, dies de prestació: 3 × 120 = **360 dies**, és a dir, 12 mesos. Pas 3, comprovació del màxim: 360 dies està per davall dels 720 (24 mesos), així que no es retalla. Complix a més el mínim de 360 dies cotitzats en 6 anys, i en perdre l'ocupació de manera involuntària està en situació legal d'atur."
+    explicacion: "Pas 1, quants trams de 180 dies ha cotitzat per damunt dels 360: (1.080 − 360) / 180 = 4. Pas 2, dies de prestació: 120 + 4 × 60 = **360 dies**, és a dir, 12 mesos. Pas 3, comprovació del màxim: 360 dies està per davall dels 720 (24 mesos), així que no es retalla. Complix a més el mínim de 360 dies cotitzats en 6 anys, i en perdre l'ocupació de manera involuntària està en situació legal d'atur."
   - tipo: numerico
     enunciado: "Una treballadora cobra 18.250 € bruts a l'any (50 € al dia) i porta 20 anys exactes en l'empresa quan l'acomiaden per causes objectives de manera procedent. Quina és la seua indemnització en euros, tenint en compte el topall legal?"
     respuesta: 18250

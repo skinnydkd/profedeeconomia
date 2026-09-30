@@ -8,7 +8,7 @@ opciones:
   - "Només l'empresa"
   - "L'Estat, amb els impostos de tots"
 correcta: 0
-explicacion: "El treballador paga al voltant d'un 6,50 % que ix a la nòmina; l'empresa en paga prop d'un 30 % més que no hi apareix però forma part del cost de tindre't contractat."
+explicacion: "El treballador paga al voltant d'un 6,50 %, que se li descompta en la nòmina; l'empresa en paga prop d'un 30 % més, que la nòmina arreplega al peu com a aportació de l'empresa i que forma part del cost de tindre't contractat."
 estado: publicado
 font: "fopp-4eso U8 — Els teus drets com a treballador"
 ---

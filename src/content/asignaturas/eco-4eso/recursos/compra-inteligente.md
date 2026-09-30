@@ -10,7 +10,7 @@ estado: publicado
 
 ## Cuándo usarla
 
-- Al trabajar el consumo informado en la Unidad 5, para que «comparar precios» deje de ser un consejo y pase a ser una cuenta.
+- Al trabajar el consumo informado en la Unidad 7, para que «comparar precios» deje de ser un consejo y pase a ser una cuenta.
 - Antes de hablar de derechos del consumidor: hay que ver primero qué información hace falta para decidir bien.
 - Para desmontar la cuota mensual como argumento de venta, que es la técnica más común y la que más dinero cuesta.
 - Con un catálogo real en la mano —de una tienda de electrónica, de un supermercado— trabaja mejor que con datos inventados.

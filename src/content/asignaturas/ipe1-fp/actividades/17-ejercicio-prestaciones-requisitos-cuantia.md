@@ -17,7 +17,7 @@ solucion:
   - "<strong>S1 · Sara.</strong> No tiene derecho a la prestación contributiva: necesita 360 días cotizados en los últimos 6 años y tiene 300. Puede preguntar en el SEPE por el subsidio por cotización insuficiente, que exige no superar un límite de rentas."
   - "<strong>S2 · Iván.</strong> Con 600 días cotizados le corresponden <strong>180 días</strong> de paro. Los primeros 180 días cobra el 70 % de la base reguladora: 0,70 × 40 = <strong>28 € al día</strong> (unos 840 € al mes), dentro de los topes."
   - "<strong>S3 · Noa.</strong> Sí tiene derecho a la IT: en enfermedad común se piden 180 días cotizados en los últimos 5 años y tiene 400. Los días 4 a 20 cobra el <strong>60 % de la base reguladora</strong> (del 4 al 15, a cargo de la empresa)."
-  - "<strong>S4 · Leo.</strong> Despido improcedente: 33 × 4 = 132 días × 50 € = <strong>6.600 €</strong>; el tope de 24 mensualidades (36.000 €) no se alcanza. La empresa puede elegir entre readmitirlo o pagarle esa indemnización."
+  - "<strong>S4 · Leo.</strong> Despido improcedente: 33 × 4 = 132 días × 50 € = <strong>6.600 €</strong>; el tope de 24 mensualidades (720 días de salario, 36.000 €) no se alcanza. La empresa puede elegir entre readmitirlo o pagarle esa indemnización."
 estado: publicado
 ---
 
@@ -89,8 +89,8 @@ SUPUESTO 3 — Noa, con 400 días cotizados en 3 años,
   ¿Tiene derecho a la incapacidad temporal? ¿Qué cobra
   los días 4 a 20?
 
-SUPUESTO 4 — Leo lleva 4 años en la empresa con
-  salario de 1.500 €/mes (50 €/día). Lo despiden y un
+SUPUESTO 4 — Leo lleva 4 años en la empresa con un
+  salario diario de 50 € (pagas extra incluidas). Lo despiden y un
   juez declara el despido improcedente.
   ¿Qué indemnización le corresponde?
 ```
