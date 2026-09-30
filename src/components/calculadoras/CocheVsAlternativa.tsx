@@ -8,6 +8,7 @@ import {
 } from '../../lib/calc/coche';
 import { formatEUR, formatNumber } from '../../lib/calc/format';
 import NumberInput from '../NumberInput';
+import LiveSummary from '../LiveSummary';
 
 /**
  * UI strings, Valencian (AVL) alongside the ES source. Economic notation and
@@ -57,10 +58,10 @@ export const COPY = {
     depreciacionAnual: 'Depreciación anual',
     combustibleAnual: 'Combustible anual',
     costesFijos: 'Costes fijos del coche',
-    kmEquilibrioPre: 'A partir de unos',
+    kmEquilibrioPre: 'Por debajo de unos',
     kmEquilibrioKmAnio: 'km al año',
     kmEquilibrioPost:
-      ' el coche propio empezaría a salir más barato que esta alternativa (manteniendo el resto de datos igual).',
+      ' sale más barato el coche propio; por encima, esta alternativa (manteniendo el resto de datos igual).',
     ocultosSummary: 'Los costes ocultos del coche',
     ocultosP1a: 'Cuando pensamos en lo que cuesta un coche solemos fijarnos solo en la ',
     ocultosGasolina: 'gasolina',
@@ -122,10 +123,10 @@ export const COPY = {
     depreciacionAnual: 'Depreciació anual',
     combustibleAnual: 'Combustible anual',
     costesFijos: 'Costos fixos del cotxe',
-    kmEquilibrioPre: "A partir d'uns",
+    kmEquilibrioPre: "Per davall d'uns",
     kmEquilibrioKmAnio: "km a l'any",
     kmEquilibrioPost:
-      ' el cotxe propi començaria a eixir més barat que esta alternativa (mantenint la resta de dades igual).',
+      ' ix més barat el cotxe propi; per damunt, esta alternativa (mantenint la resta de dades igual).',
     ocultosSummary: 'Els costos ocults del cotxe',
     ocultosP1a: 'Quan pensem en el que costa un cotxe, solem fixar-nos només en la ',
     ocultosGasolina: 'gasolina',
@@ -245,6 +246,13 @@ export default function CocheVsAlternativa({ locale = 'es' }: Props) {
 
   const ganaCoche = comparacion.opcionMasBarata === 'coche';
   const ganaAlt = comparacion.opcionMasBarata === 'alternativa';
+  const veredicto =
+    comparacion.opcionMasBarata === 'empate' ? c.verdictEmpate : ganaCoche ? c.verdictCoche : c.verdictAlt;
+  const resumen = [
+    `${veredicto}: ${formatEUR(comparacion.diferenciaAnual, 0)} ${c.deDiferencia}.`,
+    `${c.barCoche}: ${formatEUR(coche.total, 0)}.`,
+    `${c.barAlt}: ${formatEUR(alternativa.total, 0)}.`,
+  ].join(' ');
 
   return (
     <div class="calc">
@@ -453,19 +461,14 @@ export default function CocheVsAlternativa({ locale = 'es' }: Props) {
       </div>
 
       <div class="calc__results">
+        <LiveSummary text={resumen} />
         {/* Highlighted verdict. */}
         <div
           class={`calc__metric calc__metric--primary ${
             ganaAlt ? 'calc__metric--ok' : ''
           }`}
         >
-          <span class="calc__metric-label">
-            {comparacion.opcionMasBarata === 'empate'
-              ? c.verdictEmpate
-              : ganaCoche
-                ? c.verdictCoche
-                : c.verdictAlt}
-          </span>
+          <span class="calc__metric-label">{veredicto}</span>
           <span class="calc__metric-value">{formatEUR(comparacion.diferenciaAnual, 0)}</span>
           <span class="calc__metric-unit">{c.deDiferencia}</span>
         </div>

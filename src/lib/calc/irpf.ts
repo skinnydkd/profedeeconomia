@@ -20,6 +20,9 @@
  *  - Earned-income reduction (reducción por rendimientos del trabajo, art. 20
  *    as amended by RDL 4/2024): 7.302 € up to 14.852 € of net income, then two
  *    slopes (−1,75 up to 17.673,52 € and −1,14 up to 19.747,5 €).
+ *  - Earned-income deduction on the quota (DA 61.ª, RDL 5/2026): up to
+ *    590,89 €, gone at 20.048,45 € of gross earned income. Only the tax
+ *    return applies it (declaracion-irpf.ts); calcularIRPF does not.
  *
  * NOTE: the figures above are the most recent official values known at the
  * time of writing (2026-05). If the AEAT publishes updated 2026 thresholds,
@@ -129,6 +132,26 @@ export function reduccionRendimientosTrabajo(rendimientoNeto: number): number {
   if (rendimientoNeto <= 19747.5) return Math.max(0, 2364.34 - 1.14 * (rendimientoNeto - 17673.52));
   return 0;
 }
+
+/**
+ * Deduction for obtaining earned income, 2026 (deducción por obtención de
+ * rendimientos del trabajo, DA 61.ª LIRPF as set by RDL 5/2026). It is based
+ * on the gross earned income (rendimientos íntegros del trabajo):
+ * - RIT <= 17.094 € (the 2026 SMI)  -> 590,89 €
+ * - above it                       -> 590,89 − 0,2 × (RIT − 17.094), 0 from 20.048,45 €
+ * It cannot exceed the tax on the earned income and only applies when the
+ * other income is 6.500 € or less; the tax return simulator checks both. It
+ * is not part of the withholding, so the payroll calculator leaves it out:
+ * a minimum-wage earner gets back in the return what was withheld.
+ */
+export function deduccionRendimientosTrabajo2026(rendimientosIntegros: number): number {
+  if (!Number.isFinite(rendimientosIntegros) || rendimientosIntegros <= 0) return 0;
+  if (rendimientosIntegros <= 17094) return 590.89;
+  return Math.max(0, 590.89 - 0.2 * (rendimientosIntegros - 17094));
+}
+
+/** Other income above which the deduction above does not apply, 2026. */
+export const OTRAS_RENTAS_MAX_DEDUCCION_TRABAJO = 6500;
 
 /** Personal + family minimum (mínimo personal y familiar), 2026. */
 export function minimoPersonalYFamiliar(opciones: OpcionesIRPF): number {

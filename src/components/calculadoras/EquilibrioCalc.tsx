@@ -8,6 +8,7 @@ import {
   type Coef,
 } from '../../lib/calc/equilibrio';
 import NumberInput from '../NumberInput';
+import LiveSummary from '../LiveSummary';
 
 /**
  * UI strings, Valencian (AVL) alongside the ES source. Economic notation
@@ -153,6 +154,17 @@ export default function EquilibrioCalc({ locale = 'es' }: Props) {
     [a, b, c, d, topeActivo, topeTipo, topePrecio],
   );
 
+  // Main result for screen readers: the equilibrium and, when a price
+  // ceiling or floor binds, what it does to the market.
+  let resumen = eq.valido
+    ? `${t.precioEquilibrio}: ${fmtN(eq.P)}. ${t.cantidadEquilibrio}: ${fmtN(eq.Q)}.`
+    : t.sinEquilibrio;
+  if (eq.valido && evalTope?.efectivo) {
+    resumen += ` ${t.cantidadIntercambiada}: ${fmtN(evalTope.intercambiada)} ${t.udsUnit}.`;
+    if (evalTope.escasez > 0) resumen += ` ${t.escasez}: ${fmtN(evalTope.escasez)} ${t.udsUnit}.`;
+    if (evalTope.excedente > 0) resumen += ` ${t.excedente}: ${fmtN(evalTope.excedente)} ${t.udsUnit}.`;
+  }
+
   return (
     <div class="calc">
       {/* ── Parameters ── */}
@@ -194,6 +206,7 @@ export default function EquilibrioCalc({ locale = 'es' }: Props) {
 
       {/* ── Equilibrium result ── */}
       <div class="calc__results">
+        <LiveSummary text={resumen} />
         {!eq.valido ? (
           <div class="calc__warning">
             {t.sinEquilibrio}

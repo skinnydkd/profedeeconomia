@@ -13,8 +13,10 @@
  * Reuse / coherence:
  *  - The annual quota comes straight from calcularIRPF (irpf.ts): general
  *    scale, personal/family minimum, the 2.000 € of other expenses, the
- *    earned-income reduction and extra deductions. We do NOT re-implement any
- *    tax figure here.
+ *    earned-income reduction and extra deductions. The return then subtracts
+ *    the 2026 earned-income deduction (DA 61.ª LIRPF, also in irpf.ts), which
+ *    the payroll withholding does not include. We do NOT re-implement any tax
+ *    figure here.
  *  - The Social Security contributions come from nomina.ts (same 2026 rates,
  *    same capped base), so "make the payroll" and "do the tax return" stay
  *    consistent.
@@ -25,7 +27,12 @@
  * scale, no special regimes.
  */
 
-import { calcularIRPF, type Discapacidad } from './irpf';
+import {
+  calcularIRPF,
+  deduccionRendimientosTrabajo2026,
+  OTRAS_RENTAS_MAX_DEDUCCION_TRABAJO,
+  type Discapacidad,
+} from './irpf';
 import { cotizacionesTrabajador, type Contrato } from './nomina';
 
 export interface OpcionesDeclaracion {
@@ -60,7 +67,9 @@ export interface ResultadoDeclaracion {
   reduccion: number;
   /** Taxable base = net work income − other expenses − reduction (+ savings income). */
   baseImponible: number;
-  /** Real annual IRPF quota (from calcularIRPF). */
+  /** Earned-income deduction applied (DA 61.ª LIRPF): up to 590,89 €, at most the quota. */
+  deduccionTrabajo: number;
+  /** Real annual IRPF quota: calcularIRPF's quota minus the earned-income deduction. */
   cuotaIRPF: number;
   /** Effective average IRPF rate over the base, as a percentage (0–100). */
   tipoMedio: number;
@@ -112,7 +121,12 @@ export function simularDeclaracion(opciones: OpcionesDeclaracion): ResultadoDecl
     rendimientoNetoTrabajo: netoTrabajo,
   });
 
-  const cuotaIRPF = irpf.cuota;
+  // DA 61.ª: limited to the quota, and only when the other income stays at
+  // 6.500 € or less. It exactly cancels the quota of a minimum-wage earner.
+  const deduccionTrabajo = rendimientosCapital <= OTRAS_RENTAS_MAX_DEDUCCION_TRABAJO
+    ? Math.min(deduccionRendimientosTrabajo2026(rendimientosTrabajo), irpf.cuota)
+    : 0;
+  const cuotaIRPF = irpf.cuota - deduccionTrabajo;
   const resultado = cuotaIRPF - retenciones;
 
   return {
@@ -123,8 +137,9 @@ export function simularDeclaracion(opciones: OpcionesDeclaracion): ResultadoDecl
     otrosGastos: irpf.otrosGastos,
     reduccion: irpf.reduccion,
     baseImponible: irpf.baseLiquidable,
+    deduccionTrabajo,
     cuotaIRPF,
-    tipoMedio: irpf.tipoMedio,
+    tipoMedio: irpf.base > 0 ? (cuotaIRPF / irpf.base) * 100 : 0,
     minimo: irpf.minimo,
     retenciones,
     resultado,

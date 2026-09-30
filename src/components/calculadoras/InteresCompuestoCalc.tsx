@@ -2,6 +2,7 @@
 import { useMemo, useState } from 'preact/hooks';
 import { type Locale } from '@/i18n/locale';
 import NumberInput from '../NumberInput';
+import LiveSummary from '../LiveSummary';
 
 /**
  * Interés compuesto con aportaciones periódicas mensuales.
@@ -176,6 +177,14 @@ export default function InteresCompuestoCalc({ locale = 'es' }: Props) {
     };
   }, [capitalInicial, aportacionMensual, tipoAnual, anios, c]);
 
+  const resumen = !result.valido
+    ? result.mensaje
+    : [
+        `${c.capitalFinal}: ${fmtMoney(result.capitalFinal)}.`,
+        `${c.totalAportado}: ${fmtMoney(result.totalAportado)}.`,
+        `${c.interesesGanados}: ${fmtMoney(result.intereses)}.`,
+      ].join(' ');
+
   function reset() {
     setCapitalInicial(1000);
     setAportacionMensual(100);
@@ -265,6 +274,7 @@ export default function InteresCompuestoCalc({ locale = 'es' }: Props) {
       </div>
 
       <div class="calc__results">
+        <LiveSummary text={resumen} />
         {!result.valido ? (
           <div class="calc__warning">{result.mensaje}</div>
         ) : (

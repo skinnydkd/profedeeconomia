@@ -2,7 +2,7 @@
 import { useMemo, useState } from 'preact/hooks';
 import { type Locale } from '@/i18n/locale';
 import { formatEUR, formatPercent } from '../../lib/calc/format';
-import { comparar, type Persona, type Tramo } from '../../lib/calc/progresividad';
+import { comparar, tipoEnPorcentaje, type Persona, type Tramo } from '../../lib/calc/progresividad';
 import NumberInput from '../NumberInput';
 
 /** UI strings, Valencian (AVL) alongside the ES source. IRPF and IVA stay as-is. */
@@ -145,7 +145,7 @@ export default function ProgresividadCalc({ locale = 'es' }: Props) {
                     ? <NumberInput min={1} step={1000} value={tr.hasta} onValue={(v) => setT(i, 'hasta', v)} />
                     : <span class="pg__infinito">∞</span>}
                 </td>
-                <td><NumberInput min={0} max={100} step={1} value={Math.round(tr.tipo * 100)} onValue={(v) => setT(i, 'tipo', v / 100)} /></td>
+                <td><NumberInput min={0} max={100} step="any" value={tipoEnPorcentaje(tr.tipo)} onValue={(v) => setT(i, 'tipo', v / 100)} /></td>
               </tr>
             ))}
           </tbody>

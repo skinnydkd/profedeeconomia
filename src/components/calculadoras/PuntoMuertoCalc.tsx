@@ -2,6 +2,7 @@
 import { useMemo, useState } from 'preact/hooks';
 import { type Locale } from '@/i18n/locale';
 import NumberInput from '../NumberInput';
+import LiveSummary from '../LiveSummary';
 
 /**
  * UI strings, Valencian (AVL) alongside the ES source. Economic notation
@@ -106,6 +107,13 @@ export default function PuntoMuertoCalc({ locale = 'es' }: Props) {
       cubrePuntoMuerto: demandaPrevista >= Q,
     };
   }, [cf, precio, cvu, demandaPrevista, c]);
+  const resumen = !result.valido
+    ? c.avisoMargen
+    : [
+        `${c.puntoMuerto}: ${Math.ceil(result.Q!).toLocaleString('es-ES')} ${c.demandaUnit}.`,
+        `${c.facturacion(fmtMoney(result.facturacionEnPM!))}.`,
+        `${c.beneficioPrevisto}: ${fmtMoney(result.beneficioPrevisto!)}/mes.`,
+      ].join(' ');
   return (
     <div class="calc">
       <div class="calc__form">
@@ -163,6 +171,7 @@ export default function PuntoMuertoCalc({ locale = 'es' }: Props) {
       </div>
 
       <div class="calc__results">
+        <LiveSummary text={resumen} />
         {!result.valido ? (
           <div class="calc__warning">{result.mensaje}</div>
         ) : (

@@ -186,3 +186,46 @@ describe('compararMovilidad', () => {
     expect(r.diferenciaAnual).toBeCloseTo(0, 6);
   });
 });
+
+describe('kmEquilibrio: which option wins on each side', () => {
+  // The audit's case: the default car against a 40 €/month pass, 20 taxi rides
+  // a month at 12 € and 15 rental days at 45 € (4.035 € a year).
+  const coche: OpcionesCoche = {
+    precioCompra: 18000,
+    anosVidaUtil: 10,
+    kmAnuales: 12000,
+    consumoL100: 6,
+    precioCombustible: 1.55,
+    seguro: 500,
+    mantenimiento: 700,
+    impuestos: 120,
+    aparcamiento: 600,
+  };
+  const alt: OpcionesAlternativa = {
+    abonoTransporteMensual: 40,
+    viajesTaxiMes: 20,
+    costeMedioTaxi: 12,
+    alquilerPuntualDias: 15,
+    costeAlquilerDia: 45,
+  };
+  const comparar = (km: number) => {
+    const c = costeCocheAnual({ ...coche, kmAnuales: km });
+    return compararMovilidad(
+      { ...c, kmAnuales: km, consumoL100: coche.consumoL100, precioCombustible: coche.precioCombustible },
+      costeAlternativaAnual(alt),
+    );
+  };
+
+  it('puts the break-even at about 3.387 km a year', () => {
+    // (4.035 − 1.800 − 1.920) / (0,06 × 1,55) = 315 / 0,093
+    expect(comparar(12000).kmEquilibrio).toBeCloseTo(315 / 0.093, 6);
+  });
+
+  it('the car is cheaper below it and the alternative above it', () => {
+    const km = comparar(12000).kmEquilibrio!;
+    expect(comparar(1000).opcionMasBarata).toBe('coche'); // 3.813 € < 4.035 €
+    expect(comparar(km * 0.9).opcionMasBarata).toBe('coche');
+    expect(comparar(km * 1.1).opcionMasBarata).toBe('alternativa');
+    expect(comparar(12000).opcionMasBarata).toBe('alternativa'); // 4.836 € > 4.035 €
+  });
+});

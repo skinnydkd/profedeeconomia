@@ -5,6 +5,7 @@ import type { Discapacidad } from '../../lib/calc/irpf';
 import { formatEUR, formatPercent } from '../../lib/calc/format';
 import { type Locale } from '@/i18n/locale';
 import NumberInput from '../NumberInput';
+import LiveSummary from '../LiveSummary';
 
 /**
  * Calculadora de nómina española para Eco 4ESO.
@@ -57,6 +58,8 @@ export const COPY = {
     otrasDeducciones: 'Otras deducciones IRPF',
     unitEuroAnio: '€/año',
     errorBruto: 'Introduce un salario bruto mensual mayor que 0.',
+    resumen: (liquido: string, ss: string, irpf: string) =>
+      `Líquido mensual: ${liquido}. Cada mes se descuentan ${ss} de Seguridad Social y ${irpf} de IRPF.`,
     brutoMensual: 'Bruto mensual',
     loQueFirma: 'Lo que firma el contrato',
     seguridadSocial: 'Seguridad Social',
@@ -65,6 +68,8 @@ export const COPY = {
     tipoMedio: 'Tipo medio',
     liquidoMensual: 'Líquido mensual',
     loQueIngresas: 'Lo que realmente ingresas cada mes en tu cuenta',
+    loQueIngresasCon14: (extra: string) =>
+      `Lo que ingresas en un mes normal. Las dos pagas extra no llevan descuento de Seguridad Social, porque ya se cotiza por ellas en las doce nóminas: cada una te deja ${extra}.`,
     brutoAnual: 'Bruto anual',
     liquidoAnual: 'Líquido anual',
     porcentajeEstado: '% que se queda el Estado',
@@ -91,6 +96,8 @@ export const COPY = {
       'Tu sueldo supera la base máxima de cotización (5.101,20 € al mes en 2026): cotizas por esa base, y por lo que la supera pagas la cotización de solidaridad.',
     notaOrientativa:
       'Datos 2026. Usamos la escala general del IRPF: la estatal más una autonómica tipo, porque cada comunidad fija la suya. La retención real también depende de otras circunstancias, así que esta cifra es orientativa.',
+    notaDeduccion:
+      'Si cobras hasta unos 20.000 € al año, esta retención se recupera total o parcialmente en la declaración.',
     queSignifica: '¿Qué significa cada concepto?',
     tipCotiTitle: 'Cotizaciones a la Seguridad Social:',
     tipCotiText:
@@ -130,6 +137,8 @@ export const COPY = {
     otrasDeducciones: 'Altres deduccions IRPF',
     unitEuroAnio: '€/any',
     errorBruto: 'Introduïx un salari brut mensual major que 0.',
+    resumen: (liquido: string, ss: string, irpf: string) =>
+      `Líquid mensual: ${liquido}. Cada mes es descompten ${ss} de Seguretat Social i ${irpf} d'IRPF.`,
     brutoMensual: 'Brut mensual',
     loQueFirma: 'El que firma el contracte',
     seguridadSocial: 'Seguretat Social',
@@ -138,6 +147,8 @@ export const COPY = {
     tipoMedio: 'Tipus mitjà',
     liquidoMensual: 'Líquid mensual',
     loQueIngresas: 'El que realment ingresses cada mes al teu compte',
+    loQueIngresasCon14: (extra: string) =>
+      `El que ingresses en un mes normal. Les dues pagues extra no porten descompte de Seguretat Social, perquè ja es cotitza per elles en les dotze nòmines: cadascuna et deixa ${extra}.`,
     brutoAnual: 'Brut anual',
     liquidoAnual: 'Líquid anual',
     porcentajeEstado: "% que es queda l'Estat",
@@ -164,6 +175,8 @@ export const COPY = {
       'El teu sou supera la base màxima de cotització (5.101,20 € al mes en 2026): cotitzes per eixa base, i pel que la supera pagues la cotització de solidaritat.',
     notaOrientativa:
       "Dades 2026. Fem servir l'escala general de l'IRPF: l'estatal més una autonòmica tipus, perquè cada comunitat fixa la seua. La retenció real també depén d'altres circumstàncies, així que esta xifra és orientativa.",
+    notaDeduccion:
+      "Si cobres fins a uns 20.000 € a l'any, esta retenció es recupera total o parcialment en la declaració.",
     queSignifica: 'Què significa cada concepte?',
     tipCotiTitle: 'Cotitzacions a la Seguretat Social:',
     tipCotiText:
@@ -218,6 +231,14 @@ export default function CalculadoraNominaESO({ locale = 'es' }: Props) {
     const n = calcularNomina(brutoAnual, { pagas, contrato, hijos, discapacidad, deducciones });
     return { valido: true as const, n };
   }, [brutoAnual, brutoMensual, pagas, contrato, hijos, discapacidad, deducciones, c]);
+
+  const resumen = result.valido
+    ? c.resumen(
+        formatEUR(result.n.liquidoMensual),
+        formatEUR(result.n.cotizaciones.mensual),
+        formatEUR(result.n.irpf.cuota / result.n.pagas),
+      )
+    : result.mensaje;
 
   function applyPreset(p: Preset) {
     setBrutoMensual(p.brutoAnual / p.pagas);
@@ -346,6 +367,7 @@ export default function CalculadoraNominaESO({ locale = 'es' }: Props) {
       </div>
 
       <div class="calc__results">
+        <LiveSummary text={resumen} />
         {!result.valido ? (
           <div class="calc__warning">{result.mensaje}</div>
         ) : (
@@ -384,7 +406,9 @@ function Resultado({ n, locale }: { n: ReturnType<typeof calcularNomina>; locale
       <div class="calc__metric calc__metric--primary">
         <span class="calc__metric-label">{t.liquidoMensual}</span>
         <span class="calc__metric-value">{formatEUR(n.liquidoMensual)}</span>
-        <span class="calc__metric-detail">{t.loQueIngresas}</span>
+        <span class="calc__metric-detail">
+          {n.liquidoPagaExtra === null ? t.loQueIngresas : t.loQueIngresasCon14(formatEUR(n.liquidoPagaExtra))}
+        </span>
       </div>
 
       <div class="calc__metric-grid">
@@ -495,7 +519,7 @@ function Resultado({ n, locale }: { n: ReturnType<typeof calcularNomina>; locale
           </p>
           <p>
             <em>
-              {t.notaOrientativa}
+              {t.notaOrientativa} {t.notaDeduccion}
             </em>
           </p>
         </div>

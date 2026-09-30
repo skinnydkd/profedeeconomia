@@ -5,6 +5,7 @@ import type { Discapacidad } from '../../lib/calc/irpf';
 import { formatEUR, formatPercent } from '../../lib/calc/format';
 import { type Locale } from '@/i18n/locale';
 import NumberInput from '../NumberInput';
+import LiveSummary from '../LiveSummary';
 
 /**
  * Simulador de la declaración de la renta (IRPF) para Eco 4ESO, Unidad 8.
@@ -34,6 +35,12 @@ export const COPY = {
     hijosUnit: 'hijos',
     gradoLabel: 'Grado de discapacidad',
     mensajeVacio: 'Introduce tus ingresos del año para hacer la declaración.',
+    resumenPagar: (importe: string, cuota: string) =>
+      `La declaración sale a pagar: ${importe}. Cuota de IRPF del año: ${cuota}.`,
+    resumenDevolver: (importe: string, cuota: string) =>
+      `La declaración sale a devolver: ${importe}. Cuota de IRPF del año: ${cuota}.`,
+    resumenNeutro: (cuota: string) =>
+      `La declaración no sale ni a pagar ni a devolver. Cuota de IRPF del año: ${cuota}.`,
     presetSueldoMedio: 'Sueldo medio, retuvo de más',
     presetDosPagadores: 'Dos pagadores, retuvo de menos',
     presetFamilia2Hijos: 'Familia con 2 hijos',
@@ -63,11 +70,14 @@ export const COPY = {
     reduccionRow: 'Reducción por rendimientos del trabajo',
     baseImponibleRow: 'Base imponible',
     minimoRow: 'Mínimo personal y familiar (no paga IRPF)',
+    deduccionTrabajoRow: 'Deducción por obtención de rendimientos del trabajo',
     cuotaAnioRow: 'Cuota de IRPF del año',
     resultadoRow: 'Resultado de la declaración',
     parenPagar: '(a pagar)',
     parenDevolver: '(a devolver)',
     nota: 'Datos 2026. Usamos la escala general del IRPF: la estatal más una autonómica tipo, porque cada comunidad fija la suya. El resultado real también depende de otras circunstancias, así que esta cifra es orientativa.',
+    notaDeduccion:
+      'Incluye la deducción de hasta 590,89 € para sueldos de hasta 20.048 € (DA 61.ª de la Ley del IRPF, RDL 5/2026).',
     queEs: '¿Qué es hacer la declaración de la renta?',
     tip1a: 'Durante el año',
     tip1b: ' tu empresa te adelanta el IRPF: te quita un poco de cada nómina (las ',
@@ -96,6 +106,12 @@ export const COPY = {
     hijosUnit: 'fills',
     gradoLabel: 'Grau de discapacitat',
     mensajeVacio: "Introduïx els teus ingressos de l'any per a fer la declaració.",
+    resumenPagar: (importe: string, cuota: string) =>
+      `La declaració ix a pagar: ${importe}. Quota d'IRPF de l'any: ${cuota}.`,
+    resumenDevolver: (importe: string, cuota: string) =>
+      `La declaració ix a tornar: ${importe}. Quota d'IRPF de l'any: ${cuota}.`,
+    resumenNeutro: (cuota: string) =>
+      `La declaració no ix ni a pagar ni a tornar. Quota d'IRPF de l'any: ${cuota}.`,
     presetSueldoMedio: 'Sou mitjà, va retindre de més',
     presetDosPagadores: 'Dos pagadors, va retindre de menys',
     presetFamilia2Hijos: 'Família amb 2 fills',
@@ -125,11 +141,14 @@ export const COPY = {
     reduccionRow: 'Reducció per rendiments del treball',
     baseImponibleRow: 'Base imposable',
     minimoRow: 'Mínim personal i familiar (no paga IRPF)',
+    deduccionTrabajoRow: 'Deducció per obtenció de rendiments del treball',
     cuotaAnioRow: "Quota d'IRPF de l'any",
     resultadoRow: 'Resultat de la declaració',
     parenPagar: '(a pagar)',
     parenDevolver: '(a tornar)',
     nota: "Dades 2026. Usem l'escala general de l'IRPF: l'estatal més una autonòmica tipus, perquè cada comunitat fixa la seua. El resultat real també depèn d'altres circumstàncies, així que esta xifra és orientativa.",
+    notaDeduccion:
+      "Inclou la deducció de fins a 590,89 € per a sous de fins a 20.048 € (DA 61a de la Llei de l'IRPF, RDL 5/2026).",
     queEs: 'Què és fer la declaració de la renda?',
     tip1a: "Durant l'any",
     tip1b: " la teua empresa t'avança l'IRPF: et lleva un poc de cada nòmina (les ",
@@ -212,6 +231,14 @@ export default function IRPFDeclaracion({ locale = 'es' }: Props) {
     });
     return { valido: true as const, d };
   }, [rendimientosTrabajo, retencionesPracticadas, rendimientosCapital, hijos, discapacidad, c]);
+
+  const resumen = !result.valido
+    ? result.mensaje
+    : result.d.aPagar
+      ? c.resumenPagar(formatEUR(result.d.importe), formatEUR(result.d.cuotaIRPF))
+      : result.d.aDevolver
+        ? c.resumenDevolver(formatEUR(result.d.importe), formatEUR(result.d.cuotaIRPF))
+        : c.resumenNeutro(formatEUR(result.d.cuotaIRPF));
 
   function applyPreset(p: Preset) {
     setRendimientosTrabajo(p.rendimientosTrabajo);
@@ -313,6 +340,7 @@ export default function IRPFDeclaracion({ locale = 'es' }: Props) {
       </div>
 
       <div class="calc__results">
+        <LiveSummary text={resumen} />
         {!result.valido ? (
           <div class="calc__warning">{result.mensaje}</div>
         ) : (
@@ -410,6 +438,12 @@ function Resultado({ d, locale }: { d: ReturnType<typeof simularDeclaracion>; lo
                 <td>{c.minimoRow}</td>
                 <td>{formatEUR(d.minimo)}</td>
               </tr>
+              {d.deduccionTrabajo > 0 && (
+                <tr>
+                  <td>{c.deduccionTrabajoRow}</td>
+                  <td>−{formatEUR(d.deduccionTrabajo)}</td>
+                </tr>
+              )}
               <tr>
                 <td><strong>{c.cuotaAnioRow}</strong></td>
                 <td><strong>{formatEUR(d.cuotaIRPF)}</strong></td>
@@ -431,7 +465,7 @@ function Resultado({ d, locale }: { d: ReturnType<typeof simularDeclaracion>; lo
           </table>
 
           <p style="margin-top: 0.9rem;">
-            <em>{c.nota}</em>
+            <em>{c.nota} {c.notaDeduccion}</em>
           </p>
         </div>
       </details>

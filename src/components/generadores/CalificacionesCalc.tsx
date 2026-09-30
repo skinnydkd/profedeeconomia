@@ -1,9 +1,10 @@
 /** @jsxImportSource preact */
 import { useMemo, useState } from 'preact/hooks';
-import { mediaPonderada, rubricaANota, sumaPesos } from '@/lib/calc/calificaciones';
+import { mediaPonderada, pesosSuman100, rubricaANota, sumaPesos } from '@/lib/calc/calificaciones';
 import { formatNumber } from '@/lib/calc/format';
 import { type Locale } from '@/i18n/locale';
 import NumberInput from '../NumberInput';
+import LiveSummary from '../LiveSummary';
 
 /**
  * Grading calculator island — two independent blocks:
@@ -30,7 +31,7 @@ export const COPY = {
     notaAria: (nombre: string) => `Nota de ${nombre}`,
     eliminarAria: (nombre: string) => `Eliminar ${nombre}`,
     addInstrumento: '+ Añadir instrumento',
-    pesosNotice: (total: number) =>
+    pesosNotice: (total: string) =>
       `Los pesos suman ${total} %, no 100 %. La media se calcula proporcionalmente.`,
     notaFinal: 'Nota final',
     sumaPesos: 'Suma de pesos',
@@ -59,7 +60,7 @@ export const COPY = {
     notaAria: (nombre: string) => `Nota de ${nombre}`,
     eliminarAria: (nombre: string) => `Eliminar ${nombre}`,
     addInstrumento: '+ Afegir instrument',
-    pesosNotice: (total: number) =>
+    pesosNotice: (total: string) =>
       `Els pesos sumen ${total} %, no 100 %. La mitjana es calcula proporcionalment.`,
     notaFinal: 'Nota final',
     sumaPesos: 'Suma de pesos',
@@ -139,6 +140,16 @@ export default function CalificacionesCalc({ locale = 'es' }: Props) {
     return formatNumber(n, 2);
   }
 
+  // Results for screen readers, one per block.
+  const resumenMedia =
+    mediaFinal === null
+      ? ''
+      : `${c.notaFinal}: ${fmtNota(mediaFinal)} / 10.${
+          pesosSuman100(totalPesos) ? '' : ` ${c.pesosNotice(formatNumber(totalPesos, 2))}`
+        }`;
+  const resumenRubrica =
+    notaRubrica === null ? c.maximosNotice : `${c.notaResultante}: ${fmtNota(notaRubrica)} / ${escala}.`;
+
   return (
     <div class="cg-calc">
 
@@ -215,9 +226,10 @@ export default function CalificacionesCalc({ locale = 'es' }: Props) {
 
         <p class="cg-calc__block-desc">{c.criterialNota}</p>
 
-        {totalPesos !== 100 && (
+        <LiveSummary text={resumenMedia} />
+        {!pesosSuman100(totalPesos) && (
           <p class="cg-calc__notice">
-            {c.pesosNotice(totalPesos)}
+            {c.pesosNotice(formatNumber(totalPesos, 2))}
           </p>
         )}
 
@@ -229,7 +241,7 @@ export default function CalificacionesCalc({ locale = 'es' }: Props) {
           </div>
           <div class="cg-calc__metric">
             <span class="cg-calc__metric-label">{c.sumaPesos}</span>
-            <span class="cg-calc__metric-value">{totalPesos}</span>
+            <span class="cg-calc__metric-value">{formatNumber(totalPesos, 2)}</span>
             <span class="cg-calc__metric-unit">%</span>
           </div>
         </div>
@@ -283,6 +295,7 @@ export default function CalificacionesCalc({ locale = 'es' }: Props) {
           </label>
         </div>
 
+        <LiveSummary text={resumenRubrica} />
         <div class="cg-calc__result-row">
           <div class="cg-calc__metric cg-calc__metric--primary">
             <span class="cg-calc__metric-label">{c.notaResultante}</span>
