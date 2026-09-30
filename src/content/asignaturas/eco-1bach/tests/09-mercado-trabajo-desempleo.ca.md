@@ -103,4 +103,4 @@ preguntas:
     explicacion: "Actius = ocupats + aturats = 21.000 + 3.000 = 24.000. Taxa d'activitat = actius / població de 16+ × 100 = 24.000 / 40.000 × 100 = 60 %. Compte amb el denominador: ací és tota la població de 16 anys o més, no només l'activa."
 ---
 
-Test d'autoavaluació de la Unitat 9 del llibre d'Eco 1BACH. Nou preguntes que cobrixen les definicions de l'EPA (actius, ocupats, aturats), el càlcul de les taxes d'activitat i atur, l'efecte desànim, els quatre tipus de desocupació, els efectes teòrics i l'evidència empírica del salari mínim (Card-Krueger), la corba de Phillips i la NAIRU, la bretxa salarial de gènere i la comparació entre el model laboral espanyol i el nòrdic de flexiseguretat.
+Test d'autoavaluació de la Unitat 9 del llibre d'Eco 1BACH. Tretze preguntes que cobrixen les definicions de l'EPA (actius, ocupats, aturats), el càlcul de les taxes d'activitat i atur, l'efecte desànim, els quatre tipus de desocupació, els efectes teòrics i l'evidència empírica del salari mínim (Card-Krueger), la corba de Phillips i la NAIRU, la bretxa salarial de gènere i la comparació entre el model laboral espanyol i el nòrdic de flexiseguretat.
