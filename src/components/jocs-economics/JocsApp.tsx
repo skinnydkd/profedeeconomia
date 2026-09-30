@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'preact/hooks';
 import type { FinalStats } from '../../lib/jocs-economics/client/types';
 import { api } from '../../lib/jocs-economics/client/api';
+import { loadJSON, saveJSON } from '../../lib/storage';
 import {
   applyAnswer,
   RESULT_SCREEN_MS,
@@ -27,23 +28,16 @@ export default function JocsApp() {
   const [lastResult, setLastResult] = useState<ResultData | null>(null);
   const [final, setFinal] = useState<FinalStats | null>(null);
 
-  // SSR-safe: only read localStorage in useEffect
+  // SSR-safe: only read localStorage in useEffect (blocked or malformed: no saved identity)
   useEffect(() => {
-    if (typeof window === 'undefined') return;
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (raw) {
-      try {
-        setIdentity(JSON.parse(raw));
-      } catch {
-        // ignore malformed data
-      }
-    }
+    const saved = loadJSON<SavedIdentity | null>(STORAGE_KEY, null);
+    if (saved) setIdentity(saved);
   }, []);
 
   function saveIdentity(name: string, institute: string) {
     const i = { name, institute };
     setIdentity(i);
-    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(i)); } catch {}
+    saveJSON(STORAGE_KEY, i);
   }
 
   async function startGame(name: string, institute: string) {

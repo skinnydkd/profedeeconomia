@@ -16,6 +16,7 @@ import { HostFinal } from './screens/HostFinal';
 import './cajut.css';
 import { GameLocaleContext } from '../locale-context';
 import { DEFAULT_LOCALE, type Locale } from '@/i18n/locale';
+import { loadString, saveString } from '@/lib/storage';
 
 interface Props {
   partykitHost: string;
@@ -24,12 +25,13 @@ interface Props {
 
 const HOST_ID_KEY = 'pde:cajut:hostId';
 
+// Storage may be blocked by the browser: then the id lasts for this page load.
 function getOrCreateHostId(): string | null {
   if (typeof window === 'undefined') return null;
-  let id = sessionStorage.getItem(HOST_ID_KEY);
+  let id = loadString(HOST_ID_KEY, 'session');
   if (!id) {
     id = crypto.randomUUID();
-    sessionStorage.setItem(HOST_ID_KEY, id);
+    saveString(HOST_ID_KEY, id, 'session');
   }
   return id;
 }

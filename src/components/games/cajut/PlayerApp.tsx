@@ -13,18 +13,20 @@ import { PlayerFinal } from './screens/PlayerFinal';
 import './cajut.css';
 import { GameLocaleContext, useGameLocale } from '../locale-context';
 import { DEFAULT_LOCALE, type Locale } from '@/i18n/locale';
+import { loadString, removeKey, saveString } from '@/lib/storage';
 
 interface Props { partykitHost: string; locale?: Locale; }
 
 const PLAYER_ID_KEY = 'pde:cajut:playerId';
 const NICK_KEY = 'pde:cajut:nick';
 
+// Storage may be blocked by the browser: then the id lasts for this page load.
 function getOrCreatePlayerId(): string | null {
   if (typeof window === 'undefined') return null;
-  let id = sessionStorage.getItem(PLAYER_ID_KEY);
+  let id = loadString(PLAYER_ID_KEY, 'session');
   if (!id) {
     id = crypto.randomUUID();
-    sessionStorage.setItem(PLAYER_ID_KEY, id);
+    saveString(PLAYER_ID_KEY, id, 'session');
   }
   return id;
 }
@@ -82,7 +84,7 @@ function PlayerAppInner({ partykitHost }: { partykitHost: string }) {
     const url = new URL(window.location.href);
     const code = url.searchParams.get('room');
     if (code) setRoomCode(code.toUpperCase());
-    const savedNick = localStorage.getItem(NICK_KEY);
+    const savedNick = loadString(NICK_KEY);
     if (savedNick) setNick(savedNick);
   }, []);
 
@@ -121,7 +123,7 @@ function PlayerAppInner({ partykitHost }: { partykitHost: string }) {
     return (
       <PlayerName
         onSubmit={(n) => {
-          localStorage.setItem(NICK_KEY, n);
+          saveString(NICK_KEY, n);
           setNick(n);
         }}
       />
@@ -136,7 +138,7 @@ function PlayerAppInner({ partykitHost }: { partykitHost: string }) {
           onClick={() => {
             setErrorMsg(null);
             setNick(null);
-            localStorage.removeItem(NICK_KEY);
+            removeKey(NICK_KEY);
           }}
           style={{
             marginTop: 16,
