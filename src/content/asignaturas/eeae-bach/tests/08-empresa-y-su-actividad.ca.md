@@ -23,14 +23,14 @@ preguntas:
       - "Una multinacional amb seu a l'estranger."
     correcta: 2
     explicacion: "Segons el DIRCE de l'INE, la immensa majoria dels més de 3 milions d'empreses espanyoles són microempreses i pimes; al voltant de la meitat no té cap assalariat. L'empresa típica no és una multinacional, sinó un negoci xicotet."
-  - enunciado: "El cas de Kodak mostra sobretot que…"
+  - enunciado: "El cas de Buurtzorg, amb equips d'infermeria que s'organitzen sense caps, mostra sobretot que…"
     opciones:
-      - "Inventar una tecnologia garantix l'èxit de l'empresa."
-      - "Tindre la tecnologia no basta si la cultura de l'empresa impedix aprofitar-la."
-      - "La fotografia digital mai va arribar a triomfar."
-      - "Les grans empreses mai fan fallida."
+      - "Una organització sense comandaments intermedis mai pot créixer més enllà d'unes poques persones."
+      - "Una cultura d'autonomia i confiança pot ser un avantatge competitiu real."
+      - "Només les empreses tecnològiques són capaces de desenvolupar una cultura pròpia i recognoscible."
+      - "La cultura d'una empresa depén sobretot de la seua grandària i del seu sector d'activitat."
     correcta: 1
-    explicacion: "Kodak va desenvolupar la primera càmera digital en 1975 però no es va atrevir a apostar per ella per por al seu propi negoci. Va acabar en fallida. La revolució tecnològica no premia qui inventa, sinó qui té la cultura per a transformar-se."
+    explicacion: "Buurtzorg organitza les seues infermeres en equips autogestionats d'unes dotze persones, amb molt poc personal administratiu, i ha aconseguit una alta satisfacció de pacients i professionals mentre creixia fins a ocupar milers de persones. La cultura pot ser un avantatge competitiu tan real com la tecnologia o el capital, i no depén de la grandària ni del sector."
   - enunciado: "Què és la cultura empresarial?"
     opciones:
       - "El conjunt de màquines i edificis de l'empresa."

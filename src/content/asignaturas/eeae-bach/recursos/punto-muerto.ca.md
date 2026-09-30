@@ -12,7 +12,7 @@ slug: "asignaturas/eeae-bach/recursos/punto-muerto.ca"
 
 ## Quan usar-la
 
-- A la **Unitat 8** (l'empresa i la seua activitat), en estudiar l'estructura de costos i el moment en què els ingressos cobrixen totes les despeses.
+- A la **Unitat 8** (l'empresa i la seua activitat), després de l'exemple resolt «Costos fixos, variables i punt mort», per a repetir el compte amb altres xifres i vore en quin moment els ingressos cobrixen totes les despeses.
 - Per a respondre una pregunta molt concreta i molt real: **quantes unitats cal vendre abans de començar a guanyar?** Per davall d'eixa xifra l'empresa perd; per damunt, guanya.
 - En comparar negocis amb distinta estructura de costos: canviar els costos fixos o el marge unitari i vore com es mou el llindar de rendibilitat.
 
