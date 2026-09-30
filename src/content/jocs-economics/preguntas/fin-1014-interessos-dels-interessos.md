@@ -9,7 +9,7 @@ opciones:
 correcta: 2
 explicacion: "El segon any, els 10 € d'interés del primer també generen interessos: 110 × 1,10 = 121 €. Eixe euro de més són «els interessos dels interessos»."
 estado: publicado
-font: "eco-4eso U7 — Diners, pressupost i finançament"
+font: "eco-4eso U7 — Pressupost, estalvi i consum"
 ---
 
 Deixes 100 € durant 2 anys en un compte al 10 % anual amb interés compost, reinvertint sempre els interessos. Quant tindràs en acabar?

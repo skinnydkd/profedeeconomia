@@ -13,7 +13,7 @@ export const COPY = {
   es: {
     title: 'Stonks',
     intro:
-      'Invierte durante 25 años (2000–2024) repartiendo tu patrimonio entre distintos activos. Tu objetivo: terminar con más que «El Mercat», una IA que invierte siempre en un índice. ¿Lo conseguirás?',
+      'Invierte durante 25 años (2000–2024) repartiendo tu patrimonio entre distintos activos. Tu objetivo: terminar con más que «El Mercado», una IA que invierte siempre en un índice. ¿Lo conseguirás?',
     continue: 'Continuar partida',
     start: 'Empezar',
   },

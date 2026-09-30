@@ -6,6 +6,7 @@
 import BaseLayout from '@layouts/BaseLayout.astro';
 import MapaTransversal from '@components/emprendimiento/MapaTransversal.astro';
 import { ITINERARIOS } from '@/lib/emprendimiento';
+import { localizeItinerario } from '@/i18n/emprendimiento-ca';
 import { getLocale } from '@/i18n/locale';
 import { getCollection } from 'astro:content';
 
@@ -118,7 +119,7 @@ const copy = {
     <div class="container container--narrow">
       <h2>{copy.h2Tres}</h2>
       <div class="itin-grid">
-        {ITINERARIOS.map((it) => (
+        {ITINERARIOS.map((raw) => localizeItinerario(raw, locale)).map((it) => (
           <div class="itin">
             <h3>{it.label}</h3>
             <p>{it.descripcion}</p>

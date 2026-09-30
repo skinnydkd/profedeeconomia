@@ -55,7 +55,7 @@ Cada parella rep un cas. La tasca és la d'un assessor laboral: identificar què
 
 Laura, 26 anys, contracte indefinit a temps complet, porta 14 mesos cotitzant. Patix un accident no laboral (fractura) i està de baixa mèdica huit setmanes. L'empresa li diu que "durant la baixa no cobra res perquè no treballa".
 
-- **A resoldre:** és suspensió o extinció del contracte? Té dret a prestació per incapacitat temporal? Complix el requisit de cotització (180 dies en els últims 5 anys per a malaltia comuna)? Qui li paga durant la baixa i com evoluciona el percentatge sobre la base reguladora? Conserva el lloc en tornar?
+- **A resoldre:** és suspensió o extinció del contracte? Té dret a prestació per incapacitat temporal? Se li exigix un període mínim de cotització (carència)? El compliria si fora una malaltia comuna (180 dies en els últims 5 anys)? Qui li paga durant la baixa i com evoluciona el percentatge sobre la base reguladora? Conserva el lloc en tornar?
 
 ### Cas B — Yusuf, acomiadament objectiu per causes econòmiques
 

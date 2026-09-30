@@ -32,7 +32,7 @@ export const COPY = {
     presets: {
       auxiliar: 'Auxiliar admin (1.500 €/mes)',
       programador: 'Programador junior (2.500 €/mes)',
-      camarero: 'Camarero temporal (900 €/mes)',
+      camarero: 'Camarero temporal a media jornada (900 €/mes)',
       familia: 'Padre/madre con 2 hijos (2.000 €/mes)',
     },
     reiniciar: 'Reiniciar',
@@ -93,7 +93,7 @@ export const COPY = {
     queSignifica: '¿Qué significa cada concepto?',
     tipCotiTitle: 'Cotizaciones a la Seguridad Social:',
     tipCotiText:
-      'dinero que pagas cada mes para tener derecho a sanidad, paro, baja por enfermedad y, en el futuro, pensión de jubilación.',
+      'dinero que pagas cada mes para tener derecho a prestaciones: paro, baja por enfermedad y, en el futuro, pensión de jubilación. La sanidad pública es universal y se paga con impuestos.',
     tipIrpfTitle: 'IRPF:',
     tipIrpfText:
       'el impuesto sobre la renta. Cuanto más ganas, mayor porcentaje retienes. Tener hijos o una discapacidad reduce lo que pagas, porque parte de tu sueldo queda exenta.',
@@ -105,7 +105,7 @@ export const COPY = {
     presets: {
       auxiliar: 'Auxiliar admin (1.500 €/mes)',
       programador: 'Programador júnior (2.500 €/mes)',
-      camarero: 'Cambrer temporal (900 €/mes)',
+      camarero: 'Cambrer temporal a mitja jornada (900 €/mes)',
       familia: 'Pare/mare amb 2 fills (2.000 €/mes)',
     },
     reiniciar: 'Reiniciar',
@@ -166,7 +166,7 @@ export const COPY = {
     queSignifica: 'Què significa cada concepte?',
     tipCotiTitle: 'Cotitzacions a la Seguretat Social:',
     tipCotiText:
-      'diners que pagues cada mes per a tindre dret a sanitat, atur, baixa per malaltia i, en el futur, pensió de jubilació.',
+      'diners que pagues cada mes per a tindre dret a prestacions: atur, baixa per malaltia i, en el futur, pensió de jubilació. La sanitat pública és universal i es paga amb impostos.',
     tipIrpfTitle: 'IRPF:',
     tipIrpfText:
       "l'impost sobre la renda. Com més guanyes, major percentatge retens. Tindre fills o una discapacitat reduïx el que pagues, perquè part del teu sou queda exempta.",

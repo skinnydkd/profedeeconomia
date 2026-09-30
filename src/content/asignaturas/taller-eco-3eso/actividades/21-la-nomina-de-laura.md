@@ -18,7 +18,7 @@ estado: publicado
 
 ## Planteamiento
 
-Laura tiene 18 años y acaba de empezar su primer trabajo de verano. En su contrato pone que cobrará 1.000 € al mes, pero cuando le llega el primer ingreso al banco, son 880 €. ¿Le han engañado? No: es lo normal, y entenderlo es una de las cosas más útiles que te puede enseñar esta unidad antes de que te pase a ti.
+Laura tiene 18 años y acaba de empezar su primer trabajo de verano, a media jornada (20 horas a la semana). En su contrato pone que cobrará 1.000 € al mes, pero cuando le llega el primer ingreso al banco, son 935 €. ¿Le han engañado? No: es lo normal, y entenderlo es una de las cosas más útiles que te puede enseñar esta unidad antes de que te pase a ti.
 
 Entre lo que pone el contrato (el salario **bruto**) y lo que llega al banco (el salario **neto**) hay unos descuentos: las **cotizaciones a la Seguridad Social** y la **retención de IRPF**. No es dinero que se pierde: las cotizaciones te dan derecho a paro, a bajas por enfermedad y a una pensión el día de mañana, y el IRPF es el impuesto que pagamos todos según lo que ganamos, y que financia servicios como la sanidad. En este caso vas a leer la nómina de Laura como se lee de verdad y a descubrir a dónde va cada euro.
 
@@ -37,8 +37,8 @@ La nómina (simplificada) de Laura:
 | --- | --- |
 | Salario bruto | 1.000 € |
 | Cotización a la Seguridad Social (trabajador) | −65 € |
-| Retención de IRPF | −55 € |
-| **Salario neto (lo que cobra)** | **880 €** |
+| Retención de IRPF | 0 € |
+| **Salario neto (lo que cobra)** | **935 €** |
 
 ## Pasos
 
@@ -48,7 +48,7 @@ La nómina (simplificada) de Laura:
    - ¿Cuánto le descuentan en total? ¿Qué porcentaje del bruto supone?
    - De ese descuento, ¿cuánto va a la Seguridad Social y cuánto a Hacienda?
 3. **(10 min) ¿A dónde va mi dinero?** Por cada partida descontada, escriben qué reciben a cambio: las cotizaciones (prestación por desempleo, bajas por enfermedad, futura pensión) y el IRPF (servicios públicos como sanidad, educación, carreteras, bomberos). Conecta con la unidad 8.
-4. **(10 min) Cambia el sueldo.** El profesor plantea: *si Laura cobrara 1.500 € de bruto, ¿le descontarían más o menos?* Razonan que cuanto más se gana, más se cotiza y más IRPF se retiene (el que más gana aporta más). No hace falta calcularlo exacto, solo entender la lógica.
+4. **(10 min) Cambia el sueldo.** El profesor plantea: *si Laura cobrara 1.500 € de bruto, ¿le descontarían más o menos?* Razonan que cuanto más se gana, más se cotiza y, a partir de cierto sueldo al año, más IRPF se retiene (el que más gana aporta más). Por eso a Laura, con un sueldo bajo y solo en verano, Hacienda no le retiene nada. No hace falta calcularlo exacto, solo entender la lógica.
 5. **(5 min) Cierre.** Cada estudiante escribe en una frase qué le dirá a un amigo que se queje de que "le quitan parte del sueldo". Puesta en común breve.
 
 ## Para el profesorado

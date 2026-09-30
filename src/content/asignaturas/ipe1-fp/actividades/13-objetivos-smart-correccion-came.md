@@ -66,7 +66,7 @@ FORTALEZAS                        OPORTUNIDADES
  · Buen expediente y prácticas     · Demanda creciente de perfiles
  · Manejo de herramientas            con competencia digital
    digitales del sector            · Programas de empleo joven
- · Disponibilidad para moverse       y FCT con inserción
+ · Disponibilidad para moverse       y prácticas con inserción
 ```
 
 ## Plantilla de reescritura
