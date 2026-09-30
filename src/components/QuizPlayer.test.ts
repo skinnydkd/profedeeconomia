@@ -27,3 +27,26 @@ describe('QuizPlayer wiring', () => {
     expect(quizLine).toMatch(/client:load/);
   });
 });
+
+/**
+ * R6 A1: the rule that puts the verdict («¡Correcto!») on its own line caught
+ * every <strong> in the feedback, and the explanations now carry their own bold
+ * words, so «son **26 familias profesionales** —desde…» broke into three lines
+ * in some 430 explanations. RetoPlayer loads the same stylesheet.
+ */
+describe('feedback verdict label', () => {
+  const css = readFileSync('src/components/QuizPlayer.css', 'utf8');
+
+  it('only the direct-child label is a block', () => {
+    expect(css).toMatch(/\.qp__feedback > strong\s*\{[^}]*display:\s*block/);
+    expect(css).not.toMatch(/\.qp__feedback strong\s*\{/);
+  });
+
+  it.each(['src/components/QuizPlayer.tsx', 'src/components/retos/RetoPlayer.tsx'])(
+    '%s renders the verdict as that direct child',
+    (path) => {
+      const src = readFileSync(path, 'utf8');
+      expect(src).toMatch(/<div class=\{\['qp__feedback'[^\n]*\n\s*<strong>\{acerto \? t\.correcto : t\.incorrecto\}<\/strong>/);
+    },
+  );
+});

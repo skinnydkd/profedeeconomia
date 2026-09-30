@@ -3,6 +3,7 @@ import { useMemo, useState } from 'preact/hooks';
 import { type Locale } from '@/i18n/locale';
 import { formatEUR, formatNumber } from '../../lib/calc/format';
 import { creacion, rondas } from '../../lib/calc/multiplicador-bancario';
+import NumberInput from '../NumberInput';
 
 /**
  * UI strings, Valencian (AVL) alongside the ES source. Monetary aggregate
@@ -93,8 +94,6 @@ export const COPY = {
 
 interface Props { locale?: Locale }
 
-const num = (e: Event) => parseFloat((e.target as HTMLInputElement).value) || 0;
-
 /**
  * Money creation by the banking system.
  *
@@ -134,19 +133,19 @@ export default function MultiplicadorBancarioCalc({ locale = 'es' }: Props) {
         <label class="calc__field">
           <span class="calc__label">{t.deposito}</span>
           <div class="calc__input-wrap">
-            <input type="number" min={1} step={100} value={deposito} onInput={(e) => setDeposito(num(e))} />
+            <NumberInput min={1} step={100} value={deposito} onValue={setDeposito} />
           </div>
         </label>
         <label class="calc__field">
           <span class="calc__label">{t.coeficiente}</span>
           <div class="calc__input-wrap">
-            <input type="number" min={0} max={100} step={1} value={coefPct} onInput={(e) => setCoefPct(num(e))} />
+            <NumberInput min={0} max={100} step={1} value={coefPct} onValue={setCoefPct} />
           </div>
         </label>
         <label class="calc__field">
           <span class="calc__label">{t.filtracion}</span>
           <div class="calc__input-wrap">
-            <input type="number" min={0} max={99} step={5} value={filtPct} onInput={(e) => setFiltPct(num(e))} />
+            <NumberInput min={0} max={99} step={5} value={filtPct} onValue={setFiltPct} />
           </div>
         </label>
       </div>

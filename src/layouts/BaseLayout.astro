@@ -35,6 +35,11 @@ type Props = {
    * and suppresses hreflang. Only for genuine near-duplicates.
    */
   canonicalPath?: string;
+  /**
+   * False for a page with no Valencian edition (its /ca/ copy shows the Spanish
+   * text): then neither copy declares hreflang. Defaults to true.
+   */
+  translated?: boolean;
 };
 
 const {
@@ -47,6 +52,7 @@ const {
   contentLang = 'es',
   brandSuffix = true,
   canonicalPath,
+  translated = true,
 } = Astro.props;
 const fullTitle = pageTitle(title, brandSuffix);
 
@@ -57,6 +63,7 @@ const seo = resolveSeo({
   contentLang,
   site: Astro.site!.toString(),
   canonicalPath,
+  translated,
 });
 const canonical = seo.canonical;
 const ldItems = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
@@ -84,7 +91,7 @@ const resolvedOgImage = new URL(ogImage ?? autoOgImage, Astro.site).toString();
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{fullTitle}</title>
-    {noindex && <meta name="robots" content="noindex,nofollow" />}
+    {(noindex || seo.noindex) && <meta name="robots" content="noindex,nofollow" />}
     {description && <meta name="description" content={description} />}
     {gscVerification && <meta name="google-site-verification" content={gscVerification} />}
     {bingVerification && <meta name="msvalidate.01" content={bingVerification} />}

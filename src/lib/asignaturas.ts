@@ -191,7 +191,7 @@ export const ASIGNATURAS: Record<AsignaturaSlug, Asignatura> = {
       'La materia de modalidad General que junta economía, iniciativa emprendedora y actividad empresarial. Para entender cómo se crea valor antes de elegir itinerario.',
     num: '08',
     color: 'eeae',
-    marcoNormativo: 'Real Decreto 243/2022 · Decret 108/2022, mod. Decret 103/2026 (CV)',
+    marcoNormativo: 'Real Decreto 243/2022 — concreción en la CV: Decret 108/2022, mod. Decret 103/2026',
     modalidad: 'Modalidad General',
     etapa: 'bach',
     curso: '1bach',

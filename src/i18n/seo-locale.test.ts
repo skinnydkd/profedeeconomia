@@ -25,12 +25,26 @@ describe('resolveSeo', () => {
     expect(r.canonical).toBe('https://www.profedeeconomia.es/ca/sobre/');
   });
 
-  it('ca fallback page (es body): canonical -> es, main lang es', () => {
+  it('ca fallback page (es body): canonical -> es, main lang es, no hreflang (CODE-WEB-07)', () => {
     const r = resolveSeo({ pathname: '/ca/edmn-2bach/libro/1/', locale: 'ca', contentLang: 'es', site });
     expect(r.htmlLang).toBe('ca');
     expect(r.contentLangAttr).toBe('es');
     expect(r.canonical).toBe('https://www.profedeeconomia.es/edmn-2bach/libro/1/');
-    expect(r.alternates).toContainEqual({ hreflang: 'x-default', href: 'https://www.profedeeconomia.es/edmn-2bach/libro/1/' });
+    // hreflang only on self-canonical pages: this one points its canonical away.
+    expect(r.alternates).toEqual([]);
+  });
+
+  it('es page with no Valencian edition: no hreflang pointing at the /ca/ fallback', () => {
+    const r = resolveSeo({ pathname: '/olimpiada/banco/', locale: 'es', contentLang: 'es', site, translated: false });
+    expect(r.canonical).toBe('https://www.profedeeconomia.es/olimpiada/banco/');
+    expect(r.alternates).toEqual([]);
+  });
+
+  it('translated pages keep the full set in both languages', () => {
+    for (const [pathname, locale] of [['/sobre/', 'es'], ['/ca/sobre/', 'ca']] as const) {
+      const r = resolveSeo({ pathname, locale, contentLang: locale, site });
+      expect(r.alternates.map((a) => a.hreflang)).toEqual(['es', 'ca', 'x-default']);
+    }
   });
 });
 
@@ -57,5 +71,21 @@ describe('resolveSeo — canonicalPath (§5.6)', () => {
     const seo = resolveSeo({ ...opts, locale: 'es' });
     expect(seo.canonical).toBe(`${site}/herramientas/mercados-macro/elasticidad/`);
     expect(seo.alternates).toHaveLength(3);
+  });
+});
+
+describe('resolveSeo — error page (CODE-WEB-18)', () => {
+  it('asks not to index the 404 in both halves, and declares no alternates', () => {
+    for (const [pathname, locale] of [['/404', 'es'], ['/404/', 'es'], ['/404.html', 'es'], ['/ca/404/', 'ca']] as const) {
+      const r = resolveSeo({ pathname, locale, contentLang: locale, site });
+      expect(r.noindex, pathname).toBe(true);
+      expect(r.alternates, pathname).toEqual([]);
+    }
+  });
+
+  it('leaves every other page indexable', () => {
+    for (const pathname of ['/', '/sobre/', '/ca/eco-1bach/', '/eco-1bach/libro/04-mercado/']) {
+      expect(resolveSeo({ pathname, locale: 'es', contentLang: 'es', site }).noindex, pathname).toBe(false);
+    }
   });
 });

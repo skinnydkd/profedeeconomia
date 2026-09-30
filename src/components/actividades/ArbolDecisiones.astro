@@ -1,6 +1,7 @@
 ---
 import type { ArbolJSON } from './types.ts';
 import ArbolDecisionesIsland from './ArbolDecisionesIsland.tsx';
+import { nombresKpi } from './kpi-labels.ts';
 
 type Props = {
   data: ArbolJSON;
@@ -11,10 +12,20 @@ type Props = {
 };
 
 const { data, simuladorId, locale = 'es' } = Astro.props;
+
+// The KPI bar prints names, never the ids the tree keys its KPIs by. Resolved
+// here so only this tree's names reach the island, not the whole table.
+const tree: ArbolJSON = {
+  ...data,
+  intro: {
+    ...data.intro,
+    kpi_labels: nombresKpi(Object.keys(data.intro.kpi_inicial), locale, data.intro.kpi_labels),
+  },
+};
 ---
 
 <div class="arbol-wrap">
-  <ArbolDecisionesIsland data={data} simuladorId={simuladorId} locale={locale} client:load />
+  <ArbolDecisionesIsland data={tree} simuladorId={simuladorId} locale={locale} client:load />
 </div>
 
 <style is:global>

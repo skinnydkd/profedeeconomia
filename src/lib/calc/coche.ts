@@ -100,9 +100,11 @@ export interface ResultadoComparacion {
   opcionMasBarata: 'coche' | 'alternativa' | 'empate';
   /**
    * Break-even kilometres per year at which both options cost the same,
-   * keeping every other input fixed. null when there is no positive
-   * crossover (e.g. the per-km fuel cost is 0 or the alternative is already
-   * cheaper than the car's fixed-only cost at any mileage).
+   * keeping every other input fixed. The car's cost grows with the mileage
+   * and the alternative's does not, so below it the car is cheaper and above
+   * it the alternative. null when there is no positive crossover (e.g. the
+   * per-km fuel cost is 0 or the alternative is already cheaper than the
+   * car's fixed-only cost at any mileage).
    */
   kmEquilibrio: number | null;
 }

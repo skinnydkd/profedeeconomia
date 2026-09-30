@@ -18,4 +18,4 @@ estado: publicado
 
 - La declaración compara el **impuesto que te toca pagar por todo el año** con las **retenciones que ya te han ido descontando** de cada nómina.
 - Si te han retenido más de lo que debías, sale **a devolver**; si menos, sale **a pagar**.
-- Es una versión simplificada con fines didácticos: la declaración real incluye más rentas, deducciones y la parte autonómica del impuesto.
+- Es una versión simplificada con fines didácticos: usa la escala general (la estatal más una autonómica tipo) y deja fuera otras rentas, otras deducciones y la escala propia de cada comunidad.

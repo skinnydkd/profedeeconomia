@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import {
   calcularIRPF,
+  deduccionRendimientosTrabajo2026,
   minimoPersonalYFamiliar,
   reduccionRendimientosTrabajo,
   MINIMO_PERSONAL,
@@ -52,7 +53,9 @@ describe('work income deductions', () => {
 
   it('matches the reference quotas for the SMI and the payroll presets', () => {
     const cuota = (neto: number) => calcularIRPF(neto, { rendimientoNetoTrabajo: neto }).cuota;
-    expect(cuota(17094 * 0.935)).toBeCloseTo(590.89, 1); // SMI 2026, 1.221 × 14
+    // SMI 2026, 1.221 × 14. This is the withholding quota: in the return the
+    // DA 61.ª deduction (590,89 €) takes it to 0, see declaracion-irpf.test.ts.
+    expect(cuota(17094 * 0.935)).toBeCloseTo(590.89, 1);
     expect(cuota(21000 * 0.935)).toBeCloseTo(2524.62, 1); // 1.500 € × 14
     expect(cuota(30000 * 0.935)).toBeCloseTo(4926, 1); // 2.500 € × 12
     expect(cuota(40000 * 0.935)).toBeCloseTo(7745, 1);
@@ -63,6 +66,22 @@ describe('work income deductions', () => {
     expect(r.otrosGastos + r.reduccion).toBeLessThanOrEqual(5000);
     expect(r.baseLiquidable).toBe(0);
     expect(r.cuota).toBe(0);
+  });
+});
+
+describe('deduccionRendimientosTrabajo2026 (DA 61.ª LIRPF, RDL 5/2026)', () => {
+  it('is 590,89 € up to the 2026 SMI (17.094 €)', () => {
+    expect(deduccionRendimientosTrabajo2026(12000)).toBe(590.89);
+    expect(deduccionRendimientosTrabajo2026(17094)).toBe(590.89);
+  });
+  it('falls 0,20 € per euro above it and is gone at 20.048,45 €', () => {
+    expect(deduccionRendimientosTrabajo2026(18000)).toBeCloseTo(409.69, 2);
+    expect(deduccionRendimientosTrabajo2026(19000)).toBeCloseTo(209.69, 2);
+    expect(deduccionRendimientosTrabajo2026(20048.45)).toBeCloseTo(0, 6);
+    expect(deduccionRendimientosTrabajo2026(24000)).toBe(0);
+  });
+  it('is 0 without earned income', () => {
+    expect(deduccionRendimientosTrabajo2026(0)).toBe(0);
   });
 });
 

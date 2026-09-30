@@ -8,7 +8,7 @@ tipo: caso
 duracion: "60 min · 1 sessió"
 agrupacion: "grups xicotets (3-4)"
 materiales:
-  - "Dossier amb la informació d'una empresa real d'economia circular, curat pel professor a partir de fonts públiques (web corporativa i memòria de sostenibilitat de l'empresa, casos de la Fundació Ellen MacArthur, premsa econòmica)"
+  - "Dossier inclòs al final d'esta fitxa, amb tres empreses d'economia circular (MUD Jeans, Zuvamesa i Too Good To Go), o un d'equivalent d'una empresa pròxima preparat pel professor a partir de fonts públiques (web corporativa i memòria de sostenibilitat, casos de la Fundació Ellen MacArthur, premsa econòmica)"
   - "Accés a internet o mòbils per a consultar la web de l'empresa i dades dels ODS"
   - "Fitxa de treball amb un esquema lineal enfront de circular i una taula per a vincular l'activitat amb els ODS"
   - "El llistat visual dels 17 ODS (roda de colors oficial de l'ONU)"
@@ -57,3 +57,25 @@ El professor presenta una empresa documentada d'economia circular. Pot usar el c
 - **Variant per sectors:** repartir empreses circulars de sectors distints (tèxtil, electrònica, alimentació, construcció) a cada grup i comparar en la posada en comú quins principis aplica cada sector.
 - **Connexió amb el bloc d'empresa:** plantejar quines oportunitats de negoci circular existixen a la comarca del centre, anticipant els blocs d'emprenedoria i activitat empresarial de la matèria.
 - **Connexió amb la Unitat 1:** reprendre la idea que tota escassetat és també una oportunitat emprenedora, ara aplicada a l'escassetat de matèries primeres que l'economia circular ajuda a alleujar.
+
+## Dossier
+
+Tres empreses que ja apareixen en el material, cadascuna amb una manera distinta de tancar el cercle: llogar i reparar, aprofitar residus, vendre el que s'anava a llançar. Les xifres i les afirmacions són les de la seua font; abans del test del greenwashing, convé contrastar-les en el web o en la memòria de cada empresa.
+
+### Cas A · MUD Jeans: vaquers de lloguer
+
+La indústria tèxtil és un exemple clar del model lineal: peces barates que s'usen poc i es tiren, amb un consum altíssim d'aigua i de cotó. L'empresa neerlandesa MUD Jeans va experimentar durant anys amb un model circular: en compte de vendre els vaquers, els llogava amb una quota mensual; quan el client ja no els volia, els tornava, i l'empresa els reparava per a revendre'ls de segona mà o els esfilagarsava per a fabricar teixit nou, barrejant cotó reciclat amb fibra verge. El maig de 2026 va abandonar el lloguer, perquè va concloure que no era escalable a gran volum, i es va reorientar cap a la reparació, la revenda i el reciclatge. L'agost de 2026 es va declarar en fallida pel pes dels seus deutes; al setembre la marca va tornar a vendre amb nous propietaris.
+
+*Fonts: MUD Jeans, memòries de sostenibilitat i notes de premsa; RetailDetail (maig de 2026); NL Times (7 d'agost de 2026); Sourcing Journal (setembre de 2026); Fundació Ellen MacArthur, casos d'economia circular. Cas recollit en la Unitat 3 d'este llibre.*
+
+### Cas B · Zuvamesa (Sagunt): el suc i el que sobra de la taronja
+
+Zuvamesa elabora a Sagunt suc de taronja i mandarina espremut (no procedent de concentrat) amb cítrics de la mateixa Comunitat Valenciana. El que és interessant és el que fa amb el que sobra: aprofita més del 90 % dels seus residus en lloc d'enviar-los a l'abocador i els convertix en productes nous —pèl·lets a partir de les corfes, olis essencials premsats de la pell i biogàs en una planta pròpia—. Té instal·lacions fotovoltaiques que cobrixen part de la seua demanda d'energia i la certificació «Residuo Cero» d'AENOR. A més, compra la matèria primera a la citricultura valenciana, de manera que el valor del cultiu es queda en la zona.
+
+*Fonts: Zuvamesa, àrea de sostenibilitat; certificació «Residuo Cero» d'AENOR; Conselleria d'Agricultura de la Generalitat Valenciana. Cas recollit en GPE, Unitat 7.*
+
+### Cas C · Too Good To Go: vendre el que s'anava a llançar
+
+Too Good To Go és una aplicació danesa, molt implantada a Espanya, que connecta comerços de menjar (fleques, supermercats, restaurants) amb persones disposades a comprar a preu reduït els excedents que, en tancar, acabarien a la brossa. Al comerç li evita llançar menjar i li dona ingressos extra; al client li dona menjar bo i barat. L'empresa guanya diners amb una xicoteta comissió per cada «pack sorpresa» venut, i el seu impacte, que ella mateixa xifra en milions de menjars rescatats, és la seua raó de ser.
+
+*Font: Too Good To Go, dades públiques de la companyia. Cas recollit en IPE II, Unitat 6.*

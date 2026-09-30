@@ -8,7 +8,7 @@ tipo: caso
 duracion: "60 min · 1 sessió"
 agrupacion: "grups xicotets (3-4)"
 materiales:
-  - "Dossier d'una empresa real amb informació pública (web corporativa, notes de premsa, notícies econòmiques, informes), curat pel professor"
+  - "Dossier inclòs al final d'esta fitxa, amb tres empreses amb informació pública (Mercadona, Consum i Verkami), o un d'equivalent d'una empresa de l'entorn preparat pel professor a partir de fonts públiques (web corporativa, notes de premsa, notícies econòmiques, informes)"
   - "Plantilla del DAFO empresarial en A3 (quatre caselles: Debilitats, Amenaces, Fortaleses, Oportunitats)"
   - "Fitxa guia amb les preguntes de l'anàlisi interna i de l'anàlisi externa"
   - "Fitxa de la matriu creuada (FO, FA, DO, DA) per a extraure estratègies"
@@ -73,3 +73,25 @@ Plantilla del DAFO empresarial completa (quatre caselles amb elements recolzats 
 - **L'error estrela és confondre les caselles.** Insistir abans i durant: si depén de l'empresa, és intern (D/F); si ve de fora, és extern (A/O). És l'aprenentatge clau de l'activitat.
 - **Fets, no adjectius.** «Bona empresa» no és una anàlisi. Exigir que cada casella cite una dada concreta del dossier obliga a analitzar de veritat.
 - **L'encreuament és el que dóna valor.** Un DAFO que es queda en llista no ensenya a pensar estratègicament. El pas 5 —passar del diagnòstic a l'estratègia— és el cor de l'exercici.
+
+## Dossier
+
+Tres empreses amb informació pública suficient per a un primer DAFO, triades a propòsit amb grandàries i formes de propietat distintes. Mercadona i Consum competixen en el mateix sector i servixen per a la variant de competència; Verkami és una empresa digital xicoteta. Cada dada és un fet amb font: el grup decidix si és intern o extern i en quina casella va, i pot completar-lo amb notícies més recents.
+
+### Cas A · Mercadona: la cadena familiar que no cotitza
+
+Mercadona va nàixer de les carnisseries de la família Roig a Tavernes Blanques (València) i hui és la cadena d'alimentació líder a Espanya per facturació. Continua sent de propietat familiar, no cotitza en borsa i creix reinvertint els seus beneficis. El 2025 va facturar 41.858 milions d'euros, un 8 % més que el 2024 (2.092 milions a Portugal), va guanyar 1.729 milions i va destinar el 80 % del benefici a reinversió. Té 115.000 persones en plantilla, amb salaris d'entrada per damunt del conveni del comerç. El seu model: botigues mitjanes de barri, assortiment curt dominat per la marca pròpia, preus estables sense promocions i publicitat quasi nul·la.
+
+*Fonts: Mercadona, resultats de 2025 (info.mercadona.es, març de 2026); casos recollits en les Unitats 8 i 9 d'este llibre i en EDMN 2BACH, Unitat 1.*
+
+### Cas B · Consum: la cooperativa que competix al mateix carrer
+
+Consum va nàixer el 1975 a Alaquàs (València) com a cooperativa de consum i hui és una cooperativa de treball associat i de consum: la majoria de qui hi treballa són socis i, per tant, copropietaris; cada any una part dels excedents es repartix segons el treball aportat, i en l'assemblea cada soci té un vot. El 2024 va facturar 4.707 milions d'euros (un 7,3 % més) i va guanyar 108,7 milions. Té 21.869 persones en plantilla i 977 supermercats a la Comunitat Valenciana, Catalunya, Castella-la Manxa, Múrcia, Andalusia i Aragó, dels quals 479 són franquícies de la seua marca Charter.
+
+*Fonts: Consum, resultats de 2024 (presentats al maig de 2025 i recollits per la premsa econòmica); cas recollit en Eco 4ESO, Unitat 10.*
+
+### Cas C · Verkami: créixer sense inversors
+
+Joan Sala i els seus fills Adrià i Jonàs van crear Verkami el 2010 a Mataró (Barcelona) per a finançar projectes culturals xicotets mitjançant micromecenatge: còmics, discos, llibres, documentals o festivals. Cada campanya dura com a màxim 40 dies i oferix recompenses per trams als qui aporten. La plataforma cobra una comissió del 5 %, més un 1,5 % per la gestió dels pagaments, només als projectes que assolixen el seu objectiu. Ha superat els 10.000 projectes finançats i, en complir deu anys, el milió de mecenes. Mai no ha captat capital risc: es finança amb les seues comissions i els seus fundadors conserven el 100 % de l'empresa.
+
+*Fonts: Verkami, pàgina «Qui som» (verkami.com/page/about), blog corporatiu («Verkami: ¡10 años y más de 1.000.000 de mecenas después!», 2020) i pàgina de costos del servei (ayuda.verkami.com); Memòria Verkami 2023, citada en EDMN 2BACH, Unitat 9; cas recollit també en Eco 4ESO, Unitat 12.*
