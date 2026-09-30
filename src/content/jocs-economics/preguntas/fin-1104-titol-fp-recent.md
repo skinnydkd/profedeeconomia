@@ -9,7 +9,7 @@ opciones:
 correcta: 1
 explicacion: "L'alternança és per a qui encara no té titulació relacionada amb el lloc; qui ja té un títol d'FP o universitari recent (últims 3 anys) firma el contracte en pràctiques, amb salari íntegre de conveni."
 estado: publicado
-font: "eco-4eso U8 — Nòmina, IRPF i contractes"
+font: "eco-4eso U5 — Mercat de treball, contractes i nòmina"
 ---
 
 Aitana, de 22 anys, va acabar fa un any el seu grau superior d'FP i una empresa del sector la vol incorporar perquè guanye experiència professional. Quina modalitat de contracte li correspon?

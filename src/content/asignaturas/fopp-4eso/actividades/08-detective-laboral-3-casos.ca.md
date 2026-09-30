@@ -33,7 +33,7 @@ En esta activitat rebeu, per parelles, tres casos anònims basats en denúncies 
 - Manejar les xifres clau del dret laboral 2026: SMI, jornada, vacacions, descansos, pagues extres.
 - Aprendre a localitzar i consultar un **conveni col·lectiu** vigent al REGCON.
 - Practicar la **lectura crítica d'un contracte i una nòmina**, distingint allò legal d'allò abusiu.
-- Conéixer a la pràctica la **ruta de reclamació**: de l'email a l'empresa a la Inspecció de Treball i al Jutjat social.
+- Conéixer a la pràctica la **ruta de reclamació**: de l'email a l'empresa a la Inspecció de Treball i a la secció social del Tribunal d'Instància.
 
 ## Estructura de la sessió (60 min)
 
@@ -53,7 +53,7 @@ Poden i han de consultar el conveni aplicable al REGCON, calcular el preu/hora d
 
 ### 3. Proposta de ruta de reclamació (10 min)
 
-Amb les vulneracions detectades, cada parella redacta **un paràgraf de no més de 8 línies** simulant que assessora el treballador del cas: quins documents ha de guardar, a qui ha d'acudir primer (encarregat, comité, sindicat), si procedix denunciar a la **Inspecció de Treball** (gratuïta i confidencial: no revela qui denuncia), i si finalment ha d'anar al **SMAC + Jutjat social** (un any de termini per a reclamar salaris o hores no pagades; 20 dies hàbils si hi ha un acomiadament).
+Amb les vulneracions detectades, cada parella redacta **un paràgraf de no més de 8 línies** simulant que assessora el treballador del cas: quins documents ha de guardar, a qui ha d'acudir primer (encarregat, comité, sindicat), si procedix denunciar a la **Inspecció de Treball** (gratuïta i confidencial: no revela qui denuncia), i si finalment ha d'anar al **SMAC + Tribunal d'Instància** (un any de termini per a reclamar salaris o hores no pagades; 20 dies hàbils si hi ha un acomiadament).
 
 ### 4. Posada en comú (10 min)
 

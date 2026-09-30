@@ -15,7 +15,9 @@ import { type Locale } from '@/i18n/locale';
  */
 export const COPY = {
   es: {
-    filasDefault: ['Examen', 'Trabajo', 'Actitud'],
+    filasDefault: ['CE1 · criterios 1.1 y 1.2', 'CE2 · criterios 2.1 y 2.2', 'CE3 · criterio 3.1'],
+    criterialNota:
+      'Con la LOMLOE, la nota se refiere a los criterios de evaluación de las competencias específicas: cada fila es una competencia, con el peso que le da tu programación. Si calificas por instrumentos (prueba escrita, proyecto, cuaderno…), cambia los nombres: la media se calcula igual.',
     nuevaFila: 'Nueva prueba',
     mediaTitulo: 'Media ponderada',
     thInstrumento: 'Instrumento',
@@ -42,7 +44,9 @@ export const COPY = {
     maximosNotice: 'Los puntos máximos deben ser mayores que 0.',
   },
   ca: {
-    filasDefault: ['Examen', 'Treball', 'Actitud'],
+    filasDefault: ['CE1 · criteris 1.1 i 1.2', 'CE2 · criteris 2.1 i 2.2', 'CE3 · criteri 3.1'],
+    criterialNota:
+      "Amb la LOMLOE, la nota es referix als criteris d'avaluació de les competències específiques: cada fila és una competència, amb el pes que li dona la teua programació. Si qualifiques per instruments (prova escrita, projecte, quadern…), canvia els noms: la mitjana es calcula igual.",
     nuevaFila: 'Nova prova',
     mediaTitulo: 'Mitjana ponderada',
     thInstrumento: 'Instrument',
@@ -80,9 +84,9 @@ interface Row {
 
 // Structural seed values (grades/weights never localized); names come from COPY.
 const DEFAULT_ROW_VALUES: readonly { peso: number; nota: number }[] = [
-  { peso: 50, nota: 6.5 },
-  { peso: 30, nota: 8 },
-  { peso: 20, nota: 9 },
+  { peso: 40, nota: 6.5 },
+  { peso: 35, nota: 8 },
+  { peso: 25, nota: 7 },
 ];
 
 function makeDefaultRows(nombres: readonly string[]): Row[] {
@@ -218,6 +222,8 @@ export default function CalificacionesCalc({ locale = 'es' }: Props) {
         <button class="cg-calc__btn-add" onClick={addRow}>
           {c.addInstrumento}
         </button>
+
+        <p class="cg-calc__block-desc">{c.criterialNota}</p>
 
         {totalPesos !== 100 && (
           <p class="cg-calc__notice">

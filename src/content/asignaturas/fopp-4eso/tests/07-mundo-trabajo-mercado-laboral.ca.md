@@ -50,11 +50,11 @@ preguntas:
   - enunciado: "Segons l'Enquesta d'Estructura Salarial 2024 de l'INE, quina afirmació sobre els salaris mitjans per nivell formatiu és **correcta**?"
     opciones:
       - "FP de Grau Mitjà cobra de mitjana més que un graduat universitari."
-      - "ESO sense més formació (~16.000 €) cobra menys que FP Mitjà (~22.000 €), que cobra menys que FP Superior (~25.000 €) i que el grau universitari (~28.000 €)."
+      - "ESO sense més formació (~17.500 €) cobra menys que FP Mitjà (~23.000 €), que cobra menys que FP Superior (~26.500 €) i que el grau universitari (~30.000 €)."
       - "Tots els nivells formatius cobren el mateix: el salari depén només del sector."
       - "El màster universitari cobra el doble que un graduat, entorn de 60.000 €."
     correcta: 1
-    explicacion: "L'orde ascendent del salari mitjà brut anual és: ESO ~16.000 € → FP Mitjà ~22.000 € → FP Superior ~25.000 € → grau universitari ~28.000 € → màster ~33.000 €. Són **mitjanes**, no garanties: hi ha gran dispersió per sector, empresa, ciutat i experiència. La diferència FP Superior–grau universitari és menor del que suggerix l'imaginari social."
+    explicacion: "L'orde ascendent del salari mitjà brut anual és: ESO ~17.500 € → FP Mitjà ~23.000 € → FP Superior ~26.500 € → grau universitari ~30.000 € → màster ~34.500 €. Són **mitjanes**, no garanties: hi ha gran dispersió per sector, empresa, ciutat i experiència. La diferència FP Superior–grau universitari és menor del que suggerix l'imaginari social."
   - enunciado: "Quina és la **diferència clau** entre el treball per compte d'altri, l'autoocupació i la intraemprenedoria?"
     opciones:
       - "El compte d'altri treballa per a una empresa cobrant un salari; l'autoocupació treballa per a si mateix (autònom); l'intraemprenedor és un compte d'altri que lidera projectes amb autonomia emprenedora dins d'una empresa."

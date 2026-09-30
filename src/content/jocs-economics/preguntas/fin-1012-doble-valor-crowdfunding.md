@@ -9,7 +9,7 @@ opciones:
 correcta: 1
 explicacion: "És el doble valor del crowdfunding: aconseguixes finançament i, alhora, valides el mercat — si la gent aporta abans d'imprimir el primer número, és que comprarà."
 estado: publicado
-font: "eco-4eso U7 — Diners, pressupost i finançament"
+font: "eco-4eso U12 — Projecte emprenedor: model, prototip i pitch"
 ---
 
 Una revista satírica va demanar 18.000 € a Verkami per a arrancar i en va aconseguir més de 96.000 de 3.500 aportants. A banda dels diners, què va guanyar amb la campanya?

@@ -10,7 +10,7 @@ opciones:
 correcta: 2
 explicacion: "Amb el finançament de família i amics es posa en joc una relació personal: convertir el favor en contracte per escrit protegix la relació si les coses van mal dades."
 estado: publicado
-font: "eco-4eso U7 — Diners, pressupost i finançament"
+font: "eco-4eso U12 — Projecte emprenedor: model, prototip i pitch"
 ---
 
 El teu oncle et presta 3.000 € per a arrancar el teu xicotet negoci. Què convé fer perquè este favor familiar no acabe espatlant la relació?
