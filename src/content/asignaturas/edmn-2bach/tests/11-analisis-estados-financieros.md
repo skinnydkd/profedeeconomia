@@ -105,6 +105,12 @@ preguntas:
     tolerancia: 0.5
     unidad: "%"
     explicacion: "Intereses = 250.000 × 0,04 = 10.000 €. BAI = 50.000 − 10.000 = 40.000 €. Impuesto = 40.000 × 0,25 = 10.000 €. Beneficio neto = 40.000 − 10.000 = 30.000 €. ROE = 30.000 / 150.000 × 100 = 20 %. El ROA es 50.000 / 400.000 = 12,5 %, muy por encima del coste de la deuda (4 %): el apalancamiento está sumando rentabilidad al socio."
+  - tipo: numerico
+    enunciado: "Una empresa vende 511.000 € al año y su saldo medio de clientes es de 70.000 €. ¿Cuál es su período medio de cobro, en días (año de 365 días)?"
+    respuesta: 50
+    tolerancia: 0.5
+    unidad: "días"
+    explicacion: "Rotación de clientes = ventas / saldo medio de clientes = 511.000 / 70.000 = 7,3 veces al año. Período medio de cobro = 365 / 7,3 = 50 días. Es uno de los cuatro tiempos del PMM económico (ejercicio 11.3)."
 ---
 
 Test de autoevaluación de la Unidad 11 del libro de EDMN 2BACH.

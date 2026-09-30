@@ -2,7 +2,7 @@
 asignatura: edmn-2bach
 unidad_relacionada: 11
 title: "Calculadora de ràtios financers"
-descripcion: "Introduïx les masses del balanç i dues xifres del compte de resultats per obtindre fons de maniobra, ràtios de liquiditat i solvència, ROA, ROE i l'efecte del palanquejament."
+descripcion: "Introduïx les masses del balanç i tres xifres del compte de resultats (BAII, despeses financeres i benefici net) per obtindre fons de maniobra, ràtios de liquiditat i solvència, ROA, ROE i l'efecte del palanquejament."
 tipo: calculadora
 componente: Ratios
 estado: publicado

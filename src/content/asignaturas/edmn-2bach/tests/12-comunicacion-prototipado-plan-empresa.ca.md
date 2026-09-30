@@ -17,12 +17,12 @@ preguntas:
     explicacion: "L'objectiu del prototip no és vendre, és APRENDRE: és suficient que siga prou bo perquè algú puga provar-lo i donar feedback útil. Si el rebutjaran, millor que el rebutgen abans d'invertir 100.000 € que després; per això no s'espera a tindre finançament ni es busca un acabat professional."
   - enunciado: "El **MVP** (Producte Mínim Viable), concepte popularitzat per *The Lean Startup*, és…"
     opciones:
-      - "La versió més reduïda del producte que encara resol el problema central."
+      - "La versió que dona el màxim aprenentatge validat amb el mínim esforç."
       - "El primer prototip físic, normalment fet a mà o en cartó."
       - "La versió de llançament del producte, ja amb totes les seues funcions bàsiques."
       - "L'anàlisi que calcula les vendes mínimes per a no tindre pèrdues."
     correcta: 0
-    explicacion: "MVP = el mínim necessari per a validar la hipòtesi amb un usuari real; Eric Ries el va popularitzar en 2011 amb el principi d'aprendre ràpid i barat. No és la versió completa de llançament ni ha de ser físic per força (pot ser un vídeo o una web sense backend), i les vendes mínimes per a no perdre diners són el punt mort, no el MVP."
+    explicacion: "Eric Ries (*The Lean Startup*, 2011) el definix com la versió d'un producte nou que permet obtindre el màxim aprenentatge validat sobre els clients amb el mínim esforç. Pot no funcionar encara (el vídeo de Dropbox va ser un MVP); no és la versió completa de llançament, i les vendes mínimes per a no perdre diners són el punt mort, no el MVP."
   - enunciado: "Un *elevator pitch* clàssic dura aproximadament…"
     opciones:
       - "10 segons."
@@ -92,9 +92,9 @@ preguntas:
   - tipo: relacionar
     enunciado: "Associa cada concepte amb la seua definició:"
     izquierda: ["MVP", "Elevator pitch", "TAM", "Escenari pessimista"]
-    derecha: ["Discurs d'uns 60 segons que acaba amb una petició concreta", "Mercat total potencial", "Versió mínima del producte que encara resol el problema central", "Comprova si el projecte sobreviu quan les coses van malament"]
+    derecha: ["Discurs d'uns 60 segons que acaba amb una petició concreta", "Mercat total potencial", "Versió que dona el màxim aprenentatge validat amb el mínim esforç", "Comprova si el projecte sobreviu quan les coses van malament"]
     correctas: [2, 0, 1, 3]
-    explicacion: "MVP → versió mínima viable; elevator pitch → discurs de 60 segons; TAM → mercat total potencial; escenari pessimista → prova de robustesa del model."
+    explicacion: "MVP → versió per a aprendre el màxim amb el mínim esforç; elevator pitch → discurs de 60 segons; TAM → mercat total potencial; escenari pessimista → prova de robustesa del model."
 ---
 
 Test d'autoavaluació de la Unitat 12 del llibre d'EDMN 2BACH.
