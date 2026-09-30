@@ -16,9 +16,9 @@ describe('ITINERARIOS', () => {
     expect(ITINERARIOS.map((i) => i.id)).toEqual(['sprint-eso', 'bach-fp', 'a-la-carta']);
   });
 
-  it('sprint-eso includes only lean-core phases 1,2,3,4,11', () => {
+  it('sprint-eso keeps the lean core plus the numbers its pitch asks for (phase 9)', () => {
     const sprint = ITINERARIOS.find((i) => i.id === 'sprint-eso')!;
-    expect(sprint.fases).toEqual([1, 2, 3, 4, 11]);
+    expect(sprint.fases).toEqual([1, 2, 3, 4, 9, 11]);
   });
 
   it('a-la-carta has null fases (means all)', () => {

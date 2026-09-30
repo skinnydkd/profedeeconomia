@@ -9,7 +9,7 @@ opciones:
 correcta: 2
 explicacion: "La STS 805/2020 va declarar els riders treballadors per compte d'altri: l'empresa fixava els preus, assignava les comandes i posava la ferramenta de treball, les notes de dependència i alienitat."
 estado: publicado
-font: "eco-4eso U8 — Nòmina, IRPF i contractes"
+font: "eco-4eso U5 — Mercat de treball, contractes i nòmina"
 ---
 
 Un repartidor factura com a autònom, però la plataforma li fixa els preus, li assigna les comandes amb un algoritme i li proporciona l'app amb què treballa. Com va qualificar el Tribunal Suprem esta relació en el cas Glovo?

@@ -131,7 +131,7 @@ export const JUEGOS: Juego[] = [
     href: '/juegos/cajut/host/',
     color: '#5B3A4E',
     nota_aula:
-      'El profesor abre esta página en el proyector. Los alumnos entran en /juegos/cajut/ con el código de sala desde su móvil.',
+      'El profesor abre esta página en el proyector. Los alumnos entran en /juegos/cajut/ con el código de sala desde su móvil. Si en tu centro no se usa el móvil en clase, tienes la versión para imprimir en /juegos/cajut/imprimir/.',
     unidades_relacionadas: [
       {
         asignatura: 'taller-eco-3eso',
@@ -214,7 +214,7 @@ export const JUEGOS: Juego[] = [
     href: '/juegos/insider/host/',
     color: '#8C2F39',
     nota_aula:
-      'El profesor abre esta página en el proyector y ve un código de 4 letras. Los alumnos entran en /juegos/insider/ con ese código desde su móvil.',
+      'El profesor abre esta página en el proyector y ve un código de 4 letras. Los alumnos entran en /juegos/insider/ con ese código desde su móvil. Si en tu centro no se usa el móvil en clase, tienes la versión para imprimir en /juegos/insider/imprimir/.',
     unidades_relacionadas: [
       {
         asignatura: 'taller-eco-3eso',

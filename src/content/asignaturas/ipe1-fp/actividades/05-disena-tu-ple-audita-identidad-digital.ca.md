@@ -40,7 +40,7 @@ La primera sessió és de construcció: muntes el teu PLE com un mecànic munta 
 1. **Enquadrament (5 min).** El professor recorda la diferència entre aprenentatge formal i aprenentatge autònom permanent, i l'esquema del PLE en tres anells: **fonts** (d'on aprenc), **ferramentes** (amb què organitze i produïsc) i **xarxa** (amb qui aprenc).
 2. **Anell de fonts (20 min).** Cada alumne selecciona de sis a huit fonts fiables per a mantindre's actualitzat en la seua professió: webs sectorials, butlletins, canals, podcasts, comptes professionals. **Cada font ha de passar el filtre de fiabilitat** (autoria identificable, actualitat, possibilitat de contrast). Descartar per escrit una font que no el passe i explicar per què.
 3. **Anell de ferramentes (15 min).** Llistar les ferramentes amb les quals organitzarà el que aprén i produirà (gestor de marcadors, lector de butlletins, app de notes, plataformes de microcredencials i cursos del sector).
-4. **Anell de xarxa (10 min).** Identificar de tres a cinc persones, comunitats o associacions professionals amb les quals aprendre (col·legis professionals, fòrums, grups, antics professors, companys de FCT).
+4. **Anell de xarxa (10 min).** Identificar de tres a cinc persones, comunitats o associacions professionals amb les quals aprendre (col·legis professionals, fòrums, grups, antics professors, companys de pràctiques).
 5. **Tancament (5 min).** Cada alumne anota una rutina concreta: quan i com dedicarà temps cada setmana al seu PLE.
 
 ### Sessió 2 — Audita la teua identitat digital (55 min)

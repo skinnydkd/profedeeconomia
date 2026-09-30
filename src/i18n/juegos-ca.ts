@@ -33,7 +33,7 @@ export const JUEGOS_CA: Partial<Record<string, JuegoCA>> = {
       "Quiz d'aula multijugador. El profe tria assignatura i unitats; l'alumnat respon des del mòbil amb un codi de sala.",
     modo: 'multijugador (party)',
     nota_aula:
-      "El professor obri aquesta pàgina al projector. L'alumnat entra a /juegos/cajut/ amb el codi de sala des del mòbil.",
+      "El professor obri aquesta pàgina al projector. L'alumnat entra a /juegos/cajut/ amb el codi de sala des del mòbil. Si en el teu centre no s'usa el mòbil a classe, tens la versió per a imprimir a /ca/juegos/cajut/imprimir/.",
   },
   seguros: {
     title: 'Assegurats',
@@ -57,7 +57,7 @@ export const JUEGOS_CA: Partial<Record<string, JuegoCA>> = {
       'Deducció social: el grup endevina una paraula; algú sap la resposta… i ningú ho ha de notar.',
     modo: 'multijugador (party)',
     nota_aula:
-      "El professor obri aquesta pàgina al projector i veu un codi de 4 lletres. L'alumnat entra a /juegos/insider/ amb aquest codi des del mòbil.",
+      "El professor obri aquesta pàgina al projector i veu un codi de 4 lletres. L'alumnat entra a /juegos/insider/ amb aquest codi des del mòbil. Si en el teu centre no s'usa el mòbil a classe, tens la versió per a imprimir a /ca/juegos/insider/imprimir/.",
   },
 };
 

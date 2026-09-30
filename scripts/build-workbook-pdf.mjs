@@ -28,12 +28,21 @@ const root = resolve(__dirname, '..');
 // CI already uses to decide which subjects exist.
 const allAsignaturas = allSubjects(resolve(root, 'src/content/asignaturas'));
 
+// A subject without activities (cjd-bach, for now) has no workbook: its print
+// route 404s, and when it came first the server probe below aborted the whole
+// run, so no subject got its workbook.
+const hasActividades = (slug) => {
+  const dir = resolve(root, `src/content/asignaturas/${slug}/actividades`);
+  return existsSync(dir) && readdirSync(dir).some((f) => /\.mdx?$/.test(f) && !/\.ca\.mdx?$/.test(f));
+};
+
 const args = new Set(process.argv.slice(2));
 const inDistOnly = args.has('--in-dist');
 const slugFilters = process.argv.slice(2).filter((a) => !a.startsWith('--'));
-const asignaturas = slugFilters.length > 0
+const asignaturas = (slugFilters.length > 0
   ? allAsignaturas.filter((s) => slugFilters.includes(s))
-  : allAsignaturas;
+  : allAsignaturas
+).filter(hasActividades);
 if (asignaturas.length === 0) {
   console.error(`✖ Ningún slug válido. Opciones: ${allAsignaturas.join(', ')}`);
   process.exit(1);

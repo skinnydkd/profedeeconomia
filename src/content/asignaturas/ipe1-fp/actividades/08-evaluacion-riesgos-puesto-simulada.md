@@ -96,6 +96,6 @@ Tareas: trabajo con pantalla de visualización de datos 7-8 horas al día, atenc
 
 ## Variantes y extensiones
 
-- **Variante puesto propio.** Cada grupo evalúa el puesto real de su FCT o de un familiar, lo que aumenta el realismo y conecta con la prevención de su propia futura ocupación.
+- **Variante puesto propio.** Cada grupo evalúa el puesto real de su formación en empresa o de un familiar, lo que aumenta el realismo y conecta con la prevención de su propia futura ocupación.
 - **Variante inspección.** Un grupo actúa como servicio de prevención y otro como empresa que defiende sus prácticas; se debate la viabilidad de cada medida propuesta.
 - **Conexión con la Unidad 9.** El riesgo psicosocial detectado en el puesto C (presión, carga mental) es la puerta de entrada a la Unidad 9 sobre salud psicosocial.
