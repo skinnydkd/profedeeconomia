@@ -9,12 +9,12 @@ estado: publicado
 preguntas:
   - enunciado: "El microentorn i el macroentorn es diferencien principalment en…"
     opciones:
-      - "La distància geogràfica respecte a l'empresa."
-      - "La capacitat de l'empresa d'actuar sobre ells: el micro es negocia, el macro només s'observa i s'anticipa."
-      - "El nivell de detall de l'anàlisi."
-      - "Que el micro afecta les pimes i el macro només les grans empreses."
+      - "La distància: el micro és el local i el macro, el nacional i internacional."
+      - "Que sobre el micro l'empresa pot actuar; sobre el macro, observar i anticipar."
+      - "Que el micro està dins de l'empresa i el macro, fora d'ella."
+      - "La grandària: el micro afecta les pimes i el macro, les grans empreses."
     correcta: 1
-    explicacion: "Sobre el microentorn (clients, proveïdors, competidors) l'empresa pot actuar; sobre el macroentorn (conjuntura, demografia, lleis) només cal observar i anticipar."
+    explicacion: "Sobre el microentorn (clients, proveïdors, competidors) l'empresa pot actuar: negociar, fidelitzar, integrar-se. Sobre el macroentorn (conjuntura, demografia, lleis) només cal observar i anticipar. Compte: els dos són entorn, és a dir, externs; allò intern de l'empresa són les seues fortaleses i debilitats."
   - enunciado: "Quantes forces competitives componen el model de Michael Porter?"
     opciones:
       - "Tres."
@@ -71,24 +71,24 @@ preguntas:
       - "100 persones."
     correcta: 2
     explicacion: "Des del RD-Llei 6/2019, les empreses amb 50 persones o més han de tindre un pla d'igualtat registrat, amb diagnòstic, objectius quantitatius i mesures de seguiment."
-  - enunciado: "El creuament DAFO *Debilitats + Oportunitats (DO)* genera estratègies de…"
+  - enunciado: "El creuament DAFO *Debilitats + Oportunitats (DO)* genera estratègies…"
     opciones:
-      - "Defensa."
-      - "Reorientació: corregir debilitats per a no perdre oportunitats."
-      - "Supervivència."
-      - "Ofensiva."
+      - "Defensives."
+      - "De reorientació."
+      - "De supervivència."
+      - "Ofensives."
     correcta: 1
-    explicacion: "FO = ofensives, DO = reorientació, FA = defensives, DA = supervivència. Memoritzar este quadre és el resultat més útil del DAFO."
+    explicacion: "FO = ofensives, DO = reorientació, FA = defensives, DA = supervivència. En el creuament DO corregim debilitats per a no perdre oportunitats: si apareix un nínxol i no estem preparats, formem l'equip o incorporem talent. Memoritzar este quadre és el resultat més útil del DAFO."
   - tipo: verdadero-falso
     enunciado: "En una anàlisi DAFO, les fortaleses i les debilitats es referixen a factors externs de l'entorn que l'empresa no pot controlar."
     correcta: false
     explicacion: "Fals. Fortaleses i debilitats són sempre factors interns (controlables). Els factors externs no controlables són les oportunitats i les amenaces."
   - tipo: numerico
-    enunciado: "En un sector entren 3 nous competidors sobre els 12 que ja operaven. En quin percentatge augmenta el nombre de competidors (1 decimal)?"
-    respuesta: 25.0
+    enunciado: "La inflació és un factor econòmic del PESTEL. Un forn ven cada barra a 1,20 € i produir-la li costa 0,90 €. Si els seus costos pugen un 10 % i no trasllada la pujada al preu, en quin percentatge es reduïx el seu marge per barra (sense decimals)?"
+    respuesta: 30
     tolerancia: 0.5
     unidad: "%"
-    explicacion: "Variació = 3 / 12 × 100 = 25,0 %. L'amenaça de nous entrants és una de les cinc forces de Porter."
+    explicacion: "Marge inicial = 1,20 − 0,90 = 0,30 €. Cost nou = 0,90 × 1,10 = 0,99 €. Marge nou = 1,20 − 0,99 = 0,21 €. Reducció = (0,30 − 0,21) / 0,30 × 100 = 30 %. Una pujada de costos del 10 % es menja el 30 % del marge: per això la inflació és una amenaça del macroentorn que convé vigilar, encara que l'empresa no la puga controlar."
   - tipo: relacionar
     enunciado: "Associa cada estratègia de la matriu d'Ansoff amb la seua combinació producte-mercat:"
     izquierda: ["Penetració de mercat", "Desenvolupament de producte", "Desenvolupament de mercat", "Diversificació"]
