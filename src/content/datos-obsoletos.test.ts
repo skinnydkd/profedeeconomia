@@ -66,9 +66,35 @@ const OBSOLETOS: Obsoleto[] = [
     ejemplo: 'Este árbol cubre el 95 % de los casos.',
   },
   {
-    patron: /(?:no aparecen?|no apareix(?:en)?) (?:en|a) (?:la )?n[óò]mina/i,
+    patron: /no (?:aparecen?|figuran?|salen?|apareix(?:en)?|ix(?:en)?) (?:en|a) (?:la |tu |su |la teua |la seua )?n[óò]mina/i,
     motivo: 'Las cuotas patronales sí figuran en la nómina (aportación de la empresa); lo que no hacen es descontarse del sueldo',
-    ejemplo: 'Las cuotas patronales NO aparecen en la nómina.',
+    ejemplo: 'La parte de la empresa no aparece en tu nómina.',
+  },
+  {
+    patron: /(?:en|a) la n[óò]mina (?:solo|només) (?:se ve|es veu)/i,
+    motivo: 'La nómina también recoge la aportación de la empresa, al pie (Orden ESS/2098/2014)',
+    ejemplo: 'En la nómina solo se ve la aportación del trabajador.',
+  },
+  {
+    patron:
+      /(?:cotiz|cotitz)[^.\n]{0,140}(?:derecho|dret) a (?:la )?(?:sanidad|sanitat)|para (?:tener|tindre) (?:derecho|dret) a (?:la )?(?:sanidad|sanitat)|seguro colectivo: sanidad|col·lectiva: sanitat/i,
+    motivo: 'Cotizar da derecho a prestaciones (paro, incapacidad temporal, jubilación), no a la sanidad: la sanidad pública es universal y se paga con impuestos (Ley 16/2003, RDL 7/2018)',
+    ejemplo: 'La cotización a la Seguridad Social (que da derecho a sanidad, paro y pensión).',
+  },
+  {
+    patron: /\b036\s?(?:\/|o|i)\s?037\b/,
+    motivo: 'El modelo 037 se suprimió el 3 de febrero de 2025 (Orden HAC/1526/2024): el alta censal se hace siempre con el 036',
+    ejemplo: 'Presentar la declaración censal (modelo 036/037).',
+  },
+  {
+    // Case-sensitive on purpose: «los antiguos juzgados de lo social» tells the history.
+    patron: /\bJuzgados? de lo Social\b|\bJutjats? (?:del )?[Ss]ocial\b/,
+    motivo: 'Desde la LO 1/2025, los juzgados de lo social son la sección de lo Social de cada Tribunal de Instancia',
+    ejemplo: 'Demanda ante el Juzgado de lo Social.',
+    permitido: [
+      'src/content/asignaturas/cjd-bach/libro/08-tutela-judicial-y-resolucion-de-conflictos.mdx',
+      'src/content/asignaturas/cjd-bach/libro/08-tutela-judicial-y-resolucion-de-conflictos.ca.mdx',
+    ],
   },
 ];
 

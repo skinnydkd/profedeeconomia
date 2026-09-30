@@ -43,7 +43,7 @@ El producto final es un **proyecto profesional de 3 a 5 páginas** que defender�
 ### Sesión 2 — Objetivos SMART y hoja de ruta (55 min)
 
 1. **Objetivos SMART a tres plazos (30 min).** Redactar objetivos profesionales SMART (específicos, medibles, alcanzables, relevantes, con plazo): cuatro o cinco a **corto plazo** (12 meses), dos o tres escenarios a **medio plazo** (2-4 años) y una orientación a **largo plazo** (5-10 años). Cada objetivo de corto plazo derivado de una estrategia CAME.
-2. **Hoja de ruta de inserción (25 min).** Ordenar en una línea de tiempo las acciones de los próximos 12 meses en tres carriles: formación (módulos, certificados, microcredenciales), experiencia (FCT/prácticas, primer empleo, voluntariado) y búsqueda de empleo (CV, portales, red de contactos). Marcar el **primer paso que se puede dar esta semana**.
+2. **Hoja de ruta de inserción (25 min).** Ordenar en una línea de tiempo las acciones de los próximos 12 meses en tres carriles: formación (módulos, certificados, microcredenciales), experiencia (formación en empresa, primer empleo, voluntariado) y búsqueda de empleo (CV, portales, red de contactos). Marcar el **primer paso que se puede dar esta semana**.
 
 ### Sesión 3 — Revisión cruzada y sistema de seguimiento (55 min)
 
@@ -102,5 +102,5 @@ SECCIÓN 5 — SISTEMA DE SEGUIMIENTO
 ## Variantes y extensiones
 
 - **Variante mercado objetivo doble.** El alumno construye el DAFO para dos salidas distintas del título (por ejemplo, sector privado y oposición/bolsa) y decide cuál priorizar. Conecta con la Unidad 4.
-- **Variante mentor.** El alumno comparte su proyecto con un profesional del sector (familiar, tutor de FCT) y trae una nota con su comentario.
+- **Variante mentor.** El alumno comparte su proyecto con un profesional del sector (familiar, tutor de prácticas) y trae una nota con su comentario.
 - **Conexión transversal.** Este proyecto es el documento vivo de la asignatura: se recupera y se ajusta al final de cada trimestre con lo aprendido en las unidades siguientes.

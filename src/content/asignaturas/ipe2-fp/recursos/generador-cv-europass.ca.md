@@ -12,8 +12,8 @@ slug: "asignaturas/ipe2-fp/recursos/generador-cv-europass.ca"
 
 ## Quan usar-la
 
-- En construir la teua marca personal a la Unitat 2.
-- Per a preparar la busca activa d'ocupació i els processos de selecció (Unitat 1).
+- En construir la teua marca personal a la Unitat 2. Si ja vas muntar el currículum amb el generador de la Unitat 1, ací no es comença de zero: es revisa perquè conte el mateix que el teu perfil de LinkedIn i el teu portfolio.
+- Si penses fer pràctiques o treballar en un altre país de la Unió Europea, per exemple amb Erasmus+: el format Europass és el que es reconeix en tota la Unió.
 - Per a tindre diverses versions del CV adaptades a distintes ofertes.
 
 ## Què cal tindre en compte

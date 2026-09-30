@@ -48,7 +48,7 @@ export const COPY: Record<Locale, HubCopy> = {
     minis: {
       dilema: {
         title: 'El dilema del prisionero',
-        tagline: 'Traicionar siempre compensa. Si todos traicionan, todos pierden.',
+        tagline: 'En una sola ronda, traicionar compensa. Si todos traicionan, todos pierden.',
         solo: 'Rondas contra una estrategia rival: tú eliges cooperar o traicionar.',
         aula: 'La clase vota y la pantalla calcula a quién le sale a cuenta cada opción.',
       },
@@ -78,7 +78,7 @@ export const COPY: Record<Locale, HubCopy> = {
       },
       subastas: {
         title: 'Las cuatro subastas',
-        tagline: 'Inglesa, holandesa y sobre cerrado. Distinta puja, misma recaudación.',
+        tagline: 'Inglesa, holandesa y sobre cerrado. Distinta puja; en promedio, la misma recaudación.',
         solo: 'Ocho lotes con tu valor privado, rotando entre los cuatro formatos.',
         aula: 'Con las pujas de la clase, quién gana y cuánto paga bajo cada reglamento.',
       },
@@ -100,7 +100,7 @@ export const COPY: Record<Locale, HubCopy> = {
     minis: {
       dilema: {
         title: 'El dilema del presoner',
-        tagline: 'Trair sempre compensa. Si tots traeixen, tots perden.',
+        tagline: 'En una sola ronda, trair compensa. Si tots traïxen, tots perden.',
         solo: 'Rondes contra una estratègia rival: tries cooperar o trair.',
         aula: 'La classe vota i la pantalla calcula a qui li ix a compte cada opció.',
       },
@@ -130,7 +130,7 @@ export const COPY: Record<Locale, HubCopy> = {
       },
       subastas: {
         title: 'Les quatre subhastes',
-        tagline: 'Anglesa, holandesa i sobre tancat. Distinta puja, mateixa recaptació.',
+        tagline: 'Anglesa, holandesa i sobre tancat. Distinta puja; de mitjana, la mateixa recaptació.',
         solo: 'Huit lots amb el teu valor privat, rotant entre els quatre formats.',
         aula: 'Amb les pujes de la classe, qui guanya i quant paga sota cada reglament.',
       },

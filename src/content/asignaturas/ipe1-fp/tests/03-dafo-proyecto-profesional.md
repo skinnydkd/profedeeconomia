@@ -61,7 +61,7 @@ preguntas:
       - "Currículum, carta de presentación y entrevista."
       - "Corto, medio y largo plazo."
     correcta: 1
-    explicacion: "La **hoja de ruta de inserción** ordena en el tiempo las tres palancas de la empleabilidad: **formación** (qué te falta acreditar y cuándo), **experiencia** (cómo sumarás horas reales: FCT, primer empleo) y **búsqueda y red** (cómo y dónde buscarás y cómo cuidarás los contactos). El autoconocimiento, el DAFO y los objetivos son los pasos previos del proyecto; los plazos son los horizontes en que se ordenan los objetivos. Debe ser realista, escrita y con fechas."
+    explicacion: "La **hoja de ruta de inserción** ordena en el tiempo las tres palancas de la empleabilidad: **formación** (qué te falta acreditar y cuándo), **experiencia** (cómo sumarás horas reales: formación en empresa, primer empleo) y **búsqueda y red** (cómo y dónde buscarás y cómo cuidarás los contactos). El autoconocimiento, el DAFO y los objetivos son los pasos previos del proyecto; los plazos son los horizontes en que se ordenan los objetivos. Debe ser realista, escrita y con fechas."
   - enunciado: "¿En qué tres horizontes temporales conviene ordenar los objetivos profesionales?"
     opciones:
       - "Corto plazo (este mes), medio plazo (este curso) y largo plazo (al acabar el ciclo)."

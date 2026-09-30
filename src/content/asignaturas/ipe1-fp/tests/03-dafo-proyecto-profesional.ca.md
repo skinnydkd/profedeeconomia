@@ -62,7 +62,7 @@ preguntas:
       - "Currículum, carta de presentació i entrevista."
       - "Curt, mitjà i llarg termini."
     correcta: 1
-    explicacion: "El **full de ruta d'inserció** ordena en el temps les tres palanques de l'ocupabilitat: **formació** (què et falta acreditar i quan), **experiència** (com sumaràs hores reals: FCT, primera ocupació) i **cerca i xarxa** (com i on buscaràs i com cuidaràs els contactes). L'autoconeixement, el DAFO i els objectius són els passos previs del projecte; els terminis són els horitzons en què s'ordenen els objectius. Ha de ser realista, escrit i amb dates."
+    explicacion: "El **full de ruta d'inserció** ordena en el temps les tres palanques de l'ocupabilitat: **formació** (què et falta acreditar i quan), **experiència** (com sumaràs hores reals: formació en empresa, primera ocupació) i **cerca i xarxa** (com i on buscaràs i com cuidaràs els contactes). L'autoconeixement, el DAFO i els objectius són els passos previs del projecte; els terminis són els horitzons en què s'ordenen els objectius. Ha de ser realista, escrit i amb dates."
   - enunciado: "En quins tres horitzons temporals convé ordenar els objectius professionals?"
     opciones:
       - "Curt termini (este mes), mitjà termini (este curs) i llarg termini (en acabar el cicle)."
