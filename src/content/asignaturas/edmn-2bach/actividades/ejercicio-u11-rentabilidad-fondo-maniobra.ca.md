@@ -13,7 +13,7 @@ solucion:
   - "1. Fons de maniobra = Actiu corrent − Passiu corrent = 40.000 − 35.000 = **+5.000 €**. Positiu: l'empresa pot atendre els seus deutes a curt termini amb folgança."
   - "2. RE (ROA) = BAII / Actiu total = 18.000 / 120.000 = **0,15 → 15 %**. Per cada 100 € invertits en actius, el negoci genera 15 € de benefici operatiu."
   - "3. RF (ROE) = Benefici net / Patrimoni net = 11.925 / 50.000 = **0,2385 → 23,85 %**. Per cada 100 € aportats pels socis, s'obtenen quasi 24 € de benefici."
-  - "4. L'efecte palanquejament és positiu: RF (23,85 %) > RE (15 %) perquè el cost del deute (6 %) és menor que la RE (15 %). Endeutar-se per a finançar actius productius amplifica la rendibilitat de l'accionista."
+  - "4. L'efecte palanquejament és positiu perquè el cost del deute (6 %) és menor que la RE (15 %): la rendibilitat dels socis abans d'impostos, BAI / PN = 15.900 / 50.000 = 31,8 %, supera la RE. Ací també el ROE (23,85 %) la supera, encara que després d'impostos no sempre passa. Endeutar-se per a finançar actius productius amplifica la rendibilitat de l'accionista."
 lang: ca
 estado: publicado
 slug: "asignaturas/edmn-2bach/actividades/ejercicio-u11-rentabilidad-fondo-maniobra.ca"

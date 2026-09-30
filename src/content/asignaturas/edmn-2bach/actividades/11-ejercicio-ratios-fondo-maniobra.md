@@ -42,7 +42,7 @@ Datos simplificados (en miles de €):
 
 1. **Cálculo individual (30 min).** Para cada empresa, calcular:
    - a) Ratio de liquidez (AC / PC).
-   - b) Ratio de endeudamiento (Pasivo total / Patrimonio neto).
+   - b) Ratio de endeudamiento (Pasivo total / (Patrimonio neto + Pasivo total)), como en la Unidad 11.
    - c) Rentabilidad financiera ROE (Beneficio neto / Patrimonio neto).
    - d) Fondo de maniobra (AC − PC).
 2. **Puesta en común (15 min).** En grupos de 4, comparan resultados y resuelven discrepancias.
@@ -52,15 +52,17 @@ Datos simplificados (en miles de €):
 
 **Muebles Norte:**
 - Liquidez = 600/350 = **1,71** (saneada).
-- Endeudamiento = (350+450)/700 = 800/700 = **1,14**.
+- Endeudamiento = (350+450)/1.500 = 800/1.500 = **0,53** (dentro del rango sano, 0,4-0,6).
 - ROE = 180/700 = **25,7 %**.
 - Fondo de maniobra = 600 − 350 = **+250** (positivo).
 
 **Muebles Sur:**
 - Liquidez = 400/520 = **0,77** (insuficiente, < 1).
-- Endeudamiento = (520+580)/400 = 1.100/400 = **2,75** (muy alto).
+- Endeudamiento = (520+580)/1.500 = 1.100/1.500 = **0,73** (muy alto: el 73 % del balance es deuda).
 - ROE = 60/400 = **15 %**.
 - Fondo de maniobra = 400 − 520 = **−120** (negativo: riesgo de impago a corto plazo).
+
+*Nota:* algunos manuales calculan el endeudamiento como Pasivo total / Patrimonio neto. Con esa fórmula saldría 800/700 = 1,14 en Norte y 1.100/400 = 2,75 en Sur, y el rango sano equivalente iría de 0,67 a 1,5. Las dos fórmulas llevan al mismo diagnóstico.
 
 **Diagnóstico:** Norte es claramente más sólida: más líquida, menos endeudada, más rentable y con fondo de maniobra positivo. Sur tiene fondo de maniobra negativo y endeudamiento elevado, señales de tensión financiera a corto plazo.
 

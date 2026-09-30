@@ -64,7 +64,7 @@ estado: publicado
 | Intereses del préstamo hipotecario | 1.800 |
 | Comisiones bancarias cobradas a la empresa | 250 |
 
-Tipo del Impuesto de Sociedades: **23 %** (pyme).
+Tipo del Impuesto de Sociedades: **19 %** (microempresa, 2026).
 
 ## Pasos
 
@@ -97,11 +97,12 @@ Tipo del Impuesto de Sociedades: **23 %** (pyme).
 | (−) Suministros | −5.400 |
 | (−) Amortización | −2.800 |
 | (−) Servicios externos | −2.100 |
-| **= Resultado de explotación (EBIT)** | **20.000** |
-| (−) Gastos financieros (intereses + comisiones) | −2.050 |
+| (−) Servicios bancarios (cuenta 626) | −250 |
+| **= Resultado de explotación (EBIT)** | **19.750** |
+| (−) Gastos financieros (intereses) | −1.800 |
 | **= Resultado antes de impuestos** | **17.950** |
-| (−) Impuesto sobre beneficios (23 %) | −4.129 |
-| **= Resultado del ejercicio** | **13.821** |
+| (−) Impuesto sobre beneficios (19 %) | −3.410,50 |
+| **= Resultado del ejercicio** | **14.539,50** |
 
 ### Balance al cierre
 
@@ -109,17 +110,17 @@ Tipo del Impuesto de Sociedades: **23 %** (pyme).
 | --- | --- | --- | --- |
 | Local | 75.000 | Capital social | 30.000 |
 | Maquinaria | 28.000 | Reservas | 22.000 |
-| Mobiliario | 4.500 | **Beneficio del ejercicio** | **13.821** |
-| **Activo no corriente** | **107.500** | **Patrimonio neto** | **65.821** |
+| Mobiliario | 4.500 | **Beneficio del ejercicio** | **14.539,50** |
+| **Activo no corriente** | **107.500** | **Patrimonio neto** | **66.539,50** |
 | Existencias | 12.000 | Préstamo hipotecario | 35.000 |
 | Clientes | 8.500 | **Pasivo no corriente** | **35.000** |
 | Banco | 6.200 | Proveedores | 5.000 |
 | Caja | 800 | Hacienda acreedora | 1.800 |
 | **Activo corriente** | **27.500** | Seguridad Social | 1.200 |
 | | | **Pasivo corriente** | **8.000** |
-| **TOTAL ACTIVO** | **135.000** | **TOTAL PN + PASIVO** | **108.821** |
+| **TOTAL ACTIVO** | **135.000** | **TOTAL PN + PASIVO** | **109.539,50** |
 
-**¡Atención!** El balance NO cuadra: 135.000 ≠ 108.821. Diferencia: 26.179 €.
+**¡Atención!** El balance NO cuadra: 135.000 ≠ 109.539,50. Diferencia: 25.460,50 €.
 
 Este desajuste es **deliberado en el ejercicio** y debéis detectarlo: faltan algunas cuentas no listadas. Discutid en grupo qué cuentas podrían faltar (deudas con socios, otros pasivos no especificados, etc.) o si alguna cifra está mal en el enunciado. La lección es: **el balance siempre debe cuadrar; si no cuadra, falta información o hay un error**, nunca es la realidad económica diferente.
 
@@ -129,7 +130,7 @@ Este desajuste es **deliberado en el ejercicio** y debéis detectarlo: faltan al
 
 - Activo no corriente: 107.500 € · Activo corriente: 27.500 €
 - Fondo de maniobra: 27.500 − 8.000 = **+19.500 € (saludable)**
-- Patrimonio neto / Total activo (con balance teórico): 65.821 / 135.000 ≈ **49 %**, alta autonomía financiera
+- Patrimonio neto / Total activo (con balance teórico): 66.539,50 / 135.000 ≈ **49 %**, alta autonomía financiera
 - ¿Por qué hay menos en banco que el beneficio? Porque parte del beneficio está atrapado en clientes (8.500 € de facturas pendientes) y existencias (12.000 € de piezas en almacén). Devengo ≠ caja.
 
 ## Criterios de evaluación
