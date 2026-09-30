@@ -11,7 +11,7 @@ preguntas:
     opciones:
       - "Va contra la normativa de competència, que obliga a definir el públic."
       - "Un missatge que val per a tots no convenç ningú i dispersa els recursos."
-      - "Obliga a fabricar una versió distinta del producte per a cada tipus de client."
+      - "Obliga a fabricar una versió del producte per a cada tipus de client."
       - "Les xarxes socials no permeten llançar anuncis sense un públic definit."
     correcta: 1
     explicacion: "Els recursos comercials són limitats i els missatges que servixen per a tots no convencen ningú en particular; segmentar permet estratègies diferenciades i rendibles. Un segment útil és gran, identificable, accessible i diferent en la seua resposta. No ho prohibix cap norma, i adaptar el producte a cada grup és just el contrari: màrqueting diferenciat, que només és possible quan se segmenta."

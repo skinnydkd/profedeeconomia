@@ -9,8 +9,8 @@ preguntas:
     opciones:
       - "Toda organización que vende bienes o servicios y cobra por ellos en un mercado."
       - "Una unidad que organiza factores productivos para un mercado, asume riesgo y busca excedente."
-      - "Una organización que combina trabajo y capital de forma planificada, aunque no busque excedente."
-      - "Una sociedad mercantil inscrita en el Registro Mercantil, con capital y trabajadores propios."
+      - "Una organización que combina trabajo y capital con un plan, aunque no busque excedente."
+      - "Una sociedad mercantil inscrita en el Registro Mercantil, con plantilla propia."
     correcta: 1
     explicacion: "La definición exige tres elementos a la vez: organización deliberada de recursos, asunción de riesgo y búsqueda de excedente. Vender y cobrar no basta (una asociación que vende entradas para un festival no es una empresa) y el Registro Mercantil tampoco es requisito: un autónomo es una empresa unipersonal."
   - enunciado: "Las cuatro funciones simultáneas de la empresa son…"

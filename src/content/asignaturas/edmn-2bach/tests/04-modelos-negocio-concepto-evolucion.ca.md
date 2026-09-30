@@ -50,9 +50,9 @@ preguntas:
   - enunciado: "Netflix va realitzar dos canvis de model de negoci entre 1997 i 2013. Quins?"
     opciones:
       - "De lloguer de DVD per correu a *streaming* per subscripció i, després, a productora pròpia."
-      - "De sales de cine pròpies a *streaming* per subscripció i, després, a plataforma amb anuncis."
-      - "De canal de televisió per cable a *streaming* i, després, a videoclub amb botigues pròpies."
-      - "De llibreria digital a botiga de descàrregues de pel·lícules i, després, a productora de cine."
+      - "De sales de cine pròpies a *streaming* i, després, a plataforma amb anuncis."
+      - "De canal de cable a *streaming* i, després, a videoclub amb botigues pròpies."
+      - "De llibreria digital a botiga de descàrregues i, després, a productora de cine."
     correcta: 0
     explicacion: "Netflix va mutar dues vegades: 1) DVD per correu (transaccional) → subscripció *streaming* (2007); 2) subscripció → productora vertical de contingut propi (2013). Mai va tindre cines ni va ser un canal de cable. Cada salt va ser un canvi de model, no de producte, i va descol·locar competidors com Blockbuster."
   - enunciado: "Quin és el principal avantatge del model de subscripció per a l'EMPRESA?"

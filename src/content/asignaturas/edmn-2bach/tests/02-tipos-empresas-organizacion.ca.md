@@ -55,14 +55,14 @@ preguntas:
       - "Les decisions les pren un consell d'administració elegit per majoria."
     correcta: 1
     explicacion: "La regla *un soci, un vot* reflectix que la cooperativa busca satisfer les necessitats dels socis, no remunerar el capital. Per això tributa al 20 % en lloc del 25 % general."
-  - enunciado: "Quin tipus de l'Impost de Societats paga una societat de nova creació en el seu primer exercici amb benefici i en el següent?"
+  - enunciado: "Quin tipus de l'Impost de Societats paga una empresa de nova creació en el seu primer exercici amb benefici i en el següent?"
     opciones:
-      - "El 25 %, el tipus general de qualsevol societat."
-      - "El 15 %, un tipus reduït per a empreses noves."
-      - "El 0 %: està exempta durant eixos dos exercicis."
-      - "El 20 %, el mateix tipus que les cooperatives."
+      - "El 25 %, el tipus general de les societats."
+      - "El 15 %, un tipus reduït durant l'arrancada."
+      - "El 0 %: està exempta en eixos dos exercicis."
+      - "El 20 %, el tipus de les cooperatives."
     correcta: 1
-    explicacion: "Les empreses de nova creació tributen al 15 % el primer exercici amb beneficis i el següent; no estan exemptes. El tipus general és el 25 %; el 2026, les empreses de reduïda dimensió tributen al 23 % i les microempreses, al 19-21 %, i el 20 % és el tipus de les cooperatives. No compta com a nova la societat que continua l'activitat que el seu soci majoritari ja exercia com a autònom."
+    explicacion: "Les empreses de nova creació tributen al 15 % el primer exercici amb beneficis i el següent (art. 29.1 de la Llei de l'Impost sobre Societats); no estan exemptes. El tipus reduït depén de ser nova, no de ser pime: el tipus general és el 25 % i, el 2026, les empreses de reduïda dimensió tributen al 23 % i les microempreses, al 19-21 % (Llei 7/2024); el 20 % és el tipus de les cooperatives. No compta com a nova la societat que continua l'activitat que el seu soci majoritari ja exercia com a autònom."
   - enunciado: "Una persona emprendrà sola i vol limitar la seua responsabilitat al capital aportat, sense buscar socis ni reunir 60.000 €. La forma jurídica adequada és…"
     opciones:
       - "Societat Anònima Unipersonal (SAU)."
@@ -75,14 +75,14 @@ preguntas:
     opciones:
       - "Limitar la seua responsabilitat al capital aportat, igual que el soci d'una SL."
       - "Protegir el seu habitatge habitual dels deutes professionals, fins a cert valor."
-      - "Constituir una societat unipersonal sense capital mínim i sense passar per notari."
-      - "Deduir en el seu IRPF les despeses del seu habitatge habitual com a despesa del negoci."
+      - "Constituir una societat unipersonal sense capital mínim ni notari."
+      - "Deduir en l'IRPF les despeses de l'habitatge habitual com a despesa del negoci."
     correcta: 1
     explicacion: "L'ERL (Llei 14/2013) protegix l'habitatge habitual dels deutes professionals fins a 300.000 € (450.000 € en poblacions de més d'un milió d'habitants). És una protecció davant dels creditors, no un avantatge fiscal, i és parcial: la resta del patrimoni continua exposat, així que no equival a la responsabilitat limitada d'una SL."
   - tipo: verdadero-falso
     enunciado: "Una SL es pot constituir amb 1 € de capital, però si es liquida sense patrimoni suficient per a pagar els seus deutes, els socis responen solidàriament de la diferència fins a 3.000 €."
     correcta: true
-    explicacion: "Vertader. Des de la Llei 18/2022 n'hi ha prou amb 1 € de capital, però mentre el capital no arriba a 3.000 € hi ha regles de protecció dels creditors: destinar almenys el 20 % del benefici a reserva legal i, si la societat es liquida sense patrimoni per a pagar els seus deutes, els socis responen solidàriament del que falte fins a 3.000 € (art. 4 LSC). Més enllà d'eixe límit, el seu patrimoni personal queda protegit, a diferència de l'autònom."
+    explicacion: "Verdader. Des de la Llei 18/2022 n'hi ha prou amb 1 € de capital, però mentre el capital no arriba a 3.000 € hi ha regles de protecció dels creditors: destinar almenys el 20 % del benefici a reserva legal i, si la societat es liquida sense patrimoni per a pagar els seus deutes, els socis responen solidàriament del que falte fins a 3.000 € (art. 4 LSC). Més enllà d'eixe límit, el seu patrimoni personal queda protegit, a diferència de l'autònom."
   - tipo: numerico
     enunciado: "El 2026, una microempresa (xifra de negocis inferior a 1 M €) que no és de nova creació obté una base imposable de 70.000 €. Si tributa al 19 % pels primers 50.000 € i al 21 % per la resta, quant paga d'Impost de Societats, en euros (sense decimals)?"
     respuesta: 13700

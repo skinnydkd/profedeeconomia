@@ -7,7 +7,7 @@ estado: publicado
 preguntas:
   - enunciado: "El microentorno y el macroentorno se diferencian principalmente en…"
     opciones:
-      - "La distancia: el micro es el entorno local y el macro, el nacional e internacional."
+      - "La distancia: el micro es lo local y el macro, lo nacional e internacional."
       - "Que sobre el micro la empresa puede actuar; sobre el macro, observar y anticipar."
       - "Que el micro está dentro de la empresa y el macro, fuera de ella."
       - "El tamaño: el micro afecta a las pymes y el macro, a las grandes empresas."

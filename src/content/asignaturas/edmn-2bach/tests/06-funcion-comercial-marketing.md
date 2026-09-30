@@ -9,7 +9,7 @@ preguntas:
     opciones:
       - "Va contra la normativa de competencia, que obliga a definir el público."
       - "Un mensaje que vale para todos no convence a nadie y dispersa los recursos."
-      - "Obliga a fabricar una versión distinta del producto para cada tipo de cliente."
+      - "Obliga a fabricar una versión del producto para cada tipo de cliente."
       - "Las redes sociales no permiten lanzar anuncios sin un público definido."
     correcta: 1
     explicacion: "Los recursos comerciales son limitados y los mensajes que sirven para todos no convencen a nadie en particular; segmentar permite estrategias diferenciadas y rentables. Un segmento útil es grande, identificable, accesible y diferente en su respuesta. No lo prohíbe ninguna norma, y adaptar el producto a cada grupo es justo lo contrario: marketing diferenciado, que solo es posible cuando se segmenta."

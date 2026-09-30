@@ -9,7 +9,7 @@ estado: publicado
 preguntas:
   - enunciado: "El microentorn i el macroentorn es diferencien principalment en…"
     opciones:
-      - "La distància: el micro és l'entorn local i el macro, el nacional i internacional."
+      - "La distància: el micro és el local i el macro, el nacional i internacional."
       - "Que sobre el micro l'empresa pot actuar; sobre el macro, observar i anticipar."
       - "Que el micro està dins de l'empresa i el macro, fora d'ella."
       - "La grandària: el micro afecta les pimes i el macro, les grans empreses."

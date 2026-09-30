@@ -53,14 +53,14 @@ preguntas:
       - "Las decisiones las toma un consejo de administración elegido por mayoría."
     correcta: 1
     explicacion: "La regla *un socio, un voto* refleja que la cooperativa busca satisfacer las necesidades de los socios, no remunerar al capital. Por eso tributa al 20 % en lugar del 25 % general."
-  - enunciado: "¿Qué tipo del Impuesto de Sociedades paga una sociedad de nueva creación en su primer ejercicio con beneficio y en el siguiente?"
+  - enunciado: "¿Qué tipo del Impuesto de Sociedades paga una empresa de nueva creación en su primer ejercicio con beneficio y en el siguiente?"
     opciones:
-      - "El 25 %, el tipo general de cualquier sociedad."
-      - "El 15 %, un tipo reducido para empresas nuevas."
-      - "El 0 %: está exenta durante esos dos ejercicios."
-      - "El 20 %, el mismo tipo que las cooperativas."
+      - "El 25 %, el tipo general de las sociedades."
+      - "El 15 %, un tipo reducido durante el arranque."
+      - "El 0 %: está exenta en esos dos ejercicios."
+      - "El 20 %, el tipo de las cooperativas."
     correcta: 1
-    explicacion: "Las empresas de nueva creación tributan al 15 % el primer ejercicio con beneficios y el siguiente; no están exentas. El tipo general es el 25 %; en 2026, las empresas de reducida dimensión tributan al 23 % y las microempresas, al 19-21 %, y el 20 % es el tipo de las cooperativas. No cuenta como nueva la sociedad que continúa la actividad que su socio mayoritario ya ejercía como autónomo."
+    explicacion: "Las empresas de nueva creación tributan al 15 % el primer ejercicio con beneficios y el siguiente (art. 29.1 de la Ley del Impuesto sobre Sociedades); no están exentas. El tipo reducido depende de ser nueva, no de ser pyme: el tipo general es el 25 % y, en 2026, las empresas de reducida dimensión tributan al 23 % y las microempresas, al 19-21 % (Ley 7/2024); el 20 % es el tipo de las cooperativas. No cuenta como nueva la sociedad que continúa la actividad que su socio mayoritario ya ejercía como autónomo."
   - enunciado: "Una persona va a emprender sola y quiere limitar su responsabilidad al capital aportado, sin buscar socios ni reunir 60.000 €. La forma jurídica adecuada es…"
     opciones:
       - "Sociedad Anónima Unipersonal (SAU)."
@@ -73,7 +73,7 @@ preguntas:
     opciones:
       - "Limitar su responsabilidad al capital aportado, igual que el socio de una SL."
       - "Proteger su vivienda habitual de las deudas profesionales, hasta cierto valor."
-      - "Constituir una sociedad unipersonal sin capital mínimo y sin pasar por notario."
+      - "Constituir una sociedad unipersonal sin capital mínimo ni notario."
       - "Deducir en su IRPF los gastos de su vivienda habitual como gasto del negocio."
     correcta: 1
     explicacion: "El ERL (Ley 14/2013) protege la vivienda habitual de las deudas profesionales hasta 300.000 € (450.000 € en poblaciones de más de un millón de habitantes). Es una protección frente a los acreedores, no una ventaja fiscal, y es parcial: el resto del patrimonio sigue expuesto, así que no equivale a la responsabilidad limitada de una SL."

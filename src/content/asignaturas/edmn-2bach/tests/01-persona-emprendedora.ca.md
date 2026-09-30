@@ -11,8 +11,8 @@ preguntas:
     opciones:
       - "Tota organització que ven béns o servicis i cobra per ells en un mercat."
       - "Una unitat que organitza factors productius per a un mercat, assumix risc i busca excedent."
-      - "Una organització que combina treball i capital de manera planificada, encara que no busque excedent."
-      - "Una societat mercantil inscrita en el Registre Mercantil, amb capital i treballadors propis."
+      - "Una organització que combina treball i capital amb un pla, encara que no busque excedent."
+      - "Una societat mercantil inscrita en el Registre Mercantil, amb plantilla pròpia."
     correcta: 1
     explicacion: "La definició exigix tres elements alhora: organització deliberada de recursos, assumpció de risc i busca d'excedent. Vendre i cobrar no és suficient (una associació que ven entrades per a un festival no és una empresa) i el Registre Mercantil tampoc és un requisit: un autònom és una empresa unipersonal."
   - enunciado: "Les quatre funcions simultànies de l'empresa són…"

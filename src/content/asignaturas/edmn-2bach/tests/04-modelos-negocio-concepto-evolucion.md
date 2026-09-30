@@ -48,9 +48,9 @@ preguntas:
   - enunciado: "Netflix realizó dos cambios de modelo de negocio entre 1997 y 2013. ¿Cuáles?"
     opciones:
       - "De alquiler de DVD por correo a *streaming* por suscripción y, después, a productora propia."
-      - "De salas de cine propias a *streaming* por suscripción y, después, a plataforma con anuncios."
-      - "De canal de televisión por cable a *streaming* y, después, a videoclub con tiendas propias."
-      - "De librería digital a tienda de descargas de películas y, después, a productora de cine."
+      - "De salas de cine propias a *streaming* y, después, a plataforma con anuncios."
+      - "De canal de cable a *streaming* y, después, a videoclub con tiendas propias."
+      - "De librería digital a tienda de descargas y, después, a productora de cine."
     correcta: 0
     explicacion: "Netflix mutó dos veces: 1) DVD por correo (transaccional) → suscripción *streaming* (2007); 2) suscripción → productora vertical de contenido propio (2013). Nunca tuvo cines ni fue un canal de cable. Cada salto fue un cambio de modelo, no de producto, y descolocó a competidores como Blockbuster."
   - enunciado: "¿Cuál es la principal ventaja del modelo de suscripción para la EMPRESA?"
