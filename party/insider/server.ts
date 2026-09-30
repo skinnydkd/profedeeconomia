@@ -29,7 +29,9 @@ import {
   isFinished,
 } from './state';
 import type { GameState, TallyResult } from './state';
+import { cleanPlayerName, isPlayerId, parseClientMsg } from './messages';
 import {
+  MAX_PLAYERS,
   MIN_PLAYERS,
   TIMER_SHOW_WORD_S,
   TIMER_DISCUSSION_PER_PLAYER_S,
@@ -328,6 +330,12 @@ export default class InsiderServer implements Party.Server {
     const name = url.searchParams.get('name') ?? 'Jugador';
     const asHost = url.searchParams.get('asHost') === '1' || url.searchParams.get('asHost') === 'true';
 
+    if (!isPlayerId(playerId)) {
+      this.sendTo(conn.id, { type: 'error', reason: 'invalid-message' });
+      conn.close();
+      return;
+    }
+
     // Store playerId on the connection state for later lookups
     conn.setState({ playerId, name, asHost });
 
@@ -362,8 +370,10 @@ export default class InsiderServer implements Party.Server {
     // Don't add to players map yet; wait for explicit join message with name.
     // But if name is in query (client auto-sends join), we can pre-register.
     // We pre-register here so that reconnect from onConnect (without waiting for message) works.
-    if (name && name !== 'Jugador') {
-      this.registerPlayer(conn.id, playerId, name, asHost);
+    // Same checks as a join: otherwise the join message reports what is wrong.
+    const cleanName = cleanPlayerName(name);
+    if (cleanName && cleanName !== 'Jugador' && this.hasRoomFor(asHost)) {
+      this.registerPlayer(conn.id, playerId, cleanName, asHost);
       this.sendPrivate(playerId);
       this.broadcastPublic();
     }
@@ -371,13 +381,13 @@ export default class InsiderServer implements Party.Server {
   }
 
   async onMessage(message: string, sender: Party.Connection): Promise<void> {
-    let msg: ClientMsg;
-    try {
-      msg = JSON.parse(message as string) as ClientMsg;
-    } catch {
-      this.sendError(sender.id, 'Invalid JSON');
+    // Types and lengths are checked before any handler runs or any timer is touched.
+    const parsed = parseClientMsg(message);
+    if (!parsed.ok) {
+      this.sendError(sender.id, parsed.reason);
       return;
     }
+    const msg: ClientMsg = parsed.msg;
 
     const playerId = this.connToPlayer.get(sender.id)
       ?? (sender.state as { playerId?: string } | null)?.playerId
@@ -385,7 +395,12 @@ export default class InsiderServer implements Party.Server {
 
     switch (msg.type) {
       case 'join':
-        this.handleJoin(sender.id, msg.playerId ?? playerId, msg.name, msg.asHost ?? false);
+        // One player per connection: the id it connected with, not a new one per message.
+        if (msg.playerId !== playerId) {
+          this.sendError(sender.id, 'invalid-message');
+          break;
+        }
+        this.handleJoin(sender.id, playerId, msg.name, msg.asHost ?? false);
         break;
 
       case 'startGame':
@@ -407,9 +422,6 @@ export default class InsiderServer implements Party.Server {
       case 'restart':
         this.handleRestart(sender.id, playerId);
         break;
-
-      default:
-        this.sendError(sender.id, 'Unknown message type');
     }
   }
 
@@ -505,6 +517,10 @@ export default class InsiderServer implements Party.Server {
     // New player
     if (this.state.phase !== 'lobby') {
       this.sendError(connId, 'Game already in progress');
+      return;
+    }
+    if (!this.hasRoomFor(asHost)) {
+      this.sendError(connId, 'room-full');
       return;
     }
 
@@ -609,6 +625,14 @@ export default class InsiderServer implements Party.Server {
         this.forceTally();
         break;
       }
+      case 'guess':
+        // The caught impostor is taking too long (or is gone): the guess fails.
+        if (this.pendingTally) {
+          this.doReveal(this.pendingTally, { guess: '', correct: false });
+        } else {
+          this.doReveal({ state: this.state, eliminatedId: null, wasImpostor: false });
+        }
+        break;
       case 'reveal':
         // Skip the auto-advance timer
         this.clearPhaseTimer();
@@ -684,9 +708,9 @@ export default class InsiderServer implements Party.Server {
       return;
     }
 
-    this.clearPhaseTimer();
-
     const { state: stateAfterGuess, guessCorrect } = applyGuess(this.state, word);
+    // Only now: if anything above threw, the guess timer still closes the phase.
+    this.clearPhaseTimer();
     this.state = stateAfterGuess;
 
     // Apply guess bonus scoring if correct
@@ -741,5 +765,11 @@ export default class InsiderServer implements Party.Server {
 
   private isHost(playerId: string): boolean {
     return this.hostPlayerId === playerId;
+  }
+
+  /** A new student fits while the room has fewer than MAX_PLAYERS; the host seat is apart. */
+  private hasRoomFor(asHost: boolean): boolean {
+    if (asHost && !this.hostPlayerId) return true;
+    return Object.keys(this.state.players).length < MAX_PLAYERS;
   }
 }
