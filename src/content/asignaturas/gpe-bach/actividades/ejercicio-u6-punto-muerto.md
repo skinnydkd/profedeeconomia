@@ -12,8 +12,8 @@ solucion:
   - "Paso 1: margen de contribución unitario = precio − coste variable unitario = 18 − 7 = **11 € por menú**"
   - "Paso 2: punto muerto = costes fijos / margen de contribución unitario = 2 640 / 11 = **240 menús al mes**"
   - "Paso 3: comprobación — ingresos a 240 menús = 240 × 18 = 4 320 €; costes totales = 2 640 + 240 × 7 = 2 640 + 1 680 = 4 320 €. Resultado = 0 €. **Verificado.**"
-  - "Paso 4: con nuevo precio de 20 €, margen de contribución = 20 − 7 = 13 €; nuevo punto muerto = 2 640 / 13 = **203,08 → 204 menús al mes** (redondeando al alza)"
-  - "Paso 5: beneficio/pérdida con 200 menús y precio 18 € = 200 × 11 − 2 640 = 2 200 − 2 640 = **−440 € (pérdida)**"
+  - "Paso 4: beneficio/pérdida con 200 menús y precio 18 € = 200 × 11 − 2 640 = 2 200 − 2 640 = **−440 € (pérdida)**"
+  - "Paso 5: con nuevo precio de 20 €, margen de contribución = 20 − 7 = 13 €; nuevo punto muerto = 2 640 / 13 = **203,08 → 204 menús al mes** (redondeando al alza); con 200 menús, 200 × 13 − 2 640 = **−40 €**, todavía pérdida"
   - "Conclusión: con 200 menús al mes el proyecto no cubre los costes fijos (faltan 40 menús para el umbral). Subir el precio a 20 € reduce el punto muerto a 204 menús, lo que no resuelve el problema con esa demanda. La dirección debería revisar los costes fijos o aumentar el volumen de ventas."
 estado: publicado
 ---
@@ -32,3 +32,4 @@ estado: publicado
 1. Calcula el **punto muerto** (umbral de rentabilidad) del proyecto en número de menús al mes. Muestra la fórmula y desarrolla el cálculo paso a paso.
 2. Comprueba el resultado verificando que los ingresos y los costes totales se igualan exactamente a esa cantidad de menús.
 3. Con la previsión de venta de 200 menús, calcula el **resultado económico** del primer mes (beneficio o pérdida). ¿Supera el proyecto el umbral? ¿Cuántos menús le faltan o le sobran?
+4. Si el equipo subiera el precio a **20 €** por menú, ¿cuál sería el nuevo punto muerto? ¿Bastaría esa subida para cubrir costes con la previsión de 200 menús?
