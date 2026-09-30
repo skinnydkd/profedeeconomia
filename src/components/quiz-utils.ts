@@ -14,7 +14,8 @@ import { shuffle } from './retos/shuffle-utils';
  * Students in Spain write "12,5" and "1.500"; others write "12.5". Both marks
  * work as decimal separator and as thousands separator. A lone separator
  * followed by exactly three digits ("1.500", "2,250") is ambiguous, so both
- * readings are returned and the grader accepts either of them.
+ * readings are returned and the grader accepts either of them. Valencian
+ * schools also teach the raised comma, typed as an apostrophe: "12'5".
  */
 export function lecturasNumero(raw: string): number[] {
   let s = raw
@@ -29,6 +30,7 @@ export function lecturasNumero(raw: string): number[] {
   } else if (s.startsWith('+')) {
     s = s.slice(1);
   }
+  s = s.replace(/^(\d+)['’](\d+)$/, '$1,$2');
   if (!/^[\d.,]+$/.test(s) || !/\d/.test(s)) return [];
 
   const lecturas: string[] = [];
@@ -59,6 +61,17 @@ export function lecturasNumero(raw: string): number[] {
     lecturas.push(s);
   }
   return lecturas.map((l) => signo * Number(l)).filter((n) => Number.isFinite(n));
+}
+
+/**
+ * True when the typed text is not a number and typing more at its end cannot
+ * make it one ("12 euros", "doce", "1,2,3"). Then the quiz says what it
+ * expects, instead of just leaving «Confirmar» disabled. Text on its way to a
+ * number ("", "-", "12,", "12'") is not flagged.
+ */
+export function textoNoNumerico(raw: string): boolean {
+  if (raw.trim() === '') return false;
+  return !['', '0', '00', '000'].some((resto) => lecturasNumero(raw.trim() + resto).length > 0);
 }
 
 /**
@@ -129,10 +142,12 @@ export type TrozoInline = { tipo: 'texto' | 'em' | 'strong'; texto: string };
 /*
  * **strong**, *em* and _em_. As in CommonMark, emphasis only opens after a
  * non-word character and closes before one, so "P*", "P* · Q*", "Q_d" and
- * "2 * 3" stay literal.
+ * "2 * 3" stay literal. The one exception is the closing `**`, which CommonMark
+ * lets sit inside a word, as in the acronyms spelt out as **E**specífico,
+ * **M**edible (a single `*` keeps the stricter rule, so "P*" is still literal).
  */
 const ENFASIS =
-  /(?<![\p{L}\p{N}*])\*\*(?=\S)(.+?)(?<=\S)\*\*(?![\p{L}\p{N}*])|(?<![\p{L}\p{N}*])\*(?=[^\s*])(.+?)(?<=[^\s*])\*(?![\p{L}\p{N}*])|(?<![\p{L}\p{N}_])_(?=[^\s_])(.+?)(?<=[^\s_])_(?![\p{L}\p{N}_])/gu;
+  /(?<![\p{L}\p{N}*])\*\*(?=\S)(.+?)(?<=\S)\*\*(?!\*)|(?<![\p{L}\p{N}*])\*(?=[^\s*])(.+?)(?<=[^\s*])\*(?![\p{L}\p{N}*])|(?<![\p{L}\p{N}_])_(?=[^\s_])(.+?)(?<=[^\s_])_(?![\p{L}\p{N}_])/gu;
 
 /** Splits a question text into plain, em and strong runs. */
 export function trozosInline(texto: string): TrozoInline[] {

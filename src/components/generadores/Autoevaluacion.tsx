@@ -15,12 +15,14 @@ export const COPY = {
     escalaDefault: ['Poco', 'Bastante', 'Mucho'],
     intro:
       'Diseña una ficha de autoevaluación o coevaluación: define los criterios a valorar, ajusta ' +
-      'las etiquetas de la escala y entrégala al alumno para que marque su nivel.',
+      'las etiquetas de la escala y entrégala al alumno para que marque su nivel. Los datos se ' +
+      'guardan solo en este navegador: usa iniciales o un código, no nombres completos, y pulsa ' +
+      '«Vaciar» al terminar si el ordenador es compartido.',
     heading: 'Autoevaluación / coevaluación',
     tituloLabel: 'Título / tarea',
     tituloPlaceholder: 'Ej. Trabajo cooperativo — Unidad 3',
     nombreLabel: 'Nombre del alumno/a',
-    nombrePlaceholder: 'Nombre y apellidos',
+    nombrePlaceholder: 'Iniciales o código',
     equipoLabel: 'Equipo / grupo',
     equipoPlaceholder: 'Ej. Grupo A',
     fechaLabel: 'Fecha',
@@ -44,12 +46,14 @@ export const COPY = {
     escalaDefault: ['Poc', 'Bastant', 'Molt'],
     intro:
       "Dissenya una fitxa d'autoavaluació o coavaluació: definix els criteris a valorar, ajusta " +
-      "les etiquetes de l'escala i entrega-la a l'alumne perquè marque el seu nivell.",
+      "les etiquetes de l'escala i entrega-la a l'alumne perquè marque el seu nivell. Les dades es " +
+      'guarden només en este navegador: usa inicials o un codi, no noms complets, i prem ' +
+      "«Buidar» en acabar si l'ordinador és compartit.",
     heading: 'Autoavaluació / coavaluació',
     tituloLabel: 'Títol / tasca',
     tituloPlaceholder: 'Ex. Treball cooperatiu — Unitat 3',
     nombreLabel: "Nom de l'alumne/a",
-    nombrePlaceholder: 'Nom i cognoms',
+    nombrePlaceholder: 'Inicials o codi',
     equipoLabel: 'Equip / grup',
     equipoPlaceholder: 'Ex. Grup A',
     fechaLabel: 'Data',

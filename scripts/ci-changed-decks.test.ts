@@ -55,6 +55,17 @@ describe('decksToCheck', () => {
     }
   });
 
+  it('checks every subject when something the slides are drawn with changes (CODE-SRV-20)', () => {
+    for (const path of [
+      'src/styles/global.css',
+      'src/components/diagrams/BreakEvenChart.astro',
+      'src/pages/[asignatura]/diapositivas/[unidad].astro',
+      'package-lock.json',
+    ]) {
+      expect(decksToCheck([path], SUBJECTS), path).toEqual(SUBJECTS);
+    }
+  });
+
   it('checks every subject when an engine change rides along with a content one', () => {
     expect(
       decksToCheck(
