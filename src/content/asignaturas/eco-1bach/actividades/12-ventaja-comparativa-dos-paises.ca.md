@@ -57,7 +57,7 @@ Se suposa que cada país pot repartir els seus recursos entre els dos béns de m
 3. Quin país té **avantatge absolut** en cada bé? Respon amb les dades a la mà.
 4. Quin país té **avantatge comparatiu** en cada bé? Explica en una frase per què la resposta a esta pregunta no coincidix amb l'anterior.
 5. Si cada país s'especialitza per complet en el bé del seu avantatge comparatiu, quant produïx el món de cada bé?
-6. Entre quins dos valors ha de situar-se la **relació d'intercanvi** (litres de tela per unitat d'oli) perquè el comerç interesse als dos? Justifica què passaria just per davall i just per damunt d'eixe interval.
+6. Entre quins dos valors ha de situar-se la **relació d'intercanvi** (metres de tela per litre d'oli) perquè el comerç interesse als dos? Justifica què passaria just per davall i just per damunt d'eixe interval.
 7. Suposa que acorden intercanviar **40 d'oli per 100 de tela**. Comprova, país per país, quant acaba tenint cadascun i compara-ho amb el màxim que podria tindre produint eixa mateixa quantitat d'oli pel seu compte.
 8. Dibuixa les dues fronteres de possibilitats de producció i marca damunt de cadascuna el punt de consum que assolix cada país gràcies al comerç. On queda eixe punt respecte de la frontera?
 

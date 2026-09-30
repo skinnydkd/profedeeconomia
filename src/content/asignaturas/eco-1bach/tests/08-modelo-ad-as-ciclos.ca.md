@@ -107,4 +107,4 @@ preguntas:
     explicacion: "Dos trimestres seguits de caiguda del PIB és la regla pràctica per a parlar de recessió, no una definició oficial. La depressió és el fons del cicle; quan és molt profunda i dura anys, com en 1929, es parla d'una gran depressió."
 ---
 
-Test d'autoavaluació de la Unitat 8 del llibre d'Eco 1BACH. Nou preguntes que cobrixen els components de la demanda agregada, el pendent negatiu de la AD, la distinció entre SRAS i LRAS, els quatre tipus canònics de xocs (demanda i oferta, positius i negatius), les fases del cicle econòmic, el model de creixement de Solow, l'IDH del PNUD i el càlcul de l'índex de Gini a partir d'una corba de Lorenz.
+Test d'autoavaluació de la Unitat 8 del llibre d'Eco 1BACH. Catorze preguntes que cobrixen els components de la demanda agregada, el pendent negatiu de la AD, la distinció entre SRAS i LRAS, els quatre tipus canònics de xocs (demanda i oferta, positius i negatius), les fases del cicle econòmic, el model de creixement de Solow, l'IDH del PNUD i el càlcul de l'índex de Gini a partir d'una corba de Lorenz.

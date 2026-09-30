@@ -68,7 +68,7 @@ preguntas:
       - "La brecha ajustada es una estimación oficial del INE y la sin ajustar es una estimación de los sindicatos."
       - "La brecha ajustada se calcula sobre salario bruto y la sin ajustar sobre salario neto."
     correcta: 0
-    explicacion: "La brecha sin ajustar compara salarios medios directamente (en España, en torno al 9 % por hora según Eurostat y el 15,7 % en ganancia anual según el INE) e incluye efectos como la segregación ocupacional o la parcialidad. La brecha ajustada controla por características observables y refleja la parte residual atribuible a discriminación o factores menos visibles, como la penalización por maternidad (child penalty) documentada por Kleven et al. (2019)."
+    explicacion: "La brecha sin ajustar compara salarios medios directamente (en España, en torno al 9 % por hora según Eurostat y el 16,1 % en ganancia anual según el INE en 2024) e incluye efectos como la segregación ocupacional o la parcialidad. La brecha ajustada controla por características observables y refleja la parte residual atribuible a discriminación o factores menos visibles, como la penalización por maternidad (child penalty) documentada por Kleven et al. (2019)."
   - enunciado: "El rasgo histórico que diferencia el mercado laboral español del modelo nórdico de flexiguridad es…"
     opciones:
       - "España tiene salario mínimo y los países nórdicos no lo tienen."
@@ -101,4 +101,4 @@ preguntas:
     explicacion: "Activos = ocupados + parados = 21.000 + 3.000 = 24.000. Tasa de actividad = activos / población de 16+ × 100 = 24.000 / 40.000 × 100 = 60 %. Ojo al denominador: aquí es toda la población de 16 o más, no solo la activa."
 ---
 
-Test de autoevaluación de la Unidad 9 del libro de Eco 1BACH. Nueve preguntas que cubren las definiciones de la EPA (activos, ocupados, parados), el cálculo de las tasas de actividad y paro, el efecto desánimo, los cuatro tipos de desempleo, los efectos teóricos y la evidencia empírica del salario mínimo (Card-Krueger), la curva de Phillips y la NAIRU, la brecha salarial de género y la comparación entre el modelo laboral español y el nórdico de flexiguridad.
+Test de autoevaluación de la Unidad 9 del libro de Eco 1BACH. Trece preguntas que cubren las definiciones de la EPA (activos, ocupados, parados), el cálculo de las tasas de actividad y paro, el efecto desánimo, los cuatro tipos de desempleo, los efectos teóricos y la evidencia empírica del salario mínimo (Card-Krueger), la curva de Phillips y la NAIRU, la brecha salarial de género y la comparación entre el modelo laboral español y el nórdico de flexiguridad.

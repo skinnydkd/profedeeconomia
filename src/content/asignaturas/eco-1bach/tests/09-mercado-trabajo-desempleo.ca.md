@@ -70,7 +70,7 @@ preguntas:
       - "La bretxa ajustada és una estimació oficial de l'INE i la sense ajustar és una estimació dels sindicats."
       - "La bretxa ajustada es calcula sobre salari brut i la sense ajustar sobre salari net."
     correcta: 0
-    explicacion: "La bretxa sense ajustar compara salaris mitjans directament (a Espanya, al voltant del 9 % per hora segons Eurostat i el 15,7 % en guany anual segons l'INE) i inclou efectes com la segregació ocupacional o la parcialitat. La bretxa ajustada controla per característiques observables i reflectix la part residual atribuïble a discriminació o factors menys visibles, com la penalització per maternitat (child penalty) documentada per Kleven et al. (2019)."
+    explicacion: "La bretxa sense ajustar compara salaris mitjans directament (a Espanya, al voltant del 9 % per hora segons Eurostat i el 16,1 % en guany anual segons l'INE el 2024) i inclou efectes com la segregació ocupacional o la parcialitat. La bretxa ajustada controla per característiques observables i reflectix la part residual atribuïble a discriminació o factors menys visibles, com la penalització per maternitat (child penalty) documentada per Kleven et al. (2019)."
   - enunciado: "El tret històric que diferencia el mercat laboral espanyol del model nòrdic de flexiseguretat és…"
     opciones:
       - "Espanya té salari mínim i els països nòrdics no el tenen."
@@ -103,4 +103,4 @@ preguntas:
     explicacion: "Actius = ocupats + aturats = 21.000 + 3.000 = 24.000. Taxa d'activitat = actius / població de 16+ × 100 = 24.000 / 40.000 × 100 = 60 %. Compte amb el denominador: ací és tota la població de 16 anys o més, no només l'activa."
 ---
 
-Test d'autoavaluació de la Unitat 9 del llibre d'Eco 1BACH. Nou preguntes que cobrixen les definicions de l'EPA (actius, ocupats, aturats), el càlcul de les taxes d'activitat i atur, l'efecte desànim, els quatre tipus de desocupació, els efectes teòrics i l'evidència empírica del salari mínim (Card-Krueger), la corba de Phillips i la NAIRU, la bretxa salarial de gènere i la comparació entre el model laboral espanyol i el nòrdic de flexiseguretat.
+Test d'autoavaluació de la Unitat 9 del llibre d'Eco 1BACH. Tretze preguntes que cobrixen les definicions de l'EPA (actius, ocupats, aturats), el càlcul de les taxes d'activitat i atur, l'efecte desànim, els quatre tipus de desocupació, els efectes teòrics i l'evidència empírica del salari mínim (Card-Krueger), la corba de Phillips i la NAIRU, la bretxa salarial de gènere i la comparació entre el model laboral espanyol i el nòrdic de flexiseguretat.
