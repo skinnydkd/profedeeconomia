@@ -28,7 +28,8 @@ export const ASSETS: AssetMeta[] = [
   { id: 'oro',          label: 'Oro',           risk: 'media',   unlockRound: 5, blurb: 'Activo refugio: suele subir cuando hay miedo, pero no genera rentas.' },
   { id: 'ibex',         label: 'IBEX 35',       risk: 'alta',    unlockRound: 3, blurb: 'Índice de las 35 mayores empresas españolas; sube y baja con la economía.' },
   { id: 'sp500',        label: 'S&P 500',       risk: 'alta',    unlockRound: 3, blurb: 'Índice de las 500 mayores empresas de EE. UU.; el más seguido del mundo.' },
-  { id: 'bitcoin',      label: 'Bitcoin',       risk: 'extrema', unlockRound: 8, blurb: 'Criptomoneda muy volátil: puede multiplicarse o desplomarse en un año.' },
+  // Round 12 = 2012, the first year with market data (MARKET_DATA has null before).
+  { id: 'bitcoin',      label: 'Bitcoin',       risk: 'extrema', unlockRound: 12, blurb: 'Criptomoneda muy volátil: puede multiplicarse o desplomarse en un año.' },
   { id: 'inmobiliario', label: 'Inmobiliario',  risk: 'media',   unlockRound: 8, blurb: 'Comprar vivienda o locales para alquilar; poco líquido, sube despacio.' },
 ];
 

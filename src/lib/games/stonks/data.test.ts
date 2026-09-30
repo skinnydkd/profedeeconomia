@@ -28,6 +28,8 @@ describe('stonks dataset', () => {
     expect(MARKET_DATA[2000].ibex).toBeCloseTo(-0.217, 2);
     expect(MARKET_DATA[2008].sp500).toBeCloseTo(-0.37, 2);
     expect(MARKET_DATA[2019].sp500).toBeCloseTo(0.315, 2);
+    expect(MARKET_DATA[2014].bitcoin).toBeCloseTo(-0.575, 2);
+    expect(MARKET_DATA[2015].bitcoin).toBeCloseTo(0.345, 2);
     expect(MARKET_DATA[2022].bitcoin).toBeCloseTo(-0.643, 2);
   });
 
@@ -42,5 +44,15 @@ describe('stonks dataset', () => {
 
   it('unlock rounds are within range', () => {
     for (const a of ASSETS) expect(a.unlockRound).toBeLessThan(YEARS.length);
+  });
+
+  it('no asset is offered in a year without market data for it', () => {
+    // A null return would leave the money idle at 0 % and hide the asset from
+    // the year's summary (Bitcoin was offered from 2008 with no data until 2012).
+    for (const a of ASSETS) {
+      for (const y of YEARS.slice(a.unlockRound)) {
+        expect(MARKET_DATA[y][a.id], `${a.id} in ${y}`).not.toBeNull();
+      }
+    }
   });
 });
