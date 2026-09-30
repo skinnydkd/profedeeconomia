@@ -192,6 +192,20 @@ describe('POST /api/jocs/answer', () => {
     expect(body.finished).toBeUndefined();
   });
 
+  it('a crafted negative clientElapsedMs no longer records 0 ms', async () => {
+    // The question has been open for 5 s on the server's clock.
+    setupGameMock({ ...BASE_GAME_ROW, current_question_started_at: new Date(Date.now() - 5000).toISOString() });
+    const token = signGameToken('test-game-id', SECRET);
+    const res = await POST(makeReq({
+      gameId: 'test-game-id', token, questionId: 'eco-001', optionIdx: CORRECT_SHOWN, clientElapsedMs: -999999,
+    }) as any);
+    expect(res.status).toBe(200);
+    const body = await res.json();
+    // At most the 1.5 s latency window below the server's own measure.
+    expect(body.result.elapsedMsRecorded).toBeGreaterThanOrEqual(3500);
+    expect(body.totals.timeTotalMs).toBe(body.result.elapsedMsRecorded);
+  });
+
   it('returns 200 with isCorrect=false + scoreGain=0 + livesLeft=2 when optionIdx is wrong', async () => {
     setupGameMock(BASE_GAME_ROW);
     const token = signGameToken('test-game-id', SECRET);
