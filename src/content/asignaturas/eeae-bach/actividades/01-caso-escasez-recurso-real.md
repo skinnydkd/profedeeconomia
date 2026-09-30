@@ -7,7 +7,7 @@ tipo: caso
 duracion: "60 min · 1 sesión"
 agrupacion: "grupos pequeños (3-4)"
 materiales:
-  - "Dosier con datos reales de un episodio de sequía español (por ejemplo, Cataluña 2023-2024 o cuenca del Segura), curado por el profesor a partir de fuentes públicas (MITECO, ACA, confederaciones hidrográficas)"
+  - "Dosier incluido al final de esta ficha, con tres casos de sequía en España (Barcelona 2024, trasvase Tajo-Segura y olivar de Jaén), o uno equivalente de vuestra comarca preparado por el profesor a partir de fuentes públicas (MITECO, ACA, confederaciones hidrográficas)"
   - "Acceso a internet o móviles para consultar datos de reservas de embalses y restricciones"
   - "Ficha de trabajo con una tabla de usos del agua (consumo humano, agricultura, industria, turismo, ocio) y columna para coste de oportunidad"
   - "Pizarra o panel grande para la puesta en común"
@@ -54,3 +54,25 @@ El profesor presenta un episodio español documentado (por ejemplo, las restricc
 - **Variante con otro recurso:** sustituir el agua por otro recurso escaso con tensiones reales (suelo en una ciudad turística, plazas de aparcamiento en el centro, espectro de frecuencias, tiempo lectivo en el aula).
 - **Conexión con la Unidad 3:** retomar el caso al estudiar sostenibilidad y ODS, vinculándolo con el ODS 6 (agua limpia y saneamiento).
 - **Conexión con el bloque de empresa:** plantear qué oportunidades de negocio surgen de la escasez de agua (riego de precisión, reutilización, desalación, sensores), anticipando la idea de que toda escasez es también una oportunidad emprendedora.
+
+## Dosier
+
+Tres casos breves para repartir entre los grupos, uno por grupo o el mismo para toda la clase. Los casos A y B sirven para trabajar el reparto del agua entre usos; el C, el efecto de su falta sobre una comarca que vive de un solo cultivo. Las cifras son las que recoge el material con su fuente: conviene comprobar en ella si hay datos más recientes.
+
+### Caso A · Barcelona, 2024: 200 litros por persona y día
+
+El 1 de febrero de 2024 la Generalitat declaró la emergencia por sequía en el sistema Ter-Llobregat, que abastece a 202 municipios y a unos 6 millones de personas. Tras más de tres años de lluvias por debajo de lo normal, los embalses de las cuencas internas de Cataluña estaban por debajo del 16 % de su capacidad. El consumo quedó limitado a 200 litros por habitante y día, sumando el uso doméstico y el municipal; se prohibió llenar piscinas privadas y regar jardines con agua potable, y la agricultura tuvo que reducir el riego un 80 %, la ganadería un 50 % y la industria un 25 %. El 13 de mayo de 2024 se volvió a la fase de excepcionalidad, con 230 litros por persona y día.
+
+*Fuente: Generalitat de Catalunya, Agència Catalana de l'Aigua, portal de la sequía (sequera.gencat.cat), 2024. Caso recogido en Eco 4ESO, Unidad 1.*
+
+### Caso B · El trasvase Tajo-Segura: el agua que tiene que quedarse en el río
+
+Desde 1979, el trasvase lleva agua de los embalses de cabecera del Tajo (Entrepeñas y Buendía) al sureste peninsular: riega unas 147.000 hectáreas en Alicante, Murcia y Almería y completa el abastecimiento de agua potable de unos 2,5 millones de personas, más de tres millones en verano. El Real Decreto 35/2023 fijó por primera vez caudales ecológicos obligatorios en el Tajo: en Aranjuez, el mínimo pasa de 6 a 7 m³/s desde 2023, a 8 m³/s en 2026 y a unos 8,65 m³/s en 2027. El agua que se queda en el río no se puede trasvasar: los regantes del Levante advierten de pérdidas de regadío y de empleo, y los pueblos ribereños y los ecologistas, de un río con menos caudal del que necesita.
+
+*Fuentes: Real Decreto 35/2023 (BOE-A-2023-3511); Confederación Hidrográfica del Tajo, Plan Hidrológico 2023-2027; Sindicato Central de Regantes del Acueducto Tajo-Segura; Mancomunidad de los Canales del Taibilla. Caso recogido en Eco 4ESO, actividad «El agua del Tajo».*
+
+### Caso C · Jaén, 2022-2023: cuando no llueve en el olivar
+
+España produce alrededor de la mitad del aceite de oliva del mundo, y Andalucía, más del 80 % del español. Una campaña normal ronda los 1,4 millones de toneladas, pero la sequía de 2022 y 2023 dejó la cosecha 2022/2023 en unas 666.000 toneladas, menos de la mitad. El precio en origen del virgen extra pasó de unos 3,30 €/kg en la campaña 2021/22 a superar los 9 €/kg en 2023. Cuando volvió a llover, la campaña 2024/25 recuperó en torno a 1,4 millones de toneladas y el precio en origen bajó hasta unos 4 €/kg a lo largo de 2025. El mismo olivar y el mismo trabajo, con distinta agua, dieron resultados opuestos.
+
+*Fuente: Ministerio de Agricultura, Pesca y Alimentación (MAPA), balances de campaña del aceite de oliva 2021/22-2024/25. Caso recogido en Eco 4ESO, Unidad 3.*
