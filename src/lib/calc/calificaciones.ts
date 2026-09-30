@@ -6,6 +6,15 @@ export function sumaPesos(items: { peso: number }[]): number {
   return items.reduce((acc, it) => acc + it.peso, 0);
 }
 
+/**
+ * Whether the weights add up to 100 %. Decimal weights carry float noise
+ * (24,6 + 39,7 + 35,7 = 100.00000000000001), so they are compared with a
+ * tolerance instead of `=== 100`.
+ */
+export function pesosSuman100(total: number): boolean {
+  return Math.abs(total - 100) <= 1e-6;
+}
+
 export function mediaPonderada(items: { peso: number; nota: number }[]): number | null {
   const total = sumaPesos(items);
   if (total <= 0) return null;

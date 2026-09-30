@@ -3,6 +3,7 @@ import { useMemo, useState } from 'preact/hooks';
 import { type Locale } from '@/i18n/locale';
 import { formatNumber } from '../../lib/calc/format';
 import { evaluar, type Objetivo, type Letra } from '../../lib/calc/objetivos-smart';
+import NumberInput from '../NumberInput';
 
 /** UI strings, Valencian (AVL) alongside the ES source. SMART stays SMART. */
 export const COPY = {
@@ -109,7 +110,6 @@ export const COPY = {
 } as const;
 
 interface Props { locale?: Locale }
-const num = (e: Event) => Number((e.currentTarget as HTMLInputElement).value);
 const txt = (e: Event) => (e.currentTarget as HTMLInputElement).value;
 const ORDEN: Letra[] = ['especifico', 'medible', 'alcanzable', 'relevante', 'temporal'];
 
@@ -167,19 +167,19 @@ export default function ObjetivosSMARTCalc({ locale = 'es' }: Props) {
         </label>
         <label class="calc__field">
           <span class="calc__label">{t.valorInicial}</span>
-          <div class="calc__input-wrap"><input type="number" step={1} value={o.valorInicial} onInput={(e) => set('valorInicial', num(e))} /></div>
+          <div class="calc__input-wrap"><NumberInput step={1} value={o.valorInicial} onValue={(v) => set('valorInicial', v)} /></div>
         </label>
         <label class="calc__field">
           <span class="calc__label">{t.valorObjetivo}</span>
-          <div class="calc__input-wrap"><input type="number" step={1} value={o.valorObjetivo} onInput={(e) => set('valorObjetivo', num(e))} /></div>
+          <div class="calc__input-wrap"><NumberInput step={1} value={o.valorObjetivo} onValue={(v) => set('valorObjetivo', v)} /></div>
         </label>
         <label class="calc__field">
           <span class="calc__label">{t.semanas}</span>
-          <div class="calc__input-wrap"><input type="number" min={0} step={1} value={o.semanas} onInput={(e) => set('semanas', num(e))} /></div>
+          <div class="calc__input-wrap"><NumberInput min={0} step={1} value={o.semanas} onValue={(v) => set('semanas', v)} /></div>
         </label>
         <label class="calc__field">
           <span class="calc__label">{t.ritmoActual}</span>
-          <div class="calc__input-wrap"><input type="number" min={0} step={0.1} value={o.ritmoActual} onInput={(e) => set('ritmoActual', num(e))} /></div>
+          <div class="calc__input-wrap"><NumberInput min={0} step={0.1} value={o.ritmoActual} onValue={(v) => set('ritmoActual', v)} /></div>
         </label>
       </div>
       <p class="sm__note">{t.ritmoAyuda}</p>

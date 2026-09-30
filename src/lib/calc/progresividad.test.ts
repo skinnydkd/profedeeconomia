@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { comparar, cuotaPorTramos, type Persona, type Tramo } from './progresividad';
+import { comparar, cuotaPorTramos, tipoEnPorcentaje, type Persona, type Tramo } from './progresividad';
 
 const tramos: Tramo[] = [
   { hasta: 12000, tipo: 0 },
@@ -106,5 +106,18 @@ describe('comparar — validación de tramos', () => {
   it('rejects a NaN or non-positive ceiling', () => {
     expect(comparar(personas, [{ hasta: NaN, tipo: 0.2 }], 100, 0.21).valido).toBe(false);
     expect(comparar(personas, [{ hasta: 0, tipo: 0.2 }], 100, 0.21).valido).toBe(false);
+  });
+});
+
+describe('tipoEnPorcentaje', () => {
+  it('shows the rate that is used, not a rounded one (18,5 %, not 19 %)', () => {
+    expect(tipoEnPorcentaje(0.185)).toBe(18.5);
+  });
+
+  it('gives back exactly the percentage typed, without float noise', () => {
+    for (let i = 0; i <= 10000; i++) {
+      const typed = i / 100; // 0,00 % … 100,00 %
+      expect(tipoEnPorcentaje(typed / 100)).toBe(typed);
+    }
   });
 });
