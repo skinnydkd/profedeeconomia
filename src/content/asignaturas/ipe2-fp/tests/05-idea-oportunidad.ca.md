@@ -27,8 +27,8 @@ preguntas:
     opciones:
       - "El primer per a produir la solució; el segon per a vendre-la."
       - "El primer per a entendre el problema; el segon per a buscar la solució."
-      - "El primer per a generar idees de solució; el segon per a triar la millor."
-      - "El primer per a analitzar el mercat; el segon per a fer el pla financer."
+      - "El primer per a generar idees; el segon per a triar la millor."
+      - "El primer per a analitzar el mercat; el segon per al pla financer."
     correcta: 1
     explicacion: "El **doble diamant** representa el disseny com dos cicles de divergència i convergència: el **primer** servix per a descobrir i definir el **problema** real; el **segon**, per a desenvolupar i validar la **solució**. Deixa clar un punt que quasi tots se salten: abans de buscar solucions cal dedicar un diamant sencer a entendre el problema. Generar idees de solució i triar la millor passa dins del segon diamant (divergir i convergir); no són els dos diamants."
   - enunciado: "Què signifiquen divergir i convergir en el procés creatiu?"
@@ -49,10 +49,10 @@ preguntas:
     explicacion: "Un mapa d'empatia emplenat a classe, sense haver parlat amb ningú, és **pura invenció**. Només servix si es construïx **després de parlar amb persones reals** del públic objectiu. La prova del nou: si el teu mapa només conté coses que ja creies saber abans d'entrevistar ningú, no has aprés res i cal repetir l'exercici sobre el terreny. Completar els quadrants abans d'entrevistar ningú és just eixe error."
   - enunciado: "Segons The Mom Test, per què falla preguntar directament «compraries el meu producte?»?"
     opciones:
-      - "Perquè la gent no entén bé quin producte li estàs descrivint."
+      - "Perquè la gent no entén bé quin producte li estàs descrivint exactament."
       - "Perquè quasi tots diran que sí per cortesia, sense cap compromís real."
       - "Perquè revela la teua idea i algú de la competència podria copiar-la."
-      - "Perquè la gent tendix a exagerar les pegues i a dir que no."
+      - "Perquè la gent tendix a exagerar les pegues i a dir que no ho compraria."
     correcta: 1
     explicacion: "Si preguntes «compraries la meua app?», quasi tot el món dirà que sí per cortesia: eixa resposta no val res. La clau de *The Mom Test* és fer preguntes que **ni la teua mare podria respondre amb un compliment buit**, i això s'aconseguix preguntant per **fets passats** («conta'm l'última vegada que vas tindre este problema, què vas fer?»), no per intencions futures."
   - enunciado: "Durant una entrevista de problema, quina proporció del temps hauria de parlar l'entrevistat?"
@@ -67,7 +67,7 @@ preguntas:
     opciones:
       - "La versió final i polida del producte, llesta per a vendre."
       - "Una versió barata i incompleta per a veure com reacciona l'usuari."
-      - "Una versió econòmica del producte per a clients amb poc pressupost."
+      - "Una versió econòmica del producte per a vendre més barat."
       - "Una maqueta molt cuidada per a impressionar possibles inversors."
     correcta: 1
     explicacion: "Un **prototip de baixa fidelitat** és una versió incompleta i barata (un dibuix en paper, una maqueta de cartó, un fullet, un vídeo, una pàgina d'aterratge) feta per a **veure com reacciona l'usuari** abans d'invertir de veres. El que importa no és la qualitat del prototip, sinó la **qualitat de la reacció** que provoca. No és un producte per a vendre ni una maqueta per a impressionar."
@@ -84,7 +84,7 @@ preguntas:
       - "Construir el producte igualment i esperar que el mercat el descobrisca."
       - "Descartar-la prompte i tornar a buscar un problema real que resoldre."
       - "Demanar finançament per a una campanya que convença el mercat del problema."
-      - "Refer les entrevistes amb altres preguntes fins que isca un sí."
+      - "Refer les entrevistes amb altres preguntes fins que isca un sí clar."
     correcta: 1
     explicacion: "Si el problema no és real ni suficient, cal **tornar a la detecció de problemes**. **Descartar prompte una mala idea és una victòria, no un fracàs**: t'estalvia temps i diners. L'objectiu de la validació és precisament decidir si el problema mereix seguir, no enamorar-se de la pròpia idea. Repetir les entrevistes fins que isca un sí seria enganyar-te: es tracta d'aprendre, no de confirmar el que ja creies."
   - tipo: verdadero-falso

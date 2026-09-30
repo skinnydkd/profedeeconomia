@@ -10,7 +10,7 @@ preguntas:
     opciones:
       - "Pasar de estudiar teoría a hacer prácticas en una empresa."
       - "Pasar de ser alumno a ser candidato ante quien tiene que contratarte."
-      - "Pasar de conocer tus derechos laborales a saber reclamarlos en la empresa."
+      - "Pasar de conocer tus derechos laborales a saber reclamarlos."
       - "Pasar de buscar trabajo por cuenta ajena a montar tu propia empresa."
     correcta: 1
     explicacion: "IPE I miraba hacia dentro (quién eres, qué se te da bien, qué derechos tienes). IPE II gira la cámara hacia fuera: pasas de **alumno** a **candidato**, y la pregunta deja de ser \"¿quién soy?\" para ser \"¿cómo me ve quien tiene que contratarme y cómo consigo que me elija a mí?\". El emprendimiento también aparece en el módulo, pero no es ese cambio de perspectiva: el punto de partida es verte como candidato."
@@ -83,7 +83,7 @@ preguntas:
       - "Responder el mismo día a una oferta recién publicada en un portal."
       - "Presentarte a una empresa que no ha publicado ninguna oferta."
       - "Inscribirte en la bolsa de empleo del SEPE o de tu centro de FP."
-      - "Enviar el mismo CV genérico a muchas empresas a la vez."
+      - "Enviar el mismo CV genérico a muchas empresas a la vez por correo."
     correcta: 1
     explicacion: "La **candidatura espontánea** consiste en presentarte a una empresa que **no ha publicado ninguna oferta** porque te interesa trabajar allí. Bien hecha, es una de las vías más rentables al mercado oculto, pero la clave es la **personalización**: identificar a la persona adecuada, demostrar que conoces la empresa y proponer qué puedes aportar. Por eso enviar el mismo CV genérico a muchas empresas no cuenta: un correo genérico va directo a la papelera."
   - tipo: verdadero-falso

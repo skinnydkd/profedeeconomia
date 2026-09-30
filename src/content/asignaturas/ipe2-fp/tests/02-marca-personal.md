@@ -16,8 +16,8 @@ preguntas:
     explicacion: "La unidad define la marca personal como **\"lo que dicen de ti cuando sales de la sala\"**: la huella que dejas y la percepción que los demás tienen de ti como profesional, no lo que tú afirmas de ti mismo."
   - enunciado: "La unidad afirma que tu marca personal..."
     opciones:
-      - "Solo existe a partir del momento en que decides crearla y cuidarla."
-      - "Existe la trabajes o no: la única decisión es si la gestionas."
+      - "Existe a partir del momento en que decides crearla y cuidarla."
+      - "Existe la trabajes o no: la única decisión es si la gestionas a propósito."
       - "Es lo mismo que tu currículum, pero en formato digital."
       - "Solo importa en perfiles creativos o con muchos seguidores en redes."
     correcta: 1
@@ -35,7 +35,7 @@ preguntas:
       - "Tener cuantos más seguidores y contactos mejor, aunque no sean del sector."
       - "La coherencia: que todos tus canales cuenten la misma historia."
       - "Publicar contenido cada día para que el algoritmo no te olvide."
-      - "Usar siempre un tono muy formal y corporativo, sin opiniones propias."
+      - "Usar un tono muy formal y corporativo, sin opiniones propias."
     correcta: 1
     explicacion: "La regla de oro es la **coherencia**: el profesional que describe tu CV, el de tu LinkedIn, el que se presenta en la entrevista y el del portfolio deben ser la misma persona con el mismo mensaje, la misma propuesta de valor, el mismo tono y los mismos datos. La incoherencia es lo que más rápido destruye una marca personal, y no se arregla sumando seguidores: si tu CV dice una cosa y tu LinkedIn otra, pierdes credibilidad."
   - enunciado: "El CV de hoy tiene dos lectores. ¿Cuáles?"
@@ -49,8 +49,8 @@ preguntas:
   - enunciado: "¿Cuál de estos es un error que descarta un CV de FP a la primera?"
     opciones:
       - "Incluir la FCT y los proyectos del ciclo como si fueran experiencia."
-      - "Poner en el CV un nivel de idiomas más alto que el que tienes."
-      - "Usar verbos de acción con resultados cuantificados."
+      - "Poner en el CV un nivel de idiomas más alto del que tienes."
+      - "Usar verbos de acción y dar resultados cuantificados en cada puesto."
       - "Limitarlo a una sola página con un resumen profesional arriba."
     correcta: 1
     explicacion: "**Inflar el nivel de idiomas** descarta candidaturas porque se cae en treinta segundos de entrevista. Otros errores típicos: faltas de ortografía, CV genérico sin adaptar, formato que el ATS no lee, funciones en vez de logros y olvidar la FCT. Incluir la FCT y los proyectos del ciclo, en cambio, es un acierto: para un perfil junior son experiencia válida y diferenciadora. También lo son cuantificar logros y caber en una página."
@@ -81,7 +81,7 @@ preguntas:
   - enunciado: "Si encuentras contenido perjudicial e irrelevante sobre ti en internet, ¿qué derecho puedes ejercer y bajo qué normativa?"
     opciones:
       - "El derecho de réplica, regulado por la Ley de Prensa, ante el medio que lo publicó."
-      - "El derecho al olvido (art. 17 del RGPD), ante el sitio web o ante la AEPD."
+      - "El derecho al olvido (art. 17 del RGPD), ante el sitio web o la AEPD."
       - "El derecho a la propia imagen, mediante una denuncia penal ante la policía."
       - "El derecho de propiedad intelectual, ante el Registro de la Propiedad."
     correcta: 1

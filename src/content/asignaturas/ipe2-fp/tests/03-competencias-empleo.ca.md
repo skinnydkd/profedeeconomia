@@ -12,7 +12,7 @@ preguntas:
       - "Les hard skills són les més difícils de desenvolupar i les soft skills, les fàcils."
       - "Les hard skills són tècniques i certificables; les soft skills servixen en qualsevol lloc."
       - "Les hard skills s'usen en llocs tècnics i les soft skills, en els de tracte amb la clientela."
-      - "Les soft skills s'aprenen en l'FP i les hard skills, només en la universitat."
+      - "Les soft skills s'aprenen en l'FP i les hard skills, en la universitat."
     correcta: 1
     explicacion: "Les **hard skills** (competències tècniques) són els coneixements específics de la teua professió, que s'aprenen i es certifiquen (programar, portar comptabilitat, manejar una màquina). Les **soft skills** (transversals) són capacitats personals, socials i emocionals que servixen en qualsevol lloc i sector, no es certifiquen però s'entrenen. El nom enganya: *soft* no vol dir fàcils; són les més difícils de desenvolupar i les més decisives a llarg termini."
   - enunciado: "La unitat resumix amb una frase per què importen tant les competències transversals. Quina?"
@@ -27,7 +27,7 @@ preguntas:
     opciones:
       - "És senyal que l'equip ha fracassat i convé dissoldre'l o refer-lo."
       - "És una fase normal i necessària abans que l'equip rendisca bé."
-      - "Només apareix en equips sense un líder clar des del primer dia."
+      - "Apareix en els equips que no tenen un líder clar des del primer dia."
       - "És la fase final, quan es tanca el projecte i s'avalua el que s'ha aprés."
     correcta: 1
     explicacion: "La fase de **conflicte (storming)** —tensions pel repartiment de tasques, els criteris i el lideratge— és una fase **normal i necessària**, no un fracàs. Saber que quasi tots els equips passen per ahí abans de rendir bé evita dramatitzar-la. Les cinc fases són: formació, conflicte, normalització, exercici i finalització. La fase en què es tanca el projecte i s'avalua el que s'ha aprés és una altra: la finalització (*adjourning*)."
@@ -35,8 +35,8 @@ preguntas:
     opciones:
       - "El format per les persones més brillants (tots «cervells»)."
       - "El que combina rols complementaris entre les persones que el formen."
-      - "El més nombrós possible, per a repartir millor la càrrega de treball."
-      - "El que té un únic líder fort que decidix i repartix totes les tasques."
+      - "El més nombrós possible, per a repartir millor la càrrega de faena."
+      - "El que té un únic líder que decidix i repartix les tasques."
     correcta: 1
     explicacion: "Belbin va observar que els equips formats només per «cervells» rendixen pitjor que els **equilibrats**. Un equip eficaç combina **rols complementaris**: cervell (idees), coordinador (organitza), implementador (executa), avaluador (analitza riscos) i cohesionador (cuida el clima). L'equilibri és el que rendix, no reunir els més brillants. Un líder únic que ho decidix tot tampoc és suficient: coordinar és un dels rols, no l'equip sencer."
   - enunciado: "Què és la comunicació assertiva?"
@@ -44,7 +44,7 @@ preguntas:
       - "Defendre la teua opinió amb fermesa fins que la resta l'accepte."
       - "Cedir en el que faça falta per a mantindre el bon clima dins de l'equip."
       - "Dir el que penses i necessites amb claredat i respecte cap a l'altre."
-      - "Parlar només quan tens dades que avalen el que dius."
+      - "Evitar opinar fins a tindre dades que avalen el que dius."
     correcta: 2
     explicacion: "L'**assertivitat** és dir el que penses, sents i necessites amb claredat i respecte, sense agredir ni sotmetre't. Es contrasta amb l'estil **passiu** (calles i cedixes, et frustres) i l'**agressiu** (imposes i interromps, guanyes la discussió i perds l'equip). L'estil assertiu aconseguix que et respecten i mantingues la relació. Defendre la teua opinió fins que els altres l'accepten s'acosta a l'estil agressiu, i cedir en tot per a mantindre el clima, al passiu."
   - enunciado: "En què consistix l'escolta activa?"
@@ -66,9 +66,9 @@ preguntas:
   - enunciado: "Segons la unitat, què diu la investigació sobre la intel·ligència emocional i l'exercici professional?"
     opciones:
       - "Només importa el quocient intel·lectual: la intel·ligència emocional no aporta res."
-      - "Suma al quocient intel·lectual, sobretot en llocs de tracte amb persones."
+      - "Suma al quocient intel·lectual, sobretot en el tracte amb persones."
       - "Pesa bastant més que el quocient intel·lectual en qualsevol tipus de lloc."
-      - "Només marca diferències en treballs creatius i artístics, no en els tècnics."
+      - "Marca diferències en els treballs creatius i artístics, no en els tècnics."
     correcta: 1
     explicacion: "Goleman va popularitzar la idea que la intel·ligència emocional importa tant com el quocient intel·lectual, o més. La investigació posterior confirma que **suma**, encara que menys del que es va dir: la capacitat cognitiva continua sent un dels millors predictors de l'exercici professional, i la intel·ligència emocional hi aporta alguna cosa més, sobretot en llocs de relació i lideratge. Per això no se sosté que pese més que el quocient intel·lectual en qualsevol lloc."
   - enunciado: "En la matriu d'Eisenhower, quin quadrant és «el més rendible i el més descuidat»?"

@@ -11,8 +11,8 @@ preguntas:
     opciones:
       - "Passar d'estudiar teoria a fer pràctiques en una empresa."
       - "Passar de ser alumne a ser candidat davant de qui t'ha de contractar."
-      - "Passar de conéixer els teus drets laborals a saber reclamar-los en l'empresa."
-      - "Passar de buscar treball per compte d'altri a muntar la teua pròpia empresa."
+      - "Passar de conéixer els teus drets laborals a saber reclamar-los."
+      - "Passar de buscar treball per compte d'altri a muntar la teua empresa."
     correcta: 1
     explicacion: "IPE I mirava cap a dins (qui eres, què se't dona bé, quins drets tens). IPE II gira la càmera cap a fora: passes d'**alumne** a **candidat**, i la pregunta deixa de ser «qui soc?» per a ser «com em veu qui ha de contractar-me i com aconseguisc que m'elegisca a mi?». L'emprenedoria també apareix en el mòdul, però no és eixe canvi de perspectiva: el punt de partida és veure't com a candidat."
   - enunciado: "Segons els estudis d'ocupabilitat citats en la unitat, quina part dels llocs de treball es cobrix en l'anomenat mercat ocult?"
@@ -30,7 +30,7 @@ preguntas:
       - "El contracte en pràctiques obligatori."
       - "El contracte per hores sense límit de duració."
     correcta: 1
-    explicacion: "La reforma laboral de 2021 va reduir la temporalitat i va convertir el **contracte indefinit en la regla general**. L'antic «contracte d'obra i servei» va desaparéixer; hui el habitual en entrar és l'indefinit, el fix-discontinu o, en FP, el contracte de formació en alternança."
+    explicacion: "La reforma laboral de 2021 va reduir la temporalitat i va convertir el **contracte indefinit en la regla general**. L'antic «contracte d'obra i servei» va desaparéixer; hui l'habitual en entrar és l'indefinit, el fix-discontinu o, en FP, el contracte de formació en alternança."
   - enunciado: "Què és un ATS (Applicant Tracking System) en un procés de selecció?"
     opciones:
       - "Una agència de treball temporal que assigna candidats a les seues empreses clients."
@@ -84,7 +84,7 @@ preguntas:
       - "Respondre el mateix dia a una oferta acabada de publicar en un portal."
       - "Presentar-te a una empresa que no ha publicat cap oferta."
       - "Inscriure't en la borsa d'ocupació del SEPE o del teu centre d'FP."
-      - "Enviar el mateix CV genèric a moltes empreses alhora."
+      - "Enviar el mateix CV genèric a moltes empreses alhora per correu."
     correcta: 1
     explicacion: "La **candidatura espontània** consistix a presentar-te a una empresa que **no ha publicat cap oferta** perquè t'interessa treballar-hi. Ben feta, és una de les vies més rendibles al mercat ocult, però la clau és la **personalització**: identificar la persona adequada, demostrar que coneixes l'empresa i proposar què pots aportar. Per això enviar el mateix CV genèric a moltes empreses no compta: un correu genèric va directe a la paperera."
   - tipo: verdadero-falso

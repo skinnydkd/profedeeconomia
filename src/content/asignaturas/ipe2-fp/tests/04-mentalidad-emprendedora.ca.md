@@ -25,15 +25,15 @@ preguntas:
     explicacion: "**EntreComp** (Comissió Europea, 2016) organitza la competència emprenedora en tres àrees: **Idees i oportunitats** (detectar oportunitats, ser creatiu, tindre visió), **Recursos** (autoconeixement, motivació, mobilitzar recursos i altres persones) i **En acció** (prendre la iniciativa, planificar, afrontar el risc, aprendre de l'experiència). En total, 15 competències entrenables. La iniciativa, la creativitat o el risc són competències concretes dins d'eixes àrees, no les àrees en si."
   - enunciado: "Què és la mentalitat emprenedora, segons la definició de la unitat?"
     opciones:
-      - "Un talent innat que tenen algunes persones i que es nota des de joves."
+      - "Un talent innat que tenen algunes persones des de joves."
       - "La capacitat de convertir idees en accions que creen valor per a altres."
-      - "L'ambició de muntar un negoci propi i guanyar diners com més prompte millor."
+      - "L'ambició de muntar un negoci propi i guanyar diners ràpid."
       - "L'habilitat de redactar un pla de negoci complet abans d'actuar."
     correcta: 1
     explicacion: "La mentalitat emprenedora és la capacitat de **transformar idees en accions que generen valor** per a altres persones. Eixe valor pot ser econòmic, social o professional. No la definix el resultat, sinó l'actitud: iniciativa en lloc d'espera, proposta en lloc de queixa. I s'aprén i s'entrena, no és un do innat."
   - enunciado: "Què és l'intraemprenedoria?"
     opciones:
-      - "Emprendre dins del sector tecnològic, amb una startup de base digital pròpia."
+      - "Emprendre en el sector tecnològic amb una startup digital."
       - "Aplicar la mentalitat emprenedora dins d'una empresa que no és teua."
       - "Muntar una empresa amb altres socis que aporten capital i experiència."
       - "Treballar com a autònom per a una sola empresa clienta des de casa."
@@ -59,7 +59,7 @@ preguntas:
     opciones:
       - "Un programari japonés que planifica la producció de la cadena de muntatge."
       - "La millora contínua a partir de xicotetes idees de qui fa la faena."
-      - "Un sistema automàtic que para la línia quan detecta un defecte."
+      - "Un sistema automàtic que para la línia tan prompte com detecta un defecte."
       - "Un mètode de direcció en què els caps decidixen cada millora del taller."
     correcta: 1
     explicacion: "El **kaizen** («millora contínua» en japonés) es basa en una idea senzilla: les millors idees per a millorar la faena les té qui fa la faena, no qui la dirigix des d'un despatx. L'empresa arreplega desenes de milers de xicotetes suggerències a l'any. En Toyota, qualsevol operari pot tirar del cordó **andon** i detindre la línia davant un defecte: no és un sistema automàtic, és una persona que decidix parar."
@@ -83,8 +83,8 @@ preguntas:
     opciones:
       - "Una innovació radical de producte, perquè crea una cosa que no existia."
       - "Intraemprenedoria, innovació de procés i iniciativa personal."
-      - "Un sprint de Scrum aplicat a l'organització del taller."
-      - "Emprenedoria per compte propi i innovació de màrqueting."
+      - "Un sprint de Scrum de dues setmanes aplicat a l'organització del taller."
+      - "Emprenedoria per compte propi i innovació de màrqueting i de producte."
     correcta: 1
     explicacion: "L'exemple de l'alumne que numera els ganxos de les claus no inventa res: **detecta un problema, proposa una solució i l'executa**. Això és **intraemprenedoria, innovació de procés i iniciativa**, tot alhora, amb cost quasi zero. No és innovació radical: millora com es fa una cosa que ja existia. És just el tipus de conducta que fa que una empresa vulga quedar-se amb un alumne de pràctiques."
   - tipo: verdadero-falso

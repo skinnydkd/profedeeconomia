@@ -17,8 +17,8 @@ preguntas:
     explicacion: "La unitat definix la marca personal com **«el que diuen de tu quan ixes de la sala»**: l'empremta que deixes i la percepció que els altres tenen de tu com a professional, no el que tu afirmes de tu mateix."
   - enunciado: "La unitat afirma que la teua marca personal..."
     opciones:
-      - "Només existix a partir del moment en què decidixes crear-la i cuidar-la."
-      - "Existix la treballes o no: l'única decisió és si la gestiones."
+      - "Existix a partir del moment en què decidixes crear-la i cuidar-la."
+      - "Existix la treballes o no: l'única decisió és si la gestiones a propòsit."
       - "És el mateix que el teu currículum, però en format digital."
       - "Només importa en perfils creatius o amb molts seguidors en xarxes."
     correcta: 1
@@ -36,7 +36,7 @@ preguntas:
       - "Tindre com més seguidors i contactes millor, encara que no siguen del sector."
       - "La coherència: que tots els teus canals conten la mateixa història."
       - "Publicar contingut cada dia perquè l'algoritme no t'oblide."
-      - "Usar sempre un to molt formal i corporatiu, sense opinions pròpies."
+      - "Usar un to molt formal i corporatiu, sense opinions pròpies."
     correcta: 1
     explicacion: "La regla d'or és la **coherència**: el professional que descriu el teu CV, el del teu LinkedIn, el que es presenta en l'entrevista i el del portafolis han de ser la mateixa persona amb el mateix missatge, la mateixa proposta de valor, el mateix to i les mateixes dades. La incoherència és el que més ràpid destruïx una marca personal, i no s'arregla sumant seguidors: si el teu CV diu una cosa i el teu LinkedIn una altra, perds credibilitat."
   - enunciado: "El CV de hui té dos lectors. Quins?"
@@ -50,8 +50,8 @@ preguntas:
   - enunciado: "Quin d'estos és un error que descarta un CV d'FP a la primera?"
     opciones:
       - "Incloure l'FCT i els projectes del cicle com si foren experiència."
-      - "Posar en el CV un nivell d'idiomes més alt que el que tens."
-      - "Usar verbs d'acció amb resultats quantificats."
+      - "Posar en el CV un nivell d'idiomes més alt del que tens."
+      - "Usar verbs d'acció i donar resultats quantificats en cada lloc."
       - "Limitar-lo a una sola pàgina amb un resum professional dalt."
     correcta: 1
     explicacion: "**Inflar el nivell d'idiomes** descarta candidatures perquè cau en trenta segons d'entrevista. Altres errors típics: faltes d'ortografia, CV genèric sense adaptar, format que l'ATS no llig, funcions en lloc d'èxits i oblidar l'FCT. Incloure l'FCT i els projectes del cicle, en canvi, és un encert: per a un perfil júnior són experiència vàlida i diferenciadora. També ho són quantificar èxits i cabre en una pàgina."
@@ -82,7 +82,7 @@ preguntas:
   - enunciado: "Si trobes contingut perjudicial i irrellevant sobre tu a internet, quin dret pots exercir i sota quina normativa?"
     opciones:
       - "El dret de rèplica, regulat per la Llei de Premsa, davant el mitjà que ho va publicar."
-      - "El dret a l'oblit (art. 17 del RGPD), davant el lloc web o davant l'AEPD."
+      - "El dret a l'oblit (art. 17 del RGPD), davant el lloc web o l'AEPD."
       - "El dret a la pròpia imatge, per mitjà d'una denúncia penal davant la policia."
       - "El dret de propietat intel·lectual, davant el Registre de la Propietat."
     correcta: 1

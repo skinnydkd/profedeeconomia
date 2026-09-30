@@ -24,7 +24,7 @@ preguntas:
     explicacion: "**EntreComp** (Comisión Europea, 2016) organiza la competencia emprendedora en tres áreas: **Ideas y oportunidades** (detectar oportunidades, ser creativo, tener visión), **Recursos** (autoconocimiento, motivación, movilizar recursos y a otras personas) y **En acción** (tomar la iniciativa, planificar, afrontar el riesgo, aprender de la experiencia). En total, 15 competencias entrenables. La iniciativa, la creatividad o el riesgo son competencias concretas dentro de esas áreas, no las áreas en sí."
   - enunciado: "¿Qué es la mentalidad emprendedora, según la definición de la unidad?"
     opciones:
-      - "Un talento innato que tienen algunas personas y que se nota desde jóvenes."
+      - "Un talento innato que tienen algunas personas desde jóvenes."
       - "La capacidad de convertir ideas en acciones que crean valor para otros."
       - "La ambición de montar un negocio propio y ganar dinero cuanto antes."
       - "La habilidad de redactar un plan de negocio completo antes de actuar."
@@ -32,7 +32,7 @@ preguntas:
     explicacion: "La mentalidad emprendedora es la capacidad de **transformar ideas en acciones que generan valor** para otras personas. Ese valor puede ser económico, social o profesional. No la define el resultado, sino la actitud: iniciativa en lugar de espera, propuesta en lugar de queja. Y se aprende y se entrena, no es un don innato."
   - enunciado: "¿Qué es el intraemprendimiento?"
     opciones:
-      - "Emprender dentro del sector tecnológico, con una startup de base digital propia."
+      - "Emprender en el sector tecnológico con una startup digital."
       - "Aplicar la mentalidad emprendedora dentro de una empresa que no es tuya."
       - "Montar una empresa con otros socios que aportan capital y experiencia."
       - "Trabajar como autónomo para una sola empresa cliente desde casa."
@@ -58,7 +58,7 @@ preguntas:
     opciones:
       - "Un software japonés que planifica la producción de la cadena de montaje."
       - "La mejora continua a partir de pequeñas ideas de quien hace el trabajo."
-      - "Un sistema automático que detiene la línea cuando detecta un defecto."
+      - "Un sistema automático que detiene la línea en cuanto detecta un defecto."
       - "Un método de dirección en el que los jefes deciden cada mejora del taller."
     correcta: 1
     explicacion: "El **kaizen** (\"mejora continua\" en japonés) se basa en una idea sencilla: las mejores ideas para mejorar el trabajo las tiene quien hace el trabajo, no quien lo dirige desde un despacho. La empresa recoge decenas de miles de pequeñas sugerencias al año. En Toyota, cualquier operario puede tirar del cordón **andon** y detener la línea ante un defecto: no es un sistema automático, es una persona que decide parar."
@@ -82,8 +82,8 @@ preguntas:
     opciones:
       - "Una innovación radical de producto, porque crea algo que no existía."
       - "Intraemprendimiento, innovación de proceso e iniciativa personal."
-      - "Un sprint de Scrum aplicado a la organización del taller."
-      - "Emprendimiento por cuenta propia e innovación de marketing."
+      - "Un sprint de Scrum de dos semanas aplicado a la organización del taller."
+      - "Emprendimiento por cuenta propia e innovación de marketing y de producto."
     correcta: 1
     explicacion: "El ejemplo del alumno que numera los ganchos de las llaves no inventa nada: **detecta un problema, propone una solución y la ejecuta**. Eso es **intraemprendimiento, innovación de proceso e iniciativa**, todo a la vez, con coste casi cero. No es innovación radical: mejora cómo se hace algo que ya existía. Es justo el tipo de conducta que hace que una empresa quiera quedarse con un alumno de prácticas."
   - tipo: verdadero-falso

@@ -26,8 +26,8 @@ preguntas:
     opciones:
       - "El primero para producir la solución; el segundo para venderla."
       - "El primero para entender el problema; el segundo para buscar la solución."
-      - "El primero para generar ideas de solución; el segundo para elegir la mejor."
-      - "El primero para analizar el mercado; el segundo para hacer el plan financiero."
+      - "El primero para generar ideas; el segundo para elegir la mejor."
+      - "El primero para analizar el mercado; el segundo para el plan financiero."
     correcta: 1
     explicacion: "El **doble diamante** representa el diseño como dos ciclos de divergencia y convergencia: el **primero** sirve para descubrir y definir el **problema** real; el **segundo**, para desarrollar y validar la **solución**. Deja claro un punto que casi todos se saltan: antes de buscar soluciones hay que dedicar un diamante entero a entender el problema. Generar ideas de solución y elegir la mejor ocurre dentro del segundo diamante (divergir y converger); no son los dos diamantes."
   - enunciado: "¿Qué significan divergir y converger en el proceso creativo?"
@@ -51,7 +51,7 @@ preguntas:
       - "Porque la gente no entiende bien qué producto le estás describiendo."
       - "Porque casi todos dirán que sí por cortesía, sin compromiso real."
       - "Porque revela tu idea y alguien de la competencia podría copiarla."
-      - "Porque la gente tiende a exagerar las pegas y a decir que no."
+      - "Porque la gente tiende a exagerar las pegas y a decir que no lo compraría."
     correcta: 1
     explicacion: "Si preguntas \"¿comprarías mi app?\", casi todo el mundo dirá que sí por cortesía: esa respuesta no vale nada. La clave de *The Mom Test* es hacer preguntas que **ni tu madre podría responder con un cumplido vacío**, y eso se consigue preguntando por **hechos pasados** (\"cuéntame la última vez que tuviste este problema, ¿qué hiciste?\"), no por intenciones futuras."
   - enunciado: "Durante una entrevista de problema, ¿qué proporción del tiempo debería hablar el entrevistado?"
@@ -66,7 +66,7 @@ preguntas:
     opciones:
       - "La versión final y pulida del producto, lista para vender."
       - "Una versión barata e incompleta para ver cómo reacciona el usuario."
-      - "Una versión económica del producto para clientes con poco presupuesto."
+      - "Una versión económica del producto para vender más barato."
       - "Una maqueta muy cuidada para impresionar a posibles inversores."
     correcta: 1
     explicacion: "Un **prototipo de baja fidelidad** es una versión incompleta y barata (un dibujo en papel, una maqueta de cartón, un folleto, un vídeo, una página de aterrizaje) hecha para **ver cómo reacciona el usuario** antes de invertir en serio. Lo que importa no es la calidad del prototipo, sino la **calidad de la reacción** que provoca. No es un producto para vender ni una maqueta para impresionar."
@@ -83,7 +83,7 @@ preguntas:
       - "Construir el producto igualmente y esperar a que el mercado lo descubra."
       - "Descartarla pronto y volver a buscar un problema real que resolver."
       - "Pedir financiación para una campaña que convenza al mercado del problema."
-      - "Rehacer las entrevistas con otras preguntas hasta que salga un sí."
+      - "Rehacer las entrevistas con otras preguntas hasta que salga un sí claro."
     correcta: 1
     explicacion: "Si el problema no es real ni suficiente, hay que **volver a la detección de problemas**. **Descartar pronto una mala idea es una victoria, no un fracaso**: te ahorra tiempo y dinero. El objetivo de la validación es precisamente decidir si el problema merece seguir, no enamorarse de la propia idea. Repetir las entrevistas hasta que salga un sí sería engañarte: se trata de aprender, no de confirmar lo que ya creías."
   - tipo: verdadero-falso
