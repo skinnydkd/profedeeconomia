@@ -95,6 +95,18 @@ preguntas:
     derecha: ["Un soci, un vot; tributa al 20 %", "Capital mínim de 60.000 € en accions", "SL amb un únic soci i responsabilitat limitada", "Responsabilitat il·limitada amb tot el patrimoni"]
     correctas: [1, 0, 3, 2]
     explicacion: "SA → 60.000 € en accions; cooperativa → un soci, un vot i tipus del 20 %; autònom → responsabilitat il·limitada; SLU → SL amb un únic soci."
+  - enunciado: "Una societat limitada laboral té quatre socis. Quin d'estos repartiments del capital complix els requisits de la Llei 44/2015?"
+    opciones:
+      - "Un treballador indefinit amb el 40 % i tres socis capitalistes amb el 20 % cadascun."
+      - "Tres treballadors indefinits amb el 25 % cadascun i un soci capitalista amb el 25 %."
+      - "Dos treballadors indefinits amb el 20 % cadascun i dos capitalistes amb el 30 % cadascun."
+      - "Quatre treballadors amb contracte temporal, amb el 25 % del capital cadascun."
+    correcta: 1
+    explicacion: "La Llei 44/2015 exigix que la majoria del capital siga de treballadors amb contracte indefinit i que cap soci supere un terç del capital (amb excepcions). En b) els treballadors tenen el 75 % i ningú passa del 25 %. En a) un soci té el 40 % i els treballadors no arriben a la meitat; en c) els treballadors només tenen el 40 %, i en d) els contractes són temporals."
+  - tipo: verdadero-falso
+    enunciado: "Una comunitat de béns paga l'Impost de Societats, com una SL, perquè té personalitat jurídica pròpia."
+    correcta: false
+    explicacion: "Fals. La comunitat de béns no té personalitat jurídica: els seus rendiments s'atribuïxen als comuners segons la seua quota i cadascú els declara en el seu IRPF (règim d'atribució de rendes, art. 8.3 de la Llei 35/2006). A més, els comuners responen dels deutes de manera il·limitada."
 ---
 
 Test d'autoavaluació de la Unitat 2 del llibre d'EDMN 2BACH.

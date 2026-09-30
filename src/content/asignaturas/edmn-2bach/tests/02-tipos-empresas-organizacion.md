@@ -93,6 +93,18 @@ preguntas:
     derecha: ["Un socio, un voto; tributa al 20 %", "Capital mínimo de 60.000 € en acciones", "SL con un único socio y responsabilidad limitada", "Responsabilidad ilimitada con todo el patrimonio"]
     correctas: [1, 0, 3, 2]
     explicacion: "SA → 60.000 € en acciones; cooperativa → un socio, un voto y tipo del 20 %; autónomo → responsabilidad ilimitada; SLU → SL con un único socio."
+  - enunciado: "Una sociedad limitada laboral tiene cuatro socios. ¿Cuál de estos repartos del capital cumple los requisitos de la Ley 44/2015?"
+    opciones:
+      - "Un trabajador indefinido con el 40 % y tres socios capitalistas con el 20 % cada uno."
+      - "Tres trabajadores indefinidos con el 25 % cada uno y un socio capitalista con el 25 %."
+      - "Dos trabajadores indefinidos con el 20 % cada uno y dos capitalistas con el 30 % cada uno."
+      - "Cuatro trabajadores con contrato temporal, con el 25 % del capital cada uno."
+    correcta: 1
+    explicacion: "La Ley 44/2015 exige que la mayoría del capital sea de trabajadores con contrato indefinido y que ningún socio supere un tercio del capital (salvo excepciones). En b) los trabajadores tienen el 75 % y nadie pasa del 25 %. En a) un socio tiene el 40 % y los trabajadores no llegan a la mitad; en c) los trabajadores solo tienen el 40 %, y en d) los contratos son temporales."
+  - tipo: verdadero-falso
+    enunciado: "Una comunidad de bienes paga el Impuesto de Sociedades, como una SL, porque tiene personalidad jurídica propia."
+    correcta: false
+    explicacion: "Falso. La comunidad de bienes no tiene personalidad jurídica: sus rendimientos se atribuyen a los comuneros según su cuota y cada uno los declara en su IRPF (régimen de atribución de rentas, art. 8.3 de la Ley 35/2006). Además, los comuneros responden de las deudas de forma ilimitada."
 ---
 
 Test de autoevaluación de la Unidad 2 del libro de EDMN 2BACH.
