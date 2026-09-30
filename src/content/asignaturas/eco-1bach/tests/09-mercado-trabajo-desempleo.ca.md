@@ -70,7 +70,7 @@ preguntas:
       - "La bretxa ajustada és una estimació oficial de l'INE i la sense ajustar és una estimació dels sindicats."
       - "La bretxa ajustada es calcula sobre salari brut i la sense ajustar sobre salari net."
     correcta: 0
-    explicacion: "La bretxa sense ajustar compara salaris mitjans directament (a Espanya, al voltant del 9 % per hora segons Eurostat i el 15,7 % en guany anual segons l'INE) i inclou efectes com la segregació ocupacional o la parcialitat. La bretxa ajustada controla per característiques observables i reflectix la part residual atribuïble a discriminació o factors menys visibles, com la penalització per maternitat (child penalty) documentada per Kleven et al. (2019)."
+    explicacion: "La bretxa sense ajustar compara salaris mitjans directament (a Espanya, al voltant del 9 % per hora segons Eurostat i el 16,1 % en guany anual segons l'INE el 2024) i inclou efectes com la segregació ocupacional o la parcialitat. La bretxa ajustada controla per característiques observables i reflectix la part residual atribuïble a discriminació o factors menys visibles, com la penalització per maternitat (child penalty) documentada per Kleven et al. (2019)."
   - enunciado: "El tret històric que diferencia el mercat laboral espanyol del model nòrdic de flexiseguretat és…"
     opciones:
       - "Espanya té salari mínim i els països nòrdics no el tenen."

@@ -68,7 +68,7 @@ preguntas:
       - "La brecha ajustada es una estimación oficial del INE y la sin ajustar es una estimación de los sindicatos."
       - "La brecha ajustada se calcula sobre salario bruto y la sin ajustar sobre salario neto."
     correcta: 0
-    explicacion: "La brecha sin ajustar compara salarios medios directamente (en España, en torno al 9 % por hora según Eurostat y el 15,7 % en ganancia anual según el INE) e incluye efectos como la segregación ocupacional o la parcialidad. La brecha ajustada controla por características observables y refleja la parte residual atribuible a discriminación o factores menos visibles, como la penalización por maternidad (child penalty) documentada por Kleven et al. (2019)."
+    explicacion: "La brecha sin ajustar compara salarios medios directamente (en España, en torno al 9 % por hora según Eurostat y el 16,1 % en ganancia anual según el INE en 2024) e incluye efectos como la segregación ocupacional o la parcialidad. La brecha ajustada controla por características observables y refleja la parte residual atribuible a discriminación o factores menos visibles, como la penalización por maternidad (child penalty) documentada por Kleven et al. (2019)."
   - enunciado: "El rasgo histórico que diferencia el mercado laboral español del modelo nórdico de flexiguridad es…"
     opciones:
       - "España tiene salario mínimo y los países nórdicos no lo tienen."
