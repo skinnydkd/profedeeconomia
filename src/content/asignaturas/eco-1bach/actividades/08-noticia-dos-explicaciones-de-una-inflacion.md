@@ -15,7 +15,7 @@ materiales:
 solucion:
   - "<strong>Análisis A (shock de oferta).</strong> Desplaza la <strong>AS a la izquierda</strong>: suben los precios y cae la producción a la vez. Es la estanflación, y es lo que hace único a un shock de oferta: las dos malas noticias llegan juntas."
   - "<strong>Análisis B (shock de demanda).</strong> Desplaza la <strong>AD a la derecha</strong>: suben los precios <em>y</em> sube la producción. El diagnóstico es mucho menos preocupante y la receta es distinta."
-  - "<strong>El dato que los separa.</strong> Qué le pasa al PIB. Si los precios suben mientras la producción cae o se estanca, el sospechoso es la oferta; si suben con la producción creciendo con fuerza, la demanda. En 2022 el PIB español creció un 5,8 %, así que el cuadro no es de estanflación pura: hay componentes de los dos lados."
+  - "<strong>El dato que los separa.</strong> Qué le pasa al PIB. Si los precios suben mientras la producción cae o se estanca, el sospechoso es la oferta; si suben con la producción creciendo con fuerza, la demanda. En 2022 el PIB español creció un 6,2 %, así que el cuadro no es de estanflación pura: hay componentes de los dos lados."
   - "<strong>Subyacente frente a general.</strong> La inflación general se dispara antes (llega al 10,8 % en julio de 2022, arrastrada por la energía) y la subyacente sube después y más despacio, pero baja mucho más lentamente. Ese desfase es la huella de un shock que empieza en los costes y se va trasladando al resto de precios."
   - "<strong>Por qué importa el diagnóstico.</strong> Contra un shock de demanda, subir tipos funciona. Contra un shock de oferta, subir tipos frena la economía sin tocar la causa: se paga producción y empleo a cambio de contener las expectativas. Por eso el debate no era académico."
 estado: publicado
@@ -39,7 +39,7 @@ No es un matiz de redacción. **Son dos curvas distintas moviéndose**, con dos 
 | --- | --- |
 | Inflación general máxima (julio de 2022) | 10,8 % |
 | Inflación subyacente máxima (febrero de 2023) | en torno al 7,6 % |
-| Crecimiento del PIB real en 2022 | 5,8 % |
+| Crecimiento del PIB real en 2022 | 6,2 % |
 | Componente que más tira al principio del episodio | energía |
 | Componente que sostiene la inflación en 2023 | alimentos y servicios |
 

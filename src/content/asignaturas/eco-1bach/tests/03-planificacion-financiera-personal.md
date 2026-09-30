@@ -26,7 +26,7 @@ preguntas:
       - "Berta, porque aporta tres veces y media más capital."
       - "Empatan exactamente, porque el tipo de interés es el mismo."
       - "Ana, porque su capital tiene mucho más tiempo para componerse."
-      - "Depende exclusivamente del tipo de interés aplicado."
+      - "Berta, porque invierte durante 35 años y Ana solo durante 10 años."
     correcta: 2
     explicacion: "Al 7 %, Ana llega a unos 295.000 € y Berta, a unos 276.500 €. Ana acaba con más pese a aportar tres veces y media menos, porque sus 20.000 € tienen hasta 45 años para componerse, mientras que las últimas aportaciones de Berta apenas tienen tiempo de crecer. Ojo: con rentabilidades más bajas gana Berta (al 5 %, unos 180.600 € frente a 138.800 €). El punto de corte está en torno al 6,6 %."
   - enunciado: "¿Cuál de estas afirmaciones describe correctamente la relación entre rentabilidad, riesgo y liquidez de los productos financieros?"

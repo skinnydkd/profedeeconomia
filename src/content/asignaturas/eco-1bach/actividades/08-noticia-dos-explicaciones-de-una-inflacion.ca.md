@@ -15,7 +15,7 @@ materiales:
 solucion:
   - "<strong>Anàlisi A (xoc d'oferta).</strong> Desplaça l'<strong>AS a l'esquerra</strong>: pugen els preus i cau la producció alhora. És l'estanflació, i és el que fa únic un xoc d'oferta: les dues males notícies arriben juntes."
   - "<strong>Anàlisi B (xoc de demanda).</strong> Desplaça l'<strong>AD a la dreta</strong>: pugen els preus <em>i</em> puja la producció. El diagnòstic és molt menys preocupant i la recepta és distinta."
-  - "<strong>La dada que els separa.</strong> Què li passa al PIB. Si els preus pugen mentres la producció cau o s'estanca, el sospitós és l'oferta; si pugen amb la producció creixent amb força, la demanda. El 2022 el PIB espanyol va créixer un 5,8 %, així que el quadre no és d'estanflació pura: hi ha components dels dos costats."
+  - "<strong>La dada que els separa.</strong> Què li passa al PIB. Si els preus pugen mentres la producció cau o s'estanca, el sospitós és l'oferta; si pugen amb la producció creixent amb força, la demanda. El 2022 el PIB espanyol va créixer un 6,2 %, així que el quadre no és d'estanflació pura: hi ha components dels dos costats."
   - "<strong>Subjacent enfront de general.</strong> La inflació general es dispara abans (arriba al 10,8 % el juliol de 2022, arrossegada per l'energia) i la subjacent puja després i més a poc a poc, però baixa molt més lentament. Eixe desfasament és l'empremta d'un xoc que comença als costos i es va traslladant a la resta de preus."
   - "<strong>Per què importa el diagnòstic.</strong> Contra un xoc de demanda, pujar tipus funciona. Contra un xoc d'oferta, pujar tipus frena l'economia sense tocar la causa: es paga producció i ocupació a canvi de contindre les expectatives. Per això el debat no era acadèmic."
 lang: ca
@@ -41,7 +41,7 @@ No és un matís de redacció. **Són dues corbes distintes movent-se**, amb dos
 | --- | --- |
 | Inflació general màxima (juliol de 2022) | 10,8 % |
 | Inflació subjacent màxima (febrer de 2023) | al voltant del 7,6 % |
-| Creixement del PIB real el 2022 | 5,8 % |
+| Creixement del PIB real el 2022 | 6,2 % |
 | Component que més tira al principi de l'episodi | energia |
 | Component que sosté la inflació el 2023 | aliments i servicis |
 
