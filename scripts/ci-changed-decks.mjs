@@ -27,11 +27,18 @@ const CONTENT_ROOT = 'src/content/asignaturas';
 /**
  * Paths whose change can move a slide in any deck. Kept deliberately wide: a
  * missed subject ships an overflowing slide, a spare one costs two minutes.
+ * Besides the engine itself, the slides take their tokens and fonts from
+ * global.css, are rendered by the diapositivas route, draw the book's diagrams
+ * inside them, and are laid out by whatever the lockfile installs.
  */
 export const ENGINE_PREFIXES = [
   'src/lib/slides/',
   'src/components/slides/',
   'src/styles/slides.css',
+  'src/styles/global.css',
+  'src/components/diagrams/',
+  'src/pages/[asignatura]/diapositivas/',
+  'package-lock.json',
   'scripts/build-deck-pdf.mjs',
 ];
 

@@ -84,3 +84,26 @@ describe('subjectFaqs — locale (§5.8)', () => {
     expect(subjectFaqs(ASIGNATURAS['fopp-4eso'])[0].q).toContain('¿Qué es');
   });
 });
+
+describe('curriculum note grammar (CODE-WEB-16)', () => {
+  // The marco can be feminine («Ley Orgánica 3/2022…»): «establecido en el
+  // Ley» was wrong, so no article goes in front of it in either language.
+  it('puts no masculine article in front of the regulation', () => {
+    for (const a of Object.values(ASIGNATURAS)) {
+      for (const locale of ['es', 'ca'] as const) {
+        const loc = localizeAsignatura(a, locale);
+        const normativa = subjectFaqs(loc, locale).find((f) => f.a.includes(loc.marcoNormativo))!;
+        expect(normativa.a, `${a.slug} ${locale}`).not.toMatch(/\b(el|en el) (Ley|Llei|Real|Reial|Decret)/);
+      }
+    }
+    expect(subjectFaqs(ASIGNATURAS['ipe1-fp'])[1].a).toContain('según Ley Orgánica 3/2022');
+  });
+
+  it('keeps the subject title as written in the hub note', async () => {
+    const { readFileSync } = await import('node:fs');
+    const hub = readFileSync('src/pages/[asignatura]/index.astro', 'utf8');
+    // «Itinerario Personal para la Empleabilidad I» lowercased read «… empleabilidad i».
+    expect(hub).not.toContain('a.title.toLowerCase()');
+    expect(hub).not.toMatch(/(establecido en el|establit en el|basará en el|basarà en el) \$\{marco\}/);
+  });
+});

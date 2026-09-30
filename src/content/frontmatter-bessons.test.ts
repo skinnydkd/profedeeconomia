@@ -11,9 +11,11 @@ import { join } from 'node:path';
  * units and competences of the old 10-unit structure, so they would have been
  * listed under the wrong unit as soon as Catalan went live. Only the fields
  * below must match; titles, descriptions, `lang` and `slug` are expected to
- * differ. `estado` is left out on purpose: publishing a Spanish piece is an
- * editorial decision, and `asignaturas-ca-parity.test.ts` already requires
- * every Catalan twin to be published.
+ * differ.
+ *
+ * `estado` is compared on its own: a Spanish piece left in draft next to a
+ * published translation is published in neither language (the pages are built
+ * from the Spanish entries), which is how two GPE activities vanished.
  */
 const ROOT = 'src/content';
 
@@ -52,6 +54,19 @@ const PARES = walk(ROOT)
   .map((es) => ({ es, ca: es.replace(/\.(mdx?)$/, '.ca.$1') }))
   .filter(({ ca }) => existsSync(ca));
 
+/**
+ * Pairs whose Spanish file is deliberately still a draft while the translation
+ * is ready. Both were published in neither language because their Spanish file
+ * had no `estado`; whether to publish them is pending the author's decision.
+ * Remove a pair from here when its Spanish file is published.
+ */
+const ESTADO_PENDIENTE = new Set([
+  'src/content/asignaturas/gpe-bach/actividades/04-caso-publicidad-responsable.md',
+  'src/content/asignaturas/gpe-bach/actividades/06-debate-economia-sumergida.md',
+]);
+
+const sinComillas = (v: string | undefined) => v?.replace(/^['"]|['"]$/g, '');
+
 describe('ES/CA twins share their placement metadata', () => {
   it('finds twins to compare', () => {
     expect(PARES.length).toBeGreaterThan(100);
@@ -69,5 +84,20 @@ describe('ES/CA twins share their placement metadata', () => {
       }
     }
     expect(diferencias).toEqual([]);
+  });
+
+  it('has the same estado in both languages (CODE-WEB-09)', () => {
+    const diferencias = PARES.filter(({ es }) => !ESTADO_PENDIENTE.has(es.split('\\').join('/')))
+      .map(({ es, ca }) => ({ es, vEs: sinComillas(campo(frontmatter(es), 'estado')), vCa: sinComillas(campo(frontmatter(ca), 'estado')) }))
+      .filter(({ vEs, vCa }) => vEs !== vCa)
+      .map(({ es, vEs, vCa }) => `${es}: ES=${vEs ?? '—'} CA=${vCa ?? '—'}`);
+    expect(diferencias).toEqual([]);
+  });
+
+  it('keeps the pending pairs listed only while they differ', () => {
+    for (const es of ESTADO_PENDIENTE) {
+      const ca = es.replace(/\.(mdx?)$/, '.ca.$1');
+      expect(campo(frontmatter(es), 'estado'), es).not.toBe(campo(frontmatter(ca), 'estado'));
+    }
   });
 });
