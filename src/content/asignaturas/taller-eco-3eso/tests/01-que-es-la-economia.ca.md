@@ -2,27 +2,27 @@
 asignatura: taller-eco-3eso
 unidad_relacionada: 1
 title: "Test · Unitat 1 — Què és l'economia?"
-duracion_estimada: "10 min"
+duracion_estimada: "15 min"
 lang: ca
 estado: publicado
 slug: "asignaturas/taller-eco-3eso/tests/01-que-es-la-economia.ca"
 preguntas:
   - enunciado: "D'on naix l'economia, segons la unitat?"
     opciones:
-      - "Dels diners: sense diners no hi ha economia."
-      - "De l'escassetat: desitgem quasi de tot, però els mitjans per a aconseguir-ho són limitats."
-      - "Dels governs, que van inventar els impostos."
-      - "De les empreses, que produïxen béns."
+      - "Dels diners: sense monedes ni bitllets no hi hauria res a estudiar."
+      - "De l'escassetat: volem més del que els nostres mitjans permeten."
+      - "De la pobresa: cal triar quan no arriba per al més bàsic."
+      - "Del comerç: apareix quan la gent comença a comprar i vendre."
     correcta: 1
-    explicacion: "L'economia naix de l'escassetat: com que els desitjos són quasi il·limitats i els mitjans limitats, estem obligats a triar."
+    explicacion: "L'economia naix de l'escassetat: els desitjos són quasi il·limitats i els mitjans (diners, temps, materials) són limitats, així que estem obligats a triar. No naix de la pobresa: una persona rica tampoc pot tindre-ho tot i també ha de triar."
   - enunciado: "Quina d'estes afirmacions sobre l'escassetat és correcta?"
     opciones:
-      - "Escassetat significa pobresa: només viuen en escassetat les persones sense diners."
+      - "Escassetat significa pobresa: la patixen els qui tenen pocs diners."
       - "Una persona rica no viu en escassetat, perquè pot comprar el que vullga."
-      - "L'escassetat és una característica del món: fins i tot una persona rica no pot tindre-ho tot ni estar en dos llocs alhora."
-      - "L'escassetat desapareix quan un país produïx molt."
+      - "També la viu una persona rica, perquè ningú pot tindre-ho tot."
+      - "Desapareix quan un país produïx molt i les botigues estan plenes."
     correcta: 2
-    explicacion: "L'escassetat és una característica del món, no del teu compte bancari: ningú, per ric que siga, pot tindre absolutament tot el que desitja."
+    explicacion: "L'escassetat és una característica del món, no del teu compte bancari: ningú, per ric que siga, pot tindre tot el que desitja ni estar en dos llocs alhora. Per això no és el mateix que pobresa, encara que sovint es confonen."
   - enunciado: "Quina d'estes és una necessitat primària?"
     opciones:
       - "Tindre l'últim mòbil."
@@ -33,12 +33,12 @@ preguntas:
     explicacion: "Les necessitats primàries són les que cal cobrir per a viure i estar sa: menjar, beure, dormir, abrigar-se, tindre un sostre, la salut."
   - enunciado: "Un tall de cabell o una classe particular són exemples de…"
     opciones:
-      - "Béns, perquè cobrixen una necessitat."
-      - "Serveis, perquè algú els fa per tu i no es poden tocar."
-      - "Recursos naturals."
-      - "Béns lliures."
+      - "Béns, perquè cobrixen una necessitat i cal pagar-los."
+      - "Serveis: algú els fa per tu i no es poden tocar."
+      - "Recursos, perquè fan servir el treball d'una persona."
+      - "Béns econòmics, perquè són escassos i tenen preu."
     correcta: 1
-    explicacion: "Un servei és una cosa que algú fa per tu i que no es pot tocar, com un tall de cabell o una classe."
+    explicacion: "Un servei és una cosa que algú fa per tu i que no es pot tocar, com un tall de cabell o una classe. És veritat que costa diners i cobrix una necessitat, però això no el convertix en un bé: els béns són coses materials, com una samarreta o un baló."
   - enunciado: "Quin d'estos és un bé lliure?"
     opciones:
       - "Una samarreta."
@@ -49,12 +49,12 @@ preguntas:
     explicacion: "Un bé lliure és tan abundant que està disponible per a tots sense cost i sense haver de produir-lo, com l'aire o la llum del sol."
   - enunciado: "En economia, què s'entén per «capital» com a recurs o factor de producció?"
     opciones:
-      - "Només els diners que té una empresa."
-      - "Les coses fabricades per les persones que servixen per a produir altres coses, com màquines, ferramentes o ordinadors."
-      - "Els recursos naturals com l'aigua o el petroli."
-      - "L'esforç físic i mental dels treballadors."
+      - "Els diners que una empresa té guardats al banc."
+      - "Les màquines i ferramentes fabricades per a produir altres coses."
+      - "Els recursos naturals, com l'aigua o el petroli."
+      - "L'esforç físic i mental dels qui treballen en l'empresa."
     correcta: 1
-    explicacion: "En economia, capital no són només diners: són els béns fabricats (màquines, ferramentes, ordinadors, fàbriques) que servixen per a produir altres coses."
+    explicacion: "En economia, capital són els béns fabricats per les persones que servixen per a produir altres coses: màquines, ferramentes, ordinadors, fàbriques. Una fleca fa servir com a capital el forn i la pastadora. No són només diners, que és la confusió més habitual."
   - enunciado: "El dissabte tens 20 € i tries anar al cine (15 €) en compte de comprar-te una samarreta (18 €) que et venia de gust. Quin és el teu cost d'oportunitat?"
     opciones:
       - "Els 15 € que has gastat al cine."
@@ -65,12 +65,12 @@ preguntas:
     explicacion: "El cost d'oportunitat és el valor de la millor alternativa a què renuncies: en este cas, la samarreta que ja no et pots comprar."
   - enunciado: "Segons la unitat, per què es diu que el temps és el recurs més escàs de tots?"
     opciones:
-      - "Perquè és el més car de comprar."
-      - "Perquè, a diferència dels diners, no es pot estalviar ni recuperar."
-      - "Perquè només el tenen les persones adultes."
-      - "Perquè no té cost d'oportunitat."
+      - "Perquè és el més car que es pot comprar."
+      - "Perquè no es pot estalviar ni recuperar."
+      - "Perquè cada vegada tenim menys hores lliures que abans."
+      - "Perquè usar-lo no té cost d'oportunitat i es malgasta."
     correcta: 1
-    explicacion: "El temps és el recurs més escàs perquè, a diferència dels diners, no es pot estalviar ni recuperar: tot el temps que uses en una cosa és temps que no uses en una altra."
+    explicacion: "El temps és el recurs més escàs perquè, a diferència dels diners, no es pot estalviar ni recuperar: tot el temps que uses en una cosa és temps que no uses en una altra. I sí que té cost d'oportunitat: fins i tot una vesprada al sofà en té un."
   - enunciado: "Com que els recursos són escassos, tota economia ha de respondre a tres preguntes. Quines són?"
     opciones:
       - "Quan, on i per quant?"
@@ -89,4 +89,22 @@ preguntas:
     derecha: ["Recurs natural", "Bé lliure", "Treball", "Capital"]
     correctas: [2, 0, 3, 1]
     explicacion: "El treball és l'esforç de les persones; el petroli és un recurs natural; la màquina és capital (un bé fabricat per a produir-ne altres); l'aire és un bé lliure, abundant i gratuït."
+  - enunciado: "L'ajuntament del cas té 5 milions i tres projectes: el parc, el col·legi i les festes. Tria arreglar el parc i, dels altres dos, el que més li costa deixar és la reforma del col·legi. Quin és el cost d'oportunitat d'arreglar el parc?"
+    opciones:
+      - "Els diners que costa arreglar el parc."
+      - "La reforma del col·legi, la millor alternativa a què renuncia."
+      - "El col·legi i les festes, perquè renuncia als dos projectes."
+      - "Cap: els diners públics no ixen de la butxaca de ningú."
+    correcta: 1
+    explicacion: "El cost d'oportunitat és la millor alternativa a què es renuncia, no totes les alternatives juntes ni els diners gastats. Si el col·legi era el que més li dolia deixar, eixe és el cost d'arreglar el parc. I els diners públics també tenen cost d'oportunitat: el que es gasta en una cosa no es gasta en una altra."
+  - tipo: numerico
+    enunciado: "El dissabte tens 20 €. El pla de cine amb crispetes costa 15 € i la samarreta que fa temps que mires, 18 €. Quants euros més necessitaries per a poder permetre't els dos plans?"
+    respuesta: 13
+    tolerancia: 0
+    unidad: "€"
+    explicacion: "Els dos plans junts costen 15 + 18 = 33 €. Tens 20 €, així que et falten 33 − 20 = 13 €. Com que no els tens, has de triar-ne un dels dos: això és l'escassetat. I el que deixes de banda serà el teu cost d'oportunitat."
+  - tipo: verdadero-falso
+    enunciado: "Passar la vesprada del diumenge gitat al sofà mirant vídeos no té cost d'oportunitat, perquè no gastes ni un euro."
+    correcta: false
+    explicacion: "És fals: el cost d'oportunitat no es mesura només en diners. Eixes hores les podries haver fet servir per a estudiar, entrenar o veure algú que t'importa, i la millor d'eixes alternatives és el seu cost. Descansar també és valuós; es tracta de saber a què renuncies."
 ---
