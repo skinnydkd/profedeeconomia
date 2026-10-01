@@ -6,6 +6,7 @@ import UnitNotes from '@components/UnitNotes.tsx';
 import RecursosRelacionados from '@components/libro/RecursosRelacionados.astro';
 import { getIndiceRecursos } from '@/lib/recursos-relacionados-sources';
 import { recursosDeUnidad } from '@/lib/recursos-relacionados';
+import { getMaterialPorUnidad } from '@/lib/material-unidad-sources';
 import { articleLd, breadcrumbLd } from '@/lib/seo';
 import { getLocale } from '@/i18n/locale';
 import { pickLocalizedEntry } from '@/i18n/content-locale';
@@ -63,6 +64,14 @@ const unitKey = `${a.slug}-u${unit.data.unidad}`;
 // Related transversal resources for this unit (inverse index, built once per build).
 const recursos = recursosDeUnidad(await getIndiceRecursos(locale), unit.data.asignatura, unit.data.unidad);
 
+// The unit's own material, linked from the top (VIS-NAV-05): before, the page
+// only led back to the hub, so a teacher had to go round to find the slides.
+const material = (await getMaterialPorUnidad(unit.data.asignatura, locale)).find((m) => m.unidad === unit.data.unidad);
+const mCopy = {
+  es: { label: 'Material de esta unidad', enEsta: 'En esta unidad:', diapositivas: 'Diapositivas', test: 'Test', reto: 'Reto', actividades: (n: number) => (n === 1 ? '1 actividad' : `${n} actividades`) },
+  ca: { label: 'Material d\'esta unitat', enEsta: 'En esta unitat:', diapositivas: 'Diapositives', test: 'Test', reto: 'Repte', actividades: (n: number) => (n === 1 ? '1 activitat' : `${n} activitats`) },
+}[locale];
+
 // Localized view of the unit (CA sibling under /ca, ES otherwise).
 const d = view.data;
 
@@ -119,6 +128,17 @@ const jsonLd = [
       </div>
       <h1>{d.title}</h1>
       {d.lema && <p class="lede">{d.lema}</p>}
+      {material && (
+        <nav class="unit-material" aria-label={mCopy.label}>
+          <span class="unit-material__label">{mCopy.enEsta}</span>
+          <a href={material.diapositivas}>{mCopy.diapositivas}</a>
+          {material.test && <><span class="sep" aria-hidden="true">·</span><a href={material.test}>{mCopy.test}</a></>}
+          {material.actividadesHref && <><span class="sep" aria-hidden="true">·</span><a href={material.actividadesHref}>{mCopy.actividades(material.actividades)}</a></>}
+          {material.retos.map((r, i) => (
+            <><span class="sep" aria-hidden="true">·</span><a href={r}>{material.retos.length > 1 ? `${mCopy.reto} ${i + 1}` : mCopy.reto}</a></>
+          ))}
+        </nav>
+      )}
 
       <dl class="unit-meta">
         {d.duracion && (
@@ -234,6 +254,11 @@ const jsonLd = [
     font-variation-settings: "SOFT" 80;
   }
 
+  .unit-material { margin: 1.2rem 0 1.4rem; font-size: 1rem; color: var(--color-ink-soft); }
+  .unit-material__label { font-weight: 600; color: var(--color-ink); margin-right: 0.5em; }
+  .unit-material a { color: var(--color-terra-ink); text-decoration: none; }
+  .unit-material a:hover { text-decoration: underline; }
+  .unit-material .sep { margin: 0 0.45em; color: var(--color-mustard); }
   .unit-meta {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
