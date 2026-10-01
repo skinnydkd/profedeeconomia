@@ -17,7 +17,8 @@ import bankData from '../../../server-only/jocs-bank.json';
 const TIMER_QUESTION_MS = 45 * 1000;
 const TIMER_GRACE_MS = 5 * 1000;
 const MAX_ELAPSED_MS = TIMER_QUESTION_MS + TIMER_GRACE_MS; // 50 s
-const CLIENT_TOLERANCE_MS = 2000;
+/** Largest round trip we trust the client's own clock for (see recordedElapsedMs). */
+const MAX_LATENCY_MS = 1500;
 /** The client shows the result for 3 s before the next question appears. */
 const RESULT_SCREEN_MS = 3000;
 /** What the client sends when its timer runs out without an answer. */
@@ -127,7 +128,7 @@ export const POST: APIRoute = async ({ request }) => {
   } else {
     // The player tapped a position in this game's order; grade the bank option behind it.
     isCorrect = indiceBanco(gameId, questionId, nOpciones, optionIdx) === currentQ.correcta;
-    elapsedMsRecorded = recordedElapsedMs(serverElapsedMs, clientElapsedMs, CLIENT_TOLERANCE_MS);
+    elapsedMsRecorded = recordedElapsedMs(serverElapsedMs, clientElapsedMs, MAX_LATENCY_MS);
   }
   const correctIdx = indiceMostrado(gameId, questionId, nOpciones, currentQ.correcta);
 

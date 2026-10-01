@@ -4,7 +4,7 @@ import {
   createInitialState, unlockedAssets, allocationSum, isAllocationValid,
   netWorth, advanceYear, isFinished, currentYear,
 } from './engine';
-import { INITIAL_CASH, INCOME_PER_ROUND, YEARS, TOTAL_ROUNDS } from './data';
+import { INITIAL_CASH, INCOME_PER_ROUND, YEARS, TOTAL_ROUNDS, MARKET_DATA } from './data';
 
 const noEvents = () => 1; // rng returning 1 => no life event (>= LIFE_EVENT_CHANCE)
 
@@ -21,7 +21,8 @@ describe('engine', () => {
   it('unlocks only round-appropriate assets', () => {
     expect(unlockedAssets(0).map((a) => a.id)).toEqual(['ahorro', 'deposito']);
     expect(unlockedAssets(3).map((a) => a.id)).toContain('ibex');
-    expect(unlockedAssets(8).map((a) => a.id)).toContain('bitcoin');
+    expect(unlockedAssets(8).map((a) => a.id)).toContain('inmobiliario');
+    expect(unlockedAssets(12).map((a) => a.id)).toContain('bitcoin');
   });
 
   it('validates the allocation sums to 100 over unlocked assets', () => {
@@ -63,17 +64,21 @@ describe('engine', () => {
     expect(next.lastEvent).not.toBeNull();
   });
 
-  it('asset with null return that year keeps its value unchanged', () => {
+  it('bitcoin can only be bought from 2012, its first year with market data', () => {
+    // It used to unlock in 2008: going 100 % Bitcoin in the crash earned a silent
+    // 0 % (null return) and the year's summary hid the row.
+    for (const round of [8, 9, 10, 11]) {
+      expect(unlockedAssets(round).map((a) => a.id)).not.toContain('bitcoin');
+    }
     const s = createInitialState();
-    s.round = 8;            // year 2008, bitcoin unlocked but MARKET_DATA[2008].bitcoin === null
+    s.round = 12;           // year 2012
     s.phase = 'allocate';
     s.cash = 0;
     s.holdings = { ...s.holdings, bitcoin: 1000 };
-    s.allocation = { ...s.allocation };
-    for (const a of unlockedAssets(8)) s.allocation[a.id] = 0;
+    for (const a of unlockedAssets(12)) s.allocation[a.id] = 0;
     s.allocation.bitcoin = 100;
     const next = advanceYear(s, () => 1); // no event
-    expect(next.holdings.bitcoin).toBeCloseTo(1000, 2); // net worth 1000 → 100% bitcoin → null return → unchanged
+    expect(next.holdings.bitcoin).toBeCloseTo(1000 * (1 + MARKET_DATA[2012].bitcoin!), 2);
   });
 
   it('life event cannot push cash below zero', () => {

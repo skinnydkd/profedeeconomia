@@ -1,7 +1,14 @@
 // src/components/jocs-economics/JocsApp.tsx
 import { useState, useEffect } from 'preact/hooks';
-import type { PublicQuestion, FinalStats, AnswerResult } from '../../lib/jocs-economics/client/types';
+import type { FinalStats } from '../../lib/jocs-economics/client/types';
 import { api } from '../../lib/jocs-economics/client/api';
+import { loadJSON, saveJSON } from '../../lib/storage';
+import {
+  applyAnswer,
+  RESULT_SCREEN_MS,
+  type GameSession,
+  type ResultData,
+} from '../../lib/jocs-economics/client/session';
 import { Welcome } from './screens/Welcome';
 import { Playing } from './screens/Playing';
 import { Result } from './screens/Result';
@@ -14,22 +21,6 @@ interface SavedIdentity { name: string; institute: string }
 
 type Phase = 'welcome' | 'playing' | 'result' | 'gameover';
 
-interface GameSession {
-  gameId: string;
-  token: string;
-  currentQuestion: PublicQuestion;
-  livesLeft: number;
-  score: number;
-  questionsAnswered: number;
-  timeTotalMs: number;
-  questionStartedAtMs: number;
-}
-
-interface ResultData {
-  result: AnswerResult;
-  selectedOptionIdx: number;
-}
-
 export default function JocsApp() {
   const [identity, setIdentity] = useState<SavedIdentity | null>(null);
   const [phase, setPhase] = useState<Phase>('welcome');
@@ -37,23 +28,16 @@ export default function JocsApp() {
   const [lastResult, setLastResult] = useState<ResultData | null>(null);
   const [final, setFinal] = useState<FinalStats | null>(null);
 
-  // SSR-safe: only read localStorage in useEffect
+  // SSR-safe: only read localStorage in useEffect (blocked or malformed: no saved identity)
   useEffect(() => {
-    if (typeof window === 'undefined') return;
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (raw) {
-      try {
-        setIdentity(JSON.parse(raw));
-      } catch {
-        // ignore malformed data
-      }
-    }
+    const saved = loadJSON<SavedIdentity | null>(STORAGE_KEY, null);
+    if (saved) setIdentity(saved);
   }, []);
 
   function saveIdentity(name: string, institute: string) {
     const i = { name, institute };
     setIdentity(i);
-    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(i)); } catch {}
+    saveJSON(STORAGE_KEY, i);
   }
 
   async function startGame(name: string, institute: string) {
@@ -91,27 +75,20 @@ export default function JocsApp() {
         optionIdx,
         clientElapsedMs,
       });
-      setLastResult({ result: res.result, selectedOptionIdx: optionIdx });
-      if ('finished' in res) {
-        setFinal(res.final);
+      const outcome = applyAnswer(session, optionIdx, res, Date.now());
+      setLastResult(outcome.lastResult);
+      if (outcome.kind === 'finished') {
+        setFinal(outcome.final);
         // Show result 3s then transition to GameOver
         setPhase('result');
-        setTimeout(() => setPhase('gameover'), 3000);
+        setTimeout(() => setPhase('gameover'), RESULT_SCREEN_MS);
       } else {
-        setSession({
-          ...session,
-          currentQuestion: res.nextQuestion,
-          livesLeft: res.result.livesLeft,
-          score: res.totals.score,
-          questionsAnswered: res.totals.questionsAnswered,
-          timeTotalMs: res.totals.timeTotalMs,
-          questionStartedAtMs: Date.now() + 3000, // applied when transitioning back to playing after 3s
-        });
+        setSession(outcome.session);
         setPhase('result');
         setTimeout(() => {
           setSession((prev) => prev ? { ...prev, questionStartedAtMs: Date.now() } : prev);
           setPhase('playing');
-        }, 3000);
+        }, RESULT_SCREEN_MS);
       }
     } catch (err: any) {
       alert(`Error: ${err?.message || 'no se puede enviar la respuesta'}`);
@@ -157,11 +134,8 @@ export default function JocsApp() {
   if (phase === 'result' && lastResult) {
     return (
       <div class="jocs-app">
-        <Result
-          question={session.currentQuestion}
-          result={lastResult.result}
-          selectedOptionIdx={lastResult.selectedOptionIdx}
-        />
+        {/* The answered question: the session already holds the next one. */}
+        <Result {...lastResult} />
       </div>
     );
   }

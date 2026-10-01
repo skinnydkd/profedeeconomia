@@ -8,6 +8,12 @@ import jwt from 'jsonwebtoken';
 // unir-s'hi. Amb 30 dies el profe perdia el control de la lliga a mig curs.
 const DEFAULT_EXPIRY_SECONDS = 60 * 60 * 24 * 365;
 
+// What verification actually enforces: the token's age, not its `exp`. Tokens
+// issued before the one-year change carry a 30-day `exp` and cannot be renewed,
+// so honouring it would orphan leagues created back then in the middle of the
+// course. A bit over a year covers a full course for old and new tokens alike.
+const MAX_TOKEN_AGE_SECONDS = 60 * 60 * 24 * 400;
+
 export type Rol = 'profe' | 'equipo';
 
 export interface BgTokenPayload {
@@ -32,7 +38,11 @@ export type VerifyResult =
 
 export function verifyBgToken(token: string, secret: string): VerifyResult {
   try {
-    const decoded = jwt.verify(token, secret, { algorithms: ['HS256'] }) as BgTokenPayload;
+    const decoded = jwt.verify(token, secret, { algorithms: ['HS256'], ignoreExpiration: true }) as
+      BgTokenPayload & { iat?: number };
+    if (typeof decoded.iat !== 'number' || Date.now() / 1000 - decoded.iat > MAX_TOKEN_AGE_SECONDS) {
+      return { ok: false, reason: 'expired' };
+    }
     if (typeof decoded.ligaId !== 'string' || (decoded.rol !== 'profe' && decoded.rol !== 'equipo')) {
       return { ok: false, reason: 'malformed' };
     }

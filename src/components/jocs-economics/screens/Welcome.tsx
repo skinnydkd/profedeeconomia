@@ -1,6 +1,8 @@
 // src/components/jocs-economics/screens/Welcome.tsx
 import { useState, useEffect } from 'preact/hooks';
 import { api } from '../../../lib/jocs-economics/client/api';
+// Pure helpers (no server dependencies): the same key rule /api/jocs/start applies.
+import { isValidInstituteKey, normalizeInstitute } from '../../../lib/jocs-economics/server/institutes';
 
 interface Props {
   initialIdentity: { name: string; institute: string } | null;
@@ -34,7 +36,8 @@ export function Welcome({ initialIdentity, onStart }: Props) {
   }, [institute]);
 
   const canStart = name.trim().length >= 1 && name.trim().length <= 40
-    && institute.trim().length >= 2 && institute.trim().length <= 80;
+    && institute.trim().length >= 2 && institute.trim().length <= 80
+    && isValidInstituteKey(normalizeInstitute(institute));
 
   return (
     <>

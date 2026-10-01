@@ -145,6 +145,24 @@ describe('econopoly engine', () => {
     expect(s2.properties[cellId].owner).toBe(0); // bidder won
   });
 
+  it('a bid from the last bidder still in the auction closes it at that price', () => {
+    // Player 0 landed and sent the lot to auction; player 1 passes first.
+    const s = createInitialState(PLAYERS); s.phase = 'resolve';
+    const cellId = sectorCellIds('A')[0];
+    const price = CELLS[cellId].property!.basePrice;
+    s.players[0].position = cellId;
+    let s2 = startAuction(s, cellId);
+    expect(s2.activeAuction!.currentBidder).toBe(1);
+    s2 = auctionPass(s2);
+    expect(s2.activeAuction!.currentBidder).toBe(0);
+    const cashBefore = s2.players[0].cash;
+    s2 = auctionBid(s2, price);
+    // Nobody is left to outbid player 0: no second turn to bid against itself.
+    expect(s2.activeAuction).toBeNull();
+    expect(s2.properties[cellId].owner).toBe(0);
+    expect(s2.players[0].cash).toBe(cashBefore - price);
+  });
+
   it('auctionPass with no bids: property stays unowned', () => {
     const s = createInitialState(PLAYERS); s.phase = 'resolve';
     const cellId = sectorCellIds('B')[0];

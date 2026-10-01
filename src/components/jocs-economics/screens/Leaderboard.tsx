@@ -93,7 +93,7 @@ export default function Leaderboard() {
                   <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 18 }}>{r.totalScore}</span>
                 </div>
                 <div class="jocs-mute" style={{ fontSize: 12 }}>
-                  Top 5: {r.totalScore} pts · Top jugador: {r.topPlayer.playerName} ({r.topPlayer.score}) · {r.playersCount} participantes
+                  Suma de las 5 mejores partidas (una por alumno): {r.totalScore} pts · Top jugador: {r.topPlayer.playerName} ({r.topPlayer.score}) · {r.playersCount} {r.playersCount === 1 ? 'participante' : 'participantes'}
                 </div>
               </li>
             ))}

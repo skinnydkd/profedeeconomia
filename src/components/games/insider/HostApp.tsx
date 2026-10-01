@@ -11,6 +11,7 @@ import { HostFinal } from './screens/HostFinal';
 import './insider.css';
 import { GameLocaleContext, useGameLocale } from '../locale-context';
 import { DEFAULT_LOCALE, type Locale } from '@/i18n/locale';
+import { loadString, saveString } from '@/lib/storage';
 
 // ---------------------------------------------------------------------------
 // Helpers
@@ -30,12 +31,12 @@ function generateRoomCode(): string {
 function getOrCreatePlayerId(): string {
   // Use sessionStorage (tab-scoped) so each tab gets its own id.
   // This prevents host/student id collision when both are open in the same browser.
-  if (typeof sessionStorage === 'undefined') return crypto.randomUUID();
+  // If the browser blocks storage, the id lasts for this page load.
   const key = 'pde:multi:playerId';
-  let id = sessionStorage.getItem(key);
+  let id = loadString(key, 'session');
   if (!id) {
     id = crypto.randomUUID();
-    sessionStorage.setItem(key, id);
+    saveString(key, id, 'session');
   }
   return id;
 }
