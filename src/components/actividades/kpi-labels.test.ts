@@ -42,6 +42,22 @@ describe('decision-tree KPI names', () => {
     expect(sinNombre).toEqual([]);
   });
 
+  // The bar only lists the ids in `kpi_inicial`, so a decision that moves any
+  // other id changes nothing on screen (the GPE vivero tree did this with
+  // `costes_mes` and `reputacion`).
+  it('only moves KPIs that the bar shows', () => {
+    const invisibles = arboles.flatMap(({ path, tree }) =>
+      Object.entries(tree.nodes).flatMap(([nodo, { opciones }]) =>
+        opciones.flatMap((o) =>
+          Object.keys(o.kpi_delta)
+            .filter((id) => !(id in tree.intro.kpi_inicial))
+            .map((id) => `${path} ${nodo}: ${id}`),
+        ),
+      ),
+    );
+    expect(invisibles).toEqual([]);
+  });
+
   it('gives the Valencian edition Valencian names', () => {
     expect(nombreKpi('claridad_futuro', 'ca')).toBe('Claredat sobre el futur');
     expect(nombreKpi('claridad_futuro', 'es')).toBe('Claridad sobre el futuro');
