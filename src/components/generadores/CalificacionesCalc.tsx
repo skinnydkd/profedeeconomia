@@ -1,8 +1,10 @@
 /** @jsxImportSource preact */
 import { useMemo, useState } from 'preact/hooks';
-import { mediaPonderada, rubricaANota, sumaPesos } from '@/lib/calc/calificaciones';
+import { mediaPonderada, pesosSuman100, rubricaANota, sumaPesos } from '@/lib/calc/calificaciones';
 import { formatNumber } from '@/lib/calc/format';
 import { type Locale } from '@/i18n/locale';
+import NumberInput from '../NumberInput';
+import LiveSummary from '../LiveSummary';
 
 /**
  * Grading calculator island — two independent blocks:
@@ -29,7 +31,7 @@ export const COPY = {
     notaAria: (nombre: string) => `Nota de ${nombre}`,
     eliminarAria: (nombre: string) => `Eliminar ${nombre}`,
     addInstrumento: '+ Añadir instrumento',
-    pesosNotice: (total: number) =>
+    pesosNotice: (total: string) =>
       `Los pesos suman ${total} %, no 100 %. La media se calcula proporcionalmente.`,
     notaFinal: 'Nota final',
     sumaPesos: 'Suma de pesos',
@@ -58,7 +60,7 @@ export const COPY = {
     notaAria: (nombre: string) => `Nota de ${nombre}`,
     eliminarAria: (nombre: string) => `Eliminar ${nombre}`,
     addInstrumento: '+ Afegir instrument',
-    pesosNotice: (total: number) =>
+    pesosNotice: (total: string) =>
       `Els pesos sumen ${total} %, no 100 %. La mitjana es calcula proporcionalment.`,
     notaFinal: 'Nota final',
     sumaPesos: 'Suma de pesos',
@@ -106,15 +108,10 @@ export default function CalificacionesCalc({ locale = 'es' }: Props) {
   const totalPesos = useMemo(() => sumaPesos(rows), [rows]);
   const mediaFinal = useMemo(() => mediaPonderada(rows), [rows]);
 
-  function updateRow(i: number, field: keyof Row, raw: string) {
+  function updateRow<K extends keyof Row>(i: number, field: K, value: Row[K]) {
     setRows((prev) => {
       const next = [...prev];
-      if (field === 'nombre') {
-        next[i] = { ...next[i], nombre: raw };
-      } else {
-        const v = parseFloat(raw);
-        next[i] = { ...next[i], [field]: Number.isFinite(v) ? v : 0 };
-      }
+      next[i] = { ...next[i], [field]: value };
       return next;
     });
   }
@@ -142,6 +139,16 @@ export default function CalificacionesCalc({ locale = 'es' }: Props) {
     if (n === null) return '—';
     return formatNumber(n, 2);
   }
+
+  // Results for screen readers, one per block.
+  const resumenMedia =
+    mediaFinal === null
+      ? ''
+      : `${c.notaFinal}: ${fmtNota(mediaFinal)} / 10.${
+          pesosSuman100(totalPesos) ? '' : ` ${c.pesosNotice(formatNumber(totalPesos, 2))}`
+        }`;
+  const resumenRubrica =
+    notaRubrica === null ? c.maximosNotice : `${c.notaResultante}: ${fmtNota(notaRubrica)} / ${escala}.`;
 
   return (
     <div class="cg-calc">
@@ -175,30 +182,24 @@ export default function CalificacionesCalc({ locale = 'es' }: Props) {
                     />
                   </td>
                   <td class="cg-calc__td">
-                    <input
+                    <NumberInput
                       class="cg-calc__input"
-                      type="number"
                       min={0}
                       max={100}
                       step={5}
                       value={row.peso}
-                      onInput={(e) =>
-                        updateRow(i, 'peso', (e.target as HTMLInputElement).value)
-                      }
+                      onValue={(v) => updateRow(i, 'peso', v)}
                       aria-label={c.pesoAria(row.nombre)}
                     />
                   </td>
                   <td class="cg-calc__td">
-                    <input
+                    <NumberInput
                       class="cg-calc__input"
-                      type="number"
                       min={0}
                       max={10}
                       step={0.5}
                       value={row.nota}
-                      onInput={(e) =>
-                        updateRow(i, 'nota', (e.target as HTMLInputElement).value)
-                      }
+                      onValue={(v) => updateRow(i, 'nota', v)}
                       aria-label={c.notaAria(row.nombre)}
                     />
                   </td>
@@ -225,9 +226,10 @@ export default function CalificacionesCalc({ locale = 'es' }: Props) {
 
         <p class="cg-calc__block-desc">{c.criterialNota}</p>
 
-        {totalPesos !== 100 && (
+        <LiveSummary text={resumenMedia} />
+        {!pesosSuman100(totalPesos) && (
           <p class="cg-calc__notice">
-            {c.pesosNotice(totalPesos)}
+            {c.pesosNotice(formatNumber(totalPesos, 2))}
           </p>
         )}
 
@@ -239,7 +241,7 @@ export default function CalificacionesCalc({ locale = 'es' }: Props) {
           </div>
           <div class="cg-calc__metric">
             <span class="cg-calc__metric-label">{c.sumaPesos}</span>
-            <span class="cg-calc__metric-value">{totalPesos}</span>
+            <span class="cg-calc__metric-value">{formatNumber(totalPesos, 2)}</span>
             <span class="cg-calc__metric-unit">%</span>
           </div>
         </div>
@@ -256,15 +258,12 @@ export default function CalificacionesCalc({ locale = 'es' }: Props) {
           <label class="cg-calc__field">
             <span class="cg-calc__label">{c.puntosObtenidos}</span>
             <div class="cg-calc__input-wrap">
-              <input
+              <NumberInput
                 class="cg-calc__input"
-                type="number"
                 min={0}
                 step={1}
                 value={obtenidos}
-                onInput={(e) =>
-                  setObtenidos(parseFloat((e.target as HTMLInputElement).value) || 0)
-                }
+                onValue={setObtenidos}
               />
             </div>
           </label>
@@ -272,15 +271,12 @@ export default function CalificacionesCalc({ locale = 'es' }: Props) {
           <label class="cg-calc__field">
             <span class="cg-calc__label">{c.puntosMaximos}</span>
             <div class="cg-calc__input-wrap">
-              <input
+              <NumberInput
                 class="cg-calc__input"
-                type="number"
                 min={1}
                 step={1}
                 value={maximos}
-                onInput={(e) =>
-                  setMaximos(parseFloat((e.target as HTMLInputElement).value) || 0)
-                }
+                onValue={setMaximos}
               />
             </div>
           </label>
@@ -288,20 +284,18 @@ export default function CalificacionesCalc({ locale = 'es' }: Props) {
           <label class="cg-calc__field">
             <span class="cg-calc__label">{c.escalaLabel}</span>
             <div class="cg-calc__input-wrap">
-              <input
+              <NumberInput
                 class="cg-calc__input"
-                type="number"
                 min={1}
                 step={1}
                 value={escala}
-                onInput={(e) =>
-                  setEscala(parseFloat((e.target as HTMLInputElement).value) || 10)
-                }
+                onValue={(v) => setEscala(v || 10)}
               />
             </div>
           </label>
         </div>
 
+        <LiveSummary text={resumenRubrica} />
         <div class="cg-calc__result-row">
           <div class="cg-calc__metric cg-calc__metric--primary">
             <span class="cg-calc__metric-label">{c.notaResultante}</span>

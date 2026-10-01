@@ -30,6 +30,8 @@ export interface ArbolJSON {
     titulo: string;
     contexto: string;
     kpi_inicial: Kpis;
+    /** Optional display name per KPI id; the shared names in kpi-labels.ts fill the rest. */
+    kpi_labels?: Record<string, string>;
   };
   nodes: Record<string, Nodo>;
   finales: Record<string, Final>;

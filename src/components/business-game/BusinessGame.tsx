@@ -12,6 +12,7 @@ import {
   type RoundResult,
 } from '@/lib/business-game/engine';
 import { CAMPOS, AREAS, decisionPorDefecto, eur, num } from '@/lib/business-game/ui';
+import NumberInput from '../NumberInput';
 
 /**
  * Business Game — prototipo jugable LOCAL (sin backend todavía).
@@ -143,7 +144,7 @@ function ParamNum({ label, k, st, set, step }: { label: string; k: keyof MarketP
   return (
     <label class="bg__field">
       <span class="bg__field-label">{label}</span>
-      <input class="bg__input" type="number" step={step} value={st.params[k]} onInput={(e) => set(k, parseFloat((e.target as HTMLInputElement).value) || 0)} />
+      <NumberInput class="bg__input" step={step} value={st.params[k]} onValue={(v) => set(k, v)} />
     </label>
   );
 }
@@ -183,7 +184,7 @@ function Decisiones({ st, setSt }: { st: Persisted; setSt: (s: Persisted) => voi
                     <label class="bg__field bg__field--row" key={c.key}>
                       <span class="bg__field-label">{c.label}</span>
                       <span class="bg__field-input">
-                        <input class="bg__input" type="number" min={0} step={c.step} value={d[c.key]} onInput={(ev) => setDec(e.id, c.key, parseFloat((ev.target as HTMLInputElement).value) || 0)} />
+                        <NumberInput class="bg__input" min={0} step={c.step} value={d[c.key]} onValue={(v) => setDec(e.id, c.key, v)} />
                         <span class="bg__unit">{c.unidad}</span>
                       </span>
                     </label>

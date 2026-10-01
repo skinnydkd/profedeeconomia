@@ -1,11 +1,11 @@
 /** @jsxImportSource preact */
-import { useEffect, useMemo, useRef, useState } from 'preact/hooks';
+import { useEffect, useId, useMemo, useRef, useState } from 'preact/hooks';
 import { loadJSON, removeKey, saveJSON } from '../../lib/storage';
 import { nivelForScore, type NivelInfo } from '../../lib/retos';
 import type { Item, RetoData } from './parse-reto';
 import Marca from '../QuizMarca';
 import TextoInline from '../TextoInline';
-import { lecturasNumero, numeroCorrecto, ordenesOpciones, ordenValido, rngDesde, textoPlano } from '../quiz-utils';
+import { lecturasNumero, numeroCorrecto, ordenesOpciones, ordenValido, rngDesde, textoNoNumerico, textoPlano } from '../quiz-utils';
 import '../QuizPlayer.css';
 import './RetoPlayer.css';
 import { shuffleNoIdentidad } from './shuffle-utils';
@@ -33,6 +33,7 @@ const COPY = {
     verNivel: 'Ver mi nivel', siguiente: 'Siguiente →',
     marcaCorrecta: 'Correcta', marcaTuya: 'Tu respuesta', filaBien: 'correcta', filaMal: 'incorrecta',
     progreso: 'Progreso',
+    cambiarSigno: 'Cambiar el signo', avisoNumero: 'Escribe solo un número, por ejemplo 12,5.',
   },
   ca: {
     genericos: ['En desenvolupament', 'Adequat', 'Avançat'],
@@ -47,6 +48,7 @@ const COPY = {
     verNivel: 'Veure el meu nivell', siguiente: 'Següent →',
     marcaCorrecta: 'Correcta', marcaTuya: 'La teua resposta', filaBien: 'correcta', filaMal: 'incorrecta',
     progreso: 'Progrés',
+    cambiarSigno: 'Canviar el signe', avisoNumero: 'Escriu només un número, per exemple 12,5.',
   },
 } as const;
 
@@ -151,6 +153,10 @@ export default function RetoPlayer({ reto, niveles, competenciaTexto, competenci
   // After moving, focus goes to the new item (or the result), not to <body>.
   const enunciadoRef = useRef<HTMLHeadingElement>(null);
   const resultadoRef = useRef<HTMLDivElement>(null);
+  const numeroRef = useRef<HTMLInputElement>(null);
+  // Ids for the numeric field: its hint, and its own name, which the sign
+  // button inside the same <label> would otherwise join.
+  const avisoNumeroId = useId();
   const moverFoco = useRef(false);
   useEffect(() => {
     if (!moverFoco.current) return;
@@ -261,6 +267,16 @@ export default function RetoPlayer({ reto, niveles, competenciaTexto, competenci
 
   // ─── Item screen ─────────────────────────────────────────
   const acerto = confirmada && esCorrecta(item, r);
+  // Said out loud when the text cannot become a number: «Confirmar» alone just stays disabled.
+  const noEsNumero = item.tipo === 'numerico' && !confirmada && typeof r === 'string' && textoNoNumerico(r);
+  // The decimal keypad of iOS has no minus key, so the sign has its own button.
+  // It is there for every numeric item: showing it only for negative answers
+  // would give the answer away.
+  const cambiarSigno = () => {
+    const v = typeof r === 'string' ? r.trim() : '';
+    setRespuesta(/^[-−]/.test(v) ? v.slice(1) : `-${v}`);
+    numeroRef.current?.focus();
+  };
   const ordArr = item.tipo === 'ordenar' && Array.isArray(r) ? (r as string[]) : [];
   const orden = item.tipo === 'opcion-multiple' ? ordenValido(estado.ordenes[estado.idx], item.opciones.length) : [];
   const hechos = estado.confirmadas.filter(Boolean).length;
@@ -329,14 +345,20 @@ export default function RetoPlayer({ reto, niveles, competenciaTexto, competenci
       {item.tipo === 'numerico' && (
         <div class={['qp__num', confirmada ? (acerto ? 'is-correct' : 'is-incorrect') : ''].join(' ').trim()}>
           <label class="qp__num-label">
-            <span>{t.tuRespuesta}</span>
+            <span id={`${avisoNumeroId}-l`}>{t.tuRespuesta}</span>
             <span class="qp__num-field">
+              <button type="button" class="rp__signe" onClick={cambiarSigno} disabled={confirmada} aria-label={t.cambiarSigno}>±</button>
               <input type="text" inputMode="decimal" autoComplete="off" class="qp__num-input" disabled={confirmada}
+                ref={numeroRef}
                 value={typeof r === 'string' ? r : ''}
-                onInput={(e) => setRespuesta(e.currentTarget.value)} />
-              {item.unidad && <span class="qp__num-unidad">{item.unidad}</span>}
+                onInput={(e) => setRespuesta(e.currentTarget.value)}
+                aria-labelledby={item.unidad ? `${avisoNumeroId}-l ${avisoNumeroId}-u` : `${avisoNumeroId}-l`}
+                aria-invalid={noEsNumero || undefined}
+                aria-describedby={noEsNumero ? avisoNumeroId : undefined} />
+              {item.unidad && <span class="qp__num-unidad" id={`${avisoNumeroId}-u`}>{item.unidad}</span>}
             </span>
           </label>
+          {noEsNumero && <p class="qp__num-aviso" id={avisoNumeroId}>{t.avisoNumero}</p>}
         </div>
       )}
 

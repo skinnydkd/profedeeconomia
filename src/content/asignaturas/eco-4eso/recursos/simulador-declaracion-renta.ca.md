@@ -20,4 +20,4 @@ slug: "asignaturas/eco-4eso/recursos/simulador-declaracion-renta.ca"
 
 - La declaració compara l'**impost que et toca pagar per tot l'any** amb les **retencions que ja t'han anat descomptant** de cada nòmina.
 - Si t'han retingut més del que devies, ix **a tornar**; si menys, ix **a pagar**.
-- És una versió simplificada amb fins didàctics: la declaració real inclou més rendes, deduccions i la part autonòmica de l'impost.
+- És una versió simplificada amb fins didàctics: usa l'escala general (l'estatal més una autonòmica tipus) i deixa fora altres rendes, altres deduccions i l'escala pròpia de cada comunitat.

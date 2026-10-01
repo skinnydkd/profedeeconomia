@@ -43,6 +43,16 @@ export interface Resultado {
   consumoEsRegresivo: boolean;
 }
 
+/**
+ * A bracket rate as the percentage its field shows (0,185 → 18,5). Plain
+ * `tipo * 100` leaves float noise (0,23 × 100 = 22,999999999999996), and
+ * rounding it to a whole number made the field show 19 % while the tax used
+ * 18,5 %. Rounding to nine decimals gives back exactly what was typed.
+ */
+export function tipoEnPorcentaje(tipo: number): number {
+  return Math.round(tipo * 1e11) / 1e9;
+}
+
 export function cuotaPorTramos(base: number, tramos: Tramo[]): number {
   if (!Number.isFinite(base) || base <= 0) return 0;
   let restante = base;

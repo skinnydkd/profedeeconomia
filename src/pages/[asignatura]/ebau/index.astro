@@ -72,7 +72,7 @@ const breadcrumb = breadcrumbLd([
 ], locale);
 ---
 
-<BaseLayout title={`${copy.ebau} — ${a.shortLabel}`} description={copy.descripcion} jsonLd={breadcrumb} contentLang={locale}>
+<BaseLayout title={`${copy.ebau} — ${a.shortLabel}`} description={copy.descripcion} jsonLd={breadcrumb} contentLang={secciones.every((s) => s.data.lang === locale) ? locale : 'es'} translated={Astro.props.secciones.every((s) => caById.has(`${s.id}.ca`))}>
   <div class="container">
     <nav class="breadcrumb">
       <a href="/">{copy.inicio}</a> <span class="sep">›</span>

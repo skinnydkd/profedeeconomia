@@ -12,6 +12,7 @@ import {
   type Evaluacion,
   type SectorId,
 } from '../../lib/calc/ratios-benchmark';
+import NumberInput from '../NumberInput';
 
 /**
  * Sector-benchmarked financial ratios calculator (EDMN 2BACH, Unit 11).
@@ -393,11 +394,10 @@ function NumberField({
     <label class="calc__field">
       <span class="calc__label">{label}</span>
       <div class="calc__input-wrap">
-        <input
-          type="number"
+        <NumberInput
           step={1}
           value={value}
-          onInput={(e) => setValue(parseFloat((e.target as HTMLInputElement).value) || 0)}
+          onValue={setValue}
         />
         <span class="calc__unit">{unit}</span>
       </div>

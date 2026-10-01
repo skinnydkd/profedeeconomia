@@ -44,6 +44,10 @@ const recursosAll = await getCollection('recursos');
 const hasRecursos = recursosAll.some((rec) => rec.data.asignatura === a.slug && rec.data.estado === 'publicado');
 const retosAll = await getCollection('retos');
 const hasRetos = retosAll.some((r) => r.data.asignatura === a.slug && r.data.estado === 'publicado');
+// Like the cards above: a subject with no published activities (CJD) linked to
+// an empty «se publicarán próximamente» page.
+const actividadesAll = await getCollection('actividades');
+const hasActividades = actividadesAll.some((x) => x.data.asignatura === a.slug && x.data.estado === 'publicado');
 
 // Every user-facing string on this hub, keyed by section slug / group id so the
 // structure below stays language-agnostic.
@@ -53,9 +57,9 @@ const copy = {
     metaDesc: (titulo: string, nivel: string, marco: string) =>
       `Material para impartir ${titulo} en ${nivel}: libro, diapositivas, actividades, tests y recursos. Currículo estatal LOMLOE (${marco}).`,
     curriculumNote: (titulo: string, marco: string) =>
-      `Este libro se basa en el currículo básico estatal LOMLOE para ${titulo}, establecido en el ${marco}. Cada comunidad autónoma establece concreciones específicas: conviene consultar la de tu comunidad para ajustar la programación a tu centro.`,
+      `Este libro se basa en el currículo básico estatal LOMLOE para ${titulo}, según ${marco}. Cada comunidad autónoma establece concreciones específicas: conviene consultar la de tu comunidad para ajustar la programación a tu centro.`,
     curriculumPendiente: (marco: string) =>
-      `El material se basará en el ${marco}. Si quieres estar al tanto de cuándo se publica, sigue`,
+      `El material se preparará según ${marco}. Si quieres estar al tanto de cuándo se publica, sigue`,
     proximamente: 'Próximamente',
     enPreparacion:
       'Este material está en preparación. Cuando se publique tendrá la misma estructura que el resto: libro, diapositivas, actividades, tests y recursos.',
@@ -92,9 +96,9 @@ const copy = {
     metaDesc: (titulo: string, nivel: string, marco: string) =>
       `Material per a impartir ${titulo} en ${nivel}: llibre, diapositives, activitats, tests i recursos. Currículum estatal LOMLOE (${marco}).`,
     curriculumNote: (titulo: string, marco: string) =>
-      `Este llibre es basa en el currículum bàsic estatal LOMLOE per a ${titulo}, establit en el ${marco}. Cada comunitat autònoma establix concrecions específiques: convé consultar la de la teua comunitat per a ajustar la programació al teu centre.`,
+      `Este llibre es basa en el currículum bàsic estatal LOMLOE per a ${titulo}, segons ${marco}. Cada comunitat autònoma establix concrecions específiques: convé consultar la de la teua comunitat per a ajustar la programació al teu centre.`,
     curriculumPendiente: (marco: string) =>
-      `El material es basarà en el ${marco}. Si vols estar al corrent de quan es publica, seguix`,
+      `El material es prepararà segons ${marco}. Si vols estar al corrent de quan es publica, seguix`,
     proximamente: 'Pròximament',
     enPreparacion:
       'Este material està en preparació. Quan es publique tindrà la mateixa estructura que la resta: llibre, diapositives, activitats, tests i recursos.',
@@ -133,7 +137,7 @@ const copy = {
 const material = [
   'libro',
   'diapositivas',
-  'actividades',
+  ...(hasActividades ? ['actividades'] : []),
   ...(hasRefuerzo ? ['refuerzo'] : []),
   ...(hasProyecto ? ['proyecto'] : []),
 ];
@@ -225,7 +229,7 @@ const jsonLd = isPublicado
 
       <div class="curriculum-note">
         {isPublicado
-          ? copy.curriculumNote(a.title.toLowerCase(), a.marcoNormativo)
+          ? copy.curriculumNote(a.title, a.marcoNormativo)
           : <>{copy.curriculumPendiente(a.marcoNormativo)} <a class="editorial-link" href="https://instagram.com/profedeeconomia" rel="external">@profedeeconomia</a>.</>
         }
       </div>
