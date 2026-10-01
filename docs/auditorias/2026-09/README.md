@@ -8,6 +8,8 @@ Tres auditories de només lectura sobre `main` (`876e002`), fetes el 28-09-2026 
 
 No s'ha modificat cap fitxer de codi ni de contingut: aquests informes són el punt de partida perquè Pau decidisca què s'arregla i en quin ordre.
 
+Les correccions que han eixit d'estes auditories, assignatura per assignatura i amb el PR de cada una, són a la **[guia de revisió](./guia-revisio.md)** (1-10-2026).
+
 ## En xifres
 
 | Auditoria | Crític | Alt | Mitjà | Baix | Total |
