@@ -20,7 +20,7 @@ slug: "asignaturas/eco-1bach/actividades/04-aceite-oliva-2022-2024.ca"
 
 ## Plantejament
 
-Entre 2022 i 2024 l'oli d'oliva verge extra va passar de costar uns 3,30 €/kg en origen a superar els 9 €/kg, multiplicant-se quasi per tres en 18 mesos. És el cas de manual perfecte per entendre com un shock d'oferta desplaça l'equilibri de mercat. L'activitat demana aplicar el model d'oferta i demanda vist a la unitat a dades reals del Ministeri d'Agricultura i deduir gràficament la direcció del canvi, justificant el resultat amb vocabulari econòmic precís.
+Entre 2022 i 2024 l'oli d'oliva verge extra va passar de costar uns 3,30 €/kg en origen a rondar els 9 €/kg, multiplicant-se quasi per tres en 18 mesos. És el cas de manual perfecte per entendre com un shock d'oferta desplaça l'equilibri de mercat. L'activitat demana aplicar el model d'oferta i demanda vist a la unitat a dades reals del Ministeri d'Agricultura i deduir gràficament la direcció del canvi, justificant el resultat amb vocabulari econòmic precís.
 
 ## Dades de partida
 

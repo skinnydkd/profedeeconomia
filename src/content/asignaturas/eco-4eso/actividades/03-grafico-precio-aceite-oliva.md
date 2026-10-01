@@ -16,7 +16,7 @@ materiales:
 solucion:
   - "<strong>1. Caída de la cosecha:</strong> (666.000 − 1.400.000) / 1.400.000 × 100 = <strong>−52,4 %</strong>. Menos de la mitad de una campaña normal."
   - "<strong>2. Subida del precio en origen:</strong> (9,00 − 3,30) / 3,30 × 100 = <strong>+172,7 %</strong>. El precio casi se triplicó."
-  - "<strong>3. Bajada posterior:</strong> (4,00 − 9,00) / 9,00 × 100 = <strong>−55,6 %</strong> entre el máximo de 2023 y 2025."
+  - "<strong>3. Bajada posterior:</strong> (4,00 − 9,00) / 9,00 × 100 = <strong>−55,6 %</strong> entre el máximo (finales de 2023 y comienzos de 2024) y 2025."
   - "<strong>4. Qué curva se movió:</strong> la <strong>oferta, hacia la izquierda</strong>, por la sequía (un factor de coste y de naturaleza). La demanda apenas se movió: las familias siguieron queriendo aceite. El modelo predice menos cantidad y precio más alto, que es lo que midieron MAPA e INE."
   - "<strong>5. La vuelta:</strong> con las lluvias, la oferta se desplazó a la <strong>derecha</strong> (campaña 2024/25 de nuevo en torno a 1,4 millones de toneladas) y el precio bajó. Mismo movimiento, sentido contrario."
   - "<strong>6. Precio relativo:</strong> en 2023 el IPC general subió un 3,5 % y el aceite un 54,6 %. El aceite no subió «por la inflación»: subió <strong>mucho más</strong> que la media, por algo que pasó en su propio mercado."
@@ -40,11 +40,11 @@ Ojo a la última pregunta, que es la más importante: no es lo mismo que suba **
 
 ## Tabla 1 · La cosecha y el precio en origen
 
-| Campaña | Producción de aceite en España | Precio medio en origen del virgen extra |
+| Campaña | Producción de aceite en España | Precio en origen del virgen extra |
 | --- | --- | --- |
 | Campaña normal (referencia) | alrededor de 1.400.000 t | — |
 | 2021/22 | alrededor de 1.400.000 t | 3,30 €/kg |
-| 2022/23 | **666.000 t** | por encima de **9 €/kg** en 2023 |
+| 2022/23 | **666.000 t** | subida hasta rondar los **9 €/kg** entre finales de 2023 y comienzos de 2024 |
 | 2023/24 | alrededor de 850.000 t | máximo del índice del aceite en el IPC en la primavera de 2024 |
 | 2024/25 | alrededor de 1.400.000 t | alrededor de **4 €/kg** a lo largo de 2025 |
 
@@ -63,7 +63,7 @@ Ojo a la última pregunta, que es la más importante: no es lo mismo que suba **
 ## Pasos (sesión de 50 min)
 
 1. **El gráfico (15 min).** En papel cuadriculado, dibujad dos líneas sobre el mismo eje de tiempo (campañas 2021/22 a 2024/25): una para la **producción** (en miles de toneladas) y otra para el **precio en origen** (en €/kg). Usad dos escalas y poned título, unidades y fuente. Sin fuente, un gráfico no vale nada.
-2. **Los cálculos (10 min).** Calculad, con la calculadora y dejando la operación escrita: la variación de la cosecha entre una campaña normal y la de 2022/23; la variación del precio entre 2021/22 y 2023; y la variación entre ese máximo y 2025.
+2. **Los cálculos (10 min).** Calculad, con la calculadora y dejando la operación escrita: la variación de la cosecha entre una campaña normal y la de 2022/23; la variación del precio entre 2021/22 y el máximo de unos 9 €/kg; y la variación entre ese máximo y 2025.
 3. **El diagnóstico (10 min).** Sobre un esquema de oferta y demanda, dibujad qué curva se desplazó en 2022-2023 y hacia dónde, y qué curva se desplazó en 2024-2025. Justificad en una frase por qué la otra curva se quedó quieta.
 4. **El precio relativo (10 min).** Comparad, con la tabla 2, cuánto subió el aceite y cuánto subieron los precios en general en 2022 y en 2023. Responded: ¿el aceite subió «por la inflación»?
 5. **Puesta en común (5 min).** Dos parejas enseñan su gráfico y explican el tramo que más les ha costado.

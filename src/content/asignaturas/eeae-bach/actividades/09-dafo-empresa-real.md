@@ -84,12 +84,12 @@ Mercadona nació de las carnicerías de la familia Roig en Tavernes Blanques (Va
 
 ### Caso B · Consum: la cooperativa que compite en la misma calle
 
-Consum nació en 1975 en Alaquàs (Valencia) como cooperativa de consumo y hoy es una cooperativa de trabajo asociado y de consumo: la mayoría de quienes trabajan en ella son socios y, por tanto, copropietarios; cada año una parte de los excedentes se reparte según el trabajo aportado, y en la asamblea cada socio tiene un voto. En 2024 facturó 4.707 millones de euros (un 7,3 % más) y ganó 108,7 millones. Tiene 21.869 personas en plantilla y 977 supermercados en la Comunitat Valenciana, Cataluña, Castilla-La Mancha, Murcia, Andalucía y Aragón, de los cuales 479 son franquicias de su marca Charter.
+Consum nació en 1975 en Alaquàs (Valencia) como cooperativa de consumo y hoy es una cooperativa de trabajo asociado y de consumo: la mayoría de quienes trabajan en ella son socios y, por tanto, copropietarios; cada año una parte de los excedentes se reparte según el trabajo aportado, y en la asamblea cada socio tiene un voto. En 2025 facturó 5.163,6 millones de euros (un 9,7 % más) y ganó 122 millones. Tiene 23.031 personas en plantilla y 1.017 supermercados en la Comunitat Valenciana, Cataluña, Castilla-La Mancha, Murcia, Andalucía y Aragón, de los cuales 503 son franquicias de su marca Charter.
 
-*Fuentes: Consum, resultados de 2024 (presentados en mayo de 2025 y recogidos por la prensa económica); caso recogido en Eco 4ESO, Unidad 10.*
+*Fuentes: Consum, resultados de 2025 (presentados en abril de 2026; sala de prensa de consum.es); caso recogido en Eco 4ESO, Unidad 10.*
 
 ### Caso C · Verkami: crecer sin inversores
 
 Joan Sala y sus hijos Adrià y Jonàs crearon Verkami en 2010 en Mataró (Barcelona) para financiar proyectos culturales pequeños mediante micromecenazgo: cómics, discos, libros, documentales o festivales. Cada campaña dura como mucho 40 días y ofrece recompensas por tramos a quienes aportan. La plataforma cobra una comisión del 5 %, más un 1,5 % por la gestión de los pagos, solo a los proyectos que alcanzan su objetivo. Ha superado los 10.000 proyectos financiados y, al cumplir diez años, el millón de mecenas. Nunca ha levantado capital riesgo: se financia con sus comisiones y sus fundadores conservan el 100 % de la empresa.
 
-*Fuentes: Verkami, página «Quiénes somos» (verkami.com/page/about), blog corporativo («Verkami: ¡10 años y más de 1.000.000 de mecenas después!», 2020) y página de costes del servicio (ayuda.verkami.com); Memoria Verkami 2023, citada en EDMN 2BACH, Unidad 9; caso recogido también en Eco 4ESO, Unidad 12.*
+*Fuentes: Verkami, página «Quiénes somos» (verkami.com/page/about), blog corporativo («Verkami: ¡10 años y más de 1.000.000 de mecenas después!», 2020) y página de costes del servicio (ayuda.verkami.com); blog corporativo («¡10.000 proyectos financiados!», 2022); caso recogido también en EDMN 2BACH, Unidad 9, y en Eco 4ESO, Unidad 12.*

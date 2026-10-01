@@ -86,12 +86,12 @@ Mercadona va nàixer de les carnisseries de la família Roig a Tavernes Blanques
 
 ### Cas B · Consum: la cooperativa que competix al mateix carrer
 
-Consum va nàixer el 1975 a Alaquàs (València) com a cooperativa de consum i hui és una cooperativa de treball associat i de consum: la majoria de qui hi treballa són socis i, per tant, copropietaris; cada any una part dels excedents es repartix segons el treball aportat, i en l'assemblea cada soci té un vot. El 2024 va facturar 4.707 milions d'euros (un 7,3 % més) i va guanyar 108,7 milions. Té 21.869 persones en plantilla i 977 supermercats a la Comunitat Valenciana, Catalunya, Castella-la Manxa, Múrcia, Andalusia i Aragó, dels quals 479 són franquícies de la seua marca Charter.
+Consum va nàixer el 1975 a Alaquàs (València) com a cooperativa de consum i hui és una cooperativa de treball associat i de consum: la majoria de qui hi treballa són socis i, per tant, copropietaris; cada any una part dels excedents es repartix segons el treball aportat, i en l'assemblea cada soci té un vot. El 2025 va facturar 5.163,6 milions d'euros (un 9,7 % més) i va guanyar 122 milions. Té 23.031 persones en plantilla i 1.017 supermercats a la Comunitat Valenciana, Catalunya, Castella-la Manxa, Múrcia, Andalusia i Aragó, dels quals 503 són franquícies de la seua marca Charter.
 
-*Fonts: Consum, resultats de 2024 (presentats al maig de 2025 i recollits per la premsa econòmica); cas recollit en Eco 4ESO, Unitat 10.*
+*Fonts: Consum, resultats de 2025 (presentats a l'abril de 2026; sala de premsa de consum.es); cas recollit en Eco 4ESO, Unitat 10.*
 
 ### Cas C · Verkami: créixer sense inversors
 
 Joan Sala i els seus fills Adrià i Jonàs van crear Verkami el 2010 a Mataró (Barcelona) per a finançar projectes culturals xicotets mitjançant micromecenatge: còmics, discos, llibres, documentals o festivals. Cada campanya dura com a màxim 40 dies i oferix recompenses per trams als qui aporten. La plataforma cobra una comissió del 5 %, més un 1,5 % per la gestió dels pagaments, només als projectes que assolixen el seu objectiu. Ha superat els 10.000 projectes finançats i, en complir deu anys, el milió de mecenes. Mai no ha captat capital risc: es finança amb les seues comissions i els seus fundadors conserven el 100 % de l'empresa.
 
-*Fonts: Verkami, pàgina «Qui som» (verkami.com/page/about), blog corporatiu («Verkami: ¡10 años y más de 1.000.000 de mecenas después!», 2020) i pàgina de costos del servei (ayuda.verkami.com); Memòria Verkami 2023, citada en EDMN 2BACH, Unitat 9; cas recollit també en Eco 4ESO, Unitat 12.*
+*Fonts: Verkami, pàgina «Qui som» (verkami.com/page/about), blog corporatiu («Verkami: ¡10 años y más de 1.000.000 de mecenas después!», 2020) i pàgina de costos del servei (ayuda.verkami.com); blog corporatiu («¡10.000 proyectos financiados!», 2022); cas recollit també en EDMN 2BACH, Unitat 9, i en Eco 4ESO, Unitat 12.*
