@@ -14,7 +14,7 @@ export const COPY = {
   es: {
     nivelesDefault: ['Insuficiente', 'Suficiente', 'Notable', 'Sobresaliente'],
     intro:
-      'Diseña una rúbrica de evaluación: define los criterios, los niveles de desempeño y los descriptores para cada combinación. Se guarda automáticamente en tu navegador.',
+      'Se guarda automáticamente en tu navegador.',
     tituloPlaceholder: 'Título de la rúbrica',
     thCriterio: 'Criterio',
     thCompetencia: 'Competencia',
@@ -42,7 +42,7 @@ export const COPY = {
   ca: {
     nivelesDefault: ['Insuficient', 'Suficient', 'Notable', 'Excel·lent'],
     intro:
-      "Dissenya una rúbrica d'avaluació: definix els criteris, els nivells d'assoliment i els descriptors per a cada combinació. Es guarda automàticament al teu navegador.",
+      'Es guarda automàticament al teu navegador.',
     tituloPlaceholder: 'Títol de la rúbrica',
     thCriterio: 'Criteri',
     thCompetencia: 'Competència',

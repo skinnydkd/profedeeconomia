@@ -398,3 +398,21 @@ body {
   background: var(--color-bg);
   border-radius: 50%;
 }
+
+/* =========================================================
+   Markdown tables (wrapped by src/lib/rehype/table-scroll.mjs)
+   ========================================================= */
+/* On a narrow screen a wide table scrolls inside this box instead of pushing
+   the whole page sideways. The box is a focusable region, so the keyboard can
+   scroll it too. On paper there is nothing to scroll: it vanishes. */
+@media screen {
+  .tabla-scroll {
+    max-width: 100%;
+    overflow-x: auto;
+    margin: 0 0 1.4em;
+  }
+  .tabla-scroll > table { margin: 0; }
+}
+@media print {
+  .tabla-scroll { overflow: visible; }
+}

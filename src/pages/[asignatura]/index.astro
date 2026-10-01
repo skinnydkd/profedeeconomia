@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
 import { ASIGNATURA_SLUGS, ASIGNATURAS } from '@/lib/asignaturas';
+import { cursoLabel } from '@/i18n/ui';
 import { breadcrumbLd, courseLd, faqLd } from '@/lib/seo';
 import { subjectFaqs } from '@/lib/faq';
 import FaqHub from '@components/FaqHub.astro';
@@ -21,6 +22,13 @@ export const getStaticPaths = (() => {
 const locale = getLocale(Astro.currentLocale);
 const { asignatura: asignaturaEs } = Astro.props;
 const a = localizeAsignatura(asignaturaEs, locale);
+// Which course the subject belongs to, under the title: the hero never said it
+// (only the breadcrumb acronym did). Optional subjects already name their two
+// courses in the course label, so their «Optativa» modality would repeat it.
+const cursoLinea = [
+  cursoLabel(a.curso, locale),
+  a.curso !== 'bach' ? a.modalidad : undefined,
+].filter(Boolean);
 const isPublicado = a.estado === 'publicado';
 
 // Show the EBAU card only for subjects that have published EBAU content.
@@ -211,6 +219,9 @@ const jsonLd = isPublicado
   <section class="hub-hero">
     <div class="container">
       <h1 class="title" style={`color: var(--color-${a.color}-ink)`}>{a.title}</h1>
+      <p class="hub-curso">
+        {cursoLinea.map((parte, i) => (<>{i > 0 && <span class="sep" aria-hidden="true">·</span>}{parte}</>))}
+      </p>
 
       {isPublicado ? (
         <>
@@ -298,10 +309,20 @@ const jsonLd = isPublicado
 
   /* Per-asignatura title colour carries the color-coding on the hub now that the
      accent stripe is gone; the -ink hue is AA-safe on cream (see global.css). */
+  .hub-curso {
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--color-ink-soft);
+    margin: 0 0 1rem;
+  }
+  .hub-curso .sep { margin: 0 0.5em; color: var(--color-mustard); }
   .subtitle {
     font-family: var(--font-serif);
     font-style: italic;
-    font-size: 1.5rem;
+    /* 1.5rem made a seven-line lede on a phone, pushing the first section
+       link below the second screen. */
+    font-size: clamp(1.15rem, 2.4vw, 1.5rem);
     color: var(--color-ink-soft);
     font-variation-settings: "SOFT" 80;
     margin: 0;

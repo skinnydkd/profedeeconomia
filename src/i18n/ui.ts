@@ -269,3 +269,10 @@ export type UIKey = keyof (typeof ui)['es'];
 export function t(key: UIKey, locale: Locale): string {
   return ui[locale][key] ?? ui.es[key];
 }
+
+/** The course a subject belongs to, e.g. «2.º Bach» or «Optativas (1.º/2.º)».
+    The Bachillerato optional subjects carry curso 'bach', labelled as optativas. */
+export function cursoLabel(curso: string, locale: Locale): string {
+  const key = curso === 'bach' ? 'curso.optativas' : `curso.${curso}`;
+  return t(key as UIKey, locale);
+}

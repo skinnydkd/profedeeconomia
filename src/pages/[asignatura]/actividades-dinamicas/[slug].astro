@@ -155,17 +155,38 @@ const breadcrumb = breadcrumbLd([
 </BaseLayout>
 
 <style>
-  .bloque { padding: 48px 0; border-top: 1px solid var(--color-line); }
+  /* Section chrome, as on the other subject sections (recursos, actividades):
+     these pages used the classes without defining them, so the title sat at
+     the left edge and, on a phone, the text touched the screen border. */
+  .container { max-width: 1240px; margin: 0 auto; padding: 0 clamp(1.5rem, 4vw, 3rem); }
+  .container--narrow { max-width: 900px; }
+  .breadcrumb { font-size: 0.92rem; color: var(--color-ink-mute); margin: 2rem 0; }
+  .breadcrumb a { color: var(--color-ink-mute); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--color-terra); }
+  .breadcrumb .sep { margin: 0 0.5em; color: var(--color-mustard); }
+  .hero { padding: 1rem 0 clamp(2rem, 5vw, 4rem); }
+  .hero h1 { margin: 1rem 0 0.6rem; }
+  .lede {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.35rem;
+    color: var(--color-ink-soft);
+    max-width: 55ch;
+    line-height: 1.5;
+    margin: 1.5rem 0 0.6rem;
+    font-variation-settings: "SOFT" 80;
+  }
+  .bloque { padding: 3rem 0; border-top: 1px solid var(--color-line); }
   .bloque--alt { background: var(--color-bg-cream); }
-  .bloque__h2 { font-family: var(--font-serif); font-size: 28px; margin: 0 0 8px; }
-  .bloque__meta { font-family: var(--font-mono); font-size: 13px; color: var(--color-ink-mute); margin: 0 0 24px; }
-  .simulador { margin-bottom: 40px; }
-  .simulador__h3 { font-family: var(--font-serif); font-size: 22px; margin: 24px 0 6px; }
-  .simulador__lede { font-family: var(--font-serif); font-style: italic; color: var(--color-ink-soft); margin: 0 0 18px; }
-  .recurso-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr)); }
-  .recurso-list a { display: block; padding: 18px 20px; background: var(--color-paper); border: 1px solid var(--color-line); border-radius: 6px; text-decoration: none; color: inherit; }
+  .bloque__h2 { font-family: var(--font-serif); font-size: 1.75rem; margin: 0 0 0.5rem; }
+  .bloque__meta { font-family: var(--font-mono); font-size: 0.82rem; color: var(--color-ink-mute); margin: 0 0 1.5rem; }
+  .simulador { margin-bottom: 2.5rem; }
+  .simulador__h3 { font-family: var(--font-serif); font-size: 1.35rem; margin: 1.5rem 0 0.4rem; }
+  .simulador__lede { font-family: var(--font-serif); font-style: italic; color: var(--color-ink-soft); margin: 0 0 1.1rem; }
+  .recurso-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.75rem; grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr)); }
+  .recurso-list a { display: block; padding: 1.1rem 1.25rem; background: var(--color-paper); border: 1px solid var(--color-line); border-radius: 6px; text-decoration: none; color: inherit; }
   .recurso-list a:hover { border-color: var(--color-terra); }
-  .recurso-list h3 { font-family: var(--font-serif); font-size: 18px; margin: 0 0 6px; }
-  .recurso-list p  { font-size: 14px; color: var(--color-ink-soft); margin: 0; }
+  .recurso-list h3 { font-family: var(--font-serif); font-size: 1.15rem; margin: 0 0 0.4rem; }
+  .recurso-list p  { font-size: 0.95rem; color: var(--color-ink-soft); margin: 0; }
   .empty { font-family: var(--font-serif); font-style: italic; color: var(--color-ink-mute); }
 </style>
