@@ -11,6 +11,7 @@ import { getLocale } from '@/i18n/locale';
 import { pickLocalizedEntry } from '@/i18n/content-locale';
 import { localizeAsignatura } from '@/i18n/asignaturas-ca';
 import type { GetStaticPaths } from 'astro';
+import { t } from '@/i18n/ui';
 
 export const getStaticPaths = (async () => {
   const allUnits = await getCollection('libro');
@@ -41,8 +42,8 @@ const view = pickLocalizedEntry(unit, caById, locale);
 const { Content, headings } = await render(view);
 
 const copy = {
-  es: { inicio: 'Inicio', libro: 'Libro', unidad: 'Unidad', duracion: 'Duración estimada', conceptos: 'Conceptos clave', objetivos: 'Objetivos', enEsta: 'En esta unidad', volver: '← Volver al índice', volverSub: 'Libro' },
-  ca: { inicio: 'Inici', libro: 'Llibre', unidad: 'Unitat', duracion: 'Durada estimada', conceptos: 'Conceptes clau', objetivos: 'Objectius', enEsta: 'En esta unitat', volver: "← Tornar a l'índex", volverSub: 'Llibre' },
+  es: { inicio: 'Inicio', libro: 'Libro', unidad: 'Unidad', sabers: 'Saberes', duracion: 'Duración estimada', conceptos: 'Conceptos clave', objetivos: 'Objetivos', enEsta: 'En esta unidad', volver: '← Volver al índice', volverSub: 'Libro' },
+  ca: { inicio: 'Inici', libro: 'Llibre', unidad: 'Unitat', sabers: 'Sabers', duracion: 'Durada estimada', conceptos: 'Conceptes clau', objetivos: 'Objectius', enEsta: 'En esta unitat', volver: "← Tornar a l'índex", volverSub: 'Llibre' },
 }[locale];
 
 // Adjacent units within the same asignatura (ordered on the ES source of truth;
@@ -101,7 +102,7 @@ const jsonLd = [
   translated={caById.has(`${unit.id}.ca`)}
 >
   <div class="container">
-    <nav class="breadcrumb">
+    <nav class="breadcrumb" aria-label={t('nav.breadcrumb', locale)}>
       <a href="/">{copy.inicio}</a> <span class="sep">›</span>
       <a href={`/${a.slug}/`}>{a.shortLabel}</a> <span class="sep">›</span>
       <a href={`/${a.slug}/libro/`}>{copy.libro}</a> <span class="sep">›</span>
@@ -114,7 +115,7 @@ const jsonLd = [
       <div class="unit-num">
         {copy.unidad} {d.unidad}
         {d.bloque ? ` · ${d.bloque}` : ''}
-        {d.sabers.length > 0 ? ` · Sabers ${d.sabers.join(', ')}` : ''}
+        {d.sabers.length > 0 ? ` · ${copy.sabers} ${d.sabers.join(', ')}` : ''}
       </div>
       <h1>{d.title}</h1>
       {d.lema && <p class="lede">{d.lema}</p>}

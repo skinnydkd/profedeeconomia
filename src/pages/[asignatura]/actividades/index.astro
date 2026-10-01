@@ -10,6 +10,7 @@ import { getLocale } from '@/i18n/locale';
 import { pickLocalizedEntry } from '@/i18n/content-locale';
 import { localizeAsignatura } from '@/i18n/asignaturas-ca';
 import type { GetStaticPaths } from 'astro';
+import { t } from '@/i18n/ui';
 
 export const getStaticPaths = (async () => {
   return ASIGNATURA_SLUGS.filter((slug) => ASIGNATURAS[slug].estado === 'publicado').map((slug) => ({
@@ -91,7 +92,7 @@ const breadcrumb = breadcrumbLd([
   noindex={items.length === 0}
 >
   <div class="container">
-    <nav class="breadcrumb">
+    <nav class="breadcrumb" aria-label={t('nav.breadcrumb', locale)}>
       <a href="/">{copy.inicio}</a> <span class="sep">›</span>
       <a href={`/${a.slug}/`}>{a.shortLabel}</a> <span class="sep">›</span>
       <span>{copy.actividades}</span>
@@ -148,7 +149,7 @@ const breadcrumb = breadcrumbLd([
                   <span class="card__num">{String(it.data.unidad_relacionada).padStart(2, '0')}</span>
                   <span class={`card__badge badge--${it.data.tipo}`}>{TIPO_LABEL[locale][it.data.tipo]}</span>
                 </div>
-                <h3 class="card__title">{it.data.title}</h3>
+                <h2 class="card__title">{it.data.title}</h2>
                 <p class="card__desc">{it.data.descripcion}</p>
                 <div class="card__meta">
                   {it.data.duracion && <span>{it.data.duracion}</span>}

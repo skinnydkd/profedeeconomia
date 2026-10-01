@@ -10,6 +10,9 @@
  *   </Steps>
  *
  * Renders large terracota numbers and indented prose. Do NOT nest.
+ *
+ * A Markdown numbered list («1. …») also works: MDX turns it into its own
+ * <ol>, which is then used as the list instead of being nested inside ours.
  */
 type Props = {
   /** Optional eyebrow shown above the list. e.g. "Pasos", "Criterios". */
@@ -21,14 +24,19 @@ type Props = {
 };
 
 const { label, title, variant = 'arabic' } = Astro.props;
+
+// An <ol> inside our <ol> is invalid markup, and screen readers announce an
+// empty nested list. When the slot already is a list, wrap it instead.
+const body = await Astro.slots.render('default');
+const slotIsList = /^\s*<ol[\s>]/.test(body);
 ---
 
 <section class:list={['steps', `steps--${variant}`]}>
   {label && <span class="steps__label">{label}</span>}
-  {title && <h4 class="steps__title">{title}</h4>}
-  <ol class="steps__list">
-    <slot />
-  </ol>
+  {title && <p class="steps__title">{title}</p>}
+  {slotIsList
+    ? <div class="steps__list" set:html={body} />
+    : <ol class="steps__list" set:html={body} />}
 </section>
 
 <style>
@@ -67,6 +75,13 @@ const { label, title, variant = 'arabic' } = Astro.props;
     margin: 0;
     padding: 0;
     counter-reset: step;
+  }
+  /* The Markdown list inside the wrapper takes our place, without the
+     article's own list indent. */
+  .steps__list > :global(ol) {
+    list-style: none;
+    margin: 0;
+    padding: 0;
   }
   .steps__list :global(li) {
     counter-increment: step;
@@ -120,6 +135,12 @@ const { label, title, variant = 'arabic' } = Astro.props;
     float: none;
     padding: 0;
     color: inherit;
+  }
+
+  /* Screen only: the A5 book PDF is narrower than 600 px and keeps its layout. */
+  @media screen and (max-width: 600px) {
+    .steps { padding: 1.2rem 1.1rem 1.3rem; }
+    .steps__list :global(li) { padding-left: 2.6rem; }
   }
 
   @media print {

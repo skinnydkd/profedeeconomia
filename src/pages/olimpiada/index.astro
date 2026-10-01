@@ -7,6 +7,7 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 import { GUIA } from '@/lib/olimpiada';
 import { getLocale } from '@/i18n/locale';
 import { localizeGuia } from '@/i18n/olimpiada-ca';
+import { t } from '@/i18n/ui';
 
 const locale = getLocale(Astro.currentLocale);
 
@@ -108,7 +109,7 @@ const subAreas = [
   contentLang={locale}
 >
   <div class="container">
-    <nav class="breadcrumb">
+    <nav class="breadcrumb" aria-label={t('nav.breadcrumb', locale)}>
       <a href="/">{copy.bcInicio}</a> <span class="sep">›</span>
       <span>{copy.bcCurrent}</span>
     </nav>

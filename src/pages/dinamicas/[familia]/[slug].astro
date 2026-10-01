@@ -18,6 +18,7 @@ import { getLocale } from '@/i18n/locale';
 import { pickLocalizedEntry } from '@/i18n/content-locale';
 import { getCollection, render } from 'astro:content';
 import type { GetStaticPaths } from 'astro';
+import { t } from '@/i18n/ui';
 
 export const getStaticPaths = (async () => {
   // ES entries define the canonical routes; CA siblings (lang: ca) must NOT
@@ -58,7 +59,7 @@ const breadcrumb = breadcrumbLd([
 
 <BaseLayout title={d.seoTitle ?? `${d.title} — ${copy.dinamicas}`} brandSuffix={!d.seoTitle} description={d.descripcion} ogType="article" jsonLd={breadcrumb} contentLang={view.data.lang} translated={caById.has(`${entry.id}.ca`)}>
   <div class="container">
-    <nav class="breadcrumb no-print">
+    <nav class="breadcrumb no-print" aria-label={t('nav.breadcrumb', locale)}>
       <a href="/">{copy.inicio}</a> <span class="sep">›</span>
       <a href="/dinamicas/">{copy.dinamicas}</a> <span class="sep">›</span>
       <span>{d.title}</span>

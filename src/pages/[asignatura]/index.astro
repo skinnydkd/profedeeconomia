@@ -9,6 +9,7 @@ import type { GetStaticPaths } from 'astro';
 import { getLocale } from '@/i18n/locale';
 import { localizeAsignatura } from '@/i18n/asignaturas-ca';
 import { pickLocalizedEntry } from '@/i18n/content-locale';
+import { t } from '@/i18n/ui';
 
 export const getStaticPaths = (() => {
   return ASIGNATURA_SLUGS.map((slug) => ({
@@ -77,7 +78,7 @@ const copy = {
     },
     secciones: {
       'libro': { title: 'Libro', desc: 'Los capítulos del curso, listos para leer en pantalla o descargar como PDF.' },
-      'diapositivas': { title: 'Diapositivas', desc: 'Diapositivas derivadas automáticamente del libro. PDF al MVP, PPTX editable más adelante.' },
+      'diapositivas': { title: 'Diapositivas', desc: 'Las diapositivas de cada unidad, sacadas del libro. Para proyectar o descargar en PDF.' },
       'actividades': { title: 'Actividades', desc: 'Casos prácticos y ejercicios graduados por unidad, listos para imprimir.' },
       'refuerzo': { title: 'Refuerzo y ampliación', desc: 'Por evaluación: repaso esencial con ejercicios guiados (refuerzo) y retos de más nivel (ampliación).' },
       'proyecto': { title: 'Cuaderno de proyecto', desc: 'Guía paso a paso para que el alumnado desarrolle su propio proyecto emprendedor, fase a fase.' },
@@ -116,7 +117,7 @@ const copy = {
     },
     secciones: {
       'libro': { title: 'Llibre', desc: 'Els capítols del curs, llestos per a llegir en pantalla o descarregar com a PDF.' },
-      'diapositivas': { title: 'Diapositives', desc: 'Diapositives derivades automàticament del llibre. PDF al MVP, PPTX editable més avant.' },
+      'diapositivas': { title: 'Diapositives', desc: 'Les diapositives de cada unitat, tretes del llibre. Per a projectar o descarregar en PDF.' },
       'actividades': { title: 'Activitats', desc: 'Casos pràctics i exercicis graduats per unitat, llestos per a imprimir.' },
       'refuerzo': { title: 'Reforç i ampliació', desc: "Per avaluació: repàs essencial amb exercicis guiats (reforç) i reptes de més nivell (ampliació)." },
       'proyecto': { title: 'Quadern de projecte', desc: "Guia pas a pas perquè l'alumnat desenvolupe el seu propi projecte emprenedor, fase a fase." },
@@ -200,7 +201,7 @@ const jsonLd = isPublicado
 >
 
   <div class="container">
-    <nav class="breadcrumb" aria-label="Breadcrumb">
+    <nav class="breadcrumb" aria-label={t('nav.breadcrumb', locale)}>
       <a href="/">{copy.bcInicio}</a>
       <span class="sep">›</span>
       <span>{a.shortLabel}</span>

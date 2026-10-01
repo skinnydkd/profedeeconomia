@@ -142,7 +142,7 @@ export default function AutomatizacionCalc({ locale = 'es' }: Props) {
           onClick={() => setTareas((p) => p.slice(0, -1))}>{t.quitar}</button>
       </div>
 
-      <div class="calc__results">
+      <div class="calc__results" aria-live="polite">
         {!r.valido ? (
           <div class="calc__warning">{t.sinDatos}</div>
         ) : (

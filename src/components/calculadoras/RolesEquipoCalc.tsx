@@ -175,7 +175,7 @@ export default function RolesEquipoCalc({ locale = 'es' }: Props) {
         </button>
       </div>
 
-      <div class="calc__results">
+      <div class="calc__results" aria-live="polite">
         {!r.valido ? (
           <div class="calc__warning">{t.sinDatos}</div>
         ) : (

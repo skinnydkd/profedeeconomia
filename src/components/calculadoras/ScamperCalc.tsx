@@ -202,7 +202,7 @@ export default function ScamperCalc({ locale = 'es' }: Props) {
       </div>
 
       {r.listoParaConverger && (
-        <div class="calc__results">
+        <div class="calc__results" aria-live="polite">
           <div class="sc__label">{t.convergenciaTitulo}</div>
           <div class="sc__scroll">
             <table class="calc__table">

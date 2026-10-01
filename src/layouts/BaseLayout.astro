@@ -142,12 +142,14 @@ const resolvedOgImage = new URL(ogImage ?? autoOgImage, Astro.site).toString();
   </head>
   <body class="bg-bg text-ink font-sans">
     <a href="#main" class="skip-link">{t('skip.main', locale)}</a>
+    <!-- Fixed to the bottom of the screen, but early in the DOM: keyboard users
+         reach it right after the skip link instead of after the whole page. -->
+    <ConsentBanner />
     <SiteHeader />
     <main id="main" lang={seo.contentLangAttr ?? undefined}>
       <slot />
     </main>
     <SiteFooter />
-    <ConsentBanner />
     <script>
       // Keep the VAL locale sticky across navigation (progressive enhancement).
       import { applyStickyLocale } from '@/i18n/sticky-locale';

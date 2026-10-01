@@ -7,6 +7,7 @@ import { getLocale } from '@/i18n/locale';
 import { pickLocalizedEntry } from '@/i18n/content-locale';
 import { localizeAsignatura } from '@/i18n/asignaturas-ca';
 import { localizeItinerario } from '@/i18n/emprendimiento-ca';
+import { t } from '@/i18n/ui';
 
 const locale = getLocale(Astro.currentLocale);
 
@@ -176,7 +177,7 @@ const porAsignatura = ASIGNATURA_SLUGS
   contentLang={locale}
 >
   <div class="container">
-    <nav class="breadcrumb"><a href="/">{copy.bcInicio}</a> <span class="sep">›</span> <span>{copy.bcCurrent}</span></nav>
+    <nav class="breadcrumb" aria-label={t('nav.breadcrumb', locale)}><a href="/">{copy.bcInicio}</a> <span class="sep">›</span> <span>{copy.bcCurrent}</span></nav>
   </div>
 
   <section class="hero">

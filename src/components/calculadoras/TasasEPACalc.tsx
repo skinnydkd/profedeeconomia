@@ -134,7 +134,7 @@ export default function TasasEPACalc({ locale = 'es' }: Props) {
         </label>
       </div>
 
-      {!r.coherente && <p class="calc__warning">{c.incoherente}</p>}
+      {!r.coherente && <p class="calc__warning" role="alert">{c.incoherente}</p>}
 
       <h3 class="epa__section-title">{c.derivados}</h3>
       <div class="calc__metric-grid">

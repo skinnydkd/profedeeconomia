@@ -66,7 +66,7 @@ const NIVEL_LABEL: Record<string, string> = {
   contentLang={locale}
 >
   <div class="container">
-    <nav class="breadcrumb"><a href="/">{copy.bcInicio}</a> <span class="sep">›</span> <span>{copy.bcCurrent}</span></nav>
+    <nav class="breadcrumb" aria-label={t('nav.breadcrumb', locale)}><a href="/">{copy.bcInicio}</a> <span class="sep">›</span> <span>{copy.bcCurrent}</span></nav>
   </div>
   <section class="hero">
     <div class="container">
@@ -77,12 +77,13 @@ const NIVEL_LABEL: Record<string, string> = {
     </div>
   </section>
   <section class="filters">
-    <div class="container">
-      <button class="chip is-active" data-filter="all" type="button">{t('filtro.todos', locale)}</button>
+    <div class="container" role="group" aria-label={t('filtro.aria', locale)}>
+      <button class="chip is-active" data-filter="all" type="button" aria-pressed="true">{t('filtro.todos', locale)}</button>
       {materias.filter((m) => activeMaterias.has(m.slug)).map((m) => (
-        <button class="chip" data-filter={m.slug} type="button" style={`--chip-color: var(${m.colorVar})`}>{m.label}</button>
+        <button class="chip" data-filter={m.slug} type="button" aria-pressed="false" style={`--chip-color: var(${m.colorVar})`}>{m.label}</button>
       ))}
     </div>
+    <p class="sr-only" aria-live="polite" data-filter-status data-one={t('filtro.resultado.uno', locale)} data-many={t('filtro.resultado.varios', locale)}></p>
   </section>
   {groups.map((g) => (
     <section class="familia" data-familia={g.familia.slug}>
@@ -113,11 +114,24 @@ const NIVEL_LABEL: Record<string, string> = {
 <script>
   const chips = document.querySelectorAll<HTMLButtonElement>('.chip');
   const sections = document.querySelectorAll<HTMLElement>('.familia');
+  const status = document.querySelector<HTMLElement>('[data-filter-status]');
   chips.forEach((chip) => chip.addEventListener('click', () => {
-    chips.forEach((c) => c.classList.remove('is-active'));
+    chips.forEach((c) => {
+      c.classList.remove('is-active');
+      c.setAttribute('aria-pressed', 'false');
+    });
     chip.classList.add('is-active');
+    chip.setAttribute('aria-pressed', 'true');
     const f = chip.dataset.filter;
     sections.forEach((s) => { s.hidden = f !== 'all' && s.dataset.familia !== f; });
+    // Screen readers hear how many cards are left, since the change happens out of view.
+    if (status) {
+      const n = Array.from(sections)
+        .filter((s) => !s.hidden)
+        .reduce((sum, s) => sum + s.querySelectorAll('.card').length, 0);
+      const template = (n === 1 ? status.dataset.one : status.dataset.many) ?? '';
+      status.textContent = template.replace('{n}', String(n));
+    }
   }));
 </script>
 <style>

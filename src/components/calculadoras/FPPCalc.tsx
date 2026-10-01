@@ -237,7 +237,7 @@ export default function FPPCalc({ locale = 'es' }: Props) {
       </div>
       <p class="fpp__note">{forma === 'recta' ? t.formaRectaPie : t.formaConcavaPie}</p>
 
-      <div class="calc__results">
+      <div class="calc__results" aria-live="polite">
         <FPPChart
           fpp={fpp}
           crecida={crecida}

@@ -295,7 +295,7 @@ export default function RatiosBenchmark({ locale = 'es' }: Props) {
         <NumberField label={c.lblBeneficioNeto} value={beneficioNeto} setValue={setBeneficioNeto} unit={c.unit} />
       </div>
 
-      <div class="calc__results">
+      <div class="calc__results" aria-live="polite">
         <div class={`calc__warning ${cuadra ? 'is-ok' : ''}`}>
           {cuadra
             ? c.balanceCuadra(formatNumber(activoTotal, 0))

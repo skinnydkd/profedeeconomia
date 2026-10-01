@@ -13,6 +13,7 @@ import { getLocale } from '@/i18n/locale';
 import { pickLocalizedEntry } from '@/i18n/content-locale';
 import { localizeAsignatura } from '@/i18n/asignaturas-ca';
 import type { GetStaticPaths } from 'astro';
+import { t } from '@/i18n/ui';
 
 export const getStaticPaths = (async () => {
   const all = await getCollection('programacion');
@@ -62,7 +63,7 @@ const breadcrumb = breadcrumbLd([
 
 <BaseLayout title={`${copy.metaTitle} — ${a.shortLabel}`} description={prog.data.descripcion} jsonLd={breadcrumb} contentLang={prog.data.lang} translated={caById.has(`${progEs.id}.ca`)}>
   <div class="container">
-    <nav class="breadcrumb">
+    <nav class="breadcrumb" aria-label={t('nav.breadcrumb', locale)}>
       <a href="/">{copy.inicio}</a> <span class="sep">›</span>
       <a href={`/${a.slug}/`}>{a.shortLabel}</a> <span class="sep">›</span>
       <span>{copy.programacion}</span>

@@ -208,7 +208,7 @@ export default function CosteContratacionCalc({ locale = 'es' }: Props) {
       </div>
       <p class="cc__note">{t.semanasAyuda}</p>
 
-      <div class="calc__results">
+      <div class="calc__results" aria-live="polite">
         {!r.valido ? (
           <div class="calc__warning">{t.sinDatos}</div>
         ) : (

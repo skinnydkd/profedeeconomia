@@ -362,7 +362,7 @@ export default function PresupuestoUni({ locale = 'es' }: Props) {
         </label>
       </div>
 
-      <div class="calc__results">
+      <div class="calc__results" aria-live="polite">
         <p class="calc__sub">
           {c.costeDe}{result.anos} {result.anos === 1 ? c.anoSingular : c.anoPlural}{c.deGradoPublico}
           {viveEnCasa ? c.viviendoEnCasa : c.viviendoFuera}

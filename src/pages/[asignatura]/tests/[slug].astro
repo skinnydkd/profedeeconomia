@@ -8,6 +8,7 @@ import { localizeAsignatura } from '@/i18n/asignaturas-ca';
 import QuizPlayer from '@components/QuizPlayer.tsx';
 import { quizLd, type TestQuestion } from '@/lib/seo';
 import type { GetStaticPaths } from 'astro';
+import { t } from '@/i18n/ui';
 
 export const getStaticPaths = (async () => {
   const all = await getCollection('tests');
@@ -66,7 +67,7 @@ const quiz = quizLd({
   translated={testCaById.has(`${testEs.id}.ca`)}
 >
   <div class="container">
-    <nav class="breadcrumb">
+    <nav class="breadcrumb" aria-label={t('nav.breadcrumb', locale)}>
       <a href="/">{copy.inicio}</a> <span class="sep">›</span>
       <a href={`/${a.slug}/`}>{a.shortLabel}</a> <span class="sep">›</span>
       <a href={`/${a.slug}/tests/`}>{copy.tests}</a> <span class="sep">›</span>

@@ -255,7 +255,7 @@ export default function TesoreriaCalc({ locale = 'es' }: Props) {
       </div>
       <p class="tz__note">{t.gastosAyuda}</p>
 
-      <div class="calc__results">
+      <div class="calc__results" aria-live="polite">
         {!r.valido ? (
           <div class="calc__warning">{t.sinDatos}</div>
         ) : (

@@ -151,7 +151,7 @@ export default function MultiplicadorBancarioCalc({ locale = 'es' }: Props) {
       </div>
       <p class="mb__note">{t.filtracionAyuda}</p>
 
-      <div class="calc__results">
+      <div class="calc__results" aria-live="polite">
         {!total.valido ? (
           <div class="calc__warning">{t.sinDatos}</div>
         ) : (

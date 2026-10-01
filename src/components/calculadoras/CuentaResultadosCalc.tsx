@@ -223,7 +223,7 @@ export default function CuentaResultadosCalc({ locale = 'es' }: Props) {
       </div>
       <p class="cr__note">{t.tipoAyuda}</p>
 
-      <div class="calc__results">
+      <div class="calc__results" aria-live="polite">
         {!r.valido ? (
           <div class="calc__warning">{t.sinDatos}</div>
         ) : (

@@ -10,6 +10,7 @@ import QuizPlayer from '@components/QuizPlayer.tsx';
 import ArbolDecisiones from '@components/actividades/ArbolDecisiones.astro';
 import { parseTreeFromMdxBody } from '@components/actividades/parse-tree.ts';
 import type { GetStaticPaths } from 'astro';
+import { t } from '@/i18n/ui';
 
 export const getStaticPaths = (async () => {
   const libroAll = await getCollection('libro');
@@ -84,7 +85,7 @@ const breadcrumb = breadcrumbLd([
 
 <BaseLayout title={`${copy.actividadesShort} · ${unit.data.title} — ${a.shortLabel}`} description={copy.descripcion} ogType="article" jsonLd={breadcrumb} contentLang={locale}>
   <div class="container">
-    <nav class="breadcrumb">
+    <nav class="breadcrumb" aria-label={t('nav.breadcrumb', locale)}>
       <a href="/">{copy.inicio}</a> <span class="sep">›</span>
       <a href={`/${a.slug}/`}>{a.shortLabel}</a> <span class="sep">›</span>
       <a href={`/${a.slug}/actividades-dinamicas/`}>{copy.actividades}</a> <span class="sep">›</span>

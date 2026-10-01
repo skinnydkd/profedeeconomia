@@ -184,7 +184,7 @@ export default function MultiplicadorGasto({ locale = 'es' }: Props) {
         )}
       </div>
 
-      <div class="calc__results">
+      <div class="calc__results" aria-live="polite">
         {!result.converges ? (
           <div class="calc__warning">
             {c.noConverge}

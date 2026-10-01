@@ -142,7 +142,7 @@ export default function KarasekCalc({ locale = 'es' }: Props) {
       </div>
       <p class="ka__note">{t.escala}</p>
 
-      <div class="calc__results">
+      <div class="calc__results" aria-live="polite">
         {!r.valido ? (
           <div class="calc__warning">{t.sinDatos}</div>
         ) : (
