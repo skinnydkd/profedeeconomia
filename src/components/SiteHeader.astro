@@ -537,6 +537,15 @@ const locale = getLocale(Astro.currentLocale);
     letter-spacing: 0.02em;
   }
   .nav-direct:hover { color: var(--color-terra); }
+  /* Leaves the site (301 to the sister domain), as the validated mockup marked
+     it. The arrow is decorative: the second declaration gives it empty alt
+     text where supported. */
+  .nav-direct[rel~="external"]::after {
+    content: " ↗";
+    content: " ↗" / "";
+    font-size: 0.8em;
+    color: var(--color-ink-mute);
+  }
 
   /* ──────────── tablet: same inline nav, tighter ──────────── */
   @media (max-width: 860px) {

@@ -178,7 +178,7 @@ const copy = {
               </span>
               <h3>{tc.title}</h3>
               <p>{tc.desc}</p>
-              <a href={`/${t.slug}/`} class="editorial-link">{tc.cta} →</a>
+              <a href={`/${t.slug}/`} class="editorial-link">{tc.cta}&nbsp;→</a>
             </div>
           );
         })}
@@ -292,11 +292,16 @@ const copy = {
     gap: 2.5rem;
   }
   .strip-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
     padding: 1.5rem;
     background: var(--color-paper);
     border-radius: 6px;
     border: 1px solid var(--color-line);
   }
+  /* CTAs sit on the card base, aligned across the row. */
+  .strip-item .editorial-link { margin-top: auto; }
   .strip-item .icon {
     width: 44px;
     height: 44px;
