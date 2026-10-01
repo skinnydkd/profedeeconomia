@@ -111,7 +111,7 @@ const OBSOLETOS: Obsoleto[] = [
   {
     patron: /(?:más de|superar los|por encima de|més de|superar els|per damunt de) \**9 ?€\/kg/,
     motivo:
-      'El virgen extra en origen rondó los 9 €/kg entre finales de 2023 y comienzos de 2024 (máximo de 8,98 €/kg el 15 de enero de 2024, Infaoliva); no los superó',
+      'El virgen extra en origen rondó los 9 €/kg entre finales de 2023 y comienzos de 2024 (máximo de 8,98 € el 15 de enero de 2024, según Infaoliva); no los superó',
     ejemplo: 'El precio en origen pasó de 3,30 a más de 9 €/kg.',
   },
   {
