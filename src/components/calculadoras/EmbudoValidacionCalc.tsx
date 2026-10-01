@@ -3,6 +3,7 @@ import { useMemo, useState } from 'preact/hooks';
 import { type Locale } from '@/i18n/locale';
 import { formatEUR, formatNumber, formatPercent } from '../../lib/calc/format';
 import { analizar, type Paso } from '../../lib/calc/embudo-validacion';
+import NumberInput from '../NumberInput';
 
 /** UI strings, Valencian (AVL) alongside the ES source. */
 export const COPY = {
@@ -86,7 +87,6 @@ export const COPY = {
 
 interface Props { locale?: Locale }
 
-const num = (e: Event) => parseFloat((e.target as HTMLInputElement).value) || 0;
 const texto = (e: Event) => (e.target as HTMLInputElement).value;
 
 const PRESETS = {
@@ -192,8 +192,8 @@ export default function EmbudoValidacionCalc({ locale = 'es' }: Props) {
                       onInput={(e) => editar(i, 'nombre', texto(e))} />
                   </td>
                   <td>
-                    <input class="ev__cell" type="number" min={0} step={10} value={p.personas}
-                      onInput={(e) => editar(i, 'personas', num(e))} />
+                    <NumberInput class="ev__cell" min={0} step={10} value={p.personas}
+                      onValue={(v) => editar(i, 'personas', v)} />
                   </td>
                   <td>{v && Number.isFinite(v.conversion) ? formatPercent(v.conversion) : '—'}</td>
                   <td>{v ? formatPercent(v.conversionTotal) : '—'}</td>
@@ -216,13 +216,13 @@ export default function EmbudoValidacionCalc({ locale = 'es' }: Props) {
         <label class="calc__field">
           <span class="calc__label">{t.gasto}</span>
           <div class="calc__input-wrap">
-            <input type="number" min={0} step={5} value={gasto} onInput={(e) => setGasto(num(e))} />
+            <NumberInput min={0} step={5} value={gasto} onValue={setGasto} />
           </div>
         </label>
         <label class="calc__field">
           <span class="calc__label">{t.ingreso}</span>
           <div class="calc__input-wrap">
-            <input type="number" min={0} step={1} value={ingreso} onInput={(e) => setIngreso(num(e))} />
+            <NumberInput min={0} step={1} value={ingreso} onValue={setIngreso} />
           </div>
         </label>
       </div>

@@ -8,6 +8,7 @@ import {
   type MultiplierParams,
 } from '@/lib/calc/multiplicador';
 import { formatNumber } from '@/lib/calc/format';
+import NumberInput from '../NumberInput';
 
 /**
  * Keynesian spending-multiplier calculator — Eco 1BACH Unit 8 (AD-AS model /
@@ -140,11 +141,10 @@ export default function MultiplicadorGasto({ locale = 'es' }: Props) {
         <label class="calc__field">
           <span class="calc__label">{c.inyeccionGasto}</span>
           <div class="calc__input-wrap">
-            <input
-              type="number"
+            <NumberInput
               step={10}
               value={deltaGasto}
-              onInput={(e) => setDeltaGasto(parseFloat((e.target as HTMLInputElement).value) || 0)}
+              onValue={setDeltaGasto}
             />
             <span class="calc__unit">{c.millEuros}</span>
           </div>

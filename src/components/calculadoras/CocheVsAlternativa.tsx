@@ -7,6 +7,8 @@ import {
   compararMovilidad,
 } from '../../lib/calc/coche';
 import { formatEUR, formatNumber } from '../../lib/calc/format';
+import NumberInput from '../NumberInput';
+import LiveSummary from '../LiveSummary';
 
 /**
  * UI strings, Valencian (AVL) alongside the ES source. Economic notation and
@@ -56,10 +58,10 @@ export const COPY = {
     depreciacionAnual: 'Depreciación anual',
     combustibleAnual: 'Combustible anual',
     costesFijos: 'Costes fijos del coche',
-    kmEquilibrioPre: 'A partir de unos',
+    kmEquilibrioPre: 'Por debajo de unos',
     kmEquilibrioKmAnio: 'km al año',
     kmEquilibrioPost:
-      ' el coche propio empezaría a salir más barato que esta alternativa (manteniendo el resto de datos igual).',
+      ' sale más barato el coche propio; por encima, esta alternativa (manteniendo el resto de datos igual).',
     ocultosSummary: 'Los costes ocultos del coche',
     ocultosP1a: 'Cuando pensamos en lo que cuesta un coche solemos fijarnos solo en la ',
     ocultosGasolina: 'gasolina',
@@ -121,10 +123,10 @@ export const COPY = {
     depreciacionAnual: 'Depreciació anual',
     combustibleAnual: 'Combustible anual',
     costesFijos: 'Costos fixos del cotxe',
-    kmEquilibrioPre: "A partir d'uns",
+    kmEquilibrioPre: "Per davall d'uns",
     kmEquilibrioKmAnio: "km a l'any",
     kmEquilibrioPost:
-      ' el cotxe propi començaria a eixir més barat que esta alternativa (mantenint la resta de dades igual).',
+      ' ix més barat el cotxe propi; per damunt, esta alternativa (mantenint la resta de dades igual).',
     ocultosSummary: 'Els costos ocults del cotxe',
     ocultosP1a: 'Quan pensem en el que costa un cotxe, solem fixar-nos només en la ',
     ocultosGasolina: 'gasolina',
@@ -244,6 +246,13 @@ export default function CocheVsAlternativa({ locale = 'es' }: Props) {
 
   const ganaCoche = comparacion.opcionMasBarata === 'coche';
   const ganaAlt = comparacion.opcionMasBarata === 'alternativa';
+  const veredicto =
+    comparacion.opcionMasBarata === 'empate' ? c.verdictEmpate : ganaCoche ? c.verdictCoche : c.verdictAlt;
+  const resumen = [
+    `${veredicto}: ${formatEUR(comparacion.diferenciaAnual, 0)} ${c.deDiferencia}.`,
+    `${c.barCoche}: ${formatEUR(coche.total, 0)}.`,
+    `${c.barAlt}: ${formatEUR(alternativa.total, 0)}.`,
+  ].join(' ');
 
   return (
     <div class="calc">
@@ -263,12 +272,11 @@ export default function CocheVsAlternativa({ locale = 'es' }: Props) {
           <label class="calc__field">
             <span class="calc__label">{c.precioCompra}</span>
             <div class="calc__input-wrap">
-              <input
-                type="number"
+              <NumberInput
                 min={0}
                 step={500}
                 value={precioCompra}
-                onInput={(e) => setPrecioCompra(num(e))}
+                onValue={setPrecioCompra}
               />
               <span class="calc__unit">€</span>
             </div>
@@ -277,12 +285,11 @@ export default function CocheVsAlternativa({ locale = 'es' }: Props) {
           <label class="calc__field">
             <span class="calc__label">{c.anosVidaUtil}</span>
             <div class="calc__input-wrap">
-              <input
-                type="number"
+              <NumberInput
                 min={1}
                 step={1}
                 value={anosVidaUtil}
-                onInput={(e) => setAnosVidaUtil(num(e))}
+                onValue={setAnosVidaUtil}
               />
               <span class="calc__unit">{c.unitAnos}</span>
             </div>
@@ -291,12 +298,11 @@ export default function CocheVsAlternativa({ locale = 'es' }: Props) {
           <label class="calc__field">
             <span class="calc__label">{c.kmAnuales}</span>
             <div class="calc__input-wrap">
-              <input
-                type="number"
+              <NumberInput
                 min={0}
                 step={500}
                 value={kmAnuales}
-                onInput={(e) => setKmAnuales(num(e))}
+                onValue={setKmAnuales}
               />
               <span class="calc__unit">{c.unitKmAnio}</span>
             </div>
@@ -305,12 +311,11 @@ export default function CocheVsAlternativa({ locale = 'es' }: Props) {
           <label class="calc__field">
             <span class="calc__label">{c.consumo}</span>
             <div class="calc__input-wrap">
-              <input
-                type="number"
+              <NumberInput
                 min={0}
                 step={0.5}
                 value={consumoL100}
-                onInput={(e) => setConsumoL100(num(e))}
+                onValue={setConsumoL100}
               />
               <span class="calc__unit">{c.unitL100}</span>
             </div>
@@ -319,12 +324,11 @@ export default function CocheVsAlternativa({ locale = 'es' }: Props) {
           <label class="calc__field">
             <span class="calc__label">{c.precioCombustible}</span>
             <div class="calc__input-wrap">
-              <input
-                type="number"
+              <NumberInput
                 min={0}
                 step={0.05}
                 value={precioCombustible}
-                onInput={(e) => setPrecioCombustible(num(e))}
+                onValue={setPrecioCombustible}
               />
               <span class="calc__unit">{c.unitEurL}</span>
             </div>
@@ -333,7 +337,7 @@ export default function CocheVsAlternativa({ locale = 'es' }: Props) {
           <label class="calc__field">
             <span class="calc__label">{c.seguro}</span>
             <div class="calc__input-wrap">
-              <input type="number" min={0} step={10} value={seguro} onInput={(e) => setSeguro(num(e))} />
+              <NumberInput min={0} step={10} value={seguro} onValue={setSeguro} />
               <span class="calc__unit">{c.unitEurAnio}</span>
             </div>
           </label>
@@ -341,12 +345,11 @@ export default function CocheVsAlternativa({ locale = 'es' }: Props) {
           <label class="calc__field">
             <span class="calc__label">{c.mantenimiento}</span>
             <div class="calc__input-wrap">
-              <input
-                type="number"
+              <NumberInput
                 min={0}
                 step={10}
                 value={mantenimiento}
-                onInput={(e) => setMantenimiento(num(e))}
+                onValue={setMantenimiento}
               />
               <span class="calc__unit">{c.unitEurAnio}</span>
             </div>
@@ -355,12 +358,11 @@ export default function CocheVsAlternativa({ locale = 'es' }: Props) {
           <label class="calc__field">
             <span class="calc__label">{c.impuestos}</span>
             <div class="calc__input-wrap">
-              <input
-                type="number"
+              <NumberInput
                 min={0}
                 step={5}
                 value={impuestos}
-                onInput={(e) => setImpuestos(num(e))}
+                onValue={setImpuestos}
               />
               <span class="calc__unit">{c.unitEurAnio}</span>
             </div>
@@ -369,12 +371,11 @@ export default function CocheVsAlternativa({ locale = 'es' }: Props) {
           <label class="calc__field">
             <span class="calc__label">{c.aparcamiento}</span>
             <div class="calc__input-wrap">
-              <input
-                type="number"
+              <NumberInput
                 min={0}
                 step={10}
                 value={aparcamiento}
-                onInput={(e) => setAparcamiento(num(e))}
+                onValue={setAparcamiento}
               />
               <span class="calc__unit">{c.unitEurAnio}</span>
             </div>
@@ -388,12 +389,11 @@ export default function CocheVsAlternativa({ locale = 'es' }: Props) {
           <label class="calc__field">
             <span class="calc__label">{c.abonoTransporte}</span>
             <div class="calc__input-wrap">
-              <input
-                type="number"
+              <NumberInput
                 min={0}
                 step={5}
                 value={abonoTransporteMensual}
-                onInput={(e) => setAbono(num(e))}
+                onValue={setAbono}
               />
               <span class="calc__unit">{c.unitEurMes}</span>
             </div>
@@ -402,12 +402,11 @@ export default function CocheVsAlternativa({ locale = 'es' }: Props) {
           <label class="calc__field">
             <span class="calc__label">{c.viajesTaxi}</span>
             <div class="calc__input-wrap">
-              <input
-                type="number"
+              <NumberInput
                 min={0}
                 step={1}
                 value={viajesTaxiMes}
-                onInput={(e) => setViajesTaxi(num(e))}
+                onValue={setViajesTaxi}
               />
               <span class="calc__unit">{c.unitViajesMes}</span>
             </div>
@@ -416,12 +415,11 @@ export default function CocheVsAlternativa({ locale = 'es' }: Props) {
           <label class="calc__field">
             <span class="calc__label">{c.costeMedioTaxi}</span>
             <div class="calc__input-wrap">
-              <input
-                type="number"
+              <NumberInput
                 min={0}
                 step={1}
                 value={costeMedioTaxi}
-                onInput={(e) => setCosteTaxi(num(e))}
+                onValue={setCosteTaxi}
               />
               <span class="calc__unit">{c.unitEurViaje}</span>
             </div>
@@ -430,12 +428,11 @@ export default function CocheVsAlternativa({ locale = 'es' }: Props) {
           <label class="calc__field">
             <span class="calc__label">{c.diasAlquiler}</span>
             <div class="calc__input-wrap">
-              <input
-                type="number"
+              <NumberInput
                 min={0}
                 step={1}
                 value={alquilerPuntualDias}
-                onInput={(e) => setAlquilerDias(num(e))}
+                onValue={setAlquilerDias}
               />
               <span class="calc__unit">{c.unitDiasAnio}</span>
             </div>
@@ -444,12 +441,11 @@ export default function CocheVsAlternativa({ locale = 'es' }: Props) {
           <label class="calc__field">
             <span class="calc__label">{c.costeAlquilerDia}</span>
             <div class="calc__input-wrap">
-              <input
-                type="number"
+              <NumberInput
                 min={0}
                 step={5}
                 value={costeAlquilerDia}
-                onInput={(e) => setCosteAlquiler(num(e))}
+                onValue={setCosteAlquiler}
               />
               <span class="calc__unit">{c.unitEurDia}</span>
             </div>
@@ -464,20 +460,15 @@ export default function CocheVsAlternativa({ locale = 'es' }: Props) {
         </div>
       </div>
 
-      <div class="calc__results" aria-live="polite">
+      <div class="calc__results">
+        <LiveSummary text={resumen} />
         {/* Highlighted verdict. */}
         <div
           class={`calc__metric calc__metric--primary ${
             ganaAlt ? 'calc__metric--ok' : ''
           }`}
         >
-          <span class="calc__metric-label">
-            {comparacion.opcionMasBarata === 'empate'
-              ? c.verdictEmpate
-              : ganaCoche
-                ? c.verdictCoche
-                : c.verdictAlt}
-          </span>
+          <span class="calc__metric-label">{veredicto}</span>
           <span class="calc__metric-value">{formatEUR(comparacion.diferenciaAnual, 0)}</span>
           <span class="calc__metric-unit">{c.deDiferencia}</span>
         </div>
@@ -560,7 +551,3 @@ export default function CocheVsAlternativa({ locale = 'es' }: Props) {
   );
 }
 
-/** Read a numeric value from an input event, defaulting to 0. */
-function num(e: Event): number {
-  return parseFloat((e.target as HTMLInputElement).value) || 0;
-}

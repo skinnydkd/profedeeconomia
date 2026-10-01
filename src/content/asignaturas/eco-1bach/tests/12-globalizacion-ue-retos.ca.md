@@ -71,6 +71,14 @@ preguntas:
       - "L'automatització afecta únicament el sector industrial, no els servicis ni les tasques cognitives."
     correcta: 1
     explicacion: "L'ordre de magnitud de Frey-Osborne es manté, però la literatura posterior (Autor i altres) ha precisat que la unitat rellevant és la tasca, no l'ocupació: moltes professions automatitzen part de les seues tasques sense desaparéixer. I el que s'observa als EUA i Europa és polarització (hollowing out): creixen les ocupacions cognitives no rutinàries i les de baixa qualificació poc automatitzables, mentres cauen les de qualificació mitjana."
+  - enunciado: "Sobre l'economia col·laborativa i de plataformes, quina d'estes afirmacions és correcta?"
+    opciones:
+      - "A BlaBlaCar el conductor cobra una tarifa amb marge de benefici, igual que un taxista professional."
+      - "La Llei Rider obliga els qui fan repartiments per a una plataforma a donar-se d'alta com a autònoms."
+      - "Wallapop posa en contacte particulars que revenen el que ja tenen: és intercanvi P2P."
+      - "Els pisos turístics es regixen només per les normes de cada plataforma, sense regulació pública."
+    correcta: 2
+    explicacion: "Wallapop només posa en contacte particulars que revenen objectes que ja tenen: és intercanvi entre iguals (P2P). A BlaBlaCar qui conduïx repartix les despeses d'un viatge que igualment faria, sense obtindre'n benefici. La Llei Rider (Llei 12/2021) va en sentit contrari al de convertir els repartidors en autònoms: presumix assalariats els qui fan repartiments quan una plataforma organitza el seu treball amb un algoritme. I els pisos turístics sí que tenen regulació pública: autonòmica i municipal i, des de 2025, el vot de tres cinquenes parts de la comunitat de propietaris i el Registre Únic d'Arrendaments."
   - enunciado: "Sobre les visions contemporànies de la sostenibilitat, quin d'estos parells descriu correctament la diferència entre economia circular i decreixement?"
     opciones:
       - "Totes dues defenen el mateix: reduir el PIB de manera planificada."
@@ -105,4 +113,4 @@ preguntas:
     explicacion: "Renunciar a les 200 de tela permet obtindre 100 de vi, així que cada unitat de vi costa 200 / 100 = 2 de tela. Comparant este cost amb el de l'altre país es veu qui té l'avantatge comparatiu en cada bé."
 ---
 
-Test d'autoavaluació de la Unitat 12 del llibre d'Eco 1BACH. Deu preguntes que cobrixen avantatge absolut i comparatiu (amb càlcul de cost d'oportunitat), proteccionisme vs. lliure comerç, OMC, fites de la construcció europea, les quatre llibertats del mercat únic, NextGenerationEU, beneficis i costos de la globalització, revolució digital (Frey-Osborne i polarització del mercat laboral), economia circular vs. decreixement i ODS de l'Agenda 2030.
+Test d'autoavaluació de la Unitat 12 del llibre d'Eco 1BACH. Catorze preguntes que cobrixen avantatge absolut i comparatiu (amb càlcul de cost d'oportunitat), proteccionisme vs. lliure comerç, OMC, fites de la construcció europea, les quatre llibertats del mercat únic, NextGenerationEU, beneficis i costos de la globalització, revolució digital (Frey-Osborne i polarització del mercat laboral), economia col·laborativa i de plataformes, economia circular vs. decreixement i ODS de l'Agenda 2030.

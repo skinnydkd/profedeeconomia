@@ -107,4 +107,4 @@ preguntas:
     explicacion: "Cadascun mesura una cosa distinta i cap resumix l'economia tot sol: el PIB mesura producció, l'IPC preus, la taxa d'atur el mercat de treball i la balança la relació amb l'exterior."
 ---
 
-Test d'autoavaluació de la Unitat 7 del llibre d'Eco 1BACH. Nou preguntes que cobrixen els quatre agents econòmics, la identitat del flux circular ampliat, el càlcul del PIB pels mètodes de la despesa i de la producció, la conversió entre PIB nominal i real mitjançant el deflactor, la diferència entre IPC i deflactor del PIB, el paper de l'IPCH en la zona euro, la definició d'atur segons l'EPA i l'estructura del superàvit per compte corrent espanyol.
+Test d'autoavaluació de la Unitat 7 del llibre d'Eco 1BACH. Catorze preguntes que cobrixen els quatre agents econòmics, la identitat del flux circular ampliat, el càlcul del PIB pels mètodes de la despesa i de la producció, la conversió entre PIB nominal i real mitjançant el deflactor, la diferència entre IPC i deflactor del PIB, el paper de l'IPCH en la zona euro, la definició d'atur segons l'EPA i l'estructura del superàvit per compte corrent espanyol.

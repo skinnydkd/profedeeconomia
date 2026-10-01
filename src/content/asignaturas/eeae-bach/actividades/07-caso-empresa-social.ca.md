@@ -8,7 +8,7 @@ tipo: caso
 duracion: "60 min · 1 sessió"
 agrupacion: "grups xicotets (3-4)"
 materiales:
-  - "Dossier amb la informació d'una empresa social real, curat pel professor a partir de fonts públiques (web corporativa i memòria de l'empresa, casos de l'economia social espanyola via CEPES, premsa econòmica, B Lab per a empreses amb segell B Corp)"
+  - "Dossier inclòs al final d'esta fitxa, amb tres organitzacions (La Fageda, Patagonia i Grameen Bank), o un d'equivalent d'una empresa social pròxima preparat pel professor a partir de fonts públiques (web corporativa i memòria de l'empresa, casos de l'economia social espanyola via CEPES, premsa econòmica, B Lab per a empreses amb segell B Corp)"
   - "Accés a internet o mòbils per a consultar la web de l'empresa i el llistat dels ODS"
   - "Fitxa de treball amb tres columnes: empresa convencional / empresa social / ONG, per a situar el cas"
   - "El llistat visual dels 17 ODS (roda de colors oficial de l'ONU)"
@@ -58,3 +58,25 @@ El professor presenta una empresa social documentada. Pot usar el cas de La Fage
 - **Variant per figures:** repartir a distints grups una empresa convencional, una empresa social i una ONG del mateix àmbit (per exemple, alimentació) i comparar en la posada en comú els seus fins i els seus models.
 - **Connexió amb la Unitat 3:** reprendre la distinció entre compromís real i greenwashing aplicant-la ara a una empresa que diu tindre fi social.
 - **Connexió amb el projecte de la unitat:** usar el cas com a model perquè els grups valoren si el seu propi projecte (activitat anterior) podria tindre una dimensió social.
+
+## Dossier
+
+Tres organitzacions que apareixen en la Unitat 7 i que cauen en llocs distints de la fitxa de tres columnes. Cap no encaixa del tot en una sola casella: justament ahí està la discussió.
+
+### Cas A · La Fageda (Garrotxa): iogurts que donen treball
+
+La cooperativa La Fageda fabrica iogurts i gelats que es venen en supermercats com qualsevol altra marca. Va nàixer el 1982 a la comarca de la Garrotxa amb la missió de donar treball digne a persones amb discapacitat intel·lectual i trastorns mentals greus, a qui el mercat laboral ordinari deixava fora. El seu fundador, el psicòleg Cristóbal Colón, va decidir tractar-les com a treballadors amb una ocupació real i productiva, no com a pacients a qui cuidar. Hui dona ocupació a centenars de persones, una part important d'elles amb algun tipus de discapacitat, ven els seus productes al mercat, no viu de subvencions i competix en qualitat amb les grans marques làcties.
+
+*Font: Fundació La Fageda, memòries i informació corporativa (fageda.com); premsa econòmica espanyola. Cas recollit en la Unitat 7 d'este llibre.*
+
+### Cas B · Patagonia: la Terra com a única accionista
+
+Patagonia, una marca estatunidenca de roba de muntanya, va reescriure la seua missió el 2018: «Estem en el negoci per a salvar el nostre planeta». Dona un percentatge fix de les seues vendes a causes ambientals i anima a reparar la roba en lloc de comprar-ne de nova, com en la seua campanya «No compres esta jaqueta». Al setembre de 2022 el seu fundador, Yvon Chouinard, en lloc de vendre l'empresa o traure-la a borsa, va transferir la propietat a una fundació i a un fideïcomís els beneficis del qual es destinen íntegrament a lluitar contra la crisi climàtica. El comunicat ho va resumir així: «la Terra és ara la nostra única accionista».
+
+*Fonts: Patagonia Inc., declaració de missió i comunicat «Earth is now our only shareholder» (setembre de 2022, patagonia.com/ownership); The New York Times i Reuters. Cas recollit en la Unitat 7 d'este llibre.*
+
+### Cas C · Grameen Bank: prestar a qui cap banc no prestava
+
+En els anys setanta, l'economista bangladeixí Muhammad Yunus va vore que les persones més pobres no podien eixir de la pobresa perquè cap banc els prestava diners: no tenien avals ni garanties. Va fundar el Grameen Bank, que prestava quantitats molt xicotetes —de vegades l'equivalent a uns pocs euros— a dones pobres del camp perquè muntaren el seu propi negoci, sense demanar aval. Eixes persones, «insolvents» per a la banca tradicional, tornaven els préstecs en percentatges altíssims. El microcrèdit es va estendre per tot el món, i Yunus i el Grameen Bank van rebre junts el Premi Nobel de la Pau de 2006.
+
+*Font: Fundació Nobel, Premi Nobel de la Pau 2006 (nobelprize.org). Cas recollit en la Unitat 7 d'este llibre.*

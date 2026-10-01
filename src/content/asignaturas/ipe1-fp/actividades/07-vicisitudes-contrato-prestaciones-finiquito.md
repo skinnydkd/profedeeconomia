@@ -53,7 +53,7 @@ Cada pareja recibe un caso. La tarea es la de un asesor laboral: identificar qu�
 
 Laura, 26 años, contrato indefinido a tiempo completo, lleva 14 meses cotizando. Sufre un accidente no laboral (fractura) y está de baja médica ocho semanas. La empresa le dice que "durante la baja no cobra nada porque no trabaja".
 
-- **A resolver:** ¿es suspensión o extinción del contrato? ¿Tiene derecho a prestación por incapacidad temporal? ¿Cumple el requisito de cotización (180 días en los últimos 5 años para enfermedad común)? ¿Quién le paga durante la baja y cómo evoluciona el porcentaje sobre la base reguladora? ¿Conserva el puesto al volver?
+- **A resolver:** ¿es suspensión o extinción del contrato? ¿Tiene derecho a prestación por incapacidad temporal? ¿Se le exige un periodo mínimo de cotización (carencia)? ¿Lo cumpliría si fuera una enfermedad común (180 días en los últimos 5 años)? ¿Quién le paga durante la baja y cómo evoluciona el porcentaje sobre la base reguladora? ¿Conserva el puesto al volver?
 
 ### Caso B — Yusuf, despido objetivo por causas económicas
 

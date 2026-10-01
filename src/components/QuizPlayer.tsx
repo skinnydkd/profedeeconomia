@@ -1,7 +1,7 @@
 /** @jsxImportSource preact */
-import { useEffect, useMemo, useRef, useState } from 'preact/hooks';
+import { useEffect, useId, useMemo, useRef, useState } from 'preact/hooks';
 import { loadJSON, removeKey, saveJSON } from '../lib/storage';
-import { lecturasNumero, numeroCorrecto, ordenesOpciones, ordenValido, rngDesde, textoPlano } from './quiz-utils';
+import { lecturasNumero, numeroCorrecto, ordenesOpciones, ordenValido, rngDesde, textoNoNumerico, textoPlano } from './quiz-utils';
 import Marca from './QuizMarca';
 import TextoInline from './TextoInline';
 import './QuizPlayer.css';
@@ -40,6 +40,7 @@ const COPY = {
     marcaCorrecta: 'Correcta', marcaTuya: 'Tu respuesta', filaBien: 'correcta', filaMal: 'incorrecta',
     progreso: 'Progreso', correctaS: 'correcta', correctaP: 'correctas', incorrectaS: 'incorrecta', incorrectaP: 'incorrectas',
     pendienteS: 'pendiente', pendienteP: 'pendientes',
+    avisoNumero: 'Escribe solo un número, por ejemplo 12,5.',
   },
   ca: {
     sinResponder: '— sense respondre —', verdadero: 'Vertader', falso: 'Fals',
@@ -52,6 +53,7 @@ const COPY = {
     marcaCorrecta: 'Correcta', marcaTuya: 'La teua resposta', filaBien: 'correcta', filaMal: 'incorrecta',
     progreso: 'Progrés', correctaS: 'correcta', correctaP: 'correctes', incorrectaS: 'incorrecta', incorrectaP: 'incorrectes',
     pendienteS: 'pendent', pendienteP: 'pendents',
+    avisoNumero: 'Escriu només un número, per exemple 12,5.',
   },
 } as const;
 type Copy = (typeof COPY)[keyof typeof COPY];
@@ -160,6 +162,7 @@ export default function QuizPlayer({ preguntas, storageKey, locale = 'es' }: Pro
   // after moving, instead of on <body>. Not on first paint: no focus stealing.
   const enunciadoRef = useRef<HTMLHeadingElement>(null);
   const resultadoRef = useRef<HTMLHeadingElement>(null);
+  const avisoNumeroId = useId();
   const moverFoco = useRef(false);
   useEffect(() => {
     if (!moverFoco.current) return;
@@ -308,6 +311,8 @@ export default function QuizPlayer({ preguntas, storageKey, locale = 'es' }: Pro
   // ─── Question screen ─────────────────────────────────
   const acerto = confirmada && esCorrecta(pregunta, respuestaActual);
   const orden = pregunta.tipo === 'opcion-multiple' ? ordenValido(estado.ordenes[estado.idx], pregunta.opciones.length) : [];
+  // Said out loud when the text cannot become a number: «Confirmar» alone just stays disabled.
+  const noEsNumero = pregunta.tipo === 'numerico' && !confirmada && typeof respuestaActual === 'string' && textoNoNumerico(respuestaActual);
 
   // Progress in words for assistive tech: the dots themselves are only colour and shape.
   const hechas = estado.confirmadas.filter(Boolean).length;
@@ -397,10 +402,13 @@ export default function QuizPlayer({ preguntas, storageKey, locale = 'es' }: Pro
                 disabled={confirmada}
                 value={typeof respuestaActual === 'string' ? respuestaActual : ''}
                 onInput={(e) => setRespuesta(e.currentTarget.value)}
+                aria-invalid={noEsNumero || undefined}
+                aria-describedby={noEsNumero ? avisoNumeroId : undefined}
               />
               {pregunta.unidad && <span class="qp__num-unidad">{pregunta.unidad}</span>}
             </span>
           </label>
+          {noEsNumero && <p class="qp__num-aviso" id={avisoNumeroId}>{t.avisoNumero}</p>}
         </div>
       )}
 

@@ -53,7 +53,7 @@ Trabajáis en parejas como reclutadores de una empresa que busca cubrir un puest
 ### Candidato 2 — Berta
 
 - Misma titulación y prácticas que Álex.
-- LinkedIn completo: foto adecuada, titular profesional, prácticas y competencias descritas, recomendación de su tutor de FCT.
+- LinkedIn completo: foto adecuada, titular profesional, prácticas y competencias descritas, recomendación de su tutor de prácticas.
 - Comparte de vez en cuando contenido del sector y participa en grupos profesionales.
 - Email: `berta.lopez.profesional@correo.com`.
 - Redes personales con privacidad bien configurada; lo público es neutro o profesional.

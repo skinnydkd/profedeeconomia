@@ -1,6 +1,8 @@
 /** @jsxImportSource preact */
 import { useMemo, useState } from 'preact/hooks';
 import { type Locale } from '@/i18n/locale';
+import NumberInput from '../NumberInput';
+import LiveSummary from '../LiveSummary';
 
 /**
  * Interés compuesto con aportaciones periódicas mensuales.
@@ -175,6 +177,14 @@ export default function InteresCompuestoCalc({ locale = 'es' }: Props) {
     };
   }, [capitalInicial, aportacionMensual, tipoAnual, anios, c]);
 
+  const resumen = !result.valido
+    ? result.mensaje
+    : [
+        `${c.capitalFinal}: ${fmtMoney(result.capitalFinal)}.`,
+        `${c.totalAportado}: ${fmtMoney(result.totalAportado)}.`,
+        `${c.interesesGanados}: ${fmtMoney(result.intereses)}.`,
+      ].join(' ');
+
   function reset() {
     setCapitalInicial(1000);
     setAportacionMensual(100);
@@ -212,14 +222,11 @@ export default function InteresCompuestoCalc({ locale = 'es' }: Props) {
         <label class="calc__field">
           <span class="calc__label">{c.capitalInicial}</span>
           <div class="calc__input-wrap">
-            <input
-              type="number"
+            <NumberInput
               min={0}
               step={100}
               value={capitalInicial}
-              onInput={(e) =>
-                setCapitalInicial(parseFloat((e.target as HTMLInputElement).value) || 0)
-              }
+              onValue={setCapitalInicial}
             />
             <span class="calc__unit">€</span>
           </div>
@@ -228,14 +235,11 @@ export default function InteresCompuestoCalc({ locale = 'es' }: Props) {
         <label class="calc__field">
           <span class="calc__label">{c.aportacionMensual}</span>
           <div class="calc__input-wrap">
-            <input
-              type="number"
+            <NumberInput
               min={0}
               step={25}
               value={aportacionMensual}
-              onInput={(e) =>
-                setAportacionMensual(parseFloat((e.target as HTMLInputElement).value) || 0)
-              }
+              onValue={setAportacionMensual}
             />
             <span class="calc__unit">{c.eurMes}</span>
           </div>
@@ -244,12 +248,11 @@ export default function InteresCompuestoCalc({ locale = 'es' }: Props) {
         <label class="calc__field">
           <span class="calc__label">{c.tipoInteresAnual}</span>
           <div class="calc__input-wrap">
-            <input
-              type="number"
+            <NumberInput
               min={-50}
               step={0.25}
               value={tipoAnual}
-              onInput={(e) => setTipoAnual(parseFloat((e.target as HTMLInputElement).value) || 0)}
+              onValue={setTipoAnual}
             />
             <span class="calc__unit">{c.pctAnual}</span>
           </div>
@@ -258,20 +261,20 @@ export default function InteresCompuestoCalc({ locale = 'es' }: Props) {
         <label class="calc__field">
           <span class="calc__label">{c.aniosLabel}</span>
           <div class="calc__input-wrap">
-            <input
-              type="number"
+            <NumberInput
               min={1}
               max={70}
               step={1}
               value={anios}
-              onInput={(e) => setAnios(parseInt((e.target as HTMLInputElement).value, 10) || 0)}
+              onValue={(v) => setAnios(Math.trunc(v))}
             />
             <span class="calc__unit">{c.aniosUnit}</span>
           </div>
         </label>
       </div>
 
-      <div class="calc__results" aria-live="polite">
+      <div class="calc__results">
+        <LiveSummary text={resumen} />
         {!result.valido ? (
           <div class="calc__warning">{result.mensaje}</div>
         ) : (

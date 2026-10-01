@@ -44,7 +44,7 @@ export const ASIGNATURAS_CA: Partial<Record<AsignaturaSlug, CAOverlay>> = {
     seoTitle: 'FOPP 4t ESO: llibre, diapositives i activitats gratis',
     seoName: 'FOPP 4t ESO',
     tagline:
-      'Itineraris, drets laborals i orientació. L\'assignatura nova de la LOMLOE, sense material decent disponible. Fins ara.',
+      'Itineraris, drets laborals i orientació per a la matèria nova de la LOMLOE: llibre, activitats i un projecte de vida que es construïx durant el curs.',
     marcoNormativo: 'Reial Decret 217/2022',
   },
   'taller-eco-3eso': {
@@ -82,7 +82,7 @@ export const ASIGNATURAS_CA: Partial<Record<AsignaturaSlug, CAOverlay>> = {
     tagline:
       'La matèria de modalitat General que ajunta economia, iniciativa emprenedora i activitat empresarial. Per a entendre com es crea valor abans de triar itinerari.',
     modalidad: 'Modalitat General',
-    marcoNormativo: 'Reial Decret 243/2022 · Decret 108/2022, mod. Decret 103/2026 (CV)',
+    marcoNormativo: 'Reial Decret 243/2022 — concreció a la CV: Decret 108/2022, mod. Decret 103/2026',
   },
   'gpe-bach': {
     level: 'Batxillerat (1r/2n)',

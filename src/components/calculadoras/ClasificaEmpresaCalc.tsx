@@ -3,6 +3,7 @@ import { useMemo, useState } from 'preact/hooks';
 import { type Locale } from '@/i18n/locale';
 import { formatEUR, formatNumber } from '../../lib/calc/format';
 import { clasificar, paraBajarDeTramo, UMBRALES, type Entrada, type Sector, type Propiedad, type Ambito } from '../../lib/calc/clasifica-empresa';
+import NumberInput from '../NumberInput';
 
 /** UI strings, Valencian (AVL) alongside the ES source. PYME stays PYME. */
 export const COPY = {
@@ -85,7 +86,6 @@ export const COPY = {
 } as const;
 
 interface Props { locale?: Locale }
-const num = (e: Event) => Number((e.currentTarget as HTMLInputElement).value);
 const sel = (e: Event) => (e.currentTarget as HTMLSelectElement).value;
 
 const PRESETS: Record<string, Entrada> = {
@@ -116,15 +116,15 @@ export default function ClasificaEmpresaCalc({ locale = 'es' }: Props) {
       <div class="calc__form ce__row">
         <label class="calc__field">
           <span class="calc__label">{t.empleados}</span>
-          <div class="calc__input-wrap"><input type="number" min={0} step={1} value={e.empleados} onInput={(ev) => set('empleados', num(ev))} /></div>
+          <div class="calc__input-wrap"><NumberInput min={0} step={1} value={e.empleados} onValue={(v) => set('empleados', v)} /></div>
         </label>
         <label class="calc__field">
           <span class="calc__label">{t.facturacion}</span>
-          <div class="calc__input-wrap"><input type="number" min={0} step={10000} value={e.facturacion} onInput={(ev) => set('facturacion', num(ev))} /></div>
+          <div class="calc__input-wrap"><NumberInput min={0} step={10000} value={e.facturacion} onValue={(v) => set('facturacion', v)} /></div>
         </label>
         <label class="calc__field">
           <span class="calc__label">{t.balance}</span>
-          <div class="calc__input-wrap"><input type="number" min={0} step={10000} value={e.balance} onInput={(ev) => set('balance', num(ev))} /></div>
+          <div class="calc__input-wrap"><NumberInput min={0} step={10000} value={e.balance} onValue={(v) => set('balance', v)} /></div>
         </label>
       </div>
 

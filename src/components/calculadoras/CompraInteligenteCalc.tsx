@@ -6,6 +6,7 @@ import {
   compararOpciones, costeAplazamiento, opcionValida,
   type Opcion, type OpcionValorada,
 } from '../../lib/calc/compra-inteligente';
+import NumberInput from '../NumberInput';
 
 /** UI strings, Valencian (AVL) alongside the ES source. TAE is kept as-is. */
 export const COPY = {
@@ -93,7 +94,6 @@ export const COPY = {
 
 interface Props { locale?: Locale }
 
-const num = (e: Event) => parseFloat((e.target as HTMLInputElement).value) || 0;
 const texto = (e: Event) => (e.target as HTMLInputElement).value;
 
 /**
@@ -189,12 +189,12 @@ export default function CompraInteligenteCalc({ locale = 'es' }: Props) {
                       onInput={(e) => editar(i, 'nombre', texto(e))} />
                   </td>
                   <td>
-                    <input class="ci__cell" type="number" min={0} step={0.1} value={o.precio}
-                      onInput={(e) => editar(i, 'precio', num(e))} />
+                    <NumberInput class="ci__cell" min={0} step={0.1} value={o.precio}
+                      onValue={(v) => editar(i, 'precio', v)} />
                   </td>
                   <td>
-                    <input class="ci__cell" type="number" min={0} step={25} value={o.cantidad}
-                      onInput={(e) => editar(i, 'cantidad', num(e))} />
+                    <NumberInput class="ci__cell" min={0} step={25} value={o.cantidad}
+                      onValue={(v) => editar(i, 'cantidad', v)} />
                   </td>
                   <td>{v ? `${formatNumber(v.precioUnitario, 4)} €/${unidad}` : '—'}</td>
                   <td>{v ? (v.esMasBarata ? t.masBarata : formatPercent(v.sobrecoste)) : '—'}</td>
@@ -221,25 +221,25 @@ export default function CompraInteligenteCalc({ locale = 'es' }: Props) {
         <label class="calc__field">
           <span class="calc__label">{t.precio}</span>
           <div class="calc__input-wrap">
-            <input type="number" min={1} step={10} value={precio} onInput={(e) => setPrecio(num(e))} />
+            <NumberInput min={1} step={10} value={precio} onValue={setPrecio} />
           </div>
         </label>
         <label class="calc__field">
           <span class="calc__label">{t.entrada}</span>
           <div class="calc__input-wrap">
-            <input type="number" min={0} step={10} value={entrada} onInput={(e) => setEntrada(num(e))} />
+            <NumberInput min={0} step={10} value={entrada} onValue={setEntrada} />
           </div>
         </label>
         <label class="calc__field">
           <span class="calc__label">{t.cuotas}</span>
           <div class="calc__input-wrap">
-            <input type="number" min={1} max={120} step={1} value={cuotas} onInput={(e) => setCuotas(num(e))} />
+            <NumberInput min={1} max={120} step={1} value={cuotas} onValue={setCuotas} />
           </div>
         </label>
         <label class="calc__field">
           <span class="calc__label">{t.cuota}</span>
           <div class="calc__input-wrap">
-            <input type="number" min={1} step={5} value={cuota} onInput={(e) => setCuota(num(e))} />
+            <NumberInput min={1} step={5} value={cuota} onValue={setCuota} />
           </div>
         </label>
       </div>

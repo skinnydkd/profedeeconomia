@@ -55,7 +55,7 @@ export function Welcome({ initialIdentity, onStart }: Props) {
 
       <input
         class="jocs-input"
-        placeholder="Tu nombre"
+        placeholder="Tu alias (no tu nombre completo)"
         value={name}
         maxLength={40}
         onInput={(e) => setName((e.target as HTMLInputElement).value)}
@@ -81,7 +81,7 @@ export function Welcome({ initialIdentity, onStart }: Props) {
       </button>
 
       <p class="jocs-mute" style={{ marginTop: 20, fontSize: 11, lineHeight: 1.4 }}>
-        Tu nombre e instituto aparecerán públicamente en el ranking.
+        El alias y el instituto aparecerán públicamente en el ranking. No escribas tu nombre completo.
       </p>
 
       <p style={{ textAlign: 'center', marginTop: 32 }}>

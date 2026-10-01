@@ -1,6 +1,8 @@
 /** @jsxImportSource preact */
 import { useMemo, useState } from 'preact/hooks';
 import { type Locale } from '@/i18n/locale';
+import NumberInput from '../NumberInput';
+import LiveSummary from '../LiveSummary';
 
 /**
  * UI strings, Valencian (AVL) alongside the ES source. Economic notation
@@ -105,18 +107,24 @@ export default function PuntoMuertoCalc({ locale = 'es' }: Props) {
       cubrePuntoMuerto: demandaPrevista >= Q,
     };
   }, [cf, precio, cvu, demandaPrevista, c]);
+  const resumen = !result.valido
+    ? c.avisoMargen
+    : [
+        `${c.puntoMuerto}: ${Math.ceil(result.Q!).toLocaleString('es-ES')} ${c.demandaUnit}.`,
+        `${c.facturacion(fmtMoney(result.facturacionEnPM!))}.`,
+        `${c.beneficioPrevisto}: ${fmtMoney(result.beneficioPrevisto!)}/mes.`,
+      ].join(' ');
   return (
     <div class="calc">
       <div class="calc__form">
         <label class="calc__field">
           <span class="calc__label">{c.cfLabel}</span>
           <div class="calc__input-wrap">
-            <input
-              type="number"
+            <NumberInput
               min={0}
               step={50}
               value={cf}
-              onInput={(e) => setCf(parseFloat((e.target as HTMLInputElement).value) || 0)}
+              onValue={setCf}
             />
             <span class="calc__unit">{c.cfUnit}</span>
           </div>
@@ -125,12 +133,11 @@ export default function PuntoMuertoCalc({ locale = 'es' }: Props) {
         <label class="calc__field">
           <span class="calc__label">{c.precioLabel}</span>
           <div class="calc__input-wrap">
-            <input
-              type="number"
+            <NumberInput
               min={0}
               step={0.1}
               value={precio}
-              onInput={(e) => setPrecio(parseFloat((e.target as HTMLInputElement).value) || 0)}
+              onValue={setPrecio}
             />
             <span class="calc__unit">{c.unidadUnit}</span>
           </div>
@@ -139,12 +146,11 @@ export default function PuntoMuertoCalc({ locale = 'es' }: Props) {
         <label class="calc__field">
           <span class="calc__label">{c.cvuLabel}</span>
           <div class="calc__input-wrap">
-            <input
-              type="number"
+            <NumberInput
               min={0}
               step={0.1}
               value={cvu}
-              onInput={(e) => setCvu(parseFloat((e.target as HTMLInputElement).value) || 0)}
+              onValue={setCvu}
             />
             <span class="calc__unit">{c.unidadUnit}</span>
           </div>
@@ -153,19 +159,19 @@ export default function PuntoMuertoCalc({ locale = 'es' }: Props) {
         <label class="calc__field">
           <span class="calc__label">{c.demandaLabel}</span>
           <div class="calc__input-wrap">
-            <input
-              type="number"
+            <NumberInput
               min={0}
               step={50}
               value={demandaPrevista}
-              onInput={(e) => setDemandaPrevista(parseFloat((e.target as HTMLInputElement).value) || 0)}
+              onValue={setDemandaPrevista}
             />
             <span class="calc__unit">{c.demandaUnit}</span>
           </div>
         </label>
       </div>
 
-      <div class="calc__results" aria-live="polite">
+      <div class="calc__results">
+        <LiveSummary text={resumen} />
         {!result.valido ? (
           <div class="calc__warning">{result.mensaje}</div>
         ) : (

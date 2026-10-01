@@ -7,6 +7,7 @@ import {
   type PricePoint,
   type RevenueDirection,
 } from '../../lib/calc/elasticidad';
+import NumberInput from '../NumberInput';
 
 /**
  * UI strings, Valencian (AVL) alongside the ES source. Economic notation
@@ -157,11 +158,10 @@ export default function ElasticidadCalc({ locale = 'es' }: Props) {
         <label class="calc__field">
           <span class="calc__label">{c.precioInicial}</span>
           <div class="calc__input-wrap">
-            <input
-              type="number"
+            <NumberInput
               step={0.5}
               value={p1}
-              onInput={(e) => setP1(parseFloat((e.target as HTMLInputElement).value) || 0)}
+              onValue={setP1}
             />
             <span class="calc__unit">€</span>
           </div>
@@ -170,11 +170,10 @@ export default function ElasticidadCalc({ locale = 'es' }: Props) {
         <label class="calc__field">
           <span class="calc__label">{c.cantidadInicial}</span>
           <div class="calc__input-wrap">
-            <input
-              type="number"
+            <NumberInput
               step={5}
               value={q1}
-              onInput={(e) => setQ1(parseFloat((e.target as HTMLInputElement).value) || 0)}
+              onValue={setQ1}
             />
             <span class="calc__unit">{c.udsUnit}</span>
           </div>
@@ -183,11 +182,10 @@ export default function ElasticidadCalc({ locale = 'es' }: Props) {
         <label class="calc__field">
           <span class="calc__label">{c.precioFinal}</span>
           <div class="calc__input-wrap">
-            <input
-              type="number"
+            <NumberInput
               step={0.5}
               value={p2}
-              onInput={(e) => setP2(parseFloat((e.target as HTMLInputElement).value) || 0)}
+              onValue={setP2}
             />
             <span class="calc__unit">€</span>
           </div>
@@ -196,11 +194,10 @@ export default function ElasticidadCalc({ locale = 'es' }: Props) {
         <label class="calc__field">
           <span class="calc__label">{c.cantidadFinal}</span>
           <div class="calc__input-wrap">
-            <input
-              type="number"
+            <NumberInput
               step={5}
               value={q2}
-              onInput={(e) => setQ2(parseFloat((e.target as HTMLInputElement).value) || 0)}
+              onValue={setQ2}
             />
             <span class="calc__unit">{c.udsUnit}</span>
           </div>

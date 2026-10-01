@@ -105,4 +105,4 @@ preguntas:
     explicacion: "Cada uno mide una cosa distinta y ninguno resume la economía por sí solo: el PIB mide producción, el IPC precios, la tasa de paro el mercado de trabajo y la balanza la relación con el exterior."
 ---
 
-Test de autoevaluación de la Unidad 7 del libro de Eco 1BACH. Nueve preguntas que cubren los cuatro agentes económicos, la identidad del flujo circular ampliado, el cálculo del PIB por los métodos del gasto y de la producción, la conversión entre PIB nominal y real mediante el deflactor, la diferencia entre IPC y deflactor del PIB, el papel del IPCA en la zona euro, la definición de paro según la EPA y la estructura del superávit por cuenta corriente español.
+Test de autoevaluación de la Unidad 7 del libro de Eco 1BACH. Catorce preguntas que cubren los cuatro agentes económicos, la identidad del flujo circular ampliado, el cálculo del PIB por los métodos del gasto y de la producción, la conversión entre PIB nominal y real mediante el deflactor, la diferencia entre IPC y deflactor del PIB, el papel del IPCA en la zona euro, la definición de paro según la EPA y la estructura del superávit por cuenta corriente español.

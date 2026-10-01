@@ -8,7 +8,7 @@ tipo: caso
 duracion: "60 min · 1 sessió"
 agrupacion: "grups xicotets (3-4)"
 materiales:
-  - "Dossier biogràfic d'una persona emprenedora real amb trajectòria documentada (entrevistes, reportatges, biografia), curat pel professor a partir de fonts públiques"
+  - "Dossier inclòs al final d'esta fitxa, amb tres trajectòries documentades (Carme Ruscalleda, Ken Kutaragi i Carlota Pi), o un d'equivalent d'una persona emprenedora de l'entorn preparat pel professor a partir de fonts públiques (entrevistes, reportatges, biografia)"
   - "Fitxa d'anàlisi del perfil amb les categories de la unitat (competències i hàbits, intel·ligència emocional, intel·ligència executiva, competències socials, gestió del grup)"
   - "Accés a internet per a contrastar dades del dossier"
   - "Pissarra o panell gran per a la posada en comú"
@@ -56,3 +56,25 @@ El repte pedagògic clau és desmuntar la narrativa del geni nat. Les biografies
 - **Variant d'investigació:** que cada grup trie i documente pel seu compte una persona emprenedora (amb criteris de fonts donats pel professor) abans de la sessió d'anàlisi.
 - **Connexió amb la Unitat 6:** reprendre el cas en estudiar la gestió de l'error, analitzant quin fracàs de la persona va ser una oportunitat d'aprenentatge.
 - **Connexió amb la Unitat 7 i els ODS:** si la persona analitzada lidera un projecte d'emprenedoria social, vincular la seua missió amb un Objectiu de Desenvolupament Sostenible concret.
+
+## Dossier
+
+Tres trajectòries que ja apareixen en el material, amb perfils distints: una cuinera que va muntar el seu propi restaurant, un enginyer que va emprendre dins d'una gran empresa i una fundadora que es va enfrontar amb dos socis a un sector dominat per gegants. Són un punt de partida: cada grup pot ampliar-les amb les fonts que se citen, buscant fets i no elogis.
+
+### Cas A · Carme Ruscalleda: cuinar de veres als 36 anys
+
+Carme Ruscalleda va nàixer a Sant Pol de Mar (Maresme) el 1952 i va començar a cuinar de veres als 36 anys, en la xicoteta xarcuteria familiar. No tenia formació culinària reglada: el que sabia ho havia aprés de sa mare i dels llibres que comprava. El 1988 va obrir el restaurant Sant Pau i va arribar a acumular set estreles Michelin entre els seus restaurants de Sant Pol, Tòquio i Barcelona, un cas quasi únic al món. En les seues entrevistes insistix que el seu èxit no ve d'un talent innat, sinó de llegir, provar i corregir durant dècades.
+
+*Font: entrevistes a Carme Ruscalleda (2010-2024). Cas recollit en la Unitat 5 d'este llibre.*
+
+### Cas B · Ken Kutaragi: emprendre dins de Sony
+
+A finals dels anys huitanta, Ken Kutaragi era un enginyer de Sony que, en el seu temps lliure, treballava en un xip de so que va acabar usant-se en una consola de Nintendo. Convençut que Sony havia de fabricar la seua pròpia videoconsola, va defendre la idea dins de l'empresa malgrat la resistència de bona part de la direcció, que veia els videojocs com una cosa poc seriosa. No va fundar una empresa nova: va impulsar el projecte des de dins, amb el suport final del president, Norio Ohga. La PlayStation va eixir el 1994 i es va convertir en un dels negocis més rendibles del grup.
+
+*Fonts: Sony Group Corporation, història corporativa; Asakura, R. (2000), Revolutionaries at Sony, McGraw-Hill. Cas recollit en la Unitat 5 d'este llibre.*
+
+### Cas C · Carlota Pi: tres socis davant de cinc gegants
+
+El 2010, Carlota Pi, Oriol Vila i Ferran Nogué, acabats de llicenciar, van muntar a Barcelona, des d'un pis compartit, Holaluz, una comercialitzadora que ven només electricitat d'origen renovable certificat. Quan van començar, les cinc grans elèctriques controlaven el 94 % del mercat domèstic. El 2018 Holaluz va ser la primera elèctrica espanyola amb la certificació B Corp, que exigix superar una auditoria d'impacte i canviar els estatuts per a comprometre's a generar impacte positiu a més de benefici, i el 2019 va eixir a cotitzar a BME Growth. L'empresa ha passat per dificultats pròpies d'un sector tan volàtil com l'elèctric.
+
+*Fonts: memòria anual d'Holaluz 2023; directori de B Lab Spain; entrevista amb Carlota Pi en El Confidencial. Cas recollit en Eco 4ESO, Unitat 11, i en EDMN 2BACH, Unitat 12.*

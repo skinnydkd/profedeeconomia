@@ -3,6 +3,7 @@ import { useMemo, useState } from 'preact/hooks';
 import { type Locale } from '@/i18n/locale';
 import { formatNumber, formatPercent } from '../../lib/calc/format';
 import { valorar, type Anyo } from '../../lib/calc/pib-real';
+import NumberInput from '../NumberInput';
 
 /** UI strings, Valencian (AVL) alongside the ES source. PIB stays PIB in both. */
 export const COPY = {
@@ -84,8 +85,6 @@ export const COPY = {
 
 interface Props { locale?: Locale }
 
-const num = (e: Event) => Number((e.currentTarget as HTMLInputElement).value);
-
 const PRESET_INFLACION: Anyo[] = [
   { etiqueta: '2023', nominal: 1000, deflactor: 100, poblacion: 10 },
   { etiqueta: '2024', nominal: 1050, deflactor: 105, poblacion: 10 },
@@ -140,9 +139,9 @@ export default function PIBRealCalc({ locale = 'es' }: Props) {
             {anyos.map((a, i) => (
               <tr key={i}>
                 <td><input type="text" value={a.etiqueta} onInput={(e) => set(i, 'etiqueta', (e.currentTarget as HTMLInputElement).value)} /></td>
-                <td><input type="number" min={0} step={10} value={a.nominal} onInput={(e) => set(i, 'nominal', num(e))} /></td>
-                <td><input type="number" min={0.1} step={0.1} value={a.deflactor} onInput={(e) => set(i, 'deflactor', num(e))} /></td>
-                <td><input type="number" min={0} step={0.5} value={a.poblacion ?? 0} onInput={(e) => set(i, 'poblacion', num(e))} /></td>
+                <td><NumberInput min={0} step={10} value={a.nominal} onValue={(v) => set(i, 'nominal', v)} /></td>
+                <td><NumberInput min={0.1} step={0.1} value={a.deflactor} onValue={(v) => set(i, 'deflactor', v)} /></td>
+                <td><NumberInput min={0} step={0.5} value={a.poblacion ?? 0} onValue={(v) => set(i, 'poblacion', v)} /></td>
               </tr>
             ))}
           </tbody>

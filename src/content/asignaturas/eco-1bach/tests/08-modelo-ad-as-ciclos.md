@@ -105,4 +105,4 @@ preguntas:
     explicacion: "Dos trimestres seguidos de caída del PIB es la regla práctica para hablar de recesión, no una definición oficial. La depresión es el fondo del ciclo; cuando es muy profunda y dura años, como en 1929, se habla de una gran depresión."
 ---
 
-Test de autoevaluación de la Unidad 8 del libro de Eco 1BACH. Nueve preguntas que cubren los componentes de la demanda agregada, la pendiente negativa de la AD, la distinción entre SRAS y LRAS, los cuatro tipos canónicos de shocks (demanda y oferta, positivos y negativos), las fases del ciclo económico, el modelo de crecimiento de Solow, el IDH del PNUD y el cálculo del índice de Gini a partir de una curva de Lorenz.
+Test de autoevaluación de la Unidad 8 del libro de Eco 1BACH. Catorce preguntas que cubren los componentes de la demanda agregada, la pendiente negativa de la AD, la distinción entre SRAS y LRAS, los cuatro tipos canónicos de shocks (demanda y oferta, positivos y negativos), las fases del ciclo económico, el modelo de crecimiento de Solow, el IDH del PNUD y el cálculo del índice de Gini a partir de una curva de Lorenz.

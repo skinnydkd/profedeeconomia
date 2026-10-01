@@ -19,6 +19,6 @@ estado: publicado
 
 El cálculo del IRPF utiliza la **escala general de 2026**: la estatal más una autonómica tipo. La cuota real depende de la escala de cada comunidad, que se aplica a toda la base, y de las **deducciones personales y familiares** (mínimo personal, hijos a cargo, discapacidad, etc.).
 
-La cotización a la Seguridad Social del trabajador es del **6,50 %** en 2026 (4,70 % contingencias comunes + 1,55 % desempleo + 0,10 % formación + 0,15 % MEI). En los contratos temporales el desempleo sube al 1,60 %.
+La cotización a la Seguridad Social del trabajador es del **6,50 %** en 2026 (4,70 % contingencias comunes + 1,55 % desempleo + 0,10 % formación + 0,15 % MEI). En los contratos temporales el desempleo sube al 1,60 %. Se descuenta en las doce nóminas ordinarias, sobre una base que ya incluye la parte proporcional de las pagas extra; por eso, con 14 pagas, la calculadora da el líquido de un mes normal y, aparte, lo que deja cada paga extra, que solo lleva retención de IRPF.
 
-La calculadora **no aplica retenciones reales** que haría la empresa (la AEAT publica un programa específico, PADRE/Renta Web), sino una estimación útil para entender la mecánica. Insiste a tu alumnado: lo importante aquí es ver **qué pagamos y por qué**, no clavar el céntimo.
+La calculadora **no aplica retenciones reales** que haría la empresa (para eso la AEAT tiene su propio servicio de cálculo de retenciones; PADRE y Renta Web sirven para la declaración de la renta), sino una estimación útil para entender la mecánica. Insiste a tu alumnado: lo importante aquí es ver **qué pagamos y por qué**, no clavar el céntimo.

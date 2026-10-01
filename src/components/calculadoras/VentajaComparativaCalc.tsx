@@ -3,6 +3,7 @@ import { useMemo, useState } from 'preact/hooks';
 import { type Locale } from '@/i18n/locale';
 import { formatNumber } from '../../lib/calc/format';
 import { analizar, intercambio, type Paises } from '../../lib/calc/ventaja-comparativa';
+import NumberInput from '../NumberInput';
 
 /**
  * UI strings, Valencian (AVL) alongside the ES source. Country and good names
@@ -123,7 +124,6 @@ export const COPY = {
 
 interface Props { locale?: Locale }
 
-const num = (e: Event) => parseFloat((e.target as HTMLInputElement).value) || 0;
 const fmt = (v: number) => formatNumber(v, 2);
 
 /**
@@ -205,25 +205,25 @@ export default function VentajaComparativaCalc({ locale = 'es' }: Props) {
         <label class="calc__field">
           <span class="calc__label">{nombreA} · {t.maxDe} {nombre1}</span>
           <div class="calc__input-wrap">
-            <input type="number" min={1} step={10} value={a1} onInput={(e) => setA1(num(e))} />
+            <NumberInput min={1} step={10} value={a1} onValue={setA1} />
           </div>
         </label>
         <label class="calc__field">
           <span class="calc__label">{nombreA} · {t.maxDe} {nombre2}</span>
           <div class="calc__input-wrap">
-            <input type="number" min={1} step={10} value={a2} onInput={(e) => setA2(num(e))} />
+            <NumberInput min={1} step={10} value={a2} onValue={setA2} />
           </div>
         </label>
         <label class="calc__field">
           <span class="calc__label">{nombreB} · {t.maxDe} {nombre1}</span>
           <div class="calc__input-wrap">
-            <input type="number" min={1} step={10} value={b1} onInput={(e) => setB1(num(e))} />
+            <NumberInput min={1} step={10} value={b1} onValue={setB1} />
           </div>
         </label>
         <label class="calc__field">
           <span class="calc__label">{nombreB} · {t.maxDe} {nombre2}</span>
           <div class="calc__input-wrap">
-            <input type="number" min={1} step={10} value={b2} onInput={(e) => setB2(num(e))} />
+            <NumberInput min={1} step={10} value={b2} onValue={setB2} />
           </div>
         </label>
       </div>
@@ -319,13 +319,13 @@ export default function VentajaComparativaCalc({ locale = 'es' }: Props) {
                   <label class="calc__field">
                     <span class="calc__label">{t.unidadesBien1} ({nombre1})</span>
                     <div class="calc__input-wrap">
-                      <input type="number" min={1} step={5} value={q1} onInput={(e) => setQ1(num(e))} />
+                      <NumberInput min={1} step={5} value={q1} onValue={setQ1} />
                     </div>
                   </label>
                   <label class="calc__field">
                     <span class="calc__label">{t.unidadesBien2} ({nombre2})</span>
                     <div class="calc__input-wrap">
-                      <input type="number" min={1} step={5} value={q2} onInput={(e) => setQ2(num(e))} />
+                      <NumberInput min={1} step={5} value={q2} onValue={setQ2} />
                     </div>
                   </label>
                 </div>

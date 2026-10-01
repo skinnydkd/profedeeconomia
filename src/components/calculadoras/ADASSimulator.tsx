@@ -1,5 +1,5 @@
 /** @jsxImportSource preact */
-import { useMemo, useState } from 'preact/hooks';
+import { useId, useMemo, useState } from 'preact/hooks';
 import { type Locale } from '@/i18n/locale';
 import {
   BASE_Y,
@@ -9,10 +9,13 @@ import {
   potentialOutput,
   solveADAS,
   adjustToLongRun,
+  desplazar,
+  DESPLAZAMIENTO_MAX,
   type ADASState,
   type GapKind,
 } from '@/lib/calc/ad-as';
 import { formatNumber } from '@/lib/calc/format';
+import LiveSummary from '../LiveSummary';
 
 /**
  * UI strings, Valencian (AVL) alongside the ES source. Economic notation
@@ -39,7 +42,7 @@ export const COPY = {
     ajusteBtn: 'Ajuste a largo plazo →',
     yaEnPotencial: 'La economía ya produce en el potencial.',
     brechaProduccion: 'Brecha de producción',
-    nivelPrecios: 'Nivel de precios P*',
+    nivelPrecios: 'Nivel de precios P₁',
     sobreIndiceBase: ' sobre el índice base 100',
     // Y* is potential output, as in the book; the short-run equilibrium is Y₁.
     produccionY: 'Producción de equilibrio Y₁',
@@ -119,7 +122,7 @@ export const COPY = {
     ajusteBtn: 'Ajust a llarg termini →',
     yaEnPotencial: "L'economia ja produïx en el potencial.",
     brechaProduccion: 'Bretxa de producció',
-    nivelPrecios: 'Nivell de preus P*',
+    nivelPrecios: 'Nivell de preus P₁',
     sobreIndiceBase: " sobre l'índex base 100",
     produccionY: "Producció d'equilibri Y₁",
     delPotencial: ' del potencial',
@@ -263,6 +266,12 @@ export default function ADASSimulator({ locale = 'es' }: Props) {
   }
 
   const atPotential = Math.abs(result.outputGap) < 0.05;
+  const resumen = [
+    `${c.brechaProduccion}: ${fmtGap(result.outputGap)}.`,
+    gapHeadline(result.gapKind, result.outputGapPct, locale),
+    `${c.nivelPrecios}: ${formatNumber(result.shortRun.P, 1)}.`,
+    `${c.produccionY}: ${formatNumber(result.shortRun.Y, 1)}.`,
+  ].join(' ');
 
   return (
     <div class="calc">
@@ -290,7 +299,7 @@ export default function ADASSimulator({ locale = 'es' }: Props) {
           <button
             type="button"
             class="adas__cause adas__cause--terra"
-            onClick={() => set('adShift', state.adShift + cause.delta)}
+            onClick={() => setState((s) => desplazar(s, 'adShift', cause.delta))}
           >
             {c.adCauses[cause.key]} <span class="adas__cause-plus">+</span>
           </button>
@@ -298,8 +307,8 @@ export default function ADASSimulator({ locale = 'es' }: Props) {
       </div>
       <SliderField
         label={c.adShiftLabel}
-        min={-50}
-        max={50}
+        min={-DESPLAZAMIENTO_MAX}
+        max={DESPLAZAMIENTO_MAX}
         step={5}
         value={state.adShift}
         onChange={(v) => set('adShift', v)}
@@ -313,7 +322,7 @@ export default function ADASSimulator({ locale = 'es' }: Props) {
           <button
             type="button"
             class="adas__cause adas__cause--mustard"
-            onClick={() => set('srasShift', state.srasShift + cause.delta)}
+            onClick={() => setState((s) => desplazar(s, 'srasShift', cause.delta))}
           >
             {c.srasCauses[cause.key]} <span class="adas__cause-plus">{cause.delta > 0 ? '+' : '−'}</span>
           </button>
@@ -321,8 +330,8 @@ export default function ADASSimulator({ locale = 'es' }: Props) {
       </div>
       <SliderField
         label={c.srasShiftLabel}
-        min={-50}
-        max={50}
+        min={-DESPLAZAMIENTO_MAX}
+        max={DESPLAZAMIENTO_MAX}
         step={5}
         value={state.srasShift}
         onChange={(v) => set('srasShift', v)}
@@ -355,7 +364,8 @@ export default function ADASSimulator({ locale = 'es' }: Props) {
         )}
       </div>
 
-      <div class="calc__results" aria-live="polite">
+      <div class="calc__results">
+        <LiveSummary text={resumen} />
         <ADASChart state={state} result={result} locale={locale} />
 
         <div class="calc__metric calc__metric--primary">
@@ -560,20 +570,26 @@ function SliderField({
       : accent === 'ink'
         ? 'adas__slider adas__slider--ink'
         : 'adas__slider';
+  // The label names the slider for screen readers (it used to be a bare
+  // <span>), and the value text keeps the sign the card shows ("+10").
+  const id = useId();
+  const texto = value > 0 ? `+${value}` : String(value);
   return (
     <div class="calc__field adas__slider-row">
       <div class="adas__slider-head">
-        <span class="calc__label">{label}</span>
-        <span class="adas__slider-value">{value > 0 ? `+${value}` : value}</span>
+        <label class="calc__label" for={id}>{label}</label>
+        <span class="adas__slider-value">{texto}</span>
       </div>
       <input
+        id={id}
         type="range"
         class={cls}
         min={min}
         max={max}
         step={step}
         value={value}
-        onInput={(e) => onChange(parseFloat((e.target as HTMLInputElement).value) || 0)}
+        aria-valuetext={texto}
+        onInput={(e) => onChange(Number(e.currentTarget.value))}
       />
     </div>
   );

@@ -6,6 +6,7 @@ import {
   fronteraY, clasificar, costeOportunidadArco, crecimiento,
   type FPP, type FormaFPP,
 } from '../../lib/calc/fpp';
+import NumberInput from '../NumberInput';
 
 /**
  * UI strings, Valencian (AVL) alongside the ES source. Quantities and the
@@ -126,7 +127,6 @@ export const COPY = {
 
 interface Props { locale?: Locale }
 
-const num = (e: Event) => parseFloat((e.target as HTMLInputElement).value) || 0;
 const fmt = (v: number) => formatNumber(v, 2);
 
 /**
@@ -213,13 +213,13 @@ export default function FPPCalc({ locale = 'es' }: Props) {
         <label class="calc__field">
           <span class="calc__label">{t.maxX}</span>
           <div class="calc__input-wrap">
-            <input type="number" min={1} step={10} value={maxX} onInput={(e) => setMaxX(num(e))} />
+            <NumberInput min={1} step={10} value={maxX} onValue={setMaxX} />
           </div>
         </label>
         <label class="calc__field">
           <span class="calc__label">{t.maxY}</span>
           <div class="calc__input-wrap">
-            <input type="number" min={1} step={10} value={maxY} onInput={(e) => setMaxY(num(e))} />
+            <NumberInput min={1} step={10} value={maxY} onValue={setMaxY} />
           </div>
         </label>
       </div>
@@ -263,13 +263,13 @@ export default function FPPCalc({ locale = 'es' }: Props) {
             <label class="calc__field">
               <span class="calc__label">{t.puntoX}</span>
               <div class="calc__input-wrap">
-                <input type="number" min={0} step={5} value={puntoX} onInput={(e) => setPuntoX(num(e))} />
+                <NumberInput min={0} step={5} value={puntoX} onValue={setPuntoX} />
               </div>
             </label>
             <label class="calc__field">
               <span class="calc__label">{t.puntoY}</span>
               <div class="calc__input-wrap">
-                <input type="number" min={0} step={5} value={puntoY} onInput={(e) => setPuntoY(num(e))} />
+                <NumberInput min={0} step={5} value={puntoY} onValue={setPuntoY} />
               </div>
             </label>
           </div>
@@ -302,13 +302,13 @@ export default function FPPCalc({ locale = 'es' }: Props) {
             <label class="calc__field">
               <span class="calc__label">{t.desde}</span>
               <div class="calc__input-wrap">
-                <input type="number" min={0} step={5} value={x1} onInput={(e) => setX1(num(e))} />
+                <NumberInput min={0} step={5} value={x1} onValue={setX1} />
               </div>
             </label>
             <label class="calc__field">
               <span class="calc__label">{t.hasta}</span>
               <div class="calc__input-wrap">
-                <input type="number" min={0} step={5} value={x2} onInput={(e) => setX2(num(e))} />
+                <NumberInput min={0} step={5} value={x2} onValue={setX2} />
               </div>
             </label>
           </div>
@@ -347,13 +347,13 @@ export default function FPPCalc({ locale = 'es' }: Props) {
                 <label class="calc__field">
                   <span class="calc__label">{t.crecX}</span>
                   <div class="calc__input-wrap">
-                    <input type="number" min={0} step={5} value={crecX} onInput={(e) => setCrecX(num(e))} />
+                    <NumberInput min={0} step={5} value={crecX} onValue={setCrecX} />
                   </div>
                 </label>
                 <label class="calc__field">
                   <span class="calc__label">{t.crecY}</span>
                   <div class="calc__input-wrap">
-                    <input type="number" min={0} step={5} value={crecY} onInput={(e) => setCrecY(num(e))} />
+                    <NumberInput min={0} step={5} value={crecY} onValue={setCrecY} />
                   </div>
                 </label>
               </div>

@@ -26,7 +26,7 @@ En esta activitat, cada equip rep **3 o 4 anuncis reals** de marques conegudes i
 
 ## Objectius didàctics
 
-- Aplicar els criteris de la Unitat 3 (mètriques verificables, certificacions reconegudes, coherència i transparència) sobre material publicitari real.
+- Aplicar els criteris d'esta unitat (mètriques verificables, certificacions reconegudes, coherència i transparència) sobre material publicitari real.
 - Diferenciar entre RSC seriosa i comunicació de marca amb vernís verd.
 - Buscar i contrastar fonts secundàries (memòries de sostenibilitat, certificacions, notícies de premsa especialitzada).
 - Argumentar un veredicte en grup sense caure ni en el cinisme total ni en la credulitat publicitària.

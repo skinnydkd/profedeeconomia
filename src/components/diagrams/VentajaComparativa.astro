@@ -10,9 +10,11 @@
  * 2/4 = 0,5 m de tela in Norpaís vs 5/6 ≈ 0,83 m de tela in Surpaís, so
  * Norpaís specialises in trigo and Surpaís in tela. Those cells are
  * highlighted in the table.
- * Part B: two stacked horizontal bars comparing total trigo output (100 h per
- * country) without trade (50/50 split) vs. with full specialisation + trade;
- * the extra output (gain from trade) is shaded.
+ * Part B: two stacked horizontal bars comparing total trigo output with the
+ * same total tela (20,83 m): without trade (50/50 split, 35 t) vs. with
+ * specialisation + trade (Surpaís all in tela, Norpaís makes the missing
+ * 4,17 m and puts the rest in trigo: 41,67 t). The 6,67 t gain is shaded.
+ * Comparing 35 t with 50 t (Norpaís all in trigo) would hide that tela falls.
  *
  * Used in Eco 1BACH · Unit 12 (globalización, comercio internacional).
  */
@@ -22,7 +24,7 @@ const locale = getLocale(Astro.currentLocale);
 const COPY = {
   es: {
     ventajaComparativa: 'Ventaja comparativa',
-    norpaisNecesitaMenosHoras: 'Norpaís necesita menos horas que Surpaís para producir tanto trigo como tela, así que tiene ventaja absoluta en ambos bienes. Pero lo que decide la especialización es la ventaja comparativa: Norpaís renuncia a menos tela por cada unidad de trigo (0,5 m frente a 0,83 m), de modo que se especializa en trigo y Surpaís en tela. Al intercambiar, el total producido aumenta: esa es la ganancia del comercio.',
+    norpaisNecesitaMenosHoras: 'Norpaís necesita menos horas que Surpaís para producir tanto trigo como tela, así que tiene ventaja absoluta en ambos bienes. Pero lo que decide la especialización es la ventaja comparativa: Norpaís renuncia a menos tela por cada unidad de trigo (0,5 m frente a 0,83 m), de modo que se especializa en trigo y Surpaís en tela. Con la misma tela que sin comercio, especializarse da 6,67 t más de trigo: esa es la ganancia del comercio.',
     horasPorUnidadProducida: 'Horas por unidad producida',
     menosHorasSignificaMas: 'Menos horas significa más eficiente',
     trigo: 'Trigo',
@@ -36,8 +38,8 @@ const COPY = {
     ventajaComparativa3: 'ventaja comparativa',
     horas4: 'horas',
     cadaPaisSeEspecializa: 'Cada país se especializa donde su coste de oportunidad es menor: 1 t de trigo cuesta 0,5 m de tela en Norpaís y 0,83 m en Surpaís.',
-    trigoTotal100Horas: 'Trigo total (100 horas por país)',
-    elTotalCreceCon: 'El total crece con la especialización',
+    trigoTotalMismaTela: 'Trigo total con la misma tela (20,83 m)',
+    masTrigoMismaTela: 'Más trigo con la misma tela',
     sinComercio: 'Sin comercio',
     repartoAMedias: 'reparto a medias',
     conEspecializacion: 'Con especialización',
@@ -46,7 +48,7 @@ const COPY = {
   },
   ca: {
     ventajaComparativa: 'Avantatge comparatiu',
-    norpaisNecesitaMenosHoras: "Nordpaís necessita menys hores que Sudpaís per a produir tant blat com tela, així que té avantatge absolut en els dos béns. Però el que decidix l'especialització és l'avantatge comparatiu: Nordpaís renuncia a menys tela per cada unitat de blat (0,5 m enfront de 0,83 m), de manera que s'especialitza en blat i Sudpaís en tela. En intercanviar, el total produït augmenta: eixe és el guany del comerç.",
+    norpaisNecesitaMenosHoras: "Nordpaís necessita menys hores que Sudpaís per a produir tant blat com tela, així que té avantatge absolut en els dos béns. Però el que decidix l'especialització és l'avantatge comparatiu: Nordpaís renuncia a menys tela per cada unitat de blat (0,5 m enfront de 0,83 m), de manera que s'especialitza en blat i Sudpaís en tela. Amb la mateixa tela que sense comerç, especialitzar-se dona 6,67 t més de blat: eixe és el guany del comerç.",
     horasPorUnidadProducida: 'Hores per unitat produïda',
     menosHorasSignificaMas: 'Menys hores significa més eficient',
     trigo: 'Blat',
@@ -60,8 +62,8 @@ const COPY = {
     ventajaComparativa3: 'avantatge comparatiu',
     horas4: 'hores',
     cadaPaisSeEspecializa: "Cada país s'especialitza on el seu cost d'oportunitat és menor: 1 t de blat costa 0,5 m de tela a Nordpaís i 0,83 m a Sudpaís.",
-    trigoTotal100Horas: 'Blat total (100 hores per país)',
-    elTotalCreceCon: "El total creix amb l'especialització",
+    trigoTotalMismaTela: 'Blat total amb la mateixa tela (20,83 m)',
+    masTrigoMismaTela: 'Més blat amb la mateixa tela',
     sinComercio: 'Sense comerç',
     repartoAMedias: 'repartiment a mitges',
     conEspecializacion: 'Amb especialització',
@@ -149,25 +151,25 @@ const t = COPY[locale];
   <line class="divider" x1="40" y1="266" x2="820" y2="266"/>
 
   <!-- =================== PART B: output bars =================== -->
-  <text class="eyebrow" x="40" y="296">{t.trigoTotal100Horas}</text>
-  <text class="section-title" x="40" y="320">{t.elTotalCreceCon}</text>
+  <text class="eyebrow" x="40" y="296">{t.trigoTotalMismaTela}</text>
+  <text class="section-title" x="40" y="320">{t.masTrigoMismaTela}</text>
 
-  <!-- Bar geometry: bars start x=300; scale: 1 t de trigo = 6px. Sin comercio 35 t -> 210px; con especialización 50 t -> 300px (gain 15 t = 90px) -->
+  <!-- Bar geometry: bars start x=300; scale: 1 t de trigo = 6px. Sin comercio 35 t -> 210px; con especialización 41,67 t -> 250px (gain 6,67 t = 40px), both with 20,83 m of tela -->
   <!-- Sin comercio: reparto 50/50 -> Norpaís 25 t + Surpaís 10 t = 35 t -->
   <text class="bar-label" x="40" y="356">{t.sinComercio}</text>
   <text class="bar-sub"   x="40" y="372">{t.repartoAMedias}</text>
   <rect x="300" y="340" width="210" height="34" rx="3" fill="#D4A24C" fill-opacity="0.55" stroke="#A87A2A" stroke-width="1.5"/>
   <text class="bar-total" x="522" y="362">35 t</text>
 
-  <!-- Con especialización + comercio: Norpaís 100 h en trigo -> 50 t -->
+  <!-- Con especialización + comercio: Surpaís 100 h en tela (16,67 m); Norpaís 16,67 h en tela (4,17 m) y 83,33 h en trigo -> 41,67 t -->
   <text class="bar-label" x="40" y="416">{t.conEspecializacion}</text>
   <text class="bar-sub"   x="40" y="432">{t.comercio}</text>
   <rect x="300" y="400" width="210" height="34" rx="3" fill="#D4A24C" fill-opacity="0.55" stroke="#A87A2A" stroke-width="1.5"/>
-  <!-- gain segment (15 extra t de trigo = 90px) -->
-  <rect x="510" y="400" width="90" height="34" rx="3" fill="#FBE3D6" stroke="#9C3A1C" stroke-width="1.5"/>
-  <text class="bar-total" x="612" y="422">50 t</text>
+  <!-- gain segment (6,67 extra t de trigo = 40px) -->
+  <rect x="510" y="400" width="40" height="34" rx="3" fill="#FBE3D6" stroke="#9C3A1C" stroke-width="1.5"/>
+  <text class="bar-total" x="562" y="422">41,67 t</text>
 
   <!-- Gain-from-trade callout -->
-  <line x1="555" y1="394" x2="555" y2="382" stroke="#9C3A1C" stroke-width="1.5" marker-start="url(#vc-arrow)"/>
-  <text class="gain-label" x="555" y="392">{t.gananciaDelComercio}</text>
+  <line x1="530" y1="394" x2="530" y2="382" stroke="#9C3A1C" stroke-width="1.5" marker-start="url(#vc-arrow)"/>
+  <text class="gain-label" x="530" y="392">{t.gananciaDelComercio}</text>
 </svg>

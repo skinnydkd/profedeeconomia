@@ -61,7 +61,9 @@ const breadcrumb = breadcrumbLd([
   title={`${copy.titulo} — ${a.shortLabel}`}
   description={copy.descripcion}
   jsonLd={breadcrumb}
-  contentLang={locale}
+  contentLang={entry?.data.lang ?? locale}
+  translated={!entryEs || caById.has(`${entryEs.id}.ca`)}
+  noindex={!entry}
 >
   <div class="container">
     <nav class="breadcrumb" aria-label={t('nav.breadcrumb', locale)}>

@@ -3,6 +3,7 @@ import { useMemo, useState } from 'preact/hooks';
 import { type Locale } from '@/i18n/locale';
 import { formatEUR, formatPercent } from '../../lib/calc/format';
 import { comparar, FORMAS, type FormaId } from '../../lib/calc/forma-juridica';
+import NumberInput from '../NumberInput';
 
 /** UI strings, Valencian (AVL) alongside the ES source. IRPF and IS stay as-is. */
 export const COPY = {
@@ -101,7 +102,6 @@ export const COPY = {
 } as const;
 
 interface Props { locale?: Locale }
-const num = (e: Event) => Number((e.currentTarget as HTMLInputElement).value);
 const ORDEN: FormaId[] = ['autonomo', 'comunidad-bienes', 'sl', 'cooperativa'];
 
 export default function FormaJuridicaCalc({ locale = 'es' }: Props) {
@@ -165,13 +165,13 @@ export default function FormaJuridicaCalc({ locale = 'es' }: Props) {
         <label class="calc__field">
           <span class="calc__label">{t.beneficio}</span>
           <div class="calc__input-wrap">
-            <input type="number" min={0} step={1000} value={beneficio} onInput={(e) => setBeneficio(num(e))} />
+            <NumberInput min={0} step={1000} value={beneficio} onValue={setBeneficio} />
           </div>
         </label>
         <label class="calc__field">
           <span class="calc__label">{t.tipoIS}</span>
           <div class="calc__input-wrap">
-            <input type="number" min={0} max={100} step={1} value={tipoPct} onInput={(e) => setTipoPct(num(e))} />
+            <NumberInput min={0} max={100} step={1} value={tipoPct} onValue={setTipoPct} />
           </div>
         </label>
       </div>

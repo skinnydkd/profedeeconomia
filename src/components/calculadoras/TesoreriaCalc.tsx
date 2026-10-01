@@ -3,6 +3,7 @@ import { useMemo, useState } from 'preact/hooks';
 import { type Locale } from '@/i18n/locale';
 import { formatEUR, formatNumber } from '../../lib/calc/format';
 import { proyectar, ventasConCrecimiento, MESES, type Supuestos } from '../../lib/calc/tesoreria';
+import NumberInput from '../NumberInput';
 
 /** UI strings, Valencian (AVL) alongside the ES source. */
 export const COPY = {
@@ -118,8 +119,6 @@ export const COPY = {
 
 interface Props { locale?: Locale }
 
-const num = (e: Event) => parseFloat((e.target as HTMLInputElement).value) || 0;
-
 /**
  * Twelve-month cash forecast for a business plan.
  *
@@ -192,19 +191,19 @@ export default function TesoreriaCalc({ locale = 'es' }: Props) {
         <label class="calc__field">
           <span class="calc__label">{t.saldoInicial}</span>
           <div class="calc__input-wrap">
-            <input type="number" step={1000} value={saldoInicial} onInput={(e) => setSaldoInicial(num(e))} />
+            <NumberInput step={1000} value={saldoInicial} onValue={setSaldoInicial} />
           </div>
         </label>
         <label class="calc__field">
           <span class="calc__label">{t.ventasIniciales}</span>
           <div class="calc__input-wrap">
-            <input type="number" min={0} step={1000} value={ventasIniciales} onInput={(e) => setVentasIniciales(num(e))} />
+            <NumberInput min={0} step={1000} value={ventasIniciales} onValue={setVentasIniciales} />
           </div>
         </label>
         <label class="calc__field">
           <span class="calc__label">{t.crecimiento}</span>
           <div class="calc__input-wrap">
-            <input type="number" step={1} value={crecimientoPct} onInput={(e) => setCrecimientoPct(num(e))} />
+            <NumberInput step={1} value={crecimientoPct} onValue={setCrecimientoPct} />
           </div>
         </label>
       </div>
@@ -216,13 +215,13 @@ export default function TesoreriaCalc({ locale = 'es' }: Props) {
         <label class="calc__field">
           <span class="calc__label">{t.cobroContado}</span>
           <div class="calc__input-wrap">
-            <input type="number" min={0} max={100} step={5} value={cobroContadoPct} onInput={(e) => setCobroContadoPct(num(e))} />
+            <NumberInput min={0} max={100} step={5} value={cobroContadoPct} onValue={setCobroContadoPct} />
           </div>
         </label>
         <label class="calc__field">
           <span class="calc__label">{t.mesesCobro}</span>
           <div class="calc__input-wrap">
-            <input type="number" min={0} max={6} step={1} value={mesesCobro} onInput={(e) => setMesesCobro(Math.round(num(e)))} />
+            <NumberInput min={0} max={6} step={1} value={mesesCobro} onValue={(v) => setMesesCobro(Math.round(v))} />
           </div>
         </label>
       </div>
@@ -232,25 +231,25 @@ export default function TesoreriaCalc({ locale = 'es' }: Props) {
         <label class="calc__field">
           <span class="calc__label">{t.comprasSobreVentas}</span>
           <div class="calc__input-wrap">
-            <input type="number" min={0} max={100} step={5} value={comprasPct} onInput={(e) => setComprasPct(num(e))} />
+            <NumberInput min={0} max={100} step={5} value={comprasPct} onValue={setComprasPct} />
           </div>
         </label>
         <label class="calc__field">
           <span class="calc__label">{t.pagoContado}</span>
           <div class="calc__input-wrap">
-            <input type="number" min={0} max={100} step={5} value={pagoContadoPct} onInput={(e) => setPagoContadoPct(num(e))} />
+            <NumberInput min={0} max={100} step={5} value={pagoContadoPct} onValue={setPagoContadoPct} />
           </div>
         </label>
         <label class="calc__field">
           <span class="calc__label">{t.mesesPago}</span>
           <div class="calc__input-wrap">
-            <input type="number" min={0} max={6} step={1} value={mesesPago} onInput={(e) => setMesesPago(Math.round(num(e)))} />
+            <NumberInput min={0} max={6} step={1} value={mesesPago} onValue={(v) => setMesesPago(Math.round(v))} />
           </div>
         </label>
         <label class="calc__field">
           <span class="calc__label">{t.gastosFijos}</span>
           <div class="calc__input-wrap">
-            <input type="number" min={0} step={500} value={gastosFijos} onInput={(e) => setGastosFijos(num(e))} />
+            <NumberInput min={0} step={500} value={gastosFijos} onValue={setGastosFijos} />
           </div>
         </label>
       </div>
@@ -332,8 +331,8 @@ export default function TesoreriaCalc({ locale = 'es' }: Props) {
                       <tr key={m.n}>
                         <td>{t.meses[i]}</td>
                         <td>
-                          <input class="tz__cell" type="number" min={0} step={1000} value={ventas[i]}
-                            onInput={(e) => editarMes(i, parseFloat((e.target as HTMLInputElement).value) || 0)} />
+                          <NumberInput class="tz__cell" min={0} step={1000} value={ventas[i]}
+                            onValue={(v) => editarMes(i, v)} />
                         </td>
                         <td>{formatEUR(m.cobros, 0)}</td>
                         <td>{formatEUR(m.pagos, 0)}</td>

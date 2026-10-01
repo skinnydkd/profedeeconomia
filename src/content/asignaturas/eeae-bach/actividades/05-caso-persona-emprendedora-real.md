@@ -7,7 +7,7 @@ tipo: caso
 duracion: "60 min · 1 sesión"
 agrupacion: "grupos pequeños (3-4)"
 materiales:
-  - "Dosier biográfico de una persona emprendedora real con trayectoria documentada (entrevistas, reportajes, biografía), curado por el profesor a partir de fuentes públicas"
+  - "Dosier incluido al final de esta ficha, con tres trayectorias documentadas (Carme Ruscalleda, Ken Kutaragi y Carlota Pi), o uno equivalente de una persona emprendedora del entorno preparado por el profesor a partir de fuentes públicas (entrevistas, reportajes, biografía)"
   - "Ficha de análisis del perfil con las categorías de la unidad (competencias y hábitos, inteligencia emocional, inteligencia ejecutiva, competencias sociales, gestión del grupo)"
   - "Acceso a internet para contrastar datos del dosier"
   - "Pizarra o panel grande para la puesta en común"
@@ -54,3 +54,25 @@ El reto pedagógico clave es desmontar la narrativa del genio nato. Las biograf�
 - **Variante de investigación:** que cada grupo elija y documente por su cuenta a una persona emprendedora (con criterios de fuentes dados por el profesor) antes de la sesión de análisis.
 - **Conexión con la Unidad 6:** retomar el caso al estudiar la gestión del error, analizando qué fracaso de la persona fue una oportunidad de aprendizaje.
 - **Conexión con la Unidad 7 y los ODS:** si la persona analizada lidera un proyecto de emprendimiento social, vincular su misión con un Objetivo de Desarrollo Sostenible concreto.
+
+## Dosier
+
+Tres trayectorias que ya aparecen en el material, con perfiles distintos: una cocinera que montó su propio restaurante, un ingeniero que emprendió dentro de una gran empresa y una fundadora que se enfrentó con dos socios a un sector dominado por gigantes. Son un punto de partida: cada grupo puede ampliarlas con las fuentes que se citan, buscando hechos y no elogios.
+
+### Caso A · Carme Ruscalleda: cocinar en serio a los 36 años
+
+Carme Ruscalleda nació en Sant Pol de Mar (Maresme) en 1952 y empezó a cocinar en serio a los 36 años, en la pequeña charcutería familiar. No tenía formación culinaria reglada: lo que sabía lo había aprendido de su madre y de los libros que compraba. En 1988 abrió el restaurante Sant Pau y llegó a acumular siete estrellas Michelin entre sus restaurantes de Sant Pol, Tokio y Barcelona, un caso casi único en el mundo. En sus entrevistas insiste en que su éxito no viene de un talento innato, sino de leer, probar y corregir durante décadas.
+
+*Fuente: entrevistas a Carme Ruscalleda (2010-2024). Caso recogido en la Unidad 5 de este libro.*
+
+### Caso B · Ken Kutaragi: emprender dentro de Sony
+
+A finales de los años ochenta, Ken Kutaragi era un ingeniero de Sony que, en su tiempo libre, trabajaba en un chip de sonido que acabó usándose en una consola de Nintendo. Convencido de que Sony debía fabricar su propia videoconsola, defendió la idea dentro de la empresa pese a la resistencia de buena parte de la dirección, que veía los videojuegos como algo poco serio. No fundó una empresa nueva: impulsó el proyecto desde dentro, con el respaldo final del presidente, Norio Ohga. La PlayStation salió en 1994 y se convirtió en uno de los negocios más rentables del grupo.
+
+*Fuentes: Sony Group Corporation, historia corporativa; Asakura, R. (2000), Revolutionaries at Sony, McGraw-Hill. Caso recogido en la Unidad 5 de este libro.*
+
+### Caso C · Carlota Pi: tres socios frente a cinco gigantes
+
+En 2010, Carlota Pi, Oriol Vila y Ferran Nogué, recién licenciados, montaron en Barcelona, desde un piso compartido, Holaluz, una comercializadora que vende solo electricidad de origen renovable certificado. Cuando empezaron, las cinco grandes eléctricas controlaban el 94 % del mercado doméstico. En 2018 Holaluz fue la primera eléctrica española con la certificación B Corp, que exige superar una auditoría de impacto y cambiar los estatutos para comprometerse a generar impacto positivo además de beneficio, y en 2019 salió a cotizar en BME Growth. La empresa ha pasado por dificultades propias de un sector tan volátil como el eléctrico.
+
+*Fuentes: memoria anual de Holaluz 2023; directorio de B Lab Spain; entrevista con Carlota Pi en El Confidencial. Caso recogido en Eco 4ESO, Unidad 11, y en EDMN 2BACH, Unidad 12.*
