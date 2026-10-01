@@ -7,7 +7,7 @@
  *   2. For each published unit of the target asignatura(s), open the web deck
  *      route /<asig>/diapositivas/<unit>/, emulate print media (slides become
  *      the canonical 1280x720), and check every .slide: if its content is taller
- *      or wider than the box, record an OVERFLOW failure.
+ *      or wider than the box, or a box inside it clips text, record a failure.
  *   3. Save the PDF to public/slides/<asig>/<unit>.pdf.
  *   4. Exit non-zero if any overflow was found (the deck is not shippable).
  *
@@ -139,12 +139,29 @@ for (const slug of asigFilter) {
             if (el.scrollHeight > el.clientHeight + 2 || el.scrollWidth > el.clientWidth + 2) {
               out.push({ i: i + 1, sh: el.scrollHeight, ch: el.clientHeight, sw: el.scrollWidth, cw: el.clientWidth });
             }
+            // Text hidden inside the slide: a box that clips (overflow hidden or a
+            // line clamp) and holds more text than it shows. The slide box itself
+            // looks fine, so the check above cannot see it (VIS-LEC-07). Images
+            // and diagrams crop on purpose; 4 px absorbs glyph overhang.
+            for (const box of el.querySelectorAll('*')) {
+              const cs = getComputedStyle(box);
+              const clamp = cs.webkitLineClamp || cs.getPropertyValue('-webkit-line-clamp');
+              const clips = cs.overflowY === 'hidden' || cs.overflowY === 'clip' || (clamp && clamp !== 'none');
+              if (!clips || !box.textContent.trim() || box.querySelector('img, svg, picture, video')) continue;
+              if (box.scrollHeight > box.clientHeight + 4) {
+                out.push({ i: i + 1, cut: String(box.className || box.tagName.toLowerCase()), sh: box.scrollHeight, ch: box.clientHeight });
+              }
+            }
           });
           return out;
         });
         if (bad.length) {
-          for (const b of bad) overflows.push(`${label} slide ${b.i}: ${b.sw}x${b.sh} > ${b.cw}x${b.ch}`);
-          console.log(`  ! ${label}: ${bad.length} slide(s) overflow`);
+          for (const b of bad) {
+            overflows.push(b.cut
+              ? `${label} slide ${b.i}: text cut in .${b.cut} (${b.sh}px of text in a ${b.ch}px box)`
+              : `${label} slide ${b.i}: ${b.sw}x${b.sh} > ${b.cw}x${b.ch}`);
+          }
+          console.log(`  ! ${label}: ${bad.length} slide problem(s)`);
         }
 
         await page.pdf({ path: join(outDir, `${unit}${loc.suffix}.pdf`), width: '1280px', height: '720px', printBackground: true });
