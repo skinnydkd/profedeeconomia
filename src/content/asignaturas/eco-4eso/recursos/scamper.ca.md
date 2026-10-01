@@ -12,7 +12,7 @@ slug: "asignaturas/eco-4eso/recursos/scamper.ca"
 
 ## Quan usar-la
 
-- A la Unitat 2, en arribar al pensament divergent i al brainstorming: és la ferramenta que fa visible la diferència entre obrir i tancar.
+- A la Unitat 11, en arribar al pensament divergent i al brainstorming: és la ferramenta que fa visible la diferència entre obrir i tancar.
 - Quan un grup es quede encallat amb una sola idea que no acaba de funcionar. Quasi sempre no és que la idea siga roïna: és que no n'hi ha cap altra amb què comparar-la.
 - Abans de qualsevol projecte del curs, perquè la idea triada siga la millor de dotze i no la primera que es va dir.
 

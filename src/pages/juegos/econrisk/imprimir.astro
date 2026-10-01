@@ -12,6 +12,7 @@ import { TERRITORIES, CONTINENT_BONUS, CONTINENTS } from '@/lib/games/econrisk/m
 import { EVENT_CARDS } from '@/lib/games/econrisk/events';
 import { localizeFactions, localizeEventText, localizeTerritoryName } from '@/i18n/games/econrisk-ca';
 import type { ContinentId } from '@/lib/games/econrisk/types';
+import { t } from '@/i18n/ui';
 
 const locale = getLocale(Astro.currentLocale);
 const factions = localizeFactions(locale);
@@ -105,7 +106,7 @@ const vbH = Math.max(...ys) - Math.min(...ys) + PAD * 2;
 
 <BaseLayout title={copy.metaTitle} description={copy.metaDesc} contentLang={locale} noindex>
   <div class="container">
-    <nav class="breadcrumb no-print">
+    <nav class="breadcrumb no-print" aria-label={t('nav.breadcrumb', locale)}>
       <a href="/">{copy.bcInicio}</a> <span class="sep">›</span>
       <a href="/juegos/">{copy.bcJuegos}</a> <span class="sep">›</span>
       <a href="/juegos/econrisk/">Econrisk</a> <span class="sep">›</span>

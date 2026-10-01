@@ -9,7 +9,7 @@ estado: publicado
 preguntas:
   - enunciado: "Quina d'estes afirmacions és un enunciat d'economia normativa?"
     opciones:
-      - "El PIB espanyol va créixer un 2,5 % en 2024 segons l'INE."
+      - "El PIB espanyol va créixer un 3,7 % en 2024 segons l'INE."
       - "Una pujada del salari mínim del 10 % reduiria l'ocupació juvenil entre un 1 % i un 3 %."
       - "El salari mínim hauria de pujar fins al 60 % del salari mitjà per a garantir la dignitat dels treballadors."
       - "La taxa d'atur juvenil a Espanya es va situar en el 26 % en l'últim trimestre."

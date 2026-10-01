@@ -12,6 +12,7 @@ import { getLocale } from '@/i18n/locale';
 import { pickLocalizedEntry } from '@/i18n/content-locale';
 import { getCollection, render } from 'astro:content';
 import type { GetStaticPaths } from 'astro';
+import { t } from '@/i18n/ui';
 
 export const getStaticPaths = (async () => {
   // ES entries define the canonical routes; CA siblings (lang: ca) must NOT
@@ -51,9 +52,9 @@ const copy = {
 }[locale];
 ---
 
-<BaseLayout title={`${d.fase_label} — ${copy.deCero}`} description={d.entregable} contentLang={locale}>
+<BaseLayout title={`${d.fase_label} — ${copy.deCero}`} description={d.entregable} contentLang={view.data.lang} translated={caById.has(`${entry.id}.ca`)}>
   <div class="container">
-    <nav class="breadcrumb">
+    <nav class="breadcrumb" aria-label={t('nav.breadcrumb', locale)}>
       <a href="/">{copy.inicio}</a> <span class="sep">›</span>
       <a href="/emprendimiento/">{copy.empr}</a> <span class="sep">›</span>
       <a href="/emprendimiento/proyecto/">{copy.deCero}</a> <span class="sep">›</span>

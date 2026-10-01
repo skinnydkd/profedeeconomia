@@ -6,8 +6,11 @@ import { FAMILIA_SLUGS } from './lib/dinamicas';
 import { FAMILIA_DEBATE_SLUGS } from './lib/debates';
 import { MATERIA_SLUGS } from './lib/proyectos';
 import { BLOQUE_SLUGS } from './lib/olimpiada';
+import { preguntaSchema } from './lib/preguntas-schema';
 
 const LANGS = ['es', 'ca'] as const;
+// `estado` has no default anywhere: a file that forgets it used to become a
+// silent `borrador`, and two finished GPE activities vanished from the site.
 const ESTADOS = ['borrador', 'revision', 'publicado'] as const;
 
 /* =========================================================
@@ -36,7 +39,7 @@ const libro = defineCollection({
     seoTitle: z.string().optional(),
     lema: z.string().optional(),
     lang: z.enum(LANGS).default('es'),
-    estado: z.enum(ESTADOS).default('borrador'),
+    estado: z.enum(ESTADOS),
     objetivos: z.array(z.string()).min(1),
     conceptos_clave: z.array(z.string()).default([]),
     duracion: z.string().optional(),
@@ -89,48 +92,9 @@ const actividades = defineCollection({
      *  for 2.º Bach subjects with EBAU, e.g. EDMN). Shows an "EBAU" badge. */
     ebau: z.boolean().default(false),
     lang: z.enum(LANGS).default('es'),
-    estado: z.enum(ESTADOS).default('borrador'),
+    estado: z.enum(ESTADOS),
   }),
 });
-
-/* Self-assessment question types. A question without `tipo` is treated as
- * 'opcion-multiple' so the existing tests keep validating unchanged. */
-const preguntaMC = z.object({
-  tipo: z.literal('opcion-multiple'),
-  enunciado: z.string(),
-  opciones: z.array(z.string()).min(2).max(6),
-  correcta: z.number().int().min(0),
-  explicacion: z.string().optional(),
-});
-const preguntaVF = z.object({
-  tipo: z.literal('verdadero-falso'),
-  enunciado: z.string(),
-  correcta: z.boolean(),
-  explicacion: z.string().optional(),
-});
-const preguntaNum = z.object({
-  tipo: z.literal('numerico'),
-  enunciado: z.string(),
-  respuesta: z.number(),
-  tolerancia: z.number().min(0).default(0),
-  unidad: z.string().optional(),
-  explicacion: z.string().optional(),
-});
-const preguntaRel = z.object({
-  tipo: z.literal('relacionar'),
-  enunciado: z.string(),
-  // izquierda, derecha y correctas deben tener la misma longitud (validado en
-  // la autoría; el render tolera longitudes desiguales sin romper).
-  izquierda: z.array(z.string()).min(2),
-  derecha: z.array(z.string()).min(2),
-  correctas: z.array(z.number().int().min(0)),
-  explicacion: z.string().optional(),
-});
-const preguntaSchema = z.preprocess(
-  (val) =>
-    val && typeof val === 'object' && !('tipo' in val) ? { ...val, tipo: 'opcion-multiple' } : val,
-  z.discriminatedUnion('tipo', [preguntaMC, preguntaVF, preguntaNum, preguntaRel])
-);
 
 const tests = defineCollection({
   loader: glob({
@@ -143,7 +107,7 @@ const tests = defineCollection({
     title: z.string(),
     duracion_estimada: z.string().optional(),
     lang: z.enum(LANGS).default('es'),
-    estado: z.enum(ESTADOS).default('borrador'),
+    estado: z.enum(ESTADOS),
     preguntas: z.array(preguntaSchema).min(1),
   }),
 });
@@ -159,7 +123,7 @@ const retos = defineCollection({
     duracion: z.string().optional(),
     competencias_clave: z.array(z.string()).default([]),
     lang: z.enum(LANGS).default('es'),
-    estado: z.enum(ESTADOS).default('borrador'),
+    estado: z.enum(ESTADOS),
   }),
 });
 
@@ -186,7 +150,7 @@ const recursos = defineCollection({
     /** External URL for resources hosted elsewhere; ignored when componente is set. */
     url_interactivo: z.string().optional(),
     lang: z.enum(LANGS).default('es'),
-    estado: z.enum(ESTADOS).default('borrador'),
+    estado: z.enum(ESTADOS),
   }),
 });
 
@@ -212,7 +176,7 @@ const actividadesDinamicas = defineCollection({
     competencias_clave: z.array(z.string()).default([]),
     competencias_especificas: z.array(z.string()).default([]),
     lang: z.enum(LANGS).default('es'),
-    estado: z.enum(ESTADOS).default('borrador'),
+    estado: z.enum(ESTADOS),
     publicado_en: z.coerce.date().optional(),
   }),
 });
@@ -234,7 +198,7 @@ const programacion = defineCollection({
     horas_semanales: z.number().optional(),
     num_evaluaciones: z.number().int().min(1).default(3),
     lang: z.enum(LANGS).default('es'),
-    estado: z.enum(ESTADOS).default('borrador'),
+    estado: z.enum(ESTADOS),
   }),
 });
 
@@ -254,7 +218,7 @@ const ebau = defineCollection({
     /** Comunidad autónoma de referencia de la prueba. */
     comunidad: z.string().default('Comunitat Valenciana'),
     lang: z.enum(LANGS).default('es'),
-    estado: z.enum(ESTADOS).default('borrador'),
+    estado: z.enum(ESTADOS),
   }),
 });
 
@@ -306,7 +270,7 @@ const proyecto = defineCollection({
       })
       .optional(),
     lang: z.enum(LANGS).default('es'),
-    estado: z.enum(ESTADOS).default('borrador'),
+    estado: z.enum(ESTADOS),
   }),
 });
 
@@ -362,7 +326,7 @@ const proyectoTransversal = defineCollection({
       })
       .optional(),
     lang: z.enum(LANGS).default('es'),
-    estado: z.enum(ESTADOS).default('borrador'),
+    estado: z.enum(ESTADOS),
   }),
 });
 
@@ -400,7 +364,7 @@ const dinamicas = defineCollection({
     competencias_clave: z.array(z.string()).default([]),
     competencias_especificas: z.array(z.string()).default([]),
     lang: z.enum(LANGS).default('es'),
-    estado: z.enum(ESTADOS).default('borrador'),
+    estado: z.enum(ESTADOS),
   }),
 });
 
@@ -442,7 +406,7 @@ const jocsEconomicsPreguntas = defineCollection({
     opciones: z.array(z.string()).min(2).max(4),
     correcta: z.number().int().min(0),
     explicacion: z.string().optional(),
-    estado: z.enum(['borrador', 'revision', 'publicado']).default('borrador'),
+    estado: z.enum(['borrador', 'revision', 'publicado']),
     font: z.string().optional(),
     revisat_per: z.string().optional(),
     revisat_at: z.string().optional(),
@@ -467,7 +431,7 @@ const retoCurso = defineCollection({
     orden: z.number().int().min(0),
     title: z.string(),
     lang: z.enum(LANGS).default('es'),
-    estado: z.enum(ESTADOS).default('borrador'),
+    estado: z.enum(ESTADOS),
   }),
 });
 
@@ -513,7 +477,7 @@ const debates = defineCollection({
       competencia: z.string().optional(),
     })).default([]),
     lang: z.enum(LANGS).default('es'),
-    estado: z.enum(ESTADOS).default('borrador'),
+    estado: z.enum(ESTADOS),
   }),
 });
 
@@ -549,7 +513,22 @@ const proyectos = defineCollection({
       competencia: z.string().optional(),
     })).default([]),
     lang: z.enum(LANGS).default('es'),
-    estado: z.enum(ESTADOS).default('borrador'),
+    estado: z.enum(ESTADOS),
+    /**
+     * What the project works from the partner subject's state curriculum
+     * (RD 217/2022 for ESO, RD 243/2022 for Bachillerato). One entry per
+     * subject and course, because a project open to ESO and Bachillerato
+     * meets a different subject in each stage (e.g. Matemáticas A in 4.º ESO,
+     * Matemáticas Aplicadas a las Ciencias Sociales I in 1.º Bachillerato).
+     * Competences start with their official number ("CE6. …") and saberes
+     * with their block ("A.6 Educación financiera: …").
+     */
+    materia_socia: z.array(z.object({
+      materia: z.string(),
+      curso: z.string(),
+      competencias_especificas: z.array(z.string()).min(1),
+      saberes: z.array(z.string()).min(1),
+    })).optional(),
   }),
 });
 
@@ -565,7 +544,7 @@ const olimpiadaFichas = defineCollection({
     herramienta: z.enum(['PuntoMuerto', 'Equilibrio', 'Elasticidad', 'ADASSimulator']).optional(),
     preguntas_tipicas: z.array(z.string()).default([]),
     competencias_clave: z.array(z.string()).default([]),
-    lang: z.enum(LANGS).default('es'), estado: z.enum(ESTADOS).default('borrador'),
+    lang: z.enum(LANGS).default('es'), estado: z.enum(ESTADOS),
   }),
 });
 
@@ -578,7 +557,7 @@ const olimpiadaTextos = defineCollection({
     title: z.string(), fuente: z.string(), fecha: z.string(), descripcion: z.string(),
     orden: z.number().int().min(0), temas: z.array(z.string()).default([]),
     bloque: z.enum(BLOQUE_SLUGS).optional(),
-    lang: z.enum(LANGS).default('es'), estado: z.enum(ESTADOS).default('borrador'),
+    lang: z.enum(LANGS).default('es'), estado: z.enum(ESTADOS),
   }),
 });
 
@@ -610,7 +589,7 @@ const emprendimientoEjemplos = defineCollection({
     chispa: z.string(),
     orden: z.number().int().default(0),
     lang: z.enum(LANGS).default('es'),
-    estado: z.enum(ESTADOS).default('borrador'),
+    estado: z.enum(ESTADOS),
   }),
 });
 
@@ -624,7 +603,7 @@ const emprendimientoActividades = defineCollection({
     materiales: z.array(z.string()).default([]),
     orden: z.number().int().default(0),
     lang: z.enum(LANGS).default('es'),
-    estado: z.enum(ESTADOS).default('borrador'),
+    estado: z.enum(ESTADOS),
   }),
 });
 
@@ -661,7 +640,7 @@ const refuerzo = defineCollection({
     competencias_clave: z.array(z.string()).default([]),
     orden: z.number().int().default(0),
     lang: z.enum(LANGS).default('es'),
-    estado: z.enum(ESTADOS).default('borrador'),
+    estado: z.enum(ESTADOS),
   }),
 });
 
@@ -690,7 +669,7 @@ const evaluacion = defineCollection({
     })).default([]),
     instrumentos: z.array(z.string()).default([]),
     lang: z.enum(LANGS).default('es'),
-    estado: z.enum(ESTADOS).default('borrador'),
+    estado: z.enum(ESTADOS),
   }),
 });
 

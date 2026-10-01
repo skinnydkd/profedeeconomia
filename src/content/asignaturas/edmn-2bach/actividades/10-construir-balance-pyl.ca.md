@@ -66,7 +66,7 @@ slug: "asignaturas/edmn-2bach/actividades/10-construir-balance-pyl.ca"
 | Interessos del préstec hipotecari | 1.800 |
 | Comissions bancàries cobrades a l'empresa | 250 |
 
-Tipus de l'Impost de Societats: **23 %** (pime).
+Tipus de l'Impost de Societats: **19 %** (microempresa, 2026).
 
 ## Passos
 
@@ -99,11 +99,12 @@ Tipus de l'Impost de Societats: **23 %** (pime).
 | (−) Subministraments | −5.400 |
 | (−) Amortització | −2.800 |
 | (−) Serveis externs | −2.100 |
-| **= Resultat d'explotació (EBIT)** | **20.000** |
-| (−) Despeses financeres (interessos + comissions) | −2.050 |
+| (−) Servicis bancaris (compte 626) | −250 |
+| **= Resultat d'explotació (EBIT)** | **19.750** |
+| (−) Despeses financeres (interessos) | −1.800 |
 | **= Resultat abans d'impostos** | **17.950** |
-| (−) Impost sobre beneficis (23 %) | −4.129 |
-| **= Resultat de l'exercici** | **13.821** |
+| (−) Impost sobre beneficis (19 %) | −3.410,50 |
+| **= Resultat de l'exercici** | **14.539,50** |
 
 ### Balanç al tancament
 
@@ -111,17 +112,17 @@ Tipus de l'Impost de Societats: **23 %** (pime).
 | --- | --- | --- | --- |
 | Local | 75.000 | Capital social | 30.000 |
 | Maquinària | 28.000 | Reserves | 22.000 |
-| Mobiliari | 4.500 | **Benefici de l'exercici** | **13.821** |
-| **Actiu no corrent** | **107.500** | **Patrimoni net** | **65.821** |
+| Mobiliari | 4.500 | **Benefici de l'exercici** | **14.539,50** |
+| **Actiu no corrent** | **107.500** | **Patrimoni net** | **66.539,50** |
 | Existències | 12.000 | Préstec hipotecari | 35.000 |
 | Clients | 8.500 | **Passiu no corrent** | **35.000** |
 | Banc | 6.200 | Proveïdors | 5.000 |
 | Caixa | 800 | Hisenda creditora | 1.800 |
 | **Actiu corrent** | **27.500** | Seguretat Social | 1.200 |
 | | | **Passiu corrent** | **8.000** |
-| **TOTAL ACTIU** | **135.000** | **TOTAL PN + PASSIU** | **108.821** |
+| **TOTAL ACTIU** | **135.000** | **TOTAL PN + PASSIU** | **109.539,50** |
 
-**Atenció!** El balanç NO quadra: 135.000 ≠ 108.821. Diferència: 26.179 €.
+**Atenció!** El balanç NO quadra: 135.000 ≠ 109.539,50. Diferència: 25.460,50 €.
 
 Este desajust és **deliberat en l'exercici** i heu de detectar-lo: falten alguns comptes no llistats. Discutiu en grup quins comptes podrien faltar (deutes amb socis, altres passius no especificats, etc.) o si alguna xifra està mal a l'enunciat. La lliçó és: **el balanç sempre ha de quadrar; si no quadra, falta informació o hi ha un error**, mai és la realitat econòmica diferent.
 
@@ -131,7 +132,7 @@ Este desajust és **deliberat en l'exercici** i heu de detectar-lo: falten algun
 
 - Actiu no corrent: 107.500 € · Actiu corrent: 27.500 €
 - Fons de maniobra: 27.500 − 8.000 = **+19.500 € (saludable)**
-- Patrimoni net / Total actiu (amb balanç teòric): 65.821 / 135.000 ≈ **49 %**, alta autonomia financera
+- Patrimoni net / Total actiu (amb balanç teòric): 66.539,50 / 135.000 ≈ **49 %**, alta autonomia financera
 - Per què hi ha menys al banc que el benefici? Perquè part del benefici està atrapat en clients (8.500 € de factures pendents) i existències (12.000 € de peces en magatzem). Meritació ≠ caixa.
 
 ## Criteris d'avaluació

@@ -2,6 +2,7 @@
 import BaseLayout from '@layouts/BaseLayout.astro';
 import { getLocale } from '@/i18n/locale';
 import { SITE } from '@/lib/seo';
+import { t } from '@/i18n/ui';
 
 const locale = getLocale(Astro.currentLocale);
 
@@ -159,14 +160,14 @@ const copy = {
   contentLang={locale}
 >
   <div class="container">
-    <nav class="breadcrumb">
+    <nav class="breadcrumb" aria-label={t('nav.breadcrumb', locale)}>
       <a href="/">{copy.bcInicio}</a> <span class="sep">›</span>
       <a href="/emprendimiento/">{copy.bcEmprendimiento}</a> <span class="sep">›</span>
       <span>{copy.bcCurrent}</span>
     </nav>
   </div>
 
-  <main class="prose">
+  <div class="prose">
     <h1>{copy.h1}</h1>
     <p class="lede">
       {copy.ledePre} <strong>{copy.ledeStrong}</strong>.
@@ -227,7 +228,7 @@ const copy = {
     </p>
 
     <p class="links"><a class="editorial-link" href="/emprendimiento/proyecto/">{copy.linkProyecto}</a> · <a class="editorial-link" href="/emprendimiento/actividades/">{copy.linkActividades}</a></p>
-  </main>
+  </div>
 </BaseLayout>
 
 <style>

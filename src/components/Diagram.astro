@@ -30,6 +30,7 @@ const locale = getLocale(Astro.currentLocale);
   <div class="diagram__inner">
     <slot />
   </div>
+  <p class="diagram__hint" aria-hidden="true">{t('libro.desplaza', locale)}</p>
   <figcaption class="diagram__caption">
     <span class="diagram__caption-text">{caption}</span>
     {source && <span class="diagram__caption-source">{t('libro.fuente', locale)} {source}</span>}
@@ -81,7 +82,28 @@ const locale = getLocale(Astro.currentLocale);
     font-style: italic;
   }
 
+  .diagram__hint { display: none; }
+
+  /* On a phone the 780–880-unit viewBoxes shrink their labels to 3–4 px. The
+     drawing keeps a readable width and scrolls sideways inside its card (the
+     inner box already scrolls); centring would hide its left edge. Screen only:
+     the A5 book PDF is narrower than 600 px and must keep the whole drawing. */
+  @media screen and (max-width: 600px) {
+    .diagram { padding: 0.75rem 0.75rem 0.9rem; }
+    .diagram__inner { justify-content: flex-start; }
+    .diagram__inner :global(svg) { min-width: 560px; max-width: none; }
+    .diagram__hint {
+      display: block;
+      margin: 0.5rem 0 0;
+      font-family: var(--font-sans);
+      font-size: 0.78rem;
+      color: var(--color-ink-mute);
+      text-align: right;
+    }
+  }
+
   @media print {
+    .diagram__hint { display: none; }
     .diagram {
       box-shadow: none;
       break-inside: avoid;

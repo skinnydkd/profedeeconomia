@@ -44,12 +44,13 @@ const copy = {
 import PuntoMuertoCalc from '@components/calculadoras/PuntoMuertoCalc.tsx';
 import EquilibrioCalc from '@components/calculadoras/EquilibrioCalc.tsx';
 import ElasticidadCalc from '@components/calculadoras/ElasticidadCalc.tsx';
+import { t } from '@/i18n/ui';
 import ADASSimulator from '@components/calculadoras/ADASSimulator.tsx';
 ---
 
-<BaseLayout title={d.seoTitle ?? `${d.title} — ${copy.fichasOlimpiada}`} brandSuffix={!d.seoTitle} description={d.resumen} contentLang={locale}>
+<BaseLayout title={d.seoTitle ?? `${d.title} — ${copy.fichasOlimpiada}`} brandSuffix={!d.seoTitle} description={d.resumen} contentLang={view.data.lang} translated={caById.has(`${entry.id}.ca`)}>
   <div class="container">
-    <nav class="breadcrumb">
+    <nav class="breadcrumb" aria-label={t('nav.breadcrumb', locale)}>
       <a href="/">{copy.inicio}</a> <span class="sep">›</span>
       <a href="/olimpiada/">{copy.olimpiada}</a> <span class="sep">›</span>
       <a href="/olimpiada/fichas/">{copy.fichas}</a> <span class="sep">›</span>

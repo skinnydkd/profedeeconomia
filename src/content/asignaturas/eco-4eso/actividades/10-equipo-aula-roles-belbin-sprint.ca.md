@@ -39,7 +39,7 @@ Este sprint pilot produïx, a més, els **tres documents** (fitxa de rols, carta
 Cada equip tria un d'estos tres reptes —tots tenen la mateixa grandària i s'entreguen en la sessió de daily 2 (final del sprint):
 
 - **Repte A — Enquesta exprés.** Dissenyar, passar a 30 persones i presentar en 5 diapositives els resultats d'una mini-enquesta sobre un hàbit de consum de l'alumnat del centre (temps de pantalla, despesa setmanal, app més usada…).
-- **Repte B — Prototip en paper.** Dissenyar en paper el prototip d'una app que resolga una molèstia identificada per l'equip (de la Unitat 4) i presentar-la amb 3 pantalles dibuixades a mà i una breu narració.
+- **Repte B — Prototip en paper.** Dissenyar en paper el prototip d'una app que resolga una molèstia identificada per l'equip (de la Unitat 11) i presentar-la amb 3 pantalles dibuixades a mà i una breu narració.
 - **Repte C — Producte físic de baix cost.** Dissenyar i muntar un prototip físic d'un producte de menys de 5 € (ex.: marcapàgines amb QR, clauer de feltre, organitzador de cables) i presentar-lo amb foto, fitxa de cost i proposta de preu.
 
 ## Estructura temporal

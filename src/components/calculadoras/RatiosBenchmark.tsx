@@ -12,6 +12,7 @@ import {
   type Evaluacion,
   type SectorId,
 } from '../../lib/calc/ratios-benchmark';
+import NumberInput from '../NumberInput';
 
 /**
  * Sector-benchmarked financial ratios calculator (EDMN 2BACH, Unit 11).
@@ -294,7 +295,7 @@ export default function RatiosBenchmark({ locale = 'es' }: Props) {
         <NumberField label={c.lblBeneficioNeto} value={beneficioNeto} setValue={setBeneficioNeto} unit={c.unit} />
       </div>
 
-      <div class="calc__results">
+      <div class="calc__results" aria-live="polite">
         <div class={`calc__warning ${cuadra ? 'is-ok' : ''}`}>
           {cuadra
             ? c.balanceCuadra(formatNumber(activoTotal, 0))
@@ -393,11 +394,10 @@ function NumberField({
     <label class="calc__field">
       <span class="calc__label">{label}</span>
       <div class="calc__input-wrap">
-        <input
-          type="number"
+        <NumberInput
           step={1}
           value={value}
-          onInput={(e) => setValue(parseFloat((e.target as HTMLInputElement).value) || 0)}
+          onValue={setValue}
         />
         <span class="calc__unit">{unit}</span>
       </div>

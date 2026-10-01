@@ -20,7 +20,7 @@ slug: "asignaturas/gpe-bach/actividades/03-caso-forma-juridica.ca"
 
 ## Plantejament
 
-Triar la forma jurídica és una de les decisions d'arrancada que més condicionen un projecte, i quasi mai hi ha una resposta única "correcta": depén del perfil de l'equip i del risc de l'activitat. Esta activitat posa tres casos reals damunt de la taula perquè l'alumnat practique el raonament abans d'aplicar-lo al seu propi projecte en la Fase 2 del quadern. L'objectiu no és memoritzar les formes jurídiques, sinó **decidir amb criteri**: saber per què a un cas li convé autònom i a un altre una cooperativa.
+Triar la forma jurídica és una de les decisions d'arrancada que més condicionen un projecte, i quasi mai hi ha una resposta única "correcta": depén del perfil de l'equip i del risc de l'activitat. Esta activitat posa tres casos damunt de la taula perquè l'alumnat practique el raonament abans d'aplicar-lo al seu propi projecte en la Fase 2 del quadern. L'objectiu no és memoritzar les formes jurídiques, sinó **decidir amb criteri**: saber per què a un cas li convé autònom i a un altre una cooperativa.
 
 ## Els tres casos
 

@@ -12,8 +12,8 @@ solucion:
   - "Pas 1: marge de contribució unitari = preu − cost variable unitari = 18 − 7 = **11 € per menú**"
   - "Pas 2: punt mort = costos fixos / marge de contribució unitari = 2 640 / 11 = **240 menús al mes**"
   - "Pas 3: comprovació — ingressos a 240 menús = 240 × 18 = 4 320 €; costos totals = 2 640 + 240 × 7 = 2 640 + 1 680 = 4 320 €. Resultat = 0 €. **Verificat.**"
-  - "Pas 4: amb nou preu de 20 €, marge de contribució = 20 − 7 = 13 €; nou punt mort = 2 640 / 13 = **203,08 → 204 menús al mes** (arredonint a l'alça)"
-  - "Pas 5: benefici/pèrdua amb 200 menús i preu 18 € = 200 × 11 − 2 640 = 2 200 − 2 640 = **−440 € (pèrdua)**"
+  - "Pas 4: benefici/pèrdua amb 200 menús i preu 18 € = 200 × 11 − 2 640 = 2 200 − 2 640 = **−440 € (pèrdua)**"
+  - "Pas 5: amb nou preu de 20 €, marge de contribució = 20 − 7 = 13 €; nou punt mort = 2 640 / 13 = **203,08 → 204 menús al mes** (arredonint a l'alça); amb 200 menús, 200 × 13 − 2 640 = **−40 €**, encara pèrdua"
   - "Conclusió: amb 200 menús al mes el projecte no cobrix els costos fixos (falten 40 menús per al llindar). Pujar el preu a 20 € reduïx el punt mort a 204 menús, la qual cosa no resol el problema amb eixa demanda. La direcció hauria de revisar els costos fixos o augmentar el volum de vendes."
 lang: ca
 estado: publicado
@@ -34,3 +34,4 @@ slug: "asignaturas/gpe-bach/actividades/ejercicio-u6-punto-muerto.ca"
 1. Calcula el **punt mort** (llindar de rendibilitat) del projecte en nombre de menús al mes. Mostra la fórmula i desenvolupa el càlcul pas a pas.
 2. Comprova el resultat verificant que els ingressos i els costos totals s'igualen exactament a eixa quantitat de menús.
 3. Amb la previsió de venda de 200 menús, calcula el **resultat econòmic** del primer mes (benefici o pèrdua). Supera el projecte el llindar? Quants menús li falten o li sobren?
+4. Si l'equip pujara el preu a **20 €** per menú, quin seria el nou punt mort? N'hi hauria prou amb eixa pujada per a cobrir costos amb la previsió de 200 menús?

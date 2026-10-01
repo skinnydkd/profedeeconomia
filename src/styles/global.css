@@ -176,6 +176,9 @@
     font-size: 17px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    /* Anchor jumps (unit TOC, #unidad-n) land below the sticky header
+       (73–80 px) instead of under it. */
+    scroll-padding-top: 5.5rem;
   }
 
   body {
@@ -227,6 +230,22 @@
    ========================================================= */
 
 .prose-measure { max-width: var(--measure-prose); }
+
+/* Long-form reading. Tailwind's preflight zeroes paragraph margins and list
+   markers; the book units (.article-body) and every .prose page get them back,
+   as the validated mockup had them (mockups/variant-c/style.css). Only the
+   direct children and the lists nested in them: the components inside set
+   their own spacing. Zero specificity, so any page rule still wins. */
+:where(.article-body, .prose) > :where(p, ul, ol, table, pre, figure, blockquote) {
+  margin: 0 0 1.1em;
+}
+:where(.article-body, .prose) > :where(h2, h3, h4) { margin-bottom: 0.5em; }
+:where(.article-body, .prose) > :where(ul, ol) { padding-left: 1.4em; }
+:where(.article-body, .prose) > :where(ul),
+:where(.article-body, .prose) > :where(ul, ol) :where(ul) { list-style: disc; }
+:where(.article-body, .prose) > :where(ol),
+:where(.article-body, .prose) > :where(ul, ol) :where(ol) { list-style: decimal; }
+:where(.article-body, .prose) > :where(ul, ol) :where(ul, ol) { padding-left: 1.4em; margin-top: 0.4em; }
 
 .eyebrow {
   font-family: var(--font-sans);
@@ -381,4 +400,22 @@ body {
   inset: 9px;
   background: var(--color-bg);
   border-radius: 50%;
+}
+
+/* =========================================================
+   Markdown tables (wrapped by src/lib/rehype/table-scroll.mjs)
+   ========================================================= */
+/* On a narrow screen a wide table scrolls inside this box instead of pushing
+   the whole page sideways. The box is a focusable region, so the keyboard can
+   scroll it too. On paper there is nothing to scroll: it vanishes. */
+@media screen {
+  .tabla-scroll {
+    max-width: 100%;
+    overflow-x: auto;
+    margin: 0 0 1.4em;
+  }
+  .tabla-scroll > table { margin: 0; }
+}
+@media print {
+  .tabla-scroll { overflow: visible; }
 }

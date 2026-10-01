@@ -55,7 +55,7 @@ Se supone que cada país puede repartir sus recursos entre los dos bienes de for
 3. ¿Qué país tiene **ventaja absoluta** en cada bien? Responde con los datos en la mano.
 4. ¿Qué país tiene **ventaja comparativa** en cada bien? Explica en una frase por qué la respuesta a esta pregunta no coincide con la anterior.
 5. Si cada país se especializa por completo en el bien de su ventaja comparativa, ¿cuánto produce el mundo de cada bien?
-6. ¿Entre qué dos valores debe situarse la **relación de intercambio** (litros de tela por unidad de aceite) para que el comercio interese a los dos? Justifica qué pasaría justo por debajo y justo por encima de ese intervalo.
+6. ¿Entre qué dos valores debe situarse la **relación de intercambio** (metros de tela por litro de aceite) para que el comercio interese a los dos? Justifica qué pasaría justo por debajo y justo por encima de ese intervalo.
 7. Supón que acuerdan intercambiar **40 de aceite por 100 de tela**. Comprueba, país por país, cuánto acaba teniendo cada uno y compáralo con lo máximo que podría tener produciendo esa misma cantidad de aceite por su cuenta.
 8. Dibuja las dos fronteras de posibilidades de producción y marca sobre cada una el punto de consumo que alcanza cada país gracias al comercio. ¿Dónde queda ese punto respecto de la frontera?
 

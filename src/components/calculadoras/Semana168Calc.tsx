@@ -3,6 +3,7 @@ import { useMemo, useState } from 'preact/hooks';
 import { type Locale } from '@/i18n/locale';
 import { formatNumber, formatPercent } from '../../lib/calc/format';
 import { repartir, HORAS_SEMANA, SUENO_RECOMENDADO, type Bloque } from '../../lib/calc/semana168';
+import NumberInput from '../NumberInput';
 
 /** UI strings, Valencian (AVL) alongside the ES source. */
 export const COPY = {
@@ -100,8 +101,6 @@ export const COPY = {
 
 interface Props { locale?: Locale }
 
-const num = (e: Event) => parseFloat((e.target as HTMLInputElement).value) || 0;
-
 const CLAVES = [
   'sueno', 'instituto', 'deberes', 'transporte', 'comidas',
   'deporte', 'pantallas', 'familia', 'otras',
@@ -189,8 +188,8 @@ export default function Semana168Calc({ locale = 'es' }: Props) {
                     {etiqueta(c)}
                   </td>
                   <td>
-                    <input class="s168__cell" type="number" min={0} max={168} step={1} value={horas[c]}
-                      onInput={(e) => setHoras((prev) => ({ ...prev, [c]: num(e) }))} />
+                    <NumberInput class="s168__cell" min={0} max={168} step={1} value={horas[c]}
+                      onValue={(v) => setHoras((prev) => ({ ...prev, [c]: v }))} />
                   </td>
                   <td>{v ? formatNumber(v.porDia, 1) : '—'}</td>
                   <td>{v ? formatPercent(v.porcentaje) : '—'}</td>
@@ -201,7 +200,7 @@ export default function Semana168Calc({ locale = 'es' }: Props) {
         </table>
       </div>
 
-      <div class="calc__results">
+      <div class="calc__results" aria-live="polite">
         {!r.valido ? (
           <div class="calc__warning">{t.sinDatos}</div>
         ) : (

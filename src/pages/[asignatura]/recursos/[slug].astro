@@ -8,6 +8,7 @@ import { pickLocalizedEntry } from '@/i18n/content-locale';
 import { localizeAsignatura } from '@/i18n/asignaturas-ca';
 import HerramientaIsland from '@components/calculadoras/HerramientaIsland.astro';
 import type { GetStaticPaths } from 'astro';
+import { t } from '@/i18n/ui';
 
 export const getStaticPaths = (async () => {
   const all = await getCollection('recursos');
@@ -57,9 +58,9 @@ const breadcrumb = breadcrumbLd([
 ], locale);
 ---
 
-<BaseLayout title={recurso.data.seoTitle ?? `${recurso.data.title} — ${a.seoName}`} brandSuffix={false} description={recurso.data.descripcion} ogType="article" jsonLd={breadcrumb} contentLang={locale}>
+<BaseLayout title={recurso.data.seoTitle ?? `${recurso.data.title} — ${a.seoName}`} brandSuffix={false} description={recurso.data.descripcion} ogType="article" jsonLd={breadcrumb} contentLang={recurso.data.lang} translated={recCaById.has(`${recursoEs.id}.ca`)}>
   <div class="container">
-    <nav class="breadcrumb">
+    <nav class="breadcrumb" aria-label={t('nav.breadcrumb', locale)}>
       <a href="/">{copy.inicio}</a> <span class="sep">›</span>
       <a href={`/${a.slug}/`}>{a.shortLabel}</a> <span class="sep">›</span>
       <a href={`/${a.slug}/recursos/`}>{copy.recursos}</a> <span class="sep">›</span>

@@ -6,11 +6,13 @@ import UnitNotes from '@components/UnitNotes.tsx';
 import RecursosRelacionados from '@components/libro/RecursosRelacionados.astro';
 import { getIndiceRecursos } from '@/lib/recursos-relacionados-sources';
 import { recursosDeUnidad } from '@/lib/recursos-relacionados';
+import { getMaterialPorUnidad } from '@/lib/material-unidad-sources';
 import { articleLd, breadcrumbLd } from '@/lib/seo';
 import { getLocale } from '@/i18n/locale';
 import { pickLocalizedEntry } from '@/i18n/content-locale';
 import { localizeAsignatura } from '@/i18n/asignaturas-ca';
 import type { GetStaticPaths } from 'astro';
+import { t } from '@/i18n/ui';
 
 export const getStaticPaths = (async () => {
   const allUnits = await getCollection('libro');
@@ -41,8 +43,8 @@ const view = pickLocalizedEntry(unit, caById, locale);
 const { Content, headings } = await render(view);
 
 const copy = {
-  es: { inicio: 'Inicio', libro: 'Libro', unidad: 'Unidad', duracion: 'Duración estimada', conceptos: 'Conceptos clave', objetivos: 'Objetivos', enEsta: 'En esta unidad', volver: '← Volver al índice', volverSub: 'Libro' },
-  ca: { inicio: 'Inici', libro: 'Llibre', unidad: 'Unitat', duracion: 'Durada estimada', conceptos: 'Conceptes clau', objetivos: 'Objectius', enEsta: 'En esta unitat', volver: "← Tornar a l'índex", volverSub: 'Llibre' },
+  es: { inicio: 'Inicio', libro: 'Libro', unidad: 'Unidad', sabers: 'Saberes', duracion: 'Duración estimada', conceptos: 'Conceptos clave', objetivos: 'Objetivos', enEsta: 'En esta unidad', volver: '← Volver al índice', volverSub: 'Libro' },
+  ca: { inicio: 'Inici', libro: 'Llibre', unidad: 'Unitat', sabers: 'Sabers', duracion: 'Durada estimada', conceptos: 'Conceptes clau', objetivos: 'Objectius', enEsta: 'En esta unitat', volver: "← Tornar a l'índex", volverSub: 'Llibre' },
 }[locale];
 
 // Adjacent units within the same asignatura (ordered on the ES source of truth;
@@ -61,6 +63,14 @@ const unitKey = `${a.slug}-u${unit.data.unidad}`;
 
 // Related transversal resources for this unit (inverse index, built once per build).
 const recursos = recursosDeUnidad(await getIndiceRecursos(locale), unit.data.asignatura, unit.data.unidad);
+
+// The unit's own material, linked from the top (VIS-NAV-05): before, the page
+// only led back to the hub, so a teacher had to go round to find the slides.
+const material = (await getMaterialPorUnidad(unit.data.asignatura, locale)).find((m) => m.unidad === unit.data.unidad);
+const mCopy = {
+  es: { label: 'Material de esta unidad', enEsta: 'En esta unidad:', diapositivas: 'Diapositivas', test: 'Test', reto: 'Reto', actividades: (n: number) => (n === 1 ? '1 actividad' : `${n} actividades`) },
+  ca: { label: 'Material d\'esta unitat', enEsta: 'En esta unitat:', diapositivas: 'Diapositives', test: 'Test', reto: 'Repte', actividades: (n: number) => (n === 1 ? '1 activitat' : `${n} activitats`) },
+}[locale];
 
 // Localized view of the unit (CA sibling under /ca, ES otherwise).
 const d = view.data;
@@ -97,10 +107,11 @@ const jsonLd = [
   description={d.lema ?? d.title}
   ogType="article"
   jsonLd={jsonLd}
-  contentLang={locale}
+  contentLang={view.data.lang}
+  translated={caById.has(`${unit.id}.ca`)}
 >
   <div class="container">
-    <nav class="breadcrumb">
+    <nav class="breadcrumb" aria-label={t('nav.breadcrumb', locale)}>
       <a href="/">{copy.inicio}</a> <span class="sep">›</span>
       <a href={`/${a.slug}/`}>{a.shortLabel}</a> <span class="sep">›</span>
       <a href={`/${a.slug}/libro/`}>{copy.libro}</a> <span class="sep">›</span>
@@ -113,10 +124,21 @@ const jsonLd = [
       <div class="unit-num">
         {copy.unidad} {d.unidad}
         {d.bloque ? ` · ${d.bloque}` : ''}
-        {d.sabers.length > 0 ? ` · Sabers ${d.sabers.join(', ')}` : ''}
+        {d.sabers.length > 0 ? ` · ${copy.sabers} ${d.sabers.join(', ')}` : ''}
       </div>
       <h1>{d.title}</h1>
       {d.lema && <p class="lede">{d.lema}</p>}
+      {material && (
+        <nav class="unit-material" aria-label={mCopy.label}>
+          <span class="unit-material__label">{mCopy.enEsta}</span>
+          <a href={material.diapositivas}>{mCopy.diapositivas}</a>
+          {material.test && <><span class="sep" aria-hidden="true">·</span><a href={material.test}>{mCopy.test}</a></>}
+          {material.actividadesHref && <><span class="sep" aria-hidden="true">·</span><a href={material.actividadesHref}>{mCopy.actividades(material.actividades)}</a></>}
+          {material.retos.map((r, i) => (
+            <><span class="sep" aria-hidden="true">·</span><a href={r}>{material.retos.length > 1 ? `${mCopy.reto} ${i + 1}` : mCopy.reto}</a></>
+          ))}
+        </nav>
+      )}
 
       <dl class="unit-meta">
         {d.duracion && (
@@ -155,8 +177,8 @@ const jsonLd = [
         <aside class="article-toc" aria-label={copy.enEsta}>
           <div class="toc-title">{copy.enEsta}</div>
           <ol>
-            {headings.filter((h) => h.depth <= 3).map((h) => (
-              <li><a href={`#${h.slug}`}>{h.text}</a></li>
+            {headings.filter((h) => h.depth === 2 || h.depth === 3).map((h) => (
+              <li class={`toc-d${h.depth}`}><a href={`#${h.slug}`}>{h.text}</a></li>
             ))}
           </ol>
         </aside>
@@ -232,6 +254,11 @@ const jsonLd = [
     font-variation-settings: "SOFT" 80;
   }
 
+  .unit-material { margin: 1.2rem 0 1.4rem; font-size: 1rem; color: var(--color-ink-soft); }
+  .unit-material__label { font-weight: 600; color: var(--color-ink); margin-right: 0.5em; }
+  .unit-material a { color: var(--color-terra-ink); text-decoration: none; }
+  .unit-material a:hover { text-decoration: underline; }
+  .unit-material .sep { margin: 0 0.45em; color: var(--color-mustard); }
   .unit-meta {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
@@ -305,17 +332,20 @@ const jsonLd = [
     list-style: none;
     margin: 0;
     padding: 0;
-    counter-reset: toc;
+    counter-reset: toc-h2;
   }
   .article-toc li {
     margin-bottom: 0.5rem;
     line-height: 1.4;
-    counter-increment: toc;
     position: relative;
     padding-left: 1.6rem;
   }
+  /* Same scheme as the body: «02» for a section, «2.3» for a subsection. */
+  .article-toc li.toc-d2 { counter-increment: toc-h2; counter-reset: toc-h3; }
+  .article-toc li.toc-d3 { counter-increment: toc-h3; padding-left: 2.6rem; font-size: 0.95em; }
+  .article-toc li.toc-d3::before { content: counter(toc-h2) "." counter(toc-h3); left: 1rem; }
   .article-toc li::before {
-    content: counter(toc, decimal-leading-zero);
+    content: counter(toc-h2, decimal-leading-zero);
     position: absolute;
     left: 0;
     font-family: var(--font-mono);
@@ -333,7 +363,10 @@ const jsonLd = [
     line-height: 1.72;
     counter-reset: h2section;
   }
-  .article-body :global(h2) {
+  /* Direct children only: the MDX sections are children of the article, while
+     the headings inside components (calculators, solved exercises, «Para el
+     aula»…) are not sections and must not take a number or this size. */
+  .article-body > :global(h2) {
     margin-top: 3em;
     font-size: 2rem;
     position: relative;
@@ -346,7 +379,7 @@ const jsonLd = [
      `top: 1.5em` aligns the marker baseline to the cap-line of the heading
      text (h2 font-size 2rem + padding-top 1.2em).
    */
-  .article-body :global(h2::after) {
+  .article-body > :global(h2::after) {
     content: counter(h2section, decimal-leading-zero);
     position: absolute;
     top: 1.5em;
@@ -359,16 +392,29 @@ const jsonLd = [
     font-weight: 500;
     line-height: 1;
   }
-  .article-body :global(h2:nth-of-type(2n)::before) { background: var(--color-mustard); }
-  .article-body :global(h2:nth-of-type(3n)::before) { background: var(--color-eco1); }
+  /* The alternating rule above each section title (terracota, mustard, teal),
+     as validated in the Variant C mockup and kept in docs/design-system.md.
+     The two overrides below had lost the base rule that draws it. */
+  .article-body > :global(h2::before) {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4rem;
+    height: 4px;
+    border-radius: 999px;
+    background: var(--color-terra);
+  }
+  .article-body > :global(h2:nth-of-type(2n)::before) { background: var(--color-mustard); }
+  .article-body > :global(h2:nth-of-type(3n)::before) { background: var(--color-eco1); }
 
-  .article-body :global(h3) {
+  .article-body > :global(h3) {
     counter-increment: h3section;
     position: relative;
     padding-left: 2.4rem;
     margin-top: 2.2em;
   }
-  .article-body :global(h3::before) {
+  .article-body > :global(h3::before) {
     content: counter(h2section) "." counter(h3section);
     position: absolute;
     left: 0;
@@ -381,13 +427,15 @@ const jsonLd = [
     font-weight: 500;
   }
 
-  /* On narrow viewports the §NN can't sit in the gutter — move inline */
+  /* On narrow viewports the §NN can't sit in the gutter. Inline, it trailed
+     the last word of the title («…la EPA02»); it goes above the title instead,
+     in the space the padding-top leaves. */
   @media (max-width: 1100px) {
-    .article-body :global(h2::after) {
-      position: static;
-      display: inline-block;
-      margin-right: 0.6rem;
-      vertical-align: middle;
+    .article-body > :global(h2::after) {
+      top: 0.75rem;
+      right: auto;
+      left: 0;
+      margin-right: 0;
     }
   }
 
@@ -433,6 +481,19 @@ const jsonLd = [
     background: var(--color-paper);
     border: 1px solid var(--color-line);
     border-radius: 6px;
+  }
+  /* A Markdown table sits in a scrolling .tabla-scroll box (global.css), which
+     takes over the sideways scroll: the table keeps its normal layout and the
+     box, being focusable, can be scrolled with the keyboard too. The rule above
+     stays for tables that components render themselves. */
+  .article-body :global(.tabla-scroll) { margin: 2.2rem 0; }
+  .article-body :global(.tabla-scroll > table) {
+    display: table;
+    width: 100%;
+    min-width: 0;
+    max-width: none;
+    overflow-x: visible;
+    margin: 0;
   }
   /* Printing the web page has no viewport to scroll: let the table reflow. */
   @media print {

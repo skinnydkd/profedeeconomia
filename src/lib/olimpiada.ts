@@ -35,7 +35,7 @@ export function bloqueMeta(slug: string): Familia {
 // orden alfabético. El formato del examen VARÍA según la comunidad.
 export interface Ambito { slug: string; label: string; intro: string; }
 export const AMBITOS: Ambito[] = [
-  { slug: 'cv',            label: 'Comunitat Valenciana', intro: 'Fase local de la C. Valenciana (UA/UV/UPV/UJI/UMH). Es el formato que describe la guía: test + ejercicio + comentario, 2 horas.' },
+  { slug: 'cv',            label: 'Comunitat Valenciana', intro: 'Fase local de la C. Valenciana (UA/UV/UPV/UJI/UMH). Es el formato que describe la guía: test + ejercicio + comentario, 2 horas y media.' },
   { slug: 'nacional',      label: 'Fase nacional',        intro: 'Olimpiada Española de Economía: la final estatal a la que pasan los finalistas de cada fase local.' },
   { slug: 'madrid',        label: 'Comunidad de Madrid',  intro: 'Fase local de Madrid (UAM, URJC, UCM, UAH, UC3M). Publicados con soluciones.' },
   { slug: 'andalucia',     label: 'Andalucía',            intro: 'Fase local de Andalucía (Universidad de Sevilla).' },
@@ -266,7 +266,7 @@ export const LECTURAS: Lectura[] = [
 
 export interface ParteGuia { nombre: string; puntos: string; tiempo?: string; descripcion: string; }
 export const GUIA: { duracion: string; total: string; partes: ParteGuia[] } = {
-  duracion: '2 horas',
+  duracion: '2 horas y media',
   total: '10 puntos',
   partes: [
     { nombre: 'Parte I — Test teórico', puntos: '4 pts', descripcion: 'Dieciséis preguntas tipo test con una sola opción correcta, sobre Economía de 1.º y Empresa (EDMN) de 2.º. Penalizan los fallos: tres incorrectas restan una correcta; las no contestadas ni suman ni restan.' },

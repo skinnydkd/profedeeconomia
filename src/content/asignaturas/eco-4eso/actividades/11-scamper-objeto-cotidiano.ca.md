@@ -82,7 +82,7 @@ L'objectiu no és inventar un producte milionari; és **demostrar-se a un mateix
 
 - **Variant intensa (90 min):** després dels pitches, tota la classe vota amb vot puntuat (3 pegatines per persona, repartibles com es vulga) i els tres grups més votats prototipen en cartó o paper la seua idea durant 20 minuts extra.
 - **Variant amb objecte sorpresa:** el professor porta una bossa opaca amb objectes curiosos (un colador, una imperdible, un comandament de TV antic) i cada grup en trau un a l'atzar. Puja el grau de dificultat i de diversió.
-- **Variant curricular creuada:** en lloc d'un objecte físic, aplicar SCAMPER a un servici del centre (la biblioteca, el sistema de tutories, la cafeteria). Permet enllaçar amb la idea de *client* i *necessitat* que apareixerà a la Unitat 4.
+- **Variant curricular creuada:** en lloc d'un objecte físic, aplicar SCAMPER a un servici del centre (la biblioteca, el sistema de tutories, la cafeteria). Permet enllaçar amb la idea de *client* i *necessitat* que apareixerà a la Unitat 12.
 
 ## Pistes per al professor
 

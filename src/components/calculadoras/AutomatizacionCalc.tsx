@@ -3,6 +3,7 @@ import { useMemo, useState } from 'preact/hooks';
 import { type Locale } from '@/i18n/locale';
 import { formatNumber, formatPercent } from '../../lib/calc/format';
 import { evaluar, type Tarea } from '../../lib/calc/automatizacion';
+import NumberInput from '../NumberInput';
 
 /** UI strings, Valencian (AVL) alongside the ES source. IA stays IA. */
 export const COPY = {
@@ -71,7 +72,6 @@ export const COPY = {
 } as const;
 
 interface Props { locale?: Locale }
-const num = (e: Event) => Number((e.currentTarget as HTMLInputElement).value);
 const txt = (e: Event) => (e.currentTarget as HTMLInputElement).value;
 const chk = (e: Event) => (e.currentTarget as HTMLInputElement).checked;
 
@@ -122,7 +122,7 @@ export default function AutomatizacionCalc({ locale = 'es' }: Props) {
             {tareas.map((x, i) => (
               <tr key={i}>
                 <td><input type="text" value={x.nombre} placeholder={t.tareaPlaceholder} onInput={(e) => set(i, 'nombre', txt(e))} /></td>
-                <td><input type="number" min={0} step={1} value={x.horas} onInput={(e) => set(i, 'horas', num(e))} /></td>
+                <td><NumberInput min={0} step={1} value={x.horas} onValue={(v) => set(i, 'horas', v)} /></td>
                 <td><input type="checkbox" checked={x.rutinaria} onChange={(e) => set(i, 'rutinaria', chk(e))} /></td>
                 <td><input type="checkbox" checked={x.requiereCriterio} onChange={(e) => set(i, 'requiereCriterio', chk(e))} /></td>
                 <td><input type="checkbox" checked={x.requiereTrato} onChange={(e) => set(i, 'requiereTrato', chk(e))} /></td>
@@ -142,7 +142,7 @@ export default function AutomatizacionCalc({ locale = 'es' }: Props) {
           onClick={() => setTareas((p) => p.slice(0, -1))}>{t.quitar}</button>
       </div>
 
-      <div class="calc__results">
+      <div class="calc__results" aria-live="polite">
         {!r.valido ? (
           <div class="calc__warning">{t.sinDatos}</div>
         ) : (

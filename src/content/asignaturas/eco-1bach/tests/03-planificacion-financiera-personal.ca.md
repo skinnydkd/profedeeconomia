@@ -28,7 +28,7 @@ preguntas:
       - "Berta, perquè aporta tres vegades i mitja més capital."
       - "Empaten exactament, perquè el tipus d'interés és el mateix."
       - "Ana, perquè el seu capital té molt més temps per a compondre's."
-      - "Depén exclusivament del tipus d'interés aplicat."
+      - "Berta, perquè invertix durant 35 anys i Ana només durant 10 anys."
     correcta: 2
     explicacion: "Al 7 %, Ana arriba a uns 295.000 € i Berta, a uns 276.500 €. Ana acaba amb més tot i aportar tres vegades i mitja menys, perquè els seus 20.000 € tenen fins a 45 anys per a compondre's, mentres que les últimes aportacions de Berta a penes tenen temps de créixer. Compte: amb rendibilitats més baixes guanya Berta (al 5 %, uns 180.600 € enfront de 138.800 €). El punt de tall està al voltant del 6,6 %."
   - enunciado: "Quina d'estes afirmacions descriu correctament la relació entre rendibilitat, risc i liquiditat dels productes financers?"

@@ -1,9 +1,11 @@
 /** @jsxImportSource preact */
-import { useState, useEffect, useCallback, useRef } from 'preact/hooks';
+import { useState, useEffect, useCallback } from 'preact/hooks';
 import './BusinessGame.css';
 import BusinessGame from './BusinessGame';
 import { CAMPOS, AREAS, decisionPorDefecto, eur, num } from '@/lib/business-game/ui';
 import type { TeamDecision } from '@/lib/business-game/engine';
+import NumberInput from '../NumberInput';
+import { estadoMasReciente, intervaloPolling } from '@/lib/business-game/polling';
 
 /**
  * Business Game ONLINE (Fase 1b) — multijugador por rondas con persistencia.
@@ -18,6 +20,8 @@ const SESION_KEY = 'bg-online-v1';
 
 interface Sesion { rol: 'profe' | 'equipo'; token: string; codigo: string; equipoId?: string; }
 interface Estado {
+  /** When the server built this state (ms); orders answers that cross. */
+  generadoEn?: number;
   liga: { id: string; nombre: string; ronda: number; fase: string; numRondas: number };
   equipos: { id: string; nombre: string; instituto: string; caja: number; beneficioAcumulado: number; deuda: number; haEnviado: boolean }[];
   resultados: { equipoId: string; ronda: number; calidad: number; cuota: number; ventas: number; stock: number; ingresos: number; costes: number; beneficio: number; beneficioAcumulado: number }[];
@@ -49,26 +53,41 @@ export default function BusinessGameOnline() {
     try { s ? localStorage.setItem(SESION_KEY, JSON.stringify(s)) : localStorage.removeItem(SESION_KEY); } catch {}
   };
 
-  // Monotonic sequence counter: prevents a slow fetch from overwriting a newer
-  // response. Each call increments the counter; the response is discarded if a
-  // newer request has already completed or started.
-  const reqSeq = useRef(0);
-
-  const refrescar = useCallback(async (codigo: string) => {
-    const seq = ++reqSeq.current;
+  // `fresco` skips the CDN copy of the state (a few seconds old at most): after
+  // this screen's own action, the next state shown must already include it.
+  // Answers that cross are ordered by when the server built them, not by when
+  // they were asked for: a quick answer from the copy can be the older one.
+  const refrescar = useCallback(async (codigo: string, fresco = false) => {
     try {
-      const res = await fetch(`${API}/estado?codigo=${encodeURIComponent(codigo)}`);
-      if (seq !== reqSeq.current) return; // superseded by a newer request
-      if (res.ok) setEstado(await res.json());
+      const res = await fetch(`${API}/estado?codigo=${encodeURIComponent(codigo)}${fresco ? `&t=${Date.now()}` : ''}`);
+      if (!res.ok) return;
+      const nuevo: Estado = await res.json();
+      setEstado((actual) => estadoMasReciente(actual, nuevo));
     } catch {}
   }, []);
 
+  // No polling from a hidden tab: it catches up as soon as it is shown again.
+  const [visible, setVisible] = useState(true);
+  useEffect(() => {
+    const alCambiar = () => setVisible(document.visibilityState !== 'hidden');
+    alCambiar();
+    document.addEventListener('visibilitychange', alCambiar);
+    return () => document.removeEventListener('visibilitychange', alCambiar);
+  }, []);
+
+  useEffect(() => {
+    if (sesion && visible) refrescar(sesion.codigo);
+  }, [sesion, visible, refrescar]);
+
+  // Paced by the phase, and stopped for good once the league is closed.
+  const fase = estado?.liga.fase;
   useEffect(() => {
     if (!sesion) return;
-    refrescar(sesion.codigo);
-    const id = setInterval(() => refrescar(sesion.codigo), 4000);
+    const ms = intervaloPolling(fase, visible);
+    if (ms === null) return;
+    const id = setInterval(() => refrescar(sesion.codigo), ms);
     return () => clearInterval(id);
-  }, [sesion, refrescar]);
+  }, [sesion, fase, visible, refrescar]);
 
   if (!cargado) return <div class="bg"><p class="bg__loading">Cargando…</p></div>;
 
@@ -94,8 +113,8 @@ export default function BusinessGameOnline() {
   return (
     <div class="bg">
       {sesion.rol === 'profe'
-        ? <PanelProfe sesion={sesion} estado={estado} onRefrescar={() => refrescar(sesion.codigo)} onSalir={() => { guardar(null); setEstado(null); }} />
-        : <ConsolaEquipo sesion={sesion} estado={estado} onSalir={() => { guardar(null); setEstado(null); }} />}
+        ? <PanelProfe sesion={sesion} estado={estado} onRefrescar={() => refrescar(sesion.codigo, true)} onSalir={() => { guardar(null); setEstado(null); }} />
+        : <ConsolaEquipo sesion={sesion} estado={estado} onRefrescar={() => refrescar(sesion.codigo, true)} onSalir={() => { guardar(null); setEstado(null); }} />}
     </div>
   );
 }
@@ -120,7 +139,7 @@ function CrearLiga({ onCreada, onCancel }: { onCreada: (s: Sesion) => void; onCa
       <p class="bg__lead">Crea la partida y comparte el código con la clase para que los equipos se unan.</p>
       <label class="bg__field"><span class="bg__field-label">Nombre de la liga</span><input class="bg__input bg__input--name" value={nombre} onInput={(e) => setNombre((e.target as HTMLInputElement).value)} placeholder="Ej. 2.º BACH Empresa" /></label>
       <label class="bg__field"><span class="bg__field-label">Instituto o centro</span><input class="bg__input bg__input--name" value={instituto} onInput={(e) => setInstituto((e.target as HTMLInputElement).value)} placeholder="Tu instituto" /></label>
-      <label class="bg__field"><span class="bg__field-label">Número de rondas (años)</span><input class="bg__input" type="number" min={1} max={20} value={numRondas} onInput={(e) => setNumRondas(parseInt((e.target as HTMLInputElement).value) || 8)} /></label>
+      <label class="bg__field"><span class="bg__field-label">Número de rondas (años)</span><NumberInput class="bg__input" min={1} max={20} value={numRondas} onValue={(v) => setNumRondas(Math.trunc(v) || 8)} /></label>
       {error && <p class="bg__error">{error}</p>}
       <div class="bg__actions">
         <button class="bg__btn bg__btn--primary" onClick={crear} disabled={enviando || nombre.length < 2 || instituto.length < 2}>{enviando ? 'Creando…' : 'Crear liga →'}</button>
@@ -195,7 +214,7 @@ function PanelProfe({ sesion, estado, onRefrescar, onSalir }: { sesion: Sesion; 
 }
 
 // ── Consola del equipo ───────────────────────────────────
-function ConsolaEquipo({ sesion, estado, onSalir }: { sesion: Sesion; estado: Estado | null; onSalir: () => void }) {
+function ConsolaEquipo({ sesion, estado, onRefrescar, onSalir }: { sesion: Sesion; estado: Estado | null; onRefrescar: () => void; onSalir: () => void }) {
   const [dec, setDec] = useState<TeamDecision>(decisionPorDefecto());
   const [error, setError] = useState('');
   const [enviando, setEnviando] = useState(false);
@@ -204,7 +223,7 @@ function ConsolaEquipo({ sesion, estado, onSalir }: { sesion: Sesion; estado: Es
   const yo = estado.equipos.find((e) => e.id === sesion.equipoId);
   const enviar = async () => {
     setEnviando(true); setError('');
-    try { await post('decisiones', { decision: dec }, sesion.token); } catch (e) { setError((e as Error).message); } finally { setEnviando(false); }
+    try { await post('decisiones', { decision: dec }, sesion.token); onRefrescar(); } catch (e) { setError((e as Error).message); } finally { setEnviando(false); }
   };
   const setCampo = (k: keyof TeamDecision, v: number) => setDec({ ...dec, [k]: v });
 
@@ -230,7 +249,7 @@ function ConsolaEquipo({ sesion, estado, onSalir }: { sesion: Sesion; estado: Es
               {CAMPOS.filter((c) => c.area === area).map((c) => (
                 <label class="bg__field bg__field--row" key={c.key}>
                   <span class="bg__field-label">{c.label}</span>
-                  <span class="bg__field-input"><input class="bg__input" type="number" min={0} step={c.step} value={dec[c.key]} onInput={(e) => setCampo(c.key, parseFloat((e.target as HTMLInputElement).value) || 0)} /><span class="bg__unit">{c.unidad}</span></span>
+                  <span class="bg__field-input"><NumberInput class="bg__input" min={0} step={c.step} value={dec[c.key]} onValue={(v) => setCampo(c.key, v)} /><span class="bg__unit">{c.unidad}</span></span>
                 </label>
               ))}
             </div>

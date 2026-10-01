@@ -6,6 +6,7 @@
 import BaseLayout from '@layouts/BaseLayout.astro';
 import { LECTURAS } from '@/lib/olimpiada';
 import { getLocale } from '@/i18n/locale';
+import { t } from '@/i18n/ui';
 
 // Group by categoria, preserving insertion order.
 const byCategoria = new Map<string, typeof LECTURAS>();
@@ -50,9 +51,10 @@ const copy = {
   title="Lecturas recomendadas — Olimpiada de Economía"
   description="Bibliografía seleccionada para la Olimpiada de Economía: economía conductual, teoría de juegos, clásicos del pensamiento, finanzas y empresa."
   contentLang="es"
+  translated={false}
 >
   <div class="container">
-    <nav class="breadcrumb">
+    <nav class="breadcrumb" aria-label={t('nav.breadcrumb', locale)}>
       <a href="/">{copy.bcInicio}</a> <span class="sep">›</span>
       <a href="/olimpiada/">{copy.bcOlimpiada}</a> <span class="sep">›</span>
       <span>{copy.bcCurrent}</span>

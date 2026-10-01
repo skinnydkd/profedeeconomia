@@ -71,7 +71,7 @@ const copy = {
   contentLang={locale}
 >
   <div class="container">
-    <nav class="breadcrumb"><a href="/">{copy.bcInicio}</a> <span class="sep">›</span> <span>{copy.bcCurrent}</span></nav>
+    <nav class="breadcrumb" aria-label={t('nav.breadcrumb', locale)}><a href="/">{copy.bcInicio}</a> <span class="sep">›</span> <span>{copy.bcCurrent}</span></nav>
   </div>
 
   <section class="hero">
@@ -84,13 +84,14 @@ const copy = {
   </section>
 
   <section class="filters">
-    <div class="container">
-      <button class="chip is-active" data-filter="all" type="button">{t('filtro.todas', locale)}</button>
+    <div class="container" role="group" aria-label={t('filtro.aria', locale)}>
+      <button class="chip is-active" data-filter="all" type="button" aria-pressed="true">{t('filtro.todas', locale)}</button>
       {familias.filter((f) => activeFamilias.has(f.slug)).map((f) => (
-        <button class="chip" data-filter={f.slug} type="button"
+        <button class="chip" data-filter={f.slug} type="button" aria-pressed="false"
           style={`--chip-color: var(${f.colorVar})`}>{f.label}</button>
       ))}
     </div>
+    <p class="sr-only" aria-live="polite" data-filter-status data-one={t('filtro.resultado.uno', locale)} data-many={t('filtro.resultado.varios', locale)}></p>
   </section>
 
   {groups.map((g) => {
@@ -125,11 +126,24 @@ const copy = {
 <script>
   const chips = document.querySelectorAll<HTMLButtonElement>('.chip');
   const sections = document.querySelectorAll<HTMLElement>('.familia');
+  const status = document.querySelector<HTMLElement>('[data-filter-status]');
   chips.forEach((chip) => chip.addEventListener('click', () => {
-    chips.forEach((c) => c.classList.remove('is-active'));
+    chips.forEach((c) => {
+      c.classList.remove('is-active');
+      c.setAttribute('aria-pressed', 'false');
+    });
     chip.classList.add('is-active');
+    chip.setAttribute('aria-pressed', 'true');
     const f = chip.dataset.filter;
     sections.forEach((s) => { s.hidden = f !== 'all' && s.dataset.familia !== f; });
+    // Screen readers hear how many cards are left, since the change happens out of view.
+    if (status) {
+      const n = Array.from(sections)
+        .filter((s) => !s.hidden)
+        .reduce((sum, s) => sum + s.querySelectorAll('.card').length, 0);
+      const template = (n === 1 ? status.dataset.one : status.dataset.many) ?? '';
+      status.textContent = template.replace('{n}', String(n));
+    }
   }));
 </script>
 
@@ -143,7 +157,7 @@ const copy = {
   .kicker { font-family: var(--font-sans); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-terra-deep); }
   .accent { color: var(--color-terra); }
   h1 { margin: 0.6rem 0 0.8rem; }
-  .lede { font-size: 1.2rem; color: var(--color-ink-soft); line-height: 1.55; max-width: 60ch; }
+  .lede { font-family: var(--font-serif); font-style: italic; font-weight: 400; font-size: clamp(1.25rem, 1.6vw, 1.5rem); color: var(--color-ink-soft); line-height: 1.5; max-width: 55ch; font-variation-settings: "SOFT" 80; }
   .filters .container { display: flex; flex-wrap: wrap; gap: 0.5rem; padding-top: 1rem; padding-bottom: 1.5rem; }
   .chip { font-family: var(--font-sans); font-size: 0.85rem; font-weight: 600; color: var(--color-ink-soft); background: transparent; border: 1.5px solid var(--color-line); border-radius: 999px; padding: 0.4rem 0.9rem; cursor: pointer; transition: all .15s ease; }
   .chip:hover { border-color: var(--chip-color, var(--color-terra)); color: var(--chip-color, var(--color-terra)); }

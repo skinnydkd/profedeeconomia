@@ -107,6 +107,12 @@ preguntas:
     tolerancia: 0.5
     unidad: "%"
     explicacion: "Interessos = 250.000 × 0,04 = 10.000 €. BAI = 50.000 − 10.000 = 40.000 €. Impost = 40.000 × 0,25 = 10.000 €. Benefici net = 40.000 − 10.000 = 30.000 €. ROE = 30.000 / 150.000 × 100 = 20 %. El ROA és 50.000 / 400.000 = 12,5 %, molt per damunt del cost del deute (4 %): el palanquejament està sumant rendibilitat al soci."
+  - tipo: numerico
+    enunciado: "Una empresa ven 511.000 € a l'any i el seu saldo mitjà de clients és de 70.000 €. Quin és el seu període mitjà de cobrament, en dies (any de 365 dies)?"
+    respuesta: 50
+    tolerancia: 0.5
+    unidad: "dies"
+    explicacion: "Rotació de clients = vendes / saldo mitjà de clients = 511.000 / 70.000 = 7,3 vegades a l'any. Període mitjà de cobrament = 365 / 7,3 = 50 dies. És un dels quatre temps del PMM econòmic (exercici 11.3)."
 ---
 
 Test d'autoavaluació de la Unitat 11 del llibre d'EDMN 2BACH.

@@ -28,12 +28,12 @@ Al final montamos una pequeña feria: cada equipo enseña su idea en una cartuli
 - Entender que una idea de negocio nace de un problema o necesidad real, no al revés.
 - Convertir una idea en un proyecto sencillo respondiendo a qué, para quién y cómo.
 - Distinguir los tipos básicos de empresa (autónomo, sociedad, cooperativa) y elegir el más adecuado.
-- Reconocer los ingredientes de un proyecto emprendedor: idea, cliente, recursos y riesgo.
+- Reconocer los tres ingredientes de emprender (iniciativa, organización de recursos y riesgo) y las preguntas básicas de un proyecto (qué, para quién, cómo).
 - Trabajar en equipo y presentar una idea de forma clara y breve.
 
 ## Pasos
 
-1. **(5 min) Encuadre.** El profesor recuerda los ingredientes de un proyecto (idea, cliente, recursos, riesgo) y las tres formas jurídicas básicas. Se forman equipos de 3-4.
+1. **(5 min) Encuadre.** El profesor recuerda los tres ingredientes de emprender (iniciativa, organización de recursos, riesgo) y las tres formas jurídicas básicas. Se forman equipos de 3-4.
 2. **(10 min) Cazar el problema.** Cada equipo apunta **cinco problemas reales** de su entorno: el bar del recreo, el aburrimiento en los descansos, los residuos, la falta de planes para jóvenes en el barrio, los libros usados que nadie aprovecha... De los cinco, eligen **uno**.
 3. **(20 min) De problema a idea.** El equipo rellena la ficha en la cartulina respondiendo a cinco preguntas:
    - **¿Qué ofrecemos?** Un bien o un servicio que resuelva ese problema.

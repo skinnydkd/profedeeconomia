@@ -77,10 +77,26 @@ describe('calcularNomina', () => {
     expect(r.baseIRPF).toBeCloseTo(bruto - r.cotizaciones.total, 4);
   });
 
-  it('monthly figures are the annual divided by the number of pay periods', () => {
+  it('spreads the SS over twelve monthly contributions, also with 14 payments', () => {
     const r = calcularNomina(24000, { pagas: 14 });
-    expect(r.liquidoMensual).toBeCloseTo(r.liquidoAnual / 14, 4);
-    expect(r.cotizaciones.mensual).toBeCloseTo(r.cotizaciones.total / 14, 4);
+    expect(r.cotizaciones.mensual).toBeCloseTo(r.cotizaciones.total / 12, 4);
+    // The U5 example: 18.200 € a year pay 98,58 € of SS a month (6,50 % of 18.200 / 12).
+    expect(calcularNomina(18200, { pagas: 14 }).cotizaciones.mensual).toBeCloseTo(98.58, 2);
+  });
+
+  it('with 14 payments, an ordinary month carries SS and the two extra pays only IRPF', () => {
+    const r = calcularNomina(24000, { pagas: 14 });
+    expect(r.liquidoMensual).toBeCloseTo(24000 / 14 - r.cotizaciones.total / 12 - r.irpf.cuota / 14, 4);
+    expect(r.liquidoPagaExtra).toBeCloseTo(24000 / 14 - r.irpf.cuota / 14, 4);
+    // Twelve ordinary months plus two extra pays make up the annual net.
+    expect(12 * r.liquidoMensual + 2 * (r.liquidoPagaExtra ?? 0)).toBeCloseTo(r.liquidoAnual, 4);
+  });
+
+  it('with 12 payments every month is the same', () => {
+    const r = calcularNomina(24000, { pagas: 12 });
+    expect(r.liquidoMensual).toBeCloseTo(r.liquidoAnual / 12, 4);
+    expect(r.cotizaciones.mensual).toBeCloseTo(r.cotizaciones.total / 12, 4);
+    expect(r.liquidoPagaExtra).toBeNull();
   });
 
   it('handles gross 0 (no contributions, no tax, no net)', () => {

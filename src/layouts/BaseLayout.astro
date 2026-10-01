@@ -35,6 +35,11 @@ type Props = {
    * and suppresses hreflang. Only for genuine near-duplicates.
    */
   canonicalPath?: string;
+  /**
+   * False for a page with no Valencian edition (its /ca/ copy shows the Spanish
+   * text): then neither copy declares hreflang. Defaults to true.
+   */
+  translated?: boolean;
 };
 
 const {
@@ -47,6 +52,7 @@ const {
   contentLang = 'es',
   brandSuffix = true,
   canonicalPath,
+  translated = true,
 } = Astro.props;
 const fullTitle = pageTitle(title, brandSuffix);
 
@@ -57,6 +63,7 @@ const seo = resolveSeo({
   contentLang,
   site: Astro.site!.toString(),
   canonicalPath,
+  translated,
 });
 const canonical = seo.canonical;
 const ldItems = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
@@ -84,7 +91,7 @@ const resolvedOgImage = new URL(ogImage ?? autoOgImage, Astro.site).toString();
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{fullTitle}</title>
-    {noindex && <meta name="robots" content="noindex,nofollow" />}
+    {(noindex || seo.noindex) && <meta name="robots" content="noindex,nofollow" />}
     {description && <meta name="description" content={description} />}
     {gscVerification && <meta name="google-site-verification" content={gscVerification} />}
     {bingVerification && <meta name="msvalidate.01" content={bingVerification} />}
@@ -97,11 +104,27 @@ const resolvedOgImage = new URL(ogImage ?? autoOgImage, Astro.site).toString();
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
     <!-- Variant C type stack, self-hosted (@font-face in global.css). No
-         third-party font CDN → no visitor-IP leak (GDPR). Preload only the
-         LCP font (Fraunces, used by the H1); the rest load via @font-face. -->
+         third-party font CDN → no visitor-IP leak (GDPR). Preload the three
+         faces of the first screen: Fraunces for the H1, its italic for the
+         ledes and Switzer for the body. With only the first one preloaded, the
+         other two arrived late and moved the layout (CLS 0.15-0.19 on phones). -->
     <link
       rel="preload"
       href="/fonts/fraunces-latin-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/fraunces-latin-italic.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/switzer/switzer-400.woff2"
       as="font"
       type="font/woff2"
       crossorigin
@@ -135,12 +158,14 @@ const resolvedOgImage = new URL(ogImage ?? autoOgImage, Astro.site).toString();
   </head>
   <body class="bg-bg text-ink font-sans">
     <a href="#main" class="skip-link">{t('skip.main', locale)}</a>
+    <!-- Fixed to the bottom of the screen, but early in the DOM: keyboard users
+         reach it right after the skip link instead of after the whole page. -->
+    <ConsentBanner />
     <SiteHeader />
     <main id="main" lang={seo.contentLangAttr ?? undefined}>
       <slot />
     </main>
     <SiteFooter />
-    <ConsentBanner />
     <script>
       // Keep the VAL locale sticky across navigation (progressive enhancement).
       import { applyStickyLocale } from '@/i18n/sticky-locale';

@@ -95,6 +95,14 @@ preguntas:
     derecha: ["Tercer pas", "Primer pas", "Quart pas", "Segon pas"]
     correctas: [1, 3, 0, 2]
     explicacion: "El procés comença per definir el perfil (primer pas); després es publica l'oferta i es reben candidatures (segon); a continuació s'entrevista (tercer) i, per últim, es firma el contracte (quart). Sense un perfil clar a l'inici, la resta falla."
+  - enunciado: "Una empresa de 60 persones vol tractar amb justícia dones i hòmens. Què li exigix la llei?"
+    opciones:
+      - "Només pagar a tothom el mateix salari, siga quin siga el lloc de treball."
+      - "Un pla d'igualtat i un registre dels seus salaris mitjans per sexe."
+      - "Res: eixes obligacions només afecten les empreses de més de 250 persones."
+      - "Contractar sempre el mateix nombre de dones que d'hòmens en cada lloc."
+    correcta: 1
+    explicacion: "Amb 50 o més persones en plantilla, l'empresa ha de negociar i registrar un pla d'igualtat (Llei Orgànica 3/2007 i Reial Decret 901/2020). I qualsevol empresa, siga de la grandària que siga, ha de portar un registre retributiu amb els salaris mitjans separats per sexe (Reial Decret 902/2020). La llei no obliga a pagar a tothom el mateix ni a igualar el nombre de dones i hòmens en cada lloc: exigix pagar igual per un treball d'igual valor (Estatut dels Treballadors, art. 28), no discriminar i fer visibles les diferències per a corregir-les."
 ---
 
 Test d'autoavaluació de la Unitat 5 del llibre teòric de Gestió de Projectes d'Emprenedoria (Batxillerat, Comunitat Valenciana).

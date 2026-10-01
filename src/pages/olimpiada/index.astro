@@ -7,6 +7,7 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 import { GUIA } from '@/lib/olimpiada';
 import { getLocale } from '@/i18n/locale';
 import { localizeGuia } from '@/i18n/olimpiada-ca';
+import { t } from '@/i18n/ui';
 
 const locale = getLocale(Astro.currentLocale);
 
@@ -108,7 +109,7 @@ const subAreas = [
   contentLang={locale}
 >
   <div class="container">
-    <nav class="breadcrumb">
+    <nav class="breadcrumb" aria-label={t('nav.breadcrumb', locale)}>
       <a href="/">{copy.bcInicio}</a> <span class="sep">›</span>
       <span>{copy.bcCurrent}</span>
     </nav>
@@ -172,7 +173,7 @@ const subAreas = [
   .kicker { font-family: var(--font-sans); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-terra-deep); }
   .accent { color: var(--color-terra); }
   h1 { margin: 0.6rem 0 0.8rem; }
-  .lede { font-size: 1.2rem; color: var(--color-ink-soft); line-height: 1.55; max-width: 60ch; }
+  .lede { font-family: var(--font-serif); font-style: italic; font-weight: 400; font-size: clamp(1.25rem, 1.6vw, 1.5rem); color: var(--color-ink-soft); line-height: 1.5; max-width: 55ch; font-variation-settings: "SOFT" 80; }
 
   .section-title {
     font-family: var(--font-serif); font-size: 1.7rem; font-weight: 500;

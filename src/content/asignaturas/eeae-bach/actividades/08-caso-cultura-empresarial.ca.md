@@ -8,7 +8,7 @@ tipo: caso
 duracion: "60 min · 1 sessió"
 agrupacion: "grups xicotets (3-4)"
 materiales:
-  - "Dossier d'una empresa real amb cultura documentada (web corporativa, entrevistes a empleats, reportatges, ressenyes en portals d'ocupació), curat pel professor a partir de fonts públiques"
+  - "Dossier inclòs al final d'esta fitxa, amb tres organitzacions de cultura documentada (Buurtzorg, Google i Kodak), o un d'equivalent d'una empresa pròxima preparat pel professor a partir de fonts públiques (web corporativa, entrevistes a empleats, reportatges, ressenyes en portals d'ocupació)"
   - "Fitxa d'anàlisi de la cultura amb les quatre categories de la unitat (valors i principis, normes no escrites, símbols i llenguatge, històries i referents)"
   - "Accés a internet per a contrastar el que l'empresa declara amb el que de veritat fa"
   - "Pissarra o panell gran per a la posada en comú"
@@ -56,3 +56,25 @@ El repte pedagògic clau és ensenyar l'alumnat a llegir una cultura sense queda
 - **Variant d'investigació:** que cada grup trie i documente pel seu compte la cultura d'una empresa (amb criteris de fonts donats pel professor) abans de la sessió d'anàlisi.
 - **Connexió amb el cas Kodak:** comparar una cultura oberta al canvi amb la d'una empresa que va fracassar per no atrevir-se a transformar-se, vinculant-ho amb la revolució tecnològica.
 - **Connexió amb la gestió del talent:** analitzar com la cultura de cada empresa ajuda o dificulta atraure i retindre talent, enllaçant amb eixe epígraf de la unitat.
+
+## Dossier
+
+Tres organitzacions amb cultures molt distintes i ben documentades. Cada cas dona pistes per a les quatre categories de la fitxa; la faena del grup és buscar on coincidix el que l'organització diu de si mateixa amb el que fa, i què passaria amb eixa cultura davant d'un gran canvi tecnològic.
+
+### Cas A · Buurtzorg: equips sense caps
+
+Buurtzorg és una organització neerlandesa d'infermeria a domicili fundada el 2006 per l'infermer Jos de Blok. La seua cultura parteix d'una idea senzilla: confiar en els professionals. Les infermeres treballen en equips autogestionats d'unes dotze persones que decidixen elles mateixes com atendre els seus pacients. No hi ha comandaments intermedis: un xicotet grup de coaches acompanya els equips quan s'encallen, i una oficina central mínima els descarrega del treball administratiu. El resultat documentat és una alta satisfacció de pacients i professionals i un creixement que la va portar a ocupar milers de persones en pocs anys.
+
+*Fonts: Buurtzorg Nederland, informes corporatius; Laloux, F. (2014), Reinventing Organizations. Cas recollit en la Unitat 8 d'este llibre.*
+
+### Cas B · Google i el Projecte Aristòtil: què fa funcionar un equip
+
+Entre 2012 i 2015, Google va analitzar 180 dels seus equips interns per a esbrinar què tenien en comú els que millor funcionaven. Esperaven que la clau fora ajuntar les persones més brillants o amics que ja es coneixien, però ni el talent individual, ni l'amistat, ni l'antiguitat explicaven les diferències. El factor número u era la seguretat psicològica, un concepte de la investigadora Amy Edmondson: la sensació que qualsevol pot preguntar un dubte bàsic, equivocar-se o portar la contrària al cap sense por de quedar en ridícul. En eixos equips circulen més idees, els errors es detecten abans i la gent es queda més temps.
+
+*Fonts: Google, re:Work, Projecte Aristòtil (2015); Edmondson, A. (1999), «Psychological Safety and Learning Behavior in Work Teams», Administrative Science Quarterly. Cas recollit en Eco 4ESO, Unitat 10.*
+
+### Cas C · Kodak: una cultura que no va voler canviar el que li funcionava
+
+El 1975, un enginyer de Kodak, Steven Sasson, va construir la primera càmera digital de la història. Kodak era aleshores el líder absolut de la fotografia química i guanyava molts diners amb els rodets i el paper fotogràfic; va témer que la fotografia digital es menjara eixe negoci i no va apostar per desenvolupar-la a temps. Dècades després, quan la fotografia digital va arrasar el mercat, Kodak es va declarar en fallida, el 2012. No li va faltar tecnologia, perquè la va tindre abans que ningú: li va faltar una cultura disposada a canviar el que li funcionava.
+
+*Fonts: Unitats 8 i 9 d'este llibre; Christensen, C. M. (1997), The Innovator's Dilemma, Harvard Business School Press.*

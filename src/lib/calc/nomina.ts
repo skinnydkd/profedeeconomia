@@ -21,6 +21,11 @@
  * PJC/297/2026). Pay above the cap owes the solidarity contribution (art. 19
  * bis LGSS), shared like common contingencies.
  *
+ * Social Security is paid in twelve monthly contributions on that base, so
+ * with 14 payments the two extra pays carry IRPF withholding but no SS: an
+ * ordinary month nets gross/14 − SS/12 − IRPF/14 and an extra pay
+ * gross/14 − IRPF/14.
+ *
  * Simplifications (teaching tool): no minimum base (it depends on the
  * professional group and the hours), and the IRPF withholding equals the
  * annual IRPF computed in irpf.ts. Real payrolls apply the AEAT withholding
@@ -97,7 +102,7 @@ export interface DesgloseCotizaciones {
   solidaridad: number;
   /** Total annual worker contributions. */
   total: number;
-  /** Total monthly worker contributions. */
+  /** Monthly worker contributions: total / 12, also with 14 payments (the extra pays carry none). */
   mensual: number;
 }
 
@@ -115,7 +120,10 @@ export interface ResultadoNomina {
   baseIRPF: number;
   irpf: ResultadoIRPF;
   liquidoAnual: number;
+  /** Net pay of an ordinary month: gross/pagas − SS/12 − IRPF/pagas. */
   liquidoMensual: number;
+  /** Net of each of the two extra pays (gross/14 − IRPF/14, no SS); null with 12 payments. */
+  liquidoPagaExtra: number | null;
 }
 
 /** Worker's unemployment contribution rate by contract type, 2026. */
@@ -129,7 +137,6 @@ export function tasaDesempleo(contrato: Contrato): number {
 export function cotizacionesTrabajador(
   brutoAnual: number,
   contrato: Contrato = 'indefinido',
-  pagas: 12 | 14 = 14,
 ): DesgloseCotizaciones {
   const { baseAnual, solidaridadTotal } = baseCotizacion(brutoAnual);
   const cc = baseAnual * COTIZACIONES_TRABAJADOR_2026.contingenciasComunes;
@@ -145,7 +152,7 @@ export function cotizacionesTrabajador(
     mei,
     solidaridad,
     total,
-    mensual: total / pagas,
+    mensual: total / 12,
   };
 }
 
@@ -156,7 +163,7 @@ export function calcularNomina(brutoAnual: number, opciones: OpcionesNomina = {}
   const contrato = opciones.contrato ?? 'indefinido';
 
   const { baseAnual } = baseCotizacion(bruto);
-  const cotizaciones = cotizacionesTrabajador(bruto, contrato, pagas);
+  const cotizaciones = cotizacionesTrabajador(bruto, contrato);
   const totalCotizaciones = cotizaciones.total;
 
   // IRPF taxable base = gross − SS contributions (rendimiento neto del trabajo).
@@ -170,10 +177,14 @@ export function calcularNomina(brutoAnual: number, opciones: OpcionesNomina = {}
   });
 
   const liquidoAnual = Math.max(0, bruto - totalCotizaciones - irpf.cuota);
+  // Every payment withholds its share of the IRPF; only the twelve ordinary
+  // months carry the Social Security contribution.
+  const brutoMensual = bruto / pagas;
+  const irpfPorPaga = irpf.cuota / pagas;
 
   return {
     brutoAnual: bruto,
-    brutoMensual: bruto / pagas,
+    brutoMensual,
     pagas,
     contrato,
     baseCotizacion: baseAnual,
@@ -182,6 +193,7 @@ export function calcularNomina(brutoAnual: number, opciones: OpcionesNomina = {}
     baseIRPF,
     irpf,
     liquidoAnual,
-    liquidoMensual: liquidoAnual / pagas,
+    liquidoMensual: Math.max(0, brutoMensual - cotizaciones.mensual - irpfPorPaga),
+    liquidoPagaExtra: pagas === 14 ? Math.max(0, brutoMensual - irpfPorPaga) : null,
   };
 }

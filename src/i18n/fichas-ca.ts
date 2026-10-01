@@ -170,7 +170,7 @@ export const DEBATES_CA: FichaOverlay = {
   'derecho-democracia/06-elusion-fiscal-agresiva': {
     title: 'On acaba pagar poc i comença defraudar?',
     descripcion:
-      "Un debat parlamentari sobre la franja grisa entre elusió i evasió, i sobre si complir la lletra de la llei mentres se'n buida la finalitat hauria de tractar-se com a frau.",
+      "Un debat parlamentari sobre l'elusió, la franja grisa entre planificar dins de la llei i evadir, i sobre si complir la lletra de la llei mentres se'n buida la finalitat hauria de tractar-se com a frau.",
     agrupacion: 'Dos equips de 4 + presidència + jurat',
   },
   'derecho-democracia/07-reconocimiento-facial': {

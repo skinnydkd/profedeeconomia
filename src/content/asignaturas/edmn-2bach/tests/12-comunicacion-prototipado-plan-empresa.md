@@ -15,12 +15,12 @@ preguntas:
     explicacion: "El objetivo del prototipo no es vender, es APRENDER: basta con que sea lo bastante bueno para que alguien pueda probarlo y dar feedback útil. Si lo van a rechazar, mejor que lo rechacen antes de invertir 100.000 € que después; por eso no se espera a tener financiación ni se busca un acabado profesional."
   - enunciado: "El **MVP** (Producto Mínimo Viable), concepto popularizado por *The Lean Startup*, es…"
     opciones:
-      - "La versión más reducida del producto que aún resuelve el problema central."
+      - "La versión que da el máximo aprendizaje validado con el mínimo esfuerzo."
       - "El primer prototipo físico, normalmente hecho a mano o en cartón."
       - "La versión de lanzamiento del producto, ya con todas sus funciones básicas."
       - "El análisis que calcula las ventas mínimas para no tener pérdidas."
     correcta: 0
-    explicacion: "MVP = lo mínimo necesario para validar la hipótesis con un usuario real; Eric Ries lo popularizó en 2011 con el principio de aprender rápido y barato. No es la versión completa de lanzamiento ni tiene por qué ser físico (puede ser un vídeo o una web sin backend), y las ventas mínimas para no perder dinero son el punto muerto, no el MVP."
+    explicacion: "Eric Ries (*The Lean Startup*, 2011) lo define como la versión de un producto nuevo que permite obtener el máximo aprendizaje validado sobre los clientes con el mínimo esfuerzo. Puede no funcionar todavía (el vídeo de Dropbox fue un MVP); no es la versión completa de lanzamiento, y las ventas mínimas para no perder dinero son el punto muerto, no el MVP."
   - enunciado: "Un *elevator pitch* clásico dura aproximadamente…"
     opciones:
       - "10 segundos."
@@ -90,9 +90,9 @@ preguntas:
   - tipo: relacionar
     enunciado: "Asocia cada concepto con su definición:"
     izquierda: ["MVP", "Elevator pitch", "TAM", "Escenario pesimista"]
-    derecha: ["Discurso de unos 60 segundos que termina con una petición concreta", "Mercado total potencial", "Versión mínima del producto que aún resuelve el problema central", "Comprueba si el proyecto sobrevive cuando las cosas van mal"]
+    derecha: ["Discurso de unos 60 segundos que termina con una petición concreta", "Mercado total potencial", "Versión que da el máximo aprendizaje validado con el mínimo esfuerzo", "Comprueba si el proyecto sobrevive cuando las cosas van mal"]
     correctas: [2, 0, 1, 3]
-    explicacion: "MVP → versión mínima viable; elevator pitch → discurso de 60 segundos; TAM → mercado total potencial; escenario pesimista → prueba de robustez del modelo."
+    explicacion: "MVP → versión para aprender lo máximo con el mínimo esfuerzo; elevator pitch → discurso de 60 segundos; TAM → mercado total potencial; escenario pesimista → prueba de robustez del modelo."
 ---
 
 Test de autoevaluación de la Unidad 12 del libro de EDMN 2BACH.

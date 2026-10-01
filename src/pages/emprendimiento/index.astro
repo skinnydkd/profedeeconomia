@@ -7,6 +7,7 @@ import { getLocale } from '@/i18n/locale';
 import { pickLocalizedEntry } from '@/i18n/content-locale';
 import { localizeAsignatura } from '@/i18n/asignaturas-ca';
 import { localizeItinerario } from '@/i18n/emprendimiento-ca';
+import { t } from '@/i18n/ui';
 
 const locale = getLocale(Astro.currentLocale);
 
@@ -176,7 +177,7 @@ const porAsignatura = ASIGNATURA_SLUGS
   contentLang={locale}
 >
   <div class="container">
-    <nav class="breadcrumb"><a href="/">{copy.bcInicio}</a> <span class="sep">›</span> <span>{copy.bcCurrent}</span></nav>
+    <nav class="breadcrumb" aria-label={t('nav.breadcrumb', locale)}><a href="/">{copy.bcInicio}</a> <span class="sep">›</span> <span>{copy.bcCurrent}</span></nav>
   </div>
 
   <section class="hero">
@@ -296,7 +297,7 @@ const porAsignatura = ASIGNATURA_SLUGS
   .hero { padding: 1rem 0 clamp(2rem, 5vw, 3.5rem); }
   h1 { max-width: 22ch; margin: 0.6rem 0 0.8rem; }
   .accent { color: var(--color-terra); }
-  .lede { font-family: var(--font-serif); font-style: italic; font-size: 1.4rem; color: var(--color-ink-soft); max-width: 56ch; margin: 1rem 0; line-height: 1.5; font-variation-settings: "SOFT" 80; }
+  .lede { font-family: var(--font-serif); font-style: italic; font-size: clamp(1.25rem, 1.6vw, 1.5rem); color: var(--color-ink-soft); max-width: 55ch; margin: 1rem 0; line-height: 1.5; font-variation-settings: "SOFT" 80; }
   /* Featured project — «De cero a empresa» pulled out as the protagonist */
   .feature { padding: 0 0 clamp(2.5rem, 6vw, 4.5rem); }
   .hero-card { display: grid; grid-template-columns: 1.6fr 1fr; gap: clamp(1.5rem, 4vw, 3rem); align-items: stretch; background: #fff; border: 1px solid var(--color-line); padding: clamp(1.75rem, 4vw, 2.75rem); text-decoration: none; color: inherit; transition: box-shadow 0.18s ease, transform 0.18s ease; }

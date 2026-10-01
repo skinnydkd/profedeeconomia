@@ -8,7 +8,7 @@ tipo: caso
 duracion: "55 min · 1 sessió"
 agrupacion: "grups xicotets (3-4)"
 materiales:
-  - "Dossier d'una empresa amb un model de negoci reconeixible i documentat (notes de premsa, informes anuals, reportatges), curat pel professor"
+  - "Dossier inclòs al final d'esta fitxa, amb tres models de negoci que van canviar el seu sector (Spotify, Airbnb i Wallapop), o un d'equivalent preparat pel professor a partir de fonts públiques (notes de premsa, informes anuals, reportatges)"
   - "Fitxa d'anàlisi del model de negoci (què oferix i a qui, com ho entrega, com guanya diners)"
   - "Taula comparativa model nou / model tradicional desplaçat"
   - "Accés a internet per a contrastar dades"
@@ -68,3 +68,25 @@ L'objectiu no és admirar l'empresa, sinó entendre **el mecanisme**. Molts alum
 - **La pregunta d'or és «com guanya diners?».** Molts alumnes saben què fa una empresa però no com cobra. Insistir en eixa pregunta és el que convertix l'exercici en anàlisi de model de negoci i no en simple descripció.
 - **No és el Business Model Canvas.** L'objectiu ací és entendre el model com a fenomen i comparar-lo amb casos, no emplenar l'eina de disseny pas a pas (això correspon a una altra matèria). Mantindre el focus en l'anàlisi del cas real.
 - **La mirada crítica és part de la matèria.** Convé que el grup no es quede en l'admiració: tot model té efectes sobre distints stakeholders, i reconéixer-los entrena el sentit crític que demana el currículum.
+
+## Dossier
+
+Tres models de negoci que van canviar el seu sector i que ja apareixen en el material. Per als tres, la pregunta d'or és la mateixa: com guanya diners exactament?
+
+### Cas A · Spotify: del disc en propietat a l'accés per quota
+
+La música gravada es va vendre durant dècades amb un pagament únic: compraves un disc i era teu. Spotify, fundada a Suècia el 2006 i disponible a Espanya des de 2009, va popularitzar un altre model: en compte de comprar cançons, l'usuari accedix a un catàleg enorme mentres dure la seua subscripció. Combina dos capes: una de gratuïta amb publicitat i una altra de pagament, Spotify Premium, sense anuncis. Segons els seus informes públics, va tancar 2025 amb 290 milions de subscriptors premium (263 milions al tancament de 2024), a més de centenars de milions d'usuaris en la versió gratuïta.
+
+*Font: Spotify Technology S.A., Form 6-K (resultats del quart trimestre de 2025) i Annual Report (Form 20-F) 2024, presentats davant de la SEC. Cas recollit en la Unitat 9 d'este llibre.*
+
+### Cas B · Airbnb: dominar l'allotjament sense tindre habitacions
+
+Airbnb, fundada el 2008, és un dels majors intermediaris d'allotjament turístic del món i, tanmateix, no és propietària dels immobles que es reserven a través d'ella. Connecta persones que volen llogar un espai (amfitrions) amb persones que busquen allotjament (hostes) i cobra una comissió per cada reserva. Com més amfitrions hi ha, més opcions té qui viatja; com més viatgers hi ha, més interessa oferir un espai. Eixe cercle, l'efecte de xarxa, explica el seu creixement: domina un sector sense posseir-ne l'actiu principal.
+
+*Font: Airbnb, Inc., Annual Report (Form 10-K) 2023, presentat davant de la SEC. Cas recollit en la Unitat 9 d'este llibre.*
+
+### Cas C · Wallapop: la segona mà, al mòbil
+
+Agustín Gómez, Gerard Olivé i Miguel Vicente van crear Wallapop a Barcelona el 2013 per a resoldre una molèstia quotidiana: vendre objectes usats entre particulars era enutjós. La seua proposta: foto des del mòbil, geolocalització per a vendre a algú pròxim i xat dins de l'aplicació. Publicar és gratis; l'empresa ingressa sobretot amb Wallapop Envíos, el seu servei d'enviaments entre particulars (més de 74 milions d'euros el 2024), i amb servicis que donen més visibilitat als anuncis (més de 22 milions). El 2024 va facturar 101 milions d'euros, un 13 % més que l'any anterior, amb 19 milions d'usuaris al mes a Espanya; el grup encara va tindre pèrdues, de 25 milions.
+
+*Fonts: història corporativa de Wallapop i entrevistes als seus fundadors (cas recollit en la Unitat 6 d'este llibre i en Eco 4ESO, Unitat 11); El Español i Segre (10 de setembre de 2025), a partir dels comptes de 2024 de l'empresa.*

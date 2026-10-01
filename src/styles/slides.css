@@ -2,6 +2,10 @@
  * House style for the native Astro slide decks. Sizing uses container-query
  * units (cqh/cqw) so every slide scales perfectly to any size (web viewer and
  * the 1280x720 PDF) and overflow is predictable. Tokens/fonts come from global.css.
+ *
+ * Never clip text with -webkit-line-clamp: a clamped enunciado or quiz question
+ * loses exactly the part the class needs, and silently (VIS-LEC-07). Text that
+ * does not fit must overflow the slide, so build-deck-pdf.mjs (and CI) fail.
  */
 .deck-page { background: #14110e; margin: 0; padding: 4vh 0; min-height: 100vh; }
 .deck { display: flex; flex-direction: column; align-items: center; gap: 3.5vh; }
@@ -44,14 +48,14 @@
 
 /* CONCEPT (editorial) */
 .s-concept .slide__pad { justify-content: center; }
-.s-concept h2 { font-family: var(--font-serif); font-weight: 500; font-size: 5.8cqh; line-height: 1.05; margin: 1.5cqh 0 2.5cqh; max-width: 20ch; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden; }
-.s-concept .body { font-family: var(--font-sans); font-size: 3.5cqh; line-height: 1.45; color: var(--color-ink-soft); max-width: 46ch; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 6; overflow: hidden; }
+.s-concept h2 { font-family: var(--font-serif); font-weight: 500; font-size: 5.8cqh; line-height: 1.05; margin: 1.5cqh 0 2.5cqh; max-width: 20ch; }
+.s-concept .body { font-family: var(--font-sans); font-size: 3.5cqh; line-height: 1.45; color: var(--color-ink-soft); max-width: 46ch; }
 .s-concept .pull { font-family: var(--font-serif); font-style: italic; font-size: 4.4cqh; color: var(--accent-ink); border-left: .5cqh solid var(--color-mustard); padding-left: 2cqw; max-width: 32ch; line-height: 1.25; margin-top: 1cqh; }
 
 /* DIAGRAM (protagonista) */
 .s-diagram { background: var(--color-paper); }
 .s-diagram .slide__pad { padding-bottom: 9cqh; }
-.s-diagram h2 { font-family: var(--font-serif); font-weight: 500; font-size: 3.6cqh; line-height: 1.15; margin: 1cqh 0 1.5cqh; max-width: 48ch; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; }
+.s-diagram h2 { font-family: var(--font-serif); font-weight: 500; font-size: 3.6cqh; line-height: 1.15; margin: 1cqh 0 1.5cqh; max-width: 48ch; }
 .s-diagram .viz { flex: 1 1 0; min-height: 0; overflow: hidden; display: flex; align-items: center; justify-content: center; position: relative; }
 /* Absolutely fill the box so height:100% resolves against a definite containing block
    (a flex-grown height is NOT definite, so a percentage height on a flow child falls
@@ -80,8 +84,8 @@
 
 /* EXERCISE (data-ish, numbered) */
 .s-exercise h2 { font-family: var(--font-serif); font-weight: 500; font-size: 4.8cqh; margin: 1cqh 0 2cqh; max-width: 26ch; }
-.s-exercise .enun { font-family: var(--font-sans); font-size: 3.2cqh; line-height: 1.45; color: var(--color-ink-soft); max-width: 50ch; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden; margin-bottom: 2cqh; }
-.s-exercise ol { margin: 0; padding-left: 4cqw; font-family: var(--font-sans); font-size: 3cqh; line-height: 1.4; color: var(--color-ink); display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 6; overflow: hidden; }
+.s-exercise .enun { font-family: var(--font-sans); font-size: 3.2cqh; line-height: 1.45; color: var(--color-ink-soft); max-width: 66ch; margin-bottom: 2cqh; }
+.s-exercise ol { margin: 0; padding-left: 4cqw; list-style: decimal; font-family: var(--font-sans); font-size: 3cqh; line-height: 1.4; color: var(--color-ink); } /* Tailwind's preflight strips list markers */
 .s-exercise ol li::marker { color: var(--accent); font-family: var(--font-mono); }
 
 /* Shared heading for the authored dense archetypes */
@@ -89,7 +93,7 @@
 .s-formula h2, .s-timeline h2, .s-caso h2, .s-recap h2, .s-curriculum h2 {
   font-family: var(--font-serif); font-weight: 500; font-size: 5cqh; line-height: 1.08;
   margin: 1.2cqh 0 2.6cqh; max-width: 30ch;
-  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden;
+ 
 }
 
 /* TERMS — definition cards, 2-4 per slide */
@@ -98,11 +102,11 @@
 .s-terms .grid[data-n="3"] { grid-template-columns: repeat(3, 1fr); }
 .s-terms .term { background: var(--color-paper); border: 1px solid var(--color-line); border-radius: 8px; padding: 2.4cqh 2cqw; overflow: hidden; }
 .s-terms .term__t { font-family: var(--font-serif); font-weight: 600; font-size: 3.4cqh; color: var(--accent-ink); margin-bottom: 1cqh; }
-.s-terms .term__d { font-family: var(--font-sans); font-size: 2.7cqh; line-height: 1.42; color: var(--color-ink-soft); display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 5; overflow: hidden; }
+.s-terms .term__d { font-family: var(--font-sans); font-size: 2.7cqh; line-height: 1.42; color: var(--color-ink-soft); }
 
 /* TABLE — editorial comparison table */
 .s-table table { width: 100%; border-collapse: collapse; font-family: var(--font-sans); table-layout: fixed; }
-.s-table thead th { font-family: var(--font-mono); font-size: 2.2cqh; letter-spacing: .1em; text-transform: uppercase; color: var(--accent-ink); text-align: left; padding: 0 1cqw 1.2cqh 0; border-bottom: .45cqh solid var(--accent); }
+.s-table thead th, .s-table thead td { font-family: var(--font-mono); font-size: 2.2cqh; letter-spacing: .1em; text-transform: uppercase; color: var(--accent-ink); text-align: left; padding: 0 1cqw 1.2cqh 0; border-bottom: .45cqh solid var(--accent); }
 .s-table tbody th { font-family: var(--font-serif); font-weight: 600; font-size: 2.9cqh; text-align: left; padding: 1.6cqh 1cqw 1.6cqh 0; color: var(--color-ink); vertical-align: top; }
 .s-table tbody td { font-size: 2.8cqh; line-height: 1.35; padding: 1.6cqh 1cqw 1.6cqh 0; color: var(--color-ink-soft); vertical-align: top; }
 .s-table tbody tr + tr th, .s-table tbody tr + tr td { border-top: 1px solid var(--color-line-soft); }
@@ -144,8 +148,8 @@
 .s-quiz .opt { display: flex; gap: 1.6cqw; align-items: flex-start; border: .3cqh solid var(--color-line); border-radius: 8px; padding: 1.8cqh 1.8cqw; background: var(--color-paper); }
 .s-quiz .opt--ok { border-color: var(--accent); }
 .s-quiz .opt__key { font-family: var(--font-mono); font-size: 2.6cqh; color: var(--accent-ink); }
-.s-quiz .opt__text { font-family: var(--font-sans); font-size: 2.7cqh; line-height: 1.35; color: var(--color-ink); display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden; }
-.s-quiz .expl { font-family: var(--font-sans); font-size: 2.6cqh; line-height: 1.4; color: var(--color-ink-soft); margin: 2.2cqh 0 0; max-width: 70ch; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden; }
+.s-quiz .opt__text { font-family: var(--font-sans); font-size: 2.7cqh; line-height: 1.35; color: var(--color-ink); }
+.s-quiz .expl { font-family: var(--font-sans); font-size: 2.6cqh; line-height: 1.4; color: var(--color-ink-soft); margin: 2.2cqh 0 0; max-width: 70ch; }
 .s-quiz .expl strong { color: var(--accent-ink); }
 
 /* CLOSE */

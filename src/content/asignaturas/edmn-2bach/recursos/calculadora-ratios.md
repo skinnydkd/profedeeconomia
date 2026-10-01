@@ -2,7 +2,7 @@
 asignatura: edmn-2bach
 unidad_relacionada: 11
 title: "Calculadora de ratios financieros"
-descripcion: "Introduce las masas del balance y dos cifras de la cuenta de resultados para obtener fondo de maniobra, ratios de liquidez y solvencia, ROA, ROE y el efecto del apalancamiento."
+descripcion: "Introduce las masas del balance y tres cifras de la cuenta de resultados (BAII, gastos financieros y beneficio neto) para obtener fondo de maniobra, ratios de liquidez y solvencia, ROA, ROE y el efecto del apalancamiento."
 tipo: calculadora
 componente: Ratios
 estado: publicado

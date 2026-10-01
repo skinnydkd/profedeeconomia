@@ -34,7 +34,7 @@ La forma jurídica de una empresa es una decisión técnica con consecuencias du
 
 4. **Cooperativa Hortelana del Maestrat.** 22 agricultores quieren agrupar producción y comercialización de naranjas y caquis. Cada uno aporta su superficie y su trabajo; quieren decidir colectivamente precios, distribución y márgenes.
 
-5. **David, 42 años.** Es asesor fiscal autónomo desde hace 15 años. Quiere proteger su patrimonio personal de las posibles reclamaciones de clientes y, además, tributar al 25 % en lugar de al 47 % marginal del IRPF en el que está cayendo.
+5. **David, 42 años.** Es asesor fiscal autónomo desde hace 15 años. Quiere proteger su patrimonio personal de las posibles reclamaciones de clientes y, además, tributar con la fiscalidad de microempresa del Impuesto de Sociedades (19 % hasta 50.000 € y 21 % el resto en 2026) en lugar de al 47 % marginal del IRPF en el que está cayendo.
 
 ## Pasos
 
@@ -51,7 +51,7 @@ La forma jurídica de una empresa es una decisión técnica con consecuencias du
 | 2. Iván y Pere (restaurante) | **SL** | Necesitan limitar responsabilidad y capital justo en el umbral |
 | 3. NeoPay (10 ingenieros) | **SL al inicio, conversión a SA al captar inversión** | Optimiza coste inicial y permite escalar |
 | 4. Cooperativa Hortelana | **Cooperativa** | Decisión colectiva, regla un socio un voto, fiscalidad del 20 % |
-| 5. David (asesor fiscal) | **SLU** | Sigue solo, protege patrimonio, fiscalidad del 25 % en lugar del IRPF marginal |
+| 5. David (asesor fiscal) | **SLU** | Sigue solo, protege patrimonio, fiscalidad de microempresa (19 % hasta 50.000 € y 21 % el resto en 2026) en lugar del IRPF marginal |
 
 ## Criterios de evaluación
 

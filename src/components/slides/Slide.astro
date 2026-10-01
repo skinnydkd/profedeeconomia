@@ -121,7 +121,7 @@ const letters = ['A', 'B', 'C', 'D'];
       {s.eyebrow && <div class="slide__eyebrow">{s.eyebrow}</div>}
       {s.title && <h2>{s.title}</h2>}
       <table>
-        <thead><tr>{s.head.map((h: string) => <th>{h}</th>)}</tr></thead>
+        <thead><tr>{s.head.map((h: string) => h.trim() ? <th>{h}</th> : <td />)}</tr></thead>
         <tbody>{s.rows.map((r: string[]) => <tr>{r.map((c: string, ci: number) => ci === 0 ? <th scope="row">{c}</th> : <td>{c}</td>)}</tr>)}</tbody>
       </table>
       {s.caption && <p class="cap">{s.caption}</p>}
@@ -203,7 +203,7 @@ const letters = ['A', 'B', 'C', 'D'];
           </li>
         ))}
       </ol>
-      {s.explicacion && <p class="expl"><strong>{L.solucion}: {letters[s.correcta]}.</strong> {s.explicacion}</p>}
+      {s.explicacion && <p class="expl"><strong>{L.solucion}: {letters[s.correcta]}.</strong>{' '}{s.explicacion}</p>}
     </div>
     <div class="slide__foot"><span>{brand}</span><span>{pos}</span></div>
   </section>

@@ -4,6 +4,7 @@ import { type Locale } from '@/i18n/locale';
 import { formatEUR, formatPercent } from '../../lib/calc/format';
 import { calcularCoste, tasaTotalEmpresa, TASA_AT_EP_POR_DEFECTO } from '../../lib/calc/coste-contratacion';
 import { type Contrato } from '../../lib/calc/nomina';
+import NumberInput from '../NumberInput';
 
 /**
  * UI strings, Valencian (AVL) alongside the ES source. Institutional names
@@ -116,8 +117,6 @@ export const COPY = {
 
 interface Props { locale?: Locale }
 
-const num = (e: Event) => parseFloat((e.target as HTMLInputElement).value) || 0;
-
 /**
  * What a hire costs the company, next to what the worker takes home.
  *
@@ -171,7 +170,7 @@ export default function CosteContratacionCalc({ locale = 'es' }: Props) {
         <label class="calc__field">
           <span class="calc__label">{t.bruto}</span>
           <div class="calc__input-wrap">
-            <input type="number" min={1} step={1000} value={bruto} onInput={(e) => setBruto(num(e))} />
+            <NumberInput min={1} step={1000} value={bruto} onValue={setBruto} />
           </div>
         </label>
         <label class="calc__field">
@@ -186,7 +185,7 @@ export default function CosteContratacionCalc({ locale = 'es' }: Props) {
         <label class="calc__field">
           <span class="calc__label">{t.atEp}</span>
           <div class="calc__input-wrap">
-            <input type="number" min={0} max={25} step={0.1} value={atEpPct} onInput={(e) => setAtEpPct(num(e))} />
+            <NumberInput min={0} max={25} step={0.1} value={atEpPct} onValue={setAtEpPct} />
           </div>
         </label>
       </div>
@@ -197,19 +196,19 @@ export default function CosteContratacionCalc({ locale = 'es' }: Props) {
         <label class="calc__field">
           <span class="calc__label">{t.horasSemana}</span>
           <div class="calc__input-wrap">
-            <input type="number" min={1} max={60} step={1} value={horasSemana} onInput={(e) => setHorasSemana(num(e))} />
+            <NumberInput min={1} max={60} step={1} value={horasSemana} onValue={setHorasSemana} />
           </div>
         </label>
         <label class="calc__field">
           <span class="calc__label">{t.semanas}</span>
           <div class="calc__input-wrap">
-            <input type="number" min={1} max={52} step={1} value={semanas} onInput={(e) => setSemanas(num(e))} />
+            <NumberInput min={1} max={52} step={1} value={semanas} onValue={setSemanas} />
           </div>
         </label>
       </div>
       <p class="cc__note">{t.semanasAyuda}</p>
 
-      <div class="calc__results">
+      <div class="calc__results" aria-live="polite">
         {!r.valido ? (
           <div class="calc__warning">{t.sinDatos}</div>
         ) : (

@@ -1,17 +1,20 @@
 /* src/components/jocs-economics/jocs.css */
+/* Aliases of the site tokens in global.css, so the game cannot drift from the
+   palette (the old copy kept the pre-AA muted ink and an off-palette blue).
+   The fallbacks only matter if a token is ever missing at runtime. */
 :root {
-  --jocs-cream: #FBF6EC;
-  --jocs-paper: #FFFFFF;
-  --jocs-ink: #2A1F18;
-  --jocs-ink-soft: #5C4A3D;
-  --jocs-ink-mute: #8A7868;
-  --jocs-line: #E5D4BD;
-  --jocs-line-soft: #EFE2CB;
-  --jocs-terracota: #C44E2C;
-  --jocs-teal: #1F6E6E;
-  --jocs-mostassa: #D4A24C;
-  --jocs-pine: #2E5E3A;
-  --jocs-blue-deep: #1F4E6E;  /* color identitari Jocs Econòmics */
+  --jocs-cream: var(--color-bg, #FBF6EC);
+  --jocs-paper: var(--color-paper, #FFFFFF);
+  --jocs-ink: var(--color-ink, #2A1F18);
+  --jocs-ink-soft: var(--color-ink-soft, #5C4A3D);
+  --jocs-ink-mute: var(--color-ink-mute, #6E5A47);
+  --jocs-line: var(--color-line, #E5D4BD);
+  --jocs-line-soft: var(--color-line-soft, #EFE2CB);
+  --jocs-terracota: var(--color-terra, #C44E2C);
+  --jocs-terracota-ink: var(--color-terra-ink, #9C3A1C);
+  --jocs-teal: var(--color-eco1, #1F6E6E);
+  --jocs-mostassa: var(--color-mustard, #D4A24C);
+  --jocs-pine: var(--color-eeae, #2E5E3A);
 }
 
 .jocs-app {
@@ -131,5 +134,5 @@
 }
 .jocs-button-primary:disabled { background: var(--jocs-ink-mute); cursor: not-allowed; }
 
-.jocs-link { color: var(--jocs-blue-deep); text-decoration: underline; cursor: pointer; }
+.jocs-link { color: var(--jocs-terracota-ink); text-decoration: underline; cursor: pointer; }
 .jocs-mute { color: var(--jocs-ink-mute); font-size: 13px; }

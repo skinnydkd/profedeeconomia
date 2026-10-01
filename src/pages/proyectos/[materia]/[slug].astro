@@ -2,7 +2,8 @@
 /**
  * A single interdisciplinary project. Routed by `[materia]/[slug]` (two params).
  * Renders the reto, the producto final, the MDX body (sessions + conexión), the
- * rubric, the curriculum map and competences.
+ * rubric, the curriculum map (economics units and, when the project declares
+ * it, what it works from the partner subject's curriculum) and competences.
  */
 import BaseLayout from '@layouts/BaseLayout.astro';
 import ProyectoMeta from '@components/proyectos/ProyectoMeta.astro';
@@ -12,8 +13,10 @@ import { materiaMeta } from '@/lib/proyectos';
 import { breadcrumbLd } from '@/lib/seo';
 import { getLocale } from '@/i18n/locale';
 import { pickLocalizedEntry } from '@/i18n/content-locale';
+import { localizeFamilias, MATERIAS_PROYECTOS_CA } from '@/i18n/familias-ca';
 import { getCollection, render } from 'astro:content';
 import type { GetStaticPaths } from 'astro';
+import { t } from '@/i18n/ui';
 
 export const getStaticPaths = (async () => {
   // ES entries define the canonical routes; CA siblings (lang: ca) must NOT
@@ -38,9 +41,13 @@ const view = pickLocalizedEntry(entry, caById, locale);
 const d = view.data;
 const { Content } = await render(view);
 const materia = materiaMeta(d.materia);
+const [materiaLocal] = localizeFamilias([materia], MATERIAS_PROYECTOS_CA, locale);
+const materiaSocia = d.materia_socia ?? [];
+// Valencian elides «de» before a vowel or h + vowel: «d'Història», «d'Ètica i valors».
+const deCa = /^h?[aeiouàèéíïòóúü]/i.test(materiaLocal.label) ? `d'${materiaLocal.label}` : `de ${materiaLocal.label}`;
 const copy = {
-  es: { proyectos: 'Proyectos', inicio: 'Inicio', reto: 'El reto', productoFinal: 'Producto final:', objetivos: 'Objetivos', conceptos: 'Conceptos:', rubrica: 'Rúbrica de evaluación', compH: 'Competencias que se trabajan', clave: 'Clave:', especificas: 'Específicas:', volver: '← Todos los proyectos' },
-  ca: { proyectos: 'Projectes', inicio: 'Inici', reto: 'El repte', productoFinal: 'Producte final:', objetivos: 'Objectius', conceptos: 'Conceptes:', rubrica: "Rúbrica d'avaluació", compH: 'Competències que es treballen', clave: 'Clau:', especificas: 'Específiques:', volver: '← Tots els projectes' },
+  es: { proyectos: 'Proyectos', inicio: 'Inicio', reto: 'El reto', productoFinal: 'Producto final:', objetivos: 'Objetivos', conceptos: 'Conceptos:', rubrica: 'Rúbrica de evaluación', sociaH: `Qué se trabaja de ${materiaLocal.label}`, sociaNota: 'Competencias específicas y saberes básicos del currículo estatal (Real Decreto 217/2022 para la ESO y Real Decreto 243/2022 para el Bachillerato). Cada comunidad autónoma los concreta en su propio currículo.', sociaCe: 'Competencias específicas:', sociaSaberes: 'Saberes básicos:', compH: 'Competencias que se trabajan', clave: 'Clave:', especificas: 'Específicas:', volver: '← Todos los proyectos' },
+  ca: { proyectos: 'Projectes', inicio: 'Inici', reto: 'El repte', productoFinal: 'Producte final:', objetivos: 'Objectius', conceptos: 'Conceptes:', rubrica: "Rúbrica d'avaluació", sociaH: `Què es treballa ${deCa}`, sociaNota: "Competències específiques i sabers bàsics del currículum estatal (Reial Decret 217/2022 per a l'ESO i Reial Decret 243/2022 per al Batxillerat). Cada comunitat autònoma els concreta en el seu currículum propi.", sociaCe: 'Competències específiques:', sociaSaberes: 'Sabers bàsics:', compH: 'Competències que es treballen', clave: 'Clau:', especificas: 'Específiques:', volver: '← Tots els projectes' },
 }[locale];
 const breadcrumb = breadcrumbLd([
   { name: copy.inicio, path: '/' },
@@ -48,9 +55,9 @@ const breadcrumb = breadcrumbLd([
   { name: d.title, path: `/proyectos/${d.materia}/${Astro.params.slug}/` },
 ], locale);
 ---
-<BaseLayout title={`${d.title} — ${copy.proyectos}`} description={d.descripcion} ogType="article" jsonLd={breadcrumb} contentLang={locale}>
+<BaseLayout title={`${d.title} — ${copy.proyectos}`} description={d.descripcion} ogType="article" jsonLd={breadcrumb} contentLang={view.data.lang} translated={caById.has(`${entry.id}.ca`)}>
   <div class="container">
-    <nav class="breadcrumb">
+    <nav class="breadcrumb" aria-label={t('nav.breadcrumb', locale)}>
       <a href="/">{copy.inicio}</a> <span class="sep">›</span>
       <a href="/proyectos/">{copy.proyectos}</a> <span class="sep">›</span>
       <span>{d.title}</span>
@@ -90,6 +97,22 @@ const breadcrumb = breadcrumbLd([
 
       <PuenteUnidades unidades={d.unidades_relacionadas} />
 
+      {materiaSocia.length > 0 && (
+        <section class="block socia">
+          <h2>{copy.sociaH}</h2>
+          <p class="socia__nota">{copy.sociaNota}</p>
+          {materiaSocia.map((m) => (
+            <div class="socia__materia">
+              <h3>{m.materia} <span class="socia__curso">· {m.curso}</span></h3>
+              <p><strong>{copy.sociaCe}</strong></p>
+              <ul>{m.competencias_especificas.map((c) => <li>{c}</li>)}</ul>
+              <p><strong>{copy.sociaSaberes}</strong></p>
+              <ul>{m.saberes.map((s) => <li>{s}</li>)}</ul>
+            </div>
+          ))}
+        </section>
+      )}
+
       {(d.competencias_clave.length > 0 || d.competencias_especificas.length > 0) && (
         <section class="block">
           <h2>{copy.compH}</h2>
@@ -118,6 +141,11 @@ const breadcrumb = breadcrumbLd([
   .block ul { padding-left: 1.3rem; } .block li { margin-bottom: 0.3em; }
   .block ul li::marker { color: var(--color-mustard); }
   .conceptos { color: var(--color-ink-soft); margin-top: 0.6rem; }
+  .socia__nota { color: var(--color-ink-soft); font-size: 0.95rem; margin: 0 0 0.4rem; }
+  .socia__materia h3 { font-size: 1.15rem; margin: 1.4rem 0 0.5rem; }
+  .socia__curso { color: var(--color-ink-soft); }
+  .socia__materia p { margin: 0.6rem 0 0.2rem; }
+  .socia__materia ul { margin: 0; }
   .reto__q { font-family: var(--font-serif); font-style: italic; font-size: 1.3rem; line-height: 1.4; color: var(--color-ink); margin: 0.4rem 0 1rem; padding: 0.2rem 0; }
   .producto { color: var(--color-ink-soft); }
   .prose { font-size: 1.05rem; line-height: 1.7; color: var(--color-ink); }

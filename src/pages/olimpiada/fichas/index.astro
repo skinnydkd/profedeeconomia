@@ -8,6 +8,7 @@ import { BLOQUES } from '@/lib/olimpiada';
 import { getLocale } from '@/i18n/locale';
 import { localizeFamilias, BLOQUES_OLIMPIADA_CA } from '@/i18n/familias-ca';
 import { getCollection } from 'astro:content';
+import { t } from '@/i18n/ui';
 
 const locale = getLocale(Astro.currentLocale);
 const bloques = localizeFamilias(BLOQUES, BLOQUES_OLIMPIADA_CA, locale);
@@ -67,7 +68,7 @@ const copy = {
   contentLang={locale}
 >
   <div class="container">
-    <nav class="breadcrumb">
+    <nav class="breadcrumb" aria-label={t('nav.breadcrumb', locale)}>
       <a href="/">{copy.bcInicio}</a> <span class="sep">›</span>
       <a href="/olimpiada/">{copy.bcOlimpiada}</a> <span class="sep">›</span>
       <span>{copy.bcCurrent}</span>
@@ -153,7 +154,7 @@ const copy = {
   .card {
     display: flex; flex-direction: column; gap: 0.5rem;
     padding: 1.4rem; background: var(--color-paper);
-    border: 1px solid var(--color-line); border-top: 4px solid var(--fam-color);
+    border: 1px solid var(--color-line);
     border-radius: 10px; text-decoration: none;
     transition: transform .15s ease, box-shadow .15s ease;
   }

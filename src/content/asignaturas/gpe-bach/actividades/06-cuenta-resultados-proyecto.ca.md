@@ -12,7 +12,7 @@ materiales:
   - "Plantilla de compte de resultats previsional"
   - "Dades del projecte: preu de venda estimat, costos de matèria primera, despeses fixes previstes"
   - "Calculadora o full de càlcul"
-competencias_clave: [CE, CMCT, CPSAA, CD]
+competencias_clave: [CE, STEM, CPSAA, CD]
 competencias_especificas: [CE4]
 ebau: false
 lang: ca

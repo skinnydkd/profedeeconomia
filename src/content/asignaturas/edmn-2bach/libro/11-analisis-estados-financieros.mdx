@@ -138,8 +138,8 @@ Por debajo de 1, la empresa está técnicamente en quiebra: sus activos no cubre
 
 Miden cuánto de la financiación proviene de terceros:
 
-- **Ratio de endeudamiento total** = Pasivo total / (Patrimonio neto + Pasivo total). Valor sano: entre 0,4 y 0,6 (es decir, deuda entre el 40% y el 60% del balance).
-- **Ratio de autonomía financiera** = Patrimonio neto / Pasivo total. Mide el inverso: cuánto patrimonio propio respalda cada euro de deuda.
+- **Ratio de endeudamiento total** = Pasivo total / (Patrimonio neto + Pasivo total). Valor sano: entre 0,4 y 0,6 (es decir, deuda entre el 40% y el 60% del balance). Algunos manuales lo calculan como Pasivo total / Patrimonio neto; con esa fórmula, el rango equivalente va de 0,67 a 1,5.
+- **Ratio de autonomía financiera** = Patrimonio neto / Pasivo total. Es la inversa del ratio Pasivo total / Patrimonio neto: cuánto patrimonio propio respalda cada euro de deuda.
 
 Los rangos "sanos" son orientativos y dependen mucho del sector: una empresa del sector eléctrico vive con endeudamientos del 70% sin problema, una *startup* tecnológica suele estar por debajo del 30%.
 
@@ -188,7 +188,7 @@ Dos pequeñas empresas de carpintería metálica presentan los siguientes balanc
    - B: 100 / 230 = **0,43** (43 % del balance es deuda).
 6. **Diagnóstico**:
    - **Empresa A** está en zona de riesgo grave. Liquidez general por debajo de 1: el activo corriente no cubre el pasivo a corto plazo (fondo de maniobra negativo de −20 mil €). Endeudamiento del 76 %, muy por encima del rango razonable (40-60 %). Solvencia de 1,31, justo por encima del límite. Cualquier retraso de cobro o caída de ventas la coloca en suspensión de pagos.
-   - **Empresa B** está sobreliquidez. Ratios cómodos (3,5 de liquidez general; 0,75 de disponibilidad), bajo endeudamiento (43 %). Pero conviene preguntarse: ¿no estará la empresa B desaprovechando recursos? Mantener 30.000 € en caja sin invertir tiene un coste de oportunidad: ese dinero podría estar generando rentabilidad en activos productivos.
+   - **Empresa B** está en sobreliquidez. Ratios cómodos (3,5 de liquidez general; 0,75 de disponibilidad), bajo endeudamiento (43 %). Pero conviene preguntarse: ¿no estará la empresa B desaprovechando recursos? Mantener 30.000 € en caja sin invertir tiene un coste de oportunidad: ese dinero podría estar generando rentabilidad en activos productivos.
    - Conclusión práctica: ningún ratio es bueno o malo en abstracto. **Demasiada poca liquidez** mata; **demasiada liquidez** lastra la rentabilidad. La gestión financiera consiste en navegar entre ambos riesgos.
 
 </SolvedExercise>
@@ -203,7 +203,7 @@ Los ratios financieros tienen dos usos principales: **comparar** la empresa con 
 
 <HerramientaIsland componente="Ratios" />
 
-<RecursoDestacado href="/edmn-2bach/recursos/calculadora-ratios/" kicker="Herramienta" title="Calculadora de ratios financieros" descripcion="Las masas del balance y dos cifras de la cuenta de resultados bastan para obtener fondo de maniobra, liquidez, solvencia, ROA, ROE y el efecto del apalancamiento." colorVar="--color-edmn" />
+<RecursoDestacado href="/edmn-2bach/recursos/calculadora-ratios/" kicker="Herramienta" title="Calculadora de ratios financieros" descripcion="Las masas del balance y tres cifras de la cuenta de resultados (BAII, gastos financieros y beneficio neto) bastan para obtener fondo de maniobra, liquidez, solvencia, ROA, ROE y el efecto del apalancamiento." colorVar="--color-edmn" />
 
 ## Análisis de la cuenta de resultados: rentabilidades
 
@@ -231,7 +231,7 @@ Una ROE del 15% significa que cada 100 € que los socios tienen aportados o rei
 
 ### Apalancamiento financiero
 
-La diferencia entre ROE y ROA mide el efecto del **apalancamiento financiero**: cuando una empresa pide deuda barata para invertir en activos que rinden más que el coste de la deuda, la rentabilidad para el accionista aumenta. Es lo que en finanzas se llama "trabajar con dinero ajeno" para multiplicar el rendimiento del propio.
+El **apalancamiento financiero** es el efecto de la deuda sobre la rentabilidad de los socios: cuando una empresa pide deuda barata para invertir en activos que rinden más que el coste de la deuda, la rentabilidad para el accionista aumenta. Es lo que en finanzas se llama "trabajar con dinero ajeno" para multiplicar el rendimiento del propio.
 
 El apalancamiento es palanca y, como toda palanca, **funciona en los dos sentidos**: si los activos rinden menos que el coste de la deuda, la rentabilidad financiera cae por debajo de la rentabilidad económica y, en casos extremos, puede ser negativa aunque la empresa siga generando beneficio operativo. Las grandes quiebras de empresas técnicamente rentables suelen tener detrás un apalancamiento mal calculado.
 
@@ -334,6 +334,56 @@ PMM financiero = PMM económico − Período medio de pago a proveedores
 
 Un PMM financiero corto (la empresa cobra rápido y paga lento) reduce las necesidades de financiación y mejora la liquidez. Un PMM financiero largo —típico de las pymes españolas frente a las grandes administraciones, que pagaban tradicionalmente con muchos meses de retraso— es una de las causas estructurales de la mortalidad empresarial en España.
 
+Cada uno de esos tiempos se obtiene a partir de una **rotación**: cuántas veces al año se renueva el saldo medio de esa fase. La rotación es el flujo anual dividido entre el saldo medio, y el período medio en días es 365 entre la rotación:
+
+```
+Rotación = Flujo anual / Saldo medio
+Días     = 365 / Rotación
+```
+
+| Fase | Flujo anual (numerador) | Saldo medio (denominador) |
+| --- | --- | --- |
+| Almacén de materias primas | Consumo de materias primas | Existencias medias de materias primas |
+| Fabricación | Coste de la producción | Existencias medias de productos en curso |
+| Venta (almacén de producto terminado) | Coste de las ventas | Existencias medias de productos terminados |
+| Cobro a clientes | Ventas | Saldo medio de clientes |
+| Pago a proveedores | Compras | Saldo medio de proveedores |
+
+<SolvedExercise number="11.3" title="Período medio de maduración a partir de las rotaciones">
+
+**Enunciado**
+
+Una fábrica de muebles de cocina presenta estos datos del último ejercicio (importes en €; las existencias y los saldos son medias del año):
+
+| Concepto | Importe |
+| --- | --- |
+| Consumo anual de materias primas | 146.000 |
+| Existencias medias de materias primas | 10.000 |
+| Coste anual de la producción | 365.000 |
+| Existencias medias de productos en curso | 10.000 |
+| Coste de las ventas | 365.000 |
+| Existencias medias de productos terminados | 25.000 |
+| Ventas anuales | 511.000 |
+| Saldo medio de clientes | 70.000 |
+| Compras anuales de materias primas | 146.000 |
+| Saldo medio de proveedores | 20.000 |
+
+a) Calcula la rotación y el período medio, en días, de cada fase: almacén de materias primas, fabricación, venta, cobro y pago.
+b) Calcula el PMM económico y el PMM financiero.
+c) Interpreta el resultado. ¿Cuánta tesorería liberaría la empresa si cobrara a sus clientes en 25 días?
+
+**Solución**
+
+1. **Almacén de materias primas**: rotación = 146.000 / 10.000 = **14,6** veces al año → 365 / 14,6 = **25 días**.
+2. **Fabricación**: rotación = 365.000 / 10.000 = **36,5** → 365 / 36,5 = **10 días**.
+3. **Venta**: rotación = 365.000 / 25.000 = **14,6** → 365 / 14,6 = **25 días**.
+4. **Cobro a clientes**: rotación = 511.000 / 70.000 = **7,3** → 365 / 7,3 = **50 días**.
+5. **Pago a proveedores**: rotación = 146.000 / 20.000 = **7,3** → 365 / 7,3 = **50 días**.
+6. **PMM económico** = 25 + 10 + 25 + 50 = **110 días**. **PMM financiero** = 110 − 50 = **60 días**.
+7. **Interpretación**: desde que la materia prima entra en el almacén hasta que se cobra el mueble pasan 110 días. Los proveedores financian 50; los otros **60 días** los tiene que financiar la empresa con recursos propios o con deuda. Si cobrara en 25 días, la rotación de clientes subiría a 365 / 25 = 14,6 y el saldo medio de clientes bajaría a 511.000 / 14,6 = 35.000 €: el PMM económico quedaría en 85 días, el financiero en **35 días**, y la empresa liberaría **35.000 € de tesorería** (25 días × 1.400 € de ventas diarias).
+
+</SolvedExercise>
+
 <Callout label="Ejemplo práctico" title="Por qué la gran distribución vive con fondo de maniobra negativo" variant="example">
 
 Una cadena como Mercadona cobra al contado a sus clientes (el cliente paga en caja antes de salir) y paga a sus proveedores a 30 o 60 días, el máximo legal (30 para los alimentos frescos y 60 para el resto). El resultado es que la empresa tiene en su cuenta corriente, todos los días, el dinero de las ventas de las últimas semanas sin haberlo pagado aún a quien le sirve. Eso le permite operar con fondo de maniobra negativo —su pasivo corriente es enorme porque incluye todas esas facturas pendientes— sin ningún problema de liquidez. De hecho, le permite financiar gratis su crecimiento. Es un caso extremo de PMM financiero negativo y demuestra que las reglas de equilibrio financiero, como casi todo en finanzas, dependen del sector.
@@ -365,7 +415,7 @@ Reunir las herramientas anteriores en un proceso ordenado da el siguiente flujo:
 
 <li><strong>Calcular ratios de solvencia y endeudamiento</strong>. Comparar con rangos sectoriales habituales (no con la regla genérica).</li>
 
-<li><strong>Calcular ROA y ROE</strong>. Comparar la diferencia para evaluar el efecto del apalancamiento.</li>
+<li><strong>Calcular ROA, ROE y coste de la deuda</strong>. El apalancamiento se juzga comparando la RE con el coste de la deuda.</li>
 
 <li><strong>Calcular el período medio de maduración</strong>. Cruzar con la liquidez para entender si la tesorería es estructuralmente cómoda o estructuralmente tensa.</li>
 
@@ -378,7 +428,7 @@ La paradoja de DIA es la **gran lección** del análisis financiero: los ratios 
 
 1. **Asimetría de incentivos**: muchos analistas trabajan para bancos que también hacen negocio con las empresas que analizan; criticar con dureza sus cuentas puede salir caro.
 2. **Sesgo de confirmación**: una empresa con marca histórica y dividendos estables resulta «creíble» aunque los ratios digan lo contrario. La marca actúa como amortiguador cognitivo.
-3. **Contabilidad agresiva e irregularidades**: hay decisiones que la norma permite y que mejoran las cifras (alargar la vida útil de los activos, capitalizar gastos, retrasar el reconocimiento de pérdidas). En DIA, además, hubo irregularidades: en octubre de 2018 tuvo que reexpresar sus cuentas de 2017 y llevó el caso a la Fiscalía.
+3. **Contabilidad agresiva e irregularidades**: hay decisiones que la norma permite y que mejoran las cifras (alargar la vida útil de los activos, capitalizar gastos, retrasar el reconocimiento de pérdidas). En DIA, además, hubo irregularidades: en octubre de 2018 tuvo que reexpresar sus cuentas de 2017 y en febrero de 2019 llevó el caso a la Fiscalía.
 
 La conclusión operativa: **los ratios son fiables sólo si se leen con sentido crítico** —comparándolos con el sector, mirando su evolución temporal y desconfiando cuando una empresa con cifras dudosas presenta una narrativa demasiado limpia—. Saber leer un balance no garantiza ver el problema; pero **no saberlo lo garantiza**.
 </VuelveAlCaso>
@@ -386,7 +436,7 @@ La conclusión operativa: **los ratios son fiables sólo si se leen con sentido 
 <KeyTakeaways title="Lo esencial del análisis financiero">
 - El **fondo de maniobra** mide el equilibrio a corto plazo. Positivo = saludable; negativo = alarma (excepto en gran distribución).
 - Los **ratios de liquidez, solvencia y endeudamiento** permiten comparar empresas y vigilar tendencias. Los rangos sanos varían entre sectores.
-- **ROA** mide eficiencia operativa del activo; **ROE** mide rentabilidad del capital aportado por los socios. La diferencia es el efecto del apalancamiento financiero.
+- **ROA** mide eficiencia operativa del activo; **ROE** mide rentabilidad del capital aportado por los socios. El apalancamiento financiero es positivo cuando el ROA supera el coste de la deuda.
 - El **período medio de maduración** financiero es lo que la empresa tiene que financiar de su bolsillo o de la deuda. Cuanto más corto, menor presión de tesorería.
 - Un ratio aislado dice poco. La **comparación con el sector** y la **tendencia temporal** son lo que de verdad informan.
 </KeyTakeaways>
@@ -400,7 +450,7 @@ La conclusión operativa: **los ratios son fiables sólo si se leen con sentido 
 - **Acid test** (ratio de tesorería): (activo corriente − existencias) / pasivo corriente. Rango sano: en torno a 1.
 - **Ratio de solvencia**: activo total / pasivo total. Por debajo de 1, quiebra técnica.
 - **Ratio de endeudamiento**: pasivo / (PN + pasivo). Rango sano genérico: 0,4-0,6, varía por sector.
-- **Ratio de autonomía financiera**: patrimonio neto / pasivo. Inverso del endeudamiento.
+- **Ratio de autonomía financiera**: patrimonio neto / pasivo. Es la inversa del ratio pasivo / patrimonio neto.
 - **ROA** (*Return on Assets*): BAII / activo total. Rentabilidad económica. Mide eficiencia del activo.
 - **ROE** (*Return on Equity*): beneficio neto / patrimonio neto. Rentabilidad financiera. Mide rendimiento para el accionista.
 - **BAII / EBIT**: beneficio antes de intereses e impuestos.
@@ -408,6 +458,7 @@ La conclusión operativa: **los ratios son fiables sólo si se leen con sentido 
 - **Descomposición DuPont**: ROE = margen × rotación × apalancamiento. Permite ver de dónde viene la rentabilidad financiera.
 - **PMM económico**: días que transcurren desde que se compra materia prima hasta que se cobra al cliente.
 - **PMM financiero**: PMM económico menos período medio de pago a proveedores. Lo que la empresa financia de su bolsillo.
+- **Rotación**: flujo anual de una fase dividido entre su saldo medio (por ejemplo, ventas / saldo medio de clientes). 365 / rotación da los días de esa fase.
 
 ## Para profundizar
 
@@ -523,7 +574,7 @@ La conclusión operativa: **los ratios son fiables sólo si se leen con sentido 
     - t: Endeudamiento total
       d: "Pasivo / (patrimonio neto + pasivo). Qué parte del balance es deuda ajena. Rango genérico sano: 0,4-0,6, muy dependiente del sector."
     - t: Autonomía financiera
-      d: "Patrimonio neto / pasivo. El inverso del anterior: cuánto patrimonio propio respalda cada euro de deuda."
+      d: "Patrimonio neto / pasivo. Es la inversa de pasivo / patrimonio neto: cuánto patrimonio propio respalda cada euro de deuda."
 - tipo: table
   title: Dos carpinterías del mismo sector, dos diagnósticos
   head:
@@ -611,6 +662,16 @@ La conclusión operativa: **los ratios son fiables sólo si se leen con sentido 
       - Es lo que la empresa financia con dinero propio o con deuda
       - "Corto (cobrar pronto, pagar tarde): menos necesidad de financiación"
       - "Largo: presión de tesorería, causa estructural de mortalidad en las pymes"
+- tipo: exercise
+  title: Ejercicio 11.3 · El PMM a partir de las rotaciones
+  enunciado: "Una fábrica de muebles consume 146.000 € de materias primas (existencias medias, 10.000 €), produce y vende a un coste de 365.000 € (en curso, 10.000 €; terminados, 25.000 €), vende por 511.000 € (clientes, 70.000 €) y compra 146.000 € (proveedores, 20.000 €). Calcula el PMM económico y el financiero."
+  pasos:
+    - "Rotación = flujo anual / saldo medio; días = 365 / rotación."
+    - "Materias primas: 146.000 / 10.000 = 14,6 → 25 días. Fabricación: 365.000 / 10.000 = 36,5 → 10 días."
+    - "Venta: 365.000 / 25.000 = 14,6 → 25 días. Cobro: 511.000 / 70.000 = 7,3 → 50 días."
+    - "Pago: 146.000 / 20.000 = 7,3 → 50 días."
+    - "PMM económico = 25 + 10 + 25 + 50 = 110 días. PMM financiero = 110 − 50 = 60 días."
+    - "Cobrar en 25 días dejaría el PMM financiero en 35 días y liberaría 35.000 € de caja: 25 días × 1.400 € de ventas diarias."
 - tipo: concept
   eyebrow: Ejemplo práctico
   title: Por qué la gran distribución vive con fondo de maniobra negativo
@@ -633,7 +694,7 @@ La conclusión operativa: **los ratios son fiables sólo si se leen con sentido 
     - "Leer el balance en cinco grandes masas: ¿activo fijo o circulante?, ¿pasivo endeudado o capitalizado?"
     - "Calcular el fondo de maniobra y los tres ratios de liquidez: general, acid test y disponibilidad."
     - Calcular solvencia y endeudamiento y compararlos con el rango del sector, no con la regla genérica.
-    - Calcular ROA y ROE; la diferencia entre ambos mide el efecto del apalancamiento.
+    - "Calcular ROA, ROE y coste de la deuda: el apalancamiento se juzga comparando la RE con el coste de la deuda."
     - Calcular el PMM, cruzarlo con la liquidez y comparar la evolución de tres ejercicios seguidos.
 - tipo: figure
   src: edmn-2bach/11/cnmv-edison.jpg

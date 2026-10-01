@@ -3,18 +3,20 @@ import type { Asignatura } from '@/lib/asignaturas';
 import { getLocale } from '@/i18n/locale';
 import { t } from '@/i18n/ui';
 
-type Props = { asignatura: Asignatura };
-const { asignatura: a } = Astro.props;
+/** `num` and `level` let the home show the card's position in the grouped
+ *  grid and a shorter level inside its stage group. */
+type Props = { asignatura: Asignatura; num?: string; level?: string };
+const { asignatura: a, num = a.num, level = a.level } = Astro.props;
 const isPublicado = a.estado === 'publicado';
 const locale = getLocale(Astro.currentLocale);
 ---
 
 <a href={`/${a.slug}/`} class:list={['subject-card', `c-${a.color}`, !isPublicado && 'is-proximamente']}>
   <div class="level-row">
-    <span class="level">{a.level}</span>
-    <span class="num">{a.num}</span>
+    <span class="level">{level}</span>
+    <span class="num" aria-hidden="true">{num}</span>
   </div>
-  <h3>{a.title}</h3>
+  <h4>{a.title}</h4>
   <p class="tagline">{a.tagline}</p>
   {isPublicado
     ? <span class="arrow">{t('card.entrar', locale)} →</span>
@@ -65,7 +67,7 @@ const locale = getLocale(Astro.currentLocale);
     background: var(--color-bg);
     border-style: dashed;
   }
-  .subject-card.is-proximamente h3,
+  .subject-card.is-proximamente h4,
   .subject-card.is-proximamente .tagline {
     opacity: 0.78;
   }
@@ -97,7 +99,14 @@ const locale = getLocale(Astro.currentLocale);
     font-size: 1.6rem;
     font-variation-settings: "SOFT" 100, "WONK" 1;
   }
-  h3 {
+  /* An h4 under the home's stage h3, dressed as the old h3 title: the global
+     h4 is a small uppercase label. */
+  h4 {
+    font-family: var(--font-serif);
+    font-weight: 500;
+    text-transform: none;
+    color: var(--color-ink);
+    hyphens: auto;
     font-size: 1.55rem;
     margin: 0;
     line-height: 1.2;
@@ -114,6 +123,13 @@ const locale = getLocale(Astro.currentLocale);
     color: var(--card-ink);
     font-size: 0.95rem;
     font-weight: 600;
+  }
+  /* Phones: a compact card (level, title, link). Ten full cards made the
+     home eleven screens long before the transversal sections. */
+  @media (max-width: 600px) {
+    .subject-card { padding: 1.1rem 1.2rem 1.3rem; gap: 0.6rem; }
+    .tagline { display: none; }
+    h4 { font-size: 1.35rem; }
   }
   .badge-proximamente {
     color: var(--color-ink-mute);

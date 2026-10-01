@@ -9,6 +9,7 @@ import {
   type Opcion,
 } from '../../lib/calc/matriz-decision';
 import { type Locale } from '@/i18n/locale';
+import NumberInput from '../NumberInput';
 
 /**
  * UI strings, Valencian (AVL) alongside the ES source.
@@ -156,13 +157,12 @@ export default function MatrizDecision({ locale = 'es' }: Props) {
             />
             <label class="md__peso">
               <span class="md__peso-label">{c.pesoCol}</span>
-              <input
-                type="number"
+              <NumberInput
                 min={0}
                 max={10}
                 step={1}
                 value={cr.peso}
-                onInput={(e) => setCriterio(cr.id, { peso: clampPeso((e.target as HTMLInputElement).value) })}
+                onValue={(v) => setCriterio(cr.id, { peso: clampPeso(v) })}
               />
             </label>
             <button
@@ -210,15 +210,14 @@ export default function MatrizDecision({ locale = 'es' }: Props) {
                   </th>
                   {criterios.map((cr) => (
                     <td key={cr.id}>
-                      <input
+                      <NumberInput
                         class="md__nota"
-                        type="number"
                         min={NOTA_MIN}
                         max={NOTA_MAX}
                         step={1}
                         value={o.notas[cr.id] ?? NOTA_MIN}
                         aria-label={`${o.nombre} · ${cr.nombre}`}
-                        onInput={(e) => setNota(o.id, cr.id, clampNota((e.target as HTMLInputElement).value))}
+                        onValue={(v) => setNota(o.id, cr.id, clampNota(v))}
                       />
                     </td>
                   ))}
@@ -245,8 +244,8 @@ export default function MatrizDecision({ locale = 'es' }: Props) {
         <button type="button" class="md__add" onClick={reset}>{c.reset}</button>
       </div>
 
-      {r.pesoTotal <= 0 && <p class="calc__warning">{c.sinPeso}</p>}
-      {opciones.length < 2 && <p class="calc__warning">{c.sinOpciones}</p>}
+      {r.pesoTotal <= 0 && <p class="calc__warning" role="alert">{c.sinPeso}</p>}
+      {opciones.length < 2 && <p class="calc__warning" role="alert">{c.sinOpciones}</p>}
 
       {ganadora && ganadora.total !== null && (
         <>
@@ -271,7 +270,7 @@ export default function MatrizDecision({ locale = 'es' }: Props) {
             )}
           </div>
 
-          {r.esEmpateTecnico && <p class="calc__warning">{c.empate}</p>}
+          {r.esEmpateTecnico && <p class="calc__warning" role="alert">{c.empate}</p>}
         </>
       )}
 
@@ -389,15 +388,11 @@ export default function MatrizDecision({ locale = 'es' }: Props) {
 
 /* ── Pure helpers ────────────────────────────────────────────────────────── */
 
-function clampPeso(raw: string): number {
-  const n = parseFloat(raw);
-  if (!Number.isFinite(n)) return 0;
+function clampPeso(n: number): number {
   return Math.min(10, Math.max(0, n));
 }
 
-function clampNota(raw: string): number {
-  const n = parseFloat(raw);
-  if (!Number.isFinite(n)) return NOTA_MIN;
+function clampNota(n: number): number {
   return Math.min(NOTA_MAX, Math.max(NOTA_MIN, n));
 }
 

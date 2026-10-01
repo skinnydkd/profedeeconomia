@@ -69,6 +69,14 @@ preguntas:
       - "La automatización afecta únicamente al sector industrial, no a los servicios ni a tareas cognitivas."
     correcta: 1
     explicacion: "El orden de magnitud de Frey-Osborne se mantiene, pero la literatura posterior (Autor y otros) ha precisado que la unidad relevante es la tarea, no el empleo: muchas profesiones automatizan parte de sus tareas sin desaparecer. Y lo que se observa en EE.UU. y Europa es polarización (hollowing out): crecen los empleos cognitivos no rutinarios y los de baja cualificación poco automatizables, mientras caen los de cualificación media."
+  - enunciado: "Sobre la economía colaborativa y de plataformas, ¿cuál de estas afirmaciones es correcta?"
+    opciones:
+      - "En BlaBlaCar el conductor cobra una tarifa con margen de beneficio, igual que un taxista profesional."
+      - "La Ley Rider obliga a quienes reparten para una plataforma a darse de alta como autónomos."
+      - "Wallapop pone en contacto a particulares que revenden lo que ya tienen: es intercambio P2P."
+      - "Los pisos turísticos se rigen solo por las normas de cada plataforma, sin regulación pública."
+    correcta: 2
+    explicacion: "Wallapop solo pone en contacto a particulares que revenden objetos que ya tienen: es intercambio entre iguales (P2P). En BlaBlaCar quien conduce reparte los gastos de un viaje que iba a hacer, sin obtener beneficio. La Ley Rider (Ley 12/2021) va en sentido contrario al de convertir a los repartidores en autónomos: presume asalariados a quienes reparten cuando una plataforma organiza su trabajo con un algoritmo. Y los pisos turísticos sí tienen regulación pública: autonómica y municipal y, desde 2025, el voto de tres quintas partes de la comunidad de propietarios y el Registro Único de Arrendamientos."
   - enunciado: "Sobre las visiones contemporáneas de la sostenibilidad, ¿cuál de estos pares describe correctamente la diferencia entre economía circular y decrecimiento?"
     opciones:
       - "Ambas defienden lo mismo: reducir el PIB de forma planificada."
@@ -103,4 +111,4 @@ preguntas:
     explicacion: "Renunciar a las 200 de tela permite obtener 100 de vino, así que cada unidad de vino cuesta 200 / 100 = 2 de tela. Comparando este coste con el del otro país se ve quién tiene la ventaja comparativa en cada bien."
 ---
 
-Test de autoevaluación de la Unidad 12 del libro de Eco 1BACH. Diez preguntas que cubren ventaja absoluta y comparativa (con cálculo de coste de oportunidad), proteccionismo vs. libre comercio, OMC, hitos de la construcción europea, las cuatro libertades del mercado único, NextGenerationEU, beneficios y costes de la globalización, revolución digital (Frey-Osborne y polarización del mercado laboral), economía circular vs. decrecimiento y ODS de la Agenda 2030.
+Test de autoevaluación de la Unidad 12 del libro de Eco 1BACH. Catorce preguntas que cubren ventaja absoluta y comparativa (con cálculo de coste de oportunidad), proteccionismo vs. libre comercio, OMC, hitos de la construcción europea, las cuatro libertades del mercado único, NextGenerationEU, beneficios y costes de la globalización, revolución digital (Frey-Osborne y polarización del mercado laboral), economía colaborativa y de plataformas, economía circular vs. decrecimiento y ODS de la Agenda 2030.

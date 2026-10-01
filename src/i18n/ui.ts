@@ -72,6 +72,10 @@ export const ui = {
     'tipo.buscador': 'Buscador',
     'filtro.todas': 'Todas',
     'filtro.todos': 'Todos',
+    'filtro.aria': 'Filtrar la lista',
+    'nav.breadcrumb': 'Ruta de navegación',
+    'filtro.resultado.uno': '1 resultado',
+    'filtro.resultado.varios': '{n} resultados',
     'island.print': '↗ Herramienta interactiva disponible en la versión digital del libro (profedeeconomia.es).',
     'herramienta.competencias': 'Competencias que se trabajan',
     'herramienta.clave': 'Clave',
@@ -102,6 +106,7 @@ export const ui = {
     'libro.ejemploReal': 'Ejemplo real',
     'libro.casoIlustrativo': 'Caso ilustrativo',
     'libro.fuente': 'Fuente:',
+    'libro.desplaza': 'Desliza para ver el gráfico entero →',
     'libro.retoDelCurso': 'Reto del curso',
     'libro.etapa': 'Etapa',
     'libro.entregable': 'Entregable:',
@@ -197,6 +202,10 @@ export const ui = {
     'tipo.buscador': 'Cercador',
     'filtro.todas': 'Totes',
     'filtro.todos': 'Tots',
+    'filtro.aria': 'Filtra la llista',
+    'nav.breadcrumb': 'Ruta de navegació',
+    'filtro.resultado.uno': '1 resultat',
+    'filtro.resultado.varios': '{n} resultats',
     'island.print': '↗ Ferramenta interactiva disponible en la versió digital del llibre (profedeeconomia.es).',
     'herramienta.competencias': 'Competències que es treballen',
     'herramienta.clave': 'Clau',
@@ -227,6 +236,7 @@ export const ui = {
     'libro.ejemploReal': 'Exemple real',
     'libro.casoIlustrativo': 'Cas il·lustratiu',
     'libro.fuente': 'Font:',
+    'libro.desplaza': 'Llisca per a veure el gràfic sencer →',
     'libro.retoDelCurso': 'Repte del curs',
     'libro.etapa': 'Etapa',
     'libro.entregable': 'Entregable:',
@@ -258,4 +268,11 @@ export type UIKey = keyof (typeof ui)['es'];
 
 export function t(key: UIKey, locale: Locale): string {
   return ui[locale][key] ?? ui.es[key];
+}
+
+/** The course a subject belongs to, e.g. «2.º Bach» or «Optativas (1.º/2.º)».
+    The Bachillerato optional subjects carry curso 'bach', labelled as optativas. */
+export function cursoLabel(curso: string, locale: Locale): string {
+  const key = curso === 'bach' ? 'curso.optativas' : `curso.${curso}`;
+  return t(key as UIKey, locale);
 }

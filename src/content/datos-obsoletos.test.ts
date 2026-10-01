@@ -77,6 +77,12 @@ const OBSOLETOS: Obsoleto[] = [
   },
   {
     patron:
+      /(?:solo|només) (?:aparece|apareix) (?:la (?:cotización|cotització|parte|part) (?:a tu cargo|al teu càrrec)|tu cotización|la teua cotització)|que no (?:ves|veus) (?:en|a) (?:la |tu |la teua )?n[óò]mina/i,
+    motivo: 'La cuota de la empresa figura al pie de la nómina como aportación de la empresa; solo la del trabajador se descuenta del sueldo',
+    ejemplo: 'En la nómina solo aparece la cotización a tu cargo.',
+  },
+  {
+    patron:
       /(?:cotiz|cotitz)[^.\n]{0,140}(?:derecho|dret) a (?:la )?(?:sanidad|sanitat)|para (?:tener|tindre) (?:derecho|dret) a (?:la )?(?:sanidad|sanitat)|seguro colectivo: sanidad|col·lectiva: sanitat/i,
     motivo: 'Cotizar da derecho a prestaciones (paro, incapacidad temporal, jubilación), no a la sanidad: la sanidad pública es universal y se paga con impuestos (Ley 16/2003, RDL 7/2018)',
     ejemplo: 'La cotización a la Seguridad Social (que da derecho a sanidad, paro y pensión).',
@@ -95,6 +101,39 @@ const OBSOLETOS: Obsoleto[] = [
       'src/content/asignaturas/cjd-bach/libro/08-tutela-judicial-y-resolucion-de-conflictos.mdx',
       'src/content/asignaturas/cjd-bach/libro/08-tutela-judicial-y-resolucion-de-conflictos.ca.mdx',
     ],
+  },
+  {
+    patron: /\b35\.529\b/,
+    motivo:
+      'Facturación de Mercadona mal citada (la de 2023 fue de 35.527 M€). La serie común es la de 2025: 41.858 M€, 115.000 personas y 1.672 supermercados (Memoria anual 2025)',
+    ejemplo: 'Mercadona factura 35.529 M€ con 104.000 trabajadores.',
+  },
+  {
+    patron: /(?:más de|superar los|por encima de|més de|superar els|per damunt de) \**9 ?€\/kg/,
+    motivo:
+      'El virgen extra en origen rondó los 9 €/kg entre finales de 2023 y comienzos de 2024 (máximo de 8,98 € el 15 de enero de 2024, según Infaoliva); no los superó',
+    ejemplo: 'El precio en origen pasó de 3,30 a más de 9 €/kg.',
+  },
+  {
+    patron: /Filmin[^.\n]{0,120}600\.000|600\.000[^.\n]{0,60}Filmin/,
+    motivo: 'Filmin no publica su número de suscriptores; se cita su facturación (30,6 M€ en 2025)',
+    ejemplo: 'Filmin: 600.000 suscriptores compitiendo con Netflix.',
+  },
+  {
+    patron: /(?:hermanos|germans)[^.\n]{0,15}Joan, Adrià/,
+    motivo: 'Verkami la fundaron Joan Sala y sus dos hijos, Adrià y Jonàs (verkami.com, «Quiénes somos»)',
+    ejemplo: 'Verkami se fundó en 2010 por tres hermanos —Joan, Adrià y Jonàs Sala—.',
+  },
+  {
+    patron: /@businessbarista/,
+    motivo:
+      'Cuenta estadounidense de noticias de negocios, poco conectada con un proyecto local (auditoría de septiembre de 2026, GPE-D16): se sustituyó por recursos valencianos',
+    ejemplo: "titulo: '@businessbarista',",
+  },
+  {
+    patron: /Tengo un plan[^\n]{0,40}Nude Project/,
+    motivo: 'Nadie ha podido confirmar un episodio de «Tengo un plan» con Nude Project: se recomienda el pódcast sin citar un episodio concreto',
+    ejemplo: "titulo: 'Tengo un plan — episodio piloto Nude Project',",
   },
 ];
 

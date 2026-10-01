@@ -7,7 +7,7 @@ estado: publicado
 preguntas:
   - enunciado: "¿Cuál de estas afirmaciones es un enunciado de economía normativa?"
     opciones:
-      - "El PIB español creció un 2,5 % en 2024 según el INE."
+      - "El PIB español creció un 3,7 % en 2024 según el INE."
       - "Una subida del salario mínimo del 10 % reduciría el empleo juvenil entre un 1 % y un 3 %."
       - "El salario mínimo debería subir hasta el 60 % del salario mediano para garantizar la dignidad de los trabajadores."
       - "La tasa de paro juvenil en España se situó en el 26 % en el último trimestre."
