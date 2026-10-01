@@ -16,7 +16,7 @@ materiales:
 solucion:
   - "<strong>1. Caiguda de la collita:</strong> (666.000 − 1.400.000) / 1.400.000 × 100 = <strong>−52,4 %</strong>. Menys de la meitat d'una campanya normal."
   - "<strong>2. Pujada del preu en origen:</strong> (9,00 − 3,30) / 3,30 × 100 = <strong>+172,7 %</strong>. El preu quasi es va triplicar."
-  - "<strong>3. Baixada posterior:</strong> (4,00 − 9,00) / 9,00 × 100 = <strong>−55,6 %</strong> entre el màxim de 2023 i 2025."
+  - "<strong>3. Baixada posterior:</strong> (4,00 − 9,00) / 9,00 × 100 = <strong>−55,6 %</strong> entre el màxim (finals de 2023 i principis de 2024) i 2025."
   - "<strong>4. Quina corba es va moure:</strong> l'<strong>oferta, cap a l'esquerra</strong>, per la sequera (un factor de cost i de naturalesa). La demanda amb prou faenes es va moure: les famílies van continuar volent oli. El model prediu menys quantitat i preu més alt, que és el que van mesurar MAPA i INE."
   - "<strong>5. La tornada:</strong> amb les pluges, l'oferta es va desplaçar a la <strong>dreta</strong> (campanya 2024/25 de nou al voltant d'1,4 milions de tones) i el preu va baixar. Mateix moviment, sentit contrari."
   - "<strong>6. Preu relatiu:</strong> el 2023 l'IPC general va pujar un 3,5 % i l'oli un 54,6 %. L'oli no va pujar «per la inflació»: va pujar <strong>molt més</strong> que la mitjana, per alguna cosa que va passar en el seu propi mercat."
@@ -42,11 +42,11 @@ Atenció a l'última pregunta, que és la més important: no és el mateix que p
 
 ## Taula 1 · La collita i el preu en origen
 
-| Campanya | Producció d'oli a Espanya | Preu mitjà en origen del verge extra |
+| Campanya | Producció d'oli a Espanya | Preu en origen del verge extra |
 | --- | --- | --- |
 | Campanya normal (referència) | al voltant d'1.400.000 t | — |
 | 2021/22 | al voltant d'1.400.000 t | 3,30 €/kg |
-| 2022/23 | **666.000 t** | per damunt de **9 €/kg** el 2023 |
+| 2022/23 | **666.000 t** | pujada fins a rondar els **9 €/kg** entre finals de 2023 i principis de 2024 |
 | 2023/24 | al voltant de 850.000 t | màxim de l'índex de l'oli en l'IPC en la primavera de 2024 |
 | 2024/25 | al voltant d'1.400.000 t | al voltant de **4 €/kg** al llarg de 2025 |
 
@@ -65,7 +65,7 @@ Atenció a l'última pregunta, que és la més important: no és el mateix que p
 ## Passos (sessió de 50 min)
 
 1. **El gràfic (15 min).** En paper quadriculat, dibuixeu dues línies sobre el mateix eix de temps (campanyes 2021/22 a 2024/25): una per a la **producció** (en milers de tones) i una altra per al **preu en origen** (en €/kg). Useu dues escales i poseu títol, unitats i font. Sense font, un gràfic no val res.
-2. **Els càlculs (10 min).** Calculeu, amb la calculadora i deixant l'operació escrita: la variació de la collita entre una campanya normal i la de 2022/23; la variació del preu entre 2021/22 i 2023; i la variació entre eixe màxim i 2025.
+2. **Els càlculs (10 min).** Calculeu, amb la calculadora i deixant l'operació escrita: la variació de la collita entre una campanya normal i la de 2022/23; la variació del preu entre 2021/22 i el màxim d'uns 9 €/kg; i la variació entre eixe màxim i 2025.
 3. **El diagnòstic (10 min).** Sobre un esquema d'oferta i demanda, dibuixeu quina corba es va desplaçar el 2022-2023 i cap a on, i quina corba es va desplaçar el 2024-2025. Justifiqueu en una frase per què l'altra corba es va quedar quieta.
 4. **El preu relatiu (10 min).** Compareu, amb la taula 2, quant va pujar l'oli i quant van pujar els preus en general el 2022 i el 2023. Responeu: l'oli va pujar «per la inflació»?
 5. **Posada en comú (5 min).** Dues parelles ensenyen el seu gràfic i expliquen el tram que més els ha costat.
