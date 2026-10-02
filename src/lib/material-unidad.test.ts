@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { anclaActividades, materialPorUnidad } from './material-unidad';
+import { agruparPorUnidad, anclaActividades, materialPorUnidad } from './material-unidad';
 
 const unidades = [
   { unidad: 2, slug: '02-mercado', title: 'El mercado' },
@@ -43,5 +43,25 @@ describe('materialPorUnidad', () => {
 
   it('uses the same anchor as the activities index', () => {
     expect(anclaActividades(7)).toBe('unidad-7');
+  });
+});
+
+describe('agruparPorUnidad', () => {
+  const act = (unidad_relacionada: number, id: string) => ({ id, data: { unidad_relacionada } });
+
+  it('groups the activities by unit, in unit order, keeping their order inside each unit', () => {
+    const grupos = agruparPorUnidad([act(2, 'b1'), act(1, 'a1'), act(2, 'b2'), act(1, 'a2')], new Map());
+    expect(grupos.map((g) => g.unidad)).toEqual([1, 2]);
+    expect(grupos.map((g) => g.items.map((x) => x.id))).toEqual([['a1', 'a2'], ['b1', 'b2']]);
+  });
+
+  it('names each group after its book unit, when there is one', () => {
+    const grupos = agruparPorUnidad([act(1, 'a'), act(3, 'c')], new Map([[1, 'La economía']]));
+    expect(grupos[0].titulo).toBe('La economía');
+    expect(grupos[1].titulo).toBeUndefined();
+  });
+
+  it('gives no groups for no activities', () => {
+    expect(agruparPorUnidad([], new Map())).toEqual([]);
   });
 });

@@ -6,7 +6,8 @@ import { ASIGNATURA_SLUGS, ASIGNATURAS } from '@/lib/asignaturas';
 import { ACTIVIDAD_TIPO_LABEL, actividadPdfName } from '@/lib/actividades';
 import { breadcrumbLd, SITE } from '@/lib/seo';
 import { getCollection } from 'astro:content';
-import { anclaActividades } from '@/lib/material-unidad';
+import { agruparPorUnidad, anclaActividades } from '@/lib/material-unidad';
+import { getMaterialPorUnidad } from '@/lib/material-unidad-sources';
 import { getLocale } from '@/i18n/locale';
 import { pickLocalizedEntry } from '@/i18n/content-locale';
 import { localizeAsignatura } from '@/i18n/asignaturas-ca';
@@ -51,6 +52,13 @@ const items = all
 
 const TIPO_LABEL = ACTIVIDAD_TIPO_LABEL;
 
+// One group per unit, with the book unit's title, so a teacher looking for
+// unit 7 jumps to it instead of scrolling through 40 cards (audit VIS-LEC-19).
+const grupos = agruparPorUnidad(
+  items,
+  new Map((await getMaterialPorUnidad(a.slug, locale)).map((u) => [u.unidad, u.title])),
+);
+
 const copy = {
   es: {
     inicio: 'Inicio', actividades: 'Actividades', titulo: 'Actividades para el aula',
@@ -62,6 +70,7 @@ const copy = {
     alumno: 'Cuaderno del alumno', alumnoSub: 'PDF · enunciados para trabajar, sin soluciones',
     profesor: 'Cuaderno del profesor', profesorSub: 'PDF · con soluciones de los ejercicios y solucionario de tests',
     previsualizar: 'Previsualizar el cuaderno en el navegador', abrir: 'Abrir ficha →',
+    unidad: 'Unidad', irA: 'Ir a la unidad', abrevUnidad: 'U',
     nota: 'Las actividades están pensadas para sesiones de 50-90 minutos. Se pueden adaptar a clase entera, grupos pequeños o trabajo individual según el contexto. Si las usáis con vuestro alumnado y descubrís ajustes que funcionan mejor, escribidnos a',
   },
   ca: {
@@ -74,6 +83,7 @@ const copy = {
     alumno: "Quadern de l'alumne", alumnoSub: 'PDF · enunciats per a treballar, sense solucions',
     profesor: 'Quadern del professor', profesorSub: 'PDF · amb solucions dels exercicis i solucionari de tests',
     previsualizar: 'Previsualitzar el quadern al navegador', abrir: 'Obrir fitxa →',
+    unidad: 'Unitat', irA: 'Ves a la unitat', abrevUnidad: 'U',
     nota: "Les activitats estan pensades per a sessions de 50-90 minuts. Es poden adaptar a classe sencera, grups xicotets o treball individual segons el context. Si les useu amb el vostre alumnat i descobriu ajustos que funcionen millor, escriviu-nos a",
   },
 }[locale];
@@ -135,32 +145,56 @@ const breadcrumb = breadcrumbLd([
   {items.length > 0 && (
     <section class="grid">
       <div class="container">
-        <ul class="card-grid">
-          {items.map((it, i) => {
-            const slug = it.id.split('/').pop()?.replace(/\.mdx?$/, '').replace(/\.ca$/, '') ?? it.id;
-            const pdf = pdfHref(slug);
-            // The first card of each unit is the target of the hub's «N actividades» link.
-            const primeraDeUnidad = i === 0 || items[i - 1].data.unidad_relacionada !== it.data.unidad_relacionada;
-            return (
-              <li class={`card card--${it.data.tipo}`} id={primeraDeUnidad ? anclaActividades(it.data.unidad_relacionada) : undefined}>
-                <div class="card__head">
-                  <span class="card__num">{String(it.data.unidad_relacionada).padStart(2, '0')}</span>
-                  <span class={`card__badge badge--${it.data.tipo}`}>{TIPO_LABEL[locale][it.data.tipo]}</span>
-                </div>
-                <h2 class="card__title">{it.data.title}</h2>
-                <p class="card__desc">{it.data.descripcion}</p>
-                <div class="card__meta">
-                  {it.data.duracion && <span>{it.data.duracion}</span>}
-                  {it.data.agrupacion && <span>· {it.data.agrupacion}</span>}
-                </div>
-                <div class="card__actions">
-                  <a class="cta" href={`/${a.slug}/actividades/${slug}/`}>{copy.abrir}</a>
-                  {pdf && <a class="card__pdf" href={pdf} download>↓ {copy.pdf}</a>}
-                </div>
-              </li>
-            );
-          })}
-        </ul>
+        {grupos.length > 1 && (
+          <nav class="saltos" aria-label={copy.irA}>
+            <span class="saltos__label" aria-hidden="true">{copy.irA}:</span>
+            <ol>
+              {grupos.map((g) => (
+                <li>
+                  {/* The visible «U7» is the link's name, so speech input can say what it
+                      sees; the unit's title goes in the tooltip and the description. */}
+                  <a
+                    href={`#${anclaActividades(g.unidad)}`}
+                    title={g.titulo ? `${copy.unidad} ${g.unidad}: ${g.titulo}` : `${copy.unidad} ${g.unidad}`}
+                  >{copy.abrevUnidad}{g.unidad}</a>
+                </li>
+              ))}
+            </ol>
+          </nav>
+        )}
+
+        {grupos.map((g) => (
+          // The hub's «N actividades» link points here.
+          <section class="unidad" id={anclaActividades(g.unidad)} aria-labelledby={`${anclaActividades(g.unidad)}-titulo`}>
+            <h2 class="unidad__title" id={`${anclaActividades(g.unidad)}-titulo`}>
+              <span class="unidad__num">{copy.unidad} {g.unidad}</span>
+              {g.titulo && <span class="unidad__name">{g.titulo}</span>}
+            </h2>
+            <ul class="card-grid">
+              {g.items.map((it) => {
+                const slug = it.id.split('/').pop()?.replace(/\.mdx?$/, '').replace(/\.ca$/, '') ?? it.id;
+                const pdf = pdfHref(slug);
+                return (
+                  <li class={`card card--${it.data.tipo}`}>
+                    <div class="card__head">
+                      <span class={`card__badge badge--${it.data.tipo}`}>{TIPO_LABEL[locale][it.data.tipo]}</span>
+                    </div>
+                    <h3 class="card__title">{it.data.title}</h3>
+                    <p class="card__desc">{it.data.descripcion}</p>
+                    <div class="card__meta">
+                      {it.data.duracion && <span>{it.data.duracion}</span>}
+                      {it.data.agrupacion && <span>· {it.data.agrupacion}</span>}
+                    </div>
+                    <div class="card__actions">
+                      <a class="cta" href={`/${a.slug}/actividades/${slug}/`}>{copy.abrir}</a>
+                      {pdf && <a class="card__pdf" href={pdf} download>↓ {copy.pdf}</a>}
+                    </div>
+                  </li>
+                );
+              })}
+            </ul>
+          </section>
+        ))}
       </div>
     </section>
   )}
@@ -227,6 +261,30 @@ const breadcrumb = breadcrumbLd([
   .download-secondary:hover { color: var(--color-terra); border-bottom-color: var(--color-terra); }
 
   .grid { padding-bottom: clamp(3rem, 7vw, 6rem); }
+
+  /* Jump links to each unit. */
+  .saltos { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.4rem 0.8rem; margin: 0 0 1rem; }
+  .saltos__label { font-family: var(--font-sans); font-size: 0.85rem; color: var(--color-ink-mute); }
+  .saltos ol { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .saltos a {
+    display: inline-block; min-width: 2.6rem; text-align: center;
+    font-family: var(--font-sans); font-size: 0.85rem; font-weight: 600;
+    color: var(--color-ink-soft); text-decoration: none;
+    border: 1px solid var(--color-line); border-radius: 999px; padding: 0.3rem 0.65rem;
+    transition: color .15s ease, border-color .15s ease;
+  }
+  .saltos a:hover, .saltos a:focus-visible { color: var(--color-terra); border-color: var(--color-terra); }
+
+  .unidad { margin-top: clamp(2rem, 5vw, 3rem); }
+  .unidad__title {
+    font-family: var(--font-serif); font-size: 1.6rem; font-weight: 500;
+    margin: 0 0 1.2rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--color-line);
+    display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 0.6rem;
+  }
+  .unidad__num {
+    font-style: italic; color: var(--color-mustard-deep);
+    font-variation-settings: "SOFT" 100, "WONK" 1;
+  }
   .card-grid {
     list-style: none; margin: 0; padding: 0;
     display: grid;
@@ -255,14 +313,6 @@ const breadcrumb = breadcrumbLd([
     justify-content: space-between;
     gap: 0.6rem;
   }
-  .card__num {
-    font-family: var(--font-serif);
-    font-style: italic;
-    font-size: 1.6rem;
-    color: var(--color-mustard-deep);
-    font-variation-settings: "SOFT" 100, "WONK" 1;
-    line-height: 1;
-  }
   .card__badge {
     font-family: var(--font-sans);
     font-size: 0.72rem;
@@ -288,6 +338,7 @@ const breadcrumb = breadcrumbLd([
   .card__title {
     font-family: var(--font-serif);
     font-size: 1.2rem;
+    letter-spacing: -0.02em;
     line-height: 1.25;
     color: var(--color-ink);
     margin: 0.3rem 0 0.2rem;
