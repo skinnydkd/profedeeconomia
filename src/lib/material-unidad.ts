@@ -52,3 +52,22 @@ export function materialPorUnidad(
 export function anclaActividades(unidad: number): string {
   return `unidad-${unidad}`;
 }
+
+export interface GrupoDeUnidad<T> { unidad: number; titulo?: string; items: T[]; }
+
+/**
+ * The activities index, one group per unit (audit VIS-LEC-19): units in order,
+ * each named after its book unit when there is one, activities in their order.
+ */
+export function agruparPorUnidad<T extends { data: { unidad_relacionada: number } }>(
+  items: readonly T[],
+  titulos: ReadonlyMap<number, string>,
+): GrupoDeUnidad<T>[] {
+  return [...new Set(items.map((it) => it.data.unidad_relacionada))]
+    .sort((x, y) => x - y)
+    .map((unidad) => ({
+      unidad,
+      titulo: titulos.get(unidad),
+      items: items.filter((it) => it.data.unidad_relacionada === unidad),
+    }));
+}
