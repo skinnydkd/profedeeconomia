@@ -11,6 +11,7 @@ import { dirname, join } from 'node:path';
  */
 const here = dirname(fileURLToPath(import.meta.url));
 const src = readFileSync(join(here, '[familia]', '[slug].astro'), 'utf8');
+const header = readFileSync(join(here, '..', '..', 'components', 'SectionHeader.astro'), 'utf8');
 
 function printBlock(css: string): string {
   const m = css.search(/@media\s+print\s*\{/);
@@ -27,5 +28,9 @@ describe('debate print stylesheet isolates the student ficha', () => {
   });
   it('re-shows only the .print-block materials in print', () => {
     expect(block).toMatch(/:global\(\.print-block\)[^}]*display:\s*block/);
+  });
+  it('keeps only a small title from the header on paper', () => {
+    expect(src).toMatch(/<SectionHeader[^>]*\bcompactPrint\b/);
+    expect(printBlock(header)).toMatch(/--compact-print \.kicker[^{]*--compact-print \.lede/);
   });
 });

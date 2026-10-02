@@ -7,7 +7,7 @@ import { getLocale } from '@/i18n/locale';
 import { pickLocalizedEntry } from '@/i18n/content-locale';
 import { localizeAsignatura } from '@/i18n/asignaturas-ca';
 import type { GetStaticPaths } from 'astro';
-import { t } from '@/i18n/ui';
+import SectionHeader from '@components/SectionHeader.astro';
 
 export const getStaticPaths = (async () => {
   return Object.values(ASIGNATURAS)
@@ -69,21 +69,18 @@ const breadcrumb = breadcrumbLd([
 ---
 
 <BaseLayout title={`${copy.titulo} — ${a.shortLabel}`} description={copy.descripcion} jsonLd={breadcrumb} contentLang={locale}>
-  <div class="container">
-    <nav class="breadcrumb" aria-label={t('nav.breadcrumb', locale)}>
-      <a href="/">{copy.inicio}</a> <span class="sep">›</span>
-      <a href={`/${a.slug}/`}>{a.shortLabel}</a> <span class="sep">›</span>
-      <span>{copy.titulo}</span>
-    </nav>
-  </div>
-
-  <section class="hero">
-    <div class="container">
-      <span class="kicker kicker--sentence">{a.shortLabel}</span>
-      <h1>{copy.titulo}</h1>
-      <p class="lede">{copy.lede}</p>
-    </div>
-  </section>
+  <SectionHeader
+    locale={locale}
+    kicker={`${a.shortLabel} · ${a.level}`}
+    crumbs={[
+      { name: copy.inicio, path: '/' },
+      { name: a.shortLabel, path: `/${a.slug}/` },
+      { name: copy.titulo },
+    ]}
+  >
+    <Fragment slot="title">{copy.titulo}</Fragment>
+    <Fragment slot="lede">{copy.lede}</Fragment>
+  </SectionHeader>
 
   <section class="grid-section">
     <div class="container">
@@ -113,22 +110,6 @@ const breadcrumb = breadcrumbLd([
      the left edge and, on a phone, the text touched the screen border. */
   .container { max-width: 1240px; margin: 0 auto; padding: 0 clamp(1.5rem, 4vw, 3rem); }
   .container--narrow { max-width: 900px; }
-  .breadcrumb { font-size: 0.92rem; color: var(--color-ink-mute); margin: 2rem 0; }
-  .breadcrumb a { color: var(--color-ink-mute); text-decoration: none; }
-  .breadcrumb a:hover { color: var(--color-terra); }
-  .breadcrumb .sep { margin: 0 0.5em; color: var(--color-mustard); }
-  .hero { padding: 1rem 0 clamp(2rem, 5vw, 4rem); }
-  .hero h1 { margin: 1rem 0 0.6rem; }
-  .lede {
-    font-family: var(--font-serif);
-    font-style: italic;
-    font-size: 1.35rem;
-    color: var(--color-ink-soft);
-    max-width: 55ch;
-    line-height: 1.5;
-    margin: 1.5rem 0 0.6rem;
-    font-variation-settings: "SOFT" 80;
-  }
   .grid-section { padding: 2.5rem 0 5rem; }
   .unit-grid { list-style: none; padding: 0; margin: 0; display: grid; gap: 1rem; grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr)); }
   .unit-card a {

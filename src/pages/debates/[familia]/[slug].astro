@@ -16,12 +16,13 @@ import NivelesRubrica from '@components/debates/NivelesRubrica.astro';
 import FichaPreparacion from '@components/debates/materiales/FichaPreparacion.astro';
 import PuenteUnidades from '@components/emprendimiento/PuenteUnidades.astro';
 import { familiaMeta, debatePdfName } from '@/lib/debates';
+import { localizeFamilias, FAMILIAS_DEBATE_CA } from '@/i18n/familias-ca';
 import { breadcrumbLd } from '@/lib/seo';
 import { getLocale } from '@/i18n/locale';
 import { pickLocalizedEntry } from '@/i18n/content-locale';
 import { getCollection, render } from 'astro:content';
 import type { GetStaticPaths } from 'astro';
-import { t } from '@/i18n/ui';
+import SectionHeader from '@components/SectionHeader.astro';
 
 export const getStaticPaths = (async () => {
   const all = (await getCollection('debates')).filter(
@@ -48,6 +49,7 @@ const copy = {
 }[locale];
 const { Content } = await render(view);
 const familia = familiaMeta(d.familia);
+const [familiaLocal] = localizeFamilias([familia], FAMILIAS_DEBATE_CA, locale);
 const pdfHref = `/downloads/${debatePdfName(d.familia, Astro.params.slug!, locale === 'ca' && caById.has(`${entry.id}.ca`))}`;
 const tonoFor = (i: number, total: number): 'favor' | 'contra' | 'neutro' =>
   total === 2 ? (i === 0 ? 'favor' : 'contra') : 'neutro';
@@ -59,21 +61,26 @@ const breadcrumb = breadcrumbLd([
 ---
 
 <BaseLayout title={`${d.title} — ${copy.debates}`} description={d.descripcion} ogType="article" jsonLd={breadcrumb} contentLang={view.data.lang} translated={caById.has(`${entry.id}.ca`)}>
-  <div class="container">
-    <nav class="breadcrumb no-print" aria-label={t('nav.breadcrumb', locale)}>
-      <a href="/">{copy.inicio}</a> <span class="sep">›</span>
-      <a href="/debates/">{copy.debates}</a> <span class="sep">›</span>
-      <span>{d.title}</span>
-    </nav>
-  </div>
+  <SectionHeader
+    locale={locale}
+    tight
+    kicker={familiaLocal.label}
+    titleStyle={`color: var(${familia.colorVar}-ink)`}
+    compactPrint
+    crumbClass="no-print"
+    crumbs={[
+      { name: copy.inicio, path: '/' },
+      { name: copy.debates, path: '/debates/' },
+      { name: d.title },
+    ]}
+  >
+    <Fragment slot="title">{d.title}</Fragment>
+    <Fragment slot="lede">{d.descripcion}</Fragment>
+    <DebateMeta formato={d.formato} duracion={d.duracion} agrupacion={d.agrupacion} nivel={d.nivel} locale={locale} />
+  </SectionHeader>
 
   <section class="body">
     <div class="container container--narrow">
-      <h1 style={`color: var(${familia.colorVar}-ink)`}>{d.title}</h1>
-      <p class="lede">{d.descripcion}</p>
-
-      <DebateMeta formato={d.formato} duracion={d.duracion} agrupacion={d.agrupacion} nivel={d.nivel} locale={locale} />
-
       <section class="block no-print mocion">
         <h2>{copy.mocionH}</h2>
         <blockquote class="mocion__q">{d.mocion}</blockquote>
@@ -142,13 +149,7 @@ const breadcrumb = breadcrumbLd([
 <style>
   .container { max-width: 1240px; margin: 0 auto; padding: 0 clamp(1.5rem, 4vw, 3rem); }
   .container--narrow { max-width: 820px; }
-  .breadcrumb { font-size: 0.92rem; color: var(--color-ink-mute); margin: 2rem 0; }
-  .breadcrumb a { color: var(--color-ink-mute); text-decoration: none; }
-  .breadcrumb a:hover { color: var(--color-terra); }
-  .breadcrumb .sep { margin: 0 0.5em; color: var(--color-mustard); }
   .body { padding: 1rem 0 clamp(3rem, 7vw, 6rem); }
-  h1 { margin: 0.6rem 0 0.4rem; max-width: 24ch; }
-  .lede { font-size: 1.2rem; color: var(--color-ink-soft); line-height: 1.5; margin: 0 0 0.5rem; }
   .block { margin: 1.6rem 0; }
   .block h2 { font-family: var(--font-serif); font-size: 1.4rem; font-weight: 500; margin: 0 0 0.5rem; }
   .block ul { padding-left: 1.3rem; } .block li { margin-bottom: 0.3em; }
@@ -178,11 +179,9 @@ const breadcrumb = breadcrumbLd([
      the PDF contains just the printable handouts, one .print-block per A4 page. */
   @media print {
     :global(.site-header), :global(.site-footer), .no-print { display: none !important; }
-    .breadcrumb, .lede { display: none !important; }
     :global(.meta) { display: none !important; }
     .body { padding: 0; }
     .container--narrow { max-width: none; padding: 0; }
-    h1 { font-size: 1.4rem; margin: 0 0 1.2rem; max-width: none; }
     .prose > :global(*) { display: none !important; }
     .prose :global(.print-block) {
       display: block !important;

@@ -10,7 +10,7 @@ import QuizPlayer from '@components/QuizPlayer.tsx';
 import ArbolDecisiones from '@components/actividades/ArbolDecisiones.astro';
 import { parseTreeFromMdxBody } from '@components/actividades/parse-tree.ts';
 import type { GetStaticPaths } from 'astro';
-import { t } from '@/i18n/ui';
+import Breadcrumb from '@components/Breadcrumb.astro';
 
 export const getStaticPaths = (async () => {
   const libroAll = await getCollection('libro');
@@ -85,12 +85,15 @@ const breadcrumb = breadcrumbLd([
 
 <BaseLayout title={`${copy.actividadesShort} · ${unit.data.title} — ${a.shortLabel}`} description={copy.descripcion} ogType="article" jsonLd={breadcrumb} contentLang={locale}>
   <div class="container">
-    <nav class="breadcrumb" aria-label={t('nav.breadcrumb', locale)}>
-      <a href="/">{copy.inicio}</a> <span class="sep">›</span>
-      <a href={`/${a.slug}/`}>{a.shortLabel}</a> <span class="sep">›</span>
-      <a href={`/${a.slug}/actividades-dinamicas/`}>{copy.actividades}</a> <span class="sep">›</span>
-      <span>{copy.unidad} {unidad}</span>
-    </nav>
+    <Breadcrumb
+      locale={locale}
+      items={[
+        { name: copy.inicio, path: '/' },
+        { name: a.shortLabel, path: `/${a.slug}/` },
+        { name: copy.actividades, path: `/${a.slug}/actividades-dinamicas/` },
+        { name: `${copy.unidad} ${unidad}` },
+      ]}
+    />
   </div>
 
   <section class="hero">
@@ -160,10 +163,6 @@ const breadcrumb = breadcrumbLd([
      the left edge and, on a phone, the text touched the screen border. */
   .container { max-width: 1240px; margin: 0 auto; padding: 0 clamp(1.5rem, 4vw, 3rem); }
   .container--narrow { max-width: 900px; }
-  .breadcrumb { font-size: 0.92rem; color: var(--color-ink-mute); margin: 2rem 0; }
-  .breadcrumb a { color: var(--color-ink-mute); text-decoration: none; }
-  .breadcrumb a:hover { color: var(--color-terra); }
-  .breadcrumb .sep { margin: 0 0.5em; color: var(--color-mustard); }
   .hero { padding: 1rem 0 clamp(2rem, 5vw, 4rem); }
   .hero h1 { margin: 1rem 0 0.6rem; }
   .lede {

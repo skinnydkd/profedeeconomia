@@ -7,7 +7,7 @@ import { getLocale } from '@/i18n/locale';
 import { pickLocalizedEntry } from '@/i18n/content-locale';
 import { localizeAsignatura } from '@/i18n/asignaturas-ca';
 import type { GetStaticPaths } from 'astro';
-import { t } from '@/i18n/ui';
+import SectionHeader from '@components/SectionHeader.astro';
 
 export const getStaticPaths = (async () => {
   return ASIGNATURA_SLUGS.filter((slug) => ASIGNATURAS[slug].estado === 'publicado').map((slug) => ({
@@ -72,28 +72,23 @@ const breadcrumb = breadcrumbLd([
   jsonLd={breadcrumb}
   contentLang={locale}
 >
-  <div class="container">
-    <nav class="breadcrumb" aria-label={t('nav.breadcrumb', locale)}>
-      <a href="/">{copy.inicio}</a> <span class="sep">›</span>
-      <a href={`/${a.slug}/`}>{a.shortLabel}</a> <span class="sep">›</span>
-      <span>{copy.tests}</span>
-    </nav>
-  </div>
-
-  <section class="hero">
-    <div class="container">
-      <span class="kicker kicker--sentence">{a.shortLabel} · {copy.tests}</span>
-      <h1>{copy.titulo}</h1>
-      <p class="lede">
-        {tests.length === 0 ? copy.vacio : copy.intro}
+  <SectionHeader
+    locale={locale}
+    kicker={`${a.shortLabel} · ${copy.tests}`}
+    crumbs={[
+      { name: copy.inicio, path: '/' },
+      { name: a.shortLabel, path: `/${a.slug}/` },
+      { name: copy.tests },
+    ]}
+  >
+    <Fragment slot="title">{copy.titulo}</Fragment>
+    <Fragment slot="lede">{tests.length === 0 ? copy.vacio : copy.intro}</Fragment>
+    {tests.length > 0 && (
+      <p class="meta">
+        {copy.meta(tests.length)}
       </p>
-      {tests.length > 0 && (
-        <p class="meta">
-          {copy.meta(tests.length)}
-        </p>
-      )}
-    </div>
-  </section>
+    )}
+  </SectionHeader>
 
   {tests.length > 0 && (
     <section class="grid">
@@ -136,23 +131,7 @@ const breadcrumb = breadcrumbLd([
     margin: 0 auto;
     padding: 0 clamp(1.5rem, 4vw, 3rem);
   }
-  .breadcrumb { font-size: 0.92rem; color: var(--color-ink-mute); margin: 2rem 0; }
-  .breadcrumb a { color: var(--color-ink-mute); text-decoration: none; }
-  .breadcrumb a:hover { color: var(--color-terra); }
-  .breadcrumb .sep { margin: 0 0.5em; color: var(--color-mustard); }
 
-  .hero { padding: 1rem 0 clamp(2rem, 5vw, 4rem); }
-  h1 { margin: 1rem 0 0.6rem; }
-  .lede {
-    font-family: var(--font-serif);
-    font-style: italic;
-    font-size: 1.35rem;
-    color: var(--color-ink-soft);
-    max-width: 55ch;
-    line-height: 1.5;
-    margin: 1.5rem 0 0.6rem;
-    font-variation-settings: "SOFT" 80;
-  }
   .meta { font-family: var(--font-sans); font-size: 0.9rem; color: var(--color-ink-mute); margin-top: 0.4rem; }
 
   .grid { padding-bottom: clamp(3rem, 7vw, 6rem); }

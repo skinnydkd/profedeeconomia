@@ -5,6 +5,7 @@ import JuegoCaratula from '@/components/juegos/JuegoCaratula.astro';
 import { getLocale } from '@/i18n/locale';
 import { localizeJuego } from '@/i18n/juegos-ca';
 import { t } from '@/i18n/ui';
+import SectionHeader from '@components/SectionHeader.astro';
 
 const locale = getLocale(Astro.currentLocale);
 
@@ -52,55 +53,52 @@ const copy = {
   description={copy.metaDesc}
   contentLang={locale}
 >
-  <div class="container">
-    <nav class="breadcrumb" aria-label={t('nav.breadcrumb', locale)}><a href="/">{copy.bcInicio}</a> <span class="sep">›</span> <span>{copy.bcCurrent}</span></nav>
-  </div>
-
-  <section class="hero">
-    <div class="container">
-      <h1>{copy.heroPre} <span class="serif-italic-wonk accent">{copy.heroAccent}</span>.</h1>
-      <p class="lede">
-        {copy.ledeIntro}
-        <a href="/jocs-economics/" class="editorial-link">{copy.ledeLink}</a>.
-      </p>
-
-      <div class="game-grid">
-        {JUEGOS.map((raw) => {
-          const j = localizeJuego(raw, locale);
-          return (
-            <a class={`game-card ${j.estado}`} href={j.href}>
-              <JuegoCaratula slug={j.slug} color={j.color} />
-              <div class="gc-body">
-                <div class="gc-eyebrow">
-                  {t(j.estado === 'disponible' ? 'estado.disponible' : 'estado.proximamente', locale)}
-                  {j.tipo === 'party' && ` · ${t('meta.multijugador', locale)}`}
-                </div>
-                <h2 class="gc-title">{j.title}</h2>
-                <p class="gc-desc">{j.descripcion}</p>
-                {j.nota_aula && <p class="gc-note">{j.nota_aula}</p>}
-                <span class="gc-meta">{j.nivel.map((n) => NIVEL_LABEL[n]).join(' · ')} · {j.modo}</span>
-                <span class="gc-cta">{j.tipo === 'party' ? t('card.abrirSala', locale) : t('card.jugar', locale)}</span>
+  <SectionHeader
+    locale={locale}
+    style="padding-bottom: clamp(3rem, 7vw, 6rem)"
+    crumbs={[
+      { name: copy.bcInicio, path: '/' },
+      { name: copy.bcCurrent },
+    ]}
+  >
+    <Fragment slot="title">{copy.heroPre}{' '}<span class="serif-italic-wonk accent">{copy.heroAccent}</span>.</Fragment>
+    <Fragment slot="lede">{copy.ledeIntro}{' '}<a href="/jocs-economics/" class="editorial-link">{copy.ledeLink}</a>.</Fragment>
+    <div class="game-grid">
+      {JUEGOS.map((raw) => {
+        const j = localizeJuego(raw, locale);
+        return (
+          <a class={`game-card ${j.estado}`} href={j.href}>
+            <JuegoCaratula slug={j.slug} color={j.color} />
+            <div class="gc-body">
+              <div class="gc-eyebrow">
+                {t(j.estado === 'disponible' ? 'estado.disponible' : 'estado.proximamente', locale)}
+                {j.tipo === 'party' && ` · ${t('meta.multijugador', locale)}`}
               </div>
-            </a>
-          );
-        })}
-      </div>
-
-      <p class="imprimibles">
-        {copy.imprimibles}
-        {JUEGOS.filter((j) => j.imprimible).map((raw, i) => {
-          const j = localizeJuego(raw, locale);
-          return (
-            <>{i > 0 && ' · '}<a href={`/juegos/${j.slug}/imprimir/`}>{j.title}</a></>
-          );
-        })}
-      </p>
-
-      <p class="note">
-        {copy.note}
-      </p>
+              <h2 class="gc-title">{j.title}</h2>
+              <p class="gc-desc">{j.descripcion}</p>
+              {j.nota_aula && <p class="gc-note">{j.nota_aula}</p>}
+              <span class="gc-meta">{j.nivel.map((n) => NIVEL_LABEL[n]).join(' · ')} · {j.modo}</span>
+              <span class="gc-cta">{j.tipo === 'party' ? t('card.abrirSala', locale) : t('card.jugar', locale)}</span>
+            </div>
+          </a>
+        );
+      })}
     </div>
-  </section>
+
+    <p class="imprimibles">
+      {copy.imprimibles}
+      {JUEGOS.filter((j) => j.imprimible).map((raw, i) => {
+        const j = localizeJuego(raw, locale);
+        return (
+          <>{i > 0 && ' · '}<a href={`/juegos/${j.slug}/imprimir/`}>{j.title}</a></>
+        );
+      })}
+    </p>
+
+    <p class="note">
+      {copy.note}
+    </p>
+  </SectionHeader>
 </BaseLayout>
 
 <style>
@@ -109,24 +107,8 @@ const copy = {
     margin: 0 auto;
     padding: 0 clamp(1.5rem, 4vw, 3rem);
   }
-  .breadcrumb { font-size: 0.92rem; color: var(--color-ink-mute); margin: 2rem 0; }
-  .breadcrumb a { color: var(--color-ink-mute); text-decoration: none; }
-  .breadcrumb a:hover { color: var(--color-terra); }
-  .breadcrumb .sep { margin: 0 0.5em; color: var(--color-mustard); }
 
-  .hero { padding: 1rem 0 clamp(3rem, 7vw, 6rem); }
-  h1 { max-width: 22ch; margin: 1rem 0 0.6rem; }
   .accent { color: var(--color-terra); }
-  .lede {
-    font-family: var(--font-serif);
-    font-style: italic;
-    font-size: clamp(1.25rem, 1.6vw, 1.5rem);
-    color: var(--color-ink-soft);
-    max-width: 55ch;
-    margin: 1.5rem 0;
-    line-height: 1.5;
-    font-variation-settings: "SOFT" 80;
-  }
   .note { color: var(--color-ink-soft); max-width: 60ch; }
   .imprimibles { color: var(--color-ink-soft); max-width: 60ch; margin-top: 1.5rem; }
   .imprimibles a { color: var(--color-terra-ink); font-weight: 600; text-decoration: none; }

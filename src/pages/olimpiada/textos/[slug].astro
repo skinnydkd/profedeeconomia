@@ -8,7 +8,7 @@ import { getLocale } from '@/i18n/locale';
 import { pickLocalizedEntry } from '@/i18n/content-locale';
 import { getCollection, render } from 'astro:content';
 import type { GetStaticPaths } from 'astro';
-import { t } from '@/i18n/ui';
+import SectionHeader from '@components/SectionHeader.astro';
 
 export const getStaticPaths = (async () => {
   // ES entries define the canonical routes; CA siblings (lang: ca) must NOT
@@ -41,21 +41,24 @@ const copy = {
 ---
 
 <BaseLayout title={`${d.title} — ${copy.taller}`} description={d.descripcion} contentLang={view.data.lang} translated={caById.has(`${entry.id}.ca`)}>
-  <div class="container">
-    <nav class="breadcrumb" aria-label={t('nav.breadcrumb', locale)}>
-      <a href="/">{copy.inicio}</a> <span class="sep">›</span>
-      <a href="/olimpiada/">{copy.olimpiada}</a> <span class="sep">›</span>
-      <a href="/olimpiada/textos/">{copy.taller}</a> <span class="sep">›</span>
-      <span>{d.title}</span>
-    </nav>
-  </div>
+  <SectionHeader
+    locale={locale}
+    tight
+    kicker={copy.taller}
+    crumbs={[
+      { name: copy.inicio, path: '/' },
+      { name: copy.olimpiada, path: '/olimpiada/' },
+      { name: copy.taller, path: '/olimpiada/textos/' },
+      { name: d.title },
+    ]}
+  >
+    <Fragment slot="title">{d.title}</Fragment>
+    <Fragment slot="lede">{d.descripcion}</Fragment>
+    <p class="source">{d.fuente} <span class="sep-mid">·</span> {d.fecha}</p>
+  </SectionHeader>
 
   <section class="body">
     <div class="container container--narrow">
-      <h1>{d.title}</h1>
-      <p class="source">{d.fuente} <span class="sep-mid">·</span> {d.fecha}</p>
-      <p class="lede">{d.descripcion}</p>
-
       <article class="prose">
         <Content />
       </article>
@@ -68,17 +71,10 @@ const copy = {
 <style>
   .container { max-width: 1240px; margin: 0 auto; padding: 0 clamp(1.5rem, 4vw, 3rem); }
   .container--narrow { max-width: 820px; }
-  .breadcrumb { font-size: 0.92rem; color: var(--color-ink-mute); margin: 2rem 0; }
-  .breadcrumb a { color: var(--color-ink-mute); text-decoration: none; }
-  .breadcrumb a:hover { color: var(--color-terra); }
-  .breadcrumb .sep { margin: 0 0.5em; color: var(--color-mustard); }
 
   .body { padding: 1rem 0 clamp(3rem, 7vw, 6rem); }
-  .kicker { font-family: var(--font-sans); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-terra-deep); }
-  h1 { margin: 0.6rem 0 0.3rem; max-width: 32ch; }
   .source { font-family: var(--font-mono); font-size: 0.85rem; color: var(--color-ink-mute); margin: 0 0 0.6rem; }
   .sep-mid { margin: 0 0.4em; color: var(--color-mustard); }
-  .lede { font-size: 1.1rem; color: var(--color-ink-soft); line-height: 1.5; margin: 0 0 1.5rem; }
 
   .prose { font-size: 1.05rem; line-height: 1.7; color: var(--color-ink); }
   .prose :global(h2) { font-family: var(--font-serif); font-size: 1.6rem; margin: 2.2em 0 0.7em; position: relative; padding-top: 1em; font-weight: 500; }

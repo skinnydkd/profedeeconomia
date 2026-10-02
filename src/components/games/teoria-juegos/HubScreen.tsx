@@ -18,8 +18,8 @@ export default function HubScreen({
   return (
     <div class="tj">
       <span class="tj__kicker">{c.kicker}</span>
-      <h1>{c.title}</h1>
-      <p class="tj__lede">{c.lede}</p>
+      <h1 class="tj__title">{c.title}</h1>
+      <p class="tj__lede tj__lede--hub">{c.lede}</p>
 
       <ModoSwitch modo={modo} onModo={onModo} />
 

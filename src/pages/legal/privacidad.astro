@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
+import SectionHeader from '@components/SectionHeader.astro';
 import { getLocale } from '@/i18n/locale';
 import { resolveMeasurementId, gaCookieNames } from '@/lib/analytics';
 import { SITE } from '@/lib/seo';
@@ -17,6 +18,7 @@ const [browserCookie, sessionCookie] = gaCookieNames(
 // input reaches this page.
 const copy = {
   es: {
+    inicio: 'Inicio',
     pageTitle: 'Política de privacidad',
     description: 'Política de privacidad de profedeeconomia.es: qué datos tratamos, qué cookies usa la analítica y cómo aceptarla o rechazarla en cualquier momento.',
     h1: 'Política de privacidad',
@@ -66,6 +68,7 @@ const copy = {
     linkAviso: 'Aviso legal',
   },
   ca: {
+    inicio: 'Inici',
     pageTitle: 'Política de privacitat',
     description: "Política de privacitat de profedeeconomia.es: quines dades tractem, quines cookies usa l'analítica i com acceptar-la o rebutjar-la en qualsevol moment.",
     h1: 'Política de privacitat',
@@ -126,65 +129,74 @@ const cookies = [
   description={copy.description}
   contentLang={locale}
 >
-  <div class="prose">
-    <h1>{copy.h1}</h1>
-    <p class="updated">{copy.updatedLabel} {copy.updatedDate}</p>
+  <SectionHeader
+    locale={locale}
+    meta={`${copy.updatedLabel} ${copy.updatedDate}`}
+    crumbs={[
+      { name: copy.inicio, path: '/' },
+      { name: copy.pageTitle },
+    ]}
+  >
+    <Fragment slot="title">{copy.h1}</Fragment>
+    <Fragment slot="lede" set:html={copy.lede} />
+  </SectionHeader>
 
-    <p class="lede" set:html={copy.lede} />
+  <div class="container">
+    <div class="prose">
+      <h2>{copy.h2Datos}</h2>
+      <p>{copy.pDatos}</p>
 
-    <h2>{copy.h2Datos}</h2>
-    <p>{copy.pDatos}</p>
+      <h2>{copy.h2Analitica}</h2>
+      <p set:html={copy.pAnalitica1} />
+      <p set:html={copy.pAnalitica2} />
+      <p set:html={copy.pAnalitica3} />
 
-    <h2>{copy.h2Analitica}</h2>
-    <p set:html={copy.pAnalitica1} />
-    <p set:html={copy.pAnalitica2} />
-    <p set:html={copy.pAnalitica3} />
+      <h2>{copy.h2Cookies}</h2>
+      <p>{copy.pCookies1}</p>
+      <ul class="cookies">
+        {cookies.map((cookie) => (
+          <li>
+            <code>{cookie.name}</code> — {cookie.purpose} {copy.cookieTtl}
+          </li>
+        ))}
+      </ul>
+      <p set:html={copy.pCookies2} />
 
-    <h2>{copy.h2Cookies}</h2>
-    <p>{copy.pCookies1}</p>
-    <ul class="cookies">
-      {cookies.map((cookie) => (
-        <li>
-          <code>{cookie.name}</code> — {cookie.purpose} {copy.cookieTtl}
-        </li>
-      ))}
-    </ul>
-    <p set:html={copy.pCookies2} />
-
-    <h2>{copy.h2Decision}</h2>
-    <p>{copy.pDecision}</p>
-    <div class="consent-control">
-      <p class="consent-status">
-        <span class="consent-status__label">{copy.statusLabel}</span>
-        <strong id="consent-state" data-granted={copy.statusGranted} data-denied={copy.statusDenied}
-          >{copy.statusUnset}</strong
-        >
-      </p>
-      <div class="consent-buttons">
-        <button type="button" data-consent="granted">{copy.btnAccept}</button>
-        <button type="button" data-consent="denied">{copy.btnReject}</button>
+      <h2>{copy.h2Decision}</h2>
+      <p>{copy.pDecision}</p>
+      <div class="consent-control">
+        <p class="consent-status">
+          <span class="consent-status__label">{copy.statusLabel}</span>
+          <strong id="consent-state" data-granted={copy.statusGranted} data-denied={copy.statusDenied}
+            >{copy.statusUnset}</strong
+          >
+        </p>
+        <div class="consent-buttons">
+          <button type="button" data-consent="granted">{copy.btnAccept}</button>
+          <button type="button" data-consent="denied">{copy.btnReject}</button>
+        </div>
+        <noscript><p class="consent-nojs">{copy.noJs}</p></noscript>
       </div>
-      <noscript><p class="consent-nojs">{copy.noJs}</p></noscript>
+      <p>{copy.pDecision2}</p>
+
+      <h2>{copy.h2Almacenamiento}</h2>
+      <p set:html={copy.pAlmacenamiento} />
+
+      <h2>{copy.h2Terceros}</h2>
+      <p>{copy.pTerceros}</p>
+
+      <h2>{copy.h2Derechos}</h2>
+      <p set:html={copy.pDerechos1} />
+      <p>
+        {copy.pDerechos2}
+        <a class="editorial-link" href={`mailto:${SITE.email}`}>{SITE.email}</a>.
+      </p>
+
+      <h2>{copy.h2Cambios}</h2>
+      <p>{copy.pCambios}</p>
+
+      <p class="links"><a class="editorial-link" href="/legal/aviso-legal/">{copy.linkAviso}</a></p>
     </div>
-    <p>{copy.pDecision2}</p>
-
-    <h2>{copy.h2Almacenamiento}</h2>
-    <p set:html={copy.pAlmacenamiento} />
-
-    <h2>{copy.h2Terceros}</h2>
-    <p>{copy.pTerceros}</p>
-
-    <h2>{copy.h2Derechos}</h2>
-    <p set:html={copy.pDerechos1} />
-    <p>
-      {copy.pDerechos2}
-      <a class="editorial-link" href={`mailto:${SITE.email}`}>{SITE.email}</a>.
-    </p>
-
-    <h2>{copy.h2Cambios}</h2>
-    <p>{copy.pCambios}</p>
-
-    <p class="links"><a class="editorial-link" href="/legal/aviso-legal/">{copy.linkAviso}</a></p>
   </div>
 </BaseLayout>
 
@@ -218,12 +230,10 @@ const cookies = [
 </script>
 
 <style>
-  .prose { max-width: 64ch; margin: 0 auto; padding: 3rem clamp(1.5rem, 4vw, 3rem) 5rem; }
-  .eyebrow { font-family: var(--font-mono); font-size: 0.8rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-terra); margin: 0 0 0.5rem; }
-  h1 { margin: 0 0 0.4rem; }
-  .updated { font-family: var(--font-mono); font-size: 0.85rem; color: var(--color-ink-mute); margin: 0 0 2.2rem; }
-  .lede { font-family: var(--font-serif); font-style: italic; font-size: 1.25rem; line-height: 1.5; color: var(--color-ink-soft); margin: 0 0 2.2rem; font-variation-settings: "SOFT" 80; }
-  .lede strong { color: var(--color-ink); font-style: normal; }
+  .container { max-width: 1240px; margin: 0 auto; padding: 0 clamp(1.5rem, 4vw, 3rem); }
+  /* Same left edge as the header; the text keeps its reading measure. */
+  .prose { max-width: 64ch; padding-bottom: 5rem; }
+  .prose > h2:first-child { margin-top: 0; }
   h2 { font-size: 1.25rem; margin: 2.2rem 0 0.7rem; }
   p { font-size: 1.08rem; line-height: 1.7; color: var(--color-ink-soft); margin: 0 0 1rem; }
   p strong { color: var(--color-ink); }

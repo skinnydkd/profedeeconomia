@@ -1,11 +1,13 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
+import SectionHeader from '@components/SectionHeader.astro';
 import { getLocale } from '@/i18n/locale';
 
 const locale = getLocale(Astro.currentLocale);
 
 const copy = {
   es: {
+    inicio: 'Inicio',
     pageTitle: 'Sobre el proyecto',
     description: 'Qué es profedeeconomia.es: material editorial para impartir economía, empresa y finanzas en el instituto, organizado por asignatura y basado en el currículo LOMLOE.',
     h1: 'Material para enseñar economía en el instituto',
@@ -27,6 +29,7 @@ const copy = {
     linkPrivacidad: 'Privacidad',
   },
   ca: {
+    inicio: 'Inici',
     pageTitle: 'Sobre el projecte',
     description: 'Què és profedeeconomia.es: material editorial per a impartir economia, empresa i finances a l\'institut, organitzat per assignatura i basat en el currículum LOMLOE.',
     h1: "Material per a ensenyar economia a l'institut",
@@ -54,44 +57,49 @@ const copy = {
   description={copy.description}
   contentLang={locale}
 >
-  <div class="prose">
-    <h1>{copy.h1}</h1>
+  <SectionHeader
+    locale={locale}
+    crumbs={[
+      { name: copy.inicio, path: '/' },
+      { name: copy.pageTitle },
+    ]}
+  >
+    <Fragment slot="title">{copy.h1}</Fragment>
+    <Fragment slot="lede">{copy.lede1}{' '}<strong>{copy.ledeStrong1}</strong> {copy.lede2}{' '}<strong>{copy.ledeStrong2}</strong> {copy.lede3}</Fragment>
+  </SectionHeader>
 
-    <p class="lede">
-      {copy.lede1} <strong>{copy.ledeStrong1}</strong>
-      {copy.lede2} <strong>{copy.ledeStrong2}</strong>
-      {copy.lede3}
-    </p>
+  <div class="container">
+    <div class="prose">
+      <h2>{copy.h2Organizado}</h2>
+      <p>
+        {copy.pOrganizado}
+      </p>
 
-    <h2>{copy.h2Organizado}</h2>
-    <p>
-      {copy.pOrganizado}
-    </p>
+      <h2>{copy.h2Basa}</h2>
+      <p>
+        {copy.pBasaPre} <strong>{copy.pBasaStrong}</strong>
+        {copy.pBasaPost}
+      </p>
 
-    <h2>{copy.h2Basa}</h2>
-    <p>
-      {copy.pBasaPre} <strong>{copy.pBasaStrong}</strong>
-      {copy.pBasaPost}
-    </p>
+      <h2>{copy.h2Quien}</h2>
+      <p>
+        {copy.pQuien}
+      </p>
 
-    <h2>{copy.h2Quien}</h2>
-    <p>
-      {copy.pQuien}
-    </p>
-
-    <p class="links">
-      <a class="editorial-link" href="/contacto/">{copy.linkContacto}</a> ·
-      <a class="editorial-link" href="/legal/aviso-legal/">{copy.linkAviso}</a> ·
-      <a class="editorial-link" href="/legal/privacidad/">{copy.linkPrivacidad}</a>
-    </p>
+      <p class="links">
+        <a class="editorial-link" href="/contacto/">{copy.linkContacto}</a> ·
+        <a class="editorial-link" href="/legal/aviso-legal/">{copy.linkAviso}</a> ·
+        <a class="editorial-link" href="/legal/privacidad/">{copy.linkPrivacidad}</a>
+      </p>
+    </div>
   </div>
 </BaseLayout>
 
 <style>
-  .prose { max-width: 62ch; margin: 0 auto; padding: 3rem clamp(1.5rem, 4vw, 3rem) 5rem; }
-  .eyebrow { font-family: var(--font-mono); font-size: 0.8rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-terra); margin: 0 0 0.5rem; }
-  h1 { margin: 0 0 1.2rem; max-width: 18ch; }
-  .lede { font-family: var(--font-serif); font-style: italic; font-size: 1.35rem; line-height: 1.5; color: var(--color-ink-soft); margin: 0 0 2.5rem; font-variation-settings: "SOFT" 80; }
+  .container { max-width: 1240px; margin: 0 auto; padding: 0 clamp(1.5rem, 4vw, 3rem); }
+  /* Same left edge as the header; the text keeps its reading measure. */
+  .prose { max-width: 62ch; padding-bottom: 5rem; }
+  .prose > h2:first-child { margin-top: 0; }
   h2 { font-size: 1.4rem; margin: 2.5rem 0 0.8rem; }
   p { font-size: 1.12rem; line-height: 1.7; color: var(--color-ink-soft); margin: 0 0 1.1rem; }
   p strong { color: var(--color-ink); }

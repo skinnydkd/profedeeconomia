@@ -10,7 +10,7 @@ import { getLocale } from '@/i18n/locale';
 import { pickLocalizedEntry } from '@/i18n/content-locale';
 import { localizeAsignatura } from '@/i18n/asignaturas-ca';
 import type { GetStaticPaths } from 'astro';
-import { t } from '@/i18n/ui';
+import Breadcrumb from '@components/Breadcrumb.astro';
 
 export const getStaticPaths = (async () => {
   const all = await getCollection('actividades');
@@ -71,12 +71,15 @@ const breadcrumb = breadcrumbLd([
 
 <BaseLayout title={actividad.data.seoTitle ?? `${actividad.data.title} — ${a.seoName}`} brandSuffix={false} description={actividad.data.descripcion} ogType="article" jsonLd={breadcrumb} contentLang={actividad.data.lang} translated={actCaById.has(`${actividadEs.id}.ca`)}>
   <div class="container">
-    <nav class="breadcrumb" aria-label={t('nav.breadcrumb', locale)}>
-      <a href="/">{copy.inicio}</a> <span class="sep">›</span>
-      <a href={`/${a.slug}/`}>{a.shortLabel}</a> <span class="sep">›</span>
-      <a href={`/${a.slug}/actividades/`}>{copy.actividades}</a> <span class="sep">›</span>
-      <span>{copy.unidad} {actividad.data.unidad_relacionada}</span>
-    </nav>
+    <Breadcrumb
+      locale={locale}
+      items={[
+        { name: copy.inicio, path: '/' },
+        { name: a.shortLabel, path: `/${a.slug}/` },
+        { name: copy.actividades, path: `/${a.slug}/actividades/` },
+        { name: `${copy.unidad} ${actividad.data.unidad_relacionada}` },
+      ]}
+    />
   </div>
 
   <section class="hero">
@@ -156,10 +159,6 @@ const breadcrumb = breadcrumbLd([
   }
   .container--narrow { max-width: 760px; }
 
-  .breadcrumb { font-size: 0.92rem; color: var(--color-ink-mute); margin: 2rem 0; }
-  .breadcrumb a { color: var(--color-ink-mute); text-decoration: none; }
-  .breadcrumb a:hover { color: var(--color-terra); }
-  .breadcrumb .sep { margin: 0 0.5em; color: var(--color-mustard); }
 
   .hero { padding: 1rem 0 clamp(1.5rem, 4vw, 3rem); }
 
