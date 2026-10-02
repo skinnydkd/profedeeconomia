@@ -6,6 +6,7 @@ import { CAMPOS, AREAS, decisionPorDefecto, eur, num } from '@/lib/business-game
 import type { TeamDecision } from '@/lib/business-game/engine';
 import NumberInput from '../NumberInput';
 import { estadoMasReciente, intervaloPolling } from '@/lib/business-game/polling';
+import { rondaYaCalculada } from '@/lib/business-game/ronda';
 
 /**
  * Business Game ONLINE (Fase 1b) — multijugador por rondas con persistencia.
@@ -188,6 +189,7 @@ function PanelProfe({ sesion, estado, onRefrescar, onSalir }: { sesion: Sesion; 
   if (!estado) return <div class="bg__panel"><p class="bg__loading">Cargando la liga…</p></div>;
   const { liga, equipos } = estado;
   const enviados = equipos.filter((e) => e.haEnviado).length;
+  const calculada = liga.fase === 'decisiones' && rondaYaCalculada(liga, estado.resultados);
   const cerrar = async () => {
     setCerrando(true); setError('');
     try { await post('cerrar', {}, sesion.token); onRefrescar(); } catch (e) { setError((e as Error).message); } finally { setCerrando(false); }
@@ -203,6 +205,7 @@ function PanelProfe({ sesion, estado, onRefrescar, onSalir }: { sesion: Sesion; 
       <h3 class="bg__h3">Empresas ({equipos.length}) · {enviados}/{equipos.length} han enviado decisiones</h3>
       <Ranking estado={estado} />
 
+      {calculada && <div class="bg__espera">Los resultados de la ronda {liga.ronda} ya están guardados, pero el cierre no llegó a terminar. Vuelve a pulsar «Cerrar la ronda {liga.ronda}» para pasar a la siguiente.</div>}
       {error && <p class="bg__error">{error}</p>}
       <div class="bg__actions">
         {liga.fase !== 'cerrada' && <button class="bg__btn bg__btn--primary" onClick={cerrar} disabled={cerrando || equipos.length === 0}>{cerrando ? 'Calculando…' : `Cerrar la ronda ${liga.ronda} →`}</button>}
@@ -221,6 +224,9 @@ function ConsolaEquipo({ sesion, estado, onRefrescar, onSalir }: { sesion: Sesio
   if (!estado) return <div class="bg__panel"><p class="bg__loading">Cargando la liga…</p></div>;
   const { liga } = estado;
   const yo = estado.equipos.find((e) => e.id === sesion.equipoId);
+  // Decisions sent now would not count: the round is closed with the saved results.
+  const calculada = rondaYaCalculada(liga, estado.resultados);
+  const abierta = liga.fase !== 'cerrada' && !calculada;
   const enviar = async () => {
     setEnviando(true); setError('');
     try { await post('decisiones', { decision: dec }, sesion.token); onRefrescar(); } catch (e) { setError((e as Error).message); } finally { setEnviando(false); }
@@ -235,13 +241,17 @@ function ConsolaEquipo({ sesion, estado, onRefrescar, onSalir }: { sesion: Sesio
       </div>
       {yo && <p class="bg__card-caja">Caja: <strong>{eur(yo.caja)}</strong> · Beneficio acumulado: <strong>{eur(yo.beneficioAcumulado)}</strong></p>}
 
-      {liga.fase !== 'cerrada' && (
+      {calculada && (
+        <div class="bg__espera">Los resultados de la ronda {liga.ronda} ya están calculados. {liga.ronda < liga.numRondas ? `Cuando el profe termine de cerrarla, podrás decidir la ronda ${liga.ronda + 1}.` : 'Cuando el profe termine de cerrarla, verás la clasificación final.'}</div>
+      )}
+
+      {abierta && (
         yo?.haEnviado
           ? <div class="bg__espera">✓ Decisiones enviadas para la ronda {liga.ronda}. Esperando a que el profe cierre la ronda…<br /><span class="bg__nota-mini">Puedes seguir cambiándolas y reenviar hasta que se cierre.</span></div>
           : <p class="bg__lead">Fija las decisiones de tu empresa en las 4 áreas y envíalas.</p>
       )}
 
-      {liga.fase !== 'cerrada' && (
+      {abierta && (
         <div class="bg__card" style="margin-bottom:1.2rem">
           {AREAS.map((area) => (
             <div class="bg__area" key={area}>
