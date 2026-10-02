@@ -33,6 +33,7 @@ import { cleanPlayerName, isPlayerId, parseClientMsg } from './messages';
 import {
   MAX_PLAYERS,
   MIN_PLAYERS,
+  SCORE_IMPOSTOR_GUESS_CORRECT,
   TIMER_SHOW_WORD_S,
   TIMER_DISCUSSION_PER_PLAYER_S,
   TIMER_GUESS_S,
@@ -722,14 +723,15 @@ export default class InsiderServer implements Party.Server {
           ...this.state.players,
           [impostorId]: {
             ...this.state.players[impostorId]!,
-            score: (this.state.players[impostorId]?.score ?? 0) + 150, // SCORE_IMPOSTOR_GUESS_CORRECT
+            score: (this.state.players[impostorId]?.score ?? 0) + SCORE_IMPOSTOR_GUESS_CORRECT,
           },
         },
       };
     }
 
-    const savedTally = this.pendingTally;
-    this.doReveal(savedTally, { guess: word, correct: guessCorrect });
+    // doReveal starts from the tally's state: hand it the state after the guess,
+    // or the bonus just added is thrown away with the pre-guess scores.
+    this.doReveal({ ...this.pendingTally, state: this.state }, { guess: word, correct: guessCorrect });
   }
 
   private handleRestart(connId: string, playerId: string): void {

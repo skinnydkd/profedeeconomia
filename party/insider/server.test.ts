@@ -2,7 +2,7 @@ import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import type * as Party from 'partykit/server';
 import InsiderServer from './server';
 import type { GameState } from './state';
-import { MAX_PLAYERS, TIMER_GUESS_S } from './constants';
+import { MAX_PLAYERS, SCORE_IMPOSTOR_GUESS_CORRECT, TIMER_GUESS_S } from './constants';
 import type { ClientMsg, ServerMsg } from '../../src/lib/games-multi/insider/types';
 
 // ---- Minimal fake of the PartyKit room and connections the server uses ----
@@ -91,6 +91,28 @@ describe('InsiderServer — guess phase (CODE-SRV-13)', () => {
     await send(host, { type: 'advancePhase' });
     expect(host.errors()).toEqual([]);
     expect(game().phase).toBe('reveal');
+  });
+});
+
+describe('InsiderServer — the impostor\'s guess', () => {
+  it('a caught impostor who guesses the word keeps the bonus through the reveal', async () => {
+    const { impostorConn } = await reachGuessPhase();
+    const [impostor] = [...game().impostors];
+    const before = game().players[impostor]!.score;
+    await send(impostorConn, { type: 'guess', word: game().word! });
+    expect(game().phase).toBe('reveal');
+    expect(game().players[impostor]!.score).toBe(before + SCORE_IMPOSTOR_GUESS_CORRECT);
+    // And the class sees it on the reveal screen.
+    const reveal = [...impostorConn.sent].reverse().find((m) => m.type === 'public' && m.state.phase === 'reveal');
+    expect(reveal?.type === 'public' && reveal.state.lastGuess).toEqual({ guess: game().word, correct: true });
+  });
+
+  it('a wrong guess earns nothing and the round scores stay', async () => {
+    const { impostorConn } = await reachGuessPhase();
+    const scores = Object.fromEntries(Object.values(game().players).map((p) => [p.id, p.score]));
+    await send(impostorConn, { type: 'guess', word: 'otra cosa' });
+    expect(game().phase).toBe('reveal');
+    expect(Object.fromEntries(Object.values(game().players).map((p) => [p.id, p.score]))).toEqual(scores);
   });
 });
 
