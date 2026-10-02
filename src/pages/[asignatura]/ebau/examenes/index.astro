@@ -12,7 +12,7 @@ import { existsSync } from 'node:fs';
 import { resolve } from 'node:path';
 import type { GetStaticPaths } from 'astro';
 import { getLocale } from '@/i18n/locale';
-import { t } from '@/i18n/ui';
+import SectionHeader from '@components/SectionHeader.astro';
 
 const locale = getLocale(Astro.currentLocale);
 
@@ -58,26 +58,19 @@ const totalDisponibles = grupos.reduce((n, g) => n + g.disponibles, 0);
   description={`Exámenes oficiales de EBAU/PAU de Economía de la Empresa de años anteriores, por comunidad autónoma, con su resolución en PDF.`}
   translated={false}
 >
-  <div class="container">
-    <nav class="breadcrumb" aria-label={t('nav.breadcrumb', locale)}>
-      <a href="/">Inicio</a> <span class="sep">›</span>
-      <a href={`/${a.slug}/`}>{a.shortLabel}</a> <span class="sep">›</span>
-      <a href={`/${a.slug}/ebau/`}>Preparación EBAU</a> <span class="sep">›</span>
-      <span>Exámenes por comunidad</span>
-    </nav>
-  </div>
-
-  <section class="hero">
-    <div class="container">
-      <h1>Exámenes EBAU por comunidad</h1>
-      <p class="lede">
-        Exámenes oficiales de la prueba de acceso (Economía de la Empresa) de años anteriores,
-        organizados por comunidad autónoma y convocatoria, con su resolución. {totalDisponibles > 0
-          ? `${totalDisponibles} exámenes disponibles; el resto, próximamente.`
-          : 'Se irán publicando por comunidad; los que faltan aparecen como próximamente.'}
-      </p>
-    </div>
-  </section>
+  <SectionHeader
+    locale={locale}
+    kicker={`${a.shortLabel} · ${a.level}`}
+    crumbs={[
+      { name: 'Inicio', path: '/' },
+      { name: a.shortLabel, path: `/${a.slug}/` },
+      { name: 'Preparación EBAU', path: `/${a.slug}/ebau/` },
+      { name: 'Exámenes por comunidad' },
+    ]}
+  >
+    <Fragment slot="title">Exámenes EBAU por comunidad</Fragment>
+    <Fragment slot="lede">Exámenes oficiales de la prueba de acceso (Economía de la Empresa) de años anteriores, organizados por comunidad autónoma y convocatoria, con su resolución. {totalDisponibles > 0 ? `${totalDisponibles} exámenes disponibles; el resto, próximamente.` : 'Se irán publicando por comunidad; los que faltan aparecen como próximamente.'}</Fragment>
+  </SectionHeader>
 
   <section class="lista">
     <div class="container">
@@ -129,15 +122,7 @@ const totalDisponibles = grupos.reduce((n, g) => n + g.disponibles, 0);
 
 <style>
   .container { max-width: 1240px; margin: 0 auto; padding: 0 clamp(1.5rem, 4vw, 3rem); }
-  .breadcrumb { font-size: 0.92rem; color: var(--color-ink-mute); margin: 2rem 0; }
-  .breadcrumb a { color: var(--color-ink-mute); text-decoration: none; }
-  .breadcrumb a:hover { color: var(--color-terra); }
-  .breadcrumb .sep { margin: 0 0.5em; color: var(--color-mustard); }
 
-  .hero { padding: 1rem 0 2rem; }
-  .kicker { font-family: var(--font-sans); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.04em; text-transform: none; color: var(--color-terra-deep); }
-  h1 { margin: 0.6rem 0 0.8rem; }
-  .lede { font-size: 1.2rem; color: var(--color-ink-soft); line-height: 1.55; max-width: 62ch; }
 
   .lista { padding: 0 0 2rem; }
   .ccaa { margin-bottom: 2.2rem; }

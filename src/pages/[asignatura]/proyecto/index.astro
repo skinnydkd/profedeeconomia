@@ -14,7 +14,7 @@ import { getLocale } from '@/i18n/locale';
 import { pickLocalizedEntry } from '@/i18n/content-locale';
 import { localizeAsignatura } from '@/i18n/asignaturas-ca';
 import type { GetStaticPaths } from 'astro';
-import { t } from '@/i18n/ui';
+import SectionHeader from '@components/SectionHeader.astro';
 
 export const getStaticPaths = (async () => {
   const all = await getCollection('proyecto');
@@ -92,50 +92,48 @@ const breadcrumb = breadcrumbLd([
   jsonLd={breadcrumb}
   contentLang={locale}
 >
-  <div class="container">
-    <nav class="breadcrumb" aria-label={t('nav.breadcrumb', locale)}>
-      <a href="/">{copy.inicio}</a> <span class="sep">›</span>
-      <a href={`/${a.slug}/`}>{a.shortLabel}</a> <span class="sep">›</span>
-      <span>{copy.cuaderno}</span>
-    </nav>
-  </div>
+  <SectionHeader
+    locale={locale}
+    kicker={`${a.shortLabel} · ${a.level}`}
+    style={`--accent: var(--color-${a.color}); --accent-soft: var(--color-${a.color}-soft); --accent-ink: var(--color-${a.color}-ink);`}
+    crumbs={[
+      { name: copy.inicio, path: '/' },
+      { name: a.shortLabel, path: `/${a.slug}/` },
+      { name: copy.cuaderno },
+    ]}
+  >
+    <Fragment slot="title">{copy.cuaderno}</Fragment>
+    <Fragment slot="lede">{copy.lede}</Fragment>
+    {hasCuaderno && (
+      <>
+        <p class="downloads-lead">{copy.downloadsLead[0]}<strong>{copy.downloadsLead[1]}</strong>{copy.downloadsLead[2]}</p>
+        <div class="downloads">
+          <a class="download-cta" href={alumnoHref} download>
+            <span class="download-cta__icon" aria-hidden="true">↓</span>
+            <span class="download-cta__text">
+              <strong>{copy.alumno}</strong>
+              <span class="muted">{copy.alumnoSub}</span>
+            </span>
+          </a>
+          <a class="download-cta" href={profesorHref} download>
+            <span class="download-cta__icon" aria-hidden="true">↓</span>
+            <span class="download-cta__text">
+              <strong>{copy.profesor}</strong>
+              <span class="muted">{copy.profesorSub}</span>
+            </span>
+          </a>
+          {hasGuia && <a class="download-secondary" href={guiaHref} download>{copy.guia}</a>}
+        </div>
+      </>
+    )}
 
-  <section class="hero" style={`--accent: var(--color-${a.color}); --accent-soft: var(--color-${a.color}-soft); --accent-ink: var(--color-${a.color}-ink);`}>
-    <div class="container">
-      <h1>{copy.cuaderno}</h1>
-      <p class="lede">{copy.lede}</p>
-
-      {hasCuaderno && (
-        <>
-          <p class="downloads-lead">{copy.downloadsLead[0]}<strong>{copy.downloadsLead[1]}</strong>{copy.downloadsLead[2]}</p>
-          <div class="downloads">
-            <a class="download-cta" href={alumnoHref} download>
-              <span class="download-cta__icon" aria-hidden="true">↓</span>
-              <span class="download-cta__text">
-                <strong>{copy.alumno}</strong>
-                <span class="muted">{copy.alumnoSub}</span>
-              </span>
-            </a>
-            <a class="download-cta" href={profesorHref} download>
-              <span class="download-cta__icon" aria-hidden="true">↓</span>
-              <span class="download-cta__text">
-                <strong>{copy.profesor}</strong>
-                <span class="muted">{copy.profesorSub}</span>
-              </span>
-            </a>
-            {hasGuia && <a class="download-secondary" href={guiaHref} download>{copy.guia}</a>}
-          </div>
-        </>
-      )}
-
-      <p class="adapt-note">
-        {copy.adapt}
-      </p>
-      <p class="related-note">
-        {copy.relatedPre}<strong>{a.shortLabel}</strong>{copy.relatedPost}<a href="/emprendimiento/proyecto/">{copy.relatedLink}</a>.
-      </p>
-    </div>
-  </section>
+    <p class="adapt-note">
+      {copy.adapt}
+    </p>
+    <p class="related-note">
+      {copy.relatedPre}<strong>{a.shortLabel}</strong>{copy.relatedPost}<a href="/emprendimiento/proyecto/">{copy.relatedLink}</a>.
+    </p>
+  </SectionHeader>
 
   <section class="fases" style={`--accent: var(--color-${a.color}); --accent-soft: var(--color-${a.color}-soft); --accent-ink: var(--color-${a.color}-ink);`}>
     <div class="container">
@@ -158,15 +156,7 @@ const breadcrumb = breadcrumbLd([
 
 <style>
   .container { max-width: 1240px; margin: 0 auto; padding: 0 clamp(1.5rem, 4vw, 3rem); }
-  .breadcrumb { font-size: 0.92rem; color: var(--color-ink-mute); margin: 2rem 0; }
-  .breadcrumb a { color: var(--color-ink-mute); text-decoration: none; }
-  .breadcrumb a:hover { color: var(--color-gpe); }
-  .breadcrumb .sep { margin: 0 0.5em; color: var(--color-mustard); }
-  .hero { padding: 1rem 0 clamp(1.5rem, 4vw, 3rem); }
-  .kicker { font-family: var(--font-sans); font-size: 0.8rem; font-weight: 600; letter-spacing: 0.04em; text-transform: none; color: var(--accent-ink); }
-  h1 { max-width: 22ch; margin: 1rem 0 0.6rem; }
-  .lede { font-family: var(--font-serif); font-style: italic; font-size: 1.35rem; color: var(--color-ink-soft); max-width: 52ch; margin: 1rem 0 1.5rem; line-height: 1.5; font-variation-settings: "SOFT" 80; }
-  .downloads-lead { font-size: 1rem; color: var(--color-ink-soft); margin: 0 0 1rem; }
+  .downloads-lead { font-size: 1rem; color: var(--color-ink-soft); margin: 2rem 0 1rem; }
   .downloads { display: flex; flex-wrap: wrap; align-items: center; gap: 1.2rem; }
   .download-cta { display: inline-flex; align-items: center; gap: 1rem; padding: 0.9rem 1.4rem 0.9rem 1.1rem; background: var(--accent); color: #fff; text-decoration: none; border-radius: 6px; transition: filter .2s var(--ease-soft), transform .2s var(--ease-soft); }
   .download-cta:hover { filter: brightness(0.92); transform: translateY(-1px); }

@@ -7,6 +7,7 @@ import type { GetStaticPaths } from 'astro';
 import { getLocale } from '@/i18n/locale';
 import { t } from '@/i18n/ui';
 import { localizeGeneradorNativo } from '@/i18n/generadores-ca';
+import SectionHeader from '@components/SectionHeader.astro';
 
 export const getStaticPaths = (async () => {
   return GENERADORES_NATIVOS.map((g) => ({ params: { slug: g.slug }, props: { componente: g.componente, slug: g.slug } }));
@@ -23,21 +24,20 @@ const copy = {
 ---
 
 <BaseLayout title={`${g.title} — ${copy.metaSuffix}`} description={g.descripcion} contentLang={locale}>
-  <div class="container">
-    <nav class="breadcrumb" aria-label={t('nav.breadcrumb', locale)}>
-      <a href="/">{copy.bcInicio}</a> <span class="sep">›</span>
-      <a href="/generadores/">{copy.bcGeneradores}</a> <span class="sep">›</span>
-      <span>{g.title}</span>
-    </nav>
-  </div>
-
-  <section class="body">
-    <div class="container container--narrow">
-      <h1>{g.title}</h1>
-      <p class="lede">{g.descripcion}</p>
-      <p class="como">{g.comoUsar}</p>
-    </div>
-  </section>
+  <SectionHeader
+    locale={locale}
+    tight
+    kicker={copy.bcGeneradores}
+    crumbs={[
+      { name: copy.bcInicio, path: '/' },
+      { name: copy.bcGeneradores, path: '/generadores/' },
+      { name: g.title },
+    ]}
+  >
+    <Fragment slot="title">{g.title}</Fragment>
+    <Fragment slot="lede">{g.descripcion}</Fragment>
+    <p class="como">{g.comoUsar}</p>
+  </SectionHeader>
 
   <section class="player-wrap">
     <!-- The rubric grid (criteria × four levels) does not fit in 900 px. -->
@@ -56,14 +56,7 @@ const copy = {
 <style>
   .container { max-width: 1240px; margin: 0 auto; padding: 0 clamp(1.5rem, 4vw, 3rem); }
   .container--narrow { max-width: 900px; }
-  .breadcrumb { font-size: 0.92rem; color: var(--color-ink-mute); margin: 2rem 0; }
-  .breadcrumb a { color: var(--color-ink-mute); text-decoration: none; }
-  .breadcrumb a:hover { color: var(--color-terra); }
-  .breadcrumb .sep { margin: 0 0.5em; color: var(--color-mustard); }
   .body { padding: 1rem 0; }
-  .kicker { font-family: var(--font-sans); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-terra-deep); }
-  h1 { margin: 0.6rem 0 0.4rem; max-width: 24ch; }
-  .lede { font-size: 1.2rem; color: var(--color-ink-soft); line-height: 1.5; margin: 0 0 0.4rem; }
   .como { color: var(--color-ink-soft); font-size: 0.98rem; }
   .player-wrap { padding: clamp(1rem, 3vw, 2rem) 0 clamp(1.5rem, 4vw, 2.5rem); }
   .back { margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--color-line); font-family: var(--font-sans); }

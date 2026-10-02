@@ -2,7 +2,7 @@
 import BaseLayout from '@layouts/BaseLayout.astro';
 import { getLocale } from '@/i18n/locale';
 import { SITE } from '@/lib/seo';
-import { t } from '@/i18n/ui';
+import SectionHeader from '@components/SectionHeader.astro';
 
 const locale = getLocale(Astro.currentLocale);
 
@@ -159,89 +159,85 @@ const copy = {
   description={copy.description}
   contentLang={locale}
 >
-  <div class="container">
-    <nav class="breadcrumb" aria-label={t('nav.breadcrumb', locale)}>
-      <a href="/">{copy.bcInicio}</a> <span class="sep">›</span>
-      <a href="/emprendimiento/">{copy.bcEmprendimiento}</a> <span class="sep">›</span>
-      <span>{copy.bcCurrent}</span>
-    </nav>
-  </div>
-
-  <div class="prose">
-    <h1>{copy.h1}</h1>
-    <p class="lede">
-      {copy.ledePre} <strong>{copy.ledeStrong}</strong>.
-    </p>
-
+  <SectionHeader
+    locale={locale}
+    kicker={copy.bcEmprendimiento}
+    crumbs={[
+      { name: copy.bcInicio, path: '/' },
+      { name: copy.bcEmprendimiento, path: '/emprendimiento/' },
+      { name: copy.bcCurrent },
+    ]}
+  >
+    <Fragment slot="title">{copy.h1}</Fragment>
+    <Fragment slot="lede">{copy.ledePre}{' '}<strong>{copy.ledeStrong}</strong>.</Fragment>
     <a class="dl" href={`/downloads/entrevista-emprendedores-plantilla${locale === 'ca' ? '.ca' : ''}.pdf`} download>{copy.dl}</a>
+  </SectionHeader>
 
-    <h2>{copy.h2Objetivo}</h2>
-    <p>
-      {copy.pObjetivo}
-    </p>
+  <div class="container">
+    <div class="prose">
+      <h2>{copy.h2Objetivo}</h2>
+      <p>
+        {copy.pObjetivo}
+      </p>
 
-    <h2>{copy.h2Antes}</h2>
-    <ul>
-      <li>{copy.antes1}</li>
-      <li>{copy.antes2}</li>
-      <li>{copy.antes3}</li>
-      <li>{copy.antes4}</li>
-    </ul>
+      <h2>{copy.h2Antes}</h2>
+      <ul>
+        <li>{copy.antes1}</li>
+        <li>{copy.antes2}</li>
+        <li>{copy.antes3}</li>
+        <li>{copy.antes4}</li>
+      </ul>
 
-    <h2>{copy.h2Como}</h2>
-    <p>
-      {copy.pComoPre} <strong>{copy.pComoStrong1}</strong>
-      {copy.pComoMid}
-      <strong>{copy.pComoStrong2}</strong> {copy.pComoPost}
-    </p>
-    <ol>
-      <li>{copy.li1}</li>
-      <li>{copy.li2Pre}
-        <blockquote>{copy.blockquote}</blockquote>
-      </li>
-      <li>{copy.li3Pre} <strong>{copy.li3Strong1}</strong> {copy.li3Mid} <strong>{copy.li3Strong2}</strong>.</li>
-      <li>{copy.li4}</li>
-      <li>{copy.li5}</li>
-    </ol>
+      <h2>{copy.h2Como}</h2>
+      <p>
+        {copy.pComoPre} <strong>{copy.pComoStrong1}</strong>
+        {copy.pComoMid}
+        <strong>{copy.pComoStrong2}</strong> {copy.pComoPost}
+      </p>
+      <ol>
+        <li>{copy.li1}</li>
+        <li>{copy.li2Pre}
+          <blockquote>{copy.blockquote}</blockquote>
+        </li>
+        <li>{copy.li3Pre} <strong>{copy.li3Strong1}</strong> {copy.li3Mid} <strong>{copy.li3Strong2}</strong>.</li>
+        <li>{copy.li4}</li>
+        <li>{copy.li5}</li>
+      </ol>
 
-    <h2>{copy.h2Etica}</h2>
-    <ul>
-      <li><strong>{copy.etica1Strong}</strong> {copy.etica1Post}</li>
-      <li>{copy.etica2Pre} <strong>{copy.etica2Strong}</strong> {copy.etica2Post}</li>
-      <li>{copy.etica3}</li>
-      <li>{copy.etica4}</li>
-    </ul>
+      <h2>{copy.h2Etica}</h2>
+      <ul>
+        <li><strong>{copy.etica1Strong}</strong> {copy.etica1Post}</li>
+        <li>{copy.etica2Pre} <strong>{copy.etica2Strong}</strong> {copy.etica2Post}</li>
+        <li>{copy.etica3}</li>
+        <li>{copy.etica4}</li>
+      </ul>
 
-    <h2>{copy.h2Obligatorias}</h2>
-    <ol lang="es">{obligatorias.map((q) => <li>{q}</li>)}</ol>
+      <h2>{copy.h2Obligatorias}</h2>
+      <ol lang="es">{obligatorias.map((q) => <li>{q}</li>)}</ol>
 
-    <h2>{copy.h2Optativas}</h2>
-    <ol lang="es">{optativas.map((q) => <li>{q}</li>)}</ol>
+      <h2>{copy.h2Optativas}</h2>
+      <ol lang="es">{optativas.map((q) => <li>{q}</li>)}</ol>
 
-    <h2>{copy.h2Entrega}</h2>
-    <p>
-      {copy.pEntregaPre}
-      <a class="editorial-link" href={`mailto:${SITE.email}`}>{SITE.email}</a>{copy.pEntregaPost}
-    </p>
-    <p class="note">
-      {copy.note}
-    </p>
+      <h2>{copy.h2Entrega}</h2>
+      <p>
+        {copy.pEntregaPre}
+        <a class="editorial-link" href={`mailto:${SITE.email}`}>{SITE.email}</a>{copy.pEntregaPost}
+      </p>
+      <p class="note">
+        {copy.note}
+      </p>
 
-    <p class="links"><a class="editorial-link" href="/emprendimiento/proyecto/">{copy.linkProyecto}</a> · <a class="editorial-link" href="/emprendimiento/actividades/">{copy.linkActividades}</a></p>
+      <p class="links"><a class="editorial-link" href="/emprendimiento/proyecto/">{copy.linkProyecto}</a> · <a class="editorial-link" href="/emprendimiento/actividades/">{copy.linkActividades}</a></p>
+    </div>
   </div>
 </BaseLayout>
 
 <style>
-  .container { max-width: 720px; margin: 0 auto; padding: 0 clamp(1.5rem, 4vw, 3rem); }
-  .breadcrumb { font-size: 0.92rem; color: var(--color-ink-mute); margin: 2rem 0; }
-  .breadcrumb a { color: var(--color-ink-mute); text-decoration: none; }
-  .breadcrumb a:hover { color: var(--color-terra); }
-  .breadcrumb .sep { margin: 0 0.5em; color: var(--color-mustard); }
-  .prose { max-width: 720px; margin: 0 auto; padding: 0 clamp(1.5rem, 4vw, 3rem) 5rem; }
-  .kicker { font-family: var(--font-mono); font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-terra-deep); }
-  h1 { margin: 0.5rem 0 0.8rem; }
-  .lede { font-family: var(--font-serif); font-style: italic; font-size: 1.3rem; line-height: 1.5; color: var(--color-ink-soft); margin: 0 0 1.8rem; font-variation-settings: "SOFT" 80; }
-  .dl { display: inline-block; background: var(--color-terra); color: var(--color-paper); font-family: var(--font-sans); font-weight: 600; padding: 0.7rem 1.2rem; border-radius: 6px; text-decoration: none; margin-bottom: 1.5rem; }
+  .container { max-width: 1240px; margin: 0 auto; padding: 0 clamp(1.5rem, 4vw, 3rem); }
+  /* Same left edge as the header; the text keeps its reading measure. */
+  .prose { max-width: 624px; padding-bottom: 5rem; }
+  .prose > h2:first-child { margin-top: 0; }
+  .dl { display: inline-block; background: var(--color-terra); color: var(--color-paper); font-family: var(--font-sans); font-weight: 600; padding: 0.7rem 1.2rem; border-radius: 6px; text-decoration: none; margin-top: 1.5rem; }
   .dl:hover { background: var(--color-terra-deep); }
   h2 { font-size: 1.4rem; margin: 2.4rem 0 0.7rem; }
   p, li { font-size: 1.08rem; line-height: 1.7; color: var(--color-ink-soft); }

@@ -1,0 +1,75 @@
+---
+/**
+ * The header of the sections of every subject and of the cross-cutting pages
+ * (audit VIS-LEC-22): breadcrumb, label, h1, standfirst and meta in the same
+ * place and the same voice, so the title no longer jumps from page to page.
+ * The h1 goes in the `title` slot and the standfirst in `lede`; anything else
+ * (downloads, notes) goes in the default slot, after them.
+ */
+import Breadcrumb, { type Crumb } from './Breadcrumb.astro';
+import type { Locale } from '@/i18n/locale';
+
+interface Props {
+  crumbs: Crumb[];
+  locale: Locale;
+  /** Label above the title, e.g. «Eco 1BACH · Actividades». */
+  kicker?: string;
+  meta?: string;
+  /** Extra classes for the breadcrumb, e.g. `no-print`. */
+  crumbClass?: string;
+  class?: string;
+  style?: string;
+  titleStyle?: string;
+  /** Language of the header when it differs from the page body's. */
+  lang?: string;
+  /** Pages printed as handouts keep only a small title on paper. */
+  compactPrint?: boolean;
+  /** Detail pages: the body right after it brings its own top spacing. */
+  tight?: boolean;
+}
+
+const { crumbs, locale, kicker, meta, crumbClass, class: extra, style, titleStyle, lang, compactPrint = false, tight = false } = Astro.props;
+---
+
+<div class="sh-container" lang={lang}><Breadcrumb items={crumbs} locale={locale} class={crumbClass} /></div>
+<header
+  class:list={['section-header', tight && 'section-header--tight', compactPrint && 'section-header--compact-print', extra]}
+  style={style}
+  lang={lang}
+>
+  <div class="sh-container">
+    {kicker && <span class="kicker kicker--sentence">{kicker}</span>}
+    <h1 style={titleStyle}><slot name="title" /></h1>
+    {Astro.slots.has('lede') && <p class="lede"><slot name="lede" /></p>}
+    {meta && <p class="meta">{meta}</p>}
+    <slot />
+  </div>
+</header>
+
+<style>
+  .sh-container { max-width: 1240px; margin: 0 auto; padding: 0 clamp(1.5rem, 4vw, 3rem); }
+  .section-header { padding: 1rem 0 clamp(2rem, 5vw, 4rem); }
+  .section-header--tight { padding-bottom: 0; }
+  h1 { margin: 1rem 0 0.6rem; }
+  .lede {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 1.35rem;
+    color: var(--color-ink-soft);
+    max-width: 55ch;
+    line-height: 1.5;
+    margin: 1.5rem 0 0.6rem;
+    font-variation-settings: "SOFT" 80;
+  }
+  .meta { font-family: var(--font-sans); font-size: 0.9rem; color: var(--color-ink-mute); margin-top: 0.4rem; }
+  @media print {
+    .section-header { padding: 0 0 1rem; }
+    .section-header--compact-print { padding: 0; }
+    .section-header--compact-print .sh-container { max-width: none; padding: 0; }
+    .section-header--compact-print .kicker,
+    .section-header--compact-print .lede,
+    .section-header--compact-print .meta { display: none; }
+    .section-header--compact-print h1 { font-size: 1.4rem; margin: 0 0 1.2rem; }
+  }
+</style>

@@ -12,7 +12,7 @@ import { TERRITORIES, CONTINENT_BONUS, CONTINENTS } from '@/lib/games/econrisk/m
 import { EVENT_CARDS } from '@/lib/games/econrisk/events';
 import { localizeFactions, localizeEventText, localizeTerritoryName } from '@/i18n/games/econrisk-ca';
 import type { ContinentId } from '@/lib/games/econrisk/types';
-import { t } from '@/i18n/ui';
+import Breadcrumb from '@components/Breadcrumb.astro';
 
 const locale = getLocale(Astro.currentLocale);
 const factions = localizeFactions(locale);
@@ -106,12 +106,15 @@ const vbH = Math.max(...ys) - Math.min(...ys) + PAD * 2;
 
 <BaseLayout title={copy.metaTitle} description={copy.metaDesc} contentLang={locale} noindex>
   <div class="container">
-    <nav class="breadcrumb no-print" aria-label={t('nav.breadcrumb', locale)}>
-      <a href="/">{copy.bcInicio}</a> <span class="sep">›</span>
-      <a href="/juegos/">{copy.bcJuegos}</a> <span class="sep">›</span>
-      <a href="/juegos/econrisk/">Econrisk</a> <span class="sep">›</span>
-      <span>{copy.bcImprimir}</span>
-    </nav>
+    <Breadcrumb class="no-print"
+      locale={locale}
+      items={[
+        { name: copy.bcInicio, path: '/' },
+        { name: copy.bcJuegos, path: '/juegos/' },
+        { name: 'Econrisk', path: '/juegos/econrisk/' },
+        { name: copy.bcImprimir },
+      ]}
+    />
 
     <header class="intro no-print">
       <span class="kicker">{copy.kicker}</span>
@@ -194,10 +197,6 @@ const vbH = Math.max(...ys) - Math.min(...ys) + PAD * 2;
 
 <style>
   .container { max-width: 920px; margin: 0 auto; padding: 0 clamp(1.5rem, 4vw, 3rem) 4rem; }
-  .breadcrumb { font-size: 0.92rem; color: var(--color-ink-mute); margin: 2rem 0; }
-  .breadcrumb a { color: var(--color-ink-mute); text-decoration: none; }
-  .breadcrumb a:hover { color: var(--color-terra); }
-  .breadcrumb .sep { margin: 0 0.5em; color: var(--color-mustard); }
   .intro { margin-bottom: 2.5rem; }
   .kicker { font-family: var(--font-sans); font-size: .8rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--color-terra); }
   h1 { margin: .5rem 0 .8rem; }

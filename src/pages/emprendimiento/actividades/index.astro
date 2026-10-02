@@ -3,7 +3,7 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 import { getLocale } from '@/i18n/locale';
 import { pickLocalizedEntry } from '@/i18n/content-locale';
 import { getCollection, render } from 'astro:content';
-import { t } from '@/i18n/ui';
+import SectionHeader from '@components/SectionHeader.astro';
 
 const locale = getLocale(Astro.currentLocale);
 // ES entries drive order; each renders its CA sibling body inline under 'ca'.
@@ -48,22 +48,18 @@ const copy = {
   description={copy.metaDesc}
   contentLang={locale}
 >
-  <div class="container">
-    <nav class="breadcrumb" aria-label={t('nav.breadcrumb', locale)}>
-      <a href="/">{copy.bcInicio}</a> <span class="sep">›</span>
-      <a href="/emprendimiento/">{copy.bcEmpr}</a> <span class="sep">›</span>
-      <span>{copy.bcCurrent}</span>
-    </nav>
-  </div>
-
-  <section class="hero">
-    <div class="container">
-      <h1>{copy.heroH1}</h1>
-      <p class="lede">
-        {copy.ledeA}<strong>{copy.ledeStrong}</strong>{copy.ledeB}
-      </p>
-    </div>
-  </section>
+  <SectionHeader
+    locale={locale}
+    kicker={copy.bcEmpr}
+    crumbs={[
+      { name: copy.bcInicio, path: '/' },
+      { name: copy.bcEmpr, path: '/emprendimiento/' },
+      { name: copy.bcCurrent },
+    ]}
+  >
+    <Fragment slot="title">{copy.heroH1}</Fragment>
+    <Fragment slot="lede">{copy.ledeA}<strong>{copy.ledeStrong}</strong>{copy.ledeB}</Fragment>
+  </SectionHeader>
 
   <section class="list">
     <div class="container">
@@ -85,15 +81,9 @@ const copy = {
 </BaseLayout>
 
 <style>
-  .container { max-width: 760px; margin: 0 auto; padding: 0 clamp(1.5rem, 4vw, 3rem); }
-  .breadcrumb { font-size: 0.92rem; color: var(--color-ink-mute); margin: 2rem 0; }
-  .breadcrumb a { color: var(--color-ink-mute); text-decoration: none; }
-  .breadcrumb a:hover { color: var(--color-terra); }
-  .breadcrumb .sep { margin: 0 0.5em; color: var(--color-mustard); }
-  .hero { padding: 1rem 0 1rem; }
-  .kicker { font-family: var(--font-mono); font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-terra-deep); }
-  h1 { margin: 0.6rem 0 0.6rem; }
-  .lede { font-family: var(--font-serif); font-style: italic; font-size: 1.3rem; line-height: 1.5; color: var(--color-ink-soft); max-width: 52ch; font-variation-settings: "SOFT" 80; }
+  .container { max-width: 1240px; margin: 0 auto; padding: 0 clamp(1.5rem, 4vw, 3rem); }
+  /* Same left edge as the header; the text keeps its reading measure. */
+  .act, .empty { max-width: 664px; }
   .list { padding-bottom: clamp(3rem, 7vw, 6rem); }
   .act { border-top: 1px solid var(--color-line); padding: 2rem 0; }
   .act__title { font-size: 1.5rem; margin: 0 0 0.4rem; }

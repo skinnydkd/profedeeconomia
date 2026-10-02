@@ -11,7 +11,7 @@ import type { GetStaticPaths } from 'astro';
 import { getLocale } from '@/i18n/locale';
 import { localizeAsignatura } from '@/i18n/asignaturas-ca';
 import { pickLocalizedEntry } from '@/i18n/content-locale';
-import { t } from '@/i18n/ui';
+import Breadcrumb from '@components/Breadcrumb.astro';
 
 export const getStaticPaths = (() => {
   return ASIGNATURA_SLUGS.map((slug) => ({
@@ -228,11 +228,13 @@ const jsonLd = isPublicado
 >
 
   <div class="container">
-    <nav class="breadcrumb" aria-label={t('nav.breadcrumb', locale)}>
-      <a href="/">{copy.bcInicio}</a>
-      <span class="sep">›</span>
-      <span>{a.shortLabel}</span>
-    </nav>
+    <Breadcrumb
+      locale={locale}
+      items={[
+        { name: copy.bcInicio, path: '/' },
+        { name: a.shortLabel },
+      ]}
+    />
   </div>
 
   <section class="hub-hero">
@@ -340,15 +342,6 @@ const jsonLd = isPublicado
     margin: 0 auto;
     padding: 0 clamp(1.5rem, 4vw, 3rem);
   }
-
-  .breadcrumb {
-    font-size: 0.92rem;
-    color: var(--color-ink-mute);
-    margin: 2rem 0;
-  }
-  .breadcrumb a { color: var(--color-ink-mute); text-decoration: none; }
-  .breadcrumb a:hover { color: var(--color-terra); }
-  .breadcrumb .sep { margin: 0 0.5em; color: var(--color-mustard); }
 
   .hub-hero { padding: 1rem 0 3.5rem; }
   .hub-hero h1 { max-width: 22ch; margin: 0 0 0.6rem; }

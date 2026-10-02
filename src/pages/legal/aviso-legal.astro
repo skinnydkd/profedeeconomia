@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
+import SectionHeader from '@components/SectionHeader.astro';
 import { getLocale } from '@/i18n/locale';
 import { SITE } from '@/lib/seo';
 
@@ -7,6 +8,7 @@ const locale = getLocale(Astro.currentLocale);
 
 const copy = {
   es: {
+    inicio: 'Inicio',
     pageTitle: 'Aviso legal',
     description: 'Aviso legal de profedeeconomia.es: titularidad, propiedad intelectual, licencia de uso del material y exención de responsabilidad.',
     h1: 'Aviso legal',
@@ -31,6 +33,7 @@ const copy = {
     linkPrivacidad: 'Política de privacidad',
   },
   ca: {
+    inicio: 'Inici',
     pageTitle: 'Avís legal',
     description: 'Avís legal de profedeeconomia.es: titularitat, propietat intel·lectual, llicència d\'ús del material i exempció de responsabilitat.',
     h1: 'Avís legal',
@@ -61,51 +64,61 @@ const copy = {
   description={copy.description}
   contentLang={locale}
 >
-  <div class="prose">
-    <h1>{copy.h1}</h1>
-    <p class="updated">{copy.updatedLabel} {copy.updatedDate}</p>
+  <SectionHeader
+    locale={locale}
+    meta={`${copy.updatedLabel} ${copy.updatedDate}`}
+    crumbs={[
+      { name: copy.inicio, path: '/' },
+      { name: copy.pageTitle },
+    ]}
+  >
+    <Fragment slot="title">{copy.h1}</Fragment>
+  </SectionHeader>
 
-    <h2>{copy.h2Titularidad}</h2>
-    <p>
-      {copy.p1Pre} <strong>{copy.p1Domain}</strong>{copy.p1Mid}
-      <a class="editorial-link" href={`mailto:${SITE.email}`}>{SITE.email}</a>.
-    </p>
+  <div class="container">
+    <div class="prose">
+      <h2>{copy.h2Titularidad}</h2>
+      <p>
+        {copy.p1Pre} <strong>{copy.p1Domain}</strong>{copy.p1Mid}
+        <a class="editorial-link" href={`mailto:${SITE.email}`}>{SITE.email}</a>.
+      </p>
 
-    <h2>{copy.h2Objeto}</h2>
-    <p>
-      {copy.p2}
-    </p>
+      <h2>{copy.h2Objeto}</h2>
+      <p>
+        {copy.p2}
+      </p>
 
-    <h2>{copy.h2Propiedad}</h2>
-    <p>
-      {copy.p3Pre} <strong>{copy.p3Strong}</strong>{copy.p3Post}
-    </p>
+      <h2>{copy.h2Propiedad}</h2>
+      <p>
+        {copy.p3Pre} <strong>{copy.p3Strong}</strong>{copy.p3Post}
+      </p>
 
-    <h2>{copy.h2Exencion}</h2>
-    <p>
-      {copy.p4}
-    </p>
+      <h2>{copy.h2Exencion}</h2>
+      <p>
+        {copy.p4}
+      </p>
 
-    <h2>{copy.h2Enlaces}</h2>
-    <p>
-      {copy.p5}
-    </p>
+      <h2>{copy.h2Enlaces}</h2>
+      <p>
+        {copy.p5}
+      </p>
 
-    <h2>{copy.h2Legislacion}</h2>
-    <p>
-      {copy.p6Pre}
-      <a class="editorial-link" href={`mailto:${SITE.email}`}>{SITE.email}</a>.
-    </p>
+      <h2>{copy.h2Legislacion}</h2>
+      <p>
+        {copy.p6Pre}
+        <a class="editorial-link" href={`mailto:${SITE.email}`}>{SITE.email}</a>.
+      </p>
 
-    <p class="links"><a class="editorial-link" href="/legal/privacidad/">{copy.linkPrivacidad}</a></p>
+      <p class="links"><a class="editorial-link" href="/legal/privacidad/">{copy.linkPrivacidad}</a></p>
+    </div>
   </div>
 </BaseLayout>
 
 <style>
-  .prose { max-width: 64ch; margin: 0 auto; padding: 3rem clamp(1.5rem, 4vw, 3rem) 5rem; }
-  .eyebrow { font-family: var(--font-mono); font-size: 0.8rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-terra); margin: 0 0 0.5rem; }
-  h1 { margin: 0 0 0.4rem; }
-  .updated { font-family: var(--font-mono); font-size: 0.85rem; color: var(--color-ink-mute); margin: 0 0 2.5rem; }
+  .container { max-width: 1240px; margin: 0 auto; padding: 0 clamp(1.5rem, 4vw, 3rem); }
+  /* Same left edge as the header; the text keeps its reading measure. */
+  .prose { max-width: 64ch; padding-bottom: 5rem; }
+  .prose > h2:first-child { margin-top: 0; }
   h2 { font-size: 1.25rem; margin: 2.2rem 0 0.7rem; }
   p { font-size: 1.08rem; line-height: 1.7; color: var(--color-ink-soft); margin: 0 0 1rem; }
   p strong { color: var(--color-ink); }

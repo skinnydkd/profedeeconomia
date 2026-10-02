@@ -10,7 +10,7 @@ import PrintButton from '@components/dinamicas/PrintButton.astro';
 import { WORD_BANK, CATEGORY_LABEL } from '@/lib/games-multi/insider/words';
 import type { WordCategory } from '@/lib/games-multi/insider/words';
 import { getLocale } from '@/i18n/locale';
-import { t } from '@/i18n/ui';
+import Breadcrumb from '@components/Breadcrumb.astro';
 
 const locale = getLocale(Astro.currentLocale);
 
@@ -28,12 +28,15 @@ const citizens = Array.from({ length: CITIZEN_COUNT }, (_, i) => i);
   noindex
 >
   <div class="container">
-    <nav class="breadcrumb no-print" aria-label={t('nav.breadcrumb', locale)}>
-      <a href="/">Inicio</a> <span class="sep">›</span>
-      <a href="/juegos/">Juegos</a> <span class="sep">›</span>
-      <a href="/juegos/insider/">Insider</a> <span class="sep">›</span>
-      <span>Imprimir</span>
-    </nav>
+    <Breadcrumb class="no-print"
+      locale={locale}
+      items={[
+        { name: 'Inicio', path: '/' },
+        { name: 'Juegos', path: '/juegos/' },
+        { name: 'Insider', path: '/juegos/insider/' },
+        { name: 'Imprimir' },
+      ]}
+    />
 
     <header class="intro no-print">
       <span class="kicker">Versión para imprimir</span>
@@ -102,10 +105,6 @@ const citizens = Array.from({ length: CITIZEN_COUNT }, (_, i) => i);
 
 <style>
   .container { max-width: 920px; margin: 0 auto; padding: 0 clamp(1.5rem, 4vw, 3rem) 4rem; }
-  .breadcrumb { font-size: 0.92rem; color: var(--color-ink-mute); margin: 2rem 0; }
-  .breadcrumb a { color: var(--color-ink-mute); text-decoration: none; }
-  .breadcrumb a:hover { color: var(--color-terra); }
-  .breadcrumb .sep { margin: 0 0.5em; color: var(--color-mustard); }
   .intro { margin-bottom: 2.5rem; }
   .kicker { font-family: var(--font-sans); font-size: .8rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--color-terra); }
   h1 { margin: .5rem 0 .8rem; }

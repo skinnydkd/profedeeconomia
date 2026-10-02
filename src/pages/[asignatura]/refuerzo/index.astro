@@ -15,7 +15,7 @@ import { getLocale } from '@/i18n/locale';
 import { pickLocalizedEntry } from '@/i18n/content-locale';
 import { localizeAsignatura } from '@/i18n/asignaturas-ca';
 import type { GetStaticPaths } from 'astro';
-import { t } from '@/i18n/ui';
+import SectionHeader from '@components/SectionHeader.astro';
 
 export const getStaticPaths = (async () => {
   return ASIGNATURA_SLUGS.filter((slug) => ASIGNATURAS[slug].estado === 'publicado').map((slug) => ({
@@ -80,22 +80,18 @@ const breadcrumb = breadcrumbLd([
   contentLang={locale}
   noindex={grupos.length === 0}
 >
-  <div class="container">
-    <nav class="breadcrumb" aria-label={t('nav.breadcrumb', locale)}>
-      <a href="/">{copy.inicio}</a> <span class="sep">›</span>
-      <a href={`/${a.slug}/`}>{a.shortLabel}</a> <span class="sep">›</span>
-      <span>{copy.titulo}</span>
-    </nav>
-  </div>
-
-  <section class="hero">
-    <div class="container">
-      <h1>{copy.titulo}</h1>
-      <p class="lede">
-        {grupos.length === 0 ? copy.vacio : copy.intro}
-      </p>
-    </div>
-  </section>
+  <SectionHeader
+    locale={locale}
+    kicker={`${a.shortLabel} · ${a.level}`}
+    crumbs={[
+      { name: copy.inicio, path: '/' },
+      { name: a.shortLabel, path: `/${a.slug}/` },
+      { name: copy.titulo },
+    ]}
+  >
+    <Fragment slot="title">{copy.titulo}</Fragment>
+    <Fragment slot="lede">{grupos.length === 0 ? copy.vacio : copy.intro}</Fragment>
+  </SectionHeader>
 
   {grupos.map((g) => (
     <section class="eval">
@@ -142,15 +138,7 @@ const breadcrumb = breadcrumbLd([
 
 <style>
   .container { max-width: 1240px; margin: 0 auto; padding: 0 clamp(1.5rem, 4vw, 3rem); }
-  .breadcrumb { font-size: 0.92rem; color: var(--color-ink-mute); margin: 2rem 0; }
-  .breadcrumb a { color: var(--color-ink-mute); text-decoration: none; }
-  .breadcrumb a:hover { color: var(--color-terra); }
-  .breadcrumb .sep { margin: 0 0.5em; color: var(--color-mustard); }
 
-  .hero { padding: 1rem 0 2rem; }
-  .kicker { font-family: var(--font-sans); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.04em; text-transform: none; color: var(--color-terra-deep); }
-  h1 { margin: 0.6rem 0 0.8rem; }
-  .lede { font-size: 1.18rem; color: var(--color-ink-soft); line-height: 1.6; max-width: 64ch; }
 
   .eval { padding: 1.2rem 0; }
   .eval__title {

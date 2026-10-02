@@ -9,7 +9,7 @@
 import BaseLayout from '@layouts/BaseLayout.astro';
 import BusinessGameOnline from '@components/business-game/BusinessGameOnline.tsx';
 import { getLocale } from '@/i18n/locale';
-import { t } from '@/i18n/ui';
+import SectionHeader from '@components/SectionHeader.astro';
 
 const locale = getLocale(Astro.currentLocale);
 
@@ -46,24 +46,24 @@ const copy = {
   description={copy.description}
   contentLang={locale}
 >
-  <div class="container">
-    <nav class="breadcrumb" aria-label={t('nav.breadcrumb', locale)}><a href="/">{copy.bcInicio}</a> <span class="sep">›</span> <a href="/juegos/">{copy.bcJuegos}</a> <span class="sep">›</span> <span>Business Game</span></nav>
-  </div>
-
-  <section class="hero">
-    <div class="container">
-      <h1>Business <span class="serif-italic-wonk accent">Game</span>.</h1>
-      <p class="lede">
-        {copy.lede}
-      </p>
-      <div class="nota">
-        {copy.notaPre} <strong>{copy.notaStrong1}</strong>
-        {copy.notaMid}
-        <strong>{copy.notaStrong2}</strong>
-        {copy.notaPost}
-      </div>
+  <SectionHeader
+    locale={locale}
+    kicker={copy.bcJuegos}
+    crumbs={[
+      { name: copy.bcInicio, path: '/' },
+      { name: copy.bcJuegos, path: '/juegos/' },
+      { name: 'Business Game' },
+    ]}
+  >
+    <Fragment slot="title">Business <span class="serif-italic-wonk accent">Game</span>.</Fragment>
+    <Fragment slot="lede">{copy.lede}</Fragment>
+    <div class="nota">
+      {copy.notaPre} <strong>{copy.notaStrong1}</strong>
+      {copy.notaMid}
+      <strong>{copy.notaStrong2}</strong>
+      {copy.notaPost}
     </div>
-  </section>
+  </SectionHeader>
 
   <section class="juego">
     <div class="container">
@@ -74,16 +74,8 @@ const copy = {
 
 <style>
   .container { max-width: 1240px; margin: 0 auto; padding: 0 clamp(1.5rem, 4vw, 3rem); }
-  .breadcrumb { font-size: 0.92rem; color: var(--color-ink-mute); margin: 2rem 0; }
-  .breadcrumb a { color: var(--color-ink-mute); text-decoration: none; }
-  .breadcrumb a:hover { color: var(--color-terra); }
-  .breadcrumb .sep { margin: 0 0.5em; color: var(--color-mustard); }
 
-  .hero { padding: 1rem 0 1.8rem; }
-  .kicker { font-family: var(--font-sans); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-terra-deep); }
   .accent { color: var(--color-terra); }
-  h1 { margin: 0.6rem 0 0.8rem; }
-  .lede { font-size: 1.2rem; color: var(--color-ink-soft); line-height: 1.6; max-width: 66ch; }
   .nota {
     margin-top: 1.3rem; max-width: 70ch; font-size: 0.95rem; line-height: 1.55;
     color: var(--color-ink-soft); background: var(--color-mustard-soft);

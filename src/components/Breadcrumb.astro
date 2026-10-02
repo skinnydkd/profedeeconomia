@@ -1,0 +1,52 @@
+---
+/**
+ * The breadcrumb trail of every page (audit VIS-NAV-22): a labelled nav with an
+ * ordered list and the current page marked with aria-current. It takes the same
+ * items as breadcrumbLd(), so the visible trail and the structured data stay in
+ * step. The last item is the current page; its path, if any, is not linked.
+ */
+import { t } from '@/i18n/ui';
+import type { Locale } from '@/i18n/locale';
+
+export interface Crumb {
+  name: string;
+  path?: string;
+}
+
+interface Props {
+  items: Crumb[];
+  locale: Locale;
+  /** Extra classes, e.g. `no-print`. */
+  class?: string;
+}
+
+const { items, locale, class: extra } = Astro.props;
+---
+
+<nav class:list={['breadcrumb', extra]} aria-label={t('nav.breadcrumb', locale)}>
+  <ol>
+    {items.map((it, i) => {
+      const actual = i === items.length - 1;
+      return (
+        <li>
+          {i > 0 && <span class="sep" aria-hidden="true">›</span>}
+          {actual || !it.path
+            ? <span aria-current={actual ? 'page' : undefined}>{it.name}</span>
+            : <a href={it.path}>{it.name}</a>}
+        </li>
+      );
+    })}
+  </ol>
+</nav>
+
+<style>
+  .breadcrumb { font-size: 0.92rem; color: var(--color-ink-mute); margin: 2rem 0; }
+  ol { list-style: none; margin: 0; padding: 0; }
+  /* Inline, so a long last crumb wraps like text instead of dropping to its own line. */
+  li { display: inline; }
+  a { color: var(--color-ink-mute); text-decoration: none; }
+  a:hover { color: var(--color-terra); }
+  .sep { margin: 0 0.5em; color: var(--color-mustard); }
+  /* A trail of links is no use on paper. */
+  @media print { .breadcrumb { display: none; } }
+</style>
