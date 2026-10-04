@@ -1,6 +1,6 @@
 # Guia de revisió · correccions de l'auditoria de setembre de 2026
 
-1 d'octubre de 2026 · per a Pau
+1 d'octubre de 2026, posada al dia el 4 d'octubre · per a Pau
 
 ## Com usar esta guia
 
@@ -10,8 +10,9 @@
 - ★ marca les unitats (i algunes peces) on els canvis toquen contingut laboral, fiscal, de seguretat o de benestar: el que l'alumnat pot aplicar demà (nòmina, contractes, acomiadament, cotitzacions, IRPF, seguretat en el treball, assetjament, telèfons d'ajuda).
 - Ordre que et propose: primer les unitats ★; després les claus dels tests i els solucionaris de les activitats; al final, les dades (xifres, dates i fonts).
 - Quasi tots els PR canvien castellà i valencià alhora. Quan revises una pàgina, obri també la /ca/.
-- Revisa a la web. Els PDF de llibre són del #307, i del #308 al #311 han canviat text després; es regeneraran al final.
-- Al final tens el codi, la segona passada (R1–R6), els PR oberts i les decisions que et toquen.
+- Pots revisar a la web o als PDF: es van regenerar l'1 d'octubre, amb el contingut (#345) i amb el format dels PR visuals (#346). Els PR posteriors no toquen cap pàgina d'on ixen PDF.
+- Tots els PR que cita esta guia estan fusionats a `main`.
+- Al final tens el codi, la segona passada (R1–R6), els PR visuals i dels jocs, els últims PR, el que et queda per fer a tu i les decisions que et toquen.
 
 ## EDMN 2BACH
 
@@ -68,7 +69,7 @@ Fora de les unitats: EBAU (#270 simulacres, #275 pauta 02), reforç i ampliació
 - La pregunta nova de l'arbre de forma jurídica és una decisió de contingut: si vols una altra formulació, són dues cadenes de `FormaJuridicaTree.astro` (#275).
 - Errors del llibre que van eixir en fer els tests, per al PR de contingut: el glossari d'U8 diu 6,47 %; U12 atribuïx el punt mort a la «Unidad 6»; U12 definix la «cuota de mercado» de dues maneres (#325).
 - DIA: la cotització mínima de 0,06 € (2019) i les ràtios (endeutament del 60 al 85 %, ROA del 6 a l'1 %) no s'han pogut comprovar (#303).
-- Cajút només agafarà les preguntes noves dels tests quan s'execute `npm run deploy:cajut` (#325).
+- Cajút només agafarà les preguntes noves dels tests quan s'execute `npm run deploy:cajut` (#325), que fa el mateix que `npm run party:deploy`: vegeu «Et queda a tu».
 
 ## Eco 1BACH
 
@@ -501,11 +502,13 @@ El diagrama de la ruta de reclamació laboral que es veu a U5 va canviar al #268
 
 Troballes corregides:
 - **DEB-D01** · Crític · El procediment per a suprimir el Senat és el de l'art. 167, no l'agreujat · https://github.com/skinnydkd/profedeeconomia/pull/278
+- **DEB-D02** · Alt · El debrief i el criteri «Uso de evidencia» no tenen evidència darrere · https://github.com/skinnydkd/profedeeconomia/pull/338, https://github.com/skinnydkd/profedeeconomia/pull/339 i https://github.com/skinnydkd/profedeeconomia/pull/340
 - **DEB-D03** · Alt · L'argument sobre la CSRD i els fons ESG està desfasat a setembre de 2026 · https://github.com/skinnydkd/profedeeconomia/pull/278
 - **DEB-D04** · Mitjà · Jornada de 4 dies: l'exemple d'Islàndia és imprecís i falta el context espanyol · https://github.com/skinnydkd/profedeeconomia/pull/290
 - **DEB-D05** · Mitjà · Successions: l'argument de l'empresa familiar ignora la reducció del 95 % · https://github.com/skinnydkd/profedeeconomia/pull/287
 - **DEB-D06** · Mitjà · Grans fortunes: el context no diu que Espanya ja té dos impostos sobre la riquesa · https://github.com/skinnydkd/profedeeconomia/pull/287
 - **DEB-D07** · Mitjà · Fases clau que depenen de materials que no es donen · https://github.com/skinnydkd/profedeeconomia/pull/312
+- **DEB-D08** · Mitjà · Rúbrica genèrica sense descriptors de nivell · https://github.com/skinnydkd/profedeeconomia/pull/322
 - **DEB-D09** · Mitjà · Competències buides i «nivel» incoherent amb els ponts (la part del nivell) · https://github.com/skinnydkd/profedeeconomia/pull/312
 - **DEB-D11** · Baix · IA i ocupació: premissa discutible presentada com a fet · https://github.com/skinnydkd/profedeeconomia/pull/312
 
@@ -517,7 +520,7 @@ Mira sobretot:
 - Jornada: 40 h de mitjana anual (art. 34 ET) i rebuig de les 37,5 h al setembre de 2025 (#290). Llei injusta: Rosa Parks (Montgomery, 1955), multa i recurs (#312).
 
 Queda obert:
-- DEB-D08 (rúbrica amb nivells) és el PR obert #322. DEB-D10 (enllaços entre debats duplicats) queda per a una altra tanda (#312).
+- DEB-D10 (enllaços entre debats duplicats) queda per a una altra tanda (#312).
 - Nou debats tenen `fp` al nivell sense cap pont a FP; pot ser intencionat (#312).
 - Els arts. 90, 155 i 167 de la Constitució, l'SMI de 2018 a 2026, el MEEF i el SURE s'han citat sense consultar-los ara (#312). Les bonificacions autonòmiques canvien sovint (#287).
 
@@ -583,13 +586,15 @@ Queda obert: OLI-D05, el bloc nou d'inversió i productivitat (VAN, TIR, product
 ### Projectes
 
 Troballes corregides:
+- **PRO-D01** · Alt · Cap projecte diu què treballa de l'altra matèria segons el seu currículum · https://github.com/skinnydkd/profedeeconomia/pull/341 i https://github.com/skinnydkd/profedeeconomia/pull/342
+- **PRO-D02** · Mitjà · Guions de 5-6 sessions sense materials per a l'alumnat · https://github.com/skinnydkd/profedeeconomia/pull/341
 - **PRO-D03** · Mitjà · «Del trueque a las criptomonedas» presenta la seqüència bescanvi → diner com a fet històric · https://github.com/skinnydkd/profedeeconomia/pull/290
 - **PRO-D04** · Mitjà · Interés compost sense inflació, risc ni comissions · https://github.com/skinnydkd/profedeeconomia/pull/290
 - **PRO-D05** · Baix · Una frase normativa presentada com a veritat econòmica · https://github.com/skinnydkd/profedeeconomia/pull/312
 
 Mira sobretot: 50 € al mes al 5 % durant 30 anys fan **41.613 €**; amb una comissió de l'1 %, uns 34.700 €; amb una inflació del 2 %, compren el que hui uns 23.000 € (#290). Bescanvi: Humphrey (1985) i Graeber (2011) (#290). Filosofia 02: Rawls i Nozick (#312).
 
-Queda obert: PRO-D02, els materials per a l'alumnat dels guions de 5-6 sessions (#312).
+Queda obert: res d'esta secció.
 
 ### Jocs
 
@@ -636,7 +641,7 @@ Un PR per línia, amb què provar a mà.
 - **#285 · Stonks i Econrisk**. Juga Stonks fins al final: davall de les lliçons ix la nota sobre les dades (també a /ca/). Econrisk amb els neoclàssics: la lliçó cita Ricardo i el cost d'oportunitat.
 - **#293 · Assegurats**. A /juegos/seguros/, primes de 40, 85, 75, 100 i 115 €; amb 350 € d'ingressos per ronda, qui ho assegura tot (415 €) perd 65 € per ronda.
 - **#305 · Plantilles**. /generadores/registro-aula/, /generadores/medidas-dua/ i /generadores/plan-refuerzo/: l'avís de privacitat i el camp «Iniciales o código».
-- **#307 · PDF**. L'script de quaderns ja no s'atura per CJD, que no té activitats. Obri el llibre d'Eco 4ESO (U5) i el quadern d'Eco 1BACH, que passa de 102 a 179 pàgines. Els llibres s'han de tornar a generar després del #308 al #311.
+- **#307 · PDF**. L'script de quaderns ja no s'atura per CJD, que no té activitats. Obri el llibre d'Eco 4ESO (U5) i el quadern d'Eco 1BACH, que passa de 102 a 179 pàgines. Els llibres es van tornar a generar al #345.
 - **#310 · Calculadora de nòmina d'ESO**. El preset del cambrer és a mitja jornada, perquè 900 € a jornada completa queden per davall de l'SMI.
 - **#312 · Eines i jocs** (EIN-D02, JOC-D04, JOC-D05, JOC-D10). La calculadora de qualificacions porta una fila per competència i 40/35/25; Jocs Econòmics demana un àlies i ja no parla de premis; Stonks diu «Has ganado al Mercado».
 - **Guardes noves**, sense res a provar a mà: `datos-obsoletos.test.ts` (#276, #280, #301, #304, #308, #310), `frontmatter-bessons.test.ts` (#299), `deck-creditos.test.ts` (#300) i `debates-nivel.test.ts` (#312). Avisen si torna una dada substituïda o si els bessons ES/CA divergixen.
@@ -686,8 +691,8 @@ Els problemes de R1–R6 s'han corregit en PR nous, un per assignatura o àmbit.
 | #335 | Plantilles, SEO, esquema del contingut, QuizPlayer i RetoPlayer | fusionat |
 | #337 | GPE U3: la definició del PMV, la que vas aprovar | fusionat |
 | #343 | Coherència de dades entre assignatures | fusionat |
-| #330 | Jocs, Jocs Econòmics i Business Game (R6 A6–A10) | obert: el fusiones tu |
-| #336 | Detalls visuals de R6 (A11–A13) | obert: el fusiones tu |
+| #330 | Jocs, Jocs Econòmics i Business Game (R6 A6–A10) | fusionat |
+| #336 | Detalls visuals de R6 (A11–A13) | fusionat |
 
 ### Què tanquen d'esta guia
 
@@ -705,25 +710,52 @@ Els problemes de R1–R6 s'han corregit en PR nous, un per assignatura o àmbit.
 PR de l'1 d'octubre. Tots són contingut nou o corregit i han de passar la teua revisió manual.
 
 - **Debats, evidència i dossier de dades (DEB-D02)**: #338, #339 i #340. Els 26 debats acaben amb un bloc per al professorat, «Para el debrief: qué dice la evidencia», amb 4-5 punts, cadascun amb font i any, i amb un «Dossier de datos» per a l'alumnat amb 4-5 xifres oficials. Mira sobretot les línies «Para cerrar» (els debats 01-03 de Dret no en porten), el veto de la llei d'amnistia com a exemple del Senat, les dades que caduquen (MASC, directiva de plataformes, publicitat a menors, preu del bitcoin) i les tres fonts no oficials del dossier de comerç (Morningstar, B Lab Spain i FEPEX).
-- **Projectes interdisciplinaris (PRO-D01 i PRO-D02)**: el #341 (contingut) afig a cada projecte una fitxa d'equip, fonts de dades, referències exactes dels textos i descriptors de quatre nivells per a la rúbrica, i quadra el `nivel` amb els ponts: sis projectes guanyen ponts a Eco 4ESO i filosofia/02 queda només a Batxillerat. El #342 (visual, el fusiones tu) afig el camp `materia_socia` i el bloc «Qué se trabaja de…» amb les competències i els sabers de la matèria sòcia (RD 217/2022 i 243/2022).
+- **Projectes interdisciplinaris (PRO-D01 i PRO-D02)**: el #341 (contingut) afig a cada projecte una fitxa d'equip, fonts de dades, referències exactes dels textos i descriptors de quatre nivells per a la rúbrica, i quadra el `nivel` amb els ponts: sis projectes guanyen ponts a Eco 4ESO i filosofia/02 queda només a Batxillerat. El #342 (visual) afig el camp `materia_socia` i el bloc «Qué se trabaja de…» amb les competències i els sabers de la matèria sòcia (RD 217/2022 i 243/2022).
 - **Coherència de dades entre assignatures**: el #343 posa Mercadona (41.858 M€, 115.000 persones, 780 M€ en primes, 1.672 supermercats), Carrefour, Inditex i Consum en la sèrie de 2025 a totes les assignatures; corregix l'SDDR, Verkami (Joan Sala i els seus dos fills), el preu de l'oli («al voltant de 9 €/kg»), Filmin (sense subscriptors), «Tengo un plan» (sense episodi), @businessbarista (recursos d'À Punt) i l'impost de societats de tres ampliacions (15 % de nova creació i 19 % de microempresa). Mira la família Gómez a EEAE U8 i els càlculs nous de les ampliacions.
 
-## PR oberts que et toquen a tu
+## PR visuals i dels jocs
 
-Els PR visuals no els fusione jo, ni el dels jocs, que necessita passos teus. Els cinc de tests (#323 a #327) ja estan fusionats i són a les seues assignatures.
+Tots es van fusionar l'1 d'octubre, i els PDF que calia regenerar es van regenerar al #346. Les notes diuen què mirar. Els cinc de tests (#323 a #327) són a les seues assignatures.
 
-- **#313** (VIS-NAV-16, 17, 18, 21, 23; VIS-LEC-16, 18, 23): menú amb teclat, un sol `<main>` i un sol `h1`, filtres que diuen quin està actiu, i «Saberes» a les 98 unitats en castellà. Mira: el menú ja no s'obri només amb el focus, cal prémer Intro; en triar al bàner de galetes, el focus va al logotip. Si el fusiones després de regenerar els llibres, cal tornar-los a generar.
-- **#314** (VIS-LEC-01, 03, 04, 05; VIS-LEC-02 en un commit a part): paràgrafs i vinyetes al llibre, numeració igual al cos i a l'índex, figures amples a tota la columna, diagrames que es desplacen al mòbil i la regla damunt dels `h2`. Mira: si les figures amples es queden a la columna; si la regla la vas llevar a posta, reverteix el commit c8375840. Cal regenerar els llibres.
-- **#316** (VIS-LEC-14, VIS-NAV-12, VIS-LEC-20, VIS-LEC-11, VIS-LEC-24, VIS-LEC-25): taules que es desplacen dins de la seua caixa al mòbil, línia del curs al hub, reforç en una columna i activitats interactives amb marge. Mira: la línia del curs és informació nova. Cal regenerar els PDF de reforç.
+- **#313** (VIS-NAV-16, 17, 18, 21, 23; VIS-LEC-16, 18, 23): menú amb teclat, un sol `<main>` i un sol `h1`, filtres que diuen quin està actiu, i «Saberes» a les 98 unitats en castellà. Mira: el menú ja no s'obri només amb el focus, cal prémer Intro; en triar al bàner de galetes, el focus va al logotip.
+- **#314** (VIS-LEC-01, 03, 04, 05; VIS-LEC-02): paràgrafs i vinyetes al llibre, numeració igual al cos i a l'índex, figures amples a tota la columna, diagrames que es desplacen al mòbil i la regla damunt dels `h2`. Mira: si les figures amples es queden a la columna. Si la regla la vas llevar a posta, és el bloc `h2::before` que el #314 afig a `libro/[unidad].astro`, `ebau/index.astro` i `proyecto/[fase].astro`; anava en un commit a part (c8375840), però el PR es va fusionar en un de sol i ja no es pot revertir a soles.
+- **#316** (VIS-LEC-14, VIS-NAV-12, VIS-LEC-20, VIS-LEC-11, VIS-LEC-24, VIS-LEC-25): taules que es desplacen dins de la seua caixa al mòbil, línia del curs al hub, reforç en una columna i activitats interactives amb marge. Mira: la línia del curs és informació nova.
 - **#317** (VIS-NAV-05, 08, 09, 19): secció «Unidad a unidad» al hub i línia «En esta unidad: …» a cada unitat, títols de targetes sense espaiat, noms dels jocs en `h2` i precàrrega de fonts (uns 165 kB més la primera visita). Mira: on va la secció; a CJD només hi ha diapositives.
 - **#318** (VIS-NAV-13, 24, 25 i part de VIS-LEC-15): terracota fosca (#9C3A1C) en text petit, paleta dels Jocs Econòmics, avís de l'àlies a 14 px, entradetes en Fraunces cursiva a nou landings i «Oposiciones ↗». Mira: sis landings passen de Switzer a Fraunces cursiva, i es nota.
-- **#319** (VIS-LEC-07): les diapositives ja no tallen text (902 blocs en 196 decks) i la CI ho detecta. Mira: algunes diapositives de concepte fan 8-9 línies. Cal regenerar els 196 PDF (281 MB).
+- **#319** (VIS-LEC-07): les diapositives ja no tallen text (902 blocs en 196 decks) i la CI ho detecta. Mira: algunes diapositives de concepte fan 8-9 línies.
 - **#320** (VIS-NAV-20): la home agrupa les assignatures per ESO, Bachillerato i FP, com el menú, amb targetes compactes al mòbil. Mira: la descripció de la targeta s'amaga al mòbil.
 - **#321** (VIS-LEC-21): barra al visor de diapositives amb tornar a la unitat, comptador, «Ocultar soluciones» (tecla S) i pantalla completa (tecla F). Mira: la posició i l'aspecte de la barra, i si les solucions s'han d'amagar d'entrada.
-- **#322** (DEB-D08): descriptors de quatre nivells per a quatre criteris en 16 debats, full d'avaluació analític, i buscar fonts compta com a CCL i CD. Mira: llig els descriptors (`src/lib/debates-niveles.ts`); cal regenerar els PDF dels debats.
-- **#330** (jocs, Jocs Econòmics i Business Game; R6 A6–A10): abans de fusionar-lo, aplica a mà la migració `supabase/migrations/20260930_institute_leaderboard_best_per_player.sql`; després, `npm run party:deploy`. Mira: el bonus de l'Insider i la ronda reoberta del Business Game, que el PR descriu.
+- **#322** (DEB-D08): descriptors de quatre nivells per a quatre criteris en 16 debats, full d'avaluació analític, i buscar fonts compta com a CCL i CD. Mira: llig els descriptors (`src/lib/debates-niveles.ts`).
+- **#330** (jocs, Jocs Econòmics i Business Game; R6 A6–A10): els dos errors que el PR descrivia, el bonus de l'Insider i la ronda reoberta del Business Game, els arregla el #347. La migració de Supabase i el deploy de PartyKit encara són teus: vegeu «Et queda a tu».
 - **#336** (R6 A11–A13): el menú obert passa per damunt del que es tanca, la lletra de la resposta errònia es llig i les fitxes van sense franja. Mira les captures del PR.
 - **#342** (PRO-D01): camp `materia_socia` a l'esquema de projectes i bloc «Qué se trabaja de…» a la pàgina, amb captures. Mira les matèries i cursos triats (Matemàtiques A o B, Tecnologia de 4t, EVCE sense curs fix).
+
+## Últims PR
+
+PR del 2 i del 4 d'octubre, després d'escriure esta guia.
+
+- **#347** (jocs): a l'Insider, l'impostor que endevina la paraula es queda els 150 punts del bonus; al Business Game, no s'accepten decisions d'una ronda que ja té resultats, i el panell del profe avisa que cal tornar a prémer «Cerrar la ronda». Mira: l'arreglament de l'Insider és del servidor i no arriba a les aules fins al deploy.
+- **#348** (VIS-NAV-22, VIS-LEC-22): totes les pàgines fan les molles de pa amb el mateix component, amb una llista i la pàgina actual marcada, i les capçaleres de secció tenen la mateixa forma: etiqueta, títol al mateix marge i entradeta en Fraunces cursiva. Mira: les seccions d'una assignatura (llibre, activitats, reforç, avaluació) i un debat. En imprimir un debat o una dinàmica només ha d'eixir el títol petit i les fitxes.
+- **#349** (VIS-LEC-19): l'índex d'activitats s'agrupa per unitat, amb el títol de la unitat del llibre i salts U1…U12 a dalt; l'enllaç «N actividades» del hub porta al títol de la unitat. Mira: /eco-1bach/actividades/ i el salt des del hub.
+- **#350**: al quadre «Cómo usar los simulacros» de /olimpiada/simulacros/, les negretes ja no trenquen la línia, i els quadres de simulacres i de textos tornen a portar vinyetes i números. Porta també esta actualització de la guia.
+
+## Et queda a tu
+
+Des d'ací no es pot comprovar si ja ho has fet.
+
+- **Deploy de PartyKit.** Un sol `npm run party:deploy` des de `main` porta al servidor els arreglaments del #330 i del #347, i les preguntes noves dels tests al Cajút (`npm run deploy:cajut` fa el mateix):
+
+  ```
+  cd %USERPROFILE%\profedeeconomia
+  git checkout main
+  git pull
+  npm install
+  npm run party:deploy
+  ```
+
+  En un Windows ARM64, la CLI de PartyKit no arrenca: carrega `workerd`, que no té versió per a ARM64, i `npm install` també falla per culpa seua. Cal fer-ho amb el Node x64, que Windows executa per emulació: desinstal·la el Node actual, instal·la el `.msi` x64 de la mateixa versió des de nodejs.org i comprova-ho amb `node -p "process.arch"`, que ha de dir `x64`. Després, sense cap `npm run dev` obert, esborra `node_modules` (`rmdir /s /q node_modules`), fes `npm ci` i torna a llançar `npm run party:deploy`.
+
+- **Migració de Supabase del #330.** Executa `supabase/migrations/20260930_institute_leaderboard_best_per_player.sql` a l'editor SQL de Supabase Studio. Sense ella no es trenca res, però el rànquing per instituts continua amb el càlcul antic: un alumne amb cinc bones partides pot fer tot el top 5 del seu institut.
 
 ## Decisions que et toquen
 
@@ -796,7 +828,7 @@ Transversals:
 
 ### Les que obrin els PR de correccions
 
-- **EDMN (#329)**: la dinàmica de la gelateria té ara 7 nodes (les altres en tenen 3); el balanç d'Inditex és un dataset simplificat i no les xifres reals del FY2023; `ebau/04-simulacros.mdx` encara puntua el palanquejament com a «ROE > ROA»; el temps de lectura d'U5–U8 (proposta: ~22, ~21, ~23 i ~22 min) espera el #313.
+- **EDMN (#329)**: la dinàmica de la gelateria té ara 7 nodes (les altres en tenen 3); el balanç d'Inditex és un dataset simplificat i no les xifres reals del FY2023; `ebau/04-simulacros.mdx` encara puntua el palanquejament com a «ROE > ROA»; el temps de lectura d'U5–U8 (proposta: ~22, ~21, ~23 i ~22 min; ara diu ~11, ~10, ~12 i ~9) esperava el #313, que ja està fusionat, però encara no s'ha canviat.
 - **Eco 1BACH (#328)**: l'itinerari mínim no retalla U10–U12; si vols, una caixa per unitat o un retall. El cicle diu ara «Depresión · fondo».
 - **GPE (#331)**: mantindre la Marina a U3 o fer un cas valencià nou; un final propi per a l'opció indefinida de la dinàmica 05 (R4 5); les anotacions en T i les línies d'impostos i amortitzacions a la plantilla de la fase 4 (GPE-D02); l'activitat d'EDMN «oferta sin sesgos» (GPE-D01); comprovar que el nou apartat d'igualtat d'U5 cap en 2 sessions.
 - **EEAE (#333)**: no hi ha activitat de notícia ni quadern de projecte separat; falta dir a la pàgina de l'eina EquilibrioMercado que és opcional per a EEAE; les capçaleres de sabers usen la numeració del material; la plantilla del hub; U6 queda al límit del temps de lectura; el cas del SDDR s'ha de revisar després del 22-11-2026.
@@ -809,5 +841,5 @@ Transversals:
 - Hub de tests: s'ha mantingut. Si el vols retirar, cal llevar la targeta i la ruta, esborrar `tests/index.astro` i posar les redireccions a `vercel.json` (#272).
 - Dades de referència: un mòdul únic (`src/data/referencia-2026.ts`) canviaria com s'escriu el contingut, perquè moltes xifres viuen al frontmatter dels tests i els reforços (#276).
 - Temps de lectura: aplicar a totes les matèries el criteri de 200 paraules per minut, amb un test que ho vigile (#311).
-- Terracota com a text: passar els més de 100 usos que queden a `--color-terra-ink`, o enfosquir la terracota a tot el web, que ja seria canviar el sistema visual (#277; el #318, obert, en fa una part).
+- Terracota com a text: passar els més de 100 usos que queden a `--color-terra-ink`, o enfosquir la terracota a tot el web, que ja seria canviar el sistema visual (#277; el #318 en va fer una part).
 - Business Game: la decisió per defecte (preu 20, producció 5.000) perd diners en la primera ronda, i un equip que no fa res en perd menys; potser cal calibrar els paràmetres (#274).
