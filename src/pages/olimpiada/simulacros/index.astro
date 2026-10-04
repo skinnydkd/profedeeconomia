@@ -81,7 +81,7 @@ const copy = {
   <section class="nota-uso">
     <div class="container">
       <div class="nota" lang={locale}>
-        <strong>{copy.notaTitulo}</strong>
+        <strong class="nota__titulo">{copy.notaTitulo}</strong>
         <ul>
           <li>{copy.li1Pre} <strong>{GUIA.duracion}</strong> {copy.li1Post}</li>
           <li>{copy.li2Pre} ({GUIA.partes[0]?.puntos}), {copy.li2Mid} ({GUIA.partes[1]?.puntos}) {copy.li2And} ({GUIA.partes[2]?.puntos}).</li>
@@ -135,8 +135,10 @@ const copy = {
     background: var(--color-bg-soft);
     border-radius: 0 8px 8px 0; padding: 1rem 1.2rem; max-width: 720px;
   }
-  .nota strong { font-family: var(--font-sans); font-size: 0.95rem; display: block; margin-bottom: 0.5rem; color: var(--color-ink); }
-  .nota ul { margin: 0; padding-left: 1.3rem; }
+  /* Only the title is a block: the list's bold words stay inline. */
+  .nota__titulo { font-family: var(--font-sans); font-size: 0.95rem; display: block; margin-bottom: 0.5rem; color: var(--color-ink); }
+  /* Tailwind's preflight strips list markers. */
+  .nota ul { margin: 0; padding-left: 1.3rem; list-style: disc; }
   .nota li { margin-bottom: 0.3em; font-size: 0.95rem; color: var(--color-ink-soft); line-height: 1.5; }
   .nota li::marker { color: var(--color-mustard); }
 
