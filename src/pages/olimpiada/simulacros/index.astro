@@ -7,6 +7,7 @@
 import BaseLayout from '@layouts/BaseLayout.astro';
 import { GUIA, AMBITOS, simulacrosPorAmbito } from '@/lib/olimpiada';
 import { getLocale } from '@/i18n/locale';
+import { localizeGuia } from '@/i18n/olimpiada-ca';
 import { localizeFamilias, AMBITOS_OLIMPIADA_CA } from '@/i18n/familias-ca';
 import SectionHeader from '@components/SectionHeader.astro';
 
@@ -14,6 +15,8 @@ const grupos = simulacrosPorAmbito();
 const totalExamenes = grupos.reduce((n, g) => n + g.examenes.filter((e) => e.oficial).length, 0);
 
 const locale = getLocale(Astro.currentLocale);
+// The exam guide in the page's language (the duration was in Spanish on /ca/).
+const guia = localizeGuia(GUIA, locale);
 
 // Only the ámbito headers are localized; the exam list stays ES.
 const ambitos = new Map(
@@ -83,8 +86,8 @@ const copy = {
       <div class="nota" lang={locale}>
         <strong class="nota__titulo">{copy.notaTitulo}</strong>
         <ul>
-          <li>{copy.li1Pre} <strong>{GUIA.duracion}</strong> {copy.li1Post}</li>
-          <li>{copy.li2Pre} ({GUIA.partes[0]?.puntos}), {copy.li2Mid} ({GUIA.partes[1]?.puntos}) {copy.li2And} ({GUIA.partes[2]?.puntos}).</li>
+          <li>{copy.li1Pre} <strong>{guia.duracion}</strong> {copy.li1Post}</li>
+          <li>{copy.li2Pre} ({guia.partes[0]?.puntos}), {copy.li2Mid} ({guia.partes[1]?.puntos}) {copy.li2And} ({guia.partes[2]?.puntos}).</li>
           <li>{copy.li3}</li>
           <li><strong>{copy.li4Strong}</strong> {copy.li4Rest}</li>
         </ul>
