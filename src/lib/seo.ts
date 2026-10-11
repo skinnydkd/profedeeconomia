@@ -189,8 +189,10 @@ export function courseLd(opts: {
   description: string;
   path: string;
   educationalLevel: string;
-  /** LOMLOE framework reference, e.g. "Real Decreto 243/2022". */
+  /** Curriculum decree reference, e.g. "Real Decreto 243/2022". */
   marcoNormativo: string;
+  /** Organic law behind the curriculum: LOMLOE (default) or LOFP for FP modules. */
+  ley?: 'LOMLOE' | 'LOFP';
   /** Target curriculum name, e.g. "Empresa y Diseño de Modelos de Negocio, 2.º Bachillerato". */
   targetName: string;
   teaches?: string[];
@@ -214,7 +216,7 @@ export function courseLd(opts: {
     educationalAlignment: {
       '@type': 'AlignmentObject',
       alignmentType: 'educationalSubject',
-      educationalFramework: `LOMLOE — ${opts.marcoNormativo}`,
+      educationalFramework: `${opts.ley ?? 'LOMLOE'} — ${opts.marcoNormativo}`,
       targetName: opts.targetName,
     },
   };

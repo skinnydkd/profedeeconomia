@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
-import { ASIGNATURA_SLUGS, ASIGNATURAS } from '@/lib/asignaturas';
+import { ASIGNATURA_SLUGS, ASIGNATURAS, leyCurricular } from '@/lib/asignaturas';
 import { cursoLabel } from '@/i18n/ui';
 import { breadcrumbLd, courseLd, faqLd } from '@/lib/seo';
 import { subjectFaqs } from '@/lib/faq';
@@ -64,12 +64,14 @@ const hasActividades = actividadesAll.some((x) => x.data.asignatura === a.slug &
 const copy = {
   es: {
     bcInicio: 'Inicio',
-    metaDesc: (titulo: string, nivel: string, marco: string) =>
-      `Material para impartir ${titulo} en ${nivel}: libro, diapositivas, actividades, tests y recursos. Currículo estatal LOMLOE (${marco}).`,
-    curriculumNote: (titulo: string, marco: string) =>
-      `Este libro se basa en el currículo básico estatal LOMLOE para ${titulo}, según ${marco}. Cada comunidad autónoma establece concreciones específicas: conviene consultar la de tu comunidad para ajustar la programación a tu centro.`,
+    metaDesc: (titulo: string, nivel: string, ley: string, marco: string) =>
+      `Material gratuito para impartir ${titulo} en ${nivel}: libro en PDF, diapositivas, actividades, tests y recursos. Currículo estatal ${ley}: ${marco}.`,
+    curriculumNote: (titulo: string, ley: string, marco: string) =>
+      `Este libro se basa en el currículo básico estatal ${ley} para ${titulo}, según ${marco}. Cada comunidad autónoma establece concreciones específicas: conviene consultar la de tu comunidad para ajustar la programación a tu centro.`,
     curriculumPendiente: (marco: string) =>
       `El material se preparará según ${marco}. Si quieres estar al tanto de cuándo se publica, sigue`,
+    pdfCta: 'Descargar el libro en PDF',
+    pdfSub: (n: number) => `Gratis · ${n} unidades`,
     proximamente: 'Próximamente',
     enPreparacion:
       'Este material está en preparación. Cuando se publique tendrá la misma estructura que el resto: libro, diapositivas, actividades, tests y recursos.',
@@ -103,12 +105,14 @@ const copy = {
   },
   ca: {
     bcInicio: 'Inici',
-    metaDesc: (titulo: string, nivel: string, marco: string) =>
-      `Material per a impartir ${titulo} en ${nivel}: llibre, diapositives, activitats, tests i recursos. Currículum estatal LOMLOE (${marco}).`,
-    curriculumNote: (titulo: string, marco: string) =>
-      `Este llibre es basa en el currículum bàsic estatal LOMLOE per a ${titulo}, segons ${marco}. Cada comunitat autònoma establix concrecions específiques: convé consultar la de la teua comunitat per a ajustar la programació al teu centre.`,
+    metaDesc: (titulo: string, nivel: string, ley: string, marco: string) =>
+      `Material gratuït per a impartir ${titulo} en ${nivel}: llibre en PDF, diapositives, activitats, tests i recursos. Currículum estatal ${ley}: ${marco}.`,
+    curriculumNote: (titulo: string, ley: string, marco: string) =>
+      `Este llibre es basa en el currículum bàsic estatal ${ley} per a ${titulo}, segons ${marco}. Cada comunitat autònoma establix concrecions específiques: convé consultar la de la teua comunitat per a ajustar la programació al teu centre.`,
     curriculumPendiente: (marco: string) =>
       `El material es prepararà segons ${marco}. Si vols estar al corrent de quan es publica, seguix`,
+    pdfCta: 'Descarregar el llibre en PDF',
+    pdfSub: (n: number) => `Gratis · ${n} unitats`,
     proximamente: 'Pròximament',
     enPreparacion:
       'Este material està en preparació. Quan es publique tindrà la mateixa estructura que la resta: llibre, diapositives, activitats, tests i recursos.',
@@ -201,6 +205,10 @@ const unitTitles = libroAll
 // The FAQ is ES prose (visible block + FAQPage JSON-LD); it is built from the
 // ES asignatura so its sentences don't end up half-translated. Content phase.
 const faqs = subjectFaqs(a, locale);
+// The hub, not /libro/, is what ranks for «… libro pdf gratis» (GSC Jul–Oct
+// 2026: 27k impressions on /ipe2-fp/ vs 101 on /ipe2-fp/libro/), so the
+// download has to be one click from the search result. Same file as /libro/.
+const pdfHref = `/downloads/${a.slug}-libro${locale === 'ca' ? '.ca' : ''}.pdf`;
 const jsonLd = isPublicado
   ? [
       breadcrumb,
@@ -210,6 +218,7 @@ const jsonLd = isPublicado
         path: `/${a.slug}/`,
         educationalLevel: a.level,
         marcoNormativo: a.marcoNormativo,
+        ley: leyCurricular(a),
         targetName: `${a.title}, ${a.level}`,
         teaches: unitTitles,
         locale,
@@ -222,7 +231,7 @@ const jsonLd = isPublicado
 <BaseLayout
   title={a.seoTitle}
   brandSuffix={false}
-  description={copy.metaDesc(a.title, a.level, a.marcoNormativo)}
+  description={copy.metaDesc(a.title, a.level, leyCurricular(a), a.marcoNormativo)}
   jsonLd={jsonLd}
   contentLang={locale}
 >
@@ -247,6 +256,15 @@ const jsonLd = isPublicado
       {isPublicado ? (
         <>
           <p class="subtitle">{a.tagline}</p>
+          {unitTitles.length > 0 && (
+            <a class="download-cta" href={pdfHref} download>
+              <span class="download-cta__icon" aria-hidden="true">↓</span>
+              <span class="download-cta__text">
+                <strong>{copy.pdfCta}</strong>
+                <span class="muted">{copy.pdfSub(unitTitles.length)}</span>
+              </span>
+            </a>
+          )}
         </>
       ) : (
         <>
@@ -262,7 +280,7 @@ const jsonLd = isPublicado
 
       <div class="curriculum-note">
         {isPublicado
-          ? copy.curriculumNote(a.title, a.marcoNormativo)
+          ? copy.curriculumNote(a.title, leyCurricular(a), a.marcoNormativo)
           : <>{copy.curriculumPendiente(a.marcoNormativo)} <a class="editorial-link" href="https://instagram.com/profedeeconomia" rel="external">@profedeeconomia</a>.</>
         }
       </div>
@@ -366,6 +384,22 @@ const jsonLd = isPublicado
     font-variation-settings: "SOFT" 80;
     margin: 0;
   }
+  .download-cta {
+    display: inline-flex; align-items: center; gap: 1rem;
+    margin-top: 1.6rem;
+    padding: 0.9rem 1.4rem 0.9rem 1.1rem;
+    background: var(--color-terra); color: #fff; text-decoration: none;
+    border-radius: 6px;
+    transition: background .2s var(--ease-soft), transform .2s var(--ease-soft);
+  }
+  .download-cta:hover { background: var(--color-terra-deep); transform: translateY(-1px); }
+  .download-cta__icon {
+    font-family: var(--font-serif); font-style: italic; font-size: 1.7rem; line-height: 1;
+    color: var(--color-mustard-soft); font-variation-settings: "SOFT" 100, "WONK" 1;
+  }
+  .download-cta__text { display: flex; flex-direction: column; gap: 0.15rem; }
+  .download-cta__text strong { font-family: var(--font-sans); font-size: 0.95rem; font-weight: 600; }
+  .download-cta__text .muted { font-family: var(--font-sans); font-size: 0.78rem; letter-spacing: 0.04em; }
   .desc {
     max-width: 62ch;
     font-size: 1.18rem;

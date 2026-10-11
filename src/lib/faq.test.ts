@@ -107,3 +107,14 @@ describe('curriculum note grammar (CODE-WEB-16)', () => {
     expect(hub).not.toMatch(/(establecido en el|establit en el|basará en el|basarà en el) \$\{marco\}/);
   });
 });
+
+describe('subjectFaqs — FP regulation', () => {
+  it('never tells an FP module it hangs from the LOMLOE', () => {
+    for (const slug of ['ipe1-fp', 'ipe2-fp'] as const) {
+      for (const locale of ['es', 'ca'] as const) {
+        const faqs = subjectFaqs(localizeAsignatura(ASIGNATURAS[slug], locale), locale);
+        expect(faqs.map((f) => f.a).join(' ')).not.toContain('LOMLOE');
+      }
+    }
+  });
+});

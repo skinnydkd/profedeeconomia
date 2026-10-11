@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
-import { ASIGNATURA_SLUGS, ASIGNATURAS } from '@/lib/asignaturas';
+import { ASIGNATURA_SLUGS, ASIGNATURAS, leyCurricular } from '@/lib/asignaturas';
 import { breadcrumbLd, itemListLd } from '@/lib/seo';
 import { getCollection } from 'astro:content';
 import { getLocale } from '@/i18n/locale';
@@ -41,7 +41,7 @@ const copy = {
     descripcion: (n: number) =>
       n === 0
         ? `El libro de ${a.title} para ${a.level}, en preparación.`
-        : `Descarga gratis en PDF el libro completo de ${a.title} (${a.level}) o léelo online por unidades. ${n} unidades del currículo LOMLOE.`,
+        : `Descarga gratis en PDF el libro completo de ${a.title} (${a.level}) o léelo online por unidades. ${n} unidades del currículo ${leyCurricular(a)}.`,
     vacio: 'Las unidades publicadas aparecerán aquí a medida que se vayan completando.',
     unidad: (n: number) => `${n} ${n === 1 ? 'unidad publicada' : 'unidades publicadas'}.`,
     descargar: 'Descargar libro completo',
@@ -57,7 +57,7 @@ const copy = {
     descripcion: (n: number) =>
       n === 0
         ? `El llibre de ${a.title} per a ${a.level}, en preparació.`
-        : `Descarrega gratis en PDF el llibre complet de ${a.title} (${a.level}) o llig-lo en línia per unitats. ${n} unitats del currículum LOMLOE.`,
+        : `Descarrega gratis en PDF el llibre complet de ${a.title} (${a.level}) o llig-lo en línia per unitats. ${n} unitats del currículum ${leyCurricular(a)}.`,
     vacio: 'Les unitats publicades apareixeran ací a mesura que es completen.',
     unidad: (n: number) => `${n} ${n === 1 ? 'unitat publicada' : 'unitats publicades'}.`,
     descargar: 'Descarregar llibre complet',

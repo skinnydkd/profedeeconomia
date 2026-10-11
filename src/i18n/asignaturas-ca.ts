@@ -32,7 +32,7 @@ export const ASIGNATURAS_CA: Partial<Record<AsignaturaSlug, CAOverlay>> = {
   'eco-4eso': {
     level: '4t ESO',
     title: 'Economia i Emprenedoria',
-    seoTitle: 'Economia i Emprenedoria 4t ESO: llibre i activitats',
+    seoTitle: 'Economia i Emprenedoria 4t ESO: llibre PDF gratis',
     seoName: 'Economia i Emprenedoria 4t ESO',
     tagline:
       'Nou unitats d\'economia i tres d\'empresa: de l\'escassetat i els mercats a la nòmina, els impostos i el projecte emprenedor.',
@@ -41,7 +41,7 @@ export const ASIGNATURAS_CA: Partial<Record<AsignaturaSlug, CAOverlay>> = {
   'fopp-4eso': {
     level: '4t ESO',
     title: 'Formació i Orientació Personal i Professional',
-    seoTitle: 'FOPP 4t ESO: llibre, diapositives i activitats gratis',
+    seoTitle: 'FOPP 4t ESO: llibre PDF gratis, diapositives i activitats',
     seoName: 'FOPP 4t ESO',
     tagline:
       'Itineraris, drets laborals i orientació per a la matèria nova de la LOMLOE: llibre, activitats i un projecte de vida que es construïx durant el curs.',
@@ -59,7 +59,7 @@ export const ASIGNATURAS_CA: Partial<Record<AsignaturaSlug, CAOverlay>> = {
   'ipe1-fp': {
     level: 'FP — Grau Mitjà i Superior',
     title: "Itinerari Personal per a l'Ocupabilitat I",
-    seoTitle: 'IPE I (FP): llibre, activitats i recursos LOMLOE',
+    seoTitle: 'IPE I (FP): llibre PDF gratis, activitats i tests',
     seoName: 'IPE I (FP)',
     tagline:
       'El mòdul que substitueix la FOL en primer curs: autoconeixement professional, prevenció de riscos laborals, contracte i drets, i salut psicosocial.',
@@ -68,7 +68,7 @@ export const ASIGNATURAS_CA: Partial<Record<AsignaturaSlug, CAOverlay>> = {
   'ipe2-fp': {
     level: 'FP — Grau Mitjà i Superior',
     title: "Itinerari Personal per a l'Ocupabilitat II",
-    seoTitle: "IPE II (FP): llibre, activitats i projecte d'empresa",
+    seoTitle: "IPE II (FP): llibre PDF gratis i projecte d'empresa",
     seoName: 'IPE II (FP)',
     tagline:
       'Continuació d\'IPE I en segon curs: busca activa d\'ocupació, marca personal, competències per a l\'ocupació i un projecte emprenedor d\'innovació social.',

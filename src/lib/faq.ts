@@ -8,7 +8,7 @@
  * relevance leak that keeps a Valencian page from reading as Valencian.
  * See docs/seo-estrategia-2026.md §5.8.
  */
-import type { Asignatura, AsignaturaSlug } from './asignaturas';
+import { leyCurricular, type Asignatura, type AsignaturaSlug } from './asignaturas';
 import type { Locale } from '@/i18n/locale';
 
 export type Faq = { q: string; a: string };
@@ -104,7 +104,7 @@ export function subjectFaqs(a: Asignatura, locale: Locale = 'es'): Faq[] {
       { q: `¿Qué es ${a.title} (${a.level})?`, a: a.tagline },
       {
         q: `¿Qué normativa regula ${a.title}?`,
-        a: `Esta materia se basa en el currículo básico estatal LOMLOE, según ${a.marcoNormativo}. Cada comunidad autónoma puede fijar concreciones propias en su currículo, así que conviene consultar la de tu comunidad para ajustar la programación a tu centro.`,
+        a: `Esta materia se basa en el currículo básico estatal ${leyCurricular(a)}, según ${a.marcoNormativo}. Cada comunidad autónoma puede fijar concreciones propias en su currículo, así que conviene consultar la de tu comunidad para ajustar la programación a tu centro.`,
       },
       {
         q: `¿El material de ${a.shortLabel} es gratuito?`,
@@ -119,7 +119,7 @@ export function subjectFaqs(a: Asignatura, locale: Locale = 'es'): Faq[] {
       { q: `Què és ${a.title} (${a.level})?`, a: a.tagline },
       {
         q: `Quina normativa regula ${a.title}?`,
-        a: `Esta matèria es basa en el currículum bàsic estatal LOMLOE, segons ${a.marcoNormativo}. Cada comunitat autònoma pot fixar concrecions pròpies al seu currículum, així que convé consultar la de la teua comunitat per a ajustar la programació al teu centre.`,
+        a: `Esta matèria es basa en el currículum bàsic estatal ${leyCurricular(a)}, segons ${a.marcoNormativo}. Cada comunitat autònoma pot fixar concrecions pròpies al seu currículum, així que convé consultar la de la teua comunitat per a ajustar la programació al teu centre.`,
       },
       {
         q: `El material de ${a.shortLabel} és gratuït?`,
