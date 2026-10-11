@@ -10,7 +10,7 @@
  * curricular frame, the MDX body, and — when the activity carries a worked
  * solution — a closing «Solución orientativa» block for the teacher. noindex.
  */
-import { ACCENTS, ASIGNATURAS } from '@/lib/asignaturas';
+import { ACCENTS, ASIGNATURAS, leyCurricular } from '@/lib/asignaturas';
 import { ACTIVIDAD_TIPO_LABEL } from '@/lib/actividades';
 import { sabersDeActividad } from '@/lib/cuaderno/sabers';
 import { getCollection, render } from 'astro:content';
@@ -48,18 +48,19 @@ const unitEs = allLibro.find(
 const unit = unitEs ? pickLocalizedEntry(unitEs, libroCaById, locale) : undefined;
 const sabers = sabersDeActividad(actividad.data, new Map([[`${a.slug}#${actividad.data.unidad_relacionada}`, unitEs?.data.sabers ?? []]]));
 
+const ley = leyCurricular(a);
 const copy = {
   es: {
     ficha: 'Ficha de actividad', unidad: 'Unidad', duracion: 'Duración', agrupacion: 'Agrupación', materiales: 'Materiales',
     encaje: 'Encaje curricular', saberes: 'Saberes', compEsp: 'Comp. específicas', compClave: 'Comp. clave', ebau: 'Tipo EBAU',
     solucion: 'Solución orientativa', solucionSub: 'Para el profesorado: pasos de la resolución del ejercicio.',
-    licencia: 'Material abierto de profedeeconomia.es · Licencia Creative Commons BY-NC-SA · Currículo LOMLOE',
+    licencia: `Material abierto de profedeeconomia.es · Licencia Creative Commons BY-NC-SA · Currículo ${ley}`,
   },
   ca: {
     ficha: "Fitxa d'activitat", unidad: 'Unitat', duracion: 'Durada', agrupacion: 'Agrupament', materiales: 'Materials',
     encaje: 'Encaix curricular', saberes: 'Sabers', compEsp: 'Comp. específiques', compClave: 'Comp. clau', ebau: 'Tipus EBAU',
     solucion: 'Solució orientativa', solucionSub: "Per al professorat: passos de la resolució de l'exercici.",
-    licencia: 'Material obert de profedeeconomia.es · Llicència Creative Commons BY-NC-SA · Currículum LOMLOE',
+    licencia: `Material obert de profedeeconomia.es · Llicència Creative Commons BY-NC-SA · Currículum ${ley}`,
   },
 }[locale];
 

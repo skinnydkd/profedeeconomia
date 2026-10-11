@@ -256,6 +256,13 @@ export const ACCENTS: Record<Asignatura['color'], { base: string; deep: string; 
   proximamente: { base: '#6E5A47', deep: '#5C4A3D', soft: '#EFE2CB' },
 };
 
+/**
+ * The organic law behind the subject's curriculum: FP modules (IPE) hang from
+ * the LOFP (LO 3/2022, RD 659/2023); ESO and Bachillerato from the LOMLOE.
+ */
+export const leyCurricular = (a: Pick<Asignatura, 'etapa'>): 'LOFP' | 'LOMLOE' =>
+  a.etapa === 'fp' ? 'LOFP' : 'LOMLOE';
+
 export const ASIGNATURAS_LIST: Asignatura[] = ASIGNATURA_SLUGS.map((s) => ASIGNATURAS[s]);
 
 /** Solament les asignatures publicades, per a navegació pública i grids. */
