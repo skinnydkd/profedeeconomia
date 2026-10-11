@@ -31,3 +31,16 @@ describe('leyCurricular', () => {
     expect(src).toContain('leyCurricular(a)');
   });
 });
+
+/**
+ * FP modules are assessed by resultados de aprendizaje (RA), not by the
+ * competencias específicas of ESO/Bachillerato: the evaluación copy has to
+ * say so for IPE I/II, as their own content does.
+ */
+describe('evaluación copy for FP', () => {
+  const src = readFileSync('src/pages/[asignatura]/evaluacion/index.astro', 'utf8');
+  it('names the resultados de aprendizaje in both languages', () => {
+    expect(src).toContain('Resultados de aprendizaje');
+    expect(src).toContain("Resultats d'aprenentatge");
+  });
+});
