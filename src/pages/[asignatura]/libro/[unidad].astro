@@ -87,7 +87,7 @@ const jsonLd = [
     datePublished: isoDay(d.publicado_en),
     dateModified: isoDay(d.actualizado_en ?? d.publicado_en),
     section: a.shortLabel,
-    image: `/og/${a.slug}.png`,
+    image: d.imagen ?? `/og/${a.slug}.png`,
     educationalLevel: a.level,
     teaches: d.conceptos_clave,
     locale,
@@ -106,6 +106,7 @@ const jsonLd = [
   brandSuffix={false}
   description={d.lema ?? d.title}
   ogType="article"
+  ogImage={d.imagen}
   jsonLd={jsonLd}
   contentLang={view.data.lang}
   translated={caById.has(`${unit.id}.ca`)}
