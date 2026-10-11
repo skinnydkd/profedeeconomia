@@ -325,6 +325,26 @@ Les pàgines no desapareixen del web ni deixen de navegar-se: només deixem de d
 
 **El que això no arregla.** Les ~840 URL `/ca/` legítimes continuen a la cua d'indexació i açò no les accelera. Si a la revisió d'octubre continuen a *«Descubierta: actualmente sin indexar»*, el problema ja no serà tècnic sinó d'autoritat, i toca mirar el §5.8.
 
+### 5.10 Revisió de GSC d'octubre (10 jul – 9 oct 2026) — ✅ **fet**
+
+**Les xifres.** 7.910 clics, 114.000 impressions, CTR 6,9 %, posició 6,3. El salt és l'1 de setembre (de ~8 a 200-400 clics/dia laborable), amb caps de setmana a la meitat. Cinc URL fan el 78 % dels clics: `/ipe2-fp/` (2.365), `/fopp-4eso/` (1.676), la portada (881), `/ipe1-fp/` (842) i `/eco-4eso/` (436). Les 12 setmanes barregen dates d'abans i de després del §5.3, així que no serveixen per a jutjar els títols d'aquell apartat: això ho farà la comparació de 28 dies del §6.
+
+**El que s'ha canviat:**
+
+- **El PDF, al hub.** La intenció `… libro pdf gratis` aterra al hub i no a `/libro/` (27.108 impressions a `/ipe2-fp/` davant 101 a `/ipe2-fp/libro/`). El hub ara du el mateix botó de descàrrega que `/libro/`, sota el lema, i la `meta description` diu «Material gratuito… libro en PDF».
+- **«PDF gratis» al `<title>`** dels quatre hubs on ho demanen les consultes: IPE I, IPE II, FOPP i Eco 4ESO (ES i CA). La resta no tenen eixa demanda a GSC i no s'han tocat. Un test ho fixa.
+- **IPE no és LOMLOE.** El títol d'IPE I deia «recursos LOMLOE», i el lema del hub, la `meta description`, la resposta de la FAQ «¿Qué normativa regula…?» (també dins del `FAQPage` JSON-LD), l'`educationalFramework` del `Course` JSON-LD i la descripció de `/libro/` deien «LOMLOE» a les dues assignatures de FP. Els mòduls de FP depenen de la LOFP (LO 3/2022, RD 659/2023). Helper `leyCurricular()` a `asignaturas.ts`, amb test. **Queda pendent** el mateix error a les plantilles d'impressió (`libro/imprimir`, `actividades/imprimir`, `actividades/[slug]/imprimir`) i a `evaluacion`: tocar-les obliga a regenerar els PDF.
+- **Un esquema visible per a Google.** Els diagrames del llibre són SVG en línia, que ni Google Imatges ni les miniatures de resultats arriben a veure. Nou camp opcional `imagen` al frontmatter de `libro`: va a `og:image` i a la `image` de l'Article JSON-LD. Per ara només el du `taller-eco-3eso/libro/02-agentes-flujo-circular` (5.315 impressions, CTR 1,05 %), amb captures PNG de l'esquema a `public/esquemas/` (ES i CA). Les captures són estàtiques: si canvia `FlujoCircular.astro`, cal tornar a fer-les.
+- **Art. 21 LPRL al cos de la unitat** `ipe1-fp/libro/08` (ES i CA): arriben consultes del tipus `boe ley 31/1995 artículo 21 riesgo grave e inminente`, i fins ara l'article només apareixia a les diapositives.
+
+**Comprovat i sense canvis:**
+
+- **Mòbil.** El CTR en mòbil (4,5 %) és la meitat que en ordinador (8,8 %), però no és un problema tècnic. Les dades de camp de CrUX a `/ipe2-fp/` són LCP 830 ms, INP 72 ms i CLS 0, i Lighthouse en mòbil dona 100 a accessibilitat, bones pràctiques i SEO. La diferència és d'intenció: en mòbil hi ha més alumnat buscant el PDF de l'editorial.
+- **`/ca/`.** Hreflang recíproc, canonical propi i títol en valencià a `/ca/fopp-4eso/libro/01-autoconocimiento-identidad/` (posició 23). Continua sent autoritat i temps (§5.8).
+- **No s'ha posat «los 3 agentes económicos» al títol** malgrat les consultes: la unitat i l'esquema en presenten quatre (amb el sector exterior), i el títol mentiria.
+- **No s'ha posat «qué es» al títol de FOPP**, tot i les ~800 impressions sense clic de `que es fopp`: és una consulta de definició (§7), i el hub ja l'expandix a l'`<h1>`, a la `meta description` i a la FAQ.
+- **Soroll:** les consultes `site:` són comprovacions pròpies; les consultes conversacionals («dámelo en pdf», «soy alumno») venen del Mode IA de Google; les impressions dels EUA i d'Àsia són bots.
+
 ---
 
 ## 6. Què mesurar i quan
