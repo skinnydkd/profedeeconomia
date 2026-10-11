@@ -5,6 +5,7 @@ import {
   ASIGNATURAS, ASIGNATURAS_LIST, SECCIONES_TRANSVERSALES, ACCENTS,
   SECCION_GRUPOS, seccionesDelGrupo,
 } from './asignaturas.ts';
+import { ASIGNATURAS_CA } from '../i18n/asignaturas-ca.ts';
 
 
 describe('SECCIONES_TRANSVERSALES', () => {
@@ -211,6 +212,33 @@ describe('ASIGNATURAS — seoName', () => {
   it('carries the level, so a child-page title is unambiguous on its own', () => {
     for (const a of Object.values(ASIGNATURAS)) {
       expect(a.seoName).toMatch(/ESO|Bachillerato|FP/);
+    }
+  });
+});
+
+/**
+ * FP modules (IPE I, IPE II) are regulated by the LOFP (LO 3/2022, RD 659/2023),
+ * not the LOMLOE. GSC (Oct 2026): the IPE I hub title said «LOMLOE».
+ */
+describe('ASIGNATURAS — FP titles name no LOMLOE', () => {
+  it('no FP seoTitle claims the LOMLOE, in either language', () => {
+    for (const a of ASIGNATURAS_LIST.filter((x) => x.etapa === 'fp')) {
+      expect(a.seoTitle).not.toContain('LOMLOE');
+      expect(ASIGNATURAS_CA[a.slug]?.seoTitle ?? '').not.toContain('LOMLOE');
+    }
+  });
+});
+
+/**
+ * GSC (Jul–Oct 2026): the hubs that take the «… pdf gratis» queries are IPE I,
+ * IPE II, FOPP and Eco 4ESO. Their book PDF is free, so the title says so.
+ */
+describe('ASIGNATURAS — PDF in the hub title', () => {
+  const PDF_HUBS = ['ipe1-fp', 'ipe2-fp', 'fopp-4eso', 'eco-4eso'] as const;
+  it('promises the free PDF where the queries ask for it', () => {
+    for (const slug of PDF_HUBS) {
+      expect(ASIGNATURAS[slug].seoTitle).toMatch(/PDF gratis/);
+      expect(ASIGNATURAS_CA[slug]?.seoTitle ?? '').toMatch(/PDF gratis/);
     }
   });
 });

@@ -86,6 +86,15 @@ describe('seo structured-data builders', () => {
     expect(ld.provider['@type']).toBe('EducationalOrganization');
   });
 
+  it('courseLd names the LOFP, not the LOMLOE, for an FP module', () => {
+    const ld = courseLd({
+      name: 'IPE I', description: 'd', path: '/ipe1-fp/',
+      educationalLevel: 'FP', marcoNormativo: 'RD 659/2023', targetName: 'IPE I',
+      ley: 'LOFP',
+    }) as Record<string, any>;
+    expect(ld.educationalAlignment.educationalFramework).toBe('LOFP — RD 659/2023');
+  });
+
   it('faqLd builds a FAQPage with Question/Answer pairs', () => {
     const ld = faqLd([{ q: '¿Es gratis?', a: 'Sí, gratis.' }]) as Record<string, any>;
     expect(ld['@type']).toBe('FAQPage');

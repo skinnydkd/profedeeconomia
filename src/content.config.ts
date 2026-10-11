@@ -37,6 +37,13 @@ const libro = defineCollection({
      * See docs/seo-estrategia-2026.md §5.3.
      */
     seoTitle: z.string().optional(),
+    /**
+     * Optional raster image (path under /public) of the unit's key diagram.
+     * Diagrams render as inline SVG, which Google Images and result thumbnails
+     * never see; this file goes to og:image and the Article JSON-LD instead of
+     * the generic subject card. See docs/seo-estrategia-2026.md §5.10.
+     */
+    imagen: z.string().optional(),
     lema: z.string().optional(),
     lang: z.enum(LANGS).default('es'),
     estado: z.enum(ESTADOS),

@@ -105,7 +105,7 @@ export const ASIGNATURAS: Record<AsignaturaSlug, Asignatura> = {
     level: '4.º ESO',
     shortLabel: 'Eco 4ESO',
     title: 'Economía y Emprendimiento',
-    seoTitle: 'Economía y Emprendimiento 4.º ESO: libro y actividades',
+    seoTitle: 'Economía y Emprendimiento 4.º ESO: libro PDF gratis',
     seoName: 'Economía y Emprendimiento 4.º ESO',
     tagline:
       'Nueve unidades de economía y tres de empresa: de la escasez y los mercados a la nómina, los impuestos y el proyecto emprendedor.',
@@ -121,7 +121,7 @@ export const ASIGNATURAS: Record<AsignaturaSlug, Asignatura> = {
     level: '4.º ESO',
     shortLabel: 'FOPP 4ESO',
     title: 'Formación y Orientación Personal y Profesional',
-    seoTitle: 'FOPP 4.º ESO: libro, diapositivas y actividades gratis',
+    seoTitle: 'FOPP 4.º ESO: libro PDF gratis, diapositivas y actividades',
     seoName: 'FOPP 4.º ESO',
     tagline:
       'Itinerarios, derechos laborales y orientación para la materia nueva de la LOMLOE: libro, actividades y un proyecto de vida que se construye durante el curso.',
@@ -153,7 +153,7 @@ export const ASIGNATURAS: Record<AsignaturaSlug, Asignatura> = {
     level: 'FP — Grado Medio y Superior',
     shortLabel: 'IPE I',
     title: 'Itinerario Personal para la Empleabilidad I',
-    seoTitle: 'IPE I (FP): libro, actividades y recursos LOMLOE',
+    seoTitle: 'IPE I (FP): libro PDF gratis, actividades y tests',
     seoName: 'IPE I (FP)',
     tagline:
       'El módulo que sustituye a la FOL en primer curso: autoconocimiento profesional, prevención de riesgos laborales, contrato y derechos, y salud psicosocial.',
@@ -169,7 +169,7 @@ export const ASIGNATURAS: Record<AsignaturaSlug, Asignatura> = {
     level: 'FP — Grado Medio y Superior',
     shortLabel: 'IPE II',
     title: 'Itinerario Personal para la Empleabilidad II',
-    seoTitle: 'IPE II (FP): libro, actividades y proyecto de empresa',
+    seoTitle: 'IPE II (FP): libro PDF gratis y proyecto de empresa',
     seoName: 'IPE II (FP)',
     tagline:
       'Continuación de IPE I en segundo curso: búsqueda activa de empleo, marca personal, competencias para el empleo y un proyecto emprendedor de innovación social.',
