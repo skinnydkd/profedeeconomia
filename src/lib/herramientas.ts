@@ -122,12 +122,54 @@ export function gruposHerramientas() {
  * position 37-41 while its subject twin sat at 6-18, on the same six inbound
  * links each. Where the twin is unique, the toolbox page canonicalises to it
  * and the signals consolidate. Where several subjects embed the same tool
- * (nómina, punto muerto, VAN/TIR…) there is no single target, so the toolbox
- * page stays self-canonical and the duplication is left for a content
- * decision. See docs/seo-estrategia-2026.md §5.6.
+ * (nómina, punto muerto, VAN/TIR…) the target is the winner chosen in
+ * RECURSO_CANONICO, and the losing subject twins canonicalise to it too.
+ * See docs/seo-estrategia-2026.md §5.6 and §5.11.
  */
+/**
+ * Winner for each tool that several subjects embed (§5.11). The twins share
+ * the island and the search intent («calculadora de nómina»), but each had
+ * its own URL competing for it. Rule: the twin with ≥20 GSC impressions
+ * (Jul–Oct 2026) wins; below that, the subject where the tool sits most
+ * naturally in the curriculum. A test fails when a new twin appears without
+ * a decision here, or when a winner stops being a published twin.
+ */
+export const RECURSO_CANONICO: Partial<Record<ComponenteKey, string>> = {
+  // By GSC impressions
+  NominaESO: '/eco-4eso/recursos/calculadora-nomina/', // 939
+  InteresCompuesto: '/eco-1bach/recursos/calculadora-interes-compuesto/', // 882
+  PuntoMuerto: '/edmn-2bach/recursos/calculadora-punto-muerto/', // 99
+  RIASEC: '/ipe1-fp/recursos/test-vocacional-riasec/', // 77 (FOPP 70)
+  CocheVsAlternativa: '/taller-eco-3eso/recursos/coche-vs-alternativa/', // 49
+  BuscadorItinerarios: '/ipe1-fp/recursos/itinerarios-formativos/', // 41
+  VANTIR: '/gpe-bach/recursos/calculadora-van-tir/', // 39
+  Presupuesto503020: '/eco-4eso/recursos/calculadora-presupuesto/', // 29
+  // By curricular fit (no twin reaches 20 impressions)
+  HuellaDigital: '/fopp-4eso/recursos/huella-digital/',
+  MatrizDecision: '/fopp-4eso/recursos/matriz-decision/',
+  Progresividad: '/taller-eco-3eso/recursos/progresividad-fiscal/',
+  IRPFDeclaracion: '/eco-4eso/recursos/simulador-declaracion-renta/',
+  EquilibrioMercado: '/eco-1bach/recursos/equilibrio-mercado/',
+  Externalidad: '/eco-1bach/recursos/externalidad-impuesto-pigouviano/',
+  FPP: '/eco-1bach/recursos/frontera-posibilidades/',
+  TasasEPA: '/eco-1bach/recursos/tasas-epa/',
+  AfirmacionSostenible: '/gpe-bach/recursos/afirmacion-sostenible/',
+  CanvasBM: '/edmn-2bach/recursos/business-model-canvas/',
+  CompraInteligente: '/taller-eco-3eso/recursos/compra-inteligente/',
+  EmbudoValidacion: '/ipe2-fp/recursos/embudo-validacion/',
+  RolesEquipo: '/ipe2-fp/recursos/roles-de-equipo/',
+  Scamper: '/gpe-bach/recursos/scamper/',
+  ClasificaEmpresa: '/edmn-2bach/recursos/clasificar-empresa/',
+  CosteContratacion: '/edmn-2bach/recursos/coste-contratacion/',
+  DAFO: '/edmn-2bach/recursos/dafo/',
+  FormaJuridica: '/edmn-2bach/recursos/forma-juridica/',
+  GeneradorCVEuropass: '/ipe1-fp/recursos/generador-cv-europass/',
+  ObjetivosSMART: '/ipe1-fp/recursos/objetivos-smart/',
+};
+
 export function recursoCanonicoPorComponente(
-  recursos: { id: string; data: { componente?: string; asignatura: string } }[]
+  recursos: { id: string; data: { componente?: string; asignatura: string } }[],
+  elegidos: Partial<Record<string, string>> = RECURSO_CANONICO,
 ): Map<string, string> {
   const byComponente = new Map<string, string[]>();
   for (const r of recursos) {
@@ -143,6 +185,7 @@ export function recursoCanonicoPorComponente(
   const unique = new Map<string, string>();
   for (const [componente, paths] of byComponente) {
     if (paths.length === 1) unique.set(componente, paths[0]);
+    else if (elegidos[componente] && paths.includes(elegidos[componente]!)) unique.set(componente, elegidos[componente]!);
   }
   return unique;
 }

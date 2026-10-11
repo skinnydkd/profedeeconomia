@@ -7,6 +7,7 @@ import { getLocale } from '@/i18n/locale';
 import { pickLocalizedEntry } from '@/i18n/content-locale';
 import { localizeAsignatura } from '@/i18n/asignaturas-ca';
 import HerramientaIsland from '@components/calculadoras/HerramientaIsland.astro';
+import { recursoCanonicoPorComponente } from '@/lib/herramientas';
 import type { GetStaticPaths } from 'astro';
 import Breadcrumb from '@components/Breadcrumb.astro';
 
@@ -50,6 +51,13 @@ const copy = {
 }[locale];
 
 const recursoSlug = recursoEs.id.split('/').pop()?.replace(/\.mdx?$/, '') ?? recursoEs.id;
+// When several subjects embed this tool, the losing twins point at the chosen
+// winner (RECURSO_CANONICO, §5.11); the page stays browsable.
+const publicadosEs = (await getCollection('recursos')).filter((x) => x.data.estado === 'publicado' && x.data.lang === 'es');
+const ganador = recursoEs.data.componente
+  ? recursoCanonicoPorComponente(publicadosEs).get(recursoEs.data.componente)
+  : undefined;
+const canonicalPath = ganador && ganador !== `/${recursoEs.data.asignatura}/recursos/${recursoSlug}/` ? ganador : undefined;
 const breadcrumb = breadcrumbLd([
   { name: copy.inicio, path: '/' },
   { name: a.shortLabel, path: `/${a.slug}/` },
@@ -58,7 +66,7 @@ const breadcrumb = breadcrumbLd([
 ], locale);
 ---
 
-<BaseLayout title={recurso.data.seoTitle ?? `${recurso.data.title} — ${a.seoName}`} brandSuffix={false} description={recurso.data.descripcion} ogType="article" jsonLd={breadcrumb} contentLang={recurso.data.lang} translated={recCaById.has(`${recursoEs.id}.ca`)}>
+<BaseLayout title={recurso.data.seoTitle ?? `${recurso.data.title} — ${a.seoName}`} brandSuffix={false} description={recurso.data.descripcion} ogType="article" jsonLd={breadcrumb} canonicalPath={canonicalPath} contentLang={recurso.data.lang} translated={recCaById.has(`${recursoEs.id}.ca`)}>
   <div class="container">
     <Breadcrumb
       locale={locale}
