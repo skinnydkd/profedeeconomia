@@ -7,12 +7,13 @@ import RecursosRelacionados from '@components/libro/RecursosRelacionados.astro';
 import { getIndiceRecursos } from '@/lib/recursos-relacionados-sources';
 import { recursosDeUnidad } from '@/lib/recursos-relacionados';
 import { getMaterialPorUnidad } from '@/lib/material-unidad-sources';
-import { articleLd, breadcrumbLd } from '@/lib/seo';
+import { articleLd, breadcrumbLd, subjectTitle } from '@/lib/seo';
 import { getLocale } from '@/i18n/locale';
 import { pickLocalizedEntry } from '@/i18n/content-locale';
 import { localizeAsignatura } from '@/i18n/asignaturas-ca';
 import type { GetStaticPaths } from 'astro';
 import Breadcrumb from '@components/Breadcrumb.astro';
+import { existsSync } from 'node:fs';
 
 export const getStaticPaths = (async () => {
   const allUnits = await getCollection('libro');
@@ -78,6 +79,12 @@ const d = view.data;
 // Structured data (JSON-LD): the unit as an Article + its breadcrumb trail.
 const unitTitle = `${copy.unidad} ${d.unidad}. ${d.title}`;
 const unitPath = `/${a.slug}/libro/${idToSlug(unit.id)}/`;
+// The unit's key diagram as a raster image (scripts/build-esquemas.mjs):
+// an explicit `imagen` wins, then this locale's capture, then the ES one.
+const esquema = [locale === 'ca' ? '.ca' : '', '']
+  .map((sfx) => `/esquemas/${a.slug}/${idToSlug(unit.id)}${sfx}.png`)
+  .find((src) => existsSync(`public${src}`));
+const imagen = d.imagen ?? esquema;
 const isoDay = (day?: Date) => day?.toISOString().slice(0, 10);
 const jsonLd = [
   articleLd({
@@ -87,7 +94,7 @@ const jsonLd = [
     datePublished: isoDay(d.publicado_en),
     dateModified: isoDay(d.actualizado_en ?? d.publicado_en),
     section: a.shortLabel,
-    image: d.imagen ?? `/og/${a.slug}.png`,
+    image: imagen ?? `/og/${a.slug}.png`,
     educationalLevel: a.level,
     teaches: d.conceptos_clave,
     locale,
@@ -102,11 +109,11 @@ const jsonLd = [
 ---
 
 <BaseLayout
-  title={d.seoTitle ?? `${d.title} — ${a.seoName}`}
+  title={d.seoTitle ?? subjectTitle(d.title, a)}
   brandSuffix={false}
   description={d.lema ?? d.title}
   ogType="article"
-  ogImage={d.imagen}
+  ogImage={imagen}
   jsonLd={jsonLd}
   contentLang={view.data.lang}
   translated={caById.has(`${unit.id}.ca`)}

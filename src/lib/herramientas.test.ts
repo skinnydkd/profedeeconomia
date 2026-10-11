@@ -2,8 +2,9 @@ import { describe, it, expect } from 'vitest';
 import {
   COMPONENTE_KEYS, FAMILIAS_HERRAMIENTA, HERRAMIENTAS,
   herramientaPorSlug, gruposHerramientas, unidadesPorComponente,
-  recursoCanonicoPorComponente,
+  recursoCanonicoPorComponente, RECURSO_CANONICO,
 } from './herramientas.ts';
+import { readdirSync, readFileSync, existsSync } from 'node:fs';
 
 describe('HERRAMIENTAS registry', () => {
   // The count is derived from COMPONENTE_KEYS rather than hard-coded: the
@@ -98,11 +99,27 @@ describe('recursoCanonicoPorComponente (§5.6)', () => {
     expect(m.get('Elasticidad')).toBe('/eco-1bach/recursos/calculadora-elasticidad/');
   });
 
-  it('refuses to pick a target when several subjects embed the same tool', () => {
+  it('refuses to pick a target when several subjects embed the tool and none is chosen', () => {
     const m = recursoCanonicoPorComponente([
       r('asignaturas/eco-4eso/recursos/calculadora-nomina.md', 'NominaESO', 'eco-4eso'),
       r('asignaturas/ipe1-fp/recursos/calculadora-nomina.md', 'NominaESO', 'ipe1-fp'),
-    ]);
+    ], {});
+    expect(m.has('NominaESO')).toBe(false);
+  });
+
+  it('uses the chosen winner when several subjects embed the same tool (§5.11)', () => {
+    const m = recursoCanonicoPorComponente([
+      r('asignaturas/eco-4eso/recursos/calculadora-nomina.md', 'NominaESO', 'eco-4eso'),
+      r('asignaturas/ipe1-fp/recursos/calculadora-nomina.md', 'NominaESO', 'ipe1-fp'),
+    ], { NominaESO: '/eco-4eso/recursos/calculadora-nomina/' });
+    expect(m.get('NominaESO')).toBe('/eco-4eso/recursos/calculadora-nomina/');
+  });
+
+  it('ignores a chosen winner that is not one of the twins', () => {
+    const m = recursoCanonicoPorComponente([
+      r('asignaturas/eco-4eso/recursos/calculadora-nomina.md', 'NominaESO', 'eco-4eso'),
+      r('asignaturas/ipe1-fp/recursos/calculadora-nomina.md', 'NominaESO', 'ipe1-fp'),
+    ], { NominaESO: '/gpe-bach/recursos/calculadora-nomina/' });
     expect(m.has('NominaESO')).toBe(false);
   });
 
@@ -119,5 +136,38 @@ describe('recursoCanonicoPorComponente (§5.6)', () => {
       { id: 'asignaturas/eco-1bach/recursos/ficha.md', data: { asignatura: 'eco-1bach' } },
     ]);
     expect(m.size).toBe(0);
+  });
+});
+
+/**
+ * Every tool embedded by several subjects needs a chosen winner, and every
+ * winner must be one of its published twins: a new twin added without a
+ * decision would otherwise leave N pages competing for the same query.
+ */
+describe('RECURSO_CANONICO matches the published content', () => {
+  const ROOT = 'src/content/asignaturas';
+  const twins = new Map<string, string[]>();
+  for (const asig of readdirSync(ROOT)) {
+    const dir = `${ROOT}/${asig}/recursos`;
+    if (!existsSync(dir)) continue;
+    for (const f of readdirSync(dir)) {
+      if (f.includes('.ca.') || !/\.mdx?$/.test(f)) continue;
+      const fm = readFileSync(`${dir}/${f}`, 'utf8').split('---')[1] ?? '';
+      const comp = fm.match(/^componente:\s*["']?(\w+)/m)?.[1];
+      const estado = fm.match(/^estado:\s*["']?(\w+)/m)?.[1];
+      if (!comp || estado !== 'publicado') continue;
+      const path = `/${asig}/recursos/${f.replace(/\.mdx?$/, '')}/`;
+      twins.set(comp, [...(twins.get(comp) ?? []), path]);
+    }
+  }
+
+  it('chooses a winner for every tool with several subject twins', () => {
+    const missing = [...twins].filter(([c, ps]) => ps.length > 1 && !(c in RECURSO_CANONICO)).map(([c]) => c);
+    expect(missing).toEqual([]);
+  });
+
+  it('only chooses winners that are published twins of that tool', () => {
+    const wrong = Object.entries(RECURSO_CANONICO).filter(([c, p]) => !(twins.get(c) ?? []).includes(p as string));
+    expect(wrong).toEqual([]);
   });
 });

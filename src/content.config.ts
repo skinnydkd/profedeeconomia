@@ -38,10 +38,10 @@ const libro = defineCollection({
      */
     seoTitle: z.string().optional(),
     /**
-     * Optional raster image (path under /public) of the unit's key diagram.
-     * Diagrams render as inline SVG, which Google Images and result thumbnails
-     * never see; this file goes to og:image and the Article JSON-LD instead of
-     * the generic subject card. See docs/seo-estrategia-2026.md §5.10.
+     * Optional raster image (path under /public) for og:image and the Article
+     * JSON-LD. Only needed to override the default: the capture of the unit's
+     * first diagram that scripts/build-esquemas.mjs writes to
+     * /esquemas/<asignatura>/<unidad>[.ca].png. See seo-estrategia §5.11.
      */
     imagen: z.string().optional(),
     lema: z.string().optional(),

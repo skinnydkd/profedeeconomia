@@ -276,7 +276,7 @@ Totes dues eren *self-canonical*, o siga que competien entre elles i Google es q
 
 Resultat al build: **22 pàgines consolidades** (11 eines × 2 idiomes), 22 que segueixen *self-canonical*, 0 amb `hreflang` contradictori.
 
-**El que queda obert i és decisió de Pau.** Les altres 11 eines tenen entre 2 i 5 bessons, així que no hi ha un destí únic i s'han deixat com estaven. El cas extrem és la calculadora de nòmina: **sis URL per a la mateixa eina** (`/herramientas/finanzas-personales/nomina/` i els recursos d'eco-4eso, taller-eco-3eso, gpe-bach, ipe1-fp i fopp-4eso), competint totes entre elles — eco-4eso a la posició 8,25 amb 260 impressions i taller-eco-3eso a la 13,8 amb 71. Consolidar-les vol dir triar qui ha de guanyar la consulta `calculadora de nómina`, i això és una decisió de producte, no de codi.
+**El que queda obert i és decisió de Pau** — ✅ **resolt al §5.11.** Les altres 11 eines tenen entre 2 i 5 bessons, així que no hi ha un destí únic i s'han deixat com estaven. El cas extrem és la calculadora de nòmina: **sis URL per a la mateixa eina** (`/herramientas/finanzas-personales/nomina/` i els recursos d'eco-4eso, taller-eco-3eso, gpe-bach, ipe1-fp i fopp-4eso), competint totes entre elles — eco-4eso a la posició 8,25 amb 260 impressions i taller-eco-3eso a la 13,8 amb 71. Consolidar-les vol dir triar qui ha de guanyar la consulta `calculadora de nómina`, i això és una decisió de producte, no de codi.
 
 **Una inconsistència menor coneguda** — ✅ **resolta al §5.9.** Les URL consolidades continuaven al `sitemap.xml`. Ací es va descartar filtrar-les perquè exigia duplicar la derivació dins d'`astro.config.mjs` (que no pot importar el `lib` de TypeScript). Eixe obstacle era real però evitable: no cal derivar res, n'hi ha prou amb llegir la `canonical` que la pàgina ja ha escrit al disc.
 
@@ -306,7 +306,7 @@ Resultat: **de 839 a 1.678 entrades, del 50% al 100% de cobertura**, 0 duplicats
 
 **El que queda de veritat.** Els *hubs* CA posicionen bé (`/ca/eco-4eso/` a la 6,45 amb un 18,37% de CTR; `/ca/taller-eco-3eso/` a la 5,29 amb un 42,86%). Les unitats de llibre CA que van mal ho fan sobre termes generals en català (`autoconeixement` 68 impr pos 43,7; `emprenedoria` 62 impr pos 33,9), on la competència és de llocs catalans consolidats. Això és autoritat i temps, no un defecte tècnic.
 
-**Un candidat per a més avant:** els *slugs* de les URL `/ca/` són en castellà (`/ca/fopp-4eso/libro/01-autoconocimiento-identidad/` per a la consulta `autoconeixement`). Traduir-los és un canvi estructural amb redireccions i no s'ha tocat.
+**Un candidat per a més avant** (descartat de moment, vegeu el §5.11): els *slugs* de les URL `/ca/` són en castellà (`/ca/fopp-4eso/libro/01-autoconocimiento-identidad/` per a la consulta `autoconeixement`). Traduir-los és un canvi estructural amb redireccions i no s'ha tocat.
 
 ### 5.9 El sitemap demanava pàgines que Google no indexarà mai — ✅ **fet**
 
@@ -344,6 +344,31 @@ Les pàgines no desapareixen del web ni deixen de navegar-se: només deixem de d
 - **No s'ha posat «los 3 agentes económicos» al títol** malgrat les consultes: la unitat i l'esquema en presenten quatre (amb el sector exterior), i el títol mentiria.
 - **No s'ha posat «qué es» al títol de FOPP**, tot i les ~800 impressions sense clic de `que es fopp`: és una consulta de definició (§7), i el hub ja l'expandix a l'`<h1>`, a la `meta description` i a la FAQ.
 - **Soroll:** les consultes `site:` són comprovacions pròpies; les consultes conversacionals («dámelo en pdf», «soy alumno») venen del Mode IA de Google; les impressions dels EUA i d'Àsia són bots.
+
+### 5.11 Els pendents del §5.6-5.8 — ✅ **fet** (tret dels slugs en valencià, descartat de moment)
+
+**Eines duplicades entre assignatures (tanca el §5.6).** 28 eines vivien a entre 2 i 6 URL d'assignatura cadascuna. La nòmina en tenia sis, més la fitxa de `/herramientas/`. Les germanes comparteixen el giny i la intenció de cerca, però no el text: la introducció pròpia de cada assignatura coincideix només un 2-5 % (40 % aprox. comptant el giny, 54 % amb la fitxa de `/herramientas/`). Totes eren *self-canonical* i competien entre elles a GSC (la nòmina: 939 impressions a eco-4eso, 227 a taller-eco-3eso i 169 a gpe-bach).
+
+`RECURSO_CANONICO` (`src/lib/herramientas.ts`) tria una guanyadora per eina amb una regla fixa. Si la germana amb més impressions a GSC (jul-oct 2026) en té almenys 20, guanya ella (8 eines). Si no, guanya l'assignatura on l'eina encaixa millor al currículum (20 eines). Les germanes perdedores i la fitxa de `/herramientas/` apunten a la guanyadora amb `rel=canonical`, deixen d'emetre hreflang i surten del sitemap. Les pàgines continuen navegables. Un test falla si apareix una germana nova sense decisió, o si una guanyadora deixa d'estar publicada.
+
+Les eleccions per encaix curricular són revisables: és una línia per eina al mapa.
+
+**Sufix d'assignatura sensible a la longitud (tanca el residu del §5.7).** 1.339 dels 2.195 títols indexables passaven dels 60 caràcters, i 1.337 per culpa del sufix (`— Economía y Emprendimiento 4.º ESO`). `subjectTitle()` (`src/lib/seo.ts`) prova per ordre:
+
+1. el nom complet;
+2. l'etiqueta curta (`— Eco 4ESO`);
+3. res.
+
+S'aplica a unitats del llibre, activitats, dinàmiques, tests, reptes i recursos. Els `seoTitle` escrits a mà no canvien. Uns 830 títols queden dins del límit. Els ~500 restants són llargs pel títol mateix: Google els talla, però en compta totes les paraules. Escurçar-los és feina d'autoria i no compensa títol a títol.
+
+**Esquema de cada unitat per a Google (amplia el §5.10).** `scripts/build-esquemas.mjs` (`npm run build:esquemas`) captura el primer diagrama de cada unitat del llibre, en ES i CA, i el guarda a `public/esquemas/<asignatura>/<unidad>[.ca].png`. La unitat el troba pel nom del fitxer i el posa a `og:image` i a l'`image` de l'Article JSON-LD. El camp `imagen` del frontmatter queda per a triar un altre esquema. Es torna a executar quan canvie un diagrama, com els PDF.
+
+**Slugs en valencià (§5.8): descartat de moment.** Les pàgines `/ca/` les genera el *fallback rewrite* d'Astro amb la mateixa ruta que la castellana. Traduir els slugs voldria dir:
+- unes 1.000 redireccions 301;
+- rutes pròpies per a `/ca/`;
+- reescriure canonical, hreflang, sitemap i tots els enllaços interns.
+
+Tot això a meitat de curs, per a un senyal de rànquing menor (el slug) en una secció de ~745 impressions al trimestre. Es reprendrà si `/ca/` guanya pes a GSC o si alguna consulta en valencià amb volum queda encallada pel slug.
 
 ---
 
