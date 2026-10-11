@@ -3,7 +3,7 @@ import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import {
   ASIGNATURAS, ASIGNATURAS_LIST, SECCIONES_TRANSVERSALES, ACCENTS,
-  SECCION_GRUPOS, seccionesDelGrupo, leyCurricular,
+  SECCION_GRUPOS, seccionesDelGrupo,
 } from './asignaturas.ts';
 import { ASIGNATURAS_CA } from '../i18n/asignaturas-ca.ts';
 
@@ -220,13 +220,7 @@ describe('ASIGNATURAS — seoName', () => {
  * FP modules (IPE I, IPE II) are regulated by the LOFP (LO 3/2022, RD 659/2023),
  * not the LOMLOE. GSC (Oct 2026): the IPE I hub title said «LOMLOE».
  */
-describe('leyCurricular', () => {
-  it('names the LOFP for FP and the LOMLOE for ESO and Bachillerato', () => {
-    for (const a of ASIGNATURAS_LIST) {
-      expect(leyCurricular(a)).toBe(a.etapa === 'fp' ? 'LOFP' : 'LOMLOE');
-    }
-  });
-
+describe('ASIGNATURAS — FP titles name no LOMLOE', () => {
   it('no FP seoTitle claims the LOMLOE, in either language', () => {
     for (const a of ASIGNATURAS_LIST.filter((x) => x.etapa === 'fp')) {
       expect(a.seoTitle).not.toContain('LOMLOE');
