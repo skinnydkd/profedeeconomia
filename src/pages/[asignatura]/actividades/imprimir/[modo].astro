@@ -11,7 +11,7 @@
  *
  * One path per asignatura that has at least one published activity.
  */
-import { ACCENTS, ASIGNATURA_SLUGS, ASIGNATURAS } from '@/lib/asignaturas';
+import { ACCENTS, ASIGNATURA_SLUGS, ASIGNATURAS, leyCurricular } from '@/lib/asignaturas';
 import { getCollection, render } from 'astro:content';
 import { sabersDeActividad } from '@/lib/cuaderno/sabers';
 import { ACTIVIDAD_TIPO_LABEL } from '@/lib/actividades';
@@ -85,11 +85,12 @@ const porUnidad = unidades.map((u) => ({
 
 const tipoLabel: Record<string, string> = ACTIVIDAD_TIPO_LABEL[locale];
 
+const ley = leyCurricular(a);
 const copy = {
   es: {
     docHeader: 'Cuaderno de actividades', pageTitle: 'Cuaderno de actividades',
     coverTitlePre: 'Cuaderno de', coverTitleEm: 'actividades',
-    coverInsideActs: 'actividades', coverInsideTests: 'tests', coverConSolucionario: ' con solucionario', curriculo: 'Currículo LOMLOE',
+    coverInsideActs: 'actividades', coverInsideTests: 'tests', coverConSolucionario: ' con solucionario', curriculo: `Currículo ${ley}`,
     editorial: 'Editorial', edicion: 'Edición', profesorado: 'Profesorado', alumnado: 'Alumnado', curso: 'curso 2026/27', generado: 'Generado',
     comoUsar: 'Cómo usar este cuaderno',
     indice: 'Índice', unidades: 'unidades', contenido: 'Contenido', unidad: 'Unidad', act: 'act.', test: 'test',
@@ -101,7 +102,7 @@ const copy = {
   ca: {
     docHeader: 'Quadern d\'activitats', pageTitle: 'Quadern d\'activitats',
     coverTitlePre: 'Quadern d\'', coverTitleEm: 'activitats',
-    coverInsideActs: 'activitats', coverInsideTests: 'tests', coverConSolucionario: ' amb solucionari', curriculo: 'Currículum LOMLOE',
+    coverInsideActs: 'activitats', coverInsideTests: 'tests', coverConSolucionario: ' amb solucionari', curriculo: `Currículum ${ley}`,
     editorial: 'Editorial', edicion: 'Edició', profesorado: 'Professorat', alumnado: 'Alumnat', curso: 'curs 2026/27', generado: 'Generat',
     comoUsar: 'Com fer servir este quadern',
     indice: 'Índex', unidades: 'unitats', contenido: 'Contingut', unidad: 'Unitat', act: 'act.', test: 'test',
@@ -553,13 +554,13 @@ const letra = (i: number) => String.fromCharCode(97 + i); // 0 -> 'a'
       )}
       {locale === 'ca' ? (
         <p>
-          El contingut es basa en el currículum bàsic estatal LOMLOE per a
+          El contingut es basa en el currículum bàsic estatal {ley} per a
           {' '}{a.title} ({a.marcoNormativo}). Convé consultar la concreció de
           la vostra comunitat autònoma.
         </p>
       ) : (
         <p>
-          El contenido se basa en el currículo básico estatal LOMLOE para
+          El contenido se basa en el currículo básico estatal {ley} para
           {' '}{a.title} ({a.marcoNormativo}). Conviene consultar la concreción de
           vuestra comunidad autónoma.
         </p>

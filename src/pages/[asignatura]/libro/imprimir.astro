@@ -8,7 +8,7 @@
  *
  * Generates one path per asignatura that has at least one published unit.
  */
-import { ACCENTS, ASIGNATURA_SLUGS, ASIGNATURAS } from '@/lib/asignaturas';
+import { ACCENTS, ASIGNATURA_SLUGS, ASIGNATURAS, leyCurricular } from '@/lib/asignaturas';
 import { SITE } from '@/lib/seo';
 import { getCollection, render } from 'astro:content';
 import { getLocale } from '@/i18n/locale';
@@ -100,24 +100,25 @@ const renderedEbau = await Promise.all(
 const today = new Date().toLocaleDateString(locale === 'ca' ? 'ca-ES' : 'es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
 const totalUnits = units.length;
 
+const ley = leyCurricular(a);
 const copy = {
   es: {
-    unidades: 'unidades', curriculo: 'Currículo estatal LOMLOE', editorial: 'Editorial', edicion: 'Edición',
+    unidades: 'unidades', curriculo: `Currículo estatal ${ley}`, editorial: 'Editorial', edicion: 'Edición',
     edicionVal: 'Curso 2026/27 · borrador', generado: 'Generado',
     sobreH: 'Sobre este libro',
     sobreP1a: 'Este libro forma parte de los materiales abiertos de', sobreP1b: ', una plataforma de recursos para profesores de instituto de economía, empresa y finanzas. Todo el contenido se publica bajo licencia', sobreP1c: ': podéis copiarlo, redistribuirlo y adaptarlo siempre que citéis la autoría y no lo uséis con fines comerciales.',
-    sobreP2a: 'Este libro se basa en el currículo básico estatal LOMLOE para', sobreP2b: '). Cada comunidad autónoma establece concreciones específicas en su currículo propio; conviene consultar la concreción de vuestra CCAA para ajustar la programación al centro.',
+    sobreP2a: `Este libro se basa en el currículo básico estatal ${ley} para`, sobreP2b: '). Cada comunidad autónoma establece concreciones específicas en su currículo propio; conviene consultar la concreción de vuestra CCAA para ajustar la programación al centro.',
     colofon: 'Composición tipográfica con Fraunces y Switzer. Generado con Astro y paged.js. Comentarios, erratas y propuestas:',
     indice: 'Índice general', contenido: 'Contenido', unidad: 'Unidad', pagina: 'Página',
     duracion: 'Duración', conceptos: 'Conceptos clave', objetivos: 'Objetivos de la unidad',
     apendice: 'Apéndice', guiaEbau: 'Guía EBAU', guiaEbauLede: 'Para llegar al examen con la cabeza en su sitio.',
   },
   ca: {
-    unidades: 'unitats', curriculo: 'Currículum estatal LOMLOE', editorial: 'Editorial', edicion: 'Edició',
+    unidades: 'unitats', curriculo: `Currículum estatal ${ley}`, editorial: 'Editorial', edicion: 'Edició',
     edicionVal: 'Curs 2026/27 · esborrany', generado: 'Generat',
     sobreH: 'Sobre este llibre',
     sobreP1a: 'Este llibre forma part dels materials oberts de', sobreP1b: ', una plataforma de recursos per a professors d\'institut d\'economia, empresa i finances. Tot el contingut es publica sota llicència', sobreP1c: ': podeu copiar-lo, redistribuir-lo i adaptar-lo sempre que en citeu l\'autoria i no l\'useu amb fins comercials.',
-    sobreP2a: 'Este llibre es basa en el currículum bàsic estatal LOMLOE per a', sobreP2b: '). Cada comunitat autònoma estableix concrecions específiques al seu currículum propi; convé consultar la concreció de la vostra CCAA per a ajustar la programació al centre.',
+    sobreP2a: `Este llibre es basa en el currículum bàsic estatal ${ley} per a`, sobreP2b: '). Cada comunitat autònoma estableix concrecions específiques al seu currículum propi; convé consultar la concreció de la vostra CCAA per a ajustar la programació al centre.',
     colofon: 'Composició tipogràfica amb Fraunces i Switzer. Generat amb Astro i paged.js. Comentaris, errades i propostes:',
     indice: 'Índex general', contenido: 'Contingut', unidad: 'Unitat', pagina: 'Pàgina',
     duracion: 'Durada', conceptos: 'Conceptes clau', objetivos: 'Objectius de la unitat',

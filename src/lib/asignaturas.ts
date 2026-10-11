@@ -256,6 +256,13 @@ export const ACCENTS: Record<Asignatura['color'], { base: string; deep: string; 
   proximamente: { base: '#6E5A47', deep: '#5C4A3D', soft: '#EFE2CB' },
 };
 
+/**
+ * The organic law behind the subject's curriculum: FP modules (IPE) hang from
+ * the LOFP (LO 3/2022, RD 659/2023); ESO and Bachillerato from the LOMLOE.
+ */
+export const leyCurricular = (a: Pick<Asignatura, 'etapa'>): 'LOFP' | 'LOMLOE' =>
+  a.etapa === 'fp' ? 'LOFP' : 'LOMLOE';
+
 export const ASIGNATURAS_LIST: Asignatura[] = ASIGNATURA_SLUGS.map((s) => ASIGNATURAS[s]);
 
 /** Solament les asignatures publicades, per a navegació pública i grids. */
@@ -324,7 +331,7 @@ export const SECCIONES_TRANSVERSALES = [
   { slug: 'debates',        grupo: 'aula',     label: 'Debates',        description: 'Controversias económicas para argumentar en clase.' },
   { slug: 'juegos',         grupo: 'aula',     label: 'Juegos',         description: 'Material para una clase activa.' },
   { slug: 'jocs-economics', grupo: 'aula',     label: 'Juegos Económicos', description: 'Concurso competitivo de economía con ranking por alumno e instituto.' },
-  { slug: 'generadores',    grupo: 'recursos', label: 'Herramientas Docentes', description: 'Generadores LOMLOE y herramientas de evaluación y aula.' },
+  { slug: 'generadores',    grupo: 'recursos', label: 'Herramientas Docentes', description: 'Generadores curriculares y herramientas de evaluación y aula.' },
 ] as const;
 
 /** Sections of one dropdown column, in the order declared above. */
