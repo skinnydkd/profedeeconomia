@@ -34,19 +34,26 @@ const entry = entryEs ? pickLocalizedEntry(entryEs, caById, locale) : undefined;
 const d = entry?.data;
 
 const ley = leyCurricular(a);
+// FP modules are assessed by resultados de aprendizaje (RA); ESO and
+// Bachillerato by competencias específicas.
+const esFP = ley === 'LOFP';
 const copy = {
   es: {
     inicio: 'Inicio', titulo: 'Evaluación competencial',
-    descripcion: `Competencias específicas, criterios de evaluación y rúbricas de niveles de logro de ${a.title}, listas para evaluar por competencias.`,
+    descripcion: `${esFP ? 'Resultados de aprendizaje' : 'Competencias específicas'}, criterios de evaluación y rúbricas de niveles de logro de ${a.title}, listas para evaluar por competencias.`,
     vacio: 'La evaluación por competencias de esta asignatura se publicará próximamente.',
-    marco: (m: string) => `Competencias específicas del currículo básico estatal ${ley} (${m}). Cada comunidad autónoma las concreta: ajusta la redacción y los criterios a tu CCAA y a tu Proyecto Educativo de Centro.`,
+    marco: (m: string) => esFP
+      ? `Resultados de aprendizaje y criterios de evaluación del currículo básico estatal ${ley} (${m}). Cada comunidad autónoma los concreta: ajusta la redacción y los criterios a tu CCAA y a tu Proyecto Educativo de Centro.`
+      : `Competencias específicas del currículo básico estatal ${ley} (${m}). Cada comunidad autónoma las concreta: ajusta la redacción y los criterios a tu CCAA y a tu Proyecto Educativo de Centro.`,
     criterios: 'Criterios de evaluación', niveles: 'Niveles de logro', instrumentos: 'Instrumentos de evaluación',
   },
   ca: {
     inicio: 'Inici', titulo: 'Avaluació competencial',
-    descripcion: `Competències específiques, criteris d'avaluació i rúbriques de nivells d'assoliment de ${a.title}, a punt per a avaluar per competències.`,
+    descripcion: `${esFP ? "Resultats d'aprenentatge" : 'Competències específiques'}, criteris d'avaluació i rúbriques de nivells d'assoliment de ${a.title}, a punt per a avaluar per competències.`,
     vacio: "L'avaluació per competències d'esta assignatura es publicarà pròximament.",
-    marco: (m: string) => `Competències específiques del currículum bàsic estatal ${ley} (${m}). Cada comunitat autònoma les concreta: ajusta la redacció i els criteris a la teua CCAA i al teu Projecte Educatiu de Centre.`,
+    marco: (m: string) => esFP
+      ? `Resultats d'aprenentatge i criteris d'avaluació del currículum bàsic estatal ${ley} (${m}). Cada comunitat autònoma els concreta: ajusta la redacció i els criteris a la teua CCAA i al teu Projecte Educatiu de Centre.`
+      : `Competències específiques del currículum bàsic estatal ${ley} (${m}). Cada comunitat autònoma les concreta: ajusta la redacció i els criteris a la teua CCAA i al teu Projecte Educatiu de Centre.`,
     criterios: "Criteris d'avaluació", niveles: "Nivells d'assoliment", instrumentos: "Instruments d'avaluació",
   },
 }[locale];
