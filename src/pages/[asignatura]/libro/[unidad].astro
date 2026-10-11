@@ -7,7 +7,7 @@ import RecursosRelacionados from '@components/libro/RecursosRelacionados.astro';
 import { getIndiceRecursos } from '@/lib/recursos-relacionados-sources';
 import { recursosDeUnidad } from '@/lib/recursos-relacionados';
 import { getMaterialPorUnidad } from '@/lib/material-unidad-sources';
-import { articleLd, breadcrumbLd } from '@/lib/seo';
+import { articleLd, breadcrumbLd, subjectTitle } from '@/lib/seo';
 import { getLocale } from '@/i18n/locale';
 import { pickLocalizedEntry } from '@/i18n/content-locale';
 import { localizeAsignatura } from '@/i18n/asignaturas-ca';
@@ -102,7 +102,7 @@ const jsonLd = [
 ---
 
 <BaseLayout
-  title={d.seoTitle ?? `${d.title} — ${a.seoName}`}
+  title={d.seoTitle ?? subjectTitle(d.title, a)}
   brandSuffix={false}
   description={d.lema ?? d.title}
   ogType="article"

@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { readFileSync } from 'node:fs';
-import { jsonLdToString, organizationLd, articleLd, courseLd, itemListLd, faqLd, SAME_AS, SITE, pageTitle, MAX_TITLE_CHARS, quizLd } from './seo';
+import { jsonLdToString, organizationLd, articleLd, courseLd, itemListLd, faqLd, SAME_AS, SITE, pageTitle, subjectTitle, MAX_TITLE_CHARS, quizLd } from './seo';
 
 describe('jsonLdToString', () => {
   it('escapes < to avoid </script> injection', () => {
@@ -199,5 +199,30 @@ describe('SITE.email', () => {
   it('matches the address published in public/llms.txt', () => {
     const llms = readFileSync('public/llms.txt', 'utf8');
     expect(llms).toContain(`- Email: ${SITE.email}`);
+  });
+});
+
+describe('subjectTitle — length-aware subject suffix (§5.11)', () => {
+  const eco4 = { seoName: 'Economía y Emprendimiento 4.º ESO', shortLabel: 'Eco 4ESO' };
+
+  it('keeps the full subject name when it fits', () => {
+    expect(subjectTitle('La nómina', eco4)).toBe('La nómina — Economía y Emprendimiento 4.º ESO');
+  });
+
+  it('falls back to the short label when the full name does not fit', () => {
+    const body = 'Nómina y contratos: bruto, neto e IRPF'; // 38 + 36 > 60, 38 + 11 ≤ 60
+    expect(subjectTitle(body, eco4)).toBe(`${body} — Eco 4ESO`);
+  });
+
+  it('drops the suffix when not even the short label fits', () => {
+    const body = 'Samarretes o xapes: la frontera de possibilitats de la Setmana'; // 62
+    expect(subjectTitle(body, eco4)).toBe(body);
+  });
+
+  it('never makes a title longer than the budget when a shorter option exists', () => {
+    for (const body of ['A', 'x'.repeat(30), 'y'.repeat(49), 'z'.repeat(58)]) {
+      const t = subjectTitle(body, eco4);
+      expect(t.length <= MAX_TITLE_CHARS || t === body).toBe(true);
+    }
   });
 });

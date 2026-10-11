@@ -6,7 +6,7 @@ import { getLocale } from '@/i18n/locale';
 import { pickLocalizedEntry } from '@/i18n/content-locale';
 import { localizeAsignatura } from '@/i18n/asignaturas-ca';
 import QuizPlayer from '@components/QuizPlayer.tsx';
-import { quizLd, type TestQuestion } from '@/lib/seo';
+import { quizLd, type TestQuestion, subjectTitle } from '@/lib/seo';
 import type { GetStaticPaths } from 'astro';
 import Breadcrumb from '@components/Breadcrumb.astro';
 
@@ -59,7 +59,7 @@ const quiz = quizLd({
 ---
 
 <BaseLayout
-  title={`${test.data.title} — ${a.seoName}`}
+  title={subjectTitle(test.data.title, a)}
   brandSuffix={false}
   description={copy.descripcion}
   jsonLd={quiz ?? undefined}

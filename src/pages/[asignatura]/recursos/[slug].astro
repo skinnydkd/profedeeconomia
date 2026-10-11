@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
 import { ASIGNATURAS } from '@/lib/asignaturas';
-import { breadcrumbLd } from '@/lib/seo';
+import { breadcrumbLd, subjectTitle } from '@/lib/seo';
 import { getCollection, render } from 'astro:content';
 import { getLocale } from '@/i18n/locale';
 import { pickLocalizedEntry } from '@/i18n/content-locale';
@@ -66,7 +66,7 @@ const breadcrumb = breadcrumbLd([
 ], locale);
 ---
 
-<BaseLayout title={recurso.data.seoTitle ?? `${recurso.data.title} — ${a.seoName}`} brandSuffix={false} description={recurso.data.descripcion} ogType="article" jsonLd={breadcrumb} canonicalPath={canonicalPath} contentLang={recurso.data.lang} translated={recCaById.has(`${recursoEs.id}.ca`)}>
+<BaseLayout title={recurso.data.seoTitle ?? subjectTitle(recurso.data.title, a)} brandSuffix={false} description={recurso.data.descripcion} ogType="article" jsonLd={breadcrumb} canonicalPath={canonicalPath} contentLang={recurso.data.lang} translated={recCaById.has(`${recursoEs.id}.ca`)}>
   <div class="container">
     <Breadcrumb
       locale={locale}

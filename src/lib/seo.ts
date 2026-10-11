@@ -59,6 +59,20 @@ export function pageTitle(title: string, brandSuffix = true): string {
   return title.length + BRAND_SUFFIX.length <= MAX_TITLE_CHARS ? `${title}${BRAND_SUFFIX}` : title;
 }
 
+/**
+ * Subject-page title: `{body} — {seoName}` when it fits the budget, else the
+ * compact `{body} — {shortLabel}`, else the body alone. The suffix carries
+ * queries like «4 eso» or «bachillerato», but past 60 characters Google cuts
+ * it anyway and it only pushes the topic words out of view (§5.11).
+ */
+export function subjectTitle(body: string, a: { seoName: string; shortLabel: string }): string {
+  for (const suffix of [a.seoName, a.shortLabel]) {
+    const t = `${body} — ${suffix}`;
+    if (t.length <= MAX_TITLE_CHARS) return t;
+  }
+  return body;
+}
+
 /** Resolve a site-relative path to an absolute URL on the canonical domain. */
 export const absUrl = (path: string): string => new URL(path, SITE.url).toString();
 

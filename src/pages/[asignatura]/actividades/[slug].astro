@@ -4,7 +4,7 @@ import { ASIGNATURAS } from '@/lib/asignaturas';
 import { ACTIVIDAD_TIPO_LABEL, actividadPdfName } from '@/lib/actividades';
 import { existsSync } from 'node:fs';
 import { resolve } from 'node:path';
-import { breadcrumbLd } from '@/lib/seo';
+import { breadcrumbLd, subjectTitle } from '@/lib/seo';
 import { getCollection, render } from 'astro:content';
 import { getLocale } from '@/i18n/locale';
 import { pickLocalizedEntry } from '@/i18n/content-locale';
@@ -69,7 +69,7 @@ const breadcrumb = breadcrumbLd([
 ], locale);
 ---
 
-<BaseLayout title={actividad.data.seoTitle ?? `${actividad.data.title} — ${a.seoName}`} brandSuffix={false} description={actividad.data.descripcion} ogType="article" jsonLd={breadcrumb} contentLang={actividad.data.lang} translated={actCaById.has(`${actividadEs.id}.ca`)}>
+<BaseLayout title={actividad.data.seoTitle ?? subjectTitle(actividad.data.title, a)} brandSuffix={false} description={actividad.data.descripcion} ogType="article" jsonLd={breadcrumb} contentLang={actividad.data.lang} translated={actCaById.has(`${actividadEs.id}.ca`)}>
   <div class="container">
     <Breadcrumb
       locale={locale}
