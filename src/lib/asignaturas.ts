@@ -331,7 +331,7 @@ export const SECCIONES_TRANSVERSALES = [
   { slug: 'debates',        grupo: 'aula',     label: 'Debates',        description: 'Controversias económicas para argumentar en clase.' },
   { slug: 'juegos',         grupo: 'aula',     label: 'Juegos',         description: 'Material para una clase activa.' },
   { slug: 'jocs-economics', grupo: 'aula',     label: 'Juegos Económicos', description: 'Concurso competitivo de economía con ranking por alumno e instituto.' },
-  { slug: 'generadores',    grupo: 'recursos', label: 'Herramientas Docentes', description: 'Generadores LOMLOE y herramientas de evaluación y aula.' },
+  { slug: 'generadores',    grupo: 'recursos', label: 'Herramientas Docentes', description: 'Generadores curriculares y herramientas de evaluación y aula.' },
 ] as const;
 
 /** Sections of one dropdown column, in the order declared above. */
