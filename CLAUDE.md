@@ -166,7 +166,7 @@ Validada el 2026-05-10. Variant C va guanyar enfront de A (editorial pur, vermel
 - Diapositives PDF
 - Diapositives editables (futur premium)
 
-Convenció `:::slide` dins del MDX defineix què entra a les diapositives.
+Les diapositives surten d'un bloc ` ```deck ` (llista YAML de diapositives) al final de cada unitat. El plugin `src/lib/remark/strip-deck-blocks.mjs` l'amaga de la pàgina i del PDF del llibre, i `src/lib/slides/authored.ts` el valida (límits perquè cada diapositiva càpiga en 16:9). Si una unitat no en té, es genera un esquelet automàtic.
 
 **Què NO fer**:
 - ❌ Mantenir múltiples versions del mateix contingut a fitxers diferents
