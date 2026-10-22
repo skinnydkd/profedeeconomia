@@ -224,6 +224,32 @@ const ebau = defineCollection({
     title: z.string(),
     /** Comunidad autónoma de referencia de la prueba. */
     comunidad: z.string().default('Comunitat Valenciana'),
+    /** The solved-problem families (`ebauProblemas`) are listed after this section. */
+    incluye_problemas: z.boolean().default(false),
+    lang: z.enum(LANGS).default('es'),
+    estado: z.enum(ESTADOS),
+  }),
+});
+
+/* =========================================================
+   ebauProblemas — one page per solved-problem family of the EBAU
+   notebook (/[asignatura]/ebau/[slug]/). Interleaved into the
+   notebook with src/lib/ebau.ts.
+   ========================================================= */
+const ebauProblemas = defineCollection({
+  loader: glob({
+    pattern: 'asignaturas/*/ebau-problemas/*.{md,mdx}',
+    base: './src/content',
+  }),
+  schema: z.object({
+    asignatura: z.enum(ASIGNATURA_SLUGS),
+    orden: z.number().int().min(0),
+    title: z.string(),
+    seoTitle: z.string().optional(),
+    descripcion: z.string(),
+    unidad_relacionada: z.number().int().min(1),
+    /** Slug of the recurso holding this family's calculator, e.g. 'calculadora-punto-muerto'. */
+    calculadora: z.string().optional(),
     lang: z.enum(LANGS).default('es'),
     estado: z.enum(ESTADOS),
   }),
@@ -690,6 +716,7 @@ export const collections = {
   actividadesDinamicas,
   programacion,
   ebau,
+  ebauProblemas,
   proyecto,
   proyectoTransversal,
   emprendimientoEjemplos,
