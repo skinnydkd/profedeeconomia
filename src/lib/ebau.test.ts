@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { RUTAS_RESERVADAS_EBAU, slugFamilia, intercalarFamilias } from './ebau';
+import { RUTAS_RESERVADAS_EBAU, slugFamilia, intercalarFamilias, familiasDeUnidad, familiaDeCalculadora } from './ebau';
 
 const sec = (orden: number, incluye_problemas = false) => ({ data: { orden, incluye_problemas } });
 const fam = (orden: number) => ({ data: { orden } });
@@ -42,5 +42,36 @@ describe('family slug guard', () => {
       const rel = id.replace('/src/content/', '').replace(/\.mdx?$/, '');
       expect(RUTAS_RESERVADAS_EBAU as readonly string[]).not.toContain(slugFamilia(rel));
     }
+  });
+});
+
+describe('familiasDeUnidad / familiaDeCalculadora', () => {
+  const f = (id: string, asignatura: string, orden: number, unidad_relacionada: number, calculadora?: string) => ({
+    id,
+    data: { asignatura, orden, unidad_relacionada, calculadora },
+  });
+  // Callers pass published entries only: a draft family is simply not in the list.
+  const fams = [
+    f('02', 'edmn-2bach', 2, 7, 'calculadora-productividad'),
+    f('01', 'edmn-2bach', 1, 7, 'calculadora-punto-muerto'),
+    f('03', 'edmn-2bach', 3, 9, 'calculadora-van-tir'),
+    f('x', 'gpe-bach', 1, 7),
+  ];
+  it('returns the unit families sorted by orden', () => {
+    expect(familiasDeUnidad(fams, 'edmn-2bach', 7).map((x) => x.id)).toEqual(['01', '02']);
+  });
+  it('returns [] for a unit without families', () => {
+    expect(familiasDeUnidad(fams, 'edmn-2bach', 3)).toEqual([]);
+  });
+  it('finds the family of a calculator', () => {
+    expect(familiaDeCalculadora(fams, 'edmn-2bach', 'calculadora-van-tir')?.id).toBe('03');
+  });
+  it('ignores other subjects and unknown calculators', () => {
+    expect(familiaDeCalculadora(fams, 'eco-1bach', 'calculadora-van-tir')).toBeUndefined();
+    expect(familiaDeCalculadora(fams, 'edmn-2bach', 'dafo')).toBeUndefined();
+  });
+  it('never surfaces a draft family left out by the caller', () => {
+    const publicadas = fams.filter((x) => x.id !== '03');
+    expect(familiaDeCalculadora(publicadas, 'edmn-2bach', 'calculadora-van-tir')).toBeUndefined();
   });
 });

@@ -35,3 +35,21 @@ export function intercalarFamilias<
   out.splice(i === -1 ? out.length : i + 1, 0, bloque);
   return out;
 }
+
+/** Families of one unit of a subject, sorted by `orden`. Callers pass published entries only. */
+export function familiasDeUnidad<
+  F extends { data: { asignatura: string; unidad_relacionada: number; orden?: number } },
+>(familias: F[], asignatura: string, unidad: number): F[] {
+  return familias
+    .filter((f) => f.data.asignatura === asignatura && f.data.unidad_relacionada === unidad)
+    .sort((a, b) => (a.data.orden ?? 0) - (b.data.orden ?? 0));
+}
+
+/** The family whose practice calculator is the recurso `recurso` (slug), if any. */
+export function familiaDeCalculadora<F extends { data: { asignatura: string; calculadora?: string } }>(
+  familias: F[],
+  asignatura: string,
+  recurso: string,
+): F | undefined {
+  return familias.find((f) => f.data.asignatura === asignatura && f.data.calculadora === recurso);
+}

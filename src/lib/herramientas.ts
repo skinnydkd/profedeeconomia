@@ -159,6 +159,7 @@ export const RECURSO_CANONICO: Partial<Record<ComponenteKey, string>> = {
   EmbudoValidacion: '/ipe2-fp/recursos/embudo-validacion/',
   RolesEquipo: '/ipe2-fp/recursos/roles-de-equipo/',
   Scamper: '/gpe-bach/recursos/scamper/',
+  Productividad: '/edmn-2bach/recursos/calculadora-productividad/', // EDMN unit 7 (función productiva); GPE twin canonicalises here
   ClasificaEmpresa: '/edmn-2bach/recursos/clasificar-empresa/',
   CosteContratacion: '/edmn-2bach/recursos/coste-contratacion/',
   DAFO: '/edmn-2bach/recursos/dafo/',

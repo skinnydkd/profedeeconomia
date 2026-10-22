@@ -8,6 +8,8 @@ import { getIndiceRecursos } from '@/lib/recursos-relacionados-sources';
 import { recursosDeUnidad } from '@/lib/recursos-relacionados';
 import { getMaterialPorUnidad } from '@/lib/material-unidad-sources';
 import { articleLd, breadcrumbLd, subjectTitle } from '@/lib/seo';
+import { cargarFamilias } from '@/lib/ebau-familias';
+import { familiasDeUnidad, slugFamilia } from '@/lib/ebau';
 import { getLocale } from '@/i18n/locale';
 import { pickLocalizedEntry } from '@/i18n/content-locale';
 import { localizeAsignatura } from '@/i18n/asignaturas-ca';
@@ -44,8 +46,8 @@ const view = pickLocalizedEntry(unit, caById, locale);
 const { Content, headings } = await render(view);
 
 const copy = {
-  es: { inicio: 'Inicio', libro: 'Libro', unidad: 'Unidad', sabers: 'Saberes', duracion: 'Duración estimada', conceptos: 'Conceptos clave', objetivos: 'Objetivos', enEsta: 'En esta unidad', volver: '← Volver al índice', volverSub: 'Libro' },
-  ca: { inicio: 'Inici', libro: 'Llibre', unidad: 'Unitat', sabers: 'Sabers', duracion: 'Durada estimada', conceptos: 'Conceptes clau', objetivos: 'Objectius', enEsta: 'En esta unitat', volver: "← Tornar a l'índex", volverSub: 'Llibre' },
+  es: { inicio: 'Inicio', libro: 'Libro', unidad: 'Unidad', sabers: 'Saberes', duracion: 'Duración estimada', conceptos: 'Conceptos clave', objetivos: 'Objetivos', enEsta: 'En esta unidad', volver: '← Volver al índice', volverSub: 'Libro', ejercicios: 'Ejercicios resueltos tipo EBAU' },
+  ca: { inicio: 'Inici', libro: 'Llibre', unidad: 'Unitat', sabers: 'Sabers', duracion: 'Durada estimada', conceptos: 'Conceptes clau', objetivos: 'Objectius', enEsta: 'En esta unitat', volver: "← Tornar a l'índex", volverSub: 'Llibre', ejercicios: 'Exercicis resolts tipus EBAU' },
 }[locale];
 
 // Adjacent units within the same asignatura (ordered on the ES source of truth;
@@ -72,6 +74,9 @@ const mCopy = {
   es: { label: 'Material de esta unidad', enEsta: 'En esta unidad:', diapositivas: 'Diapositivas', test: 'Test', reto: 'Reto', actividades: (n: number) => (n === 1 ? '1 actividad' : `${n} actividades`) },
   ca: { label: 'Material d\'esta unitat', enEsta: 'En esta unitat:', diapositivas: 'Diapositives', test: 'Test', reto: 'Repte', actividades: (n: number) => (n === 1 ? '1 activitat' : `${n} activitats`) },
 }[locale];
+
+// Solved-problem families of this unit (published ones only).
+const familias = familiasDeUnidad(await cargarFamilias(unit.data.asignatura, locale), unit.data.asignatura, unit.data.unidad);
 
 // Localized view of the unit (CA sibling under /ca, ES otherwise).
 const d = view.data;
@@ -197,6 +202,14 @@ const jsonLd = [
 
       <article class="article-body">
         <Content />
+
+        {familias.length > 0 && (
+          <ul class="unit-ejercicios">
+            {familias.map((f) => (
+              <li><a href={`/${a.slug}/ebau/${slugFamilia(f.id)}/`}>{copy.ejercicios}: {f.data.title}</a></li>
+            ))}
+          </ul>
+        )}
 
         <UnitNotes client:idle unitKey={unitKey} unitTitle={d.title} locale={locale} />
 
@@ -527,6 +540,10 @@ const jsonLd = [
     background: var(--color-terra-soft);
     font-weight: 700;
   }
+
+  .unit-ejercicios { list-style: none; padding: 0; margin: 3rem 0 0; font-size: 1.05rem; }
+  .unit-ejercicios li { margin: 0 0 0.4rem; }
+  .unit-ejercicios a { color: var(--color-terra-ink); }
 
   /* Prev/next */
   .unit-nav {
