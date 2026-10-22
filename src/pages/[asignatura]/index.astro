@@ -12,6 +12,7 @@ import { getLocale } from '@/i18n/locale';
 import { localizeAsignatura } from '@/i18n/asignaturas-ca';
 import { pickLocalizedEntry } from '@/i18n/content-locale';
 import Breadcrumb from '@components/Breadcrumb.astro';
+import AsignaturaCaratula from '@components/asignaturas/AsignaturaCaratula.astro';
 
 export const getStaticPaths = (() => {
   return ASIGNATURA_SLUGS.map((slug) => ({
@@ -247,7 +248,9 @@ const jsonLd = isPublicado
   </div>
 
   <section class="hub-hero">
-    <div class="container">
+    <div class="container hub-hero__grid">
+      <AsignaturaCaratula asignatura={a} class="hub-cover" />
+      <div class="hub-hero__text">
       <h1 class="title" style={`color: var(--color-${a.color}-ink)`}>{a.title}</h1>
       <p class="hub-curso">
         {cursoLinea.map((parte, i) => (<>{i > 0 && <span class="sep" aria-hidden="true">·</span>}{parte}</>))}
@@ -283,6 +286,7 @@ const jsonLd = isPublicado
           ? copy.curriculumNote(a.title, leyCurricular(a), a.marcoNormativo)
           : <>{copy.curriculumPendiente(a.marcoNormativo)} <a class="editorial-link" href="https://instagram.com/profedeeconomia" rel="external">@profedeeconomia</a>.</>
         }
+      </div>
       </div>
     </div>
   </section>
@@ -363,6 +367,24 @@ const jsonLd = isPublicado
 
   .hub-hero { padding: 1rem 0 3.5rem; }
   .hub-hero h1 { max-width: 22ch; margin: 0 0 0.6rem; }
+  /* Text left, cover right; on narrow screens the cover slots in right after
+     the title and course line (the text wrapper dissolves into the flex). */
+  .hub-hero__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    gap: clamp(2rem, 4vw, 3.5rem);
+    align-items: start;
+  }
+  .hub-hero__text { grid-column: 1; grid-row: 1; }
+  .hub-hero :global(.hub-cover) { grid-column: 2; grid-row: 1; border-radius: 6px; margin-top: 0.4rem; }
+  @media (max-width: 860px) {
+    .hub-hero__grid { display: flex; flex-direction: column; gap: 0; }
+    .hub-hero__text { display: contents; }
+    .hub-hero__text > * { order: 4; }
+    .hub-hero__text > h1 { order: 1; }
+    .hub-hero__text > .hub-curso { order: 2; }
+    .hub-hero :global(.hub-cover) { order: 3; margin: 0 0 1.4rem; }
+  }
 
   /* Per-asignatura title colour carries the color-coding on the hub now that the
      accent stripe is gone; the -ink hue is AA-safe on cream (see global.css). */
