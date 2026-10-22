@@ -6,7 +6,7 @@
 import { ACCENTS, ASIGNATURAS, type AsignaturaSlug } from '@/lib/asignaturas';
 import { intercalarFamilias } from '@/lib/ebau';
 import { cargarFamilias } from '@/lib/ebau-familias';
-import { getCollection, render } from 'astro:content';
+import { getCollection, render, type CollectionEntry } from 'astro:content';
 import { getLocale } from '@/i18n/locale';
 import { pickLocalizedEntry } from '@/i18n/content-locale';
 import { localizeAsignatura } from '@/i18n/asignaturas-ca';
@@ -37,7 +37,7 @@ const comunidad = secciones[0]?.data.comunidad ?? 'Comunitat Valenciana';
 const familias = await cargarFamilias(a.slug, locale);
 // Flatten sections and families into one ordered list of printable pieces.
 const rendered = await Promise.all(
-  intercalarFamilias(secciones, familias).flatMap((b) =>
+  intercalarFamilias(secciones, familias).flatMap<CollectionEntry<'ebau'> | CollectionEntry<'ebauProblemas'>>((b) =>
     b.kind === 'seccion' ? [b.entry] : b.entries,
   ).map(async (e) => ({ s: e, ...(await render(e)) })),
 );
