@@ -10,7 +10,9 @@
  */
 import { ACCENTS, ASIGNATURA_SLUGS, ASIGNATURAS, leyCurricular } from '@/lib/asignaturas';
 import { SITE } from '@/lib/seo';
-import { getCollection, render } from 'astro:content';
+import { intercalarFamilias } from '@/lib/ebau';
+import { cargarFamilias } from '@/lib/ebau-familias';
+import { getCollection, render, type CollectionEntry } from 'astro:content';
 import { getLocale } from '@/i18n/locale';
 import { pickLocalizedEntry } from '@/i18n/content-locale';
 import { localizeAsignatura } from '@/i18n/asignaturas-ca';
@@ -75,7 +77,12 @@ const ebauCa = new Map(
 );
 const units = Astro.props.units.map((u) => pickLocalizedEntry(u, libroCa, locale));
 const reto = Astro.props.reto.map((r) => pickLocalizedEntry(r, retoCa, locale));
-const ebau = Astro.props.ebau.map((e) => pickLocalizedEntry(e, ebauCa, locale));
+const familias = await cargarFamilias(a.slug, locale);
+// Notebook sections and solved-problem families in print order.
+const ebau = intercalarFamilias(
+  Astro.props.ebau.map((e) => pickLocalizedEntry(e, ebauCa, locale)),
+  familias,
+).flatMap<CollectionEntry<'ebau'> | CollectionEntry<'ebauProblemas'>>((b) => (b.kind === 'seccion' ? [b.entry] : b.entries));
 
 // Pre-render each unit so we have headings + Content
 const rendered = await Promise.all(

@@ -4,7 +4,9 @@
  * Several ordered sections per subject; reuses the editorial print system.
  */
 import { ACCENTS, ASIGNATURAS, type AsignaturaSlug } from '@/lib/asignaturas';
-import { getCollection, render } from 'astro:content';
+import { intercalarFamilias } from '@/lib/ebau';
+import { cargarFamilias } from '@/lib/ebau-familias';
+import { getCollection, render, type CollectionEntry } from 'astro:content';
 import { getLocale } from '@/i18n/locale';
 import { pickLocalizedEntry } from '@/i18n/content-locale';
 import { localizeAsignatura } from '@/i18n/asignaturas-ca';
@@ -32,7 +34,13 @@ const caById = new Map(
 );
 const secciones = Astro.props.secciones.map((s) => pickLocalizedEntry(s, caById, locale));
 const comunidad = secciones[0]?.data.comunidad ?? 'Comunitat Valenciana';
-const rendered = await Promise.all(secciones.map(async (s) => ({ s, ...(await render(s)) })));
+const familias = await cargarFamilias(a.slug, locale);
+// Flatten sections and families into one ordered list of printable pieces.
+const rendered = await Promise.all(
+  intercalarFamilias(secciones, familias).flatMap<CollectionEntry<'ebau'> | CollectionEntry<'ebauProblemas'>>((b) =>
+    b.kind === 'seccion' ? [b.entry] : b.entries,
+  ).map(async (e) => ({ s: e, ...(await render(e)) })),
+);
 const today = new Date().toLocaleDateString(locale === 'ca' ? 'ca-ES' : 'es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
 
 const copy = {
@@ -145,8 +153,11 @@ const accent = ACCENTS[a.color];
     </section>
 
     <section class="doc" data-doc-title={`${a.shortLabel} · EBAU`}>
-      {rendered.map(({ Content }) => (
-        <div class="ebau-sec"><Content /></div>
+      {rendered.map(({ s, Content }) => (
+        <div class="ebau-sec">
+          {s.collection === 'ebauProblemas' && <h2>{s.data.title}</h2>}
+          <Content />
+        </div>
       ))}
     </section>
 

@@ -1,0 +1,125 @@
+---
+/**
+ * One indexable page per solved-problem family of the EBAU notebook
+ * (collection `ebauProblemas`). Same content is also interleaved into the
+ * notebook and its print view via src/lib/ebau.ts.
+ */
+import BaseLayout from '@layouts/BaseLayout.astro';
+import SectionHeader from '@components/SectionHeader.astro';
+import EbauProse from '@components/ebau/EbauProse.astro';
+import { ASIGNATURAS } from '@/lib/asignaturas';
+import { articleLd, breadcrumbLd } from '@/lib/seo';
+import { slugFamilia } from '@/lib/ebau';
+import { getCollection, render } from 'astro:content';
+import { getLocale } from '@/i18n/locale';
+import { pickLocalizedEntry } from '@/i18n/content-locale';
+import { localizeAsignatura } from '@/i18n/asignaturas-ca';
+import type { GetStaticPaths } from 'astro';
+
+export const getStaticPaths = (async () => {
+  const all = await getCollection('ebauProblemas');
+  return all
+    .filter((e) => e.data.estado === 'publicado' && e.data.lang === 'es')
+    .map((e) => ({
+      params: { asignatura: e.data.asignatura, slug: slugFamilia(e.id) },
+      props: { entry: e, asignatura: ASIGNATURAS[e.data.asignatura] },
+    }));
+}) satisfies GetStaticPaths;
+
+const locale = getLocale(Astro.currentLocale);
+const a = localizeAsignatura(Astro.props.asignatura, locale);
+const caById = new Map(
+  (await getCollection('ebauProblemas'))
+    .filter((e) => e.data.estado === 'publicado' && e.data.lang === 'ca')
+    .map((e) => [e.id, e]),
+);
+const view = pickLocalizedEntry(Astro.props.entry, caById, locale);
+const d = view.data;
+const { Content } = await render(view);
+const pagePath = `/${a.slug}/ebau/${Astro.params.slug}/`;
+
+// Book unit holding the theory, linked as the libro index does.
+const libro = await getCollection('libro');
+const libroCa = new Map(
+  libro.filter((u) => u.data.estado === 'publicado' && u.data.lang === 'ca').map((u) => [u.id, u]),
+);
+const unidad = libro.find(
+  (u) => u.data.asignatura === a.slug && u.data.unidad === d.unidad_relacionada && u.data.estado === 'publicado' && u.data.lang === 'es',
+);
+const unidadHref = unidad
+  ? `/${a.slug}/libro/${unidad.id.split('/').pop()?.replace(/\.mdx?$/, '')}/`
+  : undefined;
+const unidadTitle = unidad ? pickLocalizedEntry(unidad, libroCa, locale).data.title : undefined;
+
+const copy = {
+  es: {
+    inicio: 'Inicio', ebau: 'Preparación EBAU', calc: 'Comprueba tus resultados con la calculadora',
+    teoria: (n: number) => `Teoría en el libro: Unidad ${n}`, examenes: 'Exámenes oficiales para practicar',
+  },
+  ca: {
+    inicio: 'Inici', ebau: 'Preparació EBAU', calc: 'Comprova els teus resultats amb la calculadora',
+    teoria: (n: number) => `Teoria al llibre: Unitat ${n}`, examenes: 'Exàmens oficials per a practicar',
+  },
+}[locale];
+
+const breadcrumb = breadcrumbLd([
+  { name: copy.inicio, path: '/' },
+  { name: a.shortLabel, path: `/${a.slug}/` },
+  { name: copy.ebau, path: `/${a.slug}/ebau/` },
+  { name: d.title, path: pagePath },
+], locale);
+const jsonLd = [
+  breadcrumb,
+  articleLd({
+    title: d.title,
+    description: d.descripcion,
+    path: pagePath,
+    section: a.shortLabel,
+    image: `/og/${a.slug}.png`,
+    educationalLevel: a.level,
+    locale,
+  }),
+];
+---
+
+<BaseLayout
+  title={d.seoTitle ?? d.title}
+  description={d.descripcion}
+  jsonLd={jsonLd}
+  contentLang={view.data.lang === locale ? locale : 'es'}
+  translated={caById.has(`${Astro.props.entry.id}.ca`)}
+>
+  <SectionHeader
+    locale={locale}
+    kicker={a.shortLabel}
+    crumbs={[
+      { name: copy.inicio, path: '/' },
+      { name: a.shortLabel, path: `/${a.slug}/` },
+      { name: copy.ebau, path: `/${a.slug}/ebau/` },
+      { name: d.title },
+    ]}
+  >
+    <Fragment slot="title">{d.title}</Fragment>
+    <Fragment slot="lede">{d.descripcion}</Fragment>
+  </SectionHeader>
+
+  <section class="body">
+    <div class="container container--narrow">
+      <EbauProse><Content /></EbauProse>
+      <ul class="links">
+        {d.calculadora && <li><a href={`/${a.slug}/recursos/${d.calculadora}/`}>{copy.calc}</a></li>}
+        {unidadHref && <li><a href={unidadHref} title={unidadTitle}>{copy.teoria(d.unidad_relacionada)}</a></li>}
+        <li><a href={`/${a.slug}/ebau/examenes/`}>{copy.examenes}</a></li>
+      </ul>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .container { max-width: 1240px; margin: 0 auto; padding: 0 clamp(1.5rem, 4vw, 3rem); }
+  .container--narrow { max-width: 820px; }
+  .body { padding: clamp(1.5rem, 4vw, 3rem) 0 clamp(3rem, 7vw, 6rem); }
+  .links { list-style: none; margin: 3rem 0 0; padding: 1.2rem 1.4rem; border: 1px solid var(--color-line); border-radius: 4px; background: var(--color-bg-cream); display: grid; gap: 0.6rem; }
+  .links a { font-family: var(--font-sans); font-weight: 600; color: var(--color-terra-ink); text-decoration: none; }
+  .links a:hover { text-decoration: underline; }
+</style>

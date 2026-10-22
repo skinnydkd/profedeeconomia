@@ -8,6 +8,8 @@ import { pickLocalizedEntry } from '@/i18n/content-locale';
 import { localizeAsignatura } from '@/i18n/asignaturas-ca';
 import HerramientaIsland from '@components/calculadoras/HerramientaIsland.astro';
 import { recursoCanonicoPorComponente } from '@/lib/herramientas';
+import { cargarFamilias } from '@/lib/ebau-familias';
+import { familiaDeCalculadora, slugFamilia } from '@/lib/ebau';
 import type { GetStaticPaths } from 'astro';
 import Breadcrumb from '@components/Breadcrumb.astro';
 
@@ -46,11 +48,13 @@ const unit = unitEs ? pickLocalizedEntry(unitEs, libroCaById, locale) : null;
 const unitSlug = unitEs?.id.split('/').pop()?.replace(/\.mdx?$/, '');
 
 const copy = {
-  es: { inicio: 'Inicio', recursos: 'Recursos', unidad: 'Unidad', kicker: 'Recurso interactivo', volver: 'Volver a la Unidad' },
-  ca: { inicio: 'Inici', recursos: 'Recursos', unidad: 'Unitat', kicker: 'Recurs interactiu', volver: 'Tornar a la Unitat' },
+  es: { inicio: 'Inicio', recursos: 'Recursos', unidad: 'Unidad', kicker: 'Recurso interactivo', volver: 'Volver a la Unidad', practica: 'Practica con ejercicios resueltos' },
+  ca: { inicio: 'Inici', recursos: 'Recursos', unidad: 'Unitat', kicker: 'Recurs interactiu', volver: 'Tornar a la Unitat', practica: 'Practica amb exercicis resolts' },
 }[locale];
 
 const recursoSlug = recursoEs.id.split('/').pop()?.replace(/\.mdx?$/, '') ?? recursoEs.id;
+// Solved-problem family practised with this calculator (published ones only).
+const familia = familiaDeCalculadora(await cargarFamilias(a.slug, locale), a.slug, recursoSlug);
 // When several subjects embed this tool, the losing twins point at the chosen
 // winner (RECURSO_CANONICO, §5.11); the page stays browsable.
 const publicadosEs = (await getCollection('recursos')).filter((x) => x.data.estado === 'publicado' && x.data.lang === 'es');
@@ -88,6 +92,13 @@ const breadcrumb = breadcrumbLd([
         <p class="meta">
           <a class="link" href={`/${a.slug}/libro/${unitSlug}/`}>
             {copy.volver} {unit.data.unidad}: {unit.data.title}
+          </a>
+        </p>
+      )}
+      {familia && (
+        <p class="meta">
+          <a class="link" href={`/${a.slug}/ebau/${slugFamilia(familia.id)}/`}>
+            {copy.practica}: {familia.data.title}
           </a>
         </p>
       )}

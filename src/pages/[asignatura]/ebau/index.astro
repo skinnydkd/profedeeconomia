@@ -9,12 +9,15 @@ import { resolve } from 'node:path';
 import BaseLayout from '@layouts/BaseLayout.astro';
 import { ASIGNATURAS, type AsignaturaSlug } from '@/lib/asignaturas';
 import { breadcrumbLd } from '@/lib/seo';
+import { slugFamilia, intercalarFamilias } from '@/lib/ebau';
+import { cargarFamilias } from '@/lib/ebau-familias';
 import { getCollection, render } from 'astro:content';
 import { getLocale } from '@/i18n/locale';
 import { pickLocalizedEntry } from '@/i18n/content-locale';
 import { localizeAsignatura } from '@/i18n/asignaturas-ca';
 import type { GetStaticPaths } from 'astro';
 import SectionHeader from '@components/SectionHeader.astro';
+import EbauProse from '@components/ebau/EbauProse.astro';
 
 export const getStaticPaths = (async () => {
   const all = await getCollection('ebau');
@@ -40,7 +43,12 @@ const caById = new Map(
 );
 const secciones = Astro.props.secciones.map((s) => pickLocalizedEntry(s, caById, locale));
 const comunidad = secciones[0]?.data.comunidad ?? 'Comunitat Valenciana';
-const rendered = await Promise.all(secciones.map(async (s) => ({ s, ...(await render(s)) })));
+const familias = await cargarFamilias(a.slug, locale);
+const bloques = await Promise.all(
+  intercalarFamilias(secciones, familias).map(async (b) =>
+    b.kind === 'seccion' ? { kind: 'seccion' as const, Content: (await render(b.entry)).Content } : b,
+  ),
+);
 // Link the Valencian PDF only when it exists; else fall back to Spanish (no 404).
 const caEbau = locale === 'ca' && existsSync(resolve('public/downloads', `${a.slug}-ebau.ca.pdf`));
 const pdfHref = `/downloads/${a.slug}-ebau${caEbau ? '.ca' : ''}.pdf`;
@@ -52,6 +60,7 @@ const copy = {
     lede: 'Estructura de la prueba, teoría esencial, problemas resueltos paso a paso y simulacros completos con solucionario y baremo.',
     descargar: 'Descargar el cuaderno EBAU en PDF', descargarSub: 'Guía + teoría + problemas resueltos + simulacros',
     previsualizar: 'Previsualizar versión impresa',
+    familias: 'Problemas resueltos por tipo de ejercicio',
     examenes: '↗ Exámenes EBAU oficiales de otras comunidades (con resolución)',
     adaptPre: 'Cuaderno orientado a la prueba de acceso de la ', adaptPost: ', según el modelo y los criterios oficiales más recientes. Confirma siempre el modelo vigente de tu convocatoria: la estructura puede ajustarse cada curso.',
   },
@@ -61,6 +70,7 @@ const copy = {
     lede: 'Estructura de la prova, teoria essencial, problemes resolts pas a pas i simulacres complets amb solucionari i barem.',
     descargar: 'Descarregar el quadern EBAU en PDF', descargarSub: 'Guia + teoria + problemes resolts + simulacres',
     previsualizar: 'Previsualitzar versió impresa',
+    familias: "Problemes resolts per tipus d'exercici",
     examenes: "↗ Exàmens EBAU oficials d'altres comunitats (amb resolució)",
     adaptPre: "Quadern orientat a la prova d'accés de la ", adaptPost: ', segons el model i els criteris oficials més recents. Confirma sempre el model vigent de la teua convocatòria: l\'estructura pot ajustar-se cada curs.',
   },
@@ -105,9 +115,25 @@ const breadcrumb = breadcrumbLd([
 
   <section class="body">
     <div class="container container--narrow">
-      <article class="prose">
-        {rendered.map(({ Content }) => <Content />)}
-      </article>
+      <EbauProse>
+        {bloques.map((b) =>
+          b.kind === 'seccion' ? (
+            <b.Content />
+          ) : (
+            <nav class="familias" aria-label={copy.familias}>
+              <h2>{copy.familias}</h2>
+              <ul>
+                {b.entries.map((f) => (
+                  <li>
+                    <a href={`/${a.slug}/ebau/${slugFamilia(f.id)}/`}>{f.data.title}</a>
+                    <p>{f.data.descripcion}</p>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          ),
+        )}
+      </EbauProse>
     </div>
   </section>
 </BaseLayout>
@@ -128,20 +154,11 @@ const breadcrumb = breadcrumbLd([
   .examenes-link { margin: 0.8rem 0 0; }
   .examenes-link a { font-family: var(--font-sans); font-size: 0.95rem; font-weight: 600; color: var(--color-terra-ink); text-decoration: none; }
   .examenes-link a:hover { text-decoration: underline; }
+  .familias { margin: 2.5rem 0; padding: 1.5rem 1.8rem; border: 1px solid var(--color-line); border-radius: 6px; background: var(--color-paper); }
+  .familias h2 { margin: 0 0 1rem; font-size: 1.3rem; }
+  .familias ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 1rem; }
+  .familias a { font-family: var(--font-serif); font-size: 1.15rem; font-weight: 500; color: var(--color-terra-ink); text-decoration: none; }
+  .familias a:hover { text-decoration: underline; }
+  .familias p { margin: 0.2rem 0 0; font-size: 0.95rem; color: var(--color-ink-soft); }
   .body { padding: clamp(1.5rem, 4vw, 3rem) 0 clamp(3rem, 7vw, 6rem); }
-  .prose { font-size: 1.05rem; line-height: 1.7; color: var(--color-ink); }
-  .prose :global(h2) { font-family: var(--font-serif); font-size: 1.6rem; margin: 2.2em 0 0.7em; position: relative; padding-top: 1em; font-weight: 500; }
-  .prose :global(h2::before) { content: ""; position: absolute; top: 0; left: 0; width: 4rem; height: 4px; border-radius: 999px; background: var(--color-terra); }
-  .prose :global(h2:nth-of-type(2n)::before) { background: var(--color-mustard); }
-  .prose :global(h3) { font-family: var(--font-serif); font-size: 1.25rem; margin: 1.6em 0 0.5em; font-weight: 500; }
-  .prose :global(p) { margin: 0 0 1em; }
-  .prose :global(ul), .prose :global(ol) { padding-left: 1.4rem; margin: 0 0 1em; }
-  .prose :global(li) { margin-bottom: 0.4em; }
-  .prose :global(ul li::marker) { color: var(--color-mustard); }
-  .prose :global(strong) { color: var(--color-ink); }
-  .prose :global(table) { width: 100%; border-collapse: separate; border-spacing: 0; margin: 1.4em 0; font-size: 0.92rem; }
-  .prose :global(th), .prose :global(td) { text-align: left; padding: 0.55em 0.75em; border-bottom: 1px solid var(--color-line-soft); vertical-align: top; }
-  .prose :global(th) { font-family: var(--font-sans); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--color-terra-deep); background: var(--color-terra-soft); font-weight: 700; }
-  /* These blockquotes carry notices («Aviso:», «Cómo usar…»), so they get the callout box: tint and a symmetric border, no side stripe. */
-  .prose :global(blockquote) { margin: 1.4em 0; padding: 0.8em 1.2em; border: 1px solid var(--color-line); background: var(--color-bg-cream); font-style: italic; color: var(--color-ink-soft); border-radius: 4px; }
 </style>
