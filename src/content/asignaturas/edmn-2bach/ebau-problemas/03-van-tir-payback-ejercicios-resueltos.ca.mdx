@@ -1,0 +1,106 @@
+---
+asignatura: edmn-2bach
+orden: 3
+title: "Selecció d'inversions: VAN, TIR i payback"
+seoTitle: "Exercicis resolts de VAN, TIR i payback (EBAU EDMN)"
+descripcion: "Problemes resolts pas a pas de selecció d'inversions."
+unidad_relacionada: 9
+calculadora: calculadora-van-tir
+lang: ca
+estado: publicado
+slug: "asignaturas/edmn-2bach/ebau-problemas/03-van-tir-payback-ejercicios-resueltos.ca"
+---
+
+> **VAN = −Desemborsament inicial + Σ [Flux de caixa_t / (1 + k)^t]**
+> **Termini de recuperació (payback):** temps que es tarda a recuperar el desemborsament inicial sumant els fluxos de caixa.
+> **TIR:** taxa de descompte que fa VAN = 0. Amb dos anys es resol com a equació de segon grau.
+
+Criteris de decisió: s'accepta una inversió si **VAN > 0**; entre diverses, és preferible la de **VAN major**. Amb la TIR s'accepta si **TIR > k** (cost del capital). El payback prefereix el projecte que recupera abans el desemborsament.
+
+### Problema 1 — VAN i payback, comparació de dos projectes
+
+**Enunciat.** Una empresa estudia dues inversions excloents amb un cost del capital del 10 %.
+
+| Projecte | Desemborsament | Flux any 1 | Flux any 2 | Flux any 3 |
+| --- | --- | --- | --- | --- |
+| A | 30.000 | 12.000 | 15.000 | 18.000 |
+| B | 30.000 | 20.000 | 12.000 | 8.000 |
+
+a) Calcula el VAN de cada projecte. b) Calcula el termini de recuperació de cadascun. c) Decidix quin convé segons el VAN.
+
+**Solució.**
+
+a) VAN del projecte A (k = 0,10):
+
+> VAN_A = −30.000 + 12.000/1,10 + 15.000/1,10² + 18.000/1,10³
+> = −30.000 + 12.000/1,10 + 15.000/1,21 + 18.000/1,331
+> = −30.000 + 10.909,09 + 12.396,69 + 13.523,67
+> = **6.829,45 euros**
+
+VAN del projecte B:
+
+> VAN_B = −30.000 + 20.000/1,10 + 12.000/1,21 + 8.000/1,331
+> = −30.000 + 18.181,82 + 9.917,36 + 6.010,52
+> = **4.109,70 euros**
+
+b) Termini de recuperació (amb els fluxos sense descomptar):
+
+Projecte A: després de l'any 1 s'han recuperat 12.000; després de l'any 2, 12.000 + 15.000 = 27.000 (falten 3.000); a l'any 3 el flux és 18.000.
+
+> Payback_A = 2 anys + (3.000 / 18.000) = 2 + 0,1667 = **2,17 anys (≈ 2 anys i 2 mesos)**
+
+Projecte B: després de l'any 1, 20.000; després de l'any 2, 20.000 + 12.000 = 32.000, que ja supera els 30.000. Faltaven 10.000 en començar l'any 2.
+
+> Payback_B = 1 any + (10.000 / 12.000) = 1 + 0,8333 = **1,83 anys (≈ 1 any i 10 mesos)**
+
+**Interpretació.** Els dos projectes tenen VAN positiu, així que tots dos són rendibles al 10 %. Segons el **criteri del VAN, convé el projecte A**, que genera 6.829,45 euros de valor actual net enfront dels 4.109,70 de B; A crea més riquesa per a l'empresa. En canvi, el payback afavorix B (recupera el desemborsament en 1,83 anys enfront de 2,17 d'A), perquè concentra els fluxos al principi. Si l'empresa prioritza la rendibilitat total, tria A; si prioritza recuperar prompte la liquiditat, tria B. El criteri del VAN és el més recomanable perquè considera tots els fluxos i el valor del diner en el temps.
+
+### Problema 2 — TIR amb dos anys
+
+**Enunciat.** Un projecte exigix un desemborsament inicial de 10.000 euros i genera fluxos de 6.000 euros el primer any i 6.600 euros el segon. Si el cost del capital és del 8 %, calcula la TIR i indica si convé acceptar-lo.
+
+**Solució.**
+
+La TIR és la taxa que anul·la el VAN. L'anomenem `x = 1 + TIR`:
+
+> 0 = −10.000 + 6.000/x + 6.600/x²
+
+Multipliquem-ho tot per x²:
+
+> 0 = −10.000·x² + 6.000·x + 6.600
+> 10.000·x² − 6.000·x − 6.600 = 0
+
+Dividim entre 200 per a simplificar:
+
+> 50·x² − 30·x − 33 = 0
+
+Apliquem la fórmula de l'equació de segon grau:
+
+> x = [30 ± √(30² + 4·50·33)] / (2·50) = [30 ± √(900 + 6.600)] / 100 = [30 ± √7.500] / 100
+> √7.500 = 86,6025
+> x = (30 + 86,6025) / 100 = 116,6025 / 100 = 1,166025
+
+(L'arrel negativa es descarta perquè donaria x < 0.)
+
+> TIR = x − 1 = 1,166025 − 1 = 0,166 → **TIR ≈ 16,6 %**
+
+**Interpretació.** La TIR del projecte és del 16,6 %, la rendibilitat interna que oferix la inversió. Com que **la TIR (16,6 %) és major que el cost del capital (8 %)**, el projecte **convé acceptar-lo**: rendix més del que costa finançar-lo, per la qual cosa genera valor per a l'empresa.
+
+### Problema 3 — VAN amb fluxos constants i desemborsament recuperable
+
+**Enunciat.** Una inversió de 50.000 euros genera un flux de caixa de 22.000 euros durant cadascun dels tres anys de la seua vida. El cost del capital és del 6 %. Calcula el VAN i el payback, i digues si s'accepta.
+
+**Solució.**
+
+> VAN = −50.000 + 22.000/1,06 + 22.000/1,06² + 22.000/1,06³
+> = −50.000 + 22.000/1,06 + 22.000/1,1236 + 22.000/1,191016
+> = −50.000 + 20.754,72 + 19.579,92 + 18.471,62
+> = **8.806,26 euros**
+
+Payback (fluxos constants de 22.000):
+
+> Payback = 50.000 / 22.000 = **2,27 anys (≈ 2 anys i 3 mesos)**
+
+**Interpretació.** El VAN és de 8.806,26 euros, clarament positiu, per la qual cosa **la inversió s'accepta**: aporta més de 8.800 euros de valor actual net per damunt del desemborsament. A més, el desemborsament es recupera en 2,27 anys, dins de la vida del projecte (3 anys), la qual cosa reforça la decisió d'acceptar-la.
+
+---
