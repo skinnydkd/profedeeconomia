@@ -4,6 +4,7 @@
  * Several ordered sections per subject; reuses the editorial print system.
  */
 import { ACCENTS, ASIGNATURAS, type AsignaturaSlug } from '@/lib/asignaturas';
+import { intercalarFamilias } from '@/lib/ebau';
 import { getCollection, render } from 'astro:content';
 import { getLocale } from '@/i18n/locale';
 import { pickLocalizedEntry } from '@/i18n/content-locale';
@@ -32,7 +33,20 @@ const caById = new Map(
 );
 const secciones = Astro.props.secciones.map((s) => pickLocalizedEntry(s, caById, locale));
 const comunidad = secciones[0]?.data.comunidad ?? 'Comunitat Valenciana';
-const rendered = await Promise.all(secciones.map(async (s) => ({ s, ...(await render(s)) })));
+const familiasCa = new Map(
+  (await getCollection('ebauProblemas'))
+    .filter((e) => e.data.estado === 'publicado' && e.data.lang === 'ca')
+    .map((e) => [e.id, e]),
+);
+const familias = (await getCollection('ebauProblemas'))
+  .filter((e) => e.data.asignatura === a.slug && e.data.estado === 'publicado' && e.data.lang === 'es')
+  .map((e) => pickLocalizedEntry(e, familiasCa, locale));
+// Flatten sections and families into one ordered list of printable pieces.
+const rendered = await Promise.all(
+  intercalarFamilias(secciones, familias).flatMap((b) =>
+    b.kind === 'seccion' ? [b.entry] : b.entries,
+  ).map(async (e) => ({ s: e, ...(await render(e)) })),
+);
 const today = new Date().toLocaleDateString(locale === 'ca' ? 'ca-ES' : 'es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
 
 const copy = {
