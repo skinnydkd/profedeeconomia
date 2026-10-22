@@ -15,6 +15,7 @@ import { pickLocalizedEntry } from '@/i18n/content-locale';
 import { localizeAsignatura } from '@/i18n/asignaturas-ca';
 import type { GetStaticPaths } from 'astro';
 import SectionHeader from '@components/SectionHeader.astro';
+import EbauProse from '@components/ebau/EbauProse.astro';
 
 export const getStaticPaths = (async () => {
   const all = await getCollection('ebau');
@@ -105,9 +106,9 @@ const breadcrumb = breadcrumbLd([
 
   <section class="body">
     <div class="container container--narrow">
-      <article class="prose">
+      <EbauProse>
         {rendered.map(({ Content }) => <Content />)}
-      </article>
+      </EbauProse>
     </div>
   </section>
 </BaseLayout>
@@ -129,19 +130,4 @@ const breadcrumb = breadcrumbLd([
   .examenes-link a { font-family: var(--font-sans); font-size: 0.95rem; font-weight: 600; color: var(--color-terra-ink); text-decoration: none; }
   .examenes-link a:hover { text-decoration: underline; }
   .body { padding: clamp(1.5rem, 4vw, 3rem) 0 clamp(3rem, 7vw, 6rem); }
-  .prose { font-size: 1.05rem; line-height: 1.7; color: var(--color-ink); }
-  .prose :global(h2) { font-family: var(--font-serif); font-size: 1.6rem; margin: 2.2em 0 0.7em; position: relative; padding-top: 1em; font-weight: 500; }
-  .prose :global(h2::before) { content: ""; position: absolute; top: 0; left: 0; width: 4rem; height: 4px; border-radius: 999px; background: var(--color-terra); }
-  .prose :global(h2:nth-of-type(2n)::before) { background: var(--color-mustard); }
-  .prose :global(h3) { font-family: var(--font-serif); font-size: 1.25rem; margin: 1.6em 0 0.5em; font-weight: 500; }
-  .prose :global(p) { margin: 0 0 1em; }
-  .prose :global(ul), .prose :global(ol) { padding-left: 1.4rem; margin: 0 0 1em; }
-  .prose :global(li) { margin-bottom: 0.4em; }
-  .prose :global(ul li::marker) { color: var(--color-mustard); }
-  .prose :global(strong) { color: var(--color-ink); }
-  .prose :global(table) { width: 100%; border-collapse: separate; border-spacing: 0; margin: 1.4em 0; font-size: 0.92rem; }
-  .prose :global(th), .prose :global(td) { text-align: left; padding: 0.55em 0.75em; border-bottom: 1px solid var(--color-line-soft); vertical-align: top; }
-  .prose :global(th) { font-family: var(--font-sans); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--color-terra-deep); background: var(--color-terra-soft); font-weight: 700; }
-  /* These blockquotes carry notices («Aviso:», «Cómo usar…»), so they get the callout box: tint and a symmetric border, no side stripe. */
-  .prose :global(blockquote) { margin: 1.4em 0; padding: 0.8em 1.2em; border: 1px solid var(--color-line); background: var(--color-bg-cream); font-style: italic; color: var(--color-ink-soft); border-radius: 4px; }
 </style>
