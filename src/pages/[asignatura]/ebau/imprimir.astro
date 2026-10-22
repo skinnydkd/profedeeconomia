@@ -153,8 +153,11 @@ const accent = ACCENTS[a.color];
     </section>
 
     <section class="doc" data-doc-title={`${a.shortLabel} · EBAU`}>
-      {rendered.map(({ Content }) => (
-        <div class="ebau-sec"><Content /></div>
+      {rendered.map(({ s, Content }) => (
+        <div class="ebau-sec">
+          {s.collection === 'ebauProblemas' && <h2>{s.data.title}</h2>}
+          <Content />
+        </div>
       ))}
     </section>
 

@@ -20,6 +20,7 @@ const CONTENIDO = [
   'src/pages/[asignatura]/programacion/index.astro',
   'src/pages/[asignatura]/evaluacion/index.astro',
   'src/pages/[asignatura]/ebau/index.astro',
+  'src/pages/[asignatura]/ebau/[slug].astro',
   'src/pages/debates/[familia]/[slug].astro',
   'src/pages/dinamicas/[familia]/[slug].astro',
   'src/pages/emprendimiento/proyecto/[fase].astro',
