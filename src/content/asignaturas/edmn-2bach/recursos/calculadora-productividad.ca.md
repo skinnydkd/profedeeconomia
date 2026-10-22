@@ -20,7 +20,7 @@ slug: "asignaturas/edmn-2bach/recursos/calculadora-productividad.ca"
 
 La productivitat sempre es mesura **respecte a un recurs** (per hora, per treballador, per euro invertit), i segons quin tries la conclusió pot canviar. Convé deixar clar el denominador abans de comparar.
 
-Una millora de productivitat no sempre és bona notícia sense matisos: si s'aconseguix espremen les persones o baixant la qualitat, l'efecte a mitjà termini pot ser pitjor. L'eficiència és un mitjà, no un fi en si mateix: és una conversa que esta matèria convida a tindre.
+Una millora de productivitat no sempre és bona notícia sense matisos: si s'aconseguix espremint les persones o baixant la qualitat, l'efecte a mitjà termini pot ser pitjor. L'eficiència és un mitjà, no un fi en si mateix: és una conversa que esta matèria convida a tindre.
 
 ## Per a anar més enllà
 
