@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>143 días — Economía · 1.º de Bachillerato</title>
+<style>@font-face{font-family:"Fraunces";font-style:normal;font-weight:300 700;font-display:swap;src:url("/fonts/fraunces-latin-normal.woff2") format("woff2")}@font-face{font-family:"Fraunces";font-style:italic;font-weight:300 700;font-display:swap;src:url("/fonts/fraunces-latin-italic.woff2") format("woff2")}</style>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  /* Tokens de profedeeconomia.es — mateixos noms que el web. Matèria: eco1. */
+  :root {
+    --color-bg:#fbf6ec; --color-paper:#fff; --color-bg-soft:#f8e8d0; --color-bg-cream:#f5edd9;
+    --color-ink:#2a1f18; --color-ink-soft:#5c4a3d; --color-ink-mute:#6e5a47;
+    --color-line:#e5d4bd; --color-line-soft:#efe2cb;
+    --color-terra:#c44e2c; --color-terra-deep:#9c3a1c; --color-terra-soft:#fbe3d6;
+    --color-mustard:#d4a24c; --color-mustard-deep:#835f20; --color-mustard-soft:#f5e5bc;
+    --eco1:#1f6e6e; --eco1-soft:#dbeded;
+    --font-serif:"Fraunces","Newsreader",Georgia,serif;
+    --font-sans:"Switzer",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    --font-mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+    --measure-prose:66ch; --ease-soft:cubic-bezier(.32,.72,.16,1);
+  }
+  body {
+    background:var(--color-bg); color:var(--color-ink); height:100vh;
+    font-family:var(--font-sans); display:flex; flex-direction:column; overflow:hidden;
+  }
+  h1,h2,h3 { font-family:var(--font-serif); letter-spacing:-.02em; font-weight:600; }
+
+  #bar {
+    display:flex; align-items:center; gap:1rem; padding:.5rem 1.4rem; flex:0 0 auto;
+    border-bottom:1px solid var(--color-line); font-size:.78rem; color:var(--color-ink-mute);
+  }
+  .marca { font-family:var(--font-serif); font-weight:500; font-size:.9rem;
+           color:var(--color-ink); white-space:nowrap; text-transform:lowercase; }
+  .marca .p { color:var(--color-terra); } .marca .d { color:var(--color-mustard); }
+  #bloc { font-weight:600; letter-spacing:.06em; text-transform:uppercase; white-space:nowrap;
+          color:var(--eco1); }
+  #bloc.obertura { color:var(--color-ink-soft); } #bloc.tanca { color:var(--color-terra); }
+  #progress { flex:1; height:2px; background:var(--color-line); }
+  #progress > div { height:100%; background:var(--eco1); transition:width .3s var(--ease-soft); }
+  #clock { font-variant-numeric:tabular-nums; font-weight:600; font-size:1.3rem; color:var(--color-ink); }
+  #clock.run { color:var(--eco1); } #clock.over { color:var(--color-terra); }
+  #clock.hidden { visibility:hidden; }
+
+  #stage {
+    flex:1; min-height:0; display:flex; flex-direction:column; justify-content:center;
+    padding:clamp(1rem,3.5vw,3.2rem); gap:1rem; overflow:hidden;
+  }
+  #stage.center { align-items:center; text-align:center; }
+  .kicker { color:var(--color-ink-mute); font-size:clamp(.78rem,1.35vw,1.05rem);
+            letter-spacing:.14em; text-transform:uppercase; }
+  h1 { font-size:clamp(2.2rem,6.5vw,5rem); line-height:1.05; font-weight:700; }
+  h2 { font-size:clamp(1.35rem,3.3vw,2.6rem); line-height:1.18; }
+  h3 { font-size:clamp(1.02rem,2vw,1.5rem); color:var(--color-ink-soft); }
+  p  { font-size:clamp(1rem,1.9vw,1.6rem); line-height:1.45; max-width:var(--measure-prose); }
+  li::marker { color:var(--eco1); font-weight:600; }
+  .dim{color:var(--color-ink-mute)} .eco{color:var(--eco1)} .terra{color:var(--color-terra)}
+  .most{color:var(--color-mustard-deep)} .fosc{color:var(--color-terra-deep)}
+  .small { font-size:clamp(.82rem,1.3vw,1rem); color:var(--color-ink-soft);
+           max-width:var(--measure-prose); }
+  .step { opacity:0; transition:opacity .25s var(--ease-soft); }
+  .step.on { opacity:1; }
+
+  .maths { font-size:clamp(1rem,2.1vw,1.8rem); line-height:1.75; font-variant-numeric:tabular-nums; }
+  hr { border:none; border-top:1px solid var(--color-line); margin:.4rem 0; max-width:13em; }
+
+  .cas { background:var(--color-paper); border:1px solid var(--color-line);
+         border-left:4px solid var(--eco1); border-radius:6px;
+         padding:clamp(1rem,2.2vw,1.8rem); max-width:min(82vw,62rem); }
+  .cas p { font-size:clamp(1.02rem,2.15vw,1.8rem); line-height:1.35; max-width:none;
+           margin-bottom:.45em; }
+  .cas p:last-child { margin-bottom:0; }
+  .pregunta { font-family:var(--font-serif); font-weight:600;
+              font-size:clamp(1.2rem,2.7vw,2.2rem); line-height:1.2; color:var(--eco1); }
+
+  /* Citació literal: ha de quedar clar què és paraula d'un altre. */
+  .cita { border-left:4px solid var(--color-mustard); padding-left:clamp(.8rem,1.8vw,1.4rem);
+          max-width:min(82vw,58rem); }
+  .cita p { font-family:var(--font-serif); font-size:clamp(1.2rem,2.9vw,2.4rem);
+            line-height:1.25; font-weight:500; max-width:none; }
+  .cita .qui { font-size:clamp(.8rem,1.25vw,1rem); color:var(--color-ink-mute); margin-top:.6rem; }
+
+  .opcions { display:grid; gap:.45rem; width:100%; max-width:min(82vw,62rem); }
+  .opcio { display:flex; align-items:center; gap:.8rem; background:var(--color-paper);
+           border:1px solid var(--color-line); border-radius:6px; padding:.5rem .85rem;
+           font-size:clamp(.92rem,1.75vw,1.4rem); }
+  .opcio.ok { border-color:var(--eco1); background:var(--eco1-soft); }
+  .lletra { flex:0 0 auto; width:1.85em; height:1.85em; display:grid; place-items:center;
+            border-radius:6px; background:var(--color-bg-cream); color:var(--color-ink-soft);
+            font-family:var(--font-serif); font-weight:600; font-size:.95em; }
+  .opcio.ok .lletra { background:var(--eco1); color:#fff; }
+  .opcio .txt { flex:1; }
+
+  table { border-collapse:collapse; font-variant-numeric:tabular-nums; width:100%;
+          max-width:min(88vw,64rem); background:var(--color-paper);
+          border:1px solid var(--color-line); border-radius:6px; }
+  th,td { padding:.3em .7em; text-align:left; font-size:clamp(.8rem,1.45vw,1.2rem); vertical-align:top; }
+  th { color:var(--color-ink-mute); font-weight:600; font-size:clamp(.66rem,1vw,.88rem);
+       text-transform:uppercase; letter-spacing:.05em; border-bottom:1px solid var(--color-line); }
+  tbody tr:nth-child(even) { background:var(--color-bg-cream); }
+
+  .fila { display:flex; gap:clamp(.8rem,2.2vw,1.8rem); align-items:stretch; flex-wrap:wrap; }
+  .lectura { background:var(--color-paper); border:1px solid var(--color-line); border-radius:6px;
+             padding:.65rem 1rem; min-width:8.5rem; }
+  .lectura .lab { font-size:.7rem; letter-spacing:.08em; text-transform:uppercase;
+                  color:var(--color-ink-mute); }
+  .lectura .val { font-family:var(--font-serif); font-size:clamp(1.3rem,2.8vw,2.2rem);
+                  font-weight:600; line-height:1.15; }
+  .veredicte { font-family:var(--font-serif); font-size:clamp(1.2rem,2.8vw,2.1rem); font-weight:600; }
+
+  /* El rellotge de la subhasta: el número ha de veure's des del final de l'aula. */
+  .rellotge { font-family:var(--font-serif); font-weight:700; line-height:1;
+              font-size:clamp(4rem,17vw,13rem); color:var(--eco1);
+              font-variant-numeric:tabular-nums; }
+  .rellotge.venut { color:var(--color-terra); }
+  .unitat { font-size:.3em; color:var(--color-ink-mute); font-weight:500; }
+
+  button { font-family:inherit; font-size:clamp(.9rem,1.6vw,1.25rem); font-weight:600;
+           border:1px solid var(--color-line); border-radius:6px; background:var(--color-paper);
+           color:var(--color-ink); padding:.5rem 1.1rem; cursor:pointer;
+           transition:background .15s var(--ease-soft); }
+  button:hover { background:var(--color-bg-cream); }
+  button.principal { background:var(--eco1); border-color:var(--eco1); color:#fff; }
+  button.jo { background:var(--color-terra); border-color:var(--color-terra); color:#fff; }
+
+  input[type=number] {
+    background:var(--color-paper); color:var(--color-ink); border:1px solid var(--color-line);
+    border-radius:6px; padding:.22rem .45rem; width:4.4rem; font-family:inherit;
+    font-size:1rem; font-weight:600; text-align:center;
+  }
+  .camp { display:flex; align-items:center; gap:.55rem; color:var(--color-ink-mute); font-size:.9rem; }
+  .camps { display:flex; gap:1.3rem; flex-wrap:wrap; margin-top:.25rem; }
+
+  .fonts { font-size:clamp(.72rem,1.1vw,.92rem); line-height:1.6; color:var(--color-ink-mute);
+           max-width:min(88vw,64rem); }
+  .fonts b { color:var(--color-ink-soft); }
+
+  #notes { position:fixed; inset:auto 0 0 0; background:var(--color-bg-soft);
+           border-top:2px solid var(--color-mustard); padding:.9rem 1.5rem; font-size:.95rem;
+           line-height:1.5; color:var(--color-ink-soft); display:none; }
+  #notes.on { display:block; }
+  #notes b { color:var(--color-terra-deep); }
+</style>
+</head>
+<body>
+
+<div id="bar">
+  <span class="marca"><span class="p">p</span><span class="d">.</span>profedeeconomia</span>
+  <span id="bloc"></span>
+  <div id="progress"><div></div></div>
+  <span id="pos" class="dim"></span>
+  <span id="clock" class="hidden">00:00</span>
+</div>
+
+<div id="stage"></div>
+<div id="notes"></div>
+
+<script>
+// ─────────────────────────────────────────────────────────────────
+// Sessió 2 de «Triar és renunciar». Un cas real que es desplega: «143 dies».
+// Res del que es projecta és una instrucció per al professor: això
+// va a les notes (tecla N). En pantalla, només el que llig l'alumnat.
+// ─────────────────────────────────────────────────────────────────
+const NUM = {};             // números que s'escriuen en directe
+const VOTS = {};            // clau -> [comptes per opció]
+
+const n = (x, d = 1) => x.toFixed(d).replace('.', ',');
+const nn = x => n(x).replace(',0', '');
+const eur = x => nn(Math.round(x)) + ' €';
+
+// ── els vots ─────────────────────────────────────────────────────
+const VOT = {
+  dies:   { etiqueta:'¿Cuántos días al año puede salir a pescar?',
+            opcions:['Unos 300, casi todos los días laborables', 'Unos 200', 'Unos 143', 'Unos 40'], ok:2 },
+  forat:  { etiqueta:'¿Cómo se tapa un agujero de 37 días?',
+            opcions:['Pescando más cada día que sale', 'Vendiendo el pescado más caro',
+                     'Gastando menos en gasóleo y en gente', 'No se tapa: se gana menos'] },
+  eixir:  { etiqueta:'Martes de enero. ¿Sale la barca?',
+            opcions:['Sí, un día parado no da nada', 'No, me lo guardo para diciembre'] },
+  portes: { etiqueta:'¿Cambias las puertas?',
+            opcions:['Sí', 'No', 'Depende de lo que valga un día'], ok:2 },
+  dada:   { etiqueta:'«Lo que pedimos no son subvenciones: es poder salir a trabajar»',
+            opcions:['Es un dato que se puede comprobar', 'Es una posición, una opinión',
+                     'Las dos cosas mezcladas'], ok:2 },
+};
+
+// ── xifres reals del cas ─────────────────────────────────────────
+// Totes citades a l'última pantalla. No tocar sense canviar la font.
+const DIES = 143;           // dies de pesca 2026, flota d'arrossegament del Mediterrani
+const CAL  = 180;           // dies que diu necessitar la confraria
+const PROP = 9.7;           // proposta inicial de la Comissió Europea per a 2026
+const FLOTA = 556;          // embarcacions d'arrossegament del Mediterrani espanyol
+const EXTRA = 2454;         // dies addicionals repartits per mesures voluntàries
+const VAIXELLS = 301;       // vaixells que se'ls reparteixen
+
+const puja = CAL / DIES;                    // 1,2587…
+const pcPuja = Math.round((puja - 1) * 100); // 26 %
+const perVaixell = EXTRA / VAIXELLS;        // 8,15 dies
+
+const SCREENS = [
+
+// ═══════════════ OBERTURA ═══════════════
+{ bloc:'obertura', center:true, html:`<div class="kicker">Economía · 1.º de Bachillerato · Elegir es renunciar</div> <h1>143 días</h1> <p class="dim">Todo lo que una barca de arrastre<br>puede trabajar este año.</p>`,
+  note:`Hoy no hay ficha. Se proyecta y ellos calculan en la libreta. <b>Teclas 1…6</b> para saltar de acto si el tiempo se acorta. El acto 5 (la subasta) es el que no hay que perderse: si vas justo, salta el 4.` },
+
+{ bloc:'obertura', html:`<h2>En la lonja de la costa, cada tarde, se vende el pescado del día.</h2> <p class="step">Las barcas descargan las cajas en la lonja, junto al puerto.</p> <p class="step">Hay compradores esperando. En pocos minutos, todo tiene precio y todo está vendido.</p> <p class="step eco"><b>En la sesión anterior hablamos de decisiones. Hoy las miraremos todas en un solo sitio.</b></p>`,
+  note:`Muchos tienen familia o vecinos en el sector. Deja que lo cuenten 30 segundos si sale, pero no abras debate todavía: el caso tiene que correr.` },
+
+// ═══════════════ ACTE 1 · L'ESCASSETAT ═══════════════
+{ acte:1, bloc:'a1', html:`<div class="kicker">Acto 1</div> <h2>Una barca de arrastre del Mediterráneo.</h2> <p>No hablamos de cuántos días <i>quiere</i> salir. Hablamos de cuántos <b>puede</b>.</p>`,
+  vot:'dies',
+  note:`Que voten a mano alzada y apunta los cuatro números. La mayoría dirá 200-300: piensan en un trabajo normal. <b>No digas todavía cuál es el bueno.</b>` },
+
+{ acte:1, bloc:'a1', center:true, html:`<div class="kicker">Acuerdo del Consejo de la Unión Europea · 13 de diciembre de 2025</div> <div class="rellotge">${DIES}</div> <p class="step"><b>Los mismos que el año pasado.</b> Costó una noche de negociación.</p> <p class="step dim">La propuesta que la Comisión Europea puso sobre la mesa para empezar era de <b class="terra">${nn(PROP)} días</b>.</p>`,
+  note:`El contraste ${nn(PROP)} → ${DIES} es lo que los despierta: esto no sale de una ley natural, sale de una negociación. Igual que un convenio o un alquiler.` },
+
+{ acte:1, bloc:'a1', html:`<h2>¿Qué es exactamente lo que se ha acabado?</h2> <p class="step">No el pescado: el pescado todavía está en el mar.</p> <p class="step">No las barcas: hay <b>${FLOTA}</b> barcas de arrastre en el Mediterráneo español.</p> <p class="step">No las ganas de trabajar.</p> <div class="step cas"><p class="pregunta">El recurso escaso son <b>los días</b>.</p> <p>Son ${DIES} y no hay más. Gastar uno es no tenerlo.</p></div> <p class="step small">Esto es <b>escasez</b>, y aquí no se la ha inventado ningún libro de texto.</p>`,
+  note:`Ancla la definición aquí: escasez = hay menos de lo que haría falta para todo lo que querríamos. Y fíjate en que el recurso escaso no era el evidente.` },
+
+// ═══════════════ ACTE 2 · EL FORAT ═══════════════
+{ acte:2, bloc:'a2', html:`<div class="kicker">Acto 2</div> <div class="cita"> <p>«Con menos de <b>180 días</b> de pesca las cuentas no salen y no se pueden pagar las prestaciones de la tripulación. Cada año hay más restricciones y el futuro es incierto.»</p> <div class="qui">El presidente de una cofradía de pescadores del Mediterráneo · otoño de 2025 · frase adaptada</div> </div>`,
+  note:`Literal, de una nota de un ayuntamiento pesquero. Déjala respirar. La frase tiene dos partes: una cifra y un juicio. Volveremos a esto en el acto 6.` },
+
+{ acte:2, bloc:'a2', html:`<h3>Primera operación. En la libreta.</h3> <div class="maths"> <span class="step">Necesita <b class="eco">${CAL}</b>.<br></span> <span class="step">Tiene <b class="terra">${DIES}</b>.<br></span> <span class="step"><hr>Le faltan <b class="terra">${CAL - DIES}</b>.</span> </div> <p class="step">Uno de cada cinco días de faena que necesita, no lo tendrá.</p>`,
+  timer:60,
+  note:`Resta de primero de primaria, y es exactamente el número que discute el sector. Cronómetro de un minuto con <b>Espacio</b> si quieres que lo hagan antes de revelarlo.` },
+
+{ acte:2, bloc:'a2', html:`<h3>Segunda operación. Esta ya no es tan obvia.</h3> <p>Si los ${DIES} días son los que son y quiere acabar el año igual que con ${CAL}…</p> <p class="step pregunta">¿cuánto más tiene que sacar <b>cada día</b> que sale?</p> <div class="step maths"><hr> ${CAL} ÷ ${DIES} = <b class="eco">${n(puja, 3)}</b> </div> <p class="step"><b>Cada día tiene que rendir un <span class="eco">${pcPuja} %</span> más</b> solo para quedarse donde estaba.</p>`,
+  timer:120,
+  note:`Aquí es donde se gana la sesión. La división ${CAL}/${DIES} no la ven venir: tienen que razonar que si tienes menos días, cada día tiene que valer más. Si alguien dice «un 26 % porque falta un 20 % de días», <b>esa es la confusión buena</b>: perder el 20 % obliga a subir el 26 %, no el 20 %. Haz que lo comprueben.` },
+
+{ acte:2, bloc:'a2', html:`<h2>Un ${pcPuja} % más cada día. ¿Cómo?</h2>`,
+  vot:'forat',
+  note:`Las cuatro son reales y las cuatro se están intentando. La cuarta es la que nadie quiere decir. Ninguna es «la correcta»: la gracia es que vean que el mismo agujero se puede tapar por sitios muy distintos, y que cada uno le toca a alguien diferente.` },
+
+// ═══════════════ ACTE 3 · QUIN DIA GASTES ═══════════════
+{ acte:3, bloc:'a3', html:`<div class="kicker">Acto 3</div> <h2>Ahora cada día lleva precio.</h2> <p class="step">Hasta ahora, «salir a pescar» era una decisión sobre el tiempo y el gasóleo.</p> <p class="step">Desde que son ${DIES} contados, salir hoy quiere decir <b>una cosa más</b>:</p> <p class="step pregunta">no podrás salir otro día.</p>`,
+  note:`Este es el salto conceptual de la sesión anterior aplicado a un calendario. Coste de oportunidad con unidad propia: días, no euros.` },
+
+{ acte:3, bloc:'a3', html:`<div class="cas"> <p>Martes de <b>enero</b>. Hace mal tiempo pero se puede salir.</p> <p>Habrá poco pescado y se pagará barato: hay poca demanda.</p> <p>En <b>diciembre</b>, por Navidad, ese mismo pescado se paga mucho más.</p> </div>`,
+  vot:'eixir',
+  timer:90,
+  note:`Deja que discutan. Siempre sale alguien con «pero si me quedo, ese día lo pierdo»: <b>no.</b> El día no caduca, se guarda. Esa es la diferencia entre un día de faena normal y un día contingentado.` },
+
+{ acte:3, bloc:'a3', html:`<h3>Pongámosle vuestros números.</h3> <p class="small">Estos dos no los sé: los ponéis vosotros. Lo que importa es el razonamiento.</p> <div class="camps"> <span class="camp">Un día de enero deja <input type="number" min="0" data-num="gener" value="" placeholder="—"> €</span> <span class="camp">Un día de diciembre deja <input type="number" min="0" data-num="desembre" value="" placeholder="—"> €</span> </div> <div id="calcdia"></div>`,
+  interactiu:'dia',
+  note:`Pídeles tú los números y escríbelos. Cualquier pareja sirve mientras diciembre &gt; enero. Lo que tienen que ver: salir en enero no cuesta el gasóleo, cuesta <b>el diciembre</b>.` },
+
+// ═══════════════ ACTE 4 · ELS DIES DE LES PORTES ═══════════════
+{ acte:4, bloc:'a4', html:`<div class="kicker">Acto 4</div> <h2>Hay una manera de comprar días.</h2> <p class="step">No con dinero: <b>cambiando cómo pescas</b>.</p> <p class="step">Quien instala unas puertas que tocan menos el fondo del mar, recibe días de pesca extra.</p> <div class="step fila"> <div class="lectura"><div class="lab">Días repartidos</div><div class="val">${EXTRA}</div></div> <div class="lectura"><div class="lab">Entre</div><div class="val">${VAIXELLS} buques</div></div> </div>`,
+  note:`Datos del BOE, reparto de 2026. Las «puertas volantes» son las que mantienen la red abierta sin arrastrarse por el fondo. Menos destrucción, más días.` },
+
+{ acte:4, bloc:'a4', html:`<h3>Tercera operación.</h3> <div class="maths"> <span class="step">${EXTRA} ÷ ${VAIXELLS} = <b class="eco">${n(perVaixell, 2)}</b> días por buque<br></span> <span class="step"><hr>Sobre ${DIES}, esto es un <b class="eco">${n(perVaixell / DIES * 100, 1)} %</b> más de temporada.</span> </div> <p class="step pregunta">Las puertas cuestan dinero. ¿Cuánto puedes llegar a pagar por ellas?</p> <p class="step">Si un día de pesca te deja <b>D</b> euros, te conviene pagar <b class="eco">hasta ${n(perVaixell, 2)} × D</b>. Ni un euro más.</p>`,
+  timer:120,
+  note:`Desigualdad, no ecuación: <b>precio de las puertas &lt; 8,15 × D</b>. Si la clase ha puesto D en el acto 3, haz que lo calculen con su número.` },
+
+{ acte:4, bloc:'a4', html:`<h2>Fijaos en lo que acaba de pasar.</h2> <p class="step">Nadie ha prohibido nada. Nadie ha multado a nadie.</p> <p class="step">Se ha puesto <b>un premio en días</b>, y ${VAIXELLS} buques han cambiado las puertas.</p> <p class="step pregunta">Esto es un incentivo.</p> <p class="step small dim">En la sesión anterior lo vimos al revés: la multa de la guardería que hacía que llegar tarde saliera más a cuenta.</p>`,
+  vot:'portes',
+  note:`Enlace directo con el dilema 8 de la sesión anterior. Una norma no dice qué tienes que hacer: cambia qué te conviene. La opción C es la de economista.` },
+
+// ═══════════════ ACTE 5 · LA SUBHASTA ═══════════════
+{ acte:5, bloc:'a5', html:`<div class="kicker">Acto 5</div> <h2>La barca ha salido y vuelve cargada.</h2> <p class="step">Ahora viene la pregunta que todavía no hemos tocado:</p> <p class="step pregunta">¿quién decide cuánto vale esa caja?</p> <p class="step">Ni el pescador, ni el comprador, ni el ayuntamiento.</p>`,
+  note:`Transición. Llevamos toda la sesión hablando de costes; ahora, del precio.` },
+
+{ acte:5, bloc:'a5', html:`<h3>Cómo se hace, y cómo se hacía</h3> <div class="cita"> <p>El subastador parte de un precio alto y lo va bajando <b>hasta que algún comprador dice “YO”</b>. No hay réplica ni contraoferta.</p> <div class="qui">Cómo se explica en un museo de la pesca</div> </div> <p class="step small">Se llama <b>subasta a la baja</b>, o «a la holandesa». Hoy la pantalla de la cinta dice el peso de cada caja, el lote, la barca que la ha capturado y el precio.</p>`,
+  note:`Al revés de lo que todos tienen en la cabeza (Sotheby's, pujar de 100 en 100). Aquí el precio <b>baja</b>. El primero que habla, se lo lleva.` },
+
+{ acte:5, bloc:'a5', center:true, html:`<h2>Lo hacemos.</h2> <p class="step">Una caja de <b>10 kg</b> recién descargada.</p> <p class="step">Escribid en el papel, <b>sin decirlo</b>, el máximo que pagaríais por kilo.</p> <p class="step eco"><b>Ahora no se puede cambiar.</b></p>`,
+  timer:60,
+  note:`Que lo escriban de verdad: sin compromiso previo, la subasta no enseña nada. Dales un minuto con <b>Espacio</b>.` },
+
+{ acte:5, bloc:'a5', center:true, interactiu:'subhasta',
+  note:`Clica <b>Baja</b> y ve cantando el precio en voz alta. Cuando alguien diga «YO», clica <b>¡YO!</b>. Si nadie dice nada y llega a 0, también es un resultado: la caja no se vende, y eso también pasa en la lonja.` },
+
+{ acte:5, bloc:'a5', interactiu:'resultat',
+  note:`Cuenta las manos y escribe los dos números. Lo que tienen que ver: quien ha dicho «YO» primero ha pagado más de lo que habría pagado esperando, pero los que esperaban se han quedado sin. <b>Ese es el precio de la prisa, y es el motivo de que el sistema le convenga al vendedor.</b>` },
+
+{ acte:5, bloc:'a5', html:`<h2>¿Por qué le conviene al pescador?</h2> <p class="step">Porque el pescado es fresco <b>hoy</b>. Mañana vale menos y pasado mañana no vale nada.</p> <p class="step">La subasta a la baja vende toda la descarga en minutos, sin discusiones.</p> <div class="step cas"><p>Y el precio no sale de la nada. Según el mismo museo, dependía de <b>la época</b>, <b>la demanda</b>, <b>el precio del día anterior</b> y <b>la cantidad</b> que hubiera ese día.</p></div> <p class="step small">Cuatro cosas que volveréis a ver, con estos nombres, en «La lonja de pescado».</p>`,
+  note:`Aquí queda plantada la oferta y la demanda sin nombrarlas todavía. La frase del museo es literalmente un mercado explicado por quien lo hacía.` },
+
+// ═══════════════ ACTE 6 · DADA O OPINIÓ ═══════════════
+{ acte:6, bloc:'a6', html:`<div class="kicker">Acto 6</div> <div class="cita"> <p>«Lo que pedimos no son subvenciones: <b>es poder salir a trabajar</b>.»</p> <div class="qui">El mismo presidente de la cofradía · otoño de 2025 · frase adaptada</div> </div>`,
+  vot:'dada',
+  timer:120,
+  note:`Cierra con el dilema 9 de la sesión anterior: positiva y normativa. «Con menos de 180 días no salen las cuentas» se puede comprobar mirando las cuentas. «Lo que pedimos no son subvenciones» es una posición, y es legítima — pero no se comprueba, se defiende.` },
+
+{ acte:6, bloc:'a6', html:`<h2>Las dos frases son del mismo hombre, el mismo día.</h2> <div class="fila"> <div class="lectura" style="flex:1"><div class="lab">Se puede comprobar</div> <div class="val eco" style="font-size:clamp(1rem,1.9vw,1.5rem)">«Con menos de 180 días las cuentas no salen»</div></div> <div class="lectura" style="flex:1"><div class="lab">Se defiende</div> <div class="val terra" style="font-size:clamp(1rem,1.9vw,1.5rem)">«Lo que pedimos no son subvenciones: es poder salir a trabajar»</div></div> </div> <p class="step">Una la puede desmentir una hoja de cálculo. La otra, no.</p> <p class="step"><b>Economía positiva</b> y <b>economía normativa</b>. No son buenas ni malas: son cosas diferentes y conviene no mezclarlas.</p>`,
+  note:`Si alguien dice «pero decir que con menos de 180 no salen las cuentas también es opinión», tiene media razón y vale la pena estirarlo: depende de qué definición de «rentable» uses. Eso <b>también</b> es economía.` },
+
+// ═══════════════ TANCAMENT ═══════════════
+{ bloc:'tanca', html:`<h3>Un solo caso, seis herramientas</h3> <table> <thead><tr><th>Lo que hemos mirado</th><th>Se llama</th><th>Vuelve en</th></tr></thead> <tbody> <tr class="step"><td>${DIES} días y no hay más</td><td><b>Escasez</b></td> <td class="dim">todo el curso</td></tr> <tr class="step"><td>${CAL} ÷ ${DIES} = ${pcPuja} % más cada día</td> <td><b>Productividad</b></td><td class="dim">¿Cuánto cuesta producir?</td></tr> <tr class="step"><td>Salir en enero cuesta el diciembre</td><td><b>Coste de oportunidad</b></td> <td class="dim">¿Cuánto cuesta producir?</td></tr> <tr class="step"><td>Cambiar las puertas por ${n(perVaixell, 2)} días</td> <td><b>Incentivo</b></td><td class="dim">¿En qué se gasta el dinero público?</td></tr> <tr class="step"><td>El precio baja hasta que alguien dice «YO»</td> <td><b>Formación del precio</b></td><td class="dim">La lonja de pescado</td></tr> <tr class="step"><td>Una frase se comprueba, la otra se defiende</td> <td><b>Positiva y normativa</b></td><td class="dim">¿Quién decide qué se produce?</td></tr> </tbody> </table>`,
+  note:`El resumen. Si vas bien de tiempo, que copien esta tabla: es el índice de la situación.` },
+
+{ bloc:'tanca', center:true, html:`<h2>Todo esto ha pasado de verdad.</h2> <p class="step dim">Y todavía está pasando.</p>`,
+  note:`Fin. A continuación: necesidades, bienes y servicios, y las tres preguntas.` },
+
+{ bloc:'tanca', html:`<h3>De dónde sale cada número</h3> <div class="fonts"> <p><b>${DIES} días de pesca para 2026</b> · Acuerdo del Consejo de Ministros de Pesca de la UE, 13 de diciembre de 2025. Los mismos que en 2025. Propuesta inicial de la Comisión: ${nn(PROP)} días.</p> <p><b>${FLOTA} embarcaciones de arrastre</b> del Mediterráneo español · misma fuente.</p> <p><b>${EXTRA} días adicionales entre ${VAIXELLS} buques</b> · Secretaría General de Pesca, resolución de 29 de julio de 2026 (BOE), medidas voluntarias de la Orden APA/423/2020. Marco europeo: Reglamento (UE) 2019/1022.</p> <p><b>Las dos frases del presidente de la cofradía</b> · Adaptadas de unas declaraciones de un presidente de cofradía de pescadores del Mediterráneo, otoño de 2025.</p> <p><b>Cómo funciona la subasta a la baja</b> · Descripción habitual de la subasta a la baja en los museos de la pesca.</p> <p class="dim">Los euros por día del acto 3 no son datos: los pone la clase y son un supuesto.</p> </div>`,
+  note:`Déjala proyectada mientras salen. Que vean que cada número tiene una fuente es parte de lo que se enseña hoy.` },
+
+];
+
+// ── títols de la barra ───────────────────────────────────────────
+const NOM = { obertura:'La lonja', tanca:'Cierre',
+  a1:'1 · Lo que se ha acabado', a2:'2 · El agujero', a3:'3 · Qué día gastas',
+  a4:'4 · Comprar días', a5:'5 · Quién pone el precio', a6:'6 · Dato u opinión' };
+
+// ── estat i render ───────────────────────────────────────────────
+let i = 0, step = 0, secs = 0, running = false, tick = null;
+const $ = id => document.getElementById(id);
+const passos = () => $('stage').querySelectorAll('.step').length;
+
+function render(mantenirPas) {
+  const s = SCREENS[i];
+  $('stage').className = s.center ? 'center' : '';
+  $('stage').innerHTML = s.interactiu ? INTERACTIUS[s.interactiu]() : s.html;
+  // El vot s'afig a la mateixa pantalla de l'enunciat i es revela l'últim.
+  if (s.vot) $('stage').insertAdjacentHTML('beforeend', vistaVot(s.vot));
+  if (!mantenirPas) step = 0;
+  pintaPassos();
+  $('bloc').className = s.bloc || '';
+  $('bloc').textContent = NOM[s.bloc] || '';
+  $('pos').textContent = (i + 1) + '/' + SCREENS.length;
+  $('progress').firstElementChild.style.width = ((i + 1) / SCREENS.length * 100) + '%';
+  $('notes').innerHTML = s.note || '<span class="dim">— sin notas —</span>';
+  resetTimer(s.timer);
+}
+function pintaPassos() {
+  $('stage').querySelectorAll('.step').forEach((el, k) => el.classList.toggle('on', k < step));
+}
+function avanca(d) {
+  // La dreta revela el pas següent i, quan no en queden, canvia de pantalla.
+  // L'esquerra SEMPRE salta a la pantalla anterior sencera.
+  if (d > 0 && step < passos()) { step++; return pintaPassos(); }
+  vesA(i + d, d < 0);
+}
+function vesA(x, revelada) {
+  const nou = Math.min(Math.max(x, 0), SCREENS.length - 1);
+  if (nou === i) return;
+  i = nou; render();
+  if (revelada) { step = passos(); pintaPassos(); }
+}
+function alActe(num) {
+  const k = SCREENS.findIndex(s => s.acte === num);
+  if (k >= 0) { i = k; step = 0; render(); }
+}
+
+// ── vots ─────────────────────────────────────────────────────────
+function vistaVot(clau) {
+  const v = VOT[clau];
+  VOTS[clau] = VOTS[clau] || v.opcions.map(() => null);
+  return `<div class="step" style="display:flex;flex-direction:column;gap:.6rem;align-items:inherit"> <div class="kicker">${v.etiqueta}</div> <div class="opcions">${v.opcions.map((o, k) =>`
+      <label class="opcio"><span class="lletra">${'ABCDE'[k]}</span>
+        <span class="txt">${o}</span>
+        <input type="number" min="0" data-vot="${clau}" data-k="${k}"
+               value="${VOTS[clau][k] ?? ''}" placeholder="—"></label>`).join('')}
+    </div></div>`;
+}
+// Un sol lloc on es guarden els números que escriu el professor.
+$('stage').addEventListener('change', e => {
+  const el = e.target;
+  if (el.dataset.vot) VOTS[el.dataset.vot][+el.dataset.k] = +el.value;
+  else if (el.dataset.num) { NUM[el.dataset.num] = +el.value; render(true); }
+});
+
+// ── pantalles interactives ───────────────────────────────────────
+const camp = (clau, etiqueta) => `<span class="camp">${etiqueta}
+  <input type="number" min="0" data-num="${clau}" value="${NUM[clau] ?? ''}" placeholder="—"></span>`;
+
+// Estat de la subhasta. Viu fora de NUM perquè no el reescriga cap camp.
+const SUB = { inici:60, salt:2, preu:60, venut:null };
+
+const INTERACTIUS = {
+
+  // Acte 3: el cost d'oportunitat d'un dia, amb els números de la classe.
+  dia() {
+    const g = NUM.gener, d = NUM.desembre;
+    const base = `<h3>Pongámosle vuestros números.</h3> <p class="small">Estos dos no los sé: los ponéis vosotros. Lo que importa es el razonamiento, no el número.</p> <div class="camps"> ${camp('gener', 'Un día de enero deja')} ${camp('desembre', 'Un día de diciembre deja')} </div>`;
+    if (g == null || d == null || !g || !d) return base +
+      `<p class="small dim" style="margin-top:1rem">Escribe los dos números y Enter.</p>`;
+    return base + `<div class="fila" style="margin-top:1rem"> <div class="lectura"><div class="lab">Ganas hoy</div> <div class="val eco">${eur(g)}</div></div> <div class="lectura"><div class="lab">Renuncias a</div> <div class="val terra">${eur(d)}</div></div> <div class="lectura"><div class="lab">Salir hoy te cuesta</div> <div class="val ${d > g ? 'terra' : 'eco'}">${eur(d - g)}</div></div> </div> <p class="veredicte ${d > g ? 'terra' : 'eco'}" style="margin-top:.6rem">${d > g ?`Eixir al gener no costa el gasoil: costa ${eur(d - g)} de desembre.`: 'Con estos números sale a cuenta salir hoy. El día no vale lo mismo todo el año.'}</p> <p class="small dim">Esto es el <b>coste de oportunidad</b> de un día, y solo existe porque los días están contados.</p>`;
+  },
+
+  // Acte 5: la subhasta a la baixa, jugada en directe.
+  subhasta() {
+    const venut = SUB.venut != null;
+    return `<div class="kicker">Caja de 10 kg · lonja de la costa</div> <div class="rellotge ${venut ? 'venut' : ''}">${nn(venut ? SUB.venut : SUB.preu)}<span class="unitat"> €/kg</span></div> ${venut ?`<p class="veredicte terra">Vendida a ${nn(SUB.venut)} €/kg
+             · <b>${eur(SUB.venut * 10)}</b> la caja.</p>`
+        : SUB.preu <= 0
+          ? `<p class="veredicte dim">Nadie la ha querido. La caja no se vende.</p>`
+          : `<p class="dim">Baja hasta que alguien diga <b>«YO»</b>.</p>`} <div class="fila" style="justify-content:center;margin-top:1rem"> <button class="principal" data-sub="baixa" ${venut || SUB.preu <= 0 ? 'disabled' : ''}> Baja ${nn(SUB.salt)} €</button> <button class="jo" data-sub="jo" ${venut || SUB.preu <= 0 ? 'disabled' : ''}>¡YO!</button> <button data-sub="reset">Otra caja</button> </div>`;
+  },
+
+  // Acte 5: què ha passat de veres amb el preu que ha eixit.
+  resultat() {
+    const p = SUB.venut, N = NUM.mes, E = NUM.espera;
+    if (p == null) return `<h2 class="dim">Todavía no se ha vendido ninguna caja.</h2> <p class="small">Vuelve atrás y acaba la subasta.</p>`;
+    return `<h3>Se ha vendido a <b class="terra">${nn(p)} €/kg</b>. Ahora la parte interesante.</h3> <div class="camps"> ${camp('mes', 'Quién habría pagado MÁS de ' + nn(p) + ':')} ${camp('espera', 'Quién esperaba a un precio MÁS BAJO:')} </div> ${N != null || E != null ?`
+        <div class="fila" style="margin-top:1rem">
+          ${N ? `<div class="lectura"><div class="lab">Habrían pagado más</div> <div class="val eco">${N}</div></div>` : ''}
+          ${E ? `<div class="lectura"><div class="lab">Esperaban y se han quedado sin</div> <div class="val terra">${E}</div></div>` : ''}
+        </div>
+        <p class="veredicte" style="margin-top:.6rem">${N
+          ? `El vendedor podría haber sacado más de ${N} ${N === 1 ? 'persona' : 'personas'}. Pero no lo sabe nadie hasta que alguien habla.`
+          : 'Quien ha comprado lo ha clavado.'}</p>`: ''} <p class="step small">Quien dice «YO» primero paga de más. Quien espera, paga menos… <b>si llega a tiempo</b>. Normalmente no llega.</p> <p class="step small dim">Por eso la caja se vende en segundos, y por eso este sistema le conviene a quien tiene una mercancía que se estropea.</p>`;
+  },
+};
+
+// Botons de la subhasta. Van ací i no al listener general del stage
+// perquè un clic a la diapositiva avança i ací no ha d'avançar.
+$('stage').addEventListener('click', e => {
+  const b = e.target.closest('[data-sub]');
+  if (!b) return;
+  e.stopPropagation();
+  if (b.dataset.sub === 'baixa') SUB.preu = Math.max(0, SUB.preu - SUB.salt);
+  else if (b.dataset.sub === 'jo') SUB.venut = SUB.preu;
+  else { SUB.preu = SUB.inici; SUB.venut = null; NUM.mes = NUM.espera = undefined; }
+  render(true);
+});
+
+// ── cronòmetre ───────────────────────────────────────────────────
+function resetTimer(t) {
+  clearInterval(tick); running = false; secs = t || 0;
+  $('clock').classList.toggle('hidden', !t);
+  $('clock').classList.remove('run', 'over');
+  paint();
+}
+function paint() {
+  const a = Math.abs(secs);
+  $('clock').textContent = (secs < 0 ? '−' : '') + String(Math.floor(a / 60)).padStart(2, '0')
+    + ':' + String(a % 60).padStart(2, '0');
+  $('clock').classList.toggle('over', secs < 0);
+}
+function toggleTimer() {
+  if (!SCREENS[i].timer) return;
+  running = !running;
+  $('clock').classList.toggle('run', running);
+  clearInterval(tick);
+  if (running) tick = setInterval(() => { secs--; paint(); }, 1000);
+}
+
+// ── tecles ───────────────────────────────────────────────────────
+addEventListener('keydown', e => {
+  if (e.key === 'Escape') { e.target.blur(); return; }
+  const dins = /INPUT|TEXTAREA/.test(e.target.tagName);
+  if (dins && e.key === 'Enter') { e.target.blur(); return; }
+  if (dins) return;
+  const k = e.key.toLowerCase();
+  if (/^[1-6]$/.test(e.key)) return alActe(+e.key);
+  if (e.key === 'ArrowRight' || e.key === 'PageDown') avanca(1);
+  else if (e.key === 'ArrowLeft' || e.key === 'PageUp') avanca(-1);
+  else if (e.key === 'Home') { i = 0; step = 0; render(); }
+  else if (e.key === 'End') { vesA(SCREENS.length - 1, true); }
+  else if (e.key === ' ') { e.preventDefault(); toggleTimer(); }
+  else if (k === 'n') $('notes').classList.toggle('on');
+  else if (k === 'f') document.fullscreenElement ? document.exitFullscreen()
+                                                 : document.documentElement.requestFullscreen();
+});
+$('stage').addEventListener('click', e => {
+  // A les pantalles interactives el clic no avança: durant la subhasta el professor
+  // pica molt i un clic despistat et faria saltar fora del moment. Allí, fletxes.
+  if (SCREENS[i].interactiu) return;
+  if (!/INPUT|LABEL|BUTTON/.test(e.target.tagName)) avanca(1);
+});
+
+render();
+
+// ── autocomprovació (obri la consola si toques res) ──────────────
+console.assert(SCREENS.every(s => s.html || s.vot || s.interactiu), 'pantalla sin contenido');
+console.assert([1,2,3,4,5,6].every(a => SCREENS.some(s => s.acte === a)),
+  'falta el salto de teclado de algún acto');
+console.assert(SCREENS.every(s => !s.vot || VOT[s.vot]), 'una pantalla vota una clave inexistente');
+console.assert(CAL - DIES === 37, 'el agujero de días ha cambiado');
+console.assert(pcPuja === 26, 'la subida por día ya no es el 26 %');
+console.assert(Math.abs(perVaixell - 8.15) < .01, 'los días por buque han cambiado');
+</script>
+</body>
+</html>

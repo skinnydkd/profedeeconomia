@@ -20,7 +20,7 @@ const MANIFEST = 'src/content/asignaturas/eco-4eso/situaciones/_import.json';
 
 describe('helpers', () => {
   it('unidadesDe', () => {
-    expect(unidadesDe('ud01-02-examen.html')).toEqual([1, 2]);
+    expect(unidadesDe('ud01-02-repas.html')).toEqual([1, 2]);
     expect(unidadesDe('ud01-x.html')).toEqual([1]);
     expect(unidadesDe('examen.html')).toEqual([]);
     expect(unidadesDe('unitats/ud01-economia-de-les-persones/resum-ud01.html')).toEqual([1]);
@@ -33,6 +33,13 @@ describe('helpers', () => {
     expect(isPublishable('activitats/ud01-cas-concorde.html')).toBe(true);
     expect(isPublishable('activitats/ud00-intro.html')).toBe(false);
     expect(isPublishable('activitats/x.docx')).toBe(false);
+    // Exams and mock exams stay private until Pau decides to publish them as «modelo de examen»
+    expect(isPublishable('avaluacio/ud01-02-examen.html')).toBe(false);
+    expect(isPublishable('avaluacio/ud01-02-simulacre.pdf')).toBe(false);
+    expect(isPublishable('avaluacio/ud01-02-control-SOLUCIONARI.md')).toBe(false);
+    expect(isPublishable('avaluacio/ud01-02-SOLUCIONARI.md')).toBe(false);
+    expect(isPublishable('avaluacio/ud01-questionari-SOLUCIONARI.md')).toBe(true);
+    expect(isPublishable('activitats/ud01-02-repas-SOLUCIONARI.md')).toBe(true);
     expect(isPublishable('altres/ud01-x.html')).toBe(false);
   });
   it('materialId / guiaTipo', () => {
@@ -76,7 +83,7 @@ describe('importDocencia', () => {
     const r = run();
     expect(fs.existsSync(path.join(out, 'public/situaciones/eco-4eso/ud01-mercat.ca.html'))).toBe(true);
     expect(fs.existsSync(path.join(out, 'public/downloads/situaciones/eco-4eso/ud01-mercat.ca.pdf'))).toBe(true);
-    expect(fs.existsSync(path.join(out, 'public/situaciones/eco-4eso/ud01-02-examen.ca.html'))).toBe(true);
+    expect(fs.existsSync(path.join(out, 'public/situaciones/eco-4eso/ud01-02-repas.ca.html'))).toBe(true);
     const g = read('src/content/asignaturas/eco-4eso/situaciones/guias/ud01-mercat-guia.ca.md');
     expect(g).toContain('title: "Guia del mercat"');
     expect(g).toContain('tipo: guia');
@@ -168,8 +175,8 @@ describe('importDocencia', () => {
   it('a published file renamed to -privat lands in eliminados', () => {
     run();
     const d = path.join(src, 'economia-4eso/avaluacio');
-    fs.renameSync(path.join(d, 'ud01-02-examen.html'), path.join(d, 'ud01-02-examen-privat.html'));
-    expect(run().eliminados.map((e) => e.source)).toEqual(['economia-4eso/avaluacio/ud01-02-examen.html']);
+    fs.renameSync(path.join(d, 'ud01-02-repas.html'), path.join(d, 'ud01-02-repas-privat.html'));
+    expect(run().eliminados.map((e) => e.source)).toEqual(['economia-4eso/avaluacio/ud01-02-repas.html']);
   });
 
   it('CLI without --src uses DOCENCIA_DIR and does not misread absent flags', () => {

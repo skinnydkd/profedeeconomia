@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Repaso para el control — Economía 1.º BACH · para proyectar</title>
+<style>@font-face{font-family:"Fraunces";font-style:normal;font-weight:300 700;font-display:swap;src:url("/fonts/fraunces-latin-normal.woff2") format("woff2")}@font-face{font-family:"Fraunces";font-style:italic;font-weight:300 700;font-display:swap;src:url("/fonts/fraunces-latin-italic.woff2") format("woff2")}</style>
+<style>
+:root{
+  --color-bg:#fbf6ec; --color-paper:#fff; --color-bg-soft:#f8e8d0; --color-bg-cream:#f5edd9;
+  --color-ink:#2a1f18; --color-ink-soft:#5c4a3d; --color-ink-mute:#6e5a47;
+  --color-line:#e5d4bd; --color-line-soft:#efe2cb;
+  --color-terra:#c44e2c; --color-terra-deep:#9c3a1c; --color-terra-soft:#fbe3d6;
+  --color-mustard:#d4a24c; --color-mustard-deep:#835f20; --color-mustard-soft:#f5e5bc;
+  --eco1:#1f6e6e; --eco1-soft:#dbeded; --eco1-ink:#1f6e6e;
+  --font-serif:"Fraunces","Newsreader",Georgia,serif;
+  --font-sans:"Switzer",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --font-mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--color-bg);color:var(--color-ink);font-family:var(--font-sans)}
+/* One slide = one 16:9 page. Sizes in mm/pt so screen and PDF match. */
+.slide{width:297mm;height:167mm;margin:18px auto;background:var(--color-paper);
+  border:1px solid var(--color-line);border-radius:6px;padding:11mm 18mm 14mm;
+  display:flex;flex-direction:column;overflow:hidden;position:relative}
+/* Question slides are tinted, answer slides are white: the rhythm is the point. */
+.slide.q{background:var(--eco1-soft);border-color:#b9d6d6}
+.slide.obre{background:var(--color-bg-cream);border-color:var(--color-line)}
+
+.cap{display:flex;align-items:center;gap:5mm;margin:0 0 7mm}
+.dot{flex:0 0 auto;width:14mm;height:14mm;border-radius:50%;background:var(--eco1);color:#fff;
+  font-family:var(--font-serif);font-weight:600;font-size:19pt;display:flex;align-items:center;
+  justify-content:center}
+.slide.a .dot{background:var(--color-paper);color:var(--eco1);border:2px solid var(--eco1)}
+.eyebrow{font-size:11pt;letter-spacing:.1em;text-transform:uppercase;color:var(--eco1);
+  font-weight:600;margin:0}
+
+/* The question itself: nothing else competes with it. */
+.pregunta{font-family:var(--font-serif);font-weight:500;letter-spacing:-0.02em;font-size:34pt;
+  line-height:1.14;margin:0 0 6mm;max-width:235mm;color:var(--color-ink)}
+.pregunta.curta{font-size:40pt}
+.sots{font-size:15pt;line-height:1.45;margin:0 0 5mm;max-width:215mm;color:var(--color-ink-soft)}
+.sots li{margin:0 0 2mm}
+.sots ol{margin:0;padding-left:7mm}
+.feu{margin-top:auto;display:inline-flex;align-self:flex-start;gap:6mm;align-items:baseline;
+  background:var(--color-paper);border:1px solid #b9d6d6;border-radius:999px;padding:2.6mm 8mm;
+  font-size:14pt}
+.feu b{font-family:var(--font-serif);font-weight:600;color:var(--eco1-ink)}
+.feu i{font-style:normal;color:var(--color-ink-mute);font-size:12.5pt}
+
+h1{font-family:var(--font-serif);font-weight:500;letter-spacing:-0.02em;font-size:27pt;
+  line-height:1.1;margin:0;color:var(--color-ink)}
+h1 small{display:block;font-family:var(--font-sans);font-size:12.5pt;font-weight:400;
+  color:var(--color-ink-mute);letter-spacing:0;margin-top:2mm}
+p{margin:0 0 3.5mm;font-size:15pt;line-height:1.42}
+.gran{font-size:19pt;line-height:1.35;margin:0 0 5mm;max-width:225mm}
+.gran b{color:var(--eco1-ink);font-weight:600}
+
+/* Answers are lists of short lines, never paragraphs. */
+.resp{list-style:none;margin:0 0 4mm;padding:0}
+.resp li{font-size:17pt;line-height:1.35;padding:0 0 2.6mm 11mm;position:relative;margin:0 0 2.6mm;
+  border-bottom:1px solid var(--color-line-soft)}
+.resp li:last-child{border-bottom:none}
+.resp li::before{content:"";position:absolute;left:2mm;top:2.6mm;width:3.5mm;height:3.5mm;
+  border-radius:50%;background:var(--eco1)}
+.resp b{color:var(--eco1-ink);font-weight:600}
+.resp .mal{color:var(--color-terra-deep);font-weight:600}
+.dues{display:grid;grid-template-columns:1fr 1fr;gap:0 11mm;align-items:start}
+.dues.fig{grid-template-columns:1fr 122mm}
+.xifra{font-family:var(--font-serif);font-weight:600;font-size:30pt;color:var(--eco1-ink);
+  letter-spacing:-0.02em;line-height:1.1}
+.xifra small{display:block;font-family:var(--font-sans);font-size:12pt;font-weight:400;
+  color:var(--color-ink-mute);letter-spacing:0;margin-top:1mm}
+.xifra.mal{color:var(--color-terra-deep)}
+.tres{display:grid;grid-template-columns:repeat(3,1fr);gap:6mm;margin:0 0 5mm}
+
+table{width:100%;border-collapse:collapse;font-size:14pt;line-height:1.3;margin:0 0 4mm}
+th,td{border-bottom:1px solid var(--color-line);padding:2.1mm 3.5mm;text-align:left}
+th{background:var(--eco1);color:#fff;font-weight:600;border-bottom:none;font-size:12.5pt}
+td.k{font-weight:600;color:var(--eco1-ink)}
+.slide.q table{background:var(--color-paper);border-radius:6px;overflow:hidden;font-size:15pt}
+.slide.q th,.slide.q td{border-color:var(--color-line-soft)}
+table.petita{font-size:12.5pt}
+table.petita th,table.petita td{padding:1.5mm 3mm}
+
+.clau{font-family:var(--font-serif);font-weight:600;font-size:18pt;color:var(--color-terra-deep);
+  letter-spacing:-0.02em;margin:auto 0 0;line-height:1.22;max-width:245mm}
+.avis{border-left:4px solid var(--color-terra);background:var(--color-terra-soft);
+  border-radius:0 6px 6px 0;padding:2.8mm 5mm;font-size:14pt;line-height:1.38;margin:0 0 3.5mm}
+.avis b{color:var(--color-terra-deep)}
+.fina{margin-top:auto;font-size:12.5pt;color:var(--color-ink-mute);line-height:1.4}
+.fina strong{color:var(--color-ink)}
+.mapa{display:grid;grid-template-columns:repeat(4,1fr);gap:2.6mm;margin:0}
+.mapa div{border:1px solid var(--eco1);border-radius:5px;padding:2.2mm 3mm;font-size:11.5pt;
+  line-height:1.25;color:var(--color-ink-soft);background:var(--color-paper)}
+.mapa div b{color:var(--eco1-ink);display:block;font-family:var(--font-serif);font-size:12.5pt;
+  font-weight:600;margin-bottom:.6mm}
+.regles{list-style:none;margin:0 0 5mm;padding:0;counter-reset:r}
+.regles li{counter-increment:r;font-size:18pt;line-height:1.35;margin:0 0 4mm;padding-left:12mm;
+  position:relative}
+.regles li::before{content:counter(r);position:absolute;left:0;top:.4mm;width:8mm;height:8mm;
+  border-radius:50%;background:var(--eco1);color:#fff;font-weight:600;font-size:12pt;
+  display:flex;align-items:center;justify-content:center}
+
+/* Figures: the same generator as the paper dossier, scaled up for the wall. */
+.fp{display:block;margin:0 auto}
+.fp .gl{stroke:#e2d6c0;stroke-width:.7}
+.fp .ax{stroke:#8a7a63;stroke-width:1.4}
+.fp .tk{font-family:"Segoe UI",sans-serif;font-size:9px;fill:#6e5a47}
+.fp .al{font-family:"Segoe UI",sans-serif;font-size:11px;font-weight:600;fill:#5c4a3d}
+.fp .cv{fill:none;stroke:var(--eco1-ink);stroke-width:2.4}
+.fp .cv2{stroke:var(--color-terra);stroke-dasharray:7 4}
+.fp .pt{fill:var(--color-ink)}
+.fp .pt.pin{fill:var(--color-terra)}
+.fp .pl{font-family:"Segoe UI",sans-serif;font-size:13px;font-weight:700;fill:var(--color-ink)}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:0 8mm;margin:0 0 3mm}
+.duo .fp{width:92mm!important;height:74mm!important}
+.peu{text-align:center;font-size:12.5pt;color:var(--color-ink-soft);margin:1mm 0 0;line-height:1.3}
+.peu b{color:var(--eco1-ink)}
+/* Height-constrained: the diagram is wider than tall, so cap the height. */
+.flux{flex:1;display:flex;align-items:center;justify-content:center;min-height:0;margin:0 0 3mm}
+.flux svg{max-height:108mm;width:auto;max-width:100%}
+
+.brand{position:absolute;right:18mm;bottom:5mm;font-family:var(--font-serif);font-weight:500;
+  font-size:10pt;color:var(--color-ink-mute)}
+.brand b{color:var(--color-terra);font-weight:500}
+.brand i{color:var(--color-mustard);font-style:normal}
+.num{position:absolute;left:18mm;bottom:5mm;font-size:9.5pt;color:var(--color-ink-mute);
+  letter-spacing:.06em}
+@page{size:297mm 167mm;margin:0}
+@media print{
+  body{background:#fff}
+  .slide{margin:0;border:none;border-radius:0;page-break-after:always;break-after:page;
+    print-color-adjust:exact;-webkit-print-color-adjust:exact}
+  .slide:last-of-type{page-break-after:auto;break-after:auto}
+}
+</style>
+</head>
+<body>
+
+<section class="slide obre">
+  <div class="cap"><p class="eyebrow">Economía · 1.º de Bachillerato · Repaso antes del control</p></div>
+  <h1>Hoy no se lee nada<small>Repaso para el control</small></h1>
+  <ol class="regles" style="margin-top:7mm">
+    <li>Cada pantalla es <b>una pregunta</b>. La contestáis <b>en papel</b>, antes de que yo abra la boca.</li>
+    <li>Después sale la <b>respuesta</b> y la comparáis con la vuestra. No vale cambiarla.</li>
+    <li>Al final tenéis una lista de lo que habéis fallado. <b>Esa lista es vuestro plan para el último día.</b></li>
+  </ol>
+  <p class="clau">El resumen, cerrado. Si lo miráis, la sesión no os dirá nada que no supierais.</p>
+  <p class="num">1 / 23</p>
+  <p class="brand"><b>p</b><i>.</i>profedeeconomia</p>
+</section>
+
+<section class="slide q">
+  <div class="cap"><span class="dot">1</span><p class="eyebrow">Por dónde empieza todo</p></div>
+  <p class="pregunta curta">¿Por qué existe la economía? ¿Por qué no podemos tenerlo todo?</p>
+  <p class="sots">Y una segunda, más difícil: el aire es gratis y el agua embotellada no. ¿Por qué?</p>
+  <p class="feu"><b>Dos frases</b> <i>en papel · 90 segundos</i></p>
+  <p class="num">2 / 23</p>
+  <p class="brand"><b>p</b><i>.</i>profedeeconomia</p>
+</section>
+
+<section class="slide a">
+  <div class="cap"><span class="dot">1</span><p class="eyebrow">Respuesta · y el mapa de todo lo que viene</p></div>
+  <ul class="resp">
+    <li>Las necesidades son <b>múltiples, jerarquizables, sustituibles</b> y, en conjunto, <b>ilimitadas</b>. Los recursos, no.</li>
+    <li>De ahí la <b>escasez</b>: no se puede tener todo a la vez y hay que elegir. Y elegir siempre es renunciar.</li>
+    <li>El aire es un <b>bien libre</b> — hay para todos sin sacrificar nada. El agua embotellada es un <b>bien económico</b>: conseguirla cuesta recursos.</li>
+  </ul>
+  <div class="mapa">
+    <div><b>1 · Escasez</b>No se puede todo a la vez</div>
+    <div><b>2 · Elegir</b>Coste de oportunidad</div>
+    <div><b>3 · Quién elige</b>Agentes y flujo circular</div>
+    <div><b>4 · Las tres preguntas</b>Qué, cómo y para quién</div>
+    <div><b>5 · Quién las contesta</b>El sistema económico</div>
+    <div><b>6 · El dibujo</b>La FPP</div>
+    <div><b>7 · Mover el límite</b>Crecimiento</div>
+    <div><b>8 · ¿Y sirve?</b>Desarrollo</div>
+  </div>
+  <p class="clau">Cualquier pregunta de las dos situaciones cae en una de estas ocho casillas.</p>
+  <p class="num">3 / 23</p>
+  <p class="brand"><b>p</b><i>.</i>profedeeconomia</p>
+</section>
+
+<section class="slide q">
+  <div class="cap"><span class="dot">2</span><p class="eyebrow">Los bienes</p></div>
+  <p class="pregunta">Clasificad estos tres. Y decid <i>con qué criterio</i>.</p>
+  <div class="sots"><ol>
+    <li>El móvil que llevas en el bolsillo.</li>
+    <li>El mismo modelo de móvil, el del repartidor, mientras reparte.</li>
+    <li>Una cama de hospital pagada por la Seguridad Social.</li>
+  </ol></div>
+  <p class="feu"><b>Tipo + criterio</b> <i>90 segundos · sin el criterio no vale</i></p>
+  <p class="num">4 / 23</p>
+  <p class="brand"><b>p</b><i>.</i>profedeeconomia</p>
+</section>
+
+<section class="slide a">
+  <div class="cap"><span class="dot">2</span><p class="eyebrow">Respuesta</p></div>
+  <ul class="resp">
+    <li><b>Bien de consumo.</b> Criterio: el uso. Satisface directamente una necesidad tuya.</li>
+    <li><b>Bien de capital.</b> Mismo objeto, uso distinto: sirve para producir un servicio.</li>
+    <li><b>Bien privado</b> de provisión pública. Si lo ocupa un paciente, no lo ocupa otro. <span class="mal">No es un bien público.</span></li>
+  </ul>
+  <table class="petita">
+    <tr><td class="k">Escasez</td><td>libre · económico</td>
+        <td class="k">Uso que se hace de él</td><td>consumo · capital · intermedio</td>
+        <td class="k">Quién lo consume</td><td>privado · público</td></tr>
+  </table>
+  <p class="clau">El criterio es el uso, no el objeto. Y «público» no quiere decir «pagado por el Estado».</p>
+  <p class="num">5 / 23</p>
+  <p class="brand"><b>p</b><i>.</i>profedeeconomia</p>
+</section>
+
+<section class="slide q">
+  <div class="cap"><span class="dot">3</span><p class="eyebrow">Decidir bien</p></div>
+  <p class="pregunta">Abre un horno. ¿Gana dinero o pierde?</p>
+  <table>
+    <tr><td class="k">Ingresos del año</td><td>60.000 €</td>
+        <td class="k">Deja un trabajo de</td><td>20.000 € al año</td></tr>
+    <tr><td class="k">Costes explícitos</td><td>42.000 €</td>
+        <td class="k">Y 10.000 € de ahorros que le daban</td><td>el 2 %</td></tr>
+  </table>
+  <p class="feu"><b>Las dos cifras</b> <i>contable y económico · 2 minutos</i></p>
+  <p class="num">6 / 23</p>
+  <p class="brand"><b>p</b><i>.</i>profedeeconomia</p>
+</section>
+
+<section class="slide a">
+  <div class="cap"><span class="dot">3</span><p class="eyebrow">Respuesta</p></div>
+  <div class="tres">
+    <p class="xifra">18.000 €<small>contable = 60.000 − 42.000</small></p>
+    <p class="xifra">20.200 €<small>implícitos = 20.000 + 200</small></p>
+    <p class="xifra mal">−2.200 €<small>económico = 18.000 − 20.200</small></p>
+  </div>
+  <ul class="resp">
+    <li><b>Explícitos</b> son pagos: alquiler, proveedores, sueldos. <b>Implícitos</b>, los recursos propios que podría haber dedicado a otra cosa.</li>
+    <li>Un beneficio económico negativo <b>no quiere decir ruina</b>: quiere decir que la alternativa valía más.</li>
+  </ul>
+  <p class="clau">Gana 18.000 € y, aun así, se habría quedado 2.200 € mejor sin cambiar de vida.</p>
+  <p class="num">7 / 23</p>
+  <p class="brand"><b>p</b><i>.</i>profedeeconomia</p>
+</section>
+
+<section class="slide q">
+  <div class="cap"><span class="dot">4</span><p class="eyebrow">Decidir bien · la trampa</p></div>
+  <p class="pregunta">Dos decisiones. ¿Qué haríais, y cómo se llama?</p>
+  <div class="sots"><ol>
+    <li>Has pagado <b>40 €</b> por un curso de guitarra. Vas a la primera clase y la odias. ¿Vuelves?</li>
+    <li>Llevas tres unidades hechas. La cuarta te dejaría <b>20 €</b> y te cuesta <b>25 €</b>. ¿La haces?</li>
+  </ol></div>
+  <p class="feu"><b>Una frase cada una</b> <i>con el nombre del concepto · 2 minutos</i></p>
+  <p class="num">8 / 23</p>
+  <p class="brand"><b>p</b><i>.</i>profedeeconomia</p>
+</section>
+
+<section class="slide a">
+  <div class="cap"><span class="dot">4</span><p class="eyebrow">Respuesta</p></div>
+  <div class="dues">
+    <div>
+      <ul class="resp">
+        <li><b>Coste hundido.</b> Los 40 € no vuelven, decidas lo que decidas. Como no cambia entre las alternativas, <b>no entra en la decisión</b>.</li>
+        <li><b>No la haces.</b> Análisis marginal: paras cuando la unidad siguiente ya no compensa. Esa cuarta, ella sola, resta 5 €.</li>
+      </ul>
+    </div>
+    <div>
+      <table class="petita">
+        <tr><th>Unidad</th><th>BMg</th><th>CMg</th><th>¿Conviene?</th></tr>
+        <tr><td>1.ª</td><td>50 €</td><td>25 €</td><td>sí</td></tr>
+        <tr><td>2.ª</td><td>40 €</td><td>25 €</td><td>sí</td></tr>
+        <tr><td>3.ª</td><td>30 €</td><td>25 €</td><td>sí</td></tr>
+        <tr><td>4.ª</td><td>20 €</td><td>25 €</td><td><b>no</b></td></tr>
+      </table>
+      <div class="avis"><b>Las cuatro juntas todavía dan beneficio.</b> Por eso los totales engañan.</div>
+    </div>
+  </div>
+  <p class="clau">La pregunta nunca es si va bien. Es si conviene una unidad más.</p>
+  <p class="num">9 / 23</p>
+  <p class="brand"><b>p</b><i>.</i>profedeeconomia</p>
+</section>
+
+<section class="slide q">
+  <div class="cap"><span class="dot">5</span><p class="eyebrow">Agentes económicos</p></div>
+  <p class="pregunta curta">Dibujad el flujo circular. Con los tres agentes.</p>
+  <p class="sots">Familias, empresas y sector público. Los dos mercados. Y todas las flechas, con su nombre.</p>
+  <p class="feu"><b>En papel, sin mirar</b> <i>90 segundos · es la pregunta que más puntos vale</i></p>
+  <p class="num">10 / 23</p>
+  <p class="brand"><b>p</b><i>.</i>profedeeconomia</p>
+</section>
+
+<section class="slide a">
+  <div class="cap"><span class="dot">5</span><p class="eyebrow">Respuesta · comparadlo con el vuestro</p></div>
+  <div class="flux"><svg viewBox="0 0 700 372" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, sans-serif">
+        <defs>
+          <marker id="fr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="#1f6e6e"/></marker>
+          <marker id="fm" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="#835f20"/></marker>
+          <marker id="fp" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="#9c3a1c"/></marker>
+        </defs>
+
+                <rect x="8" y="34" width="118" height="304" rx="8" fill="#dbeded" stroke="#1f6e6e" stroke-width="1.2"/>
+        <text x="67" y="180" text-anchor="middle" font-size="16" font-weight="600" fill="#1f6e6e" font-family="Georgia, serif">Familias</text>
+        <text x="67" y="200" text-anchor="middle" font-size="11" fill="#5c4a3d">consumen</text>
+        <text x="67" y="215" text-anchor="middle" font-size="11" fill="#5c4a3d">y tienen los factores</text>
+
+        <rect x="574" y="34" width="118" height="304" rx="8" fill="#dbeded" stroke="#1f6e6e" stroke-width="1.2"/>
+        <text x="633" y="180" text-anchor="middle" font-size="16" font-weight="600" fill="#1f6e6e" font-family="Georgia, serif">Empresas</text>
+        <text x="633" y="200" text-anchor="middle" font-size="11" fill="#5c4a3d">producen</text>
+        <text x="633" y="215" text-anchor="middle" font-size="11" fill="#5c4a3d">bienes y servicios</text>
+
+                <rect x="140" y="20" width="420" height="104" rx="8" fill="#fbf6ec" stroke="#e5d4bd"/>
+        <text x="350" y="39" text-anchor="middle" font-size="11.5" font-weight="600" fill="#6e5a47"
+              letter-spacing="1.2">MERCADO DE FACTORES</text>
+        <text x="350" y="62" text-anchor="middle" font-size="11" fill="#1f6e6e">trabajo, tierra y capital</text>
+        <line x1="160" y1="70" x2="556" y2="70" stroke="#1f6e6e" stroke-width="2" marker-end="url(#fr)"/>
+        <text x="350" y="104" text-anchor="middle" font-size="11" fill="#835f20">rentas: salarios, alquileres, intereses y beneficios</text>
+        <line x1="556" y1="112" x2="160" y2="112" stroke="#835f20" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#fm)"/>
+
+                <rect x="266" y="152" width="168" height="62" rx="8" fill="#fbe3d6" stroke="#c44e2c" stroke-width="1.2"/>
+        <text x="350" y="178" text-anchor="middle" font-size="13" font-weight="600" fill="#9c3a1c" font-family="Georgia, serif">Sector público</text>
+        <text x="350" y="197" text-anchor="middle" font-size="10.5" fill="#5c4a3d">impuestos, transferencias</text>
+        <line x1="130" y1="183" x2="260" y2="183" stroke="#9c3a1c" stroke-width="1.6" marker-start="url(#fp)" marker-end="url(#fp)"/>
+        <line x1="570" y1="183" x2="440" y2="183" stroke="#9c3a1c" stroke-width="1.6" marker-start="url(#fp)" marker-end="url(#fp)"/>
+        <text x="195" y="176" text-anchor="middle" font-size="9.5" fill="#6e5a47">impuestos</text>
+        <text x="195" y="199" text-anchor="middle" font-size="9.5" fill="#6e5a47">becas, pensiones</text>
+        <text x="505" y="176" text-anchor="middle" font-size="9.5" fill="#6e5a47">impuestos</text>
+        <text x="505" y="199" text-anchor="middle" font-size="9.5" fill="#6e5a47">subvenciones</text>
+
+                <rect x="140" y="242" width="420" height="104" rx="8" fill="#fbf6ec" stroke="#e5d4bd"/>
+        <text x="350" y="261" text-anchor="middle" font-size="11.5" font-weight="600" fill="#6e5a47"
+              letter-spacing="1.2">MERCADO DE BIENES Y SERVICIOS</text>
+        <text x="350" y="284" text-anchor="middle" font-size="11" fill="#1f6e6e">bienes y servicios</text>
+        <line x1="556" y1="292" x2="160" y2="292" stroke="#1f6e6e" stroke-width="2" marker-end="url(#fr)"/>
+        <text x="350" y="326" text-anchor="middle" font-size="11" fill="#835f20">gasto en consumo</text>
+        <line x1="160" y1="334" x2="556" y2="334" stroke="#835f20" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#fm)"/>
+
+                <line x1="8" y1="14" x2="38" y2="14" stroke="#1f6e6e" stroke-width="2"/>
+        <text x="44" y="18" font-size="10" fill="#5c4a3d">flujo real</text>
+        <line x1="108" y1="14" x2="138" y2="14" stroke="#835f20" stroke-width="2" stroke-dasharray="6 4"/>
+        <text x="144" y="18" font-size="10" fill="#5c4a3d">flujo monetario</text>
+      </svg></div>
+  <p class="fina"><strong>Dos flechas por mercado y en sentidos contrarios:</strong> una de flujo <strong>real</strong> (factores, bienes) y una de flujo <strong>monetario</strong> (rentas, gasto). Si solo dibujas una, es media puntuación. Los <strong>impuestos y las transferencias no pasan por ningún mercado</strong>.</p>
+  <p class="num">11 / 23</p>
+  <p class="brand"><b>p</b><i>.</i>profedeeconomia</p>
+</section>
+
+<section class="slide q">
+  <div class="cap"><span class="dot">6</span><p class="eyebrow">La FPP</p></div>
+  <p class="pregunta">Una cooperativa puede producir estas combinaciones. Dibujadla.</p>
+  <table>
+    <tr><th></th><th>A</th><th>B</th><th>C</th><th>D</th></tr>
+    <tr><td class="k">Aceite (bidones)</td><td>0</td><td>20</td><td>40</td><td>60</td></tr>
+    <tr><td class="k">Vino (cajas)</td><td>90</td><td>84</td><td>72</td><td>48</td></tr>
+  </table>
+  <p class="sots">Marcad también un punto <b>ineficiente</b> y un punto <b>inalcanzable</b>, y poned nombre a los ejes.</p>
+  <p class="feu"><b>Gráfico completo</b> <i>3 minutos</i></p>
+  <p class="num">12 / 23</p>
+  <p class="brand"><b>p</b><i>.</i>profedeeconomia</p>
+</section>
+
+<section class="slide a">
+  <div class="cap"><span class="dot">6</span><p class="eyebrow">Respuesta</p></div>
+  <div class="dues fig">
+    <div>
+      <ul class="resp">
+        <li><b>X · ineficiente.</b> Dentro: con 20 bidones se podrían hacer 84 cajas, no 50. Hay recursos parados.</li>
+        <li><b>A-D · eficiente.</b> Encima: no se puede producir más de un bien sin producir menos del otro.</li>
+        <li><b>Y · inalcanzable.</b> Fuera: hoy no se llega.</li>
+      </ul>
+      <div class="avis"><b>Pasar de X a la curva no es crecer.</b> Es dejar de malgastar. Crecer es llegar a Y, y eso quiere decir mover la frontera.</div>
+    </div>
+    <div><svg class="fp" viewBox="0 0 248 200" style="width:118mm;height:95mm" xmlns="http://www.w3.org/2000/svg">
+<line x1="34.0" y1="10.0" x2="34.0" y2="168.0" class="gl"/>
+<text x="34.0" y="180" class="tk" text-anchor="middle">0</text>
+<line x1="85.5" y1="10.0" x2="85.5" y2="168.0" class="gl"/>
+<text x="85.5" y="180" class="tk" text-anchor="middle">20</text>
+<line x1="137.0" y1="10.0" x2="137.0" y2="168.0" class="gl"/>
+<text x="137.0" y="180" class="tk" text-anchor="middle">40</text>
+<line x1="188.5" y1="10.0" x2="188.5" y2="168.0" class="gl"/>
+<text x="188.5" y="180" class="tk" text-anchor="middle">60</text>
+<line x1="240.0" y1="10.0" x2="240.0" y2="168.0" class="gl"/>
+<text x="240.0" y="180" class="tk" text-anchor="middle">80</text>
+<line x1="34.0" y1="168.0" x2="240.0" y2="168.0" class="gl"/>
+<text x="30" y="171.0" class="tk" text-anchor="end">0</text>
+<line x1="34.0" y1="136.4" x2="240.0" y2="136.4" class="gl"/>
+<text x="30" y="139.4" class="tk" text-anchor="end">20</text>
+<line x1="34.0" y1="104.8" x2="240.0" y2="104.8" class="gl"/>
+<text x="30" y="107.8" class="tk" text-anchor="end">40</text>
+<line x1="34.0" y1="73.2" x2="240.0" y2="73.2" class="gl"/>
+<text x="30" y="76.2" class="tk" text-anchor="end">60</text>
+<line x1="34.0" y1="41.6" x2="240.0" y2="41.6" class="gl"/>
+<text x="30" y="44.6" class="tk" text-anchor="end">80</text>
+<line x1="34.0" y1="10.0" x2="240.0" y2="10.0" class="gl"/>
+<text x="30" y="13.0" class="tk" text-anchor="end">100</text>
+<line x1="34.0" y1="10.0" x2="34.0" y2="168.0" class="ax"/>
+<line x1="34.0" y1="168.0" x2="240.0" y2="168.0" class="ax"/>
+<text x="240.0" y="192" class="al" text-anchor="end">Aceite (bidones)</text>
+<text x="11" y="12" class="al" transform="rotate(-90 11 12)" text-anchor="end">Vino (cajas)</text>
+<path d="M34.0,25.8 C42.6,27.4 68.3,30.5 85.5,35.3 C102.7,40.0 119.8,44.8 137.0,54.2 C154.2,63.7 179.9,85.8 188.5,92.2" class="cv"/>
+<circle cx="34.0" cy="25.8" r="3.6" class="pt"/>
+<text x="40.0" y="19.8" class="pl">A</text>
+<circle cx="85.5" cy="35.3" r="3.6" class="pt"/>
+<text x="91.5" y="29.3" class="pl">B</text>
+<circle cx="137.0" cy="54.2" r="3.6" class="pt"/>
+<text x="143.0" y="48.2" class="pl">C</text>
+<circle cx="188.5" cy="92.2" r="3.6" class="pt"/>
+<text x="194.5" y="86.2" class="pl">D</text>
+<circle cx="85.5" cy="89.0" r="3.6" class="pt pin"/>
+<text x="92.5" y="94.0" class="pl">X</text>
+<circle cx="188.5" cy="41.6" r="3.6" class="pt pin"/>
+<text x="195.5" y="35.6" class="pl">Y</text>
+</svg></div>
+  </div>
+  <p class="num">13 / 23</p>
+  <p class="brand"><b>p</b><i>.</i>profedeeconomia</p>
+</section>
+
+<section class="slide q">
+  <div class="cap"><span class="dot">7</span><p class="eyebrow">La FPP · la pregunta de 0,75</p></div>
+  <p class="pregunta">¿Cuánto vino pierde la cooperativa si pasa de B a C? ¿Y de C a D?</p>
+  <p class="sots">La tabla es la misma: B (20, 84), C (40, 72), D (60, 48). Y, cuando tengáis las dos cifras: <b>¿qué observáis al compararlas?</b></p>
+  <p class="feu"><b>Dos cifras y una observación</b> <i>2 minutos</i></p>
+  <p class="num">14 / 23</p>
+  <p class="brand"><b>p</b><i>.</i>profedeeconomia</p>
+</section>
+
+<section class="slide a">
+  <div class="cap"><span class="dot">7</span><p class="eyebrow">Respuesta</p></div>
+  <div class="dues">
+    <table>
+      <tr><th>Tramo</th><th>Aceite</th><th>Vino que se pierde</th><th>Por bidón</th></tr>
+      <tr><td>A → B</td><td>+20</td><td>90 − 84 = <b>6</b></td><td>0,3</td></tr>
+      <tr><td>B → C</td><td>+20</td><td>84 − 72 = <b>12</b></td><td>0,6</td></tr>
+      <tr><td>C → D</td><td>+20</td><td>72 − 48 = <b>24</b></td><td>1,2</td></tr>
+    </table>
+    <div>
+      <ul class="resp">
+        <li><b>Se duplica en cada tramo.</b> Los mismos 20 bidones de más cuestan cada vez más vino.</li>
+        <li>Porque los recursos están <b>especializados</b>: los primeros que se trasladan son los que menos servían para el otro bien, y los últimos, los mejores.</li>
+        <li>Por eso la curva es <b>cóncava</b>. Si fuera una recta, el coste no cambiaría.</li>
+      </ul>
+    </div>
+  </div>
+  <p class="clau">La pendiente de la frontera, en cada punto, es el coste de oportunidad.</p>
+  <p class="num">15 / 23</p>
+  <p class="brand"><b>p</b><i>.</i>profedeeconomia</p>
+</section>
+
+<section class="slide q">
+  <div class="cap"><span class="dot">8</span><p class="eyebrow">Crecimiento · la pregunta de 0,5</p></div>
+  <p class="pregunta">La cooperativa compra una prensa que solo mejora el aceite. Dibujadlo.</p>
+  <p class="sots">Sobre el mismo gráfico, con una línea de puntos. Y contestad: <b>¿qué punto no se mueve, y por qué?</b></p>
+  <p class="feu"><b>Una línea y una razón</b> <i>2 minutos</i></p>
+  <p class="num">16 / 23</p>
+  <p class="brand"><b>p</b><i>.</i>profedeeconomia</p>
+</section>
+
+<section class="slide a">
+  <div class="cap"><span class="dot">8</span><p class="eyebrow">Respuesta</p></div>
+  <div class="duo">
+    <div><svg class="fp" viewBox="0 0 248 200" style="width:118mm;height:95mm" xmlns="http://www.w3.org/2000/svg">
+<line x1="34.0" y1="10.0" x2="34.0" y2="168.0" class="gl"/>
+<text x="34.0" y="180" class="tk" text-anchor="middle">0</text>
+<line x1="85.5" y1="10.0" x2="85.5" y2="168.0" class="gl"/>
+<text x="85.5" y="180" class="tk" text-anchor="middle">20</text>
+<line x1="137.0" y1="10.0" x2="137.0" y2="168.0" class="gl"/>
+<text x="137.0" y="180" class="tk" text-anchor="middle">40</text>
+<line x1="188.5" y1="10.0" x2="188.5" y2="168.0" class="gl"/>
+<text x="188.5" y="180" class="tk" text-anchor="middle">60</text>
+<line x1="240.0" y1="10.0" x2="240.0" y2="168.0" class="gl"/>
+<text x="240.0" y="180" class="tk" text-anchor="middle">80</text>
+<line x1="34.0" y1="168.0" x2="240.0" y2="168.0" class="gl"/>
+<text x="30" y="171.0" class="tk" text-anchor="end">0</text>
+<line x1="34.0" y1="136.4" x2="240.0" y2="136.4" class="gl"/>
+<text x="30" y="139.4" class="tk" text-anchor="end">20</text>
+<line x1="34.0" y1="104.8" x2="240.0" y2="104.8" class="gl"/>
+<text x="30" y="107.8" class="tk" text-anchor="end">40</text>
+<line x1="34.0" y1="73.2" x2="240.0" y2="73.2" class="gl"/>
+<text x="30" y="76.2" class="tk" text-anchor="end">60</text>
+<line x1="34.0" y1="41.6" x2="240.0" y2="41.6" class="gl"/>
+<text x="30" y="44.6" class="tk" text-anchor="end">80</text>
+<line x1="34.0" y1="10.0" x2="240.0" y2="10.0" class="gl"/>
+<text x="30" y="13.0" class="tk" text-anchor="end">100</text>
+<line x1="34.0" y1="10.0" x2="34.0" y2="168.0" class="ax"/>
+<line x1="34.0" y1="168.0" x2="240.0" y2="168.0" class="ax"/>
+<text x="240.0" y="192" class="al" text-anchor="end">Aceite (bidones)</text>
+<text x="11" y="12" class="al" transform="rotate(-90 11 12)" text-anchor="end">Vino (cajas)</text>
+<path d="M34.0,25.8 C42.6,27.4 68.3,30.5 85.5,35.3 C102.7,40.0 119.8,44.8 137.0,54.2 C154.2,63.7 179.9,85.8 188.5,92.2" class="cv"/>
+<path d="M34.0,11.6 C43.9,13.3 73.5,16.8 93.2,22.0 C113.0,27.2 132.7,32.4 152.4,42.9 C172.2,53.3 201.8,77.6 211.7,84.6" class="cv cv2"/>
+</svg><p class="peu"><b>Mejora en los dos bienes.</b> Más máquinas, más gente formada, mejor tecnología.</p></div>
+    <div><svg class="fp" viewBox="0 0 248 200" style="width:118mm;height:95mm" xmlns="http://www.w3.org/2000/svg">
+<line x1="34.0" y1="10.0" x2="34.0" y2="168.0" class="gl"/>
+<text x="34.0" y="180" class="tk" text-anchor="middle">0</text>
+<line x1="85.5" y1="10.0" x2="85.5" y2="168.0" class="gl"/>
+<text x="85.5" y="180" class="tk" text-anchor="middle">20</text>
+<line x1="137.0" y1="10.0" x2="137.0" y2="168.0" class="gl"/>
+<text x="137.0" y="180" class="tk" text-anchor="middle">40</text>
+<line x1="188.5" y1="10.0" x2="188.5" y2="168.0" class="gl"/>
+<text x="188.5" y="180" class="tk" text-anchor="middle">60</text>
+<line x1="240.0" y1="10.0" x2="240.0" y2="168.0" class="gl"/>
+<text x="240.0" y="180" class="tk" text-anchor="middle">80</text>
+<line x1="34.0" y1="168.0" x2="240.0" y2="168.0" class="gl"/>
+<text x="30" y="171.0" class="tk" text-anchor="end">0</text>
+<line x1="34.0" y1="136.4" x2="240.0" y2="136.4" class="gl"/>
+<text x="30" y="139.4" class="tk" text-anchor="end">20</text>
+<line x1="34.0" y1="104.8" x2="240.0" y2="104.8" class="gl"/>
+<text x="30" y="107.8" class="tk" text-anchor="end">40</text>
+<line x1="34.0" y1="73.2" x2="240.0" y2="73.2" class="gl"/>
+<text x="30" y="76.2" class="tk" text-anchor="end">60</text>
+<line x1="34.0" y1="41.6" x2="240.0" y2="41.6" class="gl"/>
+<text x="30" y="44.6" class="tk" text-anchor="end">80</text>
+<line x1="34.0" y1="10.0" x2="240.0" y2="10.0" class="gl"/>
+<text x="30" y="13.0" class="tk" text-anchor="end">100</text>
+<line x1="34.0" y1="10.0" x2="34.0" y2="168.0" class="ax"/>
+<line x1="34.0" y1="168.0" x2="240.0" y2="168.0" class="ax"/>
+<text x="240.0" y="192" class="al" text-anchor="end">Aceite (bidones)</text>
+<text x="11" y="12" class="al" transform="rotate(-90 11 12)" text-anchor="end">Vino (cajas)</text>
+<path d="M34.0,25.8 C42.6,27.4 68.3,30.5 85.5,35.3 C102.7,40.0 119.8,44.8 137.0,54.2 C154.2,63.7 179.9,85.8 188.5,92.2" class="cv"/>
+<path d="M34.0,25.8 C45.2,27.4 78.6,30.5 101.0,35.3 C123.3,40.0 145.6,44.8 167.9,54.2 C190.2,63.7 223.7,85.8 234.8,92.2" class="cv cv2"/>
+</svg><p class="peu"><b>Mejora solo en el aceite.</b> El punto A no se mueve: si no hace aceite, la prensa no le sirve de nada.</p></div>
+  </div>
+  <div class="dues">
+    <div class="avis"><b>El error que más cae.</b> Dibujar el crecimiento <b>moviéndose por la frontera</b>: eso solo es cambiar de combinación.</div>
+    <div class="avis" style="border-left-color:var(--color-mustard);background:var(--color-bg-cream)">
+      <b>También puede ir hacia dentro.</b> Una guerra, o el capital que no se repone, destruye capacidad productiva.</div>
+  </div>
+  <p class="num">17 / 23</p>
+  <p class="brand"><b>p</b><i>.</i>profedeeconomia</p>
+</section>
+
+<section class="slide q">
+  <div class="cap"><span class="dot">9</span><p class="eyebrow">Crecimiento y desarrollo</p></div>
+  <p class="pregunta">¿Cuál de los dos está mejor?</p>
+  <table>
+    <tr><th></th><th>País A</th><th>País B</th></tr>
+    <tr><td class="k">PIB (millones de euros)</td><td>600.000</td><td>300.000</td></tr>
+    <tr><td class="k">Población (millones)</td><td>20</td><td>15</td></tr>
+    <tr><td class="k">Crecimiento anual del PIB</td><td>1 %</td><td>4 %</td></tr>
+    <tr><td class="k">IDH</td><td>0,78</td><td>0,85</td></tr>
+  </table>
+  <p class="feu"><b>Calculad y decidid</b> <i>la pregunta tiene trampa · 3 minutos</i></p>
+  <p class="num">18 / 23</p>
+  <p class="brand"><b>p</b><i>.</i>profedeeconomia</p>
+</section>
+
+<section class="slide a">
+  <div class="cap"><span class="dot">9</span><p class="eyebrow">Respuesta · la trampa era que «mejor» no quiere decir nada</p></div>
+  <div class="tres">
+    <p class="xifra">30.000 €<small>PIB per cápita de A · 600.000 / 20</small></p>
+    <p class="xifra">20.000 €<small>PIB per cápita de B · 300.000 / 15</small></p>
+    <p class="xifra mal">B<small>crece más (4 %) y está más desarrollado (0,85)</small></p>
+  </div>
+  <ul class="resp">
+    <li><b>A es más rico por persona</b> y, aun así, su gente vive peor. La renta puede estar mal repartida, o los servicios de salud y educación pueden ser peores.</li>
+    <li><b>Crecer</b> es producir más, y se mide con la variación del PIB. <b>Desarrollarse</b> es que la gente viva mejor: el IDH mira renta, <b>esperanza de vida</b> y <b>años de escolarización</b>. La desigualdad la mira el <b>índice de Gini</b>.</li>
+  </ul>
+  <p class="clau">Si contestáis «A, porque tiene más PIB per cápita», esa pregunta vale cero.</p>
+  <p class="num">19 / 23</p>
+  <p class="brand"><b>p</b><i>.</i>profedeeconomia</p>
+</section>
+
+<section class="slide q">
+  <div class="cap"><span class="dot">10</span><p class="eyebrow">Siete de golpe · esto es el test</p></div>
+  <p class="pregunta">Siete respuestas de tres palabras.</p>
+  <div class="sots"><ol>
+    <li>«La inflación es demasiado alta.» ¿Positiva o normativa?</li>
+    <li>El precio de la alcachofa en la lonja: ¿micro o macro?</li>
+    <li>Los 20.000 € de un préstamo: ¿qué factor productivo son?</li>
+    <li>En una economía de mercado, ¿<b>quién</b> decide para quién se produce?</li>
+    <li>España: ¿mercado puro, planificación o mixta?</li>
+    <li>Los tres criterios para juzgar un sistema económico.</li>
+    <li>Tres cosas que hace el sector público en una economía mixta.</li>
+  </ol></div>
+  <p class="feu"><b>Numeradas, de la 1 a la 7</b> <i>2 minutos</i></p>
+  <p class="num">20 / 23</p>
+  <p class="brand"><b>p</b><i>.</i>profedeeconomia</p>
+</section>
+
+<section class="slide a">
+  <div class="cap"><span class="dot">10</span><p class="eyebrow">Respuesta</p></div>
+  <div class="dues">
+    <table class="petita">
+      <tr><td class="k">1</td><td><b>Normativa.</b> «Demasiado» es un juicio de valor. «La inflación es del 3 %» sería positiva — y podría ser falsa: positiva quiere decir comprobable, no cierta</td></tr>
+      <tr><td class="k">2</td><td><b>Micro.</b> Un mercado concreto. La inflación o el paro del país serían macro</td></tr>
+      <tr><td class="k">3</td><td><b>Ninguno.</b> Son capital financiero: sirven para comprar el capital, que es la máquina</td></tr>
+      <tr><td class="k">4</td><td><b>Los precios</b> y la capacidad de pagarlos</td></tr>
+    </table>
+    <table class="petita">
+      <tr><td class="k">5</td><td><b>Mixta.</b> Como todas las economías reales</td></tr>
+      <tr><td class="k">6</td><td><b>Eficiencia, equidad y libertad.</b> Ningún sistema gana en los tres a la vez</td></tr>
+      <tr><td class="k">7</td><td><b>Regular</b> los mercados · <b>proveer</b> bienes públicos y preferentes · <b>redistribuir</b> la renta · <b>estabilizar</b> la economía</td></tr>
+    </table>
+  </div>
+  <p class="clau">Decir que la planificación «no funciona» no es una respuesta: el problema es la información que los precios libres transmiten y el plan no tiene.</p>
+  <p class="num">21 / 23</p>
+  <p class="brand"><b>p</b><i>.</i>profedeeconomia</p>
+</section>
+
+<section class="slide">
+  <div class="cap"><p class="eyebrow">Cierre · haced vuestra lista</p></div>
+  <h1>Los once errores que se repiten cada año<small>Marcad los que acabáis de cometer. Esos y no otros son vuestro repaso</small></h1>
+  <div class="dues" style="margin-top:5mm">
+    <table class="petita">
+      <tr><td class="k">1</td><td>Decir que <b>el dinero de un préstamo</b> es el factor capital</td></tr>
+      <tr><td class="k">2</td><td>Confundir <b>bien público</b> con bien pagado por el Estado</td></tr>
+      <tr><td class="k">3</td><td>Calcular el coste de oportunidad <b>sumando todas</b> las alternativas</td></tr>
+      <tr><td class="k">4</td><td>Contar los <b>costes hundidos</b> para decidir si se continúa</td></tr>
+      <tr><td class="k">5</td><td>Decidir mirando <b>los totales</b> cuando la pregunta es una unidad más</td></tr>
+      <tr><td class="k">6</td><td>Creer que una afirmación positiva tiene que ser <b>cierta</b></td></tr>
+    </table>
+    <table class="petita">
+      <tr><td class="k">7</td><td>Decir que España es una economía de mercado <b>pura</b></td></tr>
+      <tr><td class="k">8</td><td>Confundir <b>crecer</b> con <b>desarrollarse</b>, y PIB con PIB per cápita</td></tr>
+      <tr><td class="k">9</td><td>Explicar la planificación central solo diciendo que <b>«no funciona»</b></td></tr>
+      <tr><td class="k">10</td><td>Juzgar un sistema con <b>un solo criterio</b></td></tr>
+      <tr><td class="k">11</td><td>Dibujar el crecimiento <b>moviéndose por la frontera</b></td></tr>
+    </table>
+  </div>
+  <p class="num">22 / 23</p>
+  <p class="brand"><b>p</b><i>.</i>profedeeconomia</p>
+</section>
+
+<section class="slide obre">
+  <div class="cap"><p class="eyebrow">Cierre</p></div>
+  <h1>Qué tenéis que hacer antes del control<small>Cuatro cosas, en este orden</small></h1>
+  <ol class="regles" style="margin-top:6mm">
+    <li>Repasad <b>lo que habéis fallado hoy</b>, no lo que ya os sabíais. La lista la tenéis escrita.</li>
+    <li><b>El simulacro</b>, cronometrado a 55 minutos y con los apuntes cerrados. Si no lo cronometráis, no os dirá nada.</li>
+    <li>Corregíos y apuntad <b>qué</b> habéis fallado, no solo cuánto.</li>
+    <li>Las <b>27 palabras</b> del vocabulario mínimo: apartado 7 de cada resumen. Tapad la definición y decidla en voz alta.</li>
+  </ol>
+  <p class="clau">Lo que no sepáis la mañana del control, ya no lo aprenderéis esa mañana.</p>
+  <p class="num">23 / 23</p>
+  <p class="brand"><b>p</b><i>.</i>profedeeconomia</p>
+</section>
+
+</body>
+</html>
