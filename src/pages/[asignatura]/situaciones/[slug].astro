@@ -1,0 +1,236 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { subjectTitle } from '@/lib/seo';
+import { ASIGNATURAS } from '@/lib/asignaturas';
+import { getCollection } from 'astro:content';
+import { getLocale } from '@/i18n/locale';
+import { pickLocalizedEntry } from '@/i18n/content-locale';
+import { getGuias } from '@/lib/situaciones-sources';
+import {
+  situacionSlug,
+  guiaSlug,
+  materialHtmlHref,
+  materialPdfHref,
+  materialesDePaso,
+  materialesSueltos,
+} from '@/lib/situaciones';
+import type { GetStaticPaths } from 'astro';
+import Breadcrumb from '@components/Breadcrumb.astro';
+
+export const getStaticPaths = (async () => {
+  const all = await getCollection('situaciones');
+  return all
+    .filter((s) => s.data.estado === 'publicado' && s.data.lang === 'es')
+    .map((s) => ({
+      params: { asignatura: s.data.asignatura, slug: situacionSlug(s) },
+      props: { sa: s },
+    }));
+}) satisfies GetStaticPaths;
+
+const locale = getLocale(Astro.currentLocale);
+const saEs = Astro.props.sa;
+const a = ASIGNATURAS[saEs.data.asignatura];
+const caById = new Map(
+  (await getCollection('situaciones'))
+    .filter((s) => s.data.estado === 'publicado' && s.data.lang === 'ca')
+    .map((s) => [s.id, s]),
+);
+const sa = pickLocalizedEntry(saEs, caById, locale);
+const base = `/${a.slug}/situaciones/${situacionSlug(saEs)}/`;
+const d = sa.data;
+
+const copy = {
+  es: {
+    inicio: 'Inicio', seccion: 'Situaciones de aprendizaje', kicker: 'Situación de aprendizaje',
+    reto: 'El reto', producto: 'Producto final', rubrica: 'Rúbrica', criterio: 'Criterio',
+    niveles: ['Insuficiente', 'Suficiente', 'Notable', 'Excelente'],
+    secuencia: 'Secuencia', sesiones: (n: number) => `${n} sesiones`, sueltos: 'Más materiales',
+    libro: 'En el libro', unidad: 'Unidad', web: 'También en la web',
+    ver: 'Ver', pdf: 'PDF', guia: 'Guía docente', solucionario: 'Solucionario',
+    tipos: { caso: 'Caso', ficha: 'Ficha', dossier: 'Dossier', ejercicios: 'Ejercicios', apuntes: 'Apuntes', resumen: 'Resumen', dinamica: 'Dinámica', concurso: 'Concurso', repaso: 'Repaso', cuestionario: 'Cuestionario', control: 'Control', simulacro: 'Simulacro', examen: 'Examen', otro: 'Otro' },
+  },
+  ca: {
+    inicio: 'Inici', seccion: "Situacions d'aprenentatge", kicker: "Situació d'aprenentatge",
+    reto: 'El repte', producto: 'Producte final', rubrica: 'Rúbrica', criterio: 'Criteri',
+    niveles: ['Insuficient', 'Suficient', 'Notable', 'Excel·lent'],
+    secuencia: 'Seqüència', sesiones: (n: number) => `${n} sessions`, sueltos: 'Més materials',
+    libro: 'Al llibre', unidad: 'Unitat', web: 'També al web',
+    ver: 'Veure', pdf: 'PDF', guia: 'Guia docent', solucionario: 'Solucionari',
+    tipos: { caso: 'Cas', ficha: 'Fitxa', dossier: 'Dossier', ejercicios: 'Exercicis', apuntes: 'Apunts', resumen: 'Resum', dinamica: 'Dinàmica', concurso: 'Concurs', repaso: 'Repàs', cuestionario: 'Qüestionari', control: 'Control', simulacro: 'Simulacre', examen: 'Examen', otro: 'Altre' },
+  },
+}[locale];
+
+// Guide / answer-key links per material (only materials flagged `guia`).
+const guiasPorMaterial = new Map<string, { href: string; label: string }[]>();
+for (const m of d.materiales.filter((x) => x.guia)) {
+  const guias = await getGuias(a.slug, m.id, locale);
+  guiasPorMaterial.set(
+    m.id,
+    guias.map((g) => ({
+      href: `${base}${guiaSlug(g)}/`,
+      label: g.data.tipo === 'solucionario' ? copy.solucionario : copy.guia,
+    })),
+  );
+}
+
+// Book units this situation draws on.
+const libroAll = await getCollection('libro');
+const libroCaById = new Map(
+  libroAll.filter((u) => u.data.lang === 'ca' && u.data.estado === 'publicado').map((u) => [u.id, u]),
+);
+const unidades = libroAll
+  .filter((u) => u.data.asignatura === a.slug && u.data.estado === 'publicado' && u.data.lang === 'es' && d.unidades_libro.includes(u.data.unidad))
+  .sort((x, y) => x.data.unidad - y.data.unidad)
+  .map((u) => ({
+    n: u.data.unidad,
+    title: pickLocalizedEntry(u, libroCaById, locale).data.title,
+    href: `/${a.slug}/libro/${u.id.split('/').pop()?.replace(/\.mdx?$/, '')}/`,
+  }));
+
+const sueltos = materialesSueltos(d);
+---
+
+<BaseLayout title={subjectTitle(d.title, a)} description={d.producto_final} contentLang={sa.data.lang} translated={caById.has(`${saEs.id}.ca`)}>
+  <div class="container">
+    <Breadcrumb
+      locale={locale}
+      items={[
+        { name: copy.inicio, path: '/' },
+        { name: a.shortLabel, path: `/${a.slug}/` },
+        { name: copy.seccion, path: `/${a.slug}/situaciones/` },
+        { name: d.title },
+      ]}
+    />
+  </div>
+
+  <article class="sa container" style={`--subj-ink: var(--color-${a.color}-ink); --subj-soft: var(--color-${a.color}-soft)`}>
+    <header class="sa__head">
+      <span class="kicker kicker--sentence">{copy.kicker} {String(d.orden).padStart(2, '0')}{d.sesiones ? ` · ${copy.sesiones(d.sesiones)}` : ''}</span>
+      <h1>{d.title}</h1>
+    </header>
+
+    <section class="bloque">
+      <h2>{copy.reto}</h2>
+      <p class="reto">{d.reto}</p>
+    </section>
+
+    <section class="bloque">
+      <h2>{copy.producto}</h2>
+      <p>{d.producto_final}</p>
+      {d.rubrica.length > 0 && (
+        <div class="tabla-scroll">
+          <table class="rubrica">
+            <caption class="sr-only">{copy.rubrica}</caption>
+            <thead>
+              <tr><th scope="col">{copy.criterio}</th>{copy.niveles.map((n) => <th scope="col">{n}</th>)}</tr>
+            </thead>
+            <tbody>
+              {d.rubrica.map((r) => (
+                <tr><th scope="row">{r.criterio}</th>{r.niveles.map((n) => <td>{n}</td>)}</tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+    </section>
+
+    {d.secuencia.length > 0 && (
+      <section class="bloque">
+        <h2>{copy.secuencia}</h2>
+        <ol class="pasos">
+          {d.secuencia.map((paso) => {
+            const mats = materialesDePaso(d, paso);
+            return (
+              <li class="paso">
+                <h3>{paso.titulo}</h3>
+                <p>{paso.descripcion}</p>
+                {mats.length > 0 && (
+                  <ul class="materiales">
+                    {mats.map((m) => (
+                      <li class="material">
+                        <span class="material__titulo">{m.titulo}</span>
+                        <span class="material__tipo">{copy.tipos[m.tipo]}</span>
+                        <span class="material__links">
+                          {m.html && <a href={materialHtmlHref(a.slug, m.id, locale)}>{copy.ver}</a>}
+                          {m.pdf && <a href={materialPdfHref(a.slug, m.id, locale)}>{copy.pdf}</a>}
+                          {(guiasPorMaterial.get(m.id) ?? []).map((g) => <a href={g.href}>{g.label}</a>)}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </li>
+            );
+          })}
+        </ol>
+      </section>
+    )}
+
+    {sueltos.length > 0 && (
+      <section class="bloque">
+        <h2>{copy.sueltos}</h2>
+        <ul class="materiales">
+          {sueltos.map((m) => (
+            <li class="material">
+              <span class="material__titulo">{m.titulo}</span>
+              <span class="material__tipo">{copy.tipos[m.tipo]}</span>
+              <span class="material__links">
+                {m.html && <a href={materialHtmlHref(a.slug, m.id, locale)}>{copy.ver}</a>}
+                {m.pdf && <a href={materialPdfHref(a.slug, m.id, locale)}>{copy.pdf}</a>}
+                {(guiasPorMaterial.get(m.id) ?? []).map((g) => <a href={g.href}>{g.label}</a>)}
+              </span>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
+
+    {unidades.length > 0 && (
+      <section class="bloque">
+        <h2>{copy.libro}</h2>
+        <ul class="enlaces">
+          {unidades.map((u) => <li><a href={u.href}>{copy.unidad} {u.n}. {u.title}</a></li>)}
+        </ul>
+      </section>
+    )}
+
+    {d.piezas.length > 0 && (
+      <section class="bloque">
+        <h2>{copy.web}</h2>
+        <ul class="enlaces">
+          {d.piezas.map((p) => <li><a href={p.href}>{p.label}</a></li>)}
+        </ul>
+      </section>
+    )}
+  </article>
+</BaseLayout>
+
+<style>
+  .container { max-width: 1240px; margin: 0 auto; padding: 0 clamp(1.5rem, 4vw, 3rem); }
+  .sa { padding-bottom: clamp(3rem, 7vw, 6rem); }
+  .sa__head { padding: 1rem 0 0.5rem; }
+  .sa__head h1 { max-width: 24ch; margin: 1rem 0 0; color: var(--subj-ink); }
+  .bloque { margin-top: clamp(2rem, 4vw, 3rem); max-width: 62rem; }
+  .bloque h2 { margin: 0 0 0.6rem; }
+  .bloque p { max-width: 62ch; }
+  .reto { font-family: var(--font-serif); font-style: italic; font-size: 1.3rem; line-height: 1.5; color: var(--color-ink-soft); font-variation-settings: "SOFT" 80; }
+  .rubrica { width: 100%; border-collapse: collapse; font-size: 0.95rem; margin-top: 1rem; }
+  .rubrica th, .rubrica td { border: 1px solid var(--color-line); padding: 0.6rem 0.8rem; text-align: left; vertical-align: top; }
+  .rubrica thead th { background: var(--subj-soft); color: var(--color-ink); }
+  .rubrica tbody th { font-weight: 600; background: var(--color-paper); }
+  .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .pasos { list-style: none; margin: 1rem 0 0; padding: 0; counter-reset: paso; }
+  .paso { counter-increment: paso; display: grid; grid-template-columns: 2.5rem minmax(0, 1fr); gap: 0 1rem; padding: 1rem 0; border-top: 1px solid var(--color-line); }
+  .paso::before { content: counter(paso, decimal-leading-zero); font-family: var(--font-mono); font-size: 0.9rem; color: var(--subj-ink); padding-top: 0.3rem; grid-row: 1 / span 3; }
+  .paso h3 { grid-column: 2; margin: 0; font-family: var(--font-serif); font-size: 1.2rem; font-weight: 500; text-transform: none; letter-spacing: 0; }
+  .paso p { grid-column: 2; margin: 0.3rem 0 0; color: var(--color-ink-soft); }
+  .materiales { list-style: none; margin: 0.8rem 0 0; padding: 0; display: grid; gap: 0.5rem; }
+  .paso .materiales { grid-column: 2; }
+  .material { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.3rem 0.9rem; padding: 0.6rem 0.9rem; background: var(--color-paper); border: 1px solid var(--color-line); border-radius: 6px; }
+  .material__titulo { font-weight: 600; flex: 1 1 14rem; }
+  .material__tipo { font-family: var(--font-sans); font-size: 0.78rem; letter-spacing: 0.04em; color: var(--color-ink-mute); }
+  .material__links { display: flex; flex-wrap: wrap; gap: 0.3rem 0.9rem; }
+  .material__links a, .enlaces a { color: var(--color-terra-ink); text-decoration: none; font-weight: 600; }
+  .material__links a:hover, .enlaces a:hover { text-decoration: underline; }
+  .enlaces { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.4rem; }
+</style>

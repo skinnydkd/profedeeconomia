@@ -13,6 +13,8 @@ import { localizeAsignatura } from '@/i18n/asignaturas-ca';
 import { pickLocalizedEntry } from '@/i18n/content-locale';
 import Breadcrumb from '@components/Breadcrumb.astro';
 import AsignaturaCaratula from '@components/asignaturas/AsignaturaCaratula.astro';
+import { getSituaciones } from '@/lib/situaciones-sources';
+import { situacionSlug } from '@/lib/situaciones';
 
 export const getStaticPaths = (() => {
   return ASIGNATURA_SLUGS.map((slug) => ({
@@ -172,6 +174,11 @@ const grupos = [
 
 // Unit by unit (VIS-NAV-05): a teacher prepares «unit 7» — chapter, slides,
 // test, activities — and used to rebuild it by jumping across five indexes.
+const situaciones = isPublicado ? await getSituaciones(a.slug, locale) : [];
+const saCopy = {
+  es: { titulo: 'Situaciones de aprendizaje', intro: 'El curso en el orden en que lo damos: cada situación con su reto, su producto final y todo el material.', todas: 'Ver todas las situaciones →' },
+  ca: { titulo: "Situacions d'aprenentatge", intro: "El curs en l'ordre en què el donem: cada situació amb el seu repte, el seu producte final i tot el material.", todas: 'Veure totes les situacions →' },
+}[locale];
 const porUnidad = isPublicado ? await getMaterialPorUnidad(a.slug, locale) : [];
 const uCopy = {
   es: {
@@ -290,6 +297,27 @@ const jsonLd = isPublicado
       </div>
     </div>
   </section>
+
+  {situaciones.length > 0 && (
+    <section class="hub-situaciones" aria-labelledby="hub-sa-h">
+      <div class="container">
+        <h2 id="hub-sa-h">{saCopy.titulo}</h2>
+        <p class="hub-intro">{saCopy.intro}</p>
+        <ol class="sa-cards">
+          {situaciones.map((sa) => (
+            <li>
+              <a class={`sa-card c-${a.color}`} href={`/${a.slug}/situaciones/${situacionSlug(sa)}/`}>
+                <span class="sa-card__num" aria-hidden="true">{String(sa.data.orden).padStart(2, '0')}</span>
+                <span class="sa-card__title">{sa.data.title}</span>
+                <span class="sa-card__lede">{sa.data.producto_final}</span>
+              </a>
+            </li>
+          ))}
+        </ol>
+        <p class="sa-all"><a class="editorial-link" href={`/${a.slug}/situaciones/`}>{saCopy.todas}</a></p>
+      </div>
+    </section>
+  )}
 
   {isPublicado && (
     <section class="hub-sections">
@@ -534,6 +562,27 @@ const jsonLd = isPublicado
     max-width: none;
     margin-top: 0;
   }
+
+  /* Situaciones de aprendizaje: numbered cards in the subject colour. */
+  .hub-situaciones { padding: 0 0 clamp(2.5rem, 5vw, 4rem); }
+  .hub-situaciones h2 { margin-top: 0; }
+  .sa-cards { list-style: none; margin: 1.5rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr)); gap: 1.2rem; }
+  .sa-card { height: 100%; display: flex; flex-direction: column; gap: 0.45rem; padding: 1.4rem 1.5rem; background: var(--color-paper); border: 1px solid var(--color-line); border-radius: 6px; color: var(--color-ink); text-decoration: none; transition: transform .2s var(--ease-soft), border-color .2s var(--ease-soft); }
+  .sa-card:hover { transform: translateY(-2px); border-color: var(--card-color); }
+  .sa-card.c-edmn { --card-color: var(--color-edmn); }
+  .sa-card.c-eco1 { --card-color: var(--color-eco1); }
+  .sa-card.c-eco4 { --card-color: var(--color-eco4); }
+  .sa-card.c-fopp { --card-color: var(--color-fopp); }
+  .sa-card.c-taller3 { --card-color: var(--color-taller3); }
+  .sa-card.c-ipe1 { --card-color: var(--color-ipe1); }
+  .sa-card.c-ipe2 { --card-color: var(--color-ipe2); }
+  .sa-card.c-eeae { --card-color: var(--color-eeae); }
+  .sa-card.c-gpe { --card-color: var(--color-gpe); }
+  .sa-card.c-cjd { --card-color: var(--color-cjd); }
+  .sa-card__num { font-family: var(--font-mono); font-size: 0.85rem; color: var(--color-mustard-deep); }
+  .sa-card__title { font-family: var(--font-serif); font-size: 1.25rem; font-weight: 500; line-height: 1.3; }
+  .sa-card__lede { font-size: 0.95rem; color: var(--color-ink-mute); line-height: 1.5; }
+  .sa-all { margin: 1.2rem 0 0; }
 
   /* Unit by unit: one line per unit, links as text with mustard separators. */
   .hub-unidades { padding: 0 0 clamp(3rem, 7vw, 6rem); }

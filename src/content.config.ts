@@ -6,6 +6,7 @@ import { FAMILIA_SLUGS } from './lib/dinamicas';
 import { FAMILIA_DEBATE_SLUGS } from './lib/debates';
 import { MATERIA_SLUGS } from './lib/proyectos';
 import { BLOQUE_SLUGS } from './lib/olimpiada';
+import { TIPOS_MATERIAL } from './lib/situaciones';
 import { preguntaSchema } from './lib/preguntas-schema';
 
 const LANGS = ['es', 'ca'] as const;
@@ -129,6 +130,62 @@ const retos = defineCollection({
     descripcion: z.string(),
     duracion: z.string().optional(),
     competencias_clave: z.array(z.string()).default([]),
+    lang: z.enum(LANGS).default('es'),
+    estado: z.enum(ESTADOS),
+  }),
+});
+
+/* asignaturas/{slug}/situaciones/{id}.md — top level only; guias/ is its own collection */
+const situaciones = defineCollection({
+  loader: glob({ pattern: 'asignaturas/*/situaciones/*.{md,mdx}', base: './src/content' }),
+  schema: z.object({
+    asignatura: z.enum(ASIGNATURA_SLUGS),
+    orden: z.number().int().min(1),
+    title: z.string(),
+    reto: z.string(),
+    producto_final: z.string(),
+    sesiones: z.number().int().optional(),
+    unidades_libro: z.array(z.number().int()).default([]),
+    rubrica: z
+      .array(z.object({ criterio: z.string(), niveles: z.array(z.string()).length(4) }))
+      .default([]),
+    secuencia: z
+      .array(
+        z.object({
+          titulo: z.string(),
+          descripcion: z.string(),
+          materiales: z.array(z.string()).default([]),
+        }),
+      )
+      .default([]),
+    materiales: z
+      .array(
+        z.object({
+          id: z.string(),
+          titulo: z.string(),
+          tipo: z.enum(TIPOS_MATERIAL),
+          html: z.boolean().default(false),
+          pdf: z.boolean().default(false),
+          /** True when the material has at least one guía or solucionario. */
+          guia: z.boolean().default(false),
+        }),
+      )
+      .default([]),
+    piezas: z.array(z.object({ href: z.string(), label: z.string() })).default([]),
+    lang: z.enum(LANGS).default('es'),
+    estado: z.enum(ESTADOS),
+  }),
+});
+
+/* asignaturas/{slug}/situaciones/guias/{material}-{guia|solucionario}.md */
+const guiasSa = defineCollection({
+  loader: glob({ pattern: 'asignaturas/*/situaciones/guias/*.md', base: './src/content' }),
+  schema: z.object({
+    asignatura: z.enum(ASIGNATURA_SLUGS),
+    /** Id of the material (in the situación's `materiales`) this guide belongs to. */
+    material: z.string(),
+    title: z.string(),
+    tipo: z.enum(['guia', 'solucionario']),
     lang: z.enum(LANGS).default('es'),
     estado: z.enum(ESTADOS),
   }),
@@ -730,4 +787,6 @@ export const collections = {
   olimpiadaFichas,
   olimpiadaTextos,
   retos,
+  situaciones,
+  'guias-sa': guiasSa,
 };

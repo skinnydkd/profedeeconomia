@@ -13,6 +13,7 @@ const VACIAS: [string, RegExp][] = [
   ['actividades/index.astro', /noindex=\{items\.length === 0\}/],
   ['refuerzo/index.astro', /noindex=\{grupos\.length === 0\}/],
   ['retos/index.astro', /noindex=\{retos\.length === 0\}/],
+  ['situaciones/index.astro', /noindex=\{situaciones\.length === 0\}/],
   ['evaluacion/index.astro', /noindex=\{!entry\}/],
 ];
 
