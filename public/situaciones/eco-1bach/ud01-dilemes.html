@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dilemas — sesión 1 — Economía · 1.º de Bachillerato</title>
+<style>@font-face{font-family:"Fraunces";font-style:normal;font-weight:300 700;font-display:swap;src:url("/fonts/fraunces-latin-normal.woff2") format("woff2")}@font-face{font-family:"Fraunces";font-style:italic;font-weight:300 700;font-display:swap;src:url("/fonts/fraunces-latin-italic.woff2") format("woff2")}</style>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  /* Tokens de profedeeconomia.es — mateixos noms que el web. Matèria: eco1. */
+  :root {
+    --color-bg:#fbf6ec; --color-paper:#fff; --color-bg-soft:#f8e8d0; --color-bg-cream:#f5edd9;
+    --color-ink:#2a1f18; --color-ink-soft:#5c4a3d; --color-ink-mute:#6e5a47;
+    --color-line:#e5d4bd; --color-line-soft:#efe2cb;
+    --color-terra:#c44e2c; --color-terra-deep:#9c3a1c; --color-terra-soft:#fbe3d6;
+    --color-mustard:#d4a24c; --color-mustard-deep:#835f20; --color-mustard-soft:#f5e5bc;
+    --eco1:#1f6e6e; --eco1-soft:#dbeded;
+    --font-serif:"Fraunces","Newsreader",Georgia,serif;
+    --font-sans:"Switzer",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    --font-mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+    --measure-prose:66ch; --ease-soft:cubic-bezier(.32,.72,.16,1);
+  }
+  body {
+    background:var(--color-bg); color:var(--color-ink); height:100vh;
+    font-family:var(--font-sans); display:flex; flex-direction:column; overflow:hidden;
+  }
+  h1,h2,h3 { font-family:var(--font-serif); letter-spacing:-.02em; font-weight:600; }
+
+  #bar {
+    display:flex; align-items:center; gap:1rem; padding:.5rem 1.4rem; flex:0 0 auto;
+    border-bottom:1px solid var(--color-line); font-size:.78rem; color:var(--color-ink-mute);
+  }
+  .marca { font-family:var(--font-serif); font-weight:500; font-size:.9rem;
+           color:var(--color-ink); white-space:nowrap; text-transform:lowercase; }
+  .marca .p { color:var(--color-terra); } .marca .d { color:var(--color-mustard); }
+  #bloc { font-weight:600; letter-spacing:.06em; text-transform:uppercase; white-space:nowrap;
+          color:var(--eco1); }
+  #bloc.obertura { color:var(--color-ink-soft); } #bloc.tanca { color:var(--color-terra); }
+  #progress { flex:1; height:2px; background:var(--color-line); }
+  #progress > div { height:100%; background:var(--eco1); transition:width .3s var(--ease-soft); }
+  #clock { font-variant-numeric:tabular-nums; font-weight:600; font-size:1.3rem; color:var(--color-ink); }
+  #clock.run { color:var(--eco1); } #clock.over { color:var(--color-terra); }
+  #clock.hidden { visibility:hidden; }
+
+  #stage {
+    flex:1; min-height:0; display:flex; flex-direction:column; justify-content:center;
+    padding:clamp(1rem,3.5vw,3.2rem); gap:1rem; overflow:hidden;
+  }
+  #stage.center { align-items:center; text-align:center; }
+  .kicker { color:var(--color-ink-mute); font-size:clamp(.78rem,1.35vw,1.05rem);
+            letter-spacing:.14em; text-transform:uppercase; }
+  h1 { font-size:clamp(2.2rem,6.5vw,5rem); line-height:1.05; font-weight:700; }
+  h2 { font-size:clamp(1.35rem,3.3vw,2.6rem); line-height:1.18; }
+  h3 { font-size:clamp(1.02rem,2vw,1.5rem); color:var(--color-ink-soft); }
+  p  { font-size:clamp(1rem,1.9vw,1.6rem); line-height:1.45; max-width:var(--measure-prose); }
+  li::marker { color:var(--eco1); font-weight:600; }
+  .dim{color:var(--color-ink-mute)} .eco{color:var(--eco1)} .terra{color:var(--color-terra)}
+  .most{color:var(--color-mustard-deep)} .fosc{color:var(--color-terra-deep)}
+  .small { font-size:clamp(.82rem,1.3vw,1rem); color:var(--color-ink-soft);
+           max-width:var(--measure-prose); }
+  .step { opacity:0; transition:opacity .25s var(--ease-soft); }
+  .step.on { opacity:1; }
+
+  .maths { font-size:clamp(1rem,2.1vw,1.8rem); line-height:1.75; font-variant-numeric:tabular-nums; }
+  hr { border:none; border-top:1px solid var(--color-line); margin:.4rem 0; max-width:13em; }
+
+  .cas { background:var(--color-paper); border:1px solid var(--color-line);
+         border-left:4px solid var(--eco1); border-radius:6px;
+         padding:clamp(1rem,2.2vw,1.8rem); max-width:min(82vw,62rem); }
+  .cas p { font-size:clamp(1.02rem,2.15vw,1.8rem); line-height:1.35; max-width:none;
+           margin-bottom:.45em; }
+  .cas p:last-child { margin-bottom:0; }
+  .pregunta { font-family:var(--font-serif); font-weight:600;
+              font-size:clamp(1.2rem,2.7vw,2.2rem); line-height:1.2; color:var(--eco1); }
+
+  .opcions { display:grid; gap:.45rem; width:100%; max-width:min(82vw,62rem); }
+  .opcio { display:flex; align-items:center; gap:.8rem; background:var(--color-paper);
+           border:1px solid var(--color-line); border-radius:6px; padding:.5rem .85rem;
+           font-size:clamp(.92rem,1.75vw,1.4rem); }
+  .opcio.ok { border-color:var(--eco1); background:var(--eco1-soft); }
+  .lletra { flex:0 0 auto; width:1.85em; height:1.85em; display:grid; place-items:center;
+            border-radius:6px; background:var(--color-bg-cream); color:var(--color-ink-soft);
+            font-family:var(--font-serif); font-weight:600; font-size:.95em; }
+  .opcio.ok .lletra { background:var(--eco1); color:#fff; }
+  .opcio .txt { flex:1; }
+  .opcio .pc { font-variant-numeric:tabular-nums; font-weight:600; color:var(--eco1);
+               min-width:3.4em; text-align:right; }
+
+  table { border-collapse:collapse; font-variant-numeric:tabular-nums; width:100%;
+          max-width:min(88vw,64rem); background:var(--color-paper);
+          border:1px solid var(--color-line); border-radius:6px; }
+  th,td { padding:.3em .7em; text-align:left; font-size:clamp(.8rem,1.45vw,1.2rem); vertical-align:top; }
+  th { color:var(--color-ink-mute); font-weight:600; font-size:clamp(.66rem,1vw,.88rem);
+       text-transform:uppercase; letter-spacing:.05em; border-bottom:1px solid var(--color-line); }
+  tbody tr:nth-child(even) { background:var(--color-bg-cream); }
+
+  .fila { display:flex; gap:clamp(.8rem,2.2vw,1.8rem); align-items:stretch; flex-wrap:wrap; }
+  .lectura { background:var(--color-paper); border:1px solid var(--color-line); border-radius:6px;
+             padding:.65rem 1rem; min-width:8.5rem; }
+  .lectura .lab { font-size:.7rem; letter-spacing:.08em; text-transform:uppercase;
+                  color:var(--color-ink-mute); }
+  .lectura .val { font-family:var(--font-serif); font-size:clamp(1.3rem,2.8vw,2.2rem);
+                  font-weight:600; line-height:1.15; }
+  .veredicte { font-family:var(--font-serif); font-size:clamp(1.2rem,2.8vw,2.1rem); font-weight:600; }
+
+  input[type=number] {
+    background:var(--color-paper); color:var(--color-ink); border:1px solid var(--color-line);
+    border-radius:6px; padding:.22rem .45rem; width:4.4rem; font-family:inherit;
+    font-size:1rem; font-weight:600; text-align:center;
+  }
+  .camp { display:flex; align-items:center; gap:.55rem; color:var(--color-ink-mute); font-size:.9rem; }
+  .camps { display:flex; gap:1.3rem; flex-wrap:wrap; margin-top:.25rem; }
+
+  #notes { position:fixed; inset:auto 0 0 0; background:var(--color-bg-soft);
+           border-top:2px solid var(--color-mustard); padding:.9rem 1.5rem; font-size:.95rem;
+           line-height:1.5; color:var(--color-ink-soft); display:none; }
+  #notes.on { display:block; }
+  #notes b { color:var(--color-terra-deep); }
+</style>
+</head>
+<body>
+
+<div id="bar">
+  <span class="marca"><span class="p">p</span><span class="d">.</span>profedeeconomia</span>
+  <span id="bloc"></span>
+  <div id="progress"><div></div></div>
+  <span id="pos" class="dim"></span>
+  <span id="clock" class="hidden">00:00</span>
+</div>
+
+<div id="stage"></div>
+<div id="notes"></div>
+
+<script>
+// ─────────────────────────────────────────────────────────────────
+// Banc de 10 dilemes per a la sessió 1 d'Economia de 1r de BAT.
+// Res del que es projecta és una instrucció per al professor: això va
+// a les notes (tecla N). En pantalla, només el que llig l'alumnat.
+// ─────────────────────────────────────────────────────────────────
+let TOTAL = 0;              // assistents
+const VOTS = {};            // clau -> [comptes per opció]
+const NUM = {};             // números solts (aigua, joc del pot comú)
+const FETS = new Set();     // dilemes que s'han arribat a projectar
+
+const n = (x, d = 1) => x.toFixed(d).replace('.', ',');
+const nn = x => n(x).replace(',0', '');
+const suma = a => a.reduce((s, v) => s + (+v || 0), 0);
+const pc = (part, tot) => tot ? Math.round(part / tot * 100) : null;
+
+// ── els vots. `ok` només on hi ha resposta correcta de veres ─────
+const VOT = {
+  concert: { etiqueta:'¿Cuánto te ha costado el concierto gratis?',
+             opcions:['Nada, era gratis', '20 €', '40 €', '60 €'], ok:1 },
+  festival:{ etiqueta:'¿Qué haces?', opcions:['Voy igualmente', 'Me quedo en casa'] },
+  gel:     { etiqueta:'¿A cuánto los tiene que vender?',
+             opcions:['A 2 €, como siempre', 'A 10 €', 'A 2 €, uno por familia', 'Repartirlos gratis'] },
+  valor:   { etiqueta:'¿Qué vale más?', opcions:['Un vaso de agua', 'Tu móvil'] },
+  faena:   { etiqueta:'¿Cómo lo hacemos?',
+             opcions:['Cada uno media hora de cada cosa', 'Tú solo bocadillos, yo solo batidos',
+                      'Los dos solo bocadillos', 'Los dos solo batidos'], ok:1 },
+  temps:   { etiqueta:'¿Qué eliges?', opcions:['10 € ahora', '12 € dentro de un mes'] },
+  risc:    { etiqueta:'¿Qué eliges?', opcions:['50 € seguros', 'La moneda'] },
+  multa:   { etiqueta:'¿Qué pasó con los retrasos?',
+             opcions:['Bajaron mucho', 'Bajaron un poco', 'Se quedaron igual',
+                      'Subieron'], ok:3 },
+  plaça:   { etiqueta:'¿Qué regla decide?',
+             opcions:['Quien pague más', 'Quien se apunte primero', 'Un sorteo',
+                      'Quien más lo necesite', 'Quien mejor expediente tenga'] },
+};
+
+const SCREENS = [
+
+{ center:true, html:`<div class="kicker">Economía · 1.º de Bachillerato · Elegir es renunciar</div> <h1>Dilemas</h1> <p class="dim">Ninguno va de dinero.<br>Todos son de economía.</p>`,
+  note:`Nombre, materia y adelante. La presentación formal del curso, la sesión que viene. Teclas <b>1…9 y 0</b> para saltar de dilema: elige sobre la marcha según cómo vaya el grupo.` },
+
+// ═══════════ OBERTURA ═══════════
+{ bloc:'obertura', center:true, html:`<h2>Levántate si…</h2> <p class="dim">Te levantas o te quedas sentado.</p> <div class="camp">¿Cuántos sois hoy? <input type="number" min="1" placeholder="30" onchange="TOTAL=+this.value||0"></div>`,
+  note:`Escribe los asistentes y <b>Enter</b>: se usa en el retrato final y en el juego del dilema 10. Cuatro frases, rápidas. No comentes ninguna respuesta todavía.` },
+
+...[
+  ['has trabajado alguna vez por dinero. Aunque fuera un verano.', 'treball',
+   `Cuenta y escribe la cifra. Te orienta sobre el grupo antes de empezar.`],
+  ['en tu casa alguien trabaja en el comercio, la pesca, el campo o el turismo.', 'sectors',
+   `Los cuatro sectores de la zona. <b>Anota quién se levanta y por cuál</b>: son tus ejemplos de todo el curso.`],
+  ['eres tú quien decide en qué gastas tu dinero.', 'propis',
+   `Enlaza con el producto de la situación: una decisión real con presupuesto cerrado.`],
+  ['has vendido algo de segunda mano.', 'segonama',
+   `Han fijado un precio sin saberlo. Vuelve a «La lonja de pescado».`],
+].map(([txt, clau, note]) => ({
+  bloc:'obertura', compta:clau, note, center:true,
+  html:`<h2>${txt}</h2>`
+})),
+
+// ═══════════ 1 · EL CONCERT ═══════════
+{ bloc:'d1', dilema:1, vot:'concert', timer:60, html:`<div class="cas"> <p class="step">Te <b>regalan</b> una entrada para un concierto del sábado. No la puedes vender ni cambiar.</p> <p class="step">Esa misma noche toca <b>el grupo que más te gusta</b>. La entrada vale <b class="terra">40 €</b> y tú, como máximo, pagarías <b class="terra">60 €</b> por verlos.</p> <p class="step">Eliges el concierto gratis.</p> </div> <p class="step pregunta">¿Cuánto te ha costado?</p>`,
+  note:`Revela línea a línea y deja que aparezca el voto. Que quede claro que 60 € es <b>el máximo que pagarías</b>, no el precio. Votan todos, una sola opción, y escribes los cuatro recuentos. <b>Aquí aprendes nombres</b>: pide a tres personas de respuestas distintas su nombre y por qué han votado eso, y deja que discutan. No digas todavía cuál es la buena.` },
+
+{ bloc:'d1', html:`<div class="maths"> <span class="step">Ir al concierto gratis quiere decir <b>perder el otro</b>.<br></span> <span class="step">El otro te daba <b class="eco">60 €</b> de satisfacción…<br></span> <span class="step">…pero te habría costado <b class="terra">40 €</b> del bolsillo.<br></span> <span class="step"><hr><b class="eco">60 − 40 = 20 €</b></span> </div> <p class="step">La entrada era gratis. <b>La noche no.</b></p>`,
+  note:`Los dos errores: 0 € olvida que has renunciado a algo; 40 € olvida que esos 40 € te los quedas en el bolsillo.` },
+
+{ bloc:'d1', interactiu:'resultatConcert', html:'',
+  note:`Si han fallado muchos, celébralo: es lo que hace que el concepto se agarre. Sin recuentos esta pantalla sale vacía — pásala.` },
+
+{ bloc:'d1', center:true, html:`<h1 style="font-size:clamp(1.7rem,4.6vw,3.4rem)" class="eco">Coste de oportunidad</h1> <p>El valor de lo que dejas de hacer<br>cuando eliges otra cosa.</p> <p class="step small">Esta pregunta se hizo en un congreso de <b>economistas profesionales</b>. La gran mayoría la falló.</p>`,
+  note:`Ferraro y Taylor (2005), «Do Economists Recognize an Opportunity Cost When They See One?». <b>Comprueba el porcentaje exacto antes de decirlo en voz alta</b>; lo que es seguro es que la mayoría la falló.` },
+
+// ═══════════ 2 · EL FESTIVAL ═══════════
+{ bloc:'d2', dilema:2, vot:'festival', html:`<div class="cas"> <p class="step">Hace dos meses pagaste <b class="terra">30 €</b> por la entrada de un festival. <b>No se devuelven</b> ni se pueden revender.</p> <p class="step">Llega el día. Llueve, estás agotado y sabes que lo pasarás <b>mejor quedándote en casa</b>.</p> </div>`,
+  note:`Que decidan honestamente, no «lo que toca decir». La trampa es emocional, no lógica. Suele ganar «voy igualmente».` },
+
+{ bloc:'d2', html:`<div class="maths"> <span class="step">Si vas al festival: los 30 € <b>ya no los tienes</b>.<br></span> <span class="step">Si te quedas en casa: los 30 € <b>tampoco</b>.<br></span> <span class="step"><hr><b class="terra">Son exactamente los mismos.</b></span> </div> <p class="step">La única pregunta que queda es <b class="eco">qué prefiero hacer esta noche</b>.</p>`,
+  note:`«Ya que he pagado, tengo que ir» es el error: <b>coste hundido</b>. Ejemplos adultos: seguir una carrera que no te gusta porque llevas dos años; una empresa que insiste en un proyecto ruinoso por todo lo que ya ha invertido.` },
+
+{ bloc:'d2', html:`<h2>Dos reglas que parecen contrarias.</h2> <table> <thead><tr><th>El concierto</th><th>El festival</th></tr></thead> <tbody><tr> <td class="step"><b>Cuenta</b> lo que has renunciado, aunque no lo hayas pagado.</td> <td class="step"><b>No cuentes</b> lo que ya has pagado, si no lo puedes recuperar.</td> </tr><tr> <td class="step"><b class="eco">Coste de oportunidad</b></td> <td class="step"><b class="terra">Coste hundido</b></td> </tr></tbody> </table> <p class="step">Las dos dicen lo mismo: <b>solo cuenta lo que todavía puedes cambiar.</b></p>`,
+  note:`Si hoy solo se les tiene que quedar una cosa, que sea esta pantalla.` },
+
+// ═══════════ 3 · EL GEL ═══════════
+{ bloc:'d3', dilema:3, vot:'gel', html:`<div class="cas"> <p class="step">Una nevada deja al pueblo <b>tres días sin luz</b>.</p> <p class="step">La única tienda abierta tiene <b class="terra">40 sacos de hielo</b> y en el pueblo hay <b class="terra">200 familias</b> con la nevera llena.</p> <p class="step">Normalmente el saco vale <b>2 €</b>.</p> </div>`,
+  note:`Dilema que enciende el aula. Deja que se escape la palabra «especular». No hay opción correcta: las cuatro tienen víctimas, y esa es la lección.` },
+
+{ bloc:'d3', html:`<div class="maths"> <span class="step">A <b>2 €</b>: los primeros que llegan se llevan cuatro o cinco. A mediodía no queda ninguno, y quien sale a las ocho se queda sin.<br></span> <span class="step">A <b>10 €</b>: cada uno coge uno. Duran los tres días…<br></span> <span class="step">…y alguien se presenta con una furgoneta de hielo desde el pueblo de al lado.<br></span> <span class="step"><hr>Pero quien no tiene 10 € se queda sin igual.</span> </div>`,
+  note:`Los dos efectos del precio, y que los vean separados: <b>raciona</b> lo que hay ahora y <b>avisa</b> de que traen más. Pregúntate en voz alta quién pagaría los 10 €: no es el que más hielo necesita, es el que más dinero tiene. Ahí está el problema.` },
+
+{ bloc:'d3', center:true, html:`<h2>Un precio no es una etiqueta.</h2> <p class="step">Hace dos trabajos a la vez: <b class="eco">reparte</b> lo que hay y <b class="eco">avisa</b> de que falta.</p> <p class="step">Por eso cuesta tanto discutirlos: <b>las cuatro opciones dejaban a alguien fuera.</b></p>`,
+  note:`Vuelve a «La lonja de pescado» y a «¿En qué se gasta el dinero público?» (cuándo y por qué interviene el Estado). Casos reales por si salen: mascarillas en 2020, entradas revendidas, alquileres.` },
+
+// ═══════════ 4 · L'AIGUA ═══════════
+{ bloc:'d4', dilema:4, vot:'valor', center:true, html:`<p class="pregunta">Un vaso de agua o tu móvil.</p>`,
+  note:`Tres segundos. Casi todos dirán el móvil; es lo que interesa para el contraste.` },
+
+{ bloc:'d4', interactiu:'aigua', html:'',
+  note:`Pregunta los dos precios a mano alzada y escribe una cifra representativa de cada uno (la que más se repita). El salto entre las dos es todo el contenido.` },
+
+{ bloc:'d4', center:true, html:`<h2>El vaso es el mismo.</h2> <h2 class="step">Lo que ha cambiado sois <span class="eco">vosotros</span>.</h2> <p class="step">El valor no vive dentro de las cosas. Depende de <b>cuántas tienes ya</b> y de <b>qué te falta ahora</b>.</p> <p class="step small">Por eso el agua, imprescindible, vale poco; y un diamante, que no sirve para nada esencial, vale mucho. No comparamos el agua con los diamantes: comparamos <b class="terra">el vaso siguiente</b> con <b class="terra">el diamante siguiente</b>.</p>`,
+  note:`Aquí nace el razonamiento <b>marginal</b>, que es la manera de pensar de todo el curso: no decidimos «todo o nada», decidimos <b>la unidad siguiente</b>. Paradoja del valor → «La lonja de pescado».` },
+
+// ═══════════ 5 · ENTREPANS I BATUTS ═══════════
+{ bloc:'d5', dilema:5, vot:'faena', html:`<div class="cas"> <p class="step">Montad un puesto. Tenéis <b>una hora</b> cada uno y queréis de las dos cosas.</p> <p class="step"><b class="eco">Tú</b>, en una hora: <b>12 bocadillos</b> o <b>6 batidos</b>.</p> <p class="step"><b class="terra">Yo</b>, en una hora: <b>4 bocadillos</b> o <b>20 batidos</b>.</p> </div>`,
+  note:`Que vean que cada uno es mejor en una cosa. La tentación es la opción A, «media hora de cada», que suena justa. Deja que calculen si quieren.` },
+
+{ bloc:'d5', html:`<table> <thead><tr><th></th><th>Bocadillos</th><th>Batidos</th></tr></thead> <tbody> <tr class="step"><td>Media hora de cada cosa</td><td>8</td><td>13</td></tr> <tr class="step"><td><b>Tú bocadillos, yo batidos</b></td> <td class="eco"><b>12</b></td><td class="eco"><b>20</b></td></tr> </tbody> </table> <p class="step">Nadie ha trabajado más horas ni más rápido. <b>Solo os habéis repartido el trabajo.</b></p>`,
+  note:`Media hora de cada: tú 6 + 3, yo 2 + 10 → 8 bocadillos y 13 batidos. Especializados: 12 y 20. <b>Más de las dos cosas, con las mismas horas.</b> El caso fino (cuando uno es mejor en todo: ventaja comparativa) va a «De aquí al mundo».` },
+
+{ bloc:'d5', center:true, html:`<h2>Cada uno hace aquello<br>que le cuesta menos dejar de hacer.</h2> <p class="step">Esto es todo lo que hay detrás del comercio entre países.</p>`,
+  note:`Enlace con «De aquí al mundo». Ejemplo de casa: un pueblo no fabrica todo lo que consume; vende lo que le cuesta menos hacer y compra el resto.` },
+
+// ═══════════ 6 · ARA O DESPRÉS ═══════════
+{ bloc:'d6', dilema:6, vot:'temps', html:`<div class="cas"> <p class="step">Te dejo elegir, y no hay trampa: el dinero llega seguro.</p> <p class="step" style="font-family:var(--font-serif);font-weight:600"> <b class="eco">10 €</b> ahora mismo &nbsp;·&nbsp; o &nbsp;<b class="terra">12 €</b> dentro de un mes.</p> </div>`,
+  note:`Insiste en que no hay riesgo: si no, estarían votando sobre la confianza y no sobre el tiempo. Suele ganar «ahora», y es defendible.` },
+
+{ bloc:'d6', html:`<div class="maths"> <span class="step">Esperar un mes te da <b class="eco">2 €</b> más.<br></span> <span class="step">Sobre 10 €: <b class="eco">2 ÷ 10 = 20 %</b>… <b>en un mes</b>.<br></span> <span class="step"><hr>Si se pudiera repetir cada mes durante un año:<br> <b class="terra">10 € × 1,20<sup>12</sup> ≈ 89 €</b></span> </div>`,
+  note:`<b>Letra pequeña, dila</b>: el 20 % mensual solo se multiplica así si se puede repetir, y aquí no se puede. Es exactamente la exageración de las estafas financieras. Interés compuesto → «Somos el BCE» y «Mi primera hipoteca».` },
+
+{ bloc:'d6', center:true, html:`<h2>Quien ha elegido los <span class="eco">10 € ahora</span><br>no se ha equivocado.</h2> <p class="step">Pero ha pagado un precio por la prisa. <b class="terra">Ese precio tiene nombre: interés.</b></p> <p class="step small">Es lo mismo que te cobra un banco cuando te deja dinero y lo mismo que te paga cuando se lo dejas tú.</p>`,
+  note:`No ridiculices a los que eligen «ahora»: la impaciencia no es estupidez, y a menudo el dinero hace falta hoy. Sistema financiero → «Mi primera hipoteca».` },
+
+// ═══════════ 7 · SEGUR O SORT ═══════════
+{ bloc:'d7', dilema:7, vot:'risc', html:`<div class="cas"> <p class="step">Dos opciones, y tampoco hay trampa.</p> <p class="step"><b class="eco">A</b> · <b>50 €</b> seguros, ahora.</p> <p class="step"><b class="terra">B</b> · Lanzamos una moneda: cara, <b>120 €</b>; cruz, <b>nada</b>.</p> </div>`,
+  note:`Que vote todo el mundo antes de calcular nada. La mayoría elige los 50 €.` },
+
+{ bloc:'d7', html:`<div class="maths"> <span class="step">La mitad de las veces, 120 €. La otra mitad, 0.<br></span> <span class="step">De media: <b class="eco">120 ÷ 2 = 60 €</b>.<br></span> <span class="step"><hr>La moneda vale <b class="terra">10 € más</b> que los 50 seguros. Y aun así la mayoría ha elegido los 50.</span> </div>`,
+  note:`Cuidado con un matiz que suele salir: la media solo se nota si puedes repetir la jugada muchas veces. Con una sola tirada, elegir los 50 € es razonable.` },
+
+{ bloc:'d7', center:true, html:`<h2>Pagáis por no arriesgaros.</h2> <p class="step">Esos <b class="eco">10 €</b> de diferencia son, exactamente, lo que cobra una aseguradora.</p> <p class="step small">Tú le das cada año un poco más de lo que te costaría de media el accidente. Ella se lleva la diferencia; tú te llevas dormir tranquilo.</p>`,
+  note:`Aversión al riesgo. Enlace con «Mi primera hipoteca». Pregunta que funciona: «¿quién tiene seguro en casa? Pues ya estáis pagando por no arriesgaros».` },
+
+// ═══════════ 8 · LA MULTA ═══════════
+{ bloc:'d8', dilema:8, vot:'multa', html:`<div class="cas"> <p class="step">En unas escuelas infantiles, algunos padres llegaban tarde a recoger a los niños y las maestras tenían que quedarse.</p> <p class="step">Para evitarlo, pusieron una <b class="terra">multa</b> por cada retraso.</p> </div>`,
+  note:`Es un estudio real. Déjales votar sin pistas: casi nadie acierta.` },
+
+{ bloc:'d8', html:`<div class="maths"> <span class="step">Los retrasos <b class="terra">subieron</b>. Y bastante.<br></span> <span class="step">Antes, llegar tarde era quedar mal con la maestra.<br></span> <span class="step">Con la multa, pasaba a ser <b>un servicio con precio</b>: pagas y ya está.<br></span> <span class="step"><hr>Y cuando quitaron la multa, los retrasos <b>no volvieron</b> adonde estaban.</span> </div>`,
+  note:`Gneezy y Rustichini (2000), «A Fine is a Price», escuelas infantiles de Israel. El detalle que más les sorprende es el último: quitar la norma no deshace el cambio.` },
+
+{ bloc:'d8', center:true, html:`<h2>Una norma no solo prohíbe.</h2> <p class="step">Cambia <b class="eco">lo que la gente cree que está comprando.</b></p> <p class="step small">Por eso diseñar un impuesto, una subvención o una sanción no es nunca solo poner un número.</p>`,
+  note:`Incentivos y efectos no deseados → «¿En qué se gasta el dinero público?». Ejemplos: la bolsa de plástico de pago, las tasas de residuos, los puntos del carnet.` },
+
+// ═══════════ 9 · L'ÚLTIMA PLAÇA ═══════════
+{ bloc:'d9', dilema:9, vot:'plaza', timer:90, html:`<div class="cas"> <p class="step">Queda <b>una plaza</b> en una actividad que queréis todos.</p> <p class="step">Cinco personas la quieren y todas tienen los mismos derechos.</p> </div> <p class="step pregunta">¿Quién se la queda?</p>`,
+  note:`Cambia el ejemplo por uno real del centro si tienes. Escribe los cinco recuentos: <b>es el voto que más dice del grupo</b>. Busca dos que hayan votado cosas opuestas y deja que discutan; tú no arbitras, solo reformulas.` },
+
+{ bloc:'d9', html:`<table> <tbody> <tr class="step"><td><b>Quien pague más</b></td><td>El mercado. Decide el precio.</td></tr> <tr class="step"><td><b>Quien se apunte primero</b></td><td>La cola. Decide el tiempo de espera.</td></tr> <tr class="step"><td><b>Un sorteo</b></td><td>El azar. Nadie decide.</td></tr> <tr class="step"><td><b>Quien más lo necesite</b></td><td>La planificación. Decide una autoridad.</td></tr> <tr class="step"><td><b>Quien mejor expediente tenga</b></td><td>El mérito. Decide una regla acordada.</td></tr> </tbody> </table> <p class="step">Toda economía responde tres preguntas: <b class="eco">qué</b> se produce, <b class="eco">cómo</b> y <b class="eco">para quién</b>. Acabáis de responder la tercera.</p>`,
+  note:`«¿Quién decide qué se produce?», sistemas económicos. Los cinco criterios conviven en la vida real: sanidad por necesidad, universidad por mérito, entradas por precio, trasplantes por lista.` },
+
+{ bloc:'d9', center:true, html:`<h2>Los otros dilemas tenían<br>una respuesta <span class="eco">comprobable</span>.</h2> <h2 class="step">Este, <span class="terra">no</span>.</h2> <p class="step">Ningún dato del mundo dice qué regla es la justa. Esto no quiere decir que dé igual: quiere decir que es una <b>decisión de valores</b>.</p> <p class="step small">Economía <b class="eco">positiva</b>: qué pasa y por qué. Se comprueba.<br> Economía <b class="terra">normativa</b>: qué deberíamos hacer. Se discute.</p>`,
+  note:`Saberes básicos 1.4. Se entiende ahora porque lo acaban de sufrir: han votado y nadie podía ganar la discusión con datos. <b>Positiva no quiere decir cierta</b>, quiere decir contrastable.` },
+
+// ═══════════ 10 · EL POT COMÚ ═══════════
+{ bloc:'d10', dilema:10, interactiu:'regles', html:'',
+  note:`Lee las reglas en voz alta y comprueba que lo han entendido antes de votar. <b>No prometes nada que cuente para la nota.</b> Puntos simbólicos y nada más.` },
+
+{ bloc:'d10', interactiu:'ronda1', html:'',
+  note:`Ojos cerrados y cabeza gacha. «Levantad la mano los que cojáis 5.» <b>Silencio absoluto</b>: si hablan, la ronda 1 no vale.` },
+
+{ bloc:'d10', interactiu:'llindar', html:'',
+  note:`Ahora sí, el umbral. Si han reventado el bote, no los riñas: <b>era previsible</b>, y ese es justamente el contenido.` },
+
+{ bloc:'d10', interactiu:'ronda2', html:'',
+  note:`Dales <b>30 segundos para hablar</b> (Espacio para el cronómetro) y vuelve a votar igual. Casi siempre mejora. Si empeora también es una lección: alguien ha prometido una cosa y ha hecho otra.` },
+
+{ bloc:'d10', center:true, html:`<h2>Lo que te conviene a ti<br>no es lo que nos conviene a todos.</h2> <p class="step">Coger 5 siempre era mejor <b>para ti</b>. Si todos lo pensábamos, todos nos quedábamos a cero.</p> <p class="step">Lo único que ha cambiado entre las dos rondas ha sido <b class="eco">poder hablar</b>.</p> <p class="step small">Pasa igual con la pesca, el agua de un acuífero, los impuestos o el clima.</p>`,
+  note:`«¿En qué se gasta el dinero público?» y «Una propuesta para 2030». Ejemplo de casa: <b>la lonja y las cuotas de pesca</b>. Si alguien dice «pues que lo vigile alguien», acaban de inventar un regulador.` },
+
+// ═══════════ TANCAMENT ═══════════
+{ bloc:'tanca', interactiu:'retrat', html:'',
+  note:`El grupo en números, producido por ellos: economía positiva hecha en el aula. Sin recuentos, salta.` },
+
+{ bloc:'tanca', interactiu:'recap', html:'',
+  note:`Solo lista los dilemas que has proyectado hoy. Es el mapa del curso, y cada fila tiene ya una experiencia detrás.` },
+
+{ bloc:'tanca', center:true, html:`<h2>La economía no va de dinero.</h2> <p>Va de esto que habéis hecho toda la hora:<br> <b class="eco">decidir cuando no hay para todo.</b></p> <p class="step dim">El dinero solo es la manera más cómoda de contarlo.</p>`,
+  note:`Frase de cierre. No añadas nada después.` },
+];
+
+// ── títols de la barra ───────────────────────────────────────────
+const NOM = { obertura:'Apertura', tanca:'Cierre',
+  d1:'1 · A qué renuncias', d2:'2 · Qué tienes que ignorar', d3:'3 · Qué hace un precio',
+  d4:'4 · La unidad siguiente', d5:'5 · Repartirse el trabajo', d6:'6 · Ahora o después',
+  d7:'7 · Decidir sin saber', d8:'8 · Qué provoca una norma',
+  d9:'9 · Cómo se reparte', d10:'10 · Juntos o cada uno' };
+// Per al recap final: què era cada dilema i on torna.
+const MAPA = {
+  d1:['El concierto', 'A qué renuncias', '¿Cuánto cuesta producir?'],
+  d2:['El festival', 'Qué tienes que ignorar', '¿Cuánto cuesta producir?'],
+  d3:['El hielo', 'Qué hace un precio', 'La lonja de pescado · ¿En qué se gasta el dinero público?'],
+  d4:['L\'aigua', 'Cuánto vale la unidad siguiente', 'La lonja de pescado'],
+  d5:['Bocadillos y batidos', 'Por qué nos repartimos el trabajo', 'De aquí al mundo'],
+  d6:['10 € o 12 €', 'Ahora o después', 'Somos el BCE · Mi primera hipoteca'],
+  d7:['Seguro o suerte', 'Decidir sin saber', 'Mi primera hipoteca'],
+  d8:['La multa', 'Qué provoca una norma', '¿En qué se gasta el dinero público?'],
+  d9:['La última plaza', 'Cómo se reparte', '¿Quién decide qué se produce?'],
+  d10:['El bote común', 'Juntos o cada uno', '¿En qué se gasta el dinero público?'],
+};
+
+// ── estat i render ───────────────────────────────────────────────
+let i = 0, step = 0, secs = 0, running = false, tick = null;
+const $ = id => document.getElementById(id);
+const passos = () => $('stage').querySelectorAll('.step').length;
+
+function render(mantenirPas) {
+  const s = SCREENS[i];
+  $('stage').className = s.center ? 'center' : '';
+  $('stage').innerHTML = s.interactiu ? INTERACTIUS[s.interactiu]() : s.html;
+  // El vot s'afig a la mateixa pantalla de l'enunciat i es revela l'últim.
+  if (s.vot) $('stage').insertAdjacentHTML('beforeend', vistaVot(s.vot));
+  if (s.compta) afegirRecompte(s.compta);
+  if (s.bloc && MAPA[s.bloc]) FETS.add(s.bloc);
+  if (!mantenirPas) step = 0;
+  pintaPassos();
+  $('bloc').className = s.bloc || '';
+  $('bloc').textContent = NOM[s.bloc] || '';
+  $('pos').textContent = (i + 1) + '/' + SCREENS.length;
+  $('progress').firstElementChild.style.width = ((i + 1) / SCREENS.length * 100) + '%';
+  $('notes').innerHTML = s.note || '<span class="dim">— sin notas —</span>';
+  resetTimer(s.timer);
+}
+function pintaPassos() {
+  $('stage').querySelectorAll('.step').forEach((el, k) => el.classList.toggle('on', k < step));
+}
+function avanca(d) {
+  // La dreta revela el pas següent i, quan no en queden, canvia de pantalla.
+  // L'esquerra SEMPRE salta a la pantalla anterior sencera.
+  if (d > 0 && step < passos()) { step++; return pintaPassos(); }
+  vesA(i + d, d < 0);
+}
+function vesA(x, revelada) {
+  const nou = Math.min(Math.max(x, 0), SCREENS.length - 1);
+  if (nou === i) return;
+  i = nou; render();
+  if (revelada) { step = passos(); pintaPassos(); }
+}
+function alDilema(num) {
+  const k = SCREENS.findIndex(s => s.dilema === num);
+  if (k >= 0) { i = k; step = 0; render(); }
+}
+
+// ── vots ─────────────────────────────────────────────────────────
+function vistaVot(clau) {
+  const v = VOT[clau];
+  VOTS[clau] = VOTS[clau] || v.opcions.map(() => null);
+  return `<div class="step" style="display:flex;flex-direction:column;gap:.6rem;align-items:inherit">
+    <div class="kicker">${v.etiqueta}</div>
+    <div class="opcions">${v.opcions.map((o, k) => `
+      <label class="opcio"><span class="lletra">${'ABCDE'[k]}</span>
+        <span class="txt">${o}</span>
+        <input type="number" min="0" data-vot="${clau}" data-k="${k}"
+               value="${VOTS[clau][k] ?? ''}" placeholder="—"></label>`).join('')}
+    </div></div>`;
+}
+function afegirRecompte(clau) {
+  VOTS[clau] = VOTS[clau] || [null];
+  const d = document.createElement('div');
+  d.className = 'camp';
+  d.innerHTML = `<input type="number" min="0" data-vot="${clau}" data-k="0"
+    value="${VOTS[clau][0] ?? ''}" placeholder="—">`;
+  $('stage').appendChild(d);
+}
+// Un sol lloc on es guarden els números que escriu el professor.
+$('stage').addEventListener('change', e => {
+  const el = e.target;
+  if (el.dataset.vot) VOTS[el.dataset.vot][+el.dataset.k] = +el.value;
+  else if (el.dataset.num) { NUM[el.dataset.num] = +el.value; render(true); }
+});
+
+// ── pantalles interactives ───────────────────────────────────────
+const camp = (clau, etiqueta) => `<span class="camp">${etiqueta}
+  <input type="number" min="0" data-num="${clau}" value="${NUM[clau] ?? ''}" placeholder="—"></span>`;
+
+const INTERACTIUS = {
+
+  aigua() {
+    const a = NUM.aigua, b = NUM.desert;
+    const ratio = a > 0 && b > 0 ? b / a : null;
+    return `<div class="cas"><p>Llevas <b>tres días</b> caminando por el desierto. No has bebido nada. Aparece alguien con un vaso de agua y te lo quiere vender.</p></div> <p class="pregunta">¿Cuánto pagarías?</p> <div class="camps">${camp('aigua', 'Ahora, aquí:')}${camp('desert', 'En el desierto:')}</div> ${ratio ?`<div class="fila" style="margin-top:.5rem">
+        <div class="lectura"><div class="lab">Ahora</div><div class="val">${a} €</div></div>
+        <div class="lectura"><div class="lab">En el desierto</div><div class="val terra">${b} €</div></div>
+        <div class="lectura"><div class="lab">Cuántas veces más</div>
+          <div class="val eco">×${nn(ratio)}</div></div></div>
+        <p class="veredicte eco">El vaso es idéntico. El precio, ${nn(ratio)} veces más.</p>` : ''}`;
+  },
+
+  resultatConcert() {
+    const v = VOT.concert, c = VOTS.concert || [], t = suma(c);
+    const mesVotada = c.length ? c.indexOf(Math.max(...c.map(x => +x || 0))) : -1;
+    return `<div class="opcions">${v.opcions.map((o, k) => `
+        <div class="opcio ${k === v.ok ? 'ok' : ''}"><span class="lletra">${'ABCDE'[k]}</span>
+          <span class="txt">${o}${k === v.ok ? '&nbsp;<b>← la buena</b>' : ''}</span>
+          <span class="pc">${t ? pc(+c[k] || 0, t) + ' %' : ''}</span></div>`).join('')}
+      </div>
+      ${t && mesVotada !== v.ok
+        ? `<p class="veredicte terra">La mayoría habéis votado «${v.opcions[mesVotada]}».</p>
+           <p class="small">Es el error que comete casi todo el mundo, y entenderlo vale más que acertar a la primera.</p>`
+        : t ? `<p class="veredicte eco">La mayoría la habéis acertado. Poco habitual.</p>` : ''}`;
+  },
+
+  regles() {
+    const N = TOTAL || 0, pot = N * 2;
+    return `<h2>El bote común</h2>
+      <div class="cas">
+        <p class="step">Hay un bote con <b class="eco">2 puntos por cada uno de vosotros</b>${
+          N ? `: <b>${pot} puntos</b>` : ''}.</p>
+        <p class="step">En secreto, cada uno decide coger <b>1</b> o <b class="terra">5</b>.</p>
+        <p class="step">Si el total que cogéis <b>cabe dentro del bote</b>, cada uno se queda lo suyo.</p>
+        <p class="step">Si os pasáis, <b class="terra">el bote se vacía y todos os quedáis a cero</b>.</p>
+        <p class="step">Nadie sabrá qué has elegido tú.</p>
+      </div>
+      ${N ? '' : `<div class="camps">${camp('assistents', '¿Cuántos sois hoy?')}</div>`}`;
+  },
+
+  ronda1() {
+    const N = TOTAL || NUM.assistents || 0, k = NUM.k1;
+    const agafat = N && k != null ? N + 4 * k : null;
+    const pot = N * 2;
+    return `<h2>Ojos cerrados.</h2>
+      <p>Levantad la mano los que habéis cogido <b class="terra">5</b>.</p>
+      <div class="camps">${camp('k1', 'Manos alzadas:')}</div>
+      ${agafat != null ? `<div class="fila" style="margin-top:.5rem"> <div class="lectura"><div class="lab">En el bote había</div><div class="val">${pot}</div></div> <div class="lectura"><div class="lab">Habéis cogido</div> <div class="val ${agafat > pot ? 'terra' : 'eco'}">${agafat}</div></div> </div> <p class="veredicte ${agafat > pot ? 'terra' : 'eco'}">${agafat > pot ? "Os habéis pasado de " + (agafat - pot) + ". Nadie se lleva nada." : 'Ha cabido. Cada uno se queda lo que ha cogido.'}</p>` : ''}`;
+  },
+
+  llindar() {
+    const N = TOTAL || NUM.assistents || 0;
+    const max = Math.floor(N / 4);
+    return `<div class="maths">
+        <span class="step">Si todos cogéis 1: <b class="eco">${N || 'n'}</b> puntos. Ninguno de sobra.<br></span>
+        <span class="step">Cada persona que coge 5 añade <b>4</b> más.<br></span>
+        <span class="step"><hr>Cabíais hasta <b class="terra">${max || '?'}</b> personas cogiendo 5. Ni una más.</span>
+      </div>
+      <p class="step">Coger 5 <b>siempre</b> te convenía a ti. El problema es que le convenía a todo el mundo.</p>`;
+  },
+
+  ronda2() {
+    const N = TOTAL || NUM.assistents || 0, k = NUM.k2, k1 = NUM.k1;
+    const agafat = N && k != null ? N + 4 * k : null;
+    const pot = N * 2;
+    return `<h2>30 segundos para hablar.</h2>
+      <p>Después se vuelve a votar en secreto, igual que antes.</p>
+      <div class="camps">${camp('k2', 'Manos alzadas:')}</div>
+      ${agafat != null ? `<div class="fila" style="margin-top:.5rem"> <div class="lectura"><div class="lab">Ronda 1</div> <div class="val dim">${k1 != null ? k1 : '—'}</div></div> <div class="lectura"><div class="lab">Ronda 2</div><div class="val">${k}</div></div> <div class="lectura"><div class="lab">Habéis cogido</div> <div class="val ${agafat > pot ? 'terra' : 'eco'}">${agafat} de ${pot}</div></div> </div> <p class="veredicte ${agafat > pot ? 'terra' : 'eco'}">${agafat > pot ? 'Todavía os habéis pasado.' : 'Ha cabido. Hablando, ha salido.'}</p>` : ''}`;
+  },
+
+  retrat() {
+    const vots = Object.keys(VOT).filter(c => VOTS[c] && suma(VOTS[c]) > 0);
+    const alces = [['treball', 'Ha trabajado por dinero'],
+                   ['sectors', 'Familia en el comercio, la pesca, el campo o el turismo'],
+                   ['propis', 'Decide sus gastos'],
+                   ['segonama', 'Ha vendido de segunda mano']]
+      .filter(([c]) => VOTS[c] && VOTS[c][0]);
+    if (!vots.length && !alces.length)
+      return `<h2 class="dim">Sin recuentos.</h2>`;
+    return `<h3>Este grupo, en números</h3>
+      <table><tbody>
+        ${alces.map(([c, txt]) => `<tr><td>${txt}</td>
+          <td style="text-align:right" class="dim">${VOTS[c][0]}${TOTAL ? ' de ' + TOTAL : ''}</td>
+          <td style="text-align:right;width:5em" class="eco"><b>${TOTAL
+            ? Math.round(VOTS[c][0] / TOTAL * 100) + ' %' : ''}</b></td></tr>`).join('')}
+        ${vots.map(c => { const v = VOT[c], t = suma(VOTS[c]);
+          const guanya = VOTS[c].indexOf(Math.max(...VOTS[c].map(x => +x || 0)));
+          return `<tr><td><b>${v.etiqueta}</b><br>
+            <span class="dim" style="font-size:.85em">${v.opcions[guanya]}</span></td>
+            <td style="text-align:right" class="dim">${VOTS[c][guanya]} de ${t}</td>
+            <td style="text-align:right;width:5em" class="eco"><b>${
+              Math.round(VOTS[c][guanya] / t * 100)} %</b></td></tr>`; }).join('')}
+      </tbody></table>
+      <p class="small">Se puede comprobar, se puede discutir y se podría volver a medir en junio. Economía positiva, y la habéis producido vosotros.</p>`;
+  },
+
+  // Només els dilemes que s'han projectat de veres.
+  recap() {
+    const fets = Object.keys(MAPA).filter(k => FETS.has(k));
+    if (!fets.length) return `<h2 class="dim">Todavía no habéis hecho ningún dilema.</h2>`;
+    return `<h3>${fets.length} dilemas, ${fets.length} maneras de pensar</h3>
+      <table>
+        <thead><tr><th>Dilema</th><th>La pregunta de fondo</th><th>Vuelve en</th></tr></thead>
+        <tbody>${fets.map(k => `<tr class="step"><td><b>${MAPA[k][0]}</b></td>
+          <td>${MAPA[k][1]}</td><td class="dim">${MAPA[k][2]}</td></tr>`).join('')}</tbody>
+      </table>`;
+  },
+};
+
+// ── cronòmetre ───────────────────────────────────────────────────
+function resetTimer(t) {
+  clearInterval(tick); running = false; secs = t || 0;
+  $('clock').classList.toggle('hidden', !t);
+  $('clock').classList.remove('run', 'over');
+  paint();
+}
+function paint() {
+  const a = Math.abs(secs);
+  $('clock').textContent = (secs < 0 ? '−' : '') + String(Math.floor(a / 60)).padStart(2, '0')
+    + ':' + String(a % 60).padStart(2, '0');
+  $('clock').classList.toggle('over', secs < 0);
+}
+function toggleTimer() {
+  if (!SCREENS[i].timer) return;
+  running = !running;
+  $('clock').classList.toggle('run', running);
+  clearInterval(tick);
+  if (running) tick = setInterval(() => { secs--; paint(); }, 1000);
+}
+
+// ── tecles ───────────────────────────────────────────────────────
+addEventListener('keydown', e => {
+  if (e.key === 'Escape') { e.target.blur(); return; }
+  const dins = /INPUT|TEXTAREA/.test(e.target.tagName);
+  if (dins && e.key === 'Enter') { e.target.blur(); return; }
+  if (dins) return;
+  const k = e.key.toLowerCase();
+  if (/^[0-9]$/.test(e.key)) return alDilema(e.key === '0' ? 10 : +e.key);
+  if (e.key === 'ArrowRight' || e.key === 'PageDown') avanca(1);
+  else if (e.key === 'ArrowLeft' || e.key === 'PageUp') avanca(-1);
+  else if (e.key === 'Home') { i = 0; step = 0; render(); }
+  else if (e.key === 'End') { vesA(SCREENS.length - 1, true); }
+  else if (e.key === ' ') { e.preventDefault(); toggleTimer(); }
+  else if (k === 'n') $('notes').classList.toggle('on');
+  else if (k === 'f') document.fullscreenElement ? document.exitFullscreen()
+                                                 : document.documentElement.requestFullscreen();
+});
+$('stage').addEventListener('click', e => {
+  if (!/INPUT|LABEL/.test(e.target.tagName)) avanca(1);
+});
+
+render();
+
+// ── autocomprovació (obri la consola si toques res) ──────────────
+console.assert(SCREENS.every(s => s.html || s.vot || s.interactiu), 'pantalla sin contenido');
+console.assert(Object.keys(MAPA).every(k => SCREENS.some(s => s.bloc === k)),
+  'un dilema del recap no tiene pantallas');
+console.assert([...Array(10)].every((_, k) => SCREENS.some(s => s.dilema === k + 1)),
+  'falta el salto de teclado de algún dilema');
+console.assert(Math.abs(10 * 1.2 ** 12 - 89.16) < .1, 'la cifra del dilema 6 ha cambiado');
+console.assert(120 / 2 - 50 === 10, 'la prima de riesgo del dilema 7 ha cambiado');
+</script>
+</body>
+</html>
