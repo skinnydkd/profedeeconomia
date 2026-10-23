@@ -2,6 +2,7 @@
 import type { Asignatura } from '@/lib/asignaturas';
 import { getLocale } from '@/i18n/locale';
 import { t } from '@/i18n/ui';
+import AsignaturaCaratula from '@components/asignaturas/AsignaturaCaratula.astro';
 
 /** `num` and `level` let the home show the card's position in the grouped
  *  grid and a shorter level inside its stage group. */
@@ -12,6 +13,7 @@ const locale = getLocale(Astro.currentLocale);
 ---
 
 <a href={`/${a.slug}/`} class:list={['subject-card', `c-${a.color}`, !isPublicado && 'is-proximamente']}>
+  <AsignaturaCaratula asignatura={a} class="cover" />
   <div class="level-row">
     <span class="level">{level}</span>
     <span class="num" aria-hidden="true">{num}</span>
@@ -72,6 +74,12 @@ const locale = getLocale(Astro.currentLocale);
     opacity: 0.78;
   }
 
+  /* Full-bleed cover: cancels the card padding on top and sides. */
+  .subject-card :global(.cover) {
+    margin: -1.6rem -1.8rem 0;
+    width: calc(100% + 3.6rem);
+  }
+
   .level-row {
     display: flex;
     justify-content: space-between;
@@ -128,6 +136,10 @@ const locale = getLocale(Astro.currentLocale);
      home eleven screens long before the transversal sections. */
   @media (max-width: 600px) {
     .subject-card { padding: 1.1rem 1.2rem 1.3rem; gap: 0.6rem; }
+    .subject-card :global(.cover) {
+      margin: -1.1rem -1.2rem 0;
+      width: calc(100% + 2.4rem);
+    }
     .tagline { display: none; }
     h4 { font-size: 1.35rem; }
   }

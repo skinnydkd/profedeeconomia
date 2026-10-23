@@ -1,0 +1,29 @@
+---
+import type { Asignatura } from '@/lib/asignaturas';
+import { caratulaMarkup } from './caratula-motifs';
+
+interface Props {
+  asignatura: Pick<Asignatura, 'slug' | 'color'>;
+  class?: string;
+}
+
+const { asignatura, class: className } = Astro.props;
+---
+
+<svg
+  class:list={['asig-caratula', className]}
+  viewBox="0 0 320 132"
+  preserveAspectRatio="xMidYMid slice"
+  aria-hidden="true"
+  role="presentation"
+  set:html={caratulaMarkup(asignatura)}
+></svg>
+
+<style>
+  .asig-caratula {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 320 / 132;
+  }
+</style>
