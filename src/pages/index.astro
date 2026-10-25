@@ -47,18 +47,18 @@ const gruposEtapa = (Object.keys(ASIGNATURAS_POR_ETAPA) as (keyof typeof ASIGNAT
   }))
   .filter((g) => g.asignaturas.length > 0);
 
-// «Material transversal» strip metadata — locale-independent (slug, letter,
-// color), in the same order as the «Otros» menu. Titles/CTAs/descriptions
-// are localized via `copy.transversal` below. Each card links to its hub.
+// «Material transversal» list — locale-independent slugs, in the same order as
+// the «Otros» menu. Titles/CTAs/descriptions are localized via
+// `copy.transversal` below. Each entry links to its hub.
 const TRANSVERSAL_META = [
-  { slug: 'dinamicas',      letra: 'D', color: '--color-terra' },
-  { slug: 'herramientas',   letra: 'H', color: '--color-eco1' },
-  { slug: 'emprendimiento', letra: 'E', color: '--color-mustard' },
-  { slug: 'proyectos',      letra: 'P', color: '--color-eeae' },
-  { slug: 'debates',        letra: 'D', color: '--color-gpe' },
-  { slug: 'juegos',         letra: 'J', color: '--color-fopp' },
-  { slug: 'jocs-economics', letra: 'O', color: '--color-taller3' },
-  { slug: 'generadores',    letra: 'G', color: '--color-ipe2' },
+  { slug: 'dinamicas' },
+  { slug: 'herramientas' },
+  { slug: 'emprendimiento' },
+  { slug: 'proyectos' },
+  { slug: 'debates' },
+  { slug: 'juegos' },
+  { slug: 'jocs-economics' },
+  { slug: 'generadores' },
 ] as const;
 
 const copy = {
@@ -199,17 +199,6 @@ const copy = {
           const tc = copy.transversal[t.slug];
           return (
             <div class="strip-item">
-              <span class="icon" style={`background: var(${t.color})`}>
-                {t.slug === 'jocs-economics' ? (
-                  <svg class="icon-rings" viewBox="0 0 30 16" width="26" height="14" fill="none" stroke="var(--color-paper)" stroke-width="1.7" aria-hidden="true">
-                    <circle cx="6" cy="6" r="4.2" />
-                    <circle cx="15" cy="6" r="4.2" />
-                    <circle cx="24" cy="6" r="4.2" />
-                    <circle cx="10.5" cy="10" r="4.2" />
-                    <circle cx="19.5" cy="10" r="4.2" />
-                  </svg>
-                ) : <span aria-hidden="true">{t.letra}</span>}
-              </span>
               <h3>{tc.title}</h3>
               <p>{tc.desc}</p>
               <a href={`/${t.slug}/`} class="editorial-link">{tc.cta}&nbsp;→</a>
@@ -329,39 +318,21 @@ const copy = {
     border-top: 1px solid var(--color-line);
     border-bottom: 1px solid var(--color-line);
   }
+  /* Editorial list: hairline-separated entries, two columns on wide screens. */
   .strip-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
-    gap: 2.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr));
+    column-gap: 3rem;
   }
   .strip-item {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    padding: 1.5rem;
-    background: var(--color-paper);
-    border-radius: 6px;
-    border: 1px solid var(--color-line);
+    padding: 1.5rem 0;
+    border-top: 1px solid var(--color-line);
   }
-  /* CTAs sit on the card base, aligned across the row. */
+  /* CTAs sit on the entry base, aligned across the row. */
   .strip-item .editorial-link { margin-top: auto; }
-  .strip-item .icon {
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-family: var(--font-serif);
-    font-size: 1.5rem;
-    font-weight: 500;
-    color: var(--color-paper);
-    margin-bottom: 1rem;
-    font-variation-settings: "SOFT" 100, "WONK" 1;
-  }
-  .icon-1 { background: var(--color-terra); }
-  .icon-2 { background: var(--color-eco1); }
-  .icon-3 { background: var(--color-mustard); }
 
   .strip-item h3 { margin: 0 0 0.5rem; font-size: 1.3rem; }
   .strip-item p {
