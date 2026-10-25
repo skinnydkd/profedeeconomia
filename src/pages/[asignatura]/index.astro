@@ -6,6 +6,7 @@ import { breadcrumbLd, courseLd, faqLd } from '@/lib/seo';
 import { subjectFaqs } from '@/lib/faq';
 import FaqHub from '@components/FaqHub.astro';
 import { getMaterialPorUnidad } from '@/lib/material-unidad-sources';
+import { seccionMarkup } from '@components/asignaturas/seccion-motifs';
 import { getCollection } from 'astro:content';
 import type { GetStaticPaths } from 'astro';
 import { getLocale } from '@/i18n/locale';
@@ -336,6 +337,7 @@ const jsonLd = isPublicado
             <nav class="subject-sections" aria-label={g.label}>
               {g.sections.map((slug) => (
                 <a href={`/${a.slug}/${slug}/`} class={`section-card c-${a.color}`}>
+                  <svg class="section-card__ilu" viewBox="0 0 320 110" preserveAspectRatio="xMidYMid slice" aria-hidden="true" set:html={seccionMarkup(slug, a.color)}></svg>
                   <h4>{copy.secciones[slug].title}</h4>
                   <p class="desc">{copy.secciones[slug].desc}</p>
                 </a>
@@ -494,7 +496,8 @@ const jsonLd = isPublicado
 
   .subject-sections {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+    /* auto-fill: short groups keep the column width, so the illustration bands stay one height. */
+    grid-template-columns: repeat(auto-fill, minmax(min(260px, 100%), 1fr));
     gap: 1.2rem;
     margin-top: 0;
   }
@@ -542,6 +545,15 @@ const jsonLd = isPublicado
     transform: translateY(-2px);
     box-shadow: 0 1px 2px rgba(42, 31, 24, 0.05), 0 4px 14px rgba(42, 31, 24, 0.06);
     border-color: var(--card-color);
+  }
+
+  /* Full-bleed illustration band, pulled out of the card padding. */
+  .section-card__ilu {
+    display: block;
+    width: calc(100% + 3.4rem);
+    height: auto;
+    aspect-ratio: 320 / 110;
+    margin: -1.7rem -1.7rem 0.6rem;
   }
 
   /* Titles in sentence case (their source casing) — override the global h4 uppercase. */
