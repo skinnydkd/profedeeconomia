@@ -22,6 +22,7 @@ Definits a `src/styles/global.css` (`:root`). No hardcodejar hex; usar sempre le
 - **Terracota** = accent **funcional**: links, CTAs, drop cap, i **regles editorials horitzontals** (`<hr>` i la ratlla superior alternant sobre `<h2>`).
 - **Mostassa** = **decoratiu**: bullets, dashes, *italics* ornamentals, regla superior sobre `<h2>` alternant amb terracota.
 - El color mai és l'únic portador d'informació funcional: sempre acompanyat de text/etiqueta.
+- **Text terracota de mida normal** (etiquetes, CTAs, enllaços < 18,66 px negreta / < 24 px) → `--color-terra-ink` (6,4:1). `--color-terra` (4,36:1 sobre el cream) només per a títols grans, drop cap, marcadors, vores i fons.
 
 ## Regla de de-slop (VINCULANT)
 
@@ -35,6 +36,8 @@ Arran d'una crítica pública (juliol 2026), s'elimina tot el que llegia com a �
    - En callouts es manté el **fons tint + etiqueta de color** (diferencien el tipus); només se'n va la ratlla.
 3. **Chips en píndola decoratius** → línia de text sòbria amb `·` (middot) mostassa.
 4. **Estels/símbols decoratius** `✱ ★ §` com a ornament (la numeració `§` real de seccions del llibre sí que es manté).
+5. **Taques `radial-gradient` decoratives** darrere de hero/opener. Fons pla `var(--color-bg)`.
+6. **Graelles de targetes icona + títol + text + enllaç** (cercle de color amb lletra). Llistats de seccions → llista editorial amb regles 1px `var(--color-line)`.
 
 ### Es manté (NO és slop)
 
