@@ -384,7 +384,17 @@ Tot això a meitat de curs, per a un senyal de rànquing menor (el slug) en una 
 | Balanç i PiG | `/edmn-2bach/ebau/balance-cuenta-resultados-ejercicios-resueltos/` | 22/10 (#360) | 26/10 (#365) |
 | Ràtios i PMM | `/edmn-2bach/ebau/ratios-fondo-maniobra-ejercicios-resueltos/` | 22/10 (#360) | 27/10 (#368) |
 
-**Indexació.** Pendent de demanar a GSC per a les 5 URL en castellà.
+**Indexació (27/10).** El host canònic és `www.profedeeconomia.es`: l'apex respon 308 cap a `www`, i GSC marca l'apex com a «Error de redirecció». Cal inspeccionar sempre la URL amb `www`. Estat a GSC i sol·licitud d'indexació:
+
+| Família | Estat a GSC el 27/10 | Indexació demanada |
+|---|---|---|
+| Punt mort | Google no la coneix | ✅ 27/10 |
+| Productivitat | Google no la coneix | ✅ 27/10 |
+| VAN, TIR i payback | Indexada (amb el contingut anterior al #367) | ✅ 27/10, per a tornar-la a rastrejar |
+| Balanç i PiG | Descoberta, sense indexar | ✅ 27/10 |
+| Ràtios i PMM | Google no la coneix | ❌ error de GSC, probablement la quota diària: tornar-ho a provar el 28/10 |
+
+Les 10 URL (ES i `/ca/`) són al sitemap, així que Google les trobarà igualment; la sol·licitud només n'avança el rastreig.
 
 **Punts de control** (GSC filtrat per pàgina, consulta principal de cada família):
 
