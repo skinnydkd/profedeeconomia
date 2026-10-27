@@ -37,6 +37,7 @@ const SOLO_CASTELLANO = [
   'src/pages/olimpiada/simulacros/index.astro',
   'src/pages/jocs-economics/leaderboard/index.astro',
   'src/pages/[asignatura]/ebau/examenes/index.astro',
+  'src/pages/[asignatura]/ebau/examenes/[ccaa].astro',
 ];
 
 /** Detail routes that gather several entries of different kinds: hubs, not one text. */

@@ -1,15 +1,13 @@
 ---
 /**
  * Exámenes EBAU oficiales de años anteriores, por comunidad autónoma (EDMN 2BACH).
- * Los PDFs reales se alojan en public/ebau-examenes/. La disponibilidad se detecta
- * en build con fs.existsSync; lo que falta se muestra "próximamente".
+ * Índice de las páginas por comunidad (/ebau/examenes/[ccaa]/). Los PDFs se alojan en
+ * public/ebau-examenes/; lo que falta se muestra "próximamente".
  */
 import BaseLayout from '@layouts/BaseLayout.astro';
 import { ASIGNATURAS } from '@/lib/asignaturas';
-import { CCAA_LIST, ANIOS, CONVOCATORIAS, ebauPdfRelPath, ebauPdfHref } from '@/lib/ebau-examenes';
+import { CCAA_LIST, filasCcaa } from '@/lib/ebau-examenes';
 import { getCollection } from 'astro:content';
-import { existsSync } from 'node:fs';
-import { resolve } from 'node:path';
 import type { GetStaticPaths } from 'astro';
 import { getLocale } from '@/i18n/locale';
 import SectionHeader from '@components/SectionHeader.astro';
@@ -24,37 +22,16 @@ export const getStaticPaths = (async () => {
 
 const { asignatura: a } = Astro.props;
 
-const tiene = (ccaa: string, anio: number, conv: string, tipo: 'examen' | 'solucion') =>
-  existsSync(resolve(process.cwd(), 'public', ebauPdfRelPath(ccaa, anio, conv, tipo)));
-
-interface Fila {
-  anio: number; convLabel: string;
-  examen: string | null; solucion: string | null; proximamente: boolean;
-}
-
 const grupos = CCAA_LIST.map((c) => {
-  const filas: Fila[] = [];
-  for (const anio of ANIOS) {
-    for (const conv of CONVOCATORIAS) {
-      const tieneExamen = tiene(c.slug, anio, conv.slug, 'examen');
-      filas.push({
-        anio,
-        convLabel: conv.label,
-        examen: tieneExamen ? ebauPdfHref(c.slug, anio, conv.slug, 'examen') : null,
-        solucion: tiene(c.slug, anio, conv.slug, 'solucion') ? ebauPdfHref(c.slug, anio, conv.slug, 'solucion') : null,
-        proximamente: !tieneExamen,
-      });
-    }
-  }
-  const disponibles = filas.filter((f) => f.examen).length;
-  return { ccaa: c, filas, disponibles };
+  const filas = filasCcaa(c.slug);
+  return { ccaa: c, filas, disponibles: filas.filter((f) => f.examen).length };
 });
 
 const totalDisponibles = grupos.reduce((n, g) => n + g.disponibles, 0);
 ---
 
 <BaseLayout
-  title={`Exámenes EBAU por comunidad — ${a.shortLabel}`}
+  title={`Exámenes PAU de Empresa por comunidad (${a.shortLabel})`}
   description={`Exámenes oficiales de EBAU/PAU de Economía de la Empresa de años anteriores, por comunidad autónoma, con su resolución en PDF.`}
   translated={false}
 >
@@ -76,14 +53,14 @@ const totalDisponibles = grupos.reduce((n, g) => n + g.disponibles, 0);
     <div class="container">
       {grupos.map((g) => (
         <div class="ccaa">
-          <h2 class="ccaa__title serif">{g.ccaa.label}</h2>
+          <h2 class="ccaa__title serif"><a href={`/${a.slug}/ebau/examenes/${g.ccaa.slug}/`}>{g.ccaa.label}</a></h2>
           <table class="tabla">
             <thead>
               <tr><th>Convocatoria</th><th>Examen</th><th>Resolución</th></tr>
             </thead>
             <tbody>
               {g.filas.map((f) => (
-                <tr class={f.proximamente ? 'is-prox' : ''}>
+                <tr class={f.examen ? '' : 'is-prox'}>
                   <td class="conv">{f.anio} · {f.convLabel}</td>
                   <td>
                     {f.examen
@@ -126,6 +103,8 @@ const totalDisponibles = grupos.reduce((n, g) => n + g.disponibles, 0);
 
   .lista { padding: 0 0 2rem; }
   .ccaa { margin-bottom: 2.2rem; }
+  .ccaa__title a { color: inherit; text-decoration: none; }
+  .ccaa__title a:hover { color: var(--color-terra-ink); text-decoration: underline; }
   .ccaa__title { font-size: 1.4rem; margin: 0 0 0.7rem; padding-bottom: 0.4rem; border-bottom: 1px solid var(--color-line); color: var(--color-ink); }
   .tabla { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
   .tabla th { text-align: left; font-family: var(--font-sans); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--color-ink-mute); font-weight: 700; padding: 0.4rem 0.6rem; border-bottom: 1px solid var(--color-line); }
