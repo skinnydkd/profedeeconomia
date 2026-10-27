@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { readdirSync, readFileSync } from 'node:fs';
-import { join } from 'node:path';
+import { join } from 'node:path/posix'; // '/' on Windows too: the paths are matched against '/' patterns
 
 /**
  * Guard for reference figures and rules that have been replaced.

@@ -52,7 +52,9 @@ function campo(fm: string, key: string): string | undefined {
 
 const PARES = walk(ROOT)
   .map((es) => ({ es, ca: es.replace(/\.(mdx?)$/, '.ca.$1') }))
-  .filter(({ ca }) => existsSync(ca));
+  .filter(({ ca }) => existsSync(ca))
+  // Read once at load: rereading every pair inside each test outlasts the 5 s timeout when the full suite loads the disk.
+  .map(({ es, ca }) => ({ es, ca, fmEs: frontmatter(es), fmCa: frontmatter(ca) }));
 
 /**
  * Pairs whose Spanish file is deliberately still a draft while the translation
@@ -74,9 +76,7 @@ describe('ES/CA twins share their placement metadata', () => {
 
   it('has the same unit and competences in both languages', () => {
     const diferencias: string[] = [];
-    for (const { es, ca } of PARES) {
-      const fmEs = frontmatter(es);
-      const fmCa = frontmatter(ca);
+    for (const { es, fmEs, fmCa } of PARES) {
       for (const key of CAMPOS) {
         const vEs = campo(fmEs, key);
         const vCa = campo(fmCa, key);
@@ -88,7 +88,7 @@ describe('ES/CA twins share their placement metadata', () => {
 
   it('has the same estado in both languages (CODE-WEB-09)', () => {
     const diferencias = PARES.filter(({ es }) => !ESTADO_PENDIENTE.has(es.split('\\').join('/')))
-      .map(({ es, ca }) => ({ es, vEs: sinComillas(campo(frontmatter(es), 'estado')), vCa: sinComillas(campo(frontmatter(ca), 'estado')) }))
+      .map(({ es, fmEs, fmCa }) => ({ es, vEs: sinComillas(campo(fmEs, 'estado')), vCa: sinComillas(campo(fmCa, 'estado')) }))
       .filter(({ vEs, vCa }) => vEs !== vCa)
       .map(({ es, vEs, vCa }) => `${es}: ES=${vEs ?? '—'} CA=${vCa ?? '—'}`);
     expect(diferencias).toEqual([]);

@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { readdirSync, readFileSync, statSync } from 'node:fs';
-import { join } from 'node:path';
+import { join } from 'node:path/posix'; // '/' on Windows too: the paths are matched against '/' patterns
 
 /**
  * CODE-WEB-08 / CODE-WEB-07: BaseLayout already knows what to do with a /ca/

@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { readdirSync, readFileSync, statSync } from 'node:fs';
-import { join, relative } from 'node:path';
+import { join, relative } from 'node:path/posix'; // '/' on Windows too: the paths are matched against '/' patterns
 
 /**
  * An Astro `redirects` entry on a path that a page also generates makes both
