@@ -3,7 +3,7 @@ asignatura: edmn-2bach
 orden: 3
 title: "Selecció d'inversions: VAN, TIR i payback"
 seoTitle: "Exercicis resolts de VAN, TIR i payback (EBAU EDMN)"
-descripcion: "Problemes resolts pas a pas de selecció d'inversions."
+descripcion: "VAN, TIR i termini de recuperació (payback): problemes tipus EBAU de selecció d'inversions resolts pas a pas, amb interpretació."
 unidad_relacionada: 9
 calculadora: calculadora-van-tir
 lang: ca
@@ -11,11 +11,17 @@ estado: publicado
 slug: "asignaturas/edmn-2bach/ebau-problemas/03-van-tir-payback-ejercicios-resueltos.ca"
 ---
 
-> **VAN = −Desemborsament inicial + Σ [Flux de caixa_t / (1 + k)^t]**
-> **Termini de recuperació (payback):** temps que es tarda a recuperar el desemborsament inicial sumant els fluxos de caixa.
-> **TIR:** taxa de descompte que fa VAN = 0. Amb dos anys es resol com a equació de segon grau.
+Per a decidir si una inversió val la pena cal comparar el que costa hui amb el que tornarà en el futur. El **VAN** i la **TIR** tenen en compte que un euro d'ací a tres anys val menys que un de hui; el **termini de recuperació** (payback) només compta quant es tarda a recuperar els diners.
 
-Criteris de decisió: s'accepta una inversió si **VAN > 0**; entre diverses, és preferible la de **VAN major**. Amb la TIR s'accepta si **TIR > k** (cost del capital). El payback prefereix el projecte que recupera abans el desemborsament.
+## Formulari
+
+- **Valor actual net:** VAN = −A + Q₁/(1 + k) + Q₂/(1 + k)² + … + Qₙ/(1 + k)ⁿ
+- **A:** desemborsament inicial (en l'any 0, no es descompta) · **Qₜ:** flux de caixa de l'any t · **k:** cost del capital o tipus de descompte, en tant per u
+- **Taxa interna de rendibilitat (TIR):** el tipus r que fa VAN = 0. Amb dos anys, es resol com a equació de segon grau amb x = 1 + r
+- **Termini de recuperació (payback):** anys fins que els fluxos acumulats, sense descomptar, igualen el desemborsament. Amb fracció d'any: anys complets + (el que falta / flux de l'any següent)
+- **Criteris de decisió:** s'accepta si VAN > 0 o si TIR > k; entre diversos projectes, el de VAN major; amb el payback, el que recupera abans
+
+## Problemes resolts
 
 ### Problema 1 — VAN i payback, comparació de dos projectes
 
@@ -103,4 +109,44 @@ Payback (fluxos constants de 22.000):
 
 **Interpretació.** El VAN és de 8.806,26 euros, clarament positiu, per la qual cosa **la inversió s'accepta**: aporta més de 8.800 euros de valor actual net per damunt del desemborsament. A més, el desemborsament es recupera en 2,27 anys, dins de la vida del projecte (3 anys), la qual cosa reforça la decisió d'acceptar-la.
 
----
+### Problema 4 — VAN amb valor residual i pujada del tipus d'interés (tipus examen)
+
+**Enunciat.** *Repartiments Ruzafa S.L.* estudia comprar una furgoneta elèctrica per 40.000 euros. Estima que li generarà uns fluxos de caixa de 15.000 euros el primer any, 18.000 euros el segon i 12.000 euros el tercer. Al final del tercer any podrà vendre-la per 5.000 euros (valor residual).
+
+a) Calcula el VAN amb un cost del capital del 7 % i indica si convé la inversió.
+
+b) El banc puja el tipus d'interés i el cost del capital passa al 12 %. Calcula el nou VAN i digues si la decisió canvia.
+
+c) Sense calcular-la exactament, entre quins valors està la TIR? Justifica-ho.
+
+**Solució.**
+
+El valor residual és un cobrament més de l'últim any, així que el flux de l'any 3 és 12.000 + 5.000 = **17.000 euros**.
+
+a) Plantejament: VAN = −A + Q₁/(1 + k) + Q₂/(1 + k)² + Q₃/(1 + k)³, amb k = 0,07.
+
+> VAN = −40.000 + 15.000/1,07 + 18.000/1,07² + 17.000/1,07³
+> = −40.000 + 15.000/1,07 + 18.000/1,1449 + 17.000/1,225043
+> = −40.000 + 14.018,69 + 15.721,90 + 13.877,06
+> = **3.617,65 euros**
+
+b) Amb k = 0,12:
+
+> VAN = −40.000 + 15.000/1,12 + 18.000/1,12² + 17.000/1,12³
+> = −40.000 + 15.000/1,12 + 18.000/1,2544 + 17.000/1,404928
+> = −40.000 + 13.392,86 + 14.349,49 + 12.100,26
+> = **−157,39 euros**
+
+c) La TIR és el tipus que fa VAN = 0. Al 7 % el VAN és positiu i al 12 % és negatiu, així que el VAN passa per zero entre els dos: **la TIR està entre el 7 % i el 12 %**, molt a prop del 12 %, perquè allí el VAN (−157,39) és molt menor en valor absolut que al 7 % (3.617,65). El valor exacte, amb calculadora financera, és ≈ 11,8 %.
+
+**Resultat:** VAN de 3.617,65 euros al 7 % i de −157,39 euros al 12 %; TIR entre el 7 % i el 12 % (≈ 11,8 %).
+
+**Interpretació.** Amb un cost del capital del 7 %, la furgoneta convé: torna tot el que s'ha invertit, el cost de finançar-ho i 3.617,65 euros més en valor actual. Si el cost del capital puja al 12 %, la mateixa inversió destruïx valor (VAN negatiu) i deixa de convindre. La TIR, al voltant de l'11,8 %, és el cost de finançament màxim que suporta el projecte: mentre l'empresa es finance per davall d'eixe tipus, la inversió ix rendible.
+
+## Errors típics que resten punts
+
+- **Descomptar el desemborsament inicial.** Es paga en l'any 0, així que va restant i sense dividir entre (1 + k).
+- **Usar el percentatge sense passar-lo a tant per u.** Amb un 7 % es dividix entre 1,07, no entre 1,7 ni entre 7.
+- **Oblidar el valor residual.** Si l'actiu es ven al final, eixe cobrament se suma al flux de l'últim any.
+- **Donar el payback només en anys decimals.** 2,17 anys convé expressar-ho com a 2 anys i 2 mesos (0,17 × 12 ≈ 2 mesos).
+- **Decidir pel payback quan contradiu el VAN.** El payback ignora el valor dels diners en el temps i els fluxos posteriors a la recuperació; si els dos criteris no coincidixen, mana el VAN.
