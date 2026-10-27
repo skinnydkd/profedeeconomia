@@ -370,6 +370,32 @@ S'aplica a unitats del llibre, activitats, dinàmiques, tests, reptes i recursos
 
 Tot això a meitat de curs, per a un senyal de rànquing menor (el slug) en una secció de ~745 impressions al trimestre. Es reprendrà si `/ca/` guanya pes a GSC o si alguna consulta en valencià amb volum queda encallada pel slug.
 
+### 5.12 Exercicis resolts d'EDMN per família — ✅ **publicat**, pendent de mesurar
+
+**Per què.** A GSC (20 jul – 19 oct 2026), EDMN sumava 458 impressions visibles en tres mesos i cap per a consultes de concepte com `punto muerto ejercicios resueltos` o `van y tir ejercicios resueltos`. La calculadora de punt mort estava en la posició 14,5. Els 14 problemes resolts del quadern EBAU vivien tots en una sola URL, `/edmn-2bach/ebau/`. Disseny: `docs/superpowers/specs/2026-10-22-edmn-ejercicios-resueltos-design.md`.
+
+**Què s'ha fet.** Una pàgina per família sota `/edmn-2bach/ebau/[slug]/` (ES i `/ca/`), amb formulari, de 4 a 5 problemes de fàcil a tipus examen i errors típics. Els problemes viuen només en la família: el quadern web hi enllaça i l'imprés els incrusta.
+
+| Família | URL | Publicada | Contingut complet |
+|---|---|---|---|
+| Costos i punt mort | `/edmn-2bach/ebau/punto-muerto-ejercicios-resueltos/` | 22/10 (#360) | 27/10 (#366) |
+| Productivitat | `/edmn-2bach/ebau/productividad-ejercicios-resueltos/` | 22/10 (#360) | 27/10 (#369) |
+| VAN, TIR i payback | `/edmn-2bach/ebau/van-tir-payback-ejercicios-resueltos/` | 22/10 (#360) | 27/10 (#367) |
+| Balanç i PiG | `/edmn-2bach/ebau/balance-cuenta-resultados-ejercicios-resueltos/` | 22/10 (#360) | 26/10 (#365) |
+| Ràtios i PMM | `/edmn-2bach/ebau/ratios-fondo-maniobra-ejercicios-resueltos/` | 22/10 (#360) | 27/10 (#368) |
+
+**Indexació.** Pendent de demanar a GSC per a les 5 URL en castellà.
+
+**Punts de control** (GSC filtrat per pàgina, consulta principal de cada família):
+
+| Quan | Què mirar | Objectiu |
+|---|---|---|
+| 26/11/2026 (30 dies) | Impressions i posició per a «[concepte] ejercicios resueltos» | Que hi haja impressions on abans no n'hi havia cap |
+| Abril 2027 | Posició de la consulta principal de cada família | Top 10 |
+| Maig 2027 | Visites d'EDMN des de cercadors (Vercel Analytics, ES + CA) | Per damunt del màxim d'octubre de 2026 (~120/setmana) |
+
+Si alguna família no trau impressions al primer control, mirar primer si està indexada (Inspecció d'URL) abans de tocar títols o contingut.
+
 ---
 
 ## 6. Què mesurar i quan
