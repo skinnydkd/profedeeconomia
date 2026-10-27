@@ -18,6 +18,9 @@ function walk(dir: string): string[] {
 
 const frontmatter = (path: string) => /^---\r?\n([\s\S]*?)\r?\n---/.exec(readFileSync(path, 'utf8'))?.[1] ?? '';
 
+// Read at load, not inside the test: over 2,000 files outlast the 5 s test timeout when the full suite loads the disk.
+const FILES = walk('src/content').map((f) => ({ f, fm: frontmatter(f) }));
+
 describe('estado', () => {
   it('has no default in any collection', () => {
     const config = readFileSync('src/content.config.ts', 'utf8');
@@ -26,8 +29,7 @@ describe('estado', () => {
   });
 
   it('is declared by every content file', () => {
-    const files = walk('src/content');
-    expect(files.length).toBeGreaterThan(1000);
-    expect(files.filter((f) => !/^estado:/m.test(frontmatter(f)))).toEqual([]);
+    expect(FILES.length).toBeGreaterThan(1000);
+    expect(FILES.filter(({ fm }) => !/^estado:/m.test(fm)).map(({ f }) => f)).toEqual([]);
   });
 });
