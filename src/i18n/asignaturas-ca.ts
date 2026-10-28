@@ -12,7 +12,7 @@ export const ASIGNATURAS_CA: Partial<Record<AsignaturaSlug, CAOverlay>> = {
   'edmn-2bach': {
     level: '2n Batxillerat',
     title: 'Empresa i Disseny de Models de Negoci',
-    seoTitle: 'EDMN 2n Batxillerat: llibre, diapositives i EBAU',
+    seoTitle: "EDMN 2n Batxillerat (Economia de l'Empresa): llibre i EBAU",
     seoName: 'EDMN 2n Batxillerat',
     tagline:
       'Dotze unitats al voltant del Business Model Canvas, les àrees funcionals i la preparació de la PAU: pistes EBAU en cada unitat, problemes resolts i simulacres.',
@@ -22,7 +22,7 @@ export const ASIGNATURAS_CA: Partial<Record<AsignaturaSlug, CAOverlay>> = {
   'eco-1bach': {
     level: '1r Batxillerat',
     title: 'Economia',
-    seoTitle: 'Economia 1r Batxillerat: llibre, activitats i tests',
+    seoTitle: 'Economia 1r Batxillerat: llibre PDF gratis, apunts i tests',
     seoName: 'Economia 1r Batxillerat',
     tagline:
       'Microeconomia, macroeconomia, sistemes i introducció a les finances. Amb simulador AD-AS i la teoria de la decisió, que quasi sempre se\'ns queda fora del temari.',

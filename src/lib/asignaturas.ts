@@ -71,7 +71,7 @@ export const ASIGNATURAS: Record<AsignaturaSlug, Asignatura> = {
     level: '2.º Bachillerato',
     shortLabel: 'EDMN 2BACH',
     title: 'Empresa y Diseño de Modelos de Negocio',
-    seoTitle: 'EDMN 2.º Bachillerato: libro, diapositivas y EBAU',
+    seoTitle: 'EDMN 2.º Bachillerato (Economía de la Empresa): libro y EBAU',
     seoName: 'EDMN 2.º Bachillerato',
     tagline:
       'Doce unidades alrededor del Business Model Canvas, las áreas funcionales y la preparación de la PAU: pistas EBAU en cada unidad, problemas resueltos y simulacros.',
@@ -88,7 +88,7 @@ export const ASIGNATURAS: Record<AsignaturaSlug, Asignatura> = {
     level: '1.º Bachillerato',
     shortLabel: 'Eco 1BACH',
     title: 'Economía',
-    seoTitle: 'Economía 1.º Bachillerato: libro, actividades y tests',
+    seoTitle: 'Economía 1.º Bachillerato: libro PDF gratis, apuntes y tests',
     seoName: 'Economía 1.º Bachillerato',
     tagline:
       'Microeconomía, macroeconomía, sistemas e introducción a las finanzas. Con simulador AD‑AS y la teoría de la decisión, que casi siempre se nos queda fuera del temario.',
