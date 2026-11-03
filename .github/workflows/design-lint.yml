@@ -1,0 +1,22 @@
+# Flags AI-template design tells as warnings (non-blocking).
+# Fails only if the scan itself breaks (exit 1); findings exit 2.
+name: design-lint
+
+on:
+  push:
+    branches: [main]
+    paths: ['**.html', '**.css', '**.jsx', '**.tsx', '**.astro', '**.vue', '**.svelte', '.github/workflows/design-lint.yml']
+  pull_request:
+    paths: ['**.html', '**.css', '**.jsx', '**.tsx', '**.astro', '**.vue', '**.svelte']
+
+jobs:
+  detect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: impeccable detect
+        run: npx -y impeccable@4.8.0 detect --github . || [ $? -eq 2 ]
