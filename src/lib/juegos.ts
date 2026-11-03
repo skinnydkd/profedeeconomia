@@ -44,7 +44,7 @@ export const JUEGOS: Juego[] = [
     slug: 'stonks',
     title: 'Stonks',
     descripcion:
-      'Invierte durante 25 años repartiendo tu patrimonio entre distintos activos. ¿Acabarás con más que la IA?',
+      'Reparte tu patrimonio cada seis meses durante 25 años reales de historia económica, sorteados entre 1971 y 2025. ¿Le ganarás al mercado?',
     tipo: 'simulador',
     nivel: ['bach', 'fp'],
     modo: '1 jugador',

@@ -572,3 +572,213 @@
   font-family: var(--font-serif, "Fraunces", Georgia, serif);
   font-variation-settings: "SOFT" 80, "WONK" 0;
 }
+
+/* =========================================================
+   Replant additions — window intro, groups, cards, reveal
+   Variant C rules apply: symmetric 1px borders, no one-sided
+   accent rules, no gradients, no emoji.
+   ========================================================= */
+
+.sk-eyebrow {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-terra, #C44E2C);
+}
+
+.sk-window {
+  font-size: clamp(2.4rem, 9vw, 3.4rem);
+  line-height: 1;
+  margin: 0;
+  font-variation-settings: "SOFT" 80, "WONK" 0;
+}
+
+.sk-note {
+  font-size: 0.85rem;
+  color: var(--color-ink-mute, #8A7868);
+  margin: 0;
+}
+
+/* Real-terms figure, under the nominal one */
+.sk-wealth .r {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.78rem;
+  color: var(--color-ink-mute, #8A7868);
+  margin-top: 0.15rem;
+}
+
+/* Asset group headings */
+.sk-group {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-ink-mute, #8A7868);
+  margin: 1.1rem 0 0.5rem;
+  padding-bottom: 0.3rem;
+  border-bottom: 1px solid var(--color-line-soft, #EFE2CB);
+}
+.sk-assets section:first-child .sk-group { margin-top: 0; }
+
+.sk-asset-id { display: flex; align-items: baseline; flex-wrap: wrap; gap: 0.4rem; }
+
+.sk-asset-sub {
+  display: block;
+  width: 100%;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.68rem;
+  color: var(--color-ink-mute, #8A7868);
+}
+
+/* ⓘ button — typographic, never an emoji */
+.sk-info {
+  width: 1.15rem;
+  height: 1.15rem;
+  flex: 0 0 auto;
+  border: 1px solid var(--color-line, #E5D4BD);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--color-ink-mute, #8A7868);
+  font-family: var(--font-serif, Georgia, serif);
+  font-style: italic;
+  font-size: 0.72rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0;
+}
+.sk-info:hover, .sk-info:focus-visible {
+  border-color: var(--color-terra, #C44E2C);
+  color: var(--color-terra, #C44E2C);
+}
+
+/* Cost preview and per-semester cost breakdown */
+.sk-costline {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--color-ink-soft, #5C4A3D);
+  margin: 0;
+}
+
+.sk-costs {
+  list-style: none;
+  margin: 0;
+  padding: 0.75rem 0.9rem;
+  border: 1px solid var(--color-line, #E5D4BD);
+  font-size: 0.85rem;
+}
+.sk-costs li { display: flex; justify-content: space-between; gap: 1rem; }
+.sk-costs li + li { margin-top: 0.3rem; }
+.sk-costs-h {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-ink-mute, #8A7868);
+  margin-bottom: 0.4rem;
+  display: block !important;
+}
+
+/* Something happened that the player should not skim past */
+.sk-alert {
+  border: 1px solid var(--color-terra, #C44E2C);
+  color: var(--color-terra-deep, #9C3A1C);
+  padding: 0.8rem 0.9rem;
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+/* Deep asset card ------------------------------------------------------- */
+
+.sk-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(42, 31, 24, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  z-index: 50;
+  overflow-y: auto;
+}
+
+.sk-modal {
+  width: 100%;
+  max-width: 520px;
+  max-height: 88dvh;
+  overflow-y: auto;
+  background: var(--color-paper, #FFFFFF);
+  border: 1px solid var(--color-line, #E5D4BD);
+  border-radius: 6px;
+  padding: 1.75rem 1.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+.sk-modal h2 {
+  margin: 0;
+  font-size: 1.6rem;
+  line-height: 1.15;
+  font-variation-settings: "SOFT" 80;
+}
+.sk-modal p {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--color-ink-soft, #5C4A3D);
+}
+.sk-modal .sk-cta { margin-top: 0.5rem; }
+
+/* Reveal ---------------------------------------------------------------- */
+
+.sk-reveal { max-width: 560px; }
+.sk-reveal-title { margin: 0; font-size: 1.9rem; font-variation-settings: "SOFT" 80; }
+
+.sk-reveal-card {
+  border: 1px solid var(--color-line, #E5D4BD);
+  padding: 1.1rem 1.1rem 1rem;
+}
+.sk-reveal-card h3 {
+  margin: 0.35rem 0 0.7rem;
+  font-size: 1.35rem;
+  color: var(--color-terra, #C44E2C);
+  font-variation-settings: "SOFT" 80;
+}
+.sk-reveal-card p {
+  margin: 0 0 0.7rem;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--color-ink-soft, #5C4A3D);
+}
+.sk-reveal-card p:last-child { margin-bottom: 0; }
+
+.sk-reveal-blind {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.72rem;
+  color: var(--color-ink-mute, #8A7868);
+}
+.sk-reveal-lab {
+  display: block;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-size: 0.64rem;
+  margin-bottom: 0.2rem;
+}
+
+/* Final screen additions ------------------------------------------------ */
+
+.kf-settle,
+.kf-datanote {
+  font-size: 0.78rem;
+  line-height: 1.5;
+  color: var(--color-ink-mute, #8A7868);
+  margin: 0.4rem 0 0;
+}
+
+.kf-legend i.dashed {
+  background: repeating-linear-gradient(
+    to right,
+    var(--color-terra, #C44E2C) 0 4px,
+    transparent 4px 7px
+  ) !important;
+}

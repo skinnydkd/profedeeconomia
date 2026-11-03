@@ -1,7 +1,10 @@
 import { describe, it, expect } from 'vitest';
 // stonks
-import { ASSETS, YEAR_NEWS, LIFE_EVENTS } from '@/lib/games/stonks/data';
-import { ASSETS_CA, YEAR_NEWS_CA, LIFE_EVENTS_CA, localizeAssets } from './stonks-ca';
+import { ASSETS, NEWS, CARDS, LIFE_EVENTS, CLASS_CARD_ID } from '@/lib/games/stonks/data';
+import {
+  ASSETS_CA, NEWS_CA, CARD_BODIES_CA, LIFE_EVENTS_CA,
+  localizeAsset, localizeNews, localizeCard,
+} from './stonks-ca';
 // econopoly
 import { CELLS, SECTOR_LABEL } from '@/lib/games/econopoly/board';
 import { NEWS_CARDS } from '@/lib/games/econopoly/events';
@@ -21,17 +24,23 @@ import { INSURANCES_CA, EVENT_DECK_CA, TEAM_NAMES_CA } from './seguros-ca';
  * back to Spanish at render time — this guard makes that fail loudly instead.
  */
 describe('stonks content overlay completeness', () => {
-  it('every asset id is translated (label + blurb), non-empty', () => {
+  it('every asset id has a Valencian label, non-empty', () => {
     for (const a of ASSETS) {
       expect(ASSETS_CA[a.id], `asset ${a.id}`).toBeTruthy();
       expect(ASSETS_CA[a.id].label, `label ${a.id}`).toBeTruthy();
-      expect(ASSETS_CA[a.id].blurb, `blurb ${a.id}`).toBeTruthy();
     }
   });
 
-  it('every YEAR_NEWS year is translated, non-empty', () => {
-    for (const year of Object.keys(YEAR_NEWS)) {
-      expect(YEAR_NEWS_CA[Number(year)], `year ${year}`).toBeTruthy();
+  it('every company keeps its blind profile in Valencian too', () => {
+    for (const a of ASSETS.filter((x) => x.profile)) {
+      expect(ASSETS_CA[a.id].profile, `profile ${a.id}`).toBeTruthy();
+    }
+  });
+
+  it('never leaks a real company name into the Valencian labels either', () => {
+    for (const a of ASSETS.filter((x) => x.realName)) {
+      const shown = `${ASSETS_CA[a.id].label} ${ASSETS_CA[a.id].profile ?? ''}`.toLowerCase();
+      expect(shown, `blind label ${a.id}`).not.toContain(a.realName!.toLowerCase());
     }
   });
 
@@ -41,10 +50,44 @@ describe('stonks content overlay completeness', () => {
     }
   });
 
-  it('localizeAssets actually swaps the label under ca', () => {
-    const es = localizeAssets('es');
-    const ca = localizeAssets('ca');
-    expect(ca.some((a, i) => a.label !== es[i].label)).toBe(true);
+  it('localizeAsset actually swaps the label under ca', () => {
+    const a = ASSETS[0];
+    expect(localizeAsset(a, 'ca').label).not.toBe(a.label);
+    expect(localizeAsset(a, 'es').label).toBe(a.label);
+  });
+
+  it('every semester headline is translated, and nothing extra', () => {
+    const keys = NEWS.map((n) => `${n.year}-${n.half}`);
+    for (const k of keys) expect(NEWS_CA[k], `headline ${k}`).toBeTruthy();
+    expect(Object.keys(NEWS_CA).sort()).toEqual([...keys].sort());
+    const n = NEWS[0];
+    expect(localizeNews(n.year, n.half, n.text, 'ca')).not.toBe(n.text);
+  });
+
+  it('every card is translated paragraph by paragraph, and nothing extra', () => {
+    for (const c of CARDS) {
+      const ca = CARD_BODIES_CA[c.id];
+      expect(ca, `card ${c.id}`).toBeTruthy();
+      expect(ca.title, `card title ${c.id}`).toBeTruthy();
+      expect(ca.body.length, `card ${c.id} paragraph count`).toBe(c.body.length);
+      for (const p of ca.body) expect(p, `card ${c.id} empty paragraph`).toBeTruthy();
+    }
+    expect(Object.keys(CARD_BODIES_CA).sort()).toEqual(CARDS.map((c) => c.id).sort());
+    expect(localizeCard(CARDS[0], 'ca')).not.toEqual(CARDS[0]);
+  });
+
+  it('never leaks a real company name into a Valencian card shown during play', () => {
+    for (const a of ASSETS.filter((x) => x.realName)) {
+      const ca = CARD_BODIES_CA[a.id];
+      if (!ca) continue;
+      const text = `${ca.title} ${ca.body.join(' ')}`.toLowerCase();
+      expect(text, `blind card ${a.id}`).not.toContain(a.realName!.toLowerCase());
+      const intro = CARD_BODIES_CA[CLASS_CARD_ID];
+      if (intro) {
+        expect(`${intro.title} ${intro.body.join(' ')}`.toLowerCase(), `class card leaks ${a.id}`)
+          .not.toContain(a.realName!.toLowerCase());
+      }
+    }
   });
 });
 

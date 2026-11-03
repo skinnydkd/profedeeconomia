@@ -13,14 +13,18 @@ export const COPY = {
   es: {
     title: 'Stonks',
     intro:
-      'Invierte durante 25 años (2000–2024) repartiendo tu patrimonio entre distintos activos. Tu objetivo: terminar con más que «El Mercado», una IA que invierte siempre en un índice. ¿Lo conseguirás?',
+      'Te tocan 25 años al azar entre 1971 y 2025, y decides cada seis meses cómo repartir tu dinero. ' +
+      'Enfrente tienes a «El Mercado», que se limita a comprar el índice mundial y no vender nunca. ' +
+      'Mover la cartera cuesta comisiones e impuestos, y la inflación se lleva su parte de todo.',
     continue: 'Continuar partida',
     start: 'Empezar',
   },
   ca: {
     title: 'Stonks',
     intro:
-      'Invertix durant 25 anys (2000–2024) repartint el teu patrimoni entre distints actius. El teu objectiu: acabar amb més que «El Mercat», una IA que invertix sempre en un índex. Ho aconseguiràs?',
+      'Et toquen 25 anys a l’atzar entre 1971 i 2025, i decidixes cada sis mesos com repartir els diners. ' +
+      'Enfront tens «El Mercat», que es limita a comprar l’índex mundial i no ven mai. ' +
+      'Moure la cartera costa comissions i impostos, i la inflació se’n du la seua part de tot.',
     continue: 'Continua la partida',
     start: 'Comença',
   },
