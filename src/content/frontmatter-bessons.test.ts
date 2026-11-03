@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs';
+import { existsSync, mkdtempSync, readdirSync, readFileSync, statSync, writeFileSync } from 'node:fs';
+import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 
 /**
@@ -41,7 +42,7 @@ function walk(dir: string): string[] {
 }
 
 function frontmatter(path: string): string {
-  const match = /^---\n([\s\S]*?)\n---/.exec(readFileSync(path, 'utf8'));
+  const match = /^---\r?\n([\s\S]*?)\r?\n---/.exec(readFileSync(path, 'utf8'));
   return match ? match[1] : '';
 }
 
@@ -72,6 +73,23 @@ const sinComillas = (v: string | undefined) => v?.replace(/^['"]|['"]$/g, '');
 describe('ES/CA twins share their placement metadata', () => {
   it('finds twins to compare', () => {
     expect(PARES.length).toBeGreaterThan(100);
+  });
+
+  it('reads the frontmatter whatever the line endings', () => {
+    // A Windows checkout can hold CRLF files: if the parser misses them it reads
+    // nothing, and two empty frontmatters compare as equal.
+    const tmp = join(mkdtempSync(join(tmpdir(), 'bessons-')), 'crlf.md');
+    writeFileSync(tmp, '---\r\nasignatura: gpe-bach\r\nunidad_relacionada: 4\r\n---\r\n\r\nTexto.\r\n');
+    expect(campo(frontmatter(tmp), 'asignatura')).toBe('gpe-bach');
+    expect(campo(frontmatter(tmp), 'unidad_relacionada')).toBe('4');
+  });
+
+  it('parses a frontmatter out of every twin', () => {
+    const vacios = PARES.flatMap(({ es, ca, fmEs, fmCa }) => [
+      ...(fmEs ? [] : [es]),
+      ...(fmCa ? [] : [ca]),
+    ]);
+    expect(vacios).toEqual([]);
   });
 
   it('has the same unit and competences in both languages', () => {
