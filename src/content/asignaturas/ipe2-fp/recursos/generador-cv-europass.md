@@ -10,8 +10,8 @@ estado: publicado
 
 ## Cuándo usarla
 
-- Al construir tu marca personal en la Unidad 2.
-- Para preparar la búsqueda activa de empleo y los procesos de selección (Unidad 1).
+- Al construir tu marca personal en la Unidad 2. Si ya montaste el currículum con el generador de la Unidad 1, aquí no se empieza de cero: se revisa para que cuente lo mismo que tu perfil de LinkedIn y tu portfolio.
+- Si piensas hacer prácticas o trabajar en otro país de la Unión Europea, por ejemplo con Erasmus+: el formato Europass es el que se reconoce en toda la Unión.
 - Para tener varias versiones del CV adaptadas a distintas ofertas.
 
 ## Qué tener en cuenta

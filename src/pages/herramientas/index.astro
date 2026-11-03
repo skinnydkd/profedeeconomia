@@ -11,6 +11,7 @@ import { getLocale } from '@/i18n/locale';
 import { t } from '@/i18n/ui';
 import { localizeHerramienta } from '@/i18n/herramientas-ca';
 import { localizeFamilias, FAMILIAS_HERRAMIENTA_CA } from '@/i18n/familias-ca';
+import SectionHeader from '@components/SectionHeader.astro';
 
 const locale = getLocale(Astro.currentLocale);
 
@@ -70,27 +71,26 @@ const copy = {
   description={copy.metaDesc}
   contentLang={locale}
 >
-  <div class="container">
-    <nav class="breadcrumb"><a href="/">{copy.bcInicio}</a> <span class="sep">›</span> <span>{copy.bcCurrent}</span></nav>
-  </div>
-
-  <section class="hero">
-    <div class="container">
-      <h1><span class="serif-italic-wonk accent">{copy.heroAccent}</span> {copy.heroTail}</h1>
-      <p class="lede">
-        {copy.lede}
-      </p>
-    </div>
-  </section>
+  <SectionHeader
+    locale={locale}
+    crumbs={[
+      { name: copy.bcInicio, path: '/' },
+      { name: copy.bcCurrent },
+    ]}
+  >
+    <Fragment slot="title"><span class="serif-italic-wonk accent">{copy.heroAccent}</span> {copy.heroTail}</Fragment>
+    <Fragment slot="lede">{copy.lede}</Fragment>
+  </SectionHeader>
 
   <section class="filters">
-    <div class="container">
-      <button class="chip is-active" data-filter="all" type="button">{t('filtro.todas', locale)}</button>
+    <div class="container" role="group" aria-label={t('filtro.aria', locale)}>
+      <button class="chip is-active" data-filter="all" type="button" aria-pressed="true">{t('filtro.todas', locale)}</button>
       {familias.filter((f) => activeFamilias.has(f.slug)).map((f) => (
-        <button class="chip" data-filter={f.slug} type="button"
+        <button class="chip" data-filter={f.slug} type="button" aria-pressed="false"
           style={`--chip-color: var(${f.colorVar})`}>{f.label}</button>
       ))}
     </div>
+    <p class="sr-only" aria-live="polite" data-filter-status data-one={t('filtro.resultado.uno', locale)} data-many={t('filtro.resultado.varios', locale)}></p>
   </section>
 
   {groups.map((g) => {
@@ -98,7 +98,7 @@ const copy = {
     return (
       <section class="familia" data-familia={familia.slug}>
         <div class="container">
-          <div class="familia__head" style={`--fam-color: var(${familia.colorVar})`}>
+          <div class="familia__head" style={`--fam-color: var(${familia.colorVar}); --fam-ink: var(${familia.colorVar}-ink)`}>
             <h2>{familia.label}</h2>
             <p>{familia.intro}</p>
           </div>
@@ -125,35 +125,40 @@ const copy = {
 <script>
   const chips = document.querySelectorAll<HTMLButtonElement>('.chip');
   const sections = document.querySelectorAll<HTMLElement>('.familia');
+  const status = document.querySelector<HTMLElement>('[data-filter-status]');
   chips.forEach((chip) => chip.addEventListener('click', () => {
-    chips.forEach((c) => c.classList.remove('is-active'));
+    chips.forEach((c) => {
+      c.classList.remove('is-active');
+      c.setAttribute('aria-pressed', 'false');
+    });
     chip.classList.add('is-active');
+    chip.setAttribute('aria-pressed', 'true');
     const f = chip.dataset.filter;
     sections.forEach((s) => { s.hidden = f !== 'all' && s.dataset.familia !== f; });
+    // Screen readers hear how many cards are left, since the change happens out of view.
+    if (status) {
+      const n = Array.from(sections)
+        .filter((s) => !s.hidden)
+        .reduce((sum, s) => sum + s.querySelectorAll('.card').length, 0);
+      const template = (n === 1 ? status.dataset.one : status.dataset.many) ?? '';
+      status.textContent = template.replace('{n}', String(n));
+    }
   }));
 </script>
 
 <style>
   .container { max-width: 1240px; margin: 0 auto; padding: 0 clamp(1.5rem, 4vw, 3rem); }
-  .breadcrumb { font-size: 0.92rem; color: var(--color-ink-mute); margin: 2rem 0; }
-  .breadcrumb a { color: var(--color-ink-mute); text-decoration: none; }
-  .breadcrumb a:hover { color: var(--color-terra); }
-  .breadcrumb .sep { margin: 0 0.5em; color: var(--color-mustard); }
-  .hero { padding: 1rem 0 2rem; }
-  .kicker { font-family: var(--font-sans); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-terra-deep); }
   .accent { color: var(--color-terra); }
-  h1 { margin: 0.6rem 0 0.8rem; }
-  .lede { font-size: 1.2rem; color: var(--color-ink-soft); line-height: 1.55; max-width: 60ch; }
   .filters .container { display: flex; flex-wrap: wrap; gap: 0.5rem; padding-top: 1rem; padding-bottom: 1.5rem; }
   .chip { font-family: var(--font-sans); font-size: 0.85rem; font-weight: 600; color: var(--color-ink-soft); background: transparent; border: 1.5px solid var(--color-line); border-radius: 999px; padding: 0.4rem 0.9rem; cursor: pointer; transition: all .15s ease; }
   .chip:hover { border-color: var(--chip-color, var(--color-terra)); color: var(--chip-color, var(--color-terra)); }
   .chip.is-active { background: var(--chip-color, var(--color-ink)); border-color: var(--chip-color, var(--color-ink)); color: var(--color-paper); }
   .familia { padding: 1.5rem 0; }
-  .familia__head { border-left: 4px solid var(--fam-color); padding-left: 1rem; margin-bottom: 1.5rem; }
-  .familia__head h2 { font-family: var(--font-serif); font-size: 1.7rem; font-weight: 500; margin: 0; }
+  .familia__head { margin-bottom: 1.5rem; }
+  .familia__head h2 { font-family: var(--font-serif); font-size: 1.7rem; font-weight: 500; margin: 0; color: var(--fam-ink); }
   .familia__head p { color: var(--color-ink-soft); margin: 0.3rem 0 0; }
   .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(290px, 100%), 1fr)); gap: 1.2rem; }
-  .card { display: flex; flex-direction: column; gap: 0.5rem; padding: 1.4rem; background: var(--color-paper); border: 1px solid var(--color-line); border-top: 4px solid var(--fam-color); border-radius: 10px; text-decoration: none; transition: transform .15s ease, box-shadow .15s ease; }
+  .card { display: flex; flex-direction: column; gap: 0.5rem; padding: 1.4rem; background: var(--color-paper); border: 1px solid var(--color-line); border-radius: 10px; text-decoration: none; transition: transform .15s ease, box-shadow .15s ease; }
   .card:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(42, 31, 24, 0.1); }
   .card__thumb { display: block; width: calc(100% + 2.8rem); height: auto; margin: -1.4rem -1.4rem 0.35rem; border-radius: 6px 6px 0 0; border-bottom: 1px solid var(--color-line); }
   .card__eyebrow { font-family: var(--font-sans); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--fam-ink); }

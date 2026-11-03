@@ -12,7 +12,7 @@ estado: publicado
 
 - Al analizar estados financieros en la Unidad 11.
 - Para interpretar la salud financiera de una empresa, no solo calcular ratios sino situarlos respecto a su sector.
-- Para la radiografía financiera del proyecto capstone.
+- Para la radiografía financiera de un plan de empresa o un proyecto de aula (Unidad 12).
 
 ## Qué tener en cuenta
 

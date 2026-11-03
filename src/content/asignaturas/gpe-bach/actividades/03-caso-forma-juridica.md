@@ -8,7 +8,7 @@ duracion: "55 min · 1 sesión"
 agrupacion: "equipos de 3-4"
 materiales:
   - "Las tres fichas de caso (una por equipo o las tres para todos)"
-  - "Tabla comparativa de formas jurídicas de la Unidad 3 (autónomo, SL, SLNE, cooperativa)"
+  - "Tabla comparativa de formas jurídicas de la Unidad 3 (autónomo, SL y cooperativa)"
   - "Plantilla de decisión: criterio · opción elegida · justificación"
 competencias_clave: [CPSAA, CC, CE]
 competencias_especificas: [CE2]
@@ -18,12 +18,12 @@ estado: publicado
 
 ## Planteamiento
 
-Elegir la forma jurídica es una de las decisiones de arranque que más condicionan un proyecto, y casi nunca hay una respuesta única "correcta": depende del perfil del equipo y del riesgo de la actividad. Esta actividad pone tres casos reales sobre la mesa para que el alumnado practique el razonamiento antes de aplicarlo a su propio proyecto en la Fase 2 del cuaderno. El objetivo no es memorizar las formas jurídicas, sino **decidir con criterio**: saber por qué a un caso le conviene autónomo y a otro una cooperativa.
+Elegir la forma jurídica es una de las decisiones de arranque que más condicionan un proyecto, y casi nunca hay una respuesta única "correcta": depende del perfil del equipo y del riesgo de la actividad. Esta actividad pone tres casos sobre la mesa para que el alumnado practique el razonamiento antes de aplicarlo a su propio proyecto en la Fase 2 del cuaderno. El objetivo no es memorizar las formas jurídicas, sino **decidir con criterio**: saber por qué a un caso le conviene autónomo y a otro una cooperativa.
 
 ## Los tres casos
 
 **Caso A — Marta, repostería casera.**
-Marta cocina muy bien y quiere vender tartas por encargo desde la cocina de su casa. Empieza ella sola, con pocos clientes (familiares, vecinos, redes), una inversión mínima y sin local. Quiere arrancar ya y gastar lo menos posible en trámites. El riesgo económico es bajo.
+Marta cocina muy bien y quiere vender tartas por encargo desde la cocina de su casa. Empieza ella sola, con pocos clientes (familiares, vecinos, redes), una inversión mínima y sin local. Quiere arrancar ya y gastar lo menos posible en trámites. El riesgo económico es bajo. (Ojo: vender comida elaborada exige cumplir la normativa sanitaria —registro o comunicación previa y formación en manipulación de alimentos—, y en general una cocina particular no sirve como obrador. Es un trámite que no se puede saltar.)
 
 **Caso B — Tres amigos, app de reparto local.**
 Aitor, Nerea y Hugo quieren desarrollar una app que conecte comercios del barrio con repartidores en bici. Necesitan invertir en desarrollo informático, marketing y, quizá, contratar a alguien. Hay dinero en juego y riesgo de deudas si la cosa no arranca. Quieren proteger su patrimonio personal y que la empresa tenga una imagen seria ante inversores.

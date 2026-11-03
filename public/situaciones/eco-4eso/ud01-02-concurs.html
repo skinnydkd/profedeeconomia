@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>El gran concurso · UD1-UD2 — Economía y Emprendimiento 4.º ESO</title>
+<style>@font-face{font-family:"Fraunces";font-style:normal;font-weight:300 700;font-display:swap;src:url("/fonts/fraunces-latin-normal.woff2") format("woff2")}@font-face{font-family:"Fraunces";font-style:italic;font-weight:300 700;font-display:swap;src:url("/fonts/fraunces-latin-italic.woff2") format("woff2")}</style>
+<!--
+  ================================================================
+  EL GRAN CONCURS · per equips · unitats 1 i 2
+  Economia i Emprenedoria · 4t d'ESO
+  ================================================================
+  A BANK of eight kinds of round, not a fixed game. You tick the
+  ones you want on the start screen and it tells you how long that
+  comes to, so the same file serves a 15-minute warm-up and a full
+  session.
+
+    1 RELLEU    a named player answers; nobody hides behind the
+                one who always answers
+    2 INTRUS    four things, one does not belong: say which and why
+    3 ORDENA    put four or five things in the right order
+    4 APOSTA    the team stakes 1-3 points BEFORE seeing the
+                question: calibration, not recall
+    5 PISTES    three clues, one at a time; worth 5, then 3, then 1
+    6 EL DIBUIX every team draws the figure; the answer is the
+                real graph from the dossier
+    7 JUDICI    a wrong exam answer is projected; points go to
+                whoever finds the error and names it
+    8 SUBHASTA  worth 10, drops 1 every 10 s; the first team to
+                claim it takes it at the current price, and loses
+                that same price if wrong
+
+  Companion to ud01-02-concurs.html, which is the straight quiz.
+  42 questions in the bank. Not one item is shared with the quiz,
+  the control, the simulacre or the projection deck.
+
+  Keyboard: espacio avanza · 1-6 da los puntos · Mayús+1-6 los quita
+            ← enrere
+  Figures: scratchpad/figures_projeccio.py · diagram: flux.svg
+  ================================================================
+-->
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --color-bg:#fbf6ec; --color-paper:#fff; --color-bg-cream:#f5edd9;
+    --color-ink:#2a1f18; --color-ink-soft:#5c4a3d; --color-ink-mute:#6e5a47;
+    --color-line:#e5d4bd;
+    --color-terra:#c44e2c; --color-terra-deep:#9c3a1c; --color-terra-soft:#fbe3d6;
+    --color-mustard:#d4a24c; --color-mustard-deep:#835f20; --color-mustard-soft:#f5e5bc;
+    --eco4:#835f20; --eco4-soft:#f5e5bc;
+    --font-serif:"Fraunces","Newsreader",Georgia,serif;
+    --font-sans:"Switzer",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    --ease-soft:cubic-bezier(.32,.72,.16,1);
+  }
+  html,body{height:100%}
+  body{background:var(--color-bg);color:var(--color-ink);font-family:var(--font-sans);
+       display:flex;flex-direction:column;overflow:hidden}
+  h1,h2,h3{font-family:var(--font-serif);letter-spacing:-.02em}
+  .marca{font-family:var(--font-serif);font-weight:500;text-transform:lowercase;white-space:nowrap}
+  .marca .p{color:var(--color-terra)} .marca .d{color:var(--color-mustard)}
+
+  header{display:flex;align-items:center;gap:clamp(8px,2vw,24px);
+         padding:clamp(8px,1.4vh,16px) clamp(14px,2.5vw,34px);
+         border-bottom:2px solid var(--eco4);background:var(--color-paper);flex:none}
+  .ronda{font-family:var(--font-serif);font-weight:700;font-size:clamp(15px,2.1vw,24px);
+         color:var(--eco4)}
+  .ronda small{display:block;font-family:var(--font-sans);font-weight:600;font-size:.52em;
+               letter-spacing:.1em;text-transform:uppercase;color:var(--color-ink-mute)}
+  .barra{flex:1;height:7px;background:var(--color-bg-cream);border-radius:99px;overflow:hidden}
+  .barra i{display:block;height:100%;width:0;background:var(--eco4);
+           transition:width .35s var(--ease-soft)}
+  header .marca{font-size:clamp(12px,1.5vw,17px)}
+
+  main{flex:1;display:flex;flex-direction:column;justify-content:center;
+       padding:clamp(12px,2.6vh,36px) clamp(18px,5vw,90px);gap:clamp(9px,1.8vh,22px);min-height:0}
+  .num{font-family:var(--font-serif);font-weight:700;color:var(--color-mustard-deep);
+       font-size:clamp(13px,1.6vw,18px)}
+  .q{font-family:var(--font-serif);font-weight:700;font-size:clamp(22px,4.1vw,52px);
+     line-height:1.14;max-width:22ch}
+  .q.llarga{font-size:clamp(18px,2.9vw,38px);max-width:30ch}
+  .ordre{display:inline-block;background:var(--eco4);color:#fff;border-radius:99px;
+         padding:.3em 1.1em;font-family:var(--font-serif);font-weight:700;
+         font-size:clamp(15px,2.2vw,28px);align-self:flex-start}
+  .espera{font-size:clamp(13px,1.6vw,20px);color:var(--color-ink-mute);max-width:42ch;
+          line-height:1.45}
+
+  .r{background:var(--eco4-soft);border:1px solid #e0c88f;border-radius:10px;
+     padding:clamp(9px,1.6vh,18px) clamp(14px,2vw,26px);max-width:56ch;
+     opacity:0;transform:translateY(8px);transition:all .3s var(--ease-soft)}
+  .r.vist{opacity:1;transform:none}
+  .r .t{font-family:var(--font-serif);font-weight:700;font-size:clamp(16px,2.2vw,29px);
+        color:var(--eco4);line-height:1.2}
+  .r .pq{margin-top:.45em;font-size:clamp(12px,1.3vw,17px);color:var(--color-ink-soft);
+         line-height:1.4}
+  .r .pq b{color:var(--color-terra-deep)}
+
+  /* intrús i ordena: targetes */
+  .cartes{display:flex;gap:clamp(8px,1.4vw,20px);flex-wrap:wrap}
+  .cartes div{background:var(--color-paper);border:2px solid var(--color-line);border-radius:12px;
+              padding:clamp(10px,1.8vh,20px) clamp(14px,2vw,28px);
+              font-family:var(--font-serif);font-weight:500;
+              font-size:clamp(15px,2.1vw,27px);line-height:1.2}
+  .cartes div .lletra{font-family:var(--font-sans);font-size:11px;font-weight:700;
+                      letter-spacing:.1em;color:var(--color-ink-mute);display:block;
+                      margin-bottom:.35em}
+
+  /* judici: la resposta equivocada */
+  .mal{background:var(--color-terra-soft);border:2px solid var(--color-terra);border-radius:10px;
+       padding:clamp(11px,1.9vh,21px) clamp(16px,2.2vw,30px);max-width:46ch;
+       font-size:clamp(15px,2.1vw,27px);line-height:1.35;font-family:var(--font-serif);
+       font-weight:500;color:var(--color-ink)}
+  .mal small{display:block;font-family:var(--font-sans);font-weight:600;font-size:11px;
+             letter-spacing:.11em;text-transform:uppercase;color:var(--color-terra-deep);
+             margin-bottom:.6em}
+
+  /* pistes */
+  .pistes{display:flex;flex-direction:column;gap:clamp(7px,1.2vh,13px);max-width:46ch}
+  .pistes div{background:var(--color-paper);border-left:4px solid var(--color-mustard);
+              border-radius:0 9px 9px 0;padding:clamp(8px,1.4vh,15px) clamp(13px,1.8vw,24px);
+              font-size:clamp(14px,1.9vw,25px);line-height:1.3;font-family:var(--font-serif)}
+  .pistes div b{font-family:var(--font-sans);font-size:10px;font-weight:700;letter-spacing:.1em;
+                text-transform:uppercase;color:var(--color-mustard-deep);display:block;
+                margin-bottom:.25em}
+
+  /* el dibuix i la subhasta comparteixen la fila de dos */
+  .fila{display:flex;align-items:center;gap:clamp(14px,3vw,54px)}
+  .fila>.cl{flex:1;min-width:0}
+  .figura{flex:none;width:min(40vw,46vh);background:var(--color-paper);
+          border:1px solid var(--color-line);border-radius:12px;padding:clamp(6px,1vh,12px)}
+  .figura svg{width:100%;height:auto;display:block}
+
+  .rellotge{flex:none;text-align:center;border:3px solid var(--color-mustard);
+            background:var(--color-mustard-soft);border-radius:16px;
+            padding:clamp(9px,1.8vh,20px) clamp(15px,2.4vw,32px)}
+  .rellotge .v{font-family:var(--font-serif);font-weight:700;line-height:1;
+               font-size:clamp(50px,10vw,140px);color:var(--color-mustard-deep)}
+  .rellotge .et{font-size:clamp(10px,1.1vw,14px);font-weight:600;letter-spacing:.12em;
+                text-transform:uppercase;color:var(--color-mustard-deep);margin-top:.5em}
+  .rellotge.corre{border-color:var(--color-terra);background:var(--color-terra-soft)}
+  .rellotge.corre .v,.rellotge.corre .et{color:var(--color-terra-deep)}
+  .rellotge.venuda{border-color:var(--eco4);background:var(--eco4-soft)}
+  .rellotge.venuda .v,.rellotge.venuda .et{color:var(--eco4)}
+
+  footer{flex:none;background:var(--color-paper);border-top:1px solid var(--color-line);
+         padding:clamp(7px,1.2vh,14px) clamp(14px,2.5vw,34px);
+         display:flex;align-items:center;gap:clamp(8px,1.4vw,18px);flex-wrap:wrap}
+  .eq{display:flex;align-items:center;gap:7px;border:1px solid var(--color-line);
+      border-radius:8px;padding:4px 6px 4px 11px;background:var(--color-bg)}
+  .eq .nom{font-weight:600;font-size:clamp(11px,1.15vw,15px)}
+  .eq .pt{font-family:var(--font-serif);font-weight:700;font-size:clamp(16px,1.9vw,24px);
+          color:var(--eco4);min-width:1.6em;text-align:right}
+  .eq button{border:1px solid var(--color-line);background:var(--color-paper);cursor:pointer;
+             width:clamp(21px,2.1vw,27px);height:clamp(21px,2.1vw,27px);border-radius:6px;
+             font-size:clamp(12px,1.2vw,15px);font-weight:700;color:var(--color-ink-soft);
+             font-family:var(--font-sans);line-height:1}
+  .eq button:hover{background:var(--eco4-soft);border-color:var(--eco4);color:var(--eco4)}
+  .eq .tecla{font-size:9px;color:var(--color-ink-mute);border:1px solid var(--color-line);
+             border-radius:4px;padding:0 4px;line-height:1.5}
+  footer .dreta{margin-left:auto;display:flex;gap:8px;align-items:center}
+  .val{font-size:clamp(10px,1.1vw,14px);color:var(--color-ink-mute);white-space:nowrap}
+  .val b{font-family:var(--font-serif);font-size:1.45em;color:var(--eco4)}
+  .bt{border:1px solid var(--eco4);background:var(--eco4);color:#fff;cursor:pointer;
+      border-radius:8px;padding:clamp(6px,.9vh,10px) clamp(12px,1.6vw,20px);font-weight:600;
+      font-family:var(--font-sans);font-size:clamp(12px,1.2vw,15px)}
+  .bt.buit{background:var(--color-paper);color:var(--eco4)}
+  .bt:disabled{opacity:.35;cursor:default}
+  .bt.gran{font-size:clamp(14px,1.5vw,19px);padding:clamp(8px,1.2vh,14px) clamp(20px,2.4vw,34px)}
+
+  .capa{position:fixed;inset:0;background:var(--color-bg);display:flex;flex-direction:column;
+        align-items:center;justify-content:center;gap:clamp(9px,1.7vh,19px);
+        padding:clamp(16px,3.5vw,46px);text-align:center;z-index:9;overflow:auto}
+  .capa h1{font-size:clamp(24px,4.4vw,54px);line-height:1.05}
+  .capa p{max-width:60ch;color:var(--color-ink-soft);font-size:clamp(12px,1.35vw,17px);
+          line-height:1.5}
+  /* el triador de rondes */
+  .menu{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));
+        gap:clamp(7px,.9vw,12px);max-width:1120px;width:100%;text-align:left}
+  .menu label{display:flex;gap:10px;align-items:flex-start;background:var(--color-paper);
+              border:2px solid var(--color-line);border-radius:10px;cursor:pointer;
+              padding:clamp(8px,1.2vh,13px) clamp(10px,1.2vw,15px);
+              font-size:clamp(11px,1.1vw,14px);line-height:1.32;color:var(--color-ink-soft)}
+  .menu label.on{border-color:var(--eco4);background:var(--eco4-soft)}
+  .menu input{margin-top:3px;accent-color:#835f20;width:16px;height:16px;flex:none}
+  .menu b{display:block;font-family:var(--font-serif);color:var(--eco4);
+          font-size:clamp(13px,1.35vw,18px);margin-bottom:.15em}
+  .menu i{font-style:normal;color:var(--color-ink-mute);font-size:.88em}
+  .resum{font-size:clamp(13px,1.5vw,19px);font-weight:600}
+  .resum b{font-family:var(--font-serif);color:var(--eco4);font-size:1.25em}
+  .tecles{display:flex;gap:clamp(7px,1.2vw,16px);flex-wrap:wrap;justify-content:center;
+          font-size:clamp(10px,1.1vw,14px);color:var(--color-ink-mute)}
+  .tecles span{background:var(--color-paper);border:1px solid var(--color-line);
+               border-radius:7px;padding:4px 10px}
+  .tria{display:flex;align-items:center;gap:11px;flex-wrap:wrap;justify-content:center}
+  .tria button{border:1px solid var(--color-line);background:var(--color-paper);cursor:pointer;
+               border-radius:8px;width:clamp(31px,3vw,41px);height:clamp(31px,3vw,41px);
+               font-family:var(--font-serif);font-weight:700;font-size:clamp(14px,1.6vw,20px);
+               color:var(--color-ink-soft)}
+  .tria button.on{background:var(--eco4);border-color:var(--eco4);color:#fff}
+  .podi{display:flex;gap:clamp(10px,2vw,28px);align-items:flex-end;flex-wrap:wrap;
+        justify-content:center}
+  .podi div{background:var(--color-paper);border:1px solid var(--color-line);border-radius:10px;
+            padding:clamp(10px,2vh,22px) clamp(14px,2.4vw,30px);text-align:center}
+  .podi .n{font-family:var(--font-serif);font-weight:700;font-size:clamp(26px,4vw,52px);
+           color:var(--eco4)}
+  .podi .guanya{background:var(--color-mustard-soft);border-color:var(--color-mustard)}
+  .amagat{display:none}
+
+  /* gràfiques reutilitzades del dossier de repàs */
+  .fp .gl{stroke:#e2d6c0;stroke-width:.7} .fp .ax{stroke:#8a7a63;stroke-width:1.4}
+  .fp .tk{font-family:"Segoe UI",sans-serif;font-size:9px;fill:#6e5a47}
+  .fp .al{font-family:"Segoe UI",sans-serif;font-size:11px;font-weight:600;fill:#5c4a3d}
+  .fp .cv{fill:none;stroke:var(--eco4);stroke-width:2.4}
+  .fp .cs{stroke:var(--color-terra)}
+  .fp .gd{stroke:#b5a68e;stroke-width:1;stroke-dasharray:3 3}
+  .fp .cv2{stroke:var(--color-terra);stroke-dasharray:7 4}
+  .fp .pt{fill:var(--color-ink)} .fp .pt.pin{fill:var(--color-terra)}
+  .fp .pl{font-family:"Segoe UI",sans-serif;font-size:13px;font-weight:700;fill:var(--color-ink)}
+</style>
+</head>
+<body>
+
+<div class="capa" id="inici">
+  <span class="marca" style="font-size:clamp(13px,1.6vw,18px)"><span class="p">p</span><span class="d">.</span>profedeeconomia</span>
+  <h1>El gran concurso · unidades 1 y 2</h1>
+  <p>Ocho tipos de prueba. <b>Marcad las que queráis jugar</b> y el contador os dirá cuánto dura. Dentro de cada equipo, <b>numeraos del 1 al 4</b>: hace falta en la ronda de relevo.</p>
+  <div class="menu" id="menu"></div>
+  <p class="resum" id="resum"></p>
+  <div class="tria"><span style="font-weight:600">¿Cuántos equipos?</span><span id="botonsEquips"></span></div>
+  <button class="bt gran" id="comenca">Empezar</button>
+  <div class="tecles"><span><b>espacio</b> avanza</span><span><b>1-6</b> da los puntos</span>
+    <span><b>Mayús+1-6</b> los quita</span><span><b>←</b> atrás</span></div>
+</div>
+
+<header class="amagat" id="capcalera">
+  <div class="ronda" id="titolRonda">—<small id="subRonda"></small></div>
+  <div class="barra"><i id="progres"></i></div>
+  <span class="marca"><span class="p">p</span><span class="d">.</span>profedeeconomia</span>
+</header>
+
+<main class="amagat" id="escena">
+  <div class="num" id="comptador"></div>
+  <div id="cos"></div>
+  <div class="r" id="resposta"><div class="t" id="respText"></div><div class="pq" id="respPq"></div></div>
+</main>
+
+<footer class="amagat" id="peu">
+  <div id="equips" style="display:flex;gap:inherit;flex-wrap:wrap"></div>
+  <div class="dreta">
+    <span class="val" id="valor"></span>
+    <button class="bt buit" id="enrere">←</button>
+    <button class="bt" id="avant">Adelante</button>
+  </div>
+</footer>
+
+<div class="capa amagat" id="final">
+  <h1>Final del concurso</h1>
+  <div class="podi" id="podi"></div>
+  <p id="tancament"></p>
+  <button class="bt" onclick="location.reload()">Otra vez</button>
+</div>
+
+<script>
+const FIG = {
+  flux:   `<svg viewBox="0 0 700 372" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, sans-serif">
+        <defs>
+          <marker id="fr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="#c44e2c"/></marker>
+          <marker id="fm" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="#835f20"/></marker>
+          <marker id="fp" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="#9c3a1c"/></marker>
+        </defs>
+
+        <!-- agents -->
+        <rect x="8" y="34" width="118" height="304" rx="8" fill="#f5e5bc" stroke="#835f20" stroke-width="1.2"/>
+        <text x="67" y="180" text-anchor="middle" font-size="16" font-weight="600" fill="#c44e2c" font-family="Georgia, serif">Familias</text>
+        <text x="67" y="200" text-anchor="middle" font-size="11" fill="#5c4a3d">consumen</text>
+        <text x="67" y="215" text-anchor="middle" font-size="11" fill="#5c4a3d">y tienen los factores</text>
+
+        <rect x="574" y="34" width="118" height="304" rx="8" fill="#f5e5bc" stroke="#835f20" stroke-width="1.2"/>
+        <text x="633" y="180" text-anchor="middle" font-size="16" font-weight="600" fill="#c44e2c" font-family="Georgia, serif">Empresas</text>
+        <text x="633" y="200" text-anchor="middle" font-size="11" fill="#5c4a3d">producen</text>
+        <text x="633" y="215" text-anchor="middle" font-size="11" fill="#5c4a3d">bienes y servicios</text>
+
+        <!-- mercat de factors -->
+        <rect x="140" y="20" width="420" height="104" rx="8" fill="#fbf6ec" stroke="#e5d4bd"/>
+        <text x="350" y="39" text-anchor="middle" font-size="11.5" font-weight="600" fill="#6e5a47"
+              letter-spacing="1.2">MERCADO DE FACTORES</text>
+        <text x="350" y="62" text-anchor="middle" font-size="11" fill="#c44e2c">trabajo, tierra y capital</text>
+        <line x1="160" y1="70" x2="556" y2="70" stroke="#c44e2c" stroke-width="2" marker-end="url(#fr)"/>
+        <text x="350" y="104" text-anchor="middle" font-size="11" fill="#835f20">rentas: salarios, alquileres, intereses y beneficios</text>
+        <line x1="556" y1="112" x2="160" y2="112" stroke="#835f20" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#fm)"/>
+
+        <!-- sector públic -->
+        <rect x="266" y="152" width="168" height="62" rx="8" fill="#fbe3d6" stroke="#c44e2c" stroke-width="1.2"/>
+        <text x="350" y="178" text-anchor="middle" font-size="13" font-weight="600" fill="#9c3a1c" font-family="Georgia, serif">Sector público</text>
+        <text x="350" y="197" text-anchor="middle" font-size="10.5" fill="#5c4a3d">impuestos, transferencias</text>
+        <line x1="130" y1="183" x2="260" y2="183" stroke="#9c3a1c" stroke-width="1.6" marker-start="url(#fp)" marker-end="url(#fp)"/>
+        <line x1="570" y1="183" x2="440" y2="183" stroke="#9c3a1c" stroke-width="1.6" marker-start="url(#fp)" marker-end="url(#fp)"/>
+        <text x="195" y="176" text-anchor="middle" font-size="9.5" fill="#6e5a47">impuestos</text>
+        <text x="195" y="199" text-anchor="middle" font-size="9.5" fill="#6e5a47">becas, pensiones</text>
+        <text x="505" y="176" text-anchor="middle" font-size="9.5" fill="#6e5a47">impuestos</text>
+        <text x="505" y="199" text-anchor="middle" font-size="9.5" fill="#6e5a47">subvenciones</text>
+
+        <!-- mercat de béns i serveis -->
+        <rect x="140" y="242" width="420" height="104" rx="8" fill="#fbf6ec" stroke="#e5d4bd"/>
+        <text x="350" y="261" text-anchor="middle" font-size="11.5" font-weight="600" fill="#6e5a47"
+              letter-spacing="1.2">MERCADO DE BIENES Y SERVICIOS</text>
+        <text x="350" y="284" text-anchor="middle" font-size="11" fill="#c44e2c">bienes y servicios</text>
+        <line x1="556" y1="292" x2="160" y2="292" stroke="#c44e2c" stroke-width="2" marker-end="url(#fr)"/>
+        <text x="350" y="326" text-anchor="middle" font-size="11" fill="#835f20">gasto en consumo</text>
+        <line x1="160" y1="334" x2="556" y2="334" stroke="#835f20" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#fm)"/>
+
+        <!-- llegenda -->
+        <line x1="8" y1="14" x2="38" y2="14" stroke="#c44e2c" stroke-width="2"/>
+        <text x="44" y="18" font-size="10" fill="#5c4a3d">flujo real</text>
+        <line x1="108" y1="14" x2="138" y2="14" stroke="#835f20" stroke-width="2" stroke-dasharray="6 4"/>
+        <text x="144" y="18" font-size="10" fill="#5c4a3d">flujo monetario</text>
+      </svg>`,
+  punts:  `<svg class="fp" viewBox="0 0 248 200" style="width:100%;height:auto" xmlns="http://www.w3.org/2000/svg">
+<line x1="34.0" y1="10.0" x2="34.0" y2="168.0" class="gl"/>
+<text x="34.0" y="180" class="tk" text-anchor="middle">0</text>
+<line x1="85.5" y1="10.0" x2="85.5" y2="168.0" class="gl"/>
+<text x="85.5" y="180" class="tk" text-anchor="middle">20</text>
+<line x1="137.0" y1="10.0" x2="137.0" y2="168.0" class="gl"/>
+<text x="137.0" y="180" class="tk" text-anchor="middle">40</text>
+<line x1="188.5" y1="10.0" x2="188.5" y2="168.0" class="gl"/>
+<text x="188.5" y="180" class="tk" text-anchor="middle">60</text>
+<line x1="240.0" y1="10.0" x2="240.0" y2="168.0" class="gl"/>
+<text x="240.0" y="180" class="tk" text-anchor="middle">80</text>
+<line x1="34.0" y1="168.0" x2="240.0" y2="168.0" class="gl"/>
+<text x="30" y="171.0" class="tk" text-anchor="end">0</text>
+<line x1="34.0" y1="136.4" x2="240.0" y2="136.4" class="gl"/>
+<text x="30" y="139.4" class="tk" text-anchor="end">20</text>
+<line x1="34.0" y1="104.8" x2="240.0" y2="104.8" class="gl"/>
+<text x="30" y="107.8" class="tk" text-anchor="end">40</text>
+<line x1="34.0" y1="73.2" x2="240.0" y2="73.2" class="gl"/>
+<text x="30" y="76.2" class="tk" text-anchor="end">60</text>
+<line x1="34.0" y1="41.6" x2="240.0" y2="41.6" class="gl"/>
+<text x="30" y="44.6" class="tk" text-anchor="end">80</text>
+<line x1="34.0" y1="10.0" x2="240.0" y2="10.0" class="gl"/>
+<text x="30" y="13.0" class="tk" text-anchor="end">100</text>
+<line x1="34.0" y1="10.0" x2="34.0" y2="168.0" class="ax"/>
+<line x1="34.0" y1="168.0" x2="240.0" y2="168.0" class="ax"/>
+<text x="240.0" y="192" class="al" text-anchor="end">Camisetas</text>
+<text x="11" y="12" class="al" transform="rotate(-90 11 12)" text-anchor="end">Tazas</text>
+<path d="M34.0,25.8 C42.6,27.4 68.3,30.5 85.5,35.3 C102.7,40.0 119.8,44.8 137.0,54.2 C154.2,63.7 179.9,85.8 188.5,92.2" class="cv"/>
+<circle cx="34.0" cy="25.8" r="3.6" class="pt"/>
+<text x="40.0" y="19.8" class="pl">A</text>
+<circle cx="85.5" cy="35.3" r="3.6" class="pt"/>
+<text x="91.5" y="29.3" class="pl">B</text>
+<circle cx="137.0" cy="54.2" r="3.6" class="pt"/>
+<text x="143.0" y="48.2" class="pl">C</text>
+<circle cx="188.5" cy="92.2" r="3.6" class="pt"/>
+<text x="194.5" y="86.2" class="pl">D</text>
+<circle cx="85.5" cy="89.0" r="3.6" class="pt pin"/>
+<text x="92.5" y="94.0" class="pl">X</text>
+<circle cx="188.5" cy="41.6" r="3.6" class="pt pin"/>
+<text x="195.5" y="35.6" class="pl">Y</text>
+</svg>`,
+  creix:  `<svg class="fp" viewBox="0 0 248 200" style="width:100%;height:auto" xmlns="http://www.w3.org/2000/svg">
+<line x1="34.0" y1="10.0" x2="34.0" y2="168.0" class="gl"/>
+<text x="34.0" y="180" class="tk" text-anchor="middle">0</text>
+<line x1="85.5" y1="10.0" x2="85.5" y2="168.0" class="gl"/>
+<text x="85.5" y="180" class="tk" text-anchor="middle">20</text>
+<line x1="137.0" y1="10.0" x2="137.0" y2="168.0" class="gl"/>
+<text x="137.0" y="180" class="tk" text-anchor="middle">40</text>
+<line x1="188.5" y1="10.0" x2="188.5" y2="168.0" class="gl"/>
+<text x="188.5" y="180" class="tk" text-anchor="middle">60</text>
+<line x1="240.0" y1="10.0" x2="240.0" y2="168.0" class="gl"/>
+<text x="240.0" y="180" class="tk" text-anchor="middle">80</text>
+<line x1="34.0" y1="168.0" x2="240.0" y2="168.0" class="gl"/>
+<text x="30" y="171.0" class="tk" text-anchor="end">0</text>
+<line x1="34.0" y1="136.4" x2="240.0" y2="136.4" class="gl"/>
+<text x="30" y="139.4" class="tk" text-anchor="end">20</text>
+<line x1="34.0" y1="104.8" x2="240.0" y2="104.8" class="gl"/>
+<text x="30" y="107.8" class="tk" text-anchor="end">40</text>
+<line x1="34.0" y1="73.2" x2="240.0" y2="73.2" class="gl"/>
+<text x="30" y="76.2" class="tk" text-anchor="end">60</text>
+<line x1="34.0" y1="41.6" x2="240.0" y2="41.6" class="gl"/>
+<text x="30" y="44.6" class="tk" text-anchor="end">80</text>
+<line x1="34.0" y1="10.0" x2="240.0" y2="10.0" class="gl"/>
+<text x="30" y="13.0" class="tk" text-anchor="end">100</text>
+<line x1="34.0" y1="10.0" x2="34.0" y2="168.0" class="ax"/>
+<line x1="34.0" y1="168.0" x2="240.0" y2="168.0" class="ax"/>
+<text x="240.0" y="192" class="al" text-anchor="end">Camisetas</text>
+<text x="11" y="12" class="al" transform="rotate(-90 11 12)" text-anchor="end">Tazas</text>
+<path d="M34.0,25.8 C42.6,27.4 68.3,30.5 85.5,35.3 C102.7,40.0 119.8,44.8 137.0,54.2 C154.2,63.7 179.9,85.8 188.5,92.2" class="cv"/>
+<path d="M34.0,11.6 C43.9,13.3 73.5,16.8 93.2,22.0 C113.0,27.2 132.7,32.4 152.4,42.9 C172.2,53.3 201.8,77.6 211.7,84.6" class="cv cv2"/>
+</svg>`,
+  gir:    `<svg class="fp" viewBox="0 0 248 200" style="width:100%;height:auto" xmlns="http://www.w3.org/2000/svg">
+<line x1="34.0" y1="10.0" x2="34.0" y2="168.0" class="gl"/>
+<text x="34.0" y="180" class="tk" text-anchor="middle">0</text>
+<line x1="85.5" y1="10.0" x2="85.5" y2="168.0" class="gl"/>
+<text x="85.5" y="180" class="tk" text-anchor="middle">20</text>
+<line x1="137.0" y1="10.0" x2="137.0" y2="168.0" class="gl"/>
+<text x="137.0" y="180" class="tk" text-anchor="middle">40</text>
+<line x1="188.5" y1="10.0" x2="188.5" y2="168.0" class="gl"/>
+<text x="188.5" y="180" class="tk" text-anchor="middle">60</text>
+<line x1="240.0" y1="10.0" x2="240.0" y2="168.0" class="gl"/>
+<text x="240.0" y="180" class="tk" text-anchor="middle">80</text>
+<line x1="34.0" y1="168.0" x2="240.0" y2="168.0" class="gl"/>
+<text x="30" y="171.0" class="tk" text-anchor="end">0</text>
+<line x1="34.0" y1="136.4" x2="240.0" y2="136.4" class="gl"/>
+<text x="30" y="139.4" class="tk" text-anchor="end">20</text>
+<line x1="34.0" y1="104.8" x2="240.0" y2="104.8" class="gl"/>
+<text x="30" y="107.8" class="tk" text-anchor="end">40</text>
+<line x1="34.0" y1="73.2" x2="240.0" y2="73.2" class="gl"/>
+<text x="30" y="76.2" class="tk" text-anchor="end">60</text>
+<line x1="34.0" y1="41.6" x2="240.0" y2="41.6" class="gl"/>
+<text x="30" y="44.6" class="tk" text-anchor="end">80</text>
+<line x1="34.0" y1="10.0" x2="240.0" y2="10.0" class="gl"/>
+<text x="30" y="13.0" class="tk" text-anchor="end">100</text>
+<line x1="34.0" y1="10.0" x2="34.0" y2="168.0" class="ax"/>
+<line x1="34.0" y1="168.0" x2="240.0" y2="168.0" class="ax"/>
+<text x="240.0" y="192" class="al" text-anchor="end">Camisetas</text>
+<text x="11" y="12" class="al" transform="rotate(-90 11 12)" text-anchor="end">Tazas</text>
+<path d="M34.0,25.8 C42.6,27.4 68.3,30.5 85.5,35.3 C102.7,40.0 119.8,44.8 137.0,54.2 C154.2,63.7 179.9,85.8 188.5,92.2" class="cv"/>
+<path d="M34.0,25.8 C45.2,27.4 78.6,30.5 101.0,35.3 C123.3,40.0 145.6,44.8 167.9,54.2 C190.2,63.7 223.7,85.8 234.8,92.2" class="cv cv2"/>
+</svg>`,
+  mercat: `<svg class="fp" viewBox="0 0 248 200" style="width:100%;height:auto" xmlns="http://www.w3.org/2000/svg">
+<line x1="34" y1="10" x2="34" y2="168" class="ax"/>
+<line x1="34" y1="168" x2="240" y2="168" class="ax"/>
+<line x1="137" y1="90" x2="137" y2="168" class="gd"/>
+<line x1="34" y1="90" x2="137" y2="90" class="gd"/>
+<line x1="44" y1="24" x2="230" y2="156" class="cv"/>
+<line x1="44" y1="156" x2="230" y2="24" class="cv cs"/>
+<circle cx="137" cy="90" r="4" class="pt"/>
+<text x="234" y="166" class="pl" text-anchor="end">D</text>
+<text x="234" y="20" class="pl" text-anchor="end">O</text>
+<text x="144" y="84" class="pl">E</text>
+<text x="30" y="93" class="tk" text-anchor="end">Pe</text>
+<text x="137" y="180" class="tk" text-anchor="middle">Qe</text>
+<text x="240" y="192" class="al" text-anchor="end">Cantidad</text>
+<text x="11" y="12" class="al" transform="rotate(-90 11 12)" text-anchor="end">Precio</text>
+</svg>`,
+};
+
+const RONDES = [
+ {id:"relleu", titol:"Relevo", sub:"1 punto · contesta el número que salga", punts:1, min:.75,
+  menu:"Contesta el número que salga en la pantalla. Los demás no pueden hablar ni apuntar.", p:[
+  {q:"¿Qué quiere decir que un bien es <b>libre</b>?",
+   r:"Que hay suficiente para todos y no tiene precio",
+   pq:"El aire que respiramos. El <b>bien económico</b> es escaso: conseguirlo cuesta recursos, y por eso tiene precio."},
+  {q:"¿En qué se mide el <b>coste de oportunidad</b>?",
+   r:"En unidades del otro bien",
+   pq:"Nunca en euros. Si pasas de 10 a 20 camisetas y dejas de hacer 6 tazas, el coste es <b>6 tazas</b>."},
+  {q:"¿Cuáles son los <b>cuatro agentes</b> económicos?",
+   r:"Familias, empresas, sector público y sector exterior",
+   pq:"Las familias aportan factores y consumen; las empresas producen; el Estado cobra y gasta; el exterior compra y vende."},
+  {q:"¿Qué renta recibe el factor <b>trabajo</b>? ¿Y el factor <b>tierra</b>?",
+   r:"El salario; y la renta o el alquiler",
+   pq:"Capital → <b>interés</b>. Y el beneficio no está garantizado: es lo que queda cuando ya se ha pagado todo lo demás."},
+  {q:"¿Cómo se llama un punto situado <b>dentro</b> de la frontera?",
+   r:"Ineficiente",
+   pq:"Se podría producir más de las dos cosas con los mismos recursos. <b>Sobre</b> es eficiente; <b>fuera</b>, inalcanzable."},
+  {q:"¿Qué es un <b>bien de capital</b>?",
+   r:"El que sirve para producir otros bienes",
+   pq:"Una máquina, una furgoneta, un horno. No se consume: se gasta trabajando."},
+  {q:"¿Por qué decimos que las necesidades son <b>ilimitadas</b>?",
+   r:"Porque cuando satisfaces una, aparecen otras nuevas",
+   pq:"Y ese es todo el problema económico: necesidades sin fin y recursos <b>escasos</b>. De ahí viene tener que elegir."},
+  {q:"¿Qué es la <b>especialización</b>?",
+   r:"Dedicarse a hacer lo que uno hace mejor e intercambiar el resto",
+   pq:"Sin <b>comercio</b> no sirve de nada: quien solo hace una cosa necesita que alguien le venda todo lo demás."},
+ ]},
+
+ {id:"intrus", titol:"Encuentra el intruso", sub:"1 punto · cuál sobra, y por qué", punts:1, min:1.5,
+  menu:"Cuatro cosas, una no pinta nada. Hay que decir cuál y <i>por qué criterio</i>.", p:[
+  {items:["Un bocadillo","Un coche","El aire que respiramos","Un móvil"],
+   r:"El aire que respiramos",
+   pq:"Es el único <b>bien libre</b>. Los otros tres son económicos: son escasos y cuesta recursos conseguirlos."},
+  {items:["Salario","Alquiler","Interés","IVA"],
+   r:"El IVA",
+   pq:"Los otros tres <b>retribuyen un factor</b> — trabajo, tierra y capital. El IVA es un impuesto: no paga ningún factor."},
+  {items:["Comer","Dormir","Irse de viaje","Beber agua"],
+   r:"Irse de viaje",
+   pq:"Es una necesidad <b>secundaria</b>: mejora el bienestar pero no es imprescindible para vivir."},
+  {items:["El horno del panadero","La furgoneta del repartidor","El ordenador de la oficina","El pan que te comes para cenar"],
+   r:"El pan que te comes",
+   pq:"Es un bien <b>de consumo</b>; los otros tres, de <b>capital</b>. Y el criterio no es el objeto: es el <b>uso</b> que se hace de él."},
+  {items:["Tierra","Trabajo","Capital","Beneficio"],
+   r:"El beneficio",
+   pq:"Los otros tres son <b>factores de producción</b>. El beneficio es la <b>renta</b> que recibe quien arriesga, no un factor."},
+ ]},
+
+ {id:"ordena", titol:"Ordénalo", sub:"2 puntos · todo el orden tiene que estar bien", punts:2, min:2,
+  menu:"Cuatro o cinco cosas desordenadas. Solo puntúa si <i>todo</i> el orden está bien.", p:[
+  {enunciat:"De <b>menos</b> a <b>más</b> coste de oportunidad, los tramos de la FPP del taller:",
+   items:["De 20 a 30 camisetas","De 0 a 10 camisetas","De 10 a 20 camisetas"],
+   r:"0→10 (2 tazas) · 10→20 (6 tazas) · 20→30 (14 tazas)",
+   pq:"Cada tramo cuesta más que el anterior: eso es el <b>coste de oportunidad creciente</b>, y es lo que curva la frontera."},
+  {enunciat:"Qué pasa, paso a paso, cuando el precio se fija <b>por encima</b> del equilibrio:",
+   items:["Los vendedores bajan el precio","Sobra producto sin vender","El mercado se vacía","Hay exceso de oferta"],
+   r:"Exceso de oferta · sobra producto · bajan el precio · el mercado se vacía",
+   pq:"Nadie lo manda: el <b>precio</b> es la señal. Mientras baja, la cantidad demandada sube y la ofrecida baja a la vez."},
+  {enunciat:"De lo más <b>general</b> a lo más <b>concreto</b>:",
+   items:["Bien de consumo","Necesidad","Un bocadillo de tortilla","Bien"],
+   r:"Necesidad · bien · bien de consumo · un bocadillo de tortilla",
+   pq:"Primero la necesidad, después la cosa que la satisface, después <b>de qué tipo</b> es, y al final el ejemplo."},
+  {enunciat:"El recorrido del dinero en el flujo circular, empezando por las familias:",
+   items:["Las empresas pagan salarios","Las familias ofrecen trabajo","Las empresas ingresan","Las familias compran bienes"],
+   r:"Las familias ofrecen trabajo · las empresas pagan salarios · las familias compran bienes · las empresas ingresan",
+   pq:"Es un <b>círculo</b>: lo que para la familia es un ingreso, para la empresa es un coste, y al revés."},
+ ]},
+
+ {id:"aposta", titol:"Apuesta", sub:"apostad 1, 2 o 3 puntos antes de verla", punts:1, min:3,
+  menu:"Primero se ve <i>de qué va</i> y apostáis 1, 2 o 3 puntos. Si acertáis los ganáis; si falláis los perdéis.", p:[
+  {tema:"El coste de oportunidad",
+   q:"El sábado puedes trabajar 5 horas (40 €), estudiar para el examen o quedarte en la cama. Eliges estudiar. ¿Cuál es el coste de oportunidad, y cuál <b>no</b> lo es?",
+   r:"Los 40 € del trabajo; quedarte en la cama no entra",
+   pq:"Solo cuenta <b>la mejor</b> alternativa, no la suma de todas. Si no hubieras estudiado habrías hecho <b>una</b> cosa, no dos."},
+  {tema:"La frontera de posibilidades",
+   q:"¿Por qué la frontera es <b>curvada</b> y no una recta? ¿Y qué querría decir que fuera recta?",
+   r:"Porque los recursos no sirven igual para los dos bienes",
+   pq:"Se trasladan primero los que menos servían para el otro bien, y cada unidad nueva cuesta más. Si fuera <b>recta</b>, todos los recursos valdrían igual para todo."},
+  {tema:"Los tipos de bien",
+   q:"La harina de un horno y la harina de tu despensa. Mismo producto: ¿son el mismo tipo de bien? Razonadlo.",
+   r:"No: en el horno es un bien intermedio y en casa, de consumo",
+   pq:"El criterio es el <b>uso</b>, no el objeto. La del horno se transforma en otra cosa que se vende; la de casa te la comes."},
+  {tema:"El comercio",
+   q:"Dad <b>dos motivos</b> por los que un país compra en el extranjero cosas que también podría fabricar él.",
+   r:"Porque fuera sale más barato y porque producirlo aquí costaría dejar de hacer otra cosa",
+   pq:"También vale: no hay suficiente capacidad, se quiere más variedad, o aquí faltan las materias primas o el clima."},
+  {tema:"El mercado",
+   q:"Un ayuntamiento fija un precio máximo para los alquileres, por debajo del de equilibrio. ¿Quién quiere más y quién ofrece menos? ¿Qué acaba pasando?",
+   r:"La gente quiere más, los propietarios ofrecen menos: faltan pisos",
+   pq:"Lo que llega al mercado es siempre <b>la cantidad más pequeña de las dos</b>. Acaba alquilándose <b>menos</b> que sin tope."},
+ ]},
+
+ {id:"pistes", titol:"Tres pistas", sub:"vale 5, después 3, después 1", punts:5, min:2.5,
+  menu:"Tres pistas de un concepto, de una en una. Vale <b>5</b> con la primera, <b>3</b> con la segunda y <b>1</b> con la tercera.", p:[
+  {pistes:["No sale en ningún tique ni en ninguna factura.",
+           "Solo cuenta la mejor, nunca la suma de todas.",
+           "Es lo que dejas de hacer cuando eliges una cosa."],
+   r:"El coste de oportunidad",
+   pq:"Y se mide en <b>unidades del otro bien</b>, no en euros. El tiempo también cuenta."},
+  {pistes:["Es una curva, y va hacia abajo.",
+           "Dentro se podría producir más; fuera, hoy no se llega.",
+           "Dice el máximo que se puede hacer de dos bienes con lo que se tiene."],
+   r:"La frontera de posibilidades de producción",
+   pq:"Es el dibujo de la <b>escasez</b>. Que sea curvada quiere decir que el coste de oportunidad crece."},
+  {pistes:["Puede ser un premio o un castigo.",
+           "No cambia lo que quieres, cambia lo que te compensa hacer.",
+           "Un descuento, una multa, una beca."],
+   r:"Un incentivo",
+   pq:"La gente responde a los incentivos, y por eso una ley bien pensada cambia conductas sin obligar a nadie."},
+  {pistes:["Hay dos mercados y cuatro flechas.",
+           "Lo que para uno es ingreso, para el otro es coste.",
+           "Familias y empresas, dándose la vuelta."],
+   r:"El flujo circular de la renta",
+   pq:"En el mercado de <b>factores</b> mandan las familias; en el de <b>bienes y servicios</b>, las empresas."},
+  {pistes:["Pasa cuando el precio es demasiado bajo.",
+           "Se forman colas y listas de espera.",
+           "Se quiere comprar más de lo que hay."],
+   r:"El exceso de demanda (escasez)",
+   pq:"El precio tiende a <b>subir</b> hasta que la cantidad demandada y la ofrecida vuelven a coincidir."},
+ ]},
+
+ {id:"dibuix", titol:"El dibujo", sub:"3 puntos · dibujan todos los equipos a la vez", punts:3, min:4,
+  menu:"Todos los equipos dibujan en el papel; la respuesta es <b>la gráfica de verdad</b> del dossier.", p:[
+  {q:"Dibujad una <b>FPP</b> y marcad en ella un punto <b>ineficiente</b> y uno <b>inalcanzable</b>.",
+   fig:"punts",
+   r:"El ineficiente va dentro de la curva; el inalcanzable, fuera",
+   pq:"Dentro se podría producir más con los mismos recursos. Fuera, hoy no se llega: <b>solo si la frontera se desplaza</b>."},
+  {q:"El taller contrata a dos personas más y compra una máquina. Dibujad qué le pasa a la frontera.",
+   fig:"creix",
+   r:"Se desplaza entera hacia fuera",
+   pq:"Eso es <b>crecimiento económico</b>. Moverse por la frontera, en cambio, solo es cambiar de combinación: eso no es crecer."},
+  {q:"Dibujad el <b>mercado</b> de un producto: las dos curvas, el precio de equilibrio y la cantidad de equilibrio.",
+   fig:"mercat",
+   r:"La demanda hacia abajo, la oferta hacia arriba y el cruce marcado en los dos ejes",
+   pq:"Al precio de equilibrio el mercado <b>se vacía</b>: no sobra ni falta nada. Es el único precio donde eso pasa."},
+  {q:"Dibujad el <b>flujo circular</b>: los dos mercados y las cuatro flechas con su nombre.",
+   fig:"flux",
+   r:"Familias → empresas: factores y consumo. Empresas → familias: rentas y bienes",
+   pq:"Dos flechas son el flujo <b>real</b> (trabajo, bienes) y dos el <b>monetario</b> (salarios, pagos)."},
+ ]},
+
+ {id:"judici", titol:"Juicio a la respuesta", sub:"3 puntos · encontrad el error y decid cómo se llama", punts:3, min:3,
+  menu:"Se proyecta una respuesta de examen <b>mal hecha</b>. Puntos para quien encuentre el error y sepa cómo se llama.", p:[
+  {mal:"«El coste de oportunidad de hacer 10 camisetas más son 120 €.»",
+   r:"El coste de oportunidad va en unidades del otro bien, no en euros",
+   pq:"La respuesta correcta sería «<b>6 tazas</b>» al pasar de 10 a 20 camisetas. Es el error que más se repite cada año."},
+  {mal:"«El taller ha crecido: ahora hace más camisetas y menos tazas, se ha movido hacia la derecha por la frontera.»",
+   r:"Moverse por la frontera no es crecer",
+   pq:"Eso solo es <b>cambiar de combinación</b>. Para crecer hace falta que la frontera <b>se desplace</b>: más recursos o mejor tecnología."},
+  {mal:"«La oferta de pan de esa panadería es el pan que tiene en el mostrador esta tarde.»",
+   r:"Confunde la oferta con el stock",
+   pq:"La oferta es la cantidad que se quiere y se puede vender <b>a cada precio</b>: es una lista entera, no un número."},
+  {mal:"«Un punto que está dentro de la frontera es inalcanzable, porque todavía no se ha llegado a él.»",
+   r:"Es ineficiente, no inalcanzable",
+   pq:"Dentro <b>sí</b> se puede estar — de hecho se está cuando sobra gente parada o máquinas detenidas. El inalcanzable es el de fuera."},
+  {mal:"«Si ponemos un precio máximo bajo, el producto llegará a más gente, porque será más barato.»",
+   r:"Llega a menos gente: se produce menos",
+   pq:"La gente quiere más, pero a los vendedores les compensa hacer <b>menos</b>, y lo que se vende es siempre la cantidad más pequeña."},
+  {mal:"«Las familias solo consumen: quienes aportan los factores son las empresas.»",
+   r:"Las familias aportan trabajo, tierra y capital",
+   pq:"Por eso cobran <b>salarios, alquileres e intereses</b>. Las empresas los <b>contratan</b>, no los aportan."},
+ ]},
+
+ {id:"subhasta", titol:"Subasta a la baja", sub:"vale 10 y baja 1 cada 10 segundos", punts:10, min:2,
+  menu:"Vale <b>10</b> y baja 1 cada 10 segundos. El primer equipo que la reclama se la queda al precio del momento — y lo pierde si falla.", p:[
+  {q:"Los <b>factores de producción</b>, cada uno con su retribución.",
+   r:"Tierra/renta · trabajo/salario · capital/interés (e iniciativa empresarial/beneficio)",
+   pq:"El <b>beneficio</b>, a diferencia del salario, no está garantizado: es lo que queda al final y puede ser negativo."},
+  {q:"Explicad qué es el <b>coste de oportunidad</b> sin decir la palabra «dinero».",
+   r:"El valor de lo mejor que dejas de hacer cuando eliges",
+   pq:"Si no se puede explicar sin decir «dinero», aún no se sabe: el <b>tiempo</b> y las oportunidades cuentan igual."},
+  {q:"Tres motivos por los que un taller puede acabar produciendo <b>dentro</b> de su frontera.",
+   r:"Gente parada · máquinas detenidas · mala organización",
+   pq:"También valen: falta de formación, o materiales que no llegan a tiempo. Todos quieren decir lo mismo: <b>recursos sin usar</b>."},
+  {q:"Explicad los <b>cuatro casos</b>: qué le pasa al precio y a la cantidad cuando se desplaza cada curva hacia cada lado.",
+   r:"Demanda derecha ↑↑ · demanda izquierda ↓↓ · oferta derecha ↓↑ · oferta izquierda ↑↓",
+   pq:"La demanda mueve precio y cantidad <b>en el mismo sentido</b>; la oferta, en <b>sentidos contrarios</b>. Esa es toda la regla."},
+  {q:"¿Por qué la especialización hace que se produzca más, y por qué entonces hace falta el comercio?",
+   r:"Cada uno hace lo que hace mejor y con los mismos recursos se obtiene más; después hay que intercambiar",
+   pq:"Se gana práctica y no se pierde tiempo cambiando de tarea. Pero quien solo hace una cosa <b>necesita todo lo demás</b>."},
+ ]},
+];
+
+const PISTA_VAL = [5, 3, 1];
+const COLORS = ["Equipo 1","Equipo 2","Equipo 3","Equipo 4","Equipo 5","Equipo 6"];
+const DEFECTE = ["relleu","dibuix","subhasta"];
+const $ = id => document.getElementById(id);
+
+let tria = RONDES.map(R => DEFECTE.includes(R.id));
+let T = [], i = 0, fase = 0, nEq = 4, punts = [], valor = 10, rellotge = null, venuda = false;
+
+// How many stages a question has: the last one is the answer.
+function fases(R){
+  if (R.id === "aposta") return 3;
+  if (R.id === "subhasta") return 3;
+  if (R.id === "pistes") return 4;   // 3 clues, then the answer
+  return 2;
+}
+
+// ---------- pantalla d'inici ----------
+const menu = $("menu");
+RONDES.forEach((R, k) => {
+  const l = document.createElement("label");
+  l.className = tria[k] ? "on" : "";
+  l.innerHTML = `<input type="checkbox" ${tria[k] ? "checked" : ""}>
+    <span><b>${k + 1} · ${R.titol}</b>${R.menu}
+      <i><br>${R.p.length} preguntas · ~${Math.round(R.p.length * R.min)} min</i></span>`;
+  l.querySelector("input").onchange = e => {
+    tria[k] = e.target.checked; l.className = tria[k] ? "on" : ""; resum();
+  };
+  menu.appendChild(l);
+});
+function resum(){
+  const n = RONDES.filter((_, k) => tria[k]);
+  const q = n.reduce((a, R) => a + R.p.length, 0);
+  const m = Math.round(n.reduce((a, R) => a + R.p.length * R.min, 0));
+  $("resum").innerHTML = q
+    ? `<b>${n.length}</b> rondas · <b>${q}</b> preguntas · unos <b>${m}</b> minutos`
+    : "Marcad al menos una ronda.";
+  $("comenca").disabled = !q;
+}
+resum();
+
+const be = $("botonsEquips");
+[2,3,4,5,6].forEach(n => {
+  const b = document.createElement("button");
+  b.textContent = n; b.className = n === nEq ? "on" : "";
+  b.onclick = () => { nEq = n; [...be.children].forEach(c => c.className = ""); b.className = "on"; };
+  be.appendChild(b);
+});
+
+$("comenca").onclick = () => {
+  T = [].concat(...RONDES.map((R, ri) => tria[ri] ? R.p.map((x, qi) => ({...x, ri, qi})) : []));
+  if (!T.length) return;
+  punts = Array(nEq).fill(0);
+  $("inici").classList.add("amagat");
+  ["capcalera","escena","peu"].forEach(x => $(x).classList.remove("amagat"));
+  pintaEquips(); pinta();
+};
+
+function pintaEquips(){
+  $("equips").innerHTML = "";
+  punts.forEach((p, k) => {
+    const d = document.createElement("div");
+    d.className = "eq";
+    d.innerHTML = `<span class="nom">${COLORS[k]}</span><span class="tecla">${k+1}</span>
+      <span class="pt" id="pt${k}">${p}</span>
+      <button title="Suma">+</button><button title="Quita">−</button>`;
+    d.querySelectorAll("button")[0].onclick = () => suma(k, +1);
+    d.querySelectorAll("button")[1].onclick = () => suma(k, -1);
+    $("equips").appendChild(d);
+  });
+}
+
+function R(){ return RONDES[T[i].ri]; }
+
+// What the question is worth right now: fixed by round, except where the
+// value falls — the auction clock and the clue ladder.
+function enJoc(){
+  const r = R();
+  if (r.id === "subhasta") return valor;
+  if (r.id === "pistes") return PISTA_VAL[Math.min(fase, 2)];
+  return r.punts;
+}
+
+function suma(k, signe){
+  punts[k] = Math.max(0, punts[k] + signe * enJoc());
+  $("pt" + k).textContent = punts[k];
+  // Claiming the lot stops the clock: the price is the one on screen.
+  if (R().id === "subhasta" && !venuda){ atura(); venuda = true; pintaRellotge(); }
+}
+
+function atura(){ if (rellotge){ clearInterval(rellotge); rellotge = null; } }
+function arrenca(){
+  if (rellotge) return;
+  rellotge = setInterval(() => {
+    if (valor > 1) valor--; else atura();
+    pintaRellotge();
+  }, 10000);
+  pintaRellotge();
+}
+function pintaRellotge(){
+  const c = $("rl"); if (!c) return;
+  c.className = "rellotge" + (venuda ? " venuda" : rellotge ? " corre" : "");
+  c.querySelector(".v").textContent = valor;
+  c.querySelector(".et").textContent = venuda ? "adjudicada" : rellotge ? "bajando…" : "puntos";
+  mostraValor();
+}
+function mostraValor(){ $("valor").innerHTML = `en juego <b>${enJoc()}</b>`; }
+
+function pinta(){
+  const t = T[i], r = R();
+  atura(); valor = 10; venuda = false;
+  $("titolRonda").innerHTML = `Ronda · ${r.titol}<small>${r.sub}</small>`;
+  $("comptador").textContent = `Pregunta ${t.qi + 1} de ${r.p.length}  ·  ${i + 1} de ${T.length} en total`;
+  $("respText").textContent = t.r;
+  $("respPq").innerHTML = t.pq;
+  $("resposta").classList.remove("vist");
+  $("progres").style.width = (i / T.length * 100) + "%";
+  $("enrere").disabled = i === 0;
+  cos();
+}
+
+// Each mechanic draws its own stage; `fase` is how far we have got.
+function cos(){
+  const t = T[i], id = R().id, ult = fases(R()) - 1;
+  const q = txt => `<div class="q${txt.length > 70 ? " llarga" : ""}">${txt}</div>`;
+  const cartes = (xs, lletres) => `<div class="cartes">` + xs.map((x, k) =>
+      `<div>${lletres ? `<span class="lletra">${"ABCDE"[k]}</span>` : ""}${x}</div>`).join("") + `</div>`;
+
+  if (id === "relleu"){
+    $("cos").innerHTML = `<div class="ordre">Contesta el número ${t.qi % 4 + 1}</div>${q(t.q)}`;
+  } else if (id === "intrus"){
+    $("cos").innerHTML = `<div class="q llarga">¿Cuál sobra? ¿Y por qué criterio?</div>${cartes(t.items, true)}`;
+  } else if (id === "ordena"){
+    $("cos").innerHTML = `<div class="q llarga">${t.enunciat}</div>${cartes(t.items, false)}`;
+  } else if (id === "aposta"){
+    $("cos").innerHTML = fase === 0
+      ? `<div class="ordre">Va de: ${t.tema}</div><div class="q">¿Cuánto apostáis?</div>
+         <p class="espera">1, 2 o 3 puntos. Escribidlo y levantadlo antes de que salga la pregunta.</p>`
+      : q(t.q);
+  } else if (id === "pistes"){
+    const n = Math.min(fase + 1, 3);
+    $("cos").innerHTML = `<div class="q llarga">¿De qué concepto hablamos?</div>
+      <div class="pistes">` + t.pistes.slice(0, n).map((p, k) =>
+        `<div><b>Pista ${k + 1} · vale ${PISTA_VAL[k]}</b>${p}</div>`).join("") + `</div>`;
+  } else if (id === "dibuix"){
+    $("cos").innerHTML = fase === 0
+      ? `${q(t.q)}<p class="espera">Dibujan todos los equipos a la vez, en el papel.</p>`
+      : `<div class="fila"><div class="cl">${q(t.q)}</div>
+         <div class="figura">${FIG[t.fig]}</div></div>`;
+  } else if (id === "judici"){
+    $("cos").innerHTML = `<div class="q llarga">¿Qué falla ahí, y cómo se llama el error?</div>
+       <div class="mal"><small>Respuesta de examen</small>${t.mal}</div>`;
+  } else {
+    $("cos").innerHTML = `<div class="fila">
+        <div class="rellotge" id="rl"><div class="v">${valor}</div><div class="et">puntos</div></div>
+        <div class="cl">${q(t.q)}${fase === 0 ? '<p class="espera">Espacio para abrir la subasta.</p>' : ""}</div>
+      </div>`;
+    pintaRellotge();
+  }
+
+  $("avant").textContent =
+    fase >= ult ? (i === T.length - 1 ? "Resultados" : "Siguiente →")
+    : id === "subhasta" ? "Abrir la subasta"
+    : id === "aposta" ? "Mostrar la pregunta"
+    : id === "pistes" ? (fase < 2 ? "Pista siguiente" : "Revelar")
+    : "Revelar";
+  mostraValor();
+}
+
+function avant(){
+  const id = R().id, ult = fases(R()) - 1;
+  if (fase < ult){
+    fase++;
+    if (id === "subhasta" && fase === 1){ cos(); arrenca(); return; }
+    cos();
+    if (fase === ult){ atura(); $("resposta").classList.add("vist"); }
+    return;
+  }
+  if (i === T.length - 1) return acaba();
+  i++; fase = 0; pinta();
+}
+function enrere(){ if (i > 0){ i--; fase = 0; pinta(); } }
+
+function acaba(){
+  atura();
+  ["capcalera","escena","peu"].forEach(x => $(x).classList.add("amagat"));
+  $("final").classList.remove("amagat");
+  const max = Math.max(...punts);
+  $("podi").innerHTML = punts.map((p, k) =>
+    `<div class="${p === max ? "guanya" : ""}"><div class="n">${p}</div>${COLORS[k]}</div>`).join("");
+  $("tancament").textContent = punts.filter(p => p === max).length > 1
+    ? "Empate arriba. Las preguntas que habéis fallado todos son las que tienen que entrar en el repaso de última hora."
+    : "Ahora lo que importa: repasad las preguntas que ha fallado toda la clase, no las que ya sabíais.";
+}
+
+$("avant").onclick = avant;
+$("enrere").onclick = enrere;
+document.addEventListener("keydown", e => {
+  if (!$("escena").classList.contains("amagat")){
+    const d = /^Digit([1-6])$/.exec(e.code);       // by position, so the layout cannot break it
+    if (e.key === "ArrowRight" || e.key === " "){ e.preventDefault(); avant(); }
+    else if (e.key === "ArrowLeft"){ e.preventDefault(); enrere(); }
+    else if (d && +d[1] <= nEq){ e.preventDefault(); suma(+d[1] - 1, e.shiftKey ? -1 : +1); }
+  } else if (!$("inici").classList.contains("amagat") && e.key === "Enter"){ $("comenca").click(); }
+});
+</script>
+</body>
+</html>

@@ -1,6 +1,6 @@
 ---
 asignatura: eco-4eso
-unidad_relacionada: 5
+unidad_relacionada: 7
 title: "Precio por unidad y coste real de pagar a plazos"
 descripcion: "Dos comparaciones que la tienda no hace por ti: cuál de tres formatos sale más barato por gramo o por unidad, y qué TAE esconde una cuota mensual que parece pequeña."
 tipo: calculadora
@@ -10,7 +10,7 @@ estado: publicado
 
 ## Cuándo usarla
 
-- Al trabajar el consumo informado en la Unidad 5, para que «comparar precios» deje de ser un consejo y pase a ser una cuenta.
+- Al trabajar el consumo informado en la Unidad 7, para que «comparar precios» deje de ser un consejo y pase a ser una cuenta.
 - Antes de hablar de derechos del consumidor: hay que ver primero qué información hace falta para decidir bien.
 - Para desmontar la cuota mensual como argumento de venta, que es la técnica más común y la que más dinero cuesta.
 - Con un catálogo real en la mano —de una tienda de electrónica, de un supermercado— trabaja mejor que con datos inventados.

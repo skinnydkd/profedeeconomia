@@ -61,14 +61,14 @@ preguntas:
       - "Se acentúa: la inflación reduce el paro de forma cada vez más eficaz."
     correcta: 2
     explicacion: "Friedman (1968) y Phelps (1967) anticiparon que los trabajadores ajustan sus expectativas de inflación: si esperan precios más altos, exigen salarios más altos, las empresas suben precios y el paro vuelve a la NAIRU. A largo plazo, la curva de Phillips es vertical en la NAIRU y solo hay intercambio paro-inflación a corto plazo, mientras las expectativas se ajustan."
-  - enunciado: "La brecha salarial ajustada en España (en torno al 9 % según Eurostat) se diferencia de la brecha sin ajustar en que…"
+  - enunciado: "La brecha salarial ajustada se diferencia de la brecha sin ajustar en que…"
     opciones:
       - "La brecha ajustada compara hombres y mujeres con el mismo perfil (edad, educación, sector, jornada) y refleja la parte de la diferencia que no se explica por características observables."
       - "La brecha ajustada incluye solo a las mujeres con hijos, mientras que la sin ajustar incluye a todas."
       - "La brecha ajustada es una estimación oficial del INE y la sin ajustar es una estimación de los sindicatos."
       - "La brecha ajustada se calcula sobre salario bruto y la sin ajustar sobre salario neto."
     correcta: 0
-    explicacion: "La brecha sin ajustar (15-18 % en España) compara salarios medios directamente e incluye efectos como la segregación ocupacional o la parcialidad. La brecha ajustada (≈ 9 %) controla por características observables y refleja la parte residual atribuible a discriminación o factores menos visibles, como la penalización por maternidad (child penalty) documentada por Kleven et al. (2019)."
+    explicacion: "La brecha sin ajustar compara salarios medios directamente (en España, en torno al 9 % por hora según Eurostat y el 16,1 % en ganancia anual según el INE en 2024) e incluye efectos como la segregación ocupacional o la parcialidad. La brecha ajustada controla por características observables y refleja la parte residual atribuible a discriminación o factores menos visibles, como la penalización por maternidad (child penalty) documentada por Kleven et al. (2019)."
   - enunciado: "El rasgo histórico que diferencia el mercado laboral español del modelo nórdico de flexiguridad es…"
     opciones:
       - "España tiene salario mínimo y los países nórdicos no lo tienen."
@@ -101,4 +101,4 @@ preguntas:
     explicacion: "Activos = ocupados + parados = 21.000 + 3.000 = 24.000. Tasa de actividad = activos / población de 16+ × 100 = 24.000 / 40.000 × 100 = 60 %. Ojo al denominador: aquí es toda la población de 16 o más, no solo la activa."
 ---
 
-Test de autoevaluación de la Unidad 9 del libro de Eco 1BACH. Nueve preguntas que cubren las definiciones de la EPA (activos, ocupados, parados), el cálculo de las tasas de actividad y paro, el efecto desánimo, los cuatro tipos de desempleo, los efectos teóricos y la evidencia empírica del salario mínimo (Card-Krueger), la curva de Phillips y la NAIRU, la brecha salarial de género y la comparación entre el modelo laboral español y el nórdico de flexiguridad.
+Test de autoevaluación de la Unidad 9 del libro de Eco 1BACH. Trece preguntas que cubren las definiciones de la EPA (activos, ocupados, parados), el cálculo de las tasas de actividad y paro, el efecto desánimo, los cuatro tipos de desempleo, los efectos teóricos y la evidencia empírica del salario mínimo (Card-Krueger), la curva de Phillips y la NAIRU, la brecha salarial de género y la comparación entre el modelo laboral español y el nórdico de flexiguridad.

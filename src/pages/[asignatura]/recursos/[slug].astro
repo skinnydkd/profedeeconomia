@@ -1,13 +1,17 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
 import { ASIGNATURAS } from '@/lib/asignaturas';
-import { breadcrumbLd } from '@/lib/seo';
+import { breadcrumbLd, subjectTitle } from '@/lib/seo';
 import { getCollection, render } from 'astro:content';
 import { getLocale } from '@/i18n/locale';
 import { pickLocalizedEntry } from '@/i18n/content-locale';
 import { localizeAsignatura } from '@/i18n/asignaturas-ca';
 import HerramientaIsland from '@components/calculadoras/HerramientaIsland.astro';
+import { recursoCanonicoPorComponente } from '@/lib/herramientas';
+import { cargarFamilias } from '@/lib/ebau-familias';
+import { familiaDeCalculadora, slugFamilia } from '@/lib/ebau';
 import type { GetStaticPaths } from 'astro';
+import Breadcrumb from '@components/Breadcrumb.astro';
 
 export const getStaticPaths = (async () => {
   const all = await getCollection('recursos');
@@ -44,27 +48,39 @@ const unit = unitEs ? pickLocalizedEntry(unitEs, libroCaById, locale) : null;
 const unitSlug = unitEs?.id.split('/').pop()?.replace(/\.mdx?$/, '');
 
 const copy = {
-  es: { inicio: 'Inicio', recursos: 'Recursos', unidad: 'Unidad', kicker: 'Recurso interactivo', volver: 'Volver a la Unidad' },
-  ca: { inicio: 'Inici', recursos: 'Recursos', unidad: 'Unitat', kicker: 'Recurs interactiu', volver: 'Tornar a la Unitat' },
+  es: { inicio: 'Inicio', recursos: 'Recursos', unidad: 'Unidad', kicker: 'Recurso interactivo', volver: 'Volver a la Unidad', practica: 'Practica con ejercicios resueltos' },
+  ca: { inicio: 'Inici', recursos: 'Recursos', unidad: 'Unitat', kicker: 'Recurs interactiu', volver: 'Tornar a la Unitat', practica: 'Practica amb exercicis resolts' },
 }[locale];
 
 const recursoSlug = recursoEs.id.split('/').pop()?.replace(/\.mdx?$/, '') ?? recursoEs.id;
+// Solved-problem family practised with this calculator (published ones only).
+const familia = familiaDeCalculadora(await cargarFamilias(a.slug, locale), a.slug, recursoSlug);
+// When several subjects embed this tool, the losing twins point at the chosen
+// winner (RECURSO_CANONICO, §5.11); the page stays browsable.
+const publicadosEs = (await getCollection('recursos')).filter((x) => x.data.estado === 'publicado' && x.data.lang === 'es');
+const ganador = recursoEs.data.componente
+  ? recursoCanonicoPorComponente(publicadosEs).get(recursoEs.data.componente)
+  : undefined;
+const canonicalPath = ganador && ganador !== `/${recursoEs.data.asignatura}/recursos/${recursoSlug}/` ? ganador : undefined;
 const breadcrumb = breadcrumbLd([
   { name: copy.inicio, path: '/' },
   { name: a.shortLabel, path: `/${a.slug}/` },
   { name: copy.recursos, path: `/${a.slug}/recursos/` },
   { name: recurso.data.title, path: `/${a.slug}/recursos/${recursoSlug}/` },
-]);
+], locale);
 ---
 
-<BaseLayout title={recurso.data.seoTitle ?? `${recurso.data.title} — ${a.seoName}`} brandSuffix={false} description={recurso.data.descripcion} ogType="article" jsonLd={breadcrumb} contentLang={locale}>
+<BaseLayout title={recurso.data.seoTitle ?? subjectTitle(recurso.data.title, a)} brandSuffix={false} description={recurso.data.descripcion} ogType="article" jsonLd={breadcrumb} canonicalPath={canonicalPath} contentLang={recurso.data.lang} translated={recCaById.has(`${recursoEs.id}.ca`)}>
   <div class="container">
-    <nav class="breadcrumb">
-      <a href="/">{copy.inicio}</a> <span class="sep">›</span>
-      <a href={`/${a.slug}/`}>{a.shortLabel}</a> <span class="sep">›</span>
-      <a href={`/${a.slug}/recursos/`}>{copy.recursos}</a> <span class="sep">›</span>
-      <span>{recurso.data.title}</span>
-    </nav>
+    <Breadcrumb
+      locale={locale}
+      items={[
+        { name: copy.inicio, path: '/' },
+        { name: a.shortLabel, path: `/${a.slug}/` },
+        { name: copy.recursos, path: `/${a.slug}/recursos/` },
+        { name: recurso.data.title },
+      ]}
+    />
   </div>
 
   <section class="hero">
@@ -76,6 +92,13 @@ const breadcrumb = breadcrumbLd([
         <p class="meta">
           <a class="link" href={`/${a.slug}/libro/${unitSlug}/`}>
             {copy.volver} {unit.data.unidad}: {unit.data.title}
+          </a>
+        </p>
+      )}
+      {familia && (
+        <p class="meta">
+          <a class="link" href={`/${a.slug}/ebau/${slugFamilia(familia.id)}/`}>
+            {copy.practica}: {familia.data.title}
           </a>
         </p>
       )}
@@ -101,10 +124,6 @@ const breadcrumb = breadcrumbLd([
   .container { max-width: 1240px; margin: 0 auto; padding: 0 clamp(1.5rem, 4vw, 3rem); }
   .container--narrow { max-width: 820px; }
 
-  .breadcrumb { font-size: 0.92rem; color: var(--color-ink-mute); margin: 2rem 0; }
-  .breadcrumb a { color: var(--color-ink-mute); text-decoration: none; }
-  .breadcrumb a:hover { color: var(--color-terra); }
-  .breadcrumb .sep { margin: 0 0.5em; color: var(--color-mustard); }
 
   .hero { padding: 1rem 0 clamp(1.5rem, 4vw, 3rem); }
   h1 { max-width: 22ch; margin: 1rem 0 0.6rem; }
@@ -119,7 +138,7 @@ const breadcrumb = breadcrumbLd([
     font-variation-settings: "SOFT" 80;
   }
   .meta { font-family: var(--font-sans); font-size: 0.92rem; color: var(--color-ink-mute); }
-  .meta .link { color: var(--color-terra); text-decoration: none; border-bottom: 1px solid var(--color-line); }
+  .meta .link { color: var(--color-terra-ink); text-decoration: none; border-bottom: 1px solid var(--color-line); }
   .meta .link:hover { color: var(--color-terra-deep); border-bottom-color: var(--color-terra); }
 
   .player-wrap { padding: clamp(1rem, 3vw, 2rem) 0 clamp(2rem, 5vw, 4rem); }

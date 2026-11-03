@@ -1,6 +1,6 @@
 ---
 asignatura: eco-4eso
-unidad_relacionada: 10
+unidad_relacionada: 12
 title: "Embudo de validación"
 descripcion: "Cuenta cuánta gente llega a cada paso de tu proyecto, calcula la conversión de cada uno y encuentra el paso que pierde a más gente, que casi nunca es el último."
 tipo: calculadora
@@ -10,7 +10,7 @@ estado: publicado
 
 ## Cuándo usarla
 
-- Al validar el proyecto en la Unidad 10, cuando ya hay datos reales por pocos que sean.
+- Al validar el proyecto en la Unidad 12, cuando ya hay datos reales por pocos que sean.
 - Para separar las métricas que suben fácil —seguidores, visitas, «me gusta»— de las que deciden.
 - Después de una feria, un mercadillo o una campaña en redes, con los números de verdad delante.
 - Junto con la actividad de métricas de la unidad, que trabaja este mismo embudo sobre el papel.

@@ -5,11 +5,14 @@ interface Criterio { criterio: string; descripcion: string; competencia?: string
 interface Props { rubrica: Criterio[]; locale?: Locale; }
 const { rubrica, locale = 'es' } = Astro.props;
 const copy = {
-  es: { criterio: 'Criterio', valora: 'Qué se valora', competencia: 'Competencia' },
-  ca: { criterio: 'Criteri', valora: 'Què es valora', competencia: 'Competència' },
+  es: { criterio: 'Criterio', valora: 'Qué se valora', competencia: 'Competencia', aria: 'Rúbrica de evaluación' },
+  ca: { criterio: 'Criteri', valora: 'Què es valora', competencia: 'Competència', aria: "Rúbrica d'avaluació" },
 }[locale];
 ---
 {rubrica.length > 0 && (
+  <!-- Same scrolling box as the Markdown tables (global.css): at 320 px the
+       three columns pushed the page sideways. -->
+  <div class="tabla-scroll" role="region" tabindex="0" aria-label={copy.aria}>
   <table class="rubrica">
     <thead><tr><th>{copy.criterio}</th><th>{copy.valora}</th><th>{copy.competencia}</th></tr></thead>
     <tbody>
@@ -18,6 +21,7 @@ const copy = {
       ))}
     </tbody>
   </table>
+  </div>
 )}
 <style>
   .rubrica { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.95rem; }

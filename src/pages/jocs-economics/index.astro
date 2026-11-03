@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import JocsApp from '../../components/jocs-economics/JocsApp';
 import { getLocale } from '@/i18n/locale';
+import SectionHeader from '@components/SectionHeader.astro';
 
 const locale = getLocale(Astro.currentLocale);
 
@@ -21,9 +22,12 @@ const copy = {
     comoJuegaLabel: 'Cómo se juega:',
     comoJuegaText: 'responde preguntas cada vez más difíciles; fallar cuesta una vida.',
     comoGanaLabel: 'Cómo se gana:',
-    comoGanaText: 'tu puntuación cuenta para tu ranking individual y para la media de tu instituto.',
-    premiosLabel: 'Premios:',
-    premiosText: 'reconocimiento al mejor alumno y al mejor instituto de cada edición.',
+    comoGanaText: 'tu puntuación cuenta para tu ranking individual y para el de tu instituto, que suma sus 5 mejores partidas (una por alumno).',
+    docentesLabel: 'Para docentes:',
+    docentesText: 'el nombre y el instituto se ven en la clasificación pública. Pide al alumnado que use un alias, nunca su nombre completo.',
+    oficialLabel: 'Olimpiada oficial:',
+    oficialText: 'este concurso no es la Olimpiada de Economía que organizan las universidades. Para prepararla, tienes la sección',
+    oficialLink: 'Olimpiada',
     verRanking: 'Ver la clasificación',
   },
   ca: {
@@ -41,48 +45,48 @@ const copy = {
     comoJuegaLabel: 'Com es juga:',
     comoJuegaText: 'respon preguntes cada vegada més difícils; fallar costa una vida.',
     comoGanaLabel: 'Com es guanya:',
-    comoGanaText: 'la teua puntuació compta per al teu rànquing individual i per a la mitjana del teu institut.',
-    premiosLabel: 'Premis:',
-    premiosText: 'reconeixement al millor alumne i al millor institut de cada edició.',
+    comoGanaText: 'la teua puntuació compta per al teu rànquing individual i per al del teu institut, que suma les seues 5 millors partides (una per alumne).',
+    docentesLabel: 'Per a docents:',
+    docentesText: "el nom i l'institut es veuen en la classificació pública. Demana a l'alumnat que use un àlies, mai el seu nom complet.",
+    oficialLabel: 'Olimpíada oficial:',
+    oficialText: "aquest concurs no és l'Olimpíada d'Economia que organitzen les universitats. Per a preparar-la, tens la secció",
+    oficialLink: 'Olimpíada',
     verRanking: 'Veure la classificació',
   },
 }[locale];
 ---
 
 <BaseLayout title={copy.pageTitle} description={copy.description} contentLang={locale}>
-  <main class="olimpiadas">
-    <div class="container">
-      <nav class="breadcrumb"><a href="/">{copy.bcInicio}</a> <span class="sep">›</span> <span>{copy.bcCurrent}</span></nav>
-      <h1>{copy.heroLead} <span class="serif-italic-wonk accent">{copy.heroAccent}</span>.</h1>
-      <p class="lede">
-        {copy.ledePre} <strong>{copy.ledeStrong1}</strong> {copy.ledeMid}
-        <strong>{copy.ledeStrong2}</strong>. {copy.ledePost}
-      </p>
+  <div class="olimpiadas">
+    <SectionHeader
+      locale={locale}
+      style="padding-bottom: 2rem"
+      crumbs={[
+        { name: copy.bcInicio, path: '/' },
+        { name: copy.bcCurrent },
+      ]}
+    >
+      <Fragment slot="title">{copy.heroLead}{' '}<span class="serif-italic-wonk accent">{copy.heroAccent}</span>.</Fragment>
+      <Fragment slot="lede">{copy.ledePre}{' '}<strong>{copy.ledeStrong1}</strong> {copy.ledeMid}{' '}<strong>{copy.ledeStrong2}</strong>. {copy.ledePost}</Fragment>
       <ul class="como">
         <li><strong>{copy.comoJuegaLabel}</strong> {copy.comoJuegaText}</li>
         <li><strong>{copy.comoGanaLabel}</strong> {copy.comoGanaText}</li>
-        <li><strong>{copy.premiosLabel}</strong> {copy.premiosText}</li>
+        <li><strong>{copy.docentesLabel}</strong> {copy.docentesText}</li>
+        <li><strong>{copy.oficialLabel}</strong> {copy.oficialText} <a href="/olimpiada/" class="editorial-link">{copy.oficialLink}</a>.</li>
       </ul>
       <a class="ver-ranking" href="/jocs-economics/leaderboard/">{copy.verRanking} →</a>
-    </div>
+    </SectionHeader>
     <div class="game-mount"><JocsApp client:only="preact" /></div>
-  </main>
+  </div>
 </BaseLayout>
 
 <style is:global> body { margin: 0; } </style>
 <style>
-  .olimpiadas .container { max-width: 820px; margin: 0 auto; padding: 0 clamp(1.5rem, 4vw, 3rem); }
-  .breadcrumb { font-size: .92rem; color: var(--color-ink-mute); margin: 2rem 0; }
-  .breadcrumb a { color: var(--color-ink-mute); text-decoration: none; }
-  .breadcrumb .sep { margin: 0 .5em; color: var(--color-mustard); }
-  .kicker { font-family: var(--font-sans); font-size: .8rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--color-terra-deep); }
-  h1 { margin: .6rem 0 .8rem; }
   .accent { color: var(--color-terra); }
-  .lede { font-size: 1.2rem; color: var(--color-ink-soft); line-height: 1.55; }
-  .como { list-style: none; padding: 0; margin: 1.5rem 0; display: flex; flex-direction: column; gap: .6rem; }
+  .como { list-style: none; padding: 0; margin: 1.5rem 0; display: flex; flex-direction: column; gap: .6rem; max-width: 724px; }
   .como li { padding-left: 1.1rem; position: relative; color: var(--color-ink); }
   .como li::before { content: "→"; position: absolute; left: 0; color: var(--color-mustard); }
-  .ver-ranking { display: inline-block; margin: 0 0 2rem; color: var(--color-terra); font-weight: 600; text-decoration: none; }
+  .ver-ranking { display: inline-block; margin: 0; color: var(--color-terra-ink); font-weight: 600; text-decoration: none; }
   .ver-ranking:hover { text-decoration: underline; }
   .game-mount { margin-top: 1rem; }
 </style>

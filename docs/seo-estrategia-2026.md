@@ -276,9 +276,9 @@ Totes dues eren *self-canonical*, o siga que competien entre elles i Google es q
 
 Resultat al build: **22 pàgines consolidades** (11 eines × 2 idiomes), 22 que segueixen *self-canonical*, 0 amb `hreflang` contradictori.
 
-**El que queda obert i és decisió de Pau.** Les altres 11 eines tenen entre 2 i 5 bessons, així que no hi ha un destí únic i s'han deixat com estaven. El cas extrem és la calculadora de nòmina: **sis URL per a la mateixa eina** (`/herramientas/finanzas-personales/nomina/` i els recursos d'eco-4eso, taller-eco-3eso, gpe-bach, ipe1-fp i fopp-4eso), competint totes entre elles — eco-4eso a la posició 8,25 amb 260 impressions i taller-eco-3eso a la 13,8 amb 71. Consolidar-les vol dir triar qui ha de guanyar la consulta `calculadora de nómina`, i això és una decisió de producte, no de codi.
+**El que queda obert i és decisió de Pau** — ✅ **resolt al §5.11.** Les altres 11 eines tenen entre 2 i 5 bessons, així que no hi ha un destí únic i s'han deixat com estaven. El cas extrem és la calculadora de nòmina: **sis URL per a la mateixa eina** (`/herramientas/finanzas-personales/nomina/` i els recursos d'eco-4eso, taller-eco-3eso, gpe-bach, ipe1-fp i fopp-4eso), competint totes entre elles — eco-4eso a la posició 8,25 amb 260 impressions i taller-eco-3eso a la 13,8 amb 71. Consolidar-les vol dir triar qui ha de guanyar la consulta `calculadora de nómina`, i això és una decisió de producte, no de codi.
 
-**Una inconsistència menor coneguda:** les 22 URL consolidades continuen al `sitemap.xml`. Google segueix el `canonical` i les consolida igual, i filtrar-les exigiria duplicar la derivació dins d'`astro.config.mjs` (que no pot importar el `lib` de TypeScript). El senyal que compta ja és correcte; no compensa la fragilitat.
+**Una inconsistència menor coneguda** — ✅ **resolta al §5.9.** Les URL consolidades continuaven al `sitemap.xml`. Ací es va descartar filtrar-les perquè exigia duplicar la derivació dins d'`astro.config.mjs` (que no pot importar el `lib` de TypeScript). Eixe obstacle era real però evitable: no cal derivar res, n'hi ha prou amb llegir la `canonical` que la pàgina ja ha escrit al disc.
 
 ### 5.7 Sufix de marca sensible a la longitud — ✅ **fet**
 
@@ -306,7 +306,105 @@ Resultat: **de 839 a 1.678 entrades, del 50% al 100% de cobertura**, 0 duplicats
 
 **El que queda de veritat.** Els *hubs* CA posicionen bé (`/ca/eco-4eso/` a la 6,45 amb un 18,37% de CTR; `/ca/taller-eco-3eso/` a la 5,29 amb un 42,86%). Les unitats de llibre CA que van mal ho fan sobre termes generals en català (`autoconeixement` 68 impr pos 43,7; `emprenedoria` 62 impr pos 33,9), on la competència és de llocs catalans consolidats. Això és autoritat i temps, no un defecte tècnic.
 
-**Un candidat per a més avant:** els *slugs* de les URL `/ca/` són en castellà (`/ca/fopp-4eso/libro/01-autoconocimiento-identidad/` per a la consulta `autoconeixement`). Traduir-los és un canvi estructural amb redireccions i no s'ha tocat.
+**Un candidat per a més avant** (descartat de moment, vegeu el §5.11): els *slugs* de les URL `/ca/` són en castellà (`/ca/fopp-4eso/libro/01-autoconocimiento-identidad/` per a la consulta `autoconeixement`). Traduir-los és un canvi estructural amb redireccions i no s'ha tocat.
+
+### 5.9 El sitemap demanava pàgines que Google no indexarà mai — ✅ **fet**
+
+**El símptoma.** A Search Console, les pàgines no indexades passen d'unes 180 a **1.167** entre el 27 i el 28 d'agost, amb les indexades planes a 860. El gros del salt és **esperat i sa**: el §5.8 va entregar ~840 URL `/ca/` de colp i Google les descobrix totes alhora, però indexar-les va a un altre ritme. No es va desindexar res — el que va créixer és el denominador.
+
+**El defecte que sí que hi havia.** Un `sitemap.xml` és la llista de pàgines que li demanes a Google que indexe, així que una pàgina que apunta la seua `canonical` a una altra URL no hi pinta res: Search Console la fitxa com a *«Página alternativa con etiqueta canónica adecuada»* mentre se li continue entregant, i allí es queda. N'hi havia de dos tipus:
+
+- Les **23 fitxes de `/herramientas/`** consolidades pel §5.6, que apunten al seu bessó d'assignatura, i les seues **23 bessones `/ca/`**, que el mirall del §5.8 afegia darrere.
+- **5 pàgines `/ca/`** que canonicalitzen al castellà perquè el seu cos és castellà a propòsit (`/ca/olimpiada/banco/`, `/ca/olimpiada/lecturas/`, `/ca/olimpiada/simulacros/`, `/ca/jocs-economics/leaderboard/`, `/ca/edmn-2bach/ebau/examenes/`). El mirall replicava tota pàgina que existira al disc, i sota el *fallback rewrite* d'Astro una pàgina sense traduir també s'escriu a `/ca/`. Emparellar-les li donava a la `canonical` i a l'`hreflang` versions contràries dels fets.
+
+**Implementat així.** El *hook* d'`astro:build:done` llig ara la `canonical` i el `<meta name="robots">` del `<head>` que cada pàgina **ja ha escrit al disc**, i trau del sitemap tot el que no siga *self-canonical* o siga `noindex`. No es deriva res ni es manté cap llista: una pàgina que comence o deixe de canonicalitzar a una altra banda es corregix sola al build següent. La lògica de *parsing* viu a `isIndexableHtml()`, funció pura sobre la cadena HTML, per poder provar-la sense un build. **Falla cap al costat segur**: una pàgina que no es puga llegir compta com a indexable, o siga que una sorpresa ací no pot encongir el sitemap en silenci.
+
+Les pàgines no desapareixen del web ni deixen de navegar-se: només deixem de demanar-li a Google que indexe una URL que ell mateix ja consolida.
+
+**Resultat al build:** de **2.030 a 1.979 entrades** (51 fora: 23 + 23 + 5), **0 entrades no *self-canonical***, i les **1.979 alternates `hreflang` apunten totes** a una pàgina que existix, és *self-canonical* i està al sitemap. Cap pàgina `noindex` estava al sitemap (el filtre de la integració ja les para): eixa meitat de la comprovació és xarxa de seguretat per al que vinga.
+
+**El que això no arregla.** Les ~840 URL `/ca/` legítimes continuen a la cua d'indexació i açò no les accelera. Si a la revisió d'octubre continuen a *«Descubierta: actualmente sin indexar»*, el problema ja no serà tècnic sinó d'autoritat, i toca mirar el §5.8.
+
+### 5.10 Revisió de GSC d'octubre (10 jul – 9 oct 2026) — ✅ **fet**
+
+**Les xifres.** 7.910 clics, 114.000 impressions, CTR 6,9 %, posició 6,3. El salt és l'1 de setembre (de ~8 a 200-400 clics/dia laborable), amb caps de setmana a la meitat. Cinc URL fan el 78 % dels clics: `/ipe2-fp/` (2.365), `/fopp-4eso/` (1.676), la portada (881), `/ipe1-fp/` (842) i `/eco-4eso/` (436). Les 12 setmanes barregen dates d'abans i de després del §5.3, així que no serveixen per a jutjar els títols d'aquell apartat: això ho farà la comparació de 28 dies del §6.
+
+**El que s'ha canviat:**
+
+- **El PDF, al hub.** La intenció `… libro pdf gratis` aterra al hub i no a `/libro/` (27.108 impressions a `/ipe2-fp/` davant 101 a `/ipe2-fp/libro/`). El hub ara du el mateix botó de descàrrega que `/libro/`, sota el lema, i la `meta description` diu «Material gratuito… libro en PDF».
+- **«PDF gratis» al `<title>`** dels quatre hubs on ho demanen les consultes: IPE I, IPE II, FOPP i Eco 4ESO (ES i CA). La resta no tenen eixa demanda a GSC i no s'han tocat. Un test ho fixa.
+- **IPE no és LOMLOE.** El títol d'IPE I deia «recursos LOMLOE», i el lema del hub, la `meta description`, la resposta de la FAQ «¿Qué normativa regula…?» (també dins del `FAQPage` JSON-LD), l'`educationalFramework` del `Course` JSON-LD i la descripció de `/libro/` deien «LOMLOE» a les dues assignatures de FP. Els mòduls de FP depenen de la LOFP (LO 3/2022, RD 659/2023). Helper `leyCurricular()` a `asignaturas.ts`, amb test. Les plantilles d'impressió i `evaluacion` es van corregir a part, amb els PDF d'IPE regenerats (#355). A més, l'avaluació d'IPE parla ara de resultats d'aprenentatge i no de competències específiques (#356).
+- **Un esquema visible per a Google.** Els diagrames del llibre són SVG en línia, que ni Google Imatges ni les miniatures de resultats arriben a veure. Nou camp opcional `imagen` al frontmatter de `libro`: va a `og:image` i a la `image` de l'Article JSON-LD. Per ara només el du `taller-eco-3eso/libro/02-agentes-flujo-circular` (5.315 impressions, CTR 1,05 %), amb captures PNG de l'esquema a `public/esquemas/` (ES i CA). Les captures són estàtiques: si canvia `FlujoCircular.astro`, cal tornar a fer-les.
+- **Art. 21 LPRL al cos de la unitat** `ipe1-fp/libro/08` (ES i CA): arriben consultes del tipus `boe ley 31/1995 artículo 21 riesgo grave e inminente`, i fins ara l'article només apareixia a les diapositives.
+
+**Comprovat i sense canvis:**
+
+- **Mòbil.** El CTR en mòbil (4,5 %) és la meitat que en ordinador (8,8 %), però no és un problema tècnic. Les dades de camp de CrUX a `/ipe2-fp/` són LCP 830 ms, INP 72 ms i CLS 0, i Lighthouse en mòbil dona 100 a accessibilitat, bones pràctiques i SEO. La diferència és d'intenció: en mòbil hi ha més alumnat buscant el PDF de l'editorial.
+- **`/ca/`.** Hreflang recíproc, canonical propi i títol en valencià a `/ca/fopp-4eso/libro/01-autoconocimiento-identidad/` (posició 23). Continua sent autoritat i temps (§5.8).
+- **No s'ha posat «los 3 agentes económicos» al títol** malgrat les consultes: la unitat i l'esquema en presenten quatre (amb el sector exterior), i el títol mentiria.
+- **No s'ha posat «qué es» al títol de FOPP**, tot i les ~800 impressions sense clic de `que es fopp`: és una consulta de definició (§7), i el hub ja l'expandix a l'`<h1>`, a la `meta description` i a la FAQ.
+- **Soroll:** les consultes `site:` són comprovacions pròpies; les consultes conversacionals («dámelo en pdf», «soy alumno») venen del Mode IA de Google; les impressions dels EUA i d'Àsia són bots.
+
+### 5.11 Els pendents del §5.6-5.8 — ✅ **fet** (tret dels slugs en valencià, descartat de moment)
+
+**Eines duplicades entre assignatures (tanca el §5.6).** 28 eines vivien a entre 2 i 6 URL d'assignatura cadascuna. La nòmina en tenia sis, més la fitxa de `/herramientas/`. Les germanes comparteixen el giny i la intenció de cerca, però no el text: la introducció pròpia de cada assignatura coincideix només un 2-5 % (40 % aprox. comptant el giny, 54 % amb la fitxa de `/herramientas/`). Totes eren *self-canonical* i competien entre elles a GSC (la nòmina: 939 impressions a eco-4eso, 227 a taller-eco-3eso i 169 a gpe-bach).
+
+`RECURSO_CANONICO` (`src/lib/herramientas.ts`) tria una guanyadora per eina amb una regla fixa. Si la germana amb més impressions a GSC (jul-oct 2026) en té almenys 20, guanya ella (8 eines). Si no, guanya l'assignatura on l'eina encaixa millor al currículum (20 eines). Les germanes perdedores i la fitxa de `/herramientas/` apunten a la guanyadora amb `rel=canonical`, deixen d'emetre hreflang i surten del sitemap. Les pàgines continuen navegables. Un test falla si apareix una germana nova sense decisió, o si una guanyadora deixa d'estar publicada.
+
+Les eleccions per encaix curricular són revisables: és una línia per eina al mapa.
+
+**Sufix d'assignatura sensible a la longitud (tanca el residu del §5.7).** 1.339 dels 2.195 títols indexables passaven dels 60 caràcters, i 1.337 per culpa del sufix (`— Economía y Emprendimiento 4.º ESO`). `subjectTitle()` (`src/lib/seo.ts`) prova per ordre:
+
+1. el nom complet;
+2. l'etiqueta curta (`— Eco 4ESO`);
+3. res.
+
+S'aplica a unitats del llibre, activitats, dinàmiques, tests, reptes i recursos. Els `seoTitle` escrits a mà no canvien. Uns 830 títols queden dins del límit. Els ~500 restants són llargs pel títol mateix: Google els talla, però en compta totes les paraules. Escurçar-los és feina d'autoria i no compensa títol a títol.
+
+**Esquema de cada unitat per a Google (amplia el §5.10).** `scripts/build-esquemas.mjs` (`npm run build:esquemas`) captura el primer diagrama de cada unitat del llibre, en ES i CA, i el guarda a `public/esquemas/<asignatura>/<unidad>[.ca].png`. La unitat el troba pel nom del fitxer i el posa a `og:image` i a l'`image` de l'Article JSON-LD. El camp `imagen` del frontmatter queda per a triar un altre esquema. Es torna a executar quan canvie un diagrama, com els PDF.
+
+**Slugs en valencià (§5.8): descartat de moment.** Les pàgines `/ca/` les genera el *fallback rewrite* d'Astro amb la mateixa ruta que la castellana. Traduir els slugs voldria dir:
+- unes 1.000 redireccions 301;
+- rutes pròpies per a `/ca/`;
+- reescriure canonical, hreflang, sitemap i tots els enllaços interns.
+
+Tot això a meitat de curs, per a un senyal de rànquing menor (el slug) en una secció de ~745 impressions al trimestre. Es reprendrà si `/ca/` guanya pes a GSC o si alguna consulta en valencià amb volum queda encallada pel slug.
+
+### 5.12 Exercicis resolts d'EDMN per família — ✅ **publicat**, pendent de mesurar
+
+**Per què.** A GSC (20 jul – 19 oct 2026), EDMN sumava 458 impressions visibles en tres mesos i cap per a consultes de concepte com `punto muerto ejercicios resueltos` o `van y tir ejercicios resueltos`. La calculadora de punt mort estava en la posició 14,5. Els 14 problemes resolts del quadern EBAU vivien tots en una sola URL, `/edmn-2bach/ebau/`. Disseny: `docs/superpowers/specs/2026-10-22-edmn-ejercicios-resueltos-design.md`.
+
+**Què s'ha fet.** Una pàgina per família sota `/edmn-2bach/ebau/[slug]/` (ES i `/ca/`), amb formulari, de 4 a 5 problemes de fàcil a tipus examen i errors típics. Els problemes viuen només en la família: el quadern web hi enllaça i l'imprés els incrusta.
+
+| Família | URL | Publicada | Contingut complet |
+|---|---|---|---|
+| Costos i punt mort | `/edmn-2bach/ebau/punto-muerto-ejercicios-resueltos/` | 22/10 (#360) | 27/10 (#366) |
+| Productivitat | `/edmn-2bach/ebau/productividad-ejercicios-resueltos/` | 22/10 (#360) | 27/10 (#369) |
+| VAN, TIR i payback | `/edmn-2bach/ebau/van-tir-payback-ejercicios-resueltos/` | 22/10 (#360) | 27/10 (#367) |
+| Balanç i PiG | `/edmn-2bach/ebau/balance-cuenta-resultados-ejercicios-resueltos/` | 22/10 (#360) | 26/10 (#365) |
+| Ràtios i PMM | `/edmn-2bach/ebau/ratios-fondo-maniobra-ejercicios-resueltos/` | 22/10 (#360) | 27/10 (#368) |
+
+**Indexació (27/10).** El host canònic és `www.profedeeconomia.es`: l'apex respon 308 cap a `www`, i GSC marca l'apex com a «Error de redirecció». Cal inspeccionar sempre la URL amb `www`. Estat a GSC i sol·licitud d'indexació:
+
+| Família | Estat a GSC el 27/10 | Indexació demanada |
+|---|---|---|
+| Punt mort | Google no la coneix | ✅ 27/10 |
+| Productivitat | Google no la coneix | ✅ 27/10 |
+| VAN, TIR i payback | Indexada (amb el contingut anterior al #367) | ✅ 27/10, per a tornar-la a rastrejar |
+| Balanç i PiG | Descoberta, sense indexar | ✅ 27/10 |
+| Ràtios i PMM | Google no la coneix | ❌ error de GSC, probablement la quota diària: tornar-ho a provar el 28/10 |
+
+Les 10 URL (ES i `/ca/`) són al sitemap, així que Google les trobarà igualment; la sol·licitud només n'avança el rastreig.
+
+**Punts de control** (GSC filtrat per pàgina, consulta principal de cada família):
+
+| Quan | Què mirar | Objectiu |
+|---|---|---|
+| 26/11/2026 (30 dies) | Impressions i posició per a «[concepte] ejercicios resueltos» | Que hi haja impressions on abans no n'hi havia cap |
+| Abril 2027 | Posició de la consulta principal de cada família | Top 10 |
+| Maig 2027 | Visites d'EDMN des de cercadors (Vercel Analytics, ES + CA) | Per damunt del màxim d'octubre de 2026 (~120/setmana) |
+
+Si alguna família no trau impressions al primer control, mirar primer si està indexada (Inspecció d'URL) abans de tocar títols o contingut.
 
 ---
 

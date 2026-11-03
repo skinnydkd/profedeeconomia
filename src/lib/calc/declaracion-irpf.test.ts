@@ -78,17 +78,24 @@ describe('simularDeclaracion', () => {
     expect(conRetenciones.aDevolver).toBe(true);
   });
 
-  it('cuotaIRPF is coherent with calcularIRPF on the same taxable base', () => {
+  it('cuotaIRPF is coherent with calcularIRPF on the same net income', () => {
     const r = simularDeclaracion({ rendimientosTrabajo: 24000, retencionesPracticadas: 0 });
-    // The simulator exposes the taxable base it built; calcularIRPF on it must match.
-    const directo = calcularIRPF(r.baseImponible, { rendimientoNetoTrabajo: r.baseImponible });
+    // The simulator exposes the net work income it built; calcularIRPF on it must match.
+    const directo = calcularIRPF(r.rendimientoNetoTrabajo, { rendimientoNetoTrabajo: r.rendimientoNetoTrabajo });
     expect(r.cuotaIRPF).toBeCloseTo(directo.cuota, 6);
   });
 
-  it('the taxable base is the gross work income minus Social Security contributions', () => {
+  it('the taxable base is the net work income minus the 2.000 € and the reduction', () => {
     const r = simularDeclaracion({ rendimientosTrabajo: 24000, retencionesPracticadas: 0 });
     expect(r.cotizaciones).toBeGreaterThan(0);
-    expect(r.baseImponible).toBeCloseTo(24000 - r.cotizaciones, 6);
+    expect(r.rendimientoNetoTrabajo).toBeCloseTo(24000 - r.cotizaciones, 6);
+    expect(r.otrosGastos).toBe(2000);
+    expect(r.baseImponible).toBeCloseTo(r.rendimientoNetoTrabajo - 2000 - r.reduccion, 6);
+  });
+
+  it('matches the reference quota for 24.000 € (art. 19.2.f and art. 20 LIRPF)', () => {
+    const r = simularDeclaracion({ rendimientosTrabajo: 24000, retencionesPracticadas: 0 });
+    expect(r.cuotaIRPF).toBeCloseTo(3243, 2);
   });
 
   it('basic savings income (capital mobiliario) raises the quota', () => {
@@ -118,5 +125,36 @@ describe('simularDeclaracion', () => {
     expect(r.aDevolver).toBe(true);
     expect(r.importe).toBeGreaterThan(0);
     expect(r.importe).toBeCloseTo(probe.cuotaIRPF * 0.1, 4);
+  });
+});
+
+describe('earned-income deduction (DA 61.ª LIRPF, RDL 5/2026)', () => {
+  it('a minimum-wage earner (17.094 €) owes 0 and gets the 524 € withheld back', () => {
+    const r = simularDeclaracion({ rendimientosTrabajo: 17094, retencionesPracticadas: 524 });
+    expect(r.deduccionTrabajo).toBeCloseTo(590.89, 1);
+    expect(r.cuotaIRPF).toBeCloseTo(0, 1);
+    expect(r.aDevolver).toBe(true);
+    expect(r.importe).toBeCloseTo(524, 0);
+  });
+
+  it('matches the reference quotas above the SMI', () => {
+    expect(simularDeclaracion({ rendimientosTrabajo: 18000, retencionesPracticadas: 0 }).cuotaIRPF).toBeCloseTo(623.82, 1);
+    expect(simularDeclaracion({ rendimientosTrabajo: 19000, retencionesPracticadas: 0 }).cuotaIRPF).toBeCloseTo(1354.5, 1);
+  });
+
+  it('does not apply from 20.048,45 € of gross earned income', () => {
+    const r = simularDeclaracion({ rendimientosTrabajo: 21000, retencionesPracticadas: 0 });
+    expect(r.deduccionTrabajo).toBe(0);
+  });
+
+  it('never takes the quota below zero', () => {
+    const r = simularDeclaracion({ rendimientosTrabajo: 15000, retencionesPracticadas: 0 });
+    expect(r.cuotaIRPF).toBeGreaterThanOrEqual(0);
+    expect(r.deduccionTrabajo).toBeLessThanOrEqual(590.89);
+  });
+
+  it('does not apply when the other income goes over 6.500 €', () => {
+    const r = simularDeclaracion({ rendimientosTrabajo: 17094, retencionesPracticadas: 0, rendimientosCapital: 7000 });
+    expect(r.deduccionTrabajo).toBe(0);
   });
 });

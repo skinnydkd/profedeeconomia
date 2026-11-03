@@ -9,11 +9,11 @@ agrupacion: "individual"
 competencias_clave: [STEM, CPSAA, CD]
 competencias_especificas: [RA3]
 solucion:
-  - "Pas 1 (cotitzacions del treballador): base de cotització = salari brut mensual = **1.500,00 €**. Contingències comunes: 1.500 × 4,70 % = **70,50 €**. Desocupació: 1.500 × 1,55 % = **23,25 €**. Formació professional: 1.500 × 0,10 % = **1,50 €**. Total cotitzacions treballador: **95,25 €**."
+  - "Pas 1 (cotitzacions del treballador): base de cotització = salari brut mensual = **1.500,00 €**. Contingències comunes: 1.500 × 4,70 % = **70,50 €**. Desocupació: 1.500 × 1,55 % = **23,25 €**. Formació professional: 1.500 × 0,10 % = **1,50 €**. MEI: 1.500 × 0,15 % = **2,25 €**. Total cotitzacions treballador: **97,50 €**."
   - "Pas 2 (retenció IRPF): 1.500 × 8,00 % = **120,00 €** (retenció a compte, estimada per a esta situació)."
-  - "Pas 3 (salari net): 1.500,00 − 95,25 − 120,00 = **1.284,75 €** mensuals que arriben al banc."
-  - "Pas 4 (cotitzacions a càrrec de l'empresa): contingències comunes 23,60 % → 1.500 × 0,236 = 354,00 €. Desocupació 5,50 % → 82,50 €. FOGASA 0,20 % → 3,00 €. Formació professional 0,60 % → 9,00 €. Total cotitzacions empresa: **448,50 €**."
-  - "Pas 5 (cost total mensual per a l'empresa): 1.500,00 + 448,50 = **1.948,50 €**. És a dir, l'empresa desemborsa 1.948,50 € al mes per un treballador el net del qual és 1.284,75 €. La diferència (663,75 €) són les cotitzacions de les dues parts més la retenció d'IRPF."
+  - "Pas 3 (salari net): 1.500,00 − 97,50 − 120,00 = **1.282,50 €** mensuals que arriben al banc."
+  - "Pas 4 (cotitzacions a càrrec de l'empresa): contingències comunes 23,60 % → 1.500 × 0,236 = 354,00 €. Desocupació 5,50 % → 82,50 €. FOGASA 0,20 % → 3,00 €. Formació professional 0,60 % → 9,00 €. MEI 0,75 % → 11,25 €. Total cotitzacions empresa: **459,75 €**."
+  - "Pas 5 (cost total mensual per a l'empresa): 1.500,00 + 459,75 = **1.959,75 €**, més la cotització per accidents de treball i malalties professionals, que depén de l'activitat de l'empresa. És a dir, l'empresa desemborsa almenys 1.959,75 € al mes per un treballador el net del qual és 1.282,50 €. La diferència (677,25 €) són les cotitzacions de les dues parts més la retenció d'IRPF."
 lang: ca
 estado: publicado
 slug: "asignaturas/ipe1-fp/actividades/ejercicio-u6-nomina-bruto-neto-coste-empresa.ca"
@@ -31,6 +31,7 @@ Per a calcular les cotitzacions i la retenció s'apliquen els **tipus vigents el
 | Desocupació (contracte indefinit) | 1,55 % | 5,50 % |
 | Formació professional | 0,10 % | 0,60 % |
 | FOGASA | — | 0,20 % |
+| MEI (mecanisme d'equitat intergeneracional) | 0,15 % | 0,75 % |
 
 La retenció estimada d'IRPF per a la situació d'Ana és del **8,00 %** sobre el salari brut mensual.
 

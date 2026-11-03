@@ -3,12 +3,15 @@
  * A printable student worksheet / observation sheet. Same print isolation as
  * RoleCard. Use for tables, blanks to fill in, observation rubrics.
  */
+import { getLocale } from '@/i18n/locale';
+import { t } from '@/i18n/ui';
 interface Props { titulo: string; subtitulo?: string; }
 const { titulo, subtitulo } = Astro.props;
+const locale = getLocale(Astro.currentLocale);
 ---
 <div class="ficha print-block" data-print>
   <div class="ficha__head">
-    <span class="ficha__tag">Ficha del alumno</span>
+    <span class="ficha__tag">{t('ficha.tag', locale)}</span>
     <h4 class="ficha__title">{titulo}</h4>
     {subtitulo && <p class="ficha__sub">{subtitulo}</p>}
   </div>

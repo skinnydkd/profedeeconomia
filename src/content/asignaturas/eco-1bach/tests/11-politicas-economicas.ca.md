@@ -9,7 +9,7 @@ estado: publicado
 preguntas:
   - enunciado: "Quina d'estes afirmacions és un enunciat d'economia normativa?"
     opciones:
-      - "El PIB espanyol va créixer un 2,5 % en 2024 segons l'INE."
+      - "El PIB espanyol va créixer un 3,7 % en 2024 segons l'INE."
       - "Una pujada del salari mínim del 10 % reduiria l'ocupació juvenil entre un 1 % i un 3 %."
       - "El salari mínim hauria de pujar fins al 60 % del salari mitjà per a garantir la dignitat dels treballadors."
       - "La taxa d'atur juvenil a Espanya es va situar en el 26 % en l'últim trimestre."
@@ -31,7 +31,7 @@ preguntas:
       - "1,8"
     correcta: 1
     explicacion: "k = 1 / (1 − c) = 1 / (1 − 0,8) = 1 / 0,2 = 5. Un euro de despesa pública addicional acaba arrossegant 5 euros de PIB en el model simple sense impostos ni sector exterior. En economies obertes el multiplicador realista és bastant menor."
-  - enunciado: "Espanya va tancar 2024 amb un dèficit al voltant del 3,0 % del PIB i un deute públic pròxim al 107 % del PIB. La nova regla fiscal europea aprovada en 2024…"
+  - enunciado: "Espanya va tancar 2024 amb un dèficit del 3,2 % del PIB i un deute públic del 101,7 % del PIB. La nova regla fiscal europea aprovada en 2024…"
     opciones:
       - "Suprimix els topalls del 3 % de dèficit i 60 % de deute."
       - "Manté eixos topalls com a referència última, però substituïx els terminis uniformes per sendes plurianuals pactades país a país."

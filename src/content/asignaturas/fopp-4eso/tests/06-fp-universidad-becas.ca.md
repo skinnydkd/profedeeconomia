@@ -31,15 +31,15 @@ preguntas:
       - "35.000-40.000 € anuals."
     correcta: 2
     explicacion: "Els tècnics superiors d'Informàtica (DAW, DAM, ASIR) són la franja salarial més alta de l'FP d'entrada segons AEFI 2024: 24.000-28.000 € bruts anuals el primer any, per damunt de molts graus universitaris saturats."
-  - enunciado: "En la EBAU, com es calcula la nota d'accés (sobre 10) que servix per a entrar a la universitat?"
+  - enunciado: "En la PAU, com es calcula la nota d'accés (sobre 10) que servix per a entrar a la universitat?"
     opciones:
       - "100 % nota mitjana de Batxillerat."
-      - "50 % mitjana de Batxillerat + 50 % mitjana de la fase d'accés EBAU."
-      - "60 % mitjana de Batxillerat + 40 % mitjana de la fase d'accés EBAU."
-      - "40 % mitjana de Batxillerat + 60 % mitjana de la fase d'accés EBAU."
+      - "50 % mitjana de Batxillerat + 50 % mitjana de la fase d'accés PAU."
+      - "60 % mitjana de Batxillerat + 40 % mitjana de la fase d'accés PAU."
+      - "40 % mitjana de Batxillerat + 60 % mitjana de la fase d'accés PAU."
     correcta: 2
-    explicacion: "La fórmula oficial és Nota d'accés = (0,6 × mitjana de Batxillerat) + (0,4 × mitjana de la fase d'accés EBAU). A partir d'ahí, les ponderacions de la fase voluntària poden sumar fins a 4 punts més, aconseguint la nota màxima de 14."
-  - enunciado: "Les ponderacions de les matèries específiques en la EBAU funcionen així:"
+    explicacion: "La fórmula oficial és Nota d'accés = (0,6 × mitjana de Batxillerat) + (0,4 × mitjana de la fase d'accés PAU). A partir d'ahí, les ponderacions de la fase voluntària poden sumar fins a 4 punts més, aconseguint la nota màxima de 14."
+  - enunciado: "Les ponderacions de les matèries específiques en la PAU funcionen així:"
     opciones:
       - "Cada universitat publica si una matèria pondera 0,1 o 0,2 per a cada grau concret; la mateixa assignatura pot valdre 0,2 per a Enginyeria i 0,1 o res per a Filologia."
       - "Totes les matèries ponderen igual (0,1) per a tots els graus."
@@ -76,7 +76,7 @@ preguntas:
     correcta: false
     explicacion: "És just al revés i eixe error costa beques cada any. La beca MEFP se sol·licita habitualment entre març i maig, abans de matricular-se, amb dades provisionals. Esperar a tindre-ho tot tancat sol significar perdre el termini."
   - tipo: numerico
-    enunciado: "Un alumne té una mitjana de Batxillerat de 8,0 i obté un 7,0 en la fase d'accés de la EBAU. Amb la fórmula oficial (0,6 × mitjana de Batxillerat + 0,4 × fase d'accés), quina és la seua nota d'accés sobre 10 (2 decimals)?"
+    enunciado: "Un alumne té una mitjana de Batxillerat de 8,0 i obté un 7,0 en la fase d'accés de la PAU. Amb la fórmula oficial (0,6 × mitjana de Batxillerat + 0,4 × fase d'accés), quina és la seua nota d'accés sobre 10 (2 decimals)?"
     respuesta: 7.6
     tolerancia: 0.05
     unidad: "punts"

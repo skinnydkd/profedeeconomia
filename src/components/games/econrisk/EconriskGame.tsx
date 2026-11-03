@@ -370,7 +370,7 @@ function EconriskGameInner() {
       {/* Main area: map + side panel */}
       <div class="er-body">
         {/* Map area */}
-        <main class="er-map-area">
+        <div class="er-map-area">
           <div class="er-map-wrap">
             <MapView
               state={state}
@@ -400,7 +400,7 @@ function EconriskGameInner() {
               ))}
             </div>
           )}
-        </main>
+        </div>
 
         {/* Side panel */}
         <SidePanel state={state} selectedId={selectedId} />

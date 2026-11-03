@@ -1,0 +1,151 @@
+---
+asignatura: edmn-2bach
+orden: 3
+title: "Selección de inversiones: VAN, TIR y payback"
+seoTitle: "Ejercicios resueltos de VAN, TIR y payback (EBAU EDMN)"
+descripcion: "VAN, TIR y plazo de recuperación (payback): problemas tipo EBAU de selección de inversiones resueltos paso a paso, con interpretación."
+unidad_relacionada: 9
+calculadora: calculadora-van-tir
+lang: es
+estado: publicado
+---
+
+Para decidir si una inversión merece la pena hay que comparar lo que cuesta hoy con lo que devolverá en el futuro. El **VAN** y la **TIR** tienen en cuenta que un euro de dentro de tres años vale menos que uno de hoy; el **plazo de recuperación** (payback) solo cuenta cuánto se tarda en recuperar el dinero.
+
+## Formulario
+
+- **Valor actual neto:** VAN = −A + Q₁/(1 + k) + Q₂/(1 + k)² + … + Qₙ/(1 + k)ⁿ
+- **A:** desembolso inicial (en el año 0, no se descuenta) · **Qₜ:** flujo de caja del año t · **k:** coste del capital o tipo de descuento, en tanto por uno
+- **Tasa interna de rentabilidad (TIR):** el tipo r que hace VAN = 0. Con dos años, se resuelve como ecuación de segundo grado con x = 1 + r
+- **Plazo de recuperación (payback):** años hasta que los flujos acumulados, sin descontar, igualan el desembolso. Con fracción de año: años completos + (lo que falta / flujo del año siguiente)
+- **Criterios de decisión:** se acepta si VAN > 0 o si TIR > k; entre varios proyectos, el de mayor VAN; con el payback, el que recupera antes
+
+## Problemas resueltos
+
+### Problema 1 — VAN y payback, comparación de dos proyectos
+
+**Enunciado.** Una empresa estudia dos inversiones excluyentes con un coste del capital del 10 %.
+
+| Proyecto | Desembolso | Flujo año 1 | Flujo año 2 | Flujo año 3 |
+| --- | --- | --- | --- | --- |
+| A | 30.000 | 12.000 | 15.000 | 18.000 |
+| B | 30.000 | 20.000 | 12.000 | 8.000 |
+
+a) Calcula el VAN de cada proyecto. b) Calcula el plazo de recuperación de cada uno. c) Decide cuál conviene según el VAN.
+
+**Solución.**
+
+a) VAN del proyecto A (k = 0,10):
+
+> VAN_A = −30.000 + 12.000/1,10 + 15.000/1,10² + 18.000/1,10³
+> = −30.000 + 12.000/1,10 + 15.000/1,21 + 18.000/1,331
+> = −30.000 + 10.909,09 + 12.396,69 + 13.523,67
+> = **6.829,45 euros**
+
+VAN del proyecto B:
+
+> VAN_B = −30.000 + 20.000/1,10 + 12.000/1,21 + 8.000/1,331
+> = −30.000 + 18.181,82 + 9.917,36 + 6.010,52
+> = **4.109,70 euros**
+
+b) Plazo de recuperación (con los flujos sin descontar):
+
+Proyecto A: tras el año 1 se han recuperado 12.000; tras el año 2, 12.000 + 15.000 = 27.000 (faltan 3.000); en el año 3 el flujo es 18.000.
+
+> Payback_A = 2 años + (3.000 / 18.000) = 2 + 0,1667 = **2,17 años (≈ 2 años y 2 meses)**
+
+Proyecto B: tras el año 1, 20.000; tras el año 2, 20.000 + 12.000 = 32.000, que ya supera los 30.000. Faltaban 10.000 al empezar el año 2.
+
+> Payback_B = 1 año + (10.000 / 12.000) = 1 + 0,8333 = **1,83 años (≈ 1 año y 10 meses)**
+
+**Interpretación.** Ambos proyectos tienen VAN positivo, así que los dos son rentables al 10 %. Según el **criterio del VAN, conviene el proyecto A**, que genera 6.829,45 euros de valor actual neto frente a los 4.109,70 de B; A crea más riqueza para la empresa. En cambio, el payback favorece a B (recupera el desembolso en 1,83 años frente a 2,17 de A), porque concentra los flujos al principio. Si la empresa prioriza la rentabilidad total, elige A; si prioriza recuperar pronto la liquidez, elige B. El criterio del VAN es el más recomendable porque considera todos los flujos y el valor del dinero en el tiempo.
+
+### Problema 2 — TIR con dos años
+
+**Enunciado.** Un proyecto exige un desembolso inicial de 10.000 euros y genera flujos de 6.000 euros el primer año y 6.600 euros el segundo. Si el coste del capital es del 8 %, calcula la TIR e indica si conviene aceptarlo.
+
+**Solución.**
+
+La TIR es la tasa que anula el VAN. Llamamos `x = 1 + TIR`:
+
+> 0 = −10.000 + 6.000/x + 6.600/x²
+
+Multiplicamos todo por x²:
+
+> 0 = −10.000·x² + 6.000·x + 6.600
+> 10.000·x² − 6.000·x − 6.600 = 0
+
+Dividimos entre 200 para simplificar:
+
+> 50·x² − 30·x − 33 = 0
+
+Aplicamos la fórmula de la ecuación de segundo grado:
+
+> x = [30 ± √(30² + 4·50·33)] / (2·50) = [30 ± √(900 + 6.600)] / 100 = [30 ± √7.500] / 100
+> √7.500 = 86,6025
+> x = (30 + 86,6025) / 100 = 116,6025 / 100 = 1,166025
+
+(La raíz negativa se descarta porque daría x < 0.)
+
+> TIR = x − 1 = 1,166025 − 1 = 0,166 → **TIR ≈ 16,6 %**
+
+**Interpretación.** La TIR del proyecto es del 16,6 %, la rentabilidad interna que ofrece la inversión. Como **la TIR (16,6 %) es mayor que el coste del capital (8 %)**, el proyecto **conviene aceptarlo**: rinde más de lo que cuesta financiarlo, por lo que genera valor para la empresa.
+
+### Problema 3 — VAN con flujos constantes y desembolso recuperable
+
+**Enunciado.** Una inversión de 50.000 euros genera un flujo de caja de 22.000 euros durante cada uno de los tres años de su vida. El coste del capital es del 6 %. Calcula el VAN y el payback, y di si se acepta.
+
+**Solución.**
+
+> VAN = −50.000 + 22.000/1,06 + 22.000/1,06² + 22.000/1,06³
+> = −50.000 + 22.000/1,06 + 22.000/1,1236 + 22.000/1,191016
+> = −50.000 + 20.754,72 + 19.579,92 + 18.471,62
+> = **8.806,26 euros**
+
+Payback (flujos constantes de 22.000):
+
+> Payback = 50.000 / 22.000 = **2,27 años (≈ 2 años y 3 meses)**
+
+**Interpretación.** El VAN es de 8.806,26 euros, claramente positivo, por lo que **la inversión se acepta**: aporta más de 8.800 euros de valor actual neto por encima del desembolso. Además, el desembolso se recupera en 2,27 años, dentro de la vida del proyecto (3 años), lo que refuerza la decisión de aceptarla.
+
+### Problema 4 — VAN con valor residual y subida del tipo de interés (tipo examen)
+
+**Enunciado.** *Repartiments Ruzafa S.L.* estudia comprar una furgoneta eléctrica por 40.000 euros. Estima que le generará unos flujos de caja de 15.000 euros el primer año, 18.000 euros el segundo y 12.000 euros el tercero. Al final del tercer año podrá venderla por 5.000 euros (valor residual).
+
+a) Calcula el VAN con un coste del capital del 7 % e indica si conviene la inversión.
+
+b) El banco sube el tipo de interés y el coste del capital pasa al 12 %. Calcula el nuevo VAN y di si la decisión cambia.
+
+c) Sin calcularla exactamente, ¿entre qué valores está la TIR? Justifícalo.
+
+**Solución.**
+
+El valor residual es un cobro más del último año, así que el flujo del año 3 es 12.000 + 5.000 = **17.000 euros**.
+
+a) Planteamiento: VAN = −A + Q₁/(1 + k) + Q₂/(1 + k)² + Q₃/(1 + k)³, con k = 0,07.
+
+> VAN = −40.000 + 15.000/1,07 + 18.000/1,07² + 17.000/1,07³
+> = −40.000 + 15.000/1,07 + 18.000/1,1449 + 17.000/1,225043
+> = −40.000 + 14.018,69 + 15.721,90 + 13.877,06
+> = **3.617,65 euros**
+
+b) Con k = 0,12:
+
+> VAN = −40.000 + 15.000/1,12 + 18.000/1,12² + 17.000/1,12³
+> = −40.000 + 15.000/1,12 + 18.000/1,2544 + 17.000/1,404928
+> = −40.000 + 13.392,86 + 14.349,49 + 12.100,26
+> = **−157,39 euros**
+
+c) La TIR es el tipo que hace VAN = 0. Al 7 % el VAN es positivo y al 12 % es negativo, así que el VAN pasa por cero entre los dos: **la TIR está entre el 7 % y el 12 %**, muy cerca del 12 %, porque allí el VAN (−157,39) es mucho menor en valor absoluto que al 7 % (3.617,65). El valor exacto, con calculadora financiera, es ≈ 11,8 %.
+
+**Resultado:** VAN de 3.617,65 euros al 7 % y de −157,39 euros al 12 %; TIR entre el 7 % y el 12 % (≈ 11,8 %).
+
+**Interpretación.** Con un coste del capital del 7 %, la furgoneta conviene: devuelve todo lo invertido, el coste de financiarlo y 3.617,65 euros más en valor actual. Si el coste del capital sube al 12 %, la misma inversión destruye valor (VAN negativo) y deja de convenir. La TIR, alrededor del 11,8 %, es el coste de financiación máximo que soporta el proyecto: mientras la empresa se financie por debajo de ese tipo, la inversión sale rentable.
+
+## Errores típicos que restan puntos
+
+- **Descontar el desembolso inicial.** Se paga en el año 0, así que va restando y sin dividir entre (1 + k).
+- **Usar el porcentaje sin pasarlo a tanto por uno.** Con un 7 % se divide entre 1,07, no entre 1,7 ni entre 7.
+- **Olvidar el valor residual.** Si el activo se vende al final, ese cobro se suma al flujo del último año.
+- **Dar el payback solo en años decimales.** 2,17 años es mejor expresarlo como 2 años y 2 meses (0,17 × 12 ≈ 2 meses).
+- **Decidir por el payback cuando contradice al VAN.** El payback ignora el valor del dinero en el tiempo y los flujos posteriores a la recuperación; si los dos criterios no coinciden, manda el VAN.

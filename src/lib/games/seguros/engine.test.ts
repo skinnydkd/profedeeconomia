@@ -25,6 +25,15 @@ describe('data', () => {
   it('each insurance has a positive premium', () => {
     for (const ins of INSURANCES) expect(ins.prima).toBeGreaterThan(0);
   });
+
+  it('each premium carries a loading over its expected loss, as in real insurance', () => {
+    for (const ins of INSURANCES) {
+      const card = EVENT_DECK.find((c) => c.cubre === ins.key)!;
+      const expectedLoss = (card.peso / 100) * card.dano;
+      expect(ins.prima).toBeGreaterThan(expectedLoss);
+      expect(ins.prima).toBeLessThan(expectedLoss * 1.3);
+    }
+  });
 });
 
 describe('createInitialState', () => {
@@ -60,13 +69,13 @@ describe('setCoverage', () => {
 describe('lockCoverage', () => {
   it('adds income and subtracts the premiums of covered insurances, then moves to event phase', () => {
     let s = createInitialState(DEFAULT_CONFIG);     // cash 1000, income 350
-    s = setCoverage(s, 0, 'hogar');                  // hogar prima 80
-    s = setCoverage(s, 0, 'salud');                  // salud prima 60
+    s = setCoverage(s, 0, 'hogar');                  // hogar prima 100
+    s = setCoverage(s, 0, 'salud');                  // salud prima 75
     const locked = lockCoverage(s);
     expect(locked.phase).toBe('event');
-    // team 0: 1000 + 350 - (80+60) = 1210
-    expect(locked.teams[0].cash).toBe(1210);
-    expect(locked.teams[0].totalPremiums).toBe(140);
+    // team 0: 1000 + 350 - (100+75) = 1175
+    expect(locked.teams[0].cash).toBe(1175);
+    expect(locked.teams[0].totalPremiums).toBe(175);
     // team 1 (no coverage): 1000 + 350 = 1350
     expect(locked.teams[1].cash).toBe(1350);
     expect(locked.teams[1].totalPremiums).toBe(0);
@@ -74,7 +83,7 @@ describe('lockCoverage', () => {
 
   it('premiumsFor sums the primas of covered insurances', () => {
     const s = setCoverage(setCoverage(createInitialState(DEFAULT_CONFIG), 0, 'movil'), 0, 'rc');
-    expect(premiumsFor(s.teams[0])).toBe(30 + 90);
+    expect(premiumsFor(s.teams[0])).toBe(40 + 115);
   });
 });
 
@@ -198,7 +207,7 @@ function stats(values: number[]) {
 }
 
 describe('balance (Monte Carlo)', () => {
-  it('insuring reduces variance dramatically and means stay in a comparable band', () => {
+  it('insuring reduces variance dramatically at the cost of the premium loading', () => {
     const N = 4000;
     const rng = mulberry32(12345);
     const insured: number[] = [];
@@ -209,8 +218,14 @@ describe('balance (Monte Carlo)', () => {
     const su = stats(uninsured);
     // 1. Uninsured is far more volatile.
     expect(su.sd).toBeGreaterThan(si.sd * 3);
-    // 2. Means are in a comparable band (insurance is roughly fair, within ~600€).
-    expect(Math.abs(si.mean - su.mean)).toBeLessThan(600);
+    // 2. Insuring everything costs, on average, the loading: ten rounds of
+    //    (sum of premiums - sum of expected losses).
+    const loading = 10 * INSURANCES.reduce((acc, ins) => {
+      const card = EVENT_DECK.find((c) => c.cubre === ins.key)!;
+      return acc + ins.prima - (card.peso / 100) * card.dano;
+    }, 0);
+    expect(su.mean - si.mean).toBeGreaterThan(loading * 0.8);
+    expect(su.mean - si.mean).toBeLessThan(loading * 1.2);
     // 3. Fully insured almost never goes broke; uninsured sometimes does.
     expect(insured.filter((c) => c < 0).length).toBe(0);
     expect(uninsured.filter((c) => c < 0).length).toBeGreaterThan(0);

@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
 import { ASIGNATURAS } from '@/lib/asignaturas';
-import { breadcrumbLd } from '@/lib/seo';
+import { breadcrumbLd, subjectTitle } from '@/lib/seo';
 import { getCollection } from 'astro:content';
 import { getLocale } from '@/i18n/locale';
 import { pickLocalizedEntry } from '@/i18n/content-locale';
@@ -10,6 +10,7 @@ import QuizPlayer from '@components/QuizPlayer.tsx';
 import ArbolDecisiones from '@components/actividades/ArbolDecisiones.astro';
 import { parseTreeFromMdxBody } from '@components/actividades/parse-tree.ts';
 import type { GetStaticPaths } from 'astro';
+import Breadcrumb from '@components/Breadcrumb.astro';
 
 export const getStaticPaths = (async () => {
   const libroAll = await getCollection('libro');
@@ -35,14 +36,26 @@ const [libroAll, testsAll, dinAll, recAll] = await Promise.all([
   getCollection('actividadesDinamicas'),
   getCollection('recursos'),
 ]);
-const libroCaById = new Map(libroAll.filter((u) => u.data.lang === 'ca').map((u) => [u.id, u]));
+// Published CA siblings only, as pickLocalizedEntry expects.
+const caById = <T extends { id: string; data: { lang?: string; estado?: string } }>(all: T[]) =>
+  new Map(all.filter((e) => e.data.lang === 'ca' && e.data.estado === 'publicado').map((e) => [e.id, e]));
+const libroCaById = caById(libroAll);
 const unit = pickLocalizedEntry(unitEs, libroCaById, locale);
 
 // Serve ES entries as the source of truth, swapped to their CA sibling under /ca.
-const dinCaById = new Map(dinAll.filter((d) => d.data.lang === 'ca').map((d) => [d.id, d]));
-const test = testsAll.find((t) => t.data.asignatura === a.slug && t.data.unidad_relacionada === unidad && t.data.estado === 'publicado' && t.data.lang === 'es');
+const dinCaById = caById(dinAll);
+const testCaById = caById(testsAll);
+const recCaById = caById(recAll);
+const testEs = testsAll.find((t) => t.data.asignatura === a.slug && t.data.unidad_relacionada === unidad && t.data.estado === 'publicado' && t.data.lang === 'es');
+const test = testEs && pickLocalizedEntry(testEs, testCaById, locale);
 const simuladores = dinAll.filter((d) => d.data.asignatura === a.slug && d.data.unidad_relacionada === unidad && d.data.estado === 'publicado' && d.data.lang === 'es');
-const recursos = recAll.filter((r) => r.data.asignatura === a.slug && r.data.unidad_relacionada === unidad && r.data.estado === 'publicado' && r.data.lang === 'es');
+// The link keeps the ES slug; the CA sibling only supplies the title and summary.
+const recursos = recAll
+  .filter((r) => r.data.asignatura === a.slug && r.data.unidad_relacionada === unidad && r.data.estado === 'publicado' && r.data.lang === 'es')
+  .map((esRec) => ({
+    entry: pickLocalizedEntry(esRec, recCaById, locale),
+    slug: esRec.id.split('/').pop()?.replace(/\.mdx?$/, '') ?? esRec.id,
+  }));
 
 // Pre-parse simulator JSON so build-time errors surface clearly. The route slug
 // and storage id stay ES-stable; the CA sibling only supplies localized display.
@@ -57,8 +70,8 @@ const simuladoresParsed = simuladores.map((esSim) => {
 });
 
 const copy = {
-  es: { inicio: 'Inicio', actividades: 'Actividades interactivas', unidad: 'Unidad', actividadesShort: 'Actividades', descripcion: `Test, simuladores y recursos interactivos de la unidad ${unidad}.`, test: 'Test de autoevaluación', preguntas: 'preguntas', simuladores: 'Simuladores de decisión', recursos: 'Recursos interactivos' },
-  ca: { inicio: 'Inici', actividades: 'Activitats interactives', unidad: 'Unitat', actividadesShort: 'Activitats', descripcion: `Test, simuladors i recursos interactius de la unitat ${unidad}.`, test: "Test d'autoavaluació", preguntas: 'preguntes', simuladores: 'Simuladors de decisió', recursos: 'Recursos interactius' },
+  es: { inicio: 'Inicio', actividades: 'Actividades interactivas', unidad: 'Unidad', actividadesShort: 'Actividades', descripcion: `Test, simuladores y recursos interactivos de la unidad ${unidad}.`, test: 'Test de autoevaluación', preguntas: 'preguntas', simuladores: 'Simuladores de decisión', recursos: 'Recursos interactivos', vacio: 'Pronto aquí: simulador, recursos y test de esta unidad.' },
+  ca: { inicio: 'Inici', actividades: 'Activitats interactives', unidad: 'Unitat', actividadesShort: 'Activitats', descripcion: `Test, simuladors i recursos interactius de la unitat ${unidad}.`, test: "Test d'autoavaluació", preguntas: 'preguntes', simuladores: 'Simuladors de decisió', recursos: 'Recursos interactius', vacio: "Prompte ací: simulador, recursos i test d'esta unitat." },
 }[locale];
 
 const unitSlug = unitEs.id.split('/').pop()?.replace(/\.mdx?$/, '') ?? unitEs.id;
@@ -67,17 +80,20 @@ const breadcrumb = breadcrumbLd([
   { name: a.shortLabel, path: `/${a.slug}/` },
   { name: copy.actividades, path: `/${a.slug}/actividades-dinamicas/` },
   { name: `${copy.unidad} ${unidad}: ${unit.data.title}`, path: `/${a.slug}/actividades-dinamicas/${unitSlug}/` },
-]);
+], locale);
 ---
 
-<BaseLayout title={`${copy.actividadesShort} · ${unit.data.title} — ${a.shortLabel}`} description={copy.descripcion} ogType="article" jsonLd={breadcrumb} contentLang={locale}>
+<BaseLayout title={subjectTitle(`${copy.actividadesShort} · ${unit.data.title}`, a)} description={copy.descripcion} ogType="article" jsonLd={breadcrumb} contentLang={locale}>
   <div class="container">
-    <nav class="breadcrumb">
-      <a href="/">{copy.inicio}</a> <span class="sep">›</span>
-      <a href={`/${a.slug}/`}>{a.shortLabel}</a> <span class="sep">›</span>
-      <a href={`/${a.slug}/actividades-dinamicas/`}>{copy.actividades}</a> <span class="sep">›</span>
-      <span>{copy.unidad} {unidad}</span>
-    </nav>
+    <Breadcrumb
+      locale={locale}
+      items={[
+        { name: copy.inicio, path: '/' },
+        { name: a.shortLabel, path: `/${a.slug}/` },
+        { name: copy.actividades, path: `/${a.slug}/actividades-dinamicas/` },
+        { name: `${copy.unidad} ${unidad}` },
+      ]}
+    />
   </div>
 
   <section class="hero">
@@ -93,7 +109,8 @@ const breadcrumb = breadcrumbLd([
       <div class="container container--narrow">
         <h2 class="bloque__h2">{copy.test}</h2>
         <p class="bloque__meta">{test.data.preguntas.length} {copy.preguntas}{test.data.duracion_estimada && <> · {test.data.duracion_estimada}</>}</p>
-        <QuizPlayer preguntas={test.data.preguntas} storageKey={`test-${a.slug}-u${unidad}`} client:load />
+        {/* Same storage key as the unit's test page, so both share the best mark. */}
+        <QuizPlayer preguntas={test.data.preguntas} storageKey={`test-${a.slug}-${unidad}`} locale={locale} client:load />
       </div>
     </section>
   )}
@@ -118,17 +135,14 @@ const breadcrumb = breadcrumbLd([
       <div class="container container--narrow">
         <h2 class="bloque__h2">{copy.recursos}</h2>
         <ul class="recurso-list">
-          {recursos.map((r) => {
-            const rSlug = r.id.split('/').pop()?.replace(/\.mdx?$/, '') ?? r.id;
-            return (
-              <li>
-                <a href={`/${a.slug}/recursos/${rSlug}/`}>
-                  <h3>{r.data.title}</h3>
-                  <p>{r.data.descripcion}</p>
-                </a>
-              </li>
-            );
-          })}
+          {recursos.map(({ entry: r, slug: rSlug }) => (
+            <li>
+              <a href={`/${a.slug}/recursos/${rSlug}/`}>
+                <h3>{r.data.title}</h3>
+                <p>{r.data.descripcion}</p>
+              </a>
+            </li>
+          ))}
         </ul>
       </div>
     </section>
@@ -137,24 +151,41 @@ const breadcrumb = breadcrumbLd([
   {!test && simuladoresParsed.length === 0 && recursos.length === 0 && (
     <section class="bloque">
       <div class="container container--narrow">
-        <p class="empty">Pronto aquí: simulador, recursos y test de esta unidad.</p>
+        <p class="empty">{copy.vacio}</p>
       </div>
     </section>
   )}
 </BaseLayout>
 
 <style>
-  .bloque { padding: 48px 0; border-top: 1px solid var(--color-line); }
+  /* Section chrome, as on the other subject sections (recursos, actividades):
+     these pages used the classes without defining them, so the title sat at
+     the left edge and, on a phone, the text touched the screen border. */
+  .container { max-width: 1240px; margin: 0 auto; padding: 0 clamp(1.5rem, 4vw, 3rem); }
+  .container--narrow { max-width: 900px; }
+  .hero { padding: 1rem 0 clamp(2rem, 5vw, 4rem); }
+  .hero h1 { margin: 1rem 0 0.6rem; }
+  .lede {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.35rem;
+    color: var(--color-ink-soft);
+    max-width: 55ch;
+    line-height: 1.5;
+    margin: 1.5rem 0 0.6rem;
+    font-variation-settings: "SOFT" 80;
+  }
+  .bloque { padding: 3rem 0; border-top: 1px solid var(--color-line); }
   .bloque--alt { background: var(--color-bg-cream); }
-  .bloque__h2 { font-family: var(--font-serif); font-size: 28px; margin: 0 0 8px; }
-  .bloque__meta { font-family: var(--font-mono); font-size: 13px; color: var(--color-ink-mute); margin: 0 0 24px; }
-  .simulador { margin-bottom: 40px; }
-  .simulador__h3 { font-family: var(--font-serif); font-size: 22px; margin: 24px 0 6px; }
-  .simulador__lede { font-family: var(--font-serif); font-style: italic; color: var(--color-ink-soft); margin: 0 0 18px; }
-  .recurso-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr)); }
-  .recurso-list a { display: block; padding: 18px 20px; background: var(--color-paper); border: 1px solid var(--color-line); border-radius: 6px; text-decoration: none; color: inherit; }
+  .bloque__h2 { font-family: var(--font-serif); font-size: 1.75rem; margin: 0 0 0.5rem; }
+  .bloque__meta { font-family: var(--font-mono); font-size: 0.82rem; color: var(--color-ink-mute); margin: 0 0 1.5rem; }
+  .simulador { margin-bottom: 2.5rem; }
+  .simulador__h3 { font-family: var(--font-serif); font-size: 1.35rem; margin: 1.5rem 0 0.4rem; }
+  .simulador__lede { font-family: var(--font-serif); font-style: italic; color: var(--color-ink-soft); margin: 0 0 1.1rem; }
+  .recurso-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.75rem; grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr)); }
+  .recurso-list a { display: block; padding: 1.1rem 1.25rem; background: var(--color-paper); border: 1px solid var(--color-line); border-radius: 6px; text-decoration: none; color: inherit; }
   .recurso-list a:hover { border-color: var(--color-terra); }
-  .recurso-list h3 { font-family: var(--font-serif); font-size: 18px; margin: 0 0 6px; }
-  .recurso-list p  { font-size: 14px; color: var(--color-ink-soft); margin: 0; }
+  .recurso-list h3 { font-family: var(--font-serif); font-size: 1.15rem; margin: 0 0 0.4rem; }
+  .recurso-list p  { font-size: 0.95rem; color: var(--color-ink-soft); margin: 0; }
   .empty { font-family: var(--font-serif); font-style: italic; color: var(--color-ink-mute); }
 </style>

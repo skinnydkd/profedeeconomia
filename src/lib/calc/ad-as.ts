@@ -166,6 +166,18 @@ export function srasShiftForLongRun(state: ADASState): number {
   return num / SRAS_SLOPE - BASE_Y;
 }
 
+/** Range of the AD and SRAS sliders; the cause buttons stop at its ends too. */
+export const DESPLAZAMIENTO_MAX = 50;
+
+/**
+ * Push AD or SRAS by `delta` (a cause button), without leaving the slider's
+ * range: past ±50 the slider stuck at its end while the model kept moving.
+ */
+export function desplazar(state: ADASState, curva: 'adShift' | 'srasShift', delta: number): ADASState {
+  const valor = Math.min(DESPLAZAMIENTO_MAX, Math.max(-DESPLAZAMIENTO_MAX, state[curva] + delta));
+  return { ...state, [curva]: valor };
+}
+
 /**
  * Return the state after the economy has fully self-corrected to the long run:
  * AD and LRAS unchanged, SRAS drifted so the gap closes.

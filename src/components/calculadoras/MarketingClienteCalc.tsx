@@ -3,6 +3,7 @@ import { useMemo, useState } from 'preact/hooks';
 import { type Locale } from '@/i18n/locale';
 import { formatEUR, formatNumber, formatPercent } from '../../lib/calc/format';
 import { analizar, type Entradas } from '../../lib/calc/marketing-cliente';
+import NumberInput from '../NumberInput';
 
 /**
  * UI strings, Valencian (AVL) alongside the ES source. The acronyms CAC and
@@ -97,8 +98,6 @@ export const COPY = {
 
 interface Props { locale?: Locale }
 
-const num = (e: Event) => parseFloat((e.target as HTMLInputElement).value) || 0;
-
 /**
  * Customer acquisition cost against lifetime value.
  *
@@ -147,13 +146,13 @@ export default function MarketingClienteCalc({ locale = 'es' }: Props) {
         <label class="calc__field">
           <span class="calc__label">{t.gasto}</span>
           <div class="calc__input-wrap">
-            <input type="number" min={1} step={500} value={gasto} onInput={(e) => setGasto(num(e))} />
+            <NumberInput min={1} step={500} value={gasto} onValue={setGasto} />
           </div>
         </label>
         <label class="calc__field">
           <span class="calc__label">{t.clientes}</span>
           <div class="calc__input-wrap">
-            <input type="number" min={1} step={10} value={clientes} onInput={(e) => setClientes(num(e))} />
+            <NumberInput min={1} step={10} value={clientes} onValue={setClientes} />
           </div>
         </label>
       </div>
@@ -163,31 +162,31 @@ export default function MarketingClienteCalc({ locale = 'es' }: Props) {
         <label class="calc__field">
           <span class="calc__label">{t.ticket}</span>
           <div class="calc__input-wrap">
-            <input type="number" min={1} step={5} value={ticket} onInput={(e) => setTicket(num(e))} />
+            <NumberInput min={1} step={5} value={ticket} onValue={setTicket} />
           </div>
         </label>
         <label class="calc__field">
           <span class="calc__label">{t.compras}</span>
           <div class="calc__input-wrap">
-            <input type="number" min={1} step={1} value={compras} onInput={(e) => setCompras(num(e))} />
+            <NumberInput min={1} step={1} value={compras} onValue={setCompras} />
           </div>
         </label>
         <label class="calc__field">
           <span class="calc__label">{t.margen}</span>
           <div class="calc__input-wrap">
-            <input type="number" min={1} max={100} step={5} value={margenPct} onInput={(e) => setMargenPct(num(e))} />
+            <NumberInput min={1} max={100} step={5} value={margenPct} onValue={setMargenPct} />
           </div>
         </label>
         <label class="calc__field">
           <span class="calc__label">{t.retencion}</span>
           <div class="calc__input-wrap">
-            <input type="number" min={0} max={99} step={5} value={retencionPct} onInput={(e) => setRetencionPct(num(e))} />
+            <NumberInput min={0} max={99} step={5} value={retencionPct} onValue={setRetencionPct} />
           </div>
         </label>
       </div>
       <p class="mc__note">{t.retencionAyuda}</p>
 
-      <div class="calc__results">
+      <div class="calc__results" aria-live="polite">
         {!r.valido ? (
           <div class="calc__warning">{t.sinDatos}</div>
         ) : (

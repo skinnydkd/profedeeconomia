@@ -492,7 +492,7 @@ export default function GeneradorCVEuropass({ locale = 'es' }: Props) {
             </section>
           </aside>
 
-          <main class="cv__preview-main">
+          <div class="cv__preview-main">
             <section>
               <h3 class="cv__preview-h3">{c.previewResumen}</h3>
               {resumen ? (
@@ -544,7 +544,7 @@ export default function GeneradorCVEuropass({ locale = 'es' }: Props) {
                 <p class="cv__placeholder">{c.emptyFormacion}</p>
               )}
             </section>
-          </main>
+          </div>
         </div>
       </div>
     </div>

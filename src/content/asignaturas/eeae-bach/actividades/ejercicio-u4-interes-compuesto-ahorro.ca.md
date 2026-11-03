@@ -30,7 +30,7 @@ Laura té 17 anys i acaba d'obrir un compte d'estalvi remunerat en una entitat f
 
 Laura vol saber quants diners tindrà exactament al cap de 5 anys, comparar-ho amb el que haurà aportat de la seua pròpia butxaca i entendre d'on ve la diferència.
 
-> Nota: considera que cada aportació es fa a l'inici de l'any corresponent, de manera que l'aportació de l'any 1 genera interessos durant 1 any complet, la de l'any 2 durant 1 any complet des que es diposita, i així successivament.
+> Nota: considera que cada aportació es fa a l'inici de l'any corresponent i capitalitza fins al final de l'any 5: la de l'any 1 genera interessos durant 5 anys, la de l'any 2 durant 4, i així successivament fins a la de l'any 5, que els genera durant 1 any.
 
 ## Es demana
 

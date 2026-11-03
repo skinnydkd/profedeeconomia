@@ -375,7 +375,7 @@ export default function BuscadorItinerarios({ locale = 'es' }: Props) {
             </p>
 
             {ranking.length === 0 ? (
-              <div class="calc__warning">{c.sinResultados}</div>
+              <div class="calc__warning" role="alert">{c.sinResultados}</div>
             ) : (
               <div class="bi__cards">
                 {ranking.map((rk) => (

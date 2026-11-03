@@ -53,14 +53,14 @@ preguntas:
       - "Derecho a la imagen, regulado por el Código Penal."
     correcta: 1
     explicacion: "El **derecho al olvido** está regulado por el **artículo 17 del Reglamento General de Protección de Datos (RGPD)** de la UE. Permite solicitar la eliminación de información personal en internet. Se ejerce primero ante el responsable del sitio web (o motor de búsqueda) y, si no responde, ante la **Agencia Española de Protección de Datos (AEPD)**. Es una herramienta clave para gestionar la huella digital antes de empezar a enviar candidaturas."
-  - enunciado: "Según los informes anuales de Adecco sobre empleabilidad, ¿qué porcentaje de los puestos de trabajo en España nunca se publican en portales de empleo (mercado oculto)?"
+  - enunciado: "¿Qué es el «mercado oculto» de trabajo?"
     opciones:
-      - "Entre el 10 % y el 20 %."
-      - "Entre el 30 % y el 40 %."
-      - "Entre el 60 % y el 70 %."
-      - "Más del 90 %."
+      - "Las ofertas que solo se publican en portales de pago o en redes profesionales de suscripción."
+      - "Los trabajos sin contrato ni alta en la Seguridad Social, que se pagan en negro."
+      - "Los puestos que se cubren sin publicarse: por recomendación, contactos o candidatura espontánea."
+      - "Las plazas del sector público que se cubren por oposición y no aparecen en portales."
     correcta: 2
-    explicacion: "Entre el **60 % y el 70 %** de los puestos en España nunca se publican: es el llamado **mercado oculto**, que se cubre por recomendación interna, contactos profesionales o candidaturas espontáneas bien dirigidas. Por eso avisar a tu red (profesores, exalumnos, familia, antiguos jefes de prácticas) es estadísticamente tan importante como mandar CV a portales."
+    explicacion: "El **mercado oculto** son los puestos que nunca llegan a los portales de empleo: se cubren por recomendación interna, contactos profesionales o candidaturas espontáneas bien dirigidas. Según distintos estudios son la mayoría, aunque las cifras varían y no hay una estadística oficial. Por eso avisar a tu red (profesores, exalumnos, familia, antiguos jefes de prácticas) pesa tanto como mandar CV a portales."
   - enunciado: "¿Cuál de estas respuestas a \"¿Cuáles son tus debilidades?\" es la peor según la unidad?"
     opciones:
       - "Reconocer una debilidad real y explicar la acción concreta que tomas para mejorarla."
@@ -80,7 +80,7 @@ preguntas:
   - tipo: verdadero-falso
     enunciado: "Como la mayoría de los puestos se publican en portales de empleo, avisar a tu red de contactos apenas influye en encontrar trabajo."
     correcta: false
-    explicacion: "Entre el 60 % y el 70 % de los puestos en España nunca se publican: es el mercado oculto, que se cubre por recomendación y contactos. Avisar a tu red es estadísticamente tan importante como enviar CV a portales."
+    explicacion: "Muchos puestos —según distintos estudios, la mayoría— nunca se publican: es el mercado oculto, que se cubre por recomendación y contactos. Avisar a tu red pesa tanto como enviar CV a portales."
   - tipo: verdadero-falso
     enunciado: "Responder soy perfeccionista a la pregunta sobre tus debilidades es una mala estrategia porque los reclutadores la detectan como evasiva."
     correcta: true

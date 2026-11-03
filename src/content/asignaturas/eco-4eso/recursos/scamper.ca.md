@@ -1,6 +1,6 @@
 ---
 asignatura: eco-4eso
-unidad_relacionada: 2
+unidad_relacionada: 11
 title: "SCAMPER: obrir abans de tancar"
 descripcion: "Genera idees des de set angles diferents. No deixa puntuar-ne cap fins que n'hi ha prou d'on triar, que és exactament la disciplina que falla en tota pluja d'idees."
 tipo: plantilla
@@ -12,7 +12,7 @@ slug: "asignaturas/eco-4eso/recursos/scamper.ca"
 
 ## Quan usar-la
 
-- A la Unitat 2, en arribar al pensament divergent i al brainstorming: és la ferramenta que fa visible la diferència entre obrir i tancar.
+- A la Unitat 11, en arribar al pensament divergent i al brainstorming: és la ferramenta que fa visible la diferència entre obrir i tancar.
 - Quan un grup es quede encallat amb una sola idea que no acaba de funcionar. Quasi sempre no és que la idea siga roïna: és que no n'hi ha cap altra amb què comparar-la.
 - Abans de qualsevol projecte del curs, perquè la idea triada siga la millor de dotze i no la primera que es va dir.
 

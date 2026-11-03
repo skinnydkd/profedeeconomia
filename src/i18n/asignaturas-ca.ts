@@ -12,17 +12,17 @@ export const ASIGNATURAS_CA: Partial<Record<AsignaturaSlug, CAOverlay>> = {
   'edmn-2bach': {
     level: '2n Batxillerat',
     title: 'Empresa i Disseny de Models de Negoci',
-    seoTitle: 'EDMN 2n Batxillerat: llibre, diapositives i EBAU',
+    seoTitle: "EDMN 2n Batxillerat (Economia de l'Empresa): llibre i EBAU",
     seoName: 'EDMN 2n Batxillerat',
     tagline:
-      'Dotze unitats al voltant del Business Model Canvas, les àrees funcionals i un projecte capstone de pla d\'empresa que recorre tot el curs.',
+      'Dotze unitats al voltant del Business Model Canvas, les àrees funcionals i la preparació de la PAU: pistes EBAU en cada unitat, problemes resolts i simulacres.',
     modalidad: 'Modalitat Humanitats i CC. Socials',
     marcoNormativo: 'Reial Decret 243/2022',
   },
   'eco-1bach': {
     level: '1r Batxillerat',
     title: 'Economia',
-    seoTitle: 'Economia 1r Batxillerat: llibre, activitats i tests',
+    seoTitle: 'Economia 1r Batxillerat: llibre PDF gratis, apunts i tests',
     seoName: 'Economia 1r Batxillerat',
     tagline:
       'Microeconomia, macroeconomia, sistemes i introducció a les finances. Amb simulador AD-AS i la teoria de la decisió, que quasi sempre se\'ns queda fora del temari.',
@@ -32,19 +32,19 @@ export const ASIGNATURAS_CA: Partial<Record<AsignaturaSlug, CAOverlay>> = {
   'eco-4eso': {
     level: '4t ESO',
     title: 'Economia i Emprenedoria',
-    seoTitle: 'Economia i Emprenedoria 4t ESO: llibre i activitats',
+    seoTitle: 'Economia i Emprenedoria 4t ESO: llibre PDF gratis',
     seoName: 'Economia i Emprenedoria 4t ESO',
     tagline:
-      'Economia bàsica amb la mirada posada en el que l\'alumnat es trobarà fora: nòmina, IRPF, contractes, decisions de consum.',
+      'Nou unitats d\'economia i tres d\'empresa: de l\'escassetat i els mercats a la nòmina, els impostos i el projecte emprenedor.',
     marcoNormativo: 'Reial Decret 217/2022',
   },
   'fopp-4eso': {
     level: '4t ESO',
     title: 'Formació i Orientació Personal i Professional',
-    seoTitle: 'FOPP 4t ESO: llibre, diapositives i activitats gratis',
+    seoTitle: 'FOPP 4t ESO: llibre PDF gratis, diapositives i activitats',
     seoName: 'FOPP 4t ESO',
     tagline:
-      'Itineraris, drets laborals i orientació. L\'assignatura nova de la LOMLOE, sense material decent disponible. Fins ara.',
+      'Itineraris, drets laborals i orientació per a la matèria nova de la LOMLOE: llibre, activitats i un projecte de vida que es construïx durant el curs.',
     marcoNormativo: 'Reial Decret 217/2022',
   },
   'taller-eco-3eso': {
@@ -59,7 +59,7 @@ export const ASIGNATURAS_CA: Partial<Record<AsignaturaSlug, CAOverlay>> = {
   'ipe1-fp': {
     level: 'FP — Grau Mitjà i Superior',
     title: "Itinerari Personal per a l'Ocupabilitat I",
-    seoTitle: 'IPE I (FP): llibre, activitats i recursos LOMLOE',
+    seoTitle: 'IPE I (FP): llibre PDF gratis, activitats i tests',
     seoName: 'IPE I (FP)',
     tagline:
       'El mòdul que substitueix la FOL en primer curs: autoconeixement professional, prevenció de riscos laborals, contracte i drets, i salut psicosocial.',
@@ -68,7 +68,7 @@ export const ASIGNATURAS_CA: Partial<Record<AsignaturaSlug, CAOverlay>> = {
   'ipe2-fp': {
     level: 'FP — Grau Mitjà i Superior',
     title: "Itinerari Personal per a l'Ocupabilitat II",
-    seoTitle: "IPE II (FP): llibre, activitats i projecte d'empresa",
+    seoTitle: "IPE II (FP): llibre PDF gratis i projecte d'empresa",
     seoName: 'IPE II (FP)',
     tagline:
       'Continuació d\'IPE I en segon curs: busca activa d\'ocupació, marca personal, competències per a l\'ocupació i un projecte emprenedor d\'innovació social.',
@@ -82,7 +82,7 @@ export const ASIGNATURAS_CA: Partial<Record<AsignaturaSlug, CAOverlay>> = {
     tagline:
       'La matèria de modalitat General que ajunta economia, iniciativa emprenedora i activitat empresarial. Per a entendre com es crea valor abans de triar itinerari.',
     modalidad: 'Modalitat General',
-    marcoNormativo: 'Reial Decret 243/2022 · Decret 108/2022, mod. Decret 103/2026 (CV)',
+    marcoNormativo: 'Reial Decret 243/2022 — concreció a la CV: Decret 108/2022, mod. Decret 103/2026',
   },
   'gpe-bach': {
     level: 'Batxillerat (1r/2n)',
@@ -91,6 +91,16 @@ export const ASIGNATURAS_CA: Partial<Record<AsignaturaSlug, CAOverlay>> = {
     seoName: 'GPE Batxillerat',
     tagline:
       'Una matèria de projecte: l\'alumnat munta la seua pròpia iniciativa emprenedora lligada al territori. Porta llibre teòric i quadern de projecte guiat per fases.',
+    modalidad: 'Optativa (1r o 2n)',
+    marcoNormativo: 'Decret 108/2022, mod. Decret 103/2026 (CV) — optativa',
+  },
+  'cjd-bach': {
+    level: 'Batxillerat (1r/2n)',
+    title: 'Cultura Jurídica i Democràtica',
+    seoTitle: 'CJD Batxillerat: llibre de Cultura Jurídica gratis',
+    seoName: 'CJD Batxillerat',
+    tagline:
+      'Huit blocs: fonts del Dret, internacional, constitucional, civil, laboral, tributari, penal i processal. Per a una optativa que sol caure sense material. Laboral i fiscal enllacen amb el que ja tenim a FOPP i IPE.',
     modalidad: 'Optativa (1r o 2n)',
     marcoNormativo: 'Decret 108/2022, mod. Decret 103/2026 (CV) — optativa',
   },

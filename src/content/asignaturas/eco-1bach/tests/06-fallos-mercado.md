@@ -99,4 +99,4 @@ preguntas:
     explicacion: "Coste social = coste privado + coste externo = 60 + 25 = 85 €. La empresa solo tiene en cuenta los 60 €, así que produce más de lo socialmente eficiente. Un impuesto pigouviano de 25 € por tonelada internalizaría la diferencia."
 ---
 
-Test de autoevaluación de la Unidad 6 del libro de Eco 1BACH. Nueve preguntas que cubren la definición de fallo de mercado, las externalidades positivas y negativas, el impuesto pigouviano, la matriz de bienes públicos y comunes de Ostrom, el problema del polizón, la información asimétrica (selección adversa y riesgo moral), el poder de mercado y los fallos de gobierno.
+Test de autoevaluación de la Unidad 6 del libro de Eco 1BACH. Trece preguntas que cubren la definición de fallo de mercado, las externalidades positivas y negativas, el impuesto pigouviano, la matriz de bienes públicos y comunes de Ostrom, el problema del polizón, la información asimétrica (selección adversa y riesgo moral), el poder de mercado y los fallos de gobierno.

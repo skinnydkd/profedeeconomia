@@ -101,4 +101,15 @@ describe('createCajutClient', () => {
     c.close();
     expect(closeFn).toHaveBeenCalledOnce();
   });
+
+  it('stops reconnecting once the server says the player was kicked', () => {
+    // PartySocket reconnects after any close it did not start itself, and on
+    // open it would send `join` again with the same nick.
+    const c = createCajutClient({ host: 'h', roomCode: 'A7K2', playerId: 'p1', nick: 'Troll' });
+    const onKicked = vi.fn();
+    c.on('kicked', onKicked);
+    emit('message', { data: JSON.stringify({ type: 'kicked' }) });
+    expect(onKicked).toHaveBeenCalledOnce();
+    expect(closeFn).toHaveBeenCalledOnce();
+  });
 });

@@ -45,7 +45,6 @@ import TldrUnidad from '@components/TldrUnidad.astro';
 import CasoDilema from '@components/CasoDilema.astro';
 import VuelveAlCaso from '@components/VuelveAlCaso.astro';
 import PistaEbau from '@components/PistaEbau.astro';
-import RetoEtapa from '@components/RetoEtapa.astro';
 import MirarFora from '@components/MirarFora.astro';
 import VocesDesacuerdo from '@components/VocesDesacuerdo.astro';
 import HerramientaIsland from '@components/calculadoras/HerramientaIsland.astro';
@@ -68,15 +67,15 @@ import RecursoDestacado from '@components/libro/RecursoDestacado.astro';
 <TldrUnidad>
 Les empreses **no fan fallida per perdre diners**, fan fallida per quedar-se sense diners **líquids** quan cal pagar. Esta unitat dona les ferramentes per no equivocar-se: com es mesura una inversió (**VAN, TIR, PayBack**) i com es decidix d'on traure els diners (finançament propi / aliè, intern / extern).
 
-Els tres càlculs —VAN, TIR, PayBack— **cauen quasi sempre en l'EBAU** i són l'única part numèrica que val al voltant de 2 punts per exercici. Val la pena dominar-los bé abans que qualsevol altra cosa de la unitat.
+Els tres càlculs —VAN, TIR, PayBack— **cauen quasi sempre en l'EBAU** i valen al voltant de 2 punts per exercici, com els problemes de punt mort (Unitat 7) o de ràtios (Unitat 11). Val la pena dominar-los bé abans que qualsevol altra cosa de la unitat.
 </TldrUnidad>
 
 <CasoDilema
-  titular="Abengoa tenia comandes per 12.000 M€. Va fer fallida en 2015 perquè no va poder pagar 750 M€ als seus bonistes"
+  titular="Abengoa donava beneficis i tenia projectes a mig món. El 2015 va entrar en preconcurs perquè es va quedar sense caixa"
   fuente="CNMV, premsa econòmica · 2015-2016"
   pregunta="Com és possible que una empresa amb beneficis i un llibre de comandes enorme acabe en concurs de creditors?"
 >
-**Abengoa** va ser durant dos dècades una de les empreses espanyoles més admirades: líder mundial en plantes termosolars, present en 50 països, amb comandes per 12.000 M€. En 2015, en intentar refinançar 750 M€ en bons, els creditors la van trobar amb un **flux de caixa insuficient**: les comandes eren reals, però cobrar-les portava anys, i mentrestant Abengoa havia finançat l'expansió amb deute curt. El **balanç presentava beneficis** —era rendible sobre el paper—; la **caixa real estava buida**. Va entrar en preconcurs el novembre de 2015 i mai es va recuperar. L'empresa que més solar termosolar havia construït al món va caure per un problema de tresoreria, no de model de negoci.
+**Abengoa** va ser durant dos dècades una de les empreses espanyoles més admirades: líder mundial en plantes termosolars, present en desenes de països i amb una cartera de projectes d'uns 8.000 M€. El 2015, quan va necessitar diners nous per a refinançar el deute, es va trobar amb un **flux de caixa insuficient**: les comandes eren reals, però cobrar-les portava anys, i mentrestant Abengoa havia finançat l'expansió amb deute curt. El **compte de resultats presentava beneficis** —era rendible sobre el paper—; la **caixa real estava buida**. Va entrar en preconcurs el novembre de 2015 i mai es va recuperar. L'empresa que més plantes termosolars havia construït al món va caure, sobretot, per un problema de tresoreria.
 </CasoDilema>
 
 La funció financera respon a dues preguntes que cap projecte empresarial pot esquivar: **en què invertim?** i **d'on traiem els diners per invertir?**. La primera definix l'actiu de l'empresa —els recursos productius en què els diners es convertixen—. La segona definix el passiu i el patrimoni net —de qui són eixos diners i sota quines condicions es tornen—. La diferència entre una empresa viable i una que mor abans de començar sol estar en la coherència entre ambdós decisions.
@@ -166,7 +165,7 @@ L'elecció de la taxa de descompte és la decisió més subjectiva del càlcul d
 - **El cost d'oportunitat**: la rendibilitat que obtindries invertint el mateix capital en una altra alternativa raonable (borsa, deute públic, una altra inversió).
 - **El risc del projecte**: com més arriscat, major la taxa exigida. Un negoci provat pot acceptar k=6-8 %; una *startup* tecnològica difícilment s'avalua per davall del 20 %.
 
-A l'aula, una taxa raonable per a projectes del capstone és **8-10 %**, prou alta per ser conservadora i prou baixa per no descartar-ho tot d'entrada.
+Per a un projecte d'aula, una taxa raonable és **8-10 %**, prou alta per ser conservadora i prou baixa per no descartar-ho tot d'entrada.
 
 ### Taxa Interna de Rendibilitat (TIR)
 
@@ -205,14 +204,14 @@ VAN = -18.000
        + 9.500/(1,08)^4
 ```
 
-3. Càlcul pas a pas (arredonint a euros):
+3. Càlcul pas a pas (arredonint a cèntims):
    - Any 1: 6.500 / 1,08 = **6.018,52 €**
-   - Any 2: 6.500 / 1,1664 = **5.572,71 €**
-   - Any 3: 6.500 / 1,2597 = **5.159,92 €**
-   - Any 4: 9.500 / 1,3605 = **6.982,06 €**
-   - Suma de fluxos actualitzats: 23.733,21 €
-   - VAN = 23.733,21 − 18.000 = **+5.733,21 €**
-4. **Decisió**: VAN > 0 i PayBack < 4 anys. El projecte s'accepta: a la rendibilitat exigida del 8 %, la furgoneta genera 5.733 € de valor addicional. La TIR estarà clarament per damunt del 8 % (un càlcul iteratiu donaria aproximadament un 19-20 %).
+   - Any 2: 6.500 / 1,1664 = **5.572,70 €**
+   - Any 3: 6.500 / 1,25971 = **5.159,91 €**
+   - Any 4: 9.500 / 1,36049 = **6.982,78 €**
+   - Suma de fluxos actualitzats: 23.733,91 €
+   - VAN = 23.733,91 − 18.000 = **+5.733,91 €**
+4. **Decisió**: VAN > 0 i PayBack < 4 anys. El projecte s'accepta: a la rendibilitat exigida del 8 %, la furgoneta genera 5.734 € de valor addicional. La TIR estarà clarament per damunt del 8 %: un càlcul iteratiu dona un 20,75 %.
 
 </SolvedExercise>
 
@@ -232,13 +231,13 @@ b) Quina és la realment més barata?
 
 1. **Cost total Oferta A** (banc):
    - Quota: 285 € × 48 mesos = **13.680 €**
-   - Interessos pagats: 13.680 − 12.000 = **1.680 €** (≈ 7,3 % efectiu total a 4 anys).
+   - Interessos pagats: 13.680 − 12.000 = **1.680 €** (un cost total del 14 % de l'import en 4 anys, que equival a una TAE d'al voltant del 6,8 %).
 2. **Cost total Oferta B** (proveïdor *«sense interessos»*):
    - Quotes: 250 € × 48 = **12.000 €**
    - Comissió d'obertura: 8 % × 12.000 = **960 €**
    - Assegurança obligatòria: 35 € × 48 = **1.680 €**
    - Cost total: 12.000 + 960 + 1.680 = **14.640 €**
-   - Sobrecost sobre el preu de l'equip: 2.640 € (≈ 11,7 % efectiu total a 4 anys).
+   - Sobrecost sobre el preu de l'equip: 2.640 € (un cost total del 22 % en 4 anys, amb una TAE d'al voltant de l'11,5 %).
 3. **Comparació**: l'oferta del banc resulta **960 € més barata**, malgrat el titular publicitari *«0 % interés»* de la del proveïdor.
 4. **Lliçó pràctica**: el *0 % interés* és sovint una etiqueta enganyosa. El que importa és el **cost total** o, millor, la **TAE** —Taxa Anual Equivalent— que la llei obliga a publicitar a Espanya precisament per fer comparables ofertes amb estructures distintes de comissions, assegurances i terminis. Abans de firmar qualsevol finançament, exigix sempre la TAE; si el comercial dubta a donar-la, hi ha motius per sospitar.
 
@@ -368,8 +367,8 @@ Societats especialitzades (en anglés, *venture capital*) que invertixen quantit
 
 A Espanya existixen línies de finançament públic per a emprenedors: ENISA (préstecs participatius), CDTI (projectes d'innovació), línies ICO (mediades per la banca tradicional amb garantia pública), Programa Kit Digital, ajudes autonòmiques. Les condicions solen ser millors que les de la banca privada però els processos de sol·licitud són llargs i exigents.
 
-<RealExample title="Verkami: el crowdfunding cultural que va finançar 12.000 projectes sense rebre capital risc" source="Memòria Verkami 2023" sourceUrl="https://www.verkami.com">
-**Verkami** es va fundar a Barcelona en 2010 per tres germans —Joan, Adrià i Jonàs Sala— per aconseguir finançar projectes culturals i creatius a Espanya i Amèrica Llatina. Catorze anys després, la plataforma ha permés finançar **més de 12.000 projectes** —còmics, documentals, àlbums musicals, llibres, festivals— per un total acumulat de **42 milions d'euros**. La xifra pareix xicoteta comparada amb qualsevol *startup* tecnològica, però hi ha un detall crucial: Verkami mai ha alçat capital risc. L'empresa sempre ha sigut autofinançada amb la comissió del 5 % que cobra de cada projecte finançat amb èxit. La conseqüència: els fundadors continuen sent amos del 100 % de l'empresa, les decisions es prenen amb criteris culturals a més de financers i els costos d'estructura són baixos. És un cas interessant per discutir en classe: quan convé captar inversió externa i quan és preferible créixer lentament amb autofinançament? La resposta correcta depén del sector, el ritme del mercat i els valors del fundador, no d'una fórmula universal.
+<RealExample title="Verkami: el crowdfunding cultural que va superar els 10.000 projectes finançats sense rebre capital risc" source="Verkami, blog corporatiu («¡10.000 proyectos financiados!», 2022) i pàgina «Qui som»" sourceUrl="https://www.verkami.com">
+**Verkami** la van fundar a Mataró (Barcelona) en 2010 Joan Sala i els seus dos fills, Adrià i Jonàs, per a finançar projectes culturals i creatius. El 2022, dotze anys després d'obrir, va superar els **10.000 projectes finançats** —còmics, documentals, àlbums musicals, llibres, festivals— amb el suport de més d'un milió i mig de mecenes. Són xifres modestes al costat de qualsevol *startup* tecnològica, però hi ha un detall crucial: Verkami mai ha alçat capital risc. L'empresa sempre ha sigut autofinançada amb la comissió del 5 % que cobra de cada projecte finançat amb èxit. La conseqüència: els fundadors continuen sent amos del 100 % de l'empresa, les decisions es prenen amb criteris culturals a més de financers i els costos d'estructura són baixos. És un cas interessant per discutir en classe: quan convé captar inversió externa i quan és preferible créixer lentament amb autofinançament? La resposta correcta depén del sector, el ritme del mercat i els valors del fundador, no d'una fórmula universal.
 </RealExample>
 
 <Callout label="Exemple pràctic" title="La cascada de finançament d'una startup espanyola típica" variant="example">
@@ -430,12 +429,12 @@ La pregunta de quant deute i quant capital propi convé tindre és un dels debat
 
 La pràctica intermèdia és el que es coneix com a **estructura òptima de capital**: la mescla de deute i capital propi que minimitza el cost mitjà ponderat del capital (*WACC*) mentres manté l'empresa solvent. Depén del sector (elèctriques poden suportar més deute; tecnològiques, menys), del cicle econòmic i del risc del propi projecte.
 
-Una regla pràctica per a pimes: **el deute no hauria de superar el 60-65 % del balanç**. Per damunt, el cost financer es menja els beneficis; per davall, es desaprofita palanquejament.
+Una regla pràctica per a pimes: **el deute no hauria de superar el 60-65 % del balanç**. Per damunt, el cost financer es menja els beneficis; per davall, pot quedar marge per a endeutar-se més, però només compensa si la rendibilitat econòmica supera el cost del deute.
 
-<VuelveAlCaso referencia="Abengoa: comandes per 12.000 M€ i fallida per 750 M€">
+<VuelveAlCaso referencia="Abengoa: rendible sobre el paper i sense caixa">
 El cas d'Abengoa il·lustra la diferència entre **rendibilitat** i **liquiditat**, una de les distincions més importants de tota la funció financera. L'empresa era **rendible** —generava beneficis comptables— però no era **líquida** —no tenia efectiu disponible quan vencien els bons—. La causa: una estructura de finançament amb massa deute curt (vencia prompte) i un actiu massa llarg (ingressos que tardaven anys a cobrar-se).
 
-És la **regla de l'equilibri**: el llarg termini es finança amb llarg termini i el curt amb curt. Saltar-se-la, com Abengoa, és la causa estadísticament més freqüent de fallida empresarial. Per al teu projecte: quan faces el pla d'inversió en l'**etapa 9** i el balanç previsional en l'**etapa 10**, comprova sempre que l'**actiu no corrent** (el que tarda a convertir-se en caixa) està finançat per **fons a llarg termini** (capital propi + deute a llarg). Si la quadratura no se sosté, no és un detall comptable: és una bomba de temps.
+És la **regla de l'equilibri**: el llarg termini es finança amb llarg termini i el curt amb curt. Saltar-se-la, com Abengoa, és una de les causes més freqüents de fallida empresarial. Per a qualsevol pla d'empresa: quan faces el pla d'inversió i el balanç previsional, comprova sempre que l'**actiu no corrent** (el que tarda a convertir-se en caixa) està finançat per **fons a llarg termini** (capital propi + deute a llarg). Si la quadratura no se sosté, no és un detall comptable: és una bomba de temps.
 </VuelveAlCaso>
 
 <KeyTakeaways title="L'essencial de la funció financera">
@@ -446,26 +445,7 @@ El cas d'Abengoa il·lustra la diferència entre **rendibilitat** i **liquiditat
 - L'**estructura òptima de capital** balanceja cost mitjà (millor amb deute) i risc de fallida (millor amb capital propi).
 </KeyTakeaways>
 
-## Connexió amb el projecte capstone
-
-<RetoEtapa
-  etapa={9}
-  titulo="Pla d'inversió + VAN/TIR/PayBack + estructura de finançament"
-  entregable="Tres documents: inversió inicial detallada, càlcul VAN+TIR+PayBack amb fluxos a 3-5 anys (k = 8-10 %), estructura de finançament amb justificació de la mescla pròpia/aliena."
->
-Pren els costos que has estimat en l'**etapa 7** (productiva) i el cost de personal de l'**etapa 8** (RH). Construïx:
-
-1. **Pla d'inversió inicial**: llista d'actius que necessites comprar abans de començar (mobiliari, equips, fiances, software, màrqueting inicial). Amb preus i proveïdors reals (o estimats amb honestedat).
-2. **Fluxos previstos** del projecte a 3-5 anys: ingressos − costos − impostos = flux de caixa anual. Sigues conservador amb ingressos i exagerat amb costos; si tot i així el VAN ix positiu, el teu projecte resistix.
-3. **VAN + TIR + PayBack** amb taxa de descompte k = 8-10 %. Aplica la **Pista EBAU** —descompta cada flux, no els sumes en brut—.
-4. **Estructura de finançament**: quant poses tu o el teu equip (finançament propi), quant demanes a banc / business angels / família / crowdfunding (finançament aliè). Justifica amb la cascada de finançament de la unitat.
-
-Si el VAN ix negatiu, **no maquilles els números**. Documenta què hauria de canviar perquè isquera positiu (major preu, menor cost, termini més llarg) i torna a l'etapa 4 (BMC) a iterar. L'etapa 9 és la primera prova dura de viabilitat del projecte.
-</RetoEtapa>
-
-Cada equip tanca esta unitat amb tres entregables: una **estimació de la inversió inicial** necessària per arrancar el projecte, un **càlcul del PayBack i del VAN** amb fluxos previstos dels tres primers anys (amb una taxa de descompte raonable, p. ex. 8-10%) i una **proposta d'estructura de finançament** explicant quina part de la inversió es cobrix amb recursos propis i quina part amb finançament aliè, amb arguments. Estos càlculs s'utilitzaran directament en el pla d'empresa final (Unitat 12).
-
-<Callout label="En l'EBAU" title="Bloc 3 · entra en la part pràctica" variant="concept">Esta unitat és de les més exigibles en la pràctica: la selecció d'inversions és un clàssic de la **Part II (Bloc 3)**, que val **2 punts per exercici**. El problema típic demana calcular el **VAN i el termini de recuperació (payback)** d'un projecte, normalment **amb fluxos a dos anys**, i de vegades interpretar la **TIR** per decidir si la inversió és viable. Recorda **descomptar els fluxos** correctament i raonar la decisió final. Practica-ho al quadern de preparació EBAU.</Callout>
+<Callout label="En l'EBAU" title="Bloc 3 · entra en la part pràctica" variant="concept">Esta unitat és de les més exigibles en la pràctica: la selecció d'inversions és un clàssic de la **Part II (Bloc 3)**, que val **2 punts per exercici**. El problema típic demana calcular el **VAN i el termini de recuperació (payback)** d'un projecte, **amb fluxos a dos o tres anys**, i de vegades interpretar la **TIR** per decidir si la inversió és viable. Recorda **descomptar els fluxos** correctament i raonar la decisió final. Practica-ho al quadern de preparació EBAU.</Callout>
 
 ## Glossari de la unitat
 
@@ -517,11 +497,10 @@ Cada equip tanca esta unitat amb tres entregables: una **estimació de la invers
     paginas: 'Capítols 1, 8, 19',
   }}
   video={{
-    titulo: 'Why Banks Fail',
-    meta: 'Two Cents · YouTube',
-    duracion: '~10 min',
-    porque: 'Una explicació visual de per què els bancs —els actors que «manegen diners»— són els primers que fan fallida quan hi ha una crisi de liquiditat. Bon complement al cas d\'Abengoa.',
-    url: 'https://www.youtube.com/results?search_query=two+cents+why+banks+fail',
+    titulo: 'La caiguda d\'Abengoa, explicada',
+    meta: 'YouTube · reportatges i premsa econòmica',
+    porque: 'Reportatges sobre com Abengoa, amb beneficis comptables i projectes a mig món, va arribar al preconcurs el 2015 perquè no tenia caixa per a atendre el seu deute. Bon complement al cas de la unitat: la regla de l\'equilibri incomplida, amb imatges i cronologia.',
+    url: 'https://www.youtube.com/results?search_query=ca%C3%ADda+de+abengoa+explicada',
   }}
   cuenta={{
     titulo: 'The Plain Bagel',
@@ -550,11 +529,11 @@ Cada equip tanca esta unitat amb tres entregables: una **estimació de la invers
     - "Gestionar les àrees funcionals de l'empresa: la funció financera."
 - tipo: caso
   eyebrow: "El cas"
-  title: "Comandes per 12.000 M€ i fallida per 750 M€"
-  contexto: "Abengoa va ser durant dos dècades líder mundial en plantes termosolars. Les comandes eren reals, però cobrar-les portava anys i l'expansió s'havia finançat amb deute curt. Beneficis en el balanç, caixa buida."
+  title: "Rendible sobre el paper, sense caixa per a pagar"
+  contexto: "Abengoa va ser durant dos dècades líder mundial en plantes termosolars. Les comandes eren reals, però cobrar-les portava anys i l'expansió s'havia finançat amb deute curt. Beneficis en el compte de resultats, caixa buida."
   datos:
-    - "Present en 50 països, amb comandes per 12.000 M€."
-    - "El 2015 va intentar refinançar 750 M€ en bons."
+    - "Present en desenes de països, amb una cartera de projectes d'uns 8.000 M€."
+    - "El 2015 va necessitar diners nous per a refinançar el deute."
     - "Els creditors la van trobar sense flux de caixa suficient."
   pregunta: "Com acaba en concurs una empresa rendible amb un llibre de comandes enorme?"
 - tipo: section
@@ -624,9 +603,9 @@ Cada equip tanca esta unitat amb tres entregables: una **estimació de la invers
   pasos:
     - "PayBack: acumulats 6.500, 13.000 i 19.500 €. Durant l'any 3 calen 5.000 dels 6.500, és a dir 0,77 de l'any. PayBack ≈ 2,77 anys."
     - "El flux de l'any 4 inclou el valor residual: 6.500 + 3.000 = 9.500 €."
-    - "Descompte al 8 %: 6.018,52 + 5.572,71 + 5.159,92 + 6.982,06 = 23.733,21 € actualitzats."
-    - VAN = 23.733,21 − 18.000 = +5.733,21 €.
-    - "Decisió: VAN positiu i PayBack per davall de la vida del projecte, s'accepta. La TIR rondaria el 19-20 %."
+    - "Descompte al 8 %: 6.018,52 + 5.572,70 + 5.159,91 + 6.982,78 = 23.733,91 € actualitzats."
+    - VAN = 23.733,91 − 18.000 = +5.733,91 €.
+    - "Decisió: VAN positiu i PayBack per davall de la vida del projecte, s'accepta. La TIR és del 20,75 %."
 - tipo: exercise
   title: Exercici 9.3 · La TIR per interpolació lineal
   enunciado: Un autònom de l'audiovisual estudia comprar un equip d'il·luminació per 10.000 € que li donarà fluxos de 3.500 €/any durant quatre anys, sense valor residual. Calcula el VAN al 10 % i al 20 %, estima la TIR per interpolació lineal i decidix si accepta el projecte amb una taxa mínima exigida del 12 %.
@@ -710,10 +689,10 @@ Cada equip tanca esta unitat amb tres entregables: una **estimació de la invers
   caption: Frankfurt, París, Amsterdam i Madrid canalitzen bona part del deute i el capital de les grans empreses de la UE.
   credit: "Foto: Ank Kumar, CC BY-SA 4.0 via Wikimedia Commons"
 - tipo: data
-  numero: 42 M€
-  label: finançats en més de 12.000 projectes
+  numero: "10.000"
+  label: projectes finançats entre 2010 i 2022
   title: Verkami va créixer sense cap ronda de capital risc
-  detalle: La plataforma s'autofinança amb la comissió del 5 % que cobra de cada projecte que assolix el seu objectiu. Catorze anys després, els seus fundadors continuen tenint el 100 % de l'empresa.
+  detalle: La plataforma s'autofinança amb la comissió del 5 % que cobra de cada projecte que assolix el seu objectiu. Mai ha alçat capital risc, i els seus fundadors continuen tenint el 100 % de l'empresa.
 - tipo: diagram
   diagrama: CascadaFinanciacion
   caption: Cada salt exigix haver executat bé l'anterior; saltar-se passos quasi sempre acaba en rebutjos seguits.
@@ -752,7 +731,7 @@ Cada equip tanca esta unitat amb tres entregables: una **estimació de la invers
 - tipo: concept
   eyebrow: Torna al cas
   title: Rendible no és el mateix que líquid
-  body: "Abengoa donava beneficis comptables, però no tenia efectiu quan van véncer els bons: un actiu llarg, amb cobraments a anys vista, finançat amb deute que vencia prompte. És la regla de l'equilibri incomplida, i és la causa més freqüent de fallida empresarial. Abans de tancar un pla d'inversió, comprova que el que tarda a convertir-se en caixa està finançat a llarg termini."
+  body: "Abengoa donava beneficis comptables, però no tenia efectiu quan van véncer els bons: un actiu llarg, amb cobraments a anys vista, finançat amb deute que vencia prompte. És la regla de l'equilibri incomplida, una de les causes més freqüents de fallida empresarial. Abans de tancar un pla d'inversió, comprova que el que tarda a convertir-se en caixa està finançat a llarg termini."
   pull: Les empreses no fan fallida quan perden diners, sinó quan es queden sense liquiditat.
 - tipo: recap
   eyebrow: "Repassa"

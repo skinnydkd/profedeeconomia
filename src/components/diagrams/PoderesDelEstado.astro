@@ -1,0 +1,189 @@
+---
+/**
+ * Separation of powers in Spain, drawn as a circuit (CJD Bach, unit 3).
+ *
+ * Two things students routinely miss and this figure makes explicit:
+ *  - the chain of legitimacy runs upward from the electorate, so the
+ *    Government is not elected directly but invested by Congress;
+ *  - control runs the other way, and the Constitutional Court sits outside
+ *    the three powers rather than on top of the judiciary.
+ * The Crown is drawn to the side with its countersignature requirement,
+ * because "arbitrates and moderates" without "is not accountable" is the
+ * half-explanation that leaves the institution incomprehensible.
+ */
+import { getLocale } from '@/i18n/locale';
+const locale = getLocale(Astro.currentLocale);
+
+const COPY = {
+  es: {
+    circuitoDelPoderEnEspanaLaCi: 'Circuito del poder en España. La ciudadanía elige las Cortes Generales, que ejercen el poder legislativo y además inviste al presidente del Gobierno, que ejerce el ejecutivo. El poder judicial aplica la ley y controla la actuación de la Administración. El Tribunal Constitucional queda fuera de los tres poderes y puede anular leyes. La Corona ejerce funciones de representación y arbitraje, siempre con refrendo de otro órgano, que asume la responsabilidad.',
+    quienEligeAQuienYQuienContro: 'Quién elige a quién y quién controla a quién',
+    ciudadania: 'Ciudadanía',
+    laSoberaniaNacionalResideEnE: 'La soberanía nacional reside en el pueblo',
+    art12Ce: 'art. 1.2 CE',
+    elige: 'elige',
+    cortesGenerales: 'Cortes Generales',
+    congresoDeLosDiputadosYSenad: 'Congreso de los Diputados y Senado',
+    poderLegislativoApruebanLasL: 'Poder legislativo: aprueban las leyes',
+    inviste: 'inviste',
+    gobierno: 'Gobierno',
+    poderEjecutivoDirigeLaAdmini: 'Poder ejecutivo. Dirige la Administración',
+    yEjerceLaPotestadReglamentar: 'y ejerce la potestad reglamentaria',
+    poderJudicial: 'Poder judicial',
+    juecesYMagistrados: 'Jueces y magistrados,',
+    independientesEInamovibles: 'independientes e inamovibles',
+    controla: 'controla',
+    tribunalConstitucional: 'Tribunal Constitucional',
+    fueraDeLosTresPoderes: 'Fuera de los tres poderes.',
+    puedeAnularUnaLey: 'Puede anular una ley.',
+    anulaNormas: 'anula normas',
+    inconstitucionales: 'inconstitucionales',
+    laCorona: 'La Corona',
+    jefaturaDelEstado: 'Jefatura del Estado.',
+    arbitraYModeraNoGobierna: 'Arbitra y modera; no gobierna.',
+    laPiezaQueExplicaALaCoronaEl: 'La pieza que explica a la Corona: el refrendo.',
+    losActosDelReyDebenIrRefrend: 'Los actos del Rey deben ir refrendados por el presidente del Gobierno o el ministro competente,',
+    queAsumeLaResponsabilidadPor: 'que asume la responsabilidad. Por eso el Rey no responde políticamente: porque tampoco decide.',
+    flechasContinuas: 'Flechas continuas',
+    cadenaDeLegitimidadDeDondeVi: 'cadena de legitimidad: de dónde viene el poder de cada órgano.',
+    flechasDiscontinuas: 'Flechas discontinuas',
+    cadenaDeControlQuienVigilaAQ: 'cadena de control: quién vigila a quién.',
+    fijateEnQueElGobiernoNoLoEli: 'Fíjate en que el Gobierno no lo elige la ciudadanía directamente: lo inviste el Congreso, y ante el Congreso responde.',
+  },
+  ca: {
+    circuitoDelPoderEnEspanaLaCi: "Circuit del poder a Espanya. La ciutadania elegix les Corts Generals, que exercixen el poder legislatiu i a més investixen el president del Govern, que exercix l'executiu. El poder judicial aplica la llei i controla l'actuació de l'Administració. El Tribunal Constitucional queda fora dels tres poders i pot anul·lar lleis. La Corona exercix funcions de representació i arbitratge, sempre amb referendament d'un altre òrgan, que assumix la responsabilitat.",
+    quienEligeAQuienYQuienContro: 'Qui elegix qui i qui controla qui',
+    ciudadania: 'Ciutadania',
+    laSoberaniaNacionalResideEnE: 'La sobirania nacional residix en el poble',
+    art12Ce: 'art. 1.2 CE',
+    elige: 'elegix',
+    cortesGenerales: 'Corts Generals',
+    congresoDeLosDiputadosYSenad: 'Congrés dels Diputats i Senat',
+    poderLegislativoApruebanLasL: 'Poder legislatiu: aproven les lleis',
+    inviste: 'investix',
+    gobierno: 'Govern',
+    poderEjecutivoDirigeLaAdmini: "Poder executiu. Dirigix l'Administració",
+    yEjerceLaPotestadReglamentar: 'i exercix la potestat reglamentària',
+    poderJudicial: 'Poder judicial',
+    juecesYMagistrados: 'Jutges i magistrats,',
+    independientesEInamovibles: 'independents i inamovibles',
+    controla: 'controla',
+    tribunalConstitucional: 'Tribunal Constitucional',
+    fueraDeLosTresPoderes: 'Fora dels tres poders.',
+    puedeAnularUnaLey: 'Pot anul·lar una llei.',
+    anulaNormas: 'anul·la normes',
+    inconstitucionales: 'inconstitucionals',
+    laCorona: 'La Corona',
+    jefaturaDelEstado: "Prefectura de l'Estat.",
+    arbitraYModeraNoGobierna: 'Arbitra i modera; no governa.',
+    laPiezaQueExplicaALaCoronaEl: 'La peça que explica la Corona: el referendament.',
+    losActosDelReyDebenIrRefrend: 'Els actes del Rei han de ser referendats pel president del Govern o el ministre competent,',
+    queAsumeLaResponsabilidadPor: 'que assumix la responsabilitat. Per això el Rei no respon políticament: perquè tampoc no decidix.',
+    flechasContinuas: 'Fletxes contínues',
+    cadenaDeLegitimidadDeDondeVi: "cadena de legitimitat: d'on ve el poder de cada òrgan.",
+    flechasDiscontinuas: 'Fletxes discontínues',
+    cadenaDeControlQuienVigilaAQ: 'cadena de control: qui vigila qui.',
+    fijateEnQueElGobiernoNoLoEli: "Fixa't que el Govern no l'elegix la ciutadania directament: l'investix el Congrés, i davant del Congrés respon.",
+  },
+} as const;
+
+const t = COPY[locale];
+---
+
+<svg viewBox="0 0 820 580" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="poderesdelestado-t poderesdelestado-d">
+  <title id="poderesdelestado-t">{t.quienEligeAQuienYQuienContro}</title>
+  <desc id="poderesdelestado-d">{t.circuitoDelPoderEnEspanaLaCi}</desc>
+  <defs>
+    <style>
+      .bg { fill: #FBF6EC; }
+      .node { stroke-width: 2; }
+      .n-people { fill: #F5EDD9; stroke: #8A7868; }
+      .n-leg { fill: #DBEDED; stroke: #1F6E6E; }
+      .n-exe { fill: #FBE3D6; stroke: #C44E2C; }
+      .n-jud { fill: #E0DCF0; stroke: #4A3B8F; }
+      .n-tc { fill: #F5E5BC; stroke: #A87A2A; }
+      .n-crown { fill: #FFFFFF; stroke: #8A7868; stroke-dasharray: 5 3; }
+      .title-n { font-family: 'Fraunces', serif; font-size: 15px; font-weight: 500; fill: #2A1F18; text-anchor: middle; }
+      .sub-n { font-family: 'Switzer', sans-serif; font-size: 10.5px; fill: #5C4A3D; text-anchor: middle; }
+      .art { font-family: 'Switzer', sans-serif; font-size: 9.5px; font-style: italic; fill: #8A7868; text-anchor: middle; }
+      .flow { fill: none; stroke: #1F6E6E; stroke-width: 2; marker-end: url(#p-arrow-leg); }
+      .ctrl { fill: none; stroke: #4A3B8F; stroke-width: 1.6; stroke-dasharray: 5 3; marker-end: url(#p-arrow-jud); }
+      .lbl-flow { font-family: 'Fraunces', serif; font-style: italic; font-size: 12px; fill: #1F6E6E; text-anchor: middle; }
+      .lbl-ctrl { font-family: 'Fraunces', serif; font-style: italic; font-size: 12px; fill: #4A3B8F; text-anchor: middle; }
+      .legend { font-family: 'Switzer', sans-serif; font-size: 10.5px; fill: #5C4A3D; }
+      .legend-b { font-family: 'Switzer', sans-serif; font-size: 10.5px; font-weight: 700; fill: #2A1F18; }
+    </style>
+    <marker id="p-arrow-leg" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#1F6E6E" />
+    </marker>
+    <marker id="p-arrow-jud" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#4A3B8F" />
+    </marker>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="820" height="580" />
+
+  <!-- Electorate -->
+  <rect class="node n-people" x="270" y="30" width="240" height="62" rx="4" />
+  <text class="title-n" x="390" y="56">{t.ciudadania}</text>
+  <text class="sub-n" x="390" y="76">{t.laSoberaniaNacionalResideEnE}</text>
+  <text class="art" x="390" y="88">{t.art12Ce}</text>
+
+  <path class="flow" d="M 390 96 L 390 140" />
+  <text class="lbl-flow" x="452" y="122">{t.elige}</text>
+
+  <!-- Cortes -->
+  <rect class="node n-leg" x="250" y="146" width="280" height="76" rx="4" />
+  <text class="title-n" x="390" y="172">{t.cortesGenerales}</text>
+  <text class="sub-n" x="390" y="192">{t.congresoDeLosDiputadosYSenad}</text>
+  <text class="sub-n" x="390" y="208">{t.poderLegislativoApruebanLasL}</text>
+
+  <path class="flow" d="M 390 226 L 390 268" />
+  <text class="lbl-flow" x="452" y="250">{t.inviste}</text>
+
+  <!-- Government -->
+  <rect class="node n-exe" x="250" y="274" width="280" height="76" rx="4" />
+  <text class="title-n" x="390" y="300">{t.gobierno}</text>
+  <text class="sub-n" x="390" y="320">{t.poderEjecutivoDirigeLaAdmini}</text>
+  <text class="sub-n" x="390" y="336">{t.yEjerceLaPotestadReglamentar}</text>
+
+  <!-- Judiciary -->
+  <rect class="node n-jud" x="40" y="274" width="180" height="76" rx="4" />
+  <text class="title-n" x="130" y="300">{t.poderJudicial}</text>
+  <text class="sub-n" x="130" y="320">{t.juecesYMagistrados}</text>
+  <text class="sub-n" x="130" y="336">{t.independientesEInamovibles}</text>
+
+  <path class="ctrl" d="M 244 312 L 226 312" />
+  <text class="lbl-ctrl" x="235" y="366">{t.controla}</text>
+
+  <!-- Constitutional Court -->
+  <rect class="node n-tc" x="560" y="274" width="220" height="76" rx="4" />
+  <text class="title-n" x="670" y="300">{t.tribunalConstitucional}</text>
+  <text class="sub-n" x="670" y="320">{t.fueraDeLosTresPoderes}</text>
+  <text class="sub-n" x="670" y="336">{t.puedeAnularUnaLey}</text>
+
+  <path class="ctrl" d="M 556 300 L 536 250" />
+  <path class="ctrl" d="M 556 320 L 536 312" />
+  <text class="lbl-ctrl" x="600" y="240">{t.anulaNormas}</text>
+  <text class="lbl-ctrl" x="600" y="256">{t.inconstitucionales}</text>
+
+  <!-- Crown -->
+  <rect class="node n-crown" x="40" y="146" width="180" height="76" rx="4" />
+  <text class="title-n" x="130" y="172">{t.laCorona}</text>
+  <text class="sub-n" x="130" y="192">{t.jefaturaDelEstado}</text>
+  <text class="sub-n" x="130" y="208">{t.arbitraYModeraNoGobierna}</text>
+
+  <path class="ctrl" d="M 226 184 L 244 184" />
+
+  <!-- Legend -->
+  <rect class="node n-crown" x="40" y="400" width="740" height="70" rx="4" />
+  <text class="legend-b" x="60" y="424">{t.laPiezaQueExplicaALaCoronaEl}</text>
+  <text class="legend" x="60" y="444">{t.losActosDelReyDebenIrRefrend}</text>
+  <text class="legend" x="60" y="460">{t.queAsumeLaResponsabilidadPor}</text>
+
+  <text class="legend-b" x="40" y="502">{t.flechasContinuas}</text>
+  <text class="legend" x="160" y="502">{t.cadenaDeLegitimidadDeDondeVi}</text>
+  <text class="legend-b" x="40" y="524">{t.flechasDiscontinuas}</text>
+  <text class="legend" x="160" y="524">{t.cadenaDeControlQuienVigilaAQ}</text>
+  <text class="legend" x="40" y="552">{t.fijateEnQueElGobiernoNoLoEli}</text>
+</svg>

@@ -2,17 +2,19 @@
 import type { Insurance, EventCard, GameConfig, InsuranceKey } from './types';
 
 export const INSURANCES: Insurance[] = [
-  { key: 'movil', label: 'Móvil',       prima: 30 },
-  { key: 'coche', label: 'Coche/Moto',  prima: 70 },
-  { key: 'hogar', label: 'Hogar',       prima: 80 },
-  { key: 'salud', label: 'Salud',       prima: 60 },
-  { key: 'rc',    label: 'Resp. civil', prima: 90 },
+  { key: 'movil', label: 'Móvil',       prima: 40 },
+  { key: 'coche', label: 'Coche/Moto',  prima: 85 },
+  { key: 'hogar', label: 'Hogar',       prima: 100 },
+  { key: 'salud', label: 'Salud',       prima: 75 },
+  { key: 'rc',    label: 'Resp. civil', prima: 115 },
 ];
 
 export const INSURANCE_KEYS: InsuranceKey[] = INSURANCES.map((i) => i.key);
 
 // Deck weights sum to 100. Each round draws exactly one card.
-// Premiums are calibrated so prima ≈ (peso/100) × dano (roughly fair).
+// Premiums carry a loading of about 20 % over the expected loss (peso/100 × dano),
+// as real insurers do: insuring has a negative expected value, and what a team
+// buys is protection against a large loss.
 export const EVENT_DECK: EventCard[] = [
   { key: 'calma', label: 'Todo tranquilo: no pasa nada', cubre: null,    dano: 0,    peso: 30 },
   { key: 'movil', label: 'Pantalla rota / robo del móvil', cubre: 'movil', dano: 200,  peso: 16 },

@@ -11,9 +11,11 @@
  *
  * One path per asignatura that has at least one published activity.
  */
-import { ASIGNATURA_SLUGS, ASIGNATURAS } from '@/lib/asignaturas';
+import { ACCENTS, ASIGNATURA_SLUGS, ASIGNATURAS, leyCurricular } from '@/lib/asignaturas';
 import { getCollection, render } from 'astro:content';
 import { sabersDeActividad } from '@/lib/cuaderno/sabers';
+import { ACTIVIDAD_TIPO_LABEL } from '@/lib/actividades';
+import { SITE } from '@/lib/seo';
 import { getLocale } from '@/i18n/locale';
 import { pickLocalizedEntry } from '@/i18n/content-locale';
 import { localizeAsignatura } from '@/i18n/asignaturas-ca';
@@ -81,15 +83,14 @@ const porUnidad = unidades.map((u) => ({
   test: tests.find((t) => t.data.unidad_relacionada === u) ?? null,
 }));
 
-const tipoLabel: Record<string, string> = locale === 'ca'
-  ? { caso: 'Cas', ejercicio: 'Exercici', debate: 'Debat', dinamica: 'Dinàmica', proyecto: 'Projecte' }
-  : { caso: 'Caso', ejercicio: 'Ejercicio', debate: 'Debate', dinamica: 'Dinámica', proyecto: 'Proyecto' };
+const tipoLabel: Record<string, string> = ACTIVIDAD_TIPO_LABEL[locale];
 
+const ley = leyCurricular(a);
 const copy = {
   es: {
     docHeader: 'Cuaderno de actividades', pageTitle: 'Cuaderno de actividades',
     coverTitlePre: 'Cuaderno de', coverTitleEm: 'actividades',
-    coverInsideActs: 'actividades', coverInsideTests: 'tests', coverConSolucionario: ' con solucionario', curriculo: 'Currículo LOMLOE',
+    coverInsideActs: 'actividades', coverInsideTests: 'tests', coverConSolucionario: ' con solucionario', curriculo: `Currículo ${ley}`,
     editorial: 'Editorial', edicion: 'Edición', profesorado: 'Profesorado', alumnado: 'Alumnado', curso: 'curso 2026/27', generado: 'Generado',
     comoUsar: 'Cómo usar este cuaderno',
     indice: 'Índice', unidades: 'unidades', contenido: 'Contenido', unidad: 'Unidad', act: 'act.', test: 'test',
@@ -101,7 +102,7 @@ const copy = {
   ca: {
     docHeader: 'Quadern d\'activitats', pageTitle: 'Quadern d\'activitats',
     coverTitlePre: 'Quadern d\'', coverTitleEm: 'activitats',
-    coverInsideActs: 'activitats', coverInsideTests: 'tests', coverConSolucionario: ' amb solucionari', curriculo: 'Currículum LOMLOE',
+    coverInsideActs: 'activitats', coverInsideTests: 'tests', coverConSolucionario: ' amb solucionari', curriculo: `Currículum ${ley}`,
     editorial: 'Editorial', edicion: 'Edició', profesorado: 'Professorat', alumnado: 'Alumnat', curso: 'curs 2026/27', generado: 'Generat',
     comoUsar: 'Com fer servir este quadern',
     indice: 'Índex', unidades: 'unitats', contenido: 'Contingut', unidad: 'Unitat', act: 'act.', test: 'test',
@@ -116,16 +117,7 @@ const today = new Date().toLocaleDateString(locale === 'ca' ? 'ca-ES' : 'es-ES',
 const totalActs = acts.length;
 const totalTests = tests.length;
 
-// Per-asignatura accent palette (mirror of libro/imprimir.astro).
-const ACCENTS: Record<string, { base: string; deep: string; soft: string }> = {
-  edmn: { base: '#C44E2C', deep: '#9C3A1C', soft: '#FBE3D6' },
-  eco1: { base: '#1F6E6E', deep: '#164F4F', soft: '#DBEDED' },
-  eco4: { base: '#D4A24C', deep: '#A87A2A', soft: '#F5E5BC' },
-  fopp: { base: '#5B3A4E', deep: '#46293A', soft: '#ECDCE5' },
-  eeae: { base: '#2E5E3A', deep: '#234A2D', soft: '#D9E6DC' },
-  gpe:  { base: '#8C2F39', deep: '#6E2530', soft: '#F1DADD' },
-};
-const accent = ACCENTS[a.color] ?? ACCENTS.edmn;
+const accent = ACCENTS[a.color];
 
 const letra = (i: number) => String.fromCharCode(97 + i); // 0 -> 'a'
 ---
@@ -547,28 +539,28 @@ const letra = (i: number) => String.fromCharCode(97 + i); // 0 -> 'a'
       )}
       {locale === 'ca' ? (
         <p>
-          Cada activitat indica el seu tipus (cas, exercici, debat, dinàmica o
-          projecte), la duració orientativa, l'agrupament suggerit i els
+          Cada activitat indica el seu tipus (cas, exercici, debat, dinàmica,
+          projecte, investigació, notícia, gràfic, joc o creatiu), la duració orientativa, l'agrupament suggerit i els
           materials necessaris. Tot està pensat per fer-se servir tal qual o adaptar-se
           al vostre grup.
         </p>
       ) : (
         <p>
-          Cada actividad indica su tipo (caso, ejercicio, debate, dinámica o
-          proyecto), la duración orientativa, el agrupamiento sugerido y los
+          Cada actividad indica su tipo (caso, ejercicio, debate, dinámica,
+          proyecto, investigación, noticia, gráfico, juego o creativo), la duración orientativa, el agrupamiento sugerido y los
           materiales necesarios. Todo está pensado para usarse tal cual o adaptarse
           a vuestro grupo.
         </p>
       )}
       {locale === 'ca' ? (
         <p>
-          El contingut es basa en el currículum bàsic estatal LOMLOE per a
+          El contingut es basa en el currículum bàsic estatal {ley} per a
           {' '}{a.title} ({a.marcoNormativo}). Convé consultar la concreció de
           la vostra comunitat autònoma.
         </p>
       ) : (
         <p>
-          El contenido se basa en el currículo básico estatal LOMLOE para
+          El contenido se basa en el currículo básico estatal {ley} para
           {' '}{a.title} ({a.marcoNormativo}). Conviene consultar la concreción de
           vuestra comunidad autónoma.
         </p>
@@ -591,12 +583,12 @@ const letra = (i: number) => String.fromCharCode(97 + i); // 0 -> 'a'
       {locale === 'ca' ? (
         <p class="note">
           Material obert de profedeeconomia.es · Llicència Creative Commons
-          BY-NC-SA · Errates i propostes: hola@profedeeconomia.es
+          BY-NC-SA · Errates i propostes: {SITE.email}
         </p>
       ) : (
         <p class="note">
           Material abierto de profedeeconomia.es · Licencia Creative Commons
-          BY-NC-SA · Erratas y propuestas: hola@profedeeconomia.es
+          BY-NC-SA · Erratas y propuestas: {SITE.email}
         </p>
       )}
     </section>
@@ -726,7 +718,7 @@ const letra = (i: number) => String.fromCharCode(97 + i); // 0 -> 'a'
     <script is:inline>
       if (new URLSearchParams(location.search).has('preview')) {
         const s = document.createElement('script');
-        s.src = 'https://unpkg.com/pagedjs/dist/paged.polyfill.js';
+        s.src = '/vendor/pagedjs@0.4.3/paged.polyfill.min.js';
         document.body.appendChild(s);
       }
     </script>

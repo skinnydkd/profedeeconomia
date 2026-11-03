@@ -46,7 +46,10 @@ export default function BancoIsland({ porBloque, bloques }: Props) {
             Sin preguntas aún en este bloque — próximamente.
           </p>
         ) : (
+          // Keyed by block: a new block starts a fresh attempt instead of
+          // grading the previous block's answers against the new questions.
           <QuizPlayer
+            key={selected}
             preguntas={preguntas}
             storageKey={`olimpiada-banco-${selected}`}
           />

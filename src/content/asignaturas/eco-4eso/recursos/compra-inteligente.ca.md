@@ -1,6 +1,6 @@
 ---
 asignatura: eco-4eso
-unidad_relacionada: 5
+unidad_relacionada: 7
 title: "Preu per unitat i cost real de pagar a terminis"
 descripcion: "Dues comparacions que la botiga no fa per tu: quin de tres formats ix més barat per gram o per unitat, i quina TAE amaga una quota mensual que sembla xicoteta."
 tipo: calculadora
@@ -12,7 +12,7 @@ slug: "asignaturas/eco-4eso/recursos/compra-inteligente.ca"
 
 ## Quan usar-la
 
-- En treballar el consum informat en la Unitat 5, perquè «comparar preus» deixe de ser un consell i passe a ser un compte.
+- En treballar el consum informat en la Unitat 7, perquè «comparar preus» deixe de ser un consell i passe a ser un compte.
 - Abans de parlar de drets del consumidor: cal vore primer quina informació fa falta per a decidir bé.
 - Per a desmuntar la quota mensual com a argument de venda, que és la tècnica més comuna i la que més diners costa.
 - Amb un catàleg real a la mà —d'una botiga d'electrònica, d'un supermercat— funciona millor que amb dades inventades.

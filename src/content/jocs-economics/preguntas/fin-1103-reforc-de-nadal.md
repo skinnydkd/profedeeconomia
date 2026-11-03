@@ -10,7 +10,7 @@ opciones:
 correcta: 0
 explicacion: "Des de la reforma laboral de 2021 el contracte temporal exigix causa, i un pic ocasional de comandes com el de Nadal és justament la de circumstàncies de la producció."
 estado: publicado
-font: "eco-4eso U8 — Nòmina, IRPF i contractes"
+font: "eco-4eso U5 — Mercat de treball, contractes i nòmina"
 ---
 
 Una jugueteria necessita tres persones més només per al pic de vendes de la campanya de Nadal. Quin contracte encaixa legalment amb esta situació?

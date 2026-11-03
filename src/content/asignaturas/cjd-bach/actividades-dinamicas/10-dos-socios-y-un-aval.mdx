@@ -1,0 +1,117 @@
+---
+asignatura: cjd-bach
+unidad_relacionada: 4
+title: "Dos socios y un aval"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "20-25 min"
+descripcion: "Montáis un obrador. La forma jurídica que elegís decide qué pasa el día que algo sale mal."
+competencias_clave: [CC, CE, CPSAA]
+competencias_especificas: []
+estado: publicado
+publicado_en: 2026-09-08
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Caso · Persona jurídica y empresa",
+    "titulo": "Dos socios y un aval",
+    "contexto": "Tú y Nadia lleváis dos años haciendo repostería por encargo desde casa. Funciona, y queréis dar el salto: alquilar un local pequeño, comprar un horno de verdad y contratar a una persona los fines de semana. Entre las dos tenéis 8.000 € ahorrados y necesitáis unos 28.000. Tú pones casi todo el dinero; Nadia, casi todo el trabajo. En la gestoría os preguntan lo primero de todo: «¿Cómo lo montáis?». Y de esa respuesta depende algo que hoy no os estáis preguntando: qué ocurre con vuestras cosas si el obrador no sale.",
+    "kpi_inicial": { "patrimonio_a_salvo": 0, "caja": 8000, "credibilidad": 3 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisión 1 — Cómo lo montáis",
+      "situacion": "La gestoría os pone tres opciones sobre la mesa y os dice el precio de cada una, pero no las consecuencias. Las consecuencias las tenéis que buscar vosotras.",
+      "opciones": [
+        {
+          "label": "Las dos de alta como autónomas: rápido, barato y sin notario",
+          "kpi_delta": { "patrimonio_a_salvo": 0, "caja": -400, "credibilidad": 1 },
+          "feedback": "Es la vía más barata y en dos días estáis facturando. Lo que se firma sin leer es el art. 1911 del Código Civil: del cumplimiento de las obligaciones responde el deudor con todos sus bienes, presentes y futuros. No hay separación entre el patrimonio del obrador y el vuestro; si el negocio debe, debéis vosotras, hoy y dentro de diez años. Existe la figura del emprendedor de responsabilidad limitada, que permite dejar fuera la vivienda habitual inscribiéndola en el Registro Mercantil, pero no protege frente a las deudas con Hacienda y la Seguridad Social. Lección: la forma jurídica más barata de constituir es la más cara de deshacer.",
+          "next": "n2"
+        },
+        {
+          "label": "Comunidad de bienes: ponemos las dos y repartimos",
+          "kpi_delta": { "patrimonio_a_salvo": 0, "caja": -300, "credibilidad": 1 },
+          "feedback": "Suena a término medio y no lo es. La comunidad de bienes no tiene personalidad jurídica propia: no es «alguien» distinto de vosotras, así que responde cada comunera con su propio patrimonio, igual que en el caso anterior y además por lo que haga la otra. Es un contrato entre vosotras, no un escudo frente a terceros. Lección: si la figura no crea una persona jurídica nueva, no hay nadie más a quien reclamar que vosotras dos.",
+          "next": "n2"
+        },
+        {
+          "label": "Sociedad limitada: notario, Registro Mercantil y estatutos",
+          "kpi_delta": { "patrimonio_a_salvo": 6, "caja": -900, "credibilidad": 4 },
+          "feedback": "Con la SL nace una persona jurídica distinta de vosotras: tiene su propio NIF, su propio patrimonio y sus propias deudas. Desde la reforma de 2022 puede constituirse con un capital de 1 €, con la contrapartida de destinar a reserva legal al menos el 20 % del beneficio hasta llegar a 3.000 € y de responder solidariamente las socias de esa diferencia si la sociedad se liquida antes. Cuesta más y obliga a llevar cuentas en serio. Lección: la responsabilidad limitada no es un truco fiscal, es la decisión de crear un sujeto de derecho que responda en tu lugar.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisión 2 — El banco quiere una firma más",
+      "situacion": "Pedís 20.000 € para el horno y la reforma. El banco aprueba la operación, pero añade una condición al final del contrato: aval personal y solidario de las dos socias.",
+      "opciones": [
+        {
+          "label": "Firmamos el aval: sin horno no hay obrador",
+          "kpi_delta": { "patrimonio_a_salvo": -6, "caja": 20000, "credibilidad": 1 },
+          "feedback": "Aquí es donde se agrieta la responsabilidad limitada, y no por un defecto de la ley sino por vuestra propia firma: el aval solidario permite al banco ir directamente contra vuestros bienes sin agotar antes los de la sociedad. Montar una SL y avalarla personalmente deja el escudo intacto para los demás acreedores y abierto para este. Lección: la limitación de responsabilidad la puedes perder tú misma, y normalmente la pierdes en la última página.",
+          "next": "n3"
+        },
+        {
+          "label": "Buscamos aval de una sociedad de garantía recíproca o una línea pública",
+          "kpi_delta": { "patrimonio_a_salvo": -1, "caja": 18500, "credibilidad": 3 },
+          "feedback": "Tarda unas semanas más y tiene comisión, pero cambia quién responde: el garante se interpone entre el banco y vosotras. No es gratis ni automático —analizan el proyecto— y a veces piden garantías parciales. Lección: casi siempre hay una vía intermedia entre firmarlo todo y renunciar; suele ser más lenta y por eso nadie la mira con prisa.",
+          "next": "n3"
+        },
+        {
+          "label": "No firmamos: empezamos con horno de segunda mano y crecemos despacio",
+          "kpi_delta": { "patrimonio_a_salvo": 1, "caja": 3000, "credibilidad": 0 },
+          "feedback": "Renunciar al crédito es una decisión legítima y conservadora: sin aval, el riesgo se queda dentro de la sociedad. El coste es real —menos producción, más lento— y hay que asumirlo con los ojos abiertos, no como quien evita leer el contrato. Lección: no endeudarse también es una decisión jurídica, y es la única que no puede salirte mal por sorpresa.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisión 3 — El segundo invierno",
+      "situacion": "Las ventas caen, se acumulan cuatro meses de alquiler impagados, dos facturas del proveedor de harina y las cuotas de la Seguridad Social del último trimestre. Queda dinero para pagar a una parte, no a todos.",
+      "opciones": [
+        {
+          "label": "Pagamos al proveedor, que es conocido, y dejamos lo público para el final",
+          "kpi_delta": { "patrimonio_a_salvo": -3, "caja": -4000, "credibilidad": -1 },
+          "feedback": "Es lo que hace casi todo el mundo y es lo que peor acaba. Las deudas con Hacienda y la Seguridad Social pueden derivarse a quien administra la sociedad, y esa derivación de responsabilidad alcanza al patrimonio personal aunque la sociedad fuera limitada. Además, elegir a dedo a quién se paga cuando ya hay insolvencia puede cuestionarse después. Lección: la deuda pública es la que menos se olvida y la que mejor sabe encontrarte.",
+          "next": "final:fracaso_parcial"
+        },
+        {
+          "label": "Vamos al concurso: hay un procedimiento especial para microempresas",
+          "kpi_delta": { "patrimonio_a_salvo": 3, "caja": -1500, "credibilidad": 1 },
+          "feedback": "Desde 2023 existe un procedimiento concursal específico para microempresas, más rápido y más barato, pensado justo para negocios de este tamaño. Ordena los pagos por ley en lugar de por amistad, permite intentar la continuidad y, si no la hay, cierra de forma reglada. No es el final del mundo: es el procedimiento previsto para este final. Lección: el concurso no es el castigo por fracasar, es el cauce que impide que fracasar signifique arruinarse dos veces.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Cerramos, echamos la persiana y ya veremos",
+          "kpi_delta": { "patrimonio_a_salvo": -5, "caja": -500, "credibilidad": -4 },
+          "feedback": "La sociedad no desaparece por dejar de abrir: sigue existiendo mientras no se liquide e inscriba su extinción. Y quien administra responde solidariamente de las deudas sociales nacidas después de que hubiera causa de disolución si no convoca junta para disolverla. Cerrar sin liquidar convierte una deuda de la sociedad en una deuda tuya. Lección: la salida ordenada es más barata que la desaparición, aunque duela más el día que se firma.",
+          "next": "final:fracaso_parcial"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "El obrador cierra y vosotras no",
+      "resumen": "La sociedad respondió con lo suyo, el procedimiento repartió lo que había y vuestro patrimonio personal aguantó lo que la ley permitía que aguantara. Podéis volver a intentarlo.",
+      "lecciones_clave": [
+        "Sin persona jurídica —autónoma o comunidad de bienes— responde tu patrimonio entero: art. 1911 del Código Civil.",
+        "La responsabilidad limitada la rompe habitualmente tu propia firma en un aval personal y solidario.",
+        "Las deudas con Hacienda y la Seguridad Social pueden derivarse a quien administra, y ni la SL ni el emprendedor de responsabilidad limitada las detienen."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "El negocio cerró y la deuda se mudó a tu casa",
+      "resumen": "Lo que empezó siendo una deuda del obrador terminó siendo vuestra, por la vía del aval, de la derivación de responsabilidad o del cierre sin liquidar.",
+      "lecciones_clave": [
+        "Elegir a quién pagar cuando ya hay insolvencia no es un gesto de lealtad: es una decisión con consecuencias jurídicas.",
+        "Una sociedad que deja de operar sin liquidarse sigue existiendo, y quien la administra responde de lo que venga después."
+      ]
+    }
+  }
+}
+```

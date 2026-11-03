@@ -4,12 +4,15 @@
  * Dinámicas FichaAlumno: lives inside .prose as a .print-block so the @media
  * print rules in the detail page isolate it onto its own A4 page.
  */
+import { getLocale } from '@/i18n/locale';
+import { t } from '@/i18n/ui';
 interface Props { titulo: string; subtitulo?: string; }
 const { titulo, subtitulo } = Astro.props;
+const locale = getLocale(Astro.currentLocale);
 ---
 <div class="ficha print-block" data-print>
   <div class="ficha__head">
-    <span class="ficha__tag">Ficha del alumno</span>
+    <span class="ficha__tag">{t('ficha.tag', locale)}</span>
     <h4 class="ficha__title">{titulo}</h4>
     {subtitulo && <p class="ficha__sub">{subtitulo}</p>}
   </div>

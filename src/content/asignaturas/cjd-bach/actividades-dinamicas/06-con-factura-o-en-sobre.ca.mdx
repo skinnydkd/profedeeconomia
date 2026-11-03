@@ -1,0 +1,119 @@
+---
+asignatura: cjd-bach
+unidad_relacionada: 6
+title: "Amb factura o en sobre?"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "15-20 min"
+descripcion: "T'encarreguen una faena de disseny per 900 €. El que cobres depén de com ho declares."
+competencias_clave: [CC, CE, CD]
+competencias_especificas: []
+lang: ca
+estado: publicado
+slug: "asignaturas/cjd-bach/actividades-dinamicas/06-con-factura-o-en-sobre.ca"
+publicado_en: 2026-09-07
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Cas · Dret tributari",
+    "titulo": "Amb factura o en sobre?",
+    "contexto": "Portes dos anys fent il·lustració pel teu compte. Una empresa de la ciutat t'encarrega la identitat visual d'una fira: 900 € per unes sis setmanes de treball. És el teu primer encàrrec d'esta grandària. La persona que et contracta et diu que pot pagar-te «com vulgues»: amb factura, o en efectiu i sense papers, «que així no et lleven res». Tens 19 anys i cap alta a Hisenda.",
+    "kpi_inicial": { "net_esperat": 900, "risc_de_sancio": 2, "cobertura_i_drets": 1 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisió 1 — Com cobres l'encàrrec",
+      "situacion": "Has de respondre esta setmana. Busques per internet i trobes respostes contradictòries: que hi ha un mínim per davall del qual no cal declarar, que cal donar-se d'alta sempre, que amb una sola factura no passa res.",
+      "opciones": [
+        {
+          "label": "En efectiu i sense papers: són 900 € nets",
+          "kpi_delta": { "net_esperat": 0, "risc_de_sancio": 5, "cobertura_i_drets": -1 },
+          "feedback": "Això és economia submergida: no és una zona grisa, és la part clarament il·legal de la frontera. No és només el teu problema: l'empresa tampoc pot deduir-se la despesa, així que està assumint un risc pels dos. I si no et paguen, no tens ni contracte ni factura amb què reclamar. Lliçó: cobrar en negre renuncia a l'única prova que et deuen diners.",
+          "next": "n2"
+        },
+        {
+          "label": "Emet factura i em done d'alta al cens d'empresaris i professionals",
+          "kpi_delta": { "net_esperat": -189, "risc_de_sancio": -2, "cobertura_i_drets": 3 },
+          "feedback": "Camí net. L'alta censal és gratuïta i separa dues coses que se solen confondre: declarar l'activitat davant d'Hisenda i cotitzar al règim d'autònoms. La factura portarà IVA i, sent el client una empresa, també una retenció d'IRPF que ella ingressa per tu i que recuperes en declarar. Lliçó: la retenció no és un impost addicional, és una bestreta a compte del teu propi IRPF.",
+          "next": "n2"
+        },
+        {
+          "label": "Emet factura però no em done d'alta de res: total, és una sola faena",
+          "kpi_delta": { "net_esperat": -189, "risc_de_sancio": 3, "cobertura_i_drets": 1 },
+          "feedback": "Facturar sense alta censal és una infracció formal encara que declares l'ingrés. El de l'alta d'autònoms és més discutible quan l'activitat no és habitual, i hi ha criteri administratiu i judicial a favor i en contra; l'alta censal, en canvi, no admet discussió. Lliçó: quan una obligació és barata i clara, complir-la és la decisió eficient encara que una altra siga discutible.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisió 2 — La factura",
+      "situacion": "L'has d'emetre. L'empresa et demana «una factura normal». Trobes plantilles per internet amb camps que no entens: base imposable, IVA 21 %, retenció d'IRPF, total a percebre.",
+      "opciones": [
+        {
+          "label": "Pose 900 € i ja està, sense desglossar res",
+          "kpi_delta": { "net_esperat": 0, "risc_de_sancio": 3, "cobertura_i_drets": -1 },
+          "feedback": "Una factura sense les dades obligatòries —identificació de les dues parts, número correlatiu, data, descripció, base, tipus i quota d'IVA— no és una factura vàlida, i l'empresa no pot deduir-se-la. Acabarà tornant-te-la. Lliçó: la forma en Dret tributari no és una mania burocràtica: és el que permet comprovar que l'operació va existir.",
+          "next": "n3"
+        },
+        {
+          "label": "Desglosse base 900 €, IVA 21 % i retenció d'IRPF del 7 %",
+          "kpi_delta": { "net_esperat": 126, "risc_de_sancio": -2, "cobertura_i_drets": 2 },
+          "feedback": "Correcte i revelador: l'IVA que sumes no és teu, el recaptes per a Hisenda i l'ingresses cada trimestre; la retenció que restes són diners teus que l'empresa avança a compte del teu IRPF. El primer any d'activitat el tipus de retenció reduït per a nous professionals sol ser del 7 %. Lliçó: en una factura hi ha dos impostos distints movent-se en direccions contràries.",
+          "next": "n3"
+        },
+        {
+          "label": "Aplique IVA però no retenció: no vull cobrar menys ara",
+          "kpi_delta": { "net_esperat": 63, "risc_de_sancio": 2, "cobertura_i_drets": 0 },
+          "feedback": "La retenció no és opcional quan el destinatari és un empresari o professional: és ell qui està obligat a practicar-la i ingressar-la. Si no l'apliques, hauràs de pagar tot l'IRPF de colp a la declaració anual. Lliçó: els pagaments a compte repartixen l'impost en el temps; saltar-se'ls no el reduïx, només el concentra.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisió 3 — Arriba la declaració de la renda",
+      "situacion": "Al maig has de decidir si presentes la declaració. Els teus ingressos de l'any han sigut eixos 900 € més 4.200 € d'un contracte d'estiu. Un amic et diu que amb eixes xifres no hi estàs obligat i que millor no cridar l'atenció.",
+      "opciones": [
+        {
+          "label": "No la presente: estic per davall del mínim",
+          "kpi_delta": { "net_esperat": 0, "risc_de_sancio": 2, "cobertura_i_drets": -1 },
+          "feedback": "Els llindars que eximixen de declarar estan pensats sobretot per a rendiments del treball; tindre rendiments d'activitats econòmiques canvia el càlcul, i cal comprovar-ho cas per cas. A més, si t'han retingut, no declarar pot significar regalar la retenció. Lliçó: no estar obligat i no convindre són coses distintes.",
+          "next": "final:fracaso_parcial"
+        },
+        {
+          "label": "La presente i recupere la retenció avançada",
+          "kpi_delta": { "net_esperat": 63, "risc_de_sancio": -3, "cobertura_i_drets": 3 },
+          "feedback": "Amb ingressos baixos, l'IRPF que et correspon és pràcticament zero, així que la retenció avançada se't torna. Presentar és la via per la qual eixos diners tornen. Lliçó: el sistema tributari és progressiu, i la progressivitat només et beneficia si hi entres.",
+          "next": "final:exito"
+        },
+        {
+          "label": "La presente i deduïsc les despeses de l'activitat",
+          "kpi_delta": { "net_esperat": 90, "risc_de_sancio": -2, "cobertura_i_drets": 3 },
+          "feedback": "En estimació directa simplificada tributes pel rendiment net: ingressos menys despeses necessàries i justificades —llicències de programari, la part proporcional de l'equip, la quota d'autònoms si la vas pagar—. Guardar les factures d'eixes despeses val diners reals. Lliçó: en l'IRPF d'una activitat econòmica, la base no és el que cobres, és el que guanyes.",
+          "next": "final:exito"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "900 € facturats i la retenció tornada",
+      "resumen": "Vas declarar l'activitat, vas emetre una factura completa i vas presentar la renda. Cobres una mica menys del que t'oferien en efectiu i, a canvi, tens prova de l'encàrrec, historial i cap deute latent amb Hisenda.",
+      "lecciones_clave": [
+        "L'IVA que factures no és ingrés teu: el recaptes i l'ingresses. La retenció d'IRPF sí que són diners teus, avançats a compte.",
+        "L'alta censal és gratuïta i distinta de l'alta al règim d'autònoms; confondre-les és l'error més comú en començar.",
+        "Amb ingressos baixos, declarar sol tornar diners: la progressivitat només funciona a favor teu si presentes."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "Cobrat i sense rastre",
+      "resumen": "Vas cobrar 900 € en efectiu i no vas declarar res. Ningú t'ha reclamat, de moment. Tampoc tens cap prova de la faena feta ni dels diners cobrats si demà els necessites.",
+      "lecciones_clave": [
+        "L'economia submergida trasllada el cost dels servicis públics a qui sí que declara.",
+        "Sense factura no hi ha prova de l'encàrrec: el risc d'impagament l'assumixes tu sencer."
+      ]
+    }
+  }
+}
+```

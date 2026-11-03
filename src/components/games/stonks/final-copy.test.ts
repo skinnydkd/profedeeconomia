@@ -11,9 +11,9 @@ const verdict = (c: (typeof COPY)['es'], won: boolean) =>
 
 describe('the final verdict', () => {
   it('reads as a sentence either way, in both locales', () => {
-    expect(verdict(COPY.es, true)).toBe('Has ganado a «El Mercat»');
-    expect(verdict(COPY.es, false)).toBe('Has perdido contra «El Mercat»');
-    expect(verdict(COPY.ca, true)).toBe('Has guanyat a «El Mercat»');
+    expect(verdict(COPY.es, true)).toBe('Has ganado a «El Mercado»');
+    expect(verdict(COPY.es, false)).toBe('Has perdido contra «El Mercado»');
+    expect(verdict(COPY.ca, true)).toBe('Has guanyat «El Mercat»');
     expect(verdict(COPY.ca, false)).toBe('Has perdut contra «El Mercat»');
   });
 

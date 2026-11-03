@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'preact/hooks';
 import type { ArbolJSON, Kpis, Opcion } from './types.ts';
 import { applyDelta, percentChange } from './kpi.ts';
+import { loadJSON, removeKey, saveJSON } from '../../lib/storage';
 
 interface Props {
   data: ArbolJSON;
@@ -30,15 +31,14 @@ export default function ArbolDecisionesIsland({ data, simuladorId, locale = 'es'
   const storageKey = `arbol:${simuladorId}`;
   const initialState: SessionState = { phase: 'intro', nodeId: '', kpis: data.intro.kpi_inicial, lastChoice: null };
 
+  // sessionStorage may be blocked by the browser: then the simulation just isn't kept.
   const [state, setState] = useState<SessionState>(() => {
     if (typeof window === 'undefined') return initialState;
-    const stored = window.sessionStorage.getItem(storageKey);
-    if (!stored) return initialState;
-    try { return JSON.parse(stored) as SessionState; } catch { return initialState; }
+    return loadJSON<SessionState>(storageKey, initialState, 'session');
   });
 
   useEffect(() => {
-    if (typeof window !== 'undefined') window.sessionStorage.setItem(storageKey, JSON.stringify(state));
+    saveJSON(storageKey, state, 'session');
   }, [state, storageKey]);
 
   function start() {
@@ -62,13 +62,13 @@ export default function ArbolDecisionesIsland({ data, simuladorId, locale = 'es'
   }
 
   function restart() {
-    if (typeof window !== 'undefined') window.sessionStorage.removeItem(storageKey);
+    removeKey(storageKey, 'session');
     setState(initialState);
   }
 
   return (
     <div class="arbol">
-      <KpiBar kpis={state.kpis} initial={data.intro.kpi_inicial} />
+      <KpiBar kpis={state.kpis} initial={data.intro.kpi_inicial} labels={data.intro.kpi_labels ?? {}} />
 
       {state.phase === 'intro' && (
         <div class="arbol__card">
@@ -117,7 +117,7 @@ export default function ArbolDecisionesIsland({ data, simuladorId, locale = 'es'
   );
 }
 
-function KpiBar({ kpis, initial }: { kpis: Kpis; initial: Kpis }) {
+function KpiBar({ kpis, initial, labels }: { kpis: Kpis; initial: Kpis; labels: Record<string, string> }) {
   return (
     <div class="kpi-bar">
       {Object.keys(initial).map((k) => {
@@ -125,7 +125,7 @@ function KpiBar({ kpis, initial }: { kpis: Kpis; initial: Kpis }) {
         const trend = change > 0 ? 'up' : change < 0 ? 'down' : 'flat';
         return (
           <div class={`kpi-pill kpi-pill--${trend}`} key={k}>
-            <span class="kpi-pill__label">{k}</span>
+            <span class="kpi-pill__label">{labels[k] ?? k.replace(/_/g, ' ')}</span>
             <span class="kpi-pill__value">{kpis[k] ?? initial[k]}</span>
             {change !== 0 && <span class="kpi-pill__delta">{change > 0 ? '+' : ''}{change}%</span>}
           </div>

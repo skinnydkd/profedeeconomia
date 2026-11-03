@@ -15,20 +15,34 @@ import { spawn } from 'node:child_process';
 import { existsSync, mkdirSync, copyFileSync, statSync, readFileSync, readdirSync } from 'node:fs';
 import { resolve, dirname, join, extname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { allSubjects } from './ci-changed-decks.mjs';
 import { platform } from 'node:os';
 import { createServer } from 'node:http';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = resolve(__dirname, '..');
 
-const allAsignaturas = ['edmn-2bach', 'eco-1bach', 'eco-4eso', 'fopp-4eso', 'taller-eco-3eso', 'ipe1-fp', 'ipe2-fp', 'eeae-bach', 'gpe-bach'];
+// Read off the content tree, never hardcoded: the same nine-slug array lived in
+// four generators and none of them grew cjd-bach when the subject shipped, so
+// its download links 404'd with nothing to notice. `allSubjects` is the source
+// CI already uses to decide which subjects exist.
+const allAsignaturas = allSubjects(resolve(root, 'src/content/asignaturas'));
+
+// A subject without activities (cjd-bach, for now) has no workbook: its print
+// route 404s, and when it came first the server probe below aborted the whole
+// run, so no subject got its workbook.
+const hasActividades = (slug) => {
+  const dir = resolve(root, `src/content/asignaturas/${slug}/actividades`);
+  return existsSync(dir) && readdirSync(dir).some((f) => /\.mdx?$/.test(f) && !/\.ca\.mdx?$/.test(f));
+};
 
 const args = new Set(process.argv.slice(2));
 const inDistOnly = args.has('--in-dist');
 const slugFilters = process.argv.slice(2).filter((a) => !a.startsWith('--'));
-const asignaturas = slugFilters.length > 0
+const asignaturas = (slugFilters.length > 0
   ? allAsignaturas.filter((s) => slugFilters.includes(s))
-  : allAsignaturas;
+  : allAsignaturas
+).filter(hasActividades);
 if (asignaturas.length === 0) {
   console.error(`✖ Ningún slug válido. Opciones: ${allAsignaturas.join(', ')}`);
   process.exit(1);

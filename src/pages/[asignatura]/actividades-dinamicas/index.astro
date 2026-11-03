@@ -7,9 +7,12 @@ import { getLocale } from '@/i18n/locale';
 import { pickLocalizedEntry } from '@/i18n/content-locale';
 import { localizeAsignatura } from '@/i18n/asignaturas-ca';
 import type { GetStaticPaths } from 'astro';
+import SectionHeader from '@components/SectionHeader.astro';
 
 export const getStaticPaths = (async () => {
-  return Object.values(ASIGNATURAS).map((a) => ({ params: { asignatura: a.slug } }));
+  return Object.values(ASIGNATURAS)
+    .filter((a) => a.estado === 'publicado')
+    .map((a) => ({ params: { asignatura: a.slug } }));
 }) satisfies GetStaticPaths;
 
 const { asignatura } = Astro.params;
@@ -45,16 +48,16 @@ const copy = {
     descripcion: `Tests, simuladores y recursos interactivos por unidad de ${a.title}.`,
     lede: 'Tests de autoevaluación, simuladores de decisión y recursos interactivos agrupados por unidad.',
     unidad: 'Unidad', testOn: 'Test ✓', testOff: 'Test —',
-    sim: (n: number) => `${n} simuladores`, simOff: 'Sin simulador',
-    rec: (n: number) => `${n} recursos`, recOff: 'Sin recursos',
+    sim: (n: number) => (n === 1 ? '1 simulador' : `${n} simuladores`), simOff: 'Sin simulador',
+    rec: (n: number) => (n === 1 ? '1 recurso' : `${n} recursos`), recOff: 'Sin recursos',
   },
   ca: {
     inicio: 'Inici', titulo: 'Activitats interactives',
     descripcion: `Tests, simuladors i recursos interactius per unitat de ${a.title}.`,
     lede: "Tests d'autoavaluació, simuladors de decisió i recursos interactius agrupats per unitat.",
     unidad: 'Unitat', testOn: 'Test ✓', testOff: 'Test —',
-    sim: (n: number) => `${n} simuladors`, simOff: 'Sense simulador',
-    rec: (n: number) => `${n} recursos`, recOff: 'Sense recursos',
+    sim: (n: number) => (n === 1 ? '1 simulador' : `${n} simuladors`), simOff: 'Sense simulador',
+    rec: (n: number) => (n === 1 ? '1 recurs' : `${n} recursos`), recOff: 'Sense recursos',
   },
 }[locale];
 
@@ -62,25 +65,22 @@ const breadcrumb = breadcrumbLd([
   { name: copy.inicio, path: '/' },
   { name: a.shortLabel, path: `/${a.slug}/` },
   { name: copy.titulo, path: `/${a.slug}/actividades-dinamicas/` },
-]);
+], locale);
 ---
 
 <BaseLayout title={`${copy.titulo} — ${a.shortLabel}`} description={copy.descripcion} jsonLd={breadcrumb} contentLang={locale}>
-  <div class="container">
-    <nav class="breadcrumb">
-      <a href="/">{copy.inicio}</a> <span class="sep">›</span>
-      <a href={`/${a.slug}/`}>{a.shortLabel}</a> <span class="sep">›</span>
-      <span>{copy.titulo}</span>
-    </nav>
-  </div>
-
-  <section class="hero">
-    <div class="container">
-      <span class="kicker kicker--sentence">{a.shortLabel}</span>
-      <h1>{copy.titulo}</h1>
-      <p class="lede">{copy.lede}</p>
-    </div>
-  </section>
+  <SectionHeader
+    locale={locale}
+    kicker={`${a.shortLabel} · ${a.level}`}
+    crumbs={[
+      { name: copy.inicio, path: '/' },
+      { name: a.shortLabel, path: `/${a.slug}/` },
+      { name: copy.titulo },
+    ]}
+  >
+    <Fragment slot="title">{copy.titulo}</Fragment>
+    <Fragment slot="lede">{copy.lede}</Fragment>
+  </SectionHeader>
 
   <section class="grid-section">
     <div class="container">
@@ -105,10 +105,15 @@ const breadcrumb = breadcrumbLd([
 </BaseLayout>
 
 <style>
-  .grid-section { padding: 40px 0 80px; }
-  .unit-grid { list-style: none; padding: 0; margin: 0; display: grid; gap: 16px; grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr)); }
+  /* Section chrome, as on the other subject sections (recursos, actividades):
+     these pages used the classes without defining them, so the title sat at
+     the left edge and, on a phone, the text touched the screen border. */
+  .container { max-width: 1240px; margin: 0 auto; padding: 0 clamp(1.5rem, 4vw, 3rem); }
+  .container--narrow { max-width: 900px; }
+  .grid-section { padding: 2.5rem 0 5rem; }
+  .unit-grid { list-style: none; padding: 0; margin: 0; display: grid; gap: 1rem; grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr)); }
   .unit-card a {
-    display: block; padding: 24px 26px;
+    display: block; padding: 1.5rem 1.6rem;
     background: var(--color-paper);
     border: 1px solid var(--color-line);
     border-radius: 6px;
@@ -116,11 +121,11 @@ const breadcrumb = breadcrumbLd([
     transition: border-color .15s, transform .15s;
   }
   .unit-card a:hover { border-color: var(--color-terra); transform: translateY(-2px); }
-  .unit-card__num   { font-family: var(--font-sans); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--color-terra); font-weight: 700; }
-  .unit-card__title { font-family: var(--font-serif); font-size: 22px; margin: 10px 0 8px; }
-  .unit-card__lema  { font-family: var(--font-serif); font-style: italic; font-size: 15px; color: var(--color-ink-soft); margin: 0 0 14px; }
-  .unit-card__chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; }
-  .chip { display: inline-block; font-family: var(--font-sans); font-size: 11px; padding: 3px 8px; border-radius: 999px; letter-spacing: 0.04em; }
+  .unit-card__num   { font-family: var(--font-sans); font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--color-terra-ink); font-weight: 700; }
+  .unit-card__title { font-family: var(--font-serif); font-size: 1.35rem; margin: 0.6rem 0 0.5rem; }
+  .unit-card__lema  { font-family: var(--font-serif); font-style: italic; font-size: 1rem; color: var(--color-ink-soft); margin: 0 0 0.9rem; }
+  .unit-card__chips { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0; }
+  .chip { display: inline-block; font-family: var(--font-sans); font-size: 0.8rem; padding: 0.2rem 0.55rem; border-radius: 999px; letter-spacing: 0.04em; }
   .chip--on  { background: var(--color-terra-soft); color: var(--color-terra-deep); }
   .chip--off { background: var(--color-bg-cream);   color: var(--color-ink-mute); }
 </style>

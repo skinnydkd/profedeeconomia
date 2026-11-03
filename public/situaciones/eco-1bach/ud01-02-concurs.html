@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Concurso de repaso — Economía · 1.º de Bachillerato</title>
+<style>@font-face{font-family:"Fraunces";font-style:normal;font-weight:300 700;font-display:swap;src:url("/fonts/fraunces-latin-normal.woff2") format("woff2")}@font-face{font-family:"Fraunces";font-style:italic;font-weight:300 700;font-display:swap;src:url("/fonts/fraunces-latin-italic.woff2") format("woff2")}</style>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --color-bg:#fbf6ec; --color-paper:#fff; --color-bg-cream:#f5edd9;
+    --color-ink:#2a1f18; --color-ink-soft:#5c4a3d; --color-ink-mute:#6e5a47;
+    --color-line:#e5d4bd;
+    --color-terra:#c44e2c; --color-terra-deep:#9c3a1c; --color-terra-soft:#fbe3d6;
+    --color-mustard:#d4a24c; --color-mustard-deep:#835f20; --color-mustard-soft:#f5e5bc;
+    --eco1:#1f6e6e; --eco1-soft:#dbeded;
+    --font-serif:"Fraunces","Newsreader",Georgia,serif;
+    --font-sans:"Switzer",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    --ease-soft:cubic-bezier(.32,.72,.16,1);
+  }
+  html,body{height:100%}
+  body{background:var(--color-bg);color:var(--color-ink);font-family:var(--font-sans);
+       display:flex;flex-direction:column;overflow:hidden}
+  h1,h2,h3,.serif{font-family:var(--font-serif);letter-spacing:-.02em}
+  .marca{font-family:var(--font-serif);font-weight:500;text-transform:lowercase;white-space:nowrap}
+  .marca .p{color:var(--color-terra)} .marca .d{color:var(--color-mustard)}
+
+  /* ---------- barra superior ---------- */
+  header{display:flex;align-items:center;gap:clamp(8px,2vw,24px);
+         padding:clamp(8px,1.4vh,16px) clamp(14px,2.5vw,34px);
+         border-bottom:2px solid var(--eco1);background:var(--color-paper);flex:none}
+  .ronda{font-family:var(--font-serif);font-weight:700;font-size:clamp(15px,2.1vw,24px);
+         color:var(--eco1)}
+  .ronda small{display:block;font-family:var(--font-sans);font-weight:600;font-size:.52em;
+               letter-spacing:.1em;text-transform:uppercase;color:var(--color-ink-mute)}
+  .barra{flex:1;height:7px;background:var(--color-bg-cream);border-radius:99px;overflow:hidden}
+  .barra i{display:block;height:100%;width:0;background:var(--eco1);
+           transition:width .35s var(--ease-soft)}
+  header .marca{font-size:clamp(12px,1.5vw,17px)}
+
+  /* ---------- pregunta ---------- */
+  main{flex:1;display:flex;flex-direction:column;justify-content:center;
+       padding:clamp(14px,3vh,40px) clamp(18px,5vw,90px);gap:clamp(10px,2vh,24px);min-height:0}
+  .num{font-family:var(--font-serif);font-weight:700;color:var(--color-mustard-deep);
+       font-size:clamp(13px,1.6vw,18px)}
+  .q{font-family:var(--font-serif);font-weight:700;font-size:clamp(22px,4.1vw,52px);
+     line-height:1.14;max-width:22ch}
+  .q.llarga{font-size:clamp(18px,2.9vw,38px);max-width:30ch}
+  .amb-fig{display:grid;grid-template-columns:1fr auto;gap:clamp(14px,3vw,46px);align-items:center}
+  .amb-fig svg{width:min(42vw,46vh);height:auto}
+
+  .r{background:var(--eco1-soft);border:1px solid #b9d6d6;border-radius:10px;
+     padding:clamp(10px,1.8vh,20px) clamp(14px,2vw,26px);max-width:52ch;
+     opacity:0;transform:translateY(8px);transition:all .3s var(--ease-soft)}
+  .r.vist{opacity:1;transform:none}
+  .r .t{font-family:var(--font-serif);font-weight:700;font-size:clamp(17px,2.3vw,30px);
+        color:var(--eco1);line-height:1.2}
+  .r .pq{margin-top:.45em;font-size:clamp(12px,1.35vw,17px);color:var(--color-ink-soft);
+         line-height:1.4}
+  .r .pq b{color:var(--color-terra-deep)}
+
+  /* ---------- marcador ---------- */
+  footer{flex:none;background:var(--color-paper);border-top:1px solid var(--color-line);
+         padding:clamp(7px,1.2vh,14px) clamp(14px,2.5vw,34px);
+         display:flex;align-items:center;gap:clamp(8px,1.4vw,18px);flex-wrap:wrap}
+  .eq{display:flex;align-items:center;gap:7px;border:1px solid var(--color-line);
+      border-radius:8px;padding:4px 6px 4px 11px;background:var(--color-bg)}
+  .eq .nom{font-weight:600;font-size:clamp(11px,1.15vw,15px)}
+  .eq .pt{font-family:var(--font-serif);font-weight:700;font-size:clamp(16px,1.9vw,24px);
+          color:var(--eco1);min-width:1.6em;text-align:right}
+  .eq button{border:1px solid var(--color-line);background:var(--color-paper);cursor:pointer;
+             width:clamp(21px,2.1vw,27px);height:clamp(21px,2.1vw,27px);border-radius:6px;
+             font-size:clamp(12px,1.2vw,15px);font-weight:700;color:var(--color-ink-soft);
+             font-family:var(--font-sans);line-height:1}
+  .eq button:hover{background:var(--eco1-soft);border-color:var(--eco1);color:var(--eco1)}
+  .eq .tecla{font-size:9px;color:var(--color-ink-mute);border:1px solid var(--color-line);
+             border-radius:4px;padding:0 4px;line-height:1.5}
+  footer .dreta{margin-left:auto;display:flex;gap:8px}
+  .bt{border:1px solid var(--eco1);background:var(--eco1);color:#fff;cursor:pointer;
+      border-radius:8px;padding:clamp(6px,.9vh,10px) clamp(12px,1.6vw,20px);font-weight:600;
+      font-family:var(--font-sans);font-size:clamp(12px,1.2vw,15px)}
+  .bt.buit{background:var(--color-paper);color:var(--eco1)}
+  .bt:disabled{opacity:.35;cursor:default}
+
+  /* ---------- pantalles d'inici i final ---------- */
+  .capa{position:fixed;inset:0;background:var(--color-bg);display:flex;flex-direction:column;
+        align-items:center;justify-content:center;gap:clamp(12px,2.4vh,26px);
+        padding:clamp(20px,5vw,60px);text-align:center;z-index:9}
+  .capa h1{font-size:clamp(28px,5.4vw,64px);line-height:1.05}
+  .capa p{max-width:56ch;color:var(--color-ink-soft);font-size:clamp(13px,1.5vw,19px);
+          line-height:1.5}
+  .tecles{display:flex;gap:clamp(8px,1.4vw,18px);flex-wrap:wrap;justify-content:center;
+          font-size:clamp(11px,1.2vw,15px);color:var(--color-ink-mute)}
+  .tecles span{background:var(--color-paper);border:1px solid var(--color-line);
+               border-radius:7px;padding:5px 11px}
+  .tria{display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:center}
+  .tria button{border:1px solid var(--color-line);background:var(--color-paper);cursor:pointer;
+               border-radius:8px;width:clamp(34px,3.4vw,46px);height:clamp(34px,3.4vw,46px);
+               font-family:var(--font-serif);font-weight:700;font-size:clamp(15px,1.7vw,21px);
+               color:var(--color-ink-soft)}
+  .tria button.on{background:var(--eco1);border-color:var(--eco1);color:#fff}
+  .podi{display:flex;gap:clamp(10px,2vw,28px);align-items:flex-end;flex-wrap:wrap;
+        justify-content:center}
+  .podi div{background:var(--color-paper);border:1px solid var(--color-line);border-radius:10px;
+            padding:clamp(10px,2vh,22px) clamp(14px,2.4vw,30px);text-align:center}
+  .podi .n{font-family:var(--font-serif);font-weight:700;font-size:clamp(26px,4vw,52px);
+           color:var(--eco1)}
+  .podi .guanya{background:var(--color-mustard-soft);border-color:var(--color-mustard)}
+  .amagat{display:none}
+
+  /* gràfica reutilitzada del dossier de repàs */
+  .fp .gl{stroke:#e2d6c0;stroke-width:.7} .fp .ax{stroke:#8a7a63;stroke-width:1.4}
+  .fp .tk{font-family:"Segoe UI",sans-serif;font-size:8px;fill:#6e5a47}
+  .fp .al{font-family:"Segoe UI",sans-serif;font-size:9px;font-weight:600;fill:#5c4a3d}
+  .fp .cv{fill:none;stroke:var(--eco1);stroke-width:2.2}
+  .fp .pt{fill:var(--color-ink)} .fp .pt.pin{fill:var(--color-terra)}
+  .fp .pl{font-family:"Segoe UI",sans-serif;font-size:10px;font-weight:700;fill:var(--color-ink)}
+</style>
+</head>
+<body>
+
+<div class="capa" id="inici">
+  <span class="marca" style="font-size:clamp(14px,1.8vw,20px)"><span class="p">p</span><span class="d">.</span>profedeeconomia</span>
+  <h1>Concurso de repaso<br>«Elegir es renunciar» y «¿Quién decide qué se produce?»</h1>
+  <p><b>31 preguntas en 5 rondas</b>, unos treinta minutos. Cada equipo escribe la respuesta en papel <b>antes</b> de que se revele. No vale gritarla: se revisa lo que hay escrito.</p>
+  <div class="tria"><span style="font-weight:600">¿Cuántos equipos?</span><span id="botonsEquips"></span></div>
+  <button class="bt" id="comenca">Empieza</button>
+  <div class="tecles"><span><b>→</b> siguiente</span><span><b>espacio</b> revela</span> <span><b>1-6</b> punto al equipo</span><span><b>←</b> atrás</span></div>
+</div>
+
+<header class="amagat" id="capcalera">
+  <div class="ronda" id="titolRonda">—<small id="subRonda"></small></div>
+  <div class="barra"><i id="progres"></i></div>
+  <span class="marca"><span class="p">p</span><span class="d">.</span>profedeeconomia</span>
+</header>
+
+<main class="amagat" id="escena">
+  <div class="num" id="comptador"></div>
+  <div id="cos"></div>
+  <div class="r" id="resposta"><div class="t" id="respText"></div><div class="pq" id="respPq"></div></div>
+</main>
+
+<footer class="amagat" id="peu">
+  <div id="equips" style="display:flex;gap:inherit;flex-wrap:wrap"></div>
+  <div class="dreta">
+    <button class="bt buit" id="enrere">←</button>
+    <button class="bt" id="avant">Revela</button>
+  </div>
+</footer>
+
+<div class="capa amagat" id="final">
+  <h1>Final del concurso</h1>
+  <div class="podi" id="podi"></div>
+  <p id="tancament"></p>
+  <button class="bt" onclick="location.reload()">Otra vez</button>
+</div>
+
+<script>
+const FIG = `<svg class="fp" viewBox="0 0 248 200" style="width:100%;height:auto" xmlns="http://www.w3.org/2000/svg"> <line x1="34.0" y1="10.0" x2="34.0" y2="168.0" class="gl"/> <text x="34.0" y="180" class="tk" text-anchor="middle">0</text> <line x1="85.5" y1="10.0" x2="85.5" y2="168.0" class="gl"/> <text x="85.5" y="180" class="tk" text-anchor="middle">20</text> <line x1="137.0" y1="10.0" x2="137.0" y2="168.0" class="gl"/> <text x="137.0" y="180" class="tk" text-anchor="middle">40</text> <line x1="188.5" y1="10.0" x2="188.5" y2="168.0" class="gl"/> <text x="188.5" y="180" class="tk" text-anchor="middle">60</text> <line x1="240.0" y1="10.0" x2="240.0" y2="168.0" class="gl"/> <text x="240.0" y="180" class="tk" text-anchor="middle">80</text> <line x1="34.0" y1="168.0" x2="240.0" y2="168.0" class="gl"/> <text x="30" y="171.0" class="tk" text-anchor="end">0</text> <line x1="34.0" y1="136.4" x2="240.0" y2="136.4" class="gl"/> <text x="30" y="139.4" class="tk" text-anchor="end">20</text> <line x1="34.0" y1="104.8" x2="240.0" y2="104.8" class="gl"/> <text x="30" y="107.8" class="tk" text-anchor="end">40</text> <line x1="34.0" y1="73.2" x2="240.0" y2="73.2" class="gl"/> <text x="30" y="76.2" class="tk" text-anchor="end">60</text> <line x1="34.0" y1="41.6" x2="240.0" y2="41.6" class="gl"/> <text x="30" y="44.6" class="tk" text-anchor="end">80</text> <line x1="34.0" y1="10.0" x2="240.0" y2="10.0" class="gl"/> <text x="30" y="13.0" class="tk" text-anchor="end">100</text> <line x1="34.0" y1="10.0" x2="34.0" y2="168.0" class="ax"/> <line x1="34.0" y1="168.0" x2="240.0" y2="168.0" class="ax"/> <text x="240.0" y="192" class="al" text-anchor="end">Aceite (bidones)</text> <text x="11" y="12" class="al" transform="rotate(-90 11 12)" text-anchor="end">Vino (cajas)</text> <path d="M34.0,25.8 C42.6,27.4 68.3,30.5 85.5,35.3 C102.7,40.0 119.8,44.8 137.0,54.2 C154.2,63.7 179.9,85.8 188.5,92.2" class="cv"/> <circle cx="34.0" cy="25.8" r="3.6" class="pt"/> <text x="40.0" y="19.8" class="pl">A</text> <circle cx="85.5" cy="35.3" r="3.6" class="pt"/> <text x="91.5" y="29.3" class="pl">B</text> <circle cx="137.0" cy="54.2" r="3.6" class="pt"/> <text x="143.0" y="48.2" class="pl">C</text> <circle cx="188.5" cy="92.2" r="3.6" class="pt"/> <text x="194.5" y="86.2" class="pl">D</text> <circle cx="85.5" cy="89.0" r="3.6" class="pt pin"/> <text x="91.5" y="94.0" class="pl">X</text> <circle cx="188.5" cy="41.6" r="3.6" class="pt pin"/> <text x="194.5" y="35.6" class="pl">Y</text> </svg>`;
+
+const RONDES = [
+ {titol:"Ronda 1 · A bocajarro", sub:"1 punto cada acierto", punts:1, p:[
+  {q:"¿Cómo se llama el valor de la mejor alternativa a la que renuncias cuando eliges?",
+   r:"El coste de oportunidad",
+   pq:"Solo la <b>mejor</b> alternativa, nunca la suma de todas. Y no siempre son dinero: también puede ser tiempo."},
+  {q:"¿Cómo se llaman el dinero o el tiempo ya gastados que no se pueden recuperar?",
+   r:"Coste hundido",
+   pq:"No deben influir en la decisión que tomas ahora: la decisión se toma <b>mirando hacia delante</b>."},
+  {q:"¿Cuáles son los tres factores de producción?",
+   r:"Tierra, trabajo y capital",
+   pq:"El <b>capital</b> son las cosas que sirven para producir —máquinas, locales—, no el dinero."},
+  {q:"¿Cuáles son los tres agentes económicos?",
+   r:"Familias, empresas y sector público",
+   pq:"Se conectan por el mercado de <b>factores</b> y por el mercado de <b>bienes y servicios</b>."},
+  {q:"¿Cuáles son las tres preguntas que toda economía tiene que contestar?",
+   r:"Qué producir, cómo producirlo y para quién producirlo",
+   pq:"Lo que cambia de un sistema a otro es <b>quién</b> las contesta, no las preguntas."},
+  {q:"¿Cómo se llama la curva que muestra las combinaciones máximas de dos bienes?",
+   r:"La frontera de posibilidades de producción (FPP)",
+   pq:"Es el dibujo de la escasez: <b>todo a la vez, no</b>."},
+  {q:"¿Qué rama de la economía estudia la inflación y el paro de un país entero?",
+   r:"La macroeconomía",
+   pq:"La <b>micro</b> mira cómo decide una familia o una empresa concreta."},
+  {q:"¿Qué economista habló de la «mano invisible»?",
+   r:"Adam Smith, en 1776",
+   pq:"Cada uno busca su interés y los <b>precios</b> coordinan el mercado sin que nadie lo dirija."},
+ ]},
+ {titol:"Ronda 2 · Verdadero o falso", sub:"1 punto · hay que justificarlo", punts:1, p:[
+  {q:"El coste de oportunidad siempre se mide en dinero.", r:"Falso",
+   pq:"Puede ser tiempo, salud u oportunidades. Si te quedas estudiando un sábado, el coste es lo que harías en esas horas."},
+  {q:"«Bien público» quiere decir lo mismo que «bien de titularidad pública».", r:"Falso",
+   pq:"Una cama de hospital la paga el Estado, pero si la ocupa un paciente no la ocupa otro: es un <b>bien privado de provisión pública</b>."},
+  {q:"Si una empresa no produce nada, no tiene ningún coste.", r:"Falso",
+   pq:"Los <b>costes fijos</b> continúan: alquiler, sueldos, seguro. Con producción cero, la pérdida es exactamente el coste fijo."},
+  {q:"España tiene una economía de mercado pura.", r:"Falso",
+   pq:"Es una economía <b>mixta</b>: hay mercado, pero también impuestos, regulación y servicios públicos. Hoy ninguna economía del mundo es 100 % una cosa ni la otra."},
+  {q:"Un punto situado dentro de la FPP es inalcanzable.", r:"Falso",
+   pq:"Es <b>ineficiente</b>: se podría producir más con los mismos recursos. El inalcanzable va <b>fuera</b>."},
+  {q:"Un país puede crecer y que la gente no viva mejor.", r:"Verdadero",
+   pq:"El crecimiento se mide con el <b>PIB</b>; el desarrollo mira también salud, educación y desigualdad — el <b>IDH</b>."},
+ ]},
+ {titol:"Ronda 3 · Clasifica el bien", sub:"1 punto · decid el criterio y el tipo", punts:1, p:[
+  {q:"El aire que respiras", r:"Bien libre",
+   pq:"Criterio: <b>escasez</b>. Hay para todos sin sacrificar nada."},
+  {q:"El horno de un panadero", r:"Bien de capital",
+   pq:"Criterio: <b>uso</b>. Sirve para producir otros bienes y no se gasta en un solo uso."},
+  {q:"La harina que compra el panadero", r:"Bien intermedio",
+   pq:"Criterio: <b>uso</b>. Se incorpora al pan y se transforma."},
+  {q:"La misma harina, en tu despensa", r:"Bien de consumo",
+   pq:"El criterio es <b>el uso, no el objeto</b>. Aquí la trampa: la misma harina cambia de categoría según quién la use."},
+  {q:"El alumbrado de la calle", r:"Bien público",
+   pq:"Criterio: <b>quién lo consume</b>. Varias personas lo consumen a la vez sin excluirse."},
+  {q:"Una silla", r:"Bien privado",
+   pq:"Si la ocupas tú, no la ocupa otro."},
+  {q:"El móvil de un repartidor, mientras reparte", r:"Bien de capital",
+   pq:"El mismo móvil es de <b>consumo</b> para ti y de <b>capital</b> para quien lo usa para trabajar."},
+  {q:"El agua embotellada", r:"Bien económico",
+   pq:"Es escasa y conseguirla cuesta recursos. El agua de un río de montaña sería libre."},
+ ]},
+ {titol:"Ronda 4 · El gráfico", sub:"2 puntos cada acierto", punts:2, fig:true, p:[
+  {q:"¿Qué tipo de punto es la X?", r:"Ineficiente",
+   pq:"Va <b>dentro</b> de la curva: con los mismos recursos se podría producir más. Hay recursos parados o mal aprovechados."},
+  {q:"¿Y la Y?", r:"Inalcanzable",
+   pq:"Va <b>fuera</b>: con los recursos y la tecnología de ahora no se llega. Solo si la frontera se desplaza."},
+  {q:"¿Por qué la curva se dobla en lugar de ser una recta?",
+   r:"Porque el coste de oportunidad es creciente",
+   pq:"Los recursos están <b>especializados</b> y no valen igual para los dos bienes: cada unidad extra cuesta cada vez más del otro."},
+  {q:"¿Cuál es el coste de oportunidad de pasar del punto A al B?", r:"6 cajas de vino",
+   pq:"De 90 a 84 cajas para ganar 20 bidones de aceite. De B a C ya cuesta 12, y de C a D, 24: se <b>duplica</b> cada tramo."},
+  {q:"¿Qué tendría que pasar para que el punto Y fuera posible algún día?",
+   r:"Que la frontera se desplace hacia fuera",
+   pq:"Con <b>más factores</b> —más gente, más tierra, más maquinaria— o con <b>mejor tecnología</b>. Eso es el crecimiento económico."},
+ ]},
+ {titol:"Ronda 5 · Reto final", sub:"3 puntos · 1 minuto para pensarlo", punts:3, p:[
+  {q:"Marta ha pagado 40 € por un curso de guitarra que no le gusta nada. ¿Qué debería hacer, y cómo se llama el concepto?",
+   r:"Dejarlo. Los 40 € son un coste hundido",
+   pq:"Ya están pagados tanto si continúa como si lo deja. Continuar «porque ya lo he pagado» es el error clásico: en la decisión de ahora, ese dinero <b>no cuenta</b>."},
+  {q:"Explicad en veinte segundos la diferencia entre crecer y desarrollarse.",
+   r:"Crecer es producir más; desarrollarse es vivir mejor",
+   pq:"El primero se mide en <b>PIB</b>; el segundo mira también salud, educación y desigualdad, y se mide con el <b>IDH</b>. Un país puede hacer lo primero sin lo segundo."},
+  {q:"Sois el gobierno. Decid tres cosas que hace el sector público en una economía mixta.",
+   r:"Regular · proveer bienes públicos · redistribuir la renta · estabilizar la economía",
+   pq:"Valen tres cualesquiera. Con ejemplo concreto puntúa doble: sanidad y escuela, impuestos progresivos, normativa laboral."},
+  {q:"Decid una frase de economía positiva y una de normativa sobre el mismo tema.",
+   r:"Positiva: se puede comprobar con datos. Normativa: dice qué se debería hacer",
+   pq:"Por ejemplo: «el paro juvenil es del 25 %» contra «se deberían crear más becas». La pista es el <b>«debería»</b>."},
+ ]},
+];
+
+const T = [].concat(...RONDES.map((R,ri) => R.p.map((x,qi) => ({...x, ri, qi, punts:R.punts, fig:R.fig}))));
+let i = 0, vist = false, nEq = 4, punts = [];
+const COLORS = ["Equipo 1","Equipo 2","Equipo 3","Equipo 4","Equipo 5","Equipo 6"];
+const $ = id => document.getElementById(id);
+
+// --- tria d'equips
+const be = $("botonsEquips");
+[2,3,4,5,6].forEach(n => {
+  const b = document.createElement("button");
+  b.textContent = n; b.className = n === nEq ? "on" : "";
+  b.onclick = () => { nEq = n; [...be.children].forEach(c => c.className = ""); b.className = "on"; };
+  be.appendChild(b);
+});
+be.parentElement.classList.add("tria");
+
+$("comenca").onclick = () => {
+  punts = Array(nEq).fill(0);
+  $("inici").classList.add("amagat");
+  ["capcalera","escena","peu"].forEach(x => $(x).classList.remove("amagat"));
+  pintaEquips(); pinta();
+};
+
+function pintaEquips(){
+  $("equips").innerHTML = "";
+  punts.forEach((p, k) => {
+    const d = document.createElement("div");
+    d.className = "eq";
+    d.innerHTML = `<span class="nom">${COLORS[k]}</span><span class="tecla">${k+1}</span> <span class="pt" id="pt${k}">${p}</span> <button title="Suma puntos">+</button><button title="Quita puntos">−</button>`;
+    d.querySelectorAll("button")[0].onclick = () => suma(k, +1);
+    d.querySelectorAll("button")[1].onclick = () => suma(k, -1);
+    $("equips").appendChild(d);
+  });
+}
+function suma(k, signe){
+  punts[k] = Math.max(0, punts[k] + signe * T[i].punts);
+  $("pt" + k).textContent = punts[k];
+}
+
+function pinta(){
+  const t = T[i], R = RONDES[t.ri];
+  $("titolRonda").innerHTML = `${R.titol}<small>${R.sub}</small>`;
+  $("comptador").textContent = `Pregunta ${t.qi + 1} de ${R.p.length} · ${i + 1} de ${T.length} en total`;
+  const q = `<div class="q${t.q.length > 70 ? " llarga" : ""}">${t.q}</div>`;
+  $("cos").innerHTML = t.fig ? `<div class="amb-fig">${q}<div>${FIG}</div></div>` : q;
+  $("respText").textContent = t.r;
+  $("respPq").innerHTML = t.pq;
+  $("resposta").classList.remove("vist");
+  $("progres").style.width = (i / T.length * 100) + "%";
+  $("avant").textContent = "Revela";
+  $("enrere").disabled = i === 0;
+  vist = false;
+}
+
+function avant(){
+  if (!vist){ vist = true; $("resposta").classList.add("vist");
+              $("avant").textContent = i === T.length - 1 ? "Resultados" : "Siguiente →"; return; }
+  if (i === T.length - 1) return acaba();
+  i++; pinta();
+}
+function enrere(){ if (i > 0){ i--; pinta(); } }
+
+function acaba(){
+  ["capcalera","escena","peu"].forEach(x => $(x).classList.add("amagat"));
+  $("final").classList.remove("amagat");
+  const max = Math.max(...punts);
+  $("podi").innerHTML = punts.map((p, k) =>
+    `<div class="${p === max ? "guanya" : ""}"><div class="n">${p}</div>${COLORS[k]}</div>`).join("");
+  const g = punts.filter(p => p === max).length;
+  $("tancament").textContent = g > 1
+    ? "Empate arriba. Las preguntas que habéis fallado todos son las que tienen que entrar en el repaso de última hora."
+    : "Ahora lo que importa: repasad las preguntas que ha fallado toda la clase, no las que ya sabíais.";
+}
+
+$("avant").onclick = avant;
+$("enrere").onclick = enrere;
+document.addEventListener("keydown", e => {
+  if (!$("escena").classList.contains("amagat")){
+    if (e.key === "ArrowRight" || e.key === " "){ e.preventDefault(); avant(); }
+    else if (e.key === "ArrowLeft"){ e.preventDefault(); enrere(); }
+    else if (/^[1-6]$/.test(e.key) && +e.key <= nEq){ suma(+e.key - 1, +1); }
+  } else if ($("inici").classList.contains("amagat") === false && e.key === "Enter"){ $("comenca").click(); }
+});
+</script>
+</body>
+</html>

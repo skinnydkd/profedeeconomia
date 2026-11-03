@@ -12,7 +12,7 @@ materiales:
   - "Plantilla de costes fijos y variables del proyecto"
   - "Hoja de cálculo del punto muerto (o calculadora)"
   - "Plantilla de inversión inicial (qué hace falta para arrancar y cuánto cuesta)"
-  - "Caso guiado resuelto paso a paso como ejemplo"
+  - "Caso guiado resuelto paso a paso: el ejercicio de ReUña de la Unidad 9"
   - "Ficha de cifras clave para volcar el resultado"
 estado: publicado
 ---
@@ -34,15 +34,15 @@ El punto muerto suele dar un baño de realidad: muchos equipos descubren que ten
 
 ### Sesión 1 — Costes y precio (50 min)
 
-1. **Caso guiado (15 min).** El profesor resuelve paso a paso un caso de ejemplo: costes fijos, variables, precio y punto muerto, para fijar el método.
+1. **Caso guiado (15 min).** El profesor resuelve paso a paso el caso de ReUña de la Unidad 9: costes fijos, variables, precio, punto muerto y colchón de tesorería, para fijar el método.
 2. **Costes del proyecto (25 min).** Cada equipo lista sus costes fijos mensuales y su coste variable por unidad, sin olvidar partidas que se suelen pasar por alto (comisiones, embalaje, transporte).
 3. **Precio de venta (10 min).** El equipo fija un precio realista para su producto o servicio y comprueba que cubre el coste variable.
 
 ### Sesión 2 — Punto muerto e inversión (50 min)
 
 1. **Cálculo del punto muerto (20 min).** Con la fórmula —costes fijos divididos entre el margen unitario—, el equipo halla cuántas unidades debe vender al mes para no perder. Lo interpreta: ¿es alcanzable con su mercado?
-2. **Inversión inicial (15 min).** Estima qué necesita para arrancar (equipos, primer stock, licencias, fianza) y cuánto suma.
-3. **Prueba del primer mes (10 min).** Comprueba si con una previsión prudente de ventas el proyecto cubre costes el primer mes y cuánto tardaría en recuperar la inversión.
+2. **Inversión inicial (15 min).** Estima qué necesita para arrancar (equipos, primer stock, licencias, fianza y un colchón de tesorería de varios meses de gastos fijos) y cuánto suma.
+3. **Prueba del primer mes (10 min).** Comprueba si con una previsión prudente de ventas el proyecto cubre costes el primer mes y cuánto tardaría en recuperar la inversión. Anota también cuánto queda para quien emprende: en un negocio de autónomo, ese resultado es su sueldo.
 4. **Ficha de cifras (5 min).** Vuelca los resultados clave en la ficha que entrará en el plan de empresa.
 
 ## Criterios de evaluación

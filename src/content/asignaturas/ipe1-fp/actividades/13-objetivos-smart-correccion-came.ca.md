@@ -68,7 +68,7 @@ FORTALESES                        OPORTUNITATS
  · Bon expedient i pràctiques      · Demanda creixent de perfils
  · Maneig de ferramentes            amb competència digital
    digitals del sector            · Programes d'ocupació jove
- · Disponibilitat per a moure's      i FCT amb inserció
+ · Disponibilitat per a moure's      i pràctiques amb inserció
 ```
 
 ## Plantilla de reescriptura

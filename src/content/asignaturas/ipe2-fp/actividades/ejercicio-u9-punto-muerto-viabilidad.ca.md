@@ -28,13 +28,14 @@ L'equip **CycloFix** ha desenvolupat durant el mòdul un servei de reparació i 
 
 | Concepte | Import |
 | --- | --- |
-| Quota d'autònom (tarifa plana) | 1 200 € |
+| Quotes d'autònom (3 socis, tarifa reduïda de 80 €) | 240 € |
 | Assegurança de responsabilitat civil | 80 € |
 | Lloguer de taller compartit | 350 € |
 | Amortització de ferramentes i furgoneta | 570 € |
 | Web, domini i publicitat en línia | 200 € |
 | Telèfon i dades | 50 € |
-| Comptabilitat (gestoria) | 750 € |
+| Comptabilitat (gestoria) | 150 € |
+| Retribució mínima dels socis | 1 560 € |
 | **Total costos fixos** | **3 200 €** |
 
 **Costos variables per servei:**

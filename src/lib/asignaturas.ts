@@ -1,10 +1,11 @@
 /**
  * Single source of truth for all asignaturas.
  *
- * Hi ha 9 asignaturas distribuïdes per etapa:
+ * Hi ha 10 asignaturas distribuïdes per etapa:
  * - **ESO** → Taller de Economía (3.º), Economía y Emprendimiento (4.º), FOPP (4.º)
- * - **Bachillerato** → Economía (1.º), EDMN (2.º), y dos optativas de emprendimiento
- *   ofertables en 1.º o 2.º (EEAE y GPE, currículo CV)
+ * - **Bachillerato** → Economía (1.º), EDMN (2.º), EEAE (1.º), y dos optativas
+ *   ofertables en 1.º o 2.º con currículo CV: GPE (emprendimiento) y CJD
+ *   (Cultura Jurídica y Democrática)
  * - **Formación Profesional** → IPE I, IPE II
  *
  * Cada una té un `estado` ('publicado' | 'proximamente'). Les que tenen
@@ -24,6 +25,7 @@ export const ASIGNATURA_SLUGS = [
   'ipe2-fp',
   'eeae-bach',
   'gpe-bach',
+  'cjd-bach',
 ] as const;
 export type AsignaturaSlug = (typeof ASIGNATURA_SLUGS)[number];
 
@@ -55,7 +57,7 @@ export type Asignatura = {
   seoName: string;
   tagline: string;
   num: string;
-  color: 'edmn' | 'eco1' | 'eco4' | 'fopp' | 'taller3' | 'ipe1' | 'ipe2' | 'eeae' | 'gpe' | 'proximamente';
+  color: 'edmn' | 'eco1' | 'eco4' | 'fopp' | 'taller3' | 'ipe1' | 'ipe2' | 'eeae' | 'gpe' | 'cjd' | 'proximamente';
   marcoNormativo: string;
   modalidad?: string;
   etapa: Etapa;
@@ -69,10 +71,10 @@ export const ASIGNATURAS: Record<AsignaturaSlug, Asignatura> = {
     level: '2.º Bachillerato',
     shortLabel: 'EDMN 2BACH',
     title: 'Empresa y Diseño de Modelos de Negocio',
-    seoTitle: 'EDMN 2.º Bachillerato: libro, diapositivas y EBAU',
+    seoTitle: 'EDMN 2.º Bachillerato (Economía de la Empresa): libro y EBAU',
     seoName: 'EDMN 2.º Bachillerato',
     tagline:
-      'Doce unidades alrededor del Business Model Canvas, las áreas funcionales y un proyecto capstone de plan de empresa que recorre todo el curso.',
+      'Doce unidades alrededor del Business Model Canvas, las áreas funcionales y la preparación de la PAU: pistas EBAU en cada unidad, problemas resueltos y simulacros.',
     num: '01',
     color: 'edmn',
     marcoNormativo: 'Real Decreto 243/2022',
@@ -86,7 +88,7 @@ export const ASIGNATURAS: Record<AsignaturaSlug, Asignatura> = {
     level: '1.º Bachillerato',
     shortLabel: 'Eco 1BACH',
     title: 'Economía',
-    seoTitle: 'Economía 1.º Bachillerato: libro, actividades y tests',
+    seoTitle: 'Economía 1.º Bachillerato: libro PDF gratis, apuntes y tests',
     seoName: 'Economía 1.º Bachillerato',
     tagline:
       'Microeconomía, macroeconomía, sistemas e introducción a las finanzas. Con simulador AD‑AS y la teoría de la decisión, que casi siempre se nos queda fuera del temario.',
@@ -103,10 +105,10 @@ export const ASIGNATURAS: Record<AsignaturaSlug, Asignatura> = {
     level: '4.º ESO',
     shortLabel: 'Eco 4ESO',
     title: 'Economía y Emprendimiento',
-    seoTitle: 'Economía y Emprendimiento 4.º ESO: libro y actividades',
+    seoTitle: 'Economía y Emprendimiento 4.º ESO: libro PDF gratis',
     seoName: 'Economía y Emprendimiento 4.º ESO',
     tagline:
-      'Economía básica con la mirada puesta en lo que el alumnado se va a encontrar fuera: nómina, IRPF, contratos, decisiones de consumo.',
+      'Nueve unidades de economía y tres de empresa: de la escasez y los mercados a la nómina, los impuestos y el proyecto emprendedor.',
     num: '03',
     color: 'eco4',
     marcoNormativo: 'Real Decreto 217/2022',
@@ -119,10 +121,10 @@ export const ASIGNATURAS: Record<AsignaturaSlug, Asignatura> = {
     level: '4.º ESO',
     shortLabel: 'FOPP 4ESO',
     title: 'Formación y Orientación Personal y Profesional',
-    seoTitle: 'FOPP 4.º ESO: libro, diapositivas y actividades gratis',
+    seoTitle: 'FOPP 4.º ESO: libro PDF gratis, diapositivas y actividades',
     seoName: 'FOPP 4.º ESO',
     tagline:
-      'Itinerarios, derechos laborales y orientación. La asignatura nueva de la LOMLOE, sin material decente disponible. Hasta ahora.',
+      'Itinerarios, derechos laborales y orientación para la materia nueva de la LOMLOE: libro, actividades y un proyecto de vida que se construye durante el curso.',
     num: '04',
     color: 'fopp',
     marcoNormativo: 'Real Decreto 217/2022',
@@ -151,7 +153,7 @@ export const ASIGNATURAS: Record<AsignaturaSlug, Asignatura> = {
     level: 'FP — Grado Medio y Superior',
     shortLabel: 'IPE I',
     title: 'Itinerario Personal para la Empleabilidad I',
-    seoTitle: 'IPE I (FP): libro, actividades y recursos LOMLOE',
+    seoTitle: 'IPE I (FP): libro PDF gratis, actividades y tests',
     seoName: 'IPE I (FP)',
     tagline:
       'El módulo que sustituye a la FOL en primer curso: autoconocimiento profesional, prevención de riesgos laborales, contrato y derechos, y salud psicosocial.',
@@ -167,7 +169,7 @@ export const ASIGNATURAS: Record<AsignaturaSlug, Asignatura> = {
     level: 'FP — Grado Medio y Superior',
     shortLabel: 'IPE II',
     title: 'Itinerario Personal para la Empleabilidad II',
-    seoTitle: 'IPE II (FP): libro, actividades y proyecto de empresa',
+    seoTitle: 'IPE II (FP): libro PDF gratis y proyecto de empresa',
     seoName: 'IPE II (FP)',
     tagline:
       'Continuación de IPE I en segundo curso: búsqueda activa de empleo, marca personal, competencias para el empleo y un proyecto emprendedor de innovación social.',
@@ -189,7 +191,7 @@ export const ASIGNATURAS: Record<AsignaturaSlug, Asignatura> = {
       'La materia de modalidad General que junta economía, iniciativa emprendedora y actividad empresarial. Para entender cómo se crea valor antes de elegir itinerario.',
     num: '08',
     color: 'eeae',
-    marcoNormativo: 'Real Decreto 243/2022 · Decret 108/2022, mod. Decret 103/2026 (CV)',
+    marcoNormativo: 'Real Decreto 243/2022 — concreción en la CV: Decret 108/2022, mod. Decret 103/2026',
     modalidad: 'Modalidad General',
     etapa: 'bach',
     curso: '1bach',
@@ -212,7 +214,54 @@ export const ASIGNATURAS: Record<AsignaturaSlug, Asignatura> = {
     curso: 'bach',
     estado: 'publicado',
   },
+  'cjd-bach': {
+    slug: 'cjd-bach',
+    level: 'Bachillerato (1.º/2.º)',
+    shortLabel: 'CJD',
+    title: 'Cultura Jurídica y Democrática',
+    seoTitle: 'CJD Bachillerato: libro de Cultura Jurídica gratis',
+    seoName: 'CJD Bachillerato',
+    tagline:
+      'Ocho bloques: fuentes del Derecho, internacional, constitucional, civil, laboral, tributario, penal y procesal. Para una optativa que suele caer sin material. Laboral y fiscal enlazan con lo que ya tenemos en FOPP e IPE.',
+    num: '10',
+    color: 'cjd',
+    marcoNormativo: 'Decret 108/2022, mod. Decret 103/2026 (CV) — optativa',
+    modalidad: 'Optativa (1.º o 2.º)',
+    etapa: 'bach',
+    curso: 'bach',
+    estado: 'publicado',
+  },
 };
+
+/**
+ * Print-only accent hexes. The PDF routes render through paged.js inside their
+ * own <style>, where the `var(--color-*)` tokens from global.css are out of
+ * scope, so the palette has to be repeated here as literals.
+ *
+ * Typed as a *total* Record over the colour union on purpose: adding a colour
+ * to `Asignatura['color']` without adding it here is a compile error, rather
+ * than a PDF that silently prints in EDMN terracotta.
+ */
+export const ACCENTS: Record<Asignatura['color'], { base: string; deep: string; soft: string }> = {
+  edmn:    { base: '#C44E2C', deep: '#9C3A1C', soft: '#FBE3D6' },
+  eco1:    { base: '#1F6E6E', deep: '#164F4F', soft: '#DBEDED' },
+  eco4:    { base: '#D4A24C', deep: '#A87A2A', soft: '#F5E5BC' },
+  fopp:    { base: '#5B3A4E', deep: '#46293A', soft: '#ECDCE5' },
+  taller3: { base: '#6B8E23', deep: '#4F6B18', soft: '#E4ECD2' },
+  ipe1:    { base: '#4A6FA5', deep: '#36527D', soft: '#DCE5F0' },
+  ipe2:    { base: '#2F4F7F', deep: '#22395C', soft: '#D5DEEB' },
+  eeae:    { base: '#2E5E3A', deep: '#234A2D', soft: '#D9E6DC' },
+  gpe:     { base: '#8C2F39', deep: '#6E2530', soft: '#F1DADD' },
+  cjd:     { base: '#4A3B8F', deep: '#382C6B', soft: '#E0DCF0' },
+  proximamente: { base: '#6E5A47', deep: '#5C4A3D', soft: '#EFE2CB' },
+};
+
+/**
+ * The organic law behind the subject's curriculum: FP modules (IPE) hang from
+ * the LOFP (LO 3/2022, RD 659/2023); ESO and Bachillerato from the LOMLOE.
+ */
+export const leyCurricular = (a: Pick<Asignatura, 'etapa'>): 'LOFP' | 'LOMLOE' =>
+  a.etapa === 'fp' ? 'LOFP' : 'LOMLOE';
 
 export const ASIGNATURAS_LIST: Asignatura[] = ASIGNATURA_SLUGS.map((s) => ASIGNATURAS[s]);
 
@@ -264,13 +313,30 @@ export const ASIGNATURAS_POR_ETAPA = {
   },
 } as const;
 
+/**
+ * Column groups for the «Otros» nav dropdown. Eight sections stacked in one
+ * column overflowed short viewports, so the menu renders as two labelled
+ * columns in this order. `grupo` below assigns each section to one of them;
+ * SECCIONES_TRANSVERSALES itself keeps its agreed order (it also feeds
+ * /llms-full.txt), so the menu derives the columns rather than reordering it.
+ */
+export const SECCION_GRUPOS = ['aula', 'recursos'] as const;
+export type SeccionGrupo = (typeof SECCION_GRUPOS)[number];
+
 export const SECCIONES_TRANSVERSALES = [
-  { slug: 'dinamicas',      label: 'Dinámicas',      description: 'Role-plays y simulaciones para hacer en clase.' },
-  { slug: 'herramientas',   label: 'Herramientas',   description: 'Calculadoras y simuladores para usar en clase.' },
-  { slug: 'emprendimiento', label: 'Emprendimiento', description: '«De cero a empresa»: un proyecto para montar un negocio paso a paso.' },
-  { slug: 'proyectos',      label: 'Proyectos interdisciplinares', description: 'Proyectos que cruzan la economía con otra materia.' },
-  { slug: 'debates',        label: 'Debates',        description: 'Controversias económicas para argumentar en clase.' },
-  { slug: 'juegos',         label: 'Juegos',         description: 'Material para una clase activa.' },
-  { slug: 'jocs-economics', label: 'Juegos Económicos', description: 'Concurso competitivo de economía con ranking por alumno e instituto.' },
-  { slug: 'generadores',    label: 'Herramientas Docentes', description: 'Generadores LOMLOE y herramientas de evaluación y aula.' },
+  { slug: 'dinamicas',      grupo: 'aula',     label: 'Dinámicas',      description: 'Role-plays y simulaciones para hacer en clase.' },
+  { slug: 'herramientas',   grupo: 'recursos', label: 'Herramientas',   description: 'Calculadoras y simuladores para usar en clase.' },
+  { slug: 'emprendimiento', grupo: 'recursos', label: 'Emprendimiento', description: '«De cero a empresa»: un proyecto para montar un negocio paso a paso.' },
+  { slug: 'proyectos',      grupo: 'recursos', label: 'Proyectos interdisciplinares', description: 'Proyectos que cruzan la economía con otra materia.' },
+  { slug: 'debates',        grupo: 'aula',     label: 'Debates',        description: 'Controversias económicas para argumentar en clase.' },
+  { slug: 'juegos',         grupo: 'aula',     label: 'Juegos',         description: 'Material para una clase activa.' },
+  { slug: 'jocs-economics', grupo: 'aula',     label: 'Juegos Económicos', description: 'Concurso competitivo de economía con ranking por alumno e instituto.' },
+  { slug: 'generadores',    grupo: 'recursos', label: 'Herramientas Docentes', description: 'Generadores LOMLOE y herramientas de evaluación y aula.' },
 ] as const;
+
+/** Sections of one dropdown column, in the order declared above. */
+export function seccionesDelGrupo(
+  grupo: SeccionGrupo,
+): readonly (typeof SECCIONES_TRANSVERSALES)[number][] {
+  return SECCIONES_TRANSVERSALES.filter((s) => s.grupo === grupo);
+}

@@ -54,6 +54,12 @@ vi.mock('../../../server-only/jocs-bank.json', () => ({
 }));
 
 import { POST } from '../../../pages/api/jocs/answer';
+import { indiceMostrado, publicQuestion } from '../../../lib/jocs-economics/server/shuffle';
+
+// Options are shown in a per-game order: tap positions, not bank indices.
+// eco-001 has correcta: 2 in the bank.
+const CORRECT_SHOWN = indiceMostrado('test-game-id', 'eco-001', 4, 2);
+const WRONG_SHOWN = (CORRECT_SHOWN + 1) % 4;
 
 // Base game row used by most tests
 const BASE_GAME_ROW = {
@@ -169,7 +175,7 @@ describe('POST /api/jocs/answer', () => {
       gameId: 'test-game-id',
       token,
       questionId: 'eco-001',
-      optionIdx: 2,       // correct!
+      optionIdx: CORRECT_SHOWN,       // correct!
       clientElapsedMs: 5000,
     }) as any);
     expect(res.status).toBe(200);
@@ -177,13 +183,27 @@ describe('POST /api/jocs/answer', () => {
     expect(body.result.isCorrect).toBe(true);
     expect(body.result.scoreGain).toBe(100); // scoreFor(1.0) = 100
     expect(body.result.livesLeft).toBe(3);   // lives unchanged on correct
-    expect(body.result.correctIdx).toBe(2);
+    expect(body.result.correctIdx).toBe(CORRECT_SHOWN);
     // Must include next question (game continues since lives > 0)
     expect(body.nextQuestion).toBeDefined();
     // CRITICAL: nextQuestion must NOT include correcta or explicacion
     expect(body.nextQuestion).not.toHaveProperty('correcta');
     expect(body.nextQuestion).not.toHaveProperty('explicacion');
     expect(body.finished).toBeUndefined();
+  });
+
+  it('a crafted negative clientElapsedMs no longer records 0 ms', async () => {
+    // The question has been open for 5 s on the server's clock.
+    setupGameMock({ ...BASE_GAME_ROW, current_question_started_at: new Date(Date.now() - 5000).toISOString() });
+    const token = signGameToken('test-game-id', SECRET);
+    const res = await POST(makeReq({
+      gameId: 'test-game-id', token, questionId: 'eco-001', optionIdx: CORRECT_SHOWN, clientElapsedMs: -999999,
+    }) as any);
+    expect(res.status).toBe(200);
+    const body = await res.json();
+    // At most the 1.5 s latency window below the server's own measure.
+    expect(body.result.elapsedMsRecorded).toBeGreaterThanOrEqual(3500);
+    expect(body.totals.timeTotalMs).toBe(body.result.elapsedMsRecorded);
   });
 
   it('returns 200 with isCorrect=false + scoreGain=0 + livesLeft=2 when optionIdx is wrong', async () => {
@@ -194,7 +214,7 @@ describe('POST /api/jocs/answer', () => {
       gameId: 'test-game-id',
       token,
       questionId: 'eco-001',
-      optionIdx: 0,       // wrong
+      optionIdx: WRONG_SHOWN,       // wrong
       clientElapsedMs: 5000,
     }) as any);
     expect(res.status).toBe(200);
@@ -202,7 +222,7 @@ describe('POST /api/jocs/answer', () => {
     expect(body.result.isCorrect).toBe(false);
     expect(body.result.scoreGain).toBe(0);
     expect(body.result.livesLeft).toBe(2);
-    expect(body.result.correctIdx).toBe(2);
+    expect(body.result.correctIdx).toBe(CORRECT_SHOWN);
     // explicacion revealed after answer
     expect(body.result.explicacion).toBe('eco-001 expl');
     expect(body.nextQuestion).toBeDefined();
@@ -220,7 +240,7 @@ describe('POST /api/jocs/answer', () => {
       gameId: 'test-game-id',
       token,
       questionId: 'eco-001',
-      optionIdx: 2,         // would be correct, but timeout overrides
+      optionIdx: CORRECT_SHOWN,         // would be correct, but timeout overrides
       clientElapsedMs: 5000,
     }) as any);
     expect(res.status).toBe(200);
@@ -228,6 +248,49 @@ describe('POST /api/jocs/answer', () => {
     expect(body.result.isCorrect).toBe(false); // forced incorrect due to timeout
     expect(body.result.scoreGain).toBe(0);
     expect(body.result.elapsedMsRecorded).toBe(45_000); // TIMER_QUESTION_MS
+  });
+
+  it('grades a timeout (-1) as wrong instead of rejecting it', async () => {
+    setupGameMock(BASE_GAME_ROW);
+    const token = signGameToken('test-game-id', SECRET);
+    const res = await POST(makeReq({
+      gameId: 'test-game-id', token, questionId: 'eco-001', optionIdx: -1, clientElapsedMs: 45_000,
+    }) as any);
+    expect(res.status).toBe(200);
+    const body = await res.json();
+    expect(body.result.isCorrect).toBe(false);
+    expect(body.result.livesLeft).toBe(2);
+    expect(body.result.elapsedMsRecorded).toBe(45_000);
+  });
+
+  it('treats an older client that sends a position after its own 45 s as a timeout', async () => {
+    setupGameMock(BASE_GAME_ROW); // server clock: only 5 s, under the 50 s limit
+    const token = signGameToken('test-game-id', SECRET);
+    const res = await POST(makeReq({
+      gameId: 'test-game-id', token, questionId: 'eco-001', optionIdx: CORRECT_SHOWN, clientElapsedMs: 45_100,
+    }) as any);
+    const body = await res.json();
+    expect(body.result.isCorrect).toBe(false);
+  });
+
+  it('still rejects other negative positions', async () => {
+    setupGameMock(BASE_GAME_ROW);
+    const token = signGameToken('test-game-id', SECRET);
+    const res = await POST(makeReq({
+      gameId: 'test-game-id', token, questionId: 'eco-001', optionIdx: -2, clientElapsedMs: 5000,
+    }) as any);
+    expect(res.status).toBe(400);
+  });
+
+  it('serves the next question in this game\'s option order', async () => {
+    setupGameMock(BASE_GAME_ROW);
+    const token = signGameToken('test-game-id', SECRET);
+    const res = await POST(makeReq({
+      gameId: 'test-game-id', token, questionId: 'eco-001', optionIdx: CORRECT_SHOWN, clientElapsedMs: 5000,
+    }) as any);
+    const body = await res.json();
+    const expected = publicQuestion({ id: 'eco-002', opciones: ['x', 'y', 'z', 'w'] }, 'test-game-id');
+    expect(body.nextQuestion.opciones).toEqual(expected.opciones);
   });
 
   it('returns finished:true with final stats when lives reach 0', async () => {
@@ -240,7 +303,7 @@ describe('POST /api/jocs/answer', () => {
       gameId: 'test-game-id',
       token,
       questionId: 'eco-001',
-      optionIdx: 0,    // wrong (correcta is 2)
+      optionIdx: WRONG_SHOWN,    // wrong
       clientElapsedMs: 5000,
     }) as any);
     expect(res.status).toBe(200);

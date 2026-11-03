@@ -12,6 +12,10 @@ export const SITE = {
   name: 'profedeeconomia',
   url: 'https://www.profedeeconomia.es',
   locale: 'es-ES',
+  /** Public contact address — the single source for every `mailto:` on the
+   * site. `public/llms.txt` is a static file and carries its own copy; a test
+   * in seo.test.ts keeps the two from drifting apart. */
+  email: 'hola@profedeeconomia.es',
   description:
     'Material editorial para profesores de instituto de economía, empresa y finanzas: libros, diapositivas, actividades, tests y recursos por asignatura.',
 } as const;
@@ -53,6 +57,20 @@ const BRAND_SUFFIX = ` — ${SITE.name}`;
 export function pageTitle(title: string, brandSuffix = true): string {
   if (!brandSuffix || title.endsWith(SITE.name)) return title;
   return title.length + BRAND_SUFFIX.length <= MAX_TITLE_CHARS ? `${title}${BRAND_SUFFIX}` : title;
+}
+
+/**
+ * Subject-page title: `{body} — {seoName}` when it fits the budget, else the
+ * compact `{body} — {shortLabel}`, else the body alone. The suffix carries
+ * queries like «4 eso» or «bachillerato», but past 60 characters Google cuts
+ * it anyway and it only pushes the topic words out of view (§5.11).
+ */
+export function subjectTitle(body: string, a: { seoName: string; shortLabel: string }): string {
+  for (const suffix of [a.seoName, a.shortLabel]) {
+    const t = `${body} — ${suffix}`;
+    if (t.length <= MAX_TITLE_CHARS) return t;
+  }
+  return body;
 }
 
 /** Resolve a site-relative path to an absolute URL on the canonical domain. */
@@ -107,7 +125,9 @@ export function websiteLd(locale: Locale = 'es') {
 }
 
 /** schema.org BreadcrumbList from an ordered list of `{ name, path }`. */
-export function breadcrumbLd(items: { name: string; path: string }[], locale: Locale = 'es') {
+// `locale` has no default on purpose: a /ca/ page that forgot it emitted
+// Castilian URLs next to a Valencian canonical (742 pages until 2026-09).
+export function breadcrumbLd(items: { name: string; path: string }[], locale: Locale) {
   return {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
@@ -183,8 +203,10 @@ export function courseLd(opts: {
   description: string;
   path: string;
   educationalLevel: string;
-  /** LOMLOE framework reference, e.g. "Real Decreto 243/2022". */
+  /** Curriculum decree reference, e.g. "Real Decreto 243/2022". */
   marcoNormativo: string;
+  /** Organic law behind the curriculum: LOMLOE (default) or LOFP for FP modules. */
+  ley?: 'LOMLOE' | 'LOFP';
   /** Target curriculum name, e.g. "Empresa y Diseño de Modelos de Negocio, 2.º Bachillerato". */
   targetName: string;
   teaches?: string[];
@@ -208,7 +230,7 @@ export function courseLd(opts: {
     educationalAlignment: {
       '@type': 'AlignmentObject',
       alignmentType: 'educationalSubject',
-      educationalFramework: `LOMLOE — ${opts.marcoNormativo}`,
+      educationalFramework: `${opts.ley ?? 'LOMLOE'} — ${opts.marcoNormativo}`,
       targetName: opts.targetName,
     },
   };

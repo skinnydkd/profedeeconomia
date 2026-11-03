@@ -28,7 +28,7 @@ Laura tiene 17 años y acaba de abrir una cuenta de ahorro remunerada en una ent
 
 Laura quiere saber cuánto dinero tendrá exactamente al cabo de 5 años, compararlo con lo que habrá aportado de su propio bolsillo y entender de dónde viene la diferencia.
 
-> Nota: considera que cada aportación se realiza al inicio del año correspondiente, de modo que la aportación del año 1 genera intereses durante 1 año completo, la del año 2 durante 1 año completo desde que se deposita, y así sucesivamente.
+> Nota: considera que cada aportación se realiza al inicio del año correspondiente y capitaliza hasta el final del año 5: la del año 1 genera intereses durante 5 años, la del año 2 durante 4, y así sucesivamente hasta la del año 5, que los genera durante 1 año.
 
 ## Se pide
 

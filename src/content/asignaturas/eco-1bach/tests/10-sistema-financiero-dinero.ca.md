@@ -71,7 +71,7 @@ preguntas:
       - "Té paritat fixa amb el dòlar gràcies al seu suport en reserves reals."
     correcta: 2
     explicacion: "Bitcoin té una oferta limitada per disseny a 21 milions d'unitats (assolibles cap a 2140) i la xarxa consumix uns 130 TWh anuals, similar al consum elèctric d'Argentina o Polònia. Complix imperfectament les funcions dels diners (alta volatilitat, escassos comerços que l'accepten). Les stablecoins, no Bitcoin, són les que busquen paritat amb monedes fiduciàries."
-  - enunciado: "Què és l'euro digital que prepara el BCE per a 2027-2028?"
+  - enunciado: "Què és l'euro digital que prepara el BCE, amb una primera emissió possible el 2029?"
     opciones:
       - "Una stablecoin privada avalada per la banca europea."
       - "Una criptomoneda descentralitzada a l'estil de Bitcoin."

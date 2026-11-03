@@ -11,7 +11,7 @@ estado: publicado
 ## Cuándo usarla
 
 - Al introducir la valoración de proyectos e inversiones en la Unidad 9, como extensión del VAN.
-- Para estimar cuánto vale un negocio en el plan económico-financiero del proyecto capstone.
+- Para estimar cuánto vale un negocio en el plan económico-financiero de un plan de empresa o un proyecto de aula (Unidad 12).
 - Para comparar el efecto de distintas tasas de descuento sobre el valor.
 
 ## Qué tener en cuenta

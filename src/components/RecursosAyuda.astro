@@ -1,0 +1,149 @@
+---
+/**
+ * Help lines for students, for every page that deals with mental health,
+ * bullying or violence. One list for the whole site, so the numbers are
+ * checked in a single place: review them at the start of each school year.
+ *
+ * `enfoque` decides which lines appear and in what order: the 024 leads on
+ * mental-health pages, ANAR and the 017 on bullying pages. The slot takes an
+ * optional closing paragraph, rendered after the list.
+ */
+import Callout from '@components/Callout.astro';
+import { getLocale } from '@/i18n/locale';
+
+type Enfoque = 'salud-mental' | 'acoso';
+type Props = {
+  enfoque: Enfoque;
+};
+
+type LineaId = '112' | '024' | 'anar' | 'esperanza' | '016' | '017' | 'centro' | 'medico';
+type Linea = {
+  /** Phone numbers as they are read aloud; the tel: link strips the spaces. */
+  tel?: readonly string[];
+  nombre: string;
+  texto: string;
+};
+type Copy = { label: string; title: string; lineas: Record<LineaId, Linea> };
+
+const ORDEN: Record<Enfoque, readonly LineaId[]> = {
+  'salud-mental': ['024', '112', 'anar', 'esperanza', 'centro', 'medico'],
+  acoso: ['anar', '017', 'centro', '016', '024', '112'],
+};
+
+const COPY: Record<'es' | 'ca', Copy> = {
+  es: {
+    label: 'Si necesitas ayuda',
+    title: 'Teléfonos y personas a las que acudir',
+    lineas: {
+      '112': {
+        tel: ['112'],
+        nombre: 'Emergencias',
+        texto: 'Si hay un peligro inmediato para ti o para otra persona.',
+      },
+      '024': {
+        tel: ['024'],
+        nombre: 'Línea de atención a la conducta suicida, del Ministerio de Sanidad',
+        texto: '24 horas, gratuita y confidencial, atendida por profesionales. Llama si tienes pensamientos de hacerte daño o si te preocupa alguien.',
+      },
+      anar: {
+        tel: ['900 20 20 10', '116 111'],
+        nombre: 'Fundación ANAR',
+        texto: 'Para niños, niñas y adolescentes: 24 horas, gratuito y confidencial. En su web también atienden por chat.',
+      },
+      esperanza: {
+        tel: ['717 003 717'],
+        nombre: 'Teléfono de la Esperanza',
+        texto: 'Escucha 24 horas, sin necesidad de dar tu nombre.',
+      },
+      '016': {
+        tel: ['016'],
+        nombre: 'Atención a la violencia contra las mujeres',
+        texto: 'También en parejas jóvenes. 24 horas y gratuito; no aparece en la factura, aunque sí en el historial de llamadas del móvil.',
+      },
+      '017': {
+        tel: ['017'],
+        nombre: 'Tu Ayuda en Ciberseguridad, del INCIBE',
+        texto: 'Ciberacoso, fotos difundidas sin permiso, cuentas suplantadas. Gratuito y confidencial.',
+      },
+      centro: {
+        nombre: 'En el instituto',
+        texto: 'Tu tutor o tutora y el departamento de orientación te escuchan y, si hace falta, activan el protocolo del centro o te derivan a otros servicios.',
+      },
+      medico: {
+        nombre: 'Tu médico de cabecera',
+        texto: 'La puerta de entrada a la atención psicológica de la sanidad pública.',
+      },
+    },
+  },
+  ca: {
+    label: 'Si necessites ajuda',
+    title: 'Telèfons i persones a qui acudir',
+    lineas: {
+      '112': {
+        tel: ['112'],
+        nombre: 'Emergències',
+        texto: 'Si hi ha un perill immediat per a tu o per a una altra persona.',
+      },
+      '024': {
+        tel: ['024'],
+        nombre: "Línia d'atenció a la conducta suïcida, del Ministeri de Sanitat",
+        texto: '24 hores, gratuïta i confidencial, atesa per professionals. Truca si tens pensaments de fer-te mal o si et preocupa algú.',
+      },
+      anar: {
+        tel: ['900 20 20 10', '116 111'],
+        nombre: 'Fundació ANAR',
+        texto: 'Per a xiquets, xiquetes i adolescents: 24 hores, gratuït i confidencial. En el seu web també atenen per xat.',
+      },
+      esperanza: {
+        tel: ['717 003 717'],
+        nombre: "Telèfon de l'Esperança",
+        texto: 'Escolta 24 hores, sense necessitat de donar el teu nom.',
+      },
+      '016': {
+        tel: ['016'],
+        nombre: 'Atenció a la violència contra les dones',
+        texto: "També en parelles joves. 24 hores i gratuït; no apareix en la factura, encara que sí en l'historial de trucades del mòbil.",
+      },
+      '017': {
+        tel: ['017'],
+        nombre: "Tu Ayuda en Ciberseguridad, de l'INCIBE",
+        texto: 'Ciberassetjament, fotos difoses sense permís, comptes suplantats. Gratuït i confidencial.',
+      },
+      centro: {
+        nombre: "A l'institut",
+        texto: "El teu tutor o tutora i el departament d'orientació t'escolten i, si cal, activen el protocol del centre o et deriven a altres servicis.",
+      },
+      medico: {
+        nombre: 'El teu metge de capçalera',
+        texto: "La porta d'entrada a l'atenció psicològica de la sanitat pública.",
+      },
+    },
+  },
+};
+
+const { enfoque } = Astro.props;
+const t = COPY[getLocale(Astro.currentLocale)];
+const lineas = ORDEN[enfoque].map((id) => t.lineas[id]);
+---
+
+<Callout label={t.label} title={t.title} variant="example">
+  <ul>
+    {lineas.map((l) => (
+      <li>
+        {l.tel ? (
+          <strong>
+            {l.tel.map((n, i) => (
+              <>{i > 0 && ' · '}<a href={`tel:${n.replace(/\s/g, '')}`}>{n}</a></>
+            ))}
+          </strong>
+        ) : (
+          <strong>{l.nombre}</strong>
+        )}
+        {' — '}
+        {l.tel && `${l.nombre}. `}
+        {l.texto}
+      </li>
+    ))}
+  </ul>
+  <slot />
+</Callout>

@@ -22,7 +22,7 @@ Una cosa es saber que existe el PAE y otra entender qué papeles hacen falta y e
 ## Trámites a ordenar (lista desordenada)
 
 - Inscripción en el Registro Mercantil
-- Alta en el censo de empresarios (declaración censal, modelo 036/037)
+- Alta en el censo de empresarios (declaración censal, modelo 036)
 - Escritura de constitución y estatutos ante notario
 - Certificación negativa de denominación (Registro Mercantil Central)
 - Alta en la Seguridad Social (RETA / régimen general)
@@ -41,7 +41,7 @@ Una cosa es saber que existe el PAE y otra entender qué papeles hacen falta y e
 
 1. **Calentamiento (5 min).** En pareja, leed la lista de trámites y marcad cuáles creéis que NO necesita un autónomo (pista: los relacionados con "sociedad").
 2. **Ordenar la SL (15 min).** Colocad los ocho trámites en el orden lógico para constituir una **sociedad limitada**, desde la certificación del nombre hasta el alta en la Seguridad Social y las licencias. Junto a cada paso, escribid el **organismo** responsable.
-3. **La versión autónomo (10 min).** Construid la hoja de ruta del **autónomo**: tachad de la lista lo que no necesita y dejad solo los dos pasos esenciales (alta censal en Hacienda con el 036/037 y alta en el RETA de la Seguridad Social). Anotad por qué es mucho más corto.
+3. **La versión autónomo (10 min).** Construid la hoja de ruta del **autónomo**: tachad de la lista lo que no necesita y dejad solo los dos pasos esenciales (alta censal en Hacienda con el 036 y alta en el RETA de la Seguridad Social). Anotad por qué es mucho más corto.
 4. **CIRCE y PAE (10 min).** Entrad en la web de CIRCE (paeelectronico.es). Explicad en dos frases qué hace el **DUE** y localizad el **PAE más cercano** a vuestro centro o municipio. Anotad su nombre y a qué entidad pertenece (cámara, ayuntamiento, etc.).
 5. **Puesta en común (10 min).** Una pareja expone la hoja de ruta de la SL y otra la del autónomo. El profesor confirma el orden y subraya que el DUE permite disparar varios de estos trámites de una sola vez.
 

@@ -16,11 +16,11 @@ preguntas:
   - enunciado: "Una panadería sube el precio del pan de 2,00 € a 2,20 € por barra. Las ventas caen de 500 a 460 barras diarias. Aplicando el método del punto medio, la elasticidad-precio (valor absoluto) es aproximadamente…"
     opciones:
       - "0,17 — demanda muy inelástica."
-      - "0,91 — demanda casi unitaria."
+      - "0,88 — demanda inelástica, cercana a la unidad."
       - "1,10 — demanda ligeramente elástica."
       - "2,00 — demanda muy elástica."
     correcta: 1
-    explicacion: "ΔQ = −40; media de Q = 480 → −8,33 %. ΔP = +0,20 €; media de P = 2,10 € → +9,52 %. E = 8,33 / 9,52 ≈ 0,87-0,91. Cerca de la unidad, ligeramente inelástica."
+    explicacion: "ΔQ = −40; media de Q = 480 → −8,33 %. ΔP = +0,20 €; media de P = 2,10 € → +9,52 %. E = 8,33 / 9,52 ≈ 0,88. Algo menor que 1: demanda inelástica, aunque cercana a la unidad."
   - enunciado: "Un bien tiene demanda inelástica. Si la empresa sube el precio un 10 %, los ingresos totales…"
     opciones:
       - "Caen, porque la cantidad cae más que proporcionalmente."

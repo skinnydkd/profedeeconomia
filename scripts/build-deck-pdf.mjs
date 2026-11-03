@@ -7,7 +7,7 @@
  *   2. For each published unit of the target asignatura(s), open the web deck
  *      route /<asig>/diapositivas/<unit>/, emulate print media (slides become
  *      the canonical 1280x720), and check every .slide: if its content is taller
- *      or wider than the box, record an OVERFLOW failure.
+ *      or wider than the box, or a box inside it clips text, record a failure.
  *   3. Save the PDF to public/slides/<asig>/<unit>.pdf.
  *   4. Exit non-zero if any overflow was found (the deck is not shippable).
  *
@@ -23,6 +23,7 @@ import { basename, dirname, extname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import puppeteer from 'puppeteer';
 import { parse as parseYaml } from 'yaml';
+import { allSubjects } from './ci-changed-decks.mjs';
 
 function findChromeExecutable() {
   if (process.env.PUPPETEER_EXECUTABLE_PATH && existsSync(process.env.PUPPETEER_EXECUTABLE_PATH)) {
@@ -46,9 +47,18 @@ function findChromeExecutable() {
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = resolve(__dirname, '..');
-const ALL = ['edmn-2bach', 'eco-1bach', 'eco-4eso', 'fopp-4eso', 'taller-eco-3eso', 'ipe1-fp', 'ipe2-fp', 'eeae-bach', 'gpe-bach'];
+// Read off the content tree, never hardcoded: a hardcoded list silently
+// dropped cjd-bach when the subject was added, so `… build-deck-pdf.mjs
+// cjd-bach` fell through to "all subjects" and its decks were never printed
+// nor checked for overflow. This is the same source CI's ci-changed-decks
+// uses to decide what to check.
+const ALL = allSubjects(resolve(root, 'src/content/asignaturas'));
 const args = process.argv.slice(2).filter((a) => !a.startsWith('--'));
-const asigFilter = args[0] && ALL.includes(args[0]) ? [args[0]] : ALL;
+if (args[0] && !ALL.includes(args[0])) {
+  console.error(`✖ Unknown asignatura "${args[0]}". Known: ${ALL.join(', ')}`);
+  process.exit(1);
+}
+const asigFilter = args[0] ? [args[0]] : ALL;
 const unitFilter = args[1] || null;
 
 function parseFm(src) {
@@ -129,12 +139,29 @@ for (const slug of asigFilter) {
             if (el.scrollHeight > el.clientHeight + 2 || el.scrollWidth > el.clientWidth + 2) {
               out.push({ i: i + 1, sh: el.scrollHeight, ch: el.clientHeight, sw: el.scrollWidth, cw: el.clientWidth });
             }
+            // Text hidden inside the slide: a box that clips (overflow hidden or a
+            // line clamp) and holds more text than it shows. The slide box itself
+            // looks fine, so the check above cannot see it (VIS-LEC-07). Images
+            // and diagrams crop on purpose; 4 px absorbs glyph overhang.
+            for (const box of el.querySelectorAll('*')) {
+              const cs = getComputedStyle(box);
+              const clamp = cs.webkitLineClamp || cs.getPropertyValue('-webkit-line-clamp');
+              const clips = cs.overflowY === 'hidden' || cs.overflowY === 'clip' || (clamp && clamp !== 'none');
+              if (!clips || !box.textContent.trim() || box.querySelector('img, svg, picture, video')) continue;
+              if (box.scrollHeight > box.clientHeight + 4) {
+                out.push({ i: i + 1, cut: String(box.className || box.tagName.toLowerCase()), sh: box.scrollHeight, ch: box.clientHeight });
+              }
+            }
           });
           return out;
         });
         if (bad.length) {
-          for (const b of bad) overflows.push(`${label} slide ${b.i}: ${b.sw}x${b.sh} > ${b.cw}x${b.ch}`);
-          console.log(`  ! ${label}: ${bad.length} slide(s) overflow`);
+          for (const b of bad) {
+            overflows.push(b.cut
+              ? `${label} slide ${b.i}: text cut in .${b.cut} (${b.sh}px of text in a ${b.ch}px box)`
+              : `${label} slide ${b.i}: ${b.sw}x${b.sh} > ${b.cw}x${b.ch}`);
+          }
+          console.log(`  ! ${label}: ${bad.length} slide problem(s)`);
         }
 
         await page.pdf({ path: join(outDir, `${unit}${loc.suffix}.pdf`), width: '1280px', height: '720px', printBackground: true });

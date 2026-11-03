@@ -6,7 +6,7 @@ type Guia = typeof GUIA;
 // GUIA has no slug, so the Valencian version is a full positional copy: same
 // shape, same number of `partes`, same order. Scores ('4 pts') are structural.
 const GUIA_CA: Guia = {
-  duracion: '2 hores',
+  duracion: '2 hores i mitja',
   total: '10 punts',
   partes: [
     {

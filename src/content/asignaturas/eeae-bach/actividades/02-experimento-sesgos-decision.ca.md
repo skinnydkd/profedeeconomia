@@ -29,7 +29,7 @@ La inspiració és l'experiment clàssic d'ancoratge de Tversky i Kahneman (1974
 
 - Comprovar empíricament, amb dades generades per la mateixa classe, que l'ancoratge opera de manera sistemàtica i predictible.
 - Detectar l'excés de confiança comparant la predicció de cada alumne sobre el seu encert amb el seu encert real.
-- Reconéixer l'aversió a la pèrdua en una decisió simulada de continuar o abandonar un projecte.
+- Reconéixer la fal·làcia del cost enfonsat, i l'aversió a la pèrdua que l'alimenta, en una decisió simulada de continuar o abandonar un projecte.
 - Connectar els tres biaixos amb decisions reals del perfil emprenedor (llançar un negoci, negociar, pivotar o insistir).
 
 ## Passos
@@ -40,12 +40,12 @@ La inspiració és l'experiment clàssic d'ancoratge de Tversky i Kahneman (1974
 
 3. **Càlcul de l'ancoratge en directe (8 min).** El docent arreplega les estimacions i calcula en la pissarra la **mediana** de cada grup (la mediana, no la mitjana, perquè resistix millor els valors extrems). Anota els dos números sense desvelar el parany.
 
-4. **Mini-decisió d'aversió a la pèrdua (7 min).** Es planteja a tota la classe un cas breu per escrit: «El teu equip porta sis mesos i 3.000 € invertits en un projecte que no arranca. Hui pots seguir o tancar-lo i començar-ne un altre amb millors perspectives. Què fas?». Cada alumne respon individualment i anota en una frase per què. Es compta a mà quants «seguixen» i quants «tanquen».
+4. **Mini-decisió de cost enfonsat (7 min).** Es planteja a tota la classe un cas breu per escrit: «El teu equip porta sis mesos i 3.000 € invertits en un projecte que no arranca. Hui pots seguir o tancar-lo i començar-ne un altre amb millors perspectives. Què fas?». Cada alumne respon individualment i anota en una frase per què. Es compta a mà quants «seguixen» i quants «tanquen».
 
 5. **Revelació i discussió (15 min).** Es desvelen els tres paranys alhora:
    - **Ancoratge:** ambdós grups responien a la mateixa pregunta; si la mediana del grup d'ancoratge alt és major (sol ser-ho), el biaix ha operat.
    - **Excés de confiança:** es corregixen les cinc preguntes inicials i es compara, en agregat, l'encert mitjà real amb la confiança mitjana declarada (quasi sempre, declarada > real).
-   - **Aversió a la pèrdua:** es discutix per què molts trien «seguir» tot i que allò invertit ja no es recupera; renunciar se sent com perdre.
+   - **Cost enfonsat i aversió a la pèrdua:** es discutix per què molts trien «seguir» tot i que allò invertit ja no es recupera. És la fal·làcia del cost enfonsat: tancar obliga a donar per perdut allò invertit, i l'aversió a la pèrdua fa que això faça més mal del compte.
 
 6. **Tancament individual (5 min).** Cada alumne escriu un exemple del món emprenedor o personal on un dels tres biaixos podria fer-li prendre una mala decisió, i una mesura concreta per a protegir-se (demanar una opinió externa, fixar un criteri d'avantmà, escriure la decisió abans de prendre-la).
 

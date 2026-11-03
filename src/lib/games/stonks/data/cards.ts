@@ -102,7 +102,7 @@ export const CARDS: AssetCard[] = [
       'El rendimiento sale de los beneficios de miles de empresas repartidas por el mundo. No dependes de que acierte un sector, ni un país, ni un gestor.',
       'Sigue siendo bolsa, así que cae cuando cae el mundo: en 2008 perdió alrededor de un 38 %. Lo que la diversificación elimina no es el riesgo de mercado, sino el riesgo de haber elegido mal el sitio.',
       'La composición cambia sola con el tiempo. En los años ochenta Japón llegó a pesar casi tanto como Estados Unidos en los índices mundiales; hoy pesa una fracción de aquello. Comprar el mundo entero te ahorra tener que adivinar esos cambios.',
-      'No sirve para dinero a corto plazo ni para hacerse rico rápido. Sirve como columna vertebral de una cartera a veinte o treinta años, que es exactamente para lo que la usa «El Mercat» en esta partida.',
+      'No sirve para dinero a corto plazo ni para hacerse rico rápido. Sirve como columna vertebral de una cartera a veinte o treinta años, que es exactamente para lo que la usa «El Mercado» en esta partida.',
     ],
   },
   {

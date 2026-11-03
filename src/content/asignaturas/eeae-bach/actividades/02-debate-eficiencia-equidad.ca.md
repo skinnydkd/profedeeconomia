@@ -12,6 +12,7 @@ materiales:
   - "Esquema-resum dels conceptes clau: eficiència de Pareto, equitat, benestar social, utilitarisme, qualitat de vida"
   - "Targetes de rol per als dos equips"
   - "Rúbrica de debat per a la coavaluació"
+competencias_especificas: [CE1, CE2]
 estado: publicado
 slug: "asignaturas/eeae-bach/actividades/02-debate-eficiencia-equidad.ca"
 ---

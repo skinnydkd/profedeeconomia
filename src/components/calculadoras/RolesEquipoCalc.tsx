@@ -2,6 +2,7 @@
 import { useMemo, useState } from 'preact/hooks';
 import { type Locale } from '@/i18n/locale';
 import { analizar, ROLES, type Persona, type Rol } from '../../lib/calc/roles-equipo';
+import NumberInput from '../NumberInput';
 
 /** UI strings, Valencian (AVL) alongside the ES source. */
 export const COPY = {
@@ -96,7 +97,6 @@ export const COPY = {
 } as const;
 
 interface Props { locale?: Locale }
-const num = (e: Event) => Number((e.currentTarget as HTMLInputElement).value);
 const txt = (e: Event) => (e.currentTarget as HTMLInputElement).value;
 
 const PRESET_EQUILIBRADO: Persona[] = [
@@ -153,9 +153,9 @@ export default function RolesEquipoCalc({ locale = 'es' }: Props) {
                 </th>
                 {personas.map((p, i) => (
                   <td key={i}>
-                    <input type="number" min={0} max={4} step={1}
+                    <NumberInput min={0} max={4} step={1}
                       value={p.puntuaciones[rol] ?? 0}
-                      onInput={(e) => setPunt(i, rol, num(e))} />
+                      onValue={(v) => setPunt(i, rol, v)} />
                   </td>
                 ))}
               </tr>
@@ -175,7 +175,7 @@ export default function RolesEquipoCalc({ locale = 'es' }: Props) {
         </button>
       </div>
 
-      <div class="calc__results">
+      <div class="calc__results" aria-live="polite">
         {!r.valido ? (
           <div class="calc__warning">{t.sinDatos}</div>
         ) : (

@@ -12,7 +12,7 @@ const isInternal = href.startsWith('/');
 const resolvedHref = isInternal ? switchLocalePath(href, locale) : href;
 const cta = locale === 'ca' ? 'Obrir el recurs →' : 'Abrir el recurso →';
 ---
-<a class="destacado" href={resolvedHref} style={`--card: var(${colorVar});`}>
+<a class="destacado" href={resolvedHref} style={`--card: var(${colorVar}); --card-ink: var(${colorVar}-ink);`}>
   <span class="destacado__kicker">{kicker}</span>
   <strong class="destacado__title">{title}</strong>
   <span class="destacado__desc">{descripcion}</span>
@@ -21,8 +21,8 @@ const cta = locale === 'ca' ? 'Obrir el recurs →' : 'Abrir el recurso →';
 <style>
   .destacado { display: block; margin: 2rem 0; padding: 1.2rem 1.4rem; border: 1px solid var(--color-line); border-radius: 8px; background: var(--color-paper); color: var(--color-ink); text-decoration: none; transition: box-shadow .2s, transform .2s; }
   .destacado:hover { box-shadow: 0 6px 22px rgba(42,31,24,0.1); transform: translateY(-2px); }
-  .destacado__kicker { display: block; font-family: var(--font-sans); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--card); }
+  .destacado__kicker { display: block; font-family: var(--font-sans); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--card-ink); }
   .destacado__title { display: block; font-family: var(--font-serif); font-size: 1.3rem; margin: 0.2rem 0; }
   .destacado__desc { display: block; color: var(--color-ink-soft); margin-bottom: 0.5rem; }
-  .destacado__cta { font-family: var(--font-sans); font-weight: 600; color: var(--color-terra); font-size: 0.92rem; }
+  .destacado__cta { font-family: var(--font-sans); font-weight: 600; color: var(--color-terra-ink); font-size: 0.92rem; }
 </style>

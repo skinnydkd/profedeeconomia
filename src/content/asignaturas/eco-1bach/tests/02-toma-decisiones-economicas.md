@@ -76,7 +76,7 @@ preguntas:
       - "Las pérdidas y las ganancias se valoran simétricamente alrededor de cero."
       - "Las personas siempre prefieren el riesgo a la seguridad."
     correcta: 1
-    explicacion: "El hallazgo central de la Teoría Prospectiva: valoramos asimétricamente ganancias y pérdidas, y las pérdidas pesan aproximadamente el doble. Por eso pagamos seguros que estadísticamente nos cuestan dinero, mantenemos suscripciones por inercia y los nudges tipo opt-out funcionan tan bien: cambiar el estado actual se percibe como una pérdida."
+    explicacion: "El hallazgo central de la Teoría Prospectiva: valoramos asimétricamente ganancias y pérdidas, y las pérdidas pesan aproximadamente el doble. Por eso mucha gente rechaza apostar a cara o cruz si puede ganar 120 € o perder 100 €, mantenemos suscripciones por inercia y los nudges tipo opt-out funcionan tan bien: cambiar el estado actual se percibe como una pérdida."
   - tipo: verdadero-falso
     enunciado: "Para decidir racionalmente si seguir con un proyecto, hay que tener en cuenta el dinero ya gastado, porque de lo contrario se desperdicia."
     correcta: false
@@ -88,7 +88,7 @@ preguntas:
   - tipo: relacionar
     enunciado: "Relaciona cada sesgo o concepto con el ejemplo que mejor lo ilustra:"
     izquierda: ["Sesgo de anclaje", "Aversión a la pérdida", "Efecto framing", "Falacia del coste hundido"]
-    derecha: ["No vendo unas acciones en pérdidas porque «ya he aguantado tanto, sería tirar lo invertido»", "Compro porque el precio tachado de 200 € hace que 150 € parezca barato", "Acepto más una operación con «90 % de supervivencia» que con «10 % de mortalidad»", "Pago un seguro caro porque perder me duele más que ganar lo mismo"]
+    derecha: ["Sigo viendo una película aburrida porque «ya he pagado la entrada»", "Compro porque el precio tachado de 200 € hace que 150 € parezca barato", "Acepto más una operación con «90 % de supervivencia» que con «10 % de mortalidad»", "Rechazo apostar a cara o cruz aunque pueda ganar 120 € y solo perder 100 €"]
     correctas: [1, 3, 2, 0]
     explicacion: "Anclaje: el primer número condiciona la percepción. Aversión a la pérdida: pesa más perder que ganar. Framing: el modo de presentar cambia la decisión. Coste hundido: seguir por lo ya invertido."
   - tipo: numerico

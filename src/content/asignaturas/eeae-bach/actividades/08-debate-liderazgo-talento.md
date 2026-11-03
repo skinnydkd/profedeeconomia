@@ -11,6 +11,7 @@ materiales:
   - "Esquema-resumen de los conceptos clave: liderazgo, autoridad formal, estilos de liderazgo, liderazgo situacional, gestión del talento"
   - "Tarjetas de rol para los dos equipos"
   - "Rúbrica de debate para coevaluación"
+competencias_especificas: [CE5]
 estado: publicado
 ---
 

@@ -7,12 +7,12 @@ estado: publicado
 preguntas:
   - enunciado: "¿Cuál de estas afirmaciones describe mejor el concepto económico de empresa?"
     opciones:
-      - "Cualquier organización con fines de lucro."
-      - "Una unidad económica que organiza factores productivos para generar bienes o servicios destinados a un mercado, asumiendo riesgo."
-      - "Cualquier persona dada de alta como autónoma."
-      - "Una sociedad mercantil inscrita en el Registro Mercantil."
+      - "Toda organización que vende bienes o servicios y cobra por ellos en un mercado."
+      - "Una unidad que organiza factores productivos para un mercado, asume riesgo y busca excedente."
+      - "Una organización que combina trabajo y capital con un plan, aunque no busque excedente."
+      - "Una sociedad mercantil inscrita en el Registro Mercantil, con plantilla propia."
     correcta: 1
-    explicacion: "La definición clave incluye tres elementos: organización deliberada de recursos, asunción de riesgo y búsqueda de excedente. No basta con vender o estar registrado."
+    explicacion: "La definición exige tres elementos a la vez: organización deliberada de recursos, asunción de riesgo y búsqueda de excedente. Vender y cobrar no basta (una asociación que vende entradas para un festival no es una empresa) y el Registro Mercantil tampoco es requisito: un autónomo es una empresa unipersonal."
   - enunciado: "Las cuatro funciones simultáneas de la empresa son…"
     opciones:
       - "Producción, dirección, planificación y control."
@@ -24,27 +24,27 @@ preguntas:
   - enunciado: "Según la Recomendación 2003/361/CE, una microempresa cumple…"
     opciones:
       - "Menos de 10 personas y volumen de negocio o balance de hasta 2 M €."
-      - "Menos de 50 personas y facturación de hasta 10 M €."
-      - "Cualquier autónomo independientemente del volumen."
-      - "Menos de 250 personas y facturación de hasta 50 M €."
+      - "Menos de 50 personas y volumen de negocio o balance de hasta 10 M €."
+      - "Menos de 10 personas y volumen de negocio o balance de hasta 10 M €."
+      - "Menos de 250 personas y volumen de negocio de hasta 50 M €."
     correcta: 0
-    explicacion: "Microempresa: < 10 personas y ≤ 2 M € en facturación o balance. Las pyme combinan plantilla con uno de los dos criterios financieros."
+    explicacion: "Microempresa: < 10 personas y ≤ 2 M € en facturación o balance (basta con uno de los dos criterios financieros). El umbral de 10 M € corresponde a la pequeña empresa, que admite hasta 49 personas; mezclar la plantilla de un tramo con el límite financiero de otro es el error más habitual."
   - enunciado: "¿Por qué el currículo evita el término *empresario* y prefiere *persona emprendedora*?"
     opciones:
-      - "Porque empresario es un término jurídicamente desfasado."
-      - "Porque empresario en castellano arrastra connotaciones de gran capital y posición social que no encajan con todo el espectro emprendedor."
-      - "Porque persona emprendedora es más breve."
-      - "Porque empresario solo se aplica a sociedades anónimas."
+      - "Porque *empresario* designa a quien aporta el capital, no a quien innova o gestiona."
+      - "Porque *empresario* evoca gran capital y posición social, y deja fuera a muchos perfiles."
+      - "Porque *persona emprendedora* es la figura que fija la Recomendación europea de pymes."
+      - "Porque *empresario* se reserva para quien dirige una sociedad anónima o limitada."
     correcta: 1
-    explicacion: "El término clásico tiene una carga social específica; persona emprendedora abarca por igual al panadero, la programadora o la cooperativa."
+    explicacion: "En castellano, *empresario* arrastra connotaciones de gran capital y posición social; *persona emprendedora* abarca por igual al panadero, la programadora o la cooperativa. No es una cuestión jurídica ni de forma societaria: un autónomo también es una empresa. Y la distinción entre quien pone el capital y quien innova es de Schumpeter, no el motivo del cambio de término."
   - enunciado: "Joseph Schumpeter llamó *destrucción creativa* a…"
     opciones:
-      - "El proceso por el que las empresas grandes destruyen a las pymes."
-      - "El proceso continuo por el que cada nueva empresa eficiente desplaza a otras menos eficientes, motor del cambio económico."
-      - "La quiebra de empresas como fenómeno negativo del capitalismo."
-      - "La política industrial de un Estado que cierra industrias obsoletas."
+      - "El proceso por el que las grandes empresas absorben a las pymes y concentran el mercado."
+      - "El proceso por el que las innovaciones desplazan a las empresas menos eficientes."
+      - "La oleada de quiebras que Schumpeter veía como el gran fallo del capitalismo."
+      - "La política con la que un Estado cierra industrias obsoletas para liberar recursos."
     correcta: 1
-    explicacion: "Schumpeter veía la destrucción creativa como un fenómeno positivo y necesario del capitalismo: la innovación desplaza modelos viejos y, agregada, eleva la productividad general."
+    explicacion: "Para Schumpeter, cada innovación exitosa desplaza a las empresas menos eficientes y libera recursos para nuevas combinaciones: un proceso continuo, positivo y motor del cambio económico. No lo veía como un fallo del capitalismo (las quiebras son su cara local) ni como una decisión del Estado, sino como el resultado de la competencia innovadora."
   - enunciado: "Según el estudio del MIT publicado en 2020 sobre 2,7 millones de fundadores en EE.UU., la edad media de quien funda una empresa exitosa es…"
     opciones:
       - "25 años."
@@ -63,12 +63,12 @@ preguntas:
     explicacion: "La aversión al cambio es lo opuesto al perfil emprendedor; los otros tres rasgos sí aparecen en la lista clásica."
   - enunciado: "La investigación reciente sugiere que el factor más correlacionado con el éxito de un emprendedor no es la personalidad, sino…"
     opciones:
-      - "El cociente intelectual."
-      - "El capital social: red de relaciones, mentores y acceso a financiación."
-      - "El nivel educativo formal."
-      - "La cantidad de capital propio inicial."
+      - "El cociente intelectual y la capacidad de análisis."
+      - "El capital social: red de contactos, mentores y financiación."
+      - "El nivel educativo formal, sobre todo los estudios universitarios."
+      - "La cantidad de capital propio que se aporta al empezar."
     correcta: 1
-    explicacion: "El capital social explica por qué los hijos de empresarios emprenden más; los programas educativos buscan precisamente igualar el acceso a habilidades que sin ellos solo se transmitirían por entorno familiar."
+    explicacion: "El capital social —red de relaciones, mentores y acceso a financiación— explica por qué los hijos de empresarios emprenden más. No hay que confundirlo con el dinero propio aportado al arrancar: se trata de relaciones, no de patrimonio. Los programas educativos buscan precisamente igualar un acceso que, sin ellos, solo se transmitiría por entorno familiar."
   - enunciado: "Una actividad NO se considera empresa si le falta…"
     opciones:
       - "Una marca registrada."

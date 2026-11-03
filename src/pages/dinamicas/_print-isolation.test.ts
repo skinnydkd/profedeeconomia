@@ -17,6 +17,7 @@ import { dirname, join } from 'node:path';
  */
 const here = dirname(fileURLToPath(import.meta.url));
 const src = readFileSync(join(here, '[familia]', '[slug].astro'), 'utf8');
+const header = readFileSync(join(here, '..', '..', 'components', 'SectionHeader.astro'), 'utf8');
 
 /**
  * Return everything from `@media print` to the end of the file. The print block
@@ -46,6 +47,9 @@ describe('dinámica print stylesheet isolates the repartible materials', () => {
   });
 
   it('hides the non-material context (kicker and lede) in print', () => {
-    expect(block).toMatch(/\.kicker[^{]*\.lede|\.lede[^{]*\.kicker/);
+    // The title block is a SectionHeader in compact-print mode, which keeps
+    // only a small title on paper.
+    expect(src).toMatch(/<SectionHeader[^>]*\bcompactPrint\b/);
+    expect(printBlock(header)).toMatch(/--compact-print \.kicker[^{]*--compact-print \.lede/);
   });
 });

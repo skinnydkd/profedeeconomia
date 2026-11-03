@@ -26,13 +26,14 @@ El equipo **CycloFix** ha desarrollado durante el módulo un servicio de reparac
 
 | Concepto | Importe |
 | --- | --- |
-| Cuota de autónomo (tarifa plana) | 1 200 € |
+| Cuotas de autónomo (3 socios, tarifa reducida de 80 €) | 240 € |
 | Seguro de responsabilidad civil | 80 € |
 | Alquiler de taller compartido | 350 € |
 | Amortización de herramientas y furgoneta | 570 € |
 | Web, dominio y publicidad online | 200 € |
 | Teléfono y datos | 50 € |
-| Contabilidad (gestoría) | 750 € |
+| Contabilidad (gestoría) | 150 € |
+| Retribución mínima de los socios | 1 560 € |
 | **Total costes fijos** | **3 200 €** |
 
 **Costes variables por servicio:**

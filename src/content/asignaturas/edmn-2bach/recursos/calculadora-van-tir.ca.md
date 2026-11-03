@@ -14,7 +14,7 @@ slug: "asignaturas/edmn-2bach/recursos/calculadora-van-tir.ca"
 
 - Mentre introduïu els criteris d'inversió en la Unitat 9.
 - Per resoldre l'activitat 9 (tres inversions en hortícola).
-- Per al pla economicofinancer del projecte capstone (Unitat 12).
+- Per al pla economicofinancer d'un pla d'empresa o un projecte d'aula (Unitat 12).
 
 ## Què cal tindre en compte
 

@@ -12,4 +12,4 @@ estado: publicado
 font: "edmn-2bach U9 — La funció financera"
 ---
 
-Abengoa tenia comandes per 12.000 milions d'euros i beneficis comptables, però va caure el 2015 en no poder pagar 750 milions als seus bonistes. Què li faltava exactament?
+Abengoa tenia beneficis comptables i una cartera de projectes d'uns 8.000 milions d'euros, però el 2015 va haver d'entrar en preconcurs perquè es va quedar sense caixa. Què li faltava exactament?

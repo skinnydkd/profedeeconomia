@@ -60,7 +60,7 @@ preguntas:
       - "Reversibles: decidir rápido y experimentar. Irreversibles: pensar despacio, consultar y, en caso de duda, esperar."
       - "Las reversibles son siempre triviales y no merecen análisis."
     correcta: 2
-    explicacion: "Bezos lo formuló en su carta a accionistas de 1997. El error más común es tratar lo reversible como irreversible (paralizarse con trivialidades) y lo irreversible como reversible (decidir en cinco minutos un préstamo de años). Identificar el tipo es el 50 % del trabajo."
+    explicacion: "Bezos lo formuló en su carta a los accionistas de 2015. El error más común es tratar lo reversible como irreversible (paralizarse con trivialidades) y lo irreversible como reversible (decidir en cinco minutos un préstamo de años). Identificar el tipo es el 50 % del trabajo."
   - enunciado: "Sobre la tolerancia al riesgo personal, ¿cuál de estas afirmaciones es CORRECTA según la unidad?"
     opciones:
       - "Una persona con tolerancia alta al riesgo lo es en todos los ámbitos por igual."

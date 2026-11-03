@@ -68,7 +68,7 @@ preguntas:
       - "El dinero no influye en absoluto en la felicidad."
       - "La felicidad solo depende del consumo material."
     correcta: 1
-    explicacion: "La paradoja de Easterlin (1974) muestra que la renta importa para la felicidad —sobre todo cuando falta lo básico— pero no de forma ilimitada: a partir de cierto umbral, más riqueza no se traduce mecánicamente en más bienestar subjetivo. Por eso maximizar el consumo no equivale a maximizar la felicidad."
+    explicacion: "La paradoja de Easterlin (1974) sostiene que la renta importa para la felicidad —sobre todo cuando falta lo básico— pero no de forma ilimitada: a partir de cierto umbral, más riqueza no se traduce mecánicamente en más bienestar subjetivo. Es una tesis discutida: con datos de más países, otros estudios encuentran que la satisfacción sigue subiendo con la renta, aunque cada vez menos. Por eso maximizar el consumo no equivale a maximizar la felicidad."
   - enunciado: "Una situación económica puede ser «eficiente en el sentido de Pareto» y, al mismo tiempo, profundamente injusta. ¿Qué conclusión se extrae?"
     opciones:
       - "La eficiencia y la equidad son exactamente lo mismo."

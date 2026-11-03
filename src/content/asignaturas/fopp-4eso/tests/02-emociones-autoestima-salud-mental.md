@@ -37,14 +37,14 @@ preguntas:
       - "Es exactamente lo mismo que la autoconfianza técnica."
     correcta: 1
     explicacion: "La autoestima inflada o narcisista parece fuerte pero es frágil. Atribuye éxitos a uno mismo y fracasos a otros, y reacciona mal a cualquier crítica. La autoestima sana, en cambio, integra la crítica sin hundirse."
-  - enunciado: "Según el estudio de Twenge et al. (*Lancet Public Health*, 2023), la correlación entre uso de redes sociales y síntomas depresivos en adolescentes es…"
+  - enunciado: "Según el reanálisis de Twenge y colaboradores (*Acta Psychologica*, 2022), la relación entre las horas de uso de redes sociales y los síntomas depresivos en adolescentes…"
     opciones:
-      - "Inexistente: las redes no influyen en la salud mental."
-      - "Más fuerte cuando el uso es activo (mensajes a conocidos) y más débil cuando es pasivo (*scroll* infinito)."
-      - "Más fuerte cuando el uso es pasivo (*scroll* infinito), especialmente en chicas de 13 a 17 años."
+      - "No existe: las redes no influyen en la salud mental."
+      - "Es más fuerte en los chicos que en las chicas."
+      - "Aparece con claridad, sobre todo en las chicas."
       - "Solo afecta a personas que ya tenían un trastorno previo."
     correcta: 2
-    explicacion: "El estudio longitudinal sobre más de un millón de adolescentes muestra que la correlación es más fuerte cuanto más pasivo es el uso (*scroll* infinito) y especialmente en chicas adolescentes. El uso activo y dirigido (mensajes a personas conocidas) muestra correlación más débil."
+    explicacion: "Reanalizando grandes encuestas de EE. UU. y Reino Unido, encontraron que más horas de redes se asocian con más síntomas depresivos, sobre todo en las chicas. Es una correlación: el debate sobre cuánto se debe a las redes y cuánto a otros factores sigue abierto."
   - enunciado: "La «dismorfia digital» se refiere a…"
     opciones:
       - "Una enfermedad ocular causada por mirar pantallas."
@@ -52,7 +52,7 @@ preguntas:
       - "La adicción al móvil en general."
       - "Una nueva moda estética inventada por TikTok."
     correcta: 1
-    explicacion: "Según la encuesta de la OCU (2024), el 80 % de las adolescentes españolas entre 13 y 18 años ha retocado al menos una vez una foto suya antes de publicarla. La dismorfia digital es la distorsión clínica entre el yo real y el yo digital, ya documentada por cirujanos plásticos."
+    explicacion: "Retocar las fotos antes de publicarlas es muy habitual entre adolescentes. La dismorfia digital es la distorsión entre el yo real y el yo digital, y ya la han descrito cirujanos plásticos que atienden a pacientes que quieren parecerse a sus fotos filtradas."
   - enunciado: "La fórmula asertiva de Marshall Rosenberg para abordar un conflicto personal es…"
     opciones:
       - "«Tú siempre... nunca... eres un...»"

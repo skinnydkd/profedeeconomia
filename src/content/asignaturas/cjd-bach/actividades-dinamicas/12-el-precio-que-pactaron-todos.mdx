@@ -1,0 +1,117 @@
+---
+asignatura: cjd-bach
+unidad_relacionada: 7
+title: "El precio que pactaron todos"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "20-25 min"
+descripcion: "En la reunión del sector proponen poner el mismo precio. Nadie dice la palabra cártel, pero eso es lo que es."
+competencias_clave: [CC, CE, CPSAA]
+competencias_especificas: []
+estado: publicado
+publicado_en: 2026-09-08
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Caso · Defensa de la competencia",
+    "titulo": "El precio que pactaron todos",
+    "contexto": "Trabajas en la oficina de la autoescuela de tu familia, la más pequeña de las cuatro que hay en el pueblo. Como este año llevas tú los papeles, te toca ir a la reunión de la asociación provincial del sector. El orden del día dice «situación del mercado local». A los diez minutos, el dueño de la autoescuela más grande deja caer la frase por la que se ha convocado la reunión: «Deberíamos poner orden en los precios, que nos estamos haciendo daño entre nosotros». Nadie va a pronunciar la palabra cártel. Es exactamente lo que están proponiendo.",
+    "kpi_inicial": { "beneficio": 100, "riesgo_sancionador": 1, "reputacion": 6 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisión 1 — La reunión",
+      "situacion": "La propuesta es concreta: 890 € el carné en las cuatro autoescuelas a partir de septiembre, y ninguna hace ofertas de verano. Tres de los cuatro asienten. La sala espera tu respuesta.",
+      "opciones": [
+        {
+          "label": "Acepto: si lo hacen todos, no hacerlo es suicidarse",
+          "kpi_delta": { "beneficio": 40, "riesgo_sancionador": 8, "reputacion": -1 },
+          "feedback": "Acabas de participar en un acuerdo de fijación de precios entre competidores: la conducta que el art. 1 de la Ley de Defensa de la Competencia y el art. 101 del Tratado de Funcionamiento de la UE prohíben en primer lugar y sin matices. No hace falta que el acuerdo se cumpla ni que se firme nada: basta el concurso de voluntades, y un grupo de mensajes vale como prueba. Lección: el cártel no es un contrato, es un acuerdo, y por eso se persigue aunque nunca llegue a ejecutarse.",
+          "next": "n2"
+        },
+        {
+          "label": "Me callo, no digo ni sí ni no, y luego sigo con mi precio",
+          "kpi_delta": { "beneficio": 0, "riesgo_sancionador": 5, "reputacion": 0 },
+          "feedback": "Es la respuesta más común y la más peligrosa. Quien asiste a una reunión donde se pacta un precio y no se distancia de forma pública y verificable se presume adherido al acuerdo: la carga de probar que te opusiste es tuya. Que después bajaras el precio ayuda, pero no borra la reunión. Lección: en competencia, el silencio en una sala no es neutralidad, es participación mientras no demuestres lo contrario.",
+          "next": "n2"
+        },
+        {
+          "label": "Me niego en voz alta, lo hago constar en acta y me levanto",
+          "kpi_delta": { "beneficio": -10, "riesgo_sancionador": -1, "reputacion": 2 },
+          "feedback": "Esto es exactamente el distanciamiento público que la jurisprudencia exige: manifestarlo, dejar rastro —un correo a la asociación esa misma tarde sirve— y abandonar la reunión. Te va a costar la relación con tres competidores y una tarde incómoda. También es lo único que te deja fuera del expediente que viene. Lección: para no estar en un cártel no basta con no querer estar; hay que poder demostrar que dijiste que no.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisión 2 — Llega la carta de la CNMC",
+      "situacion": "Cinco meses después, la Comisión Nacional de los Mercados y la Competencia incoa expediente por un posible cártel en el sector. Alguien ha hablado. Tienes en el móvil el grupo donde se comentó todo aquello.",
+      "opciones": [
+        {
+          "label": "Acogerme al programa de clemencia y contarlo todo",
+          "kpi_delta": { "beneficio": -20, "riesgo_sancionador": -6, "reputacion": -2 },
+          "feedback": "El programa de clemencia exime de la multa a la primera empresa que aporta pruebas suficientes del cártel, y reduce la de las siguientes según el orden de llegada y el valor de lo que aportan. No es un gesto moral del legislador: está diseñado para que el pacto se rompa solo, porque cada participante sabe que puede ser el segundo. Lección: el diseño jurídico de la clemencia convierte la desconfianza entre los cartelistas en la principal herramienta de la Administración.",
+          "next": "n3"
+        },
+        {
+          "label": "Negarlo todo y borrar el grupo de mensajes antes de la inspección",
+          "kpi_delta": { "beneficio": 0, "riesgo_sancionador": 6, "reputacion": -3 },
+          "feedback": "Obstruir una inspección es por sí sola una infracción muy grave, sancionable con independencia de que el cártel se acredite o no, y agrava todo lo demás. Además, los mensajes rara vez son sólo tuyos: están en los teléfonos de los otros tres. Lección: destruir la prueba propia no destruye la ajena y añade una infracción nueva a la que ya tenías.",
+          "next": "n3"
+        },
+        {
+          "label": "Proponer compromisos para cerrar el expediente sin sanción",
+          "kpi_delta": { "beneficio": -10, "riesgo_sancionador": 3, "reputacion": 0 },
+          "feedback": "La terminación convencional existe: cerrar un expediente comprometiéndose a corregir la conducta. Es la vía de las prácticas que pueden enderezarse hacia el futuro —una cláusula, una restricción de distribución—, no la de un acuerdo de precios ya ejecutado, para el que el legislador previó justamente la clemencia. Lección: no todas las salidas del procedimiento sirven para todas las conductas; elegir la que no toca gasta el tiempo que corría a tu favor.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisión 3 — La resolución",
+      "situacion": "La CNMC declara acreditado el cártel y sanciona a las cuatro autoescuelas. La multa se calcula sobre el volumen de negocios y puede llegar hasta el 10 % del total. Además, un abogado de la capital ha empezado a agrupar a ochenta antiguos alumnos.",
+      "opciones": [
+        {
+          "label": "Recurrir ante la Audiencia Nacional",
+          "kpi_delta": { "beneficio": -25, "riesgo_sancionador": -2, "reputacion": 1 },
+          "feedback": "Las resoluciones de la CNMC se recurren ante la Sala de lo Contencioso-Administrativo de la Audiencia Nacional en el plazo de dos meses. Recurrir no es negar los hechos: se discute la calificación, la duración atribuida o el cálculo de la multa, y el tribunal revisa que la Administración haya respetado el procedimiento y la proporcionalidad. Lección: la potestad sancionadora de la Administración no es la última palabra; el control judicial es lo que la separa de la arbitrariedad.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Pagar, montar un programa interno de cumplimiento y pasar página",
+          "kpi_delta": { "beneficio": -35, "riesgo_sancionador": -4, "reputacion": 2 },
+          "feedback": "Pagar y prevenir es una salida razonable, pero conviene saber lo que viene detrás: la ley presume que un cártel causa daños, salvo prueba en contrario, así que los ochenta alumnos tienen una acción civil de indemnización mucho más fácil de lo que parece. Y hay una consecuencia que casi nadie ve venir: la sanción firme puede acarrear la prohibición de contratar con el sector público. Lección: la multa es sólo el primero de los tres costes de un cártel; los otros dos son la indemnización y la puerta que se cierra.",
+          "next": "final:exito"
+        },
+        {
+          "label": "No pagar y esperar a ver qué pasa",
+          "kpi_delta": { "beneficio": -50, "riesgo_sancionador": 4, "reputacion": -3 },
+          "feedback": "Una resolución administrativa firme se ejecuta sola: la Administración no necesita demandarte para cobrar, apremia y embarga. Ignorar una multa no la suspende; sólo la suspende un recurso con la garantía correspondiente. Lección: la diferencia entre una deuda privada y una deuda con la Administración es quién tiene que ir al juzgado, y no es ella.",
+          "next": "final:fracaso_parcial"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "El pueblo vuelve a tener cuatro precios",
+      "resumen": "El cártel se rompió como se rompen casi todos: desde dentro. Tu autoescuela pagó lo que le correspondía y aprendió dónde estaba la línea, que no estaba donde parecía.",
+      "lecciones_clave": [
+        "Pactar precios entre competidores está prohibido por el art. 1 de la Ley de Defensa de la Competencia: basta el acuerdo, no hace falta ejecutarlo.",
+        "Asistir y callar equivale a participar mientras no puedas acreditar un distanciamiento público.",
+        "El programa de clemencia está diseñado para que el cártel se delate a sí mismo: quien llega primero no paga multa."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "Multa, indemnizaciones y un contrato público perdido",
+      "resumen": "El acuerdo duró un curso y las consecuencias, varios años: la sanción, las reclamaciones de los antiguos alumnos y la exclusión de las licitaciones que la autoescuela venía ganando.",
+      "lecciones_clave": [
+        "La ley presume que un cártel causa daños: las reclamaciones civiles de los clientes vienen detrás de la sanción casi solas.",
+        "Una resolución administrativa firme se ejecuta por la vía de apremio sin necesidad de acudir al juzgado."
+      ]
+    }
+  }
+}
+```

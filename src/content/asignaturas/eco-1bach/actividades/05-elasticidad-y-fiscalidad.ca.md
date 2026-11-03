@@ -2,7 +2,7 @@
 asignatura: eco-1bach
 unidad_relacionada: 5
 title: "Tres béns, tres elasticitats, tres impostos"
-descripcion: "Calcular l'elasticitat-preu de la demanda de tabac, gasolina i refrescos ensucrats amb dades reals i discutir el disseny de la fiscalitat sobre cadascun."
+descripcion: "Calcular l'elasticitat-preu de la demanda de tabac, gasolina i refrescos ensucrats amb dades hipotètiques però realistes i discutir el disseny de la fiscalitat sobre cadascun."
 tipo: ejercicio
 duracion: "90 min · 2 sessions de 45 min"
 agrupacion: "parelles o grups xicotets (3)"
@@ -20,7 +20,7 @@ slug: "asignaturas/eco-1bach/actividades/05-elasticidad-y-fiscalidad.ca"
 
 ## Plantejament
 
-L'elasticitat-preu de la demanda no és una abstracció de manual: és la variable que decidix si un impost especial recapta molt amb poc de dany, si una pujada de l'IVA es trasllada al consumidor o si una sugar tax canvia la composició de la cistella de la compra. En esta activitat els alumnes calculen, sobre dades pròximes a la realitat espanyola, l'elasticitat-preu de tres béns molt distints —tabac, gasolina i refrescos ensucrats— i dissenyen, a partir del resultat, una recomanació de política impositiva raonada.
+L'elasticitat-preu de la demanda no és una abstracció de manual: és la variable que decidix si un impost especial recapta molt amb poc de dany, si una pujada de l'IVA es trasllada al consumidor o si una sugar tax canvia la composició de la cistella de la compra. En esta activitat els alumnes calculen, sobre dades hipotètiques pròximes a la realitat espanyola, l'elasticitat-preu de tres béns molt distints —tabac, gasolina i refrescos ensucrats— i dissenyen, a partir del resultat, una recomanació de política impositiva raonada.
 
 Els tres béns han sigut triats per contrast:
 
@@ -37,28 +37,30 @@ Els tres béns han sigut triats per contrast:
 
 ## Datasets per al càlcul
 
-Les dades següents són simplificacions realistes inspirades en informes públics (Comissionat del Mercat del Tabac, CORES, Ministeri de Sanitat, INE). No són la xifra exacta d'un any concret: estan construïdes perquè el càlcul done valors pròxims als publicats a la literatura.
+Les dades següents són **hipotètiques**, amb ordres de magnitud inspirats en informes públics (Comissionat per al Mercat de Tabacs, CORES, Ministeri de Sanitat, INE) i construïdes perquè el càlcul done valors pròxims als publicats a la literatura. Cada taula compara dos moments, abans i després d'una pujada del preu, i **suposa que no canvia res més**: ni la renda, ni els altres preus, ni els gustos (*ceteris paribus*). Només així la variació de la quantitat es deu al preu i el càlcul mesura l'elasticitat.
 
-### Bé A — Tabac (cajetilla de 20 cigarrets, mercat espanyol)
+Amb dades reals de dos anys distints no passa. Entre 2018 i 2024 els preus en general van pujar prop d'un 20 %: un paquet que passara de 4,90 a 5,50 € s'hauria abaratit en termes reals, i el consum s'hauria mogut també per altres raons. L'activitat d'investigació d'esta unitat treballa amb dades reals i ensenya a tindre-ho en compte.
 
-| Any | Preu mitjà (€/cajetilla) | Quantitat venuda (milions/any) |
+### Bé A — Tabac (paquet de 20 cigarrets, mercat espanyol)
+
+| Moment | Preu mitjà (€/paquet) | Quantitat venuda (milions/any) |
 |---|---|---|
-| 2018 | 4,90 | 2.150 |
-| 2024 | 5,50 | 2.020 |
+| Abans de la pujada | 4,90 | 2.150 |
+| Després de la pujada | 5,50 | 2.020 |
 
 ### Bé B — Gasolina (litre de 95 octans, mercat espanyol)
 
-| Any | Preu mitjà (€/litre) | Quantitat venuda (milers de milions de litres/any) |
+| Moment | Preu mitjà (€/litre) | Quantitat venuda (milers de milions de litres/any) |
 |---|---|---|
-| 2021 | 1,40 | 19,8 |
-| 2023 | 1,70 | 18,5 |
+| Abans de la pujada | 1,40 | 19,8 |
+| Després de la pujada | 1,70 | 18,5 |
 
 ### Bé C — Refresc ensucrat (litre, mercat espanyol)
 
-| Any | Preu mitjà (€/litre) | Quantitat venuda (milions de litres/any) |
+| Moment | Preu mitjà (€/litre) | Quantitat venuda (milions de litres/any) |
 |---|---|---|
-| 2018 | 1,10 | 1.820 |
-| 2024 | 1,32 | 1.520 |
+| Abans de la pujada | 1,10 | 1.820 |
+| Després de la pujada | 1,32 | 1.520 |
 
 ## Passos
 
@@ -76,7 +78,7 @@ Les dades següents són simplificacions realistes inspirades en informes públi
    | Hi ha externalitat negativa que justifique un impost pigouvià? | … | … | … |
    | Recomanació de política fiscal en una frase | … | … | … |
 
-5. **Discussió guiada (10 min).** Cada grup presenta una columna. El professor introduïx el contrast amb la *Soft Drinks Industry Levy* britànica (cas del llibre): impost ben dissenyat que va recaptar poc precisament perquè va reformular els productes.
+5. **Discussió guiada (10 min).** Cada grup presenta una columna. El professor introduïx el contrast amb la *Soft Drinks Industry Levy* britànica (cas del llibre): impost ben dissenyat que va recaptar poc precisament perquè la indústria va reformular els productes.
 
 ## Criteris d'avaluació
 

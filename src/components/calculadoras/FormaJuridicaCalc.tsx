@@ -3,6 +3,7 @@ import { useMemo, useState } from 'preact/hooks';
 import { type Locale } from '@/i18n/locale';
 import { formatEUR, formatPercent } from '../../lib/calc/format';
 import { comparar, FORMAS, type FormaId } from '../../lib/calc/forma-juridica';
+import NumberInput from '../NumberInput';
 
 /** UI strings, Valencian (AVL) alongside the ES source. IRPF and IS stay as-is. */
 export const COPY = {
@@ -43,7 +44,7 @@ export const COPY = {
     graficoAria: 'Curva de la cuota de IRPF frente a la recta del tipo fijo, según el beneficio',
     sinDatos: 'Revisa los datos: el beneficio no puede ser negativo y el tipo tiene que estar entre 0 y 100 %.',
     avisoTitulo: 'Lo que esta comparación no dice',
-    aviso: 'Solo compara cómo tributa el beneficio, y con la escala estatal del IRPF: no incluye la mitad autonómica, ni la cuota de autónomos, ni el sueldo que el socio puede cobrarse de su propia sociedad, ni los costes de constituir y mantener una sociedad. En la práctica la fiscalidad casi nunca es la razón principal para elegir: la responsabilidad lo es.',
+    aviso: 'Solo compara cómo tributa el beneficio, con la escala general del IRPF (la estatal más una autonómica tipo; cada comunidad fija la suya): no incluye el mínimo personal, ni la cuota de autónomos, ni el sueldo que el socio puede cobrarse de su propia sociedad, ni los costes de constituir y mantener una sociedad. En la práctica la fiscalidad casi nunca es la razón principal para elegir: la responsabilidad lo es.',
     decisionTitulo: 'La pregunta que decide',
     decision: 'Antes de mirar impuestos: ¿la actividad puede generar una deuda o un daño mayor que lo que aportas? Si la respuesta es sí —manipulas alimentos, tienes local abierto al público, contratas personal—, limitar la responsabilidad pesa más que cualquier diferencia de tipo.',
     comoSeCalcula: 'Cómo se calcula',
@@ -89,7 +90,7 @@ export const COPY = {
     graficoAria: "Corba de la quota d'IRPF enfront de la recta del tipus fix, segons el benefici",
     sinDatos: 'Revisa les dades: el benefici no pot ser negatiu i el tipus ha d\'estar entre 0 i 100 %.',
     avisoTitulo: 'El que esta comparació no diu',
-    aviso: "Només compara com tributa el benefici, i amb l'escala estatal de l'IRPF: no inclou la meitat autonòmica, ni la quota d'autònoms, ni el sou que el soci es pot cobrar de la seua pròpia societat, ni els costos de constituir i mantindre una societat. A la pràctica la fiscalitat quasi mai no és la raó principal per a triar: la responsabilitat sí que ho és.",
+    aviso: "Només compara com tributa el benefici, amb l'escala general de l'IRPF (l'estatal més una autonòmica tipus; cada comunitat fixa la seua): no inclou el mínim personal, ni la quota d'autònoms, ni el sou que el soci es pot cobrar de la seua pròpia societat, ni els costos de constituir i mantindre una societat. A la pràctica la fiscalitat quasi mai no és la raó principal per a triar: la responsabilitat sí que ho és.",
     decisionTitulo: 'La pregunta que decidix',
     decision: "Abans de mirar impostos: l'activitat pot generar un deute o un dany major que el que aportes? Si la resposta és sí —manipules aliments, tens local obert al públic, contractes personal—, limitar la responsabilitat pesa més que qualsevol diferència de tipus.",
     comoSeCalcula: 'Com es calcula',
@@ -101,7 +102,6 @@ export const COPY = {
 } as const;
 
 interface Props { locale?: Locale }
-const num = (e: Event) => Number((e.currentTarget as HTMLInputElement).value);
 const ORDEN: FormaId[] = ['autonomo', 'comunidad-bienes', 'sl', 'cooperativa'];
 
 export default function FormaJuridicaCalc({ locale = 'es' }: Props) {
@@ -165,19 +165,19 @@ export default function FormaJuridicaCalc({ locale = 'es' }: Props) {
         <label class="calc__field">
           <span class="calc__label">{t.beneficio}</span>
           <div class="calc__input-wrap">
-            <input type="number" min={0} step={1000} value={beneficio} onInput={(e) => setBeneficio(num(e))} />
+            <NumberInput min={0} step={1000} value={beneficio} onValue={setBeneficio} />
           </div>
         </label>
         <label class="calc__field">
           <span class="calc__label">{t.tipoIS}</span>
           <div class="calc__input-wrap">
-            <input type="number" min={0} max={100} step={1} value={tipoPct} onInput={(e) => setTipoPct(num(e))} />
+            <NumberInput min={0} max={100} step={1} value={tipoPct} onValue={setTipoPct} />
           </div>
         </label>
       </div>
       <div class="calc__tip calc__tip--warn">{t.tipoAyuda}</div>
 
-      <div class="calc__results">
+      <div class="calc__results" aria-live="polite">
         {!r.valido ? (
           <div class="calc__warning">{t.sinDatos}</div>
         ) : (

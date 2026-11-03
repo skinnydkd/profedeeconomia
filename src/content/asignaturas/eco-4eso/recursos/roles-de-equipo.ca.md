@@ -1,6 +1,6 @@
 ---
 asignatura: eco-4eso
-unidad_relacionada: 6
+unidad_relacionada: 10
 title: "Cobertura de papers de l'equip"
 descripcion: "Cada membre s'autovalora en sis papers i ix d'un colp d'ull què cobrix l'equip i què no cobrix ningú. L'interessant no és la teua columna: són els buits."
 tipo: plantilla
@@ -12,7 +12,7 @@ slug: "asignaturas/eco-4eso/recursos/roles-de-equipo.ca"
 
 ## Quan usar-la
 
-- A la Unitat 6, en formar els equips del projecte: cinc minuts ací estalvien tres setmanes de retrets després.
+- A la Unitat 10, en formar els equips del projecte: cinc minuts ací estalvien tres setmanes de retrets després.
 - Quan un grup porte temps encallat i ningú no sàpiga per què: quasi sempre hi ha un paper que no està ocupant ningú.
 - Abans de repartir tasques, perquè el repartiment isca d'alguna cosa i no de qui parla primer.
 

@@ -6,8 +6,10 @@ import vercel from '@astrojs/vercel';
 import tailwindcss from '@tailwindcss/vite';
 import { readdirSync, readFileSync, existsSync, writeFileSync } from 'node:fs';
 import matter from 'gray-matter';
-import { mirrorSitemapLocale } from './scripts/sitemap-i18n.mjs';
+import { mirrorSitemapLocale, isIndexableHtml } from './scripts/sitemap-i18n.mjs';
+import { localizeHtmlLinks } from './scripts/localize-links.mjs';
 import stripDeckBlocks from './src/lib/remark/strip-deck-blocks.mjs';
+import rehypeTableScroll from './src/lib/rehype/table-scroll.mjs';
 
 /** Canonical origin. Kept in sync with SITE.url in src/lib/seo.ts. */
 const SITE_URL = 'https://www.profedeeconomia.es';
@@ -38,10 +40,37 @@ const LIBRO_LASTMOD = buildLibroLastmod();
 
 // https://astro.build/config
 
-// Adds the /ca/ half of the sitemap and the hreflang alternates. The mirroring
-// itself lives in scripts/sitemap-i18n.mjs so it can be unit-tested; this hook
-// only supplies the real filesystem check and writes the result back.
-// See docs/seo-estrategia-2026.md §5.8.
+// Decides whether the sitemap may offer a built page: only one that is
+// self-canonical and does not carry robots noindex. A page that points its
+// canonical elsewhere (the consolidated toolbox duplicates of §5.6) or that
+// asks not to be indexed is one Google will never index, so submitting it just
+// parks it in Search Console's non-indexed count. Read from the page's own
+// <head> rather than from a list kept in step with it by hand. Fails safe: a
+// page we cannot read counts as indexable, so a surprise here can never
+// silently shrink the sitemap. See docs/seo-estrategia-2026.md §5.9.
+function pageIsIndexable(dir, site) {
+  const cache = new Map();
+  return (path) => {
+    const cached = cache.get(path);
+    if (cached !== undefined) return cached;
+    let verdict = true;
+    try {
+      const html = readFileSync(new URL(`.${path}index.html`, dir), 'utf8');
+      verdict = isIndexableHtml(html, new URL(path, site).toString());
+    } catch {
+      // Unreadable page: leave the entry in and let the integration's own
+      // filter be the judge.
+    }
+    cache.set(path, verdict);
+    return verdict;
+  };
+}
+
+// Adds the /ca/ half of the sitemap and the hreflang alternates, and removes
+// the entries no sitemap should carry. The logic lives in
+// scripts/sitemap-i18n.mjs so it can be unit-tested; this hook only supplies
+// the real filesystem checks and writes the result back.
+// See docs/seo-estrategia-2026.md §5.8 and §5.9.
 function sitemapI18nAlternates({ site, localePrefix = 'ca' }) {
   return {
     name: 'sitemap-i18n-alternates',
@@ -53,16 +82,58 @@ function sitemapI18nAlternates({ site, localePrefix = 'ca' }) {
           return;
         }
         const exists = (p) => existsSync(new URL(`.${p}index.html`, dir));
+        const indexable = pageIsIndexable(dir, site);
         for (const file of files) {
           const target = new URL(file, dir);
-          const { xml, mirrored } = mirrorSitemapLocale(readFileSync(target, 'utf8'), {
+          const { xml, mirrored, dropped } = mirrorSitemapLocale(readFileSync(target, 'utf8'), {
             site,
             localePrefix,
             exists,
+            indexable,
           });
           writeFileSync(target, xml);
-          logger.info(`${file}: mirrored ${mirrored} URLs into /${localePrefix}/ with hreflang alternates`);
+          logger.info(
+            `${file}: mirrored ${mirrored} URLs into /${localePrefix}/ with hreflang alternates, ` +
+              `dropped ${dropped} that canonicalise elsewhere or are noindex`
+          );
         }
+      },
+    },
+  };
+}
+
+// Gives the /ca/ half of the site its own internal links. Astro's fallback
+// rewrite re-renders each page under /ca/*, but an href written as
+// `/eco-1bach/` is a literal and resolves to the Spanish page from both
+// halves, so every link dropped the reader out of Valencian on the first
+// click. Rewriting the emitted HTML covers the page templates and the MDX book
+// prose at once, and keeps holding for pages added later. The decisions about
+// which hrefs to touch live in scripts/localize-links.mjs so they can be
+// unit-tested without a build; this hook only walks the files.
+function localizeCaLinks({ localePrefix = 'ca' } = {}) {
+  return {
+    name: 'localize-ca-links',
+    hooks: {
+      'astro:build:done': ({ dir, logger }) => {
+        const root = new URL(`${localePrefix}/`, dir);
+        if (!existsSync(root)) {
+          logger.warn(`no /${localePrefix}/ pages found — nothing to localize`);
+          return;
+        }
+        let pages = 0;
+        let links = 0;
+        for (const name of readdirSync(root, { recursive: true })) {
+          if (!name.endsWith('.html')) continue;
+          const file = new URL(name, root);
+          const { html, changed } = localizeHtmlLinks(readFileSync(file, 'utf8'), {
+            prefix: localePrefix,
+          });
+          if (changed === 0) continue;
+          writeFileSync(file, html);
+          pages += 1;
+          links += changed;
+        }
+        logger.info(`prefixed ${links} internal links across ${pages} /${localePrefix}/ pages`);
       },
     },
   };
@@ -82,6 +153,9 @@ export default defineConfig({
     // ```deck fences are slide-authoring data for the deck builder, not book
     // content — strip them from every rendered page (see lib/slides/authored.ts).
     remarkPlugins: [stripDeckBlocks],
+    // Every Markdown table scrolls inside its own labelled box on narrow
+    // screens instead of pushing the page sideways (see lib/rehype/table-scroll.mjs).
+    rehypePlugins: [rehypeTableScroll],
   },
 
   // Hybrid output: most pages are static-prerendered (default), only routes
@@ -98,6 +172,9 @@ export default defineConfig({
   integrations: [
     preact({ compat: false }),
     mdx(),
+    // Runs before the sitemap integrations so they inspect the pages as
+    // shipped: `astro:build:done` hooks fire in the order listed here.
+    localizeCaLinks(),
     // Keep noindex routes (print editions, individual slide decks, and the
     // deprecated /tests/ index hubs) out of the sitemap so they aren't submitted
     // for indexing. The /diapositivas/ index and individual /tests/[slug]/ stay.
@@ -137,19 +214,10 @@ export default defineConfig({
   // vercel.json at the edge layer (real 301, not a meta-refresh), so no
   // Astro-level redirect is needed.
 
-  // /[asignatura]/tests → /[asignatura]/actividades-dinamicas/ (301)
-  // The old /tests hub is replaced by the unified /actividades-dinamicas/ hub.
-  redirects: {
-    '/edmn-2bach/tests':     '/edmn-2bach/actividades-dinamicas/',
-    '/eco-1bach/tests':      '/eco-1bach/actividades-dinamicas/',
-    '/eco-4eso/tests':       '/eco-4eso/actividades-dinamicas/',
-    '/fopp-4eso/tests':      '/fopp-4eso/actividades-dinamicas/',
-    '/taller-eco-3eso/tests':'/taller-eco-3eso/actividades-dinamicas/',
-    '/ipe1-fp/tests':        '/ipe1-fp/actividades-dinamicas/',
-    '/ipe2-fp/tests':        '/ipe2-fp/actividades-dinamicas/',
-    '/eeae-bach/tests':      '/eeae-bach/actividades-dinamicas/',
-    '/gpe-bach/tests':       '/gpe-bach/actividades-dinamicas/',
-  },
+  // No Astro `redirects` here: /[asignatura]/tests/ is a live page (the hub and
+  // every test's breadcrumb link to it), and a redirect on the same path
+  // overwrote the /ca/ copy with a stub to the Castilian dynamics hub.
+  // redirects.test.ts keeps any future redirect off a real page route.
 
   vite: {
     plugins: [tailwindcss()],

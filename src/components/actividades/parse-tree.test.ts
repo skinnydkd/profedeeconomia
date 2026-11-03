@@ -38,4 +38,11 @@ describe('parseTreeFromMdxBody', () => {
     const incomplete = '```json\n{ "intro": {} }\n```';
     expect(() => parseTreeFromMdxBody(incomplete)).toThrow(/intro\.titulo/i);
   });
+
+  it('keeps the optional KPI names and rejects anything but text', () => {
+    const conNombres = sampleBody.replace('"kpi_inicial": { "caja": 100 }', '"kpi_inicial": { "caja": 100 }, "kpi_labels": { "caja": "Caja" }');
+    expect(parseTreeFromMdxBody(conNombres).intro.kpi_labels).toEqual({ caja: 'Caja' });
+    const mal = sampleBody.replace('"kpi_inicial": { "caja": 100 }', '"kpi_inicial": { "caja": 100 }, "kpi_labels": { "caja": 1 }');
+    expect(() => parseTreeFromMdxBody(mal)).toThrow(/kpi_labels/);
+  });
 });

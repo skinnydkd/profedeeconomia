@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { mediaPonderada, sumaPesos, rubricaANota } from './calificaciones.ts';
+import { mediaPonderada, pesosSuman100, sumaPesos, rubricaANota } from './calificaciones.ts';
 
 describe('mediaPonderada', () => {
   it('weights notes by their pesos', () => {
@@ -24,5 +24,17 @@ describe('rubricaANota', () => {
   });
   it('returns null when max is non-positive', () => {
     expect(rubricaANota(3, 0)).toBeNull();
+  });
+});
+
+describe('pesosSuman100', () => {
+  it('accepts decimal weights that add up to 100 despite float noise', () => {
+    const total = sumaPesos([{ peso: 24.6 }, { peso: 39.7 }, { peso: 35.7 }]);
+    expect(total).not.toBe(100); // 100.00000000000001
+    expect(pesosSuman100(total)).toBe(true);
+  });
+  it('still flags weights that do not add up to 100', () => {
+    expect(pesosSuman100(99.5)).toBe(false);
+    expect(pesosSuman100(100.1)).toBe(false);
   });
 });

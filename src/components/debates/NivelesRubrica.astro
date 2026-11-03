@@ -1,0 +1,43 @@
+---
+/**
+ * «What each level means» for the rubric criteria that have descriptors
+ * (DEB-D08), folded under the rubric table so the page stays short. The
+ * printable scoring sheet shows the same descriptors in its grid.
+ */
+import type { Locale } from '@/i18n/locale';
+import { nivelesDe } from '@/lib/debates-niveles';
+
+interface Criterio { criterio: string }
+interface Props { rubrica: Criterio[]; locale?: Locale }
+const { rubrica, locale = 'es' } = Astro.props;
+const copy = {
+  es: { resumen: 'Qué significa cada nivel', niveles: ['1 · Inicio', '2 · En proceso', '3 · Bien', '4 · Excelente'] },
+  ca: { resumen: 'Què vol dir cada nivell', niveles: ['1 · Inici', '2 · En procés', '3 · Bé', '4 · Excel·lent'] },
+}[locale];
+const conNiveles = rubrica
+  .map((r) => ({ criterio: r.criterio, desc: nivelesDe(r.criterio, locale) }))
+  .filter((r): r is { criterio: string; desc: NonNullable<ReturnType<typeof nivelesDe>> } => Boolean(r.desc));
+---
+{conNiveles.length > 0 && (
+  <details class="niveles">
+    <summary>{copy.resumen}</summary>
+    {conNiveles.map((r) => (
+      <div class="niveles__crit">
+        <h3>{r.criterio}</h3>
+        <ol>
+          {r.desc.map((d, k) => <li><strong>{copy.niveles[k]}.</strong>{' '}{d}</li>)}
+        </ol>
+      </div>
+    ))}
+  </details>
+)}
+<style>
+  .niveles { margin: 0.8rem 0 0; }
+  .niveles summary { cursor: pointer; font-family: var(--font-sans); font-weight: 600; font-size: 0.95rem; color: var(--color-terra-ink); }
+  .niveles summary:hover { text-decoration: underline; }
+  .niveles__crit { margin-top: 1.1rem; }
+  .niveles h3 { font-size: 1.1rem; margin: 0 0 0.4rem; }
+  .niveles ol { list-style: none; margin: 0; padding: 0; }
+  .niveles li { font-size: 0.95rem; line-height: 1.5; color: var(--color-ink-soft); margin: 0 0 0.35rem; }
+  .niveles li strong { color: var(--color-ink); font-weight: 600; }
+</style>

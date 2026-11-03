@@ -1,6 +1,9 @@
 /** @jsxImportSource preact */
 import { useMemo, useState } from 'preact/hooks';
 import { type Locale } from '@/i18n/locale';
+import { clasificar, type Posicion, type Rango } from '../../lib/calc/ratios-benchmark';
+import NumberInput from '../NumberInput';
+import LiveSummary from '../LiveSummary';
 
 /**
  * UI strings, Valencian (AVL) alongside the ES source. Economic notation and
@@ -24,6 +27,7 @@ export const COPY = {
     fieldPnc: 'Pasivo no corriente',
     fieldPc: 'Pasivo corriente',
     fieldBaii: 'BAII (Resultado de explotación)',
+    fieldIntereses: 'Gastos financieros (intereses)',
     fieldBeneficioNeto: 'Beneficio neto',
 
     balanceCuadra: (total: number) => `✓ El balance cuadra: ${total} mil € en ambos lados.`,
@@ -38,16 +42,23 @@ export const COPY = {
     metricEndeudamiento: 'Endeudamiento',
     metricRoa: 'ROA (rentabilidad económica)',
     metricRoe: 'ROE (rentabilidad financiera)',
-    metricApalancamiento: 'Apalancamiento (ROE − ROA)',
+    metricApalancamiento: 'Apalancamiento (ROA − coste de la deuda)',
 
     comLiquidez: 'Sano: 1,5 – 2',
-    comTesoreria: 'Sano: ≈ 1',
+    comTesoreria: 'Sano: ≈ 1 (0,8 – 1,2)',
     comDisponibilidad: 'Sano: 0,1 – 0,3',
     comSolvencia: 'Sano: > 1,5',
     comEndeudamiento: 'Sano: 40 – 60 %',
     comRoa: 'Eficiencia operativa del activo',
     comRoe: 'Rendimiento del capital aportado por los socios',
-    comApalancamiento: 'Positivo: la deuda aporta valor a los socios',
+    comApalancamiento: (costeDeuda: string, rfAntes: string) =>
+      `Deuda al ${costeDeuda}; rentabilidad de los socios antes de impuestos: ${rfAntes}`,
+    comSinDeuda: 'Sin deuda, no hay apalancamiento',
+    posiciones: {
+      bajo: 'Por debajo del rango',
+      dentro: 'Dentro del rango',
+      alto: 'Por encima del rango',
+    },
 
     fmSano: 'Equilibrio sano',
     fmFragil: 'Frágil',
@@ -79,7 +90,7 @@ export const COPY = {
     fRoeNote: 'Mide el rendimiento que obtienen los accionistas.',
     fApalName: 'Apalancamiento financiero',
     fApalBody:
-      ': si ROA > coste de la deuda, el ROE supera al ROA y la empresa rentabiliza la deuda; si ROA < coste de la deuda, ocurre lo contrario.',
+      ': si el ROA supera el coste de la deuda (intereses / pasivo), cada euro prestado rinde más de lo que cuesta y la rentabilidad de los socios antes de impuestos (BAI / PN) supera al ROA; si no llega, ocurre lo contrario. El ROE, después de impuestos, puede quedar por debajo del ROA aunque la deuda sea favorable.',
   },
   ca: {
     subActivo: 'Actiu',
@@ -97,6 +108,7 @@ export const COPY = {
     fieldPnc: 'Passiu no corrent',
     fieldPc: 'Passiu corrent',
     fieldBaii: "BAII (Resultat d'explotació)",
+    fieldIntereses: 'Despeses financeres (interessos)',
     fieldBeneficioNeto: 'Benefici net',
 
     balanceCuadra: (total: number) => `✓ El balanç quadra: ${total} mil € als dos costats.`,
@@ -111,16 +123,23 @@ export const COPY = {
     metricEndeudamiento: 'Endeutament',
     metricRoa: 'ROA (rendibilitat econòmica)',
     metricRoe: 'ROE (rendibilitat financera)',
-    metricApalancamiento: 'Palanquejament (ROE − ROA)',
+    metricApalancamiento: 'Palanquejament (ROA − cost del deute)',
 
     comLiquidez: 'Saludable: 1,5 – 2',
-    comTesoreria: 'Saludable: ≈ 1',
+    comTesoreria: 'Saludable: ≈ 1 (0,8 – 1,2)',
     comDisponibilidad: 'Saludable: 0,1 – 0,3',
     comSolvencia: 'Saludable: > 1,5',
     comEndeudamiento: 'Saludable: 40 – 60 %',
     comRoa: "Eficiència operativa de l'actiu",
     comRoe: 'Rendiment del capital aportat pels socis',
-    comApalancamiento: 'Positiu: el deute aporta valor als socis',
+    comApalancamiento: (costeDeuda: string, rfAntes: string) =>
+      `Deute al ${costeDeuda}; rendibilitat dels socis abans d'impostos: ${rfAntes}`,
+    comSinDeuda: 'Sense deute, no hi ha palanquejament',
+    posiciones: {
+      bajo: 'Per davall del rang',
+      dentro: 'Dins del rang',
+      alto: 'Per damunt del rang',
+    },
 
     fmSano: 'Equilibri sa',
     fmFragil: 'Fràgil',
@@ -152,11 +171,32 @@ export const COPY = {
     fRoeNote: 'Mesura el rendiment que obtenen els accionistes.',
     fApalName: 'Palanquejament financer',
     fApalBody:
-      ": si ROA > cost del deute, el ROE supera el ROA i l'empresa rendibilitza el deute; si ROA < cost del deute, ocorre el contrari.",
+      ": si el ROA supera el cost del deute (interessos / passiu), cada euro prestat rendix més del que costa i la rendibilitat dels socis abans d'impostos (BAI / PN) supera el ROA; si no hi arriba, ocorre el contrari. El ROE, després d'impostos, pot quedar per davall del ROA encara que el deute siga favorable.",
   },
 } as const;
 
 interface Props { locale?: Locale }
+
+/**
+ * Healthy bands behind each verdict. The «Sano: …» texts above state these
+ * same numbers: the verdict used to accept up to 20 % above the band, so a
+ * liquidity of 2,3 showed «Sano: 1,5 – 2» in green.
+ */
+export const RANGOS_SANOS = {
+  liquidez: [1.5, 2],
+  tesoreria: [0.8, 1.2],
+  disponibilidad: [0.1, 0.3],
+  endeudamiento: [0.4, 0.6],
+} as const satisfies Record<string, Rango>;
+
+/** Solvency is healthy strictly above 1,5 («Sano: > 1,5»). */
+export const SOLVENCIA_SANA = 1.5;
+
+/** Where the solvency ratio falls; the other ratios go through clasificar(). */
+export function diagnosticoSolvencia(n: number | null): Posicion {
+  if (n === null || !Number.isFinite(n)) return 'sinDato';
+  return n > SOLVENCIA_SANA ? 'dentro' : 'bajo';
+}
 
 /**
  * Financial ratios calculator (Unit 11).
@@ -174,7 +214,8 @@ interface Props { locale?: Locale }
 export default function RatiosCalc({ locale = 'es' }: Props) {
   const c = COPY[locale];
   // Activo
-  const [anc, setAnc] = useState<number>(108);
+  // Defaults balance: 220 + 60 + 50 + 10 = 80 + 120 + 140 = 340.
+  const [anc, setAnc] = useState<number>(220);
   const [existencias, setExistencias] = useState<number>(60);
   const [realizable, setRealizable] = useState<number>(50);
   const [disponible, setDisponible] = useState<number>(10);
@@ -184,7 +225,9 @@ export default function RatiosCalc({ locale = 'es' }: Props) {
   const [pc, setPc] = useState<number>(140);
   // P&G
   const [baii, setBaii] = useState<number>(36);
-  const [beneficioNeto, setBeneficioNeto] = useState<number>(20);
+  // 12 of interest on 260 of liabilities (4,6 %); BAI 24 taxed at 25 % leaves 18.
+  const [intereses, setIntereses] = useState<number>(12);
+  const [beneficioNeto, setBeneficioNeto] = useState<number>(18);
 
   const r = useMemo(() => {
     const ac = existencias + realizable + disponible;
@@ -201,13 +244,38 @@ export default function RatiosCalc({ locale = 'es' }: Props) {
     const endeudamiento = pnPasivoTotal > 0 ? pasivoTotal / pnPasivoTotal : null;
     const roa = activoTotal > 0 ? (baii / activoTotal) * 100 : null;
     const roe = pn > 0 ? (beneficioNeto / pn) * 100 : null;
+    // Leverage compares ROA with the cost of debt, not with the after-tax ROE.
+    const costeDeuda = pasivoTotal > 0 ? (intereses / pasivoTotal) * 100 : null;
+    const rfAntes = pn > 0 ? ((baii - intereses) / pn) * 100 : null;
 
     return {
       ac, activoTotal, pasivoTotal, pnPasivoTotal, cuadra,
       fondoManiobra, liquidezGeneral, acidTest, disponibilidad,
-      solvencia, endeudamiento, roa, roe,
+      solvencia, endeudamiento, roa, roe, costeDeuda, rfAntes,
     };
-  }, [anc, existencias, realizable, disponible, pn, pnc, pc, baii, beneficioNeto]);
+  }, [anc, existencias, realizable, disponible, pn, pnc, pc, baii, intereses, beneficioNeto]);
+
+  const pos = {
+    liquidez: clasificar(r.liquidezGeneral, RANGOS_SANOS.liquidez),
+    tesoreria: clasificar(r.acidTest, RANGOS_SANOS.tesoreria),
+    disponibilidad: clasificar(r.disponibilidad, RANGOS_SANOS.disponibilidad),
+    solvencia: diagnosticoSolvencia(r.solvencia),
+    endeudamiento: clasificar(r.endeudamiento, RANGOS_SANOS.endeudamiento),
+  };
+  const balance = r.cuadra
+    ? c.balanceCuadra(r.activoTotal)
+    : c.balanceNoCuadra(r.activoTotal, r.pnPasivoTotal, (r.activoTotal - r.pnPasivoTotal).toFixed(0));
+  // Main result for screen readers: the balance check and the verdicts that matter most.
+  const conPosicion = (valor: string, p: Posicion) =>
+    p === 'sinDato' ? valor : `${valor}, ${c.posiciones[p].toLowerCase()}`;
+  const resumen = [
+    balance,
+    `${c.metricFdm}: ${r.fondoManiobra} mil €.`,
+    `${c.metricLiquidez}: ${conPosicion(fmtRatio(r.liquidezGeneral), pos.liquidez)}.`,
+    `${c.metricSolvencia}: ${conPosicion(fmtRatio(r.solvencia), pos.solvencia)}.`,
+    `${c.metricEndeudamiento}: ${conPosicion(fmtPct(r.endeudamiento), pos.endeudamiento)}.`,
+    r.roe === null ? '' : `${c.metricRoe}: ${r.roe.toFixed(2).replace('.', ',')} %.`,
+  ].filter(Boolean).join(' ');
 
   return (
     <div class="calc">
@@ -229,15 +297,13 @@ export default function RatiosCalc({ locale = 'es' }: Props) {
       <div class="calc__sub">{c.subResultados}</div>
       <div class="calc__form">
         <NumberField label={c.fieldBaii} value={baii} setValue={setBaii} unit="mil €" />
+        <NumberField label={c.fieldIntereses} value={intereses} setValue={setIntereses} unit="mil €" />
         <NumberField label={c.fieldBeneficioNeto} value={beneficioNeto} setValue={setBeneficioNeto} unit="mil €" />
       </div>
 
       <div class="calc__results">
-        <div class={`calc__warning ${r.cuadra ? 'is-ok' : ''}`}>
-          {r.cuadra
-            ? c.balanceCuadra(r.activoTotal)
-            : c.balanceNoCuadra(r.activoTotal, r.pnPasivoTotal, (r.activoTotal - r.pnPasivoTotal).toFixed(0))}
-        </div>
+        <LiveSummary text={resumen} />
+        <div class={`calc__warning ${r.cuadra ? 'is-ok' : ''}`}>{balance}</div>
 
         <div class="calc__sub">{c.subEquilibrio}</div>
         <div class="calc__metric-grid calc__metric-grid--three">
@@ -246,18 +312,23 @@ export default function RatiosCalc({ locale = 'es' }: Props) {
 
         <div class="calc__sub">{c.subRatios}</div>
         <div class="calc__metric-grid calc__metric-grid--three">
-          <Metric label={c.metricLiquidez} value={fmtRatio(r.liquidezGeneral)} ok={diagRatio(r.liquidezGeneral, [1.5, 2])} comentario={c.comLiquidez} />
-          <Metric label={c.metricTesoreria} value={fmtRatio(r.acidTest)} ok={diagRatio(r.acidTest, [0.8, 1.2])} comentario={c.comTesoreria} />
-          <Metric label={c.metricDisponibilidad} value={fmtRatio(r.disponibilidad)} ok={diagRatio(r.disponibilidad, [0.1, 0.3])} comentario={c.comDisponibilidad} />
-          <Metric label={c.metricSolvencia} value={fmtRatio(r.solvencia)} ok={r.solvencia !== null && r.solvencia > 1.5} comentario={c.comSolvencia} />
-          <Metric label={c.metricEndeudamiento} value={fmtPct(r.endeudamiento)} ok={diagRatio(r.endeudamiento, [0.4, 0.6])} comentario={c.comEndeudamiento} />
+          <RangoMetric label={c.metricLiquidez} value={fmtRatio(r.liquidezGeneral)} pos={pos.liquidez} referencia={c.comLiquidez} locale={locale} />
+          <RangoMetric label={c.metricTesoreria} value={fmtRatio(r.acidTest)} pos={pos.tesoreria} referencia={c.comTesoreria} locale={locale} />
+          <RangoMetric label={c.metricDisponibilidad} value={fmtRatio(r.disponibilidad)} pos={pos.disponibilidad} referencia={c.comDisponibilidad} locale={locale} />
+          <RangoMetric label={c.metricSolvencia} value={fmtRatio(r.solvencia)} pos={pos.solvencia} referencia={c.comSolvencia} locale={locale} />
+          <RangoMetric label={c.metricEndeudamiento} value={fmtPct(r.endeudamiento)} pos={pos.endeudamiento} referencia={c.comEndeudamiento} locale={locale} />
         </div>
 
         <div class="calc__sub">{c.subRentabilidades}</div>
         <div class="calc__metric-grid calc__metric-grid--three">
           <Metric label={c.metricRoa} value={r.roa === null ? '—' : `${r.roa.toFixed(2).replace('.', ',')} %`} ok={r.roa !== null && r.roa > 5} comentario={c.comRoa} />
           <Metric label={c.metricRoe} value={r.roe === null ? '—' : `${r.roe.toFixed(2).replace('.', ',')} %`} ok={r.roe !== null && r.roe > 8} comentario={c.comRoe} />
-          <Metric label={c.metricApalancamiento} value={r.roe !== null && r.roa !== null ? `${(r.roe - r.roa).toFixed(2).replace('.', ',')} pp` : '—'} ok={r.roe !== null && r.roa !== null && r.roe > r.roa} comentario={c.comApalancamiento} />
+          <Metric
+            label={c.metricApalancamiento}
+            value={r.roa !== null && r.costeDeuda !== null ? `${(r.roa - r.costeDeuda).toFixed(2).replace('.', ',')} pp` : '—'}
+            ok={r.roa !== null && r.costeDeuda !== null && r.roa > r.costeDeuda}
+            comentario={r.costeDeuda === null ? c.comSinDeuda : c.comApalancamiento(fmtPctNum(r.costeDeuda), fmtPctNum(r.rfAntes))}
+          />
         </div>
 
         <details class="calc__details">
@@ -284,11 +355,10 @@ function NumberField({ label, value, setValue, unit }: { label: string; value: n
     <label class="calc__field">
       <span class="calc__label">{label}</span>
       <div class="calc__input-wrap">
-        <input
-          type="number"
+        <NumberInput
           step={1}
           value={value}
-          onInput={(e) => setValue(parseFloat((e.target as HTMLInputElement).value) || 0)}
+          onValue={setValue}
         />
         <span class="calc__unit">{unit}</span>
       </div>
@@ -306,14 +376,27 @@ function Metric({ label, value, ok, comentario }: { label: string; value: string
   );
 }
 
+/**
+ * A ratio with a healthy band. The verdict is written out («Por encima del
+ * rango. Sano: 1,5 – 2»), not only carried by the border colour, so it reaches
+ * colour-blind students and screen readers too.
+ */
+function RangoMetric({ label, value, pos, referencia, locale }: {
+  label: string; value: string; pos: Posicion; referencia: string; locale: Locale;
+}) {
+  const veredicto = pos === 'sinDato' ? '' : `${COPY[locale].posiciones[pos]}. `;
+  return <Metric label={label} value={value} ok={pos === 'dentro'} comentario={`${veredicto}${referencia}`} />;
+}
+
 function fmtRatio(n: number | null): string {
   return n === null ? '—' : n.toFixed(2).replace('.', ',');
 }
 function fmtPct(n: number | null): string {
   return n === null ? '—' : `${(n * 100).toFixed(1).replace('.', ',')} %`;
 }
-function diagRatio(n: number | null, [lo, hi]: [number, number]): boolean {
-  return n !== null && n >= lo && n <= hi * 1.2;
+/** A value already in percent (12.5 → "12,5 %"). */
+function fmtPctNum(n: number | null): string {
+  return n === null ? '—' : `${n.toFixed(1).replace('.', ',')} %`;
 }
 function comentaFM(fm: number, locale: Locale): string {
   const c = COPY[locale];

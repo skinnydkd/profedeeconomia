@@ -149,7 +149,7 @@ export default function MapaEmpatiaCalc({ locale = 'es' }: Props) {
         ))}
       </div>
 
-      <div class="calc__results">
+      <div class="calc__results" aria-live="polite">
         <div class="me__label">{t.resumenTitulo}</div>
         <div class="calc__metric-grid calc__metric-grid--three">
           <div class="calc__metric-mini">

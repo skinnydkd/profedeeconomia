@@ -57,7 +57,7 @@ Se suposa que cada país pot repartir els seus recursos entre els dos béns de m
 3. Quin país té **avantatge absolut** en cada bé? Respon amb les dades a la mà.
 4. Quin país té **avantatge comparatiu** en cada bé? Explica en una frase per què la resposta a esta pregunta no coincidix amb l'anterior.
 5. Si cada país s'especialitza per complet en el bé del seu avantatge comparatiu, quant produïx el món de cada bé?
-6. Entre quins dos valors ha de situar-se la **relació d'intercanvi** (litres de tela per unitat d'oli) perquè el comerç interesse als dos? Justifica què passaria just per davall i just per damunt d'eixe interval.
+6. Entre quins dos valors ha de situar-se la **relació d'intercanvi** (metres de tela per litre d'oli) perquè el comerç interesse als dos? Justifica què passaria just per davall i just per damunt d'eixe interval.
 7. Suposa que acorden intercanviar **40 d'oli per 100 de tela**. Comprova, país per país, quant acaba tenint cadascun i compara-ho amb el màxim que podria tindre produint eixa mateixa quantitat d'oli pel seu compte.
 8. Dibuixa les dues fronteres de possibilitats de producció i marca damunt de cadascuna el punt de consum que assolix cada país gràcies al comerç. On queda eixe punt respecte de la frontera?
 
@@ -82,6 +82,6 @@ Se suposa que cada país pot repartir els seus recursos entre els dos béns de m
 ## Variants i extensions
 
 - **Variant curta (25 min):** resoldre només les preguntes 1 a 4 i deixar el rang d'intercanvi per a la sessió següent.
-- **Variant amb la calculadora de l'aula:** repetir l'exercici canviant la producció màxima de tela de Portugal a 300 i comprovar que l'avantatge comparatiu canvia de mans. És la manera més ràpida de vore que no depén de la grandària del país.
+- **Variant amb la calculadora de l'aula:** repetir l'exercici amb altres produccions màximes de tela per a Portugal. Amb 300 no canvia res (1 oli = 5 tela, més que els 2 d'Espanya); amb 90, l'avantatge comparatiu en oli passa a Portugal (1 oli = 1,5 tela). És la manera més ràpida de vore que el que decidix és el cost d'oportunitat, no la grandària del país.
 - **Extensió crítica (15 min).** El model suposa que els recursos es reassignen sense cost d'un sector a l'altre. Discutir en gran grup què li passa, en el món real, a qui treballava al sector que desapareix. Enllaça amb la corba de l'elefant de Milanović, que la unitat tracta més avant.
 - **Connexió amb el test de la unitat:** la pregunta numèrica sobre el cost d'oportunitat del vi usa exactament este mètode amb altres xifres.

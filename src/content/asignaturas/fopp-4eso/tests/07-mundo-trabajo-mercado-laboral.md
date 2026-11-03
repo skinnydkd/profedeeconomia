@@ -48,11 +48,11 @@ preguntas:
   - enunciado: "Según la Encuesta de Estructura Salarial 2024 del INE, ¿qué afirmación sobre los salarios medios por nivel formativo es **correcta**?"
     opciones:
       - "FP de Grado Medio cobra de media más que un graduado universitario."
-      - "ESO sin más formación (~16.000 €) cobra menos que FP Medio (~22.000 €), que cobra menos que FP Superior (~25.000 €) y que el grado universitario (~28.000 €)."
+      - "ESO sin más formación (~17.500 €) cobra menos que FP Medio (~23.000 €), que cobra menos que FP Superior (~26.500 €) y que el grado universitario (~30.000 €)."
       - "Todos los niveles formativos cobran lo mismo: el salario depende solo del sector."
       - "El máster universitario cobra el doble que un graduado, en torno a 60.000 €."
     correcta: 1
-    explicacion: "El orden ascendente del salario medio bruto anual es: ESO ~16.000 € → FP Medio ~22.000 € → FP Superior ~25.000 € → grado universitario ~28.000 € → máster ~33.000 €. Son **medias**, no garantías: hay gran dispersión por sector, empresa, ciudad y experiencia. La diferencia FP Superior–grado universitario es menor de lo que sugiere el imaginario social."
+    explicacion: "El orden ascendente del salario medio bruto anual es: ESO ~17.500 € → FP Medio ~23.000 € → FP Superior ~26.500 € → grado universitario ~30.000 € → máster ~34.500 €. Son **medias**, no garantías: hay gran dispersión por sector, empresa, ciudad y experiencia. La diferencia FP Superior–grado universitario es menor de lo que sugiere el imaginario social."
   - enunciado: "¿Cuál es la **diferencia clave** entre el trabajo por cuenta ajena, el autoempleo y el intraemprendimiento?"
     opciones:
       - "El cuenta ajena trabaja para una empresa cobrando un salario; el autoempleo trabaja para sí mismo (autónomo); el intraemprendedor es un cuenta ajena que lidera proyectos con autonomía emprendedora dentro de una empresa."

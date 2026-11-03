@@ -55,14 +55,14 @@ preguntas:
       - "Dret a la imatge, regulat pel Codi Penal."
     correcta: 1
     explicacion: "El **dret a l'oblit** està regulat per l'**article 17 del Reglament General de Protecció de Dades (RGPD)** de la UE. Permet sol·licitar l'eliminació d'informació personal a internet. S'exercix primer davant del responsable del lloc web (o motor de busca) i, si no respon, davant de l'**Agència Espanyola de Protecció de Dades (AEPD)**. És una ferramenta clau per a gestionar la petjada digital abans de començar a enviar candidatures."
-  - enunciado: "Segons els informes anuals d'Adecco sobre ocupabilitat, quin percentatge dels llocs de treball a Espanya mai es publiquen en portals d'ocupació (mercat ocult)?"
+  - enunciado: "Què és el «mercat ocult» de treball?"
     opciones:
-      - "Entre el 10 % i el 20 %."
-      - "Entre el 30 % i el 40 %."
-      - "Entre el 60 % i el 70 %."
-      - "Més del 90 %."
+      - "Les ofertes que només es publiquen en portals de pagament o en xarxes professionals de subscripció."
+      - "Els treballs sense contracte ni alta en la Seguretat Social, que es paguen en negre."
+      - "Els llocs que es cobrixen sense publicar-se: per recomanació, contactes o candidatura espontània."
+      - "Les places del sector públic que es cobrixen per oposició i no apareixen en portals."
     correcta: 2
-    explicacion: "Entre el **60 % i el 70 %** dels llocs a Espanya mai es publiquen: és l'anomenat **mercat ocult**, que es cobrix per recomanació interna, contactes professionals o candidatures espontànies ben dirigides. Per això avisar la teua xarxa (professors, exalumnes, família, antics caps de pràctiques) és estadísticament tan important com enviar CV a portals."
+    explicacion: "El **mercat ocult** són els llocs que mai arriben als portals d'ocupació: es cobrixen per recomanació interna, contactes professionals o candidatures espontànies ben dirigides. Segons diferents estudis són la majoria, encara que les xifres varien i no hi ha una estadística oficial. Per això avisar la teua xarxa (professors, exalumnes, família, antics caps de pràctiques) pesa tant com enviar CV a portals."
   - enunciado: "Quina d'estes respostes a «quines són les teues debilitats?» és la pitjor segons la unitat?"
     opciones:
       - "Reconéixer una debilitat real i explicar l'acció concreta que prens per a millorar-la."
@@ -82,7 +82,7 @@ preguntas:
   - tipo: verdadero-falso
     enunciado: "Com que la majoria dels llocs es publiquen en portals d'ocupació, avisar la teua xarxa de contactes a penes influïx a trobar treball."
     correcta: false
-    explicacion: "Entre el 60 % i el 70 % dels llocs a Espanya mai es publiquen: és el mercat ocult, que es cobrix per recomanació i contactes. Avisar la teua xarxa és estadísticament tan important com enviar CV a portals."
+    explicacion: "Molts llocs —segons diferents estudis, la majoria— mai es publiquen: és el mercat ocult, que es cobrix per recomanació i contactes. Avisar la teua xarxa pesa tant com enviar CV a portals."
   - tipo: verdadero-falso
     enunciado: "Respondre sóc perfeccionista a la pregunta sobre les teues debilitats és una mala estratègia perquè els reclutadors la detecten com a evasiva."
     correcta: true

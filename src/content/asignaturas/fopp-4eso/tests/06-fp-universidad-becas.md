@@ -29,15 +29,15 @@ preguntas:
       - "35.000-40.000 € anuales."
     correcta: 2
     explicacion: "Los técnicos superiores de Informática (DAW, DAM, ASIR) son la franja salarial más alta de la FP de entrada según AEFI 2024: 24.000-28.000 € brutos anuales el primer año, por encima de muchos grados universitarios saturados."
-  - enunciado: "En la EBAU, ¿cómo se calcula la nota de acceso (sobre 10) que sirve para entrar en la universidad?"
+  - enunciado: "En la PAU, ¿cómo se calcula la nota de acceso (sobre 10) que sirve para entrar en la universidad?"
     opciones:
       - "100 % nota media de Bachillerato."
-      - "50 % media de Bachillerato + 50 % media de la fase de acceso EBAU."
-      - "60 % media de Bachillerato + 40 % media de la fase de acceso EBAU."
-      - "40 % media de Bachillerato + 60 % media de la fase de acceso EBAU."
+      - "50 % media de Bachillerato + 50 % media de la fase de acceso PAU."
+      - "60 % media de Bachillerato + 40 % media de la fase de acceso PAU."
+      - "40 % media de Bachillerato + 60 % media de la fase de acceso PAU."
     correcta: 2
-    explicacion: "La fórmula oficial es Nota de acceso = (0,6 × media de Bachillerato) + (0,4 × media de la fase de acceso EBAU). A partir de ahí, las ponderaciones de la fase voluntaria pueden sumar hasta 4 puntos más, alcanzando la nota máxima de 14."
-  - enunciado: "Las ponderaciones de las materias específicas en la EBAU funcionan así:"
+    explicacion: "La fórmula oficial es Nota de acceso = (0,6 × media de Bachillerato) + (0,4 × media de la fase de acceso PAU). A partir de ahí, las ponderaciones de la fase voluntaria pueden sumar hasta 4 puntos más, alcanzando la nota máxima de 14."
+  - enunciado: "Las ponderaciones de las materias específicas en la PAU funcionan así:"
     opciones:
       - "Cada universidad publica si una materia pondera 0,1 o 0,2 para cada grado concreto; la misma asignatura puede valer 0,2 para Ingeniería y 0,1 o nada para Filología."
       - "Todas las materias ponderan igual (0,1) para todos los grados."
@@ -74,7 +74,7 @@ preguntas:
     correcta: false
     explicacion: "Es justo al revés y ese error cuesta becas cada año. La beca MEFP se solicita habitualmente entre marzo y mayo, antes de matricularse, con datos provisionales. Esperar a tenerlo todo cerrado suele significar perder el plazo."
   - tipo: numerico
-    enunciado: "Un alumno tiene una media de Bachillerato de 8,0 y obtiene un 7,0 en la fase de acceso de la EBAU. Con la fórmula oficial (0,6 × media de Bachillerato + 0,4 × fase de acceso), ¿cuál es su nota de acceso sobre 10 (2 decimales)?"
+    enunciado: "Un alumno tiene una media de Bachillerato de 8,0 y obtiene un 7,0 en la fase de acceso de la PAU. Con la fórmula oficial (0,6 × media de Bachillerato + 0,4 × fase de acceso), ¿cuál es su nota de acceso sobre 10 (2 decimales)?"
     respuesta: 7.6
     tolerancia: 0.05
     unidad: "puntos"

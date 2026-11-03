@@ -13,6 +13,10 @@ materiales:
   - "Extracto de un contrato y de un convenio sectorial de referencia (incluido abajo)"
   - "Calculadora o móvil"
   - "Tabla de tipos de cotización del trabajador y SMI 2026 proyectada"
+solucion:
+  - "<strong>Nómina A.</strong> Con 14 pagas, la base de cotización mensual incluye el prorrateo de las extras: 1.300 + 2 × 1.300 / 12 = 1.516,67 €. Seguridad Social: 71,28 + 23,51 + 1,52 + 2,28 = 98,59 € (el 6,50 % de la base). IRPF: 6 % de 1.300 = 78,00 €. Líquido: 1.300 − 176,59 = <strong>1.123,41 €</strong>."
+  - "<strong>Nómina B, errores.</strong> Falta la paga extra de verano (1.300 €) y el desempleo se ha calculado al 6,55 % en lugar del 1,55 %."
+  - "<strong>Nómina B corregida.</strong> Devengado: 2.600 €. Seguridad Social: 98,59 € (la base no cambia, porque la extra ya estaba prorrateada). IRPF: 6 % de 2.600 = 156,00 €. Líquido: 2.600 − 254,59 = <strong>2.345,41 €</strong>."
 estado: publicado
 ---
 
@@ -34,10 +38,10 @@ La nómina es el documento que más gente firma sin entender. En esta actividad 
 
 ## Pasos
 
-1. **Encuadre (5 min).** El profesor recuerda la estructura de la nómina (encabezado, devengos, deducciones, líquido a percibir), el SMI 2026 y los tipos de cotización del trabajador (contingencias comunes, desempleo, formación profesional).
+1. **Encuadre (5 min).** El profesor recuerda la estructura de la nómina (encabezado, devengos, deducciones, líquido a percibir), el SMI 2026 y los tipos de cotización del trabajador (contingencias comunes, desempleo, formación profesional y MEI).
 2. **Identificación de la relación y el contrato (10 min).** Cada pareja lee el extracto de contrato y determina: ¿es relación laboral por cuenta ajena o esconde un falso autónomo? ¿Qué modalidad de contrato es? ¿El periodo de prueba es legal? ¿El salario respeta el convenio?
 3. **Disección de devengos (10 min).** En la nómina A, separar y sumar los **devengos**: salario base, complementos salariales (antigüedad, puesto), prorrateo o no de pagas extras. Anotar el total devengado (salario bruto).
-4. **Disección de deducciones (15 min).** Identificar y calcular cada **deducción**: cotizaciones del trabajador a la Seguridad Social (contingencias comunes, desempleo, formación) y retención de IRPF. Comprobar que los porcentajes aplicados sobre la base coinciden con los tipos vigentes. Sumar el total de deducciones.
+4. **Disección de deducciones (15 min).** Identificar y calcular cada **deducción**: cotizaciones del trabajador a la Seguridad Social (contingencias comunes, desempleo, formación y MEI, sobre una base que incluye el prorrateo de las pagas extra) y retención de IRPF. Comprobar que los porcentajes aplicados sobre la base coinciden con los tipos vigentes. Sumar el total de deducciones.
 5. **Del bruto al neto (10 min).** Calcular el **líquido a percibir** (bruto − deducciones) y compararlo con el "líquido" que figura en la nómina. En la **nómina B**, detectar un error introducido a propósito (un tipo mal aplicado o una paga extra ausente) y explicarlo.
 6. **Cierre (5 min).** Cada pareja escribe la conclusión: ¿coincide el sueldo prometido con el neto? ¿Está todo correcto en la nómina B? ¿Qué capa de la jerarquía normativa protege al trabajador del caso?
 
@@ -58,14 +62,15 @@ DEVENGOS
   Complemento de puesto ............... 150,00 €
   TOTAL DEVENGADO (bruto) ............. 1.300,00 €
 
-DEDUCCIONES (base de cotización 1.300,00 €)
-  Contingencias comunes (4,70 %) ...... 61,10 €
-  Desempleo (1,55 %) .................. 20,15 €
-  Formación profesional (0,10 %) ...... 1,30 €
+DEDUCCIONES (base de cotización 1.516,67 €)
+  Contingencias comunes (4,70 %) ...... 71,28 €
+  Desempleo (1,55 %) .................. 23,51 €
+  Formación profesional (0,10 %) ...... 1,52 €
+  MEI (0,15 %) ........................ 2,28 €
   Retención IRPF (estimada, 6,00 %) ... 78,00 €
-  TOTAL DEDUCCIONES .................. 160,55 €
+  TOTAL DEDUCCIONES .................. 176,59 €
 
-LÍQUIDO A PERCIBIR ................... 1.139,45 €
+LÍQUIDO A PERCIBIR ................... 1.123,41 €
 ```
 
 ### Nómina B (con un error a detectar, mes de junio con paga extra)
@@ -77,17 +82,18 @@ DEVENGOS
   Paga extra de verano ................ (no aparece)
   TOTAL DEVENGADO (bruto) ............. 1.300,00 €
 
-DEDUCCIONES (base de cotización 1.300,00 €)
-  Contingencias comunes (4,70 %) ...... 61,10 €
-  Desempleo (6,55 %) ................. 85,15 €   ← revisar
-  Formación profesional (0,10 %) ...... 1,30 €
+DEDUCCIONES (base de cotización 1.516,67 €)
+  Contingencias comunes (4,70 %) ...... 71,28 €
+  Desempleo (6,55 %) ................. 99,34 €   ← revisar
+  Formación profesional (0,10 %) ...... 1,52 €
+  MEI (0,15 %) ........................ 2,28 €
   Retención IRPF (6,00 %) ............. 78,00 €
-  TOTAL DEDUCCIONES .................. 225,55 €
+  TOTAL DEDUCCIONES .................. 252,42 €
 
-LÍQUIDO A PERCIBIR ................... 1.074,45 €
+LÍQUIDO A PERCIBIR ................... 1.047,58 €
 ```
 
-**Pistas para detectarlo:** el contrato es de 14 pagas, así que en junio debe constar la paga extra (o estar prorrateada todo el año, pero no las dos cosas). Además, el tipo de desempleo del trabajador es del 1,55 %, no del 6,55 %: revisa el cálculo de esa línea.
+**Pistas para detectarlo:** el contrato es de 14 pagas, así que en junio debe constar la paga extra (o estar prorrateada todo el año, pero no las dos cosas). La base de cotización, en cambio, es la misma todos los meses (1.300 + 2 × 1.300 / 12 = 1.516,67 €): la paga extra ya está prorrateada en ella y no vuelve a cotizar el mes en que se cobra. Además, el tipo de desempleo del trabajador es del 1,55 %, no del 6,55 %: revisa el cálculo de esa línea.
 
 ## Criterios de evaluación
 

@@ -11,6 +11,8 @@ import {
   solveADAS,
   srasShiftForLongRun,
   adjustToLongRun,
+  desplazar,
+  DESPLAZAMIENTO_MAX,
   type ADASState,
 } from './ad-as';
 
@@ -180,5 +182,19 @@ describe('edge cases', () => {
     const state: ADASState = { adShift: 50, srasShift: 50, lrasShift: 30 };
     expect(adPrice(r.shortRun.Y, state)).toBeCloseTo(r.shortRun.P);
     expect(srasPrice(r.shortRun.Y, state)).toBeCloseTo(r.shortRun.P);
+  });
+});
+
+describe('cause buttons (desplazar)', () => {
+  it('push the curve by the cause', () => {
+    expect(desplazar(base, 'adShift', 10)).toEqual({ adShift: 10, srasShift: 0, lrasShift: 0 });
+    expect(desplazar(base, 'srasShift', -10)).toEqual({ adShift: 0, srasShift: -10, lrasShift: 0 });
+  });
+
+  it('stop at the ends of the slider instead of going past ±50', () => {
+    const lleno = { ...base, adShift: 45, srasShift: -45 };
+    expect(desplazar(lleno, 'adShift', 10).adShift).toBe(DESPLAZAMIENTO_MAX);
+    expect(desplazar(lleno, 'srasShift', -10).srasShift).toBe(-DESPLAZAMIENTO_MAX);
+    expect(DESPLAZAMIENTO_MAX).toBe(50);
   });
 });

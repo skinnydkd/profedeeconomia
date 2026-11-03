@@ -1,0 +1,117 @@
+---
+asignatura: cjd-bach
+unidad_relacionada: 6
+title: "¿Con factura o en sobre?"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "15-20 min"
+descripcion: "Te encargan un trabajo de diseño por 900 €. Lo que cobras depende de cómo lo declares."
+competencias_clave: [CC, CE, CD]
+competencias_especificas: []
+estado: publicado
+publicado_en: 2026-09-07
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Caso · Derecho tributario",
+    "titulo": "¿Con factura o en sobre?",
+    "contexto": "Llevas dos años haciendo ilustración por tu cuenta. Una empresa de la ciudad te encarga la identidad visual de una feria: 900 € por unas seis semanas de trabajo. Es tu primer encargo de este tamaño. La persona que te contrata te dice que puede pagarte «como quieras»: con factura, o en efectivo y sin papeles, «que así no te quitan nada». Tienes 19 años y ningún alta en Hacienda.",
+    "kpi_inicial": { "neto_esperado": 900, "riesgo_de_sancion": 2, "cobertura_y_derechos": 1 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisión 1 — Cómo cobras el encargo",
+      "situacion": "Tienes que responder esta semana. Buscas por internet y encuentras respuestas contradictorias: que hay un mínimo por debajo del cual no hay que declarar, que hay que darse de alta siempre, que con una sola factura no pasa nada.",
+      "opciones": [
+        {
+          "label": "En efectivo y sin papeles: son 900 € limpios",
+          "kpi_delta": { "neto_esperado": 0, "riesgo_de_sancion": 5, "cobertura_y_derechos": -1 },
+          "feedback": "Eso es economía sumergida: no es una zona gris, es la parte claramente ilegal de la frontera. No es solo tu problema: la empresa tampoco puede deducirse el gasto, así que está asumiendo un riesgo por los dos. Y si no te pagan, no tienes ni contrato ni factura con la que reclamar. Lección: cobrar en negro renuncia a la única prueba de que te deben dinero.",
+          "next": "n2"
+        },
+        {
+          "label": "Emito factura y me doy de alta en el censo de empresarios y profesionales",
+          "kpi_delta": { "neto_esperado": -189, "riesgo_de_sancion": -2, "cobertura_y_derechos": 3 },
+          "feedback": "Camino limpio. El alta censal es gratuita y separa dos cosas que suelen confundirse: declarar la actividad ante Hacienda y cotizar en el régimen de autónomos. La factura llevará IVA y, siendo el cliente una empresa, también una retención de IRPF que ella ingresa por ti y que recuperas al declarar. Lección: la retención no es un impuesto adicional, es un adelanto a cuenta de tu propio IRPF.",
+          "next": "n2"
+        },
+        {
+          "label": "Emito factura pero no me doy de alta de nada: total, es un solo trabajo",
+          "kpi_delta": { "neto_esperado": -189, "riesgo_de_sancion": 3, "cobertura_y_derechos": 1 },
+          "feedback": "Facturar sin alta censal es una infracción formal aunque declares el ingreso. Lo del alta de autónomos es más discutible cuando la actividad no es habitual, y hay criterio administrativo y judicial a favor y en contra; el alta censal, en cambio, no admite discusión. Lección: cuando una obligación es barata y clara, cumplirla es la decisión eficiente aunque otra sea discutible.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisión 2 — La factura",
+      "situacion": "Tienes que emitirla. La empresa te pide «una factura normal». Encuentras plantillas por internet con campos que no entiendes: base imponible, IVA 21 %, retención de IRPF, total a percibir.",
+      "opciones": [
+        {
+          "label": "Pongo 900 € y ya está, sin desglosar nada",
+          "kpi_delta": { "neto_esperado": 0, "riesgo_de_sancion": 3, "cobertura_y_derechos": -1 },
+          "feedback": "Una factura sin los datos obligatorios —identificación de las dos partes, número correlativo, fecha, descripción, base, tipo y cuota de IVA— no es una factura válida, y la empresa no puede deducírsela. Acabará devolviéndotela. Lección: la forma en Derecho tributario no es una manía burocrática: es lo que permite comprobar que la operación existió.",
+          "next": "n3"
+        },
+        {
+          "label": "Desgloso base 900 €, IVA 21 % y retención de IRPF del 7 %",
+          "kpi_delta": { "neto_esperado": 126, "riesgo_de_sancion": -2, "cobertura_y_derechos": 2 },
+          "feedback": "Correcto y revelador: el IVA que sumas no es tuyo, lo recaudas para Hacienda y lo ingresas cada trimestre; la retención que restas es dinero tuyo que la empresa adelanta a cuenta de tu IRPF. El primer año de actividad el tipo de retención reducido para nuevos profesionales suele ser del 7 %. Lección: en una factura hay dos impuestos distintos moviéndose en direcciones contrarias.",
+          "next": "n3"
+        },
+        {
+          "label": "Aplico IVA pero no retención: no quiero cobrar menos ahora",
+          "kpi_delta": { "neto_esperado": 63, "riesgo_de_sancion": 2, "cobertura_y_derechos": 0 },
+          "feedback": "La retención no es opcional cuando el destinatario es un empresario o profesional: es él quien está obligado a practicarla e ingresarla. Si no la aplicas, tendrás que pagar todo el IRPF de golpe en la declaración anual. Lección: los pagos a cuenta reparten el impuesto en el tiempo; saltárselos no lo reduce, solo lo concentra.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisión 3 — Llega la declaración de la renta",
+      "situacion": "En mayo tienes que decidir si presentas la declaración. Tus ingresos del año han sido esos 900 € más 4.200 € de un contrato de verano. Un amigo te dice que con esas cifras no estás obligado y que mejor no llamar la atención.",
+      "opciones": [
+        {
+          "label": "No presento: estoy por debajo del mínimo",
+          "kpi_delta": { "neto_esperado": 0, "riesgo_de_sancion": 2, "cobertura_y_derechos": -1 },
+          "feedback": "Los umbrales que eximen de declarar están pensados sobre todo para rendimientos del trabajo; tener rendimientos de actividades económicas cambia el cálculo, y hay que comprobarlo caso por caso. Además, si te han retenido, no declarar puede significar regalar la retención. Lección: no estar obligado y no convenir son cosas distintas.",
+          "next": "final:fracaso_parcial"
+        },
+        {
+          "label": "Presento y recupero la retención adelantada",
+          "kpi_delta": { "neto_esperado": 63, "riesgo_de_sancion": -3, "cobertura_y_derechos": 3 },
+          "feedback": "Con ingresos bajos, el IRPF que te corresponde es prácticamente cero, así que la retención adelantada se te devuelve. Presentar es la vía por la que ese dinero vuelve. Lección: el sistema tributario es progresivo, y la progresividad solo te beneficia si entras en él.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Presento y deduzco los gastos de la actividad",
+          "kpi_delta": { "neto_esperado": 90, "riesgo_de_sancion": -2, "cobertura_y_derechos": 3 },
+          "feedback": "En estimación directa simplificada tributas por el rendimiento neto: ingresos menos gastos necesarios y justificados —licencias de software, la parte proporcional del equipo, la cuota de autónomos si la pagaste—. Guardar las facturas de esos gastos vale dinero real. Lección: en el IRPF de una actividad económica, la base no es lo que cobras, es lo que ganas.",
+          "next": "final:exito"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "900 € facturados y la retención devuelta",
+      "resumen": "Declaraste la actividad, emitiste una factura completa y presentaste la renta. Cobras algo menos de lo que te ofrecían en efectivo y, a cambio, tienes prueba del encargo, historial y ninguna deuda latente con Hacienda.",
+      "lecciones_clave": [
+        "El IVA que facturas no es ingreso tuyo: lo recaudas y lo ingresas. La retención de IRPF sí es dinero tuyo, adelantado a cuenta.",
+        "El alta censal es gratuita y distinta del alta en el régimen de autónomos; confundirlas es el error más común al empezar.",
+        "Con ingresos bajos, declarar suele devolver dinero: la progresividad solo funciona a tu favor si presentas."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "Cobrado y sin rastro",
+      "resumen": "Cobraste 900 € en efectivo y no declaraste nada. Nadie te ha reclamado, de momento. Tampoco tienes ninguna prueba del trabajo hecho ni del dinero cobrado si mañana lo necesitas.",
+      "lecciones_clave": [
+        "La economía sumergida traslada el coste de los servicios públicos a quien sí declara.",
+        "Sin factura no hay prueba del encargo: el riesgo de impago lo asumes tú entero."
+      ]
+    }
+  }
+}
+```

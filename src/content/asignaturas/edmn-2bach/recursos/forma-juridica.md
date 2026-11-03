@@ -17,7 +17,7 @@ estado: publicado
 ## Qué tener en cuenta
 
 - **El tipo del Impuesto de Sociedades es un dato que se introduce, no una constante de la herramienta.** El tipo general y los regímenes reducidos para entidades de reducida dimensión cambian de un ejercicio a otro, y la calculadora no los da por sabidos: hay que consultarlos en la Agencia Tributaria antes de usar el número fuera de clase.
-- La comparación fiscal usa la **escala estatal del IRPF** y solo eso: no incluye la mitad autonómica, ni la cuota de autónomos, ni el sueldo que un socio puede cobrarse de su propia sociedad, ni el coste de constituir y mantener la sociedad. Con todo eso el punto de corte real se mueve.
+- La comparación fiscal usa la **escala general del IRPF** (la estatal más una autonómica tipo; cada comunidad fija la suya) y solo eso: no incluye el mínimo personal, ni la cuota de autónomos, ni el sueldo que un socio puede cobrarse de su propia sociedad, ni el coste de constituir y mantener la sociedad. Con todo eso el punto de corte real se mueve.
 - **La responsabilidad decide más que la fiscalidad.** Conviene insistir: si la actividad puede generar una deuda o un daño mayor que lo aportado —local abierto al público, manipulación de alimentos, personal contratado—, limitar la responsabilidad pesa más que cualquier diferencia de tipo.
 - El capital mínimo de una S.L. es de **1 €** desde la Ley 18/2022, pero por debajo de 3.000 € hay obligación de dotar reserva y una responsabilidad añadida de los socios. Un «1 €» a secas se queda corto en un examen.
 - La curva enseña algo que se explica mal con palabras: **el tipo medio del IRPF sube con el beneficio y el tipo fijo no**. Ahí está todo el mecanismo.

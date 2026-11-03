@@ -34,3 +34,24 @@ describe('intervencion', () => {
     expect(r).toEqual({ efectivo: true, intercambiada: 40, escasez: 0, excedente: 40 });
   });
 });
+
+describe('negative supply intercept (Qs = −20 + 3·P)', () => {
+  const COEF_NEG = { a: 100, b: 2, c: -20, d: 3 };
+
+  it('still has the usual equilibrium (P* = 24, Q* = 52)', () => {
+    expect(equilibrio(100, 2, -20, 3)).toEqual({ valido: true, P: 24, Q: 52 });
+  });
+
+  it('never reports a negative quantity supplied or demanded', () => {
+    expect(evaluarPrecio(COEF_NEG, 5)).toEqual({ qd: 90, qs: 0, exceso: -90 });
+    expect(evaluarPrecio(COEF_NEG, 60)).toEqual({ qd: 0, qs: 160, exceso: 160 });
+  });
+
+  it('a very low price ceiling trades 0 units with a shortage of 90', () => {
+    expect(intervencion(COEF_NEG, 'maximo', 5)).toEqual({ efectivo: true, intercambiada: 0, escasez: 90, excedente: 0 });
+  });
+
+  it('a very high price floor trades 0 units with a surplus of 160', () => {
+    expect(intervencion(COEF_NEG, 'minimo', 60)).toEqual({ efectivo: true, intercambiada: 0, escasez: 0, excedente: 160 });
+  });
+});

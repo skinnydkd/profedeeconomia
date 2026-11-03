@@ -101,4 +101,4 @@ preguntas:
     explicacion: "Cost social = cost privat + cost extern = 60 + 25 = 85 €. L'empresa només té en compte els 60 €, així que produïx més del socialment eficient. Un impost pigovià de 25 € per tona internalitzaria la diferència."
 ---
 
-Test d'autoavaluació de la Unitat 6 del llibre d'Eco 1BACH. Nou preguntes que cobrixen la definició de fallada de mercat, les externalitats positives i negatives, l'impost pigouvià, la matriu de béns públics i comuns d'Ostrom, el problema del polissó, la informació asimètrica (selecció adversa i risc moral), el poder de mercat i les fallades de govern.
+Test d'autoavaluació de la Unitat 6 del llibre d'Eco 1BACH. Tretze preguntes que cobrixen la definició de fallada de mercat, les externalitats positives i negatives, l'impost pigouvià, la matriu de béns públics i comuns d'Ostrom, el problema del polissó, la informació asimètrica (selecció adversa i risc moral), el poder de mercat i les fallades de govern.

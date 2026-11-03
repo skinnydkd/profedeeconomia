@@ -44,7 +44,7 @@ Dades simplificades (en milers d'€):
 
 1. **Càlcul individual (30 min).** Per a cada empresa, calcular:
    - a) Ratio de liquiditat (AC / PC).
-   - b) Ratio d'endeutament (Passiu total / Patrimoni net).
+   - b) Ratio d'endeutament (Passiu total / (Patrimoni net + Passiu total)), com en la Unitat 11.
    - c) Rendibilitat financera ROE (Benefici net / Patrimoni net).
    - d) Fons de maniobra (AC − PC).
 2. **Posada en comú (15 min).** En grups de 4, comparen resultats i resolen discrepàncies.
@@ -54,15 +54,17 @@ Dades simplificades (en milers d'€):
 
 **Muebles Norte:**
 - Liquiditat = 600/350 = **1,71** (sanejada).
-- Endeutament = (350+450)/700 = 800/700 = **1,14**.
+- Endeutament = (350+450)/1.500 = 800/1.500 = **0,53** (dins del rang sa, 0,4-0,6).
 - ROE = 180/700 = **25,7 %**.
 - Fons de maniobra = 600 − 350 = **+250** (positiu).
 
 **Muebles Sur:**
 - Liquiditat = 400/520 = **0,77** (insuficient, < 1).
-- Endeutament = (520+580)/400 = 1.100/400 = **2,75** (molt alt).
+- Endeutament = (520+580)/1.500 = 1.100/1.500 = **0,73** (molt alt: el 73 % del balanç és deute).
 - ROE = 60/400 = **15 %**.
 - Fons de maniobra = 400 − 520 = **−120** (negatiu: risc d'impagament a curt termini).
+
+*Nota:* alguns manuals calculen l'endeutament com a Passiu total / Patrimoni net. Amb eixa fórmula eixiria 800/700 = 1,14 en Norte i 1.100/400 = 2,75 en Sur, i el rang sa equivalent aniria de 0,67 a 1,5. Les dues fórmules porten al mateix diagnòstic.
 
 **Diagnòstic:** Norte és clarament més sòlida: més líquida, menys endeutada, més rendible i amb fons de maniobra positiu. Sur té fons de maniobra negatiu i endeutament elevat, senyals de tensió financera a curt termini.
 

@@ -361,7 +361,7 @@ function EconopolyGameInner() {
       {/* Main body */}
       <div class="ep2-body">
         {/* Board area */}
-        <main class="ep2-board-wrap">
+        <div class="ep2-board-wrap">
           <BoardView state={state} />
 
           {/* Sector legend */}
@@ -387,7 +387,7 @@ function EconopolyGameInner() {
               {sectorLabel.G} · {sectorLabel.H}
             </span>
           </div>
-        </main>
+        </div>
 
         {/* Side panel */}
         <SidePanel

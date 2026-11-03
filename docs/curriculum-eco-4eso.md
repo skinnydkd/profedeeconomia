@@ -88,24 +88,41 @@ Posada en pràctica d'un projecte amb metodologies àgils.
 - D.5. Pla de comunicació i màrqueting bàsic.
 - D.6. Pitch i presentació del projecte: estructura, storytelling, formats (elevator pitch 30s, pitch deck 5 min, presentació 15 min).
 
-## 5. Distribució en unitats (10 units)
+## 5. Distribució en unitats (12 units) — revisió de setembre de 2026
 
-10 unitats és el nombre adequat per a una optativa de 4t d'ESO (3-4 hores setmanals × 32 setmanes ≈ 100 sessions, permetent recuperacions, exàmens, projecte capstone i adaptacions).
+> **Canvi d'estructura (2026-09).** La primera versió del llibre (10 units) era pràcticament tota d'emprenedoria. El professorat que l'usa demanava un llibre **d'economia** a l'estil del manual clàssic de 4t (econosublime i companyia), amb l'empresa i l'emprenedoria al final. La versió vigent respon a això: **nou units d'economia (Bloc I) i tres d'empresa i emprenedoria (Bloc II)**. L'ancoratge curricular no canvia: la CE6 del RD 217/2022 («comprendre aspectes bàsics de l'economia i les finances, valorant críticament el problema de l'escassetat de recursos i la necessitat d'elegir») sosté el Bloc I, i les CE1-CE5 i CE7 sostenen el Bloc II.
 
-| Unit | Títol | Bloc | Sabers | Sessions |
-|---|---|---|---|---|
-| 1 | ¿Qué es emprender? Mitos y realidades | A | A.1, A.6 | 6-7 |
-| 2 | Habilidades del emprendedor | A | A.2, A.3, A.4 | 7-8 |
-| 3 | Ética y emprendimiento social | A | A.5 | 5-6 |
-| 4 | El entorno: detectar oportunidades | B | B.1, B.2, B.3 | 8-9 |
-| 5 | Consumo inteligente y derechos del consumidor★ | B | B.4 | 6-7 |
-| 6 | Recursos humanos y equipos | C | C.1 | 6-7 |
-| 7 | Dinero, presupuesto y financiación | C | C.2 | 8-9 |
-| 8 | Economía personal: nómina, IRPF y contratos★ | C | C.3, C.6 | 10-12 |
-| 9 | Diseño del proyecto: BMC, Design Thinking, prototipado | D | D.1, D.2, D.3 | 12-14 |
-| 10 | Validación, comunicación y pitch del proyecto | D | D.4, D.5, D.6 | 10-12 |
+| Unit | Títol | Bloc | Sessions |
+|---|---|---|---|
+| 1 | La economía: escasez, elección y coste de oportunidad | I · Economia | 7 |
+| 2 | Producción, crecimiento y sostenibilidad | I · Economia | 7 |
+| 3 | Los mercados: oferta, demanda y competencia | I · Economia | 8 |
+| 4 | El dinero, los bancos y la inflación | I · Economia | 8 |
+| 5 | El mercado de trabajo: contratos, nómina y desempleo★ | I · Economia | 9 |
+| 6 | El Estado: impuestos, gasto público y desigualdad★ | I · Economia | 8 |
+| 7 | Economía personal I: presupuesto, ahorro y consumo responsable★ | I · Economia | 8 |
+| 8 | Economía personal II: bancos, crédito, inversión y seguros★ | I · Economia | 8 |
+| 9 | Economía internacional: comercio, globalización y Unión Europea | I · Economia | 7 |
+| 10 | La empresa: tipos, formas jurídicas y organización | II · Empresa i emprenedoria | 8 |
+| 11 | Emprender: persona emprendedora, habilidades e ideas | II · Empresa i emprenedoria | 8 |
+| 12 | El proyecto emprendedor: modelo de negocio, prototipo, financiación y pitch | II · Empresa i emprenedoria | 10 |
 
-★ Unitats que recullen el twist editorial **profedeeconomia** sobre el currículum estatal: consum + economia personal pràctica. La resta del llibre segueix el RD 217/2022 estrictament.
+★ Units que recullen el *twist* editorial **profedeeconomia**: economia personal pràctica (nòmina, IRPF, crèdit, assegurances) i consum digital responsable. La resta segueix el RD 217/2022.
+
+**Temporalització**: 1a avaluació U1-U4 · 2a avaluació U5-U8 · 3a avaluació U9-U12. Amb dues sessions setmanals en compte de tres, s'alleugerixen les units 2 i 9 i la U12 es treballa com a projecte de final de curs; no es retalla l'economia personal.
+
+**Correspondència amb l'estructura antiga** (per a redireccions i per a qui tinga la versió anterior):
+
+| Unit antiga | On viu ara |
+|---|---|
+| 1 ¿Qué es emprender? · 2 Habilidades · 3 Ética · 4 Entorno | U11 (condensades) |
+| 5 Consumo inteligente y derechos | U7 |
+| 6 Recursos humanos y equipos | U10 |
+| 7 Dinero, presupuesto y financiación | U7 (personal) i U12 (finançament del projecte) |
+| 8 Economía personal: nómina, IRPF y contratos | U5 (nòmina i contractes) i U6 (IRPF com a impost) |
+| 9 Diseño del proyecto (BMC, Design Thinking) · 10 Validación y pitch | U12 (condensades) |
+
+**Competències pròpies del material** (numeració de `programacion.mdx`, distinta de les set oficials del RD que hi ha a `/eco-4eso/evaluacion/`): CE1 conceptes econòmics bàsics (U1-U2) · CE2 mercats, diners, sector públic i internacional (U3, U4, U6, U9) · CE3 economia personal (U7-U8) · CE4 món del treball (U5) · CE5 empresa i esperit emprenedor (U10-U11) · CE6 dissenyar, validar i comunicar un projecte (U12).
 
 ## 6. Diferenciadors editorials
 
@@ -114,7 +131,7 @@ A la línia editorial de profedeeconomia.es, l'optativa "Economía y Emprendimie
 1. **Cobertura substantiva de economia personal pràctica** (Unitat 8): lectura d'una nómina real, càlcul d'IRPF aplicat a un sou típic d'aprenent, distinció dels 5 tipus de contracte laboral espanyols i les seues implicacions. La majoria de manuals 4ESO mencionen "fiscalitat" sense baixar al detall pràctic; nosaltres baixem.
 2. **Consum digital responsable** (Unitat 5): més enllà dels drets clàssics del consumidor (etiquetatge, garantia, hoja de reclamaciones), tractem dark patterns, scroll infinito, suscripció oculta, comparació de preus online, RGPD i drets digitals. Material que un alumne de 15-16 anys utilitza CADA dia i que cap manual cobreix amb seriositat.
 
-També es valora un **calculador interactiu de nómina** com a recurs digital de la Unitat 8.
+El **calculador de nòmina** i el **simulador de la declaració de la renda** són els recursos digitals d'estes units (U5 i U6).
 
 ## 7. Estructura interna de cada unit (heretada d'EDMN/Eco 1BACH amb adaptació 4ESO)
 
@@ -131,4 +148,6 @@ També es valora un **calculador interactiu de nómina** com a recurs digital de
 - `<KeyTakeaways>` final
 - `<Bibliography>` amb 4-6 referències (BOE, INE, BdE Educación Financiera, OCU, FACUA, etc. — menys carregada que Bachillerato)
 
-**Densitat objectiu**: **220-300 línies per Unit**, menor que Eco 1BACH (280-380) i EDMN (290-380) perquè el públic és més jove i el tempo lectiu menor.
+**Densitat objectiu**: **450-600 línies per Unit** (5.500-7.000 paraules de cos més el bloc `deck`), en línia amb la resta de llibres després de la revisió de 2026. El text és més llarg que a la primera versió però amb frases i digressions més curtes que a Batxillerat.
+
+**Activitats**: quatre o cinc per unit i de tipus variats (cas, exercici, debat, dinàmica, projecte, investigació amb dades oficials, notícia, gràfic, joc d'aula i creatiu), cadascuna descarregable en PDF des de la seua fitxa.

@@ -166,7 +166,7 @@ Validada el 2026-05-10. Variant C va guanyar enfront de A (editorial pur, vermel
 - Diapositives PDF
 - Diapositives editables (futur premium)
 
-Convenció `:::slide` dins del MDX defineix què entra a les diapositives.
+Les diapositives surten d'un bloc ` ```deck ` (llista YAML de diapositives) al final de cada unitat. El plugin `src/lib/remark/strip-deck-blocks.mjs` l'amaga de la pàgina i del PDF del llibre, i `src/lib/slides/authored.ts` el valida (límits perquè cada diapositiva càpiga en 16:9). Si una unitat no en té, es genera un esquelet automàtic.
 
 **Què NO fer**:
 - ❌ Mantenir múltiples versions del mateix contingut a fitxers diferents
@@ -315,13 +315,14 @@ El repo `webpde` actual conté el contingut antic. La migració es fa per fases:
 
 ## Estat actual
 
-- **Domini**: profedeeconomia.es (existent, apunta al webpde antic)
-- **Repo nou**: pendent de crear
-- **Repo antic webpde**: viu, mode manteniment durant la transició
-- **Stack confirmat**: Astro 5 + Preact + Tailwind + Vercel
-- **Sense backend al MVP**
-- **i18n**: arquitectura preparada des del dia 1, només castellà publicat al MVP
-- **Primer llibre**: EDMN 2BACH (especialitat de Pau)
+*Revisat el 2026-10-11.*
+
+- **Domini**: profedeeconomia.es apunta al web nou (Astro a Vercel); el webpde antic queda en mode manteniment
+- **Repo**: `skinnydkd/profedeeconomia`; els PR van contra `main`
+- **Stack**: Astro 5 + Preact + Tailwind + Vercel, sense backend
+- **Assignatures publicades**: 10 (`ASIGNATURAS` a `src/lib/asignaturas.ts`), totes amb llibre i PDF: les 4 del MVP més Taller d'Economia 3r ESO, IPE I i IPE II (FP), EEAE, GPE i CJD (Batxillerat). La regla «mateixa estructura interna» s'aplica a totes 10
+- **i18n**: castellà i valencià publicats (`/ca/`), amb paritat completa de contingut
+- **SEO**: estratègia i historial de canvis a `docs/seo-estrategia-2026.md`
 - **Estructura confirmada**: per assignatures, no per tipus de contingut
 
 ## Pròxims passos immediats

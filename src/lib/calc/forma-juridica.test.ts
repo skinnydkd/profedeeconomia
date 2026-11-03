@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { comparar, cuotaEscala, puntoDeCorte, FORMAS } from './forma-juridica';
-import { ESCALA_IRPF_2026 } from './irpf';
+import { ESCALA_COMBINADA_2026 } from './irpf';
 
 describe('FORMAS', () => {
   it('separates the forms that shield personal assets from the ones that do not', () => {
@@ -105,7 +105,7 @@ describe('comparar', () => {
     expect(r.beneficioDeCorte).toBeNaN(); // a 20 % scale is never beaten by 25 %
   });
 
-  it('uses the same state scale as the IRPF module', () => {
-    expect(cuotaEscala(30000)).toBeCloseTo(cuotaEscala(30000, ESCALA_IRPF_2026), 10);
+  it('uses the same general scale as the IRPF module', () => {
+    expect(cuotaEscala(30000)).toBeCloseTo(cuotaEscala(30000, ESCALA_COMBINADA_2026), 10);
   });
 });

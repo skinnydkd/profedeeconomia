@@ -8,8 +8,11 @@
  *
  * Generates one path per asignatura that has at least one published unit.
  */
-import { ASIGNATURA_SLUGS, ASIGNATURAS } from '@/lib/asignaturas';
-import { getCollection, render } from 'astro:content';
+import { ACCENTS, ASIGNATURA_SLUGS, ASIGNATURAS, leyCurricular } from '@/lib/asignaturas';
+import { SITE } from '@/lib/seo';
+import { intercalarFamilias } from '@/lib/ebau';
+import { cargarFamilias } from '@/lib/ebau-familias';
+import { getCollection, render, type CollectionEntry } from 'astro:content';
 import { getLocale } from '@/i18n/locale';
 import { pickLocalizedEntry } from '@/i18n/content-locale';
 import { localizeAsignatura } from '@/i18n/asignaturas-ca';
@@ -74,7 +77,12 @@ const ebauCa = new Map(
 );
 const units = Astro.props.units.map((u) => pickLocalizedEntry(u, libroCa, locale));
 const reto = Astro.props.reto.map((r) => pickLocalizedEntry(r, retoCa, locale));
-const ebau = Astro.props.ebau.map((e) => pickLocalizedEntry(e, ebauCa, locale));
+const familias = await cargarFamilias(a.slug, locale);
+// Notebook sections and solved-problem families in print order.
+const ebau = intercalarFamilias(
+  Astro.props.ebau.map((e) => pickLocalizedEntry(e, ebauCa, locale)),
+  familias,
+).flatMap<CollectionEntry<'ebau'> | CollectionEntry<'ebauProblemas'>>((b) => (b.kind === 'seccion' ? [b.entry] : b.entries));
 
 // Pre-render each unit so we have headings + Content
 const rendered = await Promise.all(
@@ -99,24 +107,25 @@ const renderedEbau = await Promise.all(
 const today = new Date().toLocaleDateString(locale === 'ca' ? 'ca-ES' : 'es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
 const totalUnits = units.length;
 
+const ley = leyCurricular(a);
 const copy = {
   es: {
-    unidades: 'unidades', curriculo: 'Currículo estatal LOMLOE', editorial: 'Editorial', edicion: 'Edición',
+    unidades: 'unidades', curriculo: `Currículo estatal ${ley}`, editorial: 'Editorial', edicion: 'Edición',
     edicionVal: 'Curso 2026/27 · borrador', generado: 'Generado',
     sobreH: 'Sobre este libro',
     sobreP1a: 'Este libro forma parte de los materiales abiertos de', sobreP1b: ', una plataforma de recursos para profesores de instituto de economía, empresa y finanzas. Todo el contenido se publica bajo licencia', sobreP1c: ': podéis copiarlo, redistribuirlo y adaptarlo siempre que citéis la autoría y no lo uséis con fines comerciales.',
-    sobreP2a: 'Este libro se basa en el currículo básico estatal LOMLOE para', sobreP2b: '). Cada comunidad autónoma establece concreciones específicas en su currículo propio; conviene consultar la concreción de vuestra CCAA para ajustar la programación al centro.',
+    sobreP2a: `Este libro se basa en el currículo básico estatal ${ley} para`, sobreP2b: '). Cada comunidad autónoma establece concreciones específicas en su currículo propio; conviene consultar la concreción de vuestra CCAA para ajustar la programación al centro.',
     colofon: 'Composición tipográfica con Fraunces y Switzer. Generado con Astro y paged.js. Comentarios, erratas y propuestas:',
     indice: 'Índice general', contenido: 'Contenido', unidad: 'Unidad', pagina: 'Página',
     duracion: 'Duración', conceptos: 'Conceptos clave', objetivos: 'Objetivos de la unidad',
     apendice: 'Apéndice', guiaEbau: 'Guía EBAU', guiaEbauLede: 'Para llegar al examen con la cabeza en su sitio.',
   },
   ca: {
-    unidades: 'unitats', curriculo: 'Currículum estatal LOMLOE', editorial: 'Editorial', edicion: 'Edició',
+    unidades: 'unitats', curriculo: `Currículum estatal ${ley}`, editorial: 'Editorial', edicion: 'Edició',
     edicionVal: 'Curs 2026/27 · esborrany', generado: 'Generat',
     sobreH: 'Sobre este llibre',
     sobreP1a: 'Este llibre forma part dels materials oberts de', sobreP1b: ', una plataforma de recursos per a professors d\'institut d\'economia, empresa i finances. Tot el contingut es publica sota llicència', sobreP1c: ': podeu copiar-lo, redistribuir-lo i adaptar-lo sempre que en citeu l\'autoria i no l\'useu amb fins comercials.',
-    sobreP2a: 'Este llibre es basa en el currículum bàsic estatal LOMLOE per a', sobreP2b: '). Cada comunitat autònoma estableix concrecions específiques al seu currículum propi; convé consultar la concreció de la vostra CCAA per a ajustar la programació al centre.',
+    sobreP2a: `Este llibre es basa en el currículum bàsic estatal ${ley} per a`, sobreP2b: '). Cada comunitat autònoma estableix concrecions específiques al seu currículum propi; convé consultar la concreció de la vostra CCAA per a ajustar la programació al centre.',
     colofon: 'Composició tipogràfica amb Fraunces i Switzer. Generat amb Astro i paged.js. Comentaris, errades i propostes:',
     indice: 'Índex general', contenido: 'Contingut', unidad: 'Unitat', pagina: 'Pàgina',
     duracion: 'Durada', conceptos: 'Conceptes clau', objetivos: 'Objectius de la unitat',
@@ -124,17 +133,7 @@ const copy = {
   },
 }[locale];
 
-// Per-asignatura accent palette so each book's PDF carries its own identity
-// instead of the default terracota. Mirrors the color-coding in global.css.
-const ACCENTS: Record<string, { base: string; deep: string; soft: string }> = {
-  edmn: { base: '#C44E2C', deep: '#9C3A1C', soft: '#FBE3D6' },
-  eco1: { base: '#1F6E6E', deep: '#164F4F', soft: '#DBEDED' },
-  eco4: { base: '#D4A24C', deep: '#A87A2A', soft: '#F5E5BC' },
-  fopp: { base: '#5B3A4E', deep: '#46293A', soft: '#ECDCE5' },
-  eeae: { base: '#2E5E3A', deep: '#234A2D', soft: '#D9E6DC' },
-  gpe:  { base: '#8C2F39', deep: '#6E2530', soft: '#F1DADD' },
-};
-const accent = ACCENTS[a.color] ?? ACCENTS.edmn;
+const accent = ACCENTS[a.color];
 ---
 
 <!doctype html>
@@ -1023,7 +1022,7 @@ const accent = ACCENTS[a.color] ?? ACCENTS.edmn;
       </p>
       <p class="colophon-note">
         {copy.colofon}
-        <a href="mailto:hola@profedeeconomia.es">hola@profedeeconomia.es</a>.
+        <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
       </p>
     </section>
 
@@ -1128,7 +1127,7 @@ const accent = ACCENTS[a.color] ?? ACCENTS.edmn;
     <script is:inline>
       if (new URLSearchParams(location.search).has('preview')) {
         const s = document.createElement('script');
-        s.src = 'https://unpkg.com/pagedjs/dist/paged.polyfill.js';
+        s.src = '/vendor/pagedjs@0.4.3/paged.polyfill.min.js';
         document.body.appendChild(s);
       }
     </script>

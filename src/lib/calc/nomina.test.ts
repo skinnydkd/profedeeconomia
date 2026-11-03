@@ -1,5 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import {
+  BASE_MAXIMA_MENSUAL_2026,
+  baseCotizacion,
   calcularNomina,
   COTIZACIONES_TRABAJADOR_2026,
   tasaDesempleo,
@@ -75,10 +77,26 @@ describe('calcularNomina', () => {
     expect(r.baseIRPF).toBeCloseTo(bruto - r.cotizaciones.total, 4);
   });
 
-  it('monthly figures are the annual divided by the number of pay periods', () => {
+  it('spreads the SS over twelve monthly contributions, also with 14 payments', () => {
     const r = calcularNomina(24000, { pagas: 14 });
-    expect(r.liquidoMensual).toBeCloseTo(r.liquidoAnual / 14, 4);
-    expect(r.cotizaciones.mensual).toBeCloseTo(r.cotizaciones.total / 14, 4);
+    expect(r.cotizaciones.mensual).toBeCloseTo(r.cotizaciones.total / 12, 4);
+    // The U5 example: 18.200 € a year pay 98,58 € of SS a month (6,50 % of 18.200 / 12).
+    expect(calcularNomina(18200, { pagas: 14 }).cotizaciones.mensual).toBeCloseTo(98.58, 2);
+  });
+
+  it('with 14 payments, an ordinary month carries SS and the two extra pays only IRPF', () => {
+    const r = calcularNomina(24000, { pagas: 14 });
+    expect(r.liquidoMensual).toBeCloseTo(24000 / 14 - r.cotizaciones.total / 12 - r.irpf.cuota / 14, 4);
+    expect(r.liquidoPagaExtra).toBeCloseTo(24000 / 14 - r.irpf.cuota / 14, 4);
+    // Twelve ordinary months plus two extra pays make up the annual net.
+    expect(12 * r.liquidoMensual + 2 * (r.liquidoPagaExtra ?? 0)).toBeCloseTo(r.liquidoAnual, 4);
+  });
+
+  it('with 12 payments every month is the same', () => {
+    const r = calcularNomina(24000, { pagas: 12 });
+    expect(r.liquidoMensual).toBeCloseTo(r.liquidoAnual / 12, 4);
+    expect(r.cotizaciones.mensual).toBeCloseTo(r.cotizaciones.total / 12, 4);
+    expect(r.liquidoPagaExtra).toBeNull();
   });
 
   it('handles gross 0 (no contributions, no tax, no net)', () => {
@@ -86,6 +104,24 @@ describe('calcularNomina', () => {
     expect(r.cotizaciones.total).toBe(0);
     expect(r.irpf.cuota).toBe(0);
     expect(r.liquidoAnual).toBe(0);
+  });
+
+  it('caps the contribution base and adds the solidarity contribution above it', () => {
+    // 6.000 € × 14: the base stops at 12 × 5.101,20 €, and the worker pays about
+    // 1/6 of 1,15 % and 1,25 % on the part above it.
+    const r = calcularNomina(84000, {});
+    expect(r.topeBase).toBe(true);
+    expect(r.baseCotizacion).toBeCloseTo(12 * BASE_MAXIMA_MENSUAL_2026, 6);
+    expect(r.cotizaciones.solidaridad).toBeCloseTo(46.28, 1);
+    expect(r.cotizaciones.total).toBeCloseTo(4025.22, 1);
+  });
+
+  it('leaves ordinary salaries untouched by the cap', () => {
+    const r = calcularNomina(24000, {});
+    expect(r.topeBase).toBe(false);
+    expect(r.cotizaciones.solidaridad).toBe(0);
+    expect(r.cotizaciones.total).toBeCloseTo(24000 * 0.065, 6);
+    expect(baseCotizacion(24000).solidaridadTotal).toBe(0);
   });
 
   it('handles a very high salary (high effective tax, net still positive)', () => {

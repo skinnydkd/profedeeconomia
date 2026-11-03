@@ -3,6 +3,8 @@
 // Renders territory nodes filled with owner faction color + unit count.
 // Adjacency lines drawn once per pair (higher id only).
 // Click on a node calls onSelect(id). Highlights selectedId with a border ring.
+// Each node is also a keyboard button (Tab, then Enter/Space), and the map is a
+// group so screen readers reach them; the drawing around them is aria-hidden.
 
 import type { GameState } from '@/lib/games/econrisk/types';
 import { byId } from '@/lib/games/econrisk/map';
@@ -68,11 +70,11 @@ export function MapView({ state, selectedId, onSelect }: Props) {
       width="100%"
       height="100%"
       class="er-map-svg"
-      role="img"
+      role="group"
       aria-label={c.mapAria}
     >
       {/* Continent background regions */}
-      <g>
+      <g aria-hidden="true">
         {CONTINENT_REGIONS.map(([label, x, y, w, h]) => (
           <g key={label}>
             <rect
@@ -96,7 +98,7 @@ export function MapView({ state, selectedId, onSelect }: Props) {
       </g>
 
       {/* Adjacency lines — draw each pair once (only when neighbour id > territory id) */}
-      <g stroke="#C9B79A" stroke-width="1.5" opacity="0.7">
+      <g stroke="#C9B79A" stroke-width="1.5" opacity="0.7" aria-hidden="true">
         {territories.flatMap((t) =>
           t.adj
             .filter((n) => n > t.id)
@@ -132,7 +134,17 @@ export function MapView({ state, selectedId, onSelect }: Props) {
               key={t.id}
               class="er-node"
               onClick={() => onSelect(t.id)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault(); // Space would scroll the page
+                  onSelect(t.id);
+                }
+              }}
               style={{ cursor: 'pointer' }}
+              role="button"
+              // Lowercase: SVG attributes are case-sensitive and Preact sets them verbatim.
+              tabindex={0}
+              aria-pressed={isSelected}
               aria-label={c.nodeAria(t.label, cell.units, meta?.label ?? cell.owner)}
             >
               {/* Outer ring for selected state */}
@@ -164,8 +176,8 @@ export function MapView({ state, selectedId, onSelect }: Props) {
         })}
       </g>
 
-      {/* Territory labels (below each node) */}
-      <g>
+      {/* Territory labels (below each node) — already in each node's aria-label */}
+      <g aria-hidden="true">
         {territories.map((t) => (
           <text
             key={`lbl-${t.id}`}

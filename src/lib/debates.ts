@@ -14,6 +14,7 @@ export const FAMILIAS_DEBATE: Familia[] = [
   { slug: 'sostenibilidad-crecimiento',label: 'Sostenibilidad y crecimiento',intro: '¿Crecer sin límite o decrecer para durar?',                  colorVar: '--color-mustard' },
   { slug: 'etica-empresa-consumo',     label: 'Ética, empresa y consumo',    intro: 'Responsabilidad de las empresas y consumo consciente.',      colorVar: '--color-gpe' },
   { slug: 'dinero-tecnologia-futuro',  label: 'Dinero, tecnología y futuro', intro: 'Cripto, automatización, IA y renta básica.',                 colorVar: '--color-ipe2' },
+  { slug: 'derecho-democracia',        label: 'Derecho y democracia',        intro: 'Cuándo obliga una norma, quién decide y hasta dónde llegan tus derechos.', colorVar: '--color-cjd' },
 ];
 
 export const FAMILIA_DEBATE_SLUGS = FAMILIAS_DEBATE.map((f) => f.slug) as [string, ...string[]];

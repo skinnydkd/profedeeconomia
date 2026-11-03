@@ -15,13 +15,18 @@ import { spawn } from 'node:child_process';
 import { existsSync, mkdirSync, copyFileSync, statSync, readFileSync, readdirSync } from 'node:fs';
 import { resolve, dirname, join, extname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { allSubjects } from './ci-changed-decks.mjs';
 import { platform } from 'node:os';
 import { createServer } from 'node:http';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = resolve(__dirname, '..');
 
-const allAsignaturas = ['edmn-2bach', 'eco-1bach', 'eco-4eso', 'fopp-4eso', 'taller-eco-3eso', 'ipe1-fp', 'ipe2-fp', 'eeae-bach', 'gpe-bach'];
+// Read off the content tree, never hardcoded: the same nine-slug array lived in
+// four generators and none of them grew cjd-bach when the subject shipped, so
+// its download links 404'd with nothing to notice. `allSubjects` is the source
+// CI already uses to decide which subjects exist.
+const allAsignaturas = allSubjects(resolve(root, 'src/content/asignaturas'));
 
 const args = new Set(process.argv.slice(2));
 const inDistOnly = args.has('--in-dist');

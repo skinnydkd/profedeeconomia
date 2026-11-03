@@ -1,0 +1,140 @@
+---
+/**
+ * Exámenes PAU oficiales de una comunidad autónoma (EDMN 2BACH): una página por
+ * comunidad para responder «examen pau empresa {ccaa} {año}». Mismos PDFs que el
+ * índice /ebau/examenes/, más el nombre local de la prueba y su estructura, con fuente.
+ */
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { ASIGNATURAS } from '@/lib/asignaturas';
+import { CCAA_LIST, filasCcaa, esIndexable, ccaaSeoTitle } from '@/lib/ebau-examenes';
+import { breadcrumbLd } from '@/lib/seo';
+import { slugFamilia } from '@/lib/ebau';
+import { cargarFamilias } from '@/lib/ebau-familias';
+import { getCollection } from 'astro:content';
+import type { GetStaticPaths } from 'astro';
+import { getLocale } from '@/i18n/locale';
+import SectionHeader from '@components/SectionHeader.astro';
+
+const locale = getLocale(Astro.currentLocale);
+
+export const getStaticPaths = (async () => {
+  const all = await getCollection('ebau');
+  const slugs = [...new Set(all.filter((e) => e.data.estado === 'publicado' && e.data.lang === 'es').map((e) => e.data.asignatura))];
+  return slugs.flatMap((slug) =>
+    CCAA_LIST.map((c) => ({ params: { asignatura: slug, ccaa: c.slug }, props: { asignatura: ASIGNATURAS[slug], ccaa: c } })),
+  );
+}) satisfies GetStaticPaths;
+
+const { asignatura: a, ccaa: c } = Astro.props;
+
+const filas = filasCcaa(c.slug);
+const nExamenes = filas.filter((f) => f.examen).length;
+const familias = await cargarFamilias(a.slug, 'es');
+const otras = CCAA_LIST.filter((o) => o.slug !== c.slug);
+
+const crumbs = [
+  { name: 'Inicio', path: '/' },
+  { name: a.shortLabel, path: `/${a.slug}/` },
+  { name: 'Preparación EBAU', path: `/${a.slug}/ebau/` },
+  { name: 'Exámenes por comunidad', path: `/${a.slug}/ebau/examenes/` },
+  { name: c.label, path: `/${a.slug}/ebau/examenes/${c.slug}/` },
+];
+---
+
+<BaseLayout
+  title={ccaaSeoTitle(c)}
+  description={`Exámenes oficiales de la ${c.prueba} de ${c.materia} en ${c.label}: ${nExamenes} exámenes de junio y julio con sus criterios de corrección en PDF.`}
+  jsonLd={breadcrumbLd(crumbs, 'es')}
+  noindex={!esIndexable(filas)}
+  translated={false}
+>
+  <SectionHeader locale={locale} kicker={`${a.shortLabel} · ${a.level}`} crumbs={crumbs.map((cr, i) => (i === crumbs.length - 1 ? { name: cr.name } : cr))}>
+    <Fragment slot="title">Exámenes de la PAU de Empresa en {c.label}</Fragment>
+    <Fragment slot="lede">Exámenes oficiales de la {c.prueba} de {c.materia}, con los criterios de corrección publicados por la comunidad. {nExamenes} exámenes disponibles; los que faltan aparecen como próximamente.</Fragment>
+  </SectionHeader>
+
+  <section class="lista">
+    <div class="container">
+      <table class="tabla">
+        <thead>
+          <tr><th>Convocatoria</th><th>Examen</th><th>Resolución</th></tr>
+        </thead>
+        <tbody>
+          {filas.map((f) => (
+            <tr class={f.examen ? '' : 'is-prox'}>
+              <td class="conv">{f.anio} · {f.convLabel}</td>
+              <td>{f.examen ? <a class="dl" href={f.examen} download>Descargar examen</a> : <span class="prox">Próximamente</span>}</td>
+              <td>{f.solucion ? <a class="dl" href={f.solucion} download>Descargar resolución</a> : <span class="prox">{f.examen ? '—' : 'Próximamente'}</span>}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="bloque">
+    <div class="container">
+      <h2 class="serif">Cómo es el examen en {c.label}</h2>
+      <p>{c.estructura ?? 'No hemos encontrado en las fuentes oficiales la estructura específica de esta materia para el curso 2025-26. Consúltala en el portal de la universidad coordinadora.'}</p>
+      <p class="fuente">
+        Fuente: <a href={c.fuente.url} rel="noopener">{c.fuente.titulo}</a> (consultado el {c.fuente.consultado.split('-').reverse().join('/')}). Confirma siempre el modelo vigente en el portal oficial.
+      </p>
+    </div>
+  </section>
+
+  <section class="bloque">
+    <div class="container">
+      <h2 class="serif">Cómo prepararlo</h2>
+      <ul class="enlaces">
+        {familias.map((f) => (
+          <li><a href={`/${a.slug}/ebau/${slugFamilia(f.id)}/`}>{f.data.title}</a></li>
+        ))}
+        <li><a href={`/${a.slug}/ebau/`}>Cuaderno de preparación: teoría, problemas y simulacros</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="bloque">
+    <div class="container">
+      <h2 class="serif">Exámenes de otras comunidades</h2>
+      <ul class="otras">
+        {otras.map((o) => <li><a href={`/${a.slug}/ebau/examenes/${o.slug}/`}>{o.label}</a></li>)}
+      </ul>
+    </div>
+  </section>
+
+  <section class="nota">
+    <div class="container">
+      <p class="nota-text">
+        Los exámenes son documentos oficiales de las pruebas de acceso a la universidad,
+        alojados aquí con fines educativos y de estudio. Cada PDF procede de la fuente
+        oficial de la comunidad.
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .container { max-width: 1240px; margin: 0 auto; padding: 0 clamp(1.5rem, 4vw, 3rem); }
+
+  .lista { padding: 0 0 2rem; }
+  .tabla { width: 100%; max-width: 760px; border-collapse: collapse; font-size: 0.95rem; }
+  .tabla th { text-align: left; font-family: var(--font-sans); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--color-ink-mute); font-weight: 700; padding: 0.4rem 0.6rem; border-bottom: 1px solid var(--color-line); }
+  .tabla td { padding: 0.55rem 0.6rem; border-bottom: 1px solid var(--color-line-soft, var(--color-line)); vertical-align: middle; }
+  .tabla .conv { font-family: var(--font-mono); font-size: 0.85rem; color: var(--color-ink); white-space: nowrap; }
+  tr.is-prox .conv { color: var(--color-ink-mute); }
+  .dl { font-family: var(--font-sans); font-size: 0.9rem; font-weight: 600; color: var(--color-terra-ink); text-decoration: none; }
+  .dl:hover { text-decoration: underline; }
+  .prox { font-family: var(--font-sans); font-size: 0.85rem; color: var(--color-ink-mute); }
+
+  .bloque { padding: 0 0 2rem; }
+  .bloque h2 { font-size: 1.4rem; margin: 0 0 0.7rem; color: var(--color-ink); }
+  .bloque p { max-width: 70ch; margin: 0 0 0.8rem; }
+  .fuente { font-size: 0.9rem; color: var(--color-ink-mute); }
+  .fuente a, .enlaces a, .otras a { color: var(--color-terra-ink); }
+  .enlaces { margin: 0; padding-left: 1.2rem; display: grid; gap: 0.4rem; }
+  .otras { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.5rem 1.2rem; font-family: var(--font-sans); font-size: 0.95rem; }
+
+  .nota { padding: 0 0 3rem; }
+  .nota-text { font-family: var(--font-serif); font-style: italic; font-size: 1rem; color: var(--color-ink-mute); max-width: 70ch; line-height: 1.5; border-top: 1px dashed var(--color-line); padding-top: 1.2rem; }
+</style>

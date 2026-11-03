@@ -12,7 +12,7 @@ materiales:
   - "Plantilla de cuenta de resultados previsional"
   - "Datos del proyecto: precio de venta estimado, costes de materia prima, gastos fijos previstos"
   - "Calculadora u hoja de cálculo"
-competencias_clave: [CE, CMCT, CPSAA, CD]
+competencias_clave: [CE, STEM, CPSAA, CD]
 competencias_especificas: [CE4]
 ebau: false
 estado: publicado

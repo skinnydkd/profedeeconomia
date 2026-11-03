@@ -1,6 +1,8 @@
 // src/components/jocs-economics/screens/Welcome.tsx
 import { useState, useEffect } from 'preact/hooks';
 import { api } from '../../../lib/jocs-economics/client/api';
+// Pure helpers (no server dependencies): the same key rule /api/jocs/start applies.
+import { isValidInstituteKey, normalizeInstitute } from '../../../lib/jocs-economics/server/institutes';
 
 interface Props {
   initialIdentity: { name: string; institute: string } | null;
@@ -34,13 +36,14 @@ export function Welcome({ initialIdentity, onStart }: Props) {
   }, [institute]);
 
   const canStart = name.trim().length >= 1 && name.trim().length <= 40
-    && institute.trim().length >= 2 && institute.trim().length <= 80;
+    && institute.trim().length >= 2 && institute.trim().length <= 80
+    && isValidInstituteKey(normalizeInstitute(institute));
 
   return (
     <>
-      <h1 class="jocs-title" style={{ fontSize: 36, fontStyle: 'italic', margin: '20px 0 4px' }}>
+      <h2 class="jocs-title" style={{ fontSize: 36, fontStyle: 'italic', margin: '20px 0 4px' }}>
         Jocs Econòmics
-      </h1>
+      </h2>
       <p class="jocs-mute" style={{ marginBottom: 24 }}>
         Retos de economía, finanzas y empresa.
         <br />
@@ -55,7 +58,7 @@ export function Welcome({ initialIdentity, onStart }: Props) {
 
       <input
         class="jocs-input"
-        placeholder="Tu nombre"
+        placeholder="Tu alias (no tu nombre completo)"
         value={name}
         maxLength={40}
         onInput={(e) => setName((e.target as HTMLInputElement).value)}
@@ -80,12 +83,8 @@ export function Welcome({ initialIdentity, onStart }: Props) {
         Empezar
       </button>
 
-      <p class="jocs-mute" style={{ marginTop: 20, fontSize: 11, lineHeight: 1.4 }}>
-        Tu nombre e instituto aparecerán públicamente en el ranking.
-      </p>
-
-      <p style={{ textAlign: 'center', marginTop: 32 }}>
-        <a class="jocs-link" href="/jocs-economics/leaderboard/">Ver ranking →</a>
+      <p style={{ marginTop: 20, fontSize: 14, lineHeight: 1.5, color: 'var(--jocs-ink-soft)' }}>
+        El alias y el instituto aparecerán públicamente en el ranking. No escribas tu nombre completo.
       </p>
     </>
   );

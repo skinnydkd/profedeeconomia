@@ -1,0 +1,117 @@
+---
+asignatura: cjd-bach
+unidad_relacionada: 7
+title: "El vídeo del grupo"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "15-20 min"
+descripcion: "Alguien graba, alguien reenvía, alguien lo sube. Tres conductas, tres consecuencias distintas."
+competencias_clave: [CD, CC, CPSAA]
+competencias_especificas: []
+estado: publicado
+publicado_en: 2026-09-07
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Caso · Derecho penal, administrativo y digital",
+    "titulo": "El vídeo del grupo",
+    "contexto": "En un grupo de clase de 60 personas aparece un vídeo de veinte segundos: una compañera de 16 años discutiendo con un profesor en el pasillo. Está grabada de espaldas, se la reconoce por la ropa y por la voz. Nadie sabe quién lo grabó. En dos horas está en el grupo de otro curso. Tú lo has recibido y todavía no has hecho nada con él.",
+    "kpi_inicial": { "dano_a_la_persona": 3, "riesgo_juridico_propio": 1, "confianza_del_grupo": 6 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisión 1 — Acabas de recibirlo",
+      "situacion": "El vídeo está en tu móvil. Varios compañeros lo están comentando con emojis. Alguien pregunta si alguien lo ha subido ya a una red.",
+      "opciones": [
+        {
+          "label": "Lo reenvío a mi grupo de amigos: yo no lo he grabado",
+          "kpi_delta": { "dano_a_la_persona": 3, "riesgo_juridico_propio": 3, "confianza_del_grupo": 0 },
+          "feedback": "No haberlo grabado no te deja fuera. Difundir imágenes de una persona identificable sin su consentimiento es un tratamiento de datos personales y, según el contenido y el efecto, puede ser una infracción de protección de datos o encajar en un delito contra la intimidad o el honor. Lección: en la cadena de difusión, cada reenvío es una conducta propia, no una continuación de la ajena.",
+          "next": "n2"
+        },
+        {
+          "label": "No lo reenvío y lo borro",
+          "kpi_delta": { "dano_a_la_persona": 0, "riesgo_juridico_propio": -1, "confianza_del_grupo": 0 },
+          "feedback": "Cortas tu parte de la cadena, que es lo mínimo exigible. Pero la difusión continúa y la persona afectada no sabe todavía nada. Lección: no participar es necesario y a veces insuficiente; hay conductas donde la omisión mantiene el daño.",
+          "next": "n2"
+        },
+        {
+          "label": "Escribo en el grupo que dejen de reenviarlo y aviso a la afectada",
+          "kpi_delta": { "dano_a_la_persona": -2, "riesgo_juridico_propio": -1, "confianza_del_grupo": -1 },
+          "feedback": "Es la respuesta que más reduce el daño real, aunque cueste socialmente. La persona afectada necesita saberlo para poder actuar: solo ella puede denunciar, pedir la retirada o acudir a la autoridad de protección de datos. Lección: los derechos de la personalidad son personalísimos; nadie puede ejercerlos en tu lugar sin que lo sepas.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisión 2 — El vídeo llega a una red social",
+      "situacion": "A la mañana siguiente el vídeo está en una cuenta pública con 3.000 visualizaciones y comentarios que insultan a la compañera. La cuenta es anónima. La afectada llora en el baño y no quiere entrar a clase.",
+      "opciones": [
+        {
+          "label": "Le digo que lo denuncie en comisaría directamente",
+          "kpi_delta": { "dano_a_la_persona": -1, "riesgo_juridico_propio": 0, "confianza_del_grupo": 0 },
+          "feedback": "Es una vía válida y, siendo menor, sus progenitores o el propio centro pueden actuar. Pero la denuncia penal no retira el vídeo: el proceso tarda. En paralelo conviene pedir la retirada a la plataforma y acudir al canal prioritario de la autoridad de protección de datos, pensado justamente para difusión de contenido sensible. Lección: la vía penal castiga; la administrativa y la civil son las que paran el daño rápido.",
+          "next": "n3"
+        },
+        {
+          "label": "Reportamos el contenido a la plataforma y guardamos capturas con fecha",
+          "kpi_delta": { "dano_a_la_persona": -3, "riesgo_juridico_propio": -1, "confianza_del_grupo": 1 },
+          "feedback": "Las dos cosas a la vez, que es lo correcto: la retirada frena la difusión y las capturas conservan la prueba que la retirada borrará. Un acta notarial o una captura con metadatos vale más que un recuerdo. Lección: retirar el contenido y conservar la prueba son objetivos que se estorban; hay que ordenarlos, no elegir uno.",
+          "next": "n3"
+        },
+        {
+          "label": "Buscamos por nuestra cuenta quién está detrás de la cuenta anónima",
+          "kpi_delta": { "dano_a_la_persona": 0, "riesgo_juridico_propio": 3, "confianza_del_grupo": -2 },
+          "feedback": "Investigar por vuestra cuenta puede convertiros en autores de otra conducta ilícita —acceso no autorizado, difusión de datos de un tercero, incluso amenazas— y contamina la prueba. La identificación del titular de una cuenta la puede pedir la autoridad judicial. Lección: hacer justicia por cuenta propia suele añadir un ilícito al que se pretendía corregir.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisión 3 — Aparece quién grabó",
+      "situacion": "Se sabe que quien grabó tiene 15 años y que quien abrió la cuenta anónima tiene 17. En el centro se abre un expediente. Los padres de la afectada preguntan qué consecuencias tendrá.",
+      "opciones": [
+        {
+          "label": "Explico que a los 15 no pasa nada, porque no hay responsabilidad penal",
+          "kpi_delta": { "dano_a_la_persona": 1, "riesgo_juridico_propio": 0, "confianza_del_grupo": -1 },
+          "feedback": "Inexacto. La responsabilidad penal de menores empieza a los 14 con una ley propia, de carácter educativo, con medidas distintas de las penas de adultos. Y por debajo de esa edad siguen existiendo la responsabilidad civil de los progenitores y la vía disciplinaria del centro. Lección: «no hay responsabilidad penal» casi nunca significa «no hay responsabilidad».",
+          "next": "final:fracaso_parcial"
+        },
+        {
+          "label": "Distingo las tres vías: penal de menores, protección de datos y expediente del centro",
+          "kpi_delta": { "dano_a_la_persona": -2, "riesgo_juridico_propio": -1, "confianza_del_grupo": 2 },
+          "feedback": "Exacto: un mismo hecho puede activar procedimientos distintos con finalidades distintas y sin que eso sea castigar dos veces lo mismo, porque no coinciden ni el fundamento ni el sujeto sancionador. Lección: la regla que prohíbe sancionar dos veces exige identidad de sujeto, hecho y fundamento; sin las tres, las vías conviven.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Propongo una mediación en el centro en lugar de expediente",
+          "kpi_delta": { "dano_a_la_persona": -1, "riesgo_juridico_propio": 0, "confianza_del_grupo": 2 },
+          "feedback": "La mediación escolar funciona bien en conflictos entre iguales y la propia ley de menores prevé la reparación. Pero requiere que la persona afectada quiera, y no sustituye a la retirada del contenido ni a la denuncia si el daño es grave. Lección: la reparación es una salida real, no una rebaja; lo que no puede ser es una vía impuesta a quien sufrió el daño.",
+          "next": "final:exito"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "El vídeo desaparece y el conflicto se encauza",
+      "resumen": "La plataforma retira el contenido, quedan las capturas como prueba y el centro tramita el expediente con conocimiento de las vías paralelas. La compañera vuelve a clase la semana siguiente.",
+      "lecciones_clave": [
+        "Reenviar no es un acto neutro: cada difusión es una conducta propia con su propia responsabilidad.",
+        "La vía administrativa de protección de datos y la retirada por la plataforma paran el daño mucho antes que la penal.",
+        "Un mismo hecho puede activar la vía penal de menores, la administrativa y la disciplinaria sin vulnerar la prohibición de doble sanción."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "El vídeo sigue circulando",
+      "resumen": "Nadie pidió la retirada a tiempo, no se conservó prueba y la explicación de que «a los 15 no pasa nada» tranquilizó a quien debía actuar. El contenido reaparece en otra cuenta un mes después.",
+      "lecciones_clave": [
+        "Sin prueba conservada, la retirada del contenido deja el caso sin material con el que reclamar.",
+        "La edad penal mínima son 14 años, y la responsabilidad civil y disciplinaria no dependen de ella."
+      ]
+    }
+  }
+}
+```

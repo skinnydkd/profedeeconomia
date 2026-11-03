@@ -98,7 +98,18 @@ const copy = {
       <footer class="foot">{copy.footer}</footer>
     </main>
 
-    <script src="https://unpkg.com/pagedjs/dist/paged.polyfill.js"></script>
+    {/*
+      paged.js polyfill — only for an in-browser preview (?preview=1), served
+      from this site: pagedjs-cli injects its own, and stacking both breaks the
+      PDF build. A third-party copy would also see every visitor's IP.
+    */}
+    <script is:inline>
+      if (new URLSearchParams(location.search).has('preview')) {
+        const s = document.createElement('script');
+        s.src = '/vendor/pagedjs@0.4.3/paged.polyfill.min.js';
+        document.body.appendChild(s);
+      }
+    </script>
   </body>
 </html>
 

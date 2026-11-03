@@ -6,16 +6,17 @@
  * Programación (planning) with the operational evaluation toolkit.
  */
 import BaseLayout from '@layouts/BaseLayout.astro';
-import { ASIGNATURA_SLUGS, ASIGNATURAS } from '@/lib/asignaturas';
+import { ASIGNATURA_SLUGS, ASIGNATURAS, leyCurricular } from '@/lib/asignaturas';
 import { breadcrumbLd } from '@/lib/seo';
 import { getCollection } from 'astro:content';
 import { getLocale } from '@/i18n/locale';
 import { pickLocalizedEntry } from '@/i18n/content-locale';
 import { localizeAsignatura } from '@/i18n/asignaturas-ca';
 import type { GetStaticPaths } from 'astro';
+import SectionHeader from '@components/SectionHeader.astro';
 
 export const getStaticPaths = (async () => {
-  return ASIGNATURA_SLUGS.map((slug) => ({
+  return ASIGNATURA_SLUGS.filter((slug) => ASIGNATURAS[slug].estado === 'publicado').map((slug) => ({
     params: { asignatura: slug },
     props: { asignatura: ASIGNATURAS[slug] },
   }));
@@ -32,19 +33,27 @@ const entryEs = all.find((x) => x.data.asignatura === a.slug && x.data.estado ==
 const entry = entryEs ? pickLocalizedEntry(entryEs, caById, locale) : undefined;
 const d = entry?.data;
 
+const ley = leyCurricular(a);
+// FP modules are assessed by resultados de aprendizaje (RA); ESO and
+// Bachillerato by competencias específicas.
+const esFP = ley === 'LOFP';
 const copy = {
   es: {
     inicio: 'Inicio', titulo: 'Evaluación competencial',
-    descripcion: `Competencias específicas, criterios de evaluación y rúbricas de niveles de logro de ${a.title}, listas para evaluar por competencias.`,
+    descripcion: `${esFP ? 'Resultados de aprendizaje' : 'Competencias específicas'}, criterios de evaluación y rúbricas de niveles de logro de ${a.title}, listas para evaluar por competencias.`,
     vacio: 'La evaluación por competencias de esta asignatura se publicará próximamente.',
-    marco: (m: string) => `Competencias específicas del currículo básico estatal LOMLOE (${m}). Cada comunidad autónoma las concreta: ajusta la redacción y los criterios a tu CCAA y a tu Proyecto Educativo de Centro.`,
+    marco: (m: string) => esFP
+      ? `Resultados de aprendizaje y criterios de evaluación del currículo básico estatal ${ley} (${m}). Cada comunidad autónoma los concreta: ajusta la redacción y los criterios a tu CCAA y a tu Proyecto Educativo de Centro.`
+      : `Competencias específicas del currículo básico estatal ${ley} (${m}). Cada comunidad autónoma las concreta: ajusta la redacción y los criterios a tu CCAA y a tu Proyecto Educativo de Centro.`,
     criterios: 'Criterios de evaluación', niveles: 'Niveles de logro', instrumentos: 'Instrumentos de evaluación',
   },
   ca: {
     inicio: 'Inici', titulo: 'Avaluació competencial',
-    descripcion: `Competències específiques, criteris d'avaluació i rúbriques de nivells d'assoliment de ${a.title}, a punt per a avaluar per competències.`,
+    descripcion: `${esFP ? "Resultats d'aprenentatge" : 'Competències específiques'}, criteris d'avaluació i rúbriques de nivells d'assoliment de ${a.title}, a punt per a avaluar per competències.`,
     vacio: "L'avaluació per competències d'esta assignatura es publicarà pròximament.",
-    marco: (m: string) => `Competències específiques del currículum bàsic estatal LOMLOE (${m}). Cada comunitat autònoma les concreta: ajusta la redacció i els criteris a la teua CCAA i al teu Projecte Educatiu de Centre.`,
+    marco: (m: string) => esFP
+      ? `Resultats d'aprenentatge i criteris d'avaluació del currículum bàsic estatal ${ley} (${m}). Cada comunitat autònoma els concreta: ajusta la redacció i els criteris a la teua CCAA i al teu Projecte Educatiu de Centre.`
+      : `Competències específiques del currículum bàsic estatal ${ley} (${m}). Cada comunitat autònoma les concreta: ajusta la redacció i els criteris a la teua CCAA i al teu Projecte Educatiu de Centre.`,
     criterios: "Criteris d'avaluació", niveles: "Nivells d'assoliment", instrumentos: "Instruments d'avaluació",
   },
 }[locale];
@@ -53,36 +62,34 @@ const breadcrumb = breadcrumbLd([
   { name: copy.inicio, path: '/' },
   { name: a.shortLabel, path: `/${a.slug}/` },
   { name: copy.titulo, path: `/${a.slug}/evaluacion/` },
-]);
+], locale);
 ---
 
 <BaseLayout
   title={`${copy.titulo} — ${a.shortLabel}`}
   description={copy.descripcion}
   jsonLd={breadcrumb}
-  contentLang={locale}
+  contentLang={entry?.data.lang ?? locale}
+  translated={!entryEs || caById.has(`${entryEs.id}.ca`)}
+  noindex={!entry}
 >
-  <div class="container">
-    <nav class="breadcrumb">
-      <a href="/">{copy.inicio}</a> <span class="sep">›</span>
-      <a href={`/${a.slug}/`}>{a.shortLabel}</a> <span class="sep">›</span>
-      <span>{copy.titulo}</span>
-    </nav>
-  </div>
-
-  <section class="hero">
-    <div class="container">
-      <h1>{copy.titulo}</h1>
-      <p class="lede">
-        {d ? d.descripcion : copy.vacio}
-      </p>
-      {d && (
-        <div class="marco">
-          {copy.marco(d.marco)}
-        </div>
-      )}
-    </div>
-  </section>
+  <SectionHeader
+    locale={locale}
+    kicker={`${a.shortLabel} · ${a.level}`}
+    crumbs={[
+      { name: copy.inicio, path: '/' },
+      { name: a.shortLabel, path: `/${a.slug}/` },
+      { name: copy.titulo },
+    ]}
+  >
+    <Fragment slot="title">{copy.titulo}</Fragment>
+    <Fragment slot="lede">{d ? d.descripcion : copy.vacio}</Fragment>
+    {d && (
+      <div class="marco">
+        {copy.marco(d.marco)}
+      </div>
+    )}
+  </SectionHeader>
 
   {d && (
     <section class="cuerpo">
@@ -137,16 +144,8 @@ const breadcrumb = breadcrumbLd([
 </BaseLayout>
 
 <style>
-  .container { max-width: 1100px; margin: 0 auto; padding: 0 clamp(1.5rem, 4vw, 3rem); }
-  .breadcrumb { font-size: 0.92rem; color: var(--color-ink-mute); margin: 2rem 0; }
-  .breadcrumb a { color: var(--color-ink-mute); text-decoration: none; }
-  .breadcrumb a:hover { color: var(--color-terra); }
-  .breadcrumb .sep { margin: 0 0.5em; color: var(--color-mustard); }
+  .container { max-width: 1240px; margin: 0 auto; padding: 0 clamp(1.5rem, 4vw, 3rem); }
 
-  .hero { padding: 1rem 0 1.5rem; }
-  .kicker { font-family: var(--font-sans); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.04em; text-transform: none; color: var(--color-terra-deep); }
-  h1 { margin: 0.6rem 0 0.8rem; }
-  .lede { font-size: 1.18rem; color: var(--color-ink-soft); line-height: 1.6; max-width: 64ch; }
   .marco {
     margin-top: 1.4rem; max-width: 70ch; font-family: var(--font-serif); font-style: italic;
     font-size: 0.98rem; color: var(--color-ink-soft); line-height: 1.5;
@@ -155,25 +154,28 @@ const breadcrumb = breadcrumbLd([
   }
 
   .cuerpo { padding: 1rem 0 1.5rem; }
+  /* Same left edge as the header, but the cards keep their old measure. */
+  .ce, .instrumentos { max-width: 63rem; }
   .ce {
     background: var(--color-paper); border: 1px solid var(--color-line);
     border-radius: 8px;
     padding: 1.4rem 1.6rem; margin-bottom: 1.4rem;
   }
-  .ce.c-edmn { --card-color: var(--color-edmn); }
-  .ce.c-eco1 { --card-color: var(--color-eco1); }
-  .ce.c-eco4 { --card-color: var(--color-eco4); }
-  .ce.c-fopp { --card-color: var(--color-fopp); }
-  .ce.c-taller3 { --card-color: var(--color-taller3); }
-  .ce.c-ipe1 { --card-color: var(--color-ipe1); }
-  .ce.c-ipe2 { --card-color: var(--color-ipe2); }
-  .ce.c-eeae { --card-color: var(--color-eeae); }
-  .ce.c-gpe { --card-color: var(--color-gpe); }
+  .ce.c-edmn { --card-color: var(--color-edmn); --card-ink: var(--color-edmn-ink); }
+  .ce.c-eco1 { --card-color: var(--color-eco1); --card-ink: var(--color-eco1-ink); }
+  .ce.c-eco4 { --card-color: var(--color-eco4); --card-ink: var(--color-eco4-ink); }
+  .ce.c-fopp { --card-color: var(--color-fopp); --card-ink: var(--color-fopp-ink); }
+  .ce.c-taller3 { --card-color: var(--color-taller3); --card-ink: var(--color-taller3-ink); }
+  .ce.c-ipe1 { --card-color: var(--color-ipe1); --card-ink: var(--color-ipe1-ink); }
+  .ce.c-ipe2 { --card-color: var(--color-ipe2); --card-ink: var(--color-ipe2-ink); }
+  .ce.c-eeae { --card-color: var(--color-eeae); --card-ink: var(--color-eeae-ink); }
+  .ce.c-gpe { --card-color: var(--color-gpe); --card-ink: var(--color-gpe-ink); }
+  .ce.c-cjd { --card-color: var(--color-cjd); --card-ink: var(--color-cjd-ink); }
 
   .ce__head { display: flex; gap: 0.9rem; align-items: baseline; }
   .ce__code {
     font-family: var(--font-mono); font-weight: 600; font-size: 0.95rem;
-    color: var(--card-color); flex: none; padding-top: 0.1rem;
+    color: var(--card-ink); flex: none; padding-top: 0.1rem;
   }
   .ce__desc { margin: 0; font-family: var(--font-serif); font-size: 1.12rem; line-height: 1.45; color: var(--color-ink); }
 
@@ -188,7 +190,7 @@ const breadcrumb = breadcrumbLd([
 
   .rubrica { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(180px, 100%), 1fr)); gap: 0.7rem; }
   .rubrica__col { background: var(--color-bg); border: 1px solid var(--color-line); border-radius: 6px; padding: 0.7rem 0.9rem; }
-  .rubrica__nivel { font-family: var(--font-sans); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.07em; font-weight: 700; color: var(--card-color); }
+  .rubrica__nivel { font-family: var(--font-sans); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.07em; font-weight: 700; color: var(--card-ink); }
   .rubrica__desc { margin: 0.3rem 0 0; font-size: 0.9rem; line-height: 1.5; color: var(--color-ink-soft); }
 
   .instrumentos { border-top: 1px dashed var(--color-line); padding-top: 1.4rem; margin-top: 0.5rem; }
@@ -198,6 +200,6 @@ const breadcrumb = breadcrumbLd([
   .instrumentos__list li::marker { color: var(--color-mustard); }
 
   .back-link { padding: 1.5rem 0 3rem; }
-  .back-link a { font-family: var(--font-sans); font-size: 0.95rem; font-weight: 500; color: var(--color-terra); text-decoration: none; }
+  .back-link a { font-family: var(--font-sans); font-size: 0.95rem; font-weight: 500; color: var(--color-terra-ink); text-decoration: none; }
   .back-link a:hover { text-decoration: underline; }
 </style>

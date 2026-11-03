@@ -1,0 +1,89 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { ASIGNATURA_SLUGS, ASIGNATURAS } from '@/lib/asignaturas';
+import { breadcrumbLd } from '@/lib/seo';
+import { getLocale } from '@/i18n/locale';
+import { localizeAsignatura } from '@/i18n/asignaturas-ca';
+import { getSituaciones } from '@/lib/situaciones-sources';
+import { situacionSlug } from '@/lib/situaciones';
+import type { GetStaticPaths } from 'astro';
+import SectionHeader from '@components/SectionHeader.astro';
+
+export const getStaticPaths = (async () => {
+  return ASIGNATURA_SLUGS.filter((slug) => ASIGNATURAS[slug].estado === 'publicado').map((slug) => ({
+    params: { asignatura: slug },
+    props: { asignatura: ASIGNATURAS[slug] },
+  }));
+}) satisfies GetStaticPaths;
+
+const locale = getLocale(Astro.currentLocale);
+const a = localizeAsignatura(Astro.props.asignatura, locale);
+const situaciones = await getSituaciones(a.slug, locale);
+
+const copy = {
+  es: {
+    inicio: 'Inicio',
+    titulo: 'Situaciones de aprendizaje',
+    descripcion: `Situaciones de aprendizaje de ${a.title}: cada una con su reto, su producto final, la secuencia de sesiones y todo el material.`,
+    lede: 'En el orden en que las damos en clase. Cada una con su reto, su producto final y todo el material.',
+    vacio: 'Las situaciones de aprendizaje se publicarán a medida que se completen.',
+  },
+  ca: {
+    inicio: 'Inici',
+    titulo: "Situacions d'aprenentatge",
+    descripcion: `Situacions d'aprenentatge de ${a.title}: cada una amb el seu repte, el seu producte final, la seqüència de sessions i tot el material.`,
+    lede: "En l'ordre en què les donem a classe. Cada una amb el seu repte, el seu producte final i tot el material.",
+    vacio: "Les situacions d'aprenentatge es publicaran a mesura que es completen.",
+  },
+}[locale];
+
+const breadcrumb = breadcrumbLd([
+  { name: copy.inicio, path: '/' },
+  { name: a.shortLabel, path: `/${a.slug}/` },
+  { name: copy.titulo, path: `/${a.slug}/situaciones/` },
+], locale);
+---
+
+<BaseLayout title={`${copy.titulo} — ${a.shortLabel}`} description={copy.descripcion} jsonLd={breadcrumb} contentLang={locale} noindex={situaciones.length === 0}>
+  <SectionHeader
+    locale={locale}
+    kicker={`${a.shortLabel} · ${copy.titulo}`}
+    crumbs={[
+      { name: copy.inicio, path: '/' },
+      { name: a.shortLabel, path: `/${a.slug}/` },
+      { name: copy.titulo },
+    ]}
+  >
+    <Fragment slot="title">{copy.titulo}</Fragment>
+    <Fragment slot="lede">{situaciones.length === 0 ? copy.vacio : copy.lede}</Fragment>
+  </SectionHeader>
+
+  {situaciones.length > 0 && (
+    <section class="lista">
+      <div class="container">
+        <ol class="sa-list" style={`--subj-ink: var(--color-${a.color}-ink)`}>
+          {situaciones.map((sa) => (
+            <li class="sa-item">
+              <span class="sa-item__num" aria-hidden="true">{String(sa.data.orden).padStart(2, '0')}</span>
+              <div>
+                <a class="sa-item__title" href={`/${a.slug}/situaciones/${situacionSlug(sa)}/`}>{sa.data.title}</a>
+                <p class="sa-item__lede">{sa.data.producto_final}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+  )}
+</BaseLayout>
+
+<style>
+  .container { max-width: 1240px; margin: 0 auto; padding: 0 clamp(1.5rem, 4vw, 3rem); }
+  .lista { padding-bottom: clamp(3rem, 7vw, 6rem); }
+  .sa-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--color-line); max-width: 58rem; }
+  .sa-item { display: grid; grid-template-columns: 3rem minmax(0, 1fr); gap: 0 1rem; padding: 1.1rem 0; border-bottom: 1px solid var(--color-line); }
+  .sa-item__num { font-family: var(--font-mono); font-size: 0.95rem; color: var(--subj-ink); padding-top: 0.3rem; }
+  .sa-item__title { font-family: var(--font-serif); font-size: 1.35rem; font-weight: 500; line-height: 1.3; color: var(--color-ink); text-decoration: none; font-variation-settings: "SOFT" 60; }
+  .sa-item__title:hover { color: var(--subj-ink); text-decoration: underline; }
+  .sa-item__lede { margin: 0.35rem 0 0; color: var(--color-ink-soft); font-size: 1rem; line-height: 1.55; max-width: 62ch; }
+</style>

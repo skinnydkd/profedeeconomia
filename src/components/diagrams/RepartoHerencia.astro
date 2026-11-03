@@ -1,0 +1,186 @@
+---
+/**
+ * How an estate is divided under the Spanish Civil Code (CJD Bach, unit 4).
+ *
+ * Two panels because students arrive with the opposite of the rule: they
+ * believe a will can leave everything to anyone, and that without a will
+ * the state takes it. Both halves are wrong. The left panel shows the two
+ * thirds a testator cannot touch when there are children; the right shows
+ * the statutory order, with the State appearing only at the very bottom.
+ * Foral territories are flagged in the note, not silently ignored.
+ */
+import { getLocale } from '@/i18n/locale';
+const locale = getLocale(Astro.currentLocale);
+
+const COPY = {
+  es: {
+    aLaIzquierdaLaHerenciaConTes: 'A la izquierda, la herencia con testamento se divide en tres tercios: la legítima estricta, que se reparte por partes iguales entre los hijos; el tercio de mejora, que se destina a uno o varios descendientes a elección del testador; y el tercio de libre disposición, que puede dejarse a cualquier persona. A la derecha, si no hay testamento la ley llama por orden a descendientes, ascendientes, cónyuge, hermanos y sobrinos, parientes hasta el cuarto grado y, en último lugar, al Estado.',
+    queSePuedeDejarAQuien: 'Qué se puede dejar a quién',
+    siHayTestamento: 'Si hay testamento',
+    losTresTercios: 'Los tres tercios',
+    legitimaEstricta: 'Legítima estricta',
+    obligatoriaSeRepartePorParte: 'Obligatoria. Se reparte por partes',
+    igualesEntreTodosLosHijos: 'iguales entre todos los hijos.',
+    mejora: 'Mejora',
+    paraUnoOVariosDescendientes: 'Para uno o varios descendientes,',
+    aEleccionDeQuienTesta: 'a elección de quien testa.',
+    libreDisposicion: 'Libre disposición',
+    paraQuienSeQuieraUnAmigo: 'Para quien se quiera: un amigo,',
+    unaOngLaParejaUnVecino: 'una ONG, la pareja, un vecino.',
+    dosTerciosDeCadaHerenciaYaEs: 'Dos tercios de cada herencia ya están decididos por la ley.',
+    soloElUltimoSePuedeDejarLibr: 'Solo el último se puede dejar libremente.',
+    siNoHayTestamento: 'Si no hay testamento',
+    elOrdenQueFijaLaLey: 'El orden que fija la ley',
+    descendientes: 'Descendientes',
+    hijosYSiHanFallecidoNietos: 'Hijos y, si han fallecido, nietos',
+    ascendientes: 'Ascendientes',
+    padresYAbuelosSiNoHayHijos: 'Padres y abuelos, si no hay hijos',
+    conyugeViudo: 'Cónyuge viudo',
+    siNoHayDescendientesNiAscend: 'Si no hay descendientes ni ascendientes',
+    hermanosYSobrinos: 'Hermanos y sobrinos',
+    yDespuesTiosYPrimos: 'Y después, tíos y primos',
+    parientesHastaElCuartoGrado: 'Parientes hasta el cuarto grado',
+    elLimiteMasAllaNadieHereda: 'El límite: más allá, nadie hereda',
+    elEstado: 'El Estado',
+    ultimoDeLaListaNoElPrimero: 'Último de la lista, no el primero',
+    elConyugeNoQuedaFueraAunqueH: 'El cónyuge no queda fuera aunque haya hijos: le corresponde el usufructo del tercio de mejora.',
+    esteEsquemaEsElDelCodigoCivi: 'Este esquema es el del Código Civil, que se aplica en la Comunitat Valenciana. Cataluña, Aragón, Navarra,',
+    galiciaBalearesYPaisVascoTie: 'Galicia, Baleares y País Vasco tienen Derecho civil foral propio, con legítimas distintas o inexistentes.',
+  },
+  ca: {
+    aLaIzquierdaLaHerenciaConTes: "A l'esquerra, l'herència amb testament es dividix en tres terços: la legítima estricta, que es repartix a parts iguals entre els fills; el terç de millora, que es destina a un o diversos descendents a elecció del testador; i el terç de lliure disposició, que es pot deixar a qualsevol persona. A la dreta, si no hi ha testament la llei crida per ordre descendents, ascendents, cònjuge, germans i nebots, parents fins al quart grau i, en últim lloc, l'Estat.",
+    queSePuedeDejarAQuien: 'Què es pot deixar a qui',
+    siHayTestamento: 'Si hi ha testament',
+    losTresTercios: 'Els tres terços',
+    legitimaEstricta: 'Legítima estricta',
+    obligatoriaSeRepartePorParte: 'Obligatòria. Es repartix a parts',
+    igualesEntreTodosLosHijos: 'iguals entre tots els fills.',
+    mejora: 'Millora',
+    paraUnoOVariosDescendientes: 'Per a un o diversos descendents,',
+    aEleccionDeQuienTesta: 'a elecció de qui testa.',
+    libreDisposicion: 'Lliure disposició',
+    paraQuienSeQuieraUnAmigo: 'Per a qui es vulga: un amic,',
+    unaOngLaParejaUnVecino: 'una ONG, la parella, un veí.',
+    dosTerciosDeCadaHerenciaYaEs: "Dos terços de cada herència ja estan decidits per la llei.",
+    soloElUltimoSePuedeDejarLibr: "Només l'últim es pot deixar lliurement.",
+    siNoHayTestamento: 'Si no hi ha testament',
+    elOrdenQueFijaLaLey: "L'ordre que fixa la llei",
+    descendientes: 'Descendents',
+    hijosYSiHanFallecidoNietos: 'Fills i, si han mort, néts',
+    ascendientes: 'Ascendents',
+    padresYAbuelosSiNoHayHijos: 'Pares i iaios, si no hi ha fills',
+    conyugeViudo: 'Cònjuge vidu',
+    siNoHayDescendientesNiAscend: 'Si no hi ha descendents ni ascendents',
+    hermanosYSobrinos: 'Germans i nebots',
+    yDespuesTiosYPrimos: 'I després, oncles i cosins',
+    parientesHastaElCuartoGrado: 'Parents fins al quart grau',
+    elLimiteMasAllaNadieHereda: 'El límit: més enllà, ningú no hereta',
+    elEstado: "L'Estat",
+    ultimoDeLaListaNoElPrimero: 'Últim de la llista, no el primer',
+    elConyugeNoQuedaFueraAunqueH: "El cònjuge no queda fora encara que hi haja fills: li correspon l'usdefruit del terç de millora.",
+    esteEsquemaEsElDelCodigoCivi: "Este esquema és el del Codi Civil, que s'aplica a la Comunitat Valenciana. Catalunya, Aragó, Navarra,",
+    galiciaBalearesYPaisVascoTie: 'Galícia, Balears i País Basc tenen Dret civil foral propi, amb legítimes distintes o inexistents.',
+  },
+} as const;
+
+const t = COPY[locale];
+---
+
+<svg viewBox="0 0 820 540" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="repartoherencia-t repartoherencia-d">
+  <title id="repartoherencia-t">{t.queSePuedeDejarAQuien}</title>
+  <desc id="repartoherencia-d">{t.aLaIzquierdaLaHerenciaConTes}</desc>
+  <defs>
+    <style>
+      .bg { fill: #FBF6EC; }
+      .panel { fill: #FFFFFF; stroke: #E5D4BD; stroke-width: 1.5; }
+      .third { stroke-width: 2; }
+      .t-leg { fill: #FBE3D6; stroke: #C44E2C; }
+      .t-mej { fill: #F5E5BC; stroke: #A87A2A; }
+      .t-lib { fill: #DBEDED; stroke: #1F6E6E; }
+      .rung { fill: #FFFFFF; stroke: #4A3B8F; stroke-width: 1.6; }
+      .rung-last { fill: #F5EDD9; stroke: #8A7868; stroke-width: 1.6; stroke-dasharray: 5 3; }
+      .head { font-family: 'Fraunces', serif; font-size: 17px; font-weight: 500; fill: #2A1F18; }
+      .band { font-family: 'Switzer', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 1.3px; text-transform: uppercase; fill: #8A7868; }
+      .name { font-family: 'Fraunces', serif; font-size: 14px; font-weight: 500; fill: #2A1F18; }
+      .txt { font-family: 'Switzer', sans-serif; font-size: 10.5px; fill: #5C4A3D; }
+      .txt-b { font-family: 'Switzer', sans-serif; font-size: 10.5px; font-weight: 700; fill: #2A1F18; }
+      .num { font-family: 'Fraunces', serif; font-style: italic; font-size: 17px; fill: #4A3B8F; text-anchor: middle; }
+      .frac { font-family: 'Fraunces', serif; font-style: italic; font-size: 20px; fill: #2A1F18; text-anchor: middle; }
+      .note { fill: #FFFFFF; stroke: #8A7868; stroke-width: 1.6; stroke-dasharray: 5 3; }
+      .brace { fill: none; stroke: #C44E2C; stroke-width: 1.6; }
+      .brace-t { font-family: 'Fraunces', serif; font-style: italic; font-size: 12px; fill: #C44E2C; }
+    </style>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="820" height="540" />
+
+  <!-- LEFT: with a will -->
+  <text class="band" x="40" y="28">{t.siHayTestamento}</text>
+  <text class="head" x="40" y="54">{t.losTresTercios}</text>
+
+  <rect class="panel" x="40" y="70" width="360" height="300" rx="4" />
+
+  <rect class="third t-leg" x="60" y="90" width="320" height="82" rx="4" />
+  <text class="frac" x="98" y="128">1/3</text>
+  <text class="name" x="132" y="118">{t.legitimaEstricta}</text>
+  <text class="txt" x="132" y="138">{t.obligatoriaSeRepartePorParte}</text>
+  <text class="txt" x="132" y="154">{t.igualesEntreTodosLosHijos}</text>
+
+  <rect class="third t-mej" x="60" y="184" width="320" height="82" rx="4" />
+  <text class="frac" x="98" y="222">1/3</text>
+  <text class="name" x="132" y="212">{t.mejora}</text>
+  <text class="txt" x="132" y="232">{t.paraUnoOVariosDescendientes}</text>
+  <text class="txt" x="132" y="248">{t.aEleccionDeQuienTesta}</text>
+
+  <rect class="third t-lib" x="60" y="278" width="320" height="82" rx="4" />
+  <text class="frac" x="98" y="316">1/3</text>
+  <text class="name" x="132" y="306">{t.libreDisposicion}</text>
+  <text class="txt" x="132" y="326">{t.paraQuienSeQuieraUnAmigo}</text>
+  <text class="txt" x="132" y="342">{t.unaOngLaParejaUnVecino}</text>
+
+  <path class="brace" d="M 52 92 L 44 92 L 44 264 L 52 264" />
+  <text class="brace-t" x="40" y="392">{t.dosTerciosDeCadaHerenciaYaEs}</text>
+  <text class="brace-t" x="40" y="410">{t.soloElUltimoSePuedeDejarLibr}</text>
+
+  <!-- RIGHT: intestate -->
+  <text class="band" x="440" y="28">{t.siNoHayTestamento}</text>
+  <text class="head" x="440" y="54">{t.elOrdenQueFijaLaLey}</text>
+
+  <rect class="panel" x="440" y="70" width="340" height="340" rx="4" />
+
+  <rect class="rung" x="460" y="88" width="300" height="46" rx="4" />
+  <text class="num" x="484" y="117">1</text>
+  <text class="txt-b" x="508" y="108">{t.descendientes}</text>
+  <text class="txt" x="508" y="124">{t.hijosYSiHanFallecidoNietos}</text>
+
+  <rect class="rung" x="460" y="140" width="300" height="46" rx="4" />
+  <text class="num" x="484" y="169">2</text>
+  <text class="txt-b" x="508" y="160">{t.ascendientes}</text>
+  <text class="txt" x="508" y="176">{t.padresYAbuelosSiNoHayHijos}</text>
+
+  <rect class="rung" x="460" y="192" width="300" height="46" rx="4" />
+  <text class="num" x="484" y="221">3</text>
+  <text class="txt-b" x="508" y="212">{t.conyugeViudo}</text>
+  <text class="txt" x="508" y="228">{t.siNoHayDescendientesNiAscend}</text>
+
+  <rect class="rung" x="460" y="244" width="300" height="46" rx="4" />
+  <text class="num" x="484" y="273">4</text>
+  <text class="txt-b" x="508" y="264">{t.hermanosYSobrinos}</text>
+  <text class="txt" x="508" y="280">{t.yDespuesTiosYPrimos}</text>
+
+  <rect class="rung" x="460" y="296" width="300" height="46" rx="4" />
+  <text class="num" x="484" y="325">5</text>
+  <text class="txt-b" x="508" y="316">{t.parientesHastaElCuartoGrado}</text>
+  <text class="txt" x="508" y="332">{t.elLimiteMasAllaNadieHereda}</text>
+
+  <rect class="rung-last" x="460" y="348" width="300" height="46" rx="4" />
+  <text class="num" x="484" y="377">6</text>
+  <text class="txt-b" x="508" y="368">{t.elEstado}</text>
+  <text class="txt" x="508" y="384">{t.ultimoDeLaListaNoElPrimero}</text>
+
+  <!-- Note -->
+  <rect class="note" x="40" y="440" width="740" height="76" rx="4" />
+  <text class="txt-b" x="60" y="464">{t.elConyugeNoQuedaFueraAunqueH}</text>
+  <text class="txt" x="60" y="484">{t.esteEsquemaEsElDelCodigoCivi}</text>
+  <text class="txt" x="60" y="500">{t.galiciaBalearesYPaisVascoTie}</text>
+</svg>

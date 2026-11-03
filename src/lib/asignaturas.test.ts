@@ -1,5 +1,12 @@
 import { describe, it, expect } from 'vitest';
-import { ASIGNATURAS, SECCIONES_TRANSVERSALES } from './asignaturas.ts';
+import { readFileSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
+import {
+  ASIGNATURAS, ASIGNATURAS_LIST, SECCIONES_TRANSVERSALES, ACCENTS,
+  SECCION_GRUPOS, seccionesDelGrupo,
+} from './asignaturas.ts';
+import { ASIGNATURAS_CA } from '../i18n/asignaturas-ca.ts';
+
 
 describe('SECCIONES_TRANSVERSALES', () => {
   it('lista las secciones de «Otros» en el orden acordado', () => {
@@ -16,6 +23,24 @@ describe('SECCIONES_TRANSVERSALES', () => {
     const s = SECCIONES_TRANSVERSALES.find((x) => x.slug === 'dinamicas');
     expect(s?.label).toBe('Dinámicas');
     expect(s?.description.length).toBeGreaterThan(0);
+  });
+});
+
+describe('seccionesDelGrupo', () => {
+  it('reparte las ocho secciones entre las dos columnas de «Otros»', () => {
+    const cols = SECCION_GRUPOS.flatMap((g) => seccionesDelGrupo(g).map((s) => s.slug));
+    expect(cols.sort()).toEqual(SECCIONES_TRANSVERSALES.map((s) => s.slug).sort());
+  });
+  it('mantiene las columnas equilibradas (ninguna se come el menú)', () => {
+    for (const g of SECCION_GRUPOS) {
+      expect(seccionesDelGrupo(g).length).toBeLessThanOrEqual(5);
+      expect(seccionesDelGrupo(g).length).toBeGreaterThan(0);
+    }
+  });
+  it('agrupa lo que se hace con el alumnado en la columna de aula', () => {
+    expect(seccionesDelGrupo('aula').map((s) => s.slug)).toEqual([
+      'dinamicas', 'debates', 'juegos', 'jocs-economics',
+    ]);
   });
 });
 
@@ -47,6 +72,38 @@ describe('SECCIONES_TRANSVERSALES — herramientas (caja) y generadores', () => 
     const s = SECCIONES_TRANSVERSALES.find((x) => x.slug === 'generadores');
     expect(s?.label).toBe('Herramientas Docentes');
     expect(s?.description.length).toBeGreaterThan(0);
+  });
+});
+
+const ROOT = fileURLToPath(new URL('../../', import.meta.url));
+const read = (p: string) => readFileSync(ROOT + p, 'utf8');
+
+const PRINT_ROUTES = [
+  'src/pages/[asignatura]/libro/imprimir.astro',
+  'src/pages/[asignatura]/actividades/imprimir/[modo].astro',
+  'src/pages/[asignatura]/ebau/imprimir.astro',
+  'src/pages/[asignatura]/programacion/imprimir.astro',
+  'src/pages/[asignatura]/proyecto/imprimir.astro',
+  'src/pages/[asignatura]/proyecto/cuaderno/imprimir/[modo].astro',
+];
+
+describe('ACCENTS — the print palette lives in one place', () => {
+  it('gives every asignatura an accent of its own, never the EDMN fallback', () => {
+    const collapsedToEdmn = ASIGNATURAS_LIST
+      .filter((a) => a.color !== 'edmn')
+      .filter((a) => ACCENTS[a.color].base === ACCENTS.edmn.base)
+      .map((a) => a.slug);
+    expect(collapsedToEdmn).toEqual([]);
+  });
+
+  it('leaves no local ACCENTS copy behind in any print route', () => {
+    for (const route of PRINT_ROUTES) {
+      const src = read(route);
+      expect(src, `${route} still declares its own ACCENTS`).not.toMatch(/const ACCENTS\s*[:=]/);
+      expect(src, `${route} does not import ACCENTS`).toMatch(
+        /import \{[^}]*\bACCENTS\b[^}]*\} from '@\/lib\/asignaturas'/
+      );
+    }
   });
 });
 
@@ -93,6 +150,47 @@ describe('ASIGNATURAS — seoTitle', () => {
   });
 });
 
+const COLOR_MAP_FILES = [
+  'src/components/SubjectCard.astro',
+  'src/pages/[asignatura]/index.astro',
+  'src/pages/[asignatura]/evaluacion/index.astro',
+  'src/pages/[asignatura]/refuerzo/index.astro',
+];
+
+describe('subject colours reach the CSS layer', () => {
+  const colors = [...new Set(ASIGNATURAS_LIST.map((a) => a.color))];
+
+  it('defines a token and a soft token for every colour in global.css', () => {
+    const css = read('src/styles/global.css');
+    const missing = colors.flatMap((c) => [
+      css.includes(`--color-${c}:`) ? [] : [`--color-${c}`],
+      css.includes(`--color-${c}-soft:`) ? [] : [`--color-${c}-soft`],
+      css.includes(`--color-${c}-ink:`) ? [] : [`--color-${c}-ink`],
+    ].flat());
+    expect(missing).toEqual([]);
+  });
+
+  it('maps every colour to a .c-{color} rule in each colour-map file', () => {
+    const missing: string[] = [];
+    for (const file of COLOR_MAP_FILES) {
+      const src = read(file);
+      for (const c of colors) {
+        if (!src.includes(`.c-${c}`)) missing.push(`${file} → .c-${c}`);
+      }
+    }
+    expect(missing).toEqual([]);
+  });
+
+  it('gives every asignatura a slide accent rule', () => {
+    const css = read('src/styles/slides.css');
+    const missing = ASIGNATURAS_LIST
+      .filter((a) => a.color !== 'edmn') // EDMN uses the sheet's default accent
+      .filter((a) => !css.includes(`[data-asig="${a.slug}"]`))
+      .map((a) => a.slug);
+    expect(missing).toEqual([]);
+  });
+});
+
 /**
  * `seoName` is the head of `seoTitle`, reused by every child page (book index,
  * units, activities, resources) so the acronym reaches those titles too.
@@ -114,6 +212,33 @@ describe('ASIGNATURAS — seoName', () => {
   it('carries the level, so a child-page title is unambiguous on its own', () => {
     for (const a of Object.values(ASIGNATURAS)) {
       expect(a.seoName).toMatch(/ESO|Bachillerato|FP/);
+    }
+  });
+});
+
+/**
+ * FP modules (IPE I, IPE II) are regulated by the LOFP (LO 3/2022, RD 659/2023),
+ * not the LOMLOE. GSC (Oct 2026): the IPE I hub title said «LOMLOE».
+ */
+describe('ASIGNATURAS — FP titles name no LOMLOE', () => {
+  it('no FP seoTitle claims the LOMLOE, in either language', () => {
+    for (const a of ASIGNATURAS_LIST.filter((x) => x.etapa === 'fp')) {
+      expect(a.seoTitle).not.toContain('LOMLOE');
+      expect(ASIGNATURAS_CA[a.slug]?.seoTitle ?? '').not.toContain('LOMLOE');
+    }
+  });
+});
+
+/**
+ * GSC (Jul–Oct 2026): the hubs that take the «… pdf gratis» queries are IPE I,
+ * IPE II, FOPP and Eco 4ESO. Their book PDF is free, so the title says so.
+ */
+describe('ASIGNATURAS — PDF in the hub title', () => {
+  const PDF_HUBS = ['ipe1-fp', 'ipe2-fp', 'fopp-4eso', 'eco-4eso'] as const;
+  it('promises the free PDF where the queries ask for it', () => {
+    for (const slug of PDF_HUBS) {
+      expect(ASIGNATURAS[slug].seoTitle).toMatch(/PDF gratis/);
+      expect(ASIGNATURAS_CA[slug]?.seoTitle ?? '').toMatch(/PDF gratis/);
     }
   });
 });

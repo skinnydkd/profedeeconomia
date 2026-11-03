@@ -15,6 +15,7 @@ import { PlayerFinal } from './screens/PlayerFinal';
 import './insider.css';
 import { GameLocaleContext, useGameLocale } from '../locale-context';
 import { DEFAULT_LOCALE, type Locale } from '@/i18n/locale';
+import { loadString, saveString } from '@/lib/storage';
 
 // ---------------------------------------------------------------------------
 // Helpers
@@ -23,12 +24,12 @@ import { DEFAULT_LOCALE, type Locale } from '@/i18n/locale';
 function getOrCreatePlayerId(): string {
   // Use sessionStorage (tab-scoped) so each tab gets its own id.
   // Prevents id collision when host and player tabs share the same browser.
-  if (typeof sessionStorage === 'undefined') return crypto.randomUUID();
+  // If the browser blocks storage, the id lasts for this page load.
   const key = 'pde:multi:playerId';
-  let id = sessionStorage.getItem(key);
+  let id = loadString(key, 'session');
   if (!id) {
     id = crypto.randomUUID();
-    sessionStorage.setItem(key, id);
+    saveString(key, id, 'session');
   }
   return id;
 }
@@ -39,14 +40,11 @@ function getSearchParam(key: string): string | null {
 }
 
 function getStoredName(): string {
-  if (typeof localStorage === 'undefined') return '';
-  return localStorage.getItem('pde:multi:playerName') ?? '';
+  return loadString('pde:multi:playerName') ?? '';
 }
 
 function storePlayerName(name: string) {
-  if (typeof localStorage !== 'undefined') {
-    localStorage.setItem('pde:multi:playerName', name);
-  }
+  saveString('pde:multi:playerName', name);
 }
 
 // ---------------------------------------------------------------------------
@@ -63,11 +61,22 @@ export const COPY = {
     reconectando: 'Reconectando…',
     sala: (code: string) => `Sala ${code}`,
     conectando: 'Conectando…',
+    // Server error codes a student can meet; others are shown as they come.
+    errors: {
+      'room-full': 'Esta sala ya tiene 40 jugadores.',
+      'invalid-name': 'El nombre debe tener entre 1 y 20 caracteres.',
+      'invalid-message': 'El servidor no ha entendido la acción.',
+    } as Record<string, string>,
   },
   ca: {
     reconectando: 'Reconnectant…',
     sala: (code: string) => `Sala ${code}`,
     conectando: 'Connectant…',
+    errors: {
+      'room-full': 'Esta sala ja té 40 jugadors.',
+      'invalid-name': 'El nom ha de tindre entre 1 i 20 caràcters.',
+      'invalid-message': "El servidor no ha entés l'acció.",
+    } as Record<string, string>,
   },
 };
 
@@ -125,7 +134,7 @@ function PlayerAppInner({ partykitHost }: { partykitHost: string }) {
 
     const unsubPublic = client.on('public', (msg) => setPublicState(msg.state));
     const unsubPrivate = client.on('private', (msg) => setPrivateState(msg.state));
-    const unsubError = client.on('error', (msg) => setErrorMsg(msg.reason));
+    const unsubError = client.on('error', (msg) => setErrorMsg(c.errors[msg.reason] ?? msg.reason));
 
     const socket = client.socket;
     const handleOpen = () => setConnected(true);

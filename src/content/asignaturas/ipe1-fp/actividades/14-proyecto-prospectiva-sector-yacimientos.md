@@ -86,5 +86,5 @@ No es un trabajo de copiar y pegar. Tenéis que buscar datos reales, interpretar
 ## Variantes y extensiones
 
 - **Variante comparativa territorial.** Comparar las oportunidades del sector en la comunidad autónoma del centro con otra de mayor demanda y razonar la movilidad geográfica.
-- **Variante entrevista a profesional.** Incluir en el informe el testimonio breve de un profesional en activo del sector (tutor de FCT, antiguo alumno) sobre las tendencias que percibe.
+- **Variante entrevista a profesional.** Incluir en el informe el testimonio breve de un profesional en activo del sector (tutor de prácticas, antiguo alumno) sobre las tendencias que percibe.
 - **Conexión con la Unidad 5.** Los yacimientos detectados orientan las fuentes y contactos que cada alumno incorporará a su entorno personal de aprendizaje.

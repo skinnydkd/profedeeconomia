@@ -32,8 +32,8 @@ import {
   type MatchState,
   type AnswerRecord,
 } from './state';
-import { getPool, samplePool, shuffleOptions } from './questions';
-import type { ClientMsg, ServerMsg } from '../../src/lib/games-multi/cajut/types';
+import { BANK_VERSION, bankLang, getPool, samplePool, shuffleOptions } from './questions';
+import type { ClientMsg, ServerMsg, StartMatchMsg } from '../../src/lib/games-multi/cajut/types';
 
 interface ConnMeta {
   playerId: string;
@@ -46,6 +46,13 @@ export default class CajutServer implements Party.Server {
   phaseTimer: ReturnType<typeof setTimeout> | null = null;
   pendingDisconnects = new Map<string, ReturnType<typeof setTimeout>>();
   timerEndsAt: number | null = null;
+  /**
+   * Player ids the host kicked out of this room. PartySocket reconnects by itself
+   * after a server-side close and re-sends `join`, so a kicked student was back
+   * within a second. The id comes from the client (sessionStorage), so a new tab
+   * still gets in: this stops the automatic return, not a determined student.
+   */
+  banned = new Set<string>();
 
   constructor(readonly room: Party.Room) {
     this.state = createInitialState(generateRoomCode(this.room.id));
@@ -55,6 +62,12 @@ export default class CajutServer implements Party.Server {
     const url = new URL(ctx.request.url);
     const playerId = url.searchParams.get('id') ?? conn.id ?? randomUUID();
     const asHost = url.searchParams.get('asHost') === '1';
+
+    if (this.banned.has(playerId)) {
+      this.send(conn, { type: 'kicked' });
+      conn.close();
+      return;
+    }
 
     this.conns.set(conn.id, { playerId, isHost: asHost });
 
@@ -75,6 +88,7 @@ export default class CajutServer implements Party.Server {
       }
     }
 
+    this.send(conn, { type: 'hello', bankVersion: BANK_VERSION });
     this.sendPrivate(conn, playerId);
     this.broadcastPublic();
   }
@@ -93,7 +107,7 @@ export default class CajutServer implements Party.Server {
         this.handleJoin(conn, meta, msg.nick);
         break;
       case 'startMatch':
-        this.handleStartMatch(meta, msg.asignaturaSlug, msg.unidades, msg.totalQuestions);
+        this.handleStartMatch(conn, meta, msg);
         break;
       case 'submitAnswer':
         this.handleSubmitAnswer(meta, msg.questionIndex, msg.optionIndex);
@@ -153,19 +167,20 @@ export default class CajutServer implements Party.Server {
     this.broadcastPublic();
   }
 
-  private handleStartMatch(
-    meta: ConnMeta,
-    asignaturaSlug: string,
-    unidades: number[],
-    totalQuestions: number | 'all',
-  ) {
+  private handleStartMatch(conn: Party.Connection, meta: ConnMeta, msg: StartMatchMsg) {
+    const { asignaturaSlug, unidades, totalQuestions } = msg;
     if (!meta.isHost) return;
     if (this.state.phase !== 'lobby') return;
     if (this.state.config !== null) return; // already configured/started
     if (this.state.players.size < 1) return;
 
-    const pool = getPool(asignaturaSlug, unidades);
-    if (pool.length === 0) return;
+    const pool = getPool(asignaturaSlug, unidades, bankLang(msg.locale));
+    if (pool.length === 0) {
+      // Usually units the deployed bank does not have yet (PartyKit not
+      // redeployed after the tests changed): say so instead of doing nothing.
+      this.sendError(conn, 'empty-pool');
+      return;
+    }
 
     const n = totalQuestions === 'all' ? pool.length : Math.min(totalQuestions, pool.length);
     const rng = makeRng(`${this.state.roomCode}:${Date.now()}`);
@@ -203,10 +218,16 @@ export default class CajutServer implements Party.Server {
   }
 
   private doKick(targetPlayerId: string) {
+    if (targetPlayerId === this.state.hostId) return;
+    this.banned.add(targetPlayerId);
     this.state = kickPlayer(this.state, targetPlayerId);
     for (const [connId, m] of [...this.conns]) {
       if (m.playerId === targetPlayerId) {
-        this.room.getConnection(connId)?.close();
+        const c = this.room.getConnection(connId);
+        if (c) {
+          this.send(c, { type: 'kicked' });
+          c.close();
+        }
         this.conns.delete(connId);
       }
     }
@@ -340,6 +361,10 @@ export default class CajutServer implements Party.Server {
 
   private sendError(conn: Party.Connection, reason: Extract<ServerMsg, { type: 'error' }>['reason']) {
     const msg: ServerMsg = { type: 'error', reason };
+    conn.send(JSON.stringify(msg));
+  }
+
+  private send(conn: Party.Connection, msg: ServerMsg) {
     conn.send(JSON.stringify(msg));
   }
 

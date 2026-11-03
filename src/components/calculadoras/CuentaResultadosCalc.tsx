@@ -3,6 +3,7 @@ import { useMemo, useState } from 'preact/hooks';
 import { type Locale } from '@/i18n/locale';
 import { formatEUR, formatPercent } from '../../lib/calc/format';
 import { calcular, type Entradas, type Nivel } from '../../lib/calc/cuenta-resultados';
+import NumberInput from '../NumberInput';
 
 /**
  * UI strings, Valencian (AVL) alongside the ES source. Accounting labels that
@@ -113,8 +114,6 @@ export const COPY = {
 
 interface Props { locale?: Locale }
 
-const num = (e: Event) => parseFloat((e.target as HTMLInputElement).value) || 0;
-
 /**
  * The income statement built level by level, with each step drawn as a share
  * of turnover so the reader sees where the money goes and not only what is
@@ -172,31 +171,31 @@ export default function CuentaResultadosCalc({ locale = 'es' }: Props) {
         <label class="calc__field">
           <span class="calc__label">{t.ventas}</span>
           <div class="calc__input-wrap">
-            <input type="number" min={1} step={10000} value={ventas} onInput={(e) => setVentas(num(e))} />
+            <NumberInput min={1} step={10000} value={ventas} onValue={setVentas} />
           </div>
         </label>
         <label class="calc__field">
           <span class="calc__label">{t.aprovisionamientos}</span>
           <div class="calc__input-wrap">
-            <input type="number" min={0} step={10000} value={aprovisionamientos} onInput={(e) => setAprov(num(e))} />
+            <NumberInput min={0} step={10000} value={aprovisionamientos} onValue={setAprov} />
           </div>
         </label>
         <label class="calc__field">
           <span class="calc__label">{t.personal}</span>
           <div class="calc__input-wrap">
-            <input type="number" min={0} step={10000} value={personal} onInput={(e) => setPersonal(num(e))} />
+            <NumberInput min={0} step={10000} value={personal} onValue={setPersonal} />
           </div>
         </label>
         <label class="calc__field">
           <span class="calc__label">{t.otros}</span>
           <div class="calc__input-wrap">
-            <input type="number" min={0} step={5000} value={otros} onInput={(e) => setOtros(num(e))} />
+            <NumberInput min={0} step={5000} value={otros} onValue={setOtros} />
           </div>
         </label>
         <label class="calc__field">
           <span class="calc__label">{t.amortizacion}</span>
           <div class="calc__input-wrap">
-            <input type="number" min={0} step={5000} value={amortizacion} onInput={(e) => setAmortizacion(num(e))} />
+            <NumberInput min={0} step={5000} value={amortizacion} onValue={setAmortizacion} />
           </div>
         </label>
       </div>
@@ -206,25 +205,25 @@ export default function CuentaResultadosCalc({ locale = 'es' }: Props) {
         <label class="calc__field">
           <span class="calc__label">{t.ingresosFin}</span>
           <div class="calc__input-wrap">
-            <input type="number" min={0} step={1000} value={ingresosFin} onInput={(e) => setIngresosFin(num(e))} />
+            <NumberInput min={0} step={1000} value={ingresosFin} onValue={setIngresosFin} />
           </div>
         </label>
         <label class="calc__field">
           <span class="calc__label">{t.gastosFin}</span>
           <div class="calc__input-wrap">
-            <input type="number" min={0} step={1000} value={gastosFin} onInput={(e) => setGastosFin(num(e))} />
+            <NumberInput min={0} step={1000} value={gastosFin} onValue={setGastosFin} />
           </div>
         </label>
         <label class="calc__field">
           <span class="calc__label">{t.tipo}</span>
           <div class="calc__input-wrap">
-            <input type="number" min={0} max={100} step={1} value={tipoPct} onInput={(e) => setTipoPct(num(e))} />
+            <NumberInput min={0} max={100} step={1} value={tipoPct} onValue={setTipoPct} />
           </div>
         </label>
       </div>
       <p class="cr__note">{t.tipoAyuda}</p>
 
-      <div class="calc__results">
+      <div class="calc__results" aria-live="polite">
         {!r.valido ? (
           <div class="calc__warning">{t.sinDatos}</div>
         ) : (

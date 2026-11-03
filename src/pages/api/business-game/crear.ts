@@ -3,21 +3,25 @@ import type { APIRoute } from 'astro';
 import { json, bad, getSupabase } from '@/lib/business-game/server/api';
 import { signBgToken, getSecret, generarCodigo } from '@/lib/business-game/server/tokens';
 import { normalizeInstitute } from '@/lib/jocs-economics/server/institutes';
-import { DEFAULT_PARAMS } from '@/lib/business-game/engine';
+import { MAX_INSTITUTO, MAX_NOMBRE, sanearParams, textoValido } from '@/lib/business-game/params-liga';
+import { dentroDelLimite } from '@/lib/business-game/server/limite';
 
 export const prerender = false;
 
-export const POST: APIRoute = async ({ request }) => {
+export const POST: APIRoute = async ({ request, clientAddress }) => {
+  if (!dentroDelLimite('crear', clientAddress || 'unknown', 10)) {
+    return bad('Se han creado muchas ligas desde esta red. Espera un minuto.', 429);
+  }
   let body: any;
   try { body = await request.json(); } catch { return bad('JSON inválido'); }
 
-  const nombre = String(body?.nombre ?? '').trim();
-  const instituto = String(body?.instituto ?? '').trim();
-  if (nombre.length < 2) return bad('El nombre de la liga es obligatorio');
-  if (instituto.length < 2) return bad('El instituto es obligatorio');
+  const nombre = textoValido(body?.nombre, 2, MAX_NOMBRE);
+  const instituto = textoValido(body?.instituto, 2, MAX_INSTITUTO);
+  if (!nombre) return bad(`El nombre de la liga debe tener entre 2 y ${MAX_NOMBRE} caracteres`);
+  if (!instituto) return bad(`El instituto debe tener entre 2 y ${MAX_INSTITUTO} caracteres`);
 
   const numRondas = Math.min(Math.max(parseInt(String(body?.numRondas ?? 8), 10) || 8, 1), 20);
-  const params = { ...DEFAULT_PARAMS, ...(body?.params && typeof body.params === 'object' ? body.params : {}) };
+  const params = sanearParams(body?.params);
 
   const supabase = getSupabase();
 

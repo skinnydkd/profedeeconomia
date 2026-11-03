@@ -1,5 +1,5 @@
 // scripts/cajut-asignaturas-meta.mjs
-// Metadades de les 9 asignatures (colors canònics: src/styles/global.css)
+// Metadades de les 10 asignatures (colors canònics: src/styles/global.css)
 
 export const ASIGNATURAS_META = [
   { slug: 'edmn-2bach',     name: 'Economía y Administración de Empresas (2º Bach)', shortName: 'EDMN 2BACH',  color: '#C44E2C' },
@@ -11,6 +11,7 @@ export const ASIGNATURAS_META = [
   { slug: 'ipe2-fp',        name: 'Iniciativa Personal y Emprendedora II (FP)',      shortName: 'IPE II',      color: '#2F4F7F' },
   { slug: 'eeae-bach',      name: 'Economía Empresarial y Análisis Económico (Bach)',shortName: 'EEAE',        color: '#2E5E3A' },
   { slug: 'gpe-bach',       name: 'Gestión de Proyectos Emprendedores (Bach)',       shortName: 'GPE',         color: '#8C2F39' },
+  { slug: 'cjd-bach',       name: 'Cultura Jurídica y Democrática',                  shortName: 'CJD',         color: '#4A3B8F' },
 ];
 
 export function metaFor(slug) {

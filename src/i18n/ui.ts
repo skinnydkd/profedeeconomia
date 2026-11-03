@@ -10,6 +10,8 @@ export const ui = {
     'nav.bach': 'BACH',
     'nav.fp': 'FP',
     'nav.otros': 'Otros',
+    'nav.otros.aula': 'Actividades de aula',
+    'nav.otros.recursos': 'Proyectos y herramientas',
     'nav.preparacion': 'Preparación',
     'nav.olimpiada': 'Olimpiada de Economía',
     'nav.proximamente': 'Próximamente',
@@ -70,6 +72,10 @@ export const ui = {
     'tipo.buscador': 'Buscador',
     'filtro.todas': 'Todas',
     'filtro.todos': 'Todos',
+    'filtro.aria': 'Filtrar la lista',
+    'nav.breadcrumb': 'Ruta de navegación',
+    'filtro.resultado.uno': '1 resultado',
+    'filtro.resultado.varios': '{n} resultados',
     'island.print': '↗ Herramienta interactiva disponible en la versión digital del libro (profedeeconomia.es).',
     'herramienta.competencias': 'Competencias que se trabajan',
     'herramienta.clave': 'Clave',
@@ -98,7 +104,9 @@ export const ui = {
     'libro.pistaEbauTeorica': 'Pista EBAU · Teoría',
     'libro.pistaEbauPractica': 'Pista EBAU · Práctica',
     'libro.ejemploReal': 'Ejemplo real',
+    'libro.casoIlustrativo': 'Caso ilustrativo',
     'libro.fuente': 'Fuente:',
+    'libro.desplaza': 'Desliza para ver el gráfico entero →',
     'libro.retoDelCurso': 'Reto del curso',
     'libro.etapa': 'Etapa',
     'libro.entregable': 'Entregable:',
@@ -116,6 +124,13 @@ export const ui = {
     'libro.sinRecursos': 'Aún no hay recursos transversales ligados a esta unidad. Puedes repasarla con Cajút.',
     'libro.repasoEnClase': 'Repaso en clase',
     'libro.repasaConCajut': 'Repasa esta unidad con Cajút',
+    'puente.titulo': 'Esto se trabaja en…',
+    'puente.unidad': 'Unidad',
+    'puente.competencias': 'Competencias específicas:',
+    'rolecard.tag': 'Tarjeta de rol',
+    'rolecard.corte': '✂ recorta por aquí',
+    'ficha.tag': 'Ficha del alumno',
+    'mapa.lead': 'El proyecto es la espina dorsal; cada fase se apoya en unidades concretas de las asignaturas. Así se cruza el temario en lugar de ir suelto.',
   },
   ca: {
     'skip.main': 'Salta al contingut principal',
@@ -125,6 +140,8 @@ export const ui = {
     'nav.bach': 'BATX',
     'nav.fp': 'FP',
     'nav.otros': 'Altres',
+    'nav.otros.aula': "Activitats d'aula",
+    'nav.otros.recursos': 'Projectes i ferramentes',
     'nav.preparacion': 'Preparació',
     'nav.olimpiada': "Olimpíada d'Economia",
     'nav.proximamente': 'Pròximament',
@@ -185,6 +202,10 @@ export const ui = {
     'tipo.buscador': 'Cercador',
     'filtro.todas': 'Totes',
     'filtro.todos': 'Tots',
+    'filtro.aria': 'Filtra la llista',
+    'nav.breadcrumb': 'Ruta de navegació',
+    'filtro.resultado.uno': '1 resultat',
+    'filtro.resultado.varios': '{n} resultats',
     'island.print': '↗ Ferramenta interactiva disponible en la versió digital del llibre (profedeeconomia.es).',
     'herramienta.competencias': 'Competències que es treballen',
     'herramienta.clave': 'Clau',
@@ -213,7 +234,9 @@ export const ui = {
     'libro.pistaEbauTeorica': 'Pista EBAU · Teoria',
     'libro.pistaEbauPractica': 'Pista EBAU · Pràctica',
     'libro.ejemploReal': 'Exemple real',
+    'libro.casoIlustrativo': 'Cas il·lustratiu',
     'libro.fuente': 'Font:',
+    'libro.desplaza': 'Llisca per a veure el gràfic sencer →',
     'libro.retoDelCurso': 'Repte del curs',
     'libro.etapa': 'Etapa',
     'libro.entregable': 'Entregable:',
@@ -231,6 +254,13 @@ export const ui = {
     'libro.sinRecursos': 'Encara no hi ha recursos transversals lligats a esta unitat. Pots repassar-la amb Cajút.',
     'libro.repasoEnClase': 'Repàs a classe',
     'libro.repasaConCajut': 'Repassa esta unitat amb Cajút',
+    'puente.titulo': 'Açò es treballa en…',
+    'puente.unidad': 'Unitat',
+    'puente.competencias': 'Competències específiques:',
+    'rolecard.tag': 'Targeta de rol',
+    'rolecard.corte': '✂ retalla per ací',
+    'ficha.tag': "Fitxa de l'alumne",
+    'mapa.lead': "El projecte és l'espina dorsal; cada fase es recolza en unitats concretes de les assignatures. Així es creua el temari en lloc d'anar solt.",
   },
 } as const;
 
@@ -238,4 +268,11 @@ export type UIKey = keyof (typeof ui)['es'];
 
 export function t(key: UIKey, locale: Locale): string {
   return ui[locale][key] ?? ui.es[key];
+}
+
+/** The course a subject belongs to, e.g. «2.º Bach» or «Optativas (1.º/2.º)».
+    The Bachillerato optional subjects carry curso 'bach', labelled as optativas. */
+export function cursoLabel(curso: string, locale: Locale): string {
+  const key = curso === 'bach' ? 'curso.optativas' : `curso.${curso}`;
+  return t(key as UIKey, locale);
 }

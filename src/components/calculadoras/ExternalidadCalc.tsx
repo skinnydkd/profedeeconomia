@@ -3,6 +3,7 @@ import { useMemo, useState } from 'preact/hooks';
 import { type Locale } from '@/i18n/locale';
 import { formatEUR, formatNumber } from '../../lib/calc/format';
 import { analizar, type Curvas, type TipoExternalidad } from '../../lib/calc/externalidad';
+import NumberInput from '../NumberInput';
 
 /**
  * UI strings, Valencian (AVL) alongside the ES source. Notation (P, Q, CMg,
@@ -109,8 +110,6 @@ export const COPY = {
 
 interface Props { locale?: Locale }
 
-const num = (e: Event) => parseFloat((e.target as HTMLInputElement).value) || 0;
-
 /**
  * Externality and the Pigouvian correction.
  *
@@ -173,13 +172,13 @@ export default function ExternalidadCalc({ locale = 'es' }: Props) {
         <label class="calc__field">
           <span class="calc__label">{t.interceptoDemanda}</span>
           <div class="calc__input-wrap">
-            <input type="number" min={1} step={5} value={A} onInput={(ev) => setA(num(ev))} />
+            <NumberInput min={1} step={5} value={A} onValue={setA} />
           </div>
         </label>
         <label class="calc__field">
           <span class="calc__label">{t.pendienteDemanda}</span>
           <div class="calc__input-wrap">
-            <input type="number" min={0.01} step={0.1} value={B} onInput={(ev) => setB(num(ev))} />
+            <NumberInput min={0.01} step={0.1} value={B} onValue={setB} />
           </div>
         </label>
       </div>
@@ -189,13 +188,13 @@ export default function ExternalidadCalc({ locale = 'es' }: Props) {
         <label class="calc__field">
           <span class="calc__label">{t.interceptoCoste}</span>
           <div class="calc__input-wrap">
-            <input type="number" step={5} value={c} onInput={(ev) => setC(num(ev))} />
+            <NumberInput step={5} value={c} onValue={setC} />
           </div>
         </label>
         <label class="calc__field">
           <span class="calc__label">{t.pendienteCoste}</span>
           <div class="calc__input-wrap">
-            <input type="number" min={0} step={0.1} value={d} onInput={(ev) => setD(num(ev))} />
+            <NumberInput min={0} step={0.1} value={d} onValue={setD} />
           </div>
         </label>
       </div>
@@ -205,12 +204,12 @@ export default function ExternalidadCalc({ locale = 'es' }: Props) {
         <label class="calc__field">
           <span class="calc__label">{t.efectoLabel}</span>
           <div class="calc__input-wrap">
-            <input type="number" min={0} step={1} value={e} onInput={(ev) => setE(num(ev))} />
+            <NumberInput min={0} step={1} value={e} onValue={setE} />
           </div>
         </label>
       </div>
 
-      <div class="calc__results">
+      <div class="calc__results" aria-live="polite">
         {!r.valido ? (
           <div class="calc__warning">{t.sinDatos}</div>
         ) : (

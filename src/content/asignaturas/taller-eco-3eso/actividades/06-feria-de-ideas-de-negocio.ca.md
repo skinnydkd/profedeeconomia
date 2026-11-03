@@ -29,12 +29,12 @@ Al final muntem una xicoteta fira: cada equip ensenya la seua idea en una cartol
 - Entendre que una idea de negoci naix d'un problema o necessitat real, no al revés.
 - Convertir una idea en un projecte senzill responent a què, per a qui i com.
 - Distingir els tipus bàsics d'empresa (autònom, societat, cooperativa) i triar el més adequat.
-- Reconéixer els ingredients d'un projecte emprenedor: idea, client, recursos i risc.
+- Reconéixer els tres ingredients d'emprendre (iniciativa, organització de recursos i risc) i les preguntes bàsiques d'un projecte (què, per a qui, com).
 - Treballar en equip i presentar una idea de manera clara i breu.
 
 ## Passos
 
-1. **(5 min) Enquadrament.** El professor recorda els ingredients d'un projecte (idea, client, recursos, risc) i les tres formes jurídiques bàsiques. Es formen equips de 3-4.
+1. **(5 min) Enquadrament.** El professor recorda els tres ingredients d'emprendre (iniciativa, organització de recursos, risc) i les tres formes jurídiques bàsiques. Es formen equips de 3-4.
 2. **(10 min) Caçar el problema.** Cada equip apunta **cinc problemes reals** del seu entorn: el bar del pati, l'avorriment en els descansos, els residus, la falta de plans per a jóvens al barri, els llibres usats que ningú aprofita... Dels cinc, en trien **un**.
 3. **(20 min) De problema a idea.** L'equip ompli la fitxa en la cartolina responent a cinc preguntes:
    - **Què oferim?** Un bé o un servici que resolga eixe problema.

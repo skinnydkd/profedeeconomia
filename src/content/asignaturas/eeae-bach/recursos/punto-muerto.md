@@ -10,7 +10,7 @@ estado: publicado
 
 ## Cuándo usarla
 
-- En la **Unidad 8** (la empresa y su actividad), al estudiar la estructura de costes y el momento en que los ingresos cubren todos los gastos.
+- En la **Unidad 8** (la empresa y su actividad), después del ejemplo resuelto «Costes fijos, variables y punto muerto», para repetir la cuenta con otras cifras y ver en qué momento los ingresos cubren todos los gastos.
 - Para responder una pregunta muy concreta y muy real: **¿cuántas unidades hay que vender antes de empezar a ganar?** Por debajo de esa cifra la empresa pierde; por encima, gana.
 - Al comparar negocios con distinta estructura de costes: cambiar los costes fijos o el margen unitario y ver cómo se mueve el umbral de rentabilidad.
 

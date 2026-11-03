@@ -14,7 +14,7 @@ slug: "asignaturas/edmn-2bach/recursos/ratios-benchmark.ca"
 
 - En analitzar estats financers en la Unitat 11.
 - Per interpretar la salut financera d'una empresa, no només calcular ràtios sinó situar-los respecte al seu sector.
-- Per a la radiografia financera del projecte capstone.
+- Per a la radiografia financera d'un pla d'empresa o un projecte d'aula (Unitat 12).
 
 ## Què cal tindre en compte
 

@@ -2,9 +2,9 @@ import { describe, it, expect } from 'vitest';
 import { MOTIFS, FALLBACK_MOTIF, MOTIF_SLUGS, getMotif } from './caratula-motifs';
 
 describe('caratula motif registry', () => {
-  const expected = ['stonks', 'econrisk', 'econopoly', 'cajut', 'seguros', 'insider'];
+  const expected = ['stonks', 'econrisk', 'econopoly', 'cajut', 'seguros', 'insider', 'teoria-juegos'];
 
-  it('has a bespoke motif for each of the 6 current games', () => {
+  it('has a bespoke motif for each of the 7 current games', () => {
     for (const slug of expected) {
       expect(MOTIF_SLUGS.has(slug)).toBe(true);
       expect(MOTIFS[slug]).toBeTruthy();

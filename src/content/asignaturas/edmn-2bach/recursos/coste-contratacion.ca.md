@@ -24,7 +24,7 @@ slug: "asignaturas/edmn-2bach/recursos/coste-contratacion.ca"
 - El **cost per hora es calcula sobre hores efectives**, no sobre 40 × 52. Descomptant vacances i festius queden unes 46 setmanes, i eixa diferència mou el resultat prop d'un 12 %.
 - Les **tres xifres juntes** —cost, brut, líquid— són la part més útil de la ferramenta. A classe es coneix només la del mig, i sense les altres dues ni el sou ni les cotitzacions s'entenen.
 - El que separa el cost del líquid no s'ho queda ningú: finança pensions, atur, sanitat i la resta de la despesa pública. Val la pena dir-ho explícitament perquè la diferència no es llija com un truc.
-- Els **tipus canvien cada any**. Ací hi ha els de 2026, amb la base de cotització presa igual al brut i sense bases mínimes ni màximes. Per a una nòmina real, TGSS i AEAT.
+- Els **tipus canvien cada any**. Ací hi ha els de 2026: la base de cotització és el brut amb les pagues extra prorratejades, amb el topall de la base màxima (5.101,20 € al mes) i la cotització de solidaritat per damunt; no s'apliquen bases mínimes. Per a una nòmina real, TGSS i AEAT.
 
 ## Per a portar-la a classe
 

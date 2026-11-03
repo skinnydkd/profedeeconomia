@@ -7,12 +7,16 @@
 import BaseLayout from '@layouts/BaseLayout.astro';
 import { GUIA, AMBITOS, simulacrosPorAmbito } from '@/lib/olimpiada';
 import { getLocale } from '@/i18n/locale';
+import { localizeGuia } from '@/i18n/olimpiada-ca';
 import { localizeFamilias, AMBITOS_OLIMPIADA_CA } from '@/i18n/familias-ca';
+import SectionHeader from '@components/SectionHeader.astro';
 
 const grupos = simulacrosPorAmbito();
 const totalExamenes = grupos.reduce((n, g) => n + g.examenes.filter((e) => e.oficial).length, 0);
 
 const locale = getLocale(Astro.currentLocale);
+// The exam guide in the page's language (the duration was in Spanish on /ca/).
+const guia = localizeGuia(GUIA, locale);
 
 // Only the ámbito headers are localized; the exam list stays ES.
 const ambitos = new Map(
@@ -61,31 +65,29 @@ const copy = {
   title="Simulacros — Olimpiada de Economía"
   description="Exámenes oficiales de la Olimpiada de Economía (fase nacional y de varias comunidades autónomas) y megaexamen de práctica. Entrena cronometrándote las partes del examen."
   contentLang="es"
+  translated={false}
 >
-  <div class="container">
-    <nav class="breadcrumb">
-      <a href="/">{copy.bcInicio}</a> <span class="sep">›</span>
-      <a href="/olimpiada/">{copy.bcOlimpiada}</a> <span class="sep">›</span>
-      <span>{copy.bcCurrent}</span>
-    </nav>
-  </div>
-
-  <section class="hero" lang={locale}>
-    <div class="container">
-      <h1 class="serif">{copy.heroTitle}</h1>
-      <p class="lede">
-        {totalExamenes} {copy.lede}
-      </p>
-    </div>
-  </section>
+  <SectionHeader
+    locale={locale}
+    kicker={copy.bcOlimpiada}
+    lang={locale}
+    crumbs={[
+      { name: copy.bcInicio, path: '/' },
+      { name: copy.bcOlimpiada, path: '/olimpiada/' },
+      { name: copy.bcCurrent },
+    ]}
+  >
+    <Fragment slot="title">{copy.heroTitle}</Fragment>
+    <Fragment slot="lede">{totalExamenes}{' '}{copy.lede}</Fragment>
+  </SectionHeader>
 
   <section class="nota-uso">
     <div class="container">
       <div class="nota" lang={locale}>
-        <strong>{copy.notaTitulo}</strong>
+        <strong class="nota__titulo">{copy.notaTitulo}</strong>
         <ul>
-          <li>{copy.li1Pre} <strong>{GUIA.duracion}</strong> {copy.li1Post}</li>
-          <li>{copy.li2Pre} ({GUIA.partes[0]?.puntos}), {copy.li2Mid} ({GUIA.partes[1]?.puntos}) {copy.li2And} ({GUIA.partes[2]?.puntos}).</li>
+          <li>{copy.li1Pre} <strong>{guia.duracion}</strong> {copy.li1Post}</li>
+          <li>{copy.li2Pre} ({guia.partes[0]?.puntos}), {copy.li2Mid} ({guia.partes[1]?.puntos}) {copy.li2And} ({guia.partes[2]?.puntos}).</li>
           <li>{copy.li3}</li>
           <li><strong>{copy.li4Strong}</strong> {copy.li4Rest}</li>
         </ul>
@@ -129,23 +131,17 @@ const copy = {
 
 <style>
   .container { max-width: 1240px; margin: 0 auto; padding: 0 clamp(1.5rem, 4vw, 3rem); }
-  .breadcrumb { font-size: 0.92rem; color: var(--color-ink-mute); margin: 2rem 0; }
-  .breadcrumb a { color: var(--color-ink-mute); text-decoration: none; }
-  .breadcrumb a:hover { color: var(--color-terra); }
-  .breadcrumb .sep { margin: 0 0.5em; color: var(--color-mustard); }
 
-  .hero { padding: 1rem 0 2rem; }
-  .kicker { font-family: var(--font-sans); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-terra-deep); }
-  h1 { margin: 0.6rem 0 0.8rem; }
-  .lede { font-size: 1.2rem; color: var(--color-ink-soft); line-height: 1.55; max-width: 60ch; }
 
   .nota-uso { padding: 0 0 1.5rem; }
   .nota {
     background: var(--color-bg-soft);
-    border-radius: 0 8px 8px 0; padding: 1rem 1.2rem; max-width: 720px;
+    border-radius: 8px; padding: 1rem 1.2rem; max-width: 720px;
   }
-  .nota strong { font-family: var(--font-sans); font-size: 0.95rem; display: block; margin-bottom: 0.5rem; color: var(--color-ink); }
-  .nota ul { margin: 0; padding-left: 1.3rem; }
+  /* Only the title is a block: the list's bold words stay inline. */
+  .nota__titulo { font-family: var(--font-sans); font-size: 0.95rem; display: block; margin-bottom: 0.5rem; color: var(--color-ink); }
+  /* Tailwind's preflight strips list markers. */
+  .nota ul { margin: 0; padding-left: 1.3rem; list-style: disc; }
   .nota li { margin-bottom: 0.3em; font-size: 0.95rem; color: var(--color-ink-soft); line-height: 1.5; }
   .nota li::marker { color: var(--color-mustard); }
 
@@ -183,6 +179,6 @@ const copy = {
   .btn--ghost:hover { border-color: var(--color-terra); color: var(--color-terra); }
 
   .back-link { padding: 0 0 3rem; }
-  .back-link a { font-family: var(--font-sans); font-size: 0.95rem; font-weight: 500; color: var(--color-terra); text-decoration: none; }
+  .back-link a { font-family: var(--font-sans); font-size: 0.95rem; font-weight: 500; color: var(--color-terra-ink); text-decoration: none; }
   .back-link a:hover { text-decoration: underline; }
 </style>

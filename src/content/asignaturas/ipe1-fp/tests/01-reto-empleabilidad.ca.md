@@ -9,52 +9,52 @@ slug: "asignaturas/ipe1-fp/tests/01-reto-empleabilidad.ca"
 preguntas:
   - enunciado: "Quina és la diferència central entre qualificació, ocupació i ocupabilitat?"
     opciones:
-      - "Són tres noms distints per al mateix: tindre un títol oficial."
-      - "La qualificació és el paper (el que saps fer formalment), l'ocupació és el lloc concret de hui i l'ocupabilitat és la teua capacitat sostinguda de tindre treball al llarg del temps."
-      - "L'ocupabilitat és el títol, la qualificació és el sou i l'ocupació és l'experiència."
-      - "L'ocupabilitat només depén de la situació econòmica, no de la persona."
+      - "La qualificació és el lloc que ocupes, l'ocupació és el teu títol i l'ocupabilitat són les ofertes que hi ha a la teua zona."
+      - "La qualificació és el que tens acreditat, l'ocupació és el lloc de hui i l'ocupabilitat, la teua capacitat de tindre treball amb el temps."
+      - "La qualificació és el títol, l'ocupació és el lloc de hui i l'ocupabilitat són els anys que portes en la mateixa empresa."
+      - "Són tres noms per al mateix: tindre un títol oficial que et dona accés a un lloc de treball."
     correcta: 1
-    explicacion: "La **qualificació** és el que saps fer formalment (el títol, els certificats); l'**ocupació** és el lloc concret que ocupes en un moment donat; i l'**ocupabilitat** és la teua capacitat sostinguda d'aconseguir, mantindre i millorar una ocupació al llarg de la vida, fins i tot quan el teu lloc actual desapareix."
+    explicacion: "La **qualificació** és el que saps fer formalment (el títol, els certificats); l'**ocupació** és el lloc concret que ocupes en un moment donat; i l'**ocupabilitat** és la teua capacitat sostinguda d'aconseguir, mantindre i millorar una ocupació al llarg de la vida, fins i tot quan el teu lloc actual desapareix. No és l'antiguitat: portar molts anys en la mateixa empresa no garantix que una altra et contracte si eixa tanca."
   - enunciado: "Una persona porta quinze anys a la seua empresa, és imprescindible allí dins, però el dia que l'empresa tanca descobrix que quasi cap altra la contractaria. Quin error ha comés?"
     opciones:
-      - "Ha descuidat la seua ocupabilitat interna per cuidar massa l'externa."
-      - "Ha cuidat només la seua ocupabilitat interna i ha descuidat l'externa, perquè les seues competències van quedar tancades en una manera de treballar que ja ningú fa servir."
-      - "No ha comés cap error: l'ocupabilitat no es pot planificar."
-      - "El seu problema és exclusivament l'edat, no les competències."
+      - "Ha cuidat tant la seua ocupabilitat externa que ha descuidat la interna."
+      - "Ha cuidat només la seua ocupabilitat interna i ha deixat caure l'externa."
+      - "Cap: el tancament no depenia d'ella i l'ocupabilitat no es pot preparar amb antelació."
+      - "Ha acumulat massa experiència en un sol lloc, i les empreses preferixen perfils acabats de titular."
     correcta: 1
-    explicacion: "L'**ocupabilitat interna** és el teu valor dins de la teua empresa; l'**externa**, el teu valor en el mercat fora d'ella. L'error típic és cuidar només la primera: cal mantindre les competències actualitzades i reconeixibles fora. Les dues ocupabilitats es cuiden alhora."
+    explicacion: "L'**ocupabilitat interna** és el teu valor dins de la teua empresa; l'**externa**, el teu valor en el mercat fora d'ella. Les seues competències es van quedar tancades en una manera de treballar que ja ningú fa servir, així que fora valien poc. No és al revés: dins era imprescindible, el que li faltava era valor extern. Les dues ocupabilitats es cuiden alhora, i sí que es poden preparar: actualitzant competències abans de necessitar-ho."
   - enunciado: "Què distingix l'upskilling del reskilling?"
     opciones:
-      - "L'upskilling és saltar a una altra professió i el reskilling és millorar en la teua."
-      - "L'upskilling és millorar i ampliar les competències dins de la teua professió actual; el reskilling és aprendre competències d'una professió distinta, normalment per reconversió."
-      - "Són sinònims: tots dos signifiquen reciclar-se professionalment."
-      - "L'upskilling només s'aplica a professions digitals i el reskilling a les manuals."
+      - "L'upskilling et prepara per a saltar a una altra professió; el reskilling amplia les competències de la teua."
+      - "L'upskilling amplia les competències de la teua professió actual; el reskilling et prepara per a una altra distinta."
+      - "Són sinònims: tots dos signifiquen reciclar-se professionalment, siga dins de la mateixa professió o fora d'ella."
+      - "L'upskilling és la formació que paga l'empresa i el reskilling, la que la persona busca pel seu compte."
     correcta: 1
-    explicacion: "**Upskilling** = pujar el nivell *dins* de la teua professió (un tècnic que aprén el nou programari del seu sector). **Reskilling** = saltar *a una altra* professió quan la teua es reduïx o desapareix. Al llarg d'una carrera es necessiten tots dos, diverses vegades."
+    explicacion: "**Upskilling** = pujar el nivell *dins* de la teua professió (un tècnic que aprén el nou programari del seu sector). **Reskilling** = saltar *a una altra* professió, normalment per reconversió, quan la teua es reduïx o desapareix. La diferència no està en qui paga la formació, sinó en si et quedes en la teua professió o en canvies. Al llarg d'una carrera es necessiten tots dos, diverses vegades."
   - enunciado: "Segons la unitat, per què l'aprenentatge permanent ha deixat de ser opcional?"
     opciones:
-      - "Perquè les lleis obliguen a estudiar tota la vida."
-      - "Perquè el model d'estudiar una vegada de jove i treballar en el mateix fins a jubilar-se s'ha trencat: una carrera dura unes quatre dècades i les competències tècniques es desfasen."
-      - "Perquè ja no existixen els títols d'FP."
-      - "Perquè la formació inicial és el sostre del que es pot aprendre."
+      - "Perquè la llei obliga a renovar el títol d'FP cada cert temps per a poder continuar exercint la professió."
+      - "Perquè una carrera dura unes quatre dècades i moltes competències tècniques es desfasen en pocs anys."
+      - "Perquè les empreses han deixat de valorar els títols d'FP i contracten per l'experiència acumulada."
+      - "Perquè la Unió Europea exigix un mínim d'hores de formació a l'any a tota persona treballadora."
     correcta: 1
-    explicacion: "El model del segle XX (un ofici per a tota la vida) s'ha trencat. Una vida laboral ronda els 45 anys, es canvia d'empresa diverses vegades i de vegades de professió, i moltes competències tècniques es desfasen en pocs anys. Per això la formació inicial és la base, no el sostre, i cal afegir capes durant tota la vida (lifelong learning), una de les competències clau de la UE."
+    explicacion: "El model del segle XX (estudiar una vegada i treballar en el mateix fins a jubilar-se) s'ha trencat. Una vida laboral ronda els 45 anys, es canvia d'empresa diverses vegades i de vegades de professió, i moltes competències tècniques es desfasen en pocs anys. Per això la formació inicial és la base, no el sostre. Que la UE considere l'aprenentatge permanent una de les seues competències clau no significa que impose hores obligatòries: és una necessitat del mercat, no una obligació legal."
   - enunciado: "Quin factor d'ocupabilitat resumix la frase «es contracta per aptituds i s'acomiada per actituds»?"
     opciones:
-      - "Que l'experiència és l'única cosa que importa."
-      - "Que l'actitud (puntualitat, fiabilitat, disposició a aprendre, acceptar crítiques) és la que les persones jóvens més subestimen i les empreses posen en primer lloc."
-      - "Que el títol tècnic garantix mantindre l'ocupació."
-      - "Que la xarxa de contactes és irrellevant."
+      - "L'experiència: els anys treballats són el que més pesa a l'hora de renovar un contracte."
+      - "L'actitud: puntualitat, fiabilitat, ganes d'aprendre i saber acceptar una crítica."
+      - "La qualificació tècnica: el títol t'obri la porta i és també el que et manté en el lloc de treball."
+      - "La xarxa de contactes: et contracten per qui et recomana i t'acomiaden quan perds eixe suport."
     correcta: 1
-    explicacion: "La part tècnica (aptituds) t'obri la porta de l'entrevista, però l'**actitud** és el que fa que et quedes i progresses. No requerix talent especial, sinó decisió, i està disponible des del primer dia. És el factor que més es subestima."
+    explicacion: "La part tècnica (les aptituds) t'obri la porta de l'entrevista, però l'**actitud** és el que fa que et quedes i progresses. Per això el títol no basta per a mantindre el lloc. L'actitud no requerix talent especial, sinó decisió, i està disponible des del primer dia. És el factor que les persones jóvens més subestimen i el que les empreses posen en primer lloc."
   - enunciado: "Quines són les tres grans forces que, segons la unitat, estan transformant el mercat de treball?"
     opciones:
-      - "La inflació, el deute públic i els tipus d'interés."
-      - "La digitalització i automatització, la transició ecològica i el canvi demogràfic (envelliment)."
-      - "La globalització, el turisme i la construcció."
-      - "El teletreball, les xarxes socials i la intel·ligència artificial generativa."
+      - "La pujada dels tipus d'interés, la inflació dels últims anys i l'augment del deute públic."
+      - "La digitalització, la transició ecològica i el canvi demogràfic."
+      - "La globalització de les cadenes de producció, l'auge del turisme i la recuperació de la construcció."
+      - "El teletreball, les xarxes socials i l'economia de plataformes."
     correcta: 1
-    explicacion: "Les tres forces són: **digitalització i automatització** (canvia quines parts del treball fa la persona), **transició ecològica** (ocupacions verdes) i **canvi demogràfic** (l'envelliment dispara la demanda en sanitat, dependència i cures i deixa buits en oficis industrials)."
+    explicacion: "Les tres forces són: **digitalització i automatització** (canvia quines parts del treball fa la persona), **transició ecològica** (ocupacions verdes i transformació de les existents) i **canvi demogràfic** (l'envelliment dispara la demanda en sanitat, dependència i cures i deixa buits en oficis industrials). El teletreball o les plataformes són manifestacions concretes de la digitalització, no forces distintes."
   - enunciado: "Quin sector concentra hui al voltant de tres de cada quatre ocupacions a Espanya?"
     opciones:
       - "El sector primari (agricultura, ramaderia, pesca)."
@@ -65,28 +65,28 @@ preguntas:
     explicacion: "L'estructura de l'ocupació espanyola està dominada pel **sector terciari** (serveis), que concentra al voltant de tres de cada quatre ocupacions. No significa que la indústria o el camp no oferisquen ocupació, sinó que la major part de les noves ocupacions apareixen en serveis, moltes amb perfils d'FP."
   - enunciado: "Què descriu millor l'actitud activa enfront del canvi del mercat laboral?"
     opciones:
-      - "Esperar a tindre el títol i que les coses no canvien."
-      - "Anticipar-se: observar el sector, detectar quines competències es demanen, formar-se abans de necessitar-ho i cuidar la xarxa, mitjançant hàbits xicotets i constants."
-      - "Canviar d'ocupació cada pocs mesos sense un pla."
-      - "Confiar exclusivament en la sort i en el talent innat."
+      - "Acabar el cicle i formar-se quan l'empresa ho demane o quan el lloc comence a perillar."
+      - "Anticipar-se amb hàbits xicotets: seguir el sector, formar-se abans de necessitar-ho i cuidar la xarxa."
+      - "Canviar d'empresa cada pocs mesos per a acumular experiències, encara que no hi haja un pla."
+      - "Fer de colp una gran formació cada pocs anys, quan el mercat ja ha canviat del tot."
     correcta: 1
-    explicacion: "L'**actitud activa** no fa res heroic: dedica unes hores al mes a formar-se, llig sobre el seu sector i manté el contacte amb companys i professors. Eixos hàbits xicotets i sostinguts en el temps separen una carrera estancada d'una que progressa. La diferència amb l'actitud passiva és d'hàbit, no de sort ni d'intel·ligència."
+    explicacion: "L'**actitud activa** no fa res heroic: dedica unes hores al mes a formar-se, llig sobre el seu sector i manté el contacte amb companys i professors. Eixos hàbits xicotets i sostinguts separen una carrera estancada d'una que progressa. Formar-se només quan l'empresa ho demana o quan el lloc ja perilla és reaccionar tard, que és el propi de l'actitud passiva. La diferència és d'hàbit, no de sort ni d'intel·ligència."
   - enunciado: "Segons la curiositat de la unitat sobre la caducitat de les competències, quina és l'única competència que «no caduca»?"
     opciones:
-      - "El domini d'una ferramenta concreta de programari."
+      - "El domini expert de la ferramenta de programari més utilitzada en el teu sector."
       - "La capacitat d'aprendre a fer servir ferramentes noves (aprendre a aprendre)."
-      - "El coneixement memoritzat de l'Estatut dels Treballadors."
-      - "La rapidesa amb el teclat."
+      - "El coneixement detallat de la normativa laboral i de l'Estatut dels Treballadors."
+      - "La destresa manual i la rapidesa amb les ferramentes pròpies del teu ofici."
     correcta: 1
-    explicacion: "Una part important de les competències tècniques que s'aprenen hui queda desfasada en pocs anys, sobretot en sectors digitals. El que més dura no són les ferramentes concretes (que canvien), sinó la **capacitat d'aprendre a fer servir ferramentes noves**: per això aprendre a aprendre és la competència que no caduca."
+    explicacion: "Una part important de les competències tècniques que s'aprenen hui queda desfasada en pocs anys, sobretot en sectors digitals. El que més dura no són les ferramentes concretes, per molt utilitzades que siguen hui (canvien), sinó la **capacitat d'aprendre a fer servir ferramentes noves**: per això aprendre a aprendre és la competència que no caduca."
   - tipo: verdadero-falso
     enunciado: "L'ocupabilitat depén només de la situació econòmica del país i no del que faça cada persona."
     correcta: false
     explicacion: "La situació econòmica influïx, però l'ocupabilitat és en gran part personal: les competències que mantens actualitzades, la teua actitud, la teua xarxa de contactes i la teua disposició a formar-te depenen de tu. Per això dues persones amb el mateix títol i al mateix país poden tindre ocupabilitats molt distintes."
   - tipo: verdadero-falso
-    enunciado: "Un títol d'FP acabat d'obtindre és el sostre del que es pot aprendre: a partir d'ací ja no cal continuar formant-se."
-    correcta: false
-    explicacion: "La formació inicial és la base, no el sostre. Una vida laboral ronda les quatre dècades i moltes competències tècniques es desfasen en pocs anys, així que cal afegir capes durant tota la vida (lifelong learning), mitjançant upskilling i reskilling."
+    enunciado: "Segons la unitat, la digitalització no elimina el treball humà en bloc, sinó que canvia quines parts del treball fa la persona."
+    correcta: true
+    explicacion: "Vertader. Desapareixen sobretot les tasques mecàniques i repetitives i creixen les que requerixen criteri, supervisió, tracte amb persones o resoldre imprevistos. Per això la pregunta útil no és «una màquina em llevarà l'ocupació?», sinó «quina part del meu treball automatitzaran i quina part només pot fer una persona?»."
   - tipo: relacionar
     enunciado: "Emparella cada concepte amb la seua definició:"
     izquierda: ["Qualificació", "Ocupació", "Upskilling", "Reskilling"]

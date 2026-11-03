@@ -1,0 +1,117 @@
+---
+asignatura: cjd-bach
+unidad_relacionada: 8
+title: "Recuperar la fianza"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "15-20 min"
+descripcion: "800 € que no vuelven. Cuatro vías para reclamarlos y solo una acaba en un juez."
+competencias_clave: [CC, CE, CCL]
+competencias_especificas: []
+estado: publicado
+publicado_en: 2026-09-07
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Caso · Tutela judicial y resolución de conflictos",
+    "titulo": "Recuperar la fianza",
+    "contexto": "Compartes piso en Valencia durante el curso. Al terminar, dejas la habitación limpia y entregas las llaves. El arrendador dice que devolverá la fianza de 800 € «cuando revise el piso». Han pasado dos meses. No contesta a los mensajes. Tienes el contrato firmado, el justificante de la transferencia de la fianza y fotos del día de la entrega.",
+    "kpi_inicial": { "dinero_recuperado": 0, "coste_del_proceso": 0, "tiempo_invertido": 0 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisión 1 — El primer movimiento",
+      "situacion": "Dos meses de silencio. Tienes tres ideas: seguir insistiendo por WhatsApp, mandar algo formal, o buscar directamente un abogado.",
+      "opciones": [
+        {
+          "label": "Sigo mandando mensajes hasta que conteste",
+          "kpi_delta": { "dinero_recuperado": 0, "coste_del_proceso": 0, "tiempo_invertido": 3 },
+          "feedback": "Los mensajes acreditan que reclamaste, lo cual no es poco, pero no interrumpen ningún plazo de forma indiscutible ni obligan a nadie a responder. El silencio le sale gratis mientras siga siendo gratis. Lección: reclamar sin dejar constancia fehaciente es reclamar solo a efectos morales.",
+          "next": "n2"
+        },
+        {
+          "label": "Envío un burofax con acuse de recibo y certificación de texto",
+          "kpi_delta": { "dinero_recuperado": 0, "coste_del_proceso": 35, "tiempo_invertido": 1 },
+          "feedback": "Treinta y cinco euros que compran algo muy concreto: prueba de qué dijiste, a quién y cuándo. Interrumpe la prescripción y demuestra buena fe si el asunto acaba en un juzgado. Muchas reclamaciones se cobran en la semana siguiente al burofax, precisamente porque cambia la señal que recibe la otra parte. Lección: la prueba de la reclamación vale casi tanto como la reclamación.",
+          "next": "n2"
+        },
+        {
+          "label": "Busco un abogado directamente",
+          "kpi_delta": { "dinero_recuperado": 0, "coste_del_proceso": 150, "tiempo_invertido": 2 },
+          "feedback": "Para 800 € el coste de abogado y procurador puede acercarse peligrosamente a la cuantía reclamada. Además, existen procedimientos donde para cantidades pequeñas no es preceptivo. Y si tus ingresos son bajos, puedes tener derecho a justicia gratuita. Lección: elegir el instrumento proporcionado a la cuantía es parte de la estrategia, no una cuestión de valentía.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisión 2 — Responde, pero a medias",
+      "situacion": "Tras el burofax contesta: dice que descuenta 500 € por «desperfectos y limpieza» y te ofrece 300 €. No aporta facturas. Tus fotos del día de la entrega muestran la habitación en buen estado.",
+      "opciones": [
+        {
+          "label": "Acepto los 300 €: algo es algo y me quito el problema",
+          "kpi_delta": { "dinero_recuperado": 300, "coste_del_proceso": 0, "tiempo_invertido": 0 },
+          "feedback": "Es una transacción válida y a veces racional, pero aquí aceptas un descuento que la otra parte no ha justificado con ninguna factura. Quien invoca un daño debe probarlo. Lección: transigir es legítimo; transigir sin haber pedido la prueba del descuento es regalar la diferencia.",
+          "next": "n3"
+        },
+        {
+          "label": "Le pido las facturas de los desperfectos antes de aceptar nada",
+          "kpi_delta": { "dinero_recuperado": 0, "coste_del_proceso": 0, "tiempo_invertido": 1 },
+          "feedback": "La carga de la prueba está de su lado: quien retiene una fianza por daños debe acreditar el daño y su coste. Pedir las facturas suele reducir el descuento a la mitad o hacerlo desaparecer. Lección: preguntar por la prueba no es desconfianza, es el mecanismo básico con el que se reparte el trabajo de convencer.",
+          "next": "n3"
+        },
+        {
+          "label": "Propongo una mediación con un tercero neutral",
+          "kpi_delta": { "dinero_recuperado": 0, "coste_del_proceso": 60, "tiempo_invertido": 2 },
+          "feedback": "La mediación no impone nada: el mediador acerca posiciones y quien decide seguís siendo vosotros. Desde 2025 hay que acreditar un intento de acuerdo antes de demandar en la mayoría de asuntos civiles, así que este paso además cumple ese requisito. Lección: mediación, conciliación y arbitraje se distinguen por quién decide, y solo en el arbitraje decide un tercero.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisión 3 — Sin acuerdo",
+      "situacion": "No aporta facturas y mantiene los 300 €. Han pasado cuatro meses desde que entregaste las llaves. Te planteas si vale la pena ir al juzgado por 500 € de diferencia.",
+      "opciones": [
+        {
+          "label": "Presento una demanda ordinaria con abogado y procurador",
+          "kpi_delta": { "dinero_recuperado": 800, "coste_del_proceso": 400, "tiempo_invertido": 6 },
+          "feedback": "Ganarías, pero el instrumento no encaja con la cuantía: para reclamar una deuda dineraria líquida y documentada existe un procedimiento mucho más ligero. Elegir el cauce equivocado convierte una victoria en un empate económico. Lección: el proceso adecuado a la cuantía es parte del derecho a una tutela judicial efectiva, no un tecnicismo.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Presento un procedimiento monitorio con el contrato y el justificante",
+          "kpi_delta": { "dinero_recuperado": 800, "coste_del_proceso": 0, "tiempo_invertido": 3 },
+          "feedback": "El monitorio está diseñado exactamente para esto: deuda dineraria, vencida y acreditada por documentos. Se presenta con un formulario, sin necesidad de abogado ni procurador para cuantías pequeñas. Si el deudor no se opone, se despacha ejecución; si se opone, el asunto pasa al juicio que corresponda. Lección: la ley ofrece cauces distintos según el tipo de deuda; conocerlos es lo que hace real el acceso a la justicia.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Lo dejo estar: no compensa el lío por 500 €",
+          "kpi_delta": { "dinero_recuperado": 300, "coste_del_proceso": 0, "tiempo_invertido": 0 },
+          "feedback": "Es una decisión comprensible y es también el cálculo que hace quien retiene fianzas sin justificarlas: sabe que la mayoría no reclama. La tutela judicial existe, pero solo funciona como incentivo si se usa. Lección: el coste de reclamar es la variable sobre la que se apoya el incumplimiento sistemático de deudas pequeñas.",
+          "next": "final:fracaso_parcial"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "Los 800 € vuelven",
+      "resumen": "Dejaste constancia con burofax, exigiste la prueba del descuento, intentaste el acuerdo previo y usaste el procedimiento proporcionado a la cuantía. Tardó siete meses y no hizo falta una sala de vistas.",
+      "lecciones_clave": [
+        "Quien retiene una fianza por daños debe acreditarlos: la carga de la prueba está de su lado, no del tuyo.",
+        "Negociación, mediación, conciliación y arbitraje se distinguen por quién decide; solo el árbitro y el juez deciden por ti.",
+        "El monitorio permite reclamar deudas documentadas sin abogado ni procurador en cuantías pequeñas."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "300 € y un descuento sin justificar",
+      "resumen": "Aceptaste la oferta para acabar con el asunto. El arrendador retuvo 500 € que nunca acreditó, y volverá a hacerlo con la siguiente persona que alquile la habitación.",
+      "lecciones_clave": [
+        "El coste percibido de reclamar es lo que hace rentable no devolver deudas pequeñas.",
+        "Existen vías gratuitas o casi gratuitas antes del juzgado: el problema casi nunca es el precio, es no conocerlas."
+      ]
+    }
+  }
+}
+```

@@ -3,6 +3,7 @@ import { useMemo, useState } from 'preact/hooks';
 import { type Locale } from '@/i18n/locale';
 import { formatEUR, formatNumber, formatPercent } from '../../lib/calc/format';
 import { calcular, type Entradas } from '../../lib/calc/tamano-mercado';
+import NumberInput from '../NumberInput';
 
 /** UI strings, Valencian (AVL) alongside the ES source. TAM/SAM/SOM are kept. */
 export const COPY = {
@@ -98,8 +99,6 @@ export const COPY = {
 
 interface Props { locale?: Locale }
 
-const num = (e: Event) => parseFloat((e.target as HTMLInputElement).value) || 0;
-
 /**
  * TAM, SAM and SOM for a class project, with the reverse question attached:
  * how many customers a revenue target actually needs.
@@ -144,13 +143,13 @@ export default function TamanoMercadoCalc({ locale = 'es' }: Props) {
         <label class="calc__field">
           <span class="calc__label">{t.poblacion}</span>
           <div class="calc__input-wrap">
-            <input type="number" min={1} step={100} value={poblacion} onInput={(e) => setPoblacion(num(e))} />
+            <NumberInput min={1} step={100} value={poblacion} onValue={setPoblacion} />
           </div>
         </label>
         <label class="calc__field">
           <span class="calc__label">{t.perfil}</span>
           <div class="calc__input-wrap">
-            <input type="number" min={1} max={100} step={1} value={perfilPct} onInput={(e) => setPerfilPct(num(e))} />
+            <NumberInput min={1} max={100} step={1} value={perfilPct} onValue={setPerfilPct} />
           </div>
         </label>
       </div>
@@ -161,13 +160,13 @@ export default function TamanoMercadoCalc({ locale = 'es' }: Props) {
         <label class="calc__field">
           <span class="calc__label">{t.frecuencia}</span>
           <div class="calc__input-wrap">
-            <input type="number" min={1} step={1} value={frecuencia} onInput={(e) => setFrecuencia(num(e))} />
+            <NumberInput min={1} step={1} value={frecuencia} onValue={setFrecuencia} />
           </div>
         </label>
         <label class="calc__field">
           <span class="calc__label">{t.precio}</span>
           <div class="calc__input-wrap">
-            <input type="number" min={0.1} step={1} value={precio} onInput={(e) => setPrecio(num(e))} />
+            <NumberInput min={0.1} step={1} value={precio} onValue={setPrecio} />
           </div>
         </label>
       </div>
@@ -177,19 +176,19 @@ export default function TamanoMercadoCalc({ locale = 'es' }: Props) {
         <label class="calc__field">
           <span class="calc__label">{t.cuota}</span>
           <div class="calc__input-wrap">
-            <input type="number" min={1} max={100} step={1} value={cuotaPct} onInput={(e) => setCuotaPct(num(e))} />
+            <NumberInput min={1} max={100} step={1} value={cuotaPct} onValue={setCuotaPct} />
           </div>
         </label>
         <label class="calc__field">
           <span class="calc__label">{t.objetivo}</span>
           <div class="calc__input-wrap">
-            <input type="number" min={0} step={500} value={objetivo} onInput={(e) => setObjetivo(num(e))} />
+            <NumberInput min={0} step={500} value={objetivo} onValue={setObjetivo} />
           </div>
         </label>
       </div>
       <p class="tm__note">{t.cuotaAyuda}</p>
 
-      <div class="calc__results">
+      <div class="calc__results" aria-live="polite">
         {!r.valido ? (
           <div class="calc__warning">{t.sinDatos}</div>
         ) : (

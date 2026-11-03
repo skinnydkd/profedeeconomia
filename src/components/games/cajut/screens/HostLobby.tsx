@@ -22,11 +22,18 @@ interface ManifestAsig {
 interface Manifest {
   generatedAt: string;
   version: number;
+  /** Hash of the question bank this manifest was built with. */
+  bankVersion?: string;
   asignaturas: ManifestAsig[];
 }
 
 interface Props {
   publicState: PublicState;
+  /** Bank the game server was deployed with (null until it says hello). */
+  serverBankVersion: string | null;
+  /** Last error the server sent the host, if any. */
+  startError: string | null;
+  onClearError: () => void;
   onStart: (asignaturaSlug: string, unidades: number[], totalQuestions: number | 'all') => void;
   onKick: (playerId: string) => void;
 }
@@ -47,6 +54,9 @@ export const COPY = {
     comenzar: 'Comenzar partida',
     esperandoAlumno: 'Esperando a que entre algún alumno.',
     eligeUnidad: 'Elige al menos una unidad.',
+    sinPreguntas: 'El servidor del juego no tiene preguntas para las unidades elegidas. Prueba con otras.',
+    bancoDesfasado:
+      'El servidor del juego tiene otra versión de las preguntas: puede faltar alguna unidad o no coincidir con el temario actual.',
   },
   ca: {
     salaAbierta: (n: number) => `Sala oberta · ${n} alumne${n === 1 ? '' : 's'}`,
@@ -63,26 +73,36 @@ export const COPY = {
     comenzar: 'Comença la partida',
     esperandoAlumno: 'Esperant que entre algun alumne.',
     eligeUnidad: 'Tria almenys una unitat.',
+    sinPreguntas: "El servidor del joc no té preguntes per a les unitats triades. Prova'n unes altres.",
+    bancoDesfasado:
+      'El servidor del joc té una altra versió de les preguntes: pot faltar alguna unitat o no coincidir amb el temari actual.',
   },
 };
 
-export function HostLobby({ publicState, onStart, onKick }: Props) {
-  const c = COPY[useGameLocale()];
+export function HostLobby({ publicState, serverBankVersion, startError, onClearError, onStart, onKick }: Props) {
+  const locale = useGameLocale();
+  const c = COPY[locale];
   const [manifest, setManifest] = useState<Manifest | null>(null);
   const [selectedAsig, setSelectedAsig] = useState<string | null>(null);
   const [selectedUnidades, setSelectedUnidades] = useState<number[]>([]);
   const [totalQ, setTotalQ] = useState<number | 'all'>(15);
 
+  // One manifest per language, like the question banks on the server.
   useEffect(() => {
-    fetch('/games-multi/cajut/manifest.json')
+    fetch(locale === 'ca' ? '/games-multi/cajut/manifest.ca.json' : '/games-multi/cajut/manifest.json')
       .then((r) => r.json())
       .then(setManifest)
       .catch((err) => console.error('Failed to load Cajut manifest', err));
-  }, []);
+  }, [locale]);
+
+  // The manifest ships with each Vercel deploy, the bank with PartyKit's.
+  const bankMismatch =
+    !!manifest?.bankVersion && !!serverBankVersion && manifest.bankVersion !== serverBankVersion;
 
   const asigMeta = manifest?.asignaturas.find((a) => a.slug === selectedAsig) ?? null;
 
   function toggleUnidad(n: number) {
+    onClearError();
     setSelectedUnidades((prev) =>
       prev.includes(n) ? prev.filter((x) => x !== n) : [...prev, n].sort((a, b) => a - b),
     );
@@ -119,6 +139,7 @@ export function HostLobby({ publicState, onStart, onKick }: Props) {
               <button
                 key={a.slug}
                 onClick={() => {
+                  onClearError();
                   setSelectedAsig(a.slug);
                   setSelectedUnidades([]);
                 }}
@@ -244,6 +265,16 @@ export function HostLobby({ publicState, onStart, onKick }: Props) {
               : selectedUnidades.length === 0
                 ? c.eligeUnidad
                 : ''}
+          </p>
+        )}
+        {startError === 'empty-pool' && (
+          <p class="subtle" role="alert" style={{ marginTop: 8, color: 'var(--cajut-terracota)' }}>
+            {c.sinPreguntas}
+          </p>
+        )}
+        {bankMismatch && (
+          <p class="subtle" role="status" style={{ marginTop: 8, color: 'var(--cajut-terracota)' }}>
+            {c.bancoDesfasado}
           </p>
         )}
       </div>

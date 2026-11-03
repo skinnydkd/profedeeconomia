@@ -13,7 +13,7 @@ solucion:
   - "1. Fondo de maniobra = Activo corriente − Pasivo corriente = 40.000 − 35.000 = **+5.000 €**. Positivo: la empresa puede atender sus deudas a corto plazo con holgura."
   - "2. RE (ROA) = BAII / Activo total = 18.000 / 120.000 = **0,15 → 15 %**. Por cada 100 € invertidos en activos, el negocio genera 15 € de beneficio operativo."
   - "3. RF (ROE) = Beneficio neto / Patrimonio neto = 11.925 / 50.000 = **0,2385 → 23,85 %**. Por cada 100 € aportados por los socios, se obtienen casi 24 € de beneficio."
-  - "4. El efecto apalancamiento es positivo: RF (23,85 %) > RE (15 %) porque el coste del deute (6 %) es menor que la RE (15 %). Endeudarse para financiar activos productivos amplifica la rentabilidad del accionista."
+  - "4. El efecto apalancamiento es positivo porque el coste de la deuda (6 %) es menor que la RE (15 %): la rentabilidad de los socios antes de impuestos, BAI / PN = 15.900 / 50.000 = 31,8 %, supera a la RE. Aquí también el ROE (23,85 %) la supera, aunque después de impuestos no siempre ocurre. Endeudarse para financiar activos productivos amplifica la rentabilidad del accionista."
 estado: publicado
 ---
 

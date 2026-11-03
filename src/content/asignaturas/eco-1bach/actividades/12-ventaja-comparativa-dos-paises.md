@@ -55,7 +55,7 @@ Se supone que cada país puede repartir sus recursos entre los dos bienes de for
 3. ¿Qué país tiene **ventaja absoluta** en cada bien? Responde con los datos en la mano.
 4. ¿Qué país tiene **ventaja comparativa** en cada bien? Explica en una frase por qué la respuesta a esta pregunta no coincide con la anterior.
 5. Si cada país se especializa por completo en el bien de su ventaja comparativa, ¿cuánto produce el mundo de cada bien?
-6. ¿Entre qué dos valores debe situarse la **relación de intercambio** (litros de tela por unidad de aceite) para que el comercio interese a los dos? Justifica qué pasaría justo por debajo y justo por encima de ese intervalo.
+6. ¿Entre qué dos valores debe situarse la **relación de intercambio** (metros de tela por litro de aceite) para que el comercio interese a los dos? Justifica qué pasaría justo por debajo y justo por encima de ese intervalo.
 7. Supón que acuerdan intercambiar **40 de aceite por 100 de tela**. Comprueba, país por país, cuánto acaba teniendo cada uno y compáralo con lo máximo que podría tener produciendo esa misma cantidad de aceite por su cuenta.
 8. Dibuja las dos fronteras de posibilidades de producción y marca sobre cada una el punto de consumo que alcanza cada país gracias al comercio. ¿Dónde queda ese punto respecto de la frontera?
 
@@ -80,6 +80,6 @@ Se supone que cada país puede repartir sus recursos entre los dos bienes de for
 ## Variantes y extensiones
 
 - **Variante corta (25 min):** resolver solo las preguntas 1 a 4 y dejar el rango de intercambio para la sesión siguiente.
-- **Variante con la calculadora del aula:** repetir el ejercicio cambiando la producción máxima de tela de Portugal a 300 y comprobar que la ventaja comparativa cambia de manos. Es la forma más rápida de ver que no depende del tamaño del país.
+- **Variante con la calculadora del aula:** repetir el ejercicio con otras producciones máximas de tela para Portugal. Con 300 no cambia nada (1 aceite = 5 tela, más que los 2 de España); con 90, la ventaja comparativa en aceite pasa a Portugal (1 aceite = 1,5 tela). Es la forma más rápida de ver que lo que decide es el coste de oportunidad, no el tamaño del país.
 - **Extensión crítica (15 min).** El modelo supone que los recursos se reasignan sin coste de un sector al otro. Discutir en gran grupo qué le pasa, en el mundo real, a quien trabajaba en el sector que desaparece. Enlaza con la curva del elefante de Milanović, que la unidad trata más adelante.
 - **Conexión con el test de la unidad:** la pregunta numérica sobre el coste de oportunidad del vino usa exactamente este método con otras cifras.

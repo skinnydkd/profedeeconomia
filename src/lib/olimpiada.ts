@@ -35,7 +35,7 @@ export function bloqueMeta(slug: string): Familia {
 // orden alfabético. El formato del examen VARÍA según la comunidad.
 export interface Ambito { slug: string; label: string; intro: string; }
 export const AMBITOS: Ambito[] = [
-  { slug: 'cv',            label: 'Comunitat Valenciana', intro: 'Fase local de la C. Valenciana (UA/UV/UPV/UJI/UMH). Es el formato que describe la guía: test + ejercicio + comentario, 2 horas.' },
+  { slug: 'cv',            label: 'Comunitat Valenciana', intro: 'Fase local de la C. Valenciana (UA/UV/UPV/UJI/UMH). Es el formato que describe la guía: test + ejercicio + comentario, 2 horas y media.' },
   { slug: 'nacional',      label: 'Fase nacional',        intro: 'Olimpiada Española de Economía: la final estatal a la que pasan los finalistas de cada fase local.' },
   { slug: 'madrid',        label: 'Comunidad de Madrid',  intro: 'Fase local de Madrid (UAM, URJC, UCM, UAH, UC3M). Publicados con soluciones.' },
   { slug: 'andalucia',     label: 'Andalucía',            intro: 'Fase local de Andalucía (Universidad de Sevilla).' },
@@ -104,6 +104,19 @@ export function simulacrosPorAmbito(): { ambito: Ambito; examenes: Simulacro[] }
 
 export interface Lectura { categoria: string; titulo: string; autor: string; comentario: string; }
 export const LECTURAS: Lectura[] = [
+  // Manuales: the technical base the exam asks for
+  {
+    categoria: 'Manuales',
+    titulo: 'Libros de Economía (1.º de Bachillerato) y de Empresa y Diseño de Modelos de Negocio (2.º)',
+    autor: 'profedeeconomia.es',
+    comentario: 'Los libros de este mismo web cubren el temario de la Olimpiada. Son la primera lectura; las fichas de repaso de esta sección resumen lo que más se pregunta.',
+  },
+  {
+    categoria: 'Manuales',
+    titulo: 'Principios de economía',
+    autor: 'N. Gregory Mankiw',
+    comentario: 'El manual de introducción más usado, con micro, macro y ejercicios resueltos. Es la mejor base para la parte técnica de Economía: elasticidad, costes, mercados y PIB.',
+  },
   // Economía general
   {
     categoria: 'Economía general',
@@ -178,7 +191,7 @@ export const LECTURAS: Lectura[] = [
     categoria: 'Clásicos del pensamiento',
     titulo: 'Teoría general del empleo, el interés y el dinero',
     autor: 'John Maynard Keynes',
-    comentario: 'Obra que revolucionó la macroeconomía; la introducción y los capítulos sobre demanda agregada son asequibles para un buen alumno de Bachillerato.',
+    comentario: 'Obra que revolucionó la macroeconomía, pero de lectura difícil incluso en la universidad. Para la Olimpiada basta con dominar sus ideas centrales (demanda agregada, multiplicador, desempleo involuntario) a través de un manual.',
   },
   {
     categoria: 'Clásicos del pensamiento',
@@ -202,7 +215,7 @@ export const LECTURAS: Lectura[] = [
     categoria: 'Clásicos del pensamiento',
     titulo: 'El precio de la desigualdad',
     autor: 'Joseph E. Stiglitz',
-    comentario: 'Critica los fallos de mercado y la captura regulatoria con datos recientes; amplía la perspectiva sobre política económica y bienestar.',
+    comentario: 'Critica los fallos de mercado y la captura regulatoria con datos de Estados Unidos (el libro es de 2012); amplía la perspectiva sobre política económica y bienestar.',
   },
   // Finanzas e inversión
   {
@@ -215,7 +228,7 @@ export const LECTURAS: Lectura[] = [
     categoria: 'Finanzas e inversión',
     titulo: 'Principios',
     autor: 'Ray Dalio',
-    comentario: 'Ofrece una visión de la máquina económica desde dentro de un fondo global; complementa la teoría con una perspectiva profesional.',
+    comentario: 'Las reglas de vida y de trabajo del fundador de Bridgewater, uno de los mayores fondos de inversión del mundo. Es más un libro de gestión y de toma de decisiones que de economía.',
   },
   // Marketing y empresa
   {
@@ -245,15 +258,15 @@ export const LECTURAS: Lectura[] = [
   },
   {
     categoria: 'Webs y recursos',
-    titulo: 'Destripando la Economía (YouTube)',
+    titulo: 'economipedia.com',
     autor: '',
-    comentario: 'Canal de divulgación económica en castellano que explica conceptos macroeconómicos y de actualidad con rigor y claridad.',
+    comentario: 'Diccionario y artículos breves de economía y empresa en castellano; útil para repasar definiciones antes del test.',
   },
 ];
 
 export interface ParteGuia { nombre: string; puntos: string; tiempo?: string; descripcion: string; }
 export const GUIA: { duracion: string; total: string; partes: ParteGuia[] } = {
-  duracion: '2 horas',
+  duracion: '2 horas y media',
   total: '10 puntos',
   partes: [
     { nombre: 'Parte I — Test teórico', puntos: '4 pts', descripcion: 'Dieciséis preguntas tipo test con una sola opción correcta, sobre Economía de 1.º y Empresa (EDMN) de 2.º. Penalizan los fallos: tres incorrectas restan una correcta; las no contestadas ni suman ni restan.' },

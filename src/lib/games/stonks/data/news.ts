@@ -96,7 +96,7 @@ export const NEWS: SemesterNews[] = [
   { year: 2012, half: 1, text: 'Draghi promete hacer «lo que haga falta» para salvar el euro y las primas de riesgo se relajan.' },
   { year: 2013, half: 0, text: 'La Reserva Federal anuncia que empezará a retirar estímulos y la deuda cae.' },
   { year: 2013, half: 1, text: 'El bitcoin supera los 1.000 dólares por primera vez.' },
-  { year: 2014, half: 0, text: 'La zona euro coquetea con la deflación y el BCE lleva los tipos a cero.' },
+  { year: 2014, half: 0, text: 'La zona euro coquetea con la deflación y el BCE pone por primera vez un tipo de interés en negativo.' },
   { year: 2014, half: 1, text: 'El precio del petróleo se desploma más de un 40 % en pocos meses.' },
   { year: 2015, half: 0, text: 'El BCE lanza un programa masivo de compra de deuda pública.' },
   { year: 2015, half: 1, text: 'China devalúa el yuan y provoca una corrección en las bolsas de todo el mundo.' },

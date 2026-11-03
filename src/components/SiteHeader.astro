@@ -1,5 +1,5 @@
 ---
-import { ASIGNATURAS_POR_ETAPA, SECCIONES_TRANSVERSALES } from '@/lib/asignaturas';
+import { ASIGNATURAS_POR_ETAPA, SECCION_GRUPOS, seccionesDelGrupo } from '@/lib/asignaturas';
 import { getLocale } from '@/i18n/locale';
 import { t, type UIKey } from '@/i18n/ui';
 import { localizeAsignatura } from '@/i18n/asignaturas-ca';
@@ -27,15 +27,15 @@ const locale = getLocale(Astro.currentLocale);
     <nav class="site-nav" id="site-nav" aria-label={t('nav.aria', locale)}>
       <!-- ESO -->
       <div class="nav-group" data-nav-group>
-        <button class="nav-trigger" type="button" aria-haspopup="true" aria-expanded="false">
+        <button class="nav-trigger" type="button" aria-expanded="false">
           {t('nav.eso', locale)}
           <span class="caret" aria-hidden="true">▾</span>
         </button>
-        <div class="nav-dropdown" role="menu">
+        <div class="nav-dropdown">
           <div class="dropdown-section">
             <span class="dropdown-label">{t('curso.3eso', locale)}</span>
             {ASIGNATURAS_POR_ETAPA.eso.cursos['3eso'].asignaturas.map((a0) => { const a = localizeAsignatura(a0, locale); return (
-              <a href={`/${a.slug}/`} role="menuitem" class={a.estado === 'proximamente' ? 'is-proximamente' : ''}>
+              <a href={`/${a.slug}/`} class={a.estado === 'proximamente' ? 'is-proximamente' : ''}>
                 {a.title}
                 {a.estado === 'proximamente' && <span class="badge">{t('nav.proximamente', locale)}</span>}
               </a>
@@ -44,7 +44,7 @@ const locale = getLocale(Astro.currentLocale);
           <div class="dropdown-section">
             <span class="dropdown-label">{t('curso.4eso', locale)}</span>
             {ASIGNATURAS_POR_ETAPA.eso.cursos['4eso'].asignaturas.map((a0) => { const a = localizeAsignatura(a0, locale); return (
-              <a href={`/${a.slug}/`} role="menuitem">
+              <a href={`/${a.slug}/`}>
                 {a.title}
               </a>
             ); })}
@@ -54,15 +54,15 @@ const locale = getLocale(Astro.currentLocale);
 
       <!-- BACH -->
       <div class="nav-group" data-nav-group>
-        <button class="nav-trigger" type="button" aria-haspopup="true" aria-expanded="false">
+        <button class="nav-trigger" type="button" aria-expanded="false">
           {t('nav.bach', locale)}
           <span class="caret" aria-hidden="true">▾</span>
         </button>
-        <div class="nav-dropdown" role="menu">
+        <div class="nav-dropdown">
           <div class="dropdown-section">
             <span class="dropdown-label">{t('curso.1bach', locale)}</span>
             {ASIGNATURAS_POR_ETAPA.bach.cursos['1bach'].asignaturas.map((a0) => { const a = localizeAsignatura(a0, locale); return (
-              <a href={`/${a.slug}/`} role="menuitem">
+              <a href={`/${a.slug}/`}>
                 {a.title}
               </a>
             ); })}
@@ -70,7 +70,7 @@ const locale = getLocale(Astro.currentLocale);
           <div class="dropdown-section">
             <span class="dropdown-label">{t('curso.2bach', locale)}</span>
             {ASIGNATURAS_POR_ETAPA.bach.cursos['2bach'].asignaturas.map((a0) => { const a = localizeAsignatura(a0, locale); return (
-              <a href={`/${a.slug}/`} role="menuitem">
+              <a href={`/${a.slug}/`}>
                 {a.title}
               </a>
             ); })}
@@ -78,7 +78,7 @@ const locale = getLocale(Astro.currentLocale);
           <div class="dropdown-section">
             <span class="dropdown-label">{t('curso.optativas', locale)}</span>
             {ASIGNATURAS_POR_ETAPA.bach.cursos.bach.asignaturas.map((a0) => { const a = localizeAsignatura(a0, locale); return (
-              <a href={`/${a.slug}/`} role="menuitem" class={a.estado === 'proximamente' ? 'is-proximamente' : ''}>
+              <a href={`/${a.slug}/`} class={a.estado === 'proximamente' ? 'is-proximamente' : ''}>
                 {a.title}
                 {a.estado === 'proximamente' && <span class="badge">{t('nav.proximamente', locale)}</span>}
               </a>
@@ -86,22 +86,22 @@ const locale = getLocale(Astro.currentLocale);
           </div>
           <div class="dropdown-section">
             <span class="dropdown-label">{t('nav.preparacion', locale)}</span>
-            <a href="/olimpiada/" role="menuitem">{t('nav.olimpiada', locale)}</a>
+            <a href="/olimpiada/">{t('nav.olimpiada', locale)}</a>
           </div>
         </div>
       </div>
 
       <!-- FP -->
       <div class="nav-group" data-nav-group>
-        <button class="nav-trigger" type="button" aria-haspopup="true" aria-expanded="false">
+        <button class="nav-trigger" type="button" aria-expanded="false">
           {t('nav.fp', locale)}
           <span class="caret" aria-hidden="true">▾</span>
         </button>
-        <div class="nav-dropdown nav-dropdown--single" role="menu">
+        <div class="nav-dropdown nav-dropdown--single">
           <div class="dropdown-section">
             <span class="dropdown-label">{t('nav.ipe.group', locale)}</span>
             {ASIGNATURAS_POR_ETAPA.fp.cursos.fp.asignaturas.map((a0) => { const a = localizeAsignatura(a0, locale); return (
-              <a href={`/${a.slug}/`} role="menuitem" class={a.estado === 'proximamente' ? 'is-proximamente' : ''}>
+              <a href={`/${a.slug}/`} class={a.estado === 'proximamente' ? 'is-proximamente' : ''}>
                 <span class="opt-title">{a.shortLabel}</span>
                 <span class="opt-desc">{a.slug === 'ipe1-fp' ? t('nav.ipe1.desc', locale) : t('nav.ipe2.desc', locale)}</span>
                 {a.estado === 'proximamente' && <span class="badge">{t('nav.proximamente', locale)}</span>}
@@ -113,29 +113,34 @@ const locale = getLocale(Astro.currentLocale);
 
       <!-- Otros -->
       <div class="nav-group" data-nav-group>
-        <button class="nav-trigger" type="button" aria-haspopup="true" aria-expanded="false">
+        <button class="nav-trigger" type="button" aria-expanded="false">
           {t('nav.otros', locale)}
           <span class="caret" aria-hidden="true">▾</span>
         </button>
-        <div class="nav-dropdown nav-dropdown--single" role="menu">
-          {SECCIONES_TRANSVERSALES.map((s) => (
-            <a href={`/${s.slug}/`} role="menuitem" class={s.slug === 'jocs-economics' ? 'is-olimpico' : ''}>
-              <span class="opt-title">
-                {s.slug === 'jocs-economics' && (
-                  <span class="opt-rings" aria-hidden="true">
-                    <svg viewBox="0 0 30 16" width="22" height="12" fill="none" stroke-width="1.7">
-                      <circle cx="6" cy="6" r="4.2" stroke="var(--color-eco1)" />
-                      <circle cx="15" cy="6" r="4.2" stroke="var(--color-ink)" />
-                      <circle cx="24" cy="6" r="4.2" stroke="var(--color-terra)" />
-                      <circle cx="10.5" cy="10" r="4.2" stroke="var(--color-mustard)" />
-                      <circle cx="19.5" cy="10" r="4.2" stroke="var(--color-gpe)" />
-                    </svg>
+        <div class="nav-dropdown nav-dropdown--cols">
+          {SECCION_GRUPOS.map((grupo) => (
+            <div class="dropdown-section">
+              <span class="dropdown-label">{t(`nav.otros.${grupo}` as UIKey, locale)}</span>
+              {seccionesDelGrupo(grupo).map((s) => (
+                <a href={`/${s.slug}/`} class={s.slug === 'jocs-economics' ? 'is-olimpico' : ''}>
+                  <span class="opt-title">
+                    {s.slug === 'jocs-economics' && (
+                      <span class="opt-rings" aria-hidden="true">
+                        <svg viewBox="0 0 30 16" width="22" height="12" fill="none" stroke-width="1.7">
+                          <circle cx="6" cy="6" r="4.2" stroke="var(--color-eco1)" />
+                          <circle cx="15" cy="6" r="4.2" stroke="var(--color-ink)" />
+                          <circle cx="24" cy="6" r="4.2" stroke="var(--color-terra)" />
+                          <circle cx="10.5" cy="10" r="4.2" stroke="var(--color-mustard)" />
+                          <circle cx="19.5" cy="10" r="4.2" stroke="var(--color-gpe)" />
+                        </svg>
+                      </span>
+                    )}
+                    {t(`sec.${s.slug}.label` as UIKey, locale)}
                   </span>
-                )}
-                {t(`sec.${s.slug}.label` as UIKey, locale)}
-              </span>
-              <span class="opt-desc">{t(`sec.${s.slug}.desc` as UIKey, locale)}</span>
-            </a>
+                  <span class="opt-desc">{t(`sec.${s.slug}.desc` as UIKey, locale)}</span>
+                </a>
+              ))}
+            </div>
           ))}
         </div>
       </div>
@@ -148,8 +153,9 @@ const locale = getLocale(Astro.currentLocale);
 </header>
 
 <script>
-  // Click toggle per a dropdowns (a part del hover/focus-within que ja funciona via CSS).
-  // Necessari per accessibilitat al mòbil i per teclat.
+  // Disclosure pattern: a click (or Enter/Space) on the trigger opens its panel
+  // and aria-expanded follows it. Hover still opens it for the mouse via CSS;
+  // focus alone does not, so tabbing past a trigger skips its links.
   const groups = document.querySelectorAll<HTMLElement>('[data-nav-group]');
 
   // Phone menu: the nav does not fit beside the wordmark below ~760px, so it
@@ -193,6 +199,15 @@ const locale = getLocale(Astro.currentLocale);
         }
       });
     });
+
+    // Tabbing out of an open group closes it, so aria-expanded never claims a
+    // panel that is no longer where the focus is.
+    group.addEventListener('focusout', (e) => {
+      const next = e.relatedTarget as Node | null;
+      if (!next || group.contains(next)) return;
+      group.classList.remove('is-open');
+      trigger.setAttribute('aria-expanded', 'false');
+    });
   });
 
   // Tancar dropdowns (i el menu de mobil) en clicar fora
@@ -208,9 +223,12 @@ const locale = getLocale(Astro.currentLocale);
   document.addEventListener('keydown', (e) => {
     if (e.key !== 'Escape') return;
     const menuWasOpen = header?.classList.contains('is-menu-open');
+    // Focus inside a panel goes back to its trigger, so it is not lost when the panel hides.
+    const focusedGroup = (document.activeElement as HTMLElement | null)?.closest<HTMLElement>('[data-nav-group]');
     closeGroups();
     setMenu(false);
     if (menuWasOpen) navToggle?.focus();
+    else focusedGroup?.querySelector<HTMLButtonElement>('.nav-trigger')?.focus();
   });
 </script>
 
@@ -296,7 +314,7 @@ const locale = getLocale(Astro.currentLocale);
   }
   .nav-trigger:hover,
   .nav-trigger:focus-visible {
-    color: var(--color-terra);
+    color: var(--color-terra-ink);
   }
   .caret {
     font-size: 0.65em;
@@ -304,9 +322,8 @@ const locale = getLocale(Astro.currentLocale);
     transition: transform .15s ease, color .15s ease;
   }
   .nav-group.is-open .caret,
-  .nav-group:hover .caret,
-  .nav-group:focus-within .caret {
-    color: var(--color-terra);
+  .nav-group:hover .caret {
+    color: var(--color-terra-ink);
     transform: rotate(180deg);
   }
 
@@ -324,8 +341,11 @@ const locale = getLocale(Astro.currentLocale);
     min-width: 280px;
     opacity: 0;
     visibility: hidden;
-    pointer-events: none;
-    transition: opacity .15s ease, transform .15s ease, visibility .15s;
+    /* Closing waits a moment: a diagonal path from the trigger to a link
+       leaves the hover area for an instant, and until the delay ends the
+       panel is still visible and so still catches the pointer. A hidden
+       panel takes no pointer events, so no pointer-events rule is needed. */
+    transition: opacity .15s ease .15s, transform .15s ease .15s, visibility 0s linear .3s;
     display: flex;
     flex-direction: column;
     gap: 1rem;
@@ -334,6 +354,32 @@ const locale = getLocale(Astro.currentLocale);
   .nav-dropdown--single {
     min-width: 240px;
     gap: 0.1rem;
+  }
+  /* «Otros» carries eight sections: one column ran past the bottom of short
+     viewports, so it lays out as two labelled columns. Right-aligned because
+     540px centred on a trigger this close to the edge would overflow. */
+  .nav-dropdown--cols {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+    gap: 0 1.4rem;
+    min-width: 540px;
+    left: auto;
+    right: 0;
+    transform: translateY(-4px);
+  }
+  /* Doubled class on purpose: the generic open rule further down centres the
+     panel with translateX(-50%) and, at equal specificity, would win and push
+     this right-aligned panel 270px left of its trigger. */
+  .nav-group:hover .nav-dropdown.nav-dropdown--cols,
+  .nav-group.is-open .nav-dropdown.nav-dropdown--cols {
+    transform: translateY(0);
+  }
+  /* Columns sit side by side, so the stacked-section divider does not apply. */
+  .nav-dropdown--cols .dropdown-section + .dropdown-section {
+    border-top: 0;
+    padding-top: 0;
+    margin-top: 0;
   }
   /* Pont invisible sobre el buit de 6px trigger↔dropdown: evita que el :hover
      caiga quan el cursor baixa cap a una assignatura i tanque el menú. */
@@ -347,13 +393,18 @@ const locale = getLocale(Astro.currentLocale);
   }
 
   .nav-group:hover .nav-dropdown,
-  .nav-group:focus-within .nav-dropdown,
   .nav-group.is-open .nav-dropdown {
     opacity: 1;
     visibility: visible;
-    pointer-events: auto;
     transform: translateX(-50%) translateY(0);
+    transition-delay: 0s;
   }
+  /* The panel being opened sits above one still fading out. Moving fast from
+     «Otros» to «FP», the closing 540px panel (same z-index, later in the DOM)
+     covered FP's and took the pointer back, reopening «Otros». */
+  .nav-group:hover .nav-dropdown,
+  .nav-group:focus-within .nav-dropdown,
+  .nav-group.is-open .nav-dropdown { z-index: 61; }
 
   /* ──────────── seccions del dropdown ──────────── */
   .dropdown-section {
@@ -369,7 +420,7 @@ const locale = getLocale(Astro.currentLocale);
   .dropdown-label {
     font-family: var(--font-sans);
     font-size: 0.72rem;
-    color: var(--color-terra);
+    color: var(--color-terra-ink);
     text-transform: uppercase;
     letter-spacing: 0.12em;
     font-weight: 700;
@@ -394,7 +445,7 @@ const locale = getLocale(Astro.currentLocale);
   .nav-dropdown a:hover,
   .nav-dropdown a:focus-visible {
     background: var(--color-bg-cream);
-    color: var(--color-terra);
+    color: var(--color-terra-ink);
   }
   .nav-dropdown a.is-proximamente {
     color: var(--color-ink-soft);
@@ -437,7 +488,8 @@ const locale = getLocale(Astro.currentLocale);
     display: block;
     flex-basis: 100%;
   }
-  .nav-dropdown--single a {
+  .nav-dropdown--single a,
+  .nav-dropdown--cols a {
     flex-direction: column;
     align-items: flex-start;
     padding: 0.55rem 0.55rem 0.65rem;
@@ -491,6 +543,15 @@ const locale = getLocale(Astro.currentLocale);
     letter-spacing: 0.02em;
   }
   .nav-direct:hover { color: var(--color-terra); }
+  /* Leaves the site (301 to the sister domain), as the validated mockup marked
+     it. The arrow is decorative: the second declaration gives it empty alt
+     text where supported. */
+  .nav-direct[rel~="external"]::after {
+    content: " ↗";
+    content: " ↗" / "";
+    font-size: 0.8em;
+    color: var(--color-ink-mute);
+  }
 
   /* ──────────── tablet: same inline nav, tighter ──────────── */
   @media (max-width: 860px) {
@@ -514,8 +575,13 @@ const locale = getLocale(Astro.currentLocale);
       right: 0;
       transform: translateY(-4px);
     }
+    /* Narrower than the 540px base so the right-anchored panel keeps its left
+       edge inside the viewport at this breakpoint. */
+    .nav-dropdown--cols {
+      min-width: 420px;
+      gap: 0 1rem;
+    }
     .nav-group:hover .nav-dropdown,
-    .nav-group:focus-within .nav-dropdown,
     .nav-group.is-open .nav-dropdown {
       transform: translateY(0);
     }
@@ -576,13 +642,23 @@ const locale = getLocale(Astro.currentLocale);
       pointer-events: auto;
     }
     .nav-dropdown::before { content: none; }
+    /* The panel already scrolls; two columns would only cramp them. */
+    .nav-dropdown--cols {
+      grid-template-columns: 1fr;
+      width: auto;
+      max-width: none;
+      gap: 0.9rem;
+    }
+    .nav-dropdown--cols .dropdown-section + .dropdown-section {
+      border-top: 1px dashed var(--color-line);
+      padding-top: 0.7rem;
+    }
 
     /* Touch devices latch :hover, so only an explicit tap opens a group. These
        must out-specify the base hover/focus rules, which carry the
        translateX(-50%) centring meant for the absolute desktop dropdown. */
     .nav-dropdown,
     .nav-group:hover .nav-dropdown,
-    .nav-group:focus-within .nav-dropdown,
     .nav-group.is-open .nav-dropdown { transform: none; display: none; }
     .nav-group.is-open .nav-dropdown { display: flex; }
 

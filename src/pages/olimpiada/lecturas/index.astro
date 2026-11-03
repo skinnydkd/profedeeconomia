@@ -6,6 +6,7 @@
 import BaseLayout from '@layouts/BaseLayout.astro';
 import { LECTURAS } from '@/lib/olimpiada';
 import { getLocale } from '@/i18n/locale';
+import SectionHeader from '@components/SectionHeader.astro';
 
 // Group by categoria, preserving insertion order.
 const byCategoria = new Map<string, typeof LECTURAS>();
@@ -50,23 +51,21 @@ const copy = {
   title="Lecturas recomendadas — Olimpiada de Economía"
   description="Bibliografía seleccionada para la Olimpiada de Economía: economía conductual, teoría de juegos, clásicos del pensamiento, finanzas y empresa."
   contentLang="es"
+  translated={false}
 >
-  <div class="container">
-    <nav class="breadcrumb">
-      <a href="/">{copy.bcInicio}</a> <span class="sep">›</span>
-      <a href="/olimpiada/">{copy.bcOlimpiada}</a> <span class="sep">›</span>
-      <span>{copy.bcCurrent}</span>
-    </nav>
-  </div>
-
-  <section class="hero" lang={locale}>
-    <div class="container">
-      <h1 class="serif">{copy.heroTitle}</h1>
-      <p class="lede">
-        {copy.lede}
-      </p>
-    </div>
-  </section>
+  <SectionHeader
+    locale={locale}
+    kicker={copy.bcOlimpiada}
+    lang={locale}
+    crumbs={[
+      { name: copy.bcInicio, path: '/' },
+      { name: copy.bcOlimpiada, path: '/olimpiada/' },
+      { name: copy.bcCurrent },
+    ]}
+  >
+    <Fragment slot="title">{copy.heroTitle}</Fragment>
+    <Fragment slot="lede">{copy.lede}</Fragment>
+  </SectionHeader>
 
   {LECTURAS.length === 0 && (
     <section class="prox">
@@ -116,15 +115,7 @@ const copy = {
 
 <style>
   .container { max-width: 1240px; margin: 0 auto; padding: 0 clamp(1.5rem, 4vw, 3rem); }
-  .breadcrumb { font-size: 0.92rem; color: var(--color-ink-mute); margin: 2rem 0; }
-  .breadcrumb a { color: var(--color-ink-mute); text-decoration: none; }
-  .breadcrumb a:hover { color: var(--color-terra); }
-  .breadcrumb .sep { margin: 0 0.5em; color: var(--color-mustard); }
 
-  .hero { padding: 1rem 0 2rem; }
-  .kicker { font-family: var(--font-sans); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-terra-deep); }
-  h1 { margin: 0.6rem 0 0.8rem; }
-  .lede { font-size: 1.2rem; color: var(--color-ink-soft); line-height: 1.55; max-width: 60ch; }
 
   .prox { padding: 1rem 0 3rem; }
   .prox__box {
@@ -156,6 +147,6 @@ const copy = {
   .webs-nota { color: var(--color-ink-soft); font-size: 0.95rem; line-height: 1.6; max-width: 680px; }
 
   .back-link { padding: 0 0 3rem; }
-  .back-link a { font-family: var(--font-sans); font-size: 0.95rem; font-weight: 500; color: var(--color-terra); text-decoration: none; }
+  .back-link a { font-family: var(--font-sans); font-size: 0.95rem; font-weight: 500; color: var(--color-terra-ink); text-decoration: none; }
   .back-link a:hover { text-decoration: underline; }
 </style>

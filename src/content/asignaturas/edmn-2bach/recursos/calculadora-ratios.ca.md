@@ -2,7 +2,7 @@
 asignatura: edmn-2bach
 unidad_relacionada: 11
 title: "Calculadora de ràtios financers"
-descripcion: "Introduïx les masses del balanç i dues xifres del compte de resultats per obtindre fons de maniobra, ràtios de liquiditat i solvència, ROA, ROE i l'efecte del palanquejament."
+descripcion: "Introduïx les masses del balanç i tres xifres del compte de resultats (BAII, despeses financeres i benefici net) per obtindre fons de maniobra, ràtios de liquiditat i solvència, ROA, ROE i l'efecte del palanquejament."
 tipo: calculadora
 componente: Ratios
 estado: publicado
@@ -14,7 +14,7 @@ slug: "asignaturas/edmn-2bach/recursos/calculadora-ratios.ca"
 
 - Per a la Unitat 11, mentre s'aprén a interpretar els comptes anuals.
 - Per resoldre l'activitat 11 (radiografia d'Inditex) introduint les dades del balanç de l'informe oficial.
-- Per avaluar el pla financer del projecte capstone i comprovar si els ràtios projectats són raonables.
+- Per avaluar el pla financer d'un pla d'empresa o un projecte d'aula (Unitat 12) i comprovar si els ràtios projectats són raonables.
 
 ## Què cal tindre en compte
 

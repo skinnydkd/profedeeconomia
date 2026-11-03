@@ -12,7 +12,7 @@ estado: publicado
 
 - Mientras introducís los criterios de inversión en la Unidad 9.
 - Para resolver la actividad 9 (tres inversiones en hortícola).
-- Para el plan económico-financiero del proyecto capstone (Unidad 12).
+- Para el plan económico-financiero de un plan de empresa o un proyecto de aula (Unidad 12).
 
 ## Qué tener en cuenta
 

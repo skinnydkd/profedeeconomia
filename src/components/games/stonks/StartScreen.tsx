@@ -14,7 +14,7 @@ export const COPY = {
     title: 'Stonks',
     intro:
       'Te tocan 25 años al azar entre 1971 y 2025, y decides cada seis meses cómo repartir tu dinero. ' +
-      'Enfrente tienes a «El Mercat», que se limita a comprar el índice mundial y no vender nunca. ' +
+      'Enfrente tienes a «El Mercado», que se limita a comprar el índice mundial y no vender nunca. ' +
       'Mover la cartera cuesta comisiones e impuestos, y la inflación se lleva su parte de todo.',
     continue: 'Continuar partida',
     start: 'Empezar',

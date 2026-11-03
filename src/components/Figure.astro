@@ -78,15 +78,13 @@ const loading = eager || isPrintRoute ? 'eager' : 'lazy';
     margin: 2.6rem 0;
   }
   .figure--tight { max-width: var(--measure-prose); }
-  .figure--wide {
-    max-width: min(960px, 100%);
-    margin-left: 50%;
-    transform: translateX(-50%);
-  }
+  /* No breakout yet: out of the column a figure would run under the sticky
+     TOC (≥1100 px). With margin-left 50% and no width, the old rule shrank
+     these to half the column and pushed them right. They fill the column. */
+  .figure--wide,
   .figure--full {
-    max-width: min(1100px, 100%);
-    margin-left: 50%;
-    transform: translateX(-50%);
+    width: 100%;
+    max-width: 100%;
   }
 
   /* Flotants amb text al voltant (només a partir de tablet) */

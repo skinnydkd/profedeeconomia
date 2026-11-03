@@ -4,8 +4,9 @@
 import type { APIRoute } from 'astro';
 import { getSupabase } from '../../../lib/jocs-economics/server/supabase';
 import { nextQuestion } from '../../../lib/jocs-economics/server/bank';
+import { publicQuestion } from '../../../lib/jocs-economics/server/shuffle';
 import { signGameToken } from '../../../lib/jocs-economics/server/tokens';
-import { normalizeInstitute } from '../../../lib/jocs-economics/server/institutes';
+import { cleanDisplayName, isValidInstituteKey, normalizeInstitute } from '../../../lib/jocs-economics/server/institutes';
 
 // SSR-only: no pre-render at build time (Supabase env vars not available)
 export const prerender = false;
@@ -15,11 +16,6 @@ interface StartRequest {
   institute: string;
 }
 
-interface PublicQuestion {
-  id: string;
-  enunciado?: string;
-  opciones: string[];
-}
 
 function jsonError(reason: string, status = 400): Response {
   return new Response(JSON.stringify({ error: reason }), {
@@ -48,14 +44,6 @@ function rng(seed: string): () => number {
   };
 }
 
-function toPublicQuestion(q: { id: string; opciones: string[]; enunciado?: string }): PublicQuestion {
-  // CRITICAL anti-cheat: NEVER include correcta or explicacion
-  return {
-    id: q.id,
-    ...(q.enunciado ? { enunciado: q.enunciado } : {}),
-    opciones: q.opciones,
-  };
-}
 
 export const POST: APIRoute = async ({ request }) => {
   let body: Partial<StartRequest>;
@@ -65,14 +53,15 @@ export const POST: APIRoute = async ({ request }) => {
     return jsonError('invalid-body', 400);
   }
 
-  // Validate + trim
-  const playerName = String(body.playerName ?? '').trim();
-  const institute = String(body.institute ?? '').trim();
+  // Validate + clean: both names are shown in the public ranking.
+  const playerName = cleanDisplayName(String(body.playerName ?? ''));
+  const institute = cleanDisplayName(String(body.institute ?? ''));
 
   if (playerName.length < 1 || playerName.length > 40) {
     return jsonError('invalid-name', 400);
   }
-  if (institute.length < 2 || institute.length > 80) {
+  const instituteNorm = normalizeInstitute(institute);
+  if (institute.length < 2 || institute.length > 80 || !isValidInstituteKey(instituteNorm)) {
     return jsonError('invalid-institute', 400);
   }
 
@@ -80,17 +69,23 @@ export const POST: APIRoute = async ({ request }) => {
   if (!secret) return jsonError('server-misconfigured', 500);
 
   const supabase = getSupabase();
-  const instituteNorm = normalizeInstitute(institute);
 
-  // Upsert institute (increment players_count on conflict)
+  // The first spelling of an institute is the one the ranking and the
+  // autocomplete show: a later variant of the same key («IES Lluís Vives —
+  // ¡¡¡…!!!») must not rename it for everybody. Insert it only if new, then
+  // touch last_seen_at (autocomplete order) and file the game under that name.
+  const lastSeenAt = new Date().toISOString();
   await supabase.from('institutes').upsert(
-    {
-      institute_norm: instituteNorm,
-      institute_display: institute,
-      last_seen_at: new Date().toISOString(),
-    },
-    { onConflict: 'institute_norm', ignoreDuplicates: false },
+    { institute_norm: instituteNorm, institute_display: institute, last_seen_at: lastSeenAt },
+    { onConflict: 'institute_norm', ignoreDuplicates: true },
   );
+  const { data: instituteRow } = await supabase
+    .from('institutes')
+    .update({ last_seen_at: lastSeenAt })
+    .eq('institute_norm', instituteNorm)
+    .select('institute_display')
+    .single();
+  const instituteDisplay = String(instituteRow?.institute_display ?? institute);
 
   // Create active_game row
   const { data: gameRow, error: insertErr } = await supabase
@@ -98,7 +93,7 @@ export const POST: APIRoute = async ({ request }) => {
     .insert({
       player_name: playerName,
       institute_norm: instituteNorm,
-      institute_display: institute,
+      institute_display: instituteDisplay,
       current_difficulty: 1.0,
       lives: 3,
       score: 0,
@@ -129,7 +124,7 @@ export const POST: APIRoute = async ({ request }) => {
   return jsonOk({
     gameId,
     token,
-    question: toPublicQuestion(firstQ),
+    question: publicQuestion(firstQ, gameId),
     lives: 3,
     score: 0,
   });

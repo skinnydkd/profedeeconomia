@@ -2,6 +2,7 @@
 import { useMemo, useState } from 'preact/hooks';
 import { calcularTasas, tasaParoMalCalculada, type PoblacionEPA } from '../../lib/calc/tasas-epa';
 import { type Locale } from '@/i18n/locale';
+import NumberInput from '../NumberInput';
 
 /**
  * UI strings, Valencian (AVL) alongside the ES source. Statistical notation
@@ -92,10 +93,7 @@ export default function TasasEPACalc({ locale = 'es' }: Props) {
   const r = useMemo(() => calcularTasas(p), [p]);
   const malo = useMemo(() => tasaParoMalCalculada(p), [p]);
 
-  const set = (key: keyof PoblacionEPA) => (e: Event) => {
-    const val = parseFloat((e.target as HTMLInputElement).value);
-    setP({ ...p, [key]: Number.isFinite(val) ? val : 0 });
-  };
+  const set = (key: keyof PoblacionEPA) => (val: number) => setP({ ...p, [key]: val });
 
   return (
     <div class="calc">
@@ -116,27 +114,27 @@ export default function TasasEPACalc({ locale = 'es' }: Props) {
         <label class="calc__field">
           <span class="calc__label">{c.labelPoblacion}</span>
           <div class="calc__input-wrap">
-            <input type="number" min={0} step={100} value={p.poblacion16} onInput={set('poblacion16')} />
+            <NumberInput min={0} step={100} value={p.poblacion16} onValue={set('poblacion16')} />
             <span class="calc__unit">pers.</span>
           </div>
         </label>
         <label class="calc__field">
           <span class="calc__label">{c.labelOcupados}</span>
           <div class="calc__input-wrap">
-            <input type="number" min={0} step={100} value={p.ocupados} onInput={set('ocupados')} />
+            <NumberInput min={0} step={100} value={p.ocupados} onValue={set('ocupados')} />
             <span class="calc__unit">pers.</span>
           </div>
         </label>
         <label class="calc__field">
           <span class="calc__label">{c.labelParados}</span>
           <div class="calc__input-wrap">
-            <input type="number" min={0} step={100} value={p.parados} onInput={set('parados')} />
+            <NumberInput min={0} step={100} value={p.parados} onValue={set('parados')} />
             <span class="calc__unit">pers.</span>
           </div>
         </label>
       </div>
 
-      {!r.coherente && <p class="calc__warning">{c.incoherente}</p>}
+      {!r.coherente && <p class="calc__warning" role="alert">{c.incoherente}</p>}
 
       <h3 class="epa__section-title">{c.derivados}</h3>
       <div class="calc__metric-grid">

@@ -14,13 +14,13 @@ export const COPY = {
     verdictPre: 'Has',
     won: 'ganado a',
     lost: 'perdido contra',
-    verdictPost: '«El Mercat»',
+    verdictPost: '«El Mercado»',
     patrimonio: 'Tu patrimonio',
-    ai: '«El Mercat»',
+    ai: '«El Mercado»',
     settle: 'Cifras después de liquidar y pagar los impuestos sobre las plusvalías.',
     legendYou: 'Tú, en euros',
     legendReal: 'Tú, en poder adquisitivo',
-    legendAi: '«El Mercat»',
+    legendAi: '«El Mercado»',
     lessonsTitle: 'Lo que ha pasado en tu partida',
     dataNote:
       'Rendimientos anuales históricos redondeados y no auditados; el reparto por semestres ' +
@@ -30,7 +30,7 @@ export const COPY = {
   ca: {
     eyebrow: (from: number, to: number) => `${from} — ${to} · ${WINDOW_YEARS} anys`,
     verdictPre: 'Has',
-    won: 'guanyat a',
+    won: 'guanyat',
     lost: 'perdut contra',
     verdictPost: '«El Mercat»',
     patrimonio: 'El teu patrimoni',
@@ -106,6 +106,7 @@ export function FinalScreen({ state, onRestart }: Props) {
             <li key={l}>{l}</li>
           ))}
         </ul>
+        <p class="kf-note">{c.dataNote}</p>
       </div>
 
       <p class="kf-datanote">{c.dataNote}</p>

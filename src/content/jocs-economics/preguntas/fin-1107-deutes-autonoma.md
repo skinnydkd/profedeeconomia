@@ -9,7 +9,7 @@ opciones:
 correcta: 0
 explicacion: "A diferència dels socis d'una SL, l'autònom respon dels deutes de la seua activitat amb tot el seu patrimoni personal: este és el gran risc d'eixa forma jurídica."
 estado: publicado
-font: "eco-4eso U8 — Nòmina, IRPF i contractes"
+font: "eco-4eso U10 — Tipus d'empresa i formes jurídiques"
 ---
 
 El negoci d'Empar, donada d'alta com a autònoma, tanca deixant 30.000 € de deutes pendents. Fins on arriba la responsabilitat d'ella?

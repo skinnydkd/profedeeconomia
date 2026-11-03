@@ -11,12 +11,15 @@
  *   - resultado = 0  -> exactly right            -> nothing to settle
  *
  * Reuse / coherence:
- *  - The annual quota comes straight from calcularIRPF (irpf.ts): state scale,
- *    personal/family minimum, earned-income reduction, extra deductions. We do
- *    NOT re-implement any tax figure here.
- *  - The taxable base is derived from gross work income minus the worker's
- *    Social Security contributions, using the same 2026 rates as nomina.ts, so
- *    "make the payroll" and "do the tax return" stay consistent.
+ *  - The annual quota comes straight from calcularIRPF (irpf.ts): general
+ *    scale, personal/family minimum, the 2.000 € of other expenses, the
+ *    earned-income reduction and extra deductions. The return then subtracts
+ *    the 2026 earned-income deduction (DA 61.ª LIRPF, also in irpf.ts), which
+ *    the payroll withholding does not include. We do NOT re-implement any tax
+ *    figure here.
+ *  - The Social Security contributions come from nomina.ts (same 2026 rates,
+ *    same capped base), so "make the payroll" and "do the tax return" stay
+ *    consistent.
  *
  * Scope kept deliberately simple (4ESO): only earned income plus an optional
  * lump of basic savings income (rendimientos del capital mobiliario), which we
@@ -24,8 +27,13 @@
  * scale, no special regimes.
  */
 
-import { calcularIRPF, type Discapacidad } from './irpf';
-import { COTIZACIONES_TRABAJADOR_2026, type Contrato, tasaDesempleo } from './nomina';
+import {
+  calcularIRPF,
+  deduccionRendimientosTrabajo2026,
+  OTRAS_RENTAS_MAX_DEDUCCION_TRABAJO,
+  type Discapacidad,
+} from './irpf';
+import { cotizacionesTrabajador, type Contrato } from './nomina';
 
 export interface OpcionesDeclaracion {
   /** Gross earned income for the year (rendimientos íntegros del trabajo), in euros. */
@@ -51,9 +59,17 @@ export interface ResultadoDeclaracion {
   rendimientosCapital: number;
   /** Worker's Social Security contributions deducted to build the taxable base. */
   cotizaciones: number;
-  /** Taxable base = work income − SS contributions (+ savings income). */
+  /** Net work income = gross work income − SS contributions. */
+  rendimientoNetoTrabajo: number;
+  /** Other deductible expenses of every employee (2.000 € at most). */
+  otrosGastos: number;
+  /** Earned-income reduction. */
+  reduccion: number;
+  /** Taxable base = net work income − other expenses − reduction (+ savings income). */
   baseImponible: number;
-  /** Real annual IRPF quota (from calcularIRPF). */
+  /** Earned-income deduction applied (DA 61.ª LIRPF): up to 590,89 €, at most the quota. */
+  deduccionTrabajo: number;
+  /** Real annual IRPF quota: calcularIRPF's quota minus the earned-income deduction. */
   cuotaIRPF: number;
   /** Effective average IRPF rate over the base, as a percentage (0–100). */
   tipoMedio: number;
@@ -74,26 +90,16 @@ export interface ResultadoDeclaracion {
   aDevolver: boolean;
 }
 
-/** Worker's total Social Security contribution rate for the year, 2026. */
-function tasaCotizacionTrabajador(contrato: Contrato): number {
-  return (
-    COTIZACIONES_TRABAJADOR_2026.contingenciasComunes +
-    tasaDesempleo(contrato) +
-    COTIZACIONES_TRABAJADOR_2026.formacionProfesional +
-    COTIZACIONES_TRABAJADOR_2026.mei
-  );
-}
-
 const noNeg = (n: number | undefined): number =>
   Number.isFinite(n) && (n as number) > 0 ? (n as number) : 0;
 
 /**
  * Simulate an annual IRPF tax return (declaración de la renta).
  *
- * Builds the taxable base from gross work income minus the worker's SS
- * contributions (same 2026 rates as the payroll), adds any basic savings
- * income, runs calcularIRPF to get the real annual quota, and subtracts the
- * retentions already withheld to obtain the settlement.
+ * Nets the worker's SS contributions (same 2026 rules as the payroll) out of
+ * the gross work income, adds any basic savings income, runs calcularIRPF to
+ * get the real annual quota, and subtracts the retentions already withheld to
+ * obtain the settlement.
  */
 export function simularDeclaracion(opciones: OpcionesDeclaracion): ResultadoDeclaracion {
   const rendimientosTrabajo = noNeg(opciones.rendimientosTrabajo);
@@ -103,13 +109,11 @@ export function simularDeclaracion(opciones: OpcionesDeclaracion): ResultadoDecl
 
   // Net the SS contributions out of the gross work income to get the
   // rendimiento neto del trabajo, consistent with nomina.ts.
-  const cotizaciones = rendimientosTrabajo * tasaCotizacionTrabajador(contrato);
+  const cotizaciones = cotizacionesTrabajador(rendimientosTrabajo, contrato).total;
   const netoTrabajo = Math.max(0, rendimientosTrabajo - cotizaciones);
 
   // For a 4ESO-grade tool we fold the basic savings income into the same base.
-  const baseImponible = netoTrabajo + rendimientosCapital;
-
-  const irpf = calcularIRPF(baseImponible, {
+  const irpf = calcularIRPF(netoTrabajo + rendimientosCapital, {
     hijos: opciones.hijos,
     discapacidad: opciones.discapacidad,
     deducciones: opciones.deducciones,
@@ -117,16 +121,25 @@ export function simularDeclaracion(opciones: OpcionesDeclaracion): ResultadoDecl
     rendimientoNetoTrabajo: netoTrabajo,
   });
 
-  const cuotaIRPF = irpf.cuota;
+  // DA 61.ª: limited to the quota, and only when the other income stays at
+  // 6.500 € or less. It exactly cancels the quota of a minimum-wage earner.
+  const deduccionTrabajo = rendimientosCapital <= OTRAS_RENTAS_MAX_DEDUCCION_TRABAJO
+    ? Math.min(deduccionRendimientosTrabajo2026(rendimientosTrabajo), irpf.cuota)
+    : 0;
+  const cuotaIRPF = irpf.cuota - deduccionTrabajo;
   const resultado = cuotaIRPF - retenciones;
 
   return {
     rendimientosTrabajo,
     rendimientosCapital,
     cotizaciones,
-    baseImponible,
+    rendimientoNetoTrabajo: netoTrabajo,
+    otrosGastos: irpf.otrosGastos,
+    reduccion: irpf.reduccion,
+    baseImponible: irpf.baseLiquidable,
+    deduccionTrabajo,
     cuotaIRPF,
-    tipoMedio: irpf.tipoMedio,
+    tipoMedio: irpf.base > 0 ? (cuotaIRPF / irpf.base) * 100 : 0,
     minimo: irpf.minimo,
     retenciones,
     resultado,

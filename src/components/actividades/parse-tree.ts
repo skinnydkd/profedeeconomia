@@ -35,5 +35,12 @@ function validateTree(raw: unknown): ArbolJSON {
   if (typeof r.finales !== 'object' || r.finales === null) {
     throw new Error('parseTreeFromMdxBody: finales object is required');
   }
+  const labels = intro.kpi_labels;
+  if (
+    labels !== undefined &&
+    (typeof labels !== 'object' || labels === null || Object.values(labels).some((v) => typeof v !== 'string'))
+  ) {
+    throw new Error('parseTreeFromMdxBody: intro.kpi_labels must map each KPI id to a name');
+  }
   return raw as ArbolJSON;
 }

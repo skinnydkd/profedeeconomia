@@ -71,7 +71,7 @@ preguntas:
       - "Estar cobrant la prestació contributiva per desocupació."
     correcta: 2
     explicacion: "L'EPA exigix els tres requisits simultàniament. Una persona que no treballa i està disponible però ha deixat de buscar ocupació (*treballador desanimat*) és inactiva, no aturada. L'EPA és una enquesta estadística trimestral amb metodologia OIT/Eurostat, distinta de l'atur registrat del SEPE."
-  - enunciado: "Espanya presenta superàvit per compte corrent des de 2012 (≈ +2,6 % del PIB en 2023). Quins dos motors expliquen principalment eixe saldo positiu?"
+  - enunciado: "Espanya presenta superàvit per compte corrent des de 2012 (≈ +3 % del PIB en 2024). Quins dos motors expliquen principalment eixe saldo positiu?"
     opciones:
       - "El superàvit comercial en béns industrials i el descens de les remeses."
       - "Les transferències corrents rebudes de la UE i la inversió estrangera directa."
@@ -107,4 +107,4 @@ preguntas:
     explicacion: "Cadascun mesura una cosa distinta i cap resumix l'economia tot sol: el PIB mesura producció, l'IPC preus, la taxa d'atur el mercat de treball i la balança la relació amb l'exterior."
 ---
 
-Test d'autoavaluació de la Unitat 7 del llibre d'Eco 1BACH. Nou preguntes que cobrixen els quatre agents econòmics, la identitat del flux circular ampliat, el càlcul del PIB pels mètodes de la despesa i de la producció, la conversió entre PIB nominal i real mitjançant el deflactor, la diferència entre IPC i deflactor del PIB, el paper de l'IPCH en la zona euro, la definició d'atur segons l'EPA i l'estructura del superàvit per compte corrent espanyol.
+Test d'autoavaluació de la Unitat 7 del llibre d'Eco 1BACH. Catorze preguntes que cobrixen els quatre agents econòmics, la identitat del flux circular ampliat, el càlcul del PIB pels mètodes de la despesa i de la producció, la conversió entre PIB nominal i real mitjançant el deflactor, la diferència entre IPC i deflactor del PIB, el paper de l'IPCH en la zona euro, la definició d'atur segons l'EPA i l'estructura del superàvit per compte corrent espanyol.

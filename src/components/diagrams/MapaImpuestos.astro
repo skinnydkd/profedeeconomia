@@ -1,0 +1,220 @@
+---
+/**
+ * Map of the Spanish tax system by two questions at once (CJD Bach, unit 6):
+ * what each tax falls on (direct = what you have or earn, indirect = what you
+ * spend) and which administration collects it.
+ *
+ * The second question is the one textbooks usually drop, and it is the one
+ * that connects this block back to unit 3: a student who knows the IBI is
+ * municipal and the ITP autonomic can finally read a news item about taxes
+ * without assuming every euro goes to Madrid.
+ */
+import { getLocale } from '@/i18n/locale';
+const locale = getLocale(Astro.currentLocale);
+
+const COPY = {
+  es: {
+    losImpuestosDirectosGravanLo: 'Los impuestos directos gravan lo que se tiene o se gana: IRPF, compartido entre Estado y comunidades autónomas; Impuesto sobre Sociedades, estatal; Impuesto sobre Bienes Inmuebles, municipal; e Impuesto sobre Sucesiones y Donaciones, autonómico. Los indirectos gravan lo que se consume: IVA, compartido; Impuesto sobre Transmisiones Patrimoniales y Actos Jurídicos Documentados, autonómico; e impuestos especiales sobre alcohol, tabaco, hidrocarburos y electricidad.',
+    queGravaCadaImpuestoYQuienLo: 'Qué grava cada impuesto y quién lo cobra',
+    impuestosDirectos: 'Impuestos directos',
+    gravanLoQueTienesOLoQueGanas: 'gravan lo que tienes o lo que ganas',
+    estadoYCcaa: 'Estado y CCAA',
+    irpf: 'IRPF',
+    impuestoSobreLaRenta: 'Impuesto sobre la Renta',
+    tusIngresosDelAno: 'Tus ingresos del año.',
+    progresivoPorTramos: 'Progresivo por tramos.',
+    estado: 'Estado',
+    sociedades: 'Sociedades',
+    impuestoSobreSociedades: 'Impuesto sobre Sociedades',
+    elBeneficioDeLas: 'El beneficio de las',
+    empresasTipoFijo: 'empresas. Tipo fijo.',
+    ayuntamiento: 'Ayuntamiento',
+    bienesInmuebles: 'Bienes Inmuebles',
+    serPropietarioDe: 'Ser propietario de',
+    unPisoOUnTerreno: 'un piso o un terreno.',
+    comunidadAutonoma: 'Comunidad autónoma',
+    sucesiones: 'Sucesiones',
+    sucesionesYDonaciones: 'Sucesiones y Donaciones',
+    heredarORecibir: 'Heredar o recibir',
+    unaDonacion: 'una donación.',
+    impuestosIndirectos: 'Impuestos indirectos',
+    gravanLoQueConsumesSinMirarQ: 'gravan lo que consumes, sin mirar quién eres',
+    impuestoSobreElValorAnadido: 'Impuesto sobre el Valor Añadido',
+    casiTodoLoQue: 'Casi todo lo que',
+    comprasTresTipos: 'compras. Tres tipos.',
+    transmisionesYActosJuridicos: 'Transmisiones y Actos Jurídicos',
+    comprarUnCocheOUn: 'Comprar un coche o un',
+    pisoDeSegundaMano: 'piso de segunda mano.',
+    especiales: 'Especiales',
+    impuestosEspeciales: 'Impuestos especiales',
+    alcoholTabacoCarburantes: 'Alcohol, tabaco, carburantes',
+    yElectricidad: 'y electricidad.',
+    elColorDeCadaTarjetaDiceQuie: 'El color de cada tarjeta dice quién se queda el dinero.',
+    noTodosLosImpuestosVanAlMism: 'No todos los impuestos van al mismo sitio, y por eso tu comunidad puede bajar Sucesiones sin permiso',
+    delEstadoYTuAyuntamientoPued: 'del Estado, y tu ayuntamiento puede subir el IBI sin que nadie más intervenga: es competencia suya.',
+    faltanAquiLasTasasPagasPorUn: 'Faltan aquí las tasas —pagas por un servicio concreto, como el DNI— y el Impuesto sobre el Patrimonio, autonómico.',
+  },
+  ca: {
+    losImpuestosDirectosGravanLo: "Els impostos directes graven el que es té o es guanya: IRPF, compartit entre Estat i comunitats autònomes; Impost sobre Societats, estatal; Impost sobre Béns Immobles, municipal; i Impost sobre Successions i Donacions, autonòmic. Els indirectes graven el que es consumix: IVA, compartit; Impost sobre Transmissions Patrimonials i Actes Jurídics Documentats, autonòmic; i impostos especials sobre alcohol, tabac, hidrocarburs i electricitat.",
+    queGravaCadaImpuestoYQuienLo: 'Què grava cada impost i qui el cobra',
+    impuestosDirectos: 'Impostos directes',
+    gravanLoQueTienesOLoQueGanas: 'graven el que tens o el que guanyes',
+    estadoYCcaa: 'Estat i CCAA',
+    irpf: 'IRPF',
+    impuestoSobreLaRenta: 'Impost sobre la Renda',
+    tusIngresosDelAno: "Els teus ingressos de l'any.",
+    progresivoPorTramos: 'Progressiu per trams.',
+    estado: 'Estat',
+    sociedades: 'Societats',
+    impuestoSobreSociedades: 'Impost sobre Societats',
+    elBeneficioDeLas: 'El benefici de les',
+    empresasTipoFijo: 'empreses. Tipus fix.',
+    ayuntamiento: 'Ajuntament',
+    bienesInmuebles: 'Béns Immobles',
+    serPropietarioDe: 'Ser propietari de',
+    unPisoOUnTerreno: 'un pis o un terreny.',
+    comunidadAutonoma: 'Comunitat autònoma',
+    sucesiones: 'Successions',
+    sucesionesYDonaciones: 'Successions i Donacions',
+    heredarORecibir: 'Heretar o rebre',
+    unaDonacion: 'una donació.',
+    impuestosIndirectos: 'Impostos indirectes',
+    gravanLoQueConsumesSinMirarQ: 'graven el que consumixes, sense mirar qui eres',
+    impuestoSobreElValorAnadido: 'Impost sobre el Valor Afegit',
+    casiTodoLoQue: 'Quasi tot el que',
+    comprasTresTipos: 'compres. Tres tipus.',
+    transmisionesYActosJuridicos: 'Transmissions i Actes Jurídics',
+    comprarUnCocheOUn: 'Comprar un cotxe o un',
+    pisoDeSegundaMano: 'pis de segona mà.',
+    especiales: 'Especials',
+    impuestosEspeciales: 'Impostos especials',
+    alcoholTabacoCarburantes: 'Alcohol, tabac, carburants',
+    yElectricidad: 'i electricitat.',
+    elColorDeCadaTarjetaDiceQuie: 'El color de cada targeta diu qui es queda els diners.',
+    noTodosLosImpuestosVanAlMism: 'No tots els impostos van al mateix lloc, i per això la teua comunitat pot baixar Successions sense permís',
+    delEstadoYTuAyuntamientoPued: "de l'Estat, i el teu ajuntament pot pujar l'IBI sense que ningú més hi intervinga: és competència seua.",
+    faltanAquiLasTasasPagasPorUn: "Hi falten les taxes —pagues per un servei concret, com el DNI— i l'Impost sobre el Patrimoni, autonòmic.",
+  },
+} as const;
+
+const t = COPY[locale];
+---
+
+<svg viewBox="0 0 820 540" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="mapaimpuestos-t mapaimpuestos-d">
+  <title id="mapaimpuestos-t">{t.queGravaCadaImpuestoYQuienLo}</title>
+  <desc id="mapaimpuestos-d">{t.losImpuestosDirectosGravanLo}</desc>
+  <defs>
+    <style>
+      .bg { fill: #FBF6EC; }
+      .card { fill: #FFFFFF; stroke-width: 2; }
+      .c-est { stroke: #C44E2C; }
+      .c-aut { stroke: #1F6E6E; }
+      .c-mun { stroke: #A87A2A; }
+      .badge-est { fill: #FBE3D6; }
+      .badge-aut { fill: #DBEDED; }
+      .badge-mun { fill: #F5E5BC; }
+      .badge-t { font-family: 'Switzer', sans-serif; font-size: 8.5px; font-weight: 700; letter-spacing: 0.6px; text-transform: uppercase; fill: #2A1F18; text-anchor: middle; }
+      .tax { font-family: 'Fraunces', serif; font-size: 17px; font-weight: 500; fill: #2A1F18; text-anchor: middle; }
+      .full { font-family: 'Switzer', sans-serif; font-size: 9px; font-style: italic; fill: #8A7868; text-anchor: middle; }
+      .what { font-family: 'Switzer', sans-serif; font-size: 10px; fill: #5C4A3D; text-anchor: middle; }
+      .band { font-family: 'Fraunces', serif; font-size: 18px; font-weight: 500; fill: #2A1F18; }
+      .band-sub { font-family: 'Switzer', sans-serif; font-size: 10.5px; font-style: italic; fill: #8A7868; }
+      .rule { stroke: #C44E2C; stroke-width: 2; }
+      .rule-soft { stroke: #E5D4BD; stroke-width: 1; }
+      .note { fill: #FFFFFF; stroke: #8A7868; stroke-width: 1.6; stroke-dasharray: 5 3; }
+      .note-t { font-family: 'Switzer', sans-serif; font-size: 10.5px; fill: #5C4A3D; }
+      .note-b { font-family: 'Switzer', sans-serif; font-size: 10.5px; font-weight: 700; fill: #2A1F18; }
+    </style>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="820" height="540" />
+
+  <!-- DIRECT -->
+  <line class="rule" x1="40" y1="34" x2="140" y2="34" />
+  <text class="band" x="40" y="60">{t.impuestosDirectos}</text>
+  <text class="band-sub" x="228" y="60">{t.gravanLoQueTienesOLoQueGanas}</text>
+
+  <g>
+    <rect class="card c-est" x="40" y="76" width="172" height="112" rx="4" />
+    <rect class="badge-est" x="56" y="90" width="140" height="18" rx="9" />
+    <text class="badge-t" x="126" y="103">{t.estadoYCcaa}</text>
+    <text class="tax" x="126" y="134">{t.irpf}</text>
+    <text class="full" x="126" y="150">{t.impuestoSobreLaRenta}</text>
+    <text class="what" x="126" y="170">{t.tusIngresosDelAno}</text>
+    <text class="what" x="126" y="182">{t.progresivoPorTramos}</text>
+  </g>
+
+  <g>
+    <rect class="card c-est" x="228" y="76" width="172" height="112" rx="4" />
+    <rect class="badge-est" x="244" y="90" width="140" height="18" rx="9" />
+    <text class="badge-t" x="314" y="103">{t.estado}</text>
+    <text class="tax" x="314" y="134">{t.sociedades}</text>
+    <text class="full" x="314" y="150">{t.impuestoSobreSociedades}</text>
+    <text class="what" x="314" y="170">{t.elBeneficioDeLas}</text>
+    <text class="what" x="314" y="182">{t.empresasTipoFijo}</text>
+  </g>
+
+  <g>
+    <rect class="card c-mun" x="416" y="76" width="172" height="112" rx="4" />
+    <rect class="badge-mun" x="432" y="90" width="140" height="18" rx="9" />
+    <text class="badge-t" x="502" y="103">{t.ayuntamiento}</text>
+    <text class="tax" x="502" y="134">IBI</text>
+    <text class="full" x="502" y="150">{t.bienesInmuebles}</text>
+    <text class="what" x="502" y="170">{t.serPropietarioDe}</text>
+    <text class="what" x="502" y="182">{t.unPisoOUnTerreno}</text>
+  </g>
+
+  <g>
+    <rect class="card c-aut" x="604" y="76" width="176" height="112" rx="4" />
+    <rect class="badge-aut" x="620" y="90" width="144" height="18" rx="9" />
+    <text class="badge-t" x="692" y="103">{t.comunidadAutonoma}</text>
+    <text class="tax" x="692" y="134">{t.sucesiones}</text>
+    <text class="full" x="692" y="150">{t.sucesionesYDonaciones}</text>
+    <text class="what" x="692" y="170">{t.heredarORecibir}</text>
+    <text class="what" x="692" y="182">{t.unaDonacion}</text>
+  </g>
+
+  <line class="rule-soft" x1="40" y1="212" x2="780" y2="212" />
+
+  <!-- INDIRECT -->
+  <line class="rule" x1="40" y1="242" x2="140" y2="242" />
+  <text class="band" x="40" y="268">{t.impuestosIndirectos}</text>
+  <text class="band-sub" x="252" y="268">{t.gravanLoQueConsumesSinMirarQ}</text>
+
+  <g>
+    <rect class="card c-est" x="40" y="284" width="172" height="112" rx="4" />
+    <rect class="badge-est" x="56" y="298" width="140" height="18" rx="9" />
+    <text class="badge-t" x="126" y="311">{t.estadoYCcaa}</text>
+    <text class="tax" x="126" y="342">IVA</text>
+    <text class="full" x="126" y="358">{t.impuestoSobreElValorAnadido}</text>
+    <text class="what" x="126" y="378">{t.casiTodoLoQue}</text>
+    <text class="what" x="126" y="390">{t.comprasTresTipos}</text>
+  </g>
+
+  <g>
+    <rect class="card c-aut" x="228" y="284" width="172" height="112" rx="4" />
+    <rect class="badge-aut" x="244" y="298" width="140" height="18" rx="9" />
+    <text class="badge-t" x="314" y="311">{t.comunidadAutonoma}</text>
+    <text class="tax" x="314" y="342">ITP y AJD</text>
+    <text class="full" x="314" y="358">{t.transmisionesYActosJuridicos}</text>
+    <text class="what" x="314" y="378">{t.comprarUnCocheOUn}</text>
+    <text class="what" x="314" y="390">{t.pisoDeSegundaMano}</text>
+  </g>
+
+  <g>
+    <rect class="card c-est" x="416" y="284" width="172" height="112" rx="4" />
+    <rect class="badge-est" x="432" y="298" width="140" height="18" rx="9" />
+    <text class="badge-t" x="502" y="311">{t.estado}</text>
+    <text class="tax" x="502" y="342">{t.especiales}</text>
+    <text class="full" x="502" y="358">{t.impuestosEspeciales}</text>
+    <text class="what" x="502" y="378">{t.alcoholTabacoCarburantes}</text>
+    <text class="what" x="502" y="390">{t.yElectricidad}</text>
+  </g>
+
+  <!-- Note -->
+  <rect class="note" x="40" y="424" width="740" height="92" rx="4" />
+  <text class="note-b" x="60" y="450">{t.elColorDeCadaTarjetaDiceQuie}</text>
+  <text class="note-t" x="60" y="470">{t.noTodosLosImpuestosVanAlMism}</text>
+  <text class="note-t" x="60" y="486">{t.delEstadoYTuAyuntamientoPued}</text>
+  <text class="note-t" x="60" y="506">{t.faltanAquiLasTasasPagasPorUn}</text>
+</svg>

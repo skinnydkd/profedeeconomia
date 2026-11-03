@@ -29,3 +29,17 @@ describe('validarDecision', () => {
     expect(validarDecision(sinPrecio).ok).toBe(false);
   });
 });
+
+describe('precio mínimo por liga (CODE-INT-07)', () => {
+  const base = { precio: 4, marketing: 0, produccion: 0, calidad: 0, rrhh: 0, prestamo: 0 };
+  it('rechaza precios por debajo del mínimo de la liga', () => {
+    const r = validarDecision({ ...base, precio: 0.5 }, { precioMinimo: 4.5 });
+    expect(r.ok).toBe(false);
+  });
+  it('acepta el mínimo exacto', () => {
+    expect(validarDecision({ ...base, precio: 4.5 }, { precioMinimo: 4.5 }).ok).toBe(true);
+  });
+  it('sin mínimo, basta con que sea mayor que 0', () => {
+    expect(validarDecision({ ...base, precio: 0.5 }).ok).toBe(true);
+  });
+});

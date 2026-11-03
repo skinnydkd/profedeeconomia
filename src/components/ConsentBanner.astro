@@ -42,7 +42,12 @@ const locale = getLocale(Astro.currentLocale);
       const choice = target?.closest<HTMLElement>('[data-consent]')?.dataset.consent;
       if (choice !== 'granted' && choice !== 'denied') return;
       decideConsent(choice);
+      // The button that had the focus is about to disappear. Hand the focus to
+      // the next stop in the tab order (the banner sits before the header), so
+      // it does not fall back to <body>.
+      const hadFocus = banner.contains(document.activeElement);
       banner.hidden = true;
+      if (hadFocus) document.querySelector<HTMLElement>('.site-header a')?.focus();
     });
   }
 </script>

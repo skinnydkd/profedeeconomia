@@ -9,7 +9,7 @@ opciones:
 correcta: 0
 explicacion: "El TIN és el tipus d'interés nominal, la dada que les entitats publiciten en gran perquè és la més baixa; la TAE, amb les comissions incloses, apareix en lletra més xicoteta."
 estado: publicado
-font: "eco-4eso U7 — Diners, pressupost i finançament"
+font: "eco-4eso U8 — Banc, crèdit, inversió i assegurances"
 ---
 
 Un banc anuncia el seu préstec destacant en lletra ben gran el percentatge anual d'interés que aplica al capital prestat, sense comptar-hi comissions. Quin nom rep eixa dada?

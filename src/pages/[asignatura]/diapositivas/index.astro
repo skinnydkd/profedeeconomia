@@ -1,12 +1,13 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
 import { ASIGNATURA_SLUGS, ASIGNATURAS } from '@/lib/asignaturas';
-import { breadcrumbLd } from '@/lib/seo';
+import { breadcrumbLd, SITE } from '@/lib/seo';
 import { getCollection } from 'astro:content';
 import { getLocale } from '@/i18n/locale';
 import { pickLocalizedEntry } from '@/i18n/content-locale';
 import { localizeAsignatura } from '@/i18n/asignaturas-ca';
 import type { GetStaticPaths } from 'astro';
+import SectionHeader from '@components/SectionHeader.astro';
 
 /**
  * Listado de diapositivas por asignatura.
@@ -18,7 +19,7 @@ import type { GetStaticPaths } from 'astro';
  */
 
 export const getStaticPaths = (async () => {
-  return ASIGNATURA_SLUGS.map((slug) => ({
+  return ASIGNATURA_SLUGS.filter((slug) => ASIGNATURAS[slug].estado === 'publicado').map((slug) => ({
     params: { asignatura: slug },
     props: { asignatura: ASIGNATURAS[slug] },
   }));
@@ -63,7 +64,7 @@ const breadcrumb = breadcrumbLd([
   { name: copy.inicio, path: '/' },
   { name: a.shortLabel, path: `/${a.slug}/` },
   { name: copy.diapositivas, path: `/${a.slug}/diapositivas/` },
-]);
+], locale);
 ---
 
 <BaseLayout
@@ -72,29 +73,23 @@ const breadcrumb = breadcrumbLd([
   jsonLd={breadcrumb}
   contentLang={locale}
 >
-  <div class="container">
-    <nav class="breadcrumb">
-      <a href="/">{copy.inicio}</a> <span class="sep">›</span>
-      <a href={`/${a.slug}/`}>{a.shortLabel}</a> <span class="sep">›</span>
-      <span>{copy.diapositivas}</span>
-    </nav>
-  </div>
-
-  <section class="hero">
-    <div class="container">
-      <span class="kicker kicker--sentence">{a.shortLabel} · {copy.diapositivas}</span>
-      <h1>{copy.titulo}</h1>
-      <p class="lede">
-        {units.length === 0 ? copy.vacio : copy.intro}
+  <SectionHeader
+    locale={locale}
+    kicker={`${a.shortLabel} · ${copy.diapositivas}`}
+    crumbs={[
+      { name: copy.inicio, path: '/' },
+      { name: a.shortLabel, path: `/${a.slug}/` },
+      { name: copy.diapositivas },
+    ]}
+  >
+    <Fragment slot="title">{copy.titulo}</Fragment>
+    <Fragment slot="lede">{units.length === 0 ? copy.vacio : copy.intro}</Fragment>
+    {units.length > 0 && (
+      <p class="meta">
+        {copy.meta(units.length)}
       </p>
-
-      {units.length > 0 && (
-        <p class="meta">
-          {copy.meta(units.length)}
-        </p>
-      )}
-    </div>
-  </section>
+    )}
+  </SectionHeader>
 
   {units.length > 0 && (
     <section class="grid">
@@ -105,7 +100,7 @@ const breadcrumb = breadcrumbLd([
             return (
               <li class="card">
                 <div class="card__num">{String(view.data.unidad).padStart(2, '0')}</div>
-                <h3 class="card__title">{view.data.title}</h3>
+                <h2 class="card__title">{view.data.title}</h2>
                 {view.data.lema && <p class="card__lede">{view.data.lema}</p>}
                 <div class="card__meta">
                   {view.data.duracion && <span>{view.data.duracion}</span>}
@@ -132,7 +127,7 @@ const breadcrumb = breadcrumbLd([
     <div class="container">
       <p class="note-text">
         {copy.nota}
-        <a class="editorial-link" href="mailto:hola@profedeeconomia.es">hola@profedeeconomia.es</a>.
+        <a class="editorial-link" href={`mailto:${SITE.email}`}>{SITE.email}</a>.
       </p>
     </div>
   </section>
@@ -144,23 +139,7 @@ const breadcrumb = breadcrumbLd([
     margin: 0 auto;
     padding: 0 clamp(1.5rem, 4vw, 3rem);
   }
-  .breadcrumb { font-size: 0.92rem; color: var(--color-ink-mute); margin: 2rem 0; }
-  .breadcrumb a { color: var(--color-ink-mute); text-decoration: none; }
-  .breadcrumb a:hover { color: var(--color-terra); }
-  .breadcrumb .sep { margin: 0 0.5em; color: var(--color-mustard); }
 
-  .hero { padding: 1rem 0 clamp(2rem, 5vw, 4rem); }
-  h1 { margin: 1rem 0 0.6rem; }
-  .lede {
-    font-family: var(--font-serif);
-    font-style: italic;
-    font-size: 1.35rem;
-    color: var(--color-ink-soft);
-    max-width: 55ch;
-    line-height: 1.5;
-    margin: 1.5rem 0 0.6rem;
-    font-variation-settings: "SOFT" 80;
-  }
   .meta {
     font-family: var(--font-sans);
     font-size: 0.9rem;
@@ -251,7 +230,7 @@ const breadcrumb = breadcrumbLd([
   }
   .cta--primary {
     background: var(--color-terra);
-    color: var(--color-bg);
+    color: var(--color-paper);
     border: 1px solid var(--color-terra);
   }
   .cta--primary:hover { background: var(--color-terra-deep); border-color: var(--color-terra-deep); }
@@ -261,7 +240,7 @@ const breadcrumb = breadcrumbLd([
     border: 1px solid var(--color-line);
   }
   .cta--ghost:hover {
-    color: var(--color-terra);
+    color: var(--color-terra-ink);
     border-color: var(--color-terra);
   }
   .cta__icon {

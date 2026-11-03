@@ -133,7 +133,7 @@ export default function MisionVisionCalc({ locale = 'es' }: Props) {
         );
       })}
 
-      <div class="calc__results">
+      <div class="calc__results" aria-live="polite">
         <div class="calc__metric calc__metric--primary">
           <span class="calc__metric-label">{t.resumen}</span>
           <span class="calc__metric-value">{r.aprobados} / {r.total}</span>

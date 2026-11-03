@@ -88,5 +88,5 @@ No és un treball de copiar i apegar. Heu de buscar dades reals, interpretar-les
 ## Variants i extensions
 
 - **Variant comparativa territorial.** Comparar les oportunitats del sector a la comunitat autònoma del centre amb una altra de major demanda i raonar la mobilitat geogràfica.
-- **Variant entrevista a professional.** Incloure a l'informe el testimoni breu d'un professional en actiu del sector (tutor de FCT, antic alumne) sobre les tendències que percep.
+- **Variant entrevista a professional.** Incloure a l'informe el testimoni breu d'un professional en actiu del sector (tutor de pràctiques, antic alumne) sobre les tendències que percep.
 - **Connexió amb la Unitat 5.** Els jaciments detectats orienten les fonts i contactes que cada alumne incorporarà al seu entorn personal d'aprenentatge.

@@ -45,7 +45,7 @@ El producte final és un **projecte professional de 3 a 5 pàgines** que defensa
 ### Sessió 2 — Objectius SMART i full de ruta (55 min)
 
 1. **Objectius SMART a tres terminis (30 min).** Redactar objectius professionals SMART (específics, mesurables, assolibles, rellevants, amb termini): quatre o cinc a **curt termini** (12 mesos), dos o tres escenaris a **mitjà termini** (2-4 anys) i una orientació a **llarg termini** (5-10 anys). Cada objectiu de curt termini derivat d'una estratègia CAME.
-2. **Full de ruta d'inserció (25 min).** Ordenar en una línia de temps les accions dels pròxims 12 mesos en tres carrils: formació (mòduls, certificats, microcredencials), experiència (FCT/pràctiques, primera ocupació, voluntariat) i busca d'ocupació (CV, portals, xarxa de contactes). Marcar el **primer pas que es pot donar esta setmana**.
+2. **Full de ruta d'inserció (25 min).** Ordenar en una línia de temps les accions dels pròxims 12 mesos en tres carrils: formació (mòduls, certificats, microcredencials), experiència (formació en empresa, primera ocupació, voluntariat) i busca d'ocupació (CV, portals, xarxa de contactes). Marcar el **primer pas que es pot donar esta setmana**.
 
 ### Sessió 3 — Revisió creuada i sistema de seguiment (55 min)
 
@@ -104,5 +104,5 @@ SECCIÓ 5 — SISTEMA DE SEGUIMENT
 ## Variants i extensions
 
 - **Variant mercat objectiu doble.** L'alumne construïx el DAFO per a dues eixides distintes del títol (per exemple, sector privat i oposició/borsa) i decidix quina prioritzar. Connecta amb la Unitat 4.
-- **Variant mentor.** L'alumne compartix el seu projecte amb un professional del sector (familiar, tutor de FCT) i porta una nota amb el seu comentari.
+- **Variant mentor.** L'alumne compartix el seu projecte amb un professional del sector (familiar, tutor de pràctiques) i porta una nota amb el seu comentari.
 - **Connexió transversal.** Este projecte és el document viu de l'assignatura: es recupera i s'ajusta al final de cada trimestre amb el que s'ha aprés a les unitats següents.

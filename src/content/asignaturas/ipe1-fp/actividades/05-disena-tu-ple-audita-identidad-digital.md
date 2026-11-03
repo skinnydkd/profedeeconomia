@@ -38,7 +38,7 @@ La primera sesión es de construcción: montas tu PLE como un mecánico monta su
 1. **Encuadre (5 min).** El profesor recuerda la diferencia entre aprendizaje formal y aprendizaje autónomo permanente, y el esquema del PLE en tres anillos: **fuentes** (de dónde aprendo), **herramientas** (con qué organizo y produzco) y **red** (con quién aprendo).
 2. **Anillo de fuentes (20 min).** Cada alumno selecciona de seis a ocho fuentes fiables para mantenerse actualizado en su profesión: webs sectoriales, boletines, canales, podcasts, cuentas profesionales. **Cada fuente debe pasar el filtro de fiabilidad** (autoría identificable, actualidad, posibilidad de contraste). Descartar por escrito una fuente que no lo pase y explicar por qué.
 3. **Anillo de herramientas (15 min).** Listar las herramientas con las que organizará lo que aprende y producirá (gestor de marcadores, lector de boletines, app de notas, plataformas de microcredenciales y cursos del sector).
-4. **Anillo de red (10 min).** Identificar de tres a cinco personas, comunidades o asociaciones profesionales con las que aprender (colegios profesionales, foros, grupos, antiguos profesores, compañeros de FCT).
+4. **Anillo de red (10 min).** Identificar de tres a cinco personas, comunidades o asociaciones profesionales con las que aprender (colegios profesionales, foros, grupos, antiguos profesores, compañeros de prácticas).
 5. **Cierre (5 min).** Cada alumno anota una rutina concreta: cuándo y cómo va a dedicar tiempo cada semana a su PLE.
 
 ### Sesión 2 — Audita tu identidad digital (55 min)

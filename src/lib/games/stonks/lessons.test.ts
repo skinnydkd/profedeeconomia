@@ -27,7 +27,7 @@ describe('buildLessons', () => {
   });
 
   it('always says how the player did against the benchmark', () => {
-    expect(buildLessons(finished()).join(' ')).toMatch(/El Mercat/);
+    expect(buildLessons(finished()).join(' ')).toMatch(/El Mercado/);
   });
 
   it('calls out the gap when inflation ate the gain', () => {

@@ -27,7 +27,7 @@ La inspiración es el experimento clásico de anclaje de Tversky y Kahneman (197
 
 - Comprobar empíricamente, con datos generados por la propia clase, que el anclaje opera de forma sistemática y predecible.
 - Detectar el exceso de confianza comparando la predicción de cada alumno sobre su acierto con su acierto real.
-- Reconocer la aversión a la pérdida en una decisión simulada de continuar o abandonar un proyecto.
+- Reconocer la falacia del coste hundido, y la aversión a la pérdida que la alimenta, en una decisión simulada de continuar o abandonar un proyecto.
 - Conectar los tres sesgos con decisiones reales del perfil emprendedor (lanzar un negocio, negociar, pivotar o insistir).
 
 ## Pasos
@@ -38,12 +38,12 @@ La inspiración es el experimento clásico de anclaje de Tversky y Kahneman (197
 
 3. **Cálculo del anclaje en directo (8 min).** El docente recoge las estimaciones y calcula en la pizarra la **mediana** de cada grupo (la mediana, no la media, porque resiste mejor los valores extremos). Anota los dos números sin desvelar la trampa.
 
-4. **Mini-decisión de aversión a la pérdida (7 min).** Se plantea a toda la clase un caso breve por escrito: «Tu equipo lleva seis meses y 3.000 € invertidos en un proyecto que no arranca. Hoy puedes seguir o cerrarlo y empezar otro con mejores perspectivas. ¿Qué haces?». Cada alumno responde individualmente y anota en una frase por qué. Se cuenta a mano cuántos «siguen» y cuántos «cierran».
+4. **Mini-decisión de coste hundido (7 min).** Se plantea a toda la clase un caso breve por escrito: «Tu equipo lleva seis meses y 3.000 € invertidos en un proyecto que no arranca. Hoy puedes seguir o cerrarlo y empezar otro con mejores perspectivas. ¿Qué haces?». Cada alumno responde individualmente y anota en una frase por qué. Se cuenta a mano cuántos «siguen» y cuántos «cierran».
 
 5. **Revelación y discusión (15 min).** Se desvelan las tres trampas a la vez:
    - **Anclaje:** ambos grupos respondían a la misma pregunta; si la mediana del grupo de anclaje alto es mayor (suele serlo), el sesgo ha operado.
    - **Exceso de confianza:** se corrigen las cinco preguntas iniciales y se compara, en agregado, el acierto medio real con la confianza media declarada (casi siempre, declarada > real).
-   - **Aversión a la pérdida:** se discute por qué muchos eligen «seguir» pese a que lo invertido ya no se recupera; renunciar se siente como perder.
+   - **Coste hundido y aversión a la pérdida:** se discute por qué muchos eligen «seguir» pese a que lo invertido ya no se recupera. Es la falacia del coste hundido: cerrar obliga a dar por perdido lo invertido, y la aversión a la pérdida hace que eso duela más de la cuenta.
 
 6. **Cierre individual (5 min).** Cada alumno escribe un ejemplo del mundo emprendedor o personal donde uno de los tres sesgos podría hacerle tomar una mala decisión, y una medida concreta para protegerse (pedir una opinión externa, fijar un criterio de antemano, escribir la decisión antes de tomarla).
 

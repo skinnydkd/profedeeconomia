@@ -55,7 +55,7 @@ export const BANCO: PreguntaBanco[] = [
   {
     bloque: 'fpp',
     nivel: 1,
-    enunciado: 'La FPP tiene forma cóncava (curvada hacia el origen) porque:',
+    enunciado: 'La FPP tiene forma cóncava (arqueada hacia fuera, alejándose del origen) porque:',
     opciones: ['Los recursos son perfectamente adaptables a cualquier uso', 'Los recursos son escasos y tienen usos alternativos con costes de oportunidad crecientes', 'El coste de oportunidad es constante', 'La tecnología es siempre decreciente'],
     correcta: 1,
     explicacion: 'A medida que nos especializamos en un bien, empleamos recursos cada vez menos apropiados para ese uso (los factores no son homogéneos), por lo que el coste de oportunidad aumenta.',
@@ -202,10 +202,10 @@ export const BANCO: PreguntaBanco[] = [
   {
     bloque: 'oferta-demanda',
     nivel: 2,
-    enunciado: 'Suben el precio de las motos y bajan los salarios de los mecánicos. ¿Qué ocurre con el precio y la cantidad de equilibrio de los coches (sustitutivos de las motos)?',
+    enunciado: 'Suben el precio de las motos y bajan los salarios de los operarios que fabrican coches. ¿Qué ocurre con el precio y la cantidad de equilibrio de los coches (sustitutivos de las motos)?',
     opciones: ['No sabemos qué ocurrirá con precio ni con cantidad', 'Aumenta la cantidad, pero no sabemos qué pasará con el precio', 'Disminuye el precio y aumenta la cantidad', 'Aumentan tanto precio como cantidad'],
     correcta: 1,
-    explicacion: 'El encarecimiento de motos desplaza la demanda de coches a la derecha (sube precio y cantidad). Los menores salarios de mecánicos bajan costes de reparación de coches, pudiendo desplazar la demanda de coches también a la derecha. El aumento de cantidad es seguro, pero el precio depende de efectos adicionales sobre la oferta de coches.',
+    explicacion: 'El encarecimiento de las motos desplaza la demanda de coches a la derecha (sube el precio y la cantidad). Los menores salarios de quienes fabrican coches abaratan su producción y desplazan la oferta a la derecha (baja el precio y sube la cantidad). La cantidad sube seguro; el precio depende de qué desplazamiento sea mayor.',
   },
   {
     bloque: 'oferta-demanda',
@@ -368,10 +368,10 @@ export const BANCO: PreguntaBanco[] = [
   {
     bloque: 'politica-economica',
     nivel: 3,
-    enunciado: 'Un banco recibe un depósito de 10.000 € y el coeficiente de caja es del 10 %. ¿Cuánto dinero puede crear el sistema bancario a través del multiplicador del dinero?',
+    enunciado: 'Un banco recibe un depósito de 10.000 € y el coeficiente de caja es del 10 %. ¿Cuánto dinero bancario puede llegar a haber en total en el sistema (incluyendo el depósito inicial)?',
     opciones: ['10.000 €', '100.000 €', '90.000 €', '11.000 €'],
     correcta: 1,
-    explicacion: 'El multiplicador del dinero = 1 / coeficiente de caja = 1 / 0,10 = 10. Dinero total creado = 10.000 × 10 = 100.000 €. La banca de reserva fraccional amplifica los depósitos iniciales.',
+    explicacion: 'El multiplicador del dinero = 1 / coeficiente de caja = 1 / 0,10 = 10. Dinero total = 10.000 × 10 = 100.000 €, de los cuales 90.000 € son dinero nuevo creado por los préstamos. La banca de reserva fraccional amplifica los depósitos iniciales.',
   },
   {
     bloque: 'politica-economica',
@@ -393,9 +393,9 @@ export const BANCO: PreguntaBanco[] = [
     bloque: 'politica-economica',
     nivel: 2,
     enunciado: 'En el cálculo del PIB por el método del gasto, ¿cuál de las siguientes partidas se suma al PIB español?',
-    opciones: ['Lo que un español produce en Francia', 'Lo que produce un inglés residente en España', 'Lo que una empresa española compra como input a una empresa italiana', 'Las exportaciones netas de España'],
+    opciones: ['Lo que un español produce en Francia', 'Lo que produce un inglés residente en España', 'Lo que una empresa española compra como input a una empresa italiana', 'Las pensiones que paga el Estado'],
     correcta: 1,
-    explicacion: 'El PIB mide la producción realizada dentro del territorio, independientemente de la nacionalidad. Un inglés que trabaja en España genera producción que se incluye en el PIB español.',
+    explicacion: 'El PIB mide la producción realizada dentro del territorio, sea cual sea la nacionalidad de quien la hace: lo que produce un inglés que vive en España cuenta en el PIB español, y lo que un español produce en Francia, en el francés. Los inputs comprados a una empresa italiana son consumo intermedio (ya están en el valor del producto final) y las pensiones son transferencias, no gasto en bienes y servicios.',
   },
   {
     bloque: 'politica-economica',
@@ -460,9 +460,9 @@ export const BANCO: PreguntaBanco[] = [
     bloque: 'mercado-trabajo',
     nivel: 2,
     enunciado: 'La Encuesta de Población Activa (EPA):',
-    opciones: ['Cuenta las personas que han cobrado prestación por desempleo en el último año', 'Suele arrojar datos de parados más bajos que el SEPE y es el instrumento usado para comparaciones internacionales', 'Registra a todos los parados inscritos en las oficinas de empleo', 'La realiza el SEPE trimestralmente'],
+    opciones: ['Cuenta las personas que han cobrado prestación por desempleo en el último año', 'Suele arrojar más parados que el paro registrado del SEPE y es el instrumento usado para comparaciones internacionales', 'Registra a todos los parados inscritos en las oficinas de empleo', 'La realiza el SEPE trimestralmente'],
     correcta: 1,
-    explicacion: 'La EPA (elaborada por el INE) utiliza criterios OIT, lo que incluye toda búsqueda activa de empleo, resultando habitualmente en cifras de paro menores que el registro del SEPE. Es el indicador oficial para comparaciones de Eurostat.',
+    explicacion: 'La EPA (elaborada por el INE cada trimestre) sigue los criterios de la OIT: cuenta como parado a quien busca empleo activamente aunque no esté inscrito en el SEPE. Por eso, en los últimos años suele dar más parados que el paro registrado. Es el indicador oficial para las comparaciones de Eurostat.',
   },
   {
     bloque: 'mercado-trabajo',
@@ -508,9 +508,9 @@ export const BANCO: PreguntaBanco[] = [
     bloque: 'mercado-trabajo',
     nivel: 3,
     enunciado: 'En España se puede empezar a trabajar desde los:',
-    opciones: ['15 años sin restricciones', '18 años como mínimo en todo caso', '16 años con autorización del tutor legal; nunca antes', '14 años si hay autorización judicial'],
+    opciones: ['15 años sin restricciones', '18 años como mínimo en todo caso', '16 años, con autorización de los padres o tutores hasta los 18', '14 años si hay autorización judicial'],
     correcta: 2,
-    explicacion: 'El Estatuto de los Trabajadores fija los 16 años como la edad mínima para trabajar en España, siempre con autorización del representante legal si el menor no está emancipado.',
+    explicacion: 'El Estatuto de los Trabajadores fija los 16 años como edad mínima para trabajar, con autorización de los padres o tutores si el menor no vive de forma independiente. La única excepción son los espectáculos públicos, con permiso de la autoridad laboral (art. 6.4).',
   },
   {
     bloque: 'mercado-trabajo',
@@ -780,10 +780,10 @@ export const BANCO: PreguntaBanco[] = [
   {
     bloque: 'sistema-financiero',
     nivel: 3,
-    enunciado: 'Un bono con valor nominal de 1.000 € paga un cupón fijo de 40 € anuales. Si el tipo de interés de mercado sube al 5 %, ¿cuál será aproximadamente su precio de mercado?',
+    enunciado: 'Un bono perpetuo (sin vencimiento) con valor nominal de 1.000 € paga un cupón fijo de 40 € anuales. Si el tipo de interés de mercado sube al 5 %, ¿cuál será aproximadamente su precio de mercado?',
     opciones: ['1.000 €', '1.040 €', '800 €', '500 €'],
     correcta: 2,
-    explicacion: 'El precio del bono se calcula como cupón / tipo de mercado = 40 / 0,05 = 800 €. Al subir los tipos, el bono existente cae de precio porque su cupón fijo es proporcionalmente menos atractivo.',
+    explicacion: 'En un bono perpetuo, el precio es cupón / tipo de mercado = 40 / 0,05 = 800 €. En un bono con vencimiento la caída es menor (el precio queda entre 800 € y 1.000 €), pero la dirección es la misma: al subir los tipos, el bono existente pierde valor porque su cupón fijo es menos atractivo.',
   },
   {
     bloque: 'sistema-financiero',
@@ -1072,7 +1072,7 @@ export const BANCO: PreguntaBanco[] = [
     enunciado: 'En el teorema de Coase, si los derechos de propiedad están bien definidos y los costes de transacción son nulos:',
     opciones: ['El Estado debe intervenir siempre para corregir las externalidades', 'Las partes pueden negociar privadamente y alcanzar el resultado eficiente, independientemente de quién tenga el derecho', 'La externalidad no existe porque el mercado la elimina automáticamente', 'La asignación eficiente solo se alcanza si el contaminador paga'],
     correcta: 1,
-    explicacion: 'El teorema de Coase establece que si los derechos de propiedad están definidos y la negociación es costeable, las partes afectadas por una externalidad llegarán por sí solas al resultado eficiente, independientemente de a quién se asignen inicialmente los derechos.',
+    explicacion: 'El teorema de Coase establece que si los derechos de propiedad están definidos y la negociación no tiene costes, las partes afectadas por una externalidad llegarán por sí solas al resultado eficiente, independientemente de a quién se asignen inicialmente los derechos.',
   },
 
   // ─── CONTABILIDAD (Balance, resultados, FM, ratios) ──────────────────────

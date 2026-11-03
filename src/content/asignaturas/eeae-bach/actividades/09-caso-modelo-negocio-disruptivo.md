@@ -7,7 +7,7 @@ tipo: caso
 duracion: "55 min · 1 sesión"
 agrupacion: "grupos pequeños (3-4)"
 materiales:
-  - "Dosier de una empresa con un modelo de negocio reconocible y documentado (notas de prensa, informes anuales, reportajes), curado por el profesor"
+  - "Dosier incluido al final de esta ficha, con tres modelos de negocio que cambiaron su sector (Spotify, Airbnb y Wallapop), o uno equivalente preparado por el profesor a partir de fuentes públicas (notas de prensa, informes anuales, reportajes)"
   - "Ficha de análisis del modelo de negocio (qué ofrece y a quién, cómo lo entrega, cómo gana dinero)"
   - "Tabla comparativa modelo nuevo / modelo tradicional desplazado"
   - "Acceso a internet para contrastar datos"
@@ -66,3 +66,25 @@ El objetivo no es admirar a la empresa, sino entender **el mecanismo**. Muchos a
 - **La pregunta de oro es "¿cómo gana dinero?".** Muchos alumnos saben qué hace una empresa pero no cómo cobra. Insistir en esa pregunta es lo que convierte el ejercicio en análisis de modelo de negocio y no en simple descripción.
 - **No es el Business Model Canvas.** El objetivo aquí es entender el modelo como fenómeno y compararlo con casos, no rellenar la herramienta de diseño paso a paso (eso corresponde a otra materia). Mantener el foco en el análisis del caso real.
 - **La mirada crítica es parte de la materia.** Conviene que el grupo no se quede en la admiración: todo modelo tiene efectos sobre distintos stakeholders, y reconocerlos entrena el sentido crítico que pide el currículo.
+
+## Dosier
+
+Tres modelos de negocio que cambiaron su sector y que ya aparecen en el material. Para los tres, la pregunta de oro es la misma: ¿cómo gana dinero exactamente?
+
+### Caso A · Spotify: del disco en propiedad al acceso por cuota
+
+La música grabada se vendió durante décadas con un pago único: comprabas un disco y era tuyo. Spotify, fundada en Suecia en 2006 y disponible en España desde 2009, popularizó otro modelo: en lugar de comprar canciones, el usuario accede a un catálogo enorme mientras dure su suscripción. Combina dos capas: una gratuita con publicidad y otra de pago, Spotify Premium, sin anuncios. Según sus informes públicos, cerró 2025 con 290 millones de suscriptores premium (263 millones al cierre de 2024), además de cientos de millones de usuarios en la versión gratuita.
+
+*Fuente: Spotify Technology S.A., Form 6-K (resultados del cuarto trimestre de 2025) y Annual Report (Form 20-F) 2024, presentados ante la SEC. Caso recogido en la Unidad 9 de este libro.*
+
+### Caso B · Airbnb: dominar el alojamiento sin tener habitaciones
+
+Airbnb, fundada en 2008, es uno de los mayores intermediarios de alojamiento turístico del mundo y, sin embargo, no es propietaria de los inmuebles que se reservan a través de ella. Conecta a personas que quieren alquilar un espacio (anfitriones) con personas que buscan alojamiento (huéspedes) y cobra una comisión por cada reserva. Cuantos más anfitriones hay, más opciones tiene quien viaja; cuantos más viajeros hay, más interesa ofrecer un espacio. Ese círculo, el efecto de red, explica su crecimiento: domina un sector sin poseer su activo principal.
+
+*Fuente: Airbnb, Inc., Annual Report (Form 10-K) 2023, presentado ante la SEC. Caso recogido en la Unidad 9 de este libro.*
+
+### Caso C · Wallapop: la segunda mano, en el móvil
+
+Agustín Gómez, Gerard Olivé y Miguel Vicente crearon Wallapop en Barcelona en 2013 para resolver una molestia cotidiana: vender objetos usados entre particulares era engorroso. Su propuesta: foto desde el móvil, geolocalización para vender a alguien cercano y chat dentro de la aplicación. Publicar es gratis; la empresa ingresa sobre todo con Wallapop Envíos, su servicio de envíos entre particulares (más de 74 millones de euros en 2024), y con servicios que dan más visibilidad a los anuncios (más de 22 millones). En 2024 facturó 101 millones de euros, un 13 % más que el año anterior, con 19 millones de usuarios al mes en España; el grupo aún tuvo pérdidas, de 25 millones.
+
+*Fuentes: historia corporativa de Wallapop y entrevistas a sus fundadores (caso recogido en la Unidad 6 de este libro y en Eco 4ESO, Unidad 11); El Español y Segre (10 de septiembre de 2025), a partir de las cuentas de 2024 de la empresa.*

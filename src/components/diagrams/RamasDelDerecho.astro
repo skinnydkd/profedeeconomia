@@ -1,0 +1,163 @@
+---
+/**
+ * Branches of law split by public / private interest (CJD Bach, unit 1).
+ *
+ * Each branch card names the unit of this book where it is actually studied,
+ * so unit 1 doubles as the map of the whole course. The dividing line carries
+ * the criterion (is one of the parties the public power acting as such?)
+ * rather than leaving the split as a list to memorise.
+ */
+import { getLocale } from '@/i18n/locale';
+const locale = getLocale(Astro.currentLocale);
+
+const COPY = {
+  es: {
+    lasDisciplinasJuridicasDivid: 'Las disciplinas jurídicas divididas en Derecho público y Derecho privado. En el público: constitucional, administrativo, penal, tributario, procesal e internacional público. En el privado: civil, mercantil e internacional privado. El Derecho laboral aparece a caballo entre ambos. Cada rama indica la unidad del libro en la que se estudia.',
+    lasRamasDelDerecho: 'Las ramas del Derecho',
+    derechoPublico: 'Derecho público',
+    elPoderPublicoEsParteYActuaC: 'El poder público es parte y actúa como tal',
+    derechoPrivado: 'Derecho privado',
+    relacionesEntreParticularesE: 'Relaciones entre particulares en pie de igualdad',
+    quienEsParte: '¿quién es parte?',
+    constitucional: 'Constitucional',
+    unidad3PoderesDelEstado: 'UNIDAD 3 · poderes del Estado',
+    administrativo: 'Administrativo',
+    unidad7MultasYSanciones: 'UNIDAD 7 · multas y sanciones',
+    penal: 'Penal',
+    unidad7Delitos: 'UNIDAD 7 · delitos',
+    tributarioOFiscal: 'Tributario o fiscal',
+    unidad6Impuestos: 'UNIDAD 6 · impuestos',
+    procesal: 'Procesal',
+    unidad8ElJuicio: 'UNIDAD 8 · el juicio',
+    internacionalPublico: 'Internacional público',
+    unidad2OnuYUnionEuropea: 'UNIDAD 2 · ONU y Unión Europea',
+    civil: 'Civil',
+    unidad4FamiliaHerenciaContrat: 'UNIDAD 4 · familia, herencia, contratos',
+    mercantil: 'Mercantil',
+    empresaSociedadesYConcurso: 'EMPRESA, SOCIEDADES Y CONCURSO',
+    internacionalPrivado: 'Internacional privado',
+    queLeySeAplicaAUnCasoConExtr: 'QUÉ LEY SE APLICA A UN CASO CON EXTRANJERÍA',
+    laboral: 'Laboral',
+    unidad5ElPrimerContrato: 'UNIDAD 5 · el primer contrato',
+    aCaballoContratoPrivadoTutel: 'A CABALLO: CONTRATO PRIVADO, TUTELA PÚBLICA',
+    elDerechoLaboralNaceDeUnCont: 'El Derecho laboral nace de un contrato entre particulares,',
+    peroElEstadoIntervieneParaPr: 'pero el Estado interviene para proteger a la parte más débil.',
+    porEsoLaFronteraPublicoPriva: 'Por eso la frontera público-privado no es una pared.',
+  },
+  ca: {
+    lasDisciplinasJuridicasDivid: "Les disciplines jurídiques dividides en Dret públic i Dret privat. En el públic: constitucional, administratiu, penal, tributari, processal i internacional públic. En el privat: civil, mercantil i internacional privat. El Dret laboral apareix a cavall entre tots dos. Cada branca indica la unitat del llibre en què s'estudia.",
+    lasRamasDelDerecho: 'Les branques del Dret',
+    derechoPublico: 'Dret públic',
+    elPoderPublicoEsParteYActuaC: 'El poder públic és part i actua com a tal',
+    derechoPrivado: 'Dret privat',
+    relacionesEntreParticularesE: "Relacions entre particulars en peu d'igualtat",
+    quienEsParte: 'qui és part?',
+    constitucional: 'Constitucional',
+    unidad3PoderesDelEstado: "UNITAT 3 · poders de l'Estat",
+    administrativo: 'Administratiu',
+    unidad7MultasYSanciones: 'UNITAT 7 · multes i sancions',
+    penal: 'Penal',
+    unidad7Delitos: 'UNITAT 7 · delictes',
+    tributarioOFiscal: 'Tributari o fiscal',
+    unidad6Impuestos: 'UNITAT 6 · impostos',
+    procesal: 'Processal',
+    unidad8ElJuicio: 'UNITAT 8 · el judici',
+    internacionalPublico: 'Internacional públic',
+    unidad2OnuYUnionEuropea: 'UNITAT 2 · ONU i Unió Europea',
+    civil: 'Civil',
+    unidad4FamiliaHerenciaContrat: 'UNITAT 4 · família, herència, contractes',
+    mercantil: 'Mercantil',
+    empresaSociedadesYConcurso: 'EMPRESA, SOCIETATS I CONCURS',
+    internacionalPrivado: 'Internacional privat',
+    queLeySeAplicaAUnCasoConExtr: "QUINA LLEI S'APLICA A UN CAS AMB ESTRANGERIA",
+    laboral: 'Laboral',
+    unidad5ElPrimerContrato: 'UNITAT 5 · el primer contracte',
+    aCaballoContratoPrivadoTutel: 'A CAVALL: CONTRACTE PRIVAT, TUTELA PÚBLICA',
+    elDerechoLaboralNaceDeUnCont: "El Dret laboral naix d'un contracte entre particulars,",
+    peroElEstadoIntervieneParaPr: "però l'Estat hi intervé per protegir la part més feble.",
+    porEsoLaFronteraPublicoPriva: 'Per això la frontera públic-privat no és una paret.',
+  },
+} as const;
+
+const t = COPY[locale];
+---
+
+<svg viewBox="0 0 820 500" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="ramasdelderecho-t ramasdelderecho-d">
+  <title id="ramasdelderecho-t">{t.lasRamasDelDerecho}</title>
+  <desc id="ramasdelderecho-d">{t.lasDisciplinasJuridicasDivid}</desc>
+  <defs>
+    <style>
+      .bg { fill: #FBF6EC; }
+      .col-pub { fill: #E0DCF0; stroke: #4A3B8F; stroke-width: 2; }
+      .col-priv { fill: #DBEDED; stroke: #1F6E6E; stroke-width: 2; }
+      .col-mix { fill: #F5E5BC; stroke: #A87A2A; stroke-width: 2; }
+      .head-pub { font-family: 'Fraunces', serif; font-size: 20px; font-weight: 500; fill: #382C6B; text-anchor: middle; }
+      .head-priv { font-family: 'Fraunces', serif; font-size: 20px; font-weight: 500; fill: #164F4F; text-anchor: middle; }
+      .crit { font-family: 'Switzer', sans-serif; font-size: 11px; fill: #5C4A3D; text-anchor: middle; }
+      .branch { font-family: 'Fraunces', serif; font-size: 14px; font-weight: 500; fill: #2A1F18; }
+      .where { font-family: 'Switzer', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.6px; fill: #5C4A3D; }
+      .divider { stroke: #C44E2C; stroke-width: 1.5; stroke-dasharray: 6 4; }
+      .divider-label { font-family: 'Fraunces', serif; font-style: italic; font-size: 12px; fill: #C44E2C; text-anchor: middle; }
+      .mix-note { font-family: 'Switzer', sans-serif; font-size: 10.5px; fill: #5C4A3D; text-anchor: middle; }
+    </style>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="820" height="500" />
+
+  <text class="head-pub" x="215" y="36">{t.derechoPublico}</text>
+  <text class="crit" x="215" y="58">{t.elPoderPublicoEsParteYActuaC}</text>
+
+  <text class="head-priv" x="605" y="36">{t.derechoPrivado}</text>
+  <text class="crit" x="605" y="58">{t.relacionesEntreParticularesE}</text>
+
+  <line class="divider" x1="410" y1="72" x2="410" y2="392" />
+  <text class="divider-label" x="410" y="416">{t.quienEsParte}</text>
+
+  <!-- Public branches -->
+  <rect class="col-pub" x="40" y="80" width="350" height="46" rx="4" />
+  <text class="branch" x="58" y="103">{t.constitucional}</text>
+  <text class="where" x="58" y="119">{t.unidad3PoderesDelEstado}</text>
+
+  <rect class="col-pub" x="40" y="134" width="350" height="46" rx="4" />
+  <text class="branch" x="58" y="157">{t.administrativo}</text>
+  <text class="where" x="58" y="173">{t.unidad7MultasYSanciones}</text>
+
+  <rect class="col-pub" x="40" y="188" width="350" height="46" rx="4" />
+  <text class="branch" x="58" y="211">{t.penal}</text>
+  <text class="where" x="58" y="227">{t.unidad7Delitos}</text>
+
+  <rect class="col-pub" x="40" y="242" width="350" height="46" rx="4" />
+  <text class="branch" x="58" y="265">{t.tributarioOFiscal}</text>
+  <text class="where" x="58" y="281">{t.unidad6Impuestos}</text>
+
+  <rect class="col-pub" x="40" y="296" width="350" height="46" rx="4" />
+  <text class="branch" x="58" y="319">{t.procesal}</text>
+  <text class="where" x="58" y="335">{t.unidad8ElJuicio}</text>
+
+  <rect class="col-pub" x="40" y="350" width="350" height="46" rx="4" />
+  <text class="branch" x="58" y="373">{t.internacionalPublico}</text>
+  <text class="where" x="58" y="389">{t.unidad2OnuYUnionEuropea}</text>
+
+  <!-- Private branches -->
+  <rect class="col-priv" x="430" y="80" width="350" height="46" rx="4" />
+  <text class="branch" x="448" y="103">{t.civil}</text>
+  <text class="where" x="448" y="119">{t.unidad4FamiliaHerenciaContrat}</text>
+
+  <rect class="col-priv" x="430" y="134" width="350" height="46" rx="4" />
+  <text class="branch" x="448" y="157">{t.mercantil}</text>
+  <text class="where" x="448" y="173">{t.empresaSociedadesYConcurso}</text>
+
+  <rect class="col-priv" x="430" y="188" width="350" height="46" rx="4" />
+  <text class="branch" x="448" y="211">{t.internacionalPrivado}</text>
+  <text class="where" x="448" y="227">{t.queLeySeAplicaAUnCasoConExtr}</text>
+
+  <!-- Straddling branch -->
+  <rect class="col-mix" x="430" y="242" width="350" height="70" rx="4" />
+  <text class="branch" x="448" y="265">{t.laboral}</text>
+  <text class="where" x="448" y="281">{t.unidad5ElPrimerContrato}</text>
+  <text class="where" x="448" y="299">{t.aCaballoContratoPrivadoTutel}</text>
+
+  <text class="mix-note" x="605" y="340">{t.elDerechoLaboralNaceDeUnCont}</text>
+  <text class="mix-note" x="605" y="358">{t.peroElEstadoIntervieneParaPr}</text>
+  <text class="mix-note" x="605" y="376">{t.porEsoLaFronteraPublicoPriva}</text>
+</svg>

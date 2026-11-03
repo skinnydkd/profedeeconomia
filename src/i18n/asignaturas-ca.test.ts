@@ -55,7 +55,7 @@ describe('ASIGNATURAS_CA — seoTitle', () => {
 
   it('ca overlays the Valencian seoTitle onto the asignatura', () => {
     expect(localizeAsignatura(ASIGNATURAS['fopp-4eso'], 'ca').seoTitle).toBe(
-      'FOPP 4t ESO: llibre, diapositives i activitats gratis',
+      'FOPP 4t ESO: llibre PDF gratis, diapositives i activitats',
     );
   });
 });

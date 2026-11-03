@@ -9,12 +9,12 @@ estado: publicado
 preguntas:
   - enunciado: "Dirigir-se a *tot el món* és el primer error en màrqueting perquè…"
     opciones:
-      - "És il·legal segons la normativa de competència."
-      - "Cap empresa pot atendre de la mateixa manera tots els públics; segmentar permet estratègies diferenciades i rendibles."
-      - "Implica més cost fiscal."
-      - "Les xarxes socials no permeten anuncis genèrics."
+      - "Va contra la normativa de competència, que obliga a definir el públic."
+      - "Un missatge que val per a tots no convenç ningú i dispersa els recursos."
+      - "Obliga a fabricar una versió del producte per a cada tipus de client."
+      - "Les xarxes socials no permeten llançar anuncis sense un públic definit."
     correcta: 1
-    explicacion: "Sense segmentar, els recursos es dispersen. Un segment ben triat té grandària suficient, és identificable, accessible i respon diferent als estímuls comercials."
+    explicacion: "Els recursos comercials són limitats i els missatges que servixen per a tots no convencen ningú en particular; segmentar permet estratègies diferenciades i rendibles. Un segment útil és gran, identificable, accessible i diferent en la seua resposta. No ho prohibix cap norma, i adaptar el producte a cada grup és just el contrari: màrqueting diferenciat, que només és possible quan se segmenta."
   - enunciado: "Quin d'estos NO és un criteri de segmentació habitual?"
     opciones:
       - "Demogràfic."
@@ -25,12 +25,12 @@ preguntas:
     explicacion: "Els quatre criteris estàndard són demogràfics, geogràfics, psicogràfics i conductuals. El *tecnològic* pot ser una variable dins d'un dels altres, però no un criteri autònom."
   - enunciado: "Una proposta de valor que diu *qualitat i bon servici a preus competitius* és…"
     opciones:
-      - "Una proposta de valor sòlida."
-      - "Soroll: aplicable a quasi qualsevol empresa, no diferencia."
-      - "Adequada per a mercats madurs."
-      - "Correcta només en sectors B2B."
+      - "Una proposta sòlida, perquè combina tres beneficis que el client valora."
+      - "Soroll: val per a quasi qualsevol empresa i no diferencia."
+      - "Adequada per a mercats madurs, on tots competixen ja en preu."
+      - "Correcta en sectors B2B, on el client compara per qualitat i servici."
     correcta: 1
-    explicacion: "La proposta de valor real respon a *per què a tu i no al del costat*. Si val per a qualsevol competidor del sector, no és proposta de valor: és soroll."
+    explicacion: "La proposta de valor real respon a *per què a tu i no al del costat*. Si val per a qualsevol competidor del sector, no és proposta de valor: és soroll, siga quin siga el mercat. Que el client valore qualitat, servici i preu no la fa diferenciadora: tots els competidors diuen el mateix."
   - enunciado: "Les 4P del màrqueting mix són…"
     opciones:
       - "Producte, Preu, Persones, Processos."
@@ -41,12 +41,12 @@ preguntas:
     explicacion: "Les 4P clàssiques (McCarthy, 1960; Kotler): Producte, Preu, Plaça (distribució) i Promoció (comunicació). La coherència entre elles importa tant com l'encert individual."
   - enunciado: "Quin canal implica el MENOR marge unitari per al fabricant?"
     opciones:
-      - "Canal directe."
-      - "Canal curt (un únic intermediari)."
+      - "Canal directe (sense intermediaris)."
+      - "Canal curt (un únic intermediari, normalment el detallista)."
       - "Canal llarg (dos o més intermediaris)."
-      - "Canal digital."
+      - "Canal digital (botiga online pròpia)."
     correcta: 2
-    explicacion: "Com més intermediaris, menys marge unitari per al fabricant. A canvi, el canal llarg dóna major cobertura geogràfica amb menys esforç comercial directe."
+    explicacion: "Com més intermediaris, menys marge unitari per al fabricant: cadascun es queda una part del preu final. A canvi, el canal llarg dona major cobertura geogràfica amb menys esforç comercial directe. El canal directe, inclosa la botiga online pròpia, és el de més marge i més cost de gestió."
   - enunciado: "Una empresa amb CF = 4.800 €/mes ven cada producte a 5 € amb CVu de 2,60 €. El seu marge de contribució unitari és…"
     opciones:
       - "1,40 €."
@@ -80,15 +80,15 @@ preguntas:
     correcta: 3
     explicacion: "Tota comunicació amb el mercat (publicitat, venda personal, promotion, RRPP) cau en la P de Promoció."
   - tipo: verdadero-falso
-    enunciado: "Una proposta de valor del tipus qualitat i bon servici a preus competitius diferencia amb claredat l'empresa dels seus competidors."
+    enunciado: "El preu d'escumat (*skimming*) consistix a llançar el producte amb un preu baix per a captar volum i quota ràpidament."
     correcta: false
-    explicacion: "Fals. Eixa frase és aplicable a quasi qualsevol empresa, així que no diferencia: és soroll. La proposta de valor real respon a per què a tu i no al del costat."
+    explicacion: "Fals. Això és el preu de penetració. L'escumat fixa un preu alt al principi per a captar el segment *premium* i l'abaixa després; és útil en productes innovadors amb poca competència inicial."
   - tipo: numerico
-    enunciado: "Amb CF = 4.800 €/mes, preu 5 € i CVu 2,60 €, quantes unitats cal vendre al mes per a assolir el punt mort (sense decimals)?"
-    respuesta: 2000
+    enunciado: "Un fabricant de cosmètica ven en la seua botiga online a 25 € la unitat, amb un cost variable unitari de 4 € i 6.000 € de costos fixos anuals propis de la botiga. Venent a un distribuïdor guanyaria 78.000 € a l'any. Quantes unitats a l'any hauria de vendre en línia per a obtindre eixe mateix benefici (sense decimals)?"
+    respuesta: 4000
     tolerancia: 1
     unidad: "unitats"
-    explicacion: "Q* = CF / (P − CVu) = 4.800 / (5 − 2,60) = 4.800 / 2,40 = 2.000 unitats/mes."
+    explicacion: "MC en línia = 25 − 4 = 21 €/unitat. Per a igualar el distribuïdor: 21 × Q − 6.000 = 78.000 → Q = (78.000 + 6.000) / 21 = 84.000 / 21 = 4.000 unitats/any. Amb les 2.500 unitats previstes en l'exercici de la unitat, la botiga online queda lluny: per això guanya el distribuïdor encara que cada unitat deixe menys marge."
   - tipo: relacionar
     enunciado: "Associa cada una de les 4P del màrqueting mix amb la decisió corresponent:"
     izquierda: ["Producte", "Preu", "Plaça", "Promoció"]

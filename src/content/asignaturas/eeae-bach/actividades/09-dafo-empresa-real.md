@@ -7,7 +7,7 @@ tipo: caso
 duracion: "60 min · 1 sesión"
 agrupacion: "grupos pequeños (3-4)"
 materiales:
-  - "Dosier de una empresa real con información pública (web corporativa, notas de prensa, noticias económicas, informes), curado por el profesor"
+  - "Dosier incluido al final de esta ficha, con tres empresas con información pública (Mercadona, Consum y Verkami), o uno equivalente de una empresa del entorno preparado por el profesor a partir de fuentes públicas (web corporativa, notas de prensa, noticias económicas, informes)"
   - "Plantilla del DAFO empresarial en A3 (cuatro casillas: Debilidades, Amenazas, Fortalezas, Oportunidades)"
   - "Ficha guía con las preguntas del análisis interno y del análisis externo"
   - "Ficha de la matriz cruzada (FO, FA, DO, DA) para extraer estrategias"
@@ -71,3 +71,25 @@ Plantilla del DAFO empresarial completa (cuatro casillas con elementos apoyados 
 - **El error estrella es confundir las casillas.** Insistir antes y durante: si depende de la empresa, es interno (D/F); si viene de fuera, es externo (A/O). Es el aprendizaje clave de la actividad.
 - **Hechos, no adjetivos.** "Buena empresa" no es un análisis. Exigir que cada casilla cite un dato concreto del dosier obliga a analizar de verdad.
 - **El cruce es lo que da valor.** Un DAFO que se queda en lista no enseña a pensar estratégicamente. El paso 5 —pasar del diagnóstico a la estrategia— es el corazón del ejercicio.
+
+## Dosier
+
+Tres empresas con información pública suficiente para un primer DAFO, elegidas a propósito con tamaños y formas de propiedad distintos. Mercadona y Consum compiten en el mismo sector y sirven para la variante de competencia; Verkami es una empresa digital pequeña. Cada dato es un hecho con fuente: el grupo decide si es interno o externo y en qué casilla va, y puede completarlo con noticias más recientes.
+
+### Caso A · Mercadona: la cadena familiar que no cotiza
+
+Mercadona nació de las carnicerías de la familia Roig en Tavernes Blanques (Valencia) y hoy es la cadena de alimentación líder en España por facturación. Sigue siendo de propiedad familiar, no cotiza en bolsa y crece reinvirtiendo sus beneficios. En 2025 facturó 41.858 millones de euros, un 8 % más que en 2024 (2.092 millones en Portugal), ganó 1.729 millones y destinó el 80 % del beneficio a reinversión. Tiene 115.000 personas en plantilla, con salarios de entrada por encima del convenio del comercio. Su modelo: tiendas medianas de barrio, surtido corto dominado por la marca propia, precios estables sin promociones y publicidad casi nula.
+
+*Fuentes: Mercadona, resultados de 2025 (info.mercadona.es, marzo de 2026); casos recogidos en las Unidades 8 y 9 de este libro y en EDMN 2BACH, Unidad 1.*
+
+### Caso B · Consum: la cooperativa que compite en la misma calle
+
+Consum nació en 1975 en Alaquàs (Valencia) como cooperativa de consumo y hoy es una cooperativa de trabajo asociado y de consumo: la mayoría de quienes trabajan en ella son socios y, por tanto, copropietarios; cada año una parte de los excedentes se reparte según el trabajo aportado, y en la asamblea cada socio tiene un voto. En 2025 facturó 5.163,6 millones de euros (un 9,7 % más) y ganó 122 millones. Tiene 23.031 personas en plantilla y 1.017 supermercados en la Comunitat Valenciana, Cataluña, Castilla-La Mancha, Murcia, Andalucía y Aragón, de los cuales 503 son franquicias de su marca Charter.
+
+*Fuentes: Consum, resultados de 2025 (presentados en abril de 2026; sala de prensa de consum.es); caso recogido en Eco 4ESO, Unidad 10.*
+
+### Caso C · Verkami: crecer sin inversores
+
+Joan Sala y sus hijos Adrià y Jonàs crearon Verkami en 2010 en Mataró (Barcelona) para financiar proyectos culturales pequeños mediante micromecenazgo: cómics, discos, libros, documentales o festivales. Cada campaña dura como mucho 40 días y ofrece recompensas por tramos a quienes aportan. La plataforma cobra una comisión del 5 %, más un 1,5 % por la gestión de los pagos, solo a los proyectos que alcanzan su objetivo. Ha superado los 10.000 proyectos financiados y, al cumplir diez años, el millón de mecenas. Nunca ha levantado capital riesgo: se financia con sus comisiones y sus fundadores conservan el 100 % de la empresa.
+
+*Fuentes: Verkami, página «Quiénes somos» (verkami.com/page/about), blog corporativo («Verkami: ¡10 años y más de 1.000.000 de mecenas después!», 2020) y página de costes del servicio (ayuda.verkami.com); blog corporativo («¡10.000 proyectos financiados!», 2022); caso recogido también en EDMN 2BACH, Unidad 9, y en Eco 4ESO, Unidad 12.*

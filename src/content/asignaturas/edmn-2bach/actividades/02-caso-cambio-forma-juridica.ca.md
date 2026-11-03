@@ -19,7 +19,7 @@ slug: "asignaturas/edmn-2bach/actividades/02-caso-cambio-forma-juridica.ca"
 
 ## Plantejament
 
-Marta va muntar fa tres anys *Mardecor*, un taller de decoració i reformes, donant-se d'alta com a autònoma. Va començar sola; hui factura **180.000 € a l'any**, té dos empleats, ha demanat un préstec de 40.000 € per a comprar maquinària i acaba de firmar un contracte gran amb un hotel que l'obliga a comprar material per avançat. El seu gestor li ha dit una frase que la inquieta: *com a autònoma, respons amb tot el teu patrimoni personal*.
+Marta va muntar fa tres anys *Mardecor*, un taller de decoració i reformes, donant-se d'alta com a autònoma. Va començar sola; hui factura **180.000 € a l'any** i guanya uns **55.000 €** de benefici, té dos empleats, ha demanat un préstec de 40.000 € per a comprar maquinària i acaba de firmar un contracte gran amb un hotel que l'obliga a comprar material per avançat. El seu gestor li ha dit una frase que la inquieta: *com a autònoma, respons amb tot el teu patrimoni personal*.
 
 Marta dubta entre seguir com a autònoma o constituir una **Societat Limitada**. El vostre grup és la seua assessoria: heu de recomanar una opció i justificar-la.
 
@@ -39,8 +39,8 @@ Marta dubta entre seguir com a autònoma o constituir una **Societat Limitada**.
 ## Pistes per a la correcció
 
 - Com a autònoma, Marta respon amb el seu patrimoni **personal i empresarial** sense separació; amb una SL, la seua responsabilitat es limita en principi al capital aportat (mínim 1 € des de la Llei Crea i Crece, encara que amb reserves obligatòries).
-- En l'IRPF el benefici tributa per trams progressius que poden superar el 40 % en rendes altes; l'Impost de Societats aplica un tipus general del 25 % (reduït els primers anys en societats noves).
-- A 180.000 € de benefici, la SL sol ser fiscalment més eficient i limita el risc del préstec i del contracte de l'hotel. La recomanació raonable és **transformar-se en SL**.
+- En l'IRPF el benefici tributa per trams progressius que poden superar el 40 % en rendes altes; l'Impost de Societats té un tipus general del 25 %, però una empresa amb menys d'1 milió d'euros de facturació, com Mardecor, tributa el 2026 al 19 % els primers 50.000 € de base i al 21 % la resta. El 15 % de les societats noves no s'aplicaria, perquè Marta ja exercia l'activitat com a autònoma.
+- Amb uns 55.000 € de benefici, per damunt del llindar de 40.000-50.000 € que solen citar les assessories, la SL sol ser fiscalment més eficient i limita el risc del préstec i del contracte de l'hotel. La recomanació raonable és **transformar-se en SL**.
 
 ## Criteris d'avaluació
 

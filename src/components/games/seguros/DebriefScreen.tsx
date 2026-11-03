@@ -20,7 +20,7 @@ export const COPY = {
     danosEvitados: 'Daños evitados',
     paraDebatir: 'Para debatir en clase',
     moraleja:
-      'El seguro no sirve para ganar dinero: sirve para que un golpe de mala suerte no te arruine. De media cuesta parecido asegurarse que no hacerlo; lo que cambia es el riesgo.',
+      'El seguro no sirve para ganar dinero: sirve para que un golpe de mala suerte no te arruine. De media, asegurarse cuesta algo más que no hacerlo, porque la prima incluye un recargo sobre la pérdida esperada: en la responsabilidad civil, un 8 % de probabilidad por 1.200 € da 96 € por ronda, y la prima es de 115 €. Por eso compensa asegurar lo que no podrías pagar y asumir tú lo pequeño.',
     nuevaPartida: 'Nueva partida',
     verdictSinImprevisto: 'Pagó seguros pero no tuvo ningún imprevisto: tranquilidad que no necesitó… esta vez.',
     verdictACuenta: 'Estar asegurado le salió a cuenta: evitó más de lo que pagó en primas.',
@@ -37,7 +37,7 @@ export const COPY = {
     danosEvitados: 'Danys evitats',
     paraDebatir: 'Per a debatre a classe',
     moraleja:
-      'L\'assegurança no servix per a guanyar diners: servix perquè un colp de mala sort no t\'arruïne. De mitjana costa paregut assegurar-se que no fer-ho; el que canvia és el risc.',
+      'L\'assegurança no servix per a guanyar diners: servix perquè un colp de mala sort no t\'arruïne. De mitjana, assegurar-se costa una mica més que no fer-ho, perquè la prima inclou un recàrrec sobre la pèrdua esperada: en la responsabilitat civil, un 8 % de probabilitat per 1.200 € dona 96 € per ronda, i la prima és de 115 €. Per això compensa assegurar el que no podries pagar i assumir tu el que és xicotet.',
     nuevaPartida: 'Nova partida',
     verdictSinImprevisto: 'Va pagar segurs però no va tindre cap imprevist: tranquil·litat que no va necessitar… esta vegada.',
     verdictACuenta: 'Estar assegurat li va eixir a compte: va evitar més del que va pagar en primes.',

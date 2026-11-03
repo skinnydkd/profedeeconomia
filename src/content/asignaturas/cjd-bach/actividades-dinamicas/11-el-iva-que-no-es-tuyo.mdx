@@ -1,0 +1,117 @@
+---
+asignatura: cjd-bach
+unidad_relacionada: 6
+title: "El IVA que no es tuyo"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "20-25 min"
+descripcion: "Llevas tres meses las cuentas del taller familiar. En la caja hay dinero que parece de la empresa y no lo es."
+competencias_clave: [CC, CD, CE]
+competencias_especificas: []
+estado: publicado
+publicado_en: 2026-09-08
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Caso · Derecho tributario de la empresa",
+    "titulo": "El IVA que no es tuyo",
+    "contexto": "El taller de bicicletas de tu familia es una sociedad limitada pequeña: tu madre, un mecánico y, desde hace tres meses, tú llevando los papeles mientras ella se recupera de una operación. Facturáis unos 18.000 € al trimestre. Nadie te ha explicado la diferencia entre el dinero que hay en la cuenta y el dinero que es del taller, y esa diferencia es justo lo que decide el art. 31.1 de la Constitución cuando dice que todos contribuirán al sostenimiento de los gastos públicos según su capacidad económica.",
+    "kpi_inicial": { "caja": 9400, "riesgo_fiscal": 1, "respaldo_documental": 4 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisión 1 — Cierra el trimestre",
+      "situacion": "En la cuenta hay 9.400 €. Al hacer números ves que 3.100 de esos euros son la diferencia entre el IVA que habéis cobrado a los clientes y el que habéis pagado a los proveedores. El día 20 hay que presentar la declaración trimestral, y ese mismo día vencen las nóminas y el alquiler.",
+      "opciones": [
+        {
+          "label": "Pagamos nóminas con eso y el IVA lo reponemos el mes que viene",
+          "kpi_delta": { "caja": 0, "riesgo_fiscal": 5, "respaldo_documental": 0 },
+          "feedback": "Ese dinero nunca fue del taller. El IVA repercutido se cobra al cliente en nombre de la Hacienda pública: la empresa lo recauda y lo ingresa, y por eso el impuesto lo soporta quien consume, no quien factura. Presentar tarde tiene recargo, y no presentar tiene sanción e intereses que corren solos. Lección: hay dinero que pasa por tu cuenta sin ser tuyo ni un solo día, y confundirlo es el error contable que más negocios pequeños se lleva por delante.",
+          "next": "n2"
+        },
+        {
+          "label": "Aparto los 3.100 € en otra cuenta y presento la declaración el día 20",
+          "kpi_delta": { "caja": -3100, "riesgo_fiscal": -1, "respaldo_documental": 2 },
+          "feedback": "Es exactamente lo que hace la declaración trimestral: restar el IVA soportado en las compras del IVA repercutido en las ventas e ingresar la diferencia. Separarlo físicamente no lo exige ninguna norma, pero convierte una obligación abstracta en un saldo que no puedes gastarte por descuido. Lección: la empresa es un recaudador intermedio; su trabajo es no confundir la caja propia con la ajena.",
+          "next": "n2"
+        },
+        {
+          "label": "Pido un aplazamiento a Hacienda: para eso están",
+          "kpi_delta": { "caja": 0, "riesgo_fiscal": 2, "respaldo_documental": 1 },
+          "feedback": "Los aplazamientos existen, pero no para todo: las retenciones practicadas no son aplazables, y el IVA repercutido y ya cobrado tampoco lo es con carácter general, precisamente porque no era dinero de la empresa. Puede aplazarse si se acredita que las facturas no se han cobrado, y eso hay que probarlo. Lección: la regla del aplazamiento distingue entre no tener dinero y tener dinero de otro; sólo lo primero se aplaza.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisión 2 — Las compras del trimestre",
+      "situacion": "Ordenando la carpeta de gastos encuentras tres cosas: tickets sin datos del taller de una tienda de recambios, la factura del proveedor grande con todo en regla, y el móvil que tu madre se compró para casa, que alguien metió en la carpeta.",
+      "opciones": [
+        {
+          "label": "Lo meto todo: cuanto más gasto, menos se paga",
+          "kpi_delta": { "caja": 300, "riesgo_fiscal": 5, "respaldo_documental": -3 },
+          "feedback": "Dos errores en el mismo gesto. El IVA sólo se deduce con factura completa a nombre de la empresa: un ticket simplificado sin los datos del destinatario no da derecho a deducción. Y un gasto personal no es un gasto de la actividad: incluirlo es una regularización con sanción y, en una sociedad, puede tratarse como retribución encubierta a la socia. Lección: deducir no es «apuntar todo lo que se ha pagado», es acreditar lo que la actividad ha necesitado.",
+          "next": "n3"
+        },
+        {
+          "label": "Pido factura completa de los recambios y dejo fuera el móvil de casa",
+          "kpi_delta": { "caja": -80, "riesgo_fiscal": -2, "respaldo_documental": 4 },
+          "feedback": "Volver a la tienda a pedir la factura con el NIF del taller cuesta media hora y es lo que convierte un gasto real en un gasto deducible. Y separar lo personal de lo empresarial no es un escrúpulo: es la línea que hace que la sociedad siga siendo un patrimonio distinto del vuestro. Lección: en materia tributaria, lo que no está documentado a nombre de quien lo deduce, no existe.",
+          "next": "n3"
+        },
+        {
+          "label": "Guardo los tickets tal cual y ya se verá si alguien pregunta",
+          "kpi_delta": { "caja": 0, "riesgo_fiscal": 2, "respaldo_documental": -1 },
+          "feedback": "Guardar es mejor que tirar, pero un ticket sin datos no sostiene una deducción y, si se dedujo, la carga de probarlo es tuya, no de la Administración. La comprobación no llega el mes que viene: llega años después, cuando ya nadie se acuerda de qué era aquella compra. Lección: la prueba se fabrica el día del gasto; después sólo se busca.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisión 3 — El año cierra con beneficio",
+      "situacion": "El ejercicio termina con 14.000 € de beneficio antes de impuestos. Tu madre, ya recuperada, dice lo que dice mucha gente que tiene una sociedad pequeña: «es mi empresa, ese dinero es mío».",
+      "opciones": [
+        {
+          "label": "Sacar el dinero de la caja: al fin y al cabo la empresa es suya",
+          "kpi_delta": { "caja": 5000, "riesgo_fiscal": 5, "respaldo_documental": -2 },
+          "feedback": "La frase es falsa en términos jurídicos, y de ahí viene medio problema. La sociedad es una persona distinta de la socia: el dinero de la caja es de la sociedad, y sacarlo sin título —ni nómina, ni dividendo aprobado, ni devolución de un préstamo documentado— es una retribución no declarada que Hacienda regulariza y que además descuadra la contabilidad. Lección: crear una sociedad para separar patrimonios y luego tratarla como el bolsillo propio es deshacer la protección por la que se pagó el notario.",
+          "next": "final:fracaso_parcial"
+        },
+        {
+          "label": "Pagar el Impuesto de Sociedades, aprobar las cuentas y repartir dividendo",
+          "kpi_delta": { "caja": -3500, "riesgo_fiscal": -2, "respaldo_documental": 3 },
+          "feedback": "Es el camino largo y es el correcto: el Impuesto de Sociedades grava el beneficio de la empresa —tipo general del 25 %, con tipo reducido para entidades de nueva creación—, y sólo después la junta aprueba las cuentas y decide si reparte. El dividendo repartido vuelve a tributar, esta vez en el IRPF de quien lo cobra: eso es la doble imposición de la que todo el mundo se queja, y explicarla bien es distinto de indignarse con ella. Lección: el beneficio tributa donde se genera y la renta tributa donde se recibe; son dos hechos imponibles distintos, no un castigo doble.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Dejar el beneficio dentro: reinvertir en herramienta y reservas",
+          "kpi_delta": { "caja": -3500, "riesgo_fiscal": -2, "respaldo_documental": 2 },
+          "feedback": "Reinvertir no evita el Impuesto de Sociedades —el beneficio ya se ha generado y tributa igual—, pero sí evita la segunda tributación mientras no se reparta, y refuerza los fondos propios que el banco mirará el día que pidáis crédito. Lección: la decisión de repartir o retener no cambia lo que se debe hoy, cambia quién asume el riesgo mañana.",
+          "next": "final:exito"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "Las cuentas cuadran y el taller duerme tranquilo",
+      "resumen": "Ingresaste lo que nunca fue tuyo, dedujiste sólo lo acreditado y sacaste el beneficio por la puerta prevista. No es heroico: es lo que hace que una comprobación dentro de tres años sea un trámite y no un susto.",
+      "lecciones_clave": [
+        "El IVA repercutido se cobra al cliente en nombre de la Hacienda pública: la empresa lo recauda, no lo gana.",
+        "La deducción del IVA soportado exige factura completa a nombre de la empresa; un ticket simplificado no basta.",
+        "El beneficio tributa en el Impuesto de Sociedades y el dividendo vuelve a tributar en el IRPF del socio: son dos hechos imponibles, no un error."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "Un buen año y una liquidación con recargo",
+      "resumen": "El taller ganó dinero y lo perdió en recargos, sanciones y una regularización por gastos que nunca fueron de la actividad. Todo evitable con tres decisiones distintas.",
+      "lecciones_clave": [
+        "Gastar el IVA cobrado no es un problema de tesorería: es empezar a deber a la Administración con recargo e intereses.",
+        "En una sociedad, el dinero de la caja es de la sociedad; sacarlo sin título es retribución no declarada."
+      ]
+    }
+  }
+}
+```

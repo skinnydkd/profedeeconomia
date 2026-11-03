@@ -18,7 +18,7 @@ slug: "asignaturas/taller-eco-3eso/recursos/nomina.ca"
 
 ## Què cal tindre en compte
 
-El **salari brut** és el que figura al contracte; el **salari net** és el que arriba al compte. La diferència són dos descomptes: les **cotitzacions a la Seguretat Social** (que donen dret a sanitat, atur i, en el futur, pensió) i la **retenció d'IRPF** (una bestreta de l'impost que paguem tots segons el que guanyem).
+El **salari brut** és el que figura al contracte; el **salari net** és el que arriba al compte. La diferència són dos descomptes: les **cotitzacions a la Seguretat Social** (que donen dret a atur, a baixes per malaltia i, en el futur, a una pensió) i la **retenció d'IRPF** (una bestreta de l'impost que paguem tots segons el que guanyem, i que finança servicis com la sanitat o l'educació).
 
 Això és una versió simplificada per a entendre la idea, no una nòmina exacta de veritat. Els percentatges reals canvien segons el sou i la situació de cada persona. L'important a esta edat no és calcular al cèntim, sinó vore **d'on ix cada descompte** i que eixe diner no desapareix: torna en forma de servicis públics.
 

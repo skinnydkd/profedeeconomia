@@ -35,7 +35,7 @@ export default function Leaderboard() {
             background: 'none', border: 'none', padding: '8px 0',
             fontFamily: 'inherit', fontSize: 14, cursor: 'pointer',
             color: tab === 'individual' ? 'var(--jocs-ink)' : 'var(--jocs-ink-mute)',
-            borderBottom: tab === 'individual' ? '2px solid var(--jocs-blue-deep)' : '2px solid transparent',
+            borderBottom: tab === 'individual' ? '2px solid var(--jocs-terracota)' : '2px solid transparent',
             fontWeight: tab === 'individual' ? 600 : 400,
           }}
         >
@@ -47,7 +47,7 @@ export default function Leaderboard() {
             background: 'none', border: 'none', padding: '8px 0',
             fontFamily: 'inherit', fontSize: 14, cursor: 'pointer',
             color: tab === 'institute' ? 'var(--jocs-ink)' : 'var(--jocs-ink-mute)',
-            borderBottom: tab === 'institute' ? '2px solid var(--jocs-blue-deep)' : '2px solid transparent',
+            borderBottom: tab === 'institute' ? '2px solid var(--jocs-terracota)' : '2px solid transparent',
             fontWeight: tab === 'institute' ? 600 : 400,
           }}
         >
@@ -93,7 +93,7 @@ export default function Leaderboard() {
                   <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 18 }}>{r.totalScore}</span>
                 </div>
                 <div class="jocs-mute" style={{ fontSize: 12 }}>
-                  Top 5: {r.totalScore} pts · Top jugador: {r.topPlayer.playerName} ({r.topPlayer.score}) · {r.playersCount} participantes
+                  Suma de las 5 mejores partidas (una por alumno): {r.totalScore} pts · Top jugador: {r.topPlayer.playerName} ({r.topPlayer.score}) · {r.playersCount} {r.playersCount === 1 ? 'participante' : 'participantes'}
                 </div>
               </li>
             ))}

@@ -33,7 +33,7 @@ export const JUEGOS_CA: Partial<Record<string, JuegoCA>> = {
       "Quiz d'aula multijugador. El profe tria assignatura i unitats; l'alumnat respon des del mòbil amb un codi de sala.",
     modo: 'multijugador (party)',
     nota_aula:
-      "El professor obri aquesta pàgina al projector. L'alumnat entra a /juegos/cajut/ amb el codi de sala des del mòbil.",
+      "El professor obri aquesta pàgina al projector. L'alumnat entra a /juegos/cajut/ amb el codi de sala des del mòbil. Si en el teu centre no s'usa el mòbil a classe, tens la versió per a imprimir a /ca/juegos/cajut/imprimir/.",
   },
   seguros: {
     title: 'Assegurats',
@@ -43,13 +43,21 @@ export const JUEGOS_CA: Partial<Record<string, JuegoCA>> = {
     nota_aula:
       'El professor projecta la pantalla i porta el marcador; cada equip decideix la seua cobertura ronda a ronda.',
   },
+  'teoria-juegos': {
+    title: 'Teoria de jocs',
+    descripcion:
+      "Sis clàssics jugables: dilema del presoner, caça del cérvol, concurs de bellesa, ultimàtum, bé públic i les quatre subhastes.",
+    modo: '1 jugador o classe sencera · projector',
+    nota_aula:
+      "Cada experiment té dos modes: en solitari contra estratègies programades, o projectat, amb la classe votant a mà alçada i el professor escrivint els números.",
+  },
   insider: {
     title: 'Insider',
     descripcion:
       'Deducció social: el grup endevina una paraula; algú sap la resposta… i ningú ho ha de notar.',
     modo: 'multijugador (party)',
     nota_aula:
-      "El professor obri aquesta pàgina al projector i veu un codi de 4 lletres. L'alumnat entra a /juegos/insider/ amb aquest codi des del mòbil.",
+      "El professor obri aquesta pàgina al projector i veu un codi de 4 lletres. L'alumnat entra a /juegos/insider/ amb aquest codi des del mòbil. Si en el teu centre no s'usa el mòbil a classe, tens la versió per a imprimir a /ca/juegos/insider/imprimir/.",
   },
 };
 

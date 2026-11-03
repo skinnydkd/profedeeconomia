@@ -419,6 +419,7 @@ Lagunas más evidentes para añadir SVG:
 1. **Crear diagrama del balance en masas patrimoniales** (cuadro de doble entrada con ANC/AC y PN/PNC/PC). **Es la laguna visual más grave del libro**. Sin este diagrama, el `SolvedExercise 10.1` exige al alumno construir mentalmente lo que un SVG resolvería en 5 segundos.
 2. **Crear diagrama waterfall de la cuenta de P&G** (Ingresos → −Gastos → EBIT → ±Resultado financiero → BAI → −Impuesto → Resultado ejercicio). Cierra visualmente lo que el `SolvedExercise 10.2` construye numéricamente.
 3. **Profundizar sección de principios contables**: hoy solo lista 5 de 9 ("conviene reconocer al menos cinco"). Listar los 9 (faltan: precio de adquisición, no compensación está, importancia relativa, correlación de ingresos y gastos). Es contenido curricular básico.
+   > **Corrección (auditoría de septiembre de 2026, EDMN-D03):** esta recomendación era errónea. El marco conceptual del PGC 2007 (RD 1514/2007) fija **seis** principios: empresa en funcionamiento, devengo, uniformidad, prudencia, no compensación e importancia relativa. Los nueve eran los del PGC de 1990. La unidad 10 ya lista los seis.
 
 **Solapamiento**:
 

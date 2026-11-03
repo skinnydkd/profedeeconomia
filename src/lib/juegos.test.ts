@@ -2,11 +2,13 @@ import { describe, it, expect } from 'vitest';
 import { JUEGOS, findBrokenJuegoRefs } from './juegos.ts';
 
 describe('JUEGOS', () => {
-  it('declares the 5 games with unique slugs', () => {
+  it('declares every game with a unique slug', () => {
     const slugs = JUEGOS.map((j) => j.slug);
     expect(new Set(slugs).size).toBe(slugs.length);
     expect(slugs).toEqual(
-      expect.arrayContaining(['stonks', 'econrisk', 'econopoly', 'cajut', 'insider']),
+      expect.arrayContaining([
+        'stonks', 'econrisk', 'econopoly', 'cajut', 'seguros', 'insider', 'teoria-juegos',
+      ]),
     );
   });
 

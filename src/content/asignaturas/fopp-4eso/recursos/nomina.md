@@ -16,7 +16,7 @@ estado: publicado
 
 ## Qué tener en cuenta
 
-El paso del bruto al neto se explica por dos descuentos: la **cotización a la Seguridad Social** (que da derecho a sanidad, paro y pensión) y la **retención de IRPF** (un adelanto del impuesto sobre la renta). El IRPF retenido no es un coste perdido: se regulariza después en la declaración, donde puede salir a devolver o a pagar.
+El paso del bruto al neto se explica por dos descuentos: la **cotización a la Seguridad Social** (que da derecho a prestaciones como el paro, la baja por enfermedad o la pensión; la sanidad pública es universal y se paga con impuestos) y la **retención de IRPF** (un adelanto del impuesto sobre la renta). El IRPF retenido no es un coste perdido: se regulariza después en la declaración, donde puede salir a devolver o a pagar.
 
 Conviene insistir en que el **coste para la empresa** es mayor que el salario bruto, porque la empresa también cotiza por cada persona contratada. Ese sueldo "completo" ayuda a entender por qué contratar tiene un precio muy superior a lo que ve quien cobra.
 

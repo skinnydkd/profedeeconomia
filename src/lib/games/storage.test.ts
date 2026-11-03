@@ -1,5 +1,5 @@
 // src/lib/games/storage.test.ts
-import { describe, it, expect, beforeEach } from 'vitest';
+import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { makeGameStorage } from './storage';
 
 function memoryStorage(): Storage {
@@ -42,5 +42,47 @@ describe('game storage', () => {
     raw.setItem('pde:game:stonks:state', '{not json');
     const s = makeGameStorage('stonks', raw);
     expect(s.load()).toBeNull();
+  });
+});
+
+describe('game storage when the browser blocks site data', () => {
+  // Chromium with «block all cookies»: reading window.localStorage throws.
+  const g = globalThis as { localStorage?: Storage };
+  beforeEach(() => {
+    Object.defineProperty(globalThis, 'localStorage', {
+      get() {
+        throw new DOMException("Failed to read the 'localStorage' property from 'Window'", 'SecurityError');
+      },
+      configurable: true,
+    });
+  });
+  afterEach(() => {
+    delete g.localStorage;
+  });
+
+  it('can still be created at module level and behaves as empty', () => {
+    // The game islands create their store when the module is evaluated.
+    const s = makeGameStorage('stonks');
+    expect(s.load()).toBeNull();
+    expect(() => s.save({ round: 1 })).not.toThrow();
+    expect(() => s.clear()).not.toThrow();
+    expect(s.getBest()).toBe(0);
+    expect(() => s.setBest(10)).not.toThrow();
+  });
+});
+
+describe('game storage with a failing backend', () => {
+  it('swallows quota and access errors', () => {
+    const failing = {
+      getItem: () => { throw new DOMException('denied', 'SecurityError'); },
+      setItem: () => { throw new DOMException('full', 'QuotaExceededError'); },
+      removeItem: () => { throw new DOMException('denied', 'SecurityError'); },
+    } as unknown as Storage;
+    const s = makeGameStorage('econrisk', failing);
+    expect(s.load()).toBeNull();
+    expect(() => s.save({ round: 1 })).not.toThrow();
+    expect(() => s.clear()).not.toThrow();
+    expect(s.getBest()).toBe(0);
+    expect(() => s.setBest(10)).not.toThrow();
   });
 });

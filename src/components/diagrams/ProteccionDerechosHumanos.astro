@@ -1,0 +1,187 @@
+---
+/**
+ * The three systems that protect a person's rights in Spain (CJD Bach, unit 2).
+ *
+ * Built to kill the single most common confusion: Strasbourg (Council of
+ * Europe, ECHR) is not Luxembourg (EU, Charter), and neither is the UN.
+ * Each ring names its treaty, its organ, what you can actually obtain and
+ * what it costs you to get there.
+ */
+import { getLocale } from '@/i18n/locale';
+const locale = getLocale(Astro.currentLocale);
+
+const COPY = {
+  es: {
+    unaPersonaEnEspanaEstaProteg: 'Una persona en España está protegida por tres sistemas superpuestos: el universal de Naciones Unidas, con sus comités de tratado, que emiten dictámenes; el regional europeo del Consejo de Europa, con el Tribunal Europeo de Derechos Humanos de Estrasburgo, cuyas sentencias son vinculantes; y el de la Unión Europea, con la Carta de Derechos Fundamentales y el Tribunal de Justicia de Luxemburgo. Antes de llegar a ninguno hay que agotar la vía interna española.',
+    tresCirculosDeProteccion: 'Tres círculos de protección',
+    personaTitular: 'persona titular',
+    deDerechos: 'de derechos',
+    unionEuropea: 'Unión Europea',
+    consejoDeEuropa: 'Consejo de Europa',
+    nacionesUnidas: 'Naciones Unidas',
+    antesDeSalirFuera: 'antes de salir fuera:',
+    agotarLaViaInternaEspanola: 'agotar la vía interna española',
+    recursoApelacionCasacionYSiP: 'recurso, apelación, casación y, si procede,',
+    amparoAnteElTribunalConstitu: 'amparo ante el Tribunal Constitucional',
+    sistema: 'Sistema',
+    queConsigues: 'Qué consigues',
+    pactosDe1966Y: 'Pactos de 1966 y',
+    tratadosSectoriales: 'tratados sectoriales',
+    comitesDeTratado: 'Comités de tratado',
+    cedawCdnCdpd: '(CEDAW, CDN, CDPD…)',
+    dictamen: 'Dictamen',
+    noEsUnaSentencia: 'No es una sentencia:',
+    obligaAlEstadoPero: 'obliga al Estado, pero',
+    noSeEjecutaSolo: 'no se ejecuta solo.',
+    convenioEuropeoDe: 'Convenio Europeo de',
+    derechosHumanos1950: 'Derechos Humanos, 1950',
+    tedhEstrasburgo: 'TEDH · Estrasburgo',
+    k47EstadosNoEsLaUe: '47 Estados, no es la UE',
+    sentenciaVinculante: 'Sentencia vinculante',
+    condenaAlEstadoY: 'Condena al Estado y',
+    puedeFijarUna: 'puede fijar una',
+    indemnizacion: 'indemnización.',
+    cartaDeDerechos: 'Carta de Derechos',
+    fundamentales2000: 'Fundamentales, 2000',
+    tjueLuxemburgo: 'TJUE · Luxemburgo',
+    soloAlAplicarDerechoUe: 'Solo al aplicar Derecho UE',
+    interpretacion: 'Interpretación',
+    llegaPorCuestion: 'Llega por cuestión',
+    prejudicialDelJuez: 'prejudicial del juez,',
+    noPorDemandaTuya: 'no por demanda tuya.',
+    estrasburgoYLuxemburgoSonTri: 'Estrasburgo y Luxemburgo son tribunales distintos,',
+    deOrganizacionesDistintasCon: 'de organizaciones distintas, con reglas de acceso distintas.',
+    confundirlosEsElErrorMasComu: 'Confundirlos es el error más común de esta unidad.',
+  },
+  ca: {
+    unaPersonaEnEspanaEstaProteg: "Una persona a Espanya està protegida per tres sistemes superposats: l'universal de Nacions Unides, amb els seus comités de tractat, que emeten dictàmens; el regional europeu del Consell d'Europa, amb el Tribunal Europeu de Drets Humans d'Estrasburg, les sentències del qual són vinculants; i el de la Unió Europea, amb la Carta de Drets Fonamentals i el Tribunal de Justícia de Luxemburg. Abans d'arribar a cap d'ells cal esgotar la via interna espanyola.",
+    tresCirculosDeProteccion: 'Tres cercles de protecció',
+    personaTitular: 'persona titular',
+    deDerechos: 'de drets',
+    unionEuropea: 'Unió Europea',
+    consejoDeEuropa: "Consell d'Europa",
+    nacionesUnidas: 'Nacions Unides',
+    antesDeSalirFuera: 'abans de sortir fora:',
+    agotarLaViaInternaEspanola: 'esgotar la via interna espanyola',
+    recursoApelacionCasacionYSiP: 'recurs, apel·lació, cassació i, si escau,',
+    amparoAnteElTribunalConstitu: 'empara davant del Tribunal Constitucional',
+    sistema: 'Sistema',
+    queConsigues: 'Què aconseguixes',
+    pactosDe1966Y: 'Pactes de 1966 i',
+    tratadosSectoriales: 'tractats sectorials',
+    comitesDeTratado: 'Comités de tractat',
+    cedawCdnCdpd: '(CEDAW, CDN, CDPD…)',
+    dictamen: 'Dictamen',
+    noEsUnaSentencia: 'No és una sentència:',
+    obligaAlEstadoPero: "obliga l'Estat, però",
+    noSeEjecutaSolo: "no s'executa sol.",
+    convenioEuropeoDe: 'Conveni Europeu de',
+    derechosHumanos1950: 'Drets Humans, 1950',
+    tedhEstrasburgo: 'TEDH · Estrasburg',
+    k47EstadosNoEsLaUe: '47 Estats, no és la UE',
+    sentenciaVinculante: 'Sentència vinculant',
+    condenaAlEstadoY: "Condemna l'Estat i",
+    puedeFijarUna: 'pot fixar una',
+    indemnizacion: 'indemnització.',
+    cartaDeDerechos: 'Carta de Drets',
+    fundamentales2000: 'Fonamentals, 2000',
+    tjueLuxemburgo: 'TJUE · Luxemburg',
+    soloAlAplicarDerechoUe: 'Només en aplicar Dret UE',
+    interpretacion: 'Interpretació',
+    llegaPorCuestion: 'Hi arriba per qüestió',
+    prejudicialDelJuez: 'prejudicial del jutge,',
+    noPorDemandaTuya: 'no per demanda teua.',
+    estrasburgoYLuxemburgoSonTri: 'Estrasburg i Luxemburg són tribunals distints,',
+    deOrganizacionesDistintasCon: "d'organitzacions distintes, amb regles d'accés distintes.",
+    confundirlosEsElErrorMasComu: "Confondre'ls és l'error més comú d'esta unitat.",
+  },
+} as const;
+
+const t = COPY[locale];
+---
+
+<svg viewBox="0 0 820 560" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="proteccionderechoshumanos-t proteccionderechoshumanos-d">
+  <title id="proteccionderechoshumanos-t">{t.tresCirculosDeProteccion}</title>
+  <desc id="proteccionderechoshumanos-d">{t.unaPersonaEnEspanaEstaProteg}</desc>
+  <defs>
+    <style>
+      .bg { fill: #FBF6EC; }
+      .ring-onu { fill: #F5E5BC; stroke: #A87A2A; stroke-width: 2; }
+      .ring-ce { fill: #FBE3D6; stroke: #C44E2C; stroke-width: 2; }
+      .ring-ue { fill: #E0DCF0; stroke: #4A3B8F; stroke-width: 2; }
+      .core { fill: #FFFFFF; stroke: #2A1F18; stroke-width: 2; }
+      .sys { font-family: 'Fraunces', serif; font-size: 16px; font-weight: 500; }
+      .sys-onu { fill: #7A5618; }
+      .sys-ce { fill: #9C3A1C; }
+      .sys-ue { fill: #382C6B; }
+      .lbl { font-family: 'Switzer', sans-serif; font-size: 10.5px; fill: #5C4A3D; }
+      .lbl-b { font-family: 'Switzer', sans-serif; font-size: 10.5px; font-weight: 700; fill: #2A1F18; }
+      .core-t { font-family: 'Fraunces', serif; font-size: 15px; font-weight: 500; fill: #2A1F18; text-anchor: middle; }
+      .core-s { font-family: 'Switzer', sans-serif; font-size: 10.5px; fill: #5C4A3D; text-anchor: middle; }
+      .gate { font-family: 'Fraunces', serif; font-style: italic; font-size: 12.5px; fill: #C44E2C; text-anchor: middle; }
+      .gate-line { fill: none; stroke: #C44E2C; stroke-width: 1.5; stroke-dasharray: 5 3; }
+      .col-h { font-family: 'Switzer', sans-serif; font-size: 9.5px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; fill: #8A7868; }
+    </style>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="820" height="560" />
+
+  <!-- Concentric systems -->
+  <ellipse class="ring-onu" cx="250" cy="250" rx="215" ry="190" />
+  <ellipse class="ring-ce" cx="250" cy="268" rx="160" ry="140" />
+  <ellipse class="ring-ue" cx="250" cy="288" rx="105" ry="92" />
+  <ellipse class="core" cx="250" cy="308" rx="58" ry="50" />
+
+  <text class="core-t" x="250" y="303">Tú</text>
+  <text class="core-s" x="250" y="322">{t.personaTitular}</text>
+  <text class="core-s" x="250" y="337">{t.deDerechos}</text>
+
+  <text class="sys sys-ue" x="250" y="222" text-anchor="middle">{t.unionEuropea}</text>
+  <text class="sys sys-ce" x="250" y="164" text-anchor="middle">{t.consejoDeEuropa}</text>
+  <text class="sys sys-onu" x="250" y="96" text-anchor="middle">{t.nacionesUnidas}</text>
+
+  <!-- The gate -->
+  <path class="gate-line" d="M 250 360 L 250 420" />
+  <text class="gate" x="250" y="440">{t.antesDeSalirFuera}</text>
+  <text class="gate" x="250" y="458">{t.agotarLaViaInternaEspanola}</text>
+  <text class="core-s" x="250" y="480">{t.recursoApelacionCasacionYSiP}</text>
+  <text class="core-s" x="250" y="496">{t.amparoAnteElTribunalConstitu}</text>
+
+  <!-- Reference column -->
+  <text class="col-h" x="500" y="72">{t.sistema}</text>
+  <text class="col-h" x="650" y="72">{t.queConsigues}</text>
+
+  <text class="sys sys-onu" x="500" y="102">ONU</text>
+  <text class="lbl-b" x="500" y="122">{t.pactosDe1966Y}</text>
+  <text class="lbl-b" x="500" y="138">{t.tratadosSectoriales}</text>
+  <text class="lbl" x="500" y="156">{t.comitesDeTratado}</text>
+  <text class="lbl" x="500" y="172">{t.cedawCdnCdpd}</text>
+  <text class="lbl-b" x="650" y="122">{t.dictamen}</text>
+  <text class="lbl" x="650" y="140">{t.noEsUnaSentencia}</text>
+  <text class="lbl" x="650" y="156">{t.obligaAlEstadoPero}</text>
+  <text class="lbl" x="650" y="172">{t.noSeEjecutaSolo}</text>
+
+  <text class="sys sys-ce" x="500" y="222">{t.consejoDeEuropa}</text>
+  <text class="lbl-b" x="500" y="242">{t.convenioEuropeoDe}</text>
+  <text class="lbl-b" x="500" y="258">{t.derechosHumanos1950}</text>
+  <text class="lbl" x="500" y="276">{t.tedhEstrasburgo}</text>
+  <text class="lbl" x="500" y="292">{t.k47EstadosNoEsLaUe}</text>
+  <text class="lbl-b" x="650" y="242">{t.sentenciaVinculante}</text>
+  <text class="lbl" x="650" y="260">{t.condenaAlEstadoY}</text>
+  <text class="lbl" x="650" y="276">{t.puedeFijarUna}</text>
+  <text class="lbl" x="650" y="292">{t.indemnizacion}</text>
+
+  <text class="sys sys-ue" x="500" y="342">{t.unionEuropea}</text>
+  <text class="lbl-b" x="500" y="362">{t.cartaDeDerechos}</text>
+  <text class="lbl-b" x="500" y="378">{t.fundamentales2000}</text>
+  <text class="lbl" x="500" y="396">{t.tjueLuxemburgo}</text>
+  <text class="lbl" x="500" y="412">{t.soloAlAplicarDerechoUe}</text>
+  <text class="lbl-b" x="650" y="362">{t.interpretacion}</text>
+  <text class="lbl" x="650" y="380">{t.llegaPorCuestion}</text>
+  <text class="lbl" x="650" y="396">{t.prejudicialDelJuez}</text>
+  <text class="lbl" x="650" y="412">{t.noPorDemandaTuya}</text>
+
+  <text class="lbl" x="500" y="466">{t.estrasburgoYLuxemburgoSonTri}</text>
+  <text class="lbl" x="500" y="482">{t.deOrganizacionesDistintasCon}</text>
+  <text class="lbl" x="500" y="498">{t.confundirlosEsElErrorMasComu}</text>
+</svg>

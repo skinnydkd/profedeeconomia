@@ -36,7 +36,7 @@ preguntas:
       - "El dinero que el Estado recauda en impuestos."
       - "La cantidad de dinero que hay en circulación."
     correcta: 0
-    explicacion: "La demanda agregada suma todo lo que el conjunto de la economía quiere comprar: consumo, inversión, gasto público y exportaciones. La oferta agregada, en cambio, es lo que se puede producir."
+    explicacion: "La demanda agregada suma todo lo que el conjunto de la economía quiere comprar: consumo, inversión, gasto público y exportaciones netas. La oferta agregada, en cambio, es lo que las empresas están dispuestas a producir, con la capacidad productiva como techo."
   - enunciado: "Si todos los agentes quisieran comprar mucho más de lo que la economía puede producir, lo más probable es que…"
     opciones:
       - "Bajaran los precios."

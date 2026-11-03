@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mockup · Ilustraciones en las tarjetas del hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,400..600,0..100,0..1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=switzer@400,500,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FBF6EC; --paper: #FFFFFF; --ink: #2A1F18; --ink-soft: #5C4A3D; --ink-mute: #6E5A47;
+    --line: #E5D4BD; --terra-ink: #9C3A1C;
+    --serif: "Fraunces", Georgia, serif; --sans: "Switzer", system-ui, sans-serif; --mono: "JetBrains Mono", monospace;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--sans); font-size: 1.125rem; line-height: 1.7; }
+  .wrap { max-width: 1240px; margin: 0 auto; padding: 3rem clamp(1rem, 4vw, 3rem) 5rem; }
+  .note { font-family: var(--mono); font-size: 0.8rem; color: var(--ink-mute); border: 1px solid var(--line); border-radius: 6px; padding: 0.8rem 1rem; background: var(--paper); margin: 0 0 3rem; }
+  h1, h2 { font-family: var(--serif); font-weight: 500; letter-spacing: -0.01em; font-variation-settings: "SOFT" 80, "WONK" 0; }
+  h1 { font-size: clamp(2.2rem, 5vw, 3.2rem); line-height: 1.1; margin: 0 0 0.4rem; }
+  h2 { font-size: 1.8rem; margin: 3.5rem 0 0.3rem; }
+  .lede { color: var(--ink-soft); max-width: 60ch; margin: 0 0 2rem; }
+  .group-label { font-weight: 600; font-size: 0.95rem; color: var(--terra-ink); margin: 0; }
+  .group-desc { font-size: 0.95rem; color: var(--ink-soft); margin: 0 0 1.2rem; }
+
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr)); gap: 1.2rem; }
+
+  /* Material cards: illustration band on top, text below. */
+  .card { display: flex; flex-direction: column; background: var(--paper); border: 1px solid var(--line); border-radius: 6px; overflow: hidden; color: var(--ink); text-decoration: none; transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease; }
+  .card:hover { transform: translateY(-2px); border-color: var(--c); box-shadow: 0 1px 2px rgba(42,31,24,.05), 0 4px 14px rgba(42,31,24,.06); }
+  .card svg { display: block; width: 100%; height: auto; aspect-ratio: 320 / 110; }
+  .card__body { padding: 1.3rem 1.7rem 1.7rem; }
+  .card h3 { font-family: var(--serif); font-weight: 500; font-size: 1.3rem; margin: 0 0 0.4rem; }
+  .card p { font-size: 0.95rem; color: var(--ink-mute); line-height: 1.5; margin: 0; }
+
+  /* Situaciones: no illustration, colour band only. */
+  .sa { display: flex; flex-direction: column; gap: 0.45rem; background: var(--paper); border: 1px solid var(--line); border-radius: 6px; overflow: hidden; color: var(--ink); text-decoration: none; transition: transform .2s ease, border-color .2s ease; }
+  .sa:hover { transform: translateY(-2px); border-color: var(--c); }
+  .sa__in { padding: 1.2rem 1.5rem 1.4rem; display: flex; flex-direction: column; gap: 0.45rem; }
+  .sa__num { font-family: var(--mono); font-size: 0.85rem; color: var(--cd); }
+  .sa__title { font-family: var(--serif); font-size: 1.3rem; font-weight: 500; line-height: 1.25; }
+  .sa__lede { font-size: 0.95rem; color: var(--ink-mute); line-height: 1.55; }
+
+  .teal { --c: #1F6E6E; --cd: #164F4F; }
+  .terra { --c: #C44E2C; --cd: #9C3A1C; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="note">MOCKUP · no es producción. Misma ilustración por tipo de material en las 10 asignaturas; solo cambian los tonos (base, deep, soft) de cada una, como en las portadas de #361. Fila 1: Eco 1BACH (teal). Fila 2: EDMN 2BACH (terracota).</p>
+
+  <h1>Todo el material, un solo curso</h1>
+  <p class="lede">Cada asignatura reúne aquí todo su material con la misma estructura. Lo que cambia es el contenido, no el sitio donde encontrarlo.</p>
+
+  <p class="group-label">El material del curso · Eco 1BACH</p>
+  <p class="group-desc">Lo que llevas a clase: libro, diapositivas y actividades para imprimir.</p>
+  <div class="grid" data-tones="#1F6E6E,#164F4F,#DBEDED" data-class="teal"></div>
+
+  <p class="group-label" style="margin-top:2.5rem">El material del curso · EDMN 2BACH</p>
+  <p class="group-desc">Mismas ilustraciones con los tonos de otra asignatura.</p>
+  <div class="grid" data-tones="#C44E2C,#9C3A1C,#FBE3D6" data-class="terra"></div>
+
+  <h2>Situaciones de aprendizaje</h2>
+  <p class="lede">Son muchas y cada una es distinta, así que aquí no hay ilustración (ni franja de color: el design-system la prohíbe).</p>
+  <ol class="grid" style="list-style:none;padding:0;margin:0">
+    <li><a class="sa teal" href="#"><span class="sa__in"><span class="sa__num">01</span><span class="sa__title">Elegir es renunciar</span><span class="sa__lede">Documento individual sobre una decisión real del fin de semana con presupuesto cerrado: tabla de coste de oportunidad de la opción elegida y justificación escrita de la elección.</span></span></a></li>
+    <li><a class="sa teal" href="#"><span class="sa__in"><span class="sa__num">02</span><span class="sa__title">¿Quién decide qué se produce?</span><span class="sa__lede">Informe comparado por grupos de tres sistemas económicos ante un mismo problema de partida.</span></span></a></li>
+    <li><a class="sa teal" href="#"><span class="sa__in"><span class="sa__num">03</span><span class="sa__title">¿Cuánto cuesta producir?</span><span class="sa__lede">Hoja de cálculo con la estructura completa de costes de un caso real del entorno.</span></span></a></li>
+  </ol>
+</div>
+
+<script>
+  // Mockup-only renderer: one flat layered motif per material type, in the subject's tones.
+  const CREAM = '#FBF6EC', MUSTARD = '#D4A24C';
+  const cards = [
+    { t: 'Libro', d: 'Los capítulos del curso, listos para leer en pantalla o descargar como PDF.',
+      // An open book on a desk lamp's pool of light.
+      m: (c) => `<rect width="320" height="110" fill="${c.base}"/>
+        <circle cx="290" cy="0" r="62" fill="${c.deep}"/>
+        <path d="M160 30 Q120 18 84 26 L84 92 Q120 84 160 96Z" fill="${CREAM}"/>
+        <path d="M160 30 Q200 18 236 26 L236 92 Q200 84 160 96Z" fill="${c.soft}"/>
+        <rect x="158" y="30" width="4" height="66" fill="${c.deep}"/>
+        <g stroke="${c.base}" stroke-width="2"><line x1="98" y1="44" x2="146" y2="48"/><line x1="98" y1="56" x2="146" y2="60"/><line x1="98" y1="68" x2="134" y2="71"/><line x1="174" y1="48" x2="222" y2="44"/><line x1="174" y1="60" x2="222" y2="56"/></g>
+        <rect x="186" y="66" width="22" height="14" fill="${MUSTARD}"/>` },
+    { t: 'Diapositivas', d: 'Las diapositivas de cada unidad, sacadas del libro. Para proyectar o descargar en PDF.',
+      // A projection screen with a rising bar chart.
+      m: (c) => `<rect width="320" height="110" fill="${c.base}"/>
+        <circle cx="30" cy="110" r="64" fill="${c.deep}"/>
+        <rect x="92" y="14" width="136" height="6" rx="3" fill="${c.deep}"/>
+        <rect x="100" y="20" width="120" height="68" fill="${CREAM}"/>
+        <g fill="${c.base}"><rect x="118" y="62" width="16" height="16"/><rect x="142" y="52" width="16" height="26"/><rect x="166" y="42" width="16" height="36"/></g>
+        <rect x="190" y="32" width="16" height="46" fill="${MUSTARD}"/>
+        <rect x="158" y="88" width="4" height="14" fill="${c.soft}"/>
+        <rect x="140" y="100" width="40" height="4" fill="${c.soft}"/>` },
+    { t: 'Actividades', d: 'Casos prácticos y ejercicios graduados por unidad, listos para imprimir.',
+      // A printed worksheet with ticked boxes and a pencil.
+      m: (c) => `<rect width="320" height="110" fill="${c.base}"/>
+        <circle cx="300" cy="104" r="58" fill="${c.deep}"/>
+        <rect x="104" y="12" width="86" height="98" fill="${CREAM}"/>
+        <g fill="${c.soft}" stroke="${c.base}" stroke-width="2"><rect x="116" y="28" width="12" height="12"/><rect x="116" y="50" width="12" height="12"/><rect x="116" y="72" width="12" height="12"/></g>
+        <g stroke="${c.base}" stroke-width="2"><line x1="136" y1="34" x2="178" y2="34"/><line x1="136" y1="56" x2="172" y2="56"/><line x1="136" y1="78" x2="176" y2="78"/></g>
+        <path d="M118 33 L122 37 L130 27" stroke="${MUSTARD}" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <path d="M118 55 L122 59 L130 49" stroke="${MUSTARD}" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <g transform="rotate(35 220 60)"><rect x="212" y="18" width="14" height="70" fill="${MUSTARD}"/><path d="M212 88 L226 88 L219 102Z" fill="${c.soft}"/><rect x="212" y="18" width="14" height="10" fill="${c.soft}"/></g>` },
+    { t: 'Refuerzo y ampliación', d: 'Por evaluación: repaso esencial con ejercicios guiados (refuerzo) y retos de más nivel (ampliación).',
+      // Two paths from one base: a short step and a tall one with a flag.
+      m: (c) => `<rect width="320" height="110" fill="${c.base}"/>
+        <circle cx="20" cy="0" r="60" fill="${c.deep}"/>
+        <rect x="70" y="82" width="180" height="16" fill="${c.soft}"/>
+        <rect x="90" y="60" width="50" height="22" fill="${CREAM}"/>
+        <rect x="170" y="38" width="60" height="44" fill="${CREAM}"/>
+        <rect x="186" y="16" width="3" height="22" fill="${c.soft}"/>
+        <path d="M189 16 L208 22 L189 28Z" fill="${MUSTARD}"/>
+        <circle cx="115" cy="48" r="8" fill="${MUSTARD}"/>` },
+  ];
+  document.querySelectorAll('.grid[data-tones]').forEach((g) => {
+    const [base, deep, soft] = g.dataset.tones.split(',');
+    g.innerHTML = cards.map((k) => `<a class="card ${g.dataset.class}" href="#">
+      <svg viewBox="0 0 320 110" preserveAspectRatio="xMidYMid slice" aria-hidden="true">${k.m({ base, deep, soft })}</svg>
+      <div class="card__body"><h3>${k.t}</h3><p>${k.d}</p></div></a>`).join('');
+  });
+</script>
+</body>
+</html>

@@ -41,7 +41,7 @@ unidades_relacionadas:
     unidad: 3
     nota: "Economia connectada: ètica, sostenibilitat i ODS — dimensió ètica de les decisions econòmiques i la justícia distributiva."
     competencias_especificas: []
-competencias_clave: ["CCL", "CPSAA", "CC"]
+competencias_clave: ["CCL", "CPSAA", "CC", "CD"]
 competencias_especificas: []
 rubrica:
   - criterio: "Qualitat dels arguments"
@@ -49,10 +49,10 @@ rubrica:
     competencia: "CC"
   - criterio: "Ús d'evidències"
     descripcion: "Recolza les afirmacions amb exemples concrets, comparatives entre territoris o referències a casos reals."
-    competencia: "CPSAA"
+    competencia: "CCL · CD"
   - criterio: "Capacitat de refutació"
     descripcion: "Respon als arguments de l'altre equip en compte de repetir els propis."
-    competencia: "CC"
+    competencia: "CCL · CC"
   - criterio: "Expressió oral i torns"
     descripcion: "S'expressa amb claredat, respecta els temps i el torn de paraula."
     competencia: "CCL"
@@ -60,6 +60,8 @@ rubrica:
 
 import Argumentario from '@components/debates/Argumentario.astro';
 import Fases from '@components/debates/Fases.astro';
+import Callout from '@components/Callout.astro';
+import FichaAlumno from '@components/debates/FichaAlumno.astro';
 
 ## De què va
 
@@ -70,6 +72,15 @@ ha convertit el debat en una cosa quotidiana: té sentit gravar el que algú lle
 fills després d'haver-ho guanyat i tributat en vida? O és precisament esta herència la que
 perpetua les desigualtats entre famílies durant generacions? Este dilema ètic enfronta
 les dues postures amb els seus millors arguments.
+
+Dues dades ajuden a situar el debat. La primera: la llei estatal ja reduïx un 95 % el valor
+de l'empresa familiar i de l'habitatge habitual (este, fins a 122.606 € per hereu) quan
+passen al cònjuge o als fills i es conserven durant un termini mínim, que és de deu anys
+en la llei estatal i menor en moltes comunitats (Llei 29/1987, art. 20.2.c). La segona:
+les diferències entre comunitats són enormes. Madrid, Múrcia o la Comunitat Valenciana
+bonifiquen el 99 % de la quota a la família més pròxima (cònjuge, descendents i
+ascendents); en canvi, segons el Consell General d'Economistes, una herència de
+800.000 € pot pagar a Astúries fins a 100.000 € més que a Andalusia o Galícia.
 
 ## Argumentari
 
@@ -105,8 +116,10 @@ les dues postures amb els seus millors arguments.
   l'economia.
 - **Destruïx empreses i explotacions familiars.** Molts negocis familiars —botigues,
   tallers, granges, xicotetes indústries— tenen un valor patrimonial elevat però no
-  generen liquiditat suficient per a pagar l'impost sense vendre part o tota l'empresa.
-  L'impost pot forçar la seua liquidació i la pèrdua de llocs de treball.
+  generen liquiditat suficient per a pagar l'impost. Fins i tot amb la reducció del 95 %,
+  que exigix requisits estrictes (que la família dirigisca el negoci i en visca
+  principalment, i que el conserve durant anys), qui no els complix pot haver de vendre
+  part o tota l'empresa per a pagar, amb la pèrdua de llocs de treball que comporta.
 - **La desigualtat d'oportunitats es corregix millor en origen.** Invertir en educació
   pública de qualitat, beques, guarderies i sanitat universal té més impacte sobre la
   mobilitat social que gravar el patrimoni heretat, que sovint és de grandària mitjana,
@@ -117,11 +130,32 @@ les dues postures amb els seus millors arguments.
 ## Com es desenvolupa
 
 <Fases fases={[
-  { fase: "Contextualització", tiempo: "5 min", descripcion: "El profe explica breument què és l'impost de successions a Espanya i per què varia tant segons la comunitat autònoma." },
+  { fase: "Contextualització", tiempo: "5 min", descripcion: "El profe explica breument què és l'impost de successions a Espanya i per què varia tant segons la comunitat autònoma. Les dues dades de «De què va» servixen de guió." },
   { fase: "Preparació en equips", tiempo: "10 min", descripcion: "Cada equip rep la seua postura, prepara 3-4 arguments i anticipa els del rival." },
   { fase: "Torns d'obertura", tiempo: "8 min", descripcion: "Un portaveu per equip exposa la posició (4 min cada un), sense interrupcions." },
   { fase: "Rèplica creuada", tiempo: "12 min", descripcion: "Torns alterns per a refutar el rival. Es valora la precisió i la connexió amb els arguments de l'altre equip." },
   { fase: "Torn del públic", tiempo: "6 min", descripcion: "L'alumnat no assignat pregunta a tots dos equips." },
   { fase: "Tancament", tiempo: "5 min", descripcion: "Cada equip resumix el seu dilema ètic central en 90 segons." },
-  { fase: "Debrief", tiempo: "8 min", descripcion: "El profe desfà el rol: contrasta les dades sobre recaptació real, la variabilitat autonòmica i compara amb altres països. Reflexió sobre quin tipus d'igualtat prioritza cada postura." },
+  { fase: "Debrief", tiempo: "8 min", descripcion: "El profe desfà el rol: contrasta les dades sobre recaptació real i la variabilitat autonòmica, recorda què cobrix la reducció del 95 % per a l'empresa familiar i compara amb altres països. Reflexió sobre quin tipus d'igualtat prioritza cada postura." },
 ]} />
+
+<Callout label="Per al debrief" title="Què diu l'evidència">
+
+- **Quant recapta i quant podria recaptar.** El 2023 l'impost va recaptar al voltant del 0,23 % del PIB. Si totes les comunitats aplicaren els paràmetres de la llei estatal, podria arribar al 0,7 %, uns 10.200 milions, suposant que la gent no canviara el seu comportament (Micó i Ramos, Banc d'Espanya, 2025).
+- **Què diu l'OCDE.** 24 països de l'OCDE tenen un impost sobre les herències, però de mitjana els impostos sobre herències i donacions els aporten només el 0,5 % de la recaptació. L'OCDE sosté que estos impostos podrien tindre un paper més gran contra la desigualtat, perquè el 20 % de llars més riques declara herències i donacions unes 50 vegades més grans que el 20 % més pobre (OCDE, *Inheritance Taxation in OECD Countries*, 2021).
+- **I els que el van suprimir.** Suècia el va eliminar el 2004, Àustria el 2008 i Noruega el 2014. Entre els motius, la falta de suport polític i una recaptació xicoteta comparada amb el cost de gestionar-lo (OCDE, 2021).
+- **Heretar augmenta la desigualtat?** Amb dades de tota la població sueca, les herències reduïxen la desigualtat relativa de riquesa, perquè pesen més per a qui té poc, però augmenten les diferències absolutes (Elinder, Erixson i Waldenström, *Journal of Public Economics*, 2018). Les dos postures poden citar el mateix estudi.
+
+**Per a tancar:** cada postura prioritza una igualtat distinta: igualtat d'oportunitats entre famílies o llibertat per a transmetre dins de la família sense tornar a tributar.
+
+</Callout>
+
+<FichaAlumno titulo="Dossier de dades" subtitulo="Xifres amb font per a preparar els arguments">
+
+- **Del 7,65 % al 34 %:** tipus de la tarifa estatal, que després es multipliquen per un coeficient d'1 a 2,4 segons el parentiu i el patrimoni previ de qui hereta (Llei 29/1987, arts. 21 i 22).
+- **Un 95 %** de reducció per a l'empresa familiar i per a l'habitatge habitual (este, fins a 122.606 € per hereu) quan passen al cònjuge o als fills i es conserven durant el termini exigit (Llei 29/1987, art. 20.2.c).
+- **El 0,23 % del PIB** va recaptar l'impost el 2023; amb els paràmetres estatals a totes les comunitats serien uns 10.200 milions (Banc d'Espanya, 2025).
+- **24 països** de l'OCDE tenen un impost sobre les herències; de mitjana, estos impostos i els de donacions aporten el 0,5 % de la seua recaptació (OCDE, 2021).
+- **50 vegades:** de mitjana a l'OCDE, les herències i donacions del 20 % de llars més riques són unes 50 vegades les del 20 % més pobre (OCDE, 2021).
+
+</FichaAlumno>

@@ -7,6 +7,7 @@ import {
   presupuestoGrado,
   type BecaModo,
 } from '../../lib/calc/presupuesto-uni';
+import NumberInput from '../NumberInput';
 
 /**
  * UI strings, Valencian (AVL) alongside the ES source. Currency/notation
@@ -213,8 +214,6 @@ export default function PresupuestoUni({ locale = 'es' }: Props) {
     setBecaModo('anual');
   }
 
-  const num = (e: Event) => parseFloat((e.target as HTMLInputElement).value) || 0;
-
   const d = result.anual.desglose;
 
   return (
@@ -243,12 +242,11 @@ export default function PresupuestoUni({ locale = 'es' }: Props) {
         <label class="calc__field">
           <span class="calc__label">{c.labelMatricula}</span>
           <div class="calc__input-wrap">
-            <input
-              type="number"
+            <NumberInput
               min={0}
               step={50}
               value={matricula}
-              onInput={(e) => setMatricula(num(e))}
+              onValue={setMatricula}
             />
             <span class="calc__unit">{c.unitEurCurso}</span>
           </div>
@@ -258,12 +256,11 @@ export default function PresupuestoUni({ locale = 'es' }: Props) {
           <label class="calc__field">
             <span class="calc__label">{c.labelAlojamientoFuera}</span>
             <div class="calc__input-wrap">
-              <input
-                type="number"
+              <NumberInput
                 min={0}
                 step={100}
                 value={alojamiento}
-                onInput={(e) => setAlojamiento(num(e))}
+                onValue={setAlojamiento}
               />
               <span class="calc__unit">{c.unitEurCurso}</span>
             </div>
@@ -274,12 +271,11 @@ export default function PresupuestoUni({ locale = 'es' }: Props) {
           <label class="calc__field">
             <span class="calc__label">{c.labelAlojamientoCasa}</span>
             <div class="calc__input-wrap">
-              <input
-                type="number"
+              <NumberInput
                 min={0}
                 step={50}
                 value={alojamiento}
-                onInput={(e) => setAlojamiento(num(e))}
+                onValue={setAlojamiento}
               />
               <span class="calc__unit">{c.unitEurCurso}</span>
             </div>
@@ -289,12 +285,11 @@ export default function PresupuestoUni({ locale = 'es' }: Props) {
         <label class="calc__field">
           <span class="calc__label">{c.labelManutencion}</span>
           <div class="calc__input-wrap">
-            <input
-              type="number"
+            <NumberInput
               min={0}
               step={100}
               value={manutencion}
-              onInput={(e) => setManutencion(num(e))}
+              onValue={setManutencion}
             />
             <span class="calc__unit">{c.unitEurCurso}</span>
           </div>
@@ -303,12 +298,11 @@ export default function PresupuestoUni({ locale = 'es' }: Props) {
         <label class="calc__field">
           <span class="calc__label">{c.labelMaterial}</span>
           <div class="calc__input-wrap">
-            <input
-              type="number"
+            <NumberInput
               min={0}
               step={50}
               value={material}
-              onInput={(e) => setMaterial(num(e))}
+              onValue={setMaterial}
             />
             <span class="calc__unit">{c.unitEurCurso}</span>
           </div>
@@ -317,12 +311,11 @@ export default function PresupuestoUni({ locale = 'es' }: Props) {
         <label class="calc__field">
           <span class="calc__label">{c.labelTransporte}</span>
           <div class="calc__input-wrap">
-            <input
-              type="number"
+            <NumberInput
               min={0}
               step={50}
               value={transporte}
-              onInput={(e) => setTransporte(num(e))}
+              onValue={setTransporte}
             />
             <span class="calc__unit">{c.unitEurCurso}</span>
           </div>
@@ -331,13 +324,12 @@ export default function PresupuestoUni({ locale = 'es' }: Props) {
         <label class="calc__field">
           <span class="calc__label">{c.labelDuracion}</span>
           <div class="calc__input-wrap">
-            <input
-              type="number"
+            <NumberInput
               min={1}
               max={7}
               step={1}
               value={anos}
-              onInput={(e) => setAnos(parseInt((e.target as HTMLInputElement).value) || 1)}
+              onValue={(v) => setAnos(Math.trunc(v) || 1)}
             />
             <span class="calc__unit">{c.unitAnos}</span>
           </div>
@@ -346,12 +338,11 @@ export default function PresupuestoUni({ locale = 'es' }: Props) {
         <label class="calc__field">
           <span class="calc__label">{c.labelBeca}</span>
           <div class="calc__input-wrap">
-            <input
-              type="number"
+            <NumberInput
               min={0}
               step={100}
               value={beca}
-              onInput={(e) => setBeca(num(e))}
+              onValue={setBeca}
             />
             <span class="calc__unit">€</span>
           </div>
@@ -371,7 +362,7 @@ export default function PresupuestoUni({ locale = 'es' }: Props) {
         </label>
       </div>
 
-      <div class="calc__results">
+      <div class="calc__results" aria-live="polite">
         <p class="calc__sub">
           {c.costeDe}{result.anos} {result.anos === 1 ? c.anoSingular : c.anoPlural}{c.deGradoPublico}
           {viveEnCasa ? c.viviendoEnCasa : c.viviendoFuera}

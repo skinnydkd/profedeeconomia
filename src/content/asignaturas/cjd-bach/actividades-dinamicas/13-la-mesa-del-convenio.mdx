@@ -1,0 +1,117 @@
+---
+asignatura: cjd-bach
+unidad_relacionada: 5
+title: "La mesa del convenio"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "20-25 min"
+descripcion: "Tu contrato dice una cosa y el convenio del sector dice otra. Sales elegida delegada justo cuando toca negociarlo."
+competencias_clave: [CC, CPSAA, CE]
+competencias_especificas: []
+estado: publicado
+publicado_en: 2026-09-08
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Caso · Negociación colectiva",
+    "titulo": "La mesa del convenio",
+    "contexto": "Tienes 19 años y trabajas de camarera en una cadena de cafeterías con sesenta personas en plantilla. Nadie del turno de tarde ha leído nunca el convenio colectivo de hostelería de la provincia: se sabe que existe porque aparece nombrado en la nómina y poco más. Este mes hay elecciones sindicales, te presentas casi por accidente y sales elegida delegada. Tres semanas después se abre la negociación del convenio y resulta que la mesa es un sitio donde se escribe Derecho: lo que allí se firme obligará a todas las empresas y a todas las personas del sector, estén o no afiliadas, hayan ido o no a la asamblea.",
+    "kpi_inicial": { "mejora_mensual": 0, "respaldo_plantilla": 5, "paz_social": 7 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisión 1 — El contrato y el convenio no dicen lo mismo",
+      "situacion": "Comparas tu contrato con las tablas del convenio provincial. Tu contrato dice 1.100 € por tu categoría; la tabla del convenio dice 1.240 €, y además reconoce un plus de nocturnidad que en tu nómina no aparece. Llevas catorce meses trabajando así.",
+      "opciones": [
+        {
+          "label": "El contrato lo firmé yo: si dice 1.100, son 1.100",
+          "kpi_delta": { "mejora_mensual": 0, "respaldo_plantilla": -1, "paz_social": 1 },
+          "feedback": "Es la creencia más extendida y es incorrecta. El art. 3.1.c del Estatuto de los Trabajadores permite que la voluntad de las partes regule la relación laboral, pero nunca por debajo de lo que establecen la ley y el convenio: un contrato que pacta menos de lo que marca la tabla salarial es nulo en ese punto y se aplica la tabla. Lección: hay derechos que no puedes ceder aunque quieras y aunque firmes, y ese límite es lo que distingue el Derecho laboral del Derecho civil de los contratos.",
+          "next": "n2"
+        },
+        {
+          "label": "Reclamo la diferencia de los últimos meses con el convenio en la mano",
+          "kpi_delta": { "mejora_mensual": 140, "respaldo_plantilla": 3, "paz_social": -2 },
+          "feedback": "Correcto, y con prisa: las reclamaciones de cantidad prescriben al año desde que cada mensualidad era exigible, así que cada mes que pasa se pierde el mes más antiguo. La reclamación va primero por escrito a la empresa y, si no hay respuesta, por conciliación previa antes de demandar. Lección: tener razón y llegar a tiempo son dos requisitos distintos, y el segundo no avisa.",
+          "next": "n2"
+        },
+        {
+          "label": "Pregunto si el convenio se aplica también a quien no está afiliado a un sindicato",
+          "kpi_delta": { "mejora_mensual": 0, "respaldo_plantilla": 2, "paz_social": 0 },
+          "feedback": "Buena pregunta, y la respuesta sorprende a casi todo el mundo: el convenio estatutario tiene eficacia general: obliga a todas las empresas y a todas las personas trabajadoras de su ámbito, con independencia de la afiliación. Por eso el art. 37.1 de la Constitución habla de la fuerza vinculante de los convenios, y por eso un convenio es una fuente del Derecho y no un contrato entre quienes lo firman. Lección: la negociación colectiva produce normas, no acuerdos privados; ahí está toda su potencia y también toda su responsabilidad.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisión 2 — La mesa negociadora",
+      "situacion": "Se abre la negociación con cuatro puntos: subida salarial, jornada de cuatro días, plus de nocturnidad y teletrabajo para el personal de oficina. La patronal dice que sólo hay dinero para uno de los cuatro. La asamblea te ha dado un mandato: no firmar por debajo de la subida del coste de la vida.",
+      "opciones": [
+        {
+          "label": "Acepto la subida y renuncio a lo demás: algo es algo",
+          "kpi_delta": { "mejora_mensual": 60, "respaldo_plantilla": -2, "paz_social": 3 },
+          "feedback": "Cerrar rápido tiene un valor real y a veces es lo correcto. El problema aquí es otro: has firmado por debajo del mandato que te dio la asamblea, y quien negocia con mandato responde ante quien se lo dio. El convenio durará años y la nocturnidad no vuelve a la mesa hasta la próxima vez. Lección: en negociación colectiva no representas tu criterio, representas un mandato; cambiarlo sin volver a preguntar rompe lo único que te da fuerza.",
+          "next": "n3"
+        },
+        {
+          "label": "Priorizo por escrito con la asamblea y llevo dos peticiones cerradas",
+          "kpi_delta": { "mejora_mensual": 95, "respaldo_plantilla": 3, "paz_social": 0 },
+          "feedback": "Es lo que hace fuerte a una parte pequeña: llegar con la prioridad decidida y con el respaldo documentado. Saber qué se cambia por qué —nocturnidad ahora a cambio de esperar al cuarto día— convierte una lista de deseos en una posición negociadora. Lección: negociar no es pedirlo todo, es saber en qué orden estás dispuesto a perder.",
+          "next": "n3"
+        },
+        {
+          "label": "La empresa propone salir del convenio del sector y firmar uno de empresa",
+          "kpi_delta": { "mejora_mensual": 0, "respaldo_plantilla": 1, "paz_social": -1 },
+          "feedback": "Conviene saber lo que se puede y lo que no. Un convenio de empresa puede regular muchas materias, pero desde la reforma de 2021 ya no tiene prioridad aplicativa en el salario: no puede pagar por debajo de las tablas del convenio del sector. Aceptarlo sin verificar eso es firmar una rebaja que la ley ya no permite. Lección: antes de negociar el contenido hay que saber qué norma manda sobre qué materia; el orden de las fuentes no es teoría, es lo que se puede exigir.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisión 3 — La mesa se rompe",
+      "situacion": "Cuarta reunión, sin acuerdo. La patronal da por agotada la negociación. En la asamblea hay gente pidiendo huelga para el fin de semana del festival, que es cuando más se factura en todo el año.",
+      "opciones": [
+        {
+          "label": "Convocamos huelga para el fin de semana grande",
+          "kpi_delta": { "mejora_mensual": 120, "respaldo_plantilla": 1, "paz_social": -5 },
+          "feedback": "La huelga es un derecho fundamental del art. 28.2 de la Constitución, y ejercerlo tiene reglas: preaviso, comité de huelga, publicidad y servicios de seguridad y mantenimiento. Tiene también un coste que hay que contar antes y no después: los días de huelga no se cobran y no se cotiza por ellos. Elegir el fin de semana de máxima facturación es legítimo y es exactamente lo que le da fuerza. Lección: un derecho fundamental no se ejerce gratis; se ejerce sabiendo lo que cuesta a cada lado de la mesa.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Pedimos mediación en el organismo autonómico de solución de conflictos",
+          "kpi_delta": { "mejora_mensual": 85, "respaldo_plantilla": 2, "paz_social": 2 },
+          "feedback": "Los acuerdos interprofesionales han creado organismos de mediación y arbitraje laboral —en la Comunitat Valenciana, el Tribunal de Arbitraje Laboral— que intervienen antes de que el conflicto llegue al juzgado o a la calle. Es gratuito, es rápido y en muchos convenios es un paso previo obligatorio antes de la huelga. Lección: entre firmar lo que hay y parar la empresa existe un escalón intermedio que casi nadie recuerda que existe.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Dejarlo estar: se acaba el convenio y ya se verá el año que viene",
+          "kpi_delta": { "mejora_mensual": 0, "respaldo_plantilla": -2, "paz_social": 2 },
+          "feedback": "Aquí hay un dato que cambia quién tiene prisa: desde la reforma de 2021, un convenio denunciado y no sustituido mantiene su vigencia de forma indefinida mientras se negocia el siguiente. Eso significa que no se cae, que nadie se queda sin condiciones y que la presión temporal ya no juega contra la parte social como jugaba antes. Lección: saber qué pasa si no se firma es la información más valiosa de cualquier negociación, y está escrita en la ley.",
+          "next": "final:fracaso_parcial"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "Firmado, con nocturnidad y con la asamblea detrás",
+      "resumen": "El convenio se cerró con una subida por debajo de lo pedido y con el plus de nocturnidad reconocido. Se aplica a las sesenta personas de la plantilla y a todo el sector de la provincia, hayan participado o no.",
+      "lecciones_clave": [
+        "El contrato individual no puede pactar por debajo del convenio: el art. 3 del Estatuto de los Trabajadores ordena las fuentes y fija el suelo.",
+        "El convenio estatutario obliga a todo su ámbito con independencia de la afiliación: es una norma, no un contrato privado (art. 37.1 CE).",
+        "La huelga es un derecho fundamental con procedimiento y con coste; la mediación es el escalón intermedio que suele saltarse."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "Otro año igual, y esta vez sabiendo por qué",
+      "resumen": "No hubo acuerdo ni conflicto. Las condiciones siguen vigentes por la prórroga automática del convenio, así que nadie ha perdido nada, pero tampoco nadie ha ganado, y la nocturnidad sigue sin cobrarse.",
+      "lecciones_clave": [
+        "Un convenio denunciado y no sustituido mantiene su vigencia mientras se negocia el siguiente: eso cambia quién tiene prisa en la mesa.",
+        "Quien negocia con mandato de una asamblea responde ante ella: apartarse del mandato cuesta el respaldo que hacía posible negociar."
+      ]
+    }
+  }
+}
+```

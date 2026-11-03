@@ -1,0 +1,117 @@
+---
+asignatura: cjd-bach
+unidad_relacionada: 2
+title: "El rescate llega con condiciones"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "20-25 min"
+descripcion: "Tu país necesita 4.000 millones. Cada puerta a la que llamas pide algo distinto a cambio."
+competencias_clave: [CC, CD, CPSAA]
+competencias_especificas: []
+estado: publicado
+publicado_en: 2026-09-08
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Caso · Organizaciones internacionales",
+    "titulo": "El rescate llega con condiciones",
+    "contexto": "Formas parte del equipo jurídico del Ministerio de Economía de Valdenia, un país de doce millones de habitantes y renta media. Dos años de sequía y una subida mundial de los tipos de interés han dejado al Estado sin caja para devolver 4.000 millones de deuda que vencen en marzo. Nadie va a regalar ese dinero. Las tres puertas a las que puedes llamar se abrieron entre 1944 y 1949, cuando se firmaron —en cinco años— Bretton Woods, la Carta de la ONU, el GATT y el Tratado del Atlántico Norte. Lo que se decidió entonces es lo que hoy determina quién manda en esta conversación.",
+    "kpi_inicial": { "financiacion": 0, "margen_de_decision": 10, "apoyo_interno": 7 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisión 1 — A qué puerta llamas",
+      "situacion": "Quedan diez semanas. El ministro pide un informe de una página con la vía recomendada y sus consecuencias jurídicas, no económicas: qué firmáis exactamente y a qué os obliga esa firma.",
+      "opciones": [
+        {
+          "label": "Programa del FMI: dinero a cambio de un memorando de políticas",
+          "kpi_delta": { "financiacion": 4000, "margen_de_decision": -4, "apoyo_interno": -2 },
+          "feedback": "El Fondo Monetario Internacional nació en Bretton Woods en 1944 y no es ni un banco comercial ni un tribunal: presta contra un programa. Las condiciones se escriben en una carta de intenciones y un memorando, y el dinero llega por tramos que se detienen si las revisiones no salen bien. La clave jurídica está en el voto: en el FMI no rige «un país, un voto» sino el voto ponderado por cuota, y la cuota la fija el peso económico. Lección: quien puso el capital escribió las reglas de decisión, y esas reglas se pactaron en 1944.",
+          "next": "n2"
+        },
+        {
+          "label": "Mercados: emitimos bonos al 9 % y no rendimos cuentas a nadie",
+          "kpi_delta": { "financiacion": 4000, "margen_de_decision": -1, "apoyo_interno": -1 },
+          "feedback": "Nadie te impone un memorando, pero el interés es la condición. La letra pequeña está en el contrato: la mayoría de las emisiones soberanas internacionales se someten a derecho inglés o del Estado de Nueva York, de modo que un impago se litiga ante un juzgado extranjero y no ante el tuyo. Las cláusulas de acción colectiva permiten reestructurar si una mayoría cualificada de acreedores acepta, y sirven precisamente para que un acreedor aislado no bloquee el acuerdo. Lección: esquivar la condicionalidad no es esquivar la sujeción; sólo cambia quién manda, y a veces pasa de un organismo a un juzgado privado.",
+          "next": "n2"
+        },
+        {
+          "label": "Préstamo bilateral de una gran potencia, con contrato reservado",
+          "kpi_delta": { "financiacion": 4000, "margen_de_decision": -5, "apoyo_interno": 1 },
+          "feedback": "Llega rápido, sin memorando publicado y sin revisiones trimestrales, y por eso políticamente es la más cómoda. La contrapartida está dentro del contrato: garantías sobre los ingresos de una aduana o de un puerto, cláusulas de confidencialidad y sumisión a los tribunales del prestamista. Lección: la condicionalidad que no se publica no desaparece, se traslada al contrato —y un contrato secreto no lo discute ningún parlamento.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisión 2 — El arancel que cierra tu mercado",
+      "situacion": "En mitad de la negociación, tu principal cliente comercial impone de golpe un arancel del 30 % a tu principal exportación, invocando «seguridad nacional». Es un tercio de tus divisas.",
+      "opciones": [
+        {
+          "label": "Panel en la OMC: que un órgano internacional declare la medida ilegal",
+          "kpi_delta": { "financiacion": -200, "margen_de_decision": 3, "apoyo_interno": -1 },
+          "feedback": "Es la vía prevista desde el GATT de 1947, hoy en la OMC: un panel del Órgano de Solución de Diferencias examina la medida y, si la declara contraria a las normas, puede autorizar represalias proporcionadas. El problema es de rabiosa actualidad: el Órgano de Apelación está paralizado desde 2019 porque no se nombran sus miembros, así que basta con «apelar al vacío» para dejar el informe en el limbo. Lección: un tribunal internacional funciona mientras los Estados quieren que funcione; su debilidad no es el texto, es el nombramiento.",
+          "next": "n3"
+        },
+        {
+          "label": "Represalia inmediata: arancel espejo del 30 %",
+          "kpi_delta": { "financiacion": -300, "margen_de_decision": -2, "apoyo_interno": 3 },
+          "feedback": "Es lo más popular y es exactamente lo que las normas comerciales prohíben sin autorización previa. Además, un país que está pidiendo 4.000 millones prestados vive de una sola cosa: la reputación de ser previsible. Lección: responder a una ilegalidad con otra no defiende el Derecho, lo suspende —y quien lo suspende pierde el argumento que iba a usar.",
+          "next": "n3"
+        },
+        {
+          "label": "Negociar en bilateral y, en paralelo, acudir al mecanismo provisional de apelación",
+          "kpi_delta": { "financiacion": -100, "margen_de_decision": 2, "apoyo_interno": 0 },
+          "feedback": "Ante el bloqueo del Órgano de Apelación, un grupo de miembros de la OMC acordó un arreglo provisional de apelación por arbitraje para seguir teniendo segunda instancia entre ellos. Sólo sirve si el otro país también está dentro, que es lo primero que hay que comprobar. Lección: cuando una institución se atasca, los Estados construyen atajos jurídicos que valen sólo entre quienes los firman: el Derecho internacional se repara con más acuerdos, no con más fuerza.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisión 3 — La condena que llega de fuera",
+      "situacion": "La ley de emergencia con la que recortasteis las pensiones mínimas llega a dos sitios a la vez: un comité de la ONU emite un dictamen que la considera contraria a un tratado que Valdenia ratificó en los años ochenta, y una ONG lleva el caso a un tribunal regional de derechos humanos cuyas sentencias sí son vinculantes.",
+      "opciones": [
+        {
+          "label": "Ignorarlo: un dictamen no es una sentencia",
+          "kpi_delta": { "financiacion": -500, "margen_de_decision": 1, "apoyo_interno": 1 },
+          "feedback": "La premisa es correcta y la conclusión no. Un dictamen de un comité de la ONU no se ejecuta como una sentencia, pero es la interpretación autorizada del tratado que el Estado firmó, y los tratados obligan: pacta sunt servanda, art. 26 del Convenio de Viena. Y la sentencia del tribunal regional sí obliga, con dictamen o sin él. Lección: entre un dictamen, una sentencia y una sanción hay una escala de fuerza jurídica, y confundir los tres peldaños sale caro justo cuando estás pidiendo dinero.",
+          "next": "final:fracaso_parcial"
+        },
+        {
+          "label": "Cumplir y reformar la ley antes de que resuelva el tribunal",
+          "kpi_delta": { "financiacion": 300, "margen_de_decision": -2, "apoyo_interno": -2 },
+          "feedback": "Cumplir un tratado ratificado no es ceder soberanía: la soberanía se ejerció al firmarlo. En España el art. 96 CE lo dice sin rodeos —los tratados válidamente celebrados forman parte del ordenamiento interno y sólo se derogan por la vía que el propio tratado prevé—, de modo que ni una ley posterior puede con ellos. Reformar antes de la sentencia además evita la indemnización y la supervisión de la ejecución. Lección: la firma es el momento soberano; después, obliga.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Denunciar el tratado y salirse",
+          "kpi_delta": { "financiacion": -1500, "margen_de_decision": 4, "apoyo_interno": 0 },
+          "feedback": "Retirarse de un tratado es jurídicamente posible cuando el propio tratado lo prevé y con los plazos que marca; lo que no existe es la retirada con efecto retroactivo sobre los casos ya abiertos. El coste real llega por otro lado: quien se sale de un tratado paga más caro cada euro que pide prestado, y ese encarecimiento dura años. Lección: la puerta de salida existe y está en el texto, pero no borra lo que ya se firmó.",
+          "next": "final:fracaso_parcial"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "Con el dinero, con condiciones y sin quemar las naves",
+      "resumen": "Valdenia cubre el vencimiento de marzo, mantiene abiertas las vías internacionales y evita una condena firme. Ha perdido margen de decisión: eso no era evitable, sólo elegible.",
+      "lecciones_clave": [
+        "Las reglas de decisión del FMI y del Banco Mundial se pactaron en 1944 y reparten el voto por cuota, no por país: por eso siguen repartiendo poder hoy.",
+        "Evitar la condicionalidad de un organismo no evita la sujeción: la traslada a un contrato de bonos regido por derecho extranjero o a un préstamo bilateral reservado.",
+        "Los tratados obligan porque se firmaron (art. 26 del Convenio de Viena); en España, además, forman parte del ordenamiento interno por el art. 96 CE."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "Soberanía intacta, país sin crédito",
+      "resumen": "Se ganó el argumento en el debate interno y se perdió en las tres mesas donde se decidía el dinero. La deuda de marzo sigue ahí y ahora es más cara.",
+      "lecciones_clave": [
+        "Un dictamen no se ejecuta, pero interpreta el tratado que el Estado firmó: tratarlo como papel mojado prejuzga mal la sentencia que viene detrás.",
+        "La represalia comercial sin autorización del Órgano de Solución de Diferencias convierte al país reclamante en país incumplidor."
+      ]
+    }
+  }
+}
+```

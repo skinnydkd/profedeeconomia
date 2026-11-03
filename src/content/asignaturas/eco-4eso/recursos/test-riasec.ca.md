@@ -1,6 +1,6 @@
 ---
 asignatura: eco-4eso
-unidad_relacionada: 1
+unidad_relacionada: 11
 title: "Test d'interessos RIASEC"
 descripcion: "Respon a les preguntes del model de Holland i obtín el teu perfil d'interessos professionals. No diu qui eres ni què has de ser: indica amb quin tipus de tasques encaixes millor d'entrada."
 tipo: calculadora
@@ -12,7 +12,7 @@ slug: "asignaturas/eco-4eso/recursos/test-riasec.ca"
 
 ## Quan usar-lo
 
-- A la Unitat 1, a la part d'autoconeixement: abans de parlar de perfil emprenedor convé tindre alguna dada pròpia damunt la taula.
+- A la Unitat 11, a la part d'autoconeixement: abans de parlar de perfil emprenedor convé tindre alguna dada pròpia damunt la taula.
 - Com a arrancada de curs, perquè cadascú tinga un punt de partida al qual tornar quan es parle d'itineraris.
 - Junt amb l'inventari de competències: els interessos diuen què t'atrau i les competències què saps fer, i no són el mateix.
 

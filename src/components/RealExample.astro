@@ -9,14 +9,19 @@ type Props = {
   source?: string;
   /** Optional URL the source links to */
   sourceUrl?: string;
+  /**
+   * Composite case written for teaching rather than a documented one:
+   * labelled "Caso ilustrativo" instead of "Ejemplo real".
+   */
+  ilustrativo?: boolean;
 };
 
-const { title, source, sourceUrl } = Astro.props;
+const { title, source, sourceUrl, ilustrativo = false } = Astro.props;
 ---
 
 <aside class="real-example">
   <div class="real-example__rule"></div>
-  <span class="real-example__label">{t('libro.ejemploReal', locale)}</span>
+  <span class="real-example__label">{t(ilustrativo ? 'libro.casoIlustrativo' : 'libro.ejemploReal', locale)}</span>
   <div class="real-example__title">{title}</div>
   <div class="real-example__body">
     <slot />

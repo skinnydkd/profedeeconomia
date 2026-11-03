@@ -74,8 +74,8 @@ export function buildLessons(s: GameState): string[] {
   const gap = player - ai;
   out.push(
     gap >= 0
-      ? `Has terminado ${eur(gap)} por encima de «El Mercat», que se limitó a comprar el índice mundial y no vender nunca.`
-      : `«El Mercat» te ha ganado por ${eur(-gap)} sin tomar una sola decisión: compró el índice mundial y no vendió nunca.`,
+      ? `Has terminado ${eur(gap)} por encima de «El Mercado», que se limitó a comprar el índice mundial y no vender nunca.`
+      : `«El Mercado» te ha ganado por ${eur(-gap)} sin tomar una sola decisión: compró el índice mundial y no vendió nunca.`,
   );
 
   for (const g of GENERIC) {

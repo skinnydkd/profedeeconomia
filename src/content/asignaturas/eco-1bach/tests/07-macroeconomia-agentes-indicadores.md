@@ -69,7 +69,7 @@ preguntas:
       - "Tener cobrando la prestación contributiva por desempleo."
     correcta: 2
     explicacion: "La EPA exige los tres requisitos simultáneamente. Una persona que no trabaja y está disponible pero ha dejado de buscar empleo (*trabajador desanimado*) es inactiva, no parada. La EPA es una encuesta estadística trimestral con metodología OIT/Eurostat, distinta del paro registrado del SEPE."
-  - enunciado: "España presenta superávit por cuenta corriente desde 2012 (≈ +2,6 % del PIB en 2023). ¿Qué dos motores explican principalmente ese saldo positivo?"
+  - enunciado: "España presenta superávit por cuenta corriente desde 2012 (≈ +3 % del PIB en 2024). ¿Qué dos motores explican principalmente ese saldo positivo?"
     opciones:
       - "El superávit comercial en bienes industriales y el descenso de las remesas."
       - "Las transferencias corrientes recibidas de la UE y la inversión extranjera directa."
@@ -105,4 +105,4 @@ preguntas:
     explicacion: "Cada uno mide una cosa distinta y ninguno resume la economía por sí solo: el PIB mide producción, el IPC precios, la tasa de paro el mercado de trabajo y la balanza la relación con el exterior."
 ---
 
-Test de autoevaluación de la Unidad 7 del libro de Eco 1BACH. Nueve preguntas que cubren los cuatro agentes económicos, la identidad del flujo circular ampliado, el cálculo del PIB por los métodos del gasto y de la producción, la conversión entre PIB nominal y real mediante el deflactor, la diferencia entre IPC y deflactor del PIB, el papel del IPCA en la zona euro, la definición de paro según la EPA y la estructura del superávit por cuenta corriente español.
+Test de autoevaluación de la Unidad 7 del libro de Eco 1BACH. Catorce preguntas que cubren los cuatro agentes económicos, la identidad del flujo circular ampliado, el cálculo del PIB por los métodos del gasto y de la producción, la conversión entre PIB nominal y real mediante el deflactor, la diferencia entre IPC y deflactor del PIB, el papel del IPCA en la zona euro, la definición de paro según la EPA y la estructura del superávit por cuenta corriente español.

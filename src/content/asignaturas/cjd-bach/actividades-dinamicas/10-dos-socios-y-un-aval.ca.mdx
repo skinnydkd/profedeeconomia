@@ -1,0 +1,119 @@
+---
+asignatura: cjd-bach
+unidad_relacionada: 4
+title: "Dues sòcies i un aval"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "20-25 min"
+descripcion: "Munteu un obrador. La forma jurídica que trieu decidix què passa el dia que alguna cosa ix malament."
+competencias_clave: [CC, CE, CPSAA]
+competencias_especificas: []
+lang: ca
+estado: publicado
+slug: "asignaturas/cjd-bach/actividades-dinamicas/10-dos-socios-y-un-aval.ca"
+publicado_en: 2026-09-08
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Cas · Persona jurídica i empresa",
+    "titulo": "Dues sòcies i un aval",
+    "contexto": "Tu i Nadia porteu dos anys fent rebosteria per encàrrec des de casa. Funciona, i voleu fer el salt: llogar un local xicotet, comprar un forn de veritat i contractar una persona els caps de setmana. Entre les dos teniu 8.000 € estalviats i en necessiteu uns 28.000. Tu poses quasi tots els diners; Nadia, quasi tot el treball. A la gestoria us pregunten el primer de tot: «Com ho munteu?». I d'eixa resposta depén una cosa que hui no us esteu preguntant: què passa amb les vostres coses si l'obrador no ix.",
+    "kpi_inicial": { "patrimoni_fora_de_perill": 0, "caixa": 8000, "credibilitat": 3 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisió 1 — Com ho munteu",
+      "situacion": "La gestoria us posa tres opcions damunt la taula i us diu el preu de cadascuna, però no les conseqüències. Les conseqüències les heu de buscar vosaltres.",
+      "opciones": [
+        {
+          "label": "Les dos d'alta com a autònomes: ràpid, barat i sense notari",
+          "kpi_delta": { "patrimoni_fora_de_perill": 0, "caixa": -400, "credibilitat": 1 },
+          "feedback": "És la via més barata i en dos dies esteu facturant. El que es firma sense llegir és l'art. 1911 del Codi Civil: del compliment de les obligacions respon el deutor amb tots els seus béns, presents i futurs. No hi ha separació entre el patrimoni de l'obrador i el vostre; si el negoci deu, deveu vosaltres, hui i d'ací a deu anys. Existix la figura de l'emprenedor de responsabilitat limitada, que permet deixar fora l'habitatge habitual inscrivint-lo al Registre Mercantil, però no protegix davant els deutes amb Hisenda i la Seguretat Social. Lliçó: la forma jurídica més barata de constituir és la més cara de desfer.",
+          "next": "n2"
+        },
+        {
+          "label": "Comunitat de béns: hi posem les dos i repartim",
+          "kpi_delta": { "patrimoni_fora_de_perill": 0, "caixa": -300, "credibilitat": 1 },
+          "feedback": "Sona a terme mitjà i no ho és. La comunitat de béns no té personalitat jurídica pròpia: no és «algú» distint de vosaltres, així que respon cada comunera amb el seu propi patrimoni, igual que en el cas anterior i a més pel que faça l'altra. És un contracte entre vosaltres, no un escut davant tercers. Lliçó: si la figura no crea una persona jurídica nova, no hi ha ningú més a qui reclamar que vosaltres dos.",
+          "next": "n2"
+        },
+        {
+          "label": "Societat limitada: notari, Registre Mercantil i estatuts",
+          "kpi_delta": { "patrimoni_fora_de_perill": 6, "caixa": -900, "credibilitat": 4 },
+          "feedback": "Amb la SL naix una persona jurídica distinta de vosaltres: té el seu propi NIF, el seu propi patrimoni i els seus propis deutes. Des de la reforma de 2022 pot constituir-se amb un capital d'1 €, amb la contrapartida de destinar a reserva legal almenys el 20 % del benefici fins a arribar a 3.000 € i de respondre solidàriament les sòcies d'eixa diferència si la societat es liquida abans. Costa més i obliga a portar comptes de veritat. Lliçó: la responsabilitat limitada no és un truc fiscal, és la decisió de crear un subjecte de dret que responga en el teu lloc.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisió 2 — El banc vol una firma més",
+      "situacion": "Demaneu 20.000 € per al forn i la reforma. El banc aprova l'operació, però afig una condició al final del contracte: aval personal i solidari de les dos sòcies.",
+      "opciones": [
+        {
+          "label": "Firmem l'aval: sense forn no hi ha obrador",
+          "kpi_delta": { "patrimoni_fora_de_perill": -6, "caixa": 20000, "credibilitat": 1 },
+          "feedback": "Ací és on s'esquerda la responsabilitat limitada, i no per un defecte de la llei sinó per la vostra pròpia firma: l'aval solidari permet al banc anar directament contra els vostres béns sense esgotar abans els de la societat. Muntar una SL i avalar-la personalment deixa l'escut intacte per als altres creditors i obert per a este. Lliçó: la limitació de responsabilitat la pots perdre tu mateixa, i normalment la perds a l'última pàgina.",
+          "next": "n3"
+        },
+        {
+          "label": "Busquem aval d'una societat de garantia recíproca o una línia pública",
+          "kpi_delta": { "patrimoni_fora_de_perill": -1, "caixa": 18500, "credibilitat": 3 },
+          "feedback": "Tarda unes setmanes més i té comissió, però canvia qui respon: el garant s'interposa entre el banc i vosaltres. No és gratis ni automàtic —analitzen el projecte— i de vegades demanen garanties parcials. Lliçó: quasi sempre hi ha una via intermèdia entre firmar-ho tot i renunciar; sol ser més lenta i per això ningú no la mira amb pressa.",
+          "next": "n3"
+        },
+        {
+          "label": "No firmem: comencem amb forn de segona mà i creixem a poc a poc",
+          "kpi_delta": { "patrimoni_fora_de_perill": 1, "caixa": 3000, "credibilitat": 0 },
+          "feedback": "Renunciar al crèdit és una decisió legítima i conservadora: sense aval, el risc es queda dins de la societat. El cost és real —menys producció, més lent— i cal assumir-lo amb els ulls oberts, no com qui evita llegir el contracte. Lliçó: no endeutar-se també és una decisió jurídica, i és l'única que no pot eixir-te malament per sorpresa.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisió 3 — El segon hivern",
+      "situacion": "Les vendes cauen, s'acumulen quatre mesos de lloguer impagats, dues factures del proveïdor de farina i les quotes de la Seguretat Social de l'últim trimestre. Queden diners per a pagar-ne una part, no tots.",
+      "opciones": [
+        {
+          "label": "Paguem el proveïdor, que és conegut, i deixem el públic per al final",
+          "kpi_delta": { "patrimoni_fora_de_perill": -3, "caixa": -4000, "credibilitat": -1 },
+          "feedback": "És el que fa quasi tothom i és el que pitjor acaba. Els deutes amb Hisenda i la Seguretat Social poden derivar-se a qui administra la societat, i eixa derivació de responsabilitat arriba al patrimoni personal encara que la societat fora limitada. A més, triar a dit a qui es paga quan ja hi ha insolvència pot qüestionar-se després. Lliçó: el deute públic és el que menys s'oblida i el que millor sap trobar-te.",
+          "next": "final:fracaso_parcial"
+        },
+        {
+          "label": "Anem al concurs: hi ha un procediment especial per a microempreses",
+          "kpi_delta": { "patrimoni_fora_de_perill": 3, "caixa": -1500, "credibilitat": 1 },
+          "feedback": "Des de 2023 existix un procediment concursal específic per a microempreses, més ràpid i més barat, pensat justament per a negocis d'esta grandària. Ordena els pagaments per llei en lloc de per amistat, permet intentar la continuïtat i, si no n'hi ha, tanca de forma reglada. No és la fi del món: és el procediment previst per a este final. Lliçó: el concurs no és el càstig per fracassar, és el camí que impedix que fracassar signifique arruïnar-se dues vegades.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Tanquem, abaixem la persiana i ja vorem",
+          "kpi_delta": { "patrimoni_fora_de_perill": -5, "caixa": -500, "credibilitat": -4 },
+          "feedback": "La societat no desapareix per deixar d'obrir: continua existint mentre no es liquide i s'inscriga la seua extinció. I qui administra respon solidàriament dels deutes socials nascuts després que hi haguera causa de dissolució si no convoca junta per a dissoldre-la. Tancar sense liquidar convertix un deute de la societat en un deute teu. Lliçó: l'eixida ordenada és més barata que la desaparició, encara que faça més mal el dia que es firma.",
+          "next": "final:fracaso_parcial"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "L'obrador tanca i vosaltres no",
+      "resumen": "La societat va respondre amb el seu, el procediment va repartir el que hi havia i el vostre patrimoni personal va aguantar el que la llei permetia que aguantara. Podeu tornar a intentar-ho.",
+      "lecciones_clave": [
+        "Sense persona jurídica —autònoma o comunitat de béns— respon el teu patrimoni sencer: art. 1911 del Codi Civil.",
+        "La responsabilitat limitada la trenca habitualment la teua pròpia firma en un aval personal i solidari.",
+        "Els deutes amb Hisenda i la Seguretat Social poden derivar-se a qui administra, i ni la SL ni l'emprenedor de responsabilitat limitada no els aturen."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "El negoci va tancar i el deute es va mudar a sa casa",
+      "resumen": "El que va començar sent un deute de l'obrador va acabar sent vostre, per la via de l'aval, de la derivació de responsabilitat o del tancament sense liquidar.",
+      "lecciones_clave": [
+        "Triar a qui pagar quan ja hi ha insolvència no és un gest de lleialtat: és una decisió amb conseqüències jurídiques.",
+        "Una societat que deixa d'operar sense liquidar-se continua existint, i qui l'administra respon del que vinga després."
+      ]
+    }
+  }
+}
+```

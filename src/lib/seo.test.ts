@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import { jsonLdToString, organizationLd, articleLd, courseLd, itemListLd, faqLd, SAME_AS, pageTitle, MAX_TITLE_CHARS, quizLd } from './seo';
+import { readFileSync } from 'node:fs';
+import { jsonLdToString, organizationLd, articleLd, courseLd, itemListLd, faqLd, SAME_AS, SITE, pageTitle, subjectTitle, MAX_TITLE_CHARS, quizLd } from './seo';
 
 describe('jsonLdToString', () => {
   it('escapes < to avoid </script> injection', () => {
@@ -83,6 +84,15 @@ describe('seo structured-data builders', () => {
     expect(ld.isAccessibleForFree).toBe(true);
     expect(ld.educationalAlignment.educationalFramework).toBe('LOMLOE — Real Decreto 243/2022');
     expect(ld.provider['@type']).toBe('EducationalOrganization');
+  });
+
+  it('courseLd names the LOFP, not the LOMLOE, for an FP module', () => {
+    const ld = courseLd({
+      name: 'IPE I', description: 'd', path: '/ipe1-fp/',
+      educationalLevel: 'FP', marcoNormativo: 'RD 659/2023', targetName: 'IPE I',
+      ley: 'LOFP',
+    }) as Record<string, any>;
+    expect(ld.educationalAlignment.educationalFramework).toBe('LOFP — RD 659/2023');
   });
 
   it('faqLd builds a FAQPage with Question/Answer pairs', () => {
@@ -179,5 +189,40 @@ describe('quizLd — Education Q&A (§5.5)', () => {
   it('points at the Valencian URL on a ca page', () => {
     const ld = quizLd({ ...base, locale: 'ca', questions: [{ tipo: 'numerico', enunciado: 'X', respuesta: 1 }] })!;
     expect(ld.url).toContain('/ca/fopp-4eso/tests/03/');
+  });
+});
+
+describe('SITE.email', () => {
+  // Every mailto: on the site is built from SITE.email, but public/llms.txt is a
+  // static file outside the build, so it holds a hand-written copy. If the
+  // contact address ever changes, this fails until llms.txt is updated too.
+  it('matches the address published in public/llms.txt', () => {
+    const llms = readFileSync('public/llms.txt', 'utf8');
+    expect(llms).toContain(`- Email: ${SITE.email}`);
+  });
+});
+
+describe('subjectTitle — length-aware subject suffix (§5.11)', () => {
+  const eco4 = { seoName: 'Economía y Emprendimiento 4.º ESO', shortLabel: 'Eco 4ESO' };
+
+  it('keeps the full subject name when it fits', () => {
+    expect(subjectTitle('La nómina', eco4)).toBe('La nómina — Economía y Emprendimiento 4.º ESO');
+  });
+
+  it('falls back to the short label when the full name does not fit', () => {
+    const body = 'Nómina y contratos: bruto, neto e IRPF'; // 38 + 36 > 60, 38 + 11 ≤ 60
+    expect(subjectTitle(body, eco4)).toBe(`${body} — Eco 4ESO`);
+  });
+
+  it('drops the suffix when not even the short label fits', () => {
+    const body = 'Samarretes o xapes: la frontera de possibilitats de la Setmana'; // 62
+    expect(subjectTitle(body, eco4)).toBe(body);
+  });
+
+  it('never makes a title longer than the budget when a shorter option exists', () => {
+    for (const body of ['A', 'x'.repeat(30), 'y'.repeat(49), 'z'.repeat(58)]) {
+      const t = subjectTitle(body, eco4);
+      expect(t.length <= MAX_TITLE_CHARS || t === body).toBe(true);
+    }
   });
 });

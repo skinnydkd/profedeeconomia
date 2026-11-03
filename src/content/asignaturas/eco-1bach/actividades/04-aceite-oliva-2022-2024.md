@@ -18,7 +18,7 @@ estado: publicado
 
 ## Planteamiento
 
-Entre 2022 y 2024 el aceite de oliva virgen extra pasó de costar unos 3,30 €/kg en origen a superar los 9 €/kg, multiplicándose casi por tres en 18 meses. Es el caso de manual perfecto para entender cómo un shock de oferta desplaza el equilibrio de mercado. La actividad pide aplicar el modelo de oferta y demanda visto en la unidad a datos reales del Ministerio de Agricultura y deducir gráficamente la dirección del cambio, justificando el resultado con vocabulario económico preciso.
+Entre 2022 y 2024 el aceite de oliva virgen extra pasó de costar unos 3,30 €/kg en origen a rondar los 9 €/kg, multiplicándose casi por tres en 18 meses. Es el caso de manual perfecto para entender cómo un shock de oferta desplaza el equilibrio de mercado. La actividad pide aplicar el modelo de oferta y demanda visto en la unidad a datos reales del Ministerio de Agricultura y deducir gráficamente la dirección del cambio, justificando el resultado con vocabulario económico preciso.
 
 ## Datos de partida
 

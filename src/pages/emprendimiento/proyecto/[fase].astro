@@ -12,6 +12,7 @@ import { getLocale } from '@/i18n/locale';
 import { pickLocalizedEntry } from '@/i18n/content-locale';
 import { getCollection, render } from 'astro:content';
 import type { GetStaticPaths } from 'astro';
+import SectionHeader from '@components/SectionHeader.astro';
 
 export const getStaticPaths = (async () => {
   // ES entries define the canonical routes; CA siblings (lang: ca) must NOT
@@ -51,29 +52,33 @@ const copy = {
 }[locale];
 ---
 
-<BaseLayout title={`${d.fase_label} — ${copy.deCero}`} description={d.entregable} contentLang={locale}>
-  <div class="container">
-    <nav class="breadcrumb">
-      <a href="/">{copy.inicio}</a> <span class="sep">›</span>
-      <a href="/emprendimiento/">{copy.empr}</a> <span class="sep">›</span>
-      <a href="/emprendimiento/proyecto/">{copy.deCero}</a> <span class="sep">›</span>
-      <span>{d.fase_label}</span>
-    </nav>
-  </div>
+<BaseLayout title={`${d.fase_label} — ${copy.deCero}`} description={d.entregable} contentLang={view.data.lang} translated={caById.has(`${entry.id}.ca`)}>
+  <SectionHeader
+    locale={locale}
+    tight
+    kicker={copy.deCero}
+    crumbs={[
+      { name: copy.inicio, path: '/' },
+      { name: copy.empr, path: '/emprendimiento/' },
+      { name: copy.deCero, path: '/emprendimiento/proyecto/' },
+      { name: d.fase_label },
+    ]}
+  >
+    <Fragment slot="title">{d.title}</Fragment>
+    <FaseMeta
+      faseLabel={d.fase_label}
+      nivel={d.nivel}
+      nucleo={d.nucleo}
+      duracion={d.duracion}
+      entregable={d.entregable}
+      competenciasClave={d.competencias_clave}
+      valiente={d.valiente}
+      locale={locale}
+    />
+  </SectionHeader>
 
   <section class="body">
     <div class="container container--narrow">
-      <h1>{d.title}</h1>
-      <FaseMeta
-        faseLabel={d.fase_label}
-        nivel={d.nivel}
-        nucleo={d.nucleo}
-        duracion={d.duracion}
-        entregable={d.entregable}
-        competenciasClave={d.competencias_clave}
-        valiente={d.valiente}
-        locale={locale}
-      />
       <article class="prose">
         <Content />
       </article>
@@ -91,13 +96,7 @@ const copy = {
 <style>
   .container { max-width: 1240px; margin: 0 auto; padding: 0 clamp(1.5rem, 4vw, 3rem); }
   .container--narrow { max-width: 820px; }
-  .breadcrumb { font-size: 0.92rem; color: var(--color-ink-mute); margin: 2rem 0; }
-  .breadcrumb a { color: var(--color-ink-mute); text-decoration: none; }
-  .breadcrumb a:hover { color: var(--color-terra); }
-  .breadcrumb .sep { margin: 0 0.5em; color: var(--color-mustard); }
   .body { padding: 1rem 0 clamp(3rem, 7vw, 6rem); }
-  .kicker { font-family: var(--font-sans); font-size: 0.8rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-terra-deep); }
-  h1 { margin: 0.6rem 0 0; max-width: 24ch; }
   .prose { font-size: 1.05rem; line-height: 1.7; color: var(--color-ink); }
   .prose :global(h2) { font-family: var(--font-serif); font-size: 1.6rem; margin: 2.2em 0 0.7em; position: relative; padding-top: 1em; font-weight: 500; }
   .prose :global(h2:nth-of-type(2n)::before) { background: var(--color-mustard); }
@@ -110,6 +109,6 @@ const copy = {
   .prose :global(th), .prose :global(td) { text-align: left; padding: 0.55em 0.75em; border-bottom: 1px solid var(--color-line-soft); vertical-align: top; }
   .prose :global(th) { font-family: var(--font-sans); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--color-terra-deep); background: var(--color-terra-soft); font-weight: 700; }
   .phase-nav { display: flex; justify-content: space-between; gap: 1rem; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--color-line); font-family: var(--font-sans); font-size: 0.95rem; }
-  .phase-nav a { color: var(--color-terra); text-decoration: none; font-weight: 500; }
+  .phase-nav a { color: var(--color-terra-ink); text-decoration: none; font-weight: 500; }
   .phase-nav a:hover { text-decoration: underline; }
 </style>

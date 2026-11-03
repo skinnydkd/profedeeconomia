@@ -1,6 +1,17 @@
 /** @jsxImportSource preact */
 import { useMemo, useState } from 'preact/hooks';
 import { type Locale } from '@/i18n/locale';
+import { formatNumber } from '../../lib/calc/format';
+import {
+  calcularTIR,
+  cambiosDeSigno,
+  van as vanCalc,
+  TIR_MAX,
+  TIR_MIN,
+  type ResultadoTIR,
+} from '../../lib/calc/van-tir';
+import NumberInput from '../NumberInput';
+import LiveSummary from '../LiveSummary';
 
 /**
  * UI strings, Valencian (AVL) alongside the ES source. Economic notation
@@ -19,7 +30,12 @@ export const COPY = {
     agregarAnio: '+ Año',
     vanCrea: 'Crea valor: aceptar',
     vanDestruye: 'Destruye valor: rechazar',
-    tirNoConverge: 'No converge',
+    tirNinguna: 'No existe TIR: el VAN no se anula con ninguna tasa',
+    tirSuperior: (limite: string) => `TIR superior al ${limite}`,
+    tirInferior: (limite: string) => `TIR inferior al ${limite}`,
+    tirVarias: (tirs: readonly string[]) => `Varias TIR: ${enumerar(tirs, 'y')}`,
+    avisoSignos:
+      'Los flujos cambian de signo más de una vez, así que puede haber más de una TIR o ninguna, y la regla «TIR > k» deja de servir. Decide con el VAN.',
     tirPorEncima: (k: number) => `Por encima del ${k}% exigido`,
     tirPorDebajo: (k: number) => `Por debajo del ${k}% exigido`,
     paybackUnit: 'años',
@@ -45,7 +61,12 @@ export const COPY = {
     agregarAnio: '+ Any',
     vanCrea: 'Crea valor: acceptar',
     vanDestruye: 'Destruïx valor: rebutjar',
-    tirNoConverge: 'No convergix',
+    tirNinguna: "No hi ha TIR: el VAN no s'anul·la amb cap taxa",
+    tirSuperior: (limite: string) => `TIR superior al ${limite}`,
+    tirInferior: (limite: string) => `TIR inferior al ${limite}`,
+    tirVarias: (tirs: readonly string[]) => `Diverses TIR: ${enumerar(tirs, 'i')}`,
+    avisoSignos:
+      "Els fluxos canvien de signe més d'una vegada, així que pot haver-hi més d'una TIR o cap, i la regla «TIR > k» deixa de servir. Decidix amb el VAN.",
     tirPorEncima: (k: number) => `Per damunt del ${k}% exigit`,
     tirPorDebajo: (k: number) => `Per davall del ${k}% exigit`,
     paybackUnit: 'anys',
@@ -67,7 +88,8 @@ interface Props { locale?: Locale }
  * VAN, TIR and PayBack calculator for an investment with up to 10 yearly flows.
  *
  *   VAN = -I0 + Σ Ft / (1 + k)^t
- *   TIR = tasa que hace VAN = 0  (calculada por bisección)
+ *   TIR = tasa que hace VAN = 0  (buscada en una malla de tasas: puede haber
+ *         una, varias o ninguna; ver lib/calc/van-tir.ts)
  *   PayBack = año (parcial) en el que la suma de flujos cubre I0
  */
 export default function VANTIRCalc({ locale = 'es' }: Props) {
@@ -85,11 +107,20 @@ export default function VANTIRCalc({ locale = 'es' }: Props) {
       return { valido: false as const, mensaje: c.avisoTasa };
     }
     const van = vanCalc(inversion, flujos, r);
-    const tir = tirCalc(inversion, flujos);
+    const tir = tarjetaTIR(calcularTIR(inversion, flujos), k, c);
+    const variosSignos = cambiosDeSigno(inversion, flujos) > 1;
     const payback = paybackCalc(inversion, flujos);
     const sumaActualizada = flujos.reduce((acc, f, i) => acc + f / Math.pow(1 + r, i + 1), 0);
-    return { valido: true as const, van, tir, payback, sumaActualizada, r };
+    return { valido: true as const, van, tir, variosSignos, payback, sumaActualizada, r };
   }, [inversion, k, flujos, c]);
+
+  const resumen = !result.valido
+    ? result.mensaje
+    : [
+        `VAN: ${fmtMoney(result.van)}.`,
+        `${result.van >= 0 ? c.vanCrea : c.vanDestruye}.`,
+        result.tir.valor === '—' ? `${result.tir.detalle}.` : `TIR: ${result.tir.valor}. ${result.tir.detalle}.`,
+      ].join(' ');
 
   function setFlujo(i: number, value: number) {
     const next = [...flujos];
@@ -109,12 +140,11 @@ export default function VANTIRCalc({ locale = 'es' }: Props) {
         <label class="calc__field">
           <span class="calc__label">{c.inversionLabel}</span>
           <div class="calc__input-wrap">
-            <input
-              type="number"
+            <NumberInput
               min={0}
               step={1000}
               value={inversion}
-              onInput={(e) => setInversion(parseFloat((e.target as HTMLInputElement).value) || 0)}
+              onValue={setInversion}
             />
             <span class="calc__unit">€</span>
           </div>
@@ -123,12 +153,11 @@ export default function VANTIRCalc({ locale = 'es' }: Props) {
         <label class="calc__field">
           <span class="calc__label">{c.tasaLabel}</span>
           <div class="calc__input-wrap">
-            <input
-              type="number"
+            <NumberInput
               min={-100}
               step={0.5}
               value={k}
-              onInput={(e) => setK(parseFloat((e.target as HTMLInputElement).value) || 0)}
+              onValue={setK}
             />
             <span class="calc__unit">{c.tasaUnit}</span>
           </div>
@@ -141,11 +170,10 @@ export default function VANTIRCalc({ locale = 'es' }: Props) {
               <label class="calc__flujo">
                 <span class="calc__flujo-label">{c.anioLabel(i + 1)}</span>
                 <div class="calc__input-wrap">
-                  <input
-                    type="number"
+                  <NumberInput
                     step={500}
                     value={f}
-                    onInput={(e) => setFlujo(i, parseFloat((e.target as HTMLInputElement).value) || 0)}
+                    onValue={(v) => setFlujo(i, v)}
                   />
                   <span class="calc__unit">€</span>
                 </div>
@@ -160,6 +188,7 @@ export default function VANTIRCalc({ locale = 'es' }: Props) {
       </div>
 
       <div class="calc__results">
+        <LiveSummary text={resumen} />
         {!result.valido ? (
           <div class="calc__warning">{result.mensaje}</div>
         ) : (
@@ -173,18 +202,10 @@ export default function VANTIRCalc({ locale = 'es' }: Props) {
                 </span>
               </div>
 
-              <div class={`calc__metric ${result.tir !== null && result.tir >= k / 100 ? 'calc__metric--ok' : 'calc__metric--fail'}`}>
+              <div class={`calc__metric ${result.tir.clase}`}>
                 <span class="calc__metric-label">TIR</span>
-                <span class="calc__metric-value">
-                  {result.tir === null ? '—' : `${(result.tir * 100).toFixed(2).replace('.', ',')} %`}
-                </span>
-                <span class="calc__metric-detail">
-                  {result.tir === null
-                    ? c.tirNoConverge
-                    : result.tir >= k / 100
-                    ? c.tirPorEncima(k)
-                    : c.tirPorDebajo(k)}
-                </span>
+                <span class="calc__metric-value">{result.tir.valor}</span>
+                <span class="calc__metric-detail">{result.tir.detalle}</span>
               </div>
 
               <div class={`calc__metric ${result.payback !== null && result.payback <= flujos.length ? 'calc__metric--ok' : 'calc__metric--fail'}`}>
@@ -200,6 +221,8 @@ export default function VANTIRCalc({ locale = 'es' }: Props) {
                 </span>
               </div>
             </div>
+
+            {result.variosSignos && <div class="calc__warning">{c.avisoSignos}</div>}
 
             <details class="calc__details">
               <summary>{c.detalleSummary}</summary>
@@ -244,30 +267,46 @@ export default function VANTIRCalc({ locale = 'es' }: Props) {
   );
 }
 
-function vanCalc(inversion: number, flujos: number[], k: number): number {
-  return -inversion + flujos.reduce((acc, f, i) => acc + f / Math.pow(1 + k, i + 1), 0);
+/** Value, verdict and border of the TIR card for each outcome of the search. */
+function tarjetaTIR(
+  tir: ResultadoTIR,
+  k: number,
+  c: (typeof COPY)[Locale],
+): { valor: string; detalle: string; clase: string } {
+  switch (tir.tipo) {
+    case 'unica': {
+      const supera = tir.tir >= k / 100;
+      return {
+        valor: fmtTasa(tir.tir),
+        detalle: supera ? c.tirPorEncima(k) : c.tirPorDebajo(k),
+        clase: supera ? 'calc__metric--ok' : 'calc__metric--fail',
+      };
+    }
+    case 'varias':
+      // With several TIRs the rule «TIR > k» says nothing: no verdict colour.
+      return { valor: '—', detalle: c.tirVarias(tir.tirs.map(fmtTasa)), clase: '' };
+    case 'fueraDeRango':
+      return tir.lado === 'superior'
+        ? { valor: `> ${fmtLimite(TIR_MAX)}`, detalle: c.tirSuperior(fmtLimite(TIR_MAX)), clase: 'calc__metric--ok' }
+        : { valor: `< ${fmtLimite(TIR_MIN)}`, detalle: c.tirInferior(fmtLimite(TIR_MIN)), clase: 'calc__metric--fail' };
+    case 'ninguna':
+      return { valor: '—', detalle: c.tirNinguna, clase: 'calc__metric--fail' };
+  }
 }
 
-/** TIR by bisection. Returns null if no root in [-0.99, 5]. */
-function tirCalc(inversion: number, flujos: number[]): number | null {
-  let lo = -0.99;
-  let hi = 5;
-  let fLo = vanCalc(inversion, flujos, lo);
-  let fHi = vanCalc(inversion, flujos, hi);
-  if (fLo * fHi > 0) return null;
-  for (let i = 0; i < 80; i++) {
-    const mid = (lo + hi) / 2;
-    const fMid = vanCalc(inversion, flujos, mid);
-    if (Math.abs(fMid) < 0.01) return mid;
-    if (fMid * fLo < 0) {
-      hi = mid;
-      fHi = fMid;
-    } else {
-      lo = mid;
-      fLo = fMid;
-    }
-  }
-  return (lo + hi) / 2;
+/** A rate as a percentage with two decimals (0,1234 → "12,34 %"). */
+function fmtTasa(r: number): string {
+  return `${(r * 100).toFixed(2).replace('.', ',')} %`;
+}
+
+/** A search limit as a whole percentage (100 → "10.000 %", −0,99 → "−99 %"). */
+function fmtLimite(r: number): string {
+  return `${formatNumber(r * 100, 0).replace('-', '−')} %`;
+}
+
+/** "a", "a y b", "a, b y c". */
+function enumerar(items: readonly string[], y: string): string {
+  return items.length < 2 ? items.join('') : `${items.slice(0, -1).join(', ')} ${y} ${items[items.length - 1]}`;
 }
 
 function paybackCalc(inversion: number, flujos: number[]): number | null {

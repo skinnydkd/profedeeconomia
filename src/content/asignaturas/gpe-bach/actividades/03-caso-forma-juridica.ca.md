@@ -8,7 +8,7 @@ duracion: "55 min · 1 sessió"
 agrupacion: "equips de 3-4"
 materiales:
   - "Les tres fitxes de cas (una per equip o les tres per a tots)"
-  - "Taula comparativa de formes jurídiques de la Unitat 3 (autònom, SL, SLNE, cooperativa)"
+  - "Taula comparativa de formes jurídiques de la Unitat 3 (autònom, SL i cooperativa)"
   - "Plantilla de decisió: criteri · opció triada · justificació"
 competencias_clave: [CPSAA, CC, CE]
 competencias_especificas: [CE2]
@@ -20,12 +20,12 @@ slug: "asignaturas/gpe-bach/actividades/03-caso-forma-juridica.ca"
 
 ## Plantejament
 
-Triar la forma jurídica és una de les decisions d'arrancada que més condicionen un projecte, i quasi mai hi ha una resposta única "correcta": depén del perfil de l'equip i del risc de l'activitat. Esta activitat posa tres casos reals damunt de la taula perquè l'alumnat practique el raonament abans d'aplicar-lo al seu propi projecte en la Fase 2 del quadern. L'objectiu no és memoritzar les formes jurídiques, sinó **decidir amb criteri**: saber per què a un cas li convé autònom i a un altre una cooperativa.
+Triar la forma jurídica és una de les decisions d'arrancada que més condicionen un projecte, i quasi mai hi ha una resposta única "correcta": depén del perfil de l'equip i del risc de l'activitat. Esta activitat posa tres casos damunt de la taula perquè l'alumnat practique el raonament abans d'aplicar-lo al seu propi projecte en la Fase 2 del quadern. L'objectiu no és memoritzar les formes jurídiques, sinó **decidir amb criteri**: saber per què a un cas li convé autònom i a un altre una cooperativa.
 
 ## Els tres casos
 
 **Cas A — Marta, rebosteria casolana.**
-Marta cuina molt bé i vol vendre coques per encàrrec des de la cuina de sa casa. Comença ella sola, amb pocs clients (familiars, veïns, xarxes), una inversió mínima i sense local. Vol arrancar ja i gastar el menys possible en tràmits. El risc econòmic és baix.
+Marta cuina molt bé i vol vendre coques per encàrrec des de la cuina de sa casa. Comença ella sola, amb pocs clients (familiars, veïns, xarxes), una inversió mínima i sense local. Vol arrancar ja i gastar el menys possible en tràmits. El risc econòmic és baix. (Compte: vendre menjar elaborat exigix complir la normativa sanitària —registre o comunicació prèvia i formació en manipulació d'aliments—, i en general una cuina particular no servix com a obrador. És un tràmit que no es pot saltar.)
 
 **Cas B — Tres amics, app de repartiment local.**
 Aitor, Nerea i Hugo volen desenvolupar una app que connecte comerços del barri amb repartidors en bici. Necessiten invertir en desenvolupament informàtic, màrqueting i, potser, contractar algú. Hi ha diners en joc i risc de deutes si la cosa no arranca. Volen protegir el seu patrimoni personal i que l'empresa tinga una imatge seriosa davant d'inversors.

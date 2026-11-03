@@ -126,14 +126,22 @@ export function costeVariableUnitario(params: MarketParams, inversionRRHH: numbe
   return params.costeVariableBase * (1 - factor);
 }
 
+/**
+ * Tope del componente precio del atractivo: bajar a la mitad del precio de
+ * referencia ya da el máximo. Sin tope, pRef/precio crece sin límite cuando el
+ * precio tiende a 0, y un equipo con un precio de 0,50 € se llevaba el 86 %
+ * de la demanda sin producir nada.
+ */
+export const MAX_COMPONENTE_PRECIO = 2;
+
 /** Atractivo relativo de una oferta. Mayor calidad y marketing suben; mayor
- * precio baja (vía precio de referencia). El marketing tiene rendimientos
- * decrecientes (raíz). */
+ * precio baja (vía precio de referencia, con tope). El marketing tiene
+ * rendimientos decrecientes (raíz). */
 export function atractivo(params: MarketParams, d: TeamDecision, calidad: number): number {
   const { pesoCalidad, pesoMarketing, pesoPrecio } = normalizarPesos(params);
   const compCalidad = calidad / 100; // 0-1
   const compMarketing = Math.sqrt(Math.max(0, d.marketing)) / Math.sqrt(50000); // ~0-1 para gastos típicos
-  const compPrecio = d.precio > 0 ? params.precioReferencia / d.precio : 0; // 1 si precio = referencia
+  const compPrecio = d.precio > 0 ? Math.min(MAX_COMPONENTE_PRECIO, params.precioReferencia / d.precio) : 0; // 1 si precio = referencia
   const score = pesoCalidad * compCalidad + pesoMarketing * compMarketing + pesoPrecio * compPrecio;
   return Math.max(0, score);
 }
@@ -152,11 +160,18 @@ export function simularRonda(params: MarketParams, equipos: TeamInput[], ronda: 
   });
 
   const sumaAtractivo = pre.reduce((s, x) => s + x.atractivo, 0);
+  const cuotas = pre.map((x) => (sumaAtractivo > 0 ? x.atractivo / sumaAtractivo : 1 / pre.length));
+  const demandas = repartirDemanda(
+    cuotas.map((c) => demandaTotal * c),
+    pre.map((x) => Math.max(0, x.e.decision.produccion)),
+    pre.map((x) => x.atractivo),
+  );
 
-  // 2) Reparto de demanda, ventas, costes y beneficio.
-  return pre.map((x) => {
-    const cuota = sumaAtractivo > 0 ? x.atractivo / sumaAtractivo : 1 / pre.length;
-    const demanda = demandaTotal * cuota;
+  // 2) Ventas, costes y beneficio. `cuota` es la preferencia del mercado;
+  // `demanda`, lo que el equipo acaba atendiendo tras el reparto.
+  return pre.map((x, i) => {
+    const cuota = cuotas[i];
+    const demanda = demandas[i];
     // Ventas en unidades enteras, para que la aritmética visible en la interfaz
     // cuadre (unidades × precio = ingresos) y stock/beneficio deriven del mismo
     // entero. El coste variable se paga sobre lo PRODUCIDO (no lo vendido): lo no
@@ -201,6 +216,36 @@ export function simularRonda(params: MarketParams, equipos: TeamInput[], ronda: 
       },
     };
   });
+}
+
+/**
+ * Clientes que un equipo no puede atender (pidió más de lo que produjo) no
+ * desaparecen: compran a los equipos con producción sobrante, en proporción a
+ * su atractivo y sin pasar de lo que les sobra. Lo que nadie puede atender
+ * sigue siendo demanda de quien la captó (ventas < demanda). Así, captar
+ * demanda sin producir no quita ventas a los demás.
+ */
+export function repartirDemanda(demanda: number[], produccion: number[], peso: number[]): number[] {
+  const d = [...demanda];
+  for (let vuelta = 0; vuelta <= d.length; vuelta++) {
+    const exceso = d.map((x, i) => Math.max(0, x - produccion[i]));
+    const totalExceso = exceso.reduce((s, x) => s + x, 0);
+    if (totalExceso <= 1e-9) break;
+    const hueco = d.map((x, i) => Math.max(0, produccion[i] - x));
+    const receptores = hueco.map((h, i) => (h > 1e-9 ? i : -1)).filter((i) => i >= 0);
+    if (receptores.length === 0) break;
+    const pesoReceptores = receptores.reduce((s, i) => s + Math.max(0, peso[i]), 0);
+    const recibe = new Array<number>(d.length).fill(0);
+    let movido = 0;
+    for (const i of receptores) {
+      const parte = pesoReceptores > 0 ? Math.max(0, peso[i]) / pesoReceptores : 1 / receptores.length;
+      recibe[i] = Math.min(hueco[i], totalExceso * parte);
+      movido += recibe[i];
+    }
+    if (movido <= 1e-9) break;
+    for (let i = 0; i < d.length; i++) d[i] += recibe[i] - (exceso[i] / totalExceso) * movido;
+  }
+  return d;
 }
 
 /** Ordena los resultados para el ranking: por beneficio acumulado desc. */

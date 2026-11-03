@@ -69,7 +69,7 @@ preguntas:
       - "Tiene paridad fija con el dólar gracias a su respaldo en reservas reales."
     correcta: 2
     explicacion: "Bitcoin tiene una oferta limitada por diseño a 21 millones de unidades (alcanzables hacia 2140) y la red consume unos 130 TWh anuales, similar al consumo eléctrico de Argentina o Polonia. Cumple imperfectamente las funciones del dinero (alta volatilidad, escasos comercios que lo aceptan). Las stablecoins, no Bitcoin, son las que buscan paridad con monedas fiduciarias."
-  - enunciado: "¿Qué es el euro digital que prepara el BCE para 2027-2028?"
+  - enunciado: "¿Qué es el euro digital que prepara el BCE, con una primera emisión posible en 2029?"
     opciones:
       - "Una stablecoin privada respaldada por la banca europea."
       - "Una criptomoneda descentralizada al estilo de Bitcoin."

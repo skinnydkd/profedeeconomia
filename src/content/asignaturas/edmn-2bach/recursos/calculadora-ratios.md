@@ -2,7 +2,7 @@
 asignatura: edmn-2bach
 unidad_relacionada: 11
 title: "Calculadora de ratios financieros"
-descripcion: "Introduce las masas del balance y dos cifras de la cuenta de resultados para obtener fondo de maniobra, ratios de liquidez y solvencia, ROA, ROE y el efecto del apalancamiento."
+descripcion: "Introduce las masas del balance y tres cifras de la cuenta de resultados (BAII, gastos financieros y beneficio neto) para obtener fondo de maniobra, ratios de liquidez y solvencia, ROA, ROE y el efecto del apalancamiento."
 tipo: calculadora
 componente: Ratios
 estado: publicado
@@ -12,7 +12,7 @@ estado: publicado
 
 - Para la Unidad 11, mientras se aprende a interpretar las cuentas anuales.
 - Para resolver la actividad 11 (radiografía de Inditex) introduciendo los datos del balance del informe oficial.
-- Para evaluar el plan financiero del proyecto capstone y comprobar si los ratios proyectados son razonables.
+- Para evaluar el plan financiero de un plan de empresa o un proyecto de aula (Unidad 12) y comprobar si los ratios proyectados son razonables.
 
 ## Qué tener en cuenta
 

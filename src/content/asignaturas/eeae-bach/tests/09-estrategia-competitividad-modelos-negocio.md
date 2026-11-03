@@ -86,7 +86,7 @@ preguntas:
     respuesta: 1000
     tolerancia: 0
     unidad: "unidades"
-    explicacion: "El margen de contribución por unidad es precio − coste variable = 20 − 12 = 8 €. El punto muerto se alcanza cuando ese margen cubre los costes fijos: 8.000 € ÷ 8 € = 1.000 unidades. A partir de ahí empieza el beneficio."
+    explicacion: "El margen de contribución por unidad es precio − coste variable = 20 − 12 = 8 €. El punto muerto se alcanza cuando ese margen cubre los costes fijos: 8.000 € ÷ 8 € = 1.000 unidades. A partir de ahí empieza el beneficio. Es la misma cuenta del ejemplo resuelto de la Unidad 8."
   - tipo: relacionar
     enunciado: "Empareja cada modelo o estrategia con su descripción:"
     izquierda: ["Liderazgo en costes", "Diferenciación", "Modelo de plataforma", "Modelo de suscripción"]

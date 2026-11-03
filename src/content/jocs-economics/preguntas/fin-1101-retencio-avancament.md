@@ -10,7 +10,7 @@ opciones:
 correcta: 1
 explicacion: "La retenció és només un avançament a Hisenda: en la Declaració de la Renda de l'any següent s'ajusta de veritat, i pots pagar la diferència o recuperar-la."
 estado: publicado
-font: "eco-4eso U8 — Nòmina, IRPF i contractes"
+font: "eco-4eso U5 — Mercat de treball, contractes i nòmina"
 ---
 
 Cada mes, l'empresa reté a Ximo un percentatge d'IRPF en la nòmina i l'ingressa en Hisenda. Quin caràcter té eixe descompte?

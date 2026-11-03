@@ -11,7 +11,7 @@ estado: publicado
 ## Cuándo usarla
 
 - En clase, mientras introducís el concepto de punto muerto en la Unidad 7.
-- Para que cada equipo del proyecto capstone calcule el suyo con sus propias cifras.
+- Para que cada equipo con un plan de empresa o un proyecto de aula calcule el suyo con sus propias cifras.
 - Como apoyo a las actividades 6 (pastelería sin gluten) y 7 (dos planes de cocina).
 
 ## Qué tener en cuenta

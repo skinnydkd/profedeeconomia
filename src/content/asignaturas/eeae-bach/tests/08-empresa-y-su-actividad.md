@@ -21,14 +21,14 @@ preguntas:
       - "Una multinacional con sede en el extranjero."
     correcta: 2
     explicacion: "Según el DIRCE del INE, la inmensa mayoría de los más de 3 millones de empresas españolas son microempresas y pymes; en torno a la mitad no tiene ningún asalariado. La empresa típica no es una multinacional, sino un negocio pequeño."
-  - enunciado: "El caso de Kodak muestra sobre todo que…"
+  - enunciado: "El caso de Buurtzorg, cuyos equipos de enfermería se organizan sin jefes, muestra sobre todo que…"
     opciones:
-      - "Inventar una tecnología garantiza el éxito de la empresa."
-      - "Tener la tecnología no basta si la cultura de la empresa impide aprovecharla."
-      - "La fotografía digital nunca llegó a triunfar."
-      - "Las grandes empresas nunca quiebran."
+      - "Una organización sin mandos intermedios nunca puede crecer más allá de unas pocas personas."
+      - "Una cultura de autonomía y confianza puede ser una ventaja competitiva real."
+      - "Solo las empresas tecnológicas son capaces de desarrollar una cultura propia y reconocible."
+      - "La cultura de una empresa depende sobre todo de su tamaño y de su sector de actividad."
     correcta: 1
-    explicacion: "Kodak desarrolló la primera cámara digital en 1975 pero no se atrevió a apostar por ella por miedo a su propio negocio. Acabó en quiebra. La revolución tecnológica no premia a quien inventa, sino a quien tiene la cultura para transformarse."
+    explicacion: "Buurtzorg organiza a sus enfermeras en equipos autogestionados de unas doce personas, con muy poco personal administrativo, y ha logrado una alta satisfacción de pacientes y profesionales mientras crecía hasta emplear a miles de personas. La cultura puede ser una ventaja competitiva tan real como la tecnología o el capital, y no depende del tamaño ni del sector."
   - enunciado: "¿Qué es la cultura empresarial?"
     opciones:
       - "El conjunto de máquinas y edificios de la empresa."

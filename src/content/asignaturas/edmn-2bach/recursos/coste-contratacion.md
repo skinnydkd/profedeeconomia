@@ -22,7 +22,7 @@ estado: publicado
 - El **coste por hora se calcula sobre horas efectivas**, no sobre 40 × 52. Descontando vacaciones y festivos quedan unas 46 semanas, y esa diferencia mueve el resultado cerca de un 12 %.
 - Las **tres cifras juntas** —coste, bruto, líquido— son la parte más útil de la herramienta. En clase se conoce solo la del medio, y sin las otras dos ni el sueldo ni las cotizaciones se entienden.
 - Lo que separa el coste del líquido no se lo queda nadie: financia pensiones, desempleo, sanidad y el resto del gasto público. Merece la pena decirlo explícitamente para que la diferencia no se lea como un truco.
-- Los **tipos cambian cada año**. Aquí están los de 2026, con la base de cotización tomada igual al bruto y sin bases mínimas ni máximas. Para una nómina real, TGSS y AEAT.
+- Los **tipos cambian cada año**. Aquí están los de 2026: la base de cotización es el bruto con las pagas extra prorrateadas, con el tope de la base máxima (5.101,20 € al mes) y la cotización de solidaridad por encima; no se aplican bases mínimas. Para una nómina real, TGSS y AEAT.
 
 ## Para llevarla a clase
 

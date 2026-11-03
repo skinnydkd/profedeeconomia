@@ -23,7 +23,7 @@ preguntas:
     explicacion: "**S**pecific, **M**easurable, **A**chievable, **R**elevant, **T**ime-bound. La traducción española habitual es específico, medible, alcanzable, relevante y con plazo concreto. Es la diferencia entre tener metas accionables y tener deseos vagos."
   - enunciado: "¿Cuál de los siguientes NO es un objetivo SMART correctamente formulado?"
     opciones:
-      - "Estudiar matemáticas dos horas, cuatro días por semana, durante seis meses, para sacar mínimo un 7 en la EBAU del próximo junio."
+      - "Estudiar matemáticas dos horas, cuatro días por semana, durante seis meses, para sacar mínimo un 7 en la PAU del próximo junio."
       - "Entrenar tres días por semana, una hora por sesión, durante tres meses, para correr 5 km en menos de 28 minutos antes del 30 de septiembre."
       - "Estudiar inglés 30 minutos diarios para aprobar el B2 First en la convocatoria de mayo de 2027."
       - "Quiero tener un buen trabajo y ser feliz dentro de unos años."

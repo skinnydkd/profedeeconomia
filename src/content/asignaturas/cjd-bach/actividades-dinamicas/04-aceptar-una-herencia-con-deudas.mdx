@@ -1,0 +1,117 @@
+---
+asignatura: cjd-bach
+unidad_relacionada: 4
+title: "Aceptar una herencia con deudas"
+tipo: arbol-decisiones
+componente: ArbolDecisiones
+duracion: "15-20 min"
+descripcion: "Un piso, una hipoteca a medias y un plazo corto. Aceptar sin mirar puede costar más que renunciar."
+competencias_clave: [CC, CE, CPSAA]
+competencias_especificas: []
+estado: publicado
+publicado_en: 2026-09-07
+---
+
+```json
+{
+  "intro": {
+    "kicker": "Caso · Derecho civil",
+    "titulo": "Aceptar una herencia con deudas",
+    "contexto": "Fallece tu tío abuelo Vicent, sin hijos. En el testamento os deja a ti y a tus dos primos, a partes iguales, un piso en Alzira valorado en 96.000 €, 4.000 € en una cuenta y una colección de discos. Al mes aparece una carta del banco: sobre el piso hay un préstamo pendiente de 61.000 € y hay recibos impagados de la comunidad de propietarios. Tus primos quieren firmar ya «para no perder el piso». Tú acabas de dar herencias en clase.",
+    "kpi_inicial": { "patrimonio_neto": 0, "riesgo_personal": 5, "tiempo_disponible": 6 }
+  },
+  "nodes": {
+    "n1": {
+      "titulo": "Decisión 1 — La notaría os cita para aceptar",
+      "situacion": "El notario explica que podéis aceptar pura y simplemente, aceptar a beneficio de inventario o repudiar. Tus primos ya han dicho que sí a lo primero. Nadie ha pedido todavía la información completa de las deudas.",
+      "opciones": [
+        {
+          "label": "Acepto pura y simplemente, como mis primos",
+          "kpi_delta": { "patrimonio_neto": 13000, "riesgo_personal": 4, "tiempo_disponible": 0 },
+          "feedback": "Al aceptar pura y simplemente respondes de las deudas del causante también con tu propio patrimonio, no solo con lo heredado. Si aparecen deudas que hoy no conocéis —un aval, una derrama, un impago fiscal—, responden tus bienes futuros. Lección: heredar no es recibir bienes, es suceder en una posición jurídica entera, con su activo y su pasivo.",
+          "next": "n2"
+        },
+        {
+          "label": "Acepto a beneficio de inventario",
+          "kpi_delta": { "patrimonio_neto": 13000, "riesgo_personal": -4, "tiempo_disponible": -2 },
+          "feedback": "Con el beneficio de inventario respondes de las deudas solo hasta donde alcance lo heredado: si el pasivo supera al activo, no pones dinero tuyo. Cuesta un trámite y unos plazos, y por eso mucha gente lo salta. Lección: el Derecho civil ofrece una herramienta exacta para el riesgo que no puedes medir; usarla es más barato que descubrir por qué existía.",
+          "next": "n2"
+        },
+        {
+          "label": "Pido plazo para hacer inventario antes de decidir nada",
+          "kpi_delta": { "patrimonio_neto": 0, "riesgo_personal": -2, "tiempo_disponible": -3 },
+          "feedback": "Puedes pedir que se te conceda un plazo para deliberar antes de aceptar o repudiar. No decidir todavía es una decisión válida, y aquí es la prudente: no sabéis cuánto debe la comunidad ni si hay más acreedores. Lección: en Derecho, casi todos los plazos corren; saber cuál corre y desde cuándo es lo que permite no decidir a ciegas.",
+          "next": "n2"
+        }
+      ]
+    },
+    "n2": {
+      "titulo": "Decisión 2 — Aparece una hermana no mencionada",
+      "situacion": "Investigando en el Registro de Actos de Última Voluntad descubrís un testamento posterior. En él, Vicent deja el piso a una sobrina que os era desconocida y a vosotros solo la cuenta y los discos.",
+      "opciones": [
+        {
+          "label": "Nos quedamos con el primer testamento: lo teníamos antes",
+          "kpi_delta": { "patrimonio_neto": -13000, "riesgo_personal": 4, "tiempo_disponible": -1 },
+          "feedback": "El testamento posterior válido revoca al anterior. Ocultar uno conocido no es una estrategia: puede constituir un ilícito y, en todo caso, se descubre, porque el Registro de Actos de Última Voluntad es precisamente el que lo certifica. Lección: la última voluntad válida es la última, y existe un registro público para saber cuál es.",
+          "next": "n3"
+        },
+        {
+          "label": "Comprobamos si el segundo testamento es válido y respeta las legítimas",
+          "kpi_delta": { "patrimonio_neto": 0, "riesgo_personal": -2, "tiempo_disponible": -2 },
+          "feedback": "Correcto: se comprueban forma y contenido. Vicent no tenía descendientes ni ascendientes vivos, así que su libertad para disponer era amplia. En Derecho común, cuando hay hijos, la legítima limita esa libertad; en otros territorios con Derecho civil propio el sistema cambia bastante. Lección: en España conviven varios Derechos civiles; qué puedes dejar y a quién depende de cuál se te aplique.",
+          "next": "n3"
+        },
+        {
+          "label": "Impugnamos alegando que estaba mayor y no sabía lo que hacía",
+          "kpi_delta": { "patrimonio_neto": 0, "riesgo_personal": 2, "tiempo_disponible": -4 },
+          "feedback": "La capacidad para testar se presume, y el notario da fe de que la apreció. Impugnarla exige prueba médica sólida y un pleito largo, con costas si se pierde. La edad, por sí sola, no es incapacidad. Lección: presumir la capacidad de las personas mayores es una garantía de su autonomía, no un obstáculo administrativo.",
+          "next": "n3"
+        }
+      ]
+    },
+    "n3": {
+      "titulo": "Decisión 3 — Lo que queda",
+      "situacion": "El segundo testamento es válido. A vosotros os corresponden los 4.000 € de la cuenta y la colección de discos, que un comprador tasa en 2.500 €. También llega una reclamación de 900 € de la comunidad por derramas anteriores al fallecimiento.",
+      "opciones": [
+        {
+          "label": "Aceptamos: el activo supera claramente al pasivo que conocemos",
+          "kpi_delta": { "patrimonio_neto": 5600, "riesgo_personal": 1, "tiempo_disponible": 0 },
+          "feedback": "Decisión razonable, con un matiz: las derramas de la comunidad siguen al piso, que ya no es vuestro. Comprobar a qué bien va unida cada deuda evita pagar lo que no os toca. Lección: hay deudas personales del causante y deudas ligadas a un bien concreto; no se heredan igual.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Aceptamos a beneficio de inventario aunque el saldo parezca positivo",
+          "kpi_delta": { "patrimonio_neto": 5300, "riesgo_personal": -3, "tiempo_disponible": -1 },
+          "feedback": "Renuncias a unos cientos de euros en trámites y compras tranquilidad frente a lo que no sabes. Con un causante del que habéis descubierto un testamento oculto en un mes, no es una cautela exagerada. Lección: pagar por acotar un riesgo desconocido es una decisión económica, y a menudo la correcta.",
+          "next": "final:exito"
+        },
+        {
+          "label": "Repudiamos: no queremos líos con la comunidad ni con la sobrina",
+          "kpi_delta": { "patrimonio_neto": 0, "riesgo_personal": -5, "tiempo_disponible": 3 },
+          "feedback": "Repudiar es un derecho y elimina todo riesgo, pero es irrevocable y renuncia también a lo positivo. Aquí el saldo conocido era favorable. Lección: evitar el conflicto tiene un precio; conviene calcularlo antes, no después.",
+          "next": "final:fracaso_parcial"
+        }
+      ]
+    }
+  },
+  "finales": {
+    "exito": {
+      "titulo": "Herencia aceptada con la información delante",
+      "resumen": "Comprobasteis el Registro de Actos de Última Voluntad, distinguisteis las deudas personales de las ligadas al inmueble y elegisteis la forma de aceptación acorde al riesgo real. Menos dinero del que soñabais y ninguna sorpresa.",
+      "lecciones_clave": [
+        "Heredar es suceder en bienes y en deudas; la aceptación pura y simple compromete también tu patrimonio propio.",
+        "El beneficio de inventario limita la responsabilidad a lo heredado: existe justamente para el riesgo que no puedes medir.",
+        "El testamento válido posterior revoca al anterior, y el Registro de Actos de Última Voluntad permite saber cuál es."
+      ]
+    },
+    "fracaso_parcial": {
+      "titulo": "Repudiada por si acaso",
+      "resumen": "Renunciasteis a una herencia cuyo saldo conocido era positivo. La decisión es irrevocable y os ahorró un conflicto que probablemente no habría llegado.",
+      "lecciones_clave": [
+        "La repudiación es irrevocable: se decide con información, no con incomodidad.",
+        "Evitar el conflicto es una preferencia legítima, pero tiene un coste que conviene poner en euros antes de firmar."
+      ]
+    }
+  }
+}
+```

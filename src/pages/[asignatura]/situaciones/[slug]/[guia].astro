@@ -1,0 +1,75 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { subjectTitle } from '@/lib/seo';
+import { ASIGNATURAS } from '@/lib/asignaturas';
+import { getCollection, render } from 'astro:content';
+import { getLocale } from '@/i18n/locale';
+import { pickLocalizedEntry } from '@/i18n/content-locale';
+import { situacionSlug, guiaSlug } from '@/lib/situaciones';
+import type { GetStaticPaths } from 'astro';
+import Breadcrumb from '@components/Breadcrumb.astro';
+
+export const getStaticPaths = (async () => {
+  const sas = (await getCollection('situaciones')).filter((s) => s.data.estado === 'publicado' && s.data.lang === 'es');
+  const guias = (await getCollection('guias-sa')).filter((g) => g.data.estado === 'publicado' && g.data.lang === 'es');
+  const lists = (sa: (typeof sas)[number], g: (typeof guias)[number]) =>
+    g.data.asignatura === sa.data.asignatura && sa.data.materiales.some((m) => m.id === g.data.material);
+  return sas.flatMap((sa) =>
+    guias.filter((g) => lists(sa, g)).map((g) => {
+      // A guide shared by several SA has one URL per SA: canonical = the SA with the lowest `orden`.
+      const first = sas.filter((o) => lists(o, g)).sort((x, y) => x.data.orden - y.data.orden)[0];
+      return {
+        params: { asignatura: sa.data.asignatura, slug: situacionSlug(sa), guia: guiaSlug(g) },
+        props: {
+          sa,
+          guia: g,
+          canonicalPath: first === sa ? undefined : `/${sa.data.asignatura}/situaciones/${situacionSlug(first)}/${guiaSlug(g)}/`,
+        },
+      };
+    }),
+  );
+}) satisfies GetStaticPaths;
+
+const locale = getLocale(Astro.currentLocale);
+const { sa: saEs, guia: guiaEs, canonicalPath } = Astro.props;
+const a = ASIGNATURAS[guiaEs.data.asignatura];
+const caById = <T extends { id: string; data: { estado: string; lang: string } }>(all: T[]) =>
+  new Map(all.filter((e) => e.data.estado === 'publicado' && e.data.lang === 'ca').map((e) => [e.id, e]));
+const saCaById = caById(await getCollection('situaciones'));
+const guiaCaById = caById(await getCollection('guias-sa'));
+const sa = pickLocalizedEntry(saEs, saCaById, locale);
+const guia = pickLocalizedEntry(guiaEs, guiaCaById, locale);
+const { Content } = await render(guia);
+
+const copy = {
+  es: { inicio: 'Inicio', seccion: 'Situaciones de aprendizaje' },
+  ca: { inicio: 'Inici', seccion: "Situacions d'aprenentatge" },
+}[locale];
+const base = `/${a.slug}/situaciones/${situacionSlug(saEs)}/`;
+---
+
+<BaseLayout title={subjectTitle(guia.data.title, a)} description={`${sa.data.title}: ${guia.data.title}`} contentLang={guia.data.lang} canonicalPath={canonicalPath} translated={guiaCaById.has(`${guiaEs.id}.ca`)}>
+  <div class="container">
+    <Breadcrumb
+      locale={locale}
+      items={[
+        { name: copy.inicio, path: '/' },
+        { name: a.shortLabel, path: `/${a.slug}/` },
+        { name: copy.seccion, path: `/${a.slug}/situaciones/` },
+        { name: sa.data.title, path: base },
+        { name: guia.data.title },
+      ]}
+    />
+  </div>
+  <article class="container guia">
+    <h1>{guia.data.title}</h1>
+    <div class="prose"><Content /></div>
+  </article>
+</BaseLayout>
+
+<style>
+  .container { max-width: 1240px; margin: 0 auto; padding: 0 clamp(1.5rem, 4vw, 3rem); }
+  .guia { padding-bottom: clamp(3rem, 7vw, 6rem); }
+  .guia h1 { max-width: 28ch; margin: 1rem 0 1.5rem; }
+  .prose { max-width: var(--measure-prose, 68ch); }
+</style>

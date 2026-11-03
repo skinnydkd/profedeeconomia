@@ -11,13 +11,13 @@ export const COPY = {
   es: {
     lessons: {
       keynes:
-        'El keynesianismo demuestra que la inversión pública puede estabilizar la economía en crisis: el Estado como motor de demanda agregada.',
+        'El keynesianismo sostiene que la inversión pública puede estabilizar la economía en crisis: el Estado como motor de la demanda agregada.',
       marx:
         'El marxismo analiza las contradicciones del capital: la conquista territorial refleja cómo la acumulación genera conflicto estructural.',
       austrian:
         'La escuela austríaca defiende la solidez monetaria y la espontaneidad del mercado: la defensa robusta es la base de la prosperidad.',
       neoclassic:
-        'La economía neoclásica usa el concepto de ventaja comparativa: especializarse donde eres más eficiente maximiza el bienestar global.',
+        'La economía neoclásica hereda la ventaja comparativa de David Ricardo, un economista clásico: especializarse donde tu coste de oportunidad es menor permite que todos los países ganen con el comercio, aunque uno sea más eficiente en todo.',
     } as Record<FactionId, string>,
     endEyebrow: (round: number) => `Ronda ${round} · Partida terminada`,
     ganan: 'Ganan los',
@@ -29,13 +29,13 @@ export const COPY = {
   ca: {
     lessons: {
       keynes:
-        "El keynesianisme demostra que la inversió pública pot estabilitzar l'economia en crisi: l'Estat com a motor de la demanda agregada.",
+        "El keynesianisme sosté que la inversió pública pot estabilitzar l'economia en crisi: l'Estat com a motor de la demanda agregada.",
       marx:
         "El marxisme analitza les contradiccions del capital: la conquista territorial reflectix com l'acumulació genera conflicte estructural.",
       austrian:
         "L'escola austríaca defén la solidesa monetària i l'espontaneïtat del mercat: la defensa robusta és la base de la prosperitat.",
       neoclassic:
-        "L'economia neoclàssica usa el concepte d'avantatge comparatiu: especialitzar-se on eres més eficient maximitza el benestar global.",
+        "L'economia neoclàssica hereta l'avantatge comparatiu de David Ricardo, un economista clàssic: especialitzar-se on el teu cost d'oportunitat és menor permet que tots els països guanyen amb el comerç, encara que un siga més eficient en tot.",
     } as Record<FactionId, string>,
     endEyebrow: (round: number) => `Ronda ${round} · Partida acabada`,
     ganan: 'Guanyen els',

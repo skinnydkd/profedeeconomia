@@ -1,13 +1,13 @@
 ---
 asignatura: eco-4eso
-unidad_relacionada: 1
+unidad_relacionada: 11
 title: "Debate: ¿montar un negocio o buscar un trabajo estable?"
 descripcion: "Debate estructurado por equipos en el que la clase confronta dos caminos vitales —emprender por cuenta propia frente a buscar empleo estable por cuenta ajena— con argumentos basados en datos reales, no en eslóganes, para entender que la decisión depende del contexto de cada persona."
 tipo: debate
 duracion: "55 min · 1 sesión"
 agrupacion: "dos equipos grandes + jurado rotatorio"
 competencias_clave: [CCL, CC, CPSAA]
-competencias_especificas: [CE1]
+competencias_especificas: [CE5]
 materiales:
   - "Pizarra dividida en dos columnas (PRO emprender / PRO empleo por cuenta ajena)"
   - "Una ficha de preparación de argumentos por equipo (afirmación · dato · ejemplo)"
@@ -51,5 +51,5 @@ Este debate no busca un ganador absoluto. Busca que cada estudiante salga del au
 ## Variantes y extensiones
 
 - **Variante "cambio de bando" (relámpago):** a mitad de la réplica, el profesor obliga a los equipos a intercambiar posturas. Quien preparó bien las dos caras lo hace sin despeinarse.
-- **Conexión con la Unidad 8:** quien defendió el empleo estable puede traer a la siguiente sesión una nómina real y un alta de autónomo para comparar lo que cobra y lo que cotiza cada figura.
+- **Conexión con la Unidad 5:** quien defendió el empleo estable puede traer a la siguiente sesión una nómina real y un alta de autónomo para comparar lo que cobra y lo que cotiza cada figura.
 - **Extensión con invitado:** cerrar con una breve entrevista (presencial o por videollamada) a una persona que haya pasado de asalariada a autónoma o al revés, contrastando los argumentos del debate con su experiencia.

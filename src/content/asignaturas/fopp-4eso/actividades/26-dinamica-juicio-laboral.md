@@ -1,7 +1,7 @@
 ---
 asignatura: fopp-4eso
 unidad_relacionada: 8
-title: "El juicio laboral: representamos un despido improcedente ante el Juzgado de lo Social"
+title: "El juicio laboral: representamos un despido improcedente ante la sección de lo Social del Tribunal de Instancia"
 descripcion: "Dinámica de rol-play tipo juicio. La clase escenifica un caso de despido sobre el que se debate si fue procedente o improcedente, repartiendo papeles (trabajador, empresa, abogados, jueza, testigos). Aplica los derechos laborales de la unidad en un formato vivo que fija conceptos como causa, indemnización y carga de la prueba."
 tipo: dinamica
 duracion: "2 sesiones · 110 min (1 de preparación + 1 de juicio)"
@@ -19,7 +19,7 @@ estado: publicado
 
 ## Planteamiento
 
-Los derechos laborales se entienden mucho mejor cuando se ven en acción. Esta dinámica convierte el aula en una sala del Juzgado de lo Social y pone a la clase a representar un caso de despido: ¿fue procedente o improcedente? Cada papel obliga a manejar los conceptos de la unidad —causa del despido, indemnización, carga de la prueba, papel del juez— desde dentro.
+Los derechos laborales se entienden mucho mejor cuando se ven en acción. Esta dinámica convierte el aula en una sala de la sección de lo Social del Tribunal de Instancia y pone a la clase a representar un caso de despido: ¿fue procedente o improcedente? Cada papel obliga a manejar los conceptos de la unidad —causa del despido, indemnización, carga de la prueba, papel del juez— desde dentro.
 
 No es teatro por entretener: es una forma de fijar los derechos del Estatuto de los Trabajadores aplicándolos a un conflicto concreto. Al defender una postura ante un «tribunal», el alumnado descubre que conocer la ley con precisión es lo que da la razón.
 
@@ -28,7 +28,7 @@ No es teatro por entretener: es una forma de fijar los derechos del Estatuto de 
 - Aplicar los conceptos de despido procedente e improcedente del Estatuto de los Trabajadores.
 - Comprender el papel de la indemnización, la carga de la prueba y la vía judicial.
 - Argumentar a favor de una postura con base legal.
-- Conocer cómo funciona, a grandes rasgos, un proceso ante el Juzgado de lo Social.
+- Conocer cómo funciona, a grandes rasgos, un proceso ante la sección de lo Social del Tribunal de Instancia.
 
 ## El caso (guion)
 
