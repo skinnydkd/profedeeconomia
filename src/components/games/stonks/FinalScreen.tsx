@@ -55,7 +55,8 @@ interface Props {
 const euros = (n: number) => Math.round(n).toLocaleString('es-ES');
 
 export function FinalScreen({ state, onRestart }: Props) {
-  const c = COPY[useGameLocale()];
+  const locale = useGameLocale();
+  const c = COPY[locale];
   const { player, ai } = finalize(state);
   const won = player >= ai;
   const from = state.history[0]?.year ?? state.startYear;
@@ -102,7 +103,7 @@ export function FinalScreen({ state, onRestart }: Props) {
       <div class="kf-lessons">
         <h3 class="serif">{c.lessonsTitle}</h3>
         <ul>
-          {buildLessons(state).map((l) => (
+          {buildLessons(state, locale).map((l) => (
             <li key={l}>{l}</li>
           ))}
         </ul>

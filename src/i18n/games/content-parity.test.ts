@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 // stonks
-import { ASSETS, NEWS, CARDS, LIFE_EVENTS } from '@/lib/games/stonks/data';
+import { ASSETS, NEWS, CARDS, LIFE_EVENTS, CLASS_CARD_ID } from '@/lib/games/stonks/data';
 import {
   ASSETS_CA, NEWS_CA, CARD_BODIES_CA, LIFE_EVENTS_CA,
   localizeAsset, localizeNews, localizeCard,
@@ -56,34 +56,37 @@ describe('stonks content overlay completeness', () => {
     expect(localizeAsset(a, 'es').label).toBe(a.label);
   });
 
-  /**
-   * The 110 headlines and the 28 card bodies are NOT translated yet (see the
-   * header of stonks-ca.ts). These two tests pin that as a DELIBERATE state:
-   * while the maps are empty the Valencian build must fall back cleanly to
-   * Spanish, and the moment either map gains an entry the suite starts
-   * demanding the whole set, so a half-finished pass fails loudly.
-   */
-  it('falls back to Spanish for headlines until the map is filled, then demands all of them', () => {
-    if (Object.keys(NEWS_CA).length === 0) {
-      const n = NEWS[0];
-      expect(localizeNews(n.year, n.half, n.text, 'ca')).toBe(n.text);
-      return;
-    }
-    for (const n of NEWS) {
-      expect(NEWS_CA[`${n.year}-${n.half}`], `${n.year} H${n.half + 1}`).toBeTruthy();
-    }
+  it('every semester headline is translated, and nothing extra', () => {
+    const keys = NEWS.map((n) => `${n.year}-${n.half}`);
+    for (const k of keys) expect(NEWS_CA[k], `headline ${k}`).toBeTruthy();
+    expect(Object.keys(NEWS_CA).sort()).toEqual([...keys].sort());
+    const n = NEWS[0];
+    expect(localizeNews(n.year, n.half, n.text, 'ca')).not.toBe(n.text);
   });
 
-  it('falls back to Spanish for cards until the map is filled, then demands all of them', () => {
-    if (Object.keys(CARD_BODIES_CA).length === 0) {
-      expect(localizeCard(CARDS[0], 'ca')).toEqual(CARDS[0]);
-      return;
-    }
+  it('every card is translated paragraph by paragraph, and nothing extra', () => {
     for (const c of CARDS) {
       const ca = CARD_BODIES_CA[c.id];
       expect(ca, `card ${c.id}`).toBeTruthy();
       expect(ca.title, `card title ${c.id}`).toBeTruthy();
       expect(ca.body.length, `card ${c.id} paragraph count`).toBe(c.body.length);
+      for (const p of ca.body) expect(p, `card ${c.id} empty paragraph`).toBeTruthy();
+    }
+    expect(Object.keys(CARD_BODIES_CA).sort()).toEqual(CARDS.map((c) => c.id).sort());
+    expect(localizeCard(CARDS[0], 'ca')).not.toEqual(CARDS[0]);
+  });
+
+  it('never leaks a real company name into a Valencian card shown during play', () => {
+    for (const a of ASSETS.filter((x) => x.realName)) {
+      const ca = CARD_BODIES_CA[a.id];
+      if (!ca) continue;
+      const text = `${ca.title} ${ca.body.join(' ')}`.toLowerCase();
+      expect(text, `blind card ${a.id}`).not.toContain(a.realName!.toLowerCase());
+      const intro = CARD_BODIES_CA[CLASS_CARD_ID];
+      if (intro) {
+        expect(`${intro.title} ${intro.body.join(' ')}`.toLowerCase(), `class card leaks ${a.id}`)
+          .not.toContain(a.realName!.toLowerCase());
+      }
     }
   });
 });

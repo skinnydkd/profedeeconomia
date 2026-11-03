@@ -102,3 +102,27 @@ describe('the sentence about companies that disappeared', () => {
     expect(l).not.toContain('No quebró');
   });
 });
+
+describe('buildLessons in Valencian', () => {
+  it('speaks Valencian under ca, Spanish by default', () => {
+    expect(buildLessons(finished(), 'ca').join(' ')).toMatch(/«El Mercat»/);
+    expect(buildLessons(finished()).join(' ')).toMatch(/«El Mercado»/);
+  });
+
+  it('keeps the same rules: cost only when there was trading', () => {
+    expect(buildLessons(finished({ totalCosts: 0 }), 'ca').join(' ')).toMatch(/No has pagat/);
+    expect(buildLessons(finished({ totalCosts: 4200 }), 'ca').join(' ')).toMatch(/comissions i impostos/);
+  });
+
+  it('agrees in number for the companies that disappeared', () => {
+    expect(buildLessons(finished({ deaths: ['e_enron'] }), 'ca').join(' '))
+      .toContain('Enron va desaparéixer durant la teua partida');
+    expect(buildLessons(finished({ deaths: ['e_enron', 'e_terra'] }), 'ca').join(' '))
+      .toContain('Enron i Terra van desaparéixer durant la teua partida');
+  });
+
+  it('pads a quiet game with Valencian generic lessons, never Spanish ones', () => {
+    const l = buildLessons(finished({ history: [] }), 'ca').join(' ');
+    expect(l).not.toMatch(/riesgo|interés compuesto|impuesto/);
+  });
+});

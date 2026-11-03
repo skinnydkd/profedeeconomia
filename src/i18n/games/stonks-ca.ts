@@ -1,28 +1,19 @@
 // src/i18n/games/stonks-ca.ts
 import type { AssetCard, AssetId, AssetMeta, Half, LifeEvent } from '@/lib/games/stonks/types';
 import type { Locale } from '@/i18n/locale';
+import { NEWS_CA } from './stonks-news-ca';
+import { CARD_BODIES_CA } from './stonks-cards-ca';
+
+export { NEWS_CA, CARD_BODIES_CA };
 
 /**
  * Valencian overlay for Stonks.
  *
- * WHAT IS TRANSLATED AND WHAT IS NOT — read before adding anything here.
- *
- * Translated: asset labels, company profiles, life events. These are short,
- * appear on every screen, and carry the terminology that has to be right.
- *
- * NOT translated yet: the 110 semester headlines and the bodies of the 28 deep
- * cards, roughly 7.000 words of economic history. They fall back to Spanish,
- * and the fallback is deliberate and tested rather than accidental.
- *
- * Why: CLAUDE.md publishes only Castilian at the MVP, and requires that every
- * published word of Valencian has passed Pau's own review. Generating 7.000
- * unreviewed words would not make the Valencian build shippable — it would
- * just make the reviewing harder, because a plausible wrong translation is
- * more expensive to catch than an obvious gap.
- *
- * To finish it: fill NEWS_CA and CARD_BODIES_CA. The parity test in
- * content-parity.test.ts will start requiring completeness the moment either
- * map stops being empty, so a half-done pass fails loudly.
+ * Everything the player reads during a game is translated: asset labels,
+ * company profiles, life events, the 110 semester headlines
+ * (stonks-news-ca.ts) and the 28 deep cards (stonks-cards-ca.ts). The parity
+ * test in content-parity.test.ts requires every id to be present, so a new
+ * headline or card in Spanish fails the suite until it is translated too.
  */
 
 export const ASSETS_CA: Record<AssetId, { label: string; profile?: string }> = {
@@ -65,12 +56,6 @@ export const LIFE_EVENTS_CA: Record<string, string> = {
   cumple: 'Regal d’aniversari.',
   ropausada: 'Venda de roba usada.',
 };
-
-/** Keyed `${year}-${half}`. Empty until the translation pass; see the file header. */
-export const NEWS_CA: Record<string, string> = {};
-
-/** Keyed by card id. Empty until the translation pass; see the file header. */
-export const CARD_BODIES_CA: Record<string, { title: string; body: string[] }> = {};
 
 // ── Accessors used by the components ──────────────────────────────────────
 
