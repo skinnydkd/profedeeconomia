@@ -406,6 +406,23 @@ Les 10 URL (ES i `/ca/`) són al sitemap, així que Google les trobarà igualmen
 
 Si alguna família no trau impressions al primer control, mirar primer si està indexada (Inspecció d'URL) abans de tocar títols o contingut.
 
+### 5.13 Informe d'indexació del 10/11/2026 — redireccions ✅, unitats del llibre ES ⚠️ **obert**
+
+**Les xifres.** 1.750 pàgines indexades i 1.070 sense indexar: 586 «Descubierta: actualmente sin indexar», 222 «Rastreada: actualmente sin indexar», 144 `noindex`, 36 bloquejades per `robots.txt`, 29 amb redirecció, 28 alternatives amb canònica, 19 amb 404 i 5 amb error de redirecció.
+
+**El que és esperat.** Els 144 `noindex` són els visors de diapositives i els índexs de tests o de seccions buides, deliberats. De les 586 descobertes, 480 són `/ca/`: Google encara no les ha rastrejades. L'auditoria de producció del mateix dia ix neta: les 2.160 URL del sitemap donen 200, són *self-canonical*, sense `noindex` i amb hreflang recíproc.
+
+**El que era un error del web (arreglat).** Els 404 eren de dos tipus, i ara tenen redirecció 301 a `vercel.json` amb test a `src/lib/redirects.test.ts`:
+
+- La reestructuració d'Eco 4ESO (#263) va redirigir llibre, diapositives i tests, però no les 29 activitats renumerades ni les pàgines d'`actividades-dinamicas`.
+- Les URL del webpde antic sense `.html` (`/stonks`, `/concurs`, `/oposicions`, `/professorat`…). Només hi havia regla per a la versió amb extensió.
+
+Queden sense regla `/stax` i `/rapid`, que no sé a quina pàgina nova corresponen.
+
+**El que queda obert.** Entre les 222 «rastrejades sense indexar» hi ha **68 unitats del llibre en castellà**, entre elles les 10 de FOPP i les 9 d'IPE II. No hi ha cap bloqueig tècnic: l'últim rastreig és de novembre, l'obtenció és correcta, Google accepta la canònica declarada i la prova en viu diu que la pàgina es pot indexar. En canvi, les bessones `/ca/` de FOPP sí que estan indexades i són les úniques unitats de FOPP amb impressions en sis mesos. La causa no està identificada. El 10/11 es va demanar la indexació de FOPP 01-04 i IPE II 01-03, fins a esgotar la quota diària.
+
+**Punt de control:** inspeccionar eixes URL cap al 24/11. Si continuen sense indexar després d'un rastreig nou, la causa és de valoració de Google i no de rastreig, i toca investigar per què prefereix la versió valenciana.
+
 ---
 
 ## 6. Què mesurar i quan
