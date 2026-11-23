@@ -17,6 +17,20 @@ repaso_teorico:
   - titulo: "Elasticidad: medir cuánto reacciona la cantidad"
     unidad: 5
     contenido: "La <strong>elasticidad-precio de la demanda</strong> mide cuánto cambia la cantidad demandada cuando cambia el precio. La fórmula es: <strong>Ep = variación % de la cantidad ÷ variación % del precio</strong>. Como precio y cantidad se mueven en sentidos opuestos, el resultado sale negativo, pero solemos quedarnos con su valor absoluto.<br><br>La regla rápida: si Ep es mayor que 1, la demanda es <strong>elástica</strong> (la cantidad reacciona mucho; ejemplo: un viaje de turismo). Si Ep es menor que 1, es <strong>inelástica</strong> (la cantidad apenas se mueve; ejemplo: la gasolina o un medicamento). Si Ep es igual a 1, es unitaria.<br><br>La variación porcentual se calcula siempre igual: (valor nuevo menos valor viejo) ÷ valor viejo × 100. Domina esta fórmula y la elasticidad sale sola."
+    grafico:
+      tipo: mercado
+      caption: "Dos demandas que pasan por el mismo punto A: la plana es elástica (la cantidad reacciona mucho al precio) y la empinada es inelástica (apenas reacciona)."
+      props:
+        id: "r-e2r-elasticidad-esquema"
+        titulo: "Demanda elástica y demanda inelástica"
+        desc: "Dos curvas de demanda decrecientes que se cortan en A: una casi horizontal (elástica) y otra muy inclinada (inelástica)."
+        pMax: 20
+        qMax: 160
+        curvas:
+          - { tipo: "D", q0: 160, m: -10, pDe: 3, pA: 14, label: "D elástica" }
+          - { tipo: "D", q0: 80, m: -2, pDe: 3, pA: 19, label: "D inelástica" }
+        puntos:
+          - { p: 10, q: 60, label: "A", pLabel: "P", qLabel: "Q" }
   - titulo: "Fallos de mercado: cuando el mercado no asigna bien"
     unidad: 6
     contenido: "Un <strong>fallo de mercado</strong> ocurre cuando el mercado, por sí solo, no asigna los recursos de forma eficiente. Los cuatro tipos básicos son: <strong>externalidades</strong>, <strong>bienes públicos</strong>, <strong>poder de mercado</strong> (monopolio) e <strong>información asimétrica</strong>.<br><br>Una <strong>externalidad</strong> es un efecto sobre terceros que no participan en la decisión: negativa si los perjudica (una fábrica que contamina) y positiva si los beneficia (vacunarse). Un <strong>bien público</strong> es no rival (que yo lo use no impide que tú también) y no excluible (no se puede impedir su uso); por eso aparece el problema del <em>free-rider</em>, quien disfruta sin pagar (ejemplo: la defensa, un faro).<br><br>Ante un fallo, el Estado puede intervenir: <strong>impuestos</strong> para las externalidades negativas, <strong>subvenciones</strong> para las positivas y provisión pública de los bienes públicos."
@@ -26,15 +40,101 @@ repaso_teorico:
   - titulo: "El modelo AD-AS y el ciclo económico"
     unidad: 8
     contenido: "El modelo de <strong>demanda y oferta agregadas (AD-AS)</strong> explica el nivel general de precios y la producción de todo un país. La <strong>demanda agregada (AD)</strong> recoge todo el gasto de la economía; la <strong>oferta agregada (AS)</strong>, todo lo que se produce.<br><br>Una <strong>política expansiva</strong> (más gasto público o bajada de tipos) desplaza la AD hacia la <strong>derecha</strong>: en el corto plazo sube la producción y suele subir el nivel de precios. Una <strong>política restrictiva</strong> hace lo contrario.<br><br>La economía no crece de forma constante, sino en <strong>ciclos</strong>. Las fases son: <strong>recuperación</strong> (la producción sube), <strong>auge o expansión</strong> (punto más alto), <strong>recesión</strong> (la producción baja) y <strong>depresión</strong> (punto más bajo), y vuelta a empezar."
+    grafico:
+      tipo: xy
+      caption: "Una política expansiva desplaza la AD a la derecha (de AD₁ a AD₂): en el corto plazo suben la producción (de Y₁ a Y₂) y el nivel de precios (de P₁ a P₂)."
+      props:
+        id: "r-e2r-adas-expansiva"
+        titulo: "Política expansiva en el modelo AD-AS"
+        desc: "La demanda agregada se desplaza a la derecha y corta a la oferta agregada en un punto con más producción y precios más altos."
+        xMax: 100
+        yMax: 105
+        ejeX: "Producción real (Y)"
+        ejeY: "Nivel de precios (P)"
+        simboloX: "Y"
+        simboloY: "P"
+        series:
+          - { label: "AS", color: "mustard", puntos: [[15, 22], [88, 80.4]] }
+          - { label: "AD₁", color: "terra", tenue: true, puntos: [[15, 85], [80, 20]] }
+          - { label: "AD₂", color: "terra", puntos: [[35, 83], [88, 30]] }
+        puntos:
+          - { x: 50, y: 50, label: "E₁", xLabel: "Y₁", yLabel: "P₁", dx: 8, dy: 30 }
+          - { x: 60, y: 58, label: "E₂", xLabel: "Y₂", yLabel: "P₂", dx: -4, dy: -16 }
 ejemplos_resueltos:
   - enunciado: "<strong>Calcula una elasticidad paso a paso.</strong> El precio del cine sube de 8 € a 10 € y los espectadores bajan de 500 a 400. Calcula la elasticidad-precio de la demanda y di si es elástica o inelástica."
     desarrollo: "Vamos paso a paso.<br><strong>1. Variación % del precio:</strong> (10 − 8) ÷ 8 = 2 ÷ 8 = 0,25 = <strong>+25 %</strong>.<br><strong>2. Variación % de la cantidad:</strong> (400 − 500) ÷ 500 = −100 ÷ 500 = −0,20 = <strong>−20 %</strong>.<br><strong>3. Elasticidad:</strong> Ep = −20 % ÷ 25 % = −0,8; en valor absoluto = <strong>0,8</strong>.<br><strong>4. Interpretación:</strong> como 0,8 es menor que 1, la demanda es <strong>inelástica</strong>: la cantidad reacciona menos que proporcionalmente al precio."
+    grafico:
+      tipo: mercado
+      caption: "El precio del cine sube de 8 € a 10 € (+25 %) y los espectadores bajan de 500 a 400 (−20 %): Ep = 20 ÷ 25 = 0,8, demanda inelástica."
+      props:
+        id: "r-e2r-elasticidad-cine"
+        titulo: "Demanda de cine: de 8 a 10 euros"
+        desc: "Recta de demanda que pasa por 500 espectadores a 8 euros y 400 espectadores a 10 euros."
+        pMax: 14
+        qMax: 1000
+        curvas:
+          - { tipo: "D", q0: 900, m: -50, pDe: 4, pA: 13, label: "D" }
+        puntos:
+          - { p: 8, q: 500, label: "A", pLabel: "8", qLabel: "500" }
+          - { p: 10, q: 400, label: "B", pLabel: "10", qLabel: "400" }
   - enunciado: "<strong>Elasticidad e ingreso.</strong> Una tienda vende 200 camisetas a 10 €. Sube el precio a 11 € y las ventas bajan a 196. ¿Sube o baja el ingreso total? ¿Es coherente con la elasticidad?"
     desarrollo: "<strong>1. Ingreso antes:</strong> 200 × 10 = <strong>2.000 €</strong>.<br><strong>2. Ingreso después:</strong> 196 × 11 = <strong>2.156 €</strong>.<br><strong>3. Conclusión:</strong> el ingreso <strong>sube</strong> (de 2.000 a 2.156 €).<br><strong>4. Comprobación con la elasticidad:</strong> var. % cantidad = (196 − 200) ÷ 200 = −2 %; var. % precio = (11 − 10) ÷ 10 = +10 %; Ep = 2 ÷ 10 = 0,2 → <strong>inelástica</strong>. En demanda inelástica, subir el precio aumenta el ingreso. Todo encaja."
+    grafico:
+      tipo: xy
+      caption: "Al subir el precio de 10 € a 11 € se venden 196 camisetas en vez de 200: el ingreso pasa de 2.000 € a 2.156 €. Con demanda inelástica, subir el precio aumenta el ingreso."
+      props:
+        id: "r-e2r-ingreso-camisetas"
+        titulo: "Ingreso total de la tienda antes y después de subir el precio"
+        desc: "Dos rectángulos: antes, 200 camisetas a 10 euros (2.000 euros); después, 196 camisetas a 11 euros (2.156 euros). El segundo es mayor."
+        xMax: 260
+        yMax: 16
+        ejeX: "Camisetas vendidas"
+        ejeY: "Precio (€)"
+        simboloX: "Q"
+        simboloY: "P"
+        areas:
+          - { puntos: [[0, 0], [200, 0], [200, 10], [0, 10]], color: "terra" }
+          - { puntos: [[0, 0], [196, 0], [196, 11], [0, 11]], color: "mustard" }
+        series:
+          - { label: "D", color: "ink", puntos: [[185, 13.75], [215, 6.25]] }
+        puntos:
+          - { x: 200, y: 10, label: "A", xLabel: "200", yLabel: "10", dx: 12, dy: 22 }
+          - { x: 196, y: 11, label: "B", yLabel: "11", dx: -22, dy: -10 }
+        notas:
+          - { x: 8, y: 4, texto: "Antes: 200 × 10 = 2 000 €" }
+          - { x: 8, y: 12.5, texto: "Después: 196 × 11 = 2 156 €", color: "mustard" }
   - enunciado: "<strong>Calcula un PIB y la inflación.</strong> Un país produce 300 coches a 12.000 € y 500 bicicletas a 200 €. Calcula el PIB. Además, el IPC pasó de 120 a 126: calcula la inflación."
     desarrollo: "<strong>PIB:</strong><br>Valor de los coches = 300 × 12.000 = 3.600.000 €.<br>Valor de las bicicletas = 500 × 200 = 100.000 €.<br>PIB = 3.600.000 + 100.000 = <strong>3.700.000 €</strong>.<br><br><strong>Inflación:</strong><br>Inflación = (126 − 120) ÷ 120 × 100 = 6 ÷ 120 × 100 = <strong>5 %</strong>.<br>Los precios han subido, de media, un 5 % en el año."
   - enunciado: "<strong>Tasa de paro y de actividad.</strong> En un país hay 18 millones de ocupados, 2 millones de parados y una población en edad de trabajar de 38 millones. Calcula la tasa de paro y la tasa de actividad."
     desarrollo: "<strong>1. Activos:</strong> activos = ocupados + parados = 18 + 2 = <strong>20 millones</strong>.<br><strong>2. Tasa de paro:</strong> parados ÷ activos × 100 = 2 ÷ 20 × 100 = <strong>10 %</strong>.<br><strong>3. Tasa de actividad:</strong> activos ÷ población en edad de trabajar × 100 = 20 ÷ 38 × 100 = <strong>52,6 %</strong>.<br>Cuidado con no confundir las dos: el paro se mide sobre los activos, la actividad sobre toda la población en edad de trabajar."
+    grafico:
+      tipo: xy
+      caption: "De 38 millones en edad de trabajar, 20 son activos (18 ocupados y 2 parados). Paro: 2 ÷ 20 = 10 %. Actividad: 20 ÷ 38 = 52,6 %."
+      props:
+        id: "r-e2r-paro-actividad"
+        titulo: "Población en edad de trabajar: ocupados, parados e inactivos"
+        desc: "Una columna de 38 millones dividida en 18 de ocupados, 2 de parados y 18 de inactivos, y otra de 20 millones de activos formada por los ocupados y los parados."
+        xMax: 160
+        yMax: 44
+        ejeX: "Grupos de población"
+        ejeY: "Millones de personas"
+        xTicks: [25, 70]
+        xTickLabels: ["En edad de trabajar", "Activos"]
+        yTicks: [10, 20, 30]
+        areas:
+          - { puntos: [[10, 0], [40, 0], [40, 18], [10, 18]], color: "teal", fuerte: true }
+          - { puntos: [[10, 18], [40, 18], [40, 20], [10, 20]], color: "terra", fuerte: true }
+          - { puntos: [[10, 20], [40, 20], [40, 38], [10, 38]], color: "mustard", fuerte: true }
+          - { puntos: [[55, 0], [85, 0], [85, 18], [55, 18]], color: "teal", fuerte: true }
+          - { puntos: [[55, 18], [85, 18], [85, 20], [55, 20]], color: "terra", fuerte: true }
+        notas:
+          - { x: 25, y: 8, texto: "Ocupados 18", ancla: "middle" }
+          - { x: 25, y: 18.5, texto: "Parados 2", ancla: "middle" }
+          - { x: 25, y: 28, texto: "Inactivos 18", ancla: "middle" }
+          - { x: 25, y: 40, texto: "38", ancla: "middle" }
+          - { x: 70, y: 22, texto: "20", ancla: "middle" }
+          - { x: 89, y: 19, texto: "Paro: 2 ÷ 20 = 10 %", color: "terra" }
+          - { x: 89, y: 32, texto: "Actividad: 20 ÷ 38 = 52,6 %", color: "teal" }
 ejercicios:
   - enunciado: "Explica con tus palabras la diferencia entre una demanda <strong>elástica</strong> y una demanda <strong>inelástica</strong>, y pon un ejemplo de cada una."
     solucion: "Demanda elástica: la cantidad demandada cambia mucho cuando cambia el precio (elasticidad mayor que 1). Ejemplo: un viaje de turismo, del que se puede prescindir.<br>Demanda inelástica: la cantidad apenas cambia aunque suba el precio (elasticidad menor que 1). Ejemplo: la insulina o la gasolina, que se necesitan sí o sí."

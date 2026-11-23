@@ -18,21 +18,146 @@ repaso_teorico:
   - titulo: "Corregir fallades de mercat i mesurar el benestar"
     unidad: 6
     contenido: "Les externalitats es corregixen <em>internalitzant</em> el cost o benefici extern. Per a les <strong>negatives</strong>, un <strong>impost pigouvià</strong> fa que el contaminador pague pel dany, acostant el seu cost privat al cost social; alternatives són els <strong>mercats de drets d'emissió</strong> i, si els costos de negociació són baixos, el <strong>teorema de Coase</strong> (acords privats). Per a les <strong>positives</strong>, s'usen <strong>subvencions</strong>.<br><br>Els béns es classifiquen amb la matriu <strong>rivalitat × exclusió</strong>: privats (rival i excloïble), públics (ni rival ni excloïble), comuns (rival però no excloïble; patixen la <em>tragèdia dels comuns</em>) i de club (no rival però excloïble).<br><br>El benestar es mesura amb els <strong>excedents</strong>: el del consumidor és el que paga de menys respecte al que estava disposat a pagar; el del productor, el que cobra de més respecte al seu cost. Un impost o un preu regulat reduïxen la quantitat d'equilibri i generen <strong>pes mort</strong>: benestar que es perd i ningú captura."
+    grafico:
+      tipo: mercado
+      caption: "Amb una externalitat negativa, el mercat produïx Q₁ (oferta privada O₁), més del que és socialment desitjable Q₂ (O₂ inclou el cost extern). Un impost pigouvià desplaça l'oferta d'O₁ a O₂."
+      props:
+        id: "r-e2a-externalidad-esquema"
+        titulo: "Externalitat negativa i impost pigouvià"
+        desc: "L'oferta amb el cost social (O₂) queda per damunt de l'oferta privada (O₁): l'equilibri social té menys quantitat i un preu major que el de mercat."
+        pMax: 25
+        qMax: 160
+        curvas:
+          - { tipo: "D", q0: 120, m: -5, pDe: 2, pA: 21, label: "D" }
+          - { tipo: "O", q0: 20, m: 5, pDe: 2, pA: 21, label: "O₁" }
+          - { tipo: "O", q0: 0, m: 5, pDe: 2, pA: 21, label: "O₂" }
+        puntos:
+          - { p: 10, q: 70, label: "E₁", pLabel: "P₁", qLabel: "Q₁", dx: 22, dy: 5 }
+          - { p: 12, q: 60, label: "E₂", pLabel: "P₂", qLabel: "Q₂", dx: -34, dy: 5 }
   - titulo: "Indicadors macro: PIB real, deflactor i distribució"
     unidad: 7
     contenido: "Per a separar preus de quantitats hi ha dos índexs. L'<strong>IPC</strong> mesura el preu d'una cistella fixa de consum; el <strong>deflactor del PIB</strong> mesura el preu de tot el que produïx el país. Relació clau: <strong>deflactor = (PIB nominal ÷ PIB real) × 100</strong>, i d'ací, PIB real = PIB nominal ÷ deflactor × 100.<br><br>El PIB es pot calcular per tres mètodes equivalents (producció, despesa i renda). Per a comparar entre països s'usa el <strong>PIB per capita</strong> (PIB ÷ població), millor encara ajustat per paritat de poder adquisitiu.<br><br>El mercat laboral es mesura amb l'EPA: <strong>taxa d'atur</strong> = aturats ÷ actius × 100 i <strong>taxa d'activitat</strong> = actius ÷ població de 16 o més anys × 100. Estos indicadors mesuren quantitats, no benestar: un PIB alt pot conviure amb molta desigualtat."
   - titulo: "AD-AS, cicles, creixement i desigualtat"
     unidad: 8
     contenido: "El model AD-AS té tres corbes: <strong>AD</strong> (despesa total, pendent negativa), <strong>SRAS</strong> (oferta de curt termini, pendent positiva) i <strong>LRAS</strong> (oferta de llarg termini, vertical en la <em>producció potencial</em>). Un <strong>xoc de demanda</strong> mou P i Y en el mateix sentit; un <strong>xoc d'oferta negatiu</strong> els mou en sentits oposats (estanflació: menys producció i més preus).<br><br>A llarg termini, el que importa és el <strong>creixement</strong> de la producció potencial, que segons el <strong>model de Solow</strong> depén del capital, el treball i, sobretot, de la <strong>productivitat total dels factors</strong> (la tecnologia). Convé distingir <strong>creixement</strong> (més PIB per capita) de <strong>desenvolupament</strong> (més benestar, mesurat amb l'IDH).<br><br>La <strong>distribució</strong> de la renda es representa amb la <strong>corba de Lorenz</strong> i es resumix en l'<strong>índex de Gini</strong> (entre 0 = igualtat total i 1 = desigualtat màxima): com més s'allunya la corba de la diagonal, major és el Gini."
+    grafico:
+      tipo: xy
+      caption: "Un shock d'oferta negatiu desplaça la SRAS cap amunt: la producció baixa d'Y* a Y₂ i els preus pugen de P₁ a P₂ (estagflació). La LRAS marca la producció potencial."
+      props:
+        id: "r-e2a-adas-estanflacion"
+        titulo: "AD-AS: shock d'oferta negatiu i estagflació"
+        desc: "Amb l'AD fixa, la SRAS es desplaça cap amunt i l'equilibri passa a una producció menor, a l'esquerra de la LRAS, amb preus més alts."
+        xMax: 100
+        yMax: 105
+        ejeX: "Producció real (Y)"
+        ejeY: "Nivell de preus (P)"
+        simboloX: "Y"
+        simboloY: "P"
+        series:
+          - { label: "LRAS", color: "ink", puntos: [[60, 8], [60, 95]] }
+          - { label: "SRAS₁", color: "mustard", tenue: true, puntos: [[15, 14], [88, 72.4]] }
+          - { label: "SRAS₂", color: "mustard", puntos: [[15, 32], [88, 90.4]] }
+          - { label: "AD", color: "terra", puntos: [[12, 98], [88, 22]] }
+        puntos:
+          - { x: 60, y: 50, label: "E₁", xLabel: "Y*", yLabel: "P₁", dx: 8, dy: 30 }
+          - { x: 50, y: 60, label: "E₂", xLabel: "Y₂", yLabel: "P₂", dx: -4, dy: -16 }
 ejemplos_resueltos:
   - enunciado: "<strong>Elasticitat pel mètode de l'arc.</strong> El preu puja de 10 € a 12 € i la quantitat demandada baixa de 100 a 80 unitats. Calcula l'elasticitat-preu pel mètode del punt mitjà i classifica-la."
     desarrollo: "El mètode de l'arc dividix entre la mitjana dels dos valors.<br><strong>1. Variació % de la quantitat:</strong> (80 − 100) ÷ ((100 + 80) ÷ 2) = −20 ÷ 90 = −0,2222 = <strong>−22,22 %</strong>.<br><strong>2. Variació % del preu:</strong> (12 − 10) ÷ ((10 + 12) ÷ 2) = 2 ÷ 11 = 0,1818 = <strong>+18,18 %</strong>.<br><strong>3. Elasticitat:</strong> Ep = 22,22 % ÷ 18,18 % = <strong>1,22</strong> (en valor absolut).<br><strong>4. Conclusió:</strong> com que 1,22 és major que 1, la demanda és <strong>elàstica</strong>. L'avantatge del mètode de l'arc és que dóna el mateix valor tant si el preu puja de 10 a 12 com si baixa de 12 a 10."
-  - enunciado: "<strong>Excedent del consumidor i pes mort.</strong> En un mercat, el preu màxim que els consumidors estarien disposats a pagar és 20 €, el preu d'equilibri és 8 € i es venen 60 unitats. Calcula l'excedent del consumidor. Després, un impost de 3 €/unitat reduïx la quantitat a 40: calcula el pes mort."
-    desarrollo: "<strong>1. Excedent del consumidor (triangle):</strong> base = quantitat = 60; altura = 20 − 8 = 12 €.<br>EC = (base × altura) ÷ 2 = (60 × 12) ÷ 2 = <strong>360 €</strong>.<br><strong>2. Pes mort de l'impost (triangle):</strong> l'impost unitari és 3 € i la quantitat cau de 60 a 40, és a dir, 20 unitats menys.<br>Pes mort = (impost × reducció de quantitat) ÷ 2 = (3 × 20) ÷ 2 = <strong>30 €</strong>.<br>Eixe pes mort és benestar que es perd: intercanvis que eren beneficiosos i que l'impost impedix que ocórreguen."
+    grafico:
+      tipo: mercado
+      caption: "El preu puja de 10 € a 12 € i la quantitat baixa de 100 a 80. Pel punt mitjà: −22,22 % ÷ 18,18 % = 1,22 en valor absolut, demanda elàstica."
+      props:
+        id: "r-e2a-elasticidad-arco"
+        titulo: "Demanda entre 10 i 12 euros (mètode de l'arc)"
+        desc: "Recta de demanda que passa per 100 unitats a 10 euros i 80 unitats a 12 euros."
+        pMax: 16
+        qMax: 320
+        curvas:
+          - { tipo: "D", q0: 300, m: -20, pDe: 4, pA: 14, label: "D" }
+        puntos:
+          - { p: 10, q: 100, label: "A", pLabel: "10", qLabel: "100" }
+          - { p: 12, q: 80, label: "B", pLabel: "12", qLabel: "80" }
+  - enunciado: "<strong>Excedent del consumidor i pes mort.</strong> En un mercat, el preu màxim que els consumidors estarien disposats a pagar és 20 €, el preu d'equilibri és 8 € i es venen 60 unitats. Calcula l'excedent del consumidor. Després, un impost de 6 €/unitat reduïx la quantitat a 40: calcula el pes mort."
+    desarrollo: "<strong>1. Excedent del consumidor (triangle):</strong> base = quantitat = 60; altura = 20 − 8 = 12 €.<br>EC = (base × altura) ÷ 2 = (60 × 12) ÷ 2 = <strong>360 €</strong>.<br><strong>2. Pes mort de l'impost (triangle):</strong> l'impost unitari és 6 € i la quantitat cau de 60 a 40, és a dir, 20 unitats menys.<br>Pes mort = (impost × reducció de quantitat) ÷ 2 = (6 × 20) ÷ 2 = <strong>60 €</strong>.<br>Eixe pes mort és benestar que es perd: intercanvis que eren beneficiosos i que l'impost impedix que ocórreguen."
+    grafico:
+      tipo: xy
+      caption: "La demanda parteix de 20 € (el màxim que es pagaria) i el preu d'equilibri és 8 € amb 60 unitats: l'excedent del consumidor és el triangle 60 × 12 ÷ 2 = 360 €."
+      props:
+        id: "r-e2a-excedente-consumidor"
+        titulo: "Excedent del consumidor"
+        desc: "Recta de demanda que va de 20 euros amb quantitat zero fins a 8 euros amb 60 unitats. El triangle entre la demanda i el preu de 8 euros és l'excedent del consumidor, de 360 euros."
+        xMax: 100
+        yMax: 24
+        ejeX: "Quantitat"
+        ejeY: "Preu (€)"
+        simboloX: "Q"
+        simboloY: "P"
+        xTicks: [20, 40, 80]
+        yTicks: [4, 12, 16, 20]
+        areas:
+          - { puntos: [[0, 20], [60, 8], [0, 8]], color: "teal" }
+        series:
+          - { label: "D", color: "terra", puntos: [[0, 20], [80, 4]] }
+        puntos:
+          - { x: 60, y: 8, label: "E", xLabel: "60", yLabel: "8", dx: 12, dy: -10 }
+        notas:
+          - { x: 3, y: 10.5, texto: "EC = 60 × 12 ÷ 2 = 360 €", color: "teal" }
   - enunciado: "<strong>Deflactor i creixement real.</strong> El PIB nominal d'un país passa de 1.000 (any 1) a 1.200 (any 2). El deflactor del PIB és 100 en l'any 1 i 110 en l'any 2. Calcula el PIB real de l'any 2 i el creixement real de l'economia."
     desarrollo: "<strong>1. PIB real de l'any 2:</strong> PIB real = (PIB nominal ÷ deflactor) × 100 = (1.200 ÷ 110) × 100 = <strong>1.090,9</strong>.<br><strong>2. PIB real de l'any 1:</strong> (1.000 ÷ 100) × 100 = 1.000.<br><strong>3. Creixement real:</strong> (1.090,9 − 1.000) ÷ 1.000 × 100 = <strong>9,1 %</strong>.<br><strong>Lectura:</strong> el PIB nominal va créixer un 20 %, però bona part va ser inflació (el deflactor va pujar un 10 %). El creixement real, el que de veritat es va produir més, va ser només del 9,1 %."
+    grafico:
+      tipo: xy
+      caption: "El PIB nominal creix un 20 % (d'1.000 a 1.200), però el real només un 9,1 % (d'1.000 a 1.090,9) perquè el deflactor puja un 10 %."
+      props:
+        id: "r-e2a-pib-real-deflactor"
+        titulo: "PIB nominal i PIB real en els anys 1 i 2"
+        desc: "Quatre columnes: en l'any 1, PIB nominal i real d'1.000; en l'any 2, PIB nominal de 1.200 i PIB real d'1.090,9."
+        xMax: 11
+        yMax: 1500
+        ejeX: "Any"
+        ejeY: "PIB"
+        xTicks: [2.25, 6.25]
+        xTickLabels: ["Any 1", "Any 2"]
+        yTicks: [500, 1000]
+        areas:
+          - { puntos: [[1, 0], [2.2, 0], [2.2, 1000], [1, 1000]], color: "terra", fuerte: true }
+          - { puntos: [[2.3, 0], [3.5, 0], [3.5, 1000], [2.3, 1000]], color: "teal", fuerte: true }
+          - { puntos: [[5, 0], [6.2, 0], [6.2, 1200], [5, 1200]], color: "terra", fuerte: true }
+          - { puntos: [[6.3, 0], [7.5, 0], [7.5, 1090.9], [6.3, 1090.9]], color: "teal", fuerte: true }
+        notas:
+          - { x: 1.6, y: 1050, texto: "1 000", ancla: "middle" }
+          - { x: 2.9, y: 1050, texto: "1 000", ancla: "middle" }
+          - { x: 5.6, y: 1250, texto: "1 200", ancla: "middle" }
+          - { x: 6.9, y: 1140, texto: "1 090,9", ancla: "middle" }
+          - { x: 8, y: 1300, texto: "PIB nominal: +20 %", color: "terra" }
+          - { x: 8, y: 1170, texto: "PIB real: +9,1 %", color: "teal" }
   - enunciado: "<strong>Elasticitat creuada i ingrés.</strong> Quan el preu del te puja un 10 %, la demanda de café augmenta un 5 %. (a) Calcula l'elasticitat creuada i digues quina relació tenen. (b) D'altra banda, el café baixa el seu preu de 50 a 45 € i les seues vendes passen de 200 a 260: comprova què passa amb l'ingrés."
     desarrollo: "<strong>(a) Elasticitat creuada:</strong> Exc = var. % quantitat de café ÷ var. % preu del te = +5 % ÷ +10 % = <strong>+0,5</strong>.<br>Com que és positiva, el te i el café són <strong>béns substitutius</strong> (en encarir-se el te, la gent compra més café).<br><strong>(b) Elasticitat-preu i ingrés del café:</strong><br>Var. % preu = (45 − 50) ÷ 50 = −10 %; var. % quantitat = (260 − 200) ÷ 200 = +30 %; Ep = 30 ÷ 10 = <strong>3 → elàstica</strong>.<br>Ingrés abans = 50 × 200 = 10.000 €; ingrés després = 45 × 260 = 11.700 €. L'ingrés <strong>puja</strong> 1.700 €, coherent amb que en demanda elàstica baixar el preu augmenta l'ingrés."
+    grafico:
+      tipo: xy
+      caption: "El café baixa de 50 € a 45 € i les vendes pugen de 200 a 260 (Ep = 3, elàstica): l'ingrés passa de 10.000 € a 11.700 €, 1.700 € més."
+      props:
+        id: "r-e2a-ingreso-cafe"
+        titulo: "Ingrés del café abans i després de baixar el preu"
+        desc: "Dos rectangles: abans, 200 unitats a 50 euros (10.000 euros); després, 260 unitats a 45 euros (11.700 euros). El segon és major."
+        xMax: 330
+        yMax: 62
+        ejeX: "Unitats venudes"
+        ejeY: "Preu (€)"
+        simboloX: "Q"
+        simboloY: "P"
+        yTicks: [20, 40]
+        areas:
+          - { puntos: [[0, 0], [200, 0], [200, 50], [0, 50]], color: "terra" }
+          - { puntos: [[0, 0], [260, 0], [260, 45], [0, 45]], color: "mustard" }
+        series:
+          - { label: "D", color: "ink", puntos: [[140, 55], [290, 42.5]] }
+        puntos:
+          - { x: 200, y: 50, label: "A", xLabel: "200", yLabel: "50", dx: 12, dy: -10 }
+          - { x: 260, y: 45, label: "B", xLabel: "260", yLabel: "45", dx: 12, dy: -10 }
+        notas:
+          - { x: 8, y: 54, texto: "Abans: 50 × 200 = 10 000 €" }
+          - { x: 8, y: 20, texto: "Després: 45 × 260 = 11 700 €", color: "mustard" }
 ejercicios:
   - enunciado: "Una empresa ven 1.000 unitats a 20 €. Si puja el preu a 22 €, les vendes baixen a 980 unitats. Calcula l'elasticitat, digues si és elàstica o inelàstica i comprova què passa amb l'ingrés total."
     solucion: "Var. % quantitat = (980 − 1.000) ÷ 1.000 = −2 %.<br>Var. % preu = (22 − 20) ÷ 20 = +10 %.<br>Elasticitat = 2 % ÷ 10 % = <strong>0,2 → inelàstica</strong> (menor que 1).<br>Ingrés abans = 1.000 × 20 = 20.000 €. Ingrés després = 980 × 22 = 21.560 €.<br>L'ingrés total <strong>augmenta</strong> (de 20.000 a 21.560 €), coherent amb que en demanda inelàstica pujar el preu puja l'ingrés."
