@@ -72,5 +72,5 @@ Cada equip defén una de les dos postures. L'objectiu no és «guanyar» amb la 
 ## Notes per al docent
 
 - **Legal no és el mateix que frau.** L'aprenentatge clau és distingir pagar menys per vies legals (deduccions, ajudes) d'ocultar ingressos a Hisenda. Insistir abans i durant.
-- **Dades, no consignes.** Reconduir el debat cap a les xifres (entorn del 20-25 % del PIB a Espanya segons GESTHA) i cap als efectes concrets sobre els servicis públics cada vegada que aparega el «tothom ho fa».
+- **Dades, no consignes.** Reconduir el debat cap a les xifres (entorn del 15 % del PIB a Espanya segons GESTHA, 2025; altres metodologies arriben al 24 %) i cap als efectes concrets sobre els servicis públics cada vegada que aparega el «tothom ho fa».
 - **El tancament connecta amb el seu projecte.** Allò important no és guanyar el debat, sinó que cada alumne isca amb una decisió concreta sobre com es comportarà fiscalment el seu projecte en la Fase 4.

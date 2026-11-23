@@ -9,7 +9,7 @@ preguntas:
     opciones:
       - "No, porque un mercado necesita un lugar físico con puestos."
       - "No, porque solo hay un comprador y un vendedor."
-      - "Sí: hay un demandante, un oferente, un bien y un precio, y eso basta."
+      - "Sí: hay demandante, oferente, bien y precio, y eso basta."
       - "Sí, pero solo si la app cobra una comisión por la venta."
     correcta: 2
     explicacion: "Un mercado es cualquier encuentro entre compradores y vendedores de un bien o servicio, con lugar físico o sin él. Wallapop, Idealista, la Bolsa de Madrid o la cafetería del instituto son mercados: en todos hay demandantes, oferentes, un bien y un precio."
@@ -19,7 +19,7 @@ preguntas:
     explicacion: "Falso. La demanda es la cantidad que los compradores están dispuestos a comprar y pueden pagar a cada precio. Sin capacidad de pago hay deseo, pero no demanda."
   - enunciado: "Los billetes de avión Madrid-Barcelona se abaratan mucho. ¿Qué le ocurre al mercado del tren en esa ruta?"
     opciones:
-      - "Baja la demanda de billetes de tren, porque avión y tren son bienes sustitutivos."
+      - "Baja la demanda de billetes de tren: avión y tren son sustitutivos."
       - "Sube la demanda de billetes de tren, porque avión y tren son complementarios."
       - "No pasa nada: el precio del avión no afecta al mercado del tren."
       - "Sube la oferta de billetes de tren, porque Renfe querrá vender más."
@@ -61,10 +61,10 @@ preguntas:
     explicacion: "Son los cuatro casos básicos. Con ellos se entiende el 90 % de las noticias de precios: el aceite se triplicó en 2023 por un desplazamiento de la oferta a la izquierda, y el AVE se abarató en 2021 por un desplazamiento de la oferta a la derecha."
   - enunciado: "Un ayuntamiento fija un precio máximo de alquiler por debajo del precio de equilibrio. Según el modelo de oferta y demanda, ¿qué cabe esperar?"
     opciones:
-      - "Que baje el precio de los contratos que se firman y, además, que se firmen menos contratos."
-      - "Que baje el precio y que se alquilen más viviendas que antes."
-      - "Que no pase nada, porque los precios los fija siempre el mercado."
-      - "Que suba el precio, porque los propietarios compensarán la norma."
+      - "Que baje el precio de los contratos firmados y que se firmen menos contratos."
+      - "Que baje el precio y que se alquilen más viviendas que antes de la norma."
+      - "Que no pase nada, porque los precios los fija siempre el mercado libre."
+      - "Que suba el precio, porque los propietarios compensarán la norma subiendo la renta."
     correcta: 0
     explicacion: "Un precio máximo solo actúa si está por debajo del equilibrio, y entonces genera exceso de demanda: baja el precio de quien consigue contrato y se reduce la cantidad intercambiada. Es lo que midieron los datos de Cataluña en 2024: −3,7 % en el alquiler medio de los nuevos contratos y menos contratos firmados."
   - enunciado: "El mercado de la alta velocidad pasó de tener solo a Renfe a tener a Renfe, Ouigo e Iryo. ¿Cómo se llama cada una de esas dos situaciones?"

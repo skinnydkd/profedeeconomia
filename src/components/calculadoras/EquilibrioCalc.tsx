@@ -374,7 +374,7 @@ export default function EquilibrioCalc({ locale = 'es' }: Props) {
           font-weight: 700;
           text-transform: uppercase;
           letter-spacing: 0.07em;
-          color: var(--color-terra, #C44E2C);
+          color: var(--color-terra-deep, #9C3A1C);
           margin: 1rem 0 0.5rem;
         }
         .eq__form-row {
@@ -416,7 +416,7 @@ export default function EquilibrioCalc({ locale = 'es' }: Props) {
           border: 1px solid var(--color-line, #E5D4BD);
           border-radius: 4px;
         }
-        .eq__note.ok { border-color: var(--color-terra, #C44E2C); }
+        .eq__note.ok { border-color: var(--color-terra-deep, #9C3A1C); }
         .eq__chart {
           width: 100%;
           height: auto;

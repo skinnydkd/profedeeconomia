@@ -15,7 +15,7 @@ preguntas:
     explicacion: "La **tasa de paro** mide qué porcentaje de quienes quieren trabajar no encuentra empleo: parados dividido entre **población activa** (ocupados + parados), no entre la población total. En el T3 de 2024 era de aproximadamente el 11,3 % en España."
   - enunciado: "Un estudiante universitario de 20 años que no busca trabajo, ¿cómo se clasifica en la EPA?"
     opciones:
-      - "Ocupado, porque estudiar es una actividad productiva."
+      - "Ocupado, porque estudiar es una actividad productiva para la sociedad."
       - "Parado, porque no tiene un empleo remunerado."
       - "Inactivo, porque ni trabaja ni busca trabajo activamente."
       - "No aparece en la EPA porque tiene menos de 25 años."
@@ -32,7 +32,7 @@ preguntas:
   - enunciado: "¿Por qué España es considerada una **anomalía europea** en paro juvenil?"
     opciones:
       - "Porque su tasa de paro juvenil es ligeramente superior a la media de la UE solo desde 2020."
-      - "Porque su tasa de paro juvenil (~27 % en 2024) duplica la media de la UE (~14 %) de forma sostenida desde 2008."
+      - "Porque su paro juvenil (~27 % en 2024) duplica la media de la UE (~14 %) desde 2008."
       - "Porque sus jóvenes no quieren trabajar y prefieren depender de sus familias."
       - "Porque España tiene la tasa de paro juvenil más baja de Europa, contra todo pronóstico."
     correcta: 1

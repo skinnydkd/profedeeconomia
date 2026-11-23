@@ -2,63 +2,94 @@
 import type { Deck } from '@/lib/slides/types';
 import Slide from './Slide.astro';
 
-interface Props { deck: Deck; locale?: 'es' | 'ca'; backHref?: string }
-const { deck, locale = 'es', backHref } = Astro.props;
+interface Props { deck: Deck; locale?: 'es' | 'ca'; backHref?: string; altHref?: string }
+const { deck, locale = 'es', backHref, altHref } = Astro.props;
 const total = deck.slides.length;
 const pad = (n: number) => String(n).padStart(2, '0');
 // Viewer controls (VIS-LEC-21): back to the unit, position, full screen and a
 // switch to hide the solutions while the class answers. Screen only.
 const L = locale === 'ca'
   ? { barra: 'Controls de la presentació', volver: 'Tornar a la unitat', pantalla: 'Pantalla completa', salir: 'Eixir de la pantalla completa',
-      ocultar: 'Amaga les solucions', mostrar: 'Mostra les solucions', diapositiva: 'Diapositiva' }
+      ocultar: 'Amaga les solucions', mostrar: 'Mostra les solucions', diapositiva: 'Diapositiva', de: 'de',
+      alt: 'Castellà', altTitle: 'Veure en castellà', ant: 'Diapositiva anterior', sig: 'Diapositiva següent' }
   : { barra: 'Controles de la presentación', volver: 'Volver a la unidad', pantalla: 'Pantalla completa', salir: 'Salir de pantalla completa',
-      ocultar: 'Ocultar soluciones', mostrar: 'Mostrar soluciones', diapositiva: 'Diapositiva' };
+      ocultar: 'Ocultar soluciones', mostrar: 'Mostrar soluciones', diapositiva: 'Diapositiva', de: 'de',
+      alt: 'Valencià', altTitle: 'Ver en valenciano', ant: 'Diapositiva anterior', sig: 'Diapositiva siguiente' };
+const altLang = locale === 'ca' ? 'es' : 'ca';
 ---
 <main class="deck-page" data-asig={deck.asignatura}>
   <div class="deck">
     {deck.slides.map((s, i) => <Slide slide={s} pos={`${pad(i + 1)}/${pad(total)}`} locale={locale} />)}
   </div>
   <nav class="deck-bar" aria-label={L.barra}
-    data-l-pantalla={L.pantalla} data-l-salir={L.salir} data-l-ocultar={L.ocultar} data-l-mostrar={L.mostrar}>
-    {backHref && <a class="deck-bar__back" href={backHref}>← {L.volver}</a>}
+    data-l-pantalla={L.pantalla} data-l-salir={L.salir} data-l-ocultar={L.ocultar} data-l-mostrar={L.mostrar}
+    data-l-diap={L.diapositiva} data-l-de={L.de}>
+    {backHref && <a class="deck-bar__back" href={backHref}><span aria-hidden="true">←</span><span class="lbl"> {L.volver}</span></a>}
+    <button type="button" class="deck-bar__btn deck-bar__step" data-prev aria-label={L.ant}><span aria-hidden="true">‹</span></button>
     <span class="deck-bar__count"><span class="sr-only">{L.diapositiva} </span><span data-current>1</span> / {total}</span>
-    <button type="button" class="deck-bar__btn" data-solutions aria-pressed="false" title="S">{L.ocultar}</button>
-    <button type="button" class="deck-bar__btn" data-fullscreen title="F">{L.pantalla}</button>
+    <button type="button" class="deck-bar__btn deck-bar__step" data-next aria-label={L.sig}><span aria-hidden="true">›</span></button>
+    <button type="button" class="deck-bar__btn" data-solutions aria-pressed="false" title="S"><span class="ico" aria-hidden="true">S</span><span class="lbl" data-lbl>{L.ocultar}</span></button>
+    <button type="button" class="deck-bar__btn" data-fullscreen title="F"><span class="ico" aria-hidden="true">F</span><span class="lbl" data-lbl>{L.pantalla}</span></button>
+    {altHref && <a class="deck-bar__back" data-alt href={altHref} hreflang={altLang} lang={altLang} title={L.altTitle}><span class="ico" aria-hidden="true">{altLang.toUpperCase()}</span><span class="lbl">{L.alt}</span></a>}
   </nav>
+  <div class="deck-blank" data-blank hidden></div>
+  <p class="sr-only" role="status" aria-live="polite" data-live></p>
 </main>
 
 <script>
+  import { slideIndexFromHash } from '@/lib/slides/hash';
   // Keyboard: arrows / space / PageUp-Down move between slides, F toggles
-  // full screen, S hides or shows the solutions. The counter follows the
-  // slide in view, so the arrows continue from where the reader scrolled.
+  // full screen, S hides or shows the solutions, B (or .) blanks the screen.
+  // The counter follows the slide in view, so the arrows continue from where
+  // the reader scrolled. The current slide lives in the URL hash (#5).
   const page = document.querySelector<HTMLElement>('.deck-page');
   const bar = document.querySelector<HTMLElement>('.deck-bar');
   const slides = Array.from(document.querySelectorAll<HTMLElement>('.slide'));
   const counter = document.querySelector<HTMLElement>('[data-current]');
   const btnFull = document.querySelector<HTMLButtonElement>('[data-fullscreen]');
   const btnSol = document.querySelector<HTMLButtonElement>('[data-solutions]');
+  const live = document.querySelector<HTMLElement>('[data-live]');
+  const alt = document.querySelector<HTMLAnchorElement>('[data-alt]');
+  const blank = document.querySelector<HTMLElement>('[data-blank]');
   const KEY = 'pde:deck:ocultar-soluciones';
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)');
+  const altBase = alt?.getAttribute('href') ?? '';
   let i = 0;
 
   const show = (n: number) => {
+    const prev = i;
     i = Math.max(0, Math.min(slides.length - 1, n));
     if (counter) counter.textContent = String(i + 1);
     slides.forEach((s, k) => s.classList.toggle('is-current', k === i));
+    // Linkable URL without piling up history entries.
+    try { history.replaceState(null, '', `#${i + 1}`); } catch { /* ignore */ }
+    if (alt) alt.href = `${altBase}#${i + 1}`;
+    if (live && bar && (i !== prev || !live.textContent)) {
+      live.textContent = `${bar.dataset.lDiap} ${i + 1} ${bar.dataset.lDe} ${slides.length}`;
+    }
   };
   // While a key-driven smooth scroll runs, the slides it passes must not
   // move the counter back (fast presses would otherwise lose ground). A
   // timer, not `scrollend`: an interrupted smooth scroll can fire it early.
   let steering = false;
   let steerTimer: ReturnType<typeof setTimeout> | undefined;
-  const go = (n: number) => {
+  const go = (n: number, instant = false) => {
     show(n);
     if (page?.classList.contains('is-present')) return;
     steering = true;
     clearTimeout(steerTimer);
     steerTimer = setTimeout(() => { steering = false; }, 900);
-    slides[i]?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    slides[i]?.scrollIntoView({ behavior: instant || reduce.matches ? 'auto' : 'smooth', block: 'center' });
   };
-  show(0);
+  const fromHash = () => slideIndexFromHash(location.hash, slides.length);
+  go(fromHash(), true);
+  window.addEventListener('hashchange', () => { if (fromHash() !== i) go(fromHash(), true); });
+  document.querySelector('[data-prev]')?.addEventListener('click', () => go(i - 1));
+  document.querySelector('[data-next]')?.addEventListener('click', () => go(i + 1));
+
+  // Black screen for the projector: B or . toggle it; Escape or a click end it.
+  const setBlank = (on: boolean) => { if (blank) blank.hidden = !on; };
+  blank?.addEventListener('click', () => setBlank(false));
 
   // Track the slide most in view while the reader scrolls (not in full
   // screen, where only the current slide is shown).
@@ -73,7 +104,8 @@ const L = locale === 'ca'
     page?.classList.toggle('hide-solutions', hide);
     if (btnSol && bar) {
       btnSol.setAttribute('aria-pressed', String(hide));
-      btnSol.textContent = hide ? bar.dataset.lMostrar ?? '' : bar.dataset.lOcultar ?? '';
+      const l = btnSol.querySelector('[data-lbl]');
+      if (l) l.textContent = hide ? bar.dataset.lMostrar ?? '' : bar.dataset.lOcultar ?? '';
     }
     try { localStorage.setItem(KEY, hide ? '1' : '0'); } catch { /* private mode: the switch still works */ }
   };
@@ -102,7 +134,8 @@ const L = locale === 'ca'
     const on = Boolean(document.fullscreenElement);
     page?.classList.toggle('is-present', on);
     wake();
-    if (btnFull && bar) btnFull.textContent = on ? bar.dataset.lSalir ?? '' : bar.dataset.lPantalla ?? '';
+    const fl = btnFull?.querySelector('[data-lbl]');
+    if (fl && bar) fl.textContent = on ? bar.dataset.lSalir ?? '' : bar.dataset.lPantalla ?? '';
     if (!on) slides[i]?.scrollIntoView({ block: 'center' });
   });
 
@@ -110,8 +143,12 @@ const L = locale === 'ca'
     if (e.altKey || e.ctrlKey || e.metaKey) return;
     const t = e.target as HTMLElement | null;
     if (t && (t.tagName === 'BUTTON' || t.tagName === 'A') && (e.key === ' ' || e.key === 'Enter')) return;
-    if (['ArrowRight', 'ArrowDown', ' ', 'PageDown'].includes(e.key)) { e.preventDefault(); go(i + 1); }
+    if (e.key === 'Escape' && blank && !blank.hidden) { e.preventDefault(); setBlank(false); }
+    else if (e.key === 'b' || e.key === 'B' || e.key === '.') { e.preventDefault(); setBlank(Boolean(blank?.hidden)); }
+    else if (['ArrowRight', 'ArrowDown', ' ', 'PageDown'].includes(e.key)) { e.preventDefault(); go(i + 1); }
     else if (['ArrowLeft', 'ArrowUp', 'PageUp'].includes(e.key)) { e.preventDefault(); go(i - 1); }
+    else if (e.key === 'Home') { e.preventDefault(); go(0); }
+    else if (e.key === 'End') { e.preventDefault(); go(slides.length - 1); }
     else if (e.key === 'f' || e.key === 'F') { e.preventDefault(); toggleFull(); }
     else if (e.key === 's' || e.key === 'S') { e.preventDefault(); setSolutions(!page?.classList.contains('hide-solutions')); }
   });
@@ -133,6 +170,7 @@ const L = locale === 'ca'
     font-family: var(--font-sans);
     font-size: 0.8rem;
     color: var(--color-bg);
+    white-space: nowrap;
   }
   .deck-bar__back, .deck-bar__btn {
     color: var(--color-bg);
@@ -149,9 +187,27 @@ const L = locale === 'ca'
   .deck-bar__btn[aria-pressed="true"] { background: rgba(251, 246, 236, 0.2); }
   .deck-bar :focus-visible { outline: 2px solid var(--color-mustard); outline-offset: 1px; }
   .deck-bar { transition: opacity .3s ease; }
+  @media (prefers-reduced-motion: reduce) { .deck-bar { transition: none; } }
   .deck-bar.is-idle { opacity: 0; }
   .deck-bar.is-idle:focus-within { opacity: 1; }
+  .deck-bar__step { font-size: 1.2rem; line-height: 1; padding: 0.3rem 0.7rem; }
+  .ico { display: none; }
+  .deck-blank { position: fixed; inset: 0; z-index: 20; background: #000; cursor: pointer; }
+  .deck-blank[hidden] { display: none; }
   .deck-bar__count { font-family: var(--font-mono); padding: 0 0.5rem; font-variant-numeric: tabular-nums; }
+
+  /* Phones: one compact line, icon-like buttons (their text stays for screen
+     readers) and the slide takes the full width. */
+  @media (max-width: 600px) {
+    .deck-bar { left: 0.5rem; right: 0.5rem; bottom: 0.5rem; justify-content: space-between; gap: 0.1rem; padding: 0.25rem; }
+    .deck-bar__back, .deck-bar__btn { padding: 0.5rem 0.3rem; min-width: 2.25rem; min-height: 2.5rem; text-align: center; }
+    .lbl { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+    .ico { display: inline; }
+    .deck-bar__count { padding: 0 0.15rem; }
+    :global(.deck-page) { padding: 0 0 4.5rem; }
+    :global(.deck-page .deck) { gap: 1.5vh; }
+    :global(.deck-page .slide) { width: 100vw; border-radius: 0; }
+  }
 
   /* Full screen: one slide at a time, centred, so a 4:3 projector does not
      show the neighbours above and below. */
@@ -168,7 +224,7 @@ const L = locale === 'ca'
 
   /* The PDF is the full deck: no bar, every slide, every solution. */
   @media print {
-    .deck-bar { display: none; }
+    .deck-bar, .deck-blank { display: none; }
     :global(.deck-page.hide-solutions .s-quiz .expl),
     :global(.deck-page.hide-solutions .s-exercise ol) { visibility: visible; }
     :global(.deck-page.hide-solutions .s-quiz .opt--ok) { border-color: var(--accent); }

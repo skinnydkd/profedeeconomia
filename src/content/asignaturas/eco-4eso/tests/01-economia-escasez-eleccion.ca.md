@@ -9,10 +9,10 @@ slug: "asignaturas/eco-4eso/tests/01-economia-escasez-eleccion.ca"
 preguntas:
   - enunciado: "Per què existix l'economia com a ciència?"
     opciones:
-      - "Perquè els diners són un invent recent i cal estudiar-los."
-      - "Perquè els desitjos són quasi il·limitats i els mitjans per a satisfer-los són limitats, així que cal triar."
-      - "Perquè els governs necessiten recaptar impostos."
-      - "Perquè les empreses volen guanyar el màxim benefici possible."
+      - "Perquè els diners són un invent recent i encara no s'entén bé com funcionen."
+      - "Perquè els desitjos són il·limitats i els recursos escassos, així que cal triar."
+      - "Perquè els governs necessiten saber quant poden recaptar en impostos cada any."
+      - "Perquè les empreses necessiten calcular com guanyar el màxim benefici possible."
     correcta: 1
     explicacion: "L'escassetat és el punt de partida: si tot fóra il·limitat no caldria decidir res i no faria falta l'economia. Triar és el que estudia esta ciència."
   - tipo: verdadero-falso
@@ -30,8 +30,8 @@ preguntas:
   - enunciado: "Un forn de pa compra un forn industrial. Quin tipus de bé és eixe forn?"
     opciones:
       - "Un bé lliure, perquè el pa és una necessitat bàsica."
-      - "Un bé de consum durador."
-      - "Un bé de capital, perquè servix per a produir altres béns."
+      - "Un bé de consum durador, perquè dura molts anys."
+      - "Un bé de capital, perquè serveix per a produir."
       - "Un bé públic, perquè qualsevol pot comprar pa."
     correcta: 2
     explicacion: "Els béns de capital són béns ja produïts que servixen per a produir-ne d'altres: màquines, ferramentes, edificis. El pa que ix del forn sí que és un bé de consum."
@@ -63,25 +63,25 @@ preguntas:
     explicacion: "Amb la frontera en línia recta, renunciar a la meitat dels entrepans (de 200 a 100) allibera la meitat dels recursos, que donen la meitat dels sucs: 150. El cost d'oportunitat de cada entrepà és 1,5 sucs."
   - enunciado: "Un punt situat DINS de la frontera de possibilitats de producció indica que l'economia…"
     opciones:
-      - "Està produint de manera eficient."
-      - "Està desaprofitant recursos: podria produir més d'un bé sense renunciar a l'altre."
-      - "Està produint una cosa impossible amb els seus recursos actuals."
+      - "Està produint de manera eficient, aprofitant tots els seus recursos."
+      - "Desaprofita recursos: podria produir més sense renunciar a res."
+      - "Està produint alguna cosa impossible amb els seus recursos i tecnologia actuals."
       - "Ha crescut i ha desplaçat la seua frontera cap a fora."
     correcta: 1
     explicacion: "Dins de la frontera hi ha ineficiència: màquines parades, persones a l'atur o recursos mal usats. Sobre la frontera hi ha eficiència i fora d'ella, punts inabastables fins que l'economia cresca."
   - enunciado: "Al flux circular de la renda, què aporten les famílies a les empreses i què reben a canvi?"
     opciones:
-      - "Aporten impostos i reben servicis públics."
-      - "Aporten factors productius (sobretot treball) i reben rendes (salaris)."
+      - "Aporten impostos i reben serveis públics i prestacions."
+      - "Aporten treball i altres factors i reben rendes (salaris)."
       - "Aporten beneficis i reben dividends."
-      - "Aporten béns i servicis i reben factors productius."
+      - "Aporten béns i serveis i reben a canvi factors productius."
     correcta: 1
     explicacion: "Les famílies posen treball, terra i capital, i reben salaris, rendes i interessos; amb eixos diners compren a les empreses els béns i servicis que estes produïxen. El circuit es tanca: ningú gasta sense que un altre cobre."
   - enunciado: "Espanya va limitar el 2022 el preu del gas usat per a generar electricitat, però el preu de la llum el va continuar fixant el mercat. Quin sistema econòmic descriu millor eixa situació?"
     opciones:
       - "Planificació central, perquè l'Estat fixa preus."
-      - "Economia de mercat pura, perquè el preu el marca el mercat."
-      - "Economia mixta: decidixen els mercats, però amb regles i intervenció de l'Estat."
+      - "Economia de mercat pura, perquè el preu de la llum el marca el mercat."
+      - "Economia mixta: decidix el mercat, amb regles i intervenció de l'Estat."
       - "No és cap dels tres: és un sistema de barata regulat."
     correcta: 2
     explicacion: "Ni l'Estat va substituir el mercat ni el mercat va quedar lliure d'intervenció. Això és una economia mixta, el sistema d'Espanya i de tota la Unió Europea: llibertat d'empresa amb regles que la subordinen a l'interés general."

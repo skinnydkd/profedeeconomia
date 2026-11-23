@@ -194,7 +194,7 @@ function PlayerAppInner({ partykitHost }: { partykitHost: string }) {
 
       {/* Error notice */}
       {errorMsg && (
-        <div class="ins-reconnecting" style="background:var(--terra-soft);border-color:var(--terra);">
+        <div class="ins-reconnecting" style="background:var(--color-terra-soft);border-color:var(--color-terra);">
           {errorMsg}
         </div>
       )}

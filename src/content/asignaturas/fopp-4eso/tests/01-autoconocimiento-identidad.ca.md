@@ -10,33 +10,33 @@ preguntas:
   - enunciado: "Quina d'estes afirmacions distingix millor la identitat personal dels rols socials?"
     opciones:
       - "Identitat i rol són sinònims: tots dos descriuen qui és una persona en cada context."
-      - "La identitat és estable, pròpia i integradora; els rols són contextuals i canvien segons el grup en què actues."
+      - "La identitat és estable i pròpia; els rols són contextuals i canvien segons el grup."
       - "La identitat l'assigna la família en nàixer; els rols els tria cada persona lliurement."
-      - "Els rols són interns i la identitat és externa, visible per als altres."
+      - "Els rols són interns i la identitat és externa, la que veuen els altres de tu."
     correcta: 1
     explicacion: "La identitat personal combina valors, creences i interessos de manera estable i integradora. Els rols (fill, estudiant, amiga, jugador) són papers contextuals amb expectatives associades que canvien segons la situació."
   - enunciado: "Una persona recolza quasi tota la seua identitat en un sol rol —*ser l'esportista d'elit de l'institut*— i patix una lesió greu que li impedix tornar a competir. Quina conseqüència descriu millor eixa situació segons la unitat?"
     opciones:
-      - "És indiferent: la identitat i el rol funcionen per separat, sense afectar-se."
+      - "És indiferent: la identitat i el rol funcionen per separat, sense afectar-se entre ells."
       - "Millora la seua identitat perquè ara podrà descobrir altres rols més fàcilment."
-      - "Entra en crisi d'identitat perquè ha confós un rol canviant amb la identitat que hauria d'haver davall."
+      - "Entra en crisi d'identitat perquè ha confós un rol canviant amb la seua identitat."
       - "Demostra que la identitat personal no existix, només existixen els rols."
     correcta: 2
     explicacion: "Quan es recolza tota la identitat en un únic rol, la pèrdua o el canvi d'eixe rol es viu com a destrucció del jo. És un dels riscos típics de no haver distingit identitat i rol amb temps."
   - enunciado: "En l'exercici de jerarquia de valors proposat a la unitat, quin és el pas que distingix una jerarquia *real* d'una *de façana*?"
     opciones:
       - "Memoritzar la llista dels quinze valors comuns."
-      - "Triar els cinc valors més importants sense ordenar-los entre si."
-      - "Ordenar els cinc valors de l'1 al 5 i poder justificar per què l'1 va abans que el 2."
+      - "Triar els cinc valors més importants sense ordenar-los entre ells ni justificar l'elecció."
+      - "Ordenar els cinc valors de l'1 al 5 i justificar per què l'1 va abans que el 2."
       - "Coincidir amb la jerarquia que esperarien els teus pares o professors."
     correcta: 2
     explicacion: "La jerarquia només és útil si pots defendre l'orde. Si no eres capaç de justificar per què un valor va abans que un altre, probablement eixe no siga el teu orde real, sinó el que creus que s'espera de tu."
   - enunciado: "El model popular de l'ikigai proposa buscar la intersecció de quatre cercles. Quins són?"
     opciones:
-      - "El que ames, el que odies, el que domines i el que ignores."
-      - "El que ames, el que saps fer bé, el que el món necessita i allò pel qual poden pagar-te."
-      - "Família, amics, treball i aficions."
-      - "Passat, present, futur i propòsit."
+      - "El que estimes, el que odies, el que domines i el que ignores per complet en la vida."
+      - "El que estimes, el que fas bé, el que el món necessita i el que et paguen."
+      - "Família, amics, treball i aficions, és a dir, els teus cercles de vida."
+      - "Passat, present, futur i propòsit, els quatre temps de la vida."
     correcta: 1
     explicacion: "L'ikigai en la seua versió divulgativa creua vocació (el que ames), competència (el que saps fer), missió (el que el món necessita) i professió (allò pel qual et paguen). El centre dels quatre és la teua raó de ser."
   - enunciado: "Una persona dedica el seu temps a una activitat que ama i que se li dóna bé, però per la qual ningú li paga i que no resol cap problema social. Segons el model de l'ikigai, quins cercles li falten?"
@@ -49,10 +49,10 @@ preguntas:
     explicacion: "Si només cobrixes passió i competència, vius en passió sense recursos ni utilitat social. Falten els dos cercles externs: missió (el que el món necessita) i professió (retribució econòmica)."
   - enunciado: "Quantes intel·ligències múltiples va proposar finalment Howard Gardner i quin és el plantejament correcte sobre com es distribuïxen en una persona?"
     opciones:
-      - "Cinc intel·ligències; cada persona té una sola dominant i les altres estan absents."
-      - "Huit intel·ligències; cada persona les té totes en distint grau i convé identificar les dos o tres dominants."
-      - "Deu intel·ligències; només es desenvolupen les que s'entrenen en la infància."
-      - "Una sola intel·ligència general mesurable amb el CI; les altres són aficions."
+      - "Cinc intel·ligències; cada persona en té una sola dominant i les altres estan absents del tot."
+      - "Huit intel·ligències; cada persona les té totes en distint grau i en destaquen dues o tres."
+      - "Deu intel·ligències; només es desenvolupen les que s'entrenen durant la infantesa."
+      - "Una sola intel·ligència general mesurable amb el CI; les altres són meres aficions."
     correcta: 1
     explicacion: "Gardner va proposar set intel·ligències el 1983 i va afegir la naturalista anys després, fins a arribar a huit. Totes les persones tenen les huit en distint grau; ningú és bo en totes ni roín en totes."
   - enunciado: "Una alumna escriu textos per gust, debat amb facilitat i els seus amics li demanen que els corregisca redaccions. Quina intel·ligència múltiple de Gardner descriu millor el seu perfil dominant?"

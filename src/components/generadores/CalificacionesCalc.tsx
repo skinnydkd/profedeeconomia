@@ -340,7 +340,7 @@ export default function CalificacionesCalc({ locale = 'es' }: Props) {
         }
 
         .cg-calc__block-title {
-          font-family: var(--font-heading, serif);
+          font-family: var(--font-serif);
           font-size: 1.125rem;
           font-weight: 600;
           color: var(--color-ink, #2A1F18);
@@ -485,7 +485,7 @@ export default function CalificacionesCalc({ locale = 'es' }: Props) {
         .cg-calc__metric--primary .cg-calc__metric-value {
           font-size: 2.25rem;
           color: var(--color-terra, #C44E2C);
-          font-family: var(--font-heading, serif);
+          font-family: var(--font-serif);
           font-weight: 700;
           line-height: 1;
         }

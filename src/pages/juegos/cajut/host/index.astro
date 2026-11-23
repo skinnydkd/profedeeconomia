@@ -13,8 +13,9 @@ const copy = {
   ca: { title: 'Cajút — host', desc: 'Pantalla de control del profe per a una partida de Cajút.' },
 }[locale];
 ---
-<BaseLayout title={copy.title} description={copy.desc} contentLang={locale}>
+<BaseLayout title={copy.title} description={copy.desc} contentLang={locale} noindex="follow">
   <div class="cajut-host-page">
+    <noscript><p>{locale === 'ca' ? 'Este joc necessita JavaScript. Activa’l al teu navegador per a jugar.' : 'Este juego necesita JavaScript. Actívalo en tu navegador para jugar.'}</p></noscript>
     <HostApp client:only="preact" partykitHost={partykitHost} locale={locale} />
   </div>
 </BaseLayout>

@@ -325,7 +325,7 @@ export default function Autoevaluacion({ locale = 'es' }: Props) {
           padding: 1.5rem;
         }
         .ae-heading {
-          font-family: var(--font-display, Georgia, serif);
+          font-family: var(--font-serif);
           font-size: 1.25rem;
           font-weight: 700;
           color: var(--color-ink, #2A1F18);

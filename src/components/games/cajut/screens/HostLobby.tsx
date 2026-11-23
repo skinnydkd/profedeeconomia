@@ -145,11 +145,11 @@ export function HostLobby({ publicState, serverBankVersion, startError, onClearE
                 }}
                 style={{
                   padding: '6px 10px',
-                  border: `2px solid ${selectedAsig === a.slug ? a.color : 'var(--cajut-line)'}`,
+                  border: `2px solid ${selectedAsig === a.slug ? a.color : 'var(--color-line)'}`,
                   background: selectedAsig === a.slug ? a.color : 'transparent',
-                  color: selectedAsig === a.slug ? '#fff' : 'var(--cajut-ink)',
+                  color: selectedAsig === a.slug ? '#fff' : 'var(--color-ink)',
                   borderRadius: 4,
-                  fontSize: 12,
+                  fontSize: 14,
                   fontWeight: 600,
                   cursor: 'pointer',
                 }}
@@ -223,10 +223,10 @@ export function HostLobby({ publicState, serverBankVersion, startError, onClearE
               }}
               style={{
                 padding: '6px 10px',
-                border: '1px solid var(--cajut-line)',
-                background: 'var(--cajut-paper)',
+                border: '1px solid var(--color-line)',
+                background: 'var(--color-paper)',
                 borderRadius: 4,
-                fontSize: 13,
+                fontSize: 14,
                 cursor: 'pointer',
               }}
               title={c.clicExpulsar}
@@ -247,7 +247,7 @@ export function HostLobby({ publicState, serverBankVersion, startError, onClearE
           onClick={() => onStart(selectedAsig!, selectedUnidades, totalQ)}
           style={{
             padding: '14px 36px',
-            background: canStart ? 'var(--cajut-ink)' : 'var(--cajut-ink-mute)',
+            background: canStart ? 'var(--color-ink)' : 'var(--color-ink-mute)',
             color: 'white',
             border: 'none',
             borderRadius: 6,
@@ -268,12 +268,12 @@ export function HostLobby({ publicState, serverBankVersion, startError, onClearE
           </p>
         )}
         {startError === 'empty-pool' && (
-          <p class="subtle" role="alert" style={{ marginTop: 8, color: 'var(--cajut-terracota)' }}>
+          <p class="subtle" role="alert" style={{ marginTop: 8, color: 'var(--color-terra)' }}>
             {c.sinPreguntas}
           </p>
         )}
         {bankMismatch && (
-          <p class="subtle" role="status" style={{ marginTop: 8, color: 'var(--cajut-terracota)' }}>
+          <p class="subtle" role="status" style={{ marginTop: 8, color: 'var(--color-terra)' }}>
             {c.bancoDesfasado}
           </p>
         )}

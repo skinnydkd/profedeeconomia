@@ -70,10 +70,13 @@ const simuladoresParsed = simuladores.map((esSim) => {
 });
 
 const copy = {
-  es: { inicio: 'Inicio', actividades: 'Actividades interactivas', unidad: 'Unidad', actividadesShort: 'Actividades', descripcion: `Test, simuladores y recursos interactivos de la unidad ${unidad}.`, test: 'Test de autoevaluación', preguntas: 'preguntas', simuladores: 'Simuladores de decisión', recursos: 'Recursos interactivos', vacio: 'Pronto aquí: simulador, recursos y test de esta unidad.' },
-  ca: { inicio: 'Inici', actividades: 'Activitats interactives', unidad: 'Unitat', actividadesShort: 'Activitats', descripcion: `Test, simuladors i recursos interactius de la unitat ${unidad}.`, test: "Test d'autoavaluació", preguntas: 'preguntes', simuladores: 'Simuladors de decisió', recursos: 'Recursos interactius', vacio: "Prompte ací: simulador, recursos i test d'esta unitat." },
+  es: { inicio: 'Inicio', actividades: 'Actividades interactivas', unidad: 'Unidad', actividadesShort: 'Actividades', descripcion: 'Test, simuladores y recursos interactivos', test: 'Test de autoevaluación', preguntas: 'preguntas', simuladores: 'Simuladores de decisión', recursos: 'Recursos interactivos', vacio: 'Pronto aquí: simulador, recursos y test de esta unidad.' },
+  ca: { inicio: 'Inici', actividades: 'Activitats interactives', unidad: 'Unitat', actividadesShort: 'Activitats', descripcion: 'Test, simuladors i recursos interactius', test: "Test d'autoavaluació", preguntas: 'preguntes', simuladores: 'Simuladors de decisió', recursos: 'Recursos interactius', vacio: "Prompte ací: simulador, recursos i test d'esta unitat." },
 }[locale];
 
+// Unique per unit: its own lema (or first objective) leads, the generic offer trails.
+const hook = (unit.data.lema ?? unit.data.objetivos[0] ?? unit.data.title).replace(/[.\s]+$/, '');
+const description = `${a.shortLabel}, ${copy.unidad.toLowerCase()} ${unidad}: ${hook}. ${copy.descripcion}.`;
 const unitSlug = unitEs.id.split('/').pop()?.replace(/\.mdx?$/, '') ?? unitEs.id;
 const breadcrumb = breadcrumbLd([
   { name: copy.inicio, path: '/' },
@@ -83,7 +86,7 @@ const breadcrumb = breadcrumbLd([
 ], locale);
 ---
 
-<BaseLayout title={subjectTitle(`${copy.actividadesShort} · ${unit.data.title}`, a)} description={copy.descripcion} ogType="article" jsonLd={breadcrumb} contentLang={locale}>
+<BaseLayout title={subjectTitle(`${copy.actividadesShort} · ${unit.data.title}`, a)} description={description} ogType="article" jsonLd={breadcrumb} contentLang={locale}>
   <div class="container">
     <Breadcrumb
       locale={locale}

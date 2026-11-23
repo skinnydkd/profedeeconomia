@@ -98,10 +98,10 @@ preguntas:
     explicacion: "El ahorro es el 20 %: 40 × 0,20 = 8 €. Las necesidades serían 20 € (50 %) y los deseos 12 € (30 %)."
   - tipo: relacionar
     enunciado: "Empareja cada gasto con el tipo que es:"
-    izquierda: ["Suscripción mensual a una app que pagas tú", "Comprar chuches este sábado", "Un regalo de cumpleaños para un amigo", "La cuota fija del gimnasio"]
-    derecha: ["Gasto variable", "Gasto fijo", "Gasto variable", "Gasto fijo"]
+    izquierda: ["Suscripción mensual a una app que pagas tú", "Comprar chuches este sábado", "Un regalo de cumpleaños para un amigo", "Apartar 8 € al mes para una bici"]
+    derecha: ["Gasto variable", "Gasto fijo", "Gasto puntual", "Ahorro"]
     correctas: [1, 0, 2, 3]
-    explicacion: "Los gastos fijos se repiten cada mes con un importe parecido (suscripción, cuota del gimnasio); los variables cambian o no se repiten (chuches, un regalo puntual)."
+    explicacion: "Los gastos fijos se repiten cada mes con un importe parecido (la suscripción); los variables cambian de un mes a otro (chuches); un regalo es un gasto puntual que no se repite; y apartar dinero para un objetivo no es un gasto, es ahorro."
   - enunciado: "Nerea tiene una paga de 20 € al mes, pero en marzo, además, le regalan 50 € por su cumpleaños. En su presupuesto de marzo, ¿cuánto debe anotar como ingresos?"
     opciones:
       - "20 €, porque el regalo no se repite y no cuenta como ingreso."

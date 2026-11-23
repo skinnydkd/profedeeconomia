@@ -7,10 +7,10 @@ estado: publicado
 preguntas:
   - enunciado: "¿Qué hace una empresa, en términos económicos?"
     opciones:
-      - "Comprar barato y vender caro, sin más."
-      - "Combinar factores de producción para crear bienes o servicios que alguien valora, asumiendo un riesgo."
-      - "Dar empleo a las personas de su barrio."
-      - "Pagar impuestos para financiar los servicios públicos."
+      - "Comprar barato y vender caro, sin transformar ni producir nada ella misma."
+      - "Combinar factores de producción para crear bienes o servicios, con riesgo."
+      - "Dar empleo a las personas de su barrio y mantener vivo el comercio local."
+      - "Pagar impuestos al Estado para financiar los servicios públicos y las pensiones."
     correcta: 1
     explicacion: "La empresa coordina trabajo, capital y recursos para producir algo que otros valoran lo bastante como para pagarlo. El beneficio y el empleo son consecuencias de esa actividad, no su definición."
   - tipo: relacionar
@@ -45,18 +45,18 @@ preguntas:
     explicacion: "Falso, es justo al revés. Según el DIRCE del INE, el 99,8 % son pymes y el 94,2 % microempresas de menos de diez personas; más de la mitad no tiene ni un solo asalariado."
   - enunciado: "Marc pide un préstamo de 40.000 € para su tienda y el negocio quiebra. ¿Qué diferencia hay entre haberlo hecho como autónomo o como sociedad limitada?"
     opciones:
-      - "Ninguna: la deuda es la misma y responde igual."
-      - "Como autónomo responde con todo su patrimonio presente y futuro; como SL responde, en principio, solo el patrimonio de la sociedad."
-      - "Como SL no hay que devolver el préstamo."
-      - "Como autónomo solo responde con lo que haya en la caja del negocio."
+      - "Ninguna: la deuda es la misma y se responde igual con todos los bienes personales."
+      - "Autónomo: con todo su patrimonio. SL: en principio, solo con el de la sociedad."
+      - "Como SL no hay que devolver el préstamo, porque la deuda se la queda la sociedad."
+      - "Como autónomo solo responde con lo que haya en la caja y en las cuentas del negocio."
     correcta: 1
     explicacion: "Esa es la diferencia esencial entre responsabilidad ilimitada y limitada. La letra pequeña: a una SL recién creada el banco suele pedirle un aval personal, y entonces el socio vuelve a responder con lo suyo."
   - enunciado: "¿Qué distingue a una cooperativa de una sociedad limitada normal?"
     opciones:
-      - "Que no puede tener beneficios."
-      - "Que sus socios son a la vez trabajadores y cada uno tiene un voto, independientemente del capital aportado."
-      - "Que no paga impuestos."
-      - "Que solo puede dedicarse a la agricultura."
+      - "Que no puede obtener beneficios, porque su objetivo es solo social y gratuito."
+      - "Que cada socio trabaja en ella y tiene un voto, aporte lo que aporte."
+      - "Que no paga ningún impuesto, porque es una entidad sin ánimo de lucro."
+      - "Que solo puede dedicarse a la agricultura, a la pesca o a la ganadería."
     correcta: 1
     explicacion: "En la cooperativa manda la persona, no el capital: una persona, un voto. Por eso Mondragón, Consum o La Fageda funcionan distinto de una SL, donde manda quien más participaciones tiene."
   - enunciado: "Desde la Ley 18/2022 «Crea y Crece», ¿cuál es el capital mínimo para constituir una sociedad limitada en España?"

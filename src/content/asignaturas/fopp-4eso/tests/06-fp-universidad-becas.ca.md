@@ -10,8 +10,8 @@ preguntas:
   - enunciado: "Segons l'Observatori de les Ocupacions del SEPE i la Fundació Bertelsmann (2024), quin d'estos grups de famílies professionals presenta demanda alta i sostinguda a Espanya?"
     opciones:
       - "Hostaleria i Turisme, Imatge Personal, Activitats Físiques i Esportives."
-      - "Sanitat, Informàtica i Comunicacions, Electricitat i Electrònica, Servicis Socioculturals."
-      - "Imatge i So, Arts Gràfiques, Fusta i Moble."
+      - "Sanitat, Informàtica, Electricitat/Electrònica i Serveis Socioculturals."
+      - "Imatge i So, Arts Gràfiques, Fusta i Moble, Vidre i Ceràmica."
       - "Tèxtil i Confecció, Agrària estacional, Vidre i Ceràmica."
     correcta: 1
     explicacion: "Les famílies amb demanda alta i sostinguda són Sanitat (per envelliment), Informàtica (independent del cicle econòmic), Electricitat/Electrònica (transició energètica) i Servicis Socioculturals (dependència i 0-3). Hostaleria i Imatge Personal tenen demanda més estacional o limitada."

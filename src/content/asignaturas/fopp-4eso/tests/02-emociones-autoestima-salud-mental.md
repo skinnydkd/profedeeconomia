@@ -23,18 +23,18 @@ preguntas:
     explicacion: "Se inspira por la nariz contando hasta 4, se retiene el aire contando hasta 7 y se espira por la boca contando hasta 8. Alargar la espiración respecto a la inspiración activa el nervio vago y baja la frecuencia cardiaca en menos de un minuto."
   - enunciado: "¿Qué afirmación describe MEJOR una autoestima sana?"
     opciones:
-      - "Creerse superior a los demás y no aceptar críticas."
-      - "Subestimarse, compararse a la baja y evitar riesgos por miedo al fracaso."
-      - "Aceptarse como uno es, reconocer fortalezas y límites sin dramatizar, asumir errores sin hundirse."
-      - "No sentir nunca dudas sobre uno mismo ni pedir ayuda a nadie."
+      - "Creerse superior a los demás y no aceptar críticas de nadie, ni siquiera constructivas."
+      - "Subestimarse, compararse siempre a la baja y evitar riesgos por miedo a fracasar."
+      - "Aceptarse como uno es, reconocer fortalezas y límites y asumir errores sin hundirse."
+      - "No sentir nunca dudas sobre uno mismo ni pedir ayuda a nadie en ningún momento."
     correcta: 2
     explicacion: "La autoestima sana no es «cuanto más alta, mejor». Implica una aceptación realista, asumir errores sin derrumbarse y recibir críticas sin sentirse atacado. La opción A describe autoestima inflada (narcisista) y la opción B autoestima débil."
   - enunciado: "La diferencia entre autoestima inflada y autoestima sana es que la inflada…"
     opciones:
-      - "Es más alta y por tanto más beneficiosa."
-      - "Aparenta fortaleza pero es frágil: cualquier crítica se vive como ataque."
-      - "Solo aparece en personas con éxito profesional."
-      - "Es exactamente lo mismo que la autoconfianza técnica."
+      - "Es más alta y por tanto más beneficiosa para la persona."
+      - "Aparenta fortaleza pero es frágil: toda crítica es un ataque."
+      - "Solo aparece en personas con éxito profesional o económico."
+      - "Es exactamente lo mismo que la autoconfianza técnica en una tarea."
     correcta: 1
     explicacion: "La autoestima inflada o narcisista parece fuerte pero es frágil. Atribuye éxitos a uno mismo y fracasos a otros, y reacciona mal a cualquier crítica. La autoestima sana, en cambio, integra la crítica sin hundirse."
   - enunciado: "Según el reanálisis de Twenge y colaboradores (*Acta Psychologica*, 2022), la relación entre las horas de uso de redes sociales y los síntomas depresivos en adolescentes…"
@@ -55,10 +55,10 @@ preguntas:
     explicacion: "Retocar las fotos antes de publicarlas es muy habitual entre adolescentes. La dismorfia digital es la distorsión entre el yo real y el yo digital, y ya la han descrito cirujanos plásticos que atienden a pacientes que quieren parecerse a sus fotos filtradas."
   - enunciado: "La fórmula asertiva de Marshall Rosenberg para abordar un conflicto personal es…"
     opciones:
-      - "«Tú siempre... nunca... eres un...»"
+      - "«Tú siempre... tú nunca... eres un... y no cambiarás jamás.»"
       - "«Yo siento... cuando tú... porque... me gustaría que...»"
-      - "«No me importa, déjalo, ya da igual.»"
-      - "«Si vuelves a hacerlo, te juro que...»"
+      - "«No me importa, déjalo, ya da igual, haz lo que quieras.»"
+      - "«Si vuelves a hacerlo, te juro que no te vuelvo a hablar.»"
     correcta: 1
     explicacion: "La Comunicación No Violenta de Rosenberg propone cuatro pasos: nombrar la emoción propia, describir el hecho concreto sin generalizar, explicar el motivo desde la propia necesidad y proponer una alternativa concreta. Es la zona media entre pasividad (callar) y agresividad (atacar)."
   - enunciado: "¿Cuáles son las tres señales de alarma que conviene tomar en serio cuando aparecen juntas o duran varias semanas?"

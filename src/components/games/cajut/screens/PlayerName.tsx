@@ -35,9 +35,9 @@ export function PlayerName({ onSubmit }: Props) {
           padding: '10px 16px',
           width: 240,
           textAlign: 'center',
-          border: '1px solid var(--cajut-line)',
+          border: '1px solid var(--color-line)',
           borderRadius: 6,
-          background: 'var(--cajut-paper)',
+          background: 'var(--color-paper)',
         }}
       />
       <button
@@ -46,7 +46,7 @@ export function PlayerName({ onSubmit }: Props) {
         style={{
           marginTop: 24,
           padding: '12px 28px',
-          background: valid ? 'var(--cajut-ink)' : 'var(--cajut-ink-mute)',
+          background: valid ? 'var(--color-ink)' : 'var(--color-ink-mute)',
           color: 'white',
           border: 'none',
           borderRadius: 6,

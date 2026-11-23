@@ -7,10 +7,10 @@ estado: publicado
 preguntas:
   - enunciado: "¿Qué caracteriza a un bien público puro como el alumbrado de una calle?"
     opciones:
-      - "Que lo produce siempre una empresa pública."
-      - "Que muchas personas pueden usarlo a la vez y no se puede excluir a quien no paga."
-      - "Que es gratis porque no cuesta dinero producirlo."
-      - "Que solo lo usan las personas con pocos ingresos."
+      - "Que lo produce siempre una empresa pública que lo financia con impuestos."
+      - "Que muchos lo usan a la vez y no se puede excluir a quien no paga."
+      - "Que es gratis porque no cuesta dinero producirlo ni mantenerlo."
+      - "Que solo lo usan las personas con pocos ingresos o sin recursos."
     correcta: 1
     explicacion: "Un bien público puro no es rival (que lo uses tú no impide que lo use otro) ni excluible (no se puede dejar fuera a quien no paga). Por eso ninguna empresa lo ofrecería: nadie pagaría por algo que va a poder usar igualmente."
   - tipo: relacionar
@@ -43,12 +43,12 @@ preguntas:
     tolerancia: 0.05
     unidad: "€"
     explicacion: "12,50 × 0,04 = 0,50 €; 9,00 × 0,10 = 0,90 €; 8,00 × 0,21 = 1,68 €. En total 3,08 € de IVA sobre 29,50 €, un 10,4 % del precio sin impuestos."
-  - enunciado: "Dos familias gastan la misma proporción de su renta en productos con IVA, pero una ingresa 1.200 € al mes y la otra 6.000 € y ahorra la mitad. ¿Por qué se dice que el IVA es regresivo?"
+  - enunciado: "Dos familias pagan el mismo tipo de IVA en lo que compran, pero una ingresa 1.200 € al mes y lo gasta todo, y la otra ingresa 6.000 € y ahorra la mitad. ¿Por qué se dice que el IVA es regresivo?"
     opciones:
-      - "Porque la familia rica paga menos euros de IVA que la pobre."
-      - "Porque el tipo del IVA baja cuando la compra es grande."
-      - "Porque la familia con menos renta dedica a IVA un porcentaje mayor de sus ingresos, aunque pague menos euros."
-      - "Porque los alimentos básicos están al 4 % y eso beneficia a quien más gana."
+      - "Porque la familia rica paga menos euros de IVA que la pobre cada mes."
+      - "Porque el tipo del IVA baja cuando la compra es muy grande o se hace online."
+      - "Porque la familia con menos renta destina al IVA una parte mayor de sus ingresos."
+      - "Porque los alimentos básicos están al 4 % y eso beneficia sobre todo a quien más gana."
     correcta: 2
     explicacion: "Regresivo no significa pagar menos euros, sino dedicar una proporción mayor de la renta. Quien no llega a fin de mes gasta todo lo que ingresa, y todo lo gastado paga IVA; quien ahorra, sobre esa parte no paga."
   - enunciado: "¿Cuál es hoy la mayor partida del gasto público en España?"
@@ -61,26 +61,26 @@ preguntas:
     explicacion: "Las pensiones son con diferencia la primera partida, por delante de sanidad y educación. Los intereses de la deuda, aunque superan los 30.000 millones al año, pesan mucho menos."
   - enunciado: "¿Qué diferencia hay entre déficit público y deuda pública?"
     opciones:
-      - "Son lo mismo con dos nombres distintos."
-      - "El déficit es lo que falta en un año concreto; la deuda es la suma acumulada de los déficits pendientes de devolver."
-      - "El déficit lo tienen las comunidades autónomas y la deuda, el Estado."
-      - "La deuda es anual y el déficit se acumula a lo largo del tiempo."
+      - "Son lo mismo con dos nombres distintos que usan economistas y políticos."
+      - "El déficit es lo que falta en un año; la deuda, la suma de déficits que aún se deben."
+      - "El déficit lo tienen las comunidades autónomas y la deuda solo la tiene el Estado central."
+      - "La deuda es anual y el déficit es la suma que se va acumulando a lo largo de los años."
     correcta: 1
     explicacion: "El déficit es un flujo (lo que falta cada año) y la deuda es un saldo (lo acumulado). Un país puede reducir su déficit y seguir aumentando su deuda mientras el déficit no llegue a cero."
   - enunciado: "El índice de Gini de España ronda los 31-32 puntos. ¿Qué significa esa cifra?"
     opciones:
-      - "Que el 31 % de la población está en riesgo de pobreza."
-      - "Que la desigualdad de renta está a esa distancia de la igualdad perfecta, en una escala de 0 a 100."
-      - "Que el 31 % de la renta se lo lleva el 10 % más rico."
-      - "Que el Estado redistribuye el 31 % del PIB."
+      - "Que el 31 % de la población española está en riesgo de pobreza o exclusión social."
+      - "Que la desigualdad de renta está a esa distancia de la igualdad perfecta (0-100)."
+      - "Que el 31 % de la renta total se la lleva el 10 % más rico de la población."
+      - "Que el Estado redistribuye el 31 % del PIB mediante impuestos y prestaciones."
     correcta: 1
     explicacion: "El Gini mide la separación entre la curva de Lorenz y la diagonal de la igualdad perfecta: 0 sería que todo el mundo cobra lo mismo y 100, que una sola persona lo tiene todo. No es un porcentaje de población ni de renta."
   - enunciado: "¿Por qué pedir el ticket o la factura tiene que ver con la economía sumergida?"
     opciones:
-      - "Porque sin ticket no se puede devolver el producto, y eso perjudica al comercio."
-      - "Porque la operación sin factura no declara ni IVA ni ingresos, así que ese dinero no financia servicios públicos."
-      - "Porque el ticket obliga a la empresa a dar garantía de tres años."
-      - "Porque los bancos exigen el ticket para aceptar pagos con tarjeta."
+      - "Porque sin ticket no se puede devolver el producto, y eso perjudica al comercio de barrio."
+      - "Porque sin factura no se declara el IVA y ese dinero no financia servicios públicos."
+      - "Porque el ticket obliga a la empresa a dar tres años de garantía en cualquier producto."
+      - "Porque los bancos exigen el ticket para aceptar los pagos con tarjeta en cualquier comercio."
     correcta: 1
     explicacion: "Una venta sin factura queda fuera del sistema: no tributa por IVA ni figura como ingreso de la empresa. Quienes sí declaran acaban soportando una parte mayor del coste de los servicios que usamos todos."
 ---

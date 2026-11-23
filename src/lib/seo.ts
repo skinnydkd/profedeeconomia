@@ -13,8 +13,7 @@ export const SITE = {
   url: 'https://www.profedeeconomia.es',
   locale: 'es-ES',
   /** Public contact address — the single source for every `mailto:` on the
-   * site. `public/llms.txt` is a static file and carries its own copy; a test
-   * in seo.test.ts keeps the two from drifting apart. */
+   * site, including the generated /llms.txt (src/lib/llms-index.ts). */
   email: 'hola@profedeeconomia.es',
   description:
     'Material editorial para profesores de instituto de economía, empresa y finanzas: libros, diapositivas, actividades, tests y recursos por asignatura.',
@@ -73,6 +72,22 @@ export function subjectTitle(body: string, a: { seoName: string; shortLabel: str
   return body;
 }
 
+/** Google shows about 155-160 characters of a meta description. */
+export const MAX_DESCRIPTION_CHARS = 155;
+
+/**
+ * Trim a meta description to `max` characters at a word boundary, ending in «…».
+ * Text already within the budget is returned unchanged.
+ */
+export function truncateDescription(text: string, max = MAX_DESCRIPTION_CHARS): string {
+  const clean = text.replace(/\s+/g, ' ').trim();
+  if (clean.length <= max) return clean;
+  const cut = clean.slice(0, max - 1);
+  const lastSpace = cut.lastIndexOf(' ');
+  const base = lastSpace > max * 0.5 ? cut.slice(0, lastSpace) : cut;
+  return `${base.replace(/[\s,;:.\-–—(]+$/, '')}…`;
+}
+
 /** Resolve a site-relative path to an absolute URL on the canonical domain. */
 export const absUrl = (path: string): string => new URL(path, SITE.url).toString();
 
@@ -89,7 +104,11 @@ const absUrlL = (path: string, locale: Locale = 'es'): string => absUrl(localize
 // logo rich result wants a raster image, not the favicon SVG.
 const LOGO = { '@type': 'ImageObject', url: absUrl('/logo-512.png'), width: 512, height: 512 };
 
+/** Stable node id: every page that names the organization points at the same entity. */
+export const ORG_ID = `${SITE.url}/#org`;
+
 const orgRef = () => ({
+  '@id': ORG_ID,
   '@type': 'Organization',
   name: SITE.name,
   url: SITE.url,
@@ -101,6 +120,7 @@ const orgRef = () => ({
 export function organizationLd(locale: Locale = 'es') {
   return {
     '@context': 'https://schema.org',
+    '@id': ORG_ID,
     '@type': 'EducationalOrganization',
     name: SITE.name,
     url: SITE.url,

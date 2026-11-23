@@ -3,12 +3,11 @@
 ## Identitat del projecte
 
 - **Nom**: profedeeconomia.es
-- **URL**: https://profedeeconomia.es
-- **Producte**: Plataforma educativa per a professors d'institut d'economia. **Estructurada per assignatura**, no per tipus de contingut. Cada assignatura té llibre, diapositives, activitats, tests i recursos. Seccions específiques per a contingut transversal: jocs, eines docents, emprenedoria, oposicions (redirect).
-- **Audiència primària**: professors d'economia d'ESO i Batxillerat a Espanya
+- **URL**: https://www.profedeeconomia.es (l'apex redirigeix a `www`)
+- **Producte**: Plataforma educativa per a professors d'institut d'economia. **Estructurada per assignatura**, no per tipus de contingut. Cada assignatura té llibre, diapositives, activitats, tests i recursos. Seccions específiques per a contingut transversal: jocs, eines docents, emprenedoria, debats, dinàmiques, projectes, olimpíada, oposicions (redirect).
+- **Audiència primària**: professors d'economia d'ESO, Batxillerat i FP a Espanya
 - **Audiència secundària**: alumnes d'institut, opositors-futurs-professors
-- **Idioma principal**: Castellà (`es`) — únic publicat al MVP
-- **Idiomes preparats al codi des del dia 1**: Castellà (`es`), Català/Valencià (`ca`)
+- **Idiomes publicats**: Castellà (`es`, a `/`) i Valencià (`ca`, a `/ca/`), amb paritat de contingut
 - **Idioma de comunicació amb dev (Pau)**: Català/Valencià
 - **Idioma del codi**: Anglès
 - **Autor**: Pau Monterde (Valencia/Torrevieja, Spain)
@@ -21,14 +20,14 @@ Convertir profedeeconomia.es en la plataforma de referència per a professors d'
 
 Llig sempre aquests documents abans de proposar canvis estructurals:
 - `docs/PRD.md` — visió, audiència, abast del MVP, sitemap, distribució de contingut
-- `docs/migration-map.md` — mapa de migració peça per peça del webpde
+- `docs/README.md` — índex de tots els documents (vigents i històrics)
 - `docs/design-system.md` — regles de components i convencions visuals (de-slop), amb la paleta i tipografia com a referència ràpida
 
 ## Estructura per assignatures (DECISIÓ VINCULANT)
 
 L'organització principal del web és per assignatura. **NO per tipus de contingut**. Si Claude Code proposa canviar açò, es rebutja.
 
-Les 4 assignatures tenen exactament la mateixa estructura interna:
+Totes les assignatures publicades (10, a `ASIGNATURAS` de `src/lib/asignaturas.ts`) tenen la mateixa estructura interna:
 
 ```
 /[assignatura]/                Hub de l'assignatura
@@ -40,22 +39,22 @@ Les 4 assignatures tenen exactament la mateixa estructura interna:
 /[assignatura]/recursos/       HTMLs interactius i altres recursos
 ```
 
-Slugs de les 4 assignatures: `edmn-2bach`, `eco-1bach`, `eco-4eso`, `fopp-4eso`.
+Algunes assignatures tenen a més subseccions pròpies (`actividades-dinamicas`, `retos`, `refuerzo`, `evaluacion`, `programacion`, `situaciones`, `proyecto`, `ebau`). On existeixen, segueixen el mateix patró a totes; si una no té contingut, la pàgina buida queda `noindex`.
 
-A banda de les assignatures, hi ha 3 seccions específiques amb noms propis (no agrupades sota "Otros"):
-- `/juegos/` — jocs i concursos
-- `/herramientas/` — eines docents
-- `/emprendimiento/` — material d'emprenedoria
+Slugs: `edmn-2bach`, `eco-1bach`, `eco-4eso`, `fopp-4eso` (les 4 del MVP), `taller-eco-3eso`, `ipe1-fp`, `ipe2-fp`, `eeae-bach`, `gpe-bach`, `cjd-bach`.
+
+A banda de les assignatures, hi ha seccions transversals amb noms propis: `/juegos/`, `/jocs-economics/`, `/herramientas/` (calculadores i simuladors), `/generadores/` (eines per al professorat), `/emprendimiento/`, `/debates/`, `/dinamicas/`, `/proyectos/`, `/olimpiada/`.
 
 I una entrada al menú de navegació, sense pàgina d'aterratge pròpia:
-- `/oposiciones` — redirect 301 directe a oposicioneseconomia.es (sense pàgina intermèdia)
+- `/oposiciones` — redirect permanent directe a oposicioneseconomia.es (sense pàgina intermèdia)
 
 ## Cobertura curricular dels llibres
 
-Els 4 llibres es basen en el **currículum bàsic estatal LOMLOE**, no en concrecions autonòmiques específiques:
+Els llibres es basen en el **currículum bàsic estatal**, no en concrecions autonòmiques específiques. El marc de cada assignatura és el camp `marcoNormativo` de `src/lib/asignaturas.ts`:
 
-- **Batxillerat (Eco 1BACH, EDMN 2BACH)**: Reial Decret 243/2022
-- **ESO (Eco 4ESO, FOPP 4ESO)**: Reial Decret 217/2022
+- **Batxillerat**: Reial Decret 243/2022 (CJD cita a més la concreció de la CV)
+- **ESO**: Reial Decret 217/2022
+- **FP (IPE I, IPE II)**: LO 3/2022 (LOFP) i RD 659/2023, annex V
 
 A la introducció de cada llibre apareix una nota explícita:
 
@@ -135,23 +134,21 @@ Validada el 2026-05-10. Variant C va guanyar enfront de A (editorial pur, vermel
 
 ## Stack tècnic
 
-### Vinculant al MVP
-- **Framework**: Astro 5 (mateix que oposicioneseconomia.es per coherència)
+### En producció
+- **Framework**: Astro 5, `output: 'static'` (mateix que oposicioneseconomia.es per coherència). Només les 10 rutes de `src/pages/api/` són funcions
 - **UI interactiva**: Preact (illes per a recursos interactius)
 - **Estils**: Tailwind 4
-- **Hosting**: Vercel
-- **Generació PDF llibres**: paged.js o Puppeteer (script Node)
+- **Hosting**: Vercel. PDFs a Vercel Blob (redirects a `vercel.json`; `scripts/strip-pdfs-on-vercel.mjs` els trau del deploy)
+- **Generació PDF**: Puppeteer (scripts `build:*` de `package.json`)
 - **Generació diapositives**: motor natiu d'Astro (renderitzat propi a `src/`; substitueix Marp, ja deprecat)
-- **Analytics**: Google Analytics 4 (`G-3ECWVDWNF2`) + Vercel Web Analytics. GA4 només es carrega amb consentiment explícit (banner AEPD); veure `src/lib/consent.ts`. Plausible descartat.
-- **Errors**: Sentry free tier
+- **Analytics**: Google Analytics 4 (`G-3ECWVDWNF2`) només amb consentiment explícit (banner AEPD, `src/lib/consent.ts`) + Vercel Web Analytics (sense galetes, declarada a `/legal/privacidad/`). Plausible descartat.
+- **Jocs amb servidor**: Supabase (Postgres; `jocs-economics` i Business Game, via `src/pages/api/`) i PartyKit (Cajút i Insider, carpeta `party/`). Les variables `SUPABASE_URL` i `SUPABASE_SERVICE_ROLE_KEY` han d'estar a l'entorn Production de Vercel
+- **Errors**: Sentry no està instal·lat en aquest projecte
 
-### Fase 2 (NO al MVP)
-- **Backend**: Supabase (Postgres + Auth) per a premium professor
+### Fase 2 (no començat)
+- **Comptes**: Supabase Auth per a premium professor
 - **Email**: Resend (newsletter)
 - **Pagaments**: Stripe + Patreon
-
-### Fase 3 (futur 2027) — Jocs multijugador
-- **Backend tipus PartyKit / Cloudflare Durable Objects**: decisió a revisar al moment d'execució (gener 2027), pot haver canviat el panorama
 
 ### Fora d'abast (mai sense decisió explícita)
 - App mòbil (és un projecte separat)
@@ -175,7 +172,7 @@ Les diapositives surten d'un bloc ` ```deck ` (llista YAML de diapositives) al f
 
 ## Arquitectura i18n
 
-Idèntica a oposicioneseconomia.es. Castellà al MVP, català/valencià a fase 2.
+Idèntica a oposicioneseconomia.es. Castellà a `/` i valencià a `/ca/`, tots dos publicats. No hi ha `src/pages/ca/`: les pàgines usen `getLocale(Astro.currentLocale)` i `scripts/localize-links.mjs` reescriu els enllaços després del build.
 
 ```js
 // astro.config.mjs
@@ -210,10 +207,15 @@ i18n: {
 
 ### Workflow Git
 - Branca `main` és producció (autodeploy a Vercel)
-- Branca `dev` per a integració
-- Feature branches des de `dev`
+- Feature branches des de `main`, PR contra `main` (no hi ha branca `dev`)
 - PRs requereixen revisió pròpia (al ser solo dev, almenys deixar 1h entre obrir i fer merge)
 - **Mai push directe a main**
+- Cada merge a `main` és un build de pagament (~8 min): agrupar la feina en un PR per tanda. Les branques no fan build (Ignored Build Step)
+
+### Comandes
+- `npm run dev` · `npm test` (fa `prebuild` abans) · `npm run check` · `npm run build`
+- PDFs: `npm run build:pdf`, `build:decks` i la resta de `build:*`; `npm run upload:pdfs` els puja a Blob
+- Jocs multijugador: `npm run party:dev` / `npm run party:deploy`
 
 ## Workflow Claude Code
 
@@ -223,53 +225,9 @@ i18n: {
 4. **`/review` abans de merge** a main
 5. **Mai `--dangerously-skip-permissions`**
 
-## Prioritat: mockups abans de codi de producció
+## Historial
 
-**LA PRIMERA SESSIÓ DE CLAUDE CODE** en aquest projecte ha de ser **exclusivament de mockups visuals**, no de setup tècnic. L'estètica és tan important que mereix una sessió sencera per validar direcció abans de tocar codi de producció.
-
-Sessions previstes:
-1. **Mockups visuals** (5 pàgines clau, 2-3 variants estètiques)
-2. **Setup tècnic** (Astro + integracions + i18n + estructura)
-3. **Migració dels 8 índexs antics** distribuits a les assignatures
-4. **Llibre 1 EDMN 2BACH** (sessions múltiples)
-5. **Llibres 2, 3, 4** (sessions múltiples cada un)
-
-## Migració del webpde
-
-El repo `webpde` actual conté el contingut antic. La migració es fa per fases:
-
-### Fase 0 (post-mockups, setup) - Maig 2026
-- Setup tècnic
-- Estructura completa de les 4 assignatures (placeholders)
-
-### Fase 1 (Juny 2026) - Llibre 1
-- Migració de `empresa.html` distribuit dins d'EDMN 2BACH
-- Llibre 1 (EDMN 2BACH) complet
-- Diapositives derivades del Llibre 1
-
-### Fase 2 (Setembre 2026) - Llibre 2 + llançament
-- Migració d'`economia.html`, `ferramentes.html`, `recerca.html` distribuit dins d'Eco 1BACH
-- Llibre 2 (Eco 1BACH) complet
-- Llançament suau
-
-### Fase 3 (Octubre-Desembre 2026) - Llibre 3
-- Migració parcial de `vidapractica.html` per a Eco 4ESO
-- Llibre 3 (Eco 4ESO) complet
-
-### Fase 4 (Gener-Febrer 2027) - Llibre 4 + primer joc
-- Migració de la resta de `vidapractica.html` per a FOPP 4ESO
-- Llibre 4 (FOPP 4ESO) complet
-- Primer joc refet: `stonks` a `/juegos/stonks/`
-
-### Fase 5 (Abril-Setembre 2027)
-- Resta de jocs refets (insider, communist, econopoly, econrisk)
-- Migració de Playground i Concurs
-- Eines docents migrades
-- Català/valencià activat
-
-### Fase 6 (Setembre 2027+)
-- webpde antic deprecat
-- Tots els enllaços externs ja redirigits
+Les fases de migració del webpde, la sessió inicial de mockups i els primers passos són a `docs/historial-projecte.md` (registre, no pla vigent).
 
 ## Salvaguardes i fronteres
 
@@ -280,16 +238,17 @@ El repo `webpde` actual conté el contingut antic. La migració es fa per fases:
 
 ### Sobre l'estructura per assignatures
 - **Cap canvi a l'estructura sense aprovació explícita**. Si Claude Code proposa "afegir una secció genèrica de blog", es rebutja al MVP.
-- **Cada assignatura ha de tindre la mateixa estructura interna**. La consistència entre les 4 assignatures és vinculant.
+- **Cada assignatura ha de tindre la mateixa estructura interna**. La consistència entre totes les assignatures és vinculant.
 
 ### Sobre estètica
 - **Cap canvi al sistema visual sense aprovació explícita**. Mockups validats abans de codi de producció.
 - **Si Claude Code proposa "afegir un gradient" o "fer la home més juganera", es rebutja.**
 
-### Sobre dades d'usuaris (per a fase 2)
+### Sobre dades d'usuaris
 - **GDPR-friendly des del primer dia**.
 - **Qualsevol tracker de tercers (GA4 inclòs) va darrere de consentiment previ i explícit**: res es carrega fins que la persona accepta, i rebutjar ha de ser tan fàcil com acceptar (AEPD). Si s'afig un servei nou, cal actualitzar `/legal/privacidad/` abans de desplegar.
 - **Cap email comercial sense consentiment explícit**.
+- **Jocs**: es demana àlies, mai el nom real (molts jugadors són menors).
 
 ## Out of scope explícit (no facis)
 
@@ -300,43 +259,34 @@ El repo `webpde` actual conté el contingut antic. La migració es fa per fases:
 - ❌ App mòbil dedicada
 - ❌ Funcionalitats socials internes
 - ❌ Live streaming
-- ❌ Publicar català/valencià al MVP (estructura sí, contingut no)
 - ❌ Blog/notícies al MVP
-- ❌ **Pàgina d'aterratge a /oposiciones/** (redirect 301 directe)
+- ❌ **Pàgina d'aterratge a /oposiciones/** (redirect permanent directe)
 - ❌ **Adaptacions del llibre per CCAA específiques al MVP** (currículum estatal genèric)
 
 ## Comunicació amb dev
 
 - Pau parla en valencià/català.
 - Respostes meues en valencià/català tret que demane explícitament una altra cosa.
-- UI strings i contingut educatiu en castellà al MVP, en català/valencià a fase 2.
+- UI strings i contingut educatiu en castellà i valencià (paritat ES/CA: cada fitxer té el bessó `.ca`).
 - Comentaris al codi en anglès.
 - Commit messages en anglès, Conventional Commits.
 
 ## Estat actual
 
-*Revisat el 2026-10-11.*
+*Revisat el 2026-11-23.*
 
-- **Domini**: profedeeconomia.es apunta al web nou (Astro a Vercel); el webpde antic queda en mode manteniment
+- **Domini**: www.profedeeconomia.es (Astro a Vercel); les URL antigues del webpde redirigeixen des de `vercel.json`
 - **Repo**: `skinnydkd/profedeeconomia`; els PR van contra `main`
-- **Stack**: Astro 5 + Preact + Tailwind + Vercel, sense backend
+- **Stack**: Astro 5 estàtic + Preact + Tailwind + Vercel; Supabase i PartyKit només per als jocs en línia
 - **Assignatures publicades**: 10 (`ASIGNATURAS` a `src/lib/asignaturas.ts`), totes amb llibre i PDF: les 4 del MVP més Taller d'Economia 3r ESO, IPE I i IPE II (FP), EEAE, GPE i CJD (Batxillerat). La regla «mateixa estructura interna» s'aplica a totes 10
 - **i18n**: castellà i valencià publicats (`/ca/`), amb paritat completa de contingut
 - **SEO**: estratègia i historial de canvis a `docs/seo-estrategia-2026.md`
 - **Estructura confirmada**: per assignatures, no per tipus de contingut
-
-## Pròxims passos immediats
-
-1. Crear repo nou (`profedeeconomia` o similar) a GitHub
-2. **Sessió 1 de Claude Code: MOCKUPS VISUALS** (veure `profedeeconomia-claude-code-mockups-prompt.md`)
-3. Validació de la direcció estètica amb Pau
-4. Sessió 2: setup tècnic complet
-5. Sessions 3+: migració, llibres, etc.
+- **Auditoria 2026-11-23**: plans i decisions pendents a `documents/plans/2026-11-23-auditoria-lots-*.md`
 
 ## Recursos
 
 - **Astro docs**: https://docs.astro.build
-- **paged.js**: https://pagedjs.org/
 - **Currículum LOMLOE**: BOE per assignatura
 - **Repo origen del contingut**: https://github.com/skinnydkd/webpde
 - **Repo germà** (oposicioneseconomia): https://github.com/skinnydkd/oposicioneseconomia

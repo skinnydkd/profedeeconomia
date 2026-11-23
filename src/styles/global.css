@@ -419,3 +419,35 @@ body {
 @media print {
   .tabla-scroll { overflow: visible; }
 }
+
+/* =========================================================
+   Printing a book unit (Ctrl+P on /[asignatura]/libro/[unidad]/)
+   ========================================================= */
+/* Only the unit itself goes on paper: no site chrome, TOC, share buttons,
+   notes or navigation. Overrides use !important because the page's own
+   rules are scoped (higher specificity). */
+@media print {
+  @page { margin: 16mm 15mm 18mm; }
+  html, body { background: #fff !important; }
+  .site-header, .site-footer, .skip-link, #consent-banner, .breadcrumb,
+  .article-toc, .unit-material, .unit-actions, .read-progress,
+  .unit-nav, .un, .recursos, .diagram__hint {
+    display: none !important;
+  }
+  .unit-opener { padding: 0 0 1rem !important; }
+  .article-layout { display: block !important; padding: 0 !important; }
+  .article-body { max-width: none !important; font-size: 11pt !important; line-height: 1.5 !important; }
+  .unit-meta { box-shadow: none !important; }
+  .article-body h2, .article-body h3 { break-after: avoid; }
+  figure, table, .tabla-scroll, .diagram, .callout, .curiosity, .real-example,
+  .caso, .takeaways, .tldr, .vuelve, .voces, .errores, .pista-ebau, blockquote {
+    break-inside: avoid;
+    box-shadow: none !important;
+  }
+  img, svg { max-width: 100% !important; }
+  .bibliography a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.85em;
+    word-break: break-all;
+  }
+}

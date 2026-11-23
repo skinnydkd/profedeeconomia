@@ -171,7 +171,7 @@ function Unirse({ onUnido, onCancel }: { onUnido: (s: Sesion) => void; onCancel:
       <label class="bg__field"><span class="bg__field-label">Código de la liga</span><input class="bg__input bg__input--name bg__codigo-input" value={codigo} maxLength={6} onInput={(e) => setCodigo((e.target as HTMLInputElement).value.toUpperCase())} placeholder="ABC123" /></label>
       <label class="bg__field"><span class="bg__field-label">Nombre de vuestra empresa</span><input class="bg__input bg__input--name" value={nombre} onInput={(e) => setNombre((e.target as HTMLInputElement).value)} placeholder="Ej. Innovatech" /></label>
       <label class="bg__field"><span class="bg__field-label">Instituto o centro</span><input class="bg__input bg__input--name" value={instituto} onInput={(e) => setInstituto((e.target as HTMLInputElement).value)} /></label>
-      <label class="bg__field"><span class="bg__field-label">Integrantes (opcional)</span><input class="bg__input bg__input--name" value={miembros} onInput={(e) => setMiembros((e.target as HTMLInputElement).value)} placeholder="Nombres del equipo" /></label>
+      <label class="bg__field"><span class="bg__field-label">Integrantes (opcional)</span><input class="bg__input bg__input--name" value={miembros} onInput={(e) => setMiembros((e.target as HTMLInputElement).value)} placeholder="Alias o iniciales, sin nombres reales" /></label>
       {error && <p class="bg__error">{error}</p>}
       <p class="bg__nota-mini">Tu empresa e instituto aparecerán en el ranking.</p>
       <div class="bg__actions">

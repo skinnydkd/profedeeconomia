@@ -71,7 +71,7 @@ const activeFamilias = new Set(groups.map((g) => g.familia.slug));
       <button class="chip is-active" data-filter="all" type="button" aria-pressed="true">{t('filtro.todos', locale)}</button>
       {familias.filter((f) => activeFamilias.has(f.slug)).map((f) => (
         <button class="chip" data-filter={f.slug} type="button" aria-pressed="false"
-          style={`--chip-color: var(${f.colorVar})`}>{f.label}</button>
+         >{f.label}</button>
       ))}
     </div>
     <p class="sr-only" aria-live="polite" data-filter-status data-one={t('filtro.resultado.uno', locale)} data-many={t('filtro.resultado.varios', locale)}></p>
@@ -80,7 +80,7 @@ const activeFamilias = new Set(groups.map((g) => g.familia.slug));
   {groups.map((g) => (
     <section class="familia" data-familia={g.familia.slug}>
       <div class="container">
-        <div class="familia__head" style={`--fam-color: var(${g.familia.colorVar}); --fam-ink: var(${g.familia.colorVar}-ink)`}>
+        <div class="familia__head">
           <h2>{g.familia.label}</h2>
           <p>{g.familia.intro}</p>
         </div>
@@ -88,7 +88,7 @@ const activeFamilias = new Set(groups.map((g) => g.familia.slug));
           {g.items.map((d) => {
             const data = localizeFicha(d.data, d.slug, DEBATES_CA, locale);
             return (
-              <a class="card" href={`/debates/${d.slug}/`} style={`--fam-color: var(${g.familia.colorVar}); --fam-ink: var(${g.familia.colorVar}-ink)`}>
+              <a class="card" href={`/debates/${d.slug}/`}>
                 <span class="card__eyebrow">{g.familia.label}</span>
                 <h3 class="card__title serif">{data.title}</h3>
                 <p class="card__desc">{data.descripcion}</p>
@@ -135,12 +135,12 @@ const activeFamilias = new Set(groups.map((g) => g.familia.slug));
   .chip.is-active { background: var(--chip-color, var(--color-ink)); border-color: var(--chip-color, var(--color-ink)); color: var(--color-paper); }
   .familia { padding: 1.5rem 0; }
   .familia__head { margin-bottom: 1.5rem; }
-  .familia__head h2 { font-family: var(--font-serif); font-size: 1.7rem; font-weight: 500; margin: 0; color: var(--fam-ink); }
+  .familia__head h2 { font-family: var(--font-serif); font-size: 1.7rem; font-weight: 500; margin: 0; color: var(--color-ink); }
   .familia__head p { color: var(--color-ink-soft); margin: 0.3rem 0 0; }
   .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(290px, 100%), 1fr)); gap: 1.2rem; }
   .card { display: flex; flex-direction: column; gap: 0.5rem; padding: 1.4rem; background: var(--color-paper); border: 1px solid var(--color-line); border-radius: 10px; text-decoration: none; transition: transform .15s ease, box-shadow .15s ease; }
   .card:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(42, 31, 24, 0.1); }
-  .card__eyebrow { font-family: var(--font-sans); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--fam-ink); }
+  .card__eyebrow { font-family: var(--font-sans); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-terra-ink); }
   .card__title { font-size: 1.3rem; color: var(--color-ink); margin: 0; }
   .card__desc { color: var(--color-ink-soft); font-size: 0.95rem; line-height: 1.5; margin: 0; flex: 1; }
   .card__meta { font-family: var(--font-mono); font-size: 0.78rem; color: var(--color-ink-mute); margin-top: 0.3rem; }

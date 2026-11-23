@@ -6,6 +6,18 @@ import { localizeAsignatura } from '@/i18n/asignaturas-ca';
 import LanguageSwitcher from '@components/LanguageSwitcher.astro';
 
 const locale = getLocale(Astro.currentLocale);
+
+// Which top-level group holds the current page (marked with aria-current).
+const path = Astro.url.pathname.replace(/^\/ca(?=\/|$)/, '');
+const inside = (slugs: string[]) => slugs.some((s) => path === `/${s}` || path.startsWith(`/${s}/`));
+const slugsEtapa = (e: keyof typeof ASIGNATURAS_POR_ETAPA) =>
+  (Object.values(ASIGNATURAS_POR_ETAPA[e].cursos) as { asignaturas: { slug: string }[] }[]).flatMap((c) => c.asignaturas.map((a) => a.slug));
+const current = {
+  eso: inside(slugsEtapa('eso')),
+  bach: inside([...slugsEtapa('bach'), 'olimpiada']),
+  fp: inside(slugsEtapa('fp')),
+  otros: inside(SECCION_GRUPOS.flatMap((g) => seccionesDelGrupo(g).map((s) => s.slug))),
+};
 ---
 
 <header class="site-header">
@@ -27,7 +39,7 @@ const locale = getLocale(Astro.currentLocale);
     <nav class="site-nav" id="site-nav" aria-label={t('nav.aria', locale)}>
       <!-- ESO -->
       <div class="nav-group" data-nav-group>
-        <button class="nav-trigger" type="button" aria-expanded="false">
+        <button class="nav-trigger" type="button" aria-expanded="false" aria-current={current.eso ? 'true' : undefined}>
           {t('nav.eso', locale)}
           <span class="caret" aria-hidden="true">▾</span>
         </button>
@@ -54,7 +66,7 @@ const locale = getLocale(Astro.currentLocale);
 
       <!-- BACH -->
       <div class="nav-group" data-nav-group>
-        <button class="nav-trigger" type="button" aria-expanded="false">
+        <button class="nav-trigger" type="button" aria-expanded="false" aria-current={current.bach ? 'true' : undefined}>
           {t('nav.bach', locale)}
           <span class="caret" aria-hidden="true">▾</span>
         </button>
@@ -93,7 +105,7 @@ const locale = getLocale(Astro.currentLocale);
 
       <!-- FP -->
       <div class="nav-group" data-nav-group>
-        <button class="nav-trigger" type="button" aria-expanded="false">
+        <button class="nav-trigger" type="button" aria-expanded="false" aria-current={current.fp ? 'true' : undefined}>
           {t('nav.fp', locale)}
           <span class="caret" aria-hidden="true">▾</span>
         </button>
@@ -113,7 +125,7 @@ const locale = getLocale(Astro.currentLocale);
 
       <!-- Otros -->
       <div class="nav-group" data-nav-group>
-        <button class="nav-trigger" type="button" aria-expanded="false">
+        <button class="nav-trigger" type="button" aria-expanded="false" aria-current={current.otros ? 'true' : undefined}>
           {t('nav.otros', locale)}
           <span class="caret" aria-hidden="true">▾</span>
         </button>
@@ -153,9 +165,10 @@ const locale = getLocale(Astro.currentLocale);
 </header>
 
 <script>
-  // Disclosure pattern: a click (or Enter/Space) on the trigger opens its panel
-  // and aria-expanded follows it. Hover still opens it for the mouse via CSS;
-  // focus alone does not, so tabbing past a trigger skips its links.
+  // Disclosure pattern: one state per group (class is-open + aria-expanded).
+  // Click/Enter/Space toggles it; a mouse hovering the group opens it through
+  // the same state, so aria-expanded always matches what is visible. Focus
+  // alone does not open, so tabbing past a trigger skips its links.
   const groups = document.querySelectorAll<HTMLElement>('[data-nav-group]');
 
   // Phone menu: the nav does not fit beside the wordmark below ~760px, so it
@@ -163,22 +176,39 @@ const locale = getLocale(Astro.currentLocale);
   // on desktop the button is display:none and never fires).
   const header = document.querySelector<HTMLElement>('.site-header');
   const navToggle = document.querySelector<HTMLButtonElement>('[data-nav-toggle]');
+  const phone = window.matchMedia('(max-width: 760px)');
 
-  function closeGroups(): void {
+  function setGroup(g: HTMLElement, open: boolean): void {
+    g.classList.toggle('is-open', open);
+    g.querySelector<HTMLButtonElement>('.nav-trigger')?.setAttribute('aria-expanded', String(open));
+    if (!open) delete g.dataset.hover;
+  }
+
+  function closeGroups(except?: HTMLElement): void {
     groups.forEach((g) => {
-      g.classList.remove('is-open');
-      g.querySelector<HTMLButtonElement>('.nav-trigger')?.setAttribute('aria-expanded', 'false');
+      if (g !== except) setGroup(g, false);
     });
   }
 
+  // While the phone menu is open the page behind is locked: no scroll, and
+  // inert so Tab and screen readers stay in the header.
   function setMenu(open: boolean): void {
     header?.classList.toggle('is-menu-open', open);
     navToggle?.setAttribute('aria-expanded', String(open));
+    document.documentElement.classList.toggle('nav-locked', open);
+    document.querySelectorAll<HTMLElement>('main, footer').forEach((el) => {
+      if (!header?.contains(el)) el.inert = open;
+    });
     if (!open) closeGroups();
   }
 
   navToggle?.addEventListener('click', () => {
     setMenu(!header?.classList.contains('is-menu-open'));
+  });
+
+  // Back to a wide window: drop the phone lock.
+  phone.addEventListener('change', () => {
+    if (!phone.matches) setMenu(false);
   });
 
   groups.forEach((group) => {
@@ -188,16 +218,25 @@ const locale = getLocale(Astro.currentLocale);
 
     trigger.addEventListener('click', (e) => {
       e.preventDefault();
-      const isOpen = group.classList.toggle('is-open');
-      trigger.setAttribute('aria-expanded', String(isOpen));
+      // A click on a panel the pointer just opened keeps it open (pins it).
+      const pin = group.dataset.hover === '1';
+      delete group.dataset.hover;
+      setGroup(group, pin ? true : !group.classList.contains('is-open'));
+      closeGroups(group);
+    });
 
-      // Tancar els altres grups
-      groups.forEach((g) => {
-        if (g !== group) {
-          g.classList.remove('is-open');
-          g.querySelector<HTMLButtonElement>('.nav-trigger')?.setAttribute('aria-expanded', 'false');
-        }
-      });
+    // Mouse hover (desktop only; touch must tap).
+    group.addEventListener('pointerenter', (e) => {
+      if (e.pointerType !== 'mouse' || phone.matches) return;
+      closeGroups(group);
+      if (!group.classList.contains('is-open')) {
+        setGroup(group, true);
+        group.dataset.hover = '1';
+      }
+    });
+    group.addEventListener('pointerleave', (e) => {
+      if (e.pointerType !== 'mouse' || phone.matches) return;
+      if (group.dataset.hover === '1') setGroup(group, false);
     });
 
     // Tabbing out of an open group closes it, so aria-expanded never claims a
@@ -205,8 +244,7 @@ const locale = getLocale(Astro.currentLocale);
     group.addEventListener('focusout', (e) => {
       const next = e.relatedTarget as Node | null;
       if (!next || group.contains(next)) return;
-      group.classList.remove('is-open');
-      trigger.setAttribute('aria-expanded', 'false');
+      setGroup(group, false);
     });
   });
 
@@ -233,6 +271,7 @@ const locale = getLocale(Astro.currentLocale);
 </script>
 
 <style>
+  :global(html.nav-locked) { overflow: hidden; }
   .site-header {
     background: var(--color-bg);
     border-bottom: 1px solid var(--color-line);
@@ -313,16 +352,17 @@ const locale = getLocale(Astro.currentLocale);
     letter-spacing: 0.02em;
   }
   .nav-trigger:hover,
-  .nav-trigger:focus-visible {
+  .nav-trigger:focus-visible,
+  .nav-trigger[aria-current] {
     color: var(--color-terra-ink);
   }
+  .nav-trigger[aria-current] { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.35em; }
   .caret {
     font-size: 0.65em;
     color: var(--color-ink-mute);
     transition: transform .15s ease, color .15s ease;
   }
-  .nav-group.is-open .caret,
-  .nav-group:hover .caret {
+  .nav-group.is-open .caret {
     color: var(--color-terra-ink);
     transform: rotate(180deg);
   }
@@ -371,7 +411,6 @@ const locale = getLocale(Astro.currentLocale);
   /* Doubled class on purpose: the generic open rule further down centres the
      panel with translateX(-50%) and, at equal specificity, would win and push
      this right-aligned panel 270px left of its trigger. */
-  .nav-group:hover .nav-dropdown.nav-dropdown--cols,
   .nav-group.is-open .nav-dropdown.nav-dropdown--cols {
     transform: translateY(0);
   }
@@ -392,7 +431,6 @@ const locale = getLocale(Astro.currentLocale);
     height: 8px;
   }
 
-  .nav-group:hover .nav-dropdown,
   .nav-group.is-open .nav-dropdown {
     opacity: 1;
     visibility: visible;
@@ -402,7 +440,6 @@ const locale = getLocale(Astro.currentLocale);
   /* The panel being opened sits above one still fading out. Moving fast from
      «Otros» to «FP», the closing 540px panel (same z-index, later in the DOM)
      covered FP's and took the pointer back, reopening «Otros». */
-  .nav-group:hover .nav-dropdown,
   .nav-group:focus-within .nav-dropdown,
   .nav-group.is-open .nav-dropdown { z-index: 61; }
 
@@ -581,7 +618,6 @@ const locale = getLocale(Astro.currentLocale);
       min-width: 420px;
       gap: 0 1rem;
     }
-    .nav-group:hover .nav-dropdown,
     .nav-group.is-open .nav-dropdown {
       transform: translateY(0);
     }
@@ -658,7 +694,6 @@ const locale = getLocale(Astro.currentLocale);
        must out-specify the base hover/focus rules, which carry the
        translateX(-50%) centring meant for the absolute desktop dropdown. */
     .nav-dropdown,
-    .nav-group:hover .nav-dropdown,
     .nav-group.is-open .nav-dropdown { transform: none; display: none; }
     .nav-group.is-open .nav-dropdown { display: flex; }
 

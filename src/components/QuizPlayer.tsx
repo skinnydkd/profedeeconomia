@@ -1,7 +1,7 @@
 /** @jsxImportSource preact */
 import { useEffect, useId, useMemo, useRef, useState } from 'preact/hooks';
-import { loadJSON, removeKey, saveJSON } from '../lib/storage';
-import { lecturasNumero, numeroCorrecto, ordenesOpciones, ordenValido, rngDesde, textoNoNumerico, textoPlano } from './quiz-utils';
+import { loadJSON, loadString, removeKey, saveJSON, saveString } from '../lib/storage';
+import { leerIntento, lecturasNumero, numeroCorrecto, ordenesOpciones, ordenValido, relacionarCorrecta, relacionParCorrecta, rngDesde, serializarIntento, textoNoNumerico, textoPlano } from './quiz-utils';
 import Marca from './QuizMarca';
 import TextoInline from './TextoInline';
 import './QuizPlayer.css';
@@ -26,6 +26,8 @@ type Props = {
   storageKey: string;
   /** UI chrome locale (defaults to Castilian). */
   locale?: 'es' | 'ca';
+  /** Unit page of this test; when set, «Repasa la unidad» is a link to it. */
+  unidadHref?: string;
 };
 
 const COPY = {
@@ -105,7 +107,7 @@ function esCorrecta(p: Pregunta, r: Respuesta): boolean {
     case 'numerico':
       return typeof r === 'string' && numeroCorrecto(r, p.respuesta, p.tolerancia);
     case 'relacionar':
-      return Array.isArray(r) && p.correctas.every((c, i) => r[i] === c);
+      return Array.isArray(r) && relacionarCorrecta(p.derecha, p.correctas, r);
   }
 }
 
@@ -143,20 +145,36 @@ function formatCorr(p: Pregunta, t: Copy): string {
 }
 
 /** localStorage key holding the best `nota10` ever achieved for this quiz. */
+/** sessionStorage key holding the attempt in progress (survives a reload). */
+function intentoKey(storageKey: string): string {
+  return `quiz:${storageKey}:intento`;
+}
+
 function bestKey(storageKey: string): string {
   return `quiz:${storageKey}:best`;
 }
 
-export default function QuizPlayer({ preguntas, storageKey, locale = 'es' }: Props) {
+export default function QuizPlayer({ preguntas, storageKey, locale = 'es', unidadHref }: Props) {
   const t = COPY[locale];
   const total = preguntas.length;
   const [estado, setEstado] = useState<Estado>(() => emptyState(preguntas, rngDesde(storageKey)));
 
   const [bestNota, setBestNota] = useState<number | null>(null);
+  // Restored after mount (not in the initial state) so hydration matches the server render.
+  const [restaurado, setRestaurado] = useState(false);
   useEffect(() => {
     const stored = loadJSON<number | null>(bestKey(storageKey), null);
     if (typeof stored === 'number') setBestNota(stored);
-  }, [storageKey]);
+    const previo = leerIntento(loadString(intentoKey(storageKey), 'session'), total);
+    if (previo) setEstado((s) => ({ ...s, ...previo, respuestas: previo.respuestas as Respuesta[] }));
+    setRestaurado(true);
+  }, [storageKey, total]);
+
+  useEffect(() => {
+    if (!restaurado) return;
+    if (estado.finalizado) removeKey(intentoKey(storageKey), 'session');
+    else saveString(intentoKey(storageKey), serializarIntento(estado), 'session');
+  }, [estado, restaurado, storageKey]);
 
   // Keyboard and screen-reader users land on the new question (or the result)
   // after moving, instead of on <body>. Not on first paint: no focus stealing.
@@ -264,7 +282,13 @@ export default function QuizPlayer({ preguntas, storageKey, locale = 'es' }: Pro
             {aciertos} {aciertos === 1 ? t.acierto : t.aciertos} {t.de} {total}{' '}
             {total === 1 ? t.pregunta : t.preguntas}
             {' · '}
-            <strong class={aprobado ? 'ok' : 'fail'}>{aprobado ? t.apto : t.repasa}</strong>
+            {aprobado ? (
+              <strong class="ok">{t.apto}</strong>
+            ) : unidadHref ? (
+              <a class="editorial-link qp__repasa" href={unidadHref}>{t.repasa}</a>
+            ) : (
+              <strong class="fail">{t.repasa}</strong>
+            )}
           </p>
 
           <ol class="qp__review">
@@ -419,7 +443,7 @@ export default function QuizPlayer({ preguntas, storageKey, locale = 'es' }: Pro
             {pregunta.izquierda.map((izq, li) => {
               const arr = Array.isArray(respuestaActual) ? respuestaActual : [];
               const chosen = arr[li] ?? -1;
-              const okRow = confirmada && chosen === pregunta.correctas[li];
+              const okRow = confirmada && relacionParCorrecta(pregunta.derecha, pregunta.correctas[li], chosen);
               return (
                 <tr class={confirmada ? (okRow ? 'is-ok' : 'is-fail') : ''}>
                   <td class="qp__rel-num">{li + 1}</td>

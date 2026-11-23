@@ -70,5 +70,5 @@ Cada equipo defiende una de las dos posturas. El objetivo no es «ganar» con la
 ## Notas para el docente
 
 - **Legal no es lo mismo que fraude.** El aprendizaje clave es distinguir pagar menos por vías legales (deducciones, ayudas) de ocultar ingresos a Hacienda. Insistir antes y durante.
-- **Datos, no consignas.** Reconducir el debate hacia las cifras (en torno al 20-25 % del PIB en España según GESTHA) y hacia los efectos concretos sobre los servicios públicos cada vez que aparezca el «todo el mundo lo hace».
+- **Datos, no consignas.** Reconducir el debate hacia las cifras (en torno al 15 % del PIB en España según GESTHA, 2025; otras metodologías llegan al 24 %) y hacia los efectos concretos sobre los servicios públicos cada vez que aparezca el «todo el mundo lo hace».
 - **El cierre conecta con su proyecto.** Lo importante no es ganar el debate, sino que cada alumno salga con una decisión concreta sobre cómo se comportará fiscalmente su proyecto en la Fase 4.

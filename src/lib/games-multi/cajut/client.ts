@@ -5,9 +5,16 @@
 import PartySocket from 'partysocket';
 import type { CajutClientOptions, ClientMsg, ServerMsg } from './types';
 
+export type ConnectionStatus = 'connected' | 'timeout' | 'closed' | 'error';
+
+/** Max wait for the first socket open before telling the user the server is unreachable. */
+export const CONNECT_TIMEOUT_MS = 10_000;
+
 interface ExtraOptions {
   nick?: string;
   asHost?: boolean;
+  /** Connection health, so the UI can stop saying "connecting" when the server is down. */
+  onStatus?: (status: ConnectionStatus) => void;
 }
 
 export interface CajutClient {
@@ -29,7 +36,19 @@ export function createCajutClient(opts: CajutClientOptions & ExtraOptions): Caju
   } as any);
 
   // Auto-join on open
+  let opened = false;
+  const timer = setTimeout(() => {
+    if (!opened) opts.onStatus?.('timeout');
+  }, CONNECT_TIMEOUT_MS);
+  const onClose = () => opts.onStatus?.('closed');
+  const onError = () => opts.onStatus?.('error');
+  socket.addEventListener('close', onClose);
+  socket.addEventListener('error', onError);
+
   const onOpen = () => {
+    opened = true;
+    clearTimeout(timer);
+    opts.onStatus?.('connected');
     if (opts.asHost) {
       send({ type: 'join', nick: '__host__' });
     } else if (opts.nick) {
@@ -70,6 +89,9 @@ export function createCajutClient(opts: CajutClientOptions & ExtraOptions): Caju
   }
 
   function close() {
+    clearTimeout(timer);
+    socket.removeEventListener('close', onClose);
+    socket.removeEventListener('error', onError);
     socket.removeEventListener('open', onOpen);
     socket.removeEventListener('message', onMessage);
     socket.close();

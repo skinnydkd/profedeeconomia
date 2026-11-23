@@ -63,6 +63,7 @@ function HostAppInner({ partykitHost }: { partykitHost: string }) {
   // Bank the PartyKit server was deployed with, to compare with the manifest's.
   const [serverBankVersion, setServerBankVersion] = useState<string | null>(null);
   const [startError, setStartError] = useState<ServerError | null>(null);
+  const [connIssue, setConnIssue] = useState(false);
 
   // SSR-safe: only read sessionStorage in useEffect
   useEffect(() => {
@@ -85,6 +86,7 @@ function HostAppInner({ partykitHost }: { partykitHost: string }) {
       roomCode,
       playerId: hostId,
       asHost: true,
+      onStatus: (s) => setConnIssue(s !== 'connected'),
     });
     c.on('public', (m) => setPublicState(m.state));
     c.on('private', (m) => setPrivateState(m.state));
@@ -95,7 +97,7 @@ function HostAppInner({ partykitHost }: { partykitHost: string }) {
   }, [hostId, roomCode, partykitHost]);
 
   if (!hostId || !roomCode || !publicState) {
-    return <HostLanding roomCode={roomCode} />;
+    return <HostLanding roomCode={roomCode} connIssue={connIssue} />;
   }
 
   const phase = publicState.phase;

@@ -9,34 +9,34 @@ slug: "asignaturas/fopp-4eso/tests/08-derechos-laborales.ca"
 preguntas:
   - enunciado: "En quant està fixat el Salari Mínim Interprofessional (SMI) per a 2026 segons el Reial Decret que l'actualitza?"
     opciones:
-      - "1.080 € bruts mensuals en 12 pagues."
-      - "1.134 € bruts mensuals en 14 pagues."
+      - "1.080 € bruts mensuals en 12 pagues (12.960 € anuals)."
+      - "1.134 € bruts mensuals en 14 pagues (15.876 € anuals)."
       - "1.221 € bruts mensuals en 14 pagues (17.094 € anuals)."
-      - "1.260 € bruts mensuals en 14 pagues."
+      - "1.260 € bruts mensuals en 14 pagues (17.640 € anuals)."
     correcta: 2
     explicacion: "El SMI 2026 està fixat en **1.221 € bruts mensuals en 14 pagues**, la qual cosa equival a 17.094 € anuals. És un sòl legal absolut: cap contracte ni conveni pot pagar menys. Pagar per davall del SMI és una infracció molt greu de l'Estatut dels Treballadors."
   - enunciado: "Quina és la jornada màxima legal establida per l'Estatut dels Treballadors (art. 34)?"
     opciones:
-      - "35 hores setmanals en còmput mensual, amb màxim de 8 hores diàries."
-      - "40 hores setmanals en còmput anual, amb màxim de 9 hores ordinàries diàries i 12 hores de descans entre jornades."
-      - "45 hores setmanals fixes, amb descans de 8 hores entre jornades."
-      - "48 hores setmanals, segons la Directiva europea de temps de treball."
+      - "35 hores setmanals en còmput mensual, amb màxim de 8 hores diàries i 10 de descans."
+      - "40 hores setmanals en còmput anual, màxim 9 diàries i 12 de descans entre jornades."
+      - "45 hores setmanals fixes, amb descans de 8 hores entre jornades i dos dies lliures."
+      - "48 hores setmanals, segons la Directiva europea de temps de treball, com a mínim."
     correcta: 1
     explicacion: "L'ET fixa **40 hores setmanals en còmput anual**, la qual cosa permet distribuir-les de manera irregular (45 una setmana, 35 la següent) sempre que la mitjana anual no se supere. El màxim diari són 9 hores per a adults i ha d'haver-hi almenys 12 hores de descans entre jornades. La majoria de convenis fixen jornades efectives inferiors (1.700-1.800 hores anuals)."
   - enunciado: "Quants dies de vacances retribuïdes garantix l'Estatut dels Treballadors per any complet treballat?"
     opciones:
       - "22 dies laborables (equivalent a 30 naturals comptant caps de setmana)."
       - "25 dies naturals."
-      - "30 dies naturals, no bescanviables per diners excepte extinció del contracte."
+      - "30 dies naturals, no bescanviables per diners llevat d'extinció."
       - "30 dies laborables més 14 festius."
     correcta: 2
     explicacion: "L'ET art. 38 garantix **30 dies naturals per any treballat**. No es poden bescanviar per diners excepte si el contracte s'extingix abans de gaudir-les (llavors es cobren en el finiquit). En contractes curts es calculen proporcionalment: 30 × (dies treballats / 365)."
   - enunciado: "Quantes pagues extraordinàries mínimes reconeix l'Estatut dels Treballadors a l'any?"
     opciones:
-      - "Una sola, en Nadal."
-      - "Dos com a mínim, equivalents cada una a una mensualitat, normalment al juny i Nadal."
-      - "Tres: juny, setembre i Nadal."
-      - "Cap obligatòria; depén íntegrament del conveni."
+      - "Una sola, per Nadal, d'import fixat per l'empresa."
+      - "Dues, cadascuna d'una mensualitat, normalment juny i Nadal."
+      - "Tres a l'any: juny, setembre i Nadal, com a mínim."
+      - "Cap obligatòria; depén íntegrament del que fixe el conveni."
     correcta: 1
     explicacion: "L'ET art. 31 garantix **dos pagues extres mínimes a l'any** (juny i Nadal, una mensualitat cada una). El conveni pot establir-ne més, i poden estar **prorratejades mes a mes** si el conveni o el contracte ho permeten. Esta estructura de 14 pagues és una raresa europea: la majoria de països paguen només 12 nòmines."
   - enunciado: "Si una empresa acomiada un treballador **sense causa justificada (acomiadament improcedent)**, quina és la indemnització legal vigent després de la Reforma Laboral de 2012?"
@@ -52,7 +52,7 @@ preguntas:
       - "Avaluar els riscos de cada lloc i elaborar un Pla de Prevenció accessible."
       - "Proporcionar formació específica sobre els riscos, abans de començar i dins de la jornada."
       - "Entregar els equips de protecció individual (EPI) gratis, sense descomptar-los del salari."
-      - "Cobrar al treballador el cost dels reconeixements mèdics periòdics relacionats amb els riscos del lloc."
+      - "Cobrar al treballador els reconeixements mèdics periòdics relacionats amb el lloc."
     correcta: 3
     explicacion: "La LPRL (art. 22) obliga l'empresari a **oferir reconeixements mèdics gratuïts** i, per norma general, voluntaris per al treballador. Cobrar-los seria una infracció greu. Les altres tres opcions sí que són obligacions reals de l'empresari: avaluar riscos (art. 16), formar abans de començar (art. 19) i entregar EPI gratis (art. 17 i RD 773/1997)."
   - enunciado: "Què és un accident in itinere i per què importa?"

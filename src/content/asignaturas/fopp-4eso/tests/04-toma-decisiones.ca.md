@@ -9,18 +9,18 @@ slug: "asignaturas/fopp-4eso/tests/04-toma-decisiones.ca"
 preguntas:
   - enunciado: "El procés de presa de decisions presentat a la unitat té cinc fases. En quin orde s'apliquen?"
     opciones:
-      - "Generar alternatives → definir la decisió → criteris → analitzar → decidir."
-      - "Definir la decisió → generar alternatives → establir criteris → analitzar → decidir i comprometre's."
+      - "Generar alternatives → definir la decisió → establir criteris → analitzar → decidir."
+      - "Definir la decisió → alternatives → criteris → analitzar → decidir i comprometre's."
       - "Establir criteris → generar alternatives → analitzar → definir la decisió → decidir."
       - "Analitzar → definir → criteris → alternatives → decidir."
     correcta: 1
     explicacion: "L'orde importa: primer definixes bé la pregunta (què, quan, restriccions), després generes almenys tres alternatives, després fixes criteris, després compares amb una taula i, per últim, decidixes i et compromets."
   - enunciado: "Quina és la regla mínima en generar alternatives segons la unitat?"
     opciones:
-      - "Dos alternatives són suficients si estan ben plantejades."
+      - "Dues alternatives són suficients si estan ben plantejades i comparades."
       - "Com més alternatives, millor decisió: l'ideal és generar-ne deu o més."
-      - "Generar almenys tres alternatives abans de passar a la fase següent, forçant-ne una tercera si només se'n veuen dos."
-      - "Generar tantes alternatives com criteris tingues."
+      - "Generar almenys tres alternatives abans de passar a la fase següent."
+      - "Generar tantes alternatives com criteris tingues en la decisió."
     correcta: 2
     explicacion: "El cervell tendix a reduir les decisions a un sí/no. Forçar almenys una tercera opció, encara que parega rara, quasi sempre revela que la decisió no era tan binària com pareixia."
   - enunciado: "Estàs regatejant una bici de segona mà. El venedor diu 300 €. Encara que aconseguixes baixar-lo a 250 €, després descobrixes que bicis semblants es venen per 180 €. Quin biaix ha actuat?"
@@ -33,18 +33,18 @@ preguntas:
     explicacion: "El primer número (300 €) va actuar com a àncora inconscient. A partir d'ahí vas negociar cap avall, però el preu de referència ja estava contaminat. Sense l'àncora, hauries partit de la teua valoració real."
   - enunciado: "Portes tres anys al conservatori de piano i has descobert que no t'agrada. Penses: «no puc deixar-ho, porte tres anys invertits». Quin biaix t'està atrapant?"
     opciones:
-      - "Biaix d'ancoratge: el primer professor et va marcar la referència."
-      - "Biaix del present: prefereixes continuar còmode a canviar."
-      - "Cost enfonsat: el que ja has invertit no es recupera, però et resistixes a soltar-ho."
-      - "Biaix de confirmació: només busques raons per a continuar."
+      - "Biaix d'ancoratge: el primer professor et va marcar la referència per sempre."
+      - "Biaix del present: prefereixes seguir còmode ara a canviar i arriscar."
+      - "Cost enfonsat: allò ja invertit no es recupera, però costa deixar-ho."
+      - "Biaix de confirmació: només busques raons per a seguir com estàs."
     correcta: 2
     explicacion: "Els tres anys ja estan gastats els deixes o no. La pregunta correcta no és «abandone el que he invertit?», sinó «a partir d'hui, què preferixc fer els pròxims tres anys?». Mirar cap avant, no cap arrere."
   - enunciado: "Estàs convençut de fer Batxillerat General i, quan parles amb gent, recordes sobretot els testimonis positius. Els negatius els arxives com a casos puntuals. Quin biaix és?"
     opciones:
-      - "Biaix de confirmació: el teu cervell filtra info que dóna suport al que ja penses."
-      - "Biaix d'ancoratge: el primer testimoni que vas sentir et va condicionar."
-      - "Cost enfonsat: ja vas invertir temps a informar-te."
-      - "Paradoxa de l'elecció: tens massa opcions."
+      - "Biaix de confirmació: el teu cervell filtra el que recolza el que ja penses."
+      - "Biaix d'ancoratge: el primer testimoni que vas sentir et va condicionar molt."
+      - "Cost enfonsat: ja has invertit molt de temps a informar-te."
+      - "Paradoxa de l'elecció: tens massa opcions a comparar."
     correcta: 0
     explicacion: "El biaix de confirmació és automàtic: quan ja tens una hipòtesi, filtres inconscientment el que la contradiu. Es combat buscant activament almenys dos persones que opinen el contrari abans de decidir."
   - enunciado: "Prefereixes no estudiar hui i acceptar el cost demà, encara que demà siga molt pitjor. Prefereixes 10 € hui a 15 € d'ací a un mes. De quin biaix es tracta?"
@@ -57,18 +57,18 @@ preguntas:
     explicacion: "El biaix del present sobrevalora els costos i beneficis immediats enfront dels futurs. Explica des de per què costa estalviar fins a per què costa fer esport. Es combat fent visibles els beneficis futurs: calendaris, recordatoris, compromisos públics."
   - enunciado: "Segons Jeff Bezos, les decisions es dividixen en *two-way doors* (reversibles) i *one-way doors* (irreversibles). Quina és la regla correcta per a cada tipus?"
     opciones:
-      - "Reversibles: decidir a poc a poc. Irreversibles: decidir ràpid."
+      - "Reversibles: decidir a poc a poc i amb cura. Irreversibles: decidir ràpid i sense consultar."
       - "Les dos es decidixen igual: amb una anàlisi exhaustiva."
-      - "Reversibles: decidir ràpid i experimentar. Irreversibles: pensar a poc a poc, consultar i, en cas de dubte, esperar."
+      - "Reversibles: decidir ràpid i experimentar. Irreversibles: pensar a poc a poc i consultar."
       - "Les reversibles són sempre trivials i no mereixen anàlisi."
     correcta: 2
     explicacion: "Bezos ho va formular en la seua carta als accionistes de 2015. L'error més comú és tractar el reversible com a irreversible (paralitzar-se amb trivialitats) i l'irreversible com a reversible (decidir en cinc minuts un préstec d'anys). Identificar el tipus és el 50 % del treball."
   - enunciado: "Sobre la tolerància al risc personal, quina d'estes afirmacions és CORRECTA segons la unitat?"
     opciones:
       - "Una persona amb tolerància alta al risc ho és en tots els àmbits per igual."
-      - "La tolerància al risc és fixa des de la infància i no es pot entrenar."
-      - "La teua tolerància al risc varia segons l'àmbit (acadèmic, social, financer) i convé mirar-la per separat."
-      - "Com més tolerància al risc, millors decisions es prenen."
+      - "La tolerància al risc és fixa des de la infantesa i no es pot entrenar mai."
+      - "La tolerància al risc varia segons l'àmbit i convé mirar-la per separat."
+      - "Com més tolerància al risc tingues, millors decisions es prenen sempre."
     correcta: 2
     explicacion: "Pots ser molt arriscat socialment i molt caut financerament, o al revés. Cap perfil és intrínsecament millor: el que importa és saber on estàs en cada àmbit per a compensar (forçar-te a eixir de la teua zona si eres molt caut, frenar abans de decidir si eres molt llançat)."
   - tipo: verdadero-falso

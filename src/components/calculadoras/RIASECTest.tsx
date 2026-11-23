@@ -182,7 +182,7 @@ export default function RIASECTest({ locale = 'es' }: Props) {
 
           <div class="bi__cards" style="margin-top:1.6rem;">
             {resultado.tipos.map((t, i) => (
-              <div class="bi__card" style={`border-top:3px solid ${COLOR[t.letra]};`}>
+              <div class="bi__card">
                 <div class="bi__card-rank" style={`color:${COLOR[t.letra]};`}>
                   #{i + 1} · {t.letra}
                 </div>

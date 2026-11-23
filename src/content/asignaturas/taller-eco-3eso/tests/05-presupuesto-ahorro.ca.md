@@ -99,10 +99,10 @@ preguntas:
     explicacion: "L'estalvi és el 20 %: 40 × 0,20 = 8 €. Les necessitats serien 20 € (50 %) i els desitjos 12 € (30 %)."
   - tipo: relacionar
     enunciado: "Emparella cada despesa amb el tipus que és:"
-    izquierda: ["Subscripció mensual a una app que pagues tu", "Comprar llepolies este dissabte", "Un regal d'aniversari per a un amic", "La quota fixa del gimnàs"]
-    derecha: ["Despesa variable", "Despesa fixa", "Despesa variable", "Despesa fixa"]
+    izquierda: ["Subscripció mensual a una app que pagues tu", "Comprar llepolies este dissabte", "Un regal d'aniversari per a un amic", "Apartar 8 € al mes per a una bici"]
+    derecha: ["Despesa variable", "Despesa fixa", "Despesa puntual", "Estalvi"]
     correctas: [1, 0, 2, 3]
-    explicacion: "Les despeses fixes es repetixen cada mes amb un import semblant (subscripció, quota del gimnàs); les variables canvien o no es repetixen (llepolies, un regal puntual)."
+    explicacion: "Les despeses fixes es repetixen cada mes amb un import semblant (la subscripció); les variables canvien d'un mes a un altre (llepolies); un regal és una despesa puntual que no es repetix; i apartar diners per a un objectiu no és una despesa, és estalvi."
   - enunciado: "Nerea té una paga de 20 € al mes, però al març, a més, li regalen 50 € pel seu aniversari. En el seu pressupost de març, quant ha d'anotar com a ingressos?"
     opciones:
       - "20 €, perquè el regal no es repetix i no compta com a ingrés."

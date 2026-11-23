@@ -28,7 +28,7 @@ preguntas:
       - "Porque la practican sobre todo las grandes empresas, que así pagan menos que las pymes."
       - "Porque hace subir los precios de todos los productos."
     correcta: 1
-    explicacion: "La economía sumergida oculta ingresos a Hacienda: cada euro no declarado es un euro menos para la sanidad, la educación o las pensiones, y obliga a quien cumple a soportar una carga mayor. No es un delito sin víctimas. En España se estima en torno al 24 % del PIB (unos 330.000 millones de euros) según GESTHA."
+    explicacion: "La economía sumergida oculta ingresos a Hacienda: cada euro no declarado es un euro menos para la sanidad, la educación o las pensiones, y obliga a quien cumple a soportar una carga mayor. No es un delito sin víctimas. En España GESTHA estima (2025) entre 235.000 y 240.000 millones de euros, en torno al 15 % del PIB."
   - enunciado: "¿Qué representa el balance de una empresa?"
     opciones:
       - "Los ingresos y los gastos de un periodo, para saber si hay beneficio o pérdida."

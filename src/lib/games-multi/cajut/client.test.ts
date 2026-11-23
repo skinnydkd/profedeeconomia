@@ -1,5 +1,5 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { createCajutClient } from './client';
+import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import { createCajutClient, CONNECT_TIMEOUT_MS } from './client';
 import type { ServerMsg, ClientMsg } from './types';
 
 // --- Mock partysocket ---
@@ -111,5 +111,43 @@ describe('createCajutClient', () => {
     emit('message', { data: JSON.stringify({ type: 'kicked' }) });
     expect(onKicked).toHaveBeenCalledOnce();
     expect(closeFn).toHaveBeenCalledOnce();
+  });
+
+  describe('connection status', () => {
+    beforeEach(() => vi.useFakeTimers());
+    afterEach(() => vi.useRealTimers());
+
+    it('reports a timeout when the socket never opens', () => {
+      const onStatus = vi.fn();
+      createCajutClient({ host: 'h', roomCode: 'A7K2', playerId: 'p1', onStatus });
+      vi.advanceTimersByTime(CONNECT_TIMEOUT_MS);
+      expect(onStatus).toHaveBeenCalledWith('timeout');
+    });
+
+    it('does not time out once connected', () => {
+      const onStatus = vi.fn();
+      createCajutClient({ host: 'h', roomCode: 'A7K2', playerId: 'p1', onStatus });
+      emit('open', {});
+      vi.advanceTimersByTime(CONNECT_TIMEOUT_MS * 2);
+      expect(onStatus).toHaveBeenCalledOnce();
+      expect(onStatus).toHaveBeenCalledWith('connected');
+    });
+
+    it('reports close and error events', () => {
+      const onStatus = vi.fn();
+      createCajutClient({ host: 'h', roomCode: 'A7K2', playerId: 'p1', onStatus });
+      emit('error', {});
+      emit('close', {});
+      expect(onStatus).toHaveBeenCalledWith('error');
+      expect(onStatus).toHaveBeenCalledWith('closed');
+    });
+
+    it('stops reporting after close()', () => {
+      const onStatus = vi.fn();
+      const c = createCajutClient({ host: 'h', roomCode: 'A7K2', playerId: 'p1', onStatus });
+      c.close();
+      vi.advanceTimersByTime(CONNECT_TIMEOUT_MS);
+      expect(onStatus).not.toHaveBeenCalled();
+    });
   });
 });

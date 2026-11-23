@@ -10,7 +10,7 @@ import { useGameLocale } from '../locale-context';
 const PLAYER_COLORS = [
   '#1F6E6E', // teal
   '#C44E2C', // terra
-  '#A87A2A', // mostaza
+  '#835F20', // mostaza
   '#2E5E3A', // pine
   '#5B3A4E', // berenjena
   '#8C2F39', // garnet
@@ -112,6 +112,7 @@ export function SetupScreen({ onStart, hasSave, onContinue }: Props) {
   }
 
   return (
+    <div class="ep2">
     <div class="ep2-setup">
       <div class="ep2-setup-card">
         {/* Title */}
@@ -149,7 +150,7 @@ export function SetupScreen({ onStart, hasSave, onContinue }: Props) {
                 {/* Human / AI toggle */}
                 <button
                   class="ep2-player-type-tag"
-                  style={{ background: p.isHuman ? p.color : '#8A7868' }}
+                  style={{ background: p.isHuman ? p.color : 'var(--color-ink-mute)' }}
                   onClick={() => toggleType(idx)}
                   title={c.toggleTitle}
                 >
@@ -199,6 +200,7 @@ export function SetupScreen({ onStart, hasSave, onContinue }: Props) {
           </button>
         </div>
       </div>
+    </div>
     </div>
   );
 }

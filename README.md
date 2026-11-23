@@ -2,69 +2,80 @@
 
 Plataforma editorial para profesores de instituto de economía, empresa y
 finanzas. Estructura **por asignatura**: cada una con libro, diapositivas,
-actividades, tests y recursos. Currículo básico estatal LOMLOE.
+actividades, tests y recursos. Currículo básico estatal LOMLOE (y autonómico
+valenciano en las optativas de Bachillerato).
+Producción: https://www.profedeeconomia.es
 
-> Rebrand de profedeeconomia.es. El sitio actual (webpde) sigue vivo en
-> `legacy.profedeeconomia.es` durante la transición.
+## Asignaturas (10)
 
-## Stack
+Definidas en `src/lib/asignaturas.ts`: `edmn-2bach`, `eco-1bach`, `eco-4eso`,
+`fopp-4eso`, `taller-eco-3eso`, `ipe1-fp`, `ipe2-fp`, `eeae-bach`, `gpe-bach`,
+`cjd-bach`. Todas comparten estructura:
 
-- **Astro 5** + **Preact** (islas para recursos interactivos)
-- **Tailwind 4** (vía `@tailwindcss/vite`)
-- **MDX** para contenido de los libros (single source of truth: del MDX se
-  derivan página web, PDF del libro y diapositivas)
-- **Vercel** (hosting + 301 al edge para `/oposiciones`)
-- **TypeScript estricto**
+```
+/<asignatura>/            hub
+/<asignatura>/libro/      libro y unidades (MDX)
+/<asignatura>/diapositivas/ · actividades/ · tests/ · recursos/
+```
+
+Secciones transversales: `/juegos/`, `/jocs-economics/`, `/herramientas/`,
+`/generadores/`, `/emprendimiento/`, `/debates/`, `/dinamicas/`, `/proyectos/`,
+`/olimpiada/`, `/sobre/`, `/contacto/`, `/legal/`. `/oposiciones` redirige (301)
+a oposicioneseconomia.es.
+
+Idiomas: castellano (raíz) y valenciano (`/ca/`), generado por el i18n de Astro
+(`es` por defecto, sin prefijo).
+
+## Stack y servicios
+
+- Astro 5 + Preact (islas) + Tailwind 4 + MDX, TypeScript estricto.
+- Vercel: salida estática más 10 funciones API (`src/pages/api/jocs/` y
+  `src/pages/api/business-game/`).
+- Supabase (`supabase/migrations/`): ranking de jocs-economics y Business Game.
+- PartyKit (`party/`, `partykit.json`): juegos multijugador Insider y Cajút.
+- Vercel Blob: los PDF no viajan en el deploy; `vercel.json` redirige
+  `/downloads`, `/slides`, `/ebau-examenes` y `/olimpiada` (`*.pdf`) al Blob.
+- GA4 solo con consentimiento previo; Vercel Web Analytics.
 
 ## Comandos
 
 ```bash
-npm install    # primera vez
-npm run dev    # servidor de desarrollo en localhost:4321
-npm run build  # build de producción a dist/
-npm run preview# previsualiza el build
-npm run check  # type-check + linting de Astro
+npm install
+npm run dev            # servidor en localhost:4321
+npm test               # vitest (el pretest regenera manifiestos)
+npm run check          # astro check (tipos)
+npm run build          # build de producción a dist/ (prebuild + postbuild)
+npm run build:all      # OG + build + todos los PDF (libros, cuadernos, decks...)
+npm run build:pdf      # PDF de los libros; otros: build:workbooks, :decks, :debates...
+npm run upload:pdfs    # sube los PDF a Vercel Blob (necesita .env)
+npm run party:dev      # PartyKit en local
+npm run party:deploy   # despliega PartyKit
 ```
 
-## Estructura
+Variables de entorno: ver `.env.example`.
 
-```
-src/
-├── content.config.ts          schema de Content Collections (Astro 5)
-├── content/                   contenido MDX de los libros (vacío al MVP)
-│   └── asignaturas/<slug>/{libro,actividades,tests,recursos}/
-├── lib/
-│   └── asignaturas.ts         single source of truth de las 4 asignaturas
-├── layouts/
-│   └── BaseLayout.astro
-├── components/
-│   ├── SiteHeader.astro
-│   ├── SiteFooter.astro
-│   └── SubjectCard.astro
-├── pages/
-│   ├── index.astro                                home
-│   ├── [asignatura]/index.astro                   hub (4 asignaturas)
-│   ├── [asignatura]/[seccion].astro               diapositivas/actividades/tests/recursos
-│   ├── [asignatura]/libro/index.astro             índice del libro
-│   ├── [asignatura]/libro/[unidad].astro          unidad del libro (renderiza MDX)
-│   ├── juegos/, herramientas/, emprendimiento/    placeholders
-└── styles/
-    └── global.css             tokens Variant C vía @theme
-```
+## Dónde vive cada cosa
 
-## Direcció estètica
+- `src/content/asignaturas/<slug>/...` contenido MDX; `src/content.config.ts`, esquema.
+- `src/pages/`, `src/components/`, `src/layouts/`, `src/lib/`, `src/i18n/`.
+- `scripts/` generadores (PDF, OG, manifiestos); `party/` servidores de juegos.
+- `docs/` documentación (índice en `docs/README.md`); `documents/plans/` planes.
+- `.github/workflows/`: `ci.yml` (tests, tipos, build, diapositivas) y
+  `design-lint.yml` (no bloqueante).
 
-Variant C (validada 2026-05-10): cream `#FBF6EC` + terracota `#C44E2C` +
-mostassa `#D4A24C` con color-coding por asignatura (terracota / teal / mostassa /
-berenjena). Tipografía: **Fraunces** (variable, ejes SOFT/WONK) + **Switzer** +
-**JetBrains Mono**.
+## Despliegue
 
-Spec completa en `CLAUDE.md` §"Direcció estètica" y `docs/PRD.md` §6.3-§6.5.
+Un push a `main` es un deploy de producción en Vercel. Los cambios que no
+afectan al sitio (docs, `.github`, `.claude`) no deben generar build mediante el
+Ignored Build Step de Vercel (se configura en el panel del proyecto, no en este repo).
 
-## Documentación
+## Sitio antiguo (webpde)
 
-- `CLAUDE.md` — guía vinculante del proyecto
-- `docs/PRD.md` — visión, alcance, sitemap, distribución de contenido
-- `docs/migration-map.md` — qué viene del webpde antiguo y a dónde
-- `docs/curriculum-edmn-2bach.md` — currículo del primer libro (12 unidades)
-- `mockups/` — variantes A, B, C en HTML+CSS puros (registro histórico)
+`vercel.json` contiene redirecciones 301 desde las URL del sitio antiguo
+(`/empresa.html`, `/economia-1bach.html`, etc.) hacia las rutas por asignatura.
+El repo no confirma ninguna URL alternativa donde siga vivo el sitio antiguo.
+
+## Más
+
+`docs/README.md` (índice de documentación) y `CLAUDE.md` (decisiones vinculantes,
+estética, flujo de trabajo).

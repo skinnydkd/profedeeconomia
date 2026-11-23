@@ -56,11 +56,11 @@ export function PlayerWaiting({ publicState, privateState }: Props) {
           <span
             key={p.id}
             style={{
-              background: 'var(--cajut-paper)',
-              border: '1px solid var(--cajut-line)',
+              background: 'var(--color-paper)',
+              border: '1px solid var(--color-line)',
               borderRadius: 4,
               padding: '4px 8px',
-              fontSize: 12,
+              fontSize: 14,
             }}
           >
             {p.nick}

@@ -8,7 +8,7 @@ preguntas:
   - enunciado: "Según la unidad, un proyecto de vida bien hecho a los 16 años debe cumplir tres condiciones simultáneamente. ¿Cuáles?"
     opciones:
       - "Ser ambicioso, secreto y modificable solo por el propio autor."
-      - "Estar escrito con la mejor información disponible hoy, marcar una dirección clara y contemplar fechas de revisión."
+      - "Estar escrito con la mejor información de hoy, marcar una dirección y contemplar revisiones."
       - "Estar validado por la familia, refrendado por un profesor y firmado por el alumno."
       - "Ser realista económicamente, alineado con el mercado laboral y aprobado por el departamento de orientación."
     correcta: 1
@@ -16,7 +16,7 @@ preguntas:
   - enunciado: "El acrónimo SMART, introducido por George T. Doran en 1981, exige que un objetivo sea…"
     opciones:
       - "Sencillo, Medible, Ambicioso, Rápido, Trabajado."
-      - "Específico, Medible, Alcanzable, Relevante y con plazo (Time-bound)."
+      - "Específico, Medible, Alcanzable, Relevante y con plazo."
       - "Sostenible, Motivador, Auditable, Realista, Transversal."
       - "Sintético, Memorizable, Asumible, Repetible, Tangible."
     correcta: 1
@@ -31,10 +31,10 @@ preguntas:
     explicacion: "La cuarta es un **deseo**, no un objetivo SMART: *buen trabajo* y *feliz* no son específicos ni medibles, no hay plazo y no hay forma objetiva de comprobar el cumplimiento. Cuando un objetivo no se puede formular SMART, hay que investigarlo más antes de perseguirlo."
   - enunciado: "El plan a tres horizontes temporales que propone la unidad se estructura así:"
     opciones:
-      - "Corto plazo 1 mes, medio plazo 1 año, largo plazo 5 años."
-      - "Corto plazo 6 meses, medio plazo 2 años, largo plazo 7 años."
-      - "Corto plazo 12 meses (muy operativo, SMART completo), medio plazo 3-5 años (varios escenarios), largo plazo 10 años (tipo de vida, no puesto concreto)."
-      - "Corto plazo 3 años, medio plazo 10 años, largo plazo 25 años."
+      - "Corto plazo 1 mes (diario), medio plazo 1 año (curso escolar), largo plazo 5 años (carrera)."
+      - "Corto plazo 6 meses (trimestral), medio plazo 2 años (ciclo formativo), largo plazo 7 años."
+      - "Corto plazo 12 meses (SMART completo), medio 3-5 años (escenarios), largo 10 años (tipo de vida)."
+      - "Corto plazo 3 años (carrera), medio plazo 10 años (vida laboral), largo plazo 25 años (jubilación)."
     correcta: 2
     explicacion: "El **corto plazo (12 meses)** se escribe con objetivos SMART completos porque es lo que se va a trabajar la semana que viene. El **medio plazo (3-5 años)** se escribe con dos o tres escenarios alternativos. El **largo plazo (10 años)** es deliberadamente borroso y describe **tipo de vida**, no puesto concreto."
   - enunciado: "Sobre el largo plazo (horizonte de 10 años), la unidad afirma que…"

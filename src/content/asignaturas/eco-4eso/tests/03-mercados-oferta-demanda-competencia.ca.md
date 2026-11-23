@@ -11,7 +11,7 @@ preguntas:
     opciones:
       - "No, perquè un mercat necessita un lloc físic amb parades."
       - "No, perquè només hi ha un comprador i un venedor."
-      - "Sí: hi ha un demandant, un oferent, un bé i un preu, i això basta."
+      - "Sí: hi ha demandant, oferent, bé i preu, i això basta."
       - "Sí, però només si l'aplicació cobra una comissió per la venda."
     correcta: 2
     explicacion: "Un mercat és qualsevol trobada entre compradors i venedors d'un bé o servici, amb lloc físic o sense. Wallapop, Idealista, la Borsa de Madrid o la cafeteria de l'institut són mercats: en tots hi ha demandants, oferents, un bé i un preu."
@@ -21,7 +21,7 @@ preguntas:
     explicacion: "Fals. La demanda és la quantitat que els compradors estan disposats a comprar i poden pagar a cada preu. Sense capacitat de pagament hi ha desig, però no demanda."
   - enunciado: "Els bitllets d'avió Madrid-Barcelona s'abaratixen molt. Què li passa al mercat del tren en eixa ruta?"
     opciones:
-      - "Baixa la demanda de bitllets de tren, perquè avió i tren són béns substitutius."
+      - "Baixa la demanda de bitllets de tren: avió i tren són substitutius."
       - "Puja la demanda de bitllets de tren, perquè avió i tren són complementaris."
       - "No passa res: el preu de l'avió no afecta el mercat del tren."
       - "Puja l'oferta de bitllets de tren, perquè Renfe voldrà vendre'n més."
@@ -63,10 +63,10 @@ preguntas:
     explicacion: "Són els quatre casos bàsics. Amb ells s'entén el 90 % de les notícies de preus: l'oli es va triplicar el 2023 per un desplaçament de l'oferta a l'esquerra, i l'AVE es va abaratir el 2021 per un desplaçament de l'oferta a la dreta."
   - enunciado: "Un ajuntament fixa un preu màxim de lloguer per davall del preu d'equilibri. Segons el model d'oferta i demanda, què cal esperar?"
     opciones:
-      - "Que baixe el preu dels contractes que es firmen i, a més, que se'n firmen menys."
-      - "Que baixe el preu i que es lloguen més vivendes que abans."
-      - "Que no passe res, perquè els preus els fixa sempre el mercat."
-      - "Que puge el preu, perquè els propietaris compensaran la norma."
+      - "Que baixe el preu dels contractes que se signen i que se'n signen menys."
+      - "Que baixe el preu i que es lloguen més habitatges que abans de la norma."
+      - "Que no passe res, perquè els preus els fixa sempre el mercat lliure."
+      - "Que augmente el preu, perquè els propietaris compensaran la norma pujant la renda."
     correcta: 0
     explicacion: "Un preu màxim només actua si està per davall de l'equilibri, i llavors genera excés de demanda: baixa el preu de qui aconseguix contracte i es reduïx la quantitat intercanviada. És el que van mesurar les dades de Catalunya el 2024: −3,7 % en el lloguer mitjà dels nous contractes i menys contractes firmats."
   - enunciado: "El mercat de l'alta velocitat va passar de tindre només Renfe a tindre Renfe, Ouigo i Iryo. Com es diu cadascuna d'eixes dues situacions?"

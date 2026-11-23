@@ -38,9 +38,9 @@ No vale "creo que" ni "me han dicho que". Cada dato de la ficha debe ir acompañ
 
 El profesor proyecta y demuestra brevemente la navegación de las tres fuentes que el alumno usará:
 
-- **SEPE — Observatorio de las Ocupaciones** ([sepe.es/HomeSepe/que-es-el-sepe/observatorio.html](https://www.sepe.es/HomeSepe/que-es-el-sepe/observatorio.html)). Publica informes anuales por comunidad autónoma con las ocupaciones más contratadas, las que más crecen y las que retroceden. Buscar el "Informe del Mercado de Trabajo" del año en curso.
+- **SEPE — Observatorio de las Ocupaciones** ([sepe.es/HomeSepe/que-es-observatorio.html](https://www.sepe.es/HomeSepe/que-es-observatorio.html)). Publica informes anuales por comunidad autónoma con las ocupaciones más contratadas, las que más crecen y las que retroceden. Buscar el "Informe del Mercado de Trabajo" del año en curso.
 - **INE — Encuesta de Población Activa (EPA)** y **Encuesta Anual de Estructura Salarial** ([ine.es](https://www.ine.es)). La EPA da datos trimestrales de empleo por ocupación; la Estructura Salarial da el salario medio bruto anual por ocupación, sector, sexo y nivel formativo.
-- **Adecco Group Institute — Informe Infoempleo Adecco** ([adeccogroupinstitute.com](https://www.adeccogroupinstitute.com)). Informe anual con proyecciones 2024-2030 de demanda profesional, ocupaciones emergentes y en declive.
+- **Adecco Institute — Informe Infoempleo Adecco** ([adeccoinstitute.es](https://www.adeccoinstitute.es)). Informe anual con proyecciones 2024-2030 de demanda profesional, ocupaciones emergentes y en declive.
 
 *Recomendación: anclar los tres enlaces en el aula virtual antes de la sesión para que nadie pierda tiempo buscándolos.*
 

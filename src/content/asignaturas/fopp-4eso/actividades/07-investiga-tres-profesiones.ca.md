@@ -40,9 +40,9 @@ No val "crec que" ni "m'han dit que". Cada dada de la fitxa ha d'anar acompanyad
 
 El professor projecta i demostra breument la navegació de les tres fonts que l'alumne usarà:
 
-- **SEPE — Observatori de les Ocupacions** ([sepe.es/HomeSepe/que-es-el-sepe/observatorio.html](https://www.sepe.es/HomeSepe/que-es-el-sepe/observatorio.html)). Publica informes anuals per comunitat autònoma amb les ocupacions més contractades, les que més creixen i les que retrocedixen. Buscar l'"Informe del Mercado de Trabajo" de l'any en curs.
+- **SEPE — Observatori de les Ocupacions** ([sepe.es/HomeSepe/que-es-observatorio.html](https://www.sepe.es/HomeSepe/que-es-observatorio.html)). Publica informes anuals per comunitat autònoma amb les ocupacions més contractades, les que més creixen i les que retrocedixen. Buscar l'"Informe del Mercado de Trabajo" de l'any en curs.
 - **INE — Enquesta de Població Activa (EPA)** i **Enquesta Anual d'Estructura Salarial** ([ine.es](https://www.ine.es)). L'EPA dona dades trimestrals d'ocupació per ocupació; l'Estructura Salarial dona el salari mitjà brut anual per ocupació, sector, sexe i nivell formatiu.
-- **Adecco Group Institute — Informe Infoempleo Adecco** ([adeccogroupinstitute.com](https://www.adeccogroupinstitute.com)). Informe anual amb projeccions 2024-2030 de demanda professional, ocupacions emergents i en declivi.
+- **Adecco Institute — Informe Infoempleo Adecco** ([adeccoinstitute.es](https://www.adeccoinstitute.es)). Informe anual amb projeccions 2024-2030 de demanda professional, ocupacions emergents i en declivi.
 
 *Recomanació: ancorar els tres enllaços a l'aula virtual abans de la sessió perquè ningú perda temps buscant-los.*
 

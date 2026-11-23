@@ -33,7 +33,7 @@ El objetivo no es asustarse, sino entrenar el ojo. Quien sabe reconocer las cinc
 
 > Los mensajes son **realistas pero inventados** para la actividad. Ninguna entidad real ha enviado estos textos.
 
-1. **SMS:** *"BANCO: Hemos detectado un acceso no autorizado. Confirma tus datos en las próximas 2h o tu cuenta será bloqueada: http://seguridad-banco-cliente.info"*
+1. **SMS:** *"BANCO: Hemos detectado un acceso no autorizado. Confirma tus datos en las próximas 2h o tu cuenta será bloqueada: `http://seguridad-banco-cliente.info`"*
 2. **Notificación Bizum:** *"Has recibido un Bizum de 15 € de Laura Pérez. Concepto: entradas concierto."*
 3. **Correo:** *"Estimado clietne, su tarjeta a sido suspendida. Pinche aqui para reactivarla y introduzca su PIN completo y CVV."*
 4. **SMS:** *"Tu pedido de Correos no se ha podido entregar. Paga 1,79 € de aduana aquí: bit.ly/corr-eos-pago"*

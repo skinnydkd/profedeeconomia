@@ -21,7 +21,7 @@ slug: "asignaturas/ipe1-fp/actividades/ejercicio-u6-nomina-bruto-neto-coste-empr
 
 ## Plantejament
 
-Ana acaba de firmar el seu primer contracte de treball en una cafeteria. La seua nòmina reflectix un **salari brut mensual de 1.500 €** (contracte indefinit a temps complet, 12 mensualitats més dues pagues extraordinàries —estiu i hivern— de 750 € cadascuna, ja prorratejades a la mensualitat). La jornada és de 40 hores setmanals.
+Ana acaba de firmar el seu primer contracte de treball en una cafeteria. La seua nòmina reflectix un **salari brut mensual de 1.500 €** (contracte indefinit a temps complet, amb les dues pagues extraordinàries —estiu i hivern— ja prorratejades: 18.000 € bruts a l'any repartits en 12 mensualitats iguals de 1.500 €). La jornada és de 40 hores setmanals.
 
 Per a calcular les cotitzacions i la retenció s'apliquen els **tipus vigents el 2026**:
 

@@ -9,10 +9,10 @@ slug: "asignaturas/eco-4eso/tests/10-empresa-tipos-formas-juridicas-organizacion
 preguntas:
   - enunciado: "Què fa una empresa, en termes econòmics?"
     opciones:
-      - "Comprar barat i vendre car, sense més."
-      - "Combinar factors de producció per a crear béns o servicis que algú valora, assumint un risc."
-      - "Donar faena a les persones del seu barri."
-      - "Pagar impostos per a finançar els servicis públics."
+      - "Comprar barat i vendre car, sense transformar ni produir res ella mateixa."
+      - "Combinar factors de producció per a crear béns o serveis, amb risc."
+      - "Donar ocupació a les persones del seu barri i mantindre viu el comerç local."
+      - "Pagar impostos a l'Estat per a finançar els serveis públics i les pensions."
     correcta: 1
     explicacion: "L'empresa coordina treball, capital i recursos per a produir una cosa que altres valoren prou com per a pagar-la. El benefici i l'ocupació són conseqüències d'eixa activitat, no la seua definició."
   - tipo: relacionar
@@ -47,18 +47,18 @@ preguntas:
     explicacion: "Fals, és just al revés. Segons el DIRCE de l'INE, el 99,8 % són pimes i el 94,2 % microempreses de menys de deu persones; més de la meitat no té ni un sol assalariat."
   - enunciado: "Marc demana un préstec de 40.000 € per a la seua botiga i el negoci fa fallida. Quina diferència hi ha entre haver-ho fet com a autònom o com a societat limitada?"
     opciones:
-      - "Cap: el deute és el mateix i respon igual."
-      - "Com a autònom respon amb tot el seu patrimoni present i futur; com a SL respon, en principi, només el patrimoni de la societat."
-      - "Com a SL no cal tornar el préstec."
-      - "Com a autònom només respon amb el que hi haja a la caixa del negoci."
+      - "Cap: el deute és el mateix i es respon igual amb tots els béns personals."
+      - "Autònom: amb tot el seu patrimoni. SL: en principi, només amb el de la societat."
+      - "Com a SL no cal tornar el préstec, perquè el deute se'l queda la societat."
+      - "Com a autònom només respon amb el que hi haja a la caixa i als comptes del negoci."
     correcta: 1
     explicacion: "Eixa és la diferència essencial entre responsabilitat il·limitada i limitada. La lletra menuda: a una SL acabada de crear el banc sol demanar-li un aval personal, i llavors el soci torna a respondre amb el que és seu."
   - enunciado: "Què distingix una cooperativa d'una societat limitada normal?"
     opciones:
-      - "Que no pot tindre beneficis."
-      - "Que els seus socis són alhora treballadors i cadascun té un vot, independentment del capital aportat."
-      - "Que no paga impostos."
-      - "Que només pot dedicar-se a l'agricultura."
+      - "Que no pot obtindre beneficis, perquè el seu objectiu és només social i gratuït."
+      - "Que cada soci hi treballa i té un vot, aporte el que aporte."
+      - "Que no paga cap impost, perquè és una entitat sense ànim de lucre."
+      - "Que només es pot dedicar a l'agricultura, a la pesca o a la ramaderia."
     correcta: 1
     explicacion: "A la cooperativa mana la persona, no el capital: una persona, un vot. Per això Mondragón, Consum o La Fageda funcionen distint d'una SL, on mana qui més participacions té."
   - enunciado: "Des de la Llei 18/2022 «Crea y Crece», quin és el capital mínim per a constituir una societat limitada a Espanya?"

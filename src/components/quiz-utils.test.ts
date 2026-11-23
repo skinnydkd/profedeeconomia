@@ -1,11 +1,14 @@
 import { describe, it, expect } from 'vitest';
 import {
+  leerIntento,
   lecturasNumero,
+  serializarIntento,
   numeroCorrecto,
   ordenesOpciones,
   ordenValido,
   permutacion,
   rngDesde,
+  relacionarCorrecta,
   textoNoNumerico,
   textoPlano,
   trozosInline,
@@ -170,5 +173,33 @@ describe('trozosInline', () => {
 
   it('textoPlano drops the marks', () => {
     expect(textoPlano('Aplicar el principio de **prudencia** y *devengo*')).toBe('Aplicar el principio de prudencia y devengo');
+  });
+});
+
+describe('relacionarCorrecta', () => {
+  // Two right-hand labels are identical (indices 1 and 2): either is right.
+  const derecha = ['Alquiler', 'Gasto variable', 'Gasto variable'];
+  it('accepts an identical label at another index', () => {
+    expect(relacionarCorrecta(derecha, [0, 1], [0, 2])).toBe(true);
+  });
+  it('still rejects a different label', () => {
+    expect(relacionarCorrecta(derecha, [0, 1], [2, 1])).toBe(false);
+  });
+  it('rejects unset answers', () => {
+    expect(relacionarCorrecta(derecha, [0, 1], [0, -1])).toBe(false);
+  });
+});
+
+describe('intento guardado', () => {
+  const e = { idx: 1, respuestas: [2, 'x'], confirmadas: [true, false], ordenes: [[1, 0], []] };
+  it('round-trips', () => {
+    expect(leerIntento(serializarIntento(e), 2)).toEqual(e);
+  });
+  it('ignores corrupt or mismatched data', () => {
+    expect(leerIntento(null, 2)).toBeNull();
+    expect(leerIntento('{nope', 2)).toBeNull();
+    expect(leerIntento(serializarIntento(e), 3)).toBeNull();
+    expect(leerIntento(serializarIntento({ ...e, idx: 5 }), 2)).toBeNull();
+    expect(leerIntento(JSON.stringify({ v: 1, idx: 0, respuestas: [{}, 1], confirmadas: [true, true], ordenes: [[], []] }), 2)).toBeNull();
   });
 });

@@ -28,6 +28,7 @@ export const COPY = {
 export function PassDeviceScreen({ playerName, color, onReady }: Props) {
   const c = COPY[useGameLocale()];
   return (
+    <div class="ep2">
     <div class="ep2-pass">
       <div class="ep2-pass-card">
         <div class="ep2-pass-eyebrow">{c.eyebrow}</div>
@@ -40,6 +41,7 @@ export function PassDeviceScreen({ playerName, color, onReady }: Props) {
           {c.ready}
         </button>
       </div>
+    </div>
     </div>
   );
 }

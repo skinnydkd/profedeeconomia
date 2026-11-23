@@ -67,4 +67,31 @@ describe('GET /api/jocs/leaderboard', () => {
       topPlayer: { playerName: 'Alice', score: 1500 },
     });
   });
+
+  describe('limit/offset parsing', () => {
+    const rangeArgs = async (qs: string) => {
+      const range = vi.fn(() => ({ data: [], error: null }));
+      mockFrom.mockImplementation(() => ({ select: () => ({ order: function () { return this; }, range }) }));
+      const res = await GET({ url: new URL(`http://localhost/api/jocs/leaderboard?type=individual${qs}`) } as any);
+      return { res, args: range.mock.calls[0] as unknown as number[] | undefined };
+    };
+
+    it('falls back to the default for a non-numeric limit', async () => {
+      const { res, args } = await rangeArgs('&limit=abc');
+      expect(res.status).toBe(200);
+      expect(args).toEqual([0, 49]);
+    });
+    it('clamps a negative limit to 1', async () => {
+      const { args } = await rangeArgs('&limit=-5');
+      expect(args).toEqual([0, 0]);
+    });
+    it('clamps a huge limit to 200', async () => {
+      const { args } = await rangeArgs('&limit=99999');
+      expect(args).toEqual([0, 199]);
+    });
+    it('ignores a non-numeric offset', async () => {
+      const { args } = await rangeArgs('&offset=xyz');
+      expect(args).toEqual([0, 49]);
+    });
+  });
 });

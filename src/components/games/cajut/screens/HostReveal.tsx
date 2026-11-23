@@ -55,7 +55,7 @@ export function HostReveal({ publicState }: Props) {
                 style={{
                   marginLeft: 'auto',
                   fontFamily: 'JetBrains Mono, monospace',
-                  fontSize: 13,
+                  fontSize: 14,
                   whiteSpace: 'nowrap',
                 }}
               >
@@ -78,7 +78,7 @@ export function HostReveal({ publicState }: Props) {
                   display: 'flex',
                   justifyContent: 'space-between',
                   padding: '6px 12px',
-                  borderBottom: '1px solid var(--cajut-line-soft)',
+                  borderBottom: '1px solid var(--color-line-soft)',
                   fontSize: 15,
                 }}
               >

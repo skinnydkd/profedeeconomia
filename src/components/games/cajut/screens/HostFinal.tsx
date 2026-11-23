@@ -54,7 +54,7 @@ export function HostFinal({ publicState, onRestart }: Props) {
         <div class="step second">
           {second ? (
             <>
-              <div style={{ fontWeight: 600, fontSize: 13, marginBottom: 6 }}>{c.second}</div>
+              <div style={{ fontWeight: 600, fontSize: 14, marginBottom: 6 }}>{c.second}</div>
               <div style={{ fontSize: 22, fontFamily: 'Fraunces, serif' }}>{second.nick}</div>
               <div style={{ fontFamily: 'JetBrains Mono, monospace', marginTop: 6 }}>
                 {second.score}
@@ -84,7 +84,7 @@ export function HostFinal({ publicState, onRestart }: Props) {
         <div class="step third">
           {third ? (
             <>
-              <div style={{ fontWeight: 600, fontSize: 13, marginBottom: 6 }}>{c.third}</div>
+              <div style={{ fontWeight: 600, fontSize: 14, marginBottom: 6 }}>{c.third}</div>
               <div style={{ fontSize: 20, fontFamily: 'Fraunces, serif' }}>{third.nick}</div>
               <div style={{ fontFamily: 'JetBrains Mono, monospace', marginTop: 6 }}>
                 {third.score}
@@ -109,7 +109,7 @@ export function HostFinal({ publicState, onRestart }: Props) {
               display: 'flex',
               justifyContent: 'space-between',
               padding: '8px 14px',
-              borderBottom: '1px solid var(--cajut-line-soft)',
+              borderBottom: '1px solid var(--color-line-soft)',
               fontSize: 14,
             }}
           >
@@ -126,7 +126,7 @@ export function HostFinal({ publicState, onRestart }: Props) {
           onClick={onRestart}
           style={{
             padding: '12px 28px',
-            background: 'var(--cajut-ink)',
+            background: 'var(--color-ink)',
             color: 'white',
             border: 'none',
             borderRadius: 6,

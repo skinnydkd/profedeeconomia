@@ -22,7 +22,7 @@ type Props = {
 const { title, variant = 'key' } = Astro.props;
 ---
 
-<aside class:list={['takeaways', `takeaways--${variant}`]}>
+<div class:list={['takeaways', `takeaways--${variant}`]}>
   {/* Only functional signs: the decorative ✱ of the key variant is gone (de-slop rule 4). */}
   {variant !== 'key' && (
     <span class="takeaways__icon" aria-hidden="true">{variant === 'warning' ? '!' : '✓'}</span>
@@ -31,7 +31,7 @@ const { title, variant = 'key' } = Astro.props;
   <div class="takeaways__body">
     <slot />
   </div>
-</aside>
+</div>
 
 <style>
   .takeaways {

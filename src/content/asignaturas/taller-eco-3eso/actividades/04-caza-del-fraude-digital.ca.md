@@ -34,7 +34,7 @@ L'objectiu no és espantar-se, sinó entrenar l'ull. Qui sap reconéixer els cin
 
 > Els missatges són **realistes però inventats** per a l'activitat. Cap entitat real ha enviat estos textos.
 
-1. **SMS:** *"BANC: Hem detectat un accés no autoritzat. Confirma les teues dades en les pròximes 2h o el teu compte serà bloquejat: http://seguridad-banco-cliente.info"*
+1. **SMS:** *"BANC: Hem detectat un accés no autoritzat. Confirma les teues dades en les pròximes 2h o el teu compte serà bloquejat: `http://seguridad-banco-cliente.info`"*
 2. **Notificació Bizum:** *"Has rebut un Bizum de 15 € de Laura Pérez. Concepte: entrades concert."*
 3. **Correu:** *"Estimat clietne, la seua targeta a sigut suspesa. Pinche ací per a reactivar-la i introduïsca el seu PIN complet i CVV."*
 4. **SMS:** *"El teu comanda de Correus no s'ha pogut entregar. Paga 1,79 € de duana ací: bit.ly/corr-eos-pago"*

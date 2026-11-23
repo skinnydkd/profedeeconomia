@@ -188,7 +188,7 @@ export function BoardView({ state, onCellClick }: Props) {
               return (
                 <span
                   class="ep2-rd-badge"
-                  style={{ background: owner?.color ?? '#8A7868' }}
+                  style={{ background: owner?.color ?? 'var(--color-ink-mute)' }}
                 >
                   {ps.rdLevel}
                 </span>

@@ -11,22 +11,22 @@ interface Props {
 
 export const COPY = {
   es: {
-    errNombre: 'Introduce tu nombre.',
+    errNombre: 'Introduce tu alias.',
     errCodigo: 'El código tiene 4 caracteres.',
     titulo: 'Insider',
     sub: 'Juego de deducción social con vocabulario económico. Introduce el código que aparece en la pantalla del proyector.',
-    tuNombre: 'Tu nombre',
-    placeholderNombre: 'p. ej. María',
+    tuNombre: 'Tu alias',
+    placeholderNombre: 'p. ej. Lince (sin nombres reales)',
     codigoSala: 'Código de sala',
     unirse: 'Unirse a la partida',
   },
   ca: {
-    errNombre: 'Introduïx el teu nom.',
+    errNombre: 'Introduïx el teu àlies.',
     errCodigo: 'El codi té 4 caràcters.',
     titulo: 'Insider',
     sub: 'Joc de deducció social amb vocabulari econòmic. Introduïx el codi que apareix a la pantalla del projector.',
-    tuNombre: 'El teu nom',
-    placeholderNombre: 'p. ex. Maria',
+    tuNombre: 'El teu àlies',
+    placeholderNombre: 'p. ex. Linx (sense noms reals)',
     codigoSala: 'Codi de sala',
     unirse: "Unix-te a la partida",
   },
@@ -89,7 +89,7 @@ export function PlayerJoin({ onJoin }: Props) {
         </div>
 
         {error && (
-          <p style="color:var(--terra-deep);font-size:12px;margin:0;">{error}</p>
+          <p style="color:var(--color-terra-deep);font-size:12px;margin:0;">{error}</p>
         )}
 
         <button type="submit" class="ins-btn">

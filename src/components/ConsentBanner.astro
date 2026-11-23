@@ -65,6 +65,10 @@ const locale = getLocale(Astro.currentLocale);
     border-radius: 8px;
     box-shadow: 0 12px 32px rgba(42, 31, 24, 0.14);
     padding: 1.25rem 1.35rem 1.15rem;
+    /* WCAG 1.4.10: at 400% zoom the banner scrolls inside itself instead of being cut off. */
+    max-height: calc(100vh - 1.5rem);
+    max-height: calc(100dvh - 1.5rem);
+    overflow-y: auto;
   }
   /* The UA `[hidden] { display: none }` rule loses to the class, so restate it. */
   .consent[hidden] { display: none; }

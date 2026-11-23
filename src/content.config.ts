@@ -459,27 +459,6 @@ const dinamicas = defineCollection({
 });
 
 /* =========================================================
-   juegos — material transversal
-   ========================================================= */
-const juegos = defineCollection({
-  loader: glob({
-    pattern: 'juegos/*.{md,mdx}',
-    base: './src/content',
-  }),
-  schema: z.object({
-    title: z.string(),
-    descripcion: z.string(),
-    nivel_recomendado: z.array(z.string()).min(1),
-    asignatura_principal: z.enum(ASIGNATURA_SLUGS).optional(),
-    duracion: z.string(),
-    modo: z.string(),
-    estado: z.enum(['publicado', 'pendiente_migracion', 'en_desarrollo']),
-    legacy_url: z.string().optional(),
-    lang: z.enum(LANGS).default('es'),
-  }),
-});
-
-/* =========================================================
    jocs-economics — banc de preguntes per al joc multijugador
    Cada fitxer .md = una pregunta; el frontmatter és la font
    de veritat que el builder llegeix per generar el JSON del banc.
@@ -781,7 +760,6 @@ export const collections = {
   dinamicas,
   debates,
   proyectos,
-  juegos,
   jocsEconomicsPreguntas,
   retoCurso,
   olimpiadaFichas,

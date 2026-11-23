@@ -319,7 +319,7 @@ function EconopolyGameInner() {
     return (
       <PassDeviceScreen
         playerName={currentPlayer?.name ?? '?'}
-        color={currentPlayer?.color ?? '#8A7868'}
+        color={currentPlayer?.color ?? 'var(--color-ink-mute)'}
         onReady={readyAfterPass}
       />
     );
@@ -348,7 +348,7 @@ function EconopolyGameInner() {
         <div class="ep2-turn-pill">
           <span
             class="ep2-turn-dot"
-            style={{ background: currentPlayer?.color ?? '#8A7868' }}
+            style={{ background: currentPlayer?.color ?? 'var(--color-ink-mute)' }}
           />
           <span>
             {c.turn}{' '}
@@ -372,7 +372,7 @@ function EconopolyGameInner() {
               {sectorLabel.A} · {sectorLabel.B}
             </span>
             <span>
-              <i style={{ background: '#A87A2A' }} />
+              <i style={{ background: '#835F20' }} />
               <span class="pair">C · D</span>
               {sectorLabel.C} · {sectorLabel.D}
             </span>
