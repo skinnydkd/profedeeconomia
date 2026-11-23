@@ -22,6 +22,9 @@ estado: publicado
 slug: "olimpiada/textos/04-aranceles-guerra-comercial.ca"
 ---
 
+import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
+
 ## Text
 
 En la primavera de 2018, l'administració estatunidenca va anunciar aranzels d'entre el 25 % i el 10 % sobre l'acer i l'alumini importats, respectivament, argumentant raons de seguretat nacional i de defensa de la indústria domèstica. La Unió Europea, la Xina, el Canadà i Mèxic van respondre amb mesures aranzelàries simètriques sobre productes emblemàtics —des de la soia i els texans fins a les motocicletes—. S'inaugurava així un dels episodis més intensos de tensió comercial de les últimes dècades, i amb ell va tornar al primer pla del debat econòmic una pregunta clàssica: a qui beneficia realment un aranzel i a qui perjudica?
@@ -62,6 +65,30 @@ Els defensors del proteccionisme esgrimixen arguments que la teoria reconeix com
 - Efecte sobre el mercat interior: els productors nacionals amplien oferta (guanyen excedent del productor); els consumidors reduïxen demanda i paguen més (perden excedent del consumidor); l'Estat recapta t × quantitat importada.
 - La pèrdua neta es visualitza com dos triangles: un per la sobreproducció domèstica ineficient i un altre pel consum que desapareix; cap d'ells no és capturat per cap agent.
 - Conclusió: l'aranzel redistribuïx sense crear riquesa i destruïx benestar net.
+
+<Diagram caption="Mercat interior de l'acer amb un aranzel de 100 € sobre un preu mundial de 500 € per tona. El preu interior puja a 600 €, la producció nacional passa de Q₁ a Q₂, el consum de Q₄ a Q₃ i les importacions de Q₄ − Q₁ a Q₃ − Q₂. El rectangle és la recaptació (100 € per tona importada) i els dos triangles, la pèrdua neta de benestar. Quantitats esquemàtiques.">
+  <GraficoXY id="g-olt-arancel" titulo="Aranzel sobre l'acer: oferta i demanda interiors" desc="Amb lliure comerç el preu interior és el mundial, 500 euros per tona, i s'importa la diferència entre la quantitat demandada Q₄ i l'oferida Q₁. Un aranzel de 100 euros porta el preu interior a 600: la producció nacional puja fins a Q₂, el consum baixa fins a Q₃ i les importacions es reduïxen de Q₄ − Q₁ a Q₃ − Q₂. El rectangle és la recaptació i els dos triangles, la pèrdua d'eficiència. Les quantitats són esquemàtiques."
+    xMax={650} yMax={800} ejeX="Tones d'acer" ejeY="Euros per tona" simboloX="Q" simboloY="P"
+    yTicks={[500, 600]}
+    series={[
+      { label: 'D', color: 'terra', puntos: Array.from({ length: 43 }, (_, i) => [200 + i * 10, 800 - i * 10]) },
+      { label: 'O', color: 'mustard', puntos: Array.from({ length: 39 }, (_, i) => [i * 10, 400 + i * 10]) },
+      { label: 'Pm', color: 'ink', tenue: true, puntos: [[0, 500], [590, 500]] },
+      { label: 'Pm + t', color: 'ink', puntos: [[0, 600], [590, 600]] },
+    ]}
+    areas={[
+      { color: 'teal', puntos: [[200, 500], [400, 500], [400, 600], [200, 600]] },
+      { color: 'aubergine', fuerte: true, puntos: [[100, 500], [200, 500], [200, 600]] },
+      { color: 'aubergine', fuerte: true, puntos: [[400, 600], [400, 500], [500, 500]] },
+    ]}
+    puntos={[{ x: 100, y: 500, xLabel: 'Q₁' }, { x: 200, y: 600, xLabel: 'Q₂' }, { x: 400, y: 600, xLabel: 'Q₃' }, { x: 500, y: 500, xLabel: 'Q₄' }]}
+    notas={[
+      { x: 300, y: 550, texto: 'Recaptació', color: 'teal', ancla: 'middle' },
+      { x: 150, y: 470, texto: 'Pèrdua', color: 'aubergine', ancla: 'middle' },
+      { x: 450, y: 470, texto: 'Pèrdua', color: 'aubergine', ancla: 'middle' },
+    ]}
+  />
+</Diagram>
 
 **Pregunta 2 — Avantatge comparatiu i lliure comerç**
 

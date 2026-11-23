@@ -31,6 +31,9 @@ estado: publicado
 slug: "olimpiada/fichas/12-fallos-mercado.ca"
 ---
 
+import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
+
 ## De què va
 
 Un mercat competitiu en equilibri assigna els recursos de forma eficient en el sentit de Pareto: preu igual a cost marginal, sense pèrdua irrecuperable de benestar. Este resultat, sintetitzat en els dos teoremes fonamentals del benestar, depén d'un conjunt de condicions que rares vegades es complixen en la seua totalitat. Quan fallen, el mercat produïx resultats subòptims des del punt de vista social. Quatre categories concentren la major part de l'anàlisi: **externalitats**, **béns públics**, **informació asimètrica** i **poder de mercat**.
@@ -51,6 +54,24 @@ Siga una empresa el cost marginal privat de la qual (CMgP) no arreplega el dany 
 
 En equilibri de mercat l'empresa produïx on P = CMgP. Com que CMgS > CMgP, la quantitat produïda (Q\*mercat) supera la socialment òptima (Q\*social). La diferència genera una **pèrdua irrecuperable de benestar**: el cost social de les últimes unitats produïdes excedix el benefici social que reporten.
 
+<Diagram caption="Amb una externalitat negativa el cost marginal social (CMgS) queda per damunt del privat (CMgP); la fletxa marca el dany marginal extern. El mercat produïx Q_mercat, més que l'òptim social Q_social, i el triangle fosc és la pèrdua irrecuperable de benestar.">
+  <GraficoXY id="g-ol-externalidad-negativa" titulo="Externalitat negativa: sobreproducció del mercat" desc="Demanda, cost marginal privat i cost marginal social, que és el privat més el dany marginal extern. El mercat produïx Q_mercat, on la demanda talla el cost marginal privat; l'òptim social Q_social, on talla el cost marginal social, és menor. El triangle entre ambdues quantitats és la pèrdua irrecuperable de benestar."
+    xMax={90} yMax={60} ejeX="Quantitat" ejeY="Preu i costos" simboloX="Q" simboloY="P"
+    series={[
+      { label: 'D', color: 'terra', puntos: [[0, 50], [85, 7.5]] },
+      { label: 'CMgP', color: 'mustard', puntos: [[0, 10], [65, 42.5]] },
+      { label: 'CMgS', color: 'aubergine', puntos: [[0, 20], [65, 52.5]] },
+    ]}
+    areas={[{ color: 'terra', fuerte: true, puntos: [[30, 35], [40, 40], [40, 30]] }]}
+    puntos={[
+      { x: 30, y: 35, label: 'S', xLabel: 'Q_social', yLabel: 'P_s', dx: -5, dy: -16 },
+      { x: 40, y: 30, label: 'M', xLabel: 'Q_mercat', yLabel: 'P_m', dx: -5, dy: -16 },
+    ]}
+    flechas={[{ de: [15, 17.5], a: [15, 27.5] }]}
+    notas={[{ x: 47, y: 29, texto: "Pèrdua de benestar" }]}
+  />
+</Diagram>
+
 ### Externalitat positiva: educació i vacunació
 
 Quan el consum d'un bé genera beneficis a tercers, el benefici marginal social supera el privat:
@@ -58,6 +79,23 @@ Quan el consum d'un bé genera beneficis a tercers, el benefici marginal social 
 **BMgS = BMgP + benefici marginal extern**
 
 El consumidor privat decidix en funció de BMgP, per la qual cosa la quantitat demandada és inferior a l'òptima social. L'educació i la immunitat de ramat són els exemples canònics.
+
+<Diagram caption="Amb una externalitat positiva el benefici marginal social (BMgS) queda per damunt del privat (BMgP). El mercat produïx Q_mercat, menys que l'òptim social Q_social, i el triangle fosc és el benestar que es perd.">
+  <GraficoXY id="g-ol-externalidad-positiva" titulo="Externalitat positiva: infraproducció del mercat" desc="Benefici marginal privat, benefici marginal social, que és el privat més el benefici marginal extern, i cost marginal. El mercat produïx Q_mercat, on el benefici privat talla el cost marginal; l'òptim social Q_social, on el talla el benefici social, és major. El triangle entre ambdues quantitats és la pèrdua de benestar."
+    xMax={100} yMax={70} ejeX="Quantitat" ejeY="Preu, beneficis i costos" simboloX="Q" simboloY="P"
+    series={[
+      { label: 'BMgP', color: 'terra', puntos: [[0, 50], [80, 10]] },
+      { label: 'BMgS', color: 'aubergine', puntos: [[0, 60], [80, 20]] },
+      { label: 'CMg', color: 'mustard', puntos: [[0, 10], [80, 50]] },
+    ]}
+    areas={[{ color: 'terra', fuerte: true, puntos: [[40, 30], [50, 35], [40, 40]] }]}
+    puntos={[
+      { x: 40, y: 30, label: 'M', xLabel: 'Q_mercat', yLabel: 'P_m', dx: -40, dy: 4 },
+      { x: 50, y: 35, label: 'S', xLabel: 'Q_social', yLabel: 'P_s', dx: 30, dy: 4 },
+    ]}
+    notas={[{ x: 60, y: 34, texto: "Pèrdua de benestar" }]}
+  />
+</Diagram>
 
 ### Solucions
 
@@ -117,6 +155,24 @@ El risc moral és un problema d'**acció oculta després de la transacció**: un
 ## Poder de mercat
 
 El **poder de mercat** — la capacitat de fixar preus per damunt del cost marginal — és en si mateix una fallada de mercat quan obeïx a barreres artificials o a rendiments creixents que produïxen concentració natural. El monopoli produïx on **Ingrés Marginal = Cost Marginal**, la qual cosa implica P > CMg i una quantitat inferior a la competitiva. La diferència entre l'excedent del productor guanyat i l'excedent del consumidor i del productor potencial perduts constituïx la **pèrdua irrecuperable de benestar** (triangle de Harberger).
+
+<Diagram caption="El monopoli produïx on IMg = CMg, amb P > CMg i una quantitat menor que la competitiva. La pèrdua irrecuperable de benestar és el triangle de Harberger entre Q_M i Q_CP.">
+  <GraficoXY id="g-ol-monopolio-harberger" titulo="Poder de mercat: monopoli i triangle de Harberger" desc="Demanda decreixent, ingrés marginal i cost marginal constant. El monopolista produïx on l'ingrés marginal iguala el cost marginal i cobra un preu superior al cost marginal; la quantitat és menor que la competitiva i el triangle entre ambdues quantitats és la pèrdua irrecuperable de benestar."
+    xMax={110} yMax={110} ejeX="Quantitat" ejeY="Preu" simboloX="Q" simboloY="P"
+    series={[
+      { label: 'D', color: 'terra', puntos: [[0, 100], [100, 0]], dx: 8, dy: -10 },
+      { label: 'IMg', color: 'mustard', puntos: [[0, 100], [50, 0]], dx: 8, dy: -10 },
+      { label: 'CMg', color: 'ink', puntos: [[0, 20], [95, 20]] },
+    ]}
+    areas={[{ color: 'terra', fuerte: true, puntos: [[40, 60], [80, 20], [40, 20]] }]}
+    puntos={[
+      { x: 40, y: 60, label: 'M', xLabel: 'Q_M', yLabel: 'P_M' },
+      { x: 80, y: 20, label: 'C', xLabel: 'Q_CP', yLabel: 'P_CP', dy: -12 },
+      { x: 40, y: 20, guias: false },
+    ]}
+    notas={[{ x: 55, y: 30, texto: "Pes mort", ancla: 'middle' }]}
+  />
+</Diagram>
 
 **Formes d'intervenció**: regulació de preus (preu igual a cost mitjà per a empreses amb costos decreixents — monopoli natural), legislació antimonopoli (*antitrust*), separació d'activitats en xarxa, regulació d'accés a infraestructures essencials.
 

@@ -25,6 +25,9 @@ lang: es
 estado: publicado
 ---
 
+import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
+
 ## De qué va
 
 Un mercado competitivo en equilibrio asigna los recursos de forma eficiente en el sentido de Pareto: precio igual a coste marginal, sin pérdida irrecuperable de bienestar. Este resultado, sintetizado en los dos teoremas fundamentales del bienestar, depende de un conjunto de condiciones que rara vez se cumplen en su totalidad. Cuando fallan, el mercado produce resultados subóptimos desde el punto de vista social. Cuatro categorías concentran la mayor parte del análisis: **externalidades**, **bienes públicos**, **información asimétrica** y **poder de mercado**.
@@ -45,6 +48,24 @@ Sea una empresa cuyo coste marginal privado (CMgP) no recoge el daño ambiental 
 
 En equilibrio de mercado la empresa produce donde P = CMgP. Como CMgS > CMgP, la cantidad producida (Q\*mercado) supera la socialmente óptima (Q\*social). La diferencia genera una **pérdida irrecuperable de bienestar**: el coste social de las últimas unidades producidas excede el beneficio social que reportan.
 
+<Diagram caption="Con una externalidad negativa el coste marginal social (CMgS) queda por encima del privado (CMgP); la flecha marca el daño marginal externo. El mercado produce Q_mercado, más que el óptimo social Q_social, y el triángulo oscuro es la pérdida irrecuperable de bienestar.">
+  <GraficoXY id="g-ol-externalidad-negativa" titulo="Externalidad negativa: sobreproducción del mercado" desc="Demanda, coste marginal privado y coste marginal social, que es el privado más el daño marginal externo. El mercado produce Q_mercado, donde la demanda corta al coste marginal privado; el óptimo social Q_social, donde corta al coste marginal social, es menor. El triángulo entre ambas cantidades es la pérdida irrecuperable de bienestar."
+    xMax={90} yMax={60} ejeX="Cantidad" ejeY="Precio y costes" simboloX="Q" simboloY="P"
+    series={[
+      { label: 'D', color: 'terra', puntos: [[0, 50], [85, 7.5]] },
+      { label: 'CMgP', color: 'mustard', puntos: [[0, 10], [65, 42.5]] },
+      { label: 'CMgS', color: 'aubergine', puntos: [[0, 20], [65, 52.5]] },
+    ]}
+    areas={[{ color: 'terra', fuerte: true, puntos: [[30, 35], [40, 40], [40, 30]] }]}
+    puntos={[
+      { x: 30, y: 35, label: 'S', xLabel: 'Q_social', yLabel: 'P_s', dx: -5, dy: -16 },
+      { x: 40, y: 30, label: 'M', xLabel: 'Q_mercado', yLabel: 'P_m', dx: -5, dy: -16 },
+    ]}
+    flechas={[{ de: [15, 17.5], a: [15, 27.5] }]}
+    notas={[{ x: 47, y: 29, texto: "Pérdida de bienestar" }]}
+  />
+</Diagram>
+
 ### Externalidad positiva: educación y vacunación
 
 Cuando el consumo de un bien genera beneficios a terceros, el beneficio marginal social supera al privado:
@@ -52,6 +73,23 @@ Cuando el consumo de un bien genera beneficios a terceros, el beneficio marginal
 **BMgS = BMgP + beneficio marginal externo**
 
 El consumidor privado decide en función de BMgP, por lo que la cantidad demandada es inferior a la óptima social. La educación y la inmunización de rebaño son los ejemplos canónicos.
+
+<Diagram caption="Con una externalidad positiva el beneficio marginal social (BMgS) queda por encima del privado (BMgP). El mercado produce Q_mercado, menos que el óptimo social Q_social, y el triángulo oscuro es el bienestar que se pierde.">
+  <GraficoXY id="g-ol-externalidad-positiva" titulo="Externalidad positiva: infraproducción del mercado" desc="Beneficio marginal privado, beneficio marginal social, que es el privado más el beneficio marginal externo, y coste marginal. El mercado produce Q_mercado, donde el beneficio privado corta al coste marginal; el óptimo social Q_social, donde lo corta el beneficio social, es mayor. El triángulo entre ambas cantidades es la pérdida de bienestar."
+    xMax={100} yMax={70} ejeX="Cantidad" ejeY="Precio, beneficios y costes" simboloX="Q" simboloY="P"
+    series={[
+      { label: 'BMgP', color: 'terra', puntos: [[0, 50], [80, 10]] },
+      { label: 'BMgS', color: 'aubergine', puntos: [[0, 60], [80, 20]] },
+      { label: 'CMg', color: 'mustard', puntos: [[0, 10], [80, 50]] },
+    ]}
+    areas={[{ color: 'terra', fuerte: true, puntos: [[40, 30], [50, 35], [40, 40]] }]}
+    puntos={[
+      { x: 40, y: 30, label: 'M', xLabel: 'Q_mercado', yLabel: 'P_m', dx: -40, dy: 4 },
+      { x: 50, y: 35, label: 'S', xLabel: 'Q_social', yLabel: 'P_s', dx: 30, dy: 4 },
+    ]}
+    notas={[{ x: 60, y: 34, texto: "Pérdida de bienestar" }]}
+  />
+</Diagram>
 
 ### Soluciones
 
@@ -111,6 +149,24 @@ El riesgo moral es un problema de **acción oculta después de la transacción**
 ## Poder de mercado
 
 El **poder de mercado** — la capacidad de fijar precios por encima del coste marginal — es en sí mismo un fallo de mercado cuando obedece a barreras artificiales o a rendimientos crecientes que producen concentración natural. El monopolio produce donde **Ingreso Marginal = Coste Marginal**, lo que implica P > CMg y una cantidad inferior a la competitiva. La diferencia entre el excedente del productor ganado y el excedente del consumidor y del productor potencial perdidos constituye la **pérdida irrecuperable de bienestar** (triángulo de Harberger).
+
+<Diagram caption="El monopolio produce donde IMg = CMg, con P > CMg y una cantidad menor que la competitiva. La pérdida irrecuperable de bienestar es el triángulo de Harberger entre Q_M y Q_CP.">
+  <GraficoXY id="g-ol-monopolio-harberger" titulo="Poder de mercado: monopolio y triángulo de Harberger" desc="Demanda decreciente, ingreso marginal y coste marginal constante. El monopolista produce donde el ingreso marginal iguala al coste marginal y cobra un precio superior al coste marginal; la cantidad es menor que la competitiva y el triángulo entre ambas cantidades es la pérdida irrecuperable de bienestar."
+    xMax={110} yMax={110} ejeX="Cantidad" ejeY="Precio" simboloX="Q" simboloY="P"
+    series={[
+      { label: 'D', color: 'terra', puntos: [[0, 100], [100, 0]], dx: 8, dy: -10 },
+      { label: 'IMg', color: 'mustard', puntos: [[0, 100], [50, 0]], dx: 8, dy: -10 },
+      { label: 'CMg', color: 'ink', puntos: [[0, 20], [95, 20]] },
+    ]}
+    areas={[{ color: 'terra', fuerte: true, puntos: [[40, 60], [80, 20], [40, 20]] }]}
+    puntos={[
+      { x: 40, y: 60, label: 'M', xLabel: 'Q_M', yLabel: 'P_M' },
+      { x: 80, y: 20, label: 'C', xLabel: 'Q_CP', yLabel: 'P_CP', dy: -12 },
+      { x: 40, y: 20, guias: false },
+    ]}
+    notas={[{ x: 55, y: 30, texto: "Peso muerto", ancla: 'middle' }]}
+  />
+</Diagram>
 
 **Formas de intervención**: regulación de precios (precio igual a coste medio para empresas con costes decrecientes — monopolio natural), legislación antimonopolio (*antitrust*), separación de actividades en red, regulación de acceso a infraestructuras esenciales.
 

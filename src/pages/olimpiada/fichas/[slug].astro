@@ -5,7 +5,8 @@
  * Conditionally embeds a calculator island when `herramienta` is set.
  */
 import BaseLayout from '@layouts/BaseLayout.astro';
-import { bloqueMeta } from '@/lib/olimpiada';
+import { bloqueMeta, BLOQUE_SLUGS } from '@/lib/olimpiada';
+import SigueItinerario from '@components/olimpiada/SigueItinerario.astro';
 import { localizeFamilias, BLOQUES_OLIMPIADA_CA } from '@/i18n/familias-ca';
 import { getLocale } from '@/i18n/locale';
 import { pickLocalizedEntry } from '@/i18n/content-locale';
@@ -37,9 +38,27 @@ const { Content } = await render(view);
 const bloque = bloqueMeta(d.bloque);
 const [bloqueLocal] = localizeFamilias([bloque], BLOQUES_OLIMPIADA_CA, locale);
 const copy = {
-  es: { fichasOlimpiada: 'Fichas Olimpiada', inicio: 'Inicio', olimpiada: 'Olimpiada', fichas: 'Fichas', conceptos: 'Conceptos:', practicalo: 'Practícalo', preguntasH: 'Preguntas típicas de examen', volver: '← Todas las fichas' },
-  ca: { fichasOlimpiada: 'Fitxes Olimpíada', inicio: 'Inici', olimpiada: 'Olimpíada', fichas: 'Fitxes', conceptos: 'Conceptes:', practicalo: 'Practica-ho', preguntasH: "Preguntes típiques d'examen", volver: '← Totes les fitxes' },
+  es: { fichasOlimpiada: 'Fichas Olimpiada', inicio: 'Inicio', olimpiada: 'Olimpiada', fichas: 'Fichas', conceptos: 'Conceptos:', practicalo: 'Practícalo', preguntasH: 'Preguntas típicas de examen', volver: '← Todas las fichas', texto: 'Texto para comentar:', practica: 'Para practicar:', banco: 'Banco de preguntas', simulacros: 'Simulacros y exámenes de otras convocatorias' },
+  ca: { fichasOlimpiada: 'Fitxes Olimpíada', inicio: 'Inici', olimpiada: 'Olimpíada', fichas: 'Fitxes', conceptos: 'Conceptes:', practicalo: 'Practica-ho', preguntasH: "Preguntes típiques d'examen", volver: '← Totes les fitxes', texto: 'Text per a comentar:', practica: 'Per a practicar:', banco: 'Banc de preguntes', simulacros: "Simulacres i exàmens d'altres convocatòries" },
 }[locale];
+
+// Itinerary: fichas in syllabus order, plus the texts that apply this block.
+const slugDe = (id: string) => id.replace(/^olimpiada\/(fichas|textos)\//, '').replace(/\.(md|mdx)$/, '');
+const fichasEs = (await getCollection('olimpiadaFichas'))
+  .filter((e) => e.data.estado === 'publicado' && e.data.lang === 'es')
+  .sort((a, b) => BLOQUE_SLUGS.indexOf(a.data.bloque) - BLOQUE_SLUGS.indexOf(b.data.bloque) || a.data.orden - b.data.orden || a.id.localeCompare(b.id));
+const pos = fichasEs.findIndex((e) => e.id === entry.id);
+const paso = (e: (typeof fichasEs)[number] | undefined) =>
+  e && { label: '', title: pickLocalizedEntry(e, caById, locale).data.title, href: `/olimpiada/fichas/${slugDe(e.id)}/` };
+const textos = await getCollection('olimpiadaTextos');
+const textosCa = new Map(textos.filter((e) => e.data.estado === 'publicado' && e.data.lang === 'ca').map((e) => [e.id, e]));
+const relacionados = [
+  ...textos
+    .filter((e) => e.data.estado === 'publicado' && e.data.lang === 'es' && e.data.bloque === d.bloque)
+    .map((e) => ({ label: copy.texto, title: pickLocalizedEntry(e, textosCa, locale).data.title, href: `/olimpiada/textos/${slugDe(e.id)}/` })),
+  { label: copy.practica, title: copy.banco, href: '/olimpiada/banco/' },
+  { label: copy.practica, title: copy.simulacros, href: '/olimpiada/simulacros/' },
+];
 
 // Calculator dispatch — only the matching component is imported to keep bundles small.
 // PuntoMuertoCalc, EquilibrioCalc, ElasticidadCalc and ADASSimulator are Preact islands.
@@ -95,7 +114,13 @@ import SectionHeader from '@components/SectionHeader.astro';
         </section>
       )}
 
-      <nav class="back"><a href="/olimpiada/fichas/">{copy.volver}</a></nav>
+      <SigueItinerario
+        locale={locale}
+        anterior={paso(fichasEs[pos - 1])}
+        siguiente={paso(fichasEs[pos + 1])}
+        relacionados={relacionados}
+        volver={{ label: copy.volver, href: '/olimpiada/fichas/' }}
+      />
     </div>
   </section>
 </BaseLayout>

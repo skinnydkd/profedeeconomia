@@ -31,6 +31,9 @@ estado: publicado
 slug: "olimpiada/fichas/07-estructuras-mercado.ca"
 ---
 
+import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
+
 ## De què va
 
 La teoria de les estructures de mercat estudia com el nombre d'oferents, les barreres d'entrada i el grau de diferenciació del producte determinen el poder de fixació de preus de les empreses i, amb això, l'eficiència del resultat de mercat.
@@ -99,29 +102,31 @@ En competència perfecta l'equilibri se situa en **P<sub>CP</sub> = CMg**, maxim
 
 El resultat és un triangle de **pèrdua irrecuperable de benestar** (també anomenat *pèrdua d'eficiència*, *pes mort* o *deadweight loss*): transaccions mútuament beneficioses que no es realitzen perquè el preu monopolístic supera el cost marginal de produir-les.
 
-<svg viewBox="0 0 340 260" width="340" height="260" xmlns="http://www.w3.org/2000/svg" style="display:block;max-width:100%;margin:1.5rem auto;font-family:sans-serif">
-  <line x1="40" y1="220" x2="310" y2="220" stroke="#2A1F18" stroke-width="1.5"/>
-  <line x1="40" y1="20" x2="40" y2="220" stroke="#2A1F18" stroke-width="1.5"/>
-  <text x="315" y="224" font-size="12" fill="#2A1F18">Q</text>
-  <text x="28" y="16" font-size="12" fill="#2A1F18">P</text>
-  <line x1="40" y1="30" x2="290" y2="220" stroke="#1F6E6E" stroke-width="2"/>
-  <text x="292" y="218" font-size="11" fill="#1F6E6E">D</text>
-  <line x1="40" y1="30" x2="165" y2="220" stroke="#D4A24C" stroke-width="2"/>
-  <text x="167" y="218" font-size="11" fill="#D4A24C">IMg</text>
-  <line x1="40" y1="140" x2="290" y2="140" stroke="#C44E2C" stroke-width="2"/>
-  <text x="292" y="138" font-size="11" fill="#C44E2C">CMg</text>
-  <line x1="104" y1="79" x2="104" y2="220" stroke="#2A1F18" stroke-width="1" stroke-dasharray="4 3"/>
-  <line x1="40" y1="79" x2="104" y2="79" stroke="#2A1F18" stroke-width="1" stroke-dasharray="4 3"/>
-  <circle cx="104" cy="140" r="3" fill="#C44E2C"/>
-  <text x="95" y="234" font-size="11" fill="#2A1F18">Q_M</text>
-  <text x="18" y="82" font-size="11" fill="#2A1F18">P_M</text>
-  <line x1="185" y1="140" x2="185" y2="220" stroke="#2A1F18" stroke-width="1" stroke-dasharray="4 3"/>
-  <text x="176" y="234" font-size="11" fill="#2A1F18">Q_CP</text>
-  <text x="18" y="143" font-size="11" fill="#2A1F18">P_CP</text>
-  <polygon points="104,79 185,140 104,140" fill="#C44E2C" fill-opacity="0.25" stroke="#C44E2C" stroke-width="1"/>
-  <text x="115" y="122" font-size="10" fill="#C44E2C">Pes</text>
-  <text x="112" y="134" font-size="10" fill="#C44E2C">mort</text>
-</svg>
+<Diagram caption="El monopolista produïx on IMg = CMg (Q_M) i cobra el preu que marca la demanda per a eixa quantitat (P_M). Davant de la competència perfecta (Q_CP, amb P_CP = CMg) ven menys i més car. El triangle fosc és el pes mort, el rectangle clar el benefici del monopolista (amb CMg constant) i EC l'excedent del consumidor.">
+  <GraficoXY id="g-ol-monopolio" titulo="Equilibri del monopolista i pes mort" desc="Demanda decreixent, ingrés marginal amb la mateixa ordenada en l'origen i el doble de pendent, i cost marginal constant. El monopolista produïx Q_M, on l'ingrés marginal talla el cost marginal, i cobra P_M sobre la demanda. En competència perfecta es produiria Q_CP, on la demanda talla el cost marginal. El triangle entre Q_M i Q_CP és la pèrdua irrecuperable d'eficiència."
+    xMax={110} yMax={110} ejeX="Quantitat" ejeY="Preu" simboloX="Q" simboloY="P"
+    series={[
+      { label: 'D', color: 'terra', puntos: [[0, 100], [100, 0]], dx: 8, dy: -10 },
+      { label: 'IMg', color: 'mustard', puntos: [[0, 100], [50, 0]], dx: 8, dy: -10 },
+      { label: 'CMg', color: 'ink', puntos: [[0, 20], [95, 20]] },
+    ]}
+    areas={[
+      { color: 'teal', puntos: [[0, 100], [40, 60], [0, 60]] },
+      { color: 'mustard', puntos: [[0, 20], [40, 20], [40, 60], [0, 60]] },
+      { color: 'terra', fuerte: true, puntos: [[40, 60], [80, 20], [40, 20]] },
+    ]}
+    puntos={[
+      { x: 40, y: 60, label: 'M', xLabel: 'Q_M', yLabel: 'P_M' },
+      { x: 80, y: 20, label: 'C', xLabel: 'Q_CP', yLabel: 'P_CP', dy: -12 },
+      { x: 40, y: 20, guias: false },
+    ]}
+    notas={[
+      { x: 3, y: 72, texto: 'EC' },
+      { x: 20, y: 38, texto: 'Benefici', ancla: 'middle' },
+      { x: 55, y: 30, texto: 'Pes mort', ancla: 'middle' },
+    ]}
+  />
+</Diagram>
 
 **Conclusió clau**: el monopoli no és eficient en sentit assignatiu (**P > CMg**) ni —tret de coincidència— en sentit productiu. Els remeis habituals són la regulació de preus, la imposició d'un preu màxim igual al CMg, o la propietat pública.
 
@@ -137,6 +142,22 @@ En l'oligopoli hi ha tan poques empreses que les decisions d'una afecten de mane
 - **Competència de Cournot**: cada empresa decidix la seua quantitat suposant constant la quantitat de la rival. L'equilibri se situa entre el resultat competitiu i el monopolístic.
 - **Competència de Bertrand**: empreses amb producte homogeni que competixen en preus → en equilibri P = CMg (idèntic a competència perfecta), resultat cridaner.
 - **Model de demanda trencada (Sweezy)**: explica la rigidesa de preus en oligopoli. Si una empresa puja el preu, les rivals no la seguixen (perd quota); si el baixa, les rivals baixen també (no guanya quota). La corba de demanda té un «colze» i la corba d'IMg presenta una discontinuïtat vertical: variacions moderades del CMg no alteren el preu d'equilibri.
+
+<Diagram caption="Demanda trencada (Sweezy). Per damunt de P* la demanda és més plana, perquè les rivals no seguixen una pujada; per davall és més inclinada, perquè sí que seguixen una baixada. L'IMg salta d'un tram a l'altre i, mentre el CMg talle eixe salt, ni el preu ni la quantitat canvien.">
+  <GraficoXY id="g-ol-demanda-quebrada" titulo="Demanda trencada en l'oligopoli" desc="Demanda amb un colze en el punt K, més plana per damunt i més inclinada per davall. L'ingrés marginal té un salt vertical en la quantitat Q*. Dos corbes de cost marginal, una abans i una altra després d'un augment de costos, tallen eixe salt, de manera que el preu P* i la quantitat Q* no canvien."
+    xMax={100} yMax={70} ejeX="Quantitat" ejeY="Preu" simboloX="Q" simboloY="P"
+    series={[
+      { label: 'D', color: 'terra', puntos: [[0, 60], [40, 50], [80, 10]] },
+      { label: 'IMg', color: 'mustard', puntos: [[0, 60], [40, 40]] },
+      { color: 'mustard', puntos: [[40, 10], [45, 0]] },
+      { color: 'ink', tenue: true, puntos: [[40, 40], [40, 10]] },
+      { label: 'CMg₁', color: 'ink', tenue: true, puntos: [[0, 25], [90, 25]] },
+      { label: 'CMg₂', color: 'ink', puntos: [[0, 35], [90, 35]] },
+    ]}
+    puntos={[{ x: 40, y: 50, label: 'K', xLabel: 'Q*', yLabel: 'P*' }]}
+    notas={[{ x: 41.5, y: 17, texto: "Salt de l'IMg" }]}
+  />
+</Diagram>
 
 ### El dilema del presoner aplicat a l'oligopoli
 
@@ -174,6 +195,25 @@ L'existència de beneficis atrau competidors. L'entrada desplaça la corba de de
 - **P > mínim CMeL** → excés de capacitat: les empreses produïxen en el tram decreixent de la seua corba de CMeL, amb capacitat instal·lada infrautilitzada.
 
 L'excés de capacitat és el «preu de la varietat»: els consumidors valoren la diversitat de productes encara que implique un cost d'eficiència.
+
+<Diagram caption="Equilibri a llarg termini en competència monopolística. L'entrada de rivals desplaça la demanda fins a fer-la tangent al cost mitjà (punt T, P = CMeL, benefici econòmic nul). Com que la tangència cau en el tram decreixent del CMeL, P > CMg i l'empresa produïx Q* per davall de la quantitat de cost mitjà mínim: eixe buit és l'excés de capacitat.">
+  <GraficoXY id="g-ol-competencia-monopolistica" titulo="Competència monopolística a llarg termini" desc="Demanda de l'empresa decreixent i tangent a la corba de cost mitjà a llarg termini en el punt T, dins del seu tram decreixent. L'ingrés marginal talla el cost marginal en Q*, a l'esquerra de la quantitat que minimitza el cost mitjà. El preu en T és major que el cost marginal i que el mínim del cost mitjà, i la distància entre ambdues quantitats és l'excés de capacitat."
+    xMax={100} yMax={48} ejeX="Quantitat" ejeY="Preu i costos" simboloX="Q" simboloY="P"
+    series={[
+      { label: 'D', color: 'terra', puntos: [[0, 36], [85, 2]], dx: 8, dy: -10 },
+      { label: 'IMg', color: 'mustard', puntos: [[0, 36], [45, 0]], dx: 8, dy: -10 },
+      { label: 'CMg', color: 'ink', puntos: Array.from({ length: 12 }, (_, i) => [5 + 5 * i, 45 - 2 * (5 + 5 * i) + 0.03 * (5 + 5 * i) ** 2]) },
+      { label: 'CMeL', color: 'teal', puntos: Array.from({ length: 19 }, (_, i) => [5 + 5 * i, 20 + 0.01 * (5 + 5 * i - 50) ** 2]) },
+    ]}
+    puntos={[
+      { x: 30, y: 24, label: 'T', xLabel: 'Q*', yLabel: 'P' },
+      { x: 30, y: 12, guias: false },
+      { x: 50, y: 20, xLabel: 'Q_mín', yLabel: 'mín' },
+    ]}
+    flechas={[{ de: [30, 28], a: [50, 28] }]}
+    notas={[{ x: 40, y: 30.5, texto: 'Excés de capacitat', ancla: 'middle' }]}
+  />
+</Diagram>
 
 ---
 

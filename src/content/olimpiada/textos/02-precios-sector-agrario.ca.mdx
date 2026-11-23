@@ -16,6 +16,9 @@ estado: publicado
 slug: "olimpiada/textos/02-precios-sector-agrario.ca"
 ---
 
+import Diagram from '@components/Diagram.astro';
+import MercadoGrafico from '@components/diagrams/MercadoGrafico.astro';
+
 ## Text
 
 Els agricultors europeus porten anys denunciant una paradoxa que no apareix en cap manual escolar: en temporada de bona collita, els seus ingressos cauen. Quan la producció de préssecs, taronges o encisams és abundant, el preu en origen —el que rep l'agricultor en la cooperativa o en la llotja— s'enfonsa, a vegades per davall del cost de producció. El supermercat, no obstant això, manté el preu al consumidor pràcticament estable, i el marge que es genera en eixe tram de la cadena no arriba al camp.
@@ -54,12 +57,30 @@ A tot això s'afig una pressió exterior que complica encara més l'equació: la
 - La quantitat efectivament intercanviada és Q<sub>d</sub>(P<sub>min</sub>), la menor de les dos: ningú obliga els compradors a adquirir més del que volen a eixe preu.
 - Error a evitar: no confondre la quantitat oferida amb la quantitat intercanviada; en un excedent el mercat no buida tota l'oferta.
 
+<Diagram caption="Preu mínim per damunt de l'equilibri: a Pmín els agricultors oferixen Qs, els compradors només demanen Qd i la diferència és l'excedent. La quantitat que s'intercanvia és la menor, Qd. Esquema sense xifres.">
+  <MercadoGrafico id="g-olt-precio-minimo" titulo="Preu mínim en origen per damunt de l'equilibri" desc="La demanda i l'oferta es tallen en l'equilibri E, amb preu P* i quantitat Q*. Amb un preu mínim Pmín per damunt de P*, la quantitat oferida Qs supera la demandada Qd i apareix un excedent. Esquema sense xifres."
+    pMax={60} qMax={140} ejeP="Preu en origen" ejeQ="Quantitat d'hortalisses"
+    curvas={[{ tipo: 'D', q0: 100, m: -1, pDe: 5, label: 'D' }, { tipo: 'O', q0: -20, m: 3, pA: 42, label: 'O' }]}
+    puntos={[{ p: 30, q: 70, label: 'E', pLabel: 'P*', qLabel: 'Q*', dx: 14, dy: 8 }, { p: 40, q: 60, pLabel: 'Pmín', qLabel: 'Qd' }, { p: 40, q: 100, qLabel: 'Qs' }]}
+    precio={{ p: 40, label: 'Preu mínim' }}
+    tramo={{ p: 40, q1: 60, q2: 100, label: 'Excedent' }}
+  />
+</Diagram>
+
 ### Pregunta 2 — Paradoxa de l'ingrés i inelasticitat
 
 - Condició necessària: |E<sub>p</sub><sup>d</sup>| < 1 (demanda inelàstica).
 - Mecanisme: la bona collita desplaça la corba d'oferta a la dreta → P cau → Q<sub>d</sub> augmenta, però menys que proporcionalment → l'efecte preu domina → IT = P × Q cau.
 - Exemple numèric: si P baixa un 20 % i |E| = 0,4 → Q puja només un 8 % → IT canvia de 100 a (0,8P × 1,08Q) ≈ 0,864 del valor inicial → l'ingrés cau un 13,6 % aproximadament.
 - Implicació política: els agricultors poden preferir retindre o destruir producció per a sostindre el preu; el mercat agrari sense intervenció pot ser inestable (cicle del porc).
+
+<Diagram caption="Bona collita: l'oferta passa d'O₁ a O₂. Amb una demanda inelàstica, el preu cau de P₁ a P₂ molt més del que augmenta la quantitat, de Q₁ a Q₂, i l'ingrés P × Q dels agricultors disminuïx. El mateix desplaçament de l'oferta es produïx quan l'euro s'aprecia i entren més importacions. Esquema sense xifres.">
+  <MercadoGrafico id="g-olt-cosecha" titulo="Bona collita amb demanda inelàstica" desc="L'oferta es desplaça a la dreta, d'O₁ a O₂, sobre una demanda molt inclinada. El preu cau de P₁ a P₂ molt més del que puja la quantitat, de Q₁ a Q₂, de manera que l'ingrés P × Q disminuïx. Esquema sense xifres."
+    pMax={60} qMax={120} ejeP="Preu en origen" ejeQ="Quantitat d'hortalisses"
+    curvas={[{ tipo: 'D', q0: 100, m: -1, pDe: 5, label: 'D' }, { tipo: 'O', q0: -20, m: 3, pA: 40, label: 'O₁', tenue: true }, { tipo: 'O', q0: 20, m: 3, pA: 28, label: 'O₂' }]}
+    puntos={[{ p: 30, q: 70, label: 'E₁', pLabel: 'P₁', qLabel: 'Q₁', dx: 14, dy: 8 }, { p: 20, q: 80, label: 'E₂', pLabel: 'P₂', qLabel: 'Q₂', dx: 14, dy: 8 }]}
+  />
+</Diagram>
 
 ### Pregunta 3 — Cadena de valor i poder de negociació
 

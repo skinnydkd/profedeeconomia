@@ -21,6 +21,9 @@ estado: publicado
 slug: "olimpiada/textos/01-silicon-valley-bank.ca"
 ---
 
+import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
+
 Silicon Valley Bank (SVB) era, abans de març de 2023, el setzé banc per grandària dels Estats Units i el banc de referència de l'ecosistema tecnològic de Califòrnia: startups, fons de capital risc i empreses d'alt creixement hi depositaven les seues tresoreries i obtenien línies de crèdit per a finançar la seua operativa. Amb un balanç que en el seu moment àlgid superava els 200.000 milions de dòlars en actius, SVB pareixia un pilar sòlid de les finances de Silicon Valley. En pocs dies de març de 2023, es va convertir en la major fallida bancària estatunidenca des de la crisi financera de 2008.
 
 L'origen del col·lapse no va ser una cartera de préstecs fallits ni un frau, sinó una cosa aparentment més tècnica: la pujada de tipus d'interés. Durant els anys de tipus zero i expansió quantitativa (2020-2021), SVB va rebre una allau de depòsits d'empreses tecnològiques ben finançades. Per a rendibilitzar eixos diners, el banc va invertir una part molt important d'eixos fons en bons del Tresor dels Estats Units i en títols hipotecaris a llarg termini, actius considerats segurs però amb venciments molt llunyans. Quan la Reserva Federal (Fed), el banc central estatunidenc, va començar en 2022 la pujada de tipus més ràpida en dècades —per a combatre una inflació que va assolir màxims de quaranta anys—, el preu de mercat d'eixos bons es va desplomar. La raó és una relació matemàtica invariable: el preu d'un bo ja emés i el tipus d'interés vigent es mouen en sentit invers. Si els nous bons oferixen un cupó major, els bons antics amb cupons més baixos perden atractiu i, per tant, valor en el mercat secundari.
@@ -68,6 +71,15 @@ La fallida de SVB va ser, en última instància, l'efecte col·lateral d'una pol
 - Si els tipus baixen, els bons antics (cupó més alt que el mercat) s'aprecien → el seu preu puja.
 - En SVB: va comprar bons a tipus baixos (2020-2021); quan els tipus van pujar bruscament, eixos bons van perdre valor de mercat, i van generar pèrdues latents que superaven el capital del banc.
 
+<Diagram caption="Relació inversa entre el tipus d'interés de mercat i el preu d'un bo ja emés. Del punt A (tipus baixos, 2020-2021) al punt B (tipus alts després de la pujada de 2022), el preu cau de P₁ a P₂. Esquema sense xifres.">
+  <GraficoXY id="g-olt-bono" titulo="Preu d'un bo i tipus d'interés" desc="Corba descendent: com més gran és el tipus d'interés de mercat, menor és el preu d'un bo ja emés. Quan el tipus passa de i₁ a i₂, el preu baixa de P₁ a P₂. Esquema sense xifres."
+    xMax={11} yMax={36} ejeX="Tipus d'interés de mercat" ejeY="Preu del bo" simboloX="i" simboloY="P"
+    series={[{ label: 'P(i)', color: 'terra', puntos: Array.from({ length: 15 }, (_, i) => [2 + i * 0.5, 60 / (2 + i * 0.5)]) }]}
+    puntos={[{ x: 3, y: 20, label: 'A', xLabel: 'i₁', yLabel: 'P₁' }, { x: 6, y: 10, label: 'B', xLabel: 'i₂', yLabel: 'P₂' }]}
+    flechas={[{ de: [3, 20], a: [6, 10], despl: -10 }]}
+  />
+</Diagram>
+
 ### Pregunta 3 — Fons de Garantia de Depòsits (FGD)
 
 - És un mecanisme —finançat pels mateixos bancs mitjançant aportacions periòdiques— que garantix als depositants la devolució dels seus fons fins a un límit determinat si una entitat fa fallida.
@@ -91,3 +103,12 @@ La fallida de SVB va ser, en última instància, l'efecte col·lateral d'una pol
 - Si el banc central eleva r: els bancs han de mantenir més reserves → presten menys → es creen menys diners bancaris → l'oferta monetària es contrau (efecte restrictiu).
 - Si el banc central reduïx r: els bancs poden prestar més → es creen més diners bancaris → l'oferta monetària s'expandix (efecte expansiu).
 - Relació amb SVB: el banc operava amb reserves mínimes i havia invertit l'excés de liquiditat en bons a llarg termini, la qual cosa va agreujar el desajust entre actius il·líquids i passius exigibles a la vista quan els depositants van reclamar els seus diners simultàniament.
+
+<Diagram caption="Multiplicador dels diners M = 1/r. Amb un coeficient de caixa del 10 %, M = 10: un depòsit de 1 000 € permet fins a 10 000 € de diners bancaris. Si el banc central eleva r, el multiplicador baixa.">
+  <GraficoXY id="g-olt-multiplicador" titulo="Multiplicador dels diners i coeficient de caixa" desc="Corba descendent M = 1/r: com més gran és el coeficient de caixa, menor és el multiplicador. Amb r = 10 % el multiplicador val 10."
+    xMax={50} yMax={24} ejeX="Coeficient de caixa (r)" ejeY="Multiplicador (M)" simboloX="r" simboloY="M"
+    xTicks={[10, 20, 30, 40]} xTickLabels={['10 %', '20 %', '30 %', '40 %']} yTicks={[5, 10, 15, 20]}
+    series={[{ label: 'M = 1/r', color: 'terra', puntos: Array.from({ length: 35 }, (_, i) => [5 + i, 100 / (5 + i)]) }]}
+    puntos={[{ x: 10, y: 10, label: 'r = 10 %: M = 10', dx: 14, dy: -12 }]}
+  />
+</Diagram>

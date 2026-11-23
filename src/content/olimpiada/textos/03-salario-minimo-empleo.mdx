@@ -16,6 +16,9 @@ lang: es
 estado: publicado
 ---
 
+import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
+
 ## Texto
 
 El debate sobre los efectos del salario mínimo en el empleo es uno de los más longevos y fértiles de la economía laboral. Durante décadas, el modelo estándar de competencia perfecta ofreció una respuesta nítida: si el Estado fija un salario mínimo interprofesional (SMI) por encima del salario de equilibrio de mercado, se produce un **exceso de oferta de trabajo**. A ese precio artificialmente elevado, las empresas demandan menos trabajadores —la cantidad demandada de trabajo cae— mientras que más personas desean emplearse —la cantidad ofrecida aumenta—. La diferencia entre ambas magnitudes es desempleo involuntario. El salario mínimo actúa, en términos analíticos, como un **suelo de precios** (*price floor*) en el mercado de trabajo: igual que un precio mínimo de un bien genera un excedente no vendido, el SMI generaría un excedente de trabajadores dispuestos a trabajar pero sin encontrar empleo.
@@ -55,12 +58,48 @@ En definitiva, el salario mínimo ilustra con precisión una lección metodológ
 - Si la demanda de trabajo es muy inelástica (p. ej. trabajos difícilmente automatizables), la caída del empleo es pequeña. Si es elástica, la caída es mayor.
 - Si la oferta de trabajo es muy elástica, el exceso de oferta es mayor para una misma subida del SMI.
 
+<Diagram caption="Mercado de trabajo competitivo con un salario mínimo (SMI) por encima del de equilibrio. A ese salario las empresas demandan Ld y los trabajadores ofrecen Ls: el exceso de oferta es desempleo involuntario. Esquema sin cifras.">
+  <GraficoXY id="g-olt-smi" titulo="Salario mínimo por encima del equilibrio" desc="La demanda de trabajo, decreciente, y la oferta, creciente, se cortan en E. Con un SMI por encima del salario de equilibrio, las empresas demandan Ld y los trabajadores ofrecen Ls, una cantidad mayor: la diferencia es desempleo. Esquema sin cifras."
+    xMax={100} yMax={100} ejeX="Empleo (trabajadores)" ejeY="Salario" simboloX="L" simboloY="w"
+    series={[
+      { label: 'Demanda', color: 'terra', puntos: [[10, 85], [85, 10]] },
+      { label: 'Oferta', color: 'mustard', puntos: [[10, 15], [85, 90]] },
+      { label: 'SMI', color: 'ink', puntos: [[0, 65], [94, 65]] },
+      { color: 'teal', puntos: [[30, 65], [60, 65]] },
+    ]}
+    puntos={[
+      { x: 45, y: 50, label: 'E', xLabel: 'L*', yLabel: 'w*', dx: 16, dy: 6 },
+      { x: 30, y: 65, xLabel: 'Ld', yLabel: 'SMI' },
+      { x: 60, y: 65, xLabel: 'Ls' },
+    ]}
+    notas={[{ x: 45, y: 70, texto: 'Desempleo', color: 'teal', ancla: 'middle' }]}
+  />
+</Diagram>
+
 **Pregunta 2 — Monopsonio**
 
 - Definición: mercado en que hay un único comprador (o pocos) de trabajo; el empleador tiene poder para fijar el salario por debajo del producto marginal del trabajador.
 - En monopsonio puro, el empleador maximiza igualando el coste marginal del trabajo (CMgL) al valor del producto marginal (VPMgL), pero el CMgL supera el salario que paga → contrata menos trabajadores y paga menos que en competencia perfecta.
 - Un salario mínimo entre el salario monopsonístico y el competitivo puede elevar a la vez el empleo y el salario: el empleador ya no puede pagar menos, y contratar a una persona más ya no le obliga a subir el sueldo de toda la plantilla. Contrata hasta donde la oferta de trabajo a ese salario se lo permite, que es más que antes.
 - Esto explica los resultados de Card & Krueger: si los mercados de comida rápida tienen características de oligopsonio, la subida del salario mínimo no reduce el empleo.
+
+<Diagram caption="Monopsonio. El empleador contrata hasta donde el coste marginal del trabajo (CMgL) iguala el valor del producto marginal (VPMgL): empleo LM y salario wM, por debajo del resultado competitivo C. Un SMI entre wM y wC obliga a pagar al menos ese salario y el empleo sube hasta L mín. Esquema sin cifras.">
+  <GraficoXY id="g-olt-monopsonio" titulo="Monopsonio y salario mínimo" desc="Un empleador con poder de monopsonio contrata hasta que el coste marginal del trabajo iguala el valor del producto marginal, con empleo LM y salario wM, ambos menores que los competitivos LC y wC. Un SMI entre wM y wC lleva el empleo a L mín, mayor que LM, y sube el salario. Esquema sin cifras."
+    xMax={100} yMax={100} ejeX="Empleo (trabajadores)" ejeY="Salario" simboloX="L" simboloY="w"
+    series={[
+      { label: 'VPMgL', color: 'terra', puntos: [[10, 90], [85, 15]] },
+      { label: 'Ls', color: 'mustard', puntos: [[5, 15], [85, 95]] },
+      { label: 'CMgL', color: 'aubergine', puntos: [[5, 20], [42, 94]] },
+      { color: 'ink', puntos: [[0, 48], [38, 48]] },
+    ]}
+    puntos={[
+      { x: 30, y: 70, label: 'A', guias: false, dx: -26, dy: 6 },
+      { x: 30, y: 40, label: 'M', xLabel: 'LM', yLabel: 'wM', dx: 12, dy: 18 },
+      { x: 38, y: 48, label: 'F', xLabel: 'L mín', yLabel: 'SMI', dx: 12, dy: 18 },
+      { x: 45, y: 55, label: 'C', xLabel: 'LC', yLabel: 'wC', dx: 14, dy: 6 },
+    ]}
+  />
+</Diagram>
 
 **Pregunta 3 — Experimento natural y diseño de Card & Krueger**
 

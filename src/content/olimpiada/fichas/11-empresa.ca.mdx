@@ -31,6 +31,9 @@ estado: publicado
 slug: "olimpiada/fichas/11-empresa.ca"
 ---
 
+import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
+
 ## De què va
 
 L'empresa és la unitat econòmica bàsica de producció en una economia de mercat. Combina factors productius —treball, capital, matèries primeres— per a obtindre béns i serveis que oferix en el mercat a canvi d'un preu. La seua anàlisi en l'Olimpíada abraça tres eixos: qui la dirigix i assumix el risc, quina forma jurídica adopta, com creix, i com s'organitza internament.
@@ -114,6 +117,21 @@ Més del 99 % del teixit empresarial espanyol són PIME.
 ### Economies d'escala
 
 Es produïxen quan, en augmentar el volum de producció, el **cost mitjà unitari disminuïx**. Les seues fonts principals són: repartiment de costos fixos entre més unitats, més poder de negociació, especialització del treball i del capital, eficiència en compres. Les **deseconomies d'escala** apareixen quan la grandària excessiva genera problemes de coordinació i burocràcia que eleven el cost mitjà.
+
+<Diagram caption="Esquema del cost mitjà unitari segons el volum de producció: baixa mentre l'empresa creix (economies d'escala) i torna a pujar quan la grandària excessiva encarix la coordinació (deseconomies d'escala).">
+  <GraficoXY id="g-ol-economias-escala" titulo="Economies i deseconomies d'escala" desc="Corba de cost mitjà unitari en forma d'U. A l'esquerra del mínim el cost mitjà baixa en augmentar la producció, que són les economies d'escala; a la dreta torna a pujar, que són les deseconomies d'escala."
+    xMax={110} yMax={50} ejeX="Volum de producció" ejeY="Cost mitjà unitari" simboloX="Q" simboloY="€"
+    series={[
+      { label: "Cost mitjà", color: 'teal', puntos: Array.from({ length: 19 }, (_, i) => [5 + 5 * i, 20 + 0.01 * (5 + 5 * i - 50) ** 2]) },
+      { color: 'ink', tenue: true, puntos: [[50, 0], [50, 20]] },
+    ]}
+    flechas={[{ de: [8, 13], a: [46, 13] }, { de: [54, 13], a: [96, 13] }]}
+    notas={[
+      { x: 27, y: 8, texto: "Economies d'escala", ancla: 'middle' },
+      { x: 75, y: 8, texto: "Deseconomies d'escala", ancla: 'middle' },
+    ]}
+  />
+</Diagram>
 
 ---
 

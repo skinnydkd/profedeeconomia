@@ -7,6 +7,7 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 import { getLocale } from '@/i18n/locale';
 import { pickLocalizedEntry } from '@/i18n/content-locale';
 import { getCollection, render } from 'astro:content';
+import SigueItinerario from '@components/olimpiada/SigueItinerario.astro';
 import type { GetStaticPaths } from 'astro';
 import SectionHeader from '@components/SectionHeader.astro';
 
@@ -34,9 +35,20 @@ const caById = new Map(
 const view = pickLocalizedEntry(entry, caById, locale);
 const d = view.data;
 const { Content } = await render(view);
+
+// Itinerary: texts in order, plus the ficha that explains this text's block.
+const slugDe = (id: string) => id.replace(/^olimpiada\/(fichas|textos)\//, '').replace(/\.(md|mdx)$/, '');
+const textosEs = (await getCollection('olimpiadaTextos'))
+  .filter((e) => e.data.estado === 'publicado' && e.data.lang === 'es')
+  .sort((a, b) => a.data.orden - b.data.orden || a.id.localeCompare(b.id));
+const pos = textosEs.findIndex((e) => e.id === entry.id);
+const paso = (e: (typeof textosEs)[number] | undefined) =>
+  e && { label: '', title: pickLocalizedEntry(e, caById, locale).data.title, href: `/olimpiada/textos/${slugDe(e.id)}/` };
+const fichas = await getCollection('olimpiadaFichas');
+const fichasCa = new Map(fichas.filter((e) => e.data.estado === 'publicado' && e.data.lang === 'ca').map((e) => [e.id, e]));
 const copy = {
-  es: { taller: 'Taller de textos', inicio: 'Inicio', olimpiada: 'Olimpiada', volver: '← Todos los textos' },
-  ca: { taller: 'Taller de textos', inicio: 'Inici', olimpiada: 'Olimpíada', volver: '← Tots els textos' },
+  es: { taller: 'Taller de textos', inicio: 'Inicio', olimpiada: 'Olimpiada', volver: '← Todos los textos', ficha: 'Ficha del bloque:', practica: 'Para practicar:', banco: 'Banco de preguntas' },
+  ca: { taller: 'Taller de textos', inicio: 'Inici', olimpiada: 'Olimpíada', volver: '← Tots els textos', ficha: 'Fitxa del bloc:', practica: 'Per a practicar:', banco: 'Banc de preguntes' },
 }[locale];
 ---
 
@@ -63,7 +75,18 @@ const copy = {
         <Content />
       </article>
 
-      <nav class="back"><a href="/olimpiada/textos/">{copy.volver}</a></nav>
+      <SigueItinerario
+        locale={locale}
+        anterior={paso(textosEs[pos - 1])}
+        siguiente={paso(textosEs[pos + 1])}
+        relacionados={[
+          ...fichas
+            .filter((e) => e.data.estado === 'publicado' && e.data.lang === 'es' && e.data.bloque === d.bloque)
+            .map((e) => ({ label: copy.ficha, title: pickLocalizedEntry(e, fichasCa, locale).data.title, href: `/olimpiada/fichas/${slugDe(e.id)}/` })),
+          { label: copy.practica, title: copy.banco, href: '/olimpiada/banco/' },
+        ]}
+        volver={{ label: copy.volver, href: '/olimpiada/textos/' }}
+      />
     </div>
   </section>
 </BaseLayout>

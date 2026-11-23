@@ -25,6 +25,9 @@ lang: es
 estado: publicado
 ---
 
+import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
+
 ## De qué va
 
 La teoría de las estructuras de mercado estudia cómo el número de oferentes, las barreras de entrada y el grado de diferenciación del producto determinan el poder de fijación de precios de las empresas y, con ello, la eficiencia del resultado de mercado.
@@ -93,29 +96,31 @@ En competencia perfecta el equilibrio se sitúa en **P<sub>CP</sub> = CMg**, max
 
 El resultado es un triángulo de **pérdida irrecuperable de bienestar** (también llamado *pérdida de eficiencia*, *peso muerto* o *deadweight loss*): transacciones mutuamente beneficiosas que no se realizan porque el precio monopólico supera el coste marginal de producirlas.
 
-<svg viewBox="0 0 340 260" width="340" height="260" xmlns="http://www.w3.org/2000/svg" style="display:block;max-width:100%;margin:1.5rem auto;font-family:sans-serif">
-  <line x1="40" y1="220" x2="310" y2="220" stroke="#2A1F18" stroke-width="1.5"/>
-  <line x1="40" y1="20" x2="40" y2="220" stroke="#2A1F18" stroke-width="1.5"/>
-  <text x="315" y="224" font-size="12" fill="#2A1F18">Q</text>
-  <text x="28" y="16" font-size="12" fill="#2A1F18">P</text>
-  <line x1="40" y1="30" x2="290" y2="220" stroke="#1F6E6E" stroke-width="2"/>
-  <text x="292" y="218" font-size="11" fill="#1F6E6E">D</text>
-  <line x1="40" y1="30" x2="165" y2="220" stroke="#D4A24C" stroke-width="2"/>
-  <text x="167" y="218" font-size="11" fill="#D4A24C">IMg</text>
-  <line x1="40" y1="140" x2="290" y2="140" stroke="#C44E2C" stroke-width="2"/>
-  <text x="292" y="138" font-size="11" fill="#C44E2C">CMg</text>
-  <line x1="104" y1="79" x2="104" y2="220" stroke="#2A1F18" stroke-width="1" stroke-dasharray="4 3"/>
-  <line x1="40" y1="79" x2="104" y2="79" stroke="#2A1F18" stroke-width="1" stroke-dasharray="4 3"/>
-  <circle cx="104" cy="140" r="3" fill="#C44E2C"/>
-  <text x="95" y="234" font-size="11" fill="#2A1F18">Q_M</text>
-  <text x="18" y="82" font-size="11" fill="#2A1F18">P_M</text>
-  <line x1="185" y1="140" x2="185" y2="220" stroke="#2A1F18" stroke-width="1" stroke-dasharray="4 3"/>
-  <text x="176" y="234" font-size="11" fill="#2A1F18">Q_CP</text>
-  <text x="18" y="143" font-size="11" fill="#2A1F18">P_CP</text>
-  <polygon points="104,79 185,140 104,140" fill="#C44E2C" fill-opacity="0.25" stroke="#C44E2C" stroke-width="1"/>
-  <text x="115" y="122" font-size="10" fill="#C44E2C">Peso</text>
-  <text x="112" y="134" font-size="10" fill="#C44E2C">muerto</text>
-</svg>
+<Diagram caption="El monopolista produce donde IMg = CMg (Q_M) y cobra el precio que marca la demanda para esa cantidad (P_M). Frente a la competencia perfecta (Q_CP, con P_CP = CMg) vende menos y más caro. El triángulo oscuro es el peso muerto, el rectángulo claro el beneficio del monopolista (con CMg constante) y EC el excedente del consumidor.">
+  <GraficoXY id="g-ol-monopolio" titulo="Equilibrio del monopolista y peso muerto" desc="Demanda decreciente, ingreso marginal con la misma ordenada en el origen y el doble de pendiente, y coste marginal constante. El monopolista produce Q_M, donde el ingreso marginal corta al coste marginal, y cobra P_M sobre la demanda. En competencia perfecta se produciría Q_CP, donde la demanda corta al coste marginal. El triángulo entre Q_M y Q_CP es la pérdida irrecuperable de eficiencia."
+    xMax={110} yMax={110} ejeX="Cantidad" ejeY="Precio" simboloX="Q" simboloY="P"
+    series={[
+      { label: 'D', color: 'terra', puntos: [[0, 100], [100, 0]], dx: 8, dy: -10 },
+      { label: 'IMg', color: 'mustard', puntos: [[0, 100], [50, 0]], dx: 8, dy: -10 },
+      { label: 'CMg', color: 'ink', puntos: [[0, 20], [95, 20]] },
+    ]}
+    areas={[
+      { color: 'teal', puntos: [[0, 100], [40, 60], [0, 60]] },
+      { color: 'mustard', puntos: [[0, 20], [40, 20], [40, 60], [0, 60]] },
+      { color: 'terra', fuerte: true, puntos: [[40, 60], [80, 20], [40, 20]] },
+    ]}
+    puntos={[
+      { x: 40, y: 60, label: 'M', xLabel: 'Q_M', yLabel: 'P_M' },
+      { x: 80, y: 20, label: 'C', xLabel: 'Q_CP', yLabel: 'P_CP', dy: -12 },
+      { x: 40, y: 20, guias: false },
+    ]}
+    notas={[
+      { x: 3, y: 72, texto: 'EC' },
+      { x: 20, y: 38, texto: 'Beneficio', ancla: 'middle' },
+      { x: 55, y: 30, texto: 'Peso muerto', ancla: 'middle' },
+    ]}
+  />
+</Diagram>
 
 **Conclusión clave**: el monopolio no es eficiente en sentido asignativo (**P > CMg**) ni —salvo coincidencia— en sentido productivo. Los remedios habituales son la regulación de precios, la imposición de un precio máximo igual al CMg, o la propiedad pública.
 
@@ -131,6 +136,22 @@ En el oligopolio hay tan pocas empresas que las decisiones de una afectan de for
 - **Competencia de Cournot**: cada empresa decide su cantidad suponiendo constante la cantidad de la rival. El equilibrio se sitúa entre el resultado competitivo y el monopolístico.
 - **Competencia de Bertrand**: empresas con producto homogéneo que compiten en precios → en equilibrio P = CMg (idéntico a competencia perfecta), resultado llamativo.
 - **Modelo de demanda quebrada (Sweezy)**: explica la rigidez de precios en oligopolio. Si una empresa sube el precio, las rivales no la siguen (pierde cuota); si lo baja, las rivales bajan también (no gana cuota). La curva de demanda tiene un «codo» y la curva de IMg presenta una discontinuidad vertical: variaciones moderadas del CMg no alteran el precio de equilibrio.
+
+<Diagram caption="Demanda quebrada (Sweezy). Por encima de P* la demanda es más plana, porque las rivales no siguen una subida; por debajo es más inclinada, porque sí siguen una bajada. El IMg salta de un tramo al otro y, mientras el CMg cruce ese salto, ni el precio ni la cantidad cambian.">
+  <GraficoXY id="g-ol-demanda-quebrada" titulo="Demanda quebrada en el oligopolio" desc="Demanda con un codo en el punto K, más plana por encima y más inclinada por debajo. El ingreso marginal tiene un salto vertical en la cantidad Q*. Dos curvas de coste marginal, una antes y otra después de un aumento de costes, cortan ese salto, de modo que el precio P* y la cantidad Q* no cambian."
+    xMax={100} yMax={70} ejeX="Cantidad" ejeY="Precio" simboloX="Q" simboloY="P"
+    series={[
+      { label: 'D', color: 'terra', puntos: [[0, 60], [40, 50], [80, 10]] },
+      { label: 'IMg', color: 'mustard', puntos: [[0, 60], [40, 40]] },
+      { color: 'mustard', puntos: [[40, 10], [45, 0]] },
+      { color: 'ink', tenue: true, puntos: [[40, 40], [40, 10]] },
+      { label: 'CMg₁', color: 'ink', tenue: true, puntos: [[0, 25], [90, 25]] },
+      { label: 'CMg₂', color: 'ink', puntos: [[0, 35], [90, 35]] },
+    ]}
+    puntos={[{ x: 40, y: 50, label: 'K', xLabel: 'Q*', yLabel: 'P*' }]}
+    notas={[{ x: 41.5, y: 17, texto: 'Salto del IMg' }]}
+  />
+</Diagram>
 
 ### El dilema del prisionero aplicado al oligopolio
 
@@ -168,6 +189,25 @@ La existencia de beneficios atrae competidores. La entrada desplaza la curva de 
 - **P > mínimo CMeL** → exceso de capacidad: las empresas producen en el tramo decreciente de su curva de CMeL, con capacidad instalada infrautilizada.
 
 El exceso de capacidad es el «precio de la variedad»: los consumidores valoran la diversidad de productos aunque implique un coste de eficiencia.
+
+<Diagram caption="Equilibrio a largo plazo en competencia monopolística. La entrada de rivales desplaza la demanda hasta hacerla tangente al coste medio (punto T, P = CMeL, beneficio económico nulo). Como la tangencia cae en el tramo decreciente del CMeL, P > CMg y la empresa produce Q* por debajo de la cantidad de coste medio mínimo: ese hueco es el exceso de capacidad.">
+  <GraficoXY id="g-ol-competencia-monopolistica" titulo="Competencia monopolística a largo plazo" desc="Demanda de la empresa decreciente y tangente a la curva de coste medio a largo plazo en el punto T, dentro de su tramo decreciente. El ingreso marginal corta al coste marginal en Q*, a la izquierda de la cantidad que minimiza el coste medio. El precio en T es mayor que el coste marginal y que el mínimo del coste medio, y la distancia entre ambas cantidades es el exceso de capacidad."
+    xMax={100} yMax={48} ejeX="Cantidad" ejeY="Precio y costes" simboloX="Q" simboloY="P"
+    series={[
+      { label: 'D', color: 'terra', puntos: [[0, 36], [85, 2]], dx: 8, dy: -10 },
+      { label: 'IMg', color: 'mustard', puntos: [[0, 36], [45, 0]], dx: 8, dy: -10 },
+      { label: 'CMg', color: 'ink', puntos: Array.from({ length: 12 }, (_, i) => [5 + 5 * i, 45 - 2 * (5 + 5 * i) + 0.03 * (5 + 5 * i) ** 2]) },
+      { label: 'CMeL', color: 'teal', puntos: Array.from({ length: 19 }, (_, i) => [5 + 5 * i, 20 + 0.01 * (5 + 5 * i - 50) ** 2]) },
+    ]}
+    puntos={[
+      { x: 30, y: 24, label: 'T', xLabel: 'Q*', yLabel: 'P' },
+      { x: 30, y: 12, guias: false },
+      { x: 50, y: 20, xLabel: 'Q_mín', yLabel: 'mín' },
+    ]}
+    flechas={[{ de: [30, 28], a: [50, 28] }]}
+    notas={[{ x: 40, y: 30.5, texto: 'Exceso de capacidad', ancla: 'middle' }]}
+  />
+</Diagram>
 
 ---
 

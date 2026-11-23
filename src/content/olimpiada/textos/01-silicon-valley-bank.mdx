@@ -15,6 +15,9 @@ lang: es
 estado: publicado
 ---
 
+import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
+
 Silicon Valley Bank (SVB) era, antes de marzo de 2023, el decimosexto banco por tamaño de Estados Unidos y el banco de referencia del ecosistema tecnológico de California: startups, fondos de capital riesgo y empresas de alto crecimiento depositaban en él sus tesorerías y obtenían líneas de crédito para financiar su operativa. Con un balance que en su momento álgido superaba los 200.000 millones de dólares en activos, SVB parecía un pilar sólido de las finanzas de Silicon Valley. En pocos días de marzo de 2023, se convirtió en la mayor quiebra bancaria estadounidense desde la crisis financiera de 2008.
 
 El origen del colapso no fue una cartera de préstamos fallidos ni un fraude, sino algo aparentemente más técnico: la subida de tipos de interés. Durante los años de tipos cero y expansión cuantitativa (2020-2021), SVB recibió una avalancha de depósitos de empresas tecnológicas bien financiadas. Para rentabilizar ese dinero, el banco invirtió una parte muy importante de esos fondos en bonos del Tesoro de Estados Unidos y en títulos hipotecarios de largo plazo, activos considerados seguros pero con vencimientos muy lejanos. Cuando la Reserva Federal (Fed), el banco central estadounidense, comenzó en 2022 la subida de tipos más rápida en décadas —para combatir una inflación que alcanzó máximos de cuarenta años—, el precio de mercado de esos bonos se desplomó. La razón es una relación matemática invariable: el precio de un bono ya emitido y el tipo de interés vigente se mueven en sentido inverso. Si los nuevos bonos ofrecen un cupón mayor, los bonos antiguos con cupones más bajos pierden atractivo y, por tanto, valor en el mercado secundario.
@@ -62,6 +65,15 @@ La quiebra de SVB fue, en última instancia, el efecto colateral de una polític
 - Si los tipos bajan, los bonos antiguos (cupón más alto que el mercado) se aprecian → su precio sube.
 - En SVB: compró bonos a tipos bajos (2020-2021); cuando los tipos subieron bruscamente, esos bonos perdieron valor de mercado, generando pérdidas latentes que superaban el capital del banco.
 
+<Diagram caption="Relación inversa entre el tipo de interés de mercado y el precio de un bono ya emitido. Del punto A (tipos bajos, 2020-2021) al punto B (tipos altos tras la subida de 2022), el precio cae de P₁ a P₂. Esquema sin cifras.">
+  <GraficoXY id="g-olt-bono" titulo="Precio de un bono y tipo de interés" desc="Curva descendente: cuanto mayor es el tipo de interés de mercado, menor es el precio de un bono ya emitido. Al pasar el tipo de i₁ a i₂, el precio baja de P₁ a P₂. Esquema sin cifras."
+    xMax={11} yMax={36} ejeX="Tipo de interés de mercado" ejeY="Precio del bono" simboloX="i" simboloY="P"
+    series={[{ label: 'P(i)', color: 'terra', puntos: Array.from({ length: 15 }, (_, i) => [2 + i * 0.5, 60 / (2 + i * 0.5)]) }]}
+    puntos={[{ x: 3, y: 20, label: 'A', xLabel: 'i₁', yLabel: 'P₁' }, { x: 6, y: 10, label: 'B', xLabel: 'i₂', yLabel: 'P₂' }]}
+    flechas={[{ de: [3, 20], a: [6, 10], despl: -10 }]}
+  />
+</Diagram>
+
 ### Pregunta 3 — Fondo de Garantía de Depósitos (FGD)
 
 - Es un mecanismo —financiado por los propios bancos mediante aportaciones periódicas— que garantiza a los depositantes la devolución de sus fondos hasta un límite determinado si una entidad quiebra.
@@ -73,7 +85,7 @@ La quiebra de SVB fue, en última instancia, el efecto colateral de una polític
 ### Pregunta 4 — Política monetaria restrictiva
 
 - Definición: el banco central sube los tipos de interés oficiales y/o drena liquidez (vende activos, sube el coeficiente de reservas) para reducir la oferta monetaria y encarecer el crédito.
-- Objetivo primario: contener la inflación anclar las expectativas de precios.
+- Objetivo primario: contener la inflación y anclar las expectativas de precios.
 - Mecanismo: tipos más altos → crédito más caro → menos consumo e inversión → demanda agregada desciende → presión a la baja sobre los precios.
 - Efectos colaterales: menor crecimiento y posible recesión; aumento del paro a corto plazo; encarecimiento de las hipotecas variables; pérdida de valor de los activos financieros de renta fija de largo plazo (como le ocurrió a SVB); mayor coste de la deuda pública.
 - En el gráfico AD-AS: desplazamiento de la DA hacia la izquierda → menor producción y menor nivel de precios (o menor tasa de inflación).
@@ -85,3 +97,12 @@ La quiebra de SVB fue, en última instancia, el efecto colateral de una polític
 - Si el banco central eleva r: los bancos deben mantener más reservas → prestan menos → se crea menos dinero bancario → la oferta monetaria se contrae (efecto restrictivo).
 - Si el banco central reduce r: los bancos pueden prestar más → se crea más dinero bancario → la oferta monetaria se expande (efecto expansivo).
 - Relación con SVB: el banco operaba con reservas mínimas y había invertido el exceso de liquidez en bonos de largo plazo, lo que agudizó el desajuste entre activos ilíquidos y pasivos exigibles a la vista cuando los depositantes reclamaron su dinero simultáneamente.
+
+<Diagram caption="Multiplicador del dinero M = 1/r. Con un coeficiente de caja del 10 %, M = 10: un depósito de 1 000 € permite hasta 10 000 € de dinero bancario. Si el banco central eleva r, el multiplicador baja.">
+  <GraficoXY id="g-olt-multiplicador" titulo="Multiplicador del dinero y coeficiente de caja" desc="Curva descendente M = 1/r: cuanto mayor es el coeficiente de caja, menor es el multiplicador. Con r = 10 % el multiplicador vale 10."
+    xMax={50} yMax={24} ejeX="Coeficiente de caja (r)" ejeY="Multiplicador (M)" simboloX="r" simboloY="M"
+    xTicks={[10, 20, 30, 40]} xTickLabels={['10 %', '20 %', '30 %', '40 %']} yTicks={[5, 10, 15, 20]}
+    series={[{ label: 'M = 1/r', color: 'terra', puntos: Array.from({ length: 35 }, (_, i) => [5 + i, 100 / (5 + i)]) }]}
+    puntos={[{ x: 10, y: 10, label: 'r = 10 %: M = 10', dx: 14, dy: -12 }]}
+  />
+</Diagram>

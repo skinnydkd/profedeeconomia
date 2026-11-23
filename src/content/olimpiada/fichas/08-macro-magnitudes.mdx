@@ -25,6 +25,10 @@ lang: es
 estado: publicado
 ---
 
+import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
+import CicloEconomico from '@components/diagrams/CicloEconomico.astro';
+
 ## De qué va
 
 Las macromagnitudes son el lenguaje cuantitativo de la economía agregada. Sin dominarlas, ningún argumento macroeconómico puede sostenerse. Esta ficha trabaja el **PIB** — la magnitud central —, su ajuste por precios mediante el **deflactor**, la medición de la inflación a través del **IPC** y, por último, el **ciclo económico** que da contexto dinámico a todas las demás variables.
@@ -64,6 +68,27 @@ Cuatro matices que el examinador prueba con frecuencia:
 **PIB = 800 + 200 + 300 + (150 − 180) = 1 270**
 
 La demanda exterior neta es **−30** (déficit comercial), lo que reduce el PIB respecto a la demanda interna.
+
+<Diagram caption="El ejemplo por el método del gasto. El consumo (800), la inversión (200) y el gasto público (300) suman 1 300; las exportaciones netas, X − M = 150 − 180 = −30, restan 30 y dejan el PIB en 1 270.">
+  <GraficoXY id="g-ol-pib-gasto" titulo="PIB por el método del gasto: ejemplo numérico" desc="Cinco barras: consumo 800, inversión 200 y gasto público 300 se suman hasta 1 300; las exportaciones netas, de 150 menos 180, restan 30; el PIB resultante es 1 270."
+    xMax={6} yMax={1500} ejeX="Componente del gasto" ejeY="Unidades monetarias"
+    xTicks={[1, 2, 3, 4, 5]} xTickLabels={['C', 'I', 'G', 'X − M', 'PIB']} yTicks={[400, 800, 1200]}
+    areas={[
+      { color: 'teal', fuerte: true, puntos: [[0.6, 0], [1.4, 0], [1.4, 800], [0.6, 800]] },
+      { color: 'mustard', fuerte: true, puntos: [[1.6, 800], [2.4, 800], [2.4, 1000], [1.6, 1000]] },
+      { color: 'aubergine', fuerte: true, puntos: [[2.6, 1000], [3.4, 1000], [3.4, 1300], [2.6, 1300]] },
+      { color: 'terra', fuerte: true, puntos: [[3.6, 1300], [4.4, 1300], [4.4, 1270], [3.6, 1270]] },
+      { color: 'ink', fuerte: true, puntos: [[4.6, 0], [5.4, 0], [5.4, 1270], [4.6, 1270]] },
+    ]}
+    notas={[
+      { x: 1, y: 850, texto: '800', ancla: 'middle' },
+      { x: 2, y: 1050, texto: '+200', ancla: 'middle' },
+      { x: 3, y: 1350, texto: '+300', ancla: 'middle' },
+      { x: 4, y: 1350, texto: '−30', ancla: 'middle' },
+      { x: 5, y: 1320, texto: '1 270', ancla: 'middle' },
+    ]}
+  />
+</Diagram>
 
 ---
 
@@ -108,6 +133,24 @@ El deflactor es un índice de precios que cubre *toda* la producción interior (
 PIB real año 1 = (1 060 ÷ 104) × 100 ≈ **1 019,2**
 
 Crecimiento real ≈ **1,9 %**. La mayor parte del aumento nominal se debe a precios, no a producción real.
+
+<Diagram caption="Del 6 % de aumento del PIB nominal, la mayor parte es subida de precios (deflactor de 100 a 104, un 4 %) y solo un ≈ 1,9 % es crecimiento real: (1 060 ÷ 104) × 100 ≈ 1 019,2 frente a 1 000.">
+  <GraficoXY id="g-ol-pib-real-nominal" titulo="Crecimiento nominal, deflactor y crecimiento real" desc="Tres barras: el PIB nominal crece un 6 %, el deflactor un 4 % y el PIB real un 1,9 %, de modo que la mayor parte del aumento nominal es precio."
+    xMax={4} yMax={7} ejeX="Magnitud" ejeY="Crecimiento (%)"
+    xTicks={[1, 2, 3]} xTickLabels={['PIB nominal', 'Deflactor', 'PIB real']}
+    yTicks={[2, 4, 6]} yTickLabels={['2 %', '4 %', '6 %']}
+    areas={[
+      { color: 'terra', fuerte: true, puntos: [[0.65, 0], [1.35, 0], [1.35, 6], [0.65, 6]] },
+      { color: 'mustard', fuerte: true, puntos: [[1.65, 0], [2.35, 0], [2.35, 4], [1.65, 4]] },
+      { color: 'teal', fuerte: true, puntos: [[2.65, 0], [3.35, 0], [3.35, 1.92], [2.65, 1.92]] },
+    ]}
+    notas={[
+      { x: 1, y: 6.3, texto: '6 %', ancla: 'middle' },
+      { x: 2, y: 4.3, texto: '4 %', ancla: 'middle' },
+      { x: 3, y: 2.22, texto: '1,9 %', ancla: 'middle' },
+    ]}
+  />
+</Diagram>
 
 ### PIB per cápita
 
@@ -155,6 +198,36 @@ Tasa = ((108,1 − 105,0) ÷ 105,0) × 100 = (3,1 ÷ 105,0) × 100 ≈ **2,95 %*
 | Inflación de costes | Aumento de los costes de producción (salarios, energía, materias primas) | Desplazamiento de la curva OA hacia la izquierda |
 | Inflación inercial | Expectativas adaptativas que se autoalimentan | — |
 
+<Diagram caption="Inflación de demanda: la demanda agregada se desplaza a la derecha (de DA₁ a DA₂) y, con una oferta agregada creciente, suben a la vez el nivel de precios (P₁ a P₂) y el PIB real (Y₁ a Y₂).">
+  <GraficoXY id="g-ol-inflacion-demanda" titulo="Inflación de demanda" desc="Demanda agregada decreciente que se desplaza a la derecha y oferta agregada creciente. El equilibrio pasa de E₁ a E₂, con un nivel de precios y un PIB real más altos."
+    xMax={110} yMax={60} ejeX="PIB real" ejeY="Nivel de precios" simboloX="Y" simboloY="P"
+    series={[
+      { label: 'DA₁', color: 'terra', tenue: true, puntos: [[10, 45], [90, 5]] },
+      { label: 'DA₂', color: 'terra', puntos: [[20, 50], [100, 10]] },
+      { label: 'OA', color: 'mustard', puntos: [[24, 2], [100, 40]] },
+    ]}
+    puntos={[
+      { x: 60, y: 20, label: 'E₁', xLabel: 'Y₁', yLabel: 'P₁', dx: 28, dy: 4 },
+      { x: 70, y: 25, label: 'E₂', xLabel: 'Y₂', yLabel: 'P₂', dx: 28, dy: 4 },
+    ]}
+  />
+</Diagram>
+
+<Diagram caption="Inflación de costes: la oferta agregada se desplaza a la izquierda (de OA₁ a OA₂) y suben los precios (P₁ a P₂) mientras cae el PIB real (Y₁ a Y₂).">
+  <GraficoXY id="g-ol-inflacion-costes" titulo="Inflación de costes" desc="Oferta agregada creciente que se desplaza a la izquierda y demanda agregada decreciente. El equilibrio pasa de E₁ a E₂, con un nivel de precios más alto y un PIB real más bajo."
+    xMax={110} yMax={60} ejeX="PIB real" ejeY="Nivel de precios" simboloX="Y" simboloY="P"
+    series={[
+      { label: 'OA₁', color: 'mustard', tenue: true, puntos: [[24, 2], [100, 40]] },
+      { label: 'OA₂', color: 'mustard', puntos: [[4, 2], [80, 40]] },
+      { label: 'DA', color: 'terra', puntos: [[10, 45], [90, 5]] },
+    ]}
+    puntos={[
+      { x: 60, y: 20, label: 'E₁', xLabel: 'Y₁', yLabel: 'P₁', dx: 28, dy: 4 },
+      { x: 50, y: 25, label: 'E₂', xLabel: 'Y₂', yLabel: 'P₂', dx: 28, dy: 4 },
+    ]}
+  />
+</Diagram>
+
 ### Deflación y sus riesgos
 
 La **deflación** (tasa de inflación negativa) puede parecer beneficiosa, pero genera una espiral peligrosa:
@@ -178,6 +251,10 @@ El ciclo económico describe las fluctuaciones recurrentes —aunque no periódi
 | **Recesión** | PIB real cae (técnicamente, dos trimestres consecutivos de crecimiento negativo); desempleo sube; inflación se modera |
 | **Depresión / fondo** (o valle) | PIB en mínimo cíclico; paro en máximo; riesgo de deflación |
 | **Recuperación** | PIB retoma el crecimiento; empleo tarda en recuperarse («histéresis») |
+
+<Diagram caption="El ciclo económico: el PIB real oscila en torno a su tendencia de largo plazo y recorre expansión, pico, recesión, fondo y recuperación.">
+  <CicloEconomico />
+</Diagram>
 
 ### Relación con el paro y la inflación
 

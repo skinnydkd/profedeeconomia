@@ -23,6 +23,10 @@ lang: es
 estado: publicado
 ---
 
+import Diagram from '@components/Diagram.astro';
+import MercadoGrafico from '@components/diagrams/MercadoGrafico.astro';
+import ElasticidadCasos from '@components/diagrams/ElasticidadCasos.astro';
+
 ## De qué va
 
 El modelo de oferta y demanda es la herramienta central de la microeconomía. Su objetivo es explicar cómo los compradores y vendedores de un mercado interactúan para determinar el precio y la cantidad que se intercambia.
@@ -65,6 +69,15 @@ Esta distinción es la trampa más frecuente en la Olimpiada y en cualquier exam
 
 Un **movimiento a lo largo de la curva** ocurre cuando cambia el **precio del propio bien**. La curva no se mueve: solo nos desplazamos de un punto a otro sobre ella. Si el precio del pan sube de 1 € a 1,50 €, la cantidad demandada cae. Representamos eso moviéndonos hacia arriba-izquierda sobre la misma curva de demanda. No hay desplazamiento de la curva.
 
+<Diagram caption="Movimiento a lo largo de la curva: cambia el precio del propio bien, de P₁ a P₂, y la cantidad demandada pasa de Q₁ a Q₂ sin que la curva se mueva.">
+  <MercadoGrafico id="g-ol-oferta-movimiento" titulo="Movimiento a lo largo de la curva de demanda" desc="Sobre una misma curva de demanda descendente, al subir el precio de P1 a P2 la cantidad demandada cae de Q1 a Q2: se pasa del punto A al punto B."
+    pMax={25} qMax={110}
+    curvas={[{ tipo: 'D', q0: 100, m: -4, pDe: 2, pA: 22, label: 'D' }]}
+    puntos={[{ p: 6, q: 76, label: 'A', pLabel: 'P₁', qLabel: 'Q₁' }, { p: 9, q: 64, label: 'B', pLabel: 'P₂', qLabel: 'Q₂' }]}
+    flechas={[{ de: { p: 6, q: 76 }, a: { p: 9, q: 64 }, despl: -24 }]}
+  />
+</Diagram>
+
 ### Desplazamiento de la curva
 
 Un **desplazamiento de la curva** ocurre cuando cambia cualquier otro determinante distinto del precio del propio bien. Toda la curva se traslada: a cada precio, la cantidad demandada (u ofrecida) es ahora distinta.
@@ -80,6 +93,15 @@ Un **desplazamiento de la curva** ocurre cuando cambia cualquier otro determinan
 - Mejora la tecnología → la oferta se desplaza hacia la derecha.
 - Sube el precio de una materia prima → la oferta se desplaza hacia la izquierda.
 
+<Diagram caption="Desplazamiento de la curva: cambia otro determinante (por ejemplo, sube la renta) y a cada precio se demanda más. La curva pasa de D₁ a D₂ y, al mismo precio P₀, la cantidad pasa de Q₁ a Q₂.">
+  <MercadoGrafico id="g-ol-oferta-desplazamiento" titulo="Desplazamiento de la curva de demanda" desc="La curva de demanda entera se desplaza a la derecha, de D1 a D2: al mismo precio P0 la cantidad demandada pasa de Q1 a Q2."
+    pMax={25} qMax={140}
+    curvas={[{ tipo: 'D', q0: 100, m: -4, pDe: 2, pA: 22, label: 'D₁', tenue: true }, { tipo: 'D', q0: 120, m: -4, pDe: 3, pA: 22, label: 'D₂' }]}
+    puntos={[{ p: 8, q: 68, pLabel: 'P₀', qLabel: 'Q₁' }, { p: 8, q: 88, qLabel: 'Q₂' }]}
+    flechas={[{ de: { p: 8, q: 68 }, a: { p: 8, q: 88 } }]}
+  />
+</Diagram>
+
 ### La trampa clásica del examen
 
 > «Un aumento en el salario de los panaderos hace que suba el precio del pan. ¿Cómo afecta esa subida del precio del pan a la curva de demanda de pan?»
@@ -87,6 +109,15 @@ Un **desplazamiento de la curva** ocurre cuando cambia cualquier otro determinan
 La respuesta correcta es que **la curva de demanda de pan no se desplaza**. La subida del precio del pan provoca un **movimiento a lo largo** de la curva de demanda (la cantidad demandada cae), pero la curva en sí permanece donde estaba. El error típico es decir que «la demanda cae», confundiendo «cantidad demandada cae» (movimiento) con «la demanda se desplaza hacia la izquierda» (desplazamiento). Son conceptos distintos.
 
 La cadena causal correcta es: aumento de salarios → los costes de producción aumentan → **la curva de oferta se desplaza hacia la izquierda** → el precio de equilibrio sube → la cantidad demandada cae (movimiento a lo largo de la demanda, que no se mueve). El mercado pasa de un equilibrio a otro, con mayor precio y menor cantidad.
+
+<Diagram caption="La trampa clásica: suben los salarios, la curva de oferta se desplaza a la izquierda (de O₁ a O₂) y el equilibrio pasa de E₀ a E₁, con mayor precio y menor cantidad. La demanda no se mueve: la cantidad demandada cae por un movimiento a lo largo de la curva.">
+  <MercadoGrafico id="g-ol-oferta-trampa" titulo="Subida de salarios: la oferta se desplaza y la demanda no" desc="La demanda D queda fija. La oferta se desplaza a la izquierda, de O1 a O2. El equilibrio pasa de E0 a E1: el precio sube de P0 a P1 y la cantidad baja de Q0 a Q1."
+    pMax={25} qMax={110}
+    curvas={[{ tipo: 'D', q0: 100, m: -4, pDe: 2, label: 'D' }, { tipo: 'O', q0: 20, m: 4, pA: 19, label: 'O₁', tenue: true }, { tipo: 'O', q0: 0, m: 4, pA: 19, label: 'O₂' }]}
+    puntos={[{ p: 10, q: 60, label: 'E₀', pLabel: 'P₀', qLabel: 'Q₀', dx: -10, dy: -18 }, { p: 12.5, q: 50, label: 'E₁', pLabel: 'P₁', qLabel: 'Q₁', dx: -10, dy: -18 }]}
+    flechas={[{ de: { p: 15, q: 80 }, a: { p: 15, q: 60 } }]}
+  />
+</Diagram>
 
 ---
 
@@ -108,7 +139,15 @@ Cuando el precio máximo P<sub>max</sub> < P\*:
 
 **Ejemplo canónico**: el control de alquileres en ciudades con escasez de vivienda. El techo protege a quienes ya tienen un contrato, pero genera escasez para quienes buscan piso y desincentiva la construcción nueva.
 
-*Descripción del gráfico*: eje horizontal Q (cantidad), eje vertical P (precio). Curvas D (pendiente negativa) y O (pendiente positiva) que se cruzan en (Q\*, P\*). Trazar una línea horizontal a P<sub>max</sub> < P\*. La cantidad ofrecida Q<sub>s</sub> se lee en la intersección de esa línea con la curva O (a la izquierda de Q\*). La cantidad demandada Q<sub>d</sub> se lee en la intersección con D (a la derecha de Q\*). La distancia Q<sub>d</sub> − Q<sub>s</sub> es la escasez.
+<Diagram caption="Precio máximo por debajo del de equilibrio (Pmáx menor que P*): a ese precio los consumidores demandan Qd, los productores ofrecen Qs y la diferencia Qd − Qs es la escasez.">
+  <MercadoGrafico id="g-ol-oferta-techo" titulo="Precio máximo y escasez" desc="La demanda D y la oferta O se cortan en el equilibrio E, con precio P* y cantidad Q*. Un precio máximo por debajo de P* hace que la cantidad ofrecida Qs quede a la izquierda de Q* y la demandada Qd a la derecha. La distancia entre ambas es la escasez."
+    pMax={25} qMax={110}
+    curvas={[{ tipo: 'D', q0: 100, m: -4, pDe: 2, label: 'D' }, { tipo: 'O', q0: 20, m: 4, pA: 19, label: 'O' }]}
+    puntos={[{ p: 10, q: 60, label: 'E', pLabel: 'P*', qLabel: 'Q*', dx: -5, dy: -18 }, { p: 7, q: 48, pLabel: 'Pmáx', qLabel: 'Qs' }, { p: 7, q: 72, qLabel: 'Qd' }]}
+    precio={{ p: 7, label: "Precio máximo" }}
+    tramo={{ p: 7, q1: 48, q2: 72, label: "Escasez" }}
+  />
+</Diagram>
 
 ### Precio mínimo (suelo de precio)
 
@@ -122,7 +161,15 @@ Cuando el precio mínimo P<sub>min</sub> > P\*:
 
 **Ejemplo canónico**: el salario mínimo en el mercado de trabajo. El precio es el salario; la cantidad es el empleo. Un salario mínimo por encima del salario de equilibrio genera más personas dispuestas a trabajar que empresas dispuestas a contratar, es decir, paro involuntario entre los trabajadores cuya productividad marginal queda por debajo del mínimo fijado.
 
-*Descripción del gráfico*: mismo esquema, pero ahora la línea horizontal está a P<sub>min</sub> > P\*. La cantidad ofrecida Q<sub>s</sub> queda a la derecha de Q\* y la demandada Q<sub>d</sub> a la izquierda. El excedente es Q<sub>s</sub> − Q<sub>d</sub>.
+<Diagram caption="Precio mínimo por encima del de equilibrio (Pmín mayor que P*): a ese precio se ofrece Qs, se demanda Qd y la diferencia Qs − Qd es el excedente.">
+  <MercadoGrafico id="g-ol-oferta-suelo" titulo="Precio mínimo y excedente" desc="La demanda D y la oferta O se cortan en el equilibrio E, con precio P* y cantidad Q*. Un precio mínimo por encima de P* hace que la cantidad ofrecida Qs quede a la derecha de Q* y la demandada Qd a la izquierda. La distancia entre ambas es el excedente."
+    pMax={25} qMax={110}
+    curvas={[{ tipo: 'D', q0: 100, m: -4, pDe: 2, label: 'D' }, { tipo: 'O', q0: 20, m: 4, pA: 19, label: 'O' }]}
+    puntos={[{ p: 10, q: 60, label: 'E', pLabel: 'P*', qLabel: 'Q*', dx: -5, dy: -18 }, { p: 13, q: 48, pLabel: 'Pmín', qLabel: 'Qd' }, { p: 13, q: 72, qLabel: 'Qs' }]}
+    precio={{ p: 13, label: "Precio mínimo" }}
+    tramo={{ p: 13, q1: 48, q2: 72, label: "Excedente" }}
+  />
+</Diagram>
 
 ---
 
@@ -149,6 +196,10 @@ Como la relación es inversa, el cociente es negativo. Por convenio se trabaja c
 | < 1 | Demanda inelástica | La cantidad varía menos (en %) que el precio. Necesidades básicas, bienes adictivos, sin sustitutos cercanos. |
 | = 0 | Perfectamente inelástica | La cantidad no varía con el precio. Curva vertical. Aproximación para medicamentos vitales a corto plazo. |
 | → ∞ | Perfectamente elástica | Una variación mínima del precio anula la demanda. Curva horizontal. Bien perfectamente sustituible. |
+
+<Diagram caption="Los casos extremos de la elasticidad-precio de la demanda: perfectamente inelástica (curva vertical), inelástica, elástica y perfectamente elástica (curva horizontal).">
+  <ElasticidadCasos />
+</Diagram>
 
 **Factores que determinan la elasticidad:**
 - Existencia y proximidad de bienes sustitutivos (cuanto más y más cercanos, más elástica la demanda).
@@ -235,6 +286,16 @@ Q_o(8) =  20 + 6 × 8 = 68
 
 Hay escasez: los compradores presionan el precio al alza hacia P\* = 10 €.
 
+<Diagram caption="El mini-ejemplo en un gráfico: D y O se cortan en E (10 €, 80 unidades). A 8 € se demandan 88 y se ofrecen 68: faltan 20 unidades y el precio sube hacia 10 €.">
+  <MercadoGrafico id="g-ol-oferta-equilibrio" titulo="Equilibrio del mercado agrícola y exceso de demanda" desc="La demanda Qd = 120 − 4P y la oferta Qo = 20 + 6P se cortan en 10 euros y 80 unidades. A 8 euros la demanda es 88 y la oferta 68, un exceso de demanda de 20 unidades."
+    pMax={30} qMax={130} ejeP="Precio (€)" ejeQ="Unidades"
+    qTicks={[40, 100, 120]}
+    curvas={[{ tipo: 'D', q0: 120, m: -4, pDe: 1, label: 'D' }, { tipo: 'O', q0: 20, m: 6, pA: 17, label: 'O' }]}
+    puntos={[{ p: 10, q: 80, label: 'E', pLabel: '10', qLabel: '80', dx: -5, dy: -18 }, { p: 8, q: 68, pLabel: '8', qLabel: '68' }, { p: 8, q: 88, qLabel: '88' }]}
+    tramo={{ p: 8, q1: 68, q2: 88, label: "Exceso de demanda: 20" }}
+  />
+</Diagram>
+
 ### Elasticidad-precio puntual
 
 A partir del equilibrio anterior (P\* = 10, Q\* = 80), calculamos la elasticidad-precio puntual de la demanda usando la derivada implícita en la función lineal:
@@ -248,6 +309,14 @@ E_p^d = (dQ/dP) × (P/Q) = (−4) × (10/80) = −0,5
 En valor absoluto: |E<sub>p</sub><sup>d</sup>| = **0,5 < 1** → demanda **inelástica** en ese punto.
 
 **Implicación sobre el ingreso total**: si el precio sube un 20 % (de 10 € a 12 €), la cantidad cae aproximadamente un 10 % (0,5 × 20 % = 10 %). El ingreso total pasa de 10 × 80 = 800 a (aproximadamente) 12 × 72 = 864. El ingreso total **aumenta**, lo que es coherente con la regla: en demandas inelásticas, subir el precio incrementa el ingreso total.
+
+<Diagram caption="Elasticidad puntual en el equilibrio: al subir el precio un 20 % (de 10 a 12 €), la cantidad demandada cae un 10 % (de 80 a 72). Como |Ep| = 0,5, menor que 1, el ingreso total aumenta de 800 € a 864 €.">
+  <MercadoGrafico id="g-ol-oferta-elasticidad" titulo="Elasticidad-precio puntual de la demanda" desc="Sobre la demanda Qd = 120 − 4P, al subir el precio de 10 a 12 euros la cantidad demandada baja de 80 a 72 unidades. La elasticidad en ese punto es −0,5: demanda inelástica."
+    pMax={30} qMax={130} ejeP="Precio (€)" ejeQ="Unidades"
+    curvas={[{ tipo: 'D', q0: 120, m: -4, pDe: 1, label: 'D' }]}
+    puntos={[{ p: 10, q: 80, label: 'A', pLabel: '10', qLabel: '80' }, { p: 12, q: 72, label: 'B', pLabel: '12', qLabel: '72' }]}
+  />
+</Diagram>
 
 ---
 

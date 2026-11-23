@@ -25,6 +25,9 @@ lang: es
 estado: publicado
 ---
 
+import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
+
 ## De qué va
 
 La empresa es la unidad económica básica de producción en una economía de mercado. Combina factores productivos —trabajo, capital, materias primas— para obtener bienes y servicios que ofrece en el mercado a cambio de un precio. Su análisis en la Olimpiada abarca tres ejes: quién la dirige y asume el riesgo, qué forma jurídica adopta, cómo crece, y cómo se organiza internamente.
@@ -108,6 +111,21 @@ Más del 99 % del tejido empresarial español son PYME.
 ### Economías de escala
 
 Se producen cuando al aumentar el volumen de producción el **coste medio unitario disminuye**. Sus fuentes principales son: reparto de costes fijos entre más unidades, mayor poder de negociación, especialización del trabajo y del capital, eficiencia en compras. Las **deseconomías de escala** aparecen cuando el tamaño excesivo genera problemas de coordinación y burocracia que elevan el coste medio.
+
+<Diagram caption="Esquema del coste medio unitario según el volumen de producción: baja mientras la empresa crece (economías de escala) y vuelve a subir cuando el tamaño excesivo encarece la coordinación (deseconomías de escala).">
+  <GraficoXY id="g-ol-economias-escala" titulo="Economías y deseconomías de escala" desc="Curva de coste medio unitario en forma de U. A la izquierda del mínimo el coste medio baja al aumentar la producción, que son las economías de escala; a la derecha vuelve a subir, que son las deseconomías de escala."
+    xMax={110} yMax={50} ejeX="Volumen de producción" ejeY="Coste medio unitario" simboloX="Q" simboloY="€"
+    series={[
+      { label: "Coste medio", color: 'teal', puntos: Array.from({ length: 19 }, (_, i) => [5 + 5 * i, 20 + 0.01 * (5 + 5 * i - 50) ** 2]) },
+      { color: 'ink', tenue: true, puntos: [[50, 0], [50, 20]] },
+    ]}
+    flechas={[{ de: [8, 13], a: [46, 13] }, { de: [54, 13], a: [96, 13] }]}
+    notas={[
+      { x: 27, y: 8, texto: "Economías de escala", ancla: 'middle' },
+      { x: 75, y: 8, texto: "Deseconomías de escala", ancla: 'middle' },
+    ]}
+  />
+</Diagram>
 
 ---
 

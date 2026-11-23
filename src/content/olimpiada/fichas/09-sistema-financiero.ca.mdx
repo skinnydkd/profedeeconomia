@@ -31,6 +31,9 @@ estado: publicado
 slug: "olimpiada/fichas/09-sistema-financiero.ca"
 ---
 
+import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
+
 ## De què va
 
 Els diners són un dels grans invents institucionals de la humanitat: permeten superar les limitacions del bescanvi i coordinar milions de decisions econòmiques descentralitzades. En l'Olimpiada d'Economia este bloc s'examina amb freqüència mitjançant problemes numèrics (el multiplicador) i preguntes d'anàlisi sobre política monetària. L'actualitat —pujades de tipus del BCE, fallida del SVB en 2023— fa que els vincles entre tipus d'interés, preu de bons i estabilitat bancària siguen matèria quasi segura.
@@ -88,6 +91,18 @@ Suposem un coeficient de caixa del **10 %** i un depòsit inicial de **1.000 €
 | **Total** | **10.000 €** | **1.000 €** | **9.000 €** |
 
 La suma de tots els depòsits convergix cap a: **1.000 × 10 = 10.000 €**. El sistema bancari ha creat 9.000 € de diners bancaris a partir d'un depòsit inicial de 1.000 €.
+
+<Diagram caption="Cada ronda afig un depòsit un 10 % menor que l'anterior (1.000, 900, 810…) i el total acumulat s'acosta, sense arribar-hi, a 1.000 × 10 = 10.000 €. D'ells, 1.000 € són el depòsit inicial i 9.000 € diners bancaris creats.">
+  <GraficoXY id="g-ol-multiplicador" titulo="Depòsits acumulats en el multiplicador dels diners" desc="Corba creixent dels depòsits acumulats al llarg de les rondes, que parteix de 1.000 € en la primera i s'aproxima a un límit de 10.000 €, marcat amb una línia horitzontal."
+    xMax={50} yMax={11500} ejeX="Rondes de depòsit" ejeY="Depòsits acumulats (€)"
+    xTicks={[10, 20, 30, 40]} yTicks={[2000, 4000, 6000, 8000, 10000]} yTickLabels={['2.000', '4.000', '6.000', '8.000', '10.000']}
+    series={[
+      { label: "Depòsits totals", color: 'terra', puntos: Array.from({ length: 41 }, (_, n) => [n, 10000 * (1 - 0.9 ** n)]), dy: 22 },
+      { color: 'ink', tenue: true, puntos: [[0, 10000], [48, 10000]] },
+    ]}
+    notas={[{ x: 2, y: 10450, texto: "Límit: 1.000 × 10 = 10.000 €" }]}
+  />
+</Diagram>
 
 > **Nota de precisió:** Este model assumix que tot préstec torna al sistema bancari com a depòsit i que el públic no reté efectiu. En la pràctica, la creació monetària és una mica menor, però el mecanisme és correcte per a l'examen.
 
@@ -166,6 +181,21 @@ El bo perd la **meitat** del seu valor de mercat. La relació és:
 **↑ tipus d'interés → ↓ preu dels bons**
 
 **↓ tipus d'interés → ↑ preu dels bons**
+
+<Diagram caption="El preu d'un bo de cupó fix és el cupó dividit entre el tipus d'interés: amb un 5 % val 1.000 € (A) i amb un 10 % val 500 € (B). Quan pugen els tipus, els bons ja emesos perden valor.">
+  <GraficoXY id="g-ol-precio-bono" titulo="Preu d'un bo segons el tipus d'interés" desc="Corba decreixent del preu d'un bo amb cupó fix de 50 euros a l'any: val 1.000 euros amb un tipus del 5 % i 500 euros amb un tipus del 10 %."
+    xMax={16} yMax={2200} ejeX="Tipus d'interés de mercat (%)" ejeY="Preu del bo (€)" simboloX="i" simboloY="P"
+    yTicks={[1500, 2000]} yTickLabels={['1.500', '2.000']}
+    series={[
+      { label: "Preu del bo", color: 'terra', puntos: Array.from({ length: 41 }, (_, k) => [2.5 + 0.25 * k, 5000 / (2.5 + 0.25 * k)]) },
+    ]}
+    puntos={[
+      { x: 5, y: 1000, label: 'A', xLabel: '5 %', yLabel: '1.000' },
+      { x: 10, y: 500, label: 'B', xLabel: '10 %', yLabel: '500' },
+    ]}
+    notas={[{ x: 7, y: 1700, texto: "Cupó fix: 50 € a l'any" }]}
+  />
+</Diagram>
 
 ### El cas SVB (Silicon Valley Bank, 2023)
 

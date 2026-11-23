@@ -16,6 +16,9 @@ lang: es
 estado: publicado
 ---
 
+import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
+
 ## Texto
 
 En la primavera de 2018, la administración estadounidense anunció aranceles de entre el 25 % y el 10 % sobre el acero y el aluminio importados, respectivamente, argumentando razones de seguridad nacional y de defensa de la industria doméstica. La Unión Europea, China, Canadá y México respondieron con medidas arancelarias simétricas sobre productos emblemáticos —desde la soja y los vaqueros hasta las motocicletas—. Se inauguraba así uno de los episodios más intensos de tensión comercial de las últimas décadas, y con él volvió al primer plano del debate económico una pregunta clásica: ¿a quién beneficia realmente un arancel y a quién perjudica?
@@ -56,6 +59,30 @@ Los defensores del proteccionismo esgrimen argumentos que la teoría reconoce co
 - Efecto sobre el mercado interior: los productores nacionales amplían oferta (ganan excedente del productor); los consumidores reducen demanda y pagan más (pierden excedente del consumidor); el Estado recauda t × cantidad importada.
 - La pérdida neta se visualiza como dos triángulos: uno por la sobreproducción doméstica ineficiente y otro por el consumo que desaparece; ninguno es capturado por ningún agente.
 - Conclusión: el arancel redistribuye sin crear riqueza y destruye bienestar neto.
+
+<Diagram caption="Mercado interior del acero con un arancel de 100 € sobre un precio mundial de 500 € por tonelada. El precio interior sube a 600 €, la producción nacional pasa de Q₁ a Q₂, el consumo de Q₄ a Q₃ y las importaciones de Q₄ − Q₁ a Q₃ − Q₂. El rectángulo es la recaudación (100 € por tonelada importada) y los dos triángulos, la pérdida neta de bienestar. Cantidades esquemáticas.">
+  <GraficoXY id="g-olt-arancel" titulo="Arancel sobre el acero: oferta y demanda interiores" desc="Con libre comercio el precio interior es el mundial, 500 euros por tonelada, y se importa la diferencia entre la cantidad demandada Q₄ y la ofrecida Q₁. Un arancel de 100 euros lleva el precio interior a 600: la producción nacional sube hasta Q₂, el consumo baja hasta Q₃ y las importaciones se reducen de Q₄ − Q₁ a Q₃ − Q₂. El rectángulo es la recaudación y los dos triángulos, la pérdida de eficiencia. Las cantidades son esquemáticas."
+    xMax={650} yMax={800} ejeX="Toneladas de acero" ejeY="Euros por tonelada" simboloX="Q" simboloY="P"
+    yTicks={[500, 600]}
+    series={[
+      { label: 'D', color: 'terra', puntos: Array.from({ length: 43 }, (_, i) => [200 + i * 10, 800 - i * 10]) },
+      { label: 'O', color: 'mustard', puntos: Array.from({ length: 39 }, (_, i) => [i * 10, 400 + i * 10]) },
+      { label: 'Pm', color: 'ink', tenue: true, puntos: [[0, 500], [590, 500]] },
+      { label: 'Pm + t', color: 'ink', puntos: [[0, 600], [590, 600]] },
+    ]}
+    areas={[
+      { color: 'teal', puntos: [[200, 500], [400, 500], [400, 600], [200, 600]] },
+      { color: 'aubergine', fuerte: true, puntos: [[100, 500], [200, 500], [200, 600]] },
+      { color: 'aubergine', fuerte: true, puntos: [[400, 600], [400, 500], [500, 500]] },
+    ]}
+    puntos={[{ x: 100, y: 500, xLabel: 'Q₁' }, { x: 200, y: 600, xLabel: 'Q₂' }, { x: 400, y: 600, xLabel: 'Q₃' }, { x: 500, y: 500, xLabel: 'Q₄' }]}
+    notas={[
+      { x: 300, y: 550, texto: 'Recaudación', color: 'teal', ancla: 'middle' },
+      { x: 150, y: 470, texto: 'Pérdida', color: 'aubergine', ancla: 'middle' },
+      { x: 450, y: 470, texto: 'Pérdida', color: 'aubergine', ancla: 'middle' },
+    ]}
+  />
+</Diagram>
 
 **Pregunta 2 — Ventaja comparativa y libre comercio**
 
