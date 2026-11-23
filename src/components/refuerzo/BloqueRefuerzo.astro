@@ -7,8 +7,11 @@
  * Single source for /[asignatura]/refuerzo/ and the print route. All rich text
  * fields are HTML strings (consistent with the rest of the refuerzo section).
  */
-interface Repaso { titulo: string; unidad?: number; contenido: string; }
-interface Ejemplo { enunciado: string; desarrollo: string; }
+import GraficoBloque from './GraficoBloque.astro';
+import type { GraficoRefuerzo as Grafico } from '@/lib/refuerzo';
+
+interface Repaso { titulo: string; unidad?: number; contenido: string; grafico?: Grafico; }
+interface Ejemplo { enunciado: string; desarrollo: string; grafico?: Grafico; }
 interface Ejercicio { enunciado: string; solucion?: string; }
 interface Props {
   esencial: string[];
@@ -35,6 +38,7 @@ const haySoluciones = ejercicios.some((e) => e.solucion);
       <div class="rb-repaso">
         <h5 class="rb-repaso__t">{r.unidad ? `U${r.unidad}. ` : ''}{r.titulo}</h5>
         <div class="rb-prose" set:html={r.contenido} />
+        {r.grafico && <GraficoBloque grafico={r.grafico} />}
       </div>
     ))}
   </div>
@@ -62,6 +66,7 @@ const haySoluciones = ejercicios.some((e) => e.solucion);
         <li class="rb-ejemplo">
           <div class="rb-ejemplo__e" set:html={ej.enunciado} />
           <div class="rb-ejemplo__d" set:html={ej.desarrollo} />
+          {ej.grafico && <GraficoBloque grafico={ej.grafico} />}
         </li>
       ))}
     </ol>

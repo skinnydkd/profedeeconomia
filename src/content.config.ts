@@ -680,6 +680,17 @@ const emprendimientoActividades = defineCollection({
    asignaturas/{slug}/refuerzo/{nn}-{slug}.mdx — atención a la
    diversidad: cuadernos de refuerzo y de ampliación por evaluación.
    ========================================================= */
+/**
+ * A data-driven chart attached to a refuerzo item. `props` are the props of
+ * MercadoGrafico (tipo 'mercado') or GraficoXY (tipo 'xy'); they are checked
+ * by src/content/refuerzo-graficos.test.ts.
+ */
+const graficoRefuerzo = z.object({
+  tipo: z.enum(['mercado', 'xy']),
+  caption: z.string(),
+  props: z.record(z.string(), z.unknown()),
+});
+
 const refuerzo = defineCollection({
   loader: glob({ pattern: 'asignaturas/*/refuerzo/**/*.{md,mdx}', base: './src/content' }),
   schema: z.object({
@@ -701,10 +712,12 @@ const refuerzo = defineCollection({
       titulo: z.string(),
       unidad: z.number().int().min(1).optional(),
       contenido: z.string(),
+      grafico: graficoRefuerzo.optional(),
     })).default([]),
     ejemplos_resueltos: z.array(z.object({
       enunciado: z.string(),
       desarrollo: z.string(),
+      grafico: graficoRefuerzo.optional(),
     })).default([]),
     competencias_clave: z.array(z.string()).default([]),
     orden: z.number().int().default(0),

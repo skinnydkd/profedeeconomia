@@ -40,3 +40,27 @@ Sempre dins de `<Diagram caption="…">`, amb línia en blanc abans i després, 
 - Les xifres del gràfic són les del text i les de l'exercici: es recalculen, no s'estimen. Un equilibri dibuixat ha de ser la intersecció real de les corbes donades.
 - Si en dibuixar es veu que el text es contradiu (una taula que no seguix la seua fórmula), es corregix el text en les dues llengües i a la diapositiva del bloc `deck`, i s'anota al resum del canvi.
 - Cap dada inventada: els gràfics esquemàtics van sense xifres (etiquetes P₁, Q₁); els gràfics amb xifres usen les del text.
+
+## Reforç i ampliació (contingut en frontmatter)
+
+Els quaderns de `refuerzo/` no tenen cos MDX: cada element de `repaso_teorico` i `ejemplos_resueltos` pot portar un camp `grafico` amb les mateixes propietats, escrites en YAML. El pinta `GraficoBloque.astro` (web i PDF) i el valida `src/content/refuerzo-graficos.test.ts`.
+
+```yaml
+  - enunciado: "…"
+    desarrollo: "…"
+    grafico:
+      tipo: mercado          # mercado → MercadoGrafico · xy → GraficoXY
+      caption: "Peu del gràfic."
+      props:
+        id: r-e1a-renta      # únic dins de l'assignatura: r-e{avaluació}{r|a}-{nom}
+        titulo: "…"
+        desc: "…"
+        pMax: 45
+        qMax: 240
+        curvas:
+          - { tipo: D, q0: 200, m: -5, label: "D₁", tenue: true }
+        puntos:
+          - { p: 18, q: 110, label: "E₁", pLabel: "18", qLabel: "110" }
+```
+
+En YAML no hi ha expressions: les corbes no lineals s'escriuen com a llista de punts ja calculats (`puntos: [[0, 100], [10, 99.5], …]`).
