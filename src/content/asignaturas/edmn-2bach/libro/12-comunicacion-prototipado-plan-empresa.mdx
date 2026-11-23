@@ -43,6 +43,7 @@ import Steps from '@components/Steps.astro';
 import KeyTakeaways from '@components/KeyTakeaways.astro';
 import Figure from '@components/Figure.astro';
 import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
 import TamSamSom from '@components/diagrams/TamSamSom.astro';
 import Bibliography from '@components/Bibliography.astro';
 import TldrUnidad from '@components/TldrUnidad.astro';
@@ -267,7 +268,7 @@ Calcula:
 a) **Ingresos previstos** del año 1.
 b) **Punto muerto** en número de talleres (Unidad 7 — cálculo del punto muerto).
 c) **Cuenta de P&G** previsional del año 1 (Unidad 10).
-d) **VAN del proyecto a 4 años** si los flujos anuales se mantuvieran constantes (Unidad 9).
+d) **VAN del proyecto a 4 años** si la cuota mejora cada año: 50 talleres en el año 2, 75 en el año 3 y 95 en el año 4 (Unidad 9).
 e) **Ratio de endeudamiento** inicial (Unidad 11).
 f) **Diagnóstico final**: ¿es viable el proyecto?
 
@@ -316,6 +317,43 @@ f) **Diagnóstico final**: ¿es viable el proyecto?
      - **Ampliar SAM**: incluir centros concertados y formación profesional, no solo institutos públicos.
      - **Iterar el BMC**: pasar de modelo B2B (instituto paga) a híbrido (AMPAs co-financian, ayuntamientos contratan packs anuales).
    - **Conclusión pedagógica**: el plan original no se rechaza porque el equipo lo haya hecho mal, sino porque **los números dicen que hay que iterar**. Detectar la inviabilidad antes de poner los 18.000 € es exactamente el objetivo del curso entero.
+
+<Diagram caption="El punto muerto de EcoTallers (costes fijos de 26.200 €, con los intereses del préstamo) está en 80,6 talleres. Los 63 previstos para el año 1 quedan por debajo: el ingreso no cubre el coste y se pierden 5.725 €.">
+  <GraficoXY id="g-punto-muerto-ecotalleres" titulo="Punto muerto de EcoTallers" desc="Ingreso total (400 euros por taller), coste total (26.200 euros fijos con los intereses más 75 por taller) y coste fijo. Se cruzan en 80,6 talleres, con 32.246 euros. Con los 63 talleres previstos el ingreso es de 25.200 euros y el coste de 30.925: una pérdida de 5.725."
+    xMax={110} yMax={46000} ejeX="Talleres al año" ejeY="Euros al año" simboloX="Q" simboloY="€"
+    xTicks={[20, 40, 100]} yTicks={[10000, 40000]}
+    series={[
+      { label: "IT", color: "teal", puntos: [[0, 0], [100, 40000]] },
+      { label: "CT", color: "terra", puntos: [[0, 26200], [100, 33700]] },
+      { label: "CF", color: "mustard", puntos: [[0, 26200], [100, 26200]], dy: 14 },
+    ]}
+    puntos={[
+      { x: 80.62, y: 32246.15, label: "Q*", xLabel: "80,6", yLabel: "32 246", dx: -34, dy: -12 },
+      { x: 63, y: 25200, label: "Año 1", xLabel: "63", yLabel: "25 200", dx: 8, dy: 24 },
+      { x: 63, y: 30925, guias: false },
+    ]}
+    notas={[
+      { x: 61, y: 28000, texto: "Pérdida: 5.725 €", ancla: "end", color: "terra" },
+    ]}
+  />
+</Diagram>
+
+<Diagram caption="Talleres previstos en cada uno de los cuatro años frente al punto muerto (80,6). Solo el año 4 lo supera, y con él llega el primer año con beneficio (4.675 €).">
+  <GraficoXY id="g-talleres-anuales" titulo="Talleres previstos cada año frente al punto muerto" desc="Talleres previstos: 63 en el año 1, 50 en el año 2, 75 en el año 3 y 95 en el año 4. El punto muerto está en 80,6 talleres, así que solo el año 4 lo supera."
+    xMax={6.5} yMax={120} ejeX="Año" ejeY="Talleres al año"
+    xTicks={[1, 2, 3, 4]} yTicks={[25, 50, 75, 100]} xTickLabels={["Año 1", "Año 2", "Año 3", "Año 4"]}
+    series={[
+      { label: "Talleres", color: "teal", puntos: [[1, 63], [2, 50], [3, 75], [4, 95]] },
+      { label: "Punto muerto: 80,6", color: "terra", puntos: [[0, 80.6], [4.4, 80.6]], dy: 18 },
+    ]}
+    puntos={[
+      { x: 1, y: 63, label: "63", guias: false },
+      { x: 2, y: 50, label: "50", guias: false, dx: -8, dy: 26 },
+      { x: 3, y: 75, label: "75", guias: false, dx: 10, dy: 24 },
+      { x: 4, y: 95, label: "95", guias: false, dx: -28, dy: -10 },
+    ]}
+  />
+</Diagram>
 
 </SolvedExercise>
 

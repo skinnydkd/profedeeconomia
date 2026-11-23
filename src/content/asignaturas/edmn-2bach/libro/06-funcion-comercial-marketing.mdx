@@ -36,6 +36,7 @@ import SolvedExercise from '@components/SolvedExercise.astro';
 import Steps from '@components/Steps.astro';
 import KeyTakeaways from '@components/KeyTakeaways.astro';
 import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
 import Figure from '@components/Figure.astro';
 import MarketingMix4P from '@components/diagrams/MarketingMix4P.astro';
 import Bibliography from '@components/Bibliography.astro';
@@ -292,6 +293,28 @@ Una pequeña empresa familiar prepara tortillas de patata congeladas que vende a
 4. Comparación: pese a vender 1.200 tortillas menos, el Plan B genera **2,4 veces más beneficio**. La razón es que el margen unitario crece de 1,40 a 2,40 € (+71 %) mientras la demanda cae solo un 30 %.
 5. Conclusión: Plan B. Pero la decisión real exige verificar si la previsión de demanda a 5 € es realista —en marketing, la elasticidad estimada en el papel suele ser más optimista que la observada en el mercado—.
 
+<Diagram caption="Los dos planes sobre el mismo coste total: en cada punto, la distancia entre el ingreso y el coste es el beneficio. Aunque el plan B vende 1.200 tortillas menos, la distancia es mayor: 1.920 € frente a 800 €.">
+  <GraficoXY id="g-planes-tortillas" titulo="Ingresos y costes de los planes A y B" desc="Recta de coste total con 4.800 euros de coste fijo y 2,60 euros por tortilla, y rectas de ingreso total a 4 y a 5 euros. Con el plan A, 4.000 tortillas dan 16.000 euros de ingreso y 15.200 de coste: 800 de beneficio. Con el plan B, 2.800 tortillas dan 14.000 euros de ingreso y 12.080 de coste: 1.920 de beneficio."
+    xMax={4600} yMax={24000} ejeX="Tortillas al mes" ejeY="Euros al mes" simboloX="Q" simboloY="€"
+    xTicks={[1000, 2000]} yTicks={[4800, 10000]}
+    series={[
+      { label: "CT", color: "terra", puntos: [[0, 4800], [4000, 15200]], dy: 14 },
+      { label: "IT (4 €)", color: "teal", puntos: [[0, 0], [4000, 16000]], dy: -4 },
+      { label: "IT (5 €)", color: "aubergine", puntos: [[0, 0], [4000, 20000]] },
+    ]}
+    puntos={[
+      { x: 4000, y: 16000, label: "A", xLabel: "4 000", yLabel: "16 000", dx: -24, dy: -10 },
+      { x: 4000, y: 15200, guias: false },
+      { x: 2800, y: 14000, label: "B", xLabel: "2 800", yLabel: "14 000", dx: -22, dy: -8 },
+      { x: 2800, y: 12080, guias: false },
+    ]}
+    notas={[
+      { x: 150, y: 21500, texto: "Plan B (5 €, 2.800 uds.): beneficio 1.920 €", color: "aubergine" },
+      { x: 150, y: 19300, texto: "Plan A (4 €, 4.000 uds.): beneficio 800 €", color: "teal" },
+    ]}
+  />
+</Diagram>
+
 </SolvedExercise>
 
 <SolvedExercise number="6.2" title="¿Vendemos directo o a través de distribuidor?">
@@ -318,6 +341,21 @@ Un fabricante de cosmética natural debe elegir entre dos canales para los próx
    - Canal corto: 78.000 − 0 = **78.000 €/año**.
 4. Comparación: el canal corto deja **31.500 € más al año** pese a vender cada unidad por menos de la mitad. El motivo es doble: el volumen es 2,4 veces superior y el canal corto no necesita la inversión fija de la tienda online.
 5. Conclusión: en este escenario, canal corto. Pero conviene matizar: el canal directo da **datos del cliente, marca y control de la experiencia**; el canal corto convierte al fabricante en proveedor de otra empresa. La decisión real combina rentabilidad y posición estratégica, no solo beneficio inmediato.
+
+<Diagram caption="Beneficio de cada canal. Con el mismo volumen, el canal directo gana a partir de 750 unidades, pero el contrato del canal corto garantiza 6.000 y la tienda online solo prevé 2.500: por eso el canal corto deja 78.000 € frente a 46.500 €.">
+  <GraficoXY id="g-canales-cosmetica" titulo="Beneficio anual de cada canal según las unidades vendidas" desc="Beneficio del canal directo (21 euros por unidad menos 6.000 de coste fijo) y del canal corto (13 euros por unidad). Las dos rectas se cruzan en 750 unidades, con 9.750 euros. El canal directo prevé 2.500 unidades y 46.500 euros; el canal corto, 6.000 unidades y 78.000 euros."
+    xMax={7000} yMax={90000} ejeX="Unidades vendidas al año" ejeY="Beneficio anual (€)" simboloX="Q"
+    series={[
+      { label: "Canal directo", color: "terra", puntos: [[285.71, 0], [2500, 46500]], dx: -95, dy: -42 },
+      { label: "Canal corto", color: "teal", puntos: [[0, 0], [6000, 78000]] },
+    ]}
+    puntos={[
+      { x: 2500, y: 46500, label: "D", xLabel: "2 500", yLabel: "46 500", dx: 12, dy: 20 },
+      { x: 6000, y: 78000, label: "C", xLabel: "6 000", yLabel: "78 000", dx: -22, dy: -10 },
+      { x: 750, y: 9750, xLabel: "750", yLabel: "9 750", dx: 14, dy: -10 },
+    ]}
+  />
+</Diagram>
 
 </SolvedExercise>
 

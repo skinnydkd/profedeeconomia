@@ -37,6 +37,7 @@ import SolvedExercise from '@components/SolvedExercise.astro';
 import Steps from '@components/Steps.astro';
 import KeyTakeaways from '@components/KeyTakeaways.astro';
 import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
 import Figure from '@components/Figure.astro';
 import VANTimeline from '@components/diagrams/VANTimeline.astro';
 import CascadaFinanciacion from '@components/diagrams/CascadaFinanciacion.astro';
@@ -213,6 +214,44 @@ VAN = -18.000
    - VAN = 23.733,91 − 18.000 = **+5.733,91 €**
 4. **Decisió**: VAN > 0 i PayBack < 4 anys. El projecte s'accepta: a la rendibilitat exigida del 8 %, la furgoneta genera 5.734 € de valor addicional. La TIR estarà clarament per damunt del 8 %: un càlcul iteratiu dona un 20,75 %.
 
+<Diagram caption="Fluxos de caixa acumulats (l'any 4 inclou 3.000 € de valor residual). La línia creua la inversió de 18.000 € a mitat del tercer any: PayBack ≈ 2,77 anys.">
+  <GraficoXY id="g-payback-furgoneta" titulo="Termini de recuperació de la furgoneta" desc="Flux de caixa acumulat de la furgoneta: 6.500 euros al final de l'any 1, 13.000 al de l'any 2, 19.500 al de l'any 3 i 29.000 al de l'any 4, amb el valor residual. Creua la inversió de 18.000 euros als 2,77 anys."
+    xMax={5.5} yMax={34000} ejeX="Anys des de la compra" ejeY="Euros recuperats" simboloX="t" simboloY="€"
+    xTicks={[1, 2, 3, 4]} yTicks={[10000, 30000]} xTickLabels={["1", "2", "3", "4"]}
+    series={[
+      { label: "Acumulat", color: "teal", puntos: [[0, 0], [1, 6500], [2, 13000], [3, 19500], [4, 29000]], dy: -4 },
+      { label: "Inversió", color: "terra", puntos: [[0, 18000], [4, 18000]], dy: 18 },
+    ]}
+    puntos={[
+      { x: 2.77, y: 18000, label: "PayBack", xLabel: "2,77", yLabel: "18 000", dx: -88, dy: -14 },
+      { x: 1, y: 6500, guias: false },
+      { x: 2, y: 13000, guias: false },
+      { x: 3, y: 19500, guias: false },
+      { x: 4, y: 29000, guias: false },
+    ]}
+    notas={[
+      { x: 1.08, y: 4300, texto: "6 500" },
+      { x: 2.08, y: 11000, texto: "13 000" },
+      { x: 3.1, y: 15800, texto: "19 500", color: "teal" },
+      { x: 4, y: 31000, texto: "29 000", ancla: "middle" },
+    ]}
+  />
+</Diagram>
+
+<Diagram caption="El VAN de la furgoneta per a cada taxa de descompte. Amb la taxa exigida (8 %) val 5.734 €; la corba arriba a zero en el 20,75 %, que és la TIR. Mentre k siga menor que la TIR, el VAN és positiu.">
+  <GraficoXY id="g-van-furgoneta" titulo="VAN de la furgoneta segons la taxa de descompte" desc="El VAN baixa des d'11.000 euros amb una taxa del 0 % fins a zero amb una taxa del 20,75 %, que és la TIR. Amb la taxa exigida del 8 %, el VAN és de 5.734 euros."
+    xMax={26} yMax={13000} ejeX="Taxa de descompte k" ejeY="VAN (€)" simboloX="k"
+    xTicks={[5, 15]} yTicks={[5000, 10000]} xTickLabels={["5 %", "15 %"]}
+    series={[
+      { label: "VAN(k)", color: "terra", labelEn: "inicio", puntos: [[0, 11000], [1, 10245.72], [2, 9521.77], [3, 8826.6], [4, 8158.73], [5, 7516.79], [6, 6899.47], [7, 6305.56], [8, 5733.91], [9, 5183.45], [10, 4653.17], [11, 4142.09], [12, 3649.32], [13, 3174.02], [14, 2715.37], [15, 2272.62], [16, 1845.05], [17, 1431.98], [18, 1032.77], [19, 646.81], [20, 273.53], [20.75, 0]], dx: 12, dy: 6 },
+    ]}
+    puntos={[
+      { x: 8, y: 5733.91, label: "k = 8 %", xLabel: "8 %", yLabel: "5 734", dx: 12, dy: -12 },
+      { x: 20.75, y: 0, label: "TIR", xLabel: "20,75 %", dx: -14, dy: -16 },
+    ]}
+  />
+</Diagram>
+
 </SolvedExercise>
 
 <SolvedExercise number="9.2" title="Cost real d'un préstec: TAE d'un finançament al comerç">
@@ -240,6 +279,25 @@ b) Quina és la realment més barata?
    - Sobrecost sobre el preu de l'equip: 2.640 € (un cost total del 22 % en 4 anys, amb una TAE d'al voltant de l'11,5 %).
 3. **Comparació**: l'oferta del banc resulta **960 € més barata**, malgrat el titular publicitari *«0 % interés»* de la del proveïdor.
 4. **Lliçó pràctica**: el *0 % interés* és sovint una etiqueta enganyosa. El que importa és el **cost total** o, millor, la **TAE** —Taxa Anual Equivalent— que la llei obliga a publicitar a Espanya precisament per fer comparables ofertes amb estructures distintes de comissions, assegurances i terminis. Abans de firmar qualsevol finançament, exigix sempre la TAE; si el comercial dubta a donar-la, hi ha motius per sospitar.
+
+<Diagram caption="Pagaments acumulats de cada oferta. Les dos tenen quota mensual de 285 € (la B, 250 € més 35 € d'assegurança), així que les línies són paral·leles: la distància que les separa és la comissió d'obertura de 960 €.">
+  <GraficoXY id="g-coste-prestamos" titulo="Pagaments acumulats de les ofertes A i B" desc="Pagaments acumulats al llarg de 48 mesos. L'oferta A suma 13.680 euros amb quotes de 285. L'oferta B també té quotes de 285 (250 més 35 d'assegurança) però comença amb 960 euros de comissió d'obertura i suma 14.640. L'equip costa 12.000 euros."
+    xMax={58} yMax={17000} ejeX="Mesos" ejeY="Euros pagats" simboloX="m" simboloY="€"
+    xTicks={[12, 24, 36]} yTicks={[960, 6000, 12000]}
+    series={[
+      { label: "Oferta A", color: "teal", puntos: [[0, 0], [48, 13680]], dy: 14 },
+      { label: "Oferta B", color: "terra", puntos: [[0, 960], [48, 14640]], dy: -2 },
+      { label: "Preu de l'equip", color: "ink", tenue: true, puntos: [[0, 12000], [48, 12000]], dy: 30 },
+    ]}
+    puntos={[
+      { x: 48, y: 13680, xLabel: "48", yLabel: "13 680", guias: true, label: "", dx: 0, dy: 0 },
+      { x: 48, y: 14640, yLabel: "14 640", guias: true },
+    ]}
+    notas={[
+      { x: 2, y: 16000, texto: "Les quotes són iguals: la diferència és la comissió de 960 €" },
+    ]}
+  />
+</Diagram>
 
 </SolvedExercise>
 
@@ -284,6 +342,27 @@ El càlcul iteratiu exacte donaria una TIR del **14,96 %**; la interpolació lin
 
 4. **Decisió**: la TIR estimada (≈ 15 %) supera amb folgança la taxa mínima exigida del 12 %. **S'accepta** la inversió. Equival a dir que el projecte genera 3 punts percentuals de rendibilitat anual per damunt del cost d'oportunitat de l'autònom.
 5. **Lliçó pràctica**: la TIR és útil precisament quan es vol comparar el projecte amb alternatives expressades en percentatge (depòsit al 3 %, deute públic al 3,5 %, fons indexat al 7 %). La interpolació lineal entre dos VAN de signe oposat és el mètode de càlcul manual estàndard abans dels fulls de càlcul.
+
+<Diagram caption="La corba VAN(k) de l'equip d'il·luminació (terracota) i la recta de la interpolació (discontínua), que unix el VAN al 10 % amb el del 20 % (−939 €): com que la corba és convexa, la recta talla l'eix una mica més a la dreta (15,4 %) que la TIR exacta (14,96 %).">
+  <GraficoXY id="g-van-audiovisual" titulo="VAN de l'equip d'il·luminació segons la taxa de descompte" desc="El VAN baixa des de 4.000 euros amb una taxa del 0 % fins a zero amb la TIR exacta del 14,96 %. Amb una taxa del 10 % val 1.095 euros. Amb una taxa del 20 % és de menys 939 euros. La recta que unix el VAN al 10 % amb el VAN al 20 % talla l'eix en el 15,4 %, una mica per damunt de la TIR real."
+    xMax={24} yMax={4800} yMin={-1200} ejeX="Taxa de descompte k" ejeY="VAN (€)" simboloX="k"
+    xTicks={[5]} yTicks={[2000, 4000]} xTickLabels={["5 %"]}
+    series={[
+      { label: "VAN(k)", color: "terra", labelEn: "inicio", puntos: [[0, 4000], [1, 3656.88], [2, 3327.05], [3, 3009.84], [4, 2704.63], [5, 2410.83], [6, 2127.87], [7, 1855.24], [8, 1592.44], [9, 1339.02], [10, 1094.53], [11, 858.56], [12, 630.72], [13, 410.65], [14, 197.99], [14.96, 0], [15, -7.58], [16, -206.37], [17, -398.68], [18, -584.78], [19, -764.95], [20, -939.43]], dx: 12, dy: -10 },
+      { color: "ink", tenue: true, puntos: [[10, 1094.53], [20, -939.42]] },
+    ]}
+    puntos={[
+      { x: 10, y: 1094.53, label: "k = 10 %", xLabel: "10 %", yLabel: "1 095", dx: -72, dy: 22 },
+      { x: 14.96, y: 0, guias: false },
+      { x: 15.38, y: 0, guias: false },
+      { x: 20, y: -939.42, label: "k = 20 %", xLabel: "20 %", yLabel: "−939", dx: 12, dy: 4 },
+    ]}
+    notas={[
+      { x: 15.3, y: 2300, texto: "TIR exacta: 14,96 %", color: "terra" },
+      { x: 15.3, y: 1650, texto: "Interpolació: 15,4 %" },
+    ]}
+  />
+</Diagram>
 
 </SolvedExercise>
 
@@ -428,6 +507,22 @@ La pregunta de quant deute i quant capital propi convé tindre és un dels debat
 - **Màxim possible de deute.** Aprofita l'efecte fiscal (els interessos són deduïbles) i el menor cost del deute. Però augmenta el risc de fallida davant caigudes d'ingressos.
 
 La pràctica intermèdia és el que es coneix com a **estructura òptima de capital**: la mescla de deute i capital propi que minimitza el cost mitjà ponderat del capital (*WACC*) mentres manté l'empresa solvent. Depén del sector (elèctriques poden suportar més deute; tecnològiques, menys), del cicle econòmic i del risc del propi projecte.
+
+<Diagram caption="Esquema de l'estructura òptima de capital: al principi el deute abarateix el finançament; passat cert punt, el risc de fallida l'encarix. La mescla que minimitza el cost mitjà ponderat (WACC) és l'òptima. No usa dades reals.">
+  <GraficoXY id="g-estructura-optima" titulo="Cost mitjà ponderat del capital segons el pes del deute" desc="Esquema sense xifres: el cost mitjà ponderat del capital forma una U. Amb només capital propi és alt; baixa en afegir deute barat fins a un mínim, l'estructura òptima, i torna a pujar quan el risc de fallida encarix tot el finançament."
+    xMax={112} yMax={90} ejeX="Pes del deute en el finançament" ejeY="Cost mitjà ponderat (WACC)"
+    series={[
+      { label: "WACC", color: "terra", puntos: [[0, 72.81], [5, 66.25], [10, 60.31], [15, 55], [20, 50.31], [25, 46.25], [30, 42.81], [35, 40], [40, 37.81], [45, 36.25], [50, 35.31], [55, 35], [60, 35.31], [65, 36.25], [70, 37.81], [75, 40], [80, 42.81], [85, 46.25], [90, 50.31], [95, 55], [100, 60.31]] },
+    ]}
+    puntos={[
+      { x: 55, y: 35, label: "Estructura òptima", dx: -62, dy: 34 },
+    ]}
+    notas={[
+      { x: 1, y: 84, texto: "Només capital propi: cost alt" },
+      { x: 110, y: 84, texto: "Massa deute: risc de fallida", ancla: "end" },
+    ]}
+  />
+</Diagram>
 
 Una regla pràctica per a pimes: **el deute no hauria de superar el 60-65 % del balanç**. Per damunt, el cost financer es menja els beneficis; per davall, pot quedar marge per a endeutar-se més, però només compensa si la rendibilitat econòmica supera el cost del deute.
 

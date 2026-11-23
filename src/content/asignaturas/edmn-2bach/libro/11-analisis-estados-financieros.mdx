@@ -40,6 +40,7 @@ import Steps from '@components/Steps.astro';
 import KeyTakeaways from '@components/KeyTakeaways.astro';
 import Figure from '@components/Figure.astro';
 import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
 import FondoManiobra from '@components/diagrams/FondoManiobra.astro';
 import PiramideDuPont from '@components/diagrams/PiramideDuPont.astro';
 import Bibliography from '@components/Bibliography.astro';
@@ -191,6 +192,51 @@ Dos pequeñas empresas de carpintería metálica presentan los siguientes balanc
    - **Empresa B** está en sobreliquidez. Ratios cómodos (3,5 de liquidez general; 0,75 de disponibilidad), bajo endeudamiento (43 %). Pero conviene preguntarse: ¿no estará la empresa B desaprovechando recursos? Mantener 30.000 € en caja sin invertir tiene un coste de oportunidad: ese dinero podría estar generando rentabilidad en activos productivos.
    - Conclusión práctica: ningún ratio es bueno o malo en abstracto. **Demasiada poca liquidez** mata; **demasiada liquidez** lastra la rentabilidad. La gestión financiera consiste en navegar entre ambos riesgos.
 
+<Diagram caption="Cada empresa tiene dos columnas, el activo y el patrimonio neto más el pasivo (ANC: activo no corriente; AC: activo corriente; PN: patrimonio neto; PNC y PC: pasivo no corriente y corriente). En la A, el pasivo corriente (140) supera al activo corriente (120): parte del activo no corriente se financia con deuda a corto plazo.">
+  <GraficoXY id="g-balance-carpinterias" titulo="Balance de las empresas A y B" desc="Dos balances en miles de euros. Empresa A: activo no corriente 220 y activo corriente 120; patrimonio neto 80, pasivo no corriente 120 y pasivo corriente 140. Su fondo de maniobra es de menos 20. Empresa B: activo no corriente 90 y corriente 140; patrimonio neto 130, pasivo no corriente 60 y corriente 40. Su fondo de maniobra es de 100."
+    xMax={11} yMax={420} ejeX="Miles de euros" ejeY="Miles de euros"
+    xTicks={[1.5, 3.9, 6.6, 9]} xTickLabels={["A: activo", "A: PN + pasivo", "B: activo", "B: PN + pasivo"]}
+    areas={[
+      { puntos: [[0.5, 0], [2.5, 0], [2.5, 220], [0.5, 220]], color: "terra", fuerte: true },
+      { puntos: [[0.5, 220], [2.5, 220], [2.5, 340], [0.5, 340]], color: "mustard", fuerte: true },
+      { puntos: [[2.9, 0], [4.9, 0], [4.9, 80], [2.9, 80]], color: "teal", fuerte: true },
+      { puntos: [[2.9, 80], [4.9, 80], [4.9, 200], [2.9, 200]], color: "aubergine", fuerte: true },
+      { puntos: [[2.9, 200], [4.9, 200], [4.9, 340], [2.9, 340]], color: "mustard", fuerte: true },
+      { puntos: [[5.6, 0], [7.6, 0], [7.6, 90], [5.6, 90]], color: "terra", fuerte: true },
+      { puntos: [[5.6, 90], [7.6, 90], [7.6, 230], [5.6, 230]], color: "mustard", fuerte: true },
+      { puntos: [[8, 0], [10, 0], [10, 130], [8, 130]], color: "teal", fuerte: true },
+      { puntos: [[8, 130], [10, 130], [10, 190], [8, 190]], color: "aubergine", fuerte: true },
+      { puntos: [[8, 190], [10, 190], [10, 230], [8, 230]], color: "mustard", fuerte: true },
+    ]}
+    series={[
+      { puntos: [[0.5, 0], [2.5, 0], [2.5, 220], [0.5, 220], [0.5, 0]], color: "terra" },
+      { puntos: [[0.5, 220], [2.5, 220], [2.5, 340], [0.5, 340], [0.5, 220]], color: "mustard" },
+      { puntos: [[2.9, 0], [4.9, 0], [4.9, 80], [2.9, 80], [2.9, 0]], color: "teal" },
+      { puntos: [[2.9, 80], [4.9, 80], [4.9, 200], [2.9, 200], [2.9, 80]], color: "aubergine" },
+      { puntos: [[2.9, 200], [4.9, 200], [4.9, 340], [2.9, 340], [2.9, 200]], color: "mustard" },
+      { puntos: [[5.6, 0], [7.6, 0], [7.6, 90], [5.6, 90], [5.6, 0]], color: "terra" },
+      { puntos: [[5.6, 90], [7.6, 90], [7.6, 230], [5.6, 230], [5.6, 90]], color: "mustard" },
+      { puntos: [[8, 0], [10, 0], [10, 130], [8, 130], [8, 0]], color: "teal" },
+      { puntos: [[8, 130], [10, 130], [10, 190], [8, 190], [8, 130]], color: "aubergine" },
+      { puntos: [[8, 190], [10, 190], [10, 230], [8, 230], [8, 190]], color: "mustard" },
+    ]}
+    notas={[
+      { x: 1.5, y: 103, texto: "ANC 220", ancla: "middle" },
+      { x: 1.5, y: 273, texto: "AC 120", ancla: "middle" },
+      { x: 3.9, y: 33, texto: "PN 80", ancla: "middle" },
+      { x: 3.9, y: 133, texto: "PNC 120", ancla: "middle" },
+      { x: 3.9, y: 263, texto: "PC 140", ancla: "middle" },
+      { x: 6.6, y: 38, texto: "ANC 90", ancla: "middle" },
+      { x: 6.6, y: 153, texto: "AC 140", ancla: "middle" },
+      { x: 9, y: 58, texto: "PN 130", ancla: "middle" },
+      { x: 9, y: 153, texto: "PNC 60", ancla: "middle" },
+      { x: 9, y: 203, texto: "PC 40", ancla: "middle" },
+      { x: 2.7, y: 372, texto: "FM = 120 − 140 = −20", color: "terra", ancla: "middle" },
+      { x: 8, y: 372, texto: "FM = 140 − 40 = +100", color: "teal", ancla: "middle" },
+    ]}
+  />
+</Diagram>
+
 </SolvedExercise>
 
 <Callout label="Concepto clave" title="Ratios — comparar y vigilar la tendencia">
@@ -300,6 +346,29 @@ c) Explica si el apalancamiento financiero está aportando valor a los accionist
    - Resultado visible: antes de impuestos, la rentabilidad de los socios es BAI / PN = 45.000 / 200.000 = **22,5 %**, 10,5 puntos por encima del ROA (12 %). Eso es lo que suma el apalancamiento. El impuesto se lleva 5,6 puntos, y el ROE queda en el 16,9 %.
 5. **Aviso clásico**: si la empresa entrara en una crisis y el ROA cayera al 4 %, la situación se invertiría —ROA (4 %) < Coste deuda (5 %)— y el apalancamiento jugaría en contra: la rentabilidad de los socios antes de impuestos, (20.000 − 15.000) / 200.000 = 2,5 %, quedaría por debajo del ROA. Por eso las empresas con mucho apalancamiento son extraordinariamente rentables en los buenos años y devastadoras en los malos.
 
+<Diagram caption="Cuánto rinde el patrimonio de los socios según lo que rinde el activo, con la deuda del ejercicio 11.2 (300.000 € al 5 %). Por encima del ROA del 5 % (el coste de la deuda), la deuda multiplica la rentabilidad; por debajo, la recorta. El ROE queda más bajo por el 25 % de impuesto.">
+  <GraficoXY id="g-apalancamiento" titulo="Rentabilidad de los socios según la rentabilidad económica" desc="Con deuda de 300.000 euros al 5 % y patrimonio neto de 200.000, la rentabilidad antes de impuestos de los socios es 2,5 veces el ROA menos 7,5 puntos, y el ROE después de impuestos, 1,875 veces el ROA menos 5,625. Con ROA del 12 %: 22,5 % y 16,9 %. Con ROA del 4 %: 2,5 % antes de impuestos. La recta con deuda corta la de sin deuda en el ROA del 5 %, que es el coste de la deuda."
+    xMax={20} yMax={36} ejeX="ROA, rentabilidad económica (%)" ejeY="Rentabilidad de los socios (%)" simboloX="ROA"
+    xTicks={[8, 16]} yTicks={[30]}
+    series={[
+      { label: "Sin deuda", color: "ink", tenue: true, puntos: [[0, 0], [15, 15]], dy: 14 },
+      { label: "BAI/PN", color: "terra", puntos: [[3, 0], [15, 30]] },
+      { label: "ROE", color: "teal", puntos: [[3, 0], [15, 22.5]], dy: 6 },
+    ]}
+    puntos={[
+      { x: 12, y: 22.5, xLabel: "12", yLabel: "22,5" },
+      { x: 12, y: 16.88, yLabel: "16,9" },
+      { x: 12, y: 12, yLabel: "12" },
+      { x: 4, y: 2.5, xLabel: "4", yLabel: "2,5" },
+      { x: 5, y: 5, xLabel: "5", yLabel: "5", label: "i = 5 %", dx: -66, dy: -14 },
+    ]}
+    notas={[
+      { x: 0.4, y: 33.5, texto: "Hoy (ROA 12 %): BAI/PN 22,5 %, ROE 16,9 %", color: "ink" },
+      { x: 0.4, y: 30.6, texto: "Crisis (ROA 4 %): BAI/PN 2,5 %", color: "terra" },
+    ]}
+  />
+</Diagram>
+
 </SolvedExercise>
 
 <Figure
@@ -381,6 +450,42 @@ c) Interpreta el resultado. ¿Cuánta tesorería liberaría la empresa si cobrar
 5. **Pago a proveedores**: rotación = 146.000 / 20.000 = **7,3** → 365 / 7,3 = **50 días**.
 6. **PMM económico** = 25 + 10 + 25 + 50 = **110 días**. **PMM financiero** = 110 − 50 = **60 días**.
 7. **Interpretación**: desde que la materia prima entra en el almacén hasta que se cobra el mueble pasan 110 días. Los proveedores financian 50; los otros **60 días** los tiene que financiar la empresa con recursos propios o con deuda. Si cobrara en 25 días, la rotación de clientes subiría a 365 / 25 = 14,6 y el saldo medio de clientes bajaría a 511.000 / 14,6 = 35.000 €: el PMM económico quedaría en 85 días, el financiero en **35 días**, y la empresa liberaría **35.000 € de tesorería** (25 días × 1.400 € de ventas diarias).
+
+<Diagram caption="Las cuatro fases suman 110 días (d = días) desde que la materia prima entra en el almacén hasta que se cobra el mueble. Los proveedores financian los primeros 50; los 60 restantes son el período medio de maduración financiero.">
+  <GraficoXY id="g-pmm-muebles" titulo="Período medio de maduración de la fábrica de muebles" desc="Cronología en días: 25 de almacén de materias primas, 10 de fabricación, 25 de almacén de producto terminado y 50 de cobro a clientes suman un período medio de maduración económico de 110 días. Los proveedores financian los primeros 50 días, así que la empresa tiene que financiar los 60 restantes."
+    xMax={125} yMax={115} ejeX="Días desde que entra la materia prima" ejeY=""
+    xTicks={[25, 35, 50, 60, 110]}
+    areas={[
+      { puntos: [[0, 66], [25, 66], [25, 86], [0, 86]], color: "terra", fuerte: true },
+      { puntos: [[25, 66], [35, 66], [35, 86], [25, 86]], color: "mustard", fuerte: true },
+      { puntos: [[35, 66], [60, 66], [60, 86], [35, 86]], color: "teal", fuerte: true },
+      { puntos: [[60, 66], [110, 66], [110, 86], [60, 86]], color: "aubergine", fuerte: true },
+      { puntos: [[0, 38], [50, 38], [50, 58], [0, 58]], color: "ink", fuerte: true },
+      { puntos: [[50, 10], [110, 10], [110, 30], [50, 30]], color: "terra", fuerte: true },
+    ]}
+    series={[
+      { puntos: [[0, 66], [25, 66], [25, 86], [0, 86], [0, 66]], color: "terra" },
+      { puntos: [[25, 66], [35, 66], [35, 86], [25, 86], [25, 66]], color: "mustard" },
+      { puntos: [[35, 66], [60, 66], [60, 86], [35, 86], [35, 66]], color: "teal" },
+      { puntos: [[60, 66], [110, 66], [110, 86], [60, 86], [60, 66]], color: "aubergine" },
+      { puntos: [[0, 38], [50, 38], [50, 58], [0, 58], [0, 38]], color: "ink" },
+      { puntos: [[50, 10], [110, 10], [110, 30], [50, 30], [50, 10]], color: "terra" },
+    ]}
+    notas={[
+      { x: 12.5, y: 90, texto: "Almacén materias primas", ancla: "middle" },
+      { x: 30, y: 98, texto: "Fabricación", ancla: "middle" },
+      { x: 47.5, y: 90, texto: "Almacén producto terminado", ancla: "middle" },
+      { x: 85, y: 90, texto: "Cobro a clientes", ancla: "middle" },
+      { x: 55, y: 108, texto: "PMM económico: 110 días", color: "terra", ancla: "middle" },
+      { x: 12.5, y: 73, texto: "25 d", ancla: "middle" },
+      { x: 30, y: 73, texto: "10 d", ancla: "middle" },
+      { x: 47.5, y: 73, texto: "25 d", ancla: "middle" },
+      { x: 85, y: 73, texto: "50 d", ancla: "middle" },
+      { x: 25, y: 45, texto: "Crédito de proveedores: 50 días", ancla: "middle" },
+      { x: 80, y: 17, texto: "A financiar por la empresa: 60 días", ancla: "middle" },
+    ]}
+  />
+</Diagram>
 
 </SolvedExercise>
 

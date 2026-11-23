@@ -37,6 +37,7 @@ import RealExample from '@components/RealExample.astro';
 import Steps from '@components/Steps.astro';
 import KeyTakeaways from '@components/KeyTakeaways.astro';
 import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
 import BusinessModelCanvas from '@components/diagrams/BusinessModelCanvas.astro';
 import Figure from '@components/Figure.astro';
 import Bibliography from '@components/Bibliography.astro';
@@ -237,6 +238,23 @@ Concepto formulado por Chris Anderson en 2006: vender pequeñas cantidades de un
 
 La lección práctica: en mercados digitales, los nichos pequeños sumados valen tanto como el centro del mercado. Quien sirva a esos nichos sin coste marginal extra captura mercado *invisible*.
 
+<Diagram caption="Esquema de la cola larga, sin datos reales: la zona de la cola (mostaza) puede sumar tanto o más que la de la cabeza (terracota), pero solo es rentable servirla cuando almacenar y distribuir cuesta casi cero.">
+  <GraficoXY id="g-larga-cola" titulo="La cola larga" desc="Esquema sin cifras: las ventas por producto caen deprisa de los más vendidos (la cabeza) a los menos vendidos (la cola). La cola es larga y su suma, en el área sombreada, puede igualar o superar a la de la cabeza."
+    xMax={112} yMax={100} ejeX="Productos, del más vendido al menos vendido" ejeY="Ventas por producto"
+    areas={[
+      { puntos: [[0, 0], [0, 90], [2, 62.98], [4, 47.04], [6, 36.76], [8, 29.69], [10, 24.59], [10, 0]], color: "terra" },
+      { puntos: [[10, 0], [10, 24.59], [12, 20.77], [14, 17.84], [16, 15.52], [18, 13.65], [20, 12.13], [22, 10.86], [24, 9.79], [26, 8.89], [28, 8.11], [30, 7.44], [32, 6.85], [34, 6.34], [36, 5.88], [38, 5.48], [40, 5.12], [42, 4.8], [44, 4.5], [46, 4.24], [48, 4], [50, 3.78], [52, 3.58], [54, 3.4], [56, 3.23], [58, 3.08], [60, 2.93], [62, 2.8], [64, 2.68], [66, 2.56], [68, 2.45], [70, 2.35], [72, 2.26], [74, 2.17], [76, 2.09], [78, 2.01], [80, 1.94], [82, 1.87], [84, 1.81], [86, 1.75], [88, 1.69], [90, 1.63], [92, 1.58], [94, 1.53], [96, 1.49], [98, 1.44], [100, 1.4], [100, 0]], color: "mustard" },
+    ]}
+    series={[
+      { color: "ink", puntos: [[0, 90], [2, 62.98], [4, 47.04], [6, 36.76], [8, 29.69], [10, 24.59], [12, 20.77], [14, 17.84], [16, 15.52], [18, 13.65], [20, 12.13], [22, 10.86], [24, 9.79], [26, 8.89], [28, 8.11], [30, 7.44], [32, 6.85], [34, 6.34], [36, 5.88], [38, 5.48], [40, 5.12], [42, 4.8], [44, 4.5], [46, 4.24], [48, 4], [50, 3.78], [52, 3.58], [54, 3.4], [56, 3.23], [58, 3.08], [60, 2.93], [62, 2.8], [64, 2.68], [66, 2.56], [68, 2.45], [70, 2.35], [72, 2.26], [74, 2.17], [76, 2.09], [78, 2.01], [80, 1.94], [82, 1.87], [84, 1.81], [86, 1.75], [88, 1.69], [90, 1.63], [92, 1.58], [94, 1.53], [96, 1.49], [98, 1.44], [100, 1.4]] },
+    ]}
+    notas={[
+      { x: 12, y: 80, texto: "Cabeza: pocos productos, muchas ventas cada uno", color: "terra" },
+      { x: 30, y: 30, texto: "Cola larga: muchos productos, pocas ventas cada uno", color: "mustard" },
+    ]}
+  />
+</Diagram>
+
 ### Freemium
 
 Una versión básica del producto se ofrece gratis y una versión completa se cobra. La gracia es doble: el usuario gratuito tiene un coste marginal cercano a cero (servicio digital escalable) y, además, hace publicidad orgánica del producto a su entorno. Spotify, Dropbox, LinkedIn, Notion o Canva son ejemplos canónicos.
@@ -262,7 +280,23 @@ El reto principal es el problema del **huevo y la gallina**: hacen falta los dos
 
 El cliente paga periódicamente —mensualmente, anualmente— a cambio de acceso continuo al producto o servicio. Sustituye una compra puntual por una relación financiera estable. La gran ventaja para la empresa es la **previsibilidad de ingresos**, que facilita planificación e inversión. Para el cliente, suaviza el desembolso y suele incluir mejoras automáticas.
 
-Netflix, Spotify, Adobe Creative Cloud, gimnasios y los carísimos *software* B2B son todos suscripciones. En los últimos años se ha extendido a sectores impensables: cajas mensuales de calcetines, suscripción a cervezas artesanas, suscripción a cuchillas de afeitar. La métrica clave del modelo no es el precio sino el *churn* (tasa de bajas mensual): un *churn* del 3 % mensual implica perder un tercio de la base cada año.
+Netflix, Spotify, Adobe Creative Cloud, gimnasios y los carísimos *software* B2B son todos suscripciones. En los últimos años se ha extendido a sectores impensables: cajas mensuales de calcetines, suscripción a cervezas artesanas, suscripción a cuchillas de afeitar. La métrica clave del modelo no es el precio sino el *churn* (tasa de bajas mensual): un *churn* del 3 % mensual implica perder casi un tercio de la base cada año (el 31 %).
+
+<Diagram caption="Un churn del 3 % mensual, año a año: cada mes se pierde el 3 % de los clientes que quedaban, así que tras 12 meses la base ha caído al 69,4 % (casi un tercio menos) y tras 24 meses, al 48,2 %.">
+  <GraficoXY id="g-churn" titulo="Clientes que quedan con un churn del 3 % mensual" desc="Si cada mes se va el 3 % de los clientes, de una base de 100 quedan 69,4 a los 12 meses, es decir, se pierde el 30,6 % en un año, y 48,2 a los 24 meses."
+    xMax={32} yMax={120} ejeX="Meses" ejeY="Clientes que quedan (inicio = 100)" simboloX="m"
+    xTicks={[6, 18, 24]} yTicks={[25, 50, 100]}
+    series={[
+      { label: "Clientes", color: "terra", puntos: [[0, 100], [1, 97], [2, 94.09], [3, 91.27], [4, 88.53], [5, 85.87], [6, 83.3], [7, 80.8], [8, 78.37], [9, 76.02], [10, 73.74], [11, 71.53], [12, 69.38], [13, 67.3], [14, 65.28], [15, 63.33], [16, 61.43], [17, 59.58], [18, 57.8], [19, 56.06], [20, 54.38], [21, 52.75], [22, 51.17], [23, 49.63], [24, 48.14]] },
+    ]}
+    puntos={[
+      { x: 12, y: 69.38, xLabel: "12", yLabel: "69,4", label: "12 meses", dx: 12, dy: -14 },
+    ]}
+    notas={[
+      { x: 13.5, y: 90, texto: "Se pierde el 30,6 % en un año" },
+    ]}
+  />
+</Diagram>
 
 ### Marketplace
 

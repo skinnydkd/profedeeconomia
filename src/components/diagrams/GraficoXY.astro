@@ -40,7 +40,7 @@ interface Punto {
   dy?: number;
 }
 interface Flecha { de: XY; a: XY; /** Sideways offset in px. */ despl?: number; }
-interface Area { puntos: XY[]; color?: Color; }
+interface Area { puntos: XY[]; color?: Color; /** Solid enough to read as a bar instead of a tint. */ fuerte?: boolean; }
 interface Nota { x: number; y: number; texto: string; color?: Color; ancla?: 'start' | 'middle' | 'end'; }
 
 interface Props {
@@ -50,6 +50,8 @@ interface Props {
   desc: string;
   xMax: number;
   yMax: number;
+  /** Below zero when the model has losses (a negative NPV, a deficit). The x axis stays at y = 0. */
+  yMin?: number;
   /** Axis names; they print in small capitals. */
   ejeX: string;
   ejeY: string;
@@ -81,14 +83,15 @@ const COPY = {
 const t = COPY[locale];
 
 const {
-  id, titulo, desc, xMax, yMax, ejeX, ejeY, simboloX = '', simboloY = '',
+  id, titulo, desc, xMax, yMax, yMin = 0, ejeX, ejeY, simboloX = '', simboloY = '',
   series = [], puntos = [], flechas = [], areas = [], notas = [],
   xTicks = [], yTicks = [], xTickLabels, yTickLabels,
 } = Astro.props;
 
 const X0 = 90, X1 = 720, Y0 = 420, Y1 = 50;
 const px = (x: number) => X0 + (x / xMax) * (X1 - X0);
-const py = (y: number) => Y0 - (y / yMax) * (Y0 - Y1);
+const py = (y: number) => Y0 - ((y - yMin) / (yMax - yMin)) * (Y0 - Y1);
+const yCero = py(0);
 const r1 = (n: number) => Math.round(n * 10) / 10;
 const camino = (pts: XY[]) => pts.map(([x, y]) => `${r1(px(x))},${r1(py(y))}`).join(' ');
 const cifra = (n: number) => {
@@ -104,7 +107,7 @@ const lineas = series.filter((s) => s.puntos.length > 1).map((s) => {
     color: s.color ?? 'terra',
     d: camino(s.puntos),
     lx: px(ancla[0]) + (s.dx ?? 10),
-    ly: Math.min(py(ancla[1]) + (s.dy ?? 5), Y0 - 10),
+    ly: py(ancla[1]) + (s.dy ?? 5),
   };
 });
 
@@ -137,6 +140,7 @@ const saetas = flechas.map((f) => {
       .d-xy .f-ink { fill: #2A1F18; }
       .d-xy .f-aubergine { fill: #5B3A4E; }
       .d-xy .area { stroke: none; opacity: 0.16; }
+      .d-xy .area--fuerte { opacity: 0.5; }
       .d-xy .a-terra { fill: #C44E2C; }
       .d-xy .a-mustard { fill: #D4A24C; }
       .d-xy .a-teal { fill: #1F6E6E; }
@@ -167,12 +171,12 @@ const saetas = flechas.map((f) => {
   </defs>
   <rect class="bg" x="0" y="0" width="800" height="500"/>
 
-  {areas.map((a) => <polygon class:list={['area', `a-${a.color ?? 'mustard'}`]} points={camino(a.puntos)}/>)}
+  {areas.map((a) => <polygon class:list={['area', `a-${a.color ?? 'mustard'}`, a.fuerte && 'area--fuerte']} points={camino(a.puntos)}/>)}
 
-  <line class="axis" x1={X0} y1={Y0} x2="740" y2={Y0} marker-end="url(#xy-arrow)"/>
+  <line class="axis" x1={X0} y1={yCero} x2="740" y2={yCero} marker-end="url(#xy-arrow)"/>
   <line class="axis" x1={X0} y1="440" x2={X0} y2="40" marker-end="url(#xy-arrow)"/>
-  <text class="tick tick--y" x="80" y="438">0</text>
-  <text class="axis-label" x="755" y="425">{simboloX}</text>
+  <text class="tick tick--y" x="80" y={yCero + (yMin < 0 ? 4 : 18)}>0</text>
+  <text class="axis-label" x="755" y={yCero + 5}>{simboloX}</text>
   <text class="axis-label axis-label--end" x="80" y="35">{simboloY}</text>
   <text class="axis-label axis-label--mid" x="405" y="482">{ejeX}</text>
   <text class="axis-label axis-label--mid" x="24" y="235" transform="rotate(-90 24 235)">{ejeY}</text>
@@ -185,17 +189,17 @@ const saetas = flechas.map((f) => {
   ))}
   {xTicks.map((v, i) => (
     <>
-      <line class="tickmark" x1={px(v)} y1={Y0} x2={px(v)} y2={Y0 + 5}/>
-      <text class="tick tick--x" x={px(v)} y={Y0 + 20}>{xTickLabels?.[i] ?? cifra(v)}</text>
+      <line class="tickmark" x1={px(v)} y1={yCero} x2={px(v)} y2={yCero + 5}/>
+      <text class="tick tick--x" x={px(v)} y={yCero + 20}>{xTickLabels?.[i] ?? cifra(v)}</text>
     </>
   ))}
 
   {puntos.filter((p) => p.guias !== false).map((p) => (
     <>
-      <line class="guide" x1={px(p.x)} y1={py(p.y)} x2={px(p.x)} y2={Y0}/>
+      <line class="guide" x1={px(p.x)} y1={py(p.y)} x2={px(p.x)} y2={yCero}/>
       <line class="guide" x1={X0} y1={py(p.y)} x2={px(p.x)} y2={py(p.y)}/>
       {p.yLabel && <text class="tick tick--y" x={X0 - 9} y={py(p.y) + 4}>{p.yLabel}</text>}
-      {p.xLabel && <text class="tick tick--x" x={px(p.x)} y={Y0 + 20}>{p.xLabel}</text>}
+      {p.xLabel && <text class="tick tick--x" x={px(p.x)} y={yCero + 20}>{p.xLabel}</text>}
     </>
   ))}
 

@@ -35,6 +35,7 @@ import RealExample from '@components/RealExample.astro';
 import Steps from '@components/Steps.astro';
 import KeyTakeaways from '@components/KeyTakeaways.astro';
 import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
 import Figure from '@components/Figure.astro';
 import EmpathyMap from '@components/diagrams/EmpathyMap.astro';
 import DoubleDiamond from '@components/diagrams/DoubleDiamond.astro';
@@ -265,6 +266,27 @@ Cada idea se sitúa en una matriz 2×2 donde el eje vertical es el **impacto** e
 - **Alto impacto, alto esfuerzo** → planificar a medio plazo.
 - **Bajo impacto, bajo esfuerzo** → ejecutar cuando sobre tiempo.
 - **Bajo impacto, alto esfuerzo** → descartar.
+
+<Diagram caption="La matriz de impacto y esfuerzo: cada idea se sitúa según lo que aporta y lo que cuesta ejecutarla. La casilla de arriba a la izquierda se hace primero; la de abajo a la derecha se descarta.">
+  <GraficoXY id="g-impacto-esfuerzo" titulo="Matriz de impacto y esfuerzo" desc="Esquema sin cifras con cuatro cuadrantes. Arriba a la izquierda, mucho impacto con poco esfuerzo: hacer primero. Arriba a la derecha, mucho impacto y mucho esfuerzo: planificar. Abajo a la izquierda, poco impacto y poco esfuerzo: hacer si sobra tiempo. Abajo a la derecha, poco impacto y mucho esfuerzo: descartar."
+    xMax={100} yMax={100} ejeX="Esfuerzo" ejeY="Impacto"
+    xTicks={[25, 75]} yTicks={[25, 75]} xTickLabels={["Bajo", "Alto"]} yTickLabels={["Bajo", "Alto"]}
+    areas={[
+      { puntos: [[0, 50], [50, 50], [50, 100], [0, 100]], color: "teal" },
+      { puntos: [[50, 0], [100, 0], [100, 50], [50, 50]], color: "terra" },
+    ]}
+    series={[
+      { color: "ink", puntos: [[50, 0], [50, 100]] },
+      { color: "ink", puntos: [[0, 50], [100, 50]] },
+    ]}
+    notas={[
+      { x: 3, y: 92, texto: "Hacer primero (quick wins)", color: "teal" },
+      { x: 53, y: 92, texto: "Planificar a medio plazo" },
+      { x: 3, y: 8, texto: "Hacer si sobra tiempo" },
+      { x: 53, y: 8, texto: "Descartar", color: "terra" },
+    ]}
+  />
+</Diagram>
 
 ### Criterios ponderados
 

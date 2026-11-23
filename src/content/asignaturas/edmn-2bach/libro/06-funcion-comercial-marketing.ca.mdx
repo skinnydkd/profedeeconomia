@@ -37,6 +37,7 @@ import SolvedExercise from '@components/SolvedExercise.astro';
 import Steps from '@components/Steps.astro';
 import KeyTakeaways from '@components/KeyTakeaways.astro';
 import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
 import Figure from '@components/Figure.astro';
 import MarketingMix4P from '@components/diagrams/MarketingMix4P.astro';
 import Bibliography from '@components/Bibliography.astro';
@@ -293,6 +294,28 @@ Quin pla genera més benefici mensual? Quin és el marge de contribució unitari
 4. Comparació: tot i vendre 1.200 truites menys, el Pla B genera **2,4 vegades més benefici**. La raó és que el marge unitari creix de 1,40 a 2,40 € (+71 %) mentres la demanda cau només un 30 %.
 5. Conclusió: Pla B. Però la decisió real exigix verificar si la previsió de demanda a 5 € és realista —en màrqueting, l'elasticitat estimada sobre el paper sol ser més optimista que l'observada al mercat—.
 
+<Diagram caption="Els dos plans sobre el mateix cost total: en cada punt, la distància entre l'ingrés i el cost és el benefici. Encara que el pla B ven 1.200 truites menys, la distància és major: 1.920 € enfront de 800 €.">
+  <GraficoXY id="g-planes-tortillas" titulo="Ingressos i costos dels plans A i B" desc="Recta de cost total amb 4.800 euros de cost fix i 2,60 euros per truita, i rectes d'ingrés total a 4 i a 5 euros. Amb el pla A, 4.000 truites donen 16.000 euros d'ingrés i 15.200 de cost: 800 de benefici. Amb el pla B, 2.800 truites donen 14.000 euros d'ingrés i 12.080 de cost: 1.920 de benefici."
+    xMax={4600} yMax={24000} ejeX="Truites al mes" ejeY="Euros al mes" simboloX="Q" simboloY="€"
+    xTicks={[1000, 2000]} yTicks={[4800, 10000]}
+    series={[
+      { label: "CT", color: "terra", puntos: [[0, 4800], [4000, 15200]], dy: 14 },
+      { label: "IT (4 €)", color: "teal", puntos: [[0, 0], [4000, 16000]], dy: -4 },
+      { label: "IT (5 €)", color: "aubergine", puntos: [[0, 0], [4000, 20000]] },
+    ]}
+    puntos={[
+      { x: 4000, y: 16000, label: "A", xLabel: "4 000", yLabel: "16 000", dx: -24, dy: -10 },
+      { x: 4000, y: 15200, guias: false },
+      { x: 2800, y: 14000, label: "B", xLabel: "2 800", yLabel: "14 000", dx: -22, dy: -8 },
+      { x: 2800, y: 12080, guias: false },
+    ]}
+    notas={[
+      { x: 150, y: 21500, texto: "Pla B (5 €, 2.800 unitats): benefici 1.920 €", color: "aubergine" },
+      { x: 150, y: 19300, texto: "Pla A (4 €, 4.000 unitats): benefici 800 €", color: "teal" },
+    ]}
+  />
+</Diagram>
+
 </SolvedExercise>
 
 <SolvedExercise number="6.2" title="Venem directe o a través de distribuïdor?">
@@ -319,6 +342,21 @@ Quin canal deixa major benefici anual? És sempre rendible optar pel canal amb m
    - Canal curt: 78.000 − 0 = **78.000 €/any**.
 4. Comparació: el canal curt deixa **31.500 € més a l'any** tot i vendre cada unitat per menys de la meitat. El motiu és doble: el volum és 2,4 vegades superior i el canal curt no necessita la inversió fixa de la botiga en línia.
 5. Conclusió: en este escenari, canal curt. Però convé matisar: el canal directe dona **dades del client, marca i control de l'experiència**; el canal curt convertix el fabricant en proveïdor d'una altra empresa. La decisió real combina rendibilitat i posició estratègica, no només benefici immediat.
+
+<Diagram caption="Benefici de cada canal. Amb el mateix volum, el canal directe guanya a partir de 750 unitats, però el contracte del canal curt garantix 6.000 i la botiga en línia només preveu 2.500: per això el canal curt deixa 78.000 € enfront de 46.500 €.">
+  <GraficoXY id="g-canales-cosmetica" titulo="Benefici anual de cada canal segons les unitats venudes" desc="Benefici del canal directe (21 euros per unitat menys 6.000 de cost fix) i del canal curt (13 euros per unitat). Les dos rectes es creuen en 750 unitats, amb 9.750 euros. El canal directe preveu 2.500 unitats i 46.500 euros; el canal curt, 6.000 unitats i 78.000 euros."
+    xMax={7000} yMax={90000} ejeX="Unitats venudes a l'any" ejeY="Benefici anual (€)" simboloX="Q"
+    series={[
+      { label: "Canal directe", color: "terra", puntos: [[285.71, 0], [2500, 46500]], dx: -95, dy: -42 },
+      { label: "Canal curt", color: "teal", puntos: [[0, 0], [6000, 78000]] },
+    ]}
+    puntos={[
+      { x: 2500, y: 46500, label: "D", xLabel: "2 500", yLabel: "46 500", dx: 12, dy: 20 },
+      { x: 6000, y: 78000, label: "C", xLabel: "6 000", yLabel: "78 000", dx: -22, dy: -10 },
+      { x: 750, y: 9750, xLabel: "750", yLabel: "9 750", dx: 14, dy: -10 },
+    ]}
+  />
+</Diagram>
 
 </SolvedExercise>
 

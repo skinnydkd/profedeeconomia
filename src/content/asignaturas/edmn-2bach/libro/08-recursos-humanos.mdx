@@ -36,6 +36,8 @@ import SolvedExercise from '@components/SolvedExercise.astro';
 import Steps from '@components/Steps.astro';
 import KeyTakeaways from '@components/KeyTakeaways.astro';
 import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
+import MercadoGrafico from '@components/diagrams/MercadoGrafico.astro';
 import Figure from '@components/Figure.astro';
 import CosteEmpresa from '@components/diagrams/CosteEmpresa.astro';
 import Bibliography from '@components/Bibliography.astro';
@@ -252,6 +254,16 @@ Es importante que el alumnado entienda esta diferencia entre **coste empresa** y
 Es uno de los debates clásicos donde la **teoría predecía una cosa y los datos mostraron otra**, lo que abrió tres décadas de re-evaluación de los modelos del mercado laboral. La conclusión moderna —matizada— es que subidas **moderadas** del SMI tienen efectos pequeños sobre el empleo agregado, aunque pueden afectar a sectores y territorios concretos. Para la EBAU, lo importante es **conocer las dos posturas** y razonar por qué una subida del SMI tiene efectos distintos según el sector, el ciclo económico y la estructura del mercado laboral local.
 </VocesDesacuerdo>
 
+<Diagram caption="El modelo estándar, sin cifras: con un salario mínimo por encima del de equilibrio, hay más personas que quieren trabajar que puestos que las empresas ofrecen. Card y Krueger discuten que ocurra así en mercados con pocos empleadores.">
+  <MercadoGrafico id="mg-salario-minimo" titulo="Un salario mínimo por encima del de equilibrio" desc="Esquema sin cifras del modelo estándar del mercado de trabajo: con un salario mínimo por encima del de equilibrio, las personas que quieren trabajar a ese salario superan a las que las empresas quieren contratar, y la diferencia es desempleo."
+    pMax={10} qMax={100} ejeP="Salario" ejeQ="Empleo"
+    curvas={[{ tipo: 'D', q0: 100, m: -10, pDe: 1.5, pA: 8.5, label: 'D' }, { tipo: 'O', q0: 0, m: 10, pDe: 1.5, pA: 9, label: 'O' }]}
+    puntos={[{ p: 5, q: 50, label: 'E', pLabel: 'W*', qLabel: 'L*' }, { p: 7, q: 30, qLabel: "L dem." }, { p: 7, q: 70, qLabel: "L ofr." }]}
+    precio={{ p: 7, label: "Salario mínimo" }}
+    tramo={{ p: 7, q1: 30, q2: 70, label: "Desempleo" }}
+  />
+</Diagram>
+
 <Callout label="Concepto clave" title="Coste empresa vs salario bruto">
 
 El coste empresa (también llamado *coste laboral total*) es lo que una persona trabajadora le cuesta realmente a la empresa: el salario bruto más las cotizaciones patronales a la Seguridad Social. Si una nómina dice *«1.500 € brutos al mes»*, la empresa está pagando cerca de 1.950-2.025 € entre el bruto y las cuotas. Confundir ambas magnitudes es uno de los errores más habituales en los planes financieros que el alumnado presenta en clase.
@@ -293,6 +305,45 @@ d) Determinar el **coste empresa anual y mensual**.
    - Coste empresa real: **3.293,75 €/mes** (≈ 39.525 € anuales).
 
 6. **Conclusión práctica.** Por cada euro que el trabajador percibe en su cuenta, la empresa gasta aproximadamente **1,62 €** (3.293,75 / 2.037,50). Es la magnitud que hay que usar en el plan financiero de un proyecto para presupuestar correctamente la partida de personal. Si añadimos elementos no obligatorios pero habituales —dietas, formación, equipos, *ticket restaurant* o seguro médico— el ratio se sitúa con facilidad por encima de 1,7. Presupuestar solo el bruto sin las cuotas patronales es uno de los errores más comunes en los planes que se presentan en clase.
+
+<Diagram caption="Las tres magnitudes del ejercicio 8.1, por mes. Al líquido se suman las retenciones (IRPF y Seguridad Social del trabajador) para llegar al bruto, y a este la cuota patronal para llegar al coste empresa (SS: cotización del trabajador a la Seguridad Social).">
+  <GraficoXY id="g-coste-empresa-tecnico" titulo="Del líquido al coste empresa" desc="Tres columnas mensuales en euros. Líquido: 2.037,50. Bruto: 2.037,50 de líquido más 300 de IRPF y 162,50 de Seguridad Social del trabajador, 2.500 en total. Coste empresa: 2.500 de bruto más 793,75 de cuota patronal, 3.293,75 en total."
+    xMax={11} yMax={4000} ejeX="Magnitud mensual" ejeY="Euros al mes" simboloY="€"
+    xTicks={[1.4, 4.6, 8.2]} yTicks={[1000, 2000, 3000]} xTickLabels={["Líquido", "Bruto", "Coste empresa"]}
+    areas={[
+      { puntos: [[0.4, 0], [2.4, 0], [2.4, 2037.5], [0.4, 2037.5]], color: "teal", fuerte: true },
+      { puntos: [[3.6, 0], [5.6, 0], [5.6, 2037.5], [3.6, 2037.5]], color: "teal", fuerte: true },
+      { puntos: [[3.6, 2037.5], [5.6, 2037.5], [5.6, 2337.5], [3.6, 2337.5]], color: "terra", fuerte: true },
+      { puntos: [[3.6, 2337.5], [5.6, 2337.5], [5.6, 2500], [3.6, 2500]], color: "mustard", fuerte: true },
+      { puntos: [[7.2, 0], [9.2, 0], [9.2, 2037.5], [7.2, 2037.5]], color: "teal", fuerte: true },
+      { puntos: [[7.2, 2037.5], [9.2, 2037.5], [9.2, 2337.5], [7.2, 2337.5]], color: "terra", fuerte: true },
+      { puntos: [[7.2, 2337.5], [9.2, 2337.5], [9.2, 2500], [7.2, 2500]], color: "mustard", fuerte: true },
+      { puntos: [[7.2, 2500], [9.2, 2500], [9.2, 3293.75], [7.2, 3293.75]], color: "aubergine", fuerte: true },
+    ]}
+    series={[
+      { puntos: [[0.4, 0], [2.4, 0], [2.4, 2037.5], [0.4, 2037.5], [0.4, 0]], color: "teal" },
+      { puntos: [[3.6, 0], [5.6, 0], [5.6, 2037.5], [3.6, 2037.5], [3.6, 0]], color: "teal" },
+      { puntos: [[3.6, 2037.5], [5.6, 2037.5], [5.6, 2337.5], [3.6, 2337.5], [3.6, 2037.5]], color: "terra" },
+      { puntos: [[3.6, 2337.5], [5.6, 2337.5], [5.6, 2500], [3.6, 2500], [3.6, 2337.5]], color: "mustard" },
+      { puntos: [[7.2, 0], [9.2, 0], [9.2, 2037.5], [7.2, 2037.5], [7.2, 0]], color: "teal" },
+      { puntos: [[7.2, 2037.5], [9.2, 2037.5], [9.2, 2337.5], [7.2, 2337.5], [7.2, 2037.5]], color: "terra" },
+      { puntos: [[7.2, 2337.5], [9.2, 2337.5], [9.2, 2500], [7.2, 2500], [7.2, 2337.5]], color: "mustard" },
+      { puntos: [[7.2, 2500], [9.2, 2500], [9.2, 3293.75], [7.2, 3293.75], [7.2, 2500]], color: "aubergine" },
+    ]}
+    notas={[
+      { x: 1.4, y: 1000, texto: "Líquido 2 037,50", ancla: "middle" },
+      { x: 4.6, y: 1000, texto: "Líquido 2 037,50", ancla: "middle" },
+      { x: 4.6, y: 2150, texto: "IRPF 300", ancla: "middle" },
+      { x: 5.7, y: 2372, texto: "SS 162,50", color: "mustard" },
+      { x: 8.2, y: 1000, texto: "Líquido 2 037,50", ancla: "middle" },
+      { x: 8.2, y: 2150, texto: "IRPF 300", ancla: "middle" },
+      { x: 9.3, y: 2372, texto: "SS 162,50", color: "mustard" },
+      { x: 8.2, y: 2858, texto: "Patronal 793,75", ancla: "middle" },
+      { x: 4.6, y: 2800, texto: "Bruto 2 500", ancla: "middle", color: "terra" },
+      { x: 8.2, y: 3600, texto: "Coste empresa 3 293,75", ancla: "middle", color: "terra" },
+    ]}
+  />
+</Diagram>
 
 </SolvedExercise>
 

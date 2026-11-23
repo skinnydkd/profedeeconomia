@@ -36,6 +36,7 @@ import SolvedExercise from '@components/SolvedExercise.astro';
 import Steps from '@components/Steps.astro';
 import KeyTakeaways from '@components/KeyTakeaways.astro';
 import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
 import Figure from '@components/Figure.astro';
 import BreakEvenChart from '@components/diagrams/BreakEvenChart.astro';
 import ProcesosProductivos from '@components/diagrams/ProcesosProductivos.astro';
@@ -190,6 +191,21 @@ El **cost variable unitari (CVu)** és el que aporta cada unitat produïda al co
 
 A mesura que Q creix, els costos fixos es reparteixen entre més unitats i el cost mitjà baixa —almenys fins que s'arriba al límit de capacitat i cal obrir un altre local o contractar una altra persona estructural—. És el que s'anomena **economies d'escala**.
 
+<Diagram caption="El cost mitjà de la fleca que s'usa més avall (CF = 3.000 €, CVu = 0,50 €): com més barres es produïxen, més es repartixen els costos fixos i més s'acosta el cost mitjà al variable. Quan iguala el preu (1,50 €) s'arriba al punt mort: 3.000 barres.">
+  <GraficoXY id="g-coste-medio" titulo="Cost mitjà i economies d'escala" desc="El cost mitjà per barra, 3.000 euros de cost fix repartits entre les unitats més 0,50 euros de cost variable, baixa de 6,50 euros amb 500 barres a 1 euro amb 6.000 i s'acosta al cost variable unitari sense arribar a tocar-lo. Creua el preu de 1,50 euros en 3.000 barres, el punt mort."
+    xMax={7000} yMax={8} ejeX="Barres produïdes al mes" ejeY="Euros per barra" simboloX="Q"
+    xTicks={[1000, 2000, 4000, 5000]} yTicks={[2, 4, 6]}
+    series={[
+      { label: "CMe", color: "terra", puntos: [[500, 6.5], [750, 4.5], [1000, 3.5], [1250, 2.9], [1500, 2.5], [1750, 2.21], [2000, 2], [2250, 1.83], [2500, 1.7], [2750, 1.59], [3000, 1.5], [3250, 1.42], [3500, 1.36], [3750, 1.3], [4000, 1.25], [4250, 1.21], [4500, 1.17], [4750, 1.13], [5000, 1.1], [5250, 1.07], [5500, 1.05], [5750, 1.02], [6000, 1]], dy: 4 },
+      { label: "P", color: "teal", puntos: [[0, 1.5], [6000, 1.5]], dy: -6 },
+      { label: "CVu", color: "ink", tenue: true, puntos: [[0, 0.5], [6000, 0.5]], dy: 14 },
+    ]}
+    puntos={[
+      { x: 3000, y: 1.5, label: "Q*", xLabel: "3 000", yLabel: "1,50", dx: 10, dy: -14 },
+    ]}
+  />
+</Diagram>
+
 ### Palanquejament operatiu
 
 La relació CF/CV determina el que s'anomena el **palanquejament operatiu**: com major siga la proporció de costos fixos, major sensibilitat del benefici al volum.
@@ -282,6 +298,26 @@ b) Si la previsió és vendre **220 cafés/dia**, és viable el projecte?
 6. Benefici esperat: 3.088 × 1,90 = **5.867 €/mes**.
 7. Conclusió: el projecte és viable si la previsió de demanda es complix, amb un marge de seguretat ampli: les vendes podrien caure un 54 % (3.088 / 5.720) abans d'entrar en pèrdues. El senyal d'alarma ha de saltar bastant abans d'arribar al punt mort: per davall de **101 cafés/dia sostinguts**, la franquícia perd diners i convé replantejar preu, ubicació o estructura de costos.
 
+<Diagram caption="Amb 2,80 € per cafè, 0,90 € de cost variable i 5.000 € de costos fixos, el punt mort està en 2.632 cafés al mes (101 al dia). La previsió de 220 cafés al dia (5.720 al mes) queda molt per damunt: la distància entre ingrés i cost és el benefici.">
+  <GraficoXY id="g-punto-muerto-cafe" titulo="Punt mort de la franquícia de cafè" desc="Ingrés total (2,80 euros per cafè), cost total (5.000 euros fixos més 0,90 per cafè) i cost fix. Es creuen en 2.632 cafés al mes, amb 7.368 euros. La previsió de 5.720 cafés al mes dona 16.016 euros d'ingrés, 10.148 de cost i 5.868 de benefici."
+    xMax={7000} yMax={20000} ejeX="Cafés al mes" ejeY="Euros al mes" simboloX="Q" simboloY="€"
+    yTicks={[5000, 10000, 20000]}
+    series={[
+      { label: "IT", color: "teal", puntos: [[0, 0], [6000, 16800]] },
+      { label: "CT", color: "terra", puntos: [[0, 5000], [6000, 10400]] },
+      { label: "CF", color: "mustard", puntos: [[0, 5000], [6000, 5000]], dy: 14 },
+    ]}
+    puntos={[
+      { x: 2631.58, y: 7368.42, label: "Q*", xLabel: "2 632", yLabel: "7 368", dx: -34, dy: -12 },
+      { x: 5720, y: 16016, xLabel: "5 720", yLabel: "16 016", guias: true, label: "Previsió", dx: -88, dy: -12 },
+      { x: 5720, y: 10148, guias: false },
+    ]}
+    notas={[
+      { x: 5800, y: 13000, texto: "Benefici: 5.868 €", color: "teal" },
+    ]}
+  />
+</Diagram>
+
 </SolvedExercise>
 
 <SolvedExercise number="7.2" title="Palanquejament operatiu: dos plans per fabricar mascaretes">
@@ -315,6 +351,27 @@ b) A partir de quin volum mensual convé canviar del pla A al pla B?
    - Si l'empresa va a vendre **menys de 80.000 mascaretes/mes**, Pla A: costos fixos menors compensen el marge unitari més baix.
    - Si va a vendre **més de 80.000 mascaretes/mes**, Pla B: el major marge unitari absorbix els costos fixos més alts.
 5. Lliçó general: com major és el palanquejament operatiu (més CF respecte a CV), major és el potencial de benefici quan el volum creix i major el risc quan cau.
+
+<Diagram caption="El pla A (costos fixos baixos) arriba al seu punt mort en 60.000 unitats i el B, amb més fixos però menys cost per unitat, en 70.000. Les rectes de cost es creuen en 80.000 unitats (I): a partir d'ací, el pla B costa menys.">
+  <GraficoXY id="g-planes-mascarillas" titulo="Costos dels plans A i B enfront de l'ingrés" desc="Recta d'ingrés total (0,50 euros per mascareta) i rectes de cost total del pla A (12.000 euros fixos més 0,30 per unitat) i del pla B (28.000 euros fixos més 0,10 per unitat). L'ingrés creua el cost del pla A en 60.000 unitats i el del pla B en 70.000. Els dos costos s'igualen en 80.000 unitats, amb 36.000 euros."
+    xMax={220000} yMax={120000} ejeX="Mascaretes al mes" ejeY="Euros al mes" simboloX="Q" simboloY="€"
+    xTicks={[120000, 160000, 200000]} yTicks={[60000, 90000]}
+    series={[
+      { label: "IT", color: "teal", puntos: [[0, 0], [200000, 100000]] },
+      { label: "CT A", color: "terra", puntos: [[0, 12000], [200000, 72000]] },
+      { label: "CT B", color: "aubergine", puntos: [[0, 28000], [200000, 48000]] },
+    ]}
+    puntos={[
+      { x: 60000, y: 30000, label: "Q*A", xLabel: "60 000", yLabel: "30 000", dx: 10, dy: 24 },
+      { x: 70000, y: 35000, label: "Q*B", dx: -34, dy: -16, guias: false },
+      { x: 80000, y: 36000, label: "I", xLabel: "80 000", yLabel: "36 000", dx: 12, dy: 24 },
+    ]}
+    notas={[
+      { x: 52000, y: 3800, texto: "Menys de 80.000: pla A", ancla: "middle" },
+      { x: 150000, y: 3800, texto: "Més de 80.000: pla B", ancla: "middle" },
+    ]}
+  />
+</Diagram>
 
 </SolvedExercise>
 

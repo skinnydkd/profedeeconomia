@@ -35,6 +35,7 @@ import RealExample from '@components/RealExample.astro';
 import Steps from '@components/Steps.astro';
 import KeyTakeaways from '@components/KeyTakeaways.astro';
 import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
 import Figure from '@components/Figure.astro';
 import FormaJuridicaTree from '@components/diagrams/FormaJuridicaTree.astro';
 import SolvedExercise from '@components/SolvedExercise.astro';
@@ -370,6 +371,38 @@ Compara la càrrega fiscal anual de mantindre's com a autònoma enfront de const
 4. **Matisos importants**. L'estalvi depén que el diner retingut a la societat **es reinvertisca o s'acumule**: si Marta el trau com a dividend, paga una altra vegada al seu IRPF (entre el 19 % i el 30 %, segons la quantitat). La SLU compensa quan hi ha intenció de reinvertir, dotar reserves o vendre l'empresa en uns anys. També limita la responsabilitat personal al capital aportat, la qual cosa en sectors amb risc de demanda professional és rellevant.
 
 **Resultat**: amb un benefici de 60.000 €, el canvi a SLU té sentit fiscal i patrimonial: l'estalvi net ronda els 3.200-3.800 €/any, sempre que el benefici es quede en la societat. El llindar més citat pels assessors fiscals —**40.000-50.000 € de benefici**— és coherent amb este càlcul: per davall, la complexitat addicional rarament compensa.
+
+<Diagram caption="Càrrega fiscal anual amb 60.000 € de benefici (RETA: quota d'autònoms; IS: Impost de Societats). La SLU paga menys IRPF perquè només es cobra 30.000 € de sou; els altres 30.000 € tributen al 19 % en la societat. Sense comptar la gestoria addicional.">
+  <GraficoXY id="g-carga-fiscal-marta" titulo="Càrrega fiscal anual de Marta com a autònoma i com a SLU" desc="Dos columnes apilades. Com a autònoma: IRPF de 17.901,50 euros més quota d'autònoms de 5.100, 23.001,50 en total. Com a SLU: IRPF de 7.165,50 euros, Impost de Societats de 5.700 i quota d'autònoms de 5.100, 17.965,50 en total. La diferència és de 5.036 euros."
+    xMax={10} yMax={28000} ejeX="Forma jurídica" ejeY="Euros a l'any" simboloY="€"
+    xTicks={[3, 7]} yTicks={[5000, 10000, 15000, 20000]} xTickLabels={["Autònoma", "SLU"]}
+    areas={[
+      { puntos: [[1.5, 0], [4.5, 0], [4.5, 17901.5], [1.5, 17901.5]], color: "terra", fuerte: true },
+      { puntos: [[1.5, 17901.5], [4.5, 17901.5], [4.5, 23001.5], [1.5, 23001.5]], color: "mustard", fuerte: true },
+      { puntos: [[5.5, 0], [8.5, 0], [8.5, 7165.5], [5.5, 7165.5]], color: "terra", fuerte: true },
+      { puntos: [[5.5, 7165.5], [8.5, 7165.5], [8.5, 12865.5], [5.5, 12865.5]], color: "teal", fuerte: true },
+      { puntos: [[5.5, 12865.5], [8.5, 12865.5], [8.5, 17965.5], [5.5, 17965.5]], color: "mustard", fuerte: true },
+    ]}
+    series={[
+      { puntos: [[1.5, 0], [4.5, 0], [4.5, 17901.5], [1.5, 17901.5], [1.5, 0]], color: "terra" },
+      { puntos: [[1.5, 17901.5], [4.5, 17901.5], [4.5, 23001.5], [1.5, 23001.5], [1.5, 17901.5]], color: "mustard" },
+      { puntos: [[5.5, 0], [8.5, 0], [8.5, 7165.5], [5.5, 7165.5], [5.5, 0]], color: "terra" },
+      { puntos: [[5.5, 7165.5], [8.5, 7165.5], [8.5, 12865.5], [5.5, 12865.5], [5.5, 7165.5]], color: "teal" },
+      { puntos: [[5.5, 12865.5], [8.5, 12865.5], [8.5, 17965.5], [5.5, 17965.5], [5.5, 12865.5]], color: "mustard" },
+      { color: "ink", tenue: true, puntos: [[4.5, 23001.5], [8.5, 23001.5]] },
+    ]}
+    notas={[
+      { x: 3, y: 7450, texto: "IRPF 17 901,50", ancla: "middle" },
+      { x: 3, y: 18950, texto: "RETA 5 100", ancla: "middle" },
+      { x: 7, y: 2580, texto: "IRPF 7 165,50", ancla: "middle" },
+      { x: 7, y: 9015, texto: "IS 5 700", ancla: "middle" },
+      { x: 7, y: 14415, texto: "RETA 5 100", ancla: "middle" },
+      { x: 3, y: 24400, texto: "Total 23 001,50", ancla: "middle", color: "terra" },
+      { x: 7, y: 18800, texto: "Total 17 965,50", ancla: "middle", color: "terra" },
+      { x: 7, y: 21000, texto: "Estalvi: 5 036", ancla: "middle", color: "teal" },
+    ]}
+  />
+</Diagram>
 
 </SolvedExercise>
 
