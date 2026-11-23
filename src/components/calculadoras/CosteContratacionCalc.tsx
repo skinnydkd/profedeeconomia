@@ -354,7 +354,7 @@ export default function CosteContratacionCalc({ locale = 'es' }: Props) {
         .cc__figure-value {
           display: block;
           margin-top: 0.3rem;
-          font-family: var(--font-display, serif);
+          font-family: var(--font-serif);
           font-size: 1.35rem;
           font-weight: 600;
           color: var(--color-ink, #2A1F18);

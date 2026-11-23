@@ -9,6 +9,9 @@ import SectionHeader from '@components/SectionHeader.astro';
 
 const locale = getLocale(Astro.currentLocale);
 
+// Neutral system (terracotta, ink, mustard-deep): subject colours are reserved for subjects.
+const NEUTRAL = ['#C44E2C', '#2A1F18', '#A87A2A'];
+
 const NIVEL_LABEL: Record<string, string> = {
   eso: t('nivel.eso', locale),
   bach: t('nivel.bach', locale),
@@ -64,11 +67,11 @@ const copy = {
     <Fragment slot="title">{copy.heroPre}{' '}<span class="serif-italic-wonk accent">{copy.heroAccent}</span>.</Fragment>
     <Fragment slot="lede">{copy.ledeIntro}{' '}<a href="/jocs-economics/" class="editorial-link">{copy.ledeLink}</a>.</Fragment>
     <div class="game-grid">
-      {JUEGOS.map((raw) => {
+      {JUEGOS.map((raw, i) => {
         const j = localizeJuego(raw, locale);
         return (
           <a class={`game-card ${j.estado}`} href={j.href}>
-            <JuegoCaratula slug={j.slug} color={j.color} />
+            <JuegoCaratula slug={j.slug} color={NEUTRAL[i % NEUTRAL.length]} />
             <div class="gc-body">
               <div class="gc-eyebrow">
                 {t(j.estado === 'disponible' ? 'estado.disponible' : 'estado.proximamente', locale)}

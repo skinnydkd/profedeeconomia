@@ -98,13 +98,13 @@ const copy = {
   {groups.map((g) => (
     <section class="bloque">
       <div class="container">
-        <div class="bloque__head" style={`--blq-color: var(${g.bloque.colorVar})`}>
+        <div class="bloque__head">
           <h2>{g.bloque.label}</h2>
           <p>{g.bloque.intro}</p>
         </div>
         <div class="card-grid">
           {g.items.map((item) => (
-            <a class="card" href={`/olimpiada/fichas/${item.slug}/`} style={`--fam-color: var(${g.bloque.colorVar}); --fam-ink: var(${g.bloque.colorVar}-ink)`}>
+            <a class="card" href={`/olimpiada/fichas/${item.slug}/`}>
               <span class="card__eyebrow">{g.bloque.label}</span>
               <h3 class="card__title serif">{item.data.title}</h3>
               <p class="card__desc">{item.data.resumen}</p>
@@ -136,7 +136,7 @@ const copy = {
   .prox__box a:hover { text-decoration: underline; }
 
   .bloque { padding: 1.5rem 0; }
-  .bloque__head { border-left: 4px solid var(--blq-color); padding-left: 1rem; margin-bottom: 1.5rem; }
+  .bloque__head { margin-bottom: 1.5rem; }
   .bloque__head h2 { font-family: var(--font-serif); font-size: 1.7rem; font-weight: 500; margin: 0; }
   .bloque__head p { color: var(--color-ink-soft); margin: 0.3rem 0 0; }
 
@@ -151,7 +151,7 @@ const copy = {
   .card:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(42, 31, 24, 0.1); }
   .card__eyebrow {
     font-family: var(--font-sans); font-size: 0.7rem; font-weight: 700;
-    letter-spacing: 0.08em; text-transform: uppercase; color: var(--fam-ink);
+    letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-terra-ink);
   }
   .card__title { font-size: 1.3rem; color: var(--color-ink); margin: 0; }
   .card__desc { color: var(--color-ink-soft); font-size: 0.95rem; line-height: 1.5; margin: 0; flex: 1; }

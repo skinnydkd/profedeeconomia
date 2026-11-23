@@ -396,7 +396,7 @@ export default function RubricaGenerator({ locale = 'es' }: Props) {
 
         .rg-titulo-input {
           width: 100%;
-          font-family: var(--font-heading, serif);
+          font-family: var(--font-serif);
           font-size: 1.25rem;
           font-weight: 700;
           color: var(--color-ink, #2A1F18);
