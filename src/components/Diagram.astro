@@ -27,7 +27,8 @@ const locale = getLocale(Astro.currentLocale);
   class:list={['diagram', `diagram--${variant}`]}
   data-slide-diagram={id ?? ''}
 >
-  <div class="diagram__inner">
+  {/* Scrolls sideways on phones: focusable so the keyboard can scroll it too. */}
+  <div class="diagram__inner" tabindex="0" role="group" aria-label={caption}>
     <slot />
   </div>
   <p class="diagram__hint" aria-hidden="true">{t('libro.desplaza', locale)}</p>
