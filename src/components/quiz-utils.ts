@@ -170,3 +170,20 @@ export function textoPlano(texto: string): string {
     .map((t) => t.texto)
     .join('');
 }
+
+// ─── Matching questions ──────────────────────────────────────
+
+/**
+ * Whether the chosen right-hand index for one pair is right. Compares the
+ * label text, not the index, so two identical labels are interchangeable.
+ */
+export function relacionParCorrecta(derecha: string[], correcta: number, elegida: number | undefined): boolean {
+  if (elegida === undefined || elegida < 0) return false;
+  const norm = (s: string | undefined) => (s ?? '').trim();
+  return norm(derecha[elegida]) === norm(derecha[correcta]);
+}
+
+/** Every pair of a «relacionar» question is right. */
+export function relacionarCorrecta(derecha: string[], correctas: number[], respuesta: number[]): boolean {
+  return correctas.every((c, i) => relacionParCorrecta(derecha, c, respuesta[i]));
+}

@@ -1,7 +1,7 @@
 /** @jsxImportSource preact */
 import { useEffect, useId, useMemo, useRef, useState } from 'preact/hooks';
 import { loadJSON, removeKey, saveJSON } from '../lib/storage';
-import { lecturasNumero, numeroCorrecto, ordenesOpciones, ordenValido, rngDesde, textoNoNumerico, textoPlano } from './quiz-utils';
+import { lecturasNumero, numeroCorrecto, ordenesOpciones, ordenValido, relacionarCorrecta, relacionParCorrecta, rngDesde, textoNoNumerico, textoPlano } from './quiz-utils';
 import Marca from './QuizMarca';
 import TextoInline from './TextoInline';
 import './QuizPlayer.css';
@@ -105,7 +105,7 @@ function esCorrecta(p: Pregunta, r: Respuesta): boolean {
     case 'numerico':
       return typeof r === 'string' && numeroCorrecto(r, p.respuesta, p.tolerancia);
     case 'relacionar':
-      return Array.isArray(r) && p.correctas.every((c, i) => r[i] === c);
+      return Array.isArray(r) && relacionarCorrecta(p.derecha, p.correctas, r);
   }
 }
 
@@ -419,7 +419,7 @@ export default function QuizPlayer({ preguntas, storageKey, locale = 'es' }: Pro
             {pregunta.izquierda.map((izq, li) => {
               const arr = Array.isArray(respuestaActual) ? respuestaActual : [];
               const chosen = arr[li] ?? -1;
-              const okRow = confirmada && chosen === pregunta.correctas[li];
+              const okRow = confirmada && relacionParCorrecta(pregunta.derecha, pregunta.correctas[li], chosen);
               return (
                 <tr class={confirmada ? (okRow ? 'is-ok' : 'is-fail') : ''}>
                   <td class="qp__rel-num">{li + 1}</td>

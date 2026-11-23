@@ -6,6 +6,7 @@ import {
   ordenValido,
   permutacion,
   rngDesde,
+  relacionarCorrecta,
   textoNoNumerico,
   textoPlano,
   trozosInline,
@@ -170,5 +171,19 @@ describe('trozosInline', () => {
 
   it('textoPlano drops the marks', () => {
     expect(textoPlano('Aplicar el principio de **prudencia** y *devengo*')).toBe('Aplicar el principio de prudencia y devengo');
+  });
+});
+
+describe('relacionarCorrecta', () => {
+  // Two right-hand labels are identical (indices 1 and 2): either is right.
+  const derecha = ['Alquiler', 'Gasto variable', 'Gasto variable'];
+  it('accepts an identical label at another index', () => {
+    expect(relacionarCorrecta(derecha, [0, 1], [0, 2])).toBe(true);
+  });
+  it('still rejects a different label', () => {
+    expect(relacionarCorrecta(derecha, [0, 1], [2, 1])).toBe(false);
+  });
+  it('rejects unset answers', () => {
+    expect(relacionarCorrecta(derecha, [0, 1], [0, -1])).toBe(false);
   });
 });

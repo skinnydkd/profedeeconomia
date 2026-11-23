@@ -50,3 +50,18 @@ describe('feedback verdict label', () => {
     },
   );
 });
+
+/** Mobile: the status tag gets its own line instead of squeezing the option text. */
+describe('option status tag on phones', () => {
+  const css = readFileSync('src/components/QuizPlayer.css', 'utf8');
+  const mobile = css.slice(css.indexOf('@media (max-width: 600px)'));
+
+  it('wraps the option and puts the tag on its own line', () => {
+    expect(mobile).toMatch(/\.qp__opt\s*\{[^}]*flex-wrap:\s*wrap/);
+    expect(mobile).toMatch(/\.qp__opt \.qp__marca\s*\{[^}]*flex-basis:\s*100%/);
+  });
+
+  it('never breaks normal words', () => {
+    expect(mobile).toMatch(/\.qp__opt-texto\s*\{[^}]*overflow-wrap:\s*normal/);
+  });
+});
