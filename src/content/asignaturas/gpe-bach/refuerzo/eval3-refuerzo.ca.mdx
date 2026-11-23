@@ -25,12 +25,142 @@ repaso_teorico:
 ejemplos_resueltos:
   - enunciado: "<strong>Punt mort i compte de resultats previsional.</strong> Un equip va a vendre melmelada artesana. Té uns costos fixos de 600 € (lloguer de l'obrador i assegurances), cada pot li costa 2 € en matèria primera i envàs, i el vendrà a 5 €. Calcula el punt mort i, si esperen vendre 400 pots, fes el compte de resultats previsional."
     desarrollo: "Anem per passos.<br><strong>1. Marge de contribució per pot</strong> = preu − cost variable = 5 − 2 = <strong>3 €</strong>. Cada pot venut aporta 3 € a cobrir els costos fixos.<br><strong>2. Punt mort</strong> = costos fixos ÷ marge = 600 ÷ 3 = <strong>200 pots</strong>. Fa falta vendre 200 pots només per a no perdre; a partir del 201 comença el benefici.<br><strong>3. Compte de resultats amb 400 pots:</strong><br>· Ingressos = 400 × 5 = 2.000 €<br>· Costos variables = 400 × 2 = 800 €<br>· Costos fixos = 600 €<br>· Resultat = 2.000 − 800 − 600 = <strong>600 € de benefici</strong>.<br><strong>Conclusió:</strong> el projecte és viable. Amb 400 pots venen el doble del seu punt mort (200) i guanyen 600 €. El número que han de vigilar és 200: per davall, entrarien en pèrdues."
+    grafico:
+      tipo: xy
+      caption: "Cada pot aporta 3 € i els costos fixos són 600 €: el punt mort està en 200 pots (1.000 €). Amb 400 pots, ingressen 2.000 € i gasten 1.400 €: 600 € de benefici."
+      props:
+        id: "r-g3r-punto-muerto"
+        titulo: "Punt mort del projecte de melmelada"
+        desc: "Ingrés total (5 euros per pot), cost total (600 euros fixos més 2 per pot) i cost fix. Es creuen en 200 pots, amb 1.000 euros. Amb 400 pots l'ingrés és de 2.000 euros, el cost de 1.400 i el benefici de 600."
+        xMax: 560
+        yMax: 3000
+        ejeX: "Pots venuts"
+        ejeY: "Euros"
+        simboloX: "Q"
+        simboloY: "€"
+        xTicks: [100, 300, 500]
+        yTicks: [600]
+        series:
+          - { label: "IT", color: "teal", puntos: [[0, 0], [500, 2500]] }
+          - { label: "CT", color: "terra", puntos: [[0, 600], [500, 1600]] }
+          - { label: "CF", color: "mustard", puntos: [[0, 600], [500, 600]], dy: 14 }
+        puntos:
+          - { x: 200, y: 1000, label: "Q*", xLabel: "200", yLabel: "1 000", dx: -34, dy: -14 }
+          - { x: 400, y: 2000, xLabel: "400", yLabel: "2 000" }
+          - { x: 400, y: 1400, guias: false }
+        notas:
+          - { x: 410, y: 1800, texto: "Benefici: 600 €", color: "teal" }
   - enunciado: "<strong>Quadrar un balanç.</strong> Un projecte té en l'actiu: equip 1.200 €, materials 500 € i diners al banc 800 €. En la part de finançament: aportacions de l'equip 1.500 € i deutes amb proveïdors 400 €, a més d'un préstec l'import del qual falta. Calcula l'import del préstec sabent que el balanç ha de quadrar."
     desarrollo: "Recordem la igualtat del balanç: <strong>Actiu = Patrimoni net + Passiu</strong>.<br><strong>1. Total actiu</strong> = 1.200 + 500 + 800 = <strong>2.500 €</strong>.<br><strong>2. Allò que ja coneixem de la dreta</strong> = aportacions + proveïdors = 1.500 + 400 = 1.900 €.<br><strong>3. El préstec</strong> és allò que falta per a quadrar: 2.500 − 1.900 = <strong>600 €</strong>.<br><strong>Comprovació:</strong> 1.500 + 600 + 400 = 2.500 €, igual que l'actiu. El balanç quadra."
+    grafico:
+      tipo: xy
+      caption: "L'actiu suma 2.500 € (1.200 + 500 + 800). Amb les aportacions (1.500 €) i els proveïdors (400 €) ja hi ha 1.900 €: el préstec que falta per a quadrar és de 600 €."
+      props:
+        id: "r-g3r-balance"
+        titulo: "Balanç que quadra amb el préstec"
+        desc: "Dues columnes en euros. Actiu: equip 1.200, materials 500 i banc 800, total 2.500. Finançament: aportacions 1.500, proveïdors 400 i préstec 600, total 2.500."
+        xMax: 8.5
+        yMax: 2900
+        ejeX: "Euros"
+        ejeY: "Euros"
+        xTicks: [2.4, 6.4]
+        xTickLabels: ["Actiu", "Patrimoni + passiu"]
+        yTicks: [1000, 2000]
+        areas:
+          - { puntos: [[1, 0], [3.8, 0], [3.8, 1200], [1, 1200]], color: "terra", fuerte: true }
+          - { puntos: [[1, 1200], [3.8, 1200], [3.8, 1700], [1, 1700]], color: "mustard", fuerte: true }
+          - { puntos: [[1, 1700], [3.8, 1700], [3.8, 2500], [1, 2500]], color: "teal", fuerte: true }
+          - { puntos: [[5, 0], [7.8, 0], [7.8, 1500], [5, 1500]], color: "aubergine", fuerte: true }
+          - { puntos: [[5, 1500], [7.8, 1500], [7.8, 1900], [5, 1900]], color: "mustard", fuerte: true }
+          - { puntos: [[5, 1900], [7.8, 1900], [7.8, 2500], [5, 2500]], color: "ink", fuerte: true }
+        series:
+          - { puntos: [[1, 0], [3.8, 0], [3.8, 1200], [1, 1200], [1, 0]], color: "terra" }
+          - { puntos: [[1, 1200], [3.8, 1200], [3.8, 1700], [1, 1700], [1, 1200]], color: "mustard" }
+          - { puntos: [[1, 1700], [3.8, 1700], [3.8, 2500], [1, 2500], [1, 1700]], color: "teal" }
+          - { puntos: [[5, 0], [7.8, 0], [7.8, 1500], [5, 1500], [5, 0]], color: "aubergine" }
+          - { puntos: [[5, 1500], [7.8, 1500], [7.8, 1900], [5, 1900], [5, 1500]], color: "mustard" }
+          - { puntos: [[5, 1900], [7.8, 1900], [7.8, 2500], [5, 2500], [5, 1900]], color: "ink" }
+        notas:
+          - { x: 2.4, y: 565.2, texto: "Equip 1.200", ancla: "middle" }
+          - { x: 2.4, y: 1415.2, texto: "Materials 500", ancla: "middle" }
+          - { x: 2.4, y: 2065.2, texto: "Banc 800", ancla: "middle" }
+          - { x: 6.4, y: 715.2, texto: "Aportacions 1.500", ancla: "middle" }
+          - { x: 6.4, y: 1665.2, texto: "Proveïdors 400", ancla: "middle" }
+          - { x: 6.4, y: 2165.2, texto: "Préstec 600", ancla: "middle" }
+          - { x: 2.4, y: 2600, texto: "Actiu: 2.500", ancla: "middle" }
+          - { x: 6.4, y: 2600, texto: "Finançament: 2.500", ancla: "middle" }
   - enunciado: "<strong>Muntar el pressupost.</strong> Per a arrancar una xicoteta pastisseria, un equip apunta estes despeses: forn 800 €, mostrador 300 €, web 200 €, lloguer mensual 400 €, matèries primeres al mes 350 € i subministraments al mes 100 €. Separa la inversió inicial de les despeses corrents i suma cada grup."
     desarrollo: "La <strong>inversió inicial</strong> és allò que es paga una sola vegada al principi i dura en el temps; les <strong>despeses corrents</strong> es repetixen cada període.<br><strong>Inversió inicial:</strong> forn 800 + mostrador 300 + web 200 = <strong>1.300 €</strong> (es paguen una vegada).<br><strong>Despeses corrents mensuals:</strong> lloguer 400 + matèries primeres 350 + subministraments 100 = <strong>850 € al mes</strong> (es paguen cada mes).<br><strong>Conclusió:</strong> l'equip necessita 1.300 € per a començar i, a més, ha d'assegurar-se de cobrir 850 € cada mes amb les vendes. Confondre els dos tipus de despesa és un error típic: la inversió inicial no es repetix, les despeses corrents sí."
+    grafico:
+      tipo: xy
+      caption: "La inversió inicial (1.300 €) es paga una vegada; les despeses corrents (850 €) es paguen cada mes i cal cobrir-les amb les vendes."
+      props:
+        id: "r-g3r-presupuesto-pasteleria"
+        titulo: "Inversió inicial i despeses corrents de la pastisseria"
+        desc: "Dues columnes apilades en euros. Inversió inicial, una sola vegada: forn 800, taulell 300 i web 200, total 1.300. Despeses corrents, cada mes: lloguer 400, matèries primeres 350 i subministraments 100, total 850."
+        xMax: 10
+        yMax: 1500
+        ejeX: "Tipus de despesa"
+        ejeY: "Euros"
+        xTicks: [3, 7]
+        xTickLabels: ["Inversió inicial", "Despeses corrents"]
+        yTicks: [500, 1000]
+        areas:
+          - { puntos: [[1.5, 0], [4.5, 0], [4.5, 800], [1.5, 800]], color: "terra", fuerte: true }
+          - { puntos: [[1.5, 800], [4.5, 800], [4.5, 1100], [1.5, 1100]], color: "mustard", fuerte: true }
+          - { puntos: [[1.5, 1100], [4.5, 1100], [4.5, 1300], [1.5, 1300]], color: "teal", fuerte: true }
+          - { puntos: [[5.5, 0], [8.5, 0], [8.5, 400], [5.5, 400]], color: "terra", fuerte: true }
+          - { puntos: [[5.5, 400], [8.5, 400], [8.5, 750], [5.5, 750]], color: "mustard", fuerte: true }
+          - { puntos: [[5.5, 750], [8.5, 750], [8.5, 850], [5.5, 850]], color: "teal", fuerte: true }
+        series:
+          - { puntos: [[1.5, 0], [4.5, 0], [4.5, 800], [1.5, 800], [1.5, 0]], color: "terra" }
+          - { puntos: [[1.5, 800], [4.5, 800], [4.5, 1100], [1.5, 1100], [1.5, 800]], color: "mustard" }
+          - { puntos: [[1.5, 1100], [4.5, 1100], [4.5, 1300], [1.5, 1300], [1.5, 1100]], color: "teal" }
+          - { puntos: [[5.5, 0], [8.5, 0], [8.5, 400], [5.5, 400], [5.5, 0]], color: "terra" }
+          - { puntos: [[5.5, 400], [8.5, 400], [8.5, 750], [5.5, 750], [5.5, 400]], color: "mustard" }
+          - { puntos: [[5.5, 750], [8.5, 750], [8.5, 850], [5.5, 850], [5.5, 750]], color: "teal" }
+        notas:
+          - { x: 3, y: 382, texto: "Forn 800", ancla: "middle" }
+          - { x: 3, y: 932, texto: "Taulell 300", ancla: "middle" }
+          - { x: 3, y: 1182, texto: "Web 200", ancla: "middle" }
+          - { x: 7, y: 182, texto: "Lloguer 400", ancla: "middle" }
+          - { x: 7, y: 557, texto: "Matèries primeres 350", ancla: "middle" }
+          - { x: 7, y: 782, texto: "Subministraments 100", ancla: "middle" }
+          - { x: 3, y: 1360, texto: "Una sola vegada: 1.300 €", ancla: "middle" }
+          - { x: 7, y: 910, texto: "Cada mes: 850 €", ancla: "middle" }
   - enunciado: "<strong>Retorn local.</strong> Dos projectes gasten el mateix, 1.000 € al mes. El projecte A compra 700 € a proveïdors del poble i 300 € fora; el projecte B compra 200 € al poble i 800 € fora. Calcula el percentatge de retorn local de cadascun i digues quin té més impacte en la seua comunitat."
     desarrollo: "El <strong>retorn local</strong> és la part de la despesa que es queda en l'economia de proximitat.<br><strong>Projecte A:</strong> 700 ÷ 1.000 = 0,70 = <strong>70 % de retorn local</strong>.<br><strong>Projecte B:</strong> 200 ÷ 1.000 = 0,20 = <strong>20 % de retorn local</strong>.<br><strong>Conclusió:</strong> encara que gasten el mateix, el projecte A deixa molts més diners circulant en el seu poble (70 % enfront de 20 %), així que té més impacte en el desenvolupament local. Els diners que es queden tornen a circular: el proveïdor local, al seu torn, compra i ocupa en la zona."
+    grafico:
+      tipo: xy
+      caption: "Amb la mateixa despesa de 1.000 € al mes, el projecte A deixa 700 € al poble (70 %) i el B només 200 € (20 %): A té més retorn local."
+      props:
+        id: "r-g3r-retorno-local"
+        titulo: "Retorn local dels projectes A i B"
+        desc: "Dues columnes de 1.000 euros. Projecte A: 700 gastats al poble i 300 fora. Projecte B: 200 al poble i 800 fora. El retorn local és del 70 % en A i del 20 % en B."
+        xMax: 10
+        yMax: 1150
+        ejeX: "Projecte"
+        ejeY: "Euros al mes"
+        xTicks: [3, 7]
+        xTickLabels: ["Projecte A", "Projecte B"]
+        yTicks: [250, 500, 750]
+        areas:
+          - { puntos: [[1.5, 0], [4.5, 0], [4.5, 700], [1.5, 700]], color: "teal", fuerte: true }
+          - { puntos: [[1.5, 700], [4.5, 700], [4.5, 1000], [1.5, 1000]], color: "mustard", fuerte: true }
+          - { puntos: [[5.5, 0], [8.5, 0], [8.5, 200], [5.5, 200]], color: "teal", fuerte: true }
+          - { puntos: [[5.5, 200], [8.5, 200], [8.5, 1000], [5.5, 1000]], color: "mustard", fuerte: true }
+        series:
+          - { puntos: [[1.5, 0], [4.5, 0], [4.5, 700], [1.5, 700], [1.5, 0]], color: "teal" }
+          - { puntos: [[1.5, 700], [4.5, 700], [4.5, 1000], [1.5, 1000], [1.5, 700]], color: "mustard" }
+          - { puntos: [[5.5, 0], [8.5, 0], [8.5, 200], [5.5, 200], [5.5, 0]], color: "teal" }
+          - { puntos: [[5.5, 200], [8.5, 200], [8.5, 1000], [5.5, 1000], [5.5, 200]], color: "mustard" }
+        notas:
+          - { x: 3, y: 336.2, texto: "Al poble 700", ancla: "middle" }
+          - { x: 3, y: 836.2, texto: "Fora 300", ancla: "middle" }
+          - { x: 7, y: 86.2, texto: "Poble 200", ancla: "middle" }
+          - { x: 7, y: 586.2, texto: "Fora 800", ancla: "middle" }
+          - { x: 3, y: 1040, texto: "70 % local", ancla: "middle" }
+          - { x: 7, y: 1040, texto: "20 % local", ancla: "middle" }
 ejercicios:
   - enunciado: "El compte de resultats d'un projecte mostra: ingressos per vendes 9.000 €, compres de materials 3.500 €, lloguer 1.800 €, sous 2.200 €. Calcula el <strong>resultat</strong> i indica si hi ha benefici o pèrdua."
     solucion: "Despeses totals = compres + lloguer + sous = 3.500 + 1.800 + 2.200 = 7.500 €.<br>Resultat = ingressos − despeses = 9.000 − 7.500 = <strong>1.500 €</strong>.<br>Com que el resultat és positiu, hi ha <strong>benefici</strong> de 1.500 €."

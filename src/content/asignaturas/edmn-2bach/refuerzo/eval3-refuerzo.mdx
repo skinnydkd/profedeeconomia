@@ -29,14 +29,148 @@ repaso_teorico:
 ejemplos_resueltos:
   - enunciado: "Calcula el VAN de una inversión de 12.000 € que genera flujos de caja de 7.000 € el primer año y 8.000 € el segundo, con una tasa de descuento del 10 %. ¿Conviene aceptarla?"
     desarrollo: "<strong>Paso 1. Fórmula.</strong> VAN = −D + FC_1 ÷ (1+k)^1 + FC_2 ÷ (1+k)^2, con D = 12.000 y k = 0,10.<br><strong>Paso 2. Descuenta cada flujo</strong> (nunca se suman en bruto):<ul><li>Año 1: 7.000 ÷ 1,10 = <strong>6.363,64 €</strong></li><li>Año 2: 8.000 ÷ 1,10^2 = 8.000 ÷ 1,21 = <strong>6.611,57 €</strong></li></ul><strong>Paso 3. Suma los flujos actualizados:</strong> 6.363,64 + 6.611,57 = 12.975,21 €.<br><strong>Paso 4. Resta la inversión:</strong> VAN = 12.975,21 − 12.000 = <strong>+975,21 €</strong>.<br><strong>Decisión:</strong> como VAN > 0, el proyecto crea valor por encima del 10 % exigido. <strong>Se acepta.</strong>"
+    grafico:
+      tipo: xy
+      caption: "El VAN baja al subir la tasa de descuento: con k = 10 % vale +975,21 € y se anula en la TIR, en torno al 15,87 %. Por encima de esa tasa la inversión ya no compensa."
+      props:
+        id: "r-e3r-van"
+        titulo: "VAN de la inversión según la tasa de descuento"
+        desc: "El VAN baja desde 3.000 euros con una tasa del 0 % hasta cero con la TIR, en torno al 15,87 %. Con la tasa exigida del 10 %, el VAN es de 975,21 euros."
+        xMax: 24
+        yMax: 3600
+        yMin: -1000
+        ejeX: "Tasa de descuento k"
+        ejeY: "VAN (€)"
+        simboloX: "k"
+        xTicks: [5, 20]
+        yTicks: [2000, 3000]
+        xTickLabels: ["5 %", "20 %"]
+        series:
+          - { label: "VAN(k)", color: "terra", labelEn: "inicio", puntos: [[0, 3000], [1, 2773.06], [2, 2552.1], [3, 2336.88], [4, 2127.22], [5, 1922.9], [6, 1723.75], [7, 1529.57], [8, 1340.19], [9, 1155.46], [10, 975.21], [11, 799.29], [12, 627.55], [13, 459.86], [14, 296.09], [15, 136.11], [15.87, 0], [16, -20.21], [17, -172.99], [18, -322.32], [19, -468.33], [20, -611.11]], dx: 12, dy: -10 }
+        puntos:
+          - { x: 10, y: 975.21, label: "k = 10 %", xLabel: "10 %", yLabel: "975", dx: 12, dy: -12 }
+          - { x: 15.87, y: 0, label: "TIR", xLabel: "15,87 %", dx: -14, dy: -16 }
   - enunciado: "Una empresa tiene un activo corriente de 80.000 € (existencias 30.000 €, clientes 35.000 €, disponible 15.000 €) y un pasivo corriente de 50.000 €. Calcula el fondo de maniobra, el ratio de liquidez general y el acid test, e interpreta."
     desarrollo: "<strong>Fondo de maniobra</strong> = AC − PC = 80.000 − 50.000 = <strong>+30.000 €</strong>. Es positivo: hay colchón de liquidez, situación de equilibrio a corto plazo.<br><strong>Ratio de liquidez general</strong> = AC ÷ PC = 80.000 ÷ 50.000 = <strong>1,6</strong>. Dentro del rango sano (1,5-2): liquidez adecuada.<br><strong>Acid test (tesorería)</strong> = (AC − Existencias) ÷ PC = (80.000 − 30.000) ÷ 50.000 = 50.000 ÷ 50.000 = <strong>1,0</strong>. En torno a 1: incluso descontando las existencias (lo más difícil de vender), la empresa cubre sus deudas a corto plazo. <strong>Diagnóstico:</strong> salud financiera a corto plazo correcta."
+    grafico:
+      tipo: xy
+      caption: "El activo corriente (80.000 €) supera al pasivo corriente (50.000 €) en 30.000 €: ese es el fondo de maniobra, financiado con recursos a largo plazo."
+      props:
+        id: "r-e3r-fondo-maniobra"
+        titulo: "Fondo de maniobra: activo corriente frente a pasivo corriente"
+        desc: "Dos columnas en miles de euros. El activo corriente suma 80: disponible 15, clientes 35 y existencias 30. El pasivo corriente suma 50. La diferencia, 30, es el fondo de maniobra."
+        xMax: 11
+        yMax: 100
+        ejeX: "Miles de euros"
+        ejeY: "Miles de euros"
+        xTicks: [2.75, 7.75]
+        xTickLabels: ["Activo corriente", "Pasivo corriente"]
+        yTicks: [50]
+        areas:
+          - { puntos: [[1, 0], [4.5, 0], [4.5, 15], [1, 15]], color: "teal", fuerte: true }
+          - { puntos: [[1, 15], [4.5, 15], [4.5, 50], [1, 50]], color: "mustard", fuerte: true }
+          - { puntos: [[1, 50], [4.5, 50], [4.5, 80], [1, 80]], color: "terra", fuerte: true }
+          - { puntos: [[6, 0], [9.5, 0], [9.5, 50], [6, 50]], color: "aubergine", fuerte: true }
+          - { puntos: [[6, 50], [9.5, 50], [9.5, 80], [6, 80]], color: "teal" }
+        series:
+          - { puntos: [[1, 0], [4.5, 0], [4.5, 15], [1, 15], [1, 0]], color: "teal" }
+          - { puntos: [[1, 15], [4.5, 15], [4.5, 50], [1, 50], [1, 15]], color: "mustard" }
+          - { puntos: [[1, 50], [4.5, 50], [4.5, 80], [1, 80], [1, 50]], color: "terra" }
+          - { puntos: [[6, 0], [9.5, 0], [9.5, 50], [6, 50], [6, 0]], color: "aubergine" }
+          - { puntos: [[6, 50], [9.5, 50], [9.5, 80], [6, 80], [6, 50]], color: "teal" }
+        notas:
+          - { x: 2.75, y: 6.3, texto: "Disponible 15", ancla: "middle" }
+          - { x: 2.75, y: 31.3, texto: "Clientes 35", ancla: "middle" }
+          - { x: 2.75, y: 63.8, texto: "Existencias 30", ancla: "middle" }
+          - { x: 7.75, y: 23.8, texto: "Pasivo corriente 50", ancla: "middle" }
+          - { x: 7.75, y: 63.5, texto: "Fondo de maniobra +30", ancla: "middle", color: "teal" }
+          - { x: 2.75, y: 84, texto: "80", ancla: "middle" }
+          - { x: 7.75, y: 84, texto: "80", ancla: "middle" }
   - enunciado: "Clasifica los siguientes elementos en sus masas patrimoniales y comprueba que el balance cuadra: local 120.000 €, maquinaria 30.000 €, existencias 20.000 €, clientes 18.000 €, banco 12.000 €, capital social 90.000 €, reservas 25.000 €, beneficio del ejercicio 15.000 €, préstamo bancario a 10 años 40.000 €, proveedores 22.000 €, Hacienda acreedora 8.000 €. Calcula además el ratio de endeudamiento."
     desarrollo: "<strong>Clasificación por masas:</strong><ul><li><strong>Activo no corriente</strong> = local 120.000 + maquinaria 30.000 = <strong>150.000 €</strong></li><li><strong>Activo corriente</strong> = existencias 20.000 + clientes 18.000 + banco 12.000 = <strong>50.000 €</strong></li><li><strong>TOTAL ACTIVO = 200.000 €</strong></li><li><strong>Patrimonio neto</strong> = capital 90.000 + reservas 25.000 + beneficio 15.000 = <strong>130.000 €</strong></li><li><strong>Pasivo no corriente</strong> = préstamo a 10 años = <strong>40.000 €</strong></li><li><strong>Pasivo corriente</strong> = proveedores 22.000 + Hacienda 8.000 = <strong>30.000 €</strong></li></ul><strong>Comprobación:</strong> Activo (200.000) = PN (130.000) + Pasivo (40.000 + 30.000 = 70.000) = 200.000 €. <strong>Cuadra.</strong><br><strong>Endeudamiento</strong> = Pasivo ÷ (PN + Pasivo) = 70.000 ÷ 200.000 = <strong>0,35</strong> (35 %). Por debajo del rango 0,4-0,6: empresa poco endeudada y financieramente sólida."
+    grafico:
+      tipo: xy
+      caption: "Las dos columnas suman 200.000 €: el activo (150.000 de no corriente y 50.000 de corriente) iguala al patrimonio neto (130.000) más el pasivo (40.000 no corriente y 30.000 corriente). ANC: activo no corriente; AC: activo corriente; PN: patrimonio neto; PNC y PC: pasivo no corriente y corriente."
+      props:
+        id: "r-e3r-balance"
+        titulo: "Balance en masas patrimoniales"
+        desc: "Dos columnas en miles de euros. Activo: no corriente 150 y corriente 50, total 200. Patrimonio neto 130, pasivo no corriente 40 y pasivo corriente 30, total 200. El balance cuadra."
+        xMax: 8.5
+        yMax: 230
+        ejeX: "Miles de euros"
+        ejeY: "Miles de euros"
+        xTicks: [2.4, 6.4]
+        xTickLabels: ["Activo", "PN + pasivo"]
+        yTicks: [100]
+        areas:
+          - { puntos: [[1, 0], [3.8, 0], [3.8, 150], [1, 150]], color: "terra", fuerte: true }
+          - { puntos: [[1, 150], [3.8, 150], [3.8, 200], [1, 200]], color: "mustard", fuerte: true }
+          - { puntos: [[5, 0], [7.8, 0], [7.8, 130], [5, 130]], color: "teal", fuerte: true }
+          - { puntos: [[5, 130], [7.8, 130], [7.8, 170], [5, 170]], color: "aubergine", fuerte: true }
+          - { puntos: [[5, 170], [7.8, 170], [7.8, 200], [5, 200]], color: "mustard", fuerte: true }
+        series:
+          - { puntos: [[1, 0], [3.8, 0], [3.8, 150], [1, 150], [1, 0]], color: "terra" }
+          - { puntos: [[1, 150], [3.8, 150], [3.8, 200], [1, 200], [1, 150]], color: "mustard" }
+          - { puntos: [[5, 0], [7.8, 0], [7.8, 130], [5, 130], [5, 0]], color: "teal" }
+          - { puntos: [[5, 130], [7.8, 130], [7.8, 170], [5, 170], [5, 130]], color: "aubergine" }
+          - { puntos: [[5, 170], [7.8, 170], [7.8, 200], [5, 200], [5, 170]], color: "mustard" }
+        notas:
+          - { x: 2.4, y: 72.24, texto: "ANC 150", ancla: "middle" }
+          - { x: 2.4, y: 172.24, texto: "AC 50", ancla: "middle" }
+          - { x: 6.4, y: 62.24, texto: "PN 130", ancla: "middle" }
+          - { x: 6.4, y: 147.24, texto: "PNC 40", ancla: "middle" }
+          - { x: 6.4, y: 182.24, texto: "PC 30", ancla: "middle" }
+          - { x: 2.4, y: 205, texto: "Activo: 200", ancla: "middle" }
+          - { x: 6.4, y: 205, texto: "PN + pasivo: 200", ancla: "middle" }
   - enunciado: "Una inversión de 18.000 € genera un flujo de caja de 6.000 € durante 3 años. En el año 3 se suma un valor residual de 2.000 €. Con k = 8 %, calcula el VAN y el payback simple, e indica si conviene."
-    desarrollo: "<strong>Payback simple</strong> (sin descontar):<ul><li>Año 1: 6.000 acumulados (faltan 12.000)</li><li>Año 2: 12.000 acumulados (faltan 6.000)</li><li>Año 3: 18.000 acumulados → recuperada justo al final. <strong>Payback = 3 años.</strong></li></ul><strong>VAN</strong> (el flujo del año 3 es 6.000 + 2.000 = 8.000):<ul><li>Año 1: 6.000 ÷ 1,08 = <strong>5.555,56 €</strong></li><li>Año 2: 6.000 ÷ 1,08^2 = 6.000 ÷ 1,1664 = <strong>5.144,03 €</strong></li><li>Año 3: 8.000 ÷ 1,08^3 = 8.000 ÷ 1,259712 = <strong>6.350,67 €</strong></li></ul>Suma de flujos actualizados = 5.555,56 + 5.144,03 + 6.350,67 = 17.050,26 €.<br>VAN = 17.050,26 − 18.000 = <strong>−949,74 €</strong>.<br><strong>Decisión:</strong> aunque la inversión se recupera nominalmente en 3 años, el <strong>VAN < 0</strong>: descontando al 8 %, el proyecto destruye valor. <strong>No conviene aceptarlo</strong> tal como está."
+    desarrollo: "<strong>Payback simple</strong> (sin descontar):<ul><li>Año 1: 6.000 acumulados (faltan 12.000)</li><li>Año 2: 12.000 acumulados (faltan 6.000)</li><li>Año 3: 18.000 acumulados → recuperada justo al final. <strong>Payback = 3 años.</strong></li></ul><strong>VAN</strong> (el flujo del año 3 es 6.000 + 2.000 = 8.000):<ul><li>Año 1: 6.000 ÷ 1,08 = <strong>5.555,56 €</strong></li><li>Año 2: 6.000 ÷ 1,08^2 = 6.000 ÷ 1,1664 = <strong>5.144,03 €</strong></li><li>Año 3: 8.000 ÷ 1,08^3 = 8.000 ÷ 1,259712 = <strong>6.350,66 €</strong></li></ul>Suma de flujos actualizados = 5.555,56 + 5.144,03 + 6.350,66 = 17.050,25 €.<br>VAN = 17.050,25 − 18.000 = <strong>−949,75 €</strong>.<br><strong>Decisión:</strong> aunque la inversión se recupera nominalmente en 3 años, el <strong>VAN < 0</strong>: descontando al 8 %, el proyecto destruye valor. <strong>No conviene aceptarlo</strong> tal como está."
+    grafico:
+      tipo: xy
+      caption: "Con k = 8 % el VAN es de −949,75 €: la inversión se recupera en 3 años sin descontar, pero descontada no compensa. El VAN solo se anula en la TIR, en torno al 5,19 %."
+      props:
+        id: "r-e3r-van-residual"
+        titulo: "VAN de la inversión con valor residual"
+        desc: "El VAN baja desde 2.000 euros con una tasa del 0 % hasta cero con la TIR, en torno al 5,19 %. Con una tasa del 8 % es de menos 949,75 euros."
+        xMax: 12
+        yMax: 2400
+        yMin: -2200
+        ejeX: "Tasa de descuento k"
+        ejeY: "VAN (€)"
+        simboloX: "k"
+        xTicks: [2, 10]
+        yTicks: [1000, 2000]
+        xTickLabels: ["2 %", "10 %"]
+        series:
+          - { label: "VAN(k)", color: "terra", labelEn: "inicio", puntos: [[0, 2000], [0.5, 1791.79], [1, 1587.09], [1.5, 1385.84], [2, 1187.94], [2.5, 993.34], [3, 801.95], [3.5, 613.71], [4, 428.54], [4.5, 246.38], [5, 67.16], [5.19, 0], [5.5, -109.17], [6, -282.69], [6.5, -453.45], [7, -621.51], [7.5, -786.92], [8, -949.75], [8.5, -1110.05], [9, -1267.87], [9.5, -1423.25], [10, -1576.26]], dx: 12, dy: -10 }
+        puntos:
+          - { x: 8, y: -949.75, label: "k = 8 %", xLabel: "8 %", yLabel: "−950", dx: -70, dy: 26 }
+          - { x: 5.19, y: 0, label: "TIR", xLabel: "5,19 %", dx: -14, dy: -16 }
   - enunciado: "Una empresa tiene un activo total de 400.000 €, un patrimonio neto de 150.000 € y un pasivo de 250.000 € (coste de la deuda 5 %). Su BAII es 48.000 € y el impuesto de sociedades es del 25 %. Calcula ROA y ROE e indica si el apalancamiento es positivo."
     desarrollo: "<strong>ROA (rentabilidad económica)</strong> = BAII ÷ Activo total × 100 = 48.000 ÷ 400.000 × 100 = <strong>12 %</strong>.<br><strong>Para el ROE necesitamos el beneficio neto:</strong><ul><li>Intereses = 5 % × 250.000 = <strong>12.500 €</strong></li><li>BAI = BAII − intereses = 48.000 − 12.500 = <strong>35.500 €</strong></li><li>Impuesto = 25 % × 35.500 = <strong>8.875 €</strong></li><li>Beneficio neto = 35.500 − 8.875 = <strong>26.625 €</strong></li></ul><strong>ROE (rentabilidad financiera)</strong> = BN ÷ PN × 100 = 26.625 ÷ 150.000 × 100 = <strong>17,75 %</strong>.<br><strong>Apalancamiento:</strong> ROA (12 %) > coste de la deuda (5 %), así que la deuda es más barata de lo que rinden los activos. El efecto es <strong>positivo</strong>: la rentabilidad de los socios antes de impuestos (35.500 ÷ 150.000 = 23,67 %) supera al ROA, y aquí también el ROE (17,75 %) lo supera, aunque no siempre ocurre: la deuda multiplica el rendimiento de los socios."
+    grafico:
+      tipo: xy
+      caption: "Con deuda de 250.000 € al 5 % y patrimonio neto de 150.000 €, un ROA del 12 % da un ROE del 17,75 % (23,67 % antes de impuestos). La rentabilidad de los socios supera al ROA cuando este supera el coste de la deuda, el 5 %."
+      props:
+        id: "r-e3r-apalancamiento"
+        titulo: "ROE y ROA con deuda al 5 %"
+        desc: "Con deuda de 250.000 euros al 5 % y patrimonio neto de 150.000, la rentabilidad antes de impuestos de los socios es 2,67 veces el ROA menos 8,33 puntos, y el ROE, después de un 25 % de impuestos, 2 veces el ROA menos 6,25. Con ROA del 12 %: 23,67 % antes de impuestos y ROE del 17,75 %. La recta con deuda corta la del ROA en el 5 %, el coste de la deuda."
+        xMax: 18
+        yMax: 36
+        yMin: -10
+        ejeX: "ROA, rentabilidad económica (%)"
+        ejeY: "Rentabilidad de los socios (%)"
+        simboloX: "ROA"
+        xTicks: [9, 15]
+        yTicks: [30]
+        series:
+          - { label: "ROA", color: "ink", tenue: true, puntos: [[0, 0], [15, 15]], dy: 14 }
+          - { label: "BAI/PN", color: "terra", puntos: [[0, -8.33], [15, 31.67]] }
+          - { label: "ROE", color: "teal", puntos: [[0, -6.25], [15, 23.75]], dy: 6 }
+        puntos:
+          - { x: 5, y: 5, xLabel: "5", yLabel: "5", label: "i = 5 %", dx: -66, dy: -14 }
+          - { x: 12, y: 12, xLabel: "12", yLabel: "12" }
+          - { x: 12, y: 17.75, yLabel: "17,75" }
+          - { x: 12, y: 23.67, yLabel: "23,67" }
 ejercicios:
   - enunciado: "Una empresa tiene: activo total 200.000 €, pasivo (deudas) 120.000 €. Calcula su patrimonio neto y comprueba que el balance cuadra."
     solucion: "Patrimonio Neto = Activo − Pasivo = 200.000 − 120.000 = <strong>80.000 €</strong>.<br>Comprobación: Activo (200.000) = Patrimonio Neto (80.000) + Pasivo (120.000) = 200.000 €. <strong>El balance cuadra.</strong>"

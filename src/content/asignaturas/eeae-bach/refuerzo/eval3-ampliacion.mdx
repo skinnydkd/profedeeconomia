@@ -26,10 +26,77 @@ ejemplos_resueltos:
     desarrollo: "<strong>1. Estrategia de cada una.</strong> Mercadona persigue la <strong>eficiencia y la sencillez</strong> (surtido reducido dominado por marca propia, precios estables, costes de publicidad casi nulos): se acerca al <strong>liderazgo en costes</strong> con una propuesta muy enfocada. Carrefour apuesta por la <strong>variedad y la experiencia de compra completa</strong> (alimentación, textil y electrónica, ofertas semanales): compite más por <strong>diferenciación</strong> de surtido.<br><strong>2. Por qué ambas son rentables.</strong> Porque sirven a <em>segmentos distintos</em>: quien quiere rapidez y precio estable elige Mercadona; quien quiere variedad y ofertas elige Carrefour. No hay una estrategia «ganadora» en abstracto; gana la que es coherente con el cliente al que sirve.<br><strong>3. Qué pasaría al combinarlas.</strong> Quedaría <strong>atrapada en el medio</strong> (Porter): ni la más barata ni la de más variedad, perdiendo a los dos tipos de cliente. La lección: la estrategia exige <em>elegir y renunciar</em>."
   - enunciado: "<strong>El peso del churn.</strong> Un servicio de suscripción pierde cada mes un 4 % de su base de clientes (churn) y, para este ejercicio, supón que no capta ninguno nuevo. ¿Qué proporción de su base conservará al cabo de 12 meses? ¿Por qué el churn suele ser más crítico que el precio?"
     desarrollo: "<strong>1. Retención mensual.</strong> Si pierde el 4 %, conserva el 96 % cada mes, es decir, un factor de 0,96.<br><strong>2. Retención a 12 meses.</strong> Hay que multiplicar ese factor doce veces: 0,96 elevado a 12 ≈ <strong>0,61</strong>.<br><strong>3. Interpretación.</strong> Conserva en torno al <strong>61 %</strong> de la base y pierde cerca del <strong>39 %</strong> en un año, solo por bajas.<br><strong>4. Por qué importa más que el precio.</strong> La ventaja del modelo de suscripción es la <em>previsibilidad de los ingresos recurrentes</em>. Con un churn alto, la empresa tiene que captar clientes sin parar solo para no decrecer, gastando por la puerta de delante lo que pierde por la de atrás. Un precio alto no sirve de nada si la gente se da de baja enseguida."
+    grafico:
+      tipo: xy
+      caption: "Con un churn del 4 % mensual y sin captar clientes nuevos, tras 12 meses se conserva el 61 % de la base: se pierde cerca del 39 %."
+      props:
+        id: "r-e3a-churn"
+        titulo: "Base de clientes con un churn del 4 % mensual"
+        desc: "La base de clientes baja desde el 100 % cada mes un 4 % de lo que queda: 0,96 elevado a 12 da un 61 % al cabo de un año."
+        xMax: 14
+        yMax: 120
+        ejeX: "Meses"
+        ejeY: "Base de clientes conservada (%)"
+        simboloX: "m"
+        xTicks: [3, 6, 9]
+        yTicks: [50, 100]
+        series:
+          - { label: "Base", color: "terra", puntos: [[0, 100], [0.5, 97.98], [1, 96], [1.5, 94.06], [2, 92.16], [2.5, 90.3], [3, 88.47], [3.5, 86.69], [4, 84.93], [4.5, 83.22], [5, 81.54], [5.5, 79.89], [6, 78.28], [6.5, 76.69], [7, 75.14], [7.5, 73.63], [8, 72.14], [8.5, 70.68], [9, 69.25], [9.5, 67.85], [10, 66.48], [10.5, 65.14], [11, 63.82], [11.5, 62.53], [12, 61.27]] }
+        puntos:
+          - { x: 12, y: 61.27, xLabel: "12", yLabel: "61" }
+        notas:
+          - { x: 0.8, y: 25, texto: "Pierde casi el 39 % en un año" }
   - enunciado: "<strong>Valor del cliente recurrente.</strong> Compara cuánto aporta un cliente de suscripción que paga 20 €/mes durante 30 meses frente a un cliente que hace una única compra de 150 €. Calcula ambos valores, la diferencia en veces y explica qué cambia la recurrencia."
     desarrollo: "<strong>1. Cliente recurrente.</strong> 20 €/mes × 30 meses = <strong>600 €</strong> a lo largo de su vida como cliente.<br><strong>2. Cliente de compra única.</strong> <strong>150 €</strong>.<br><strong>3. Diferencia.</strong> 600 ÷ 150 = <strong>4 veces</strong> más.<br><strong>4. Qué cambia la recurrencia.</strong> Si cada cliente vale 600 € en lugar de 150 €, la empresa puede permitirse invertir mucho más en captarlo y, sobre todo, en <em>fidelizarlo</em>. La lógica financiera se invierte: ya no se trata de maximizar el importe de cada venta, sino de <strong>maximizar la duración de la relación</strong>."
+    grafico:
+      tipo: xy
+      caption: "El cliente de suscripción aporta 600 € en 30 meses (20 € × 30), cuatro veces los 150 € de una compra única."
+      props:
+        id: "r-e3a-valor-cliente"
+        titulo: "Valor de un cliente recurrente frente a una compra única"
+        desc: "Lo que aporta cada cliente a lo largo del tiempo: el de suscripción suma 20 euros cada mes hasta 600 en 30 meses; el de compra única aporta 150 euros y nada más."
+        xMax: 36
+        yMax: 700
+        ejeX: "Meses como cliente"
+        ejeY: "Euros aportados (€)"
+        simboloX: "m"
+        simboloY: "€"
+        xTicks: [10, 20]
+        yTicks: [300]
+        series:
+          - { label: "Suscripción", color: "teal", puntos: [[0, 0], [30, 600]], dy: -2 }
+          - { label: "Compra única", color: "terra", puntos: [[0, 150], [30, 150]], dy: 14 }
+        puntos:
+          - { x: 30, y: 600, xLabel: "30", yLabel: "600" }
+          - { x: 30, y: 150, yLabel: "150" }
+        notas:
+          - { x: 8, y: 540, texto: "4 veces más: 600 ÷ 150", color: "teal" }
   - enunciado: "<strong>Escalabilidad de un freemium.</strong> Una herramienta digital tiene 250.000 usuarios gratuitos y convierte a pago un 4 %, con una cuota de 8 €/mes. Calcula los usuarios de pago y los ingresos mensuales y anuales. Explica por qué este modelo es escalable."
     desarrollo: "<strong>1. Usuarios de pago.</strong> 4 % de 250.000 = 0,04 × 250.000 = <strong>10.000 usuarios de pago</strong>.<br><strong>2. Ingresos mensuales.</strong> 10.000 × 8 € = <strong>80.000 € al mes</strong>.<br><strong>3. Ingresos anuales.</strong> 80.000 × 12 = <strong>960.000 € al año</strong>.<br><strong>4. Por qué es escalable.</strong> En un servicio digital, atender a un usuario más cuesta casi cero. La empresa puede sostener una enorme base gratuita —que hace de cantera y de publicidad orgánica— porque le basta con que un pequeño porcentaje pague. Puede multiplicar usuarios sin multiplicar costes en la misma proporción."
+    grafico:
+      tipo: xy
+      caption: "De 250.000 usuarios gratuitos, el 4 % paga: 10.000 usuarios de pago que, a 8 € al mes, aportan 80.000 € mensuales (960.000 € al año)."
+      props:
+        id: "r-e3a-freemium"
+        titulo: "Usuarios gratuitos y de pago en un modelo freemium"
+        desc: "Dos columnas: 250.000 usuarios gratuitos y 10.000 usuarios de pago (el 4 %). Los de pago, a 8 euros al mes, suman 80.000 euros mensuales."
+        xMax: 10
+        yMax: 300000
+        ejeX: "Tipo de usuario"
+        ejeY: "Usuarios"
+        xTicks: [2.75, 7.25]
+        xTickLabels: ["Gratuitos", "De pago"]
+        yTicks: [100000, 200000]
+        areas:
+          - { puntos: [[1.5, 0], [4, 0], [4, 250000], [1.5, 250000]], color: "mustard", fuerte: true }
+          - { puntos: [[6, 0], [8.5, 0], [8.5, 10000], [6, 10000]], color: "teal", fuerte: true }
+        series:
+          - { puntos: [[1.5, 0], [4, 0], [4, 250000], [1.5, 250000], [1.5, 0]], color: "mustard" }
+          - { puntos: [[6, 0], [8.5, 0], [8.5, 10000], [6, 10000], [6, 0]], color: "teal" }
+        notas:
+          - { x: 2.75, y: 262000, texto: "250.000", ancla: "middle" }
+          - { x: 7.25, y: 22000, texto: "10.000 (4 %)", ancla: "middle" }
+          - { x: 7.25, y: 70000, texto: "10.000 × 8 € = 80.000 €/mes", ancla: "middle", color: "teal" }
 ejercicios:
   - enunciado: "Explica por qué la <strong>cultura empresarial</strong> puede ser una ventaja competitiva tan real como la tecnología, apoyándote en los casos de Kodak y Buurtzorg."
     solucion: "La cultura condiciona cómo una empresa decide y reacciona. <strong>Kodak</strong> tenía la cámara digital antes que nadie, pero su cultura, que temía canibalizar su negocio de carretes, le impidió aprovecharla: la tecnología no basta si la cultura la bloquea. <strong>Buurtzorg</strong>, en cambio, construyó una cultura de autonomía y confianza (equipos autogestionados de enfermeras) que le dio alta satisfacción y crecimiento sin jerarquías. La cultura, por tanto, puede hundir o impulsar a una empresa: es una ventaja (o desventaja) competitiva intangible y difícil de copiar."

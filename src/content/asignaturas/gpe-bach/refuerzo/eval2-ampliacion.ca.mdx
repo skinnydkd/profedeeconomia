@@ -26,12 +26,95 @@ repaso_teorico:
 ejemplos_resueltos:
   - enunciado: "Una emprenedora preveu un benefici anual recurrent de 60.000 euros. Compara tributar com a autònoma (IRPF, suposa un tipus mitjà del 30 %) enfront d'una SL (Impost sobre Societats d'una microempresa el 2026: 19 % sobre els primers 50.000 € i 21 % sobre la resta). Calcula l'impost en cada cas, l'estalvi, i raona quins factors, a més de l'import, hauria de valorar."
     desarrollo: "<strong>1. Autònoma (IRPF 30 %):</strong> 60.000 × 0,30 = <strong>18.000 euros</strong> d'impost.<br><strong>2. SL (microempresa):</strong> 50.000 × 0,19 + 10.000 × 0,21 = 9.500 + 2.100 = <strong>11.600 euros</strong> d'impost.<br><strong>3. Estalvi:</strong> 18.000 − 11.600 = <strong>6.400 euros/any</strong> a favor de la SL.<br><strong>4. Més enllà de l'import:</strong> l'IRPF és progressiu (amb beneficis baixos pot eixir més barat que Societats), la SL aporta responsabilitat limitada, però té majors costos de gestió i comptabilitat i, en repartir dividends, hi ha una segona tributació. Amb 60.000 euros l'emprenedora està per damunt del llindar orientatiu de 40.000-50.000 euros, així que el canvi comença a tindre sentit; però la decisió no es pren només pel tipus impositiu."
+    grafico:
+      tipo: xy
+      caption: "Impost segons el benefici anual. Amb 60.000 €, l'autònoma (IRPF al 30 %) paga 18.000 € i la SL (microempresa), 11.600 €: 6.400 € menys a l'any."
+      props:
+        id: "r-g2a-autonoma-sl"
+        titulo: "Impost com a autònoma o com a SL"
+        desc: "Impost segons el benefici. Com a autònoma, un 30 % de tot el benefici. Com a SL, un 19 % fins a 50.000 euros (9.500 d'impost) i un 21 % a partir d'ací. Amb 60.000 euros de benefici: 18.000 euros com a autònoma i 11.600 com a SL."
+        xMax: 95000
+        yMax: 28000
+        ejeX: "Benefici anual (€)"
+        ejeY: "Impost (€)"
+        simboloX: "B"
+        simboloY: "€"
+        xTicks: [20000, 40000, 80000]
+        yTicks: [5000, 10000]
+        series:
+          - { label: "Autònoma", color: "terra", puntos: [[0, 0], [80000, 24000]] }
+          - { label: "SL", color: "teal", puntos: [[0, 0], [50000, 9500], [80000, 15800]] }
+        puntos:
+          - { x: 60000, y: 18000, xLabel: "60 000", yLabel: "18 000" }
+          - { x: 60000, y: 11600, yLabel: "11 600" }
+        notas:
+          - { x: 62000, y: 5000, texto: "Estalvi: 6.400 €", color: "teal" }
   - enunciado: "Una botiga ven 1.200 unitats a l'any de manera constant. Mantindre una unitat en magatzem costa 2 euros/any i fer cada comanda costa 20 euros. Compara el cost anual total (manteniment més comandes) de demanar en lots de 600 unitats enfront de lots de 300. L'estoc mitjà és la mitat del lot."
     desarrollo: "Calculem els dos costos en cada escenari.<br><strong>Lot de 600:</strong><br>· Estoc mitjà = 600 ÷ 2 = 300 unitats. Cost de manteniment = 300 × 2 = 600 euros.<br>· Nombre de comandes = 1.200 ÷ 600 = 2 comandes. Cost de demanar = 2 × 20 = 40 euros.<br>· Cost total = 600 + 40 = <strong>640 euros/any</strong>.<br><strong>Lot de 300:</strong><br>· Estoc mitjà = 300 ÷ 2 = 150 unitats. Cost de manteniment = 150 × 2 = 300 euros.<br>· Nombre de comandes = 1.200 ÷ 300 = 4 comandes. Cost de demanar = 4 × 20 = 80 euros.<br>· Cost total = 300 + 80 = <strong>380 euros/any</strong>.<br><strong>Conclusió:</strong> amb estes dades el lot de 300 és més barat (380 enfront de 640 euros), perquè l'estalvi en manteniment (300 euros) supera l'augment del cost de demanar (40 euros). El control d'estocs consistix just a trobar el lot que minimitza la suma dels dos costos."
+    grafico:
+      tipo: xy
+      caption: "Cost anual total de gestionar l'estoc segons la mida del lot (1.200 unitats a l'any). Amb lots de 300 unitats costa 380 €; amb lots de 600, 640 €: el manteniment puja i les comandes baixen."
+      props:
+        id: "r-g2a-lote-pedido"
+        titulo: "Cost de mantindre i de demanar segons la mida del lot"
+        desc: "Cost de manteniment (2 euros per unitat d'estoc mitjà, que és la mitat del lot), cost de comandes (20 euros per comanda, 1.200 entre el lot) i suma d'ambdós. Amb lots de 300 unitats el cost total és de 380 euros a l'any; amb lots de 600, de 640."
+        xMax: 750
+        yMax: 800
+        ejeX: "Unitats per lot"
+        ejeY: "Euros a l'any"
+        simboloX: "Q"
+        simboloY: "€"
+        xTicks: [100, 200, 400, 500]
+        yTicks: [200]
+        series:
+          - { label: "Total", color: "terra", puntos: [[100, 340], [125, 317], [150, 310], [175, 312.14], [200, 320], [225, 331.67], [250, 346], [275, 362.27], [300, 380], [325, 398.85], [350, 418.57], [375, 439], [400, 460], [425, 481.47], [450, 503.33], [475, 525.53], [500, 548], [525, 570.71], [550, 593.64], [575, 616.74], [600, 640], [625, 663.4], [650, 686.92]], dy: -10 }
+          - { label: "Mantindre", color: "teal", puntos: [[100, 100], [650, 650]], dy: 18 }
+          - { label: "Demanar", color: "mustard", puntos: [[100, 240], [125, 192], [150, 160], [175, 137.14], [200, 120], [225, 106.67], [250, 96], [275, 87.27], [300, 80], [325, 73.85], [350, 68.57], [375, 64], [400, 60], [425, 56.47], [450, 53.33], [475, 50.53], [500, 48], [525, 45.71], [550, 43.64], [575, 41.74], [600, 40], [625, 38.4], [650, 36.92]] }
+        puntos:
+          - { x: 300, y: 380, xLabel: "300", yLabel: "380" }
+          - { x: 600, y: 640, xLabel: "600", yLabel: "640" }
   - enunciado: "Una marca vol posicionar-se com a xocolate artesà de luxe i fixa un preu alt (8 euros la tauleta). Detecta tres decisions: el ven només en superfícies de descompte, usa un embolcall de plàstic bàsic i es promociona amb cupons 2x1. Explica per què el seu màrqueting mix és incoherent i corregix-lo."
     desarrollo: "El preu alt comunica luxe, però les altres tres P el contradiuen.<br><strong>Plaça:</strong> vendre'l en superfícies de descompte l'envolta de productes barats i trenca la imatge premium. <em>Correcció:</em> botigues gourmet, delicatessen o venda en línia pròpia.<br><strong>Producte:</strong> l'embolcall de plàstic bàsic no transmet artesania. <em>Correcció:</em> envàs cuidat, materials nobles o reciclats amb bon disseny.<br><strong>Promoció:</strong> els cupons 2x1 són típics de producte barat i devaluen la marca. <em>Correcció:</em> tastos, recomanació d'experts, edició limitada.<br><strong>Conclusió:</strong> el posicionament (luxe, preu 8 euros) només és creïble si les quatre P conten la mateixa història. Amb les quatre alineades, el client percep coherència i accepta el preu alt."
   - enunciado: "Per al projecte es contracta una persona amb un salari brut de 18.000 euros/any. L'empresa paga a més, per cotitzacions a la Seguretat Social al seu càrrec, un 30 % del salari brut. Calcula el cost total anual del treballador per a l'empresa i compara'l amb el salari net, suposant que les deduccions del treballador (la seua part de Seguretat Social més IRPF) són del 18 % del brut."
     desarrollo: "<strong>1. Cost empresa:</strong><br>· Cotització a càrrec de l'empresa = 18.000 × 0,30 = 5.400 euros.<br>· Cost total per a l'empresa = 18.000 + 5.400 = <strong>23.400 euros/any</strong>.<br><strong>2. Salari net del treballador:</strong><br>· Deduccions del treballador = 18.000 × 0,18 = 3.240 euros.<br>· Salari net = 18.000 − 3.240 = <strong>14.760 euros/any</strong>.<br><strong>Conclusió:</strong> al voltant del mateix lloc conviuen tres xifres molt distintes: l'empresa desemborsa 23.400 euros, reconeix un brut de 18.000 i el treballador rep 14.760. Contractar costa molt més que el sou que apareix en el banc, i per això en pressupostar personal cal partir del cost empresa, no del net."
+    grafico:
+      tipo: xy
+      caption: "Un mateix lloc, tres xifres: l'empresa desemborsa 23.400 € (18.000 € de brut més 5.400 € de cotització al seu càrrec), reconeix un brut de 18.000 € i la persona rep 14.760 € nets."
+      props:
+        id: "r-g2a-coste-empresa"
+        titulo: "Cost per a l'empresa, salari brut i salari net"
+        desc: "Tres columnes en euros a l'any. Cost per a l'empresa: 23.400, que són 14.760 de net, 3.240 de deduccions del treballador i 5.400 de cotització de l'empresa. Salari brut: 18.000. Salari net: 14.760."
+        xMax: 11.2
+        yMax: 27000
+        ejeX: "Euros a l'any"
+        ejeY: "Euros a l'any"
+        xTicks: [1.9, 5.5, 9.1]
+        xTickLabels: ["Cost empresa", "Salari brut", "Salari net"]
+        yTicks: [10000, 20000]
+        areas:
+          - { puntos: [[0.6, 0], [3.2, 0], [3.2, 14760], [0.6, 14760]], color: "teal", fuerte: true }
+          - { puntos: [[0.6, 14760], [3.2, 14760], [3.2, 18000], [0.6, 18000]], color: "aubergine", fuerte: true }
+          - { puntos: [[0.6, 18000], [3.2, 18000], [3.2, 23400], [0.6, 23400]], color: "mustard", fuerte: true }
+          - { puntos: [[4.2, 0], [6.8, 0], [6.8, 14760], [4.2, 14760]], color: "teal", fuerte: true }
+          - { puntos: [[4.2, 14760], [6.8, 14760], [6.8, 18000], [4.2, 18000]], color: "aubergine", fuerte: true }
+          - { puntos: [[7.8, 0], [10.4, 0], [10.4, 14760], [7.8, 14760]], color: "teal", fuerte: true }
+        series:
+          - { puntos: [[0.6, 0], [3.2, 0], [3.2, 14760], [0.6, 14760], [0.6, 0]], color: "teal" }
+          - { puntos: [[0.6, 14760], [3.2, 14760], [3.2, 18000], [0.6, 18000], [0.6, 14760]], color: "aubergine" }
+          - { puntos: [[0.6, 18000], [3.2, 18000], [3.2, 23400], [0.6, 23400], [0.6, 18000]], color: "mustard" }
+          - { puntos: [[4.2, 0], [6.8, 0], [6.8, 14760], [4.2, 14760], [4.2, 0]], color: "teal" }
+          - { puntos: [[4.2, 14760], [6.8, 14760], [6.8, 18000], [4.2, 18000], [4.2, 14760]], color: "aubergine" }
+          - { puntos: [[7.8, 0], [10.4, 0], [10.4, 14760], [7.8, 14760], [7.8, 0]], color: "teal" }
+        notas:
+          - { x: 1.9, y: 7056, texto: "Net 14.760", ancla: "middle" }
+          - { x: 1.9, y: 16056, texto: "Deduccions 3.240", ancla: "middle" }
+          - { x: 1.9, y: 20376, texto: "Cot. empresa 5.400", ancla: "middle" }
+          - { x: 5.5, y: 7056, texto: "Net 14.760", ancla: "middle" }
+          - { x: 5.5, y: 16056, texto: "Deduccions 3.240", ancla: "middle" }
+          - { x: 9.1, y: 7056, texto: "Net 14.760", ancla: "middle" }
+          - { x: 1.9, y: 24400, texto: "23.400", ancla: "middle" }
+          - { x: 5.5, y: 19000, texto: "18.000", ancla: "middle" }
+          - { x: 9.1, y: 15760, texto: "14.760", ancla: "middle" }
 ejercicios:
   - enunciado: "Tres amics volen muntar un projecte, aporten 6.000 euros entre tots i temen perdre el seu patrimoni personal si alguna cosa ix malament. Raona quina <strong>forma jurídica</strong> els convé més i per què descartes les altres dos."
     solucion: "Els convé la <strong>societat limitada (SL)</strong>:<br>· Són diversos socis i la SL admet agrupar diverses aportacions (cobrixen de sobra el capital mínim amb 6.000 euros).<br>· Limita la responsabilitat al capital aportat, just allò que els preocupa: no arrisquen el seu patrimoni personal.<br>Es descarta l'<strong>autònom</strong> perquè la seua responsabilitat és il·limitada i encaixa millor per a una sola persona. La <strong>cooperativa</strong> seria possible, però imposa una gestió democràtica formal i requisits pensats per a projectes amb vocació social; per a tres amics amb ànim de lucre, la SL és més senzilla i àgil."

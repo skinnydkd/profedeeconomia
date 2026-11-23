@@ -31,10 +31,76 @@ repaso_teorico:
 ejemplos_resueltos:
   - enunciado: "Una empresa de bosses de tela té costos fixos de 9.000 € al mes. Cada bossa porta 7 € de cost variable i es ven a 19 €. Calcula el punt mort en unitats i comprova el resultat."
     desarrollo: "<p><strong>Pas 1. Identifica les dades.</strong> CF = 9.000 €; CVu = 7 €; P = 19 €.</p><p><strong>Pas 2. Marge de contribució unitari.</strong> MC = P − CVu = 19 − 7 = <strong>12 €/bossa</strong> (allò que cada bossa aporta per a cobrir els costos fixos).</p><p><strong>Pas 3. Aplica la fórmula del punt mort.</strong> Q* = CF ÷ (P − CVu) = 9.000 ÷ 12 = <strong>750 bosses/mes</strong>.</p><p><strong>Pas 4. Comprova.</strong> Ingressos = 19 × 750 = 14.250 €. Cost total = 9.000 + (7 × 750) = 9.000 + 5.250 = 14.250 €. Benefici = 14.250 − 14.250 = <strong>0 €</strong>. Correcte.</p><p><strong>Interpretació:</strong> cal vendre 750 bosses al mes per a no perdre diners; a partir de la bossa 751 comença el benefici.</p>"
+    grafico:
+      tipo: xy
+      caption: "L'ingrés total i el cost total es creuen en 750 bosses al mes, amb 14.250 € en cadascun: ací el benefici és zero."
+      props:
+        id: "r-e2r-punto-muerto"
+        titulo: "Punt mort de l'empresa de bosses de tela"
+        desc: "Ingrés total (19 euros per bossa), cost total (9.000 euros fixos més 7 per bossa) i cost fix. L'ingrés i el cost total es creuen en 750 bosses al mes, amb 14.250 euros: per davall hi ha pèrdues i per damunt, benefici."
+        xMax: 1000
+        yMax: 20000
+        ejeX: "Bosses al mes"
+        ejeY: "Euros al mes"
+        simboloX: "Q"
+        simboloY: "€"
+        xTicks: [250, 500]
+        yTicks: [5000, 9000]
+        series:
+          - { label: "IT", color: "teal", puntos: [[0, 0], [900, 17100]] }
+          - { label: "CT", color: "terra", puntos: [[0, 9000], [900, 15300]] }
+          - { label: "CF", color: "mustard", puntos: [[0, 9000], [900, 9000]], dy: 14 }
+        puntos:
+          - { x: 750, y: 14250, label: "Q*", xLabel: "750", yLabel: "14 250", dx: -34, dy: -12 }
   - enunciado: "Dos tallers fabriquen el mateix moble. El taller A produïx 480 mobles al mes amb 6 treballadors; el taller B produïx 700 mobles al mes amb 10 treballadors. Quin és més productiu per treballador?"
     desarrollo: "<p><strong>Pas 1. Recorda la fórmula.</strong> Productivitat per treballador = producció ÷ nombre de treballadors.</p><p><strong>Pas 2. Taller A.</strong> 480 ÷ 6 = <strong>80 mobles per treballador</strong>.</p><p><strong>Pas 3. Taller B.</strong> 700 ÷ 10 = <strong>70 mobles per treballador</strong>.</p><p><strong>Pas 4. Compara.</strong> 80 > 70, així que el <strong>taller A és més productiu</strong> per treballador, encara que el taller B fabrique més mobles en total. Produir més no és el mateix que ser més productiu.</p>"
+    grafico:
+      tipo: xy
+      caption: "El taller A produïx 80 mobles per treballador i el B, 70: l'A és més productiu encara que el B fabrique més mobles en total (700 enfront de 480)."
+      props:
+        id: "r-e2r-productividad"
+        titulo: "Productivitat per treballador dels tallers A i B"
+        desc: "Dues columnes: el taller A produïx 480 mobles amb 6 treballadors, és a dir, 80 per treballador; el taller B produïx 700 amb 10 treballadors, és a dir, 70 per treballador."
+        xMax: 10
+        yMax: 100
+        ejeX: "Taller"
+        ejeY: "Mobles per treballador"
+        xTicks: [2.75, 7.25]
+        xTickLabels: ["Taller A", "Taller B"]
+        yTicks: [20, 40, 60]
+        areas:
+          - { puntos: [[1.5, 0], [4, 0], [4, 80], [1.5, 80]], color: "terra", fuerte: true }
+          - { puntos: [[6, 0], [8.5, 0], [8.5, 70], [6, 70]], color: "teal", fuerte: true }
+        series:
+          - { puntos: [[1.5, 0], [4, 0], [4, 80], [1.5, 80], [1.5, 0]], color: "terra" }
+          - { puntos: [[6, 0], [8.5, 0], [8.5, 70], [6, 70], [6, 0]], color: "teal" }
+        notas:
+          - { x: 2.75, y: 84, texto: "80 per treballador", ancla: "middle" }
+          - { x: 7.25, y: 74, texto: "70 per treballador", ancla: "middle" }
+          - { x: 2.75, y: 38, texto: "480 ÷ 6 treballadors", ancla: "middle" }
+          - { x: 7.25, y: 33, texto: "700 ÷ 10 treballadors", ancla: "middle" }
   - enunciado: "Una empresa té costos fixos de 12.000 € i un cost variable unitari de 8 €. Calcula el cost total i el cost mitjà si fabrica 3.000 unitats, i torna a calcular-los per a 6.000 unitats. Què passa amb el cost mitjà?"
     desarrollo: "<p><strong>Amb 3.000 unitats:</strong></p><ul><li>CT = CF + (CVu × Q) = 12.000 + (8 × 3.000) = 12.000 + 24.000 = <strong>36.000 €</strong>.</li><li>CMe = CT ÷ Q = 36.000 ÷ 3.000 = <strong>12 €/unitat</strong>.</li></ul><p><strong>Amb 6.000 unitats:</strong></p><ul><li>CT = 12.000 + (8 × 6.000) = 12.000 + 48.000 = <strong>60.000 €</strong>.</li><li>CMe = 60.000 ÷ 6.000 = <strong>10 €/unitat</strong>.</li></ul><p><strong>Conclusió:</strong> en produir més, el cost mitjà baixa de 12 a 10 €, perquè els costos fixos (12.000 €) es reparteixen entre més unitats. Són les <strong>economies d'escala</strong>.</p>"
+    grafico:
+      tipo: xy
+      caption: "El cost mitjà baixa de 12 € amb 3.000 unitats a 10 € amb 6.000, perquè els 12.000 € de costos fixos es reparteixen entre més unitats; mai baixa del cost variable unitari (8 €)."
+      props:
+        id: "r-e2r-coste-medio"
+        titulo: "Cost mitjà segons les unitats fabricades"
+        desc: "El cost mitjà, 12.000 euros fixos repartits entre les unitats més 8 euros de cost variable, baixa de 12 euros amb 3.000 unitats a 10 euros amb 6.000 i s'acosta als 8 euros del cost variable unitari sense arribar a tocar-los."
+        xMax: 8500
+        yMax: 20
+        ejeX: "Unitats fabricades"
+        ejeY: "Euros per unitat"
+        simboloX: "Q"
+        xTicks: [1500, 4500, 7500]
+        yTicks: [8, 16]
+        series:
+          - { label: "CMe", color: "terra", puntos: [[1500, 16], [1800, 14.67], [2100, 13.71], [2400, 13], [2700, 12.44], [3000, 12], [3300, 11.64], [3600, 11.33], [3900, 11.08], [4200, 10.86], [4500, 10.67], [4800, 10.5], [5100, 10.35], [5400, 10.22], [5700, 10.11], [6000, 10], [6300, 9.9], [6600, 9.82], [6900, 9.74], [7200, 9.67], [7500, 9.6]], dy: -6 }
+          - { label: "CVu", color: "ink", tenue: true, puntos: [[1500, 8], [7500, 8]], dy: 16 }
+        puntos:
+          - { x: 3000, y: 12, xLabel: "3 000", yLabel: "12" }
+          - { x: 6000, y: 10, xLabel: "6 000", yLabel: "10" }
   - enunciado: "Una empresa contracta una persona amb un salari brut de 1.700 €/mes. La cotització del treballador a la Seguretat Social és del 6,50 % i la retenció d'IRPF aplicada és del 10 %. Les cotitzacions patronals suposen un 30 % del brut. Calcula el líquid que cobra el treballador i el cost empresa mensual."
     desarrollo: "<p><strong>Pas 1. Deduccions del treballador (sobre el brut de 1.700 €).</strong></p><ul><li>Seguretat Social: 6,50 % × 1.700 = 0,065 × 1.700 = <strong>110,50 €</strong>.</li><li>IRPF: 10 % × 1.700 = 0,10 × 1.700 = <strong>170,00 €</strong>.</li></ul><p><strong>Pas 2. Líquid a percebre.</strong> 1.700 − 110,50 − 170 = <strong>1.419,50 €/mes</strong>.</p><p><strong>Pas 3. Cost empresa.</strong> Cotitzacions patronals = 30 % × 1.700 = 510 €. Cost empresa = brut + cotització patronal = 1.700 + 510 = <strong>2.210 €/mes</strong>.</p><p><strong>Conclusió:</strong> el treballador cobra 1.419,50 €, però a l'empresa li costa 2.210 €. Tres magnituds diferents: líquid, brut i cost empresa.</p>"
 ejercicios:

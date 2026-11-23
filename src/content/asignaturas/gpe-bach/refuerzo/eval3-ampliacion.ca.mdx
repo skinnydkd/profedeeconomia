@@ -23,10 +23,91 @@ repaso_teorico:
 ejemplos_resueltos:
   - enunciado: "Un projecte ven un servei a 20 €, amb cost variable de 8 € i costos fixos de 3.600 €/mes. Calcula el punt mort. Després, calcula quants servicis ha de vendre per a obtindre un benefici objectiu de 1.200 € al mes, i torna a calcular el punt mort si negocia el cost variable a 5 €. Comenta l'efecte."
     desarrollo: "<strong>1. Punt mort inicial.</strong> Marge = 20 − 8 = 12 €. Punt mort = 3.600 ÷ 12 = <strong>300 servicis/mes</strong>.<br><strong>2. Vendes per a un benefici objectiu de 1.200 €.</strong> Cal cobrir els costos fixos i, a més, el benefici desitjat: unitats = (costos fixos + benefici objectiu) ÷ marge = (3.600 + 1.200) ÷ 12 = 4.800 ÷ 12 = <strong>400 servicis/mes</strong>.<br>Comprovació: 400 × 12 = 4.800 € de marge total; menys 3.600 € de costos fixos = 1.200 € de benefici. Correcte.<br><strong>3. Nou punt mort amb cost variable de 5 €.</strong> Marge = 20 − 5 = 15 €. Punt mort = 3.600 ÷ 15 = <strong>240 servicis/mes</strong>.<br><strong>Efecte:</strong> en baixar el cost variable, cada venda aporta més marge (de 12 a 15 €), així que el punt mort cau de 300 a 240. Reduir el cost variable fa el projecte més rendible i menys arriscat, perquè necessita vendre menys per a no perdre."
+    grafico:
+      tipo: xy
+      caption: "Amb 8 € de cost variable el punt mort està en 300 serveis al mes; amb 5 €, en 240. Per a guanyar 1.200 € al mes en fan falta 400 (amb el cost de 8 €)."
+      props:
+        id: "r-g3a-punto-muerto-negociado"
+        titulo: "Punt mort amb dos costos variables"
+        desc: "Ingrés total (20 euros per servei) i cost total amb cost variable de 8 euros i de 5 euros (3.600 euros fixos). Amb 8 euros es creuen en 300 serveis, amb 6.000 euros; amb 5 euros, en 240, amb 4.800. Amb 400 serveis i 8 euros de cost, el benefici és de 1.200 euros."
+        xMax: 500
+        yMax: 10000
+        ejeX: "Serveis al mes"
+        ejeY: "Euros al mes"
+        simboloX: "Q"
+        simboloY: "€"
+        xTicks: [100, 200, 500]
+        yTicks: [3600]
+        series:
+          - { label: "IT", color: "teal", puntos: [[0, 0], [440, 8800]] }
+          - { label: "CT (8 €)", color: "terra", puntos: [[0, 3600], [440, 7120]] }
+          - { label: "CT (5 €)", color: "aubergine", puntos: [[0, 3600], [440, 5800]] }
+          - { label: "CF", color: "mustard", puntos: [[0, 3600], [440, 3600]], dy: 14, labelEn: "inicio", dx: 14 }
+        puntos:
+          - { x: 300, y: 6000, label: "Q*", xLabel: "300", yLabel: "6 000", dx: -34, dy: -14 }
+          - { x: 240, y: 4800, label: "Q*'", xLabel: "240", yLabel: "4 800", dx: 10, dy: 24 }
+          - { x: 400, y: 8000, label: "Objectiu", xLabel: "400", yLabel: "8 000", dx: -84, dy: -12 }
+          - { x: 400, y: 6800, guias: false }
   - enunciado: "Per a arrancar, un equip necessita 10.000 € i dubta entre dos opcions: A) un préstec a un interés del 6 % anual; B) esperar un any per a reunir els diners amb estalvis propis. Amb el préstec, el projecte generaria 2.500 € de benefici el primer any. Raona quina opció convé calculant el cost del finançament aliè."
     desarrollo: "<strong>1. Cost del préstec (interessos del primer any)</strong> = 6 % de 10.000 = 0,06 × 10.000 = <strong>600 €</strong>.<br><strong>2. Opció A (préstec):</strong> benefici de l'any − interessos = 2.500 − 600 = <strong>1.900 € nets</strong>, i el projecte arranca ja.<br><strong>3. Opció B (esperar):</strong> no es paguen interessos, però es perd tot un any d'activitat, és a dir, els 2.500 € de benefici que s'haurien obtingut (cost d'oportunitat).<br><strong>Conclusió:</strong> convé l'opció A. Pagar 600 € d'interessos per a guanyar 2.500 € és un bon negoci, i a més permet començar un any abans. El finançament aliè val la pena quan allò que els diners et fan guanyar supera allò que et costa."
+    grafico:
+      tipo: xy
+      caption: "Amb el préstec, el projecte guanya 2.500 € el primer any, paga 600 € d'interessos i es queda amb 1.900 € nets. Esperar un any estalvia els interessos, però renuncia a eixos 2.500 €."
+      props:
+        id: "r-g3a-prestamo"
+        titulo: "Benefici del primer any amb préstec o esperant"
+        desc: "Dues opcions. Amb el préstec del 6 % sobre 10.000 euros, el benefici de 2.500 euros es reparteix en 600 d'interessos i 1.900 nets. Esperant un any no hi ha benefici ni interessos."
+        xMax: 10
+        yMax: 3000
+        ejeX: "Opció"
+        ejeY: "Euros del primer any"
+        xTicks: [3, 7]
+        xTickLabels: ["A: préstec", "B: esperar"]
+        yTicks: [1000, 2000]
+        areas:
+          - { puntos: [[1.5, 0], [4.5, 0], [4.5, 1900], [1.5, 1900]], color: "teal", fuerte: true }
+          - { puntos: [[1.5, 1900], [4.5, 1900], [4.5, 2500], [1.5, 2500]], color: "terra", fuerte: true }
+        series:
+          - { puntos: [[1.5, 0], [4.5, 0], [4.5, 1900], [1.5, 1900], [1.5, 0]], color: "teal" }
+          - { puntos: [[1.5, 1900], [4.5, 1900], [4.5, 2500], [1.5, 2500], [1.5, 1900]], color: "terra" }
+        notas:
+          - { x: 3, y: 914, texto: "Net 1.900", ancla: "middle" }
+          - { x: 3, y: 2164, texto: "Interessos 600", ancla: "middle" }
+          - { x: 3, y: 2600, texto: "Benefici de l'any: 2.500", ancla: "middle" }
+          - { x: 7, y: 150, texto: "0 €: es perd l'any", ancla: "middle" }
   - enunciado: "Dos fleques facturen el mateix, 20.000 € al mes en compres i salaris. La fleca A destina 14.000 € a proveïdors i ocupació del poble; la B, només 8.000 €. Calcula el retorn local de cadascuna en percentatge i argumenta, amb l'efecte multiplicador, per què A genera més desenvolupament local."
     desarrollo: "<strong>1. Retorn local d'A</strong> = 14.000 ÷ 20.000 = 0,70 = <strong>70 %</strong>.<br><strong>2. Retorn local de B</strong> = 8.000 ÷ 20.000 = 0,40 = <strong>40 %</strong>.<br><strong>3. Diferència:</strong> A deixa 30 punts percentuals més de la seua despesa en la zona, és a dir, 6.000 € més cada mes (14.000 − 8.000).<br><strong>Argument de l'efecte multiplicador:</strong> eixos diners que A deixa en el poble no es queden quiets: el proveïdor local, al seu torn, compra i ocupa en la zona, i el treballador gasta el seu salari en comerços pròxims. Cada euro torna a circular diverses vegades dins del territori. Per això, encara que les dos facturen el mateix, A genera molt més desenvolupament econòmic local que B."
+    grafico:
+      tipo: xy
+      caption: "Amb 20.000 € al mes de despesa cadascuna, la fleca A deixa 14.000 € al poble (70 %) i la B, 8.000 € (40 %): A deixa 6.000 € més cada mes."
+      props:
+        id: "r-g3a-retorno-panaderias"
+        titulo: "Retorn local de les fleques A i B"
+        desc: "Dues columnes de 20.000 euros al mes. Fleca A: 14.000 al poble i 6.000 fora, un 70 % local. Fleca B: 8.000 al poble i 12.000 fora, un 40 % local."
+        xMax: 10
+        yMax: 23000
+        ejeX: "Fleca"
+        ejeY: "Euros al mes"
+        xTicks: [3, 7]
+        xTickLabels: ["Fleca A", "Fleca B"]
+        yTicks: [5000, 10000, 15000]
+        areas:
+          - { puntos: [[1.5, 0], [4.5, 0], [4.5, 14000], [1.5, 14000]], color: "teal", fuerte: true }
+          - { puntos: [[1.5, 14000], [4.5, 14000], [4.5, 20000], [1.5, 20000]], color: "mustard", fuerte: true }
+          - { puntos: [[5.5, 0], [8.5, 0], [8.5, 8000], [5.5, 8000]], color: "teal", fuerte: true }
+          - { puntos: [[5.5, 8000], [8.5, 8000], [8.5, 20000], [5.5, 20000]], color: "mustard", fuerte: true }
+        series:
+          - { puntos: [[1.5, 0], [4.5, 0], [4.5, 14000], [1.5, 14000], [1.5, 0]], color: "teal" }
+          - { puntos: [[1.5, 14000], [4.5, 14000], [4.5, 20000], [1.5, 20000], [1.5, 14000]], color: "mustard" }
+          - { puntos: [[5.5, 0], [8.5, 0], [8.5, 8000], [5.5, 8000], [5.5, 0]], color: "teal" }
+          - { puntos: [[5.5, 8000], [8.5, 8000], [8.5, 20000], [5.5, 20000], [5.5, 8000]], color: "mustard" }
+        notas:
+          - { x: 3, y: 6724, texto: "Local 14.000", ancla: "middle" }
+          - { x: 3, y: 16724, texto: "Fora 6.000", ancla: "middle" }
+          - { x: 7, y: 3724, texto: "Local 8.000", ancla: "middle" }
+          - { x: 7, y: 13724, texto: "Fora 12.000", ancla: "middle" }
+          - { x: 3, y: 20800, texto: "70 % local", ancla: "middle" }
+          - { x: 7, y: 20800, texto: "40 % local", ancla: "middle" }
   - enunciado: "Una empresa de roba decidix fabricar amb teixits reciclats, la qual cosa li ix una miqueta més cara, però li permet vendre més i donar faena a un taller d'inserció de persones en risc d'exclusió. Explica per què és valor compartit (i no filantropia) i amb quins ODS connecta."
     desarrollo: "<strong>1. Per què és valor compartit.</strong> Hi ha valor compartit quan l'empresa guanya <em>resolent alhora</em> un problema social o ambiental, no a costa d'ell. Ací l'empresa obté benefici (ven més gràcies a la seua proposta sostenible) i, alhora, reduïx residus tèxtils i ocupa persones en risc d'exclusió. L'impacte positiu està dins del model de negoci.<br><strong>2. Per què no és filantropia.</strong> No regala part del benefici després de guanyar-lo: el sobrecost dels teixits reciclats es convertix en avantatge competitiu (més vendes) i l'ocupació inclusiva forma part de la seua forma de produir. Guanyar i aportar són la mateixa operació.<br><strong>3. ODS amb els quals connecta:</strong> l'<strong>ODS 12</strong> (producció i consum responsables, pels teixits reciclats), l'<strong>ODS 8</strong> (treball decent, per l'ocupació inclusiva) i l'<strong>ODS 10</strong> (reducció de les desigualtats). La clau és triar només els que el projecte toca de veritat."
 ejercicios:

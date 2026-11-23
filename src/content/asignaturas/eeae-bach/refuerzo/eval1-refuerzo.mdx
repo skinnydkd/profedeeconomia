@@ -26,12 +26,91 @@ repaso_teorico:
 ejemplos_resueltos:
   - enunciado: "<strong>Calcula un coste de oportunidad completo.</strong> Marta tiene un sábado libre. Puede ir al cine (entrada de 9 €, dura 2 horas) o trabajar de canguro esas 2 horas a 7 €/hora. Decide ir al cine. ¿Cuál es el coste de oportunidad total de su decisión, en euros?"
     desarrollo: "El coste de oportunidad incluye lo que <em>gasta</em> y lo que <em>deja de ganar</em>.<br><strong>1. Lo que gasta:</strong> la entrada del cine = 9 €.<br><strong>2. Lo que deja de ganar:</strong> al ir al cine no hace de canguro. 2 horas × 7 €/hora = 14 €.<br><strong>3. Coste de oportunidad total:</strong> 9 € + 14 € = <strong>23 €</strong>.<br>Idea clave: el coste real de una decisión no es solo lo que pagas, sino también el valor de la mejor alternativa a la que renuncias."
+    grafico:
+      tipo: xy
+      caption: "El coste de oportunidad de ir al cine suma lo que Marta gasta (9 € de entrada) y lo que deja de ganar (2 horas × 7 €/hora = 14 €): 23 €."
+      props:
+        id: "r-e1r-coste-oportunidad"
+        titulo: "Coste de oportunidad de ir al cine"
+        desc: "Una columna apilada de 23 euros: 9 euros de la entrada del cine y 14 euros que Marta deja de ganar como canguro durante dos horas."
+        xMax: 8
+        yMax: 28
+        ejeX: "Decisión: ir al cine"
+        ejeY: "Euros"
+        xTicks: []
+        yTicks: [10, 20]
+        areas:
+          - { puntos: [[2.5, 0], [5.5, 0], [5.5, 9], [2.5, 9]], color: "terra", fuerte: true }
+          - { puntos: [[2.5, 9], [5.5, 9], [5.5, 23], [2.5, 23]], color: "mustard", fuerte: true }
+        series:
+          - { puntos: [[2.5, 0], [5.5, 0], [5.5, 9], [2.5, 9], [2.5, 0]], color: "terra" }
+          - { puntos: [[2.5, 9], [5.5, 9], [5.5, 23], [2.5, 23], [2.5, 9]], color: "mustard" }
+        notas:
+          - { x: 4, y: 4.16, texto: "Entrada: 9 €", ancla: "middle" }
+          - { x: 4, y: 15.66, texto: "Renuncia al canguro: 14 €", ancla: "middle" }
+          - { x: 4, y: 24, texto: "Coste de oportunidad: 23 €", ancla: "middle" }
   - enunciado: "<strong>Elige con el criterio del beneficio neto.</strong> Una emprendedora estudia dos pedidos. El pedido A le reporta unos ingresos de 1.000 € con unos costes de 600 €. El pedido B le reporta 1.500 € de ingresos con 1.200 € de costes. Solo puede aceptar uno. ¿Cuál elige una decisión racional?"
     desarrollo: "Una decisión racional compara el <strong>beneficio neto</strong> = ingresos − costes.<br><strong>Pedido A:</strong> 1.000 − 600 = <strong>400 €</strong>.<br><strong>Pedido B:</strong> 1.500 − 1.200 = <strong>300 €</strong>.<br>Aunque B factura más (1.500 > 1.000), lo que importa es lo que <em>queda</em>: A deja 400 € y B deja 300 €.<br>Elige el <strong>pedido A</strong>, porque su beneficio neto es mayor. El coste de oportunidad de elegir A es el beneficio de B al que renuncia: 300 €."
+    grafico:
+      tipo: xy
+      caption: "El pedido B factura más (1.500 € frente a 1.000 €), pero deja menos: 300 € de beneficio neto frente a 400 € del pedido A. Lo que se compara es el beneficio, no la facturación."
+      props:
+        id: "r-e1r-beneficio-neto"
+        titulo: "Ingresos, costes y beneficio de los pedidos A y B"
+        desc: "Dos columnas apiladas. Pedido A: ingresos de 1.000 euros, que son 600 de costes y 400 de beneficio. Pedido B: ingresos de 1.500 euros, que son 1.200 de costes y 300 de beneficio."
+        xMax: 10
+        yMax: 1800
+        ejeX: "Pedido"
+        ejeY: "Euros"
+        xTicks: [3, 7]
+        xTickLabels: ["Pedido A", "Pedido B"]
+        yTicks: [500, 1000, 1500]
+        areas:
+          - { puntos: [[1.5, 0], [4.5, 0], [4.5, 600], [1.5, 600]], color: "mustard", fuerte: true }
+          - { puntos: [[1.5, 600], [4.5, 600], [4.5, 1000], [1.5, 1000]], color: "teal", fuerte: true }
+          - { puntos: [[5.5, 0], [8.5, 0], [8.5, 1200], [5.5, 1200]], color: "mustard", fuerte: true }
+          - { puntos: [[5.5, 1200], [8.5, 1200], [8.5, 1500], [5.5, 1500]], color: "teal", fuerte: true }
+        series:
+          - { puntos: [[1.5, 0], [4.5, 0], [4.5, 600], [1.5, 600], [1.5, 0]], color: "mustard" }
+          - { puntos: [[1.5, 600], [4.5, 600], [4.5, 1000], [1.5, 1000], [1.5, 600]], color: "teal" }
+          - { puntos: [[5.5, 0], [8.5, 0], [8.5, 1200], [5.5, 1200], [5.5, 0]], color: "mustard" }
+          - { puntos: [[5.5, 1200], [8.5, 1200], [8.5, 1500], [5.5, 1500], [5.5, 1200]], color: "teal" }
+        notas:
+          - { x: 3, y: 278.4, texto: "Costes 600", ancla: "middle" }
+          - { x: 3, y: 778.4, texto: "Beneficio 400", ancla: "middle" }
+          - { x: 7, y: 578.4, texto: "Costes 1.200", ancla: "middle" }
+          - { x: 7, y: 1328.4, texto: "Beneficio 300", ancla: "middle" }
+          - { x: 3, y: 1060, texto: "Ingresos 1.000", ancla: "middle" }
+          - { x: 7, y: 1560, texto: "Ingresos 1.500", ancla: "middle" }
   - enunciado: "<strong>Identifica el sesgo.</strong> Una tienda online marca «Antes 100 €, ahora 70 €» en un abrigo que no necesitas, y lo compras porque te parece un chollo. Explica qué sesgo está actuando y cómo evitarlo."
     desarrollo: "Aquí actúa el <strong>sesgo de anclaje</strong>: el primer número que ves (100 €) se convierte en tu punto de referencia, así que 70 € te parece barato <em>en comparación</em>, aunque ese precio nunca fuera real o el abrigo no te haga falta.<br>El error es decidir comparando con el ancla en vez de preguntarte lo que de verdad importa: ¿necesito el abrigo? ¿70 € es un buen precio para él en sí mismo?<br>Cómo evitarlo: ignora el precio tachado, compara con otras tiendas y decide según tu necesidad real y tu presupuesto, no según el «descuento»."
   - enunciado: "<strong>Distingue coste privado y coste social.</strong> Una fábrica produce 5.000 piezas. A la empresa cada pieza le cuesta 6 € (materiales, trabajo, energía), pero además genera una contaminación que provoca un daño al barrio valorado en 2 € por pieza. Calcula el coste privado total, el coste externo total y el coste social total."
     desarrollo: "Separamos quién soporta cada coste.<br><strong>Coste privado total</strong> (lo que paga la empresa): 5.000 × 6 € = <strong>30.000 €</strong>.<br><strong>Coste externo total</strong> (el daño que sufren otros, la externalidad): 5.000 × 2 € = <strong>10.000 €</strong>.<br><strong>Coste social total</strong> = coste privado + coste externo = 30.000 + 10.000 = <strong>40.000 €</strong>.<br>Idea clave: cuando hay externalidad negativa, el coste social (40.000 €) es mayor que el coste privado (30.000 €). El mercado, por sí solo, no recoge esos 10.000 € de daño: es un fallo de mercado que justifica la intervención pública."
+    grafico:
+      tipo: xy
+      caption: "Con 5.000 piezas, la empresa paga 30.000 € (coste privado) y el barrio soporta otros 10.000 € de daño (zona sombreada): el coste social es de 40.000 €."
+      props:
+        id: "r-e1r-coste-social"
+        titulo: "Coste privado y coste social de la fábrica"
+        desc: "Rectas de coste según las piezas: el coste privado es de 6 euros por pieza y el coste social, de 8 (6 más 2 de daño). Con 5.000 piezas, el coste privado es de 30.000 euros y el social, de 40.000; la diferencia, 10.000, es la externalidad."
+        xMax: 6000
+        yMax: 48000
+        ejeX: "Piezas producidas"
+        ejeY: "Euros"
+        simboloX: "Q"
+        simboloY: "€"
+        xTicks: [2500]
+        yTicks: [10000, 20000]
+        areas:
+          - { puntos: [[0, 0], [5000, 40000], [5000, 30000]], color: "mustard" }
+        series:
+          - { label: "CS", color: "terra", puntos: [[0, 0], [5000, 40000]] }
+          - { label: "CP", color: "teal", puntos: [[0, 0], [5000, 30000]] }
+        puntos:
+          - { x: 5000, y: 30000, xLabel: "5 000", yLabel: "30 000" }
+          - { x: 5000, y: 40000, yLabel: "40 000" }
+        notas:
+          - { x: 3100, y: 11000, texto: "Área: externalidad 10.000 €", color: "mustard" }
 ejercicios:
   - enunciado: "Define con tus palabras el problema de la <strong>escasez</strong> y explica por qué obliga a elegir. Pon un ejemplo de tu día a día."
     solucion: "La escasez significa que los recursos (tiempo, dinero, materiales) son limitados, mientras que las necesidades y deseos son ilimitados.<br>Como no podemos tener todo a la vez, estamos obligados a elegir: dedicar un recurso a una cosa implica no dedicarlo a otra.<br>Ejemplo: solo tengo 10 € y no me llega para el cine y para una pizza, así que debo elegir uno de los dos."

@@ -29,8 +29,57 @@ repaso_teorico:
 ejemplos_resueltos:
   - enunciado: "<strong>La regla del 72 i el llarg termini.</strong> Vols saber en quant de temps es duplica un estalvi a distints tipus d'interés. Aplica la regla del 72 al 6 %, al 4 % i al 8 %, i comprova el resultat del 6 % calculant l'interés compost sobre 1.000 € durant eixos anys."
     desarrollo: "La <strong>regla del 72</strong> estima els anys a duplicar un capital dividint 72 entre el tipus d'interés anual.<br>Al <strong>6 %</strong>: 72 / 6 = <strong>12 anys</strong>.<br>Al <strong>4 %</strong>: 72 / 4 = <strong>18 anys</strong>.<br>Al <strong>8 %</strong>: 72 / 8 = <strong>9 anys</strong>.<br><strong>Comprovació al 6 % en 12 anys</strong> amb interés compost: 1.000 × 1,06 elevat a 12 ≈ 1.000 × 2,012 = <strong>2.012 €</strong>. En efecte, els 1.000 € s'han duplicat en 12 anys, com anticipava la regla. Això explica per què, en l'estalvi a llarg termini, una xicoteta diferència de tipus (del 4 % al 8 %) reduïx a la mitat el temps de duplicació."
+    grafico:
+      tipo: xy
+      caption: "Capital de 1.000 € als tipus del 4 %, 6 % i 8 %. Segons la regla del 72, es duplica (2.000 €) en 18, 12 i 9 anys; amb el 6 %, als 12 anys hi ha 2.012 €."
+      props:
+        id: "r-e2a-regla-72"
+        titulo: "Anys a duplicar un capital segons el tipus d'interés"
+        desc: "Creixement de 1.000 euros amb interés compost al 4, 6 i 8 % durant 18 anys. La regla del 72 dóna el moment en què el capital arriba a 2.000 euros: 18 anys al 4 %, 12 al 6 % i 9 al 8 %."
+        xMax: 22
+        yMax: 4600
+        ejeX: "Anys"
+        ejeY: "Capital (€)"
+        simboloX: "t"
+        simboloY: "€"
+        xTicks: [3, 6, 15]
+        yTicks: [1000, 3000]
+        series:
+          - { label: "4 %", color: "teal", puntos: [[0, 1000], [1, 1040], [2, 1081.6], [3, 1124.86], [4, 1169.86], [5, 1216.65], [6, 1265.32], [7, 1315.93], [8, 1368.57], [9, 1423.31], [10, 1480.24], [11, 1539.45], [12, 1601.03], [13, 1665.07], [14, 1731.68], [15, 1800.94], [16, 1872.98], [17, 1947.9], [18, 2025.82]] }
+          - { label: "6 %", color: "terra", puntos: [[0, 1000], [1, 1060], [2, 1123.6], [3, 1191.02], [4, 1262.48], [5, 1338.23], [6, 1418.52], [7, 1503.63], [8, 1593.85], [9, 1689.48], [10, 1790.85], [11, 1898.3], [12, 2012.2], [13, 2132.93], [14, 2260.9], [15, 2396.56], [16, 2540.35], [17, 2692.77], [18, 2854.34]] }
+          - { label: "8 %", color: "aubergine", puntos: [[0, 1000], [1, 1080], [2, 1166.4], [3, 1259.71], [4, 1360.49], [5, 1469.33], [6, 1586.87], [7, 1713.82], [8, 1850.93], [9, 1999], [10, 2158.92], [11, 2331.64], [12, 2518.17], [13, 2719.62], [14, 2937.19], [15, 3172.17], [16, 3425.94], [17, 3700.02], [18, 3996.02]] }
+          - { color: "ink", tenue: true, puntos: [[0, 2000], [18, 2000]] }
+        puntos:
+          - { x: 9, y: 2000, xLabel: "9", yLabel: "2 000" }
+          - { x: 12, y: 2000, xLabel: "12" }
+          - { x: 18, y: 2000, xLabel: "18", guias: true }
+        notas:
+          - { x: 1, y: 4150, texto: "Regla del 72: 9, 12 i 18 anys" }
   - enunciado: "<strong>Interés simple enfront de compost a 10 anys.</strong> Guardes 1.000 € al 5 % anual durant 10 anys. Calcula quant tindries amb interés simple i amb interés compost, i quant es deu que «els interessos generen interessos»."
     desarrollo: "<strong>Interés simple</strong> (5 % de 1.000 = 50 € cada any): 1.000 + 10 × 50 = <strong>1.500 €</strong>.<br><strong>Interés compost</strong> (cada any sobre el total acumulat): 1.000 × 1,05 elevat a 10. Com que 1,05 elevat a 10 ≈ 1,62889, resulta 1.000 × 1,62889 = <strong>1.628,89 €</strong>.<br><strong>Diferència:</strong> 1.628,89 − 1.500 = <strong>128,89 €</strong>. Eixos quasi 129 € addicionals són exactament l'efecte que cada any els interessos ja guanyats també produïxen interessos. En 10 anys la bretxa és notable; en 30 o 40 anys es dispara, i per això convé començar a estalviar prompte."
+    grafico:
+      tipo: xy
+      caption: "Als 10 anys, 1.000 € al 5 % valen 1.500 € amb interés simple i 1.628,89 € amb interés compost: la diferència, 128,89 €, són els interessos que generen interessos."
+      props:
+        id: "r-e2a-simple-compuesto"
+        titulo: "Interés simple enfront d'interés compost"
+        desc: "Capital de 1.000 euros al 5 % durant 10 anys. Amb interés simple creix 50 euros cada any fins a 1.500; amb interés compost creix cada vegada més depressa fins a 1.628,89 euros."
+        xMax: 12
+        yMax: 1900
+        ejeX: "Anys"
+        ejeY: "Capital (€)"
+        simboloX: "t"
+        simboloY: "€"
+        xTicks: [2, 4, 6, 8]
+        yTicks: [500, 1000]
+        series:
+          - { label: "Compost", color: "terra", puntos: [[0, 1000], [0.5, 1024.7], [1, 1050], [1.5, 1075.93], [2, 1102.5], [2.5, 1129.73], [3, 1157.63], [3.5, 1186.21], [4, 1215.51], [4.5, 1245.52], [5, 1276.28], [5.5, 1307.8], [6, 1340.1], [6.5, 1373.19], [7, 1407.1], [7.5, 1441.85], [8, 1477.46], [8.5, 1513.94], [9, 1551.33], [9.5, 1589.64], [10, 1628.89]], dy: -4 }
+          - { label: "Simple", color: "teal", puntos: [[0, 1000], [10, 1500]], dy: 16 }
+        puntos:
+          - { x: 10, y: 1500, xLabel: "10", yLabel: "1 500" }
+          - { x: 10, y: 1628.89, yLabel: "1 629" }
+        notas:
+          - { x: 4.5, y: 1500, texto: "Diferència: 128,89 €", color: "terra" }
   - enunciado: "<strong>Situar un projecte en el ventall social.</strong> Una empresa ven iogurts en supermercats a preu de mercat, factura i paga impostos, però va nàixer per a donar faena digna a persones amb discapacitat i reinvertix els seus beneficis en eixa missió. És una ONG, una empresa convencional o una empresa social? Justifica-ho amb les dos preguntes clau."
     desarrollo: "L'emprenedoria social no és un calaix tancat, sinó un <strong>ventall continu</strong>. Per a situar un projecte es fan dos preguntes:<br><strong>1. De què viu?</strong> Ven els seus productes en el mercat, no depén de donacions. Això l'allunya d'una <strong>ONG</strong> i l'acosta a una empresa.<br><strong>2. Quin és el seu fi últim?</strong> No maximitzar el benefici del propietari, sinó una <strong>missió social</strong> (la faena digna), a la qual reinvertix els seus beneficis. Això l'allunya de l'empresa purament comercial.<br><strong>Conclusió:</strong> és una <strong>empresa social</strong> (el cas recorda a La Fageda). El benefici és el mitjà; la missió social, el fi. Mesura el seu èxit per dos coses alhora: la seua viabilitat econòmica i el seu impacte (persones integrades)."
   - enunciado: "<strong>Dissenya el perquè amb Sinek.</strong> Vas a presentar el teu projecte d'horts urbans compartits. Ordena'l amb el cercle daurat de Sinek (perquè, com, què) i explica per què convé comunicar de dins cap a fora."

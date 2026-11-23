@@ -24,12 +24,95 @@ repaso_teorico:
 ejemplos_resueltos:
   - enunciado: "Una emprendedora prevé un beneficio anual recurrente de 60.000 euros. Compara tributar como autónoma (IRPF, supón un tipo medio del 30 %) frente a una SL (Impuesto sobre Sociedades de una microempresa en 2026: 19 % sobre los primeros 50.000 € y 21 % sobre el resto). Calcula el impuesto en cada caso, el ahorro, y razona qué factores, además del importe, debería valorar."
     desarrollo: "<strong>1. Autónoma (IRPF 30 %):</strong> 60.000 × 0,30 = <strong>18.000 euros</strong> de impuesto.<br><strong>2. SL (microempresa):</strong> 50.000 × 0,19 + 10.000 × 0,21 = 9.500 + 2.100 = <strong>11.600 euros</strong> de impuesto.<br><strong>3. Ahorro:</strong> 18.000 − 11.600 = <strong>6.400 euros/año</strong> a favor de la SL.<br><strong>4. Más allá del importe:</strong> el IRPF es progresivo (con beneficios bajos puede salir más barato que Sociedades), la SL aporta responsabilidad limitada, pero tiene mayores costes de gestión y contabilidad y, al repartir dividendos, hay una segunda tributación. Con 60.000 euros la emprendedora está por encima del umbral orientativo de 40.000-50.000 euros, así que el cambio empieza a tener sentido; pero la decisión no se toma solo por el tipo impositivo."
+    grafico:
+      tipo: xy
+      caption: "Impuesto según el beneficio anual. Con 60.000 €, la autónoma (IRPF al 30 %) paga 18.000 € y la SL (microempresa), 11.600 €: 6.400 € menos al año."
+      props:
+        id: "r-g2a-autonoma-sl"
+        titulo: "Impuesto como autónoma o como SL"
+        desc: "Impuesto según el beneficio. Como autónoma, un 30 % de todo el beneficio. Como SL, un 19 % hasta 50.000 euros (9.500 de impuesto) y un 21 % a partir de ahí. Con 60.000 euros de beneficio: 18.000 euros como autónoma y 11.600 como SL."
+        xMax: 95000
+        yMax: 28000
+        ejeX: "Beneficio anual (€)"
+        ejeY: "Impuesto (€)"
+        simboloX: "B"
+        simboloY: "€"
+        xTicks: [20000, 40000, 80000]
+        yTicks: [5000, 10000]
+        series:
+          - { label: "Autónoma", color: "terra", puntos: [[0, 0], [80000, 24000]] }
+          - { label: "SL", color: "teal", puntos: [[0, 0], [50000, 9500], [80000, 15800]] }
+        puntos:
+          - { x: 60000, y: 18000, xLabel: "60 000", yLabel: "18 000" }
+          - { x: 60000, y: 11600, yLabel: "11 600" }
+        notas:
+          - { x: 62000, y: 5000, texto: "Ahorro: 6.400 €", color: "teal" }
   - enunciado: "Una tienda vende 1.200 unidades al año de manera constante. Mantener una unidad en almacén cuesta 2 euros/año y hacer cada pedido cuesta 20 euros. Compara el coste anual total (mantenimiento más pedidos) de pedir en lotes de 600 unidades frente a lotes de 300. El stock medio es la mitad del lote."
     desarrollo: "Calculamos los dos costes en cada escenario.<br><strong>Lote de 600:</strong><br>· Stock medio = 600 ÷ 2 = 300 unidades. Coste de mantenimiento = 300 × 2 = 600 euros.<br>· Número de pedidos = 1.200 ÷ 600 = 2 pedidos. Coste de pedir = 2 × 20 = 40 euros.<br>· Coste total = 600 + 40 = <strong>640 euros/año</strong>.<br><strong>Lote de 300:</strong><br>· Stock medio = 300 ÷ 2 = 150 unidades. Coste de mantenimiento = 150 × 2 = 300 euros.<br>· Número de pedidos = 1.200 ÷ 300 = 4 pedidos. Coste de pedir = 4 × 20 = 80 euros.<br>· Coste total = 300 + 80 = <strong>380 euros/año</strong>.<br><strong>Conclusión:</strong> con estos datos el lote de 300 es más barato (380 frente a 640 euros), porque el ahorro en mantenimiento (300 euros) supera el aumento del coste de pedir (40 euros). El control de stocks consiste justo en encontrar el lote que minimiza la suma de ambos costes."
+    grafico:
+      tipo: xy
+      caption: "Coste anual total de gestionar el stock según el tamaño del lote (1.200 unidades al año). Con lotes de 300 unidades cuesta 380 €; con lotes de 600, 640 €: el mantenimiento sube y los pedidos bajan."
+      props:
+        id: "r-g2a-lote-pedido"
+        titulo: "Coste de mantener y de pedir según el tamaño del lote"
+        desc: "Coste de mantenimiento (2 euros por unidad de stock medio, que es la mitad del lote), coste de pedidos (20 euros por pedido, 1.200 entre el lote) y suma de ambos. Con lotes de 300 unidades el coste total es de 380 euros al año; con lotes de 600, de 640."
+        xMax: 750
+        yMax: 800
+        ejeX: "Unidades por lote"
+        ejeY: "Euros al año"
+        simboloX: "Q"
+        simboloY: "€"
+        xTicks: [100, 200, 400, 500]
+        yTicks: [200]
+        series:
+          - { label: "Total", color: "terra", puntos: [[100, 340], [125, 317], [150, 310], [175, 312.14], [200, 320], [225, 331.67], [250, 346], [275, 362.27], [300, 380], [325, 398.85], [350, 418.57], [375, 439], [400, 460], [425, 481.47], [450, 503.33], [475, 525.53], [500, 548], [525, 570.71], [550, 593.64], [575, 616.74], [600, 640], [625, 663.4], [650, 686.92]], dy: -10 }
+          - { label: "Mantener", color: "teal", puntos: [[100, 100], [650, 650]], dy: 18 }
+          - { label: "Pedir", color: "mustard", puntos: [[100, 240], [125, 192], [150, 160], [175, 137.14], [200, 120], [225, 106.67], [250, 96], [275, 87.27], [300, 80], [325, 73.85], [350, 68.57], [375, 64], [400, 60], [425, 56.47], [450, 53.33], [475, 50.53], [500, 48], [525, 45.71], [550, 43.64], [575, 41.74], [600, 40], [625, 38.4], [650, 36.92]] }
+        puntos:
+          - { x: 300, y: 380, xLabel: "300", yLabel: "380" }
+          - { x: 600, y: 640, xLabel: "600", yLabel: "640" }
   - enunciado: "Una marca quiere posicionarse como chocolate artesano de lujo y fija un precio alto (8 euros la tableta). Detecta tres decisiones: lo vende solo en superficies de descuento, usa un envoltorio de plástico básico y se promociona con cupones 2x1. Explica por qué su marketing mix es incoherente y corrígelo."
     desarrollo: "El precio alto comunica lujo, pero las otras tres P lo contradicen.<br><strong>Plaza:</strong> venderlo en superficies de descuento lo rodea de productos baratos y rompe la imagen premium. <em>Corrección:</em> tiendas gourmet, delicatessen o venta online propia.<br><strong>Producto:</strong> el envoltorio de plástico básico no transmite artesanía. <em>Corrección:</em> envase cuidado, materiales nobles o reciclados con buen diseño.<br><strong>Promoción:</strong> los cupones 2x1 son típicos de producto barato y devalúan la marca. <em>Corrección:</em> catas, recomendación de expertos, edición limitada.<br><strong>Conclusión:</strong> el posicionamiento (lujo, precio 8 euros) solo es creíble si las cuatro P cuentan la misma historia. Con las cuatro alineadas, el cliente percibe coherencia y acepta el precio alto."
   - enunciado: "Para el proyecto se contrata a una persona con un salario bruto de 18.000 euros/año. La empresa paga además, por cotizaciones a la Seguridad Social a su cargo, un 30 % del salario bruto. Calcula el coste total anual del trabajador para la empresa y compáralo con el salario neto, suponiendo que las deducciones del trabajador (su parte de Seguridad Social más IRPF) son del 18 % del bruto."
     desarrollo: "<strong>1. Coste empresa:</strong><br>· Cotización a cargo de la empresa = 18.000 × 0,30 = 5.400 euros.<br>· Coste total para la empresa = 18.000 + 5.400 = <strong>23.400 euros/año</strong>.<br><strong>2. Salario neto del trabajador:</strong><br>· Deducciones del trabajador = 18.000 × 0,18 = 3.240 euros.<br>· Salario neto = 18.000 − 3.240 = <strong>14.760 euros/año</strong>.<br><strong>Conclusión:</strong> alrededor del mismo puesto conviven tres cifras muy distintas: la empresa desembolsa 23.400 euros, reconoce un bruto de 18.000 y el trabajador recibe 14.760. Contratar cuesta mucho más que el sueldo que aparece en el banco, y por eso al presupuestar personal hay que partir del coste empresa, no del neto."
+    grafico:
+      tipo: xy
+      caption: "Un mismo puesto, tres cifras: la empresa desembolsa 23.400 € (18.000 € de bruto más 5.400 € de cotización a su cargo), reconoce un bruto de 18.000 € y la persona recibe 14.760 € netos."
+      props:
+        id: "r-g2a-coste-empresa"
+        titulo: "Coste para la empresa, salario bruto y salario neto"
+        desc: "Tres columnas en euros al año. Coste para la empresa: 23.400, que son 14.760 de neto, 3.240 de deducciones del trabajador y 5.400 de cotización de la empresa. Salario bruto: 18.000. Salario neto: 14.760."
+        xMax: 11.2
+        yMax: 27000
+        ejeX: "Euros al año"
+        ejeY: "Euros al año"
+        xTicks: [1.9, 5.5, 9.1]
+        xTickLabels: ["Coste empresa", "Salario bruto", "Salario neto"]
+        yTicks: [10000, 20000]
+        areas:
+          - { puntos: [[0.6, 0], [3.2, 0], [3.2, 14760], [0.6, 14760]], color: "teal", fuerte: true }
+          - { puntos: [[0.6, 14760], [3.2, 14760], [3.2, 18000], [0.6, 18000]], color: "aubergine", fuerte: true }
+          - { puntos: [[0.6, 18000], [3.2, 18000], [3.2, 23400], [0.6, 23400]], color: "mustard", fuerte: true }
+          - { puntos: [[4.2, 0], [6.8, 0], [6.8, 14760], [4.2, 14760]], color: "teal", fuerte: true }
+          - { puntos: [[4.2, 14760], [6.8, 14760], [6.8, 18000], [4.2, 18000]], color: "aubergine", fuerte: true }
+          - { puntos: [[7.8, 0], [10.4, 0], [10.4, 14760], [7.8, 14760]], color: "teal", fuerte: true }
+        series:
+          - { puntos: [[0.6, 0], [3.2, 0], [3.2, 14760], [0.6, 14760], [0.6, 0]], color: "teal" }
+          - { puntos: [[0.6, 14760], [3.2, 14760], [3.2, 18000], [0.6, 18000], [0.6, 14760]], color: "aubergine" }
+          - { puntos: [[0.6, 18000], [3.2, 18000], [3.2, 23400], [0.6, 23400], [0.6, 18000]], color: "mustard" }
+          - { puntos: [[4.2, 0], [6.8, 0], [6.8, 14760], [4.2, 14760], [4.2, 0]], color: "teal" }
+          - { puntos: [[4.2, 14760], [6.8, 14760], [6.8, 18000], [4.2, 18000], [4.2, 14760]], color: "aubergine" }
+          - { puntos: [[7.8, 0], [10.4, 0], [10.4, 14760], [7.8, 14760], [7.8, 0]], color: "teal" }
+        notas:
+          - { x: 1.9, y: 7056, texto: "Neto 14.760", ancla: "middle" }
+          - { x: 1.9, y: 16056, texto: "Deducciones 3.240", ancla: "middle" }
+          - { x: 1.9, y: 20376, texto: "Cot. empresa 5.400", ancla: "middle" }
+          - { x: 5.5, y: 7056, texto: "Neto 14.760", ancla: "middle" }
+          - { x: 5.5, y: 16056, texto: "Deducciones 3.240", ancla: "middle" }
+          - { x: 9.1, y: 7056, texto: "Neto 14.760", ancla: "middle" }
+          - { x: 1.9, y: 24400, texto: "23.400", ancla: "middle" }
+          - { x: 5.5, y: 19000, texto: "18.000", ancla: "middle" }
+          - { x: 9.1, y: 15760, texto: "14.760", ancla: "middle" }
 ejercicios:
   - enunciado: "Tres amigos quieren montar un proyecto, aportan 6.000 euros entre todos y temen perder su patrimonio personal si algo sale mal. Razona qué <strong>forma jurídica</strong> les conviene más y por qué descartas las otras dos."
     solucion: "Les conviene la <strong>sociedad limitada (SL)</strong>:<br>· Son varios socios y la SL admite agrupar varias aportaciones (cubren de sobra el capital mínimo con 6.000 euros).<br>· Limita la responsabilidad al capital aportado, justo lo que les preocupa: no arriesgan su patrimonio personal.<br>Se descarta el <strong>autónomo</strong> porque su responsabilidad es ilimitada y encaja mejor para una sola persona. La <strong>cooperativa</strong> sería posible, pero impone una gestión democrática formal y requisitos pensados para proyectos con vocación social; para tres amigos con ánimo de lucro, la SL es más sencilla y ágil."
