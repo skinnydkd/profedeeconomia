@@ -187,3 +187,38 @@ export function relacionParCorrecta(derecha: string[], correcta: number, elegida
 export function relacionarCorrecta(derecha: string[], correctas: number[], respuesta: number[]): boolean {
   return correctas.every((c, i) => relacionParCorrecta(derecha, c, respuesta[i]));
 }
+
+// ─── Attempt persistence (sessionStorage) ────────────────────
+
+export type IntentoGuardado = {
+  idx: number;
+  respuestas: unknown[];
+  confirmadas: boolean[];
+  ordenes: number[][];
+};
+
+/** JSON for an in-progress attempt. */
+export function serializarIntento(e: IntentoGuardado): string {
+  return JSON.stringify({ v: 1, idx: e.idx, respuestas: e.respuestas, confirmadas: e.confirmadas, ordenes: e.ordenes });
+}
+
+/**
+ * Reads a stored attempt back, or null when it is corrupt or does not fit the
+ * current test (different number of questions, bad index, wrong shapes).
+ */
+export function leerIntento(raw: string | null, total: number): IntentoGuardado | null {
+  if (!raw) return null;
+  try {
+    const o = JSON.parse(raw);
+    if (!o || o.v !== 1) return null;
+    const { idx, respuestas, confirmadas, ordenes } = o;
+    if (!Number.isInteger(idx) || idx < 0 || idx >= total) return null;
+    if (!Array.isArray(respuestas) || respuestas.length !== total) return null;
+    if (!respuestas.every((r) => r === null || ['number', 'boolean', 'string'].includes(typeof r) || (Array.isArray(r) && r.every((x) => typeof x === 'number')))) return null;
+    if (!Array.isArray(confirmadas) || confirmadas.length !== total || !confirmadas.every((c) => typeof c === 'boolean')) return null;
+    if (!Array.isArray(ordenes) || ordenes.length !== total || !ordenes.every((q) => Array.isArray(q) && q.every((i) => Number.isInteger(i)))) return null;
+    return { idx, respuestas, confirmadas, ordenes };
+  } catch {
+    return null;
+  }
+}

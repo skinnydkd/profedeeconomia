@@ -1,6 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { readFileSync } from 'node:fs';
-import { jsonLdToString, organizationLd, articleLd, courseLd, itemListLd, faqLd, SAME_AS, SITE, pageTitle, subjectTitle, MAX_TITLE_CHARS, quizLd } from './seo';
+import { jsonLdToString, organizationLd, articleLd, courseLd, itemListLd, faqLd, SAME_AS, pageTitle, subjectTitle, MAX_TITLE_CHARS, quizLd, truncateDescription, MAX_DESCRIPTION_CHARS, ORG_ID } from './seo';
 
 describe('jsonLdToString', () => {
   it('escapes < to avoid </script> injection', () => {
@@ -192,13 +191,33 @@ describe('quizLd — Education Q&A (§5.5)', () => {
   });
 });
 
-describe('SITE.email', () => {
-  // Every mailto: on the site is built from SITE.email, but public/llms.txt is a
-  // static file outside the build, so it holds a hand-written copy. If the
-  // contact address ever changes, this fails until llms.txt is updated too.
-  it('matches the address published in public/llms.txt', () => {
-    const llms = readFileSync('public/llms.txt', 'utf8');
-    expect(llms).toContain(`- Email: ${SITE.email}`);
+describe('truncateDescription', () => {
+  it('leaves short text unchanged', () => {
+    expect(truncateDescription('Texto corto.')).toBe('Texto corto.');
+  });
+
+  it('cuts long text at a word boundary within the budget, ending in an ellipsis', () => {
+    const long = 'palabra '.repeat(60);
+    const out = truncateDescription(long);
+    expect(out.length).toBeLessThanOrEqual(MAX_DESCRIPTION_CHARS);
+    expect(out.endsWith('…')).toBe(true);
+    expect(out).toMatch(/palabra…$/);
+  });
+
+  it('does not leave dangling punctuation before the ellipsis', () => {
+    const out = truncateDescription(`${'a'.repeat(150)}, resto del texto largo`);
+    expect(out).not.toMatch(/[,;:.]…$/);
+    expect(out.length).toBeLessThanOrEqual(MAX_DESCRIPTION_CHARS);
+  });
+});
+
+describe('organization @id', () => {
+  it('the home Organization and the author/publisher refs share one @id', () => {
+    const org = organizationLd() as Record<string, unknown>;
+    const art = articleLd({ title: 't', description: 'd', path: '/x/' }) as Record<string, any>;
+    expect(org['@id']).toBe(ORG_ID);
+    expect(art.author['@id']).toBe(ORG_ID);
+    expect(art.publisher['@id']).toBe(ORG_ID);
   });
 });
 

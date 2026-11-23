@@ -1,3 +1,5 @@
+> Arxivat el 2026-11-23: document històric d'una tanda acabada (maig 2026). L'estat actual és a README.md i CLAUDE.md.
+
 # HANDOFF — «De cero a empresa» (proyecto emprendimiento transversal)
 
 ## Estat actual (2026-05-31)

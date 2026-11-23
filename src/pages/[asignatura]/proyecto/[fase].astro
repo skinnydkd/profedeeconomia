@@ -15,6 +15,7 @@ import { pickLocalizedEntry } from '@/i18n/content-locale';
 import { localizeAsignatura } from '@/i18n/asignaturas-ca';
 import type { GetStaticPaths } from 'astro';
 import SectionHeader from '@components/SectionHeader.astro';
+import { breadcrumbLd } from '@/lib/seo';
 
 export const getStaticPaths = (async () => {
   const all = (await getCollection('proyecto')).filter((e) => e.data.estado === 'publicado' && e.data.lang === 'es');
@@ -62,9 +63,18 @@ const copy = {
   es: { inicio: 'Inicio', cuaderno: 'Cuaderno de proyecto', fase: 'Fase' },
   ca: { inicio: 'Inici', cuaderno: 'Quadern de projecte', fase: 'Fase' },
 }[locale];
+const breadcrumb = breadcrumbLd(
+  [
+    { name: copy.inicio, path: '/' },
+    { name: a.shortLabel, path: `/${a.slug}/` },
+    { name: copy.cuaderno, path: `/${a.slug}/proyecto/` },
+    { name: d.fase ?? d.title, path: `/${a.slug}/proyecto/${String(d.orden).padStart(2, '0')}/` },
+  ],
+  locale,
+);
 ---
 
-<BaseLayout title={`${d.fase ?? d.title} — ${copy.cuaderno} · ${a.shortLabel}`} description={d.entregable ?? d.title} contentLang={entry.data.lang} translated={caById.has(`${entryEs.id}.ca`)}>
+<BaseLayout title={`${d.fase ?? d.title} — ${copy.cuaderno} · ${a.shortLabel}`} description={d.entregable ?? d.title} jsonLd={breadcrumb} contentLang={entry.data.lang} translated={caById.has(`${entryEs.id}.ca`)}>
   <SectionHeader
     locale={locale}
     tight

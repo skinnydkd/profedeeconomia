@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
-import { subjectTitle } from '@/lib/seo';
+import { breadcrumbLd, subjectTitle } from '@/lib/seo';
 import { ASIGNATURAS } from '@/lib/asignaturas';
 import { getCollection } from 'astro:content';
 import RetoPlayer from '@components/retos/RetoPlayer.tsx';
@@ -56,9 +56,18 @@ const niveles: NivelInfo[] = resolved?.niveles ?? [
 ];
 const competenciaTexto = resolved?.competenciaTexto ?? '';
 const slug = retoEs.id.split('/').pop()?.replace(/\.mdx?$/, '') ?? retoEs.id;
+const breadcrumb = breadcrumbLd(
+  [
+    { name: copy.inicio, path: '/' },
+    { name: a.shortLabel, path: `/${a.slug}/` },
+    { name: copy.retos, path: `/${a.slug}/retos/` },
+    { name: reto.data.title, path: `/${a.slug}/retos/${slug}/` },
+  ],
+  locale,
+);
 ---
 
-<BaseLayout title={subjectTitle(reto.data.title, a)} description={reto.data.descripcion} contentLang={reto.data.lang} translated={retoCaById.has(`${retoEs.id}.ca`)}>
+<BaseLayout title={subjectTitle(reto.data.title, a)} description={reto.data.descripcion} jsonLd={breadcrumb} contentLang={reto.data.lang} translated={retoCaById.has(`${retoEs.id}.ca`)}>
   <div class="container">
     <Breadcrumb
       locale={locale}

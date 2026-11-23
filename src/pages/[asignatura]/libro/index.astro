@@ -30,9 +30,14 @@ const units = allUnits
   .sort((x, y) => x.data.unidad - y.data.unidad)
   .map((u) => pickLocalizedEntry(u, caById, locale));
 
+// «Real Decreto 217/2022 (optativa…)» → just the decree; FP and CV subjects cite their own text.
+const decree = a.marcoNormativo.match(/^Real Decreto \d+\/\d{4}/)?.[0] ?? a.marcoNormativo;
+const ley = leyCurricular(a);
+
 const copy = {
   es: {
     inicio: 'Inicio', libro: 'Libro',
+    curriculumNote: `Este libro se basa en el currículo básico estatal ${ley} para ${a.title} (${decree}). Cada comunidad autónoma concreta el suyo: consulta el de la tuya para ajustar la programación a tu centro.`,
     kicker: `${a.shortLabel} · Libro`,
     // Search-facing. "libro … pdf gratis" is the highest-converting intent on
     // the site (20-25% CTR); the promise has to be in the snippet, not behind
@@ -52,6 +57,7 @@ const copy = {
   },
   ca: {
     inicio: 'Inici', libro: 'Llibre',
+    curriculumNote: `Este llibre es basa en el currículum bàsic estatal ${ley} per a ${a.title} (${decree}). Cada comunitat autònoma concreta el seu: consulta el de la teua per a ajustar la programació al teu centre.`,
     kicker: `${a.shortLabel} · Llibre`,
     metaTitle: `Llibre de ${a.seoName} en PDF gratis`,
     descripcion: (n: number) =>
@@ -136,6 +142,7 @@ const jsonLd = [
   {units.length > 0 && (
     <section class="units">
       <div class="container">
+        <p class="curriculum-note">{copy.curriculumNote}</p>
         <ol class="unit-list">
           {units.map((u) => (
             <li>
@@ -159,6 +166,7 @@ const jsonLd = [
   }
 
   .units { padding-bottom: clamp(3rem, 7vw, 6rem); }
+  .curriculum-note { max-width: 65ch; margin: 0 0 1.5rem; font-size: 0.95rem; color: var(--color-ink-soft); }
   .unit-list { margin: 0; padding: 0; list-style: none; }
   .unit-list li {
     display: flex;

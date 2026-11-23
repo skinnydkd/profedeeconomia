@@ -6,7 +6,7 @@ import { getLocale } from '@/i18n/locale';
 import { pickLocalizedEntry } from '@/i18n/content-locale';
 import { localizeAsignatura } from '@/i18n/asignaturas-ca';
 import QuizPlayer from '@components/QuizPlayer.tsx';
-import { quizLd, type TestQuestion, subjectTitle } from '@/lib/seo';
+import { breadcrumbLd, quizLd, type TestQuestion, subjectTitle } from '@/lib/seo';
 import type { GetStaticPaths } from 'astro';
 import Breadcrumb from '@components/Breadcrumb.astro';
 
@@ -43,8 +43,8 @@ const unit = unitEs ? pickLocalizedEntry(unitEs, libroCaById, locale) : undefine
 const unitSlug = unitEs?.id.split('/').pop()?.replace(/\.mdx?$/, '');
 
 const copy = {
-  es: { inicio: 'Inicio', tests: 'Tests', unidad: 'Unidad', test: 'Test', preguntas: 'preguntas', volver: 'Volver a la unidad del libro', descripcion: `Test de autoevaluación de la unidad ${test.data.unidad_relacionada} de ${a.title}.` },
-  ca: { inicio: 'Inici', tests: 'Tests', unidad: 'Unitat', test: 'Test', preguntas: 'preguntes', volver: 'Tornar a la unitat del llibre', descripcion: `Test d'autoavaluació de la unitat ${test.data.unidad_relacionada} de ${a.title}.` },
+  es: { inicio: 'Inicio', tests: 'Tests', unidad: 'Unidad', test: 'Test', preguntas: 'preguntas', preguntasH2: 'Preguntas del test', volver: 'Volver a la unidad del libro', descripcion: `Test de autoevaluación de la unidad ${test.data.unidad_relacionada} de ${a.title}.` },
+  ca: { inicio: 'Inici', tests: 'Tests', unidad: 'Unitat', test: 'Test', preguntas: 'preguntes', preguntasH2: 'Preguntes del test', volver: 'Tornar a la unitat del llibre', descripcion: `Test d'autoavaluació de la unitat ${test.data.unidad_relacionada} de ${a.title}.` },
 }[locale];
 
 // Education Q&A structured data for the very questions QuizPlayer renders below.
@@ -56,13 +56,22 @@ const quiz = quizLd({
   questions: test.data.preguntas as TestQuestion[],
   locale,
 });
+const breadcrumb = breadcrumbLd(
+  [
+    { name: copy.inicio, path: '/' },
+    { name: a.shortLabel, path: `/${a.slug}/` },
+    { name: copy.tests, path: `/${a.slug}/tests/` },
+    { name: test.data.title, path: `/${a.slug}/tests/${Astro.params.slug}/` },
+  ],
+  locale,
+);
 ---
 
 <BaseLayout
   title={subjectTitle(test.data.title, a)}
   brandSuffix={false}
   description={copy.descripcion}
-  jsonLd={quiz ?? undefined}
+  jsonLd={quiz ? [breadcrumb, quiz] : breadcrumb}
   contentLang={test.data.lang}
   translated={testCaById.has(`${testEs.id}.ca`)}
 >
@@ -96,11 +105,14 @@ const quiz = quizLd({
 
   <section class="player-wrap">
     <div class="container container--narrow">
+      {/* The player's questions are h3: this keeps the outline h1 > h2 > h3. */}
+      <h2 class="sr-only">{copy.preguntasH2}</h2>
       <QuizPlayer
         client:load
         preguntas={test.data.preguntas}
         storageKey={`test-${a.slug}-${test.data.unidad_relacionada}`}
         locale={locale}
+        unidadHref={unit && unitSlug ? `${locale === 'ca' ? '/ca' : ''}/${a.slug}/libro/${unitSlug}/` : undefined}
       />
     </div>
   </section>

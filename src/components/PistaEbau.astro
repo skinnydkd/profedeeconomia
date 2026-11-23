@@ -14,12 +14,12 @@ const { tipo, concepto, apendice } = Astro.props;
 const kicker = t(tipo === 'teorica' ? 'libro.pistaEbauTeorica' : 'libro.pistaEbauPractica', locale);
 ---
 
-<aside class="pista-ebau" data-tipo={tipo}>
+<div class="pista-ebau" data-tipo={tipo}>
   <span class="pista-ebau__kicker">{kicker}</span>
   <div class="pista-ebau__concepto">{concepto}</div>
   <div class="pista-ebau__body"><slot /></div>
   {apendice && <p class="pista-ebau__ref">→ {apendice}</p>}
-</aside>
+</div>
 
 <style>
   .pista-ebau {

@@ -7,7 +7,7 @@ import RecursosRelacionados from '@components/libro/RecursosRelacionados.astro';
 import { getIndiceRecursos } from '@/lib/recursos-relacionados-sources';
 import { recursosDeUnidad } from '@/lib/recursos-relacionados';
 import { getMaterialPorUnidad } from '@/lib/material-unidad-sources';
-import { articleLd, breadcrumbLd, subjectTitle } from '@/lib/seo';
+import { articleLd, breadcrumbLd, subjectTitle, SITE } from '@/lib/seo';
 import { cargarFamilias } from '@/lib/ebau-familias';
 import { familiasDeUnidad, slugFamilia } from '@/lib/ebau';
 import { getLocale } from '@/i18n/locale';
@@ -71,8 +71,23 @@ const recursos = recursosDeUnidad(await getIndiceRecursos(locale), unit.data.asi
 // only led back to the hub, so a teacher had to go round to find the slides.
 const material = (await getMaterialPorUnidad(unit.data.asignatura, locale)).find((m) => m.unidad === unit.data.unidad);
 const mCopy = {
-  es: { label: 'Material de esta unidad', enEsta: 'En esta unidad:', diapositivas: 'Diapositivas', test: 'Test', reto: 'Reto', actividades: (n: number) => (n === 1 ? '1 actividad' : `${n} actividades`) },
-  ca: { label: 'Material d\'esta unitat', enEsta: 'En esta unitat:', diapositivas: 'Diapositives', test: 'Test', reto: 'Repte', actividades: (n: number) => (n === 1 ? '1 activitat' : `${n} activitats`) },
+  es: {
+    label: 'Material de esta unidad', enEsta: 'En esta unidad:', diapositivas: 'Diapositivas', pdf: 'PDF de diapositivas', test: 'Test', reto: 'Reto',
+    actividades: (n: number) => (n === 1 ? '1 actividad' : `${n} actividades`),
+    imprimir: 'Libro completo para imprimir',
+    acciones: 'Compartir esta unidad', copiar: 'Copiar enlace', copiado: 'Enlace copiado.', copiaManual: 'Enlace seleccionado: cópialo con Ctrl+C.', enlace: 'Enlace de la unidad',
+    classroom: 'Compartir en Classroom', nuevaPestana: '(se abre en una pestaña nueva)', errata: 'Informar de un error',
+    comprueba: 'Comprueba lo que sabes', testUnidad: 'Test de la unidad',
+  },
+  ca: {
+    label: 'Material d\'esta unitat', enEsta: 'En esta unitat:', diapositivas: 'Diapositives', pdf: 'PDF de diapositives', test: 'Test', reto: 'Repte',
+    actividades: (n: number) => (n === 1 ? '1 activitat' : `${n} activitats`),
+    // The printable book is Spanish only (see imprimir.astro).
+    imprimir: 'Llibre complet per a imprimir (en castellà)',
+    acciones: 'Compartir esta unitat', copiar: 'Copiar l\'enllaç', copiado: 'Enllaç copiat.', copiaManual: 'Enllaç seleccionat: copia\'l amb Ctrl+C.', enlace: 'Enllaç de la unitat',
+    classroom: 'Compartir a Classroom', nuevaPestana: '(s\'obri en una pestanya nova)', errata: 'Informar d\'un error',
+    comprueba: 'Comprova el que saps', testUnidad: 'Test de la unitat',
+  },
 }[locale];
 
 // Solved-problem families of this unit (published ones only).
@@ -90,6 +105,16 @@ const esquema = [locale === 'ca' ? '.ca' : '', '']
   .map((sfx) => `/esquemas/${a.slug}/${idToSlug(unit.id)}${sfx}.png`)
   .find((src) => existsSync(`public${src}`));
 const imagen = d.imagen ?? esquema;
+
+// Every unit opens with a blockquote fitxa («Al acabar esta unidad sabrás…»)
+// that lists the objectives; the opener only repeats them when it is missing.
+const objetivosEnTexto = /^> \*\*(Al acabar esta unidad sabrás|En acabar esta unitat sabràs)/m.test(view.body ?? '');
+// Same URL scheme as /[asignatura]/diapositivas/ (Blob redirect in vercel.json).
+const slidesPdf = `/slides/${a.slug}/${idToSlug(unit.id)}${locale === 'ca' ? '.ca' : ''}.pdf`;
+const imprimirHref = `/${a.slug}/libro/imprimir/#cap-${unit.data.unidad}`;
+const canonical = `${SITE.url}${locale === 'ca' ? '/ca' : ''}${unitPath}`;
+const classroomHref = `https://classroom.google.com/share?url=${encodeURIComponent(canonical)}`;
+const errataHref = `mailto:${SITE.email}?subject=${encodeURIComponent(`Errata: ${unitTitle}`)}&body=${encodeURIComponent(`${canonical}\n\n`)}`;
 const isoDay = (day?: Date) => day?.toISOString().slice(0, 10);
 const jsonLd = [
   articleLd({
@@ -144,17 +169,27 @@ const jsonLd = [
       </div>
       <h1>{d.title}</h1>
       {d.lema && <p class="lede">{d.lema}</p>}
-      {material && (
-        <nav class="unit-material" aria-label={mCopy.label}>
-          <span class="unit-material__label">{mCopy.enEsta}</span>
-          <a href={material.diapositivas}>{mCopy.diapositivas}</a>
-          {material.test && <><span class="sep" aria-hidden="true">·</span><a href={material.test}>{mCopy.test}</a></>}
-          {material.actividadesHref && <><span class="sep" aria-hidden="true">·</span><a href={material.actividadesHref}>{mCopy.actividades(material.actividades)}</a></>}
-          {material.retos.map((r, i) => (
-            <><span class="sep" aria-hidden="true">·</span><a href={r}>{material.retos.length > 1 ? `${mCopy.reto} ${i + 1}` : mCopy.reto}</a></>
+      <nav class="unit-material" aria-label={mCopy.label}>
+        <span class="unit-material__label">{mCopy.enEsta}</span>
+        <ul>
+          {material && <li><a href={material.diapositivas}>{mCopy.diapositivas}</a></li>}
+          <li><a href={slidesPdf} download>{mCopy.pdf}</a></li>
+          {material?.test && <li><a href={material.test}>{mCopy.test}</a></li>}
+          {material?.actividadesHref && <li><a href={material.actividadesHref}>{mCopy.actividades(material.actividades)}</a></li>}
+          {material?.retos.map((r, i) => (
+            <li><a href={r}>{material.retos.length > 1 ? `${mCopy.reto} ${i + 1}` : mCopy.reto}</a></li>
           ))}
-        </nav>
-      )}
+          <li><a href={imprimirHref}>{mCopy.imprimir}</a></li>
+        </ul>
+      </nav>
+
+      <div class="unit-actions" role="group" aria-label={mCopy.acciones}>
+        <button type="button" class="unit-actions__btn" data-copy-url={canonical} data-ok={mCopy.copiado} data-manual={mCopy.copiaManual}>{mCopy.copiar}</button>
+        <a class="unit-actions__btn" href={classroomHref} target="_blank" rel="noopener">{mCopy.classroom}<span class="vh"> {mCopy.nuevaPestana}</span></a>
+        <a class="unit-actions__btn" href={errataHref}>{mCopy.errata}</a>
+        <input class="unit-actions__url" type="text" readonly value={canonical} aria-label={mCopy.enlace} hidden />
+        <p class="unit-actions__status" role="status"></p>
+      </div>
 
       <dl class="unit-meta">
         {d.duracion && (
@@ -173,7 +208,7 @@ const jsonLd = [
             </dd>
           </div>
         )}
-        {d.objetivos.length > 0 && (
+        {d.objetivos.length > 0 && !objetivosEnTexto && (
           <div style="grid-column: 1 / -1;">
             <dt>{copy.objetivos}</dt>
             <dd>
@@ -190,28 +225,42 @@ const jsonLd = [
   <div class="container">
     <div class="article-layout">
       {headings.length > 0 && (
-        <aside class="article-toc" aria-label={copy.enEsta}>
-          <div class="toc-title">{copy.enEsta}</div>
-          <ol>
-            {headings.filter((h) => h.depth === 2 || h.depth === 3).map((h) => (
-              <li class={`toc-d${h.depth}`}><a href={`#${h.slug}`}>{h.text}</a></li>
-            ))}
-          </ol>
-        </aside>
+        <nav class="article-toc" aria-label={copy.enEsta}>
+          {/* Open by default (sidebar on desktop, and without JS); the inline
+              script folds it below 1100px before first paint. */}
+          <details class="toc-details" open data-toc>
+            <summary class="toc-title">{copy.enEsta}</summary>
+            <ol>
+              {headings.filter((h) => h.depth === 2 || h.depth === 3).map((h) => (
+                <li class={`toc-d${h.depth}`}><a href={`#${h.slug}`}>{h.text}</a></li>
+              ))}
+            </ol>
+          </details>
+          <script is:inline>
+            (function () {
+              var d = document.querySelector('[data-toc]');
+              var mq = matchMedia('(min-width: 1100px)');
+              d.open = mq.matches;
+              mq.addEventListener('change', function (e) { d.open = e.matches; });
+            })();
+          </script>
+        </nav>
       )}
 
       <article class="article-body">
         <Content />
 
-        {familias.length > 0 && (
-          <ul class="unit-ejercicios">
-            {familias.map((f) => (
-              <li><a href={`/${a.slug}/ebau/${slugFamilia(f.id)}/`}>{copy.ejercicios}: {f.data.title}</a></li>
-            ))}
-          </ul>
+        {(material?.test || familias.length > 0) && (
+          <section class="unit-check" aria-labelledby="unit-check-title">
+            <h2 id="unit-check-title" class="unit-check__title">{mCopy.comprueba}</h2>
+            <ul>
+              {material?.test && <li><a class="unit-check__test" href={material.test}>{mCopy.testUnidad} →</a></li>}
+              {familias.map((f) => (
+                <li><a href={`/${a.slug}/ebau/${slugFamilia(f.id)}/`}>{copy.ejercicios}: {f.data.title}</a></li>
+              ))}
+            </ul>
+          </section>
         )}
-
-        <UnitNotes client:idle unitKey={unitKey} unitTitle={d.title} locale={locale} />
 
         <nav class="unit-nav">
           {prev ? (
@@ -235,11 +284,61 @@ const jsonLd = [
           )}
         </nav>
 
+        <UnitNotes client:idle unitKey={unitKey} unitTitle={d.title} locale={locale} />
+
         <RecursosRelacionados recursos={recursos} asignaturaLabel={a.shortLabel} unidad={unit.data.unidad} />
       </article>
     </div>
   </div>
+
+  <div class="read-progress" aria-hidden="true"></div>
 </BaseLayout>
+
+<script>
+  // TOC: mark the section being read (aria-current), fold the mobile TOC after a jump.
+  const toc = document.querySelector<HTMLDetailsElement>('[data-toc]');
+  if (toc) {
+    const pairs = [...toc.querySelectorAll<HTMLAnchorElement>('a[href^="#"]')]
+      .map((l) => [l, document.getElementById(decodeURIComponent(l.hash.slice(1)))] as const)
+      .filter((p): p is readonly [HTMLAnchorElement, HTMLElement] => p[1] !== null);
+    let current: HTMLAnchorElement | undefined;
+    const update = () => {
+      const line = innerHeight * 0.3;
+      let next: HTMLAnchorElement | undefined;
+      for (const [l, h] of pairs) if (h.getBoundingClientRect().top < line) next = l;
+      if (next === current) return;
+      current?.removeAttribute('aria-current');
+      next?.setAttribute('aria-current', 'true');
+      current = next;
+    };
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver(update, { rootMargin: '0px 0px -70% 0px' });
+      pairs.forEach(([, h]) => io.observe(h));
+    }
+    toc.addEventListener('click', (e) => {
+      if ((e.target as Element).closest('a') && !matchMedia('(min-width: 1100px)').matches) toc.open = false;
+    });
+  }
+
+  // «Copiar enlace»: Clipboard API, else show the URL selected for Ctrl+C.
+  const btn = document.querySelector<HTMLButtonElement>('[data-copy-url]');
+  if (btn) {
+    const box = btn.parentElement!;
+    const status = box.querySelector<HTMLElement>('[role="status"]')!;
+    const input = box.querySelector<HTMLInputElement>('.unit-actions__url')!;
+    btn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(btn.dataset.copyUrl!);
+        status.textContent = btn.dataset.ok!;
+      } catch {
+        input.hidden = false;
+        input.focus();
+        input.select();
+        status.textContent = btn.dataset.manual!;
+      }
+    });
+  }
+</script>
 
 <style>
   .container {
@@ -272,11 +371,39 @@ const jsonLd = [
     font-variation-settings: "SOFT" 80;
   }
 
-  .unit-material { margin: 1.2rem 0 1.4rem; font-size: 1rem; color: var(--color-ink-soft); }
-  .unit-material__label { font-weight: 600; color: var(--color-ink); margin-right: 0.5em; }
-  .unit-material a { color: var(--color-terra-ink); text-decoration: none; }
+  .unit-material { margin: 1.2rem 0 0.6rem; font-size: 1rem; color: var(--color-ink-soft); display: flex; flex-wrap: wrap; align-items: center; column-gap: 0.5em; }
+  .unit-material__label { font-weight: 600; color: var(--color-ink); }
+  .unit-material ul { display: contents; list-style: none; }
+  .unit-material li { display: inline-flex; align-items: center; }
+  .unit-material li + li::before { content: "·"; margin-right: 0.5em; color: var(--color-mustard); }
+  /* ≥24px targets everywhere, 44px on touch screens. */
+  .unit-material a { display: inline-flex; align-items: center; min-height: 1.75rem; color: var(--color-terra-ink); text-decoration: none; }
   .unit-material a:hover { text-decoration: underline; }
-  .unit-material .sep { margin: 0 0.45em; color: var(--color-mustard); }
+
+  .unit-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; margin: 0 0 1.6rem; }
+  .unit-actions__btn {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.25rem;
+    padding: 0.3rem 0.85rem;
+    font: 500 0.9rem/1.2 var(--font-sans);
+    color: var(--color-terra-ink);
+    background: var(--color-paper);
+    border: 1px solid var(--color-line);
+    border-radius: 6px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background .15s var(--ease-soft), border-color .15s var(--ease-soft);
+  }
+  .unit-actions__btn:hover { background: var(--color-terra-soft); border-color: var(--color-terra); }
+  .unit-actions__btn:active { background: var(--color-terra-soft); border-color: var(--color-terra-deep); transform: translateY(1px); }
+  .unit-actions__url { flex: 1 1 16rem; min-height: 2.25rem; padding: 0.3rem 0.6rem; font: 0.9rem var(--font-mono); color: var(--color-ink); background: var(--color-paper); border: 1px solid var(--color-line); border-radius: 6px; }
+  .unit-actions__status { flex-basis: 100%; margin: 0; font-size: 0.9rem; color: var(--color-ink-soft); }
+  .unit-actions__status:empty { display: none; }
+  @media (pointer: coarse) {
+    .unit-material a, .unit-actions__btn, .unit-actions__url { min-height: 44px; }
+  }
+  .vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
   .unit-meta {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
@@ -311,6 +438,30 @@ const jsonLd = [
   .objetivos { margin: 0.4rem 0 0; padding-left: 1.1rem; font-size: 1rem; color: var(--color-ink-soft); }
   .objetivos li { margin-bottom: 0.4rem; }
 
+  /* Phones: the preamble (opener, fitxa, TOC, content fitxa) used to fill
+     eight screens before the first section. Same content, tighter rhythm. */
+  @media (max-width: 700px) {
+    .unit-opener { padding-bottom: 1.5rem; }
+    .lede { font-size: 1.2rem; margin-bottom: 1.2rem; }
+    .unit-meta { padding: 1.1rem 1.2rem; gap: 0.9rem; }
+    .unit-meta dd, .tag { font-size: 0.9rem; }
+    .unit-meta dt { margin-bottom: 0.2rem; }
+    .tag-row { line-height: 1.5; }
+    .unit-material { margin-top: 0.6rem; }
+    .unit-actions { gap: 0.4rem; margin-bottom: 1.2rem; }
+    .unit-actions__btn { padding: 0.3rem 0.7rem; font-size: 0.86rem; }
+  }
+
+  /* The content's own fitxa (reading time, saberes, pre-requisites,
+     objectives): the first blockquote of every unit. Lighter than prose. */
+  .article-body > :global(blockquote:first-child) {
+    font-size: 1rem;
+    line-height: 1.55;
+    color: var(--color-ink-soft);
+  }
+  .article-body > :global(blockquote:first-child p:first-child) { font-size: 0.92rem; }
+  .article-body > :global(blockquote:first-child strong) { font-weight: 600; color: var(--color-ink-soft); }
+
   /* ARTICLE LAYOUT */
   .article-layout {
     display: grid;
@@ -344,8 +495,32 @@ const jsonLd = [
   .article-toc {
     font-size: 0.92rem;
   }
-  /* was an <h4>; now a <div>, so restore the h4 element rule's sans/bold/uppercase */
-  .article-toc .toc-title { margin: 0 0 0.8rem; font-family: var(--font-sans); font-size: 0.78rem; font-weight: 600; color: var(--color-ink-mute); text-transform: uppercase; letter-spacing: 0.12em; }
+  .article-toc .toc-title { font-family: var(--font-sans); font-size: 0.78rem; font-weight: 600; color: var(--color-ink-mute); text-transform: uppercase; letter-spacing: 0.12em; list-style: none; }
+  .article-toc .toc-title::-webkit-details-marker { display: none; }
+  /* In-flow (below 1100px): a folded bar the reader opens on demand. */
+  @media (max-width: 1099px) {
+    .article-layout { gap: 1.5rem; padding: 1.5rem 0 4rem; }
+    .article-toc .toc-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      min-height: 44px;
+      padding: 0 1rem;
+      background: var(--color-paper);
+      border: 1px solid var(--color-line);
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .article-toc .toc-title:hover { border-color: var(--color-terra); color: var(--color-ink); }
+    .article-toc .toc-title::after { content: "+"; font-family: var(--font-mono); font-size: 1.1rem; color: var(--color-terra-ink); }
+    .article-toc details[open] .toc-title::after { content: "−"; }
+    .article-toc details[open] ol { margin-top: 1rem; }
+  }
+  /* Sidebar: a plain label, always open. */
+  @media (min-width: 1100px) {
+    .article-toc .toc-title { margin: 0 0 0.8rem; pointer-events: none; }
+  }
+  .article-toc a[aria-current="true"] { color: var(--color-ink); font-weight: 600; }
   .article-toc ol {
     list-style: none;
     margin: 0;
@@ -381,6 +556,8 @@ const jsonLd = [
     line-height: 1.72;
     counter-reset: h2section;
   }
+  /* Phones: 1.125rem, the project's body minimum, instead of 1.2rem. */
+  @media (max-width: 700px) { .article-body { font-size: 1.125rem; } }
   /* Direct children only: the MDX sections are children of the article, while
      the headings inside components (calculators, solved exercises, «Para el
      aula»…) are not sections and must not take a number or this size. */
@@ -539,9 +716,34 @@ const jsonLd = [
     font-weight: 700;
   }
 
-  .unit-ejercicios { list-style: none; padding: 0; margin: 3rem 0 0; font-size: 1.05rem; }
-  .unit-ejercicios li { margin: 0 0 0.4rem; }
-  .unit-ejercicios a { color: var(--color-terra-ink); }
+  .unit-check { margin: 3.5rem 0 0; padding-top: 1.5rem; border-top: 1px solid var(--color-line); }
+  .article-body .unit-check__title { margin: 0 0 0.8rem; font-size: 1.5rem; }
+  .article-body .unit-check ul { list-style: none; padding: 0; margin: 0; font-size: 1.05rem; }
+  .unit-check li { margin: 0 0 0.4rem; }
+  .unit-check a { color: var(--color-terra-ink); display: inline-flex; min-height: 1.75rem; align-items: center; }
+  .unit-check .unit-check__test { font-weight: 600; font-size: 1.15rem; }
+
+  /* Reading progress: pure CSS (scroll-driven animation); absent where the
+     browser lacks it or the reader asked for less motion. */
+  .read-progress { display: none; }
+  @supports (animation-timeline: scroll()) {
+    @media (prefers-reduced-motion: no-preference) {
+      .read-progress {
+        display: block;
+        position: fixed;
+        inset: 0 0 auto 0;
+        height: 3px;
+        background: var(--color-terra);
+        transform-origin: 0 50%;
+        transform: scaleX(0);
+        z-index: 70;
+        pointer-events: none;
+        animation: read-progress linear both;
+        animation-timeline: scroll(root);
+      }
+    }
+  }
+  @keyframes read-progress { to { transform: scaleX(1); } }
 
   /* Prev/next */
   .unit-nav {

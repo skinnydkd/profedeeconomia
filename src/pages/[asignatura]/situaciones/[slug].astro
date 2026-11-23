@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
-import { subjectTitle } from '@/lib/seo';
+import { breadcrumbLd, subjectTitle } from '@/lib/seo';
 import { ASIGNATURAS } from '@/lib/asignaturas';
 import { getCollection } from 'astro:content';
 import { getLocale } from '@/i18n/locale';
@@ -88,9 +88,18 @@ const unidades = libroAll
   }));
 
 const sueltos = materialesSueltos(d);
+const breadcrumb = breadcrumbLd(
+  [
+    { name: copy.inicio, path: '/' },
+    { name: a.shortLabel, path: `/${a.slug}/` },
+    { name: copy.seccion, path: `/${a.slug}/situaciones/` },
+    { name: d.title, path: `${base}` },
+  ],
+  locale,
+);
 ---
 
-<BaseLayout title={subjectTitle(d.title, a)} description={d.producto_final} contentLang={sa.data.lang} translated={caById.has(`${saEs.id}.ca`)}>
+<BaseLayout title={subjectTitle(d.title, a)} description={d.producto_final} jsonLd={breadcrumb} contentLang={sa.data.lang} translated={caById.has(`${saEs.id}.ca`)}>
   <div class="container">
     <Breadcrumb
       locale={locale}

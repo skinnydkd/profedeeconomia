@@ -5,6 +5,10 @@ import LanguageSwitcher from '@components/LanguageSwitcher.astro';
 
 const year = new Date().getFullYear();
 const locale = getLocale(Astro.currentLocale);
+const licence = {
+  es: { pre: 'Materiales bajo licencia', post: `Para citarlos: «profedeeconomia.es, asignatura, unidad N, ${year}».`, href: 'https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es' },
+  ca: { pre: 'Materials amb llicència', post: `Per a citar-los: «profedeeconomia.es, assignatura, unitat N, ${year}».`, href: 'https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ca' },
+}[locale];
 ---
 
 <footer class="site-footer">
@@ -17,6 +21,9 @@ const locale = getLocale(Astro.currentLocale);
       <a href="/legal/privacidad/">{t('footer.privacidad', locale)}</a>
       <LanguageSwitcher />
     </div>
+    <p class="footer-licence">
+      {licence.pre} <a href={licence.href} rel="license noopener">CC BY-NC-SA 4.0</a>. {licence.post}
+    </p>
   </div>
 </footer>
 
@@ -38,6 +45,7 @@ const locale = getLocale(Astro.currentLocale);
     gap: 1.5rem;
     align-items: center;
   }
+  .footer-licence { flex-basis: 100%; margin: 0; font-size: 0.85rem; }
   .container a { color: var(--color-ink-soft); text-decoration: none; }
   .container a:hover { color: var(--color-terra); }
 </style>
