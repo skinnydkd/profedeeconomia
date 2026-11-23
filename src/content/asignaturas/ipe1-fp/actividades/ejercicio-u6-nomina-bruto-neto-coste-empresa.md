@@ -19,7 +19,7 @@ estado: publicado
 
 ## Planteamiento
 
-Ana acaba de firmar su primer contrato de trabajo en una cafetería. Su nómina refleja un **salario bruto mensual de 1.500 €** (contrato indefinido a tiempo completo, 12 mensualidades más dos pagas extraordinarias —verano e invierno— de 750 € cada una, ya prorrateadas en la mensualidad). La jornada es de 40 horas semanales.
+Ana acaba de firmar su primer contrato de trabajo en una cafetería. Su nómina refleja un **salario bruto mensual de 1.500 €** (contrato indefinido a tiempo completo, con las dos pagas extraordinarias —verano e invierno— ya prorrateadas: 18.000 € brutos al año repartidos en 12 mensualidades iguales de 1.500 €). La jornada es de 40 horas semanales.
 
 Para calcular las cotizaciones y la retención se aplican los **tipos vigentes en 2026**:
 

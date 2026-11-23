@@ -99,9 +99,9 @@ preguntas:
     explicacion: "Taxa d'atur = (aturats / població activa) × 100 = (30 / 200) × 100 = 15 %."
   - tipo: relacionar
     enunciado: "Emparella cada activitat amb el seu sector econòmic:"
-    izquierda: ["Un agricultor que arreplega taronges", "Una fàbrica que munta cotxes", "Un hotel que atén turistes", "Una empresa de construcció"]
-    derecha: ["Sector secundari", "Sector terciari", "Sector primari", "Sector secundari"]
-    correctas: [2, 0, 1, 3]
+    izquierda: ["Un agricultor que arreplega taronges", "Una fàbrica que munta cotxes", "Un hotel que atén turistes"]
+    derecha: ["Sector secundari", "Sector terciari", "Sector primari"]
+    correctas: [2, 0, 1]
     explicacion: "El sector primari obté matèries primeres de la natura (agricultura); el secundari les transforma (indústria i construcció); el terciari presta serveis (turisme, comerç)."
   - enunciado: "A casa de Sergio viuen quatre persones: sa mare, que treballa en un supermercat; son pare, que es va quedar sense ocupació i envia currículums cada setmana; sa germana de 19 anys, que estudia a la universitat i no busca treball; i son avi, jubilat. Qui compta com a aturat en les estadístiques?"
     opciones:

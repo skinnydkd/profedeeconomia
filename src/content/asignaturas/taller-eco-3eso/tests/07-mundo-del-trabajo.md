@@ -98,9 +98,9 @@ preguntas:
     explicacion: "Tasa de paro = (parados / población activa) × 100 = (30 / 200) × 100 = 15 %."
   - tipo: relacionar
     enunciado: "Empareja cada actividad con su sector económico:"
-    izquierda: ["Un agricultor que recoge naranjas", "Una fábrica que monta coches", "Un hotel que atiende a turistas", "Una empresa de construcción"]
-    derecha: ["Sector secundario", "Sector terciario", "Sector primario", "Sector secundario"]
-    correctas: [2, 0, 1, 3]
+    izquierda: ["Un agricultor que recoge naranjas", "Una fábrica que monta coches", "Un hotel que atiende a turistas"]
+    derecha: ["Sector secundario", "Sector terciario", "Sector primario"]
+    correctas: [2, 0, 1]
     explicacion: "El sector primario obtiene materias primas de la naturaleza (agricultura); el secundario las transforma (industria y construcción); el terciario presta servicios (turismo, comercio)."
   - enunciado: "En casa de Sergio viven cuatro personas: su madre, que trabaja en un supermercado; su padre, que se quedó sin empleo y envía currículums cada semana; su hermana de 19 años, que estudia en la universidad y no busca trabajo; y su abuelo, jubilado. ¿Quién cuenta como parado en las estadísticas?"
     opciones:

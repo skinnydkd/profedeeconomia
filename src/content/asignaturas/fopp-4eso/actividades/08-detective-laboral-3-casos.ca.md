@@ -1,7 +1,7 @@
 ---
 asignatura: fopp-4eso
 unidad_relacionada: 8
-title: "Detectiu laboral: analitza 3 contractes i nòmines reals i detecta les vulneracions"
+title: "Detectiu laboral: analitza 3 contractes i nòmines d'exemple i detecta les vulneracions"
 descripcion: "Per parelles i durant 60 minuts, l'alumnat examina tres contractes i nòmines anònimes (temporal abusiu, jornada excessiva sense compensació, salari per davall de conveni) aplicant una checklist de 12 punts. Per a cada cas ha d'identificar les vulneracions concretes, citar l'article de l'Estatut o de la Llei 31/1995 vulnerat i proposar la via de reclamació."
 tipo: caso
 duracion: "60 min (1 sessió)"
@@ -21,15 +21,15 @@ slug: "asignaturas/fopp-4eso/actividades/08-detective-laboral-3-casos.ca"
 
 ## Plantejament
 
-Hem estudiat al Tema 8 els deu drets bàsics que l'Estatut dels Treballadors reconeix a qualsevol persona assalariada a Espanya. Saps que l'SMI 2026 són 1.221 €/mes en 14 pagues, que la jornada màxima són 40 hores setmanals, que les vacacions són 30 dies naturals i que el conveni col·lectiu sempre millora l'ET. Toca **aplicar eixe coneixement a documents reals**.
+Hem estudiat al Tema 8 els deu drets bàsics que l'Estatut dels Treballadors reconeix a qualsevol persona assalariada a Espanya. Saps que l'SMI 2026 són 1.221 €/mes en 14 pagues, que la jornada màxima són 40 hores setmanals, que les vacacions són 30 dies naturals i que el conveni col·lectiu sempre millora l'ET. Toca **aplicar eixe coneixement a documents laborals d'exemple**.
 
-En esta activitat rebeu, per parelles, tres casos anònims basats en denúncies reals ateses per la Inspecció de Treball i per sindicats sectorials. Cada cas inclou **un contracte i dos nòmines**. La vostra tasca és la d'un detectiu laboral: llegir amb calma, aplicar la **checklist de 12 punts**, **identificar les vulneracions**, **citar l'article concret** de l'ET o de la LPRL que s'incomplix i **proposar la ruta de reclamació** adequada.
+En esta activitat rebeu, per parelles, tres casos ficticis, construïts a partir de situacions típiques del mercat laboral (noms i empreses inventats). Cada cas inclou **un contracte i dos nòmines**. La vostra tasca és la d'un detectiu laboral: llegir amb calma, aplicar la **checklist de 12 punts**, **identificar les vulneracions**, **citar l'article concret** de l'ET o de la LPRL que s'incomplix i **proposar la ruta de reclamació** adequada.
 
 > *No n'hi ha prou amb dir "això està malament". Cal dir què està malament, per què està malament segons la llei i què faria el treballador hui mateix per a reclamar-ho.*
 
 ## Objectius didàctics
 
-- Aplicar el contingut del Tema 8 (ET, LPRL, conveni col·lectiu) a documents laborals reals.
+- Aplicar el contingut del Tema 8 (ET, LPRL, conveni col·lectiu) a documents laborals d'exemple.
 - Manejar les xifres clau del dret laboral 2026: SMI, jornada, vacacions, descansos, pagues extres.
 - Aprendre a localitzar i consultar un **conveni col·lectiu** vigent al REGCON.
 - Practicar la **lectura crítica d'un contracte i una nòmina**, distingint allò legal d'allò abusiu.
@@ -57,7 +57,7 @@ Amb les vulneracions detectades, cada parella redacta **un paràgraf de no més 
 
 ### 4. Posada en comú (10 min)
 
-Una parella per cada cas presenta les seues troballes en 2 minuts. El professor tanca cada cas assenyalant les vulneracions que hagueren pogut escapar-se i comentant què va passar realment a la denúncia original (Inspecció va sancionar, jutjat va donar la raó al treballador, etc.).
+Una parella per cada cas presenta les seues troballes en 2 minuts. El professor tanca cada cas assenyalant les vulneracions que hagueren pogut escapar-se i comentant com se solen resoldre en la pràctica situacions com eixa (requeriment de la Inspecció, acord previ al SMAC, demanda davant del jutjat social).
 
 ## Checklist de 12 punts
 
@@ -135,7 +135,7 @@ Esta checklist s'aplica a cada cas. Marca cada punt en VERD, GROC o ROIG i, si �
 ═══════════════════════════════════════════════════════
 ```
 
-## Els tres casos (fotocopiables, anonimitzats a partir de denúncies reals)
+## Els tres casos (fotocopiables; casos il·lustratius inventats a partir de situacions típiques)
 
 ### Cas A — "Lucía, cambrera d'estiu: temporal abusiu"
 
@@ -175,8 +175,8 @@ Conveni aplicable: **Conveni d'Hostaleria de la Comunitat Valenciana**, categori
 
 **Nòmines i parts de jornada (dos mesos representatius)**
 
-- Novembre 2026 (Black Friday): parts de jornada amb **57, 54, 60 i 52 hores setmanals** (total mes: ~223 hores). A la nòmina no apareix **cap línia d'hores extraordinàries**.
-- Desembre 2026: parts amb **48, 56, 55, 50 hores setmanals** (total mes: ~209 hores). Tampoc apareixen hores extra a la nòmina.
+- Novembre 2025 (Black Friday): parts de jornada amb **57, 54, 60 i 52 hores setmanals** (total mes: ~223 hores). A la nòmina no apareix **cap línia d'hores extraordinàries**.
+- Desembre 2025: parts amb **48, 56, 55, 50 hores setmanals** (total mes: ~209 hores). Tampoc apareixen hores extra a la nòmina.
 - No hi ha registre horari digital firmat pel treballador. El descans setmanal al novembre es reduïx a un sol dia alguns caps de setmana.
 - Salari net idèntic al de mesos "normals": 1.180 €.
 
@@ -230,4 +230,4 @@ Tres recomanacions pràctiques perquè l'activitat funcione bé:
 
 - **Imprimix els casos en fulls separats.** Cada parella rep el dossier complet d'un únic cas. Mesclar-los només confon i reduïx el temps útil d'anàlisi.
 - **Insistix en la cita de l'article.** Dir "està mal pagada" no val; cal dir "vulnera l'art. 26 de l'ET i el conveni sectorial aplicable". És l'aprenentatge tècnic principal de l'activitat.
-- **Tancament amb la xifra d'impacte.** Acaba recordant que la Inspecció de Treball realitza més d'**1,2 milions d'actuacions a l'any** i que **el 90 % de les denúncies en estos supòsits acaben amb sanció a l'empresa i devolució al treballador**. La llei funciona si s'activa. L'activitat ensenya a activar-la.
+- **Tancament amb la xifra d'impacte.** Acaba recordant que la Inspecció de Treball i Seguretat Social va realitzar **1.206.028 actuacions en 2025** (balanç anual de la ITSS, Ministeri de Treball i Economia Social), i que la bústia de denúncies és gratuïta i confidencial. La llei funciona si s'activa. L'activitat ensenya a activar-la.

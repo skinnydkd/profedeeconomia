@@ -1,7 +1,7 @@
 ---
 asignatura: fopp-4eso
 unidad_relacionada: 8
-title: "Detective laboral: analiza 3 contratos y nóminas reales y detecta las vulneraciones"
+title: "Detective laboral: analiza 3 contratos y nóminas de ejemplo y detecta las vulneraciones"
 descripcion: "En parejas y durante 60 minutos, el alumnado examina tres contratos y nóminas anónimas (temporal abusivo, jornada excesiva sin compensación, salario por debajo de convenio) aplicando una checklist de 12 puntos. Para cada caso debe identificar las vulneraciones concretas, citar el artículo del Estatuto o de la Ley 31/1995 vulnerado y proponer la vía de reclamación."
 tipo: caso
 duracion: "60 min (1 sesión)"
@@ -19,15 +19,15 @@ estado: publicado
 
 ## Planteamiento
 
-Hemos estudiado en el Tema 8 los diez derechos básicos que el Estatuto de los Trabajadores reconoce a cualquier persona asalariada en España. Sabes que el SMI 2026 son 1.221 €/mes en 14 pagas, que la jornada máxima son 40 horas semanales, que las vacaciones son 30 días naturales y que el convenio colectivo siempre mejora el ET. Toca **aplicar ese conocimiento a documentos reales**.
+Hemos estudiado en el Tema 8 los diez derechos básicos que el Estatuto de los Trabajadores reconoce a cualquier persona asalariada en España. Sabes que el SMI 2026 son 1.221 €/mes en 14 pagas, que la jornada máxima son 40 horas semanales, que las vacaciones son 30 días naturales y que el convenio colectivo siempre mejora el ET. Toca **aplicar ese conocimiento a documentos laborales de ejemplo**.
 
-En esta actividad recibís, por parejas, tres casos anónimos basados en denuncias reales atendidas por la Inspección de Trabajo y por sindicatos sectoriales. Cada caso incluye **un contrato y dos nóminas**. Vuestra tarea es la de un detective laboral: leer con calma, aplicar la **checklist de 12 puntos**, **identificar las vulneraciones**, **citar el artículo concreto** del ET o de la LPRL que se incumple y **proponer la ruta de reclamación** adecuada.
+En esta actividad recibís, por parejas, tres casos ficticios, construidos a partir de situaciones típicas que se dan en el mercado laboral (nombres y empresas inventados). Cada caso incluye **un contrato y dos nóminas**. Vuestra tarea es la de un detective laboral: leer con calma, aplicar la **checklist de 12 puntos**, **identificar las vulneraciones**, **citar el artículo concreto** del ET o de la LPRL que se incumple y **proponer la ruta de reclamación** adecuada.
 
 > *No basta con decir "esto está mal". Hay que decir qué está mal, por qué está mal según la ley y qué haría el trabajador hoy mismo para reclamarlo.*
 
 ## Objetivos didácticos
 
-- Aplicar el contenido del Tema 8 (ET, LPRL, convenio colectivo) a documentos laborales reales.
+- Aplicar el contenido del Tema 8 (ET, LPRL, convenio colectivo) a documentos laborales de ejemplo.
 - Manejar las cifras clave del derecho laboral 2026: SMI, jornada, vacaciones, descansos, pagas extras.
 - Aprender a localizar y consultar un **convenio colectivo** vigente en el REGCON.
 - Practicar la **lectura crítica de un contrato y una nómina**, distinguiendo lo legal de lo abusivo.
@@ -55,7 +55,7 @@ Con las vulneraciones detectadas, cada pareja redacta **un párrafo de no más d
 
 ### 4. Puesta en común (10 min)
 
-Una pareja por cada caso presenta sus hallazgos en 2 minutos. El profesor cierra cada caso señalando las vulneraciones que pudieran haberse escapado y comentando qué pasó realmente en la denuncia original (Inspección sancionó, juzgado dio la razón al trabajador, etc.).
+Una pareja por cada caso presenta sus hallazgos en 2 minutos. El profesor cierra cada caso señalando las vulneraciones que pudieran haberse escapado y comentando cómo suelen resolverse en la práctica situaciones como esa (requerimiento de la Inspección, acuerdo previo en el SMAC, demanda ante el juzgado de lo social).
 
 ## Checklist de 12 puntos
 
@@ -134,7 +134,7 @@ Esta checklist se aplica a cada caso. Marca cada punto en VERDE, AMARILLO o ROJO
 ═══════════════════════════════════════════════════════
 ```
 
-## Los tres casos (fotocopiables, anonimizados a partir de denuncias reales)
+## Los tres casos (fotocopiables; casos ilustrativos inventados a partir de situaciones típicas)
 
 ### Caso A — "Lucía, camarera de verano: temporal abusivo"
 
@@ -174,8 +174,8 @@ Convenio aplicable: **Convenio de Hostelería de la Comunitat Valenciana**, cate
 
 **Nóminas y partes de jornada (dos meses representativos)**
 
-- Noviembre 2026 (Black Friday): partes de jornada con **57, 54, 60 y 52 horas semanales** (total mes: ~223 horas). En la nómina no aparece **ninguna línea de horas extraordinarias**.
-- Diciembre 2026: partes con **48, 56, 55, 50 horas semanales** (total mes: ~209 horas). Tampoco aparecen horas extra en nómina.
+- Noviembre 2025 (Black Friday): partes de jornada con **57, 54, 60 y 52 horas semanales** (total mes: ~223 horas). En la nómina no aparece **ninguna línea de horas extraordinarias**.
+- Diciembre 2025: partes con **48, 56, 55, 50 horas semanales** (total mes: ~209 horas). Tampoco aparecen horas extra en nómina.
 - No hay registro horario digital firmado por el trabajador. El descanso semanal en noviembre se reduce a un solo día algunos fines de semana.
 - Salario neto idéntico al de meses "normales": 1.180 €.
 
@@ -229,4 +229,4 @@ Tres recomendaciones prácticas para que la actividad funcione bien:
 
 - **Imprime los casos en hojas separadas.** Cada pareja recibe el dossier completo de un único caso. Mezclarlos solo confunde y reduce el tiempo útil de análisis.
 - **Insiste en la cita del artículo.** Decir "está mal pagada" no vale; hay que decir "vulnera el art. 26 del ET y el convenio sectorial aplicable". Es el aprendizaje técnico principal de la actividad.
-- **Cierre con la cifra de impacto.** Termina recordando que la Inspección de Trabajo realiza más de **1,2 millones de actuaciones al año** y que **el 90 % de las denuncias en estos supuestos terminan con sanción a la empresa y devolución al trabajador**. La ley funciona si se activa. La actividad enseña a activarla.
+- **Cierre con la cifra de impacto.** Termina recordando que la Inspección de Trabajo y Seguridad Social realizó **1.206.028 actuaciones en 2025** (balance anual de la ITSS, Ministerio de Trabajo y Economía Social), y que el buzón de denuncias es gratuito y confidencial. La ley funciona si se activa. La actividad enseña a activarla.
