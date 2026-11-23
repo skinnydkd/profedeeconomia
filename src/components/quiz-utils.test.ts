@@ -1,6 +1,8 @@
 import { describe, it, expect } from 'vitest';
 import {
+  leerIntento,
   lecturasNumero,
+  serializarIntento,
   numeroCorrecto,
   ordenesOpciones,
   ordenValido,
@@ -185,5 +187,19 @@ describe('relacionarCorrecta', () => {
   });
   it('rejects unset answers', () => {
     expect(relacionarCorrecta(derecha, [0, 1], [0, -1])).toBe(false);
+  });
+});
+
+describe('intento guardado', () => {
+  const e = { idx: 1, respuestas: [2, 'x'], confirmadas: [true, false], ordenes: [[1, 0], []] };
+  it('round-trips', () => {
+    expect(leerIntento(serializarIntento(e), 2)).toEqual(e);
+  });
+  it('ignores corrupt or mismatched data', () => {
+    expect(leerIntento(null, 2)).toBeNull();
+    expect(leerIntento('{nope', 2)).toBeNull();
+    expect(leerIntento(serializarIntento(e), 3)).toBeNull();
+    expect(leerIntento(serializarIntento({ ...e, idx: 5 }), 2)).toBeNull();
+    expect(leerIntento(JSON.stringify({ v: 1, idx: 0, respuestas: [{}, 1], confirmadas: [true, true], ordenes: [[], []] }), 2)).toBeNull();
   });
 });
