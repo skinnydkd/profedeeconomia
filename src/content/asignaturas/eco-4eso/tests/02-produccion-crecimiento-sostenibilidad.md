@@ -7,26 +7,26 @@ estado: publicado
 preguntas:
   - enunciado: "Una panadería compra harina al molino para hacer barras de pan. Para la panadería, esa harina es…"
     opciones:
-      - "Un bien final, porque el molino ya la ha terminado."
-      - "Un bien intermedio, porque la compra para producir otra cosa."
+      - "Un bien final, porque el molino ya la ha terminado de producir."
+      - "Un bien intermedio, porque la compra para producir."
       - "Un bien de capital, porque sin ella no puede trabajar."
       - "Un bien libre, porque el trigo lo da la naturaleza."
     correcta: 1
     explicacion: "Un bien es intermedio o final según quién lo compre y para qué. La harina que compra la panadería es intermedia; la misma harina comprada por tu familia para hacer una tarta sería un bien final."
   - enunciado: "En la fábrica de alfileres que visitó Adam Smith, diez personas especializadas producían unos 48.000 alfileres al día, frente a los 20 diarios que haría cada una trabajando sola. ¿Por qué se multiplica así la producción?"
     opciones:
-      - "Porque las personas especializadas trabajan muchas más horas."
-      - "Porque cada persona gana destreza al repetir su tarea, no pierde tiempo cambiando de faena y las tareas sencillas se pueden mecanizar."
-      - "Porque los alfileres son un producto muy barato de fabricar."
-      - "Porque al trabajar en grupo la gente se esfuerza más que sola."
+      - "Porque las personas especializadas trabajan muchas más horas al día que quien trabaja sola."
+      - "Porque cada persona gana destreza, no cambia de tarea y se mecanizan tareas sencillas."
+      - "Porque los alfileres son un producto muy barato y se necesitan pocos materiales para fabricarlos."
+      - "Porque al trabajar en grupo la gente se esfuerza más y se motiva con la competencia entre compañeros."
     correcta: 1
     explicacion: "La división del trabajo multiplica la producción por la organización, no por el esfuerzo: destreza, ahorro de tiempo y, sobre todo, la posibilidad de diseñar una máquina para cada tarea repetitiva. Esa fue la puerta de entrada de la Revolución Industrial."
   - enunciado: "En España, de cada 100 personas ocupadas unas 76 trabajan en el sector terciario (EPA, INE). ¿Cuál es la explicación económica de esa terciarización?"
     opciones:
-      - "Que el sector primario ha desaparecido y ya no queda agricultura en España."
-      - "Que una ley obliga a las nuevas empresas a dedicarse a los servicios."
-      - "Que la productividad del campo y de la industria subió mucho, hicieron falta menos manos, y al ganar más renta las familias gastan una parte mayor en servicios."
-      - "Que los servicios son siempre el sector más productivo de cualquier economía."
+      - "Que el sector primario ha desaparecido y hoy en España ya no queda ninguna explotación agrícola."
+      - "Que una ley obliga a las nuevas empresas a dedicarse a los servicios para crear más empleo."
+      - "Que el campo y la industria producen más con menos gente y, al subir la renta, las familias gastan más en servicios."
+      - "Que los servicios son siempre el sector más productivo de cualquier economía desarrollada."
     correcta: 2
     explicacion: "Los tractores, el regadío y las máquinas permitieron producir más alimentos y más bienes con menos personas; esas personas pasaron a la industria y después a los servicios. Además, cuando la renta sube se gasta más en viajes, restaurantes u ocio y no en más comida. Buena parte del terciario español (hostelería, turismo) tiene, de hecho, productividad baja."
   - tipo: numerico
@@ -38,7 +38,7 @@ preguntas:
   - enunciado: "El taller Pedal monta 200 bicicletas a la semana con 5 trabajadores. El taller Rueda monta 240 con 8 trabajadores, con el mismo horario. ¿Cuál es más productivo?"
     opciones:
       - "Rueda, porque produce más bicicletas en total."
-      - "Pedal: 40 bicicletas por trabajador frente a las 30 de Rueda."
+      - "Pedal: 40 bicicletas por trabajador frente a 30 de Rueda."
       - "Los dos igual, porque trabajan las mismas horas semanales."
       - "No se puede saber sin conocer el precio de las bicicletas."
     correcta: 1
@@ -63,7 +63,7 @@ preguntas:
     explicacion: "Falso. El PIB mide producción, no riqueza acumulada ni bienestar, y no distingue construir de reconstruir. Es la parábola del cristal roto de Bastiat: la comarca, con un enorme esfuerzo, solo vuelve al punto de partida."
   - enunciado: "¿Cuál de estas producciones suma al PIB de España?"
     opciones:
-      - "La fábrica de Ford en Almussafes, aunque la empresa sea estadounidense."
+      - "La fábrica de Ford en Almussafes, aunque sea estadounidense."
       - "Una fábrica de Inditex en Marruecos, porque la empresa es española."
       - "Las horas que dedicas a cuidar a tu abuela en casa sin cobrar."
       - "La harina que la panadería compra al molino, además del pan que vende."
@@ -77,10 +77,10 @@ preguntas:
     explicacion: "El PIB nominal creció un 6 % (1.060 / 1.000 = 1,06). Para quitar el efecto de los precios se divide entre 1,04: 1,06 / 1,04 = 1,019, es decir, un 1,9 %, que la regla rápida 6 − 4 redondea al 2 %. Solo ese trozo es producción de verdad; el resto es subida de precios."
   - enunciado: "Una marca vende una botella de plástico de un solo uso y la anuncia como «respetuosa con el planeta» porque el tapón es reciclable, sin dar ningún dato más. ¿Cómo se llama esta práctica?"
     opciones:
-      - "Economía circular, porque el tapón vuelve al circuito."
-      - "Greenwashing: se destaca un detalle pequeño y se usan palabras vagas para tapar el conjunto."
-      - "Obsolescencia programada, porque la botella se tira enseguida."
-      - "Huella ecológica, porque mide el impacto del envase."
+      - "Economía circular, porque el tapón vuelve al circuito de producción y se reutiliza."
+      - "Greenwashing: un detalle menor con palabras vagas para ocultar el conjunto."
+      - "Obsolescencia programada, porque la botella se tira enseguida tras un solo uso."
+      - "Huella ecológica, porque mide el impacto ambiental del envase completo."
     correcta: 1
     explicacion: "Ante cualquier etiqueta verde hay que preguntar qué exactamente, comparado con qué y quién lo comprueba. Si no responde a las tres, es publicidad. La Directiva (UE) 2024/825 prohíbe desde septiembre de 2026 las afirmaciones ambientales genéricas que no puedan demostrarse."
 ---

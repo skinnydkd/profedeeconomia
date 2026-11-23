@@ -17,7 +17,7 @@ preguntas:
     explicacion: "La **taxa d'atur** mesura quin percentatge de qui vol treballar no troba treball: aturats dividit entre **població activa** (ocupats + aturats), no entre la població total. Al T3 de 2024 era d'aproximadament l'11,3 % a Espanya."
   - enunciado: "Un estudiant universitari de 20 anys que no busca treball, com es classifica en la EPA?"
     opciones:
-      - "Ocupat, perquè estudiar és una activitat productiva."
+      - "Ocupat, perquè estudiar és una activitat productiva per a la societat."
       - "Aturat, perquè no té un treball remunerat."
       - "Inactiu, perquè ni treballa ni busca treball activament."
       - "No apareix en la EPA perquè té menys de 25 anys."
@@ -34,7 +34,7 @@ preguntas:
   - enunciado: "Per què Espanya és considerada una **anomalia europea** en atur juvenil?"
     opciones:
       - "Perquè la seua taxa d'atur juvenil és lleugerament superior a la mitjana de la UE només des de 2020."
-      - "Perquè la seua taxa d'atur juvenil (~27 % el 2024) duplica la mitjana de la UE (~14 %) de manera sostinguda des de 2008."
+      - "Perquè el seu atur juvenil (~27 % el 2024) duplica la mitjana de la UE (~14 %) des de 2008."
       - "Perquè els seus jóvens no volen treballar i prefereixen dependre de les seues famílies."
       - "Perquè Espanya té la taxa d'atur juvenil més baixa d'Europa, contra tot pronòstic."
     correcta: 1

@@ -10,7 +10,7 @@ preguntas:
   - enunciado: "Segons la unitat, un projecte de vida ben fet als 16 anys ha de complir tres condicions simultàniament. Quines?"
     opciones:
       - "Ser ambiciós, secret i modificable només pel propi autor."
-      - "Estar escrit amb la millor informació disponible hui, marcar una direcció clara i contemplar dates de revisió."
+      - "Estar escrit amb la millor informació d'hui, marcar una direcció i contemplar revisions."
       - "Estar validat per la família, refrendat per un professor i firmat per l'alumne."
       - "Ser realista econòmicament, alineat amb el mercat laboral i aprovat pel departament d'orientació."
     correcta: 1
@@ -18,7 +18,7 @@ preguntas:
   - enunciado: "L'acrònim SMART, introduït per George T. Doran el 1981, exigix que un objectiu siga…"
     opciones:
       - "Senzill, Mesurable, Ambiciós, Ràpid, Treballat."
-      - "Específic, Mesurable, Assolible, Rellevant i amb termini (Time-bound)."
+      - "Específic, Mesurable, Assolible, Rellevant i amb termini."
       - "Sostenible, Motivador, Auditable, Realista, Transversal."
       - "Sintètic, Memoritzable, Assumible, Repetible, Tangible."
     correcta: 1
@@ -33,10 +33,10 @@ preguntas:
     explicacion: "La quarta és un **desig**, no un objectiu SMART: *bon treball* i *feliç* no són específics ni mesurables, no hi ha termini i no hi ha manera objectiva de comprovar el compliment. Quan un objectiu no es pot formular SMART, cal investigar-lo més abans de perseguir-lo."
   - enunciado: "El pla a tres horitzons temporals que proposa la unitat s'estructura així:"
     opciones:
-      - "Curt termini 1 mes, mitjà termini 1 any, llarg termini 5 anys."
-      - "Curt termini 6 mesos, mitjà termini 2 anys, llarg termini 7 anys."
-      - "Curt termini 12 mesos (molt operatiu, SMART complet), mitjà termini 3-5 anys (diversos escenaris), llarg termini 10 anys (tipus de vida, no lloc concret)."
-      - "Curt termini 3 anys, mitjà termini 10 anys, llarg termini 25 anys."
+      - "Curt termini 1 mes (diari), mitjà termini 1 any (curs escolar), llarg termini 5 anys (carrera)."
+      - "Curt termini 6 mesos (trimestral), mitjà termini 2 anys (cicle formatiu), llarg termini 7 anys."
+      - "Curt termini 12 mesos (SMART complet), mitjà 3-5 anys (escenaris), llarg 10 anys (tipus de vida)."
+      - "Curt termini 3 anys (carrera), mitjà termini 10 anys (vida laboral), llarg termini 25 anys (jubilació)."
     correcta: 2
     explicacion: "El **curt termini (12 mesos)** s'escriu amb objectius SMART complets perquè és el que es treballarà la setmana que ve. El **mitjà termini (3-5 anys)** s'escriu amb dos o tres escenaris alternatius. El **llarg termini (10 anys)** és deliberadament borrós i descriu **tipus de vida**, no lloc concret."
   - enunciado: "Sobre el llarg termini (horitzó de 10 anys), la unitat afirma que…"

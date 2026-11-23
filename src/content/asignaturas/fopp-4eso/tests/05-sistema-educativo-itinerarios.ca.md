@@ -49,10 +49,10 @@ preguntas:
     explicacion: "El **Grau Bàsic** és una passarel·la per a alumnat sense títol d'ESO (15-17 anys): permet obtindre simultàniament el títol d'ESO i un títol professional bàsic. El **Grau Mitjà** requerix el títol d'ESO i titula directament com a **tècnic** en una especialitat."
   - enunciado: "Un titulat en FP de Grau Superior, pot accedir a la universitat?"
     opciones:
-      - "No, necessita repetir Batxillerat abans."
-      - "No, la FP Superior només dóna accés al mercat laboral."
-      - "Sí, sense PAU obligatòria en molts casos; la fase voluntària servix per a pujar nota."
-      - "Sí, però només a graus de la mateixa família professional."
+      - "No, necessita repetir Batxillerat abans de poder sol·licitar plaça."
+      - "No, la FP Superior només dona accés directe al mercat laboral."
+      - "Sí, sovint sense PAU; la fase voluntària servix per a pujar nota."
+      - "Sí, però només a graus de la mateixa família professional que el cicle."
     correcta: 2
     explicacion: "El títol de Tècnic Superior dóna **accés directe a la universitat** sense necessitat de superar la fase obligatòria de la PAU. Si es vol pujar nota o ponderar per a graus molt demandats, es pot fer la fase voluntària. És una de les passarel·les més importants del sistema."
   - enunciado: "Les Escoles Oficials d'Idiomes (EOI)…"

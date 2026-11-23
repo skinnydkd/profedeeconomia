@@ -25,18 +25,18 @@ preguntas:
     explicacion: "S'inspira pel nas comptant fins a 4, es reté l'aire comptant fins a 7 i s'espira per la boca comptant fins a 8. Allargar l'espiració respecte a la inspiració activa el nervi vague i baixa la freqüència cardíaca en menys d'un minut."
   - enunciado: "Quina afirmació descriu MILLOR una autoestima sana?"
     opciones:
-      - "Creure's superior als altres i no acceptar crítiques."
-      - "Subestimar-se, comparar-se a la baixa i evitar riscos per por al fracàs."
-      - "Acceptar-se com un és, reconéixer fortaleses i límits sense dramatitzar, assumir errors sense enfonsar-se."
-      - "No sentir mai dubtes sobre un mateix ni demanar ajuda a ningú."
+      - "Creure's superior als altres i no acceptar crítiques de ningú, ni tan sols constructives."
+      - "Subestimar-se, comparar-se sempre a la baixa i evitar riscos per por de fracassar."
+      - "Acceptar-se com un és, reconéixer fortaleses i límits i assumir errors sense enfonsar-se."
+      - "No sentir mai dubtes sobre un mateix ni demanar ajuda a ningú en cap moment."
     correcta: 2
     explicacion: "L'autoestima sana no és «com més alta, millor». Implica una acceptació realista, assumir errors sense esfondrar-se i rebre crítiques sense sentir-se atacat. L'opció A descriu autoestima inflada (narcisista) i l'opció B autoestima dèbil."
   - enunciado: "La diferència entre autoestima inflada i autoestima sana és que la inflada…"
     opciones:
-      - "És més alta i per tant més beneficiosa."
-      - "Aparenta fortalesa però és fràgil: qualsevol crítica es viu com a atac."
-      - "Només apareix en persones amb èxit professional."
-      - "És exactament el mateix que l'autoconfiança tècnica."
+      - "És més alta i per tant més beneficiosa per a la persona."
+      - "Aparenta fortalesa però és fràgil: tota crítica és un atac."
+      - "Només apareix en persones amb èxit professional o econòmic."
+      - "És exactament el mateix que l'autoconfiança tècnica en una tasca."
     correcta: 1
     explicacion: "L'autoestima inflada o narcisista pareix forta però és fràgil. Atribuïx èxits a un mateix i fracassos a altres, i reacciona malament a qualsevol crítica. L'autoestima sana, en canvi, integra la crítica sense enfonsar-se."
   - enunciado: "Segons la reanàlisi de Twenge i col·laboradors (*Acta Psychologica*, 2022), la relació entre les hores d'ús de xarxes socials i els símptomes depressius en adolescents…"
@@ -57,10 +57,10 @@ preguntas:
     explicacion: "Retocar les fotos abans de publicar-les és molt habitual entre adolescents. La dismòrfia digital és la distorsió entre el jo real i el jo digital, i ja l'han descrita cirurgians plàstics que atenen pacients que volen assemblar-se a les seues fotos filtrades."
   - enunciado: "La fórmula assertiva de Marshall Rosenberg per a abordar un conflicte personal és…"
     opciones:
-      - "«Tu sempre... mai... eres un...»"
+      - "«Tu sempre... tu mai... ets un... i no canviaràs mai.»"
       - "«Jo sent... quan tu... perquè... m'agradaria que...»"
-      - "«No m'importa, deixa-ho, ja dóna igual.»"
-      - "«Si tornes a fer-ho, et jure que...»"
+      - "«No m'importa, deixa-ho, ja és igual, fes el que vulgues.»"
+      - "«Si ho tornes a fer, et jure que no et torne a parlar.»"
     correcta: 1
     explicacion: "La Comunicació No Violenta de Rosenberg proposa quatre passos: nomenar l'emoció pròpia, descriure el fet concret sense generalitzar, explicar el motiu des de la pròpia necessitat i proposar una alternativa concreta. És la zona mitjana entre passivitat (callar) i agressivitat (atacar)."
   - enunciado: "Quines són les tres senyals d'alarma que convé prendre's de debò quan apareixen juntes o duren diverses setmanes?"

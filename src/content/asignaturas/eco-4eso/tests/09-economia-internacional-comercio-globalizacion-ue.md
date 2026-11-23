@@ -7,10 +7,10 @@ estado: publicado
 preguntas:
   - enunciado: "¿Por qué comercian dos países aunque uno sea más eficiente que el otro produciendo absolutamente todo?"
     opciones:
-      - "Por costumbre histórica."
-      - "Porque a cada uno le sale más barato, en términos de lo que deja de producir, especializarse en aquello donde su coste de oportunidad es menor."
-      - "Porque las leyes internacionales obligan a comerciar."
-      - "No comercian: el país más eficiente produce todo lo que necesita."
+      - "Por costumbre histórica y por las relaciones diplomáticas entre ambos países."
+      - "Porque a cada uno le conviene especializarse en lo de menor coste de oportunidad."
+      - "Porque las leyes internacionales obligan a todos los países a comerciar entre sí."
+      - "No comercian: el país más eficiente produce todo lo que necesita para sí mismo."
     correcta: 1
     explicacion: "Es la ventaja comparativa de David Ricardo. Lo que decide la especialización no es quién produce con menos recursos (ventaja absoluta), sino a quién le cuesta menos en términos de lo que renuncia."
   - tipo: numerico
@@ -33,10 +33,10 @@ preguntas:
     explicacion: "El arancel sube el precio, la cuota limita la cantidad y la subvención abarata artificialmente lo que vendemos fuera. Los tres protegen a un sector nacional y los tres los acaban pagando, de una forma u otra, los consumidores o los contribuyentes."
   - enunciado: "Estados Unidos impone un arancel a un producto español. ¿Quién sale ganando y quién perdiendo?"
     opciones:
-      - "Ganan los productores estadounidenses de ese producto; pierden los exportadores españoles y los consumidores estadounidenses, que pagan más caro."
-      - "Ganan todos los estadounidenses y no pierde nadie."
-      - "Pierden solo los gobiernos."
-      - "Gana el consumidor estadounidense, porque el producto baja de precio."
+      - "Ganan los productores de EE. UU.; pierden los exportadores españoles y los consumidores de EE. UU."
+      - "Ganan todos los estadounidenses, porque el arancel protege la economía de EE. UU. y no pierde nadie."
+      - "Pierden solo los gobiernos, que dejan de ingresar impuestos por el comercio."
+      - "Gana el consumidor estadounidense, porque el producto baja de precio al llegar."
     correcta: 0
     explicacion: "El arancel protege al productor nacional del país que lo impone y recauda para su Estado, pero encarece el producto a sus propios consumidores. Por eso una guerra arancelaria no tiene ganadores netos claros."
   - tipo: verdadero-falso
@@ -54,17 +54,17 @@ preguntas:
   - enunciado: "¿Qué son las «cuatro libertades» del mercado único europeo?"
     opciones:
       - "Libertad de prensa, de reunión, de religión y de expresión."
-      - "Libre circulación de mercancías, servicios, capitales y personas."
-      - "Libertad para fijar impuestos, salarios, precios y horarios."
+      - "Libre circulación de bienes, servicios, capitales y personas."
+      - "Libertad para fijar impuestos, salarios, precios y horarios en cada país."
       - "Libre elección de moneda, bandera, himno e idioma."
     correcta: 1
     explicacion: "Son la base del mercado único: un producto legal en un país puede venderse en los demás, una empresa puede prestar servicios en otro país, el dinero circula sin trabas y cualquier ciudadano puede vivir y trabajar en los 27."
   - enunciado: "Next Generation EU es el fondo europeo de recuperación tras la pandemia. ¿Qué tuvo de novedoso?"
     opciones:
-      - "Que cada país se endeudó por su cuenta."
-      - "Que la Comisión Europea se endeudó en común para repartir transferencias y préstamos entre los Estados miembros."
-      - "Que lo financió íntegramente el Banco Central Europeo imprimiendo dinero."
-      - "Que solo lo recibieron los países del norte de Europa."
+      - "Que cada país se endeudó por su cuenta con ayuda de su propio banco central."
+      - "Que la Comisión Europea se endeudó en común para repartir ayudas entre los Estados."
+      - "Que lo financió íntegramente el Banco Central Europeo imprimiendo dinero nuevo para los Estados."
+      - "Que solo lo recibieron los países del norte de Europa, por ser los más ricos."
     correcta: 1
     explicacion: "Por primera vez la Unión se endeudó a gran escala en común, 750.000 millones, para repartirlos según el impacto de la crisis. España es la segunda receptora, con unos 80.000 millones en transferencias más préstamos."
   - tipo: numerico
@@ -75,10 +75,10 @@ preguntas:
     explicacion: "220 / 1,10 = 200 €. Si el euro se depreciara hasta 1 € = 1,00 dólar, el mismo producto costaría 220 €: viajar y comprar fuera se encarece, pero nuestras exportaciones se abaratan para los clientes extranjeros."
   - enunciado: "Se dice que la globalización tiene luces y sombras. ¿Cuál de estos pares recoge mejor una de cada?"
     opciones:
-      - "Luz: precios más bajos y más variedad. Sombra: dependencia de cadenas lejanas, como se vio con los chips o el canal de Suez."
-      - "Luz: menos contaminación. Sombra: menos variedad de productos."
-      - "Luz: más aranceles. Sombra: más comercio."
-      - "Luz: menos migraciones. Sombra: menos turismo."
+      - "Luz: precios más bajos y variedad. Sombra: dependencia de cadenas lejanas."
+      - "Luz: menos contaminación. Sombra: menos variedad de productos en las tiendas."
+      - "Luz: más aranceles para proteger empleos. Sombra: más comercio entre países."
+      - "Luz: menos migraciones. Sombra: menos turismo y menos intercambio cultural."
     correcta: 0
     explicacion: "La apertura ha abaratado productos y ha sacado de la pobreza a cientos de millones de personas en Asia, pero ha dejado cadenas de suministro largas y frágiles y ha trasladado costes laborales y ambientales a los países que producen."
 ---

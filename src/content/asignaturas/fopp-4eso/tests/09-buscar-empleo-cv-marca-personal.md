@@ -7,18 +7,18 @@ estado: publicado
 preguntas:
   - enunciado: "¿Cuáles son los tres formatos básicos para organizar un currículum vitae?"
     opciones:
-      - "Académico, profesional y artístico."
+      - "Académico, profesional y artístico, según el perfil de quien busca."
       - "Cronológico, funcional y mixto (o combinado)."
-      - "Europass, LinkedIn y americano."
-      - "Junior, sénior y ejecutivo."
+      - "Europass, LinkedIn y americano, que son tres plantillas de la web."
+      - "Junior, sénior y ejecutivo, según los años de experiencia."
     correcta: 1
     explicacion: "Los tres formatos básicos son **cronológico** (experiencia ordenada de más reciente a más antigua), **funcional** (agrupada por habilidades o áreas de conocimiento) y **mixto** (bloque destacado de competencias + experiencia en orden cronológico inverso). Para alumnado que termina ESO, Bachillerato o FP, el formato recomendado por defecto es el **mixto**."
   - enunciado: "Un perfil junior con cambio radical de sector y sin experiencia laboral relevante en el nuevo campo, ¿qué formato de CV le conviene más?"
     opciones:
-      - "Cronológico puro: muestra trayectoria coherente."
+      - "Cronológico puro: muestra una trayectoria laboral coherente."
       - "Funcional: agrupa por habilidades y áreas, no por fechas."
       - "Europass siempre, sin alternativa."
-      - "Una sola página tipo carta de presentación."
+      - "Una sola página tipo carta de presentación, sin fechas."
     correcta: 1
     explicacion: "El formato **funcional** agrupa la experiencia por habilidades o áreas de conocimiento, no por fechas. Es útil para perfiles sin experiencia laboral relevante en el nuevo campo o que cambian radicalmente de sector, porque permite destacar competencias transferibles sin que los huecos cronológicos sean lo primero que ve el reclutador."
   - enunciado: "¿Cuál de los siguientes NO aparece entre los siete errores más comunes que descartan un CV junior en el primer filtro?"
@@ -57,7 +57,7 @@ preguntas:
     opciones:
       - "Las ofertas que solo se publican en portales de pago o en redes profesionales de suscripción."
       - "Los trabajos sin contrato ni alta en la Seguridad Social, que se pagan en negro."
-      - "Los puestos que se cubren sin publicarse: por recomendación, contactos o candidatura espontánea."
+      - "Los puestos que se cubren sin publicarse, por recomendación o contactos."
       - "Las plazas del sector público que se cubren por oposición y no aparecen en portales."
     correcta: 2
     explicacion: "El **mercado oculto** son los puestos que nunca llegan a los portales de empleo: se cubren por recomendación interna, contactos profesionales o candidaturas espontáneas bien dirigidas. Según distintos estudios son la mayoría, aunque las cifras varían y no hay una estadística oficial. Por eso avisar a tu red (profesores, exalumnos, familia, antiguos jefes de prácticas) pesa tanto como mandar CV a portales."

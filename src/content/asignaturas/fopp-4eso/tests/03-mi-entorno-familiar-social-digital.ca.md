@@ -9,10 +9,10 @@ slug: "asignaturas/fopp-4eso/tests/03-mi-entorno-familiar-social-digital.ca"
 preguntas:
   - enunciado: "Segons la lectura simplificada de Pierre Bourdieu, el *capital cultural* familiar és…"
     opciones:
-      - "Els diners que la família pot dedicar a classes particulars i matrícules."
-      - "El conjunt de sabers, hàbits, gustos i referències que s'adquirixen simplement per créixer en un determinat entorn familiar."
-      - "La xarxa de contactes professionals del pare o de la mare."
-      - "El nivell d'estudis formals acreditat pels progenitors."
+      - "Els diners que la família pot dedicar a classes particulars, matrícules i activitats extra."
+      - "El conjunt de sabers, hàbits i gustos que s'adquirixen per créixer en un entorn familiar."
+      - "La xarxa de contactes professionals que tenen el pare o la mare en el seu sector."
+      - "El nivell d'estudis formals acreditat pels progenitors i els seus títols."
     correcta: 1
     explicacion: "Capital econòmic = diners i béns; capital social = xarxa de contactes; capital cultural = sabers, hàbits i referències adquirits a casa (llibres, converses, idiomes, hàbits d'estudi, museus). És el més invisible i el que més es transmet sense voler."
   - enunciado: "L'anomenat *sostre familiar*…"
@@ -25,8 +25,8 @@ preguntas:
     explicacion: "El sostre familiar és real, però no és destí. La sociologia contemporània documenta mobilitat social via educació pública, beques, associacions/esports/voluntariat i migracions laborals. La família et dóna el punt d'eixida; tu decidixes quant de camí recorres."
   - enunciado: "Estàs estudiant a casa i no et ve de gust eixir, però penses: *si no vaig, demà tots parlaran del pla i jo em quedaré fora*. Ningú t'ha demanat res. Quin tipus de pressió grupal és esta?"
     opciones:
-      - "Pressió grupal explícita."
-      - "Pressió grupal implícita."
+      - "Pressió grupal explícita i directa."
+      - "Pressió grupal implícita i subtil."
       - "Pressió grupal anticipada."
       - "FOMO clínic."
     correcta: 2
@@ -41,10 +41,10 @@ preguntas:
     explicacion: "Les cinc senyals són: control, aïllament, desvalorització, manipulació emocional i violència (física, verbal o sexual). Tindre gustos distints no és senyal de toxicitat; el patró sistemàtic de control sobre l'altra persona sí que ho és."
   - enunciado: "Les dos diferències clau del *ciberassetjament* respecte a l'assetjament tradicional són…"
     opciones:
-      - "Ocorre només entre desconeguts i no deixa proves."
-      - "Ocorre 24 hores al dia (no para en eixir del centre) i l'agressor pot actuar sota anonimat."
-      - "Només afecta xiques i no genera conseqüències penals."
-      - "És sempre menys greu perquè no hi ha contacte físic."
+      - "Ocorre només entre desconeguts i no deixa cap mena de proves ni rastre."
+      - "Ocorre les 24 hores, no para en eixir i l'agressor pot ser anònim."
+      - "Només afecta xiques i no genera conseqüències penals per a qui ho comet."
+      - "És sempre menys greu perquè no hi ha contacte físic entre víctima i agressor."
     correcta: 1
     explicacion: "Olweus va definir l'assetjament com a agressió intencional, repetida i amb desequilibri de poder. El ciberassetjament afig dos trets: continuïtat 24/7 i possibilitat d'anonimat, que rebaixa inhibicions de l'agressor. Té conseqüències penals reals des dels 14 anys (LO 5/2000)."
   - enunciado: "En el triangle de l'assetjament (víctima, agressor, observador), quina figura és decisiva perquè l'assetjament pare en pocs dies, segons la investigació d'Olweus?"
@@ -65,10 +65,10 @@ preguntas:
     explicacion: "Les cinc regles són: no publicar emocional, defendre cara a cara, configurar privacitat, no compartir ubicació en directe i exercir el dret a l'oblit del RGPD. Els comptes anònims no protegixen la teua petjada digital ni t'eximixen de responsabilitat legal (dret a l'honor, LO 1/1982)."
   - enunciado: "L'article 17 del **RGPD** (Reglament UE 2016/679) reconeix…"
     opciones:
-      - "El dret a rebre publicitat personalitzada."
-      - "El dret de supressió, conegut també com a *dret a l'oblit*: poder demanar formalment l'esborrament de les teues dades."
+      - "El dret a rebre publicitat personalitzada en totes les plataformes digitals."
+      - "El dret de supressió o *dret a l'oblit*: demanar l'esborrat de les teues dades."
       - "L'obligació de les plataformes de conservar les teues dades durant deu anys."
-      - "Només s'aplica a persones majors d'edat."
+      - "Només s'aplica a persones majors d'edat i a empreses espanyoles."
     correcta: 1
     explicacion: "L'article 17 del RGPD reconeix el dret de supressió (dret a l'oblit): podeu sol·licitar a Google o a qualsevol xarxa social que esborre contingut vostre que ja no us representa. És un dels sis drets del RGPD (accés, rectificació, supressió, oposició, limitació, portabilitat) i funciona més sovint del que pareix."
   - tipo: verdadero-falso

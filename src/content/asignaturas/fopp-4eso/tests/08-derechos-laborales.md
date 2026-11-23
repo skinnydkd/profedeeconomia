@@ -7,18 +7,18 @@ estado: publicado
 preguntas:
   - enunciado: "¿En cuánto está fijado el Salario Mínimo Interprofesional (SMI) para 2026 según el Real Decreto que lo actualiza?"
     opciones:
-      - "1.080 € brutos mensuales en 12 pagas."
-      - "1.134 € brutos mensuales en 14 pagas."
+      - "1.080 € brutos mensuales en 12 pagas (12.960 € anuales)."
+      - "1.134 € brutos mensuales en 14 pagas (15.876 € anuales)."
       - "1.221 € brutos mensuales en 14 pagas (17.094 € anuales)."
-      - "1.260 € brutos mensuales en 14 pagas."
+      - "1.260 € brutos mensuales en 14 pagas (17.640 € anuales)."
     correcta: 2
     explicacion: "El SMI 2026 está fijado en **1.221 € brutos mensuales en 14 pagas**, lo que equivale a 17.094 € anuales. Es un suelo legal absoluto: ningún contrato ni convenio puede pagar menos. Pagar por debajo del SMI es una infracción muy grave del Estatuto de los Trabajadores."
   - enunciado: "¿Cuál es la jornada máxima legal establecida por el Estatuto de los Trabajadores (art. 34)?"
     opciones:
-      - "35 horas semanales en cómputo mensual, con máximo de 8 horas diarias."
-      - "40 horas semanales en cómputo anual, con máximo de 9 horas ordinarias diarias y 12 horas de descanso entre jornadas."
-      - "45 horas semanales fijas, con descanso de 8 horas entre jornadas."
-      - "48 horas semanales, según la Directiva europea de tiempo de trabajo."
+      - "35 horas semanales en cómputo mensual, con máximo de 8 horas diarias y 10 de descanso."
+      - "40 horas semanales en cómputo anual, máximo 9 diarias y 12 de descanso entre jornadas."
+      - "45 horas semanales fijas, con descanso de 8 horas entre jornadas y dos días libres."
+      - "48 horas semanales, según la Directiva europea de tiempo de trabajo, como mínimo."
     correcta: 1
     explicacion: "El ET fija **40 horas semanales en cómputo anual**, lo que permite distribuirlas de forma irregular (45 una semana, 35 la siguiente) siempre que la media anual no se supere. El máximo diario son 9 horas para adultos y debe haber al menos 12 horas de descanso entre jornadas. La mayoría de convenios fijan jornadas efectivas inferiores (1.700-1.800 horas anuales)."
   - enunciado: "¿Cuántos días de vacaciones retribuidas garantiza el Estatuto de los Trabajadores por año completo trabajado?"
@@ -31,10 +31,10 @@ preguntas:
     explicacion: "El ET art. 38 garantiza **30 días naturales por año trabajado**. No se pueden canjear por dinero salvo si el contrato se extingue antes de disfrutarlas (entonces se cobran en el finiquito). En contratos cortos se calculan proporcionalmente: 30 × (días trabajados / 365)."
   - enunciado: "¿Cuántas pagas extraordinarias mínimas reconoce el Estatuto de los Trabajadores al año?"
     opciones:
-      - "Una sola, en Navidad."
-      - "Dos como mínimo, equivalentes cada una a una mensualidad, normalmente en junio y Navidad."
-      - "Tres: junio, septiembre y Navidad."
-      - "Ninguna obligatoria; depende íntegramente del convenio."
+      - "Una sola, en Navidad, de importe fijado por la empresa."
+      - "Dos, cada una de una mensualidad, normalmente en junio y Navidad."
+      - "Tres al año: junio, septiembre y Navidad, como mínimo."
+      - "Ninguna obligatoria; depende íntegramente de lo que fije el convenio."
     correcta: 1
     explicacion: "El ET art. 31 garantiza **dos pagas extras mínimas al año** (junio y Navidad, una mensualidad cada una). El convenio puede establecer más, y pueden estar **prorrateadas mes a mes** si el convenio o el contrato lo permiten. Esta estructura de 14 pagas es una rareza europea: la mayoría de países pagan solo 12 nóminas."
   - enunciado: "Si una empresa despide a un trabajador **sin causa justificada (despido improcedente)**, ¿cuál es la indemnización legal vigente tras la Reforma Laboral de 2012?"
@@ -50,7 +50,7 @@ preguntas:
       - "Evaluar los riesgos de cada puesto y elaborar un Plan de Prevención accesible."
       - "Proporcionar formación específica sobre los riesgos, antes de empezar y dentro de la jornada."
       - "Entregar los equipos de protección individual (EPI) gratis, sin descontarlos del salario."
-      - "Cobrar al trabajador el coste de los reconocimientos médicos periódicos relacionados con los riesgos del puesto."
+      - "Cobrar al trabajador los reconocimientos médicos periódicos relacionados con el puesto."
     correcta: 3
     explicacion: "La LPRL (art. 22) obliga al empresario a **ofrecer reconocimientos médicos gratuitos** y, por norma general, voluntarios para el trabajador. Cobrarlos sería una infracción grave. Las otras tres opciones sí son obligaciones reales del empresario: evaluar riesgos (art. 16), formar antes de empezar (art. 19) y entregar EPI gratis (art. 17 y RD 773/1997)."
   - enunciado: "¿Qué es un accidente in itinere y por qué importa?"

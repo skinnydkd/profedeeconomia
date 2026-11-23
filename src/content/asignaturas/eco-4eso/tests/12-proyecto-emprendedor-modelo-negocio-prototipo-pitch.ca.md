@@ -9,10 +9,10 @@ slug: "asignaturas/eco-4eso/tests/12-proyecto-emprendedor-modelo-negocio-prototi
 preguntas:
   - enunciado: "Per què el Design Thinking comença per empatitzar i no per generar idees?"
     opciones:
-      - "Perquè les idees s'esgoten si es pensen al principi."
-      - "Perquè abans de resoldre cal entendre el problema de qui el patix; si no, es resol un problema que ningú té."
-      - "Perquè és la fase més ràpida."
-      - "Perquè ho exigix la llei d'emprenedoria."
+      - "Perquè les idees s'esgoten si es pensen al principi del procés."
+      - "Perquè sense entendre el problema es resol un que ningú té."
+      - "Perquè és la fase més ràpida i barata de tot el procés de disseny."
+      - "Perquè ho exigix la llei d'emprenedoria a qui rep ajudes."
     correcta: 1
     explicacion: "La majoria de projectes que fracassen no fallen per execució, sinó perquè ningú necessitava el que oferien. Empatitzar —entrevistar, observar— evita construir una solució sense problema."
   - tipo: relacionar
@@ -55,18 +55,18 @@ preguntas:
     explicacion: "El marge cau a 5 € i el punt mort puja a 240 / 5 = 48 bosses. Abaixar el preu un 17 % obliga a vendre'n un 37 % més només per a no perdre diners: el preu és la palanca més delicada del projecte."
   - enunciado: "Quina d'estes és una mètrica accionable i no una mètrica de vanitat?"
     opciones:
-      - "El nombre de seguidors del compte del projecte."
-      - "Les visites totals acumulades des del llançament."
-      - "El percentatge de persones que, després de vore la pàgina, deixen el seu correu o fan una comanda."
-      - "Els «m'agrada» de la millor publicació."
+      - "El nombre total de seguidors del compte del projecte en xarxes."
+      - "Les visites totals acumulades des del llançament del projecte."
+      - "El percentatge de visitants que deixen el seu correu o fan comanda."
+      - "Els «m'agrada» de la millor publicació de tota la campanya."
     correcta: 2
     explicacion: "Una mètrica és accionable quan, en moure's, et diu què fer a continuació. La taxa de conversió assenyala si la proposta convenç; els seguidors pugen fins i tot quan ningú compra."
   - enunciado: "Què significa pivotar en un projecte emprenedor?"
     opciones:
-      - "Abandonar el projecte quan les coses van malament."
-      - "Canviar una peça del model (el client, el canal, el problema que resols) mantenint el que s'ha aprés."
-      - "Abaixar el preu fins que algú compre."
-      - "Repartir la faena entre més persones."
+      - "Abandonar el projecte quan les coses van mal i començar-ne un altre des de zero una altra vegada."
+      - "Canviar una peça del model, com el client o el canal, sense començar de zero."
+      - "Baixar el preu una vegada i una altra fins que algú compre el producte."
+      - "Repartir el treball entre més persones de l'equip per a anar més ràpid."
     correcta: 1
     explicacion: "Pivotar és una decisió informada, no una rendició: les dades diuen que eixa part del model no funciona i es canvia eixa peça. Moltes empreses conegudes venen hui una cosa distinta de la que venien en començar."
   - enunciado: "Un elevator pitch de 60 segons ha de respondre, com a mínim…"
@@ -79,10 +79,10 @@ preguntas:
     explicacion: "En un minut no hi cap tot: hi cap el problema, la persona que el patix, la vostra solució i una petició concreta. Els detalls estan al pitch deck; el pitch només ha de guanyar la conversa següent."
   - enunciado: "Compareu finançar 1.500 € amb un préstec al 8 % o amb una campanya de crowdfunding amb recompenses. A més del cost, què aporta el crowdfunding?"
     opciones:
-      - "Res: sempre és més car i més lent."
-      - "Valida la idea, perquè hi ha gent que paga per avançat per una cosa que encara no existix."
-      - "Garantix que el producte funcione."
-      - "Evita haver d'entregar res a qui aporta diners."
+      - "Res: és sempre més car i més lent que demanar un préstec al banc."
+      - "Valida la idea: hi ha qui paga per avançat alguna cosa que no existix."
+      - "Garanteix que el producte funcione quan arribe a les persones."
+      - "Evita haver de lliurar res a qui aporta diners a la campanya."
     correcta: 1
     explicacion: "Si seixanta persones paguen per avançat, tens diners i una prova real de demanda. A canvi hi ha comissions, obligació d'entregar les recompenses i el risc de quedar-te a mitges si la campanya no arriba al seu objectiu."
 ---

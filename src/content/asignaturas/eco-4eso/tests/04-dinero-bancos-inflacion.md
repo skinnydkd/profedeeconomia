@@ -7,10 +7,10 @@ estado: publicado
 preguntas:
   - enunciado: "Quieres un bocadillo y solo tienes cromos. El del bocadillo no quiere cromos, quiere un cargador. ¿Qué problema del trueque ilustra esta escena?"
     opciones:
-      - "La falta de confianza entre desconocidos."
-      - "La doble coincidencia de necesidades: cada uno tiene que querer justo lo que ofrece el otro."
-      - "La inflación: los precios de los cromos cambian cada día."
-      - "La escasez: no hay bocadillos suficientes en el instituto."
+      - "La falta de confianza entre desconocidos que no pueden comprobar la calidad."
+      - "La doble coincidencia de necesidades: los dos deben querer lo del otro."
+      - "La inflación: los precios de los cromos cambian cada día sin control."
+      - "La escasez: no hay bocadillos suficientes para todo el instituto."
     correcta: 1
     explicacion: "El trueque exige que las dos partes quieran exactamente lo que la otra ofrece, en el mismo momento y en cantidades que encajen. El dinero rompe esa exigencia: el vendedor acepta euros porque sabe que con ellos comprará lo que él necesita."
   - enunciado: "Pagas el bocadillo con Bizum. ¿Qué tipo de dinero estás moviendo?"
@@ -45,10 +45,10 @@ preguntas:
     explicacion: "La cesta costaba 2,00 + 10,00 + 13,00 + 25,00 = 50,00 € y ahora cuesta 2,20 + 10,00 + 13,80 + 26,00 = 52,00 €. La inflación es (52 − 50) / 50 × 100 = 4 %. Aunque el bocadillo haya subido un 10 %, el índice general es menor porque hay productos que no han subido y pesan mucho en el gasto: así funciona el IPC."
   - enunciado: "¿Cumple el bitcoin las tres funciones del dinero?"
     opciones:
-      - "Sí, y además es moneda de curso legal en España desde 2024."
-      - "No: casi nadie lo acepta para pagar, nadie pone precios en bitcoins y su valor es demasiado volátil para guardar ahorro."
-      - "Sí, porque es escaso por diseño: solo habrá 21 millones de unidades."
-      - "No, porque no existe físicamente, y el dinero tiene que poder tocarse."
+      - "Sí, y además es moneda de curso legal en España desde 2024, igual que el euro."
+      - "No: casi nadie lo acepta, nadie fija precios en él y es muy volátil."
+      - "Sí, porque es escaso por diseño: solo habrá 21 millones de unidades, como el oro."
+      - "No, porque no existe físicamente, y el dinero tiene que poder tocarse y guardarse."
     correcta: 1
     explicacion: "La escasez por sí sola no convierte algo en dinero (los cromos raros también son escasos). Pasó de 69.000 dólares en 2021 a menos de 16.000 en 2022 y superó los 100.000 en 2024: por eso los bancos centrales lo consideran un activo especulativo. En España la única moneda de curso legal es el euro."
   - tipo: numerico
@@ -59,26 +59,26 @@ preguntas:
     explicacion: "El multiplicador del dinero es 1 dividido entre el coeficiente de caja: 1 / 0,10 = 10. Los 2.000 € iniciales pueden convertirse en 2.000 × 10 = 20.000 € (2.000 + 1.800 + 1.620 + …). En la realidad se queda bastante por debajo, porque parte del dinero se guarda en efectivo y los bancos mantienen reservas extra."
   - enunciado: "El BCE sube los tipos de interés, como hizo diez veces seguidas entre julio de 2022 y septiembre de 2023. ¿Qué cabe esperar?"
     opciones:
-      - "Que el euríbor suba, que suba la cuota de las hipotecas variables y que familias y empresas gasten e inviertan menos."
-      - "Que bajen inmediatamente los precios de los alimentos, porque el BCE los fija."
-      - "Que las empresas pidan más préstamos, porque el dinero vale más."
-      - "Que suba la inflación, porque hay más dinero circulando."
+      - "Que suba el euríbor, se encarezcan las hipotecas variables y se gaste menos."
+      - "Que bajen inmediatamente los precios de los alimentos, porque el BCE los fija cada mes."
+      - "Que las empresas pidan más préstamos, porque con tipos altos el dinero vale más."
+      - "Que suba la inflación, porque con tipos altos hay más dinero circulando en la economía."
     correcta: 0
     explicacion: "El banco central mueve una sola palanca, el precio del dinero, y el efecto se transmite en cadena: crédito más caro, menos consumo e inversión, menos demanda y precios que dejan de subir tan deprisa. El euríbor pasó del −0,50 % de finales de 2021 al 4,16 % de octubre de 2023, y una hipoteca media de 150.000 € pasó de unos 530 € al mes a unos 890 €."
   - enunciado: "Con una inflación alta, ¿quién sale ganando y quién perdiendo?"
     opciones:
-      - "Gana quien guarda el dinero en casa y pierde quien tiene deudas."
-      - "Ganan todos, porque los precios altos animan a producir más."
-      - "Gana quien debe dinero a tipo fijo y pierden los ahorradores y quienes tienen ingresos que no se actualizan."
-      - "Pierden solo las empresas; las familias no lo notan."
+      - "Gana quien guarda el dinero en casa y pierde quien tiene deudas a tipo fijo."
+      - "Ganan todos, porque los precios altos animan a producir más y a contratar."
+      - "Gana quien debe a tipo fijo; pierden los ahorradores y las rentas fijas."
+      - "Pierden solo las empresas, porque las familias no notan la subida de precios."
     correcta: 2
     explicacion: "El deudor devuelve la misma cantidad de euros, pero esos euros valen menos: su deuda se encoge en términos reales (por eso el mayor deudor, el Estado, no odia la inflación moderada). Pierden quien guarda dinero parado y quien cobra rentas fijas; por eso las pensiones se actualizan con el IPC desde la Ley 21/2021."
   - enunciado: "En 2023 el aceite de oliva subió un 54,6 % y, sin embargo, la inflación media en España fue del 3,5 %. ¿Cómo puede ser?"
     opciones:
-      - "Porque el INE no incluye el aceite en la cesta de la compra."
-      - "Porque el IPC mide unos 490 productos y cada uno pesa según lo que las familias gastan en él: un producto no arrastra al índice entero."
-      - "Porque el IPC solo mide los precios de los alimentos básicos."
-      - "Porque el dato del aceite era nominal y el del IPC, real."
+      - "Porque el INE no incluye el aceite de oliva en la cesta de la compra de las familias."
+      - "Porque el IPC pondera unos 490 productos según su peso: uno solo no arrastra el índice."
+      - "Porque el IPC solo mide los precios de los alimentos básicos y no los de la energía."
+      - "Porque el dato del aceite era nominal y el del IPC, que es una media, era real."
     correcta: 1
     explicacion: "Inflación es la subida general y sostenida de los precios, no la de un producto. El INE recoge cientos de miles de precios de unos 490 productos y los pondera con la Encuesta de Presupuestos Familiares: la vivienda y la alimentación pesan mucho, y un artículo concreto, poco."
 ---

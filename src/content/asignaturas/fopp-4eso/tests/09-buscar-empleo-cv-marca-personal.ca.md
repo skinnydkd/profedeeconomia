@@ -9,18 +9,18 @@ slug: "asignaturas/fopp-4eso/tests/09-buscar-empleo-cv-marca-personal.ca"
 preguntas:
   - enunciado: "Quins són els tres formats bàsics per a organitzar un currículum vitae?"
     opciones:
-      - "Acadèmic, professional i artístic."
+      - "Acadèmic, professional i artístic, segons el perfil de qui busca."
       - "Cronològic, funcional i mixt (o combinat)."
-      - "Europass, LinkedIn i americà."
-      - "Júnior, sènior i executiu."
+      - "Europass, LinkedIn i americà, que són tres plantilles del web."
+      - "Júnior, sènior i executiu, segons els anys d'experiència."
     correcta: 1
     explicacion: "Els tres formats bàsics són **cronològic** (experiència ordenada de més recent a més antiga), **funcional** (agrupada per habilitats o àrees de coneixement) i **mixt** (bloc destacat de competències + experiència en orde cronològic invers). Per a alumnat que acaba ESO, Batxillerat o FP, el format recomanat per defecte és el **mixt**."
   - enunciado: "Un perfil júnior amb canvi radical de sector i sense experiència laboral rellevant en el nou camp, quin format de CV li convé més?"
     opciones:
-      - "Cronològic pur: mostra trajectòria coherent."
+      - "Cronològic pur: mostra una trajectòria laboral coherent."
       - "Funcional: agrupa per habilitats i àrees, no per dates."
       - "Europass sempre, sense alternativa."
-      - "Una sola pàgina tipus carta de presentació."
+      - "Una sola pàgina tipus carta de presentació, sense dates."
     correcta: 1
     explicacion: "El format **funcional** agrupa l'experiència per habilitats o àrees de coneixement, no per dates. És útil per a perfils sense experiència laboral rellevant en el nou camp o que canvien radicalment de sector, perquè permet destacar competències transferibles sense que els buits cronològics siguen el primer que veu el reclutador."
   - enunciado: "Quin dels següents NO apareix entre els set errors més comuns que descarten un CV júnior en el primer filtre?"
@@ -59,7 +59,7 @@ preguntas:
     opciones:
       - "Les ofertes que només es publiquen en portals de pagament o en xarxes professionals de subscripció."
       - "Els treballs sense contracte ni alta en la Seguretat Social, que es paguen en negre."
-      - "Els llocs que es cobrixen sense publicar-se: per recomanació, contactes o candidatura espontània."
+      - "Els llocs que es cobrixen sense publicar-se, per recomanació o contactes."
       - "Les places del sector públic que es cobrixen per oposició i no apareixen en portals."
     correcta: 2
     explicacion: "El **mercat ocult** són els llocs que mai arriben als portals d'ocupació: es cobrixen per recomanació interna, contactes professionals o candidatures espontànies ben dirigides. Segons diferents estudis són la majoria, encara que les xifres varien i no hi ha una estadística oficial. Per això avisar la teua xarxa (professors, exalumnes, família, antics caps de pràctiques) pesa tant com enviar CV a portals."

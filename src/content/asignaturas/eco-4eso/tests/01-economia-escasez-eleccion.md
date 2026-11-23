@@ -7,10 +7,10 @@ estado: publicado
 preguntas:
   - enunciado: "¿Por qué existe la economía como ciencia?"
     opciones:
-      - "Porque el dinero es un invento reciente y hay que estudiarlo."
-      - "Porque los deseos son casi ilimitados y los medios para satisfacerlos son limitados, así que hay que elegir."
-      - "Porque los gobiernos necesitan recaudar impuestos."
-      - "Porque las empresas quieren ganar el máximo beneficio posible."
+      - "Porque el dinero es un invento reciente y todavía no se entiende bien cómo funciona."
+      - "Porque los deseos son ilimitados y los recursos escasos, así que hay que elegir."
+      - "Porque los gobiernos necesitan saber cuánto pueden recaudar en impuestos cada año."
+      - "Porque las empresas necesitan calcular cómo ganar el máximo beneficio posible."
     correcta: 1
     explicacion: "La escasez es el punto de partida: si todo fuera ilimitado no habría que decidir nada y no haría falta la economía. Elegir es lo que estudia esta ciencia."
   - tipo: verdadero-falso
@@ -28,8 +28,8 @@ preguntas:
   - enunciado: "Una panadería compra un horno industrial. ¿Qué tipo de bien es ese horno?"
     opciones:
       - "Un bien libre, porque el pan es una necesidad básica."
-      - "Un bien de consumo duradero."
-      - "Un bien de capital, porque sirve para producir otros bienes."
+      - "Un bien de consumo duradero, porque dura muchos años."
+      - "Un bien de capital, porque sirve para producir."
       - "Un bien público, porque cualquiera puede comprar pan."
     correcta: 2
     explicacion: "Los bienes de capital son bienes ya producidos que sirven para producir otros: máquinas, herramientas, edificios. El pan que sale del horno sí es un bien de consumo."
@@ -61,25 +61,25 @@ preguntas:
     explicacion: "Con la frontera en línea recta, renunciar a la mitad de los bocadillos (de 200 a 100) libera la mitad de los recursos, que dan la mitad de los zumos: 150. El coste de oportunidad de cada bocadillo es 1,5 zumos."
   - enunciado: "Un punto situado DENTRO de la frontera de posibilidades de producción indica que la economía…"
     opciones:
-      - "Está produciendo de forma eficiente."
-      - "Está desaprovechando recursos: podría producir más de un bien sin renunciar al otro."
-      - "Está produciendo algo imposible con sus recursos actuales."
+      - "Está produciendo de forma eficiente, aprovechando todos sus recursos."
+      - "Desaprovecha recursos: podría producir más sin renunciar a nada."
+      - "Está produciendo algo imposible con sus recursos y tecnología actuales."
       - "Ha crecido y ha desplazado su frontera hacia fuera."
     correcta: 1
     explicacion: "Dentro de la frontera hay ineficiencia: máquinas paradas, personas en paro o recursos mal usados. Sobre la frontera hay eficiencia y fuera de ella, puntos inalcanzables hasta que la economía crezca."
   - enunciado: "En el flujo circular de la renta, ¿qué aportan las familias a las empresas y qué reciben a cambio?"
     opciones:
-      - "Aportan impuestos y reciben servicios públicos."
-      - "Aportan factores productivos (sobre todo trabajo) y reciben rentas (salarios)."
+      - "Aportan impuestos y reciben servicios públicos y prestaciones."
+      - "Aportan trabajo y otros factores y reciben rentas (salarios)."
       - "Aportan beneficios y reciben dividendos."
-      - "Aportan bienes y servicios y reciben factores productivos."
+      - "Aportan bienes y servicios y reciben a cambio factores productivos."
     correcta: 1
     explicacion: "Las familias ponen trabajo, tierra y capital, y reciben salarios, rentas e intereses; con ese dinero compran a las empresas los bienes y servicios que estas producen. El circuito se cierra: nadie gasta sin que otro cobre."
   - enunciado: "España limitó en 2022 el precio del gas usado para generar electricidad, pero el precio de la luz lo siguió fijando el mercado. ¿Qué sistema económico describe mejor esa situación?"
     opciones:
       - "Planificación central, porque el Estado fija precios."
-      - "Economía de mercado pura, porque el precio lo marca el mercado."
-      - "Economía mixta: deciden los mercados, pero con reglas e intervención del Estado."
+      - "Economía de mercado pura, porque el precio de la luz lo marca el mercado."
+      - "Economía mixta: decide el mercado, con reglas e intervención del Estado."
       - "No es ninguno de los tres: es un sistema de trueque regulado."
     correcta: 2
     explicacion: "Ni el Estado sustituyó al mercado ni el mercado quedó libre de intervención. Eso es una economía mixta, el sistema de España y de toda la Unión Europea: libertad de empresa con reglas que la subordinan al interés general."

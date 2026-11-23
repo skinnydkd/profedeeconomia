@@ -47,10 +47,10 @@ preguntas:
     explicacion: "El **Grado Básico** es una pasarela para alumnado sin título de ESO (15-17 años): permite obtener simultáneamente el título de ESO y un título profesional básico. El **Grado Medio** requiere el título de ESO y titula directamente como **técnico** en una especialidad."
   - enunciado: "Un titulado en FP de Grado Superior, ¿puede acceder a la universidad?"
     opciones:
-      - "No, necesita repetir Bachillerato antes."
-      - "No, la FP Superior solo da acceso al mercado laboral."
-      - "Sí, sin PAU obligatoria en muchos casos; la fase voluntaria sirve para subir nota."
-      - "Sí, pero solo a grados de la misma familia profesional."
+      - "No, necesita repetir Bachillerato antes de poder solicitar plaza."
+      - "No, la FP Superior solo da acceso directo al mercado laboral."
+      - "Sí, a menudo sin PAU; la fase voluntaria sirve para subir nota."
+      - "Sí, pero solo a grados de la misma familia profesional que el ciclo."
     correcta: 2
     explicacion: "El título de Técnico Superior da **acceso directo a la universidad** sin necesidad de superar la fase obligatoria de la PAU. Si se quiere subir nota o ponderar para grados muy demandados, se puede hacer la fase voluntaria. Es una de las pasarelas más importantes del sistema."
   - enunciado: "Las Escuelas Oficiales de Idiomas (EOI)…"
