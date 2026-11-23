@@ -41,6 +41,7 @@ import SolvedExercise from '@components/SolvedExercise.astro';
 import KeyTakeaways from '@components/KeyTakeaways.astro';
 import Bibliography from '@components/Bibliography.astro';
 import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
 import Figure from '@components/Figure.astro';
 import FlujoCircular from '@components/diagrams/FlujoCircular.astro';
 import InteresCompuesto from '@components/diagrams/InteresCompuesto.astro';
@@ -240,6 +241,21 @@ La **regla d'or** de les finances diu que com més gran és la rendibilitat que 
 
 </Callout>
 
+<Diagram caption="Esquema sense xifres de la regla d'or: les opcions de l'estalviador, del compte bancari als productes molt arriscats, s'ordenen sobre una mateixa línia. A més rendibilitat esperada, més risc.">
+  <GraficoXY id="g-riesgo-rentabilidad" titulo="Rendibilitat esperada segons el risc" desc="Esquema sense xifres. Una línia ascendent ordena quatre opcions d'estalvi: el compte bancari, amb poc risc i poca rendibilitat; els bons de l'Estat; les accions; i els productes molt arriscats, amb la major rendibilitat esperada i el major risc."
+    xMax={100} yMax={100} ejeX="Risc" ejeY="Rendibilitat esperada"
+    series={[
+      { color: 'terra', puntos: Array.from({ length: 21 }, (_, i) => [4 + i * 4, 6 + 0.55 * (4 + i * 4) + 0.0045 * (4 + i * 4) ** 2]) },
+    ]}
+    puntos={[
+      { x: 8, y: 10.7, label: 'Compte', guias: false, dx: 14, dy: 26 },
+      { x: 26, y: 23.3, label: 'Bons', guias: false, dx: 14, dy: 26 },
+      { x: 52, y: 46.8, label: 'Accions', guias: false, dx: 14, dy: 26 },
+      { x: 80, y: 78.8, label: 'Molt arriscat', guias: false, dx: 14, dy: 26 },
+    ]}
+  />
+</Diagram>
+
 Esta regla no és un detall tècnic: és una ferramenta de protecció. La majoria dels grans fraus financers de la història —i de les xicotetes estafes que circulen hui per xarxes socials prometent duplicar el teu diner en una setmana— s'aprofiten precisament que la gent no la coneix. Qui entén que rendibilitat i risc van junts ja té mitja defensa feta contra els timos.
 
 <RealExample title="Per què la CNMV avisa dels «xiringuitos financers»" source="Comissió Nacional del Mercat de Valors (CNMV), advertiments a l'inversor i secció de xiringuitos financers, cnmv.es; campanyes d'educació financera del Banc d'Espanya i la CNMV.">
@@ -292,6 +308,21 @@ Quant tindrà cadascuna al cap de 3 anys?
 3. **Comparació.** En només 3 anys, Lucía guanya **2,73 € més** que Marta sense fer res distint: simplement els seus interessos també generen interessos. La diferència pareix xicoteta, però creix moltíssim amb el temps. Si en compte de 3 anys en foren **30** al 3 %, Marta (simple) tindria 1.900 € i Lucía (compost) tindria uns **2.427 €**: més de **500 € de diferència** partint del mateix diner.
 
 4. **Lliçó pràctica.** L'interés compost recompensa la **paciència**: com més temps deixes el diner treballant, més gran és la diferència a favor teu. Per això, en finances personals, **començar prompte val més que començar amb molt**.
+
+<Diagram caption="Els 1.000 € de Marta (interés simple, recta) i de Lucía (interés compost, corba) al 3 % anual. Als 3 anys la diferència és de 2,73 € (1.090 € enfront de 1.092,73 €); als 30 anys, de més de 500 € (1.900 € enfront d'uns 2.427 €).">
+  <GraficoXY id="g-interes-marta-lucia" titulo="Interés simple enfront d'interés compost: Marta i Lucía" desc="Capital de 1.000 euros al 3 % anual. Amb interés simple, Marta suma 30 euros cada any i arriba a 1.900 euros als 30 anys. Amb interés compost, Lucía arriba a 1.092,73 euros als 3 anys i a uns 2.427 euros als 30 anys. Les dues línies quasi coincidixen al principi i se separen cada any més."
+    xMax={34} yMax={2800} ejeX="Anys" ejeY="Euros acumulats" simboloX="t" simboloY="€"
+    xTicks={[3, 10, 20]} yTicks={[1000, 1500]}
+    series={[
+      { label: 'Marta', color: 'mustard', puntos: [[0, 1000], [30, 1900]], dy: 14 },
+      { label: 'Lucía', color: 'terra', puntos: Array.from({ length: 31 }, (_, i) => [i, 1000 * 1.03 ** i]), dy: -2 },
+    ]}
+    puntos={[
+      { x: 30, y: 1900, xLabel: '30', yLabel: '1 900', guias: true },
+      { x: 30, y: 2427.26, yLabel: '2 427', guias: true },
+    ]}
+  />
+</Diagram>
 
 </SolvedExercise>
 
