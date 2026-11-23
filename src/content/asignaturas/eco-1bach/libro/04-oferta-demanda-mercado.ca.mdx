@@ -46,6 +46,7 @@ import KeyTakeaways from '@components/KeyTakeaways.astro';
 import Diagram from '@components/Diagram.astro';
 import Figure from '@components/Figure.astro';
 import OfertaDemanda from '@components/diagrams/OfertaDemanda.astro';
+import MercadoGrafico from '@components/diagrams/MercadoGrafico.astro';
 import EstructurasMercado from '@components/diagrams/EstructurasMercado.astro';
 import Bibliography from '@components/Bibliography.astro';
 import TldrUnidad from '@components/TldrUnidad.astro';
@@ -138,15 +139,24 @@ La forma més directa de representar la demanda és una **taula** que enumera, p
 
 | Preu (€/entrada) | Quantitat demandada (entrades/mes) |
 | ---: | ---: |
-| 12 | 8 000 |
+| 12 | 6 000 |
 | 10 | 12 000 |
 | 8 | 18 000 |
-| 6 | 26 000 |
-| 4 | 36 000 |
+| 6 | 24 000 |
+| 4 | 30 000 |
 
 La taula complix la llei de la demanda: a preus més alts, menys entrades; a preus més baixos, més. Si traslladem la taula a un eix cartesià amb el preu en vertical i la quantitat en horitzontal, els cinc punts queden alineats al llarg d'una línia **descendent d'esquerra a dreta**: eixa és la **corba de demanda**. En este llibre la dibuixarem com una recta per a simplificar; en la realitat pot ser més corba, però la **direcció descendent** es manté sempre.
 
-Algebraicament, la corba de demanda de l'exemple s'aproxima per la funció lineal **Q_d = 60 000 − 4 000·P**: cada euro addicional reduïx la demanda en 4 000 entrades mensuals.
+Algebraicament, la corba de demanda de l'exemple és la funció lineal **Q_d = 42 000 − 3 000·P**: cada euro addicional reduïx la demanda en 3 000 entrades mensuals.
+
+<Diagram caption="La taula de demanda portada als eixos: cada fila és un punt i els cinc queden sobre la mateixa recta descendent, Q_d = 42 000 − 3 000·P.">
+  <MercadoGrafico id="mg-cine" titulo="La corba de demanda d'entrades de cine" desc="Recta descendent que unix els cinc punts de la taula: a 12 euros es demanden 6 000 entrades al mes i a 4 euros, 30 000."
+    pMax={14} qMax={36000} ejeP="Preu (€/entrada)" ejeQ="Entrades al mes"
+    pTicks={[4, 6, 8, 10, 12]} qTicks={[6000, 12000, 18000, 24000, 30000]}
+    curvas={[{ tipo: 'D', q0: 42000, m: -3000, pDe: 2, label: 'D' }]}
+    puntos={[{ p: 12, q: 6000 }, { p: 10, q: 12000 }, { p: 8, q: 18000 }, { p: 6, q: 24000 }, { p: 4, q: 30000 }]}
+  />
+</Diagram>
 
 ### Demanda individual vs demanda de mercat
 
@@ -161,6 +171,15 @@ L'**oferta** d'un bé és la quantitat que els productors estan **disposats a ve
 La **llei de l'oferta** establix una relació **directa** entre preu i quantitat: quan el preu puja, els productors oferixen més; quan el preu baixa, oferixen menys. La intuïció és clara: a preus alts, vendre resulta més rendible; entren al mercat productors marginals que abans no compensaven; els existents amplien capacitat. A preus baixos, els productors menys eficients ixen del mercat i els altres reduïxen la producció.
 
 La corba d'oferta, per tant, és **ascendent d'esquerra a dreta**: a més preu, més quantitat oferida. Una formulació lineal típica seria **Q_o = a + b·P**, amb b positiu.
+
+<Diagram caption="La corba d'oferta és ascendent: si el preu puja de P₁ a P₂, la quantitat oferida passa de Q₁ a Q₂.">
+  <MercadoGrafico id="mg-oferta" titulo="La corba d'oferta" desc="Recta ascendent: en pujar el preu de P1 a P2, la quantitat oferida passa de Q1 a Q2."
+    pMax={10} qMax={100}
+    curvas={[{ tipo: 'O', q0: 0, m: 10, pDe: 1.5, pA: 9, label: 'O' }]}
+    puntos={[{ p: 3.5, q: 35, pLabel: 'P₁', qLabel: 'Q₁' }, { p: 7, q: 70, pLabel: 'P₂', qLabel: 'Q₂' }]}
+    flechas={[{ de: { p: 3.5, q: 35 }, a: { p: 7, q: 70 }, despl: -22 }]}
+  />
+</Diagram>
 
 ### Oferta individual vs oferta de mercat
 
@@ -221,6 +240,16 @@ b) Què ocorre si el Govern fixa un preu màxim de 12 € per auriculars amb l'o
 4. **Excés de demanda** = Q_d − Q_o = 76 − 56 = **20 mil unitats/mes**. Apareixen 20 000 consumidors al mes que voldrien comprar al preu fixat però no troben producte.
 5. Conseqüències previsibles: cues, llistes d'espera, possible mercat negre, deteriorament de la qualitat o reducció del servici postvenda. El control de preus, excepte emergències molt concretes, sol empitjorar el problema que pretén resoldre. (Veurem casos reals —topalls al lloguer— en la **Unitat 5**.)
 
+<Diagram caption="L'exercici en un gràfic: l'equilibri està en E (16 €, 68 mil). Amb el preu màxim de 12 € es demanden 76 mil unitats i només se n'oferixen 56 mil.">
+  <MercadoGrafico id="mg-auriculares" titulo="Equilibri i preu màxim en el mercat d'auriculars" desc="La demanda i l'oferta es tallen en 16 euros i 68 mil unitats. Amb un preu màxim de 12 euros es demanden 76 mil i se n'oferixen 56 mil: en falten 20 mil."
+    pMax={40} qMax={110} ejeP="Preu (€)" ejeQ="Milers d'unitats al mes"
+    curvas={[{ tipo: 'D', q0: 100, m: -2, pDe: 3, label: 'D' }, { tipo: 'O', q0: 20, m: 3, label: 'O' }]}
+    puntos={[{ p: 16, q: 68, label: 'E', pLabel: '16', qLabel: '68' }, { p: 12, q: 56, pLabel: '12', qLabel: '56' }, { p: 12, q: 76, qLabel: '76' }]}
+    precio={{ p: 12, label: "Preu màxim: 12 €" }}
+    tramo={{ p: 12, q1: 56, q2: 76, label: "Excés de demanda: 20" }}
+  />
+</Diagram>
+
 </SolvedExercise>
 
 <RecursoDestacado href="/eco-1bach/recursos/equilibrio-mercado/" kicker="Ferramenta" title="Calculadora d'equilibri de mercat" descripcion="Introduïx les funcions lineals d'oferta i demanda: la ferramenta resol el sistema i deixa vore l'efecte de desplaçar qualsevol de les dues." colorVar="--color-eco1" />
@@ -236,6 +265,24 @@ Ocorre quan **canvia el preu del mateix bé** i, en conseqüència, canvia la qu
 ### Desplaçament de la corba
 
 Ocorre quan canvia **qualsevol altre factor distint del preu del bé**. La corba sencera es desplaça —a la dreta si la demanda o oferta augmenta a tots els preus, a l'esquerra si disminuïx—. En eixe cas apareix un **nou equilibri** distint de l'anterior.
+
+<Diagram caption="Moviment al llarg de la corba: puja el preu del cine de 8 € a 10 € i passem de A a B sense eixir de la mateixa corba.">
+  <MercadoGrafico id="mg-movimiento" titulo="Moviment al llarg de la corba de demanda" desc="Sobre la mateixa corba de demanda, en pujar el preu de 8 a 10 euros es passa del punt A, amb 18 000 entrades, al punt B, amb 12 000."
+    pMax={14} qMax={36000} ejeP="Preu (€/entrada)" ejeQ="Entrades al mes"
+    curvas={[{ tipo: 'D', q0: 42000, m: -3000, pDe: 2, label: 'D' }]}
+    puntos={[{ p: 8, q: 18000, label: 'A', pLabel: '8', qLabel: '18 000' }, { p: 10, q: 12000, label: 'B', pLabel: '10', qLabel: '12 000' }]}
+    flechas={[{ de: { p: 8, q: 18000 }, a: { p: 10, q: 12000 }, despl: -26 }]}
+  />
+</Diagram>
+
+<Diagram caption="Desplaçament de la corba: canvia un altre factor (per exemple, puja la renda) i als mateixos 8 € es demanden 24 000 entrades en lloc de 18 000. La corba passa de D₁ a D₂.">
+  <MercadoGrafico id="mg-desplazamiento" titulo="Desplaçament de la corba de demanda" desc="La corba de demanda sencera es desplaça a la dreta: al mateix preu de 8 euros es demanden 24 000 entrades en lloc de 18 000."
+    pMax={14} qMax={36000} ejeP="Preu (€/entrada)" ejeQ="Entrades al mes"
+    curvas={[{ tipo: 'D', q0: 42000, m: -3000, pDe: 2, label: 'D₁', tenue: true }, { tipo: 'D', q0: 48000, m: -3000, pDe: 4, label: 'D₂' }]}
+    puntos={[{ p: 8, q: 18000, pLabel: '8', qLabel: '18 000' }, { p: 8, q: 24000, qLabel: '24 000' }]}
+    flechas={[{ de: { p: 8, q: 18000 }, a: { p: 8, q: 24000 } }]}
+  />
+</Diagram>
 
 La regla mnemotècnica és directa: **si canvia el preu del bé, ens movem sobre la corba; si canvia qualsevol altra cosa, la corba es desplaça**.
 
@@ -297,6 +344,14 @@ c) És coherent la pujada simultània de preu i la caiguda de quantitat amb un d
 3. Coherència amb el model: si la **demanda puja** i l'**oferta cau o es manté**, el preu d'equilibri puja i la quantitat es pot mantindre o caure lleugerament —exactament l'observat—. Si només s'haguera mogut la demanda a l'alça, esperaríem preu i quantitat pujant alhora. La caiguda lleugera de quantitat confirma que l'oferta **també** s'ha desplaçat a l'esquerra.
 4. Conclusió pedagògica: el model permet **descartar explicacions**. La narrativa de *«és només culpa dels fons voltor»* no encaixa amb les dades si mirem les quantitats; la realitat és una combinació de pressió pel costat de la demanda i restricció pel costat de l'oferta. La política pública eficaç ha d'actuar sobre els dos costats.
 
+<Diagram caption="La lectura de l'exercici: la demanda passa de D₁ a D₂ i l'oferta d'O₁ a O₂. El preu puja amb força (de P₁ a P₂) i la quantitat a penes canvia, fins i tot baixa un poc.">
+  <MercadoGrafico id="mg-alquiler-madrid" titulo="El lloguer a Madrid: la demanda augmenta i l'oferta es reduïx" desc="La demanda es desplaça a la dreta i l'oferta a l'esquerra. El nou equilibri té un preu molt més alt i una quantitat un poc menor."
+    pMax={10} qMax={100}
+    curvas={[{ tipo: 'D', q0: 100, m: -10, pDe: 1.5, pA: 8.5, label: 'D₁', tenue: true }, { tipo: 'D', q0: 130, m: -10, pDe: 4, pA: 9.6, label: 'D₂' }, { tipo: 'O', q0: 0, m: 10, pDe: 1.5, pA: 9, label: 'O₁', tenue: true }, { tipo: 'O', q0: -45, m: 10, pDe: 6, pA: 9.8, label: 'O₂' }]}
+    puntos={[{ p: 5, q: 50, label: 'E₁', pLabel: 'P₁', qLabel: 'Q₁', dx: -8, dy: 30 }, { p: 8.75, q: 42.5, label: 'E₂', pLabel: 'P₂', qLabel: 'Q₂', dx: -8, dy: -16 }]}
+  />
+</Diagram>
+
 </SolvedExercise>
 
 ## Com canvia l'equilibri quan es desplaça una corba
@@ -314,6 +369,24 @@ El gran valor analític del model és que permet **predir la direcció del canvi
 <li><strong>Cau l'oferta</strong> (corba O a l'esquerra). Puja P*, baixa Q*. Exemple: sequera en oli d'oliva, pujada del cost de l'energia en fàbriques.</li>
 
 </Steps>
+
+<Diagram caption="Casos 1 i 2. Amb l'oferta quieta, si la demanda augmenta (D₀ → D₁) pugen el preu i la quantitat; si cau (D₀ → D₂), baixen els dos.">
+  <MercadoGrafico id="mg-desplaza-demanda" titulo="Desplaçaments de la demanda i nou equilibri" desc="Amb l'oferta fixa, si la demanda augmenta l'equilibri puja per la corba d'oferta: més preu i més quantitat. Si la demanda cau, baixa: menys preu i menys quantitat."
+    pMax={10} qMax={100}
+    curvas={[{ tipo: 'O', q0: 0, m: 10, pDe: 1.5, pA: 9, label: 'O' }, { tipo: 'D', q0: 70, m: -10, pDe: 0.8, pA: 6, label: 'D₂' }, { tipo: 'D', q0: 100, m: -10, pDe: 1.5, pA: 8.5, label: 'D₀' }, { tipo: 'D', q0: 130, m: -10, pDe: 4, pA: 9.6, label: 'D₁' }]}
+    puntos={[{ p: 3.5, q: 35, label: 'E₂', dx: -8, dy: 30 }, { p: 5, q: 50, label: 'E₀', dx: -8, dy: 30 }, { p: 6.5, q: 65, label: 'E₁', dx: -8, dy: 30 }]}
+    flechas={[{ de: { p: 7.6, q: 24 }, a: { p: 7.6, q: 54 } }, { de: { p: 2.2, q: 78 }, a: { p: 2.2, q: 48 } }]}
+  />
+</Diagram>
+
+<Diagram caption="Casos 3 i 4. Amb la demanda quieta, si l'oferta augmenta (O₀ → O₁) baixa el preu i puja la quantitat; si cau (O₀ → O₂), puja el preu i baixa la quantitat.">
+  <MercadoGrafico id="mg-desplaza-oferta" titulo="Desplaçaments de l'oferta i nou equilibri" desc="Amb la demanda fixa, si l'oferta augmenta l'equilibri baixa per la corba de demanda: menys preu i més quantitat. Si l'oferta cau, puja: més preu i menys quantitat."
+    pMax={10} qMax={100}
+    curvas={[{ tipo: 'D', q0: 100, m: -10, pDe: 1, pA: 8.5, label: 'D' }, { tipo: 'O', q0: -30, m: 10, pDe: 4, pA: 9.6, label: 'O₂' }, { tipo: 'O', q0: 0, m: 10, pDe: 1.5, pA: 9, label: 'O₀' }, { tipo: 'O', q0: 30, m: 10, pDe: 0.8, pA: 6.5, label: 'O₁' }]}
+    puntos={[{ p: 6.5, q: 35, label: 'E₂', dx: -8, dy: -16 }, { p: 5, q: 50, label: 'E₀', dx: -8, dy: -16 }, { p: 3.5, q: 65, label: 'E₁', dx: -8, dy: -16 }]}
+    flechas={[{ de: { p: 7.6, q: 76 }, a: { p: 7.6, q: 46 } }, { de: { p: 2.2, q: 22 }, a: { p: 2.2, q: 52 } }]}
+  />
+</Diagram>
 
 Quan es mouen **les dos corbes alhora** —cas freqüent en la realitat— una de les dos variables de l'equilibri queda **indeterminada** sense informació addicional sobre quina de les dos es mou més. Per això l'anàlisi professional combina el model amb dades empíriques sobre la magnitud de cada desplaçament.
 
@@ -339,6 +412,14 @@ c) Formula la regla general dels desplaçaments simultanis.
    - Si els dos creixen per igual → el preu **es manté**.
    Per tant, **el preu queda indeterminat** sense dades sobre la magnitud relativa de cada desplaçament. (En el cas real dels cotxes elèctrics, l'abaratiment de bateries ha pesat més, i el preu ha tendit a baixar mentre la quantitat es disparava.)
 3. **Regla general**. Quan **les dos corbes es desplacen alhora**, queda determinada amb seguretat la variable sobre la qual **els dos efectes espenten en el mateix sentit**, i queda **indeterminada** la variable sobre la qual els efectes s'oposen. Conéixer la direcció dels desplaçaments no basta: cal conéixer també la seua **magnitud relativa**. Este és el motiu pel qual l'anàlisi econòmica seriosa mai es queda en el gràfic: necessita dades empíriques.
+
+<Diagram caption="Les dos corbes se'n van a la dreta: la quantitat puja segur (de Q₁ a Q₂). El preu depén de quina es desplace més; ací l'oferta creix un poc més i el preu baixa un poc.">
+  <MercadoGrafico id="mg-simultaneo" titulo="Demanda i oferta augmenten alhora" desc="Les dos corbes es desplacen a la dreta. La quantitat d'equilibri augmenta amb seguretat; el preu baixa un poc perquè l'oferta es desplaça un poc més."
+    pMax={10} qMax={100}
+    curvas={[{ tipo: 'D', q0: 100, m: -10, pDe: 1.5, pA: 8.5, label: 'D₁', tenue: true }, { tipo: 'D', q0: 130, m: -10, pDe: 3.5, pA: 9.6, label: 'D₂' }, { tipo: 'O', q0: 0, m: 10, pDe: 1.5, pA: 9, label: 'O₁', tenue: true }, { tipo: 'O', q0: 40, m: 10, pDe: 0.8, pA: 5.6, label: 'O₂' }]}
+    puntos={[{ p: 5, q: 50, label: 'E₁', pLabel: 'P₁', qLabel: 'Q₁', dx: -8, dy: -16 }, { p: 4.5, q: 85, label: 'E₂', pLabel: 'P₂', qLabel: 'Q₂', dx: -8, dy: -16 }]}
+  />
+</Diagram>
 
 </SolvedExercise>
 
@@ -429,6 +510,16 @@ Els topalls operen com a **preus màxims per davall de l'equilibri**: oficialmen
 - **Degradació de la qualitat**: amb marge comprimit, el propietari reduïx manteniment.
 
 La lliçó operativa, transversal a la política econòmica: les intervencions **només sobre preus** —sense atacar l'oferta mitjançant construcció, vivenda pública o reforma del sòl— solen **desplaçar el problema**, no resoldre'l. És un dels consensos més sòlids en economia aplicada, encara que políticament siga incòmode d'acceptar.
+<Diagram caption="El topall en el gràfic: al preu màxim es volen llogar més pisos dels que s'oferixen. La distància entre les dos quantitats és l'escassetat.">
+  <MercadoGrafico id="mg-tope" titulo="Un preu màxim per davall de l'equilibri" desc="Amb el preu limitat per davall del d'equilibri, la quantitat demandada supera l'oferida i apareix escassetat."
+    pMax={10} qMax={100}
+    curvas={[{ tipo: 'D', q0: 100, m: -10, pDe: 1.5, pA: 8.5, label: 'D' }, { tipo: 'O', q0: 0, m: 10, pDe: 1.5, pA: 9, label: 'O' }]}
+    puntos={[{ p: 5, q: 50, label: 'E', pLabel: 'P*', qLabel: 'Q*' }, { p: 3, q: 30, qLabel: "Q of." }, { p: 3, q: 70, qLabel: "Q dem." }]}
+    precio={{ p: 3, label: "Preu màxim (topall)" }}
+    tramo={{ p: 3, q1: 30, q2: 70, label: "Escassetat" }}
+  />
+</Diagram>
+
 </VuelveAlCaso>
 
 <KeyTakeaways title="L'essencial de la unitat">
@@ -567,16 +658,16 @@ Les estructures de mercat —competència, monopoli, oligopoli— es viuen en [*
     - Quantitat demandada (entrades/mes)
   rows:
     - - 12 €
-      - "8.000"
+      - "6.000"
     - - 10 €
       - "12.000"
     - - 8 €
       - "18.000"
     - - 6 €
-      - "26.000"
+      - "24.000"
     - - 4 €
-      - "36.000"
-  caption: Algebraicament, Qd = 60.000 − 4.000·P. Cada euro addicional reduïx la demanda en 4.000 entrades mensuals.
+      - "30.000"
+  caption: Algebraicament, Qd = 42.000 − 3.000·P. Cada euro addicional reduïx la demanda en 3.000 entrades mensuals.
 - tipo: section
   title: L'equilibri de mercat
   subtitle: Una xifra que cap de les parts ha fixat individualment però que totes acaben respectant.
