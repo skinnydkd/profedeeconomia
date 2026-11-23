@@ -13,8 +13,10 @@ const DEFAULT_LIMIT = 50;
 
 export const GET: APIRoute = async ({ url }) => {
   const type = url.searchParams.get('type') ?? 'individual';
-  const limit = Math.min(parseInt(url.searchParams.get('limit') ?? String(DEFAULT_LIMIT), 10), MAX_LIMIT);
-  const offset = Math.max(parseInt(url.searchParams.get('offset') ?? '0', 10), 0);
+  const rawLimit = Number(url.searchParams.get('limit') ?? DEFAULT_LIMIT);
+  const limit = Number.isFinite(rawLimit) ? Math.min(Math.max(Math.trunc(rawLimit), 1), MAX_LIMIT) : DEFAULT_LIMIT;
+  const rawOffset = Number(url.searchParams.get('offset') ?? 0);
+  const offset = Number.isFinite(rawOffset) ? Math.max(Math.trunc(rawOffset), 0) : 0;
 
   const supabase = getSupabase();
 

@@ -2,10 +2,17 @@
 import BaseLayout from '@layouts/BaseLayout.astro';
 import { ASIGNATURAS_PUBLICADAS } from '@/lib/asignaturas';
 import { getLocale } from '@/i18n/locale';
+import { localizeAsignatura } from '@/i18n/asignaturas-ca';
 
+// 404.html is one static file served for every unknown URL, so the build
+// cannot know the path: both copies are rendered and a tiny script picks the
+// Valencian one on /ca/* (the pathname check also covers a server-side hit).
 const locale = getLocale(Astro.currentLocale);
+const caPath = /^\/ca(\/|$)/.test(Astro.url.pathname);
+const initial = locale === 'ca' || caPath ? 'ca' : 'es';
+const LOCALES = ['es', 'ca'] as const;
 
-const copy = {
+const COPY = {
   es: {
     pageTitle: 'Página no encontrada',
     h1: 'Página no encontrada',
@@ -30,37 +37,53 @@ const copy = {
     linkDebates: 'Debats',
     labelAsignaturas: 'Assignatures',
   },
-}[locale];
+};
 ---
-<BaseLayout title={copy.pageTitle} contentLang={locale}>
+<BaseLayout title={COPY[initial].pageTitle} contentLang={initial}>
   <div class="prose">
-    <h1>{copy.h1}</h1>
+    {LOCALES.map((l) => {
+      const copy = COPY[l];
+      const prefix = l === 'ca' ? '/ca' : '';
+      return (
+        <div data-404-lang={l} lang={l} hidden={l !== initial}>
+          <h1>{copy.h1}</h1>
 
-    <p class="lede">
-      {copy.lede}
-    </p>
+          <p class="lede">{copy.lede}</p>
 
-    <nav class="links-block">
-      <p class="section-label">{copy.labelGeneral}</p>
-      <ul class="link-list">
-        <li><a class="editorial-link" href="/">{copy.linkInicio}</a></li>
-        <li><a class="editorial-link" href="/juegos/">{copy.linkJuegos}</a></li>
-        <li><a class="editorial-link" href="/herramientas/">{copy.linkHerramientas}</a></li>
-        <li><a class="editorial-link" href="/dinamicas/">{copy.linkDinamicas}</a></li>
-        <li><a class="editorial-link" href="/debates/">{copy.linkDebates}</a></li>
-      </ul>
+          <nav class="links-block">
+            <p class="section-label">{copy.labelGeneral}</p>
+            <ul class="link-list">
+              <li><a class="editorial-link" href={`${prefix}/`}>{copy.linkInicio}</a></li>
+              <li><a class="editorial-link" href={`${prefix}/juegos/`}>{copy.linkJuegos}</a></li>
+              <li><a class="editorial-link" href={`${prefix}/herramientas/`}>{copy.linkHerramientas}</a></li>
+              <li><a class="editorial-link" href={`${prefix}/dinamicas/`}>{copy.linkDinamicas}</a></li>
+              <li><a class="editorial-link" href={`${prefix}/debates/`}>{copy.linkDebates}</a></li>
+            </ul>
 
-      <p class="section-label">{copy.labelAsignaturas}</p>
-      <ul class="link-list">
-        {ASIGNATURAS_PUBLICADAS.map((a) => (
-          <li>
-            <a class="editorial-link" href={`/${a.slug}/`}>{a.shortLabel}</a>
-          </li>
-        ))}
-      </ul>
-    </nav>
+            <p class="section-label">{copy.labelAsignaturas}</p>
+            <ul class="link-list">
+              {ASIGNATURAS_PUBLICADAS.map((a) => (
+                <li>
+                  <a class="editorial-link" href={`${prefix}/${a.slug}/`}>{localizeAsignatura(a, l).shortLabel}</a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </div>
+      );
+    })}
   </div>
 </BaseLayout>
+
+<script is:inline define:vars={{ esTitle: COPY.es.pageTitle, caTitle: COPY.ca.pageTitle }}>
+  if (/^\/ca(\/|$)/.test(location.pathname)) {
+    document.documentElement.lang = 'ca';
+    document.title = document.title.replace(esTitle, caTitle);
+    document.querySelectorAll('[data-404-lang]').forEach(function (el) {
+      el.hidden = el.getAttribute('data-404-lang') !== 'ca';
+    });
+  }
+</script>
 
 <style>
   .prose {
