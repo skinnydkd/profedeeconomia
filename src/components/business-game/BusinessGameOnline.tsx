@@ -39,14 +39,15 @@ async function post(path: string, body: unknown, token?: string) {
   return data;
 }
 
-export default function BusinessGameOnline() {
+/** soloLocal: the league server is not configured in this build, so only the local practice mode is offered. */
+export default function BusinessGameOnline({ soloLocal = false }: { soloLocal?: boolean }) {
   const [sesion, setSesion] = useState<Sesion | null>(null);
   const [modo, setModo] = useState<'inicio' | 'crear' | 'unirse' | 'practica'>('inicio');
   const [estado, setEstado] = useState<Estado | null>(null);
   const [cargado, setCargado] = useState(false);
 
   useEffect(() => {
-    try { const raw = localStorage.getItem(SESION_KEY); if (raw) setSesion(JSON.parse(raw)); } catch {}
+    if (!soloLocal) { try { const raw = localStorage.getItem(SESION_KEY); if (raw) setSesion(JSON.parse(raw)); } catch {} }
     setCargado(true);
   }, []);
   const guardar = (s: Sesion | null) => {
@@ -91,6 +92,8 @@ export default function BusinessGameOnline() {
   }, [sesion, fase, visible, refrescar]);
 
   if (!cargado) return <div class="bg"><p class="bg__loading">Cargando…</p></div>;
+
+  if (soloLocal) return <div class="bg"><BusinessGame /></div>;
 
   if (!sesion) {
     if (modo === 'practica') return <div class="bg"><button class="bg__btn bg__btn--ghost" onClick={() => setModo('inicio')}>← Volver</button><div style="height:1rem" /><BusinessGame /></div>;

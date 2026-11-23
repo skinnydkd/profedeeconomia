@@ -7,6 +7,8 @@
  * y el multi-dispositivo llegan en la Fase 1b, una vez validado el modelo.
  */
 import BaseLayout from '@layouts/BaseLayout.astro';
+import JuegoNoDisponible from '@components/JuegoNoDisponible.astro';
+import { SUPABASE_OK } from '@/lib/servicios';
 import BusinessGameOnline from '@components/business-game/BusinessGameOnline.tsx';
 import { getLocale } from '@/i18n/locale';
 import SectionHeader from '@components/SectionHeader.astro';
@@ -68,7 +70,8 @@ const copy = {
   <section class="juego">
     <div class="container">
       <noscript><p>{locale === 'ca' ? 'Este joc necessita JavaScript. Activa’l al teu navegador per a jugar.' : 'Este juego necesita JavaScript. Actívalo en tu navegador para jugar.'}</p></noscript>
-      <BusinessGameOnline client:only="preact" />
+      {!SUPABASE_OK && <JuegoNoDisponible soloLocal />}
+      <BusinessGameOnline client:only="preact" soloLocal={!SUPABASE_OK} />
     </div>
   </section>
 </BaseLayout>

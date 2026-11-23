@@ -1,0 +1,54 @@
+---
+/**
+ * Shown instead of a game island when the server it needs is not configured
+ * in this build (see src/lib/servicios.ts).
+ */
+import { getLocale } from '@/i18n/locale';
+
+interface Props {
+  /** Only the online part is down and a local mode still works below. */
+  soloLocal?: boolean;
+}
+const { soloLocal = false } = Astro.props;
+const locale = getLocale(Astro.currentLocale);
+const copy = {
+  es: {
+    titulo: 'Este juego no está disponible ahora mismo',
+    texto: 'Funciona con un servidor que todavía no está en marcha, así que de momento no se puede jugar.',
+    otros: 'Ver los juegos que funcionan sin servidor',
+    tituloLocal: 'Las ligas en línea no están disponibles ahora mismo',
+    textoLocal: 'Funcionan con un servidor que todavía no está en marcha. Debajo tienes el modo práctica local, que sí funciona en un solo dispositivo.',
+  },
+  ca: {
+    titulo: 'Este joc no està disponible ara mateix',
+    texto: 'Funciona amb un servidor que encara no està en marxa, així que de moment no s’hi pot jugar.',
+    otros: 'Veure els jocs que funcionen sense servidor',
+    tituloLocal: 'Les lligues en línia no estan disponibles ara mateix',
+    textoLocal: 'Funcionen amb un servidor que encara no està en marxa. Davall tens el mode pràctica local, que sí que funciona en un sol dispositiu.',
+  },
+}[locale];
+---
+<section class="no-disponible" role="status">
+  <h2>{soloLocal ? copy.tituloLocal : copy.titulo}</h2>
+  <p>{soloLocal ? copy.textoLocal : copy.texto}</p>
+  {!soloLocal && <p><a class="editorial-link" href="/juegos/">{copy.otros}</a></p>}
+</section>
+
+<style>
+  .no-disponible {
+    max-width: 62ch;
+    margin: 2rem auto;
+    padding: 1.5rem 1.75rem;
+    border: 1px solid var(--color-line);
+    border-radius: 8px;
+    background: var(--color-paper, #fff);
+  }
+  .no-disponible h2 {
+    font-family: var(--font-serif);
+    font-weight: 500;
+    font-size: 1.5rem;
+    margin: 0 0 0.75rem;
+  }
+  .no-disponible p { margin: 0 0 0.75rem; }
+  .no-disponible p:last-child { margin-bottom: 0; }
+</style>

@@ -1,5 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import JuegoNoDisponible from '@components/JuegoNoDisponible.astro';
+import { SUPABASE_OK } from '@/lib/servicios';
 import JocsApp from '../../components/jocs-economics/JocsApp';
 import { getLocale } from '@/i18n/locale';
 import SectionHeader from '@components/SectionHeader.astro';
@@ -76,7 +78,7 @@ const copy = {
       </ul>
       <a class="ver-ranking" href="/jocs-economics/leaderboard/">{copy.verRanking} →</a>
     </SectionHeader>
-    <div class="game-mount"><noscript><p>{locale === 'ca' ? 'Este joc necessita JavaScript. Activa’l al teu navegador per a jugar.' : 'Este juego necesita JavaScript. Actívalo en tu navegador para jugar.'}</p></noscript><JocsApp client:only="preact" /></div>
+    <div class="game-mount">{SUPABASE_OK ? (<><noscript><p>{locale === 'ca' ? 'Este joc necessita JavaScript. Activa’l al teu navegador per a jugar.' : 'Este juego necesita JavaScript. Actívalo en tu navegador para jugar.'}</p></noscript><JocsApp client:only="preact" /></>) : <JuegoNoDisponible />}</div>
   </div>
 </BaseLayout>
 
