@@ -205,8 +205,8 @@ Imaginemos una economía hipotética —llamémosla *Alfa*— que solo produce d
 <Diagram caption="La economía Alfa en los ejes: 100 toneladas de trigo si todos los recursos van al trigo, 50 ordenadores si van todos a ordenadores. El trazado entre los dos extremos es ilustrativo.">
   <GraficoXY id="g-alfa" titulo="Frontera de posibilidades de producción de la economía Alfa" desc="Curva cóncava que une 100 toneladas de trigo y ningún ordenador con 50 ordenadores y ninguna tonelada de trigo."
     xMax={60} yMax={120} ejeX="Ordenadores" ejeY="Toneladas de trigo"
-    series={[{ label: 'FPP', color: 'terra', puntos: Array.from({ length: 26 }, (_, i) => [i * 2, 100 * Math.sqrt(1 - (i * 2 / 50) ** 2)]) }]}
-    puntos={[{ x: 0, y: 100, label: 'Solo trigo', yLabel: '100', dy: -12 }, { x: 50, y: 0, label: 'Solo ordenadores', xLabel: '50', dy: -14 }]}
+    series={[{ label: 'FPP', color: 'terra', puntos: Array.from({ length: 41 }, (_, i) => [50 * Math.sin(i * Math.PI / 80), 100 * Math.cos(i * Math.PI / 80)]) }]}
+    puntos={[{ x: 0, y: 100, label: 'Solo trigo', yLabel: '100', dy: -12 }, { x: 50, y: 0, label: 'Solo ordenadores', xLabel: '50', dy: -30 }]}
   />
 </Diagram>
 
@@ -236,7 +236,7 @@ El coste de oportunidad explica por qué la FPP es habitualmente **cóncava** y 
 <Diagram caption="Costes de oportunidad crecientes: la misma ampliación de ordenadores (de A a B y de C a D) obliga a renunciar a mucho más trigo cuando la economía ya está especializada en ordenadores. Gráfico esquemático, sin cifras.">
   <GraficoXY id="g-costes-crecientes" titulo="Costes de oportunidad crecientes sobre la frontera" desc="En la curva cóncava, pasar de A a B reduce poco el trigo y pasar de C a D, con el mismo aumento de ordenadores, lo reduce mucho más."
     xMax={60} yMax={120} ejeX="Ordenadores" ejeY="Trigo"
-    series={[{ label: 'FPP', color: 'terra', puntos: Array.from({ length: 26 }, (_, i) => [i * 2, 100 * Math.sqrt(1 - (i * 2 / 50) ** 2)]) }]}
+    series={[{ label: 'FPP', color: 'terra', puntos: Array.from({ length: 41 }, (_, i) => [50 * Math.sin(i * Math.PI / 80), 100 * Math.cos(i * Math.PI / 80)]) }]}
     puntos={[{ x: 10, y: 100 * Math.sqrt(1 - 0.04), label: 'A' }, { x: 20, y: 100 * Math.sqrt(1 - 0.16), label: 'B' }, { x: 36, y: 100 * Math.sqrt(1 - 0.5184), label: 'C' }, { x: 46, y: 100 * Math.sqrt(1 - 0.8464), label: 'D' }]}
   />
 </Diagram>
@@ -252,9 +252,9 @@ El crecimiento no afecta por igual a todos los bienes: una mejora tecnológica c
   <GraficoXY id="g-crecimiento-fpp" titulo="Crecimiento económico: desplazamiento paralelo y sesgado de la frontera" desc="La frontera inicial F0 se desplaza hacia fuera. F1 crece en los dos ejes; F2 solo crece en el eje de ordenadores y deja igual el máximo de trigo."
     xMax={80} yMax={135} ejeX="Ordenadores" ejeY="Trigo"
     series={[
-      { label: 'F₀', color: 'ink', tenue: true, puntos: Array.from({ length: 26 }, (_, i) => [i * 2, 100 * Math.sqrt(1 - (i * 2 / 50) ** 2)]) },
-      { label: 'F₁', color: 'terra', puntos: Array.from({ length: 31 }, (_, i) => [i * 2, 120 * Math.sqrt(1 - (i * 2 / 60) ** 2)]) },
-      { label: 'F₂', color: 'teal', puntos: Array.from({ length: 36 }, (_, i) => [i * 2, 100 * Math.sqrt(1 - (i * 2 / 70) ** 2)]) },
+      { label: 'F₀', color: 'ink', tenue: true, puntos: Array.from({ length: 41 }, (_, i) => [50 * Math.sin(i * Math.PI / 80), 100 * Math.cos(i * Math.PI / 80)]) },
+      { label: 'F₁', color: 'terra', puntos: Array.from({ length: 41 }, (_, i) => [60 * Math.sin(i * Math.PI / 80), 120 * Math.cos(i * Math.PI / 80)]) },
+      { label: 'F₂', color: 'teal', puntos: Array.from({ length: 41 }, (_, i) => [70 * Math.sin(i * Math.PI / 80), 100 * Math.cos(i * Math.PI / 80)]) },
     ]}
   />
 </Diagram>
