@@ -11,6 +11,9 @@ estado: publicado
 slug: "asignaturas/edmn-2bach/ebau-problemas/03-van-tir-payback-ejercicios-resueltos.ca"
 ---
 
+import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
+
 Per a decidir si una inversió val la pena cal comparar el que costa hui amb el que tornarà en el futur. El **VAN** i la **TIR** tenen en compte que un euro d'ací a tres anys val menys que un de hui; el **termini de recuperació** (payback) només compta quant es tarda a recuperar els diners.
 
 ## Formulari
@@ -61,6 +64,49 @@ Projecte B: després de l'any 1, 20.000; després de l'any 2, 20.000 + 12.000 = 
 
 **Interpretació.** Els dos projectes tenen VAN positiu, així que tots dos són rendibles al 10 %. Segons el **criteri del VAN, convé el projecte A**, que genera 6.829,45 euros de valor actual net enfront dels 4.109,70 de B; A crea més riquesa per a l'empresa. En canvi, el payback afavorix B (recupera el desemborsament en 1,83 anys enfront de 2,17 d'A), perquè concentra els fluxos al principi. Si l'empresa prioritza la rendibilitat total, tria A; si prioritza recuperar prompte la liquiditat, tria B. El criteri del VAN és el més recomanable perquè considera tots els fluxos i el valor del diner en el temps.
 
+<Diagram caption="VAN de cada projecte segons la taxa de descompte. Amb k = 10 % l'A val 6.829,45 € i el B, 4.109,70 €. La corba d'A queda per damunt de la de B i la seua TIR (21,65 %) també és major que la de B (19,07 %).">
+  <GraficoXY id="g-ebau-van-proyectos" titulo="VAN dels projectes A i B segons la taxa de descompte" desc="El VAN d'A baixa des de 15.000 euros amb una taxa del 0 % fins a zero amb una taxa del 21,65 %, que és la seua TIR. El de B baixa des de 10.000 euros fins a zero amb el 19,07 %. Amb el cost del capital del 10 %, A val 6.829 euros i B val 4.110."
+    xMax={25} yMax={16500} yMin={-2000} ejeX="Taxa de descompte k" ejeY="VAN (€)" simboloX="k"
+    xTicks={[5, 15]} yTicks={[10000, 15000]} xTickLabels={["5 %", "15 %"]}
+    series={[
+      { label: "A", color: "terra", labelEn: "inicio", puntos: [[0, 15000], [1, 14056.25], [2, 13144.04], [3, 12261.97], [4, 11408.74], [5, 10583.09], [6, 9783.85], [7, 9009.9], [8, 8260.17], [9, 7533.68], [10, 6829.45], [11, 6146.59], [12, 5484.24], [13, 4841.57], [14, 4217.82], [15, 3612.23], [16, 3024.11], [17, 2452.78], [18, 1897.61], [19, 1357.99], [20, 833.33], [21, 323.09], [21.65, 0], [22, -173.27]], dx: 12, dy: -8 },
+      { label: "B", color: "aubergine", labelEn: "inicio", puntos: [[0, 10000], [1, 9330.25], [2, 8680.45], [3, 8049.76], [4, 7437.41], [5, 6842.67], [6, 6264.84], [7, 5703.24], [8, 5157.24], [9, 4626.25], [10, 4109.69], [11, 3607.02], [12, 3117.71], [13, 2641.28], [14, 2177.24], [15, 1725.16], [16, 1284.6], [17, 855.14], [18, 436.41], [19, 28.03], [19.07, 0], [20, -370.37], [21, -759.12], [22, -1138.55]], dx: 12, dy: -8 },
+    ]}
+    puntos={[
+      { x: 10, y: 6829.45, xLabel: "10 %", yLabel: "6 829" },
+      { x: 10, y: 4109.69, yLabel: "4 110" },
+      { x: 21.65, y: 0, guias: false },
+      { x: 19.07, y: 0, guias: false },
+    ]}
+    notas={[
+      { x: 13, y: 14500, texto: "TIR d'A: 21,65 %", color: "terra" },
+      { x: 13, y: 12500, texto: "TIR de B: 19,07 %", color: "aubergine" },
+    ]}
+  />
+</Diagram>
+
+<Diagram caption="Fluxos acumulats sense descomptar enfront del desemborsament de 30.000 €. B recupera la inversió als 1,83 anys (1 any i 10 mesos) i A als 2,17 (2 anys i 2 mesos), però A acaba acumulant més.">
+  <GraficoXY id="g-ebau-payback-proyectos" titulo="Termini de recuperació dels projectes A i B" desc="Flux de caixa acumulat, sense descomptar. A suma 12.000 euros al final de l'any 1, 27.000 al de l'any 2 i 45.000 al del 3. B suma 20.000, 32.000 i 40.000. La inversió és de 30.000 euros: B la recupera als 1,83 anys i A als 2,17."
+    xMax={4.2} yMax={50000} ejeX="Anys des del desemborsament" ejeY="Euros recuperats" simboloX="t" simboloY="€"
+    xTicks={[1, 3]} yTicks={[10000, 20000, 40000]}
+    series={[
+      { label: "A", color: "terra", puntos: [[0, 0], [1, 12000], [2, 27000], [3, 45000]] },
+      { label: "B", color: "aubergine", puntos: [[0, 0], [1, 20000], [2, 32000], [3, 40000]], dy: 6 },
+      { label: "Inversió", color: "ink", tenue: true, puntos: [[0, 30000], [3, 30000]] },
+    ]}
+    puntos={[
+      { x: 1.83, y: 30000, label: "Payback B", xLabel: "1,83", yLabel: "30 000", dx: -94, dy: -14 },
+      { x: 2.17, y: 30000, label: "Payback A", xLabel: "2,17", dx: 10, dy: 24 },
+      { x: 1, y: 12000, guias: false },
+      { x: 2, y: 27000, guias: false },
+      { x: 3, y: 45000, guias: false },
+      { x: 1, y: 20000, guias: false },
+      { x: 2, y: 32000, guias: false },
+      { x: 3, y: 40000, guias: false },
+    ]}
+  />
+</Diagram>
+
 ### Problema 2 — TIR amb dos anys
 
 **Enunciat.** Un projecte exigix un desemborsament inicial de 10.000 euros i genera fluxos de 6.000 euros el primer any i 6.600 euros el segon. Si el cost del capital és del 8 %, calcula la TIR i indica si convé acceptar-lo.
@@ -92,6 +138,20 @@ Apliquem la fórmula de l'equació de segon grau:
 
 **Interpretació.** La TIR del projecte és del 16,6 %, la rendibilitat interna que oferix la inversió. Com que **la TIR (16,6 %) és major que el cost del capital (8 %)**, el projecte **convé acceptar-lo**: rendix més del que costa finançar-lo, per la qual cosa genera valor per a l'empresa.
 
+<Diagram caption="El VAN del projecte (desemborsament de 10.000 € i fluxos de 6.000 € i 6.600 €) segons la taxa de descompte. Talla l'eix en el 16,6 %, que és la TIR. Amb k = 8 % val 1.214 €: com que la TIR supera k, el projecte s'accepta.">
+  <GraficoXY id="g-ebau-tir-dos-anos" titulo="VAN i TIR del projecte de dos anys" desc="El VAN baixa des de 2.600 euros amb una taxa del 0 % fins a zero amb una taxa del 16,6 %, que és la TIR. Amb el cost del capital del 8 %, el VAN és de 1.214 euros. A partir del 16,6 % el VAN és negatiu."
+    xMax={24} yMax={3000} yMin={-800} ejeX="Taxa de descompte k" ejeY="VAN (€)" simboloX="k"
+    xTicks={[12, 20]} yTicks={[2000]} xTickLabels={["12 %", "20 %"]}
+    series={[
+      { label: "VAN(k)", color: "terra", labelEn: "inicio", puntos: [[0, 2600], [1, 2410.55], [2, 2226.07], [3, 2046.38], [4, 1871.3], [5, 1700.68], [6, 1534.35], [7, 1372.17], [8, 1213.99], [9, 1059.68], [10, 909.09], [11, 762.11], [12, 618.62], [13, 478.5], [14, 341.64], [15, 207.94], [16, 77.29], [16.6, 0], [17, -50.41], [18, -175.24], [19, -297.3], [20, -416.67]], dx: 12, dy: -10 },
+    ]}
+    puntos={[
+      { x: 8, y: 1213.99, xLabel: "8 %", yLabel: "1 214", label: "k = 8 %", dx: 12, dy: -12 },
+      { x: 16.6, y: 0, label: "TIR = 16,6 %", dx: 12, dy: -12, guias: false },
+    ]}
+  />
+</Diagram>
+
 ### Problema 3 — VAN amb fluxos constants i desemborsament recuperable
 
 **Enunciat.** Una inversió de 50.000 euros genera un flux de caixa de 22.000 euros durant cadascun dels tres anys de la seua vida. El cost del capital és del 6 %. Calcula el VAN i el payback, i digues si s'accepta.
@@ -108,6 +168,37 @@ Payback (fluxos constants de 22.000):
 > Payback = 50.000 / 22.000 = **2,27 anys (≈ 2 anys i 3 mesos)**
 
 **Interpretació.** El VAN és de 8.806,26 euros, clarament positiu, per la qual cosa **la inversió s'accepta**: aporta més de 8.800 euros de valor actual net per damunt del desemborsament. A més, el desemborsament es recupera en 2,27 anys, dins de la vida del projecte (3 anys), la qual cosa reforça la decisió d'acceptar-la.
+
+<Diagram caption="VAN de la inversió (50.000 € i tres fluxos de 22.000 €) segons la taxa de descompte. Amb k = 6 % val 8.806,26 €; la corba arriba a zero en el 15,28 %, que és la TIR.">
+  <GraficoXY id="g-ebau-van-flujos-constantes" titulo="VAN de la inversió de 50.000 euros segons la taxa de descompte" desc="El VAN baixa des de 16.000 euros amb una taxa del 0 % fins a zero amb una taxa del 15,28 %, que és la TIR. Amb el cost del capital del 6 %, el VAN és de 8.806 euros."
+    xMax={24} yMax={18000} yMin={-5000} ejeX="Taxa de descompte k" ejeY="VAN (€)" simboloX="k"
+    xTicks={[12, 20]} yTicks={[5000, 15000]} xTickLabels={["12 %", "20 %"]}
+    series={[
+      { label: "VAN(k)", color: "terra", labelEn: "inicio", puntos: [[0, 16000], [1, 14701.67], [2, 13445.43], [3, 12229.45], [4, 11052], [5, 9911.46], [6, 8806.26], [7, 7734.95], [8, 6696.13], [9, 5688.48], [10, 4710.74], [11, 3761.72], [12, 2840.29], [13, 1945.36], [14, 1075.9], [15, 230.95], [15.28, 0], [16, -590.43], [17, -1389.13], [18, -2166], [19, -2921.83], [20, -3657.41]], dx: 12, dy: -10 },
+    ]}
+    puntos={[
+      { x: 6, y: 8806.26, xLabel: "6 %", yLabel: "8 806", label: "k = 6 %", dx: 12, dy: -12 },
+      { x: 15.28, y: 0, label: "TIR = 15,28 %", dx: 12, dy: -12, guias: false },
+    ]}
+  />
+</Diagram>
+
+<Diagram caption="Flux acumulat (22.000 € cada any) enfront del desemborsament de 50.000 €. La línia el creua als 2,27 anys (2 anys i 3 mesos), dins de la vida del projecte, que és de 3 anys.">
+  <GraficoXY id="g-ebau-payback-flujos-constantes" titulo="Termini de recuperació de la inversió de 50.000 euros" desc="Flux de caixa acumulat, sense descomptar: 22.000 euros al final de l'any 1, 44.000 al de l'any 2 i 66.000 al del 3. Creua el desemborsament de 50.000 euros als 2,27 anys."
+    xMax={4.2} yMax={74000} ejeX="Anys des del desemborsament" ejeY="Euros recuperats" simboloX="t" simboloY="€"
+    xTicks={[1, 3]} yTicks={[20000, 40000, 60000]}
+    series={[
+      { label: "Acumulat", color: "teal", puntos: [[0, 0], [1, 22000], [2, 44000], [3, 66000]], dy: -4 },
+      { label: "Inversió", color: "terra", puntos: [[0, 50000], [3, 50000]] },
+    ]}
+    puntos={[
+      { x: 2.27, y: 50000, label: "Payback", xLabel: "2,27", yLabel: "50 000", dx: -88, dy: -14 },
+      { x: 1, y: 22000, guias: false },
+      { x: 2, y: 44000, guias: false },
+      { x: 3, y: 66000, guias: false },
+    ]}
+  />
+</Diagram>
 
 ### Problema 4 — VAN amb valor residual i pujada del tipus d'interés (tipus examen)
 
@@ -142,6 +233,26 @@ c) La TIR és el tipus que fa VAN = 0. Al 7 % el VAN és positiu i al 12 % és n
 **Resultat:** VAN de 3.617,65 euros al 7 % i de −157,39 euros al 12 %; TIR entre el 7 % i el 12 % (≈ 11,8 %).
 
 **Interpretació.** Amb un cost del capital del 7 %, la furgoneta convé: torna tot el que s'ha invertit, el cost de finançar-ho i 3.617,65 euros més en valor actual. Si el cost del capital puja al 12 %, la mateixa inversió destruïx valor (VAN negatiu) i deixa de convindre. La TIR, al voltant de l'11,8 %, és el cost de finançament màxim que suporta el projecte: mentre l'empresa es finance per davall d'eixe tipus, la inversió ix rendible.
+
+<Diagram caption="El VAN de la furgoneta (40.000 € i fluxos de 15.000 €, 18.000 € i 17.000 €, amb el valor residual) segons la taxa de descompte. Al 7 % val 3.617,65 € i al 12 %, −157,39 €: la corba talla l'eix entre els dos tipus, en la TIR (≈ 11,8 %).">
+  <GraficoXY id="g-ebau-van-furgoneta-electrica" titulo="VAN de la furgoneta elèctrica segons la taxa de descompte" desc="El VAN baixa des de 10.000 euros amb una taxa del 0 % fins a zero amb una taxa del 11,8 %, que és la TIR. Amb el 7 % val 3.618 euros i amb el 12 % val menys 157 euros: la TIR queda entre els dos tipus, molt prop del 12 %."
+    xMax={18} yMax={11500} yMin={-3500} ejeX="Taxa de descompte k" ejeY="VAN (€)" simboloX="k"
+    xTicks={[4, 16]} yTicks={[5000, 10000]} xTickLabels={["4 %", "16 %"]}
+    series={[
+      { label: "VAN(k)", color: "terra", labelEn: "inicio", puntos: [[0, 10000], [1, 8996.85], [2, 8026.4], [3, 7087.24], [4, 6178.03], [5, 5297.48], [6, 4444.41], [7, 3617.65], [8, 2816.14], [9, 2038.83], [10, 1284.75], [11, 552.97], [11.78, 0], [12, -157.39], [13, -847.17], [14, -1517.17], [15, -2168.16], [16, -2800.85]], dx: 12, dy: -10 },
+    ]}
+    puntos={[
+      { x: 7, y: 3617.65, xLabel: "7 %", yLabel: "3 618", label: "k = 7 %", dx: 12, dy: -12 },
+      { x: 12, y: -157.39, label: "k = 12 %", dx: -70, dy: 24, guias: false },
+    ]}
+    flechas={[
+      { de: [12.5, 2700], a: [11.8, 250] },
+    ]}
+    notas={[
+      { x: 11.4, y: 3300, texto: "TIR ≈ 11,8 %", color: "terra" },
+    ]}
+  />
+</Diagram>
 
 ## Errors típics que resten punts
 

@@ -10,6 +10,9 @@ lang: es
 estado: publicado
 ---
 
+import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
+
 Los **ratios** comparan partidas del balance y de la cuenta de resultados para diagnosticar la empresa: si puede pagar sus deudas a corto plazo (liquidez), si su patrimonio cubre todo lo que debe (solvencia), cómo se financia (endeudamiento) y cuánto rinde (rentabilidades). El **periodo medio de maduración** mide cuántos días tarda el dinero en dar la vuelta completa, desde que se compra la materia prima hasta que se cobra al cliente.
 
 ## Formulario
@@ -56,6 +59,37 @@ c) Ratio de garantía:
 
 **Interpretación.** El fondo de maniobra es positivo (20.000 euros): el activo corriente cubre el pasivo corriente y deja un margen, por lo que la empresa puede atender sus deudas a corto plazo sin tensiones de liquidez. El ratio de liquidez de 1,5 confirma esa situación: por cada euro de deuda a corto plazo dispone de 1,50 euros de activo líquido, dentro del rango recomendable. El ratio de garantía de 2 indica que el activo total duplica al pasivo total: la empresa es solvente y está lejos de la quiebra técnica (garantía > 1).
 
+<Diagram caption="El balance en masas (ANC: activo no corriente; AC: activo corriente; PN: patrimonio neto; PNC y PC: pasivo no corriente y corriente). El activo corriente (60.000 €) supera al pasivo corriente (40.000 €): el fondo de maniobra es de 20.000 € y la liquidez, de 1,5.">
+  <GraficoXY id="g-ebau-balance-fm-positivo" titulo="Balance con fondo de maniobra positivo" desc="Dos columnas iguales de 180.000 euros. Activo: no corriente 120.000 y corriente 60.000. Patrimonio neto más pasivo: patrimonio neto 90.000, pasivo no corriente 50.000 y pasivo corriente 40.000. El fondo de maniobra es de 20.000 y la liquidez, de 1,5."
+    xMax={10} yMax={220000} ejeX="Balance" ejeY="Euros" simboloY="€"
+    xTicks={[3, 7]} yTicks={[50000, 100000, 150000]} xTickLabels={["Activo", "Patrimonio neto + pasivo"]}
+    areas={[
+      { puntos: [[1.5, 0], [4.5, 0], [4.5, 120000], [1.5, 120000]], color: "terra", fuerte: true },
+      { puntos: [[1.5, 120000], [4.5, 120000], [4.5, 180000], [1.5, 180000]], color: "mustard", fuerte: true },
+      { puntos: [[5.5, 0], [8.5, 0], [8.5, 90000], [5.5, 90000]], color: "teal", fuerte: true },
+      { puntos: [[5.5, 90000], [8.5, 90000], [8.5, 140000], [5.5, 140000]], color: "aubergine", fuerte: true },
+      { puntos: [[5.5, 140000], [8.5, 140000], [8.5, 180000], [5.5, 180000]], color: "mustard", fuerte: true },
+    ]}
+    series={[
+      { puntos: [[1.5, 0], [4.5, 0], [4.5, 120000], [1.5, 120000], [1.5, 0]], color: "terra" },
+      { puntos: [[1.5, 120000], [4.5, 120000], [4.5, 180000], [1.5, 180000], [1.5, 120000]], color: "mustard" },
+      { puntos: [[5.5, 0], [8.5, 0], [8.5, 90000], [5.5, 90000], [5.5, 0]], color: "teal" },
+      { puntos: [[5.5, 90000], [8.5, 90000], [8.5, 140000], [5.5, 140000], [5.5, 90000]], color: "aubergine" },
+      { puntos: [[5.5, 140000], [8.5, 140000], [8.5, 180000], [5.5, 180000], [5.5, 140000]], color: "mustard" },
+    ]}
+    notas={[
+      { x: 3, y: 57250, texto: "ANC 120 000", ancla: "middle" },
+      { x: 3, y: 147250, texto: "AC 60 000", ancla: "middle" },
+      { x: 7, y: 42250, texto: "PN 90 000", ancla: "middle" },
+      { x: 7, y: 112250, texto: "PNC 50 000", ancla: "middle" },
+      { x: 7, y: 157250, texto: "PC 40 000", ancla: "middle" },
+      { x: 3, y: 188800, texto: "Total activo: 180 000", ancla: "middle" },
+      { x: 7, y: 188800, texto: "Total PN + pasivo: 180 000", ancla: "middle" },
+      { x: 5, y: 206400, texto: "FM = 60 000 − 40 000 = 20 000", ancla: "middle", color: "teal" },
+    ]}
+  />
+</Diagram>
+
 ### Problema 2 — Endeudamiento y rentabilidades
 
 **Enunciado.** Otra empresa tiene un activo total de 500.000 euros, un patrimonio neto de 200.000 euros y un pasivo total de 300.000 euros. En el último ejercicio obtuvo un BAII de 60.000 euros y un beneficio neto de 30.000 euros. Calcula el ratio de endeudamiento, la rentabilidad económica y la rentabilidad financiera, e interprétalas.
@@ -76,6 +110,26 @@ c) Rentabilidad financiera:
 
 **Interpretación.** El ratio de endeudamiento es 0,6: el 60 % del activo está financiado con deuda y el 40 % con recursos propios. Está en el límite alto del rango equilibrado (0,4–0,6); algo más de deuda empezaría a comprometer la autonomía financiera. La rentabilidad económica del 12 % mide el rendimiento de todo el activo con independencia de cómo se financie: por cada 100 euros invertidos en activo, la empresa genera 12 euros de beneficio antes de intereses e impuestos. La rentabilidad financiera del 15 % mide el rendimiento de los propietarios: por cada 100 euros de fondos propios obtienen 15 euros de beneficio neto. Que la RF (15 %) supere a la RE (12 %) indica que el endeudamiento está actuando a favor de los accionistas (apalancamiento financiero positivo), porque la empresa rinde más con el activo de lo que le cuesta la deuda.
 
+<Diagram caption="La rentabilidad financiera (15 %) supera a la económica (12 %): la deuda juega a favor de los socios, es decir, hay apalancamiento financiero positivo.">
+  <GraficoXY id="g-ebau-rentabilidades" titulo="Rentabilidad económica y financiera" desc="Dos columnas: la rentabilidad económica es del 12 % (60.000 de BAII sobre 500.000 de activo) y la financiera, del 15 % (30.000 de beneficio neto sobre 200.000 de patrimonio neto). La financiera supera a la económica en 3 puntos."
+    xMax={6} yMax={18} ejeX="" ejeY="Rentabilidad (%)"
+    xTicks={[1.9, 4.1]} yTicks={[5, 10, 15]} xTickLabels={["RE (BAII / activo)", "RF (beneficio neto / PN)"]}
+    areas={[
+      { puntos: [[1, 0], [2.8, 0], [2.8, 12], [1, 12]], color: "mustard", fuerte: true },
+      { puntos: [[3.2, 0], [5, 0], [5, 15], [3.2, 15]], color: "teal", fuerte: true },
+    ]}
+    series={[
+      { puntos: [[1, 0], [2.8, 0], [2.8, 12], [1, 12], [1, 0]], color: "mustard" },
+      { puntos: [[3.2, 0], [5, 0], [5, 15], [3.2, 15], [3.2, 0]], color: "teal" },
+    ]}
+    notas={[
+      { x: 1.9, y: 12.6, texto: "12 %", ancla: "middle" },
+      { x: 4.1, y: 15.6, texto: "15 %", ancla: "middle" },
+      { x: 3, y: 17.2, texto: "+3 puntos", ancla: "middle", color: "terra" },
+    ]}
+  />
+</Diagram>
+
 ### Problema 3 — Fondo de maniobra negativo
 
 **Enunciado.** Una empresa comercial presenta: Activo no corriente 150.000 euros; Activo corriente 30.000 euros; Patrimonio neto 80.000 euros; Pasivo no corriente 40.000 euros; Pasivo corriente 60.000 euros. Calcula el fondo de maniobra y el ratio de liquidez, e interpreta su situación.
@@ -86,6 +140,37 @@ c) Rentabilidad financiera:
 > Liquidez = AC / PC = 30.000 / 60.000 = **0,5**
 
 **Interpretación.** El fondo de maniobra es negativo (−30.000 euros): el pasivo corriente supera al activo corriente, de modo que la empresa está financiando parte de su inmovilizado (activo no corriente) con deudas a corto plazo. El ratio de liquidez de 0,5 lo confirma: solo dispone de 0,50 euros de activo líquido por cada euro de deuda a corto plazo. Es una situación de riesgo de insolvencia (concurso de acreedores): si los acreedores reclaman, la empresa no podría hacer frente a sus obligaciones inmediatas. Debería reestructurar su financiación, convirtiendo deuda a corto en deuda a largo plazo o ampliando capital. (Nota: algunas empresas comerciales con mucha rotación, como grandes supermercados, operan con FM negativo de forma estable porque cobran al contado y pagan tarde a proveedores; pero, en general, un FM negativo es señal de alarma.)
+
+<Diagram caption="El balance en masas (ANC: activo no corriente; AC: activo corriente; PN: patrimonio neto; PNC y PC: pasivo no corriente y corriente). El pasivo corriente (60.000 €) supera al activo corriente (30.000 €): el fondo de maniobra es de −30.000 € y parte del activo no corriente se financia con deuda a corto plazo.">
+  <GraficoXY id="g-ebau-balance-fm-negativo" titulo="Balance con fondo de maniobra negativo" desc="Dos columnas iguales de 180.000 euros. Activo: no corriente 150.000 y corriente 30.000. Patrimonio neto más pasivo: patrimonio neto 80.000, pasivo no corriente 40.000 y pasivo corriente 60.000. El fondo de maniobra es de menos 30.000 y la liquidez, de 0,5."
+    xMax={10} yMax={220000} ejeX="Balance" ejeY="Euros" simboloY="€"
+    xTicks={[3, 7]} yTicks={[50000, 100000, 150000]} xTickLabels={["Activo", "Patrimonio neto + pasivo"]}
+    areas={[
+      { puntos: [[1.5, 0], [4.5, 0], [4.5, 150000], [1.5, 150000]], color: "terra", fuerte: true },
+      { puntos: [[1.5, 150000], [4.5, 150000], [4.5, 180000], [1.5, 180000]], color: "mustard", fuerte: true },
+      { puntos: [[5.5, 0], [8.5, 0], [8.5, 80000], [5.5, 80000]], color: "teal", fuerte: true },
+      { puntos: [[5.5, 80000], [8.5, 80000], [8.5, 120000], [5.5, 120000]], color: "aubergine", fuerte: true },
+      { puntos: [[5.5, 120000], [8.5, 120000], [8.5, 180000], [5.5, 180000]], color: "mustard", fuerte: true },
+    ]}
+    series={[
+      { puntos: [[1.5, 0], [4.5, 0], [4.5, 150000], [1.5, 150000], [1.5, 0]], color: "terra" },
+      { puntos: [[1.5, 150000], [4.5, 150000], [4.5, 180000], [1.5, 180000], [1.5, 150000]], color: "mustard" },
+      { puntos: [[5.5, 0], [8.5, 0], [8.5, 80000], [5.5, 80000], [5.5, 0]], color: "teal" },
+      { puntos: [[5.5, 80000], [8.5, 80000], [8.5, 120000], [5.5, 120000], [5.5, 80000]], color: "aubergine" },
+      { puntos: [[5.5, 120000], [8.5, 120000], [8.5, 180000], [5.5, 180000], [5.5, 120000]], color: "mustard" },
+    ]}
+    notas={[
+      { x: 3, y: 72250, texto: "ANC 150 000", ancla: "middle" },
+      { x: 3, y: 162250, texto: "AC 30 000", ancla: "middle" },
+      { x: 7, y: 37250, texto: "PN 80 000", ancla: "middle" },
+      { x: 7, y: 97250, texto: "PNC 40 000", ancla: "middle" },
+      { x: 7, y: 147250, texto: "PC 60 000", ancla: "middle" },
+      { x: 3, y: 188800, texto: "Total activo: 180 000", ancla: "middle" },
+      { x: 7, y: 188800, texto: "Total PN + pasivo: 180 000", ancla: "middle" },
+      { x: 5, y: 206400, texto: "FM = 30 000 − 60 000 = −30 000", ancla: "middle", color: "terra" },
+    ]}
+  />
+</Diagram>
 
 ### Problema 4 — Periodo medio de maduración (tipo examen)
 
@@ -128,6 +213,42 @@ b) Periodos de maduración:
 **Resultado:** periodo medio de maduración económico de 95 días y financiero de 35 días.
 
 **Interpretación.** Desde que la materia prima entra en el almacén hasta que se cobra el mueble vendido pasan 95 días. Como los proveedores cobran a los 60 días, la empresa solo tiene que financiar con recursos permanentes (el fondo de maniobra) los últimos 35 días del ciclo. Para acortar ese periodo puede, por ejemplo, cobrar antes a los clientes (descuentos por pronto pago, pasar de 45 a 30 días) o negociar un plazo de pago mayor con los proveedores; también ayudaría reducir las existencias medias de cualquiera de las fases. Si consiguiera cobrar a 30 días, el PMMf bajaría a 20 días.
+
+<Diagram caption="Las cuatro fases suman 95 días (d = días) desde que la materia prima entra en el almacén hasta que se cobra el mueble. Los proveedores financian los primeros 60; los 35 restantes son el período medio de maduración financiero.">
+  <GraficoXY id="g-ebau-pmm-mobles" titulo="Período medio de maduración de Mobles Albaida" desc="Cronología en días: 25 de almacén de materias primas, 10 de fabricación, 15 de almacén de producto terminado y 45 de cobro a clientes suman un período medio de maduración económico de 95 días. Los proveedores financian los primeros 60 días, así que la empresa tiene que financiar los 35 restantes."
+    xMax={110} yMax={115} ejeX="Días desde que entra la materia prima" ejeY=""
+    xTicks={[25, 35, 50, 60, 95]}
+    areas={[
+      { puntos: [[0, 66], [25, 66], [25, 86], [0, 86]], color: "terra", fuerte: true },
+      { puntos: [[25, 66], [35, 66], [35, 86], [25, 86]], color: "mustard", fuerte: true },
+      { puntos: [[35, 66], [50, 66], [50, 86], [35, 86]], color: "teal", fuerte: true },
+      { puntos: [[50, 66], [95, 66], [95, 86], [50, 86]], color: "aubergine", fuerte: true },
+      { puntos: [[0, 38], [60, 38], [60, 58], [0, 58]], color: "ink", fuerte: true },
+      { puntos: [[60, 10], [95, 10], [95, 30], [60, 30]], color: "terra", fuerte: true },
+    ]}
+    series={[
+      { puntos: [[0, 66], [25, 66], [25, 86], [0, 86], [0, 66]], color: "terra" },
+      { puntos: [[25, 66], [35, 66], [35, 86], [25, 86], [25, 66]], color: "mustard" },
+      { puntos: [[35, 66], [50, 66], [50, 86], [35, 86], [35, 66]], color: "teal" },
+      { puntos: [[50, 66], [95, 66], [95, 86], [50, 86], [50, 66]], color: "aubergine" },
+      { puntos: [[0, 38], [60, 38], [60, 58], [0, 58], [0, 38]], color: "ink" },
+      { puntos: [[60, 10], [95, 10], [95, 30], [60, 30], [60, 10]], color: "terra" },
+    ]}
+    notas={[
+      { x: 1, y: 90, texto: "Materias primas", ancla: "start" },
+      { x: 30, y: 98, texto: "Fabricación", ancla: "middle" },
+      { x: 42.5, y: 90, texto: "Producto terminado", ancla: "middle" },
+      { x: 72.5, y: 90, texto: "Cobro a clientes", ancla: "middle" },
+      { x: 47.5, y: 108, texto: "PMM económico: 95 días", color: "terra", ancla: "middle" },
+      { x: 12.5, y: 73, texto: "25 d", ancla: "middle" },
+      { x: 30, y: 73, texto: "10 d", ancla: "middle" },
+      { x: 42.5, y: 73, texto: "15 d", ancla: "middle" },
+      { x: 72.5, y: 73, texto: "45 d", ancla: "middle" },
+      { x: 30, y: 45, texto: "Crédito de proveedores: 60 días", ancla: "middle" },
+      { x: 77.5, y: 17, texto: "A financiar: 35 días", ancla: "middle" },
+    ]}
+  />
+</Diagram>
 
 ## Errores típicos que restan puntos
 

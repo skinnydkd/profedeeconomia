@@ -11,6 +11,9 @@ estado: publicado
 slug: "asignaturas/edmn-2bach/ebau-problemas/01-punto-muerto-ejercicios-resueltos.ca"
 ---
 
+import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
+
 El **punt mort** (o llindar de rendibilitat) és la quantitat que una empresa ha de vendre per a cobrir tots els seus costos: ni guanya ni perd. Per davall hi ha pèrdues; per damunt, beneficis. La mateixa lògica de costos fixos i variables servix per a decidir si convé fabricar un component o comprar-lo fora.
 
 ## Formulari
@@ -51,6 +54,31 @@ c) Punt mort:
 
 **Interpretació.** Produir 4.000 carregadors costa 210.000 euros, la qual cosa equival a 52,50 euros per unitat. L'empresa cobrix tots els seus costos (no guanya ni perd) en vendre 2.000 unitats, que generen 150.000 euros d'ingressos. A partir de la unitat 2.001 comença a obtindre beneficis; per davall de 2.000 unitats incorre en pèrdues. Com que produïx 4.000 (el doble del punt mort), opera amb folgança en zona de beneficis.
 
+<Diagram caption="Les rectes d'ingrés i de cost total es creuen en 2.000 unitats (150.000 €). Amb 4.000 unitats el cost és de 210.000 € i l'ingrés de 300.000 €: la distància entre totes dues, 90.000 €, és el benefici.">
+  <GraficoXY id="g-ebau-pm-cargadores" titulo="Punt mort dels carregadors solars" desc="Ingrés total (75 euros per unitat), cost total (90.000 euros fixos més 30 per unitat) i cost fix. Es creuen en 2.000 unitats, amb 150.000 euros. Amb 4.000 unitats el cost total és de 210.000 euros i l'ingrés de 300.000, de manera que el benefici és de 90.000."
+    xMax={5500} yMax={400000} ejeX="Carregadors produïts" ejeY="Euros" simboloX="Q" simboloY="€"
+    yTicks={[90000]}
+    areas={[
+      { puntos: [[0, 0], [2000, 150000], [0, 90000]], color: "terra" },
+      { puntos: [[2000, 150000], [4500, 337500], [4500, 225000]], color: "teal" },
+    ]}
+    series={[
+      { label: "IT", color: "teal", puntos: [[0, 0], [4500, 337500]] },
+      { label: "CT", color: "terra", puntos: [[0, 90000], [4500, 225000]] },
+      { label: "CF", color: "mustard", puntos: [[0, 90000], [4500, 90000]] },
+    ]}
+    puntos={[
+      { x: 2000, y: 150000, label: "Q*", xLabel: "2 000", yLabel: "150 000", dx: -34, dy: -12 },
+      { x: 4000, y: 210000, xLabel: "4 000", yLabel: "210 000" },
+      { x: 4000, y: 300000, yLabel: "300 000" },
+    ]}
+    notas={[
+      { x: 100, y: 60000, texto: "Pèrdues", color: "terra" },
+      { x: 4060, y: 255000, texto: "Benefici: 90 000 €", color: "teal" },
+    ]}
+  />
+</Diagram>
+
 ### Problema 2 — Punt mort i benefici en un nivell de vendes
 
 **Enunciat.** Un taller d'impressió 3D té costos fixos de 24.000 euros a l'any. Fabrica figures amb un cost variable unitari de 8 euros i les ven a 20 euros. a) Troba el punt mort en unitats. b) Si l'any passat va vendre 3.500 figures, quin benefici va obtindre?
@@ -71,6 +99,31 @@ Comprovació ràpida amb el marge: (3.500 − 2.000) × 12 = 1.500 × 12 = 18.00
 
 **Interpretació.** El taller necessita vendre 2.000 figures per a no tindre ni pèrdues ni guanys. Com que en va vendre 3.500, va superar el llindar en 1.500 unitats i va obtindre 18.000 euros de benefici. Cada figura venuda per damunt del punt mort aporta 12 euros de marge al resultat.
 
+<Diagram caption="Les rectes es creuen en 2.000 figures (40.000 €). Amb les 3.500 venudes l'ingrés és de 70.000 € i el cost de 52.000 €: la distància entre totes dues, 18.000 €, és el benefici.">
+  <GraficoXY id="g-ebau-pm-figuras" titulo="Punt mort del taller d'impressió 3D" desc="Ingrés total (20 euros per figura), cost total (24.000 euros fixos més 8 per figura) i cost fix. Es creuen en 2.000 figures, amb 40.000 euros. Amb les 3.500 figures venudes l'ingrés és de 70.000 euros, el cost de 52.000 i el benefici de 18.000."
+    xMax={4600} yMax={90000} ejeX="Figures a l'any" ejeY="Euros" simboloX="Q" simboloY="€"
+    yTicks={[24000]}
+    areas={[
+      { puntos: [[0, 0], [2000, 40000], [0, 24000]], color: "terra" },
+      { puntos: [[2000, 40000], [4000, 80000], [4000, 56000]], color: "teal" },
+    ]}
+    series={[
+      { label: "IT", color: "teal", puntos: [[0, 0], [4000, 80000]] },
+      { label: "CT", color: "terra", puntos: [[0, 24000], [4000, 56000]] },
+      { label: "CF", color: "mustard", puntos: [[0, 24000], [4000, 24000]] },
+    ]}
+    puntos={[
+      { x: 2000, y: 40000, label: "Q*", xLabel: "2 000", yLabel: "40 000", dx: -34, dy: -12 },
+      { x: 3500, y: 52000, xLabel: "3 500", yLabel: "52 000" },
+      { x: 3500, y: 70000, yLabel: "70 000" },
+    ]}
+    notas={[
+      { x: 80, y: 12000, texto: "Pèrdues", color: "terra" },
+      { x: 3560, y: 61000, texto: "Benefici: 18 000 €", color: "teal" },
+    ]}
+  />
+</Diagram>
+
 ### Problema 3 — Decisió de produir o comprar (make-or-buy)
 
 **Enunciat.** Una empresa de mobiliari necessita 5.000 tiradors metàl·lics a l'any. Fabricar-los internament suposa uns costos fixos addicionals de 15.000 euros (maquinària i utillatge) i un cost variable de 2 euros per tirador. Un proveïdor extern els ven a 5 euros la unitat. Determina, mitjançant el punt d'indiferència i la comparació de costos, si convé fabricar o comprar per a eixa quantitat.
@@ -87,6 +140,24 @@ Just coincidixen, així que calculem el **punt d'indiferència** (la quantitat p
 > CF + CVu × Q = Pext × Q → 15.000 + 2Q = 5Q → 15.000 = 3Q → Q = **5.000 unitats**
 
 **Interpretació.** El punt d'indiferència està exactament en 5.000 tiradors. Per a la quantitat necessària (5.000) les dues opcions costen el mateix, 25.000 euros, per la qual cosa en termes de cost és indiferent. La regla per a decidir és clara: **si l'empresa necessitarà més de 5.000 tiradors a l'any, li convé fabricar** (el cost variable més baix, 2 enfront de 5 euros, compensa els 15.000 euros fixos); **si en necessitarà menys de 5.000, li convé comprar** al proveïdor extern. Amb exactament 5.000, la decisió es prendria per criteris qualitatius (control de qualitat, dependència del proveïdor, flexibilitat).
+
+<Diagram caption="Les rectes de cost de fabricar i de comprar es creuen en 5.000 tiradors, amb 25.000 € en els dos casos: just la quantitat que necessita l'empresa. A l'esquerra convé comprar; a la dreta, fabricar.">
+  <GraficoXY id="g-ebau-pm-tiradores" titulo="Fabricar o comprar els tiradors" desc="Cost de fabricar (15.000 euros fixos més 2 per tirador) i cost de comprar (5 euros per tirador). Les dues rectes es creuen en 5.000 tiradors, amb 25.000 euros: per davall convé comprar i per damunt, fabricar."
+    xMax={7000} yMax={36000} ejeX="Tiradors a l'any" ejeY="Euros" simboloX="Q" simboloY="€"
+    yTicks={[15000]}
+    series={[
+      { label: "Fabricar", color: "terra", puntos: [[0, 15000], [6400, 27800]] },
+      { label: "Comprar", color: "teal", puntos: [[0, 0], [6400, 32000]] },
+    ]}
+    puntos={[
+      { x: 5000, y: 25000, label: "I", xLabel: "5 000", yLabel: "25 000", dx: 12, dy: 24 },
+    ]}
+    notas={[
+      { x: 2500, y: 2500, texto: "Menys de 5 000: comprar", ancla: "middle" },
+      { x: 6000, y: 2500, texto: "Més de 5 000: fabricar", ancla: "middle" },
+    ]}
+  />
+</Diagram>
 
 ### Problema 4 — Punt mort, benefici objectiu i baixada de preu (tipus examen)
 
@@ -120,9 +191,53 @@ c) Amb el preu nou, el marge unitari baixa a 26 − 14 = 12 euros.
 
 **Interpretació.** Baixar el preu un 13 % reduïx el marge de cada tassa un 25 % (de 16 a 12 euros), així que el taller necessita vendre un terç més (de 3.750 a 5.000 tasses) només per a cobrir costos. Les 5.000 tasses que abans donaven 20.000 euros de benefici ara només arriben al punt mort. Per a recuperar el benefici, l'empresa hauria de vendre més, reduir el seu cost variable o retallar costos fixos.
 
+<Diagram caption="En baixar el preu de 30 a 26 € la recta d'ingressos gira cap avall i el punt mort passa de 3.750 a 5.000 tasses (130.000 €). Amb 5.000 tasses, el benefici de 20.000 € es queda en 0.">
+  <GraficoXY id="g-ebau-pm-tazas" titulo="Punt mort de les tasses amb dos preus" desc="Cost total (60.000 euros fixos més 14 per tassa) i ingressos a 30 i a 26 euros per tassa. Amb 30 euros el punt mort està en 3.750 tasses, amb 112.500 euros. Amb 26 euros puja a 5.000 tasses, amb 130.000 euros. Amb 5.000 tasses el benefici és de 20.000 euros a 30 euros i de 0 a 26."
+    xMax={6800} yMax={210000} ejeX="Tasses a l'any" ejeY="Euros" simboloX="Q" simboloY="€"
+    yTicks={[60000]}
+    series={[
+      { label: "IT (30 €)", color: "teal", puntos: [[0, 0], [6000, 180000]] },
+      { label: "IT (26 €)", color: "aubergine", puntos: [[0, 0], [6000, 156000]], dy: -2 },
+      { label: "CT", color: "terra", puntos: [[0, 60000], [6000, 144000]], dy: 12 },
+      { label: "CF", color: "mustard", puntos: [[0, 60000], [6000, 60000]] },
+    ]}
+    puntos={[
+      { x: 3750, y: 112500, label: "Q*₁", xLabel: "3 750", yLabel: "112 500", dx: -40, dy: -12 },
+      { x: 5000, y: 130000, label: "Q*₂", xLabel: "5 000", yLabel: "130 000", dx: 12, dy: 24 },
+      { x: 5000, y: 150000, yLabel: "150 000" },
+    ]}
+    notas={[
+      { x: 200, y: 198000, texto: "P = 30 €: B(5 000) = 20 000 €", color: "teal" },
+      { x: 200, y: 186000, texto: "P = 26 €: B(5 000) = 0 €", color: "aubergine" },
+    ]}
+  />
+</Diagram>
+
 ## Representació gràfica del punt mort
 
 El gràfic del punt mort es dibuixa amb la quantitat Q a l'eix horitzontal i els euros a l'eix vertical. Es tracen tres línies: la de **costos fixos** (horitzontal, paral·lela a l'eix X a l'altura de CF), la de **costos totals** (recta que parteix de CF i puja amb pendent CVu) i la d'**ingressos** (recta que ix de l'origen amb pendent P). El **punt mort** és la intersecció entre la recta d'ingressos i la de costos totals. A l'esquerra d'eixe punt la recta de costos totals queda per damunt de la d'ingressos (zona de pèrdues); a la dreta, la d'ingressos queda per damunt (zona de beneficis). La distància vertical entre les dues rectes en qualsevol nivell de producció és el benefici o la pèrdua.
+
+<Diagram caption="Esquema del punt mort, sense xifres: en Q* l'ingrés total iguala el cost total. A l'esquerra hi ha pèrdues i a la dreta, beneficis. No usa dades reals.">
+  <GraficoXY id="g-ebau-esquema-punto-muerto" titulo="Esquema del punt mort" desc="Esquema sense xifres: el cost fix és una recta horitzontal, el cost total parteix d'ell i puja, i l'ingrés total ix de l'origen i puja més de pressa. Es creuen en el punt mort, Q*: a l'esquerra hi ha pèrdues i a la dreta, beneficis."
+    xMax={100} yMax={110} ejeX="Unitats produïdes i venudes" ejeY="Euros" simboloX="Q" simboloY="€"
+    areas={[
+      { puntos: [[0, 0], [37.5, 45], [0, 30]], color: "terra" },
+      { puntos: [[37.5, 45], [80, 96], [80, 62]], color: "teal" },
+    ]}
+    series={[
+      { label: "IT", color: "teal", puntos: [[0, 0], [80, 96]] },
+      { label: "CT", color: "terra", puntos: [[0, 30], [80, 62]] },
+      { label: "CF", color: "mustard", puntos: [[0, 30], [80, 30]] },
+    ]}
+    puntos={[
+      { x: 37.5, y: 45, xLabel: "Q*", yLabel: "I*", dx: -34, dy: -12 },
+    ]}
+    notas={[
+      { x: 3, y: 20, texto: "Pèrdues", color: "terra" },
+      { x: 56, y: 60, texto: "Beneficis", color: "teal" },
+    ]}
+  />
+</Diagram>
 
 ## Errors típics que resten punts
 

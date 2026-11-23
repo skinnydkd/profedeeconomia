@@ -11,6 +11,9 @@ estado: publicado
 slug: "asignaturas/edmn-2bach/ebau-problemas/02-productividad-ejercicios-resueltos.ca"
 ---
 
+import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
+
 La **productivitat** mesura quant s'obté amb els recursos emprats: per treballador, per hora o per euro gastat. L'**eficiència** servix per a triar entre diverses maneres de produir el mateix, primer mirant les quantitats físiques (eficiència tècnica) i després els costos (eficiència econòmica).
 
 ## Formulari
@@ -40,6 +43,28 @@ b) Variació:
 
 **Interpretació.** Cada treballador va passar de fabricar 1.600 parells a l'any a 1.725, una millora del 7,81 % en la productivitat del treball. Encara que la plantilla va créixer només de 30 a 32 persones, la producció va augmentar més que proporcionalment, senyal que la formació va elevar el rendiment per empleat.
 
+<Diagram caption="Productivitat del treball el 2024 (48.000 / 30 = 1.600 parells per treballador) i el 2025 (55.200 / 32 = 1.725): una millora del 7,81 %.">
+  <GraficoXY id="g-ebau-prod-calzado" titulo="Productivitat del treball de la fàbrica de calçat" desc="Dues columnes: el 2024 la productivitat era de 1.600 parells per treballador (48.000 parells i 30 treballadors) i el 2025 de 1.725 (55.200 parells i 32 treballadors). La variació és del 7,81 %."
+    xMax={6} yMax={2000} ejeX="Any" ejeY="Parells per treballador"
+    xTicks={[1.9, 4.1]} yTicks={[500, 1000, 1500]} xTickLabels={["2024", "2025"]}
+    areas={[
+      { puntos: [[1, 0], [2.8, 0], [2.8, 1600], [1, 1600]], color: "mustard", fuerte: true },
+      { puntos: [[3.2, 0], [5, 0], [5, 1725], [3.2, 1725]], color: "teal", fuerte: true },
+    ]}
+    series={[
+      { puntos: [[1, 0], [2.8, 0], [2.8, 1600], [1, 1600], [1, 0]], color: "mustard" },
+      { puntos: [[3.2, 0], [5, 0], [5, 1725], [3.2, 1725], [3.2, 0]], color: "teal" },
+    ]}
+    notas={[
+      { x: 1.9, y: 1670, texto: "1 600", ancla: "middle" },
+      { x: 4.1, y: 1795, texto: "1 725", ancla: "middle" },
+      { x: 3, y: 1900, texto: "+7,81 %", ancla: "middle", color: "terra" },
+      { x: 1.9, y: 700, texto: "48 000 / 30", ancla: "middle" },
+      { x: 4.1, y: 700, texto: "55 200 / 32", ancla: "middle" },
+    ]}
+  />
+</Diagram>
+
 ### Problema 2 — Productivitat global
 
 **Enunciat.** Una empresa produïx 10.000 unitats d'un bé que ven a 12 euros cadascuna. Per a fer-ho empra 4.000 hores de treball a 15 euros l'hora i matèries primeres per valor de 36.000 euros. Calcula la productivitat global.
@@ -52,6 +77,30 @@ b) Variació:
 > Productivitat global = 120.000 / 96.000 = **1,25**
 
 **Interpretació.** La productivitat global és 1,25: per cada euro invertit en recursos (treball i matèries primeres), l'empresa genera 1,25 euros de producció. En ser major que 1, l'activitat crea valor; com més alta siga la ràtio, més eficient és l'ús conjunt dels recursos.
+
+<Diagram caption="Cada euro de recursos (60.000 € de treball i 36.000 € de matèries primeres, 96.000 € en total) produïx 1,25 € de producció: 120.000 / 96.000 = 1,25.">
+  <GraficoXY id="g-ebau-prod-global" titulo="Productivitat global: producció enfront de recursos" desc="Dues columnes. El valor de la producció és de 120.000 euros (10.000 unitats a 12). Els recursos sumen 96.000 euros: 60.000 de treball (4.000 hores a 15) i 36.000 de matèries primeres. La productivitat global és 120.000 / 96.000 = 1,25."
+    xMax={7} yMax={140000} ejeX="" ejeY="Euros" simboloY="€"
+    xTicks={[2, 5]} yTicks={[40000, 80000, 120000]} xTickLabels={["Valor de la producció", "Valor dels recursos"]}
+    areas={[
+      { puntos: [[1, 0], [3, 0], [3, 120000], [1, 120000]], color: "teal", fuerte: true },
+      { puntos: [[4, 0], [6, 0], [6, 60000], [4, 60000]], color: "aubergine", fuerte: true },
+      { puntos: [[4, 60000], [6, 60000], [6, 96000], [4, 96000]], color: "mustard", fuerte: true },
+    ]}
+    series={[
+      { puntos: [[1, 0], [3, 0], [3, 120000], [1, 120000], [1, 0]], color: "teal" },
+      { puntos: [[4, 0], [6, 0], [6, 60000], [4, 60000], [4, 0]], color: "aubergine" },
+      { puntos: [[4, 60000], [6, 60000], [6, 96000], [4, 96000], [4, 60000]], color: "mustard" },
+    ]}
+    notas={[
+      { x: 2, y: 58250, texto: "Producció 120 000", ancla: "middle" },
+      { x: 5, y: 28250, texto: "Treball 60 000", ancla: "middle" },
+      { x: 5, y: 76250, texto: "Matèries primeres 36 000", ancla: "middle" },
+      { x: 2, y: 125600, texto: "120 000", ancla: "middle" },
+      { x: 5, y: 101600, texto: "96 000", ancla: "middle" },
+    ]}
+  />
+</Diagram>
 
 ### Problema 3 — Eficiència tècnica i econòmica
 
@@ -74,6 +123,34 @@ b) Eficiència econòmica (cost total de cadascuna):
 > Cost B = 8 × 1.200 + 5 × 2.000 = 9.600 + 10.000 = **19.600 euros**
 
 **Interpretació.** Les dues tècniques són tècnicament eficients perquè cap no domina l'altra en quantitats físiques. Econòmicament, la **tècnica B és l'eficient**, ja que produïx les mateixes 1.000 unitats amb un cost de 19.600 euros enfront dels 20.000 d'A: estalvia 400 euros. L'empresa hauria de triar la tècnica B.
+
+<Diagram caption="Cost de produir 1.000 unitats amb cada tècnica: A costa 20.000 € (10 treballadors i 4 màquines) i B, 19.600 € (8 treballadors i 5 màquines). B estalvia 400 €.">
+  <GraficoXY id="g-ebau-prod-tecnicas" titulo="Cost de les tècniques A i B" desc="Dues columnes apilades amb el cost de produir les 1.000 unitats. La tècnica A costa 20.000 euros: 12.000 de treball i 8.000 de màquines. La tècnica B costa 19.600: 9.600 de treball i 10.000 de màquines. B estalvia 400 euros."
+    xMax={7} yMax={24000} ejeX="" ejeY="Euros" simboloY="€"
+    xTicks={[2, 5]} yTicks={[5000, 10000, 15000, 20000]} xTickLabels={["Tècnica A", "Tècnica B"]}
+    areas={[
+      { puntos: [[1, 0], [3, 0], [3, 12000], [1, 12000]], color: "aubergine", fuerte: true },
+      { puntos: [[1, 12000], [3, 12000], [3, 20000], [1, 20000]], color: "mustard", fuerte: true },
+      { puntos: [[4, 0], [6, 0], [6, 9600], [4, 9600]], color: "aubergine", fuerte: true },
+      { puntos: [[4, 9600], [6, 9600], [6, 19600], [4, 19600]], color: "mustard", fuerte: true },
+    ]}
+    series={[
+      { puntos: [[1, 0], [3, 0], [3, 12000], [1, 12000], [1, 0]], color: "aubergine" },
+      { puntos: [[1, 12000], [3, 12000], [3, 20000], [1, 20000], [1, 12000]], color: "mustard" },
+      { puntos: [[4, 0], [6, 0], [6, 9600], [4, 9600], [4, 0]], color: "aubergine" },
+      { puntos: [[4, 9600], [6, 9600], [6, 19600], [4, 19600], [4, 9600]], color: "mustard" },
+    ]}
+    notas={[
+      { x: 2, y: 5700, texto: "Treball 12 000", ancla: "middle" },
+      { x: 2, y: 15700, texto: "Màquines 8 000", ancla: "middle" },
+      { x: 5, y: 4500, texto: "Treball 9 600", ancla: "middle" },
+      { x: 5, y: 14300, texto: "Màquines 10 000", ancla: "middle" },
+      { x: 2, y: 20960, texto: "20 000", ancla: "middle" },
+      { x: 5, y: 20560, texto: "19 600", ancla: "middle" },
+      { x: 3.5, y: 22800, texto: "B estalvia 400 €", ancla: "middle", color: "terra" },
+    ]}
+  />
+</Diagram>
 
 ### Problema 4 — Productivitat del treball i productivitat global en dos anys (tipus examen)
 
@@ -106,6 +183,37 @@ c) Els materials creixen en la mateixa proporció que la producció (140 euros p
 **Resultat:** la productivitat del treball puja de 250 a 275 bicicletes per treballador (+10 %); la productivitat global, d'1,25 a 1,30 (+3,94 %).
 
 **Interpretació.** El 2025 cada treballador munta 25 bicicletes més que l'any anterior, i l'empresa trau 1,30 euros de producció per cada euro de recursos, enfront d'1,25. La millora és real però més xicoteta en termes globals perquè els materials, la major part del cost, no s'aprofiten millor. Per a continuar millorant la productivitat global, l'empresa hauria de reduir la despesa en materials per bicicleta (menys malbaratament, millors preus de compra), no només produir més amb la mateixa plantilla.
+
+<Diagram caption="Les dues productivitats en base 2024 = 100. La del treball puja un 10 % (de 250 a 275 bicicletes per treballador); la global, només un 3,94 % (d'1,25 a 1,30), perquè els materials creixen igual que la producció.">
+  <GraficoXY id="g-ebau-prod-bicis" titulo="Productivitat del treball i global de Bicis Benimaclet" desc="Quatre columnes amb índex 2024 = 100. La productivitat del treball passa de 250 a 275 bicicletes per treballador (índex 110, un 10 % més). La productivitat global passa d'1,25 a 1,30 (índex 103,94, un 3,94 % més)."
+    xMax={11} yMax={140} ejeX="" ejeY="Índex (2024 = 100)"
+    xTicks={[2.7, 8.1]} yTicks={[50, 100]} xTickLabels={["Productivitat del treball", "Productivitat global"]}
+    areas={[
+      { puntos: [[0.8, 0], [2.6, 0], [2.6, 100], [0.8, 100]], color: "mustard", fuerte: true },
+      { puntos: [[2.8, 0], [4.6, 0], [4.6, 110], [2.8, 110]], color: "teal", fuerte: true },
+      { puntos: [[6.2, 0], [8, 0], [8, 100], [6.2, 100]], color: "mustard", fuerte: true },
+      { puntos: [[8.2, 0], [10, 0], [10, 103.94], [8.2, 103.94]], color: "teal", fuerte: true },
+    ]}
+    series={[
+      { puntos: [[0.8, 0], [2.6, 0], [2.6, 100], [0.8, 100], [0.8, 0]], color: "mustard" },
+      { puntos: [[2.8, 0], [4.6, 0], [4.6, 110], [2.8, 110], [2.8, 0]], color: "teal" },
+      { puntos: [[6.2, 0], [8, 0], [8, 100], [6.2, 100], [6.2, 0]], color: "mustard" },
+      { puntos: [[8.2, 0], [10, 0], [10, 103.94], [8.2, 103.94], [8.2, 0]], color: "teal" },
+    ]}
+    notas={[
+      { x: 1.7, y: 104, texto: "250", ancla: "middle" },
+      { x: 1.7, y: 6, texto: "2024", ancla: "middle" },
+      { x: 3.7, y: 114, texto: "275", ancla: "middle" },
+      { x: 3.7, y: 6, texto: "2025", ancla: "middle" },
+      { x: 7.1, y: 104, texto: "1,25", ancla: "middle" },
+      { x: 7.1, y: 6, texto: "2024", ancla: "middle" },
+      { x: 9.1, y: 107.94, texto: "1,30", ancla: "middle" },
+      { x: 9.1, y: 6, texto: "2025", ancla: "middle" },
+      { x: 2.7, y: 126, texto: "+10 %", ancla: "middle", color: "terra" },
+      { x: 8.1, y: 126, texto: "+3,94 %", ancla: "middle", color: "terra" },
+    ]}
+  />
+</Diagram>
 
 ## Errors típics que resten punts
 

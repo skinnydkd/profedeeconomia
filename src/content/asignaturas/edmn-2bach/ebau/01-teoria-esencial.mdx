@@ -7,6 +7,9 @@ lang: es
 estado: publicado
 ---
 
+import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
+
 Síntesis de estudio para la EBAU de Empresa y Diseño de Modelos de Negocio (EDMN) en la Comunitat Valenciana. La teoría se organiza siguiendo los **cuatro bloques de la concreción curricular valenciana** y enlaza con las 12 unidades del libro. No pretende ser exhaustiva: recoge lo que cae y lo que sustenta los problemas. Lo marcado como **núcleo** es lo que aparece con más frecuencia en el examen.
 
 > Esta guía se basa en el currículo LOMLOE de la asignatura (Decret 108/2022 del Consell, currículo de Bachillerato de la Comunitat Valenciana) y en el currículo básico estatal (Real Decreto 243/2022). El **Decret 103/2026** da nueva redacción a ese currículo valenciano, aplicable a las materias de 2.º **desde el curso 2027-2028**. Conviene contrastar con la matriz de especificaciones publicada cada curso por la comisión de la materia.
@@ -182,6 +185,28 @@ Q* = CF / (P − Cvu)
 
 Por debajo del punto muerto hay pérdidas; por encima, beneficio. El denominador `(P − Cvu)` es el **margen de contribución unitario**.
 
+<Diagram caption="Esquema del punto muerto, sin cifras: en Q* el ingreso total iguala al coste total. A la izquierda hay pérdidas y a la derecha, beneficios. No usa datos reales.">
+  <GraficoXY id="g-ebau-teoria-punto-muerto" titulo="Esquema del punto muerto" desc="Esquema sin cifras: el coste fijo es una recta horizontal, el coste total parte de él y sube, y el ingreso total sale del origen y sube más deprisa. Se cruzan en el punto muerto, Q*: a la izquierda hay pérdidas y a la derecha, beneficios."
+    xMax={100} yMax={110} ejeX="Unidades producidas y vendidas" ejeY="Euros" simboloX="Q" simboloY="€"
+    areas={[
+      { puntos: [[0, 0], [37.5, 45], [0, 30]], color: "terra" },
+      { puntos: [[37.5, 45], [80, 96], [80, 62]], color: "teal" },
+    ]}
+    series={[
+      { label: "IT", color: "teal", puntos: [[0, 0], [80, 96]] },
+      { label: "CT", color: "terra", puntos: [[0, 30], [80, 62]] },
+      { label: "CF", color: "mustard", puntos: [[0, 30], [80, 30]] },
+    ]}
+    puntos={[
+      { x: 37.5, y: 45, xLabel: "Q*", yLabel: "I*", dx: -34, dy: -12 },
+    ]}
+    notas={[
+      { x: 3, y: 20, texto: "Pérdidas", color: "terra" },
+      { x: 56, y: 60, texto: "Beneficios", color: "teal" },
+    ]}
+  />
+</Diagram>
+
 ### Área comercial (marketing)
 
 - **Segmentación**: dividir el mercado en grupos homogéneos. Criterios: demográficos, geográficos, psicográficos y de comportamiento.
@@ -229,6 +254,23 @@ donde `A` = desembolso inicial, `Qt` = flujo de caja del año t, `k` = tipo de d
 ```
 
 Sustituyendo `x = (1 + r)` se obtiene una ecuación cuadrática `A·x² − Q1·x − Q2 = 0`; la TIR es `r = x − 1`.
+
+<Diagram caption="Esquema del VAN en función de k: la TIR es la tasa que lo anula. Si el coste del capital k es menor que la TIR, el VAN es positivo y la inversión se acepta. No usa datos reales.">
+  <GraficoXY id="g-ebau-teoria-van-tir" titulo="El VAN según la tasa de descuento y la TIR" desc="Esquema sin cifras: el VAN baja al subir la tasa de descuento k. La TIR es la tasa en que la curva corta el eje, es decir, VAN = 0. Con k menor que la TIR el VAN es positivo y se acepta; con k mayor es negativo y se rechaza."
+    xMax={100} yMax={100} yMin={-30} ejeX="Tasa de descuento k" ejeY="VAN" simboloX="k"
+    series={[
+      { label: "VAN(k)", color: "terra", labelEn: "inicio", puntos: [[0, 75], [4, 64.5], [8, 55.11], [12, 46.7], [16, 39.17], [20, 32.43], [24, 26.41], [28, 21.01], [32, 16.18], [36, 11.86], [40, 7.99], [44, 4.52], [48, 1.43], [52, -1.35], [56, -3.83], [60, -6.05], [64, -8.04], [68, -9.82], [72, -11.42], [76, -12.84], [80, -14.12], [84, -15.26], [88, -16.28]], dx: 12, dy: -10 },
+    ]}
+    puntos={[
+      { x: 50, y: 0, xLabel: "TIR", guias: true },
+      { x: 25, y: 25, xLabel: "k" },
+    ]}
+    notas={[
+      { x: 22, y: 70, texto: "k < TIR: VAN > 0, se acepta", color: "teal" },
+      { x: 56, y: -26, texto: "k > TIR: VAN < 0, se rechaza", color: "terra" },
+    ]}
+  />
+</Diagram>
 
 **Plazo de recuperación (PayBack)**: tiempo que tarda la inversión en recuperarse con los flujos de caja. Mide liquidez, no rentabilidad (ignora el valor del dinero en el tiempo y los flujos posteriores).
 

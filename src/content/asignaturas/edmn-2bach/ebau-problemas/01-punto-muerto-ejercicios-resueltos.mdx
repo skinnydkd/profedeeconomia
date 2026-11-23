@@ -10,6 +10,9 @@ lang: es
 estado: publicado
 ---
 
+import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
+
 El **punto muerto** (o umbral de rentabilidad) es la cantidad que una empresa tiene que vender para cubrir todos sus costes: ni gana ni pierde. Por debajo hay pérdidas; por encima, beneficios. La misma lógica de costes fijos y variables sirve para decidir si conviene fabricar un componente o comprarlo fuera.
 
 ## Formulario
@@ -50,6 +53,31 @@ c) Punto muerto:
 
 **Interpretación.** Producir 4.000 cargadores cuesta 210.000 euros, lo que equivale a 52,50 euros por unidad. La empresa cubre todos sus costes (no gana ni pierde) al vender 2.000 unidades, que generan 150.000 euros de ingresos. A partir de la unidad 2.001 empieza a obtener beneficios; por debajo de 2.000 unidades incurre en pérdidas. Como produce 4.000 (el doble del punto muerto), opera con holgura en zona de beneficios.
 
+<Diagram caption="Las rectas de ingreso y de coste total se cruzan en 2.000 unidades (150.000 €). Con 4.000 unidades el coste es de 210.000 € y el ingreso de 300.000 €: la distancia entre ambas, 90.000 €, es el beneficio.">
+  <GraficoXY id="g-ebau-pm-cargadores" titulo="Punto muerto de los cargadores solares" desc="Ingreso total (75 euros por unidad), coste total (90.000 euros fijos más 30 por unidad) y coste fijo. Se cruzan en 2.000 unidades, con 150.000 euros. Con 4.000 unidades el coste total es de 210.000 euros y el ingreso de 300.000, de modo que el beneficio es de 90.000."
+    xMax={5500} yMax={400000} ejeX="Cargadores producidos" ejeY="Euros" simboloX="Q" simboloY="€"
+    yTicks={[90000]}
+    areas={[
+      { puntos: [[0, 0], [2000, 150000], [0, 90000]], color: "terra" },
+      { puntos: [[2000, 150000], [4500, 337500], [4500, 225000]], color: "teal" },
+    ]}
+    series={[
+      { label: "IT", color: "teal", puntos: [[0, 0], [4500, 337500]] },
+      { label: "CT", color: "terra", puntos: [[0, 90000], [4500, 225000]] },
+      { label: "CF", color: "mustard", puntos: [[0, 90000], [4500, 90000]] },
+    ]}
+    puntos={[
+      { x: 2000, y: 150000, label: "Q*", xLabel: "2 000", yLabel: "150 000", dx: -34, dy: -12 },
+      { x: 4000, y: 210000, xLabel: "4 000", yLabel: "210 000" },
+      { x: 4000, y: 300000, yLabel: "300 000" },
+    ]}
+    notas={[
+      { x: 100, y: 60000, texto: "Pérdidas", color: "terra" },
+      { x: 4060, y: 255000, texto: "Beneficio: 90 000 €", color: "teal" },
+    ]}
+  />
+</Diagram>
+
 ### Problema 2 — Punto muerto y beneficio en un nivel de ventas
 
 **Enunciado.** Un taller de impresión 3D tiene costes fijos de 24.000 euros al año. Fabrica figuras con un coste variable unitario de 8 euros y las vende a 20 euros. a) Halla el punto muerto en unidades. b) Si el año pasado vendió 3.500 figuras, ¿qué beneficio obtuvo?
@@ -70,6 +98,31 @@ Comprobación rápida con el margen: (3.500 − 2.000) × 12 = 1.500 × 12 = 18.
 
 **Interpretación.** El taller necesita vender 2.000 figuras para no tener ni pérdidas ni ganancias. Como vendió 3.500, superó el umbral en 1.500 unidades y obtuvo 18.000 euros de beneficio. Cada figura vendida por encima del punto muerto aporta 12 euros de margen al resultado.
 
+<Diagram caption="Las rectas se cruzan en 2.000 figuras (40.000 €). Con las 3.500 vendidas el ingreso es de 70.000 € y el coste de 52.000 €: la distancia entre ambas, 18.000 €, es el beneficio.">
+  <GraficoXY id="g-ebau-pm-figuras" titulo="Punto muerto del taller de impresión 3D" desc="Ingreso total (20 euros por figura), coste total (24.000 euros fijos más 8 por figura) y coste fijo. Se cruzan en 2.000 figuras, con 40.000 euros. Con las 3.500 figuras vendidas el ingreso es de 70.000 euros, el coste de 52.000 y el beneficio de 18.000."
+    xMax={4600} yMax={90000} ejeX="Figuras al año" ejeY="Euros" simboloX="Q" simboloY="€"
+    yTicks={[24000]}
+    areas={[
+      { puntos: [[0, 0], [2000, 40000], [0, 24000]], color: "terra" },
+      { puntos: [[2000, 40000], [4000, 80000], [4000, 56000]], color: "teal" },
+    ]}
+    series={[
+      { label: "IT", color: "teal", puntos: [[0, 0], [4000, 80000]] },
+      { label: "CT", color: "terra", puntos: [[0, 24000], [4000, 56000]] },
+      { label: "CF", color: "mustard", puntos: [[0, 24000], [4000, 24000]] },
+    ]}
+    puntos={[
+      { x: 2000, y: 40000, label: "Q*", xLabel: "2 000", yLabel: "40 000", dx: -34, dy: -12 },
+      { x: 3500, y: 52000, xLabel: "3 500", yLabel: "52 000" },
+      { x: 3500, y: 70000, yLabel: "70 000" },
+    ]}
+    notas={[
+      { x: 80, y: 12000, texto: "Pérdidas", color: "terra" },
+      { x: 3560, y: 61000, texto: "Beneficio: 18 000 €", color: "teal" },
+    ]}
+  />
+</Diagram>
+
 ### Problema 3 — Decisión de producir o comprar (make-or-buy)
 
 **Enunciado.** Una empresa de mobiliario necesita 5.000 tiradores metálicos al año. Fabricarlos internamente supone unos costes fijos adicionales de 15.000 euros (maquinaria y utillaje) y un coste variable de 2 euros por tirador. Un proveedor externo se los vende a 5 euros la unidad. Determina, mediante el punto de indiferencia y la comparación de costes, si conviene fabricar o comprar para esa cantidad.
@@ -86,6 +139,24 @@ Justo coinciden, así que calculamos el **punto de indiferencia** (la cantidad p
 > CF + CVu × Q = Pext × Q → 15.000 + 2Q = 5Q → 15.000 = 3Q → Q = **5.000 unidades**
 
 **Interpretación.** El punto de indiferencia está exactamente en 5.000 tiradores. Para la cantidad necesaria (5.000) las dos opciones cuestan lo mismo, 25.000 euros, por lo que en términos de coste es indiferente. La regla para decidir es clara: **si la empresa va a necesitar más de 5.000 tiradores al año, le conviene fabricar** (el coste variable más bajo, 2 frente a 5 euros, compensa los 15.000 euros fijos); **si va a necesitar menos de 5.000, le conviene comprar** al proveedor externo. Con exactamente 5.000, la decisión se tomaría por criterios cualitativos (control de calidad, dependencia del proveedor, flexibilidad).
+
+<Diagram caption="Las rectas de coste de fabricar y de comprar se cruzan en 5.000 tiradores, con 25.000 € en los dos casos: justo la cantidad que necesita la empresa. A la izquierda conviene comprar; a la derecha, fabricar.">
+  <GraficoXY id="g-ebau-pm-tiradores" titulo="Fabricar o comprar los tiradores" desc="Coste de fabricar (15.000 euros fijos más 2 por tirador) y coste de comprar (5 euros por tirador). Las dos rectas se cruzan en 5.000 tiradores, con 25.000 euros: por debajo conviene comprar y por encima, fabricar."
+    xMax={7000} yMax={36000} ejeX="Tiradores al año" ejeY="Euros" simboloX="Q" simboloY="€"
+    yTicks={[15000]}
+    series={[
+      { label: "Fabricar", color: "terra", puntos: [[0, 15000], [6400, 27800]] },
+      { label: "Comprar", color: "teal", puntos: [[0, 0], [6400, 32000]] },
+    ]}
+    puntos={[
+      { x: 5000, y: 25000, label: "I", xLabel: "5 000", yLabel: "25 000", dx: 12, dy: 24 },
+    ]}
+    notas={[
+      { x: 2500, y: 2500, texto: "Menos de 5 000: comprar", ancla: "middle" },
+      { x: 6000, y: 2500, texto: "Más de 5 000: fabricar", ancla: "middle" },
+    ]}
+  />
+</Diagram>
 
 ### Problema 4 — Punto muerto, beneficio objetivo y bajada de precio (tipo examen)
 
@@ -119,9 +190,53 @@ c) Con el precio nuevo, el margen unitario baja a 26 − 14 = 12 euros.
 
 **Interpretación.** Bajar el precio un 13 % reduce el margen de cada taza un 25 % (de 16 a 12 euros), así que el taller necesita vender un tercio más (de 3.750 a 5.000 tazas) solo para cubrir costes. Las 5.000 tazas que antes daban 20.000 euros de beneficio ahora solo alcanzan el punto muerto. Para recuperar el beneficio, la empresa tendría que vender más, reducir su coste variable o recortar costes fijos.
 
+<Diagram caption="Al bajar el precio de 30 a 26 € la recta de ingresos gira hacia abajo y el punto muerto pasa de 3.750 a 5.000 tazas (130.000 €). Con 5.000 tazas, el beneficio de 20.000 € se queda en 0.">
+  <GraficoXY id="g-ebau-pm-tazas" titulo="Punto muerto de las tazas con dos precios" desc="Coste total (60.000 euros fijos más 14 por taza) e ingresos a 30 y a 26 euros por taza. Con 30 euros el punto muerto está en 3.750 tazas, con 112.500 euros. Con 26 euros sube a 5.000 tazas, con 130.000 euros. Con 5.000 tazas el beneficio es de 20.000 euros a 30 euros y de 0 a 26."
+    xMax={6800} yMax={210000} ejeX="Tazas al año" ejeY="Euros" simboloX="Q" simboloY="€"
+    yTicks={[60000]}
+    series={[
+      { label: "IT (30 €)", color: "teal", puntos: [[0, 0], [6000, 180000]] },
+      { label: "IT (26 €)", color: "aubergine", puntos: [[0, 0], [6000, 156000]], dy: -2 },
+      { label: "CT", color: "terra", puntos: [[0, 60000], [6000, 144000]], dy: 12 },
+      { label: "CF", color: "mustard", puntos: [[0, 60000], [6000, 60000]] },
+    ]}
+    puntos={[
+      { x: 3750, y: 112500, label: "Q*₁", xLabel: "3 750", yLabel: "112 500", dx: -40, dy: -12 },
+      { x: 5000, y: 130000, label: "Q*₂", xLabel: "5 000", yLabel: "130 000", dx: 12, dy: 24 },
+      { x: 5000, y: 150000, yLabel: "150 000" },
+    ]}
+    notas={[
+      { x: 200, y: 198000, texto: "P = 30 €: B(5 000) = 20 000 €", color: "teal" },
+      { x: 200, y: 186000, texto: "P = 26 €: B(5 000) = 0 €", color: "aubergine" },
+    ]}
+  />
+</Diagram>
+
 ## Representación gráfica del punto muerto
 
 El gráfico del punto muerto se dibuja con la cantidad Q en el eje horizontal y los euros en el eje vertical. Se trazan tres líneas: la de **costes fijos** (horizontal, paralela al eje X a la altura de CF), la de **costes totales** (recta que parte de CF y sube con pendiente CVu) y la de **ingresos** (recta que sale del origen con pendiente P). El **punto muerto** es la intersección entre la recta de ingresos y la de costes totales. A la izquierda de ese punto la recta de costes totales queda por encima de la de ingresos (zona de pérdidas); a la derecha, la de ingresos queda por encima (zona de beneficios). La distancia vertical entre ambas rectas en cualquier nivel de producción es el beneficio o la pérdida.
+
+<Diagram caption="Esquema del punto muerto, sin cifras: en Q* el ingreso total iguala al coste total. A la izquierda hay pérdidas y a la derecha, beneficios. No usa datos reales.">
+  <GraficoXY id="g-ebau-esquema-punto-muerto" titulo="Esquema del punto muerto" desc="Esquema sin cifras: el coste fijo es una recta horizontal, el coste total parte de él y sube, y el ingreso total sale del origen y sube más deprisa. Se cruzan en el punto muerto, Q*: a la izquierda hay pérdidas y a la derecha, beneficios."
+    xMax={100} yMax={110} ejeX="Unidades producidas y vendidas" ejeY="Euros" simboloX="Q" simboloY="€"
+    areas={[
+      { puntos: [[0, 0], [37.5, 45], [0, 30]], color: "terra" },
+      { puntos: [[37.5, 45], [80, 96], [80, 62]], color: "teal" },
+    ]}
+    series={[
+      { label: "IT", color: "teal", puntos: [[0, 0], [80, 96]] },
+      { label: "CT", color: "terra", puntos: [[0, 30], [80, 62]] },
+      { label: "CF", color: "mustard", puntos: [[0, 30], [80, 30]] },
+    ]}
+    puntos={[
+      { x: 37.5, y: 45, xLabel: "Q*", yLabel: "I*", dx: -34, dy: -12 },
+    ]}
+    notas={[
+      { x: 3, y: 20, texto: "Pérdidas", color: "terra" },
+      { x: 56, y: 60, texto: "Beneficios", color: "teal" },
+    ]}
+  />
+</Diagram>
 
 ## Errores típicos que restan puntos
 
