@@ -184,7 +184,9 @@ export default defineConfig({
         !/\/diapositivas\/[^/]+\/$/.test(page) &&
         // /[asignatura]/tests/ index is noindex (the tests hub moved to
         // /actividades-dinamicas/). Individual tests /tests/[slug]/ stay indexable.
-        !/\/tests\/$/.test(page),
+        !/\/tests\/$/.test(page) &&
+        // Game rooms and the leaderboard: no content, noindex,follow in their <head>.
+        !/\/(juegos\/cajut|juegos\/cajut\/host|juegos\/insider\/host|jocs-economics\/leaderboard)\/$/.test(page),
       // Add <lastmod> to book-unit URLs from their MDX dates (see above).
       serialize(item) {
         const lastmod = LIBRO_LASTMOD.get(new URL(item.url).pathname);
