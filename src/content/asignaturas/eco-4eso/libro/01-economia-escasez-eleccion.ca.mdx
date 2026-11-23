@@ -42,6 +42,7 @@ publicado_en: 2026-09-15
 import Callout from '@components/Callout.astro';
 import Diagram from '@components/Diagram.astro';
 import FPP from '@components/diagrams/FPP.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
 import FlujoCircular from '@components/diagrams/FlujoCircular.astro';
 import NecesidadesBasicas from '@components/diagrams/NecesidadesBasicas.astro';
 import Curiosity from '@components/Curiosity.astro';
@@ -272,6 +273,28 @@ Es demana: (a) calcular el cost d'oportunitat, en sucs, de cada bloc de 50 entre
 5. **Per què creix el cost**: els recursos no servixen igual de bé per a tot. Els primers companys que passen d'esprémer a untar són els que pitjor espremien, així que es perden pocs sucs. Els últims a canviar són els millors amb l'espremedora, i cada un que se'n va costa molts sucs. Això s'anomena **cost d'oportunitat creixent**, i és la raó que la FPP es corbe cap a fora.
 6. **100 entrepans i 100 sucs**: amb 100 entrepans la frontera permet 140 sucs (combinació C). Produir-ne només 100 significa que hi ha recursos parats o mal usats: és una combinació **ineficient**, dins de la frontera. Algú està xarrant en compte d'esprémer.
 7. **150 entrepans i 140 sucs**: amb 150 entrepans el màxim de sucs és 80 (combinació D). 140 sucs queda fora de la frontera: és **inabastable** amb els recursos de hui. Per a arribar-hi caldrien més recursos (que s'hi sumen els de 3r) o millor tecnologia (una màquina de tallar pa, una espremedora elèctrica).
+
+<Diagram caption="La frontera de la fira: els punts A a E de la taula units per una línia. «100 i 100» queda dins (ineficient) i «150 i 140» queda fora (inabastable).">
+  <GraficoXY id="g-fpp-feria" titulo="Frontera de possibilitats de producció de la fira solidària" desc="La frontera uneix A (0 entrepans, 200 sucs), B (50, 180), C (100, 140), D (150, 80) i E (200, 0) i es corba cap a fora. El punt de 100 entrepans i 100 sucs queda dins de la frontera; el de 150 entrepans i 140 sucs, fora."
+    xMax={250} yMax={240} ejeX="Entrepans" ejeY="Sucs" simboloX="E" simboloY="S"
+    xTicks={[50, 100, 150, 200]} yTicks={[40, 80, 120, 160, 200]}
+    series={[{ color: 'terra', puntos: [[0, 200], [50, 180], [100, 140], [150, 80], [200, 0]] }]}
+    puntos={[
+      { x: 0, y: 200, label: 'A', guias: false }, { x: 50, y: 180, label: 'B', guias: false }, { x: 100, y: 140, label: 'C', guias: false },
+      { x: 150, y: 80, label: 'D', guias: false }, { x: 200, y: 0, label: 'E', guias: false },
+      { x: 100, y: 100, label: 'Ineficient', dy: 24, guias: false }, { x: 150, y: 140, label: 'Inabastable', guias: false },
+    ]}
+  />
+</Diagram>
+
+<Diagram caption="El cost d'oportunitat de cada entrepà creix a mesura que es produïx més: 0,4, 0,8, 1,2 i 1,6 sucs. Per això la frontera es corba.">
+  <GraficoXY id="g-coste-creciente" titulo="Cost d'oportunitat creixent dels entrepans" desc="Cada entrepà costa 0,4 sucs en passar d'A a B, 0,8 de B a C, 1,2 de C a D i 1,6 de D a E: el cost puja en cada tram."
+    xMax={250} yMax={2} ejeX="Tram de la frontera" ejeY="Sucs que es perden per entrepà"
+    xTicks={[25, 75, 125, 175]} xTickLabels={['A → B', 'B → C', 'C → D', 'D → E']} yTicks={[0.4, 0.8, 1.2, 1.6]}
+    series={[{ color: 'teal', puntos: [[25, 0.4], [75, 0.8], [125, 1.2], [175, 1.6]] }]}
+    puntos={[{ x: 25, y: 0.4, guias: false }, { x: 75, y: 0.8, guias: false }, { x: 125, y: 1.2, guias: false }, { x: 175, y: 1.6, guias: false }]}
+  />
+</Diagram>
 
 </SolvedExercise>
 

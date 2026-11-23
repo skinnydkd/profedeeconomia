@@ -44,6 +44,8 @@ publicado_en: 2026-09-15
 import Callout from '@components/Callout.astro';
 import Diagram from '@components/Diagram.astro';
 import OfertaDemanda from '@components/diagrams/OfertaDemanda.astro';
+import MercadoGrafico from '@components/diagrams/MercadoGrafico.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
 import EstructurasMercado from '@components/diagrams/EstructurasMercado.astro';
 import Curiosity from '@components/Curiosity.astro';
 import RealExample from '@components/RealExample.astro';
@@ -138,6 +140,17 @@ Hi ha dos raons darrere. La primera és l'**efecte substitució**: quan alguna c
 
 (Xifres inventades per a l'exemple.) Fixeu-vos en una cosa que confon molta gent: quan canvia el preu, no canvia «la demanda», sinó la **quantitat demandada**. Ens movem al llarg de la mateixa corba, d'una fila de la taula a una altra. La demanda, entesa com la taula sencera, només canvia quan canvia alguna cosa distinta del preu.
 
+<Diagram caption="La taula del concert portada als eixos: cada fila és un punt i, com més puja el preu de l'entrada, menys gent la vol.">
+  <GraficoXY id="g-demanda-concierto" titulo="Demanda d'entrades del concert a l'institut" desc="Corba descendent que uneix quatre punts: a 25 euros es demanden 300 entrades, a 60 euros 150, a 100 euros 60 i a 150 euros 20."
+    xMax={360} yMax={180} ejeX="Entrades demandades" ejeY="Preu (€)" simboloX="Q" simboloY="P"
+    series={[{ label: 'D', color: 'terra', puntos: [[20, 150], [60, 100], [150, 60], [300, 25]] }]}
+    puntos={[
+      { x: 300, y: 25, xLabel: '300', yLabel: '25' }, { x: 150, y: 60, xLabel: '150', yLabel: '60' },
+      { x: 60, y: 100, xLabel: '60', yLabel: '100' }, { x: 20, y: 150, xLabel: '20', yLabel: '150' },
+    ]}
+  />
+</Diagram>
+
 ### El que desplaça la demanda
 
 I què pot canviar la taula sencera, és a dir, fer que a **cada** preu es vulga comprar més (o menys) que abans? Cinc coses, sobretot:
@@ -223,6 +236,20 @@ d) Quants diners ingressaria el club en cada un dels tres casos?
 3. **A 20 €.** Quantitat demandada 90, quantitat oferida 50. Hi ha un **excés de demanda de 40 sudaderes** (90 − 50). Es vendrien les 50 que el club està disposat a fabricar i 40 persones es quedarien sense. Qui s'emporta les 50? Qui arribe abans, qui tinga un amic al club o qui estiga disposat a pagar alguna cosa més «per davall de la taula». Vendre a 20 € no fa que arriben a tothom: fa que arriben a menys gent (50 en compte de 70) i que es repartisquen per criteris distints del preu.
 4. **Ingressos.** Els ingressos són preu × quantitat **venuda** (no l'oferida ni la demandada, sinó la menor de les dos). En equilibri: 25 × 70 = **1.750 €**. A 30 €: només se'n venen 50, per tant 30 × 50 = **1.500 €**. A 20 €: només se'n produïxen 50, per tant 20 × 50 = **1.000 €**. L'equilibri és, en este cas, també el preu que més ingressos genera, perquè és l'únic en què es ven tot el que es produïx.
 
+<Diagram caption="L'exercici en un gràfic: les corbes es creuen en E (25 €, 70 sudaderes). A 30 € es demanden 50 i s'ofereixen 90: sobren 40. A 20 € es demanden 90 i s'ofereixen 50: falten 40.">
+  <MercadoGrafico id="mg-sudaderas" titulo="Equilibri de les sudaderes de l'institut" desc="La demanda i l'oferta es tallen en 25 euros i 70 sudaderes. A 30 euros es demanden 50 i s'ofereixen 90: sobren 40. A 20 euros es demanden 90 i s'ofereixen 50: falten 40."
+    pMax={40} qMax={150} ejeP="Preu (€)" ejeQ="Sudaderes"
+    curvas={[{ tipo: 'D', q0: 170, m: -4, pDe: 8, pA: 38, label: 'D' }, { tipo: 'O', q0: -30, m: 4, pDe: 9, pA: 38, label: 'O' }]}
+    puntos={[
+      { p: 25, q: 70, label: 'E', pLabel: '25', qLabel: '70', dx: -8, dy: 30 },
+      { p: 30, q: 50, pLabel: '30', qLabel: '50' }, { p: 30, q: 90, qLabel: '90' },
+      { p: 20, q: 50 }, { p: 20, q: 90, pLabel: '20' },
+    ]}
+    precio={{ p: 20, label: "Preu de 20 €: falten 40" }}
+    tramo={{ p: 30, q1: 50, q2: 90, label: "Sobren 40" }}
+  />
+</Diagram>
+
 </SolvedExercise>
 
 **Proveu-ho vosaltres:** la ferramenta de baix dibuixa les corbes a partir de dos equacions senzilles, calcula l'equilibri i permet fixar un preu màxim o mínim per a vore l'excés que apareix. Canvieu la demanda o l'oferta i comproveu cap a on es mou el punt de creuament.
@@ -238,6 +265,24 @@ L'equilibri no és un punt fix per sempre. Cada vegada que un dels factors dels 
 - **Puja l'oferta** (corba d'oferta a la dreta): el preu baixa i la quantitat puja. Exemple: entren Ouigo i Iryo a l'AVE.
 - **Baixa l'oferta** (corba a l'esquerra): el preu puja i la quantitat baixa. Exemple: una sequera arruïna la collita.
 
+<Diagram caption="Casos 1 i 2. Amb l'oferta quieta, si la demanda puja (D₀ → D₁) pugen el preu i la quantitat; si baixa (D₀ → D₂), baixen les dos.">
+  <MercadoGrafico id="mg-desplaza-demanda" titulo="Desplaçaments de la demanda i nou equilibri" desc="Amb l'oferta fixa, si la demanda puja l'equilibri puja per la corba d'oferta: més preu i més quantitat. Si la demanda baixa, l'equilibri baixa: menys preu i menys quantitat."
+    pMax={10} qMax={100}
+    curvas={[{ tipo: 'O', q0: 0, m: 10, pDe: 1.5, pA: 9, label: 'O' }, { tipo: 'D', q0: 70, m: -10, pDe: 0.8, pA: 6, label: 'D₂' }, { tipo: 'D', q0: 100, m: -10, pDe: 1.5, pA: 8.5, label: 'D₀' }, { tipo: 'D', q0: 130, m: -10, pDe: 4, pA: 9.6, label: 'D₁' }]}
+    puntos={[{ p: 3.5, q: 35, label: 'E₂', dx: -8, dy: 30 }, { p: 5, q: 50, label: 'E₀', dx: -8, dy: 30 }, { p: 6.5, q: 65, label: 'E₁', dx: -8, dy: 30 }]}
+    flechas={[{ de: { p: 7.6, q: 24 }, a: { p: 7.6, q: 54 } }, { de: { p: 2.2, q: 78 }, a: { p: 2.2, q: 48 } }]}
+  />
+</Diagram>
+
+<Diagram caption="Casos 3 i 4. Amb la demanda quieta, si l'oferta puja (O₀ → O₁) baixa el preu i puja la quantitat; si baixa (O₀ → O₂), puja el preu i baixa la quantitat.">
+  <MercadoGrafico id="mg-desplaza-oferta" titulo="Desplaçaments de l'oferta i nou equilibri" desc="Amb la demanda fixa, si l'oferta puja l'equilibri baixa per la corba de demanda: menys preu i més quantitat. Si l'oferta baixa, l'equilibri puja: més preu i menys quantitat."
+    pMax={10} qMax={100}
+    curvas={[{ tipo: 'D', q0: 100, m: -10, pDe: 1, pA: 8.5, label: 'D' }, { tipo: 'O', q0: -30, m: 10, pDe: 4, pA: 9.6, label: 'O₂' }, { tipo: 'O', q0: 0, m: 10, pDe: 1.5, pA: 9, label: 'O₀' }, { tipo: 'O', q0: 30, m: 10, pDe: 0.8, pA: 6.5, label: 'O₁' }]}
+    puntos={[{ p: 6.5, q: 35, label: 'E₂', dx: -8, dy: -16 }, { p: 5, q: 50, label: 'E₀', dx: -8, dy: -16 }, { p: 3.5, q: 65, label: 'E₁', dx: -8, dy: -16 }]}
+    flechas={[{ de: { p: 7.6, q: 76 }, a: { p: 7.6, q: 46 } }, { de: { p: 2.2, q: 22 }, a: { p: 2.2, q: 52 } }]}
+  />
+</Diagram>
+
 Quan es mouen les dos corbes alhora, una de les dos variables (preu o quantitat) queda clara i l'altra depén de quina es moga més. Amb això n'hi ha prou per a entendre el 90 % de les notícies econòmiques sobre preus.
 
 <Steps label="Mètode" title="Com llegir una notícia de preus amb el model d'oferta i demanda">
@@ -252,6 +297,15 @@ Quan es mouen les dos corbes alhora, una de les dos variables (preu o quantitat)
 Espanya produïx al voltant de la meitat de l'oli d'oliva del món i Andalusia, més del 80 % de l'espanyol. Una campanya normal ronda els **1,4 milions de tones**. La sequera de 2022 i 2023 va reduir la collita 2022/2023 a unes **666.000 tones**, menys de la meitat (MAPA). En el llenguatge d'esta unitat: la corba d'oferta es va desplaçar bruscament a l'esquerra mentre la demanda a penes es movia, perquè les famílies espanyoles i els importadors de tot el món continuaven volent oli. El resultat va ser exactament el que prediu el model: menys quantitat i un preu molt més alt. El preu en origen del verge extra va passar d'uns **3,30 €/kg** a la campanya 2021/22 a rondar els **9 €/kg** entre finals de 2023 i principis de 2024, i al supermercat l'oli d'oliva va arribar a costar més del doble que dos anys abans; l'índex de l'oli a l'IPC va assolir el seu màxim a la primavera de 2024 (INE). Ningú va canviar els seus gustos, ningú es va posar d'acord per a pujar preus, cap llei va intervindre. Després van arribar les pluges: la campanya 2024/25 va recuperar al voltant d'1,4 milions de tones, l'oferta va tornar a la dreta i el preu en origen va baixar fins a nivells d'uns 4 €/kg al llarg de 2025 (MAPA). Un cicle complet d'anada i tornada explicat per un sol desplaçament.
 </RealExample>
 
+<Diagram caption="La sequera en el gràfic: l'oferta passa d'O₁ a O₂ i la demanda no es mou. El preu puja de P₁ a P₂ i la quantitat baixa de Q₁ a Q₂.">
+  <MercadoGrafico id="mg-aceite" titulo="La sequera i l'oli d'oliva" desc="La demanda queda quieta i l'oferta es desplaça cap a l'esquerra. El nou equilibri té un preu molt més alt i una quantitat menor."
+    pMax={10} qMax={100}
+    curvas={[{ tipo: 'D', q0: 100, m: -10, pDe: 1, pA: 8.5, label: 'D' }, { tipo: 'O', q0: 0, m: 10, pDe: 1.5, pA: 9, label: 'O₁', tenue: true }, { tipo: 'O', q0: -60, m: 10, pDe: 7, pA: 9.2, label: 'O₂' }]}
+    puntos={[{ p: 5, q: 50, label: 'E₁', pLabel: 'P₁', qLabel: 'Q₁', dx: -8, dy: 30 }, { p: 8, q: 20, label: 'E₂', pLabel: 'P₂', qLabel: 'Q₂', dx: -8, dy: -16 }]}
+    flechas={[{ de: { p: 8.6, q: 86 }, a: { p: 8.6, q: 26 } }]}
+  />
+</Diagram>
+
 <Figure
   src={olivarJaen}
   alt="Vista d'un olivar a la província de Jaén, amb fileres d'oliveres estenent-se fins a l'horitzó sota un cel serè."
@@ -262,6 +316,14 @@ Espanya produïx al voltant de la meitat de l'oli d'oliva del món i Andalusia, 
 />
 
 El mercat de l'habitatge és l'altre gran exemple, i us afectarà d'ací a pocs anys. Entre 2020 i 2025 el lloguer mitjà a Madrid va passar d'uns 15 € per metre quadrat al mes a més de 22 € (Idealista, 2025). Pel costat de la demanda tot empeny cap amunt: creix la població (Espanya va superar els 49 milions d'habitants el 2025, INE), arriben més estudiants i treballadors a les grans ciutats, i qui espera que els preus continuen pujant intenta tancar contracte com més prompte millor. Pel costat de l'oferta, es construïx poc (el Banco de España va calcular el 2024 que entre 2022 i 2025 faltaven uns 600.000 habitatges nous per a cobrir les llars creades) i una part del parc se n'ha anat al lloguer turístic o de temporada. Demanda a la dreta i oferta quieta o a l'esquerra: el model prediu preus més alts, i això és el que ha passat. La pregunta de què pot fer l'Estat al respecte és la de l'apartat següent.
+
+<Diagram caption="El lloguer en una gran ciutat: la demanda puja (D₁ → D₂) i l'oferta es queda curta o baixa (O₁ → O₂). El preu puja amb força (de P₁ a P₂) i la quantitat quasi no canvia.">
+  <MercadoGrafico id="mg-alquiler-madrid" titulo="El lloguer en una gran ciutat: la demanda puja i l'oferta baixa" desc="La demanda es desplaça cap a la dreta i l'oferta cap a l'esquerra. El nou equilibri té un preu molt més alt i una quantitat una mica menor."
+    pMax={10} qMax={100}
+    curvas={[{ tipo: 'D', q0: 100, m: -10, pDe: 1.5, pA: 8.5, label: 'D₁', tenue: true }, { tipo: 'D', q0: 130, m: -10, pDe: 4, pA: 9.6, label: 'D₂' }, { tipo: 'O', q0: 0, m: 10, pDe: 1.5, pA: 9, label: 'O₁', tenue: true }, { tipo: 'O', q0: -45, m: 10, pDe: 6, pA: 9.8, label: 'O₂' }]}
+    puntos={[{ p: 5, q: 50, label: 'E₁', pLabel: 'P₁', qLabel: 'Q₁', dx: -8, dy: 30 }, { p: 8.75, q: 42.5, label: 'E₂', pLabel: 'P₂', qLabel: 'Q₂', dx: -8, dy: -16 }]}
+  />
+</Diagram>
 
 <Curiosity title="Les corbes que Adam Smith mai no va dibuixar">
 Adam Smith va publicar *La riquesa de les nacions* el 1776 i va parlar llargament de mercats, preus i de la «mà invisible», però **mai no va dibuixar cap corba d'oferta ni de demanda**. El gràfic amb les dos corbes creuant-se, que hui apareix a tots els manuals del món, no es va formalitzar fins al 1890, quan l'economista anglés **Alfred Marshall** va publicar els seus *Principis d'economia*. Marshall també va fixar la convenció que continua despistant generacions d'estudiants: va posar el preu a l'eix vertical i la quantitat a l'horitzontal, a l'inrevés del que dictarien les matemàtiques. Van passar 114 anys entre la intuïció de Smith i el dibuix que hui us pareix tan natural com un mapa.
@@ -326,6 +388,16 @@ c) Quins efectes secundaris pots preveure?
 2. **Amb un topall de 30 €.** Està **per damunt** del preu d'equilibri (25 €), així que no té cap efecte: el mercat continuarà buidant-se a 25 € amb 70 sudaderes. Un preu màxim només actua quan es fixa per davall de l'equilibri.
 3. **Efectes secundaris previsibles.** Amb 80 persones volent una sudadera que no existix: cues el primer dia, repartiment per orde d'arribada o per amistat, gent que compra a 15 € i revén a 25 € o 30 € (un mercat paral·lel), i potser el club retalla qualitat (tela més fina, un sol color) perquè fabricar a 15 € li compense. Són els mateixos efectes que es documenten amb els topalls al lloguer, a escala d'institut.
 
+<Diagram caption="El topall de 15 € en el gràfic: es demanden 110 sudaderes i el club només n'oferix 30. Falten 80. Un topall de 30 € quedaria per damunt de l'equilibri i no canviaria res.">
+  <MercadoGrafico id="mg-sudaderas-tope" titulo="Preu màxim de 15 euros per a les sudaderes" desc="Amb el preu limitat a 15 euros, per davall de l'equilibri de 25 euros i 70 sudaderes, es demanden 110 i només s'ofereixen 30: falten 80."
+    pMax={40} qMax={150} ejeP="Preu (€)" ejeQ="Sudaderes"
+    curvas={[{ tipo: 'D', q0: 170, m: -4, pDe: 8, pA: 38, label: 'D' }, { tipo: 'O', q0: -30, m: 4, pDe: 9, pA: 38, label: 'O' }]}
+    puntos={[{ p: 25, q: 70, label: 'E', pLabel: '25', qLabel: '70', dx: -8, dy: 30 }, { p: 15, q: 30, pLabel: '15', qLabel: '30' }, { p: 15, q: 110, qLabel: '110' }]}
+    precio={{ p: 15, label: "Preu màxim: 15 €" }}
+    tramo={{ p: 15, q1: 30, q2: 110, label: "Falten 80" }}
+  />
+</Diagram>
+
 </SolvedExercise>
 
 ### Preus mínims: el sòl
@@ -333,6 +405,16 @@ c) Quins efectes secundaris pots preveure?
 Un **preu mínim** és un preu legal per davall del qual està prohibit vendre. És la imatge especular del topall: només té efecte si es fixa **per damunt de l'equilibri**, i llavors provoca un **excés d'oferta**: a eixe preu se'n vol vendre més del que se'n vol comprar, i el preu no pot baixar per a corregir-ho.
 
 El preu mínim més important de la vostra vida serà el **salari mínim interprofessional (SMI)**, que és un preu mínim al mercat de treball: el preu més baix al qual es pot comprar una hora de treball. El 2026 està fixat en **1.221 € al mes en 14 pagues** (Real Decreto 126/2026). Si l'SMI queda per damunt del que algunes empreses estarien disposades a pagar per certs llocs, la teoria prediu que eixos llocs no es crearan o desapareixeran: un excés d'oferta de treball que s'anomena atur. La realitat és més matisada, perquè el mercat de treball no és un mercat de sudaderes: quanta ocupació va costar la gran pujada de l'SMI de 2019 (un 22 %) és un debat obert, amb estimacions molt diferents segons l'estudi. Ho veureu amb calma a la Unitat 5. Altres preus mínims coneguts són els preus de garantia als agricultors a la Política Agrària Comuna de les dècades de 1970 i 1980, que van generar els famosos «llacs de llet» i «muntanyes de mantega» europeus: excedents que ningú comprava al preu fixat.
+
+<Diagram caption="Un preu mínim per damunt de l'equilibri: es vol vendre més del que es vol comprar i apareix un excés d'oferta. Al mercat de treball, la teoria l'anomena atur.">
+  <MercadoGrafico id="mg-suelo" titulo="Un preu mínim per damunt de l'equilibri" desc="Amb el preu fixat per damunt del d'equilibri, la quantitat oferida supera la demandada i apareix un excés d'oferta."
+    pMax={10} qMax={100}
+    curvas={[{ tipo: 'D', q0: 100, m: -10, pDe: 1.5, pA: 8.5, label: 'D' }, { tipo: 'O', q0: 0, m: 10, pDe: 1.5, pA: 9, label: 'O' }]}
+    puntos={[{ p: 5, q: 50, label: 'E', pLabel: 'P*', qLabel: 'Q*', dx: -8, dy: 30 }, { p: 7, q: 30, pLabel: 'P mín', qLabel: 'Qd' }, { p: 7, q: 70, qLabel: 'Qo' }]}
+    precio={{ p: 7, label: "Preu mínim" }}
+    tramo={{ p: 7, q1: 30, q2: 70, label: "Excés d'oferta" }}
+  />
+</Diagram>
 
 <Callout label="Per a fixar la idea" title="Màxim per davall, mínim per damunt">
 

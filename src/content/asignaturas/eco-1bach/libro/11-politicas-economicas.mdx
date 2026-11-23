@@ -49,6 +49,7 @@ publicado_en: 2026-05-15
 
 import Callout from '@components/Callout.astro';
 import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
 import MultiplicadorFiscal from '@components/diagrams/MultiplicadorFiscal.astro';
 import TransmisionMonetaria from '@components/diagrams/TransmisionMonetaria.astro';
 import Curiosity from '@components/Curiosity.astro';
@@ -169,6 +170,19 @@ k = 1 / (1 − c)
 
 Si la propensión marginal al consumo es 0,7, el multiplicador vale 1 / (1 − 0,7) = 3,33: un euro de gasto público adicional acaba aumentando el PIB en 3,33 euros. En la práctica, el multiplicador en economías abiertas y con impuestos es bastante menor (entre 0,5 y 1,5 según el contexto y el tipo de gasto), porque parte de la renta se filtra hacia importaciones y hacia impuestos. Pero la lógica del multiplicador sigue siendo válida: el gasto público mueve más PIB que su valor nominal.
 
+<Diagram caption="El multiplicador del gasto k = 1 / (1 − c) según la propensión marginal al consumo: con c = 0,6 vale 2,5, con c = 0,75 vale 4 y crece sin límite cuando c se acerca a 1.">
+  <GraficoXY id="g-multiplicador-fiscal" titulo="El multiplicador del gasto según la propensión marginal al consumo" desc="Curva creciente: el multiplicador vale 2,5 con c = 0,6, 4 con c = 0,75 y 10 con c = 0,9."
+    xMax={1} yMax={11} ejeX="Propensión marginal al consumo c" ejeY="Multiplicador k" simboloX="c" simboloY="k"
+    xTicks={[0.25, 0.5, 0.75]} xTickLabels={['0,25', '0,5', '0,75']}
+    series={[{ color: 'terra', puntos: Array.from({ length: 19 }, (_, i) => [i * 0.05, 1 / (1 - i * 0.05)]) }]}
+    puntos={[
+      { x: 0.6, y: 2.5, xLabel: '0,6', yLabel: '2,5' },
+      { x: 0.75, y: 4, xLabel: '0,75', yLabel: '4' },
+    ]}
+  />
+</Diagram>
+
+
 <Diagram caption="Un euro de gasto público no se queda en un euro: se convierte en renta para alguien que consume parte, y esa cadena de rondas sucesivas multiplica el efecto inicial.">
   <MultiplicadorFiscal />
 </Diagram>
@@ -196,6 +210,20 @@ Una economía cerrada y sin impuestos tiene una propensión marginal al consumo 
 3. Con c = 0,6, el multiplicador cae a k = 1 / (1 − 0,6) = 2,5 y el efecto total se reduce a ΔY = 2,5 · 12 000 = **30 000 M€**.
 
 **Conclusión.** Cuando los hogares ahorran más (c menor), parte de la renta se sale del circuito en cada ronda y el efecto multiplicador se debilita. El mismo plan de 12 000 M€ pasa de generar 48 000 M€ a generar 30 000 M€ de PIB. Para una economía abierta con impuestos como la española, el multiplicador realista sería sensiblemente menor (en torno a 1-1,5 según el tipo de gasto), porque también se filtran euros hacia importaciones y hacia la recaudación tributaria.
+
+<Diagram caption="Ejercicio 11.1 ronda a ronda: el aumento acumulado del PIB tiende a 48.000 M€ con c = 0,75 y a 30.000 M€ con c = 0,6, a partir de un gasto inicial de 12.000 M€. Cuanto más ahorran los hogares, antes se agota la cadena.">
+  <GraficoXY id="g-ejercicio-11-1" titulo="Ejercicio 11.1: aumento acumulado del PIB ronda a ronda" desc="Con un gasto inicial de 12 000 millones, el PIB acumulado tiende a 48 000 millones si c = 0,75 y a 30 000 millones si c = 0,6."
+    xMax={15} yMax={54000} ejeX="Ronda" ejeY="Aumento acumulado del PIB (M€)"
+    xTicks={[1, 4, 8, 12]} yTicks={[12000, 30000, 48000]}
+    series={[
+      { color: 'terra', tenue: true, puntos: [[1, 48000], [13, 48000]] },
+      { color: 'teal', tenue: true, puntos: [[1, 30000], [13, 30000]] },
+      { label: 'c = 0,75', color: 'terra', puntos: Array.from({ length: 12 }, (_, i) => [i + 1, 12000 * (1 - 0.75 ** (i + 1)) / (1 - 0.75)]) },
+      { label: 'c = 0,6', color: 'teal', puntos: Array.from({ length: 12 }, (_, i) => [i + 1, 12000 * (1 - 0.6 ** (i + 1)) / (1 - 0.6)]) },
+    ]}
+  />
+</Diagram>
+
 
 </SolvedExercise>
 
@@ -249,6 +277,17 @@ Los topes nominales del 3 % de déficit y el 60 % de deuda siguen siendo la refe
 Una pregunta clásica: si el Estado quiere recaudar más, ¿basta con subir los tipos impositivos? El economista estadounidense **Arthur Laffer** popularizó en los años setenta una idea que se conoce como **curva de Laffer**: la recaudación es cero cuando el tipo impositivo es 0 % (obvio) y también cero cuando el tipo es 100 % (porque nadie trabaja si no se queda con nada). Entre ambos extremos hay un máximo de recaudación. A partir de ese punto, subir más el tipo *reduce* lo recaudado porque la base imponible cae (menos trabajo, más fraude, más economía sumergida, fuga de capital).
 
 La curva de Laffer no dice que cualquier subida de impuestos sea contraproducente, sino que existe un tipo óptimo a partir del cual ya no compensa subir más. Dónde está ese punto exactamente es objeto de debate empírico: los estudios sitúan el máximo del IRPF entre el 60 % y el 70 % marginal en países desarrollados con buena administración tributaria, pero baja sustancialmente en países con alta corrupción o débil capacidad administrativa.
+
+<Diagram caption="La curva de Laffer, esquemática: la recaudación es nula con un tipo del 0 % y del 100 %, y alcanza su máximo en algún punto intermedio. La banda sombreada es el 60-70 % que los estudios citados sitúan como máximo del IRPF marginal. Sin cifras en el eje vertical.">
+  <GraficoXY id="g-laffer" titulo="Curva de Laffer: recaudación según el tipo impositivo" desc="Curva en forma de campana: la recaudación es cero con un tipo del 0 % y del 100 % y el máximo cae entre el 60 % y el 70 %."
+    xMax={108} yMax={112} ejeX="Tipo impositivo (%)" ejeY="Recaudación" simboloX="t" simboloY="R"
+    xTicks={[60, 70, 100]}
+    areas={[{ puntos: [[60, 0], [70, 0], [70, 100], [60, 100]], color: 'mustard' }]}
+    series={[{ color: 'terra', puntos: [[0, 0.00], [5, 13.17], [10, 25.58], [15, 37.21], [20, 48.02], [25, 57.98], [30, 67.03], [35, 75.15], [40, 82.26], [45, 88.31], [50, 93.21], [55, 96.88], [60, 99.19], [65, 100.00], [70, 99.11], [75, 96.26], [80, 91.06], [85, 82.86], [90, 70.53], [95, 51.26], [100, 0.00]] }]}
+    notas={[{ x: 65, y: 106, texto: 'Máximo de recaudación', color: 'mustard', ancla: 'middle' }]}
+  />
+</Diagram>
+
 
 <Curiosity title="La curva que se dibujó en una servilleta">
 
@@ -321,7 +360,7 @@ La política monetaria llega a la economía real a través de varios canales enc
 2. El **interbancario reacciona**: los bancos comerciales se prestan entre ellos a tipos que reflejan el nuevo coste de financiarse en el BCE.
 3. El **Euribor a 12 meses**, que mide ese coste interbancario, pasa del −0,5 % al +4,1 % en el mismo periodo.
 4. Las **hipotecas variables españolas** se revisan anualmente con la fórmula *Euribor + diferencial*. Una hipoteca firmada al 0,99 % en 2021 se revisa al 5,1 % en 2023.
-5. La **cuota mensual** se recalcula con la nueva tasa de interés y el capital pendiente. Para una hipoteca media española (150 000 € a 25 años), la cuota pasa de unos 565 € a unos 882 € al mes: un sobrecoste de 317 €/mes o 3 800 €/año.
+5. La **cuota mensual** se recalcula con la nueva tasa de interés y el capital pendiente. Para una hipoteca media española (150 000 € a 25 años), la cuota pasa de unos 565 € a unos 886 € al mes: un sobrecoste de 321 €/mes o 3 850 €/año.
 6. Ese sobrecoste **reduce la renta disponible** de las familias hipotecadas y, a través de menor consumo, enfría la demanda agregada. Que era el objetivo del BCE.
 
 </Steps>
@@ -350,6 +389,19 @@ Una familia firmó en enero de 2021 una hipoteca variable de 180 000 € a 30 a�
    - **Cuota 2024** ≈ 180 000 · 0,00375 / (1 − (1,00375)^−360) ≈ **912,03 €/mes**.
 2. El sobrecoste mensual es 912,03 − 530,68 = **381,35 €/mes**, equivalente a **4 576 €/año**.
 3. La subida de 4,1 puntos porcentuales del Euribor entre 2021 y 2024 ha multiplicado por 1,7 la cuota mensual. En términos de presupuesto familiar es como si la familia hubiera perdido un mes y medio de salario al año. Esa pérdida de renta disponible es exactamente el efecto que el BCE busca cuando sube tipos para combatir inflación: enfriar el consumo de los hogares hipotecados para que la demanda agregada se modere.
+
+<Diagram caption="Ejercicio 11.3: la cuota mensual de una hipoteca de 180.000 € a 30 años según el tipo aplicable. Con el 0,40 % de 2021 la cuota es de 530,68 €; con el 4,50 % de 2024, de 912,03 €.">
+  <GraficoXY id="g-ejercicio-11-3" titulo="Ejercicio 11.3: cuota mensual según el tipo de interés" desc="Curva creciente: la cuota de una hipoteca de 180 000 euros a 30 años pasa de 530,68 euros con un tipo del 0,40 % a 912,03 euros con el 4,50 %."
+    xMax={6.5} yMax={1100} ejeX="Tipo aplicable (%)" ejeY="Cuota mensual (€)"
+    xTicks={[2, 4, 6]}
+    series={[{ color: 'terra', puntos: [[0, 500.00], [0.5, 538.54], [1, 578.95], [1.5, 621.22], [2, 665.32], [2.5, 711.22], [3, 758.89], [3.5, 808.28], [4, 859.35], [4.5, 912.03], [5, 966.28], [5.5, 1022.02], [6, 1079.19]] }]}
+    puntos={[
+      { x: 0.4, y: 530.68, xLabel: '0,4', yLabel: '530,68' },
+      { x: 4.5, y: 912.03, xLabel: '4,5', yLabel: '912,03' },
+    ]}
+  />
+</Diagram>
+
 
 </SolvedExercise>
 

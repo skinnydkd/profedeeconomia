@@ -39,6 +39,7 @@ import SolvedExercise from '@components/SolvedExercise.astro';
 import Steps from '@components/Steps.astro';
 import KeyTakeaways from '@components/KeyTakeaways.astro';
 import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
 import Figure from '@components/Figure.astro';
 import FPP from '@components/diagrams/FPP.astro';
 import Bibliography from '@components/Bibliography.astro';
@@ -201,6 +202,15 @@ La FPP es una representación gráfica que muestra **todas las combinaciones efi
 
 Imaginemos una economía hipotética —llamémosla *Alfa*— que solo produce dos bienes: trigo y ordenadores. Si dedica todos sus recursos al trigo, puede producir 100 toneladas y cero ordenadores. Si los dedica todos a ordenadores, puede producir 50 ordenadores y cero trigo. Entre ambos extremos hay infinitas combinaciones intermedias, y unirlas sobre un plano cartesiano da una curva: la FPP.
 
+<Diagram caption="La economía Alfa en los ejes: 100 toneladas de trigo si todos los recursos van al trigo, 50 ordenadores si van todos a ordenadores. El trazado entre los dos extremos es ilustrativo.">
+  <GraficoXY id="g-alfa" titulo="Frontera de posibilidades de producción de la economía Alfa" desc="Curva cóncava que une 100 toneladas de trigo y ningún ordenador con 50 ordenadores y ninguna tonelada de trigo."
+    xMax={60} yMax={120} ejeX="Ordenadores" ejeY="Toneladas de trigo"
+    series={[{ label: 'FPP', color: 'terra', puntos: Array.from({ length: 26 }, (_, i) => [i * 2, 100 * Math.sqrt(1 - (i * 2 / 50) ** 2)]) }]}
+    puntos={[{ x: 0, y: 100, label: 'Solo trigo', yLabel: '100', dy: -12 }, { x: 50, y: 0, label: 'Solo ordenadores', xLabel: '50', dy: -14 }]}
+  />
+</Diagram>
+
+
 ### Eficiencia, ineficiencia e inalcanzabilidad
 
 Los puntos sobre la curva son **eficientes**: representan combinaciones en las que toda la capacidad productiva está aprovechada. Los puntos por **debajo** de la curva son técnicamente posibles pero **ineficientes**: indican que hay recursos infrautilizados (paro, capacidad ociosa, materias primas sin emplear). Los puntos por **encima** de la curva son **inalcanzables** con los recursos y tecnología actuales: hacen falta avances productivos para llegar a ellos.
@@ -223,11 +233,32 @@ El coste de oportunidad de una decisión es el **valor de la mejor alternativa**
 
 El coste de oportunidad explica por qué la FPP es habitualmente **cóncava** y no una línea recta: a medida que una economía se especializa en producir más de un bien, los recursos disponibles para ese bien son cada vez menos adecuados (la tierra que mejor se da al trigo ya se está usando; las personas con más habilidad para fabricar ordenadores ya están en eso). Por eso, cada unidad adicional cuesta proporcionalmente más en términos de la otra. A esto se le llama **ley de los costes de oportunidad crecientes**.
 
+<Diagram caption="Costes de oportunidad crecientes: la misma ampliación de ordenadores (de A a B y de C a D) obliga a renunciar a mucho más trigo cuando la economía ya está especializada en ordenadores. Gráfico esquemático, sin cifras.">
+  <GraficoXY id="g-costes-crecientes" titulo="Costes de oportunidad crecientes sobre la frontera" desc="En la curva cóncava, pasar de A a B reduce poco el trigo y pasar de C a D, con el mismo aumento de ordenadores, lo reduce mucho más."
+    xMax={60} yMax={120} ejeX="Ordenadores" ejeY="Trigo"
+    series={[{ label: 'FPP', color: 'terra', puntos: Array.from({ length: 26 }, (_, i) => [i * 2, 100 * Math.sqrt(1 - (i * 2 / 50) ** 2)]) }]}
+    puntos={[{ x: 10, y: 100 * Math.sqrt(1 - 0.04), label: 'A' }, { x: 20, y: 100 * Math.sqrt(1 - 0.16), label: 'B' }, { x: 36, y: 100 * Math.sqrt(1 - 0.5184), label: 'C' }, { x: 46, y: 100 * Math.sqrt(1 - 0.8464), label: 'D' }]}
+  />
+</Diagram>
+
+
 ### Crecimiento económico: desplazamientos de la FPP
 
 Si los recursos aumentan (crece la población activa, se descubre un nuevo yacimiento, se acumula capital) o la tecnología mejora (un nuevo método permite producir más con lo mismo), la FPP se desplaza **hacia fuera**: lo que antes era inalcanzable pasa a ser posible. Esto es, en términos formales, **crecimiento económico**.
 
 El crecimiento no afecta por igual a todos los bienes: una mejora tecnológica concentrada en uno de los dos sectores produce un desplazamiento **sesgado**, no paralelo. Esta sutileza explica por qué algunas economías crecen mucho en algunos sectores y se estancan en otros (los servicios y el sector industrial avanzado han crecido enormemente en España en cuatro décadas; la agricultura tradicional, mucho menos).
+
+<Diagram caption="F₀ es la frontera inicial. F₁: crecen los recursos y la tecnología para los dos bienes (desplazamiento paralelo). F₂: la mejora tecnológica solo afecta a los ordenadores (desplazamiento sesgado). Gráfico esquemático, sin cifras.">
+  <GraficoXY id="g-crecimiento-fpp" titulo="Crecimiento económico: desplazamiento paralelo y sesgado de la frontera" desc="La frontera inicial F0 se desplaza hacia fuera. F1 crece en los dos ejes; F2 solo crece en el eje de ordenadores y deja igual el máximo de trigo."
+    xMax={80} yMax={135} ejeX="Ordenadores" ejeY="Trigo"
+    series={[
+      { label: 'F₀', color: 'ink', tenue: true, puntos: Array.from({ length: 26 }, (_, i) => [i * 2, 100 * Math.sqrt(1 - (i * 2 / 50) ** 2)]) },
+      { label: 'F₁', color: 'terra', puntos: Array.from({ length: 31 }, (_, i) => [i * 2, 120 * Math.sqrt(1 - (i * 2 / 60) ** 2)]) },
+      { label: 'F₂', color: 'teal', puntos: Array.from({ length: 36 }, (_, i) => [i * 2, 100 * Math.sqrt(1 - (i * 2 / 70) ** 2)]) },
+    ]}
+  />
+</Diagram>
+
 
 <RealExample title="España y la FPP histórica: del agro al servicio en cuarenta años" source="INE, Contabilidad Nacional Anual de España (revisión septiembre 2025) y Banco de España, El crecimiento de la economía española 1980-2020 (2021)">
 En 1980, el sector primario aportaba el 7 % del PIB español y empleaba al 19 % de la población activa. En 2024, el sector primario aporta en torno al **2,5 % del PIB** y emplea a menos del 4 % de la población. En el mismo período, los servicios han pasado del 56 % al **74 % del PIB**. Esto no es una contracción del campo —la producción agrícola en valor real es mayor que hace cuarenta años— sino un desplazamiento sesgado de la FPP: la tecnología y la inversión han hecho que la misma producción agrícola requiera muchísima menos mano de obra, liberándola para servicios y, en parte, para industria.
@@ -251,6 +282,19 @@ d) El país crece un 10 % en los dos bienes. ¿Qué le pasa a ese mismo punto?
 3. El punto (60, 40) pide 40 de capital cuando la frontera solo permite 32, así que es **inalcanzable**: no hay recursos suficientes con la tecnología de hoy.
 4. Tras crecer un 10 %, los máximos pasan a 110 y 88. Ahora, con 60 de consumo, el país puede producir 88 × (1 − 60/110) = 88 × 5/11 = **40 de capital exactamente**. El punto que era inalcanzable **queda justo sobre la nueva frontera**.
 5. *Lo que hay que llevarse.* El crecimiento no consiste en moverse por la frontera, sino en **desplazarla hacia fuera**: convierte en posible lo que antes no lo era. Y fíjate en que el coste de oportunidad no ha cambiado —sigue siendo 0,8—, porque los dos bienes han crecido lo mismo. Si hubiera crecido solo uno, la frontera se habría **inclinado** y el coste de oportunidad sí cambiaría.
+
+<Diagram caption="El ejercicio en un gráfico: la frontera inicial (100 de consumo, 80 de capital) deja el punto (60, 40) fuera, porque en 60 de consumo solo caben 32 de capital. Con un 10 % más (110 y 88) la nueva frontera pasa justo por él.">
+  <GraficoXY id="g-ejercicio-1-1" titulo="El punto inalcanzable que la nueva frontera alcanza" desc="La frontera inicial une 80 de capital con 100 de consumo; en 60 de consumo permite 32 de capital, así que el punto (60, 40) queda fuera. La nueva frontera, de 88 a 110, pasa exactamente por (60, 40)."
+    xMax={125} yMax={100} ejeX="Bienes de consumo" ejeY="Bienes de capital"
+    xTicks={[100, 110]} yTicks={[80, 88]}
+    series={[
+      { label: 'F₀', color: 'ink', tenue: true, puntos: [[0, 80], [100, 0]] },
+      { label: 'F₁', color: 'terra', puntos: [[0, 88], [110, 0]] },
+    ]}
+    puntos={[{ x: 60, y: 32, yLabel: '32', xLabel: '60' }, { x: 60, y: 40, label: 'Punto (60, 40)', yLabel: '40', dx: 12, dy: -10 }]}
+  />
+</Diagram>
+
 
 </SolvedExercise>
 

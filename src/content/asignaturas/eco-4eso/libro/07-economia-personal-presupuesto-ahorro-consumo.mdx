@@ -43,6 +43,7 @@ publicado_en: 2026-09-15
 
 import Callout from '@components/Callout.astro';
 import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
 import Presupuesto503020 from '@components/diagrams/Presupuesto503020.astro';
 import InteresCompuesto from '@components/diagrams/InteresCompuesto.astro';
 import EtiquetaAnotada from '@components/diagrams/EtiquetaAnotada.astro';
@@ -154,6 +155,29 @@ a) Calcula sus ingresos y gastos mensuales medios y su ahorro. b) Compáralos co
 5. **El carné**: 32 € × 24 meses = **768 €**. Le faltan 232 €. Necesitaría ahorrar 1.000 / 24 = **41,67 € al mes**, unos 10 € más de lo que ahorra hoy.
 6. **Recomendación**: el peligro no está en los 10 € de cada mes, sino en los 700 € de julio, que llegan de golpe y en septiembre suelen haber desaparecido. Si Lucía transfiere **500 € del sueldo del campamento** a una cuenta de ahorro el mismo día que los cobra, ya tiene la mitad del carné, y el resto lo consigue apartando 21 € al mes de la paga (500 / 24 = 20,8 €). Pagarse a una misma primero, antes de decidir nada, es lo que convierte un buen presupuesto en dinero de verdad.
 
+<Diagram caption="El presupuesto mensual de Lucía (110 €) frente a la regla 50-30-20: gasta mucho menos en necesidades (18 € frente a 55), más en deseos (60 € frente a 33) y ahorra 32 € frente a los 22 de la referencia.">
+  <GraficoXY id="g-presupuesto-lucia" titulo="Presupuesto de Lucía frente a la regla 50-30-20" desc="Tres pares de barras en euros al mes. Necesidades: Lucía 18, regla 55. Deseos: Lucía 60, regla 33. Ahorro: Lucía 32, regla 22."
+    xMax={6.8} yMax={70} ejeX="Bloque del presupuesto" ejeY="Euros al mes"
+    xTicks={[1.15, 3.15, 5.15]} xTickLabels={['Necesidades', 'Deseos', 'Ahorro']} yTicks={[10, 20, 30, 40, 50, 60]}
+    areas={[
+      { color: 'terra', puntos: [[0.5, 0], [1.1, 0], [1.1, 18], [0.5, 18]] }, { color: 'mustard', puntos: [[1.2, 0], [1.8, 0], [1.8, 55], [1.2, 55]] },
+      { color: 'terra', puntos: [[2.5, 0], [3.1, 0], [3.1, 60], [2.5, 60]] }, { color: 'mustard', puntos: [[3.2, 0], [3.8, 0], [3.8, 33], [3.2, 33]] },
+      { color: 'terra', puntos: [[4.5, 0], [5.1, 0], [5.1, 32], [4.5, 32]] }, { color: 'mustard', puntos: [[5.2, 0], [5.8, 0], [5.8, 22], [5.2, 22]] },
+    ]}
+    series={[
+      { color: 'terra', puntos: [[0.5, 0], [0.5, 18], [1.1, 18], [1.1, 0]] }, { color: 'mustard', puntos: [[1.2, 0], [1.2, 55], [1.8, 55], [1.8, 0]] },
+      { color: 'terra', puntos: [[2.5, 0], [2.5, 60], [3.1, 60], [3.1, 0]] }, { color: 'mustard', puntos: [[3.2, 0], [3.2, 33], [3.8, 33], [3.8, 0]] },
+      { color: 'terra', puntos: [[4.5, 0], [4.5, 32], [5.1, 32], [5.1, 0]] }, { color: 'mustard', puntos: [[5.2, 0], [5.2, 22], [5.8, 22], [5.8, 0]] },
+    ]}
+    notas={[
+      { x: 0.8, y: 21, texto: '18', ancla: 'middle' }, { x: 1.5, y: 58, texto: '55', ancla: 'middle' },
+      { x: 2.8, y: 63, texto: '60', ancla: 'middle' }, { x: 3.5, y: 36, texto: '33', ancla: 'middle' },
+      { x: 4.8, y: 35, texto: '32', ancla: 'middle' }, { x: 5.5, y: 25, texto: '22', ancla: 'middle' },
+      { x: 4.2, y: 66, texto: 'Lucía', color: 'terra' }, { x: 4.2, y: 61, texto: 'Regla 50-30-20', color: 'mustard' },
+    ]}
+  />
+</Diagram>
+
 </SolvedExercise>
 
 **Pruébalo con tus números.** Introduce tus ingresos mensuales y lo que gastas en cada bloque; la calculadora te enseña cómo queda tu reparto frente al 50-30-20 y en qué barra estás lejos de la referencia.
@@ -215,6 +239,19 @@ Imagina que desde los 16 años ahorras **50 € al mes** (600 € al año) en un
 4. **Quien empieza a los 30**: 35 años, (1,03)^35 ≈ 2,814, factor ≈ 60,5. Capital final ≈ **36.277 €** con 21.000 € aportados.
 5. **Lectura**: catorce años de ventaja y 8.400 € más aportados se convierten en **casi 29.000 € de diferencia** a los 65. Los 600 € que ahorras a los 16 son los que más rinden de toda tu vida, porque son los que más años trabajan. Y ojo al reverso: el interés compuesto funciona igual en tu contra cuando debes dinero, algo que verás con las tarjetas en la Unidad 8.
 
+<Diagram caption="Lo que se acumula con 600 € al año al 3 %: quien empieza a los 16 llega a 65.124 € a los 65 años, y quien empieza a los 30, a 36.277 €. Lo que ha puesto de su bolsillo el primero son 29.400 €: el resto son intereses.">
+  <GraficoXY id="g-ahorro-edad" titulo="Ahorrar 600 euros al año desde los 16 o desde los 30" desc="Tres líneas según la edad. Empezando a los 16, el capital es 10 252 euros a los 30 años y 65 124 a los 65. Empezando a los 30, llega a 36 277 a los 65. Lo aportado desde los 16 es una recta que acaba en 29 400 euros."
+    xMax={72} yMax={75000} ejeX="Edad" ejeY="Euros acumulados" simboloX="t" simboloY="€"
+    xTicks={[20, 40, 50, 60]} yTicks={[20000, 40000, 60000]}
+    series={[
+      { color: 'terra', label: 'Desde los 16', puntos: Array.from({ length: 50 }, (_, i) => [16 + i, 600 * (1.03 ** i - 1) / 0.03]) },
+      { color: 'teal', label: 'Desde los 30', puntos: Array.from({ length: 36 }, (_, i) => [30 + i, 600 * (1.03 ** i - 1) / 0.03]) },
+      { color: 'ink', tenue: true, label: 'Lo aportado', puntos: [[16, 0], [65, 29400]] },
+    ]}
+    puntos={[{ x: 30, y: 10252, xLabel: '30', yLabel: '10 252' }, { x: 65, y: 65124, xLabel: '65', yLabel: '65 124', dx: -10, dy: -14 }]}
+  />
+</Diagram>
+
 </SolvedExercise>
 
 **Juega con los años.** La calculadora dibuja dos líneas: lo que has aportado y lo que tienes. La separación entre ambas es el interés compuesto trabajando. Prueba a cambiar la edad de inicio antes que la cantidad mensual.
@@ -236,6 +273,24 @@ La primera es la de la Unidad 1: ¿esto cubre una **necesidad** o es un **deseo*
 ### Comparar de verdad: el precio por unidad
 
 Comparar precios parece fácil hasta que los envases no miden lo mismo. Por eso el **Real Decreto 3423/2000**, que traslada una directiva europea, obliga a que en los productos de gran consumo aparezca el **precio por unidad de medida** (€/kg, €/litro, €/unidad) junto al precio del envase. Es la única cifra que permite comparar formatos. Un ejemplo con números inventados: arroz en paquete de 500 g a 0,89 € (1,78 €/kg), de 1 kg a 1,45 € (1,45 €/kg) y de 5 kg a 6,25 € (1,25 €/kg). Aquí el grande sale mejor, pero no siempre: los fabricantes saben que damos por hecho que el envase grande es más barato y a veces lo aprovechan. El €/kg también destapa la **reducción del envase**: cuando un paquete pasa de 1.000 g a 900 g al mismo precio, el precio por kilo sube un 11 % sin que el precio del paquete se mueva.
+
+<Diagram caption="El mismo arroz según el envase: el precio del paquete sube con el tamaño, pero el precio por kilo baja, de 1,78 € a 1,25 €.">
+  <GraficoXY id="g-precio-unidad" titulo="Precio por kilo de arroz según el tamaño del envase" desc="Tres barras: el paquete de 500 gramos, a 0,89 euros, sale a 1,78 euros el kilo; el de 1 kilo, a 1,45 euros, sale a 1,45 el kilo; el de 5 kilos, a 6,25 euros, sale a 1,25 el kilo."
+    xMax={7} yMax={2.4} ejeX="Envase y precio del paquete" ejeY="Euros por kilo"
+    xTicks={[1.5, 3.5, 5.5]} xTickLabels={['500 g: 0,89 €', '1 kg: 1,45 €', '5 kg: 6,25 €']} yTicks={[0.5, 1, 1.5, 2]}
+    areas={[
+      { color: 'terra', puntos: [[0.9, 0], [2.1, 0], [2.1, 1.78], [0.9, 1.78]] },
+      { color: 'mustard', puntos: [[2.9, 0], [4.1, 0], [4.1, 1.45], [2.9, 1.45]] },
+      { color: 'teal', puntos: [[4.9, 0], [6.1, 0], [6.1, 1.25], [4.9, 1.25]] },
+    ]}
+    series={[
+      { color: 'terra', puntos: [[0.9, 0], [0.9, 1.78], [2.1, 1.78], [2.1, 0]] },
+      { color: 'mustard', puntos: [[2.9, 0], [2.9, 1.45], [4.1, 1.45], [4.1, 0]] },
+      { color: 'teal', puntos: [[4.9, 0], [4.9, 1.25], [6.1, 1.25], [6.1, 0]] },
+    ]}
+    notas={[{ x: 1.5, y: 1.9, texto: '1,78 €/kg', ancla: 'middle' }, { x: 3.5, y: 1.57, texto: '1,45 €/kg', ancla: 'middle' }, { x: 5.5, y: 1.37, texto: '1,25 €/kg', ancla: 'middle' }]}
+  />
+</Diagram>
 
 <Figure
   src={publicidadCalle}

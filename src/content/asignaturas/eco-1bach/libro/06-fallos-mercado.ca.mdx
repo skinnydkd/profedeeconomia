@@ -42,6 +42,7 @@ import SolvedExercise from '@components/SolvedExercise.astro';
 import Steps from '@components/Steps.astro';
 import KeyTakeaways from '@components/KeyTakeaways.astro';
 import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
 import Externalidad from '@components/diagrams/Externalidad.astro';
 import BienesPublicos from '@components/diagrams/BienesPublicos.astro';
 import Figure from '@components/Figure.astro';
@@ -135,6 +136,23 @@ Existixen també externalitats positives: activitats el benefici social de les q
 - **Investigació bàsica.** Qui finança investigació sobre un nou material no s'apropiarà de tots els seus usos futurs.
 - **Manteniment d'un edifici històric** que dóna caràcter a un carrer sencer.
 
+<Diagram caption="Amb una externalitat positiva, el benefici social (D social) queda per damunt del privat (D priv.): el mercat es queda en Q₁ i l'òptim està en Q₂, així que es produïx de menys. El triangle és la pèrdua d'eficiència. Gràfic esquemàtic, sense xifres.">
+  <GraficoXY id="g-externalidad-positiva" titulo="Externalitat positiva: el mercat produïx de menys" desc="La demanda social queda per damunt de la demanda privada. El mercat s'atura en la quantitat Q1, on es creuen la demanda privada i l'oferta; l'òptim social està en Q2, major. El triangle entre les dues quantitats és la pèrdua d'eficiència."
+    xMax={110} yMax={110} ejeX="Quantitat" ejeY="Preu" simboloX="Q" simboloY="P"
+    series={[
+      { label: 'D priv.', color: 'terra', puntos: [[0, 100], [90, 10]] },
+      { label: 'D social', color: 'terra', puntos: [[30, 100], [100, 30]] },
+      { label: 'O', color: 'mustard', puntos: [[0, 10], [90, 100]] },
+    ]}
+    areas={[{ puntos: [[45, 85], [60, 70], [45, 55]], color: 'aubergine' }]}
+    puntos={[
+      { x: 45, y: 55, xLabel: 'Q₁', guias: true, label: 'E', dx: 32, dy: 4 },
+      { x: 60, y: 70, xLabel: 'Q₂', guias: true, label: 'E*', dx: 26, dy: 6 },
+    ]}
+  />
+</Diagram>
+
+
 ### Instruments correctors: Pigou i Coase
 
 L'economia disposa de tres grans famílies d'instruments per corregir externalitats.
@@ -198,6 +216,32 @@ d) Pèrdua d'eficiència del mercat sense corregir.
 5. Comprovació útil: qui compra paga 70 €, l'Estat se n'emporta 20 € i el venedor es queda **50 €**, que és exactament el seu cost marginal privat en 60 tones: 20 + 0,5 × 60 = 50 €. Els números quadren.
 6. **Pèrdua d'eficiència.** És el triangle entre les dues quantitats, de base 80 − 60 = 20 tones i altura 20 €: ½ × 20 × 20 = **200 €**.
 7. *Compte amb la lectura.* Eixos 200 € no se'ls queda ningú: són valor que desapareix perquè es produïxen vint tones el cost de les quals per a la societat supera el que algú està disposat a pagar-hi. I fixa't que **la quantitat òptima no és zero**: l'objectiu no és tancar la fàbrica, és que produïsca el que compensa produir.
+
+<Diagram caption="L'exercici en un gràfic: el mercat produïx 80 tones (E, a 60 €); l'òptim social són 60 tones (a 70 €). L'impost de 20 € porta qui ven de 50 € a 70 € de cost i recapta 1.200 €; el triangle és la pèrdua d'eficiència, 200 €.">
+  <GraficoXY id="g-ejercicio-6-1" titulo="Externalitat negativa: mercat, òptim social i impost pigouvià" desc="La demanda talla el cost marginal privat en 80 tones i 60 euros, i el cost marginal social en 60 tones i 70 euros. Amb un impost de 20 euros per tona s'arriba a l'òptim i es recapten 1 200 euros; la pèrdua d'eficiència és de 200 euros."
+    xMax={200} yMax={110} ejeX="Tones" ejeY="Euros per tona"
+    series={[
+      { label: 'D', color: 'terra', puntos: [[0, 100], [180, 10]] },
+      { label: 'CMg', color: 'mustard', puntos: [[0, 20], [150, 95]] },
+      { label: 'CMgS', color: 'aubergine', puntos: [[0, 40], [120, 100]] },
+    ]}
+    areas={[
+      { puntos: [[0, 50], [60, 50], [60, 70], [0, 70]], color: 'ink' },
+      { puntos: [[60, 70], [80, 60], [60, 50]], color: 'aubergine' },
+    ]}
+    puntos={[
+      { x: 80, y: 60, label: 'E', xLabel: '80', yLabel: '60', dx: 4, dy: 30 },
+      { x: 60, y: 70, xLabel: '60', yLabel: '70' },
+      { x: 60, y: 50, yLabel: '50', guias: true },
+    ]}
+    flechas={[{ de: [108, 18], a: [71, 54] }]}
+    notas={[
+      { x: 3, y: 66, texto: 'Recaptació = 1 200', color: 'ink' },
+      { x: 105, y: 10, texto: 'Pèrdua d\'eficiència = 200', color: 'aubergine' },
+    ]}
+  />
+</Diagram>
+
 
 </SolvedExercise>
 
@@ -280,6 +324,22 @@ El 1970 Akerlof va publicar un article titulat *The Market for "Lemons"* (els *l
 
 Imagina un mercat de cotxes usats amb dos tipus de vehicles: la meitat bons (valor real 10.000 €) i la meitat roïns (valor real 4.000 €). Els compradors no poden distingir-los a simple vista; els venedors sí que saben què tenen. Un comprador racional oferirà com a molt **el valor esperat**: 7.000 €. A eixe preu, els amos de cotxes bons retiren el seu cotxe del mercat (val més quedar-se'l). Només entren al mercat els cotxes roïns. Els compradors, en veure-ho, ajusten la seua oferta a la baixa… i el mercat s'enfonsa. L'asimetria d'informació fa que només es transaccionen els llimons, perjudicant fins i tot els venedors de cotxes bons que volien vendre de veritat.
 
+<Diagram caption="El mercat dels llimons: si la meitat dels cotxes són bons (10.000 €) i la meitat roïns (4.000 €), el comprador oferix el valor mitjà, 7.000 €. A eixe preu els amos de cotxes bons es retiren, la proporció de bons baixa i amb ella el valor mitjà, fins que només queden cotxes roïns.">
+  <GraficoXY id="g-limones" titulo="El mercat dels llimons: l'espiral de la selecció adversa" desc="El valor mitjà d'un cotxe puja de 4 000 euros, si tots són roïns, a 10 000, si tots són bons; amb la meitat de cada tipus és 7 000. A eixe preu els amos de cotxes bons, que valoren el seu en 10 000, es retiren, i el valor mitjà s'acosta a 4 000."
+    xMax={1.1} yMax={11500} ejeX="Proporció de cotxes bons" ejeY="Euros"
+    xTicks={[0.5, 1]} xTickLabels={['50 %', '100 %']} yTicks={[4000, 10000]}
+    series={[
+      { label: 'Valor mitjà', color: 'terra', puntos: [[0, 4000], [1, 10000]] },
+      { color: 'ink', tenue: true, puntos: [[0, 10000], [1, 10000]] },
+      { color: 'ink', tenue: true, puntos: [[0, 4000], [1, 4000]] },
+    ]}
+    puntos={[{ x: 0.5, y: 7000, label: 'Preu oferit', yLabel: '7 000', dx: 14, dy: 24 }]}
+    flechas={[{ de: [0.5, 7000], a: [0.06, 4360], despl: -14 }]}
+    notas={[{ x: 0.03, y: 10400, texto: 'Un cotxe bo val 10 000', color: 'ink' }, { x: 0.45, y: 3450, texto: 'Un cotxe roí val 4 000', color: 'ink' }]}
+  />
+</Diagram>
+
+
 El mateix mecanisme afecta:
 
 - **Assegurances de salut.** Qui sap que està malalt busca assegurança; qui sap que està sa no. Si la companyia no pot distingir, puja primes, els sans se'n van i només queden malalts pagant primes insostenibles.
@@ -313,6 +373,30 @@ La quarta fallada apareix quan una empresa, o un grup xicotet d'empreses, té ca
 - **Monopoli**: una sola empresa. Cas extrem de poder de mercat.
 
 Quan hi ha poder de mercat, l'empresa amb eixe poder restringix la quantitat oferida i puja el preu per damunt del cost marginal, capturant un excedent que en competència hauria correspost al consumidor. El resultat: preus més alts, quantitats inferiors, **pèrdua irrecuperable d'eficiència** (*deadweight loss*) i, de vegades, fre a la innovació si el monopolista no sent la pressió de la competència.
+
+<Diagram caption="Monopoli enfront de competència perfecta: el monopolista iguala l'ingrés marginal al cost marginal, produïx Q₁ i cobra P₁, per damunt del cost marginal. En competència es produiria Q₂ al preu P = CMg. El triangle és la pèrdua d'eficiència. Gràfic esquemàtic, sense xifres.">
+  <GraficoXY id="g-monopolio" titulo="Poder de mercat: monopoli i pèrdua d'eficiència" desc="El monopolista produïx on l'ingrés marginal iguala el cost marginal, la quantitat Q1, i cobra el preu P1 de la demanda, per damunt del cost marginal. En competència la quantitat seria Q2, major. El triangle entre les dues quantitats és la pèrdua d'eficiència."
+    xMax={105} yMax={110} ejeX="Quantitat" ejeY="Preu" simboloX="Q" simboloY="P"
+    series={[
+      { label: 'D', color: 'terra', puntos: [[0, 100], [95, 5]] },
+      { label: 'IMg', color: 'teal', puntos: [[0, 100], [50, 0]] },
+      { label: 'CMg', color: 'mustard', puntos: [[0, 20], [95, 20]] },
+    ]}
+    areas={[
+      { puntos: [[0, 60], [40, 60], [40, 20], [0, 20]], color: 'mustard' },
+      { puntos: [[40, 60], [80, 20], [40, 20]], color: 'aubergine' },
+    ]}
+    puntos={[
+      { x: 40, y: 60, label: 'M', xLabel: 'Q₁', yLabel: 'P₁', dx: 12, dy: -10 },
+      { x: 80, y: 20, label: 'C', xLabel: 'Q₂', dx: 10, dy: -12 },
+    ]}
+    notas={[
+      { x: 3, y: 38, texto: 'Benefici', color: 'mustard' },
+      { x: 43, y: 27, texto: 'Pèrdua d\'eficiència', color: 'aubergine' },
+    ]}
+  />
+</Diagram>
+
 
 ### Per què sorgix el poder de mercat
 

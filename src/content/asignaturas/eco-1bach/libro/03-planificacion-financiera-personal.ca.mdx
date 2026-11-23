@@ -41,6 +41,8 @@ import SolvedExercise from '@components/SolvedExercise.astro';
 import Steps from '@components/Steps.astro';
 import KeyTakeaways from '@components/KeyTakeaways.astro';
 import Diagram from '@components/Diagram.astro';
+import Presupuesto503020 from '@components/diagrams/Presupuesto503020.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
 import InteresCompuesto from '@components/diagrams/InteresCompuesto.astro';
 import TrianguloInversion from '@components/diagrams/TrianguloInversion.astro';
 import Figure from '@components/Figure.astro';
@@ -107,6 +109,11 @@ Una heurística senzilla, popularitzada per la senadora estatunidenca Elizabeth 
 - **30 % a desitjos**: oci, restaurants, roba, viatges, subscripcions evitables.
 - **20 % a estalvi i inversió**: fons d'emergència, pla de pensions, inversió en mercats, amortització anticipada de deute.
 
+<Diagram caption="Regla 50-30-20: de cada 100 € nets, 50 a necessitats, 30 a desitjos i 20 a estalvi i inversió.">
+  <Presupuesto503020 />
+</Diagram>
+
+
 No és una llei, sinó una referència. En el context espanyol de 2025-2026, amb salaris mitjans encara continguts i lloguers alts a les grans ciutats, eixa distribució resulta optimista per a moltes persones jóvens. Però és una bona vara de mesurar: si les **necessitats** superen el 70 % de l'ingrés, hi ha un problema estructural (vivenda massa cara o ingressos massa baixos per al cost de vida).
 
 <Callout label="Concepte clau" title="Capacitat d'estalvi">
@@ -150,7 +157,25 @@ Imaginem que invertim **100 € hui** a un **5 % anual** i els deixem quiets dur
 Cf = 100 · (1,05)^30 = 100 · 4,322 = 432,19 €
 ```
 
-Sense haver afegit ni un euro més, els 100 € inicials s'han convertit en **432 €**. La diferència entre els 100 i els 432 són els interessos acumulats: **332 € de pura màgia matemàtica**, sense esforç addicional. Si en lloc de 30 anys foren 40, el resultat seria **704 €**; a 50 anys, **1.146 €**. I si en lloc del 5 % el rendiment fora del 8 % anual (la rendibilitat històrica mitjana de la borsa global a llarg termini, ajustada per inflació), els 100 € es convertirien en **1.006 €** als 30 anys. Deu vegades el capital de partida.
+Sense haver afegit ni un euro més, els 100 € inicials s'han convertit en **432 €**. La diferència entre els 100 i els 432 són els interessos acumulats: **332 € de pura màgia matemàtica**, sense esforç addicional. Si en lloc de 30 anys foren 40, el resultat seria **704 €**; a 50 anys, **1.147 €**. I si en lloc del 5 % el rendiment fora del 8 % anual (la rendibilitat històrica mitjana de la borsa global a llarg termini, ajustada per inflació), els 100 € es convertirien en **1.006 €** als 30 anys. Deu vegades el capital de partida.
+
+<Diagram caption="Els 100 € de l'exemple: al 5 % anual valen 432 € als 30 anys, 704 € als 40 i 1.147 € als 50. Al 8 %, ja són 1.006 € als 30 anys.">
+  <GraficoXY id="g-cien-euros" titulo="Cent euros invertits al 5 % i al 8 % anual" desc="Corba exponencial: 100 euros al 5 % anual es convertixen en 432 als 30 anys, 704 als 40 i 1 147 als 50. Al 8 % arriben a 1 006 euros als 30 anys."
+    xMax={55} yMax={1300} ejeX="Anys" ejeY="Capital (€)"
+    xTicks={[10, 20]} yTicks={[100]}
+    series={[
+      { label: '5 %', color: 'terra', puntos: Array.from({ length: 21 }, (_, i) => [i * 2.5, 100 * 1.05 ** (i * 2.5)]) },
+      { label: '8 %', color: 'teal', puntos: Array.from({ length: 13 }, (_, i) => [i * 2.5, 100 * 1.08 ** (i * 2.5)]) },
+    ]}
+    puntos={[
+      { x: 30, y: 432.19, yLabel: '432', xLabel: '30' },
+      { x: 40, y: 704.0, yLabel: '704', xLabel: '40' },
+      { x: 50, y: 1146.74, yLabel: '1 147', xLabel: '50' },
+      { x: 30, y: 1006.27, yLabel: '1 006' },
+    ]}
+  />
+</Diagram>
+
 
 <Curiosity title="«L'interés compost és la huitena meravella del món»">
 La cita —*«Compound interest is the eighth wonder of the world. He who understands it, earns it; he who doesn't, pays it»*— s'atribuïx habitualment a **Albert Einstein**, encara que no hi ha evidència documental que la diguera (la frase apareix publicada per primera vegada en un anunci bancari estatunidenc de 1925, quan Einstein encara vivia però el document no li és atribuïble). La paternitat incerta no li lleva raó al contingut: l'interés compost és la mecànica financera més poderosa que existix, i simultàniament la pitjor entesa pel públic general. Qui la comprén i la posa al seu favor (estalviant i invertint des de jove) la cobra durant tota la seua vida. Qui no la comprén i la té en contra (finançant consum amb targeta de crèdit al 24 % o préstecs al 15 %) la paga durant dècades.
@@ -194,6 +219,19 @@ Qui tindrà més capital als 65 anys?
    - **Anna acaba amb més diners malgrat haver aportat tres vegades i mitja menys.**
 
 5. **Lliçó pràctica**: el factor decisiu de l'interés compost no és quant aportes, sinó **quant de temps deixes que els diners treballen**. Començar a invertir als 20 anys amb poca quantitat és financerament més eficient que començar als 30 amb molt. Esta és la justificació matemàtica de per què qualsevol pla de jubilació —públic o privat— recomana **començar prompte**, encara que siguen quantitats xicotetes.
+
+<Diagram caption="Anna aporta 20.000 € entre els 20 i els 30 anys i deixa el capital treballant; Bru aporta 70.000 € entre els 30 i els 65. Als 65 anys, Anna té uns 295.000 € i Bru uns 276.000 €.">
+  <GraficoXY id="g-ana-bruno" titulo="Anna i Bru: capital acumulat fins als 65 anys" desc="Anna, que aporta només deu anys des dels 20, arriba a uns 295 000 euros als 65 anys. Bru, que aporta 35 anys des dels 30, arriba a uns 276 000 euros."
+    xMax={52} yMax={350000} ejeX="Edat (anys)" ejeY="Capital acumulat (€)"
+    xTicks={[10, 20, 30, 40, 45]} xTickLabels={['30', '40', '50', '60', '65']} yTicks={[100000, 200000]}
+    series={[
+      { label: 'Anna 295 000 €', color: 'terra', dy: -6, puntos: Array.from({ length: 46 }, (_, i) => [i, i <= 10 ? 2000 * ((1.07 ** i - 1) / 0.07) : 2000 * ((1.07 ** 10 - 1) / 0.07) * 1.07 ** (i - 10)]) },
+      { label: 'Bru 276 000 €', color: 'teal', dy: 14, puntos: Array.from({ length: 36 }, (_, i) => [i + 10, 2000 * ((1.07 ** i - 1) / 0.07)]) },
+    ]}
+    puntos={[{ x: 10, y: 27632.8, label: 'Anna deixa d\'aportar', dx: -5, dy: -45 }]}
+  />
+</Diagram>
+
 
 </SolvedExercise>
 
@@ -301,6 +339,19 @@ El xoc va colpejar durament més de **4 milions de llars espanyoles amb hipoteca
 Entre juny de 2024 i juny de 2025, el BCE va baixar el tipus de depòsit del 4 % al **2 %** (MRO 2,15 %). L'Euríbor a 12 mesos va acompanyar el descens i al maig de 2026 rondava el **2,8 %** (mitjana mensual). La quota de la hipoteca de l'exemple es va relaxar a uns **990 €/mes** en la revisió anual d'eixa data: 190 € menys que en el pic de 2023, encara 240 € per damunt de la quota original de 2021. I el cicle no s'ha acabat: el BCE ha tornat a pujar els tipus al juny i al setembre de 2026 (depòsit al 2,50 % des del 16 de setembre; els va mantindre a l'octubre), i la mitjana de l'Euríbor a 12 mesos d'agost de 2026 va ser del 2,952 % (Banc d'Espanya; consulta la dada vigent a bde.es i ecb.europa.eu). La lliçó, en clau d'educació financera: **una hipoteca a 30 anys travessa diversos cicles de tipus**, i convé signar-la sabent que l'Euríbor puja i baixa amb la política del BCE.
 </RealExample>
 
+<Diagram caption="La mateixa hipoteca de 200.000 € a 25 anys (Euríbor + 0,9 %) en tres moments: unes 750 € al mes el 2021, unes 1.180 € després del pic de 2023 i unes 990 € al maig de 2026. Només hi ha tres dades: no s'uneixen amb una línia.">
+  <GraficoXY id="g-cuota-euribor" titulo="Quota mensual de la hipoteca de l'exemple en tres moments" desc="La quota passa de 750 euros al mes el 2021 a 1 180 amb la pujada de l'Euríbor i baixa a 990 al maig de 2026."
+    xMax={4} yMax={1400} ejeX="Moment" ejeY="Quota mensual (€)"
+    yTicks={[500]}
+    puntos={[
+      { x: 1, y: 750, yLabel: '750', xLabel: '2021' },
+      { x: 2, y: 1180, yLabel: '1 180', xLabel: 'Pic 2023' },
+      { x: 3, y: 990, yLabel: '990', xLabel: 'Maig 2026' },
+    ]}
+  />
+</Diagram>
+
+
 <SolvedExercise number="3.2" title="Quota mensual aproximada d'una hipoteca">
 
 **Enunciat**
@@ -338,6 +389,18 @@ c) Quant pujaria la quota si el tipus aplicat fora del 5 % en lloc del 3,5 %?
    - Interessos totals: 935 × 300 − 160.000 = **120.500 €** (40.000 € més que en l'escenari al 3,5 %).
 
 5. **Conclusió pràctica**: cada **punt percentual de TIN** en una hipoteca de 25 anys es traduïx en aproximadament **80-100 € més de quota mensual** i **25.000-30.000 € més d'interessos totals**. Per això negociar bé el tipus —i llegir la **TAE**, no sols el TIN— marca diferències enormes al llarg de la vida del préstec.
+
+<Diagram caption="La hipoteca de 160.000 € a 25 anys amb un tipus del 3,5 % (quota d'uns 801 €) i del 5 % (uns 935 €). Amb el tipus més alt el saldo baixa més a poc a poc, perquè una part més gran de cada quota són interessos.">
+  <GraficoXY id="g-saldo-hipoteca" titulo="Saldo pendent d'una hipoteca de 160.000 euros al 3,5 % i al 5 %" desc="Tots dos saldos partixen de 160 000 euros i arriben a zero als 25 anys; el del 5 % queda sempre per damunt del del 3,5 %."
+    xMax={28} yMax={200000} ejeX="Anys des de la signatura" ejeY="Saldo pendent (€)"
+    xTicks={[5, 10, 15, 20, 25]} yTicks={[40000, 80000, 120000, 160000]}
+    series={[
+      { label: '5 %', color: 'terra', dy: -30, puntos: Array.from({ length: 26 }, (_, y) => { const i = 0.05 / 12, k = y * 12, P = 160000 * i / (1 - (1 + i) ** -300); return [y, Math.max(0, 160000 * (1 + i) ** k - P * ((1 + i) ** k - 1) / i)]; }) },
+      { label: '3,5 %', color: 'teal', puntos: Array.from({ length: 26 }, (_, y) => { const i = 0.035 / 12, k = y * 12, P = 160000 * i / (1 - (1 + i) ** -300); return [y, Math.max(0, 160000 * (1 + i) ** k - P * ((1 + i) ** k - 1) / i)]; }) },
+    ]}
+  />
+</Diagram>
+
 
 </SolvedExercise>
 
@@ -591,7 +654,7 @@ Per a practicar la diversificació i l'horitzó d'inversió, proveu [**Stonks**]
       d: "Tipus d'interés anual, en tant per u."
     - s: "n"
       d: "Anys que el capital roman invertit."
-  ejemplo: "100 · (1,05)^30 = 432 €: 332 € d'interessos sense afegir un euro. A 40 anys, 704 €; a 50, 1.146 €. Al 8 % anual, els 100 € arriben a 1.006 € en 30 anys."
+  ejemplo: "100 · (1,05)^30 = 432 €: 332 € d'interessos sense afegir un euro. A 40 anys, 704 €; a 50, 1.147 €. Al 8 % anual, els 100 € arriben a 1.006 € en 30 anys."
 - tipo: figure
   src: eco-1bach/03/einstein-retrato.jpg
   alt: Retrat fotogràfic en blanc i negre d'Albert Einstein, realitzat per Orren Jack Turner a Princeton cap a 1947.

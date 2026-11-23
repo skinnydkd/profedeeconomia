@@ -55,6 +55,7 @@ publicado_en: 2026-05-15
 
 import Callout from '@components/Callout.astro';
 import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
 import VentajaComparativa from '@components/diagrams/VentajaComparativa.astro';
 import Curiosity from '@components/Curiosity.astro';
 import RealExample from '@components/RealExample.astro';
@@ -204,6 +205,23 @@ Tots dos tenen la mateixa tela que en autarquia i 3,33 t més de blat.
 
 **Conclusió.** L'especialització segons avantatge comparatiu amplia el conjunt de consum possible per als dos països. Eixa és la base teòrica del lliure comerç internacional.
 
+<Diagram caption="Exercici 12.1 amb les fronteres de possibilitats de producció de cada país (100 hores al dia). N₀ i S₀ són el consum sense comerç; N₁ i S₁, amb comerç: tots dos queden fora de la seua frontera, amb 3,33 t més de blat i la mateixa tela.">
+  <GraficoXY id="g-ejercicio-12-1" titulo="Exercici 12.1: fronteres de producció i guanys del comerç" desc="Norpaís produeix com a màxim 50 tones de blat o 25 metres de tela; Surpaís, 20 tones o 16,67 metres. Amb comerç, Norpaís consumeix 28,33 t i 12,5 m, i Surpaís 13,33 t i 8,33 m, fora de les seues fronteres."
+    xMax={55} yMax={27.5} ejeX="Blat (t)" ejeY="Tela (m)" simboloX="t" simboloY="m"
+    series={[
+      { label: 'Norpaís', color: 'terra', dy: -10, puntos: [[0, 25], [50, 0]] },
+      { label: 'Surpaís', color: 'teal', dy: -10, puntos: [[0, 50 / 3], [20, 0]] },
+    ]}
+    puntos={[
+      { x: 25, y: 12.5, label: 'N₀', guias: false, dx: -18, dy: 18 },
+      { x: 28.33, y: 12.5, label: 'N₁', guias: false, dx: 12, dy: -8 },
+      { x: 10, y: 25 / 3, label: 'S₀', guias: false, dx: -18, dy: 18 },
+      { x: 13.33, y: 25 / 3, label: 'S₁', guias: false, dx: 12, dy: -8 },
+    ]}
+  />
+</Diagram>
+
+
 </SolvedExercise>
 
 <Diagram caption="Encara que un país siga més eficient en tot, als dos els convé especialitzar-se on el seu cost d'oportunitat és menor i comerciar: amb la mateixa tela, s'obté més blat.">
@@ -312,6 +330,21 @@ La crisi de la COVID-19 va forçar un canvi històric. Al juliol de 2020, en una
 
 Espanya és el segon major receptor (després d'Itàlia): uns **163.000 milions d'euros** —77.000 milions en transferències no reemborsables i la resta en préstecs a tipus subsidiat—. La seua gestió nacional es canalitza a través del **Pla de Recuperació, Transformació i Resiliència (PRTR)**, articulat en quatre eixos (transició ecològica, transformació digital, cohesió social i territorial, igualtat de gènere) i instruments com el Kit Digital, els PERTE sectorials i les ajudes a rehabilitació energètica. A primers de 2026, Espanya havia rebut ja al voltant de **70.000-75.000 milions d'euros** del total compromés, en la fase final del desplegament.
 
+<Diagram caption="NextGenerationEU a Espanya: dels 163.000 milions compromesos, 77.000 són transferències no reemborsables i la resta, préstecs. A primers de 2026 s'havien rebut entre 70.000 i 75.000 milions.">
+  <GraficoXY id="g-nextgeneration" titulo="NextGenerationEU a Espanya: compromés i rebut" desc="Compromés: 163 000 milions d'euros, dels quals 77 000 són transferències i 86 000 préstecs. Rebut a primers de 2026: entre 70 000 i 75 000 milions."
+    xMax={5.5} yMax={180} ejeX="Fons" ejeY="Miler de milions d'euros"
+    xTicks={[1, 3.7]} xTickLabels={['Compromés', 'Rebut']} yTicks={[50, 100, 150]}
+    areas={[{ puntos: [[0.5, 0], [1.5, 0], [1.5, 77], [0.5, 77]], color: 'terra', fuerte: true }, { puntos: [[0.5, 77], [1.5, 77], [1.5, 163], [0.5, 163]], color: 'teal', fuerte: true }, { puntos: [[3.2, 0], [4.2, 0], [4.2, 70], [3.2, 70]], color: 'terra', fuerte: true }, { puntos: [[3.2, 70], [4.2, 70], [4.2, 75], [3.2, 75]], color: 'terra' }]}
+    notas={[
+      { x: 1, y: 167, texto: '163', ancla: 'middle' },
+      { x: 1.6, y: 34, texto: 'Transferències: 77', ancla: 'start' },
+      { x: 1.6, y: 116, texto: 'Préstecs: 86', ancla: 'start' },
+      { x: 4.3, y: 68, texto: 'Rebut: 70-75', ancla: 'start' },
+    ]}
+  />
+</Diagram>
+
+
 El pla acaba formalment a l'agost de 2026. El seu èxit o fracàs es debatrà durant anys, però ja ha canviat la conversa: la UE ha demostrat que pot emetre deute conjunt quan hi ha voluntat política, la qual cosa obri la porta a debats futurs sobre un *tresor europeu* permanent.
 
 ## Globalització: factors, beneficis i riscos
@@ -342,6 +375,19 @@ Les xifres agregades són contundents. Segons el Banc Mundial:
 - El **comerç internacional** s'ha multiplicat per més de **deu vegades** en termes reals entre 1980 i 2023.
 - L'**esperança de vida** mundial ha passat de 64 a 73 anys des de 1990.
 - L'accés a **electricitat**, **aigua potable**, **educació** i **vacunació** ha avançat a escala global més en estos quaranta anys que en tota la història anterior.
+
+<Diagram caption="La pobresa extrema mundial (menys de 2,15 $ al dia) va passar del 36 % de la població el 1990 al 8,5 % el 2024 (Banc Mundial).">
+  <GraficoXY id="g-pobreza-extrema" titulo="Pobresa extrema mundial, 1990 i 2024" desc="Dues barres: el 36 % de la població mundial vivia en pobresa extrema el 1990 i el 8,5 % el 2024."
+    xMax={4} yMax={42} ejeX="Any" ejeY="% de la població mundial"
+    xTicks={[1, 3]} xTickLabels={['1990', '2024']} yTicks={[10, 20, 30]}
+    areas={[{ puntos: [[0.6, 0], [1.4, 0], [1.4, 36], [0.6, 36]], color: 'terra', fuerte: true }, { puntos: [[2.6, 0], [3.4, 0], [3.4, 8.5], [2.6, 8.5]], color: 'terra', fuerte: true }]}
+    notas={[
+      { x: 1, y: 38.5, texto: '36 %', ancla: 'middle' },
+      { x: 3, y: 11, texto: '8,5 %', ancla: 'middle' },
+    ]}
+  />
+</Diagram>
+
 
 ### Riscos i costos
 
@@ -378,6 +424,19 @@ La tercera gran transformació contemporània, després de l'obertura comercial 
 ### L'impacte sobre l'ocupació
 
 L'estudi més citat sobre este punt és el de Carl Benedikt **Frey** i Michael **Osborne** (Universitat d'Oxford, 2013): van estimar que al voltant del **47 % de les ocupacions als Estats Units** estaven en alt risc d'automatització en un horitzó de vint anys. L'estudi ha sigut revisat per la literatura posterior: el treball d'**Arntz, Gregory i Zierahn** (OCDE, 2016), aplicant una metodologia per *tasques* dins de cada ocupació en lloc de per ocupació sencera, rebaixa la xifra a un **9-14 %** d'ocupacions plenament automatitzables, amb una proporció molt major d'ocupacions que veuran canviar parcialment les seues tasques. La literatura post-2023 sobre IA generativa (models de llenguatge grans) ha reobert el debat en ampliar dràsticament el conjunt de tasques cognitives automatitzables, però sense tornar als percentatges maximalistes inicials.
+
+<Diagram caption="Dos estimacions del risc d'automatització: Frey i Osborne (2013) calculen un 47 % de les ocupacions dels Estats Units per ocupacions senceres; Arntz, Gregory i Zierahn (OCDE, 2016), mesurant per tasques, ho deixen en el 9-14 %.">
+  <GraficoXY id="g-frey-osborne" titulo="Ocupacions automatitzables: Frey i Osborne enfront de l'OCDE" desc="Frey i Osborne estimen un 47 % d'ocupacions en alt risc; Arntz, Gregory i Zierahn, entre un 9 % i un 14 %."
+    xMax={4} yMax={54} ejeX="Estudi" ejeY="Ocupacions automatitzables (%)"
+    xTicks={[1, 3]} xTickLabels={['Frey i Osborne', 'Arntz et al.']} yTicks={[10, 20, 30, 40]}
+    areas={[{ puntos: [[0.6, 0], [1.4, 0], [1.4, 47], [0.6, 47]], color: 'terra', fuerte: true }, { puntos: [[2.6, 0], [3.4, 0], [3.4, 9], [2.6, 9]], color: 'teal', fuerte: true }, { puntos: [[2.6, 9], [3.4, 9], [3.4, 14], [2.6, 14]], color: 'teal' }]}
+    notas={[
+      { x: 1, y: 49.5, texto: '47 %', ancla: 'middle' },
+      { x: 3, y: 16.5, texto: '9-14 %', ancla: 'middle' },
+    ]}
+  />
+</Diagram>
+
 
 L'evidència empírica acumulada apunta a tres dinàmiques simultànies:
 
@@ -459,9 +518,36 @@ La demografia és l'altre repte estructural que tindrà la generació que cursa 
 - **Baixa natalitat**. La taxa de fecunditat espanyola ronda els **1,2 fills per dona**, molt per davall de la taxa de reemplaçament (2,1) i de les mitjanes europees. Espanya és un dels països del món amb menor natalitat sostinguda.
 - **Immigració**. Sense immigració, la població espanyola estaria ja en descens net. Els naixements en llars amb almenys un progenitor estranger representen al voltant del 25 % del total. La immigració sosté el creixement poblacional i, sobretot, l'afiliació a la Seguretat Social.
 
+<Diagram caption="La fecunditat a Espanya ronda els 1,2 fills per dona, molt per davall de la taxa de reemplaçament de 2,1.">
+  <GraficoXY id="g-fecundidad" titulo="Fecunditat a Espanya i taxa de reemplaçament" desc="Dues barres: 1,2 fills per dona a Espanya enfront de 2,1 de la taxa de reemplaçament."
+    xMax={4} yMax={2.4} ejeX="Indicador" ejeY="Fills per dona"
+    xTicks={[1, 3]} xTickLabels={['Espanya', 'Reemplaçament']} yTicks={[1, 2]}
+    areas={[{ puntos: [[0.6, 0], [1.4, 0], [1.4, 1.2], [0.6, 1.2]], color: 'terra', fuerte: true }, { puntos: [[2.6, 0], [3.4, 0], [3.4, 2.1], [2.6, 2.1]], color: 'mustard', fuerte: true }]}
+    notas={[
+      { x: 1, y: 1.3, texto: '1,2', ancla: 'middle' },
+      { x: 3, y: 2.2, texto: '2,1', ancla: 'middle' },
+    ]}
+  />
+</Diagram>
+
+
 ### Sostenibilitat de les pensions
 
 El sistema espanyol de pensions és **de repartiment**: les cotitzacions dels treballadors en actiu financen les pensions dels jubilats actuals. L'equilibri depén de la **ràtio de dependència**: quants cotitzants hi ha per cada pensionista. Eixa ràtio era pròxima a 4:1 als anys 90; ronda 2:1 hui; les projeccions per a 2050 la situen al voltant d'1,5:1.
+
+<Diagram caption="La ràtio de dependència del sistema de pensions, en cotitzants per pensionista: prop de 4 als anys 90, al voltant de 2 hui i uns 1,5 en les projeccions per a 2050. Valors aproximats.">
+  <GraficoXY id="g-dependencia-pensiones" titulo="Cotitzants per pensionista a Espanya" desc="Tres barres: prop de 4 cotitzants per pensionista als anys 90, al voltant de 2 hui i prop de 1,5 el 2050."
+    xMax={6} yMax={4.6} ejeX="Moment" ejeY="Cotitzants per pensionista"
+    xTicks={[1, 3, 5]} xTickLabels={['Anys 90', 'Hui', '2050']} yTicks={[1, 2, 3, 4]}
+    areas={[{ puntos: [[0.6, 0], [1.4, 0], [1.4, 4], [0.6, 4]], color: 'terra', fuerte: true }, { puntos: [[2.6, 0], [3.4, 0], [3.4, 2], [2.6, 2]], color: 'terra', fuerte: true }, { puntos: [[4.6, 0], [5.4, 0], [5.4, 1.5], [4.6, 1.5]], color: 'terra', fuerte: true }]}
+    notas={[
+      { x: 1, y: 4.2, texto: '4:1', ancla: 'middle' },
+      { x: 3, y: 2.2, texto: '2:1', ancla: 'middle' },
+      { x: 5, y: 1.7, texto: '1,5:1', ancla: 'middle' },
+    ]}
+  />
+</Diagram>
+
 
 La resposta institucional combina diversos instruments:
 

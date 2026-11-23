@@ -44,6 +44,8 @@ publicado_en: 2026-09-15
 import Callout from '@components/Callout.astro';
 import Diagram from '@components/Diagram.astro';
 import OfertaDemanda from '@components/diagrams/OfertaDemanda.astro';
+import MercadoGrafico from '@components/diagrams/MercadoGrafico.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
 import EstructurasMercado from '@components/diagrams/EstructurasMercado.astro';
 import Curiosity from '@components/Curiosity.astro';
 import RealExample from '@components/RealExample.astro';
@@ -138,6 +140,17 @@ Hay dos razones detrás. La primera es el **efecto sustitución**: cuando algo s
 
 (Cifras inventadas para el ejemplo.) Fijaos en algo que confunde a mucha gente: cuando cambia el precio, no cambia «la demanda», sino la **cantidad demandada**. Nos movemos a lo largo de la misma curva, de una fila de la tabla a otra. La demanda, entendida como la tabla entera, solo cambia cuando cambia algo distinto del precio.
 
+<Diagram caption="La tabla del concierto llevada a los ejes: cada fila es un punto y, cuanto más sube el precio de la entrada, menos gente la quiere.">
+  <GraficoXY id="g-demanda-concierto" titulo="Demanda de entradas del concierto en el instituto" desc="Curva descendente que une cuatro puntos: a 25 euros se demandan 300 entradas, a 60 euros 150, a 100 euros 60 y a 150 euros 20."
+    xMax={360} yMax={180} ejeX="Entradas demandadas" ejeY="Precio (€)" simboloX="Q" simboloY="P"
+    series={[{ label: 'D', color: 'terra', puntos: [[20, 150], [60, 100], [150, 60], [300, 25]] }]}
+    puntos={[
+      { x: 300, y: 25, xLabel: '300', yLabel: '25' }, { x: 150, y: 60, xLabel: '150', yLabel: '60' },
+      { x: 60, y: 100, xLabel: '60', yLabel: '100' }, { x: 20, y: 150, xLabel: '20', yLabel: '150' },
+    ]}
+  />
+</Diagram>
+
 ### Lo que desplaza la demanda
 
 ¿Y qué puede cambiar la tabla entera, es decir, hacer que a **cada** precio se quiera comprar más (o menos) que antes? Cinco cosas, sobre todo:
@@ -223,6 +236,20 @@ d) ¿Cuánto dinero ingresaría el club en cada uno de los tres casos?
 3. **A 20 €.** Cantidad demandada 90, cantidad ofrecida 50. Hay un **exceso de demanda de 40 sudaderas** (90 − 50). Se venderían las 50 que el club está dispuesto a fabricar y 40 personas se quedarían sin ella. ¿Quién se lleva las 50? Quien llegue antes, quien tenga un amigo en el club o quien esté dispuesto a pagar algo más «por debajo de la mesa». Vender a 20 € no hace que lleguen a todo el mundo: hace que lleguen a menos gente (50 en lugar de 70) y que se repartan por criterios distintos del precio.
 4. **Ingresos.** Los ingresos son precio × cantidad **vendida** (no la ofrecida ni la demandada, sino la menor de las dos). En equilibrio: 25 × 70 = **1.750 €**. A 30 €: solo se venden 50, luego 30 × 50 = **1.500 €**. A 20 €: solo se producen 50, luego 20 × 50 = **1.000 €**. El equilibrio es, en este caso, también el precio que más ingresos genera, porque es el único en el que se vende todo lo que se produce.
 
+<Diagram caption="El ejercicio en un gráfico: las curvas se cruzan en E (25 €, 70 sudaderas). A 30 € se demandan 50 y se ofrecen 90: sobran 40. A 20 € se demandan 90 y se ofrecen 50: faltan 40.">
+  <MercadoGrafico id="mg-sudaderas" titulo="Equilibrio de las sudaderas del instituto" desc="La demanda y la oferta se cortan en 25 euros y 70 sudaderas. A 30 euros se demandan 50 y se ofrecen 90: sobran 40. A 20 euros se demandan 90 y se ofrecen 50: faltan 40."
+    pMax={40} qMax={150} ejeP="Precio (€)" ejeQ="Sudaderas"
+    curvas={[{ tipo: 'D', q0: 170, m: -4, pDe: 8, pA: 38, label: 'D' }, { tipo: 'O', q0: -30, m: 4, pDe: 9, pA: 38, label: 'O' }]}
+    puntos={[
+      { p: 25, q: 70, label: 'E', pLabel: '25', qLabel: '70', dx: -8, dy: 30 },
+      { p: 30, q: 50, pLabel: '30', qLabel: '50' }, { p: 30, q: 90, qLabel: '90' },
+      { p: 20, q: 50 }, { p: 20, q: 90, pLabel: '20' },
+    ]}
+    precio={{ p: 20, label: "Precio de 20 €: faltan 40" }}
+    tramo={{ p: 30, q1: 50, q2: 90, label: "Sobran 40" }}
+  />
+</Diagram>
+
 </SolvedExercise>
 
 **Probadlo vosotros:** la herramienta de abajo dibuja las curvas a partir de dos ecuaciones sencillas, calcula el equilibrio y permite fijar un precio máximo o mínimo para ver el exceso que aparece. Cambiad la demanda o la oferta y comprobad hacia dónde se mueve el punto de cruce.
@@ -238,6 +265,24 @@ El equilibrio no es un punto fijo para siempre. Cada vez que uno de los factores
 - **Sube la oferta** (curva de oferta a la derecha): el precio baja y la cantidad sube. Ejemplo: entran Ouigo e Iryo en el AVE.
 - **Baja la oferta** (curva a la izquierda): el precio sube y la cantidad baja. Ejemplo: una sequía arruina la cosecha.
 
+<Diagram caption="Casos 1 y 2. Con la oferta quieta, si la demanda sube (D₀ → D₁) suben el precio y la cantidad; si baja (D₀ → D₂), bajan los dos.">
+  <MercadoGrafico id="mg-desplaza-demanda" titulo="Desplazamientos de la demanda y nuevo equilibrio" desc="Con la oferta fija, si la demanda sube el equilibrio sube por la curva de oferta: más precio y más cantidad. Si la demanda baja, el equilibrio baja: menos precio y menos cantidad."
+    pMax={10} qMax={100}
+    curvas={[{ tipo: 'O', q0: 0, m: 10, pDe: 1.5, pA: 9, label: 'O' }, { tipo: 'D', q0: 70, m: -10, pDe: 0.8, pA: 6, label: 'D₂' }, { tipo: 'D', q0: 100, m: -10, pDe: 1.5, pA: 8.5, label: 'D₀' }, { tipo: 'D', q0: 130, m: -10, pDe: 4, pA: 9.6, label: 'D₁' }]}
+    puntos={[{ p: 3.5, q: 35, label: 'E₂', dx: -8, dy: 30 }, { p: 5, q: 50, label: 'E₀', dx: -8, dy: 30 }, { p: 6.5, q: 65, label: 'E₁', dx: -8, dy: 30 }]}
+    flechas={[{ de: { p: 7.6, q: 24 }, a: { p: 7.6, q: 54 } }, { de: { p: 2.2, q: 78 }, a: { p: 2.2, q: 48 } }]}
+  />
+</Diagram>
+
+<Diagram caption="Casos 3 y 4. Con la demanda quieta, si la oferta sube (O₀ → O₁) baja el precio y sube la cantidad; si baja (O₀ → O₂), sube el precio y baja la cantidad.">
+  <MercadoGrafico id="mg-desplaza-oferta" titulo="Desplazamientos de la oferta y nuevo equilibrio" desc="Con la demanda fija, si la oferta sube el equilibrio baja por la curva de demanda: menos precio y más cantidad. Si la oferta baja, el equilibrio sube: más precio y menos cantidad."
+    pMax={10} qMax={100}
+    curvas={[{ tipo: 'D', q0: 100, m: -10, pDe: 1, pA: 8.5, label: 'D' }, { tipo: 'O', q0: -30, m: 10, pDe: 4, pA: 9.6, label: 'O₂' }, { tipo: 'O', q0: 0, m: 10, pDe: 1.5, pA: 9, label: 'O₀' }, { tipo: 'O', q0: 30, m: 10, pDe: 0.8, pA: 6.5, label: 'O₁' }]}
+    puntos={[{ p: 6.5, q: 35, label: 'E₂', dx: -8, dy: -16 }, { p: 5, q: 50, label: 'E₀', dx: -8, dy: -16 }, { p: 3.5, q: 65, label: 'E₁', dx: -8, dy: -16 }]}
+    flechas={[{ de: { p: 7.6, q: 76 }, a: { p: 7.6, q: 46 } }, { de: { p: 2.2, q: 22 }, a: { p: 2.2, q: 52 } }]}
+  />
+</Diagram>
+
 Cuando se mueven las dos curvas a la vez, una de las dos variables (precio o cantidad) queda clara y la otra depende de cuál se mueva más. Con eso basta para entender el 90 % de las noticias económicas sobre precios.
 
 <Steps label="Método" title="Cómo leer una noticia de precios con el modelo de oferta y demanda">
@@ -252,6 +297,15 @@ Cuando se mueven las dos curvas a la vez, una de las dos variables (precio o can
 España produce alrededor de la mitad del aceite de oliva del mundo y Andalucía, más del 80 % del español. Una campaña normal ronda los **1,4 millones de toneladas**. La sequía de 2022 y 2023 redujo la cosecha 2022/2023 a unas **666.000 toneladas**, menos de la mitad (MAPA). En el lenguaje de esta unidad: la curva de oferta se desplazó bruscamente a la izquierda mientras la demanda apenas se movía, porque las familias españolas y los importadores de todo el mundo seguían queriendo aceite. El resultado fue exactamente el que predice el modelo: menos cantidad y un precio mucho más alto. El precio en origen del virgen extra pasó de unos **3,30 €/kg** en la campaña 2021/22 a rondar los **9 €/kg** entre finales de 2023 y comienzos de 2024, y en el supermercado el aceite de oliva llegó a costar más del doble que dos años antes; el índice del aceite en el IPC alcanzó su máximo en la primavera de 2024 (INE). Nadie cambió sus gustos, nadie se puso de acuerdo para subir precios, ninguna ley intervino. Después llegaron las lluvias: la campaña 2024/25 recuperó en torno a 1,4 millones de toneladas, la oferta volvió a la derecha y el precio en origen bajó hasta niveles de unos 4 €/kg a lo largo de 2025 (MAPA). Un ciclo completo de ida y vuelta explicado por un solo desplazamiento.
 </RealExample>
 
+<Diagram caption="La sequía en el gráfico: la oferta pasa de O₁ a O₂ y la demanda no se mueve. El precio sube de P₁ a P₂ y la cantidad baja de Q₁ a Q₂.">
+  <MercadoGrafico id="mg-aceite" titulo="La sequía y el aceite de oliva" desc="La demanda queda quieta y la oferta se desplaza a la izquierda. El nuevo equilibrio tiene un precio mucho más alto y una cantidad menor."
+    pMax={10} qMax={100}
+    curvas={[{ tipo: 'D', q0: 100, m: -10, pDe: 1, pA: 8.5, label: 'D' }, { tipo: 'O', q0: 0, m: 10, pDe: 1.5, pA: 9, label: 'O₁', tenue: true }, { tipo: 'O', q0: -60, m: 10, pDe: 7, pA: 9.2, label: 'O₂' }]}
+    puntos={[{ p: 5, q: 50, label: 'E₁', pLabel: 'P₁', qLabel: 'Q₁', dx: -8, dy: 30 }, { p: 8, q: 20, label: 'E₂', pLabel: 'P₂', qLabel: 'Q₂', dx: -8, dy: -16 }]}
+    flechas={[{ de: { p: 8.6, q: 86 }, a: { p: 8.6, q: 26 } }]}
+  />
+</Diagram>
+
 <Figure
   src={olivarJaen}
   alt="Vista de un olivar en la provincia de Jaén, con hileras de olivos extendiéndose hasta el horizonte bajo cielo despejado."
@@ -262,6 +316,14 @@ España produce alrededor de la mitad del aceite de oliva del mundo y Andalucía
 />
 
 El mercado de la vivienda es el otro gran ejemplo, y os afectará dentro de pocos años. Entre 2020 y 2025 el alquiler medio en Madrid pasó de unos 15 € por metro cuadrado al mes a más de 22 € (Idealista, 2025). Por el lado de la demanda todo empuja hacia arriba: crece la población (España superó los 49 millones de habitantes en 2025, INE), llegan más estudiantes y trabajadores a las grandes ciudades, y quien espera que los precios sigan subiendo intenta cerrar contrato cuanto antes. Por el lado de la oferta, se construye poco (el Banco de España calculó en 2024 que entre 2022 y 2025 faltaban unas 600.000 viviendas nuevas para cubrir los hogares creados) y una parte del parque se ha ido al alquiler turístico o de temporada. Demanda a la derecha y oferta quieta o a la izquierda: el modelo predice precios más altos, y eso es lo que ha pasado. La pregunta de qué puede hacer el Estado al respecto es la del apartado siguiente.
+
+<Diagram caption="El alquiler en una gran ciudad: la demanda sube (D₁ → D₂) y la oferta se queda corta o baja (O₁ → O₂). El precio sube con fuerza (de P₁ a P₂) y la cantidad apenas cambia.">
+  <MercadoGrafico id="mg-alquiler-madrid" titulo="El alquiler en una gran ciudad: la demanda sube y la oferta baja" desc="La demanda se desplaza a la derecha y la oferta a la izquierda. El nuevo equilibrio tiene un precio mucho más alto y una cantidad algo menor."
+    pMax={10} qMax={100}
+    curvas={[{ tipo: 'D', q0: 100, m: -10, pDe: 1.5, pA: 8.5, label: 'D₁', tenue: true }, { tipo: 'D', q0: 130, m: -10, pDe: 4, pA: 9.6, label: 'D₂' }, { tipo: 'O', q0: 0, m: 10, pDe: 1.5, pA: 9, label: 'O₁', tenue: true }, { tipo: 'O', q0: -45, m: 10, pDe: 6, pA: 9.8, label: 'O₂' }]}
+    puntos={[{ p: 5, q: 50, label: 'E₁', pLabel: 'P₁', qLabel: 'Q₁', dx: -8, dy: 30 }, { p: 8.75, q: 42.5, label: 'E₂', pLabel: 'P₂', qLabel: 'Q₂', dx: -8, dy: -16 }]}
+  />
+</Diagram>
 
 <Curiosity title="Las curvas que Adam Smith nunca dibujó">
 Adam Smith publicó *La riqueza de las naciones* en 1776 y habló largamente de mercados, precios y de la «mano invisible», pero **nunca dibujó una curva de oferta ni de demanda**. El gráfico con las dos curvas cruzándose, que hoy aparece en todos los manuales del mundo, no se formalizó hasta 1890, cuando el economista inglés **Alfred Marshall** publicó sus *Principios de economía*. Marshall también fijó la convención que sigue despistando a generaciones de estudiantes: puso el precio en el eje vertical y la cantidad en el horizontal, al revés de lo que dictarían las matemáticas. Pasaron 114 años entre la intuición de Smith y el dibujo que hoy os parece tan natural como un mapa.
@@ -326,6 +388,16 @@ c) ¿Qué efectos secundarios puedes prever?
 2. **Con un tope de 30 €.** Está **por encima** del precio de equilibrio (25 €), así que no tiene ningún efecto: el mercado seguirá vaciándose a 25 € con 70 sudaderas. Un precio máximo solo actúa cuando se fija por debajo del equilibrio.
 3. **Efectos secundarios previsibles.** Con 80 personas queriendo una sudadera que no existe: colas el primer día, reparto por orden de llegada o por amistad, gente que compra a 15 € y revende a 25 € o 30 € (un mercado paralelo), y quizá el club recorte calidad (tela más fina, un solo color) para que fabricar a 15 € le compense. Son los mismos efectos que se documentan con los topes al alquiler, a escala de instituto.
 
+<Diagram caption="El tope de 15 € en el gráfico: se demandan 110 sudaderas y el club solo ofrece 30. Faltan 80. Un tope de 30 € quedaría por encima del equilibrio y no cambiaría nada.">
+  <MercadoGrafico id="mg-sudaderas-tope" titulo="Precio máximo de 15 euros para las sudaderas" desc="Con el precio limitado a 15 euros, por debajo del equilibrio de 25 euros y 70 sudaderas, se demandan 110 y solo se ofrecen 30: faltan 80."
+    pMax={40} qMax={150} ejeP="Precio (€)" ejeQ="Sudaderas"
+    curvas={[{ tipo: 'D', q0: 170, m: -4, pDe: 8, pA: 38, label: 'D' }, { tipo: 'O', q0: -30, m: 4, pDe: 9, pA: 38, label: 'O' }]}
+    puntos={[{ p: 25, q: 70, label: 'E', pLabel: '25', qLabel: '70', dx: -8, dy: 30 }, { p: 15, q: 30, pLabel: '15', qLabel: '30' }, { p: 15, q: 110, qLabel: '110' }]}
+    precio={{ p: 15, label: "Precio máximo: 15 €" }}
+    tramo={{ p: 15, q1: 30, q2: 110, label: "Faltan 80" }}
+  />
+</Diagram>
+
 </SolvedExercise>
 
 ### Precios mínimos: el suelo
@@ -333,6 +405,16 @@ c) ¿Qué efectos secundarios puedes prever?
 Un **precio mínimo** es un precio legal por debajo del cual está prohibido vender. Es la imagen especular del tope: solo tiene efecto si se fija **por encima del equilibrio**, y entonces provoca un **exceso de oferta**: a ese precio se quiere vender más de lo que se quiere comprar, y el precio no puede bajar para corregirlo.
 
 El precio mínimo más importante de vuestra vida será el **salario mínimo interprofesional (SMI)**, que es un precio mínimo en el mercado de trabajo: el precio más bajo al que se puede comprar una hora de trabajo. En 2026 está fijado en **1.221 € al mes en 14 pagas** (Real Decreto 126/2026). Si el SMI queda por encima de lo que algunas empresas estarían dispuestas a pagar por ciertos puestos, la teoría predice que esos puestos no se crearán o desaparecerán: un exceso de oferta de trabajo que se llama paro. La realidad es más matizada, porque el mercado de trabajo no es un mercado de sudaderas: cuánto empleo costó la gran subida del SMI de 2019 (un 22 %) es un debate abierto, con estimaciones muy distintas según el estudio. Lo veréis con calma en la Unidad 5. Otros precios mínimos conocidos son los precios de garantía a los agricultores en la Política Agraria Común de las décadas de 1970 y 1980, que generaron los famosos «lagos de leche» y «montañas de mantequilla» europeos: excedentes que nadie compraba al precio fijado.
+
+<Diagram caption="Un precio mínimo por encima del equilibrio: se quiere vender más de lo que se quiere comprar y aparece un exceso de oferta. En el mercado de trabajo, la teoría lo llama paro.">
+  <MercadoGrafico id="mg-suelo" titulo="Un precio mínimo por encima del equilibrio" desc="Con el precio fijado por encima del de equilibrio, la cantidad ofrecida supera a la demandada y aparece un exceso de oferta."
+    pMax={10} qMax={100}
+    curvas={[{ tipo: 'D', q0: 100, m: -10, pDe: 1.5, pA: 8.5, label: 'D' }, { tipo: 'O', q0: 0, m: 10, pDe: 1.5, pA: 9, label: 'O' }]}
+    puntos={[{ p: 5, q: 50, label: 'E', pLabel: 'P*', qLabel: 'Q*', dx: -8, dy: 30 }, { p: 7, q: 30, pLabel: 'P mín', qLabel: 'Qd' }, { p: 7, q: 70, qLabel: 'Qo' }]}
+    precio={{ p: 7, label: "Precio mínimo" }}
+    tramo={{ p: 7, q1: 30, q2: 70, label: "Exceso de oferta" }}
+  />
+</Diagram>
 
 <Callout label="Para fijar la idea" title="Máximo por debajo, mínimo por encima">
 

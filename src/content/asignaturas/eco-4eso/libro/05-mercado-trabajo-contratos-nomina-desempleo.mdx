@@ -43,6 +43,7 @@ publicado_en: 2026-09-15
 
 import Callout from '@components/Callout.astro';
 import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
 import MercadoTrabajo from '@components/diagrams/MercadoTrabajo.astro';
 import TasasEPA from '@components/diagrams/TasasEPA.astro';
 import TiposContrato from '@components/diagrams/TiposContrato.astro';
@@ -194,6 +195,29 @@ b) Pasa un año malo: nadie encuentra trabajo, pero 300 de los parados se cansan
 4. **Tasa de paro**: 1.200 / 12.000 × 100 = **10 %**. Ojo con el denominador: se divide entre los activos, no entre los 20.000. Si dividieras entre toda la población saldría un 6 %, y sería un error.
 5. **Efecto desánimo**: los 300 que dejan de buscar pasan de parados a inactivos. Ahora hay 900 parados y 11.700 activos (10.800 + 900). Tasa de paro: 900 / 11.700 × 100 = **7,7 %**.
 6. **Lectura**: la tasa de paro ha bajado más de dos puntos sin que se haya creado ni un solo empleo. El mercado de trabajo no ha mejorado: ha empeorado, porque 300 personas han perdido la esperanza. La pista está en la tasa de actividad, que cae del 60 % al 58,5 %. Cuando veas bajar el paro, mira siempre si también baja la actividad.
+
+<Diagram caption="Las tres tasas de Villaseca antes y después del efecto desánimo: la de paro baja de 10 % a 7,7 %, pero es porque la de actividad cae de 60 % a 58,5 %. Nadie ha encontrado trabajo: la de empleo sigue en 54 %.">
+  <GraficoXY id="g-tasas-villaseca" titulo="Tasas de actividad, empleo y paro de Villaseca antes y después" desc="Seis barras. Actividad: 60 por ciento antes y 58,5 después. Empleo: 54 antes y 54 después. Paro: 10 antes y 7,7 después."
+    xMax={6.8} yMax={80} ejeX="Tasa" ejeY="Porcentaje"
+    xTicks={[1.15, 3.15, 5.15]} xTickLabels={['Actividad', 'Empleo', 'Paro']} yTicks={[20, 40, 60]}
+    areas={[
+      { color: 'mustard', puntos: [[0.5, 0], [1.1, 0], [1.1, 60], [0.5, 60]] }, { color: 'terra', puntos: [[1.2, 0], [1.8, 0], [1.8, 58.5], [1.2, 58.5]] },
+      { color: 'mustard', puntos: [[2.5, 0], [3.1, 0], [3.1, 54], [2.5, 54]] }, { color: 'terra', puntos: [[3.2, 0], [3.8, 0], [3.8, 54], [3.2, 54]] },
+      { color: 'mustard', puntos: [[4.5, 0], [5.1, 0], [5.1, 10], [4.5, 10]] }, { color: 'terra', puntos: [[5.2, 0], [5.8, 0], [5.8, 7.7], [5.2, 7.7]] },
+    ]}
+    series={[
+      { color: 'mustard', puntos: [[0.5, 0], [0.5, 60], [1.1, 60], [1.1, 0]] }, { color: 'terra', puntos: [[1.2, 0], [1.2, 58.5], [1.8, 58.5], [1.8, 0]] },
+      { color: 'mustard', puntos: [[2.5, 0], [2.5, 54], [3.1, 54], [3.1, 0]] }, { color: 'terra', puntos: [[3.2, 0], [3.2, 54], [3.8, 54], [3.8, 0]] },
+      { color: 'mustard', puntos: [[4.5, 0], [4.5, 10], [5.1, 10], [5.1, 0]] }, { color: 'terra', puntos: [[5.2, 0], [5.2, 7.7], [5.8, 7.7], [5.8, 0]] },
+    ]}
+    notas={[
+      { x: 0.8, y: 63, texto: '60 %', ancla: 'middle' }, { x: 1.5, y: 61.5, texto: '58,5 %', ancla: 'middle' },
+      { x: 2.8, y: 57, texto: '54 %', ancla: 'middle' }, { x: 3.5, y: 57, texto: '54 %', ancla: 'middle' },
+      { x: 4.8, y: 13, texto: '10 %', ancla: 'middle' }, { x: 5.5, y: 10.7, texto: '7,7 %', ancla: 'middle' },
+      { x: 3.9, y: 76, texto: 'Antes', color: 'mustard' }, { x: 3.9, y: 70, texto: 'Después', color: 'terra' },
+    ]}
+  />
+</Diagram>
 
 </SolvedExercise>
 
@@ -366,6 +390,28 @@ d) El neto anual y cuánto ha ido a la Seguridad Social y a Hacienda.
 3. **Líquido de un mes normal**: 1.300 − 98,58 − 117 = **1.084,42 €**. **Líquido de la paga extra**: como la cotización ya se ha repartido entre los doce meses, en la extra solo se retiene IRPF: 1.300 − 117 = **1.183 €**. En junio y en diciembre Marina ingresará 1.084,42 + 1.183 = 2.267,42 €.
 4. **Neto anual**: 12 × 1.084,42 + 2 × 1.183 = 13.013,04 + 2.366 = **15.379,04 €**. **A la Seguridad Social**: 12 × 98,58 = 1.182,96 € (el 6,5 % de 18.200 €). **A Hacienda**: 14 × 117 = 1.638 € (el 9 % de 18.200 €). Comprobación: 15.379,04 + 1.182,96 + 1.638 = 18.200 €.
 5. **Lectura**: de los 18.200 € pactados, Marina ingresa unos 15.380 €, el 84,5 %. Los 1.183 € de la Seguridad Social le compran un año cotizado: cuenta para el paro (ya lleva 365 de los 360 días que necesita), para una baja y para su futura pensión. Los 1.638 € de IRPF son un anticipo: en la declaración de la renta de la primavera siguiente se ajustará, y con un sueldo como el suyo es probable que le devuelvan una parte.
+
+<Diagram caption="A dónde va el salario bruto anual de Marina: 15 379,04 € le llegan a la cuenta, 1 638 € van a Hacienda (IRPF) y 1 182,96 € a la Seguridad Social. Suman los 18 200 € del contrato.">
+  <GraficoXY id="g-reparto-nomina" titulo="Reparto del salario bruto anual de Marina" desc="Una barra de 18 200 euros dividida en tres partes: 15 379,04 euros de salario neto, 1 638 de IRPF y 1 182,96 de cotización a la Seguridad Social."
+    xMax={6} yMax={21000} ejeX="Salario bruto anual" ejeY="Euros al año"
+    yTicks={[5000, 10000, 15000, 20000]}
+    areas={[
+      { color: 'teal', puntos: [[1, 0], [2.4, 0], [2.4, 15379.04], [1, 15379.04]] },
+      { color: 'terra', puntos: [[1, 15379.04], [2.4, 15379.04], [2.4, 17017.04], [1, 17017.04]] },
+      { color: 'mustard', puntos: [[1, 17017.04], [2.4, 17017.04], [2.4, 18200], [1, 18200]] },
+    ]}
+    series={[
+      { color: 'teal', puntos: [[1, 0], [1, 15379.04], [2.4, 15379.04], [2.4, 0], [1, 0]] },
+      { color: 'terra', puntos: [[1, 15379.04], [1, 17017.04], [2.4, 17017.04], [2.4, 15379.04]] },
+      { color: 'mustard', puntos: [[1, 17017.04], [1, 18200], [2.4, 18200], [2.4, 17017.04]] },
+    ]}
+    notas={[
+      { x: 2.6, y: 7500, texto: 'Neto: 15 379,04 €', color: 'teal' },
+      { x: 2.6, y: 15900, texto: 'IRPF: 1 638 €', color: 'terra' },
+      { x: 2.6, y: 17400, texto: 'Seguridad Social: 1 182,96 €', color: 'mustard' },
+    ]}
+  />
+</Diagram>
 
 </SolvedExercise>
 

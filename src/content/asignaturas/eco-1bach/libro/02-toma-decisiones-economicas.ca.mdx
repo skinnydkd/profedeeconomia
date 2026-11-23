@@ -41,6 +41,7 @@ import SolvedExercise from '@components/SolvedExercise.astro';
 import Steps from '@components/Steps.astro';
 import KeyTakeaways from '@components/KeyTakeaways.astro';
 import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
 import TeoriaProspectiva from '@components/diagrams/TeoriaProspectiva.astro';
 import Figure from '@components/Figure.astro';
 import Bibliography from '@components/Bibliography.astro';
@@ -170,6 +171,20 @@ La regla general de l'anàlisi marginal és directa: **una acció paga la pena m
 - **Cost marginal (CMg)**: increment de cost que suposa consumir o produir una unitat més.
 - **Regla òptima**: continuar actuant mentre BMg ≥ CMg. Detindre's quan BMg < CMg. L'òptim s'aconseguix, en condicions de continuïtat, quan BMg = CMg.
 
+<Diagram caption="La regla en un gràfic: mentre el benefici marginal està per damunt del cost marginal convé continuar; en la intersecció s'aconseguix l'òptim i més enllà cada unitat costa més del que aporta. Gràfic esquemàtic, sense xifres.">
+  <GraficoXY id="g-marginal" titulo="Benefici marginal, cost marginal i quantitat òptima" desc="El benefici marginal baixa i el cost marginal puja amb la quantitat. Es tallen en la quantitat òptima Q*: a la seua esquerra convé continuar, a la dreta no."
+    xMax={100} yMax={100} ejeX="Quantitat (unitats)" ejeY="Euros per unitat" simboloX="Q"
+    series={[
+      { label: 'BMg', color: 'teal', puntos: [[5, 90], [85, 15]] },
+      { label: 'CMg', color: 'terra', puntos: [[5, 15], [85, 90]] },
+    ]}
+    areas={[{ puntos: [[5, 90], [45, 52.5], [5, 15]], color: 'teal' }]}
+    puntos={[{ x: 45, y: 52.5, label: 'Òptim', xLabel: 'Q*', dx: 12, dy: -12 }]}
+    notas={[{ x: 8, y: 50, texto: 'BMg > CMg: continuar', color: 'teal' }]}
+  />
+</Diagram>
+
+
 ### Per què els totals enganyen
 
 Imaginem una empresa que produïx motxilles. Vendre 1.000 motxilles li reporta 30.000 € d'ingressos i li costa 20.000 €: guanya 10.000 €. Vendre 1.100 motxilles li reporta 32.500 € i li costa 23.500 €: guanya 9.000 €. Mirant totals, *«les dos opcions donen beneficis»*. Mirant marges, les 100 motxilles addicionals aporten **2.500 € d'ingrés marginal** i **3.500 € de cost marginal**: produir-les destruïx 1.000 € de benefici. L'anàlisi marginal ho detecta immediatament; l'anàlisi per totals requerix comparar resultats finals.
@@ -205,6 +220,19 @@ Quantes hores hauria d'estudiar Marta eixa vesprada per a maximitzar el seu rend
 4. Benefici net total: (1,8 + 1,2 + 0,8 + 0,5) − (4 × 0,4) = 4,3 − 1,6 = **2,7 punts nets**.
 5. Si decidira estudiar 6 hores *«per si de cas»*, el benefici net baixaria a (1,8 + 1,2 + 0,8 + 0,5 + 0,3 + 0,1) − (6 × 0,4) = 4,7 − 2,4 = **2,3 punts nets**. Estudiar de més empitjora el resultat.
 6. Conclusió: el rendiment marginal de l'estudi és **decreixent** (cada hora extra aporta menys) i existix un punt òptim més enllà del qual convé deixar-ho. La intuïció *«com més, millor»* és econòmicament errònia.
+
+<Diagram caption="L'exercici de Marta: el benefici marginal de cada hora (1,8; 1,2; 0,8; 0,5; 0,3; 0,1 punts) davant d'un cost constant de 0,4. La quarta hora és l'última amb BMg per damunt del cost; la cinquena ja no compensa.">
+  <GraficoXY id="g-horas-estudio" titulo="Hores d'estudi: benefici marginal davant de cost marginal" desc="El benefici marginal de les hores 1 a 6 baixa d'1,8 a 0,1 punts; el cost marginal és 0,4 en totes. La quarta hora, amb 0,5, és l'última que compensa."
+    xMax={7.5} yMax={2.2} ejeX="Hora d'estudi" ejeY="Punts per hora"
+    xTicks={[1, 2, 3, 4, 5, 6]} yTicks={[0.4, 0.8, 1.2, 1.8]}
+    series={[
+      { label: 'BMg', color: 'teal', puntos: [[1, 1.8], [2, 1.2], [3, 0.8], [4, 0.5], [5, 0.3], [6, 0.1]] },
+      { label: 'CMg', color: 'terra', puntos: [[0.5, 0.4], [6.5, 0.4]], dy: -8 },
+    ]}
+    puntos={[{ x: 4, y: 0.5, label: 'Òptim: 4 hores', guias: false, dx: 12, dy: -14 }]}
+  />
+</Diagram>
+
 
 </SolvedExercise>
 

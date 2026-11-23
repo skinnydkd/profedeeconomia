@@ -40,6 +40,7 @@ import SolvedExercise from '@components/SolvedExercise.astro';
 import Steps from '@components/Steps.astro';
 import KeyTakeaways from '@components/KeyTakeaways.astro';
 import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
 import Figure from '@components/Figure.astro';
 import FPP from '@components/diagrams/FPP.astro';
 import Bibliography from '@components/Bibliography.astro';
@@ -202,6 +203,15 @@ La FPP és una representació gràfica que mostra **totes les combinacions efici
 
 Imaginem una economia hipotètica —anomenem-la *Alfa*— que només produïx dos béns: forment i ordinadors. Si dedica tots els seus recursos al forment, pot produir 100 tones i zero ordinadors. Si els dedica tots a ordinadors, pot produir 50 ordinadors i zero forment. Entre els dos extrems hi ha infinites combinacions intermèdies, i unir-les sobre un pla cartesià dona una corba: la FPP.
 
+<Diagram caption="L'economia Alfa als eixos: 100 tones de forment si tots els recursos van al forment, 50 ordinadors si van tots a ordinadors. El traçat entre els dos extrems és il·lustratiu.">
+  <GraficoXY id="g-alfa" titulo="Frontera de possibilitats de producció de l'economia Alfa" desc="Corba còncava que uneix 100 tones de forment i cap ordinador amb 50 ordinadors i cap tona de forment."
+    xMax={60} yMax={120} ejeX="Ordinadors" ejeY="Tones de forment"
+    series={[{ label: 'FPP', color: 'terra', puntos: Array.from({ length: 26 }, (_, i) => [i * 2, 100 * Math.sqrt(1 - (i * 2 / 50) ** 2)]) }]}
+    puntos={[{ x: 0, y: 100, label: 'Només forment', yLabel: '100', dy: -12 }, { x: 50, y: 0, label: 'Només ordinadors', xLabel: '50', dy: -14 }]}
+  />
+</Diagram>
+
+
 ### Eficiència, ineficiència i inabastabilitat
 
 Els punts sobre la corba són **eficients**: representen combinacions en les quals tota la capacitat productiva està aprofitada. Els punts per **davall** de la corba són tècnicament possibles però **ineficients**: indiquen que hi ha recursos infrautilitzats (atur, capacitat ociosa, matèries primeres sense emprar). Els punts per **damunt** de la corba són **inabastables** amb els recursos i tecnologia actuals: calen avanços productius per a arribar-hi.
@@ -224,11 +234,32 @@ El cost d'oportunitat d'una decisió és el **valor de la millor alternativa** a
 
 El cost d'oportunitat explica per què la FPP és habitualment **còncava** i no una línia recta: a mesura que una economia s'especialitza a produir més d'un bé, els recursos disponibles per a eixe bé són cada vegada menys adequats (la terra que millor es dona al forment ja s'està usant; les persones amb més habilitat per a fabricar ordinadors ja estan en això). Per això, cada unitat addicional costa proporcionalment més en termes de l'altre. A açò se l'anomena **llei dels costos d'oportunitat creixents**.
 
+<Diagram caption="Costos d'oportunitat creixents: la mateixa ampliació d'ordinadors (d'A a B i de C a D) obliga a renunciar a molt més forment quan l'economia ja està especialitzada en ordinadors. Gràfic esquemàtic, sense xifres.">
+  <GraficoXY id="g-costes-crecientes" titulo="Costos d'oportunitat creixents sobre la frontera" desc="A la corba còncava, passar d'A a B redueix poc el forment i passar de C a D, amb el mateix augment d'ordinadors, el redueix molt més."
+    xMax={60} yMax={120} ejeX="Ordinadors" ejeY="Forment"
+    series={[{ label: 'FPP', color: 'terra', puntos: Array.from({ length: 26 }, (_, i) => [i * 2, 100 * Math.sqrt(1 - (i * 2 / 50) ** 2)]) }]}
+    puntos={[{ x: 10, y: 100 * Math.sqrt(1 - 0.04), label: 'A' }, { x: 20, y: 100 * Math.sqrt(1 - 0.16), label: 'B' }, { x: 36, y: 100 * Math.sqrt(1 - 0.5184), label: 'C' }, { x: 46, y: 100 * Math.sqrt(1 - 0.8464), label: 'D' }]}
+  />
+</Diagram>
+
+
 ### Creixement econòmic: desplaçaments de la FPP
 
 Si els recursos augmenten (creix la població activa, es descobrix un nou jaciment, s'acumula capital) o la tecnologia millora (un nou mètode permet produir més amb el mateix), la FPP es desplaça **cap a fora**: el que abans era inabastable passa a ser possible. Açò és, en termes formals, **creixement econòmic**.
 
 El creixement no afecta per igual tots els béns: una millora tecnològica concentrada en un dels dos sectors produïx un desplaçament **esbiaixat**, no paral·lel. Esta subtilesa explica per què algunes economies creixen molt en alguns sectors i s'estanquen en altres (els servicis i el sector industrial avançat han crescut enormement a Espanya en quatre dècades; l'agricultura tradicional, molt menys).
+
+<Diagram caption="F₀ és la frontera inicial. F₁: creixen els recursos i la tecnologia per als dos béns (desplaçament paral·lel). F₂: la millora tecnològica només afecta els ordinadors (desplaçament esbiaixat). Gràfic esquemàtic, sense xifres.">
+  <GraficoXY id="g-crecimiento-fpp" titulo="Creixement econòmic: desplaçament paral·lel i esbiaixat de la frontera" desc="La frontera inicial F0 es desplaça cap a fora. F1 creix en els dos eixos; F2 només creix en l'eix d'ordinadors i deixa igual el màxim de forment."
+    xMax={80} yMax={135} ejeX="Ordinadors" ejeY="Forment"
+    series={[
+      { label: 'F₀', color: 'ink', tenue: true, puntos: Array.from({ length: 26 }, (_, i) => [i * 2, 100 * Math.sqrt(1 - (i * 2 / 50) ** 2)]) },
+      { label: 'F₁', color: 'terra', puntos: Array.from({ length: 31 }, (_, i) => [i * 2, 120 * Math.sqrt(1 - (i * 2 / 60) ** 2)]) },
+      { label: 'F₂', color: 'teal', puntos: Array.from({ length: 36 }, (_, i) => [i * 2, 100 * Math.sqrt(1 - (i * 2 / 70) ** 2)]) },
+    ]}
+  />
+</Diagram>
+
 
 <RealExample title="Espanya i la FPP històrica: de l'agro al servici en quaranta anys" source="INE, Comptabilitat Nacional Anual d'Espanya (revisió setembre 2025) i Banc d'Espanya, El creixement de l'economia espanyola 1980-2020 (2021)">
 En 1980, el sector primari aportava el 7 % del PIB espanyol i ocupava el 19 % de la població activa. En 2024, el sector primari aporta al voltant del **2,5 % del PIB** i ocupa menys del 4 % de la població. En el mateix període, els servicis han passat del 56 % al **74 % del PIB**. Açò no és una contracció del camp —la producció agrícola en valor real és major que fa quaranta anys— sinó un desplaçament esbiaixat de la FPP: la tecnologia i la inversió han fet que la mateixa producció agrícola requerisca moltíssima menys mà d'obra, alliberant-la per a servicis i, en part, per a indústria.
@@ -252,6 +283,19 @@ d) El país creix un 10 % en els dos béns. Què li passa a eixe mateix punt?
 3. El punt (60, 40) demana 40 de capital quan la frontera només en permet 32, així que és **inabastable**: no hi ha recursos prou amb la tecnologia de hui.
 4. Després de créixer un 10 %, els màxims passen a 110 i 88. Ara, amb 60 de consum, el país pot produir 88 × (1 − 60/110) = 88 × 5/11 = **40 de capital exactament**. El punt que era inabastable **queda just sobre la nova frontera**.
 5. *El que cal emportar-se.* El creixement no consistix a moure's per la frontera, sinó a **desplaçar-la cap a fora**: convertix en possible el que abans no ho era. I fixa't que el cost d'oportunitat no ha canviat —continua sent 0,8—, perquè els dos béns han crescut igual. Si n'haguera crescut només un, la frontera s'hauria **inclinat** i el cost d'oportunitat sí que canviaria.
+
+<Diagram caption="L'exercici en un gràfic: la frontera inicial (100 de consum, 80 de capital) deixa el punt (60, 40) fora, perquè en 60 de consum només n'hi caben 32 de capital. Amb un 10 % més (110 i 88) la nova frontera passa just per ell.">
+  <GraficoXY id="g-ejercicio-1-1" titulo="El punt inabastable que la nova frontera abasta" desc="La frontera inicial uneix 80 de capital amb 100 de consum; en 60 de consum permet 32 de capital, així que el punt (60, 40) queda fora. La nova frontera, de 88 a 110, passa exactament per (60, 40)."
+    xMax={125} yMax={100} ejeX="Béns de consum" ejeY="Béns de capital"
+    xTicks={[100, 110]} yTicks={[80, 88]}
+    series={[
+      { label: 'F₀', color: 'ink', tenue: true, puntos: [[0, 80], [100, 0]] },
+      { label: 'F₁', color: 'terra', puntos: [[0, 88], [110, 0]] },
+    ]}
+    puntos={[{ x: 60, y: 32, yLabel: '32', xLabel: '60' }, { x: 60, y: 40, label: 'Punt (60, 40)', yLabel: '40', dx: 12, dy: -10 }]}
+  />
+</Diagram>
+
 
 </SolvedExercise>
 

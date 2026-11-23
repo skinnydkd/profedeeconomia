@@ -51,6 +51,7 @@ import SolvedExercise from '@components/SolvedExercise.astro';
 import Steps from '@components/Steps.astro';
 import KeyTakeaways from '@components/KeyTakeaways.astro';
 import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
 import Figure from '@components/Figure.astro';
 import ADAS from '@components/diagrams/ADAS.astro';
 import CicloEconomico from '@components/diagrams/CicloEconomico.astro';
@@ -190,9 +191,49 @@ Llamamos **shock de demanda** a un desplazamiento de la AD y **shock de oferta**
 
 La AD se desplaza a la derecha (por ejemplo, un plan de inversión pública o una caída de tipos del BCE). En el corto plazo, **sube P y sube Y**: la economía se sobrecalienta, con producción por encima de Y\* y paro por debajo del NAIRU. A largo plazo, los salarios y los costes se ajustan al nuevo nivel de precios, la SRAS se desplaza a la izquierda y la economía vuelve a Y\*. El efecto duradero del shock es **solo sobre los precios**: la AD-AS predice que una expansión monetaria o fiscal sostenida termina traducida íntegramente en inflación a largo plazo. Es lo que llamamos **neutralidad del dinero a largo plazo**.
 
+<Diagram caption="Shock positivo de demanda: la AD pasa de AD₀ a AD₁ y la economía va de E₀ a E₁, con más precios y más producción que Y*. A largo plazo los costes se ajustan, la SRAS pasa de SRAS₀ a SRAS₁ y la economía vuelve a Y* en E₂, con precios más altos. Gráfico esquemático, sin cifras.">
+  <GraficoXY id="g-shock-demanda-positivo" titulo="Shock positivo de demanda en el modelo AD-AS" desc="La demanda agregada se desplaza a la derecha. En el corto plazo suben el nivel de precios y la producción, por encima de la producción potencial. A largo plazo la oferta de corto plazo se desplaza a la izquierda y la producción vuelve a la potencial con precios más altos."
+    xMax={110} yMax={110} ejeX="Producción (Y)" ejeY="Nivel de precios (P)" simboloX="Y" simboloY="P"
+    xTicks={[50]} xTickLabels={['Y*']}
+    series={[
+      { label: 'LRAS', color: 'ink', puntos: [[50, 5], [50, 98]] },
+      { label: 'AD₀', color: 'terra', tenue: true, puntos: [[10, 90], [90, 10]] },
+      { label: 'AD₁', color: 'terra', puntos: [[40, 90], [100, 30]] },
+      { label: 'SRAS₀', color: 'mustard', tenue: true, puntos: [[10, 10], [85, 85]] },
+      { label: 'SRAS₁', color: 'mustard', puntos: [[10, 40], [60, 90]] },
+    ]}
+    puntos={[
+      { x: 50, y: 50, label: 'E₀', guias: false, dx: 14, dy: 0 },
+      { x: 65, y: 65, label: 'E₁', guias: false, dx: 14, dy: 0 },
+      { x: 50, y: 80, label: 'E₂', guias: false, dx: 12, dy: 0 },
+    ]}
+  />
+</Diagram>
+
+
 ### 3.2. Shock negativo de demanda
 
 La AD se desplaza a la izquierda (caída del consumo, derrumbe de la confianza empresarial, contracción presupuestaria). En el corto plazo, **bajan P y baja Y**: la economía entra en **recesión**, con producción por debajo de Y\* y paro elevado. Si los precios y los salarios fuesen perfectamente flexibles, los costes caerían, la SRAS se desplazaría a la derecha y la economía volvería a Y\*. Pero los salarios **no caen** con la misma facilidad con la que suben (es la *rigidez nominal a la baja* descrita por Keynes), así que el ajuste por la oferta puede tardar años o no llegar a producirse sin intervención. Esta asimetría es la razón principal por la que las recesiones son tan dañinas y por la que la mayoría de gobiernos responden con política fiscal o monetaria expansiva.
+
+<Diagram caption="Shock negativo de demanda: la AD pasa de AD₀ a AD₁ y la economía va de E₀ a E₁, con menos precios y menos producción que Y*. Solo si los salarios y los precios cayeran con facilidad la SRAS bajaría a SRAS₁ y la economía volvería a Y* en E₂; la rigidez a la baja hace que el ajuste sea lento. Gráfico esquemático, sin cifras.">
+  <GraficoXY id="g-shock-demanda-negativo" titulo="Shock negativo de demanda en el modelo AD-AS" desc="La demanda agregada se desplaza a la izquierda. En el corto plazo bajan el nivel de precios y la producción, por debajo de la potencial. Si los salarios fueran flexibles, la oferta de corto plazo se desplazaría a la derecha y devolvería la economía a la producción potencial."
+    xMax={110} yMax={110} ejeX="Producción (Y)" ejeY="Nivel de precios (P)" simboloX="Y" simboloY="P"
+    xTicks={[50]} xTickLabels={['Y*']}
+    series={[
+      { label: 'LRAS', color: 'ink', puntos: [[50, 5], [50, 98]] },
+      { label: 'AD₀', color: 'terra', tenue: true, puntos: [[10, 90], [90, 10]] },
+      { label: 'AD₁', color: 'terra', puntos: [[5, 65], [65, 5]] },
+      { label: 'SRAS₀', color: 'mustard', tenue: true, puntos: [[10, 10], [85, 85]] },
+      { label: 'SRAS₁', color: 'mustard', tenue: true, puntos: [[35, 5], [85, 55]] },
+    ]}
+    puntos={[
+      { x: 50, y: 50, label: 'E₀', guias: false, dx: 14, dy: 0 },
+      { x: 35, y: 35, label: 'E₁', guias: false, dx: 14, dy: 0 },
+      { x: 50, y: 20, label: 'E₂', guias: false, dx: 14, dy: 0 },
+    ]}
+  />
+</Diagram>
+
 
 ### 3.3. Shock positivo de oferta
 
@@ -201,6 +242,25 @@ La SRAS se desplaza a la derecha (por ejemplo, una caída del precio del petról
 ### 3.4. Shock negativo de oferta (estanflación)
 
 La SRAS se desplaza a la izquierda (encarecimiento del petróleo, ruptura de cadenas de suministro, subida brusca de salarios por encima de la productividad). **Sube P y baja Y**: a la vez. Es el caso más temido por los bancos centrales, porque las dos variables que querrían controlar se mueven en direcciones opuestas: si suben tipos para contener la inflación, profundizan la recesión; si bajan tipos para estimular la actividad, retroalimentan la inflación. Esta combinación de inflación con estancamiento se llama **estanflación** y fue el rasgo distintivo de los años 70 tras los dos shocks del petróleo (1973 OPEP, 1979 revolución iraní). Volvió a aparecer en 2022 tras la invasión rusa de Ucrania.
+
+<Diagram caption="Shocks de oferta: si la SRAS se desplaza a la derecha (SRAS₁), la economía va de E₀ a E₁ con precios más bajos y más producción. Si se desplaza a la izquierda (SRAS₂), va de E₀ a E₂ con precios más altos y menos producción: es la estanflación. Gráfico esquemático, sin cifras.">
+  <GraficoXY id="g-shock-oferta" titulo="Shocks positivo y negativo de oferta en el modelo AD-AS" desc="Con la demanda agregada fija, un desplazamiento de la oferta de corto plazo a la derecha baja los precios y sube la producción; uno a la izquierda sube los precios y baja la producción, la estanflación."
+    xMax={110} yMax={110} ejeX="Producción (Y)" ejeY="Nivel de precios (P)" simboloX="Y" simboloY="P"
+    xTicks={[50]} xTickLabels={['Y*']}
+    series={[
+      { label: 'AD', color: 'terra', puntos: [[10, 90], [90, 10]] },
+      { label: 'SRAS₀', color: 'mustard', tenue: true, puntos: [[10, 10], [85, 85]] },
+      { label: 'SRAS₁', color: 'teal', puntos: [[35, 5], [100, 70]] },
+      { label: 'SRAS₂', color: 'aubergine', puntos: [[5, 35], [60, 90]] },
+    ]}
+    puntos={[
+      { x: 50, y: 50, label: 'E₀', guias: false, dx: 14, dy: 0 },
+      { x: 65, y: 35, label: 'E₁', guias: false, dx: 14, dy: 0 },
+      { x: 35, y: 65, label: 'E₂', guias: false, dx: -34, dy: 6 },
+    ]}
+  />
+</Diagram>
+
 
 <Curiosity title="Robert Solow, el Nobel de 1987 y el 'residuo Solow'">
 Robert Solow, profesor del MIT, recibió el Premio Nobel de Economía en 1987 por su modelo de crecimiento publicado en 1956. Solow descompuso el crecimiento del PIB en tres fuentes: acumulación de capital físico, aumento del empleo y un *residuo* que recogía todo lo que las dos primeras no explicaban. Cuando aplicó la descomposición a los datos de Estados Unidos del periodo 1909-1949, descubrió algo que cambiaría la economía del crecimiento: cerca de **siete octavos (un 87,5 %) del aumento de la producción por hora trabajada no se debía a más capital por trabajador**, sino a ese residuo. Lo llamó *technical change* (cambio técnico), pero la profesión lo conoce como **residuo Solow** o **productividad total de los factores (PTF)**. Es la métrica que mide cuánto producimos por unidad de inputs combinados, y en ella se condensa todo lo que importa de verdad para el bienestar a largo plazo: tecnología, eficiencia organizativa, calidad institucional, capital humano. Treinta años después, Solow firmó otra frase célebre, esta vez sobre la llamada *paradoja de la productividad*: los ordenadores estaban por todas partes, pero no se notaban en las cifras de productividad —*"You can see the computer age everywhere but in the productivity statistics"* (1987)—.
@@ -233,6 +293,26 @@ Tras la invasión rusa de Ucrania (febrero 2022), el precio del gas natural TTF 
 2. **Efectos predichos por el modelo.** Con AD inicialmente estable, un desplazamiento de SRAS a la izquierda produce una **subida de P** y una **bajada de Y** respecto del equilibrio previo. Es decir, el modelo predice exactamente *inflación con desaceleración* —estanflación incipiente—. Los datos lo confirman: el IPC pasó del 7,6 % al 10,8 % en cinco meses y el crecimiento del PIB pasó del 6,2 % al 2,4 % al año siguiente, una desaceleración notable aunque sin recesión técnica gracias al fuerte rebote turístico.
 3. **Respuesta del BCE.** El BCE optó por subir tipos para contener la inflación, aceptando profundizar la desaceleración. En el lenguaje del modelo: aplica una contracción monetaria que desplaza la AD a la izquierda. La estrategia es coherente con el mandato del BCE (estabilidad de precios como objetivo prioritario), pero implica sacrificar Y en el corto plazo para anclar las expectativas de inflación a medio plazo y evitar una espiral salarios-precios.
 4. **Conclusión.** El episodio 2022-2024 español encaja con el patrón canónico de shock negativo de oferta en el modelo AD-AS, y la respuesta de política monetaria —antipática pero coherente— ilustra el dilema clásico del banco central ante este tipo de shock.
+
+<Diagram caption="El ejercicio en un gráfico: el encarecimiento de la energía desplaza la SRAS a la izquierda (de E₀ a E₁: suben los precios y baja la producción). La subida de tipos del BCE desplaza la AD a la izquierda (de E₁ a E₂): los precios vuelven a bajar, pero la producción cae todavía más. Gráfico esquemático, sin cifras.">
+  <GraficoXY id="g-ejercicio-8-1" titulo="Shock energético de 2022 y respuesta del BCE en el modelo AD-AS" desc="La oferta de corto plazo se desplaza a la izquierda: suben los precios y baja la producción. La subida de tipos desplaza después la demanda agregada a la izquierda: los precios bajan algo, pero la producción cae más."
+    xMax={110} yMax={110} ejeX="Producción (Y)" ejeY="Nivel de precios (P)" simboloX="Y" simboloY="P"
+    xTicks={[50]} xTickLabels={['Y*']}
+    series={[
+      { label: 'AD₀', color: 'terra', tenue: true, puntos: [[10, 90], [90, 10]] },
+      { label: 'AD₁', color: 'terra', puntos: [[5, 65], [65, 5]] },
+      { label: 'SRAS₀', color: 'mustard', tenue: true, puntos: [[10, 10], [85, 85]] },
+      { label: 'SRAS₁', color: 'mustard', puntos: [[5, 35], [60, 90]] },
+    ]}
+    puntos={[
+      { x: 50, y: 50, label: 'E₀', guias: false, dx: 14, dy: 0 },
+      { x: 35, y: 65, label: 'E₁', guias: false, dx: -34, dy: 6 },
+      { x: 20, y: 50, label: 'E₂', guias: false, dx: -38, dy: 6 },
+    ]}
+    flechas={[{ de: [50, 50], a: [35, 65], despl: 14 }, { de: [35, 65], a: [20, 50], despl: 14 }]}
+  />
+</Diagram>
+
 
 </SolvedExercise>
 
@@ -417,6 +497,25 @@ Considera una economía con 5 personas cuyas rentas anuales son, ordenadas de me
 3. **Área entre diagonal y Lorenz (A)** = 0,5 − B = 0,5 − 0,285 = **0,215**.
 4. **Índice de Gini** = A / 0,5 = 0,215 / 0,5 = **0,43**.
 5. **Interpretación.** Una economía de 5 personas con esta distribución tiene un Gini cercano al de Estados Unidos. La razón: el 20 % más rico concentra el 50 % de la renta total, mientras que el 40 % más pobre solo acumula el 12,5 %. Si quisiéramos reducir el Gini a 0,30 (nivel europeo), tendríamos que redistribuir aproximadamente 20.000 € desde la persona 5 hacia las personas 1, 2 y 3.
+
+<Diagram caption="La curva de Lorenz del ejercicio: con las cinco rentas, el 40 % más pobre acumula el 12,5 % de la renta y el 80 % más pobre, el 50 %. El área entre la diagonal y la curva es A = 0,215; el Gini es A / 0,5 = 0,43.">
+  <GraficoXY id="g-ejercicio-8-2" titulo="Curva de Lorenz de una economía de cinco personas" desc="Los puntos de la curva son (20 %, 5 %), (40 %, 12,5 %), (60 %, 25 %), (80 %, 50 %) y (100 %, 100 %). Queda por debajo de la diagonal de igualdad; el área entre ambas es 0,215 y el índice de Gini, 0,43."
+    xMax={110} yMax={110} ejeX="% acumulado de población" ejeY="% acumulado de renta"
+    xTicks={[20, 40, 60, 80]} yTicks={[5, 12.5, 25, 50]}
+    series={[
+      { color: 'ink', tenue: true, puntos: [[0, 0], [100, 100]] },
+      { label: 'Lorenz', color: 'teal', dy: -2, puntos: [[0, 0], [20, 5], [40, 12.5], [60, 25], [80, 50], [100, 100]] },
+    ]}
+    areas={[{ puntos: [[0, 0], [100, 100], [80, 50], [60, 25], [40, 12.5], [20, 5]], color: 'mustard' }]}
+    puntos={[{ x: 20, y: 5, guias: false }, { x: 40, y: 12.5, guias: false }, { x: 60, y: 25, guias: false }, { x: 80, y: 50, guias: false }]}
+    notas={[
+      { x: 52, y: 36, texto: 'A = 0,215', color: 'mustard', ancla: 'middle' },
+      { x: 72, y: 12, texto: 'B = 0,285', color: 'teal', ancla: 'middle' },
+      { x: 66, y: 78, texto: 'Igualdad perfecta', color: 'ink', ancla: 'end' },
+    ]}
+  />
+</Diagram>
+
 
 </SolvedExercise>
 

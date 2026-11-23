@@ -41,6 +41,7 @@ publicado_en: 2026-09-15
 
 import Callout from '@components/Callout.astro';
 import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
 import SectoresEconomicos from '@components/diagrams/SectoresEconomicos.astro';
 import CicloEconomico from '@components/diagrams/CicloEconomico.astro';
 import EconomiaCircular from '@components/diagrams/EconomiaCircular.astro';
@@ -121,6 +122,30 @@ Sigamos el rastro del pan de tu bocadillo con cifras sencillas (inventadas, pero
 | **Suma del valor añadido** | | | **2,50 €** |
 
 Cada empresa compra algo, lo transforma y lo vende más caro. La diferencia entre lo que vende y lo que ha comprado a otras empresas es su **valor añadido**: es lo que de verdad ha aportado con su trabajo, sus máquinas y sus ideas. Observa el resultado: la suma de los valores añadidos de toda la cadena (2,50 €) coincide exactamente con el precio del bien final. No es casualidad, es matemática: si sumáramos los precios de venta de todos los eslabones (0,20 + 0,45 + 0,95 + 2,50 = 4,10 €) estaríamos contando el trigo cuatro veces, la harina tres y el pan dos.
+
+<Diagram caption="La cadena del pan en un gráfico: cada barra va de lo que el eslabón compra a lo que vende, y su altura es el valor añadido. Las cuatro alturas suman 2,50 €, el precio del bocadillo.">
+  <GraficoXY id="g-valor-anadido" titulo="Valor añadido en la cadena del pan" desc="Cuatro barras escalonadas. El agricultor vende por 0,20 euros y añade 0,20; el molino compra a 0,20, vende a 0,45 y añade 0,25; la panadería compra a 0,45, vende a 0,95 y añade 0,50; la cafetería compra a 0,95, vende a 2,50 y añade 1,55. Los valores añadidos suman 2,50 euros."
+    xMax={4.6} yMax={3} ejeX="Eslabón de la cadena" ejeY="Euros por barra de pan"
+    xTicks={[0.5, 1.5, 2.5, 3.5]} xTickLabels={['Agricultor', 'Molino', 'Panadería', 'Cafetería']} yTicks={[0.5, 1, 1.5, 2, 2.5]}
+    areas={[
+      { color: 'terra', puntos: [[0.1, 0], [0.9, 0], [0.9, 0.2], [0.1, 0.2]] },
+      { color: 'mustard', puntos: [[1.1, 0.2], [1.9, 0.2], [1.9, 0.45], [1.1, 0.45]] },
+      { color: 'teal', puntos: [[2.1, 0.45], [2.9, 0.45], [2.9, 0.95], [2.1, 0.95]] },
+      { color: 'aubergine', puntos: [[3.1, 0.95], [3.9, 0.95], [3.9, 2.5], [3.1, 2.5]] },
+    ]}
+    series={[
+      { color: 'terra', puntos: [[0.1, 0], [0.9, 0], [0.9, 0.2], [0.1, 0.2], [0.1, 0]] },
+      { color: 'mustard', puntos: [[1.1, 0.2], [1.9, 0.2], [1.9, 0.45], [1.1, 0.45], [1.1, 0.2]] },
+      { color: 'teal', puntos: [[2.1, 0.45], [2.9, 0.45], [2.9, 0.95], [2.1, 0.95], [2.1, 0.45]] },
+      { color: 'aubergine', puntos: [[3.1, 0.95], [3.9, 0.95], [3.9, 2.5], [3.1, 2.5], [3.1, 0.95]] },
+    ]}
+    notas={[
+      { x: 0.5, y: 0.3, texto: '+0,20 €', ancla: 'middle' }, { x: 1.5, y: 0.55, texto: '+0,25 €', ancla: 'middle' },
+      { x: 2.5, y: 1.05, texto: '+0,50 €', ancla: 'middle' }, { x: 3.5, y: 2.6, texto: '+1,55 €', ancla: 'middle' },
+      { x: 0.1, y: 2.85, texto: 'Suma de los valores añadidos: 2,50 €', color: 'ink' },
+    ]}
+  />
+</Diagram>
 
 <Callout label="Concepto clave" title="Valor añadido">
 
@@ -223,6 +248,26 @@ Dos talleres montan bicicletas. El taller Pedal tiene 5 trabajadores que, en jor
 4. **Valor añadido por trabajador.** 50 bicicletas × 50 € = **2.500 € a la semana** por trabajador, frente a los 30 × 50 = 1.500 € de antes. Ese aumento es el que permite a la empresa subir salarios, bajar precios para vender más o recuperar lo que costó la máquina. Sin más valor añadido por persona, una subida de sueldo solo puede salir de otro sitio (de los beneficios o de los precios).
 5. **Lectura.** Con los mismos trabajadores y las mismas horas, Rueda pasa de ser el taller menos productivo al más productivo. Ahora bien: si con la máquina bastaran 6 trabajadores para hacer las 400 bicicletas, la empresa tendría que decidir qué hace con los otros dos. Ahí está el debate de la tecnología y el empleo, que retomaremos en la Unidad 5.
 
+<Diagram caption="Bicicletas montadas por trabajador y semana: Pedal 40, Rueda 30 y Rueda con la máquina nueva 50.">
+  <GraficoXY id="g-productividad-talleres" titulo="Productividad de los talleres Pedal y Rueda" desc="Tres barras: el taller Pedal monta 40 bicicletas por trabajador y semana, el taller Rueda 30 y Rueda con la máquina nueva 50."
+    xMax={7} yMax={60} ejeX="Taller" ejeY="Bicicletas por trabajador y semana"
+    xTicks={[1.5, 3.5, 5.5]} xTickLabels={['Pedal', 'Rueda', 'Rueda + máquina']} yTicks={[10, 20, 30, 40, 50]}
+    areas={[
+      { color: 'terra', puntos: [[0.9, 0], [2.1, 0], [2.1, 40], [0.9, 40]] },
+      { color: 'mustard', puntos: [[2.9, 0], [4.1, 0], [4.1, 30], [2.9, 30]] },
+      { color: 'teal', puntos: [[4.9, 0], [6.1, 0], [6.1, 50], [4.9, 50]] },
+    ]}
+    series={[
+      { color: 'terra', puntos: [[0.9, 0], [0.9, 40], [2.1, 40], [2.1, 0]] },
+      { color: 'mustard', puntos: [[2.9, 0], [2.9, 30], [4.1, 30], [4.1, 0]] },
+      { color: 'teal', puntos: [[4.9, 0], [4.9, 50], [6.1, 50], [6.1, 0]] },
+    ]}
+    notas={[
+      { x: 1.5, y: 43, texto: '40', ancla: 'middle' }, { x: 3.5, y: 33, texto: '30', ancla: 'middle' }, { x: 5.5, y: 53, texto: '50', ancla: 'middle' },
+    ]}
+  />
+</Diagram>
+
 </SolvedExercise>
 
 **Pruébalo con tus números.** Introduce la producción, los trabajadores y las horas de cualquier negocio (real o inventado) y la calculadora te da la productividad por trabajador, por hora y por unidad de capital.
@@ -292,6 +337,27 @@ Valdemar es un país inventado. En 2024 su PIB nominal fue de 1.000 millones de 
 2. **Crecimiento real**: quitamos el efecto de los precios dividiendo entre 1,04. 1,06 / 1,04 = 1,019, es decir, **alrededor de un 1,9 %** (la aproximación rápida 6 − 4 = 2 % da casi lo mismo). Solo ese 1,9 % es producción de verdad; el resto es subida de precios.
 3. **PIB real per cápita**: la población creció un 3 % (10,3 / 10 = 1,03). Dividimos: 1,019 / 1,03 = 0,989, es decir, **cayó alrededor de un 1 %**. Hay más producción real, pero se reparte entre bastante más gente.
 4. **Lectura**: el titular «Valdemar crece un 6 %» es verdad y engaña al mismo tiempo. Descontados precios y población, al habitante medio le toca un 1 % menos que el año anterior. Y aún faltaría saber cómo se reparte (el PIB per cápita es una media) y a qué precio ambiental se ha producido.
+
+<Diagram caption="Con 2024 como base 100: el PIB nominal marca 106, el real 101,9 y el real por habitante 99,0. Descontados los precios y la población, el índice cae por debajo de 100.">
+  <GraficoXY id="g-valdemar" titulo="Valdemar: PIB nominal, real y real per cápita en 2025" desc="Tres barras con 2024 igual a 100. El PIB nominal de 2025 es 106, el PIB real 101,9 y el PIB real por habitante 99,0, es decir, por debajo del año anterior."
+    xMax={7.6} yMax={120} ejeX="Medida (2024 = 100)" ejeY="Índice de 2025"
+    xTicks={[1.4, 3.2, 5.0]} xTickLabels={['Nominal', 'Real', 'Real per cápita']} yTicks={[25, 50, 75, 100]}
+    areas={[
+      { color: 'terra', puntos: [[0.8, 0], [2, 0], [2, 106], [0.8, 106]] },
+      { color: 'teal', puntos: [[2.6, 0], [3.8, 0], [3.8, 101.9], [2.6, 101.9]] },
+      { color: 'aubergine', puntos: [[4.4, 0], [5.6, 0], [5.6, 99], [4.4, 99]] },
+    ]}
+    series={[
+      { color: 'terra', puntos: [[0.8, 0], [0.8, 106], [2, 106], [2, 0]] },
+      { color: 'teal', puntos: [[2.6, 0], [2.6, 101.9], [3.8, 101.9], [3.8, 0]] },
+      { color: 'aubergine', puntos: [[4.4, 0], [4.4, 99], [5.6, 99], [5.6, 0]] },
+      { color: 'ink', tenue: true, label: '2024 = 100', puntos: [[0, 100], [6.2, 100]] },
+    ]}
+    notas={[
+      { x: 1.4, y: 90, texto: '106', ancla: 'middle' }, { x: 3.2, y: 90, texto: '101,9', ancla: 'middle' }, { x: 5.0, y: 90, texto: '99,0', ancla: 'middle' },
+    ]}
+  />
+</Diagram>
 
 </SolvedExercise>
 

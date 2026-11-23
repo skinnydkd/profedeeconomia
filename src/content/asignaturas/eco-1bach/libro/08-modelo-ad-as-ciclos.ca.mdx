@@ -52,6 +52,7 @@ import SolvedExercise from '@components/SolvedExercise.astro';
 import Steps from '@components/Steps.astro';
 import KeyTakeaways from '@components/KeyTakeaways.astro';
 import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
 import Figure from '@components/Figure.astro';
 import ADAS from '@components/diagrams/ADAS.astro';
 import CicloEconomico from '@components/diagrams/CicloEconomico.astro';
@@ -191,9 +192,49 @@ Anomenem **xoc de demanda** a un desplaçament de l'AD i **xoc d'oferta** a un d
 
 L'AD es desplaça a la dreta (per exemple, un pla d'inversió pública o una caiguda de tipus del BCE). En el curt termini, **puja P i puja Y**: l'economia es sobreescalfa, amb producció per damunt de Y\* i atur per davall del NAIRU. A llarg termini, els salaris i els costos s'ajusten al nou nivell de preus, la SRAS es desplaça a l'esquerra i l'economia torna a Y\*. L'efecte durador del xoc és **només sobre els preus**: l'AD-AS prediu que una expansió monetària o fiscal sostinguda acaba traduïda íntegrament en inflació a llarg termini. És el que anomenem **neutralitat del diner a llarg termini**.
 
+<Diagram caption="Xoc positiu de demanda: l'AD passa d'AD₀ a AD₁ i l'economia va d'E₀ a E₁, amb més preus i més producció que Y*. A llarg termini els costos s'ajusten, la SRAS passa de SRAS₀ a SRAS₁ i l'economia torna a Y* en E₂, amb preus més alts. Gràfic esquemàtic, sense xifres.">
+  <GraficoXY id="g-shock-demanda-positivo" titulo="Xoc positiu de demanda en el model AD-AS" desc="La demanda agregada es desplaça a la dreta. A curt termini pugen el nivell de preus i la producció, per damunt de la producció potencial. A llarg termini l'oferta de curt termini es desplaça a l'esquerra i la producció torna a la potencial amb preus més alts."
+    xMax={110} yMax={110} ejeX="Producció (Y)" ejeY="Nivell de preus (P)" simboloX="Y" simboloY="P"
+    xTicks={[50]} xTickLabels={['Y*']}
+    series={[
+      { label: 'LRAS', color: 'ink', puntos: [[50, 5], [50, 98]] },
+      { label: 'AD₀', color: 'terra', tenue: true, puntos: [[10, 90], [90, 10]] },
+      { label: 'AD₁', color: 'terra', puntos: [[40, 90], [100, 30]] },
+      { label: 'SRAS₀', color: 'mustard', tenue: true, puntos: [[10, 10], [85, 85]] },
+      { label: 'SRAS₁', color: 'mustard', puntos: [[10, 40], [60, 90]] },
+    ]}
+    puntos={[
+      { x: 50, y: 50, label: 'E₀', guias: false, dx: 14, dy: 0 },
+      { x: 65, y: 65, label: 'E₁', guias: false, dx: 14, dy: 0 },
+      { x: 50, y: 80, label: 'E₂', guias: false, dx: 12, dy: 0 },
+    ]}
+  />
+</Diagram>
+
+
 ### 3.2. Xoc negatiu de demanda
 
 L'AD es desplaça a l'esquerra (caiguda del consum, esfondrament de la confiança empresarial, contracció pressupostària). En el curt termini, **baixen P i baixa Y**: l'economia entra en **recessió**, amb producció per davall de Y\* i atur elevat. Si els preus i els salaris foren perfectament flexibles, els costos caurien, la SRAS es desplaçaria a la dreta i l'economia tornaria a Y\*. Però els salaris **no cauen** amb la mateixa facilitat amb què pugen (és la *rigidesa nominal a la baixa* descrita per Keynes), així que l'ajust per l'oferta pot tardar anys o no arribar a produir-se sense intervenció. Esta asimetria és la raó principal per la qual les recessions són tan danyoses i per la qual la majoria de governs responen amb política fiscal o monetària expansiva.
+
+<Diagram caption="Xoc negatiu de demanda: l'AD passa d'AD₀ a AD₁ i l'economia va d'E₀ a E₁, amb menys preus i menys producció que Y*. Només si els salaris i els preus caigueren amb facilitat la SRAS baixaria a SRAS₁ i l'economia tornaria a Y* en E₂; la rigidesa a la baixa fa que l'ajust siga lent. Gràfic esquemàtic, sense xifres.">
+  <GraficoXY id="g-shock-demanda-negativo" titulo="Xoc negatiu de demanda en el model AD-AS" desc="La demanda agregada es desplaça a l'esquerra. A curt termini baixen el nivell de preus i la producció, per davall de la potencial. Si els salaris foren flexibles, l'oferta de curt termini es desplaçaria a la dreta i tornaria l'economia a la producció potencial."
+    xMax={110} yMax={110} ejeX="Producció (Y)" ejeY="Nivell de preus (P)" simboloX="Y" simboloY="P"
+    xTicks={[50]} xTickLabels={['Y*']}
+    series={[
+      { label: 'LRAS', color: 'ink', puntos: [[50, 5], [50, 98]] },
+      { label: 'AD₀', color: 'terra', tenue: true, puntos: [[10, 90], [90, 10]] },
+      { label: 'AD₁', color: 'terra', puntos: [[5, 65], [65, 5]] },
+      { label: 'SRAS₀', color: 'mustard', tenue: true, puntos: [[10, 10], [85, 85]] },
+      { label: 'SRAS₁', color: 'mustard', tenue: true, puntos: [[35, 5], [85, 55]] },
+    ]}
+    puntos={[
+      { x: 50, y: 50, label: 'E₀', guias: false, dx: 14, dy: 0 },
+      { x: 35, y: 35, label: 'E₁', guias: false, dx: 14, dy: 0 },
+      { x: 50, y: 20, label: 'E₂', guias: false, dx: 14, dy: 0 },
+    ]}
+  />
+</Diagram>
+
 
 ### 3.3. Xoc positiu d'oferta
 
@@ -202,6 +243,25 @@ La SRAS es desplaça a la dreta (per exemple, una caiguda del preu del petroli, 
 ### 3.4. Xoc negatiu d'oferta (estanflació)
 
 La SRAS es desplaça a l'esquerra (encariment del petroli, ruptura de cadenes de subministrament, pujada brusca de salaris per damunt de la productivitat). **Puja P i baixa Y**: alhora. És el cas més temut pels bancs centrals, perquè les dos variables que voldrien controlar es mouen en direccions oposades: si pugen tipus per contindre la inflació, aprofundixen la recessió; si baixen tipus per estimular l'activitat, retroalimenten la inflació. Esta combinació d'inflació amb estancament s'anomena **estanflació** i va ser el tret distintiu dels anys 70 després dels dos xocs del petroli (1973 OPEP, 1979 revolució iraniana). Va tornar a aparéixer el 2022 després de la invasió russa d'Ucraïna.
+
+<Diagram caption="Xocs d'oferta: si la SRAS es desplaça a la dreta (SRAS₁), l'economia va d'E₀ a E₁ amb preus més baixos i més producció. Si es desplaça a l'esquerra (SRAS₂), va d'E₀ a E₂ amb preus més alts i menys producció: és l'estagflació. Gràfic esquemàtic, sense xifres.">
+  <GraficoXY id="g-shock-oferta" titulo="Xocs positiu i negatiu d'oferta en el model AD-AS" desc="Amb la demanda agregada fixa, un desplaçament de l'oferta de curt termini a la dreta baixa els preus i puja la producció; un a l'esquerra puja els preus i baixa la producció, l'estagflació."
+    xMax={110} yMax={110} ejeX="Producció (Y)" ejeY="Nivell de preus (P)" simboloX="Y" simboloY="P"
+    xTicks={[50]} xTickLabels={['Y*']}
+    series={[
+      { label: 'AD', color: 'terra', puntos: [[10, 90], [90, 10]] },
+      { label: 'SRAS₀', color: 'mustard', tenue: true, puntos: [[10, 10], [85, 85]] },
+      { label: 'SRAS₁', color: 'teal', puntos: [[35, 5], [100, 70]] },
+      { label: 'SRAS₂', color: 'aubergine', puntos: [[5, 35], [60, 90]] },
+    ]}
+    puntos={[
+      { x: 50, y: 50, label: 'E₀', guias: false, dx: 14, dy: 0 },
+      { x: 65, y: 35, label: 'E₁', guias: false, dx: 14, dy: 0 },
+      { x: 35, y: 65, label: 'E₂', guias: false, dx: -34, dy: 6 },
+    ]}
+  />
+</Diagram>
+
 
 <Curiosity title="Robert Solow, el Nobel de 1987 i el 'residu Solow'">
 Robert Solow, professor del MIT, va rebre el Premi Nobel d'Economia el 1987 pel seu model de creixement publicat el 1956. Solow va descompondre el creixement del PIB en tres fonts: acumulació de capital físic, augment de l'ocupació i un *residu* que arreplegava tot el que les dos primeres no explicaven. Quan va aplicar la descomposició a les dades dels Estats Units del període 1909-1949, va descobrir una cosa que canviaria l'economia del creixement: prop de **set octaus (un 87,5 %) de l'augment de la producció per hora treballada no es devia a més capital per treballador**, sinó a eixe residu. El va anomenar *technical change* (canvi tècnic), però la professió el coneix com a **residu Solow** o **productivitat total dels factors (PTF)**. És la mètrica que mesura quant produïm per unitat d'inputs combinats, i en ella es condensa tot el que importa de veritat per al benestar a llarg termini: tecnologia, eficiència organitzativa, qualitat institucional, capital humà. Trenta anys després, Solow va firmar una altra frase cèlebre, esta vegada sobre l'anomenada *paradoxa de la productivitat*: els ordinadors eren per tot arreu, però no es notaven en les xifres de productivitat —*"You can see the computer age everywhere but in the productivity statistics"* (1987)—.
@@ -234,6 +294,26 @@ Després de la invasió russa d'Ucraïna (febrer 2022), el preu del gas natural 
 2. **Efectes predits pel model.** Amb AD inicialment estable, un desplaçament de SRAS a l'esquerra produïx una **pujada de P** i una **baixada de Y** respecte de l'equilibri previ. És a dir, el model prediu exactament *inflació amb desacceleració* —estanflació incipient—. Les dades ho confirmen: l'IPC va passar del 7,6 % al 10,8 % en cinc mesos i el creixement del PIB va passar del 6,2 % al 2,4 % l'any següent, una desacceleració notable encara que sense recessió tècnica gràcies al fort rebot turístic.
 3. **Resposta del BCE.** El BCE va optar per pujar tipus per contindre la inflació, acceptant aprofundir la desacceleració. En el llenguatge del model: aplica una contracció monetària que desplaça l'AD a l'esquerra. L'estratègia és coherent amb el mandat del BCE (estabilitat de preus com a objectiu prioritari), però implica sacrificar Y en el curt termini per ancorar les expectatives d'inflació a mitjà termini i evitar una espiral salaris-preus.
 4. **Conclusió.** L'episodi 2022-2024 espanyol encaixa amb el patró canònic de xoc negatiu d'oferta en el model AD-AS, i la resposta de política monetària —antipàtica però coherent— il·lustra el dilema clàssic del banc central davant d'este tipus de xoc.
+
+<Diagram caption="L'exercici en un gràfic: l'encariment de l'energia desplaça la SRAS a l'esquerra (d'E₀ a E₁: pugen els preus i baixa la producció). La pujada de tipus del BCE desplaça l'AD a l'esquerra (d'E₁ a E₂): els preus tornen a baixar, però la producció cau encara més. Gràfic esquemàtic, sense xifres.">
+  <GraficoXY id="g-ejercicio-8-1" titulo="Xoc energètic de 2022 i resposta del BCE en el model AD-AS" desc="L'oferta de curt termini es desplaça a l'esquerra: pugen els preus i baixa la producció. La pujada de tipus desplaça després la demanda agregada a l'esquerra: els preus baixen un poc, però la producció cau més."
+    xMax={110} yMax={110} ejeX="Producció (Y)" ejeY="Nivell de preus (P)" simboloX="Y" simboloY="P"
+    xTicks={[50]} xTickLabels={['Y*']}
+    series={[
+      { label: 'AD₀', color: 'terra', tenue: true, puntos: [[10, 90], [90, 10]] },
+      { label: 'AD₁', color: 'terra', puntos: [[5, 65], [65, 5]] },
+      { label: 'SRAS₀', color: 'mustard', tenue: true, puntos: [[10, 10], [85, 85]] },
+      { label: 'SRAS₁', color: 'mustard', puntos: [[5, 35], [60, 90]] },
+    ]}
+    puntos={[
+      { x: 50, y: 50, label: 'E₀', guias: false, dx: 14, dy: 0 },
+      { x: 35, y: 65, label: 'E₁', guias: false, dx: -34, dy: 6 },
+      { x: 20, y: 50, label: 'E₂', guias: false, dx: -38, dy: 6 },
+    ]}
+    flechas={[{ de: [50, 50], a: [35, 65], despl: 14 }, { de: [35, 65], a: [20, 50], despl: 14 }]}
+  />
+</Diagram>
+
 
 </SolvedExercise>
 
@@ -418,6 +498,25 @@ Considera una economia amb 5 persones les rendes anuals de les quals són, orden
 3. **Àrea entre diagonal i Lorenz (A)** = 0,5 − B = 0,5 − 0,285 = **0,215**.
 4. **Índex de Gini** = A / 0,5 = 0,215 / 0,5 = **0,43**.
 5. **Interpretació.** Una economia de 5 persones amb esta distribució té un Gini pròxim al dels Estats Units. La raó: el 20 % més ric concentra el 50 % de la renda total, mentre que el 40 % més pobre només acumula el 12,5 %. Si volguérem reduir el Gini a 0,30 (nivell europeu), hauríem de redistribuir aproximadament 20.000 € des de la persona 5 cap a les persones 1, 2 i 3.
+
+<Diagram caption="La corba de Lorenz de l'exercici: amb les cinc rendes, el 40 % més pobre acumula el 12,5 % de la renda i el 80 % més pobre, el 50 %. L'àrea entre la diagonal i la corba és A = 0,215; el Gini és A / 0,5 = 0,43.">
+  <GraficoXY id="g-ejercicio-8-2" titulo="Corba de Lorenz d'una economia de cinc persones" desc="Els punts de la corba són (20 %, 5 %), (40 %, 12,5 %), (60 %, 25 %), (80 %, 50 %) i (100 %, 100 %). Queda per davall de la diagonal d'igualtat; l'àrea entre ambdues és 0,215 i l'índex de Gini, 0,43."
+    xMax={110} yMax={110} ejeX="% acumulat de població" ejeY="% acumulat de renda"
+    xTicks={[20, 40, 60, 80]} yTicks={[5, 12.5, 25, 50]}
+    series={[
+      { color: 'ink', tenue: true, puntos: [[0, 0], [100, 100]] },
+      { label: 'Lorenz', color: 'teal', dy: -2, puntos: [[0, 0], [20, 5], [40, 12.5], [60, 25], [80, 50], [100, 100]] },
+    ]}
+    areas={[{ puntos: [[0, 0], [100, 100], [80, 50], [60, 25], [40, 12.5], [20, 5]], color: 'mustard' }]}
+    puntos={[{ x: 20, y: 5, guias: false }, { x: 40, y: 12.5, guias: false }, { x: 60, y: 25, guias: false }, { x: 80, y: 50, guias: false }]}
+    notas={[
+      { x: 52, y: 36, texto: 'A = 0,215', color: 'mustard', ancla: 'middle' },
+      { x: 72, y: 12, texto: 'B = 0,285', color: 'teal', ancla: 'middle' },
+      { x: 66, y: 78, texto: 'Igualtat perfecta', color: 'ink', ancla: 'end' },
+    ]}
+  />
+</Diagram>
+
 
 </SolvedExercise>
 

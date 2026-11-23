@@ -44,6 +44,7 @@ publicado_en: 2026-09-15
 
 import Callout from '@components/Callout.astro';
 import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
 import EmpresaFunctions from '@components/diagrams/EmpresaFunctions.astro';
 import PymesEspana from '@components/diagrams/PymesEspana.astro';
 import FormaJuridicaTree from '@components/diagrams/FormaJuridicaTree.astro';
@@ -150,6 +151,26 @@ Tres amigues munten una parada de creps durant els tres dies de la fira. Llogar 
 4. **Amb 100 creps**: ingressos 400 €; costos variables 120 €; costos totals 480 €. **Pèrdua de 80 €**: el marge de 100 creps (280 €) no arriba a cobrir els 360 € fixos.
 5. **Punt mort**: costos fixos dividits entre el marge per unitat, 360 / 2,80 = 128,6. Cal vendre **129 creps** per a no perdre. El número 129 és el primer que deixa benefici.
 6. **Lectura**: abans de demanar la parada a l'ajuntament, la pregunta que ho decidix tot és si és realista vendre 129 creps en tres dies. Si la fira de l'any passat va tindre 5.000 visitants, sí; si en va tindre 300, millor no.
+
+<Diagram caption="La parada de creps: els costos comencen en 360 € encara que no es venga res i els ingressos en 0. Les dues línies es creuen en 129 creps. Amb 100 es perden 80 € i amb 300 es guanyen 480 €.">
+  <GraficoXY id="g-crepes-punto-muerto" titulo="Punt mort de la parada de creps" desc="Dues rectes: ingressos de 4 euros per crep i costos totals de 360 euros fixos més 1,20 per crep. Es creuen en 128,6 creps, uns 514 euros. A l'esquerra hi ha pèrdua, amb 100 creps 80 euros; a la dreta benefici, amb 300 creps 480 euros."
+    xMax={380} yMax={1400} ejeX="Creps venuts" ejeY="Euros"
+    xTicks={[100, 200, 300]} yTicks={[360, 720, 1200]}
+    areas={[
+      { color: 'terra', puntos: [[0, 0], [0, 360], [128.6, 514.3]] },
+      { color: 'teal', puntos: [[128.6, 514.3], [300, 720], [300, 1200]] },
+    ]}
+    series={[
+      { color: 'teal', label: 'Ingressos', puntos: [[0, 0], [320, 1280]] },
+      { color: 'terra', label: 'Costos', puntos: [[0, 360], [320, 744]] },
+    ]}
+    puntos={[{ x: 128.6, y: 514.3, label: 'Punt mort', xLabel: '129', yLabel: '514', dx: 14, dy: 30 }]}
+    notas={[
+      { x: 30, y: 270, texto: 'Pèrdua', color: 'terra' },
+      { x: 296, y: 870, texto: 'Benefici de 480 €', color: 'teal', ancla: 'end' },
+    ]}
+  />
+</Diagram>
 
 </SolvedExercise>
 
@@ -333,6 +354,28 @@ Marc obri una botiga de bicicletes elèctriques. Aporta 3.000 € dels seus esta
 2. **Com a SL**, el deute és de la societat. El banc pot quedar-se amb el que tinga la societat (els 3.000 € de capital si encara existixen), però **no pot tocar el cotxe ni el compte personal** de Marc. Marc perd la seua aportació de 3.000 € i res més.
 3. **La lletra menuda**: a la pràctica, els bancs coneixen esta diferència tan bé com nosaltres. Per això, a una SL acabada de crear amb 3.000 € de capital li solen exigir que el soci **avale personalment** el préstec. Si Marc haguera firmat eixe aval, respondria amb el seu patrimoni exactament igual que un autònom.
 4. **Lectura**: la responsabilitat limitada protegix davant de proveïdors, clients que reclamen i deutes imprevistos, i per això convé així que l'activitat puga generar un deute major que el que s'ha aportat. Però no és màgia: protegix del que no has avalat.
+
+<Diagram caption="El mateix deute de 40.000 € segons la forma jurídica. Com a autònom, el banc cobra 18.000 € del patrimoni de Marc i queden 22.000 € per pagar. Com a SL sense aval, Marc perd només els 3.000 € que va aportar.">
+  <GraficoXY id="g-marc-responsabilidad" titulo="El que li costa el deute a Marc segons la forma jurídica" desc="Dues columnes en euros. Autònom: 18.000 embargats i 22.000 encara per pagar, 40.000 en total. SL sense aval: 3.000, el capital aportat."
+    xMax={3} yMax={46000} ejeX="Forma jurídica" ejeY="Euros"
+    xTicks={[1, 2.3]} xTickLabels={['Autònom', 'SL sense aval']} yTicks={[10000, 20000, 30000, 40000]}
+    areas={[
+      { color: 'terra', puntos: [[0.5, 0], [1.5, 0], [1.5, 18000], [0.5, 18000]] },
+      { color: 'mustard', puntos: [[0.5, 18000], [1.5, 18000], [1.5, 40000], [0.5, 40000]] },
+      { color: 'teal', puntos: [[1.8, 0], [2.8, 0], [2.8, 3000], [1.8, 3000]] },
+    ]}
+    series={[
+      { color: 'terra', puntos: [[0.5, 0], [0.5, 18000], [1.5, 18000], [1.5, 0]] },
+      { color: 'mustard', puntos: [[0.5, 18000], [0.5, 40000], [1.5, 40000], [1.5, 18000]] },
+      { color: 'teal', puntos: [[1.8, 0], [1.8, 3000], [2.8, 3000], [2.8, 0]] },
+    ]}
+    notas={[
+      { x: 1, y: 8500, texto: '18 000 embargats', ancla: 'middle' },
+      { x: 1, y: 28500, texto: '22 000 per pagar', ancla: 'middle' },
+      { x: 2.3, y: 6000, texto: '3 000 perduts', ancla: 'middle' },
+    ]}
+  />
+</Diagram>
 
 </SolvedExercise>
 

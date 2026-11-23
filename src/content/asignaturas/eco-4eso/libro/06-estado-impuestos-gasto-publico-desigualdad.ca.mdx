@@ -44,6 +44,7 @@ publicado_en: 2026-09-15
 
 import Callout from '@components/Callout.astro';
 import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
 import BienesPublicos from '@components/diagrams/BienesPublicos.astro';
 import MapaImpuestos from '@components/diagrams/MapaImpuestos.astro';
 import IRPFTramos from '@components/diagrams/IRPFTramos.astro';
@@ -195,10 +196,31 @@ Amb tants impostos, de quins viu de veres l'Estat? L'Agencia Tributaria publica 
 | Impost | Recaptació 2024 (aprox.) | Pes |
 |---|---|---|
 | IRPF | 129.000 milions € | 44 % |
-| IVA | 93.000 milions € | 31 % |
+| IVA | 93.000 milions € | 32 % |
 | Impost sobre Societats | 39.000 milions € | 13 % |
-| Impostos especials | 22.000 milions € | 8 % |
+| Impostos especials | 22.000 milions € | 7 % |
 | Resta (Patrimoni, taxes, altres) | 12.000 milions € | 4 % |
+
+<Diagram caption="D'on ixen els 295.000 milions que va recaptar l'Estat el 2024: l'IRPF i l'IVA, junts, són tres de cada quatre euros.">
+  <GraficoXY id="g-recaudacion" titulo="Recaptació tributària de l'Estat el 2024 per impost" desc="Cinc barres en milers de milions d'euros: IRPF 129, IVA 93, Impost sobre Societats 39, impostos especials 22 i resta 12."
+    xMax={6} yMax={150} ejeX="Impost" ejeY="Milers de milions de €"
+    xTicks={[1, 2, 3, 4, 5]} xTickLabels={['IRPF', 'IVA', 'Societats', 'Especials', 'Resta']} yTicks={[25, 50, 75, 100, 125]}
+    areas={[
+      { color: 'terra', puntos: [[0.65, 0], [1.35, 0], [1.35, 129], [0.65, 129]] }, { color: 'terra', puntos: [[1.65, 0], [2.35, 0], [2.35, 93], [1.65, 93]] },
+      { color: 'terra', puntos: [[2.65, 0], [3.35, 0], [3.35, 39], [2.65, 39]] }, { color: 'terra', puntos: [[3.65, 0], [4.35, 0], [4.35, 22], [3.65, 22]] },
+      { color: 'terra', puntos: [[4.65, 0], [5.35, 0], [5.35, 12], [4.65, 12]] },
+    ]}
+    series={[
+      { color: 'terra', puntos: [[0.65, 0], [0.65, 129], [1.35, 129], [1.35, 0]] }, { color: 'terra', puntos: [[1.65, 0], [1.65, 93], [2.35, 93], [2.35, 0]] },
+      { color: 'terra', puntos: [[2.65, 0], [2.65, 39], [3.35, 39], [3.35, 0]] }, { color: 'terra', puntos: [[3.65, 0], [3.65, 22], [4.35, 22], [4.35, 0]] },
+      { color: 'terra', puntos: [[4.65, 0], [4.65, 12], [5.35, 12], [5.35, 0]] },
+    ]}
+    notas={[
+      { x: 1, y: 134, texto: '129', ancla: 'middle' }, { x: 2, y: 98, texto: '93', ancla: 'middle' }, { x: 3, y: 44, texto: '39', ancla: 'middle' },
+      { x: 4, y: 27, texto: '22', ancla: 'middle' }, { x: 5, y: 17, texto: '12', ancla: 'middle' },
+    ]}
+  />
+</Diagram>
 
 Dos lectures. La primera: **tres de cada quatre euros** vénen de l'IRPF i de l'IVA, és a dir, del que guanyen i del que gasten les famílies. Les empreses, a través de Societats, aporten bastant menys del que molta gent es pensa. La segona: a eixa xifra cal sumar-li les **cotitzacions socials**, que no cobra l'Agencia Tributaria sinó la Seguretat Social i que el 2024 van superar els **180.000 milions d'euros** (Seguridad Social, ejecución presupuestaria 2024). Si ho compteu tot, la nòmina de la Unitat 5 (IRPF més cotitzacions del treballador i de l'empresa) és, amb diferència, la major font de diners públics d'Espanya.
 
@@ -252,6 +274,22 @@ Lucía té 24 anys, viu sola i en el seu primer any amb contracte indefinit ha c
 7. **Resultat de la declaració**: li han retingut 3.400 € i devia 3.123 €, així que Hisenda li **torna 277 €**. La retenció mensual era només una bestreta; la declaració ajusta els comptes.
 8. **Lectura**: en una declaració real, amb les cotitzacions a la Seguretat Social (1.300 €), els 2.000 € d'altres despeses deduïbles i la reducció per rendiments del treball que fixa la Ley 35/2006, la quota d'una renda de 20.000 € baixa a uns 2.044 €, un tipus mitjà al voltant del 10 %. El mecanisme és el mateix; el que canvia és la base sobre la qual s'aplica.
 
+<Diagram caption="Lucía en el gràfic: amb 20.000 € el seu últim euro paga el 24 % (tipus marginal), però la seua renda sencera paga el 15,6 % (tipus mitjà). El tipus mitjà puja amb la renda sense arribar mai al marginal, i fins a 5.550 € no es paga res pel mínim personal.">
+  <GraficoXY id="g-irpf-tipo-medio" titulo="Tipus marginal i tipus mitjà de l'IRPF segons la renda" desc="El tipus marginal puja a escalons: 0 per cent fins a 5 550 euros, després 19, 24, 30, 37 i 45. El tipus mitjà puja de manera suau i sempre queda per davall: amb 20 000 euros de renda, Lucía té un marginal del 24 per cent i un mitjà del 15,6."
+    xMax={80000} yMax={55} ejeX="Renda anual (€)" ejeY="Percentatge" simboloX="R" simboloY="%"
+    xTicks={[20000, 40000, 60000]} yTicks={[10, 20, 30, 40]}
+    series={[
+      { color: 'mustard', label: 'Tipus marginal', puntos: [[0, 0], [5550, 0], [5550, 19], [12450, 19], [12450, 24], [20200, 24], [20200, 30], [35200, 30], [35200, 37], [60000, 37], [60000, 45], [70000, 45]] },
+      { color: 'terra', label: 'Tipus mitjà', puntos: Array.from({ length: 140 }, (_, i) => {
+        const r = (i + 1) * 500;
+        const cuota = [[0, 12450, 0.19], [12450, 20200, 0.24], [20200, 35200, 0.3], [35200, 60000, 0.37], [60000, 300000, 0.45]].reduce((s, [a, b, t]) => s + Math.max(0, Math.min(r, b) - a) * t, 0);
+        return [r, Math.max(0, cuota - 5550 * 0.19) / r * 100];
+      }) },
+    ]}
+    puntos={[{ x: 20000, y: 15.6, label: 'Mitjà: 15,6 %', xLabel: '20 000', yLabel: '15,6', dx: 12, dy: 24 }, { x: 20000, y: 24, label: 'Marginal: 24 %', yLabel: '24', dx: -122, dy: -12 }]}
+  />
+</Diagram>
+
 </SolvedExercise>
 
 ### La declaració de la renda
@@ -289,6 +327,22 @@ En la compra del dissabte, els productes costaven, **abans d'IVA**:
 7. **Família amb 6.000 € d'ingressos**: gasta 3.000 €, i l'IVA són uns **312 €**: el **5,2 % dels seus ingressos**.
 8. **Lectura**: la segona família paga més euros d'IVA, però un percentatge de la seua renda **la meitat de gran**, perquè el que estalvia no paga IVA. L'IVA és proporcional a la despesa i **regressiu respecte a la renda**. Per això existixen els tipus reduïts: abaixar l'IVA del pa i la llet és la manera que l'impost pese menys sobre qui gasta quasi tot el que guanya a menjar.
 
+<Diagram caption="L'IVA com a part dels ingressos: la família que ingressa 1.200 € i ho gasta tot paga el 10,4 %; la que ingressa 6.000 € i en gasta la meitat paga el 5,2 %.">
+  <GraficoXY id="g-iva-regresivo" titulo="IVA pagat com a percentatge dels ingressos de dos famílies" desc="Dos barres: la família que ingressa 1 200 euros al mes i ho gasta tot paga un 10,4 per cent dels seus ingressos en IVA; la que ingressa 6 000 i en gasta 3 000 paga un 5,2 per cent."
+    xMax={6} yMax={12} ejeX="Família" ejeY="IVA sobre els ingressos (%)"
+    xTicks={[1.5, 4]} xTickLabels={['Ingressa 1 200 €', 'Ingressa 6 000 €']} yTicks={[2, 4, 6, 8, 10]}
+    areas={[
+      { color: 'terra', puntos: [[0.9, 0], [2.1, 0], [2.1, 10.4], [0.9, 10.4]] },
+      { color: 'teal', puntos: [[3.4, 0], [4.6, 0], [4.6, 5.2], [3.4, 5.2]] },
+    ]}
+    series={[
+      { color: 'terra', puntos: [[0.9, 0], [0.9, 10.4], [2.1, 10.4], [2.1, 0]] },
+      { color: 'teal', puntos: [[3.4, 0], [3.4, 5.2], [4.6, 5.2], [4.6, 0]] },
+    ]}
+    notas={[{ x: 1.5, y: 11, texto: '10,4 %', ancla: 'middle' }, { x: 4, y: 5.8, texto: '5,2 %', ancla: 'middle' }]}
+  />
+</Diagram>
+
 </SolvedExercise>
 
 ### Progressiu, proporcional i regressiu
@@ -315,6 +369,28 @@ Eurostat classifica la despesa de totes les administracions per funcions. A Espa
 - **12 € a assumptes econòmics**: carreteres, trens, ajudes a l'agricultura, transició energètica.
 - **12 € a servicis generals**, que inclouen el funcionament de les administracions i, sobretot, els **interessos del deute**: més de 30.000 milions d'euros a l'any (Presupuestos Generales del Estado 2023).
 - La resta (uns 10 €) es reparteix entre ordre públic i seguretat, defensa, habitatge, medi ambient i cultura.
+
+<Diagram caption="Com es reparteixen 100 € de despesa pública a Espanya: més de la meitat va a protecció social i sanitat.">
+  <GraficoXY id="g-gasto-publico" titulo="Repartiment de 100 euros de despesa pública a Espanya" desc="Una barra de 100 euros dividida per partides: 41 a protecció social, 15 a sanitat, 10 a educació, 12 a assumptes econòmics, 12 a servicis generals i 10 a la resta."
+    xMax={6} yMax={105} ejeX="Despesa pública" ejeY="Euros de cada 100"
+    yTicks={[20, 40, 60, 80, 100]}
+    areas={[
+      { color: 'terra', puntos: [[1, 0], [2.4, 0], [2.4, 41], [1, 41]] }, { color: 'mustard', puntos: [[1, 41], [2.4, 41], [2.4, 56], [1, 56]] },
+      { color: 'teal', puntos: [[1, 56], [2.4, 56], [2.4, 66], [1, 66]] }, { color: 'aubergine', puntos: [[1, 66], [2.4, 66], [2.4, 78], [1, 78]] },
+      { color: 'ink', puntos: [[1, 78], [2.4, 78], [2.4, 90], [1, 90]] }, { color: 'terra', puntos: [[1, 90], [2.4, 90], [2.4, 100], [1, 100]] },
+    ]}
+    series={[
+      { color: 'terra', puntos: [[1, 0], [1, 41], [2.4, 41], [2.4, 0], [1, 0]] }, { color: 'mustard', puntos: [[1, 41], [1, 56], [2.4, 56], [2.4, 41]] },
+      { color: 'teal', puntos: [[1, 56], [1, 66], [2.4, 66], [2.4, 56]] }, { color: 'aubergine', puntos: [[1, 66], [1, 78], [2.4, 78], [2.4, 66]] },
+      { color: 'ink', puntos: [[1, 78], [1, 90], [2.4, 90], [2.4, 78]] }, { color: 'terra', puntos: [[1, 90], [1, 100], [2.4, 100], [2.4, 90]] },
+    ]}
+    notas={[
+      { x: 2.6, y: 19, texto: '41 € Protecció social', color: 'terra' }, { x: 2.6, y: 47, texto: '15 € Sanitat', color: 'mustard' },
+      { x: 2.6, y: 60, texto: '10 € Educació', color: 'teal' }, { x: 2.6, y: 71, texto: '12 € Assumptes econòmics', color: 'aubergine' },
+      { x: 2.6, y: 83, texto: '12 € Servicis generals', color: 'ink' }, { x: 2.6, y: 94, texto: '10 € Resta', color: 'terra' },
+    ]}
+  />
+</Diagram>
 
 Tot junt, la despesa pública espanyola va ser el 2024 al voltant del **45 % del PIB** (Eurostat, estadístiques de finances públiques 2024), enfront d'una mitjana pròxima al 49 % a la Unió Europea. Quasi la meitat de tot el que produïx el país en un any passa per decisions públiques, i més de la meitat d'eixa despesa va a tres coses: pensions, sanitat i educació.
 
@@ -358,6 +434,25 @@ El **dèficit públic** és la diferència entre el que l'Estat gasta i el que i
 </Callout>
 
 Les dos xifres s'expressen com a percentatge del PIB, per a poder comparar-les entre països i entre anys. El 2024 el dèficit de les administracions públiques espanyoles va ser del **3,2 % del PIB**, després d'un 3,5 % el 2023 i d'un 10,1 % el 2020, l'any de la pandèmia (IGAE i Eurostat, dades de 2025). El deute públic va tancar 2024 en uns **1,62 bilions d'euros**, al voltant del **102 % del PIB**, i el 2025 s'ha mantingut entre el 100 i el 104 % (Banco de España, deuda de las Administraciones Públicas según el Protocolo de Déficit Excesivo). Per a fer-se una idea: cada persona que viu a Espanya, des d'un nadó fins als teus iaios, deu uns 33.000 € per la part que li toca d'eixe deute.
+
+<Diagram caption="El dèficit públic en tres anys i el límit europeu del 3 % del PIB: el 2020, amb la pandèmia, va ser més de tres vegades el límit; el 2023 i el 2024 es va quedar una mica per damunt.">
+  <GraficoXY id="g-deficit" titulo="Dèficit públic d'Espanya enfront del límit del 3 % del PIB" desc="Tres barres: el dèficit va ser del 10,1 per cent del PIB el 2020, del 3,5 el 2023 i del 3,2 el 2024. El límit europeu és el 3 per cent."
+    xMax={8} yMax={12} ejeX="Any" ejeY="Dèficit (% del PIB)"
+    xTicks={[1.5, 3.5, 5.5]} xTickLabels={['2020', '2023', '2024']} yTicks={[2, 4, 6, 8, 10]}
+    areas={[
+      { color: 'terra', puntos: [[0.9, 0], [2.1, 0], [2.1, 10.1], [0.9, 10.1]] },
+      { color: 'terra', puntos: [[2.9, 0], [4.1, 0], [4.1, 3.5], [2.9, 3.5]] },
+      { color: 'terra', puntos: [[4.9, 0], [6.1, 0], [6.1, 3.2], [4.9, 3.2]] },
+    ]}
+    series={[
+      { color: 'terra', puntos: [[0.9, 0], [0.9, 10.1], [2.1, 10.1], [2.1, 0]] },
+      { color: 'terra', puntos: [[2.9, 0], [2.9, 3.5], [4.1, 3.5], [4.1, 0]] },
+      { color: 'terra', puntos: [[4.9, 0], [4.9, 3.2], [6.1, 3.2], [6.1, 0]] },
+      { color: 'teal', tenue: true, label: 'Límit UE: 3 %', dy: 18, puntos: [[0, 3], [6.6, 3]] },
+    ]}
+    notas={[{ x: 1.5, y: 10.7, texto: '10,1 %', ancla: 'middle' }, { x: 3.5, y: 4.1, texto: '3,5 %', ancla: 'middle' }, { x: 5.5, y: 3.8, texto: '3,2 %', ancla: 'middle' }]}
+  />
+</Diagram>
 
 ### Qui presta a l'Estat
 
@@ -661,9 +756,9 @@ Estes preguntes no tenen una resposta única. Servixen per a debatre a classe o 
     - "Pes"
   rows:
     - ["IRPF (directe)", "129.000 milions €", "44 %"]
-    - ["IVA (indirecte, 21 / 10 / 4 %)", "93.000 milions €", "31 %"]
+    - ["IVA (indirecte, 21 / 10 / 4 %)", "93.000 milions €", "32 %"]
     - ["Societats (directe, 25 %)", "39.000 milions €", "13 %"]
-    - ["Especials (alcohol, tabac, carburants)", "22.000 milions €", "8 %"]
+    - ["Especials (alcohol, tabac, carburants)", "22.000 milions €", "7 %"]
     - ["Resta (Patrimoni, taxes, altres)", "12.000 milions €", "4 %"]
   caption: "Tres de cada quatre euros vénen de l'IRPF i de l'IVA. A banda, les cotitzacions socials van superar els 180.000 milions."
 - tipo: quiz
