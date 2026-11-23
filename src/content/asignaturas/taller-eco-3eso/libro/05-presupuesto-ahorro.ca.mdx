@@ -42,6 +42,7 @@ import KeyTakeaways from '@components/KeyTakeaways.astro';
 import Steps from '@components/Steps.astro';
 import Bibliography from '@components/Bibliography.astro';
 import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
 import Figure from '@components/Figure.astro';
 import Presupuesto503020 from '@components/diagrams/Presupuesto503020.astro';
 import HerramientaIsland from '@components/calculadoras/HerramientaIsland.astro';
@@ -182,6 +183,22 @@ Estalviar «perquè sí» és difícil de mantindre. Estalviar **per a una cosa 
 
 Per exemple: si vols uns cascos de 60 € i falten 12 setmanes, necessites apartar **5 € per setmana**. Vist així, una meta que pareixia llunyana es convertix en un gest xicotet i repetit. Això és, en el fons, tot l'estalvi: convertir una cosa gran en molts passos xicotets.
 
+<Diagram caption="Estalviant 5 € cada setmana, en 12 setmanes se n'ajunten els 60 € dels cascos: una meta que pareixia llunyana queda en passos xicotets i repetits.">
+  <GraficoXY id="g-cascos-ahorro" titulo="Estalviar per a uns cascos de 60 euros" desc="Recta que puja 5 euros cada setmana i arriba a 60 euros a la setmana 12."
+    xMax={14} yMax={70} ejeX="Setmanes" ejeY="Estalvi acumulat (€)" simboloY="€"
+    xTicks={[2, 4, 6, 8, 10]} yTicks={[10, 20, 30, 40, 50]}
+    series={[
+      { color: 'terra', puntos: [[0, 0], [12, 60]] },
+    ]}
+    puntos={[
+      { x: 12, y: 60, label: '60 €', xLabel: '12', yLabel: '60' },
+    ]}
+    notas={[
+      { x: 5.2, y: 19, texto: '+5 € cada setmana', ancla: 'start' },
+    ]}
+  />
+</Diagram>
+
 <RealExample title="Una paga gestionada: l'experiment que canvia la relació amb el diner" source="Banc d'Espanya i CNMV, «Finanzas para Todos» (programa d'educació financera)">
 Els programes d'educació financera del Banc d'Espanya i la CNMV insistixen en una idea senzilla, i l'evidència disponible apunta en eixa direcció: les persones que de jóvens aprenen a gestionar una paga —decidint elles mateixes en què gastar-la i quant apartar— solen arribar a l'edat adulta prenent millors decisions amb el seu diner que qui mai ho va fer. No es tracta de la quantitat: una paga de 5 € a la setmana ensenya exactament el mateix que una de 50 €. El que ensenya és el **mecanisme**: que el diner és limitat, que cada elecció té un cost (si em compre això, no em compre allò) i que apartar una part hui permet aconseguir una cosa major demà. Per això moltes famílies donen una paga fixa i deixen que el fill o la filla l'administre: equivocar-se amb 5 € als 14 anys ix moltíssim més barat que equivocar-se amb una nòmina als 25.
 </RealExample>
@@ -199,6 +216,27 @@ La resposta és l'**interés compost**: el diner genera interessos, eixos intere
 
 El problema és que **intuïtivament no es veu**. Com que al principi creix poquíssim, la majoria de jóvens pensa que no val la pena estalviar 5 € a la setmana. I ho deixen per a «quan guanye més». Això explica per què tantes persones arriben als 40 anys pensant que ja és tard: no ho és, però haurien tingut tres vegades més si ho hagueren sabut als 15. Si esta unitat t'ensenya una sola cosa que canvie la teua vida, tant de bo siga esta.
 </VuelveAlCaso>
+
+<Diagram caption="El que acumulen Ana (des dels 15 anys) i Bea (des dels 35) estalviant 5 € a la setmana al 5 % anual, sense inflació ni comissions. Ana en posa 13.000 € de la butxaca i acaba amb uns 55.000 €; Bea en posa 7.800 € i arriba a uns 17.500 €. La corba d'Ana puja a poc a poc al principi i molt de pressa al final.">
+  <GraficoXY id="g-ana-bea" titulo="Estalviar 5 euros a la setmana des dels 15 o des dels 35 anys" desc="Dues corbes per edat entre els 15 i els 65 anys: la d'Ana arranca als 15 i acaba en uns 55 000 euros; la de Bea arranca als 35 i acaba en uns 17 500. Les dues creixen a poc a poc al principi i de pressa al final."
+    xMax={72} yMax={60000} ejeX="Edat (anys)" ejeY="Diners acumulats (€)" simboloY="€"
+    xTicks={[15, 25, 35, 45, 55, 65]} yTicks={[10000, 20000, 30000, 40000, 50000]}
+    series={[
+      { color: 'terra', label: 'Ana', puntos: Array.from({ length: 51 }, (_, n) => [15 + n, 5 * (1.05 ** n - 1) / (1.05 ** (1 / 52) - 1)]) },
+      { color: 'teal', label: 'Bea', puntos: Array.from({ length: 31 }, (_, n) => [35 + n, 5 * (1.05 ** n - 1) / (1.05 ** (1 / 52) - 1)]) },
+    ]}
+    puntos={[
+      { x: 65, y: 55754, guias: false },
+      { x: 65, y: 17694, guias: false },
+    ]}
+    notas={[
+      { x: 65, y: 58000, texto: 'uns 55 000 €', ancla: 'end' },
+      { x: 65, y: 21000, texto: 'uns 17 500 €', ancla: 'end' },
+      { x: 16, y: 57500, texto: 'Ana en posa 13 000 €', ancla: 'start' },
+      { x: 16, y: 53500, texto: 'Bea en posa 7 800 €', ancla: 'start' },
+    ]}
+  />
+</Diagram>
 
 **Prova-ho tu mateix:** introduïx un capital inicial, un tipus d'interés anual i un nombre d'anys per a vore com creix el diner amb l'interés compost.
 

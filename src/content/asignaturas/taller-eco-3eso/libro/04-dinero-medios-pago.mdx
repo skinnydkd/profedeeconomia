@@ -39,6 +39,7 @@ publicado_en: 2026-05-20
 
 import Callout from '@components/Callout.astro';
 import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
 import TresFuncionesDinero from '@components/diagrams/TresFuncionesDinero.astro';
 import Curiosity from '@components/Curiosity.astro';
 import RealExample from '@components/RealExample.astro';
@@ -103,6 +104,28 @@ El dinero resuelve los tres problemas de golpe. Por eso, en casi todas las civil
 <Curiosity title="El cacao fue dinero en América antes que las monedas">
 En el imperio azteca, los granos de **cacao** funcionaban como dinero: con ellos se podían comprar cosas en el mercado. Hay crónicas españolas del siglo XVI que cuentan precios reales: un conejo costaba unos 30 granos, un aguacate unos 3 y un huevo de pavo, un grano. Como el cacao era valioso y duraba, cumplía las funciones del dinero. Y, como pasa hoy con el dinero falso, había quien hacía trampa: vaciaban los granos y los rellenaban de barro para que parecieran auténticos. El fraude monetario es tan viejo como el propio dinero.
 </Curiosity>
+
+<Diagram caption="Precios en el mercado azteca contados en granos de cacao: unos 30 por un conejo, unos 3 por un aguacate y 1 por un huevo de pavo. Todo se medía con la misma unidad, igual que hoy con los euros.">
+  <GraficoXY id="g-cacao-precios" titulo="Precios en granos de cacao" desc="Tres barras con precios del mercado azteca, según crónicas del siglo XVI, contados en granos de cacao: un conejo cuesta unos 30, un aguacate unos 3 y un huevo de pavo 1."
+    xMax={4.6} yMax={36} ejeX="Producto" ejeY="Precio (granos de cacao)"
+    xTicks={[1, 2, 3]} xTickLabels={['Conejo', 'Aguacate', 'Huevo de pavo']} yTicks={[10, 20, 30]}
+    areas={[
+      { color: 'mustard', puntos: [[0.65, 0], [1.35, 0], [1.35, 30], [0.65, 30]] },
+      { color: 'mustard', puntos: [[1.65, 0], [2.35, 0], [2.35, 3], [1.65, 3]] },
+      { color: 'mustard', puntos: [[2.65, 0], [3.35, 0], [3.35, 1], [2.65, 1]] },
+    ]}
+    series={[
+      { color: 'mustard', puntos: [[0.65, 0], [0.65, 30], [1.35, 30], [1.35, 0]] },
+      { color: 'mustard', puntos: [[1.65, 0], [1.65, 3], [2.35, 3], [2.35, 0]] },
+      { color: 'mustard', puntos: [[2.65, 0], [2.65, 1], [3.35, 1], [3.35, 0]] },
+    ]}
+    notas={[
+      { x: 1, y: 31.4, texto: 'unos 30 granos', ancla: 'middle' },
+      { x: 2, y: 4.4, texto: 'unos 3 granos', ancla: 'middle' },
+      { x: 3, y: 2.4, texto: '1 grano', ancla: 'middle' },
+    ]}
+  />
+</Diagram>
 
 ## Las tres funciones del dinero
 

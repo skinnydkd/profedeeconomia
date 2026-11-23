@@ -46,6 +46,8 @@ import Steps from '@components/Steps.astro';
 import KeyTakeaways from '@components/KeyTakeaways.astro';
 import Bibliography from '@components/Bibliography.astro';
 import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
+import FormulaEBAU from '@components/diagrams/FormulaEBAU.astro';
 import SistemaEducativo from '@components/diagrams/SistemaEducativo.astro';
 import ItinerariosPostESO from '@components/diagrams/ItinerariosPostESO.astro';
 import Figure from '@components/Figure.astro';
@@ -177,6 +179,10 @@ La **nota d'accés** es calcula amb la fórmula:
 Sobre eixa nota (màxim 10) se sumen, si escau, **fins a 4 punts addicionals per ponderacions** de la fase voluntària. Cada universitat publica anualment quines matèries ponderen 0,1 o 0,2 per a cada grau. Per exemple, per a entrar en Medicina, Biologia pondera 0,2 en quasi totes les universitats; per a ADE, Matemàtiques Aplicades pondera 0,2; per a Belles Arts, Dibuix Artístic II pondera 0,2.
 
 La **nota d'admissió màxima** és per tant **14 punts**. Les anomenades *notes de tall* són la nota d'admissió més baixa amb què va entrar l'últim alumne admés el curs anterior. No són una nota mínima fixa: canvien cada any segons l'oferta i la demanda.
+
+<Diagram caption="De la mitjana de Batxillerat a la nota d'admissió: com es construïx la xifra que decidix la teua plaça.">
+  <FormulaEBAU />
+</Diagram>
 
 <Curiosity title="La nota de tall no és el que et demanaran l'any que ve">
 
@@ -332,6 +338,26 @@ A estos tres s'afig un quart criteri pràctic: **l'oferta real de la teua zona**
 Segons les dades d'**Eurostat 2024**, en països com Alemanya, Àustria, Suïssa o Països Baixos, entre el **45 % i el 60 %** de l'alumnat posterior a l'educació obligatòria es forma en sistemes de FP dual. A Espanya la xifra és del **12 %**. La conseqüència directa és un mercat laboral amb **escassetat crònica de tècnics qualificats** en sectors sencers (indústria, manteniment, sanitat) i, paradoxalment, salaris superiors en moltes famílies professionals que en oficis universitaris saturats. L'elecció als 16 anys no sols afecta la teua trajectòria individual: l'agregat de milions d'eleccions individuals configura el teixit productiu del país.
 
 </Curiosity>
+
+<Diagram caption="Part de l'alumnat posterior a l'educació obligatòria que es forma en FP dual (Eurostat 2024): entre el 45 i el 60 % a Alemanya, Àustria, Suïssa i Països Baixos, i el 12 % a Espanya.">
+  <GraficoXY id="g-fp-dual-europa" titulo="FP dual a Europa i a Espanya" desc="Dues barres: a Alemanya, Àustria, Suïssa i Països Baixos entre el 45 i el 60 per cent de l'alumnat posterior a l'educació obligatòria es forma en FP dual; a Espanya, el 12 per cent."
+    xMax={3.6} yMax={70} ejeX="País" ejeY="Alumnat en FP dual (%)" simboloY="%"
+    xTicks={[1, 2.5]} xTickLabels={['Països de FP dual', 'Espanya']} yTicks={[10, 20, 30, 40, 50]}
+    areas={[
+      { color: 'teal', puntos: [[0.65, 0], [1.35, 0], [1.35, 45], [0.65, 45]] },
+      { color: 'teal', fuerte: true, puntos: [[0.65, 45], [1.35, 45], [1.35, 60], [0.65, 60]] },
+      { color: 'terra', puntos: [[2.15, 0], [2.85, 0], [2.85, 12], [2.15, 12]] },
+    ]}
+    series={[
+      { color: 'teal', puntos: [[0.65, 0], [0.65, 60], [1.35, 60], [1.35, 0]] },
+      { color: 'terra', puntos: [[2.15, 0], [2.15, 12], [2.85, 12], [2.85, 0]] },
+    ]}
+    notas={[
+      { x: 1, y: 62.5, texto: '45-60 %', ancla: 'middle' },
+      { x: 2.5, y: 14.6, texto: '12 %', ancla: 'middle' },
+    ]}
+  />
+</Diagram>
 
 <VuelveAlCaso referencia="Cristina (FP) i Aitor (Batxillerat + Filologia) als 25 anys">
 **Cap dels dos camins és objectivament millor**: encaixen diferent segons la persona. Cristina va valorar **independència econòmica primerenca** i un treball manual amb contacte humà, i va triar la via ràpida. Aitor va valorar **aprofundiment acadèmic** i un camp intel·lectual concret, i va acceptar el cost temporal i econòmic que implica.

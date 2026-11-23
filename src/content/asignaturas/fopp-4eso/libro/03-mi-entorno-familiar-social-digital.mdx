@@ -49,6 +49,7 @@ publicado_en: 2026-05-16
 import Callout from '@components/Callout.astro';
 import RecursosAyuda from '@components/RecursosAyuda.astro';
 import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
 import TriangloBullying from '@components/diagrams/TriangloBullying.astro';
 import Curiosity from '@components/Curiosity.astro';
 import RealExample from '@components/RealExample.astro';
@@ -294,6 +295,25 @@ El último saber del Bloque B (B.5) trata sobre diversidad e igualdad. La idea d
 ### Brecha de género en STEM: un caso para discutir en clase
 
 En España, solo el **13 %** del alumnado de Ingeniería Informática es femenino, y la proporción ha **bajado** desde el 30 % en los años ochenta (Datos INE 2024). El fenómeno no es por capacidad: las chicas obtienen igual o mejor nota media en Matemáticas en la PAU. El problema es de **expectativas socializadas**: a las chicas se les sigue diciendo de mil formas implícitas que la informática no es "para ellas". Reconocer este sesgo en vosotros mismos —chicos y chicas— es la primera defensa para no reproducirlo.
+
+<Diagram caption="Mujeres en Ingeniería Informática en España: en torno al 30 % del alumnado en los años ochenta y solo el 13 % en 2024 (datos INE). La proporción ha bajado, no subido.">
+  <GraficoXY id="g-mujeres-informatica" titulo="Mujeres en Ingeniería Informática" desc="Dos barras: en los años ochenta, en torno al 30 por ciento del alumnado de Ingeniería Informática era femenino; en 2024, el 13 por ciento."
+    xMax={4} yMax={40} ejeX="Época" ejeY="Alumnado femenino (%)" simboloY="%"
+    xTicks={[1.2, 2.8]} xTickLabels={['Años ochenta', '2024']} yTicks={[10, 20, 30]}
+    areas={[
+      { color: 'mustard', puntos: [[0.85, 0], [1.55, 0], [1.55, 30], [0.85, 30]] },
+      { color: 'terra', puntos: [[2.45, 0], [3.15, 0], [3.15, 13], [2.45, 13]] },
+    ]}
+    series={[
+      { color: 'mustard', puntos: [[0.85, 0], [0.85, 30], [1.55, 30], [1.55, 0]] },
+      { color: 'terra', puntos: [[2.45, 0], [2.45, 13], [3.15, 13], [3.15, 0]] },
+    ]}
+    notas={[
+      { x: 1.2, y: 31.6, texto: '~30 %', ancla: 'middle' },
+      { x: 2.8, y: 14.6, texto: '13 %', ancla: 'middle' },
+    ]}
+  />
+</Diagram>
 
 ## Conexión con las unidades siguientes
 

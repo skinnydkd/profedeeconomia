@@ -52,6 +52,7 @@ import Steps from '@components/Steps.astro';
 import KeyTakeaways from '@components/KeyTakeaways.astro';
 import Bibliography from '@components/Bibliography.astro';
 import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
 import FormulaEBAU from '@components/diagrams/FormulaEBAU.astro';
 import Figure from '@components/Figure.astro';
 import TldrUnidad from '@components/TldrUnidad.astro';
@@ -125,6 +126,50 @@ Segons l'informe **AEFI 2025** (Associació Espanyola de Formació Industrial) i
 - Tècnic en Cuina i Gastronomia: **17.094-20.000 €** (SMI com a sòl legal; alta variabilitat geogràfica).
 
 Convé comparar estes dades amb els salaris d'entrada de molts graus universitaris saturats (Comunicació, Turisme, Humanitats), on no és estrany començar al voltant del **SMI (17.094 € en 2026)** en contractes temporals.
+
+<Diagram caption="Sou brut anual del primer any de contracte segons el títol (AEFI 2025 i SEPE): la part fosca de cada barra és el tram que dona el text, de mínim a màxim, i la línia és el SMI de 2026.">
+  <GraficoXY id="g-salarios-fp" titulo="Salari brut anual d'entrada segons el títol de FP" desc="Sis barres amb el tram de sou brut anual del primer any: Tècnic Superior en Informàtica entre 25 000 i 29 000 euros, Mecatrònica entre 23 000 i 27 000, Laboratori Clínic entre 22 500 i 25 000, Cures Auxiliars d'Infermeria entre 18 500 i 21 500, Administració i Finances entre 19 500 i 22 500 i Cuina i Gastronomia entre 17 094 i 20 000. El SMI de 2026 és 17 094 euros."
+    xMax={7.8} yMax={32000} ejeX="Títol de FP" ejeY="Euros bruts a l'any" simboloY="€"
+    xTicks={[1, 2, 3, 4, 5, 6]} xTickLabels={['Informàtica', 'Mecatrònica', 'Laboratori', 'Infermeria', 'Finances', 'Cuina']} yTicks={[10000, 20000, 30000]}
+    areas={[
+      { color: 'teal', puntos: [[0.65, 0], [1.35, 0], [1.35, 25000], [0.65, 25000]] },
+      { color: 'teal', fuerte: true, puntos: [[0.65, 25000], [1.35, 25000], [1.35, 29000], [0.65, 29000]] },
+      { color: 'teal', puntos: [[1.65, 0], [2.35, 0], [2.35, 23000], [1.65, 23000]] },
+      { color: 'teal', fuerte: true, puntos: [[1.65, 23000], [2.35, 23000], [2.35, 27000], [1.65, 27000]] },
+      { color: 'teal', puntos: [[2.65, 0], [3.35, 0], [3.35, 22500], [2.65, 22500]] },
+      { color: 'teal', fuerte: true, puntos: [[2.65, 22500], [3.35, 22500], [3.35, 25000], [2.65, 25000]] },
+      { color: 'teal', puntos: [[3.65, 0], [4.35, 0], [4.35, 18500], [3.65, 18500]] },
+      { color: 'teal', fuerte: true, puntos: [[3.65, 18500], [4.35, 18500], [4.35, 21500], [3.65, 21500]] },
+      { color: 'teal', puntos: [[4.65, 0], [5.35, 0], [5.35, 19500], [4.65, 19500]] },
+      { color: 'teal', fuerte: true, puntos: [[4.65, 19500], [5.35, 19500], [5.35, 22500], [4.65, 22500]] },
+      { color: 'teal', puntos: [[5.65, 0], [6.35, 0], [6.35, 17094], [5.65, 17094]] },
+      { color: 'teal', fuerte: true, puntos: [[5.65, 17094], [6.35, 17094], [6.35, 20000], [5.65, 20000]] },
+    ]}
+    series={[
+      { color: 'teal', puntos: [[0.65, 0], [0.65, 29000], [1.35, 29000], [1.35, 0]] },
+      { color: 'teal', puntos: [[1.65, 0], [1.65, 27000], [2.35, 27000], [2.35, 0]] },
+      { color: 'teal', puntos: [[2.65, 0], [2.65, 25000], [3.35, 25000], [3.35, 0]] },
+      { color: 'teal', puntos: [[3.65, 0], [3.65, 21500], [4.35, 21500], [4.35, 0]] },
+      { color: 'teal', puntos: [[4.65, 0], [4.65, 22500], [5.35, 22500], [5.35, 0]] },
+      { color: 'teal', puntos: [[5.65, 0], [5.65, 20000], [6.35, 20000], [6.35, 0]] },
+      { color: 'ink', tenue: true, label: 'SMI: 17 094 €', puntos: [[0.2, 17094], [6.5, 17094]] },
+    ]}
+    notas={[
+      { x: 1, y: 30100, texto: '29 000', ancla: 'middle' },
+      { x: 1, y: 25400, texto: '25 000', ancla: 'middle' },
+      { x: 2, y: 28100, texto: '27 000', ancla: 'middle' },
+      { x: 2, y: 23400, texto: '23 000', ancla: 'middle' },
+      { x: 3, y: 26100, texto: '25 000', ancla: 'middle' },
+      { x: 3, y: 22900, texto: '22 500', ancla: 'middle' },
+      { x: 4, y: 22600, texto: '21 500', ancla: 'middle' },
+      { x: 4, y: 18900, texto: '18 500', ancla: 'middle' },
+      { x: 5, y: 23600, texto: '22 500', ancla: 'middle' },
+      { x: 5, y: 19900, texto: '19 500', ancla: 'middle' },
+      { x: 6, y: 21100, texto: '20 000', ancla: 'middle' },
+      { x: 6, y: 17494, texto: '17 094', ancla: 'middle' },
+    ]}
+  />
+</Diagram>
 
 ### FP Dual: com funciona en 2026
 
@@ -239,6 +284,46 @@ c) Quant hauria canviat si les dues matèries només ponderaren 0,1?
 5. *El que decidix de veritat.* Eixos 1,55 punts són tota la distància que separa moltes notes de tall. I no depenen d'estudiar més, sinó d'**haver mirat el fullet de ponderacions de la universitat de destí abans de triar les matèries de la fase voluntària**. És la decisió d'esta unitat que més nota dona per hora invertida.
 6. Un detall que s'oblida: una matèria de la fase voluntària amb menys d'un 5 **no suma res**, encara que pondere 0,2. Presentar-se a quatre i comptar les dues millors és l'estratègia habitual, però només si hi ha marge per a preparar-les bé.
 
+<Diagram caption="La nota d'admissió de Marta: 7,16 de nota d'accés (4,44 de la mitjana de Batxillerat i 2,72 de la PAU) més 1,6 i 1,5 de les dues ponderacions, 10,26 sobre 14. Si les matèries ponderaren 0,1, serien 8,71.">
+  <GraficoXY id="g-nota-admision-marta" titulo="Nota d'admissió de Marta" desc="Dues barres apilades: amb ponderacions de 0,2, Marta suma 4,44 de Batxillerat, 2,72 de la PAU, 1,6 de Matemàtiques II i 1,5 d'Economia de l'Empresa, 10,26 en total; amb ponderacions de 0,1 sumaria 0,8 i 0,75 en les dues matèries i 8,71 en total. El màxim és 14."
+    xMax={5} yMax={16} ejeX="Ponderació de les matèries" ejeY="Nota d'admissió"
+    xTicks={[1.5, 3.5]} xTickLabels={['Ponderen 0,2', 'Si ponderaren 0,1']} yTicks={[4, 8, 12]}
+    areas={[
+      { color: 'terra', puntos: [[0.7, 0], [2.3, 0], [2.3, 4.44], [0.7, 4.44]] },
+      { color: 'teal', puntos: [[0.7, 4.44], [2.3, 4.44], [2.3, 7.16], [0.7, 7.16]] },
+      { color: 'mustard', puntos: [[0.7, 7.16], [2.3, 7.16], [2.3, 8.76], [0.7, 8.76]] },
+      { color: 'aubergine', puntos: [[0.7, 8.76], [2.3, 8.76], [2.3, 10.26], [0.7, 10.26]] },
+      { color: 'terra', puntos: [[2.7, 0], [4.3, 0], [4.3, 4.44], [2.7, 4.44]] },
+      { color: 'teal', puntos: [[2.7, 4.44], [4.3, 4.44], [4.3, 7.16], [2.7, 7.16]] },
+      { color: 'mustard', puntos: [[2.7, 7.16], [4.3, 7.16], [4.3, 7.96], [2.7, 7.96]] },
+      { color: 'aubergine', puntos: [[2.7, 7.96], [4.3, 7.96], [4.3, 8.71], [2.7, 8.71]] },
+    ]}
+    series={[
+      { color: 'terra', puntos: [[0.7, 0], [0.7, 4.44], [2.3, 4.44], [2.3, 0]] },
+      { color: 'teal', puntos: [[0.7, 4.44], [0.7, 7.16], [2.3, 7.16], [2.3, 4.44]] },
+      { color: 'mustard', puntos: [[0.7, 7.16], [0.7, 8.76], [2.3, 8.76], [2.3, 7.16]] },
+      { color: 'aubergine', puntos: [[0.7, 8.76], [0.7, 10.26], [2.3, 10.26], [2.3, 8.76]] },
+      { color: 'terra', puntos: [[2.7, 0], [2.7, 4.44], [4.3, 4.44], [4.3, 0]] },
+      { color: 'teal', puntos: [[2.7, 4.44], [2.7, 7.16], [4.3, 7.16], [4.3, 4.44]] },
+      { color: 'mustard', puntos: [[2.7, 7.16], [2.7, 7.96], [4.3, 7.96], [4.3, 7.16]] },
+      { color: 'aubergine', puntos: [[2.7, 7.96], [2.7, 8.71], [4.3, 8.71], [4.3, 7.96]] },
+      { color: 'ink', tenue: true, label: 'Màxim: 14', puntos: [[0.2, 14], [4.6, 14]] },
+    ]}
+    notas={[
+      { x: 1.5, y: 1.97, texto: 'Batxillerat 4,44', ancla: 'middle' },
+      { x: 1.5, y: 5.55, texto: 'PAU 2,72', ancla: 'middle' },
+      { x: 1.5, y: 7.71, texto: 'Matemàtiques II 1,6', ancla: 'middle' },
+      { x: 1.5, y: 9.26, texto: 'Economia 1,5', ancla: 'middle' },
+      { x: 1.5, y: 10.76, texto: 'Total 10,26', ancla: 'middle' },
+      { x: 3.5, y: 1.97, texto: 'Batxillerat 4,44', ancla: 'middle' },
+      { x: 3.5, y: 5.55, texto: 'PAU 2,72', ancla: 'middle' },
+      { x: 3.5, y: 7.31, texto: 'Matemàtiques II 0,8', ancla: 'middle' },
+      { x: 3.5, y: 8.09, texto: 'Economia 0,75', ancla: 'middle' },
+      { x: 3.5, y: 9.21, texto: 'Total 8,71', ancla: 'middle' },
+    ]}
+  />
+</Diagram>
+
 </SolvedExercise>
 
 ## Beques i finançament d'estudis
@@ -319,11 +404,30 @@ Segons les dades publicades per la mateixa [Fundació La Caixa a la seua Memòri
 
 </Curiosity>
 
-<Curiosity title="Espanya té 1,6 milions d'universitaris i només 800.000 alumnes de FP">
+<Curiosity title="Espanya té 1,6 milions d'universitaris i només 900.000 alumnes de FP">
 
 Les dades del **Ministeri d'Educació, FP i Esports (2025)** i d'**Eurostat (2025)** mostren un desequilibri característic: Espanya té aproximadament **1,6 milions** d'estudiants universitaris i **900.000** en Formació Professional de Grau Mitjà i Superior (la matrícula de FP continua creixent després de la LOFP 2023). La proporció és justament la **inversa** a la d'Alemanya, Suïssa, Àustria o Països Baixos, on la FP duplica la universitat. Este desequilibri explica bona part de l'atur juvenil estructural: hi ha graus saturats (Periodisme, Magisteri, ADE, Comunicació) amb taxes d'atur o subocupació superiors al **30 %**, mentres queden vacants sense cobrir en manteniment industrial, soldadura, automatització o cures sanitàries. El sistema no necessita menys universitaris, necessita més tècnics.
 
 </Curiosity>
+
+<Diagram caption="Estudiants a Espanya segons les dades del Ministeri i d'Eurostat (2025): aproximadament 1,6 milions a la universitat i 900.000 a FP de Grau Mitjà i Superior. A Alemanya, Suïssa, Àustria o Països Baixos la proporció és la inversa.">
+  <GraficoXY id="g-universidad-fp" titulo="Universitaris i alumnat de FP a Espanya" desc="Dues barres: aproximadament 1,6 milions d'estudiants universitaris i 900 000 en Formació Professional de Grau Mitjà i Superior."
+    xMax={4} yMax={2} ejeX="Tipus d'estudis" ejeY="Estudiants (milions)"
+    xTicks={[1.2, 2.8]} xTickLabels={['Universitat', 'FP Mitjà i Sup.']} yTicks={[0.5, 1, 1.5]}
+    areas={[
+      { color: 'aubergine', puntos: [[0.85, 0], [1.55, 0], [1.55, 1.6], [0.85, 1.6]] },
+      { color: 'teal', puntos: [[2.45, 0], [3.15, 0], [3.15, 0.9], [2.45, 0.9]] },
+    ]}
+    series={[
+      { color: 'aubergine', puntos: [[0.85, 0], [0.85, 1.6], [1.55, 1.6], [1.55, 0]] },
+      { color: 'teal', puntos: [[2.45, 0], [2.45, 0.9], [3.15, 0.9], [3.15, 0]] },
+    ]}
+    notas={[
+      { x: 1.2, y: 1.7, texto: '1,6 milions', ancla: 'middle' },
+      { x: 2.8, y: 1, texto: '900 000', ancla: 'middle' },
+    ]}
+  />
+</Diagram>
 
 <Figure
   src={erasmusGroningen}

@@ -33,6 +33,7 @@ publicado_en: 2026-05-20
 
 import Callout from '@components/Callout.astro';
 import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
 import NecesidadesBasicas from '@components/diagrams/NecesidadesBasicas.astro';
 import Curiosity from '@components/Curiosity.astro';
 import RealExample from '@components/RealExample.astro';
@@ -159,6 +160,30 @@ Llegamos a la idea más potente de la unidad, y una de las más útiles de toda 
 El coste de oportunidad de una decisión es **el valor de la mejor alternativa a la que renuncias** al elegir. No es lo que pagas en dinero, sino lo que dejas de tener o de hacer.
 
 Volvamos al sábado del principio: tenías 20 € y elegiste el cine (15 €). El coste de oportunidad no son solo los 15 € que has gastado, sino **la camiseta que ya no te puedes comprar**. Has ganado una tarde de cine, pero has perdido la camiseta. Eso es el coste de oportunidad.
+
+<Diagram caption="Con 20 € no te llega para las dos cosas: el cine con palomitas cuesta 15 €, la camiseta 18 € y juntas suman 33 €, trece euros más de los que tienes. Elegir una es renunciar a la otra.">
+  <GraficoXY id="g-presupuesto-sabado" titulo="Veinte euros, el cine y la camiseta" desc="Tres barras frente a los 20 euros que tienes: el cine con palomitas cuesta 15 euros, la camiseta 18 y las dos cosas juntas 33, que son 13 euros más de los que tienes."
+    xMax={4.6} yMax={40} ejeX="Plan del sábado" ejeY="Precio (€)" simboloY="€"
+    xTicks={[1, 2, 3]} xTickLabels={['Cine y palomitas', 'Camiseta', 'Las dos cosas']} yTicks={[10, 20, 30]}
+    areas={[
+      { color: 'terra', puntos: [[0.65, 0], [1.35, 0], [1.35, 15], [0.65, 15]] },
+      { color: 'teal', puntos: [[1.65, 0], [2.35, 0], [2.35, 18], [1.65, 18]] },
+      { color: 'aubergine', puntos: [[2.65, 0], [3.35, 0], [3.35, 33], [2.65, 33]] },
+    ]}
+    series={[
+      { color: 'terra', puntos: [[0.65, 0], [0.65, 15], [1.35, 15], [1.35, 0]] },
+      { color: 'teal', puntos: [[1.65, 0], [1.65, 18], [2.35, 18], [2.35, 0]] },
+      { color: 'aubergine', puntos: [[2.65, 0], [2.65, 33], [3.35, 33], [3.35, 0]] },
+      { color: 'ink', tenue: true, label: 'Tienes: 20 €', dy: -6, puntos: [[0.3, 20], [3.7, 20]] },
+    ]}
+    notas={[
+      { x: 1, y: 13.4, texto: '15 €', ancla: 'middle' },
+      { x: 2, y: 16.4, texto: '18 €', ancla: 'middle' },
+      { x: 3, y: 31.4, texto: '33 €', ancla: 'middle' },
+      { x: 3.45, y: 26, texto: 'Faltan 13 €', ancla: 'start' },
+    ]}
+  />
+</Diagram>
 
 Y no solo pasa con el dinero. También con el **tiempo**, que es el recurso más escaso de todos porque, a diferencia del dinero, no se puede ahorrar ni recuperar:
 

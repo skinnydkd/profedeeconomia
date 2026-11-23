@@ -44,6 +44,7 @@ import Steps from '@components/Steps.astro';
 import KeyTakeaways from '@components/KeyTakeaways.astro';
 import Bibliography from '@components/Bibliography.astro';
 import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
 import Figure from '@components/Figure.astro';
 import EconomiaCircular from '@components/diagrams/EconomiaCircular.astro';
 import TldrUnidad from '@components/TldrUnidad.astro';
@@ -212,6 +213,28 @@ L'economia circular **necessita decisions polítiques i ciutadanes alhora**. Eix
 
 És replicable a Madrid o Barcelona? Més difícil: l'escala ho canvia tot, i en una ciutat gran la logística del porta a porta és molt més complexa. Però el principi sí que és replicable, adaptat: blocs, carrers, barris. La sostenibilitat **no és un destí**, sinó un **camí**, i cada municipi recorre el seu al seu ritme. El teu mini-projecte pot ser el primer escaló al teu institut.
 </VuelveAlCaso>
+
+<Diagram caption="Reciclatge als pobles amb porta a porta: al voltant del 30 % abans del canvi i prop del 90 % després, davant d'una mitjana espanyola al voltant del 35 %.">
+  <GraficoXY id="g-reciclaje-porta-a-porta" titulo="Reciclatge abans i després del porta a porta" desc="Tres barres: els pobles del porta a porta reciclaven al voltant del 30 per cent abans del canvi i prop del 90 després, mentre que la mitjana espanyola ronda el 35."
+    xMax={4.6} yMax={100} ejeX="On i quan" ejeY="Residus reciclats (%)" simboloY="%"
+    xTicks={[1, 2, 3]} xTickLabels={['Abans del canvi', 'Porta a porta', 'Mitjana espanyola']} yTicks={[25, 50, 75]}
+    areas={[
+      { color: 'mustard', puntos: [[0.65, 0], [1.35, 0], [1.35, 30], [0.65, 30]] },
+      { color: 'teal', puntos: [[1.65, 0], [2.35, 0], [2.35, 90], [1.65, 90]] },
+      { color: 'ink', puntos: [[2.65, 0], [3.35, 0], [3.35, 35], [2.65, 35]] },
+    ]}
+    series={[
+      { color: 'mustard', puntos: [[0.65, 0], [0.65, 30], [1.35, 30], [1.35, 0]] },
+      { color: 'teal', puntos: [[1.65, 0], [1.65, 90], [2.35, 90], [2.35, 0]] },
+      { color: 'ink', puntos: [[2.65, 0], [2.65, 35], [3.35, 35], [3.35, 0]] },
+    ]}
+    notas={[
+      { x: 1, y: 33, texto: '~30 %', ancla: 'middle' },
+      { x: 2, y: 93, texto: '~90 %', ancla: 'middle' },
+      { x: 3, y: 38, texto: '~35 %', ancla: 'middle' },
+    ]}
+  />
+</Diagram>
 
 <KeyTakeaways title="L'essencial de l'economia sostenible i el teu projecte">
 - El **desenvolupament sostenible** satisfà les necessitats de hui sense comprometre les de les generacions futures. Equilibra tres pilars: econòmic, social i ambiental.

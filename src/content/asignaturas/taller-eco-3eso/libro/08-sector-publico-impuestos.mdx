@@ -47,6 +47,7 @@ import Steps from '@components/Steps.astro';
 import KeyTakeaways from '@components/KeyTakeaways.astro';
 import Bibliography from '@components/Bibliography.astro';
 import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
 import Figure from '@components/Figure.astro';
 import BienesPublicos from '@components/diagrams/BienesPublicos.astro';
 import IRPFTramos from '@components/diagrams/IRPFTramos.astro';
@@ -200,6 +201,29 @@ Calcula cuánto IVA paga en total y cuál es el precio final de la compra.
 
 **Conclusión**: Marina ha pagado **3,95 € de impuestos** casi sin darse cuenta, porque iban dentro del precio. Fíjate en que los alimentos básicos pagan mucho menos IVA (4 %) que la ropa (21 %): el sistema protege deliberadamente los productos de primera necesidad.
 
+<Diagram caption="Cada barra separa el precio sin IVA y el IVA que se añade: 0,80 € sobre los 20,00 € de alimentos básicos al 4 % y 3,15 € sobre los 15,00 € de la camiseta al 21 %. En total son 3,95 € de IVA y la compra sale por 38,95 €.">
+  <GraficoXY id="g-iva-compra" titulo="IVA de la compra de Marina" desc="Dos barras apiladas: los alimentos básicos suman 20 euros sin IVA y 0,80 euros de IVA; la camiseta suma 15 euros sin IVA y 3,15 euros de IVA."
+    xMax={5} yMax={24} ejeX="Producto" ejeY="Euros" simboloY="€"
+    xTicks={[1.5, 3.5]} xTickLabels={['Pan, leche y fruta (4 %)', 'Camiseta (21 %)']} yTicks={[5, 10, 15, 20]}
+    areas={[
+      { color: 'terra', puntos: [[0.7, 0], [2.3, 0], [2.3, 20], [0.7, 20]] },
+      { color: 'mustard', fuerte: true, puntos: [[0.7, 20], [2.3, 20], [2.3, 20.8], [0.7, 20.8]] },
+      { color: 'teal', puntos: [[2.7, 0], [4.3, 0], [4.3, 15], [2.7, 15]] },
+      { color: 'mustard', fuerte: true, puntos: [[2.7, 15], [4.3, 15], [4.3, 18.15], [2.7, 18.15]] },
+    ]}
+    series={[
+      { color: 'terra', puntos: [[0.7, 0], [0.7, 20.8], [2.3, 20.8], [2.3, 0]] },
+      { color: 'teal', puntos: [[2.7, 0], [2.7, 18.15], [4.3, 18.15], [4.3, 0]] },
+    ]}
+    notas={[
+      { x: 1.5, y: 9.5, texto: '20,00 € sin IVA', ancla: 'middle' },
+      { x: 3.5, y: 7, texto: '15,00 € sin IVA', ancla: 'middle' },
+      { x: 1.5, y: 21.6, texto: 'IVA: 0,80 €', ancla: 'middle', color: 'mustard' },
+      { x: 3.5, y: 19.2, texto: 'IVA: 3,15 €', ancla: 'middle', color: 'mustard' },
+    ]}
+  />
+</Diagram>
+
 </SolvedExercise>
 
 ## Justicia fiscal y fraude fiscal
@@ -237,6 +261,28 @@ Aproximadamente, del total recaudado por el Estado, la mayor parte se dedica a *
 
 Por eso decir "los impuestos son un robo" y a la vez exigir hospitales públicos no se sostiene como argumento. La discusión legítima no es **si pagar impuestos**, sino **cuántos**, **a quién** y **en qué se gastan**. Que Hacienda y el ciudadano se necesitan mutuamente no es una opinión política: es una conclusión aritmética del propio presupuesto.
 </VuelveAlCaso>
+
+<Diagram caption="Aproximadamente, a dónde va lo que recauda el Estado: pensiones, sanidad y educación se llevan más de la mitad. El resto se reparte entre infraestructuras, justicia, defensa, seguridad y prestaciones sociales.">
+  <GraficoXY id="g-gasto-publico" titulo="En qué se gasta lo que recauda el Estado" desc="Tres barras con la parte aproximada del total recaudado que se dedica a cada cosa: pensiones, en torno al 30 por ciento; sanidad, el 16; educación, el 10."
+    xMax={4.6} yMax={36} ejeX="Destino" ejeY="Parte del total (%)" simboloY="%"
+    xTicks={[1, 2, 3]} xTickLabels={['Pensiones', 'Sanidad', 'Educación']} yTicks={[10, 20, 30]}
+    areas={[
+      { color: 'terra', puntos: [[0.65, 0], [1.35, 0], [1.35, 30], [0.65, 30]] },
+      { color: 'teal', puntos: [[1.65, 0], [2.35, 0], [2.35, 16], [1.65, 16]] },
+      { color: 'mustard', puntos: [[2.65, 0], [3.35, 0], [3.35, 10], [2.65, 10]] },
+    ]}
+    series={[
+      { color: 'terra', puntos: [[0.65, 0], [0.65, 30], [1.35, 30], [1.35, 0]] },
+      { color: 'teal', puntos: [[1.65, 0], [1.65, 16], [2.35, 16], [2.35, 0]] },
+      { color: 'mustard', puntos: [[2.65, 0], [2.65, 10], [3.35, 10], [3.35, 0]] },
+    ]}
+    notas={[
+      { x: 1, y: 31.4, texto: '~30 %', ancla: 'middle' },
+      { x: 2, y: 17.4, texto: '~16 %', ancla: 'middle' },
+      { x: 3, y: 11.4, texto: '~10 %', ancla: 'middle' },
+    ]}
+  />
+</Diagram>
 
 <KeyTakeaways title="Lo esencial del sector público y los impuestos">
 - El **sector público** (Estado, comunidades, ayuntamientos) provee servicios para el interés general, redistribuye renta, regula y estabiliza la economía.
