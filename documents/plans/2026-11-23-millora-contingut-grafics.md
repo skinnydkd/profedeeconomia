@@ -9,8 +9,9 @@ Aprovat per Pau el 2026-11-23 (pilot primer; assignatures i llibres abans que le
 - Paritat ES/CA en cada figura (títol, descripció i peu).
 
 ## Ordre
-0. Pilot: Eco 1BACH U4 (oferta, demanda i mercat). Fet en esta branca.
-1. Llibres de les 10 assignatures, unitat per unitat.
+0. Pilot: Eco 1BACH U4 (oferta, demanda i mercat). Fet.
+1. Llibres de les 10 assignatures: fet en esta branca (168 gràfics, ES i CA).
+
 2. Refuerzo i problemes EBAU.
 3. Olimpíada (12 fitxes, 4 textos): gràfics, itinerari i enllaços entre fitxes.
 4. Situaciones.
