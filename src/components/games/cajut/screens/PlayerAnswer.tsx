@@ -53,14 +53,14 @@ export function PlayerAnswer({ publicState, onAnswer }: Props) {
           display: 'flex',
           justifyContent: 'space-between',
           fontFamily: 'JetBrains Mono, monospace',
-          fontSize: 12,
-          color: 'var(--cajut-ink-soft)',
+          fontSize: 14,
+          color: 'var(--color-ink-soft)',
         }}
       >
         <span
           style={{
-            background: 'var(--cajut-paper)',
-            border: '1px solid var(--cajut-line)',
+            background: 'var(--color-paper)',
+            border: '1px solid var(--color-line)',
             borderRadius: 4,
             padding: '3px 8px',
           }}
@@ -69,8 +69,8 @@ export function PlayerAnswer({ publicState, onAnswer }: Props) {
         </span>
         <span
           style={{
-            background: 'var(--cajut-paper)',
-            border: '1px solid var(--cajut-line)',
+            background: 'var(--color-paper)',
+            border: '1px solid var(--color-line)',
             borderRadius: 4,
             padding: '3px 8px',
           }}
@@ -85,8 +85,8 @@ export function PlayerAnswer({ publicState, onAnswer }: Props) {
           textAlign: 'center',
           fontFamily: 'Fraunces, serif',
           fontStyle: 'italic',
-          fontSize: 13,
-          color: 'var(--cajut-ink-mute)',
+          fontSize: 14,
+          color: 'var(--color-ink-mute)',
           margin: 0,
         }}
       >

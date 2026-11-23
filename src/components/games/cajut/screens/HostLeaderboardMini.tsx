@@ -52,14 +52,14 @@ export function HostLeaderboardMini({ publicState }: Props) {
               justifyContent: 'space-between',
               alignItems: 'center',
               padding: '12px 16px',
-              borderBottom: '1px solid var(--cajut-line-soft)',
+              borderBottom: '1px solid var(--color-line-soft)',
               fontSize: 18,
             }}
           >
             <span>
               <strong
                 style={{
-                  color: i === 0 ? 'var(--cajut-terracota)' : 'var(--cajut-ink)',
+                  color: i === 0 ? 'var(--color-terra)' : 'var(--color-ink)',
                   marginRight: 8,
                 }}
               >
@@ -78,7 +78,7 @@ export function HostLeaderboardMini({ publicState }: Props) {
           </li>
         ))}
         {top5.length === 0 && (
-          <li style={{ padding: '12px 16px', color: 'var(--cajut-ink-mute)' }}>
+          <li style={{ padding: '12px 16px', color: 'var(--color-ink-mute)' }}>
             {c.noData}
           </li>
         )}

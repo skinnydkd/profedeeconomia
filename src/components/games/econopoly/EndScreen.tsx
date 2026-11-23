@@ -60,6 +60,7 @@ export function EndScreen({ state, onRestart }: Props) {
   const winnerPlayer = winner !== null ? state.players[winner] : null;
 
   return (
+    <div class="ep2">
     <div class="ep2-end">
       <div class="ep2-end-card">
         {/* Header */}
@@ -99,12 +100,12 @@ export function EndScreen({ state, onRestart }: Props) {
                 <span class="ep2-ranking-name">
                   {p.name}
                   {!p.isHuman && (
-                    <span style={{ color: '#8A7868', fontWeight: 400, fontSize: '0.75rem' }}>
+                    <span style={{ color: 'var(--color-ink-mute)', fontWeight: 400, fontSize: '0.875rem' }}>
                       {' '}{c.ia}
                     </span>
                   )}
                   {!p.alive && (
-                    <span style={{ color: '#8A7868', fontWeight: 400, fontSize: '0.75rem' }}>
+                    <span style={{ color: 'var(--color-ink-mute)', fontWeight: 400, fontSize: '0.875rem' }}>
                       {' '}{c.eliminated}
                     </span>
                   )}
@@ -133,6 +134,7 @@ export function EndScreen({ state, onRestart }: Props) {
           {c.restart}
         </button>
       </div>
+    </div>
     </div>
   );
 }

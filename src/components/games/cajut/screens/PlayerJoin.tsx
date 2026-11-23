@@ -43,10 +43,10 @@ export function PlayerJoin({ onSubmit }: Props) {
           width: 140,
           textAlign: 'center',
           letterSpacing: '.15em',
-          border: '1px solid var(--cajut-line)',
+          border: '1px solid var(--color-line)',
           borderRadius: 6,
           textTransform: 'uppercase',
-          background: 'var(--cajut-paper)',
+          background: 'var(--color-paper)',
         }}
       />
       <button
@@ -55,7 +55,7 @@ export function PlayerJoin({ onSubmit }: Props) {
         style={{
           marginTop: 24,
           padding: '12px 28px',
-          background: code.length === 4 ? 'var(--cajut-ink)' : 'var(--cajut-ink-mute)',
+          background: code.length === 4 ? 'var(--color-ink)' : 'var(--color-ink-mute)',
           color: 'white',
           border: 'none',
           borderRadius: 6,

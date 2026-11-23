@@ -50,7 +50,7 @@ export function PlayerRevealLocal({ publicState, privateState }: Props) {
         justifyContent: 'center',
         alignItems: 'center',
         textAlign: 'center',
-        background: 'var(--cajut-paper)',
+        background: 'var(--color-paper)',
       }}
     >
       <p class="subtle" style={{ marginBottom: 8 }}>{c.laCorrecta}</p>
@@ -59,7 +59,7 @@ export function PlayerRevealLocal({ publicState, privateState }: Props) {
           fontFamily: 'Fraunces, serif',
           fontSize: 64,
           margin: 0,
-          color: 'var(--cajut-ink)',
+          color: 'var(--color-ink)',
         }}
       >
         {correctLetter}

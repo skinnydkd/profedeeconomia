@@ -81,7 +81,7 @@ export function HostQuestion({ publicState, onSkip, onEnd }: Props) {
           alignItems: 'center',
           marginTop: 'auto',
           paddingTop: '16px',
-          borderTop: '1px solid var(--cajut-line-soft)',
+          borderTop: '1px solid var(--color-line-soft)',
         }}
       >
         <span class="subtle">{c.respuestas(answered, total)}</span>
@@ -89,12 +89,12 @@ export function HostQuestion({ publicState, onSkip, onEnd }: Props) {
           <button
             onClick={onSkip}
             style={{
-              fontSize: 12,
+              fontSize: 14,
               padding: '6px 12px',
               textTransform: 'uppercase',
               letterSpacing: '.1em',
               background: 'transparent',
-              border: '1px solid var(--cajut-line)',
+              border: '1px solid var(--color-line)',
               borderRadius: 4,
               cursor: 'pointer',
             }}
@@ -104,12 +104,12 @@ export function HostQuestion({ publicState, onSkip, onEnd }: Props) {
           <button
             onClick={onEnd}
             style={{
-              fontSize: 12,
+              fontSize: 14,
               padding: '6px 12px',
               textTransform: 'uppercase',
               letterSpacing: '.1em',
               background: 'transparent',
-              border: '1px solid var(--cajut-line)',
+              border: '1px solid var(--color-line)',
               borderRadius: 4,
               cursor: 'pointer',
             }}

@@ -89,7 +89,7 @@ export function PlayerJoin({ onJoin }: Props) {
         </div>
 
         {error && (
-          <p style="color:var(--terra-deep);font-size:12px;margin:0;">{error}</p>
+          <p style="color:var(--color-terra-deep);font-size:12px;margin:0;">{error}</p>
         )}
 
         <button type="submit" class="ins-btn">

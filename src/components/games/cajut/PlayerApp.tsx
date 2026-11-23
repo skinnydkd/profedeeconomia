@@ -35,6 +35,7 @@ export const COPY = {
   es: {
     backToJoin: 'Volver a entrar',
     connecting: 'Conectando…',
+    connectionLost: 'No se puede conectar con el servidor del juego. Comprueba tu conexión o avisa al profe; reintentamos solos.',
     kicked: 'El profe te ha expulsado de la sala.',
     errorGeneric: 'Ha ocurrido un error.',
     errors: {
@@ -49,6 +50,7 @@ export const COPY = {
   ca: {
     backToJoin: 'Torna a entrar',
     connecting: 'Connectant…',
+    connectionLost: "No es pot connectar amb el servidor del joc. Comprova la teua connexió o avisa el profe; ho reintentem soles.",
     kicked: "El profe t'ha expulsat de la sala.",
     errorGeneric: "S'ha produït un error.",
     errors: {
@@ -78,6 +80,7 @@ function PlayerAppInner({ partykitHost }: { partykitHost: string }) {
   const [publicState, setPublicState] = useState<PublicState | null>(null);
   const [privateState, setPrivateState] = useState<PrivateState | null>(null);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
+  const [connIssue, setConnIssue] = useState(false);
   const [kicked, setKicked] = useState(false);
   const copy = COPY[useGameLocale()];
 
@@ -99,6 +102,7 @@ function PlayerAppInner({ partykitHost }: { partykitHost: string }) {
       roomCode,
       playerId,
       nick,
+      onStatus: (s) => setConnIssue(s !== 'connected'),
     });
     c.on('public', (m) => setPublicState(m.state));
     c.on('private', (m) => setPrivateState(m.state));
@@ -138,7 +142,7 @@ function PlayerAppInner({ partykitHost }: { partykitHost: string }) {
   if (kicked) {
     return (
       <div class="cajut-player" style={{ justifyContent: 'center', textAlign: 'center' }}>
-        <p style={{ color: 'var(--cajut-terracota)', fontSize: 16 }}>{copy.kicked}</p>
+        <p style={{ color: 'var(--color-terra)', fontSize: 16 }}>{copy.kicked}</p>
       </div>
     );
   }
@@ -146,7 +150,7 @@ function PlayerAppInner({ partykitHost }: { partykitHost: string }) {
   if (errorMsg) {
     return (
       <div class="cajut-player" style={{ justifyContent: 'center', textAlign: 'center' }}>
-        <p style={{ color: 'var(--cajut-terracota)', fontSize: 16 }}>{errorMsg}</p>
+        <p style={{ color: 'var(--color-terra)', fontSize: 16 }}>{errorMsg}</p>
         <button
           onClick={() => {
             setErrorMsg(null);
@@ -156,9 +160,9 @@ function PlayerAppInner({ partykitHost }: { partykitHost: string }) {
           style={{
             marginTop: 16,
             padding: '10px 20px',
-            border: '1px solid var(--cajut-line)',
+            border: '1px solid var(--color-line)',
             borderRadius: 6,
-            background: 'var(--cajut-paper)',
+            background: 'var(--color-paper)',
             fontSize: 14,
             cursor: 'pointer',
           }}
@@ -172,7 +176,7 @@ function PlayerAppInner({ partykitHost }: { partykitHost: string }) {
   if (!publicState || !privateState) {
     return (
       <div class="cajut-player" style={{ justifyContent: 'center', textAlign: 'center' }}>
-        <p class="subtle">{copy.connecting}</p>
+        <p class="subtle">{connIssue ? copy.connectionLost : copy.connecting}</p>
       </div>
     );
   }

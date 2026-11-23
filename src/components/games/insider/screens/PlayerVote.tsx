@@ -57,13 +57,13 @@ export function PlayerVote({ publicState, privateState, myId, onVote }: Props) {
         <div class="ins-notice">
           {c.votoEmitido}
           <br />
-          <span style="font-size:11px;color:var(--soft);">
+          <span style="font-size:11px;color:var(--color-ink-soft);">
             {c.votos(publicState.votesCast, aliveOthers.length + 1)}
           </span>
         </div>
       ) : (
         <>
-          <p style="font-size:13px;color:var(--soft);margin:0;font-style:italic;font-family:'Fraunces',serif;">
+          <p style="font-size:13px;color:var(--color-ink-soft);margin:0;font-style:italic;font-family:'Fraunces',serif;">
             {c.quienImpostor}
           </p>
           <div class="ins-vote-grid">

@@ -144,7 +144,7 @@ export function HostLobby({ publicState, roomCode, onStart }: Props) {
       </div>
 
       {!canStart && players.length > 0 && (
-        <p style="font-size:12px;color:var(--mute);margin-top:8px;font-style:italic;font-family:'Fraunces',serif;">
+        <p style="font-size:12px;color:var(--color-ink-mute);margin-top:8px;font-style:italic;font-family:'Fraunces',serif;">
           {c.minimo(MIN_PLAYERS)}
         </p>
       )}

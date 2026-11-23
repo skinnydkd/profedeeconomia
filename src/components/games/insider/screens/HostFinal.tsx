@@ -34,8 +34,8 @@ export function HostFinal({ publicState, onRestart }: Props) {
       <h2 class="serif">{c.finPartida}</h2>
 
       {publicState.word && (
-        <p style="font-size:14px;color:var(--soft);margin-bottom:20px;font-style:italic;font-family:'Fraunces',serif;">
-          {c.laPalabraEra}<strong style="color:var(--teal);font-size:18px;">{publicState.word}</strong>
+        <p style="font-size:14px;color:var(--color-ink-soft);margin-bottom:20px;font-style:italic;font-family:'Fraunces',serif;">
+          {c.laPalabraEra}<strong style="color:var(--color-eco1);font-size:18px;">{publicState.word}</strong>
         </p>
       )}
 

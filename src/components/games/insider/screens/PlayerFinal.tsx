@@ -53,8 +53,8 @@ export function PlayerFinal({ publicState, privateState }: Props) {
       )}
 
       {publicState.word && (
-        <p style="font-size:13px;color:var(--soft);margin-bottom:16px;font-style:italic;font-family:'Fraunces',serif;">
-          {c.laPalabraEra}<strong style="color:var(--teal);">{publicState.word}</strong>
+        <p style="font-size:13px;color:var(--color-ink-soft);margin-bottom:16px;font-style:italic;font-family:'Fraunces',serif;">
+          {c.laPalabraEra}<strong style="color:var(--color-eco1);">{publicState.word}</strong>
         </p>
       )}
 
@@ -63,7 +63,7 @@ export function PlayerFinal({ publicState, privateState }: Props) {
           <div
             key={entry.id}
             class={`ins-ranking-entry${i === 0 ? ' gold' : ''}${entry.id === myId ? '' : ''}`}
-            style={entry.id === myId ? 'border-color:var(--terra);' : ''}
+            style={entry.id === myId ? 'border-color:var(--color-terra);' : ''}
           >
             <span class="pos mono">{i + 1}º</span>
             <span class="nm">{entry.name}</span>
@@ -72,7 +72,7 @@ export function PlayerFinal({ publicState, privateState }: Props) {
         ))}
       </div>
 
-      <p style="font-size:12px;color:var(--mute);margin-top:12px;font-style:italic;font-family:'Fraunces',serif;">
+      <p style="font-size:12px;color:var(--color-ink-mute);margin-top:12px;font-style:italic;font-family:'Fraunces',serif;">
         {c.esperaProfesor}
       </p>
     </div>

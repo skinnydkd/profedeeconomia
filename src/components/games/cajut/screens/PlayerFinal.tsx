@@ -71,7 +71,7 @@ export function PlayerFinal({ publicState, privateState }: Props) {
           style={{
             marginTop: 32,
             padding: '12px 20px',
-            background: 'var(--cajut-ink)',
+            background: 'var(--color-ink)',
             color: 'white',
             border: 'none',
             borderRadius: 6,
@@ -87,15 +87,15 @@ export function PlayerFinal({ publicState, privateState }: Props) {
           {privateState.myAnswerHistory?.map((a) => (
             <div
               key={a.questionIndex}
-              style={{ borderTop: '1px solid var(--cajut-line-soft)', padding: '12px 0' }}
+              style={{ borderTop: '1px solid var(--color-line-soft)', padding: '12px 0' }}
             >
               <p style={{ fontFamily: 'Fraunces, serif', fontSize: 15, margin: 0 }}>
                 {a.enunciado}
               </p>
               <p
                 style={{
-                  fontSize: 12,
-                  color: a.wasCorrect ? 'var(--cajut-pine)' : 'var(--cajut-terracota)',
+                  fontSize: 14,
+                  color: a.wasCorrect ? 'var(--color-eeae)' : 'var(--color-terra)',
                   marginTop: 4,
                 }}
               >
@@ -103,13 +103,13 @@ export function PlayerFinal({ publicState, privateState }: Props) {
                   ? c.sinRespuesta
                   : c.tuRespuesta(String.fromCharCode(65 + a.myOptionIndex), a.opciones[a.myOptionIndex])}
               </p>
-              <p style={{ fontSize: 12, color: 'var(--cajut-pine)', margin: '2px 0 0' }}>
+              <p style={{ fontSize: 14, color: 'var(--color-eeae)', margin: '2px 0 0' }}>
                 {c.correcta(String.fromCharCode(65 + a.correcta), a.opciones[a.correcta])}
               </p>
               {a.explicacion && (
                 <p
                   class="subtle"
-                  style={{ fontSize: 12, fontStyle: 'italic', marginTop: 6 }}
+                  style={{ fontSize: 14, fontStyle: 'italic', marginTop: 6 }}
                 >
                   {a.explicacion}
                 </p>

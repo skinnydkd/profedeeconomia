@@ -12,7 +12,7 @@ import { localizeCells } from '@/i18n/games/econopoly-ca';
 // Chip background color by sector (mirrors CSS chip classes)
 const CHIP_BG: Record<string, string> = {
   A: '#1F6E6E', B: '#1F6E6E',
-  C: '#A87A2A', D: '#A87A2A',
+  C: '#835F20', D: '#835F20',
   E: '#C44E2C', F: '#C44E2C',
   G: '#2E5E3A', H: '#2E5E3A',
 };
@@ -82,7 +82,7 @@ export function AuctionModal({ state, onBid, onPass }: Props) {
         <h2 class="ep2-modal-title">{property.label}</h2>
         <span
           class="ep2-modal-sector"
-          style={{ background: CHIP_BG[property.sector] ?? '#8A7868' }}
+          style={{ background: CHIP_BG[property.sector] ?? 'var(--color-ink-mute)' }}
         >
           {c.sector(property.sector)}
         </span>

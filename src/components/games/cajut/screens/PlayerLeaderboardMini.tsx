@@ -48,11 +48,11 @@ export function PlayerLeaderboardMini({ publicState, privateState }: Props) {
               display: 'flex',
               justifyContent: 'space-between',
               padding: '8px 12px',
-              borderBottom: '1px solid var(--cajut-line-soft)',
+              borderBottom: '1px solid var(--color-line-soft)',
               fontSize: 16,
               fontWeight: p.id === privateState.myId ? 600 : 400,
               background:
-                p.id === privateState.myId ? 'var(--cajut-line-soft)' : 'transparent',
+                p.id === privateState.myId ? 'var(--color-line-soft)' : 'transparent',
               borderRadius: p.id === privateState.myId ? 4 : 0,
             }}
           >
