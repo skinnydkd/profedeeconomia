@@ -30,7 +30,7 @@ preguntas:
       - "Perquè la practiquen sobretot les grans empreses, que així paguen menys que les pimes."
       - "Perquè fa pujar els preus de tots els productes."
     correcta: 1
-    explicacion: "L'economia submergida oculta ingressos a Hisenda: cada euro no declarat és un euro menys per a la sanitat, l'educació o les pensions, i obliga qui complix a suportar una càrrega major. No és un delicte sense víctimes. A Espanya s'estima entorn del 24 % del PIB (uns 330.000 milions d'euros) segons GESTHA."
+    explicacion: "L'economia submergida oculta ingressos a Hisenda: cada euro no declarat és un euro menys per a la sanitat, l'educació o les pensions, i obliga qui complix a suportar una càrrega major. No és un delicte sense víctimes. A Espanya GESTHA estima (2025) entre 235.000 i 240.000 milions d'euros, al voltant del 15 % del PIB."
   - enunciado: "Què representa el balanç d'una empresa?"
     opciones:
       - "Els ingressos i les despeses d'un període, per saber si hi ha benefici o pèrdua."
