@@ -51,6 +51,7 @@ import KeyTakeaways from '@components/KeyTakeaways.astro';
 import Bibliography from '@components/Bibliography.astro';
 import Figure from '@components/Figure.astro';
 import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
 import TldrUnidad from '@components/TldrUnidad.astro';
 import CasoDilema from '@components/CasoDilema.astro';
 import VuelveAlCaso from '@components/VuelveAlCaso.astro';
@@ -217,6 +218,21 @@ La primera és confondre **quitança** i **indemnització**. La **quitança** é
 6. **Sentència.** L'acomiadament es declara **procedent** —només quitança—, **improcedent** —trenta-tres dies per any, amb topalls, o readmissió, a elecció de l'empresa— o **nul**, si vulnera drets fonamentals o afecta situacions especialment protegides, cas en què la readmissió és obligatòria i amb els salaris deixats de percebre.
 </Steps>
 
+<Diagram caption="Quant cobra qui és acomiadat segons els anys d'antiguitat, en dies de salari: 20 dies per any en l'acomiadament objectiu i 33 per any en l'improcedent. El disciplinari procedent no genera indemnització. En tots dos casos hi ha un topall legal, que amb 10 anys d'antiguitat encara no s'aconseguix.">
+  <GraficoXY id="g-cjd-indemnizacion-despido" titulo="Indemnització per acomiadament segons l'antiguitat" desc="Dos rectes des de l'origen. Acomiadament objectiu: 20 dies de salari per any treballat, 200 dies amb 10 anys. Acomiadament improcedent: 33 dies per any, 330 dies amb 10 anys."
+    xMax={12} yMax={400} ejeX="Anys d'antiguitat" ejeY="Dies de salari" simboloX="anys" simboloY="d"
+    xTicks={[2, 4, 6, 8]} yTicks={[100]}
+    series={[
+      { label: "Objectiu", color: "mustard", puntos: [[0, 0], [10, 200]] },
+      { label: "Improcedent", color: "terra", puntos: [[0, 0], [10, 330]] },
+    ]}
+    puntos={[
+      { x: 10, y: 200, xLabel: "10", yLabel: "200" },
+      { x: 10, y: 330, yLabel: "330" },
+    ]}
+  />
+</Diagram>
+
 La segona confusió és creure que un acomiadament improcedent és il·legal i cal tornar al lloc. No: improcedent significa que l'empresa no ha provat la causa i per tant ha de pagar més, però és ella qui tria entre readmetre o indemnitzar. Només l'acomiadament **nul** obliga a readmetre, i per això la nul·litat és la qualificació que realment protegix.
 
 ## La Seguretat Social: què cotitzes i què reps
@@ -246,6 +262,22 @@ La prestació contributiva per desocupació —el que tothom anomena «l'atur»�
 
 Esgotada la prestació contributiva, existixen **subsidis** de quantia menor per a qui complix determinats requisits de renda o edat. I qui no ha cotitzat prou no queda automàticament fora del sistema: pot accedir a rendes mínimes, que ja no són Seguretat Social contributiva sinó protecció assistencial.
 </RealExample>
+
+<Diagram caption="Quants mesos d'atur corresponen segons els anys cotitzats: aproximadament un terç del cotitzat, de manera que un any dóna uns quatre mesos i sis anys donen el màxim, que són dos anys (24 mesos). Es demanen almenys 360 dies cotitzats, és a dir, un any.">
+  <GraficoXY id="g-cjd-paro-duracion" titulo="Duració de l'atur segons els anys cotitzats" desc="Recta creixent: amb 1 any cotitzat, uns 4 mesos de prestació; amb 6 anys, el màxim de 24 mesos. A partir d'ací la duració no puja."
+    xMax={9} yMax={28} ejeX="Anys cotitzats" ejeY="Mesos de prestació" simboloX="anys" simboloY="m"
+    xTicks={[2, 3, 4, 5, 7]} yTicks={[8, 12, 16, 20]}
+    series={[{ color: "teal", puntos: [[1, 4], [6, 24], [8, 24]] }]}
+    puntos={[
+      { x: 1, y: 4, xLabel: "1", yLabel: "4" },
+      { x: 6, y: 24, xLabel: "6", yLabel: "24" },
+    ]}
+    notas={[
+      { x: 3.3, y: 6, texto: "Un terç del cotitzat", color: "teal" },
+      { x: 8, y: 25.5, texto: "Màxim: 24 mesos", ancla: "end" },
+    ]}
+  />
+</Diagram>
 
 La **desocupació** no és només un problema individual. Espanya arrossega des de fa dècades taxes d'atur més altes que la mitjana europea, amb dos trets propis: molt **atur juvenil** i molta **temporalitat**, encara que esta última ha baixat de manera notable des de la reforma de 2021. Al darrere hi ha causes estructurals —model productiu, estacionalitat, desajust entre formació i demanda— que s'estudien a Economia i que ací interessen pel seu costat jurídic: cada reforma laboral és un intent de moure eixes xifres canviant les regles del contracte.
 

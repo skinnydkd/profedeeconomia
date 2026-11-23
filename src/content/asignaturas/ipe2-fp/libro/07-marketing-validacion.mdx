@@ -37,6 +37,7 @@ import SolvedExercise from '@components/SolvedExercise.astro';
 import Steps from '@components/Steps.astro';
 import KeyTakeaways from '@components/KeyTakeaways.astro';
 import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
 import MarketingMix4P from '@components/diagrams/MarketingMix4P.astro';
 import ValuePropositionCanvas from '@components/diagrams/ValuePropositionCanvas.astro';
 import Bibliography from '@components/Bibliography.astro';
@@ -261,6 +262,24 @@ Calcula, para cada plan: a) el margen de contribución unitario; b) el beneficio
    - Plan A: 180 / 1,10 = 163,6 → ≈ **8,2 desayunos/día**.
    - Plan B: 180 / 1,60 = 112,5 → ≈ **5,6 desayunos/día**.
 4. **Decisión**: el Plan B gana en las dos cosas que importan en un arranque: deja **más beneficio** (332 € frente a 304 €) y, sobre todo, alcanza el equilibrio con **menos ventas diarias** (5,6 frente a 8,2), así que es más seguro si la demanda es menor de la prevista. Eligen el Plan B. **Pero** —y esto es lo que hay que validar en la calle— la previsión de 16 ventas/día a 3,00 € puede ser optimista: por eso el mes de prueba sirve precisamente para comprobar si la demanda real aguanta el precio más alto.
+
+<Diagram caption="Beneficio mensual de los dos planes de Recreo Sano según los desayunos vendidos al día (20 días lectivos, costes fijos de 180 €). Plan A, a 2,50 € (margen 1,10 €); Plan B, a 3,00 € (margen 1,60 €). Con la previsión de cada plan, A deja 304 € y B, 332 €; B alcanza el punto muerto con menos ventas (5,6 frente a 8,2 desayunos al día).">
+  <GraficoXY id="g-ipe2-recreo-sano" titulo="Beneficio mensual de los planes A y B de Recreo Sano" desc="Dos rectas de beneficio mensual en euros según los desayunos vendidos al día. Plan A: 22 euros por desayuno diario menos 180 de costes fijos; corta el eje en 8,2 desayunos y con 22 al día da 304 euros. Plan B: 32 euros por desayuno diario menos 180; corta el eje en 5,6 desayunos y con 16 al día da 332 euros."
+    xMax={26} yMin={-200} yMax={700} ejeX="Desayunos vendidos al día" ejeY="Beneficio mensual (€)" simboloX="q" simboloY="€"
+    xTicks={[10, 20]} yTicks={[-100, 200, 400, 600]}
+    series={[
+      { label: "Plan A", color: "mustard", puntos: [[0, -180], [23, 326]] },
+      { label: "Plan B", color: "terra", puntos: [[0, -180], [23, 556]] },
+    ]}
+    puntos={[
+      { x: 5.625, y: 0, guias: false },
+      { x: 8.18, y: 0, guias: false },
+      { x: 22, y: 304, guias: false, label: "A 304 €", dx: -68, dy: -10 },
+      { x: 16, y: 332, guias: false, label: "B 332 €", dx: -68, dy: -10 },
+    ]}
+    notas={[{ x: 9, y: -85, texto: "Punto muerto: A 8,2 · B 5,6" }]}
+  />
+</Diagram>
 
 </SolvedExercise>
 

@@ -57,6 +57,7 @@ import KeyTakeaways from '@components/KeyTakeaways.astro';
 import Bibliography from '@components/Bibliography.astro';
 import Figure from '@components/Figure.astro';
 import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
 import TldrUnidad from '@components/TldrUnidad.astro';
 import CasoDilema from '@components/CasoDilema.astro';
 import VuelveAlCaso from '@components/VuelveAlCaso.astro';
@@ -178,6 +179,32 @@ La segona és **controlar el Govern**. Ahí caben les preguntes i interpel·laci
 
 - La **qüestió de confiança**: la planteja el president del Govern per comprovar si continua tenint suport. N'hi ha prou amb la majoria simple. Si la perd, dimitix.
 - La **moció de censura**: la presenten almenys una desena part dels diputats i és **constructiva**, és a dir, ha d'incloure un candidat alternatiu. Si prospera per majoria absoluta, el candidat proposat queda automàticament investit.
+
+<Diagram caption="Vots que calen al Congrés (350 diputats) segons la majoria exigida. Una desena part (35) basta per a presentar una moció de censura; la majoria absoluta (176), per a una llei orgànica, perquè prospere una moció de censura o per a la investidura en primera votació; tres cinquens (210) i dos terços (234, que són 233,3 arredonits cap amunt) són les majories de la reforma constitucional ordinària i agreujada, que s'exigixen també al Senat.">
+  <GraficoXY id="g-cjd-mayorias-congreso" titulo="Vots necessaris al Congrés segons la majoria exigida" desc="Quatre columnes sobre un total de 350 diputats. Una desena part: 35. Majoria absoluta: 176. Tres cinquens: 210. Dos terços: 234."
+    xMax={5} yMax={400} ejeX="Majoria exigida" ejeY="Diputats (vots)"
+    xTicks={[0.8, 1.9, 3, 4.1]} yTicks={[100, 200, 300]} xTickLabels={["Una desena", "Majoria absoluta", "Tres cinquens", "Dos terços"]}
+    areas={[
+      { puntos: [[0.4, 0], [1.2, 0], [1.2, 35], [0.4, 35]], color: "mustard", fuerte: true },
+      { puntos: [[1.5, 0], [2.3, 0], [2.3, 176], [1.5, 176]], color: "terra", fuerte: true },
+      { puntos: [[2.6, 0], [3.4, 0], [3.4, 210], [2.6, 210]], color: "teal", fuerte: true },
+      { puntos: [[3.7, 0], [4.5, 0], [4.5, 234], [3.7, 234]], color: "aubergine", fuerte: true },
+    ]}
+    series={[
+      { puntos: [[0.4, 0], [0.4, 35], [1.2, 35], [1.2, 0]], color: "mustard" },
+      { puntos: [[1.5, 0], [1.5, 176], [2.3, 176], [2.3, 0]], color: "terra" },
+      { puntos: [[2.6, 0], [2.6, 210], [3.4, 210], [3.4, 0]], color: "teal" },
+      { puntos: [[3.7, 0], [3.7, 234], [4.5, 234], [4.5, 0]], color: "aubergine" },
+      { label: "350 diputats", color: "ink", tenue: true, labelEn: "inicio", dy: -8, puntos: [[0, 350], [4.7, 350]] },
+    ]}
+    notas={[
+      { x: 0.8, y: 48, texto: "35", ancla: "middle" },
+      { x: 1.9, y: 189, texto: "176", ancla: "middle" },
+      { x: 3, y: 223, texto: "210", ancla: "middle" },
+      { x: 4.1, y: 247, texto: "234", ancla: "middle" },
+    ]}
+  />
+</Diagram>
 
 <Curiosity title="Per què la moció de censura espanyola obliga a portar un recanvi">
 El requisit de presentar candidat no és un caprici de redacció: és una lliçó apresa de la República de Weimar alemanya. Allí, als anys trenta, partits que s'odiaven entre ells podien votar junts per tombar un govern sense posar-se d'acord en res més. El resultat eren crisis encadenades i un país ingovernable.

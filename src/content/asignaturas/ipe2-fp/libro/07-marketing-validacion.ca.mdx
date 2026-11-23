@@ -38,6 +38,7 @@ import SolvedExercise from '@components/SolvedExercise.astro';
 import Steps from '@components/Steps.astro';
 import KeyTakeaways from '@components/KeyTakeaways.astro';
 import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
 import MarketingMix4P from '@components/diagrams/MarketingMix4P.astro';
 import ValuePropositionCanvas from '@components/diagrams/ValuePropositionCanvas.astro';
 import Bibliography from '@components/Bibliography.astro';
@@ -262,6 +263,24 @@ Calcula, per a cada pla: a) el marge de contribució unitari; b) el benefici del
    - Pla A: 180 / 1,10 = 163,6 → ≈ **8,2 esmorzars/dia**.
    - Pla B: 180 / 1,60 = 112,5 → ≈ **5,6 esmorzars/dia**.
 4. **Decisió**: el Pla B guanya en les dues coses que importen en un arrancament: deixa **més benefici** (332 € enfront de 304 €) i, sobretot, aconseguix l'equilibri amb **menys vendes diàries** (5,6 enfront de 8,2), així que és més segur si la demanda és menor de la prevista. Trien el Pla B. **Però** —i això és el que cal validar al carrer— la previsió de 16 vendes/dia a 3,00 € pot ser optimista: per això el mes de prova servix precisament per a comprovar si la demanda real aguanta el preu més alt.
+
+<Diagram caption="Benefici mensual dels dos plans de Recreo Sano segons els esmorzars venuts al dia (20 dies lectius, costos fixos de 180 €). Pla A, a 2,50 € (marge 1,10 €); Pla B, a 3,00 € (marge 1,60 €). Amb la previsió de cada pla, A deixa 304 € i B, 332 €; B aconseguix el punt mort amb menys vendes (5,6 enfront de 8,2 esmorzars al dia).">
+  <GraficoXY id="g-ipe2-recreo-sano" titulo="Benefici mensual dels plans A i B de Recreo Sano" desc="Dos rectes de benefici mensual en euros segons els esmorzars venuts al dia. Pla A: 22 euros per esmorzar diari menys 180 de costos fixos; talla l'eix en 8,2 esmorzars i amb 22 al dia dóna 304 euros. Pla B: 32 euros per esmorzar diari menys 180; talla l'eix en 5,6 esmorzars i amb 16 al dia dóna 332 euros."
+    xMax={26} yMin={-200} yMax={700} ejeX="Esmorzars venuts al dia" ejeY="Benefici mensual (€)" simboloX="q" simboloY="€"
+    xTicks={[10, 20]} yTicks={[-100, 200, 400, 600]}
+    series={[
+      { label: "Pla A", color: "mustard", puntos: [[0, -180], [23, 326]] },
+      { label: "Pla B", color: "terra", puntos: [[0, -180], [23, 556]] },
+    ]}
+    puntos={[
+      { x: 5.625, y: 0, guias: false },
+      { x: 8.18, y: 0, guias: false },
+      { x: 22, y: 304, guias: false, label: "A 304 €", dx: -68, dy: -10 },
+      { x: 16, y: 332, guias: false, label: "B 332 €", dx: -68, dy: -10 },
+    ]}
+    notas={[{ x: 9, y: -85, texto: "Punt mort: A 8,2 · B 5,6" }]}
+  />
+</Diagram>
 
 </SolvedExercise>
 

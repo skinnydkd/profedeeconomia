@@ -56,6 +56,7 @@ import KeyTakeaways from '@components/KeyTakeaways.astro';
 import Bibliography from '@components/Bibliography.astro';
 import Figure from '@components/Figure.astro';
 import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
 import TldrUnidad from '@components/TldrUnidad.astro';
 import CasoDilema from '@components/CasoDilema.astro';
 import VuelveAlCaso from '@components/VuelveAlCaso.astro';
@@ -177,6 +178,32 @@ La segunda es **controlar al Gobierno**. Ahí caben las preguntas e interpelacio
 
 - La **cuestión de confianza**: la plantea el presidente del Gobierno para comprobar si sigue teniendo apoyo. Basta la mayoría simple. Si la pierde, dimite.
 - La **moción de censura**: la presentan al menos una décima parte de los diputados y es **constructiva**, es decir, tiene que incluir un candidato alternativo. Si prospera por mayoría absoluta, el candidato propuesto queda automáticamente investido.
+
+<Diagram caption="Votos que hacen falta en el Congreso (350 diputados) según la mayoría exigida. Una décima parte (35) basta para presentar una moción de censura; la mayoría absoluta (176), para una ley orgánica, para que prospere una moción de censura o para la investidura en primera votación; tres quintos (210) y dos tercios (234, que son 233,3 redondeados hacia arriba) son las mayorías de la reforma constitucional ordinaria y agravada, que se exigen también en el Senado.">
+  <GraficoXY id="g-cjd-mayorias-congreso" titulo="Votos necesarios en el Congreso según la mayoría exigida" desc="Cuatro columnas sobre un total de 350 diputados. Una décima parte: 35. Mayoría absoluta: 176. Tres quintos: 210. Dos tercios: 234."
+    xMax={5} yMax={400} ejeX="Mayoría exigida" ejeY="Diputados (votos)"
+    xTicks={[0.8, 1.9, 3, 4.1]} yTicks={[100, 200, 300]} xTickLabels={["Una décima", "Mayoría absoluta", "Tres quintos", "Dos tercios"]}
+    areas={[
+      { puntos: [[0.4, 0], [1.2, 0], [1.2, 35], [0.4, 35]], color: "mustard", fuerte: true },
+      { puntos: [[1.5, 0], [2.3, 0], [2.3, 176], [1.5, 176]], color: "terra", fuerte: true },
+      { puntos: [[2.6, 0], [3.4, 0], [3.4, 210], [2.6, 210]], color: "teal", fuerte: true },
+      { puntos: [[3.7, 0], [4.5, 0], [4.5, 234], [3.7, 234]], color: "aubergine", fuerte: true },
+    ]}
+    series={[
+      { puntos: [[0.4, 0], [0.4, 35], [1.2, 35], [1.2, 0]], color: "mustard" },
+      { puntos: [[1.5, 0], [1.5, 176], [2.3, 176], [2.3, 0]], color: "terra" },
+      { puntos: [[2.6, 0], [2.6, 210], [3.4, 210], [3.4, 0]], color: "teal" },
+      { puntos: [[3.7, 0], [3.7, 234], [4.5, 234], [4.5, 0]], color: "aubergine" },
+      { label: "350 diputados", color: "ink", tenue: true, labelEn: "inicio", dy: -8, puntos: [[0, 350], [4.7, 350]] },
+    ]}
+    notas={[
+      { x: 0.8, y: 48, texto: "35", ancla: "middle" },
+      { x: 1.9, y: 189, texto: "176", ancla: "middle" },
+      { x: 3, y: 223, texto: "210", ancla: "middle" },
+      { x: 4.1, y: 247, texto: "234", ancla: "middle" },
+    ]}
+  />
+</Diagram>
 
 <Curiosity title="Por qué la moción de censura española obliga a traer un recambio">
 El requisito de presentar candidato no es un capricho de redacción: es una lección aprendida de la República de Weimar alemana. Allí, en los años treinta, partidos que se odiaban entre sí podían votar juntos para tumbar a un gobierno sin ponerse de acuerdo en nada más. El resultado eran crisis encadenadas y un país ingobernable.

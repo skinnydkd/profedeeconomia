@@ -52,6 +52,7 @@ import Steps from '@components/Steps.astro';
 import KeyTakeaways from '@components/KeyTakeaways.astro';
 import Bibliography from '@components/Bibliography.astro';
 import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
 import TiposContrato from '@components/diagrams/TiposContrato.astro';
 import Figure from '@components/Figure.astro';
 import TldrUnidad from '@components/TldrUnidad.astro';
@@ -167,12 +168,55 @@ Si pierdes el empleo de forma involuntaria (te despiden, no te renuevan un tempo
 
 La cuantía es el **70 % de la base reguladora** durante los primeros 180 días y el **60 %** a partir del día 181, con topes mínimos y máximos. La **duración** depende de lo cotizado en los últimos seis años, por tramos de 180 días: con 360 días cotizados se cobran 120 días de paro, y cada 180 días más cotizados suman 60 días, hasta un máximo de **720 días (24 meses)** a partir de 2.160 días cotizados. Quien no llega a los 12 meses cotizados, o agota la contributiva, puede acceder a un **subsidio** asistencial de menor cuantía. Desde la reforma de noviembre de 2024 (RDL 2/2024) llega también a menores de 45 años sin responsabilidades familiares, se cobra en porcentaje del IPREM (del 95 % al 80 %, bajando con el tiempo) y es compatible con un empleo.
 
+<Diagram caption="Cuantía de la prestación contributiva por desempleo: el 70 % de la base reguladora durante los primeros 180 días y el 60 % a partir del día 181, hasta agotar la duración (máximo 720 días), con topes mínimos y máximos.">
+  <GraficoXY id="g-ipe1-paro-cuantia" titulo="Cuantía del paro según los días de prestación" desc="Gráfico de escalones: el 70 por ciento de la base reguladora durante los primeros 180 días de prestación y el 60 por ciento desde el día 181 hasta el máximo de 720 días."
+    xMax={800} yMax={100} ejeX="Días de prestación" ejeY="% de la base reguladora" simboloX="d" simboloY="%"
+    xTicks={[180, 360, 540, 720]} yTicks={[20, 40, 60, 80]}
+    series={[{ color: "terra", puntos: [[0, 70], [180, 70], [180, 60], [720, 60]] }]}
+    notas={[
+      { x: 10, y: 74, texto: "70 % los primeros 180 días", color: "terra" },
+      { x: 190, y: 63, texto: "60 % desde el día 181", color: "terra" },
+      { x: 720, y: 50, texto: "Máximo: 720 días", ancla: "end" },
+    ]}
+  />
+</Diagram>
+
+<Diagram caption="Cuántos días de paro corresponden según los días cotizados en los últimos seis años: con 360 días cotizados, 120 días de prestación, y 60 días más por cada tramo de 180 días cotizados adicionales, hasta el máximo de 720 días (24 meses) con 2.160 días cotizados.">
+  <GraficoXY id="g-ipe1-paro-duracion" titulo="Duración del paro según los días cotizados" desc="Gráfico de escalones. Con menos de 360 días cotizados no hay prestación contributiva. Con 360 días, 120 días de paro; cada 180 días cotizados más suman 60 días, hasta un máximo de 720 días con 2.160 días cotizados."
+    xMax={2700} yMax={800} ejeX="Días cotizados en los últimos 6 años" ejeY="Días de prestación" simboloX="d" simboloY="d"
+    xTicks={[720, 1080, 1440, 1800]} yTicks={[240, 360, 480, 600]}
+    series={[{ color: "teal", puntos: [[0, 0], ...Array.from({ length: 11 }, (_, k) => [[360 + 180 * k, k ? 60 + 60 * k : 0], [360 + 180 * k, 120 + 60 * k]]).flat(), [2400, 720]] }]}
+    puntos={[
+      { x: 360, y: 120, xLabel: "360", yLabel: "120" },
+      { x: 2160, y: 720, xLabel: "2 160", yLabel: "720" },
+    ]}
+    notas={[{ x: 400, y: 40, texto: "Menos de 360 días: sin paro" }]}
+  />
+</Diagram>
+
 ### Incapacidad temporal (la "baja")
 
 La **incapacidad temporal (IT)** es la situación en que estás de baja médica y no puedes trabajar, ya sea por **enfermedad común o accidente no laboral**, o por **accidente de trabajo o enfermedad profesional**. La diferencia entre ambas es importante porque cobras distinto:
 
 - **Enfermedad común / accidente no laboral**: no cobras nada los 3 primeros días; del **día 4 al 20** cobras el **60 %** de la base reguladora; del **día 21 en adelante**, el **75 %**.
 - **Accidente de trabajo / enfermedad profesional**: cobras el **75 % desde el día siguiente** a la baja, sin periodo de carencia. (Recuerda de la unidad anterior que el accidente *in itinere* —yendo o volviendo del trabajo— cuenta como accidente laboral.)
+
+<Diagram caption="Lo que se cobra en una baja según los días transcurridos, como porcentaje de la base reguladora. Por enfermedad común o accidente no laboral: nada los tres primeros días, el 60 % del día 4 al 20 y el 75 % desde el día 21. Por accidente de trabajo: el 75 % desde el día siguiente a la baja. Los convenios pueden mejorar estos porcentajes.">
+  <GraficoXY id="g-ipe1-incapacidad-temporal" titulo="Prestación por incapacidad temporal según los días de baja" desc="Gráfico de escalones con los días de baja en el eje horizontal. Enfermedad común o accidente no laboral: 0 por ciento los días 1 a 3, 60 por ciento del día 4 al 20 y 75 por ciento desde el día 21. Accidente de trabajo o enfermedad profesional: 75 por ciento desde el día siguiente a la baja."
+    xMax={45} yMax={100} ejeX="Días de baja" ejeY="% de la base reguladora" simboloX="d" simboloY="%"
+    xTicks={[3, 20, 40]} yTicks={[25, 50, 75, 100]}
+    series={[
+      { color: "mustard", puntos: [[1, 75], [40, 75]] },
+      { color: "terra", puntos: [[0, 0], [3, 0], [3, 60], [20, 60], [20, 75], [40, 75]] },
+    ]}
+    notas={[
+      { x: 1.5, y: 79, texto: "Accidente de trabajo: 75 %", color: "mustard" },
+      { x: 4, y: 52, texto: "Enfermedad común: 60 %", color: "terra" },
+      { x: 3.6, y: 5, texto: "Días 1 a 3: sin prestación" },
+      { x: 21.5, y: 68, texto: "Desde el día 21: 75 %", color: "terra" },
+    ]}
+  />
+</Diagram>
 
 Muchos convenios colectivos **mejoran** estos porcentajes y complementan hasta el 100 % del salario durante un tiempo. La gestión y el pago suelen recaer en la **mutua colaboradora** de la empresa.
 
@@ -245,6 +289,22 @@ Cualquiera de estos despidos puede impugnarse ante la sección de lo Social del 
 - **Procedente**: la causa estaba justificada y bien tramitada. No hay más que el finiquito (en el disciplinario) o la indemnización tasada (en el objetivo).
 - **Improcedente**: la causa no se justifica o falla la forma. La empresa elige entre **readmitir** al trabajador o pagarle una indemnización de **33 días de salario por año trabajado, con un máximo de 24 mensualidades** (eran 45 días antes de la reforma de 2012; los años trabajados antes de 2012 se calculan al tipo antiguo).
 - **Nulo**: vulnera un derecho fundamental o afecta a personas especialmente protegidas (embarazo, permiso por nacimiento). Obliga a la **readmisión** más el abono de los **salarios de tramitación** (los dejados de percibir).
+
+<Diagram caption="Indemnización según los años de antigüedad, en días de salario: 20 días por año en el despido objetivo procedente (tope de 12 mensualidades, es decir, 360 días) y 33 días por año en el improcedente (tope de 24 mensualidades, 720 días). El disciplinario procedente no genera indemnización. Hugo, con 5 años, recibe 165 días.">
+  <GraficoXY id="g-ipe1-indemnizacion-despido" titulo="Indemnización por despido según la antigüedad" desc="Dos rectas con tope. Despido objetivo: 20 días de salario por año trabajado, hasta un máximo de 360 días (12 mensualidades), que se alcanza a los 18 años. Despido improcedente: 33 días por año, hasta un máximo de 720 días (24 mensualidades), que se alcanza a los 21,8 años. Con 5 años de antigüedad, el improcedente da 165 días."
+    xMax={28} yMax={800} ejeX="Años de antigüedad" ejeY="Días de salario" simboloX="años" simboloY="d"
+    xTicks={[10, 15, 20]} yTicks={[200, 400, 600]}
+    series={[
+      { label: "Objetivo", color: "mustard", puntos: [[0, 0], [18, 360], [25, 360]] },
+      { label: "Improcedente", color: "terra", puntos: [[0, 0], [720 / 33, 720], [25, 720]] },
+    ]}
+    puntos={[{ x: 5, y: 165, label: "Hugo", xLabel: "5", yLabel: "165", dx: -50, dy: -14 }]}
+    notas={[
+      { x: 24.5, y: 385, texto: "Tope: 12 mensualidades", ancla: "end", color: "mustard" },
+      { x: 24.5, y: 745, texto: "Tope: 24 mensualidades", ancla: "end", color: "terra" },
+    ]}
+  />
+</Diagram>
 
 <Callout label="No confundir" title="Finiquito ≠ indemnización" variant="warning">
 

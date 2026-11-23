@@ -50,6 +50,7 @@ import KeyTakeaways from '@components/KeyTakeaways.astro';
 import Bibliography from '@components/Bibliography.astro';
 import Figure from '@components/Figure.astro';
 import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
 import TldrUnidad from '@components/TldrUnidad.astro';
 import CasoDilema from '@components/CasoDilema.astro';
 import VuelveAlCaso from '@components/VuelveAlCaso.astro';
@@ -216,6 +217,21 @@ La primera es confundir **finiquito** e **indemnización**. El **finiquito** es 
 6. **Sentencia.** El despido se declara **procedente** —solo finiquito—, **improcedente** —treinta y tres días por año, con topes, o readmisión, a elección de la empresa— o **nulo**, si vulnera derechos fundamentales o afecta a situaciones especialmente protegidas, en cuyo caso la readmisión es obligatoria y con los salarios dejados de percibir.
 </Steps>
 
+<Diagram caption="Cuánto cobra quien es despedido según los años de antigüedad, en días de salario: 20 días por año en el despido objetivo y 33 por año en el improcedente. El disciplinario procedente no genera indemnización. En ambos casos hay un tope legal, que con 10 años de antigüedad todavía no se alcanza.">
+  <GraficoXY id="g-cjd-indemnizacion-despido" titulo="Indemnización por despido según la antigüedad" desc="Dos rectas desde el origen. Despido objetivo: 20 días de salario por año trabajado, 200 días con 10 años. Despido improcedente: 33 días por año, 330 días con 10 años."
+    xMax={12} yMax={400} ejeX="Años de antigüedad" ejeY="Días de salario" simboloX="años" simboloY="d"
+    xTicks={[2, 4, 6, 8]} yTicks={[100]}
+    series={[
+      { label: "Objetivo", color: "mustard", puntos: [[0, 0], [10, 200]] },
+      { label: "Improcedente", color: "terra", puntos: [[0, 0], [10, 330]] },
+    ]}
+    puntos={[
+      { x: 10, y: 200, xLabel: "10", yLabel: "200" },
+      { x: 10, y: 330, yLabel: "330" },
+    ]}
+  />
+</Diagram>
+
 La segunda confusión es creer que un despido improcedente es ilegal y hay que volver al puesto. No: improcedente significa que la empresa no ha probado la causa y por tanto debe pagar más, pero es ella quien elige entre readmitir o indemnizar. Solo el despido **nulo** obliga a readmitir, y por eso la nulidad es la calificación que realmente protege.
 
 ## La Seguridad Social: qué cotizas y qué recibes
@@ -245,6 +261,22 @@ La prestación contributiva por desempleo —lo que todo el mundo llama «el par
 
 Agotada la prestación contributiva, existen **subsidios** de cuantía menor para quien cumple determinados requisitos de renta o edad. Y quien no ha cotizado lo suficiente no queda automáticamente fuera del sistema: puede acceder a rentas mínimas, que ya no son Seguridad Social contributiva sino protección asistencial.
 </RealExample>
+
+<Diagram caption="Cuántos meses de paro corresponden según los años cotizados: aproximadamente un tercio de lo cotizado, de modo que un año da unos cuatro meses y seis años dan el máximo, que son dos años (24 meses). Se exigen al menos 360 días cotizados, es decir, un año.">
+  <GraficoXY id="g-cjd-paro-duracion" titulo="Duración del paro según los años cotizados" desc="Recta creciente: con 1 año cotizado, unos 4 meses de prestación; con 6 años, el máximo de 24 meses. A partir de ahí la duración no sube."
+    xMax={9} yMax={28} ejeX="Años cotizados" ejeY="Meses de prestación" simboloX="años" simboloY="m"
+    xTicks={[2, 3, 4, 5, 7]} yTicks={[8, 12, 16, 20]}
+    series={[{ color: "teal", puntos: [[1, 4], [6, 24], [8, 24]] }]}
+    puntos={[
+      { x: 1, y: 4, xLabel: "1", yLabel: "4" },
+      { x: 6, y: 24, xLabel: "6", yLabel: "24" },
+    ]}
+    notas={[
+      { x: 3.3, y: 6, texto: "Un tercio de lo cotizado", color: "teal" },
+      { x: 8, y: 25.5, texto: "Máximo: 24 meses", ancla: "end" },
+    ]}
+  />
+</Diagram>
 
 El **desempleo** no es solo un problema individual. España arrastra desde hace décadas tasas de paro más altas que la media europea, con dos rasgos propios: mucho **paro juvenil** y mucha **temporalidad**, aunque esta última ha bajado de forma notable desde la reforma de 2021. Detrás hay causas estructurales —modelo productivo, estacionalidad, desajuste entre formación y demanda— que se estudian en Economía y que aquí interesan por su lado jurídico: cada reforma laboral es un intento de mover esas cifras cambiando las reglas del contrato.
 

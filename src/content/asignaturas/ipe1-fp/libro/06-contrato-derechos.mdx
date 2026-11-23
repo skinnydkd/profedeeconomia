@@ -54,6 +54,7 @@ import Steps from '@components/Steps.astro';
 import KeyTakeaways from '@components/KeyTakeaways.astro';
 import Bibliography from '@components/Bibliography.astro';
 import Diagram from '@components/Diagram.astro';
+import GraficoXY from '@components/diagrams/GraficoXY.astro';
 import TiposContrato from '@components/diagrams/TiposContrato.astro';
 import NominaAnotada from '@components/diagrams/NominaAnotada.astro';
 import Figure from '@components/Figure.astro';
@@ -186,6 +187,31 @@ Marcos firma un contrato como técnico en una empresa que le ofrece 1.250 € br
 
 </RealExample>
 
+<Diagram caption="El caso de Marcos, en euros brutos al mes. El contrato (1.250 €) supera el SMI de 2026 (1.221 €), pero queda 230 € por debajo del salario de tabla del convenio (1.480 €), que es el que manda.">
+  <GraficoXY id="g-ipe1-convenio-smi" titulo="SMI, contrato y convenio en el caso de Marcos" desc="Tres columnas en euros brutos al mes. SMI de 2026: 1.221. Contrato de Marcos: 1.250. Convenio del metal para su categoría: 1.480, es decir, 230 más que el contrato."
+    xMax={6} yMax={1800} ejeX="Referencia" ejeY="Euros brutos al mes" simboloY="€"
+    xTicks={[1.3, 3, 4.7]} yTicks={[400, 800, 1200, 1600]} xTickLabels={["SMI 2026", "Contrato", "Convenio"]}
+    areas={[
+      { puntos: [[0.7, 0], [1.9, 0], [1.9, 1221], [0.7, 1221]], color: "mustard", fuerte: true },
+      { puntos: [[2.4, 0], [3.6, 0], [3.6, 1250], [2.4, 1250]], color: "teal", fuerte: true },
+      { puntos: [[4.1, 0], [5.3, 0], [5.3, 1250], [4.1, 1250]], color: "teal", fuerte: true },
+      { puntos: [[4.1, 1250], [5.3, 1250], [5.3, 1480], [4.1, 1480]], color: "terra", fuerte: true },
+    ]}
+    series={[
+      { puntos: [[0.7, 0], [1.9, 0], [1.9, 1221], [0.7, 1221], [0.7, 0]], color: "mustard" },
+      { puntos: [[2.4, 0], [3.6, 0], [3.6, 1250], [2.4, 1250], [2.4, 0]], color: "teal" },
+      { puntos: [[4.1, 0], [5.3, 0], [5.3, 1250], [4.1, 1250], [4.1, 0]], color: "teal" },
+      { puntos: [[4.1, 1250], [5.3, 1250], [5.3, 1480], [4.1, 1480], [4.1, 1250]], color: "terra" },
+    ]}
+    notas={[
+      { x: 1.3, y: 1290, texto: "1 221", ancla: "middle" },
+      { x: 3, y: 1320, texto: "1 250", ancla: "middle" },
+      { x: 4.7, y: 1530, texto: "1 480", ancla: "middle", color: "terra" },
+      { x: 4.7, y: 1320, texto: "230", ancla: "middle" },
+    ]}
+  />
+</Diagram>
+
 ## Tiempo de trabajo, descansos y permisos
 
 El convenio concreta tu horario, pero el Estatuto de los Trabajadores fija unos límites que ningún convenio ni contrato puede empeorar. Son los que más conflictos generan en el primer empleo, así que conviene tenerlos a mano:
@@ -261,6 +287,45 @@ Aitana firma su primer contrato como **técnica de Grado Superior** con un salar
 En la nómina solo se te descuenta la cotización **a tu cargo** (en torno al 6,50 %). Pero la empresa cotiza además por ti a la Seguridad Social una cantidad **mucho mayor**, alrededor del **30-31 % de tu salario bruto** (contingencias comunes, desempleo, formación, FOGASA, accidentes de trabajo y el MEI; el tipo base fijo sin accidentes es de aproximadamente 30,65 % según la Orden PJC/297/2026), que la nómina recoge al pie como aportación de la empresa. Esto significa que el **coste laboral** real que asume la empresa por contratarte es bastante superior a tu bruto: por un sueldo bruto de 1.800 € al mes, la empresa puede estar desembolsando cerca de 2.350 €. Conviene saberlo: explica por qué a veces se negocia el "coste de empresa" y por qué la cotización es una pieza central de la financiación del Estado del bienestar.
 
 </Curiosity>
+
+<Diagram caption="Las tres magnitudes del ejercicio 6.1 (Aitana), por mes. Al líquido (1.521 €) se suman la retención de IRPF (162 €) y la cotización del trabajador a la Seguridad Social (117 €) para llegar al bruto (1.800 €); a este, la cotización de la empresa (30,65 %, unos 551,70 €, sin el coste variable de accidentes) para llegar al coste empresa.">
+  <GraficoXY id="g-ipe1-coste-empresa" titulo="Del líquido al coste empresa" desc="Tres columnas mensuales en euros con las cifras de Aitana. Líquido: 1.521. Bruto: 1.521 de líquido más 162 de IRPF y 117 de Seguridad Social del trabajador, 1.800 en total. Coste empresa: 1.800 de bruto más unos 551,70 de cotización de la empresa (30,65 %), 2.351,70 en total."
+    xMax={11} yMax={3000} ejeX="Magnitud mensual" ejeY="Euros al mes" simboloY="€"
+    xTicks={[1.4, 4.6, 8.2]} yTicks={[500, 1000, 1500, 2000, 2500]} xTickLabels={["Líquido", "Bruto", "Coste empresa"]}
+    areas={[
+      { puntos: [[0.4, 0], [2.4, 0], [2.4, 1521], [0.4, 1521]], color: "teal", fuerte: true },
+      { puntos: [[3.6, 0], [5.6, 0], [5.6, 1521], [3.6, 1521]], color: "teal", fuerte: true },
+      { puntos: [[3.6, 1521], [5.6, 1521], [5.6, 1683], [3.6, 1683]], color: "terra", fuerte: true },
+      { puntos: [[3.6, 1683], [5.6, 1683], [5.6, 1800], [3.6, 1800]], color: "mustard", fuerte: true },
+      { puntos: [[7.2, 0], [9.2, 0], [9.2, 1521], [7.2, 1521]], color: "teal", fuerte: true },
+      { puntos: [[7.2, 1521], [9.2, 1521], [9.2, 1683], [7.2, 1683]], color: "terra", fuerte: true },
+      { puntos: [[7.2, 1683], [9.2, 1683], [9.2, 1800], [7.2, 1800]], color: "mustard", fuerte: true },
+      { puntos: [[7.2, 1800], [9.2, 1800], [9.2, 2351.7], [7.2, 2351.7]], color: "aubergine", fuerte: true },
+    ]}
+    series={[
+      { puntos: [[0.4, 0], [2.4, 0], [2.4, 1521], [0.4, 1521], [0.4, 0]], color: "teal" },
+      { puntos: [[3.6, 0], [5.6, 0], [5.6, 1521], [3.6, 1521], [3.6, 0]], color: "teal" },
+      { puntos: [[3.6, 1521], [5.6, 1521], [5.6, 1683], [3.6, 1683], [3.6, 1521]], color: "terra" },
+      { puntos: [[3.6, 1683], [5.6, 1683], [5.6, 1800], [3.6, 1800], [3.6, 1683]], color: "mustard" },
+      { puntos: [[7.2, 0], [9.2, 0], [9.2, 1521], [7.2, 1521], [7.2, 0]], color: "teal" },
+      { puntos: [[7.2, 1521], [9.2, 1521], [9.2, 1683], [7.2, 1683], [7.2, 1521]], color: "terra" },
+      { puntos: [[7.2, 1683], [9.2, 1683], [9.2, 1800], [7.2, 1800], [7.2, 1683]], color: "mustard" },
+      { puntos: [[7.2, 1800], [9.2, 1800], [9.2, 2351.7], [7.2, 2351.7], [7.2, 1800]], color: "aubergine" },
+    ]}
+    notas={[
+      { x: 1.4, y: 700, texto: "Líquido 1 521", ancla: "middle" },
+      { x: 4.6, y: 700, texto: "Líquido 1 521", ancla: "middle" },
+      { x: 4.6, y: 1550, texto: "IRPF 162", ancla: "middle" },
+      { x: 5.7, y: 1705, texto: "SS 117", color: "mustard" },
+      { x: 4.6, y: 1880, texto: "Bruto 1 800", ancla: "middle", color: "terra" },
+      { x: 8.2, y: 700, texto: "Líquido 1 521", ancla: "middle" },
+      { x: 8.2, y: 1550, texto: "IRPF 162", ancla: "middle" },
+      { x: 9.3, y: 1705, texto: "SS 117", color: "mustard" },
+      { x: 8.2, y: 2000, texto: "Empresa 551,70", ancla: "middle" },
+      { x: 8.2, y: 2450, texto: "Coste empresa 2 351,70", ancla: "middle", color: "terra" },
+    ]}
+  />
+</Diagram>
 
 ## Cómo leer tu primer contrato sin que te la cuelen
 
