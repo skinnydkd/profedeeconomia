@@ -1,0 +1,204 @@
+---
+/**
+ * Print-ready Olimpiada notebook (pagedjs-cli → PDF): the twelve fichas in
+ * syllabus order and the four texts for commentary. Built by
+ * scripts/build-olimpiada-pdf.mjs into public/downloads/olimpiada-cuaderno.pdf.
+ */
+import { ACCENTS } from '@/lib/asignaturas';
+import { bloqueMeta, BLOQUE_SLUGS } from '@/lib/olimpiada';
+import { BLOQUES_OLIMPIADA_CA, localizeFamilias } from '@/i18n/familias-ca';
+import { getCollection, render } from 'astro:content';
+import { getLocale } from '@/i18n/locale';
+import { pickLocalizedEntry } from '@/i18n/content-locale';
+
+const locale = getLocale(Astro.currentLocale);
+const publicado = <T extends { data: { estado: string; lang: string } }>(all: T[], lang: string) =>
+  all.filter((e) => e.data.estado === 'publicado' && e.data.lang === lang);
+
+const fichasAll = await getCollection('olimpiadaFichas');
+const fichasCa = new Map(publicado(fichasAll, 'ca').map((e) => [e.id, e]));
+const fichas = await Promise.all(
+  publicado(fichasAll, 'es')
+    .sort((a, b) => BLOQUE_SLUGS.indexOf(a.data.bloque) - BLOQUE_SLUGS.indexOf(b.data.bloque) || a.data.orden - b.data.orden || a.id.localeCompare(b.id))
+    .map((e) => pickLocalizedEntry(e, fichasCa, locale))
+    .map(async (e) => ({
+      d: e.data,
+      bloque: localizeFamilias([bloqueMeta(e.data.bloque)], BLOQUES_OLIMPIADA_CA, locale)[0].label,
+      ...(await render(e)),
+    })),
+);
+
+const textosAll = await getCollection('olimpiadaTextos');
+const textosCa = new Map(publicado(textosAll, 'ca').map((e) => [e.id, e]));
+const textos = await Promise.all(
+  publicado(textosAll, 'es')
+    .sort((a, b) => a.data.orden - b.data.orden || a.id.localeCompare(b.id))
+    .map((e) => pickLocalizedEntry(e, textosCa, locale))
+    .map(async (e) => ({ d: e.data, ...(await render(e)) })),
+);
+
+const today = new Date().toLocaleDateString(locale === 'ca' ? 'ca-ES' : 'es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
+const copy = {
+  es: { header: 'Olimpiada de Economía', pre: 'Cuaderno de la', em: 'Olimpiada', sub: 'Fichas de repaso y textos para comentar', editorial: 'Editorial', contenido: 'Contenido', generado: 'Generado', cuenta: 'fichas y', cuentaT: 'textos', parte1: 'Fichas de repaso', parte1p: 'Un bloque del temario por ficha: lo esencial, los gráficos y las preguntas que suelen caer.', parte2: 'Textos para comentar', parte2p: 'Textos de actualidad con sus preguntas y una pauta de respuesta.', conceptos: 'Conceptos:', preguntas: 'Preguntas típicas de examen' },
+  ca: { header: "Olimpíada d'Economia", pre: 'Quadern de la', em: 'Olimpíada', sub: 'Fitxes de repàs i textos per a comentar', editorial: 'Editorial', contenido: 'Contingut', generado: 'Generat', cuenta: 'fitxes i', cuentaT: 'textos', parte1: 'Fitxes de repàs', parte1p: 'Un bloc del temari per fitxa: allò essencial, els gràfics i les preguntes que solen eixir.', parte2: 'Textos per a comentar', parte2p: "Textos d'actualitat amb les seues preguntes i una pauta de resposta.", conceptos: 'Conceptes:', preguntas: "Preguntes típiques d'examen" },
+}[locale];
+const accent = ACCENTS.edmn;
+---
+
+<!doctype html>
+<html lang={locale}>
+  <head>
+    <meta charset="utf-8" />
+    <title>{copy.header} — profedeeconomia</title>
+    <meta name="robots" content="noindex,nofollow" />
+    <style is:inline>
+      @font-face { font-family: 'Fraunces'; src: url('/fonts/fraunces-latin-normal.woff2') format('woff2'); font-weight: 300 700; font-style: normal; font-display: swap; }
+      @font-face { font-family: 'Fraunces'; src: url('/fonts/fraunces-latin-italic.woff2') format('woff2'); font-weight: 300 700; font-style: italic; font-display: swap; }
+      @font-face { font-family: 'Switzer'; src: url('/fonts/switzer/switzer-400.woff2') format('woff2'); font-weight: 400; font-display: swap; }
+      @font-face { font-family: 'Switzer'; src: url('/fonts/switzer/switzer-500.woff2') format('woff2'); font-weight: 500; font-display: swap; }
+      @font-face { font-family: 'Switzer'; src: url('/fonts/switzer/switzer-600.woff2') format('woff2'); font-weight: 600; font-display: swap; }
+      @font-face { font-family: 'Switzer'; src: url('/fonts/switzer/switzer-700.woff2') format('woff2'); font-weight: 700; font-display: swap; }
+      @font-face { font-family: 'JetBrains Mono'; src: url('/fonts/jetbrains-mono-latin.woff2') format('woff2'); font-weight: 400 500; font-style: normal; font-display: swap; }
+    </style>
+    <style is:global>
+      :root {
+        --color-bg: #FBF6EC; --color-paper: #FFFFFF; --color-bg-cream: #F5EDD9;
+        --color-ink: #2A1F18; --color-ink-soft: #5C4A3D; --color-ink-mute: #8A7868;
+        --color-line: #E5D4BD; --color-line-soft: #EFE2CB;
+        --color-terra: #C44E2C; --color-mustard: #D4A24C; --color-mustard-deep: #A87A2A;
+        --font-serif: "Fraunces", Georgia, serif; --font-sans: "Switzer", -apple-system, sans-serif; --font-mono: "JetBrains Mono", monospace;
+      }
+      @page {
+        size: 165mm 235mm; margin: 12mm 12mm 13mm 12mm;
+        @top-left { content: string(doc-title); font-family: var(--font-sans); font-size: 8.5pt; letter-spacing: 0.06em; text-transform: uppercase; color: var(--color-ink-mute); }
+        @top-right { content: string(doc-header); font-family: var(--font-serif); font-style: italic; font-size: 9pt; color: var(--color-ink-mute); }
+        @bottom-right { content: counter(page); font-family: var(--font-serif); font-size: 10pt; color: var(--book-accent); }
+      }
+      @page :first { @top-left { content: none; } @top-right { content: none; } @bottom-right { content: none; } }
+      @page no-header { @top-left { content: none; } @top-right { content: none; } }
+      * { box-sizing: border-box; }
+      html { font-size: 9.5pt; }
+      body { margin: 0; background: var(--color-bg); color: var(--color-ink); font-family: var(--font-serif); font-size: 9.5pt; line-height: 1.34; font-variation-settings: "SOFT" 50, "WONK" 0; }
+      h1, h2, h3, h4 { font-family: var(--font-serif); font-weight: 500; color: var(--color-ink); line-height: 1.16; }
+      p { margin: 0 0 0.45em; orphans: 2; widows: 2; -webkit-hyphens: auto; hyphens: auto; }
+      strong { color: var(--color-ink); } em { font-style: italic; }
+      ul, ol { padding-left: 1.2em; margin: 0 0 0.55em; } li { margin-bottom: 0.18em; }
+      ul li::marker { color: var(--color-mustard); }
+      table { width: 100%; border-collapse: separate; border-spacing: 0; margin: 0.8em 0; font-size: 8.6pt; page-break-inside: auto; }
+      th, td { text-align: left; padding: 0.34em 0.55em; border-bottom: 1px solid var(--color-line-soft); vertical-align: top; }
+      th { font-family: var(--font-sans); font-size: 7.5pt; text-transform: uppercase; letter-spacing: 0.06em; color: var(--book-accent-deep); background: var(--book-accent-soft); font-weight: 700; }
+      blockquote { margin: 0.9em 0; padding: 0.6em 1em; border-left: 3px solid var(--color-mustard); background: var(--color-bg-cream); font-style: italic; color: var(--color-ink-soft); break-inside: avoid; }
+      code { font-family: var(--font-mono); font-size: 0.92em; background: var(--color-bg-cream); padding: 0.05em 0.3em; border-radius: 2px; }
+      /* Formula blocks (fenced code) — clean cream box with accent rule, dark
+         readable text. (Syntax highlighting is disabled project-wide so there
+         is no Shiki inline background to fight.) */
+      pre {
+        font-family: var(--font-mono); font-size: 9pt; line-height: 1.5;
+        background: var(--color-bg-cream); color: var(--color-ink);
+        border-radius: 4px;
+        padding: 0.6em 0.9em; margin: 0.8em 0;
+        white-space: pre-wrap; break-inside: avoid;
+      }
+      pre code { background: transparent; padding: 0; font-size: inherit; color: inherit; }
+
+      /* height must stay <= page content box (235 - 12 - 13 = 210mm) or the
+         footer overflows onto a near-empty 2nd page. 209mm keeps 1mm of slack. */
+      .cover { page: no-header; break-after: page; height: 209mm; display: flex; flex-direction: column; justify-content: space-between; }
+      .cover__top { display: flex; justify-content: space-between; align-items: flex-start; font-family: var(--font-sans); font-size: 8.5pt; letter-spacing: 0.12em; text-transform: uppercase; color: var(--book-accent); }
+      .cover__top .mark { width: 20pt; height: 20pt; border-radius: 50%; background: var(--book-accent); position: relative; }
+      .cover__top .mark::before { content: ""; position: absolute; inset: 4pt; background: var(--color-mustard); border-radius: 50%; }
+      .cover__top .mark::after { content: ""; position: absolute; inset: 8pt; background: var(--color-bg); border-radius: 50%; }
+      .cover__center { margin-top: -8mm; }
+      .cover__eyebrow { font-family: var(--font-sans); font-size: 9.5pt; letter-spacing: 0.18em; text-transform: uppercase; color: var(--book-accent); font-weight: 700; margin-bottom: 4mm; }
+      .cover__title { font-family: var(--font-serif); font-size: 40pt; line-height: 1.02; letter-spacing: -0.02em; color: var(--color-ink); margin: 0 0 4mm; font-weight: 400; font-variation-settings: "SOFT" 80; max-width: 16ch; }
+      .cover__title em { font-style: italic; color: var(--book-accent); font-variation-settings: "SOFT" 100, "WONK" 1; }
+      .cover__sub { font-family: var(--font-serif); font-style: italic; font-size: 15pt; color: var(--color-ink-soft); margin: 0; font-variation-settings: "SOFT" 80; }
+      .cover__rule { width: 34mm; height: 5pt; background: var(--book-accent); border-radius: 999px; margin: 6mm 0; }
+      .cover__bottom { display: flex; justify-content: space-between; align-items: flex-end; font-family: var(--font-sans); font-size: 9pt; color: var(--color-ink-soft); }
+      .cover__bottom .stack { display: flex; flex-direction: column; gap: 2mm; }
+      .cover__bottom .stack strong { color: var(--color-ink); font-weight: 600; font-size: 9.5pt; }
+      .cover__bottom .stack .muted { font-size: 8pt; color: var(--color-ink-mute); letter-spacing: 0.06em; text-transform: uppercase; }
+
+      .doc { string-set: doc-title attr(data-doc-title); padding-top: 3mm; }
+      .doc h2 { font-size: 14pt; margin: 1.3em 0 0.5em; position: relative; padding-top: 0.7em; break-after: avoid; break-before: auto; }
+      .doc h2::before { content: ""; position: absolute; top: 0; left: 0; width: 22mm; height: 3px; background: var(--book-accent); border-radius: 999px; }
+      .doc h2:nth-of-type(2n)::before { background: var(--color-mustard); }
+      .doc h3 { font-size: 11.5pt; margin: 1.1em 0 0.4em; break-after: avoid; }
+      /* Each section starts on a fresh page for a clean structure */
+      .pieza { break-before: page; }
+      .pieza__bloque { font-family: var(--font-sans); font-size: 8pt; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--book-accent-deep); margin: 0 0 1mm; }
+      .pieza__titulo { font-size: 20pt; margin: 0 0 2mm; font-variation-settings: "SOFT" 80, "WONK" 0; }
+      .pieza__resumen { font-style: italic; color: var(--color-ink-soft); font-size: 10.5pt; margin-bottom: 0.8em; }
+      .pieza__conceptos { font-family: var(--font-sans); font-size: 8.5pt; color: var(--color-ink-soft); padding: 0.5em 0.8em; border: 1px solid var(--color-line); border-radius: 4px; }
+      .parte { break-before: page; page: no-header; height: 200mm; display: flex; flex-direction: column; justify-content: center; }
+      .parte h1 { font-size: 30pt; font-weight: 400; margin: 0 0 3mm; font-variation-settings: "SOFT" 80, "WONK" 0; }
+      .parte p { font-style: italic; color: var(--color-ink-soft); font-size: 12pt; max-width: 34ch; }
+      .indice { list-style: none; padding: 0; font-size: 10pt; }
+      .indice li { padding: 0.3em 0; border-bottom: 1px solid var(--color-line-soft); }
+      figure { break-inside: avoid; margin: 0.9em 0; }
+      figure svg { max-width: 100%; height: auto; }
+      details > summary { font-family: var(--font-sans); font-weight: 600; }
+    </style>
+  </head>
+  <style is:inline set:html={`body { --book-accent: ${accent.base}; --book-accent-deep: ${accent.deep}; --book-accent-soft: ${accent.soft}; } .doc-title-string { string-set: doc-title "${copy.header}" , doc-header "profedeeconomia.es"; }`}></style>
+  <body class="doc-title-string">
+    <section class="cover">
+      <header class="cover__top"><span>profedeeconomia.es</span><span class="mark"></span></header>
+      <div class="cover__center">
+        <div class="cover__eyebrow">{copy.header}</div>
+        <h1 class="cover__title">{copy.pre} <em>{copy.em}</em></h1>
+        <p class="cover__sub">{copy.sub}</p>
+        <div class="cover__rule"></div>
+      </div>
+      <footer class="cover__bottom">
+        <div class="stack"><span class="muted">{copy.editorial}</span><strong>profedeeconomia.es</strong></div>
+        <div class="stack"><span class="muted">{copy.contenido}</span><strong>{fichas.length} {copy.cuenta} {textos.length} {copy.cuentaT}</strong></div>
+        <div class="stack"><span class="muted">{copy.generado}</span><strong>{today}</strong></div>
+      </footer>
+    </section>
+
+    <section class="doc" data-doc-title={copy.header}>
+      <div class="parte">
+        <h1>{copy.parte1}</h1>
+        <p>{copy.parte1p}</p>
+        <ol class="indice">{fichas.map((f) => <li>{f.d.title}</li>)}</ol>
+      </div>
+      {fichas.map(({ d, bloque, Content }) => (
+        <article class="pieza">
+          <p class="pieza__bloque">{bloque}</p>
+          <h1 class="pieza__titulo">{d.title}</h1>
+          <p class="pieza__resumen">{d.resumen}</p>
+          {d.conceptos_clave.length > 0 && <p class="pieza__conceptos"><strong>{copy.conceptos}</strong> {d.conceptos_clave.join(' · ')}</p>}
+          <Content />
+          {d.preguntas_tipicas.length > 0 && (
+            <>
+              <h2>{copy.preguntas}</h2>
+              <ol>{d.preguntas_tipicas.map((p) => <li>{p}</li>)}</ol>
+            </>
+          )}
+        </article>
+      ))}
+
+      <div class="parte">
+        <h1>{copy.parte2}</h1>
+        <p>{copy.parte2p}</p>
+        <ol class="indice">{textos.map((t) => <li>{t.d.title}</li>)}</ol>
+      </div>
+      {textos.map(({ d, Content }) => (
+        <article class="pieza">
+          <h1 class="pieza__titulo">{d.title}</h1>
+          <p class="pieza__resumen">{d.descripcion}</p>
+          <Content />
+        </article>
+      ))}
+    </section>
+
+    <script is:inline>
+      if (new URLSearchParams(location.search).has('preview')) {
+        const s = document.createElement('script');
+        s.src = '/vendor/pagedjs@0.4.3/paged.polyfill.min.js';
+        document.body.appendChild(s);
+      }
+    </script>
+  </body>
+</html>
